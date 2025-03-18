@@ -1,7 +1,7 @@
 import React, { MouseEvent, useState } from 'react';
 import Icon, { CloseS } from '@synerise/ds-icon';
 import { theme } from '@synerise/ds-core';
-import Tooltip from '@synerise/ds-tooltip/dist/Tooltip';
+import Tooltip from '@synerise/ds-tooltip';
 import { TagProps, TagShape } from './Tag.types';
 import * as S from './Tag.styles';
 import { getColorText } from './Tag.styles';
@@ -13,7 +13,7 @@ const Tag = ({
   disabled,
   removable,
   image,
-  shape,
+  shape = TagShape.DEFAULT_ROUND && TagShape.DEFAULT_SQUARE,
   color,
   textColor,
   onRemove,
@@ -102,10 +102,6 @@ const Tag = ({
       </S.Content>
     </S.Tag>
   );
-};
-
-Tag.defaultProps = {
-  shape: TagShape.DEFAULT_ROUND && TagShape.DEFAULT_SQUARE,
 };
 
 export default Tag;

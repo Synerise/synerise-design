@@ -1,5 +1,5 @@
 import React from 'react';
-import { TagShape } from '@synerise/ds-tags';
+import { TagShape } from '@synerise/ds-tag';
 import * as S from './Status.styles';
 import { StatusProps } from './Status.types';
 

@@ -1,6 +1,6 @@
 import styled, { css } from 'styled-components';
 import { Carousel } from 'antd';
-import { Tag } from '@synerise/ds-tags';
+import Tag from '@synerise/ds-tag';
 import { Text, Title } from '@synerise/ds-typography';
 
 export const BannerWrapper = styled.div<{ count: number }>`

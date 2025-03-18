@@ -1,5 +1,5 @@
 import styled, { css } from 'styled-components';
-import { Tag } from '@synerise/ds-tags';
+import Tag from '@synerise/ds-tag';
 import { ThemeProps } from '@synerise/ds-core';
 import type { StatusType } from './Status.types';
 

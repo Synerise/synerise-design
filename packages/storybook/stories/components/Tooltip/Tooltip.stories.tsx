@@ -6,11 +6,10 @@ import { userEvent, waitFor, within, expect } from '@storybook/test';
 import isChromatic from 'chromatic/isChromatic';
 
 import Tooltip, { TooltipProps } from '@synerise/ds-tooltip';
-import { Tag, TagShape } from '@synerise/ds-tags';
+import Tag, { TagShape } from '@synerise/ds-tag';
 import { UserAvatar } from '@synerise/ds-avatar';
 import InformationCard from '@synerise/ds-information-card';
-import ShortCuts from '@synerise/ds-short-cuts';
-import Status from '@synerise/ds-status';
+import Button from '@synerise/ds-button';
 import Icon, { InfoFillS, InfoM, SegmentM } from '@synerise/ds-icon';
 import { theme } from '@synerise/ds-core';
 
@@ -24,7 +23,7 @@ import {
   REACT_NODE_AS_STRING,
   STYLE_ARG_CONTROL,
 } from '../../utils';
-import { TUTORIALS, TOOLTIP_TITLE } from './Tooltip.data';
+import { TOOLTIP_TITLE } from './Tooltip.data';
 import { tooltipImage } from '../../constants/images';
 
 export type StoryProps = TooltipProps & {};
@@ -78,8 +77,7 @@ export default {
     if (args.type === 'tutorial') {
       propToFind = args.tutorials![0].title;
     }
-    if (args.render) {
-    } else {
+    if (!args.render) {
       await waitFor(async () => expect(await canvas.findByText(propToFind as string)).toBeInTheDocument());
     }
   },
@@ -101,11 +99,11 @@ export const LargeTypeWithImage: Story = {
   args: {
     type: 'largeSimple',
     image: <img src={tooltipImage} />,
-    button: {
-      label: 'More info',
-      onClick: action('click'),
-      buttonIcon: <Icon component={<InfoM />} />,
-    },
+    button: (
+      <Button type="ghost-white" mode="icon-label" onClick={action('click')}>
+        <Icon component={<InfoM />} /> More info
+      </Button>
+    ),
     icon: <Icon color={theme.palette.white} component={<InfoM />} />,
     description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
   },
@@ -119,11 +117,11 @@ export const LargeScrollableType: Story = {
     description:
       'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras quis pellentesque felis, luctus vestibulum ligula. Vestibulum tristique vulputate nulla, sed tempor nisi rhoncus a. Suspendisse sit amet vulputate dui, sit amet congue dolor. Ut sagittis ex sed turpis tristique, in hendrerit ligula venenatis. Aenean fringilla libero a rhoncus viverra. Sed non orci libero. Etiam venenatis ultrices odio, vel sodales massa facilisis ac. Vivamus ac fermentum elit. Aenean vel facilisis tortor, sit amet ornare erat. ',
 
-    button: {
-      label: 'More info',
-      onClick: action('click'),
-      buttonIcon: <Icon component={<InfoM />} />,
-    },
+    button: (
+      <Button type="ghost-white" mode="icon-label" onClick={action('click')}>
+        <Icon component={<InfoM />} /> More info
+      </Button>
+    ),
   },
 };
 
@@ -158,11 +156,11 @@ export const AvatarWithTooltip: Story = {
 export const WithButtonInFooter: Story = {
   args: {
     type: 'largeSimple',
-    button: {
-      label: 'More info',
-      onClick: action('click'),
-      buttonIcon: <Icon component={<InfoM />} />,
-    },
+    button: (
+      <Button type="ghost-white" mode="icon-label" onClick={action('click')}>
+        <Icon component={<InfoM />} /> More info
+      </Button>
+    ),
   },
 };
 

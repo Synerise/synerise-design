@@ -1,8 +1,10 @@
-import type { ReactNode } from 'react';
+import type { HTMLAttributes, ReactNode } from 'react';
 import type { ButtonProps } from '@synerise/ds-button';
 import type { TooltipProps } from '@synerise/ds-tooltip';
 import type { BadgeProps } from '@synerise/ds-badge';
-import { WithHTMLAttributes } from '@synerise/ds-utils';
+import type { WithHTMLAttributes } from '@synerise/ds-utils';
+
+export type ToolbarDividerProps = HTMLAttributes<HTMLDivElement>;
 
 export type ToolbarProps = WithHTMLAttributes<
   HTMLDivElement,

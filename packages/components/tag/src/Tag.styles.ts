@@ -1,5 +1,5 @@
 import { ThemeProps, ThemePropsVars } from '@synerise/ds-core';
-import styled, { css, FlattenSimpleInterpolation, FlattenInterpolation } from 'styled-components';
+import styled, { css } from 'styled-components';
 import { TagShape } from './Tag.types';
 
 const defaultStatusStyles = css`
@@ -69,7 +69,7 @@ export const TagName = styled.span`
   text-overflow: ellipsis;
 `;
 export const RemoveButton = styled.div`
-  color: ${({ color, theme }): string => getColorText(theme, color)};
+  color: ${({ color, theme }) => getColorText(theme, color)};
   height: 18px;
   width: 18px;
   border-radius: 10px;
@@ -85,7 +85,7 @@ export const RemoveButton = styled.div`
   opacity: 0.8;
 
   &:before {
-    color: ${(props): string => props.color || props.theme.palette['red-600']};
+    color: ${props => props.color || props.theme.palette['red-600']};
     filter: brightness(70%);
     opacity: 0.3;
     content: '';
@@ -98,7 +98,7 @@ export const RemoveButton = styled.div`
 
   &&&:hover {
     .ds-icon svg {
-      fill: ${(props): string => props.theme.palette['red-600']} !important;
+      fill: ${props => props.theme.palette['red-600']} !important;
     }
   }
   .icon {
@@ -108,7 +108,7 @@ export const RemoveButton = styled.div`
   }
 `;
 
-const insertShapeStyles = (props: InsertShapeStyles): FlattenSimpleInterpolation => {
+const insertShapeStyles = (props: InsertShapeStyles) => {
   switch (props.shape) {
     case TagShape.SMALL_SQUARE:
       return css`
@@ -133,6 +133,12 @@ const insertShapeStyles = (props: InsertShapeStyles): FlattenSimpleInterpolation
         text-transform: uppercase;
         letter-spacing: 0.1px;
         padding: 0 4px;
+      `;
+
+    case TagShape.MEDIUM_ROUND:
+      return css`
+        color: ${props.textColor || getColorText(props.theme, props.color)};
+        ${defaultStatusStyles}
       `;
 
     case TagShape.DEFAULT_ROUND:
@@ -298,7 +304,7 @@ export const Content = styled.div<{ iconHover?: boolean }>`
   flex-grow: 0;
   flex-shrink: 1;
   max-width: 100%;
-  ${(props): string | false =>
+  ${props =>
     !!props.iconHover &&
     `
     &&& {
@@ -307,8 +313,8 @@ export const Content = styled.div<{ iconHover?: boolean }>`
 `}
 `;
 export const PrefixWrapper = styled.div<{ iconHover?: boolean }>`
-  ${(props): string => addonStyles(props)};
-  ${(props): string | false =>
+  ${props => addonStyles(props)};
+  ${props =>
     !!props.iconHover &&
     `.ant-scroll-number{ 
     color: ${props.theme.palette['red-600']}!important;
@@ -319,11 +325,11 @@ export const PrefixWrapper = styled.div<{ iconHover?: boolean }>`
 }`}
 `;
 export const SuffixWrapper = styled.div`
-  ${(props): string => addonStyles(props)};
+  ${props => addonStyles(props)};
 `;
 export const DefaultSuffixWrapper = styled.div``;
 export const DefaultPrefixWrapper = styled.div<{ iconHover?: boolean }>`
-  ${(props): string | false =>
+  ${props =>
     !!props.iconHover &&
     `.ant-scroll-number{ 
     color: ${props.theme.palette['red-600']}!important;
@@ -342,7 +348,7 @@ export const Tag = styled.div<TagProps>`
   overflow: hidden;
   cursor: default;
 
-  ${(props: TagProps): FlattenInterpolation<TagProps> | false =>
+  ${(props: TagProps) =>
     !props.asPill &&
     css`
       cursor: pointer;
@@ -351,8 +357,8 @@ export const Tag = styled.div<TagProps>`
       }
     `}
 
-  ${(props): FlattenSimpleInterpolation => insertShapeStyles(props)};
-  ${(props): string | false =>
+  ${props => insertShapeStyles(props)};
+  ${props =>
     !!props.iconHover &&
     `
     &&&:before{
@@ -360,14 +366,14 @@ export const Tag = styled.div<TagProps>`
    }
 `}
 
-  ${(props: TagProps): FlattenSimpleInterpolation | false =>
+  ${(props: TagProps) =>
     !!props.disabled &&
     css`
       opacity: 0.4;
       cursor: not-allowed;
     `}
 
-  ${(props: TagProps): FlattenInterpolation<TagProps> | false =>
+  ${(props: TagProps) =>
     !props.isStatusShape &&
     css`
       &:before {
@@ -393,7 +399,7 @@ export const Tag = styled.div<TagProps>`
     margin: 0 -2px 0 1px;
   }
 
-  ${(props): FlattenSimpleInterpolation | false =>
+  ${props =>
     !!props.isActionable &&
     css`
       &:hover {
@@ -413,10 +419,10 @@ export const Tag = styled.div<TagProps>`
     margin-right: 0;
   }
   ${SuffixWrapper},${DefaultSuffixWrapper} {
-    margin: ${(props): string => (!props.removable && props.suffixel ? '0px -8px 3px 5px' : '0 4px 3px 1px')};
+    margin: ${props => (!props.removable && props.suffixel ? '0px -8px 3px 5px' : '0 4px 3px 1px')};
   }
   ${PrefixWrapper},${DefaultPrefixWrapper} {
-    margin: ${(props): string => (!props.removable && props.preffixel ? '0px 5px 3px -8px' : '0 1px 3px 4px')};
+    margin: ${props => (!props.removable && props.preffixel ? '0px 5px 3px -8px' : '0 1px 3px 4px')};
   }
 `;
 

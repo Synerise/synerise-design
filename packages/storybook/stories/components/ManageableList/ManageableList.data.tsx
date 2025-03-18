@@ -7,7 +7,7 @@ import { DropdownMenu } from '@synerise/ds-manageable-list/dist/Item/FilterItem/
 import Button from '@synerise/ds-button';
 import Status from '@synerise/ds-status';
 import { Input } from '@synerise/ds-input';
-import { Tag, TagShape } from '@synerise/ds-tags';
+import Tag, { TagShape } from '@synerise/ds-tag';
 import { theme } from '@synerise/ds-core';
 
 import { avatar1 } from '../../constants';

@@ -1,7 +1,7 @@
 import React, { useState, useRef } from 'react';
 import { withTheme } from 'styled-components';
 import Icon, { Check3M, InfoFillS } from '@synerise/ds-icon';
-import { TagShape } from '@synerise/ds-tags';
+import { TagShape } from '@synerise/ds-tag';
 import { useOnClickOutside } from '@synerise/ds-utils';
 import Tooltip from '@synerise/ds-tooltip';
 

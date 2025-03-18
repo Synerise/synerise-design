@@ -4,7 +4,7 @@ import { useArgs } from '@storybook/preview-api';
 
 import StepCard, { StepCardProps } from '@synerise/ds-step-card';
 
-import { Tag, TagShape } from '@synerise/ds-tags';
+import Tag, { TagShape } from '@synerise/ds-tag';
 import { theme } from '@synerise/ds-core';
 import Tooltip from '@synerise/ds-tooltip';
 import Button from '@synerise/ds-button';

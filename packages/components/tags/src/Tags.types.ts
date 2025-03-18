@@ -1,16 +1,5 @@
-import type { ReactNode, CSSProperties } from 'react';
-import { Props as TagProps, TagShape } from './Tag/Tag.types';
-
-export type TagsTexts = {
-  addButtonLabel?: ReactNode;
-  searchPlaceholder?: string;
-  manageLinkLabel?: ReactNode;
-  createTagButtonLabel?: ReactNode;
-  dropdownNoTags?: ReactNode;
-  clearTooltip?: ReactNode;
-  deleteTooltip?: ReactNode;
-  noResultsLabel?: ReactNode;
-};
+import type { CSSProperties } from 'react';
+import { TagProps, TagShape, TagTexts } from '@synerise/ds-tag';
 
 export type ActionTaken = {
   type: 'ADD' | 'REMOVE';
@@ -28,8 +17,12 @@ export type TagsProps = {
   creatable?: boolean;
   disabled?: boolean;
   manageLink?: string;
-  texts?: TagsTexts;
-  theme: { [k: string]: string };
+  texts?: TagTexts;
+
+  /**
+   * @deprecated deprecated in favour of useTheme hook
+   */
+  theme?: { [k: string]: string };
   onCreate?: (name: string) => void;
   onSelectedChange?: (tags: Array<TagProps>, action: ActionTaken) => void;
   overlayStyle?: CSSProperties;
@@ -39,5 +32,7 @@ export type TagsProps = {
   onManageTagClick?: () => void;
 };
 
-// @deprecated - use TagsProps instead
+/**
+ *  @deprecated - use TagsProps instead
+ */
 export type Props = TagsProps;

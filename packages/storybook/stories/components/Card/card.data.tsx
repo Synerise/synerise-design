@@ -16,7 +16,7 @@ import Icon, {
   UserM,
   WarningFillM,
 } from '@synerise/ds-icon';
-import Tags, { Tag, TagShape } from '@synerise/ds-tags';
+import Tag, { TagShape } from '@synerise/ds-tag';
 import Button from '@synerise/ds-button';
 import Card, { CardBadge } from '@synerise/ds-card';
 import type { CardProps } from '@synerise/ds-card';
@@ -144,11 +144,7 @@ export const CUSTOM_BADGES = {
   text: <div>Badge</div>,
 };
 
-const tag = {
-  name: 'OPTIONAL',
-  color: theme.palette['grey-500'],
-};
-const titleTag = <Tags asPill selected={[tag]} tagShape={TagShape.SMALL_SQUARE} />;
+const titleTag = <Tag asPill name='OPTIONAL' color={theme.palette['grey-500']} shape={TagShape.SMALL_SQUARE} />;
 export const CARD_HEADER_VARIANTS = [
   {
     title: 'With Title Status Tag',

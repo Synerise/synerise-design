@@ -3,7 +3,7 @@ import BaseAnimateHeight from 'react-animate-height';
 import { Title, Text } from '@synerise/ds-typography';
 import DSIcon from '@synerise/ds-icon';
 
-import { Tag } from '@synerise/ds-tags/dist/Tag/Tag.styles';
+import { Tag } from '@synerise/ds-tag/dist/Tag.styles';
 
 export const AnimateHeight = styled(BaseAnimateHeight)<{ isOpen: boolean; duration: number }>`
   margin-top: ${props => (props.isOpen ? '0' : '-8px')};

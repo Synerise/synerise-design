@@ -1,7 +1,8 @@
-import { ElementType, MouseEvent } from 'react';
-import { ButtonProps as AntdButtonProps } from 'antd/lib/button';
-import { JustifyContentProperty } from 'csstype';
-import { LiteralStringUnion } from '@synerise/ds-utils';
+import type { ElementType, MouseEvent } from 'react';
+import type { ButtonProps as AntdButtonProps } from 'antd/lib/button';
+import type { JustifyContentProperty } from 'csstype';
+import type { LiteralStringUnion } from '@synerise/ds-utils';
+import type { TagProps } from '@synerise/ds-tag';
 
 export type ButtonProps = Omit<AntdButtonProps, 'type'> & {
   /**
@@ -57,6 +58,7 @@ export type ButtonProps = Omit<AntdButtonProps, 'type'> & {
   error?: boolean;
   activated?: boolean;
   readOnly?: boolean;
+  tagProps?: TagProps;
 };
 
 // @deprecated - use ButtonProps instead

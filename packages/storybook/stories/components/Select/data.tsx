@@ -6,7 +6,7 @@ import Icon, { LaptopM } from '@synerise/ds-icon';
 import * as S from '../Input/Input.styles';
 import { theme } from '@synerise/ds-core';
 import Tooltip from '@synerise/ds-tooltip';
-import { TagShape } from '@synerise/ds-tags';
+import { TagShape } from '@synerise/ds-tag';
 
 const { Option } = Select;
 

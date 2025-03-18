@@ -8,7 +8,7 @@ import DSFlag from '@synerise/ds-flag';
 import { RawSwitch } from '@synerise/ds-switch';
 import Icon, { CopyClipboardM, TrashM } from '@synerise/ds-icon';
 import ListItem, { ListItemProps } from '@synerise/ds-list-item';
-import { Tag, TagShape } from '@synerise/ds-tags';
+import Tag, { TagShape } from '@synerise/ds-tag';
 
 import {
   BOOLEAN_CONTROL,

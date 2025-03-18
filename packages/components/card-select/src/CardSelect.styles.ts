@@ -2,7 +2,7 @@ import React from 'react';
 import styled, { css, FlattenSimpleInterpolation } from 'styled-components';
 import is, { isNot } from 'styled-is';
 import { ThemeProps } from '@synerise/ds-core';
-import { Tag } from '@synerise/ds-tags';
+import Tag from '@synerise/ds-tag';
 import { CardSelectAlignType, CardSelectSizeType } from './CardSelect.types';
 
 const TRANSITION = `

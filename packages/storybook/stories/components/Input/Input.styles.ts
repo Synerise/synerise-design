@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import { ModalProps } from 'antd/lib/modal';
 
 import DsModal, { TitleContainer } from '@synerise/ds-modal';
-import { Tag } from '@synerise/ds-tags';
+import Tag from '@synerise/ds-tag';
 import { UserAvatar } from '@synerise/ds-avatar';
 
 export const Modal = styled(DsModal)<ModalProps & { withTabs?: boolean }>`

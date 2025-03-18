@@ -1,6 +1,12 @@
 export { default } from './Tags';
-export { default as Tag } from './Tag/Tag';
 export * as TagsStyles from './Tags.styles';
-export { TagShape } from './Tag/Tag.types';
-export type { Props as TagProps } from './Tag/Tag.types';
-export type { TagsProps, TagsTexts, ActionTaken } from './Tags.types';
+export type { TagsProps, ActionTaken } from './Tags.types';
+
+/**
+ * @deprecated import directly from @synerise/ds-tag
+ */
+export { default as Tag, TagShape } from '@synerise/ds-tag';
+/**
+ * @deprecated import directly from @synerise/ds-tag
+ */
+export type { TagProps, TagTexts } from '@synerise/ds-tag';
