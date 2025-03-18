@@ -32,8 +32,8 @@ export const Value = styled.span`
 `;
 
 export const StyledList = styled(VariableSizeList)`
-  overflowx: unset;
-  overflowy: unset;
+  overflow-x: unset;
+  overflow-y: unset;
   height: auto !important;
   max-height: 300px;
 `;

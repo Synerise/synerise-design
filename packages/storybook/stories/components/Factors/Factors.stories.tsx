@@ -1,10 +1,10 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Meta, StoryObj } from '@storybook/react';
 import { useArgs } from '@storybook/preview-api';
 import { within, userEvent, expect, fn, waitFor } from '@storybook/test';
 
-import { VarTypeStringM } from '@synerise/ds-icon';
-import Factors, { ALL_FACTOR_TYPES, FactorsProps } from '@synerise/ds-factors';
+import Icon, { CalculatorM, EditM, ParagraphM, SegmentM, VarTypeStringM } from '@synerise/ds-icon';
+import Factors, { ParameterValueType, ALL_FACTOR_TYPES, FactorsProps, FactorValueComponentProps } from '@synerise/ds-factors';
 import {
   BOOLEAN_CONTROL,
   controlFromOptionsArray,
@@ -12,6 +12,11 @@ import {
   flexColumnWrapper
 } from '../../utils';
 import { FACTORS_GROUPS, FACTORS_ITEMS, FACTORS_ITEMS_ADDITONAL_DATA, FACTORS_TEXTS, SELECTED_PARAMETER } from './Factors.data';
+import Button from '@synerise/ds-button';
+import { ITEMS_IN_SECTIONS, SECTIONS } from '../ItemPicker/ItemPicker.data';
+import ItemPicker, { BaseItemType, ItemPickerPropsNew } from '@synerise/ds-item-picker';
+import { ListItemProps } from '@synerise/ds-list-item';
+import { SelectedItem } from '../ItemPicker/ItemPicker.stories';
 
 const FactorsMeta = {
   title: 'Components/Filter/Factors',
@@ -113,6 +118,88 @@ export const ParameterType: Story = {
     ...FactorsMeta.args,
     selectedFactorType: 'parameter',
     value: SELECTED_PARAMETER,
+    parameters: {
+      buttonLabel: 'Parameter',
+      buttonIcon: <VarTypeStringM />,
+      groups: FACTORS_GROUPS,
+      items: FACTORS_ITEMS,
+    }
+  }
+};
+
+type ItemType = typeof ITEMS_IN_SECTIONS[number];
+type RenderTriggerType = Required<ItemPickerPropsNew<ItemType, undefined>>['renderTrigger'];
+type TriggerProps = Parameters<RenderTriggerType>[0];
+
+const mapParameterValueTypeToListItem = (item: ParameterValueType) => {
+  const listItem: ItemType = {
+    id: item.id as string,
+    text: item.name,
+    informationCardProps: {
+      title: item.name,
+      subtitle: item.type
+    }
+  }
+  return listItem
+}
+
+const mapPickerTypeToFactorValueType = (item: ItemType) => {
+  const result: ParameterValueType = {
+    id: item.id as string,
+    type: 'some type',
+    name: item.text,
+    icon: <EditM />
+  }
+  return result
+}
+
+const CustomParameterFactorValueComponent = ({ onActivate, getPopupContainerOverride, readOnly, onDeactivate, onChange, onParamsClick, opened, value}: FactorValueComponentProps) => {
+  const selectedItem = mapParameterValueTypeToListItem(value as ParameterValueType);
+  const renderTrigger = ({ selected, disabled }: Partial<TriggerProps>) => (
+    <Button groupVariant='right-rounded' disabled={disabled} color={selected && 'green'} mode={selected? 'icon-label' : ''} type={selected? 'custom-color' : "secondary"}>{selected ? (<><Icon component={<VarTypeStringM />} /> {selected.text}</>) : 'Choose parameter'}</Button>
+  );
+  const [localOpen, setLocalOpen] = useState(opened);
+  const handleOpenChange = (isOpen: boolean) => {
+    if (isOpen) {
+      onActivate?.();
+    } else {
+      onDeactivate?.();
+    }
+    setLocalOpen(isOpen);
+  };
+  const handleChange = (item: ItemType) => {
+    onChange(mapPickerTypeToFactorValueType(item));
+    setLocalOpen(false)
+  }
+  return readOnly ? (
+    renderTrigger({ selected: selectedItem, disabled: true })
+  ) : (
+    <ItemPicker
+      dropdownProps={{
+        onOpenChange: handleOpenChange,
+        getPopupContainer: getPopupContainerOverride,
+        open: localOpen,
+      }}
+      selectedItem={selectedItem}
+      onChange={handleChange}
+      isNewVersion
+      items={ITEMS_IN_SECTIONS}
+      sections={SECTIONS}
+      renderTrigger={renderTrigger}
+    />
+  );
+}
+
+export const CustomisedParameterType: Story = {
+  args: {
+    ...FactorsMeta.args,
+    selectedFactorType: 'parameter',
+    value: SELECTED_PARAMETER,
+    customFactorValueComponents: {
+      parameter: {
+        component: CustomParameterFactorValueComponent
+      }
+    },
     parameters: {
       buttonLabel: 'Parameter',
       buttonIcon: <VarTypeStringM />,

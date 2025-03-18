@@ -44,7 +44,7 @@ import {
   avatar9,
 } from '../../constants';
 
-export const POCIKER_DATA = [
+export const PICKER_DATA = [
   {
     category: 'frequently used',
     items: [],

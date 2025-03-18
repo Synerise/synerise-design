@@ -1,4 +1,4 @@
-export { default, factorTypes } from './Factors';
+export { default, FACTOR_TYPE_MAPPING as factorTypes } from './Factors';
 
 export { ALL_FACTOR_TYPES } from './Factors.types';
 export type {
@@ -9,7 +9,11 @@ export type {
   ParameterValueType,
   ParameterItem,
   ParameterGroup,
-  InputProps,
+  FactorValueComponentProps,
+  /**
+   * @deprecated, use FactorValueComponentProps type instead
+   */
+  FactorValueComponentProps as InputProps,
   FactorValueType,
   FactorValueProps,
   DynamicKeyValueType,

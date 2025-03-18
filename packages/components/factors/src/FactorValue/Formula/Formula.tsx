@@ -2,7 +2,7 @@ import React, { useState, useMemo, useCallback } from 'react';
 import Button from '@synerise/ds-button';
 import Icon, { EditS } from '@synerise/ds-icon';
 import Badge from '@synerise/ds-badge';
-import { FactorValueType, FormulaValueType, InputProps } from '../../Factors.types';
+import { FactorValueType, FormulaValueType, FactorValueComponentProps } from '../../Factors.types';
 import FormulaModal from './FormulaModal';
 import * as S from './Formula.styles';
 
@@ -14,7 +14,7 @@ const FormulaInput = ({
   texts,
   formulaEditor,
   readOnly = false,
-}: InputProps) => {
+}: FactorValueComponentProps) => {
   const [openFormulaModal, setOpenFormulaModal] = useState(false);
 
   const triggerMode = useMemo(() => {

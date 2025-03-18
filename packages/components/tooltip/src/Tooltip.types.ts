@@ -17,11 +17,12 @@ export type Tutorial = {
   description: ReactNode;
 };
 // TODO support descriptionType as array of element
-export default interface TooltipExtendedProps {
+export type TooltipExtendedProps = {
   type?: tooltipTypes;
   icon?: ReactNode;
   status?: ReactNode;
   title?: ReactNode;
+  shortCuts?: ReactNode | ReactNode[];
   image?: ReactNode;
   description?: descriptionType;
   tutorials?: Tutorial[];
@@ -31,6 +32,7 @@ export default interface TooltipExtendedProps {
   offset?: 'default' | 'small';
   button?: ReactNode;
   render?: () => ReactNode;
-}
+};
+export default TooltipExtendedProps;
 
 export type TooltipProps = Omit<TooltipPropsWithTitle, 'title'> & TooltipExtendedProps;

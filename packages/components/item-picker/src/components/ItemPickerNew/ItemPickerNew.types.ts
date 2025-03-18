@@ -1,0 +1,130 @@
+import type { ReactNode } from 'react';
+
+import type { ListItemProps } from '@synerise/ds-list-item';
+import type { InformationCardProps } from '@synerise/ds-information-card';
+import type { WithHTMLAttributes } from '@synerise/ds-utils';
+import type { DropdownProps } from '@synerise/ds-dropdown';
+
+import type { ItemPickerListProps, ItemPickerListTexts } from '../ItemPickerList/ItemPickerList.types';
+import type { ItemPickerTriggerProps, ItemPickerTriggerTexts } from '../ItemPickerTrigger/Trigger.types';
+
+type HeightConfig = {
+  defaultHeight: number;
+  viewportHeightThreshold?: number;
+  belowThresholdHeight?: number;
+};
+
+export type ContainerHeightType = 'fitContent' | 'fillSpace' | HeightConfig;
+
+type InheritedFromListItem = Pick<
+  ListItemProps,
+  | 'id'
+  | 'type'
+  | 'selected'
+  | 'prefixel'
+  | 'highlight'
+  | 'renderHoverTooltip'
+  | 'hoverTooltipProps'
+  | 'timeToHideTooltip'
+>;
+
+export type BaseSectionType = InheritedFromListItem & {
+  text: string;
+  id: string | number;
+};
+
+export type BaseSectionTypeWithFolders<SectionType extends BaseSectionType> = SectionType & {
+  folders?: BaseSectionTypeWithFolders<SectionType>[];
+};
+
+export type BaseItemType = InheritedFromListItem & {
+  text: string;
+  sectionId?: BaseSectionType['id'];
+  informationCardProps?: InformationCardProps;
+};
+
+type ItemLoaderResponse<ItemType extends BaseItemType> = {
+  items: ItemType[];
+  total: number;
+};
+
+type LoaderProps = {
+  sectionId?: BaseSectionType['id'];
+  page: number;
+  limit: number;
+  searchQuery?: string;
+};
+
+export type ItemLoaderConfig<ItemType extends BaseItemType> = {
+  limitPerPage?: number; // 50
+  limitPerSection?: number; // 5
+  loadItems: (props: LoaderProps) => Promise<ItemLoaderResponse<ItemType>>;
+};
+
+type RedirectActionType = {
+  actionType: 'redirect';
+};
+
+type CustomActionType = {
+  actionType: 'custom';
+  onClick: (action: ActionType) => void;
+};
+
+export type ItemPickerTexts = ItemPickerListTexts & ItemPickerTriggerTexts;
+
+export type ActionType = Omit<InheritedFromListItem, 'onClick'> & {
+  sectionId?: BaseSectionType['id'];
+  id: string | number;
+  text: ReactNode;
+  icon?: ReactNode;
+} & (RedirectActionType | CustomActionType);
+
+export type ItemPickerProps<
+  ItemType extends BaseItemType,
+  SectionType extends BaseSectionType | undefined
+> = WithHTMLAttributes<
+  HTMLDivElement,
+  {
+    isNewVersion: true;
+    renderTrigger?: (
+      props: Pick<ItemPickerTriggerProps, 'disabled' | 'error' | 'selected' | 'openDropdown' | 'closeDropdown'>
+    ) => ReactNode;
+    texts?: Partial<ItemPickerTexts>;
+    triggerProps?: {
+      size?: ItemPickerTriggerProps['size'];
+      allowClear?: boolean;
+      withChangeButton?: ItemPickerTriggerProps['withChangeButton'];
+      withClearConfirmation?: ItemPickerTriggerProps['withClearConfirmation'];
+    };
+    label?: ReactNode;
+    description?: ReactNode;
+    errorMessage?: ReactNode;
+    error?: boolean;
+    disabled?: boolean;
+    tooltip?: ReactNode;
+    onChange?: (item: ItemType) => void;
+    onFocus?: () => void;
+    onBlur?: () => void;
+    dropdownProps?: Partial<DropdownProps>;
+  } & Pick<
+    ItemPickerListProps<ItemType, SectionType>,
+    | 'items'
+    | 'actions'
+    | 'recents'
+    | 'sections'
+    | 'isLoading'
+    | 'onRefresh'
+    | 'onSectionChange'
+    | 'containerHeight'
+    | 'showItemsSectionLabel'
+    | 'noResultsIcon'
+    | 'emptyListIcon'
+    | 'selectedItem'
+    | 'getItemHeight'
+    | 'scrollbarProps'
+    | 'searchBarProps'
+    | 'includeFooter'
+    | 'includeSearchBar'
+  >
+> &
+  Partial<Pick<ItemPickerTriggerProps, 'placeholder' | 'placeholderIcon' | 'onClear'>>;

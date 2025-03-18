@@ -1,9 +1,17 @@
 import React, { useEffect, useRef, useState } from 'react';
 import InputNumber from '@synerise/ds-input-number';
 import { debounce } from 'lodash';
-import { InputProps } from '../../Factors.types';
+import { FactorValueComponentProps } from '../../Factors.types';
 
-const NumberInput = ({ error, value, onChange, texts, opened, onDeactivate, readOnly = false }: InputProps) => {
+const NumberInput = ({
+  error,
+  value,
+  onChange,
+  texts,
+  opened,
+  onDeactivate,
+  readOnly = false,
+}: FactorValueComponentProps) => {
   const [localValue, setLocalValue] = useState<string | number | null | undefined>(value as number);
   const onChangeRef = useRef(onChange);
 

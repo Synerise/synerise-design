@@ -25,6 +25,7 @@ type StyledListItemProps = {
   visible?: boolean;
   highlight?: boolean;
   noHover?: boolean;
+  inTooltip?: boolean;
   size?: 'default' | 'large';
 };
 
@@ -85,6 +86,11 @@ export const Inner = styled.div`
 const selectedStyle = css<StyledListItemProps>`
   background: ${props => props.theme.palette['blue-050']};
   color: ${props => props.theme.palette['blue-600']};
+  ${PrefixWrapper} {
+    svg {
+      fill: ${props => props.theme.palette['blue-600']};
+    }
+  }
 `;
 
 const highlightStyle = css`
@@ -103,6 +109,11 @@ const orderedStyle = css`
 export const Wrapper = styled.div<StyledListItemProps>`
   display: flex;
   min-width: 175px;
+  ${props =>
+    props.inTooltip &&
+    css`
+      height: 100%;
+    `}
   ${props =>
     props.disabled
       ? css`

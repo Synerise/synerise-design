@@ -16,7 +16,7 @@ import { theme } from '@synerise/ds-core';
 import Autocomplete from '@synerise/ds-autocomplete';
 import { Input } from '@synerise/ds-input';
 
-import { InputProps } from '../../Factors.types';
+import { FactorValueComponentProps } from '../../Factors.types';
 import * as S from './Text.styles';
 import TextModal from './TextModal';
 
@@ -33,7 +33,7 @@ const TextInput = ({
   inputProps,
   getPopupContainerOverride,
   readOnly = false,
-}: InputProps) => {
+}: FactorValueComponentProps) => {
   const [openExpanseEditor, setOpenExpanseEditor] = useState(false);
   const [inputRef, setInputRef] = useState<MutableRefObject<HTMLInputElement | RefSelectProps | null | undefined>>();
   const [localValue, setLocalValue] = useState(value);

@@ -5,7 +5,8 @@ import Tooltip from '@synerise/ds-tooltip';
 import Button from '@synerise/ds-button';
 import Popconfirm from '@synerise/ds-popconfirm';
 import * as S from './Trigger.styles';
-import { Props } from './Trigger.types';
+import type { ItemPickerTriggerProps } from './Trigger.types';
+import { useDefaultTexts } from '../../hooks/useDefaultTexts';
 
 const Trigger = ({
   selected,
@@ -25,8 +26,17 @@ const Trigger = ({
   yesText,
   noText,
   withClearConfirmation,
+  texts,
   informationCardTooltipProps,
-}: Props) => {
+}: ItemPickerTriggerProps) => {
+  const allTexts = useDefaultTexts({
+    yes: yesText,
+    no: noText,
+    clearConfirmTitle,
+    changeButtonLabel,
+    clear,
+    ...texts,
+  });
   const handleClear = useCallback(
     (event: MouseEvent<HTMLDivElement>): void => {
       event.stopPropagation();
@@ -38,8 +48,8 @@ const Trigger = ({
 
   const renderClear = useMemo(() => {
     const tooltip = (
-      <Tooltip title={clear}>
-        <S.ClearIconWrapper>
+      <Tooltip title={allTexts.clear}>
+        <S.ClearIconWrapper onClick={event => withClearConfirmation && event.stopPropagation()}>
           <Icon component={<Close3S />} color={theme.palette['red-600']} />
         </S.ClearIconWrapper>
       </Tooltip>
@@ -49,10 +59,10 @@ const Trigger = ({
       if (withClearConfirmation) {
         return (
           <Popconfirm
-            title={clearConfirmTitle}
+            title={allTexts.clearConfirmTitle}
             okButtonProps={{ onClick: handleClear }}
-            okText={yesText}
-            cancelText={noText}
+            okText={allTexts.yes}
+            cancelText={allTexts.no}
             icon={<Icon component={<WarningFillM />} color="#ffc300" />}
           >
             {tooltip}
@@ -67,7 +77,15 @@ const Trigger = ({
     }
 
     return null;
-  }, [clear, selected, withClearConfirmation, handleClear, clearConfirmTitle, yesText, noText]);
+  }, [
+    allTexts.clear,
+    allTexts.clearConfirmTitle,
+    allTexts.yes,
+    allTexts.no,
+    selected,
+    withClearConfirmation,
+    handleClear,
+  ]);
 
   const renderAngleIcon = useMemo(() => {
     return (
@@ -98,13 +116,13 @@ const Trigger = ({
       size === 'large' &&
       withChangeButton && (
         <S.ChangeButtonWrapper>
-          <Button type="ghost-primary" onClick={handleChangeButtonClick}>
-            {changeButtonLabel}
+          <Button disabled={disabled} type="ghost-primary" onClick={handleChangeButtonClick}>
+            {allTexts.changeButtonLabel}
           </Button>
         </S.ChangeButtonWrapper>
       )
     );
-  }, [withChangeButton, changeButtonLabel, size, handleChangeButtonClick]);
+  }, [size, disabled, withChangeButton, handleChangeButtonClick, allTexts.changeButtonLabel]);
 
   const renderedTrigger = useMemo(
     () => (

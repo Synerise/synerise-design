@@ -32,11 +32,11 @@ import SearchBar from '@synerise/ds-search-bar'
 | -------------- | ---------------------------------------- | ------------------------ | ------- |
 | autofocus      | Whether the input is focused             | boolean                  | `false` |
 | className      | Optional class for the component         | string                   | -       |
-| clearTooltip   | Tooltip description above clear button          | string / React.ReactNode | -       |
+| clearTooltip   | Tooltip description above clear button   | string / React.ReactNode | -       |
 | disabled       | Whether the input is disabled.           | boolean                  | -       |
 | iconLeft       | Place for optional icon on the left side | React.ReactNode          | -       |
 | onSearchChange | Callback when user input                 | () => void               | -       |
-| onClearInput   | Callback when user press clear button               | () => void               | -       |
-| placeholder    | Placeholder                              | string / React.ReactNode | -       |
+| onClearInput   | Callback when user press clear button    | () => void               | -       |
+| placeholder    | Placeholder                              | React.ReactNode          | -       |
 | value          | The input content value                  | string                   | -       |
-| autofocusDelay | Delay (ms) of the focus on search input  | number                   | 0 |
+| autofocusDelay | Delay (ms) of the focus on search input  | number                   | 0       |

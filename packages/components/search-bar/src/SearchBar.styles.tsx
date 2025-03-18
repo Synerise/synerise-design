@@ -19,7 +19,16 @@ export const ClearInputWrapper = styled.div`
   z-index: 3;
   cursor: pointer;
 `;
-
+export const PlaceholderWrapper = styled.div`
+  pointer-events: none;
+  position: absolute;
+  display: flex;
+  align-items: center;
+  z-index: 2;
+  height: 52px;
+  left: 52px;
+  color: ${props => props.theme.palette['grey-500']};
+`;
 export const SearchBar = styled(Input)`
   &&& {
     position: relative;
@@ -40,15 +49,19 @@ export const SearchBar = styled(Input)`
       }
       ::-webkit-input-placeholder {
         line-height: 52px;
+        color: transparent;
       }
       :-moz-placeholder {
         line-height: 52px;
+        color: transparent;
       }
       ::-moz-placeholder {
         line-height: 52px;
+        color: transparent;
       }
       :-ms-input-placeholder {
         line-height: 52px;
+        color: transparent;
       }
     }
   }

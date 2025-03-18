@@ -58,6 +58,10 @@ const Condition = (props: T.ConditionProps) => {
     singleStepCondition,
     showActionAttribute,
     onChangeActionAttribute,
+    contextSelectorComponent,
+    parameterSelectorComponent,
+    factorParameterSelectorComponent,
+    actionAttributeParameterSelectorComponent,
     showEmptyConditionPlaceholder = false,
   } = props;
   const { formatMessage } = useIntl();
@@ -271,6 +275,10 @@ const Condition = (props: T.ConditionProps) => {
                 step={step}
                 texts={text}
                 index={index}
+                contextSelectorComponent={contextSelectorComponent}
+                parameterSelectorComponent={parameterSelectorComponent}
+                factorParameterSelectorComponent={factorParameterSelectorComponent}
+                actionAttributeParameterSelectorComponent={actionAttributeParameterSelectorComponent}
                 hasPriority={step.id === currentStepId}
                 getPopupContainerOverride={getPopupContainerOverride}
                 draggableEnabled={draggableEnabled}
@@ -325,6 +333,10 @@ const Condition = (props: T.ConditionProps) => {
     text,
     readOnly,
     renderAddStep,
+    contextSelectorComponent,
+    parameterSelectorComponent,
+    factorParameterSelectorComponent,
+    actionAttributeParameterSelectorComponent,
     currentStepId,
     getPopupContainerOverride,
     draggableEnabled,
@@ -332,6 +344,7 @@ const Condition = (props: T.ConditionProps) => {
     selectParameter,
     selectContext,
     selectSubject,
+    selectActionAttribute,
     onUpdateStepName,
     duplicateStep,
     removeStep,
@@ -348,7 +361,6 @@ const Condition = (props: T.ConditionProps) => {
     hoverDisabled,
     inputProps,
     singleStepCondition,
-    selectActionAttribute,
     showActionAttribute,
     showEmptyConditionPlaceholder,
   ]);

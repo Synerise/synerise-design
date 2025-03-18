@@ -1,7 +1,7 @@
+import React, { ReactNode, useRef, useState, useMemo, useEffect, MouseEvent } from 'react';
 import '@synerise/ds-core/dist/js/style';
 import './style/index.less';
 import AntdTooltip from 'antd/lib/tooltip';
-import React, { ReactNode, useRef, useState, useMemo, useEffect, MouseEvent } from 'react';
 import { Carousel } from 'antd';
 import { getPopupContainer } from '@synerise/ds-utils';
 import Icon, { NotificationsM } from '@synerise/ds-icon';
@@ -24,6 +24,7 @@ const Tooltip = ({
   type = 'default',
   icon,
   title,
+  shortCuts,
   status,
   description,
   tutorials,
@@ -54,6 +55,16 @@ const Tooltip = ({
           <S.TooltipTitle tooltipType={type}>
             {shouldRenderIcon(type, icon)}
             <S.TooltipTitleWrapper>{title}</S.TooltipTitleWrapper>
+            {shortCuts && (
+              <S.TooltipHint>
+                {Array.isArray(shortCuts) ? (
+                  // eslint-disable-next-line react/no-array-index-key
+                  shortCuts.map((hint, index) => <S.TooltipKey key={`key-${index}`}>{hint}</S.TooltipKey>)
+                ) : (
+                  <S.TooltipKey>{shortCuts}</S.TooltipKey>
+                )}
+              </S.TooltipHint>
+            )}
           </S.TooltipTitle>
         )}
         {image && <S.TooltipImage extraMargin={!!finalDescription}>{image}</S.TooltipImage>}

@@ -6,7 +6,7 @@ import Tooltip from '@synerise/ds-tooltip';
 import Icon, { CloseS } from '@synerise/ds-icon';
 import { theme } from '@synerise/ds-core';
 import { getPopupContainer } from '@synerise/ds-utils';
-import { ParameterValueType } from '@synerise/ds-factors/dist/Factors.types';
+import type { ParameterValueType } from '@synerise/ds-factors';
 
 import { FACTOR, OPERATOR, PARAMETER } from '../../constants';
 import * as S from '../../Condition.style';
@@ -38,6 +38,8 @@ export const ConditionRow = ({
   onDeactivate,
   inputProps,
   readOnly = false,
+  parameterSelectorComponent,
+  factorParameterSelectorComponent,
 }: T.ConditionRowProps) => {
   const conditionFactorErrorText = conditionFactor?.errorText;
   const conditionParameterErrorText = conditionParameter?.errorText;
@@ -131,6 +133,16 @@ export const ConditionRow = ({
                 selectedFactorType=""
                 defaultFactorType=""
                 value=""
+                customFactorValueComponents={
+                  parameterSelectorComponent && {
+                    parameter: {
+                      component: parameterSelectorComponent,
+                    },
+                    contextParameter: {
+                      component: parameterSelectorComponent,
+                    },
+                  }
+                }
                 {...conditionParameter}
                 inputProps={inputProps}
                 getPopupContainerOverride={getPopupContainerOverride || getPopupContainer}
@@ -184,6 +196,16 @@ export const ConditionRow = ({
                   selectedFactorType=""
                   defaultFactorType=""
                   value=""
+                  customFactorValueComponents={
+                    factorParameterSelectorComponent && {
+                      parameter: {
+                        component: factorParameterSelectorComponent,
+                      },
+                      contextParameter: {
+                        component: factorParameterSelectorComponent,
+                      },
+                    }
+                  }
                   {...conditionFactorProps}
                   inputProps={inputProps}
                   getPopupContainerOverride={getPopupContainerOverride || getPopupContainer}

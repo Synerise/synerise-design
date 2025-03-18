@@ -7,7 +7,7 @@ import Icon, { SearchM } from '@synerise/ds-icon';
 import { SearchItems } from '@synerise/ds-search/dist/Elements';
 
 import * as S from './ItemPickerDropdown.style';
-import { ItemPickerDropdownProps } from './ItemPickerDropdown.types';
+import type { ItemPickerDropdownProps } from './ItemPickerDropdown.types';
 
 const DEFAULT_ROW_HEIGHT = 32;
 const DEFAULT_VISIBLE_ROWS = 10;

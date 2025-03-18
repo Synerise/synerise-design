@@ -8,6 +8,8 @@ import Tooltip from '@synerise/ds-tooltip';
 import * as S from './SearchBar.styles';
 import { SearchBarProps } from './SearchBar.types';
 
+const DEFAULT_PLACEHOLDER_STRING = 'Search';
+
 const SearchBar = ({
   value,
   className,
@@ -16,11 +18,13 @@ const SearchBar = ({
   placeholder,
   iconLeft,
   autofocus,
-  clearTooltip = <FormattedMessage id="DS.SEARCH-BAR.CLEAR-TOOLTIP" />,
+  clearTooltip = <FormattedMessage id="DS.SEARCH-BAR.CLEAR-TOOLTIP" defaultMessage="Clear" />,
   disabled,
   borderRadius,
   handleInputRef,
   autofocusDelay,
+  clearTooltipProps,
+  ...htmlAttributes
 }: SearchBarProps) => {
   const [isFocused, setFocus] = useState(false);
   const [input, setInput] = useState<HTMLInputElement | null>();
@@ -46,7 +50,7 @@ const SearchBar = ({
     }
     return undefined;
   }, [autofocus, autofocusDelay, input]);
-
+  const placeholderString = typeof placeholder === 'string' ? placeholder : DEFAULT_PLACEHOLDER_STRING;
   return (
     <S.SearchBarWrapper
       iconLeft={iconLeft}
@@ -55,13 +59,14 @@ const SearchBar = ({
       disabled={disabled as boolean}
       borderRadius={borderRadius}
       data-testid="input-wrapper"
+      {...htmlAttributes}
     >
       {iconLeft && <S.IconLeftWrapper>{iconLeft}</S.IconLeftWrapper>}
       {onClearInput && Boolean(value) && (
         <S.ClearInputWrapper onClick={onClearInput} data-testid="clear-btn">
           <Icon
             component={
-              <Tooltip title={clearTooltip}>
+              <Tooltip title={clearTooltip} {...clearTooltipProps}>
                 <Close3M />
               </Tooltip>
             }
@@ -70,14 +75,15 @@ const SearchBar = ({
           />
         </S.ClearInputWrapper>
       )}
+      {!value && <S.PlaceholderWrapper>{placeholder}</S.PlaceholderWrapper>}
       <S.SearchBar
         onChange={(event: FormEvent<HTMLInputElement>): void => onSearchChange(event.currentTarget.value)}
         onFocus={() => setFocus(true)}
         onBlur={() => setFocus(false)}
-        placeholder={placeholder}
         value={value}
         className={className}
         resetMargin
+        placeholder={placeholderString}
         handleInputRef={handleRef}
         disabled={disabled}
         autoComplete="off"

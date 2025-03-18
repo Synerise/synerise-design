@@ -15,7 +15,7 @@ import {
 } from '../../utils';
 import Button from '@synerise/ds-button';
 import Icon, { Add3M } from '@synerise/ds-icon';
-import { POCIKER_DATA } from './IconPicker.data';
+import { PICKER_DATA } from './IconPicker.data';
 
 type Story = StoryObj<IconPickerProps>;
 
@@ -29,7 +29,6 @@ export default {
   decorators: [fixedWrapper300, centeredPaddedWrapper],
   render: args => {
     const [icon, setIcon] = useState<ReactNode | null>(null);
-
     const handleSelect = (selectedIcon: ReactNode) => {
       setIcon(selectedIcon);
       args.onSelect?.(selectedIcon);
@@ -45,7 +44,7 @@ export default {
               Add icon
             </Button>
           }
-          data={POCIKER_DATA}
+          data={PICKER_DATA}
           placeholder={'search'}
           onSelect={handleSelect}
           trigger={['click']}

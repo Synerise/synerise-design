@@ -1,6 +1,9 @@
-import React from 'react';
+import { ReactNode } from 'react';
+import { TooltipProps } from '@synerise/ds-tooltip';
 
-export interface Props {
-  label: React.ReactNode;
+export type Props = {
+  label: ReactNode;
   onClick: () => void;
-}
+  tooltip?: ReactNode;
+  tooltipProps?: Partial<TooltipProps>;
+};

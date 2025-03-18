@@ -1,6 +1,6 @@
 import type { ReactNode } from 'react';
 import type { IntlShape } from 'react-intl';
-import type { SearchBarProps } from '@synerise/ds-search-bar/dist/SearchBar.types';
+import type { SearchBarProps } from '@synerise/ds-search-bar';
 import type { DropdownProps } from '@synerise/ds-dropdown';
 import type { InformationCardTooltipProps } from '@synerise/ds-information-card';
 import type { ListItemProps } from '@synerise/ds-list-item';
@@ -8,10 +8,10 @@ import type { ScrollbarAdditionalProps } from '@synerise/ds-scrollbar';
 
 export type ItemPickerSize = 'small' | 'large';
 
-export type ItemPickerProps = {
-  dataSource: ListItemProps[];
-  intl: IntlShape;
-  onChange: (item: ListItemProps) => void;
+export type ItemPickerProps<ItemType extends ListItemProps = ListItemProps> = {
+  dataSource: ItemType[];
+  intl?: IntlShape;
+  onChange: (item: ItemType) => void;
   onClear?: () => void;
   placeholder: ReactNode;
   changeButtonLabel?: ReactNode;
@@ -34,8 +34,8 @@ export type ItemPickerProps = {
   placeholderIcon?: ReactNode;
   searchPlaceholder?: string;
   searchBarProps?: Partial<SearchBarProps>;
+  selectedItem?: ItemType | undefined;
   hideSearchBar?: boolean;
-  selectedItem?: ListItemProps | undefined;
   size?: ItemPickerSize;
   tooltip?: ReactNode;
   informationCardTooltipProps?: Omit<InformationCardTooltipProps, 'children'>;
