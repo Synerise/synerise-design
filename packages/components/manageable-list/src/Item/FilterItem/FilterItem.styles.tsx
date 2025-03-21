@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import { IconContainer } from '@synerise/ds-icon';
 import Menu from '@synerise/ds-menu';
 
-import { ItemLabel } from '../SimpleItem/SimpleItem.styles';
+import { ItemLabel } from '../Item.styles';
 import { ItemMeta } from '../ItemMeta/ItemMeta.styles';
 
 // eslint-disable-next-line import/prefer-default-export

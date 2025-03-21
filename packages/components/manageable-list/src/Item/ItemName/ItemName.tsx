@@ -5,7 +5,7 @@ import InlineEdit from '@synerise/ds-inline-edit/dist/InlineEdit';
 import { InfoFillS } from '@synerise/ds-icon';
 import { escapeRegEx } from '@synerise/ds-utils';
 
-import * as S from '../SimpleItem/SimpleItem.styles';
+import * as S from '../Item.styles';
 import { ItemLabelProps } from './ItemName.types';
 
 const ItemName = ({ item, onUpdate, editMode, searchQuery }: ItemLabelProps) => {
@@ -78,6 +78,7 @@ const ItemName = ({ item, onUpdate, editMode, searchQuery }: ItemLabelProps) => 
               </span>
             </Tooltip>
           )}
+          {item.tags && <S.ItemTagList>{item.tags}</S.ItemTagList>}
         </S.ItemLabelWithIcon>
       )}
     </S.ItemLabelWrapper>

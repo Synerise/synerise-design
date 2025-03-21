@@ -1,14 +1,15 @@
 import React, { useCallback, useState } from 'react';
 import List from '@synerise/ds-list';
 import Icon from '@synerise/ds-icon';
-import * as S from './SimpleItem.styles';
+import * as S from '../Item.styles';
 import ItemActions from '../ItemActions/ItemActions';
 import ItemName from '../ItemName/ItemName';
 import { Props } from './SimpleItem.types';
+import { useTexts } from '../../hooks/useTexts';
 
 const SimpleItemComponent = ({ item, onRemove, onSelect, onUpdate, texts, additionalActions, selected }: Props) => {
   const [editMode, setEditMode] = useState(false);
-
+  const allTexts = useTexts(texts);
   const updateName = useCallback(
     (updateParams: { id: string | number; name: string }) => {
       setEditMode(false);
@@ -26,7 +27,7 @@ const SimpleItemComponent = ({ item, onRemove, onSelect, onUpdate, texts, additi
   }, []);
 
   return (
-    <S.ItemContainer data-active={!!selected} isSelected={!!selected}>
+    <S.ItemContainer isDisabled={!!item.disabled} data-active={!!selected} isSelected={!!selected}>
       <List.Item
         icon={<Icon className="ds-manageable-list-item-icon" component={item.icon} size={24} />}
         onSelect={handleSelect}
@@ -35,9 +36,9 @@ const SimpleItemComponent = ({ item, onRemove, onSelect, onUpdate, texts, additi
             item={item}
             editAction={enterEditMode}
             removeAction={onRemove}
-            editActionTooltip={texts?.itemActionRenameTooltip || undefined}
-            duplicateActionTooltip={texts?.itemActionDuplicateTooltip || undefined}
-            removeActionTooltip={texts?.itemActionDeleteTooltip || undefined}
+            editActionTooltip={allTexts.itemActionRenameTooltip}
+            duplicateActionTooltip={allTexts.itemActionDuplicateTooltip}
+            removeActionTooltip={allTexts.itemActionDeleteTooltip}
             additionalActions={additionalActions}
           />
         }

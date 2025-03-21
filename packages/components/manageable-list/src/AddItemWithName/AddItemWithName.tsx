@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { ChangeEvent, useCallback, useState } from 'react';
 import { Input } from '@synerise/ds-input';
 import Icon, { Add3M } from '@synerise/ds-icon';
 import Button from '@synerise/ds-button';
@@ -7,25 +7,25 @@ import { Props } from './AddItemWithName.types';
 
 const DEFAULT_NAME = '';
 
-const AddItemWithName: React.FC<Props> = ({ onItemAdd, addItemLabel, disabled, placeholder }) => {
-  const [active, setActive] = React.useState(false);
-  const [name, setName] = React.useState(DEFAULT_NAME);
+const AddItemWithName = ({ onItemAdd, addItemLabel, disabled, placeholder }: Props) => {
+  const [active, setActive] = useState(false);
+  const [name, setName] = useState(DEFAULT_NAME);
 
-  const handleClickOutside = React.useCallback((): void => {
+  const handleClickOutside = useCallback((): void => {
     setActive(false);
     setName(DEFAULT_NAME);
   }, []);
 
-  const handleNameChange = React.useCallback((event: React.ChangeEvent<HTMLInputElement>): void => {
+  const handleNameChange = useCallback((event: ChangeEvent<HTMLInputElement>): void => {
     setName(event.target.value);
   }, []);
 
-  const toggleInput = React.useCallback((): void => {
+  const toggleInput = useCallback((): void => {
     setActive(!active);
     setName(DEFAULT_NAME);
   }, [active]);
 
-  const createItem = React.useCallback((): void => {
+  const createItem = useCallback((): void => {
     onItemAdd && onItemAdd({ name });
     toggleInput();
   }, [name, onItemAdd, toggleInput]);

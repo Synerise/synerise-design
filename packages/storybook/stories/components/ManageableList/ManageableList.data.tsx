@@ -2,9 +2,10 @@ import React, { ReactElement, ReactNode } from 'react';
 import { faker } from '@faker-js/faker';
 import { action } from '@storybook/addon-actions';
 
-import Icon, { FolderM, ShowM } from '@synerise/ds-icon';
+import Icon, { FolderM, InputM, PauseM, PlayM, ShowM, StopM } from '@synerise/ds-icon';
 import { DropdownMenu } from '@synerise/ds-manageable-list/dist/Item/FilterItem/FilterItem.styles';
 import Button from '@synerise/ds-button';
+import Avatar from '@synerise/ds-avatar';
 import Status from '@synerise/ds-status';
 import { Input } from '@synerise/ds-input';
 import Tag, { TagShape } from '@synerise/ds-tag';
@@ -46,6 +47,7 @@ export const ITEMS: ItemType[] = [
     canUpdate: false,
     canDelete: false,
     icon: <FolderM />,
+    disabled: true,
   },
   {
     id: '00000000-0000-0000-0000-000000000001',
@@ -118,6 +120,7 @@ const DROPDOWN_MENU = <DropdownMenu dataSource={[{ text: 'Option 1' }, { text: '
 export type ContentItemType = {
   id: string;
   name: string;
+  description?: ReactNode;
   canAdd?: boolean;
   canUpdate?: boolean;
   canDelete?: boolean;
@@ -163,6 +166,7 @@ export const CONTENT_ITEMS: ContentItemType[] = [
   },
   {
     ...BASE_ITEM('With dropdown'),
+    description: 'An item with a dropdown menu',
     dropdown: DROPDOWN_MENU,
   },
   {
@@ -170,6 +174,7 @@ export const CONTENT_ITEMS: ContentItemType[] = [
     hideHeaderSuffixOnHover: true,
     headerSuffix: <Status label={'Draft'} type={'disabled'} />,
     dropdown: DROPDOWN_MENU,
+    disabled: true,
   },
   {
     ...BASE_ITEM('With additional suffix'),
@@ -189,6 +194,133 @@ export const CONTENT_ITEMS: ContentItemType[] = [
     icon: <FolderM />,
     dropdown: DROPDOWN_MENU,
     content: <Input label={'Label'} placeholder={'Placeholder'} style={{ width: '472px' }} resetMargin />,
+  },
+];
+const BASE_AUTOMATION_ITEM = (name?: string) => ({
+  id: `${faker.number.int()}`,
+  name: name || 'Content item',
+  canDuplicate: true,
+  canDelete: true,
+});
+
+const createTag = label => {
+  return (
+    <Tag
+      name={label}
+      asPill
+      shape={TagShape.DEFAULT_ROUND}
+      color={theme.palette['grey-200']}
+      textColor={theme.palette['grey-500']}
+    />
+  );
+};
+
+export const CONTENT_ITEMS_AUTOMATION: ContentItemType[] = [
+  {
+    ...BASE_AUTOMATION_ITEM('Long name in some foreign language'),
+    icon: <PauseM />,
+    content: <>Content</>,
+    tags: (
+      <>
+        {createTag('Mon 14:00, Wed 15:00, Sat 16:00, +4')} from {createTag('23 Aug 2024')} to {createTag('23 Aug 2024')}
+      </>
+    ),
+  },
+  {
+    ...BASE_AUTOMATION_ITEM('Stop at'),
+    icon: <StopM />,
+    content: <>Content</>,
+    tags: <>{createTag('23 Aug 2024')}</>,
+  },
+  {
+    ...BASE_AUTOMATION_ITEM('Activate daily'),
+    tags: (
+      <>
+        {createTag('14:00, 15:00, 16:00, +4')} from {createTag('23 Aug 2024')}
+      </>
+    ),
+    icon: <PlayM />,
+    content: <>Content</>,
+  },
+];
+export const CONTENT_ITEMS_LARGE: ContentItemType[] = [
+  {
+    name: 'Name',
+    uniqueKey: '#name',
+    content: <>Some content</>,
+    tags: (
+      <>
+        <Tag
+          name="label"
+          asPill
+          shape={TagShape.DEFAULT_ROUND}
+          color={theme.palette['grey-200']}
+          textColor={theme.palette['grey-500']}
+        />
+        <Tag
+          name={'label'}
+          asPill
+          shape={TagShape.DEFAULT_ROUND}
+          color={theme.palette['grey-200']}
+          textColor={theme.palette['grey-500']}
+        />
+        <Tag
+          name={'label'}
+          asPill
+          shape={TagShape.DEFAULT_ROUND}
+          color={theme.palette['grey-200']}
+          textColor={theme.palette['grey-500']}
+        />
+      </>
+    ),
+    description: 'Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur',
+    headerPrefix: (
+      <Avatar
+        backgroundColor="orange"
+        backgroundColorHue="100"
+        shape="square"
+        iconComponent={<Icon component={<InputM />} color={theme.palette['grey-800']} />}
+      />
+    ),
+  },
+  {
+    name: 'Name',
+    uniqueKey: '#name',
+    content: <>Some content</>,
+    tags: (
+      <>
+        <Tag
+          name="label"
+          asPill
+          shape={TagShape.DEFAULT_ROUND}
+          color={theme.palette['grey-200']}
+          textColor={theme.palette['grey-500']}
+        />
+        <Tag
+          name={'label'}
+          asPill
+          shape={TagShape.DEFAULT_ROUND}
+          color={theme.palette['grey-200']}
+          textColor={theme.palette['grey-500']}
+        />
+        <Tag
+          name={'label'}
+          asPill
+          shape={TagShape.DEFAULT_ROUND}
+          color={theme.palette['grey-200']}
+          textColor={theme.palette['grey-500']}
+        />
+      </>
+    ),
+    description: 'Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur',
+    headerPrefix: (
+      <Avatar
+        backgroundColor="orange"
+        backgroundColorHue="100"
+        shape="square"
+        iconComponent={<Icon component={<InputM />} color={theme.palette['grey-800']} />}
+      />
+    ),
   },
 ];
 

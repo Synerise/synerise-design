@@ -11,8 +11,10 @@ export enum ExpansionBehaviour {
 export enum ListType {
   DEFAULT = 'default',
   CONTENT = 'content',
+  CONTENT_LARGE = 'content-large',
   FILTER = 'filter',
 }
+export type ManageableListType = `${ListType}`;
 
 export type AdditionalAction = {
   icon: ReactNode;
@@ -31,7 +33,7 @@ export type ManageableListProps<T extends object> = {
   onChangeOrder?: (newOrder: ItemProps<T>[]) => void;
   items: ItemProps<T>[];
   loading: boolean;
-  type?: string;
+  type?: ManageableListType;
   addButtonDisabled?: boolean;
   changeOrderDisabled?: boolean;
   greyBackground?: boolean;
@@ -40,7 +42,7 @@ export type ManageableListProps<T extends object> = {
   searchQuery?: string;
   expanderDisabled?: boolean;
   onExpand?: (id: ReactText, isExpanded: boolean) => void;
-  texts: Texts;
+  texts?: Partial<Texts>;
   expansionBehaviour?: string;
   // @deprecated use item.expanded instead
   expandedIds?: ReactText[];
@@ -66,24 +68,24 @@ export type ManageableListProps<T extends object> = {
 >;
 
 export type Texts = {
-  addItemLabel?: ReactNode;
-  showMoreLabel?: ReactNode;
-  showLessLabel?: ReactNode;
-  more?: ReactNode;
-  less?: ReactNode;
-  activateItemTitle?: ReactNode;
-  activate?: ReactNode;
-  cancel?: ReactNode;
-  deleteConfirmationTitle?: ReactNode;
-  deleteConfirmationDescription?: ReactNode;
-  deleteConfirmationYes?: ReactNode;
-  deleteConfirmationNo?: ReactNode;
-  itemActionRename?: ReactNode;
-  itemActionRenameTooltip?: ReactNode;
-  itemActionDuplicate?: ReactNode;
-  itemActionDuplicateTooltip?: ReactNode;
-  itemActionDelete?: ReactNode;
-  itemActionDeleteTooltip?: ReactNode;
-  moveToTopTooltip?: ReactNode;
-  moveToBottomTooltip?: ReactNode;
+  addItemLabel: ReactNode;
+  showMoreLabel: ReactNode;
+  showLessLabel: ReactNode;
+  more: ReactNode;
+  less: ReactNode;
+  activateItemTitle: ReactNode;
+  activate: ReactNode;
+  cancel: ReactNode;
+  deleteConfirmationTitle: ReactNode;
+  deleteConfirmationDescription: ReactNode;
+  deleteConfirmationYes: ReactNode;
+  deleteConfirmationNo: ReactNode;
+  itemActionRename: ReactNode;
+  itemActionRenameTooltip: ReactNode;
+  itemActionDuplicate: ReactNode;
+  itemActionDuplicateTooltip: ReactNode;
+  itemActionDelete: ReactNode;
+  itemActionDeleteTooltip: ReactNode;
+  moveToTopTooltip: ReactNode;
+  moveToBottomTooltip: ReactNode;
 };

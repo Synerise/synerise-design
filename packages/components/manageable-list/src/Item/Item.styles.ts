@@ -1,7 +1,7 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import { macro } from '@synerise/ds-typography';
 import Icon from '@synerise/ds-icon';
-import { ItemActionsWrapper } from '../ItemActions/ItemActions.styles';
+import { ItemActionsWrapper } from './ItemActions/ItemActions.styles';
 
 export const ItemLabel = styled.span`
   ${macro.h300};
@@ -14,6 +14,9 @@ export const ItemLabel = styled.span`
   overflow: hidden;
   line-height: 24px;
   user-select: none;
+  flex-shrink: 0;
+  max-width: 100%;
+
   &.full-width {
     max-width: unset;
   }
@@ -22,27 +25,66 @@ export const ItemLabel = styled.span`
     color: ${(props): string => props.theme.palette['grey-800']};
   }
 `;
+export const ItemTagList = styled.div`
+  margin-left: 8px;
+  max-width: 100%;
+  overflow: hidden;
+  position: relative;
+  flex-grow: 1;
+  &:after {
+    content: '';
+    position: absolute;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    width: 20px;
+    background: linear-gradient(90deg, rgba(0, 0, 0, 0) 0%, rgba(255, 255, 255, 1) 100%);
+  }
+`;
 
-export const ItemLabelWrapper = styled.div`
+export const ItemLabelWrapper = styled.div<{ largeSize?: boolean }>`
   flex: 1;
   display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: flex-start;
-  overflow: hidden;
-  height: 24px;
+  flex-grow: 1;
+
   .ant-tooltip-inner {
     max-width: 164px;
     padding: 16px 16px 19px;
   }
+
+  ${props =>
+    props.largeSize
+      ? css`
+          height: 40px;
+          flex-direction: column;
+          gap: 10px;
+          overflow-y: visible;
+          ${ItemTagList} {
+            margin-left: 24px;
+          }
+        `
+      : css`
+          flex-direction: row;
+          align-items: center;
+          overflow: hidden;
+          height: 24px;
+          justify-content: flex-start;
+        `}
 `;
 
-export const ItemContainer = styled.div<{ isSelected: boolean }>`
+export const ItemContainer = styled.div<{ isSelected: boolean; isDisabled: boolean }>`
   width: 100%;
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: stretch;
+  ${props =>
+    props.isDisabled &&
+    `
+    opacity: 0.4;
+    cursor: default;
+    pointer-events: none;
+  `}
   background-color: ${({ theme, isSelected }): string =>
     isSelected ? theme.palette['blue-050'] : theme.palette.white};
   li {
@@ -91,4 +133,15 @@ export const ItemLabelWithIcon = styled.span`
   white-space: nowrap;
   text-overflow: ellipsis;
   overflow: hidden;
+  flex-grow: 1;
+`;
+
+export const ItemDescription = styled.div``;
+export const ItemUniqueKey = styled.div``;
+export const ItemLabelTop = styled.div`
+  display: flex;
+  line-height: 12px;
+  height: 12px;
+  align-items: center;
+  gap: 8px;
 `;
