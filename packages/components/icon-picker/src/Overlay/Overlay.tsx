@@ -1,11 +1,11 @@
 import React from 'react';
 import Icon, { SearchM } from '@synerise/ds-icon';
-import { theme } from '@synerise/ds-core';
-import Dropdown from '@synerise/ds-dropdown/dist/Dropdown';
-import { OverlayTypes } from './Overlay.types';
+import { useTheme } from '@synerise/ds-core';
+import Dropdown from '@synerise/ds-dropdown';
+import { OverlayType } from './Overlay.types';
 import List from '../List/List';
 
-const Overlay: React.FC<OverlayTypes> = ({
+const Overlay = ({
   value,
   onSearchChange,
   onClearInput,
@@ -14,7 +14,8 @@ const Overlay: React.FC<OverlayTypes> = ({
   data,
   focus,
   noResultMsg,
-}) => {
+}: OverlayType) => {
+  const theme = useTheme()
   return (
     <>
       <Dropdown.SearchInput

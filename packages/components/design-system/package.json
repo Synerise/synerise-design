@@ -67,6 +67,7 @@
     "@synerise/ds-dropdown": "^1.0.1",
     "@synerise/ds-editable-items-list": "^1.0.1",
     "@synerise/ds-empty-states": "^1.0.1",
+    "@synerise/ds-emoji-picker": "^1.0.0",
     "@synerise/ds-factors": "^1.0.1",
     "@synerise/ds-field-set": "^1.0.1",
     "@synerise/ds-file-uploader": "^1.0.1",

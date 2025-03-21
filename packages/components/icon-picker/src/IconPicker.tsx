@@ -1,16 +1,16 @@
-import React from 'react';
+import React, { useRef, useState } from 'react';
 import Dropdown from '@synerise/ds-dropdown';
 import { useOnClickOutside } from '@synerise/ds-utils';
 import * as S from './IconPicker.styles';
 import Overlay from './Overlay/Overlay';
 import { FilterElement, IconPickerProps } from './IconPicker.types';
 
-const IconPicker: React.FC<IconPickerProps> = ({ button, data, onSelect, trigger, placeholder, noResultMsg }) => {
-  const [filteredData, setFilteredData] = React.useState(data);
-  const [value, setValue] = React.useState('');
-  const [isOpen, setOpen] = React.useState(false);
-  const [focus, setFocus] = React.useState(false);
-  const ref = React.useRef<HTMLDivElement>(null);
+const IconPicker = ({ button, data, onSelect, trigger, placeholder, noResultMsg }: IconPickerProps) => {
+  const [filteredData, setFilteredData] = useState(data);
+  const [value, setValue] = useState('');
+  const [isOpen, setOpen] = useState(false);
+  const [focus, setFocus] = useState(false);
+  const ref = useRef<HTMLDivElement>(null);
 
   const filter = (searchTerm: string) => {
     setValue(searchTerm);

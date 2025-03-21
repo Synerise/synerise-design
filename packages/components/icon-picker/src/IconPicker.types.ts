@@ -1,7 +1,7 @@
-import React from 'react';
+import type { ReactElement, ReactNode } from 'react';
 
 export type FilterItem = {
-  item: string | React.ReactNode;
+  item: ReactNode;
 };
 
 export type FilterElement = {
@@ -10,10 +10,10 @@ export type FilterElement = {
 };
 
 export type IconPickerProps = {
-  button: React.ReactElement;
+  button: ReactElement;
   data: FilterElement[];
-  onSelect: (val: React.ReactNode) => void;
+  onSelect: (val: ReactNode) => void;
   trigger: ('click' | 'hover' | 'contextMenu')[];
   placeholder: string;
-  noResultMsg?: string | React.ReactElement;
+  noResultMsg?: string | ReactElement;
 };

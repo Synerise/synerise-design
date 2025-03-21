@@ -1,18 +1,9 @@
 import React, { ReactNode, useState } from 'react';
 import { Meta, StoryObj } from '@storybook/react';
-import { useArgs } from '@storybook/preview-api';
 
 import IconPicker, { IconPickerProps } from '@synerise/ds-icon-picker';
 
-import {
-  BOOLEAN_CONTROL,
-  centeredPaddedWrapper,
-  CLASSNAME_ARG_CONTROL,
-  fixedWrapper300,
-  reactNodeAsSelect,
-  REACT_NODE_AS_STRING,
-  STRING_CONTROL,
-} from '../../utils';
+import { centeredPaddedWrapper, fixedWrapper300 } from '../../utils';
 import Button from '@synerise/ds-button';
 import Icon, { Add3M } from '@synerise/ds-icon';
 import { PICKER_DATA } from './IconPicker.data';
