@@ -28,7 +28,7 @@ export const CardTabsContainer = styled.div`
     opacity: 1 !important;
   }
   .sortable-card-ghost-element {
-    border: dashed 1px ${(props): string => props.theme.palette['blue-600']};
+    border: dashed 1px ${(props): string => props.theme.palette['blue-300']};
     background-color: ${(props): string => props.theme.palette['blue-050']};
     opacity: 1;
     cursor: grabbing;

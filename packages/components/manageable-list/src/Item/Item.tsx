@@ -5,7 +5,7 @@ import SimpleItem from './SimpleItem/SimpleItem';
 import FilterItem from './FilterItem/FilterItem';
 import { Props } from './Item.types';
 
-const Item: React.FC<Props> = ({
+const Item = ({
   item,
   onRemove,
   onSelect,
@@ -26,13 +26,15 @@ const Item: React.FC<Props> = ({
   isFirst,
   isLast,
   additionalActions,
-}) => {
+}: Props) => {
   switch (listType) {
     case ListType.CONTENT:
+    case ListType.CONTENT_LARGE:
       return (
         <ContentItem
           key={`item-${item.id}`}
           item={item}
+          size={listType === ListType.CONTENT ? 'default' : 'large'}
           onDuplicate={onDuplicate}
           onUpdate={onUpdate}
           onRemove={onRemove}

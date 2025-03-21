@@ -16,7 +16,7 @@ import Icon, {
 
 import {
   BOOLEAN_CONTROL,
-  cardTabsDecorator,
+  greyBackgroundDecorator,
   CLASSNAME_ARG_CONTROL,
   controlFromOptionsArray,
   fixedWrapper588,
@@ -98,7 +98,7 @@ export default {
   parameters: {
     layout: 'fullscreen',
   },
-  decorators: [fixedWrapper588, cardTabsDecorator],
+  decorators: [fixedWrapper588, greyBackgroundDecorator],
   argTypes: {
     className: CLASSNAME_ARG_CONTROL,
     addTabLabel: {

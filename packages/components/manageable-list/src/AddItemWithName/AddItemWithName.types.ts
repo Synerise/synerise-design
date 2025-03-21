@@ -1,8 +1,8 @@
-import React from 'react';
+import type { ReactNode } from 'react';
 
 export type Props = {
   onItemAdd?: (addParams: { name: string }) => void;
-  addItemLabel: string | React.ReactNode;
+  addItemLabel: ReactNode;
   disabled: boolean;
   placeholder?: string;
 };

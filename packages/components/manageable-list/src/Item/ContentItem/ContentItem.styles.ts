@@ -1,26 +1,12 @@
-import styled, { css, FlattenSimpleInterpolation } from 'styled-components';
+import styled, { css } from 'styled-components';
 import { Tag } from '@synerise/ds-tag/dist/Tag.styles';
 import Button from '@synerise/ds-button';
 import { ThemeProps } from '@synerise/ds-core';
-import { ItemLabel } from '../SimpleItem/SimpleItem.styles';
+import { ItemLabel } from '../Item.styles';
 import { ItemActionsWrapper } from '../ItemActions/ItemActions.styles';
 import { ItemMeta } from '../ItemMeta/ItemMeta.styles';
 
-type ItemContainerProps = {
-  opened: boolean;
-  greyBackground: boolean | undefined;
-  dashed?: boolean;
-};
-
-type DraggerWrapperProps = {
-  disabled: boolean;
-};
-
-type ItemHeaderProps = {
-  hasPrefix: boolean;
-};
-
-const dashedStyle = (props: ThemeProps): FlattenSimpleInterpolation => css`
+const dashedStyle = (props: ThemeProps) => css`
   && {
     box-shadow: 0 0 0 0 transparent;
     border: 1px dashed ${props.theme.palette['grey-300']};
@@ -34,10 +20,12 @@ export const AdditionalSuffix = styled.div`
   margin-left: 8px;
 `;
 
-export const DraggerWrapper = styled.div<DraggerWrapperProps>`
+export const DraggerWrapper = styled.div<{
+  disabled: boolean;
+}>`
   cursor: pointer;
   display: flex;
-  opacity: ${({ disabled }): string => (disabled ? '0.4' : '1')};
+  opacity: ${({ disabled }) => (disabled ? '0.4' : '1')};
 `;
 
 export const IconWrapper = styled.div`
@@ -64,18 +52,13 @@ export const ItemHeaderPrefix = styled.div`
   align-items: center;
   justify-content: flex-start;
   ${Tag} {
-    margin: 0 12px 0 0;
-  }
-
-  ${IconWrapper} {
-    margin-right: 12px;
+    margin: 0;
   }
 
   ${DraggerWrapper} {
-    margin-right: 12px;
     svg {
-      color: ${({ theme }): string => theme.palette['grey-400']};
-      fill: ${({ theme }): string => theme.palette['grey-400']};
+      color: ${({ theme }) => theme.palette['grey-400']};
+      fill: ${({ theme }) => theme.palette['grey-400']};
     }
   }
 `;
@@ -94,14 +77,17 @@ export const ItemHeaderSuffix = styled.div`
     &.ant-dropdown-open,
     &:hover {
       svg {
-        color: ${(props): string => props.theme.palette['blue-600']};
-        fill: ${(props): string => props.theme.palette['blue-600']};
+        color: ${props => props.theme.palette['blue-600']};
+        fill: ${props => props.theme.palette['blue-600']};
       }
     }
   }
 `;
 
-export const ItemHeader = styled.div<ItemHeaderProps>`
+export const ItemHeader = styled.div<{
+  hasPrefix: boolean;
+  size?: 'default' | 'large';
+}>`
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -110,8 +96,23 @@ export const ItemHeader = styled.div<ItemHeaderProps>`
   padding: 12px;
   cursor: pointer;
   max-height: 48px;
+  position: relative;
 
-  ${(props): string | false => !props.hasPrefix && `padding-left:16px;`}
+  ${props =>
+    props.size === 'large' &&
+    css`
+      ${DraggerWrapper} {
+        position: absolute;
+        left: 0;
+      }
+    `}
+
+  ${ItemHeaderPrefix} {
+    gap: ${props => (props.size === 'large' ? 16 : 12)}px;
+  }
+  gap: ${props => (props.size === 'large' ? 16 : 12)}px;
+
+  ${props => !props.hasPrefix && `padding-left:16px;`}
 
   ${ItemMeta} {
     padding: 0;
@@ -122,15 +123,15 @@ export const ItemHeader = styled.div<ItemHeaderProps>`
       display: none;
     }
     ${ItemLabel} {
-      color: ${({ theme }): string => theme.palette['grey-800']};
+      color: ${({ theme }) => theme.palette['grey-800']};
     }
     ${ItemActionsWrapper} {
       display: flex;
     }
     ${DraggerWrapper} {
       svg {
-        color: ${({ theme }): string => theme.palette['grey-600']};
-        fill: ${({ theme }): string => theme.palette['grey-600']};
+        color: ${({ theme }) => theme.palette['grey-600']};
+        fill: ${({ theme }) => theme.palette['grey-600']};
       }
     }
     ${MoveItemButtons} {
@@ -140,13 +141,23 @@ export const ItemHeader = styled.div<ItemHeaderProps>`
 `;
 
 export const ContentWrapper = styled.div<{ withoutPadding: boolean }>`
-  padding: ${(props): string => (props.withoutPadding ? '0px' : '16px 24px 24px')};
+  padding: ${props => (props.withoutPadding ? '0px' : '16px 24px 24px')};
   width: 100%;
-  border-top: 1px solid ${({ theme }): string => theme.palette['grey-200']};
+  border-top: 1px solid ${({ theme }) => theme.palette['grey-200']};
   opacity: 1;
 `;
 
-export const ItemContainer = styled.div<ItemContainerProps>`
+const standardShadow = ({ greyBackground, theme }: ThemeProps & { greyBackground?: boolean }) => {
+  return greyBackground ? '0 4px 12px 0 rgba(35, 41, 54, 0.04)' : `0 0 0 1px ${theme.palette['grey-200']}`;
+};
+
+export const ItemContainer = styled.div<{
+  opened: boolean;
+  greyBackground: boolean | undefined;
+  size?: 'default' | 'large';
+  dashed?: boolean;
+  isDisabled?: boolean;
+}>`
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -155,22 +166,44 @@ export const ItemContainer = styled.div<ItemContainerProps>`
   margin-bottom: 16px;
   border-radius: 3px;
   position: relative;
-  background-color: ${({ theme }): string => theme.palette.white};
-  box-shadow: ${({ greyBackground, theme }): string =>
-    greyBackground ? '0 4px 12px 0 rgba(35, 41, 54, 0.04)' : `0 0 0 1px ${theme.palette['grey-200']}`};
+  background-color: ${({ theme }) => theme.palette.white};
+  ${props =>
+    props.isDisabled &&
+    `
+    opacity: 0.4;
+    cursor: default;
+    pointer-events: none;
+  `}
 
-  && .item-content-animation {
-    width: 100%;
-  }
+  box-shadow: ${standardShadow};
 
-  ${({ greyBackground, theme }): string | false =>
+  ${({ greyBackground, theme }) =>
     !greyBackground &&
     `
       &:hover {
         box-shadow: 0 0 0 1px ${theme.palette['grey-300']};
       }
   `}
-  ${(props): FlattenSimpleInterpolation | false => !!props.dashed && dashedStyle(props)}
+
+  &.sortable-drag {
+    opacity: 1 !important;
+    box-shadow: ${standardShadow}, 0 16px 32px 0 rgba(35, 41, 54, 0.1);
+  }
+
+  && .item-content-animation {
+    width: 100%;
+  }
+
+  ${props => !!props.dashed && dashedStyle(props)}
+
+  ${props =>
+    props.size === 'large' &&
+    css`
+      ${ItemHeader} {
+        max-height: 88px;
+        padding: 24px;
+      }
+    `}
 `;
 
 export const ToggleContentWrapper = styled.div`

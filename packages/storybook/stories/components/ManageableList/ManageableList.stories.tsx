@@ -14,14 +14,18 @@ import {
   centeredPaddedWrapper,
   CLASSNAME_ARG_CONTROL,
   controlFromOptionsArray,
-  fixedWrapper588,
+  greyBackgroundDecorator,
+  fixedWrapper800,
   NUMBER_CONTROL,
   STRING_CONTROL,
   STYLE_ARG_CONTROL,
+  fixedWrapper300,
 } from '../../utils';
 import {
   ContentItemType,
   CONTENT_ITEMS,
+  CONTENT_ITEMS_AUTOMATION,
+  CONTENT_ITEMS_LARGE,
   EMPTY_ITEM,
   FilterItemType,
   FILTER_ITEMS,
@@ -34,7 +38,9 @@ export default {
   title: 'Components/ManageableList',
   tags: ['autodocs'],
   component: ManageableList,
-  decorators: [fixedWrapper588, centeredPaddedWrapper],
+  parameters: {
+    layout: 'fullscreen',
+  },
   argTypes: {
     className: CLASSNAME_ARG_CONTROL,
     style: STYLE_ARG_CONTROL,
@@ -66,7 +72,7 @@ export default {
       <ManageableList
         {...args}
         items={items}
-        onItemAdd={handleItemAdd}
+        onItemAdd={args.onItemAdd && handleItemAdd}
         onItemSelect={handleItemSelect}
         selectedItemId={selectedId}
       />
@@ -91,21 +97,26 @@ export default {
 
 type Story = StoryObj<ManageableListProps<ItemType>>;
 
-export const Default: Story = {};
+export const Default: Story = {
+  decorators: [fixedWrapper300, greyBackgroundDecorator],
+};
 
 export const EmptyList: Story = {
+  decorators: [fixedWrapper300, greyBackgroundDecorator],
   args: {
     items: [],
   },
 };
 
 export const Loading: Story = {
+  decorators: [fixedWrapper300, greyBackgroundDecorator],
   args: {
     loading: true,
   },
 };
 
 export const WithCustomToggleButton: Story = {
+  decorators: [fixedWrapper300, greyBackgroundDecorator],
   args: {
     renderCustomToggleButton: ({ onClick, allItemsVisible, total, limit }) => {
       const icon = allItemsVisible ? <ArrowUpCircleM /> : <ArrowDownCircleM />;
@@ -121,6 +132,7 @@ export const WithCustomToggleButton: Story = {
 };
 
 export const ContentItemsList: StoryObj<ManageableListProps<ContentItemType>> = {
+  decorators: [fixedWrapper800, greyBackgroundDecorator],
   args: {
     visibleItemsLimit: CONTENT_ITEMS.length,
     items: CONTENT_ITEMS,
@@ -128,7 +140,37 @@ export const ContentItemsList: StoryObj<ManageableListProps<ContentItemType>> = 
   },
 };
 
+
+export const ContentItemsAutomation: StoryObj<ManageableListProps<ContentItemType>> = {
+  decorators: [fixedWrapper800, greyBackgroundDecorator],
+  args: {
+    visibleItemsLimit: CONTENT_ITEMS.length,
+    items: CONTENT_ITEMS_AUTOMATION,
+    type: 'content',
+    onChangeOrder: fn(),
+    onItemAdd: undefined
+  },
+};
+
+export const ContentItemsLarge: StoryObj<ManageableListProps<ContentItemType>> = {
+  decorators: [fixedWrapper800, greyBackgroundDecorator],
+  args: {
+    items: CONTENT_ITEMS_LARGE,
+    type: 'content-large',
+  },
+};
+
+export const ContentItemsLargeDraggable: StoryObj<ManageableListProps<ContentItemType>> = {
+  decorators: [fixedWrapper800, greyBackgroundDecorator],
+  args: {
+    items: CONTENT_ITEMS_LARGE,
+    type: 'content-large',
+    onChangeOrder: fn(),
+  },
+};
+
 export const ContentItemsListSortable: StoryObj<ManageableListProps<ContentItemType>> = {
+  decorators: [fixedWrapper800, greyBackgroundDecorator],
   args: {
     ...ContentItemsList.args,
     onChangeOrder: fn(),
@@ -136,6 +178,7 @@ export const ContentItemsListSortable: StoryObj<ManageableListProps<ContentItemT
 };
 
 export const FilterItemsList: StoryObj<ManageableListProps<FilterItemType>> = {
+  decorators: [fixedWrapper800, greyBackgroundDecorator],
   args: {
     items: FILTER_ITEMS,
     type: 'filter',

@@ -125,7 +125,7 @@ export const buttonDecorator: Decorator = (Story, storyContext) => {
   );
 };
 
-export const cardTabsDecorator: Decorator = (Story, storyContext) => {
+export const greyBackgroundDecorator: Decorator = (Story, storyContext) => {
   const backgroundColor = Boolean(storyContext.args.greyBackground) ? theme.palette['grey-300'] : 'transparent';
   const height = storyContext.viewMode === 'story' ? '100vh' : '250px';
   const width = storyContext.viewMode === 'story' ? '100vw' : '100%';

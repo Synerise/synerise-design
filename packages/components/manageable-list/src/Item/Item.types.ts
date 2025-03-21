@@ -1,5 +1,5 @@
-import React from 'react';
-import { AdditionalAction } from '../ManageableList.types';
+import type { ReactElement, ReactNode, ReactText } from 'react';
+import type { Texts, AdditionalAction } from '../ManageableList.types';
 
 export type Props = {
   item: ItemProps;
@@ -7,36 +7,49 @@ export type Props = {
   isLast?: boolean;
   onMoveTop?: (item: ItemProps) => void;
   onMoveBottom?: (item: ItemProps) => void;
-  onRemove?: (removeParams: { id: React.ReactText }) => void;
-  onSelect: (selectParams: { id: React.ReactText }) => void;
-  onUpdate?: (updateParams: { id: React.ReactText; name: string }) => void;
-  onDuplicate?: (duplicateParams: { id: React.ReactText }) => void;
+  onRemove?: (removeParams: { id: ReactText }) => void;
+  onSelect: (selectParams: { id: ReactText }) => void;
+  onUpdate?: (updateParams: { id: ReactText; name: string }) => void;
+  onDuplicate?: (duplicateParams: { id: ReactText }) => void;
   draggable?: boolean;
   changeOrderDisabled?: boolean;
   greyBackground?: boolean;
   listType: string;
   selected: boolean;
   searchQuery?: string;
-  texts: {
-    [k: string]: string | React.ReactNode;
-  };
-  onExpand?: (id: React.ReactText, isExpanded: boolean) => void;
+  texts: Texts;
+  onExpand?: (id: ReactText, isExpanded: boolean) => void;
   hideExpander?: boolean;
   expanded?: boolean;
   additionalActions?: AdditionalAction[];
 };
 
 export type ItemProps<T extends object = {}> = T & {
-  id: React.ReactText;
+  id: ReactText;
   canUpdate?: boolean;
   canDelete?: boolean;
   canDuplicate?: boolean;
   name: string;
   nameWrapperClassNames?: string[];
   description?: string;
-  tag?: React.ReactElement;
-  icon?: React.ReactNode;
-  content?: React.ReactNode;
+  /**
+   * @description render a tag as item prefix
+   */
+  tag?: ReactElement;
+  /**
+   * @description render an icon as item prefix
+   */
+  icon?: ReactNode;
+  /**
+   * @description rendered only in content-large item type
+   */
+  tags?: ReactNode;
+  /**
+   * @description rendered only in content-large item type
+   */
+  headerPrefix?: ReactNode;
+  content?: ReactNode;
+  uniqueKey?: ReactNode;
   changeOrderDisabled?: boolean;
   user?: {
     // eslint-disable-next-line camelcase
@@ -46,10 +59,11 @@ export type ItemProps<T extends object = {}> = T & {
     email?: string;
   };
   created?: string;
-  dropdown?: React.ReactElement;
+  dropdown?: ReactElement;
   disableExpanding?: boolean;
   expanded?: boolean;
-  headerSuffix?: React.ReactNode;
+  disabled?: boolean;
+  headerSuffix?: ReactNode;
   hideHeaderSuffixOnHover?: boolean;
-  additionalSuffix?: React.ReactNode;
+  additionalSuffix?: ReactNode;
 };
