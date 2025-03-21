@@ -3,7 +3,7 @@ import Button from '@synerise/ds-button';
 import { ListItemProps } from './ListItem.types';
 import * as S from '../IconPicker.styles';
 
-const ListItem: React.FC<ListItemProps> = ({ element, index, onSelect }) => {
+const ListItem = ({ element, index, onSelect }: ListItemProps) => {
   const selectIcon = (): void => {
     onSelect(element.item);
   };

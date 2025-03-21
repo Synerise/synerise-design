@@ -1,13 +1,8 @@
-import React from 'react';
-import { FilterElement } from '../IconPicker.types';
+import type { IconPickerProps } from '../IconPicker.types';
 
-export type OverlayTypes = {
+export type OverlayType = Pick<IconPickerProps, 'data' | 'noResultMsg' | 'placeholder' | 'onSelect'> & {
   value: string;
   onSearchChange: (value: string) => void;
-  data: FilterElement[];
   onClearInput?: () => void;
-  onSelect: (value: React.ReactNode) => void;
-  placeholder: string;
   focus: boolean;
-  noResultMsg?: string | React.ReactNode;
 };
