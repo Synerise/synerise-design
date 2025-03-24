@@ -20,7 +20,6 @@ const Container = styled.div<{ size?: 'S' | 'M' | 'L' }>`
   width: 100%;
   @media (min-width: 200px) {
     min-width: 200px;
-    margin: -8px;
     background-color: ${(props): string => props.theme.palette.white};
   }
   .react-colorful__last-control {

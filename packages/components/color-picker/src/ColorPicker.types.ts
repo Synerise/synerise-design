@@ -1,5 +1,7 @@
 import type { InputProps } from 'antd/lib/input';
 
+import { DropdownProps } from '@synerise/ds-dropdown';
+
 export type ColorHookType = {
   color: string;
   setColor: (color: string) => void;
@@ -11,7 +13,7 @@ export enum ColorPickerSize {
   'L' = 200,
 }
 
-export interface ColorPickerProps extends Partial<Pick<HTMLInputElement, 'placeholder'>> {
+export type ColorPickerProps = {
   maxWidth?: number;
   value?: string;
   onChange?: (color: string) => void;
@@ -32,4 +34,5 @@ export interface ColorPickerProps extends Partial<Pick<HTMLInputElement, 'placeh
   size?: 'S' | 'M' | 'L';
   errorText?: string;
   description?: string;
-}
+} & Partial<Pick<HTMLInputElement, 'placeholder'>> &
+  Partial<Pick<DropdownProps, 'getPopupContainer'>>;

@@ -6,7 +6,7 @@ import Icon, { FormulaPlusM, CopyClipboardM } from '@synerise/ds-icon';
 import copy from 'copy-to-clipboard';
 import Tooltip from '@synerise/ds-tooltip';
 import Dropdown from '@synerise/ds-dropdown';
-import { useOnClickOutside } from '@synerise/ds-utils';
+import { useOnClickOutside, getPopupContainer as defaultGetPopupContainer } from '@synerise/ds-utils';
 import {
   isValidHexColor,
   isValidTextColor,
@@ -27,6 +27,7 @@ const ColorPicker = ({
   colors = [],
   onSaveColors,
   infix = (): JSX.Element => <></>,
+  getPopupContainer = defaultGetPopupContainer,
   placeholder,
   inputProps,
   maxSavedColors = 9,
@@ -35,7 +36,7 @@ const ColorPicker = ({
   size = 'M',
   errorText,
   description,
-}: ColorPickerProps): JSX.Element => {
+}: ColorPickerProps) => {
   const [colorTextInput, setColorTextInput] = React.useState(value);
   const [colorHexInput, setColorHexInput] = React.useState(value);
 
@@ -202,6 +203,7 @@ const ColorPicker = ({
         visible={dropdownVisible}
         overlay={dropdown}
         placement="bottomLeft"
+        getPopupContainer={getPopupContainer}
       >
         <ColorPickerStyles.ColorPickerSelect
           data-testid="color-picker"
