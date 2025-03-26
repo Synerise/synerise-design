@@ -1,15 +1,4 @@
-import React, {
-  useCallback,
-  useEffect,
-  useMemo,
-  useState,
-  useRef,
-  MutableRefObject,
-  ReactText,
-  ReactNode,
-  ChangeEvent,
-} from 'react';
-import { debounce } from 'lodash';
+import React, { useCallback, useEffect, useMemo, useState, MutableRefObject, ReactNode, ChangeEvent } from 'react';
 import type { RefSelectProps } from 'antd';
 import Icon, { FullScreenM } from '@synerise/ds-icon';
 import { theme } from '@synerise/ds-core';
@@ -38,7 +27,6 @@ const TextInput = ({
   const [inputRef, setInputRef] = useState<MutableRefObject<HTMLInputElement | RefSelectProps | null | undefined>>();
   const [localValue, setLocalValue] = useState(value);
   const [localError, setLocalError] = useState(false);
-  const onChangeRef = useRef(onChange);
 
   useEffect(() => {
     if (inputRef?.current && opened) {
@@ -46,51 +34,39 @@ const TextInput = ({
     }
   }, [inputRef, opened]);
 
-  useEffect(() => {
-    onChangeRef.current = onChange;
-  }, [localValue, onChange]);
-
-  const debouncedOnChange = useRef(
-    debounce((inputValue: ReactText | undefined): void => {
-      onChangeRef.current && onChangeRef.current(inputValue);
-    }, 300)
-  ).current;
-
-  useEffect(() => {
-    return () => {
-      debouncedOnChange.cancel();
-    };
-  }, [debouncedOnChange]);
-
   const handleChange = useCallback(
     (event: ChangeEvent<HTMLInputElement>) => {
       setLocalValue(event.target.value);
-      debouncedOnChange(event.target.value);
+      onChange(event.target.value);
       if (!event.target.value.length) {
         setLocalError(true);
       } else {
         setLocalError(false);
       }
     },
-    [setLocalValue, setLocalError, debouncedOnChange]
+    [setLocalValue, setLocalError, onChange]
   );
 
   const handleApply = useCallback(
     (val: string) => {
       setOpenExpanseEditor(false);
       setLocalValue(val);
-      debouncedOnChange(val);
+      onChange(val);
     },
-    [debouncedOnChange]
+    [onChange]
   );
 
   const handleAutocomplete = useCallback(
     (val: string | number) => {
       setLocalValue(val);
-      debouncedOnChange(val);
+      onChange(val);
     },
-    [debouncedOnChange]
+    [onChange]
   );
+
+  useEffect(() => {
+    setLocalValue(value);
+  }, [value]);
 
   const autocompleteOptions = useMemo(() => {
     return (

@@ -1,6 +1,5 @@
-import React, { ChangeEvent, useEffect, useRef, useState } from 'react';
+import React, { ChangeEvent, useEffect, useState } from 'react';
 import { RawInput } from '@synerise/ds-input';
-import { debounce } from 'lodash';
 
 import { DynamicKeyValueType, FactorValueComponentProps } from '../../Factors.types';
 import * as S from './DynamicKey.style';
@@ -20,19 +19,12 @@ const DynamicKey = ({
     value: (value as DynamicKeyValueType).value,
   });
   const [localError, setLocalError] = useState(false);
-  const onChangeRef = useRef(onChange);
-
-  const debouncedOnChange = useRef(
-    debounce((inputValue: DynamicKeyValueType) => {
-      onChangeRef.current && onChangeRef.current(inputValue);
-    }, 300)
-  ).current;
 
   const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
     const newValue = { ...(value as DynamicKeyValueType) };
     newValue[event.target.name] = event.target.value;
     setLocalValue(newValue);
-    debouncedOnChange(newValue);
+    onChange(newValue);
 
     if (!event.target.value.length) {
       setLocalError(true);
@@ -42,14 +34,11 @@ const DynamicKey = ({
   };
 
   useEffect(() => {
-    onChangeRef.current = onChange;
-  }, [localValue, onChange]);
-
-  useEffect(() => {
-    return () => {
-      debouncedOnChange.cancel();
-    };
-  }, [debouncedOnChange]);
+    setLocalValue({
+      key: (value as DynamicKeyValueType).key,
+      value: (value as DynamicKeyValueType).value,
+    });
+  }, [value]);
 
   const trigger = (
     <>
