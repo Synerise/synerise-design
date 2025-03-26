@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.1.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-factors@1.0.1...@synerise/ds-factors@1.1.0) (2025-03-26)
+
+
+### Features
+
+* 🎸 removes debounce from factors ([1156197](https://github.com/Synerise/synerise-design/commit/11561979b0c1b368e9d9909e8a0cf84cfb45472b))
+
+
+
+
+
 ## [1.0.1](https://github.com/Synerise/synerise-design/compare/@synerise/ds-factors@1.0.0...@synerise/ds-factors@1.0.1) (2025-03-18)
 
 **Note:** Version bump only for package @synerise/ds-factors

@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.1.1](https://github.com/Synerise/synerise-design/compare/@synerise/ds-color-picker@1.1.0...@synerise/ds-color-picker@1.1.1) (2025-03-26)
+
+
+### Bug Fixes
+
+* **color-picker:** adjust styles, add getPopupContainer ([026303b](https://github.com/Synerise/synerise-design/commit/026303bbf056504eaa42af7c3bf279e0bd59b89a))
+
+
+
+
+
 # [1.1.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-color-picker@1.0.0...@synerise/ds-color-picker@1.1.0) (2025-03-18)
 
 

@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.2.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-manageable-list@1.1.0...@synerise/ds-manageable-list@1.2.0) (2025-03-26)
+
+
+### Features
+
+* **manageable-list:** content item large ([5ebda16](https://github.com/Synerise/synerise-design/commit/5ebda16718d79e5bbfcbcf002c45dccc213bf67d))
+
+
+
+
+
 # [1.1.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-manageable-list@1.0.0...@synerise/ds-manageable-list@1.1.0) (2025-03-18)
 
 

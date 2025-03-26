@@ -1,6 +1,6 @@
 {
   "name": "@synerise/ds-emoji-picker",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "EmojiPicker UI Component for the Synerise Design System",
   "license": "ISC",
   "repository": "Synerise/synerise-design",
@@ -21,11 +21,11 @@
     "build:js": "babel --delete-dir-on-start --root-mode upward src --out-dir dist --extensions '.js,.ts,.tsx'",
     "build:watch": "npm run build:js -- --watch",
     "defs": "tsc --declaration --outDir dist/ --emitDeclarationOnly",
-    "prepublish": "npm run build",
-    "types": "tsc --noEmit",
     "pack:ci": "npm pack --pack-destination ../../storybook/storybook-static/static",
+    "prepublish": "npm run build",
     "test": "jest",
     "test:watch": "npm run test -- --watchAll",
+    "types": "tsc --noEmit",
     "upgrade:ds": "ncu -f \"@synerise/ds-*\" -u"
   },
   "sideEffects": [
@@ -34,18 +34,18 @@
   ],
   "types": "dist/index.d.ts",
   "dependencies": {
-    "@synerise/ds-divider": "^1.0.1",
-    "@synerise/ds-scrollbar": "^1.0.1",
-    "@synerise/ds-dropdown": "^1.0.1",
-    "@synerise/ds-icon": "^1.0.1",
+    "@synerise/ds-button": "^1.1.1",
+    "@synerise/ds-divider": "^1.0.2",
+    "@synerise/ds-dropdown": "^1.0.2",
+    "@synerise/ds-icon": "^1.1.0",
+    "@synerise/ds-scrollbar": "^1.0.2",
     "@synerise/ds-utils": "^1.0.1",
-    "@synerise/ds-button": "^1.1.0",
     "unicode-emoji-utils": "^1.2.0"
   },
   "peerDependencies": {
     "@synerise/ds-core": "*",
-    "styled-components": "^5.3.3",
+    "react": ">=16.9.0 <= 18.3.1",
     "react-intl": ">=3.12.0 <= 6.8",
-    "react": ">=16.9.0 <= 18.3.1"
+    "styled-components": "^5.3.3"
   }
 }
