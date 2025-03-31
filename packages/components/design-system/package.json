@@ -116,6 +116,7 @@
     "@synerise/ds-sidebar-object": "^1.0.2",
     "@synerise/ds-skeleton": "^1.0.2",
     "@synerise/ds-slider": "^1.0.2",
+    "@synerise/ds-sortable": "^1.0.0",
     "@synerise/ds-status": "^1.1.1",
     "@synerise/ds-step-card": "^1.0.2",
     "@synerise/ds-stepper": "^1.0.2",

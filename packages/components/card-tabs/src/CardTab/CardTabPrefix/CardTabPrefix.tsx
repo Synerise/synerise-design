@@ -4,7 +4,7 @@ import * as S from '../CardTab.styles';
 import { prefixType } from '../CardTab.types';
 import { Props } from './CardTabPrefix.types';
 
-const CardTabPrefix = ({ prefix, draggable, tag, prefixIcon, colorDot }: Props) => {
+const CardTabPrefix = ({ prefix, draggable, tag, prefixIcon, colorDot, dragHandleProps }: Props) => {
   const className = prefix === prefixType.HANDLE ? 'persistent' : '';
   return (
     <S.CardTabPrefix data-testid="card-tab-prefix">
@@ -22,7 +22,7 @@ const CardTabPrefix = ({ prefix, draggable, tag, prefixIcon, colorDot }: Props) 
         <S.CardDotPrefix data-testid="card-dot-tag">{colorDot}</S.CardDotPrefix>
       )}
       {(prefix === prefixType.HANDLE || draggable) && (
-        <S.CardDragPrefix className={className}>
+        <S.CardDragPrefix className={className} {...dragHandleProps}>
           <Icon className="ds-card-tabs__handle-icon sortable-drag" component={<DragHandleM />} />{' '}
         </S.CardDragPrefix>
       )}

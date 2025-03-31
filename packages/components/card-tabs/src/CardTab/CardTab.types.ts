@@ -1,6 +1,7 @@
 import type { ReactNode, MouseEvent, KeyboardEvent } from 'react';
 import type { IntlShape } from 'react-intl';
 import type { DefaultColor } from '@synerise/ds-core';
+import type { DragHandlePropType } from '@synerise/ds-sortable';
 
 export enum prefixType {
   TAG,
@@ -35,12 +36,16 @@ export type CardTabTexts = {
   duplicateMenuItem?: ReactNode;
 };
 
-export type CardTabProps = {
-  intl: IntlShape;
-  id: number;
+export type CardTabProps<IdType extends string | number = number> = {
+  /**
+   * @deprecated
+   */
+  intl?: IntlShape;
+  id: IdType;
   name: string;
   tag: string;
   prefix: prefixType;
+  dragHandleProps?: DragHandlePropType;
   colorDot?: ReactNode;
   color?: Color | DefaultColor | string;
   active?: boolean;
@@ -51,11 +56,11 @@ export type CardTabProps = {
   invalid?: boolean;
   invalidName?: boolean;
   greyBackground?: boolean;
-  onSelectTab?: (id: number) => void;
-  onChangeName?: (id: number, name: string) => void;
-  onDuplicateTab?: (id: number) => void;
-  onRemoveTab?: (id: number) => void;
-  onPreviewTab?: (id: number) => void;
+  onSelectTab?: (id: IdType) => void;
+  onChangeName?: (id: IdType, name: string) => void;
+  onDuplicateTab?: (id: IdType) => void;
+  onRemoveTab?: (id: IdType) => void;
+  onPreviewTab?: (id: IdType) => void;
   texts?: CardTabTexts;
   itemData?: unknown;
   actionsAsDropdown?: boolean;

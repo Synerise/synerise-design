@@ -106,7 +106,7 @@ describe('Card Tabs', () => {
       { ITEMS.map((item: CardTabsItem, index: number) => <CardTab key={index} id={item.id} name={item.name} tag={item.tag} prefix={prefixType.TAG} suffixIcon={<FileM />} />) }
     </CardTabs>);
     
-    expect(screen.getByTestId('card-tabs-sortable')).toBeTruthy();
+    expect(screen.getAllByTestId('ds-sortable-item').length).toBe(ITEMS.length)
   });
 
   it('should call removeTab function', () => {
