@@ -1,5 +1,6 @@
 import type { ReactNode, KeyboardEvent } from 'react';
 import type { InputProps } from 'antd/lib/input';
+import type { TooltipProps } from '@synerise/ds-tooltip';
 
 export type SearchInputProps = {
   alwaysExpanded?: boolean;
@@ -23,4 +24,5 @@ export type SearchInputProps = {
   moveCursorToEnd?: boolean;
   disableInput?: boolean;
   inputProps?: Partial<InputProps>;
+  searchTooltipProps?: Partial<TooltipProps>;
 };

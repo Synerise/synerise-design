@@ -86,6 +86,11 @@ export default {
   argTypes: {},
   args: {
     clearTooltip: 'Clear',
+    searchTooltipProps: {
+      title: 'Title',
+      description: 'Description',
+      type: 'default',
+    },
     parametersDisplayProps: {
       tooltip: PARAMETERS_TOOLTIP,
       title: PARAMETERS_TITLE,

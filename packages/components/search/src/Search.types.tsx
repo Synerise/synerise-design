@@ -1,6 +1,7 @@
 import React from 'react';
 import { ListProps } from 'react-window';
 import { InputProps } from 'antd/lib/input';
+import { TooltipProps } from '@synerise/ds-tooltip';
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export type AnyObject = Record<string, any>;
@@ -45,6 +46,7 @@ export type SearchProps<T extends AnyObject, U extends AnyObject> = {
   hideLabel?: boolean;
   disableInput?: boolean;
   alwaysExpanded?: boolean;
+  searchTooltipProps?: TooltipProps;
 };
 
 export type SearchState<T extends AnyObject> = {

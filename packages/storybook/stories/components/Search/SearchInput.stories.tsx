@@ -26,6 +26,11 @@ export default {
       <SearchInput
         {...args}
         clearTooltip="Clear"
+        searchTooltipProps={{
+          title: 'Title',
+          description: 'Description',
+          type: 'default',
+        }}
         placeholder="Search"
         onChange={handleChange}
         value={value}

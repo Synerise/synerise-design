@@ -318,6 +318,7 @@ class Search extends React.PureComponent<SearchProps<AnyObject, AnyObject>, Sear
       disableInput,
       inputProps,
       alwaysExpanded,
+      searchTooltipProps,
     } = this.props;
     const { label, isListVisible, focusInputTrigger, toggleInputTrigger, moveCursorToEnd } = this.state;
 
@@ -325,6 +326,7 @@ class Search extends React.PureComponent<SearchProps<AnyObject, AnyObject>, Sear
       <SearchInput
         alwaysHighlight
         clearTooltip={clearTooltip}
+        searchTooltipProps={searchTooltipProps}
         filterLookupKey={filterLookupKey}
         textLookupKey={textLookupConfig.parameters}
         filterLabel={label}
