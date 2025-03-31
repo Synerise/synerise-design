@@ -31,6 +31,7 @@ const SearchInput = ({
   focusTrigger,
   toggleTrigger,
   inputProps = {},
+  searchTooltipProps = {},
 }: SearchInputProps) => {
   const inputRef = useRef<InputRef>(null);
   const wrapperRef = useRef<HTMLDivElement>(null);
@@ -125,19 +126,21 @@ const SearchInput = ({
           )}
         </S.LeftSide>
         <S.SearchInner hasValue={!!value} alwaysHighlight={alwaysHighlight}>
-          <Input
-            placeholder={placeholder}
-            ref={inputRef}
-            value={value}
-            onChange={handleChangeValue}
-            onKeyDown={onKeyDown}
-            onFocus={() => setIsInputFocused(true)}
-            onBlur={() => setIsInputFocused(false)}
-            autoComplete="off"
-            autoFocus
-            disabled={disableInput}
-            {...inputProps}
-          />
+          <Tooltip {...searchTooltipProps}>
+            <Input
+              placeholder={placeholder}
+              ref={inputRef}
+              value={value}
+              onChange={handleChangeValue}
+              onKeyDown={onKeyDown}
+              onFocus={() => setIsInputFocused(true)}
+              onBlur={() => setIsInputFocused(false)}
+              autoComplete="off"
+              autoFocus
+              disabled={disableInput}
+              {...inputProps}
+            />
+          </Tooltip>
         </S.SearchInner>
       </S.SearchInputContent>
       <SearchButton
