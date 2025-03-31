@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.2.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-icon@1.1.0...@synerise/ds-icon@1.2.0) (2025-03-31)
+
+
+### Features
+
+* **icon:** add new xl icons ([8674708](https://github.com/Synerise/synerise-design/commit/867470890901ee964fda8706fad8308844cddf7d))
+* **icon:** meta icons ([002b863](https://github.com/Synerise/synerise-design/commit/002b86354136cca77a7c4bcef1716844730b9e19))
+
+
+
+
+
 # [1.1.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-icon@1.0.1...@synerise/ds-icon@1.1.0) (2025-03-26)
 
 

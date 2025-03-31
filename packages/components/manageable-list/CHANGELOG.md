@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.2.1](https://github.com/Synerise/synerise-design/compare/@synerise/ds-manageable-list@1.2.0...@synerise/ds-manageable-list@1.2.1) (2025-03-31)
+
+
+### Bug Fixes
+
+* **manageable-list:** fix visible items limit on sortable list ([22e4eb9](https://github.com/Synerise/synerise-design/commit/22e4eb91f0a20a92fdb16acc0ea268a951e46465))
+
+
+
+
+
 # [1.2.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-manageable-list@1.1.0...@synerise/ds-manageable-list@1.2.0) (2025-03-26)
 
 
