@@ -201,8 +201,8 @@ const ManageableListComponent = <T extends object>({
         />
       )}
       {onChangeOrder && !changeOrderDisabled ? (
-        <ReactSortable {...SORTABLE_CONFIG} list={items} setList={onChangeOrder}>
-          {items.map(getItem)}
+        <ReactSortable {...SORTABLE_CONFIG} list={visibleItems} setList={onChangeOrder}>
+          {visibleItems.map(getItem)}
         </ReactSortable>
       ) : (
         <List loading={loading} dataSource={visibleItems} renderItem={getItem} />
