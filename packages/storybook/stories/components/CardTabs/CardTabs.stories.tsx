@@ -33,9 +33,9 @@ const {
 export default {
   title: 'Components/CardTabs',
   component: CardTabs,
-  render: ({ children, ...args }) => {
-    const [order, setOrder] = useState<CardTabsItem[]>(children);
-    const [activeTab, setActiveTab] = useState(children[0].id);
+  render: ({ dataSource, ...args }) => {
+    const [order, setOrder] = useState<CardTabsItem[]>(dataSource);
+    const [activeTab, setActiveTab] = useState(dataSource[0].id);
 
     const { onChangeOrder, onAddTab, maxTabsCount, addTabLabel, ...cardTabItemArgs } = args;
     const handleChangeOrder = (newOrder: CardTabsItem[]) => {
@@ -73,6 +73,7 @@ export default {
       setOrder(newOrder);
       cardTabItemArgs.onChangeName?.(id, name);
     };
+    
     return (
       <CardTabs
         onAddTab={onAddTab ? handleAddTab : undefined}
@@ -229,15 +230,15 @@ export default {
     },
   },
   args: {
-    children: CARD_TABS_ITEMS,
+    dataSource: CARD_TABS_ITEMS,
     prefix: prefixType[prefixType.TAG],
     colorDot: <CardDot />,
     prefixIcon: <ShowM />,
     actionsAsDropdown: true,
   },
-} as Meta<CardTabsProps>;
+} as Meta<CardTabsProps & CardTabProps & { dataSource: Partial<CardTabProps<number>>[]}>;
 
-type Story = StoryObj<CardTabsProps & CardTabProps>;
+type Story = StoryObj<CardTabsProps & CardTabProps<number>>;
 
 export const Default: Story = {};
 export const InvalidTabs: Story = {

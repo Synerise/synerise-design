@@ -1,31 +1,28 @@
 import React, { Children, cloneElement, isValidElement } from 'react';
-import { ReactSortable, MoveEvent } from 'react-sortablejs';
+// import { ReactSortable, MoveEvent } from 'react-sortablejs';
 
 import Button from '@synerise/ds-button';
 import { defaultColorsOrder } from '@synerise/ds-core';
+import Sortable from '@synerise/ds-sortable';
 
 import * as S from './CardTabs.styles';
 import { CardTabsProps, CardTabsItem } from './CardTabs.types';
 import { CardTabProps } from './CardTab/CardTab.types';
+import CardTab from './CardTab/CardTab';
 
-const SORTABLE_CONFIG = {
-  ghostClass: 'sortable-card-ghost-element',
-  className: 'ds-card-tags-sortable',
-  animation: 150,
-  filter: '.ds-card-tabs__suffix-nodrag, .ds-card-tabs-nodrag',
-  preventOnFilter: false,
-  onMove: (ev1: MoveEvent) => {
-    if (ev1.related && ev1.related.classList.contains('ds-card-tabs-nodrag')) {
-      return -1;
-    }
-    return true;
-  },
-};
-const CardTabs = ({ className, onChangeOrder, onAddTab, maxTabsCount, children = [], addTabLabel }: CardTabsProps) => {
+const CardTabs = ({
+  className,
+  onChangeOrder,
+  onAddTab,
+  maxTabsCount,
+  children = [],
+  addTabLabel,
+  ...htmlAttributes
+}: CardTabsProps) => {
   const handleChangeOrder = (newOrder: CardTabsItem[]): void => {
     onChangeOrder && onChangeOrder(newOrder);
   };
-  const addTab = onAddTab ? (
+  const addTab = onAddTab && (
     <S.CardTabsAddButton className="ds-card-tabs-nodrag" data-testid="card-tabs-add-button">
       <Button.Creator
         disabled={!!maxTabsCount && Children.toArray(children).length >= maxTabsCount}
@@ -33,12 +30,14 @@ const CardTabs = ({ className, onChangeOrder, onAddTab, maxTabsCount, children =
         onClick={onAddTab}
       />
     </S.CardTabsAddButton>
-  ) : (
-    <></>
   );
 
   const childrenCount = Children.count(children);
-  const childrenData = Children.map(children, child => child.props);
+  const childrenData = Children.map(children, (child, i) => ({
+    ...child.props,
+    color: defaultColorsOrder[i % defaultColorsOrder.length],
+    draggable: childrenCount > 1 && (Boolean(onChangeOrder) || child.props.draggable),
+  }));
 
   const renderChildren = () => (
     <>
@@ -55,19 +54,21 @@ const CardTabs = ({ className, onChangeOrder, onAddTab, maxTabsCount, children =
     </>
   );
   return (
-    <S.CardTabsContainer className={`ds-card-tabs ${className || ''}`} data-testid="card-tabs-container">
+    <S.CardTabsContainer
+      data-testid="card-tabs-container"
+      {...htmlAttributes}
+      className={`ds-card-tabs ${className || ''}`}
+    >
       {onChangeOrder && childrenCount > 1 ? (
-        <div data-testid="card-tabs-sortable">
-          <ReactSortable<CardTabProps> {...SORTABLE_CONFIG} list={childrenData} setList={handleChangeOrder}>
-            {renderChildren()}
-            {addTab}
-          </ReactSortable>
-        </div>
+        <>
+          <Sortable items={childrenData} ItemComponent={CardTab} onOrderChange={handleChangeOrder} />
+          {addTab}
+        </>
       ) : (
-        <div className="ds-card-tags-sortable" data-testid="card-tabs-static">
+        <>
           {renderChildren()}
           {addTab}
-        </div>
+        </>
       )}
     </S.CardTabsContainer>
   );

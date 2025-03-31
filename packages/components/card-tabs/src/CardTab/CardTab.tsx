@@ -1,7 +1,7 @@
 import React, { useState, useMemo, useCallback, ChangeEvent } from 'react';
 import Icon from '@synerise/ds-icon';
 import InlineEdit from '@synerise/ds-inline-edit/dist/InlineEdit';
-import { injectIntl } from 'react-intl';
+import { useIntl } from 'react-intl';
 import Tooltip from '@synerise/ds-tooltip';
 import * as S from './CardTab.styles';
 import CardTabPrefix from './CardTabPrefix/CardTabPrefix';
@@ -11,7 +11,6 @@ import { CardTabProps, CardTabSuffixProps, ListItemEventType } from './CardTab.t
 
 const CardTab = (props: CardTabProps) => {
   const {
-    intl,
     id,
     name,
     tag,
@@ -34,8 +33,11 @@ const CardTab = (props: CardTabProps) => {
     color = 'yellow',
     colorDot,
     itemData,
+    dragHandleProps,
     actionsAsDropdown,
   } = props;
+
+  const intl = useIntl();
 
   const [edited, setEdited] = useState(false);
   const [editedName, setEditedName] = useState(name);
@@ -164,7 +166,7 @@ const CardTab = (props: CardTabProps) => {
       active={Boolean(active)}
       invalid={Boolean(invalid || invalidName)}
       disabled={!active && Boolean(disabled)}
-      draggable={draggable}
+      isDraggable={draggable}
       color={color}
       onClick={handleSelect}
       greyBackground={!!greyBackground}
@@ -173,7 +175,14 @@ const CardTab = (props: CardTabProps) => {
       itemData={itemData}
     >
       {!edited && (
-        <CardTabPrefix colorDot={colorDot} draggable={draggable} prefixIcon={prefixIcon} prefix={prefix} tag={tag} />
+        <CardTabPrefix
+          dragHandleProps={dragHandleProps}
+          colorDot={colorDot}
+          draggable={draggable}
+          prefixIcon={prefixIcon}
+          prefix={prefix}
+          tag={tag}
+        />
       )}
       <S.CardTabLabel onDoubleClick={handleEditName} data-testid="card-tab-label">
         {edited ? (
@@ -202,4 +211,4 @@ const CardTab = (props: CardTabProps) => {
   );
 };
 
-export default injectIntl(CardTab);
+export default CardTab;
