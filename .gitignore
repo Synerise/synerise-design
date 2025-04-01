@@ -54,3 +54,4 @@ styleguide/
 **/yarn-error.log
 
 *.tgz
+*storybook.log

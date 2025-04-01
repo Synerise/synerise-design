@@ -8,17 +8,7 @@ module.exports = {
     es6: true,
     'jest/globals': true,
   },
-  extends: [
-    'airbnb',
-    'standard',
-    'standard-react',
-    'prettier',
-    'prettier/flowtype',
-    'prettier/react',
-    'prettier/standard',
-    'plugin:jest/recommended',
-    'plugin:@typescript-eslint/recommended',
-  ],
+  extends: ['airbnb', 'standard', 'standard-react', 'prettier', 'prettier/flowtype', 'prettier/react', 'prettier/standard', 'plugin:jest/recommended', 'plugin:@typescript-eslint/recommended'],
   plugins: ['jest', 'react', 'react-hooks'],
   parserOptions: {
     ecmaVersion: 2018,
