@@ -5,10 +5,11 @@ import { ApiM } from '@synerise/ds-icon';
 import ContextSelector from '../ContextSelector';
 import { ContextProps } from '../ContextSelector.types';
 import userEvent from '@testing-library/user-event';
+import { screen, waitFor } from '@testing-library/react';
 
 const DEFAULT_PROPS: ContextProps = {
   texts: CONTEXT_TEXTS,
-  onSelectItem: () => {},
+  onSelectItem: () => { },
   selectedItem: undefined,
   items: CONTEXT_ITEMS,
   groups: CONTEXT_GROUPS,
@@ -20,16 +21,16 @@ describe('Context selector component', () => {
   beforeEach(() => {
     Element.prototype.scrollTo = jest.fn();
   });
-  
+
   test('Should render', () => {
 
-    const { getByText } = renderWithProvider(RENDER_CONTEXT_SELECTOR());
+    renderWithProvider(RENDER_CONTEXT_SELECTOR());
 
-    expect(getByText(CONTEXT_TEXTS.buttonLabel)).toBeTruthy();
+    expect(screen.getByText(CONTEXT_TEXTS.buttonLabel)).toBeTruthy();
   });
 
   test('Should show selected value', () => {
-    const { getByText } = renderWithProvider(
+    renderWithProvider(
       RENDER_CONTEXT_SELECTOR({
         selectedItem: {
           name: 'Schema builder app',
@@ -41,59 +42,61 @@ describe('Context selector component', () => {
       })
     );
 
-    expect(getByText('Schema builder app')).toBeTruthy();
+    expect(screen.getByText('Schema builder app')).toBeTruthy();
   });
 
   test('should call onActivate', () => {
-    // ARRANGE
     const handleActivate = jest.fn();
-    const { getByText } = renderWithProvider(RENDER_CONTEXT_SELECTOR({ onActivate: handleActivate }));
+    renderWithProvider(RENDER_CONTEXT_SELECTOR({ onActivate: handleActivate }));
 
-    userEvent.click(getByText(CONTEXT_TEXTS.buttonLabel));
+    userEvent.click(screen.getByText(CONTEXT_TEXTS.buttonLabel));
 
     expect(handleActivate).toBeCalled();
   });
-  test('should call onDeactivate', () => {
+  test('should call onDeactivate', async () => {
 
     const handleDeactivate = jest.fn();
-    const { getByText } = renderWithProvider(RENDER_CONTEXT_SELECTOR({ onDeactivate: handleDeactivate }));
+    const handleActivate = jest.fn();
+    renderWithProvider(RENDER_CONTEXT_SELECTOR({ onActivate: handleActivate, onDeactivate: handleDeactivate }));
 
-    userEvent.click(getByText(CONTEXT_TEXTS.buttonLabel));
+    userEvent.click(screen.getByText(CONTEXT_TEXTS.buttonLabel));
+    await waitFor(() => expect(handleActivate).toHaveBeenCalled());
     userEvent.click(document.body);
 
-    expect(handleDeactivate).toBeCalled();
+    await waitFor(() => expect(handleDeactivate).toHaveBeenCalled());
   });
 
   test("should display the correct item when searched by subtitle", async () => {
-    const { getByText , getByPlaceholderText, queryByText } = renderWithProvider(
-        RENDER_CONTEXT_SELECTOR({
-          items: [
-            {
-              name: 'Name 1',
-              id: 'id_1',
-              icon: <ApiM />,
-            },
-            {
-              name: 'Name 2',
-              subtitle: 'subtitle 2',
-              id: 'id_2',
-              icon: <ApiM />,
-            },
-          ]
-        })
+    renderWithProvider(
+      RENDER_CONTEXT_SELECTOR({
+        items: [
+          {
+            name: 'Name 1',
+            id: 'id_1',
+            icon: <ApiM />,
+          },
+          {
+            name: 'Name 2',
+            subtitle: 'subtitle 2',
+            id: 'id_2',
+            icon: <ApiM />,
+          },
+        ]
+      })
     );
 
-    userEvent.click(getByText(CONTEXT_TEXTS.buttonLabel));
+    userEvent.click(screen.getByText(CONTEXT_TEXTS.buttonLabel));
 
-    const searchInput = getByPlaceholderText(CONTEXT_TEXTS.searchPlaceholder);
+    await waitFor(() => expect(screen.getByPlaceholderText(CONTEXT_TEXTS.searchPlaceholder)).toBeInTheDocument())
+    const searchInput = screen.getByPlaceholderText(CONTEXT_TEXTS.searchPlaceholder);
     await userEvent.type(searchInput, 'subtitle 2');
 
-    expect(queryByText("Name 2")).toBeInTheDocument();
-    expect(queryByText("Name 1")).not.toBeInTheDocument();
+    expect(screen.queryByText("Name 2")).toBeInTheDocument();
+    expect(screen.queryByText("Name 1")).not.toBeInTheDocument();
   });
 
   test('Should hide search field if hideSearchField is true', () => {
-    const {queryByPlaceholderText} = renderWithProvider(
+    const { queryByPlaceholderText } = renderWithProvider(
       RENDER_CONTEXT_SELECTOR({
         hideSearchField: true,
       })

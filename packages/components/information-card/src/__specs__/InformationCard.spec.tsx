@@ -54,7 +54,7 @@ describe('Information card', () => {
     );
     const textarea = container.querySelector('textarea');
     fireEvent.focus(textarea);
-    
+
     fireEvent.change(container.querySelector('textarea'), { target: { value: userInput } });
     expect(onChange).toHaveBeenCalled();
     expect(onChange).toHaveBeenCalledWith(userInput);
@@ -119,7 +119,7 @@ describe('Information card tooltip', () => {
     expect(screen.queryByText(INFOCARD_PROPS.subtitle)).not.toBeInTheDocument();
     expect(screen.queryByText(INFOCARD_PROPS.descriptionConfig.value)).not.toBeInTheDocument();
   })
-§
+
   it('Should render infocard as tooltip and show on hover/click', async () => {
     const TRIGGER = 'trigger';
     renderWithProvider(

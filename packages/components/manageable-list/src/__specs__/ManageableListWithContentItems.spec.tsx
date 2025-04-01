@@ -206,7 +206,7 @@ describe('ManageableList with content items', () => {
         texts={texts}
       />
     );
-    screen.debug(container)
+    
     const animationWrappers = screen.queryAllByTestId('item-content-wrapper');
     animationWrappers.forEach( element => {
       expect(element).not.toBeVisible();
