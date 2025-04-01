@@ -21,7 +21,7 @@ export const SwitchFactorType: StoryObj<FactorsProps> = {
   ...Default,
   args: {
     ...Default.args,
-    onChangeValue: fn(),
+    setSelectedFactorType: fn(),
     selectedFactorType: 'text',
     textType: 'default',
   },

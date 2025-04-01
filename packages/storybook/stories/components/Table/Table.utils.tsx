@@ -143,6 +143,10 @@ export const TableMeta = {
     cellSize: controlFromOptionsArray('inline-radio', ['default', 'medium']),
   },
   args: {
+    onHeaderRow: fn(),
+    onChange: fn(),
+    onRow: fn(),
+    onSort: fn(),
     hideTitleBar: false,
     hideTitlePart: false,
     loading: false,

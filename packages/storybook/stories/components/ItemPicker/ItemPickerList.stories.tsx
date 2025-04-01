@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Meta, StoryObj } from '@storybook/react';
+import { fn } from '@storybook/test';
 
 import { ItemPickerList, ItemPickerTrigger } from '@synerise/ds-item-picker';
 import Dropdown from '@synerise/ds-dropdown';
@@ -65,6 +66,7 @@ export default {
     includeFooter: BOOLEAN_CONTROL,
   },
   args: {
+    onItemSelect: fn(),
     items: FLAT_DATA_SOURCE.slice(0, 50),
     recents: RECENT,
     actions: ACTIONS,

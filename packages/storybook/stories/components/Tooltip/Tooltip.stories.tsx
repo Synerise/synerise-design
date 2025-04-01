@@ -2,7 +2,7 @@ import React from 'react';
 
 import { action } from '@storybook/addon-actions';
 import type { StoryObj, Meta } from '@storybook/react';
-import { userEvent, waitFor, within, expect } from '@storybook/test';
+import { userEvent, waitFor, within, expect, fn } from '@storybook/test';
 import isChromatic from 'chromatic/isChromatic';
 
 import Tooltip, { TooltipProps } from '@synerise/ds-tooltip';
@@ -66,6 +66,9 @@ export default {
     trigger: isChromatic() ? 'click' : 'hover',
     offset: 'small',
     type: 'default',
+    onOpenChange: fn(),
+    onVisibleChange: fn(),
+    onPopupAlign: fn(),
   },
   play: async ({ canvasElement, args }) => {
     const canvas = within(canvasElement.parentElement!);

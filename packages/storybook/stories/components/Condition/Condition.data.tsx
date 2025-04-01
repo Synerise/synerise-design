@@ -1,5 +1,6 @@
 import React from 'react';
 import { v4 as uuid } from 'uuid';
+import { fn } from '@storybook/test';
 
 import { NotificationsM, VarTypeStringM } from '@synerise/ds-icon';
 import type { ConditionStep, StepConditions } from '@synerise/ds-condition';
@@ -75,9 +76,7 @@ export const DEFAULT_FACTOR_VALUE = {
   autocompleteText: {
     options: ['First name', 'Last name', 'City', 'Age', 'Points'],
   },
-  onParamsClick: () => {
-    console.log('factor params click');
-  },
+  onParamsClick: fn(),
   parameters: {
     buttonLabel: 'Parameter',
     buttonIcon: <VarTypeStringM />,
@@ -100,9 +99,7 @@ export const DEFAULT_PARAMETER_VALUE = {
   selectedFactorType: 'parameter' as const,
   defaultFactorType: 'parameter' as const,
   withoutTypeSelector: true,
-  onParamsClick: () => {
-    console.log('param params click');
-  },
+  onParamsClick: fn(),
   parameters: {
     buttonLabel: 'Parameter',
     buttonIcon: <VarTypeStringM />,

@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Meta, StoryObj } from '@storybook/react';
+import { fn } from '@storybook/test';
 
 import ContextSelector, { ContextProps, ContextItem } from '@synerise/ds-context-selector';
 
@@ -50,6 +51,14 @@ export default {
     }
   },
   args: {
+    onActivate: fn(),
+    onClickOutside: fn(),
+    onDeactivate: fn(),
+    onFetchData: fn(),
+    onOpen: fn(),
+    onSearch: fn(),
+    onSelectItem: fn(),
+    onSetGroup: fn(),
     texts: CONTEXT_TEXTS,
     onClickOutsideEvents: undefined,
     

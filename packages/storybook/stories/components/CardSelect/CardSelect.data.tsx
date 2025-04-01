@@ -12,14 +12,11 @@ const DESCIRIPTIONS = [
     "Praesentium vesper cohors crur."
 ]
 export const generateItems = (count: number, args: Partial<CardSelectProps>, withDescription) => {
-  const t = Array(count)
+  return Array(count)
     .fill(1)
     .map((_item, index) => ({
       ...args,
       description: withDescription ? <div className="chromatic-ignore" style={{height: '100%'}}>{DESCIRIPTIONS[index]}</div> : undefined,
       key: faker.string.uuid(),
     }));
-    console.log(t, JSON.stringify(t));
-    return t
-
 };

@@ -24,6 +24,7 @@ import { renderSuffix, suffixType, prefixType, renderPrefix, prefixArgTypes } fr
 import * as S from './styles';
 import { AVATAR_IMAGE } from '../../constants/images';
 import Badge from '@synerise/ds-badge';
+import { fn } from '@storybook/test';
 
 type Story = StoryObj<ListItemProps>;
 const renderListItem = (args: ListItemProps) => {
@@ -127,6 +128,9 @@ export default {
   args: {
     key: 'list-item-key-0',
     children: 'List Item',
+    onItemHover: fn(),
+    onSelect: fn(),
+    onClick: fn(),
   },
 } as Meta<ListItemProps>;
 
