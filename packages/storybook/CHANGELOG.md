@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.4.0](https://github.com/Synerise/synerise-design/compare/storybook7@1.3.0...storybook7@1.4.0) (2025-04-01)
+
+
+### Features
+
+* **ds-search:** add tooltip opt in search ([77994f5](https://github.com/Synerise/synerise-design/commit/77994f5085d9cd639681eadb1c0b67e2919e653c))
+
+
+
+
+
 # [1.3.0](https://github.com/Synerise/synerise-design/compare/storybook7@1.2.0...storybook7@1.3.0) (2025-03-31)
 
 

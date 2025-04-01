@@ -1,6 +1,6 @@
 {
   "name": "@synerise/ds-manageable-list",
-  "version": "1.2.1",
+  "version": "1.2.2",
   "description": "ManageableList UI Component for the Synerise Design System",
   "license": "ISC",
   "repository": "Synerise/synerise-design",
@@ -38,7 +38,7 @@
     "@synerise/ds-button": "^1.1.2",
     "@synerise/ds-dropdown": "^1.0.3",
     "@synerise/ds-icon": "^1.2.0",
-    "@synerise/ds-inline-edit": "^1.0.3",
+    "@synerise/ds-inline-edit": "^1.0.4",
     "@synerise/ds-input": "^1.0.3",
     "@synerise/ds-list": "^1.0.3",
     "@synerise/ds-menu": "^1.0.3",

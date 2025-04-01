@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.1.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-search@1.0.3...@synerise/ds-search@1.1.0) (2025-04-01)
+
+
+### Features
+
+* **ds-search:** add tooltip opt in search ([77994f5](https://github.com/Synerise/synerise-design/commit/77994f5085d9cd639681eadb1c0b67e2919e653c))
+
+
+
+
+
 ## [1.0.3](https://github.com/Synerise/synerise-design/compare/@synerise/ds-search@1.0.2...@synerise/ds-search@1.0.3) (2025-03-31)
 
 **Note:** Version bump only for package @synerise/ds-search
