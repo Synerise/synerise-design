@@ -2,7 +2,7 @@
 // @ts-nocheck
 import React from 'react';
 import { renderWithProvider } from '@synerise/ds-utils/dist/testing';
-import { fireEvent, screen } from '@testing-library/react';
+import { fireEvent, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import InformationCard, { InformationCardTooltip } from '../index';
 import { NOOP, focusWithArrowKeys, useOnClickOutside } from '@synerise/ds-utils';
@@ -49,12 +49,12 @@ describe('Information card', () => {
   it.skip('FIXME: default description should be editable', () => {
     const userInput = 'example description provided by the user';
     const onChange = jest.fn(value => value);
-    const { container, debug } = renderWithProvider(
+    const { container } = renderWithProvider(
       <InformationCard title={sampleTitle} subtitle={sampleSubtitle} descriptionConfig={{ onChange }} />
     );
     const textarea = container.querySelector('textarea');
     fireEvent.focus(textarea);
-    debug();
+    
     fireEvent.change(container.querySelector('textarea'), { target: { value: userInput } });
     expect(onChange).toHaveBeenCalled();
     expect(onChange).toHaveBeenCalledWith(userInput);
@@ -78,7 +78,7 @@ describe('Information card', () => {
   it.skip('FIXME: click on popover does not close dropdown', async () => {
     // FIXME: container detection is not working properly
     const renderInformationCard = () => (
-      <InformationCard title={sampleTitle} subtitle={sampleSubtitle} descriptionConfig={sampleDesc}/>
+      <InformationCard title={sampleTitle} subtitle={sampleSubtitle} descriptionConfig={sampleDesc} />
     );
     const { infoCard, infoCardPopoverContainer, dropdown, sleep } = testComponentAdapter(() => <WithDropdown />, {
       usingPortal: true,
@@ -119,8 +119,8 @@ describe('Information card tooltip', () => {
     expect(screen.queryByText(INFOCARD_PROPS.subtitle)).not.toBeInTheDocument();
     expect(screen.queryByText(INFOCARD_PROPS.descriptionConfig.value)).not.toBeInTheDocument();
   })
-
-  it('Should render infocard as tooltip', () => {
+§
+  it('Should render infocard as tooltip and show on hover/click', async () => {
     const TRIGGER = 'trigger';
     renderWithProvider(
       <InformationCardTooltip
@@ -132,9 +132,11 @@ describe('Information card tooltip', () => {
     const trigger = screen.getByText(TRIGGER);
     userEvent.click(trigger);
 
-    expect(screen.getByText(INFOCARD_PROPS.title)).toBeInTheDocument();
-    expect(screen.getByText(INFOCARD_PROPS.subtitle)).toBeInTheDocument();
-    expect(screen.getByText(INFOCARD_PROPS.descriptionConfig.value)).toBeInTheDocument();
+    await waitFor(() => {
+      expect(screen.getByText(INFOCARD_PROPS.title)).toBeInTheDocument();
+      expect(screen.getByText(INFOCARD_PROPS.subtitle)).toBeInTheDocument();
+      expect(screen.getByText(INFOCARD_PROPS.descriptionConfig.value)).toBeInTheDocument();
+    })
   })
 });
 
@@ -168,7 +170,7 @@ function WithDropdown(numberOfElements = 1) {
       overlay={
         <Dropdown.Wrapper
           style={{ width: '220px' }}
-          onKeyDown={e => focusWithArrowKeys(e, 'ds-menu-item', () => {})}
+          onKeyDown={e => focusWithArrowKeys(e, 'ds-menu-item', () => { })}
           ref={ref}
         >
           <Menu
