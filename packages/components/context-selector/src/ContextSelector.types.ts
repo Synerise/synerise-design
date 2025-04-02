@@ -80,7 +80,8 @@ export type ContextProps = {
   hasMoreItems?: boolean;
   type?: 'default' | 'attribute' | 'event';
   dropdownProps?: Omit<DropdownProps, 'trigger' | 'getPopupContainer' | 'onVisibleChange' | 'visible' | 'overlay'>;
-  errorText?: ReactNode | string;
+  errorText?: ReactNode;
+  isError?: boolean;
   getMenuEntryProps?: FactorsProps['getMenuEntryProps'];
   dropdownDimensionsConfig?: {
     defaultHeight?: number;

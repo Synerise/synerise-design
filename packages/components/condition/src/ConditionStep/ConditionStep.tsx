@@ -13,7 +13,7 @@ import { AddCondition } from './AddCondition';
 import { ConditionRow } from './ConditionRow';
 import { ACTION_ATTRIBUTE, SUBJECT } from '../constants';
 import { EmptyCondition } from './EmptyCondition';
-import { StepConditions } from '../Condition.types';
+import { CustomContextSelectorProps, StepConditions } from '../Condition.types';
 
 export const ConditionStep = ({
   step,
@@ -115,27 +115,20 @@ export const ConditionStep = ({
 
   const renderContextSelector = useCallback(
     (contextData: Omit<ContextProps, 'onSelectItem'>) => {
+      const commonProps: ContextProps | CustomContextSelectorProps = {
+        ...contextData,
+        onActivate,
+        onDeactivate,
+        errorText: undefined,
+        isError: !!contextData.errorText,
+        opened: step.id === currentStepId && currentField === SUBJECT,
+        onSelectItem: value => selectContext(value, step.id),
+        readOnly: contextData.readOnly || readOnly,
+      };
       return CustomContextSelectorComponent ? (
-        <CustomContextSelectorComponent
-          {...contextData}
-          getPopupContainer={getPopupContainerOverride}
-          onActivate={onActivate}
-          onDeactivate={onDeactivate}
-          opened={step.id === currentStepId && currentField === SUBJECT}
-          onSelectItem={value => selectContext(value, step.id)}
-          readOnly={contextData.readOnly || readOnly}
-        />
+        <CustomContextSelectorComponent {...commonProps} getPopupContainer={getPopupContainerOverride} />
       ) : (
-        <ContextSelector
-          {...contextData}
-          errorText={undefined}
-          getPopupContainerOverride={getPopupContainerOverride}
-          onActivate={onActivate}
-          onDeactivate={onDeactivate}
-          opened={step.id === currentStepId && currentField === SUBJECT}
-          onSelectItem={value => selectContext(value, step.id)}
-          readOnly={contextData.readOnly || readOnly}
-        />
+        <ContextSelector {...commonProps} getPopupContainerOverride={getPopupContainerOverride} />
       );
     },
     [

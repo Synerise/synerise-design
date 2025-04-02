@@ -43,6 +43,7 @@ const ContextSelector = ({
   dropdownProps,
   disabled,
   errorText,
+  isError,
   readOnly = false,
   getMenuEntryProps,
   dropdownDimensionsConfig,
@@ -112,7 +113,7 @@ const ContextSelector = ({
 
   const triggerButton = useMemo(() => {
     const { buttonLabel } = allTexts;
-    const hasError = Boolean(errorText);
+    const hasError = Boolean(errorText) || isError;
 
     return addMode && !selectedItem ? (
       <>
@@ -179,6 +180,8 @@ const ContextSelector = ({
     );
   }, [
     allTexts,
+    errorText,
+    isError,
     addMode,
     selectedItem,
     disabled,
@@ -187,7 +190,6 @@ const ContextSelector = ({
     triggerColor,
     triggerMode,
     getPopupContainerOverride,
-    errorText,
     getMenuEntryProps,
   ]);
 
