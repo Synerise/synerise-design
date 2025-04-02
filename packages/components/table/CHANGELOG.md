@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.1.4](https://github.com/synerise/synerise-design/compare/@synerise/ds-table@1.1.3...@synerise/ds-table@1.1.4) (2025-04-02)
+
+
+### Bug Fixes
+
+* **table:** fixes overflowing texts in AvatarLabelCell ([1279c4d](https://github.com/synerise/synerise-design/commit/1279c4d634821929e112bc2f6ec4cd8758a8b70c))
+
+
+
+
+
 ## [1.1.3](https://github.com/synerise/synerise-design/compare/@synerise/ds-table@1.1.2...@synerise/ds-table@1.1.3) (2025-04-01)
 
 **Note:** Version bump only for package @synerise/ds-table
