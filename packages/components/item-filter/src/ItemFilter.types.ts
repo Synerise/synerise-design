@@ -11,6 +11,11 @@ interface Item extends ItemProps {
   categories: string[];
 }
 
+/**
+ *
+ * @deprecated - ItemFilter component will not receive any more updates
+ *
+ */
 export type ItemFilterProps = {
   visible: boolean;
   hide: () => void;
