@@ -1,10 +1,10 @@
 import { Title, Subtitle, Meta, ColorPalette, ColorItem } from '@storybook/blocks';
-import { theme } from '@synerise/ds-core';
+
 import { generatePalette } from './Colors.data.ts';
 
+import { theme } from '@synerise/ds-core';
+
 <Meta title="Tokens/Colors" />
- 
-<Title>Color tokens</Title>
 
 <ColorPalette>
   <ColorItem
@@ -18,10 +18,11 @@ import { generatePalette } from './Colors.data.ts';
     title="Alert colors"
     colors={{ Success: theme.palette['green-600'], Warning: theme.palette['yellow-600'], Error: theme.palette['red-600'] }}
   />
-  </ColorPalette>
+</ColorPalette>
 
-  <Subtitle>Primary colors full palette</Subtitle>
-  <ColorPalette>
+<Subtitle>Primary colors full palette</Subtitle>
+
+<ColorPalette>
   <ColorItem
     title="Blue"
     colors={generatePalette('blue')}
@@ -33,6 +34,7 @@ import { generatePalette } from './Colors.data.ts';
 </ColorPalette>
 
 <Subtitle>Secondary colors full palette</Subtitle>
+
 <ColorPalette>
   <ColorItem
     title="Yellow"
@@ -71,7 +73,7 @@ import { generatePalette } from './Colors.data.ts';
     colors={generatePalette('fern')}
   />
   <ColorItem
-    title="Green"
+    title="Green" 
     colors={generatePalette('green')}
   />
 </ColorPalette>

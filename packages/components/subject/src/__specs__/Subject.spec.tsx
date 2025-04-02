@@ -20,8 +20,8 @@ export const SUBJECT_ITEMS = [...new Array(30)].map((i, index) => ({
 describe('Subject component', () => {
   const DEFAULT_PROPS: SubjectProps = {
     texts: SUBJECT_TEXTS,
-    onSelectItem: () => {},
-    onShowPreview: () => {},
+    onSelectItem: () => { },
+    onShowPreview: () => { },
     type: 'event',
     placeholder: 'Choose event',
     iconPlaceholder: <NotificationsM />,
@@ -135,13 +135,19 @@ describe('Subject component', () => {
 
     expect(handleActivate).toBeCalled();
   });
-  test('should call onDeactivate', () => {
+  test('should call onDeactivate', async () => {
     const handleDeactivate = jest.fn();
-    renderWithProvider(RENDER_SUBJECT({ onDeactivate: handleDeactivate }));
+    const handleActivate = jest.fn();
+    const CLICK_OUTSIDE = 'CLICK_OUTSIDE';
+    renderWithProvider(<>
+      <div>{CLICK_OUTSIDE}</div>
+      {RENDER_SUBJECT({ onDeactivate: handleDeactivate, onActivate: handleActivate })}
+    </>);
 
     userEvent.click(screen.getByText('Choose event'));
-    userEvent.click(document.body);
-
-    expect(handleDeactivate).toBeCalled();
+    await waitFor(() => expect(handleActivate).toBeCalled());
+    userEvent.click(screen.getByText(CLICK_OUTSIDE));
+    
+    await waitFor(() => expect(handleDeactivate).toBeCalled());
   });
 });

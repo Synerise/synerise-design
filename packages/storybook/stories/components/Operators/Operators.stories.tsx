@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Meta, StoryObj } from '@storybook/react';
+import { fn } from '@storybook/test';
 
 import Operators from '@synerise/ds-operators';
 import type { OperatorsItem, OperatorsProps } from '@synerise/ds-operators';
@@ -54,6 +55,9 @@ export default {
     }
   },
   args: {
+    onActivate: fn(),
+    onChange: fn(),
+    onDeactivate: fn(),
     texts: OPERATORS_TEXTS,
     items: OPERATORS_ITEMS,
     groups: OPERATORS_GROUPS,

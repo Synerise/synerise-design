@@ -1,6 +1,7 @@
 import React from 'react';
 import { Meta, StoryObj } from '@storybook/react';
 import { useArgs } from '@storybook/preview-api';
+import { fn } from '@storybook/test';
 
 import FormatPicker from '@synerise/ds-format-picker';
 import type { FormatPickerProps } from '@synerise/ds-format-picker';
@@ -34,6 +35,13 @@ export default {
   args: {
     header: 'Number format',
     format: DEFAULT_FORMAT,
+    onCompactNumbersChange: fn(),
+    onCurrencyChange: fn(),
+    onDataFormatChange: fn(),
+    onFixedLengthChange: fn(),
+    onFormattedValueChange: fn(),
+    onSetDefault: fn(),
+    onUseSeparatorChange: fn(),
   },
   render: args => {
     const [{ format }, updateArgs] = useArgs();

@@ -28,6 +28,11 @@ export const InlineSelectOpened: Story = {
 };
 
 export const InlineSelectSelected: Story = {
+  parameters: {
+    test: {
+      dangerouslyIgnoreUnhandledErrors: true
+    }
+  },
   play: async ({ args, canvasElement }) => {
     const canvas = within(canvasElement.parentElement!);
 

@@ -28,6 +28,7 @@ import { CONTEXT_TEXTS } from '../ContextSelector/data/context.data';
 import { CONTEXT_CLIENT_GROUPS, CONTEXT_CLIENT_ITEMS } from '../ContextSelector/data/client.data';
 import { BOOLEAN_CONTROL, controlFromOptionsArray, fixedWrapper300, NUMBER_CONTROL } from '../../utils';
 import { ITEMS_IN_SECTIONS, SECTIONS } from '../ItemPicker/ItemPicker.data';
+import { fn } from '@storybook/test';
 
 export default {
   component: Condition,
@@ -374,6 +375,16 @@ export default {
     },
   },
   args: {
+    onChangeActionAttribute: fn(),
+    onChangeContext: fn(),
+    onChangeFactorType: fn(),
+    onChangeFactorValue: fn(),
+    onChangeOperator: fn(),
+    onChangeOrder: fn(),
+    onChangeParameter: fn(),
+    onChangeSubject: fn(),
+    onDeactivate: fn(),
+    onUpdateStepName: fn(),
     textFactorInputType: 'autocomplete',
     enableAddCondition: true,
     addStepType: 'Default',

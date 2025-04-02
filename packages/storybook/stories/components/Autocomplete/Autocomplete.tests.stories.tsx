@@ -5,12 +5,13 @@ import type { AutocompleteProps } from '@synerise/ds-autocomplete';
 
 import { within, userEvent, expect, fn } from '@storybook/test';
 
-import { Primary } from './Autocomplete.stories';
+import { default as DefaultMeta, Primary } from './Autocomplete.stories';
 import { fixedWrapper400, fixedWrapper200 } from '../../utils';
 
 const excludedProps = ['animation'];
 const excludeRegexp = new RegExp(`(${excludedProps.join('|')})`, 'g');
 const meta: Meta<AutocompleteProps> = {
+  ...DefaultMeta,
   title: "Components/InputElements/Tests",
   component: Autocomplete,
   parameters: {
@@ -61,6 +62,10 @@ const eventArgs = {
   onDropdownVisibleChange: fn(),
   onBlur: fn(),
   onFocus: fn(),
+  onChange: fn(),
+  onClick: fn(),
+  onSearch: fn(),
+  onMouseEnter: fn(),
 }
 
 export const AutoResizeMinAndMax = {

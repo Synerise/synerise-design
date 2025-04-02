@@ -126,6 +126,7 @@ export const TabsWithConfigurationAndHiddenTabsOpen: Story = {
 
 export const TabsDropdownHideAfterConfigurationClick: Story = {
   args: {
+    handleTabClick: fn(),
     configuration: {
       label: 'Manage tabs',
       action: fn(),

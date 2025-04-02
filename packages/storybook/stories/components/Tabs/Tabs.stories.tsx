@@ -2,7 +2,7 @@ import React, { ReactNode } from 'react';
 import { Meta, StoryObj } from '@storybook/react';
 import { useArgs } from '@storybook/preview-api';
 import { action } from '@storybook/addon-actions';
-import { within, expect, waitFor, userEvent } from '@storybook/test';
+import { within, expect, waitFor, userEvent, fn } from '@storybook/test';
 
 import { BooleanM, CalendarM, HashM, ListM, SearchM, TextM } from '@synerise/ds-icon';
 import Tabs from '@synerise/ds-tabs';
@@ -99,6 +99,7 @@ export default {
   args: {
     tabs: getTabsFromLabels(defaultLabels),
     activeTab: 0,
+    handleTabClick: fn(),
   },
   argTypes: {
     handleTabClick: {

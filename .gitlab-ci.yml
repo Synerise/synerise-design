@@ -1,4 +1,4 @@
-image: quay.io/synerise/base-build-images:nodejs20
+image: quay.io/synerise/base-build-images:nodejs22
 
 variables:
   APP: ds-docs

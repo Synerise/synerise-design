@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { fn } from '@storybook/test';
 
 import ContextSelector from '@synerise/ds-context-selector';
 import { theme } from '@synerise/ds-core';
@@ -106,6 +107,14 @@ export default {
     );
   },
   args: {
+    onAddStep: fn(),
+    onChangeLogic: fn(),
+    onChangeOrder: fn(),
+    onChangeStepMatching: fn(),
+    onChangeStepName: fn(),
+    onDeleteStep: fn(),
+    onDuplicateStep: fn(),
+    onExpressionStepChange: fn(),
     expressions: [DEFAULT_EXPRESSION()],
     getMoveByLabel: (offset: number) => {
       if (offset < 0) {
