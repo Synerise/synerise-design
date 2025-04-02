@@ -20,6 +20,11 @@ const FILTER_ITEM_HEIGHT = 48;
 const FILTER_ITEM_MARGIN_BOTTOM = 16;
 const FILTER_LIST_PADDING = 24;
 
+/**
+ *
+ * @deprecated - this component will not receive any more updates
+ *
+ */
 const ItemFilter = ({
   visible,
   hide,
