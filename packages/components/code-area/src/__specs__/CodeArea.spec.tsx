@@ -1,6 +1,6 @@
 import React from 'react';
 import { renderWithProvider } from '@synerise/ds-utils/dist/testing';
-import { getByText, screen } from '@testing-library/react';
+import { getByText, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import CodeArea from '../CodeArea';
 
@@ -84,9 +84,10 @@ describe('CodeArea', () => {
     expect(syntaxSelectionTrigger).toBeInTheDocument();
     
     userEvent.click(syntaxSelectionTrigger);
-    const items = screen.getAllByRole('menuitem');
-    expect(items.length).toBe(SYNTAX_OPTIONS.length);
-
+    await waitFor(() => {
+      const items = screen.getAllByRole('menuitem');
+      expect(items.length).toBe(SYNTAX_OPTIONS.length);
+    })
   });
 
   it('should show CodeArea in fullscreen mode', async() => {

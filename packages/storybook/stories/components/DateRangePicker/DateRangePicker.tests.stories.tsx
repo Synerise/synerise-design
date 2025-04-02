@@ -22,13 +22,20 @@ export default {
 
 type Story = StoryObj<DateRangePickerProps>;
 
+const explicitActionArgs = {
+  onApply: fn(),
+  onFilterSave: fn(),
+  onValueChange: fn(),
+  onVisibleChange: fn(),
+}
+
 export const TestSelectingLifetimePreset: Story = {
   ...Default,
   args: {
+    ...explicitActionArgs,
     showRelativePicker: true,
     relativePast: true,
     texts,
-    onValueChange: fn(),
     relativeModes: ['PAST']
   },
   play: async ({ args, canvasElement, step }) => {
@@ -51,11 +58,10 @@ export const TestSelectingLifetimePreset: Story = {
 export const TestSelectingCustomRange: Story = {
   ...Default,
   args: {
+    ...explicitActionArgs,
     showRelativePicker: true,
     relativePast: true,
     texts,
-    onValueChange: fn(),
-    onVisibleChange: fn(),
     showCustomRange: true,
     relativeModes: ['PAST']
   },
@@ -83,11 +89,10 @@ export const TestSelectingCustomRange: Story = {
 export const TestSelectingMoreRangesDropdown: Story = {
   ...Default,
   args: {
+    ...explicitActionArgs,
     showRelativePicker: true,
     relativePast: true,
     texts,
-    onValueChange: fn(),
-    onVisibleChange: fn(),
     showCustomRange: true,
     relativeModes: ['PAST']
   },
@@ -110,9 +115,9 @@ export const TestSelectingMoreRangesDropdown: Story = {
 export const TestToggleRelativeSection: Story = {
   ...Default,
   args: {
+    ...explicitActionArgs,
     texts,
     showRelativePicker: true,
-    onVisibleChange: fn(),
     relativeModes: ['PAST']
   },
   play: async ({ args, canvasElement, step }) => {
@@ -142,11 +147,11 @@ export const TestToggleRelativeSection: Story = {
 export const TestSelectTime: Story = {
   ...Default,
   args: {
+    ...explicitActionArgs,
     texts,
     showRelativePicker: true,
     relativeModes: ['PAST'],
     showTime: true,
-    onVisibleChange: fn(),
     disableAbsoluteTimepickerInRelative: true
   },
   play: async ({ args, canvasElement, step }) => {

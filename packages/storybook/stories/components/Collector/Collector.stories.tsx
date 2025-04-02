@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { isEqual } from 'lodash';
 import { Meta, StoryObj } from '@storybook/react';
+import { fn } from '@storybook/test';
 
 import Collector, { CollectorProps, CollectorValue } from '@synerise/ds-collector';
 
@@ -87,6 +88,14 @@ export default {
     showNavigationHints: BOOLEAN_CONTROL,
   },
   args: {
+    onCategorySelect: fn(),
+    onCancel: fn(),
+    onConfirm: fn(),
+    onItemAdd: fn(),
+    onItemDeselect: fn(),
+    onItemSelect: fn(),
+    onMultipleItemsSelect: fn(),
+    onSearchValueChange: fn(),
     allowMultipleValues: true,
     suggestions: SUGGESTIONS
   },

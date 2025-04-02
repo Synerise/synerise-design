@@ -1,11 +1,10 @@
-import { ReactNode } from 'react';
 import { Meta, StoryObj } from '@storybook/react';
 import { within, waitFor, expect, fn, userEvent } from '@storybook/test';
 
 import type { CollectorProps } from '@synerise/ds-collector';
 
-import CollectorMeta, { FixedHeight, AllowCustomValues, WithCounter } from './Collector.stories';
-import { getSuggestions, TEXTS } from './Collector.const';
+import CollectorMeta, { WithCounter } from './Collector.stories';
+import { TEXTS } from './Collector.const';
 
 
 export default {
@@ -38,7 +37,7 @@ export const SelectWithKeyboard: Story = {
     userEvent.click(canvas.getByPlaceholderText(TEXTS.placeholder));
     const dropdown = await canvas.findByTestId('ds-collector-dropdown');
     await waitFor(() => expect(dropdown).toBeVisible());
-    await userEvent.keyboard('{ArrowDown}{ArrowDown}{Enter}');
+    await userEvent.keyboard('{ArrowDown}{ArrowDown}{Enter}', { delay: 200});
     const items = await canvas.findAllByTestId('ds-input-value-wrapper')
     expect(items).toHaveLength(1);
   }

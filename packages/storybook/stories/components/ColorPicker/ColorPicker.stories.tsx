@@ -1,6 +1,7 @@
 import React from 'react';
 import { Meta, StoryObj } from '@storybook/react';
 import { useArgs } from '@storybook/preview-api';
+import { fn } from '@storybook/test';
 
 import ColorPicker from '@synerise/ds-color-picker';
 
@@ -43,6 +44,10 @@ export default {
     size: size,
     value: COLOR_CONTROL,
   },
+  args: {
+    onSaveColors: fn(),
+    onChange: fn(),
+  }
 } as Meta<typeof ColorPicker>;
 
 type Story = StoryObj<typeof ColorPicker>;

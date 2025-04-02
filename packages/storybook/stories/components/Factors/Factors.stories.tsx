@@ -77,6 +77,10 @@ const FactorsMeta = {
 
   },
   args: {
+    onActivate: fn(),
+    onChangeValue: fn(),
+    onDeactivate: fn(),
+    onParamsClick: fn(),
     value: '',
     defaultFactorType: 'text',
     textType: 'default',

@@ -45,7 +45,7 @@ export default {
     },
     placeholder: 'Placeholder',
     dataSource: DATA_SOURCE,
-    onValueChange: fn()
+    onValueChange: fn(),
   },
 } as Meta<InlineSelectProps>;
 
