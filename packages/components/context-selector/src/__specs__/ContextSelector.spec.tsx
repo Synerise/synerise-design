@@ -105,4 +105,22 @@ describe('Context selector component', () => {
 
     expect(searchField).toBeNull();
   });
+  test('Should render error message', () => {
+    const ERROR_MESSAGE= 'ERROR_MESSAGE'
+    renderWithProvider(
+      RENDER_CONTEXT_SELECTOR({
+        errorText: ERROR_MESSAGE
+      })
+    );
+    expect(screen.getByText(ERROR_MESSAGE)).toBeInTheDocument();
+  });
+
+  test('Should render error style without an error message', () => {
+    renderWithProvider(
+      RENDER_CONTEXT_SELECTOR({
+        isError: true
+      })
+    );
+    expect(screen.getByRole('button')).toHaveStyle({ backgroundColor: '#ffece8'});
+  });
 });
