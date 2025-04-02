@@ -6,6 +6,7 @@ export const AvatarLabel = styled.div<{ onClick?: () => void }>`
   min-width: 0;
   align-items: center;
   justify-content: flex-start;
+  max-width: 100%;
   ${(props): string => (props.onClick !== undefined ? 'cursor: pointer' : '')};
 `;
 
@@ -23,6 +24,7 @@ export const Description = styled.div`
   flex-direction: column;
   align-items: flex-start;
   justify-content: center;
+  max-width: 100%;
 `;
 
 export const AvatarLink = styled.a`
@@ -57,14 +59,10 @@ export const Labels = styled.span<{ ellipsis: boolean; maxWidth: number | undefi
   font-size: 13px;
   line-height: 1.38;
   font-weight: 400;
-  color: ${(props): string => props.theme.palette['grey-700']};
-  ${(props): FlattenSimpleInterpolation | false =>
-    props.ellipsis &&
-    css`
-      text-overflow: ellipsis;
-      overflow: hidden;
-      max-width: ${props.maxWidth ? `${props.maxWidth}px` : '100%'};
-    `};
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+  max-width: 100%;
   color: ${(props): string => props.theme.palette['grey-700']};
 `;
 
