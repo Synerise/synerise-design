@@ -1,8 +1,8 @@
 import styled, { css } from 'styled-components';
 
 export const Multivalue = styled.div<{ color: string; percent: number }>`
-  background: ${(props): string => props.color};
-  width: ${(props): number => props.percent}%;
+  background: ${props => props.color};
+  width: ${props => props.percent}%;
   height: 6px;
   border-radius: 6px;
   overflow: hidden;

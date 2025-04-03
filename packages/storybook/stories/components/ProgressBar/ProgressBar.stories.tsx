@@ -4,11 +4,15 @@ import { Meta, StoryObj } from '@storybook/react';
 import ProgressBar, { ProgressProps } from '@synerise/ds-progress-bar';
 
 import {
+  BOOLEAN_CONTROL,
+  COLOR_CONTROL,
   fixedWrapper300,
+  NUMBER_CONTROL,
+  STRING_CONTROL,
 } from '../../utils';
 
 
-type Story = StoryObj<ProgressProps>;
+type Story = StoryObj<Omit<ProgressProps, 'thick'>>;
 
 export default {
   component: ProgressBar,
@@ -23,12 +27,22 @@ export default {
     percent: 21,
     showLabel: false,
   },
+  argTypes: {
+    strokeColor: COLOR_CONTROL,
+    description: STRING_CONTROL,
+    amount: NUMBER_CONTROL,
+    percent: NUMBER_CONTROL,
+    maxPercent: BOOLEAN_CONTROL,
+    showLabel: BOOLEAN_CONTROL,
+    thick: BOOLEAN_CONTROL,
+    thin: BOOLEAN_CONTROL
+  }
 } as Meta<ProgressProps>;
 
 export const SoloBar: Story = {};
 export const SoloBarSmall: Story = {
   args: {
-    thick: true,
+    thin: true,
   },
 };
 export const SoloBarWithLabel: Story = {
