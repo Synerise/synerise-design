@@ -8,7 +8,7 @@ export const Container = styled.div`
     flex-direction: column;
     align-items: flex-start;
     justify-content: flex-start;
-    color: ${(props): string => props.theme.palette['grey-500']};
+    color: ${props => props.theme.palette['grey-500']};
     .ant-progress {
       margin: 14px 0;
     }
@@ -17,16 +17,16 @@ export const Container = styled.div`
 
 export const MaxValue = styled.strong`
   font-weight: 500;
-  color: ${(props): string => props.theme.palette['grey-800']};
+  color: ${props => props.theme.palette['grey-800']};
 `;
-export const AntdProgressBar = styled(Progress)<{ thick?: boolean; maxPercent?: boolean }>`
+export const AntdProgressBar = styled(Progress)<{ thin?: boolean; maxPercent?: boolean }>`
   &.ant-progress-line {
     width: 100%;
-    height: ${(props): string => (props.thick ? '3px' : '6px')};
-    margin-top: ${(props): string => (props.thick ? '3px' : '0px')};
+    height: ${props => (props.thin ? '3px' : '6px')};
+    margin-top: ${props => (props.thin ? '3px' : '0px')};
     margin: 14px 0;
     border-radius: 3px;
-    color: ${(props): string => props.theme.palette['grey-200']};
+    color: ${props => props.theme.palette['grey-200']};
     overflow: hidden;
     box-sizing: content-box;
     .ant-progress-outer {
@@ -37,7 +37,7 @@ export const AntdProgressBar = styled(Progress)<{ thick?: boolean; maxPercent?: 
     }
     .ant-progress-outer,
     .ant-progress-inner {
-      background: ${(props): string => props.theme.palette['grey-100']};
+      background: ${props => props.theme.palette['grey-100']};
     }
     .ant-progress-outer,
     .ant-progress-inner,
@@ -47,7 +47,7 @@ export const AntdProgressBar = styled(Progress)<{ thick?: boolean; maxPercent?: 
     .ant-progress-bg:first-child {
       border-top-right-radius: 0px;
       border-bottom-right-radius: 0px;
-      border-right: ${(props): string => (props.maxPercent ? `0px` : `2px solid ${props.theme.palette.white}`)};
+      border-right: ${props => (props.maxPercent ? `0px` : `2px solid ${props.theme.palette.white}`)};
     }
   }
 `;

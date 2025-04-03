@@ -6,7 +6,7 @@ import * as S from './ProgressTiles.styles';
 
 const MAX_PERCENT = 100;
 
-export const ProgressTiles = ({ colors, label, tileWidth, percent }: ProgressTilesProps) => {
+export const ProgressTiles = ({ colors, label, tileWidth, percent, ...rest }: ProgressTilesProps) => {
   const getTilesConfig = useCallback(() => {
     const TILES_COUNT = colors.length;
 
@@ -24,7 +24,7 @@ export const ProgressTiles = ({ colors, label, tileWidth, percent }: ProgressTil
   }, [colors, percent]);
 
   return (
-    <S.TilesWrapper>
+    <S.TilesWrapper {...rest}>
       {label && <Label className="progress-bar-label">{label}</Label>}
 
       <div className="progress-bar-wrapper">
