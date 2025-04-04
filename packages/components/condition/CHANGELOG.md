@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.1.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-condition@1.0.5...@synerise/ds-condition@1.1.0) (2025-04-04)
+
+
+### Features
+
+* **context-selector:** add isError prop ([e9794d5](https://github.com/Synerise/synerise-design/commit/e9794d5e15a63bbf3afbdeb1d2f6369c76d4afec))
+
+
+
+
+
 ## [1.0.5](https://github.com/Synerise/synerise-design/compare/@synerise/ds-condition@1.0.4...@synerise/ds-condition@1.0.5) (2025-04-02)
 
 **Note:** Version bump only for package @synerise/ds-condition

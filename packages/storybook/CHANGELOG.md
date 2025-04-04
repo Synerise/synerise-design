@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.4.1](https://github.com/Synerise/synerise-design/compare/storybook7@1.4.0...storybook7@1.4.1) (2025-04-04)
+
+
+### Bug Fixes
+
+* **progress-bar:** rename thick to thin ([fa3c6b2](https://github.com/Synerise/synerise-design/commit/fa3c6b21bf8c13445dc21868f56b726451e217f2))
+
+
+
+
+
 # [1.4.0](https://github.com/Synerise/synerise-design/compare/storybook7@1.3.0...storybook7@1.4.0) (2025-04-01)
 
 

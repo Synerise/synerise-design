@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.0.5](https://github.com/Synerise/synerise-design/compare/@synerise/ds-progress-bar@1.0.4...@synerise/ds-progress-bar@1.0.5) (2025-04-04)
+
+
+### Bug Fixes
+
+* **progress-bar:** rename thick to thin ([fa3c6b2](https://github.com/Synerise/synerise-design/commit/fa3c6b21bf8c13445dc21868f56b726451e217f2))
+
+
+
+
+
 ## [1.0.4](https://github.com/Synerise/synerise-design/compare/@synerise/ds-progress-bar@1.0.3...@synerise/ds-progress-bar@1.0.4) (2025-04-02)
 
 **Note:** Version bump only for package @synerise/ds-progress-bar
