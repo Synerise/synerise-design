@@ -43,7 +43,7 @@ export const PROPERTIES_LIST = [
     label: 'Retention',
     value: '60 days'
   },
-  { 
+  {
     label: 'Created',
     value: '2 days ago'
   },
@@ -54,6 +54,35 @@ export const PROPERTIES_LIST = [
   {
     label: 'Author',
     value: 'Mike Smith'
+  }
+];
+export const PROPERTIES_LIST_LONG = [
+  {
+    label: 'Value',
+    value: '1234'
+  },
+  {
+    type: 'divider'
+  },
+  {
+    label: 'Adres e-mail wysylki',
+    value: 'no-reply@synerise.com'
+  },
+  {
+    label: 'Wyświetlana nazwa',
+    value: 'no-reply@synerise.com'
+  },
+  {
+    label: 'Odpowiedz do (email)',
+    value: 'no-reply@synerise.com'
+  },
+  {
+    label: 'Odpowiedz do (wyświetlana nazwa)',
+    value: 'no-reply@synerise.com'
+  },
+  {
+    label: 'Edytowano',
+    value: '4 miesiące temu'
   }
 ]
 
@@ -69,7 +98,7 @@ export const ACTIONS_MENU_ITEMS: MenuItemProps[] = [
   {
     text: 'Create Report',
     prefixel: <Icon component={<ReportM />} />
-    
+
   },
   {
     type: 'divider',

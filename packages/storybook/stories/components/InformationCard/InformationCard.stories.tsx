@@ -11,6 +11,7 @@ import { SegmentM } from '@synerise/ds-icon';
 import {
   ACTIONS_MENU_ITEMS,
   PROPERTIES_LIST,
+  PROPERTIES_LIST_LONG,
   renderExternalLinkButton,
   renderPreviewButton,
   SUMMARY_ITEMS,
@@ -132,5 +133,13 @@ export const CompleteExample: Story = {
     actionButton: renderPreviewButton,
   },
 };
+
+export const PropertyListOverflow: Story = {
+  ...CompleteExample,
+  args: {
+    ...CompleteExample.args,
+    propertyListItems: PROPERTIES_LIST_LONG
+  }
+}
 
 export default InformationCardMeta;
