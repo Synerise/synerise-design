@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.0.6](https://github.com/Synerise/synerise-design/compare/@synerise/ds-information-card@1.0.5...@synerise/ds-information-card@1.0.6) (2025-04-08)
+
+
+### Bug Fixes
+
+* **information-card:** update property list styles ([647e0b3](https://github.com/Synerise/synerise-design/commit/647e0b3951d51b7b1bb205f9e05052074993c9c5))
+
+
+
+
+
 ## [1.0.5](https://github.com/Synerise/synerise-design/compare/@synerise/ds-information-card@1.0.4...@synerise/ds-information-card@1.0.5) (2025-04-04)
 
 **Note:** Version bump only for package @synerise/ds-information-card

@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.4.2](https://github.com/Synerise/synerise-design/compare/storybook7@1.4.1...storybook7@1.4.2) (2025-04-08)
+
+
+### Bug Fixes
+
+* **code-area:** allow component wrapper to have variable height ([7a15e3b](https://github.com/Synerise/synerise-design/commit/7a15e3b8622af0eb625e866fda8a7a3f041a2e40))
+* **information-card:** update property list styles ([647e0b3](https://github.com/Synerise/synerise-design/commit/647e0b3951d51b7b1bb205f9e05052074993c9c5))
+
+
+
+
+
 ## [1.4.1](https://github.com/Synerise/synerise-design/compare/storybook7@1.4.0...storybook7@1.4.1) (2025-04-04)
 
 

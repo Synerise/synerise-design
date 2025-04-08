@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.0.7](https://github.com/Synerise/synerise-design/compare/@synerise/ds-code-area@1.0.6...@synerise/ds-code-area@1.0.7) (2025-04-08)
+
+
+### Bug Fixes
+
+* **code-area:** allow component wrapper to have variable height ([7a15e3b](https://github.com/Synerise/synerise-design/commit/7a15e3b8622af0eb625e866fda8a7a3f041a2e40))
+
+
+
+
+
 ## [1.0.6](https://github.com/Synerise/synerise-design/compare/@synerise/ds-code-area@1.0.5...@synerise/ds-code-area@1.0.6) (2025-04-04)
 
 **Note:** Version bump only for package @synerise/ds-code-area
