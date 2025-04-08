@@ -21,15 +21,17 @@ const CodeArea = ({
   };
 
   return (
-    <div ref={wrapperRef}>
+    <>
       <CodeAreaEditor {...codeAreaProps} toggleFullscreen={toggleFullscreen} isFullscreen={false} />
-      {wrapperRef.current &&
-        isFullscreen &&
-        createPortal(
-          <CodeAreaEditor {...codeAreaProps} toggleFullscreen={toggleFullscreen} isFullscreen={isFullscreen} />,
-          getPopupContainer(wrapperRef.current)
-        )}
-    </div>
+      <div ref={wrapperRef}>
+        {wrapperRef.current &&
+          isFullscreen &&
+          createPortal(
+            <CodeAreaEditor {...codeAreaProps} toggleFullscreen={toggleFullscreen} isFullscreen={isFullscreen} />,
+            getPopupContainer(wrapperRef.current)
+          )}
+      </div>
+    </>
   );
 };
 
