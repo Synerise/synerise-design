@@ -170,12 +170,14 @@ export const InformationCardPropertyListWrapper = styled.div`
   display: flex;
   flex-direction: column;
   padding: 0 16px 8px;
+  gap: 8px;
 `;
 export const InformationCardPropertyItem = styled.div`
   display: flex;
   align-items: center;
-  height: 24px;
-  gap: 8px;
+  flex-wrap: wrap;
+  column-gap: 8px;
+  row-gap: 6px;
 `;
 
 export const InformationCardPropertyItemLabel = styled.span`
