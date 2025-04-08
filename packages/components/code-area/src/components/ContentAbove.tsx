@@ -6,10 +6,12 @@ type ContentAboveProps = {
   counter?: ReactNode;
 };
 export const ContentAbove = ({ label, counter }: ContentAboveProps) => {
-  return (
+  return label || counter ? (
     <S.ContentAbove>
       {label && <S.LeftSide data-testid="code-area-label">{label}</S.LeftSide>}
       {counter && <S.RightSide data-testid="code-area-counter-top">{counter}</S.RightSide>}
     </S.ContentAbove>
+  ) : (
+    <></>
   );
 };

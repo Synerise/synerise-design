@@ -24,6 +24,7 @@ export const CodeAreaEditor = ({
   tooltip,
   label,
   tooltipProps,
+  height,
   ...props
 }: CodeAreaEditorProps) => {
   const {
@@ -118,6 +119,7 @@ export const CodeAreaEditor = ({
       style={style}
       isFullscreen={isFullscreen}
       zIndex={zIndex}
+      customHeight={height}
     >
       {isFullscreen && (
         <FullscreenHeader label={fullscreenLabel || labelWithTooltip} texts={allTexts} onClick={toggleFullscreen} />

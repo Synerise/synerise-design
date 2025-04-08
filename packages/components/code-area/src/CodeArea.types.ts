@@ -17,7 +17,10 @@ export type CodeAreaTexts = {
   fullscreenTitle: ReactNode;
 };
 
-export type CodeAreaCommonProps<SyntaxName extends CodeAreaSyntax = CodeAreaSyntax> = Omit<EditorProps, 'language'> & {
+export type CodeAreaCommonProps<SyntaxName extends CodeAreaSyntax = CodeAreaSyntax> = Omit<
+  EditorProps,
+  'language' | 'height'
+> & {
   label?: ReactNode;
   description?: ReactNode;
   texts?: Partial<CodeAreaTexts>;
@@ -38,6 +41,10 @@ export type CodeAreaCommonProps<SyntaxName extends CodeAreaSyntax = CodeAreaSynt
   tooltipProps?: TooltipExtendedProps & TooltipProps;
   style?: CSSProperties;
   zIndex?: string | number;
+  /**
+   * Height of the editor wrapper
+   */
+  height?: string | number;
   className?: string;
   renderFooterContent?: (props: { isFullscreen?: boolean; count?: number; isValid?: boolean }) => ReactNode;
   onSyntaxChange?: (newSyntax: SyntaxName) => void;

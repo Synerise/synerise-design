@@ -17,6 +17,8 @@ export const fixedWrapper1000: Decorator = Story => <div style={{ width: '1000px
 
 export const fixedWrapper1200: Decorator = Story => <div style={{ width: '1200px' }}>{Story()}</div>;
 
+export const fixedHeightWrapper: Decorator = Story => <div style={{ position: 'relative', width: '588px', height: '600px' }}>{Story()}</div>;
+
 export const flexColumnWrapper: Decorator = Story => (
   <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>{Story()}</div>
 );
@@ -87,7 +89,7 @@ export const cardSelectWrapper: Decorator = (Story, storyContext) => {
 
 export const variableHeightDecorator: Decorator = (Story, storyContext) => {
   const wrapperHeight = storyContext.args.variableHeight as string || '800px';
-  
+
   return (
     <div
       style={{

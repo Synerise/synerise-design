@@ -1,12 +1,13 @@
 import React, { useState } from 'react';
 import { Meta, StoryObj } from '@storybook/react';
+import { fn } from '@storybook/test';
 
 import CodeArea, { CodeAreaProps, CodeAreaSyntax } from '@synerise/ds-code-area';
 
 import {
   BOOLEAN_CONTROL,
   CLASSNAME_ARG_CONTROL,
-  fixedWrapper588,
+  fixedHeightWrapper,
   REACT_NODE_AS_STRING,
   STRING_CONTROL,
   STYLE_ARG_CONTROL,
@@ -15,7 +16,7 @@ import Alert from '@synerise/ds-alert';
 import Switch from '@synerise/ds-switch';
 import Button from '@synerise/ds-button';
 import Icon, { Add3M } from '@synerise/ds-icon';
-import { AVAILABLE_SYNTAXES } from './CodeArea.data';
+import { AVAILABLE_SYNTAXES, SAMPLE_DATA } from './CodeArea.data';
 
 type Story = StoryObj<CodeAreaProps>;
 
@@ -26,7 +27,7 @@ export default {
   parameters: {
     layout: 'centered',
   },
-  decorators: [fixedWrapper588],
+  decorators: [fixedHeightWrapper],
   render: args => {
     const [content, setContent] = useState(args.value);
     const [syntax, setSyntax] = useState(args.currentSyntax);
@@ -75,10 +76,21 @@ export default {
     },
     syntaxOptions: AVAILABLE_SYNTAXES,
     currentSyntax: AVAILABLE_SYNTAXES[0].language,
+    onChange: fn(),
+    onFullscreenChange: fn(),
+    onMount: fn(),
+    onSyntaxChange: fn(),
+    onValidate: fn(),
   },
 } as Meta<CodeAreaProps>;
 
 export const Default: Story = {};
+export const Populated: Story = {
+  args: {
+    currentSyntax: 'json',
+    value: SAMPLE_DATA
+  }
+};
 
 export const WithSingleSyntaxOption: Story = {
   args: {

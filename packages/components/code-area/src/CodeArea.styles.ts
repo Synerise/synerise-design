@@ -7,14 +7,26 @@ const FlexRow = styled.div`
   align-items: center;
 `;
 
-export const EditorInnerWrapper = styled.div`
-  height: 295px;
+export const AriaContainer = styled.div`
+  flex: 0 0 0;
 `;
-export const CodeAreaContent = styled.div``;
+
+export const EditorInnerWrapper = styled.div``;
+
+export const CodeAreaContent = styled.div`
+  flex: 1 1 100%;
+  display: flex;
+  min-height: 0;
+  flex-direction: column;
+`;
 
 export const EditorWrapper = styled.div<{ hasError: boolean }>`
   border: solid 1px ${props => (props.hasError ? props.theme.palette['red-600'] : props.theme.palette['grey-200'])};
   border-radius: 3px;
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 100%;
+  min-height: 0;
   padding-top: 12px;
   ${props =>
     props.hasError &&
@@ -42,6 +54,7 @@ export const CodeAreaWrapper = styled.div<{
   readOnly: boolean;
   isFullscreen: boolean;
   requiredSpace: number;
+  customHeight?: number | string;
   zIndex?: number | string;
 }>`
   ${props => {
@@ -63,6 +76,21 @@ export const CodeAreaWrapper = styled.div<{
       `;
     }
     return css`
+      ${props.customHeight
+        ? css`
+            ${EditorInnerWrapper} {
+              flex: 1 1 100%;
+              min-height: 0;
+            }
+            height: ${typeof props.customHeight === 'number' ? `${props.customHeight}px` : props.customHeight};
+          `
+        : css`
+            ${EditorInnerWrapper} {
+              height: 295px;
+            }
+          `}
+      display:flex;
+      flex-direction: column;
       margin-bottom: 12px;
     `;
   }}
@@ -82,12 +110,13 @@ export const AdditionalDescription = styled.div`
   margin-bottom: 8px;
 `;
 
-export const ContentBelow = styled(FlexRow)`
-  margin-top: 8px;
+export const ContentBelow = styled(FlexRow)<{ isEmpty?: boolean }>`
+  ${props => !props.isEmpty && `margin-top: 8px;`}
   align-items: flex-start;
 `;
 export const ContentAbove = styled(FlexRow)`
   margin-bottom: 8px;
+  flex: 0 0 auto;
 `;
 
 export const SyntaxTitle = styled(Text)``;
@@ -95,6 +124,7 @@ export const SyntaxTitle = styled(Text)``;
 export const BottomBar = styled(FlexRow)`
   border-top: solid 1px ${props => props.theme.palette['grey-200']};
   padding: 8px;
+  flex: 0 0 auto;
 `;
 
 export const LeftSide = styled.div``;

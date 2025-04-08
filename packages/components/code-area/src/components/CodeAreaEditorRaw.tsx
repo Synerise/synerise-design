@@ -42,7 +42,6 @@ export const CodeAreaEditorRaw = ({
   const wrapperRef = useRef<HTMLDivElement>(null);
 
   const { height, width } = useResizeObserver(wrapperRef);
-
   const monacoAriaContainerElement = useMemo(() => {
     return document.createElement('div');
   }, []);

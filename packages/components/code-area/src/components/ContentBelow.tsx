@@ -9,8 +9,9 @@ type ContentBelowProps = Pick<CodeAreaProps, 'description' | 'errorText'> & {
 };
 export const ContentBelow = forwardRef<HTMLDivElement, ContentBelowProps>(
   ({ description, additionalDescription, errorText, counter }, ref) => {
+    const isEmpty = !(description || additionalDescription || errorText || counter);
     return (
-      <S.ContentBelow data-testid="code-area-below" ref={ref}>
+      <S.ContentBelow data-testid="code-area-below" ref={ref} isEmpty={isEmpty}>
         {(description || additionalDescription || errorText) && (
           <S.LeftSide>
             {additionalDescription}
