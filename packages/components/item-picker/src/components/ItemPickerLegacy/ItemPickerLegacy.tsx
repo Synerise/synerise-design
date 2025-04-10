@@ -1,8 +1,7 @@
 import React, { useState, useCallback, useMemo, useRef } from 'react';
 import { useIntl } from 'react-intl';
+import FormField from '@synerise/ds-form-field';
 
-import { Label } from '@synerise/ds-input';
-import { Description } from '@synerise/ds-typography';
 import Dropdown from '@synerise/ds-dropdown';
 import * as S from '../../ItemPicker.styles';
 import ItemPickerDropdown from '../ItemPickerDropdown/ItemPickerDropdown';
@@ -42,6 +41,7 @@ const ItemPickerLegacy = ({
   searchBarProps,
   selectedItem,
   tooltip,
+  tooltipConfig,
   size = 'small',
   yesText,
   withClearConfirmation,
@@ -172,19 +172,24 @@ const ItemPickerLegacy = ({
 
   return (
     <S.ItemPickerWrapper className="ds-items-picker" disabled={disabled}>
-      {label && <Label label={label} tooltip={tooltip} />}
-      <Dropdown
-        visible={dropdownOpened}
-        disabled={disabled}
-        trigger={['click']}
-        overlay={dropdownOverlay}
-        onVisibleChange={onVisibilityChange}
-        {...dropdownProps}
+      <FormField
+        label={label}
+        tooltip={tooltip}
+        tooltipConfig={tooltipConfig}
+        errorText={errorMessage}
+        description={description}
       >
-        {renderTrigger}
-      </Dropdown>
-      {error && errorMessage && <S.Error>{errorMessage}</S.Error>}
-      {description && <Description>{description}</Description>}
+        <Dropdown
+          visible={dropdownOpened}
+          disabled={disabled}
+          trigger={['click']}
+          overlay={dropdownOverlay}
+          onVisibleChange={onVisibilityChange}
+          {...dropdownProps}
+        >
+          {renderTrigger}
+        </Dropdown>
+      </FormField>
     </S.ItemPickerWrapper>
   );
 };

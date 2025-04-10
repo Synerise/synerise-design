@@ -4,6 +4,7 @@ import type { ListItemProps } from '@synerise/ds-list-item';
 import type { InformationCardProps } from '@synerise/ds-information-card';
 import type { WithHTMLAttributes } from '@synerise/ds-utils';
 import type { DropdownProps } from '@synerise/ds-dropdown';
+import type { FormFieldCommonProps } from '@synerise/ds-form-field';
 
 import type { ItemPickerListProps, ItemPickerListTexts } from '../ItemPickerList/ItemPickerList.types';
 import type { ItemPickerTriggerProps, ItemPickerTriggerTexts } from '../ItemPickerTrigger/Trigger.types';
@@ -96,12 +97,12 @@ export type ItemPickerProps<
       withChangeButton?: ItemPickerTriggerProps['withChangeButton'];
       withClearConfirmation?: ItemPickerTriggerProps['withClearConfirmation'];
     };
-    label?: ReactNode;
-    description?: ReactNode;
-    errorMessage?: ReactNode;
+    /**
+     * @deprecated - use errorText prop instead
+     */
+    errorMessage?: FormFieldCommonProps['errorText'];
     error?: boolean;
     disabled?: boolean;
-    tooltip?: ReactNode;
     onChange?: (item: ItemType) => void;
     onFocus?: () => void;
     onBlur?: () => void;
@@ -127,4 +128,5 @@ export type ItemPickerProps<
     | 'includeSearchBar'
   >
 > &
+  FormFieldCommonProps &
   Partial<Pick<ItemPickerTriggerProps, 'placeholder' | 'placeholderIcon' | 'onClear'>>;

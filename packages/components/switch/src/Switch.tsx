@@ -1,17 +1,13 @@
-import React, { useRef, RefObject, ComponentType } from 'react';
+import React, { useRef, useId } from 'react';
 import classnames from 'classnames';
 import '@synerise/ds-core/dist/js/style';
-import Label from '@synerise/ds-input/dist/Label/Label';
-import { v4 as uuid } from 'uuid';
 import './style/index.less';
-import AntdSwitch, { SwitchProps as AntdSwitchProps } from 'antd/lib/switch';
+import AntdSwitch from 'antd/lib/switch';
 import * as S from './Switch.styles';
 import { Props } from './Switch.types';
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-export const ExtendedAntdSwitchComponent = AntdSwitch as any as ComponentType<
-  AntdSwitchProps & { id: string; ref?: RefObject<HTMLInputElement> }
->;
+// export RawSwitch from this file to have .less style side effects applied when only RawSwitch is used
+export const RawSwitch = AntdSwitch;
 
 export const Switch = ({
   errorText,
@@ -24,7 +20,7 @@ export const Switch = ({
   className,
   ...antdSwitchProps
 }: Props) => {
-  const id = uuid();
+  const id = useId();
   const switchElement = useRef<HTMLInputElement>(null);
 
   return (
@@ -33,8 +29,7 @@ export const Switch = ({
       formElementMargin={Boolean(withFormElementMargin)}
     >
       <S.LabelSwitchWrapper>
-        <ExtendedAntdSwitchComponent
-          // eslint-disable-next-line react/jsx-props-no-spreading
+        <RawSwitch
           {...antdSwitchProps}
           size="small"
           className={errorText ? 'error' : ''}
@@ -49,9 +44,7 @@ export const Switch = ({
         />
 
         <S.Texts className="switch-texts">
-          <S.Label className="switch-texts">
-            <Label id={id} className="switch-label" label={label} tooltip={tooltip} />
-          </S.Label>
+          <S.Label id={id} className="switch-label" label={label} tooltip={tooltip} />
         </S.Texts>
       </S.LabelSwitchWrapper>
 

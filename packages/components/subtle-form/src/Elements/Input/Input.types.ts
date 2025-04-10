@@ -6,6 +6,5 @@ export type SubtleInputProps = {
   value?: string;
   placeholder?: string;
   error?: boolean;
-  errorText?: string | React.ReactNode;
   inputProps: InputProps;
 } & SubtleFieldProps;

@@ -4,7 +4,7 @@ import './style/index.less';
 import AntdAutoComplete from 'antd/lib/auto-complete';
 import type { RefSelectProps } from 'antd/lib/select';
 
-import { ErrorText, Description, Label } from '@synerise/ds-typography';
+import FormField from '@synerise/ds-form-field';
 import { AutosizeWrapper } from '@synerise/ds-input';
 import type { AutosizeInputRefType } from '@synerise/ds-input';
 import { useResizeObserver } from '@synerise/ds-utils';
@@ -14,20 +14,21 @@ import * as S from './Autocomplete.styles';
 
 const AUTOSIZE_EXTRA_WIDTH = 27;
 
-const Autocomplete = (props: AutocompleteProps) => {
-  const {
-    className,
-    label,
-    description,
-    errorText,
-    disabled,
-    error,
-    handleInputRef,
-    getPopupContainer,
-    autoResize,
-    readOnly,
-    ...rest
-  } = props;
+const Autocomplete = ({
+  className,
+  label,
+  description,
+  errorText,
+  disabled,
+  error,
+  handleInputRef,
+  getPopupContainer,
+  autoResize,
+  readOnly,
+  tooltip,
+  tooltipConfig,
+  ...rest
+}: AutocompleteProps) => {
   const scrollLeftRef = useRef(0);
   const antSelectRef = useRef<RefSelectProps | null>(null);
   const inputRef = useRef<HTMLInputElement | null>(null);
@@ -51,7 +52,7 @@ const Autocomplete = (props: AutocompleteProps) => {
   };
 
   const stretchToFit = autoResize && autoResize !== true && Boolean(autoResize.stretchToFit);
-  const placeholder = typeof rest.placeholder === 'string' ? rest.placeholder : undefined;
+  const placeholderString = typeof rest.placeholder === 'string' ? rest.placeholder : undefined;
 
   const handlePreAutosize = useCallback(() => {
     scrollLeftRef.current = inputRef.current?.scrollLeft || 0;
@@ -80,40 +81,35 @@ const Autocomplete = (props: AutocompleteProps) => {
 
   return (
     <S.AutocompleteWrapper ref={elementRef} autoResize={autoResize} className={`ds-autocomplete ${className || ''}`}>
-      {label && (
-        <S.LabelWrapper>
-          <Label>{label}</Label>
-        </S.LabelWrapper>
-      )}
-      <S.ComponentWrapper readOnly={readOnly} error={!!errorText || error}>
-        <AutosizeWrapper
-          autoResize={!!autoResize}
-          value={rest.value}
-          placeholder={placeholder}
-          transformRef={transformRef}
-          ref={autosizeRef}
-          extraWidth={AUTOSIZE_EXTRA_WIDTH}
-          preAutosize={handlePreAutosize}
-          onAutosize={handleAutosize}
-        >
-          <AntdAutoComplete
-            {...rest}
-            disabled={readOnly || disabled}
-            dropdownClassName="ds-autocomplete-dropdown ps__child--consume"
-            getPopupContainer={getPopupContainer || getParentNode}
-            ref={antSelectRef}
-            data-testid="autocomplete-autosize-input"
-          />
-        </AutosizeWrapper>
-      </S.ComponentWrapper>
-      {errorText && (
-        <S.ErrorWrapper>
-          <ErrorText>{errorText}</ErrorText>
-        </S.ErrorWrapper>
-      )}
-      {description && (
-        <S.DescWrapper>{description && <Description disabled={disabled}>{description}</Description>}</S.DescWrapper>
-      )}
+      <FormField
+        label={label}
+        tooltip={tooltip}
+        tooltipConfig={tooltipConfig}
+        description={description}
+        errorText={errorText}
+      >
+        <S.ComponentWrapper readOnly={readOnly} error={!!errorText || error}>
+          <AutosizeWrapper
+            autoResize={!!autoResize}
+            value={rest.value}
+            placeholder={placeholderString}
+            transformRef={transformRef}
+            ref={autosizeRef}
+            extraWidth={AUTOSIZE_EXTRA_WIDTH}
+            preAutosize={handlePreAutosize}
+            onAutosize={handleAutosize}
+          >
+            <AntdAutoComplete
+              {...rest}
+              disabled={readOnly || disabled}
+              dropdownClassName="ds-autocomplete-dropdown ps__child--consume"
+              getPopupContainer={getPopupContainer || getParentNode}
+              ref={antSelectRef}
+              data-testid="autocomplete-autosize-input"
+            />
+          </AutosizeWrapper>
+        </S.ComponentWrapper>
+      </FormField>
     </S.AutocompleteWrapper>
   );
 };

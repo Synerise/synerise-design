@@ -1,8 +1,8 @@
-import React, {  } from 'react';
+import React, { } from 'react';
 import { Meta, StoryObj } from '@storybook/react';
 
 import Select from '@synerise/ds-select';
-import type { SelectProps} from '@synerise/ds-select';
+import type { SelectProps } from '@synerise/ds-select';
 import Loader from '@synerise/ds-loader';
 import { getPopupContainer } from '@synerise/ds-utils';
 import Scrollbar from '@synerise/ds-scrollbar';
@@ -93,7 +93,7 @@ export default {
     suffixel: {
       ...REACT_NODE_AS_STRING
     },
-    tooltip:  {
+    tooltip: {
       ...REACT_NODE_AS_STRING
     },
 
@@ -138,7 +138,7 @@ export default {
       ...BOOLEAN_CONTROL
     },
     prefixCls: PREFIXCLS_ARG_CONTROL,
-    style: STYLE_ARG_CONTROL, 
+    style: STYLE_ARG_CONTROL,
     className: CLASSNAME_ARG_CONTROL,
     showArrow: {
       ...BOOLEAN_CONTROL
@@ -153,7 +153,7 @@ type Story = StoryObj<SelectProps & { disabledChildren: boolean }>;
 
 
 export const Default: Story = {
-  render: ({disabledChildren,...args}) => {
+  render: ({ disabledChildren, ...args }) => {
     const optionalDisabledChildren = disabledChildren ? values.map(opt => <Option disabled={disabledChildren} value={opt}>{opt}</Option>) : values.map(opt => <Option value={opt}>{opt}</Option>)
     return (
       <Select
@@ -161,7 +161,7 @@ export const Default: Story = {
         children={optionalDisabledChildren}
       />
     );
-      },
+  },
   args: {
     mode: undefined,
     label: 'Label',
@@ -171,21 +171,32 @@ export const Default: Story = {
   },
 };
 
+export const LabelDescriptionAndError: Story = {
+  ...Default,
+  args: {
+    label: 'Label',
+    defaultValue: values[0],
+    tooltip: 'Label tooltip',
+    description: 'Description',
+    errorText: 'Error message content'
+  }
+};
+
 export const MultipleMode: Story = {
   decorators: [fixedWrapper400],
   args: {
-      style: {
-        width: '100%',
-      },
-      mode: 'multiple',
-      defaultValue: 'a10',
-      placeholder: 'Select options',
-      getPopupContainer,
-      dropdownRender: menu => <Scrollbar maxHeight={256}>{menu}</Scrollbar>,
-      dropdownStyle: { paddingRight: '0' },
-      notFoundContent: <Result type="no-results" noSearchResults description={'No results'} />,
-      listHeight: '100%',
-      children: childrens.map(opt => <Option value={opt}>{opt}</Option>),
+    style: {
+      width: '100%',
+    },
+    mode: 'multiple',
+    defaultValue: 'a10',
+    placeholder: 'Select options',
+    getPopupContainer,
+    dropdownRender: menu => <Scrollbar maxHeight={256}>{menu}</Scrollbar>,
+    dropdownStyle: { paddingRight: '0' },
+    notFoundContent: <Result type="no-results" noSearchResults description={'No results'} />,
+    listHeight: '100%',
+    children: childrens.map(opt => <Option value={opt}>{opt}</Option>),
   }
 }
 
@@ -203,7 +214,7 @@ export const NoResults: Story = {
 }
 
 
-export const WithPrefixAndSuffix: StoryObj<SelectProps & {prefixType: string; suffixType: string, prefixText: string, suffixText: string}> = {
+export const WithPrefixAndSuffix: StoryObj<SelectProps & { prefixType: string; suffixType: string, prefixText: string, suffixText: string }> = {
   render: (args) => {
     return defaultRender({
       ...args,
@@ -227,11 +238,11 @@ export const WithPrefixAndSuffix: StoryObj<SelectProps & {prefixType: string; su
     }
   },
   args: {
-      prefixText: 'Prefix',
-      suffixText: 'Suffix',
-      prefixType: 'label',
-      suffixType: 'label',
-      placeholder: 'Select options',
+    prefixText: 'Prefix',
+    suffixText: 'Suffix',
+    prefixType: 'label',
+    suffixType: 'label',
+    placeholder: 'Select options',
   }
 }
 

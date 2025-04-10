@@ -1,4 +1,5 @@
 import React from 'react';
+import { FormFieldCommonProps } from '@synerise/ds-form-field';
 import { SubtleTextAreaProps } from './Elements/TextArea/TextArea.types';
 import { SubtleSelectProps } from './Elements/Select/Select.types';
 import { SubtleDatePickerProps } from './Elements/DatePicker/DatePicker.types';
@@ -14,12 +15,11 @@ export type SubtleFormSubComponents = {
 export type SubtleFieldProps = {
   active?: boolean;
   disabled?: boolean;
-  label?: React.ReactNode | string;
-  labelTooltip?: React.ReactNode | string;
+  labelTooltip?: FormFieldCommonProps['tooltip'];
   suffix?: React.ReactNode | string;
   suffixTooltip?: React.ReactNode | string;
   activeElement?: () => React.ReactElement;
   inactiveElement?: () => React.ReactElement;
   mask?: string;
   maskVisible?: boolean;
-};
+} & Pick<FormFieldCommonProps, 'label' | 'errorText'>;

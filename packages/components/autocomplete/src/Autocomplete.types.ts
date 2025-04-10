@@ -1,19 +1,40 @@
-import type { ReactNode, MutableRefObject } from 'react';
+import type { MutableRefObject } from 'react';
 import type { AutoCompleteProps as OriginalProps } from 'antd/lib/auto-complete';
 import type { RefSelectProps } from 'antd/lib/select';
 import type { AutoResizeProp } from '@synerise/ds-input';
+import type { FormFieldCommonProps } from '@synerise/ds-form-field';
 
-export type OverrideProps = {
+export type OverrideProps = FormFieldCommonProps & {
   className?: string;
-  errorText?: ReactNode;
-  label?: ReactNode;
-  description?: ReactNode;
   error?: boolean;
   getPopupContainer?: (node: HTMLElement) => HTMLElement;
   readOnly?: boolean;
   handleInputRef?: (ref: MutableRefObject<RefSelectProps | null>) => void;
   autoResize?: AutoResizeProp;
-  placeholder?: ReactNode;
 };
 
-export type AutocompleteProps = OverrideProps & OriginalProps;
+export type AutocompleteProps = OverrideProps &
+  Omit<
+    OriginalProps,
+    | 'tagRender'
+    | 'fieldNames'
+    | 'filterSort'
+    | 'filterOption'
+    | 'tokenSeparators'
+    | 'transitionName'
+    | 'showArrow'
+    | 'animation'
+    | 'searchValue'
+    | 'showArrow'
+    | 'listItemHeight'
+    | 'menuItemSelectedIcon'
+    | 'maxTagCount'
+    | 'maxTagPlaceholder'
+    | 'maxTagTextLength'
+    | 'fieldNames'
+    | 'filterOption'
+    | 'backfill'
+    | 'bordered'
+    | 'choiceTransitionName'
+    | 'showSearch'
+  >;

@@ -1,4 +1,4 @@
-import { ReactNode } from 'react';
+import type { ReactNode } from 'react';
 
 export type OrderedListItem = {
   id: string;
@@ -12,9 +12,14 @@ export type OrderedListItem = {
   text?: ReactNode;
 };
 
-export type ListProps = {
+export type OrderedListProps = {
   data: OrderedListItem[];
   indexFormatter?: (index: number) => ReactNode;
   listStyle?: string;
   text?: ReactNode;
 };
+
+/**
+ * @deprecated use OrderedListProps instead
+ */
+export type ListProps = OrderedListProps;

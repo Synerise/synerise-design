@@ -10,8 +10,6 @@ import * as S from './PickerInput.styles';
 import format from '../../format';
 
 const PickerInput = ({
-  autoFocus,
-  size,
   disabled,
   readOnly,
   value,
@@ -19,13 +17,10 @@ const PickerInput = ({
   valueFormatOptions,
   onChange,
   showTime,
-  placeholder,
   onClear,
   onClick,
   clearTooltip,
   highlight,
-  error,
-  errorText,
   prefixel,
   suffixel,
   allowClear,
@@ -96,18 +91,13 @@ const PickerInput = ({
         onClick={!disabled ? handleInputClick : undefined}
       >
         <S.Input
-          autoFocus={autoFocus}
           active={!!highlight}
           resetMargin
-          readOnly={readOnly}
           type="text"
-          size={size}
-          disabled={disabled}
-          placeholder={placeholder}
           value={getText()}
           icon1={iconInput}
-          error={error}
-          errorText={errorText}
+          readOnly={readOnly}
+          disabled={disabled}
           {...rest}
         />
       </S.Container>

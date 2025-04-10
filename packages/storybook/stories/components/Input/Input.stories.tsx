@@ -9,7 +9,7 @@ import Icon, { FileM, SearchM } from '@synerise/ds-icon';
 import { addonType, renderAddonComponent } from './Input.utils';
 import { Modal } from './Input.styles';
 
-import { BOOLEAN_CONTROL, centeredPaddedWrapper, controlFromOptionsArray, fixedWrapper300 } from '../../utils';
+import { BOOLEAN_CONTROL, centeredPaddedWrapper, CLASSNAME_ARG_CONTROL, controlFromOptionsArray, fixedWrapper300, NUMBER_CONTROL, PREFIXCLS_ARG_CONTROL, REACT_NODE_AS_STRING, STRING_CONTROL } from '../../utils';
 
 const defaultRender = (args: InputProps) => {
   const [{ value }, updateArgs] = useArgs();
@@ -27,23 +27,41 @@ export default {
   tags: ['autodocs'],
   parameters: {
     layout: 'centered',
-  },
-  argTypes: {
-    disabled: BOOLEAN_CONTROL,
-    readOnly: BOOLEAN_CONTROL
+    controls: {
+      exclude: ['suffix', 'addonAfter', 'addonBefore', 'prefix', 'autoComplete', 'htmlSize', 'status', 'showCount']
+    }
   },
   decorators: [fixedWrapper300, centeredPaddedWrapper],
   render: defaultRender,
   argTypes: {
     disabled: BOOLEAN_CONTROL,
+    counterLimit: NUMBER_CONTROL,
+    error: BOOLEAN_CONTROL,
+    expandable: BOOLEAN_CONTROL,
+    resetMargin: BOOLEAN_CONTROL,
+    prefixCls: PREFIXCLS_ARG_CONTROL,
     readOnly: BOOLEAN_CONTROL,
-
+    allowClear: BOOLEAN_CONTROL,
+    className: CLASSNAME_ARG_CONTROL,
+    description: REACT_NODE_AS_STRING,
+    label: REACT_NODE_AS_STRING,
+    prefixel: REACT_NODE_AS_STRING,
+    suffixel: REACT_NODE_AS_STRING,
+    tooltip: REACT_NODE_AS_STRING,
+    expandableTooltip: REACT_NODE_AS_STRING,
+    icon2Tooltip: REACT_NODE_AS_STRING,
+    icon1Tooltip: REACT_NODE_AS_STRING,
+    type: STRING_CONTROL,
+    icon1: { control: false },
+    tooltipConfig: { control: false },
+    icon2: { control: false },
+    errorText: REACT_NODE_AS_STRING,
     autoResize: {
       control: 'select',
       options: ['false', 'min & max width', 'stretch to fit'],
       mapping: {
         'false': false,
-        'min & max width': { minWidth: '150px', maxWidth:'300px' },
+        'min & max width': { minWidth: '150px', maxWidth: '300px' },
         'stretch to fit': { minWidth: '150px', stretchToFit: true }
       }
     }

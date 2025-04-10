@@ -1,4 +1,7 @@
-export { default as Label } from './Label/Label';
+/**
+ * @deprecated - import { FormFieldLabel } from '@synerise/ds-form-field';
+ */
+export { FormFieldLabel as Label } from '@synerise/ds-form-field';
 export { Input, RawInput, InputGroup, InputMultivalue } from './Input';
 
 export { TextArea, RawTextArea } from './TextArea';

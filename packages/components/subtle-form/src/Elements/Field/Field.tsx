@@ -1,15 +1,14 @@
-import React from 'react';
+import React, { useCallback, useEffect, useRef, useState } from 'react';
 import Tooltip from '@synerise/ds-tooltip';
 import Icon, { EditS } from '@synerise/ds-icon';
-import { theme } from '@synerise/ds-core';
-import { Label } from '@synerise/ds-input';
+import { useTheme } from '@synerise/ds-core';
+
 import { useOnClickOutside } from '@synerise/ds-utils';
 import * as S from '../../SubtleForm.styles';
-import { ContentAbove } from './Field.styles';
 import { SubtleFieldProps } from '../../SubtleForm.types';
 import { MaskedDatePlaceholder } from '../DatePicker/DatePicker.styles';
 
-const SubtleField: React.FC<SubtleFieldProps> = ({
+const SubtleField = ({
   disabled,
   suffix,
   suffixTooltip,
@@ -19,57 +18,61 @@ const SubtleField: React.FC<SubtleFieldProps> = ({
   inactiveElement,
   mask,
   maskVisible,
+  errorText,
   active: activeProp,
-}) => {
-  const [active, setActive] = React.useState<boolean | undefined>(activeProp);
-  const [blurred, setBlurred] = React.useState<boolean>(false);
-  const containerRef = React.useRef<HTMLDivElement>(null);
-  const handleDeactivate = React.useCallback(() => {
+}: SubtleFieldProps) => {
+  const [active, setActive] = useState(activeProp);
+  const [blurred, setBlurred] = useState(false);
+  const containerRef = useRef<HTMLDivElement>(null);
+  const handleDeactivate = useCallback(() => {
     setActive(false);
     setBlurred(true);
   }, []);
-  const handleActivate = React.useCallback(() => {
+  const handleActivate = useCallback(() => {
     setActive(true);
     setBlurred(false);
   }, []);
 
-  React.useEffect((): void => setActive(activeProp), [activeProp]);
+  const theme = useTheme();
+
+  useEffect(() => setActive(activeProp), [activeProp]);
+
+  const isActive = Boolean(errorText || (active && !blurred && !!activeElement));
 
   useOnClickOutside(containerRef, () => {
     handleDeactivate();
   });
   return (
     <S.Subtle className="ds-subtle-form" disabled={disabled}>
-      <ContentAbove active={active}>
-        <Label label={label} tooltip={labelTooltip} />
-      </ContentAbove>
-      <S.Container ref={containerRef} className="ds-subtle-field" active={active}>
-        {active && !blurred && !!activeElement ? (
-          activeElement()
-        ) : (
-          <S.Inactive
-            tabIndex={0}
-            onFocus={!disabled ? handleActivate : undefined}
-            onClick={!disabled ? handleActivate : undefined}
-            onBlur={handleDeactivate}
-            blurred={blurred}
-            disabled={disabled}
-            mask={maskVisible}
-          >
-            <S.MainContent hasMargin>
-              {inactiveElement && inactiveElement()}
-              {!disabled && maskVisible && <MaskedDatePlaceholder>{mask}</MaskedDatePlaceholder>}
-            </S.MainContent>
-            {!active && !disabled && (
-              <S.Suffix select>
-                <Tooltip title={suffixTooltip}>
-                  {suffix ?? <Icon component={<EditS />} color={theme.palette['grey-600']} />}
-                </Tooltip>
-              </S.Suffix>
-            )}
-          </S.Inactive>
-        )}
-      </S.Container>
+      <S.SubtleFormField active={isActive} label={label} tooltip={labelTooltip}>
+        <S.Container ref={containerRef} className="ds-subtle-field" active={active}>
+          {isActive && activeElement ? (
+            activeElement()
+          ) : (
+            <S.Inactive
+              tabIndex={0}
+              onFocus={!disabled ? handleActivate : undefined}
+              onClick={!disabled ? handleActivate : undefined}
+              onBlur={handleDeactivate}
+              blurred={blurred}
+              disabled={disabled}
+              mask={maskVisible}
+            >
+              <S.MainContent hasMargin>
+                {inactiveElement && inactiveElement()}
+                {!disabled && maskVisible && <MaskedDatePlaceholder>{mask}</MaskedDatePlaceholder>}
+              </S.MainContent>
+              {!active && !disabled && (
+                <S.Suffix select>
+                  <Tooltip title={suffixTooltip}>
+                    {suffix ?? <Icon component={<EditS />} color={theme.palette['grey-600']} />}
+                  </Tooltip>
+                </S.Suffix>
+              )}
+            </S.Inactive>
+          )}
+        </S.Container>
+      </S.SubtleFormField>
     </S.Subtle>
   );
 };

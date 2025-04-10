@@ -1,15 +1,15 @@
 import React from 'react';
-import Label from '@synerise/ds-input/dist/Label/Label';
+import { FormFieldLabel } from '@synerise/ds-form-field';
 import * as S from './Ordered-list.styles';
 import Item from './Elements/Item/Item';
-import { ListProps } from './Ordered-list.types';
+import { OrderedListProps } from './Ordered-list.types';
 
-const OrderedList: React.FC<ListProps> = ({ data, indexFormatter, listStyle, text }) => {
+const OrderedList = ({ data, indexFormatter, listStyle, text }: OrderedListProps) => {
   return (
     <div>
       {text && (
         <S.ContentAbove>
-          <Label label={text} />
+          <FormFieldLabel label={text} />
         </S.ContentAbove>
       )}
       <S.OrderedList listStyle={listStyle}>

@@ -1,6 +1,6 @@
 import React, { useCallback } from 'react';
 
-import { Label } from '@synerise/ds-typography';
+import { FormFieldLabel } from '@synerise/ds-form-field';
 import { ProgressTilesProps } from './ProgressTiles.types';
 import * as S from './ProgressTiles.styles';
 
@@ -25,7 +25,7 @@ export const ProgressTiles = ({ colors, label, tileWidth, percent, ...rest }: Pr
 
   return (
     <S.TilesWrapper {...rest}>
-      {label && <Label className="progress-bar-label">{label}</Label>}
+      {label && <FormFieldLabel className="progress-bar-label">{label}</FormFieldLabel>}
 
       <div className="progress-bar-wrapper">
         {getTilesConfig().map(tile => (

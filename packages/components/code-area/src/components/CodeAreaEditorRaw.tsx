@@ -3,10 +3,10 @@ import type { editor } from 'monaco-editor/esm/vs/editor/editor.api';
 import Editor, { Monaco, EditorProps, loader } from '@monaco-editor/react';
 
 import Loader from '@synerise/ds-loader';
-
 import { InlineSelect } from '@synerise/ds-inline-edit';
-import { CodeAreaEditorRawProps, CodeAreaSyntaxOption } from 'CodeArea.types';
 import { NOOP, useResizeObserver } from '@synerise/ds-utils';
+
+import { CodeAreaEditorRawProps, CodeAreaSyntaxOption } from '../CodeArea.types';
 import { getDefaultTexts } from '../utils/getDefaultTexts';
 import { DS_MONACO_THEME, DS_MONACO_THEME_NAME, MONACO_DEFAULT_OPTIONS, TRIGGER_SOURCE } from '../constants';
 import { AriaContainer } from './AriaContainer';

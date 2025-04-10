@@ -1,4 +1,5 @@
 import { Meta, StoryObj } from '@storybook/react';
+import { fn } from '@storybook/test';
 import InputNumber, { InputNumberProps } from '@synerise/ds-input-number';
 import {
   BOOLEAN_CONTROL,
@@ -17,23 +18,31 @@ export default {
   title: 'Components/InputElements/InputNumber',
   tags: ['autodocs'],
   decorators: [fixedWrapper300],
+  parameters: {
+    controls: {
+      exclude: ['precision', 'decimalSeparator', 'upHandler',]
+    }
+  },
   argTypes: {
     className: CLASSNAME_ARG_CONTROL,
     style: STYLE_ARG_CONTROL,
-    decimalSeparator: STRING_CONTROL,
     defaultValue: NUMBER_CONTROL,
     value: NUMBER_CONTROL,
     min: NUMBER_CONTROL,
     max: NUMBER_CONTROL,
     step: NUMBER_CONTROL,
-    precision: NUMBER_CONTROL,
     tabIndex: NUMBER_CONTROL,
     disabled: BOOLEAN_CONTROL,
     raw: BOOLEAN_CONTROL,
     readOnly: BOOLEAN_CONTROL,
+    stringMode: BOOLEAN_CONTROL,
     error: BOOLEAN_CONTROL,
     errorText: REACT_NODE_AS_STRING,
+    description: REACT_NODE_AS_STRING,
     tooltip: REACT_NODE_AS_STRING,
+    tooltipConfig: { control: false },
+    prefixel: REACT_NODE_AS_STRING,
+    suffixel: REACT_NODE_AS_STRING,
     id: STRING_CONTROL,
     onStep: {
       action: 'onStep',
@@ -46,7 +55,12 @@ export default {
     },
     prefixCls: PREFIXCLS_ARG_CONTROL,
   },
-  args: {},
+  args: {
+    onStep: fn(),
+    onFocus: fn(),
+    onChange: fn(),
+    onPressEnter: fn(),
+  },
 } as Meta<InputNumberProps>;
 
 export const Default: Story = {};

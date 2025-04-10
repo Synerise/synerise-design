@@ -1,15 +1,15 @@
 import React from 'react';
-import Label from '@synerise/ds-input/dist/Label/Label';
+import { FormFieldLabel } from '@synerise/ds-form-field';
 import * as S from './Unordered-list.styles';
 import Item from './Elements/Item/Item';
-import { ListProps } from './Unordered-list.types';
+import { UnorderedListProps } from './Unordered-list.types';
 
-const UnorderedList = ({ data, indexFormatter, text, className }: ListProps) => {
+const UnorderedList = ({ data, indexFormatter, text, className }: UnorderedListProps) => {
   return (
     <div className={className}>
       {text && (
         <S.ContentAbove>
-          <Label label={text} />
+          <FormFieldLabel label={text} />
         </S.ContentAbove>
       )}
       <S.UnorderedList>

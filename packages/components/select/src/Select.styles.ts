@@ -2,7 +2,7 @@ import styled, { css, FlattenSimpleInterpolation } from 'styled-components';
 import Select from 'antd/lib/select';
 import { ThemeProps } from '@synerise/ds-core';
 import React from 'react';
-import { Label as DSLabel } from '@synerise/ds-input';
+
 import { Props } from './Select.types';
 
 const { OptGroup, Option } = Select;
@@ -139,20 +139,6 @@ export const AntdSelectOption = styled(Option)``;
 
 export const AntdSelectOptGroup = styled(OptGroup)``;
 
-export const LabelWrapper = styled.div`
-  margin: 0 0 8px 0;
-`;
-
-export const ContentBelow = styled.div`
-  margin-top: 8px;
-`;
-
-export const Label = styled(DSLabel)`
-  margin-bottom: 8px;
-  span > .ds-icon > svg {
-    margin-top: -1px;
-  }
-`;
 export const PrefixWrapper = styled.div`
   border-radius: 3px 0 0 3px;
   margin-right: -2px;

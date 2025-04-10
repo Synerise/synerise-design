@@ -9,7 +9,6 @@ export type SubtleTextAreaProps = {
   placeholder?: string;
   autoSize?: TextareaAutosize;
   error?: boolean;
-  errorText?: React.ReactNode;
   textAreaProps?: TextAreaProps;
 } & SubtleFieldProps;
 

@@ -127,3 +127,13 @@ export const CustomTrigger: Story = {
     ),
   },
 };
+
+export const LabelDescriptionAndErrorMessage: Story = {
+  args: {
+    ...Default.args,
+    description: "Field description",
+    errorMessage: "Error message",
+    tooltip: "tooltip text",
+    label: "Label"
+  }
+};

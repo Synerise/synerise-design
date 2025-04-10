@@ -1,10 +1,7 @@
-import { GroupProps } from 'antd/es/input';
-import React from 'react';
+import type { GroupProps } from 'antd/es/input';
+import { FormFieldCommonProps } from '@synerise/ds-form-field';
 
-export interface Props extends GroupProps {
-  label?: React.ReactNode;
+export type Props = GroupProps & {
   errors?: string[];
-  description?: React.ReactNode;
   resetMargin?: boolean;
-  tooltip?: React.ReactNode;
-}
+} & Omit<FormFieldCommonProps, 'errorText'>;

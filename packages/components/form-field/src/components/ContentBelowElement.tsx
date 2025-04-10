@@ -1,8 +1,8 @@
 import React from 'react';
-import { BaseProps } from '../Input.types';
-import * as S from '../Input.styles';
 
-type ContentBelowProps = Pick<BaseProps, 'description' | 'errorText'>;
+import * as S from '../FormField.styles';
+import { ContentBelowProps } from '../FormField.types';
+
 export const ContentBelowElement = ({ description, errorText }: ContentBelowProps) => {
   if (!errorText && !description) {
     return null;
