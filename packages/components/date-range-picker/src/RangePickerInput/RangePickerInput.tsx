@@ -1,9 +1,10 @@
 import React, { useCallback, useMemo, useState, MouseEvent } from 'react';
 
 import Icon, { ArrowRightS, CalendarM, Close3S } from '@synerise/ds-icon';
-import { theme } from '@synerise/ds-core';
+import { useTheme } from '@synerise/ds-core';
 import Tooltip from '@synerise/ds-tooltip';
 import { getDefaultDataTimeOptions, useDataFormat } from '@synerise/ds-data-format';
+import FormField from '@synerise/ds-form-field';
 
 import { RangePickerInputProps } from './RangePickerInput.types';
 import * as S from './RangePickerInput.styles';
@@ -24,6 +25,7 @@ const RangePickerInput = ({
   label,
   description,
   tooltip,
+  tooltipConfig,
   disabled,
   readOnly,
   onFocus,
@@ -33,6 +35,7 @@ const RangePickerInput = ({
   errorText,
   preferRelativeDesc = false,
 }: RangePickerInputProps) => {
+  const theme = useTheme();
   const { formatValue } = useDataFormat();
 
   const dateRangeValue = value ? normalizeRange(value as DateRange) : value;
@@ -100,47 +103,48 @@ const RangePickerInput = ({
         {preferRelativeDesc && dateRangeValue?.translationKey && value && ')'}
       </>
     );
-  }, [dateRangeValue, renderFromDate, renderEndDate, preferRelativeDesc, texts, value]);
+  }, [value, preferRelativeDesc, dateRangeValue?.translationKey, texts, renderFromDate, theme.palette, renderEndDate]);
 
   return (
     <>
-      {label && <S.Label label={label} tooltip={tooltip} />}
-      <S.Container
-        tabIndex={0}
-        onFocus={onFocus}
-        onClick={!disabled ? onClick : undefined}
-        onBlur={onBlur}
-        onMouseEnter={handleIconMouseEnter}
-        onMouseLeave={handleIconMouseLeave}
+      <FormField
+        errorText={errorText}
+        label={label}
+        tooltip={tooltip}
+        tooltipConfig={tooltipConfig}
+        description={description}
       >
-        <S.RangeInputWrapper
-          error={showError}
-          disabled={disabled}
-          active={!!highlight && !disabled}
-          tabIndex={disabled ? -1 : 0}
-          focus={active && !disabled}
+        <S.Container
+          tabIndex={0}
+          onFocus={onFocus}
+          onClick={!disabled ? onClick : undefined}
+          onBlur={onBlur}
+          onMouseEnter={handleIconMouseEnter}
+          onMouseLeave={handleIconMouseLeave}
         >
-          {placeholder}
-          <S.IconSeparator />
-          {!readOnly && !disabled && hovered && hasValue && allowClear ? (
-            <Tooltip title={texts?.clear}>
-              <S.ClearIconWrapper>
-                <Icon component={<Close3S />} onClick={handleClear} />
-              </S.ClearIconWrapper>
-            </Tooltip>
-          ) : (
-            <S.DefaultIconWrapper>
-              <Icon component={<CalendarM />} color={theme.palette['grey-600']} />
-            </S.DefaultIconWrapper>
-          )}
-        </S.RangeInputWrapper>
-      </S.Container>
-      {(showError || description) && (
-        <S.ContentBelow>
-          {showError && <S.ErrorText>{errorText}</S.ErrorText>}
-          {description && <S.Description>{description}</S.Description>}
-        </S.ContentBelow>
-      )}
+          <S.RangeInputWrapper
+            error={showError}
+            disabled={disabled}
+            active={!!highlight && !disabled}
+            tabIndex={disabled ? -1 : 0}
+            focus={active && !disabled}
+          >
+            {placeholder}
+            <S.IconSeparator />
+            {!readOnly && !disabled && hovered && hasValue && allowClear ? (
+              <Tooltip title={texts?.clear}>
+                <S.ClearIconWrapper>
+                  <Icon component={<Close3S />} onClick={handleClear} />
+                </S.ClearIconWrapper>
+              </Tooltip>
+            ) : (
+              <S.DefaultIconWrapper>
+                <Icon component={<CalendarM />} color={theme.palette['grey-600']} />
+              </S.DefaultIconWrapper>
+            )}
+          </S.RangeInputWrapper>
+        </S.Container>
+      </FormField>
     </>
   );
 };

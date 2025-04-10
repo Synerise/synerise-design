@@ -1,18 +1,12 @@
-import { ReactNode, ReactElement, MutableRefObject } from 'react';
-import { InputProps as AntdInputProps, TextAreaProps as AntdTextAreaProps } from 'antd/lib/input';
-
-import { TooltipProps } from '@synerise/ds-tooltip';
+import type { ReactNode, ReactElement, MutableRefObject } from 'react';
+import type { InputProps as AntdInputProps, TextAreaProps as AntdTextAreaProps } from 'antd/lib/input';
+import type { FormFieldCommonProps } from '@synerise/ds-form-field';
 
 export type AutoResizeProp = boolean | { minWidth: string; maxWidth?: string; stretchToFit?: boolean };
 export type Props = BaseProps<HTMLInputElement | HTMLTextAreaElement>;
 export type BaseProps<RefElementType extends HTMLTextAreaElement | HTMLInputElement = HTMLInputElement> = {
   error?: boolean;
   className?: string;
-  tooltip?: ReactNode;
-  tooltipConfig?: TooltipProps;
-  errorText?: ReactNode;
-  label?: ReactNode;
-  description?: ReactNode;
   counterLimit?: number;
   renderCustomCounter?: (count?: number) => ReactNode;
   icon1?: ReactElement;
@@ -26,7 +20,7 @@ export type BaseProps<RefElementType extends HTMLTextAreaElement | HTMLInputElem
   autoResize?: AutoResizeProp;
   expandable?: boolean;
   expandableTooltip?: ReactNode;
-};
+} & FormFieldCommonProps;
 /**
  * @deprecated use `InputProps`, `TextareaProps` instead
  */

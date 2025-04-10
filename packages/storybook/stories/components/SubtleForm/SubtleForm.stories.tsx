@@ -1,4 +1,4 @@
-import React,{ useState } from 'react';
+import React, { useState } from 'react';
 import { Meta, StoryObj } from '@storybook/react';
 
 import SubtleForm from '@synerise/ds-subtle-form';
@@ -14,6 +14,7 @@ import {
   CLASSNAME_ARG_CONTROL,
   REACT_NODE_AS_STRING,
 } from '../../utils';
+import { SelectValue } from 'antd/lib/select';
 
 
 
@@ -38,18 +39,18 @@ export const SubtleFormInput: Story = {
   render: (args) => {
     const [name, setName] = useState<string | undefined>();
     return (
-      <div style={{ marginBottom: '16px' }}>
-        <SubtleForm.Input
-          {...args}
-          inputProps={{ }}
-          value={name}
-          onChange={setName}
-          placeholder={'Name'}
-          label={renderLabel('Name')}
-          labelTooltip={'Name'}
-          suffixTooltip={'Edit'}
-        />
-      </div>
+
+      <SubtleForm.Input
+        {...args}
+        inputProps={{}}
+        value={name}
+        onChange={setName}
+        placeholder={'Name'}
+        label={renderLabel('Name')}
+        labelTooltip={'Name'}
+        suffixTooltip={'Edit'}
+      />
+
     );
   },
   args: {
@@ -59,57 +60,60 @@ export const SubtleFormInput: Story = {
   },
 };
 
-export const SubtleFormNumber: Story = {
+export const SubtleFormCustomField: Story = {
   render: (args) => {
     const [value, setValue] = useState<number>();
     const [active, setActive] = useState(false);
     const placeholder = 'Number';
     return (
-      <div style={{ marginBottom: '16px' }}>
-        <SubtleForm.Field
-          {...args}
-          value={value}
-          active={active}
-          activeElement={() => (
-            <InputNumber
-              autoFocus
-              value={value}
-              onFocus={()=>setActive(true)}
-              onBlur={() => setActive(false)}
-              onChange={e => setValue(e)}
-              placeholder={placeholder}
-            />
-          )}
-          inactiveElement={() => value || placeholder}
-          label={renderLabel('Number')}
-          labelTooltip={'Number'}
-        />
-      </div>
+      <SubtleForm.Field
+        {...args}
+        value={value}
+        active={active}
+        activeElement={() => (
+          <InputNumber
+            autoFocus
+            value={value}
+            onFocus={() => setActive(true)}
+            onBlur={() => setActive(false)}
+            onChange={newValue => setValue(newValue)}
+            placeholder={placeholder}
+            error={args.error}
+            errorText={args.errorText}
+          />
+        )}
+        inactiveElement={() => <>{value || placeholder}</>}
+        label={renderLabel('Number')}
+        labelTooltip={'Number'}
+      />
     );
   },
-  args: {},
+  args: {
+    disabled: false,
+    error: false,
+    errorText: '',
+  },
 };
 
 export const SubtleFormSelect: Story = {
   render: (args) => {
-    const [value, setValue] = useState<string>();
+    const [value, setValue] = useState<SelectValue>();
 
     return (
-      <div style={{ marginBottom: '16px', height: '57px' }}>
-        <SubtleForm.Select
-          {...args}
-          onChange={val => setValue(val)}
-          value={value}
-          placeholder={'City'}
-          label={renderLabel('City')}
-          labelTooltip={'City'}
-          suffixTooltip={'Select'}
-        >
-          {Cities.map(c => (
-            <Select.Option value={c}>{c}</Select.Option>
-          ))}
-        </SubtleForm.Select>
-      </div>
+      <SubtleForm.Select
+        {...args}
+        onChange={val => setValue(val)}
+        value={value}
+        placeholder={'City'}
+        label={renderLabel('City')}
+        labelTooltip={'City'}
+        suffixTooltip={'Select'}
+      >
+        {Cities.map(c => (
+          <Select.Option value={c}>{c}</Select.Option>
+        ))}
+      </SubtleForm.Select>
+
     );
   },
   args: {
@@ -126,31 +130,31 @@ export const SubtleFormDatePicker: Story = {
 
     const format = 'dd-MM-yyyy';
     return (
-      <div style={{ marginBottom: '16px', height: '57px' }}>
-        <SubtleForm.DatePicker
-          {...args}
-          autoFocus
-          format={format}
-          onApply={val => setValue(val)}
-          onClear={() => {
-            setValue(undefined);
-          }}
-          value={value}
-          placeholder={'Date'}
-          label={renderLabel('Date')}
-          labelTooltip={'Date'}
-          suffixTooltip={'Select date'}
-          onDropdownVisibleChange={setOpen}
-          dropdownProps={{ align: { offset: [0, 8] } }}
-          activeProp={open}
-          texts={
-            {
-              inputPlaceholder: replaceLettersWithUnderscore(format),
-              clearTooltip: 'Clear',
-            } as any
-          }
-        />
-      </div>
+
+      <SubtleForm.DatePicker
+        {...args}
+        autoFocus
+        format={format}
+        onApply={val => setValue(val)}
+        onClear={() => {
+          setValue(undefined);
+        }}
+        value={value}
+        placeholder={'Date'}
+        label={renderLabel('Date')}
+        labelTooltip={'Date'}
+        suffixTooltip={'Select date'}
+        onDropdownVisibleChange={setOpen}
+        dropdownProps={{ align: { offset: [0, 8] } }}
+        activeProp={open}
+        texts={
+          {
+            inputPlaceholder: replaceLettersWithUnderscore(format),
+            clearTooltip: 'Clear',
+          } as any
+        }
+      />
+
     );
   },
   args: {

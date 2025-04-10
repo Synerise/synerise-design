@@ -1,11 +1,11 @@
-import { ReactNode, CSSProperties } from 'react';
-import dayjs from 'dayjs';
-import { InputProps } from 'antd/es/input/Input';
+import type { ReactNode, CSSProperties } from 'react';
+import type dayjs from 'dayjs';
+import type { InputProps } from '@synerise/ds-input';
 
-import { DropdownProps } from '@synerise/ds-dropdown/dist/Dropdown';
-import { DateToFormatOptions } from '@synerise/ds-data-format';
+import type { DropdownProps } from '@synerise/ds-dropdown';
+import type { DateToFormatOptions } from '@synerise/ds-data-format';
 
-import { CLOCK_MODES } from '../constants/timePicker.constants';
+import type { CLOCK_MODES } from '../constants/timePicker.constants';
 
 export type ClockModes = typeof CLOCK_MODES[number];
 

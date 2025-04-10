@@ -1,4 +1,6 @@
-export const controlFromOptionsArray = (type: string, options: readonly (string | number | undefined | null)[]) => {
+type ControlType = 'object' | 'boolean' | 'check' | 'inline-check' | 'radio' | 'inline-radio' | 'select' | 'multi-select' | 'number' | 'range' | 'file' | 'color' | 'date' | 'text';
+
+export const controlFromOptionsArray = <T extends ControlType>(type: T, options: readonly (string | number | undefined | null)[]) => {
   return {
     control: type,
     options: [...options],
@@ -40,23 +42,32 @@ export const REACT_NODE_AS_STRING = {
     },
   },
   control: 'text',
-};
+} as const;
+
+export const REACT_NODE_NO_CONTROL = {
+  table: {
+    type: {
+      summary: 'ReactNode',
+    },
+  },
+  control: 'false',
+} as const;
 
 export const BOOLEAN_CONTROL = {
   control: 'boolean',
-};
+} as const;
 
 export const STRING_CONTROL = {
   control: 'text',
-};
+} as const;
 
 export const NUMBER_CONTROL = {
   control: 'number',
-};
+} as const;
 
 export const COLOR_CONTROL = {
   control: 'color',
-};
+} as const;
 
 export const COLOR_HUE_CONTROL = {
   ...controlFromOptionsArray('select', ['050', '100', '200', '300', '300', '400', '500', '600', '700', '800', '900']),
@@ -71,7 +82,7 @@ export const STYLE_ARG_CONTROL = {
     },
   },
   control: false,
-};
+} as const;
 
 export const CLASSNAME_ARG_CONTROL = {
   table: {
@@ -82,7 +93,7 @@ export const CLASSNAME_ARG_CONTROL = {
     },
   },
   control: false,
-};
+} as const;
 
 export const PREFIXCLS_ARG_CONTROL = {
   table: {
@@ -93,7 +104,7 @@ export const PREFIXCLS_ARG_CONTROL = {
     },
   },
   control: false,
-};
+} as const;
 
 export const GETPOPUPCONTAINER_ARG_CONTROL = {
   control: false,

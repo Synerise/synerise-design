@@ -1,17 +1,10 @@
-import type { SelectProps, SelectValue } from 'antd/lib/select';
-import type { TooltipProps } from 'antd/lib/tooltip';
 import type { ReactNode, ReactText } from 'react';
+import type { SelectProps, SelectValue } from 'antd/lib/select';
 import type { CSSObject } from 'styled-components';
+import type { FormFieldCommonProps } from '@synerise/ds-form-field';
 
-import type TooltipExtendedProps from '@synerise/ds-tooltip/dist/Tooltip.types';
-
-export interface Props<T = SelectValue> extends Omit<SelectProps<T>, 'listHeight'> {
-  errorText?: ReactNode | string;
+export type Props<T = SelectValue> = Omit<SelectProps<T>, 'listHeight'> & {
   error?: boolean;
-  label?: ReactNode;
-  description?: ReactNode;
-  tooltip?: ReactNode;
-  tooltipConfig?: TooltipExtendedProps & TooltipProps;
   clearTooltip?: string;
   prefixel?: ReactNode;
   suffixel?: ReactNode;
@@ -19,4 +12,4 @@ export interface Props<T = SelectValue> extends Omit<SelectProps<T>, 'listHeight
   grey?: boolean;
   asFormElement?: boolean;
   selectorStyle?: CSSObject;
-}
+} & FormFieldCommonProps;

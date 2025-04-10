@@ -2,7 +2,8 @@ import React, { useState, useCallback, useMemo, useEffect, useRef } from 'react'
 import { v4 as uuid } from 'uuid';
 
 import '@synerise/ds-core/dist/js/style';
-import { Label } from '@synerise/ds-input';
+
+import FormField from '@synerise/ds-form-field';
 import { useDataFormat } from '@synerise/ds-data-format';
 
 import './style/index.less';
@@ -85,38 +86,42 @@ const InputNumber = ({
       }
     };
   });
+  const rawInput = (
+    <S.InputNumberWrapper prefixel={!!prefixel} suffixel={!!suffixel} style={style}>
+      {!!prefixel && <S.Prefixel>{prefixel}</S.Prefixel>}
+      <S.AntdInputNumber
+        {...antdProps}
+        ref={antdInputRef}
+        onChange={handleOnChange}
+        id={id}
+        error={showError}
+        className={showError ? 'error' : undefined}
+        autoComplete="off"
+        formatter={formatter}
+        parser={parser}
+        defaultValue={defaultValue}
+        value={localValue}
+        decimalSeparator={decimalDelimiter}
+      />
+      {!!suffixel && <S.Suffixel>{suffixel}</S.Suffixel>}
+    </S.InputNumberWrapper>
+  );
 
+  if (raw) {
+    return <S.InputNumberContainer>{rawInput}</S.InputNumberContainer>;
+  }
   return (
     <S.InputNumberContainer>
-      {label && !raw && (
-        <S.ContentAbove>
-          <Label id={id} label={label} tooltip={tooltip} tooltipConfig={tooltipConfig} />
-        </S.ContentAbove>
-      )}
-      <S.InputNumberWrapper prefixel={!!prefixel} suffixel={!!suffixel} style={style}>
-        {!!prefixel && <S.Prefixel>{prefixel}</S.Prefixel>}
-        <S.AntdInputNumber
-          {...antdProps}
-          ref={antdInputRef}
-          onChange={handleOnChange}
-          id={id}
-          error={showError}
-          className={showError ? 'error' : undefined}
-          autoComplete="off"
-          formatter={formatter}
-          parser={parser}
-          defaultValue={defaultValue}
-          value={localValue}
-          decimalSeparator={decimalDelimiter}
-        />
-        {!!suffixel && <S.Suffixel>{suffixel}</S.Suffixel>}
-      </S.InputNumberWrapper>
-      {(showError || description) && !raw && (
-        <S.ContentBelow>
-          {showError && <S.ErrorText>{errorText}</S.ErrorText>}
-          {description && <S.Description>{description}</S.Description>}
-        </S.ContentBelow>
-      )}
+      <FormField
+        id={id}
+        label={label}
+        tooltip={tooltip}
+        tooltipConfig={tooltipConfig}
+        description={description}
+        errorText={errorText}
+      >
+        {rawInput}
+      </FormField>
     </S.InputNumberContainer>
   );
 };

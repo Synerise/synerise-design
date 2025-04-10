@@ -1,5 +1,6 @@
 import styled, { css, FlattenSimpleInterpolation, keyframes } from 'styled-components';
-import { ThemeProps } from '@synerise/ds-core';
+import type { ThemeProps } from '@synerise/ds-core';
+import FormField from '@synerise/ds-form-field';
 import { MaskedDatePlaceholder } from './Elements/DatePicker/DatePicker.styles';
 
 const disableBlinkingCursor = (props: ThemeProps & { grey: boolean }): FlattenSimpleInterpolation => css`
@@ -19,7 +20,7 @@ export const blurAnimation = keyframes`
 `;
 
 export const MainContent = styled.div<{ hasMargin?: boolean; breakWord?: boolean }>`
-  ${(props): FlattenSimpleInterpolation =>
+  ${props =>
     props.breakWord
       ? css`
           display: flex;
@@ -38,7 +39,7 @@ export const MainContent = styled.div<{ hasMargin?: boolean; breakWord?: boolean
   width: 100%;
   height: 100%;
   transition: color 0.1s ease-in 0.2s;
-  ${(props): string | false =>
+  ${props =>
     !!props.hasMargin &&
     `margin-top:1px;
 `}
@@ -46,7 +47,7 @@ export const MainContent = styled.div<{ hasMargin?: boolean; breakWord?: boolean
 
 export const Suffix = styled.div<{ select?: boolean }>`
   position: absolute;
-  right: ${(props): string => (props.select ? `9px` : `6px`)};
+  right: ${props => (props.select ? `9px` : `6px`)};
   top: 6px;
   display: flex;
   opacity: 0;
@@ -67,11 +68,11 @@ export const Inactive = styled.div<{
   width: 100%;
   height: 32px;
   display: flex;
-  ${(props): false | string => !!props.rows && `height: ${props.rows * 17 + 17}px;`}
+  ${props => !!props.rows && `height: ${props.rows * 17 + 17}px;`}
   align-items: flex-start;
-  background: ${(props): string => props.theme.palette.white};
+  background: ${props => props.theme.palette.white};
   padding: ${blurPadding};
-  opacity: ${(props): string => (props.disabled ? `0.5` : `1`)};
+  opacity: ${props => (props.disabled ? `0.5` : `1`)};
   border-radius: 3px;
   transition: padding 0.1s ease-in, background 0.1s ease-in;
   transition-delay: 0.2s;
@@ -184,9 +185,7 @@ export const Subtle = styled.div<{ disabled?: boolean }>`
       }
     `}
 `;
-export const ContentAbove = styled.div<{ active: boolean }>`
-  padding: 0;
-  display: flex;
-  justify-content: space-between;
-  margin-bottom: ${(props): string => (props.active ? `9px` : `8px`)};
+
+export const SubtleFormField = styled(FormField)<{ active: boolean }>`
+  gap: ${props => (props.active ? `10px` : `8px`)};
 `;

@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import { macro } from '@synerise/ds-typography';
+import { FormFieldLabel } from '@synerise/ds-form-field';
 
 export const SwitchWrapper = styled.div<{ formElementMargin: boolean }>`
   display: flex;
@@ -16,7 +17,7 @@ export const Texts = styled.div`
   justify-content: space-between;
 `;
 
-export const Label = styled.label`
+export const Label = styled(FormFieldLabel)`
   ${macro.heading};
   cursor: pointer;
   transition: 0.3s ease;
@@ -35,12 +36,12 @@ export const LabelSwitchWrapper = styled.div`
 `;
 
 export const Error = styled.div`
-  color: ${(props): string => props.theme.palette['red-600']};
+  color: ${props => props.theme.palette['red-600']};
   margin-bottom: 4px;
 `;
 
 export const Description = styled.div`
-  color: ${(props): string => props.theme.palette['grey-600']};
+  color: ${props => props.theme.palette['grey-600']};
   transition: 0.3s ease;
 `;
 

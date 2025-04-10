@@ -1,9 +1,9 @@
-import React from 'react';
+import type { CSSProperties, MouseEvent as ReactMouseEvent, FocusEventHandler, ReactNode } from 'react';
+import type { DateToFormatOptions } from '@synerise/ds-data-format';
+import type { FormFieldCommonProps } from '@synerise/ds-form-field';
 
-import { DateToFormatOptions } from '@synerise/ds-data-format';
-
-import { DateFilter, DateRange } from '../date.types';
-import { Texts } from '../DateRangePicker.types';
+import type { DateFilter, DateRange } from '../date.types';
+import type { Texts } from '../DateRangePicker.types';
 
 export type RangePickerInputProps = {
   size?: 'large' | 'default' | 'small';
@@ -16,25 +16,21 @@ export type RangePickerInputProps = {
   allowClear?: boolean;
   value?: Pick<DateRange, 'from'> & Pick<DateRange, 'to'>;
   onChange?: (value: Partial<DateFilter> | undefined) => void;
-  style?: React.CSSProperties;
+  style?: CSSProperties;
   placeholder?: string;
   disabled?: boolean;
   readOnly?: boolean;
-  onClick?: (e?: React.MouseEvent<HTMLElement, MouseEvent>) => void;
+  onClick?: (event?: ReactMouseEvent<HTMLElement, MouseEvent>) => void;
   onClear?: () => void;
-  onFocus?: React.FocusEventHandler;
-  onBlur?: React.FocusEventHandler;
-  clearTooltip?: string | React.ReactNode;
+  onFocus?: FocusEventHandler;
+  onBlur?: FocusEventHandler;
+  clearTooltip?: ReactNode;
   highlight?: boolean;
   texts?: Texts;
   active?: boolean;
-  label?: string | React.ReactNode;
-  description?: string | React.ReactNode;
-  tooltip?: string | React.ReactNode;
   error?: boolean;
-  errorText?: React.ReactNode | string;
   preferRelativeDesc?: boolean;
-};
+} & FormFieldCommonProps;
 
 /**
  * @deprecated use `RangePickerInputProps`

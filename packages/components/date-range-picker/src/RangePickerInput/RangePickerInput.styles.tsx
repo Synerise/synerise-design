@@ -1,6 +1,5 @@
 import styled from 'styled-components';
 import { InputWrapper } from '@synerise/ds-input/dist/InputMultivalue/InputMultivalue.styles';
-import { Label as DSLabel } from '@synerise/ds-input';
 
 export const Container = styled.div``;
 
@@ -53,17 +52,3 @@ export const IconSeparator = styled.div`
   flex: 1;
 `;
 export const SuffixWrapper = styled.div``;
-export const Label = styled(DSLabel)`
-  margin-bottom: 8px;
-`;
-export const ErrorText = styled.div`
-  color: ${props => props.theme.palette['red-600']};
-  margin-bottom: 4px;
-`;
-export const Description = styled.div`
-  color: ${props => props.theme.palette['grey-600']};
-`;
-
-export const ContentBelow = styled.div`
-  margin-top: 8px;
-`;

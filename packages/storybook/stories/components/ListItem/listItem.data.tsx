@@ -18,7 +18,7 @@ import Icon, {
   WarningFillS,
 } from '@synerise/ds-icon';
 import { theme } from '@synerise/ds-core';
-import { Label } from '@synerise/ds-input';
+import { FormFieldLabel } from '@synerise/ds-form-field';
 import Dropdown from '@synerise/ds-dropdown';
 import Checkbox from '@synerise/ds-checkbox';
 import Menu from '@synerise/ds-menu';
@@ -273,7 +273,7 @@ export function renderSuffix(
       );
     case suffixType.label:
       return (
-        <Label
+        <FormFieldLabel
           label={
             <div style={{ color: theme.palette['grey-400'], lineHeight: '18px' }}>
               <span>Text</span>
@@ -283,7 +283,7 @@ export function renderSuffix(
       );
     case suffixType.select:
       return (
-        <Label
+        <FormFieldLabel
           label={
             <Tooltip type="default" trigger="hover" title={'Select product'}>
               <div style={{ lineHeight: '18px', marginRight: '4px', color: theme.palette['blue-600'] }}>

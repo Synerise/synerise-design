@@ -1,42 +1,18 @@
 
-import type { Meta } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/react';
 import Autocomplete from '@synerise/ds-autocomplete';
 import type { AutocompleteProps } from '@synerise/ds-autocomplete';
 
-import { within, userEvent, expect, fn } from '@storybook/test';
+import { within, userEvent, expect, fn, waitFor } from '@storybook/test';
 
 import { default as DefaultMeta, Primary } from './Autocomplete.stories';
 import { fixedWrapper400, fixedWrapper200 } from '../../utils';
 
-const excludedProps = ['animation'];
-const excludeRegexp = new RegExp(`(${excludedProps.join('|')})`, 'g');
 const meta: Meta<AutocompleteProps> = {
   ...DefaultMeta,
   title: "Components/InputElements/Tests",
   component: Autocomplete,
-  parameters: {
-    controls: {
-      exclude: excludeRegexp
-    }
-  },
   tags: ['visualtests'],
-  argTypes: {
-    allowClear: {
-      control: 'boolean'
-    },
-    autoClearSearchValue: {
-      control: 'boolean'
-    },
-    autoResize: {
-      control: 'select',
-      options: ['false', 'min & max width', 'stretch to fit'],
-      mapping: {
-        'false': false,
-        'min & max width': { minWidth: '150px', maxWidth:'300px' },
-        'stretch to fit': { minWidth: '150px', stretchToFit: true }
-      }
-    }
-  }
 };
 
 export default meta;
@@ -113,5 +89,21 @@ export const AutoResizeMinWidth = {
   play: async ({ canvasElement }) => {
     const { inputWrapper } = await runAutocompleteTest(canvasElement, SHORT_VALUE);
     expect(inputWrapper.clientWidth).toBe(150);
+  }
+};
+
+
+const TOOLTIP = 'Tooltip text';
+export const AutocompleteWithTooltip: StoryObj<AutocompleteProps> = {
+  args: {
+    label: "Select option",
+    description: "Description",
+    placeholder: "Placeholder",
+    tooltip: TOOLTIP
+  },
+  play: async ({ canvasElement, args }) => {
+    const canvas = within(canvasElement.parentElement!);
+    await userEvent.hover(canvas.getByTestId('label-tooltip-trigger'));
+    await waitFor(() => expect(canvas.getByText(TOOLTIP)).toBeVisible());
   }
 };

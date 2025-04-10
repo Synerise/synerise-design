@@ -1,8 +1,7 @@
 import React, { useEffect, useMemo, useRef, useState } from 'react';
 import Dropdown from '@synerise/ds-dropdown';
-import { Label } from '@synerise/ds-input';
-import { Description } from '@synerise/ds-typography';
 import { useOnClickOutside } from '@synerise/ds-utils';
+import FormField from '@synerise/ds-form-field';
 
 import Trigger from '../ItemPickerTrigger/Trigger';
 import { useDefaultTexts } from '../../hooks/useDefaultTexts';
@@ -25,8 +24,10 @@ export const ItemPickerNew = <ItemType extends BaseItemType, SectionType extends
   description,
   error,
   errorMessage,
+  errorText,
   disabled,
   tooltip,
+  tooltipConfig,
   ...rest
 }: ItemPickerProps<ItemType, SectionType>) => {
   const overlayRef = useRef<HTMLDivElement>(null);
@@ -78,28 +79,33 @@ export const ItemPickerNew = <ItemType extends BaseItemType, SectionType extends
 
   return (
     <S.ItemPickerWrapper className="ds-items-picker" disabled={disabled}>
-      {label && <Label label={label} tooltip={tooltip} />}
-      <Dropdown
-        overlayStyle={{ width: '400px' }}
-        {...dropdownProps}
-        visible={visible}
-        trigger={['click']}
-        onVisibleChange={handleVisibilityChange}
-        overlay={
-          <ItemPickerList
-            {...rest}
-            texts={allTexts}
-            isVisible={visible}
-            selectedItem={selected}
-            onItemSelect={handleItemSelect}
-            containerRef={overlayRef}
-          />
-        }
+      <FormField
+        label={label}
+        tooltip={tooltip}
+        tooltipConfig={tooltipConfig}
+        errorText={errorText || errorMessage}
+        description={description}
       >
-        {trigger}
-      </Dropdown>
-      {error && errorMessage && <S.Error>{errorMessage}</S.Error>}
-      {description && <Description>{description}</Description>}
+        <Dropdown
+          overlayStyle={{ width: '400px' }}
+          {...dropdownProps}
+          visible={visible}
+          trigger={['click']}
+          onVisibleChange={handleVisibilityChange}
+          overlay={
+            <ItemPickerList
+              {...rest}
+              texts={allTexts}
+              isVisible={visible}
+              selectedItem={selected}
+              onItemSelect={handleItemSelect}
+              containerRef={overlayRef}
+            />
+          }
+        >
+          {trigger}
+        </Dropdown>
+      </FormField>
     </S.ItemPickerWrapper>
   );
 };

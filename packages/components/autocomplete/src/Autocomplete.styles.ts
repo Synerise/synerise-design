@@ -2,21 +2,6 @@ import styled, { css } from 'styled-components';
 import { AutoResizeProp } from '@synerise/ds-input';
 import { autoresizeConfObjToCss } from '@synerise/ds-input/dist/Input.styles';
 
-export const LabelWrapper = styled.div`
-  margin: 0px 0px 8px 0px;
-`;
-
-export const ErrorWrapper = styled.div`
-  margin: 8px 0px 4px 0px;
-`;
-
-export const DescWrapper = styled.div`
-  margin: 8px 0px 0px 0px;
-`;
-export const LoaderWrapper = styled.div`
-  margin-right: 10px;
-`;
-
 const active = () => css`
   transition: ease-in-out all 0.2s, width 0s, min-width 0s, max-width 0s;
   box-shadow: inset 0 0 0 1px ${props => props.theme.palette['blue-600']};

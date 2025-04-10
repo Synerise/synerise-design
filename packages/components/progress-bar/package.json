@@ -34,7 +34,7 @@
   ],
   "types": "dist/index.d.ts",
   "dependencies": {
-    "@synerise/ds-typography": "^1.0.4",
+    "@synerise/ds-form-field": "^1.0.0",
     "@synerise/ds-utils": "^1.0.1"
   },
   "peerDependencies": {

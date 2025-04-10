@@ -1,10 +1,11 @@
 import React, { ReactNode, Component } from 'react';
-import { ErrorText, Description } from '@synerise/ds-typography';
 import '@synerise/ds-core/dist/js/style';
 import './style/index.less';
 import Icon, { Close3M, CloseS } from '@synerise/ds-icon';
 import Tooltip from '@synerise/ds-tooltip';
+import FormField from '@synerise/ds-form-field';
 import { getPopupContainer as defaultGetPopupContainer } from '@synerise/ds-utils';
+
 import classNames from 'classnames';
 import * as S from './Select.styles';
 import { Props } from './Select.types';
@@ -37,46 +38,46 @@ class Select extends Component<Props> {
     const hasBottomMargin = asFormElement || Boolean(errorText || description);
     return (
       <S.SelectContainer className="ds-select-container" hasBottomMargin={hasBottomMargin}>
-        <S.Label label={label} tooltip={tooltip} tooltipConfig={tooltipConfig} />
-        <S.SelectWrapper
-          grey={grey}
-          error={Boolean(errorText)}
-          className={classNames(
-            'ds-select-wrapper',
-            { error: errorText || error },
-            { [className as string]: !!className }
-          )}
-          style={style}
+        <FormField
+          errorText={errorText}
+          description={description}
+          label={label}
+          tooltip={tooltip}
+          tooltipConfig={tooltipConfig}
         >
-          {!!prefixel && <S.PrefixWrapper>{prefixel}</S.PrefixWrapper>}
-          <S.AntdSelect
-            dropdownAlign={{ offset: [0, 8] }} // STOR-588
-            {...antdProps}
-            getPopupContainer={getPopupContainer}
-            listHeight={listHeight}
-            size={size}
-            withPrefixel={!!prefixel}
-            withSuffixel={!!suffixel}
-            clearIcon={
-              <Tooltip title={clearTooltip}>
-                <span>
-                  <Icon component={<Close3M />} size={size === 'small' ? 18 : 24} />
-                </span>
-              </Tooltip>
-            }
-            removeIcon={<Icon component={<CloseS />} />}
-            className={classNames({ error: errorText || error })}
-            dropdownClassName={classNames('ps__child--consume', dropdownClassName)}
-          />
-          {!!suffixel && <S.SuffixWrapper>{suffixel}</S.SuffixWrapper>}
-        </S.SelectWrapper>
-
-        {(errorText || description) && (
-          <S.ContentBelow>
-            {errorText && <ErrorText>{errorText}</ErrorText>}
-            {description && <Description disabled={antdProps.disabled}>{description}</Description>}
-          </S.ContentBelow>
-        )}
+          <S.SelectWrapper
+            grey={grey}
+            error={Boolean(errorText)}
+            className={classNames(
+              'ds-select-wrapper',
+              { error: errorText || error },
+              { [className as string]: !!className }
+            )}
+            style={style}
+          >
+            {!!prefixel && <S.PrefixWrapper>{prefixel}</S.PrefixWrapper>}
+            <S.AntdSelect
+              dropdownAlign={{ offset: [0, 8] }} // STOR-588
+              {...antdProps}
+              getPopupContainer={getPopupContainer}
+              listHeight={listHeight}
+              size={size}
+              withPrefixel={!!prefixel}
+              withSuffixel={!!suffixel}
+              clearIcon={
+                <Tooltip title={clearTooltip}>
+                  <span>
+                    <Icon component={<Close3M />} size={size === 'small' ? 18 : 24} />
+                  </span>
+                </Tooltip>
+              }
+              removeIcon={<Icon component={<CloseS />} />}
+              className={classNames({ error: errorText || error })}
+              dropdownClassName={classNames('ps__child--consume', dropdownClassName)}
+            />
+            {!!suffixel && <S.SuffixWrapper>{suffixel}</S.SuffixWrapper>}
+          </S.SelectWrapper>
+        </FormField>
       </S.SelectContainer>
     );
   }

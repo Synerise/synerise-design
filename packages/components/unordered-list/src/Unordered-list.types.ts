@@ -1,4 +1,4 @@
-import { ReactNode } from 'react';
+import type { ReactNode } from 'react';
 
 export type UnorderedListItem = {
   id: string;
@@ -7,7 +7,7 @@ export type UnorderedListItem = {
   suffixel?: ReactNode;
   index: number;
   subMenu?: UnorderedListItem[];
-  subMenuProps?: Omit<ListProps, 'data'>;
+  subMenuProps?: Omit<UnorderedListProps, 'data'>;
   text?: ReactNode;
 };
 
@@ -18,5 +18,7 @@ export type UnorderedListProps = {
   className?: string;
 };
 
-// @deprecated - use UnorderedListProps instead
+/**
+ * @deprecated - use UnorderedListProps instead
+ */
 export type ListProps = UnorderedListProps;

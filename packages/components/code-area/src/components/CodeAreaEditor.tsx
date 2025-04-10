@@ -1,9 +1,9 @@
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
-
-import { Label } from '@synerise/ds-input';
-
-import { useResizeObserver } from '@synerise/ds-utils';
 import type { editor } from 'monaco-editor/esm/vs/editor/editor.api';
+
+import { FormFieldLabel } from '@synerise/ds-form-field';
+import { useResizeObserver } from '@synerise/ds-utils';
+
 import { getCharCount } from '../utils/getCharCount';
 import { ContentAbove, ContentBelow, FullscreenHeader } from './index';
 import { CodeAreaEditorRaw } from './CodeAreaEditorRaw';
@@ -68,7 +68,7 @@ export const CodeAreaEditor = ({
   const labelWithTooltip = useMemo(() => {
     return (
       label && (
-        <Label
+        <FormFieldLabel
           label={label}
           tooltip={tooltip}
           tooltipConfig={

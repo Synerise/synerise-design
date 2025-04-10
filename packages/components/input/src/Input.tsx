@@ -4,23 +4,19 @@ import type { InputRef } from 'antd/lib/input';
 import type { TextAreaRef } from 'antd/lib/input/TextArea';
 
 import { useResizeObserver } from '@synerise/ds-utils';
+import FormField from '@synerise/ds-form-field';
 
 import '@synerise/ds-core/dist/js/style';
 import './style/index.less';
 import * as S from './Input.styles';
 
-import {
-  ContentAboveElement,
-  ContentBelowElement,
-  ElementIcons,
-  AutosizeWrapper,
-  ExpandableWrapper,
-} from './components';
+import { ElementIcons, AutosizeWrapper, ExpandableWrapper } from './components';
 import { useInputAddonHeight, useElementFocus } from './hooks';
 import { getCharCount } from './utils';
 
 import type { InputProps } from './Input.types';
 import type { AutosizeInputRefType } from './AutosizeInput/AutosizeInput.types';
+import { useCounterLimit } from './hooks/useCounterLimit';
 
 const VERTICAL_BORDER_OFFSET = 2;
 
@@ -172,6 +168,8 @@ export const Input = ({
 
   useResizeObserver(elementRef, handleWrapperResize);
 
+  const rightSide = useCounterLimit({ renderCustomCounter, counterLimit, charCount });
+
   const autoSizedComponent = (
     <AutosizeWrapper
       preAutosize={preAutosize}
@@ -216,46 +214,45 @@ export const Input = ({
       resetMargin={resetMargin}
       iconCount={iconCount}
     >
-      <ContentAboveElement
+      <FormField
         label={label}
-        counterLimit={counterLimit}
+        rightSide={rightSide}
         id={id}
         tooltip={tooltip}
         tooltipConfig={tooltipConfig}
-        charCount={charCount}
-        renderCustomCounter={renderCustomCounter}
-      />
-      <S.InputWrapper iconCount={iconCount}>
-        <ElementIcons
-          handleIconsClick={handleIconsClick}
-          disabled={antdInputProps.disabled}
-          icon1={icon1}
-          icon2={icon2}
-          icon1Tooltip={icon1Tooltip}
-          icon2Tooltip={icon2Tooltip}
-          className={className}
-          type="input"
-          expandable={expandable}
-          overflown={overflown}
-          handleExpandIconClick={handleExpandIconClick}
-          expandableTooltip={expandableTooltip}
-        />
-        {expandable ? (
-          <ExpandableWrapper
-            onChange={handleTextareaChange}
-            onBlur={handleExpandableTextareaBlur}
-            ref={expandableTextAreaRef}
-            value={antdInputProps.value}
-            expanded={expanded}
-          >
-            {autoSizedComponent}
-          </ExpandableWrapper>
-        ) : (
-          autoSizedComponent
-        )}
-      </S.InputWrapper>
-
-      <ContentBelowElement description={description} errorText={errorText} />
+        description={description}
+        errorText={errorText}
+      >
+        <S.InputWrapper iconCount={iconCount}>
+          <ElementIcons
+            handleIconsClick={handleIconsClick}
+            disabled={antdInputProps.disabled}
+            icon1={icon1}
+            icon2={icon2}
+            icon1Tooltip={icon1Tooltip}
+            icon2Tooltip={icon2Tooltip}
+            className={className}
+            type="input"
+            expandable={expandable}
+            overflown={overflown}
+            handleExpandIconClick={handleExpandIconClick}
+            expandableTooltip={expandableTooltip}
+          />
+          {expandable ? (
+            <ExpandableWrapper
+              onChange={handleTextareaChange}
+              onBlur={handleExpandableTextareaBlur}
+              ref={expandableTextAreaRef}
+              value={antdInputProps.value}
+              expanded={expanded}
+            >
+              {autoSizedComponent}
+            </ExpandableWrapper>
+          ) : (
+            autoSizedComponent
+          )}
+        </S.InputWrapper>
+      </FormField>
     </S.OuterWrapper>
   );
 };
