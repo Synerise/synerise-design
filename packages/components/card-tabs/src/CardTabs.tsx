@@ -37,6 +37,7 @@ const CardTabs = ({
     ...child.props,
     color: defaultColorsOrder[i % defaultColorsOrder.length],
     draggable: childrenCount > 1 && (Boolean(onChangeOrder) || child.props.draggable),
+    ...(child.props.keyId ? { key: child.props.keyId } : {}),
   }));
 
   const renderChildren = () => (
