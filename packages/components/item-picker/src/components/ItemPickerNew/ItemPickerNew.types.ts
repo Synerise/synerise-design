@@ -62,6 +62,11 @@ export type ItemLoaderConfig<ItemType extends BaseItemType> = {
   loadItems: (props: LoaderProps) => Promise<ItemLoaderResponse<ItemType>>;
 };
 
+export type ItemsConfig<ItemType extends BaseItemType> = {
+  limitPerSection?: number;
+  items: ItemType[];
+};
+
 type RedirectActionType = {
   actionType: 'redirect';
 };

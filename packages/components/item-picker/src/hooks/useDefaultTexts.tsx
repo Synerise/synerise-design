@@ -18,7 +18,7 @@ export const useDefaultTexts = (texts?: Partial<ItemPickerTexts>): ItemPickerTex
             ),
           }}
           id="DS.ITEM-PICKER-DROPDOWN.SEARCH-PLACEHOLDER"
-          defaultMessage="Search for object or type {shortCutKey} to show actions "
+          defaultMessage="Search for object or type {shortCutKey} to show actions"
         />
       ),
       yes: intl.formatMessage({ id: 'DS.ITEM-PICKER.YES-TEXT', defaultMessage: 'Yes' }),

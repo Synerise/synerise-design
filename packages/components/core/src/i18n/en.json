@@ -123,7 +123,7 @@
       "CLEAR-SEARCH-TOOLTIP": "Clear",
       "BACK-TOOLTIP": "Back",
       "SEARCH-EVERYWHERE": "Search all folders",
-      "SEARCH-PLACEHOLDER": "Search"
+      "SEARCH-PLACEHOLDER": "Search for object or type {shortCutKey} to show actions"
     },
     "ITEM-PICKER": {
       "CLEAR-CONFIRM": "Are you sure you want to remove this selection?",

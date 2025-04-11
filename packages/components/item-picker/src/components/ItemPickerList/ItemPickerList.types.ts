@@ -12,6 +12,7 @@ import type {
   ActionType,
   ContainerHeightType,
   BaseItemType,
+  ItemsConfig,
 } from '../ItemPickerNew/ItemPickerNew.types';
 
 type TextsAsReactNode =
@@ -61,7 +62,7 @@ export type ItemPickerListProps<
     scrollbarProps?: ScrollbarAdditionalProps;
     searchBarProps?: Omit<SearchBarProps, 'value' | 'onSearchChange' | 'placeholder'>;
     onRefresh?: () => void;
-    items: ItemType[] | ItemLoaderConfig<ItemType>;
+    items: ItemType[] | ItemsConfig<ItemType> | ItemLoaderConfig<ItemType>;
     isLoading?: boolean;
     isVisible?: boolean;
     sections?: SectionType extends BaseSectionType ? BaseSectionTypeWithFolders<SectionType>[] : undefined;

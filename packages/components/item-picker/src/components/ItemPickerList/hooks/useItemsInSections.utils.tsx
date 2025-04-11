@@ -150,6 +150,7 @@ export const getItems = <ItemType extends BaseItemType>({
   const sectionTitle = titlePath
     ? [getTitleItem(createTitleFromTitlePath(titlePath))]
     : getItemsSectionTitle(texts, showItemsSectionLabel, searchQuery);
+
   const results = items?.length
     ? [
         ...sectionTitle,
@@ -160,9 +161,11 @@ export const getItems = <ItemType extends BaseItemType>({
     : [];
 
   if (maxItems) {
-    const hasMore = results.splice(maxItems, Infinity, getShowMoreItem(texts.showMoreResultsLabel, showMoreOnClick));
-    if (!hasMore.length) {
-      results.pop();
+    const maxItemsWithTitle = maxItems + (sectionTitle.length ? 1 : 0);
+    const hasMore = results.splice(maxItemsWithTitle, Infinity);
+
+    if (hasMore.length) {
+      results.push(getShowMoreItem(texts.showMoreResultsLabel, showMoreOnClick));
     }
   }
   return results;

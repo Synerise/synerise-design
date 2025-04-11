@@ -29,16 +29,18 @@ export const useFlattenFolders = <SectionType extends BaseSectionType | undefine
   currentSection,
   sections,
 }: NestedFoldersProps<SectionType>) => {
-  const allItemFolders = useMemo(() => {
-    return sections?.flatMap(section => getFolders(section));
-  }, [sections]);
-
   const folderParentMap = useMemo(() => {
     return sections?.flatMap(section => (section.folders ? section.folders.flatMap(f => mapParent(f)) : []));
   }, [sections]);
+  const titlePathIndex = folderParentMap?.length ? 1 : 0;
+
+  const allItemFolders = useMemo(() => {
+    const mappedFolders = sections?.flatMap(section => getFolders(section));
+    return mappedFolders?.map(folder => ({ ...folder, titles: folder.titles?.slice(titlePathIndex) }));
+  }, [sections, titlePathIndex]);
 
   const childFolders = useMemo(() => {
-    return currentSection?.folders?.flatMap(folder => getFolders(folder, [currentSection?.text]));
+    return currentSection?.folders?.flatMap(folder => getFolders(folder));
   }, [currentSection]);
 
   const parentFolder = useMemo(() => {
@@ -46,10 +48,17 @@ export const useFlattenFolders = <SectionType extends BaseSectionType | undefine
   }, [currentSection, folderParentMap]);
 
   const currentTitlePath = allItemFolders?.find(folder => folder.id === currentSection?.id)?.titles;
+
+  const currentFolders = useMemo(() => {
+    return currentSection ? childFolders : allItemFolders;
+  }, [allItemFolders, childFolders, currentSection]);
+
   return {
     allFolders: allItemFolders,
     childFolders,
     parentFolder,
+    currentFolders,
+    currentSectionHasFolders: !!childFolders?.length,
     currentPath: currentTitlePath,
   };
 };

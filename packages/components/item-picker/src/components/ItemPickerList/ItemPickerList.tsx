@@ -207,7 +207,7 @@ export const ItemPickerList = <ItemType extends BaseItemType, SectionType extend
                 <Icon key="hint-arrow-left" size={18} color={theme.palette.white} component={<ArrowLeftM />} />,
               ],
             }}
-            label={currentPath ? currentPath.slice(1).join(' - ') : currentSection.text}
+            label={currentPath ? currentPath.join(' - ') : currentSection.text}
             onClick={goBack}
           />
         )}
@@ -306,6 +306,7 @@ export const ItemPickerList = <ItemType extends BaseItemType, SectionType extend
       }
     },
   });
+
   const containerHeightMode = !containerHeight || typeof containerHeight === 'object' ? 'preset' : containerHeight;
   return (
     <S.ListContainer

@@ -59,7 +59,7 @@ export const useListHeight = ({
     outerWrapperHeight = '100%';
     listWrapperHeight = measuredHeight - offsetSpace;
   } else if (heightConfig === 'fitContent' && calculatedContentHeight) {
-    listWrapperHeight = Math.min(calculatedContentHeight, outerHeight) + 2 * LIST_INNER_PADDING;
+    listWrapperHeight = calculatedContentHeight + 2 * LIST_INNER_PADDING;
     outerWrapperHeight = `${listWrapperHeight + offsetSpace}px`;
   } else {
     listWrapperHeight = outerHeight - offsetSpace;

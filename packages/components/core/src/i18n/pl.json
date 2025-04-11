@@ -108,6 +108,27 @@
       "DELETE-CONFIRMATION-NO": "Anuluj",
       "SEARCH-PLACEHOLDER": "Szukaj"
     },
+    "ITEM-PICKER-DROPDOWN": {
+      "NO-ITEMS": "Brak obiektów",
+      "NO-SEARCH-RESULTS": "Nie znaleziono wyników",
+      "NO-SEARCH-RESULTS-FOLDER": "Sprawdź wyszukiwaną frazę lub wyszukaj we wszystkich folderach",
+      "NO-ACTIONS": "Brak akcji",
+      "REFRESH": "Odśwież",
+      "RECENTS": "Ostatnie",
+      "ACTIONS": "Akcje",
+      "RESULTS": "Wyniki",
+      "ITEMS": "Obiekty",
+      "LOADING-MORE": "Pobieram więcej...",
+      "LOADING-ERROR": "Błąd pobierania wyników",
+      "LOADED-ALL": "Wszystkie wyniki",
+      "ERROR-TITLE": "Błąd pobierania wyników",
+      "ERROR-DESCRIPTION": "Spróbuj odświeżyć listę wyników",
+      "SHOW-MORE": "Pokaż więcej",
+      "CLEAR-SEARCH-TOOLTIP": "Wyczyść",
+      "BACK-TOOLTIP": "Wstecz",
+      "SEARCH-EVERYWHERE": "Przeszukaj wszystkie foldery",
+      "SEARCH-PLACEHOLDER": "Wyszukaj obiekt lub wpisz {shortCutKey} aby wylistować akcje"
+    },
     "ITEM-PICKER": {
       "CLEAR-CONFIRM": "Czy na pewno chcesz usunąć to zaznaczenie?",
       "YES-TEXT": "Tak",
