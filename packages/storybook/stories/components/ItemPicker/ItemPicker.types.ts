@@ -47,6 +47,12 @@ export type SectionType = {
   folders?: SectionType[];
 };
 
+export type NestedSectionType = {
+  id: string;
+  text: string;
+  folders?: NestedSectionType[];
+};
+
 
 export type StoryPropsOverlay = ItemPickerListProps<ItemType, SectionType>;
 export type StoryProps = ItemPickerPropsNew<ItemType, SectionType>;

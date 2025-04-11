@@ -77,7 +77,9 @@ const SearchBar = ({
       )}
       {!value && <S.PlaceholderWrapper>{placeholder}</S.PlaceholderWrapper>}
       <S.SearchBar
-        onChange={(event: FormEvent<HTMLInputElement>): void => onSearchChange(event.currentTarget.value)}
+        onChange={(event: FormEvent<HTMLInputElement>): void => {
+          onSearchChange(event.currentTarget.value);
+        }}
         onFocus={() => setFocus(true)}
         onBlur={() => setFocus(false)}
         value={value}

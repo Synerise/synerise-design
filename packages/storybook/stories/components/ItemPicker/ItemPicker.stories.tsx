@@ -1,6 +1,5 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Meta, StoryObj } from '@storybook/react';
-import { useArgs } from '@storybook/preview-api';
 
 import ItemPicker from '@synerise/ds-item-picker';
 import Button from '@synerise/ds-button';
@@ -14,15 +13,32 @@ import {
   centeredPaddedWrapper,
   controlFromOptionsArray,
   fixedWrapper300,
+  sideBySide,
   REACT_NODE_AS_STRING,
   STRING_CONTROL,
+  fixedWrapper800,
+  sleep,
 } from '../../utils';
 
 
-type Story = StoryObj<StoryProps>;
+export type Story = StoryObj<StoryProps>;
 
 const DEPRECATED = { control: false, description: 'deprecated', table: { category: 'Deprecated props' } };
 
+const ItemPickerStory = (args) => {
+  const [selectedItem, setSelectedItem] = useState(args.selectedItem)
+  const handleChange = item => {
+    setSelectedItem(item);
+    args.onChange?.(item);
+  };
+  const handleClear = () => {
+    setSelectedItem(undefined);
+    args.onClear?.();
+  };
+  return (
+    <div style={{ flex: '1 1 auto' }}><ItemPicker {...args} isNewVersion selectedItem={selectedItem} onChange={handleChange} onClear={handleClear} /></div>
+  );
+}
 export default {
   component: ItemPicker,
   title: 'Components/Pickers/ItemPicker/ItemPicker',
@@ -33,20 +49,9 @@ export default {
       exclude: ['dataSource'],
     },
   },
-
-  decorators: [fixedWrapper300, centeredPaddedWrapper],
   render: args => {
-    const [{ selectedItem }, updateArgs] = useArgs();
-    const handleChange = item => {
-      updateArgs({ selectedItem: item });
-      args.onChange?.(item);
-    };
-    const handleClear = () => {
-      updateArgs({ selectedItem: undefined });
-      args.onClear?.();
-    };
     return (
-      <ItemPicker {...args} isNewVersion selectedItem={selectedItem} onChange={handleChange} onClear={handleClear} />
+      <ItemPickerStory {...args} />
     );
   },
   argTypes: {
@@ -88,16 +93,31 @@ export default {
 } as Meta<StoryProps>;
 
 export const Default: Story = {
+  decorators: [fixedWrapper300, centeredPaddedWrapper],
   args: { showItemsSectionLabel: false },
 };
 export const RelativeHeight: Story = {
+  parameters: { layout: 'padded' },
+  decorators: [sideBySide, fixedWrapper800,],
+  render: ({ items, ...args }) => {
+    const itemsLong = [...items, ...items.slice(0, 5)];
+    return (
+      <>
+        <ItemPickerStory {...args} opened placeholder='5 items' items={items.slice(0, 5)} />
+        <ItemPickerStory {...args} opened placeholder='10 items' items={items.slice(0, 10)} />
+        <ItemPickerStory {...args} open placeholder={`${itemsLong.length} items`} items={itemsLong} />
+      </>
+    );
+  },
   args: {
     showItemsSectionLabel: false,
     items: LEGACY_FLAT_DATA_SOURCE as ItemType[],
     containerHeight: 'fitContent',
-  },
+    texts: { searchPlaceholder: 'Search' }
+  }
 };
 export const WithPlaceholder: Story = {
+  decorators: [fixedWrapper300, centeredPaddedWrapper],
   args: {
     placeholder: 'Set customer',
     placeholderIcon: ICONS['user'],
@@ -105,11 +125,13 @@ export const WithPlaceholder: Story = {
 };
 
 export const SelectedItem: Story = {
+  decorators: [fixedWrapper300, centeredPaddedWrapper],
   args: {
     selectedItem: FLAT_DATA_SOURCE[3],
   },
 };
 export const LargeTriggerSize: Story = {
+  decorators: [fixedWrapper300, centeredPaddedWrapper],
   args: {
     triggerProps: {
       size: 'large',
@@ -121,6 +143,7 @@ export const LargeTriggerSize: Story = {
 };
 
 export const CustomTrigger: Story = {
+  decorators: [fixedWrapper300, centeredPaddedWrapper],
   args: {
     renderTrigger: ({ selected, openDropdown, closeDropdown }) => (
       <Button onClick={openDropdown}>{selected?.text || 'Select'}</Button>

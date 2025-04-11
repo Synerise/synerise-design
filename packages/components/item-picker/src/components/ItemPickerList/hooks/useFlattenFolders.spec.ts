@@ -31,25 +31,25 @@ const EXPECTED_FLATTENNED_ALL = [
   {
     id: 'ATTRIBUTES-READY-TO-USE',
     text: 'Ready to use',
-    titles: ['Analytics', 'Attributes', 'Ready to use'],
-  },
-  {
-    id: 'ATTRIBUTES-CONFIGURABLE',
-    text: 'Configurable',
-    titles: ['Analytics', 'Attributes', 'Configurable'],
-  },
-  { id: 'FUNNELS', text: 'Funnels', titles: ['Analytics', 'Funnels'] },
-];
-const EXPECTED_FLATTENNED_CHILDREN = [
-  {
-    id: 'ATTRIBUTES-READY-TO-USE',
-    text: 'Ready to use',
     titles: ['Attributes', 'Ready to use'],
   },
   {
     id: 'ATTRIBUTES-CONFIGURABLE',
     text: 'Configurable',
     titles: ['Attributes', 'Configurable'],
+  },
+  { id: 'FUNNELS', text: 'Funnels', titles: ['Funnels'] },
+];
+const EXPECTED_FLATTENNED_CHILDREN = [
+  {
+    id: 'ATTRIBUTES-READY-TO-USE',
+    text: 'Ready to use',
+    titles: ['Ready to use'],
+  },
+  {
+    id: 'ATTRIBUTES-CONFIGURABLE',
+    text: 'Configurable',
+    titles: ['Configurable'],
   },
 ];
 const SECTION_LVL_1 = NESTED_FOLDERS[0].folders[0];
@@ -64,7 +64,7 @@ describe('useFlattenFolders', () => {
 
   it('Should return flattened child folders', () => {
     const { result } = renderHook(() => useFlattenFolders({ sections: NESTED_FOLDERS, currentSection: SECTION_LVL_1 }));
-    const { currentPath, childFolders } = result.current;
+    const { childFolders } = result.current;
     expect(childFolders).toEqual(EXPECTED_FLATTENNED_CHILDREN);
   });
 
@@ -73,6 +73,6 @@ describe('useFlattenFolders', () => {
     const { parentFolder, currentPath, childFolders } = result.current;
     expect(parentFolder).toEqual(SECTION_LVL_1);
     expect(childFolders).toBeFalsy();
-    expect(currentPath).toEqual(['Analytics', 'Attributes','Ready to use']);
+    expect(currentPath).toEqual(['Attributes','Ready to use']);
   });
 });

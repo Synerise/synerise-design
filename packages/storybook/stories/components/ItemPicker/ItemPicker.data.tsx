@@ -156,7 +156,7 @@ const ATTRIBUTES_READY_TO_USE = Array.from({ length: 300 }).map((_val, index) =>
   attributeItem(index, 'ready to use', 'ATTRIBUTES-READY-TO-USE')
 );
 const FUNNELS = Array.from({ length: 300 }).map((_val, index) => funnelItem(index));
-export const ITEMS_IN_SECTIONS: ItemType[] = [...SEGMENTATIONS.slice(0, 12), ...FUNNELS.slice(0, 22)];
+export const ITEMS_IN_SECTIONS: ItemType[] = [...SEGMENTATIONS.slice(0, 13), ...FUNNELS.slice(0, 22)];
 export const ITEMS_IN_SECTIONS_NESTED: ItemType[] = [...SEGMENTATIONS.slice(0, 12), ...FUNNELS.slice(0, 22), ...ATTRIBUTES_CONFIGURABLE.slice(0,32), ...ATTRIBUTES_READY_TO_USE.slice(0,28)];
 export const ITEMS_IN_SECTIONS_SHORT: ItemType[] = [...SEGMENTATIONS.slice(5, 8), ...FUNNELS.slice(2, 6)];
 export const RECENT: ItemType[] = [SEGMENTATIONS[4], SEGMENTATIONS[1], FUNNELS[3], FUNNELS[6], SEGMENTATIONS[11]];
@@ -254,13 +254,13 @@ const loadItemsWithError = (props: {
 
 export const ITEM_LOADER_CONFIG: ItemLoaderConfig<ItemType> = {
   limitPerPage: 50,
-  limitPerSection: 5,
+  limitPerSection: 4,
   loadItems,
 };
 
 export const ITEM_LOADER_CONFIG_ERRORS: ItemLoaderConfig<ItemType> = {
   limitPerPage: 50,
-  limitPerSection: 5,
+  limitPerSection: 4,
   loadItems: loadItemsWithError,
 };
 

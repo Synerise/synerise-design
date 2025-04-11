@@ -167,3 +167,18 @@ export const gappedColumnDecorator: Decorator = Story => {
     </div>
   );
 };
+
+export const sideBySide: Decorator = Story => {
+  return (
+    <div
+      style={{
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        gap: '15px',
+      }}
+    >
+      {Story()}
+    </div>
+  );
+};

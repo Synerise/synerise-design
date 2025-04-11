@@ -17,7 +17,7 @@ import {
   ITEM_SIZE,
   SECTION_HEADER_HEIGHT,
 } from '../constants';
-import { isItems, isWithOutSections } from '../utils';
+import { isItems, isItemsConfig, isWithOutSections } from '../utils';
 import {
   matchesSearchQuery,
   getSectionActionItems,
@@ -69,10 +69,15 @@ export const useItemsInSections = <ItemType extends BaseItemType, SectionType ex
 }: ItemsInSectionsType<ItemType, SectionType>) => {
   const [currentSection, setCurrentSection] = useState<SectionType | BaseSectionType | undefined>();
   const [previousSection, setPreviousSection] = useState<SectionType | BaseSectionType | undefined>();
-  const { childFolders, parentFolder, allFolders, currentPath } = useFlattenFolders({ currentSection, sections });
+
+  const { currentSectionHasFolders, currentFolders, parentFolder, currentPath } = useFlattenFolders({
+    currentSection,
+    sections,
+  });
+
   const loadedPage = useRef(FIRST_PAGE);
   const sectionTotals = useRef<Record<string, number>>({});
-  const isFixedItemsList = isItems(items);
+  const isFixedItemsList = isItems(items) || isItemsConfig(items);
   const [contentHeight, setContentHeight] = useState<number | undefined>();
   const [isInitialDataLoaded, setIsInitialDataLoaded] = useState(isFixedItemsList);
   const [isLoading, setIsLoading] = useState(false);
@@ -83,14 +88,14 @@ export const useItemsInSections = <ItemType extends BaseItemType, SectionType ex
 
   const [currentItems, setCurrentItems] = useState<ItemType[]>(() => {
     if (isFixedItemsList) {
+      const fixedItems = isItemsConfig(items) ? items.items : items;
       if (searchQuery) {
-        return items.filter(item => item.text && matchesSearchQuery(item.text, searchQuery));
+        return fixedItems.filter(item => item.text && matchesSearchQuery(item.text, searchQuery));
       }
-      return items;
+      return fixedItems;
     }
     return [];
   });
-
   const listActions = searchQuery === '/';
   const hasSearchQuery = !!searchQuery;
   const hasCurrentSection = !!currentSection;
@@ -101,35 +106,31 @@ export const useItemsInSections = <ItemType extends BaseItemType, SectionType ex
   );
 
   const itemsLimitPerSection = useMemo(() => {
-    if (isFixedItemsList) return searchQuery ? ITEMS_PER_SECTION : ITEMS_PER_SECTION_IN_SEARCH;
-    return items.limitPerSection || (searchQuery ? ITEMS_PER_SECTION : ITEMS_PER_SECTION_IN_SEARCH);
+    const fallbackLimit = searchQuery ? ITEMS_PER_SECTION_IN_SEARCH : ITEMS_PER_SECTION;
+    if (isFixedItemsList) {
+      return isItemsConfig(items) ? items.limitPerSection ?? fallbackLimit : fallbackLimit;
+    }
+    return items.limitPerSection ?? fallbackLimit;
   }, [isFixedItemsList, searchQuery, items]);
 
-  const currentSectionHasFolders = !!childFolders?.length;
-
-  const { listRenderingMode, titlePathIndex } = useMemo(() => {
+  const { listRenderingMode } = useMemo(() => {
     if (hasSectionsAndFolders) {
       if (hasCurrentSection) {
         if (!currentSectionHasFolders) {
-          return { listRenderingMode: RENDER_MODES.LIST_ITEMS, titlePathIndex: 1 };
+          return { listRenderingMode: RENDER_MODES.LIST_ITEMS };
         }
-        return { listRenderingMode: RENDER_MODES.LIST_ITEMS_IN_SECTIONS, titlePathIndex: 1 };
+        return { listRenderingMode: RENDER_MODES.LIST_ITEMS_IN_SECTIONS };
       }
 
       return {
         listRenderingMode: hasSearchQuery ? RENDER_MODES.LIST_ITEMS_IN_SECTIONS : RENDER_MODES.LIST_FOLDERS_IN_SECTIONS,
-        titlePathIndex: 1,
       };
     }
-    if (hasSections && (!hasCurrentSection || hasSearchQuery)) {
-      return { listRenderingMode: RENDER_MODES.LIST_ITEMS_IN_SECTIONS, titlePathIndex: 0 };
+    if (hasSections && !hasCurrentSection) {
+      return { listRenderingMode: RENDER_MODES.LIST_ITEMS_IN_SECTIONS };
     }
-    return { listRenderingMode: RENDER_MODES.LIST_ITEMS, titlePathIndex: 0 };
+    return { listRenderingMode: RENDER_MODES.LIST_ITEMS };
   }, [hasCurrentSection, hasSections, hasSearchQuery, hasSectionsAndFolders, currentSectionHasFolders]);
-
-  const flattenedFolders = useMemo(() => {
-    return currentSection ? childFolders : allFolders;
-  }, [allFolders, childFolders, currentSection]);
 
   const globalActionsLength = actions?.filter(action => !action.sectionId).length || 0;
   const recentsLength = recents?.length || 0;
@@ -292,12 +293,12 @@ export const useItemsInSections = <ItemType extends BaseItemType, SectionType ex
     const requests =
       listRenderingMode === RENDER_MODES.LIST_FOLDERS_IN_SECTIONS
         ? [Promise.resolve()]
-        : flattenedFolders?.map(folder => {
+        : currentFolders?.map(folder => {
             return items
               .loadItems({
                 page: FIRST_PAGE,
                 searchQuery,
-                limit: (items.limitPerSection || ITEMS_PER_SECTION) + +!!searchQuery,
+                limit: (items.limitPerSection || ITEMS_PER_SECTION) + 1,
                 sectionId: folder.id,
               })
               .then(({ items: sectionItems, total }) => {
@@ -319,30 +320,36 @@ export const useItemsInSections = <ItemType extends BaseItemType, SectionType ex
       setIsInitialDataLoaded(true);
       setIsLoadingError(true);
     }
-  }, [
-    currentSection,
-    isFixedItemsList,
-    flattenedFolders,
-    listRenderingMode,
-    isLoading,
-    items,
-    listActions,
-    searchQuery,
-  ]);
+  }, [currentSection, isFixedItemsList, currentFolders, listRenderingMode, isLoading, items, listActions, searchQuery]);
 
   useEffect(() => {
     if (listActions) {
       return;
     }
     if (isFixedItemsList) {
+      const allItems = isItemsConfig(items) ? items.items : items;
+      const itemsInSection =
+        currentSection && !currentSectionHasFolders
+          ? allItems.filter(item => item.sectionId === currentSection.id)
+          : allItems;
       if (searchQuery) {
-        const matchingItems = items.filter(item => item.text && matchesSearchQuery(item.text, searchQuery));
+        const matchingItems = itemsInSection.filter(item => item.text && matchesSearchQuery(item.text, searchQuery));
         setCurrentItems(matchingItems);
         return;
       }
-      setCurrentItems(items);
+      setCurrentItems(itemsInSection);
     }
-  }, [isFixedItemsList, isLoading, isLoadingError, currentItemsLength, items, listActions, searchQuery]);
+  }, [
+    isFixedItemsList,
+    isLoading,
+    currentSection,
+    isLoadingError,
+    currentSectionHasFolders,
+    currentItemsLength,
+    items,
+    listActions,
+    searchQuery,
+  ]);
 
   useEffect(() => {
     loadedPage.current = FIRST_PAGE;
@@ -415,13 +422,12 @@ export const useItemsInSections = <ItemType extends BaseItemType, SectionType ex
     const sectionActions = getSectionActionItems({ actions, texts, searchQuery, sectionId: currentSection?.id });
     const recentItems = getRecentItems({ recents, texts, isSelected, searchQuery, handleItemSelect });
     const folderItems = sections ? getFolderItems({ sections, handleSectionChange }) : [];
-    const listItems = flattenedFolders
-      ? flattenedFolders.flatMap(folder => {
+    const listItems = currentFolders
+      ? currentFolders.flatMap(folder => {
           const itemsInFolder = currentItems.filter(item => item.sectionId === folder.id);
-
           return getItems({
             items: itemsInFolder,
-            titlePath: folder.titles?.slice(titlePathIndex),
+            titlePath: folder.titles,
             texts,
             searchQuery,
             maxItems: itemsLimitPerSection,
@@ -462,17 +468,16 @@ export const useItemsInSections = <ItemType extends BaseItemType, SectionType ex
     currentItems,
     showItemsSectionLabel,
     sections,
-    flattenedFolders,
+    currentFolders,
     itemsLimitPerSection,
     listRenderingMode,
-    titlePathIndex,
     isSelected,
     handleItemSelect,
     handleSectionChange,
   ]);
 
   return {
-    currentSection,
+    currentSection: !listActions ? currentSection : undefined,
     currentPath,
     goBack,
     resetCurrentSection,

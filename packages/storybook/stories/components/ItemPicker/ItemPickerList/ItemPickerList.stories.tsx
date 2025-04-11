@@ -9,22 +9,20 @@ import {
   FLAT_DATA_SOURCE,
   SECTIONS,
   SECTIONS_WITH_FOLDERS,
-  ITEM_LOADER_CONFIG,
   ITEMS_IN_SECTIONS,
   RECENT,
   ACTIONS,
   ITEMS_IN_SECTIONS_SHORT,
-  ITEM_LOADER_CONFIG_ERRORS,
   SECTIONS_WITH_NESTED_FOLDERS,
   ITEMS_IN_SECTIONS_NESTED,
-} from './ItemPicker.data';
-import type { ItemType, StoryPropsOverlay } from './ItemPicker.types';
+} from '../ItemPicker.data';
+import type { ItemType, StoryPropsOverlay } from '../ItemPicker.types';
 
-import { BOOLEAN_CONTROL, centeredPaddedWrapper, fixedWrapper588, variableHeightDecorator } from '../../utils';
+import { BOOLEAN_CONTROL, centeredPaddedWrapper, fixedWrapper588 } from '../../../utils';
 
 export default {
   component: ItemPickerList,
-  title: 'Components/Pickers/ItemPicker/ItemPickerList',
+  title: 'Components/Pickers/ItemPicker/List With Predefined Items',
   tags: ['autodocs'],
   parameters: {
     layout: 'fullscreen',
@@ -35,7 +33,6 @@ export default {
   decorators: [fixedWrapper588, centeredPaddedWrapper],
   render: (args: StoryPropsOverlay) => {
     const [selected, setSelected] = useState<ItemType | undefined>(args.selectedItem);
-    const [visible, setVisible] = useState(false);
     const [loading, setLoading] = useState(false);
 
     const handleItemSelect = (item: ItemType) => {
@@ -50,12 +47,10 @@ export default {
     return (
       <ItemPickerList
         {...args}
-        isVisible={visible}
         selectedItem={selected}
         onItemSelect={handleItemSelect}
         onRefresh={handleRefresh}
         isLoading={loading || args.isLoading}
-        closeDropdown={() => setVisible(false)}
       />
     );
   },
@@ -67,6 +62,7 @@ export default {
   },
   args: {
     onItemSelect: fn(),
+    onSectionChange: fn(),
     items: FLAT_DATA_SOURCE.slice(0, 50),
     recents: RECENT,
     actions: ACTIONS,
@@ -76,8 +72,8 @@ export default {
   },
 } as Meta<StoryPropsOverlay>;
 
-export const WithFixedItems: StoryObj<StoryPropsOverlay> = {};
-export const FlatListRelativeHeight: StoryObj<StoryPropsOverlay> = {
+export const FlatItems: StoryObj<StoryPropsOverlay> = {};
+export const FlatItemsRelativeHeight: StoryObj<StoryPropsOverlay> = {
   args: {
     items: FLAT_DATA_SOURCE.slice(0, 5),
     recents: undefined,
@@ -86,8 +82,8 @@ export const FlatListRelativeHeight: StoryObj<StoryPropsOverlay> = {
   },
 };
 
-export const WithSections: StoryObj<StoryPropsOverlay> = {
-  ...WithFixedItems,
+export const Sections: StoryObj<StoryPropsOverlay> = {
+  ...FlatItems,
   args: {
     sections: SECTIONS,
     items: ITEMS_IN_SECTIONS,
@@ -95,7 +91,19 @@ export const WithSections: StoryObj<StoryPropsOverlay> = {
     actions: ACTIONS,
   },
 };
-export const WithFolders: StoryObj<StoryPropsOverlay> = {
+export const SectionsCustomLimit: StoryObj<StoryPropsOverlay> = {
+  ...FlatItems,
+  args: {
+    sections: SECTIONS,
+    items: {
+      limitPerSection: 5,
+      items: ITEMS_IN_SECTIONS
+    },
+    recents: RECENT,
+    actions: ACTIONS,
+  },
+};
+export const SectionsAndFolders: StoryObj<StoryPropsOverlay> = {
   args: {
     sections: SECTIONS_WITH_FOLDERS,
     items: ITEMS_IN_SECTIONS,
@@ -139,7 +147,6 @@ export const WithPickerTrigger: StoryObj<StoryPropsOverlay> = {
             onItemSelect={handleItemSelect}
             onRefresh={handleRefresh}
             isLoading={loading}
-            closeDropdown={() => setVisible(false)}
           />
         }
       >
@@ -167,7 +174,7 @@ export const WithPickerTrigger: StoryObj<StoryPropsOverlay> = {
     actions: ACTIONS,
   },
 };
-export const WithFoldersRelativeHeight: StoryObj<StoryPropsOverlay> = {
+export const SectionsAndFoldersRelativeHeight: StoryObj<StoryPropsOverlay> = {
   args: {
     sections: SECTIONS_WITH_FOLDERS,
     items: ITEMS_IN_SECTIONS_SHORT,
@@ -177,60 +184,10 @@ export const WithFoldersRelativeHeight: StoryObj<StoryPropsOverlay> = {
   },
 };
 
-export const WithInfiniteLoader: StoryObj<StoryPropsOverlay> = {
-  args: {
-    items: ITEM_LOADER_CONFIG,
-  },
-};
-
-export const WithInfiniteLoaderAndSections: StoryObj<StoryPropsOverlay> = {
-  args: {
-    items: ITEM_LOADER_CONFIG,
-    sections: SECTIONS,
-  },
-};
-
-export const WithInfiniteLoaderSectionsAndFolders: StoryObj<StoryPropsOverlay> = {
-  args: {
-    items: ITEM_LOADER_CONFIG,
-    sections: SECTIONS_WITH_FOLDERS,
-  },
-};
-
-export const WithInfiniteLoaderSectionsAndNestedFolders: StoryObj<StoryPropsOverlay> = {
-  args: {
-    items: ITEM_LOADER_CONFIG,
-    sections: SECTIONS_WITH_NESTED_FOLDERS,
-  },
-};
-
-export const WithFixedItemsSectionsAndNestedFolders: StoryObj<StoryPropsOverlay> = {
+export const SectionsAndNestedFolders: StoryObj<StoryPropsOverlay> = {
   args: {
     items: ITEMS_IN_SECTIONS_NESTED,
     sections: SECTIONS_WITH_NESTED_FOLDERS,
   },
 };
 
-
-export const FillContent: StoryObj<StoryPropsOverlay & { variableHeight: string}> = {
-  decorators: [variableHeightDecorator],
-  argTypes: {
-    variableHeight: { 
-      description: 'Adjust outer container height to preview `fillSpace` containerHeight prop value',
-      table: { category: 'Story options' },
-    }
-  },
-  args: {
-    variableHeight: '900px',
-    containerHeight: 'fillSpace',
-    items: ITEM_LOADER_CONFIG,
-    sections: SECTIONS_WITH_FOLDERS,
-  },
-};
-
-export const WithInfiniteLoaderRandomErrors: StoryObj<StoryPropsOverlay> = {
-  args: {
-    items: ITEM_LOADER_CONFIG_ERRORS,
-    sections: SECTIONS_WITH_FOLDERS,
-  },
-};
