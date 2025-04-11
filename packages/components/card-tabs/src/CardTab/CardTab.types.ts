@@ -65,6 +65,10 @@ export type CardTabProps<IdType extends string | number = number> = {
   itemData?: unknown;
   actionsAsDropdown?: boolean;
   renderSuffix?: (props: CardTabSuffixProps) => ReactNode;
+  /**
+   * @deprecated
+   */
+  keyId?: string;
 };
 
 export type CardTabSuffixProps = Omit<
