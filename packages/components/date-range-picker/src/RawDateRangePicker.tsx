@@ -1,4 +1,4 @@
-import React, { ReactNode, useState, useMemo, useCallback } from 'react';
+import React, { ReactNode, useState, useMemo, useCallback, useEffect } from 'react';
 import { omitBy, isUndefined } from 'lodash';
 import { useIntl } from 'react-intl';
 import fnsIsValid from 'date-fns/isValid';
@@ -108,6 +108,10 @@ export const RawDateRangePicker = ({
 
   const intl = useIntl();
   const { timeZone } = intl;
+
+  useEffect(() => {
+    setLocalValue(normalizeRange(value));
+  }, [value]);
 
   const allTexts = useMemo(() => {
     return getDefaultTexts(intl, false, texts);

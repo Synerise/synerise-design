@@ -119,6 +119,7 @@ const RangePickerInput = ({
           onFocus={onFocus}
           onClick={!disabled ? onClick : undefined}
           onBlur={onBlur}
+          data-testid="date-range-picker-input-wrapper"
           onMouseEnter={handleIconMouseEnter}
           onMouseLeave={handleIconMouseLeave}
         >
@@ -134,7 +135,7 @@ const RangePickerInput = ({
             {!readOnly && !disabled && hovered && hasValue && allowClear ? (
               <Tooltip title={texts?.clear}>
                 <S.ClearIconWrapper>
-                  <Icon component={<Close3S />} onClick={handleClear} />
+                  <Icon component={<Close3S />} data-testid="date-range-picker-input-clear" onClick={handleClear} />
                 </S.ClearIconWrapper>
               </Tooltip>
             ) : (

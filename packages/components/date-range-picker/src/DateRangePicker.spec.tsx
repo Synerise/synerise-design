@@ -1,7 +1,7 @@
 import React from 'react';
 import type { PopoverProps } from 'antd/lib/popover';
 import { renderWithLocalesLoaded, renderWithProvider, sleep } from '@synerise/ds-utils/dist/testing';
-import { waitFor, within, screen, act } from '@testing-library/react';
+import { waitFor, within, screen, act, fireEvent } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import {
   getDefaultCustomRange,
@@ -699,7 +699,75 @@ describe('DateRangePicker', () => {
   it.todo('future is not preserved when switching from relative date to lifetime');
   it.todo('can click on select-time when lifetime');
   // it.skip('switch a whole month view at least to the month of the selected date (e.g. when last 3 months)') // TODO
-  it.todo('can clear both relative and absolute dates');
+  it('can clear both absolute date', async () => {
+    const onApply = jest.fn();
+    const onValueChange = jest.fn();
+    renderWithProvider(
+      // @ts-ignore
+      <DateRangePicker
+        onApply={onApply}
+        onValueChange={onValueChange}
+        forceAbsolute
+        showRelativePicker
+        texts={texts}
+        relativeModes={RELATIVE_MODES as RelativeMode[]}
+      />
+    );
+    const element = screen.getByText(texts.startDatePlaceholder);
+    userEvent.click(element);
+    await waitFor(() => expect(screen.getByTestId('date-range-picker-container')).toBeInTheDocument())
+    const days = await screen.findAllByRole('gridcell');
+    userEvent.click(days[10]);
+    await waitFor(() => expect(onValueChange).toHaveBeenCalled())
+    userEvent.click(days[14]);
+    await waitFor(() => expect(onValueChange).toHaveBeenCalled())
+    await waitFor(() => expect(screen.getByTestId('date-range-picker-apply-button')).not.toBeDisabled())
+    userEvent.click(screen.getByTestId('date-range-picker-apply-button'));
+    await waitFor(() => expect(onApply).toHaveBeenCalled())
+
+    fireEvent.mouseEnter(screen.getByTestId('date-range-picker-input-wrapper'));
+    await waitFor(() => expect(screen.getByTestId('date-range-picker-input-clear')).toBeInTheDocument());
+    userEvent.click(screen.getByTestId('date-range-picker-input-clear'));
+    await waitFor(() => expect(onApply).toHaveBeenCalledWith(undefined));
+    await waitFor(() => expect(screen.getByText(texts.startDatePlaceholder)).toBeInTheDocument());
+    userEvent.click(screen.getByText(texts.startDatePlaceholder));
+    await waitFor(() => expect(screen.getByTestId('date-range-picker-container')).toBeVisible());
+    await waitFor(() => expect(screen.getByTestId('date-range-picker-apply-button')).toBeDisabled())
+  });
+  it('can clear both relative date', async () => {
+    const onApply = jest.fn();
+    const onValueChange = jest.fn();
+    renderWithProvider(
+      // @ts-ignore
+      <DateRangePicker
+        onApply={onApply}
+        onValueChange={onValueChange}
+        forceAbsolute
+        showRelativePicker
+        texts={texts}
+        relativeModes={RELATIVE_MODES as RelativeMode[]}
+      />
+    );
+    const element = screen.getByText(texts.startDatePlaceholder);
+    userEvent.click(element);
+    await waitFor(() => expect(screen.getByTestId('date-range-picker-container')).toBeInTheDocument())
+
+    userEvent.click(screen.getByText('tomorrow'));
+    await waitFor(() => expect(onValueChange).toHaveBeenCalled())
+
+    await waitFor(() => expect(screen.getByTestId('date-range-picker-apply-button')).not.toBeDisabled())
+    userEvent.click(screen.getByTestId('date-range-picker-apply-button'));
+    await waitFor(() => expect(onApply).toHaveBeenCalled())
+
+    fireEvent.mouseEnter(screen.getByTestId('date-range-picker-input-wrapper'));
+    await waitFor(() => expect(screen.getByTestId('date-range-picker-input-clear')).toBeInTheDocument());
+    userEvent.click(screen.getByTestId('date-range-picker-input-clear'));
+    await waitFor(() => expect(onApply).toHaveBeenCalledWith(undefined));
+    await waitFor(() => expect(screen.getByText(texts.startDatePlaceholder)).toBeInTheDocument());
+    userEvent.click(screen.getByText(texts.startDatePlaceholder));
+    await waitFor(() => expect(screen.getByTestId('date-range-picker-container')).toBeVisible());
+    await waitFor(() => expect(screen.getByTestId('date-range-picker-apply-button')).toBeDisabled())
+  });
   it.todo(
     'LAST_MONTH (normalizeRange) returns proper range' /* () => {
     const date = RELATIVE_PRESETS.find(e => e.key === 'LAST_MONTH')
