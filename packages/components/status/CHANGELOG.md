@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.2.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-status@1.1.3...@synerise/ds-status@1.2.0) (2025-04-16)
+
+
+### Features
+
+* **status:** allow htmlattributes props ([be0c2c4](https://github.com/Synerise/synerise-design/commit/be0c2c4d3048ae03149d73918fd3b0a5bed5251a))
+
+
+
+
+
 ## [1.1.3](https://github.com/Synerise/synerise-design/compare/@synerise/ds-status@1.1.2...@synerise/ds-status@1.1.3) (2025-04-02)
 
 **Note:** Version bump only for package @synerise/ds-status

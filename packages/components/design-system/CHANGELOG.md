@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.3.0](https://github.com/Synerise/synerise-design/compare/@synerise/design-system@1.2.4...@synerise/design-system@1.3.0) (2025-04-16)
+
+
+### Features
+
+* **icon-picker:** add font-awesome icons ([410af61](https://github.com/Synerise/synerise-design/commit/410af613d20ac65ad244cbaa823abdc9fb3dfaf2))
+
+
+
+
+
 ## [1.2.4](https://github.com/Synerise/synerise-design/compare/@synerise/design-system@1.2.3...@synerise/design-system@1.2.4) (2025-04-08)
 
 **Note:** Version bump only for package @synerise/design-system

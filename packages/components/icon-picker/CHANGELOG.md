@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.2.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-icon-picker@1.1.2...@synerise/ds-icon-picker@1.2.0) (2025-04-16)
+
+
+### Features
+
+* **icon-picker:** add font-awesome icons ([410af61](https://github.com/Synerise/synerise-design/commit/410af613d20ac65ad244cbaa823abdc9fb3dfaf2))
+
+
+
+
+
 ## [1.1.2](https://github.com/Synerise/synerise-design/compare/@synerise/ds-icon-picker@1.1.1...@synerise/ds-icon-picker@1.1.2) (2025-04-02)
 
 **Note:** Version bump only for package @synerise/ds-icon-picker

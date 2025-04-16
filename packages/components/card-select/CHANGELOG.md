@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.1.4](https://github.com/Synerise/synerise-design/compare/@synerise/ds-card-select@1.1.3...@synerise/ds-card-select@1.1.4) (2025-04-16)
+
+**Note:** Version bump only for package @synerise/ds-card-select
+
+
+
+
+
 ## [1.1.3](https://github.com/Synerise/synerise-design/compare/@synerise/ds-card-select@1.1.2...@synerise/ds-card-select@1.1.3) (2025-04-02)
 
 **Note:** Version bump only for package @synerise/ds-card-select

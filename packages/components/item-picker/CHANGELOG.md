@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.1.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-item-picker@1.0.7...@synerise/ds-item-picker@1.1.0) (2025-04-16)
+
+
+### Features
+
+* **form-field:** add form-field component ([7f6b191](https://github.com/Synerise/synerise-design/commit/7f6b191132a3b0d694c21fb4d649f4deea6acb89))
+* **item-picker:** custom limit per section ([d45ec39](https://github.com/Synerise/synerise-design/commit/d45ec3951828811a03ca89bdbb3f39c91a120e22))
+
+
+
+
+
 ## [1.0.7](https://github.com/Synerise/synerise-design/compare/@synerise/ds-item-picker@1.0.6...@synerise/ds-item-picker@1.0.7) (2025-04-08)
 
 **Note:** Version bump only for package @synerise/ds-item-picker

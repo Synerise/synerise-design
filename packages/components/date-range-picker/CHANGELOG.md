@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.2.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-date-range-picker@1.1.5...@synerise/ds-date-range-picker@1.2.0) (2025-04-16)
+
+
+### Bug Fixes
+
+* **date-range-picker:** fix clearing local value ([dc04ce0](https://github.com/Synerise/synerise-design/commit/dc04ce02685cf9fb15b22482f86a8a6065911dc1))
+
+
+### Features
+
+* **form-field:** add form-field component ([7f6b191](https://github.com/Synerise/synerise-design/commit/7f6b191132a3b0d694c21fb4d649f4deea6acb89))
+
+
+
+
+
 ## [1.1.5](https://github.com/Synerise/synerise-design/compare/@synerise/ds-date-range-picker@1.1.4...@synerise/ds-date-range-picker@1.1.5) (2025-04-04)
 
 **Note:** Version bump only for package @synerise/ds-date-range-picker

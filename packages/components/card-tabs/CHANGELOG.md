@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.2.4](https://github.com/Synerise/synerise-design/compare/@synerise/ds-card-tabs@1.2.3...@synerise/ds-card-tabs@1.2.4) (2025-04-16)
+
+
+### Bug Fixes
+
+* add keyId as key into CardTab ([9a1d626](https://github.com/Synerise/synerise-design/commit/9a1d6265496288a71e43163c4299f41200afe450))
+
+
+
+
+
 ## [1.2.3](https://github.com/Synerise/synerise-design/compare/@synerise/ds-card-tabs@1.2.2...@synerise/ds-card-tabs@1.2.3) (2025-04-04)
 
 **Note:** Version bump only for package @synerise/ds-card-tabs

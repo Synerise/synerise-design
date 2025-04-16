@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.1.0](https://github.com/synerise/synerise-design/compare/@synerise/ds-core@1.0.1...@synerise/ds-core@1.1.0) (2025-04-16)
+
+
+### Features
+
+* **item-picker:** custom limit per section ([d45ec39](https://github.com/synerise/synerise-design/commit/d45ec3951828811a03ca89bdbb3f39c91a120e22))
+
+
+
+
+
 ## [1.0.1](https://github.com/synerise/synerise-design/compare/@synerise/ds-core@1.0.0...@synerise/ds-core@1.0.1) (2025-03-18)
 
 **Note:** Version bump only for package @synerise/ds-core
