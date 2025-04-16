@@ -1,38 +1,63 @@
-import React, { useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import Dropdown from '@synerise/ds-dropdown';
 import { useOnClickOutside } from '@synerise/ds-utils';
-import * as S from './IconPicker.styles';
-import Overlay from './Overlay/Overlay';
-import { FilterElement, IconPickerProps } from './IconPicker.types';
 
-const IconPicker = ({ button, data, onSelect, trigger, placeholder, noResultMsg }: IconPickerProps) => {
-  const [filteredData, setFilteredData] = useState(data);
-  const [value, setValue] = useState('');
+import * as S from './IconPicker.styles';
+import Overlay from './components/Overlay/Overlay';
+import { IconPickerProps, SourceType, ValueTypeForSource } from './IconPicker.types';
+import { useIconSourceLoader } from './hooks/useIconSourceLoader';
+import { matchesSearchQuery } from './utils/matchesSearchQuery';
+
+const IconPicker = <IconSource extends SourceType>({
+  button,
+  data,
+  onSelect,
+  trigger,
+  placeholder,
+  noResultMsg,
+}: IconPickerProps<IconSource>) => {
+  const items = useIconSourceLoader<IconSource>(data);
+
+  const [filteredItems, setFilteredItems] = useState(items);
+  const [searchQuery, setSearchQuery] = useState('');
   const [isOpen, setOpen] = useState(false);
   const [focus, setFocus] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
 
-  const filter = (searchTerm: string) => {
-    setValue(searchTerm);
-    const final = data.filter((item: FilterElement): boolean => {
-      return item.category.toLowerCase().includes(searchTerm.toLowerCase());
-    });
-
-    setFilteredData(final);
-  };
+  useEffect(() => {
+    if (searchQuery) {
+      const groups = items
+        .map(group => {
+          const matching = group.items.filter(icon => icon.keywords && matchesSearchQuery(icon.keywords, searchQuery));
+          return {
+            ...group,
+            items: matching,
+          };
+        })
+        .filter(group => group.items.length);
+      setFilteredItems(groups);
+      return;
+    }
+    setFilteredItems(items);
+  }, [searchQuery, items]);
 
   useOnClickOutside(ref, () => {
     setOpen(false);
+    setSearchQuery('');
   });
 
   const onClearInput = () => {
-    setValue('');
-    setFilteredData(data);
+    setSearchQuery('');
   };
 
   const toggleOpen = (newState: boolean) => {
     setOpen(newState);
     setFocus(newState);
+  };
+
+  const handleSelect = (value: ValueTypeForSource<IconSource>) => {
+    toggleOpen(false);
+    onSelect(value);
   };
 
   return (
@@ -44,15 +69,12 @@ const IconPicker = ({ button, data, onSelect, trigger, placeholder, noResultMsg 
       overlay={
         <S.Overlay ref={ref}>
           <Overlay
-            value={value}
-            onSearchChange={(val: string) => filter(val)}
+            value={searchQuery}
+            onSearchChange={setSearchQuery}
             onClearInput={onClearInput}
             placeholder={placeholder}
-            data={filteredData}
-            onSelect={val => {
-              toggleOpen(false);
-              onSelect(val);
-            }}
+            data={filteredItems}
+            onSelect={handleSelect}
             focus={focus}
             noResultMsg={noResultMsg}
           />

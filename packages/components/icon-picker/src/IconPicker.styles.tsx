@@ -1,3 +1,4 @@
+import { FixedSizeList } from 'react-window';
 import styled from 'styled-components';
 
 export const List = styled.div`
@@ -5,18 +6,24 @@ export const List = styled.div`
   flex-wrap: wrap;
 `;
 
-export const ListItem = styled.div`
-  width: 16.666%;
+export const ListItem = styled.div<{ itemsPerRow: number }>`
   display: flex;
+  width: ${props => 100 / props.itemsPerRow}%;
+  align-items: center;
   justify-content: center;
-  margin-bottom: 8px;
-
   button {
     transition-duration: 0s;
   }
 `;
 export const OverlayWrapper = styled.div`
   padding: 6px;
+`;
+
+export const VirtualList = styled(FixedSizeList)<{ listHeight: number }>`
+  max-height: ${props => props.listHeight}px;
+  height: auto !important;
+  overflow-x: unset !important;
+  overflow-y: unset !important;
 `;
 
 export const Overlay = styled.span`
@@ -50,13 +57,16 @@ export const Overlay = styled.span`
   }
 `;
 
-export const Title = styled.div`
+export const Title = styled.div<{ elementSize: string }>`
   font-size: 10px;
   line-height: 1.6;
   font-weight: 500;
   text-transform: uppercase;
-  color: ${(props): string => props.theme.palette['grey-500']};
-  padding: 0 4px 8px 4px;
+  color: ${props => props.theme.palette['grey-500']};
+  padding: 0 12px;
+  flex-basis: 100%;
+  height: ${props => props.elementSize};
+  line-height: ${props => props.elementSize};
 `;
 
 export const FontIcon = styled.div`
@@ -110,4 +120,15 @@ export const Content = styled.div`
     line-height: 1.43;
     text-align: center;
   }
+`;
+
+export const ListRow = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  align-items: center;
+  box-sizing: border-box;
+  width: 100%;
+  height: 100%;
+  max-width: 100%;
 `;
