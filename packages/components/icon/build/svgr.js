@@ -62,6 +62,9 @@ const buildIconsSet = (path, libDir, indexDistFile) => {
             plugins: ['@svgr/plugin-svgo', '@svgr/plugin-jsx', '@svgr/plugin-prettier'],
             svgoConfig: {
               "plugins": [{
+                addAttributesToSVGElement: {
+                  attributes: [`data-testid="ds-icon-${componentClassName}"`]
+                },
                 addClassesToSVGElement: {
                   className: componentClassName,
                 },

@@ -1,2 +1,11 @@
 export { default } from './IconPicker';
-export type { FilterElement, FilterItem, IconPickerProps } from './IconPicker.types';
+export type {
+  FilterElement,
+  FilterItem,
+  DataSource,
+  IconPickerProps,
+  SourceType,
+  FASource,
+  FAValue,
+  DSSource,
+} from './IconPicker.types';

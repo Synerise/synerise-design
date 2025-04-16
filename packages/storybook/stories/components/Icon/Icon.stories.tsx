@@ -1,41 +1,27 @@
 import React from 'react';
 import { Meta, StoryObj } from '@storybook/react';
-import Icon from '@synerise/ds-icon';
-import type { IconProps } from '@synerise/ds-icon';
-import * as allIcons from '@synerise/ds-icon/dist/icons';
-import * as allIconsL from '@synerise/ds-icon/dist/icons/L';
-import * as allIconsXL from '@synerise/ds-icon/dist/icons/XL';
-import * as allIconsAdditional from '@synerise/ds-icon/dist/icons/additional';
-import * as allColorIcons from '@synerise/ds-icon/dist/icons/colorIcons';
+import Icon, { medium, large, xLarge, additional, color } from '@synerise/ds-icon';
+import type { BaseIconProps } from '@synerise/ds-icon';
 
 import { IconWrapper, IconsWrapper } from './Icon.stories.styles';
-
 import { CLASSNAME_ARG_CONTROL, reactNodeAsSelect, STYLE_ARG_CONTROL } from '../../utils';
 
-const iconNames = Object.keys(allIcons);
+const iconNames = Object.keys(medium);
 const iconOptions = iconNames.reduce((icons, current) => ({ ...icons, [current]: current }), {});
+
+type IconStoryProps = Omit<BaseIconProps, 'component'> & { component: string }
 
 export default {
   title: 'Components/Icon',
   tags: ['autodocs'],
   component: Icon,
-} as Meta<IconProps>;
-
-const renderSingleIcon = ({ component, color, size }: IconProps) => (
-  <IconWrapper noBorder>
-    <Icon component={component} color={color} size={size} />
-  </IconWrapper>
-);
-
-export const SingleIcon: StoryObj<IconProps> = {
-  render: (args) => {
-    const IconComponent = allIcons[args.component];
-    const ComponentWithStroke = () => <IconComponent style={{ stroke: args.stroke ? "currentColor" : "none" }} />;
-    return renderSingleIcon({
-      component: <ComponentWithStroke />,
-      color: args.color,
-      size: args.size
-    });
+  render: ({ component, color, size, stroke }) => {
+    const IconComponent = medium[component];
+    return (
+      <IconWrapper noBorder>
+        <Icon component={<IconComponent style={{ stroke: stroke ? "currentColor" : "none" }} />} color={color} size={size} />
+      </IconWrapper>
+    )
   },
   args: {
     size: 40,
@@ -55,6 +41,34 @@ export const SingleIcon: StoryObj<IconProps> = {
       ),
     },
   },
+} as Meta<IconStoryProps>;
+
+export const SingleIcon: StoryObj<typeof Icon> = {};
+
+export const ListIcon: StoryObj<typeof Icon> = {
+  render: (args) => renderIcons(medium, args.color, 24),
+  args: {
+    color: '',
+  },
+  argTypes: {
+    color: { control: 'color' },
+  },
+};
+
+export const AdditionalIcon: StoryObj<typeof Icon> = {
+  render: () => renderIcons(additional, '', 48),
+};
+
+export const AdditionalL: StoryObj<typeof Icon> = {
+  render: () => renderIcons(large, '', 48),
+};
+
+export const AdditionalXL: StoryObj<typeof Icon> = {
+  render: () => renderIcons(xLarge, '', 96),
+};
+
+export const AdditionalColor: StoryObj<typeof Icon> = {
+  render: () => renderIcons(color, '', 48),
 };
 
 
@@ -69,29 +83,3 @@ const renderIcons = (icons: Record<string, React.ComponentType>, color = '', siz
     ))}
   </IconsWrapper>
 );
-
-export const ListIcon: StoryObj<IconProps> = {
-  render: (args) => renderIcons(allIcons, args.color, 24),
-  args: {
-    color: '',
-  },
-  argTypes: {
-    color: { control: 'color' },
-  },
-};
-
-export const AdditionalIcon: StoryObj<IconProps> = {
-  render: (args) => renderIcons(allIconsAdditional, '', 48),
-};
-
-export const AdditionalL: StoryObj<IconProps> = {
-  render: (args) => renderIcons(allIconsL, '', 48),
-};
-
-export const AdditionalXL: StoryObj<IconProps> = {
-  render: (args) => renderIcons(allIconsXL, '', 96),
-};
-
-export const AdditionalColor: StoryObj<IconProps> = {
-  render: (args) => renderIcons(allColorIcons, '', 48),
-};

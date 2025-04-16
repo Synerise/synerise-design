@@ -1,14 +1,20 @@
 import React, { ReactNode, useState } from 'react';
-import { Meta, StoryObj } from '@storybook/react';
-
-import IconPicker, { IconPickerProps } from '@synerise/ds-icon-picker';
-
-import { centeredPaddedWrapper, fixedWrapper300 } from '../../utils';
+import type { Meta, StoryObj } from '@storybook/react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import IconPicker from '@synerise/ds-icon-picker';
+import { fn } from '@storybook/test';
 import Button from '@synerise/ds-button';
 import Icon, { Add3M } from '@synerise/ds-icon';
-import { PICKER_DATA } from './IconPicker.data';
 
-type Story = StoryObj<IconPickerProps>;
+import { centeredPaddedWrapper, fixedWrapper300, REACT_NODE_AS_STRING, STRING_CONTROL } from '../../utils';
+import { PICKER_DATA } from './IconPicker.data';
+import type { DSSource, FASource, DataSource, SourceType, FAValue, IconPickerProps } from '@synerise/ds-icon-picker';
+
+type Story<Source extends SourceType = DataSource[]> = StoryObj<IconPickerProps<Source>>;
+
+const isFAValue = (icon: FAValue | ReactNode): icon is FAValue => {
+  return Array.isArray(icon)
+}
 
 export default {
   component: IconPicker,
@@ -24,28 +30,55 @@ export default {
       setIcon(selectedIcon);
       args.onSelect?.(selectedIcon);
     };
+
+    const renderSelected = () => {
+      if (args.data === 'font-awesome' && isFAValue(icon)) {
+        return <FontAwesomeIcon icon={icon} />
+      }
+      return icon
+    }
+
     return (
       <>
-        <>Selected: {icon}</>
+        {icon && (<div>Selected: {renderSelected()}</div>)}
+
         <IconPicker
           {...args}
           button={
             <Button type="primary" mode="icon-label">
               <Icon component={<Add3M />} />
-              Add icon
+              Select icon
             </Button>
           }
-          data={PICKER_DATA}
-          placeholder={'search'}
           onSelect={handleSelect}
-          trigger={['click']}
-          noResultMsg={'No results'}
         />
       </>
     );
   },
-  argTypes: {},
-  args: {},
-} as Meta<IconPickerProps>;
+  argTypes: {
+    placeholder: STRING_CONTROL,
+    noResultMsg: REACT_NODE_AS_STRING,
+    data: {
+      control: false
+    }
+  },
+  args: {
+    placeholder: 'search',
+    trigger: ['click'],
+    noResultMsg: 'No results',
+    data: PICKER_DATA,
+    onSelect: fn()
+  },
+} as Meta<IconPickerProps<SourceType>>;
 
 export const Default: Story = {};
+export const DesignSystemIcons: Story<DSSource> = {
+  args: {
+    data: 'design-system'
+  }
+};
+export const FontAwesomeIcons: Story<FASource> = {
+  args: {
+    data: 'font-awesome'
+  }
+};
