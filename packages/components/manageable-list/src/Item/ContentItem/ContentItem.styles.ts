@@ -23,7 +23,7 @@ export const AdditionalSuffix = styled.div`
 export const DraggerWrapper = styled.div<{
   disabled: boolean;
 }>`
-  cursor: pointer;
+  cursor: grab;
   display: flex;
   opacity: ${({ disabled }) => (disabled ? '0.4' : '1')};
 `;

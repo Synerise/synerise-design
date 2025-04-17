@@ -370,3 +370,9 @@ export const FILTER_ITEMS: FilterItemType[] = [
     created: '2020-02-12T08:50:05+00:00',
   },
 ];
+
+
+export const BLANK_DATA = [{ name: 'test', id: '1' }, { name: 'test 2', id: '2' }]
+export const renderBlankItem = (item: typeof BLANK_DATA[number]) => {
+  return <div style={{ display: 'flex', gap: '10px' }}><Input resetMargin value={item.name} /><Input resetMargin /></div>
+}

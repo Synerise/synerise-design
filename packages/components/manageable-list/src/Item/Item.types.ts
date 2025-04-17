@@ -24,6 +24,12 @@ export type Props = {
   additionalActions?: AdditionalAction[];
 };
 
+export type BlankItemBaseProps<T extends object = {}> = T & {
+  id: string | number;
+  canRemove?: boolean;
+  canDuplicate?: boolean;
+};
+
 export type ItemProps<T extends object = {}> = T & {
   id: ReactText;
   canUpdate?: boolean;

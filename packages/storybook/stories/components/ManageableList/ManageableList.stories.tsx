@@ -20,8 +20,10 @@ import {
   STRING_CONTROL,
   STYLE_ARG_CONTROL,
   fixedWrapper300,
+  fixedWrapper588,
 } from '../../utils';
 import {
+  BLANK_DATA,
   ContentItemType,
   CONTENT_ITEMS,
   CONTENT_ITEMS_AUTOMATION,
@@ -31,8 +33,10 @@ import {
   FILTER_ITEMS,
   ITEMS,
   ItemType,
+  renderBlankItem,
   TEXTS,
 } from './ManageableList.data';
+import { Input } from '@synerise/ds-input';
 
 export default {
   title: 'Components/ManageableList',
@@ -68,6 +72,10 @@ export default {
       args.onItemSelect?.(params);
       setSelectedId(id as string);
     };
+    const handleChangeOrder = args.onChangeOrder ? (newOrder) => {
+      setItems(newOrder);
+      args.onChangeOrder?.(newOrder);
+    } : undefined
     return (
       <ManageableList
         {...args}
@@ -75,6 +83,7 @@ export default {
         onItemAdd={args.onItemAdd && handleItemAdd}
         onItemSelect={handleItemSelect}
         selectedItemId={selectedId}
+        onChangeOrder={handleChangeOrder}
       />
     );
   },
@@ -137,6 +146,30 @@ export const ContentItemsList: StoryObj<ManageableListProps<ContentItemType>> = 
     visibleItemsLimit: CONTENT_ITEMS.length,
     items: CONTENT_ITEMS,
     type: 'content',
+  },
+};
+
+export const BlankItemsList: StoryObj<ManageableListProps<ContentItemType>> = {
+  decorators: [fixedWrapper588, greyBackgroundDecorator],
+  args: {
+    visibleItemsLimit: CONTENT_ITEMS.length,
+    items: [{ name: 'test', id: '1' }, { name: 'test 2', id: '2' }],
+    renderItem: (item) => <div>{item.name}</div>,
+    type: 'blank',
+  },
+};
+
+
+export const BlankItemsListSortable: StoryObj<ManageableListProps<ContentItemType>> = {
+  decorators: [fixedWrapper588, greyBackgroundDecorator],
+  args: {
+    visibleItemsLimit: CONTENT_ITEMS.length,
+    items: BLANK_DATA,
+    renderItem: renderBlankItem,
+    type: 'blank',
+    onChangeOrder: fn(),
+    onItemAdd: fn(),
+    onItemRemove: fn(),
   },
 };
 

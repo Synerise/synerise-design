@@ -5,9 +5,11 @@ import * as S from './ManageableList.styles';
 import Item from './Item/Item';
 import AddItemWithName from './AddItemWithName/AddItemWithName';
 import AddItem from './AddItem/AddItem';
-import { ManageableListProps, ListType } from './ManageableList.types';
-import { ItemProps } from './Item/Item.types';
+import { ManageableListProps, ListType, BlankManageableListProps } from './ManageableList.types';
+import { BlankItemBaseProps, ItemProps } from './Item/Item.types';
 import { useTexts } from './hooks/useTexts';
+import BlankItem from './Item/BlankItem/BlankItem';
+import AddBlankItem from './AddBlankItem/AddBlankItem';
 
 const SORTABLE_CONFIG = {
   ghostClass: 'sortable-list-ghost-element',
@@ -24,40 +26,48 @@ const SORTABLE_CONFIG = {
   },
 };
 const INITIALLY_VISIBLE_COUNT = 5;
-const ManageableListComponent = <T extends object>({
-  className,
-  onItemAdd,
-  onItemSelect,
-  onItemDuplicate,
-  onItemRemove,
-  onItemEdit,
-  onChangeOrder,
-  items,
-  maxToShowItems,
-  visibleItemsLimit,
-  loading,
-  type = ListType.DEFAULT,
-  addButtonDisabled = false,
-  changeOrderDisabled = false,
-  greyBackground = false,
-  placeholder,
-  selectedItemId,
-  searchQuery,
-  expanderDisabled,
-  onExpand,
-  expandedIds,
-  texts,
-  changeOrderByButtons = false,
-  additionalActions,
-  style,
-  renderCustomToggleButton,
-}: ManageableListProps<T>) => {
+
+const isBlankType = <T extends object>(props: ManageableListProps<T>): props is BlankManageableListProps<T> => {
+  return props.type === 'blank';
+};
+
+const ManageableListComponent = <T extends object>(props: ManageableListProps<T>) => {
+  const {
+    className,
+    onItemAdd,
+    onItemSelect,
+    onItemDuplicate,
+    onItemRemove,
+    onItemEdit,
+    onChangeOrder,
+    items,
+    maxToShowItems,
+    visibleItemsLimit,
+    loading,
+    type = ListType.DEFAULT,
+    addButtonDisabled = false,
+    changeOrderDisabled = false,
+    greyBackground = false,
+    placeholder,
+    selectedItemId,
+    searchQuery,
+    expanderDisabled,
+    onExpand,
+    expandedIds,
+    texts,
+    changeOrderByButtons = false,
+    additionalActions,
+    style,
+    renderCustomToggleButton,
+  } = props;
+
   const [allItemsVisible, setAllItemsVisible] = useState(false);
   const allTexts = useTexts(texts);
 
   const visibleLimit = visibleItemsLimit || maxToShowItems || INITIALLY_VISIBLE_COUNT;
 
   const getExpandedIds = useCallback(() => {
+    // @ts-ignore FIXME
     return expandedIds !== undefined ? expandedIds : items.filter(item => item.expanded).map(item => item.id);
   }, [expandedIds, items]);
 
@@ -104,22 +114,39 @@ const ManageableListComponent = <T extends object>({
 
   const onMoveTop = useCallback(
     (item: ItemProps) => {
+      // @ts-ignore FIXME
       const newOrder = [item, ...items.filter(i => i.id !== item.id)];
-      onChangeOrder && onChangeOrder(newOrder as ItemProps<T>[]);
+      onChangeOrder && onChangeOrder(newOrder);
     },
     [items, onChangeOrder]
   );
 
   const onMoveBottom = useCallback(
     (item: ItemProps) => {
+      // @ts-ignore FIXME
       const newOrder = [...items.filter(i => i.id !== item.id), item];
-      onChangeOrder && onChangeOrder(newOrder as ItemProps<T>[]);
+      onChangeOrder && onChangeOrder(newOrder);
     },
     [items, onChangeOrder]
   );
 
   const getItem = useCallback(
-    (item: ItemProps, index: number) => {
+    (item: ItemProps<T> | BlankItemBaseProps<T>, index: number) => {
+      if (isBlankType(props)) {
+        const { renderItem, rowGap } = props;
+        return (
+          <BlankItem
+            key={`item-${item.id}`}
+            item={item as BlankItemBaseProps<T>}
+            renderItem={renderItem}
+            onDuplicate={onItemDuplicate}
+            onRemove={onItemRemove}
+            draggable={Boolean(onChangeOrder)}
+            texts={allTexts}
+            rowGap={rowGap}
+          />
+        );
+      }
       return (
         <Item
           key={item.id}
@@ -133,7 +160,7 @@ const ManageableListComponent = <T extends object>({
           onExpand={onExpand}
           onMoveTop={changeOrderByButtons ? onMoveTop : undefined}
           onMoveBottom={changeOrderByButtons ? onMoveBottom : undefined}
-          item={item}
+          item={item as ItemProps}
           draggable={Boolean(onChangeOrder)}
           changeOrderDisabled={changeOrderDisabled}
           greyBackground={greyBackground}
@@ -166,6 +193,7 @@ const ManageableListComponent = <T extends object>({
       expanderDisabled,
       allExpandedIds,
       additionalActions,
+      props,
     ]
   );
 
@@ -201,6 +229,7 @@ const ManageableListComponent = <T extends object>({
         />
       )}
       {onChangeOrder && !changeOrderDisabled ? (
+        // @ts-ignore FIXME
         <ReactSortable {...SORTABLE_CONFIG} list={visibleItems} setList={onChangeOrder}>
           {visibleItems.map(getItem)}
         </ReactSortable>
@@ -210,6 +239,9 @@ const ManageableListComponent = <T extends object>({
       {toggleMoreItemsButton}
       {(type === ListType.CONTENT || type === ListType.CONTENT_LARGE) && Boolean(onItemAdd) && (
         <AddItem addItemLabel={allTexts.addItemLabel} onItemAdd={createItem} disabled={addButtonDisabled} />
+      )}
+      {type === ListType.BLANK && Boolean(onItemAdd) && (
+        <AddBlankItem addItemLabel={allTexts.addItemLabel} onItemAdd={createItem} disabled={addButtonDisabled} />
       )}
     </S.ManageableListContainer>
   );

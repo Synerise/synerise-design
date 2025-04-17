@@ -1,6 +1,6 @@
 import type { CSSProperties, ReactNode, ReactText } from 'react';
 import type { ExactlyOne } from '@synerise/ds-utils';
-import type { ItemProps } from './Item/Item.types';
+import type { BlankItemBaseProps, ItemProps } from './Item/Item.types';
 
 export enum ExpansionBehaviour {
   DEFAULT = 'default',
@@ -12,6 +12,7 @@ export enum ListType {
   DEFAULT = 'default',
   CONTENT = 'content',
   CONTENT_LARGE = 'content-large',
+  BLANK = 'blank',
   FILTER = 'filter',
 }
 export type ManageableListType = `${ListType}`;
@@ -23,17 +24,14 @@ export type AdditionalAction = {
   tooltip: string;
 };
 
-export type ManageableListProps<T extends object> = {
+type CommonProps = {
   className?: string;
   onItemAdd?: (addParams?: { name: string }) => void;
   onItemRemove?: (removeParams: { id: ReactText }) => void;
   onItemEdit?: (editParams: { id: ReactText; name: string }) => void;
   onItemSelect: (selectParams: { id: ReactText }) => void;
   onItemDuplicate?: (duplicateParams: { id: ReactText }) => void;
-  onChangeOrder?: (newOrder: ItemProps<T>[]) => void;
-  items: ItemProps<T>[];
   loading: boolean;
-  type?: ManageableListType;
   addButtonDisabled?: boolean;
   changeOrderDisabled?: boolean;
   greyBackground?: boolean;
@@ -66,6 +64,22 @@ export type ManageableListProps<T extends object> = {
     visibleItemsLimit: number;
   }
 >;
+
+export type BlankManageableListProps<T extends object> = {
+  type: 'blank';
+  renderItem: (item: BlankItemBaseProps<T>) => ReactNode;
+  items: BlankItemBaseProps<T>[];
+  rowGap?: number;
+  onChangeOrder?: (newOrder: BlankItemBaseProps<T>[]) => void;
+} & CommonProps;
+
+export type LegacyManageableListProps<T extends object> = {
+  type?: Exclude<ManageableListType, 'blank'>;
+  items: ItemProps<T>[];
+  onChangeOrder?: (newOrder: ItemProps<T>[]) => void;
+} & CommonProps;
+
+export type ManageableListProps<T extends object> = BlankManageableListProps<T> | LegacyManageableListProps<T>;
 
 export type Texts = {
   addItemLabel: ReactNode;
