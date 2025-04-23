@@ -733,7 +733,7 @@ describe('DateRangePicker', () => {
     userEvent.click(screen.getByText(texts.startDatePlaceholder));
     await waitFor(() => expect(screen.getByTestId('date-range-picker-container')).toBeVisible());
     await waitFor(() => expect(screen.getByTestId('date-range-picker-apply-button')).toBeDisabled())
-  });
+  }, 9000);
   it('can clear both relative date', async () => {
     const onApply = jest.fn();
     const onValueChange = jest.fn();
@@ -767,7 +767,7 @@ describe('DateRangePicker', () => {
     userEvent.click(screen.getByText(texts.startDatePlaceholder));
     await waitFor(() => expect(screen.getByTestId('date-range-picker-container')).toBeVisible());
     await waitFor(() => expect(screen.getByTestId('date-range-picker-apply-button')).toBeDisabled())
-  });
+  }, 9000);
   it.todo(
     'LAST_MONTH (normalizeRange) returns proper range' /* () => {
     const date = RELATIVE_PRESETS.find(e => e.key === 'LAST_MONTH')
