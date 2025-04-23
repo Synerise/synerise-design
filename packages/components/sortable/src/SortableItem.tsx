@@ -18,7 +18,7 @@ export const SortableItem = <ItemType extends BaseItem>({
     ...style,
     transform: CSS.Translate.toString(transform),
     transition,
-    opacity: 1
+    opacity: 1,
   };
 
   const handleProps = { ...attributes, ...listeners };

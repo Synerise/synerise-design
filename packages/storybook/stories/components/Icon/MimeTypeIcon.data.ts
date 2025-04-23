@@ -1,0 +1,1 @@
+export const TYPES = ['text/csv', 'application/msword', 'text/html', 'audio/mp3', 'application/pdf', 'application/mspowerpoint', 'image/svg', 'text/plain', 'video/avi', 'application/excel', 'application/zip' ];

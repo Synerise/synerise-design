@@ -13,4 +13,8 @@ export * from './icons/colorIcons';
 export * from './icons/XL';
 // Some of this icons are duplicated in XL folder, consider removing it before uploading new version
 export * from './icons/additional';
+export { default as MimeTypeIcon } from './MimeTypeIcon/MimeTypeIcon';
+
+export type { MimeTypeIconsProps } from './MimeTypeIcon/MimeTypeIcon.types';
+export type { IconProps } from './Icon.types';
 export { medium, large, xLarge, color, additional };
