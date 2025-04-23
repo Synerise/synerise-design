@@ -115,6 +115,7 @@ export const buttonDecorator: Decorator = (Story, storyContext) => {
     <div
       style={{
         display: 'flex',
+        flexDirection: 'column',
         alignItems: 'center',
         justifyContent: 'center',
         width: '100%',
