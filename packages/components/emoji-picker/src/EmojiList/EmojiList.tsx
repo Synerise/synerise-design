@@ -10,7 +10,7 @@ import { useEmojiTranslations } from '../hooks/useEmojiTranslations';
 
 export const EmojiList = ({ texts: customTexts, onSelect, searchQuery }: EmojiListProps) => {
   const texts = useEmojiTranslations(customTexts);
-  
+
   const grouped = useMemo(() => getEmojisByGroup('group'), []);
 
   const filteredList = useMemo(() => {
@@ -40,7 +40,9 @@ export const EmojiList = ({ texts: customTexts, onSelect, searchQuery }: EmojiLi
           <Divider labelBelow={title} hiddenLine={index === 0} />
           <S.EmojiCategoryWrapper>
             {emojis.map(emoji => (
-              <S.EmojiItem key={emoji.emoji} data-testid='ds-emoji-item' onClick={() => handleClick(emoji)}>{emoji.emoji}</S.EmojiItem>
+              <S.EmojiItem key={emoji.emoji} data-testid="ds-emoji-item" onClick={() => handleClick(emoji)}>
+                {emoji.emoji}
+              </S.EmojiItem>
             ))}
           </S.EmojiCategoryWrapper>
         </>
