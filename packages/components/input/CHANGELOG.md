@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.1.1](https://github.com/synerise/synerise-design/compare/@synerise/ds-input@1.1.0...@synerise/ds-input@1.1.1) (2025-04-24)
+
+
+### Bug Fixes
+
+* **inline-edit:** fix text flicker ([b151d33](https://github.com/synerise/synerise-design/commit/b151d3312fd546df7bf3087b4e509ce565f2df44))
+
+
+
+
+
 # [1.1.0](https://github.com/synerise/synerise-design/compare/@synerise/ds-input@1.0.4...@synerise/ds-input@1.1.0) (2025-04-16)
 
 

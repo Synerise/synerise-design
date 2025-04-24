@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.2.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-color-picker@1.1.4...@synerise/ds-color-picker@1.2.0) (2025-04-24)
+
+
+### Features
+
+* **color-picker:** disabled / readonly / error props ([ac222a7](https://github.com/Synerise/synerise-design/commit/ac222a79aaf4ebb5af9908c8a898f019b1390488))
+
+
+
+
+
 ## [1.1.4](https://github.com/Synerise/synerise-design/compare/@synerise/ds-color-picker@1.1.3...@synerise/ds-color-picker@1.1.4) (2025-04-16)
 
 **Note:** Version bump only for package @synerise/ds-color-picker

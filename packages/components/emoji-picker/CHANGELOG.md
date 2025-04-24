@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.1.4](https://github.com/Synerise/synerise-design/compare/@synerise/ds-emoji-picker@1.1.3...@synerise/ds-emoji-picker@1.1.4) (2025-04-24)
+
+
+### Bug Fixes
+
+* **icon:** new mimetype icons ([f8b50d1](https://github.com/Synerise/synerise-design/commit/f8b50d16287e747c7c72e4c4aea660d02d54fe99))
+
+
+
+
+
 ## [1.1.3](https://github.com/Synerise/synerise-design/compare/@synerise/ds-emoji-picker@1.1.2...@synerise/ds-emoji-picker@1.1.3) (2025-04-16)
 
 **Note:** Version bump only for package @synerise/ds-emoji-picker

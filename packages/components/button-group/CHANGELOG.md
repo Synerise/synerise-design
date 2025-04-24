@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.0.6](https://github.com/Synerise/synerise-design/compare/@synerise/ds-button-group@1.0.5...@synerise/ds-button-group@1.0.6) (2025-04-24)
+
+
+### Bug Fixes
+
+* **button-group:** add option for divider buttons group ([fd93162](https://github.com/Synerise/synerise-design/commit/fd93162fba2a04249064b1bc4ac8941b889ada5c))
+
+
+
+
+
 ## [1.0.5](https://github.com/Synerise/synerise-design/compare/@synerise/ds-button-group@1.0.4...@synerise/ds-button-group@1.0.5) (2025-04-16)
 
 **Note:** Version bump only for package @synerise/ds-button-group

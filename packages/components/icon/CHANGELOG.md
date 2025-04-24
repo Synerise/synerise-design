@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.4.1](https://github.com/Synerise/synerise-design/compare/@synerise/ds-icon@1.4.0...@synerise/ds-icon@1.4.1) (2025-04-24)
+
+
+### Bug Fixes
+
+* **icon:** new mimetype icons ([f8b50d1](https://github.com/Synerise/synerise-design/commit/f8b50d16287e747c7c72e4c4aea660d02d54fe99))
+
+
+
+
+
 # [1.4.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-icon@1.3.0...@synerise/ds-icon@1.4.0) (2025-04-16)
 
 

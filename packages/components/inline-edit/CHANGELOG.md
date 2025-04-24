@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.0.7](https://github.com/Synerise/synerise-design/compare/@synerise/ds-inline-edit@1.0.6...@synerise/ds-inline-edit@1.0.7) (2025-04-24)
+
+
+### Bug Fixes
+
+* **inline-edit:** fix text flicker ([b151d33](https://github.com/Synerise/synerise-design/commit/b151d3312fd546df7bf3087b4e509ce565f2df44))
+
+
+
+
+
 ## [1.0.6](https://github.com/Synerise/synerise-design/compare/@synerise/ds-inline-edit@1.0.5...@synerise/ds-inline-edit@1.0.6) (2025-04-16)
 
 **Note:** Version bump only for package @synerise/ds-inline-edit

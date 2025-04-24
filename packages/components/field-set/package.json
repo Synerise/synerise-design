@@ -1,6 +1,6 @@
 {
   "name": "@synerise/ds-field-set",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "description": "FieldSet UI Component for the Synerise Design System",
   "license": "ISC",
   "repository": "Synerise/synerise-design",
@@ -34,8 +34,8 @@
   ],
   "types": "dist/index.d.ts",
   "dependencies": {
-    "@synerise/ds-button": "^1.1.4",
-    "@synerise/ds-divider": "^1.0.5",
+    "@synerise/ds-button": "^1.1.5",
+    "@synerise/ds-divider": "^1.0.6",
     "@synerise/ds-utils": "^1.0.1"
   },
   "peerDependencies": {

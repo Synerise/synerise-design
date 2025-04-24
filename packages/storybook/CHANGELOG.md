@@ -3,6 +3,24 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.6.0](https://github.com/Synerise/synerise-design/compare/storybook7@1.5.0...storybook7@1.6.0) (2025-04-24)
+
+
+### Bug Fixes
+
+* **button-group:** add option for divider buttons group ([fd93162](https://github.com/Synerise/synerise-design/commit/fd93162fba2a04249064b1bc4ac8941b889ada5c))
+* **icon:** new mimetype icons ([f8b50d1](https://github.com/Synerise/synerise-design/commit/f8b50d16287e747c7c72e4c4aea660d02d54fe99))
+* **inline-edit:** fix text flicker ([b151d33](https://github.com/Synerise/synerise-design/commit/b151d3312fd546df7bf3087b4e509ce565f2df44))
+
+
+### Features
+
+* **color-picker:** disabled / readonly / error props ([ac222a7](https://github.com/Synerise/synerise-design/commit/ac222a79aaf4ebb5af9908c8a898f019b1390488))
+
+
+
+
+
 # [1.5.0](https://github.com/Synerise/synerise-design/compare/storybook7@1.4.2...storybook7@1.5.0) (2025-04-16)
 
 

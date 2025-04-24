@@ -1,6 +1,6 @@
 {
   "name": "@synerise/ds-autocomplete",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "Autocomplete UI Component for the Synerise Design System",
   "license": "ISC",
   "repository": "Synerise/synerise-design",
@@ -34,8 +34,8 @@
   ],
   "types": "dist/index.d.ts",
   "dependencies": {
-    "@synerise/ds-form-field": "^1.1.0",
-    "@synerise/ds-input": "^1.1.0",
+    "@synerise/ds-form-field": "^1.1.1",
+    "@synerise/ds-input": "^1.1.1",
     "@synerise/ds-utils": "^1.0.1"
   },
   "peerDependencies": {
