@@ -1,3 +1,7 @@
+import React from 'react';
+import { renderWithProvider } from '@synerise/ds-utils/dist/testing';
+import { fireEvent, cleanup, screen } from '@testing-library/react';
+
 import ColorPicker from '../ColorPicker';
 import { ColorPickerProps } from '../ColorPicker.types';
 import {
@@ -6,9 +10,6 @@ import {
   isValidHexColor,
   isValidTextColor,
 } from '../utils';
-import { renderWithProvider } from '@synerise/ds-utils/dist/testing';
-import React from 'react';
-import { fireEvent, cleanup } from '@testing-library/react';
 
 afterEach(cleanup);
 
@@ -22,15 +23,30 @@ describe('ColorPicker', () => {
   });
 
   it('should render correctly', () => {
-    const { getByTestId } = renderWithProvider(<ColorPicker {...props} />);
-    const colorPicker = getByTestId('color-picker');
+    renderWithProvider(<ColorPicker {...props} />);
+    const colorPicker = screen.getByTestId('color-picker');
     expect(colorPicker).toBeInTheDocument();
   });
 
-  it('should open modal when component is clicked', async () => {
-    const { getByTestId } = renderWithProvider(<ColorPicker {...props} />);
-    const colorPicker = getByTestId('color-picker');
-    await fireEvent.click(colorPicker as HTMLElement);
+  it('should render disabled', () => {
+    renderWithProvider(<ColorPicker disabled {...props} />);
+    const colorPicker = screen.getByTestId('color-picker');
+    expect(colorPicker).toBeDisabled();
+    fireEvent.click(colorPicker as HTMLElement);
+    expect(document.querySelector('.react-colorful')).not.toBeInTheDocument()
+  });
+
+  it('should render readonly', () => {
+    renderWithProvider(<ColorPicker readOnly {...props} />);
+    const colorPicker = screen.getByTestId('color-picker');
+    fireEvent.click(colorPicker as HTMLElement);
+    expect(document.querySelector('.react-colorful')).not.toBeInTheDocument()
+  });
+
+  it('should open modal when component is clicked', () => {
+    renderWithProvider(<ColorPicker {...props} />);
+    const colorPicker = screen.getByTestId('color-picker');
+    fireEvent.click(colorPicker as HTMLElement);
     const reactColorful = document.querySelector('.react-colorful');
     expect(reactColorful).toBeInTheDocument();
   });
@@ -38,24 +54,24 @@ describe('ColorPicker', () => {
   it('should render saved colors', async () => {
     props.isShownSavedColors = true;
     props.colors = ['#ffffff', '#ff0000', '#00ff00'];
-    const { getByTestId } = renderWithProvider(<ColorPicker {...props} />);
-    const colorPicker = getByTestId('color-picker');
+    renderWithProvider(<ColorPicker {...props} />);
+    const colorPicker = screen.getByTestId('color-picker');
     await fireEvent.click(colorPicker as HTMLElement);
     const savedColors = document.querySelectorAll('.ds-tags .ds-tag');
     expect(savedColors.length).toBe(3);
   });
 
   it('should call onChange function when color is changed', () => {
-    const { getByTestId } = renderWithProvider(<ColorPicker {...props} />);
-    const colorPicker = getByTestId('color-picker');
+    renderWithProvider(<ColorPicker {...props} />);
+    const colorPicker = screen.getByTestId('color-picker');
     fireEvent.change(colorPicker, { target: { value: '#ff0000' } });
     expect(props.onChange).toHaveBeenCalledWith('#ff0000');
   });
 
   it('should show an error message', () => {
     props.errorText = 'Invalid color';
-    const { getByText } = renderWithProvider(<ColorPicker {...props} />);
-    const errorMessage = getByText('Invalid color');
+    renderWithProvider(<ColorPicker {...props} />);
+    const errorMessage = screen.getByText('Invalid color');
     expect(errorMessage).toBeInTheDocument();
   });
 });

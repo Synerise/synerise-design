@@ -12,6 +12,7 @@ import {
   COLOR_CONTROL,
   NUMBER_CONTROL,
   REACT_NODE_AS_STRING,
+  STRING_CONTROL,
 } from '../../utils';
 
 export default {
@@ -38,11 +39,17 @@ export default {
   argTypes: {
     description: REACT_NODE_AS_STRING,
     maxWidth: NUMBER_CONTROL,
+    maxSavedColors: NUMBER_CONTROL,
     isShownSavedColors: BOOLEAN_CONTROL,
+    disabled: BOOLEAN_CONTROL,
+    readOnly: BOOLEAN_CONTROL,
+    error: BOOLEAN_CONTROL,
     errorText: REACT_NODE_AS_STRING,
     tooltip: REACT_NODE_AS_STRING,
+    placeholder: STRING_CONTROL,
     size: size,
     value: COLOR_CONTROL,
+    colors: { control: false }
   },
   args: {
     onSaveColors: fn(),
@@ -60,6 +67,21 @@ export const Default: Story = {
     size: 'S',
     isShownSavedColors: true,
     tooltip: { copy: 'Copy to clipboard', copied: 'Copied' },
+  },
+};
+
+export const Disabled: Story = {
+  args: {
+    ...Default.args,
+    disabled: true
+  },
+};
+
+
+export const WithError: Story = {
+  args: {
+    ...Default.args,
+    errorText: 'An error message'
   },
 };
 

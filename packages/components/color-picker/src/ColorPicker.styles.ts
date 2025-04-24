@@ -16,7 +16,7 @@ export const TagDot = styled.div<{ pressed?: boolean }>`
 
 const SIZE_DEFAULT = 168;
 
-const Container = styled.div<{ size?: 'S' | 'M' | 'L' }>`
+export const Container = styled.div<{ size?: 'S' | 'M' | 'L' }>`
   width: 100%;
   @media (min-width: 200px) {
     min-width: 200px;
@@ -72,7 +72,7 @@ const Container = styled.div<{ size?: 'S' | 'M' | 'L' }>`
   }
 `;
 
-const SubContainer = styled.div<{ savedColors?: boolean }>`
+export const SubContainer = styled.div<{ savedColors?: boolean }>`
   padding: 8px 16px 16px;
   margin-bottom: ${(props): string => (props.savedColors ? `0` : `-16px`)};
 `;
