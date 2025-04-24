@@ -1,4 +1,5 @@
-import type { InputProps } from 'antd/lib/input';
+import type { InputProps } from '@synerise/ds-input';
+import type { FormFieldCommonProps } from '@synerise/ds-form-field';
 
 import { DropdownProps } from '@synerise/ds-dropdown';
 
@@ -25,14 +26,26 @@ export type ColorPickerProps = {
    */
   infix?: (colorHooks?: Partial<ColorHookType>) => JSX.Element;
   maxSavedColors?: number;
-  inputProps?: Omit<InputProps, 'value' | 'onChange' | 'defaultValue'>;
+  inputProps?: Omit<
+    InputProps,
+    | 'value'
+    | 'onChange'
+    | 'defaultValue'
+    | 'placeholder'
+    | 'disabled'
+    | 'readOnly'
+    | 'prefix'
+    | keyof FormFieldCommonProps
+  >;
   tooltip?: {
     copy: string;
     copied: string;
   };
   isShownSavedColors?: boolean;
   size?: 'S' | 'M' | 'L';
-  errorText?: string;
-  description?: string;
-} & Partial<Pick<HTMLInputElement, 'placeholder'>> &
+  error?: boolean;
+  disabled?: boolean;
+  readOnly?: boolean;
+} & Pick<FormFieldCommonProps, 'description' | 'errorText'> &
+  Partial<Pick<HTMLInputElement, 'placeholder'>> &
   Partial<Pick<DropdownProps, 'getPopupContainer'>>;

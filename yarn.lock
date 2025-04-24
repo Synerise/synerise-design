@@ -12412,7 +12412,7 @@ memfs@^3.4.1, memfs@^3.4.12:
 
 memoize-one@^5.1.1:
   version "5.2.1"
-  resolved "https://registry.yarnpkg.com/memoize-one/-/memoize-one-5.2.1.tgz#8337aa3c4335581839ec01c3d594090cebe8f00e"
+  resolved "https://registry.npmjs.org/memoize-one/-/memoize-one-5.2.1.tgz#8337aa3c4335581839ec01c3d594090cebe8f00e"
   integrity sha512-zYiwtZUcYyXKo/np96AGZAckk+FWWsUdJ3cHGGmld7+AhvcWmQyGCYUh1hc4Q/pkOhb65dQR/pqCyK0cOaHz4Q==
 
 memoizerific@^1.11.3:
@@ -15290,26 +15290,18 @@ react-visibility-sensor@^5.1.1:
   dependencies:
     prop-types "^15.7.2"
 
-react-window@1.8.5, react-window@^1.8.5:
+react-window@1.8.5:
   version "1.8.5"
-  resolved "https://registry.npmjs.org/react-window/-/react-window-1.8.5.tgz"
+  resolved "https://registry.npmjs.org/react-window/-/react-window-1.8.5.tgz#a56b39307e79979721021f5d06a67742ecca52d1"
   integrity sha512-HeTwlNa37AFa8MDZFZOKcNEkuF2YflA0hpGPiTT9vR7OawEt+GZbfM6wqkBahD3D3pUjIabQYzsnY/BSJbgq6Q==
   dependencies:
     "@babel/runtime" "^7.0.0"
     memoize-one ">=3.1.1 <6"
 
-react-window@^1.8.11:
+react-window@^1.8.11, react-window@^1.8.5, react-window@^1.8.7:
   version "1.8.11"
-  resolved "https://registry.yarnpkg.com/react-window/-/react-window-1.8.11.tgz#a857b48fa85bd77042d59cc460964ff2e0648525"
+  resolved "https://registry.npmjs.org/react-window/-/react-window-1.8.11.tgz#a857b48fa85bd77042d59cc460964ff2e0648525"
   integrity sha512-+SRbUVT2scadgFSWx+R1P754xHPEqvcfSfVX10QYg6POOz+WNgkN48pS+BtZNIMGiL1HYrSEiCkwsMS15QogEQ==
-  dependencies:
-    "@babel/runtime" "^7.0.0"
-    memoize-one ">=3.1.1 <6"
-
-react-window@^1.8.7:
-  version "1.8.7"
-  resolved "http://artifactory.service:80/artifactory/api/npm/npm-release/react-window/-/react-window-1.8.7.tgz"
-  integrity sha1-Xp/Q0j9I9DLXAizbMnIZNToV8NQ=
   dependencies:
     "@babel/runtime" "^7.0.0"
     memoize-one ">=3.1.1 <6"
