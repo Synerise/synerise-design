@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.0.7](https://github.com/Synerise/synerise-design/compare/@synerise/ds-button-group@1.0.6...@synerise/ds-button-group@1.0.7) (2025-04-24)
+
+
+### Bug Fixes
+
+* **button-group:** fix dependency version ([685d9dc](https://github.com/Synerise/synerise-design/commit/685d9dc5acfc385bd76e6c805f6bf230a837bfd1))
+
+
+
+
+
 ## [1.0.6](https://github.com/Synerise/synerise-design/compare/@synerise/ds-button-group@1.0.5...@synerise/ds-button-group@1.0.6) (2025-04-24)
 
 

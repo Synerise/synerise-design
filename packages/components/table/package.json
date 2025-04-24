@@ -1,6 +1,6 @@
 {
   "name": "@synerise/ds-table",
-  "version": "1.1.7",
+  "version": "1.1.8",
   "description": "Table UI Component for the Synerise Design System",
   "license": "ISC",
   "repository": "synerise/synerise-design",
@@ -37,7 +37,7 @@
     "@synerise/ds-alert": "^1.0.6",
     "@synerise/ds-badge": "^1.0.6",
     "@synerise/ds-button": "^1.1.5",
-    "@synerise/ds-button-group": "^1.0.6",
+    "@synerise/ds-button-group": "^1.0.7",
     "@synerise/ds-checkbox": "^1.0.6",
     "@synerise/ds-column-manager": "^1.0.8",
     "@synerise/ds-data-format": "^1.0.0",
