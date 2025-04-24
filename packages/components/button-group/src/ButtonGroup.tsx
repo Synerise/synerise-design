@@ -13,6 +13,7 @@ const ButtonGroup = ({
   buttonsPosition = 'center',
   disabled,
   splitMode,
+  compact = true,
   error,
 }: ButtonGroupProps) => (
   <S.Container
@@ -21,6 +22,7 @@ const ButtonGroup = ({
     buttonsPosition={buttonsPosition}
     disabled={disabled}
     splitMode={splitMode}
+    compact={compact}
     error={error}
   >
     {title && <S.Title>{title}</S.Title>}

@@ -11,4 +11,5 @@ export type ButtonGroupProps = AntButtonGroupProps & {
   disabled?: boolean;
   splitMode?: boolean;
   error?: boolean;
+  compact?: boolean;
 };
