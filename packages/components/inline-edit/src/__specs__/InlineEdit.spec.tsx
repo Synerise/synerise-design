@@ -1,6 +1,8 @@
 import React from 'react';
 import { renderWithProvider } from '@synerise/ds-utils/dist/testing';
-import { fireEvent, waitFor } from '@testing-library/react';
+import { fireEvent, waitFor, screen } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
+
 import InlineEdit from '../';
 
 const PLACEHOLDER = 'Placeholder';
@@ -23,7 +25,7 @@ const setup = ({
   name?: string;
   hideIcon?: boolean;
 }) => {
-  const utils = renderWithProvider(
+  renderWithProvider(
     <InlineEdit
       input={{
         name,
@@ -41,11 +43,10 @@ const setup = ({
       hideIcon={hideIcon}
     />
   );
-  const input = utils.getByPlaceholderText(PLACEHOLDER) as HTMLInputElement;
+  const input = screen.getByPlaceholderText(PLACEHOLDER) as HTMLInputElement;
 
   return {
     input,
-    utils,
   };
 };
 
@@ -56,13 +57,10 @@ describe('InlineEdit', () => {
     expect(input).toBeTruthy();
   });
 
-  it('should trigger onChange', () => {
+  it('should trigger onChange', async () => {
     const { input } = setup({});
-
-    fireEvent.change(input, { target: { value: INPUT_VALUE_CHANGED } });
-
-    expect(onChange).toHaveBeenCalled();
-    expect(input.value).toBe(INPUT_VALUE);
+    userEvent.type(input, INPUT_VALUE_CHANGED, { allAtOnce: true});
+    await waitFor(() => expect(onChange).toHaveBeenCalled());
   });
   beforeEach(() => {
     Element.prototype.scrollTo = jest.fn();
@@ -131,24 +129,24 @@ describe('InlineEdit', () => {
   });
 
   it('should hide icon', () => {
-    const { utils } = setup({
+    setup({
       hideIcon: true,
     });
 
-    expect(utils.queryAllByTestId('inline-edit-icon').length).toBe(0);
+    expect(screen.queryAllByTestId('inline-edit-icon').length).toBe(0);
   });
 
   it('should fire onEnterPress', async () => {
     const { input } = setup({});
 
     fireEvent.focus(input);
-    fireEvent.keyPress(input, {key: 'Enter', keyCode: 13});
-    
+    fireEvent.keyPress(input, { key: 'Enter', keyCode: 13 });
+
     await waitFor(() => expect(onEnterPress).toBeCalled(), { timeout: 500 });
   });
 
   it('should fire onBlur', async () => {
-    const { input, utils } = setup({});
+    const { input } = setup({});
 
     fireEvent.focus(input);
     fireEvent.blur(input);

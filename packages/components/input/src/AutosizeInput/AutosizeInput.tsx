@@ -7,7 +7,6 @@ import React, {
   useImperativeHandle,
   useCallback,
   useMemo,
-  useState,
 } from 'react';
 import { useResizeObserver } from '@synerise/ds-utils';
 import type { AutosizeInputRefType, AutosizeInputProps } from './AutosizeInput.types';
@@ -56,7 +55,6 @@ const AutosizeInput = forwardRef<AutosizeInputRefType, AutosizeInputProps>(
     forwardedRef
   ) => {
     const usedValue = value ?? defaultValue ?? '';
-    const [sizerValue, setSizerValue] = useState(usedValue);
     const inputRef = useRef<HTMLInputElement | null>(null);
     const inputWrapperRef = useRef<HTMLElement | null>(null);
     const sizerRef = useRef<HTMLDivElement>(null);
@@ -132,10 +130,6 @@ const AutosizeInput = forwardRef<AutosizeInputRefType, AutosizeInputProps>(
     }, []);
 
     useEffect(() => {
-      inputRef.current && setSizerValue(inputRef.current.value);
-    }, [usedValue]);
-
-    useEffect(() => {
       if (sizerRef.current) {
         const sizerSibling = sizerRef.current.nextElementSibling;
         const inputElement = sizerSibling instanceof HTMLElement && transformElement(sizerSibling);
@@ -146,7 +140,6 @@ const AutosizeInput = forwardRef<AutosizeInputRefType, AutosizeInputProps>(
         if (inputElement && !inputRef.current) {
           if (inputElement && inputElement instanceof HTMLInputElement) {
             inputRef.current = inputElement;
-            setSizerValue(inputRef.current.value);
             inputRef.current.style.boxSizing = 'content-box';
             handleInputRef && handleInputRef(inputElement, sizerSibling);
             copyInputStyles();
@@ -174,7 +167,7 @@ const AutosizeInput = forwardRef<AutosizeInputRefType, AutosizeInputProps>(
     return (
       <div ref={wrapperRef} className={wrapperClassName} style={wrapperStyle} data-testid="wrapper">
         <div style={sizerStyle} ref={sizerRef} data-testid="sizer">
-          {sizerValue}
+          {usedValue}
         </div>
         {children}
         {placeholder ? (

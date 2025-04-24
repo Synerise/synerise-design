@@ -1,6 +1,5 @@
-import React, { ChangeEvent, useState } from 'react';
+import React, { ChangeEvent, useCallback, useMemo, useState } from 'react';
 import { Meta, StoryObj } from '@storybook/react';
-import { useArgs } from '@storybook/preview-api';
 import { fn } from '@storybook/test';
 
 import InlineEdit from '@synerise/ds-inline-edit';
@@ -32,7 +31,7 @@ const InlineEditMeta = {
       ...input,
       onChange: handleValueChange,
     };
-    return <InlineEdit {...args} input={{...inputProp, value}} />;
+    return <InlineEdit {...args} input={{ ...inputProp, value }} />;
   },
   argTypes: {
     className: CLASSNAME_ARG_CONTROL,

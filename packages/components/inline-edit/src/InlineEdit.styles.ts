@@ -1,5 +1,5 @@
-import styled, { css, FlattenInterpolation, FlattenSimpleInterpolation } from 'styled-components';
-import { ThemeProps } from '@synerise/ds-core';
+import styled, { css } from 'styled-components';
+import type { ThemeProps } from '@synerise/ds-core';
 import { macro } from '@synerise/ds-typography';
 
 type InPlaceEditableInputContainerProps = {
@@ -9,22 +9,22 @@ type InPlaceEditableInputContainerProps = {
   pressed?: boolean;
   scrolled?: boolean;
 };
-const applyColor = (props: ThemeProps & InPlaceEditableInputContainerProps): string => {
+const applyColor = (props: ThemeProps & InPlaceEditableInputContainerProps) => {
   if (props.error) return props.theme.palette['red-600'];
   return props.theme.palette['grey-800'];
 };
 
-const applyColorFocus = (props: ThemeProps & InPlaceEditableInputContainerProps): string => {
+const applyColorFocus = (props: ThemeProps & InPlaceEditableInputContainerProps) => {
   if (props.error) return props.theme.palette['red-600'];
   return props.theme.palette['blue-600'];
 };
 
-const applyDots = (props: ThemeProps & InPlaceEditableInputContainerProps): string => {
+const applyDots = (props: ThemeProps & InPlaceEditableInputContainerProps) => {
   if (props.error) return props.theme.palette['red-600'];
   return props.theme.palette['grey-400'];
 };
 
-const applyDotsOnError = (props: ThemeProps & InPlaceEditableInputContainerProps): string => {
+const applyDotsOnError = (props: ThemeProps & InPlaceEditableInputContainerProps) => {
   if (props.error)
     return `background-image: linear-gradient(to right, ${applyDots(props)} 20%, rgba(255, 255, 255, 0) 10%);
   background-color: transparent;
@@ -46,25 +46,25 @@ export const FontStyleWatcher = styled.div`
 `;
 
 export const IconWrapper = styled.div<{ size: string; disabled?: boolean; customIcon?: boolean } & ThemeProps>`
-  display: ${(props): string => (props.disabled ? 'none' : 'flex')};
+  display: ${props => (props.disabled ? 'none' : 'flex')};
   border-radius: 24px;
-  color: ${(props): string => props.theme.palette['grey-600']};
-  background: ${(props): string => (props.customIcon ? undefined : props.theme.palette['grey-100'])};
+  color: ${props => props.theme.palette['grey-600']};
+  background: ${props => (props.customIcon ? undefined : props.theme.palette['grey-100'])};
   margin: 0;
   font-size: 11px;
   justify-content: center;
   align-items: center;
-  margin-left: ${(props): string => (props.size === 'small' ? '4px' : '8px')};
+  margin-left: ${props => (props.size === 'small' ? '4px' : '8px')};
   width: 24px;
   height: 24px;
   line-height: inherit;
   cursor: pointer;
   &&&:hover {
-    background-color: ${(props): string => props.theme.palette.white};
+    background-color: ${props => props.theme.palette.white};
   }
   div :active {
-    border-radius: ${(props): string => (props.customIcon ? '0px' : '24px')};
-    background-color: ${(props): string => (props.customIcon ? undefined : props.theme.palette['grey-300'])};
+    border-radius: ${props => (props.customIcon ? '0px' : '24px')};
+    background-color: ${props => (props.customIcon ? undefined : props.theme.palette['grey-300'])};
   }
 `;
 
@@ -72,31 +72,27 @@ export const InPlaceEditableInputContainer = styled.div<InPlaceEditableInputCont
   display: flex;
   max-width: 100%;
   align-items: center;
-  pointer-events: ${({ disabled }): string => (disabled ? 'none' : 'all')};
+  pointer-events: ${({ disabled }) => (disabled ? 'none' : 'all')};
   ${IconWrapper} {
     svg {
-      color: ${(props): string => applyColor(props)};
-      fill: ${(props): string => applyColor(props)};
+      color: ${props => applyColor(props)};
+      fill: ${props => applyColor(props)};
     }
   }
   input {
-    ${(props): string => applyDotsOnError(props)}
+    ${props => applyDotsOnError(props)}
   }
   &:hover {
     input {
-      color: ${(props): string => props.theme.palette['grey-800']};
-      background-image: linear-gradient(
-        to right,
-        ${(props): string => applyDots(props)} 20%,
-        rgba(255, 255, 255, 0) 10%
-      );
+      color: ${props => props.theme.palette['grey-800']};
+      background-image: linear-gradient(to right, ${props => applyDots(props)} 20%, rgba(255, 255, 255, 0) 10%);
     }
     ${IconWrapper} {
-      background-color: ${({ theme }): string => theme.palette['grey-200']};
+      background-color: ${({ theme }) => theme.palette['grey-200']};
     }
   }
 
-  ${(props): FlattenSimpleInterpolation | false =>
+  ${props =>
     !props.pressed &&
     css`
       &&& {
@@ -126,16 +122,16 @@ export const InPlaceEditableInputContainer = styled.div<InPlaceEditableInputCont
     background-position: bottom left;
     background-size: 5px 1px;
     background-repeat: repeat-x;
-    ${(props): FlattenInterpolation<ThemeProps> => fontSize[props.size]}
+    ${props => fontSize[props.size]}
     overflow: hidden;
-    text-overflow: ${(props): string => (props.scrolled ? 'initial' : 'ellipsis')};
+    text-overflow: ${props => (props.scrolled ? 'initial' : 'ellipsis')};
     max-width: 100%;
-    padding-bottom: ${(props): string => (props.size === 'small' ? '2px' : '0')};
+    padding-bottom: ${props => (props.size === 'small' ? '2px' : '0')};
     margin: 0;
     vertical-align: top;
-    color: ${(props): string => applyColor(props)};
+    color: ${props => applyColor(props)};
     ::placeholder {
-      color: ${(props): string => props.theme.palette[props.error ? 'red-600' : 'grey-400']};
+      color: ${props => props.theme.palette[props.error ? 'red-600' : 'grey-400']};
     }
   }
 `;

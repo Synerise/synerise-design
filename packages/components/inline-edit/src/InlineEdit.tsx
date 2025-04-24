@@ -22,33 +22,27 @@ const InlineEdit = ({
   input,
 }: InlineEditProps) => {
   const inputRef = useRef<HTMLInputElement | null>(null);
-
-  const [scrolled, setScrolled] = useState<boolean>();
-
-  const handleScroll = useCallback(() => {
-    if (inputRef.current) {
-      const scrolledPixels = inputRef.current.scrollLeft;
-      if (scrolledPixels > 0) {
-        setScrolled(true);
-      } else {
-        setScrolled(false);
-      }
-    }
-  }, [inputRef]);
+  const [focused, setFocused] = useState<boolean>();
 
   const handleChange = useCallback(
     (event: ChangeEvent<HTMLInputElement>) => {
-      input.onChange(event);
+      // eslint-disable-next-line no-unused-expressions
+      input.onChange?.(event);
     },
     [input]
   );
+
+  const handleFocus = () => {
+    setFocused(false);
+  };
 
   const handleBlur = useCallback(
     (event: FocusEvent<HTMLInputElement>) => {
       input.onBlur && input.onBlur(event);
       inputRef.current && inputRef.current.scrollTo({ left: 0 });
+      setFocused(true);
     },
-    [input, inputRef]
+    [input]
   );
 
   const handleKeyPress = useCallback(
@@ -58,16 +52,16 @@ const InlineEdit = ({
         inputRef.current && inputRef.current.blur();
       }
     },
-    [input, inputRef]
+    [input]
   );
 
   const handleFocusInput = useCallback(() => {
     inputRef.current && inputRef.current.focus();
-  }, [inputRef]);
+  }, []);
 
   useEffect(() => {
     autoFocus && inputRef.current && inputRef.current.focus();
-  }, [autoFocus, inputRef]);
+  }, [autoFocus]);
 
   return (
     <S.InPlaceEditableInputContainer
@@ -76,17 +70,17 @@ const InlineEdit = ({
       size={size}
       disabled={disabled}
       error={error}
-      scrolled={scrolled}
+      scrolled={focused}
     >
       <AutosizeInput
         extraWidth={2}
-        value={input.value || ''}
+        value={input.value}
         placeholder={input.placeholder}
         placeholderIsMinWidth={false}
         wrapperClassName="autosize-input"
       >
         <input
-          onScroll={handleScroll}
+          autoComplete="off"
           id={input.name ? toCamelCase(input.name) : 'id'}
           {...input}
           className="autosize-input"
@@ -95,7 +89,8 @@ const InlineEdit = ({
           disabled={disabled}
           onChange={handleChange}
           onBlur={handleBlur}
-          value={input.value || ''}
+          onFocus={handleFocus}
+          value={input.value}
           ref={inputRef}
         />
       </AutosizeInput>
