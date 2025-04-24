@@ -24,14 +24,16 @@ export const Container = styled.div<{
   buttonsPosition: string | 'left' | 'center' | 'right';
   disabled?: boolean;
   splitMode?: boolean;
+  compact?: boolean;
   error?: boolean;
 }>`
   width: 100%;
   .ant-btn-group {
     width: 100%;
     display: flex;
+    gap: ${(props): string => (props.compact ? '0px' : '8px')};
     flex-direction: row;
-    align-items: center;
+    align-items: stretch;
     justify-content: ${(props): string => mapButtonsPosition[props.buttonsPosition]};
     ${(props): FlattenSimpleInterpolation | false =>
       !!props.splitMode &&
@@ -140,6 +142,8 @@ export const Container = styled.div<{
     & > .ant-btn {
       width: auto;
       flex: ${(props): string => (props.fullWidth ? '1' : 'none')};
+      border-radius: ${(props): string => (props.compact ? '0px' : '3px')};
+
       &.ant-btn-primary {
         &:focus {
           z-index: 99999;
