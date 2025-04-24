@@ -23,7 +23,7 @@ const SORTABLE_CONFIG = {
     sortable.el.classList.remove('sorting-started');
   },
 };
-const INITIALLY_VISIBLE_COUNT = 5;
+
 const ManageableListComponent = <T extends object>({
   className,
   onItemAdd,
@@ -55,10 +55,12 @@ const ManageableListComponent = <T extends object>({
   const [allItemsVisible, setAllItemsVisible] = useState(false);
   const allTexts = useTexts(texts);
 
-  const visibleLimit = visibleItemsLimit || maxToShowItems || INITIALLY_VISIBLE_COUNT;
+  const visibleLimit: number | undefined = visibleItemsLimit || maxToShowItems;
 
   const getExpandedIds = useCallback(() => {
-    return expandedIds !== undefined ? expandedIds : items.filter(item => item.expanded).map(item => item.id);
+    return expandedIds !== undefined
+      ? expandedIds
+      : items.filter((item: ItemProps) => item.expanded).map((item: ItemProps) => item.id);
   }, [expandedIds, items]);
 
   const [allExpandedIds, setAllExpandedIds] = useState(getExpandedIds());
@@ -68,7 +70,8 @@ const ManageableListComponent = <T extends object>({
   }, [expandedIds, items, getExpandedIds]);
 
   const getItemsOverLimit = useMemo(() => {
-    return items.length - visibleLimit;
+    if (visibleLimit) return items.length - visibleLimit;
+    return 0;
   }, [items, visibleLimit]);
 
   const visibleItems = useMemo(() => {
@@ -104,7 +107,7 @@ const ManageableListComponent = <T extends object>({
 
   const onMoveTop = useCallback(
     (item: ItemProps) => {
-      const newOrder = [item, ...items.filter(i => i.id !== item.id)];
+      const newOrder = [item, ...items.filter((i: ItemProps) => i.id !== item.id)];
       onChangeOrder && onChangeOrder(newOrder as ItemProps<T>[]);
     },
     [items, onChangeOrder]
@@ -112,7 +115,7 @@ const ManageableListComponent = <T extends object>({
 
   const onMoveBottom = useCallback(
     (item: ItemProps) => {
-      const newOrder = [...items.filter(i => i.id !== item.id), item];
+      const newOrder = [...items.filter((i: ItemProps) => i.id !== item.id), item];
       onChangeOrder && onChangeOrder(newOrder as ItemProps<T>[]);
     },
     [items, onChangeOrder]
@@ -170,7 +173,7 @@ const ManageableListComponent = <T extends object>({
   );
 
   const toggleMoreItemsButton =
-    items.length > visibleLimit
+    visibleLimit && items.length > visibleLimit
       ? (renderCustomToggleButton &&
           renderCustomToggleButton({
             onClick: toggleAllItems,
