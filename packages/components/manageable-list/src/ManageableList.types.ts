@@ -60,10 +60,10 @@ export type ManageableListProps<T extends object> = {
     /**
      * @deprecated - use visibleItemsLimit prop instead
      */
-    maxToShowItems: number;
+    maxToShowItems?: number;
   },
   {
-    visibleItemsLimit: number;
+    visibleItemsLimit?: number;
   }
 >;
 
