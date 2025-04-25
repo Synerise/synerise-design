@@ -179,9 +179,10 @@ chromatic_publish_baseline:
   stage: deploy
   needs: ['build_packages']
   rules:
+    - if: ($CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH && $CI_COMMIT_TITLE == $PUBLISH_TITLE)
+      when: on_success
     - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH 
       when: manual
-    - if: ($CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH && $CI_COMMIT_TITLE == $PUBLISH_TITLE)
   script:
     - (cd packages/storybook; yarn chromatic --project-token=$CHROMATIC_PROJECT_TOKEN_SB7 --auto-accept-changes)
   interruptible: true
