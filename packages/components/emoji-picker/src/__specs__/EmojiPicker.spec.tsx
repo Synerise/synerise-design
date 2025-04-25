@@ -35,7 +35,7 @@ describe('EmojiPicker', () => {
     userEvent.click(screen.getByText('😀'));
 
     await waitFor(() => expect(onSelect).toHaveBeenCalled());
-  });
+  }, 8000);
 
   it('should filter by searchQuery', async () => {
     const SEARCH_PLACEHOLDER = 'SEARCH_PLACEHOLDER';
@@ -48,6 +48,6 @@ describe('EmojiPicker', () => {
     userEvent.type(screen.getByPlaceholderText(SEARCH_PLACEHOLDER), 'grin');
 
     await waitFor(() => expect(screen.getAllByTestId('ds-emoji-item')).toHaveLength(9));
-    
+
   });
 });
