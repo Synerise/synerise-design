@@ -1,6 +1,6 @@
 {
   "name": "@synerise/design-system",
-  "version": "1.3.2",
+  "version": "1.3.3",
   "description": "DesignSystem UI Component for the Synerise Design System",
   "license": "ISC",
   "repository": "Synerise/synerise-design",
@@ -86,7 +86,7 @@
     "@synerise/ds-input": "^1.1.1",
     "@synerise/ds-input-number": "^1.1.1",
     "@synerise/ds-item-filter": "^1.0.8",
-    "@synerise/ds-item-picker": "^1.1.1",
+    "@synerise/ds-item-picker": "^1.1.2",
     "@synerise/ds-items-roll": "^1.0.7",
     "@synerise/ds-layout": "^1.0.6",
     "@synerise/ds-list": "^1.0.6",
