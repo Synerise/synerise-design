@@ -109,7 +109,8 @@ chromatic_publish:
 publish_packages:
   stage: build
   needs: ['build_packages']
-  environment: npm
+  environment: 
+    name: npm
   variables:
     PUBLISH_TITLE: 'build: publish'
   rules:
@@ -160,7 +161,8 @@ deploy_storybook:
 k8s-prod-gitops:
   extends: .autodeploy-template
   stage: k8s-deploy-prod
-  environment: prod
+  environment: 
+    name: prod
   when: manual
   only:
     refs:
