@@ -3,22 +3,26 @@ image: quay.io/synerise/base-build-images:nodejs22
 variables:
   APP: ds-docs
   NODE_OPTIONS: --max-old-space-size=4096
-  GITOPS: "true"
-  MODULE: "documentation"
-  LIBRARY_PIPELINE: "NO"
+  GITOPS: 'true'
+  MODULE: 'documentation'
+  LIBRARY_PIPELINE: 'NO'
   APP_NAME_OVERRIDE: ds-docs
 
 cache:
-  key: ds
-  paths:
-    - node_modules/
+    key:
+      files:
+        - yarn.lock
+    paths:
+      - node_modules
 
 stages:
+  - install
+  - prepare
   - test
   - build
+  - deploy
   - k8s-deploy-stg
   - k8s-deploy-prod
-  - deploy
 
 include:
   - template: Code-Quality.gitlab-ci.yml
@@ -26,57 +30,112 @@ include:
     ref: master
     file: '/ai_deploy_kapitan.yml'
 
-build:
-  stage: test
+
+install:
+  stage: install
+  rules:
+    - if: $CI_PIPELINE_SOURCE == "merge_request_event"
+    - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH 
+  script:
+    - yarn --frozen-lockfile
+    - yarn lint
+  cache:
+    key:
+      files:
+        - yarn.lock
+    paths:
+      - node_modules
+    policy: pull-push
+  artifacts:
+    untracked: true
+
+build_packages:
+  stage: prepare
+  needs: ['install']
   variables:
     KUBERNETES_CPU_REQUEST: 4
     KUBERNETES_MEMORY_REQUEST: 16Gi
     KUBERNETES_MEMORY_LIMIT: 22Gi
-  except:
-    refs:
-      - tags
-      - container
-  tags:
-    - vms
+  cache:
+    key:
+      files:
+        - yarn.lock
+    paths:
+      - node_modules
+    policy: pull
+  rules:
+    - if: $CI_PIPELINE_SOURCE == "merge_request_event"
+    - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH 
   script:
-    - yarn --frozen-lockfile
-    - yarn lint
     - yarn build
+  artifacts:
+    untracked: true
+
+run_tests:
+  stage: test
+  needs: ['build_packages']
+  variables:
+    KUBERNETES_CPU_REQUEST: 4
+    KUBERNETES_MEMORY_REQUEST: 16Gi
+    KUBERNETES_MEMORY_LIMIT: 22Gi
+  cache:
+    key:
+      files:
+        - yarn.lock
+    paths:
+      - node_modules
+    policy: pull
+  rules:
+    - if: $CI_PIPELINE_SOURCE == "merge_request_event"
+  script:
     - yarn test:ci
+
+chromatic_publish:
+  stage: test
+  needs: ['build_packages']
+  variables:
+    KUBERNETES_CPU_REQUEST: 4
+    KUBERNETES_MEMORY_REQUEST: 16Gi
+    KUBERNETES_MEMORY_LIMIT: 22Gi
+  rules:
+    - if: $CI_PIPELINE_SOURCE == "merge_request_event"
+  script:
+    - test ! -e packages/storybook/storybook-static && (cd packages/storybook; yarn build-storybook --quiet --stats-json)
+    - yarn npx:lerna run pack:ci --since origin/master
+    - (cd packages/storybook/storybook-static/static; ls > index.txt)
+    - (cd packages/storybook; npx chromatic --project-token=$CHROMATIC_PROJECT_TOKEN_SB7 --storybook-build-dir ./storybook-static/ --exit-zero-on-changes)
+  interruptible: true
+
+publish_packages:
+  stage: build
+  needs: ['build_packages']
+  variables:
+    PUBLISH_TITLE: 'build: publish'
+  rules:
+    - if: ($CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH || $CI_COMMIT_TITLE == $PUBLISH_TITLE)
+  script:
     - echo "Tag version $CI_COMMIT_TAG"
     - echo "Commit ref $CI_COMMIT_REF_NAME"
     - echo "Publisher $GITLAB_USER_EMAIL"
     - echo '//registry.npmjs.org/:_authToken=${NPM_TOKEN}'>.npmrc
     - echo "email = $GITLAB_USER_EMAIL" >> .npmrc
-    - (if [ "$CI_COMMIT_REF_NAME" == "master" ]; then npx lerna publish from-package --no-git-tag-version --yes;fi);
-  interruptible: true
+    - npx lerna publish from-package --no-git-tag-version --yes
 
-docs_build:
-  stage: test
-  only:
-    refs:
-      - tags
-      - master
-      - dev
+build_storybook:
+  stage: build
+  needs: ['build_packages']
+  rules:
+    - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH 
   script:
-    - yarn --frozen-lockfile
-    - yarn build
     - yarn build-storybook
     - mv packages/storybook/storybook-static/ packages/docs-site/storybook-static
 
-  artifacts:
-    paths:
-      - packages/docs-site/storybook-static/*
-
-docs_deploy:
+deploy_storybook:
   image: artifactory.snrinternal.com/docker.io/docker:stable
-  stage: build
-  needs: ['docs_build']
-  only:
-    refs:
-      - master
-      - dev
-  allow_failure: true
+  stage: deploy
+  needs: ['build_storybook']
+  rules:
+    - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH 
   script:
     - SANITY_BRANCH=$CI_COMMIT_REF_SLUG
     - echo "Sanitized branch name ${SANITY_BRANCH}"
@@ -94,31 +153,6 @@ docs_deploy:
     - docker push quay.io/synerise/ds-docs:"$SANITY_BRANCH"-latest
     - echo "Image pushed to remote repository from branch ${CI_COMMIT_REF_NAME} for commit ${CI_COMMIT_SHA}"
 
-docs_deploy_from_tag:
-  image: artifactory.snrinternal.com/docker.io/docker:stable
-  stage: build
-  needs: ['docs_build']
-  only:
-    refs:
-      - tags
-  allow_failure: true
-  script:
-    - SANITY_BRANCH=$CI_COMMIT_REF_SLUG
-    - echo "Sanitized branch name ${SANITY_BRANCH}"
-    - docker login $QUAY_REPO_HOST -u "$QUAY_REPO_USER" -p "$QUAY_REPO_PASS"
-    - cd packages/docs-site
-    - pwd
-    - docker build -t ds-docs .
-    - echo "Push commit image"
-
-    - docker tag ds-docs quay.io/synerise/ds-docs:"$SANITY_BRANCH"-"${CI_COMMIT_SHA}"
-    - docker push quay.io/synerise/ds-docs:"$SANITY_BRANCH"-"${CI_COMMIT_SHA}"
-    - echo "Image pushed to remote repository from branch ${CI_COMMIT_REF_NAME}"
-
-    - docker tag ds-docs quay.io/synerise/ds-docs:"$SANITY_BRANCH"
-    - docker push quay.io/synerise/ds-docs:"$SANITY_BRANCH"
-    - echo "Image pushed to remote repository from branch ${CI_COMMIT_REF_NAME} for commit ${CI_COMMIT_SHA}"
-
 k8s-prod-gitops:
   extends: .autodeploy-template
   stage: k8s-deploy-prod
@@ -132,36 +166,3 @@ k8s-prod-gitops:
     matrix:
       - ENV: g001-misc1
         AUTODEPLOY_TAG: $CI_COMMIT_REF_SLUG-$CI_COMMIT_SHA
-
-chromatic_publish_sb7:
-  stage: deploy
-  only:
-    refs:
-      - merge_requests
-  variables:
-    CHROMATIC_PROJECT_TOKEN: $CHROMATIC_PROJECT_TOKEN_SB7
-  before_script:
-    - yarn install --frozen-lockfile
-    - yarn build
-  script:
-    - test ! -e packages/storybook/storybook-static && (cd packages/storybook; yarn build-storybook --quiet --stats-json)
-    - yarn npx:lerna run pack:ci --since origin/master
-    - (cd packages/storybook/storybook-static/static; ls > index.txt)
-    - (cd packages/storybook; npx chromatic --project-token=$CHROMATIC_PROJECT_TOKEN_SB7 --storybook-build-dir ./storybook-static/ --exit-zero-on-changes)
-  interruptible: true
-
-chromatic_publish_baseline:
-  stage: deploy
-  when: manual
-  needs: ['build']
-  only:
-    refs:
-      - master
-    variables:
-      - $CHROMATIC_PROJECT_TOKEN_SB7
-  script:
-    - yarn install --frozen-lockfile
-    - yarn build
-    - (cd packages/storybook; yarn chromatic --project-token=$CHROMATIC_PROJECT_TOKEN_SB7 --auto-accept-changes)
-  interruptible: true
-  

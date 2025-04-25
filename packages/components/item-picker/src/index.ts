@@ -4,10 +4,10 @@ export { default as ItemPickerLegacy } from './components/ItemPickerLegacy/ItemP
 export { default as ItemPickerTrigger } from './components/ItemPickerTrigger/Trigger';
 
 export { ItemPickerList } from './components/ItemPickerList/ItemPickerList';
-export type { ItemPickerProps as ItemPickerPropsNew } from './components/ItemPickerNew/ItemPickerNew.types';
 export { ItemPickerNew } from './components/ItemPickerNew/ItemPickerNew';
 export type { ItemPickerListProps, ItemPickerListTexts } from './components/ItemPickerList/ItemPickerList.types';
 export type {
+  ItemPickerProps as ItemPickerPropsNew,
   ItemLoaderConfig,
   BaseSectionTypeWithFolders,
   BaseItemType,
