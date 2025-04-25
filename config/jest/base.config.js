@@ -13,19 +13,14 @@ module.exports = {
       '<rootDir>/config/jest/__mocks__/fileMock.js',
     '\\.svg$': '<rootDir>/config/jest/__mocks__/svgrMock.js',
     '^rc-virtual-list$': '<rootDir>/config/jest/__mocks__/rc-virtual-list.js',
-    "@monaco-editor/react": "<rootDir>/config/jest/__mocks__/monacoMock.jsx"
   },
   rootDir: path.resolve(__dirname, '..', '..'),
   setupFilesAfterEnv: ['<rootDir>/config/jest/setup/index.js'],
   transform: {
-    '^.+\\.[jt]sx?$': '<rootDir>/config/jest/babel-transformer.js',
+    "^.+\\.(t|j)sx?$": ["@swc/jest"],
   },
   moduleFileExtensions: [...defaults.moduleFileExtensions, 'ts', 'tsx'],
+  extensionsToTreatAsEsm: ['.ts', '.tsx'],
   transformIgnorePatterns: [`<rootDir>/node_modules/(?!${esModules})`],
   testEnvironment: "jest-environment-jsdom",
-
-  // watchPlugins: [
-  //   'jest-watch-typeahead/filename',
-  //   'jest-watch-typeahead/testname'
-  // ]
 };

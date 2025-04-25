@@ -32,6 +32,20 @@ const TEST_IDS = {
   syntaxOptions: 'code-area-syntaxoptions'
 }
 
+
+jest.mock('@monaco-editor/react', () => (({ onChange, value, 'data-testid': dataTestId }) => {
+  return (
+    <input
+      type="text"
+      onChange={event => onChange(event.target.value)}
+      value={value}
+      aria-label={dataTestId}
+      data-testid={dataTestId}
+    />
+  );
+}));
+
+
 describe('CodeArea', () => {
   it('should render CodeArea with label', () => {
     renderWithProvider(<CodeArea currentSyntax={SYNTAX} label={LABEL} syntaxOptions={SYNTAX_OPTIONS} />);
@@ -58,7 +72,7 @@ describe('CodeArea', () => {
   });
 
   it('should render CodeArea with counter above', () => {
-    renderWithProvider(<CodeArea currentSyntax={SYNTAX} counter={{limit: 100, placement: 'top'}} />);
+    renderWithProvider(<CodeArea currentSyntax={SYNTAX} counter={{ limit: 100, placement: 'top' }} />);
     const counterTop = screen.queryByTestId(TEST_IDS.counterTop);
     expect(counterTop).toBeInTheDocument();
     const counterBottom = screen.queryByTestId(TEST_IDS.counterBottom);
@@ -66,7 +80,7 @@ describe('CodeArea', () => {
   });
 
   it('should render CodeArea with counter below', () => {
-    renderWithProvider(<CodeArea currentSyntax={SYNTAX} counter={{limit: 100, placement: 'bottom'}} />);
+    renderWithProvider(<CodeArea currentSyntax={SYNTAX} counter={{ limit: 100, placement: 'bottom' }} />);
     const counterBottom = screen.queryByTestId(TEST_IDS.counterBottom);
     expect(counterBottom).toBeInTheDocument();
     const counterTop = screen.queryByTestId(TEST_IDS.counterTop);
@@ -76,13 +90,13 @@ describe('CodeArea', () => {
   it('should render CodeArea with multiple syntax options', async () => {
     const onSyntaxChange = jest.fn();
     renderWithProvider(<CodeArea currentSyntax={SYNTAX} syntaxOptions={SYNTAX_OPTIONS} onSyntaxChange={onSyntaxChange} />);
-    
+
     const syntaxOptions = screen.getByTestId(TEST_IDS.syntaxOptions);
     const syntaxSelectionTrigger = screen.getByText(SYNTAX);
-    
+
     expect(syntaxOptions).toBeInTheDocument();
     expect(syntaxSelectionTrigger).toBeInTheDocument();
-    
+
     userEvent.click(syntaxSelectionTrigger);
     await waitFor(() => {
       const items = screen.getAllByRole('menuitem');
@@ -90,7 +104,7 @@ describe('CodeArea', () => {
     })
   });
 
-  it('should show CodeArea in fullscreen mode', async() => {
+  it('should show CodeArea in fullscreen mode', async () => {
     const onFullscreenChange = jest.fn();
     renderWithProvider(<div data-popup-container><CodeArea currentSyntax={SYNTAX} fullscreenLabel={FULLSCREEN_LABEL} allowFullscreen texts={TEXTS} onFullscreenChange={onFullscreenChange} description={DESCRIPTION} /></div>);
 

@@ -9,11 +9,12 @@ import { hasSomeElement, getAllElementsFiltered, hasSomeElementFiltered } from '
 import * as S from './Search.styles';
 import { SearchProps, SearchState, SelectResultDataKeys, AnyObject } from './Search.types';
 import { SearchHeader, SearchInput, SearchItems } from './Elements';
-
-const MENU_WIDTH_OFFSET = 17;
-export const INPUT_EXPAND_ANIMATION_DURATION = 100;
-const SCROLLBAR_HEIGHT_OFFSET = 28;
-const LIST_HEADER_HEIGHT = 42;
+import {
+  LIST_HEADER_HEIGHT,
+  MENU_WIDTH_OFFSET,
+  INPUT_EXPAND_ANIMATION_DURATION,
+  SCROLLBAR_HEIGHT_OFFSET,
+} from './const';
 
 const getParametersScrollTop = ({
   scrollTop,

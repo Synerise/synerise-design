@@ -1,9 +1,6 @@
 import styled, { keyframes } from 'styled-components';
-import { INPUT_EXPAND_ANIMATION_DURATION } from './Search';
+import { ANIMATION_DURATION, LABEL_LEFT_OFFSET, MAX_FILTER_WIDTH } from './const';
 
-const LABEL_LEFT_OFFSET = 7;
-const ANIMATION_DURATION = INPUT_EXPAND_ANIMATION_DURATION / 1000;
-const MAX_FILTER_WIDTH = 120;
 export const openDropdownAnimation = keyframes`
   0% {
     opacity:0;

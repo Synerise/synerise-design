@@ -8,7 +8,7 @@ describe('Field-Set', () => {
   const TITLE = 'Advanced option';
   const DESCRIPTION = 'This section is for avanced users only';
 
-  it('should render', function() {
+  it('should render', function () {
     renderWithProvider(
       <FieldSet
         title={TITLE}
@@ -18,16 +18,16 @@ describe('Field-Set', () => {
     expect(screen.getByText(TITLE)).toBeInTheDocument();
     expect(screen.getByText(DESCRIPTION)).toBeInTheDocument();
   });
-  it('should render title', function() {
+  it('should render title', function () {
     renderWithProvider(
       <FieldSet
-      title={TITLE}
-      description={DESCRIPTION}
+        title={TITLE}
+        description={DESCRIPTION}
       />
     );
     expect(screen.getByText(TITLE)).toBeTruthy();
   });
-  it('title should be clickable', function() {
+  it('title should be clickable', function () {
     const onClick = jest.fn();
     renderWithProvider(
       <FieldSet
@@ -42,7 +42,7 @@ describe('Field-Set', () => {
     expect(onClick).toHaveBeenCalled();
   })
 
-  it('should render expander when expandable', async () => { 
+  it('should render expander when expandable', async () => {
     const TEST_CONTENT = 'TEST_CONTENT';
     renderWithProvider(
       <FieldSet
@@ -54,7 +54,7 @@ describe('Field-Set', () => {
     );
     expect(screen.getByRole('button')).toBeInTheDocument();
     expect(screen.getByTestId('field-set-collapsible')).toHaveAttribute('aria-hidden', 'true');
-    
+
     userEvent.click(screen.getByRole('button'));
     await waitFor(() => expect(screen.getByTestId('field-set-collapsible')).toHaveAttribute('aria-hidden', 'false'));
   })
@@ -72,7 +72,7 @@ describe('Field-Set', () => {
     );
     expect(screen.getByRole('button')).toBeInTheDocument();
     expect(screen.getByTestId('field-set-collapsible')).toHaveAttribute('aria-hidden', 'false');
-    
+
     userEvent.click(screen.getByRole('button'));
     await waitFor(() => expect(screen.getByTestId('field-set-collapsible')).toHaveAttribute('aria-hidden', 'true'));
   })

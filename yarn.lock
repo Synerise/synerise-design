@@ -2328,6 +2328,13 @@
     slash "^3.0.0"
     strip-ansi "^6.0.0"
 
+"@jest/create-cache-key-function@^29.7.0":
+  version "29.7.0"
+  resolved "https://registry.npmjs.org/@jest/create-cache-key-function/-/create-cache-key-function-29.7.0.tgz#793be38148fab78e65f40ae30c36785f4ad859f0"
+  integrity sha512-4QqS3LY5PBmTRHj9sAg1HLoPzqAI0uOX6wI/TRqHIcOxlFidy6YEmCQJk6FSZjNLGCeubDMfmkWL+qaLKhSGQA==
+  dependencies:
+    "@jest/types" "^29.6.3"
+
 "@jest/environment@^27.5.1":
   version "27.5.1"
   resolved "http://artifactory.service:80/artifactory/api/npm/npm-release/@jest/environment/-/environment-27.5.1.tgz#d7425820511fe7158abbecc010140c3fd3be9c74"
@@ -2390,6 +2397,13 @@
     terminal-link "^2.0.0"
     v8-to-istanbul "^8.1.0"
 
+"@jest/schemas@^29.6.3":
+  version "29.6.3"
+  resolved "https://registry.npmjs.org/@jest/schemas/-/schemas-29.6.3.tgz#430b5ce8a4e0044a7e3819663305a7b3091c8e03"
+  integrity sha512-mo5j5X+jIZmJQveBKeS/clAueipV7KgiX1vMgCxam1RNYiqE1w62n0/tJJnHtjW8ZHcQco5gY85jA3mi0L+nSA==
+  dependencies:
+    "@sinclair/typebox" "^0.27.8"
+
 "@jest/source-map@^27.5.1":
   version "27.5.1"
   resolved "http://artifactory.service:80/artifactory/api/npm/npm-release/@jest/source-map/-/source-map-27.5.1.tgz#6608391e465add4205eae073b55e7f279e04e8cf"
@@ -2449,6 +2463,18 @@
     "@types/istanbul-reports" "^3.0.0"
     "@types/node" "*"
     "@types/yargs" "^16.0.0"
+    chalk "^4.0.0"
+
+"@jest/types@^29.6.3":
+  version "29.6.3"
+  resolved "https://registry.npmjs.org/@jest/types/-/types-29.6.3.tgz#1131f8cf634e7e84c5e77bab12f052af585fba59"
+  integrity sha512-u3UPsIilWKOM3F9CXtrG8LEJmNxwoCQC/XVj4IKYXvvpx7QIi/Kg1LI5uDmDpKlac62NUtX7eLjRh+jVZcLOzw==
+  dependencies:
+    "@jest/schemas" "^29.6.3"
+    "@types/istanbul-lib-coverage" "^2.0.0"
+    "@types/istanbul-reports" "^3.0.0"
+    "@types/node" "*"
+    "@types/yargs" "^17.0.8"
     chalk "^4.0.0"
 
 "@jridgewell/gen-mapping@0.3.2", "@jridgewell/gen-mapping@^0.3.0", "@jridgewell/gen-mapping@^0.3.2":
@@ -3587,6 +3613,11 @@
     "@sigstore/protobuf-specs" "^0.2.0"
     tuf-js "^1.1.7"
 
+"@sinclair/typebox@^0.27.8":
+  version "0.27.8"
+  resolved "https://registry.npmjs.org/@sinclair/typebox/-/typebox-0.27.8.tgz#6667fac16c436b5434a387a34dedb013198f6e6e"
+  integrity sha512-+Fj43pSMwJs4KRrH/938Uf+uAELIgVBmQzg/q1YG10djyfA3TnrU8N8XzqCh/okZdszqBQTZf96idMfE5lnwTA==
+
 "@sindresorhus/is@^5.2.0":
   version "5.6.0"
   resolved "http://artifactory.service:80/artifactory/api/npm/npm-release/@sindresorhus/is/-/is-5.6.0.tgz"
@@ -4199,79 +4230,88 @@
     "@svgr/plugin-jsx" "8.1.0"
     "@svgr/plugin-svgo" "8.1.0"
 
-"@swc/core-darwin-arm64@1.11.15":
-  version "1.11.15"
-  resolved "https://registry.npmjs.org/@swc/core-darwin-arm64/-/core-darwin-arm64-1.11.15.tgz#3be6bb9c6ba019c0b7c20011d3606dd5a8063c4a"
-  integrity sha512-mMoQy6TrYrvhrpi70eD01uu4WeB+Wy+9To5b95gHcyiAMRyd7afnFHo9OcPynk0Ep01PvReiB6hL2hYfNcDKvw==
+"@swc/core-darwin-arm64@1.11.22":
+  version "1.11.22"
+  resolved "https://registry.npmjs.org/@swc/core-darwin-arm64/-/core-darwin-arm64-1.11.22.tgz#61d07fd1a86d1f5035bc3cc180bf29d8a1f6cabd"
+  integrity sha512-upSiFQfo1TE2QM3+KpBcp5SrOdKKjoc+oUoD1mmBDU2Wv4Bjjv16Z2I5ADvIqMV+b87AhYW+4Qu6iVrQD7j96Q==
 
-"@swc/core-darwin-x64@1.11.15":
-  version "1.11.15"
-  resolved "https://registry.npmjs.org/@swc/core-darwin-x64/-/core-darwin-x64-1.11.15.tgz#773a31124ba5f4e091807e914f88539ec7074765"
-  integrity sha512-yBWcP5v3OXq1Nxamqh1+qecty3TFRlxAMNXMBzq/Rv6Fu9eOAU6lTSfozO0BaOoETTzorlR2/3Jn+3amyviQMw==
+"@swc/core-darwin-x64@1.11.22":
+  version "1.11.22"
+  resolved "https://registry.npmjs.org/@swc/core-darwin-x64/-/core-darwin-x64-1.11.22.tgz#e4004c5cc80362d6f2ad482961558d1640878d50"
+  integrity sha512-8PEuF/gxIMJVK21DjuCOtzdqstn2DqnxVhpAYfXEtm3WmMqLIOIZBypF/xafAozyaHws4aB/5xmz8/7rPsjavw==
 
-"@swc/core-linux-arm-gnueabihf@1.11.15":
-  version "1.11.15"
-  resolved "https://registry.npmjs.org/@swc/core-linux-arm-gnueabihf/-/core-linux-arm-gnueabihf-1.11.15.tgz#f562ac9049fdd5f02c8585446addc8a895e811ba"
-  integrity sha512-OprUQ0AvIiA2FCZqDYcnZ1nZhiCABqJPGgC9KwX8p8tC+t1mYkAeboik23S9gxzwGQImMNYYojGbNGTmLATLrA==
+"@swc/core-linux-arm-gnueabihf@1.11.22":
+  version "1.11.22"
+  resolved "https://registry.npmjs.org/@swc/core-linux-arm-gnueabihf/-/core-linux-arm-gnueabihf-1.11.22.tgz#48078c84c71a6edc45884fb9f106f1a8da1b8311"
+  integrity sha512-NIPTXvqtn9e7oQHgdaxM9Z/anHoXC3Fg4ZAgw5rSGa1OlnKKupt5sdfJamNggSi+eAtyoFcyfkgqHnfe2u63HA==
 
-"@swc/core-linux-arm64-gnu@1.11.15":
-  version "1.11.15"
-  resolved "https://registry.npmjs.org/@swc/core-linux-arm64-gnu/-/core-linux-arm64-gnu-1.11.15.tgz#cefabeba1d607179236e22cd0a70494bc0896349"
-  integrity sha512-Uq3FjjKEw1CTtFpz7Mi+CC//4KQODQ8vXFx7J/cBO6nj+/Os9J1huyqa1LljlBTCeDXTpeC7qlqO6swZ0HPaJw==
+"@swc/core-linux-arm64-gnu@1.11.22":
+  version "1.11.22"
+  resolved "https://registry.npmjs.org/@swc/core-linux-arm64-gnu/-/core-linux-arm64-gnu-1.11.22.tgz#03ce14d829441c37a3b217040196e0fad9bf79a2"
+  integrity sha512-xZ+bgS60c5r8kAeYsLNjJJhhQNkXdidQ277pUabSlu5GjR0CkQUPQ+L9hFeHf8DITEqpPBPRiAiiJsWq5eqMBg==
 
-"@swc/core-linux-arm64-musl@1.11.15":
-  version "1.11.15"
-  resolved "https://registry.npmjs.org/@swc/core-linux-arm64-musl/-/core-linux-arm64-musl-1.11.15.tgz#b01778b8ec6fd37901a6d1a68e09aaa6c2762dbc"
-  integrity sha512-G5orst6QzXyTXgOTnjrkYaLaK3emMXBWkQ7CDFyZNCGo6Fztn0vzYcCmr31Cvqs66BsM0sdGbcrBd5br8g/pJg==
+"@swc/core-linux-arm64-musl@1.11.22":
+  version "1.11.22"
+  resolved "https://registry.npmjs.org/@swc/core-linux-arm64-musl/-/core-linux-arm64-musl-1.11.22.tgz#16ff1a87f24d79ac330eb1b243b4e2d0005cce34"
+  integrity sha512-JhrP/q5VqQl2eJR0xKYIkKTPjgf8CRsAmRnjJA2PtZhfQ543YbYvUqxyXSRyBOxdyX8JwzuAxIPEAlKlT7PPuQ==
 
-"@swc/core-linux-x64-gnu@1.11.15":
-  version "1.11.15"
-  resolved "https://registry.npmjs.org/@swc/core-linux-x64-gnu/-/core-linux-x64-gnu-1.11.15.tgz#96018cf4e9f4c0ae91a74fc8f444b028f8aa6ea7"
-  integrity sha512-T0iR9yUcGyo1yLudL73jKbPS4AYo2iAWWH2I9u7QYiRTXPduwkH0nETNr+nsWBsYdMu+H2g169rCiGhhx6FPHw==
+"@swc/core-linux-x64-gnu@1.11.22":
+  version "1.11.22"
+  resolved "https://registry.npmjs.org/@swc/core-linux-x64-gnu/-/core-linux-x64-gnu-1.11.22.tgz#d249e3ae8b48459e0845aa5fc3099d210833390b"
+  integrity sha512-htmAVL+U01gk9GyziVUP0UWYaUQBgrsiP7Ytf6uDffrySyn/FclUS3MDPocNydqYsOpj3OpNKPxkaHK+F+X5fg==
 
-"@swc/core-linux-x64-musl@1.11.15":
-  version "1.11.15"
-  resolved "https://registry.npmjs.org/@swc/core-linux-x64-musl/-/core-linux-x64-musl-1.11.15.tgz#48a7be362840d4906c008897fb74379e0b27fee9"
-  integrity sha512-2d8pHehwsHdQ71PRLeJ/XM69t5LCMzf1KZQDTVJTOSWRbuKGArtD+md5lVzTu458gt+JawdUgFdkdHtF7ke0AA==
+"@swc/core-linux-x64-musl@1.11.22":
+  version "1.11.22"
+  resolved "https://registry.npmjs.org/@swc/core-linux-x64-musl/-/core-linux-x64-musl-1.11.22.tgz#f65d4a75ef829f9da7cd5425d21ddf1d6da5cd46"
+  integrity sha512-PL0VHbduWPX+ANoyOzr58jBiL2VnD0xGSFwPy7NRZ1Pr6SNWm4jw3x2u6RjLArGhS5EcWp64BSk9ZxqmTV3FEg==
 
-"@swc/core-win32-arm64-msvc@1.11.15":
-  version "1.11.15"
-  resolved "https://registry.npmjs.org/@swc/core-win32-arm64-msvc/-/core-win32-arm64-msvc-1.11.15.tgz#80fe2cff7c30ccbb855cd2063735b48f8bf0f0df"
-  integrity sha512-Vz5xg03VdYftMvruvziV1doU7B64rQ8rw72bKf2+yflt1gU7BlLk4DPu2IZlUc0Xk8lrVcEDiheXATbHexKsmw==
+"@swc/core-win32-arm64-msvc@1.11.22":
+  version "1.11.22"
+  resolved "https://registry.npmjs.org/@swc/core-win32-arm64-msvc/-/core-win32-arm64-msvc-1.11.22.tgz#a67dd652d752bd1e6c2244a267c9f179480296fd"
+  integrity sha512-moJvFhhTVGoMeEThtdF7hQog80Q00CS06v5uB+32VRuv+I31+4WPRyGlTWHO+oY4rReNcXut/mlDHPH7p0LdFg==
 
-"@swc/core-win32-ia32-msvc@1.11.15":
-  version "1.11.15"
-  resolved "https://registry.npmjs.org/@swc/core-win32-ia32-msvc/-/core-win32-ia32-msvc-1.11.15.tgz#f58f435a5806c5885b78a3b70810071aa4d5853b"
-  integrity sha512-R9jS92ubQgHQfyNVCMnuQfNPeBgAs3QaWC+DqPbhXtOyWUdSGcImbHMDCxShDj+nn8J7bPeb7L4sZqr6gBkZnQ==
+"@swc/core-win32-ia32-msvc@1.11.22":
+  version "1.11.22"
+  resolved "https://registry.npmjs.org/@swc/core-win32-ia32-msvc/-/core-win32-ia32-msvc-1.11.22.tgz#3cd02e4d1b759fa35820a58a45cd55f6ebe43ac3"
+  integrity sha512-/jnsPJJz89F1aKHIb5ScHkwyzBciz2AjEq2m9tDvQdIdVufdJ4SpEDEN9FqsRNRLcBHjtbLs6bnboA+B+pRFXw==
 
-"@swc/core-win32-x64-msvc@1.11.15":
-  version "1.11.15"
-  resolved "https://registry.npmjs.org/@swc/core-win32-x64-msvc/-/core-win32-x64-msvc-1.11.15.tgz#6c4ad617f10cb7fc38fd274b4d6834e29a199c77"
-  integrity sha512-UpSX492qVVTJQkRBYw3qC49ae4QRHwuC1cDgA47XBP0l31vjR83r3qEYue1Nn173etzGzbDJnygyLpqv/ieCCA==
+"@swc/core-win32-x64-msvc@1.11.22":
+  version "1.11.22"
+  resolved "https://registry.npmjs.org/@swc/core-win32-x64-msvc/-/core-win32-x64-msvc-1.11.22.tgz#971610deb596d420042592d76791273e3921628f"
+  integrity sha512-lc93Y8Mku7LCFGqIxJ91coXZp2HeoDcFZSHCL90Wttg5xhk5xVM9uUCP+OdQsSsEixLF34h5DbT9ObzP8rAdRw==
 
-"@swc/core@^1.10.8":
-  version "1.11.15"
-  resolved "https://registry.npmjs.org/@swc/core/-/core-1.11.15.tgz#43dcadd77175dd334a477b5c6d1417a3e4ec44c7"
-  integrity sha512-SqXjJrwydXA2OVVAFv9EdCb2kkhEM2+b4ajereGzFSQuK2FN/SlKPklvFMh9sj1sG0tgXwyLGSMgyn3FUx83DA==
+"@swc/core@^1.10.8", "@swc/core@^1.11.22":
+  version "1.11.22"
+  resolved "https://registry.npmjs.org/@swc/core/-/core-1.11.22.tgz#3d77cf84a8cbbe6903f1fe4aa988c50b46b27d82"
+  integrity sha512-mjPYbqq8XjwqSE0hEPT9CzaJDyxql97LgK4iyvYlwVSQhdN1uK0DBG4eP9PxYzCS2MUGAXB34WFLegdUj5HGpg==
   dependencies:
     "@swc/counter" "^0.1.3"
     "@swc/types" "^0.1.21"
   optionalDependencies:
-    "@swc/core-darwin-arm64" "1.11.15"
-    "@swc/core-darwin-x64" "1.11.15"
-    "@swc/core-linux-arm-gnueabihf" "1.11.15"
-    "@swc/core-linux-arm64-gnu" "1.11.15"
-    "@swc/core-linux-arm64-musl" "1.11.15"
-    "@swc/core-linux-x64-gnu" "1.11.15"
-    "@swc/core-linux-x64-musl" "1.11.15"
-    "@swc/core-win32-arm64-msvc" "1.11.15"
-    "@swc/core-win32-ia32-msvc" "1.11.15"
-    "@swc/core-win32-x64-msvc" "1.11.15"
+    "@swc/core-darwin-arm64" "1.11.22"
+    "@swc/core-darwin-x64" "1.11.22"
+    "@swc/core-linux-arm-gnueabihf" "1.11.22"
+    "@swc/core-linux-arm64-gnu" "1.11.22"
+    "@swc/core-linux-arm64-musl" "1.11.22"
+    "@swc/core-linux-x64-gnu" "1.11.22"
+    "@swc/core-linux-x64-musl" "1.11.22"
+    "@swc/core-win32-arm64-msvc" "1.11.22"
+    "@swc/core-win32-ia32-msvc" "1.11.22"
+    "@swc/core-win32-x64-msvc" "1.11.22"
 
 "@swc/counter@^0.1.3":
   version "0.1.3"
   resolved "https://registry.npmjs.org/@swc/counter/-/counter-0.1.3.tgz#cc7463bd02949611c6329596fccd2b0ec782b0e9"
   integrity sha512-e2BR4lsJkkRlKZ/qCHPw9ZaSxc0MVUd7gtbtaB7aMvHeJVYe8sOB8DBZkP2DtISHGSku9sCK6T6cnY0CtXrOCQ==
+
+"@swc/jest@^0.2.38":
+  version "0.2.38"
+  resolved "https://registry.npmjs.org/@swc/jest/-/jest-0.2.38.tgz#8b137e344c6c021d4e49ee2bc62b0e5e564d2c7c"
+  integrity sha512-HMoZgXWMqChJwffdDjvplH53g9G2ALQes3HKXDEdliB/b85OQ0CTSbxG8VSeCwiAn7cOaDVEt4mwmZvbHcS52w==
+  dependencies:
+    "@jest/create-cache-key-function" "^29.7.0"
+    "@swc/counter" "^0.1.3"
+    jsonc-parser "^3.2.0"
 
 "@swc/types@^0.1.21":
   version "0.1.21"
@@ -4788,6 +4828,13 @@
   version "16.0.5"
   resolved "https://registry.npmjs.org/@types/yargs/-/yargs-16.0.5.tgz"
   integrity sha512-AxO/ADJOBFJScHbWhq2xAhlWP24rY4aCEG/NFaMvbT3X2MgRsLjhjQwsn0Zi5zn0LG9jUhCCZMeX9Dkuw6k+vQ==
+  dependencies:
+    "@types/yargs-parser" "*"
+
+"@types/yargs@^17.0.8":
+  version "17.0.33"
+  resolved "https://registry.npmjs.org/@types/yargs/-/yargs-17.0.33.tgz#8c32303da83eec050a84b3c7ae7b9f922d13e32d"
+  integrity sha512-WpxBCKWPLr4xSsHgz511rFJAM+wS28w2zEO1QDNY5zM/S8ok70NNfztH0xwhqKyaK0OHCbN98LDAZuy1ctxDkA==
   dependencies:
     "@types/yargs-parser" "*"
 
@@ -6003,13 +6050,6 @@ browserslist@^4.24.4:
     electron-to-chromium "^1.5.73"
     node-releases "^2.0.19"
     update-browserslist-db "^1.1.1"
-
-bs-logger@0.x:
-  version "0.2.6"
-  resolved "https://registry.npmjs.org/bs-logger/-/bs-logger-0.2.6.tgz"
-  integrity sha512-pd8DCoxmbgc7hyPKOvxtqNcjYoOsABPQdcCUjGp3d42VR2CX1ORhk2A87oqqu5R1kk+76nsxZupkmyd+MVtCog==
-  dependencies:
-    fast-json-stable-stringify "2.x"
 
 bser@2.1.1:
   version "2.1.1"
@@ -8779,7 +8819,7 @@ fast-json-parse@^1.0.3:
   resolved "https://registry.npmjs.org/fast-json-parse/-/fast-json-parse-1.0.3.tgz#43e5c61ee4efa9265633046b770fb682a7577c4d"
   integrity sha512-FRWsaZRWEJ1ESVNbDWmsAlqDk96gPQezzLghafp5J4GUKjbCz3OkAHuZs5TuPEtkbVQERysLp9xv6c24fBm8Aw==
 
-fast-json-stable-stringify@2.x, fast-json-stable-stringify@^2.0.0:
+fast-json-stable-stringify@^2.0.0:
   version "2.1.0"
   resolved "https://registry.npmjs.org/fast-json-stable-stringify/-/fast-json-stable-stringify-2.1.0.tgz"
   integrity sha512-lhd/wF+Lk98HZoTCtlVraHtfh5XYijIjalXck7saUtuanSDyLMxnHhSXEDJqHxD7msR8D0uCmqlkwjCV8xvwHw==
@@ -11266,7 +11306,7 @@ jest-snapshot@^27.5.1:
     pretty-format "^27.5.1"
     semver "^7.3.2"
 
-jest-util@^27.0.0, jest-util@^27.5.1:
+jest-util@^27.5.1:
   version "27.5.1"
   resolved "http://artifactory.service:80/artifactory/api/npm/npm-release/jest-util/-/jest-util-27.5.1.tgz#3ba9771e8e31a0b85da48fe0b0891fb86c01c2f9"
   integrity sha1-O6l3Ho4xoLhdpI/gsIkfuGwBwvk=
@@ -11463,7 +11503,7 @@ json2mq@^0.2.0:
   dependencies:
     string-convert "^0.2.0"
 
-json5@2.x, json5@^2.1.0, json5@^2.1.2:
+json5@^2.1.0, json5@^2.1.2:
   version "2.1.2"
   resolved "https://registry.npmjs.org/json5/-/json5-2.1.2.tgz"
   integrity sha512-MoUOQ4WdiN3yxhm7NEVJSJrieAo5hNSLQ5sj05OTRHPL9HOBy8u4Bu88jsC1jvqAdN+E1bJmsUcZH+1HQxliqQ==
@@ -11474,6 +11514,11 @@ json5@^2.2.2, json5@^2.2.3:
   version "2.2.3"
   resolved "https://registry.npmjs.org/json5/-/json5-2.2.3.tgz"
   integrity sha512-XmOWe7eyHYH14cLdVPoyg+GOH3rYX++KpzrylJwSW98t3Nk+U8XOl8FWKOgwtzdb8lXGf6zYwDUzeHMWfxasyg==
+
+jsonc-parser@^3.2.0:
+  version "3.3.1"
+  resolved "https://registry.npmjs.org/jsonc-parser/-/jsonc-parser-3.3.1.tgz#f2a524b4f7fd11e3d791e559977ad60b98b798b4"
+  integrity sha512-HUgH65KyejrUFPvHFPbqOY0rsFip3Bo5wb4ngvdi1EpCYWUQDC5V+Y7mZws+DLkr4M//zQJoanu1SP+87Dv1oQ==
 
 jsonfile@^4.0.0:
   version "4.0.0"
@@ -11858,7 +11903,7 @@ lodash.ismatch@^4.4.0:
   resolved "https://registry.npmjs.org/lodash.ismatch/-/lodash.ismatch-4.4.0.tgz"
   integrity sha1-dWy1FQyjum8RCFp4hJZF8Yj4Xzc=
 
-lodash.memoize@4.x, lodash.memoize@^4.1.2:
+lodash.memoize@^4.1.2:
   version "4.1.2"
   resolved "https://registry.npmjs.org/lodash.memoize/-/lodash.memoize-4.1.2.tgz"
   integrity sha1-vMbEmkKihA7Zl/Mj6tpezRguC/4=
@@ -12060,11 +12105,6 @@ make-dir@^3.1.0:
   integrity sha1-QV6WcEazp/HRhSd9hKpYIDcmoT8=
   dependencies:
     semver "^6.0.0"
-
-make-error@1.x:
-  version "1.3.6"
-  resolved "https://registry.npmjs.org/make-error/-/make-error-1.3.6.tgz"
-  integrity sha512-s8UhlNe7vPKomQhC1qFelMokr/Sc3AgNbso3n74mVPA5LTZwkB9NlXf4XPamLxJE8h0gh73rM94xvwRT2CVInw==
 
 make-fetch-happen@^10.0.3:
   version "10.2.1"
@@ -16046,11 +16086,6 @@ semver@6.3.0, semver@^6.0.0, semver@^6.1.0, semver@^6.2.0, semver@^6.3.0:
   resolved "https://registry.npmjs.org/semver/-/semver-6.3.0.tgz"
   integrity sha512-b39TBaTSfV6yBrapU89p5fKekE2m/NwnDocOVruQFS1/veMgdzuPcnOM34M6CwxW8jH/lxEa5rBoDeUwu5HHTw==
 
-semver@7.x, semver@^7.5.4:
-  version "7.6.2"
-  resolved "http://artifactory.service:80/artifactory/api/npm/npm-release/semver/-/semver-7.6.2.tgz"
-  integrity sha1-Hjs0dZ+Jbo8U1hNHMs55iusMbhM=
-
 semver@^6.1.2, semver@^6.3.1:
   version "6.3.1"
   resolved "http://artifactory.service:80/artifactory/api/npm/npm-release/semver/-/semver-6.3.1.tgz#556d2ef8689146e46dcea4bfdd095f3434dffcb4"
@@ -16074,6 +16109,11 @@ semver@^7.3.5, semver@^7.3.7:
   integrity sha1-SDmG7E7TjhxsSMNIlKkYLb/2im4=
   dependencies:
     lru-cache "^6.0.0"
+
+semver@^7.5.4:
+  version "7.6.2"
+  resolved "http://artifactory.service:80/artifactory/api/npm/npm-release/semver/-/semver-7.6.2.tgz"
+  integrity sha1-Hjs0dZ+Jbo8U1hNHMs55iusMbhM=
 
 semver@^7.6.2:
   version "7.7.1"
@@ -17360,20 +17400,6 @@ ts-dedent@^2.0.0, ts-dedent@^2.2.0:
   resolved "https://registry.npmjs.org/ts-dedent/-/ts-dedent-2.2.0.tgz#39e4bd297cd036292ae2394eb3412be63f563bb5"
   integrity sha512-q5W7tVM71e2xjHZTlgfTDoPF/SmqKG5hddq9SzR49CH2hayqRKJtQ4mtRlSxKaJlR/+9rEM+mnBHf7I2/BQcpQ==
 
-ts-jest@27:
-  version "27.1.5"
-  resolved "http://artifactory.service:80/artifactory/api/npm/npm-release/ts-jest/-/ts-jest-27.1.5.tgz#0ddf1b163fbaae3d5b7504a1e65c914a95cff297"
-  integrity sha1-Dd8bFj+6rj1bdQSh5lyRSpXP8pc=
-  dependencies:
-    bs-logger "0.x"
-    fast-json-stable-stringify "2.x"
-    jest-util "^27.0.0"
-    json5 "2.x"
-    lodash.memoize "4.x"
-    make-error "1.x"
-    semver "7.x"
-    yargs-parser "20.x"
-
 ts-loader@^6.2.2:
   version "6.2.2"
   resolved "https://registry.npmjs.org/ts-loader/-/ts-loader-6.2.2.tgz"
@@ -18367,11 +18393,6 @@ yaml@^1.7.2:
   dependencies:
     "@babel/runtime" "^7.8.7"
 
-yargs-parser@20.x, yargs-parser@^20.2.2:
-  version "20.2.9"
-  resolved "http://artifactory.service:80/artifactory/api/npm/npm-release/yargs-parser/-/yargs-parser-20.2.9.tgz"
-  integrity sha1-LrfcOwKJcY/ClfNidThFxBoMlO4=
-
 yargs-parser@^10.0.0:
   version "10.1.0"
   resolved "https://registry.npmjs.org/yargs-parser/-/yargs-parser-10.1.0.tgz"
@@ -18394,6 +18415,11 @@ yargs-parser@^15.0.1:
   dependencies:
     camelcase "^5.0.0"
     decamelize "^1.2.0"
+
+yargs-parser@^20.2.2:
+  version "20.2.9"
+  resolved "http://artifactory.service:80/artifactory/api/npm/npm-release/yargs-parser/-/yargs-parser-20.2.9.tgz"
+  integrity sha1-LrfcOwKJcY/ClfNidThFxBoMlO4=
 
 yargs@^13.2.4, yargs@^13.3.0:
   version "13.3.2"
