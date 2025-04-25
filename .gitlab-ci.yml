@@ -173,3 +173,16 @@ k8s-prod-gitops:
     matrix:
       - ENV: g001-misc1
         AUTODEPLOY_TAG: $CI_COMMIT_REF_SLUG-$CI_COMMIT_SHA
+
+
+chromatic_publish_baseline:
+  stage: deploy
+  when: manual
+  needs: ['build_packages']
+  rules:
+    - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH 
+  script:
+    - (cd packages/storybook; yarn chromatic --project-token=$CHROMATIC_PROJECT_TOKEN_SB7 --auto-accept-changes)
+  interruptible: true
+  
+
