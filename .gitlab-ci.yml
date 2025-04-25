@@ -180,6 +180,8 @@ chromatic_publish_baseline:
   stage: deploy
   needs: ['build_packages']
   allow_failure: true
+  variables:
+    PUBLISH_TITLE: "build: publish"
   rules:
     - if: ($CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH && $CI_COMMIT_TITLE == $PUBLISH_TITLE)
       when: on_success
