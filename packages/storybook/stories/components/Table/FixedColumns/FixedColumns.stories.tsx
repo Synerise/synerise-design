@@ -22,7 +22,10 @@ type StoryType = DSTableProps<RowType> & {
 export default {
   ...TableMeta,
   parameters: {
-    ...TableMeta.parameters
+    ...TableMeta.parameters,
+    controls: {
+      exclude: ['decoratorProps', 'randomiseSelectionColumn'],
+    },
   },
   title: 'Components/Table/FixedColumns',
   decorators: [fixedWrapper1000],

@@ -34,15 +34,29 @@ Props) => {
 
   const renderLeftSide = useMemo(() => {
     const { limit, hideSelectAll } = selection || {};
-    if (limit)
+    if (limit) {
       return (
-        <TableLimit
-          total={dataSourceTotalCount || dataSource.length}
-          selection={selection}
-          itemsMenu={itemsMenu}
-          locale={locale}
-        />
+        <S.Left data-testid="ds-table-selection">
+          {selection && !hideSelectAll && (
+            <TableSelection
+              rowKey={rowKey}
+              dataSource={dataSource}
+              dataSourceFull={dataSourceFull}
+              selection={selection}
+              locale={locale}
+              hasSelectionLimit
+              childrenColumnName={childrenColumnName}
+            />
+          )}
+          <TableLimit
+            total={dataSourceTotalCount || dataSource.length}
+            selection={selection}
+            itemsMenu={itemsMenu}
+            locale={locale}
+          />
+        </S.Left>
       );
+    }
 
     return selectedRows && selectedRows > 0 ? (
       <S.Left data-testid="ds-table-selection">

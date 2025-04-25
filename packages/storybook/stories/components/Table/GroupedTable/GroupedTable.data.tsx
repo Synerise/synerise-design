@@ -454,3 +454,6 @@ export const PARAMETERS = COLUMNS.map(column => ({
   text: column.name,
   icon: COLUMN_ICONS[column.type || 'text'],
 }));
+
+
+export const STRING_SORT_RENDER = 'string' as const;

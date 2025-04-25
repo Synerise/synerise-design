@@ -66,7 +66,7 @@ export const renderWithIconInHeaders = <RowType extends any>(
     ...col,
     title: renderIcons ? (
       <TableCell.IconTooltipCell
-        label={col.title}
+        label={<>{col.title}</>}
         icon={col.icon}
         tooltipIcon={col.iconTooltip}
         tooltip={
@@ -104,6 +104,10 @@ export const TableMeta = {
     showIconsInHeader: {
       ...STORY_ARG_TYPE,
       ...BOOLEAN_CONTROL,
+    },
+    randomiseSelectionColumn: {
+      ...STORY_ARG_TYPE,
+      ...BOOLEAN_CONTROL
     },
     columnsData: {
       ...STORY_ARG_TYPE,

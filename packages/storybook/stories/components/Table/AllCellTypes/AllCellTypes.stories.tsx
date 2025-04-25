@@ -31,6 +31,9 @@ export default {
   ...TableMeta,
   parameters: {
     ...TableMeta.parameters,
+    controls: {
+      exclude: ['randomiseSelectionColumn'],
+    }
   },
   title: 'Components/Table/AllCellTypes',
   render: ({ showIconsInHeader, showHeaderButton, columnsData, ...args }) => {

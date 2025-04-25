@@ -15,41 +15,44 @@ import { useInfiniteScroll } from './useInfiniteScroll';
 import { fixedWrapper1000 } from '../../../utils';
 
 type RowType = typeof DATA_SOURCE[number];
-type VirtualTableType = VirtualTableProps<RowType>;
+type VirtualTableType = VirtualTableProps<RowType> & {randomiseSelectionColumn?: boolean};
 type Story = StoryObj<VirtualTableType>;
+
+const randomStatus = _record => ({ disabled: _record.disabled, unavailable: _record.unavailable });
 
 const defaultRender: Meta<VirtualTableType>['render'] = args => {
   const [searchValue, setSearchValue] = useState('');
   const [selectedRowKeys, setSelectedRowKeys] = useState<Key[]>([]);
   const [starredRowKeys, setStarredRowKey] = useState<string[]>([]);
 
-  const { dataSourceFull, selection, rowStar } = args;
+  const { dataSourceFull, selection, rowStar, randomiseSelectionColumn } = args;
   const handleSelectionChange = (selectedRowKeys: Key[], selectedRows) => {
     setSelectedRowKeys(selectedRowKeys);
     selection?.onChange?.(selectedRowKeys, selectedRows);
   };
   const selectionProp = selection
     ? {
-        ...selection,
-        onChange: handleSelectionChange,
-        selectedRowKeys: selectedRowKeys,
-      }
+      ...selection,
+      onChange: handleSelectionChange,
+      checkRowSelectionStatus: randomiseSelectionColumn ? randomStatus : undefined,
+      selectedRowKeys: selectedRowKeys,
+    }
     : undefined;
   const rowStarProp = rowStar
     ? {
-        starredRowKeys: starredRowKeys,
-        onChange: (starredRowKeys: string[]): void => {
-          setStarredRowKey(starredRowKeys);
-        },
-      }
+      starredRowKeys: starredRowKeys,
+      onChange: (starredRowKeys: string[]): void => {
+        setStarredRowKey(starredRowKeys);
+      },
+    }
     : undefined;
 
   const dataSource = useMemo(() => {
     return !searchValue
       ? dataSourceFull
       : dataSourceFull?.filter(record => {
-          return typeof record.name === 'string' && record.name.toLowerCase().includes(searchValue.toLowerCase());
-        });
+        return typeof record.name === 'string' && record.name.toLowerCase().includes(searchValue.toLowerCase());
+      });
   }, [searchValue, dataSourceFull]);
 
   return (
@@ -83,6 +86,9 @@ export default {
   ...TableMeta,
   parameters: {
     ...TableMeta.parameters,
+    controls: {
+      exclude: ['randomiseSelectionColumn']
+    }
   },
   title: 'Components/Table/VirtualTable',
   render: defaultRender,
@@ -112,6 +118,11 @@ export const Empty: Story = {
 };
 
 export const HiddenBatchSelection: Story = {
+  parameters: {
+    controls: {
+      exclude: []
+    }
+  },
   args: {
     selection: {
       hideSelectAll: true,
@@ -144,6 +155,11 @@ export const WithRowStar: Story = {
 };
 
 export const WithSelection: Story = {
+  parameters: {
+    controls: {
+      exclude: []
+    }
+  },
   args: {
     selection: {
       onChange: fn(),
@@ -176,6 +192,11 @@ const PADDING = 20;
 const DEFAULT_SCROLLABLE_HEIGHT = 800;
 
 export const WithStickyHeader: Story = {
+  parameters: {
+    controls: {
+      exclude: []
+    }
+  },
   render: (args, context) => {
     const [scrollableHeight, setScrollableHeight] = useState(DEFAULT_SCROLLABLE_HEIGHT);
     const containerRef = useRef<HTMLDivElement | null>(null);

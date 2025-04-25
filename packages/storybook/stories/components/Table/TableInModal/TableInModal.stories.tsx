@@ -21,6 +21,7 @@ type StoryType = VirtualTableProps<RowType> & {
   columnsData: Array<any>;
   selectionLimit: number;
   selectionHideSelectAll: boolean;
+  randomiseSelectionColumn: boolean;
 };
 
 export default {
@@ -31,9 +32,9 @@ export default {
   },
   title: 'Components/Table/InModal',
   decorators: [fixedWrapper1000],
-  render: ({ showIconsInHeader, showHeaderButton, selectionLimit, selectionHideSelectAll, columnsData, dataSource, ...args }) => {
+  render: ({ showIconsInHeader, showHeaderButton, randomiseSelectionColumn, selectionLimit, selectionHideSelectAll, columnsData, dataSource, ...args }) => {
     const [searchValue, setSearchValue] = useState('');
-    const [selectedRowKeys, setSelectedRowKeys] = useState<Key[]>(['1','3','4','5']);
+    const [selectedRowKeys, setSelectedRowKeys] = useState<Key[]>(['1', '3', '4', '5']);
     const [starredRowKeys, setStarredRowKeys] = useState<string[]>([]);
     const [modalVisible, setModalVisible] = useState(false);
 
@@ -41,14 +42,14 @@ export default {
       return !searchValue
         ? dataSource
         : dataSource?.filter(record => {
-            let nameLowercase = '';
-            if (typeof record.name === 'string') {
-              nameLowercase = record.name.toLowerCase();
-            } else if (isValidElement(record.name) && typeof record.name.props.children === 'string') {
-              nameLowercase = record.name.props.children.toLowerCase();
-            }
-            return nameLowercase.includes(searchValue.toLowerCase());
-          });
+          let nameLowercase = '';
+          if (typeof record.name === 'string') {
+            nameLowercase = record.name.toLowerCase();
+          } else if (isValidElement(record.name) && typeof record.name.props.children === 'string') {
+            nameLowercase = record.name.props.children.toLowerCase();
+          }
+          return nameLowercase.includes(searchValue.toLowerCase());
+        });
     }, [searchValue]);
 
     const handleSelectRow = (selectedRowKeys: Key[], dataSourceSubset: RowType[]) => {
@@ -65,7 +66,23 @@ export default {
     );
 
     const randomStatus = (record: RowType) => ({ disabled: record.disabled, unavailable: record.unavailable });
-
+    const selections = selectionLimit ? [Table.SELECTION_ALL] : [
+      Table.SELECTION_ALL,
+      Table.SELECTION_INVERT,
+      {
+        key: 'even',
+        label: 'Select even',
+        onClick: () => {
+          const evenRowKeys: string[] = [];
+          dataSource?.forEach((row, index) => {
+            if (index % 2 === 0) {
+              evenRowKeys.push(row.key);
+            }
+          });
+          setSelectedRowKeys(evenRowKeys);
+        },
+      },
+    ];
     return (
       <>
         <Button type="primary" onClick={() => setModalVisible(true)}>
@@ -90,24 +107,8 @@ export default {
             selection={{
               onChange: handleSelectRow,
               selectedRowKeys,
-              checkRowSelectionStatus: randomStatus,
-              selections: [
-                Table.SELECTION_ALL,
-                Table.SELECTION_INVERT,
-                {
-                  key: 'even',
-                  label: 'Select even',
-                  onClick: () => {
-                    const evenRowKeys: string[] = [];
-                    dataSource?.forEach((row, index) => {
-                      if (index % 2 === 0) {
-                        evenRowKeys.push(row.key);
-                      }
-                    });
-                    setSelectedRowKeys(evenRowKeys);
-                  },
-                },
-              ],
+              checkRowSelectionStatus: randomiseSelectionColumn ? randomStatus : undefined,
+              selections,
               limit: selectionLimit ? selectionLimit : undefined,
               hideSelectAll: selectionHideSelectAll ? selectionHideSelectAll : undefined,
             }}
@@ -152,7 +153,7 @@ export default {
 
 export const InModal: Story = {
   args: {
-    selection: {onChange: action('selection.onChange') },
+    selection: { onChange: fn(), selectedRowKeys: [] },
     columnsData: COLUMNS,
     selectionLimit: 5,
     scroll: { y: 500, x: 0 },

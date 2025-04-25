@@ -25,7 +25,10 @@ const STORY_ARG_TYPE = { table: { category: 'Story options' } };
 export default {
   ...TableMeta,
   parameters: {
-    ...TableMeta.parameters
+    ...TableMeta.parameters,
+    controls: {
+      exclude: ['randomiseSelectionColumn'],
+    }
   },
   title: 'Components/Table/EmptyTable',
   render: ({ showIconsInHeader, showHeaderButton, columnsData, ...args }) => {

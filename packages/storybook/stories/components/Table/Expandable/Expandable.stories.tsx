@@ -21,6 +21,7 @@ type StoryType<RowType> = DSTableProps<RowType> & {
   showHeaderButton: boolean;
   columnsData: Array<any>;
   independentSelectionExpandedRows: boolean;
+  randomiseSelectionColumn: boolean;
 };
 
 export default {
@@ -30,7 +31,7 @@ export default {
   },
   title: 'Components/Table/ExpandableRows',
   decorators: [fixedWrapper1000],
-  render: ({ showIconsInHeader, showHeaderButton, independentSelectionExpandedRows, ...args }) => {
+  render: ({ showIconsInHeader, showHeaderButton, randomiseSelectionColumn, independentSelectionExpandedRows, ...args }) => {
     const { selectedRows, expandedRows, handleExpandRow, handleSelectRow } = useExpandableData();
     const columnsData: (DSColumnType<RowTypeDefault> & AdditionalColumnData)[] = [
       {
@@ -93,7 +94,7 @@ export default {
         selection={{
           onChange: handleSelectRow,
           selectedRowKeys: selectedRows,
-          checkRowSelectionStatus: randomStatus,
+          checkRowSelectionStatus: randomiseSelectionColumn ? randomStatus : undefined,
           selections: [Table.SELECTION_ALL, undefined, null, Table.SELECTION_INVERT],
           independentSelectionExpandedRows,
         }}
@@ -117,7 +118,7 @@ export const Default: Story<RowTypeDefault> = {
 };
 
 export const WithContainer: Story<RowTypeWithContainer> = {
-  render: ({ showIconsInHeader, showHeaderButton, independentSelectionExpandedRows, ...args }) => {
+  render: ({ showIconsInHeader, showHeaderButton, randomiseSelectionColumn, independentSelectionExpandedRows, ...args }) => {
     const { selectedRows, expandedRows, handleExpandRow, handleSelectRow } = useExpandableData();
 
     const randomStatus = _record => ({ disabled: _record.disabled, unavailable: _record.unavailable });
@@ -178,7 +179,7 @@ export const WithContainer: Story<RowTypeWithContainer> = {
         selection={{
           onChange: handleSelectRow,
           selectedRowKeys: selectedRows,
-          checkRowSelectionStatus: randomStatus,
+          checkRowSelectionStatus: randomiseSelectionColumn ? randomStatus : undefined,
           selections: [Table.SELECTION_ALL, undefined, null, Table.SELECTION_INVERT],
           independentSelectionExpandedRows,
         }}
