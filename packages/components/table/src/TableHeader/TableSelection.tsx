@@ -9,7 +9,7 @@ import Icon, { OptionVerticalM } from '@synerise/ds-icon';
 import * as S from '../Table.styles';
 import type { Selection, SelectionItem } from '../Table.types';
 import { SELECTION_ALL, SELECTION_INVERT } from '../Table';
-import { Props } from './TableSelection.types';
+import type { TableSelectionProps } from './TableSelection.types';
 import { isRecordSelectable } from '../utils';
 import { useRowKey } from '../hooks/useRowKey';
 import { useBulkSelectionCount } from '../hooks/useBulkSelection';
@@ -20,8 +20,9 @@ const TableSelection = <T extends { key: ReactText; children?: T[] }>({
   selection,
   rowKey,
   locale,
+  hasSelectionLimit,
   childrenColumnName,
-}: Props<T>) => {
+}: TableSelectionProps<T>) => {
   const { getRowKey } = useRowKey(rowKey);
 
   const allData = dataSourceFull || dataSource;
@@ -168,23 +169,30 @@ const TableSelection = <T extends { key: ReactText; children?: T[] }>({
   const { allRecordsCount, selectableRecordsCount, selectableAndSelectedRecordsCount, selectedRecordsCount } =
     useBulkSelectionCount({ dataSource, selection, childrenColumnName, rowKey });
   const isIndeterminate = selectedRecordsCount > 0 && selectableRecordsCount !== selectableAndSelectedRecordsCount;
-  const disabledBulkSelection = allRecordsCount === 0 || selectableRecordsCount === 0;
+  const disabledBulkSelection =
+    allRecordsCount === 0 || selectableRecordsCount === 0 || (hasSelectionLimit && selectedRecordsCount === 0);
   const isAllSelected = !disabledBulkSelection && selectableRecordsCount === selectableAndSelectedRecordsCount;
+  const isAnySelected = allRecordsCount > 0 && selectedRecordsCount > 0;
 
   const selectionTooltipTitle = !isAllSelected ? locale?.selectAllTooltip : locale?.unselectAll;
 
   const menuDataSource = useMemo(() => {
     return selection?.selections
       ?.filter(Boolean)
-      .map((selectionMenuElement: Selection | SelectionItem): MenuItemProps => {
+      .flatMap((selectionMenuElement: Selection | SelectionItem): MenuItemProps | MenuItemProps[] => {
         switch (selectionMenuElement) {
           case SELECTION_ALL: {
-            return !isAllSelected
-              ? { onClick: selectAll, text: locale?.selectAll }
-              : { onClick: unselectAll, text: locale?.unselectAll };
+            const items: MenuItemProps[] = [];
+            if (!isAllSelected && !hasSelectionLimit) {
+              items.push({ onClick: selectAll, text: locale?.selectAll });
+            }
+            if (isAnySelected) {
+              items.push({ onClick: unselectAll, text: locale?.unselectAll });
+            }
+            return items;
           }
           case SELECTION_INVERT: {
-            return { onClick: selectInvert, text: locale?.selectInvert };
+            return !hasSelectionLimit ? { onClick: selectInvert, text: locale?.selectInvert } : [];
           }
           default: {
             const sel = selectionMenuElement as Selection;
@@ -201,33 +209,38 @@ const TableSelection = <T extends { key: ReactText; children?: T[] }>({
     selectInvert,
     selection?.selections,
     unselectAll,
+    isAnySelected,
+    hasSelectionLimit,
   ]);
 
   return selection?.selectedRowKeys ? (
     <S.Selection data-popup-container>
-      <Tooltip title={selectionTooltipTitle}>
-        <Button.Checkbox
-          disabled={disabledBulkSelection}
-          data-testid="ds-table-batch-selection-button"
-          checked={isAllSelected}
-          onChange={() => {
-            if (!isAllSelected) {
-              selectAll();
-            } else {
-              unselectAll();
-            }
-          }}
-          indeterminate={isIndeterminate}
-        />
-      </Tooltip>
+      {!hasSelectionLimit && (
+        <Tooltip title={selectionTooltipTitle}>
+          <Button.Checkbox
+            disabled={disabledBulkSelection}
+            data-testid="ds-table-batch-selection-button"
+            checked={isAllSelected}
+            onChange={() => {
+              if (!isAllSelected) {
+                selectAll();
+              } else {
+                unselectAll();
+              }
+            }}
+            indeterminate={isIndeterminate}
+          />
+        </Tooltip>
+      )}
       {selection?.selections && (
         <Dropdown
-          disabled={disabledBulkSelection}
+          disabled={disabledBulkSelection || menuDataSource?.length === 0}
           trigger={['click']}
           overlay={<S.SelectionMenu dataSource={menuDataSource} />}
+          hideOnItemClick
         >
           <Tooltip title={locale?.selectionOptionsTooltip}>
-            <Button mode="single-icon" type="ghost">
+            <Button disabled={disabledBulkSelection || menuDataSource?.length === 0} mode="single-icon" type="ghost">
               <Icon component={<OptionVerticalM />} />
             </Button>
           </Tooltip>

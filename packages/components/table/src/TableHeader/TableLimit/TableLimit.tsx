@@ -11,30 +11,29 @@ export function TableLimit<T extends { key: ReactText; children?: T[] }>({
   selection,
 }: TableLimitProps<T>) {
   const { formatValue } = useDataFormat();
-  const selectedRows = useMemo(() => selection?.selectedRowKeys.length || 0, [selection]);
+  const { selectedRowKeys, limit } = selection;
+  const selectedRows = useMemo(() => selectedRowKeys.length || 0, [selectedRowKeys]);
   const limitReachedInfo = useMemo(
     () =>
-      selection?.limit &&
-      selection?.limit <= selectedRows && (
+      limit <= selectedRows && (
         <S.Alert>
           <Alert.InlineAlert type="warning" message={locale.selectionLimitWarning} />
         </S.Alert>
       ),
-    [locale, selectedRows, selection]
+    [locale, selectedRows, limit]
   );
 
   const selected = useMemo(() => {
     return selectedRows > 0 ? (
       <S.Title>
-        <strong>{formatValue(selectedRows)}</strong> {locale.selected} /{' '}
-        {`${formatValue(total)} ${locale.pagination?.items}`}
+        <strong>{`${formatValue(selectedRows)} / ${formatValue(limit)}`}</strong> {locale.selected}
       </S.Title>
     ) : (
       <S.Title>
         <strong>{formatValue(total)}</strong> {locale.pagination?.items}
       </S.Title>
     );
-  }, [formatValue, locale.pagination, locale.selected, selectedRows, total]);
+  }, [formatValue, limit, locale.pagination, locale.selected, selectedRows, total]);
 
   return (
     <S.TableLimit>

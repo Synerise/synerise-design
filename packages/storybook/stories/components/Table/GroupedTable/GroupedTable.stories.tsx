@@ -16,7 +16,7 @@ import ItemFilter from '@synerise/ds-item-filter';
 
 import { renderWithIconInHeaders, TableMeta } from '../Table.utils';
 import { useFiltersAndSearch } from '../WithFiltersAndSearch/useFiltersAndSearch';
-import { COLUMN_MANAGER_TEXTS, DATA_SOURCE, PARAMETERS, ViewsType, CategoriesType, RowType, CATEGORIES, VIEWS, COLUMNS } from './GroupedTable.data';
+import { COLUMN_MANAGER_TEXTS, DATA_SOURCE, PARAMETERS, ViewsType, CategoriesType, RowType, CATEGORIES, VIEWS, COLUMNS, STRING_SORT_RENDER } from './GroupedTable.data';
 
 
 type AnyObject = Record<string, any>;
@@ -53,12 +53,12 @@ export default {
   parameters: {
     ...TableMeta.parameters,
     controls: {
-      exclude: ['decoratorProps'],
+      exclude: ['decoratorProps', 'randomiseSelectionColumn'],
     },
   },
   title: 'Components/Table/GroupedTable',
   render: ({ showIconsInHeader, multipleSortOrder, sortRenderType, showHeaderButton, dataSource = [], ...args }) => {
-    const [localDataSource, setLocalDataSource] = useState<(RowType | GroupedDataItem)[]>(dataSource);
+    const [localDataSource, setLocalDataSource] = useState<readonly (RowType | GroupedDataItem)[]>(dataSource);
     const {
       columns,
       setColumns,
@@ -106,7 +106,7 @@ export default {
                 dataIndex: 'first_name',
                 key: 'first_name',
                 sorter: (a, b) => a.first_name.localeCompare(b.first_name),
-                sortRender: 'string',
+                sortRender: STRING_SORT_RENDER,
                 className: 'chromatic-ignore',
               };
             }
@@ -116,7 +116,7 @@ export default {
                 dataIndex: 'last_name',
                 key: 'last_name',
                 sorter: (a, b) => a.last_name.localeCompare(b.last_name),
-                sortRender: 'string',
+                sortRender: STRING_SORT_RENDER,
                 className: 'chromatic-ignore',
               };
             }
@@ -127,7 +127,7 @@ export default {
                 key: 'city',
                 icon: { component: <VarTypeStringM /> },
                 iconTooltip: { component: <InfoFillS /> },
-                sortRender: 'string',
+                sortRender: STRING_SORT_RENDER,
                 sorter: (a, b) => a.city.localeCompare(b.city),
                 className: 'chromatic-ignore',
               };
@@ -139,7 +139,7 @@ export default {
                 icon: { component: <VarTypeNumberM /> },
                 iconTooltip: { component: <InfoFillS /> },
                 key: 'age',
-                sortRender: 'string',
+                sortRender: STRING_SORT_RENDER,
                 className: 'chromatic-ignore',
                 sorter: (a, b) => a.age - b.age,
               };
@@ -151,7 +151,7 @@ export default {
                 iconTooltip: { component: <InfoFillS /> },
                 dataIndex: 'last_activity',
                 key: 'last_activity',
-                sortRender: 'string',
+                sortRender: STRING_SORT_RENDER,
                 className: 'chromatic-ignore',
                 render: last_activity => moment(last_activity).format('DD/MM/YYYY HH:mm'),
                 sorter: (a, b) => (moment(a.last_activity).isBefore(moment(b.last_activity)) ? -1 : 1),
@@ -159,7 +159,7 @@ export default {
             }
             default:
               return {
-                sortRender: 'string',
+                sortRender: STRING_SORT_RENDER,
                 ...column,
                 title: column.name,
                 icon: { component: <VarTypeListM /> },

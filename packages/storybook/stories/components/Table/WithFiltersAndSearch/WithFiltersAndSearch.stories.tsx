@@ -57,7 +57,7 @@ export default {
   parameters: {
     ...TableMeta.parameters,
     controls: {
-      exclude: ['decoratorProps'],
+      exclude: ['decoratorProps', 'randomiseSelectionColumn'],
     },
   },
   title: 'Components/Table/WithFiltersAndSearch',

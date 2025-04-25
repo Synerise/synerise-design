@@ -5055,8 +5055,11 @@ export const COLUMNS: Partial<ColumnType>[] = [
   },
 ];
 
+const LEFT = 'left' as const;
+const RIGHT = 'right' as const;
+
 export const FIXED_COLUMNS = [
-  { ...COLUMNS[0], fixed: 'left' },
+  { ...COLUMNS[0], fixed: LEFT },
   ...COLUMNS.slice(1, -1),
-  { ...COLUMNS[COLUMNS.length], fixed: 'right' },
+  { ...COLUMNS[COLUMNS.length], fixed: RIGHT },
 ];

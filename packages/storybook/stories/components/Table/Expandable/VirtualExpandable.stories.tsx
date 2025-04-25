@@ -30,6 +30,7 @@ type StoryType = VirtualTableProps<RowType> & {
   showHeaderButton: boolean;
   columnsData: Array<any>;
   independentSelectionExpandedRows: boolean;
+  randomiseSelectionColumn: boolean;
 };
 
 export default {
@@ -39,7 +40,7 @@ export default {
   },
   title: 'Components/Table/ExpandableRows',
   decorators: [fixedWrapper1000],
-  render: ({ showIconsInHeader, showHeaderButton, independentSelectionExpandedRows, ...args }) => {
+  render: ({ showIconsInHeader, showHeaderButton, randomiseSelectionColumn, independentSelectionExpandedRows, ...args }) => {
     const { selectedRows, expandedRows, handleExpandRow, handleSelectRow } = useExpandableData();
     const columnsData: (DSColumnType<RowType> & AdditionalColumnData)[] = [
       {
@@ -112,12 +113,12 @@ export default {
             expandedRowKeys: expandedRows,
           }}
           onRow={record => ({
-            onClick: () => handleExpandRow(record.key),
+            onClick: () => handleExpandRow(String(record.key)),
           })}
           selection={{
             onChange: handleSelectRow,
             selectedRowKeys: selectedRows,
-            checkRowSelectionStatus: randomStatus,
+            checkRowSelectionStatus: randomiseSelectionColumn ? randomStatus : undefined,
             selections: [Table.SELECTION_ALL, undefined, null, Table.SELECTION_INVERT],
             independentSelectionExpandedRows,
           }}

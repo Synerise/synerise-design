@@ -32,7 +32,10 @@ type StoryType = DSTableProps<RowType> & {
 export default {
   ...TableMeta,
   parameters: {
-    ...TableMeta.parameters
+    ...TableMeta.parameters,
+    controls: {
+      exclude: ['randomiseSelectionColumn']
+    }
   },
   title: 'Components/Table/SortableTable',
   render: ({ showIconsInHeader, multipleSortOrder, sortRenderType, showHeaderButton, columnsData, ...args }) => {

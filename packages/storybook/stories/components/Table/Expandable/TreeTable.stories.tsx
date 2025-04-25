@@ -22,7 +22,10 @@ type Story = StoryObj<StoryType>;
 export default {
   ...TableMeta,
   parameters: {
-    ...TableMeta.parameters
+    ...TableMeta.parameters,
+    controls: {
+      exclude: ['randomiseSelectionColumn']
+    }
   },
   title: 'Components/Table/ExpandableRows',
   decorators: [fixedWrapper1000],

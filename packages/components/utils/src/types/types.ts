@@ -18,3 +18,9 @@ export type DeepPartial<T> = T extends object
       [P in keyof T]?: DeepPartial<T[P]>;
     }
   : T;
+
+/**
+ * Makes selected props of the base type required
+ */
+export type RequiredProps<BaseType, PropName extends keyof BaseType> = Required<Pick<BaseType, PropName>> &
+  Omit<BaseType, PropName>;

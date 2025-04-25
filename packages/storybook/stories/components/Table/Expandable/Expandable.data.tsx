@@ -26,10 +26,12 @@ export const DATA_SOURCE_WITH_CONTAINER = [
   {
     key: '0',
     name: 'John Doe',
+    disabled: true
   },
   {
     key: '1',
     name: 'John Doe',
+    unavailable: true
   },
   {
     key: '2',
@@ -45,6 +47,7 @@ export const DATA_SOURCE_WITH_CONTAINER = [
   {
     key: '6',
     name: 'John Doe',
+    disabled: true
   },
   {
     key: '7',
@@ -60,6 +63,7 @@ export const DATA_SOURCE_WITH_CONTAINER = [
   {
     key: '13',
     name: 'John Doe',
+    disabled: true
   },
   {
     key: '14',
