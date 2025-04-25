@@ -112,12 +112,13 @@ publish_packages:
   environment: 
     name: npm
   variables:
-    PUBLISH_TITLE: 'build: publish'
+    PUBLISH_TITLE: "build: publish"
   rules:
     - if: ($CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH && $CI_COMMIT_TITLE == $PUBLISH_TITLE)
   script:
     - echo "Tag version $CI_COMMIT_TAG"
     - echo "Commit ref $CI_COMMIT_REF_NAME"
+    - echo "Commit title $CI_COMMIT_TITLE"
     - echo "Publisher $GITLAB_USER_EMAIL"
     - echo '//registry.npmjs.org/:_authToken=${NPM_TOKEN}'>.npmrc
     - echo "email = $GITLAB_USER_EMAIL" >> .npmrc
