@@ -27,7 +27,7 @@ import * as S from './ItemPickerList.styles';
 import type { ItemPickerListProps } from './ItemPickerList.types';
 import { useItemsInSections, useListHeight } from './hooks';
 import { ITEM_SIZE, LIST_INNER_PADDING, LIST_STYLE, SECTION_HEADER_HEIGHT } from './constants';
-import { isTitle, isNavKey } from './utils';
+import { isTitle, isNavKey, findSectionById } from './utils';
 import {
   ItemPickerListFooter,
   ItemPickerListRow,
@@ -81,6 +81,12 @@ export const ItemPickerList = <ItemType extends BaseItemType, SectionType extend
   ).current;
   const classNames = useMemo(() => `ds-item-picker-dropdown ds-item-picker-dropdown-${uuid()}`, []);
 
+  const handleItemSelect = (item: ItemType) => {
+    const section = findSectionById(sections, item.sectionId);
+    // eslint-disable-next-line no-unused-expressions
+    onItemSelect?.(item, section);
+  };
+
   const {
     currentSection,
     resetCurrentSection,
@@ -104,7 +110,7 @@ export const ItemPickerList = <ItemType extends BaseItemType, SectionType extend
     recents,
     actions,
     searchQuery,
-    handleItemSelect: onItemSelect,
+    handleItemSelect,
     onSectionChange,
     showItemsSectionLabel,
   });

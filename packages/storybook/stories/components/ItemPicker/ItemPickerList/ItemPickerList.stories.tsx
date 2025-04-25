@@ -16,7 +16,7 @@ import {
   SECTIONS_WITH_NESTED_FOLDERS,
   ITEMS_IN_SECTIONS_NESTED,
 } from '../ItemPicker.data';
-import type { ItemType, StoryPropsOverlay } from '../ItemPicker.types';
+import type { ItemType, SectionType, StoryPropsOverlay } from '../ItemPicker.types';
 
 import { BOOLEAN_CONTROL, centeredPaddedWrapper, fixedWrapper588 } from '../../../utils';
 
@@ -35,8 +35,8 @@ export default {
     const [selected, setSelected] = useState<ItemType | undefined>(args.selectedItem);
     const [loading, setLoading] = useState(false);
 
-    const handleItemSelect = (item: ItemType) => {
-      args.onItemSelect?.(item);
+    const handleItemSelect = (item: ItemType, section?: SectionType) => {
+      args.onItemSelect?.(item, section);
       setSelected(item);
     };
     // 'fixed items' refreshing happens outside the component
@@ -117,8 +117,8 @@ export const WithPickerTrigger: StoryObj<StoryPropsOverlay> = {
     const [loading, setLoading] = useState(false);
     const [visible, setVisible] = useState(false);
 
-    const handleItemSelect = (item: ItemType) => {
-      args.onItemSelect?.(item);
+    const handleItemSelect = (item: ItemType, section?: SectionType) => {
+      args.onItemSelect?.(item, section);
       setSelected(item);
     };
     // 'fixed items' refreshing happens outside the component

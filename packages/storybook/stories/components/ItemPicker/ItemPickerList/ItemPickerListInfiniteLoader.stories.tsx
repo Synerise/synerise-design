@@ -13,7 +13,7 @@ import {
   ITEM_LOADER_CONFIG_ERRORS,
   SECTIONS_WITH_NESTED_FOLDERS,
 } from '../ItemPicker.data';
-import type { ItemType, StoryPropsOverlay } from '../ItemPicker.types';
+import type { ItemType, SectionType, StoryPropsOverlay } from '../ItemPicker.types';
 
 import { BOOLEAN_CONTROL, centeredPaddedWrapper, fixedWrapper588, variableHeightDecorator } from '../../../utils';
 
@@ -30,12 +30,12 @@ export default {
   decorators: [fixedWrapper588, centeredPaddedWrapper],
   render: (args: StoryPropsOverlay) => {
     const [selected, setSelected] = useState<ItemType | undefined>(args.selectedItem);
-    
-    const handleItemSelect = (item: ItemType) => {
-      args.onItemSelect?.(item);
+
+    const handleItemSelect = (item: ItemType, section?: SectionType) => {
+      args.onItemSelect?.(item, section);
       setSelected(item);
     };
-    
+
     return (
       <ItemPickerList
         {...args}
@@ -82,10 +82,10 @@ export const SectionsAndNestedFolders: StoryObj<StoryPropsOverlay> = {
   },
 };
 
-export const FillAvailableSpace: StoryObj<StoryPropsOverlay & { variableHeight: string}> = {
+export const FillAvailableSpace: StoryObj<StoryPropsOverlay & { variableHeight: string }> = {
   decorators: [variableHeightDecorator],
   argTypes: {
-    variableHeight: { 
+    variableHeight: {
       description: 'Adjust outer container height to preview `fillSpace` containerHeight prop value',
       table: { category: 'Story options' },
     }
