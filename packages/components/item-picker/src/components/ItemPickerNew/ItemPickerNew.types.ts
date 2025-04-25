@@ -44,12 +44,12 @@ export type BaseItemType = InheritedFromListItem & {
   informationCardProps?: InformationCardProps;
 };
 
-type ItemLoaderResponse<ItemType extends BaseItemType> = {
+export type ItemLoaderResponse<ItemType extends BaseItemType> = {
   items: ItemType[];
   total: number;
 };
 
-type LoaderProps = {
+export type LoaderProps = {
   sectionId?: BaseSectionType['id'];
   page: number;
   limit: number;

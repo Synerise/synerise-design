@@ -40,6 +40,13 @@ export type ItemPickerListTexts = {
   [key in TextsAsReactNode]: ReactNode;
 };
 
+export type ItemSelectHandler<
+  ItemType extends BaseItemType,
+  SectionType extends BaseSectionType | undefined
+> = SectionType extends BaseSectionType
+  ? (item: ItemType, section?: BaseSectionTypeWithFolders<BaseSectionType>) => void
+  : (item: ItemType) => void;
+
 export type ItemPickerListProps<
   ItemType extends BaseItemType,
   SectionType extends BaseSectionType | undefined
@@ -53,7 +60,7 @@ export type ItemPickerListProps<
     showItemsSectionLabel?: boolean;
     noResultsIcon?: ReactNode;
     emptyListIcon?: ReactNode;
-    onItemSelect: (item: ItemType) => void;
+    onItemSelect: ItemSelectHandler<ItemType, SectionType>;
     onSectionChange?: SectionType extends BaseSectionType
       ? (section?: BaseSectionTypeWithFolders<SectionType>) => void
       : undefined;
