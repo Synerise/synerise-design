@@ -129,6 +129,9 @@ build_storybook:
   script:
     - yarn build-storybook
     - mv packages/storybook/storybook-static/ packages/docs-site/storybook-static
+  artifacts:
+    paths:
+      - packages/docs-site
 
 deploy_storybook:
   image: artifactory.snrinternal.com/docker.io/docker:stable
