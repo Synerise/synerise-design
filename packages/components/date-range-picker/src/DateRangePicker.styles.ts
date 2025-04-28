@@ -21,10 +21,12 @@ export const PopupWrapper = styled.div<{
   height: ${props => getHeight(props.hasFilter, props.hasRelativePicker)}px;
   display: flex;
   flex-direction: row;
+  pointer-events: none;
   align-items: ${props => (props.alignContentToTop ? 'flex-end' : 'flex-start')};
 `;
 export const Container = styled.div`
   width: 636px;
+  pointer-events: all;
   background-color: ${(props): string => props.theme.palette.white};
   user-select: none;
   box-shadow: 0 16px 32px 0 ${(props): string => `${props.theme.palette['grey-900']}1a`};
