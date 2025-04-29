@@ -55,7 +55,6 @@ export const ItemLabelWrapper = styled.div<{ largeSize?: boolean }>`
   ${props =>
     props.largeSize
       ? css`
-          height: 40px;
           flex-direction: column;
           gap: 10px;
           overflow-y: visible;

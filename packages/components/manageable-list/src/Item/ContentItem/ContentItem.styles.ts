@@ -86,6 +86,7 @@ export const ItemHeaderSuffix = styled.div`
 
 export const ItemHeader = styled.div<{
   hasPrefix: boolean;
+  hasDescription: boolean;
   size?: 'default' | 'large';
 }>`
   display: flex;
@@ -101,6 +102,7 @@ export const ItemHeader = styled.div<{
   ${props =>
     props.size === 'large' &&
     css`
+      ${props.hasDescription && 'align-items: flex-start;'}
       ${DraggerWrapper} {
         position: absolute;
         left: 0;
@@ -200,7 +202,7 @@ export const ItemContainer = styled.div<{
     props.size === 'large' &&
     css`
       ${ItemHeader} {
-        max-height: 88px;
+        max-height: none;
         padding: 24px;
       }
     `}
