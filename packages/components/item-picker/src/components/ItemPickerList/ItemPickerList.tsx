@@ -275,20 +275,25 @@ export const ItemPickerList = <ItemType extends BaseItemType, SectionType extend
   ]);
 
   useEffect(() => {
+    setTimeout(focusSearchInput, 0);
+  }, [isLoading, isLoadingItems, isLoadingMore, focusSearchInput]);
+
+  useEffect(() => {
     if (isVisible) {
       resetCurrentSection();
       clearSearchQuery();
       setTimeout(focusSearchInput, 0);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [isVisible]);
+  }, [isVisible, focusSearchInput]);
 
   useEffect(() => {
     if (scrollBarRef.current && listRef.current) {
       scrollBarRef.current.scrollTo({ top: 0 });
       listRef.current.resetAfterIndex(0);
+      setTimeout(focusSearchInput, 0);
     }
-  }, [currentSection]);
+  }, [currentSection, focusSearchInput]);
 
   useEffect(() => {
     listRef.current && listRef.current.resetAfterIndex(0);
@@ -306,8 +311,9 @@ export const ItemPickerList = <ItemType extends BaseItemType, SectionType extend
       if (!combinedScrollRef.current?.offsetParent) {
         return;
       }
-      event.preventDefault();
       if (searchQuery) {
+        event.preventDefault();
+        event.stopPropagation();
         clearSearchQuery();
       }
     },
