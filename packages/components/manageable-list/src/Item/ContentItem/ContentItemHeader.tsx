@@ -98,6 +98,7 @@ export const ContentItemHeader = ({
     <S.ItemHeader
       size={size}
       hasPrefix={hasPrefix}
+      hasDescription={!!item.description}
       onClick={() => {
         if (!item.disableExpanding && !editMode) {
           setIsExpanded(!isExpanded);

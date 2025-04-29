@@ -312,7 +312,45 @@ export const CONTENT_ITEMS_LARGE: ContentItemType[] = [
         />
       </>
     ),
-    description: 'Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur',
+    headerPrefix: (
+      <Avatar
+        backgroundColor="orange"
+        backgroundColorHue="100"
+        shape="square"
+        iconComponent={<Icon component={<InputM />} color={theme.palette['grey-800']} />}
+      />
+    ),
+  },
+  {
+    name: 'Name',
+    uniqueKey: '#name',
+    content: <>Some content</>,
+    tags: (
+      <>
+        <Tag
+          name="label"
+          asPill
+          shape={TagShape.DEFAULT_ROUND}
+          color={theme.palette['grey-200']}
+          textColor={theme.palette['grey-500']}
+        />
+        <Tag
+          name={'label'}
+          asPill
+          shape={TagShape.DEFAULT_ROUND}
+          color={theme.palette['grey-200']}
+          textColor={theme.palette['grey-500']}
+        />
+        <Tag
+          name={'label'}
+          asPill
+          shape={TagShape.DEFAULT_ROUND}
+          color={theme.palette['grey-200']}
+          textColor={theme.palette['grey-500']}
+        />
+      </>
+    ),
+    description: 'Neque porro quisquam est qui dolorem quisquam est qui dolorem ipsum quia dolor sit amet, consectetur qui dolorem ipsum quia dolor sit amet, consectetur',
     headerPrefix: (
       <Avatar
         backgroundColor="orange"
