@@ -27,7 +27,7 @@ export const Container = styled.div<{
   compact?: boolean;
   error?: boolean;
 }>`
-  width: 100%;
+  ${(props): string => (props.fullWidth ? 'width: 100%;' : '')};
   .ant-btn-group {
     width: 100%;
     display: flex;
