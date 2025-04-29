@@ -1,9 +1,10 @@
-import React, { useState, useMemo, useEffect, UIEvent } from 'react';
+import React, { useState, useMemo, useEffect, UIEvent, useRef } from 'react';
 
 import SearchBar from '@synerise/ds-search-bar';
 import type { ListItemProps } from '@synerise/ds-list-item';
 import Result from '@synerise/ds-result';
 import Icon, { SearchM } from '@synerise/ds-icon';
+import { useKeyboardShortcuts } from '@synerise/ds-utils';
 import { SearchItems } from '@synerise/ds-search/dist/Elements';
 
 import * as S from './ItemPickerDropdown.style';
@@ -31,12 +32,26 @@ const ItemPickerDropdown = ({
   const rowHeight = dropdownRowHeight || DEFAULT_ROW_HEIGHT;
   const [searchQuery, setSearchQuery] = useState<string>('');
   const [scrollTop, setScrollTop] = useState<number>(0);
+  const containerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     if (clearSearchQuery && clearSearchQuery > 0) {
       setSearchQuery('');
     }
   }, [clearSearchQuery]);
+
+  useKeyboardShortcuts({
+    Escape: (event: KeyboardEvent) => {
+      if (!containerRef.current?.offsetParent) {
+        return;
+      }
+      if (!searchQuery) {
+        event.preventDefault();
+        event.stopPropagation();
+        closeDropdown();
+      }
+    },
+  });
 
   const handleClose = () => {
     setSearchQuery('');
@@ -64,7 +79,7 @@ const ItemPickerDropdown = ({
   };
 
   return (
-    <S.DropdownWrapper data-testid="ds-item-picker-dropdown">
+    <S.DropdownWrapper ref={containerRef} data-testid="ds-item-picker-dropdown">
       {hideSearchBar !== true && (
         <SearchBar
           iconLeft={<Icon component={<SearchM />} />}

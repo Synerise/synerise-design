@@ -42,6 +42,8 @@ const focusWithArrowKeys = (keyDownEvent: KeyboardEvent, focusableItemClass: str
         prevSibling !== null && hasFocusableElementInside(prevSibling, selector)
           ? prevSibling
           : (focusableElements[activeElementIndex - 1] as HTMLElement);
+    } else {
+      elementToFocusOn = focusableElements[focusableElements.length - 1] as HTMLElement;
     }
     if (elementToFocusOn) {
       elementToFocusOn.focus();
