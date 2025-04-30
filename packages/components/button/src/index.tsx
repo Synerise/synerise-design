@@ -25,6 +25,9 @@ class Button extends React.Component<ButtonProps> {
 
 export default Button;
 
+export { default as ButtonToggle } from './ButtonToggle/ButtonToggle';
+
+export type { ButtonToggleProps } from './ButtonToggle/ButtonToggle.types';
 export type { CreatorProps } from './Creator/Creator.types';
 export type { StarButtonProps } from './Star/Star.types';
 export type { CheckboxButtonProps } from './Checkbox/Checkbox.types';

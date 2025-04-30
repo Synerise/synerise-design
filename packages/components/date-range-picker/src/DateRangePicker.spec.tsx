@@ -1009,7 +1009,7 @@ describe('DateRangePicker', () => {
 
     }
   });
-  it('"more" button should be tertiary if no range within it selected (i.e. by default)', async () => {
+  it('"more" button should be secondary if no range within it selected (i.e. by default)', async () => {
     const onApply = jest.fn();
     renderWithProvider(
       <RawDateRangePicker
@@ -1033,7 +1033,7 @@ describe('DateRangePicker', () => {
 
     const moreButton = screen.getByTestId('relative-ranges-dropdown');
     expect(moreButton).toBeInTheDocument();
-    expect(moreButton).toHaveClass('ant-btn-tertiary');
+    expect(moreButton).toHaveClass('ant-btn-secondary');
 
 
   });

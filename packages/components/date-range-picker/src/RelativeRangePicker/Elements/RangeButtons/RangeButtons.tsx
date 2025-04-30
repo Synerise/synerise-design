@@ -16,10 +16,8 @@ const RangeButtons = ({ ranges, currentRange, texts, onChange }: Props) => {
           onClick={(): void => {
             onChange && onChange(range);
           }}
-          type={
+          activated={
             (matchingPreset && matchingPreset.key === range.key) || (isLifetime(currentRange) && range.key === ALL_TIME)
-              ? 'primary'
-              : 'tertiary'
           }
         >
           {range.translationKey ? texts[range.translationKey] : texts?.custom}

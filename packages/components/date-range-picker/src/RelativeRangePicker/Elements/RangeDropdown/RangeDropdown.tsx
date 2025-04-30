@@ -100,7 +100,7 @@ const RangeDropdown = ({
     <S.DropdownContainer ref={dropdownRef}>
       <S.Range
         data-testid="relative-ranges-dropdown"
-        type={containsCurrentRange ? 'primary' : 'tertiary'}
+        activated={!!containsCurrentRange}
         mode="label-icon"
         onClick={(): void => setDropVisible(!dropVisible)}
       >
