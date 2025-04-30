@@ -24,9 +24,6 @@ const splitType = {
 const pressedStyles = (props: ThemeProps) => css`
   color: ${props.theme.palette['blue-600']};
   background: ${props.theme.palette['blue-100']};
-  svg {
-    fill: ${props.theme.palette['blue-600']};
-  }
   &.ant-btn .btn-focus {
     box-shadow: inset 0 0 0 1px ${props.theme.palette['blue-300']};
   }
@@ -121,7 +118,7 @@ export const ButtonLabel = styled.div`
   flex-grow: 1;
   justify-content: center;
 `;
-// eslint-disable-next-line react/jsx-props-no-spreading
+
 export const AntdButton = styled(
   ({
     mode,
@@ -136,10 +133,8 @@ export const AntdButton = styled(
     size,
     iconColor,
     error,
-    activated,
     ...rest
   }) => {
-    // eslint-disable-next-line react/jsx-props-no-spreading
     return <Button type={type === 'custom-color-ghost' ? 'ghost-primary' : type} size={size} {...rest} />;
   }
 )`  
@@ -182,14 +177,6 @@ export const AntdButton = styled(
     }
 
     
-    &:disabled {
-      && {
-        ${ButtonFocus} {
-          box-shadow: none;
-        }
-      }
-    };
-    
     ${props =>
       props.mode !== 'single-icon' &&
       css`
@@ -198,27 +185,27 @@ export const AntdButton = styled(
         }
       `}
 
-    &&.ant-btn-default:not(.ds-expander):not(.ds-button-creator):not(.read-only),
-    &&.ant-btn-secondary:not(.ds-expander):not(.ds-button-creator):not(.read-only){
+    &&.ant-btn-default:not(.ds-expander):not(.ds-button-creator):not(.read-only):not([disabled]),
+    &&.ant-btn-secondary:not(.ds-expander):not(.ds-button-creator):not(.read-only):not([disabled]){
       &:active{
         ${props => pressedStyles(props)}
       }
       &:focus:not(:active) {
         color: ${(props): string => (props.error ? props.theme.palette['red-600'] : props.theme.palette['grey-600'])};
         svg {
-          fill: ${(props): string => (props.error ? props.theme.palette['red-600'] : props.theme.palette['grey-600'])};
+          fill: currentColor;
         }
         background: ${(props): string => props.theme.palette['grey-050']};
       }
       &:hover:not(:disabled):not(:focus) {
         background-color:${(props): string => props.theme.palette['blue-050']};
         &.ant-btn .btn-focus {
-        box-shadow: inset 0 0 0 1px ${(props): string => props.theme.palette['blue-300']};
+          box-shadow: inset 0 0 0 1px ${(props): string => props.theme.palette['blue-300']};
         }
         ${ButtonLabel} > .ds-icon:before {
-        background-color: ${(props): string => props.theme.palette['blue-200']};
+          background-color: ${(props): string => props.theme.palette['blue-200']};
         }
-        ${props => props.pressed && pressedStyles(props)}
+        
       }
       &:active{
         color: ${(props): string => props.theme.palette['blue-600']};
@@ -285,13 +272,11 @@ export const AntdButton = styled(
         &.ant-btn {
           &:not(:disabled) {
             svg {
-              fill: ${props.iconColor
-                ? props.theme.palette[`${props.iconColor}-600`]
-                : props.theme.palette['grey-600']};
+              fill: ${props.iconColor ? props.theme.palette[`${props.iconColor}-600`] : 'currentColor'};
             }
             &:hover {
               svg {
-                fill: ${props.iconColor ? props.theme.palette['blue-600'] : props.theme.palette['grey-600']};
+                fill: currentColor;
               }
             }
           }
@@ -382,8 +367,11 @@ export const AntdButton = styled(
           justify-content: center;
           padding: 0;
           width: 32px;
-          ${ButtonLabel} > ${IconContainer}, ${ButtonLabel} > .ds-icon,
-          & > ${IconContainer}, & > .ds-icon {
+
+          ${ButtonLabel} > ${IconContainer},
+          ${ButtonLabel} > .ds-icon,
+          & > ${IconContainer},
+          & > .ds-icon {
             margin: 0 4px 0 4px;
           }
         }
@@ -417,35 +405,7 @@ export const AntdButton = styled(
           border-radius: 0 3px 3px 0;
         }
       `}
-      ${props =>
-        props.activated &&
-        css`
-          &&&.ant-btn:not(.read-only) {
-            background-color: ${props.theme.palette[`blue-050`]};
-            ${ButtonLabel} {
-              color: ${props.theme.palette['blue-600']};
-            }
-            svg {
-              fill: ${props.theme.palette['blue-600']};
-            }
-            &&&:focus {
-              background-color: ${props.theme.palette[`blue-050`]};
-              ${ButtonLabel} {
-                color: ${props.theme.palette['blue-600']};
-              }
-              svg {
-                fill: ${props.theme.palette['blue-600']};
-              }
-              &&&:hover:not(:active) {
-                background-color: ${props.theme.palette[`blue-100`]};
-              }
-            }
-          }
-          &.ant-btn .btn-focus {
-            box-shadow: none;
-          }
-        `}
-
+     
       ${props =>
         props.error &&
         css`

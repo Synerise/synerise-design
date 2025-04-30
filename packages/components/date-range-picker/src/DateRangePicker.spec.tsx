@@ -699,7 +699,7 @@ describe('DateRangePicker', () => {
   it.todo('future is not preserved when switching from relative date to lifetime');
   it.todo('can click on select-time when lifetime');
   // it.skip('switch a whole month view at least to the month of the selected date (e.g. when last 3 months)') // TODO
-  it('can clear both absolute date', async () => {
+  it('can clear absolute date', async () => {
     const onApply = jest.fn();
     const onValueChange = jest.fn();
     renderWithProvider(
@@ -734,7 +734,7 @@ describe('DateRangePicker', () => {
     await waitFor(() => expect(screen.getByTestId('date-range-picker-container')).toBeVisible());
     await waitFor(() => expect(screen.getByTestId('date-range-picker-apply-button')).toBeDisabled())
   }, 9000);
-  it('can clear both relative date', async () => {
+  it('can clear relative date', async () => {
     const onApply = jest.fn();
     const onValueChange = jest.fn();
     renderWithProvider(
@@ -1009,7 +1009,7 @@ describe('DateRangePicker', () => {
 
     }
   });
-  it('"more" button should be tertiary if no range within it selected (i.e. by default)', async () => {
+  it('"more" button should be secondary if no range within it selected (i.e. by default)', async () => {
     const onApply = jest.fn();
     renderWithProvider(
       <RawDateRangePicker
@@ -1033,7 +1033,7 @@ describe('DateRangePicker', () => {
 
     const moreButton = screen.getByTestId('relative-ranges-dropdown');
     expect(moreButton).toBeInTheDocument();
-    expect(moreButton).toHaveClass('ant-btn-tertiary');
+    expect(moreButton).toHaveClass('ant-btn-secondary');
 
 
   });

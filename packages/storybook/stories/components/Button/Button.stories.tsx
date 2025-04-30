@@ -39,6 +39,7 @@ const meta: Meta<ButtonProps> = {
     danger: BOOLEAN_CONTROL,
     readOnly: BOOLEAN_CONTROL,
     loading: BOOLEAN_CONTROL,
+    disabled: BOOLEAN_CONTROL,
     icon: {
       ...reactNodeAsSelect(['AngleDownS', 'CheckS'], {
         AngleDownS: <Icon component={<AngleDownS />} />,
@@ -91,7 +92,7 @@ const meta: Meta<ButtonProps> = {
     children: {
       name: 'children',
       description: 'Button label',
-      control: 'text',
+      control: false,
       table: {
         type: {
           summary: 'ReactNode',

@@ -20,7 +20,6 @@ const Button = ({
   className,
   color = 'red',
   error,
-  activated,
   tagProps,
   children,
   ...antdProps
@@ -69,7 +68,6 @@ const Button = ({
       type={type || 'secondary'}
       mode={mode}
       error={error}
-      activated={activated}
       groupVariant={groupVariant}
       loading={loading}
       onClick={handleClick}
@@ -91,7 +89,7 @@ const Button = ({
       </S.ButtonLabel>
       {loading && (
         <S.Spinner className="btn-spinner" data-testid="button-spinner">
-          <Icon component={<SpinnerM />} color="#fff" />
+          <Icon component={<SpinnerM />} />
         </S.Spinner>
       )}
       <S.ButtonFocus className="btn-focus" />

@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import Button from '@synerise/ds-button';
+import Button, { ButtonToggle } from '@synerise/ds-button';
 import ListItem from '@synerise/ds-list-item';
 import { InputGroup } from '@synerise/ds-input';
 import { InputGroupItem } from '@synerise/ds-input/dist/InputGroup.styles';
@@ -70,9 +70,9 @@ export const ModeDropdownTrigger = styled(({ children, ...rest }) => (
 
 export const Range = styled(({ children, ...rest }) => (
   // eslint-disable-next-line react/jsx-props-no-spreading
-  <Button type="tertiary" {...rest}>
+  <ButtonToggle type="solid" {...rest}>
     {children}
-  </Button>
+  </ButtonToggle>
 ))`
   && {
     margin: 4px 0;

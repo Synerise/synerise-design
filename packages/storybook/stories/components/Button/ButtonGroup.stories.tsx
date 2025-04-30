@@ -29,7 +29,7 @@ const meta: Meta<typeof ButtonGroup> = {
     prefixCls: PREFIXCLS_ARG_CONTROL,
     compact: BOOLEAN_CONTROL,
     buttonsPosition: {
-      ...controlFromOptionsArray('inline-radio', [ undefined, 'left' , 'center' , 'right'])
+      ...controlFromOptionsArray('inline-radio', [undefined, 'left', 'center', 'right'])
     }
   },
 };
@@ -39,7 +39,7 @@ export default meta;
 
 export const SplitButton: StoryObj<typeof ButtonGroup> = {
   render: (args) => (
-    <ButtonGroup { ...args }>
+    <ButtonGroup {...args}>
       <Button {...Simple.args} />
       <Button {...IconSolo.args} />
     </ButtonGroup>
@@ -57,26 +57,26 @@ export const SplitButton: StoryObj<typeof ButtonGroup> = {
 
 export const GroupButtons: StoryObj<typeof ButtonGroup> = {
   render: (args) => (
-    <ButtonGroup { ...args }>
+    <ButtonGroup {...args}>
       <Button mode="single-icon" {...Simple.args} type="secondary">
-        <Icon component={<DragHandleM />} color="#ffffff" />
+        <Icon component={<DragHandleM />} />
       </Button>
       <Button mode="icon-label" {...Simple.args} type="secondary">
-        <Icon component={<DragHandleM />} color="#ffffff" />
+        <Icon component={<DragHandleM />} />
         Button
       </Button>
       <Button mode="two-icons" {...Simple.args} type="secondary">
-        <Icon component={<DragHandleM />} color="#ffffff" />
+        <Icon component={<DragHandleM />} />
         Button
-        <Icon component={<AngleDownS />} color="#ffffff" />
+        <Icon component={<AngleDownS />} />
       </Button>
       <Button mode="label-icon" {...Simple.args} type="secondary">
         Button
-        <Icon component={<DragHandleM />} color="#ffffff" />
+        <Icon component={<DragHandleM />} />
       </Button>
       <Button {...Simple.args} type="secondary" loading>
         Button
-        <Icon component={<DragHandleM />} color="#ffffff" />
+        <Icon component={<DragHandleM />} />
       </Button>
       <Button {...Simple.args} type="secondary" disabled>
         Button
@@ -102,23 +102,24 @@ export const OptionButtons: StoryObj<typeof ButtonGroup> = {
   render: (args) => {
     const [selectedKey, setSelectedKey] = useState('');
     return (
-    <ButtonGroup { ...args }>
-      <Button
-        {...Simple.args}
-        type={selectedKey === '1' ? 'primary' : 'secondary'}
-        onClick={() => setSelectedKey('1')}
-      >
-        Button
-      </Button>
-      <Button
-        {...Simple.args}
-        type={selectedKey === '2' ? 'primary' : 'secondary'}
-        onClick={() => setSelectedKey('2')}
-      >
-      Button
-      </Button>
-    </ButtonGroup>
-  )},
+      <ButtonGroup {...args}>
+        <Button
+          {...Simple.args}
+          type={selectedKey === '1' ? 'primary' : 'secondary'}
+          onClick={() => setSelectedKey('1')}
+        >
+          Button
+        </Button>
+        <Button
+          {...Simple.args}
+          type={selectedKey === '2' ? 'primary' : 'secondary'}
+          onClick={() => setSelectedKey('2')}
+        >
+          Button
+        </Button>
+      </ButtonGroup>
+    )
+  },
   args: {
     size: 'small',
     fullWidth: false,

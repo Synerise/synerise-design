@@ -94,7 +94,7 @@ export const Creator = styled(({ status, pressed, withLabel, ...rest }) => <Butt
     height: 48px;
     padding: ${props => (props.withLabel ? `0 12px 0 0` : '0')};
     border-radius: 3px;
-    border: 1px dashed ${({ theme }) => theme.palette['grey-400']};
+    border: 1px dashed ${({ theme }) => theme.palette['grey-300']};
     background: transparent;
     transition: all 0.3s ease;
     justify-content: ${props => (props.withLabel && !props.block ? `flex-start` : 'center')};
@@ -133,7 +133,7 @@ export const Creator = styled(({ status, pressed, withLabel, ...rest }) => <Butt
     }
     &:hover:not(:disabled):not(:focus) {
       border: 1px dashed ${({ theme }) => theme.palette['grey-400']};
-      background-color: ${({ theme }) => hexToRgba(theme.palette['grey-200'], 0.2)};
+      background-color: ${({ theme }) => hexToRgba(theme.palette['grey-200'], 0.25)};
     }
     ${props => props.pressed && `&&{ background-color: ${hexToRgba(props.theme.palette['grey-200'], 0.4)}; }`}
 

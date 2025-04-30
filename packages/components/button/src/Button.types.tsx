@@ -4,23 +4,24 @@ import type { JustifyContentProperty } from 'csstype';
 import type { LiteralStringUnion } from '@synerise/ds-utils';
 import type { TagProps } from '@synerise/ds-tag';
 
-export type ButtonProps = Omit<AntdButtonProps, 'type'> & {
+export type ButtonType =
+  | 'primary'
+  | 'secondary'
+  | 'tertiary'
+  | 'tertiary-white'
+  | 'ghost-primary'
+  | 'ghost'
+  | 'ghost-white'
+  | 'custom-color'
+  | 'custom-color-ghost';
+
+export type ButtonProps = Omit<AntdButtonProps, 'type' | 'ghost'> & {
   /**
    * Defines the type of the button. It affects the button color
    *
    * @default secondary
    */
-  type?: LiteralStringUnion<
-    | 'primary'
-    | 'secondary'
-    | 'tertiary'
-    | 'tertiary-white'
-    | 'ghost-primary'
-    | 'ghost'
-    | 'ghost-white'
-    | 'custom-color'
-    | 'custom-color-ghost'
-  >;
+  type?: LiteralStringUnion<ButtonType>;
   /**
    * Defines the type of the button content. It affects content inside the button
    *
@@ -56,7 +57,6 @@ export type ButtonProps = Omit<AntdButtonProps, 'type'> & {
     'blue' | 'grey' | 'red' | 'green' | 'yellow' | 'pink' | 'mars' | 'orange' | 'fern' | 'cyan' | 'purple' | 'violet'
   >;
   error?: boolean;
-  activated?: boolean;
   readOnly?: boolean;
   tagProps?: TagProps;
 };
