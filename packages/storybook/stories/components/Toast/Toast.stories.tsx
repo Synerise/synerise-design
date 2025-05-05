@@ -1,149 +1,115 @@
 import React from 'react';
 import { Meta, StoryObj } from '@storybook/react';
-import { Toast } from '@synerise/ds-alert';
+import Toast, { ToastProps } from '@synerise/ds-toast';
+
 import Button from '@synerise/ds-button';
-import {
-  FirstButtonWrapper, Wrapper,
-} from '@synerise/ds-alert/dist/Toast/Toast.styles';
+import { FirstButtonWrapper, Wrapper } from '@synerise/ds-toast/dist/Toast.styles';
 import UnorderedList from '@synerise/ds-unordered-list';
 import {
   BOOLEAN_CONTROL,
-  centeredPaddedWrapper,
-  REACT_NODE_AS_STRING
+  controlFromOptionsArray,
+  fixedWrapper400,
+  gappedColumnDecorator,
+  REACT_NODE_AS_STRING,
 } from '../../utils';
-import { color, colorIcon, customColor, data, type } from './Toast.data';
-
-
-
+import { ButtonShowingToast, data } from './Toast.data';
 
 export default {
-  title: "Components/Alert/Toast",
+  title: 'Components/Toast',
   tags: ['autodocs'],
   component: Toast,
-  decorators: [centeredPaddedWrapper],
-  render: (args) => {
+  decorators: [gappedColumnDecorator, fixedWrapper400],
+  render: args => {
     return <Toast {...args} />;
   },
   argTypes: {
     message: REACT_NODE_AS_STRING,
     description: REACT_NODE_AS_STRING,
-    type: type,
-    color: color,
-    colorIcon: colorIcon,
-    customColor: customColor,
-    customColorIcon: customColor,
-    customColorText: customColor,
+    type: controlFromOptionsArray('select', ['success', 'warning', 'negative', 'informative']),
     withClose: BOOLEAN_CONTROL,
     expander: BOOLEAN_CONTROL,
     expanded: BOOLEAN_CONTROL,
     button: {
-      control: false
+      control: false,
     },
     expandedContent: {
-      control: false
-    }
+      control: false,
+    },
   },
-} as Meta<typeof Toast>;
+} as Meta<ToastProps>;
 
-type Story = StoryObj<typeof Toast>;
+type Story = StoryObj<ToastProps>;
 
 export const Default: Story = {
-  parameters: {
-    controls: {
-      exclude: ['customColor', 'customColorIcon', 'customColorText']
-    }
-  },
   args: {
     message: 'Campaign saved!',
     type: 'success',
-    color: 'green',
-    colorIcon: 'white'
+    description: 'No response from server, try again later',
+    withClose: false,
   },
 };
-
-export const withDescription: Story = {
-  ...Default,
-  parameters: {
-    controls: {
-      exclude: ['customColor', 'customColorIcon', 'customColorText']
-    }
+const TYPES = ['success', 'warning', 'negative', 'informative'] as const;
+export const AllTypes: Story = {
+  render: args => {
+    return (
+      <>
+        {TYPES.map(type => (
+          <Toast {...args} message={`Toast type: ${type}`} type={type} />
+        ))}
+      </>
+    );
   },
   args: {
     ...Default.args,
-    description: 'No response from server, try again later',
   },
 };
 
-
-export const withCustomColor: Story = {
+export const WithCloseIcon: Story = {
+  ...Default,
   args: {
-    message: 'Campaign saved!',
-    description: 'No response from server, try again later',
-    type: 'informative',
-    customColor: 'pink',
-    customColorIcon: 'blue',
-    customColorText: 'blue',
+    ...Default.args,
+    withClose: true,
   },
 };
-
-export const withCloseIcon: Story = {
-  ...withDescription,
-  parameters: {
-    controls: {
-      exclude: ['customColor', 'customColorIcon', 'customColorText']
-    }
-  },
+export const WithExpander: Story = {
+  ...Default,
   args: {
-    ...withDescription.args,
-    withClose: true
+    ...Default.args,
+    expander: true,
   },
 };
-export const withExpander: Story = {
-    ...withDescription,
-    parameters: {
-      controls: {
-        exclude: ['customColor', 'customColorIcon', 'customColorText']
-      }
-    },
-    args: {
-      ...withDescription.args,
-      expander: true,
-  },
-};
-export const withButton: Story = {
-  ...withDescription,
-  parameters: {
-    controls: {
-      exclude: ['customColor', 'customColorIcon', 'customColorText']
-    }
-  },
+export const WithButton: Story = {
+  ...Default,
   args: {
-    ...withDescription.args,
+    ...Default.args,
     expanded: true,
-    button: <FirstButtonWrapper>
-      <Button type='tertiary-white' mode="label">
-        Button
-      </Button>
-    </FirstButtonWrapper>
+    button: (
+      <FirstButtonWrapper>
+        <Button type="tertiary-white" mode="label">
+          Button
+        </Button>
+      </FirstButtonWrapper>
+    ),
   },
 };
-export const withList: Story = {
-  ...withDescription,
-  parameters: {
-    controls: {
-      exclude: ['customColor', 'customColorIcon', 'customColorText']
-    }
+
+
+export const ShowToast: Story = {
+  ...Default,
+  render: ({ type, ...args }) => {
+    return <ButtonShowingToast type={type} {...args} />;
   },
+};
+
+export const WithList: Story = {
+  ...Default,
   args: {
-    ...withDescription.args,
+    ...Default.args,
     expanded: true,
-    expandedContent: <Wrapper>
-      <UnorderedList data={data} indexFormatter={undefined} />
-    </Wrapper>
+    expandedContent: (
+      <Wrapper>
+        <UnorderedList data={data} indexFormatter={undefined} />
+      </Wrapper>
+    ),
   },
 };
-
-
-
-
-

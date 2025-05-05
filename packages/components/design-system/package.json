@@ -129,6 +129,8 @@
     "@synerise/ds-tag": "^1.1.5",
     "@synerise/ds-tags": "^1.1.5",
     "@synerise/ds-time-picker": "^1.1.1",
+    "@synerise/ds-toast": "^1.0.0",
+    "@synerise/ds-toaster": "^1.0.0",
     "@synerise/ds-toolbar": "^1.1.5",
     "@synerise/ds-tooltip": "^1.1.5",
     "@synerise/ds-typography": "^1.0.6",

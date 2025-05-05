@@ -13,7 +13,9 @@ const ICONS: Record<ToastType, ReactNode> = {
 };
 
 const DEFAULT_ICON = <WarningFillM />;
-
+/**
+ * @deprecated - migrate to use synerise/ds-toast instead
+ */
 const Toast = ({
   icon,
   type,

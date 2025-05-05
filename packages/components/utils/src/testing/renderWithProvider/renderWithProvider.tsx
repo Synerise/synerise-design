@@ -1,7 +1,7 @@
 import React, { ReactNode } from 'react';
 import { render, RenderOptions, RenderResult } from '@testing-library/react';
 
-import { DSProvider } from '@synerise/ds-core';
+import { DSProvider, DSProviderProps } from '@synerise/ds-core';
 import { getDataFormatConfigFromNotation, DataFormatNotationType } from '@synerise/ds-data-format';
 import { NOOP } from '../../index';
 
@@ -10,20 +10,16 @@ type Options = Omit<RenderOptions, 'queries'>;
 const renderWithProvider = (
   node: ReactNode,
   options?: Options,
-  props?: {
-    locale?: string;
+  props?: Partial<Omit<DSProviderProps, 'onErrorIntl' | 'dataFormatConfig'>> & {
     notation?: DataFormatNotationType;
-    timeZone?: string;
-    onDSLocalesLoaded?: () => void;
   }
 ): RenderResult => {
+  const { notation, ...providerProps} = props || {};
   const rendered = render(
     <DSProvider
-      locale={props?.locale ?? undefined}
       onErrorIntl={NOOP}
-      onDSLocalesLoaded={props?.onDSLocalesLoaded}
-      timeZone={props?.timeZone ?? undefined}
-      {...(props?.notation ? { dataFormatConfig: getDataFormatConfigFromNotation(props.notation) } : {})}
+      {...(notation ? { dataFormatConfig: getDataFormatConfigFromNotation(notation) } : {})}
+      {...providerProps}
     >
       {node}
     </DSProvider>,

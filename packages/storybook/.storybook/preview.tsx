@@ -6,6 +6,7 @@ import { DSProvider, theme } from '@synerise/ds-core';
 import { DEFAULT_DATA_FORMAT_NOTATION } from '@synerise/ds-data-format';
 import { Description, Primary, Stories, Subtitle, Title } from '@storybook/blocks';
 import { mockDateDecorator } from 'storybook-mock-date-decorator';
+import { TOASTER_DEFAULTS } from '@synerise/ds-toaster';
 
 configure({ asyncUtilTimeout: 3000 });
 
@@ -51,6 +52,7 @@ const preview: Preview = {
         },
         locale: storyContext.globals.locale,
         timeZone: storyContext.globals.timeZone,
+        toasterProps: TOASTER_DEFAULTS
       };
       return <DSProvider {...DSProviderProps}>{Story()}</DSProvider>;
     },
