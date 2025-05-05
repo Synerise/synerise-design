@@ -10,8 +10,9 @@ export type LiteralStringUnion<T extends string> = T | (string & {});
  */
 export type ExactlyOne<T, U> = (T & { [K in keyof U]?: never }) | (U & { [K in keyof T]?: never });
 
+export type DataAttributes = Record<`data-${string}`, string>;
 export type WithHTMLAttributes<ElementType extends HTMLElement, BaseType> = BaseType &
-  Omit<HTMLAttributes<ElementType>, keyof BaseType>;
+  Omit<HTMLAttributes<ElementType>, keyof BaseType> & DataAttributes;
 
 export type DeepPartial<T> = T extends object
   ? {

@@ -1,0 +1,49 @@
+{
+  "name": "@synerise/ds-toast",
+  "version": "1.0.0",
+  "description": "Toast UI Component for the Synerise Design System",
+  "license": "ISC",
+  "repository": "Synerise/synerise-design",
+  "main": "dist/index.js",
+  "files": [
+    "/dist",
+    "CHANGELOG.md",
+    "README.md",
+    "package.json",
+    "LICENSE.md"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "scripts": {
+    "build": "npm run build:js && npm run build:css && npm run defs",
+    "build:css": "node ../../../scripts/style/less.js",
+    "build:js": "babel --delete-dir-on-start --root-mode upward src --out-dir dist --extensions '.js,.ts,.tsx'",
+    "build:watch": "npm run build:js -- --watch",
+    "defs": "tsc --declaration --outDir dist/ --emitDeclarationOnly",
+    "pack:ci": "npm pack --pack-destination ../../storybook/storybook-static/static",
+    "prepublish": "npm run build",
+    "test": "jest",
+    "test:watch": "npm run test -- --watchAll",
+    "types": "tsc --noEmit",
+    "upgrade:ds": "ncu -f \"@synerise/ds-*\" -u"
+  },
+  "sideEffects": [
+    "dist/style/*",
+    "*.less"
+  ],
+  "types": "dist/index.d.ts",
+  "dependencies": {
+    "@synerise/ds-icon": "^1.4.1",
+    "@synerise/ds-unordered-list": "^1.1.1",
+    "@synerise/ds-utils": "^1.0.1",
+    "react-hot-toast": "^2.5.2"
+  },
+  "peerDependencies": {
+    "@synerise/ds-core": "*",
+    "react": ">=16.9.0 <= 18.3.1"
+  },
+  "devDependencies": {
+    "@synerise/ds-toaster": "^1.0.0"
+  }
+}

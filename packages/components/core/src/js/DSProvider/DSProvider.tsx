@@ -1,6 +1,6 @@
 import React, { PropsWithChildren } from 'react';
-
 import { DataFormatConfigProvider, DataFormatConfigProviderProps } from '@synerise/ds-data-format';
+import Toaster, { ToasterProps, ToasterProvider, TOASTER_DEFAULTS } from '@synerise/ds-toaster';
 
 import '../style';
 import LocaleProvider from './LocaleProvider';
@@ -10,7 +10,11 @@ import { LocaleProviderProps } from './LocaleProvider/LocaleProvider';
 import { ThemeProviderProps } from './ThemeProvider/ThemeProvider';
 
 export type DSProviderProps = PropsWithChildren<
-  LocaleProviderProps & ThemeProviderProps & DataFormatConfigProviderProps
+  LocaleProviderProps &
+    ThemeProviderProps &
+    DataFormatConfigProviderProps & {
+      toasterProps?: false | Partial<ToasterProps>;
+    }
 >;
 
 const DSProvider = ({
@@ -23,6 +27,7 @@ const DSProvider = ({
   dataFormatConfig,
   onErrorIntl,
   onDSLocalesLoaded,
+  toasterProps = false,
 }: DSProviderProps) => {
   return (
     <LocaleProvider
@@ -34,7 +39,12 @@ const DSProvider = ({
       onDSLocalesLoaded={onDSLocalesLoaded}
     >
       <ThemeProvider theme={theme}>
-        <DataFormatConfigProvider dataFormatConfig={dataFormatConfig}>{children}</DataFormatConfigProvider>
+        <DataFormatConfigProvider dataFormatConfig={dataFormatConfig}>
+          <ToasterProvider toasterProps={toasterProps || TOASTER_DEFAULTS}>
+            {children}
+            {toasterProps !== false && <Toaster />}
+          </ToasterProvider>
+        </DataFormatConfigProvider>
       </ThemeProvider>
     </LocaleProvider>
   );

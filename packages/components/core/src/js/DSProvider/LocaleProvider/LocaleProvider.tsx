@@ -1,8 +1,8 @@
 import React, { Component, ReactNode } from 'react';
 import { IntlProvider } from 'react-intl';
-import { OnErrorFn } from '@formatjs/intl';
+import type { OnErrorFn } from '@formatjs/intl';
 
-import { MessageFormatElement } from '@formatjs/icu-messageformat-parser';
+import type { MessageFormatElement } from '@formatjs/icu-messageformat-parser';
 import { flatten } from 'flat';
 import * as merge from 'deepmerge';
 import AntConfigProvider from 'antd/lib/config-provider';

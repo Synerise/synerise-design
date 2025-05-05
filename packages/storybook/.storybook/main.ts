@@ -70,7 +70,7 @@ const config: StorybookConfig = {
                     {
                       replacements: [
                         {
-                          original: '@synerise/ds-((?!core|data-format|icon$|icon/)[a-z0-9-]+)(/dist)?(.*)',
+                          original: '@synerise/ds-((?!core|data-format|toaster|icon$|icon/)[a-z0-9-]+)(/dist)?(.*)',
                           replacement: '@synerise/ds-$1/src$3',
                         },
                       ],
