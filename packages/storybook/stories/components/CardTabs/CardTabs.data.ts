@@ -1,10 +1,11 @@
 import { faker } from '@faker-js/faker';
-import { CardTabsItem } from '@synerise/ds-card-tabs';
+import { CardTabProps, prefixType } from '@synerise/ds-card-tabs';
 
-export const createItemData = (index: number) => ({
+export const createItemData = (index: number): CardTabProps<string> => ({
   name: `Variant ${index + 1}`,
   tag: String.fromCharCode(65 + index).toUpperCase(),
-  id: faker.number.int(),
+  prefix: prefixType.TAG,
+  id: faker.string.uuid()
 });
 
-export const CARD_TABS_ITEMS: CardTabsItem[] = Array.from(Array(4)).map((_i, index) => createItemData(index));
+export const CARD_TABS_ITEMS = Array.from(Array(4)).map((_i, index) => createItemData(index));

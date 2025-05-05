@@ -91,12 +91,8 @@ export const CardTabPrefix = styled.div`
   height: 24px;
   margin-right: 12px;
 `;
-export const CardDragPrefix = styled.div`
-  display: none;
-
-  &.persistent {
-    display: block;
-  }
+export const CardDragPrefix = styled.div<{ persistent: boolean }>`
+  display: ${props => (props.persistent ? 'block' : 'none')};
 `;
 export const CardIconPrefix = styled.div`
   display: flex;
