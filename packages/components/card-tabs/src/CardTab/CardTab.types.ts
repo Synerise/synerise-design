@@ -36,46 +36,60 @@ export type CardTabTexts = {
   duplicateMenuItem?: ReactNode;
 };
 
+export type TagPrefixProps = {
+  prefix: prefixType.TAG;
+  tag: string;
+};
+export type DotPrefixProps = {
+  prefix: prefixType.DOT;
+  colorDot?: ReactNode;
+};
+export type IconPrefixProps = {
+  prefix: prefixType.ICON;
+  prefixIcon: ReactNode;
+};
+export type HandlePrefixProps = {
+  prefix: prefixType.HANDLE;
+};
+
+export type PrefixProps = DotPrefixProps | HandlePrefixProps | IconPrefixProps | TagPrefixProps;
+
+type CardTabCommonProps = {
+  name: string;
+  dragHandleProps?: DragHandlePropType;
+  color?: Color | DefaultColor | string;
+  active?: boolean;
+  draggable?: boolean;
+  suffixIcon?: ReactNode;
+  disabled?: boolean;
+  invalid?: boolean;
+  invalidName?: boolean;
+  greyBackground?: boolean;
+  texts?: CardTabTexts;
+  itemData?: unknown;
+  actionsAsDropdown?: boolean;
+    /**
+   * @deprecated
+   */
+  keyId?: string;
+} & PrefixProps;
+
 export type CardTabProps<IdType extends string | number = number> = {
   /**
    * @deprecated
    */
   intl?: IntlShape;
   id: IdType;
-  name: string;
-  tag: string;
-  prefix: prefixType;
-  dragHandleProps?: DragHandlePropType;
-  colorDot?: ReactNode;
-  color?: Color | DefaultColor | string;
-  active?: boolean;
-  draggable?: boolean;
-  prefixIcon?: ReactNode;
-  suffixIcon?: ReactNode;
-  disabled?: boolean;
-  invalid?: boolean;
-  invalidName?: boolean;
-  greyBackground?: boolean;
   onSelectTab?: (id: IdType) => void;
   onChangeName?: (id: IdType, name: string) => void;
   onDuplicateTab?: (id: IdType) => void;
   onRemoveTab?: (id: IdType) => void;
   onPreviewTab?: (id: IdType) => void;
-  texts?: CardTabTexts;
-  itemData?: unknown;
-  actionsAsDropdown?: boolean;
   renderSuffix?: (props: CardTabSuffixProps) => ReactNode;
-  /**
-   * @deprecated
-   */
-  keyId?: string;
-};
+} & CardTabCommonProps;
 
-export type CardTabSuffixProps = Omit<
-  CardTabProps & {
-    handleRemove?: (event?: MouseEvent<HTMLElement>) => void;
-    handleDuplicate?: (event?: MouseEvent<HTMLElement>) => void;
-    handleEditName?: (event?: MouseEvent<HTMLElement>) => void;
-  },
-  'onChangeName' | 'onDuplicateTab' | 'onRemoveTab' | 'onSelectTab'
->;
+export type CardTabSuffixProps = CardTabCommonProps & {
+  handleRemove?: (event?: MouseEvent<HTMLElement>) => void;
+  handleDuplicate?: (event?: MouseEvent<HTMLElement>) => void;
+  handleEditName?: (event?: MouseEvent<HTMLElement>) => void;
+};

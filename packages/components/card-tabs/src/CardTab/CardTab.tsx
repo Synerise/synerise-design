@@ -1,6 +1,6 @@
 import React, { useState, useMemo, useCallback, ChangeEvent } from 'react';
 import Icon from '@synerise/ds-icon';
-import InlineEdit from '@synerise/ds-inline-edit/dist/InlineEdit';
+import InlineEdit from '@synerise/ds-inline-edit';
 import { useIntl } from 'react-intl';
 import Tooltip from '@synerise/ds-tooltip';
 import * as S from './CardTab.styles';
@@ -9,13 +9,10 @@ import CardTabActions from './CardTabActions/CardTabActions';
 import CardTabDropdown from './CardTabDropdown/CardTabDropdown';
 import { CardTabProps, CardTabSuffixProps, ListItemEventType } from './CardTab.types';
 
-const CardTab = (props: CardTabProps) => {
+const CardTab = <IdType extends string | number>(props: CardTabProps<IdType>) => {
   const {
     id,
     name,
-    tag,
-    prefix,
-    prefixIcon,
     suffixIcon,
     renderSuffix,
     active,
@@ -31,10 +28,11 @@ const CardTab = (props: CardTabProps) => {
     onPreviewTab,
     texts,
     color = 'yellow',
-    colorDot,
     itemData,
     dragHandleProps,
     actionsAsDropdown,
+    intl: _intl,
+    ...prefixProps
   } = props;
 
   const intl = useIntl();
@@ -174,16 +172,7 @@ const CardTab = (props: CardTabProps) => {
       data-testid="card-tab-container"
       itemData={itemData}
     >
-      {!edited && (
-        <CardTabPrefix
-          dragHandleProps={dragHandleProps}
-          colorDot={colorDot}
-          draggable={draggable}
-          prefixIcon={prefixIcon}
-          prefix={prefix}
-          tag={tag}
-        />
-      )}
+      {!edited && <CardTabPrefix dragHandleProps={dragHandleProps} draggable={draggable} {...prefixProps} />}
       <S.CardTabLabel onDoubleClick={handleEditName} data-testid="card-tab-label">
         {edited ? (
           <InlineEdit

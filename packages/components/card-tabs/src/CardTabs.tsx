@@ -6,11 +6,11 @@ import { defaultColorsOrder } from '@synerise/ds-core';
 import Sortable from '@synerise/ds-sortable';
 
 import * as S from './CardTabs.styles';
-import { CardTabsProps, CardTabsItem } from './CardTabs.types';
+import { CardTabsProps } from './CardTabs.types';
 import { CardTabProps } from './CardTab/CardTab.types';
 import CardTab from './CardTab/CardTab';
 
-const CardTabs = ({
+const CardTabs = <IdType extends string | number>({
   className,
   onChangeOrder,
   onAddTab,
@@ -18,8 +18,8 @@ const CardTabs = ({
   children = [],
   addTabLabel,
   ...htmlAttributes
-}: CardTabsProps) => {
-  const handleChangeOrder = (newOrder: CardTabsItem[]): void => {
+}: CardTabsProps<IdType>) => {
+  const handleChangeOrder = (newOrder: CardTabProps<IdType>[]): void => {
     onChangeOrder && onChangeOrder(newOrder);
   };
   const addTab = onAddTab && (
@@ -33,7 +33,7 @@ const CardTabs = ({
   );
 
   const childrenCount = Children.count(children);
-  const childrenData = Children.map(children, (child, i) => ({
+  const childrenData: CardTabProps<IdType>[] = Children.map(children, (child, i) => ({
     ...child.props,
     color: defaultColorsOrder[i % defaultColorsOrder.length],
     draggable: childrenCount > 1 && (Boolean(onChangeOrder) || child.props.draggable),

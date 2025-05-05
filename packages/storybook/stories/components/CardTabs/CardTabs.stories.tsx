@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Meta, StoryObj } from '@storybook/react';
 
 import CardTabs, { CardTab, prefixType, CardTabsStyles } from '@synerise/ds-card-tabs';
-import type { CardTabProps, CardTabsProps, CardTabsItem } from '@synerise/ds-card-tabs';
+import type { CardTabsPropsBase, CardTabProps } from '@synerise/ds-card-tabs';
 import { theme } from '@synerise/ds-core';
 import Icon, {
   AppleFillM,
@@ -29,51 +29,58 @@ import { CARD_TABS_ITEMS, createItemData } from './CardTabs.data';
 const {
   CardTab: { CardDot },
 } = CardTabsStyles;
+type PrefixType = {
+  prefix: 'DOT' | 'HANDLE' | 'ICON' | 'TAG'
+}
+type MetaType = Omit<CardTabsPropsBase<string>, 'children'> & Omit<CardTabProps<string>, 'prefix'> & { dataSource: CardTabProps<string>[] } & PrefixType;
 
-export default {
+
+const meta: Meta<MetaType> = {
   title: 'Components/CardTabs',
   component: CardTabs,
-  render: ({ dataSource, ...args }) => {
-    const [order, setOrder] = useState<CardTabsItem[]>(dataSource);
+  render: ({ dataSource, prefix = 'DOT', ...args }) => {
+    const [order, setOrder] = useState<CardTabProps<string>[]>(dataSource);
     const [activeTab, setActiveTab] = useState(dataSource[0].id);
 
     const { onChangeOrder, onAddTab, maxTabsCount, addTabLabel, ...cardTabItemArgs } = args;
-    const handleChangeOrder = (newOrder: CardTabsItem[]) => {
+    const handleChangeOrder = (newOrder: CardTabProps<string>[]) => {
       setOrder(newOrder);
       onChangeOrder?.(newOrder);
     };
+    const item = createItemData(order.length);
+
     const handleAddTab = () => {
       setOrder([...order, createItemData(order.length)]);
     };
-    const handleSelectTab = (id: number) => {
+    const handleSelectTab = (id: string) => {
       setActiveTab(id);
       cardTabItemArgs.onSelectTab?.(id);
     };
-    const handleRemove = (id: number) => {
+    const handleRemove = (id: string) => {
       setOrder(order.filter(item => item.id !== id));
-      cardTabItemArgs.onRemoveTab?.(id, name);
+      cardTabItemArgs.onRemoveTab?.(id);
     };
 
-    const handleDuplicate = (id: number) => {
-      const newItem = createItemData(order.length);
+    const handleDuplicate = (id: string) => {
+      const { name, ...newItem } = createItemData(order.length);
       const duplicatedItem = order.find(item => item.id === id);
 
-      setOrder([...order, { ...duplicatedItem, id: newItem.id, tag: newItem.tag }]);
-      cardTabItemArgs.onDuplicateTab?.(id, name);
+      setOrder([...order, { name, ...duplicatedItem, ...newItem }]);
+      cardTabItemArgs.onDuplicateTab?.(id);
     };
-    const handleChangeName = (id: number, name: string) => {
+    const handleChangeName = (id: string, name: string) => {
       const newOrder = order.map(item => {
         return item.id === id
           ? {
-              ...item,
-              name: name,
-            }
+            ...item,
+            name: name,
+          }
           : item;
       });
       setOrder(newOrder);
       cardTabItemArgs.onChangeName?.(id, name);
     };
-    
+
     return (
       <CardTabs
         onAddTab={onAddTab ? handleAddTab : undefined}
@@ -81,12 +88,13 @@ export default {
         maxTabsCount={maxTabsCount}
         addTabLabel={addTabLabel}
       >
-        {order.map(cardProps => (
+        {order.map(item => (
           <CardTab
-            {...cardProps}
+            {...item}
             {...cardTabItemArgs}
+            prefix={prefixType[prefix]}
             onSelectTab={handleSelectTab}
-            active={activeTab === cardProps.id}
+            active={activeTab === item.id}
             onChangeName={handleChangeName}
             onRemoveTab={handleRemove}
             onDuplicateTab={handleDuplicate}
@@ -149,7 +157,6 @@ export default {
         category: 'Card Tab Props',
       },
       ...controlFromOptionsArray('inline-radio', ['DOT', 'ICON', 'TAG', 'HANDLE']),
-      mapping: prefixType,
     },
     suffix: {
       ...reactNodeAsSelect(['icon', 'cruds', 'menu'], {
@@ -230,15 +237,14 @@ export default {
     },
   },
   args: {
+    prefix: 'DOT',
     dataSource: CARD_TABS_ITEMS,
-    prefix: prefixType[prefixType.TAG],
-    colorDot: <CardDot />,
-    prefixIcon: <ShowM />,
     actionsAsDropdown: true,
   },
-} as Meta<CardTabsProps & CardTabProps & { dataSource: Partial<CardTabProps<number>>[]}>;
+};
+export default meta;
 
-type Story = StoryObj<CardTabsProps & CardTabProps<number>>;
+type Story = StoryObj<CardTabsPropsBase<string> & Omit<CardTabProps<string>, 'prefix'> & PrefixType>;
 
 export const Default: Story = {};
 export const InvalidTabs: Story = {
@@ -259,27 +265,30 @@ export const AddDisabled: Story = {
 
 export const DotPrefix: Story = {
   args: {
-    prefix: prefixType[prefixType.DOT],
+    prefix: 'DOT',
+    colorDot: <CardDot />,
   },
 };
 export const IconPrefix: Story = {
   args: {
-    prefix: prefixType[prefixType.ICON],
+    prefix: 'ICON',
+    prefixIcon: <ShowM />,
   },
 };
 export const HandlePrefix: Story = {
   args: {
-    prefix: prefixType[prefixType.HANDLE],
+    prefix: 'HANDLE',
   },
 };
 
 export const WithCrudsOnHover: Story = {
   parameters: {
     pseudo: {
-        hover: true
+      hover: true
     }
   },
   args: {
+
     actionsAsDropdown: false,
   },
 };

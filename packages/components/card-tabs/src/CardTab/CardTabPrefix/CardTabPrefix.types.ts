@@ -1,11 +1,6 @@
-import { ReactNode } from 'react';
-import { prefixType, CardTabProps } from '../CardTab.types';
+import { CardTabProps, PrefixProps } from '../CardTab.types';
 
-export interface Props {
-  prefix: prefixType;
+export type CardTabPrefixProps = PrefixProps & {
   draggable?: boolean;
-  tag?: string;
-  prefixIcon?: ReactNode;
-  colorDot?: ReactNode;
   dragHandleProps?: CardTabProps['dragHandleProps'];
-}
+};
