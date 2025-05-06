@@ -71,7 +71,9 @@ function VirtualTableRow<T extends object>({
       return (
         infiniteLoaderItemProps &&
         isVisible && (
-          <S.RowWrapper style={{ ...style, top, height: `${INFINITE_LOADED_ITEM_HEIGHT}px`, padding: '16px 24px' }}>
+          <S.RowWrapper
+            style={{ ...style, top, height: `${INFINITE_LOADED_ITEM_HEIGHT}px`, padding: '0 24px', display: 'flex' }}
+          >
             <InfiniteLoaderItem
               infiniteScroll={{ ...infiniteScroll, ...infiniteLoaderItemProps }}
               position={position}
