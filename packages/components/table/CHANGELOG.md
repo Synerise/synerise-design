@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.1.9](https://github.com/synerise/synerise-design/compare/@synerise/ds-table@1.1.8...@synerise/ds-table@1.1.9) (2025-05-07)
+
+
+### Bug Fixes
+
+* **table:** center infinite loader row content ([8389fc4](https://github.com/synerise/synerise-design/commit/8389fc44ebc05e7be687be6203f5f4633321c796))
+* **table:** update batch selection for table with limit ([a63698a](https://github.com/synerise/synerise-design/commit/a63698adf24e59aa3b220f3840ecdc43d60d62a5))
+
+
+
+
+
 ## [1.1.8](https://github.com/synerise/synerise-design/compare/@synerise/ds-table@1.1.7...@synerise/ds-table@1.1.8) (2025-04-24)
 
 **Note:** Version bump only for package @synerise/ds-table

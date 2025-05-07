@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.2.0](https://github.com/synerise/synerise-design/compare/@synerise/ds-button@1.1.5...@synerise/ds-button@1.2.0) (2025-05-07)
+
+
+### Features
+
+* **button:** add ButtonToggle component ([1e86e54](https://github.com/synerise/synerise-design/commit/1e86e54273e2204bcbbbbe302ff0c2e2a326e94f))
+
+
+
+
+
 ## [1.1.5](https://github.com/synerise/synerise-design/compare/@synerise/ds-button@1.1.4...@synerise/ds-button@1.1.5) (2025-04-24)
 
 **Note:** Version bump only for package @synerise/ds-button

@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.3.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-card-tabs@1.2.5...@synerise/ds-card-tabs@1.3.0) (2025-05-07)
+
+
+### Features
+
+* **card-tabs:** fix types for id and prefix ([c0efb33](https://github.com/Synerise/synerise-design/commit/c0efb3371f31919923f42d111ad946b346b6ad29))
+
+
+
+
+
 ## [1.2.5](https://github.com/Synerise/synerise-design/compare/@synerise/ds-card-tabs@1.2.4...@synerise/ds-card-tabs@1.2.5) (2025-04-24)
 
 **Note:** Version bump only for package @synerise/ds-card-tabs

@@ -3,6 +3,27 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.7.0](https://github.com/Synerise/synerise-design/compare/storybook7@1.6.0...storybook7@1.7.0) (2025-05-07)
+
+
+### Bug Fixes
+
+* **manageable-list:** alignment in content item large ([fd1537e](https://github.com/Synerise/synerise-design/commit/fd1537eea52b064afb79c36d14a53623aa911a38))
+* **table:** update batch selection for table with limit ([a63698a](https://github.com/Synerise/synerise-design/commit/a63698adf24e59aa3b220f3840ecdc43d60d62a5))
+
+
+### Features
+
+* **button:** add ButtonToggle component ([1e86e54](https://github.com/Synerise/synerise-design/commit/1e86e54273e2204bcbbbbe302ff0c2e2a326e94f))
+* **card-tabs:** fix types for id and prefix ([c0efb33](https://github.com/Synerise/synerise-design/commit/c0efb3371f31919923f42d111ad946b346b6ad29))
+* **item-picker:** pass section data to onitemselect ([73f011b](https://github.com/Synerise/synerise-design/commit/73f011b9b3d9277b1d16199cca96a157e711a219))
+* **manageable-list:** add blank item type ([6214c04](https://github.com/Synerise/synerise-design/commit/6214c045afd0f963ebbbc1416e75f54cd8c692ff))
+* **toast:** toast component ([0cb20d0](https://github.com/Synerise/synerise-design/commit/0cb20d07b48d1c768a0ddf133b1970a4a13444ca))
+
+
+
+
+
 # [1.6.0](https://github.com/Synerise/synerise-design/compare/storybook7@1.5.0...storybook7@1.6.0) (2025-04-24)
 
 

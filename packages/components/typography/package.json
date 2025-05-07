@@ -1,6 +1,6 @@
 {
   "name": "@synerise/ds-typography",
-  "version": "1.0.6",
+  "version": "1.0.7",
   "description": "Typography UI Component for the Synerise Design System",
   "license": "ISC",
   "repository": "synerise/synerise-design",
@@ -34,7 +34,7 @@
   ],
   "types": "dist/index.d.ts",
   "dependencies": {
-    "@synerise/ds-tooltip": "^1.1.5",
+    "@synerise/ds-tooltip": "^1.1.6",
     "classnames": "2.3.2",
     "lodash": "^4.17.21"
   },

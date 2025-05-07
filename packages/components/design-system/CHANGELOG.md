@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.4.0](https://github.com/Synerise/synerise-design/compare/@synerise/design-system@1.3.3...@synerise/design-system@1.4.0) (2025-05-07)
+
+
+### Features
+
+* **toast:** toast component ([0cb20d0](https://github.com/Synerise/synerise-design/commit/0cb20d07b48d1c768a0ddf133b1970a4a13444ca))
+
+
+
+
+
 ## [1.3.3](https://github.com/Synerise/synerise-design/compare/@synerise/design-system@1.3.2...@synerise/design-system@1.3.3) (2025-04-25)
 
 **Note:** Version bump only for package @synerise/design-system

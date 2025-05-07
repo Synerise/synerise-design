@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.3.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-manageable-list@1.2.6...@synerise/ds-manageable-list@1.3.0) (2025-05-07)
+
+
+### Bug Fixes
+
+* **manageable-list:** alignment in content item large ([fd1537e](https://github.com/Synerise/synerise-design/commit/fd1537eea52b064afb79c36d14a53623aa911a38))
+
+
+### Features
+
+* **manageable-list:** add blank item type ([6214c04](https://github.com/Synerise/synerise-design/commit/6214c045afd0f963ebbbc1416e75f54cd8c692ff))
+
+
+
+
+
 ## [1.2.6](https://github.com/Synerise/synerise-design/compare/@synerise/ds-manageable-list@1.2.5...@synerise/ds-manageable-list@1.2.6) (2025-04-24)
 
 

@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.1.0](https://github.com/synerise/synerise-design/compare/@synerise/ds-utils@1.0.1...@synerise/ds-utils@1.1.0) (2025-05-07)
+
+
+### Bug Fixes
+
+* **item-picker:** focus in search on section change ([9b41649](https://github.com/synerise/synerise-design/commit/9b416499c0cb2fa78447eb5769ae9f9a0f35b6d4))
+* **table:** update batch selection for table with limit ([a63698a](https://github.com/synerise/synerise-design/commit/a63698adf24e59aa3b220f3840ecdc43d60d62a5))
+
+
+### Features
+
+* **toast:** toast component ([0cb20d0](https://github.com/synerise/synerise-design/commit/0cb20d07b48d1c768a0ddf133b1970a4a13444ca))
+
+
+
+
+
 ## [1.0.1](https://github.com/synerise/synerise-design/compare/@synerise/ds-utils@1.0.0...@synerise/ds-utils@1.0.1) (2025-03-18)
 
 **Note:** Version bump only for package @synerise/ds-utils

@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.3.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-date-range-picker@1.2.2...@synerise/ds-date-range-picker@1.3.0) (2025-05-07)
+
+
+### Bug Fixes
+
+* **date-range-picker:** change pointer-events for invisble area ([b126192](https://github.com/Synerise/synerise-design/commit/b126192f3c40e6decde030dfc07bc5793bc2d2ef))
+
+
+### Features
+
+* **button:** add ButtonToggle component ([1e86e54](https://github.com/Synerise/synerise-design/commit/1e86e54273e2204bcbbbbe302ff0c2e2a326e94f))
+
+
+
+
+
 ## [1.2.2](https://github.com/Synerise/synerise-design/compare/@synerise/ds-date-range-picker@1.2.1...@synerise/ds-date-range-picker@1.2.2) (2025-04-24)
 
 **Note:** Version bump only for package @synerise/ds-date-range-picker

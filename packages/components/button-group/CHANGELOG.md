@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.0.8](https://github.com/Synerise/synerise-design/compare/@synerise/ds-button-group@1.0.7...@synerise/ds-button-group@1.0.8) (2025-05-07)
+
+
+### Bug Fixes
+
+* **button-group:** update width handling for fullWidth prop ([04340d2](https://github.com/Synerise/synerise-design/commit/04340d2ddc8a59f3c9cba437006ae99f3927add7))
+
+
+
+
+
 ## [1.0.7](https://github.com/Synerise/synerise-design/compare/@synerise/ds-button-group@1.0.6...@synerise/ds-button-group@1.0.7) (2025-04-24)
 
 

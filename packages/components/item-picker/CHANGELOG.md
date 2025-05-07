@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.2.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-item-picker@1.1.2...@synerise/ds-item-picker@1.2.0) (2025-05-07)
+
+
+### Bug Fixes
+
+* **item-picker:** focus in search on section change ([9b41649](https://github.com/Synerise/synerise-design/commit/9b416499c0cb2fa78447eb5769ae9f9a0f35b6d4))
+
+
+### Features
+
+* **item-picker:** pass section data to onitemselect ([73f011b](https://github.com/Synerise/synerise-design/commit/73f011b9b3d9277b1d16199cca96a157e711a219))
+
+
+
+
+
 ## [1.1.2](https://github.com/Synerise/synerise-design/compare/@synerise/ds-item-picker@1.1.1...@synerise/ds-item-picker@1.1.2) (2025-04-25)
 
 **Note:** Version bump only for package @synerise/ds-item-picker

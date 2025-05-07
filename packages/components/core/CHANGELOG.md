@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.2.0](https://github.com/synerise/synerise-design/compare/@synerise/ds-core@1.1.0...@synerise/ds-core@1.2.0) (2025-05-07)
+
+
+### Features
+
+* **button:** add ButtonToggle component ([1e86e54](https://github.com/synerise/synerise-design/commit/1e86e54273e2204bcbbbbe302ff0c2e2a326e94f))
+* **toast:** toast component ([0cb20d0](https://github.com/synerise/synerise-design/commit/0cb20d07b48d1c768a0ddf133b1970a4a13444ca))
+
+
+
+
+
 # [1.1.0](https://github.com/synerise/synerise-design/compare/@synerise/ds-core@1.0.1...@synerise/ds-core@1.1.0) (2025-04-16)
 
 
