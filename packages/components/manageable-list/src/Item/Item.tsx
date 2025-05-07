@@ -4,6 +4,7 @@ import ContentItem from './ContentItem/ContentItem';
 import SimpleItem from './SimpleItem/SimpleItem';
 import FilterItem from './FilterItem/FilterItem';
 import { Props } from './Item.types';
+import BlankItem from './BlankItem/BlankItem';
 
 const Item = ({
   item,
@@ -26,6 +27,7 @@ const Item = ({
   isFirst,
   isLast,
   additionalActions,
+  renderItem,
 }: Props) => {
   switch (listType) {
     case ListType.CONTENT:
@@ -49,6 +51,19 @@ const Item = ({
           onMoveBottom={onMoveBottom}
           isFirst={Boolean(isFirst)}
           isLast={Boolean(isLast)}
+        />
+      );
+
+    case ListType.BLANK:
+      return (
+        <BlankItem
+          key={`item-${item.id}`}
+          item={item}
+          onDuplicate={onDuplicate}
+          onRemove={onRemove}
+          draggable={draggable}
+          texts={texts}
+          renderItem={renderItem}
         />
       );
     case ListType.FILTER:

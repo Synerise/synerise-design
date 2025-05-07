@@ -8,6 +8,7 @@ import AddItem from './AddItem/AddItem';
 import { ManageableListProps, ListType } from './ManageableList.types';
 import { ItemProps } from './Item/Item.types';
 import { useTexts } from './hooks/useTexts';
+import AddBlankItem from './AddBlankItem/AddBlankItem';
 
 const SORTABLE_CONFIG = {
   ghostClass: 'sortable-list-ghost-element',
@@ -50,6 +51,7 @@ const ManageableListComponent = <T extends object>({
   changeOrderByButtons = false,
   additionalActions,
   style,
+  renderItem = () => <></>,
   renderCustomToggleButton,
 }: ManageableListProps<T>) => {
   const [allItemsVisible, setAllItemsVisible] = useState(false);
@@ -146,6 +148,7 @@ const ManageableListComponent = <T extends object>({
           hideExpander={expanderDisabled}
           expanded={allExpandedIds && allExpandedIds.includes(item.id)}
           additionalActions={additionalActions}
+          renderItem={renderItem}
         />
       );
     },
@@ -169,6 +172,7 @@ const ManageableListComponent = <T extends object>({
       expanderDisabled,
       allExpandedIds,
       additionalActions,
+      renderItem,
     ]
   );
 
@@ -213,6 +217,9 @@ const ManageableListComponent = <T extends object>({
       {toggleMoreItemsButton}
       {(type === ListType.CONTENT || type === ListType.CONTENT_LARGE) && Boolean(onItemAdd) && (
         <AddItem addItemLabel={allTexts.addItemLabel} onItemAdd={createItem} disabled={addButtonDisabled} />
+      )}
+      {type === ListType.BLANK && Boolean(onItemAdd) && (
+        <AddBlankItem addItemLabel={allTexts.addItemLabel} onItemAdd={createItem} disabled={addButtonDisabled} />
       )}
     </S.ManageableListContainer>
   );

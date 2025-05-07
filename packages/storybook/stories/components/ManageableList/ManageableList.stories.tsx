@@ -22,6 +22,8 @@ import {
   fixedWrapper300,
 } from '../../utils';
 import {
+  BlankItemType,
+  BLANK_DATA,
   ContentItemType,
   CONTENT_ITEMS,
   CONTENT_ITEMS_AUTOMATION,
@@ -31,6 +33,7 @@ import {
   FILTER_ITEMS,
   ITEMS,
   ItemType,
+  renderBlankItem,
   TEXTS,
 } from './ManageableList.data';
 
@@ -165,6 +168,16 @@ export const ContentItemsLargeDraggable: StoryObj<ManageableListProps<ContentIte
   args: {
     items: CONTENT_ITEMS_LARGE,
     type: 'content-large',
+    onChangeOrder: fn(),
+  },
+};
+
+export const Blank: StoryObj<ManageableListProps<BlankItemType>> = {
+  decorators: [fixedWrapper800, greyBackgroundDecorator],
+  args: {
+    items: BLANK_DATA,
+    renderItem: renderBlankItem,
+    type: 'blank',
     onChangeOrder: fn(),
   },
 };

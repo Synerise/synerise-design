@@ -132,6 +132,10 @@ export type ContentItemType = {
   additionalSuffix?: ReactNode;
   headerSuffix?: ReactNode;
 };
+export type BlankItemType = {
+  id: string;
+  name: string;
+};
 export const CONTENT_ITEMS: ContentItemType[] = [
   {
     ...BASE_ITEM('With label'),
@@ -361,6 +365,14 @@ export const CONTENT_ITEMS_LARGE: ContentItemType[] = [
     ),
   },
 ];
+
+export const BLANK_DATA = [{ name: 'test', id: '1' }, { name: 'test 2', id: '2' }]
+export const renderBlankItem = (item: typeof BLANK_DATA[number]) => {
+  return <div style={{ display: 'flex', gap: '10px' }}>
+    <div style={{ flex: '1 1 50%' }}><Input resetMargin value={item.name} /></div>
+    <div style={{ flex: '1 1 50%' }}><Input resetMargin /></div>
+  </div>
+}
 
 export type FilterItemType = {
   id: string;
