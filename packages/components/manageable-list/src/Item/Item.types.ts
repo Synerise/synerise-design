@@ -5,6 +5,7 @@ export type Props = {
   item: ItemProps;
   isFirst?: boolean;
   isLast?: boolean;
+  renderItem: (item: ItemProps) => ReactNode;
   onMoveTop?: (item: ItemProps) => void;
   onMoveBottom?: (item: ItemProps) => void;
   onRemove?: (removeParams: { id: ReactText }) => void;

@@ -10,6 +10,7 @@ export enum ExpansionBehaviour {
 
 export enum ListType {
   DEFAULT = 'default',
+  BLANK = 'blank',
   CONTENT = 'content',
   CONTENT_LARGE = 'content-large',
   FILTER = 'filter',
@@ -55,6 +56,7 @@ export type ManageableListProps<T extends object> = {
     limit: number;
     allItemsVisible: boolean;
   }) => ReactNode;
+  renderItem?: (item: ItemProps) => ReactNode;
 } & ExactlyOne<
   {
     /**
