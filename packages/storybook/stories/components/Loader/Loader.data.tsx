@@ -23,14 +23,14 @@ export const Counter = ({ delay = 100 }) => {
   useInterval(() => {
     setCount((currentCount) => {
       const maxCount = 100
-      if(currentCount === maxCount) { return 0 }
+      if (currentCount === maxCount) { return 0 }
       return currentCount + 1
     })
   }, delay);
 
-  return <span>{count}%</span>;
+  return <span className='chromatic-ignore'>{count}%</span>;
 };
 
 export const formatter = () => {
-  return <Counter/>
+  return <Counter />
 }

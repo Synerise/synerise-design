@@ -3,7 +3,7 @@ import React from 'react';
 import type { StoryObj, Meta } from '@storybook/react';
 
 import Loader from '@synerise/ds-loader';
-import { fontSizes, iconSizes, COLOR_OPTIONS, Counter, formatter } from './Loader.data';
+import { fontSizes, iconSizes, COLOR_OPTIONS, formatter } from './Loader.data';
 
 import {
   centeredPaddedWrapper,
@@ -11,8 +11,6 @@ import {
   REACT_NODE_AS_STRING,
   controlFromOptionsArray,
 } from '../../utils';
-
-
 
 
 export default {
@@ -32,15 +30,13 @@ export default {
       ...controlFromOptionsArray('select', Object.keys(fontSizes)),
       mapping: fontSizes
     },
-    labelPosition: {...controlFromOptionsArray('select', ['right','bottom'])
+    labelPosition: {
+      ...controlFromOptionsArray('select', ['right', 'bottom'])
     },
-    mode: 'absolute',
     color: COLOR_OPTIONS,
     percentFormatter: {
       control: false
     }
-
-
   },
 } as Meta<typeof Loader>;
 
@@ -66,7 +62,7 @@ export const LoaderWithPercentFormatter: Story = {
 
 export const LoaderWithHeaderAndDescription: Story = {
   args: {
-    text: 'You will be redirected to Synerise' ,
+    text: 'You will be redirected to Synerise',
     label: 'Please wait a second to proceed.',
     size: 'L',
     fontSize: 'small',

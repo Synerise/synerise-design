@@ -1,4 +1,4 @@
-import React, { ReactText } from 'react';
+import React from 'react';
 import { v4 as uuid } from 'uuid';
 import { action } from '@storybook/addon-actions';
 import { faker } from '@faker-js/faker';
@@ -89,10 +89,61 @@ const infocardGenerator = (item: ItemType) => {
   const props = getInformationCardProps(item);
   return () => <InformationCard {...props} />;
 };
-export const FLAT_DATA_SOURCE: ItemType[] = [...new Array(500)].map((i, k) => ({
-  text: `Item ${k + 1} ${faker.person.fullName()}`,
+const STATIC_ITEMS = [
+  {
+    "text": "Item 1 Russell Windler DDS",
+    prefixel: <Icon component={<UserM />} />,
+  },
+  {
+    "text": "Item 2 Michael Leannon",
+    prefixel: <Icon component={<UserM />} />,
+  },
+  {
+    "text": "Item 3 Bert McClure",
+    prefixel: <Icon component={<UserM />} />,
+  },
+  {
+    "text": "Item 4 Benny Roberts",
+    prefixel: <Icon component={<UserM />} />,
+  },
+  {
+    "text": "Item 5 Dr. Lucas Gutkowski DVM",
+    prefixel: <Icon component={<UserM />} />,
+  },
+  {
+    "text": "Item 6 Casey Hammes",
+    prefixel: <Icon component={<UserM />} />,
+  },
+  {
+    "text": "Item 7 Alexander Spencer",
+    prefixel: <Icon component={<UserM />} />,
+  },
+  {
+    "text": "Item 8 Kristopher Cormier",
+    prefixel: <Icon component={<UserM />} />,
+  },
+  {
+    "text": "Item 9 Lance Walker",
+    prefixel: <Icon component={<UserM />} />,
+  },
+  {
+    "text": "Item 10 Lorraine Cole",
+    prefixel: <Icon component={<UserM />} />,
+  },
+  {
+    "text": "Item 11 Maxine Weissnat",
+    prefixel: <Icon component={<UserM />} />,
+  },
+  {
+    "text": "Item 12 Dallas Goyette",
+    prefixel: <Icon component={<UserM />} />,
+  }
+]
+
+export const FLAT_DATA_SOURCE: ItemType[] = STATIC_ITEMS.concat([...new Array(500)].map((i, k) => ({
+  text: `Item ${k + 1 + STATIC_ITEMS.length} ${faker.person.fullName()}`,
   prefixel: <Icon component={<UserM />} />,
-}));
+})));
 
 const segmentationItem = (index: number): SegmentationType => {
   const itemData = {
@@ -159,7 +210,7 @@ const FUNNELS = Array.from({ length: 300 }).map((_val, index) => funnelItem(inde
 export const ITEMS_IN_SECTIONS: ItemType[] = [...SEGMENTATIONS.slice(0, 13), ...FUNNELS.slice(0, 22)];
 export const ITEMS_IN_SECTIONS_NESTED: ItemType[] = [...SEGMENTATIONS.slice(0, 12), ...FUNNELS.slice(0, 22), ...ATTRIBUTES_CONFIGURABLE.slice(0, 32), ...ATTRIBUTES_READY_TO_USE.slice(0, 28)];
 export const ITEMS_IN_SECTIONS_SHORT: ItemType[] = [...SEGMENTATIONS.slice(5, 8), ...FUNNELS.slice(2, 6)];
-export const RECENT: ItemType[] = [SEGMENTATIONS[4], SEGMENTATIONS[1], FUNNELS[3], FUNNELS[6], SEGMENTATIONS[11]];
+export const RECENT: ItemType[] = [SEGMENTATIONS[4], FUNNELS[6], SEGMENTATIONS[11]];
 
 export const ACTIONS: ActionType[] = [
   {
@@ -183,7 +234,7 @@ const loadItems = (props: {
   page: number;
   limit: number;
   searchQuery?: string;
-  sectionId?: ReactText;
+  sectionId?: string | number;
 }): Promise<{ items: ItemType[]; total: number }> => {
   const { page, limit, sectionId, searchQuery } = props;
 
@@ -218,7 +269,7 @@ const loadItemsWithError = (props: {
   page: number;
   limit: number;
   searchQuery?: string;
-  sectionId?: ReactText;
+  sectionId?: string | number;
 }): Promise<{ items: ItemType[]; total: number }> => {
   const { page, limit, sectionId, searchQuery } = props;
   let source = FLAT_DATA_SOURCE;

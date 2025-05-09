@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { faker } from '@faker-js/faker';
 
 const randomRangeInt = (min: number, max: number) => Math.round(Math.random() * (max - min) + min);
