@@ -44,9 +44,12 @@ export type BaseItemType = InheritedFromListItem & {
   informationCardProps?: InformationCardProps;
 };
 
+export type ItemLoaderMeta = Record<string, unknown> | undefined;
+
 export type ItemLoaderResponse<ItemType extends BaseItemType> = {
   items: ItemType[];
   total: number;
+  meta?: ItemLoaderMeta;
 };
 
 export type LoaderProps = {
@@ -54,6 +57,7 @@ export type LoaderProps = {
   page: number;
   limit: number;
   searchQuery?: string;
+  meta?: ItemLoaderMeta;
 };
 
 export type ItemLoaderConfig<ItemType extends BaseItemType> = {
