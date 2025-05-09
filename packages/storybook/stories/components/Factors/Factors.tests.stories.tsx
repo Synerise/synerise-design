@@ -137,10 +137,13 @@ export const DateRangePickerOpen: StoryObj<FactorsProps> = {
     ...SwitchFactorType.args,
     selectedFactorType: 'dateRange',
   },
+  parameters: {
+    date: new Date("March 10, 2021 10:00:00"),
+    layout: 'centered',
+  },
   play: async ({ canvasElement }) => {
-  const canvas = within(canvasElement.parentElement!);
+    const canvas = within(canvasElement.parentElement!);
     await userEvent.click(await canvas.findByText('Start date'));
     await waitFor(() => expect(canvas.getByRole('tooltip')).toBeInTheDocument());
-    // await sleep(1000);
   },
 };

@@ -85,7 +85,8 @@ export const ActionsInFolder: StoryObj<StoryPropsOverlay> = {
 export const SearchResultsMultipleSections: StoryObj<StoryPropsOverlay> = {
     ...Sections,
     parameters: {
-        testGoal: 'snapshot search results in sections'
+        testGoal: 'snapshot search results in sections',
+        expectedResults: 8
     },
     play: playSearchResultsMultipleSections
 };
@@ -117,7 +118,8 @@ export const SelectedSectionSearchResults: StoryObj<StoryPropsOverlay> = {
 export const SearchResultsFolders: StoryObj<StoryPropsOverlay> = {
     ...SectionsAndFolders,
     parameters: {
-        testGoal: 'snapshot search results in folders'
+        testGoal: 'snapshot search results in folders',
+        expectedResults: 8
     },
     play: SearchResultsMultipleSections.play
 };

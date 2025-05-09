@@ -47,7 +47,7 @@ export const BothSidebars: Story = {
     return (
       <Page appMenu={<LayoutAppMenu />} navBar={<LayoutNavbar />}>
         <Layout
-          header={<PageHeader title={'Page name'} onGoBack={() => {}} />}
+          header={<PageHeader title={'Page name'} onGoBack={() => { }} />}
           left={{
             content: <S.Placeholder></S.Placeholder>,
             opened: leftOpened,
@@ -66,6 +66,7 @@ export const BothSidebars: Story = {
                 <Table
                   title="Table with sorting"
                   dataSource={fakeData}
+                  className='chromatic-ignore'
                   columns={[
                     {
                       key: 'name',
@@ -205,7 +206,7 @@ export const FullWidthWithCard: Story = {
   render: args => {
     return (
       <Page appMenu={<LayoutAppMenu />} navBar={<LayoutNavbar />}>
-        <Layout header={<PageHeader title={'Page name'} onGoBack={() => {}} />} {...args}>
+        <Layout header={<PageHeader title={'Page name'} onGoBack={() => { }} />} {...args}>
           <Grid>
             <Grid.Item xxl={24} xl={16} lg={12} md={8} sm={8} xs={4}>
               <Card>
@@ -229,7 +230,7 @@ export const WithGrid: Story = {
   render: args => {
     return (
       <Page appMenu={<LayoutAppMenu />} navBar={<LayoutNavbar />}>
-        <Layout header={<PageHeader title={'Page name'} onGoBack={() => {}} />} {...args}>
+        <Layout header={<PageHeader title={'Page name'} onGoBack={() => { }} />} {...args}>
           <Grid>
             <Grid.Item xxl={6} xl={4} lg={3} md={4} sm={4} xs={2}>
               <Card>
@@ -296,7 +297,7 @@ export const LeftSidebar: Story = {
     return (
       <Page appMenu={<LayoutAppMenu />} navBar={<LayoutNavbar />}>
         <Layout
-          header={<PageHeader title={'Page name'} onGoBack={() => {}} />}
+          header={<PageHeader title={'Page name'} onGoBack={() => { }} />}
           left={{
             content: <S.Placeholder></S.Placeholder>,
             opened: leftOpened,
@@ -323,7 +324,7 @@ export const RightSidebar: Story = {
     return (
       <Page appMenu={<LayoutAppMenu />} navBar={<LayoutNavbar />}>
         <Layout
-          header={<PageHeader title={'Page name'} onGoBack={() => {}} />}
+          header={<PageHeader title={'Page name'} onGoBack={() => { }} />}
           right={{
             content: <S.Placeholder></S.Placeholder>,
             opened: rightOpened,
@@ -347,7 +348,7 @@ export const WithoutMenuAndNavigation: Story = {
   render: args => {
     return (
       <Page>
-        <Layout header={<PageHeader title={'Page name'} onClose={() => {}} />} {...args}>
+        <Layout header={<PageHeader title={'Page name'} onClose={() => { }} />} {...args}>
           <Grid>
             <Grid.Item xxl={24} xl={16} lg={12} md={8} sm={8} xs={4}>
               test
@@ -382,7 +383,7 @@ export const WithContentWrapper: Story = {
           header={
             <PageHeader
               title={'Page name'}
-              onGoBack={() => {}}
+              onGoBack={() => { }}
               tabs={<Tabs tabs={tabs} activeTab={1} handleTabClick={console.log} />}
             />
           }
@@ -411,7 +412,7 @@ const FullWidth: Story = {
   render: args => {
     return (
       <Page appMenu={<LayoutAppMenu />} navBar={<LayoutNavbar />}>
-        <Layout header={<PageHeader title={'Page name'} onGoBack={() => {}} />} {...args}>
+        <Layout header={<PageHeader title={'Page name'} onGoBack={() => { }} />} {...args}>
           <Grid>
             <Grid.Item xxl={24} xl={16} lg={12} md={8} sm={8} xs={4}>
               <Card>

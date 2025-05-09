@@ -1,6 +1,7 @@
 import React, { Key, useEffect, useMemo, useRef, useState } from 'react';
 import { FixedSizeList } from 'react-window';
 import { Meta, StoryObj } from '@storybook/react';
+import isChromatic from "chromatic/isChromatic";
 import { fn } from '@storybook/test';
 import { action } from '@storybook/addon-actions';
 
@@ -15,7 +16,7 @@ import { useInfiniteScroll } from './useInfiniteScroll';
 import { fixedWrapper1000 } from '../../../utils';
 
 type RowType = typeof DATA_SOURCE[number];
-type VirtualTableType = VirtualTableProps<RowType> & {randomiseSelectionColumn?: boolean};
+type VirtualTableType = VirtualTableProps<RowType> & { randomiseSelectionColumn?: boolean };
 type Story = StoryObj<VirtualTableType>;
 
 const randomStatus = _record => ({ disabled: _record.disabled, unavailable: _record.unavailable });
@@ -295,12 +296,12 @@ export const WithInfiniteScroll: StoryObj<VirtualTableProps<InfiniteScrollRowTyp
               fakeFetchNextPageData();
             },
             onScrollTopReach: () => {
-              if (prevPage.hasMore) {
+              if (prevPage.hasMore && !isChromatic()) {
                 fakeFetchPrevPageData();
               }
             },
             onScrollEndReach: () => {
-              if (nextPage.hasMore) {
+              if (nextPage.hasMore && !isChromatic()) {
                 fakeFetchNextPageData();
               }
             },

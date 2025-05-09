@@ -102,7 +102,7 @@ export const playSearchResultsMultipleSections = async ({ canvasElement, step, c
   await waitFor(() => expect(canvas.getByText('Recent')).toBeInTheDocument());
   fireEvent.focus(canvas.getByPlaceholderText('Search'));
   await userEvent.type(canvas.getByPlaceholderText('Search'), '12', { delay: 100 });
-  await waitFor(() => expect(canvas.getAllByText('Show more')[0]).toBeInTheDocument());
+  await waitFor(() => expect(canvas.getAllByTestId('ds-list-item-highlight').length).toBe(context.parameters.expectedResults))
 };
 
 export const playSelectedSection = async ({ canvasElement, step, context }) => {
