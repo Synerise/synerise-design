@@ -139,7 +139,7 @@ export const ItemPickerList = <ItemType extends BaseItemType, SectionType extend
     (index: number) => {
       const item = mergedItemsList && mergedItemsList[index];
       if (isTitle(item)) return ITEM_SIZE.title;
-      return ITEM_SIZE[itemSizes.DEFAULT];
+      return ITEM_SIZE[item.size || itemSizes.DEFAULT];
     },
     [mergedItemsList]
   );

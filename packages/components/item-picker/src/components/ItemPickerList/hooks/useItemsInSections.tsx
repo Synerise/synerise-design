@@ -7,6 +7,7 @@ import type {
   BaseItemType,
   BaseSectionType,
   BaseSectionTypeWithFolders,
+  ItemLoaderMeta,
 } from '../../ItemPickerNew/ItemPickerNew.types';
 import {
   FIRST_PAGE,
@@ -76,6 +77,7 @@ export const useItemsInSections = <ItemType extends BaseItemType, SectionType ex
   });
 
   const loadedPage = useRef(FIRST_PAGE);
+  const metaRef = useRef<Record<string, ItemLoaderMeta>>({});
   const sectionTotals = useRef<Record<string, number>>({});
   const isFixedItemsList = isItems(items) || isItemsConfig(items);
   const [contentHeight, setContentHeight] = useState<number | undefined>();
@@ -269,15 +271,18 @@ export const useItemsInSections = <ItemType extends BaseItemType, SectionType ex
     setIsLoadingError(false);
 
     if (listRenderingMode === RENDER_MODES.LIST_ITEMS) {
+      const sectionId = currentSection?.id || 'DEFAULT';
       try {
-        const { items: fetchedItems } = await items.loadItems({
+        const { items: fetchedItems, meta } = await items.loadItems({
           page: FIRST_PAGE,
           searchQuery,
-          sectionId: currentSection?.id,
+          sectionId,
           limit: items.limitPerPage || ITEMS_PER_PAGE,
+          meta: undefined,
         });
         setIsLoading(false);
         loadedPage.current = FIRST_PAGE;
+        metaRef.current[sectionId] = meta;
         setIsInitialDataLoaded(true);
         setCurrentItems(fetchedItems);
       } catch (e) {
@@ -300,8 +305,10 @@ export const useItemsInSections = <ItemType extends BaseItemType, SectionType ex
                 searchQuery,
                 limit: (items.limitPerSection || ITEMS_PER_SECTION) + 1,
                 sectionId: folder.id,
+                meta: undefined,
               })
-              .then(({ items: sectionItems, total }) => {
+              .then(({ items: sectionItems, total, meta }) => {
+                metaRef.current[folder.id] = meta;
                 sectionTotals.current[folder.id] = total;
                 fetchedItems = [...fetchedItems, ...sectionItems];
               });
@@ -353,6 +360,7 @@ export const useItemsInSections = <ItemType extends BaseItemType, SectionType ex
 
   useEffect(() => {
     loadedPage.current = FIRST_PAGE;
+    metaRef.current = {};
     setIsLoadedAll(false);
     setIsLoadingMore(false);
     sectionTotals.current = {};
@@ -396,9 +404,11 @@ export const useItemsInSections = <ItemType extends BaseItemType, SectionType ex
           limit: items.limitPerPage || ITEMS_PER_PAGE,
           searchQuery,
           sectionId: currentSection?.id,
+          meta: metaRef.current[sectionId],
         })
-        .then(({ items: fetchedItems, total }) => {
+        .then(({ items: fetchedItems, total, meta }) => {
           sectionTotals.current[sectionId] = total;
+          metaRef.current[sectionId] = meta;
           setIsLoadingMore(false);
           setIsLoadingMoreError(false);
           if (sectionTotals.current[sectionId] <= (loadedPage.current + 2) * (items.limitPerPage || ITEMS_PER_PAGE)) {
