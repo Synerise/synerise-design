@@ -85,7 +85,7 @@ export const EditableList: React.FC<EditListProps> = ({
               />
             </S.InputWrapper>
           )}
-          {renderAdditionalColumn?.()}
+          {renderAdditionalColumn?.(params)}
           {(typeof renderActions === 'function' && renderActions?.(param, id, params, { onClickDelete })) ||
             (renderActions === true && (
               <S.CrudWrapper marginWithLabel={id === 0 ? leftColumnName : null}>
@@ -104,7 +104,7 @@ export const EditableList: React.FC<EditListProps> = ({
             undefined}
         </S.RowWrapper>
       ))}
-      {renderAddButton?.() ?? (
+      {renderAddButton?.(params) ?? (
         <S.ButtonWrapper>
           <S.AddButton
             onClick={addButtonConfig?.onClickAddRow || onSetParamsDefault}

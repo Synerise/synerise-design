@@ -1,4 +1,4 @@
-import React from 'react';
+import type { ReactNode } from 'react';
 import type { AutocompleteProps } from '@synerise/ds-autocomplete';
 import type { InputProps } from 'antd/lib/input';
 
@@ -9,27 +9,35 @@ type AddButtonConfigProps = {
   disableAddButton?: boolean;
   onClickAddRow?: () => void;
 };
+type DeleteHandler = (param?: EditableParam, index?: number, params?: EditableParam[]) => void;
 
 export type EditListProps = {
-  autocompleteOptions?: string | React.ReactNode;
-  leftColumnName?: string | React.ReactNode;
-  rightColumnName?: string | React.ReactNode;
+  autocompleteOptions?: ReactNode;
+  leftColumnName?: ReactNode;
+  rightColumnName?: ReactNode;
   value?: EditableParam[];
   onChange?: (params: EditableParam[]) => void;
   onSearch?: (query: string) => void;
-  onClickDelete?: (param?: EditableParam, index?: number, params?: EditableParam[]) => void;
+  onClickDelete?: DeleteHandler;
   addButtonConfig?: AddButtonConfigProps;
   validation?: {
-    validateLeftColumn?: (val: string) => string | React.ReactNode | null;
-    validateRightColumn?: (val: string) => string | React.ReactNode | null;
+    validateLeftColumn?: (val: string) => ReactNode;
+    validateRightColumn?: (val: string) => ReactNode;
   };
   renderAddButton?: (params?: EditableParam[]) => JSX.Element;
-  renderLeftColumn?: (param?: EditableParam, index?: number) => JSX.Element;
-  renderRightColumn?: (param?: EditableParam, index?: number, ref?: React.ClassAttributes<{}>['ref']) => JSX.Element;
-  renderAdditionalColumn?: (row?: EditableParam[]) => JSX.Element;
+  renderLeftColumn?: (param: EditableParam, index: number) => JSX.Element;
+  renderRightColumn?: (param: EditableParam, index: number) => JSX.Element;
+  renderAdditionalColumn?: (row: EditableParam[]) => JSX.Element;
   renderActions?:
     | boolean
-    | ((param?: EditableParam, idx?: number, params?: EditableParam[], actionsCallbacks?: object) => JSX.Element);
+    | ((
+        param: EditableParam,
+        idx: number,
+        params: EditableParam[],
+        actionsCallbacks: {
+          onClickDelete?: DeleteHandler;
+        }
+      ) => JSX.Element);
   firstInputProps?: AutocompleteProps;
   secondInputProps?: InputProps;
 };
