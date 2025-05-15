@@ -22,6 +22,7 @@ import OptionsDropdown from './Elements/OptionsDropdown/OptionsDropdown';
 import { filterOutNullishArrayItems, filterValueSuggestions, isOverflown, scrollWithHorizontalArrow } from './utils';
 import Values from './Elements/Values/Values';
 import NavigationHint from './Elements/NavigationHint/NavigationHint';
+import { useTranslations } from './hooks/useTranslations';
 
 const DROPDOWN_PADDING = 2 * 8;
 const COLLECTOR_CLASSNAME = 'ds-collector';
@@ -46,7 +47,7 @@ const Collector = ({
   errorText,
   disabled,
   fixedHeight,
-  texts,
+  texts: defaultTexts,
   lookupConfig,
   onItemAdd,
   onItemDeselect,
@@ -65,6 +66,7 @@ const Collector = ({
   hideDropdownOnClickOutside = true,
   valuesSeparator = DEFAULT_VALUES_SEPARATOR,
 }: CollectorProps) => {
+  const texts = useTranslations(defaultTexts);
   const inputRef = useRef<HTMLInputElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
   const mainContentRef = useRef<HTMLDivElement>(null);

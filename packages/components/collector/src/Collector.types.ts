@@ -1,4 +1,4 @@
-import React from 'react';
+import type { ReactNode } from 'react';
 
 import { ButtonProps } from '@synerise/ds-button';
 import { ScrollbarAdditionalProps } from '@synerise/ds-scrollbar';
@@ -9,22 +9,22 @@ export type CollectorProps = {
   allowMultipleValues?: boolean;
   cancelButtonProps?: Partial<ButtonProps>;
   className?: string;
-  description?: React.ReactNode | string;
+  description?: ReactNode;
   disabled?: boolean;
   disableSearch?: boolean;
   disableButtonPanel?: boolean;
-  dropdownContent?: React.ReactNode;
+  dropdownContent?: ReactNode;
   error?: boolean;
-  errorText?: React.ReactNode | string;
+  errorText?: ReactNode;
   fixedHeight?: boolean;
   keepSearchQueryOnSelect?: boolean;
-  label?: React.ReactNode | string;
+  label?: ReactNode;
   lookupConfig?: LookupConfig;
   onSearchValueChange?: (value: string) => void;
   onConfirm?: (values: CollectorValue[]) => void;
   onCancel?: () => void;
   onItemDeselect?: (item: CollectorValue) => void;
-  onItemAdd?: (itemName: React.ReactText) => CollectorValue;
+  onItemAdd?: (itemName: string | number) => CollectorValue;
   onItemSelect: (item: CollectorValue) => void;
   onMultipleItemsSelect?: (items: CollectorValue[]) => void;
   renderItem?: (value: CollectorValue) => JSX.Element;
@@ -32,23 +32,23 @@ export type CollectorProps = {
   searchValue?: string;
   selected: CollectorValue[];
   suggestions: CollectorValue[];
-  texts: CollectorTexts;
+  texts?: Partial<CollectorTexts>;
   dropdownItemHeight?: 'large';
   enableCustomFilteringSuggestions?: boolean;
   scrollbarProps?: ScrollbarAdditionalProps;
   allowPaste?: boolean;
   showCount?: boolean;
   valuesSeparator?: CollectorValuesSeparator;
-  listHeader?: React.ReactNode;
+  listHeader?: ReactNode;
   hideDropdownOnClickOutside?: boolean;
 };
 export type CollectorValuesSeparator = ';' | ',' | '|';
 export type CollectorTexts = {
-  add: string | React.ReactNode;
-  cancel: string | React.ReactNode;
+  add: ReactNode;
+  cancel: ReactNode;
   placeholder: string;
-  toNavigate: string | React.ReactNode;
-  toSelect: string | React.ReactNode;
+  toNavigate: ReactNode;
+  toSelect: ReactNode;
 };
 
 export type LookupConfig = {

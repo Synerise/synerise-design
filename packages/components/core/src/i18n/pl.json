@@ -12,7 +12,6 @@
       "RECENT": "Ostatnie",
       "ALL": "Wszystkie"
     },
-    
     "MANAGABLE-LIST": {
       "LESS": "mniej",
       "MORE": "więcej",
@@ -137,6 +136,13 @@
       "CLEAR": "Usuń",
       "SEARCH": "Szukaj",
       "NO-RESULTS": "Brak wyników"
+    },
+    "COLLECTOR": {
+      "ADD": "Dodaj",
+      "CANCEL": "Anuluj",
+      "PLACEHOLDER": "Wpisz wartość",
+      "TO-NAVIGATE": "nawiguj",
+      "TO-SELECT": "wybierz"
     },
     "COLUMN-MANAGER": {
       "GROUP_TITLE": "Ustawienia dla grupowania wyników w tabeli",
