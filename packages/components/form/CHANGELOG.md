@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.0.8](https://github.com/Synerise/synerise-design/compare/@synerise/ds-form@1.0.7...@synerise/ds-form@1.0.8) (2025-05-15)
+
+
+### Bug Fixes
+
+* **form:** editable-list render prop argument types ([772f9ed](https://github.com/Synerise/synerise-design/commit/772f9ed72b625584a5f577801fb13c8d80c53f99))
+
+
+
+
+
 ## [1.0.7](https://github.com/Synerise/synerise-design/compare/@synerise/ds-form@1.0.6...@synerise/ds-form@1.0.7) (2025-05-07)
 
 **Note:** Version bump only for package @synerise/ds-form

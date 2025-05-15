@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.3.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-item-picker@1.2.0...@synerise/ds-item-picker@1.3.0) (2025-05-15)
+
+
+### Features
+
+* **item-picker:** handle meta object in loadIteems ([808e0f0](https://github.com/Synerise/synerise-design/commit/808e0f0c9138e4e6f89dc1c8767b265239feedf7))
+
+
+
+
+
 # [1.2.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-item-picker@1.1.2...@synerise/ds-item-picker@1.2.0) (2025-05-07)
 
 
