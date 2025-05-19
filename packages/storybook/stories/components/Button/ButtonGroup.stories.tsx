@@ -3,8 +3,7 @@ import React, { useState } from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
 
 import Button from '@synerise/ds-button';
-import ButtonGroup from '@synerise/ds-button-group';
-import ButtonDivider from '@synerise/ds-button-group/dist/ButtonDivider/ButtonDivider';
+import ButtonGroup, { ButtonDivider } from '@synerise/ds-button-group';
 import Icon, { AngleDownS, DragHandleM } from '@synerise/ds-icon';
 import { Simple, IconSolo, IconLeft } from './Button.stories';
 import { fixedWrapper588, BOOLEAN_CONTROL, CLASSNAME_ARG_CONTROL, STRING_CONTROL, STYLE_ARG_CONTROL, PREFIXCLS_ARG_CONTROL, controlFromOptionsArray } from '../../utils';
@@ -42,6 +41,24 @@ export const SplitButton: StoryObj<typeof ButtonGroup> = {
     <ButtonGroup {...args}>
       <Button {...Simple.args} />
       <Button {...IconSolo.args} />
+    </ButtonGroup>
+  ),
+  args: {
+    splitMode: true,
+    title: '',
+    description: '',
+    fullWidth: false,
+    buttonsPosition: 'center',
+    disabled: false,
+    error: false
+  },
+}
+
+export const DisabledButtonsWithTooltip: StoryObj<typeof ButtonGroup> = {
+  render: (args) => (
+    <ButtonGroup {...args}>
+      <Button {...Simple.args} disabled tooltipProps={{ title: 'Tooltip 1 title' }} />
+      <Button {...IconSolo.args} disabled tooltipProps={{ title: 'Tooltip 2 title' }} />
     </ButtonGroup>
   ),
   args: {
@@ -131,7 +148,7 @@ export const ButtonsWithDivider: StoryObj<typeof ButtonGroup> = {
   render: (args) => {
     const [selectedKey, setSelectedKey] = useState('');
     return (
-      <ButtonGroup { ...args }>
+      <ButtonGroup {...args}>
         <Button
           {...Simple.args}
           type={selectedKey === '1' ? 'primary' : 'secondary'}
@@ -139,7 +156,7 @@ export const ButtonsWithDivider: StoryObj<typeof ButtonGroup> = {
         >
           Button
         </Button>
-        <ButtonDivider/>
+        <ButtonDivider />
         <Button
           {...Simple.args}
           type={selectedKey === '2' ? 'primary' : 'secondary'}
@@ -147,7 +164,7 @@ export const ButtonsWithDivider: StoryObj<typeof ButtonGroup> = {
         >
           Button
         </Button>
-        <ButtonDivider/>
+        <ButtonDivider />
         <Button
           {...Simple.args}
           type={selectedKey === '1' ? 'primary' : 'secondary'}
@@ -156,7 +173,8 @@ export const ButtonsWithDivider: StoryObj<typeof ButtonGroup> = {
           Button
         </Button>
       </ButtonGroup>
-    )},
+    )
+  },
   args: {
     size: 'small',
     fullWidth: false,
@@ -169,7 +187,7 @@ export const MoreButtonsWithDivider: StoryObj<typeof ButtonGroup> = {
   render: (args) => {
     const [selectedKey, setSelectedKey] = useState('');
     return (
-      <ButtonGroup { ...args }>
+      <ButtonGroup {...args}>
         <Button
           {...Simple.args}
           type={selectedKey === '1' ? 'primary' : 'secondary'}
@@ -177,7 +195,7 @@ export const MoreButtonsWithDivider: StoryObj<typeof ButtonGroup> = {
         >
           Button
         </Button>
-        <ButtonDivider/>
+        <ButtonDivider />
         <Button
           {...Simple.args}
           type={selectedKey === '2' ? 'primary' : 'secondary'}
@@ -195,7 +213,8 @@ export const MoreButtonsWithDivider: StoryObj<typeof ButtonGroup> = {
           Label
         </Button>
       </ButtonGroup>
-    )},
+    )
+  },
   args: {
     size: 'small',
     fullWidth: false,

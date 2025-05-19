@@ -1,11 +1,11 @@
 import React from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
 import Button from '@synerise/ds-button';
-import Tooltip from '@synerise/ds-tooltip';
 import type { ButtonProps } from '@synerise/ds-button';
-import { userEvent, within } from '@storybook/test';
+import { userEvent, expect, waitFor, within } from '@storybook/test';
 
 import { DisabledTooltip } from './Button.stories';
+import { DisabledButtonsWithTooltip } from './ButtonGroup.stories';
 
 const meta: Meta<ButtonProps> = {
   title: 'Components/Button/Tests',
@@ -21,13 +21,32 @@ const meta: Meta<ButtonProps> = {
 
 export default meta;
 
+const BUTTON_LABEL = 'BUTTON_LABEL';
 export const RendersDisabledTooltip: StoryObj<ButtonProps> = {
   ...DisabledTooltip,
+  args: {
+    ...DisabledTooltip.args,
+    children: BUTTON_LABEL
+  },
   parameters: {
     pseudo: { hover: true },
   },
   play: async ({ canvasElement }) => {
-    const canvas = within(canvasElement);
-    await userEvent.hover(canvas.getByTestId('button-disabled-wrapper'));
+    const canvas = within(canvasElement.parentElement!);
+    await userEvent.hover(canvas.getByText(BUTTON_LABEL));
+    await waitFor(() => expect(canvas.getByText('This element is disabled')).toBeVisible())
+  },
+};
+
+
+export const RendersDisabledTooltipInButtonGroup: StoryObj<ButtonProps> = {
+  ...DisabledButtonsWithTooltip,
+  parameters: {
+    pseudo: { hover: true },
+  },
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement.parentElement!);
+    await userEvent.hover(canvas.getByText('Label'));
+    await waitFor(() => expect(canvas.getByText('Tooltip 1 title')).toBeVisible())
   },
 };

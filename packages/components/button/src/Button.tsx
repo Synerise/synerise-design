@@ -4,9 +4,10 @@ import './style/index.less';
 
 import Icon, { SpinnerM } from '@synerise/ds-icon';
 import { TagShape } from '@synerise/ds-tag';
+import Tooltip from '@synerise/ds-tooltip';
 
 import * as S from './Button.styles';
-import { ButtonProps } from './Button.types';
+import { ButtonMode, ButtonProps } from './Button.types';
 
 const RIPPLE_ANIMATION_OFFSET = 50;
 
@@ -22,6 +23,7 @@ const Button = ({
   error,
   tagProps,
   children,
+  tooltipProps,
   ...antdProps
 }: ButtonProps) => {
   const rippleRef = useRef<HTMLSpanElement>(null);
@@ -62,6 +64,16 @@ const Button = ({
     return `ds-button ${modeStringifed} ${classNameStringifed} ${readOnlyStringifed}`;
   }, [mode, className, antdProps.readOnly]);
 
+  const buttonLabel = useMemo(() => {
+    const label = (
+      <S.ButtonLabel withTooltip={!!tooltipProps} data-testid="ds-button-label" className="ds-button-label">
+        {children}
+        {tagProps && mode !== ButtonMode.SINGLE_ICON && <S.Tag {...tagProps} shape={TagShape.MEDIUM_ROUND} asPill />}
+      </S.ButtonLabel>
+    );
+    return tooltipProps ? <Tooltip {...tooltipProps}>{label}</Tooltip> : label;
+  }, [children, tagProps, mode, tooltipProps]);
+
   return (
     <S.AntdButton
       justifyContent={justifyContent}
@@ -83,10 +95,7 @@ const Button = ({
       {...antdProps}
     >
       {!antdProps.readOnly && <S.RippleEffect ref={rippleRef} className={`btn-ripple ${rippleClassName}`} />}
-      <S.ButtonLabel data-testid="ds-button-label" className="ds-button-label">
-        {children}
-        {tagProps && mode !== 'single-icon' && <S.Tag {...tagProps} shape={TagShape.MEDIUM_ROUND} asPill />}
-      </S.ButtonLabel>
+      {buttonLabel}
       {loading && (
         <S.Spinner className="btn-spinner" data-testid="button-spinner">
           <Icon component={<SpinnerM />} />

@@ -3,6 +3,17 @@ import type { ButtonProps as AntdButtonProps } from 'antd/lib/button';
 import type { JustifyContentProperty } from 'csstype';
 import type { LiteralStringUnion } from '@synerise/ds-utils';
 import type { TagProps } from '@synerise/ds-tag';
+import type { TooltipProps } from '@synerise/ds-tooltip';
+
+export enum ButtonMode {
+  SINGLE_ICON = 'single-icon',
+  SPLIT = 'split',
+  TWO_ICONS = 'two-icons',
+  LABEL_ICON = 'label-icon',
+  ICON_LABEL = 'icon-label',
+}
+
+type ButtonModes = `${ButtonMode}`;
 
 export type ButtonType =
   | 'primary'
@@ -27,7 +38,7 @@ export type ButtonProps = Omit<AntdButtonProps, 'type' | 'ghost'> & {
    *
    * @default simple
    */
-  mode?: LiteralStringUnion<'single-icon' | 'split' | 'two-icons' | 'label-icon' | 'icon-label'>;
+  mode?: LiteralStringUnion<ButtonModes>;
   /**
    * Defines color of `custom-color` button.
    *
@@ -59,6 +70,7 @@ export type ButtonProps = Omit<AntdButtonProps, 'type' | 'ghost'> & {
   error?: boolean;
   readOnly?: boolean;
   tagProps?: TagProps;
+  tooltipProps?: TooltipProps;
 };
 
 // @deprecated - use ButtonProps instead

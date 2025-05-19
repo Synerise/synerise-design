@@ -36,6 +36,7 @@
   "dependencies": {
     "@synerise/ds-icon": "^1.4.2",
     "@synerise/ds-tag": "^1.1.6",
+    "@synerise/ds-tooltip": "^1.1.6",
     "@synerise/ds-utils": "^1.1.0",
     "classnames": "2.3.2",
     "csstype": "^2.6.9"
