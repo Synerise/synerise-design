@@ -27,7 +27,7 @@ export const EmojiPicker = ({ children, closeOnSelect = true, onSelect, texts, d
       placement="bottomRight"
       {...dropdownProps}
       overlay={
-        <S.Overlay ref={ref}>
+        <S.Overlay ref={ref} onClick={event => event.stopPropagation()}>
           <EmojiOverlay
             onSelect={val => {
               closeOnSelect && toggleOpen(false);

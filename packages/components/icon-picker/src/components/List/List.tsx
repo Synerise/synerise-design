@@ -24,7 +24,6 @@ const List = <Source extends SourceType>({
   const groupedData = useGroupItems(data, ITEMS_PER_ROW);
 
   const listRef = useRef<FixedSizeList>(null);
-  const scrollBarRef = useRef<HTMLDivElement>(null);
 
   const handleScroll = ({ currentTarget }: UIEvent) => {
     const { scrollTop } = currentTarget;
@@ -36,7 +35,7 @@ const List = <Source extends SourceType>({
   const itemData = createItemData(groupedData, ELEMENT_HEIGHT, onSelect, ITEMS_PER_ROW);
 
   return (
-    <Scrollbar ref={scrollBarRef} absolute data-testid="icon-list" maxHeight={330} onScroll={handleScroll}>
+    <Scrollbar absolute data-testid="icon-list" maxHeight={330} onScroll={handleScroll}>
       {!data.length ? (
         <S.OverlayWrapper>
           <S.NoResults>
