@@ -10,7 +10,7 @@ export type Props = ModalProps;
 export type ModalProps = {
   description?: string;
   headerActions?: ReactNode;
-  size?: 'small' | 'medium' | 'large' | 'extraLarge' | 'fullSize';
+  size?: 'small' | 'medium' | 'large' | 'extraLarge' | 'fullSize' | 'fullScreen';
   bodyBackground?: 'white' | 'grey';
   blank?: boolean;
   titleContainerStyle?: CSSProperties;

@@ -13,6 +13,7 @@ export const sizes = [
   'large',
   'extraLarge',
   'fullSize',
+  'fullScreen',
 ];
 
 export const color = [
@@ -43,7 +44,7 @@ export const headerWithPrefix = (text: string, prefix: ReactNode) => {
   );
 };
 
- export const footer = (settingButton: string, cancelText: string, applyButton: string) => {
+export const footer = (settingButton: string, cancelText: string, applyButton: string) => {
   const props = {
     okText: applyButton,
     cancelText: cancelText,
@@ -57,7 +58,7 @@ export const headerWithPrefix = (text: string, prefix: ReactNode) => {
   return <ModalFooter {...props} />;
 };
 
- export const headerWithTabs = (text: string) => {
+export const headerWithTabs = (text: string) => {
   return (
     <S.HeaderWrapper>
       {text}
