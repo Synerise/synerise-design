@@ -17,6 +17,7 @@ export const useEmojiTranslations = (texts?: Partial<EmojiPickerTexts>): EmojiPi
       symbols: <FormattedMessage id="DS.ICON-PICKER.SMILEYS" defaultMessage="Symbols" />,
       flags: <FormattedMessage id="DS.ICON-PICKER.SMILEYS" defaultMessage="Flags" />,
       placeholder: formatMessage({ id: 'DS.ICON-PICKER.PLACEHOLDER', defaultMessage: 'Search' }),
+      empty: <FormattedMessage id="DS.ICON-PICKER.NO-MATCHES" defaultMessage="No emojis found" />,
       ...(texts || {}),
     }),
     [texts, formatMessage]

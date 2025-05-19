@@ -1,16 +1,24 @@
-import React, { useMemo } from 'react';
-import Divider from '@synerise/ds-divider';
-import Scrollbar from '@synerise/ds-scrollbar';
+import React, { UIEvent, useMemo, useRef } from 'react';
+import type { FixedSizeList } from 'react-window';
 import { getEmojisByGroup } from 'unicode-emoji-utils';
-import type { Emoji } from 'unicode-emoji-utils';
+
+import EmptyState, { EmptyStatesSize } from '@synerise/ds-empty-states';
+import Scrollbar from '@synerise/ds-scrollbar';
+import { SearchNoResultsL } from '@synerise/ds-icon';
 
 import * as S from './EmojiList.styles';
-import { EmojiCategory, EmojiListProps } from './EmojiList.types';
+import type { EmojiCategory, RowItemProps, EmojiListProps } from './EmojiList.types';
+
 import { useEmojiTranslations } from '../hooks/useEmojiTranslations';
+import { useMultipleItemsPerRow } from '../hooks/useMultipleItemsPerRow';
+
+import { ITEMS_PER_ROW, ITEM_SIZE } from '../EmojiPicker.const';
+import { createItemData } from './EmojiList.utils';
+import { EmojiListItem } from './EmojiListItem';
 
 export const EmojiList = ({ texts: customTexts, onSelect, searchQuery }: EmojiListProps) => {
   const texts = useEmojiTranslations(customTexts);
-
+  const listRef = useRef<FixedSizeList>(null);
   const grouped = useMemo(() => getEmojisByGroup('group'), []);
 
   const filteredList = useMemo(() => {
@@ -29,24 +37,33 @@ export const EmojiList = ({ texts: customTexts, onSelect, searchQuery }: EmojiLi
     return items;
   }, [searchQuery, grouped, texts]);
 
-  const handleClick = (emoji: Emoji) => {
-    // eslint-disable-next-line no-unused-expressions
-    onSelect?.(emoji);
+  const virtualListData = useMultipleItemsPerRow(filteredList, ITEMS_PER_ROW);
+  const itemData = createItemData(virtualListData, ITEM_SIZE, onSelect, ITEMS_PER_ROW);
+
+  const handleScroll = ({ currentTarget }: UIEvent) => {
+    const { scrollTop } = currentTarget;
+    if (listRef.current) {
+      listRef.current.scrollTo(scrollTop);
+    }
   };
-  return (
-    <Scrollbar maxHeight={330}>
-      {filteredList.map(({ title, emojis }, index) => (
-        <>
-          <Divider labelBelow={title} hiddenLine={index === 0} />
-          <S.EmojiCategoryWrapper>
-            {emojis.map(emoji => (
-              <S.EmojiItem key={emoji.emoji} data-testid="ds-emoji-item" onClick={() => handleClick(emoji)}>
-                {emoji.emoji}
-              </S.EmojiItem>
-            ))}
-          </S.EmojiCategoryWrapper>
-        </>
-      ))}
+
+  return filteredList.length ? (
+    <Scrollbar maxHeight={330} onScroll={handleScroll}>
+      <S.VirtualList
+        listHeight={330}
+        ref={listRef}
+        height={330}
+        itemCount={virtualListData.length}
+        itemData={itemData}
+        itemSize={ITEM_SIZE}
+        width="100%"
+      >
+        {props => <EmojiListItem {...(props as RowItemProps)} />}
+      </S.VirtualList>
     </Scrollbar>
+  ) : (
+    <S.EmptyList>
+      <EmptyState customIcon={<SearchNoResultsL />} size={EmptyStatesSize.SMALL} text={texts.empty} />
+    </S.EmptyList>
   );
 };

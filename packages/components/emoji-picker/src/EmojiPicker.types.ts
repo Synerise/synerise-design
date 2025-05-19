@@ -1,10 +1,11 @@
-import type { ReactElement } from 'react';
+import type { ReactElement, ReactNode } from 'react';
 import type { DropdownProps } from '@synerise/ds-dropdown';
 import type { Emoji } from 'unicode-emoji-utils';
 import type { EmojiListTexts } from './EmojiList/EmojiList.types';
 
 export type EmojiPickerTexts = EmojiListTexts & {
   placeholder: string;
+  empty: ReactNode;
 };
 
 export type EmojiPickerProps = {
