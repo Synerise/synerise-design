@@ -51,8 +51,9 @@ const kebabCaseFilename = filePath => {
   return filename;
 };
 
-const buildIconsSet = (path, libDir, indexDistFile) => {
+const buildIconsSet = (path, libDir, indexDistFile, options = {}) => {
   glob(path, {}, function(er, files) {
+    const { iconSet = '' } = options
     for (let file of files) {
       const componentName = pascalCaseFilename(file);
       const componentClassName = kebabCaseFilename(file);
@@ -68,7 +69,7 @@ const buildIconsSet = (path, libDir, indexDistFile) => {
                   attributes: [`data-testid="ds-icon-${componentClassName}"`]
                 },
                 addClassesToSVGElement: {
-                  className: componentClassName,
+                  className: `${componentClassName} ds-icon-set-${iconSet}`,
                 },
                 cleanupIDs: {
                   prefix: `svg-${hash(file)}`,
@@ -107,10 +108,10 @@ DIST_FILES.forEach(FILE => {
   });
 });
 
-buildIconsSet('src/svg/*.svg', LIB_DIR, INDEX_DIST_FILE);
-buildIconsSet('src/svg/additional/*.svg', ADDITIONAL_LIB_DIR, ADDITIONAL_INDEX_DIST_FILE);
-buildIconsSet('src/svg/L/*.svg', L_LIB_DIR, L_INDEX_DIST_FILE);
-buildIconsSet('src/svg/XL/*.svg', XL_LIB_DIR, XL_INDEX_DIST_FILE);
-buildIconsSet('src/svg/colorIcons/*.svg', COLOR_LIB_DIR, COLOR_INDEX_DIST_FILE);
+buildIconsSet('src/svg/M/*.svg', LIB_DIR, INDEX_DIST_FILE, { iconSet: 'medium'});
+buildIconsSet('src/svg/additional/*.svg', ADDITIONAL_LIB_DIR, ADDITIONAL_INDEX_DIST_FILE, { iconSet: 'additional'});
+buildIconsSet('src/svg/L/*.svg', L_LIB_DIR, L_INDEX_DIST_FILE, { iconSet: 'large'});
+buildIconsSet('src/svg/XL/*.svg', XL_LIB_DIR, XL_INDEX_DIST_FILE, { iconSet: 'xlarge'});
+buildIconsSet('src/svg/colorIcons/*.svg', COLOR_LIB_DIR, COLOR_INDEX_DIST_FILE, { iconSet: 'color'});
 
 

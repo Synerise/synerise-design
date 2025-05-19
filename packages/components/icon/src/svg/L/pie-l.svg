@@ -4,7 +4,7 @@
     <title>Analytics / 03 L / 06-pie-l</title>
     <desc>Created with Sketch.</desc>
     <g id="Analytics-/-03-L-/-06-pie-l" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round">
-        <g id="Group" transform="translate(9.000000, 9.000000)" stroke="#384350" stroke-width="1.5">
+        <g id="Group" transform="translate(9.000000, 9.000000)" stroke="currentColor" stroke-width="1.5">
             <path d="M15.0000001,1.87500007e-08 C14.98343,1.87500007e-08 14.96749,0.00241001876 14.95092,0.00241001876 L14.95092,15.0491001 L29.9976201,15.0491001 C29.9976201,15.0325301 29.9999301,15.0165901 29.9999301,15.0000201 C29.9999301,11.021774 28.4196263,7.20645694 25.60659,4.39340377 C22.7935537,1.5803506 18.9782461,1.87500007e-08 15.0000001,1.87500007e-08 L15.0000001,1.87500007e-08 Z" id="Path"></path>
             <line x1="4.65661003" y1="25.3434001" x2="15.1851901" y2="14.81483" id="Path"></line>
             <line x1="15.1074001" y1="9.92842004" x2="29.1202301" y2="9.92842004" id="Path"></line>

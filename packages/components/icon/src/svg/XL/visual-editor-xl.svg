@@ -4,7 +4,7 @@
     <title>Edit / 04 XL / 01-visual-editor-xl</title>
     <desc>Created with Sketch.</desc>
     <g id="Edit-/-04-XL-/-01-visual-editor-xl" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round">
-        <g id="Group" transform="translate(18.000000, 13.000000)" stroke="#384350" stroke-width="1.5">
+        <g id="Group" transform="translate(18.000000, 13.000000)" stroke="currentColor" stroke-width="1.5">
             <rect id="Rectangle" x="0.75000002" y="5.75000002" width="23.5" height="58.5000001" rx="4"></rect>
             <rect id="Rectangle" x="30.2500001" y="35.2500001" width="29" height="29" rx="4"></rect>
             <rect id="Rectangle" x="42.7291201" y="5.75000002" width="16.52088" height="23.74111" rx="4"></rect>

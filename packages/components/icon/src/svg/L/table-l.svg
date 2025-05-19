@@ -4,11 +4,11 @@
     <title>Analytics / 03 L / 07-table-l</title>
     <desc>Created with Sketch.</desc>
     <g id="Analytics-/-03-L-/-07-table-l" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round">
-        <path d="M12,7 L36,7 C37.1045695,7 38,7.8954305 38,9 L38,39 C38,40.1045695 37.1045695,41 36,41 L12,41 C10.8954305,41 10,40.1045695 10,39 L10,9 C10,7.8954305 10.8954305,7 12,7 Z" id="Rectangle-Copy" stroke="#384350" stroke-width="1.5" transform="translate(24.000000, 24.000000) rotate(-270.000000) translate(-24.000000, -24.000000) "></path>
-        <line x1="24" y1="10.375" x2="24" y2="37.375" id="Path-14" stroke="#384350" stroke-width="1.5"></line>
-        <line x1="40.5" y1="19.5" x2="7.34439193" y2="19.5" id="Path-14" stroke="#384350" stroke-width="1.5"></line>
-        <line x1="40.5" y1="28.5" x2="7.34439193" y2="28.5" id="Path-14-Copy" stroke="#384350" stroke-width="1.5"></line>
-        <line x1="30" y1="14.5" x2="34.5" y2="14.5" id="Path-Copy" stroke="#384350" stroke-width="1.5"></line>
-        <line x1="13" y1="14.5" x2="17.5" y2="14.5" id="Path" stroke="#384350" stroke-width="1.5"></line>
+        <path d="M12,7 L36,7 C37.1045695,7 38,7.8954305 38,9 L38,39 C38,40.1045695 37.1045695,41 36,41 L12,41 C10.8954305,41 10,40.1045695 10,39 L10,9 C10,7.8954305 10.8954305,7 12,7 Z" id="Rectangle-Copy" stroke="currentColor" stroke-width="1.5" transform="translate(24.000000, 24.000000) rotate(-270.000000) translate(-24.000000, -24.000000) "></path>
+        <line x1="24" y1="10.375" x2="24" y2="37.375" id="Path-14" stroke="currentColor" stroke-width="1.5"></line>
+        <line x1="40.5" y1="19.5" x2="7.34439193" y2="19.5" id="Path-14" stroke="currentColor" stroke-width="1.5"></line>
+        <line x1="40.5" y1="28.5" x2="7.34439193" y2="28.5" id="Path-14-Copy" stroke="currentColor" stroke-width="1.5"></line>
+        <line x1="30" y1="14.5" x2="34.5" y2="14.5" id="Path-Copy" stroke="currentColor" stroke-width="1.5"></line>
+        <line x1="13" y1="14.5" x2="17.5" y2="14.5" id="Path" stroke="currentColor" stroke-width="1.5"></line>
     </g>
 </svg>

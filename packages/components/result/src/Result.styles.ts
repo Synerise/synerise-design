@@ -1,6 +1,5 @@
-import styled, { css, FlattenSimpleInterpolation } from 'styled-components';
+import styled, { css } from 'styled-components';
 import { ButtonStyles } from '@synerise/ds-button';
-import { IconContainer } from '@synerise/ds-icon';
 import * as T from '@synerise/ds-typography';
 
 export const MainPanel = styled.div`
@@ -49,11 +48,11 @@ export const PanelContainer = styled.div`
   &&& {
     textarea {
       max-height: 234px;
-      background-color: ${(props): string => props.theme.palette.white};
+      background-color: ${props => props.theme.palette.white};
     }
   }
   .ant-list {
-    border: 1px solid ${(props): string => props.theme.palette['grey-300']};
+    border: 1px solid ${props => props.theme.palette['grey-300']};
     border-radius: 3px;
     padding: 8px;
   }
@@ -64,7 +63,7 @@ export const ResultIconContainer = styled.div`
 `;
 
 export const StatusIconContainer = styled.div<{ iconColor: string; background: string }>`
-  background-color: ${(props): string => props.theme.palette[props.background]};
+  background-color: ${props => props.theme.palette[props.background]};
   width: 40px;
   height: 40px;
   border-radius: 20px;
@@ -73,12 +72,7 @@ export const StatusIconContainer = styled.div<{ iconColor: string; background: s
   align-items: center;
   justify-content: center;
   margin: 0 auto;
-
-  && {
-    ${IconContainer} {
-      fill: ${(props): string => props.theme.palette[props.iconColor]};
-    }
-  }
+  color: ${props => props.theme.palette[props.iconColor]};
 `;
 
 export const ResultContainer = styled.div<{ noSearchResults: boolean }>`
@@ -86,7 +80,7 @@ export const ResultContainer = styled.div<{ noSearchResults: boolean }>`
   padding: 24px;
   position: relative;
 
-  ${(props): FlattenSimpleInterpolation | false =>
+  ${props =>
     props.noSearchResults &&
     css`
       ${ResultIconContainer} {

@@ -4,7 +4,7 @@
     <title>Campaigns / 04 XL / 06-mobile-banner-xl</title>
     <desc>Created with Sketch.</desc>
     <g id="Campaigns-/-04-XL-/-06-mobile-banner-xl" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round">
-        <g id="Group" transform="translate(21.000000, 18.011070)" stroke="#384350" stroke-width="1.5">
+        <g id="Group" transform="translate(21.000000, 18.011070)" stroke="currentColor" stroke-width="1.5">
             <line x1="20.70572" y1="20.23135" x2="29.70572" y2="20.23135" id="Path"></line>
             <line x1="20.70572" y1="27.7607" x2="38.70572" y2="27.7607" id="Path"></line>
             <path d="M48.62675,35.38709 L48.62675,55.84421 C48.6200773,58.1243922 46.7732822,59.9711873 44.4931,59.97786 L9.5069,59.97786 C7.2267178,59.9711873 5.37992274,58.1243922 5.37325,55.84421 L5.37325,35.81821" id="Path"></path>

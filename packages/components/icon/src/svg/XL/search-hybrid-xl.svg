@@ -2,67 +2,9 @@
 <!-- Generator: Adobe Illustrator 26.5.3, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
 <svg version="1.1" id="Warstwa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
 	 viewBox="0 0 96 96" style="enable-background:new 0 0 96 96;" xml:space="preserve">
-<style type="text/css">
-	.st0{display:none;}
-	.st1{display:inline;fill:#FFFFFF;}
-	.st2{display:inline;fill:none;stroke:#009FE3;stroke-width:0.25;stroke-miterlimit:10;}
-	.st3{display:inline;}
-	.st4{fill:none;stroke:#FF00FF;stroke-width:0.25;stroke-miterlimit:10;}
-	.st5{display:inline;fill:none;stroke:#FF00FF;stroke-width:0.25;stroke-miterlimit:10;}
-	.st6{fill:#384350;}
-</style>
-<g id="canvas" class="st0">
-	<rect y="0" class="st1" width="96" height="96"/>
-</g>
-<g id="Grid" class="st0">
-	
-		<rect id="canvas_60x60px_00000042735040578823946050000013567914075727712136_" x="18" y="18" class="st2" width="60" height="60"/>
-	
-		<rect id="canvas_70x70px_00000097466681766174621890000001472392300448319384_" x="13" y="13" class="st2" width="70" height="70"/>
-</g>
-<g id="Additional_bottom_right" class="st0">
-	<g class="st3">
-		<rect id="_x38_x8p_canvas_510_" x="57" y="57" class="st4" width="26" height="26"/>
-		<rect id="_x38_x8p_canvas_509_" x="53" y="53" class="st4" width="34" height="34"/>
-	</g>
-</g>
-<g id="Additional_bottom_left" class="st0">
-	<g class="st3">
-		
-			<rect id="_x38_x8p_canvas_00000060733925715268530620000012121218405926526112_" x="13" y="57" class="st4" width="26" height="26"/>
-		
-			<rect id="_x38_x8p_canvas_00000070831818271874172940000016655245013062506407_" x="9" y="53" class="st4" width="34" height="34"/>
-	</g>
-</g>
-<g id="additional_up_left" class="st0">
-	<g class="st3">
-		<rect id="_x38_x8p_canvas_504_" x="13" y="13" class="st4" width="26" height="26"/>
-		<rect id="_x38_x8p_canvas_503_" x="9" y="9" class="st4" width="34" height="34"/>
-	</g>
-</g>
-<g id="additional_up_right" class="st0">
-	<g class="st3">
-		
-			<rect id="_x38_x8p_canvas_00000129893104829887636720000009509868472310753953_" x="56.7" y="13" class="st4" width="26" height="26"/>
-		
-			<rect id="_x38_x8p_canvas_00000024703391534154666480000001932321840265836200_" x="52.7" y="9" class="st4" width="34" height="34"/>
-	</g>
-</g>
-<g id="Additional_center" class="st0">
-	<rect id="_x38_x8p_canvas_444_" x="31" y="31" class="st5" width="34" height="34"/>
-	<rect id="_x38_x8p_canvas_443_" x="35" y="35" class="st5" width="26" height="26"/>
-</g>
-<g id="Vertical_rectangle" class="st0">
-	<path class="st2" d="M68,18H28c-2.2,0-4,1.8-4,4v52c0,2.2,1.8,4,4,4h40c2.2,0,4-1.8,4-4V22C72,19.8,70.2,18,68,18z"/>
-</g>
-<g id="Horizontal_rectangle" class="st0">
-	<path class="st2" d="M74,24H22c-2.2,0-4,1.8-4,4v40c0,2.2,1.8,4,4,4h52c2.2,0,4-1.8,4-4V28C78,25.8,76.2,24,74,24z"/>
-</g>
-<g id="square" class="st0">
-	<path class="st2" d="M71,75H25c-2.2,0-4-1.8-4-4V25c0-2.2,1.8-4,4-4h46c2.2,0,4,1.8,4,4v46C75,73.2,73.2,75,71,75z"/>
-</g>
+
 <g>
-	<path class="st6" d="M80.4,71.8L72,63.4c0,0-0.1-0.1-0.2-0.1c3.6-4.8,5.8-10.8,5.8-17.3c0-15.8-12.8-28.7-28.8-28.8
+	<path fill="currentColor" d="M80.4,71.8L72,63.4c0,0-0.1-0.1-0.2-0.1c3.6-4.8,5.8-10.8,5.8-17.3c0-15.8-12.8-28.7-28.8-28.8
 		c-11,0-20.5,6.2-25.4,15.3c0,0.1,0,0.1-0.1,0.2h-6.3c-1.5,0-2.7,1.2-2.8,2.8v12.3c0,0.1,0,0.2,0,0.2c0,0.1,0,0.2,0,0.3v8.1
 		c0,1.5,1.2,2.7,2.8,2.8h6.3c4.8,9.1,14.3,15.4,25.5,15.4c6.4,0,12.4-2.1,17.1-5.7c0,0.1,0.1,0.1,0.1,0.2l8.4,8.4
 		c0.8,0.8,1.8,1.2,2.9,1.2c1,0,2.1-0.4,2.9-1.2c0.8-0.8,1.2-1.8,1.2-2.9C81.6,73.6,81.2,72.6,80.4,71.8z M16.3,57.4
@@ -80,7 +22,7 @@
 		c7.5,0,14.4,3.1,19.3,8c4.9,4.9,8,11.8,8,19.2c0,7.5-3,14.3-8,19.2c-4.9,4.9-11.7,8-19.2,8C38.8,73.2,29.9,67.5,25.3,59.2z
 		 M79.4,76.5c-0.5,0.5-1.2,0.8-1.8,0.8c-0.7,0-1.3-0.2-1.8-0.8l-8.4-8.4c0,0,0,0,0,0c1.3-1.1,2.5-2.3,3.7-3.6c0,0,0,0,0,0l8.4,8.4
 		c0.5,0.5,0.8,1.2,0.8,1.8C80.1,75.3,79.9,76,79.4,76.5z"/>
-	<path class="st6" d="M48.9,25.6c-4,0-7.7,1.1-10.9,3.1c-0.4,0.2-0.5,0.7-0.2,1s0.7,0.5,1,0.2c3-1.8,6.4-2.9,10.1-2.9
+	<path fill="currentColor" d="M48.9,25.6c-4,0-7.7,1.1-10.9,3.1c-0.4,0.2-0.5,0.7-0.2,1s0.7,0.5,1,0.2c3-1.8,6.4-2.9,10.1-2.9
 		c5.2,0,9.9,2.1,13.3,5.5c3.4,3.4,5.5,8.1,5.5,13.3c0,5.2-2.1,9.9-5.5,13.3c-3.4,3.4-8.1,5.5-13.3,5.5c-3.7,0-7-1-9.9-2.8
 		c-0.3-0.2-0.8-0.1-1,0.2s-0.1,0.8,0.2,1c3.1,2,6.8,3,10.7,3c11.2,0,20.3-9.1,20.3-20.3C69.2,34.8,60.1,25.7,48.9,25.6z"/>
 </g>

@@ -4,7 +4,7 @@
     <title>Analytics / 04 XL / 01-function-xl</title>
     <desc>Created with Sketch.</desc>
     <g id="Analytics-/-04-XL-/-01-function-xl" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" stroke-linecap="round">
-        <g id="Group" transform="translate(21.524414, 21.000000)" stroke="#384350" stroke-width="1.5">
+        <g id="Group" transform="translate(21.524414, 21.000000)" stroke="currentColor" stroke-width="1.5">
             <path d="M48.3658159,51.61641 C53.8455081,45.5994382 53.8455081,36.4005618 48.3658159,30.38359" id="Path" stroke-linejoin="round"></path>
             <path d="M30.5853659,30.38359 C25.105655,36.4005545 25.105655,45.5994455 30.5853659,51.61641" id="Path" stroke-linejoin="round"></path>
             <line x1="43.3715059" y1="37.10409" x2="35.5796759" y2="44.89592" id="Path" stroke-linejoin="round"></line>

@@ -4,7 +4,7 @@
     <title>Ecommerce / 04 XL / 03-discount-xl</title>
     <desc>Created with Sketch.</desc>
     <g id="Ecommerce-/-04-XL-/-03-discount-xl" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round">
-        <g id="Group" transform="translate(-0.000000, -0.000000)" stroke="#384350" stroke-width="1.5">
+        <g id="Group" transform="translate(-0.000000, -0.000000)" stroke="currentColor" stroke-width="1.5">
             <circle id="Oval" cx="55.6789701" cy="55.6897601" r="4.03448"></circle>
             <circle id="Oval" cx="40.33351" cy="40.32188" r="4.03448"></circle>
             <line x1="56.7750001" y1="39.22533" x2="39.225" y2="56.7746701" id="Path"></line>

@@ -2,7 +2,7 @@
 <svg width="48px" height="48px" viewBox="0 0 48 48" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
     <title>Files / 03 L / 01-image-landscape-l</title>
     <g id="Files-/-03-L-/-01-image-landscape-l" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round">
-        <g id="Group" transform="translate(7.000000, 12.000000)" stroke="#384350" stroke-width="1.5">
+        <g id="Group" transform="translate(7.000000, 12.000000)" stroke="currentColor" stroke-width="1.5">
             <path d="M7,-5 L27,-5 C28.1045695,-5 29,-4.1045695 29,-3 L29,27 C29,28.1045695 28.1045695,29 27,29 L7,29 C5.8954305,29 5,28.1045695 5,27 L5,-3 C5,-4.1045695 5.8954305,-5 7,-5 Z" id="Rectangle" transform="translate(17.000000, 12.000000) rotate(-270.000000) translate(-17.000000, -12.000000) "></path>
             <line x1="5" y1="18.75" x2="12.41925" y2="18.75" id="Path"></line>
             <line x1="16" y1="18.75" x2="19" y2="18.75" id="Path"></line>

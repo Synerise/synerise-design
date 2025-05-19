@@ -4,7 +4,7 @@
     <title>Files / 04 XL / 03-file-url-xl</title>
     <desc>Created with Sketch.</desc>
     <g id="Files-/-04-XL-/-03-file-url-xl" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" stroke-linecap="round">
-        <g id="Group" transform="translate(23.974140, 18.000000)" stroke="#384350" stroke-width="1.5">
+        <g id="Group" transform="translate(23.974140, 18.000000)" stroke="currentColor" stroke-width="1.5">
             <path d="M48.05172,56 C48.05172,58.209139 46.260859,60 44.05172,60 L4,60 C1.790861,60 -2.66453526e-13,58.209139 -2.66453526e-13,56 L-2.66453526e-13,4 C-2.66453526e-13,1.790861 1.790861,0 4,0 L29.25986,0 C30.3207231,0 31.3381358,0.421427286 32.08828,1.17157 L46.88015,15.96345 C47.6302952,16.7135967 48.05172,17.7310135 48.05172,18.79188 L48.05172,52.8988 L48.05172,56 Z" id="Path" stroke-linejoin="round"></path>
             <path d="M27.91986,-3.55271368e-15 L27.91986,16.106 C27.91986,18.315139 29.710721,20.106 31.91986,20.106 L48.02586,20.106" id="Path" stroke-linejoin="round"></path>
             <line x1="48.02586" y1="50.29116" x2="-1.31450406e-13" y2="50.29116" id="Path" stroke-linejoin="round"></line>

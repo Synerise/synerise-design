@@ -4,7 +4,7 @@
     <title>Information / 04 XL / 01-notifications-edit-xl</title>
     <desc>Created with Sketch.</desc>
     <g id="Information-/-04-XL-/-01-notifications-edit-xl" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round">
-        <g id="Group-2" transform="translate(27.322470, 18.000000)" stroke="#384350" stroke-width="1.5">
+        <g id="Group-2" transform="translate(27.322470, 18.000000)" stroke="currentColor" stroke-width="1.5">
             <path d="M28.0461813,7.18747318 C25.6957624,6.29579581 23.1980109,5.8431197 20.67753,5.85548321 C8.68939,5.85548321 6.75015599e-14,15.57413 6.75015599e-14,27.56226 L6.75015599e-14,50.05874 L41.3552508,50.05874 L41.3552508,27.56226 C41.3560577,27.0598992 41.3410537,26.5580463 41.3102282,26.0574484" id="Path"></path>
             <path d="M30.24227,50.31527 C30.24227,55.6639987 25.9062687,60 20.55754,60 C15.2088113,60 10.87281,55.6639987 10.87281,50.31527" id="Path"></path>
             <line x1="5.86411" y1="44.45857" x2="5.86411" y2="33.54543" id="Path"></line>

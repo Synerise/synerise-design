@@ -4,7 +4,7 @@
     <title>Edit / 03 L / 09-image-url-l</title>
     <desc>Created with Sketch.</desc>
     <g id="Edit-/-03-L-/-09-image-url-l" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round">
-        <g id="Group" transform="translate(7.000000, 10.000000)" stroke="#384350" stroke-width="1.5">
+        <g id="Group" transform="translate(7.000000, 10.000000)" stroke="currentColor" stroke-width="1.5">
             <path d="M29.05598,9.68543 L29.05598,9.68543 C29.05598,11.72084 27.68331,13.37086 25.99004,13.37086 L21.06594,13.37086 C19.37267,13.37086 18,11.72086 18,9.68543 L18,9.68543 C18,7.65002 19.37267,6 21.06594,6 L24.62727,6" id="Path"></path>
             <path d="M26.19127,9.68543 L26.19127,9.68543 C26.19127,7.65002 27.56394,6 29.25721,6 L34.18131,6 C35.8746,6 37.24727,7.65002 37.24727,9.68543 L37.24727,9.68543 C37.24727,11.72084 35.8746,13.37086 34.18133,13.37086 L30.61996,13.37086" id="Path"></path>
             <polygon id="Path" points="12.0702392 13.37086 17.4878745 19.6044319 21.6873099 17.02952 27 22.52952 6 22.4865792"></polygon>

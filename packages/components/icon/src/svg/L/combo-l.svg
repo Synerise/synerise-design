@@ -4,7 +4,7 @@
     <title>Analytics / 03 L / 03-combo-l</title>
     <desc>Created with Sketch.</desc>
     <g id="Analytics-/-03-L-/-03-combo-l" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" stroke-linecap="round">
-        <g id="Group" transform="translate(7.000000, 8.000000)" stroke="#384350" stroke-width="1.5">
+        <g id="Group" transform="translate(7.000000, 8.000000)" stroke="currentColor" stroke-width="1.5">
             <path d="M0,26 L0,13.9974239 C0,12.8928544 0.8954305,11.9974239 2,11.9974239 L6,11.9974239 C7.1045695,11.9974239 8,12.8928544 8,13.9974239 L8,26" id="Path"></path>
             <path d="M0,7 L7.08086914,7 C8.67483081,7 10.2178628,7.5487749 11.4391251,8.55000636 L22.2949463,17.4499687 C23.7687774,18.4619027 25.5268208,19.0033314 27.3279177,19 L34,19" id="Path" stroke-linejoin="round"></path>
             <line x1="0" y1="30.96268" x2="34" y2="30.96268" id="Path" stroke-linejoin="round"></line>

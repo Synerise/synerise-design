@@ -32,10 +32,8 @@ export const FormFieldLabelWrapper = styled(Label)`
 
 export const IconWrapper = styled.span`
   display: inline-block;
-  .ds-icon > svg {
-    margin-top: -1px;
-    fill: ${(props): string => props.theme.palette['grey-400']};
-  }
+  color: ${(props): string => props.theme.palette['grey-400']};
+  margin-top: -1px;
 `;
 
 export const FormFieldComponent = styled.div``;

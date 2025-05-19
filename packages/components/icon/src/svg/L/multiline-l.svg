@@ -4,7 +4,7 @@
     <title>Analytics / 03 L / 05-multiline-l</title>
     <desc>Created with Sketch.</desc>
     <g id="Analytics-/-03-L-/-05-multiline-l" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round">
-        <g id="Group" transform="translate(7.000000, 9.000000)" stroke="#384350" stroke-width="1.5">
+        <g id="Group" transform="translate(7.000000, 9.000000)" stroke="currentColor" stroke-width="1.5">
             <line x1="0" y1="29.96268" x2="34" y2="29.96268" id="Path"></line>
             <polyline id="Path" points="34.0410001 0.959000014 28.4703721 6.52962798 28.0410001 6.95900001"></polyline>
             <path d="M0,22.77351 L8.93020002,13.84331 C9.6136171,13.159895 10.7216529,13.159895 11.40507,13.84331 L14.8664265,17.3046665 C15.6474738,18.0857163 16.9138038,18.0857163 17.6948524,17.3046677 C17.6948528,17.3046673 17.6948532,17.3046669 17.6948524,17.3046652 L21.98511,13.0144 L21.98511,13.0144 L22.39064,12.60888" id="Path"></path>

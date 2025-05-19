@@ -4,7 +4,7 @@
     <title>Internet / 04 XL / 02-browser-code-xl</title>
     <desc>Created with Sketch.</desc>
     <g id="Internet-/-04-XL-/-02-browser-code-xl" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round">
-        <g id="Group" transform="translate(18.000000, 24.000000)" stroke="#384350" stroke-width="1.5">
+        <g id="Group" transform="translate(18.000000, 24.000000)" stroke="currentColor" stroke-width="1.5">
             <circle id="Oval" cx="8.00000003" cy="8.00000003" r="2"></circle>
             <circle id="Oval" cx="22" cy="8.00000003" r="2"></circle>
             <circle id="Oval" cx="15" cy="8.00000003" r="2"></circle>

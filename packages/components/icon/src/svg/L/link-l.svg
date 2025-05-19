@@ -4,7 +4,7 @@
     <title>Edit / 03 L / 10-link-l</title>
     <desc>Created with Sketch.</desc>
     <g id="Edit-/-03-L-/-10-link-l" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" stroke-linecap="round">
-        <g id="Group" transform="translate(4.843146, 5.343146)" stroke="#384350" stroke-width="1.5">
+        <g id="Group" transform="translate(4.843146, 5.343146)" stroke="currentColor" stroke-width="1.5">
             <path d="M13.3137085,24.3137085 C13.3137085,20.4477153 16.4477153,17.3137085 20.3137085,17.3137085 L28.3137085,17.3137085 C32.1797017,17.3137085 35.3137085,20.4477153 35.3137085,24.3137085 C35.3137085,28.1797017 32.1797017,31.3137085 28.3137085,31.3137085 L20.3137085,31.3137085" id="Path" transform="translate(24.313708, 24.313708) rotate(-315.000000) translate(-24.313708, -24.313708) "></path>
             <path d="M24,13 C24,16.8659932 20.8659932,20 17,20 L9,20 C5.13400675,20 2,16.8659932 2,13 C2,9.13400675 5.13400675,6 9,6 L17,6" id="Path" transform="translate(13.000000, 13.000000) rotate(-315.000000) translate(-13.000000, -13.000000) "></path>
         </g>

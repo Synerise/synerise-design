@@ -22,69 +22,69 @@
     </defs>
     <g id="Finance-/-04-XL-/-02-card-ae-xl" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
         <g id="Group" transform="translate(18.000000, 24.000000)">
-            <path d="M55.3658537,48 L4.63414634,48 C2.07598153,47.9971143 0.00290328142,45.9366206 0,43.393985 L0,4.60601501 C0.00290328142,2.0633794 2.07598153,0.00288565721 4.63414634,0 L55.3658537,0 C57.9240185,0.00288565721 59.9970967,2.0633794 60,4.60601501 L60,43.393985 C59.9970967,45.9366206 57.9240185,47.9971143 55.3658537,48 Z" id="Path" stroke="#384350" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
-            <polyline id="Path" stroke="#384350" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" points="37.7216553 17.5503006 39.7216553 15.75006 39.7216553 21.75006"></polyline>
-            <path d="M46.7216553,21.75006 L42.7216553,21.75006 L42.7216553,21.7074112 L45.3143387,19.2038866 C45.9681586,18.6972977 46.3608422,17.9741465 46.4010206,17.2026949 C46.4440368,16.8113857 46.2896826,16.4232821 45.9797801,16.1435403 C45.6698775,15.8637986 45.2365122,15.7213817 44.797104,15.7548772 C44.3336717,15.75006 43.8879077,15.9132147 43.5620812,16.2070703 C43.2362548,16.5009259 43.0583343,16.9002004 43.0691391,17.3132903" id="Path" stroke="#384350" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
-            <path d="M49.7501,21.7384407 L50.8027349,21.7384407 C51.3126608,21.7941003 51.8243892,21.6479581 52.199872,21.3394385 C52.5753547,21.0309189 52.7759089,20.5918062 52.7474312,20.1405593 C52.7730317,19.7306231 52.5927141,19.3314713 52.2542166,19.0487774 C51.9157191,18.7660835 51.4531776,18.6283558 50.9890477,18.672057 L50.5085381,18.672057 L50.5085381,18.5254145 L50.9603296,18.5254145 C51.3717144,18.5551062 51.7775675,18.426692 52.0731709,18.1733051 C52.3687743,17.9199182 52.5251744,17.5663774 52.502017,17.2039029 C52.5321036,16.8130441 52.3693607,16.4297199 52.0553686,16.1518683 C51.7413765,15.8740167 51.3065503,15.7285521 50.8619865,15.7526401 L49.7501,15.7526401" id="Path" stroke="#384350" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+            <path d="M55.3658537,48 L4.63414634,48 C2.07598153,47.9971143 0.00290328142,45.9366206 0,43.393985 L0,4.60601501 C0.00290328142,2.0633794 2.07598153,0.00288565721 4.63414634,0 L55.3658537,0 C57.9240185,0.00288565721 59.9970967,2.0633794 60,4.60601501 L60,43.393985 C59.9970967,45.9366206 57.9240185,47.9971143 55.3658537,48 Z" id="Path" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+            <polyline id="Path" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" points="37.7216553 17.5503006 39.7216553 15.75006 39.7216553 21.75006"></polyline>
+            <path d="M46.7216553,21.75006 L42.7216553,21.75006 L42.7216553,21.7074112 L45.3143387,19.2038866 C45.9681586,18.6972977 46.3608422,17.9741465 46.4010206,17.2026949 C46.4440368,16.8113857 46.2896826,16.4232821 45.9797801,16.1435403 C45.6698775,15.8637986 45.2365122,15.7213817 44.797104,15.7548772 C44.3336717,15.75006 43.8879077,15.9132147 43.5620812,16.2070703 C43.2362548,16.5009259 43.0583343,16.9002004 43.0691391,17.3132903" id="Path" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+            <path d="M49.7501,21.7384407 L50.8027349,21.7384407 C51.3126608,21.7941003 51.8243892,21.6479581 52.199872,21.3394385 C52.5753547,21.0309189 52.7759089,20.5918062 52.7474312,20.1405593 C52.7730317,19.7306231 52.5927141,19.3314713 52.2542166,19.0487774 C51.9157191,18.7660835 51.4531776,18.6283558 50.9890477,18.672057 L50.5085381,18.672057 L50.5085381,18.5254145 L50.9603296,18.5254145 C51.3717144,18.5551062 51.7775675,18.426692 52.0731709,18.1733051 C52.3687743,17.9199182 52.5251744,17.5663774 52.502017,17.2039029 C52.5321036,16.8130441 52.3693607,16.4297199 52.0553686,16.1518683 C51.7413765,15.8740167 51.3065503,15.7285521 50.8619865,15.7526401 L49.7501,15.7526401" id="Path" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
             <g id="Path-17" stroke-linecap="round">
                 <use stroke="#979797" stroke-width="1" xlink:href="#path-1"></use>
-                <use stroke="#384350" stroke-width="1.5" xlink:href="#path-1"></use>
+                <use stroke="currentColor" stroke-width="1.5" xlink:href="#path-1"></use>
             </g>
             <g id="Path-17-Copy" stroke-linecap="round">
                 <use stroke="#979797" stroke-width="1" xlink:href="#path-2"></use>
-                <use stroke="#384350" stroke-width="1.5" xlink:href="#path-2"></use>
+                <use stroke="currentColor" stroke-width="1.5" xlink:href="#path-2"></use>
             </g>
             <g id="Path-17-Copy-2" stroke-linecap="round">
                 <use stroke="#979797" stroke-width="1" xlink:href="#path-3"></use>
-                <use stroke="#384350" stroke-width="1.5" xlink:href="#path-3"></use>
+                <use stroke="currentColor" stroke-width="1.5" xlink:href="#path-3"></use>
             </g>
             <g id="Path-17-Copy-3" stroke-linecap="round">
                 <use stroke="#979797" stroke-width="1" xlink:href="#path-4"></use>
-                <use stroke="#384350" stroke-width="1.5" xlink:href="#path-4"></use>
+                <use stroke="currentColor" stroke-width="1.5" xlink:href="#path-4"></use>
             </g>
             <g id="Path-17" stroke-linecap="round">
                 <use stroke="#979797" stroke-width="1" xlink:href="#path-5"></use>
-                <use stroke="#384350" stroke-width="1.5" xlink:href="#path-5"></use>
+                <use stroke="currentColor" stroke-width="1.5" xlink:href="#path-5"></use>
             </g>
             <g id="Path-17-Copy" stroke-linecap="round">
                 <use stroke="#979797" stroke-width="1" xlink:href="#path-6"></use>
-                <use stroke="#384350" stroke-width="1.5" xlink:href="#path-6"></use>
+                <use stroke="currentColor" stroke-width="1.5" xlink:href="#path-6"></use>
             </g>
             <g id="Path-17-Copy-2" stroke-linecap="round">
                 <use stroke="#979797" stroke-width="1" xlink:href="#path-7"></use>
-                <use stroke="#384350" stroke-width="1.5" xlink:href="#path-7"></use>
+                <use stroke="currentColor" stroke-width="1.5" xlink:href="#path-7"></use>
             </g>
             <g id="Path-17-Copy-3" stroke-linecap="round">
                 <use stroke="#979797" stroke-width="1" xlink:href="#path-8"></use>
-                <use stroke="#384350" stroke-width="1.5" xlink:href="#path-8"></use>
+                <use stroke="currentColor" stroke-width="1.5" xlink:href="#path-8"></use>
             </g>
             <g id="Path-17" stroke-linecap="round">
                 <use stroke="#979797" stroke-width="1" xlink:href="#path-9"></use>
-                <use stroke="#384350" stroke-width="1.5" xlink:href="#path-9"></use>
+                <use stroke="currentColor" stroke-width="1.5" xlink:href="#path-9"></use>
             </g>
             <g id="Path-17-Copy" stroke-linecap="round">
                 <use stroke="#979797" stroke-width="1" xlink:href="#path-10"></use>
-                <use stroke="#384350" stroke-width="1.5" xlink:href="#path-10"></use>
+                <use stroke="currentColor" stroke-width="1.5" xlink:href="#path-10"></use>
             </g>
             <g id="Path-17-Copy-2" stroke-linecap="round">
                 <use stroke="#979797" stroke-width="1" xlink:href="#path-11"></use>
-                <use stroke="#384350" stroke-width="1.5" xlink:href="#path-11"></use>
+                <use stroke="currentColor" stroke-width="1.5" xlink:href="#path-11"></use>
             </g>
             <g id="Path-17-Copy-3" stroke-linecap="round">
                 <use stroke="#979797" stroke-width="1" xlink:href="#path-12"></use>
-                <use stroke="#384350" stroke-width="1.5" xlink:href="#path-12"></use>
+                <use stroke="currentColor" stroke-width="1.5" xlink:href="#path-12"></use>
             </g>
             <g id="Path" stroke-linecap="round">
                 <use stroke="#979797" stroke-width="1" xlink:href="#path-13"></use>
-                <use stroke="#384350" stroke-width="1.5" xlink:href="#path-13"></use>
+                <use stroke="currentColor" stroke-width="1.5" xlink:href="#path-13"></use>
             </g>
             <g id="Path" stroke-linecap="round">
                 <use stroke="#979797" stroke-width="1" xlink:href="#path-14"></use>
-                <use stroke="#384350" stroke-width="1.5" xlink:href="#path-14"></use>
+                <use stroke="currentColor" stroke-width="1.5" xlink:href="#path-14"></use>
             </g>
             <g id="Rectangle">
                 <use stroke="#979797" stroke-width="1" xlink:href="#path-15"></use>
-                <use stroke="#384350" stroke-width="1.5" xlink:href="#path-15"></use>
+                <use stroke="currentColor" stroke-width="1.5" xlink:href="#path-15"></use>
             </g>
         </g>
     </g>
