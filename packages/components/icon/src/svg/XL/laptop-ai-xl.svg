@@ -8,22 +8,22 @@
     </defs>
     <g id="Devices-/-04-XL-/-02-laptop-ai-xl" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
         <g id="Group" transform="translate(17.000000, 24.000000)">
-            <path d="M6.3368,36.9914 L6.3368,5.1734 C6.3368,2.7304 8.3168,0.7494 10.7608,0.7494 L56.3258,0.7494 C58.7698,0.7494 60.7498,2.7304 60.7498,5.1734 L60.7498,31.7764" id="Stroke-1" stroke="#384350" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
-            <path d="M40.1142,44.178 L2.9622,44.178 C1.7402,44.178 0.7502,43.188 0.7502,41.966 L0.7502,37.729 C0.7502,37.346 1.0602,37.035 1.4432,37.035 L41.0162,37.035" id="Stroke-3" stroke="#384350" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+            <path d="M6.3368,36.9914 L6.3368,5.1734 C6.3368,2.7304 8.3168,0.7494 10.7608,0.7494 L56.3258,0.7494 C58.7698,0.7494 60.7498,2.7304 60.7498,5.1734 L60.7498,31.7764" id="Stroke-1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+            <path d="M40.1142,44.178 L2.9622,44.178 C1.7402,44.178 0.7502,43.188 0.7502,41.966 L0.7502,37.729 C0.7502,37.346 1.0602,37.035 1.4432,37.035 L41.0162,37.035" id="Stroke-3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
             <mask id="mask-2" fill="white">
                 <use xlink:href="#path-1"></use>
             </mask>
             <g id="Clip-6"></g>
-            <polygon id="Stroke-5" stroke="#384350" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" points="16.162 20.8312 30.603 20.8312 30.603 11.0862 16.162 11.0862"></polygon>
-            <line x1="16.162" y1="25.6701" x2="30.603" y2="25.6701" id="Stroke-7" stroke="#384350" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></line>
-            <line x1="16.162" y1="29.8323" x2="25.111" y2="29.8323" id="Stroke-8" stroke="#384350" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></line>
-            <polygon id="Stroke-9" stroke="#384350" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" points="49.2099 11.0862 34.7689 11.0862 34.7689 12.9042 34.7689 16.8762 34.7689 20.8312 41.6189 16.8762 49.2099 16.8762"></polygon>
-            <path d="M65.9608,42.175 C65.9608,34.995 60.1408,29.175 52.9608,29.175 C45.7808,29.175 39.9608,34.995 39.9608,42.175 C39.9608,49.355 45.7808,55.175 52.9608,55.175 C60.1408,55.175 65.9608,49.355 65.9608,42.175 Z" id="Stroke-10" stroke="#384350" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
-            <line x1="48.3808" y1="37.8215" x2="48.3808" y2="46.5285" id="Stroke-11" stroke="#384350" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></line>
-            <line x1="52.9608" y1="37.8215" x2="52.9608" y2="46.5285" id="Stroke-12" stroke="#384350" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></line>
-            <line x1="52.8476" y1="42.175" x2="48.3806" y2="42.175" id="Stroke-13" stroke="#384350" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></line>
-            <line x1="52.8476" y1="37.8215" x2="48.3806" y2="37.8215" id="Stroke-14" stroke="#384350" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></line>
-            <line x1="57.3144" y1="37.8215" x2="57.3144" y2="46.5285" id="Stroke-15" stroke="#384350" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></line>
+            <polygon id="Stroke-5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" points="16.162 20.8312 30.603 20.8312 30.603 11.0862 16.162 11.0862"></polygon>
+            <line x1="16.162" y1="25.6701" x2="30.603" y2="25.6701" id="Stroke-7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></line>
+            <line x1="16.162" y1="29.8323" x2="25.111" y2="29.8323" id="Stroke-8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></line>
+            <polygon id="Stroke-9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" points="49.2099 11.0862 34.7689 11.0862 34.7689 12.9042 34.7689 16.8762 34.7689 20.8312 41.6189 16.8762 49.2099 16.8762"></polygon>
+            <path d="M65.9608,42.175 C65.9608,34.995 60.1408,29.175 52.9608,29.175 C45.7808,29.175 39.9608,34.995 39.9608,42.175 C39.9608,49.355 45.7808,55.175 52.9608,55.175 C60.1408,55.175 65.9608,49.355 65.9608,42.175 Z" id="Stroke-10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+            <line x1="48.3808" y1="37.8215" x2="48.3808" y2="46.5285" id="Stroke-11" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></line>
+            <line x1="52.9608" y1="37.8215" x2="52.9608" y2="46.5285" id="Stroke-12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></line>
+            <line x1="52.8476" y1="42.175" x2="48.3806" y2="42.175" id="Stroke-13" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></line>
+            <line x1="52.8476" y1="37.8215" x2="48.3806" y2="37.8215" id="Stroke-14" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></line>
+            <line x1="57.3144" y1="37.8215" x2="57.3144" y2="46.5285" id="Stroke-15" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></line>
         </g>
     </g>
 </svg>

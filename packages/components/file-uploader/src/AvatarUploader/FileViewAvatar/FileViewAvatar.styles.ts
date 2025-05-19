@@ -1,16 +1,16 @@
-import styled, { keyframes, SimpleInterpolation } from 'styled-components';
+import styled, { keyframes } from 'styled-components';
 import { Description, Label } from '@synerise/ds-typography';
 import { IconContainer } from '@synerise/ds-icon';
 import { Loader } from '@synerise/ds-loader/dist/Loader.styles';
 
 export const PreviewImage = styled.div`
   ${IconContainer} {
-    fill: ${(props): string => props.theme.palette['grey-700']};
+    color: ${props => props.theme.palette['grey-700']};
   }
 `;
 export const RepeatIcon = styled.div`
   ${IconContainer} {
-    fill: ${(props): string => props.theme.palette['blue-600']};
+    color: ${props => props.theme.palette['blue-600']};
   }
   &:hover {
     cursor: pointer;
@@ -29,21 +29,21 @@ export const spinnerAnimation = keyframes`
   }
 `;
 export const SmallLoader = styled(Loader)`
-  border: 1px solid ${(props): string => props.theme.palette[`${props.color}-600`]};
+  border: 1px solid ${props => props.theme.palette[`${props.color}-600`]};
   border-top: 2px solid transparent;
   border-radius: 50%;
   animation: ${spinnerAnimation} 2s linear infinite;
 `;
 
 export const PlaceholderImage = styled.div`
-  background-color: ${(props): string => props.theme.palette['grey-200']};
+  background-color: ${props => props.theme.palette['grey-200']};
   width: 32px;
   height: 32px;
   border-radius: 3px;
   padding: 4px;
 
   ${IconContainer} {
-    fill: ${(props): string => props.theme.palette['grey-500']};
+    color: ${props => props.theme.palette['grey-500']};
   }
 `;
 
@@ -59,12 +59,12 @@ export const Info = styled.div`
 `;
 export const DescriptionUploader = styled(Description)`
   margin: 16px 0 8px 0;
-  color: ${(props): string => props.theme.palette['grey-500']};
+  color: ${props => props.theme.palette['grey-500']};
 `;
 
 export const Name = styled(Label)`
   && {
-    color: ${(props): string => props.theme.palette['grey-600']};
+    color: ${props => props.theme.palette['grey-600']};
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -74,7 +74,7 @@ export const Name = styled(Label)`
 `;
 
 export const RemoveButtonWrapper = styled.div<{ pressed?: boolean }>`
-  display: ${(props): string => (props.pressed ? 'flex' : 'none')};
+  display: ${props => (props.pressed ? 'flex' : 'none')};
   background-color: transparent;
   z-index: 10;
   border: 0;
@@ -86,17 +86,17 @@ export const RemoveButtonWrapper = styled.div<{ pressed?: boolean }>`
   top: 8px;
   right: 5px;
   cursor: pointer;
-  overflow: ${(props): string => (props.pressed ? 'visible' : 'hidden')};
+  overflow: ${props => (props.pressed ? 'visible' : 'hidden')};
 
   ${IconContainer} {
     position: absolute;
     right: -2px;
     top: -2px;
     transition: fill 0.3s;
-    fill: ${(props): string => props.theme.palette['red-600']};
+    color: ${props => props.theme.palette['red-600']};
 
     &:hover {
-      fill: ${(props): string => props.theme.palette['red-500']};
+      color: ${props => props.theme.palette['red-500']};
     }
   }
 `;
@@ -112,14 +112,14 @@ export const RemoveWrapper = styled.div<{ pressed?: boolean }>`
 
   ${IconContainer} {
     transition: fill 0.3s;
-    fill: ${(props): string => props.theme.palette['red-600']};
+    color: ${props => props.theme.palette['red-600']};
     &:hover {
-      fill: ${(props): string => props.theme.palette['red-600']};
+      color: ${props => props.theme.palette['red-600']};
     }
   }
 `;
 export const AvatarContainer = styled.div<{ source: string; disabled?: boolean; removable?: boolean }>`
-  background: url('${(props): string => props.source}') 50% 50% no-repeat;
+  background: url('${props => props.source}') 50% 50% no-repeat;
   background-size: cover;
   min-width: 80px;
   min-height: 80px;
@@ -128,24 +128,23 @@ export const AvatarContainer = styled.div<{ source: string; disabled?: boolean; 
   border-radius: 3px;
   overflow: visible;
   margin-right: 14px;
-  ${(props): SimpleInterpolation =>
+  ${props =>
     props.disabled &&
     `
     background-color: ${props.theme.palette['grey-100']};
     opacity: 0.4;
   `};
-   
-   &:hover {
-     ${RemoveWrapper} {
-       display: flex;
-       overflow: visible;
-     }
-   }
-  
+
+  &:hover {
+    ${RemoveWrapper} {
+      display: flex;
+      overflow: visible;
+    }
+  }
 `;
 
 export const FileView = styled.button<{ disabled?: boolean; error?: boolean; removable?: boolean; progress?: boolean }>`
-  background-color: ${(props): string => props.theme.palette['grey-100']};
+  background-color: ${props => props.theme.palette['grey-100']};
   border-radius: 3px;
   border: 2px solid transparent;
   display: flex;
@@ -162,18 +161,18 @@ export const FileView = styled.button<{ disabled?: boolean; error?: boolean; rem
   }
 
   &:hover {
-    border-color: ${(props): string => props.theme.palette['grey-200']};
-    padding-right: ${(props): string => (props.removable ? '30px' : '12px')};
+    border-color: ${props => props.theme.palette['grey-200']};
+    padding-right: ${props => (props.removable ? '30px' : '12px')};
     ${Name} {
-      color: ${(props): string => props.theme.palette['blue-600']};
+      color: ${props => props.theme.palette['blue-600']};
     }
     ${PreviewImage} {
       ${IconContainer} {
-        fill: ${(props): string => props.theme.palette['blue-600']};
+        color: ${props => props.theme.palette['blue-600']};
       }
     }
 
-    ${(props): SimpleInterpolation =>
+    ${props =>
       props.removable &&
       !props.disabled &&
       `
@@ -184,34 +183,34 @@ export const FileView = styled.button<{ disabled?: boolean; error?: boolean; rem
   }
 
   &:focus {
-    border-color: ${(props): string => props.theme.palette['blue-600']};
-    background-color: ${(props): string => props.theme.palette['grey-100']};
+    border-color: ${props => props.theme.palette['blue-600']};
+    background-color: ${props => props.theme.palette['grey-100']};
   }
   &:hover {
-    background-color: ${(props): string => props.theme.palette['grey-200']};
+    background-color: ${props => props.theme.palette['grey-200']};
   }
 
   &:active {
-    border-color: ${(props): string => props.theme.palette['grey-300']};
-    background-color: ${(props): string => props.theme.palette['grey-300']};
+    border-color: ${props => props.theme.palette['grey-300']};
+    background-color: ${props => props.theme.palette['grey-300']};
     ${Name} {
-      color: ${(props): string => props.theme.palette['blue-600']};
+      color: ${props => props.theme.palette['blue-600']};
     }
     ${PreviewImage} {
       ${IconContainer} {
-        fill: ${(props): string => props.theme.palette['blue-600']};
+        color: ${props => props.theme.palette['blue-600']};
       }
     }
   }
 
-  ${(props): SimpleInterpolation =>
+  ${props =>
     props.disabled &&
     `
     background-color: ${props.theme.palette['grey-100']};
     opacity: 0.4;
   `};
 
-  ${(props): SimpleInterpolation =>
+  ${props =>
     props.error &&
     `
     && {
@@ -223,7 +222,7 @@ export const FileView = styled.button<{ disabled?: boolean; error?: boolean; rem
       }
     }
   `};
-  ${(props): SimpleInterpolation =>
+  ${props =>
     props.progress &&
     `
     && {

@@ -2,7 +2,7 @@
 <svg width="48px" height="48px" viewBox="0 0 48 48" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
     <title>Database / 03 L / 03-relation-many-many-l</title>
     <g id="Database-/-03-L-/-03-relation-many-many-l" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round">
-        <g id="Group-24" transform="translate(9.000000, 8.500000)" stroke="#384350" stroke-width="1.5">
+        <g id="Group-24" transform="translate(9.000000, 8.500000)" stroke="currentColor" stroke-width="1.5">
             <path d="M30,15.4994545 C30,14.1182631 28.8806459,13 27.4994545,13 C26.1182631,13 25,14.1182631 25,15.4994545 C25,16.8806459 26.1182631,18 27.4994545,18 C28.8806459,18 30,16.8806459 30,15.4994545 Z" id="Stroke-4"></path>
             <path d="M30,2.50054549 C30,1.11935413 28.8806459,0 27.4994545,0 C26.1182631,0 25,1.11935413 25,2.50054549 C25,3.88173685 26.1182631,5 27.4994545,5 C28.8806459,5 30,3.88173685 30,2.50054549 Z" id="Stroke-6"></path>
             <line x1="5.02913852" y1="14.184848" x2="25.0955454" y2="3.7503164" id="Stroke-8"></line>

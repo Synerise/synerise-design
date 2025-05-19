@@ -4,7 +4,7 @@
     <title>Analytics / 03 L / 08-hash-l</title>
     <desc>Created with Sketch.</desc>
     <g id="Analytics-/-03-L-/-08-hash-l" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round">
-        <g id="Group" transform="translate(8.000000, 8.000000)" stroke="#384350" stroke-width="1.5">
+        <g id="Group" transform="translate(8.000000, 8.000000)" stroke="currentColor" stroke-width="1.5">
             <line x1="0.715968001" y1="9.38521602" x2="32.0000001" y2="9.38521602" id="Path"></line>
             <line x1="-6.49639073e-15" y1="21.8988252" x2="31.2840321" y2="21.8988252" id="Path"></line>
             <line x1="7.9555383" y1="31.2840412" x2="10.6370195" y2="-3.24819536e-15" id="Path"></line>

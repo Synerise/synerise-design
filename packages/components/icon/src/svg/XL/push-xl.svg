@@ -4,7 +4,7 @@
     <title>Campaigns / 04 XL / 01-push-xl</title>
     <desc>Created with Sketch.</desc>
     <g id="Campaigns-/-04-XL-/-01-push-xl" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round">
-        <g id="Group" transform="translate(26.373250, 18.011070)" stroke="#384350" stroke-width="1.5">
+        <g id="Group" transform="translate(26.373250, 18.011070)" stroke="currentColor" stroke-width="1.5">
             <path d="M-5.54223334e-13,24.39193 L-5.54223334e-13,4.13365 C0.00667274218,1.8534678 1.8534678,0.00667274218 4.13365,-2.13162821e-14 L39.11985,-2.13162821e-14 C41.4000322,0.00667274218 43.2468273,1.8534678 43.2535,4.13365 L43.2535,55.84421 C43.2468273,58.1243922 41.4000322,59.9711873 39.11985,59.97786 L4.13365,59.97786 C1.8534678,59.9711873 0.00667274218,58.1243922 -5.54223334e-13,55.84421 L-5.54223334e-13,24.39193" id="Path"></path>
             <line x1="0.21919" y1="49.36697" x2="43.2535" y2="49.36697" id="Path"></line>
             <circle id="Oval" cx="21.51112" cy="54.53851" r="1.88437"></circle>

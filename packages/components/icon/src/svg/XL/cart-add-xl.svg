@@ -4,7 +4,7 @@
     <title>Ecommerce / 04 XL / 02-cart-add-xl</title>
     <desc>Created with Sketch.</desc>
     <g id="Ecommerce-/-04-XL-/-02-cart-add-xl" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round">
-        <g id="Group" transform="translate(17.000000, 13.000000)" stroke="#384350" stroke-width="1.5">
+        <g id="Group" transform="translate(17.000000, 13.000000)" stroke="currentColor" stroke-width="1.5">
             <circle id="Oval" cx="52.6693" cy="13.0038" r="13"></circle>
             <line x1="40.7357" y1="18.17533" x2="27.8354" y2="18.17533" id="Path"></line>
             <path d="M0.72093,11 L5.34806,11 C7.40944617,11 9.24950138,12.2925817 9.94866,14.23178 L19.51894,39.77606 C20.1769452,41.6011014 21.9086821,42.81759 23.84872,42.81759 L45.51165,42.81759 C47.553566,42.81759 49.3513766,41.4722616 49.92734,39.51326 L54.05491,26.32859" id="Path"></path>

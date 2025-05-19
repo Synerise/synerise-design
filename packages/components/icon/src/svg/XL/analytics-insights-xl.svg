@@ -8,15 +8,15 @@
     </defs>
     <g id="Analytics-/-04-XL-/-06-analytics-insights-xl" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" stroke-linecap="round">
         <g id="Group-2" transform="translate(61.000000, 52.000000) rotate(-180.000000) translate(-61.000000, -52.000000) translate(48.000000, 39.000000)">
-            <circle id="Oval" stroke="#384350" stroke-width="1.5" stroke-linejoin="round" cx="15.5" cy="15.5" r="10.5"></circle>
-            <path d="M20.5,11.5 L20.5,21.5 L20.5,11.5 Z" id="Rectangle" stroke="#384350" stroke-width="1.5" stroke-linejoin="round" stroke-dasharray="0,4"></path>
-            <path d="M10,11.5 L10,21.5 L10,11.5 Z" id="Rectangle-Copy" stroke="#384350" stroke-width="1.5" stroke-linejoin="round" stroke-dasharray="0,4"></path>
+            <circle id="Oval" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round" cx="15.5" cy="15.5" r="10.5"></circle>
+            <path d="M20.5,11.5 L20.5,21.5 L20.5,11.5 Z" id="Rectangle" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round" stroke-dasharray="0,4"></path>
+            <path d="M10,11.5 L10,21.5 L10,11.5 Z" id="Rectangle-Copy" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round" stroke-dasharray="0,4"></path>
             <g id="Path-2">
-                <use stroke="#979797" stroke-width="1" xlink:href="#path-1"></use>
-                <use stroke="#384350" stroke-width="1.5" xlink:href="#path-1"></use>
+                <use stroke="currentColor" stroke-width="1" xlink:href="#path-1"></use>
+                <use stroke="currentColor" stroke-width="1.5" xlink:href="#path-1"></use>
             </g>
         </g>
-        <g id="Group" transform="translate(21.000000, 22.000000)" stroke="#384350" stroke-width="1.5">
+        <g id="Group" transform="translate(21.000000, 22.000000)" stroke="currentColor" stroke-width="1.5">
             <path d="M43,43.5 C43,40.6081814 43,38.4393175 43,36.9934082" id="Path"></path>
             <path d="M43,17.8713379 C43,15.1246809 43,10.5809016 43,4.24 C43,2.45059741 44.2312169,1 45.75,1 L51.25,1 C52.7687831,1 54,2.45059741 54,4.24 L54,36.1429887" id="Path"></path>
             <path d="M21.6,43.5 L21.6,14.5571429 C21.6,12.7582725 22.8312169,11.3 24.35,11.3 L29.85,11.3 C31.3687831,11.3 32.6,12.7582725 32.6,14.5571429 C32.6,16.0578185 32.6,17.1671889 32.6,17.8852539" id="Path"></path>

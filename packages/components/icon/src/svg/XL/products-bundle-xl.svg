@@ -4,7 +4,7 @@
     <title>Ecommerce / 04 XL / 05-products-bundle-xl</title>
     <desc>Created with Sketch.</desc>
     <g id="Ecommerce-/-04-XL-/-05-products-bundle-xl" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" stroke-linecap="round">
-        <g id="Group" transform="translate(17.000000, 13.000000)" stroke="#384350" stroke-width="1.5">
+        <g id="Group" transform="translate(17.000000, 13.000000)" stroke="currentColor" stroke-width="1.5">
             <line x1="24.07831" y1="35.41607" x2="38.07831" y2="35.41607" id="Path" stroke-linejoin="round"></line>
             <line x1="31.07831" y1="28.41607" x2="31.07831" y2="42.41607" id="Path" stroke-linejoin="round"></line>
             <path d="M13.2436723,55.3404368 C17.9903499,59.4875084 24.201763,62 31,62 C34.6609151,62 38.1516557,61.2713964 41.3351239,59.951287" id="Path"></path>

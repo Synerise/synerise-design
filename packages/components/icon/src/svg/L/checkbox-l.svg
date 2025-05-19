@@ -4,7 +4,7 @@
     <title>Edit / 03 L / 21-checkbox-l</title>
     <desc>Created with Sketch.</desc>
     <g id="Edit-/-03-L-/-21-checkbox-l" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" stroke-linecap="round">
-        <g id="Group" transform="translate(10.000000, 10.000000)" stroke="#384350" stroke-width="1.5">
+        <g id="Group" transform="translate(10.000000, 10.000000)" stroke="currentColor" stroke-width="1.5">
             <path d="M28,14 L28,26 C28,27.1045695 27.1045695,28 26,28 L2,28 C0.8954305,28 0,27.1045695 0,26 L0,2 C0,0.8954305 0.8954305,0 2,0 L17.0485825,0" id="Path"></path>
             <polyline id="Path-3" stroke-linejoin="round" points="8.09716496 11.605262 14.3617519 18 27.097165 5"></polyline>
         </g>

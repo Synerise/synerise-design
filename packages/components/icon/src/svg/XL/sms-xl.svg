@@ -2,83 +2,19 @@
 <!-- Generator: Adobe Illustrator 26.5.3, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
 <svg version="1.1" id="Warstwa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
 	 viewBox="0 0 96 96" style="enable-background:new 0 0 96 96;" xml:space="preserve">
-<style type="text/css">
-	.st0{display:none;}
-	.st1{display:inline;fill:#FFFFFF;}
-	.st2{display:inline;fill:none;stroke:#009FE3;stroke-width:0.25;stroke-miterlimit:10;}
-	.st3{display:inline;}
-	.st4{fill:none;stroke:#FF00FF;stroke-width:0.25;stroke-miterlimit:10;}
-	.st5{display:inline;fill:none;stroke:#FF00FF;stroke-width:0.25;stroke-miterlimit:10;}
-	.st6{fill:#384350;}
-</style>
-<g id="canvas" class="st0">
-	<rect y="0" class="st1" width="96" height="96"/>
-</g>
-<g id="Grid" class="st0">
-	
-		<rect id="canvas_60x60px_00000111152783082192229120000003964229390204000942_" x="18" y="18" class="st2" width="60" height="60"/>
-	
-		<rect id="canvas_70x70px_00000183244687490382905020000009419427773426651529_" x="13" y="13" class="st2" width="70" height="70"/>
-</g>
-<g id="Additional_bottom_right" class="st0">
-	<g class="st3">
-		
-			<rect id="_x38_x8p_canvas_00000091711366136078605330000011064806125880357521_" x="57" y="57" class="st4" width="26" height="26"/>
-		
-			<rect id="_x38_x8p_canvas_00000139294784720249883320000005882155227694637204_" x="53" y="53" class="st4" width="34" height="34"/>
-	</g>
-</g>
-<g id="Additional_bottom_left" class="st0">
-	<g class="st3">
-		
-			<rect id="_x38_x8p_canvas_00000090978930020558554080000015676464128046426521_" x="13" y="57" class="st4" width="26" height="26"/>
-		
-			<rect id="_x38_x8p_canvas_00000152265672996154245960000005242161228213717917_" x="9" y="53" class="st4" width="34" height="34"/>
-	</g>
-</g>
-<g id="additional_up_left" class="st0">
-	<g class="st3">
-		
-			<rect id="_x38_x8p_canvas_00000009583235674106168990000010850106133992932745_" x="13" y="13" class="st4" width="26" height="26"/>
-		
-			<rect id="_x38_x8p_canvas_00000012442302031470476430000003778883912731983519_" x="9" y="9" class="st4" width="34" height="34"/>
-	</g>
-</g>
-<g id="additional_up_right" class="st0">
-	<g class="st3">
-		
-			<rect id="_x38_x8p_canvas_00000121246134085609860530000004901178965896469903_" x="56.7" y="13" class="st4" width="26" height="26"/>
-		
-			<rect id="_x38_x8p_canvas_00000006669986200217946330000007587929350614023050_" x="52.7" y="9" class="st4" width="34" height="34"/>
-	</g>
-</g>
-<g id="Additional_center" class="st0">
-	
-		<rect id="_x38_x8p_canvas_00000161601348970316314300000017050469702143473343_" x="31" y="31" class="st5" width="34" height="34"/>
-	
-		<rect id="_x38_x8p_canvas_00000121991470274908728300000000982718002631570058_" x="35" y="35" class="st5" width="26" height="26"/>
-</g>
-<g id="Vertical_rectangle" class="st0">
-	<path class="st2" d="M68,18H28c-2.2,0-4,1.8-4,4v52c0,2.2,1.8,4,4,4h40c2.2,0,4-1.8,4-4V22C72,19.8,70.2,18,68,18z"/>
-</g>
-<g id="Horizontal_rectangle" class="st0">
-	<path class="st2" d="M74,24H22c-2.2,0-4,1.8-4,4v40c0,2.2,1.8,4,4,4h52c2.2,0,4-1.8,4-4V28C78,25.8,76.2,24,74,24z"/>
-</g>
-<g id="square" class="st0">
-	<path class="st2" d="M71,75H25c-2.2,0-4-1.8-4-4V25c0-2.2,1.8-4,4-4h46c2.2,0,4,1.8,4,4v46C75,73.2,73.2,75,71,75z"/>
-</g>
-<g>
-	<path class="st6" d="M47.6,17c-17.1,0-30.9,13.9-30.9,31c0,17.1,13.9,30.9,30.9,31c17.1,0,30.9-13.9,31-31
+
+<g fill="currentColor">
+	<path d="M47.6,17c-17.1,0-30.9,13.9-30.9,31c0,17.1,13.9,30.9,30.9,31c17.1,0,30.9-13.9,31-31
 		C78.5,30.9,64.7,17.1,47.6,17z M77,48c0,8.1-3.3,15.5-8.6,20.8c-5.3,5.3-12.7,8.6-20.8,8.6c-8.1,0-15.5-3.3-20.8-8.6
 		c-5.3-5.3-8.6-12.7-8.6-20.8c0-8.1,3.3-15.5,8.6-20.8c5.3-5.3,12.7-8.6,20.8-8.6c8.1,0,15.5,3.3,20.8,8.6C73.8,32.5,77,39.9,77,48z
 		"/>
-	<path class="st6" d="M63.8,34.8c-0.6-0.5-1.4-0.8-2.3-0.8h-27c-0.9,0-1.7,0.3-2.3,0.8c-0.6,0.5-1.1,1.2-1.1,2.1v17v2.3v6.4
+	<path d="M63.8,34.8c-0.6-0.5-1.4-0.8-2.3-0.8h-27c-0.9,0-1.7,0.3-2.3,0.8c-0.6,0.5-1.1,1.2-1.1,2.1v17v2.3v6.4
 		c0,0.3,0.1,0.5,0.4,0.6c0.2,0.1,0.5,0.1,0.7,0l8.5-4.2h20.7c0.9,0,1.7-0.3,2.3-0.8c0.6-0.5,1.1-1.2,1.1-2.1V36.9
 		C64.9,36.1,64.5,35.3,63.8,34.8z M63.3,56.2c0,0.3-0.2,0.6-0.5,0.9c-0.3,0.3-0.8,0.4-1.4,0.4H40.6c-0.1,0-0.2,0-0.3,0.1l-7.6,3.8
 		v-5.2v-2.3v-17c0-0.3,0.2-0.6,0.5-0.9c0.3-0.3,0.8-0.4,1.4-0.4h27c0.6,0,1.1,0.2,1.4,0.4c0.3,0.3,0.5,0.6,0.5,0.9V56.2z"/>
-	<path class="st6" d="M59,43.1H39.5c-0.4,0-0.8,0.3-0.8,0.8c0,0.4,0.3,0.8,0.8,0.8H59c0.4,0,0.8-0.3,0.8-0.8
+	<path d="M59,43.1H39.5c-0.4,0-0.8,0.3-0.8,0.8c0,0.4,0.3,0.8,0.8,0.8H59c0.4,0,0.8-0.3,0.8-0.8
 		C59.8,43.5,59.4,43.1,59,43.1z"/>
-	<path class="st6" d="M46.8,48.6h-7.3c-0.4,0-0.8,0.3-0.8,0.8c0,0.4,0.3,0.8,0.8,0.8h7.3c0.4,0,0.8-0.3,0.8-0.8
+	<path d="M46.8,48.6h-7.3c-0.4,0-0.8,0.3-0.8,0.8c0,0.4,0.3,0.8,0.8,0.8h7.3c0.4,0,0.8-0.3,0.8-0.8
 		C47.5,49,47.2,48.6,46.8,48.6z"/>
 </g>
 </svg>

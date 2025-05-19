@@ -9,26 +9,26 @@
     </defs>
     <g id="Information-/-04-XL-/-02-bulb-edit-xl" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
         <g id="Group-2" transform="translate(15.548692, 10.674307)">
-            <path d="M24.4513081,33.5136929 C28.0763081,33.5136929 31.0143081,36.4516929 31.0143081,40.0766929 L31.0143081,50.5136929" id="Stroke-6" stroke="#384350" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
-            <path d="M42.8341081,33.5136929 C39.2091081,33.5136929 36.2711081,36.4516929 36.2711081,40.0766929 L36.2711081,50.5136929" id="Stroke-8" stroke="#384350" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
-            <line x1="13.421284" y1="12.5894429" x2="9.90520023" y2="8.58944289" id="Stroke-20" stroke="#384350" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></line>
-            <line x1="55.8056939" y1="9.58944289" x2="52.2896102" y2="13.5894429" id="Stroke-18" stroke="#384350" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></line>
-            <line x1="65.1856085" y1="32.8394429" x2="60.2131151" y2="32.8394429" id="Stroke-18" stroke="#384350" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></line>
-            <line x1="5.24500113" y1="32.8394429" x2="0.272507777" y2="32.8394429" id="Stroke-20" stroke="#384350" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></line>
-            <line x1="32.7284643" y1="0.589442892" x2="32.7284643" y2="6.58944289" id="Stroke-16" stroke="#384350" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></line>
-            <line x1="27.3879255" y1="60.3106717" x2="39.3879255" y2="60.3106717" id="Stroke-1" stroke="#384350" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></line>
-            <line x1="29.3879255" y1="65.3106717" x2="37.3879255" y2="65.3106717" id="Stroke-1-Copy-2" stroke="#384350" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></line>
+            <path d="M24.4513081,33.5136929 C28.0763081,33.5136929 31.0143081,36.4516929 31.0143081,40.0766929 L31.0143081,50.5136929" id="Stroke-6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+            <path d="M42.8341081,33.5136929 C39.2091081,33.5136929 36.2711081,36.4516929 36.2711081,40.0766929 L36.2711081,50.5136929" id="Stroke-8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+            <line x1="13.421284" y1="12.5894429" x2="9.90520023" y2="8.58944289" id="Stroke-20" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></line>
+            <line x1="55.8056939" y1="9.58944289" x2="52.2896102" y2="13.5894429" id="Stroke-18" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></line>
+            <line x1="65.1856085" y1="32.8394429" x2="60.2131151" y2="32.8394429" id="Stroke-18" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></line>
+            <line x1="5.24500113" y1="32.8394429" x2="0.272507777" y2="32.8394429" id="Stroke-20" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></line>
+            <line x1="32.7284643" y1="0.589442892" x2="32.7284643" y2="6.58944289" id="Stroke-16" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></line>
+            <line x1="27.3879255" y1="60.3106717" x2="39.3879255" y2="60.3106717" id="Stroke-1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></line>
+            <line x1="29.3879255" y1="65.3106717" x2="37.3879255" y2="65.3106717" id="Stroke-1-Copy-2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></line>
             <g id="Path" stroke-linecap="round">
                 <use stroke="#000000" stroke-width="1" xlink:href="#path-1"></use>
-                <use stroke="#384350" stroke-width="1.5" xlink:href="#path-1"></use>
+                <use stroke="currentColor" stroke-width="1.5" xlink:href="#path-1"></use>
             </g>
-            <path d="M65.0731081,56.7634929 C65.0731081,49.5834929 59.2531081,43.7634929 52.0731081,43.7634929 C44.8931081,43.7634929 39.0731081,49.5834929 39.0731081,56.7634929 C39.0731081,63.9434929 44.8931081,69.7634929 52.0731081,69.7634929 C59.2531081,69.7634929 65.0731081,63.9434929 65.0731081,56.7634929 Z" id="Stroke-34" stroke="#384350" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+            <path d="M65.0731081,56.7634929 C65.0731081,49.5834929 59.2531081,43.7634929 52.0731081,43.7634929 C44.8931081,43.7634929 39.0731081,49.5834929 39.0731081,56.7634929 C39.0731081,63.9434929 44.8931081,69.7634929 52.0731081,69.7634929 C59.2531081,69.7634929 65.0731081,63.9434929 65.0731081,56.7634929 Z" id="Stroke-34" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
             <g id="Path-9">
                 <use stroke="#979797" stroke-width="1" xlink:href="#path-2"></use>
-                <use stroke="#384350" stroke-width="1.5" xlink:href="#path-2"></use>
+                <use stroke="currentColor" stroke-width="1.5" xlink:href="#path-2"></use>
             </g>
-            <path d="M54.0898722,51.9700929 L55.0048722,51.0550929 L47.3098722,58.7490929 C47.2048722,58.8540929 47.1318722,58.9870929 47.0988722,59.1330929 L46.4578722,62.0470929 C46.4148722,62.2430929 46.5898722,62.4180929 46.7858722,62.3750929 L49.6998722,61.7320929 C49.8458722,61.7010929 49.9778722,61.6280929 50.0838722,61.5220929 L56.8628722,54.7430929" id="Path" stroke="#384350" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
-            <path d="M56.8629722,54.7431929 L57.7779722,53.8281929 C57.8539722,53.7521929 57.9119722,53.6641929 57.9499722,53.5701929 C57.9679722,53.5231929 57.9829722,53.4741929 57.9929722,53.4261929 C58.0309722,53.2281929 57.9929722,53.0191929 57.8789722,52.8471929 C57.8489722,52.8041929 57.8159722,52.7631929 57.7779722,52.7241929 L56.1079722,51.0551929 C55.8029722,50.7491929 55.3089722,50.7491929 55.0049722,51.0551929 L54.0899722,51.9701929" id="Path" stroke="#384350" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+            <path d="M54.0898722,51.9700929 L55.0048722,51.0550929 L47.3098722,58.7490929 C47.2048722,58.8540929 47.1318722,58.9870929 47.0988722,59.1330929 L46.4578722,62.0470929 C46.4148722,62.2430929 46.5898722,62.4180929 46.7858722,62.3750929 L49.6998722,61.7320929 C49.8458722,61.7010929 49.9778722,61.6280929 50.0838722,61.5220929 L56.8628722,54.7430929" id="Path" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+            <path d="M56.8629722,54.7431929 L57.7779722,53.8281929 C57.8539722,53.7521929 57.9119722,53.6641929 57.9499722,53.5701929 C57.9679722,53.5231929 57.9829722,53.4741929 57.9929722,53.4261929 C58.0309722,53.2281929 57.9929722,53.0191929 57.8789722,52.8471929 C57.8489722,52.8041929 57.8159722,52.7631929 57.7779722,52.7241929 L56.1079722,51.0551929 C55.8029722,50.7491929 55.3089722,50.7491929 55.0049722,51.0551929 L54.0899722,51.9701929" id="Path" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
         </g>
     </g>
 </svg>

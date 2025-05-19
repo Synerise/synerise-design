@@ -4,7 +4,7 @@
     <title>Actions / 04 XL / 01-add-xl</title>
     <desc>Created with Sketch.</desc>
     <g id="Actions-/-04-XL-/-01-add-xl" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round">
-        <g id="Group" transform="translate(18.000000, 18.000000)" stroke="#384350" stroke-width="1.5">
+        <g id="Group" transform="translate(18.000000, 18.000000)" stroke="currentColor" stroke-width="1.5">
             <path d="M55.0704038,46.4825984 C58.1865674,41.7524166 60,36.0879833 60,30 C60,13.4314575 46.5685425,0 30,0 C13.4314575,0 0,13.4314575 0,30 C0,46.5685425 13.4314575,60 30,60 C34.5135668,60 38.7943259,59.0032316 42.6341607,57.2178112" id="Path"></path>
             <line x1="19.1200753" y1="30.3713073" x2="40.586742" y2="30.3713073" id="Path"></line>
             <line x1="29.8534087" y1="19.637974" x2="29.8534087" y2="41.1046407" id="Path"></line>

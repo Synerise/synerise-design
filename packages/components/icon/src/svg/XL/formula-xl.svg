@@ -4,7 +4,7 @@
     <title>Analytics / 04 XL / 02-formula-xl</title>
     <desc>Created with Sketch.</desc>
     <g id="Analytics-/-04-XL-/-02-formula-xl" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" stroke-linecap="round">
-        <g id="Group" transform="translate(21.000000, 21.000000)" stroke="#384350" stroke-width="1.5">
+        <g id="Group" transform="translate(21.000000, 21.000000)" stroke="currentColor" stroke-width="1.5">
             <rect id="Rectangle" stroke-linejoin="round" x="0" y="0" width="54" height="54" rx="4.64101"></rect>
             <line x1="24.77291" y1="37.29838" x2="18" y2="44.07129" id="Path" stroke-linejoin="round"></line>
             <line x1="18" y1="37.29838" x2="24.77291" y2="44.07129" id="Path" stroke-linejoin="round"></line>

@@ -4,6 +4,7 @@ import { useDropzone } from 'react-dropzone';
 import Tooltip from '@synerise/ds-tooltip';
 import Icon, { InfoFillS, Add3M, FileTypePictureL } from '@synerise/ds-icon';
 import Button from '@synerise/ds-button';
+import { useTheme } from '@synerise/ds-core';
 
 import FileViewAvatar from './FileViewAvatar/FileViewAvatar';
 
@@ -40,6 +41,8 @@ const AvatarUploader = ({
   texts,
 }: FileUploaderProps) => {
   const [uploadSuccess, setUploadSuccess] = React.useState(true);
+
+  const theme = useTheme();
 
   const readFilesContent = React.useCallback(
     (addedFiles: File[]) => {
@@ -95,7 +98,7 @@ const AvatarUploader = ({
           {tooltip && (
             <Tooltip trigger="hover" placement="top" title={tooltip}>
               <span data-testid="tooltip-info">
-                <Icon component={<InfoFillS />} size={24} />
+                <Icon component={<InfoFillS />} color={theme.palette['grey-400']} size={24} />
               </span>
             </Tooltip>
           )}

@@ -8,21 +8,21 @@
     </defs>
     <g id="Devices-/-04-XL-/-01-laptop-target-xl" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
         <g id="Group" transform="translate(17.000000, 24.000000)">
-            <path d="M52.7499,29.2767 C45.5699,29.2767 39.7499,35.0967 39.7499,42.2767 C39.7499,49.4567 45.5699,55.2767 52.7499,55.2767 C59.9299,55.2767 65.7499,49.4567 65.7499,42.2767 C65.7499,35.0967 59.9299,29.2767 52.7499,29.2767 Z" id="Stroke-3" stroke="#384350" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
-            <path d="M52.7499,34.5257 C48.4699,34.5257 44.9999,37.9957 44.9999,42.2767 C44.9999,46.5567 48.4699,50.0267 52.7499,50.0267 C57.0299,50.0267 60.4999,46.5567 60.4999,42.2767 C60.4999,37.9957 57.0299,34.5257 52.7499,34.5257 Z" id="Stroke-7" stroke="#384350" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
-            <path d="M52.7499,39.8587 C51.4149,39.8587 50.3319,40.9407 50.3319,42.2767 C50.3319,43.6117 51.4149,44.6937 52.7499,44.6937 C54.0849,44.6937 55.1679,43.6117 55.1679,42.2767 C55.1679,40.9407 54.0849,39.8587 52.7499,39.8587 Z" id="Stroke-11" stroke="#384350" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
-            <polyline id="Stroke-13" stroke="#384350" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" points="55.1679 40.2503 63.7709 31.6473 63.7709 28.8013"></polyline>
-            <line x1="63.7704" y1="31.6478" x2="66.3324" y2="31.6478" id="Stroke-15" stroke="#384350" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></line>
-            <path d="M6.3368,36.9915 L6.3368,5.1735 C6.3368,2.7305 8.3168,0.7495 10.7608,0.7495 L56.3258,0.7495 C58.7698,0.7495 60.7498,2.7305 60.7498,5.1735 L60.7498,31.6475" id="Stroke-17" stroke="#384350" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
-            <path d="M39.7499,44.178 L2.9619,44.178 C1.7399,44.178 0.7499,43.188 0.7499,41.966 L0.7499,37.729 C0.7499,37.346 1.0609,37.035 1.4429,37.035 L40.7869,37.035" id="Stroke-19" stroke="#384350" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+            <path d="M52.7499,29.2767 C45.5699,29.2767 39.7499,35.0967 39.7499,42.2767 C39.7499,49.4567 45.5699,55.2767 52.7499,55.2767 C59.9299,55.2767 65.7499,49.4567 65.7499,42.2767 C65.7499,35.0967 59.9299,29.2767 52.7499,29.2767 Z" id="Stroke-3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+            <path d="M52.7499,34.5257 C48.4699,34.5257 44.9999,37.9957 44.9999,42.2767 C44.9999,46.5567 48.4699,50.0267 52.7499,50.0267 C57.0299,50.0267 60.4999,46.5567 60.4999,42.2767 C60.4999,37.9957 57.0299,34.5257 52.7499,34.5257 Z" id="Stroke-7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+            <path d="M52.7499,39.8587 C51.4149,39.8587 50.3319,40.9407 50.3319,42.2767 C50.3319,43.6117 51.4149,44.6937 52.7499,44.6937 C54.0849,44.6937 55.1679,43.6117 55.1679,42.2767 C55.1679,40.9407 54.0849,39.8587 52.7499,39.8587 Z" id="Stroke-11" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+            <polyline id="Stroke-13" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" points="55.1679 40.2503 63.7709 31.6473 63.7709 28.8013"></polyline>
+            <line x1="63.7704" y1="31.6478" x2="66.3324" y2="31.6478" id="Stroke-15" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></line>
+            <path d="M6.3368,36.9915 L6.3368,5.1735 C6.3368,2.7305 8.3168,0.7495 10.7608,0.7495 L56.3258,0.7495 C58.7698,0.7495 60.7498,2.7305 60.7498,5.1735 L60.7498,31.6475" id="Stroke-17" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+            <path d="M39.7499,44.178 L2.9619,44.178 C1.7399,44.178 0.7499,43.188 0.7499,41.966 L0.7499,37.729 C0.7499,37.346 1.0609,37.035 1.4429,37.035 L40.7869,37.035" id="Stroke-19" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
             <mask id="mask-2" fill="white">
                 <use xlink:href="#path-1"></use>
             </mask>
             <g id="Clip-22"></g>
-            <polygon id="Stroke-21" stroke="#384350" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" points="16.162 20.8312 30.603 20.8312 30.603 11.0862 16.162 11.0862"></polygon>
-            <line x1="16.162" y1="25.6702" x2="30.603" y2="25.6702" id="Stroke-23" stroke="#384350" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></line>
-            <line x1="16.162" y1="29.8323" x2="25.111" y2="29.8323" id="Stroke-24" stroke="#384350" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></line>
-            <polygon id="Stroke-25" stroke="#384350" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" points="49.2099 11.0862 34.7689 11.0862 34.7689 12.9042 34.7689 16.8762 34.7689 20.8312 41.6189 16.8762 49.2099 16.8762"></polygon>
+            <polygon id="Stroke-21" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" points="16.162 20.8312 30.603 20.8312 30.603 11.0862 16.162 11.0862"></polygon>
+            <line x1="16.162" y1="25.6702" x2="30.603" y2="25.6702" id="Stroke-23" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></line>
+            <line x1="16.162" y1="29.8323" x2="25.111" y2="29.8323" id="Stroke-24" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></line>
+            <polygon id="Stroke-25" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" points="49.2099 11.0862 34.7689 11.0862 34.7689 12.9042 34.7689 16.8762 34.7689 20.8312 41.6189 16.8762 49.2099 16.8762"></polygon>
         </g>
     </g>
 </svg>

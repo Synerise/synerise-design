@@ -5,11 +5,11 @@
     <desc>Created with Sketch.</desc>
     <g id="Devices-/-03-L-/-02-mobile-link-l" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
         <g id="Group" transform="translate(12.000000, 7.000000)">
-            <path d="M24,20.68543 L24,32 C24,33.1045695 23.1045695,34 22,34 L2,34 C0.8954305,34 0,33.1045695 0,32 L0,2 C0,0.8954305 0.8954305,0 2,0 L22,0 C23.1045695,0 24,0.8954305 24,2 L24,13.31457" id="Path" stroke="#384350" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
-            <line x1="15.2824" y1="4.75" x2="7.86315" y2="4.75" id="Path" stroke="#384350" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></line>
-            <path d="M3.75,5.5 C4.16421356,5.5 4.5,5.16421356 4.5,4.75 C4.5,4.33578644 4.16421356,4 3.75,4 C3.33578644,4 3,4.33578644 3,4.75 C3,5.16421356 3.33578644,5.5 3.75,5.5 Z" id="Oval" fill="#384350" fill-rule="nonzero"></path>
-            <path d="M19.80871,17 L19.80871,17 C19.80871,19.03541 18.43604,20.68543 16.74277,20.68543 L11.81867,20.68543 C10.1254,20.68543 8.75273,19.03543 8.75273,17 L8.75273,17 C8.75273,14.96459 10.1254,13.31457 11.81867,13.31457 L15.38,13.31457" id="Path" stroke="#384350" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
-            <path d="M16.944,17 L16.944,17 C16.944,14.96459 18.31667,13.31457 20.00994,13.31457 L24.93404,13.31457 C26.62733,13.31457 28,14.96459 28,17 L28,17 C28,19.03541 26.62733,20.68543 24.93406,20.68543 L21.37269,20.68543" id="Path" stroke="#384350" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+            <path d="M24,20.68543 L24,32 C24,33.1045695 23.1045695,34 22,34 L2,34 C0.8954305,34 0,33.1045695 0,32 L0,2 C0,0.8954305 0.8954305,0 2,0 L22,0 C23.1045695,0 24,0.8954305 24,2 L24,13.31457" id="Path" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+            <line x1="15.2824" y1="4.75" x2="7.86315" y2="4.75" id="Path" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></line>
+            <path d="M3.75,5.5 C4.16421356,5.5 4.5,5.16421356 4.5,4.75 C4.5,4.33578644 4.16421356,4 3.75,4 C3.33578644,4 3,4.33578644 3,4.75 C3,5.16421356 3.33578644,5.5 3.75,5.5 Z" id="Oval" fill="currentColor" fill-rule="nonzero"></path>
+            <path d="M19.80871,17 L19.80871,17 C19.80871,19.03541 18.43604,20.68543 16.74277,20.68543 L11.81867,20.68543 C10.1254,20.68543 8.75273,19.03543 8.75273,17 L8.75273,17 C8.75273,14.96459 10.1254,13.31457 11.81867,13.31457 L15.38,13.31457" id="Path" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+            <path d="M16.944,17 L16.944,17 C16.944,14.96459 18.31667,13.31457 20.00994,13.31457 L24.93404,13.31457 C26.62733,13.31457 28,14.96459 28,17 L28,17 C28,19.03541 26.62733,20.68543 24.93406,20.68543 L21.37269,20.68543" id="Path" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
         </g>
     </g>
 </svg>

@@ -4,7 +4,7 @@
     <title>Devices / 03 L / 08-mobile-layout-4-l</title>
     <desc>Created with Sketch.</desc>
     <g id="Devices-/-03-L-/-08-mobile-layout-4-l" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round">
-        <g id="Group" transform="translate(12.000000, 7.000000)" stroke="#384350" stroke-width="1.5">
+        <g id="Group" transform="translate(12.000000, 7.000000)" stroke="currentColor" stroke-width="1.5">
             <path d="M2,0 L22,0 C23.1045695,-2.02906125e-16 24,0.8954305 24,2 L24,32 C24,33.1045695 23.1045695,34 22,34 L2,34 C0.8954305,34 1.3527075e-16,33.1045695 0,32 L0,2 C-1.3527075e-16,0.8954305 0.8954305,2.02906125e-16 2,0 Z" id="Rectangle"></path>
             <line x1="4.51468" y1="18.10628" x2="19.48532" y2="18.10628" id="Path"></line>
             <line x1="4.51468" y1="14.10628" x2="19.48532" y2="14.10628" id="Path"></line>

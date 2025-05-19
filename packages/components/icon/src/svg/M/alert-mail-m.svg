@@ -1,0 +1,19 @@
+<svg fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 82 82">
+  <title>Asset 2</title>
+  <g id="Layer_2" data-name="Layer 2">
+    <g id="Spaces">
+      <g id="R">
+        <g id="_7" data-name="7">
+          <rect width="82" height="82" style="fill: #fff;opacity: 0"/>
+          <g>
+            <path d="M69.58822,57.21316A11.03576,11.03576,0,0,1,58.55246,68.24892H29.12376A11.03576,11.03576,0,0,1,18.088,57.21316V37.73367a7.35716,7.35716,0,0,1,3.70781-6.38828l16.56826-9.46476a11.03575,11.03575,0,0,1,10.94808,0L65.8804,31.34539a7.35715,7.35715,0,0,1,3.70782,6.38828Z" style="fill: #d9eeff"/>
+            <path d="M66.912,53.537A11.03576,11.03576,0,0,1,55.87624,64.57271H26.44755A11.03576,11.03576,0,0,1,15.41179,53.537V34.05746a7.35719,7.35719,0,0,1,3.70781-6.38829l16.56825-9.46476a11.03577,11.03577,0,0,1,10.94809,0l16.56825,9.46476A7.35719,7.35719,0,0,1,66.912,34.05746Z" style="fill: none;stroke: #0b68ff;stroke-linecap: round;stroke-linejoin: round;stroke-width: 2px"/>
+            <path d="M22.1209,54.8135,36.4332,43.04784a7.09173,7.09173,0,0,1,9.45738,0L60.20289,54.8135" style="fill: none;stroke: #0b68ff;stroke-linecap: round;stroke-linejoin: round;stroke-width: 2px"/>
+            <line x1="33.17735" y1="45.72437" x2="22.72637" y2="37.11795" style="fill: none;stroke: #0b68ff;stroke-linecap: round;stroke-linejoin: round;stroke-width: 2px"/>
+            <line x1="49.7519" y1="45.72437" x2="60.20289" y2="37.11795" style="fill: none;stroke: #0b68ff;stroke-linecap: round;stroke-linejoin: round;stroke-width: 2px"/>
+          </g>
+        </g>
+      </g>
+    </g>
+  </g>
+</svg>

@@ -4,12 +4,12 @@
     <title>Internet / 04 XL / 04-browser-landing-xl</title>
     <desc>Created with Sketch.</desc>
     <g id="Internet-/-04-XL-/-04-browser-landing-xl" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" stroke-linecap="round">
-        <circle id="Oval" stroke="#384350" stroke-width="1.5" stroke-linejoin="round" cx="26" cy="32" r="2"></circle>
-        <circle id="Oval" stroke="#384350" stroke-width="1.5" stroke-linejoin="round" cx="40" cy="32" r="2"></circle>
-        <circle id="Oval" stroke="#384350" stroke-width="1.5" stroke-linejoin="round" cx="33" cy="32" r="2"></circle>
-        <path d="M18,47.9199219 C18,51.5515408 18,58.9115668 18,68 C18,70.209139 19.790861,72 22,72 L74,72 C76.209139,72 78,70.209139 78,68 L78,49.197 L78,28 C78,25.790861 76.209139,24 74,24 C54.4600694,24 31.7699652,24 22,24 C19.790861,24 18,25.790861 18,28 C18,31.2886285 18,33.7550998 18,35.3994141" id="Path" stroke="#384350" stroke-width="1.5" stroke-linejoin="round"></path>
-        <path d="M37,65 C60.3333333,65 72,65 72,65 C72,65 62.3148437,57.6666667 42.9445312,43 L42.9445312,54.641413 L37,65 Z" id="Path-6" stroke="#384350" stroke-width="1.5" stroke-linejoin="round"></path>
-        <polyline id="Path-18" stroke="#384350" stroke-width="1.5" points="43 55 49.8823414 57.4532533 72 65.0000001"></polyline>
-        <path d="M38,52.9628296 C27.7700067,49.6298938 19.10334,43.9632272 12,35.9628296" id="Path-20" stroke="#384350" stroke-width="1.5" stroke-linejoin="round" stroke-dasharray="2,3"></path>
+        <circle id="Oval" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round" cx="26" cy="32" r="2"></circle>
+        <circle id="Oval" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round" cx="40" cy="32" r="2"></circle>
+        <circle id="Oval" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round" cx="33" cy="32" r="2"></circle>
+        <path d="M18,47.9199219 C18,51.5515408 18,58.9115668 18,68 C18,70.209139 19.790861,72 22,72 L74,72 C76.209139,72 78,70.209139 78,68 L78,49.197 L78,28 C78,25.790861 76.209139,24 74,24 C54.4600694,24 31.7699652,24 22,24 C19.790861,24 18,25.790861 18,28 C18,31.2886285 18,33.7550998 18,35.3994141" id="Path" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"></path>
+        <path d="M37,65 C60.3333333,65 72,65 72,65 C72,65 62.3148437,57.6666667 42.9445312,43 L42.9445312,54.641413 L37,65 Z" id="Path-6" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"></path>
+        <polyline id="Path-18" stroke="currentColor" stroke-width="1.5" points="43 55 49.8823414 57.4532533 72 65.0000001"></polyline>
+        <path d="M38,52.9628296 C27.7700067,49.6298938 19.10334,43.9632272 12,35.9628296" id="Path-20" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round" stroke-dasharray="2,3"></path>
     </g>
 </svg>

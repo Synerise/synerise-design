@@ -81,7 +81,7 @@ export const DropAreaButton = styled.button<{
   `};
 
   ${IconContainer} {
-    fill: ${props => props.theme.palette['grey-700']};
+    color: ${props => props.theme.palette['grey-700']};
   }
 
   ${props =>
@@ -110,7 +110,6 @@ export const DropAreaButton = styled.button<{
     }
 
     ${IconContainer} {
-      fill: ${props => props.theme.palette['grey-700']};
       color: ${props => props.theme.palette['grey-700']};
     }
   }
@@ -153,7 +152,7 @@ export const DropAreaButton = styled.button<{
       }
 
       ${IconContainer} {
-        fill: ${props.theme.palette['blue-500']} !important;
+        color: ${props.theme.palette['blue-500']} !important;
       }
     `}
 `;
@@ -174,7 +173,7 @@ export const Label = styled(TypographyLabel)`
     align-items: center;
 
     ${IconContainer} {
-      fill: ${props => props.theme.palette['grey-400']};
+      color: ${props => props.theme.palette['grey-400']};
     }
   }
 `;

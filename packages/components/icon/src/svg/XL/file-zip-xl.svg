@@ -4,7 +4,7 @@
     <title>Files / 04 XL / 02-file-zip-xl</title>
     <desc>Created with Sketch.</desc>
     <g id="Files-/-04-XL-/-02-file-zip-xl" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round">
-        <g id="Group" transform="translate(23.974140, 18.000000)" stroke="#384350" stroke-width="1.5">
+        <g id="Group" transform="translate(23.974140, 18.000000)" stroke="currentColor" stroke-width="1.5">
             <path d="M44.05172,60 L4,60 C1.790861,60 -2.66453526e-13,58.209139 -2.66453526e-13,56 L-2.66453526e-13,4 C-2.66453526e-13,1.790861 1.790861,0 4,0 L29.25986,0 C30.3207231,0 31.3381358,0.421427286 32.08828,1.17157 L46.88015,15.96345 C47.6302952,16.7135967 48.05172,17.7310135 48.05172,18.79188 L48.05172,56 C48.05172,58.209139 46.260859,60 44.05172,60 Z" id="Path"></path>
             <polyline id="Path" points="13.57586 32.759 20.57086 32.759 13.57586 41.237 20.57086 41.237"></polyline>
             <path d="M27.62049,32.75877 L32.73849,32.75877 C33.9091115,32.7613107 34.8567426,33.7110007 34.8567426,34.881625 C34.8567426,36.0522493 33.9091115,37.0019393 32.73849,37.00448 L27.62049,37.00448" id="Path"></path>

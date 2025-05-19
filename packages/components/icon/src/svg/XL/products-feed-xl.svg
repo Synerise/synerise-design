@@ -4,7 +4,7 @@
     <title>Ecommerce / 04 XL / 07-products-feed-xl</title>
     <desc>Created with Sketch.</desc>
     <g id="Ecommerce-/-04-XL-/-07-products-feed-xl" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round">
-        <g id="Group" transform="translate(23.000000, 22.000000)" stroke="#384350" stroke-width="1.5">
+        <g id="Group" transform="translate(23.000000, 22.000000)" stroke="currentColor" stroke-width="1.5">
             <line x1="48.13948" y1="3.5" x2="18" y2="3.5" id="Path"></line>
             <line x1="32.61226" y1="8.74439" x2="18.02324" y2="8.74439" id="Path"></line>
             <line x1="48.13948" y1="23.5" x2="18" y2="23.5" id="Path-Copy"></line>

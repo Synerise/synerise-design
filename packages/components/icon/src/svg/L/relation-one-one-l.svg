@@ -2,7 +2,7 @@
 <svg width="48px" height="48px" viewBox="0 0 48 48" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
     <title>Database / 03 L / 01-relation-one-one-l</title>
     <g id="Database-/-03-L-/-01-relation-one-one-l" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-        <g id="Group-24" transform="translate(9.000000, 21.500000)" stroke="#384350" stroke-width="1.5">
+        <g id="Group-24" transform="translate(9.000000, 21.500000)" stroke="currentColor" stroke-width="1.5">
             <path d="M30,2.49945451 C30,1.11826315 28.8806459,0 27.4994545,0 C26.1182631,0 25,1.11826315 25,2.49945451 C25,3.88064587 26.1182631,5 27.4994545,5 C28.8806459,5 30,3.88064587 30,2.49945451 Z" id="Stroke-4" stroke-linecap="round" stroke-linejoin="round"></path>
             <path d="M5,2.49945451 C5,1.11826315 3.88173685,0 2.50054549,0 C1.11935413,0 0,1.11826315 0,2.49945451 C0,3.88064587 1.11935413,5 2.50054549,5 C3.88173685,5 5,3.88064587 5,2.49945451 Z" id="Stroke-12" stroke-linecap="round" stroke-linejoin="round"></path>
             <line x1="5.02913852" y1="2.5" x2="25.2043786" y2="2.5" id="Path"></line>

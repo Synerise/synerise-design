@@ -4,7 +4,7 @@
     <title>Finance / 04 XL / 01-card-visa-xl</title>
     <desc>Created with Sketch.</desc>
     <g id="Finance-/-04-XL-/-01-card-visa-xl" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-        <g id="Group" transform="translate(18.000000, 24.000000)" stroke="#384350" stroke-width="1.5">
+        <g id="Group" transform="translate(18.000000, 24.000000)" stroke="currentColor" stroke-width="1.5">
             <rect id="Rectangle" stroke-linecap="round" stroke-linejoin="round" x="1.87500291e-08" y="2.4999963e-08" width="60.0000001" height="48" rx="4"></rect>
             <rect id="Rectangle" stroke-linecap="round" stroke-linejoin="round" x="1.87500433e-08" y="8.00000005" width="60.0000001" height="10"></rect>
             <polyline id="Path" stroke-linecap="round" stroke-linejoin="round" points="37.9715554 32.3580694 39.9715554 30.5578287 39.9715554 36.5578287"></polyline>

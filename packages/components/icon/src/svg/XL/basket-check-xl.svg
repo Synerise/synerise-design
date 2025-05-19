@@ -9,22 +9,22 @@
     </defs>
     <g id="Ecommerce-/-04-XL-/-01-basket-check-xl" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" stroke-linecap="round">
         <g id="Group" transform="translate(17.801185, 21.000000)">
-            <line x1="8.32465891" y1="15.9199762" x2="15.2526507" y2="-4.4408921e-15" id="Path" stroke="#384350" stroke-width="1.5" stroke-linejoin="round"></line>
-            <line x1="51.5043962" y1="15.9199762" x2="44.5764044" y2="-4.4408921e-15" id="Path" stroke="#384350" stroke-width="1.5" stroke-linejoin="round"></line>
-            <line x1="29.9540611" y1="30.4077487" x2="29.9540611" y2="44.765505" id="Path" stroke="#384350" stroke-width="1.5" stroke-linejoin="round"></line>
-            <line x1="47.194724" y1="30.4077487" x2="46.1526563" y2="37.1923285" id="Path" stroke="#384350" stroke-width="1.5" stroke-linejoin="round"></line>
-            <line x1="12.5579369" y1="30.4077487" x2="14.7632089" y2="44.765505" id="Path" stroke="#384350" stroke-width="1.5" stroke-linejoin="round"></line>
-            <rect id="Rectangle" stroke="#384350" stroke-width="1.5" stroke-linejoin="round" x="2.13162821e-14" y="15.92505" width="60.1544624" height="8.24527125" rx="3.66456"></rect>
-            <circle id="Oval" stroke="#384350" stroke-width="1.5" stroke-linejoin="round" cx="51.8681149" cy="49" r="13"></circle>
+            <line x1="8.32465891" y1="15.9199762" x2="15.2526507" y2="-4.4408921e-15" id="Path" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"></line>
+            <line x1="51.5043962" y1="15.9199762" x2="44.5764044" y2="-4.4408921e-15" id="Path" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"></line>
+            <line x1="29.9540611" y1="30.4077487" x2="29.9540611" y2="44.765505" id="Path" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"></line>
+            <line x1="47.194724" y1="30.4077487" x2="46.1526563" y2="37.1923285" id="Path" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"></line>
+            <line x1="12.5579369" y1="30.4077487" x2="14.7632089" y2="44.765505" id="Path" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"></line>
+            <rect id="Rectangle" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round" x="2.13162821e-14" y="15.92505" width="60.1544624" height="8.24527125" rx="3.66456"></rect>
+            <circle id="Oval" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round" cx="51.8681149" cy="49" r="13"></circle>
             <g id="Path">
                 <use stroke="#979797" stroke-width="1" xlink:href="#path-1"></use>
-                <use stroke="#384350" stroke-width="1.5" xlink:href="#path-1"></use>
+                <use stroke="currentColor" stroke-width="1.5" xlink:href="#path-1"></use>
             </g>
             <g id="Path">
                 <use stroke="#979797" stroke-width="1" xlink:href="#path-2"></use>
-                <use stroke="#384350" stroke-width="1.5" xlink:href="#path-2"></use>
+                <use stroke="currentColor" stroke-width="1.5" xlink:href="#path-2"></use>
             </g>
-            <polyline id="Path" stroke="#384350" stroke-width="1.5" stroke-linejoin="round" points="47.5618149 49.999 50.7548149 53.192 58.1748149 45.772"></polyline>
+            <polyline id="Path" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round" points="47.5618149 49.999 50.7548149 53.192 58.1748149 45.772"></polyline>
         </g>
     </g>
 </svg>

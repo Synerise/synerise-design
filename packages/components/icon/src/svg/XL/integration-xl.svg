@@ -4,7 +4,7 @@
     <title>Internet / 04 XL / 06-integration-xl</title>
     <desc>Created with Sketch.</desc>
     <g id="Internet-/-04-XL-/-06-integration-xl" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" stroke-linecap="round">
-        <g id="Group" transform="translate(21.000000, 21.000000)" stroke="#384350" stroke-width="1.5">
+        <g id="Group" transform="translate(21.000000, 21.000000)" stroke="currentColor" stroke-width="1.5">
             <path d="M10.4578,21.6711 L4.9658,27.1641 C-0.7682,32.8971 -1.6092,42.1361 3.4728,48.4531 C9.4578,55.8941 20.3738,56.3321 26.9388,49.7671 L32.7458,43.9591" id="Stroke-1" stroke-linejoin="round"></path>
             <line x1="10.4578" y1="21.6711" x2="32.7458" y2="43.9591" id="Stroke-3" stroke-linejoin="round"></line>
             <path d="M44.2186,33.0041 L50.0256,27.1971 C56.1806,21.0431 56.1806,11.0641 50.0256,4.9091 C43.8706,-1.2459 33.8916,-1.2459 27.7376,4.9091 L21.9296,10.7161" id="Stroke-7" stroke-linejoin="round"></path>

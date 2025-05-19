@@ -56,15 +56,15 @@ export const ListIcon: StoryObj<typeof Icon> = {
 };
 
 export const AdditionalIcon: StoryObj<typeof Icon> = {
-  render: () => renderIcons(additional, '', 48),
+  render: (args) => renderIcons(additional, args.color, 48),
 };
 
 export const AdditionalL: StoryObj<typeof Icon> = {
-  render: () => renderIcons(large, '', 48),
+  render: (args) => renderIcons(large, args.color, 48),
 };
 
 export const AdditionalXL: StoryObj<typeof Icon> = {
-  render: () => renderIcons(xLarge, '', 96),
+  render: (args) => renderIcons(xLarge, args.color, 96),
 };
 
 export const AdditionalColor: StoryObj<typeof Icon> = {

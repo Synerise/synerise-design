@@ -4,7 +4,7 @@
     <title>Ecommerce / 04 XL / 04-products-similar-xl</title>
     <desc>Created with Sketch.</desc>
     <g id="Ecommerce-/-04-XL-/-04-products-similar-xl" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round">
-        <g id="Group" transform="translate(21.000000, 21.000000)" stroke="#384350" stroke-width="1.5">
+        <g id="Group" transform="translate(21.000000, 21.000000)" stroke="currentColor" stroke-width="1.5">
             <rect id="Rectangle" x="0" y="0" width="39.63578" height="39.63578" rx="4"></rect>
             <rect id="Rectangle" x="14.50375" y="14.50375" width="39.63578" height="39.63578" rx="4"></rect>
             <line x1="39.63578" y1="14.50375" x2="14.50375" y2="39.63578" id="Path"></line>

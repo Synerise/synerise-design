@@ -4,7 +4,7 @@
     <title>Campaigns / 04 XL / 07-first-run-xl</title>
     <desc>Created with Sketch.</desc>
     <g id="Campaigns-/-04-XL-/-07-first-run-xl" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round">
-        <g id="Group" transform="translate(18.024442, 18.069187)" stroke="#384350" stroke-width="1.5">
+        <g id="Group" transform="translate(18.024442, 18.069187)" stroke="currentColor" stroke-width="1.5">
             <circle id="Oval" cx="53.267648" cy="50.7617234" r="13"></circle>
             <line x1="53.705298" y1="45.7810134" x2="53.705298" y2="55.7424334" id="Path"></line>
             <line x1="51.592148" y1="55.7424334" x2="55.818448" y2="55.7424334" id="Path"></line>
