@@ -112,11 +112,17 @@ export const Tag = styled(DSTag)`
   margin: 0 0 0 8px;
 `;
 
-export const ButtonLabel = styled.div`
+export const ButtonLabel = styled.div<{ withTooltip?: boolean }>`
   display: flex;
   align-items: center;
   flex-grow: 1;
   justify-content: center;
+  ${props =>
+    props.withTooltip &&
+    `
+    && {
+      pointer-events: all;
+    }`}
 `;
 
 export const AntdButton = styled(

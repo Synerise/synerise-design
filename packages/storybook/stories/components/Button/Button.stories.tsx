@@ -204,20 +204,12 @@ export const CustomLabel: Story = {
 };
 
 export const DisabledTooltip: Story = {
-  render: args => {
-    const buttonElement = <Button {...args} />;
-    const { disabled } = args;
-    return disabled ? (
-      <Tooltip title="This element is disabled">
-        <span data-testid="button-disabled-wrapper">{buttonElement}</span>
-      </Tooltip>
-    ) : (
-      buttonElement
-    );
-  },
   args: {
     children: 'Label',
     disabled: true,
+    tooltipProps: {
+      title: "This element is disabled"
+    },
     type: 'primary',
   },
 };
