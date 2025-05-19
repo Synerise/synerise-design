@@ -55,6 +55,7 @@
     "@synerise/ds-column-manager": "^1.0.9",
     "@synerise/ds-completed-within": "^1.0.7",
     "@synerise/ds-condition": "^1.1.6",
+    "@synerise/ds-confirmation": "^1.0.0",
     "@synerise/ds-context-selector": "^1.1.6",
     "@synerise/ds-core": "^1.2.0",
     "@synerise/ds-cruds": "^1.0.7",

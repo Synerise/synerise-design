@@ -1,0 +1,52 @@
+{
+  "name": "@synerise/ds-confirmation",
+  "version": "1.0.0",
+  "description": "Confirmation UI Component for the Synerise Design System",
+  "license": "ISC",
+  "repository": "Synerise/synerise-design",
+  "main": "dist/index.js",
+  "files": [
+    "/dist",
+    "CHANGELOG.md",
+    "README.md",
+    "package.json",
+    "LICENSE.md"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "scripts": {
+    "build": "npm run build:js && npm run build:css && npm run defs",
+    "build:css": "node ../../../scripts/style/less.js",
+    "build:js": "babel --delete-dir-on-start --root-mode upward src --out-dir dist --extensions '.js,.ts,.tsx'",
+    "build:watch": "npm run build:js -- --watch",
+    "defs": "tsc --declaration --outDir dist/ --emitDeclarationOnly",
+    "pack:ci": "npm pack --pack-destination ../../storybook/storybook-static/static",
+    "prepublish": "npm run build",
+    "test": "jest",
+    "test:watch": "npm run test -- --watchAll",
+    "types": "tsc --noEmit",
+    "upgrade:ds": "ncu -f \"@synerise/ds-*\" -u"
+  },
+  "sideEffects": [
+    "dist/style/*",
+    "*.less"
+  ],
+  "types": "dist/index.d.ts",
+  "dependencies": {
+    "@synerise/ds-button": "^1.2.0",
+    "@synerise/ds-icon": "^1.4.2",
+    "@synerise/ds-list-item": "^1.0.7",
+    "@synerise/ds-modal": "^1.0.7",
+    "@synerise/ds-radio": "^1.0.7",
+    "@synerise/ds-scrollbar": "^1.0.7",
+    "@synerise/ds-typography": "^1.0.7",
+    "@synerise/ds-utils": "^1.1.0"
+  },
+  "peerDependencies": {
+    "@synerise/ds-core": "*",
+    "react": ">=16.9.0 <= 18.3.1",
+    "react-intl": "^6.8.7",
+    "styled-components": "^5.3.3"
+  }
+}
