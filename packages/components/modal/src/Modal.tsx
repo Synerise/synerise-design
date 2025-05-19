@@ -17,6 +17,7 @@ const mapSizeToWidth = {
   large: 1044,
   extraLarge: 1280,
   fullSize: '100%',
+  fullScreen: '100%',
 };
 
 /** @deprecated */
@@ -43,10 +44,13 @@ export const Modal = (props: ModalProps) => {
     { 'with-description': Boolean(description) }
   );
 
+  const isFullscreen = size === 'fullScreen';
+
   return (
     <S.AntdModal
       {...antModalProps}
       className={className}
+      isFullscreen={isFullscreen}
       width={size && mapSizeToWidth[size]}
       closable={false}
       title={(title || description || blank) && <ModalTitle {...props} />}

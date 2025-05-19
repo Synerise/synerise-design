@@ -4,7 +4,7 @@ import Modal from '@synerise/ds-modal';
 import { ObjectAvatar } from '@synerise/ds-avatar';
 import Icon, { MailM, UserM } from '@synerise/ds-icon';
 import { theme } from '@synerise/ds-core';
-import { sizes, headerWithPrefix, color} from './Modal.data';
+import { sizes, headerWithPrefix, color } from './Modal.data';
 
 import {
   BOOLEAN_CONTROL,
@@ -17,7 +17,6 @@ import {
 
 export default {
   title: "Components/Modal",
-  tags: ['autodocs'],
   component: Modal,
   render: (args, storyContext) => {
     const visible = storyContext.viewMode === 'docs' ? false : args.visible;
@@ -69,7 +68,7 @@ export default {
     renderCustomFooter: BOOLEAN_CONTROL,
     footer: REACT_NODE_AS_STRING,
     removeFooter: BOOLEAN_CONTROL,
-    size:{
+    size: {
       ...controlFromOptionsArray('select', sizes),
     },
 
@@ -97,6 +96,17 @@ export const withHeader: Story = {
     footer: null,
     size: 'small',
     children: <div style={{ height: 362 }}></div>,
+  },
+};
+
+
+export const Fullscreen: Story = {
+  args: {
+    visible: true,
+    title: 'title',
+    description: 'Description',
+    size: 'fullScreen',
+    children: <div style={{ height: 1400, backgroundColor: 'rgba(0,0,0,0.2)' }}></div>,
   },
 };
 
