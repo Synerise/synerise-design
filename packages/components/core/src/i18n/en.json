@@ -4,6 +4,13 @@
       "BULK_SELECTION_ENABLE": "Bulk actions",
       "BULK_SELECTION_DISABLE": "Hide actions"
     },
+    "COLLECTOR": {
+      "ADD": "Add",
+      "CANCEL": "Cancel",
+      "PLACEHOLDER": "Type value",
+      "TO-NAVIGATE": "to navigate",
+      "TO-SELECT": "to select"
+    },
     "MENU": {
       "SHOW-LESS": "Show less",
       "SHOW-MORE": "Show more"
