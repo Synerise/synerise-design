@@ -1,6 +1,6 @@
 {
   "name": "@synerise/ds-checkbox",
-  "version": "1.0.7",
+  "version": "1.0.8",
   "description": "Checkbox UI Component for the Synerise Design System",
   "license": "ISC",
   "repository": "synerise/synerise-design",
@@ -33,7 +33,7 @@
     "*.less"
   ],
   "dependencies": {
-    "@synerise/ds-typography": "^1.0.7",
+    "@synerise/ds-typography": "^1.0.8",
     "@synerise/ds-utils": "^1.1.0"
   },
   "peerDependencies": {

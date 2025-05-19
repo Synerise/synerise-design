@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.3.0](https://github.com/synerise/synerise-design/compare/@synerise/ds-button@1.2.0...@synerise/ds-button@1.3.0) (2025-05-19)
+
+
+### Features
+
+* **button:** add tooltipProps prop ([6249b29](https://github.com/synerise/synerise-design/commit/6249b295f89671379030d77b92229ce3523d3784))
+
+
+
+
+
 # [1.2.0](https://github.com/synerise/synerise-design/compare/@synerise/ds-button@1.1.5...@synerise/ds-button@1.2.0) (2025-05-07)
 
 

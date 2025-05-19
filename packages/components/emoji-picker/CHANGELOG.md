@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.2.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-emoji-picker@1.1.5...@synerise/ds-emoji-picker@1.2.0) (2025-05-19)
+
+
+### Features
+
+* **emoji-picker:** changed list to virtualised list ([06e6f7a](https://github.com/Synerise/synerise-design/commit/06e6f7ab6f1bbef67adc8662888f35182828b2a4))
+
+
+
+
+
 ## [1.1.5](https://github.com/Synerise/synerise-design/compare/@synerise/ds-emoji-picker@1.1.4...@synerise/ds-emoji-picker@1.1.5) (2025-05-07)
 
 **Note:** Version bump only for package @synerise/ds-emoji-picker

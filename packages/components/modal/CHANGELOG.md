@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.1.0](https://github.com/synerise/synerise-design/compare/@synerise/ds-modal@1.0.7...@synerise/ds-modal@1.1.0) (2025-05-19)
+
+
+### Features
+
+* **modal:** fullScreen size ([a9d217d](https://github.com/synerise/synerise-design/commit/a9d217d0cc256f46adc95fd804bb9a7f389a4173))
+
+
+
+
+
 ## [1.0.7](https://github.com/synerise/synerise-design/compare/@synerise/ds-modal@1.0.6...@synerise/ds-modal@1.0.7) (2025-05-07)
 
 **Note:** Version bump only for package @synerise/ds-modal

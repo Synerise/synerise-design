@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.3.0](https://github.com/synerise/synerise-design/compare/@synerise/ds-core@1.2.0...@synerise/ds-core@1.3.0) (2025-05-19)
+
+
+### Features
+
+* **collector:** make texts prop optional ([6d59694](https://github.com/synerise/synerise-design/commit/6d59694a427102714ebcd9579fe086d72066d9af))
+
+
+
+
+
 # [1.2.0](https://github.com/synerise/synerise-design/compare/@synerise/ds-core@1.1.0...@synerise/ds-core@1.2.0) (2025-05-07)
 
 

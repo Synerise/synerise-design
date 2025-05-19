@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.8.0](https://github.com/Synerise/synerise-design/compare/storybook7@1.7.1...storybook7@1.8.0) (2025-05-19)
+
+
+### Features
+
+* **button:** add tooltipProps prop ([6249b29](https://github.com/Synerise/synerise-design/commit/6249b295f89671379030d77b92229ce3523d3784))
+* **confirmation:** new component ([5ed5b96](https://github.com/Synerise/synerise-design/commit/5ed5b96540e82576951221fdf5f26695c02171e7))
+* **modal:** fullScreen size ([a9d217d](https://github.com/Synerise/synerise-design/commit/a9d217d0cc256f46adc95fd804bb9a7f389a4173))
+
+
+
+
+
 ## [1.7.1](https://github.com/Synerise/synerise-design/compare/storybook7@1.7.0...storybook7@1.7.1) (2025-05-15)
 
 **Note:** Version bump only for package storybook7
