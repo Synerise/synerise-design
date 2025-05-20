@@ -33,6 +33,7 @@ export const ConfirmationModalContentMain = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  text-align: center;
   gap: 12px;
 `;
 
@@ -66,14 +67,23 @@ export const BatchItemsList = styled(Scrollbar)`
 
 export const AdditionalInfo = styled.div`
   ${roundedWrapperCSS}
+  padding: 8px 18px;
 `;
 
 export const DecisionOptions = styled.div`
-  ${RadioWrapper}:last-of-type {
+  ${RadioWrapper} {
+    padding: 7px 0;
     margin-bottom: 0;
   }
   ${AdditionalData}:empty {
     display: none;
   }
   ${roundedWrapperCSS}
+  padding: 8px 18px;
+`;
+
+export const ModalBackTitle = styled.div`
+  display: flex;
+  gap: 12px;
+  align-items: center;
 `;

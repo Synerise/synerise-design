@@ -3,7 +3,7 @@ import classnames from 'classnames';
 import * as S from './Description.styles';
 import { DescriptionProps } from './Description.types';
 
-const Description: React.FC<DescriptionProps> = ({ type = 'table', children, ratio = '30-70' }) => {
+const Description = ({ type = 'table', children, ratio = '30-70' }: DescriptionProps) => {
   const hasSingleChild = React.useMemo(() => {
     return !Array.isArray(children);
   }, [children]);

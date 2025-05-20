@@ -1,11 +1,11 @@
-import styled, { css, FlattenSimpleInterpolation } from 'styled-components';
+import styled, { css } from 'styled-components';
 import { IconContainer } from '@synerise/ds-icon';
 
 export const RowLabel = styled.span`
   display: flex;
   font-size: 13px;
   line-height: 1.38;
-  color: ${(props): string => props.theme.palette['grey-600']};
+  color: ${props => props.theme.palette['grey-600']};
   font-weight: normal;
   flex-direction: row;
   align-items: center;
@@ -14,8 +14,8 @@ export const RowLabel = styled.span`
   ${IconContainer} {
     margin-right: 4px;
     svg {
-      color: ${(props): string => props.theme.palette['grey-600']};
-      fill: ${(props): string => props.theme.palette['grey-600']};
+      color: ${props => props.theme.palette['grey-600']};
+      fill: ${props => props.theme.palette['grey-600']};
     }
   }
 `;
@@ -35,7 +35,7 @@ export const RowValue = styled.div`
   justify-content: flex-start;
   font-size: 13px;
   line-height: 1.38;
-  color: ${(props): string => props.theme.palette['grey-700']};
+  color: ${props => props.theme.palette['grey-800']};
   font-weight: 500;
   overflow-x: hidden;
   .ds-status {
@@ -49,13 +49,13 @@ export const Copyable = styled.div`
   opacity: 0;
   margin-left: 8px;
   svg {
-    color: ${(props): string => props.theme.palette['grey-600']};
-    fill: ${(props): string => props.theme.palette['grey-600']};
+    color: ${props => props.theme.palette['grey-600']};
+    fill: ${props => props.theme.palette['grey-600']};
   }
   &:hover {
     svg {
-      color: ${(props): string => props.theme.palette['blue-600']};
-      fill: ${(props): string => props.theme.palette['blue-600']};
+      color: ${props => props.theme.palette['blue-600']};
+      fill: ${props => props.theme.palette['blue-600']};
     }
   }
 `;
@@ -63,7 +63,7 @@ export const Copyable = styled.div`
 export const RowWrapper = styled.div<{ copyable: boolean }>`
   width: 100%;
   ${Copyable} {
-    ${(props): FlattenSimpleInterpolation | false => {
+    ${props => {
       return (
         props.copyable &&
         css`
@@ -84,7 +84,7 @@ export const RowWrapper = styled.div<{ copyable: boolean }>`
     text-decoration: none;
     cursor: pointer;
     &:hover {
-      color: ${(props): string => props.theme.palette['blue-600']};
+      color: ${props => props.theme.palette['blue-600']};
     }
   }
 `;
@@ -108,5 +108,5 @@ export const ValueWrapper = styled.span`
 `;
 
 export const StarWrapper = styled.div<{ hasPrefixEl: boolean }>`
-  margin-right: ${(props): string => (props.hasPrefixEl ? '16px' : '8px')};
+  margin-right: ${props => (props.hasPrefixEl ? '16px' : '8px')};
 `;

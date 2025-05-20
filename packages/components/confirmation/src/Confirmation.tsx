@@ -105,9 +105,10 @@ const Confirmation = <ItemType extends ListItemProps>({
 
   const modalTitle =
     mode === 'related-objects' ? (
-      <>
-        <Icon onClick={() => setMode('default')} component={<ArrowLeftM />} /> {allTexts.relatedObjectsTitle}
-      </>
+      <S.ModalBackTitle>
+        <Icon onClick={() => setMode('default')} component={<ArrowLeftM />} />
+        {allTexts.relatedObjectsTitle}
+      </S.ModalBackTitle>
     ) : undefined;
 
   return (
