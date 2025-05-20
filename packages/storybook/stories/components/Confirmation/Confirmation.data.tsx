@@ -104,7 +104,7 @@ const generateInfocard = (item: typeof BATCH_ITEMS_DATA[number]) => {
     ];
     const props: InformationCardProps = {
         title: item.text,
-        subtitle: faker.lorem.paragraph(),
+        subtitle: faker.string.uuid(),
         icon: item.icon,
         iconColor: item.iconColor,
         propertyListItems

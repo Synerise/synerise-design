@@ -77,7 +77,7 @@ export const InformativeType: StoryObj<ConfirmationProps<ListItemProps>> = {
       mainButtonLabel: 'Yes, launch',
       secondaryButtonLabel: 'No, cancel'
     },
-    additionalInfo: <Description>
+    additionalInfo: <Description type='inline'>
       <DescriptionRow label='Audience:' value='22 123' />
       <DescriptionRow label='Scheduled:' value='23 May, 2024, 13:25' />
     </Description>

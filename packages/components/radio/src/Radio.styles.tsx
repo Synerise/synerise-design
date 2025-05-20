@@ -25,6 +25,7 @@ export const AdditionalData = styled.div`
 export const AntRadio = styled(({ ...rest }) => <AntdRadio {...rest} />)`
   .ant-radio {
     height: 16px;
+    top: 0;
   }
   .ant-radio + span {
     flex-grow: 1;
