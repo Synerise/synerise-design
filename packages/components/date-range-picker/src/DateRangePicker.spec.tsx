@@ -1,6 +1,6 @@
 import React from 'react';
 import type { PopoverProps } from 'antd/lib/popover';
-import { renderWithLocalesLoaded, renderWithProvider, sleep } from '@synerise/ds-utils/dist/testing';
+import { renderWithProvider, sleep } from '@synerise/ds-utils/dist/testing';
 import { waitFor, within, screen, act, fireEvent } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import {
@@ -1187,7 +1187,7 @@ describe('DateRangePicker', () => {
     const onApply = jest.fn();
     const getLastCallParams = () => onApply.mock.calls[onApply.mock.calls.length - 1][0];
     const expectedLength = ABSOLUTE_VALUE_WITH_MONTHLY_FILTER.filter.rules.length;
-    await renderWithLocalesLoaded(
+    renderWithProvider(
       <RawDateRangePicker
         onApply={onApply}
         showFilter={true}

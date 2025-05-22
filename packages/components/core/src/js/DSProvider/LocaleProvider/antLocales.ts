@@ -1,8 +1,14 @@
+import pl from 'antd/lib/locale/pl_PL';
+import en from 'antd/lib/locale/en_US';
+import es from 'antd/lib/locale/es_ES';
+import fr from 'antd/lib/locale/fr_FR';
+import pt from 'antd/lib/locale/pt_PT';
+
 export default {
-  pl: import(`antd/lib/locale/pl_PL`),
-  en: import(`antd/lib/locale/en_US`),
-  es: import(`antd/lib/locale/es_ES`),
-  pt: import(`antd/lib/locale/pt_PT`),
-  fr: import(`antd/lib/locale/fr_FR`),
-  default: import(`antd/lib/locale/en_US`),
+  pl,
+  en,
+  es,
+  pt,
+  fr,
+  default: en,
 };
