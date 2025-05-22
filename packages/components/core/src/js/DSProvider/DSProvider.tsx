@@ -6,7 +6,7 @@ import '../style';
 import LocaleProvider from './LocaleProvider';
 import ThemeProvider from './ThemeProvider';
 
-import { LocaleProviderProps } from './LocaleProvider/LocaleProvider';
+import { LocaleProviderProps } from './LocaleProvider/LocaleProvider.types';
 import { ThemeProviderProps } from './ThemeProvider/ThemeProvider';
 
 export type DSProviderProps = PropsWithChildren<
@@ -26,7 +26,6 @@ const DSProvider = ({
   theme,
   dataFormatConfig,
   onErrorIntl,
-  onDSLocalesLoaded,
   toasterProps = false,
 }: DSProviderProps) => {
   return (
@@ -36,7 +35,6 @@ const DSProvider = ({
       timeZone={timeZone}
       defaultLocale={defaultLocale}
       onErrorIntl={onErrorIntl}
-      onDSLocalesLoaded={onDSLocalesLoaded}
     >
       <ThemeProvider theme={theme}>
         <DataFormatConfigProvider dataFormatConfig={dataFormatConfig}>

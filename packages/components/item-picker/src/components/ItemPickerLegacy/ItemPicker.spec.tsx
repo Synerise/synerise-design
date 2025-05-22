@@ -6,7 +6,7 @@ import Avatar from '@synerise/ds-avatar';
 import DSFlag from '@synerise/ds-flag';
 
 import ItemPicker from './ItemPickerLegacy';
-import { renderWithLocalesLoaded } from '@synerise/ds-utils/dist/testing';
+import { renderWithProvider } from '@synerise/ds-utils/dist/testing';
 
 const imgSrc = 'https://www.w3schools.com/howto/img_avatar.png';
 
@@ -73,7 +73,7 @@ describe('ItemPicker component', () => {
     const handleClear = jest.fn();
     const handleChange = jest.fn();
 
-    await renderWithLocalesLoaded(<ItemPicker {...SHARED_PROPS} onClear={handleClear} onChange={handleChange} />);
+    renderWithProvider(<ItemPicker {...SHARED_PROPS} onClear={handleClear} onChange={handleChange} />);
 
     expect(screen.getByText(PLACEHOLDER)).toBeTruthy();
   });
@@ -82,7 +82,7 @@ describe('ItemPicker component', () => {
     const handleClear = jest.fn();
     const handleChange = jest.fn();
 
-    await renderWithLocalesLoaded(
+    renderWithProvider(
       <ItemPicker
         {...SHARED_PROPS}
         onClear={handleClear}
@@ -99,7 +99,7 @@ describe('ItemPicker component', () => {
     const handleClear = jest.fn();
     const handleChange = jest.fn();
 
-    await renderWithLocalesLoaded(<ItemPicker {...SHARED_PROPS} onClear={handleClear} onChange={handleChange} label={LABEL} />);
+    renderWithProvider(<ItemPicker {...SHARED_PROPS} onClear={handleClear} onChange={handleChange} label={LABEL} />);
 
     expect(screen.getByText(LABEL)).toBeTruthy();
   });
@@ -108,7 +108,7 @@ describe('ItemPicker component', () => {
     const handleClear = jest.fn();
     const handleChange = jest.fn();
 
-    await renderWithLocalesLoaded(
+    renderWithProvider(
       <ItemPicker {...SHARED_PROPS} onClear={handleClear} onChange={handleChange} description={DESCRIPTION} />
     );
 
@@ -119,7 +119,7 @@ describe('ItemPicker component', () => {
     const handleClear = jest.fn();
     const handleChange = jest.fn();
 
-    await renderWithLocalesLoaded(
+    renderWithProvider(
       <ItemPicker {...SHARED_PROPS} onClear={handleClear} onChange={handleChange} description={DESCRIPTION} />
     );
 
@@ -130,7 +130,7 @@ describe('ItemPicker component', () => {
     const handleClear = jest.fn();
     const handleChange = jest.fn();
 
-    await renderWithLocalesLoaded(
+    renderWithProvider(
       <ItemPicker
         {...SHARED_PROPS}
         onClear={handleClear}
@@ -147,7 +147,7 @@ describe('ItemPicker component', () => {
     const handleClear = jest.fn();
     const handleChange = jest.fn();
 
-    await renderWithLocalesLoaded(
+    renderWithProvider(
       <ItemPicker
         {...SHARED_PROPS}
         onClear={handleClear}
@@ -165,7 +165,7 @@ describe('ItemPicker component', () => {
     const handleClear = jest.fn();
     const handleChange = jest.fn();
 
-    const { container } = await renderWithLocalesLoaded(
+    const { container } = renderWithProvider(
       <ItemPicker {...SHARED_PROPS} onClear={handleClear} onChange={handleChange} description={DESCRIPTION} disabled />
     );
 
@@ -176,7 +176,7 @@ describe('ItemPicker component', () => {
     const handleClear = jest.fn();
     const handleChange = jest.fn();
 
-    await renderWithLocalesLoaded(
+    renderWithProvider(
       <ItemPicker
         {...SHARED_PROPS}
         onClear={handleClear}
@@ -193,7 +193,7 @@ describe('ItemPicker component', () => {
     const handleClear = jest.fn();
     const handleChange = jest.fn();
 
-    await renderWithLocalesLoaded(
+    renderWithProvider(
       <ItemPicker
         {...SHARED_PROPS}
         onClear={handleClear}
@@ -210,7 +210,7 @@ describe('ItemPicker component', () => {
     const handleClear = jest.fn();
     const handleChange = jest.fn();
 
-    await renderWithLocalesLoaded(
+    renderWithProvider(
       <ItemPicker
         {...SHARED_PROPS}
         onClear={handleClear}
@@ -227,7 +227,7 @@ describe('ItemPicker component', () => {
     const handleClear = jest.fn();
     const handleChange = jest.fn();
 
-    await renderWithLocalesLoaded(
+    renderWithProvider(
       <ItemPicker
         {...SHARED_PROPS}
         onClear={handleClear}
@@ -243,7 +243,7 @@ describe('ItemPicker component', () => {
   it('should render without clear icon', async () => {
     const handleChange = jest.fn();
 
-    await renderWithLocalesLoaded(
+    renderWithProvider(
       <ItemPicker {...SHARED_PROPS} onChange={handleChange} description={DESCRIPTION} selectedItem={DATA_SOURCE[0]} />
     );
 
@@ -254,7 +254,7 @@ describe('ItemPicker component', () => {
     const handleClear = jest.fn();
     const handleChange = jest.fn();
 
-    await renderWithLocalesLoaded(
+    renderWithProvider(
       <ItemPicker
         {...SHARED_PROPS}
         onClear={handleClear}
@@ -274,7 +274,7 @@ describe('ItemPicker component', () => {
     const handleClear = jest.fn();
     const handleChange = jest.fn();
 
-    await renderWithLocalesLoaded(
+    renderWithProvider(
       <ItemPicker
         {...SHARED_PROPS}
         onClear={handleClear}
@@ -293,7 +293,7 @@ describe('ItemPicker component', () => {
     const handleClear = jest.fn();
     const handleChange = jest.fn();
 
-    await renderWithLocalesLoaded(
+    renderWithProvider(
       <ItemPicker
         {...SHARED_PROPS}
         onClear={handleClear}
@@ -313,7 +313,7 @@ describe('ItemPicker component', () => {
   it('should render without search bar', async () => {
     const handleClear = jest.fn();
     const handleChange = jest.fn();
-    const { getByText } = await renderWithLocalesLoaded(
+    const { getByText } = renderWithProvider(
       <ItemPicker {...SHARED_PROPS} onClear={handleClear} onChange={handleChange} hideSearchBar />
     );
     fireEvent.click(getByText(PLACEHOLDER));
@@ -323,7 +323,7 @@ describe('ItemPicker component', () => {
   it('should render with search bar', async () => {
     const handleClear = jest.fn();
     const handleChange = jest.fn();
-    const { getByText } = await renderWithLocalesLoaded(
+    const { getByText } = renderWithProvider(
       <ItemPicker {...SHARED_PROPS} onClear={handleClear} onChange={handleChange} />
     );
     fireEvent.click(getByText(PLACEHOLDER));

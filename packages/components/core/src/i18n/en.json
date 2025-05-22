@@ -1,5 +1,10 @@
 {
   "DS": {
+    "CODE-AREA": {
+      "FULLSCREEN": "Fullscreen",
+      "CLOSE-FULLSCREEN": "Close fullscreen",
+      "FULLSCREEN-TITLE": "Fullscreen editor"
+    },
     "MAPPING": {
       "BULK_SELECTION_ENABLE": "Bulk actions",
       "BULK_SELECTION_DISABLE": "Hide actions"
@@ -41,7 +46,10 @@
       "PARAMETER": {
         "NO_RESULTS": "No results",
         "SEARCH_PLACEHOLDER": "Search",
-        "LOADING_PARAMETERS": "Loading parameters"
+        "LOADING_PARAMETERS": "Loading parameters",
+        "ALL": "All",
+        "RECENT": "Recent",
+        "SHOW_MORE": "Show more"
       },
       "FORMULA": {
         "BUTTON_PLACEHOLDER": "Formula",
@@ -243,10 +251,11 @@
     "DATE-PICKER": {
       "APPLY": "Apply",
       "SELECT-DATE": "Select date",
-      "SELECT-TIME": "Select time",
-      "NOW": "Now"
+      "NOW": "Now",
+      "CLEAR-TOOLTIP": "Clear"
     },
     "DATE-RANGE-PICKER": {
+      "EMPTY-DATE-ERROR": "Date cannot be empty",
       "TODAY": "Today",
       "YESTERDAY": "Yesterday",
       "LAST-7-DAYS": "Last 7 days",
@@ -406,7 +415,9 @@
       "NOT-CONDITION-TYPE": "not event",
       "MOVE": "Move",
       "DELETE": "Delete",
-      "DUPLICATE": "Duplicate"
+      "DUPLICATE": "Duplicate",
+      "MOVE-DOWN": "Move down",
+      "MOVE-UP": "Move up"
     },
     "WIZARD": {
       "BACK-BUTTON": "Back",
@@ -414,7 +425,8 @@
     },
     "FILTER": {
       "DROP-ME-HERE": "Drop me here",
-      "ADD-FILTER": "Add filter"
+      "ADD-FILTER": "Add filter",
+      "CONDITIONS-LIMIT": "Conditions limit"
     },
     "CONDITION": {
       "STEP_NAME-PLACEHOLDER": "Step name",
@@ -424,10 +436,11 @@
       "ADD-CONDITION-ROW-BUTTON": "Add condition",
       "ADD-STEP": "and then...",
       "DROP-LABEL": "Drop me here",
+      "EMPTY_CONDITION_LABEL": "Choose event first",
       "MOVE-TOOLTIP": "Move",
       "DUPLICATE-TOOLTIP": "Duplicate",
       "REMOVE-TOOLTIP": "Delete",
-      "AND-SUFFIX": "and"
+      "SUFFIX": "and"
     },
     "PLACEHOLDER": {
       "CHOOSE-CONDITION": "Choose type of condition below"

@@ -44,7 +44,7 @@ describe('Completed within component', () => {
       <CompletedWithin text={TEXT} value={{ value: 2, period: 'DAYS' }} onSetValue={handleSetValue} />
     );
 
-    expect(screen.getByText('Completed within 2 DAYS')).toBeTruthy();
+    expect(screen.getByText('Completed within 2 Days')).toBeTruthy();
     expect(container.querySelector('.close-3-s')).toBeTruthy();
   });
 
@@ -53,8 +53,8 @@ describe('Completed within component', () => {
     const { container } = renderWithProvider(
       <CompletedWithin readOnly text={TEXT} value={{ value: 2, period: 'DAYS' }} onSetValue={handleSetValue} />
     );
-    
-    expect(screen.getByText('Completed within 2 DAYS')).toBeTruthy();
+
+    expect(screen.getByText('Completed within 2 Days')).toBeTruthy();
     expect(container.querySelector('.close-3-s')).toBeFalsy();
   });
 
@@ -66,7 +66,7 @@ describe('Completed within component', () => {
     );
     const clearIcon = container.querySelector('.close-3-s');
 
-    expect(screen.queryByText('Completed within 2 DAYS')).toBeTruthy();
+    expect(screen.queryByText('Completed within 2 Days')).toBeTruthy();
     expect(clearIcon).toBeTruthy();
 
     userEvent.click(clearIcon as HTMLElement);
