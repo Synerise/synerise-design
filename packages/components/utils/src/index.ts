@@ -20,6 +20,7 @@ export * from './useKeyboardShortcuts/useKeyboardShortcuts';
 export * from './omitKeys/omitKeys';
 export * from './useTraceUpdate';
 export * from './getPopupContainer';
+export * from './useLatestRef';
 
 export const NOOP = (): void => {}; // eslint-disable-line @typescript-eslint/no-empty-function
 export type { HandledEventsType } from './useOnClickOutside/useOnClickOutside';

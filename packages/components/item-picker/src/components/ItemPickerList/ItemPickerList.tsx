@@ -165,11 +165,10 @@ export const ItemPickerList = <ItemType extends BaseItemType, SectionType extend
           setSearchQuery('');
           setLocalSearchQuery('');
           resetCurrentSection();
+          onRefresh && onRefresh();
           if (refreshItems) {
             refreshItems();
-            return;
           }
-          onRefresh && onRefresh();
         }
       : undefined;
 
