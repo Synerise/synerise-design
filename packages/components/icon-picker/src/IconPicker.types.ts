@@ -40,6 +40,9 @@ export type IconPickerProps<Source extends SourceType> = {
   trigger: ('click' | 'hover' | 'contextMenu')[];
   placeholder: string;
   noResultMsg?: ReactNode;
+  selectedIcon?: ReactNode;
+  onClear?: () => void;
+  clearTooltip?: ReactNode;
 };
 
 export type ListItemData<Source extends SourceType> = {

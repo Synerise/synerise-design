@@ -23,7 +23,53 @@ export default {
   parameters: {
     layout: 'fullscreen',
   },
-  decorators: [fixedWrapper300, centeredPaddedWrapper],
+  decorators: [centeredPaddedWrapper],
+  render: args => {
+    const [icon, setIcon] = useState<ReactNode | null>(null);
+    const handleSelect = (selectedIcon: ReactNode) => {
+      setIcon(selectedIcon);
+      args.onSelect?.(selectedIcon);
+    };
+
+    const renderSelected = () => {
+      if (args.data === 'font-awesome' && isFAValue(icon)) {
+        return <FontAwesomeIcon icon={icon} />
+      }
+      return icon
+    }
+
+    return (
+      <>
+        <IconPicker
+          {...args}
+          selectedIcon={renderSelected()}
+          onClear={() =>{setIcon(!icon)}}
+          onSelect={handleSelect}
+        />
+      </>
+    );
+  },
+  argTypes: {
+    placeholder: STRING_CONTROL,
+    noResultMsg: REACT_NODE_AS_STRING,
+    clearTooltip: REACT_NODE_AS_STRING,
+    data: {
+      control: false
+    }
+  },
+  args: {
+    placeholder: 'search',
+    trigger: ['click'],
+    noResultMsg: 'No results',
+    clearTooltip: 'clear',
+    data: PICKER_DATA,
+    onSelect: fn()
+  },
+} as Meta<IconPickerProps<SourceType>>;
+
+export const Default: Story = {};
+
+export const CustomTrigger: Story = {
   render: args => {
     const [icon, setIcon] = useState<ReactNode | null>(null);
     const handleSelect = (selectedIcon: ReactNode) => {
@@ -41,7 +87,6 @@ export default {
     return (
       <>
         {icon && (<div>Selected: {renderSelected()}</div>)}
-
         <IconPicker
           {...args}
           button={
@@ -69,9 +114,7 @@ export default {
     data: PICKER_DATA,
     onSelect: fn()
   },
-} as Meta<IconPickerProps<SourceType>>;
-
-export const Default: Story = {};
+};
 export const DesignSystemIcons: Story<DSSource> = {
   args: {
     data: 'design-system'
