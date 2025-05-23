@@ -36,6 +36,7 @@ const Tooltip = ({
   button,
   render,
   image,
+  disabled,
   ...props
 }: TooltipProps) => {
   const [isVisible, setIsVisible] = useState(false);
@@ -149,7 +150,7 @@ const Tooltip = ({
     );
   }
 
-  return titleExists ? (
+  return titleExists && !disabled ? (
     <AntdTooltip
       overlayClassName={overlayClassName}
       title={tooltipContent}
