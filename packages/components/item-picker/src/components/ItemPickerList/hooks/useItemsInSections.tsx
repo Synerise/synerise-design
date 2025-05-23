@@ -1,6 +1,7 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 
 import { itemSizes } from '@synerise/ds-list-item';
+import { useLatestRef } from '@synerise/ds-utils';
 
 import type { ItemPickerListProps, ItemPickerListTexts } from '../ItemPickerList.types';
 import type {
@@ -384,12 +385,15 @@ export const useItemsInSections = <ItemType extends BaseItemType, SectionType ex
 
   const hasInfiniteScroll = !listActions && !isFixedItemsList && listRenderingMode === RENDER_MODES.LIST_ITEMS;
 
+  const loadItemsRef = useLatestRef(loadItems);
+
   const refreshItems = useMemo(() => {
     if (!isFixedItemsList) {
-      return loadItems;
+      return loadItemsRef.current;
     }
     return undefined;
-  }, [isFixedItemsList, loadItems]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isFixedItemsList]);
 
   const handleScrollEndReach = useCallback(() => {
     if (hasInfiniteScroll) {
