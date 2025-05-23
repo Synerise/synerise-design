@@ -40,9 +40,9 @@ const List = <Source extends SourceType>({
         <S.OverlayWrapper>
           <S.NoResults>
             <S.Content>
-              <S.Icon>
+              <S.NoResultIcon>
                 <Icon component={<SearchNoResultsM />} color={theme.palette['grey-600']} />
-              </S.Icon>
+              </S.NoResultIcon>
               <p>{noResultMsg}</p>
             </S.Content>
           </S.NoResults>

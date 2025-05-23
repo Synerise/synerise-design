@@ -1,9 +1,20 @@
 import { FixedSizeList } from 'react-window';
 import styled from 'styled-components';
+import Icon from '@synerise/ds-icon';
 
 export const List = styled.div`
   display: flex;
   flex-wrap: wrap;
+`;
+
+export const ClearIcon = styled(Icon)`
+  &&&&&,
+  &&&&&:hover {
+    svg {
+      color: ${(props): string => props.theme.palette['red-600']};
+      fill: ${(props): string => props.theme.palette['red-600']};
+    }
+  }
 `;
 
 export const ListItem = styled.div<{ itemsPerRow: number }>`
@@ -100,17 +111,6 @@ export const NoResults = styled.div`
   justify-content: center;
 `;
 
-export const Icon = styled.div`
-  width: 40px;
-  height: 40px;
-  background: rgba(148, 158, 166, 0.05);
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin: 0 auto;
-`;
-
 export const Content = styled.div`
   margin-top: 42px;
 
@@ -131,4 +131,15 @@ export const ListRow = styled.div`
   width: 100%;
   height: 100%;
   max-width: 100%;
+`;
+
+export const NoResultIcon = styled.div`
+  width: 40px;
+  height: 40px;
+  background: rgba(148, 158, 166, 0.05);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto;
 `;

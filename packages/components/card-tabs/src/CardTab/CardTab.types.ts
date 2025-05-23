@@ -68,7 +68,7 @@ type CardTabCommonProps = {
   texts?: CardTabTexts;
   itemData?: unknown;
   actionsAsDropdown?: boolean;
-    /**
+  /**
    * @deprecated
    */
   keyId?: string;

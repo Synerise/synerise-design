@@ -14,7 +14,7 @@ const renderWithProvider = (
     notation?: DataFormatNotationType;
   }
 ): RenderResult => {
-  const { notation, ...providerProps} = props || {};
+  const { notation, ...providerProps } = props || {};
   const rendered = render(
     <DSProvider
       onErrorIntl={NOOP}

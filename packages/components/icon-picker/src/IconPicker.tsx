@@ -2,6 +2,10 @@ import React, { useEffect, useRef, useState } from 'react';
 import Dropdown from '@synerise/ds-dropdown';
 import { useOnClickOutside } from '@synerise/ds-utils';
 
+import Button from '@synerise/ds-button';
+import Icon, { AddM, Close3S } from '@synerise/ds-icon';
+import ButtonGroup from '@synerise/ds-button-group';
+import Tooltip from '@synerise/ds-tooltip';
 import * as S from './IconPicker.styles';
 import Overlay from './components/Overlay/Overlay';
 import { IconPickerProps, SourceType, ValueTypeForSource } from './IconPicker.types';
@@ -15,6 +19,9 @@ const IconPicker = <IconSource extends SourceType>({
   trigger,
   placeholder,
   noResultMsg,
+  onClear,
+  selectedIcon,
+  clearTooltip,
 }: IconPickerProps<IconSource>) => {
   const items = useIconSourceLoader<IconSource>(data);
 
@@ -81,7 +88,30 @@ const IconPicker = <IconSource extends SourceType>({
         </S.Overlay>
       }
     >
-      {button}
+      {button ||
+        (!selectedIcon ? (
+          <Button type="secondary" mode="icon-label">
+            <Icon component={<AddM />} />
+            Choose icon
+          </Button>
+        ) : (
+          <ButtonGroup>
+            <Button
+              onClick={() => {
+                setOpen(!isOpen);
+              }}
+              mode="single-icon"
+              type="secondary"
+            >
+              <Icon component={selectedIcon} />
+            </Button>
+            <Button mode="single-icon" type="secondary" onClick={onClear}>
+              <Tooltip title={clearTooltip}>
+                <S.ClearIcon component={<Close3S />} />
+              </Tooltip>
+            </Button>
+          </ButtonGroup>
+        ))}
     </Dropdown>
   );
 };
