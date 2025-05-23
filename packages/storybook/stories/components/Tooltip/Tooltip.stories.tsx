@@ -43,6 +43,7 @@ export default {
     mouseEnterDelay: NUMBER_CONTROL,
     mouseLeaveDelay: NUMBER_CONTROL,
     prefixCls: PREFIXCLS_ARG_CONTROL,
+    disabled: BOOLEAN_CONTROL,
     visible: BOOLEAN_CONTROL,
     defaultVisible: BOOLEAN_CONTROL,
     arrowPointAtCenter: BOOLEAN_CONTROL,

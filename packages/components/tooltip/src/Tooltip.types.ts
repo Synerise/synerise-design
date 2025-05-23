@@ -32,6 +32,7 @@ export type TooltipExtendedProps = {
   offset?: 'default' | 'small';
   button?: ReactNode;
   render?: () => ReactNode;
+  disabled?: boolean;
 };
 export default TooltipExtendedProps;
 
