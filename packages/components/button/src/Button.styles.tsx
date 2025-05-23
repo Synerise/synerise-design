@@ -570,24 +570,26 @@ export const AntdButton = styled(
         props.type === 'custom-color-ghost' &&
         !props.error &&
         css`
-          color: ${props.theme.palette[`${props.customColor}-600`]};
-          .ds-icon > svg {
-            fill: ${props.theme.palette[`${props.customColor}-600`]};
-          }
-          &:hover:not(:disabled):not(:focus) {
-            color: ${props.theme.palette[`${props.customColor}-500`]};
-            ${ButtonLabel} {
-              color: ${props.theme.palette[`${props.customColor}-500`]};
-            }
-            svg {
-              fill: ${props.theme.palette[`${props.customColor}-500`]} !important;
-            }
-          }
-          &:disabled {
-            opacity: 0.4;
+          &&& {
             color: ${props.theme.palette[`${props.customColor}-600`]};
             .ds-icon > svg {
-              fill: ${props.theme.palette[`${props.customColor}-600`]} !important;
+              fill: ${props.theme.palette[`${props.customColor}-600`]};
+            }
+            &:hover:not(:disabled):not(:focus) {
+              color: ${props.theme.palette[`${props.customColor}-500`]};
+              ${ButtonLabel} {
+                color: ${props.theme.palette[`${props.customColor}-500`]};
+              }
+              svg {
+                fill: ${props.theme.palette[`${props.customColor}-500`]} !important;
+              }
+            }
+            &:disabled {
+              opacity: 0.4;
+              color: ${props.theme.palette[`${props.customColor}-600`]};
+              .ds-icon > svg {
+                fill: ${props.theme.palette[`${props.customColor}-600`]} !important;
+              }
             }
           }
         `}
