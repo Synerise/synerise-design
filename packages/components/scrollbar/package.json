@@ -1,6 +1,6 @@
 {
   "name": "@synerise/ds-scrollbar",
-  "version": "1.0.8",
+  "version": "1.0.9",
   "description": "Scrollbar UI Component for the Synerise Design System",
   "license": "ISC",
   "repository": "Synerise/synerise-design",
@@ -35,8 +35,8 @@
   "types": "dist/index.d.ts",
   "dependencies": {
     "@ofsajd/react-perfect-scrollbar": "1.0.0",
-    "@synerise/ds-icon": "^1.5.0",
-    "@synerise/ds-utils": "^1.1.0",
+    "@synerise/ds-icon": "^1.5.1",
+    "@synerise/ds-utils": "^1.1.1",
     "lodash": "^4.7.21"
   },
   "peerDependencies": {

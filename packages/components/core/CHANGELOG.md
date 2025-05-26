@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.3.1](https://github.com/synerise/synerise-design/compare/@synerise/ds-core@1.3.0...@synerise/ds-core@1.3.1) (2025-05-26)
+
+
+### Bug Fixes
+
+* **core:** make translation imports static ([76df190](https://github.com/synerise/synerise-design/commit/76df19067366d42ab324eeb25c6b7418991b2d6b))
+
+
+
+
+
 # [1.3.0](https://github.com/synerise/synerise-design/compare/@synerise/ds-core@1.2.0...@synerise/ds-core@1.3.0) (2025-05-19)
 
 

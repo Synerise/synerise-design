@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.0.9](https://github.com/Synerise/synerise-design/compare/@synerise/ds-filter@1.0.8...@synerise/ds-filter@1.0.9) (2025-05-26)
+
+
+### Bug Fixes
+
+* **core:** make translation imports static ([76df190](https://github.com/Synerise/synerise-design/commit/76df19067366d42ab324eeb25c6b7418991b2d6b))
+
+
+
+
+
 ## [1.0.8](https://github.com/Synerise/synerise-design/compare/@synerise/ds-filter@1.0.7...@synerise/ds-filter@1.0.8) (2025-05-19)
 
 **Note:** Version bump only for package @synerise/ds-filter

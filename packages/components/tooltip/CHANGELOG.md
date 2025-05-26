@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.1.8](https://github.com/synerise/synerise-design/compare/@synerise/ds-tooltip@1.1.7...@synerise/ds-tooltip@1.1.8) (2025-05-26)
+
+
+### Bug Fixes
+
+* **tooltip:** add disabled prop ([9d7a794](https://github.com/synerise/synerise-design/commit/9d7a794caece285f019a3fe5eb5e4053990ea3f0))
+
+
+
+
+
 ## [1.1.7](https://github.com/synerise/synerise-design/compare/@synerise/ds-tooltip@1.1.6...@synerise/ds-tooltip@1.1.7) (2025-05-19)
 
 **Note:** Version bump only for package @synerise/ds-tooltip

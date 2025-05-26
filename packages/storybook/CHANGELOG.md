@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.8.1](https://github.com/Synerise/synerise-design/compare/storybook7@1.8.0...storybook7@1.8.1) (2025-05-26)
+
+
+### Bug Fixes
+
+* **confirmation:** ui feedback ([0d82994](https://github.com/Synerise/synerise-design/commit/0d82994db66410388d61325ed6b84a443b8261a1))
+* **tooltip:** add disabled prop ([9d7a794](https://github.com/Synerise/synerise-design/commit/9d7a794caece285f019a3fe5eb5e4053990ea3f0))
+
+
+
+
+
 # [1.8.0](https://github.com/Synerise/synerise-design/compare/storybook7@1.7.1...storybook7@1.8.0) (2025-05-19)
 
 

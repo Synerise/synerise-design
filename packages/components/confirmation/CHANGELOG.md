@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.1.1](https://github.com/Synerise/synerise-design/compare/@synerise/ds-confirmation@1.1.0...@synerise/ds-confirmation@1.1.1) (2025-05-26)
+
+
+### Bug Fixes
+
+* **confirmation:** ui feedback ([0d82994](https://github.com/Synerise/synerise-design/commit/0d82994db66410388d61325ed6b84a443b8261a1))
+
+
+
+
+
 # 1.1.0 (2025-05-19)
 
 

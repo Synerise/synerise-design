@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.3.2](https://github.com/Synerise/synerise-design/compare/@synerise/ds-item-picker@1.3.1...@synerise/ds-item-picker@1.3.2) (2025-05-26)
+
+
+### Bug Fixes
+
+* **core:** make translation imports static ([76df190](https://github.com/Synerise/synerise-design/commit/76df19067366d42ab324eeb25c6b7418991b2d6b))
+* **item-picker:** invoke latest loadItems function on refresh ([f358c0a](https://github.com/Synerise/synerise-design/commit/f358c0ac4ccefb6ed51f7ad641376a80c70a1fa4))
+
+
+
+
+
 ## [1.3.1](https://github.com/Synerise/synerise-design/compare/@synerise/ds-item-picker@1.3.0...@synerise/ds-item-picker@1.3.1) (2025-05-19)
 
 **Note:** Version bump only for package @synerise/ds-item-picker
