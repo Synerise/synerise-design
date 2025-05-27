@@ -58,6 +58,7 @@ export type LoaderProps = {
   limit: number;
   searchQuery?: string;
   meta?: ItemLoaderMeta;
+  abortController?: AbortController;
 };
 
 export type ItemLoaderConfig<ItemType extends BaseItemType> = {

@@ -80,6 +80,7 @@ export const useItemsInSections = <ItemType extends BaseItemType, SectionType ex
   const loadedPage = useRef(FIRST_PAGE);
   const metaRef = useRef<Record<string, ItemLoaderMeta>>({});
   const sectionTotals = useRef<Record<string, number>>({});
+  const abortControllerRef = useRef<AbortController>();
   const isFixedItemsList = isItems(items) || isItemsConfig(items);
   const [contentHeight, setContentHeight] = useState<number | undefined>();
   const [isInitialDataLoaded, setIsInitialDataLoaded] = useState(isFixedItemsList);
@@ -265,11 +266,14 @@ export const useItemsInSections = <ItemType extends BaseItemType, SectionType ex
   );
 
   const loadItems = useCallback(async () => {
-    if (isFixedItemsList || listActions || isLoading) {
+    if (isFixedItemsList || listActions) {
       return;
     }
     setIsLoading(true);
     setIsLoadingError(false);
+    // eslint-disable-next-line no-unused-expressions
+    abortControllerRef.current?.abort();
+    abortControllerRef.current = new AbortController();
 
     if (listRenderingMode === RENDER_MODES.LIST_ITEMS) {
       const sectionId = currentSection?.id || 'DEFAULT';
@@ -280,6 +284,7 @@ export const useItemsInSections = <ItemType extends BaseItemType, SectionType ex
           sectionId,
           limit: items.limitPerPage || ITEMS_PER_PAGE,
           meta: undefined,
+          abortController: abortControllerRef.current,
         });
         setIsLoading(false);
         loadedPage.current = FIRST_PAGE;
@@ -307,6 +312,7 @@ export const useItemsInSections = <ItemType extends BaseItemType, SectionType ex
                 limit: (items.limitPerSection || ITEMS_PER_SECTION) + 1,
                 sectionId: folder.id,
                 meta: undefined,
+                abortController: abortControllerRef.current,
               })
               .then(({ items: sectionItems, total, meta }) => {
                 metaRef.current[folder.id] = meta;
@@ -328,7 +334,7 @@ export const useItemsInSections = <ItemType extends BaseItemType, SectionType ex
       setIsInitialDataLoaded(true);
       setIsLoadingError(true);
     }
-  }, [currentSection, isFixedItemsList, currentFolders, listRenderingMode, isLoading, items, listActions, searchQuery]);
+  }, [currentSection, isFixedItemsList, currentFolders, listRenderingMode, items, listActions, searchQuery]);
 
   useEffect(() => {
     if (listActions) {
