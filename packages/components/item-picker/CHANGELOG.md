@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.4.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-item-picker@1.3.2...@synerise/ds-item-picker@1.4.0) (2025-05-28)
+
+
+### Features
+
+* **item-picker:** add abortController ([85a6b52](https://github.com/Synerise/synerise-design/commit/85a6b522841e6377d57d4fc93b9fc309030f72cc))
+
+
+
+
+
 ## [1.3.2](https://github.com/Synerise/synerise-design/compare/@synerise/ds-item-picker@1.3.1...@synerise/ds-item-picker@1.3.2) (2025-05-26)
 
 
