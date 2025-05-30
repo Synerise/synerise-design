@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import { Label } from '@synerise/ds-typography';
 import '@synerise/ds-core/dist/js/style';
 import { defaultColorsOrder } from '@synerise/ds-core';
@@ -41,14 +41,22 @@ const Slider = (props: SliderProps): JSX.Element => {
     min,
     value,
     range,
+    tooltipVisible,
+    tooltipPlacement = 'bottom',
     ...antdProps
   } = props;
-  const [reachedEnd, setReachedEnd] = React.useState(false);
-  const [reachedStart, setReachedStart] = React.useState(false);
-  const calcHandlePosition = React.useCallback(() => {
+
+  const [reachedEnd, setReachedEnd] = useState(false);
+  const [reachedStart, setReachedStart] = useState(false);
+
+  const showValueTooltip = useMemo(() => {
+    return tooltipVisible !== false && (!antdProps.tooltip || antdProps.tooltip.open !== false);
+  }, [tooltipVisible, antdProps.tooltip]);
+
+  const calcHandlePosition = useCallback(() => {
     const handler = document.querySelectorAll('.ant-slider-handle');
     const markTexts = document.querySelectorAll('.ant-slider-mark-text');
-    if (handler && markTexts?.length) {
+    if (handler && markTexts?.length && showValueTooltip) {
       const firstMark = markTexts[0].getBoundingClientRect();
       const lastMark = markTexts[markTexts.length - 1].getBoundingClientRect();
       const firstHandler = handler[0].getBoundingClientRect();
@@ -65,14 +73,15 @@ const Slider = (props: SliderProps): JSX.Element => {
       }
     }
     return { reachedEnd, reachedStart };
-  }, [reachedEnd, reachedStart]);
-  React.useEffect(() => {
+  }, [reachedEnd, reachedStart, showValueTooltip]);
+
+  useEffect(() => {
     setTimeout(() => {
       calcHandlePosition();
     }, 0);
   }, [calcHandlePosition, value]);
 
-  const labelElement = React.useMemo(
+  const labelElement = useMemo(
     () =>
       label ? (
         <S.LabelWrapper>
@@ -100,6 +109,11 @@ const Slider = (props: SliderProps): JSX.Element => {
         max={max}
         value={value}
         reachedEnd={reachedEnd}
+        tooltip={{
+          ...antdProps.tooltip,
+          placement: tooltipPlacement,
+          open: tooltipVisible,
+        }}
         range={range}
         reachedStart={reachedStart}
         className={value && couldBeInverted(value, !!inverted) ? 'ant-slider-inverted' : undefined}
@@ -108,7 +122,7 @@ const Slider = (props: SliderProps): JSX.Element => {
         disabled={disabled}
         description={description}
         hideMinAndMaxMarks={hideMinAndMaxMarks}
-        tipFormatter={(tipValue?: number): React.ReactNode => (
+        tipFormatter={(tipValue?: number) => (
           <S.DescriptionWrapper>
             {description && <S.Description range={Boolean(range)}>{description}</S.Description>}
             {tipFormatter && tipFormatter(tipValue)}
