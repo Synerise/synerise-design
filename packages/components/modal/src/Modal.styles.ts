@@ -15,22 +15,24 @@ export const AntdModal = styled(Modal)<{
   ${props =>
     props.isFullscreen &&
     css`
-      position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      margin: 0;
-      max-width: none;
-      padding: 0;
-      .ant-modal-content {
-        display: flex;
-        flex-direction: column;
-        height: 100%;
-      }
-      .ant-modal-body {
-        flex: 1 1 100%;
-        overflow: scroll;
+      && {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        margin: 0;
+        max-width: none;
+        padding: 0;
+        .ant-modal-content {
+          display: flex;
+          flex-direction: column;
+          height: 100%;
+        }
+        .ant-modal-body {
+          flex: 1 1 100%;
+          overflow: scroll;
+        }
       }
     `}
 `;
