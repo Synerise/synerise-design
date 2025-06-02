@@ -47,3 +47,15 @@ export const BUTTON_CUSTOM_COLORS = [
       color: #fff;
     `}
   `
+
+  export const ButtonTypeWrapper = styled.div<{type?: string}>`
+    padding: 20px 10px;
+    ${props => (props.type === 'ghost-white' || props.type === 'tertiary-white') && `
+      background: ${props.theme.palette['grey-600']};
+      color: #fff;
+    `}
+    border-bottom: solid 1px #ccc;
+    &:last-of-type { 
+      border: 0;
+    }
+  `

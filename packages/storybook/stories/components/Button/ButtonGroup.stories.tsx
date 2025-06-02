@@ -7,6 +7,8 @@ import ButtonGroup, { ButtonDivider } from '@synerise/ds-button-group';
 import Icon, { AngleDownS, DragHandleM } from '@synerise/ds-icon';
 import { Simple, IconSolo, IconLeft } from './Button.stories';
 import { fixedWrapper588, BOOLEAN_CONTROL, CLASSNAME_ARG_CONTROL, STRING_CONTROL, STYLE_ARG_CONTROL, PREFIXCLS_ARG_CONTROL, controlFromOptionsArray } from '../../utils';
+import { ButtonTypeWrapper, BUTTON_TYPES } from './Button.constants';
+import { theme } from '@synerise/ds-core';
 
 const meta: Meta<typeof ButtonGroup> = {
   title: 'Components/Button/ButtonGroup',
@@ -74,31 +76,38 @@ export const DisabledButtonsWithTooltip: StoryObj<typeof ButtonGroup> = {
 
 export const GroupButtons: StoryObj<typeof ButtonGroup> = {
   render: (args) => (
-    <ButtonGroup {...args}>
-      <Button mode="single-icon" {...Simple.args} type="secondary">
-        <Icon component={<DragHandleM />} />
-      </Button>
-      <Button mode="icon-label" {...Simple.args} type="secondary">
-        <Icon component={<DragHandleM />} />
-        Button
-      </Button>
-      <Button mode="two-icons" {...Simple.args} type="secondary">
-        <Icon component={<DragHandleM />} />
-        Button
-        <Icon component={<AngleDownS />} />
-      </Button>
-      <Button mode="label-icon" {...Simple.args} type="secondary">
-        Button
-        <Icon component={<DragHandleM />} />
-      </Button>
-      <Button {...Simple.args} type="secondary" loading>
-        Button
-        <Icon component={<DragHandleM />} />
-      </Button>
-      <Button {...Simple.args} type="secondary" disabled>
-        Button
-      </Button>
-    </ButtonGroup>
+    <>
+      {BUTTON_TYPES.map(type => (
+        <ButtonTypeWrapper type={type}>
+          <ButtonGroup {...args} title={`Type: ${type}`}>
+            <Button mode="single-icon" {...Simple.args} type={type}>
+              <Icon component={<DragHandleM />} />
+            </Button>
+            <Button mode="icon-label" {...Simple.args} type={type}>
+              <Icon component={<DragHandleM />} />
+              Button
+            </Button>
+            <Button mode="two-icons" {...Simple.args} type={type}>
+              <Icon component={<DragHandleM />} />
+              Button
+              <Icon component={<AngleDownS />} />
+            </Button>
+            <Button mode="label-icon" {...Simple.args} type={type}>
+              Button
+              <Icon component={<DragHandleM />} />
+            </Button>
+            <Button {...Simple.args} type={type} loading>
+              Button
+              <Icon component={<DragHandleM />} />
+            </Button>
+            <Button {...Simple.args} type={type} disabled>
+              Button
+            </Button>
+          </ButtonGroup>
+        </ButtonTypeWrapper>
+      ))}
+    </>
+
   ),
   parameters: {
     backgrounds: { default: 'dark' },
