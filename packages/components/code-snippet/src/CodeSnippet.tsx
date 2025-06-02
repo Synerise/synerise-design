@@ -22,6 +22,9 @@ const CodeSnippet = ({
   onExpand,
   onCopy,
   customTriggerComponent,
+  expanded = false,
+  hideExpandButton = false,
+  hideCopyButton = false,
 }: CodeSnippetProps) => {
   switch (type) {
     case CodeSnippetType.SINGLE_LINE:
@@ -47,12 +50,15 @@ const CodeSnippet = ({
           tooltipTitleClick={tooltipTitleClick}
           labelBeforeExpanded={labelBeforeExpanded}
           labelAfterExpanded={labelAfterExpanded}
+          expanded={expanded}
           className={className}
           wrap={wrap}
           rows={rows}
           onExpand={onExpand}
           onCopy={onCopy}
           customTriggerComponent={customTriggerComponent}
+          hideExpandButton={hideExpandButton}
+          hideCopyButton={hideCopyButton}
         >
           {children}
         </MultiCode>
