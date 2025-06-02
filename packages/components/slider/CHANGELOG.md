@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.0.10](https://github.com/Synerise/synerise-design/compare/@synerise/ds-slider@1.0.9...@synerise/ds-slider@1.0.10) (2025-06-02)
+
+
+### Bug Fixes
+
+* **slider:** render marks if tooltip is hidden ([fa528d4](https://github.com/Synerise/synerise-design/commit/fa528d42e1c94cd55b01184c05adf3b3a97de6ae))
+
+
+
+
+
 ## [1.0.9](https://github.com/Synerise/synerise-design/compare/@synerise/ds-slider@1.0.8...@synerise/ds-slider@1.0.9) (2025-05-26)
 
 **Note:** Version bump only for package @synerise/ds-slider
