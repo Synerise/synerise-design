@@ -50,24 +50,20 @@ export const applyTooltipStyles = (props: ThemeProps & DsSliderProps & SliderSty
     user-select: none;
     white-space: nowrap;
   }
-  ${
-    props.disabled &&
-    `.ant-tooltip-inner {
+  ${props.disabled &&
+  `.ant-tooltip-inner {
         color: ${props.theme.palette['grey-400']};
       }
-    `
+  &&&.ant-slider {
+    .ant-slider-dot {
+       background-color: ${props.theme.palette['grey-200']};
+    }
   }
-  ${
-    props.disabled &&
-    `.ant-slider-dot {
-        background-color: ${props.theme.palette.white};
-      }
-    `
-  }
+ `}
 
   &&&.ant-slider-disabled {
     .ant-slider-dot-active {
-      background-color: ${props.theme.palette.white};
+      background-color: ${props.theme.palette['grey-400']};
     }
     .ant-slider-rail {
       background-color: ${props.theme.palette['grey-200']};
@@ -75,9 +71,8 @@ export const applyTooltipStyles = (props: ThemeProps & DsSliderProps & SliderSty
   }
   .ant-slider-handle:hover,
   .ant-slider-handle:focus {
-    ${
-      !props.disabled &&
-      `
+    ${!props.disabled &&
+    `
     .ant-tooltip-content {
       background-color: ${props.theme.palette['grey-900']};
       border-radius: 3px;
@@ -88,19 +83,17 @@ export const applyTooltipStyles = (props: ThemeProps & DsSliderProps & SliderSty
     .ant-tooltip-inner {
       color: ${props.theme.palette['grey-050']};
     }
-    `
-    }
+    `}
   }
-  .ant-slider-handle:focus {
-  ${
-    !props.disabled &&
-    `
-  ${Description} {
-     ${props.range && `opacity: 1`};
+  ${!props.disabled &&
+  props.range &&
+  `
+    .ant-slider-handle:focus {
+      ${Description} {
+         opacity: 1
+      }
     }
-    }
-    `
-  }
+    `}
   .ant-slider-handle:hover:not(:focus) {
     background-color: ${!props.disabled && props.theme.palette['grey-500']};
   }
@@ -121,12 +114,12 @@ export const applyTooltipStyles = (props: ThemeProps & DsSliderProps & SliderSty
   .ant-slider-mark-text:last-of-type {
     padding-right: 30px;
   }
-    .ant-slider-mark-text:last-of-type {
-      ${props.reachedEnd && `opacity: 0`}
-    }
-    .ant-slider-mark-text:first-of-type {
-      ${props.reachedStart && `opacity: 0`}
-    }
+  .ant-slider-mark-text:last-of-type {
+    ${props.reachedEnd && `opacity: 0`}
+  }
+  .ant-slider-mark-text:first-of-type {
+    ${props.reachedStart && `opacity: 0`}
+  }
   .ant-slider-handle-dragging {
     border-color: ${props.theme.palette['grey-050']} !important;
     box-shadow: 0 0 0 3px rgba(35, 138, 254, 0.25) !important;
