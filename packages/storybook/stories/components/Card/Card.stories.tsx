@@ -1,10 +1,13 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Meta, StoryObj } from '@storybook/react';
 
 import Card, { CardBadge, CardSummary, CardGroup } from '@synerise/ds-card';
 
 import { CheckS } from '@synerise/ds-icon';
 import type { CardProps } from '@synerise/ds-card';
+import Layout from '@synerise/ds-layout';
+
+import * as S from '../Layout/components/Layout.styles';
 import {
   CardWithState,
   CARD_CONTENT,
@@ -62,6 +65,62 @@ export default CardMeta;
 export const Default: Story = {
   args: {
     icon: <CardBadge icon={<CheckS />} />,
+  },
+};
+export const withLayout: Story = {
+  render: args => {
+    const [leftOpened, setLeftOpened] = useState(false);
+    const [rightOpened, setRightOpened] = useState(false);
+
+    return (
+      <Card {...args}>
+        <Layout
+          renderLeftSidebarControls
+          renderRightSidebarControls
+          left={{
+            content: <S.Placeholder></S.Placeholder>,
+            opened: leftOpened,
+            onChange: setLeftOpened,
+          }}
+          right={{
+            content: <S.Placeholder></S.Placeholder>,
+            opened: rightOpened,
+            onChange: setRightOpened,
+          }}
+        >
+          {CARD_CONTENT}
+        </Layout>
+      </Card>
+    )
+  },
+  args: {
+    icon: <CardBadge icon={<CheckS />} />,
+    background: 'grey-shadow',
+    defaultHeaderBackgroundColor: true,
+    hideContent: false,
+    title: 'title',
+    description: 'description',
+    withoutPadding: true,
+  },
+};
+
+export const Static: Story = {
+  render: args => (
+    <Card {...args}>{CARD_CONTENT}</Card>
+  ),
+  args: {
+    icon: <CardBadge icon={<CheckS />} />,
+    hideContent: false,
+    title: 'title',
+    description: 'description'
+  },
+};
+
+export const WithGreyBackground: Story = {
+  args: {
+    icon: <CardBadge icon={<CheckS />} />,
+    background: 'grey-shadow',
+    defaultHeaderBackgroundColor: true,
   },
 };
 
