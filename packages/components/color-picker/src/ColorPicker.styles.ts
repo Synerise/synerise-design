@@ -104,17 +104,19 @@ export const ColorPickerInput = styled(Input)`
 `;
 
 export const ColorPickerSelect = styled(Input)`
-  .ant-input-affix-wrapper {
-    padding: 4px 4px;
+  &&& {
+    .ant-input-affix-wrapper {
+      padding: 4px 4px;
+    }
+    .ant-input-prefix {
+      margin-right: 8px;
+    }
+    .ant-input {
+      padding-right: 4px;
+      box-shadow: none;
+    }
+    width: 100px;
   }
-  .ant-input-prefix {
-    margin-right: 8px;
-  }
-  &&& .ant-input {
-    padding-right: 4px;
-    box-shadow: none;
-  }
-  width: 100px;
 `;
 
 export const PrefixTag = styled.div<{ height?: boolean; size?: 'S' | 'M' | 'L' }>`
