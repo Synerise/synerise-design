@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.1.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-code-snippet@1.0.9...@synerise/ds-code-snippet@1.1.0) (2025-06-03)
+
+
+### Features
+
+* **code-snippet:** add hide expand and copy button props ([7db9ff1](https://github.com/Synerise/synerise-design/commit/7db9ff120215b057d8d8db0a8cc752a0ce8cf89a))
+
+
+
+
+
 ## [1.0.9](https://github.com/Synerise/synerise-design/compare/@synerise/ds-code-snippet@1.0.8...@synerise/ds-code-snippet@1.0.9) (2025-05-26)
 
 **Note:** Version bump only for package @synerise/ds-code-snippet

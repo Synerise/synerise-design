@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.2.4](https://github.com/Synerise/synerise-design/compare/@synerise/ds-color-picker@1.2.3...@synerise/ds-color-picker@1.2.4) (2025-06-03)
+
+
+### Bug Fixes
+
+* **color-picker:** css rule specificity ([6806a54](https://github.com/Synerise/synerise-design/commit/6806a54c0bf754e448013fd6fa2fae632ae188f8))
+
+
+
+
+
 ## [1.2.3](https://github.com/Synerise/synerise-design/compare/@synerise/ds-color-picker@1.2.2...@synerise/ds-color-picker@1.2.3) (2025-05-26)
 
 **Note:** Version bump only for package @synerise/ds-color-picker

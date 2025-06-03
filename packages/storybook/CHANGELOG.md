@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.9.0](https://github.com/Synerise/synerise-design/compare/storybook7@1.8.1...storybook7@1.9.0) (2025-06-03)
+
+
+### Bug Fixes
+
+* **button:** button group hover styles ([452ef6c](https://github.com/Synerise/synerise-design/commit/452ef6c5d9b651ba6d0e16013edab06b3c0592b5))
+* **card:** add stories for card ([5e5e583](https://github.com/Synerise/synerise-design/commit/5e5e5830e080bbd784192998fc1aa4aea592578f))
+
+
+### Features
+
+* **code-snippet:** add hide expand and copy button props ([7db9ff1](https://github.com/Synerise/synerise-design/commit/7db9ff120215b057d8d8db0a8cc752a0ce8cf89a))
+
+
+
+
+
 ## [1.8.1](https://github.com/Synerise/synerise-design/compare/storybook7@1.8.0...storybook7@1.8.1) (2025-05-26)
 
 
