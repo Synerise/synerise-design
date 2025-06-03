@@ -55,3 +55,6 @@ styleguide/
 
 *.tgz
 *storybook.log
+
+ca.crt
+bundle.crt

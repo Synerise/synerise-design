@@ -28,4 +28,6 @@ export interface CodeSnippetProps {
   onExpand?: () => void;
   onCopy?: () => void;
   customTriggerComponent?: React.ReactNode;
+  hideExpandButton?: boolean;
+  hideCopyButton?: boolean;
 }

@@ -27,8 +27,11 @@ const MultiCode: React.FC<CodeSnippetProps> = ({
   onExpand,
   onCopy,
   customTriggerComponent,
+  hideExpandButton = false,
+  hideCopyButton = false,
+  expanded = false,
 }) => {
-  const [expandedState, setExpandedState] = React.useState(false);
+  const [expandedState, setExpandedState] = React.useState(expanded);
   const [scrollable, setScrollable] = React.useState(false);
   const [allRows, setAllRows] = React.useState(1);
   const codeRef = React.useRef<HTMLElement>(null);
@@ -99,20 +102,21 @@ const MultiCode: React.FC<CodeSnippetProps> = ({
     [wrap, rows, expandedState, isButtonVisible, scrollable, codeRef, extraHeightOption, children]
   );
   const iconElement = React.useMemo(
-    () => (
-      <CopyAction
-        tooltipTitleHover={tooltipTitleHover}
-        tooltipTitleClick={tooltipTitleClick}
-        className={ICON_CLASSNAME}
-        onClick={(): void => {
-          copy(children);
-          onCopy && onCopy();
-        }}
-        icon={<DuplicateS />}
-        customTriggerComponent={customTriggerComponent}
-      />
-    ),
-    [children, tooltipTitleHover, tooltipTitleClick, onCopy, customTriggerComponent]
+    () =>
+      !hideCopyButton && (
+        <CopyAction
+          tooltipTitleHover={tooltipTitleHover}
+          tooltipTitleClick={tooltipTitleClick}
+          className={ICON_CLASSNAME}
+          onClick={(): void => {
+            copy(children);
+            onCopy && onCopy();
+          }}
+          icon={<DuplicateS />}
+          customTriggerComponent={customTriggerComponent}
+        />
+      ),
+    [children, tooltipTitleHover, tooltipTitleClick, onCopy, customTriggerComponent, hideCopyButton]
   );
 
   return (
@@ -125,7 +129,7 @@ const MultiCode: React.FC<CodeSnippetProps> = ({
         )}
         {iconElement}
       </S.ContentIconWrapper>
-      {rows && isButtonVisible && (
+      {!hideExpandButton && rows && isButtonVisible && (
         <S.ExpanderButton {...buttonProps} onClick={(): void => handleButton(expandedState)}>
           <Icon component={<ArrowDownCircleM />} />
           {expandedState ? labelAfterExpanded : labelBeforeExpanded}
