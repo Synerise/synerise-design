@@ -1,5 +1,4 @@
 import React, { Children, cloneElement, isValidElement } from 'react';
-// import { ReactSortable, MoveEvent } from 'react-sortablejs';
 
 import Button from '@synerise/ds-button';
 import { defaultColorsOrder } from '@synerise/ds-core';

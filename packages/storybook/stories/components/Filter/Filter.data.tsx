@@ -27,9 +27,8 @@ export const renderDateRange = (value: DateRange) => {
   }
   return value.translationKey && value.translationKey !== 'custom'
     ? value.translationKey
-    : `${value.duration.value} ${value.duration.type.toLocaleLowerCase()} before ${
-        value.offset.value
-      } ${value.offset.type.toLocaleLowerCase()}`;
+    : `${value.duration.value} ${value.duration.type.toLocaleLowerCase()} before ${value.offset.value
+    } ${value.offset.type.toLocaleLowerCase()}`;
 };
 
 export const DEFAULT_EXPRESSION = (subject?: ContextItem | ContextGroup): ExpressionWithSteps => ({
@@ -97,7 +96,7 @@ const FILTER_EXPRESSION_STEP_PARAMETER_ERRORS = {
 export const EXPRESSIONS: ExpressionWithSteps[] = [
   {
     type: 'STEP' as const,
-    id: 'af8cadc2-efeb-4be6-a988-bf8b92e4ec4c',
+    id: 'af8cadc2-efeb-4be6-a988-ty8b92e4ec4c',
     data: {
       name: 'Step 1 name',
       matching: true,
@@ -178,7 +177,7 @@ export const EXPRESSIONS_WITH_ERRORS: ExpressionWithSteps[] = [
     },
     logic: {
       type: 'LOGIC',
-      id: 'c5287f4e-6081-4b51-b317-2982582618ff',
+      id: 'c5287f4e-6081-4b51-b312-2982582618ff',
       data: {
         value: 'OR',
       },

@@ -11,6 +11,7 @@ export const SortableItem = <ItemType extends BaseItem>({
   isDragged = false,
   component: Component,
   style,
+  placeholderCss,
   ...htmlAttributes
 }: SortableItemProps<ItemType>) => {
   const { attributes, listeners, setNodeRef, transform, transition } = useSortable({ id });
@@ -20,7 +21,6 @@ export const SortableItem = <ItemType extends BaseItem>({
     transition,
     opacity: 1,
   };
-
   const handleProps = { ...attributes, ...listeners };
 
   return (
@@ -29,11 +29,18 @@ export const SortableItem = <ItemType extends BaseItem>({
       data-testid="ds-sortable-item"
       {...htmlAttributes}
       isGrabbed={index === -1}
+      placeholderCss={placeholderCss}
       isDragged={isDragged}
       ref={setNodeRef}
     >
       <S.SortableItemContent>
-        <Component {...data} index={index} dragHandleProps={handleProps} />
+        <Component
+          {...data}
+          index={index}
+          dragHandleProps={handleProps}
+          isGrabbed={index === -1}
+          isDragged={isDragged}
+        />
       </S.SortableItemContent>
     </S.SortableItemWrapper>
   );

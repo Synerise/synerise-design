@@ -1,6 +1,4 @@
-import React, { useRef, forwardRef, useEffect, useMemo, useState, createRef } from 'react';
-import { useIntl } from 'react-intl';
-
+import React, { useRef, forwardRef, useEffect, useState, createRef } from 'react';
 import { Matching } from '@synerise/ds-logic';
 import Cruds from '@synerise/ds-cruds';
 import { InlineAlert } from '@synerise/ds-alert';
@@ -9,6 +7,7 @@ import { Title } from '@synerise/ds-typography';
 
 import * as S from './StepCard.styles';
 import { StepCardProps } from './StepCard.types';
+import { useDefaultTexts } from './hooks/useDefaultTexts';
 
 export const REORDER_THROTTLE = 1000;
 const MOVE_SUCCESS_FEEDBACK_DURATION = 2000;
@@ -28,32 +27,23 @@ const StepCard = forwardRef<HTMLDivElement, StepCardProps>(
       onChangeMatching,
       texts,
       headerRightSide,
+      renderHeaderRightSide,
       isHeaderVisible = true,
       readOnly = false,
       singleStepCondition = false,
       getMoveByLabel,
       isDraggable = true,
+      isDragged,
+      isDragOverlay,
+      dragIndex,
+      dropLabel,
+      dragHandleProps,
       additionalFields,
     },
     ref
   ) => {
-    const { formatMessage } = useIntl();
-    const text = useMemo(
-      () => ({
-        matching: formatMessage({ id: 'DS.MATCHING.PERFORMED' }),
-        notMatching: formatMessage({ id: 'DS.MATCHING.NOT-PERFORMED' }),
-        conditionType: formatMessage({ id: 'DS.STEP-CARD.CONDITION-TYPE' }),
-        notConditionType: formatMessage({ id: 'DS.STEP-CARD.NOT-CONDITION-TYPE' }),
-        namePlaceholder: formatMessage({ id: 'DS.STEP-CARD.NAME-PLACEHOLDER' }),
-        moveTooltip: formatMessage({ id: 'DS.STEP-CARD.MOVE', defaultMessage: 'Move' }),
-        moveUpTooltip: formatMessage({ id: 'DS.STEP-CARD.MOVE-UP', defaultMessage: 'Move Up' }),
-        moveDownTooltip: formatMessage({ id: 'DS.STEP-CARD.MOVE-DOWN', defaultMessage: 'Move Down' }),
-        deleteTooltip: formatMessage({ id: 'DS.STEP-CARD.DELETE' }),
-        duplicateTooltip: formatMessage({ id: 'DS.STEP-CARD.DUPLICATE' }),
-        ...texts,
-      }),
-      [formatMessage, texts]
-    );
+    const allTexts = useDefaultTexts(texts);
+
     const [moveByOffset, setMoveByOffset] = useState(0);
     const moveUpInactive = expressionIndex + moveByOffset <= 0;
     const moveDownInactive = expressionIndex + moveByOffset >= expressionCount - 1;
@@ -158,14 +148,14 @@ const StepCard = forwardRef<HTMLDivElement, StepCardProps>(
               </S.MoveByOffset>
               <Cruds
                 onMoveUp={onMoveUp}
-                moveUpTooltip={text.moveUpTooltip}
+                moveUpTooltip={allTexts.moveUpTooltip}
                 moveUpInactive={moveUpInactive}
                 onMoveDown={onMoveDown}
-                moveDownTooltip={text.moveDownTooltip}
+                moveDownTooltip={allTexts.moveDownTooltip}
                 moveDownInactive={moveDownInactive}
-                deleteTooltip={text.deleteTooltip}
+                deleteTooltip={allTexts.deleteTooltip}
                 onDelete={onDelete}
-                duplicateTooltip={text.duplicateTooltip}
+                duplicateTooltip={allTexts.duplicateTooltip}
                 onDuplicate={onDuplicate}
               />
             </S.CrudsWrapper>
@@ -175,40 +165,54 @@ const StepCard = forwardRef<HTMLDivElement, StepCardProps>(
               <InlineAlert type="success" message="Moved" />
             </S.RecentlyMoved>
           )}
-          {headerRightSide}
+
+          {renderHeaderRightSide && dragIndex !== undefined ? renderHeaderRightSide(dragIndex) : headerRightSide}
         </>
       );
     };
 
     return (
-      <S.Container ref={ref}>
-        {isHeaderVisible && (
-          <S.Header onMouseOver={resetMoveSuccess} onFocus={resetMoveSuccess} className="step-card-drag-handler">
-            <S.LeftSide readOnly={readOnly}>
-              {!readOnly && isDraggable && <S.DragIcon component={<DragHandleM />} />}
-              {matching !== undefined && onChangeMatching && (
-                <>
-                  <Matching
-                    matching={matching}
-                    onChange={onChangeMatching}
-                    texts={{ matching: text.matching, notMatching: text.notMatching }}
-                    readOnly={readOnly}
-                  />
-                  <Title withoutMargin level={4}>
-                    {matching ? text.conditionType : text.notConditionType}
-                  </Title>
-                </>
+      <S.Container isDragged={isDragged} isDragOverlay={isDragOverlay} ref={ref}>
+        <S.DragPlaceholder>
+          {dropLabel && <S.DragPlaceholderContent>{dropLabel}</S.DragPlaceholderContent>}
+          <S.DragPlaceholderTag>
+            {renderHeaderRightSide && dragIndex !== undefined
+              ? renderHeaderRightSide(dragIndex, { placeholder: true })
+              : headerRightSide}
+          </S.DragPlaceholderTag>
+        </S.DragPlaceholder>
+        <S.Content>
+          {isHeaderVisible && (
+            <S.Header isDraggable={!readOnly && isDraggable} onMouseOver={resetMoveSuccess} onFocus={resetMoveSuccess}>
+              <S.LeftSide isDraggable={!readOnly && isDraggable}>
+                {!readOnly && isDraggable && (
+                  <S.DragIcon component={<DragHandleM />} {...(!readOnly && isDraggable ? dragHandleProps : {})} />
+                )}
+                {matching !== undefined && onChangeMatching && (
+                  <S.StepCardTitle>
+                    <Matching
+                      matching={matching}
+                      onChange={onChangeMatching}
+                      texts={{ matching: allTexts.matching, notMatching: allTexts.notMatching }}
+                      readOnly={readOnly}
+                    />
+                    <Title withoutMargin level={4}>
+                      {matching ? allTexts.conditionType : allTexts.notConditionType}
+                    </Title>
+                  </S.StepCardTitle>
+                )}
+              </S.LeftSide>
+              {!readOnly && isDraggable && <S.Middle {...dragHandleProps} />}
+              {(!readOnly || headerRightSide || renderHeaderRightSide) && (
+                <S.RightSide className="step-card-right-side">{renderRightSide()}</S.RightSide>
               )}
-            </S.LeftSide>
-            {(!readOnly || headerRightSide) && (
-              <S.RightSide className="step-card-right-side">{renderRightSide()}</S.RightSide>
-            )}
-          </S.Header>
-        )}
+            </S.Header>
+          )}
 
-        <S.Body singleStepCondition={singleStepCondition}>{children}</S.Body>
-        {additionalFields && <S.AdditionalFields>{additionalFields}</S.AdditionalFields>}
-        {footer && <S.Footer>{footer}</S.Footer>}
+          <S.Body singleStepCondition={singleStepCondition}>{children}</S.Body>
+          {additionalFields && <S.AdditionalFields>{additionalFields}</S.AdditionalFields>}
+          {footer && <S.Footer>{footer}</S.Footer>}
+        </S.Content>
       </S.Container>
     );
   }

@@ -1,6 +1,8 @@
 import type { ReactNode, ReactElement, ComponentType } from 'react';
+import type { Interpolation } from 'styled-components';
 import type { DraggableAttributes, DraggableSyntheticListeners } from '@dnd-kit/core';
 import type { WithHTMLAttributes } from '@synerise/ds-utils';
+import type { ThemeProps } from '@synerise/ds-core';
 
 export type DragHandlePropType = DraggableAttributes & DraggableSyntheticListeners;
 
@@ -23,6 +25,7 @@ export type SortableItemProps<ItemType extends BaseItem> = WithHTMLAttributes<
     children?: ReactNode;
     id: string | number;
     index: number;
+    placeholderCss?: Interpolation<ThemeProps>;
     component: ItemComponent<WithIndex<ItemType>>;
     data: ItemType;
     isDragged?: boolean;
@@ -34,4 +37,5 @@ export type SortableProps<ItemType extends BaseItem> = {
   axis?: 'x' | 'y';
   ItemComponent: ItemComponent<WithIndex<ItemType>>;
   onOrderChange?: (newOrder: ItemType[]) => void;
+  placeholderCss?: Interpolation<ThemeProps>;
 };

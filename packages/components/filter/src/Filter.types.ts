@@ -1,7 +1,7 @@
-import React from 'react';
-import { LogicOperator, LogicOperatorValue, LogicProps } from '@synerise/ds-logic/dist/Logic.types';
-import { StepCardProps } from '@synerise/ds-step-card';
-import { MatchingProps, MatchingTexts } from '@synerise/ds-logic/dist/Matching/Matching.types';
+import type { ReactNode } from 'react';
+import type { LogicOperator, LogicOperatorValue, LogicProps, MatchingProps, MatchingTexts } from '@synerise/ds-logic';
+import type { StepCardProps } from '@synerise/ds-step-card';
+import type { DeepPartial } from '@synerise/ds-utils';
 
 export type LogicType = {
   type: 'LOGIC';
@@ -23,6 +23,37 @@ export type addFilterComponentProps = {
   isLimitExceeded: boolean;
 };
 
+export type FilterTexts = {
+  matching: MatchingTexts;
+  step: {
+    matching?: string;
+    notMatching?: string;
+    have?: string;
+    performed?: string;
+    notHave?: string;
+    notPerformed?: string;
+    attribute?: string;
+    event?: string;
+    notAttribute?: string;
+    notEvent?: string;
+    namePlaceholder?: string;
+    moveTooltip?: string;
+    moveUpTooltip?: string;
+    moveDownTooltip?: string;
+    deleteTooltip?: string;
+    duplicateTooltip?: string;
+  };
+  placeholder: {
+    chooseCondition?: string;
+    getPreview?: string;
+  };
+  addFilter: string;
+  dropMeHere: string;
+  overwritten: {
+    filterTitle?: string;
+  };
+};
+
 export type FilterProps = {
   maxConditionsLimit?: number;
   expressions: Expression[];
@@ -33,45 +64,16 @@ export type FilterProps = {
   onChangeStepName?: (id: string, name: string) => void;
   onDeleteStep?: (id: string) => void;
   onDuplicateStep?: (id: string) => void;
-  renderStepFooter?: (expression: Expression) => React.ReactNode;
-  renderStepContent?: (expression: Expression, hoverDisabled?: boolean) => React.ReactNode;
-  renderStepHeaderRightSide?: (expression: Expression, index: number) => React.ReactNode;
-  addFilterComponent?: React.ReactNode | ((arg: addFilterComponentProps) => React.ReactNode);
+  renderStepFooter?: (expression: Expression) => ReactNode;
+  renderStepContent?: (expression: Expression, hoverDisabled?: boolean) => ReactNode;
+  renderStepHeaderRightSide?: (expression: Expression, index: number, options?: { placeholder?: boolean }) => ReactNode;
+  addFilterComponent?: ReactNode | ((arg: addFilterComponentProps) => ReactNode);
   logicOptions?: LogicOperator[];
   readOnly?: boolean;
   singleStepCondition?: boolean;
-  renderHeaderRightSide?: (expressions: Expression[]) => React.ReactNode;
+  renderHeaderRightSide?: (expressions: Expression[]) => ReactNode;
   getMoveByLabel?: (moveByOffset: number) => string;
-  texts?: {
-    matching?: MatchingTexts;
-    step?: {
-      matching?: string;
-      notMatching?: string;
-      have?: string;
-      performed?: string;
-      notHave?: string;
-      notPerformed?: string;
-      attribute?: string;
-      event?: string;
-      notAttribute?: string;
-      notEvent?: string;
-      namePlaceholder?: string;
-      moveTooltip?: string;
-      moveUpTooltip?: string;
-      moveDownTooltip?: string;
-      deleteTooltip?: string;
-      duplicateTooltip?: string;
-    };
-    placeholder?: {
-      chooseCondition?: string;
-      getPreview?: string;
-    };
-    addFilter?: string;
-    dropMeHere?: string;
-    overwritten?: {
-      filterTitle?: string;
-    };
-  };
+  texts?: DeepPartial<FilterTexts>;
   visibilityConfig?: {
     isStepCardHeaderVisible?: boolean;
   };

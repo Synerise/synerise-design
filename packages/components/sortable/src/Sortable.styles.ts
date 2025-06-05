@@ -1,8 +1,13 @@
-import styled, { css } from 'styled-components';
+import { ThemeProps } from '@synerise/ds-core';
+import styled, { css, Interpolation } from 'styled-components';
 
 export const SortableItemContent = styled.div``;
 
-export const SortableItemWrapper = styled.div<{ isGrabbed: boolean; isDragged: boolean }>`
+export const SortableItemWrapper = styled.div<{
+  isGrabbed: boolean;
+  isDragged: boolean;
+  placeholderCss?: Interpolation<ThemeProps>;
+}>`
   ${props =>
     props.isDragged &&
     css`
@@ -20,6 +25,7 @@ export const SortableItemWrapper = styled.div<{ isGrabbed: boolean; isDragged: b
         border: 1px dashed ${props.theme.palette['blue-300']};
         background-color: ${props.theme.palette['blue-050']};
         border-radius: 3px;
+        ${props.placeholderCss}
       }
     `}
   ${props =>
