@@ -11,7 +11,7 @@ import type { ColumnSortOrder, ColumnsSortState } from './ColumnSortMenu/useSort
 
 export type AntTableProps<T> = Omit<
   TableProps<T>,
-  'title' | 'subTitle' | 'onSearch' | 'itemsMenu' | 'search' | 'locale' | 'columns'
+  'title' | 'subTitle' | 'onSearch' | 'itemsMenu' | 'search' | 'locale' | 'columns' | 'loading'
 >;
 
 export type Selection = {
@@ -116,6 +116,7 @@ export type OnSortFn = (singleColumnSort: SingleColumnSort, sortState: ColumnsSo
 export type DSTableProps<T extends any & GroupType<T>> = AntTableProps<T> & {
   title?: ReactNode | (() => ReactNode);
   hideTitleBar?: boolean;
+  loading?: boolean;
   headerWithBorderTop?: boolean;
   itemsMenu?: string | ReactNode;
   search?: string;
@@ -141,6 +142,7 @@ export type DSTableProps<T extends any & GroupType<T>> = AntTableProps<T> & {
   onSort?: OnSortFn;
   dataSourceFull?: T[];
   dataSourceTotalCount?: number;
+  isCounterLoading?: boolean;
   skeletonProps?: {
     maxHeight?: number;
     headerHeight?: number;

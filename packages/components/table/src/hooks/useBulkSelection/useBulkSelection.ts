@@ -1,4 +1,4 @@
-import { Key, ReactText, useCallback, useMemo } from 'react';
+import { Key, useCallback, useMemo } from 'react';
 import { Props as TableSelectionType } from '../../TableHeader/TableSelection.types';
 import { useRowKey } from '../useRowKey';
 import { isRecordSelectable } from '../../utils';
@@ -10,7 +10,7 @@ type BulkSelectionType = {
   selectedRecordsCount: number;
 };
 
-export const useBulkSelectionCount = <T extends { key: ReactText }>({
+export const useBulkSelectionCount = <T extends object>({
   dataSource,
   selection,
   childrenColumnName,

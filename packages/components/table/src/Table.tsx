@@ -14,17 +14,9 @@ import TableHeader from './TableHeader/TableHeader';
 import DefaultTable from './DefaultTable/DefaultTable';
 import GroupTable from './GroupTable/GroupTable';
 import { GroupType } from './GroupTable/GroupTable.types';
-import { useTableLocale, TableLocaleContext } from './utils/locale';
-import { getChildrenColumnName } from './utils/getChildrenColumnName';
-import { getSkeletonProps } from './utils/getSkeletonProps';
 
-export const SELECTION_ALL = 'SELECTION_ALL';
-export const SELECTION_INVERT = 'SELECTION_INVERT';
-
-const ITEM_RENDER_TYPE = {
-  prev: 'prev',
-  next: 'next',
-};
+import { useTableLocale, TableLocaleContext, getChildrenColumnName, getSkeletonProps, isGrouped } from './utils';
+import { SELECTION_INVERT, SELECTION_ALL, ITEM_RENDER_TYPE } from './constants/Table.constants';
 
 const DSTable = <T extends object>(props: DSTableProps<T>) => {
   const intl = useIntl();
@@ -55,6 +47,7 @@ const DSTable = <T extends object>(props: DSTableProps<T>) => {
     expandable,
     columns,
     skeletonProps,
+    isCounterLoading,
   } = props;
 
   const tableLocale = useTableLocale(intl, locale);
@@ -62,15 +55,19 @@ const DSTable = <T extends object>(props: DSTableProps<T>) => {
 
   const renderHeader = useCallback((): JSX.Element => {
     const size = selection && selection?.selectedRowKeys && selection?.selectedRowKeys.length;
-    const data = grouped
-      ? // @ts-ignore
-        dataSource?.reduce((items: T[], group: GroupType<T>) => {
-          if (group.rows) {
-            return [...items, ...group.rows];
-          }
-          return [...items];
-        }, [])
-      : dataSource;
+
+    const data =
+      grouped && isGrouped(dataSource)
+        ? dataSource?.reduce((items: T[], group: GroupType<T>) => {
+            if (group.rows) {
+              const merged = [...items, ...group.rows];
+              return merged;
+            }
+            const result = [...items];
+            return result;
+          }, [])
+        : dataSource;
+
     const totalCount = dataSourceTotalCount || dataSource?.length || dataSourceFull?.length;
     return !hideTitleBar ? (
       <TableHeader
@@ -83,6 +80,7 @@ const DSTable = <T extends object>(props: DSTableProps<T>) => {
         dataSource={data}
         dataSourceFull={dataSourceFull}
         dataSourceTotalCount={totalCount}
+        isCounterLoading={isCounterLoading}
         searchComponent={searchComponent}
         filterComponent={filterComponent}
         headerButton={headerButton}
@@ -116,6 +114,7 @@ const DSTable = <T extends object>(props: DSTableProps<T>) => {
     hideTitlePart,
     expandable?.childrenColumnName,
     loading,
+    isCounterLoading,
   ]);
 
   const footerPagination = useMemo(() => {

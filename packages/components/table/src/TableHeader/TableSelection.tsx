@@ -1,5 +1,5 @@
 import React, { useCallback, useMemo } from 'react';
-import type { Key, ReactText } from 'react';
+import type { Key } from 'react';
 import Dropdown from '@synerise/ds-dropdown';
 import type { MenuItemProps } from '@synerise/ds-menu';
 import Button from '@synerise/ds-button';
@@ -8,13 +8,13 @@ import Icon, { OptionVerticalM } from '@synerise/ds-icon';
 
 import * as S from '../Table.styles';
 import type { Selection, SelectionItem } from '../Table.types';
-import { SELECTION_ALL, SELECTION_INVERT } from '../Table';
+import { SELECTION_ALL, SELECTION_INVERT } from '../constants/Table.constants';
 import type { TableSelectionProps } from './TableSelection.types';
 import { isRecordSelectable } from '../utils';
 import { useRowKey } from '../hooks/useRowKey';
 import { useBulkSelectionCount } from '../hooks/useBulkSelection';
 
-const TableSelection = <T extends { key: ReactText; children?: T[] }>({
+const TableSelection = <T extends { children?: T[] }>({
   dataSource,
   dataSourceFull,
   selection,

@@ -42,7 +42,9 @@ export const TitlePartEllipsis = styled(Text)`
 `;
 
 export const TitlePart = styled.span`
-  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  gap: 4px;
 `;
 
 export const TitleSeparator = styled.span`
@@ -328,8 +330,9 @@ export const TableWrapper = styled.div<{ hideColumnNames?: boolean; disableColum
   }
 `;
 
-export const Skeleton = styled(DSSkeleton)`
+export const Skeleton = styled(DSSkeleton)<{ skeletonWidth?: string }>`
   padding: 0;
+  ${props => props.skeletonWidth && `width: ${props.skeletonWidth};`}
 `;
 
 export const TableSkeletonCell = styled.div<{ height?: number; width?: string }>`

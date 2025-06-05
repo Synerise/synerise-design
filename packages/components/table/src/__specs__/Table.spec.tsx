@@ -1,7 +1,7 @@
 import React from 'react';
 import { renderWithProvider } from '@synerise/ds-utils/dist/testing';
 import Table from '../index';
-import { fireEvent, screen, getByRole, waitFor, render } from '@testing-library/react';
+import { fireEvent, screen, within, getByRole, waitFor } from '@testing-library/react';
 import { Grid2M } from '@synerise/ds-icon';
 
 const props = {
@@ -250,7 +250,7 @@ describe('Table', () => {
     renderWithProvider(
       <Table dataSource={props.dataSource} columns={props.columns} locale={{ pagination: { items: 'results' } }} />
     );
-    expect(screen.getByTestId('ds-table-title').textContent).toEqual('6 results');
+    expect(screen.getByTestId('ds-table-title').textContent).toEqual('6results');
   });
 
   it.skip('Should render custom empty component', async () => {
@@ -264,7 +264,7 @@ describe('Table', () => {
     renderWithProvider(
       <Table dataSource={props.dataSource} columns={props.columns} locale={{ pagination: { items: 'records' } }} />
     );
-    expect(screen.getByTestId('ds-table-title').textContent).toEqual('6 records');
+    expect(screen.getByTestId('ds-table-title').textContent).toEqual('6records');
   });
 
   it('Should render with unchecked and disabled row selection checkbox', () => {
@@ -350,6 +350,12 @@ describe('Table', () => {
     it.skip('Should render skeleton when loading initial data', () => {
       renderWithProvider(<Table {...props} dataSource={undefined} loading />);
       expect(screen.getByTestId('ds-table-skeleton')).toBeInTheDocument()
+    });
+
+    it('Should render skeleton in place of total count', () => {
+      renderWithProvider(<Table {...props} isCounterLoading />);
+
+      expect(within(screen.getByTestId('ds-table-title')).getByTestId('ds-skeleton')).toBeInTheDocument()
     });
   });
 });

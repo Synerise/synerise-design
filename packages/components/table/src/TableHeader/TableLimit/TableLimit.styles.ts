@@ -13,6 +13,9 @@ export const Title = styled.div`
   strong {
     font-weight: 500;
   }
+  display: flex;
+  align-items: center;
+  gap: 4px;
 `;
 
 export const Alert = styled.div`

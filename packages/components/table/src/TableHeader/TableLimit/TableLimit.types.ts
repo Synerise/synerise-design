@@ -3,9 +3,10 @@ import type { RequiredProps } from '@synerise/ds-utils';
 
 import { Locale, RowSelection } from '../../Table.types';
 
-export type TableLimitProps<T extends { key: string | number }> = {
+export type TableLimitProps<T extends object> = {
   selection: RequiredProps<RowSelection<T>, 'limit'>;
   total: number;
   itemsMenu: ReactNode;
   locale: Locale;
+  isCounterLoading?: boolean;
 };
