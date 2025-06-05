@@ -7,9 +7,16 @@ const useResizeObserver = (
   const [dimensions, setDimensions] = useState<DOMRect>(new DOMRect());
   const resizeObserver = useRef(
     new ResizeObserver(entries => {
-      const { contentRect } = entries[0];
-      setDimensions(contentRect);
-      resizeHandler && resizeHandler(contentRect);
+      const runHandler = () => {
+        const { contentRect } = entries[0];
+        setDimensions(contentRect);
+        resizeHandler && resizeHandler(contentRect);
+      };
+      if ('requestAnimationFrame' in window) {
+        window.requestAnimationFrame(runHandler);
+      } else {
+        setTimeout(runHandler, 0);
+      }
     })
   ).current;
 

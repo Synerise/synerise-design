@@ -1,4 +1,4 @@
-import type { ReactText } from 'react';
+import type { ReactNode, ReactText } from 'react';
 import type { FactorsProps, FactorValueComponentProps } from '@synerise/ds-factors';
 import type { OperatorsProps } from '@synerise/ds-operators';
 import type { ConditionProps, ConditionTexts } from '../../Condition.types';
@@ -16,7 +16,7 @@ export type ConditionRowProps = Pick<
   addCondition?: (stepId: ReactText) => void;
   conditionParameter?: Omit<FactorsProps, 'onChangeValue'>;
   conditionOperator?: Omit<OperatorsProps, 'onChange'>;
-  conditionFactor?: Omit<FactorsProps, 'onChangeValue'>;
+  conditionFactor?: Omit<FactorsProps, 'onChangeValue'> & { withCustomFactor?: ReactNode };
   conditionsNumber: number;
   stepId: ReactText;
   currentStepId: ReactText;

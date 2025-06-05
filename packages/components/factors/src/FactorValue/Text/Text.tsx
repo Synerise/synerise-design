@@ -18,6 +18,7 @@ const TextInput = ({
   factorType,
   opened,
   onDeactivate,
+  onActivate,
   error,
   inputProps,
   getPopupContainerOverride,
@@ -84,6 +85,7 @@ const TextInput = ({
           value={localValue as string}
           onChange={handleAutocomplete}
           onBlur={onDeactivate}
+          onFocus={onActivate}
           error={localError || error}
           handleInputRef={setInputRef}
           defaultOpen
@@ -108,6 +110,7 @@ const TextInput = ({
             value={localValue as string}
             onChange={handleChange}
             onBlur={onDeactivate}
+            onFocus={onActivate}
             error={localError || error}
             readOnly={readOnly}
           />
@@ -134,6 +137,7 @@ const TextInput = ({
             value={localValue as string}
             onChange={handleChange}
             onBlur={onDeactivate}
+            onFocus={onActivate}
             error={localError || error}
             readOnly={readOnly}
           />

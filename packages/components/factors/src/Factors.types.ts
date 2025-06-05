@@ -1,9 +1,9 @@
 import type { ReactText, ReactNode, ComponentType } from 'react';
 
-import type { DateFilter } from '@synerise/ds-date-range-picker/dist/date.types';
+import type { DateFilter, RelativeUnits } from '@synerise/ds-date-range-picker/dist/date.types';
 import type { Texts as DateRangeTexts } from '@synerise/ds-date-range-picker/dist/DateRangePicker.types';
 import type { MenuItemProps } from '@synerise/ds-menu';
-import type { AutoResizeProp } from '@synerise/ds-input';
+import type { AutoResizeProp, InputProps } from '@synerise/ds-input';
 import type { InformationCardProps } from '@synerise/ds-information-card';
 import type { ListItemProps } from '@synerise/ds-list-item';
 import type { LiteralStringUnion, DeepPartial } from '@synerise/ds-utils';
@@ -17,10 +17,19 @@ export const ALL_FACTOR_TYPES = [
   'formula',
   'array',
   'date',
+  'relativeDate',
   'dateRange',
 ] as const;
 export type FactorType = LiteralStringUnion<typeof ALL_FACTOR_TYPES[number]>;
 export type DefinedFactorTypes = typeof ALL_FACTOR_TYPES[number];
+
+export type RelativeDateUnit = Exclude<RelativeUnits, 'SINCE'>;
+export type RelativeTimeRelation = 'BEFORE' | 'AFTER';
+export type RelativeDateValueType = {
+  temporalUnit: RelativeDateUnit;
+  temporalModifier: number;
+};
+
 export type DynamicKeyValueType = { key: ReactText; value: ReactText };
 export type FormulaValueType = { name: string; value: string };
 export type ParameterValueType = Pick<ListItemProps, 'renderHoverTooltip' | 'hoverTooltipProps' | 'disabled'> & {
@@ -59,6 +68,7 @@ export type FactorValueType =
   | number
   | null
   | Date
+  | RelativeDateValueType
   | undefined
   | DynamicKeyValueType
   | FormulaValueType
@@ -70,7 +80,22 @@ export type SelectedFactorType = {
   icon: ReactNode;
   component: ComponentType<FactorValueComponentProps>;
 };
-
+export type RelativeDateFactorTexts = {
+  triggerValue: string;
+  triggerPlaceholder: string;
+  currentDatetime: ReactNode;
+  seconds: string;
+  minutes: string;
+  hours: string;
+  days: string;
+  weeks: string;
+  months: string;
+  years: string;
+  before: string;
+  after: string;
+  apply: ReactNode;
+  cancel: ReactNode;
+};
 export type FactorsTexts = {
   dateRangePicker: DateRangeTexts;
   datePicker: {
@@ -95,6 +120,7 @@ export type FactorsTexts = {
     recentItemsGroupName: string;
     allItemsGroupName: string;
   };
+  relativeDate: RelativeDateFactorTexts;
   valuePlaceholder: string;
   modalApply: string;
   modalCancel: string;
@@ -124,6 +150,10 @@ export type FactorsProps = {
   value: FactorValueType;
   textType?: LiteralStringUnion<'autocomplete' | 'expansible' | 'default'>;
   autoResize?: AutoResizeProp;
+  relativeDateProps?: {
+    triggerValueFormatter?: (value: RelativeDateValueType) => string;
+    availableUnits?: RelativeDateUnit[];
+  };
   autocompleteText?: {
     options: string[];
   };
@@ -150,8 +180,22 @@ export type FactorsProps = {
   allowClear?: boolean;
   loading?: boolean;
   preventAutoloadData?: boolean;
-  withCustomFactor?: ReactNode;
-  inputProps?: Partial<FactorValueComponentProps>;
+
+  inputProps?: Partial<
+    Omit<
+      InputProps,
+      | 'handleInputRef'
+      | 'defaultOpen'
+      | 'placeholder'
+      | 'value'
+      | 'onChange'
+      | 'onBlur'
+      | 'error'
+      | 'getPopupContainer'
+      | 'readOnly'
+      | 'allowClear'
+    >
+  >;
   readOnly?: boolean;
   getMenuEntryProps?: (arg?: ParameterValueType) => MenuItemProps;
 };
@@ -191,6 +235,7 @@ export type FactorValueProps = Pick<
   | 'inputProps'
   | 'autoResize'
   | 'readOnly'
+  | 'relativeDateProps'
   | 'getMenuEntryProps'
 > & {
   texts: FactorsTexts;
@@ -222,7 +267,7 @@ export type FactorValueComponentProps = Pick<
   formulaEditor?: ReactNode;
   loading?: boolean;
   preventAutoloadData?: boolean;
-};
+} & FactorsProps['relativeDateProps'];
 
 export type TextModalProps = {
   value: string;

@@ -30,6 +30,71 @@ export const useTexts = (defaultTexts?: DeepPartial<FactorsTexts>): FactorsTexts
               defaultMessage: 'Value',
             }),
           },
+          relativeDate: {
+            currentDatetime: intl.formatMessage({
+              id: 'DS.FACTORS.RELATIVE_DATE.CURRENT_DATETIME',
+              defaultMessage: 'current datetime',
+            }),
+            seconds: intl.formatMessage({
+              id: 'DS.FACTORS.RELATIVE_DATE.SECONDS',
+              defaultMessage: 'Seconds',
+            }),
+            minutes: intl.formatMessage({
+              id: 'DS.FACTORS.RELATIVE_DATE.MINUTE',
+              defaultMessage: 'Minutes',
+            }),
+            hours: intl.formatMessage({
+              id: 'DS.FACTORS.RELATIVE_DATE.HOURS',
+              defaultMessage: 'Hours',
+            }),
+            days: intl.formatMessage({
+              id: 'DS.FACTORS.RELATIVE_DATE.DAYS',
+              defaultMessage: 'Days',
+            }),
+            weeks: intl.formatMessage({
+              id: 'DS.FACTORS.RELATIVE_DATE.WEEKS',
+              defaultMessage: 'Weeks',
+            }),
+            months: intl.formatMessage({
+              id: 'DS.FACTORS.RELATIVE_DATE.MONTHS',
+              defaultMessage: 'Months',
+            }),
+            years: intl.formatMessage({
+              id: 'DS.FACTORS.RELATIVE_DATE.YEARS',
+              defaultMessage: 'Years',
+            }),
+            before: intl.formatMessage({
+              id: 'DS.FACTORS.RELATIVE_DATE.BEFORE',
+              defaultMessage: 'Before',
+            }),
+            after: intl.formatMessage({
+              id: 'DS.FACTORS.RELATIVE_DATE.AFTER',
+              defaultMessage: 'After',
+            }),
+            apply: intl.formatMessage({
+              id: 'DS.FACTORS.RELATIVE_DATE.APPLY',
+              defaultMessage: 'Apply',
+            }),
+            cancel: intl.formatMessage({
+              id: 'DS.FACTORS.RELATIVE_DATE.CANCEL',
+              defaultMessage: 'Cancel',
+            }),
+            triggerPlaceholder: intl.formatMessage({
+              id: 'DS.FACTORS.RELATIVE_DATE.TRIGGER_PLACEHOLDER',
+              defaultMessage: 'Select date',
+            }),
+            triggerValue: intl.formatMessage(
+              {
+                id: 'DS.FACTORS.RELATIVE_DATE.TRIGGER_VALUE',
+                defaultMessage: '{value} {interval} {timeRelation} current datetime',
+              },
+              {
+                value: '1',
+                interval: 'days',
+                timeRelation: 'before',
+              }
+            ),
+          },
           formula: {
             buttonPlaceholder: intl.formatMessage({
               id: 'DS.FACTORS.FORMULA.BUTTON_PLACEHOLDER',
@@ -70,6 +135,10 @@ export const useTexts = (defaultTexts?: DeepPartial<FactorsTexts>): FactorsTexts
             formula: intl.formatMessage({ id: 'DS.FACTORS.FACTOR_TYPES.FORMULA', defaultMessage: 'Formula' }),
             array: intl.formatMessage({ id: 'DS.FACTORS.FACTOR_TYPES.ARRAY', defaultMessage: 'Array' }),
             date: intl.formatMessage({ id: 'DS.FACTORS.FACTOR_TYPES.DATE', defaultMessage: 'Date' }),
+            relativeDate: intl.formatMessage({
+              id: 'DS.FACTORS.FACTOR_TYPES.RELATIVE_DATE',
+              defaultMessage: 'Relative date',
+            }),
             dateRange: intl.formatMessage({ id: 'DS.FACTORS.FACTOR_TYPES.DATE_RANGE', defaultMessage: 'Date range' }),
           },
         },

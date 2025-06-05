@@ -23,7 +23,10 @@ export const FACTORS_TEXTS = {
   valuePlaceholder: 'Value',
   modalApply: 'Apply',
   modalCancel: 'Cancel',
-  modalTitle: 'Value'
+  modalTitle: 'Value',
+  relativeDate: {
+    triggerPlaceholder: 'Select date'
+  }
 }
 
 export const FACTORS_GROUPS = [
@@ -32,7 +35,7 @@ export const FACTORS_GROUPS = [
     id: 1,
     allowEmpty: true,
     defaultGroup: true,
-  },{
+  }, {
     name: 'All',
     id: 2,
     subGroups: [{
@@ -40,16 +43,16 @@ export const FACTORS_GROUPS = [
       id: 3,
       icon: <FolderM />
     },
-      {
-        name: 'Expressions',
-        id: 4,
-        icon: <FolderM />
-      },
-      {
-        name: 'Aggregates',
-        id: 3,
-        icon: <FolderM />
-      },
+    {
+      name: 'Expressions',
+      id: 4,
+      icon: <FolderM />
+    },
+    {
+      name: 'Aggregates',
+      id: 3,
+      icon: <FolderM />
+    },
     ]
   }
 ];
