@@ -1,10 +1,10 @@
 import React, { Key } from 'react';
-import Checkbox from '@synerise/ds-checkbox/dist';
+import Checkbox from '@synerise/ds-checkbox';
 import Status from '@synerise/ds-status';
 import Button from '@synerise/ds-button';
 import Icon, { AddS } from '@synerise/ds-icon';
-import { GROUP_BY } from '@synerise/ds-column-manager/dist/ColumnManagerGroupSettings/ColumnManagerGroupSettings.types';
 import * as S from '../GroupTable.styles';
+import { GROUP_BY } from '../GroupTable.types';
 import { Props } from './GroupTableBody.types';
 import { useRowKey } from '../../hooks/useRowKey';
 

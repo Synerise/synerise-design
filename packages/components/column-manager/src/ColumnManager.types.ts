@@ -1,78 +1,28 @@
-import { ItemFilterProps } from '@synerise/ds-item-filter/dist/ItemFilter.types';
-import React from 'react';
-import { IntlFormatters } from 'react-intl';
-import { Column } from './ColumnManagerItem/ColumManagerItem.types';
-import { Range, GroupSettingsTexts } from './ColumnManagerGroupSettings/ColumnManagerGroupSettings.types';
+import type { ReactNode } from 'react';
+import type { Column } from './ColumnManagerItem/ColumManagerItem.types';
 
-export type Texts =
-  | GroupSettingsTexts
+type TextsString = 'searchPlaceholder';
+type TextsReactNode =
   | 'title'
-  | 'savedViews'
-  | 'searchPlaceholder'
   | 'searchClearTooltip'
   | 'noResults'
-  | 'searchResults'
-  | 'visible'
-  | 'hidden'
-  | 'saveView'
   | 'cancel'
   | 'apply'
-  | 'fixedLeft'
-  | 'fixedRight'
-  | 'group'
   | 'clear'
-  | 'viewName'
-  | 'viewDescription'
-  | 'viewNamePlaceholder'
-  | 'viewDescriptionPlaceholder'
   | 'switchOn'
-  | 'switchOff'
-  | 'mustNotBeEmpty';
+  | 'switchOff';
 
-export type ColumnManagerProps = {
+export type ColumnManagerTexts = {
+  [k in TextsReactNode]: ReactNode;
+} & {
+  [k in TextsString]: string;
+};
+
+export type ColumnManagerProps<ColumnType extends Column> = {
   hide: () => void;
   visible: boolean;
-  onSave: (savedView: SavedView) => void;
-  onApply: (columns: Column[], groupSettings?: GroupSettings | undefined) => void;
-  columns: Column[];
-  texts?: {
-    [k in Texts]: string | React.ReactNode;
-  };
-  itemFilterConfig?: Omit<ItemFilterProps, 'visible' | 'hide' | 'theme'>;
-  savedViewsVisible?: boolean;
-  hideSavedViews?: () => void;
-  intl: IntlFormatters;
-  groupSettings?: GroupSettings;
-};
-
-export type SavedView = {
-  meta: ViewMeta;
-  groupSettings?: GroupSettings;
-  columns: Column[];
-};
-
-export type ViewMeta = {
-  name: string;
-  description: string;
-};
-
-export type GroupType = 'value' | 'ranges' | 'interval' | string | undefined;
-
-export type GroupSettings = {
-  column?: Column;
-  settings: {
-    type: GroupType;
-    ranges: Range[] | false;
-    interval: number | false;
-  };
-};
-
-export type State = {
-  searchQuery: string;
-  visibleList: Column[];
-  hiddenList: Column[];
-  itemFilterVisible: boolean;
-  selectedFilterId: string | undefined;
-  activeColumn: Column | undefined;
-  groupSettings: GroupSettings | undefined;
+  onApply: (columns: ColumnType[]) => void;
+  columns: ColumnType[];
+  texts?: Partial<ColumnManagerTexts>;
+  draggable?: boolean;
 };

@@ -24,3 +24,5 @@ export type {
   SelectionItem,
   CustomizeScrollBodyInfo,
 } from './Table.types';
+
+export { GROUP_BY } from './GroupTable/GroupTable.types';

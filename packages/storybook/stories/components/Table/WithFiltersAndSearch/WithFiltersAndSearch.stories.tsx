@@ -64,10 +64,8 @@ export default {
   render: ({ showIconsInHeader, multipleSortOrder, sortRenderType, showHeaderButton, dataSource = [], ...args }) => {
     const {
       columns,
-      setColumns,
+
       selectedViewId,
-      setSavedViewsVisible,
-      setColumnManagerVisible,
       selectedFilterId,
       itemFilterVisible,
       setItemFilterVisible,
@@ -113,8 +111,8 @@ export default {
       return !searchValue
         ? dataSource
         : dataSource.filter(record => {
-            return record.name.toLowerCase().includes(searchValue.toLowerCase());
-          });
+          return record.name.toLowerCase().includes(searchValue.toLowerCase());
+        });
     }, [searchFilterValue, searchValue, dataSource]);
 
     const recent = dataSource.map(record => ({
@@ -140,9 +138,9 @@ export default {
         });
         return allSuggestions
           ? allSuggestions.reduce((unique, item) => {
-              const exist = unique.find(record => record.text === item.text);
-              return exist ? unique : [...unique, item];
-            }, [] as SuggestionType[])
+            const exist = unique.find(record => record.text === item.text);
+            return exist ? unique : [...unique, item];
+          }, [] as SuggestionType[])
           : [];
       }
       return [];
@@ -178,16 +176,6 @@ export default {
           dataSourceFull={dataSource}
           columns={finalColumns}
           filters={[
-            {
-              key: 'view',
-              icon: <Grid2M />,
-              tooltips: { default: 'Table view', clear: 'Clear view', define: 'Define view', list: 'Saved views' },
-              openedLabel: 'Define',
-              showList: () => setSavedViewsVisible(true),
-              show: () => setColumnManagerVisible(true),
-              handleClear: () => handleSetSelectedView(undefined),
-              selected: getSelectedView(),
-            },
             {
               key: 'filter',
               icon: <FilterM />,
@@ -261,31 +249,8 @@ export default {
             />
           }
         />
-        <ColumnManager
-          hide={() => setColumnManagerVisible(false)}
-          visible={columnManagerVisible}
-          savedViewsVisible={savedViewsVisible}
-          hideSavedViews={() => setSavedViewsVisible(false)}
-          columns={columns}
-          onApply={columns => {
-            // @ts-ignore
-            setColumns(columns);
-            setColumnManagerVisible(false);
-          }}
-          onSave={savedView => saveFilter(savedView)}
-          itemFilterConfig={{
-            fetchData: () => {},
-            removeItem: params => removeViewItem(params),
-            editItem: params => editViewItem(params),
-            selectItem: params => handleSetSelectedView(params),
-            duplicateItem: action('duplicate item'),
-            selectedItemId: selectedViewId as string,
-            categories: savedViews,
-            texts: COLUMN_MANAGER_TEXTS,
-          }}
-        />
         <ItemFilter
-          fetchData={() => {}}
+          fetchData={() => { }}
           visible={itemFilterVisible}
           hide={toggleItemFilterVisible}
           removeItem={props => removeItem(props)}

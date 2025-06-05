@@ -7,6 +7,7 @@ export const DragHandler = styled(Icon)`
   top: 16px;
   left: -24px;
   opacity: 0;
+  cursor: pointer;
 `;
 
 export const Icons = styled.div`
@@ -37,7 +38,7 @@ export const ItemPart = styled.div<{ align: string }>`
   }
 `;
 
-export const ColumnManagerItem = styled.div`
+export const ColumnManagerItem = styled.div<{ isDragged?: boolean }>`
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -46,7 +47,14 @@ export const ColumnManagerItem = styled.div`
   width: 100%;
   padding: 13px 24px;
   position: relative;
+  background: ${props => props.theme.palette.white};
   border-bottom: 1px solid ${(props): string => props.theme.palette['grey-200']};
+
+  ${props =>
+    props.isDragged &&
+    `
+      opacity: 0;
+    `}
 
   &:hover {
     background-color: ${(props): string => props.theme.palette['grey-050']};
