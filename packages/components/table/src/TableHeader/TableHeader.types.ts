@@ -1,14 +1,15 @@
-import { ReactText, ReactNode } from 'react';
+import { ReactNode } from 'react';
 import { Filter, Locale, RowSelection } from '../Table.types';
 
-export type Props<T extends { key: ReactText }> = {
-  title?: ReactNode;
+export type Props<T extends object> = {
+  title?: ReactNode | (() => ReactNode);
   filters?: Filter[];
   selectedRows?: number;
   itemsMenu: ReactNode;
   selection?: RowSelection<T>;
-  dataSource: T[];
+  dataSource?: readonly T[];
   dataSourceFull?: T[];
+  isCounterLoading?: boolean;
   searchComponent?: ReactNode;
   filterComponent?: ReactNode;
   rowKey?: Function | string;

@@ -1,8 +1,8 @@
 import type { RowSelection, Locale } from '../Table.types';
 
-export type TableSelectionProps<T extends { key: string | number }> = {
+export type TableSelectionProps<T extends object> = {
   selection?: RowSelection<T>;
-  dataSource: T[];
+  dataSource: readonly T[];
   dataSourceFull?: T[];
   locale?: Locale;
   rowKey?: Function | string;
@@ -13,4 +13,4 @@ export type TableSelectionProps<T extends { key: string | number }> = {
 /**
  * @deprecated use TableSelectionProps instead
  */
-export type Props<T extends { key: string | number }> = TableSelectionProps<T>;
+export type Props<T extends object> = TableSelectionProps<T>;

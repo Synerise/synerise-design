@@ -143,14 +143,14 @@ describe('VirtualTable', () => {
     renderWithProvider(
       <VirtualTable {...sharedProps} dataSource={props.dataSource} columns={props.columns} locale={{ pagination: { items: 'results' } }} />
     );
-    expect(screen.getByTestId('ds-table-title').textContent).toEqual('6 results');
+    expect(screen.getByTestId('ds-table-title').textContent).toEqual('6results');
   });
 
   it('Should render results title with custom locale', () => {
     renderWithProvider(
       <VirtualTable {...sharedProps} dataSource={props.dataSource} columns={props.columns} locale={{ pagination: { items: 'records' } }} />
     );
-    expect(screen.getByTestId('ds-table-title').textContent).toEqual('6 records');
+    expect(screen.getByTestId('ds-table-title').textContent).toEqual('6records');
   });
 
   describe('row star', () => {

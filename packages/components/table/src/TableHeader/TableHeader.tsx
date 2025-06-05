@@ -9,7 +9,7 @@ import TableSelection from './TableSelection';
 import { Props } from './TableHeader.types';
 import { TableLimit } from './TableLimit';
 
-const TableHeader = ({
+const TableHeader = <T extends object>({
   title,
   filters,
   searchComponent,
@@ -17,9 +17,10 @@ const TableHeader = ({
   selectedRows,
   itemsMenu,
   selection,
-  dataSource,
+  dataSource = [],
   dataSourceFull,
   dataSourceTotalCount,
+  isCounterLoading,
   rowKey,
   withBorderTop,
   headerButton,
@@ -28,13 +29,12 @@ const TableHeader = ({
   hideTitlePart,
   childrenColumnName,
   isLoading,
-}: // @ts-ignore
-Props) => {
+}: Props<T>) => {
   const { formatValue } = useDataFormat();
 
   const renderLeftSide = useMemo(() => {
-    const { limit, hideSelectAll } = selection || {};
-    if (limit) {
+    const { hideSelectAll } = selection || {};
+    if (selection && selection.limit) {
       return (
         <S.Left data-testid="ds-table-selection">
           {selection && !hideSelectAll && (
@@ -50,9 +50,10 @@ Props) => {
           )}
           <TableLimit
             total={dataSourceTotalCount || dataSource.length}
-            selection={selection}
+            selection={{ ...selection, limit: selection.limit }}
             itemsMenu={itemsMenu}
             locale={locale}
+            isCounterLoading={isCounterLoading}
           />
         </S.Left>
       );
@@ -96,7 +97,7 @@ Props) => {
         <S.TitleContainer>
           {isLoading && (
             <div style={{ width: '100px' }}>
-              <S.Skeleton width="L" numberOfSkeletons={1} />
+              <S.Skeleton width="L" numberOfSkeletons={1} skeletonWidth="100px" />
             </div>
           )}
 
@@ -104,18 +105,29 @@ Props) => {
             <>
               <S.TitlePartEllipsis
                 ellipsis={{
-                  tooltipProps: { description: title, type: 'largeSimple', offset: 'small', autoAdjustOverflow: true },
+                  tooltipProps: {
+                    description: <>{title}</>,
+                    type: 'largeSimple',
+                    offset: 'small',
+                    autoAdjustOverflow: true,
+                  },
                 }}
               >
-                {title}
+                <>{title}</>
               </S.TitlePartEllipsis>
               {!hideTitlePart && <S.TitleSeparator />}
             </>
           )}
           {!isLoading && !hideTitlePart && (
             <S.TitlePart>
-              <strong>{formatValue(dataSourceTotalCount || dataSource.length)}</strong>{' '}
-              <span>{locale?.pagination?.items}</span>
+              {isCounterLoading ? (
+                <S.Skeleton numberOfSkeletons={1} size="S" skeletonWidth="100px" />
+              ) : (
+                <>
+                  <strong>{formatValue(dataSourceTotalCount || dataSource.length)}</strong>
+                  <span>{locale?.pagination?.items}</span>
+                </>
+              )}
             </S.TitlePart>
           )}
         </S.TitleContainer>
@@ -130,6 +142,7 @@ Props) => {
     selectedRows,
     rowKey,
     dataSourceFull,
+    isCounterLoading,
     childrenColumnName,
     renderSelectionTitle,
     filters,

@@ -90,7 +90,10 @@ export const renderWithIconInHeaders = <RowType extends any>(
 const STORY_ARG_TYPE = { table: { category: 'Story options' } };
 export const TableMeta = {
   parameters: {
-    chromatic: { diffThreshold: 0.25 },
+    chromatic: {
+      diffThreshold: 0.25,
+      delay: 400
+    },
     layout: 'padded',
   },
   argTypes: {
@@ -118,6 +121,7 @@ export const TableMeta = {
     columns: { control: false },
     childrenColumnName: NUMBER_CONTROL,
     bordered: BOOLEAN_CONTROL,
+    isCounterLoading: BOOLEAN_CONTROL,
     defaultExpandAllRows: BOOLEAN_CONTROL,
     defaultExpandRowKeys: BOOLEAN_CONTROL,
     grouped: BOOLEAN_CONTROL,
