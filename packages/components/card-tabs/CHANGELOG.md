@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.4.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-card-tabs@1.3.3...@synerise/ds-card-tabs@1.4.0) (2025-06-05)
+
+
+### Features
+
+* **filter:** change dnd lib and update ux ([f5a979e](https://github.com/Synerise/synerise-design/commit/f5a979e6c9e5d9c8251c3f57da8ce57c416dadab))
+
+
+
+
+
 ## [1.3.3](https://github.com/Synerise/synerise-design/compare/@synerise/ds-card-tabs@1.3.2...@synerise/ds-card-tabs@1.3.3) (2025-06-03)
 
 **Note:** Version bump only for package @synerise/ds-card-tabs

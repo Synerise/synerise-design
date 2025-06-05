@@ -3,6 +3,25 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.10.0](https://github.com/Synerise/synerise-design/compare/storybook7@1.9.0...storybook7@1.10.0) (2025-06-05)
+
+
+### Bug Fixes
+
+* **input:** new stories for input-group ([7d0db26](https://github.com/Synerise/synerise-design/commit/7d0db26ff2b991a964222bb7fb2ce851940bd479))
+
+
+### Features
+
+* **column-manager:** removed unnecessary features ([152d3c0](https://github.com/Synerise/synerise-design/commit/152d3c0d87449977f8c4264bb7abd278210470e9))
+* **factors:** relative date type ([e3d17f1](https://github.com/Synerise/synerise-design/commit/e3d17f18350044322c06c6b51263d69f97ee7dba))
+* **filter:** change dnd lib and update ux ([f5a979e](https://github.com/Synerise/synerise-design/commit/f5a979e6c9e5d9c8251c3f57da8ce57c416dadab))
+* **table:** isCounterLoading prop added ([3fec1ec](https://github.com/Synerise/synerise-design/commit/3fec1ec07d1cc9c5b7fe320dc03a21f12be3cc40))
+
+
+
+
+
 # [1.9.0](https://github.com/Synerise/synerise-design/compare/storybook7@1.8.1...storybook7@1.9.0) (2025-06-03)
 
 

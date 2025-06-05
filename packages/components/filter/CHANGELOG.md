@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.1.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-filter@1.0.10...@synerise/ds-filter@1.1.0) (2025-06-05)
+
+
+### Features
+
+* **filter:** change dnd lib and update ux ([f5a979e](https://github.com/Synerise/synerise-design/commit/f5a979e6c9e5d9c8251c3f57da8ce57c416dadab))
+
+
+
+
+
 ## [1.0.10](https://github.com/Synerise/synerise-design/compare/@synerise/ds-filter@1.0.9...@synerise/ds-filter@1.0.10) (2025-06-03)
 
 **Note:** Version bump only for package @synerise/ds-filter

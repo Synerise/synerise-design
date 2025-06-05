@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.2.0](https://github.com/synerise/synerise-design/compare/@synerise/ds-utils@1.1.1...@synerise/ds-utils@1.2.0) (2025-06-05)
+
+
+### Features
+
+* **factors:** relative date type ([e3d17f1](https://github.com/synerise/synerise-design/commit/e3d17f18350044322c06c6b51263d69f97ee7dba))
+* **filter:** change dnd lib and update ux ([f5a979e](https://github.com/synerise/synerise-design/commit/f5a979e6c9e5d9c8251c3f57da8ce57c416dadab))
+
+
+
+
+
 ## [1.1.1](https://github.com/synerise/synerise-design/compare/@synerise/ds-utils@1.1.0...@synerise/ds-utils@1.1.1) (2025-05-26)
 
 

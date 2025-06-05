@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.2.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-search-bar@1.1.4...@synerise/ds-search-bar@1.2.0) (2025-06-05)
+
+
+### Features
+
+* **column-manager:** removed unnecessary features ([152d3c0](https://github.com/Synerise/synerise-design/commit/152d3c0d87449977f8c4264bb7abd278210470e9))
+
+
+
+
+
 ## [1.1.4](https://github.com/Synerise/synerise-design/compare/@synerise/ds-search-bar@1.1.3...@synerise/ds-search-bar@1.1.4) (2025-05-26)
 
 **Note:** Version bump only for package @synerise/ds-search-bar

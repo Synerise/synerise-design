@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.2.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-sortable@1.1.3...@synerise/ds-sortable@1.2.0) (2025-06-05)
+
+
+### Features
+
+* **column-manager:** removed unnecessary features ([152d3c0](https://github.com/Synerise/synerise-design/commit/152d3c0d87449977f8c4264bb7abd278210470e9))
+* **filter:** change dnd lib and update ux ([f5a979e](https://github.com/Synerise/synerise-design/commit/f5a979e6c9e5d9c8251c3f57da8ce57c416dadab))
+
+
+
+
+
 ## [1.1.3](https://github.com/Synerise/synerise-design/compare/@synerise/ds-sortable@1.1.2...@synerise/ds-sortable@1.1.3) (2025-05-26)
 
 **Note:** Version bump only for package @synerise/ds-sortable
