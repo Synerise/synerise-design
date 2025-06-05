@@ -41,6 +41,7 @@ export const Input = ({
   expandable,
   expandableTooltip,
   renderCustomCounter,
+  autoResizeProps,
   ...antdInputProps
 }: InputProps) => {
   const id = useMemo(() => uuid(), []);
@@ -172,6 +173,7 @@ export const Input = ({
 
   const autoSizedComponent = (
     <AutosizeWrapper
+      {...autoResizeProps}
       preAutosize={preAutosize}
       onAutosize={onAutosize}
       value={antdInputProps.value}

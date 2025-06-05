@@ -26,6 +26,7 @@ const FactorValue = ({
   allowClear,
   readOnly = false,
   getMenuEntryProps,
+  relativeDateProps,
 }: FactorValueProps) => {
   const inputType = React.useMemo(() => {
     if (!selectedFactor) {
@@ -45,7 +46,6 @@ const FactorValue = ({
         parameters={['parameter', 'contextParameter'].indexOf(selectedFactorType) >= 0 ? parameters : undefined}
         withoutTypeSelector={withoutTypeSelector}
         texts={texts}
-        inputProps={inputProps}
         formulaEditor={formulaEditor}
         opened={opened}
         loading={loading}
@@ -58,6 +58,8 @@ const FactorValue = ({
         allowClear={allowClear}
         readOnly={readOnly}
         getMenuEntryProps={getMenuEntryProps}
+        inputProps={inputProps}
+        {...relativeDateProps}
       />
     );
   }, [
@@ -84,6 +86,7 @@ const FactorValue = ({
     allowClear,
     readOnly,
     getMenuEntryProps,
+    relativeDateProps,
   ]);
   return (
     <S.FactorInput inputType={selectedFactorType} inputTextType={textType} withoutTypeSelector={withoutTypeSelector}>

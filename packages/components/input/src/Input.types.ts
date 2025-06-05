@@ -2,6 +2,8 @@ import type { ReactNode, ReactElement, MutableRefObject } from 'react';
 import type { InputProps as AntdInputProps, TextAreaProps as AntdTextAreaProps } from 'antd/lib/input';
 import type { FormFieldCommonProps } from '@synerise/ds-form-field';
 
+import type { AutosizeInputProps } from './AutosizeInput/AutosizeInput.types';
+
 export type AutoResizeProp = boolean | { minWidth: string; maxWidth?: string; stretchToFit?: boolean };
 export type Props = BaseProps<HTMLInputElement | HTMLTextAreaElement>;
 export type BaseProps<RefElementType extends HTMLTextAreaElement | HTMLInputElement = HTMLInputElement> = {
@@ -18,6 +20,9 @@ export type BaseProps<RefElementType extends HTMLTextAreaElement | HTMLInputElem
   prefixel?: ReactNode;
   suffixel?: ReactNode;
   autoResize?: AutoResizeProp;
+  autoResizeProps?: Partial<
+    Pick<AutosizeInputProps, 'placeholderIsMinWidth' | 'wrapperClassName' | 'wrapperStyle' | 'extraWidth'>
+  >;
   expandable?: boolean;
   expandableTooltip?: ReactNode;
 } & FormFieldCommonProps;

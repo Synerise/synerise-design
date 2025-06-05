@@ -41,6 +41,7 @@ const FactorsMeta = {
       args.setSelectedFactorType?.(factorType);
     };
     const handleChangeValue = newValue => {
+      console.log('factor value changed', newValue)
       updateArgs({ value: newValue });
       args.onChangeValue?.(newValue);
     };
@@ -131,6 +132,25 @@ export const ParameterType: Story = {
   }
 };
 
+export const RelativeDate: Story = {
+  args: {
+    ...FactorsMeta.args,
+    selectedFactorType: 'relativeDate',
+    value: {
+      temporalUnit: 'HOURS',
+      temporalModifier: -10
+    },
+    relativeDateProps: {
+      availableUnits: [
+        'HOURS',
+        'DAYS',
+        'WEEKS',
+        'MONTHS',
+      ]
+    }
+  }
+};
+
 type ItemType = typeof ITEMS_IN_SECTIONS[number];
 type RenderTriggerType = Required<ItemPickerPropsNew<ItemType, undefined>>['renderTrigger'];
 type TriggerProps = Parameters<RenderTriggerType>[0];
@@ -157,10 +177,10 @@ const mapPickerTypeToFactorValueType = (item: ItemType) => {
   return result
 }
 
-const CustomParameterFactorValueComponent = ({ onActivate, getPopupContainerOverride, readOnly, onDeactivate, onChange, onParamsClick, opened, value}: FactorValueComponentProps) => {
+const CustomParameterFactorValueComponent = ({ onActivate, getPopupContainerOverride, readOnly, onDeactivate, onChange, onParamsClick, opened, value }: FactorValueComponentProps) => {
   const selectedItem = mapParameterValueTypeToListItem(value as ParameterValueType);
   const renderTrigger = ({ selected, disabled }: Partial<TriggerProps>) => (
-    <Button groupVariant='right-rounded' disabled={disabled} color={selected && 'green'} mode={selected? 'icon-label' : ''} type={selected? 'custom-color' : "secondary"}>{selected ? (<><Icon component={<VarTypeStringM />} /> {selected.text}</>) : 'Choose parameter'}</Button>
+    <Button groupVariant='right-rounded' disabled={disabled} color={selected && 'green'} mode={selected ? 'icon-label' : ''} type={selected ? 'custom-color' : "secondary"}>{selected ? (<><Icon component={<VarTypeStringM />} /> {selected.text}</>) : 'Choose parameter'}</Button>
   );
   const [localOpen, setLocalOpen] = useState(opened);
   const handleOpenChange = (isOpen: boolean) => {
@@ -214,6 +234,7 @@ export const CustomisedParameterType: Story = {
 };
 
 
+
 export const ParameterTypeSearch: Story = {
   args: {
     ...FactorsMeta.args,
@@ -244,7 +265,7 @@ export const AllTypes: Story = {
   decorators: [flexColumnWrapper],
   parameters: {
     controls: {
-        include: ['readOnly', 'error']
+      include: ['readOnly', 'error']
     }
   },
   args: {
@@ -254,7 +275,7 @@ export const AllTypes: Story = {
     return (
       <>
         {ALL_FACTOR_TYPES.map((factorType, index) => (
-          <div data-popupindex-container style={{position: 'relative', zIndex: 100-index}}>
+          <div data-popupindex-container style={{ position: 'relative', zIndex: 100 - index }}>
             <Factors {...FactorsMeta.args} {...args} selectedFactorType={factorType} />
           </div>
         ))}

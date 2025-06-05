@@ -16,7 +16,7 @@ export type StepConditions = {
   id: ReactText;
   parameter?: Omit<FactorsProps, 'onChangeValue'>;
   operator?: Omit<OperatorsProps, 'onChange'>;
-  factor?: Omit<FactorsProps, 'onChangeValue' | 'setSelectedFactorType'>;
+  factor?: Omit<FactorsProps, 'onChangeValue' | 'setSelectedFactorType'> & { withCustomFactor?: ReactNode };
 };
 
 export type ConditionStep = {

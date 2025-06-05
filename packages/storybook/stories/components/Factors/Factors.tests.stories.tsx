@@ -4,7 +4,7 @@ import { within, userEvent, fn, expect, waitFor } from '@storybook/test';
 import { ALL_FACTOR_TYPES } from '@synerise/ds-factors';
 import type { FactorsProps } from '@synerise/ds-factors';
 
-import FactorsMeta, { Default } from './Factors.stories';
+import FactorsMeta, { AllTypes, Default, RelativeDate } from './Factors.stories';
 import { centeredPaddedWrapper, sleep } from '../../utils';
 
 export default {
@@ -75,6 +75,76 @@ export const SelectParameterFactorValue: StoryObj<FactorsProps> = {
     await waitFor(() => expect(args.onChangeValue).toHaveBeenCalledOnce());
   },
 };
+
+const NOW = 'now';
+export const RelativeDateOpen: StoryObj<FactorsProps> = {
+  ...RelativeDate,
+  args: {
+    ...RelativeDate.args,
+    texts: {
+      relativeDate: {
+        currentDatetime: NOW
+      }
+    }
+  },
+  play: async ({ canvasElement, step }) => {
+    const canvas = within(canvasElement.parentElement!);
+    await step('open relative date dropdown', async () => {
+      const dropdownTrigger = canvas.getByTestId('ds-factors-relative-date-trigger');
+      await userEvent.click(dropdownTrigger);
+      return await waitFor(() => expect(canvas.getByTestId('ds-factors-relative-date-dropdown')).toBeInTheDocument());
+    });
+    console.log(canvas.getByTestId('ds-factors-relative-date-dropdown'))
+    await waitFor(() => expect(within(canvas.getByTestId('ds-factors-relative-date-dropdown')).getByText(NOW)).not.toHaveStyle({ pointerEvents: 'none' }));
+  },
+};
+
+export const RelativeDateValueChange: StoryObj<FactorsProps> = {
+  ...RelativeDate,
+  args: {
+    ...RelativeDate.args,
+    onActivate: fn(),
+    onDeactivate: fn(),
+    onChangeValue: fn(),
+    texts: {
+      relativeDate: {
+        currentDatetime: NOW
+      }
+    }
+  },
+  play: async ({ canvasElement, args, step }) => {
+    const canvas = within(canvasElement.parentElement!);
+    await step('open relative date dropdown', async () => {
+      const dropdownTrigger = canvas.getByTestId('ds-factors-relative-date-trigger');
+      await userEvent.click(dropdownTrigger);
+      await waitFor(() => expect(canvas.getByTestId('ds-factors-relative-date-dropdown')).toBeInTheDocument());
+      await waitFor(() => expect(args.onActivate).toHaveBeenCalled())
+    });
+    const dropdownWrapper = within(canvas.getByTestId('ds-factors-relative-date-dropdown'))
+    await step('update relative date value', async () => {
+
+      await userEvent.click(dropdownWrapper.getByText('Hours'));
+      const weeksOption = await canvas.findByText('Weeks')
+      await userEvent.click(weeksOption)
+      await sleep(100)
+      await userEvent.type(dropdownWrapper.getByTestId('ds-factors-relative-date-modifier'), '{backspace}7');
+      await sleep(100)
+      await userEvent.click(dropdownWrapper.getByText('Before'));
+      const afterOption = await canvas.findByText('After')
+      await userEvent.click(afterOption)
+    })
+
+    await userEvent.click(canvas.getByText('Apply'));
+    await waitFor(() => {
+      expect(args.onChangeValue).toHaveBeenCalledWith({
+        temporalModifier: 17,
+        temporalUnit: 'WEEKS'
+      })
+      expect(args.onDeactivate).toHaveBeenCalled()
+    })
+  },
+};
+
 
 export const ParameterDropdownOpen: StoryObj<FactorsProps> = {
   ...SwitchFactorType,
@@ -147,3 +217,17 @@ export const DateRangePickerOpen: StoryObj<FactorsProps> = {
     await waitFor(() => expect(canvas.getByRole('tooltip')).toBeInTheDocument());
   },
 };
+
+export const AllTypesError: StoryObj<FactorsProps> = {
+  ...AllTypes,
+  args: {
+    error: true
+  }
+}
+
+export const AllTypesReadOnly: StoryObj<FactorsProps> = {
+  ...AllTypes,
+  args: {
+    readOnly: true
+  }
+}

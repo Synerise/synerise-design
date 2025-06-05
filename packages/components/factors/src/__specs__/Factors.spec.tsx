@@ -9,9 +9,9 @@ import userEvent from '@testing-library/user-event';
 
 const DEFAULT_PROPS: FactorsProps = {
   selectedFactorType: '',
-  setSelectedFactorType: (type: FactorType) => {},
+  setSelectedFactorType: (type: FactorType) => { },
   value: '',
-  onChangeValue: (value: FactorValueType) => {},
+  onChangeValue: (value: FactorValueType) => { },
   textType: 'default',
   defaultFactorType: 'text',
   autocompleteText: {
@@ -31,7 +31,7 @@ const DEFAULT_PROPS: FactorsProps = {
 
 const RENDER_FACTORS = (props?: {}) => <Factors {...DEFAULT_PROPS} {...props} />;
 
-describe.skip('Factors component', () => {
+describe('Factors component', () => {
   beforeEach(() => {
     Element.prototype.scrollTo = jest.fn();
   });
@@ -76,6 +76,7 @@ describe.skip('Factors component', () => {
     expect(screen.queryByText('Dynamic key')).toBeInTheDocument();
     expect(screen.queryByText('Array')).toBeInTheDocument();
     expect(screen.queryByText('Date')).toBeInTheDocument();
+    expect(screen.queryByText('Relative date')).toBeInTheDocument();
     expect(screen.queryByText('Formula')).toBeInTheDocument();
   });
 
@@ -92,6 +93,7 @@ describe.skip('Factors component', () => {
     expect(screen.queryByText('Dynamic key')).toBeInTheDocument();
     expect(screen.queryByText('Array')).toBeInTheDocument();
     expect(screen.queryByText('Date')).toBeInTheDocument();
+    expect(screen.queryByText('Relative date')).toBeInTheDocument();
     expect(screen.queryByText('Formula')).not.toBeInTheDocument();
   });
 
@@ -107,33 +109,42 @@ describe.skip('Factors component', () => {
     expect(selectFactorType).toBeCalledWith('number');
   });
 
-  test('should call onActivate on Parameter factor', () => {
-    const handleActivate = jest.fn();
-    const { getByText } = renderWithProvider(
-      RENDER_FACTORS({ selectedFactorType: 'parameter', onActivate: handleActivate })
-    );
-
-    userEvent.click(getByText('Parameter'));
-
-    expect(handleActivate).toBeCalled();
-  });
-  test('should call onDeactivate Parameter factor', () => {
+  test('should call onActivate / onDeactivate Parameter factor', async () => {
     const handleDeactivate = jest.fn();
-    renderWithProvider(RENDER_FACTORS({ selectedFactorType: 'parameter', onDeactivate: handleDeactivate }));
+    const handleActivate = jest.fn();
+    renderWithProvider(RENDER_FACTORS({ selectedFactorType: 'parameter', onActivate: handleActivate, onDeactivate: handleDeactivate }));
 
     userEvent.click(screen.getByText('Parameter'));
+
+    await waitFor(() => expect(handleActivate).toBeCalled());
     userEvent.click(document.body);
 
-    expect(handleDeactivate).toBeCalled();
+    await waitFor(() => expect(handleDeactivate).toBeCalled());
   });
-  test('should call onDeactivate Text factor', () => {
+
+  test('should call onActivate / onDeactivate Relative date factor', async () => {
+    const handleActivate = jest.fn();
     const handleDeactivate = jest.fn();
-    renderWithProvider(RENDER_FACTORS({ selectedFactorType: 'text', onDeactivate: handleDeactivate }));
+    renderWithProvider(RENDER_FACTORS({ selectedFactorType: 'relativeDate', onActivate: handleActivate, onDeactivate: handleDeactivate }));
 
-    fireEvent.focus(screen.getByPlaceholderText('Value'));
-    fireEvent.blur(screen.getByPlaceholderText('Value'));
+    userEvent.click(screen.getByPlaceholderText(FACTORS_TEXTS.relativeDate.triggerPlaceholder));
 
-    expect(handleDeactivate).toBeCalled();
+    await waitFor(() => expect(handleActivate).toBeCalled());
+    userEvent.click(document.body);
+
+    await waitFor(() => expect(handleDeactivate).toBeCalled());
+  });
+  test('should call onActivate / onDeactivate Text factor', async () => {
+    const handleActivate = jest.fn();
+    const handleDeactivate = jest.fn();
+    renderWithProvider(RENDER_FACTORS({ selectedFactorType: 'text', onActivate: handleActivate, onDeactivate: handleDeactivate }));
+
+    userEvent.click(screen.getByPlaceholderText('Value'));
+    await waitFor(() => expect(handleActivate).toBeCalled());
+
+    userEvent.click(document.body);
+
+    await waitFor(() => expect(handleDeactivate).toBeCalled());
   });
   test('should render dateRange factor with date filter with slider UI', async () => {
     renderWithProvider(RENDER_FACTORS({ selectedFactorType: 'dateRange' }));
@@ -141,9 +152,9 @@ describe.skip('Factors component', () => {
     userEvent.click(await screen.findByText('Start date'));
     userEvent.click(await screen.findByText('Today'));
     await waitFor(async () => expect(screen.getByText('Select date filter').closest('button')).not.toBeDisabled());
-    
+
     userEvent.click(screen.getByText('Select date filter'));
-    
+
     const rangeForm = await screen.findByTestId('range-filter-form');
     const slider = await within(rangeForm).findAllByRole('slider');
     expect(slider.length).toBe(2);

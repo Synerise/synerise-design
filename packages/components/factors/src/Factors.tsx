@@ -1,6 +1,16 @@
 import React, { useMemo } from 'react';
 
-import { BookM, Calendar2M, DynamicKeyM, FormulaM, HashM, ListM, ShowM, TextM } from '@synerise/ds-icon';
+import {
+  BookM,
+  Calendar2M,
+  CalendarSwitchM,
+  DynamicKeyM,
+  FormulaM,
+  HashM,
+  ListM,
+  ShowM,
+  TextM,
+} from '@synerise/ds-icon';
 import { NOOP } from '@synerise/ds-utils';
 
 import * as S from './style/Factors.style';
@@ -14,6 +24,7 @@ import TextInput from './FactorValue/Text/Text';
 import ParameterInput from './FactorValue/Parameter/Parameter';
 import NumberInput from './FactorValue/Number/NumberInput';
 import DateRangeInput from './FactorValue/DateRange/DateRange';
+import RelativeDateInput from './FactorValue/RelativeDate/RelativeDate';
 import { useTexts } from './hooks/useTexts';
 
 export const FACTOR_TYPE_MAPPING: Record<DefinedFactorTypes, SelectedFactorType> = {
@@ -56,6 +67,11 @@ export const FACTOR_TYPE_MAPPING: Record<DefinedFactorTypes, SelectedFactorType>
     icon: <Calendar2M />,
     name: 'Date',
     component: DateInput,
+  },
+  relativeDate: {
+    icon: <CalendarSwitchM />,
+    name: 'Relative date',
+    component: RelativeDateInput,
   },
   dateRange: {
     icon: <Calendar2M />,

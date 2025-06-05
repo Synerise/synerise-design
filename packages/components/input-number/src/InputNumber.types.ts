@@ -11,5 +11,8 @@ export type InputNumberProps = AntdInputNumberProps<number> & {
   raw?: boolean;
   valueFormatOptions?: NumberToFormatOptions;
 } & FormFieldCommonProps;
-// @deprecated - use InputNumberProps
+
+/**
+ * @deprecated - use InputNumberProps
+ */
 export type Props = InputNumberProps;
