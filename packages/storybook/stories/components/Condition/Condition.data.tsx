@@ -147,7 +147,7 @@ export const DEFAULT_STEP = (subject?: ContextItem | ContextGroup): ConditionSte
 
 export const STEPS_POPULATED = [
   {
-    id: 'aedd3f2a-d944-4e7c-967f-aa74cd0cb407',
+    id: 'aedd3f2a-d944-4e7c-967f-aa74cd0cb488',
     stepName: '',
     context: {
       type: 'event' as const,
@@ -205,7 +205,6 @@ export const STEPS_POPULATED = [
           availableFactorTypes: getAvailableFactorTypes(OPERATORS_ITEMS[2]),
         },
       },
-
       {
         id: '3fa1111f-59b5-4d40-8ea8-ebc4083238c2',
         parameter: {

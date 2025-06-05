@@ -1,4 +1,4 @@
-import styled, { keyframes } from 'styled-components';
+import styled, { css, keyframes } from 'styled-components';
 import Icon from '@synerise/ds-icon';
 
 const fadeout = keyframes`
@@ -10,20 +10,98 @@ const fadeout = keyframes`
   }
 `;
 
-export const Container = styled.div`
+export const DragPlaceholder = styled.div`
+  opacity: 0;
+  pointer-events: none;
+  visibility: hidden;
+  display: none;
+  align-items: center;
+`;
+
+export const DragPlaceholderContent = styled.div`
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: calc(100% - 24px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: ${props => props.theme.palette['blue-600']}; ;
+`;
+export const DragPlaceholderTag = styled.div`
+  position: absolute;
+  right: 24px;
+  top: 22px;
+  opacity: 0.4;
+`;
+export const Content = styled.div`
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   justify-content: flex-start;
-  width: 100%;
-  background-color: ${(props): string => props.theme.palette.white};
-  border-radius: 3px;
+  background-color: ${props => props.theme.palette.white};
   box-shadow: 0 4px 12px 0 #2329360a;
+  border-radius: 3px;
+`;
+
+export const Container = styled.div<{ isDragged?: boolean; isDragOverlay?: boolean }>`
+  width: 100%;
   min-width: 594px;
+
+  ${props =>
+    (props.isDragged || props.isDragOverlay) &&
+    css`
+      cursor: grabbing;
+      width: 100%;
+      opacity: 1 !important;
+      padding: 0;
+
+      ${props.isDragged && // dragged item - blue placeholder
+      css`
+        height: 100px;
+        ${DragPlaceholder}${DragPlaceholder} {
+          visibility: visible;
+          opacity: 1;
+          display: block;
+        }
+        ${Content} {
+          visibility: hidden;
+          opacity: 0;
+        }
+      `}
+
+      ${props.isDragOverlay && // grabbed item on top layer
+      css`
+        ${Content} {
+          height: 76px;
+          margin-bottom: 24px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+        }
+        ${RightSide} {
+          display: none;
+        }
+      `}
+
+      ${DragIcon}${DragIcon} {
+        visibility: visible;
+        opacity: 1;
+      }
+      ${Body} {
+        position: absolute;
+        opacity: 0;
+        height: 0;
+      }
+      ${Footer} {
+        display: none;
+      }
+    `}
 `;
 
 export const RecentlyMoved = styled.span<{ duration: number }>`
-  animation: ${fadeout} 0.1s linear ${(props): number => (props.duration - 200) / 1000}s 1 forwards;
+  animation: ${fadeout} 0.1s linear ${props => (props.duration - 200) / 1000}s 1 forwards;
 `;
 
 export const CountDownWrapper = styled.div`
@@ -37,10 +115,10 @@ export const CountDownWrapper = styled.div`
 export const MoveByOffsetLabel = styled.span``;
 
 export const CountDownSpinner = styled.g<{ duration: number }>`
-  stroke: ${(props): string => props.theme.palette['grey-500']};
+  stroke: ${props => props.theme.palette['grey-500']};
   stroke-width: 2px;
   stroke-dasharray: 75;
-  transition: stroke-dashoffset ${(props): number => props.duration}s linear;
+  transition: stroke-dashoffset ${props => props.duration}s linear;
 `;
 
 export const MoveByOffset = styled.span<{ offset: number }>`
@@ -48,7 +126,7 @@ export const MoveByOffset = styled.span<{ offset: number }>`
   align-items: center;
   gap: 2px;
   ${MoveByOffsetLabel} {
-    display: ${(props): string => (props.offset === 0 ? 'none' : 'block')};
+    display: ${props => (props.offset === 0 ? 'none' : 'block')};
   }
 `;
 
@@ -66,17 +144,17 @@ export const DragIcon = styled(Icon)`
   opacity: 0;
 `;
 
-export const Header = styled.div`
+export const Header = styled.div<{ isDraggable?: boolean }>`
   display: flex;
   flex-direction: row;
-  align-items: center;
+  align-items: stretch;
   justify-content: space-between;
   padding: 22px 0;
   margin: 0 24px 0 0;
   width: 100%;
   max-width: calc(100% - 24px);
   position: relative;
-  cursor: grab;
+  cursor: ${props => (props.isDraggable ? 'grab' : 'default')};
   &:hover {
     ${RecentlyMoved} {
       display: none;
@@ -92,15 +170,21 @@ export const Header = styled.div`
   }
 `;
 
-export const LeftSide = styled.div<{ readOnly?: boolean }>`
+export const StepCardTitle = styled.div`
+  display: flex;
+  gap: 8px;
+`;
+
+export const Middle = styled.div`
+  flex-grow: 1;
+`;
+
+export const LeftSide = styled.div<{ isDraggable?: boolean }>`
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: flex-start;
-  padding-left: ${({ readOnly }): string => (readOnly ? '32px' : '0')};
-  > * {
-    margin-right: 8px;
-  }
+  padding-left: ${({ isDraggable }) => (isDraggable ? '0' : '24px')};
 `;
 
 export const RightSide = styled.div`
@@ -135,7 +219,7 @@ export const AdditionalFields = styled.div`
 
 export const Footer = styled.div`
   background-color: rgba(249, 250, 251, 0.6);
-  border-top: 1px solid ${(props): string => props.theme.palette['grey-100']};
+  border-top: 1px solid ${props => props.theme.palette['grey-100']};
   padding: 16px 24px;
   display: flex;
   flex-direction: row;

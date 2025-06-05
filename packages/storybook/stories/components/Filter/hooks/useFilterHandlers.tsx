@@ -79,9 +79,9 @@ export const useFilterHandlers = ({ isDateFilterOn, conditionFooterRelativeDateR
 
     const dateFilterProps = isDateFilterOn
       ? {
-          savedFilters: filters,
-          onFilterSave: setFilters,
-        }
+        savedFilters: filters,
+        onFilterSave: setFilters,
+      }
       : {};
 
     return (
@@ -168,12 +168,13 @@ export const useFilterHandlers = ({ isDateFilterOn, conditionFooterRelativeDateR
     );
   };
 
-  const renderStepHeaderRightSide = (_expression: Expression, index: number) => {
+  const renderStepHeaderRightSide = (_expression: Expression, index: number, options?: { placeholder?: boolean }) => {
+    const isDragPlaceholder = options?.placeholder
     return (
       <Tag
         shape={TagShape.SINGLE_CHARACTER_ROUND}
         name={String.fromCharCode(index + 65)}
-        color={theme.palette['grey-200']}
+        color={isDragPlaceholder ? theme.palette['blue-600'] : theme.palette['grey-200']}
         asPill
       />
     );

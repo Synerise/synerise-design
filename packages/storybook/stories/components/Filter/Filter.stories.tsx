@@ -23,6 +23,7 @@ export default {
   argTypes: {
     maxConditionsLimit: NUMBER_CONTROL,
     readOnly: BOOLEAN_CONTROL,
+    draggable: BOOLEAN_CONTROL,
     layoutNativeScroll: { BOOLEAN_CONTROL, table: { category: 'Story options' } },
     showStepTags: { BOOLEAN_CONTROL, table: { category: 'Story options' } },
     isDateFilterOn: { BOOLEAN_CONTROL, table: { category: 'Story options' } },
@@ -32,7 +33,7 @@ export default {
       table: { category: 'Story options' },
     },
   },
-  render: ({ layoutNativeScroll, onAddStep, onExpressionStepChange, showStepTags, isDateFilterOn, conditionFooterRelativeDateRange, ...args }) => {
+  render: ({ draggable, layoutNativeScroll, onAddStep, onExpressionStepChange, showStepTags, isDateFilterOn, conditionFooterRelativeDateRange, ...args }) => {
     const {
       expressions,
       handleChangeLogic,
@@ -78,14 +79,14 @@ export default {
                 <ContextSelector
                   disabled={isLimitExceeded}
                   texts={{ ...CONTEXT_TEXTS, buttonLabel: 'Add filter' }}
-                  onSelectItem={(item) => {onAddStep?.(item); handleAddStep(item)}}
+                  onSelectItem={(item) => { onAddStep?.(item); handleAddStep(item) }}
                   items={CONTEXT_CLIENT_ITEMS}
                   groups={CONTEXT_CLIENT_GROUPS}
                   addMode={true}
                 />
               )}
               onChangeLogic={handleChangeLogic}
-              onChangeOrder={handleChangeOrder}
+              onChangeOrder={draggable ? handleChangeOrder : undefined}
               onChangeStepMatching={handleChangeStepMatching}
               onChangeStepName={handleChangeStepName}
               onDeleteStep={handleDeleteStep}
@@ -130,7 +131,8 @@ export default {
     conditionFooterRelativeDateRange: true,
     showStepTags: true,
     layoutNativeScroll: true,
-    maxConditionsLimit: 5
+    maxConditionsLimit: 5,
+    draggable: true
   },
 } as FilterMeta;
 

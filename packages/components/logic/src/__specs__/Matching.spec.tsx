@@ -1,12 +1,13 @@
-import { renderWithProvider } from '@synerise/ds-utils/dist/testing';
-import Logic from '../Logic';
-import userEvent from '@testing-library/user-event';
 import React from 'react';
+import userEvent from '@testing-library/user-event';
 import { screen } from '@testing-library/react';
+
+import { renderWithProvider } from '@synerise/ds-utils';
+
+import Logic from '../Logic';
 
 describe('Matching component', () => {
   it('Should render matching toggle with custom sentence', () => {
-    // ARRANGE
     const onChange = jest.fn();
     // @ts-ignore
     const C = renderWithProvider(
@@ -18,7 +19,6 @@ describe('Matching component', () => {
       />
     );
 
-    // ASSERT
     screen.getByText((content, node) => {
       const hasText = (node: Element): boolean => node.textContent === 'Find all items matching this condition.';
       const nodeHasText = hasText(node);
@@ -29,7 +29,6 @@ describe('Matching component', () => {
   });
 
   it('Should render matching toggle in matching state', () => {
-    // ARRANGE
     const onChange = jest.fn();
     const { getByText } = renderWithProvider(
       <Logic.Matching
@@ -39,11 +38,9 @@ describe('Matching component', () => {
       />
     );
 
-    // ASSERT
     expect(getByText('matching')).toBeTruthy();
   });
   it('Should render matching toggle in not matching state', () => {
-    // ARRANGE
     const onChange = jest.fn();
     const { getByText } = renderWithProvider(
       <Logic.Matching
@@ -53,11 +50,9 @@ describe('Matching component', () => {
       />
     );
 
-    // ASSERT
     expect(getByText('not matching')).toBeTruthy();
   });
   it('Should call onChange callback', () => {
-    // ARRANGE
     const onChange = jest.fn();
     const { getByText } = renderWithProvider(
       <Logic.Matching
@@ -67,10 +62,8 @@ describe('Matching component', () => {
       />
     );
 
-    // ACT
     userEvent.click(getByText('not matching'));
 
-    // ASSERT
     expect(onChange).toBeCalled();
   });
 });

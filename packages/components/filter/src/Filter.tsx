@@ -1,26 +1,22 @@
 import React, { useCallback, useMemo, useEffect, useState, useRef, TransitionEvent } from 'react';
 import { useIntl } from 'react-intl';
-import { ReactSortable, MoveEvent } from 'react-sortablejs';
-import Logic from '@synerise/ds-logic';
-import Matching from '@synerise/ds-logic/dist/Matching/Matching';
-import Placeholder from '@synerise/ds-logic/dist/Placeholder/Placeholder';
-import StepCard from '@synerise/ds-step-card';
-import { LogicOperatorValue } from '@synerise/ds-logic/dist/Logic.types';
-import { usePrevious } from '@synerise/ds-utils';
+import Sortable from '@synerise/ds-sortable';
+import { Matching, Placeholder } from '@synerise/ds-logic';
+import type { LogicOperatorValue, LogicProps } from '@synerise/ds-logic';
+import { StepCardProps } from '@synerise/ds-step-card';
+import { NOOP, usePrevious } from '@synerise/ds-utils';
 
 import * as S from './Filter.styles';
-import { Expression, FilterProps, StepType } from './Filter.types';
+import { Expression, FilterProps, LogicType, StepType } from './Filter.types';
 
-const component = {
-  LOGIC: Logic,
-  STEP: StepCard,
-};
+import { ExpressionItem, DraggableExpressionItem } from './components/ExpressionItem';
+import type { ExpressionItemProps } from './components/ExpressionItem';
+import { isStepType } from './utils';
 
 const TRANSITION_DURATION = 0.5;
 const TRANSITION_DURATION_MAX = 1.5;
 const TOP_TRANSITION_ZINDEX = 1003;
 const BOTTOM_TRANSITION_ZINDEX = 1002;
-const DRAGGING_TRANSITION_ZINDEX = 1004;
 
 const rearrangeItems = (sourceArray: Expression[], oldIndex: number, newIndex: number) => {
   sourceArray.splice(newIndex, 0, sourceArray.splice(oldIndex, 1)[0]);
@@ -53,28 +49,6 @@ const Filter = ({
   const [activeExpressionId, setActiveExpressionId] = useState<string | null>(null);
   const expressionRefs = useRef({});
   const movedExpressionId = useRef<string | null>(null);
-
-  const SORTABLE_CONFIG = useMemo(
-    () => ({
-      ghostClass: 'ghost-element',
-      className: 'sortable-list',
-      handle: '.step-card-drag-handler',
-      animation: 200,
-      forceFallback: true,
-      filter: '.ds-matching-toggle, .step-card-right-side',
-      onStart: () => {
-        movedExpressionId.current = null;
-      },
-      onChoose: (evt: MoveEvent) => {
-        // eslint-disable-next-line no-param-reassign
-        evt.item.style.zIndex = DRAGGING_TRANSITION_ZINDEX;
-      },
-      onUnchoose: (evt: MoveEvent) => {
-        evt.item.style.removeProperty('z-index');
-      },
-    }),
-    []
-  );
 
   useEffect(() => {
     if (movedExpressionId.current && previousExpressions?.length) {
@@ -193,11 +167,11 @@ const Filter = ({
     return expressions.filter(expression => expression.type === 'STEP').length;
   }, [expressions]);
 
-  const handleTransitionEnd = (event: TransitionEvent) => {
+  const handleTransitionEnd = useCallback((event: TransitionEvent) => {
     if (event.currentTarget && event.currentTarget instanceof HTMLElement) {
       event.currentTarget.style.removeProperty('z-index');
     }
-  };
+  }, []);
 
   const handleMove = useCallback(
     (index: number, offset: number) => {
@@ -209,8 +183,8 @@ const Filter = ({
     [expressions, onChangeOrder]
   );
 
-  const componentProps = useCallback(
-    (expression: Expression, index: number) => {
+  const getStepProps = useCallback(
+    (expression: StepType, index: number): Omit<StepCardProps, 'matching' | 'name'> => {
       const contextTypeTexts = getContextTypeTexts(expression);
       const reorderProps = {
         expressionIndex: index,
@@ -219,34 +193,31 @@ const Filter = ({
         onMove: handleMove,
       };
 
-      const props = {
-        LOGIC: {
-          onChange: onChangeLogic ? (value: LogicOperatorValue) => onChangeLogic(expression.id, value) : undefined,
-          options: logicOptions,
-        },
-        STEP: {
-          ...reorderProps,
-          onChangeMatching: onChangeStepMatching
-            ? (value: boolean) => onChangeStepMatching(expression.id, value)
-            : undefined,
-          onChangeName: onChangeStepName ? (value: string) => onChangeStepName(expression.id, value) : undefined,
-          onDelete: onDeleteStep ? () => onDeleteStep(expression.id) : undefined,
-          onDuplicate: onDuplicateStep && !isLimitExceeded ? () => onDuplicateStep(expression.id) : undefined,
-          footer: renderStepFooter && renderStepFooter(expression),
-          children: renderStepContent && renderStepContent(expression, !!activeExpressionId && !isActive(expression)),
-          isHeaderVisible: visibilityConfig.isStepCardHeaderVisible,
-          headerRightSide: renderStepHeaderRightSide && renderStepHeaderRightSide(expression, index),
-          isDraggable: Boolean(onChangeOrder),
-          singleStepCondition: Boolean(singleStepCondition),
-          additionalFields: (expression as StepType).data.additionalFields,
-          getMoveByLabel,
-          texts: {
-            ...text.step,
-            ...contextTypeTexts,
-          },
+      return {
+        ...reorderProps,
+        onChangeMatching: onChangeStepMatching
+          ? (value: boolean) => onChangeStepMatching(expression.id, value)
+          : undefined,
+        onChangeName: onChangeStepName ? (value: string) => onChangeStepName(expression.id, value) : undefined,
+        onDelete: onDeleteStep ? () => onDeleteStep(expression.id) : undefined,
+        onDuplicate: onDuplicateStep && !isLimitExceeded ? () => onDuplicateStep(expression.id) : undefined,
+        footer: renderStepFooter && renderStepFooter(expression),
+        children: renderStepContent && renderStepContent(expression, !!activeExpressionId && !isActive(expression)),
+        isHeaderVisible: visibilityConfig.isStepCardHeaderVisible,
+        renderHeaderRightSide: renderStepHeaderRightSide
+          ? (itemIndex: number, options?: { placeholder?: boolean }) =>
+              renderStepHeaderRightSide(expression, itemIndex, options)
+          : undefined,
+        isDraggable: Boolean(onChangeOrder),
+        singleStepCondition: Boolean(singleStepCondition),
+        additionalFields: (expression as StepType).data.additionalFields,
+        getMoveByLabel,
+        dropLabel: text.dropMeHere,
+        texts: {
+          ...text.step,
+          ...contextTypeTexts,
         },
       };
-      return props[expression.type];
     },
     [
       activeExpressionId,
@@ -255,8 +226,6 @@ const Filter = ({
       handleMove,
       isActive,
       isLimitExceeded,
-      logicOptions,
-      onChangeLogic,
       onChangeStepMatching,
       onChangeStepName,
       onDeleteStep,
@@ -266,54 +235,75 @@ const Filter = ({
       renderStepHeaderRightSide,
       stepExpressionCount,
       text.step,
+      text.dropMeHere,
       visibilityConfig.isStepCardHeaderVisible,
       singleStepCondition,
       onChangeOrder,
     ]
   );
 
-  const renderExpression = useCallback(
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    (expression: any, index: number) => {
-      const Component = component[expression.type];
-      const LogicComponent = expression.logic && component[expression.logic.type];
-
-      return (
-        <S.ExpressionWrapper
-          data-testid="condition-step"
-          onTransitionEnd={handleTransitionEnd}
-          ref={element => (expressionRefs.current[expression.id] = element)}
-          key={expression.id}
-          data-dropLabel={text.dropMeHere}
-          index={index}
-          onMouseDown={() => setActiveExpressionId(expression.id)}
-        >
-          <Component {...expression.data} {...componentProps(expression, index)} readOnly={readOnly} />
-          {expression.logic && index + 1 < expressions.length && LogicComponent && (
-            <S.LogicWrapper data-testid="condition-logic">
-              <LogicComponent
-                {...expression.logic.data}
-                {...componentProps(expression.logic, index)}
-                readOnly={readOnly}
-              />
-            </S.LogicWrapper>
-          )}
-        </S.ExpressionWrapper>
-      );
+  const getLogicProps = useCallback(
+    (expression: LogicType): LogicProps => {
+      return {
+        value: '',
+        onChange: onChangeLogic ? (value: LogicOperatorValue) => onChangeLogic(expression.id, value) : NOOP,
+        options: logicOptions,
+      };
     },
-    [text.dropMeHere, componentProps, expressions.length, readOnly]
+    [onChangeLogic, logicOptions]
+  );
+
+  const expressionData = useMemo((): ExpressionItemProps[] => {
+    const expressionsOrder = expressions.map(expression => expression.id);
+    return expressions.map((expression, index) => {
+      const logicProps: LogicProps =
+        isStepType(expression) && expression.logic ? getLogicProps(expression.logic) : { value: '', onChange: NOOP };
+      const stepProps = isStepType(expression) ? getStepProps(expression, index) : {};
+
+      return {
+        wrapperRef: (element: HTMLDivElement) => (expressionRefs.current[expression.id] = element),
+        dropLabel: text.dropMeHere,
+        logicProps,
+        stepProps,
+        handleMouseDown: () => setActiveExpressionId(expression.id),
+        handleTransitionEnd,
+        expression,
+        expressionsOrder,
+        id: expression.id,
+        expressionIndex: index,
+        readOnly,
+        isLast: index === expressions.length - 1,
+      };
+    });
+  }, [expressions, readOnly, handleTransitionEnd, setActiveExpressionId, getStepProps, getLogicProps, text.dropMeHere]);
+
+  const handleChangeOrder = useCallback(
+    (newOrder: ExpressionItemProps[]) => {
+      if (onChangeOrder) {
+        const idOrder = newOrder.map(item => item.id);
+        const updatedExpressions = [...expressions].sort(
+          (a: Expression, b: Expression) => idOrder.indexOf(a.id) - idOrder.indexOf(b.id)
+        );
+        onChangeOrder(updatedExpressions);
+      }
+    },
+    [onChangeOrder, expressions]
   );
 
   const renderExpressions = useCallback(() => {
     if (onChangeOrder) {
       return (
-        <ReactSortable {...SORTABLE_CONFIG} list={expressions} setList={onChangeOrder}>
-          {expressions.map(renderExpression)}
-        </ReactSortable>
+        <Sortable
+          placeholderCss={S.placeholderCss}
+          axis="y"
+          items={expressionData}
+          ItemComponent={DraggableExpressionItem}
+          onOrderChange={handleChangeOrder}
+        />
       );
     }
-    return expressions.map(renderExpression);
-  }, [renderExpression, SORTABLE_CONFIG, expressions, onChangeOrder]);
+    return expressionData.map(ExpressionItem);
+  }, [expressionData, handleChangeOrder, onChangeOrder]);
 
   return (
     <S.FilterWrapper>

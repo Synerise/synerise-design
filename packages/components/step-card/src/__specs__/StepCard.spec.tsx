@@ -1,5 +1,5 @@
 import React from 'react';
-import { renderWithProvider } from '@synerise/ds-utils/dist/testing';
+import { renderWithProvider } from '@synerise/ds-utils';
 import { fireEvent, waitFor, screen } from '@testing-library/react';
 
 import StepCard, { REORDER_THROTTLE } from './../StepCard';
@@ -62,7 +62,7 @@ describe('StepCard', () => {
         {CONTENT}
       </StepCard>
     );
-    expect(screen.getByText(HEADER_RIGHT_SIDE_CONTENT)).toBeInTheDocument();
+    expect(screen.getAllByText(HEADER_RIGHT_SIDE_CONTENT)).toHaveLength(2);
   });
   it('Should call duplicate callback', () => {
     const handleChangeMatching = jest.fn();
@@ -136,13 +136,13 @@ describe('StepCard', () => {
         {CONTENT}
       </StepCard>
     );
-    
+
     const moveUpArrow = container.querySelector('.moveup');
     expect(moveUpArrow).toBeInTheDocument();
     const moveDownArrow = container.querySelector('.movedown');
     expect(moveDownArrow).toBeInTheDocument();
-    
-    
+
+
   });
   it('Should call move callback', async () => {
     const handleChangeMatching = jest.fn();
@@ -167,7 +167,7 @@ describe('StepCard', () => {
         {CONTENT}
       </StepCard>
     );
-    
+
     const moveUpArrow = container.querySelector('.moveup');
     fireEvent.click(moveUpArrow as HTMLElement);
     await waitFor(() => {
@@ -201,7 +201,7 @@ describe('StepCard', () => {
         {CONTENT}
       </StepCard>
     );
-    
+
     const moveUpArrow = container.querySelector('.moveup');
     fireEvent.click(moveUpArrow as HTMLElement);
     await waitFor(() => {
@@ -235,7 +235,7 @@ describe('StepCard', () => {
         {CONTENT}
       </StepCard>
     );
-    
+
     const moveDownArrow = container.querySelector('.movedown');
     fireEvent.click(moveDownArrow as HTMLElement);
     await waitFor(() => {

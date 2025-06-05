@@ -62,7 +62,7 @@ export const PopulateFilter: FilterStory = {
       await sleep(SLEEP_TIME);
       await userEvent.click(canvas.getAllByText(CONTEXT_ITEM.name)[0]);
     });
-    
+
     await waitFor(() => expect(args.onAddStep).toHaveBeenCalled());
     await waitFor(() => expect(args.onExpressionStepChange).toHaveBeenCalledTimes(1));
 
@@ -98,7 +98,6 @@ export const PopulateFilter: FilterStory = {
       await userEvent.click(canvas.getAllByText(OPERATOR_ITEM.name)[0]);
     });
 
-    // await sleep(SLEEP_TIME);
     await waitFor(() => expect(args.onExpressionStepChange).toHaveBeenCalledTimes(7));
 
     await step('Select factor type', async () => {
@@ -109,7 +108,6 @@ export const PopulateFilter: FilterStory = {
       await userEvent.click(canvas.getAllByText('Parameter')[0]);
     });
 
-    // await sleep(SLEEP_TIME);
     await waitFor(() => expect(args.onExpressionStepChange).toHaveBeenCalledTimes(8));
 
     await step('Select factor parameter', async () => {
@@ -126,9 +124,9 @@ export const PopulateFilter: FilterStory = {
         within(canvas.getAllByTestId('ds-factors-parameter-dropdown-wrapper')[1]).getAllByText(FACTOR_ITEM.name)[0]
       );
     });
-    
+
     await waitFor(() => expect(args.onExpressionStepChange).toHaveBeenCalledTimes(9));
-    
+
     await step('Duplicate filter step', async () => {
       await fireEvent.click(canvas.getAllByTestId('ds-cruds-duplicate')[0]);
     });
@@ -139,10 +137,12 @@ export const PopulateFilter: FilterStory = {
       await fireEvent.click(canvas.getAllByText('Performed')[0]);
     });
     await waitFor(() => expect(args.onChangeStepMatching).toHaveBeenCalledOnce());
+    await waitFor(() => expect(canvas.getByText('Not performed')).toBeInTheDocument());
 
     await step('Change step logic', async () => {
       await fireEvent.click(canvas.getByText('And'));
     });
     await waitFor(() => expect(args.onChangeLogic).toHaveBeenCalledOnce());
+    await waitFor(() => expect(canvas.getByText('Or')).toBeInTheDocument());
   },
 };

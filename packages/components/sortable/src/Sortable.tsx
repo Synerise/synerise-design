@@ -20,6 +20,7 @@ import {
   horizontalListSortingStrategy,
   rectSortingStrategy,
 } from '@dnd-kit/sortable';
+
 import { restrictToVerticalAxis, restrictToHorizontalAxis, restrictToParentElement } from '@dnd-kit/modifiers';
 
 import { SortableItem } from './SortableItem';
@@ -30,9 +31,11 @@ export const Sortable = <ItemType extends BaseItem>({
   onOrderChange,
   ItemComponent,
   axis,
+  placeholderCss,
 }: SortableProps<ItemType>) => {
   const [order, setOrder] = useState<Array<ItemType>>(items);
   const [activeItem, setActiveItem] = useState<ItemType | undefined>();
+
   const sensors = useSensors(
     useSensor(MouseSensor),
     useSensor(PointerSensor),
@@ -97,6 +100,7 @@ export const Sortable = <ItemType extends BaseItem>({
           <SortableItem
             id={item.id}
             index={index}
+            placeholderCss={placeholderCss}
             isDragged={activeItem?.id === item.id}
             key={`sortable-item-${sortableId}-${item.id}`}
             data={item}

@@ -11,7 +11,7 @@ export type MatchingProps = WithHTMLAttributes<
     matching: boolean;
     sentence?: string;
     onChange: (matching: boolean) => void;
-    texts?: MatchingTexts;
+    texts?: Partial<MatchingTexts>;
     readOnly?: boolean;
   }
 >;
