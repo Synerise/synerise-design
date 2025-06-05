@@ -1,0 +1,27 @@
+import React from 'react';
+import { useSortable } from '@dnd-kit/sortable';
+import { CSS } from '@dnd-kit/utilities';
+
+import { ColumnManagerItem } from '../ColumnManagerItem/ColumnManagerItem';
+import { ColumnManagerSortableItemProps } from './ColumnManagerSortableItem.types';
+import { Column } from '../ColumnManagerItem/ColumManagerItem.types';
+
+export const ColumnManagerSortableItem = <ColumnType extends Column>(
+  props: ColumnManagerSortableItemProps<ColumnType>
+) => {
+  const { index, style: styleProp, data, ...rest } = props;
+  const { id } = data[index];
+  const { attributes, listeners, setNodeRef, transform, transition } = useSortable({ id });
+
+  const style = {
+    ...styleProp,
+    transform: CSS.Transform.toString(transform),
+    transition,
+  };
+
+  return (
+    <div {...rest} key={`column-manager-item-${id}`} style={style} ref={setNodeRef}>
+      <ColumnManagerItem {...data[index]} dragHandleProps={{ attributes, listeners }} />
+    </div>
+  );
+};

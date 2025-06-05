@@ -3,29 +3,30 @@ import { Meta, StoryObj } from '@storybook/react';
 
 import ColumnManager, { ColumnManagerProps } from '@synerise/ds-column-manager';
 import Button from '@synerise/ds-button';
+import { fn } from '@storybook/test';
 
 import { fixedWrapper300 } from '../../utils';
 import { useColumnManager } from './useColumnManager';
-import { action } from '@storybook/addon-actions';
+import { StoryColumn } from './ColumnManager.data';
 
 export default {
   component: ColumnManager,
   title: 'Components/Table/ColumnManager',
   tags: ['autodocs'],
   decorators: [fixedWrapper300],
-  render: args => {
+  render: ({ onApply, ...args }) => {
     const {
-      editItem,
-      removeItem,
-      saveFilter,
       setColumnManagerVisible,
       columnManagerVisible,
       columns,
-      categories,
-      groupSettings,
-      setSelectedItem,
-      selectedItemId,
+      setColumns
     } = useColumnManager(args.visible);
+
+    const handleApply = (updatedColumns) => {
+      onApply(updatedColumns);
+      setColumns(updatedColumns);
+      setColumnManagerVisible(false);
+    }
     return (
       <>
         <Button type="primary" mode="simple" onClick={() => setColumnManagerVisible(true)}>
@@ -36,27 +37,18 @@ export default {
           hide={() => setColumnManagerVisible(false)}
           visible={columnManagerVisible}
           columns={columns}
-          onSave={saveFilter}
-          groupSettings={groupSettings}
-          itemFilterConfig={{
-            fetchData: () => {},
-            removeItem,
-            editItem,
-            selectItem: setSelectedItem,
-            duplicateItem: action('duplicate item'),
-            selectedItemId: selectedItemId,
-            categories: categories,
-          }}
+          onApply={handleApply}
         />
       </>
     );
   },
   argTypes: {},
   args: {
+    onApply: fn()
   },
-} as Meta<ColumnManagerProps>;
+} as Meta<ColumnManagerProps<StoryColumn>>;
 
-type Story = StoryObj<ColumnManagerProps>;
+type Story = StoryObj<ColumnManagerProps<StoryColumn>>;
 
 export const Default: Story = {};
 export const Open: Story = {

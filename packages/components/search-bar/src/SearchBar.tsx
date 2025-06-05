@@ -1,5 +1,6 @@
-import React, { FormEvent, MutableRefObject, useEffect, useState } from 'react';
+import React, { FormEvent, MutableRefObject, useEffect, useMemo, useState } from 'react';
 import { FormattedMessage } from 'react-intl';
+import classnames from 'classnames';
 
 import Icon, { Close3M } from '@synerise/ds-icon';
 import { theme } from '@synerise/ds-core';
@@ -51,15 +52,18 @@ const SearchBar = ({
     return undefined;
   }, [autofocus, autofocusDelay, input]);
   const placeholderString = typeof placeholder === 'string' ? placeholder : DEFAULT_PLACEHOLDER_STRING;
+
+  const finalClassName = useMemo(() => classnames(className, { 'is-focused': isFocused }), [className, isFocused]);
+
   return (
     <S.SearchBarWrapper
       iconLeft={iconLeft}
       isEmpty={!value}
-      className={isFocused ? 'is-focused' : ''}
       disabled={disabled as boolean}
       borderRadius={borderRadius}
       data-testid="input-wrapper"
       {...htmlAttributes}
+      className={finalClassName}
     >
       {iconLeft && <S.IconLeftWrapper>{iconLeft}</S.IconLeftWrapper>}
       {onClearInput && Boolean(value) && (
@@ -83,7 +87,6 @@ const SearchBar = ({
         onFocus={() => setFocus(true)}
         onBlur={() => setFocus(false)}
         value={value}
-        className={className}
         resetMargin
         placeholder={placeholderString}
         handleInputRef={handleRef}

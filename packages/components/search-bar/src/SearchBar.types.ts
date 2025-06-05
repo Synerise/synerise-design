@@ -9,7 +9,6 @@ export type SearchBarProps = WithHTMLAttributes<
     onSearchChange: (value: string) => void;
     onClearInput?: () => void;
     placeholder: ReactNode;
-    className?: string;
     clearTooltip?: ReactNode;
     value: string;
     iconLeft?: ReactNode;

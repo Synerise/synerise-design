@@ -1,19 +1,11 @@
-import React from 'react';
-import { Column } from '../ColumnManagerItem/ColumManagerItem.types';
-import { GroupSettings } from '../ColumnManager.types';
+import type { Column, ColumnManagerItemProps } from '../ColumnManagerItem/ColumManagerItem.types';
+import type { ColumnManagerTexts } from '../ColumnManager.types';
 
-export type Props = {
+export type ColumnManagerListProps<ColumnType extends Column> = {
   searchQuery: string;
-  visibleList: Column[];
-  hiddenList: Column[];
-  searchResults: Column[];
-  setFixed: (id: string, fixed?: string) => void;
-  showGroupSettings: (item: Column) => void;
+  columns: ColumnType[];
+  draggable?: boolean;
+  handleOrderChange: (items: ColumnManagerItemProps<ColumnType>[]) => void;
   toggleColumn: (id: string, visible: boolean) => void;
-  groupSettings?: GroupSettings;
-  updateVisibleList: (newList: Column[]) => void;
-  updateHiddenList: (newList: Column[]) => void;
-  texts: {
-    [k: string]: string | React.ReactNode;
-  };
+  texts: ColumnManagerTexts;
 };

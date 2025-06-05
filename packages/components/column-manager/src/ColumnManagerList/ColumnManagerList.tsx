@@ -1,78 +1,93 @@
-import React from 'react';
-import { ReactSortable } from 'react-sortablejs';
+import React, { CSSProperties, UIEvent, useMemo, useRef, useState } from 'react';
+import type { FixedSizeList } from 'react-window';
+import { DragOverlay } from '@dnd-kit/core';
+
+import { SortableContainer } from '@synerise/ds-sortable';
+import Scrollbar from '@synerise/ds-scrollbar';
+import Result from '@synerise/ds-result';
+import { useResizeObserver } from '@synerise/ds-utils';
+
+import { ColumnManagerListProps } from './ColumnManagerList.types';
+import { ColumnManagerSortableItem } from '../ColumnManagerSortableItem/ColumnManagerSortableItem';
+import type { ColumnManagerSortableItemProps } from '../ColumnManagerSortableItem/ColumnManagerSortableItem.types';
+import { ColumnManagerItem } from '../ColumnManagerItem/ColumnManagerItem';
+import type { Column, ColumnManagerItemProps } from '../ColumnManagerItem/ColumManagerItem.types';
 import * as S from './ColumnManager.style';
-import ColumnManagerItem from '../ColumnManagerItem/ColumnManagerItem';
-import ColumnManagerSearchResults from '../ColumnManagerSearchResults/ColumnManagerSearchResults';
-import { Props } from './ColumnManagerList.types';
 
-const SORTABLE_CONFIG = {
-  ghostClass: 'sortable-list-ghost-element',
-  className: 'sortable-list',
-  animation: 150,
-  group: 'column-manager',
-  forceFallback: true,
-};
+export const LIST_STYLE: CSSProperties = { overflowX: 'unset', overflowY: 'unset' };
 
-const ColumnManagerList: React.FC<Props> = ({
+const ColumnManagerList = <ColumnType extends Column>({
   searchQuery,
-  visibleList,
-  hiddenList,
-  updateVisibleList,
-  updateHiddenList,
-  setFixed,
-  showGroupSettings,
+  columns,
+  draggable,
+  handleOrderChange,
   toggleColumn,
-  searchResults,
   texts,
-}) => {
+}: ColumnManagerListProps<ColumnType>) => {
+  const [activeItem, setActiveItem] = useState<ColumnManagerItemProps<ColumnType> | undefined>();
+  const [containerHeight, setContainerHeight] = useState(0);
+  const listRef = useRef<FixedSizeList>(null);
+  const containerRef = useRef<HTMLDivElement | null>(null);
+
+  const isItemDraggable = draggable && !searchQuery;
+
+  const items: ColumnManagerItemProps<ColumnType>[] = useMemo(() => {
+    return columns.map(column => ({
+      key: column.id,
+      id: column.id,
+      item: column,
+      isDragged: activeItem?.id === column.id,
+      switchAction: toggleColumn,
+      draggable: isItemDraggable,
+      texts,
+    }));
+  }, [columns, toggleColumn, texts, activeItem, isItemDraggable]);
+
+  const handleScroll = ({ currentTarget }: UIEvent) => {
+    const { scrollTop } = currentTarget;
+    if (listRef.current) {
+      listRef.current.scrollTo(scrollTop);
+    }
+  };
+
+  useResizeObserver(containerRef, dimensions => {
+    setContainerHeight(dimensions.height);
+  });
+
   return (
-    <S.ColumnManagerList>
-      {!searchQuery ? (
-        <>
-          <S.ListHeadline>{texts.visible}</S.ListHeadline>
-          <ReactSortable {...SORTABLE_CONFIG} list={visibleList} setList={updateVisibleList}>
-            {visibleList.map(item => (
-              <ColumnManagerItem
-                data-testid="ds-column-manager-visible-item"
-                key={item.id}
-                item={item}
-                setFixed={setFixed}
-                showGroupSettings={showGroupSettings}
-                switchAction={toggleColumn}
-                draggable
-                texts={texts}
-              />
-            ))}
-          </ReactSortable>
-          {hiddenList.length > 0 && (
-            <>
-              <S.ListHeadline>{texts.hidden}</S.ListHeadline>
-              <ReactSortable {...SORTABLE_CONFIG} list={hiddenList} setList={updateHiddenList}>
-                {hiddenList.map(item => (
-                  <ColumnManagerItem
-                    data-testid="ds-column-manager-hidden-item"
-                    key={item.id}
-                    item={item}
-                    setFixed={setFixed}
-                    switchAction={toggleColumn}
-                    showGroupSettings={showGroupSettings}
-                    draggable
-                    texts={texts}
-                  />
-                ))}
-              </ReactSortable>
-            </>
-          )}
-        </>
+    <S.ColumnManagerList ref={containerRef} data-testid="ds-column-manager-list">
+      {!items.length && searchQuery ? (
+        <Result description={texts.noResults} type="no-results" noSearchResults />
       ) : (
-        <ColumnManagerSearchResults
-          texts={texts}
-          searchResults={searchResults}
-          showGroupSettings={showGroupSettings}
-          searchQuery={searchQuery}
-          setFixed={setFixed}
-          switchAction={toggleColumn}
-        />
+        <SortableContainer
+          onDragStart={({ active }) => {
+            const column = items.find(item => item.id === active.id);
+            setActiveItem(column);
+          }}
+          onDragEnd={() => {
+            setActiveItem(undefined);
+          }}
+          onOrderChange={handleOrderChange}
+          onDragCancel={() => setActiveItem(undefined)}
+          items={items}
+          axis="y"
+        >
+          <Scrollbar absolute withDnd onScroll={handleScroll} maxHeight={containerHeight}>
+            <S.List
+              isDragging={!!activeItem}
+              height={containerHeight}
+              itemCount={items.length}
+              itemSize={56}
+              itemData={items}
+              width="100%"
+              ref={listRef}
+              style={LIST_STYLE}
+            >
+              {props => <ColumnManagerSortableItem {...(props as ColumnManagerSortableItemProps<ColumnType>)} />}
+            </S.List>
+          </Scrollbar>
+          <DragOverlay>{activeItem && <ColumnManagerItem {...activeItem} />}</DragOverlay>
+        </SortableContainer>
       )}
     </S.ColumnManagerList>
   );

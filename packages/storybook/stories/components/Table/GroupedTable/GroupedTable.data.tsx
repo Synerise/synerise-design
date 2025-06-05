@@ -8,8 +8,7 @@ import {
   VarTypeNumberM,
   VarTypeStringM,
 } from '@synerise/ds-icon';
-import { DSColumnType } from '@synerise/ds-table';
-import { GROUP_BY } from '@synerise/ds-column-manager';
+import { DSColumnType, GROUP_BY } from '@synerise/ds-table';
 
 import { AVATAR_IMAGE } from '../../../constants';
 import { randomDate } from '../../../utils';
@@ -21,6 +20,16 @@ export type CategoriesType = typeof CATEGORIES[number];
 
 export type RowType = typeof DATA_SOURCE[number];
 export type ColumnType = DSColumnType<RowType> & AdditionalColumnData;
+
+export type GroupType = 'value' | 'ranges' | 'interval' | string | undefined;
+export type GroupSettings = {
+  column?: Column;
+  settings: {
+    type: GroupType;
+    ranges: Range[] | false;
+    interval: number | false;
+  };
+};
 
 export const COLUMNS: ColumnType[] = [
   {
@@ -457,3 +466,72 @@ export const PARAMETERS = COLUMNS.map(column => ({
 
 
 export const STRING_SORT_RENDER = 'string' as const;
+
+
+export const GROUP_BY_INTERVAL_CONFIG = {
+  "column": {
+    "id": "3",
+    "name": "Age",
+    "key": "age",
+    "visible": true,
+    "type": "number",
+    "chosen": false,
+    "selected": false,
+    "group": true
+  },
+  "settings": {
+    "type": "interval",
+    "ranges": false,
+    "interval": 14
+  }
+}
+export const GROUP_BY_VALUE_CONFIG = {
+  "column": {
+    "id": "3",
+    "name": "Age",
+    "key": "age",
+    "visible": true,
+    "type": "number",
+    "chosen": false,
+    "selected": false,
+    "group": true
+  },
+  "settings": {
+    "type": "value",
+    "ranges": false,
+    "interval": false
+  }
+}
+export const GROUP_BY_RANGE_CONFIG = {
+  "column": {
+    "id": "3",
+    "name": "Age",
+    "key": "age",
+    "visible": true,
+    "type": "number",
+    "chosen": false,
+    "selected": false
+  },
+  "settings": {
+    "type": "ranges",
+    "ranges": [
+      {
+        "from": {
+          "value": 0
+        },
+        "to": {
+          "value": 20
+        }
+      },
+      {
+        "from": {
+          "value": 21
+        },
+        "to": {
+          "value": 40
+        }
+      }
+    ],
+    "interval": false
+  }
+}

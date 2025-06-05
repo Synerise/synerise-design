@@ -1,17 +1,21 @@
 import type { ReactNode, ReactElement, ComponentType } from 'react';
+
+import type { DndContextProps, DraggableAttributes, DraggableSyntheticListeners } from '@dnd-kit/core';
 import type { Interpolation } from 'styled-components';
-import type { DraggableAttributes, DraggableSyntheticListeners } from '@dnd-kit/core';
+
 import type { WithHTMLAttributes } from '@synerise/ds-utils';
 import type { ThemeProps } from '@synerise/ds-core';
 
 export type DragHandlePropType = DraggableAttributes & DraggableSyntheticListeners;
 
-export type BaseItem = {
+export type RawBaseItem = {
   id: string | number;
-  dragHandleProps?: DragHandlePropType;
+};
+export type BaseItem = RawBaseItem & {
+  dragHandleProps?: DraggableAttributes & DraggableSyntheticListeners;
 };
 
-type WithIndex<T> = T & {
+export type WithIndex<T> = T & {
   index: number;
 };
 
@@ -38,4 +42,13 @@ export type SortableProps<ItemType extends BaseItem> = {
   ItemComponent: ItemComponent<WithIndex<ItemType>>;
   onOrderChange?: (newOrder: ItemType[]) => void;
   placeholderCss?: Interpolation<ThemeProps>;
+};
+
+export type SortableContainerProps<ItemType extends BaseItem> = Omit<
+  DndContextProps,
+  'sensors' | 'collisionDetection' | 'modifiers'
+> & {
+  items: ItemType[];
+  axis?: 'x' | 'y';
+  onOrderChange?: (newOrder: ItemType[]) => void;
 };

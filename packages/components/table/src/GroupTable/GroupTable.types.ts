@@ -1,20 +1,27 @@
-import { ColumnsType } from 'antd/lib/table';
-import React from 'react';
-import { GroupType as GroupByType } from '@synerise/ds-column-manager/dist/ColumnManager.types';
+import type { ColumnsType } from 'antd/lib/table';
+
+export type GroupByType = 'value' | 'ranges' | 'interval' | string | undefined;
 
 export type SortOrderType = 'ascend' | 'descend' | boolean;
 
 export type GroupColumnsType<T> = ColumnsType<T> & {
   sortOrder: SortOrderType;
-  key: React.ReactText;
+  key: string | number;
   render: Function;
-  dataIndex: React.ReactText;
+  dataIndex: string | number;
 };
 
 export type GroupType<T> = {
   column: string;
-  value: React.ReactText | boolean | object;
-  key: React.ReactText;
+  value: string | number | boolean | object;
+  key: string | number;
   rows: T[];
   groupType: GroupByType;
+};
+
+export const GROUP_BY: { [key: string]: string } = {
+  value: 'value',
+  ranges: 'ranges',
+  interval: 'interval',
+  disabled: 'disabled',
 };
