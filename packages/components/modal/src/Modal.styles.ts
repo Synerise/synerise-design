@@ -11,6 +11,7 @@ export const ButtonsWrapper = styled.div`
 
 export const AntdModal = styled(Modal)<{
   isFullscreen?: boolean;
+  maxHeight?: number;
 }>`
   ${props =>
     props.isFullscreen &&
@@ -35,4 +36,36 @@ export const AntdModal = styled(Modal)<{
         }
       }
     `}
+
+  ${props =>
+    props.maxHeight &&
+    css`
+      && {
+        position: fixed;
+        left: 50%;
+        bottom: 0;
+        translate: -50%;
+        .ant-modal-content {
+          display: flex;
+          max-height: ${props.maxHeight}vh;
+          flex-direction: column;
+          height: 100%;
+        }
+        .ant-modal-body {
+          flex: 1 1 100%;
+          overflow: scroll;
+          padding-right: 0px;
+          min-height: 0;
+        }
+      }
+    `}
+`;
+
+export const ModalWrapper = styled.div`
+  position: relative;
+  height: 100%;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
 `;
