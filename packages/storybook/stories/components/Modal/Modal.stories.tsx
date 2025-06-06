@@ -68,6 +68,7 @@ export default {
     renderCustomFooter: BOOLEAN_CONTROL,
     footer: REACT_NODE_AS_STRING,
     removeFooter: BOOLEAN_CONTROL,
+    maxViewportHeight: NUMBER_CONTROL,
     size: {
       ...controlFromOptionsArray('select', sizes),
     },
@@ -119,6 +120,29 @@ export const withFooter: Story = {
     onCancel: 'Cancel',
     size: 'small',
     children: 'Modal content...',
+  },
+};
+
+export const withScroll: Story = {
+  args: {
+    visible: true,
+    title: 'title',
+    description: 'Description',
+    footer: null,
+    size: 'small',
+    children: <div> Modal content... Modal content... Modal content... Modal content... Modal content... Modal
+      content... Modal content... Modal content...Modal content... Modal content... Modal content... Modal content...
+      Modal content... Modal content... Modal content... Modal content... Modal content... Modal content... Modal
+      content... Modal content... Modal content... Modal content... Modal content... Modal content... Modal content...
+      Modal content... Modal content... Modal content... Modal content... Modal content... Modal content... Modal
+      content...Modal content... Modal content... Modal content... Modal content... Modal content... Modal content...
+      Modal content... Modal content... Modal content... Modal content... Modal content... Modal content... Modal
+      content... Modal content... Modal content... Modal content...Modal content... Modal content... Modal content...
+      Modal content... Modal content... Modal content... Modal content... Modal content...Modal content... Modal
+      content... Modal content... Modal content... Modal content... Modal content... Modal content... Modal content...
+      Modal content... Modal content... Modal content... Modal content... Modal content... Modal content... Modal
+      content... Modal content...</div>,
+    maxViewportHeight: 70,
   },
 };
 

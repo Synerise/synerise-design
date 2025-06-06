@@ -66,6 +66,9 @@ Some features of the Modal component have been deprecated. Please refer to the [
 | mask                | Whether show mask or not.                                                                                  | Boolean                                                                | `true`                                          |
 | closeIcon           | custom close icon                                                                                          | ReactNode                                                              | -                                               |
 | maskStyle           | Style for modal's mask element.                                                                            | object                                                                 | {}                                              |
+| maxHeightViewport   | height of modal with with scrollbar                                                                        | true / number                                                                 | 80                                              |
+
+
 
 and it is extended by props for ModalFooterBuilder:
 

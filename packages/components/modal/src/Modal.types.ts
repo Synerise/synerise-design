@@ -20,6 +20,7 @@ export type ModalProps = {
     cancelButton?: string;
   };
   children?: ReactNode;
+  maxViewportHeight?: true | number;
 } & AntdModalProps &
   ModalFooterBuilder;
 
