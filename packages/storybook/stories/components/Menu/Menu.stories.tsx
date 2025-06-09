@@ -14,6 +14,7 @@ import {
   simpleText,
   renderPrefix,
   renderSuffix,
+  MenuPrefixAndSuffixVariants,
 } from './Menu.data';
 
 import {
@@ -23,6 +24,7 @@ import {
   controlFromOptionsArray,
   BOOLEAN_CONTROL,
 } from '../../utils';
+
 
 export default {
   title: 'Components/Menu/Menu',
@@ -237,6 +239,50 @@ export const withSubMenu: Story = {
     suffixel: 'none',
   },
 };
+
+export const withVariants: Story = {
+  render: ({ prefixel, suffixel, dataSource, children, ...rest }) => {
+    return (
+      <>
+        {MenuPrefixAndSuffixVariants.map(({typePrefixel: prefixel, typeSuffixel: suffixel}) => (
+          <div
+            style={{ marginTop: '8px', width: '200px', borderRadius: '3px', overflow: 'hidden' }}
+            onKeyDown={e => focusWithArrowKeys(e, 'ds-menu-item', () => {})}
+          >
+            <div style={{ background: 'rgba(0,0,0,0)', width: '200px' }}>
+              <Menu dataSource={dataSource?.map(item => ({
+                suffixel: renderSuffix(suffixel),
+                prefixel: renderPrefix(prefixel),
+                ...item,
+                ...rest,
+                key: !!item.key ? item.key : uuid(),
+                className: 'ds-menu-item',
+              }))} />
+            </div>
+          </div>
+        ))}
+      </>
+    );
+  },
+  globals: {
+    backgrounds: { value: 'light' },
+  },
+  argTypes: {
+    prefixel: {
+      control: false,
+    },
+    suffixel: {
+      control: false,
+    },
+  },
+  args: {
+    dataSource: simpleText,
+    suffixVisibilityTrigger: false,
+    selectable: false,
+    suffixel: 'none',
+  },
+};
+
 
 export const withHighlight: Story = {
   ...Default,
