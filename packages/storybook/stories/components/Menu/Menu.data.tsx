@@ -297,4 +297,47 @@ export const deleteState = [
   },
 ];
 
+export const MenuPrefixAndSuffixVariants = [
+  {
+    typePrefixel: prefixType.checkbox,
+    typeSuffixel: suffixType.check,
+  },
+  {
+    typePrefixel: prefixType.avatar,
+    typeSuffixel: suffixType.switch,
+  },
+  {
+    typePrefixel: prefixType.twoIcons ,
+    typeSuffixel: suffixType.select,
+  },
+  {
+    typePrefixel: prefixType.singleIcon,
+    typeSuffixel: suffixType.renameAndDelete,
+  },
+  {
+    typePrefixel: prefixType.none,
+    typeSuffixel: suffixType.dropdown,
+  },
+  {
+    typePrefixel: prefixType.checkbox,
+    typeSuffixel: suffixType.delete,
+  },
+  {
+    typePrefixel: prefixType.singleIcon,
+    typeSuffixel: suffixType.rename,
+  },
+  {
+    typePrefixel: prefixType.twoIcons,
+    typeSuffixel: suffixType.warning,
+  },
+  {
+    typePrefixel: prefixType.none,
+    typeSuffixel: suffixType.icon,
+  },
+  {
+    typePrefixel: prefixType.avatar,
+    typeSuffixel: suffixType.none,
+  },
+];
+
 
