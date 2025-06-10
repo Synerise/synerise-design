@@ -6,7 +6,6 @@ import React, {
   useEffect,
   KeyboardEvent as ReactKeyboardEvent,
   useCallback,
-  RefObject,
   Ref,
 } from 'react';
 
@@ -17,8 +16,8 @@ import { debounce } from 'lodash';
 import Dropdown from '@synerise/ds-dropdown';
 import { focusWithArrowKeys, useCombinedRefs, useKeyboardShortcuts, useScrollContain } from '@synerise/ds-utils';
 import { itemSizes } from '@synerise/ds-list-item';
-import Icon, { ArrowLeftM, SearchM } from '@synerise/ds-icon';
-import { theme } from '@synerise/ds-core';
+import Icon, { ArrowLeftM } from '@synerise/ds-icon';
+import { useTheme } from '@synerise/ds-core';
 
 import { useDefaultTexts } from '../../hooks/useDefaultTexts';
 import type { BaseItemType, BaseSectionType } from '../ItemPickerNew/ItemPickerNew.types';
@@ -36,6 +35,8 @@ import {
   EmptyListMessage,
   ErrorMessage,
 } from './components';
+import { ListSearchInput } from './components/ListSearchInput';
+import { getSearchActionSectionLabel } from './utils/getSearchActionSectionLabel';
 
 export const ItemPickerList = <ItemType extends BaseItemType, SectionType extends BaseSectionType | undefined>({
   items,
@@ -58,8 +59,10 @@ export const ItemPickerList = <ItemType extends BaseItemType, SectionType extend
   includeSearchBar = true,
   ...htmlAttributes
 }: ItemPickerListProps<ItemType, SectionType>) => {
+  const theme = useTheme();
+
   const [searchQuery, setSearchQuery] = useState('');
-  const [localSearchQuery, setLocalSearchQuery] = useState('');
+
   const listRef = useRef<VariableSizeList>(null);
   const scrollBarRef = useRef<HTMLDivElement>(null);
 
@@ -69,14 +72,20 @@ export const ItemPickerList = <ItemType extends BaseItemType, SectionType extend
   if (forwardedRef) refs.push(forwardedRef);
   const combinedScrollRef = useCombinedRefs(...refs);
   const inputRef = useRef<HTMLInputElement | null>(null);
+  const changeLocalSearchQueryRef = useRef<((value: string) => void) | null>(null);
   const scrollContainRef = useScrollContain<HTMLDivElement>();
 
   const allTexts = useDefaultTexts(texts);
 
+  const changeSearchQuery = useCallback((query: string) => {
+    // eslint-disable-next-line no-unused-expressions
+    changeLocalSearchQueryRef.current?.(query);
+    setSearchQuery(query);
+  }, []);
+
   const debouncedSearchQueryChange = useRef(
     debounce((query: string): void => {
-      setSearchQuery(query);
-      setLocalSearchQuery(query);
+      changeSearchQuery(query);
     }, 300)
   ).current;
   const classNames = useMemo(() => `ds-item-picker-dropdown ds-item-picker-dropdown-${uuid()}`, []);
@@ -102,6 +111,10 @@ export const ItemPickerList = <ItemType extends BaseItemType, SectionType extend
     refreshItems,
     refreshEnabled,
     contentHeight,
+    searchParamConfig,
+    setSearchParamConfig,
+    searchActionSection,
+    listActions,
   } = useItemsInSections({
     items,
     texts: allTexts,
@@ -113,6 +126,7 @@ export const ItemPickerList = <ItemType extends BaseItemType, SectionType extend
     handleItemSelect,
     onSectionChange,
     showItemsSectionLabel,
+    changeSearchQuery,
   });
 
   const handleScroll = ({ currentTarget }: UIEvent) => {
@@ -162,8 +176,8 @@ export const ItemPickerList = <ItemType extends BaseItemType, SectionType extend
   const handleRefresh =
     onRefresh || refreshItems
       ? () => {
-          setSearchQuery('');
-          setLocalSearchQuery('');
+          changeSearchQuery('');
+          setSearchParamConfig(undefined);
           resetCurrentSection();
           onRefresh && onRefresh();
           if (refreshItems) {
@@ -180,16 +194,12 @@ export const ItemPickerList = <ItemType extends BaseItemType, SectionType extend
       includeFooter: includeFooter && !!handleRefresh,
       includeSearchBar,
     }) || 0;
-  const listHeight =
-    (currentSection ? listWrapperHeight - SECTION_HEADER_HEIGHT : listWrapperHeight) - LIST_INNER_PADDING;
+
+  const isSection = Boolean(currentSection || searchActionSection);
+  const listHeight = (isSection ? listWrapperHeight - SECTION_HEADER_HEIGHT : listWrapperHeight) - LIST_INNER_PADDING;
 
   const clearSearchQuery = () => {
-    setLocalSearchQuery('');
-    setSearchQuery('');
-  };
-  const handleChangeSearchQuery = (newQuery: string) => {
-    setLocalSearchQuery(newQuery);
-    debouncedSearchQueryChange(newQuery);
+    changeSearchQuery('');
   };
 
   const showMessage = !isLoading && !isLoadingItems && (mergedItemsList?.length === 0 || isLoadingError);
@@ -203,7 +213,7 @@ export const ItemPickerList = <ItemType extends BaseItemType, SectionType extend
     }
     return (
       <>
-        {currentSection && (
+        {isSection && (
           <Dropdown.BackAction
             tooltipProps={{
               title: allTexts.backTooltip,
@@ -212,20 +222,24 @@ export const ItemPickerList = <ItemType extends BaseItemType, SectionType extend
                 <Icon key="hint-arrow-left" size={18} color={theme.palette.white} component={<ArrowLeftM />} />,
               ],
             }}
-            label={currentPath ? currentPath.join(' - ') : currentSection.text}
+            label={
+              getSearchActionSectionLabel(searchActionSection) ||
+              (currentPath ? currentPath.join(' - ') : currentSection?.text)
+            }
             onClick={goBack}
           />
         )}
         {mergedItemsList?.length === 0 ? (
           <EmptyListMessage
             buttonOnClick={() => resetCurrentSection()}
-            searchQuery={searchQuery}
-            hasCurrentSection={!!currentSection}
+            listActions={listActions}
+            hasCurrentSection={isSection}
             texts={allTexts}
+            isSearchSection={!!searchActionSection}
           />
         ) : (
           <S.StyledScrollbar
-            withSectionHeader={!!currentSection}
+            withSectionHeader={isSection}
             maxHeight={listHeight}
             data-maxheight={listHeight}
             onScroll={handleScroll}
@@ -281,6 +295,7 @@ export const ItemPickerList = <ItemType extends BaseItemType, SectionType extend
     if (isVisible) {
       resetCurrentSection();
       clearSearchQuery();
+      setSearchParamConfig(undefined);
       setTimeout(focusSearchInput, 0);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -292,7 +307,7 @@ export const ItemPickerList = <ItemType extends BaseItemType, SectionType extend
       listRef.current.resetAfterIndex(0);
       setTimeout(focusSearchInput, 0);
     }
-  }, [currentSection, focusSearchInput]);
+  }, [searchActionSection, searchParamConfig, currentSection, focusSearchInput]);
 
   useEffect(() => {
     listRef.current && listRef.current.resetAfterIndex(0);
@@ -314,7 +329,9 @@ export const ItemPickerList = <ItemType extends BaseItemType, SectionType extend
         event.preventDefault();
         event.stopPropagation();
         clearSearchQuery();
+        return;
       }
+      setSearchParamConfig(undefined);
     },
   });
 
@@ -329,21 +346,17 @@ export const ItemPickerList = <ItemType extends BaseItemType, SectionType extend
       {...htmlAttributes}
     >
       {includeSearchBar && (
-        <S.SearchWrapper data-testid="search-wrapper">
-          <Dropdown.SearchInput
-            iconLeft={<Icon component={<SearchM />} color={theme.palette['grey-600']} />}
-            placeholder={allTexts.searchPlaceholder}
-            {...searchBarProps}
-            clearTooltip={allTexts.clearSearchTooltip}
-            clearTooltipProps={{ shortCuts: 'ESC' }}
-            onClearInput={clearSearchQuery}
-            handleInputRef={(ref: RefObject<HTMLInputElement | null>) => {
-              inputRef.current = ref.current;
-            }}
-            onSearchChange={handleChangeSearchQuery}
-            value={localSearchQuery}
-          />
-        </S.SearchWrapper>
+        <ListSearchInput
+          clearSearchQuery={clearSearchQuery}
+          searchParamConfig={searchParamConfig}
+          searchActionSection={searchActionSection}
+          setSearchParamConfig={setSearchParamConfig}
+          searchBarProps={searchBarProps}
+          debouncedChangeSearchQuery={debouncedSearchQueryChange}
+          inputRef={inputRef}
+          changeLocalSearchQueryRef={changeLocalSearchQueryRef}
+          allTexts={allTexts}
+        />
       )}
       <S.ListWrapper
         data-testid="list-wrapper"

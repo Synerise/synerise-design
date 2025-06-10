@@ -17,5 +17,6 @@ export type SearchBarProps = WithHTMLAttributes<
     disabled?: boolean;
     borderRadius?: boolean;
     clearTooltipProps?: Partial<TooltipProps>;
+    valuePrefix?: ReactNode;
   }
 >;

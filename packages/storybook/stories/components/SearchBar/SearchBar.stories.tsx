@@ -31,6 +31,7 @@ export default {
     borderRadius: BOOLEAN_CONTROL,
     autofocus: BOOLEAN_CONTROL,
     placeholder: STRING_CONTROL,
+    valuePrefix: STRING_CONTROL,
     clearTooltip: REACT_NODE_AS_STRING,
   },
   args: {

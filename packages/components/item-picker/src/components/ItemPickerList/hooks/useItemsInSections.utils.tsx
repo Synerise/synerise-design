@@ -9,8 +9,10 @@ import {
   BaseItemType,
   BaseSectionType,
   BaseSectionTypeWithFolders,
+  SearchActionType,
 } from '../../ItemPickerNew/ItemPickerNew.types';
-import { createTitleFromTitlePath } from '../utils';
+import { createTitleFromTitlePath, isTruthy } from '../utils';
+import { getGlobalOrLocalSearchActionType } from '../utils/getGlobalOrLocalSearchActionType';
 
 export const getFolderItem = (item: ListItemProps, onClick: ListItemProps['onClick']): ListItemProps => {
   return {
@@ -40,22 +42,26 @@ export const getListItem = <ItemType extends ListItemProps>(
   isSelected: (item: ItemType) => boolean,
   searchQuery?: string,
   onItemSelect?: (item: ItemType) => void,
-  renderHoverTooltip?: () => JSX.Element
+  renderHoverTooltip?: () => JSX.Element,
+  isSearchParam?: boolean
 ): ListItemProps => {
   return {
     ...item,
-    highlight: searchQuery,
+    highlight: !isSearchParam ? searchQuery : undefined,
     selected: isSelected(item),
     renderHoverTooltip,
     onClick: onItemSelect ? () => onItemSelect(item) : undefined,
   };
 };
 
-export const getActionItem = (action: ActionType, searchQuery?: string): ListItemProps => {
+export const getActionItem = (
+  action: ActionType & { onClick?: (action: ActionType) => void },
+  searchQuery?: string
+): ListItemProps => {
   return {
     ...action,
     highlight: searchQuery,
-    onClick: 'onClick' in action && action.onClick ? () => action.onClick(action) : undefined,
+    onClick: 'onClick' in action && action.onClick ? () => action.onClick?.(action) : undefined,
   };
 };
 
@@ -76,13 +82,51 @@ export const getActionItems = ({
   actions,
   texts,
   searchQuery,
+  sectionId,
+  setSearchActionSection,
+  changeSearchQuery,
 }: {
   actions?: ActionType[];
   texts: ItemPickerListTexts;
   searchQuery?: string;
+  sectionId: string | undefined;
+  setSearchActionSection: (value: SearchActionType | undefined) => void;
+  changeSearchQuery: (query: string) => void;
 }) => {
+  const globalSearchByParameterAction = getGlobalOrLocalSearchActionType(actions, undefined);
+  const localSearchByParameterAction = getGlobalOrLocalSearchActionType(actions, sectionId);
+
+  const searchByParameterAction = localSearchByParameterAction || globalSearchByParameterAction;
+  const searchByParameterActionVisible = searchByParameterAction?.searchParams?.length
+    ? searchByParameterAction
+    : undefined;
+
+  let isExistSearchByParameter = false;
   return actions?.length
-    ? [getTitleItem(texts.actionsSectionLabel), ...actions.map(action => getActionItem(action, searchQuery))]
+    ? [
+        getTitleItem(texts.actionsSectionLabel),
+        ...actions.map(action => {
+          if (action.actionType === 'search') {
+            if (isExistSearchByParameter) {
+              return undefined;
+            }
+            isExistSearchByParameter = true;
+            return searchByParameterActionVisible
+              ? getActionItem(
+                  {
+                    ...searchByParameterActionVisible,
+                    onClick: () => {
+                      changeSearchQuery('');
+                      setSearchActionSection(searchByParameterActionVisible);
+                    },
+                  },
+                  searchQuery
+                )
+              : undefined;
+          }
+          return getActionItem(action, searchQuery);
+        }),
+      ].filter(isTruthy)
     : [];
 };
 
@@ -91,16 +135,29 @@ export const getSectionActionItems = ({
   texts,
   sectionId,
   searchQuery,
+  setSearchActionSection,
+  changeSearchQuery,
 }: {
   actions?: ActionType[];
   texts: ItemPickerListTexts;
   sectionId?: string;
   searchQuery?: string;
+  setSearchActionSection: (value: SearchActionType | undefined) => void;
+  changeSearchQuery: (query: string) => void;
 }) => {
   const filteredActions = actions?.filter(
-    action => action.sectionId === sectionId && (!searchQuery || matchesSearchQuery(action.text, searchQuery))
+    action =>
+      (action.actionType === 'search' || action.sectionId === sectionId) &&
+      (!searchQuery || matchesSearchQuery(action.text, searchQuery))
   );
-  return getActionItems({ actions: filteredActions, texts, searchQuery });
+  return getActionItems({
+    actions: filteredActions,
+    texts,
+    searchQuery,
+    sectionId,
+    setSearchActionSection,
+    changeSearchQuery,
+  });
 };
 
 export const getRecentItems = <ItemType extends BaseItemType>({
@@ -109,18 +166,20 @@ export const getRecentItems = <ItemType extends BaseItemType>({
   isSelected,
   handleItemSelect,
   searchQuery,
+  isSearchParam,
 }: {
   recents?: ItemType[];
   texts: ItemPickerListTexts;
   isSelected: (item: ItemType) => boolean;
   handleItemSelect?: (item: ItemType) => void;
   searchQuery?: string;
+  isSearchParam: boolean;
 }) => {
   return recents?.length && !searchQuery
     ? [
         getTitleItem(texts.recentsSectionLabel),
         ...recents.map(item =>
-          getListItem(item, isSelected, searchQuery, handleItemSelect, getInformationCardTooltip(item))
+          getListItem(item, isSelected, searchQuery, handleItemSelect, getInformationCardTooltip(item), isSearchParam)
         ),
       ]
     : [];
@@ -136,6 +195,7 @@ export const getItems = <ItemType extends BaseItemType>({
   showItemsSectionLabel,
   showMoreOnClick,
   maxItems,
+  isSearchParam,
 }: {
   items?: ItemType[];
   titlePath?: ReactNode[];
@@ -146,6 +206,7 @@ export const getItems = <ItemType extends BaseItemType>({
   searchQuery?: string;
   showItemsSectionLabel: boolean;
   maxItems?: number;
+  isSearchParam: boolean;
 }) => {
   const sectionTitle = titlePath
     ? [getTitleItem(createTitleFromTitlePath(titlePath))]
@@ -155,7 +216,7 @@ export const getItems = <ItemType extends BaseItemType>({
     ? [
         ...sectionTitle,
         ...items.map(item =>
-          getListItem(item, isSelected, searchQuery, handleItemSelect, getInformationCardTooltip(item))
+          getListItem(item, isSelected, searchQuery, handleItemSelect, getInformationCardTooltip(item), isSearchParam)
         ),
       ]
     : [];

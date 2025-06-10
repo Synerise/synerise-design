@@ -16,6 +16,7 @@ import type {
 } from '../ItemPickerNew/ItemPickerNew.types';
 
 type TextsAsReactNode =
+  | 'basicSearchPlaceholder'
   | 'searchPlaceholder'
   | 'refreshButtonLabel'
   | 'showMoreResultsLabel'

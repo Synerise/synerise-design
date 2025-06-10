@@ -3,7 +3,7 @@ import { v4 as uuid } from 'uuid';
 import { action } from '@storybook/addon-actions';
 import { faker } from '@faker-js/faker';
 
-import Icon, { Add3M, AddM, FileM, FunnelM, SegmentM, UserM } from '@synerise/ds-icon';
+import Icon, { Add3M, AddM, FileM, FunnelM, SegmentM, UserM, SearchM } from '@synerise/ds-icon';
 
 import type { ItemLoaderConfig } from '@synerise/ds-item-picker';
 import InformationCard, { InformationCardProps } from '@synerise/ds-information-card';
@@ -228,6 +228,47 @@ export const ACTIONS: ActionType[] = [
     prefixel: <Icon component={<AddM />} />,
     onClick: action('Action clicked'),
   },
+  {
+    actionType: 'search',
+    id: 'search-by-parameter',
+    text: 'Search by parameter',
+    prefixel: <Icon component={<SearchM />} />,
+    searchParams: [
+      {
+        paramListLabel: 'Name',
+        paramKeyLabel: 'Name:',
+        paramKey: 'name',
+        icon: <UserM />
+      },
+      {
+        paramListLabel: 'Author',
+        paramKeyLabel: 'Author:',
+        paramKey: 'author',
+        icon: <UserM />
+      },
+    ],
+  },
+  {
+    actionType: 'search',
+    id: 'search-by-parameter',
+    sectionId: 'ATTRIBUTES',
+    text: 'Search by parameter',
+    prefixel: <Icon component={<SearchM />} />,
+    searchParams: [{
+      paramListLabel: 'Profile',
+      paramKeyLabel: 'Profile:',
+      paramKey: 'profile',
+      icon: <UserM />
+    }],
+  },
+  {
+    actionType: 'search',
+    id: 'search-by-parameter',
+    text: 'Search by parameter',
+    sectionId: 'FUNNELS',
+    prefixel: <Icon component={<SearchM />} />,
+    searchParams: [],
+  }
 ];
 
 const loadItems = (props: {

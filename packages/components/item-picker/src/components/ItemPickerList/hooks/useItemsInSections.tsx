@@ -1,7 +1,6 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 
 import { itemSizes } from '@synerise/ds-list-item';
-import { useLatestRef } from '@synerise/ds-utils';
 
 import type { ItemPickerListProps, ItemPickerListTexts } from '../ItemPickerList.types';
 import type {
@@ -9,6 +8,8 @@ import type {
   BaseSectionType,
   BaseSectionTypeWithFolders,
   ItemLoaderMeta,
+  SearchActionType,
+  SearchParamConfig,
 } from '../../ItemPickerNew/ItemPickerNew.types';
 import {
   FIRST_PAGE,
@@ -29,6 +30,7 @@ import {
   getItems,
 } from './useItemsInSections.utils';
 import { useFlattenFolders } from './useFlattenFolders';
+import { getSearchActionItems } from '../utils/getSearchActionItems';
 
 const getSectionHeight = (itemsCount: number, withTitle: boolean) => {
   const itemsHeight = itemsCount * ITEM_SIZE[itemSizes.DEFAULT];
@@ -50,6 +52,7 @@ type ItemsInSectionsType<ItemType extends BaseItemType, SectionType extends Base
     : undefined;
   getItemKey?: (item: ItemType) => string | number;
   showItemsSectionLabel: boolean;
+  changeSearchQuery: (query: string) => void;
 };
 const RENDER_MODES = {
   LIST_ITEMS_IN_SECTIONS: 'ITEMS_IN_SECTIONS',
@@ -68,15 +71,20 @@ export const useItemsInSections = <ItemType extends BaseItemType, SectionType ex
   onSectionChange,
   getItemKey = GET_ITEM_KEY,
   showItemsSectionLabel,
+  changeSearchQuery,
 }: ItemsInSectionsType<ItemType, SectionType>) => {
   const [currentSection, setCurrentSection] = useState<SectionType | BaseSectionType | undefined>();
   const [previousSection, setPreviousSection] = useState<SectionType | BaseSectionType | undefined>();
+
+  const [searchActionSection, setSearchActionSection] = useState<SearchActionType | undefined>();
+  const [searchParamConfig, setSearchParamConfig] = useState<SearchParamConfig | undefined>();
 
   const { currentSectionHasFolders, currentFolders, parentFolder, currentPath } = useFlattenFolders({
     currentSection,
     sections,
   });
 
+  const requestIdRef = useRef<string>();
   const loadedPage = useRef(FIRST_PAGE);
   const metaRef = useRef<Record<string, ItemLoaderMeta>>({});
   const sectionTotals = useRef<Record<string, number>>({});
@@ -89,6 +97,7 @@ export const useItemsInSections = <ItemType extends BaseItemType, SectionType ex
   const [isLoadingMoreError, setIsLoadingMoreError] = useState(false);
   const [isLoadingMore, setIsLoadingMore] = useState(false);
   const [isLoadedAll, setIsLoadedAll] = useState(false);
+  const [refreshTrigger, setRefreshTrigger] = useState<number>();
 
   const [currentItems, setCurrentItems] = useState<ItemType[]>(() => {
     if (isFixedItemsList) {
@@ -100,7 +109,7 @@ export const useItemsInSections = <ItemType extends BaseItemType, SectionType ex
     }
     return [];
   });
-  const listActions = searchQuery === '/';
+  const listActions = searchQuery === '/' && !searchActionSection && !searchParamConfig;
   const hasSearchQuery = !!searchQuery;
   const hasCurrentSection = !!currentSection;
   const hasSections = !isWithOutSections(sections);
@@ -146,6 +155,10 @@ export const useItemsInSections = <ItemType extends BaseItemType, SectionType ex
   }, []);
 
   const goBack = useCallback(() => {
+    if (searchActionSection) {
+      setSearchActionSection(undefined);
+      return;
+    }
     if (searchQuery) {
       setCurrentSection(previousSection);
       setPreviousSection(undefined);
@@ -156,7 +169,7 @@ export const useItemsInSections = <ItemType extends BaseItemType, SectionType ex
       return;
     }
     setCurrentSection(undefined);
-  }, [previousSection, searchQuery, parentFolder]);
+  }, [searchActionSection, searchQuery, parentFolder, previousSection]);
 
   const handleCurrentSectionChange = useCallback(
     (section?: SectionType | BaseSectionType) => {
@@ -266,14 +279,14 @@ export const useItemsInSections = <ItemType extends BaseItemType, SectionType ex
   );
 
   const loadItems = useCallback(async () => {
-    if (isFixedItemsList || listActions) {
+    if (isFixedItemsList || listActions || searchActionSection) {
       return;
     }
     setIsLoading(true);
     setIsLoadingError(false);
-    // eslint-disable-next-line no-unused-expressions
-    abortControllerRef.current?.abort();
-    abortControllerRef.current = new AbortController();
+
+    const currentRequestId = crypto.randomUUID();
+    requestIdRef.current = currentRequestId;
 
     if (listRenderingMode === RENDER_MODES.LIST_ITEMS) {
       const sectionId = currentSection?.id || 'DEFAULT';
@@ -285,7 +298,11 @@ export const useItemsInSections = <ItemType extends BaseItemType, SectionType ex
           limit: items.limitPerPage || ITEMS_PER_PAGE,
           meta: undefined,
           abortController: abortControllerRef.current,
+          searchKey: searchParamConfig?.paramKey,
         });
+        if (currentRequestId !== requestIdRef.current) {
+          return;
+        }
         setIsLoading(false);
         loadedPage.current = FIRST_PAGE;
         metaRef.current[sectionId] = meta;
@@ -313,6 +330,7 @@ export const useItemsInSections = <ItemType extends BaseItemType, SectionType ex
                 sectionId: folder.id,
                 meta: undefined,
                 abortController: abortControllerRef.current,
+                searchKey: searchParamConfig?.paramKey,
               })
               .then(({ items: sectionItems, total, meta }) => {
                 metaRef.current[folder.id] = meta;
@@ -322,6 +340,9 @@ export const useItemsInSections = <ItemType extends BaseItemType, SectionType ex
           });
     try {
       const results = requests ? await Promise.allSettled(requests) : [];
+      if (currentRequestId !== requestIdRef.current) {
+        return;
+      }
       setIsLoading(false);
       setIsInitialDataLoaded(true);
       if (results.every(result => result.status === 'fulfilled')) {
@@ -334,7 +355,17 @@ export const useItemsInSections = <ItemType extends BaseItemType, SectionType ex
       setIsInitialDataLoaded(true);
       setIsLoadingError(true);
     }
-  }, [currentSection, isFixedItemsList, currentFolders, listRenderingMode, items, listActions, searchQuery]);
+  }, [
+    searchParamConfig,
+    currentSection,
+    isFixedItemsList,
+    currentFolders,
+    listRenderingMode,
+    items,
+    listActions,
+    searchQuery,
+    searchActionSection,
+  ]);
 
   useEffect(() => {
     if (listActions) {
@@ -347,7 +378,10 @@ export const useItemsInSections = <ItemType extends BaseItemType, SectionType ex
           ? allItems.filter(item => item.sectionId === currentSection.id)
           : allItems;
       if (searchQuery) {
-        const matchingItems = itemsInSection.filter(item => item.text && matchesSearchQuery(item.text, searchQuery));
+        const matchingItems = itemsInSection.filter(item => {
+          const matchValue = searchParamConfig ? String(item[searchParamConfig.paramKey as keyof ItemType]) : item.text;
+          return matchValue && matchesSearchQuery(matchValue, searchQuery);
+        });
         setCurrentItems(matchingItems);
         return;
       }
@@ -363,6 +397,7 @@ export const useItemsInSections = <ItemType extends BaseItemType, SectionType ex
     items,
     listActions,
     searchQuery,
+    searchParamConfig,
   ]);
 
   useEffect(() => {
@@ -376,8 +411,13 @@ export const useItemsInSections = <ItemType extends BaseItemType, SectionType ex
         loadItems();
       }
     }
+    return () => {
+      // eslint-disable-next-line no-unused-expressions
+      abortControllerRef.current?.abort();
+      abortControllerRef.current = new AbortController();
+    };
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [currentSection, isFixedItemsList, searchQuery, listActions]);
+  }, [currentSection, isFixedItemsList, searchQuery, listActions, refreshTrigger]);
 
   useEffect(() => {
     let timeout: ReturnType<typeof setTimeout>;
@@ -391,11 +431,9 @@ export const useItemsInSections = <ItemType extends BaseItemType, SectionType ex
 
   const hasInfiniteScroll = !listActions && !isFixedItemsList && listRenderingMode === RENDER_MODES.LIST_ITEMS;
 
-  const loadItemsRef = useLatestRef(loadItems);
-
   const refreshItems = useMemo(() => {
     if (!isFixedItemsList) {
-      return loadItemsRef.current;
+      return () => setRefreshTrigger(Date.now());
     }
     return undefined;
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -415,6 +453,7 @@ export const useItemsInSections = <ItemType extends BaseItemType, SectionType ex
           searchQuery,
           sectionId: currentSection?.id,
           meta: metaRef.current[sectionId],
+          searchKey: searchParamConfig?.paramKey,
         })
         .then(({ items: fetchedItems, total, meta }) => {
           sectionTotals.current[sectionId] = total;
@@ -432,15 +471,60 @@ export const useItemsInSections = <ItemType extends BaseItemType, SectionType ex
           setIsLoadingMoreError(true);
         });
     }
-  }, [isLoadingMore, hasInfiniteScroll, currentSection?.id, isLoadedAll, items, searchQuery, currentItems]);
+  }, [
+    searchParamConfig,
+    isLoadingMore,
+    hasInfiniteScroll,
+    currentSection?.id,
+    isLoadedAll,
+    items,
+    searchQuery,
+    currentItems,
+  ]);
 
   const mergedItemsList = useMemo(() => {
-    if (listActions) {
-      return getActionItems({ actions, texts });
+    if (searchActionSection) {
+      return getSearchActionItems({
+        action: searchActionSection,
+        setSearchActionSection,
+        setSearchParamConfig,
+        searchQuery,
+      });
     }
-    const globalActions = getSectionActionItems({ actions, texts, searchQuery, sectionId: undefined });
-    const sectionActions = getSectionActionItems({ actions, texts, searchQuery, sectionId: currentSection?.id });
-    const recentItems = getRecentItems({ recents, texts, isSelected, searchQuery, handleItemSelect });
+
+    if (listActions) {
+      return getActionItems({
+        actions,
+        texts,
+        sectionId: currentSection?.id,
+        setSearchActionSection,
+        changeSearchQuery,
+      });
+    }
+    const globalActions = getSectionActionItems({
+      actions,
+      texts,
+      searchQuery,
+      sectionId: undefined,
+      setSearchActionSection,
+      changeSearchQuery,
+    });
+    const sectionActions = getSectionActionItems({
+      actions,
+      texts,
+      searchQuery,
+      sectionId: currentSection?.id,
+      setSearchActionSection,
+      changeSearchQuery,
+    });
+    const recentItems = getRecentItems({
+      recents,
+      texts,
+      isSelected,
+      searchQuery,
+      handleItemSelect,
+      isSearchParam: !!searchParamConfig,
+    });
     const folderItems = sections ? getFolderItems({ sections, handleSectionChange }) : [];
     const listItems = currentFolders
       ? currentFolders.flatMap(folder => {
@@ -455,6 +539,7 @@ export const useItemsInSections = <ItemType extends BaseItemType, SectionType ex
             showItemsSectionLabel,
             isSelected,
             handleItemSelect,
+            isSearchParam: !!searchParamConfig,
           });
         })
       : getItems({
@@ -464,9 +549,11 @@ export const useItemsInSections = <ItemType extends BaseItemType, SectionType ex
           showItemsSectionLabel,
           isSelected,
           handleItemSelect,
+          isSearchParam: !!searchParamConfig,
         });
 
-    const composedList = currentSection ? [...sectionActions] : [...globalActions, ...recentItems];
+    const actionsRecentList = currentSection ? [...sectionActions] : [...globalActions, ...recentItems];
+    const composedList = searchParamConfig ? [] : actionsRecentList;
 
     switch (listRenderingMode) {
       case RENDER_MODES.LIST_ITEMS:
@@ -494,6 +581,10 @@ export const useItemsInSections = <ItemType extends BaseItemType, SectionType ex
     isSelected,
     handleItemSelect,
     handleSectionChange,
+    setSearchParamConfig,
+    searchActionSection,
+    searchParamConfig,
+    changeSearchQuery,
   ]);
 
   return {
@@ -512,5 +603,9 @@ export const useItemsInSections = <ItemType extends BaseItemType, SectionType ex
     isLoadingMoreError,
     contentHeight,
     refreshEnabled: !listActions,
+    searchActionSection,
+    searchParamConfig,
+    setSearchParamConfig,
+    listActions,
   };
 };

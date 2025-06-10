@@ -40,3 +40,4 @@ import SearchBar from '@synerise/ds-search-bar'
 | placeholder    | Placeholder                              | React.ReactNode          | -       |
 | value          | The input content value                  | string                   | -       |
 | autofocusDelay | Delay (ms) of the focus on search input  | number                   | 0       |
+| valuePrefix    | An element displayed before the value    | ReactNode                | -       |

@@ -1,17 +1,66 @@
+import type { ReactNode } from 'react';
 import styled from 'styled-components';
+
 import { Input } from '@synerise/ds-input';
+import { Title } from '@synerise/ds-typography';
+
+import {
+  CLEAR_ICON_MARGIN_LEFT,
+  CLEAR_ICON_SIZE,
+  ICON_LEFT_MARGIN_RIGHT,
+  ICON_LEFT_SIZE,
+  SEARCH_BAR_PADDING_LEFT,
+  SEARCH_BAR_PADDING_RIGHT,
+  VALUE_PREFIX_WRAPPER_LEFT_VALUE,
+  VALUE_PREFIX_WRAPPER_RIGHT_MARGIN,
+} from './SearchBar.constants';
+
+const getPaddingAndWidthForSearchBarAntInput = ({
+  iconLeft,
+  isEmpty,
+  valuePrefixWidth,
+}: {
+  iconLeft: ReactNode;
+  isEmpty: boolean;
+  valuePrefixWidth: number;
+}) => {
+  const leftPadding =
+    SEARCH_BAR_PADDING_LEFT +
+    (iconLeft ? ICON_LEFT_SIZE + ICON_LEFT_MARGIN_RIGHT : 0) +
+    valuePrefixWidth +
+    (valuePrefixWidth ? VALUE_PREFIX_WRAPPER_RIGHT_MARGIN : 0);
+  const rightPadding = SEARCH_BAR_PADDING_RIGHT + (!isEmpty ? CLEAR_ICON_SIZE + CLEAR_ICON_MARGIN_LEFT : 0);
+
+  return `
+    padding: 0 ${rightPadding}px 0 ${leftPadding}px;
+    width: calc(100% - ${rightPadding + leftPadding}px);
+  `;
+};
 
 export const IconLeftWrapper = styled.div`
   position: absolute;
-  left: 16px;
+  left: ${SEARCH_BAR_PADDING_LEFT}px;
   display: flex;
   align-items: center;
   height: 100%;
   z-index: 3;
 `;
 
+export const ValuePrefixWrapper = styled.div`
+  position: absolute;
+  left: ${VALUE_PREFIX_WRAPPER_LEFT_VALUE}px;
+  display: flex;
+  align-items: center;
+  height: 100%;
+  z-index: 3;
+`;
+
+export const ValuePrefixTitle = styled(Title)`
+  line-height: 18px;
+`;
+
 export const ClearInputWrapper = styled.div`
-  right: 14px;
+  right: ${SEARCH_BAR_PADDING_RIGHT}px;
   position: absolute;
   display: flex;
   align-items: center;
@@ -19,15 +68,17 @@ export const ClearInputWrapper = styled.div`
   z-index: 3;
   cursor: pointer;
 `;
-export const PlaceholderWrapper = styled.div`
+export const PlaceholderWrapper = styled.div<{ valuePrefixWidth: number }>`
   pointer-events: none;
   position: absolute;
   display: flex;
   align-items: center;
   z-index: 2;
   height: 52px;
-  left: 52px;
+  left: ${({ valuePrefixWidth }) =>
+    VALUE_PREFIX_WRAPPER_LEFT_VALUE + valuePrefixWidth + (valuePrefixWidth ? VALUE_PREFIX_WRAPPER_RIGHT_MARGIN : 0)}px;
   color: ${props => props.theme.palette['grey-500']};
+  line-height: 18px;
 `;
 export const SearchBar = styled(Input)`
   &&& {
@@ -74,6 +125,7 @@ export const SearchBarWrapper = styled.div<{
   isEmpty: boolean;
   disabled: boolean;
   borderRadius: boolean | undefined;
+  valuePrefixWidth: number;
 }>`
   position: relative;
   overflow: hidden;
@@ -91,18 +143,7 @@ export const SearchBarWrapper = styled.div<{
     input.ant-input {
       border-radius: 0;
       line-height: 18px;
-      padding: ${(props): string => {
-        if (props.iconLeft && !props.isEmpty) return '0 42px 0 52px';
-        if (props.iconLeft && props.isEmpty) return '0 12px 0 52px';
-        if (!props.iconLeft && !props.isEmpty) return '0 42px 0 12px';
-        return '0 12px 0 12px';
-      }};
-      width: ${(props): string => {
-        if (props.iconLeft && !props.isEmpty) return 'calc(100% - 92px)';
-        if (props.iconLeft && props.isEmpty) return 'calc(100% - 62px)';
-        if (!props.iconLeft && !props.isEmpty) return 'calc(100% - 52px)';
-        return 'calc(100% - 24px)';
-      }};
+      ${getPaddingAndWidthForSearchBarAntInput}
     }
 
     &:hover {
@@ -115,6 +156,9 @@ export const SearchBarWrapper = styled.div<{
         svg {
           fill: ${(props): string => props.theme.palette['red-600']};
         }
+      }
+      ${ValuePrefixTitle} {
+        color: ${props => props.theme.palette['blue-600']};
       }
     }
   }
@@ -129,6 +173,9 @@ export const SearchBarWrapper = styled.div<{
       svg {
         fill: ${(props): string => props.theme.palette['red-600']};
       }
+    }
+    ${ValuePrefixTitle} {
+      color: ${props => props.theme.palette['blue-600']};
     }
   }
 `;
