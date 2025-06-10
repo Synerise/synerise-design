@@ -38,14 +38,14 @@ const FieldSet = ({
     if (expandable) {
       return (
         <S.ButtonWrapper>
-          <S.ExpanderWrapper description={!!description}>
+          <S.ExpanderWrapper>
             <Button.Expander expanded={expanded} onClick={() => setExpanded(!expanded)} />
           </S.ExpanderWrapper>
         </S.ButtonWrapper>
       );
     }
     return prefix && <S.ButtonWrapper>{prefix}</S.ButtonWrapper>;
-  }, [expandable, prefix, description, expanded]);
+  }, [expandable, prefix, expanded]);
 
   const handleTitleClick = useCallback(
     (event: MouseEvent<HTMLDivElement>) => {
@@ -55,19 +55,23 @@ const FieldSet = ({
     [onTitleClick, expandable, expanded]
   );
 
+  const hasTitleAndDescription = Boolean(title && description);
+
   return (
     <S.ContainerWrapper className={`ds-field-set ${className}`} {...htmlAttributes}>
-      <S.HeaderWrapper>
+      <S.HeaderWrapper topAlign={Boolean(hasTitleAndDescription)}>
         {headerPrefix}
-        <S.FieldSetTitle description={Boolean(description)}>
-          <S.Title
-            onClick={handleTitleClick}
-            isClickable={Boolean(onTitleClick || expandable)}
-            description={Boolean(description)}
-          >
-            {title}
-          </S.Title>
-          <S.Description>{description}</S.Description>
+        <S.FieldSetTitle>
+          {title && (
+            <S.Title
+              onClick={handleTitleClick}
+              isClickable={Boolean(onTitleClick || expandable)}
+              description={Boolean(description)}
+            >
+              {title}
+            </S.Title>
+          )}
+          {description && <S.Description>{description}</S.Description>}
         </S.FieldSetTitle>
       </S.HeaderWrapper>
       {divider && <Divider />}

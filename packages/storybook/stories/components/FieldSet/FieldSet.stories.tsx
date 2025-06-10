@@ -6,7 +6,7 @@ import FieldSet from '@synerise/ds-field-set';
 import { ExpanderWrapper } from '@synerise/ds-field-set/dist/FieldSet.styles';
 import Button from '@synerise/ds-button';
 import Checkbox from '@synerise/ds-checkbox';
-import Switch from '@synerise/ds-switch';
+import { RawSwitch } from '@synerise/ds-switch';
 import Radio from '@synerise/ds-radio';
 import { Input } from '@synerise/ds-input';
 import Select from '@synerise/ds-select';
@@ -34,7 +34,7 @@ export default {
             <Button.Expander expanded={true} />
           </ExpanderWrapper>
         ),
-        switch: <Switch label="" defaultChecked={true} />,
+        switch: <RawSwitch defaultChecked={true} />,
       }),
     },
     component: {
