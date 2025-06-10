@@ -22,6 +22,9 @@ export const fixedHeightWrapper: Decorator = Story => <div style={{ position: 'r
 export const flexColumnWrapper: Decorator = Story => (
   <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>{Story()}</div>
 );
+
+export const responsiveTableWrapper : Decorator = Story => <div style={{ padding: 20, width: '100vw', minWidth: '100%' }}>{Story()}</div>;
+
 export const footerWrapper: Decorator = Story => (
   <div
     style={{
