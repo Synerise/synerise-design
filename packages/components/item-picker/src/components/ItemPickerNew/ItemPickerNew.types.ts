@@ -59,6 +59,7 @@ export type LoaderProps = {
   searchQuery?: string;
   meta?: ItemLoaderMeta;
   abortController?: AbortController;
+  searchKey?: string;
 };
 
 export type ItemLoaderConfig<ItemType extends BaseItemType> = {
@@ -72,23 +73,25 @@ export type ItemsConfig<ItemType extends BaseItemType> = {
   items: ItemType[];
 };
 
-type RedirectActionType = {
+type BasicActionType = Omit<InheritedFromListItem, 'onClick'> & {
+  sectionId?: BaseSectionType['id'];
+  id: string | number;
+  text: ReactNode;
+  icon?: ReactNode;
+};
+
+type RedirectActionType = BasicActionType & {
   actionType: 'redirect';
 };
 
-type CustomActionType = {
+type CustomActionType = BasicActionType & {
   actionType: 'custom';
   onClick: (action: ActionType) => void;
 };
 
 export type ItemPickerTexts = ItemPickerListTexts & ItemPickerTriggerTexts;
 
-export type ActionType = Omit<InheritedFromListItem, 'onClick'> & {
-  sectionId?: BaseSectionType['id'];
-  id: string | number;
-  text: ReactNode;
-  icon?: ReactNode;
-} & (RedirectActionType | CustomActionType);
+export type ActionType = RedirectActionType | CustomActionType | SearchActionType;
 
 export type ItemPickerProps<
   ItemType extends BaseItemType,
@@ -140,3 +143,19 @@ export type ItemPickerProps<
 > &
   FormFieldCommonProps &
   Partial<Pick<ItemPickerTriggerProps, 'placeholder' | 'placeholderIcon' | 'onClear'>>;
+
+export type SearchConfig = {
+  actionType: 'search';
+  sectionTitle?: ReactNode;
+  searchParams: SearchParamConfig[];
+};
+
+export type SearchParamConfig = {
+  searchLabel?: ReactNode;
+  paramKeyLabel?: ReactNode;
+  paramListLabel: ReactNode;
+  paramKey: string;
+  icon?: ReactNode;
+};
+
+export type SearchActionType = BasicActionType & SearchConfig;

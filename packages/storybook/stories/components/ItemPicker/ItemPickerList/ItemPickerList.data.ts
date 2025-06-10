@@ -49,7 +49,7 @@ export const playActionsAllStory = async ({ canvasElement, step, context }) => {
   fireEvent.focus(canvas.getByPlaceholderText('Search'));
   await userEvent.type(canvas.getByPlaceholderText('Search'), '/', { delay: 100 });
   await waitFor(() => {
-    expect(canvas.getAllByRole('menuitem')).toHaveLength(2);
+    expect(canvas.getAllByRole('menuitem')).toHaveLength(3);
     expect(canvas.getByText('Actions')).toBeInTheDocument();
     expect(canvas.getByText('Refresh').closest('button')).toBeDisabled();
   });
@@ -70,7 +70,7 @@ export const playActionsSectionStory = async ({ canvasElement, step, context }) 
   await userEvent.type(canvas.getByPlaceholderText('Search'), '/', { delay: 100 });
   await waitFor(() => {
     expect(canvas.queryByTestId('dropdown-back-action-label')).not.toBeInTheDocument();
-    expect(canvas.getAllByRole('menuitem')).toHaveLength(2);
+    expect(canvas.getAllByRole('menuitem')).toHaveLength(3);
     expect(canvas.getByText('Actions')).toBeInTheDocument();
     expect(canvas.getByText('Refresh').closest('button')).toBeDisabled();
   });
@@ -90,7 +90,7 @@ export const playActionsFolderStory = async ({ canvasElement, step, context }) =
   await userEvent.type(canvas.getByPlaceholderText('Search'), '/', { delay: 100 });
   await waitFor(() => {
     expect(canvas.queryByTestId('dropdown-back-action-label')).not.toBeInTheDocument();
-    expect(canvas.getAllByRole('menuitem')).toHaveLength(2);
+    expect(canvas.getAllByRole('menuitem')).toHaveLength(3);
     expect(canvas.getByText('Actions')).toBeInTheDocument();
     expect(canvas.getByText('Refresh').closest('button')).toBeDisabled();
   });

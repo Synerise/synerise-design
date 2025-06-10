@@ -8,6 +8,7 @@ export const useDefaultTexts = (texts?: Partial<ItemPickerTexts>): ItemPickerTex
   const intl = useIntl();
   const allTexts = useMemo(
     () => ({
+      basicSearchPlaceholder: intl.formatMessage({ id: 'DS.ITEM-PICKER.SEARCH', defaultMessage: 'Search' }),
       searchPlaceholder: (
         <FormattedMessage
           values={{
