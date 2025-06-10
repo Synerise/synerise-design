@@ -3,22 +3,24 @@ import styled, { css } from 'styled-components';
 export const Title = styled.div<{ description?: boolean; isClickable?: boolean }>`
   display: flex;
   line-height: 16px;
-  padding-bottom: ${(props): string => (props.description ? '8px' : '0')};
   max-width: 800px;
   font-size: 16px;
   font-weight: 500;
   word-wrap: break-word;
   align-items: center;
-  color: ${(props): string => props.theme.palette['grey-800']};
-  cursor: ${(props): string => (props.isClickable ? 'pointer' : 'default')};
+  color: ${props => props.theme.palette['grey-800']};
+  cursor: ${props => (props.isClickable ? 'pointer' : 'default')};
 `;
 export const ContainerWrapper = styled.div`
   display: flex;
   flex-direction: column;
   gap: 16px;
 `;
-export const HeaderWrapper = styled.div`
+export const HeaderWrapper = styled.div<{ topAlign?: boolean }>`
   display: flex;
+  align-items: center;
+  gap: 16px;
+  align-items: ${props => (props.topAlign ? 'flex-start' : 'center')};
 `;
 export const ButtonWrapper = styled.div`
   display: flex;
@@ -27,14 +29,13 @@ export const ActionButton = styled.div`
   display: flex;
   padding; 8px;
 `;
-export const ExpanderWrapper = styled.div<{ description?: boolean }>`
+export const ExpanderWrapper = styled.div`
   display: flex;
-  align-items: ${(props): string => (props.description ? '' : 'center')};
-  margin: 0 16px 8px 0;
 `;
-export const FieldSetTitle = styled.div<{ description?: boolean }>`
-  display: ${(props): string => (props.description ? '' : 'flex')};
-  align-items: ${(props): string => (props.description ? '' : 'center')};
+export const FieldSetTitle = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
 `;
 export const ComponentWrapper = styled.div`
   display: flex;
