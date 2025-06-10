@@ -1,10 +1,13 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Meta, StoryObj } from '@storybook/react';
 import Modal from '@synerise/ds-modal';
 import { ObjectAvatar } from '@synerise/ds-avatar';
 import Icon, { MailM, UserM } from '@synerise/ds-icon';
+import Stepper from '@synerise/ds-stepper';
 import { theme } from '@synerise/ds-core';
+import * as S from './styles';
 import { sizes, headerWithPrefix, color } from './Modal.data';
+import { StepData, STEPPER_STEPS } from '../Stepper/Stepper.data';
 
 import {
   BOOLEAN_CONTROL,
@@ -143,6 +146,37 @@ export const withScroll: Story = {
       Modal content... Modal content... Modal content... Modal content... Modal content... Modal content... Modal
       content... Modal content...</div>,
     maxViewportHeight: 70,
+  },
+};
+
+export const ModalWithStepper: Story = {
+  render: ({activeIndex, ...args }) => {
+    const [activeStep, setActiveStep] = useState(activeIndex);
+    const handleStepClick = index => setActiveStep(index);
+    return (
+        <Modal {...args} >
+          <S.StepperWrapper>
+            <Stepper style={{ width: '100%', justifyContent: 'center' }}>
+              {STEPPER_STEPS.map((step: StepData, index: number) => (
+                <Stepper.Step
+                  {...step}
+                  onClick={() => handleStepClick(index)}
+                  active={index === activeStep}
+                  done={index < activeStep}
+                />
+              ))}
+            </Stepper>
+          </S.StepperWrapper>
+        </Modal>
+    )
+  },
+  args: {
+    visible: true,
+    title: 'title',
+    description: 'Description',
+    onOk: 'Apply',
+    onCancel: 'Cancel',
+    size: 'medium',
   },
 };
 
