@@ -5063,3 +5063,51 @@ export const FIXED_COLUMNS = [
   ...COLUMNS.slice(1, -1),
   { ...COLUMNS[COLUMNS.length], fixed: RIGHT },
 ];
+
+
+export const RESPONSIVE_COLUMNS = [
+  {
+    title: 'User name (min 200px -> max 400px)',
+    key: 'name',
+    dataIndex: 'name',
+    icon: { component: <VarTypeStringM /> },
+    iconTooltip: { component: <InfoFillS /> },
+    sorter: (a, b) => a.name.localeCompare(b.name),
+    sortRender: 'string',
+    fixed: 'left',
+    minWidth: 200,
+    maxWidth: 400
+  },
+  {
+    title: 'Address (min 150px no max)',
+    key: 'address',
+    dataIndex: 'address',
+    sorter: (a, b) => a.address.localeCompare(b.address),
+    sortRender: 'string',
+    minWidth: 150
+  },
+  {
+    title: 'City (min 100px no max)',
+    key: 'city',
+    dataIndex: 'city',
+    sorter: (a, b) => a.city.localeCompare(b.city),
+    sortRender: 'string',
+    minWidth: 100
+  },
+  {
+    title: 'Number (100px)',
+    key: 'number',
+    dataIndex: 'number',
+    sorter: (a, b) => a.number.localeCompare(b.number),
+    width: 100
+  },
+  {
+    title: 'Type (120px)',
+    key: 'transactionType',
+    fixed: 'right',
+    dataIndex: 'transactionType',
+    sorter: (a, b) => a.transactionType.localeCompare(b.transactionType),
+    sortRender: 'string',
+    width: 120
+  },
+];

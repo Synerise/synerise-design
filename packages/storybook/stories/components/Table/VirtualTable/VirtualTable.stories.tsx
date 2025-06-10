@@ -10,10 +10,10 @@ import Icon, { AddM } from '@synerise/ds-icon';
 import Table, { VirtualTableProps, VirtualTable, VirtualTableRef } from '@synerise/ds-table';
 import { SearchInput } from '@synerise/ds-search';
 
-import { COLUMNS, DATA_SOURCE, FIXED_COLUMNS } from './VirtualTable.data';
+import { COLUMNS, DATA_SOURCE, FIXED_COLUMNS, RESPONSIVE_COLUMNS } from './VirtualTable.data';
 import { renderWithIconInHeaders, TableMeta } from '../Table.utils';
 import { useInfiniteScroll } from './useInfiniteScroll';
-import { fixedWrapper1000 } from '../../../utils';
+import { fixedWrapper1000, responsiveTableWrapper } from '../../../utils';
 
 type RowType = typeof DATA_SOURCE[number];
 type VirtualTableType = VirtualTableProps<RowType> & { randomiseSelectionColumn?: boolean };
@@ -175,6 +175,13 @@ export const WithFixedColumns: Story = {
   decorators: [fixedWrapper1000],
   args: {
     columns: FIXED_COLUMNS,
+  },
+};
+
+export const WithResponsiveColumns: Story = {
+  decorators: [responsiveTableWrapper],
+  args: {
+    columns: RESPONSIVE_COLUMNS,
   },
 };
 
