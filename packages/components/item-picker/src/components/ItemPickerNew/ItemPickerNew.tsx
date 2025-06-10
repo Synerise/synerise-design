@@ -12,6 +12,7 @@ import { ItemPickerList } from '../ItemPickerList/ItemPickerList';
 export const ItemPickerNew = <ItemType extends BaseItemType, SectionType extends BaseSectionType>({
   onFocus,
   onBlur,
+  onClear,
   selectedItem,
   onChange,
   dropdownProps,
@@ -68,14 +69,27 @@ export const ItemPickerNew = <ItemType extends BaseItemType, SectionType extends
         {...triggerProps}
         opened={visible}
         texts={allTexts}
+        disabled={disabled}
         placeholder={placeholder}
         placeholderIcon={placeholderIcon}
         selected={selectedItem}
+        onClear={onClear}
         openDropdown={openDropdown}
         closeDropdown={closeDropdown}
       />
     );
-  }, [allTexts, disabled, error, placeholder, placeholderIcon, renderTrigger, selectedItem, triggerProps, visible]);
+  }, [
+    allTexts,
+    disabled,
+    error,
+    onClear,
+    placeholder,
+    placeholderIcon,
+    renderTrigger,
+    selectedItem,
+    triggerProps,
+    visible,
+  ]);
 
   return (
     <S.ItemPickerWrapper className="ds-items-picker" disabled={disabled}>
@@ -91,6 +105,7 @@ export const ItemPickerNew = <ItemType extends BaseItemType, SectionType extends
           {...dropdownProps}
           visible={visible}
           trigger={['click']}
+          disabled={disabled}
           onVisibleChange={handleVisibilityChange}
           overlay={
             <ItemPickerList
