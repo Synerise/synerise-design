@@ -1,4 +1,4 @@
-FROM quay.io/synerise/base-images:nginx-v1.0.0
+FROM docker.nexus.snrinternal.com/synerise/base-images:nginx-v1.0.0
 
 USER root
 
