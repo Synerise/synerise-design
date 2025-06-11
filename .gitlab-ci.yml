@@ -35,7 +35,7 @@ install:
   stage: install
   rules:
     - if: $CI_PIPELINE_SOURCE == "merge_request_event"
-    - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH 
+    - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
   script:
     - yarn --frozen-lockfile
     - yarn lint
@@ -65,7 +65,7 @@ build_packages:
     policy: pull
   rules:
     - if: $CI_PIPELINE_SOURCE == "merge_request_event"
-    - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH 
+    - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
   script:
     - yarn build
   artifacts:
@@ -109,7 +109,7 @@ chromatic_publish:
 publish_packages:
   stage: build
   needs: ['build_packages']
-  environment: 
+  environment:
     name: npm
   variables:
     PUBLISH_TITLE: "build: publish"
@@ -128,7 +128,7 @@ build_storybook:
   stage: build
   needs: ['build_packages']
   rules:
-    - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH 
+    - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
   script:
     - yarn build-storybook
     - mv packages/storybook/storybook-static/ packages/docs-site/storybook-static
@@ -137,11 +137,11 @@ build_storybook:
       - packages/docs-site
 
 deploy_storybook:
-  image: artifactory.snrinternal.com/docker.io/docker:stable
+  image: docker.nexus.snrinternal.com/docker:stable
   stage: deploy
   needs: ['build_storybook']
   rules:
-    - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH 
+    - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
   script:
     - SANITY_BRANCH=$CI_COMMIT_REF_SLUG
     - echo "Sanitized branch name ${SANITY_BRANCH}"
@@ -162,7 +162,7 @@ deploy_storybook:
 k8s-prod-gitops:
   extends: .autodeploy-template
   stage: k8s-deploy-prod
-  environment: 
+  environment:
     name: prod
   when: manual
   only:
@@ -185,10 +185,8 @@ chromatic_publish_baseline:
   rules:
     - if: ($CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH && $CI_COMMIT_TITLE == $PUBLISH_TITLE)
       when: on_success
-    - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH 
+    - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
       when: manual
   script:
     - (cd packages/storybook; yarn chromatic --project-token=$CHROMATIC_PROJECT_TOKEN_SB7 --auto-accept-changes)
   interruptible: true
-  
-
