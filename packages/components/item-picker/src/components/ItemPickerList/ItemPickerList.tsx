@@ -129,12 +129,21 @@ export const ItemPickerList = <ItemType extends BaseItemType, SectionType extend
     changeSearchQuery,
   });
 
-  const handleScroll = ({ currentTarget }: UIEvent) => {
-    const { scrollTop } = currentTarget;
-    if (listRef.current) {
-      listRef.current.scrollTo(scrollTop);
-    }
-  };
+  const handleScroll = useCallback(
+    ({ currentTarget }: UIEvent) => {
+      const { scrollTop, scrollHeight, clientHeight } = currentTarget;
+      if (listRef.current) {
+        listRef.current.scrollTo(scrollTop);
+      }
+
+      const max = scrollHeight - clientHeight;
+
+      if (scrollTop >= max - 20) {
+        handleScrollEndReach();
+      }
+    },
+    [handleScrollEndReach]
+  );
 
   const focusSearchInput = useCallback(() => {
     // eslint-disable-next-line no-unused-expressions
@@ -244,7 +253,6 @@ export const ItemPickerList = <ItemType extends BaseItemType, SectionType extend
             data-maxheight={listHeight}
             onScroll={handleScroll}
             absolute
-            onYReachEnd={handleScrollEndReach}
             withDnd={false}
             ref={scrollBarRef}
             {...scrollbarProps}
@@ -274,7 +282,7 @@ export const ItemPickerList = <ItemType extends BaseItemType, SectionType extend
     currentSection,
     currentPath,
     getItemSize,
-    handleScrollEndReach,
+    handleScroll,
     isLoading,
     isLoadingError,
     isLoadingItems,
@@ -331,7 +339,12 @@ export const ItemPickerList = <ItemType extends BaseItemType, SectionType extend
         clearSearchQuery();
         return;
       }
-      setSearchParamConfig(undefined);
+
+      if (searchParamConfig) {
+        event.preventDefault();
+        event.stopPropagation();
+        setSearchParamConfig(undefined);
+      }
     },
   });
 
