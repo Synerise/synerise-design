@@ -1,4 +1,4 @@
-FROM quay.io/synerise/base-images:nodejs22
+FROM docker.nexus.snrinternal.com/synerise/base-images:nodejs22
 
 LABEL maintainer="SYNERISE"
 

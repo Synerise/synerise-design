@@ -1,4 +1,4 @@
-image: quay.io/synerise/base-build-images:nodejs22
+image: docker.nexus.snrinternal.com/synerise/base-build-images:nodejs22
 
 variables:
   APP: ds-docs
@@ -145,18 +145,19 @@ deploy_storybook:
   script:
     - SANITY_BRANCH=$CI_COMMIT_REF_SLUG
     - echo "Sanitized branch name ${SANITY_BRANCH}"
-    - docker login $QUAY_REPO_HOST -u "$QUAY_REPO_USER" -p "$QUAY_REPO_PASS"
+    - echo "${SNR_DOCKER_REGISTRY_PASSWORD}" | docker login "${SNR_DOCKER_REGISTRY_HOST}" --username "${SNR_DOCKER_REGISTRY_USERNAME}" --password-stdin
+    - echo "${SNR_DOCKER_REGISTRY_PASSWORD}" | docker login "${SNR_DOCKER_REGISTRY_GLOBAL_HOST}" --username "${SNR_DOCKER_REGISTRY_USERNAME}" --password-stdin
     - cd packages/docs-site
     - pwd
     - docker build -t ds-docs .
     - echo "Push commit image"
 
-    - docker tag ds-docs quay.io/synerise/ds-docs:"$SANITY_BRANCH"-"${CI_COMMIT_SHA}"
-    - docker push quay.io/synerise/ds-docs:"$SANITY_BRANCH"-"${CI_COMMIT_SHA}"
+    - docker tag ds-docs $SNR_DOCKER_REGISTRY_HOST/synerise/ds-docs:"$SANITY_BRANCH"-"${CI_COMMIT_SHA}"
+    - docker push $SNR_DOCKER_REGISTRY_HOST/synerise/ds-docs:"$SANITY_BRANCH"-"${CI_COMMIT_SHA}"
     - echo "Image pushed to remote repository from branch ${CI_COMMIT_REF_NAME}"
 
-    - docker tag ds-docs quay.io/synerise/ds-docs:"$SANITY_BRANCH"-latest
-    - docker push quay.io/synerise/ds-docs:"$SANITY_BRANCH"-latest
+    - docker tag ds-docs $SNR_DOCKER_REGISTRY_HOST/synerise/ds-docs:"$SANITY_BRANCH"-latest
+    - docker push $SNR_DOCKER_REGISTRY_HOST/synerise/ds-docs:"$SANITY_BRANCH"-latest
     - echo "Image pushed to remote repository from branch ${CI_COMMIT_REF_NAME} for commit ${CI_COMMIT_SHA}"
 
 k8s-prod-gitops:
