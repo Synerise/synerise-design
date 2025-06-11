@@ -1,10 +1,10 @@
 import React from 'react';
 import * as S from './InputMultivalue.styles';
 import Value from './Elements/Value';
-import { Props } from './InputMultivalue.types';
+import { InputMultivalueProps } from './InputMultivalue.types';
 
 const emptyValue = '';
-const InputMultivalue: React.FC<Props> = props => {
+const InputMultivalue = (props: InputMultivalueProps) => {
   const {
     className,
     errorText,
@@ -25,7 +25,7 @@ const InputMultivalue: React.FC<Props> = props => {
   const [isFocused, setFocused] = React.useState(false);
   const inputRef = React.useRef<HTMLInputElement>(null);
   const [selectedValues, setSelectedValues] = React.useState(values);
-  const handleNewValue = (selected: Props['values']): void => {
+  const handleNewValue = (selected: InputMultivalueProps['values']): void => {
     onChange && onChange(selected);
     setSelectedValues(selected);
   };
