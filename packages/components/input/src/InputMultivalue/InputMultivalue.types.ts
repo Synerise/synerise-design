@@ -1,15 +1,15 @@
-import React from 'react';
+import { ReactNode } from 'react';
 
-export interface Props {
+export type InputMultivalueProps = {
   error?: boolean;
   className?: string;
-  errorText?: React.ReactNode | string;
-  label?: React.ReactNode | string;
-  description?: React.ReactNode | string;
-  values: React.ReactText[];
+  errorText?: ReactNode | string;
+  label?: ReactNode | string;
+  description?: ReactNode | string;
+  values: string[];
   disabled?: boolean;
   onBlur?: () => void;
   onFocus?: () => void;
-  onChange?: (values: React.ReactText[]) => void;
+  onChange?: (values: string[]) => void;
   maxLength?: number;
-}
+};

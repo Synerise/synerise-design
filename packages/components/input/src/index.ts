@@ -6,6 +6,7 @@ export { Input, RawInput, InputGroup, InputMultivalue } from './Input';
 
 export { TextArea, RawTextArea } from './TextArea';
 export type { TextareaProps } from './TextArea.types';
+export type { InputMultivalueProps } from './InputMultivalue/InputMultivalue.types';
 
 export * as InputStyles from './Input.styles';
 
