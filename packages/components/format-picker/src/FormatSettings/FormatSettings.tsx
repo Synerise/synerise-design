@@ -169,7 +169,12 @@ const FormatSettings = ({
       </S.FormatSettingsWrapper>
       {onSetDefault && (
         <S.FormatFooter>
-          <Button type="ghost" onClick={onSetDefault} disabled={disabled}>
+          <Button
+            data-testid="ds-format-picker-default-trigger"
+            type="ghost"
+            onClick={onSetDefault}
+            disabled={disabled}
+          >
             {text.setDefault}
           </Button>
         </S.FormatFooter>
