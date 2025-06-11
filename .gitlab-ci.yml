@@ -63,13 +63,13 @@ docs_build:
     - yarn build
     - yarn build-storybook
     - mv packages/storybook/storybook-static/ packages/docs-site/storybook-static
-    
+
   artifacts:
     paths:
       - packages/docs-site/storybook-static/*
 
 docs_deploy:
-  image: artifactory.snrinternal.com/docker.io/docker:stable
+  image: docker.snrinternal.com/docker:stable
   stage: build
   needs: ['docs_build']
   only:
@@ -95,7 +95,7 @@ docs_deploy:
     - echo "Image pushed to remote repository from branch ${CI_COMMIT_REF_NAME} for commit ${CI_COMMIT_SHA}"
 
 docs_deploy_from_tag:
-  image: artifactory.snrinternal.com/docker.io/docker:stable
+  image: docker.snrinternal.com/docker:stable
   stage: build
   needs: ['docs_build']
   only:
