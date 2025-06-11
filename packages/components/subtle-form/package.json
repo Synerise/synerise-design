@@ -1,6 +1,6 @@
 {
   "name": "@synerise/ds-subtle-form",
-  "version": "1.1.6",
+  "version": "1.1.7",
   "description": "SubtleForm UI Component for the Synerise Design System",
   "license": "ISC",
   "repository": "Synerise/synerise-design",
@@ -34,7 +34,7 @@
   ],
   "types": "dist/index.d.ts",
   "dependencies": {
-    "@synerise/ds-date-picker": "^1.1.6",
+    "@synerise/ds-date-picker": "^1.1.7",
     "@synerise/ds-form-field": "^1.1.5",
     "@synerise/ds-icon": "^1.5.2",
     "@synerise/ds-input": "^1.2.0",

@@ -3,6 +3,24 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.11.0](https://github.com/Synerise/synerise-design/compare/storybook7@1.10.0...storybook7@1.11.0) (2025-06-11)
+
+
+### Bug Fixes
+
+* **field-set:** vertical alignment without title ([5b94780](https://github.com/Synerise/synerise-design/commit/5b94780758c08371555d61d89a3461ba717a7784))
+* **modal:** make content fit inside modal ([1aa284e](https://github.com/Synerise/synerise-design/commit/1aa284e304c2957c59dc2cc597103b65ad0b5a36))
+* **ordered-list:** new stories for iconsList ([783b88f](https://github.com/Synerise/synerise-design/commit/783b88fdd7179546b68f83eb45cba31ed963951a))
+
+
+### Features
+
+* **item-picker:** add search actions ([6b2c260](https://github.com/Synerise/synerise-design/commit/6b2c2607b32ad609a71ac7b93332f1b6baf2443c))
+
+
+
+
+
 # [1.10.0](https://github.com/Synerise/synerise-design/compare/storybook7@1.9.0...storybook7@1.10.0) (2025-06-05)
 
 

@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.1.5](https://github.com/synerise/synerise-design/compare/@synerise/ds-modal@1.1.4...@synerise/ds-modal@1.1.5) (2025-06-11)
+
+
+### Bug Fixes
+
+* **modal:** make content fit inside modal ([1aa284e](https://github.com/synerise/synerise-design/commit/1aa284e304c2957c59dc2cc597103b65ad0b5a36))
+
+
+
+
+
 ## [1.1.4](https://github.com/synerise/synerise-design/compare/@synerise/ds-modal@1.1.3...@synerise/ds-modal@1.1.4) (2025-06-05)
 
 **Note:** Version bump only for package @synerise/ds-modal

@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.0.12](https://github.com/Synerise/synerise-design/compare/@synerise/ds-field-set@1.0.11...@synerise/ds-field-set@1.0.12) (2025-06-11)
+
+
+### Bug Fixes
+
+* **field-set:** vertical alignment without title ([5b94780](https://github.com/Synerise/synerise-design/commit/5b94780758c08371555d61d89a3461ba717a7784))
+
+
+
+
+
 ## [1.0.11](https://github.com/Synerise/synerise-design/compare/@synerise/ds-field-set@1.0.10...@synerise/ds-field-set@1.0.11) (2025-06-05)
 
 **Note:** Version bump only for package @synerise/ds-field-set
