@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.0.14](https://github.com/Synerise/synerise-design/compare/@synerise/ds-format-picker@1.0.13...@synerise/ds-format-picker@1.0.14) (2025-06-12)
+
+
+### Bug Fixes
+
+* **format-picker:** new unit test ([db7defe](https://github.com/Synerise/synerise-design/commit/db7defe9b51851b09e51429cdac64d64cde8246d))
+
+
+
+
+
 ## [1.0.13](https://github.com/Synerise/synerise-design/compare/@synerise/ds-format-picker@1.0.12...@synerise/ds-format-picker@1.0.13) (2025-06-11)
 
 **Note:** Version bump only for package @synerise/ds-format-picker

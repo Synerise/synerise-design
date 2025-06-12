@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.2.1](https://github.com/synerise/synerise-design/compare/@synerise/ds-input@1.2.0...@synerise/ds-input@1.2.1) (2025-06-12)
+
+
+### Bug Fixes
+
+* **input:** new stories for inputMultivalue ([5b2beca](https://github.com/synerise/synerise-design/commit/5b2beca0785339b5648b19a08dca3ad1f43dd51d))
+
+
+
+
+
 # [1.2.0](https://github.com/synerise/synerise-design/compare/@synerise/ds-input@1.1.4...@synerise/ds-input@1.2.0) (2025-06-05)
 
 

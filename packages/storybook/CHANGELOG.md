@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.11.1](https://github.com/Synerise/synerise-design/compare/storybook7@1.11.0...storybook7@1.11.1) (2025-06-12)
+
+
+### Bug Fixes
+
+* **input:** new stories for inputMultivalue ([5b2beca](https://github.com/Synerise/synerise-design/commit/5b2beca0785339b5648b19a08dca3ad1f43dd51d))
+
+
+
+
+
 # [1.11.0](https://github.com/Synerise/synerise-design/compare/storybook7@1.10.0...storybook7@1.11.0) (2025-06-11)
 
 

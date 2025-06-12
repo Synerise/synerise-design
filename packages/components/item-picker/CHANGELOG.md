@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.5.1](https://github.com/Synerise/synerise-design/compare/@synerise/ds-item-picker@1.5.0...@synerise/ds-item-picker@1.5.1) (2025-06-12)
+
+
+### Bug Fixes
+
+* **item-picker:** handle scroll end reach in on scroll callback ([cbe3ff2](https://github.com/Synerise/synerise-design/commit/cbe3ff2ff58ddee547ee0896a64d6875fc06c0fe))
+
+
+
+
+
 # [1.5.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-item-picker@1.4.2...@synerise/ds-item-picker@1.5.0) (2025-06-11)
 
 
