@@ -8,6 +8,7 @@ type GetSearchActionItemsOptions = {
   action: SearchActionType;
   setSearchActionSection: (value: SearchActionType | undefined) => void;
   setSearchParamConfig: (value: SearchParamConfig | undefined) => void;
+  changeSearchQuery: (query: string) => void;
   searchQuery?: string;
 };
 
@@ -16,6 +17,7 @@ export const getSearchActionItems = ({
   searchQuery,
   setSearchParamConfig,
   setSearchActionSection,
+  changeSearchQuery,
 }: GetSearchActionItemsOptions) => {
   const filteredSearchParams = action?.searchParams?.filter(searchParam => {
     if (!searchQuery) {
@@ -32,6 +34,7 @@ export const getSearchActionItems = ({
         actionType: 'custom',
         prefixel: searchParam.icon ? <Icon component={searchParam.icon} /> : undefined,
         onClick: () => {
+          changeSearchQuery('');
           setSearchParamConfig(searchParam);
           setSearchActionSection(undefined);
         },

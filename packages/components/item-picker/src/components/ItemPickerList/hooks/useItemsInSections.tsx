@@ -489,6 +489,7 @@ export const useItemsInSections = <ItemType extends BaseItemType, SectionType ex
         setSearchActionSection,
         setSearchParamConfig,
         searchQuery,
+        changeSearchQuery,
       });
     }
 
