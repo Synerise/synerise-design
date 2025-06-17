@@ -16,9 +16,8 @@
     "access": "public"
   },
   "scripts": {
-    "build": "npm run build:svgr && npm run build:js && npm run build:css && npm run icon && npm run defs",
+    "build": "npm run build:svgr && npm run build:js && npm run build:css && npm run defs",
     "build:css": "node ../../../scripts/style/less.js",
-    "build:icon": "node ./build/rename.js && node ./build/copy.js && node ./build/cleanup.js",
     "build:js": "babel --delete-dir-on-start --root-mode upward src --out-dir dist --extensions '.js,.ts,.tsx'",
     "build:svgr": "node ./build/svgr.js",
     "build:watch": "npm run build:js -- --watch",
@@ -42,12 +41,11 @@
     "styled-components": "^5.3.3"
   },
   "devDependencies": {
-    "@svgr/core": "^5.4.0",
-    "@svgr/plugin-jsx": "^5.4.0",
-    "@svgr/plugin-prettier": "^5.4.0",
-    "@svgr/plugin-svgo": "^5.4.0",
-    "fs-extra": "8.1.0",
-    "glob": "7.1.6",
+    "@svgr/core": "^8.1.0",
+    "@svgr/plugin-jsx": "^8.1.0",
+    "@svgr/plugin-prettier": "^8.1.0",
+    "@svgr/plugin-svgo": "^8.1.0",
+    "glob": "^11.0.2",
     "string-hash": "^1.1.3"
   }
 }
