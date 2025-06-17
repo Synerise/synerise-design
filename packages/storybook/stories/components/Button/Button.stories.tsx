@@ -4,7 +4,6 @@ import type { Meta, StoryObj } from '@storybook/react';
 import Icon, { Add2S, AngleDownS, CheckS } from '@synerise/ds-icon';
 import Button from '@synerise/ds-button';
 import type { ButtonProps } from '@synerise/ds-button';
-import Tooltip from '@synerise/ds-tooltip';
 
 import {
   buttonDecorator,
@@ -17,6 +16,7 @@ import {
 
 import { BUTTON_CUSTOM_COLORS, BUTTON_TYPES, Matrix, MatrixCell, MatrixColumn } from './Button.constants';
 import { theme } from '@synerise/ds-core';
+import { getModeLeft, getModeRight, getModeSplit } from './Button.data';
 
 type Story = StoryObj<ButtonProps>;
 
@@ -83,7 +83,7 @@ const meta: Meta<ButtonProps> = {
       ...controlFromOptionsArray('select', BUTTON_TYPES),
     },
     mode: {
-      control: false
+      ...controlFromOptionsArray('select', ['single-icon', 'split', 'two-icons', 'label-icon', 'icon-label']),
     },
     color: {
       ...controlFromOptionsArray('select', BUTTON_CUSTOM_COLORS),
@@ -160,6 +160,21 @@ export const TwoIcons: Story = {
       {icon}
       {children}
       {icon}
+    </Button>
+  ),
+  args: {
+    icon: <Icon component={<AngleDownS />} />,
+    children: 'Label',
+    mode: 'two-icons',
+  },
+};
+export const ButtonModes: Story = {
+  ...IconLeft,
+  render: ({ icon, children, mode, ...args }) => (
+    <Button mode={mode} {...args}>
+      {getModeLeft(mode,icon)}
+      {getModeSplit(mode,children)}
+      {getModeRight(mode,icon)}
     </Button>
   ),
   args: {

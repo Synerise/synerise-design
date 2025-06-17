@@ -293,6 +293,7 @@ export const AntdButton = styled(
       css`
         &.ant-btn {
           padding-right: 0;
+          transition: 0s;
           ${ButtonLabel} {
             position: relative;
           }
@@ -319,6 +320,7 @@ export const AntdButton = styled(
       css`
         &.ant-btn {
           padding: 0;
+          transition: 0s;
           ${ButtonLabel} > ${IconContainer}:first-of-type,
           ${ButtonLabel} > .ds-icon:first-of-type,
           & > ${IconContainer}:first-of-type,
@@ -342,6 +344,7 @@ export const AntdButton = styled(
       css`
         &.ant-btn {
           padding-right: 0;
+          transition: 0s;
           ${ButtonLabel} > ${IconContainer},
           ${ButtonLabel} > .ds-icon,
           & > ${IconContainer},
@@ -358,6 +361,7 @@ export const AntdButton = styled(
       css`
         &.ant-btn {
           padding-left: 0;
+          transition: 0s;
           ${ButtonLabel} > ${IconContainer}, ${ButtonLabel} > .ds-icon,
           & > ${IconContainer}, & > .ds-icon {
             margin: ${leftIcon};
@@ -372,6 +376,7 @@ export const AntdButton = styled(
           align-items: center;
           justify-content: center;
           padding: 0;
+          transition: 0s;
           width: 32px;
 
           ${ButtonLabel} > ${IconContainer},
