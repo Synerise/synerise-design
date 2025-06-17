@@ -1,6 +1,6 @@
-const svgr = require('@svgr/core').default;
+const { transform } = require('@svgr/core');
 const hash = require('string-hash');
-const glob = require('glob');
+const { glob } = require('glob');
 const fs = require('fs');
 const path = require('path');
 const tpl = require('./template.js');
@@ -52,34 +52,66 @@ const kebabCaseFilename = filePath => {
 };
 
 const buildIconsSet = (path, libDir, indexDistFile, options = {}) => {
-  glob(path, {}, function(er, files) {
+  glob(path, {}).then(function(files) {
     const { iconSet = '' } = options
     for (let file of files) {
       const componentName = pascalCaseFilename(file);
       const componentClassName = kebabCaseFilename(file);
       fs.readFile(file, 'UTF-8', (err, content) => {
-        svgr(
+        transform(
           content,
           {
             template: tpl,
+            typescript: true,
             plugins: ['@svgr/plugin-svgo', '@svgr/plugin-jsx', '@svgr/plugin-prettier'],
             svgoConfig: {
-              "plugins": [{
-                addAttributesToSVGElement: {
-                  attributes: [`data-testid="ds-icon-${componentClassName}"`]
+              "plugins": [
+                {
+                  name: "addAttributesToSVGElement",
+                  params: {
+                    attributes: [`data-testid="ds-icon-${componentClassName}"`]
+                  }
                 },
-                addClassesToSVGElement: {
-                  className: `${componentClassName} ds-icon-set-${iconSet}`,
+                {
+                  name: 'prefixIds',
+                  params: {
+                    delim: '',
+                    prefix: () => `svg-${hash(file)}`,
+                  },
                 },
-                cleanupIDs: {
-                  prefix: `svg-${hash(file)}`,
+                {
+                  name: "cleanupIds",
+                  params: {
+                    remove: true,
+                    minify: true,
+                    preservePrefixes: [`svg-${hash(file)}`]
+                  }
                 },
-                removeViewBox: false,
-                removeDimensions: true,
-                inlineStyles: {
-                  onlyMatchedOnce: false,
+                {
+                  name: 'addClassesToSVGElement',
+                  params: {
+                    className: `${componentClassName} ds-icon-set-${iconSet}`,
+                  }
                 },
-              }]
+                'removeDimensions',
+                "removeTitle",
+                'convertStyleToAttrs',
+                {
+                  name: "removeAttrs",
+                  params: {
+                    attrs: 'enable-background',
+                    elemSeparator: ":",
+                    preserveCurrentColor: false
+                  }
+                },
+                {
+                  name: "inlineStyles",
+                  params: {
+                    onlyMatchedOnce: false,
+                    removeMatchedSelectors: true
+                  }
+                }
+              ]
             }
           },
           { componentName }
