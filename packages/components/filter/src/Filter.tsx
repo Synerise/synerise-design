@@ -178,10 +178,12 @@ const Filter = ({
       const newIndex = index + offset;
       const newOrder = rearrangeItems([...expressions], index, newIndex);
       movedExpressionId.current = newOrder[newIndex].id;
-      onChangeOrder && onChangeOrder(newOrder);
+      onChangeOrder?.(newOrder);
     },
     [expressions, onChangeOrder]
   );
+
+  const isDraggable = Boolean(onChangeOrder && expressions.length > 1);
 
   const getStepProps = useCallback(
     (expression: StepType, index: number): Omit<StepCardProps, 'matching' | 'name'> => {
@@ -208,7 +210,7 @@ const Filter = ({
           ? (itemIndex: number, options?: { placeholder?: boolean }) =>
               renderStepHeaderRightSide(expression, itemIndex, options)
           : undefined,
-        isDraggable: Boolean(onChangeOrder),
+        isDraggable,
         singleStepCondition: Boolean(singleStepCondition),
         additionalFields: (expression as StepType).data.additionalFields,
         getMoveByLabel,
@@ -220,25 +222,25 @@ const Filter = ({
       };
     },
     [
-      activeExpressionId,
       getContextTypeTexts,
-      getMoveByLabel,
+      stepExpressionCount,
       handleMove,
-      isActive,
-      isLimitExceeded,
       onChangeStepMatching,
       onChangeStepName,
       onDeleteStep,
       onDuplicateStep,
-      renderStepContent,
+      isLimitExceeded,
       renderStepFooter,
-      renderStepHeaderRightSide,
-      stepExpressionCount,
-      text.step,
-      text.dropMeHere,
+      renderStepContent,
+      activeExpressionId,
+      isActive,
       visibilityConfig.isStepCardHeaderVisible,
+      renderStepHeaderRightSide,
+      isDraggable,
       singleStepCondition,
-      onChangeOrder,
+      getMoveByLabel,
+      text.dropMeHere,
+      text.step,
     ]
   );
 
@@ -291,7 +293,7 @@ const Filter = ({
   );
 
   const renderExpressions = useCallback(() => {
-    if (onChangeOrder) {
+    if (isDraggable) {
       return (
         <Sortable
           placeholderCss={S.placeholderCss}
@@ -303,7 +305,7 @@ const Filter = ({
       );
     }
     return expressionData.map(ExpressionItem);
-  }, [expressionData, handleChangeOrder, onChangeOrder]);
+  }, [expressionData, handleChangeOrder, isDraggable]);
 
   return (
     <S.FilterWrapper>

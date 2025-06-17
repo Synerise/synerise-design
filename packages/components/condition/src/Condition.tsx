@@ -1,21 +1,18 @@
 import React, { useEffect, useState, useCallback, useMemo, ReactText } from 'react';
-import { useIntl } from 'react-intl';
-import { ReactSortable } from 'react-sortablejs';
 
-import Icon, { Add3M } from '@synerise/ds-icon';
-
+import { SortableContainer, DragOverlay } from '@synerise/ds-sortable';
+import Icon, { Add3M, DragHandleM } from '@synerise/ds-icon';
 import Button from '@synerise/ds-button';
-import { NOOP, usePrevious } from '@synerise/ds-utils';
+import { usePrevious } from '@synerise/ds-utils';
 import { ContextGroup, ContextItem } from '@synerise/ds-context-selector';
 import { SubjectItem } from '@synerise/ds-subject';
 import { FactorValueType } from '@synerise/ds-factors';
 import { OperatorsGroup, OperatorsItem } from '@synerise/ds-operators';
 
-import * as T from './Condition.types';
+import type { ConditionProps, ConditionStep as ConditionStepType, StepConditions } from './Condition.types';
 import { ConditionStep } from './ConditionStep';
 import * as S from './Condition.style';
 import {
-  SORTABLE_CONFIG,
   DEFAULT_CONDITION,
   DEFAULT_FIELD,
   DEFAULT_STEP,
@@ -26,8 +23,10 @@ import {
   DEFAULT_INPUT_PROPS,
   ACTION_ATTRIBUTE,
 } from './constants';
+import { StepName } from './ConditionStep/StepName/StepName';
+import { useTranslations } from './hooks/useTranslations';
 
-const Condition = (props: T.ConditionProps) => {
+const Condition = (props: ConditionProps) => {
   const {
     steps,
     addCondition,
@@ -64,16 +63,9 @@ const Condition = (props: T.ConditionProps) => {
     actionAttributeParameterSelectorComponent,
     showEmptyConditionPlaceholder = false,
   } = props;
-  const { formatMessage } = useIntl();
-  const text = useMemo(
-    () => ({
-      addStep: formatMessage({ id: 'DS.CONDITION.ADD-STEP', defaultMessage: 'and then...' }),
-      conditionSuffix: formatMessage({ id: 'DS.CONDITION.SUFFIX', defaultMessage: 'and' }),
-      stepNamePrefix: formatMessage({ id: 'DS.CONDITION.STEP_NAME-PREFIX', defaultMessage: 'Step' }),
-      ...texts,
-    }),
-    [texts, formatMessage]
-  );
+  const allTexts = useTranslations(texts);
+
+  const [draggedStep, setDraggedStep] = useState<ConditionStepType & { index: number }>();
   const [currentConditionId, setCurrentConditionId] = useState<ReactText>(DEFAULT_CONDITION);
   const [currentStepId, setCurrentStepId] = useState<ReactText>(DEFAULT_STEP);
   const [currentField, setCurrentField] = useState<string>(autoOpenedComponent);
@@ -98,15 +90,15 @@ const Condition = (props: T.ConditionProps) => {
     const newConditionId =
       prevSteps &&
       steps &&
-      steps.reduce((id: string | number | undefined, step: T.ConditionStep) => {
+      steps.reduce((id: string | number | undefined, step: ConditionStepType) => {
         let result = id;
-        const conditions = step.conditions.map((condition: T.StepConditions) => ({
+        const conditions = step.conditions.map((condition: StepConditions) => ({
           id: condition.id,
           value: condition.parameter?.value,
         }));
-        const oldStep = prevSteps.find((prevStep: T.ConditionStep) => prevStep.id === step.id);
+        const oldStep = prevSteps.find((prevStep: ConditionStepType) => prevStep.id === step.id);
         if (oldStep) {
-          const oldConditions = oldStep.conditions.map((condition: T.StepConditions) => condition.id);
+          const oldConditions = oldStep.conditions.map((condition: StepConditions) => condition.id);
           const newCondition = conditions.find(condition => oldConditions.indexOf(condition.id) === -1);
           result = newCondition && !newCondition.value ? newCondition.id : result;
         } else {
@@ -125,7 +117,7 @@ const Condition = (props: T.ConditionProps) => {
       const step = steps.find(s => s.id === stepId);
       if (step === undefined || step.conditions.length === 0) return;
       if (removeCondition && addCondition) {
-        step.conditions.forEach((condition: T.StepConditions, index: number) => {
+        step.conditions.forEach((condition: StepConditions, index: number) => {
           if (index > 0) {
             removeCondition(step.id, condition.id);
           }
@@ -133,7 +125,7 @@ const Condition = (props: T.ConditionProps) => {
       }
 
       autoClearCondition &&
-        step.conditions.forEach((condition: T.StepConditions) => {
+        step.conditions.forEach((condition: StepConditions) => {
           onChangeFactorValue && onChangeFactorValue(step.id, condition.id, undefined);
           onChangeOperator && onChangeOperator(step.id, condition.id, undefined);
           onChangeParameter && onChangeParameter(step.id, condition.id, undefined);
@@ -264,106 +256,95 @@ const Condition = (props: T.ConditionProps) => {
     setCurrentField(DEFAULT_FIELD);
   }, [currentConditionId, currentStepId, onDeactivate]);
 
-  return useMemo(() => {
-    return (
-      <S.Condition className="ds-conditions" data-popup-container>
-        <ReactSortable {...SORTABLE_CONFIG} list={steps} setList={onChangeOrder || NOOP}>
-          {steps.map((step, index) => {
-            return (
-              <ConditionStep
-                key={`step-id-${step.id}`}
-                step={step}
-                texts={text}
-                index={index}
-                contextSelectorComponent={contextSelectorComponent}
-                parameterSelectorComponent={parameterSelectorComponent}
-                factorParameterSelectorComponent={factorParameterSelectorComponent}
-                actionAttributeParameterSelectorComponent={actionAttributeParameterSelectorComponent}
-                hasPriority={step.id === currentStepId}
-                getPopupContainerOverride={getPopupContainerOverride}
-                draggableEnabled={draggableEnabled}
-                selectOperator={selectOperator}
-                selectParameter={selectParameter}
-                selectContext={selectContext}
-                selectSubject={selectSubject}
-                selectActionAttribute={selectActionAttribute}
-                updateStepName={onUpdateStepName}
-                duplicateStep={duplicateStep}
-                removeStep={removeStep}
-                minConditionsLength={minConditionsLength}
-                maxConditionsLength={maxConditionsLength}
-                setStepConditionFactorType={setStepConditionFactorType}
-                setStepConditionFactorValue={setStepConditionFactorValue}
-                currentConditionId={currentConditionId}
-                currentStepId={currentStepId}
-                currentField={currentField}
-                removeCondition={removeCondition}
-                addCondition={handleAddCondition}
-                setCurrentField={setCurrentField}
-                setCurrentCondition={setCurrentConditionId}
-                setCurrentStep={setCurrentStepId}
-                onDeactivate={handleClearActiveCondition}
-                showSuffix={showSuffix}
-                hoverDisabled={hoverDisabled || (currentStepId !== step.id && currentStepId !== undefined)}
-                inputProps={{ ...DEFAULT_INPUT_PROPS, ...inputProps }}
-                readOnly={readOnly}
-                singleStepCondition={singleStepCondition}
-                showActionAttribute={showActionAttribute}
-                showEmptyConditionPlaceholder={showEmptyConditionPlaceholder}
-              />
-            );
-          })}
-        </ReactSortable>
-        {addStep && (
-          <S.AddStepButton>
-            <Button type="ghost" mode="icon-label" onClick={handleAddStep}>
-              <Icon component={<Add3M />} />
-              {text.addStep}
-            </Button>
-          </S.AddStepButton>
-        )}
-        {!readOnly && renderAddStep && <S.AddStepButton>{renderAddStep()}</S.AddStepButton>}
-      </S.Condition>
-    );
-  }, [
-    steps,
-    onChangeOrder,
-    addStep,
-    handleAddStep,
-    text,
-    readOnly,
-    renderAddStep,
-    contextSelectorComponent,
-    parameterSelectorComponent,
-    factorParameterSelectorComponent,
-    actionAttributeParameterSelectorComponent,
-    currentStepId,
-    getPopupContainerOverride,
-    draggableEnabled,
-    selectOperator,
-    selectParameter,
-    selectContext,
-    selectSubject,
-    selectActionAttribute,
-    onUpdateStepName,
-    duplicateStep,
-    removeStep,
-    minConditionsLength,
-    maxConditionsLength,
-    setStepConditionFactorType,
-    setStepConditionFactorValue,
-    currentConditionId,
-    currentField,
-    removeCondition,
-    handleAddCondition,
-    handleClearActiveCondition,
-    showSuffix,
-    hoverDisabled,
-    inputProps,
-    singleStepCondition,
-    showActionAttribute,
-    showEmptyConditionPlaceholder,
-  ]);
+  return (
+    <S.Condition className="ds-conditions" data-popup-container>
+      <SortableContainer
+        items={steps}
+        axis="y"
+        onDragStart={({ active }) => {
+          const stepIndex = steps.findIndex(item => item.id === active.id);
+          setDraggedStep({ ...steps[stepIndex], index: stepIndex });
+        }}
+        onDragEnd={() => {
+          setDraggedStep(undefined);
+        }}
+        onDragCancel={() => setDraggedStep(undefined)}
+        onOrderChange={onChangeOrder}
+      >
+        {steps.map((step, index) => {
+          return (
+            <ConditionStep
+              key={`step-id-${step.id}`}
+              step={step}
+              isDragged={draggedStep?.id === step.id}
+              isLast={index === steps.length - 1}
+              texts={allTexts}
+              index={index}
+              contextSelectorComponent={contextSelectorComponent}
+              parameterSelectorComponent={parameterSelectorComponent}
+              factorParameterSelectorComponent={factorParameterSelectorComponent}
+              actionAttributeParameterSelectorComponent={actionAttributeParameterSelectorComponent}
+              hasPriority={step.id === currentStepId}
+              getPopupContainerOverride={getPopupContainerOverride}
+              draggableEnabled={draggableEnabled}
+              selectOperator={selectOperator}
+              selectParameter={selectParameter}
+              selectContext={selectContext}
+              selectSubject={selectSubject}
+              selectActionAttribute={selectActionAttribute}
+              updateStepName={onUpdateStepName}
+              duplicateStep={duplicateStep}
+              removeStep={removeStep}
+              minConditionsLength={minConditionsLength}
+              maxConditionsLength={maxConditionsLength}
+              setStepConditionFactorType={setStepConditionFactorType}
+              setStepConditionFactorValue={setStepConditionFactorValue}
+              currentConditionId={currentConditionId}
+              currentStepId={currentStepId}
+              currentField={currentField}
+              removeCondition={removeCondition}
+              addCondition={handleAddCondition}
+              setCurrentField={setCurrentField}
+              setCurrentCondition={setCurrentConditionId}
+              setCurrentStep={setCurrentStepId}
+              onDeactivate={handleClearActiveCondition}
+              showSuffix={showSuffix}
+              hoverDisabled={hoverDisabled || (currentStepId !== step.id && currentStepId !== undefined)}
+              inputProps={{ ...DEFAULT_INPUT_PROPS, ...inputProps }}
+              readOnly={readOnly}
+              singleStepCondition={singleStepCondition}
+              showActionAttribute={showActionAttribute}
+              showEmptyConditionPlaceholder={showEmptyConditionPlaceholder}
+            />
+          );
+        })}
+        <DragOverlay dropAnimation={null}>
+          {draggedStep && (
+            <S.StepWrapper isDragOverlay key="dragOverlay">
+              <S.DragLabel>
+                <Icon component={<DragHandleM />} />
+                {onUpdateStepName && (
+                  <StepName name={draggedStep.stepName} index={draggedStep.index} texts={allTexts} />
+                )}
+                {draggedStep.context?.selectedItem && (
+                  <S.DragLabelPart>{draggedStep.context.selectedItem.name}</S.DragLabelPart>
+                )}
+              </S.DragLabel>
+            </S.StepWrapper>
+          )}
+        </DragOverlay>
+      </SortableContainer>
+      {addStep && (
+        <S.AddStepButton>
+          <Button type="ghost" mode="icon-label" onClick={handleAddStep}>
+            <Icon component={<Add3M />} />
+            {allTexts.addStep}
+          </Button>
+        </S.AddStepButton>
+      )}
+      {!readOnly && renderAddStep && <S.AddStepButton>{renderAddStep()}</S.AddStepButton>}
+    </S.Condition>
+  );
 };
 
 export default Condition;

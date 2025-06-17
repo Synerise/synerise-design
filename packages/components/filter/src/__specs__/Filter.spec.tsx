@@ -148,7 +148,7 @@ describe('Filter component', () => {
       />
     );
 
-    expect(screen.getAllByText('Right side')).toHaveLength(2)
+    expect(screen.getByText('Right side')).toBeInTheDocument();
   });
   it.todo('Should render single stepcard with up / down reorder arrows disabled')
   it.todo('Should render multiple stepcard with up / down reorder arrows enabled')

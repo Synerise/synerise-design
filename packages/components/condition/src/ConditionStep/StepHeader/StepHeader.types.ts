@@ -1,9 +1,9 @@
-import React from 'react';
+import React, { HTMLAttributes } from 'react';
 import { ConditionProps, ConditionTexts } from '../../Condition.types';
 
 export type StepHeaderProps = {
   index: number;
-  texts: Partial<ConditionTexts>;
+  texts: ConditionTexts;
   stepName: string;
   stepId: React.ReactText;
   removeStep: ConditionProps['removeStep'];
@@ -11,4 +11,5 @@ export type StepHeaderProps = {
   updateStepName: ConditionProps['onUpdateStepName'];
   draggableEnabled: boolean;
   readOnly?: boolean;
+  dragHandleProps?: HTMLAttributes<HTMLDivElement>;
 };

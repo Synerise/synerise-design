@@ -67,8 +67,8 @@ const ColumnManagerList = <ColumnType extends Column>({
           onDragEnd={() => {
             setActiveItem(undefined);
           }}
-          onOrderChange={handleOrderChange}
           onDragCancel={() => setActiveItem(undefined)}
+          onOrderChange={handleOrderChange}
           items={items}
           axis="y"
         >

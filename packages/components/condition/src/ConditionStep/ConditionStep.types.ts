@@ -26,6 +26,8 @@ export type ConditionStepProps = Pick<
   | 'actionAttributeParameterSelectorComponent'
 > & {
   index: number;
+  isLast?: boolean;
+  isDragged?: boolean;
   step: ConditionStep;
   hasPriority?: boolean;
   onStepActivate?: (stepid: ReactText) => void;

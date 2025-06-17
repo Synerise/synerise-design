@@ -6,6 +6,7 @@ import { DragHandleM } from '@synerise/ds-icon';
 import { NOOP } from '@synerise/ds-utils';
 
 import * as S from '../../Condition.style';
+import { StepName } from '../StepName/StepName';
 import * as T from './StepHeader.types';
 
 export const StepHeader = ({
@@ -17,6 +18,7 @@ export const StepHeader = ({
   removeStep,
   index,
   draggableEnabled,
+  dragHandleProps = {},
   readOnly = false,
 }: T.StepHeaderProps) => {
   const onChangeNameDebounce = useRef(debounce(updateStepName || NOOP, 300)).current;
@@ -41,7 +43,7 @@ export const StepHeader = ({
   );
 
   const dragHandleElement = !readOnly && draggableEnabled && (
-    <S.DragIcon className="step-drag-handler" component={<DragHandleM />} />
+    <S.DragIcon className="step-drag-handler" component={<DragHandleM />} {...dragHandleProps} />
   );
 
   const stepNameElement = readOnly ? (
@@ -73,12 +75,7 @@ export const StepHeader = ({
     <S.StepHeader className="ds-condition-step-header" draggable={draggableEnabled}>
       <S.LeftSide>
         {dragHandleElement}
-        <S.StepName className="ds-condition-step-name">
-          <S.StepIndexWrapper>
-            {texts.stepNamePrefix} {`${index + 1}`}
-          </S.StepIndexWrapper>
-          {stepNameElement}
-        </S.StepName>
+        <StepName name={stepNameElement} index={index} texts={texts} />
       </S.LeftSide>
       {crudElement}
     </S.StepHeader>

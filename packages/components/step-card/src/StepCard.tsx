@@ -166,7 +166,7 @@ const StepCard = forwardRef<HTMLDivElement, StepCardProps>(
             </S.RecentlyMoved>
           )}
 
-          {renderHeaderRightSide && dragIndex !== undefined ? renderHeaderRightSide(dragIndex) : headerRightSide}
+          {renderHeaderRightSide ? renderHeaderRightSide(dragIndex ?? expressionIndex) : headerRightSide}
         </>
       );
     };
