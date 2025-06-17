@@ -44,13 +44,11 @@ export const SortableContainer = <ItemType extends RawBaseItem>({
   const handleDragEnd = (event: DragEndEvent) => {
     const { active, over } = event;
     if (active.id !== over?.id) {
-      setOrder(oldOrder => {
-        const oldIndex = oldOrder.findIndex(item => item.id === active.id);
-        const newIndex = oldOrder.findIndex(item => item.id === over?.id);
-        const updatedOrder = arrayMove(oldOrder, oldIndex, newIndex);
-        onOrderChange && onOrderChange(updatedOrder);
-        return updatedOrder;
-      });
+      const oldIndex = order.findIndex(item => item.id === active.id);
+      const newIndex = order.findIndex(item => item.id === over?.id);
+      const updatedOrder = arrayMove(order, oldIndex, newIndex);
+      setOrder(updatedOrder);
+      onOrderChange?.(updatedOrder);
     }
     onDragEnd && onDragEnd(event);
   };

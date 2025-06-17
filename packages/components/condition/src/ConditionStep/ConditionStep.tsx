@@ -1,6 +1,6 @@
 import React, { useCallback, useMemo, ReactText } from 'react';
-import { useIntl } from 'react-intl';
 
+import { useSortable, CSS } from '@synerise/ds-sortable';
 import Subject from '@synerise/ds-subject';
 import ContextSelector, { ContextProps } from '@synerise/ds-context-selector';
 import { DragHandleM } from '@synerise/ds-icon';
@@ -14,11 +14,14 @@ import { ConditionRow } from './ConditionRow';
 import { ACTION_ATTRIBUTE, SUBJECT } from '../constants';
 import { EmptyCondition } from './EmptyCondition';
 import { CustomContextSelectorProps, StepConditions } from '../Condition.types';
+import { useTranslations } from '../hooks/useTranslations';
 
 export const ConditionStep = ({
   step,
   texts,
   index,
+  isLast,
+  isDragged,
   addCondition,
   removeCondition,
   updateStepName,
@@ -54,32 +57,16 @@ export const ConditionStep = ({
   factorParameterSelectorComponent,
   showEmptyConditionPlaceholder = false,
 }: T.ConditionStepProps) => {
-  const { formatMessage } = useIntl();
-  const text = useMemo(
-    () => ({
-      stepNamePlaceholder: formatMessage({ id: 'DS.CONDITION.STEP_NAME-PLACEHOLDER', defaultMessage: 'Step name' }),
-      removeConditionRowTooltip: formatMessage({
-        id: 'DS.CONDITION.REMOVE-CONDITION-ROW-TOOLTIP',
-        defaultMessage: 'Delete',
-      }),
-      addConditionRowButton: formatMessage({
-        id: 'DS.CONDITION.ADD-CONDITION-ROW-BUTTON',
-        defaultMessage: 'Add condition',
-      }),
-      addFirstConditionRowButton: formatMessage({
-        id: 'DS.CONDITION.ADD-FIRST-CONDITION-ROW-BUTTON',
-        defaultMessage: 'Add condition',
-      }),
-      dropLabel: formatMessage({ id: 'DS.CONDITION.DROP-LABEL', defaultMessage: 'Drop me here' }),
-      moveTooltip: formatMessage({ id: 'DS.CONDITION.MOVE-TOOLTIP', defaultMessage: 'Move' }),
-      duplicateTooltip: formatMessage({ id: 'DS.CONDITION.DUPLICATE-TOOLTIP', defaultMessage: 'Duplicate' }),
-      removeTooltip: formatMessage({ id: 'DS.CONDITION.REMOVE-TOOLTIP', defaultMessage: 'Delete' }),
-      addStep: formatMessage({ id: 'DS.CONDITION.ADD-STEP', defaultMessage: 'Add step' }),
-      conditionSuffix: formatMessage({ id: 'DS.CONDITION.SUFFIX', defaultMessage: 'and' }),
-      ...texts,
-    }),
-    [texts, formatMessage]
-  );
+  const { attributes, listeners, setNodeRef, transform, transition } = useSortable({ id: step.id });
+  const zIndexStyle = hasPriority ? { zIndex: 1001 } : {};
+
+  const style = {
+    ...zIndexStyle,
+    transform: CSS.Transform.toString(transform),
+    transition,
+  };
+
+  const allTexts = useTranslations(texts);
 
   const withCruds = !readOnly && (duplicateStep || removeStep);
 
@@ -102,15 +89,28 @@ export const ConditionStep = ({
         index={index}
         stepId={step.id}
         stepName={step.stepName || ''}
-        texts={text}
+        texts={allTexts}
         updateStepName={updateStepName}
         removeStep={removeStep}
         duplicateStep={duplicateStep}
         draggableEnabled={Boolean(draggableEnabled)}
         readOnly={readOnly}
+        dragHandleProps={{ ...attributes, ...listeners }}
       />
     ),
-    [draggableEnabled, duplicateStep, index, removeStep, step.id, step.stepName, text, updateStepName, readOnly]
+    [
+      draggableEnabled,
+      attributes,
+      listeners,
+      duplicateStep,
+      index,
+      removeStep,
+      step.id,
+      step.stepName,
+      allTexts,
+      updateStepName,
+      readOnly,
+    ]
   );
 
   const renderContextSelector = useCallback(
@@ -151,7 +151,7 @@ export const ConditionStep = ({
       (maxConditionsLength === undefined || step.conditions.length < maxConditionsLength) && (
         <AddCondition
           errorText={step.addConditionErrorText}
-          texts={text}
+          texts={allTexts}
           stepId={step.id}
           data-testid="ds-add-condition-button"
           addCondition={onAddCondition}
@@ -171,7 +171,7 @@ export const ConditionStep = ({
     step.context,
     step.id,
     step.subject,
-    text,
+    allTexts,
     readOnly,
     step.addConditionErrorText,
     showActionAttribute,
@@ -217,7 +217,7 @@ export const ConditionStep = ({
           }
           setStepConditionFactorType={setStepConditionFactorType}
           setStepConditionFactorValue={setStepConditionFactorValue}
-          texts={text}
+          texts={allTexts}
           stepType={step.context?.type}
           onDeactivate={onDeactivate}
           readOnly={readOnly}
@@ -243,7 +243,7 @@ export const ConditionStep = ({
       getPopupContainerOverride,
       setStepConditionFactorType,
       setStepConditionFactorValue,
-      text,
+      allTexts,
       onDeactivate,
       onActivate,
       setCurrentField,
@@ -265,100 +265,98 @@ export const ConditionStep = ({
   }, [showActionAttribute, step.actionAttribute?.errorText, step.context?.errorText]);
 
   return (
-    <S.Step
-      key={step.id}
-      id={`condition-step-${step.id}`}
-      data-dropLabel={text.dropLabel}
-      data-conditionSuffix={text.conditionSuffix}
-      style={hasPriority ? { zIndex: 1001 } : undefined}
-      active={step.id === currentStepId && currentField !== ''}
-      hoverDisabled={Boolean(currentStepId) || singleStepCondition}
-      showSuffix={showSuffix}
-      singleStepCondition={singleStepCondition}
-    >
-      {!updateStepName && (
-        <S.DraggedLabel>{step.subject?.selectedItem?.name || step.context?.selectedItem?.name}</S.DraggedLabel>
-      )}
-      {updateStepName && stepHeader}
-      <S.StepConditions withCruds={Boolean(!updateStepName && withCruds)}>
-        {draggableEnabled && !updateStepName && (
-          <S.DragIcon className="step-drag-handler" component={<DragHandleM />} />
-        )}
-        <S.Subject data-testid="condition-subject-or-context">
-          {step.subject && (
-            <Subject
-              {...step.subject}
-              getPopupContainerOverride={getPopupContainerOverride}
-              onActivate={onActivate}
-              onDeactivate={onDeactivate}
-              opened={step.id === currentStepId && currentField === SUBJECT}
-              onSelectItem={(value): void => selectSubject(value, step.id)}
-            />
+    <S.StepWrapper style={style} key={step.id} ref={setNodeRef} isDragged={isDragged}>
+      {isDragged ? (
+        <S.DropLabel>{allTexts.dropLabel}</S.DropLabel>
+      ) : (
+        <S.Step
+          id={`condition-step-${step.id}`}
+          data-conditionSuffix={allTexts.conditionSuffix}
+          active={step.id === currentStepId && currentField !== ''}
+          hoverDisabled={Boolean(currentStepId) || singleStepCondition}
+          showSuffix={showSuffix && !isLast && !isDragged}
+          singleStepCondition={singleStepCondition}
+        >
+          {!updateStepName && (
+            <S.DraggedLabel>{step.subject?.selectedItem?.name || step.context?.selectedItem?.name}</S.DraggedLabel>
           )}
-          {step.context && renderContextSelector(step.context)}
-          {contextOrActionErrorText && <S.ErrorWrapper>{contextOrActionErrorText}</S.ErrorWrapper>}
-        </S.Subject>
-        {hasSelectedSubjectOrContext || !showEmptyConditionPlaceholder ? (
-          <>
-            {showActionAttribute && (
-              <S.ActionAttribute
-                style={{ zIndex: step.id === currentStepId && currentField === ACTION_ATTRIBUTE ? 10002 : 0 }}
-              >
-                <Factors
-                  {...step.actionAttribute}
-                  customFactorValueComponents={
-                    actionAttributeParameterSelectorComponent && {
-                      parameter: {
-                        component: actionAttributeParameterSelectorComponent,
-                      },
-                      contextParameter: {
-                        component: actionAttributeParameterSelectorComponent,
-                      },
-                    }
-                  }
-                  errorText={undefined}
-                  value={step.actionAttribute?.value}
-                  withoutTypeSelector
-                  selectedFactorType="parameter"
-                  defaultFactorType="parameter"
-                  inputProps={inputProps}
+          {updateStepName && stepHeader}
+          <S.StepConditions withCruds={Boolean(!updateStepName && withCruds)}>
+            {draggableEnabled && !updateStepName && (
+              <S.DragIcon className="step-drag-handler" component={<DragHandleM />} {...attributes} {...listeners} />
+            )}
+            <S.Subject data-testid="condition-subject-or-context">
+              {step.subject && (
+                <Subject
+                  {...step.subject}
                   getPopupContainerOverride={getPopupContainerOverride}
-                  onActivate={(): void => {
-                    setCurrentCondition('');
-                    onActivate && onActivate();
-                    setCurrentField && setCurrentField(ACTION_ATTRIBUTE);
-                    setCurrentStep && setCurrentStep(step.id);
-                  }}
+                  onActivate={onActivate}
                   onDeactivate={onDeactivate}
-                  onChangeValue={(value): void => selectActionAttribute(value, step.id)}
-                  opened={step.id === currentStepId && currentField === ACTION_ATTRIBUTE}
-                  readOnly={readOnly}
-                  error={Boolean(step.actionAttribute?.errorText)}
+                  opened={step.id === currentStepId && currentField === SUBJECT}
+                  onSelectItem={(value): void => selectSubject(value, step.id)}
                 />
-              </S.ActionAttribute>
+              )}
+              {step.context && renderContextSelector(step.context)}
+              {contextOrActionErrorText && <S.ErrorWrapper>{contextOrActionErrorText}</S.ErrorWrapper>}
+            </S.Subject>
+            {hasSelectedSubjectOrContext || !showEmptyConditionPlaceholder ? (
+              <>
+                {showActionAttribute && (
+                  <S.ActionAttribute
+                    style={{ zIndex: step.id === currentStepId && currentField === ACTION_ATTRIBUTE ? 10002 : 0 }}
+                  >
+                    <Factors
+                      {...step.actionAttribute}
+                      customFactorValueComponents={
+                        actionAttributeParameterSelectorComponent && {
+                          parameter: {
+                            component: actionAttributeParameterSelectorComponent,
+                          },
+                          contextParameter: {
+                            component: actionAttributeParameterSelectorComponent,
+                          },
+                        }
+                      }
+                      errorText={undefined}
+                      value={step.actionAttribute?.value}
+                      withoutTypeSelector
+                      selectedFactorType="parameter"
+                      defaultFactorType="parameter"
+                      inputProps={inputProps}
+                      getPopupContainerOverride={getPopupContainerOverride}
+                      onActivate={(): void => {
+                        setCurrentCondition('');
+                        onActivate && onActivate();
+                        setCurrentField && setCurrentField(ACTION_ATTRIBUTE);
+                        setCurrentStep && setCurrentStep(step.id);
+                      }}
+                      onDeactivate={onDeactivate}
+                      onChangeValue={(value): void => selectActionAttribute(value, step.id)}
+                      opened={step.id === currentStepId && currentField === ACTION_ATTRIBUTE}
+                      readOnly={readOnly}
+                      error={Boolean(step.actionAttribute?.errorText)}
+                    />
+                  </S.ActionAttribute>
+                )}
+                <S.ConditionRows>
+                  {step.conditions.length > 0 && step.conditions.map(renderConditionRow)}
+                  {addConditionButton}
+                </S.ConditionRows>
+                {!updateStepName && withCruds && (
+                  <S.StepConditionCruds
+                    onDuplicate={duplicateStep ? (): void => duplicateStep(step.id) : undefined}
+                    onDelete={removeStep ? (): void => removeStep(step.id) : undefined}
+                    duplicateTooltip={allTexts.duplicateTooltip}
+                    deleteTooltip={allTexts.removeTooltip}
+                  />
+                )}
+              </>
+            ) : (
+              <EmptyCondition label={allTexts.emptyConditionLabel} />
             )}
-            <S.ConditionRows>
-              {step.conditions.length > 0 && step.conditions.map(renderConditionRow)}
-              {addConditionButton}
-            </S.ConditionRows>
-            {!updateStepName && withCruds && (
-              <S.StepConditionCruds
-                onDuplicate={duplicateStep ? (): void => duplicateStep(step.id) : undefined}
-                onDelete={removeStep ? (): void => removeStep(step.id) : undefined}
-                duplicateTooltip={text.duplicateTooltip}
-                deleteTooltip={text.removeTooltip}
-              />
-            )}
-          </>
-        ) : (
-          <EmptyCondition
-            label={
-              texts?.emptyConditionLabel ||
-              formatMessage({ id: 'DS.CONDITION.EMPTY_CONDITION_LABEL', defaultMessage: 'Choose event first' })
-            }
-          />
-        )}
-      </S.StepConditions>
-    </S.Step>
+          </S.StepConditions>
+        </S.Step>
+      )}
+    </S.StepWrapper>
   );
 };

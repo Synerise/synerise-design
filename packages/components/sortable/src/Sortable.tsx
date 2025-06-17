@@ -25,6 +25,11 @@ export const Sortable = <ItemType extends BaseItem>({
     setActiveItem(items.find(item => item.id === event.active.id));
   };
 
+  const handleOrderChange = (newOrder: Array<ItemType>) => {
+    onOrderChange?.(newOrder);
+    setOrder(newOrder);
+  };
+
   useEffect(() => {
     setOrder(items);
   }, [items]);
@@ -35,7 +40,7 @@ export const Sortable = <ItemType extends BaseItem>({
       items={items}
       onDragEnd={handleDragEnd}
       onDragStart={handleDragStart}
-      onOrderChange={onOrderChange}
+      onOrderChange={handleOrderChange}
     >
       {order.map((item, index) => (
         <SortableItem

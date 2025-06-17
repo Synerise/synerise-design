@@ -29,12 +29,21 @@ module.exports = {
     'no-use-before-define': IGNORE,
     'no-shadow': IGNORE,
     'no-shadow-restricted-names': WARNING,
+    "no-unused-expressions": IGNORE,
     '@typescript-eslint/ban-types': IGNORE,
     '@typescript-eslint/ban-ts-comment': IGNORE,
     '@typescript-eslint/explicit-module-boundary-types': IGNORE,
     '@typescript-eslint/explicit-function-return-type': IGNORE,
     '@typescript-eslint/no-unused-vars': [ERROR, { ignoreRestSiblings: true }],
     '@typescript-eslint/no-shadow': ERROR,
+    '@typescript-eslint/no-unused-expressions': [
+    ERROR,
+      {
+        allowShortCircuit: true,
+        allowTernary: true,
+        allowTaggedTemplates: true,
+      },
+    ],
     '@typescript-eslint/no-use-before-define': [
       'warn',
       {

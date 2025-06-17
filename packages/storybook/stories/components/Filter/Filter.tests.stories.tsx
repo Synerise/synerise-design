@@ -64,7 +64,6 @@ export const PopulateFilter: FilterStory = {
     });
 
     await waitFor(() => expect(args.onAddStep).toHaveBeenCalled());
-    await waitFor(() => expect(args.onExpressionStepChange).toHaveBeenCalledTimes(1));
 
     await step('Select parameter', async () => {
       await userEvent.click(await canvas.findByText(CONDITION_TEXTS.addFirstConditionRowButton));
@@ -76,7 +75,7 @@ export const PopulateFilter: FilterStory = {
       await userEvent.click(canvas.getAllByText(PARAMETER_ITEM.name)[0]);
     });
 
-    await waitFor(() => expect(args.onExpressionStepChange).toHaveBeenCalledTimes(5));
+    await waitFor(() => expect(args.onExpressionStepChange).toHaveBeenCalledTimes(4));
 
     const operatorsDropdown = await canvas.findByTestId('ds-operators-dropdown-wrapper');
 
@@ -98,7 +97,7 @@ export const PopulateFilter: FilterStory = {
       await userEvent.click(canvas.getAllByText(OPERATOR_ITEM.name)[0]);
     });
 
-    await waitFor(() => expect(args.onExpressionStepChange).toHaveBeenCalledTimes(7));
+    await waitFor(() => expect(args.onExpressionStepChange).toHaveBeenCalledTimes(6));
 
     await step('Select factor type', async () => {
       await userEvent.click(canvas.getByTestId('ds-factors-type-selector'));
@@ -108,7 +107,7 @@ export const PopulateFilter: FilterStory = {
       await userEvent.click(canvas.getAllByText('Parameter')[0]);
     });
 
-    await waitFor(() => expect(args.onExpressionStepChange).toHaveBeenCalledTimes(8));
+    await waitFor(() => expect(args.onExpressionStepChange).toHaveBeenCalledTimes(7));
 
     await step('Select factor parameter', async () => {
       await waitFor(() => expect(canvas.findAllByText(FACTOR_ITEM.name)));
@@ -125,7 +124,7 @@ export const PopulateFilter: FilterStory = {
       );
     });
 
-    await waitFor(() => expect(args.onExpressionStepChange).toHaveBeenCalledTimes(9));
+    await waitFor(() => expect(args.onExpressionStepChange).toHaveBeenCalledTimes(8));
 
     await step('Duplicate filter step', async () => {
       await fireEvent.click(canvas.getAllByTestId('ds-cruds-duplicate')[0]);

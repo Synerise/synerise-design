@@ -42,12 +42,12 @@
     "@synerise/ds-inline-edit": "^1.0.14",
     "@synerise/ds-input": "^1.2.1",
     "@synerise/ds-operators": "^1.0.13",
+    "@synerise/ds-sortable": "^1.2.0",
     "@synerise/ds-subject": "^1.0.14",
     "@synerise/ds-tooltip": "^1.1.9",
+    "@synerise/ds-typography": "^1.0.10",
     "@synerise/ds-utils": "^1.2.0",
-    "lodash": "^4.17.19",
-    "react-sortablejs": "^6.0.0",
-    "sortablejs": "1.15.1"
+    "lodash": "^4.17.19"
   },
   "peerDependencies": {
     "@synerise/ds-core": "*",
