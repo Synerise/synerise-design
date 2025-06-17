@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import moment from 'moment';
-import { fn } from '@storybook/test';
-import { Meta, StoryObj } from '@storybook/react';
+import { fn } from 'storybook/test';
+import { Meta, StoryObj } from '@storybook/react-webpack5';
 
 
 import Table, { DSTableProps, GROUP_BY } from '@synerise/ds-table';

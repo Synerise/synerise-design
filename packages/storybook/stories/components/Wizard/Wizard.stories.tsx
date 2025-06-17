@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
-import { Meta, StoryObj } from '@storybook/react';
-import { fn } from '@storybook/test';
+import { Meta, StoryObj } from '@storybook/react-webpack5';
+import { fn } from 'storybook/test';
 
 import Wizard, { WizardProps } from '@synerise/ds-wizard';
 import { theme } from '@synerise/ds-core';
 import Button from '@synerise/ds-button';
-import { action } from '@storybook/addon-actions';
+import { action } from 'storybook/actions';
 import { ObjectAvatar } from '@synerise/ds-avatar';
 import Icon, { AcademyM, ChatM, EditM, HelpM, MailM } from '@synerise/ds-icon';
 import Stepper from '@synerise/ds-stepper';
@@ -95,7 +95,7 @@ export const EditableTitle: Story = {
       handleOnEnterPress: () => action('onEnterPress'),
       placeholder: 'Example text',
       size: 'normal',
-      customIcon: <EditM/>,
+      customIcon: <EditM />,
     },
   },
 };

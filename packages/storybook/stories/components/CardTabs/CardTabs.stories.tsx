@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Meta, StoryObj } from '@storybook/react';
+import { Meta, StoryObj } from '@storybook/react-webpack5';
 
 import CardTabs, { CardTab, prefixType, CardTabsStyles } from '@synerise/ds-card-tabs';
 import type { CardTabsPropsBase, CardTabProps } from '@synerise/ds-card-tabs';

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import { Meta, StoryObj } from '@storybook/react';
-import { useArgs } from '@storybook/preview-api';
-import { within, userEvent, expect, fn, waitFor } from '@storybook/test';
+import { Meta, StoryObj } from '@storybook/react-webpack5';
+import { useArgs } from 'storybook/preview-api';
+import { within, userEvent, expect, fn, waitFor } from 'storybook/test';
 
 import Icon, { CalculatorM, EditM, ParagraphM, SegmentM, VarTypeStringM } from '@synerise/ds-icon';
 import Factors, { ParameterValueType, ALL_FACTOR_TYPES, FactorsProps, FactorValueComponentProps } from '@synerise/ds-factors';

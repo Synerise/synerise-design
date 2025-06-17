@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import { Meta, StoryObj } from '@storybook/react';
-import { fn } from '@storybook/test';
+import { Meta, StoryObj } from '@storybook/react-webpack5';
+import { fn } from 'storybook/test';
 
 import SidebarObject from '@synerise/ds-sidebar-object';
 import { ButtonWrapper } from '@synerise/ds-sidebar-object/dist/Elements/Header/Header.style';
@@ -103,40 +103,40 @@ export default {
 export const Default: StoryObj<StoryProps> = {};
 
 export const Campaign: StoryObj<StoryProps> = {
-    args: {
-        headerType: HeaderType.READONLY,
-        headerPreffix: <BackIcon onBackClickHandler={fn()} />,
-        typeButtons: ButtonVariant.WITH_NAVIGATION
-    },
-    render: args => {
-        const [drawerVisible, setDrawerVisible] = useState(true);
-        const [name, setName] = useState('Winter campaign');
-        const [activeTab, setActiveTab] = useState(0);
-        const { headerTabs } = useSidebarObjectOverview(ALL_TAGS);
+  args: {
+    headerType: HeaderType.READONLY,
+    headerPreffix: <BackIcon onBackClickHandler={fn()} />,
+    typeButtons: ButtonVariant.WITH_NAVIGATION
+  },
+  render: args => {
+    const [drawerVisible, setDrawerVisible] = useState(true);
+    const [name, setName] = useState('Winter campaign');
+    const [activeTab, setActiveTab] = useState(0);
+    const { headerTabs } = useSidebarObjectOverview(ALL_TAGS);
 
-        const handleCloseClick = () => {
-          args.onCloseClick?.();
-          setDrawerVisible(false);
-        };
-    
-        return (
-          <div>
-            <Button onClick={() => setDrawerVisible(!drawerVisible)} type="primary">
-              Show Sidebar Object
-            </Button>
-            <Drawer visible={drawerVisible} placement="right" width={676} onClose={() => setDrawerVisible(false)}>
-              <SidebarObject
-                {...args}
-                headerTabs={headerTabs}
-                onCloseClick={handleCloseClick}
-                activeTab={activeTab}
-                handleTabClick={setActiveTab}
-                name={name}
-                onRename={setName}
-              />
-            </Drawer>
-          </div>
-        );
-    }
+    const handleCloseClick = () => {
+      args.onCloseClick?.();
+      setDrawerVisible(false);
+    };
+
+    return (
+      <div>
+        <Button onClick={() => setDrawerVisible(!drawerVisible)} type="primary">
+          Show Sidebar Object
+        </Button>
+        <Drawer visible={drawerVisible} placement="right" width={676} onClose={() => setDrawerVisible(false)}>
+          <SidebarObject
+            {...args}
+            headerTabs={headerTabs}
+            onCloseClick={handleCloseClick}
+            activeTab={activeTab}
+            handleTabClick={setActiveTab}
+            name={name}
+            onRename={setName}
+          />
+        </Drawer>
+      </div>
+    );
+  }
 
 };

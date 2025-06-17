@@ -1,4 +1,4 @@
-import { userEvent, waitFor, expect, within } from '@storybook/test';
+import { userEvent, waitFor, expect, within } from 'storybook/test';
 
 
 

@@ -1,9 +1,9 @@
 
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/react-webpack5';
 import Autocomplete from '@synerise/ds-autocomplete';
 import type { AutocompleteProps } from '@synerise/ds-autocomplete';
 
-import { within, userEvent, expect, fn, waitFor } from '@storybook/test';
+import { within, userEvent, expect, fn, waitFor } from 'storybook/test';
 
 import { default as DefaultMeta, Primary } from './Autocomplete.stories';
 import { fixedWrapper400, fixedWrapper200 } from '../../utils';

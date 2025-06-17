@@ -1,8 +1,8 @@
 import React from 'react';
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/react-webpack5';
 import Button from '@synerise/ds-button';
 import type { ButtonProps } from '@synerise/ds-button';
-import { userEvent, expect, waitFor, within } from '@storybook/test';
+import { userEvent, expect, waitFor, within } from 'storybook/test';
 
 import { DisabledTooltip } from './Button.stories';
 import { DisabledButtonsWithTooltip } from './ButtonGroup.stories';

@@ -1,8 +1,8 @@
 import React, { ReactNode } from 'react';
-import { Meta, StoryObj } from '@storybook/react';
-import { useArgs } from '@storybook/preview-api';
-import { action } from '@storybook/addon-actions';
-import { within, expect, waitFor, userEvent, fn } from '@storybook/test';
+import { Meta, StoryObj } from '@storybook/react-webpack5';
+import { useArgs } from 'storybook/preview-api';
+import { action } from 'storybook/actions';
+import { within, expect, waitFor, userEvent, fn } from 'storybook/test';
 
 import { BooleanM, CalendarM, HashM, ListM, SearchM, TextM } from '@synerise/ds-icon';
 import Tabs from '@synerise/ds-tabs';

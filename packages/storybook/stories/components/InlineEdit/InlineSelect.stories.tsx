@@ -1,6 +1,6 @@
 import React from 'react';
-import { Meta, StoryObj } from '@storybook/react';
-import { fn } from '@storybook/test';
+import { Meta, StoryObj } from '@storybook/react-webpack5';
+import { fn } from 'storybook/test';
 
 import { InlineSelect } from '@synerise/ds-inline-edit';
 import type { InlineSelectProps } from '@synerise/ds-inline-edit';

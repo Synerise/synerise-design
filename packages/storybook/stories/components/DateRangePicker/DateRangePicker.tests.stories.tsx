@@ -1,6 +1,6 @@
 import React from 'react';
-import { Meta, StoryObj } from '@storybook/react';
-import { within, userEvent, expect, fn, waitFor } from '@storybook/test';
+import { Meta, StoryObj } from '@storybook/react-webpack5';
+import { within, userEvent, expect, fn, waitFor } from 'storybook/test';
 
 import DateRangePicker from '@synerise/ds-date-range-picker';
 import type { DateRangePickerProps } from '@synerise/ds-date-range-picker';
@@ -17,7 +17,7 @@ export default {
     date: new Date("March 10, 2021 10:00:00"),
   },
   render: (args) => <DateRangePicker {...args} />,
-  
+
 } as Meta<DateRangePickerProps>;
 
 type Story = StoryObj<DateRangePickerProps>;
@@ -40,17 +40,17 @@ export const TestSelectingLifetimePreset: Story = {
   },
   play: async ({ args, canvasElement, step }) => {
     const canvas = within(canvasElement);
-    
+
     await step('Open picker popover', async () => {
       const input = await canvas.findByText(texts.startDate);
       await userEvent.click(input);
     })
-    
-    await step('Select relative preset', async() => {
+
+    await step('Select relative preset', async () => {
       const lifetimePreset = canvas.getByText(texts.lifetime);
-      await waitFor(()=> userEvent.click(lifetimePreset));
+      await waitFor(() => userEvent.click(lifetimePreset));
     })
-    
+
     await waitFor(() => expect(args.onValueChange).toHaveBeenCalledWith(LIFETIME_VALUE));
   }
 };
@@ -67,18 +67,18 @@ export const TestSelectingCustomRange: Story = {
   },
   play: async ({ args, canvasElement, step }) => {
     const canvas = within(canvasElement);
-    
+
     await step('Open picker popover', async () => {
       const input = await canvas.findByText(texts.startDate);
       await userEvent.click(input);
     })
     await waitFor(() => expect(args.onVisibleChange).toHaveBeenCalled());
-    
-    await step('Select relative preset', async() => {
+
+    await step('Select relative preset', async () => {
       const customRange = canvas.getByText(texts.custom);
-      await waitFor(()=> userEvent.click(customRange));
+      await waitFor(() => userEvent.click(customRange));
     })
-    
+
     await waitFor(() => expect(args.onValueChange).toHaveBeenCalledWith(DEFAULT_CUSTOM_RANGE));
 
   }
@@ -98,16 +98,16 @@ export const TestSelectingMoreRangesDropdown: Story = {
   },
   play: async ({ args, canvasElement, step }) => {
     const canvas = within(canvasElement);
-    
+
     await step('Open picker popover', async () => {
       const input = await canvas.findByText(texts.startDate);
       await userEvent.click(input);
     })
     await waitFor(() => expect(args.onVisibleChange).toHaveBeenCalled());
-    
-    await step('Select relative preset', async() => {
+
+    await step('Select relative preset', async () => {
       const rangesDropdown = canvas.getByTestId('relative-ranges-dropdown');
-      await waitFor(()=> userEvent.click(rangesDropdown));
+      await waitFor(() => userEvent.click(rangesDropdown));
     })
   }
 };
@@ -122,23 +122,23 @@ export const TestToggleRelativeSection: Story = {
   },
   play: async ({ args, canvasElement, step }) => {
     const canvas = within(canvasElement);
-    
+
     await step('Open picker popover', async () => {
       const input = await canvas.findByText(texts.startDate);
       await userEvent.click(input);
     })
     await waitFor(() => expect(args.onVisibleChange).toHaveBeenCalled());
-    
-    await step('Select relative preset', async() => {
+
+    await step('Select relative preset', async () => {
       const selectedRange = canvas.getByText(texts.lastWeek);
-      await waitFor(()=> userEvent.click(selectedRange));
+      await waitFor(() => userEvent.click(selectedRange));
     })
-    
-    await step('Toggle relative preset', async() => {
+
+    await step('Toggle relative preset', async () => {
       const rangesDropdown = canvas.getByText(texts.relativeDateRange);
-      await waitFor(()=> userEvent.click(rangesDropdown));
+      await waitFor(() => userEvent.click(rangesDropdown));
     })
-    
+
     const selectedRangeLabel = canvas.getByText(texts.lastWeek);
     expect(selectedRangeLabel).toBeInTheDocument()
   }
@@ -156,7 +156,7 @@ export const TestSelectTime: Story = {
   },
   play: async ({ args, canvasElement, step }) => {
     const canvas = within(canvasElement);
-    
+
     await step('Open picker popover', async () => {
       const input = await canvas.findByText(texts.startDate);
       await userEvent.click(input);
@@ -165,25 +165,25 @@ export const TestSelectTime: Story = {
     await waitFor(() => expect(args.onVisibleChange).toHaveBeenCalled());
 
     expect(canvas.getByTestId('date-range-picker-select-time')).toBeDisabled();
-    
-    await step('Select absolute range', async() => {
-      await waitFor(() => expect(canvas.getAllByRole('gridcell')[0]).not.toHaveStyle({pointerEvents: 'none'}))
+
+    await step('Select absolute range', async () => {
+      await waitFor(() => expect(canvas.getAllByRole('gridcell')[0]).not.toHaveStyle({ pointerEvents: 'none' }))
       const days = canvas.getAllByRole('gridcell');
-      await waitFor(()=> {
+      await waitFor(() => {
         userEvent.click(days[10]);
       });
-      await waitFor(()=> {
+      await waitFor(() => {
         userEvent.click(days[20])
       });
     });
 
     await waitFor(() => expect(canvas.getByTestId('date-range-picker-select-time')).not.toBeDisabled());
 
-    await step('Select relative preset', async() => {
+    await step('Select relative preset', async () => {
       const selectedRange = canvas.getByText(texts.lastWeek);
-      await waitFor(()=> userEvent.click(selectedRange));
+      await waitFor(() => userEvent.click(selectedRange));
     })
-    
+
     expect(canvas.getByTestId('date-range-picker-select-time')).toBeDisabled();
   }
 };

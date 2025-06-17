@@ -1,6 +1,6 @@
 import React from 'react';
-import { Meta, StoryObj } from '@storybook/react';
-import { fn } from '@storybook/test';
+import { Meta, StoryObj } from '@storybook/react-webpack5';
+import { fn } from 'storybook/test';
 
 import Avatar, { ObjectAvatar as ObjectAvatarComponent, UserAvatar as UserAvatarComponent } from '@synerise/ds-avatar';
 import Badge, { IconBadge } from '@synerise/ds-badge';

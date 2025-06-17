@@ -1,4 +1,4 @@
-import { fn } from '@storybook/test';
+import { fn } from 'storybook/test';
 import type { ListItemProps } from '@synerise/ds-list-item';
 
 export const DATA_SOURCE: ListItemProps[] = [

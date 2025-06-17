@@ -1,5 +1,5 @@
 import React from 'react';
-import { Meta, StoryObj } from '@storybook/react';
+import { Meta, StoryObj } from '@storybook/react-webpack5';
 
 import ProgressBar, { ProgressProps } from '@synerise/ds-progress-bar';
 
@@ -39,17 +39,39 @@ export default {
   }
 } as Meta<ProgressProps>;
 
-export const SoloBar: Story = {};
+export const SoloBar: Story = {
+  parameters: {
+    docs: {
+      source: {
+        code: `<ProgressBar amount={60} percent={21} showLabel={false} />`
+      }
+    }
+  }
+};
 export const SoloBarSmall: Story = {
   args: {
     thin: true,
   },
+  parameters: {
+    docs: {
+      source: {
+        code: `<ProgressBar amount={60} percent={21} showLabel={false} thin />`
+      }
+    }
+  }
 };
 export const SoloBarWithLabel: Story = {
   args: {
     showLabel: true,
     maxPercent: true,
   },
+  parameters: {
+    docs: {
+      source: {
+        code: `<ProgressBar amount={60} percent={21} showLabel maxPercent />`
+      }
+    }
+  }
 };
 
 export const SoloBarWithLabelAndDescription: Story = {
@@ -57,5 +79,12 @@ export const SoloBarWithLabelAndDescription: Story = {
     ...SoloBarWithLabel.args,
     description: 'Description',
   },
+  parameters: {
+    docs: {
+      source: {
+        code: `<ProgressBar amount={60} percent={21} showLabel maxPercent description="Description" />`
+      }
+    }
+  }
 };
 

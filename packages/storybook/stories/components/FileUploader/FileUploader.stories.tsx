@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import random from 'lodash/random';
-import { Meta, StoryObj } from '@storybook/react';
+import { Meta, StoryObj } from '@storybook/react-webpack5';
 import FileUploader, { FileUploaderProps, ExtendedFile, FileWithContent } from '@synerise/ds-file-uploader';
 import {
   BOOLEAN_CONTROL,

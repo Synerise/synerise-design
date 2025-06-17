@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { fn } from '@storybook/test';
+import { fn } from 'storybook/test';
 
 import ContextSelector from '@synerise/ds-context-selector';
 import { theme } from '@synerise/ds-core';

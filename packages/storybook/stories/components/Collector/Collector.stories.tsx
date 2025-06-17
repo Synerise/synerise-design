@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { isEqual } from 'lodash';
-import { Meta, StoryObj } from '@storybook/react';
-import { fn } from '@storybook/test';
+import { Meta, StoryObj } from '@storybook/react-webpack5';
+import { fn } from 'storybook/test';
 
 import Collector, { CollectorProps, CollectorValue } from '@synerise/ds-collector';
 
@@ -17,7 +17,7 @@ export default {
     layout: 'centered',
   },
   decorators: [fixedWrapper588],
-  render: ({suggestions, ...args}) => {
+  render: ({ suggestions, ...args }) => {
     const [selected, setSelected] = useState<CollectorValue[]>(args.selected || []);
     const handleItemSelect = (item: CollectorValue) => {
       if (!selected.find(i => isEqual(i, item))) {

@@ -1,5 +1,5 @@
 import React, { CSSProperties } from 'react';
-import { Meta, StoryObj } from '@storybook/react';
+import { Meta, StoryObj } from '@storybook/react-webpack5';
 
 import Badge, { IconBadge } from '@synerise/ds-badge';
 import Icon, { AppleFillM, Close3M, ErrorFillM, FacebookFillM, FileM, HelpFillM, IconProps } from '@synerise/ds-icon';
@@ -32,7 +32,7 @@ export default {
   argTypes: {
     count: { ...NUMBER_CONTROL },
     offset: {
-      control: 'array',
+      control: false,
     },
     outlined: {
       ...BOOLEAN_CONTROL,
@@ -308,9 +308,9 @@ export const CustomIconWithAvatar: StoryObj<CustomIconBadgeProps & AvatarProps> 
       ...reactNodeAsSelect(['AppleFillM', 'Close3M', 'ErrorFillM', 'FacebookFillM', 'HelpFillM'], {
         AppleFillM: <Icon component={<AppleFillM />} color={theme.palette['fern-600']} />,
         Close3M: <Icon component={<Close3M />} color={theme.palette['grey-400']} />,
-        ErrorFillM:  <Icon component={<ErrorFillM />} color={theme.palette['red-600']} />,
-        HelpFillM:  <Icon component={<HelpFillM />} color={theme.palette['orange-600']} />,
-        FacebookFillM:  <Icon component={<FacebookFillM />} color={theme.palette['blue-600']} />,
+        ErrorFillM: <Icon component={<ErrorFillM />} color={theme.palette['red-600']} />,
+        HelpFillM: <Icon component={<HelpFillM />} color={theme.palette['orange-600']} />,
+        FacebookFillM: <Icon component={<FacebookFillM />} color={theme.palette['blue-600']} />,
       }),
     },
   },

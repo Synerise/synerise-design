@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import { Meta, StoryObj } from '@storybook/react';
-import { fn } from '@storybook/test';
+import { Meta, StoryObj } from '@storybook/react-webpack5';
+import { fn } from 'storybook/test';
 
 import { ItemPickerList } from '@synerise/ds-item-picker';
 

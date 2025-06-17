@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import { Meta, StoryObj } from '@storybook/react';
-import { useArgs } from '@storybook/preview-api';
+import { Meta, StoryObj } from '@storybook/react-webpack5';
+import { useArgs } from 'storybook/preview-api';
 
 import Avatar, { ObjectAvatar } from '@synerise/ds-avatar';
 import { theme } from '@synerise/ds-core';
@@ -24,7 +24,7 @@ import { renderSuffix, suffixType, prefixType, renderPrefix, prefixArgTypes } fr
 import * as S from './styles';
 import { AVATAR_IMAGE } from '../../constants/images';
 import Badge from '@synerise/ds-badge';
-import { fn } from '@storybook/test';
+import { fn } from 'storybook/test';
 
 type Story = StoryObj<ListItemProps>;
 const renderListItem = (args: ListItemProps) => {

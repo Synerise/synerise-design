@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-import type { StoryObj, Meta } from '@storybook/react';
+import type { StoryObj, Meta } from '@storybook/react-webpack5';
 
 import CompletedWithin from '@synerise/ds-completed-within';
 import { CompletedWithinProps } from '@synerise/ds-completed-within';

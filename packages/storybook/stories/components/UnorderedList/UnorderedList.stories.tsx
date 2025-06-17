@@ -1,5 +1,5 @@
 import React from 'react';
-import { Meta, StoryObj } from '@storybook/react';
+import { Meta, StoryObj } from '@storybook/react-webpack5';
 
 import { OrderedListSkeleton } from '@synerise/ds-skeleton';
 import UnorderedList, { UnorderedListProps } from '@synerise/ds-unordered-list';

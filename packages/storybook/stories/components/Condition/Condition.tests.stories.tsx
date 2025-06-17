@@ -1,4 +1,4 @@
-import { within, userEvent, expect, waitFor, fn, fireEvent } from '@storybook/test';
+import { within, userEvent, expect, waitFor, fn, fireEvent } from 'storybook/test';
 
 import type { ConditionMeta, ConditionStory } from './Condition.types';
 import StoriesMeta from './Condition.stories';

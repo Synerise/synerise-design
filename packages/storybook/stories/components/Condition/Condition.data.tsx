@@ -1,6 +1,6 @@
 import React from 'react';
 import { v4 as uuid } from 'uuid';
-import { fn } from '@storybook/test';
+import { fn } from 'storybook/test';
 
 import { NotificationsM, VarTypeStringM } from '@synerise/ds-icon';
 import type { ConditionStep, StepConditions } from '@synerise/ds-condition';

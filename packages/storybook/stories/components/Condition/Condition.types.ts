@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/react-webpack5';
 import type { ConditionProps } from '@synerise/ds-condition';
 
 export type ConditionStoryProps = ConditionProps & {

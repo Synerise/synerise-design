@@ -1,6 +1,6 @@
 const componentStoryTemplate = (componentName, packageName) => {
   return `import React from 'react';
-import { Meta, StoryObj } from '@storybook/react';
+import { Meta, StoryObj } from '@storybook/react-webpack5';
 
 import ${componentName}, { ${componentName}Props } from '${packageName}';
 

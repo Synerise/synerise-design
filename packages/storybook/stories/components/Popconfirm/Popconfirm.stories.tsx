@@ -1,6 +1,6 @@
 import React from 'react';
-import { Meta, StoryObj } from '@storybook/react';
-import { fn } from '@storybook/test';
+import { Meta, StoryObj } from '@storybook/react-webpack5';
+import { fn } from 'storybook/test';
 import isChromatic from "chromatic/isChromatic";
 
 import Popconfirm, { PopconfirmProps } from '@synerise/ds-popconfirm';

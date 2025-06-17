@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import { Meta, StoryObj } from '@storybook/react';
-import { action } from '@storybook/addon-actions';
+import { Meta, StoryObj } from '@storybook/react-webpack5';
+import { action } from 'storybook/actions';
 
 import ItemsRoll, { ItemsRollProps } from '@synerise/ds-items-roll';
 import Dropdown from '@synerise/ds-dropdown';
@@ -71,22 +71,22 @@ export default {
     const [visible, setVisible] = useState(false);
     const changeSelectionDropdownProps = withChangeSelectionDropdown
       ? {
-          overlay: (
-            <Dropdown.Wrapper
-              style={{ width: '157px' }}
-              onKeyDown={event => focusWithArrowKeys(event, 'ds-menu-item', () => {})}
-            >
-              <Menu
-                dataSource={[{ text: 'Option 1' }, { text: 'Option 2' }]}
-                asDropdownMenu={true}
-                style={{ width: '100%' }}
-              />
-            </Dropdown.Wrapper>
-          ),
-          trigger: ['click' as const],
-          visible,
-          onVisibleChange: () => setVisible(!visible),
-        }
+        overlay: (
+          <Dropdown.Wrapper
+            style={{ width: '157px' }}
+            onKeyDown={event => focusWithArrowKeys(event, 'ds-menu-item', () => { })}
+          >
+            <Menu
+              dataSource={[{ text: 'Option 1' }, { text: 'Option 2' }]}
+              asDropdownMenu={true}
+              style={{ width: '100%' }}
+            />
+          </Dropdown.Wrapper>
+        ),
+        trigger: ['click' as const],
+        visible,
+        onVisibleChange: () => setVisible(!visible),
+      }
       : undefined;
 
     return (

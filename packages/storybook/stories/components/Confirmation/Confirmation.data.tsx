@@ -1,5 +1,5 @@
 import React from 'react';
-import { fn } from '@storybook/test';
+import { fn } from 'storybook/test';
 import { faker } from '@faker-js/faker';
 
 import { ObjectAvatar } from '@synerise/ds-avatar';

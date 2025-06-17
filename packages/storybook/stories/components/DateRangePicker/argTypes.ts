@@ -1,5 +1,5 @@
 import DateRangePicker, { DailyDateFilter, WeeklyDateFilter, RawDateRangePicker } from '@synerise/ds-date-range-picker';
-import { ArgTypes } from '@storybook/types';
+import { ArgTypes } from 'storybook/internal/types';
 import {
   STYLE_ARG_CONTROL,
   CLASSNAME_ARG_CONTROL,

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import { Meta, StoryObj } from '@storybook/react';
-import { fn } from '@storybook/test';
+import { Meta, StoryObj } from '@storybook/react-webpack5';
+import { fn } from 'storybook/test';
 
 import ContextSelector, { ContextProps, ContextItem } from '@synerise/ds-context-selector';
 
@@ -61,7 +61,7 @@ export default {
     onSetGroup: fn(),
     texts: CONTEXT_TEXTS,
     onClickOutsideEvents: undefined,
-    
+
   },
 } as Meta<ContextProps>;
 

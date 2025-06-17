@@ -1,6 +1,6 @@
 import React, { ReactNode } from 'react';
 
-import type { StoryObj, Meta } from '@storybook/react';
+import type { StoryObj, Meta } from '@storybook/react-webpack5';
 
 import { InputGroup } from '@synerise/ds-input';
 import { Props } from '@synerise/ds-input/dist/InputGroup.types';

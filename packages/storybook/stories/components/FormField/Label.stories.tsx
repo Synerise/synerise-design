@@ -1,4 +1,4 @@
-import { Meta, StoryObj } from '@storybook/react';
+import { Meta, StoryObj } from '@storybook/react-webpack5';
 
 import { FormFieldLabel, FormFieldLabelProps } from '@synerise/ds-form-field';
 import { fixedWrapper400, REACT_NODE_AS_STRING, STRING_CONTROL } from '../../utils';

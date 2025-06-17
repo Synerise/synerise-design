@@ -1,7 +1,7 @@
 import { ReactNode } from 'react';
-import { Meta, StoryObj } from '@storybook/react';
+import { Meta, StoryObj } from '@storybook/react-webpack5';
 
-import { within, waitFor, expect, fn, userEvent } from '@storybook/test';
+import { within, waitFor, expect, fn, userEvent } from 'storybook/test';
 import type { CascaderProps } from '@synerise/ds-cascader';
 
 import CascaderMeta from './Cascader.stories';
@@ -43,14 +43,14 @@ const filterCategoryData = (category) => {
 export const ShowHeaderBreadcrumb: Story = {
   play: async ({ canvasElement, args }) => {
     const canvas = within(canvasElement);
-    
+
     const selectFromCategory = async (level) => {
-      
+
       const nextLevelNames = Object.keys(level);
       const nextLevelLabel = nextLevelNames[0];
       const nextLevel = filterCategoryData(level[nextLevelLabel]);
       const nextLevelEntries = Object.entries(nextLevel);
-      
+
       await userEvent.click(canvas.getByText(nextLevelLabel));
       await waitFor(() => {
         expect(canvas.getByText(nextLevelLabel)).toBeInTheDocument();
@@ -59,7 +59,7 @@ export const ShowHeaderBreadcrumb: Story = {
         })
         expect(canvas.getAllByText(args.categorySuffix as string).length).toEqual(nextLevelEntries.length);
       });
-      
+
       return nextLevel;
     }
     await sleep(100);
@@ -67,7 +67,7 @@ export const ShowHeaderBreadcrumb: Story = {
     const level1 = await selectFromCategory(rootLevel);
     const level2 = await selectFromCategory(level1);
     await selectFromCategory(level2);
-    
+
   }
 };
 
@@ -77,7 +77,7 @@ export const ListCategory: Story = {
     const canvas = within(canvasElement);
 
     const rootCategory = limitCategories(root, args.categoryLimit);
-    
+
     const categoryNames = Object.keys(rootCategory);
     const categoryData = rootCategory[categoryNames[2]];
 
@@ -93,14 +93,14 @@ export const ListCategory: Story = {
       })
       expect(canvas.getAllByText(args.categorySuffix as string).length).toEqual(subCategoryData.length);
     });
-    
+
     const [_name1, selectedSubCategory1] = subCategoryData[3];
     const [_name2, selectedSubCategory2] = subCategoryData[1];
-    
+
     await userEvent.click(canvas.getAllByText(args.categorySuffix as string)[3]);
     expect(args.onCategorySelect).toHaveBeenCalled();
     expect(args.onCategorySelect).toHaveBeenCalledWith(selectedSubCategory1, true);
-    
+
     await userEvent.click(canvas.getAllByText(args.categorySuffix as string)[1]);
     expect(args.onCategorySelect).toHaveBeenCalled();
     expect(args.onCategorySelect).toHaveBeenCalledWith(selectedSubCategory2, true);

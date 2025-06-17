@@ -1,6 +1,6 @@
 import React from 'react';
 
-import type { StoryObj, Meta } from '@storybook/react';
+import type { StoryObj, Meta } from '@storybook/react-webpack5';
 
 import Loader from '@synerise/ds-loader';
 import { fontSizes, iconSizes, COLOR_OPTIONS, formatter } from './Loader.data';

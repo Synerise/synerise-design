@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import type { StoryObj, Meta } from '@storybook/react';
+import type { StoryObj, Meta } from '@storybook/react-webpack5';
 
 import Layout, { Page, LayoutProps } from '@synerise/ds-layout';
 import PageHeader from '@synerise/ds-page-header';

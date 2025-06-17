@@ -1,7 +1,7 @@
 import React from 'react';
-import { Meta, StoryObj } from '@storybook/react';
+import { Meta, StoryObj } from '@storybook/react-webpack5';
 
-import { expect, userEvent, waitFor, within } from '@storybook/test';
+import { expect, userEvent, waitFor, within } from 'storybook/test';
 import type { InformationCardProps, InformationCardTooltipProps } from '@synerise/ds-information-card';
 import Button from '@synerise/ds-button';
 

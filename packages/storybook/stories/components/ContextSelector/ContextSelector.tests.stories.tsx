@@ -1,6 +1,6 @@
-import { Meta, StoryObj } from '@storybook/react';
+import { Meta, StoryObj } from '@storybook/react-webpack5';
 
-import { within, userEvent, expect, waitFor, fn } from '@storybook/test';
+import { within, userEvent, expect, waitFor, fn } from 'storybook/test';
 import type { ContextProps } from '@synerise/ds-context-selector';
 import { theme } from '@synerise/ds-core';
 
@@ -53,7 +53,7 @@ export const SelectItemFromCategory: Story = {
       );
       await sleep(SLEEP_TIME);
       await userEvent.click(canvas.getByText(subGroupName));
-      
+
       await sleep(SLEEP_TIME);
 
       await waitFor(() => {
@@ -69,7 +69,7 @@ export const SelectItemFromCategory: Story = {
       await userEvent.click(canvas.getByText(CONTEXT_ITEMS[9].name));
 
       await waitFor(async () => expect(await canvas.findByText(CONTEXT_GROUPS[0].name)).toBeInTheDocument());
-      await waitFor(async () => expect(await canvas.findByText(CONTEXT_GROUPS[0].name)).toHaveStyle({color: theme.palette['blue-600']}));
+      await waitFor(async () => expect(await canvas.findByText(CONTEXT_GROUPS[0].name)).toHaveStyle({ color: theme.palette['blue-600'] }));
     }
   },
 };

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import { Meta, StoryObj } from '@storybook/react';
-import { fn } from '@storybook/test';
+import { Meta, StoryObj } from '@storybook/react-webpack5';
+import { fn } from 'storybook/test';
 
 import Operators from '@synerise/ds-operators';
 import type { OperatorsItem, OperatorsProps } from '@synerise/ds-operators';

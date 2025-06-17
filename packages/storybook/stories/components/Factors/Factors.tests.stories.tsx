@@ -1,6 +1,6 @@
-import { Meta, StoryObj } from '@storybook/react';
+import { Meta, StoryObj } from '@storybook/react-webpack5';
 
-import { within, userEvent, fn, expect, waitFor } from '@storybook/test';
+import { within, userEvent, fn, expect, waitFor } from 'storybook/test';
 import { ALL_FACTOR_TYPES } from '@synerise/ds-factors';
 import type { FactorsProps } from '@synerise/ds-factors';
 

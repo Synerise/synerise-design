@@ -1,7 +1,7 @@
 import React from 'react';
-import { Meta, StoryObj } from '@storybook/react';
+import { Meta, StoryObj } from '@storybook/react-webpack5';
 import Toast, { ToastProps } from '@synerise/ds-toast';
-import { userEvent, waitFor, within, expect } from '@storybook/test';
+import { userEvent, waitFor, within, expect } from 'storybook/test';
 
 import {
   BOOLEAN_CONTROL,

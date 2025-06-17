@@ -1,6 +1,6 @@
 import React from 'react';
-import { Meta, StoryObj } from '@storybook/react';
-import { within, waitFor, userEvent, fn, expect } from '@storybook/test';
+import { Meta, StoryObj } from '@storybook/react-webpack5';
+import { within, waitFor, userEvent, fn, expect } from 'storybook/test';
 import Confirmation, { ConfirmationProps } from '@synerise/ds-confirmation';
 import ConfirmationMeta, { RelatedObjects } from './Confirmation.stories'
 import { ListItemProps } from '@synerise/ds-list-item';

@@ -1,4 +1,4 @@
-import { Meta, StoryObj } from '@storybook/react';
+import { Meta, StoryObj } from '@storybook/react-webpack5';
 import { Title as TitleComponent } from '@synerise/ds-typography';
 import { CLASSNAME_ARG_CONTROL, fixedWrapper300, NUMBER_CONTROL, STRING_CONTROL } from '../../utils';
 

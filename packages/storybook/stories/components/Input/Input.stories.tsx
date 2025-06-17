@@ -1,6 +1,6 @@
 import React, { ChangeEvent, ReactNode, useState } from 'react';
-import { Meta, StoryObj } from '@storybook/react';
-import { useArgs } from '@storybook/preview-api';
+import { Meta, StoryObj } from '@storybook/react-webpack5';
+import { useArgs } from 'storybook/preview-api';
 
 import { Input } from '@synerise/ds-input';
 import type { InputProps } from '@synerise/ds-input';

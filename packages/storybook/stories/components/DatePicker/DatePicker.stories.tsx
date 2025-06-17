@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import dayjs from 'dayjs';
-import { Meta, StoryObj } from '@storybook/react';
-import { action } from '@storybook/addon-actions';
+import { Meta, StoryObj } from '@storybook/react-webpack5';
+import { action } from 'storybook/actions';
 
 import DatePicker from '@synerise/ds-date-picker';
 

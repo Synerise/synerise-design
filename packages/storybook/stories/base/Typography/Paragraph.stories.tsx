@@ -1,4 +1,4 @@
-import { Meta, StoryObj } from '@storybook/react';
+import { Meta, StoryObj } from '@storybook/react-webpack5';
 import { Paragraph as ParagraphComponent } from '@synerise/ds-typography';
 import { CLASSNAME_ARG_CONTROL, fixedWrapper300, STRING_CONTROL } from '../../utils';
 

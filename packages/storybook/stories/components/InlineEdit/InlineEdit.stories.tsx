@@ -1,6 +1,6 @@
 import React, { ChangeEvent, useCallback, useMemo, useState } from 'react';
-import { Meta, StoryObj } from '@storybook/react';
-import { fn } from '@storybook/test';
+import { Meta, StoryObj } from '@storybook/react-webpack5';
+import { fn } from 'storybook/test';
 
 import InlineEdit from '@synerise/ds-inline-edit';
 import type { InlineEditProps } from '@synerise/ds-inline-edit';

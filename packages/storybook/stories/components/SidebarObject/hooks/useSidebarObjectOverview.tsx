@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { v4 as uuid } from 'uuid';
-import { fn } from '@storybook/test';
+import { fn } from 'storybook/test';
 
 import Tags, { TagShape } from '@synerise/ds-tags';
 import { theme } from '@synerise/ds-core';

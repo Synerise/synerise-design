@@ -1,5 +1,5 @@
 import React, { ReactNode } from 'react';
-import { fn } from '@storybook/test';
+import { fn } from 'storybook/test';
 
 import { IconProps } from '@synerise/ds-icon';
 import TooltipExtendedProps from '@synerise/ds-tooltip/dist/Tooltip.types';

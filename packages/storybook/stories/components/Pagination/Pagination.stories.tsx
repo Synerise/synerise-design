@@ -1,6 +1,6 @@
 import React from 'react';
 
-import type { StoryObj, Meta } from '@storybook/react';
+import type { StoryObj, Meta } from '@storybook/react-webpack5';
 
 import Pagination from '@synerise/ds-pagination';
 

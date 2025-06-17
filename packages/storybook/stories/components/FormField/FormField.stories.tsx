@@ -1,5 +1,5 @@
 import React from 'react';
-import { Meta, StoryObj } from '@storybook/react';
+import { Meta, StoryObj } from '@storybook/react-webpack5';
 
 import FormField, { FormFieldProps } from '@synerise/ds-form-field';
 import { fixedWrapper400, REACT_NODE_AS_STRING, REACT_NODE_NO_CONTROL } from '../../utils';

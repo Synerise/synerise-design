@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Meta, StoryObj } from '@storybook/react';
+import { Meta, StoryObj } from '@storybook/react-webpack5';
 import { debounce } from 'lodash';
 
 import { SearchInput, SearchInputProps } from '@synerise/ds-search';

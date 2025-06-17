@@ -1,8 +1,8 @@
 import React from 'react';
-import { Meta, StoryObj } from '@storybook/react';
+import { Meta, StoryObj } from '@storybook/react-webpack5';
 
 import Cruds from '@synerise/ds-cruds';
-import { fn } from '@storybook/test';
+import { fn } from 'storybook/test';
 
 import {
   BOOLEAN_CONTROL,

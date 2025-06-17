@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { v4 as uuid } from 'uuid';
-import type { StoryObj, Meta } from '@storybook/react';
+import type { StoryObj, Meta } from '@storybook/react-webpack5';
 
 import Menu, { MenuItemProps } from '@synerise/ds-menu';
 import { focusWithArrowKeys } from '@synerise/ds-utils';

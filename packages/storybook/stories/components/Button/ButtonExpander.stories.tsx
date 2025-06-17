@@ -1,6 +1,6 @@
 import React from 'react';
-import type { Meta, StoryObj } from '@storybook/react';
-import { useArgs } from '@storybook/preview-api';
+import type { Meta, StoryObj } from '@storybook/react-webpack5';
+import { useArgs } from 'storybook/preview-api';
 
 import Button from '@synerise/ds-button';
 import type { ExpanderProps } from '@synerise/ds-button';
@@ -28,10 +28,11 @@ export const Expander: StoryObj<typeof Button.Expander> = {
     function onClick() {
       updateArgs({ expanded: !expanded });
     }
-    
+
     return (
-    <Button.Expander {...args} onClick={onClick} />
-  )},
+      <Button.Expander {...args} onClick={onClick} />
+    )
+  },
   parameters: {
     controls: {
       include: ['expanded', 'disabled', 'size']

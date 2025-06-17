@@ -1,6 +1,6 @@
 import React from 'react';
-import { Meta, StoryObj } from '@storybook/react';
-import { useArgs } from '@storybook/preview-api';
+import { Meta, StoryObj } from '@storybook/react-webpack5';
+import { useArgs } from 'storybook/preview-api';
 
 import TimePicker, { TimePickerProps } from '@synerise/ds-time-picker';
 
@@ -13,7 +13,7 @@ import {
   REACT_NODE_AS_STRING,
   STRING_CONTROL,
 } from '../../utils';
-import { within } from '@storybook/test';
+import { within } from 'storybook/test';
 
 type Story = StoryObj<TimePickerProps>;
 
@@ -58,9 +58,9 @@ export default {
     },
     trigger: reactNodeAsSelect('inline-radio', ['click', 'hover', 'contextMenu']),
     use12HourClock: BOOLEAN_CONTROL,
-      valueFormatOptions: { control: false }, // DateToFormatOptions;
-    
-      errorText: REACT_NODE_AS_STRING
+    valueFormatOptions: { control: false }, // DateToFormatOptions;
+
+    errorText: REACT_NODE_AS_STRING
   },
   args: {},
 } as Meta<TimePickerProps>;

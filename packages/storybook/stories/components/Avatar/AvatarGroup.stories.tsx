@@ -1,5 +1,5 @@
 import React from 'react';
-import { Meta } from '@storybook/react';
+import { Meta } from '@storybook/react-webpack5';
 import AvatarGroup from '@synerise/ds-avatar-group';
 import Menu from '@synerise/ds-menu';
 import Icon, {

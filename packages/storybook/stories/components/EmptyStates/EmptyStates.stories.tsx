@@ -1,6 +1,6 @@
 import React, { ReactNode } from 'react';
 
-import type { StoryObj, Meta } from '@storybook/react';
+import type { StoryObj, Meta } from '@storybook/react-webpack5';
 
 import EmptyStates, { EmptyStatesProps, EmptyStatesSize } from '@synerise/ds-empty-states';
 

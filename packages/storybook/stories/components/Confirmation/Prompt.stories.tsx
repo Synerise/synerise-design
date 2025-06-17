@@ -1,5 +1,5 @@
 import React from 'react';
-import { Meta, StoryObj } from '@storybook/react';
+import { Meta, StoryObj } from '@storybook/react-webpack5';
 
 import { Prompt, PromptProps } from '@synerise/ds-confirmation';
 import { Input } from '@synerise/ds-input';

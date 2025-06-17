@@ -1,5 +1,5 @@
-import { fixedWrapper400, controlFromOptionsArray} from '../../utils';
-import { Meta, StoryObj } from '@storybook/react';
+import { fixedWrapper400, controlFromOptionsArray } from '../../utils';
+import { Meta, StoryObj } from '@storybook/react-webpack5';
 import React from 'react';
 import Description, { DescriptionRow } from '@synerise/ds-description';
 import Icon, { AddM, DuplicateS, LockM, PlayM, UserM, VarTypeStringM } from '@synerise/ds-icon';
@@ -8,7 +8,7 @@ import { AVATAR_IMAGE } from '../../constants/images';
 import Status from '@synerise/ds-status';
 import { theme } from '@synerise/ds-core';
 import Button from '@synerise/ds-button';
-import { action } from '@storybook/addon-actions';
+import { action } from 'storybook/actions';
 import Switch from '@synerise/ds-switch';
 import Badge from '@synerise/ds-badge';
 import DSFlag from '@synerise/ds-flag';
@@ -23,8 +23,8 @@ export default {
   decorators: [fixedWrapper400],
   render: (args) => <Description {...args} />,
   argTypes: {
-    type: {...controlFromOptionsArray('select', SELECT)},
-    ratio: {...controlFromOptionsArray('select', RATIO)}
+    type: { ...controlFromOptionsArray('select', SELECT) },
+    ratio: { ...controlFromOptionsArray('select', RATIO) }
 
   }
 } as Meta<typeof Description>;

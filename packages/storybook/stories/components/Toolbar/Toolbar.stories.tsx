@@ -1,5 +1,5 @@
 import React from 'react';
-import { Meta, StoryObj } from '@storybook/react';
+import { Meta, StoryObj } from '@storybook/react-webpack5';
 
 import type { BadgeProps } from '@synerise/ds-badge';
 import type { TooltipProps } from '@synerise/ds-tooltip';

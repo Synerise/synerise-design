@@ -1,5 +1,5 @@
 import React from 'react';
-import { action } from '@storybook/addon-actions';
+import { action } from 'storybook/actions';
 
 import Icon, {
   InfoFillS,
@@ -1432,12 +1432,12 @@ export const COLUMNS_WITH_FIXED_ACTION: ColumnType[] = [
     render: (_avatar, record) => {
       const user = true
         ? {
-            tooltip: true,
-            firstName: record.name,
-            lastName: record.lastName,
-            email: `${record.name}.${record.lastName}@synerise.com`,
-            avatar: AVATAR_IMAGE,
-          }
+          tooltip: true,
+          firstName: record.name,
+          lastName: record.lastName,
+          email: `${record.name}.${record.lastName}@synerise.com`,
+          avatar: AVATAR_IMAGE,
+        }
         : {};
       return (
         <TableCell.AvatarLabelCell
@@ -1531,7 +1531,7 @@ export const COLUMNS_WITH_FIXED_ACTION: ColumnType[] = [
           overlay={
             <Dropdown.Wrapper
               style={{ width: '220px' }}
-              onKeyDown={event => focusWithArrowKeys(event, 'ds-menu-item', () => {})}
+              onKeyDown={event => focusWithArrowKeys(event, 'ds-menu-item', () => { })}
             >
               <Menu dataSource={menuData} asDropdownMenu={true} style={{ width: '100%' }} />
             </Dropdown.Wrapper>

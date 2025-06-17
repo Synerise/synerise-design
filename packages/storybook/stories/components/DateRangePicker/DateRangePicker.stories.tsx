@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { injectIntl } from 'react-intl';
-import { Meta, StoryObj } from '@storybook/react';
-import { fn } from '@storybook/test';
+import { Meta, StoryObj } from '@storybook/react-webpack5';
+import { fn } from 'storybook/test';
 import styled from 'styled-components';
 
 import DateRangePicker, { CONST, RawDateRangePicker, utils } from '@synerise/ds-date-range-picker';

@@ -1,6 +1,6 @@
 import React, { useCallback, useRef, useState } from 'react';
-import { Meta, StoryObj } from '@storybook/react';
-import { fn } from '@storybook/test';
+import { Meta, StoryObj } from '@storybook/react-webpack5';
+import { fn } from 'storybook/test';
 
 import Menu, { MenuItemProps } from '@synerise/ds-menu';
 import type { InformationCardProps } from '@synerise/ds-information-card';
@@ -80,7 +80,7 @@ export const WithDropdown: StoryObj<InformationCardProps> = {
         overlay={
           <Dropdown.Wrapper
             style={{ width: '220px' }}
-            onKeyDown={e => focusWithArrowKeys(e, 'ds-menu-item', () => {})}
+            onKeyDown={e => focusWithArrowKeys(e, 'ds-menu-item', () => { })}
             ref={ref}
           >
             <Menu

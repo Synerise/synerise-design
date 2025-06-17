@@ -1,6 +1,6 @@
 import React, { ReactElement, ReactNode } from 'react';
 import { faker } from '@faker-js/faker';
-import { action } from '@storybook/addon-actions';
+import { action } from 'storybook/actions';
 
 import Icon, { FolderM, InputM, PauseM, PlayM, ShowM, StopM } from '@synerise/ds-icon';
 import { DropdownMenu } from '@synerise/ds-manageable-list/dist/Item/FilterItem/FilterItem.styles';

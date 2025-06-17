@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Meta, StoryObj } from '@storybook/react';
+import { Meta, StoryObj } from '@storybook/react-webpack5';
 
 import Search, { SearchProps } from '@synerise/ds-search';
 import Icon from '@synerise/ds-icon';

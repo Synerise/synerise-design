@@ -1,6 +1,6 @@
 import React from 'react';
 
-import type { StoryObj, Meta } from '@storybook/react';
+import type { StoryObj, Meta } from '@storybook/react-webpack5';
 
 import { MimeTypeIcon } from '@synerise/ds-icon';
 

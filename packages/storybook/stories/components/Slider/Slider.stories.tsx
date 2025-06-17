@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import { Meta, StoryObj } from '@storybook/react';
-import { useArgs } from '@storybook/preview-api';
+import { Meta, StoryObj } from '@storybook/react-webpack5';
+import { useArgs } from 'storybook/preview-api';
 
 import Slider, { AllocationVariant, SliderProps } from '@synerise/ds-slider';
 
@@ -68,12 +68,12 @@ export default {
     const allocationConfig =
       args.type === 'allocation'
         ? {
-            variants,
-            onAllocationChange: setVariants,
-            controlGroupEnabled: false,
-            controlGroupLabel: 'CG',
-            controlGroupTooltip: 'Control group',
-          }
+          variants,
+          onAllocationChange: setVariants,
+          controlGroupEnabled: false,
+          controlGroupLabel: 'CG',
+          controlGroupTooltip: 'Control group',
+        }
         : undefined;
 
     const tracksColorMap = typeof value === 'number' ? { 0: customColor } : TRACKS_COLOR_MAP;

@@ -1,5 +1,5 @@
-import { Meta, StoryObj } from '@storybook/react';
-import { within, waitFor, userEvent, fn, expect, fireEvent } from '@storybook/test';
+import { Meta, StoryObj } from '@storybook/react-webpack5';
+import { within, waitFor, userEvent, fn, expect, fireEvent } from 'storybook/test';
 
 import type { InputProps } from '@synerise/ds-input';
 import { InputNumberProps } from '@synerise/ds-input-number';

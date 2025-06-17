@@ -1,4 +1,4 @@
-import { Meta, StoryObj } from '@storybook/react';
+import { Meta, StoryObj } from '@storybook/react-webpack5';
 
 import type { InputProps } from '@synerise/ds-input';
 import { fixedWrapper200 } from '../../utils';

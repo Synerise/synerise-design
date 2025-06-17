@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import { Meta, StoryObj } from '@storybook/react';
+import { Meta, StoryObj } from '@storybook/react-webpack5';
 
-import { fn } from '@storybook/test';
+import { fn } from 'storybook/test';
 
 import { WeeklyDateFilter } from '@synerise/ds-date-range-picker';
 import { DailySchedule } from '@synerise/ds-date-range-picker/dist/RangeFilter/Filters/new/Daily/Daily.types';
@@ -33,7 +33,7 @@ export default {
   argTypes: {
     ...schedulerCommonArgTypes
   },
-  
+
 } as Meta<typeof WeeklyDateFilter>;
 
 type Story = StoryObj<typeof WeeklyDateFilter>;

@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { FormattedDateTime } from '@synerise/ds-data-format';
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/react-webpack5';
 import { fixedWrapper200 } from '../../utils';
 
 export default {

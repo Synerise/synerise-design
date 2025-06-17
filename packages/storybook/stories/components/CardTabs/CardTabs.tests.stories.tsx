@@ -1,5 +1,5 @@
-import { Meta, StoryObj } from '@storybook/react';
-import { waitFor, within, expect, fireEvent } from '@storybook/test';
+import { Meta, StoryObj } from '@storybook/react-webpack5';
+import { waitFor, within, expect, fireEvent } from 'storybook/test';
 
 import type { CardTabProps, CardTabsProps } from '@synerise/ds-card-tabs';
 import CardTabsMeta, { Default } from './CardTabs.stories';
@@ -14,7 +14,7 @@ export const OpenContextMenu: StoryObj<CardTabProps & CardTabProps> = {
   ...Default,
   parameters: {
     pseudo: {
-        hover: true
+      hover: true
     }
   },
   play: async ({ canvasElement }) => {
@@ -22,10 +22,10 @@ export const OpenContextMenu: StoryObj<CardTabProps & CardTabProps> = {
     const tab = canvas.getAllByTestId('card-tab-container')[0];
 
     const contextMenuIcon = within(tab).getByTestId('ds-card-tabs-contextmenu');
-    
+
     await fireEvent.click(contextMenuIcon);
     await fireEvent.mouseDown(contextMenuIcon);
-    
+
     const overlay = await canvas.findByTestId('card-tabs-dropdown');
 
     await waitFor(() => expect(within(overlay).getAllByRole('menuitem')).toHaveLength(3))

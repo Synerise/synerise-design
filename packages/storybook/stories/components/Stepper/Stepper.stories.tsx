@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-import type { StoryObj, Meta } from '@storybook/react';
+import type { StoryObj, Meta } from '@storybook/react-webpack5';
 
 import Stepper from '@synerise/ds-stepper';
 

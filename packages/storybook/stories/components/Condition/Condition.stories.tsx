@@ -1,7 +1,7 @@
 import React, { ReactText, useState } from 'react';
 import { v4 as uuid } from 'uuid';
 
-import { action } from '@storybook/addon-actions';
+import { action } from 'storybook/actions';
 import Button from '@synerise/ds-button';
 import Condition, { ConditionStep } from '@synerise/ds-condition';
 import ContextSelector, { ContextGroup, ContextItem } from '@synerise/ds-context-selector';
@@ -28,7 +28,7 @@ import { CONTEXT_TEXTS } from '../ContextSelector/data/context.data';
 import { CONTEXT_CLIENT_GROUPS, CONTEXT_CLIENT_ITEMS } from '../ContextSelector/data/client.data';
 import { BOOLEAN_CONTROL, controlFromOptionsArray, fixedWrapper300, NUMBER_CONTROL } from '../../utils';
 import { ITEMS_IN_SECTIONS, SECTIONS } from '../ItemPicker/ItemPicker.data';
-import { fn } from '@storybook/test';
+import { fn } from 'storybook/test';
 
 export default {
   component: Condition,
@@ -53,15 +53,15 @@ export default {
         steps.map(step => {
           return step.id === stepId
             ? {
-                ...step,
-                context: {
-                  ...DEFAULT_CONTEXT_VALUE,
-                  ...step.context,
-                  selectedItem: item as ContextItem,
-                },
-                conditions:
-                  step.conditions.length === 0 && !showActionAttribute ? [DEFAULT_CONDITION_ROW()] : step.conditions,
-              }
+              ...step,
+              context: {
+                ...DEFAULT_CONTEXT_VALUE,
+                ...step.context,
+                selectedItem: item as ContextItem,
+              },
+              conditions:
+                step.conditions.length === 0 && !showActionAttribute ? [DEFAULT_CONDITION_ROW()] : step.conditions,
+            }
             : step;
         })
       );
@@ -73,14 +73,14 @@ export default {
         steps.map(step => {
           return step.id === stepId
             ? {
-                ...step,
-                actionAttribute: {
-                  ...DEFAULT_ACTION_ATTRIBUTE_VALUE,
-                  ...step.actionAttribute,
-                  value: item,
-                },
-                conditions: step.conditions.length === 0 ? [DEFAULT_CONDITION_ROW()] : step.conditions,
-              }
+              ...step,
+              actionAttribute: {
+                ...DEFAULT_ACTION_ATTRIBUTE_VALUE,
+                ...step.actionAttribute,
+                value: item,
+              },
+              conditions: step.conditions.length === 0 ? [DEFAULT_CONDITION_ROW()] : step.conditions,
+            }
             : step;
         })
       );
@@ -92,20 +92,20 @@ export default {
         steps.map(step => {
           return step.id === stepId
             ? {
-                ...step,
-                conditions: step.conditions?.map(condition => {
-                  return conditionId === condition.id
-                    ? {
-                        ...condition,
-                        parameter: {
-                          ...DEFAULT_PARAMETER_VALUE,
-                          ...condition.parameter,
-                          value: value,
-                        },
-                      }
-                    : condition;
-                }),
-              }
+              ...step,
+              conditions: step.conditions?.map(condition => {
+                return conditionId === condition.id
+                  ? {
+                    ...condition,
+                    parameter: {
+                      ...DEFAULT_PARAMETER_VALUE,
+                      ...condition.parameter,
+                      value: value,
+                    },
+                  }
+                  : condition;
+              }),
+            }
             : step;
         })
       );
@@ -146,24 +146,24 @@ export default {
         steps.map(step => {
           return value && step.id === stepId
             ? {
-                ...step,
-                conditions: step.conditions.map(condition => {
-                  if (condition.id === conditionId) {
-                    return {
-                      ...condition,
-                      factor: {
-                        ...DEFAULT_FACTOR_VALUE,
-                        ...condition.factor,
-                        textType: textFactorInputType,
-                        withCustomFactor: withCustomFactor && <span>Custom factor component</span>,
-                        value: '',
-                        selectedFactorType: value,
-                      },
-                    };
-                  }
-                  return condition;
-                }),
-              }
+              ...step,
+              conditions: step.conditions.map(condition => {
+                if (condition.id === conditionId) {
+                  return {
+                    ...condition,
+                    factor: {
+                      ...DEFAULT_FACTOR_VALUE,
+                      ...condition.factor,
+                      textType: textFactorInputType,
+                      withCustomFactor: withCustomFactor && <span>Custom factor component</span>,
+                      value: '',
+                      selectedFactorType: value,
+                    },
+                  };
+                }
+                return condition;
+              }),
+            }
             : step;
         })
       );
@@ -175,33 +175,33 @@ export default {
         steps.map(step => {
           return step.id === stepId
             ? {
-                ...step,
-                conditions: step.conditions.map(condition => {
-                  if (conditionId === condition.id) {
-                    const availableFactorTypes = getAvailableFactorTypes(value);
+              ...step,
+              conditions: step.conditions.map(condition => {
+                if (conditionId === condition.id) {
+                  const availableFactorTypes = getAvailableFactorTypes(value);
 
-                    return {
-                      ...condition,
-                      operator: {
-                        ...DEFAULT_OPERATOR_VALUE,
-                        ...condition.operator,
-                        value: value,
-                      },
-                      factor: availableFactorTypes
-                        ? {
-                            ...DEFAULT_FACTOR_VALUE,
-                            ...condition.factor,
-                            textType: textFactorInputType,
-                            withCustomFactor: withCustomFactor && <span>Custom factor component</span>,
-                            availableFactorTypes,
-                            selectedFactorType: availableFactorTypes ? availableFactorTypes[0] : '',
-                          }
-                        : undefined,
-                    };
-                  }
-                  return condition;
-                }),
-              }
+                  return {
+                    ...condition,
+                    operator: {
+                      ...DEFAULT_OPERATOR_VALUE,
+                      ...condition.operator,
+                      value: value,
+                    },
+                    factor: availableFactorTypes
+                      ? {
+                        ...DEFAULT_FACTOR_VALUE,
+                        ...condition.factor,
+                        textType: textFactorInputType,
+                        withCustomFactor: withCustomFactor && <span>Custom factor component</span>,
+                        availableFactorTypes,
+                        selectedFactorType: availableFactorTypes ? availableFactorTypes[0] : '',
+                      }
+                      : undefined,
+                  };
+                }
+                return condition;
+              }),
+            }
             : step;
         })
       );
@@ -214,9 +214,9 @@ export default {
         steps.map(step => {
           return step.id === stepId
             ? {
-                ...step,
-                conditions: [...step.conditions, newCondition],
-              }
+              ...step,
+              conditions: [...step.conditions, newCondition],
+            }
             : step;
         })
       );
@@ -229,9 +229,9 @@ export default {
         steps.map(step => {
           return step.id === stepId
             ? {
-                ...step,
-                conditions: step.conditions.filter(condition => condition.id !== conditionId),
-              }
+              ...step,
+              conditions: step.conditions.filter(condition => condition.id !== conditionId),
+            }
             : step;
         })
       );
@@ -419,7 +419,7 @@ const CustomContextSelector = ({
   readOnly,
 }) => {
   const renderTrigger = ({ selected, disabled }: Partial<TriggerProps>) => (
-    <Button disabled={disabled} mode={selected? 'icon-label' : ''} type="primary">{selected ? (<>{selected.prefixel} {selected.text}</>) :  'Choose context'}</Button>
+    <Button disabled={disabled} mode={selected ? 'icon-label' : ''} type="primary">{selected ? (<>{selected.prefixel} {selected.text}</>) : 'Choose context'}</Button>
   );
   const [localOpen, setLocalOpen] = useState(opened);
   const handleOpenChange = (isOpen: boolean) => {

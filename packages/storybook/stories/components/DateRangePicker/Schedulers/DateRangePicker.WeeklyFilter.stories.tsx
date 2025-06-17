@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
-import { Meta, StoryObj } from '@storybook/react';
-import { action } from '@storybook/addon-actions';
+import { Meta, StoryObj } from '@storybook/react-webpack5';
+import { action } from 'storybook/actions';
 
-import  { WeeklyDateFilter, WeeklySchedule } from '@synerise/ds-date-range-picker';
+import { WeeklyDateFilter, WeeklySchedule } from '@synerise/ds-date-range-picker';
 
 
 import { fixedWrapper588 } from '../../../utils';
@@ -25,10 +25,10 @@ type Story = StoryObj<typeof WeeklyDateFilter>;
 export const WeeklyFilter: Story = {
   render: (args) => {
     const [value, setValue] = useState<WeeklySchedule>({});
-    return <WeeklyDateFilter 
+    return <WeeklyDateFilter
       {...args}
       onChange={(newValue) => { action('onChange')(newValue); setValue(newValue); }}
-      value={value} 
+      value={value}
     />
   },
   args: {

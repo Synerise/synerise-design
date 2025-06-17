@@ -1,9 +1,9 @@
 import React, { Key, useEffect, useMemo, useRef, useState } from 'react';
 import { FixedSizeList } from 'react-window';
-import { Meta, StoryObj } from '@storybook/react';
+import { Meta, StoryObj } from '@storybook/react-webpack5';
 import isChromatic from "chromatic/isChromatic";
-import { fn } from '@storybook/test';
-import { action } from '@storybook/addon-actions';
+import { fn } from 'storybook/test';
+import { action } from 'storybook/actions';
 
 import Button from '@synerise/ds-button';
 import Icon, { AddM } from '@synerise/ds-icon';

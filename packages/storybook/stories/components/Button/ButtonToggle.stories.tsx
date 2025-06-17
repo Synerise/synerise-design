@@ -1,7 +1,7 @@
 import React, { MouseEvent } from 'react';
-import type { Meta, StoryObj } from '@storybook/react';
-import { useArgs } from '@storybook/preview-api';
-import { fn } from '@storybook/test';
+import type { Meta, StoryObj } from '@storybook/react-webpack5';
+import { useArgs } from 'storybook/preview-api';
+import { fn } from 'storybook/test';
 
 import Icon, { AngleDownS, CheckS } from '@synerise/ds-icon';
 import { ButtonToggle } from '@synerise/ds-button';

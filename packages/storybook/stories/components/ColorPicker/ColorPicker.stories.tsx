@@ -1,7 +1,7 @@
 import React from 'react';
-import { Meta, StoryObj } from '@storybook/react';
-import { useArgs } from '@storybook/preview-api';
-import { fn } from '@storybook/test';
+import { Meta, StoryObj } from '@storybook/react-webpack5';
+import { useArgs } from 'storybook/preview-api';
+import { fn } from 'storybook/test';
 
 import ColorPicker from '@synerise/ds-color-picker';
 

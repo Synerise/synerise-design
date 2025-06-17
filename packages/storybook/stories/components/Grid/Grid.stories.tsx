@@ -1,5 +1,5 @@
 import React from 'react';
-import { Meta, StoryObj } from '@storybook/react';
+import { Meta, StoryObj } from '@storybook/react-webpack5';
 import Grid from '@synerise/ds-grid';
 import Description, { DescriptionRow } from '@synerise/ds-description';
 import GridPreview from '../../../stories/components/Grid/GridPreview';

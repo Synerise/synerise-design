@@ -1,4 +1,4 @@
-import { within, waitFor, userEvent, fireEvent, expect } from '@storybook/test';
+import { within, waitFor, userEvent, fireEvent, expect } from 'storybook/test';
 import { sleep } from '../../../utils';
 
 export const playSearchResultsStory = async ({ canvasElement, step, context }) => {

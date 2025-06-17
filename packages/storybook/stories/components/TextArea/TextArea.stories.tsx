@@ -1,6 +1,6 @@
 import React, { ChangeEvent } from 'react';
-import { Meta, StoryObj } from '@storybook/react';
-import { useArgs } from '@storybook/preview-api';
+import { Meta, StoryObj } from '@storybook/react-webpack5';
+import { useArgs } from 'storybook/preview-api';
 
 import { TextArea, TextareaProps } from '@synerise/ds-input';
 import Icon, { Add2M, FileM } from '@synerise/ds-icon';
@@ -32,7 +32,7 @@ export default {
   },
   parameters: {
     controls: {
-        exclude: ['bordered', 'autoResize', 'expandable', 'expandableTooltip', ]
+      exclude: ['bordered', 'autoResize', 'expandable', 'expandableTooltip',]
     }
   },
   argTypes: {
@@ -97,11 +97,11 @@ export const WithCounter: Story = {
 };
 
 export const WithCustomCounter: Story = {
-    args: {
-      ...WithLabelAndDescription.args,
-      renderCustomCounter: (count?: number) => count !== undefined && <>{count} characters billed as 1 SMS</>,
-    },
-  };
+  args: {
+    ...WithLabelAndDescription.args,
+    renderCustomCounter: (count?: number) => count !== undefined && <>{count} characters billed as 1 SMS</>,
+  },
+};
 
 export const WithIcons: Story = {
   args: {

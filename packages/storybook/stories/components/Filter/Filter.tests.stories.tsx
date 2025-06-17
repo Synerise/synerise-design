@@ -1,4 +1,4 @@
-import { within, userEvent, expect, waitFor, fn, fireEvent } from '@storybook/test';
+import { within, userEvent, expect, waitFor, fn, fireEvent } from 'storybook/test';
 
 import type { FilterMeta, FilterStory } from './Filter.types';
 import StoriesMeta from './Filter.stories';

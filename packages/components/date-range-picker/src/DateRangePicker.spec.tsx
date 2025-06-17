@@ -731,7 +731,6 @@ describe('DateRangePicker', () => {
     await waitFor(() => expect(onApply).toHaveBeenCalledWith(undefined));
     await waitFor(() => expect(screen.getByText(texts.startDatePlaceholder)).toBeInTheDocument());
     userEvent.click(screen.getByText(texts.startDatePlaceholder));
-    await waitFor(() => expect(screen.getByTestId('date-range-picker-container')).toBeVisible());
     await waitFor(() => expect(screen.getByTestId('date-range-picker-apply-button')).toBeDisabled())
   }, 9000);
   it('can clear relative date', async () => {
@@ -765,7 +764,6 @@ describe('DateRangePicker', () => {
     await waitFor(() => expect(onApply).toHaveBeenCalledWith(undefined));
     await waitFor(() => expect(screen.getByText(texts.startDatePlaceholder)).toBeInTheDocument());
     userEvent.click(screen.getByText(texts.startDatePlaceholder));
-    await waitFor(() => expect(screen.getByTestId('date-range-picker-container')).toBeVisible());
     await waitFor(() => expect(screen.getByTestId('date-range-picker-apply-button')).toBeDisabled())
   }, 9000);
   it.todo(

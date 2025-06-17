@@ -1,5 +1,5 @@
 import React, { } from 'react';
-import { Meta, StoryObj } from '@storybook/react';
+import { Meta, StoryObj } from '@storybook/react-webpack5';
 
 import Select from '@synerise/ds-select';
 import type { SelectProps } from '@synerise/ds-select';

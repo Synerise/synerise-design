@@ -1,6 +1,6 @@
-import { Meta, StoryObj } from '@storybook/react';
+import { Meta, StoryObj } from '@storybook/react-webpack5';
 
-import { within, waitFor, userEvent, fireEvent, expect } from '@storybook/test';
+import { within, waitFor, userEvent, fireEvent, expect } from 'storybook/test';
 import type { ItemPickerProps } from '@synerise/ds-item-picker';
 
 import ItemPickerMeta, { FlatItems, Sections, SectionsAndFolders, SectionsAndNestedFolders } from './ItemPickerList.stories';

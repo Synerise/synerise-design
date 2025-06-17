@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Meta, StoryObj } from '@storybook/react';
+import { Meta, StoryObj } from '@storybook/react-webpack5';
 
 import CardSelect, { CardSelectGroup } from '@synerise/ds-card-select';
 import type { CardSelectGroupProps } from '@synerise/ds-card-select';

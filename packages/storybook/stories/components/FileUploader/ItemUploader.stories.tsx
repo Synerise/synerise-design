@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import random from 'lodash/random';
-import { Meta, StoryObj } from '@storybook/react';
+import { Meta, StoryObj } from '@storybook/react-webpack5';
 import { ItemUploader, ItemUploaderProps, FileWithContent, ExtendedFile } from '@synerise/ds-file-uploader';
 
 import FileUploaderMeta from './FileUploader.stories';
