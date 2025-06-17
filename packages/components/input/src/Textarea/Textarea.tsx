@@ -3,11 +3,22 @@ import type { TextAreaRef } from 'antd/lib/input/TextArea';
 import Scrollbar from '@synerise/ds-scrollbar';
 import * as S from './Textarea.styles';
 import * as InputStyles from '../Input.styles';
-import { TextAreaProps } from './Textarea.types';
+import { RawTextAreaProps } from './Textarea.types';
 
-const Textarea = forwardRef(
+export const RawTextArea = forwardRef(
   (
-    { disabled, error, rows = 4, wrapperStyle, onBlur, onFocus, resize, autoSize, readOnly, ...props }: TextAreaProps,
+    {
+      disabled,
+      error,
+      rows = 4,
+      wrapperStyle,
+      onBlur,
+      onFocus,
+      resize,
+      autoSize,
+      readOnly,
+      ...props
+    }: RawTextAreaProps,
     ref: Ref<TextAreaRef>
   ) => {
     const [focus, setFocus] = useState(false);
@@ -43,4 +54,4 @@ const Textarea = forwardRef(
   }
 );
 
-export default Textarea;
+export default RawTextArea;

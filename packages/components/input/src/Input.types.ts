@@ -5,7 +5,12 @@ import type { FormFieldCommonProps } from '@synerise/ds-form-field';
 import type { AutosizeInputProps } from './AutosizeInput/AutosizeInput.types';
 
 export type AutoResizeProp = boolean | { minWidth: string; maxWidth?: string; stretchToFit?: boolean };
+
+/**
+ * @deprecated use `InputProps`, `TextareaProps` instead
+ */
 export type Props = BaseProps<HTMLInputElement | HTMLTextAreaElement>;
+
 export type BaseProps<RefElementType extends HTMLTextAreaElement | HTMLInputElement = HTMLInputElement> = {
   error?: boolean;
   className?: string;
@@ -26,6 +31,7 @@ export type BaseProps<RefElementType extends HTMLTextAreaElement | HTMLInputElem
   expandable?: boolean;
   expandableTooltip?: ReactNode;
 } & FormFieldCommonProps;
+
 /**
  * @deprecated use `InputProps`, `TextareaProps` instead
  */

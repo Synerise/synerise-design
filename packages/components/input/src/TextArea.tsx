@@ -7,7 +7,7 @@ import './style/index.less';
 
 import * as S from './Input.styles';
 import { ElementIcons } from './components';
-import Textarea from './Textarea/Textarea';
+import DSTextArea from './Textarea/Textarea';
 import { TextareaProps } from './TextArea.types';
 import { useElementFocus } from './hooks';
 import { getCharCount } from './utils';
@@ -23,7 +23,6 @@ export const TextArea = ({
   tooltipConfig,
   icon1,
   icon1Tooltip,
-  autoResize,
   icon2,
   icon2Tooltip,
   resetMargin,
@@ -58,7 +57,7 @@ export const TextArea = ({
   const rightSide = useCounterLimit({ renderCustomCounter, counterLimit, charCount });
 
   return (
-    <S.OuterWrapper autoResize={autoResize} className={className} resetMargin={resetMargin}>
+    <S.OuterWrapper className={className} resetMargin={resetMargin}>
       <FormField
         label={label}
         rightSide={rightSide}
@@ -79,7 +78,7 @@ export const TextArea = ({
             className={className}
             type="textArea"
           />
-          <Textarea
+          <DSTextArea
             {...antdTextareaProps}
             className={hasErrorMessage || error ? 'error' : undefined}
             error={hasErrorMessage || error}

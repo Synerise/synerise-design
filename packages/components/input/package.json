@@ -39,7 +39,7 @@
     "@synerise/ds-scrollbar": "^1.0.10",
     "@synerise/ds-tooltip": "^1.1.9",
     "@synerise/ds-utils": "^1.2.0",
-    "csstype": "2.6.9",
+    "csstype": "^2.6.9",
     "uuid": "^8.3.2"
   },
   "peerDependencies": {
