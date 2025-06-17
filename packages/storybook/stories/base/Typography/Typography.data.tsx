@@ -95,7 +95,7 @@ export const DATA = [
     name: `<Text size="small"></Text>`,
     example: <Text size="small">span. Synerise DS</Text>,
     fontSize: '13px',
-    lineHeight: '12px',
+    lineHeight: '18px',
     letterSpacing: '0px',
   },
   {
