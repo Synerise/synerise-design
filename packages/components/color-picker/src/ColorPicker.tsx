@@ -50,23 +50,34 @@ const ColorPicker = ({
   const [savedColors, setSavedColors] = useState(colors);
   const [tooltipText, setTooltipText] = useState(tooltip?.copy);
 
+  const setLocalValues = useCallback((colorValue: string) => {
+    setColorTextInput(colorValue);
+    if (isValidTextColor(colorValue)) {
+      const standardizedColor = standardizeColor(colorValue);
+      setColorHexInput(standardizedColor);
+      setLastValidHexColor(standardizedColor);
+    } else if (isValidHexColor(colorValue)) {
+      const fullHexColor = convert3DigitHexTo6Digit(colorValue);
+      setColorHexInput(fullHexColor);
+      setLastValidHexColor(fullHexColor);
+    }
+    setPressed(-1);
+  }, []);
+
   const onChangeTextColor = useCallback(
     (colorValue: string) => {
       setColorTextInput(colorValue);
+      setLocalValues(colorValue);
       if (isValidTextColor(colorValue)) {
         const standardizedColor = standardizeColor(colorValue);
-        setColorHexInput(standardizedColor);
-        setLastValidHexColor(standardizedColor);
         onChange && onChange(standardizedColor);
       } else if (isValidHexColor(colorValue)) {
         const fullHexColor = convert3DigitHexTo6Digit(colorValue);
-        setColorHexInput(fullHexColor);
-        setLastValidHexColor(fullHexColor);
         onChange && onChange(fullHexColor);
       }
       setPressed(-1);
     },
-    [onChange]
+    [onChange, setLocalValues]
   );
 
   const onChangeHexColor = useCallback(
@@ -102,9 +113,9 @@ const ColorPicker = ({
 
   useEffect(() => {
     if (value && (isValidHexColor(value) || isValidTextColor(value))) {
-      onChangeTextColor(value);
+      setLocalValues(value);
     } else {
-      onChangeTextColor(DEFAULT_COLOR);
+      setLocalValues(DEFAULT_COLOR);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
