@@ -1,6 +1,6 @@
-import { Meta, StoryObj } from '@storybook/react';
+import { Meta, StoryObj } from '@storybook/react-webpack5';
 
-import { within, waitFor, userEvent, fn, expect, fireEvent } from '@storybook/test';
+import { within, waitFor, userEvent, fn, expect, fireEvent } from 'storybook/test';
 import type { ItemPickerProps } from '@synerise/ds-item-picker';
 import { FLAT_DATA_SOURCE } from './ItemPickerLegacy.data';
 

@@ -1,6 +1,6 @@
 import React from 'react';
-import { fn } from '@storybook/test';
-import { Meta, StoryObj } from '@storybook/react';
+import { fn } from 'storybook/test';
+import { Meta, StoryObj } from '@storybook/react-webpack5';
 
 import { ObjectAvatar } from '@synerise/ds-avatar';
 import Icon, {

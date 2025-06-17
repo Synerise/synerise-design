@@ -1,6 +1,6 @@
 import React from 'react';
-import { Meta, StoryObj } from '@storybook/react';
-import { useArgs } from '@storybook/preview-api';
+import { Meta, StoryObj } from '@storybook/react-webpack5';
+import { useArgs } from 'storybook/preview-api';
 
 import ItemPicker from '@synerise/ds-item-picker';
 import type { ItemPickerProps } from '@synerise/ds-item-picker';
@@ -16,7 +16,7 @@ type Story = StoryObj<ItemPickerProps>;
 export default {
   component: ItemPicker,
   title: 'Components/Pickers/ItemPicker/LegacyItemPicker',
-  tags: ['autodocs'],
+  tags: ['autodocs', 'deprecated'],
   parameters: {
     layout: 'fullscreen'
   },

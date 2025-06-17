@@ -1,5 +1,5 @@
-import { Meta, StoryObj } from '@storybook/react';
-import { waitFor, userEvent, within, expect } from '@storybook/test';
+import { Meta, StoryObj } from '@storybook/react-webpack5';
+import { waitFor, userEvent, within, expect } from 'storybook/test';
 
 import InlineSelect from '@synerise/ds-inline-edit';
 import type { InlineSelectProps } from '@synerise/ds-inline-edit';

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Meta, StoryObj } from '@storybook/react';
+import { Meta, StoryObj } from '@storybook/react-webpack5';
 import Radio, { RadioProps, RadioGroupProps } from '@synerise/ds-radio';
 import { Label } from '@synerise/ds-input'
 import { fixedWrapper300 } from '../../utils';

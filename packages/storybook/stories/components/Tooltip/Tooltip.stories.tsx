@@ -1,8 +1,8 @@
 import React from 'react';
 
-import { action } from '@storybook/addon-actions';
-import type { StoryObj, Meta } from '@storybook/react';
-import { userEvent, waitFor, within, expect, fn } from '@storybook/test';
+import { action } from 'storybook/actions';
+import type { StoryObj, Meta } from '@storybook/react-webpack5';
+import { userEvent, waitFor, within, expect, fn } from 'storybook/test';
 import isChromatic from 'chromatic/isChromatic';
 
 import Tooltip, { TooltipProps } from '@synerise/ds-tooltip';
@@ -117,7 +117,7 @@ export const LargeScrollableType: Story = {
   args: {
     type: 'largeScrollable',
     title: TOOLTIP_TITLE,
-    icon: <Icon  color={theme.palette.white} component={<InfoM />} />,
+    icon: <Icon color={theme.palette.white} component={<InfoM />} />,
     description:
       'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras quis pellentesque felis, luctus vestibulum ligula. Vestibulum tristique vulputate nulla, sed tempor nisi rhoncus a. Suspendisse sit amet vulputate dui, sit amet congue dolor. Ut sagittis ex sed turpis tristique, in hendrerit ligula venenatis. Aenean fringilla libero a rhoncus viverra. Sed non orci libero. Etiam venenatis ultrices odio, vel sodales massa facilisis ac. Vivamus ac fermentum elit. Aenean vel facilisis tortor, sit amet ornare erat. ',
 

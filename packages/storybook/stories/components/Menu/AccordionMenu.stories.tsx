@@ -1,6 +1,6 @@
 import React, { useMemo, useState } from 'react';
-import type { StoryObj, Meta } from '@storybook/react';
-import { action } from '@storybook/addon-actions';
+import type { StoryObj, Meta } from '@storybook/react-webpack5';
+import { action } from 'storybook/actions';
 
 import Checkbox from '@synerise/ds-checkbox';
 import Tooltip from '@synerise/ds-tooltip';

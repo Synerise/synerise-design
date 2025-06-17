@@ -1,6 +1,6 @@
 import React from 'react';
-import { Meta, StoryObj } from '@storybook/react';
-import { useArgs } from '@storybook/preview-api';
+import { Meta, StoryObj } from '@storybook/react-webpack5';
+import { useArgs } from 'storybook/preview-api';
 
 import Icon, { ClockS, AbTestXl, CalendarXl, LaunchXl, AdOnDemandL } from '@synerise/ds-icon';
 import CardSelect from '@synerise/ds-card-select';

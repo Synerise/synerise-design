@@ -1,6 +1,6 @@
-import { Meta, StoryObj } from '@storybook/react';
+import { Meta, StoryObj } from '@storybook/react-webpack5';
 
-import { within, userEvent, expect, fn, waitFor } from '@storybook/test';
+import { within, userEvent, expect, fn, waitFor } from 'storybook/test';
 import type { SubjectProps } from '@synerise/ds-subject';
 
 import { SUBJECT_ITEMS, SUBJECT_TEXTS } from './data/index.data';
@@ -38,14 +38,13 @@ export const SelectSubject: Story = {
 };
 
 export const Opened: Story = {
-    args: {
-      opened: true,
-    },
-    play: async ({ canvasElement }) => {
-      // wait to capture screenshot after dropdown renders open
-      const canvas = within(canvasElement);
-      await waitFor(() => canvas.findByPlaceholderText('Search'));
-    },
-  };
-  
-  
+  args: {
+    opened: true,
+  },
+  play: async ({ canvasElement }) => {
+    // wait to capture screenshot after dropdown renders open
+    const canvas = within(canvasElement);
+    await waitFor(() => canvas.findByPlaceholderText('Search'));
+  },
+};
+

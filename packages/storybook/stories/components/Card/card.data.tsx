@@ -1,6 +1,6 @@
 import React, { SyntheticEvent, useState } from 'react';
 import { ObjectAvatar, UserAvatar } from '@synerise/ds-avatar';
-import { useArgs } from '@storybook/preview-api';
+import { useArgs } from 'storybook/preview-api';
 
 import Tooltip from '@synerise/ds-tooltip';
 import { theme } from '@synerise/ds-core';
@@ -207,7 +207,7 @@ export const CARD_HEADER_VARIANTS = [
         <Button
           type="custom-color"
           color="green"
-          >
+        >
           Apply
         </Button>
       </div>

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import { Meta, StoryObj } from '@storybook/react';
-import { within, userEvent, expect, fn, waitFor } from '@storybook/test';
+import { Meta, StoryObj } from '@storybook/react-webpack5';
+import { within, userEvent, expect, fn, waitFor } from 'storybook/test';
 
 import DatePicker from '@synerise/ds-date-picker';
 

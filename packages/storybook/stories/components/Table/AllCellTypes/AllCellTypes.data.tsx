@@ -1,5 +1,5 @@
 import React, { ReactNode } from 'react';
-import { action } from '@storybook/addon-actions';
+import { action } from 'storybook/actions';
 
 import Icon, { InfoFillS, LockM, MailM, UserM, VarTypeBooleanM, VarTypeListM, VarTypeStringM } from '@synerise/ds-icon';
 import { theme } from '@synerise/ds-core';

@@ -1,6 +1,6 @@
-import { Meta, StoryObj } from '@storybook/react';
+import { Meta, StoryObj } from '@storybook/react-webpack5';
 
-import { within, userEvent, expect, waitFor } from '@storybook/test';
+import { within, userEvent, expect, waitFor } from 'storybook/test';
 import type { ListItemProps } from '@synerise/ds-list-item';
 
 import ListItemMeta, {
@@ -79,6 +79,6 @@ export const WithStarActive: typeof WithStar = {
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
     await userEvent.hover(canvas.getByText('List Item'));
-    await userEvent.click(canvas.getByTestId('star-icon'), {pointerEventsCheck: 0});
+    await userEvent.click(canvas.getByTestId('star-icon'), { pointerEventsCheck: 0 });
   },
 };

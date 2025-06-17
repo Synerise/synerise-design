@@ -1,6 +1,6 @@
-import { Meta, StoryObj } from '@storybook/react';
+import { Meta, StoryObj } from '@storybook/react-webpack5';
 
-import { within, userEvent, fn, expect, waitFor } from '@storybook/test';
+import { within, userEvent, fn, expect, waitFor } from 'storybook/test';
 import type { OperatorsProps } from '@synerise/ds-operators';
 
 import OperatorsMeta from './Operators.stories';

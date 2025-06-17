@@ -1,6 +1,6 @@
 import React from 'react';
-import { Meta, StoryObj } from '@storybook/react';
-import { useArgs } from '@storybook/preview-api';
+import { Meta, StoryObj } from '@storybook/react-webpack5';
+import { useArgs } from 'storybook/preview-api';
 
 import Logic from '@synerise/ds-logic';
 
@@ -14,7 +14,7 @@ export default {
   argTypes: {
     readOnly: BOOLEAN_CONTROL,
     options: {
-        control: false
+      control: false
     },
     value: controlFromOptionsArray('inline-radio', ['AND', 'OR'])
   },

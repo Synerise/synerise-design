@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Meta, StoryObj } from '@storybook/react';
+import { Meta, StoryObj } from '@storybook/react-webpack5';
 import Modal from '@synerise/ds-modal';
 import { ObjectAvatar } from '@synerise/ds-avatar';
 import Icon, { MailM, UserM } from '@synerise/ds-icon';

@@ -1,5 +1,5 @@
-import React, { ReactNode, useState, useRef} from 'react';
-import { Meta, StoryObj } from '@storybook/react';
+import React, { ReactNode, useState, useRef } from 'react';
+import { Meta, StoryObj } from '@storybook/react-webpack5';
 
 import Dropdown from '@synerise/ds-dropdown';
 import type { DropdownProps } from '@synerise/ds-dropdown';
@@ -20,14 +20,14 @@ import * as S from './Dropdown.styles';
 
 import Advanced from './Advanced';
 
-import { fn } from '@storybook/test';
+import { fn } from 'storybook/test';
 
 import { useOnClickOutside } from '@synerise/ds-utils';
 import { controlFromOptionsArray } from '../../utils';
 
 type DataType = {
   id: string;
-  text:string
+  text: string
 }
 
 export default {
@@ -70,8 +70,8 @@ export const Default: Story = {
 export const Example: Story = {
   args: {
     overlay: (
-      <Dropdown.Wrapper onKeyDown={e => focusWithArrowKeys(e, 'ds-menu-item', () => {})}>
-        <Dropdown.BackAction label="Attributes" onClick={() => {}} />
+      <Dropdown.Wrapper onKeyDown={e => focusWithArrowKeys(e, 'ds-menu-item', () => { })}>
+        <Dropdown.BackAction label="Attributes" onClick={() => { }} />
         <Menu dataSource={data} asDropdownMenu={true} style={{ width: '100%' }} />
       </Dropdown.Wrapper>
     ),
@@ -91,8 +91,8 @@ export const Copyable: Story = {
   args: {
     onVisibleChange: fn(),
     overlay: (
-      <Dropdown.Wrapper style={{ width: '220px' }} onKeyDown={e => focusWithArrowKeys(e, 'ds-menu-item', () => {})}>
-        <Dropdown.BackAction label="Attributes" onClick={() => {}} />
+      <Dropdown.Wrapper style={{ width: '220px' }} onKeyDown={e => focusWithArrowKeys(e, 'ds-menu-item', () => { })}>
+        <Dropdown.BackAction label="Attributes" onClick={() => { }} />
         <Menu dataSource={dataCopy} asDropdownMenu={true} style={{ width: '100%' }} />
       </Dropdown.Wrapper>
     ),
@@ -263,7 +263,7 @@ export const withTextTrigger: Story = {
           visible={dropdownVisible}
           placement="bottomLeft"
           overlay={
-            <Dropdown.Wrapper onKeyDown={e => focusWithArrowKeys(e, 'ds-menu-item', () => {})} ref={ref}>
+            <Dropdown.Wrapper onKeyDown={e => focusWithArrowKeys(e, 'ds-menu-item', () => { })} ref={ref}>
               <Menu dataSource={data} asDropdownMenu={true} style={{ width: '204px' }} />
             </Dropdown.Wrapper>
           }
@@ -296,7 +296,7 @@ export const withSkeleton: Story = {
           visible={dropdownVisible}
           placement="bottomLeft"
           overlay={
-            <Dropdown.Wrapper onKeyDown={e => focusWithArrowKeys(e, 'ds-menu-item', () => {})} ref={ref}>
+            <Dropdown.Wrapper onKeyDown={e => focusWithArrowKeys(e, 'ds-menu-item', () => { })} ref={ref}>
               <div style={{ width: '200px' }}>
                 <DropdownSkeleton />
               </div>
@@ -333,7 +333,7 @@ export const resizableContent: Story = {
           overlay={
             <Dropdown.Wrapper
               style={{ width: '200px' }}
-              onKeyDown={e => focusWithArrowKeys(e, 'ds-menu-item', () => {})}
+              onKeyDown={e => focusWithArrowKeys(e, 'ds-menu-item', () => { })}
             >
               <Scrollbar absolute maxHeight={300}>
                 <Menu dataSource={dataItems} asDropdownMenu={true} style={{ width: '100%' }} />

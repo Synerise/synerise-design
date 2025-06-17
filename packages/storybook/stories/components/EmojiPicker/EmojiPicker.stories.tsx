@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import type { Meta, StoryObj } from '@storybook/react';
-import { fn, within, expect, userEvent } from '@storybook/test';
+import type { Meta, StoryObj } from '@storybook/react-webpack5';
+import { fn, within, expect, userEvent } from 'storybook/test';
 import type { Emoji } from 'unicode-emoji-utils';
 
 import { Input } from '@synerise/ds-input';
@@ -14,7 +14,7 @@ import { BOOLEAN_CONTROL, centeredPaddedWrapper, fixedWrapper300 } from '../../u
 export default {
   component: EmojiPicker,
   title: 'Components/Pickers/EmojiPicker',
-  tags: ['autodocs'],
+  tags: ['autodocs', 'new'],
   parameters: {
     layout: 'padded',
   },

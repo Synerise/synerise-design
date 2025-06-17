@@ -1,5 +1,5 @@
 import React from 'react';
-import { Meta, StoryObj } from '@storybook/react';
+import { Meta, StoryObj } from '@storybook/react-webpack5';
 
 import message from '@synerise/ds-message';
 import Button from '@synerise/ds-button';
@@ -7,7 +7,7 @@ import Button from '@synerise/ds-button';
 export default {
   title: 'Components/Message',
   component: message,
-  tags: ['autodocs'],
+  tags: ['autodocs', 'derepcated'],
   parameters: {
     layout: 'centered',
   },

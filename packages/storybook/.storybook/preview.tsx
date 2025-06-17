@@ -1,10 +1,10 @@
 import React from 'react';
-import { Preview } from '@storybook/react';
-import { configure } from '@storybook/test';
+import { Preview } from '@storybook/react-webpack5';
+import { configure } from 'storybook/test';
 
 import { DSProvider, theme } from '@synerise/ds-core';
 import { DEFAULT_DATA_FORMAT_NOTATION } from '@synerise/ds-data-format';
-import { Description, Primary, Stories, Subtitle, Title } from '@storybook/blocks';
+import { Description, Primary, Stories, Subtitle, Title } from '@storybook/addon-docs/blocks';
 import { mockDateDecorator } from 'storybook-mock-date-decorator';
 import { TOASTER_DEFAULTS } from '@synerise/ds-toaster';
 

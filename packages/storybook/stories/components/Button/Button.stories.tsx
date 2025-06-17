@@ -1,5 +1,5 @@
 import React from 'react';
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/react-webpack5';
 
 import Icon, { Add2S, AngleDownS, CheckS } from '@synerise/ds-icon';
 import Button from '@synerise/ds-button';

@@ -1,6 +1,6 @@
 import React from 'react';
-import { fn } from '@storybook/test';
-import { Meta, StoryObj } from '@storybook/react';
+import { fn } from 'storybook/test';
+import { Meta, StoryObj } from '@storybook/react-webpack5';
 
 import Table, { DSTableProps } from '@synerise/ds-table';
 import Button from '@synerise/ds-button';

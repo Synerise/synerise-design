@@ -1,5 +1,5 @@
 import * as he from 'he';
-import type { StoryObj, Meta } from '@storybook/react';
+import type { StoryObj, Meta } from '@storybook/react-webpack5';
 
 import CodeSnippet, { CodeSnippetType } from '@synerise/ds-code-snippet';
 import { FontSize } from '@synerise/ds-code-snippet/dist/CodeSnippet.types';

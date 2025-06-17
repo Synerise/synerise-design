@@ -1,7 +1,7 @@
 import React, { useMemo } from 'react';
-import { fn } from '@storybook/test';
-import { Meta, StoryObj } from '@storybook/react';
-import { action } from '@storybook/addon-actions';
+import { fn } from 'storybook/test';
+import { Meta, StoryObj } from '@storybook/react-webpack5';
+import { action } from 'storybook/actions';
 import Table, { DSTableProps } from '@synerise/ds-table';
 import Button from '@synerise/ds-button';
 import Icon, { AddM, FilterM, Grid2M } from '@synerise/ds-icon';

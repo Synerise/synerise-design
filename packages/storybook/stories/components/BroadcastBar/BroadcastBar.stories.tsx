@@ -1,5 +1,5 @@
 import React from 'react';
-import { Meta, StoryObj } from '@storybook/react';
+import { Meta, StoryObj } from '@storybook/react-webpack5';
 import BroadcastBar from '@synerise/ds-alert/dist/BroadcastBar/BroadcastBar';
 import { BOOLEAN_CONTROL, centeredPaddedWrapper, REACT_NODE_AS_STRING } from '../../utils';
 import { color, type } from '../BroadcastBar/BroadcastBar.data';

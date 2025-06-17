@@ -1,6 +1,6 @@
 import React from 'react';
-import { Meta, StoryObj } from '@storybook/react';
-import { useArgs } from '@storybook/preview-api';
+import { Meta, StoryObj } from '@storybook/react-webpack5';
+import { useArgs } from 'storybook/preview-api';
 
 import CheckboxTristate, { CheckboxTristateProps } from '@synerise/ds-checkbox-tristate';
 import { BOOLEAN_CONTROL, CLASSNAME_ARG_CONTROL, PREFIXCLS_ARG_CONTROL, controlFromOptionsArray, REACT_NODE_AS_STRING, STRING_CONTROL, STYLE_ARG_CONTROL } from '../../utils';
@@ -43,7 +43,7 @@ export const Controlled: StoryObj<CheckboxTristateProps> = {
     function onChange() {
       updateArgs({ checked: !checked });
     }
-    
+
     return <CheckboxTristate
       {...args}
       onChange={onChange}
@@ -55,7 +55,7 @@ export const Controlled: StoryObj<CheckboxTristateProps> = {
     }
   },
   argTypes: {
-    checked: { 
+    checked: {
       ...controlFromOptionsArray('radio', [true, false, undefined])
     }
   }

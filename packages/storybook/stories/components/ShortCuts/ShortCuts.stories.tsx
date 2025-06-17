@@ -1,6 +1,6 @@
 import React from 'react';
 
-import type { StoryObj, Meta } from '@storybook/react';
+import type { StoryObj, Meta } from '@storybook/react-webpack5';
 
 import ShortCuts from '@synerise/ds-short-cuts';
 import { ArrowUpM } from '@synerise/ds-icon';

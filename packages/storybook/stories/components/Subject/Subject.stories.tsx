@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Meta, StoryObj } from '@storybook/react';
+import { Meta, StoryObj } from '@storybook/react-webpack5';
 
 import Subject from '@synerise/ds-subject';
 import type { SubjectProps, ContextItem, ContextGroup } from '@synerise/ds-subject';

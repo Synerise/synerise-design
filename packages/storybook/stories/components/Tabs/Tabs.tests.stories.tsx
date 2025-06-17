@@ -1,6 +1,6 @@
-import { Meta, StoryObj } from '@storybook/react';
+import { Meta, StoryObj } from '@storybook/react-webpack5';
 
-import { within, userEvent, expect, fn, waitFor } from '@storybook/test';
+import { within, userEvent, expect, fn, waitFor } from 'storybook/test';
 import type { TabsProps } from '@synerise/ds-tabs';
 import { fixedWrapper300, sleep } from '../../utils';
 
@@ -81,7 +81,7 @@ export const TabsWithConfigurationDisabledAndHiddenTabsOpen: Story = {
       const visibleTabsWrapper = within(canvas.getByTestId('tabs-container'));
       await waitFor(() => expect(visibleTabsWrapper.getAllByTestId('tab-container')).toHaveLength(2));
     });
-    
+
     await step('Open dropdown', async () => {
       await sleep(3000)
       await userEvent.click(canvas.getByTestId('tabs-dropdown-trigger'));
@@ -107,7 +107,7 @@ export const TabsWithConfigurationAndHiddenTabsOpen: Story = {
       const hiddenTabsWrapper = within(canvas.getByTestId('ds-tabs-hidden-helper'));
       await waitFor(() => expect(hiddenTabsWrapper.getAllByTestId('tab-container')).toHaveLength(args.tabs.length));
     });
-    
+
     await step('Wait for visible tabs to render', async () => {
       await waitFor(() => expect(canvas.getByTestId('tabs-container')).toBeInTheDocument());
       const visibleTabsWrapper = within(canvas.getByTestId('tabs-container'));
@@ -136,19 +136,19 @@ export const TabsDropdownHideAfterConfigurationClick: Story = {
   decorators: [fixedWrapper300],
   play: async ({ canvasElement, args, step }) => {
     const canvas = within(canvasElement);
-    
+
     await step('Wait for hidden tabs to render', async () => {
       await waitFor(() => expect(canvas.getByTestId('ds-tabs-hidden-helper')).toBeInTheDocument());
       const hiddenTabsWrapper = within(canvas.getByTestId('ds-tabs-hidden-helper'));
       await waitFor(() => expect(hiddenTabsWrapper.getAllByTestId('tab-container')).toHaveLength(args.tabs.length));
     });
-    
+
     await step('Wait for visible tabs to render', async () => {
       await waitFor(() => expect(canvas.getByTestId('tabs-container')).toBeInTheDocument());
       const visibleTabsWrapper = within(canvas.getByTestId('tabs-container'));
       await waitFor(() => expect(visibleTabsWrapper.getAllByTestId('tab-container')).toHaveLength(2));
     });
-    
+
     await step('Open dropdown', async () => {
       await sleep(2000)
       await userEvent.click(canvas.getByTestId('tabs-dropdown-trigger'));
@@ -190,7 +190,7 @@ export const TabsDropdownHideAfterHiddenTabClick: Story = {
       const visibleTabsWrapper = within(canvas.getByTestId('tabs-container'));
       await waitFor(() => expect(visibleTabsWrapper.getAllByTestId('tab-container')).toHaveLength(2));
     });
-    
+
     await step('Open dropdown', async () => {
       await sleep(3000)
       await userEvent.click(canvas.getByTestId('tabs-dropdown-trigger'));
@@ -207,7 +207,7 @@ export const TabsDropdownHideAfterHiddenTabClick: Story = {
       );
       await userEvent.click(dropdown.getAllByRole('menuitem')[0]);
     });
-    
+
     expect(args.handleTabClick).toHaveBeenCalled();
     await waitFor(
       async () => expect(await canvas.findByTestId('tabs-dropdown-container')).not.toBeVisible(),

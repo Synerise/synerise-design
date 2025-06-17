@@ -1,4 +1,4 @@
-import { Meta, StoryObj } from '@storybook/react';
+import { Meta, StoryObj } from '@storybook/react-webpack5';
 import { ProgressTiles } from '@synerise/ds-progress-bar';
 import { COLORS } from './ProgressBar.constants';
 import { fixedWrapper300, NUMBER_CONTROL, REACT_NODE_AS_STRING } from '../../utils';

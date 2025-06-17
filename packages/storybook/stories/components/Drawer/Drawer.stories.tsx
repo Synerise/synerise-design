@@ -1,7 +1,7 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 
-import type { StoryObj, Meta } from '@storybook/react';
-import { action } from '@storybook/addon-actions';
+import type { StoryObj, Meta } from '@storybook/react-webpack5';
+import { action } from 'storybook/actions';
 
 import Button from '@synerise/ds-button';
 import Drawer from '@synerise/ds-drawer';
@@ -80,22 +80,22 @@ export const WithTabs: Story = {
         </Button>
         <Drawer visible={drawerVisible} placement="right" width={676} onClose={() => setDrawerVisible(false)}>
           <Drawer.DrawerHeaderWithoutPadding>
-          <Drawer.DrawerHeader>
-            <Drawer.DrawerHeaderBar>
-              {renderBackIcon(headerTypes.singleTitleWithBackIcon, () => setDrawerVisible(false))}
-              <Typography.Title style={{ flex: 1, margin: 0 }} level={4}>
-                Title
-              </Typography.Title>
-              {renderActionButtons(closeActionTypes.twoButtons, () => setDrawerVisible(false))}
-            </Drawer.DrawerHeaderBar>
-            <Tabs
-              activeTab={activeTab}
-              tabs={TABS}
-              handleTabClick={setActiveTab}
-              configuration={{ label: 'Configure', action: action('onConfigurationClick') }}
-            />
-          </Drawer.DrawerHeader>
-            </Drawer.DrawerHeaderWithoutPadding>
+            <Drawer.DrawerHeader>
+              <Drawer.DrawerHeaderBar>
+                {renderBackIcon(headerTypes.singleTitleWithBackIcon, () => setDrawerVisible(false))}
+                <Typography.Title style={{ flex: 1, margin: 0 }} level={4}>
+                  Title
+                </Typography.Title>
+                {renderActionButtons(closeActionTypes.twoButtons, () => setDrawerVisible(false))}
+              </Drawer.DrawerHeaderBar>
+              <Tabs
+                activeTab={activeTab}
+                tabs={TABS}
+                handleTabClick={setActiveTab}
+                configuration={{ label: 'Configure', action: action('onConfigurationClick') }}
+              />
+            </Drawer.DrawerHeader>
+          </Drawer.DrawerHeaderWithoutPadding>
           <Drawer.DrawerBody>
             <Drawer.DrawerContent>{renderDrawerContent()}</Drawer.DrawerContent>
           </Drawer.DrawerBody>
@@ -116,27 +116,27 @@ export const WithSearch: Story = {
         </Button>
         <Drawer visible={drawerVisible} placement="right" width={676} onClose={() => setDrawerVisible(false)}>
           <Drawer.DrawerHeaderWithoutPadding>
-          <Drawer.DrawerHeader>
-            <Drawer.DrawerHeaderBar>
-              {renderBackIcon(headerTypes.singleTitleWithBackIcon, () => setDrawerVisible(false))}
-              <Typography.Title style={{ flex: 1, margin: 0 }} level={4}>
-                Title
-              </Typography.Title>
-              {renderActionButtons(closeActionTypes.twoButtons, () => setDrawerVisible(false))}
-            </Drawer.DrawerHeaderBar>
-          </Drawer.DrawerHeader>
-          <SearchBar
-            disabled={false}
-            borderRadius={false}
-            autofocus={false}
-            iconLeft={<Icon component={<SearchM />} color={theme.palette['grey-600']} />}
-            value={searchQuery}
-            onSearchChange={targetValue => setSearchQuery(targetValue)}
-            placeholder={'Search'}
-            onClearInput={() => setSearchQuery('')}
-            clearTooltip={'Clear'}
-          />
-            </Drawer.DrawerHeaderWithoutPadding>
+            <Drawer.DrawerHeader>
+              <Drawer.DrawerHeaderBar>
+                {renderBackIcon(headerTypes.singleTitleWithBackIcon, () => setDrawerVisible(false))}
+                <Typography.Title style={{ flex: 1, margin: 0 }} level={4}>
+                  Title
+                </Typography.Title>
+                {renderActionButtons(closeActionTypes.twoButtons, () => setDrawerVisible(false))}
+              </Drawer.DrawerHeaderBar>
+            </Drawer.DrawerHeader>
+            <SearchBar
+              disabled={false}
+              borderRadius={false}
+              autofocus={false}
+              iconLeft={<Icon component={<SearchM />} color={theme.palette['grey-600']} />}
+              value={searchQuery}
+              onSearchChange={targetValue => setSearchQuery(targetValue)}
+              placeholder={'Search'}
+              onClearInput={() => setSearchQuery('')}
+              clearTooltip={'Clear'}
+            />
+          </Drawer.DrawerHeaderWithoutPadding>
           <Drawer.DrawerBody>
             <Drawer.DrawerContent>{renderDrawerContent(searchQuery)}</Drawer.DrawerContent>
           </Drawer.DrawerBody>
@@ -171,7 +171,7 @@ export const WithSearchAndTabs: Story = {
                 activeTab={activeTab}
                 tabs={TABS}
                 handleTabClick={setActiveTab}
-                configuration={{ label: 'Configure', action: () => {}}}
+                configuration={{ label: 'Configure', action: () => { } }}
               />
             </Drawer.DrawerHeader>
             <SearchBar

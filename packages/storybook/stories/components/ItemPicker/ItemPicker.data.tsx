@@ -1,6 +1,6 @@
 import React from 'react';
 import { v4 as uuid } from 'uuid';
-import { action } from '@storybook/addon-actions';
+import { action } from 'storybook/actions';
 import { faker } from '@faker-js/faker';
 
 import Icon, { Add3M, AddM, FileM, FunnelM, SegmentM, UserM, SearchM } from '@synerise/ds-icon';

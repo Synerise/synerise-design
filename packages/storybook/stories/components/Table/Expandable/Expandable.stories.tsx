@@ -1,6 +1,6 @@
 import React from 'react';
-import { fn } from '@storybook/test';
-import { Meta, StoryObj } from '@storybook/react';
+import { fn } from 'storybook/test';
+import { Meta, StoryObj } from '@storybook/react-webpack5';
 
 import Icon, { AddM, InfoFillS, VarTypeNumberM, VarTypeStringM } from '@synerise/ds-icon';
 import Table, { DSTableProps, DSColumnType, TableCell } from '@synerise/ds-table';
@@ -172,8 +172,8 @@ export const WithContainer: Story<RowTypeWithContainer> = {
         onRow={record =>
           record.more
             ? {
-                onClick: () => handleExpandRow(record.key),
-              }
+              onClick: () => handleExpandRow(record.key),
+            }
             : {}
         }
         selection={{
@@ -189,6 +189,6 @@ export const WithContainer: Story<RowTypeWithContainer> = {
   },
   args: {
     dataSource: DATA_SOURCE_WITH_CONTAINER,
-    
+
   },
 };

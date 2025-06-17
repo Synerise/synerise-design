@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Meta, StoryObj } from '@storybook/react';
+import { Meta, StoryObj } from '@storybook/react-webpack5';
 
 import Sidebar, { SidebarWithButton as SidebarWithButtonComponent } from '@synerise/ds-sidebar';
 import Block from '@synerise/ds-block';

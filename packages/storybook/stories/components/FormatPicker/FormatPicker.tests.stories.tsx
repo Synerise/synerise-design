@@ -1,5 +1,5 @@
-import { Meta, StoryObj } from '@storybook/react';
-import { waitFor, userEvent, within, expect, fn } from '@storybook/test';
+import { Meta, StoryObj } from '@storybook/react-webpack5';
+import { waitFor, userEvent, within, expect, fn } from 'storybook/test';
 
 import type { FormatPickerProps } from '@synerise/ds-format-picker';
 

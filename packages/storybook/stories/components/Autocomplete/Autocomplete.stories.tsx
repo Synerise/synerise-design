@@ -2,8 +2,8 @@ import React from 'react';
 import type {
   Meta,
   StoryObj
-} from '@storybook/react';
-import { within, userEvent, fn } from '@storybook/test';
+} from '@storybook/react-webpack5';
+import { within, userEvent, fn } from 'storybook/test';
 import Autocomplete from '@synerise/ds-autocomplete';
 import type { AutocompleteProps } from '@synerise/ds-autocomplete';
 import Loader from '@synerise/ds-loader';
@@ -100,7 +100,41 @@ const meta: Meta<AutocompleteProps> = {
 
 export default meta;
 
-export const Primary: StoryObj<AutocompleteProps> = {};
+export const Primary: StoryObj<AutocompleteProps> = {
+  parameters: {
+    docs: {
+      source: {
+        code: `
+  const [value, setValue] = useState(props.value);
+  const [results, setResults] = useState<string[]>([]);
+
+  const handleSearch = (value: string) => {
+    let result: Array<string>;
+    if (!value || value.indexOf('@') >= 0) {
+      result = [];
+    } else {
+      result = dataSource.filter(item => item.toLowerCase().includes(value.toLowerCase()));
+    }
+    setResults(result);
+  };
+
+  return (
+    <Autocomplete
+      {...props}
+      value={value}
+      onSearch={handleSearch}
+      onChange={setValue}
+    >
+      {results.map(result => (
+        <Autocomplete.Option value={result} key={result}>
+          <span style={{ fontWeight: 400 }}>{renderWithHighlightedText(value, result)}</span>
+        </Autocomplete.Option>
+      ))}
+    </Autocomplete>
+  )`}
+    }
+  }
+};
 
 export const Suggestions: StoryObj<AutocompleteProps> = {
   play: async ({ canvasElement }) => {

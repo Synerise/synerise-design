@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import { Meta, StoryObj } from '@storybook/react';
-import { action } from '@storybook/addon-actions';
+import { Meta, StoryObj } from '@storybook/react-webpack5';
+import { action } from 'storybook/actions';
 
 import Mapping, { MappingProps } from '@synerise/ds-mapping';
 import Icon, { ArrowRightM, BlockM, ShowM } from '@synerise/ds-icon';
@@ -30,9 +30,9 @@ export default {
         data.map((item, index) => {
           return index === rowIndex
             ? {
-                ...item,
-                mappingName: newValue,
-              }
+              ...item,
+              mappingName: newValue,
+            }
             : item;
         })
       );
@@ -42,9 +42,9 @@ export default {
         data.map((item, index) => {
           return index === rowIndex
             ? {
-                ...item,
-                mapped: newValue,
-              }
+              ...item,
+              mapped: newValue,
+            }
             : item;
         })
       );
@@ -78,9 +78,9 @@ export default {
         data.map(item => {
           return selectedItemIds.includes(item.id)
             ? {
-                ...item,
-                mapped: value,
-              }
+              ...item,
+              mapped: value,
+            }
             : item;
         })
       );
@@ -174,7 +174,7 @@ export const WithSelect: StoryObj<StoryType> = {
   },
   args: {
     leftTitle: 'Catalog item',
-    leftTitleTooltip: { title: 'Left tooltip content'},
+    leftTitleTooltip: { title: 'Left tooltip content' },
     rightTitle: 'Event parameter',
     rightTitleTooltip: { title: 'Right tooltip content' },
   },

@@ -6,10 +6,6 @@ deeperSortSetup(
   ["Introduction", "Tokens", "Components", ["*", "Tests"]],
 );
 
-/**
- * This function is used to resolve the absolute path of a package.
- * It is needed in projects that use Yarn PnP or are set up within a monorepo.
- */
 function getAbsolutePath(value: string): any {
   return dirname(require.resolve(join(value, 'package.json')));
 }
@@ -17,9 +13,8 @@ const config: StorybookConfig = {
   stories: ['../stories/**/*.mdx', '../stories/**/*.stories.@(js|jsx|mjs|ts|tsx)'],
   addons: [
     getAbsolutePath('@storybook/addon-webpack5-compiler-swc'),
-    getAbsolutePath('@storybook/addon-essentials'),
+    getAbsolutePath('@storybook/addon-docs'),
     getAbsolutePath('@chromatic-com/storybook'),
-    getAbsolutePath('@storybook/addon-interactions'),
     getAbsolutePath('storybook-addon-pseudo-states'),
   ],
   framework: {
@@ -27,8 +22,7 @@ const config: StorybookConfig = {
     options: {},
   },
   docs: {
-    defaultName: 'Overview',
-    autodocs: 'tag',
+    defaultName: 'Overview'
   },
   typescript: {
     reactDocgen: 'react-docgen-typescript',
@@ -93,7 +87,9 @@ const config: StorybookConfig = {
             {
               loader: 'less-loader',
               options: {
-                javascriptEnabled: true,
+                lessOptions: {
+                  javascriptEnabled: true,
+                },
               },
             },
           ],

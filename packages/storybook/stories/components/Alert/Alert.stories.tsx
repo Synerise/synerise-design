@@ -1,9 +1,9 @@
 import React from 'react';
 
-import type { StoryObj, Meta } from '@storybook/react';
+import type { StoryObj, Meta } from '@storybook/react-webpack5';
 
 import Alert from '@synerise/ds-alert';
-import { fn } from '@storybook/test';
+import { fn } from 'storybook/test';
 
 import {
   CLASSNAME_ARG_CONTROL,
@@ -31,7 +31,7 @@ const COLOR_MAPPING = ['blue',
 
 export default {
   title: "Components/Alert/Alert",
-  tags: ['autodocs'],
+  tags: ['autodocs', 'deprecated'],
   component: Alert,
   decorators: [gappedColumnDecorator, fixedWrapper800],
   argTypes: {
@@ -42,9 +42,9 @@ export default {
     message: REACT_NODE_AS_STRING,
     showMoreLabel: REACT_NODE_AS_STRING,
     onShowMore: { control: false },
-    mode: {...controlFromOptionsArray('select', ['', 'background', 'background-outline', 'outline', 'clear'])},
-    type: {...controlFromOptionsArray('select', ['success', 'warning', 'error', 'info'])},
-    color: { ...controlFromOptionsArray('select', ['', 'blue', 'grey', 'red', 'green', 'yellow', 'pink', 'mars', 'orange', 'fern', 'cyan', 'purple', 'violet',])},
+    mode: { ...controlFromOptionsArray('select', ['', 'background', 'background-outline', 'outline', 'clear']) },
+    type: { ...controlFromOptionsArray('select', ['success', 'warning', 'error', 'info']) },
+    color: { ...controlFromOptionsArray('select', ['', 'blue', 'grey', 'red', 'green', 'yellow', 'pink', 'mars', 'orange', 'fern', 'cyan', 'purple', 'violet',]) },
   },
 } as Meta<typeof Alert>;
 
@@ -59,9 +59,22 @@ export const Default: Story = {
     showMoreLabel: 'Show more Label',
     onShowMore: fn(),
     closeText: '',
-    mode: '',
-    color: '',
   },
+  parameters: {
+    docs: {
+      source: {
+        code: `<Alert
+  description="This simple modal alert description"
+  message="Success!"
+  type="success"
+  showIcon
+  showMoreLabel="Show more Label"
+  onShowMore={fn()}
+  closeText=""
+/>`
+      }
+    }
+  }
 };
 
 export const AllModes: Story = {
@@ -74,7 +87,6 @@ export const AllModes: Story = {
             showIcon={true}
             description={'This simple modal alert description'}
             message={'Success!'}
-            color={''}
             mode={mode}
             showMoreLabel={'Show more'}
             onShowMore={true}
@@ -83,6 +95,25 @@ export const AllModes: Story = {
       </>
     );
   },
+  parameters: {
+    docs: {
+      source: {
+        code: `<>
+  {['background', 'background-outline', 'outline', 'clear'].map(mode => (
+    <Alert
+      showIcon
+      description="This simple modal alert description"
+      message="Success!"
+      color=""
+      mode={mode}
+      showMoreLabel="Show more"
+      onShowMore={true}
+    />
+  ))}
+</>`
+      }
+    }
+  }
 };
 
 export const AllColors: Story = {
@@ -98,12 +129,32 @@ export const AllColors: Story = {
             type={'success'}
             mode={'background'}
             showMoreLabel={'Show more'}
-            onShowMore={true}
+            onShowMore={fn()}
             color={color}
           />
         ))}
       </>
     );
   },
+  parameters: {
+    docs: {
+      source: {
+        code: `<>
+  {['blue','grey','red','green','yellow','pink','mars','orange','fern','cyan','purple','violet'].map(color => (
+    <Alert
+      showIcon
+      description="This simple modal alert description"
+      message="Success!"
+      type="success"
+      mode="background"
+      showMoreLabel="Show more"
+      onShowMore={true}
+      color={color}
+    />
+  ))}
+</>`
+      }
+    }
+  }
 };
 

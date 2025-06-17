@@ -1,5 +1,5 @@
 import React from 'react';
-import { Meta, StoryObj } from '@storybook/react';
+import { Meta, StoryObj } from '@storybook/react-webpack5';
 
 import Confirmation, { ConfirmationProps } from '@synerise/ds-confirmation';
 import Description, { DescriptionRow } from '@synerise/ds-description';
@@ -21,6 +21,7 @@ export default {
   parameters: {
     layout: 'padded',
   },
+  tags: ['new'],
   args: {
     type: 'negative',
     description: 'Please confirm',

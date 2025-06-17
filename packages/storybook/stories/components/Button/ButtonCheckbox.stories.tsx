@@ -1,23 +1,23 @@
 import React, { useState } from 'react';
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/react-webpack5';
 import Button from '@synerise/ds-button';
 import type { CheckboxButtonProps } from '@synerise/ds-button';
-import { action } from '@storybook/addon-actions';
+import { action } from 'storybook/actions';
 
-import { useArgs } from '@storybook/preview-api';
+import { useArgs } from 'storybook/preview-api';
 import { BOOLEAN_CONTROL, CLASSNAME_ARG_CONTROL } from '../../utils';
 
 const meta: Meta<CheckboxButtonProps> = {
   title: 'Components/Button/WithCheckbox',
   tags: ['autodocs'],
   render: (args) => {
-    
+
     const [{ checked }, updateArgs] = useArgs();
 
     function onChange(isChecked: boolean) {
       args.onClick && args.onClick();
       updateArgs({ checked: isChecked });
-    } 
+    }
 
     return (
       <Button.Checkbox
@@ -64,17 +64,17 @@ const createStateUpdateMap = (newValue: boolean, itemIndex?: number) => ({ value
 
 export const CheckboxControlled: StoryObj<CheckboxButtonProps> = {
   render: (args) => {
-    const [ values, setValues] = useState<CheckboxValue[]>([
+    const [values, setValues] = useState<CheckboxValue[]>([
       { value: false },
       { value: true },
       { value: false },
     ]);
     const onChangeBatch = (isChecked: boolean) => {
-      setValues( values.map(createStateUpdateMap(isChecked)) )
+      setValues(values.map(createStateUpdateMap(isChecked)))
     };
 
     const onChangeSingle = (isChecked: boolean, index: number) => {
-      setValues( values.map(createStateUpdateMap(isChecked, index)) );
+      setValues(values.map(createStateUpdateMap(isChecked, index)));
     }
 
     return (

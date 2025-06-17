@@ -1,5 +1,5 @@
 import React, { ReactNode } from 'react';
-import { Meta, StoryObj } from '@storybook/react';
+import { Meta, StoryObj } from '@storybook/react-webpack5';
 
 import Cascader from '@synerise/ds-cascader';
 import type { CascaderProps } from '@synerise/ds-cascader';

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-import type { StoryObj, Meta } from '@storybook/react';
+import type { StoryObj, Meta } from '@storybook/react-webpack5';
 
 import { EditableList, EditableParam } from '@synerise/ds-form';
 import { escapeRegEx } from '@synerise/ds-utils';

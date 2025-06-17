@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Meta, StoryObj } from '@storybook/react';
+import { Meta, StoryObj } from '@storybook/react-webpack5';
 
 import SubtleForm from '@synerise/ds-subtle-form';
 import InputNumber from '@synerise/ds-input-number';

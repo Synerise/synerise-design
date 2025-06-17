@@ -1,5 +1,5 @@
 import React from 'react';
-import { Meta, StoryObj } from '@storybook/react';
+import { Meta, StoryObj } from '@storybook/react-webpack5';
 
 import Banner, { BannerProps } from '@synerise/ds-banner';
 import Icon, { ArrowRightCircleM, ProductLastSeenColor, ShopingBagColor } from '@synerise/ds-icon';

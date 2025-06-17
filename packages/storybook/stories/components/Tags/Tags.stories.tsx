@@ -1,6 +1,6 @@
 import React from 'react';
-import { Meta, StoryObj } from '@storybook/react';
-import { useArgs } from '@storybook/preview-api';
+import { Meta, StoryObj } from '@storybook/react-webpack5';
+import { useArgs } from 'storybook/preview-api';
 import { v4 as uuid } from 'uuid';
 
 import Tags, { TagShape } from '@synerise/ds-tags';
@@ -33,10 +33,10 @@ const TagsMeta = {
   render: ({ selected, color, ...args }) => {
     const selectedProp = selected?.length
       ? selected.map(tagData => ({
-          ...tagData,
-          name: getTagNameForShape(args.tagShape!),
-          color,
-        }))
+        ...tagData,
+        name: getTagNameForShape(args.tagShape!),
+        color,
+      }))
       : [];
     return <Tags selected={selectedProp} {...args} />;
   },

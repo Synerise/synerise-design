@@ -1,5 +1,5 @@
 {
-  "name": "storybook7",
+  "name": "storybook",
   "version": "1.11.1",
   "private": true,
   "repository": {
@@ -12,9 +12,6 @@
     "storybook": "storybook dev -p 6006",
     "chromatic": "chromatic"
   },
-  "eslintConfig": {
-    "extends": "react-app"
-  },
   "peerDependencies": {
     "antd": "4.24.16",
     "react": "^18.3.1",
@@ -22,22 +19,18 @@
     "typescript": "4.9.5"
   },
   "devDependencies": {
-    "@chromatic-com/storybook": "^3.2.6",
+    "@chromatic-com/storybook": "^4.0.0",
     "@faker-js/faker": "^9.6.0",
     "@mdx-js/loader": "^3.1.0",
-    "@storybook/addon-essentials": "^8.6.11",
-    "@storybook/addon-interactions": "^8.6.11",
-    "@storybook/addon-onboarding": "^8.6.11",
+    "@storybook/addon-docs": "9.0.5",
+    "@storybook/addon-onboarding": "9.0.5",
     "@storybook/addon-webpack5-compiler-swc": "^3.0.0",
-    "@storybook/blocks": "^8.6.11",
-    "@storybook/react": "^8.6.11",
-    "@storybook/react-webpack5": "^8.6.11",
-    "@storybook/test": "^8.6.11",
+    "@storybook/react-webpack5": "9.0.5",
     "@use-it/interval": "^1.0.0",
     "babel-preset-react-app": "^10.1.0",
-    "storybook": "^8.6.11",
-    "storybook-addon-pseudo-states": "^3.1.1",
+    "storybook": "9.0.5",
+    "storybook-addon-pseudo-states": "9.0.5",
     "storybook-deeper-sort": "^1.1.4",
-    "storybook-mock-date-decorator": "^2.0.6"
+    "storybook-mock-date-decorator": "^3.0.0"
   }
 }

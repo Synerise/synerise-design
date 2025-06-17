@@ -1,5 +1,5 @@
 import React, { useState, UIEvent } from 'react';
-import { Meta, StoryObj } from '@storybook/react';
+import { Meta, StoryObj } from '@storybook/react-webpack5';
 import { ReactSortable } from 'react-sortablejs';
 import { FixedSizeList } from 'react-window';
 

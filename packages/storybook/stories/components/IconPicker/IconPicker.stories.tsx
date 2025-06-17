@@ -1,8 +1,8 @@
 import React, { ReactNode, useState } from 'react';
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/react-webpack5';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import IconPicker from '@synerise/ds-icon-picker';
-import { fn } from '@storybook/test';
+import { fn } from 'storybook/test';
 import Button from '@synerise/ds-button';
 import Icon, { Add3M } from '@synerise/ds-icon';
 
@@ -43,7 +43,7 @@ export default {
         <IconPicker
           {...args}
           selectedIcon={renderSelected()}
-          onClear={() =>{setIcon(!icon)}}
+          onClear={() => { setIcon(!icon) }}
           onSelect={handleSelect}
         />
       </>

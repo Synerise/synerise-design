@@ -1,6 +1,6 @@
 import React from 'react';
-import { Meta, StoryObj } from '@storybook/react';
-import { action } from '@storybook/addon-actions';
+import { Meta, StoryObj } from '@storybook/react-webpack5';
+import { action } from 'storybook/actions';
 
 import FieldSet from '@synerise/ds-field-set';
 import { ExpanderWrapper } from '@synerise/ds-field-set/dist/FieldSet.styles';
@@ -124,6 +124,7 @@ export const withExpander: Story = {
 
 
 export const Expandable: Story = {
+  tags: ['new'],
   ...withDescription,
   args: {
     title: 'Advanced option',

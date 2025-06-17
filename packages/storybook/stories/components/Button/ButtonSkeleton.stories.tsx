@@ -1,5 +1,5 @@
 import React from 'react';
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/react-webpack5';
 
 import Skeleton from '@synerise/ds-skeleton';
 import { controlFromOptionsArray, fixedWrapper200 } from '../../utils';

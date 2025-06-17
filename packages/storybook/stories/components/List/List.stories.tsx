@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import type { StoryObj, Meta } from '@storybook/react';
-import { action } from '@storybook/addon-actions';
+import type { StoryObj, Meta } from '@storybook/react-webpack5';
+import { action } from 'storybook/actions';
 
 import List, { ListPropsType, TextProps } from '@synerise/ds-list';
 import Checkbox from '@synerise/ds-checkbox';

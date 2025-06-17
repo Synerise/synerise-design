@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import type { Meta, StoryObj } from '@storybook/react';
-import { fn, within, waitFor, expect, userEvent } from '@storybook/test';
+import type { Meta, StoryObj } from '@storybook/react-webpack5';
+import { fn, within, waitFor, expect, userEvent } from 'storybook/test';
 import type { Emoji } from 'unicode-emoji-utils';
 
 import { Input } from '@synerise/ds-input';
@@ -63,7 +63,7 @@ export const Search: StoryObj<EmojiPickerProps> = {
     await userEvent.click(canvas.getByRole('button'));
 
     userEvent.type(await canvas.findByPlaceholderText(PLACEHOLDER), 'grin');
-    
+
     await sleep(500)
   },
 };
@@ -77,13 +77,13 @@ export const PopulateInput: StoryObj<EmojiPickerProps> = {
     },
   },
   play: async ({ canvasElement, args }) => {
-      const canvas = within(canvasElement.parentElement!);
-      await userEvent.click(canvas.getByTestId('emoji-icon-trigger'));
-    
+    const canvas = within(canvasElement.parentElement!);
+    await userEvent.click(canvas.getByTestId('emoji-icon-trigger'));
+
     await userEvent.click(canvas.getAllByTestId('ds-emoji-item')[0]);
     await userEvent.click(canvas.getAllByTestId('ds-emoji-item')[3]);
     await userEvent.click(canvasElement.parentElement!)
-    
+
     await sleep(500)
   },
 };

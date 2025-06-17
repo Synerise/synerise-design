@@ -1,6 +1,6 @@
-import React, { useEffect, useMemo, useState } from 'react';
-import { Meta, StoryObj } from '@storybook/react';
-import { useArgs } from '@storybook/preview-api';
+import React from 'react';
+import { Meta, StoryObj } from '@storybook/react-webpack5';
+import { useArgs, useMemo, useState } from 'storybook/preview-api';
 
 import StepCard, { StepCardProps } from '@synerise/ds-step-card';
 
@@ -14,13 +14,8 @@ import CompletedWithin, { PeriodValue } from '@synerise/ds-completed-within';
 
 import {
   BOOLEAN_CONTROL,
-  NUMBER_CONTROL,
-  REACT_NODE_AS_STRING,
-  fixedWrapper400,
   CLASSNAME_ARG_CONTROL,
   PREFIXCLS_ARG_CONTROL,
-  controlFromOptionsArray,
-  centeredPaddedWrapper,
   fixedWrapper800,
 } from '../../utils';
 import { ConditionExample } from '../Filter/ConditionExample';
@@ -135,4 +130,28 @@ export default {
 
 type Story = StoryObj<StoryProps>;
 
-export const Default: Story = {};
+export const Default: Story = {
+  parameters: {
+    docs: {
+      source: {
+        code: `<StepCard
+  isHeaderVisible={true}
+  showFooter={true}
+  matching={true}
+  showTagInHeader={true}
+  texts={STEP_CARD_TEXTS}
+  headerRightSide={
+    <Tag
+      shape={TagShape.SINGLE_CHARACTER_ROUND}
+      name="A"
+      color={theme.palette['grey-200']}
+      asPill
+    />
+  }
+>
+  <ConditionExample steps={steps} onChange={setSteps} readOnly={args.readOnly} />
+</StepCard>`
+      }
+    }
+  }
+};

@@ -1,6 +1,6 @@
 import React from 'react';
 
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/react-webpack5';
 import { FormattedNumber } from '@synerise/ds-data-format';
 import { fixedWrapper200 } from '../../utils';
 

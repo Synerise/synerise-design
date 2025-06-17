@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Meta, StoryObj } from '@storybook/react';
+import { Meta, StoryObj } from '@storybook/react-webpack5';
 
 import ItemPicker from '@synerise/ds-item-picker';
 import Button from '@synerise/ds-button';
@@ -95,6 +95,13 @@ export default {
 export const Default: Story = {
   decorators: [fixedWrapper300, centeredPaddedWrapper],
   args: { showItemsSectionLabel: false },
+  parameters: {
+    docs: {
+      source: {
+        code: `<ItemPicker isNewVersion items={FLAT_DATA_SOURCE} showItemsSectionLabel={false} />`
+      }
+    }
+  },
 };
 export const RelativeHeight: Story = {
   parameters: { layout: 'padded' },
@@ -118,6 +125,13 @@ export const RelativeHeight: Story = {
 };
 export const WithPlaceholder: Story = {
   decorators: [fixedWrapper300, centeredPaddedWrapper],
+  parameters: {
+    docs: {
+      source: {
+        code: `<ItemPicker isNewVersion placeholder="Set customer" placeholderIcon={ICONS['user']} items={FLAT_DATA_SOURCE} />`
+      }
+    }
+  },
   args: {
     placeholder: 'Set customer',
     placeholderIcon: ICONS['user'],
@@ -126,12 +140,26 @@ export const WithPlaceholder: Story = {
 
 export const SelectedItem: Story = {
   decorators: [fixedWrapper300, centeredPaddedWrapper],
+  parameters: {
+    docs: {
+      source: {
+        code: `<ItemPicker isNewVersion placeholder="Set customer" placeholderIcon={ICONS['user']} items={FLAT_DATA_SOURCE} />`
+      }
+    }
+  },
   args: {
     selectedItem: FLAT_DATA_SOURCE[3],
   },
 };
 export const LargeTriggerSize: Story = {
   decorators: [fixedWrapper300, centeredPaddedWrapper],
+  parameters: {
+    docs: {
+      source: {
+        code: `<ItemPicker isNewVersion selectedItem={FLAT_DATA_SOURCE[3]} triggerProps={{ size: 'large', allowClear: true, withChangeButton: true }} items={FLAT_DATA_SOURCE} />`
+      }
+    }
+  },
   args: {
     triggerProps: {
       size: 'large',
@@ -143,6 +171,15 @@ export const LargeTriggerSize: Story = {
 };
 
 export const CustomTrigger: Story = {
+  parameters: {
+    docs: {
+      source: {
+        code: `<ItemPicker isNewVersion renderTrigger={({ selected, openDropdown }) => (
+    <Button onClick={openDropdown}>{selected?.text || 'Select'}</Button>
+  )} items={FLAT_DATA_SOURCE} />`
+      }
+    }
+  },
   decorators: [fixedWrapper300, centeredPaddedWrapper],
   args: {
     renderTrigger: ({ selected, openDropdown, closeDropdown }) => (
@@ -152,6 +189,19 @@ export const CustomTrigger: Story = {
 };
 
 export const LabelDescriptionAndErrorMessage: Story = {
+  parameters: {
+    docs: {
+      source: {
+        code: `<ItemPicker isNewVersion
+    description="Field description"
+    errorMessage="Error message"
+    tooltip="tooltip text"
+    label="Label"
+    items={FLAT_DATA_SOURCE}
+  />`
+      }
+    }
+  },
   args: {
     ...Default.args,
     description: "Field description",

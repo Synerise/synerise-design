@@ -1,7 +1,7 @@
 import React from 'react';
 
-import { useArgs } from '@storybook/preview-api';
-import type { StoryObj, Meta } from '@storybook/react';
+import { useArgs } from 'storybook/preview-api';
+import type { StoryObj, Meta } from '@storybook/react-webpack5';
 
 import Switch from '@synerise/ds-switch';
 import type { SwitchProps } from '@synerise/ds-switch';
@@ -27,12 +27,12 @@ export default {
     label: REACT_NODE_AS_STRING,
     prefixCls: PREFIXCLS_ARG_CONTROL,
     style: STYLE_ARG_CONTROL,
-    title: { 
+    title: {
       description: 'Title attribute of the &lt;button&gt; html element',
       control: 'text'
     },
     tooltip: REACT_NODE_AS_STRING,
-    withFormElementMargin: { description: 'Renders with bottom margin standard to all form elements (16px)', ...BOOLEAN_CONTROL},
+    withFormElementMargin: { description: 'Renders with bottom margin standard to all form elements (16px)', ...BOOLEAN_CONTROL },
   },
 } as Meta<SwitchProps>;
 
@@ -43,7 +43,7 @@ export const Default: StoryObj<SwitchProps> = {
     function onChange() {
       updateArgs({ checked: !checked });
     }
-    
+
     return (
       <Switch
         {...args}
@@ -60,7 +60,7 @@ export const SwitchWithLabel: StoryObj<SwitchProps> = {
     ...Default.args,
     label: 'Option',
     tooltip: null
-  }, 
+  },
 }
 
 export const SwitchWithError: StoryObj<SwitchProps> = {
@@ -71,7 +71,7 @@ export const SwitchWithError: StoryObj<SwitchProps> = {
     errorText: 'Error',
     tooltip: null
   },
-  
+
 }
 
 export const SwitchWithDescription: StoryObj<SwitchProps> = {

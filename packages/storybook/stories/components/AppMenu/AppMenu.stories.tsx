@@ -1,5 +1,5 @@
 import React from 'react';
-import { Meta, StoryObj } from '@storybook/react';
+import { Meta, StoryObj } from '@storybook/react-webpack5';
 import AppMenu from '@synerise/ds-app-menu';
 import Icon, {
   Add3M, AiSearchColorM, AiSearchGreyM,

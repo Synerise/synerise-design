@@ -1,5 +1,5 @@
 import React from 'react';
-import { Meta, StoryObj } from '@storybook/react';
+import { Meta, StoryObj } from '@storybook/react-webpack5';
 import Toast, { ToastProps } from '@synerise/ds-toast';
 
 import Button from '@synerise/ds-button';

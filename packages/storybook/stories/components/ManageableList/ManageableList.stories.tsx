@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 
-import { action } from '@storybook/addon-actions';
-import type { StoryObj, Meta } from '@storybook/react';
-import { fn } from '@storybook/test';
+import { action } from 'storybook/actions';
+import type { StoryObj, Meta } from '@storybook/react-webpack5';
+import { fn } from 'storybook/test';
 
 import ManageableList, { ManageableListProps } from '@synerise/ds-manageable-list';
 import Icon, { ArrowDownCircleM, ArrowUpCircleM, Settings2S } from '@synerise/ds-icon';

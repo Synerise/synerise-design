@@ -1,5 +1,5 @@
 import React from 'react';
-import { Meta, StoryObj } from '@storybook/react';
+import { Meta, StoryObj } from '@storybook/react-webpack5';
 
 import Divider from '@synerise/ds-divider';
 import { STYLE_ARG_CONTROL, CLASSNAME_ARG_CONTROL, PREFIXCLS_ARG_CONTROL } from '../../utils';

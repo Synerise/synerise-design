@@ -1,5 +1,5 @@
 import React from 'react';
-import { Meta, StoryObj } from '@storybook/react';
+import { Meta, StoryObj } from '@storybook/react-webpack5';
 import DSFlag, { countryCodes } from '@synerise/ds-flag';
 import { FlagWrapper, FlagItem } from './Flag.stories.styles';
 

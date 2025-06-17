@@ -1,7 +1,7 @@
 import React from 'react';
 import Skeleton from '@synerise/ds-skeleton';
 import { SkeletonProps } from '@synerise/ds-skeleton';
-import { Meta, StoryObj } from '@storybook/react';
+import { Meta, StoryObj } from '@storybook/react-webpack5';
 import { controlFromOptionsArray, fixedWrapper200, NUMBER_CONTROL } from '../../utils';
 
 export default {

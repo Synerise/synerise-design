@@ -1,9 +1,9 @@
 import React from 'react';
-import { Meta, StoryObj } from '@storybook/react';
+import { Meta, StoryObj } from '@storybook/react-webpack5';
 
 import ColumnManager, { ColumnManagerProps } from '@synerise/ds-column-manager';
 import Button from '@synerise/ds-button';
-import { fn } from '@storybook/test';
+import { fn } from 'storybook/test';
 
 import { fixedWrapper300 } from '../../utils';
 import { useColumnManager } from './useColumnManager';

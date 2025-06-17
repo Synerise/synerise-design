@@ -1,6 +1,6 @@
 import React from 'react';
-import { Meta, StoryObj } from '@storybook/react';
-import { useArgs } from '@storybook/preview-api';
+import { Meta, StoryObj } from '@storybook/react-webpack5';
+import { useArgs } from 'storybook/preview-api';
 
 import SearchBar, { SearchBarProps } from '@synerise/ds-search-bar';
 import Icon, { SearchM } from '@synerise/ds-icon';
@@ -43,12 +43,12 @@ export default {
 
 export const Default: Story = {};
 export const Autofocus: Story = {
-    args: {
-        autofocus: true
-    }
+  args: {
+    autofocus: true
+  }
 };
 export const Populated: Story = {
-    args: {
-        value: 'Search query'
-    }
+  args: {
+    value: 'Search query'
+  }
 };

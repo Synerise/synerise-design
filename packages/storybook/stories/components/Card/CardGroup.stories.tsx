@@ -1,5 +1,5 @@
 import React from 'react';
-import { Meta, StoryObj } from '@storybook/react';
+import { Meta, StoryObj } from '@storybook/react-webpack5';
 
 import { CardGroup } from '@synerise/ds-card';
 import type { CardGroupProps } from '@synerise/ds-card';

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import { Meta, StoryObj } from '@storybook/react';
+import { Meta, StoryObj } from '@storybook/react-webpack5';
 
-import { within, userEvent, expect, fn } from '@storybook/test';
+import { within, userEvent, expect, fn } from 'storybook/test';
 
 import { DailyDateFilter } from '@synerise/ds-date-range-picker';
 import { DailySchedule } from '@synerise/ds-date-range-picker/dist/RangeFilter/Filters/new/Daily/Daily.types';
@@ -33,7 +33,7 @@ export default {
   argTypes: {
     ...schedulerCommonArgTypes
   },
-  
+
 } as Meta<typeof DailyDateFilter>;
 
 type Story = StoryObj<typeof DailyDateFilter>;
@@ -43,7 +43,7 @@ export const TestMaxEntries: Story = {
     const canvas = within(canvasElement);
     await userEvent.click(canvas.getByText(TEXTS.addTime));
     await userEvent.click(canvas.getByText(TEXTS.addTime));
-    expect(args.onChange).toHaveBeenCalledTimes(2);    
+    expect(args.onChange).toHaveBeenCalledTimes(2);
     expect(canvas.queryByText(TEXTS.addTime)).not.toBeInTheDocument();
   }
 };

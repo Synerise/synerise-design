@@ -1,6 +1,6 @@
 import React from 'react';
-import { Meta, StoryObj } from '@storybook/react';
-import { useArgs } from '@storybook/preview-api';
+import { Meta, StoryObj } from '@storybook/react-webpack5';
+import { useArgs } from 'storybook/preview-api';
 
 import Checkbox from '@synerise/ds-checkbox';
 import type { CheckboxProps } from '@synerise/ds-checkbox';
@@ -45,9 +45,9 @@ export const Default: StoryObj<CheckboxProps> = {
     function onChange() {
       updateArgs({ checked: !checked });
     }
-    return <Checkbox 
-      {...args} 
-      onChange={onChange} 
+    return <Checkbox
+      {...args}
+      onChange={onChange}
     />
   },
   args: {
