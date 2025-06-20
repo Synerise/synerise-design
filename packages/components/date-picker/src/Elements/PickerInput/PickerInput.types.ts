@@ -1,7 +1,8 @@
 import { type SizeType } from 'antd/lib/config-provider/SizeContext';
-import type { CSSProperties, ReactNode } from 'react';
+import type { CSSProperties, HTMLAttributes, ReactNode } from 'react';
 
 import type { DateToFormatOptions } from '@synerise/ds-data-format';
+import type { DataAttributes } from '@synerise/ds-utils';
 
 import type { DatePickerProps } from '../../DatePicker.types';
 
@@ -35,6 +36,7 @@ export type Props = InputProps & {
   errorText?: ReactNode;
   prefixel?: ReactNode;
   suffixel?: ReactNode;
+  triggerHTMLAttributes?: HTMLAttributes<HTMLDivElement> & DataAttributes;
 };
 
 export type PickerInputProps = Props;
