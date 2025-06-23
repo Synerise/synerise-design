@@ -86,6 +86,7 @@ export const DATA_SOURCE = [
     name: 'Candace Olson',
     active: false,
     enabled: false,
+    inactive: true,
     checked: true,
     relations: RELATIONS,
     avatar: {
@@ -141,6 +142,7 @@ export const DATA_SOURCE = [
     name: 'Stella Kozey',
     active: true,
     enabled: true,
+    inactive: true,
     editable: 'Angela Douglas',
     checked: true,
     relations: RELATIONS,
@@ -234,6 +236,7 @@ export const DATA_SOURCE = [
     name: 'Arturo Hoeger',
     active: false,
     enabled: false,
+    inactive: true,
     checked: true,
     relations: RELATIONS,
     avatar: {
@@ -277,6 +280,7 @@ export const DATA_SOURCE_FULL = [
     age: '20',
     address: '143 S Jefferson Street',
     status: 'blocked',
+    inactive: true,
     avatar: {
       initials: 'AN',
       icon: <MailM />,
@@ -337,6 +341,7 @@ export const DATA_SOURCE_FULL = [
     age: '50',
     address: '83886 Heron Close',
     status: 'active',
+    inactive: true,
     avatar: {
       initials: 'AN',
       icon: <MailM />,
@@ -456,6 +461,7 @@ export const DATA_SOURCE_FULL = [
     active: true,
     country: 'es',
     age: '36',
+    inactive: true,
     address: '821 Friesen Tunnel',
     status: 'blocked',
     avatar: {
@@ -1960,7 +1966,6 @@ export const COLUMNS_WITH_AVATARS_LINK: ColumnType[] = [
       return (
         <a href="#">
           <TableCell.AvatarLabelCell
-            className="chromatic-ignore"
             avatar={
               <ObjectAvatar
                 badgeStatus="active"
@@ -1987,7 +1992,7 @@ export const COLUMNS_WITH_TRIGGERS: ColumnType[] = [
     icon: { component: <VarTypeListM /> },
     iconTooltip: { component: <InfoFillS /> },
     render: select => (
-      <Select value={select.value} className="chromatic-ignore">
+      <Select value={select.value}>
         {select.options.map((option: string) => (
           <Select.Option value={option}>{option}</Select.Option>
         ))}
@@ -2036,7 +2041,6 @@ export const COLUMNS_WITH_TRIGGERS: ColumnType[] = [
         value={editable}
         placeholder={'No data'}
         onChange={action('onChange')}
-        className="chromatic-ignore"
       />
     ),
   },
@@ -2050,7 +2054,6 @@ export const COLUMNS_WITH_TRIGGERS: ColumnType[] = [
     iconTooltip: { component: <InfoFillS /> },
     render: name => (
       <TableCell.CopyableCell
-        className="chromatic-ignore"
         value={name}
         confirmMessage="Copied to clipboard!"
         tooltipTimeout={2000}
@@ -2108,7 +2111,7 @@ export const COLUMNS_WITH_LABELS: ColumnType[] = [
     },
     width: '200px',
     sortRender: 'string',
-    render: chromaticCellRender,
+    render: (name, record) => <TableCell.IconLabelCell label={name} disabled={record.inactive} />,
   },
   {
     title: 'Relations',
@@ -2119,7 +2122,6 @@ export const COLUMNS_WITH_LABELS: ColumnType[] = [
     width: '120px',
     render: () => (
       <TableCell.LabelsWithShowMore
-        className="chromatic-ignore"
         items={RELATIONS}
         numberOfVisibleItems={2}
         labelKey={'fieldName'}
@@ -2151,7 +2153,7 @@ export const COLUMNS_WITH_ICONS: ColumnType[] = [
       multiple: 2,
     },
     render: (country, record) => {
-      return <TableCell.FlagLabelCell className="chromatic-ignore" countryCode={country} label={record.name} />;
+      return <TableCell.FlagLabelCell countryCode={country} label={record.name} />;
     },
   },
 
@@ -2167,9 +2169,9 @@ export const COLUMNS_WITH_ICONS: ColumnType[] = [
     width: '240px',
     render: (name, record) => (
       <TableCell.IconLabelCell
-        className="chromatic-ignore"
         icon={{ component: <UserM />, color: '#6a7580' }}
         label={name}
+        disabled={record.inactive}
       />
     ),
   },
@@ -2184,7 +2186,7 @@ export const COLUMNS_WITH_STATUSES: ColumnType[] = [
     ellipsis: true,
     icon: { component: <VarTypeBooleanM /> },
     tooltip: { title: 'Tooltip', description: 'Description' },
-    render: status => <TableCell.StatusLabelCell className="chromatic-ignore" status={status} label={status} />,
+    render: status => <TableCell.StatusLabelCell status={status} label={status} />,
   },
   {
     title: 'Tag',
@@ -2221,7 +2223,7 @@ export const COLUMNS_WITH_STATUSES: ColumnType[] = [
     iconTooltip: { component: <InfoFillS /> },
     render: enabled => (
       <Tooltip title={enabled ? 'Switch off' : 'Switch on'} placement={'topLeft'}>
-        <Switch className="chromatic-ignore" onChange={action('Status change')} checked={enabled} label="" />
+        <Switch onChange={action('Status change')} checked={enabled} label="" />
       </Tooltip>
     ),
   },
@@ -2320,7 +2322,7 @@ export const COLUMNS_WITH_AVATARS: ColumnType[] = [
           loader={
             <div style={{ display: 'flex', width: '100px', alignItems: 'center', margin: '-1px 0 -3px 0' }}>
               <div>{avatar.labelLoader}</div>
-              <div className="chromatic-ignore">
+              <div>
                 <Loader percentFormatter={getPercent} size="S" color="blue" label="Loading..." labelPosition="right" />
               </div>
             </div>

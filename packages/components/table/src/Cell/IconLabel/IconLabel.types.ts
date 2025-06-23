@@ -1,11 +1,13 @@
-import { IconProps } from '@synerise/ds-icon';
-import { WithHTMLAttributes } from '@synerise/ds-utils';
+import type { ReactNode } from 'react';
+import type { IconProps } from '@synerise/ds-icon';
+import type { WithHTMLAttributes } from '@synerise/ds-utils';
 
 export type IconLabelProps = WithHTMLAttributes<
   HTMLDivElement,
   {
-    label: string;
-    icon: IconProps;
+    label?: ReactNode;
+    icon?: IconProps;
+    disabled?: boolean;
   }
 >;
 
