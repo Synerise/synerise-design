@@ -3,10 +3,10 @@ import Icon from '@synerise/ds-icon';
 import * as S from './IconLabel.styles';
 import { IconLabelProps } from './IconLabel.types';
 
-const IconLabelCell = ({ label, icon, ...htmlAttributes }: IconLabelProps) => (
-  <S.IconLabelCell {...htmlAttributes}>
-    <Icon {...icon} />
-    <span>{label}</span>
+const IconLabelCell = ({ label, icon, disabled, ...htmlAttributes }: IconLabelProps) => (
+  <S.IconLabelCell isDisabled={disabled} {...htmlAttributes}>
+    {icon && <Icon {...icon} />}
+    {label && <span>{label}</span>}
   </S.IconLabelCell>
 );
 

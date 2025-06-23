@@ -6,14 +6,15 @@ import * as S from './IconTooltipCell.styles';
 
 const IconTooltipCell = ({
   label,
-  icon = {},
+  icon,
   tooltip = {},
-  tooltipIcon = {},
+  tooltipIcon,
+  disabled,
   ...htmlAttributes
 }: IconTooltipCellProps) => (
-  <S.IconTooltipCell {...htmlAttributes}>
-    {!!icon && <Icon className="main-icon" {...icon} />}
-    {!!label && <S.Label>{label}</S.Label>}
+  <S.IconTooltipCell {...htmlAttributes} isDisabled={disabled}>
+    {icon && <Icon className="main-icon" {...icon} />}
+    {label && <S.Label>{label}</S.Label>}
     {tooltipIcon && (
       <Tooltip {...tooltip}>
         <Icon className="tooltip-icon" {...tooltipIcon} />

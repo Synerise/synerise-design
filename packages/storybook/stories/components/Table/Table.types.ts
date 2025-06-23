@@ -6,6 +6,7 @@ export type AdditionalColumnData = {
   name?: string;
   type?: string;
   visible?: boolean;
+  inactive?: boolean;
   icon?: IconProps;
   iconTooltip?: IconProps;
   textWrap?: string;

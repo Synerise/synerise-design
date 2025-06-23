@@ -1,14 +1,16 @@
-import { IconProps } from '@synerise/ds-icon';
-import TooltipExtendedProps from '@synerise/ds-tooltip/dist/Tooltip.types';
-import { WithHTMLAttributes } from '@synerise/ds-utils';
+import type { ReactNode } from 'react';
+import type { IconProps } from '@synerise/ds-icon';
+import type { TooltipProps } from '@synerise/ds-tooltip';
+import type { WithHTMLAttributes } from '@synerise/ds-utils';
 
 export type IconTooltipCellProps = WithHTMLAttributes<
   HTMLDivElement,
   {
-    label?: React.ReactNode;
+    label?: ReactNode;
     icon?: IconProps;
     tooltipIcon?: IconProps;
-    tooltip?: TooltipExtendedProps;
+    tooltip?: TooltipProps;
+    disabled?: boolean;
   }
 >;
 
