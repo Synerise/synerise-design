@@ -38,6 +38,29 @@
                 "DATE_RANGE": "Faixa de datas",
                 "DYNAMIC_KEY": "Chave dinâmica",
                 "FORMULA": "Fórmula"
+            },
+            "ARRAY": {
+                "TRIGGER_LABEL": "Definir array",
+                "MODAL_TITLE": "Array",
+                "CLEAR_BUTTON": "Limpar tudo",
+                "CREATOR": "Criador",
+                "RAW_BUTTON_LABEL": "Bruto",
+                "SEARCH_PLACEHOLDER": "Pesquisar",
+                "COLLECTOR_PLACEHOLDER": "Digite um valor ou cole múltiplos valores separados por `,`",
+                "COLLECTOR_ADD": "Adicionar",
+                "COLLECTOR_CANCEL": "Cancelar",
+                "SEARCH_CLEAR_TOOLTIP": "Limpar",
+                "DELETE_ITEM_TOOLTIP": "Excluir",
+                "EMPTY_TITLE": "Nenhum item definido ainda",
+                "EMPTY_DESCRIPTION": "",
+                "EMPTY_RESULTS_TITLE": "Nenhum item corresponde à sua busca",
+                "EMPTY_RESULTS_DESCRIPTION": "",
+                "LIMIT_PREFIX": "Limite",
+                "NUMERIC_VALIDATION_ERROR": "Alguns dos valores não são numéricos",
+                "LIMIT_REACHED": "O limite foi atingido",
+                "LIMIT_EXCEEDED": "Adicionar esses itens excederá o limite máximo de itens",
+                "COPIED": "Copiado",
+                "COPY-VALUE": "Copiar valor"
             }
         },
         "OPERATORS": {

@@ -110,12 +110,14 @@ export const ButtonFocus = styled.div`
 
 export const Tag = styled(DSTag)`
   margin: 0 0 0 8px;
+  flex: 0 0 auto;
 `;
 
 export const ButtonLabel = styled.div<{ withTooltip?: boolean }>`
   display: flex;
   align-items: center;
   flex-grow: 1;
+  min-width: 0;
   justify-content: center;
   ${props =>
     props.withTooltip &&

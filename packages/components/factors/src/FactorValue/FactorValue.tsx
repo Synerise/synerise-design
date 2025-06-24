@@ -27,6 +27,7 @@ const FactorValue = ({
   readOnly = false,
   getMenuEntryProps,
   relativeDateProps,
+  arrayProps,
 }: FactorValueProps) => {
   const inputType = React.useMemo(() => {
     if (!selectedFactor) {
@@ -46,6 +47,7 @@ const FactorValue = ({
         parameters={['parameter', 'contextParameter'].indexOf(selectedFactorType) >= 0 ? parameters : undefined}
         withoutTypeSelector={withoutTypeSelector}
         texts={texts}
+        arrayProps={arrayProps}
         formulaEditor={formulaEditor}
         opened={opened}
         loading={loading}
@@ -74,6 +76,7 @@ const FactorValue = ({
     parameters,
     withoutTypeSelector,
     inputProps,
+    arrayProps,
     formulaEditor,
     opened,
     loading,

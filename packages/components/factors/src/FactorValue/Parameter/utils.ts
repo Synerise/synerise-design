@@ -1,4 +1,4 @@
-import { ParameterGroup } from 'Factors.types';
+import type { ParameterGroup } from '../../Factors.types';
 import { DropdownItem } from './Parameter.types';
 import { DividerItem, TitleItem } from './ParameterDropdown';
 

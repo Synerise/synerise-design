@@ -1,12 +1,15 @@
 import type { ReactText, ReactNode, ComponentType } from 'react';
 
+import type { CollectorValue } from '@synerise/ds-collector';
 import type { DateFilter, RelativeUnits } from '@synerise/ds-date-range-picker/dist/date.types';
-import type { Texts as DateRangeTexts } from '@synerise/ds-date-range-picker/dist/DateRangePicker.types';
+import type { DateRangePickerTexts as DateRangeTexts } from '@synerise/ds-date-range-picker';
 import type { MenuItemProps } from '@synerise/ds-menu';
 import type { AutoResizeProp, InputProps } from '@synerise/ds-input';
 import type { InformationCardProps } from '@synerise/ds-information-card';
 import type { ListItemProps } from '@synerise/ds-list-item';
 import type { LiteralStringUnion, DeepPartial } from '@synerise/ds-utils';
+
+import type { ArrayValueElement } from './FactorValue/Array/Array.types';
 
 export const ALL_FACTOR_TYPES = [
   'text',
@@ -63,6 +66,9 @@ export type ParameterItem = {
   excludeFromSearchResults?: boolean;
 };
 
+export type ArrayItemType = 'string' | 'number';
+export type ArrayValue = ArrayValueElement<'string'>[] | ArrayValueElement<'number'>[];
+
 export type FactorValueType =
   | string
   | number
@@ -72,6 +78,7 @@ export type FactorValueType =
   | undefined
   | DynamicKeyValueType
   | FormulaValueType
+  | ArrayValue
   | ParameterValueType
   | Partial<DateFilter>;
 
@@ -112,6 +119,29 @@ export type FactorsTexts = {
     buttonPlaceholder: string;
     defaultName: string;
   };
+  array: {
+    triggerLabel: ReactNode;
+    modalTitle: ReactNode;
+    emptyTitle: ReactNode;
+    emptyDescription: ReactNode;
+    emptyResultsTitle: ReactNode;
+    emptyResultsDescription: ReactNode;
+    searchPlaceholder: string;
+    searchClearTooltip: ReactNode;
+    limitPrefix: ReactNode;
+    collectorPlaceholder: string;
+    collectorAdd: ReactNode;
+    collectorCancel: ReactNode;
+    creatorButtonLabel: ReactNode;
+    rawButtonLabel: ReactNode;
+    clearButtonLabel: ReactNode;
+    deleteItemTooltip: ReactNode;
+    numericValidationError: ReactNode;
+    limitReached: ReactNode;
+    limitExceeded: ReactNode;
+    copiedTooltip: ReactNode;
+    copyTooltip: ReactNode;
+  };
   parameter: {
     searchPlaceholder: string;
     noResults: string;
@@ -132,6 +162,12 @@ export type FactorsTexts = {
 
 export type FactorTypeMapping = Record<DefinedFactorTypes, Partial<SelectedFactorType>>;
 
+export type ArrayProps = {
+  itemType?: ArrayItemType;
+  limit?: number;
+  collectorSuggestions?: CollectorValue[];
+};
+
 export type FactorsProps = {
   factorKey?: ReactText;
   error?: boolean;
@@ -148,6 +184,7 @@ export type FactorsProps = {
   onDeactivate?: () => void;
   onChangeValue: (value: FactorValueType) => void;
   value: FactorValueType;
+  arrayProps?: ArrayProps;
   textType?: LiteralStringUnion<'autocomplete' | 'expansible' | 'default'>;
   autoResize?: AutoResizeProp;
   relativeDateProps?: {
@@ -236,6 +273,7 @@ export type FactorValueProps = Pick<
   | 'autoResize'
   | 'readOnly'
   | 'relativeDateProps'
+  | 'arrayProps'
   | 'getMenuEntryProps'
 > & {
   texts: FactorsTexts;
@@ -258,6 +296,7 @@ export type FactorValueComponentProps = Pick<
   | 'inputProps'
   | 'autoResize'
   | 'readOnly'
+  | 'arrayProps'
   | 'getMenuEntryProps'
 > & {
   texts: FactorsTexts;

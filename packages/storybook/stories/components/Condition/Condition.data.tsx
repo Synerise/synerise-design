@@ -386,7 +386,10 @@ export const STEPS_POPULATED = [
           ...DEFAULT_FACTOR_VALUE,
           selectedFactorType: 'array' as const,
           defaultFactorType: 'text' as const,
-          value: '1,2,3,4,5,67',
+          value: [100, 2630, 5160, 7690, 10220, 12750, 15280, 17810, 20340, 22870, 25400, 27930, 30460, 32990, 35520, 38050, 40580, 43110, 45640, 48170, 50700, 53230, 55760, 58290, 60820, 63350, 65880, 68410, 70940, 73470, 76000, 78530, 81060, 83590, 86120, 88650, 91180, 93710, 96240, 98770],
+          arrayProps: {
+            itemType: 'number'
+          },
           availableFactorTypes: getAvailableFactorTypes(OPERATORS_ITEMS[10]),
         },
       },
@@ -411,7 +414,7 @@ export const STEPS_POPULATED = [
           ...DEFAULT_FACTOR_VALUE,
           selectedFactorType: 'array' as const,
           defaultFactorType: 'text' as const,
-          value: '1,2,3,4,5,671,2,3,4,5,671,2,3,4,5,671,2,3,4,5,671,2,3,4,5,671,2,3,4,5,671,2,3,4,5,671,2,3,4,5,67',
+          value: ['Apple', 'Banana', 'Carrot', 'Dragonfruit', 'Eggplant', 'Fig', 'Grape', 'Honeydew', 'Iceberg', 'Jalapeno', 'Kiwi', 'Lemon', 'Mango', 'Nectarine', 'Orange', 'Papaya', 'Quince', 'Raspberry', 'Strawberry', 'Tomato', 'Ugli fruit', 'Vanilla bean', 'Watermelon', 'Xigua', 'Yam', 'Zucchini', 'Apricot', 'Blueberry', 'Cantaloupe', 'Date', 'Elderberry', 'Feijoa', 'Guava', 'Huckleberry', 'Indian fig', 'Jackfruit', 'Kumquat', 'Lime', 'Mulberry', 'Nutmeg', 'Olive', 'Peach', 'Quinoa', 'Radish', 'Spinach', 'Turnip', 'Ube', 'Voavanga', 'Walnut', 'Yuzu'],
           availableFactorTypes: getAvailableFactorTypes(OPERATORS_ITEMS[10]),
         },
       },

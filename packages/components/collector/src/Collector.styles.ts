@@ -1,5 +1,7 @@
+import styled, { css, FlattenSimpleInterpolation } from 'styled-components';
 import {
   InputWrapper,
+  IconWrapper,
   BorderLessInput,
   ContentAbove,
   Label,
@@ -9,7 +11,6 @@ import {
   ValueText,
 } from '@synerise/ds-input/dist/InputMultivalue/InputMultivalue.styles';
 import DSScrollbar from '@synerise/ds-scrollbar';
-import styled, { css, FlattenSimpleInterpolation } from 'styled-components';
 import { InputProps } from '@synerise/ds-input';
 import Value from '@synerise/ds-input/dist/InputMultivalue/Elements/Value';
 import Button from '@synerise/ds-button';
@@ -122,7 +123,19 @@ export const SearchWrapper = styled.div`
   flex: 1 0 auto;
 `;
 
-export { Value as CollectorValue };
+export const CollectorValue = styled(Value)<{ hasError?: boolean }>`
+  ${props =>
+    props.hasError &&
+    css`
+      && {
+        background: ${props.theme.palette['red-600']};
+        color: ${props.theme.palette.white};
+        ${IconWrapper} {
+          color: ${props.theme.palette.white};
+        }
+      }
+    `}
+`;
 export { ContentAbove };
 export { Label };
 export { ContentBelow };

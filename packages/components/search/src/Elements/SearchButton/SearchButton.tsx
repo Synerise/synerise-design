@@ -11,6 +11,7 @@ const SearchButton: React.FC<SearchButtonProps> = ({
   onClick,
   inputFocused,
   clickable,
+  disabled,
 }: SearchButtonProps) => {
   return (
     <S.SearchButton
@@ -18,12 +19,13 @@ const SearchButton: React.FC<SearchButtonProps> = ({
       hidden={hidden}
       className="SearchButton"
       inputFocused={inputFocused}
-      clickable={clickable}
+      clickable={!disabled && clickable}
       onClick={onClick}
     >
       <Button
         mode="single-icon"
         type="ghost"
+        disabled={disabled}
         className={inputOpen ? 'btn-search-open' : 'btn-search'}
         data-testid="btn"
       >

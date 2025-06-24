@@ -5,5 +5,6 @@ export type ValuesProps = {
   onDeselect?: (value: CollectorValue) => void;
   focused: boolean;
   disabled: boolean;
+  hasError?: boolean;
   displayLookupKey: string;
 };

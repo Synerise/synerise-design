@@ -39,7 +39,7 @@ export const FACTORS_TEXTS = {
     noResults: 'No results',
     loadingParameter: 'Loading parameters',
     showMore: 'Show more',
-    recentItemsGroupName: 'Recent', 
+    recentItemsGroupName: 'Recent',
     allItemsGroupName: 'All'
   },
   valuePlaceholder: 'Value',
@@ -204,3 +204,12 @@ export const SELECTED_PARAMETER: FactorValueType = {
   icon: <VarTypeStringM />,
   type: '',
 };
+
+
+
+export const ARRAY_VALUE = ['TEST VALUE', 'TEST VALUE 2', 'TEST VALUE 3'];
+export const ARRAY_VALUE_NUMERIC = [1212, 234234, 345534];
+
+export const COLLECTOR_PLACEHOLDER = 'Type values here, separated by ,';
+export const COLLECTOR_ADD = 'Add items';
+export const COLLECTOR_VALIDATION_ERROR = 'One of the values is not a number';

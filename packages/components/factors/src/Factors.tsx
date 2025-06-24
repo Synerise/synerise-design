@@ -26,6 +26,7 @@ import NumberInput from './FactorValue/Number/NumberInput';
 import DateRangeInput from './FactorValue/DateRange/DateRange';
 import RelativeDateInput from './FactorValue/RelativeDate/RelativeDate';
 import { useTexts } from './hooks/useTexts';
+import { Array } from './FactorValue/Array/Array';
 
 export const FACTOR_TYPE_MAPPING: Record<DefinedFactorTypes, SelectedFactorType> = {
   text: {
@@ -61,7 +62,7 @@ export const FACTOR_TYPE_MAPPING: Record<DefinedFactorTypes, SelectedFactorType>
   array: {
     icon: <ListM />,
     name: 'Array',
-    component: TextInput,
+    component: Array,
   },
   date: {
     icon: <Calendar2M />,
@@ -106,6 +107,7 @@ const Factors = ({
   customFactorValueComponents,
   error,
   inputProps,
+  arrayProps,
   readOnly,
   getMenuEntryProps,
 }: FactorsProps) => {
@@ -166,6 +168,7 @@ const Factors = ({
         texts={allTexts}
         opened={opened}
         inputProps={inputProps}
+        arrayProps={arrayProps}
         loading={loading}
         factorKey={factorKey}
         preventAutoloadData={preventAutoloadData}

@@ -11,6 +11,7 @@ export { default as useResizeObserver } from './useResizeObserver/useResizeObser
 export { default as useBreakpoint } from './useBreakpoint/useBreakpoint';
 export { default as useCombinedRefs } from './useCombinedRefs/useCombinedRefs';
 export { default as usePrevious } from './usePrevious/usePrevious';
+export { useIsMounted } from './useIsMounted/useIsMounted';
 export { default as useElementInView } from './useElementInView/useElementInView';
 export { default as useOverscrollBlock } from './useOverscrollBlock/useOverscrollBlock';
 export { default as useResizeToFit } from './useResizeToFit/useResizeToFit';

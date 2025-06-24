@@ -23,6 +23,7 @@ export type SearchInputProps = {
   value: string;
   moveCursorToEnd?: boolean;
   disableInput?: boolean;
+  disabled?: boolean;
   inputProps?: Partial<InputProps>;
   searchTooltipProps?: Partial<TooltipProps>;
 };

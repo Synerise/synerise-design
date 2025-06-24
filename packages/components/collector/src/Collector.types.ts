@@ -1,13 +1,14 @@
 import type { ReactNode } from 'react';
 
-import { ButtonProps } from '@synerise/ds-button';
-import { ScrollbarAdditionalProps } from '@synerise/ds-scrollbar';
+import type { ButtonProps } from '@synerise/ds-button';
+import type { ScrollbarAdditionalProps } from '@synerise/ds-scrollbar';
+import { DataAttributes } from '@synerise/ds-utils';
 
 export type CollectorProps = {
-  addButtonProps?: Partial<ButtonProps>;
+  addButtonProps?: Partial<ButtonProps & DataAttributes>;
   allowCustomValue?: boolean;
   allowMultipleValues?: boolean;
-  cancelButtonProps?: Partial<ButtonProps>;
+  cancelButtonProps?: Partial<ButtonProps & DataAttributes>;
   className?: string;
   description?: ReactNode;
   disabled?: boolean;

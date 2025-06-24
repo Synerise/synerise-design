@@ -29,9 +29,10 @@ Some features of the Modal component have been deprecated. Please refer to the [
 
 ## ModalProps
 
-| Property            | Description                                                                                                | Type                                                                   | Default                                         | Version |
-| ------------------- | ---------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------- | ----------------------------------------------- | ------- |
-| description         | The modal dialog's description                                                                             | string                                                                 | -                                               |
+| Property            | Description                                                                                                | Type                                                                   | Default                                         | 
+| ------------------- | ---------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------- | ----------------------------------------------- | 
+| description         | The modal dialog's description                                                                             | ReactNode                                                              | -                                               |
+| headerBottomBar     | Bottom bar rendered below title and description                                                            | ReactNode                                                              | -                                               |
 | headerActions       | Append additional content to header actions space                                                          | React.ReactNode                                                        | -                                               |
 | size                | The modal size                                                                                             | `small` / `medium` / `large` / `extraLarge`/ `fullSize`/ `fullScreen`. | -                                               |
 | bodyBackground      | Set color for body of modal                                                                                | `white` / `grey`                                                       | `white`                                         |
@@ -66,7 +67,7 @@ Some features of the Modal component have been deprecated. Please refer to the [
 | mask                | Whether show mask or not.                                                                                  | Boolean                                                                | `true`                                          |
 | closeIcon           | custom close icon                                                                                          | ReactNode                                                              | -                                               |
 | maskStyle           | Style for modal's mask element.                                                                            | object                                                                 | {}                                              |
-| maxHeightViewport   | height of modal with with scrollbar                                                                        | true / number                                                                 | 80                                              |
+| maxHeightViewport   | height of modal with with scrollbar                                                                        | true / number                                                          | 80                                              |
 
 
 

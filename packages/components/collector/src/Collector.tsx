@@ -190,7 +190,6 @@ const Collector = ({
       if (pastedText.includes(valuesSeparator)) {
         const pastedItems = allowMultipleValues ? pastedText.split(valuesSeparator) : [pastedText];
         const newValues = filterOutNullishArrayItems(pastedItems.map(createItem));
-
         if (newValues.length) {
           onMultipleItemsSelect && onMultipleItemsSelect(newValues);
         }
@@ -210,8 +209,8 @@ const Collector = ({
     if (allowMultipleValues) {
       onItemSelect(newValue);
       setValue('');
-    } else {
-      onConfirm && onConfirm([newValue]);
+    } else if (onConfirm) {
+      onConfirm([newValue]);
       !keepSearchQueryOnSelect && clear();
     }
   };
@@ -227,10 +226,18 @@ const Collector = ({
 
   const handleKeyPress = (event: KeyboardEvent<HTMLInputElement>) => {
     if (event.key === 'Enter') {
-      addItem();
+      if (value) {
+        addItem();
+      } else if (selectedValues.length) {
+        onConfirmCallback();
+      }
+      return;
     }
-    if (allowPaste && event.key === valuesSeparator) {
-      value.trim() ? addItem() : event.preventDefault();
+    if (allowCustomValue && event.key === valuesSeparator) {
+      event.preventDefault();
+      if (value.trim()) {
+        addItem();
+      }
     }
   };
 
@@ -240,10 +247,13 @@ const Collector = ({
   }, [onCancel, clear]);
 
   const onConfirmCallback = useCallback(() => {
+    if (!onConfirm) {
+      return;
+    }
     if (allowMultipleValues) {
       const createdItem = value && createItem(value);
       const finalItems = createdItem ? [...selectedValues, createdItem] : selectedValues;
-      onConfirm && onConfirm(finalItems);
+      onConfirm(finalItems);
       clear();
       return;
     }
@@ -355,6 +365,7 @@ const Collector = ({
           hidden={!!disableSearch && !!selectedValues.length}
           placeholder={selectedValues && selectedValues.length ? undefined : texts?.placeholder}
           hasValues={!!selectedValues?.length}
+          data-testid="ds-collector-input"
         />
       </S.SearchWrapper>
     </S.MainContent>
@@ -405,7 +416,7 @@ const Collector = ({
               disabled={!!disabled}
               showCancel={!!value || !!selectedValues?.length}
               texts={texts}
-              addButtonProps={{ ...addButtonProps, disabled: !isAddActive }}
+              addButtonProps={{ disabled: !isAddActive, ...addButtonProps }}
               cancelButtonProps={cancelButtonProps}
             />
           </S.RightSide>

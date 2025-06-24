@@ -1,5 +1,5 @@
-import { ExpressionM, FolderM, VarTypeNumberM, VarTypeStringM } from '@synerise/ds-icon';
 import React from 'react';
+import { ExpressionM, FolderM, VarTypeNumberM, VarTypeStringM } from '@synerise/ds-icon';
 
 export const FACTORS_TEXTS = {
   datePicker: {
@@ -26,6 +26,9 @@ export const FACTORS_TEXTS = {
   modalTitle: 'Value',
   relativeDate: {
     triggerPlaceholder: 'Select date'
+  },
+  array: {
+    rawButtonLabel: 'Raw'
   }
 }
 
