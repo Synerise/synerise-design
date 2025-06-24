@@ -1,11 +1,9 @@
 import React, { useRef } from 'react';
 import classnames from 'classnames';
+import { Modal as AntModal } from 'antd';
 
 import '@synerise/ds-core/dist/js/style';
-import { Modal as AntModal } from 'antd';
-import Scrollbar from '@synerise/ds-scrollbar';
 
-import { useResizeObserver } from '@synerise/ds-utils';
 import { ModalFooter, ModalFooterProps } from './Elements/ModalFooter';
 import { ModalTitle } from './Elements/ModalTitle';
 import type { ModalProps } from './Modal.types';
@@ -31,9 +29,9 @@ export const Modal = (props: ModalProps) => {
     headerActions,
     title,
     description,
+    headerBottomBar,
     size,
     blank,
-    settingButtonText,
     titleContainerStyle,
     maxViewportHeight,
     children,
@@ -48,8 +46,6 @@ export const Modal = (props: ModalProps) => {
   );
 
   const mainSlideRef = useRef<HTMLDivElement>(null);
-  const { height } = useResizeObserver(mainSlideRef);
-  const DEFAULT_HEIGHT = 999999;
   const DEFAULT_VIEWPORT_HEIGHT = 80;
 
   const maxHeight = () => {
@@ -72,12 +68,12 @@ export const Modal = (props: ModalProps) => {
       isFullscreen={isFullscreen}
       width={size && mapSizeToWidth[size]}
       closable={false}
-      title={(title || description || blank) && <ModalTitle {...props} />}
+      title={(title || description || blank || headerBottomBar) && <ModalTitle {...props} />}
       footer={antModalProps.footer !== null ? antModalProps.footer || <ModalFooter {...props} /> : null}
     >
       {maxHeight() ? (
         <S.ModalWrapper ref={mainSlideRef}>
-          <Scrollbar maxHeight={height || DEFAULT_HEIGHT}>{children}</Scrollbar>
+          <S.Scrollbar absolute>{children}</S.Scrollbar>
         </S.ModalWrapper>
       ) : (
         children

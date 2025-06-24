@@ -8,7 +8,7 @@ import * as S from './ModalTitle.styles';
 
 type ModalTitleProps = Pick<
   ModalProps,
-  'headerActions' | 'onCancel' | 'titleContainerStyle' | 'blank' | 'description' | 'title'
+  'headerActions' | 'onCancel' | 'titleContainerStyle' | 'blank' | 'description' | 'title' | 'headerBottomBar'
 >;
 
 export const ModalTitle = ({
@@ -18,6 +18,7 @@ export const ModalTitle = ({
   onCancel,
   title,
   description,
+  headerBottomBar,
 }: ModalTitleProps) => {
   return (
     <>
@@ -26,27 +27,32 @@ export const ModalTitle = ({
           <Icon component={<CloseM />} />
         </Button>
       )}
-      {title && (
-        <S.TitleContainer style={titleContainerStyle} data-testid="modal-title">
-          <S.Title level={3}>{title}</S.Title>
-          <S.ActionButtons>
-            {headerActions}
-            {onCancel && (
-              <Button
-                mode="single-icon"
-                data-testid="modal-close"
-                className="close-modal"
-                type="ghost"
-                onClick={onCancel}
-              >
-                <Icon component={<CloseM />} />
-              </Button>
-            )}
-          </S.ActionButtons>
-        </S.TitleContainer>
-      )}
+      {(title || description) && (
+        <S.ModalTitleWrapper withDescription={!!description}>
+          {title && (
+            <S.TitleContainer style={titleContainerStyle} data-testid="modal-title">
+              <S.Title level={3}>{title}</S.Title>
+              <S.ActionButtons>
+                {headerActions}
+                {onCancel && (
+                  <Button
+                    mode="single-icon"
+                    data-testid="modal-close"
+                    className="close-modal"
+                    type="ghost"
+                    onClick={onCancel}
+                  >
+                    <Icon component={<CloseM />} />
+                  </Button>
+                )}
+              </S.ActionButtons>
+            </S.TitleContainer>
+          )}
 
-      {description && <S.Description>{description}</S.Description>}
+          {description && <S.Description>{description}</S.Description>}
+        </S.ModalTitleWrapper>
+      )}
+      {headerBottomBar && <S.BottomBar>{headerBottomBar}</S.BottomBar>}
     </>
   );
 };

@@ -85,7 +85,30 @@
         "VALUE_PLACEHOLDER": "Wartość",
         "KEY_PLACEHOLDER": "Klucz"
       },
-      "MODAL_APPLY": "Zapisz"
+      "MODAL_APPLY": "Zapisz",
+      "ARRAY": {
+        "TRIGGER_LABEL": "Zdefiniuj tablicę",
+        "MODAL_TITLE": "Tablica",
+        "CLEAR_BUTTON": "Wyczyść",
+        "CREATOR": "Kreator",
+        "RAW_BUTTON_LABEL": "Wartości",
+        "SEARCH_PLACEHOLDER": "Szukaj",
+        "COLLECTOR_PLACEHOLDER": "Wpisz wartość lub wklej wiele oddzielonych `,`",
+        "COLLECTOR_ADD": "Dodaj",
+        "COLLECTOR_CANCEL": "Anuluj",
+        "SEARCH_CLEAR_TOOLTIP": "Wyczyść",
+        "DELETE_ITEM_TOOLTIP": "Usuń",
+        "EMPTY_TITLE": "Brak wartości",
+        "EMPTY_DESCRIPTION": "",
+        "EMPTY_RESULTS_TITLE": "Brak wyników wyszukiwania",
+        "EMPTY_RESULTS_DESCRIPTION": "",
+        "LIMIT_PREFIX": "Limit",
+        "NUMERIC_VALIDATION_ERROR": "Niektóre wartości nie są liczbami",
+        "LIMIT_REACHED": "Limit zostal osiągnięty",
+        "LIMIT_EXCEEDED": "Ilość wartości przekracza limit",
+        "COPIED": "Skopiowano",
+        "COPY-VALUE": "Kopiuj wartość"
+      }
     },
     "DESCRIPTION": {
       "COPY-VALUE": "Kopiuj wartość",

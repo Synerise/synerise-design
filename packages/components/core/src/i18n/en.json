@@ -69,6 +69,29 @@
         "DATE_RANGE": "Date range",
         "DYNAMIC_KEY": "Dynamic key",
         "FORMULA": "Formula"
+      },
+      "ARRAY": {
+        "TRIGGER_LABEL": "Define array",
+        "MODAL_TITLE": "Array",
+        "CLEAR_BUTTON": "Clear all",
+        "CREATOR": "Creator",
+        "RAW_BUTTON_LABEL": "Raw",
+        "SEARCH_PLACEHOLDER": "Search",
+        "COLLECTOR_PLACEHOLDER": "Type value or paste multiple values separated by `,`",
+        "COLLECTOR_ADD": "Add",
+        "COLLECTOR_CANCEL": "Cancel",
+        "SEARCH_CLEAR_TOOLTIP": "Clear",
+        "DELETE_ITEM_TOOLTIP": "Delete",
+        "EMPTY_TITLE": "No items defined yet",
+        "EMPTY_DESCRIPTION": "",
+        "EMPTY_RESULTS_TITLE": "No items match your query",
+        "EMPTY_RESULTS_DESCRIPTION": "",
+        "LIMIT_PREFIX": "Limit",
+        "NUMERIC_VALIDATION_ERROR": "Some of the values are not a number",
+        "LIMIT_REACHED": "Limit has been reached",
+        "LIMIT_EXCEEDED": "Adding these items will exceed maximum items limit",
+        "COPIED": "Copied",
+        "COPY-VALUE": "Copy value"
       }
     },
     "OPERATORS": {

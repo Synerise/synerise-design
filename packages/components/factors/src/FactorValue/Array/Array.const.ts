@@ -1,0 +1,1 @@
+export const MODAL_VIEWPORT_HEIGHT = 80;

@@ -1,7 +1,8 @@
 import { useMemo } from 'react';
 import { useIntl } from 'react-intl';
 import { merge } from 'lodash';
-import { DeepPartial } from '@synerise/ds-utils';
+
+import type { DeepPartial } from '@synerise/ds-utils';
 import { utils as dateRangePickerUtils } from '@synerise/ds-date-range-picker';
 
 import type { FactorsTexts } from '../Factors.types';
@@ -101,6 +102,93 @@ export const useTexts = (defaultTexts?: DeepPartial<FactorsTexts>): FactorsTexts
               defaultMessage: 'Formula',
             }),
             defaultName: intl.formatMessage({ id: 'DS.FACTORS.FORMULA.DEFAULT_NAME', defaultMessage: 'Formula' }),
+          },
+          array: {
+            triggerLabel: intl.formatMessage({
+              id: 'DS.FACTORS.ARRAY.TRIGGER_LABEL',
+              defaultMessage: 'Define array',
+            }),
+            modalTitle: intl.formatMessage({
+              id: 'DS.FACTORS.ARRAY.MODAL_TITLE',
+              defaultMessage: 'Array',
+            }),
+            clearButtonLabel: intl.formatMessage({
+              id: 'DS.FACTORS.ARRAY.CLEAR_BUTTON',
+              defaultMessage: 'Clear all',
+            }),
+            creatorButtonLabel: intl.formatMessage({
+              id: 'DS.FACTORS.ARRAY.CREATOR',
+              defaultMessage: 'Creator',
+            }),
+            rawButtonLabel: intl.formatMessage({
+              id: 'DS.FACTORS.ARRAY.RAW_BUTTON_LABEL',
+              defaultMessage: 'Raw',
+            }),
+            searchPlaceholder: intl.formatMessage({
+              id: 'DS.FACTORS.ARRAY.SEARCH_PLACEHOLDER',
+              defaultMessage: 'Search',
+            }),
+            collectorPlaceholder: intl.formatMessage({
+              id: 'DS.FACTORS.ARRAY.COLLECTOR_PLACEHOLDER',
+              defaultMessage: 'Type value or paste multiple values separated by `,`',
+            }),
+            collectorAdd: intl.formatMessage({
+              id: 'DS.FACTORS.ARRAY.COLLECTOR_ADD',
+              defaultMessage: 'Add',
+            }),
+            collectorCancel: intl.formatMessage({
+              id: 'DS.FACTORS.ARRAY.COLLECTOR_CANCEL',
+              defaultMessage: 'Cancel',
+            }),
+            searchClearTooltip: intl.formatMessage({
+              id: 'DS.FACTORS.ARRAY.SEARCH_CLEAR_TOOLTIP',
+              defaultMessage: 'Clear',
+            }),
+            deleteItemTooltip: intl.formatMessage({
+              id: 'DS.FACTORS.ARRAY.DELETE_ITEM_TOOLTIP',
+              defaultMessage: 'Delete',
+            }),
+            emptyTitle: intl.formatMessage({
+              id: 'DS.FACTORS.ARRAY.EMPTY_TITLE',
+              defaultMessage: 'No items defined yet',
+            }),
+            emptyDescription: intl.formatMessage({
+              id: 'DS.FACTORS.ARRAY.EMPTY_DESCRIPTION',
+              defaultMessage: 'This is a simple empty state example text. You can easily change it.',
+            }),
+            emptyResultsTitle: intl.formatMessage({
+              id: 'DS.FACTORS.ARRAY.EMPTY_RESULTS_TITLE',
+              defaultMessage: 'No items match your query',
+            }),
+            emptyResultsDescription: intl.formatMessage({
+              id: 'DS.FACTORS.ARRAY.EMPTY_RESULTS_DESCRIPTION',
+              defaultMessage: 'This is a simple empty state example text. You can easily change it.',
+            }),
+            limitPrefix: intl.formatMessage({
+              id: 'DS.FACTORS.ARRAY.LIMIT_PREFIX',
+              defaultMessage: 'Limit',
+            }),
+            numericValidationError: intl.formatMessage({
+              id: 'DS.FACTORS.ARRAY.NUMERIC_VALIDATION_ERROR',
+              defaultMessage: 'Some of the values are not a number',
+            }),
+            limitReached: intl.formatMessage({
+              id: 'DS.FACTORS.ARRAY.LIMIT_REACHED',
+              defaultMessage: 'Limit has been reached',
+            }),
+            limitExceeded: intl.formatMessage({
+              id: 'DS.FACTORS.ARRAY.LIMIT_EXCEEDED',
+              defaultMessage: 'Adding these items will exceed maximum items limit',
+            }),
+
+            copiedTooltip: intl.formatMessage({
+              id: 'DS.FACTORS.ARRAY.COPIED',
+              defaultMessage: 'Copied',
+            }),
+            copyTooltip: intl.formatMessage({
+              id: 'DS.FACTORS.ARRAY.COPY-VALUE',
+              defaultMessage: 'Copy value',
+            }),
           },
           parameter: {
             searchPlaceholder: intl.formatMessage({

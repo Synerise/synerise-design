@@ -1,6 +1,7 @@
 import React, { useCallback, forwardRef, useRef, useEffect, useState } from 'react';
 import PerfectScrollbar from '@ofsajd/react-perfect-scrollbar';
-// import { debounce } from 'lodash';
+import classnames from 'classnames';
+
 import { useCombinedRefs, useResizeObserver } from '@synerise/ds-utils';
 import '../style/index.less';
 import * as S from './VirtualScrollbar.styles';
@@ -92,6 +93,8 @@ export const VirtualScrollbar = forwardRef<HTMLElement, VirtualScrollbarProps>(
       };
     });
 
+    const className = classnames('perfect-scrollbar-wrapper', { 'large-size': largeSize });
+
     return (
       <PerfectScrollbar
         containerRef={ref => {
@@ -101,7 +104,7 @@ export const VirtualScrollbar = forwardRef<HTMLElement, VirtualScrollbarProps>(
         onScrollUp={handleScrollUp}
         options={{ ...scrollbarOptions, minScrollbarLength: 48 }}
         onYReachEnd={handleReachEnd}
-        className={`${largeSize ? 'large-size' : ''}`}
+        className={className}
       >
         <S.ScrollbarContent className={`${classes}`} style={{ maxHeight }} data-testid="virtual-scrollbar">
           <S.ScrollbarWrapper

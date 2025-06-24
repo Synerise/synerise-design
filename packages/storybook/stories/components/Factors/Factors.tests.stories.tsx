@@ -5,6 +5,8 @@ import { ALL_FACTOR_TYPES } from '@synerise/ds-factors';
 import type { FactorsProps } from '@synerise/ds-factors';
 
 import FactorsMeta, { AllTypes, Default, RelativeDate } from './Factors.stories';
+import { ARRAY_VALUE, ARRAY_VALUE_NUMERIC, COLLECTOR_ADD, COLLECTOR_PLACEHOLDER, COLLECTOR_VALIDATION_ERROR } from './Factors.data';
+
 import { centeredPaddedWrapper, sleep } from '../../utils';
 
 export default {
@@ -187,17 +189,180 @@ export const ArrayEditorOpen: StoryObj<FactorsProps> = {
   args: {
     ...SwitchFactorType.args,
     selectedFactorType: 'array',
-    value: 'TEST VALUE',
+    value: ARRAY_VALUE,
   },
   play: async ({ canvasElement, step, args }) => {
     const canvas = within(canvasElement.parentElement!);
 
     await step('open array modal', async () => {
-      const trigger = within(canvas.getByTestId('ds-factors-array-default'));
-      await userEvent.click(trigger.getByTestId('ds-factors-expansible-icon'));
+      await userEvent.click(canvas.getByTestId('ds-factors-array'));
       await waitFor(() => expect(canvas.getByRole('dialog')).toBeInTheDocument());
     });
-    expect(canvas.getByText(args.value as string)).toBeInTheDocument();
+    await waitFor(() => {
+      ARRAY_VALUE.forEach(item => expect(canvas.getByDisplayValue(item)).toBeInTheDocument());
+    })
+  },
+};
+
+
+export const ArrayEditorOpenRawMode: StoryObj<FactorsProps> = {
+  ...SwitchFactorType,
+  args: {
+    ...SwitchFactorType.args,
+    selectedFactorType: 'array',
+    value: ARRAY_VALUE,
+  },
+  play: async ({ canvasElement, step, args }) => {
+    const canvas = within(canvasElement.parentElement!);
+
+    await step('open array modal', async () => {
+      await userEvent.click(canvas.getByTestId('ds-factors-array'));
+      await waitFor(() => expect(canvas.getByRole('dialog')).toBeInTheDocument());
+    });
+    await waitFor(() => {
+      ARRAY_VALUE.forEach(item => expect(canvas.getByDisplayValue(item)).toBeInTheDocument());
+    })
+
+    await userEvent.click(canvas.getByText('Raw'));
+  },
+};
+
+export const ArrayEditorModifyValues: StoryObj<FactorsProps> = {
+  ...SwitchFactorType,
+  args: {
+    ...SwitchFactorType.args,
+    selectedFactorType: 'array',
+    value: ARRAY_VALUE,
+    texts: {
+      array: {
+        collectorPlaceholder: COLLECTOR_PLACEHOLDER,
+        collectorAdd: COLLECTOR_ADD,
+      }
+    },
+    onChangeValue: fn()
+  },
+  play: async ({ canvasElement, step, args }) => {
+    const canvas = within(canvasElement.parentElement!);
+
+    await step('open array modal', async () => {
+      await userEvent.click(canvas.getByTestId('ds-factors-array'));
+      await waitFor(() => expect(canvas.getByRole('dialog')).toBeInTheDocument());
+    });
+    await waitFor(() => {
+      ARRAY_VALUE.forEach(item => expect(canvas.getByDisplayValue(item)).toBeInTheDocument());
+    })
+    await step('remove item', async () => {
+      await userEvent.click(canvas.getAllByTestId('ds-factors-array-remove-item')[0]);
+      await waitFor(() => expect(canvas.getAllByTestId('ds-factors-array-item')).toHaveLength(2))
+    });
+    await step('add items by typing', async () => {
+      await userEvent.type(canvas.getByTestId('ds-collector-input'), 'item1,', { delay: 100 })
+      await waitFor(() => expect(canvas.getByTestId('ds-collector-input')).toHaveValue(''))
+      await sleep(100);
+
+      await userEvent.type(canvas.getByTestId('ds-collector-input'), 'item2,', { delay: 100 })
+      await waitFor(() => expect(canvas.getByTestId('ds-collector-input')).toHaveValue(''));
+      await sleep(100);
+
+      await userEvent.type(canvas.getByTestId('ds-collector-input'), 'item3{enter}', { delay: 100 });
+      await sleep(100);
+
+      await userEvent.click(canvas.getByText(COLLECTOR_ADD));
+      await waitFor(() => expect(canvas.getAllByTestId('ds-factors-array-item')).toHaveLength(5))
+    });
+
+    await step('add items by pasting', async () => {
+      await userEvent.click(canvas.getByTestId('ds-collector-input'));
+      await waitFor(() => expect(canvas.getByTestId('ds-collector-input')).toBe(document.activeElement));
+      await userEvent.paste('paste1,paste2,paste3')
+      await userEvent.click(canvas.getByText(COLLECTOR_ADD));
+      await waitFor(() => expect(canvas.getAllByTestId('ds-factors-array-item')).toHaveLength(8))
+    });
+
+    await step('update item manually', async () => {
+      await userEvent.click(canvas.getByDisplayValue('paste2'));
+      await userEvent.type(canvas.getByDisplayValue('paste2'), ' edited value', { delay: 100 });
+      await userEvent.click(canvas.getByText('Apply'));
+    });
+
+    await waitFor(() => expect(args.onChangeValue).toHaveBeenCalledWith(['TEST VALUE 2', 'TEST VALUE 3', 'item1', 'item2', 'item3', 'paste1', 'paste2 edited value', 'paste3']))
+
+  },
+};
+
+export const ArrayEditorInvalidValues: StoryObj<FactorsProps> = {
+  ...SwitchFactorType,
+  args: {
+    ...SwitchFactorType.args,
+    selectedFactorType: 'array',
+    arrayProps: {
+      itemType: 'number'
+    },
+    value: ARRAY_VALUE_NUMERIC,
+    texts: {
+      array: {
+        collectorPlaceholder: COLLECTOR_PLACEHOLDER,
+        collectorAdd: COLLECTOR_ADD,
+        numericValidationError: COLLECTOR_VALIDATION_ERROR
+      }
+    },
+    onChangeValue: fn()
+  },
+  play: async ({ canvasElement, step, args }) => {
+    const canvas = within(canvasElement.parentElement!);
+
+    await step('open array modal', async () => {
+      await userEvent.click(canvas.getByTestId('ds-factors-array'));
+      await waitFor(() => expect(canvas.getByRole('dialog')).toBeInTheDocument());
+    });
+
+    await step('add items by typing', async () => {
+      await userEvent.type(canvas.getByTestId('ds-collector-input'), '2344,', { delay: 100 })
+      await waitFor(() => expect(canvas.getByTestId('ds-collector-input')).toHaveValue(''))
+      await sleep(100);
+
+      await userEvent.type(canvas.getByTestId('ds-collector-input'), ' 112 ,', { delay: 100 })
+      await waitFor(() => expect(canvas.getByTestId('ds-collector-input')).toHaveValue(''));
+      await sleep(100);
+
+      await userEvent.type(canvas.getByTestId('ds-collector-input'), ' 111s {enter}', { delay: 100 })
+      await waitFor(() => expect(canvas.getByTestId('ds-collector-input')).toHaveValue(''));
+      await sleep(100);
+
+      await userEvent.type(canvas.getByTestId('ds-collector-input'), '12{enter}', { delay: 100 });
+      await sleep(100);
+
+      await waitFor(() => {
+        expect(canvas.getByText(COLLECTOR_ADD).closest('button')).toBeDisabled();
+        expect(canvas.getByText(COLLECTOR_VALIDATION_ERROR)).toBeInTheDocument()
+      });
+    });
+
+
+    await step('remove collector item manually', async () => {
+
+      const invalidValue = canvas.getByText('111s').closest('[data-testid="ds-input-value-wrapper"]');
+      expect(invalidValue).toBeInTheDocument();
+      await userEvent.click(within(invalidValue as HTMLElement).getByTestId('ds-icon-close-s'));
+
+      await waitFor(() => {
+        expect(canvas.getByText(COLLECTOR_ADD).closest('button')).not.toBeDisabled();
+        expect(canvas.queryByText(COLLECTOR_VALIDATION_ERROR)).not.toBeInTheDocument()
+      });
+    });
+
+
+    await step('add items by pasting', async () => {
+      await userEvent.click(canvas.getByTestId('ds-collector-input'));
+      await waitFor(() => expect(canvas.getByTestId('ds-collector-input')).toBe(document.activeElement));
+      await userEvent.paste('7584,234234.234,34d5345')
+
+      await waitFor(() => {
+        expect(canvas.getByText(COLLECTOR_ADD).closest('button')).toBeDisabled();
+        expect(canvas.getByText(COLLECTOR_VALIDATION_ERROR)).toBeInTheDocument()
+      });
+    });
+
   },
 };
 

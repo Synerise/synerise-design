@@ -1,5 +1,6 @@
 import styled, { css } from 'styled-components';
 import Modal from 'antd/lib/modal';
+import ScrollbarBase from '@synerise/ds-scrollbar';
 
 export const SettingButton = styled.div`
   display: flex;
@@ -7,6 +8,15 @@ export const SettingButton = styled.div`
 `;
 export const ButtonsWrapper = styled.div`
   display: flex;
+`;
+
+export const Scrollbar = styled(ScrollbarBase)`
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  .scrollbar-container {
+    min-height: 0;
+  }
 `;
 
 export const AntdModal = styled(Modal)<{
@@ -46,15 +56,16 @@ export const AntdModal = styled(Modal)<{
         bottom: 0;
         translate: -50%;
         .ant-modal-content {
-          display: flex;
           max-height: ${props.maxHeight}vh;
+          display: flex;
           flex-direction: column;
-          height: 100%;
         }
         .ant-modal-body {
           flex: 1 1 100%;
           overflow: scroll;
           padding-right: 0px;
+          display: flex;
+          flex-direction: column;
           min-height: 0;
         }
       }

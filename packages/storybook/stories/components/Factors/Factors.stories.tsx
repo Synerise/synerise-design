@@ -249,6 +249,30 @@ export const ParameterTypeSearch: Story = {
   }
 };
 
+
+export const ArrayString: Story = {
+  args: {
+    ...FactorsMeta.args,
+    selectedFactorType: 'array',
+    value: ['item A', 'item B'],
+    opened: true
+  }
+};
+
+
+export const ArrayNumeric: Story = {
+  args: {
+    ...FactorsMeta.args,
+    selectedFactorType: 'array',
+    value: [123123, 345345, 3454, 34234, 234],
+    opened: true,
+    arrayProps: {
+      itemType: 'number',
+      limit: 20
+    }
+  }
+};
+
 export const Open: Story = {
   args: {
     opened: true,

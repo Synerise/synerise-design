@@ -8,16 +8,16 @@ import { ModalProps as AntdModalProps } from 'antd/lib/modal';
 export type Props = ModalProps;
 
 export type ModalProps = {
-  description?: string;
+  description?: ReactNode;
+  headerBottomBar?: ReactNode;
   headerActions?: ReactNode;
   size?: 'small' | 'medium' | 'large' | 'extraLarge' | 'fullSize' | 'fullScreen';
   bodyBackground?: 'white' | 'grey';
   blank?: boolean;
   titleContainerStyle?: CSSProperties;
-  settingButtonText?: string;
   texts?: {
-    okButton?: string;
-    cancelButton?: string;
+    okButton?: ReactNode;
+    cancelButton?: ReactNode;
   };
   children?: ReactNode;
   maxViewportHeight?: true | number;

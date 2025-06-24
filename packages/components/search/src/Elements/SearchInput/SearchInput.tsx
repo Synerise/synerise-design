@@ -28,6 +28,7 @@ const SearchInput = ({
   value,
   closeOnClickOutside,
   disableInput,
+  disabled,
   focusTrigger,
   toggleTrigger,
   inputProps = {},
@@ -111,58 +112,63 @@ const SearchInput = ({
 
   return (
     <S.SearchInputWrapper ref={wrapperRef}>
-      <S.SearchInputContent
-        className={renderInputOpened ? 'is-open search-input-wrapper' : 'search-input-wrapper'}
-        offset={inputOffset}
-        filterLabel={filterLabel}
-        onClick={handleSearchInputContentClick}
-      >
-        <S.LeftSide isOpen={isInputOpen}>
-          {filterLabel && (
-            <S.Filter ref={handleOffsetWithFilter}>
-              {filterLabel.icon && !isResultChosen && <Icon component={filterLabel.icon} />}
-              <span>{filterLabel[filterLookupKey || ''] || filterLabel[textLookupKey || '']}</span>
-            </S.Filter>
-          )}
-        </S.LeftSide>
-        <S.SearchInner hasValue={!!value} alwaysHighlight={alwaysHighlight}>
-          <Tooltip {...searchTooltipProps}>
-            <Input
-              placeholder={placeholder}
-              ref={inputRef}
-              value={value}
-              onChange={handleChangeValue}
-              onKeyDown={onKeyDown}
-              onFocus={() => setIsInputFocused(true)}
-              onBlur={() => setIsInputFocused(false)}
-              autoComplete="off"
-              autoFocus
-              disabled={disableInput}
-              {...inputProps}
-            />
-          </Tooltip>
-        </S.SearchInner>
-      </S.SearchInputContent>
+      {!disabled && (
+        <S.SearchInputContent
+          className={renderInputOpened ? 'is-open search-input-wrapper' : 'search-input-wrapper'}
+          offset={inputOffset}
+          filterLabel={filterLabel}
+          onClick={handleSearchInputContentClick}
+        >
+          <S.LeftSide isOpen={isInputOpen}>
+            {filterLabel && (
+              <S.Filter ref={handleOffsetWithFilter}>
+                {filterLabel.icon && !isResultChosen && <Icon component={filterLabel.icon} />}
+                <span>{filterLabel[filterLookupKey || ''] || filterLabel[textLookupKey || '']}</span>
+              </S.Filter>
+            )}
+          </S.LeftSide>
+          <S.SearchInner hasValue={!!value} alwaysHighlight={alwaysHighlight}>
+            <Tooltip {...searchTooltipProps}>
+              <Input
+                placeholder={placeholder}
+                ref={inputRef}
+                value={value}
+                onChange={handleChangeValue}
+                onKeyDown={onKeyDown}
+                onFocus={() => setIsInputFocused(true)}
+                onBlur={() => setIsInputFocused(false)}
+                autoComplete="off"
+                autoFocus
+                disabled={disableInput}
+                {...inputProps}
+              />
+            </Tooltip>
+          </S.SearchInner>
+        </S.SearchInputContent>
+      )}
       <SearchButton
+        disabled={disabled}
         inputOpen={isInputOpen}
         hidden={!!value || !!filterLabel}
         inputFocused={isInputFocused}
-        clickable={!alwaysExpanded}
+        clickable={!disabled && !alwaysExpanded}
         onClick={handleSearchButtonClick}
       />
-      <S.ClearButton hidden={!value && !filterLabel}>
-        <Icon
-          data-testid="clear"
-          onClick={handleClearValue}
-          component={
-            <Tooltip title={clearTooltip}>
-              <Close3M />
-            </Tooltip>
-          }
-          color={theme.palette['red-600']}
-          size={18}
-        />
-      </S.ClearButton>
+      {!disabled && (
+        <S.ClearButton hidden={!value && !filterLabel}>
+          <Icon
+            data-testid="clear"
+            onClick={handleClearValue}
+            component={
+              <Tooltip title={clearTooltip}>
+                <Close3M />
+              </Tooltip>
+            }
+            color={theme.palette['red-600']}
+            size={18}
+          />
+        </S.ClearButton>
+      )}
     </S.SearchInputWrapper>
   );
 };

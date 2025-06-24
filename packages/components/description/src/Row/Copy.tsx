@@ -1,5 +1,5 @@
 import React, { useState, useMemo, useCallback, MouseEvent } from 'react';
-import Tooltip from '@synerise/ds-tooltip/dist/Tooltip';
+import Tooltip from '@synerise/ds-tooltip';
 import Icon, { CopyClipboardM } from '@synerise/ds-icon';
 
 import copy from 'copy-to-clipboard';

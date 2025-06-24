@@ -1,21 +1,13 @@
 @modal-title-line-height: 32px;
 @modal-base-padding: 24px;
-@modal-header-padding-x: @modal-base-padding;
-@modal-header-padding-y: 20px;
 @modal-footer-padding-x: @modal-base-padding;
 @modal-footer-padding-y: 24px;
 
 .@{dialog-prefix-cls} {
   transform-origin: center !important;
-  &.with-description {
-    .ant-modal-header {
-      padding: @modal-header-padding-y @modal-header-padding-x 12px;
-    }
-  }
+
   &-title {
     margin: 0;
-    font-size: 18px;
-    line-height: @modal-title-line-height;
     font-weight: 500;
     color: @heading-color;
   }
@@ -38,7 +30,7 @@
 
   &-close {
     color: @gray-color-lighter-2;
-    height: @modal-title-line-height + @modal-header-padding-y * 2;
+    height: @modal-title-line-height;
 
     &:focus,
     &:hover {
@@ -48,10 +40,10 @@
 
   &-header {
     && {
-      padding: @modal-header-padding-y @modal-header-padding-x;
+      padding: 0;
       background: @component-background;
       color: @text-color;
-      border-bottom: @border-width-base @border-style-base @grey-100;
+      border-bottom: 0;
     }
 
     .close-modal {
