@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.3.0](https://github.com/synerise/synerise-design/compare/@synerise/ds-utils@1.2.0...@synerise/ds-utils@1.3.0) (2025-06-24)
+
+
+### Features
+
+* **factors:** array factor type ([195d328](https://github.com/synerise/synerise-design/commit/195d3286e98b5f07fc9c1e56001e6ae844b7a080))
+
+
+
+
+
 # [1.2.0](https://github.com/synerise/synerise-design/compare/@synerise/ds-utils@1.1.1...@synerise/ds-utils@1.2.0) (2025-06-05)
 
 

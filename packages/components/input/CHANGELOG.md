@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.3.0](https://github.com/synerise/synerise-design/compare/@synerise/ds-input@1.2.1...@synerise/ds-input@1.3.0) (2025-06-24)
+
+
+### Bug Fixes
+
+* **input:** textarea props - omit unused ([f34c307](https://github.com/synerise/synerise-design/commit/f34c307c3e5fcad48dd6174473d57e3d7fbb64fb))
+
+
+### Features
+
+* **factors:** array factor type ([195d328](https://github.com/synerise/synerise-design/commit/195d3286e98b5f07fc9c1e56001e6ae844b7a080))
+
+
+
+
+
 ## [1.2.1](https://github.com/synerise/synerise-design/compare/@synerise/ds-input@1.2.0...@synerise/ds-input@1.2.1) (2025-06-12)
 
 

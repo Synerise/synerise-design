@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.2.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-collector@1.1.4...@synerise/ds-collector@1.2.0) (2025-06-24)
+
+
+### Features
+
+* **factors:** array factor type ([195d328](https://github.com/Synerise/synerise-design/commit/195d3286e98b5f07fc9c1e56001e6ae844b7a080))
+
+
+
+
+
 ## [1.1.4](https://github.com/Synerise/synerise-design/compare/@synerise/ds-collector@1.1.3...@synerise/ds-collector@1.1.4) (2025-06-12)
 
 **Note:** Version bump only for package @synerise/ds-collector

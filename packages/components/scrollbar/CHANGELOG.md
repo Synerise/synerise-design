@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.1.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-scrollbar@1.0.10...@synerise/ds-scrollbar@1.1.0) (2025-06-24)
+
+
+### Features
+
+* **factors:** array factor type ([195d328](https://github.com/Synerise/synerise-design/commit/195d3286e98b5f07fc9c1e56001e6ae844b7a080))
+
+
+
+
+
 ## [1.0.10](https://github.com/Synerise/synerise-design/compare/@synerise/ds-scrollbar@1.0.9...@synerise/ds-scrollbar@1.0.10) (2025-06-05)
 
 **Note:** Version bump only for package @synerise/ds-scrollbar

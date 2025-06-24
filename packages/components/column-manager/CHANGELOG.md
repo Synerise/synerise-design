@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.2.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-column-manager@1.1.2...@synerise/ds-column-manager@1.2.0) (2025-06-24)
+
+
+### Features
+
+* **condition:** sortable lib ([8cbc3f5](https://github.com/Synerise/synerise-design/commit/8cbc3f5956ce9138f1a6b0a5eb0e7cd85bb7f4e7))
+
+
+
+
+
 ## [1.1.2](https://github.com/Synerise/synerise-design/compare/@synerise/ds-column-manager@1.1.1...@synerise/ds-column-manager@1.1.2) (2025-06-12)
 
 **Note:** Version bump only for package @synerise/ds-column-manager

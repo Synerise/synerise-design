@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.3.0](https://github.com/synerise/synerise-design/compare/@synerise/ds-table@1.2.2...@synerise/ds-table@1.3.0) (2025-06-24)
+
+
+### Features
+
+* **table:** disabled prop for 3 cell types ([0c52c2c](https://github.com/synerise/synerise-design/commit/0c52c2c74eb7b91bb0cca0be18c9da916f5902bb))
+
+
+
+
+
 ## [1.2.2](https://github.com/synerise/synerise-design/compare/@synerise/ds-table@1.2.1...@synerise/ds-table@1.2.2) (2025-06-12)
 
 **Note:** Version bump only for package @synerise/ds-table

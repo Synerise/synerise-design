@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.4.0](https://github.com/synerise/synerise-design/compare/@synerise/ds-button@1.3.3...@synerise/ds-button@1.4.0) (2025-06-24)
+
+
+### Bug Fixes
+
+* **button:** fix transition of animation between modes ([7c96663](https://github.com/synerise/synerise-design/commit/7c966638ebb16b0acaf41b0d70df22224c97b89d))
+
+
+### Features
+
+* **factors:** array factor type ([195d328](https://github.com/synerise/synerise-design/commit/195d3286e98b5f07fc9c1e56001e6ae844b7a080))
+
+
+
+
+
 ## [1.3.3](https://github.com/synerise/synerise-design/compare/@synerise/ds-button@1.3.2...@synerise/ds-button@1.3.3) (2025-06-05)
 
 **Note:** Version bump only for package @synerise/ds-button
