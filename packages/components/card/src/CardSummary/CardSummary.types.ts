@@ -7,6 +7,7 @@ export type CardSummaryItemProps = WithHTMLAttributes<
     key: Key;
     label?: ReactNode;
     value: ReactNode;
+    valueButton?: ReactNode;
     summaryRowObjects?: ReactElement[];
   }
 >;

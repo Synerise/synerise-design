@@ -15,6 +15,7 @@ import Icon, {
   UserCircleM,
   UserM,
   WarningFillM,
+  ExternalLinkM
 } from '@synerise/ds-icon';
 import Tag, { TagShape } from '@synerise/ds-tag';
 import Button from '@synerise/ds-button';
@@ -68,6 +69,12 @@ const objectWithTag = (letter = 'A', color = theme.palette['blue-600']) => (
   </S.ObjectWithTag>
 );
 
+const button = <Tooltip title={"Go to the account settings in new tab"} >
+  <Button mode="single-icon" onClick={() => { }} type="ghost">
+    <Icon component={<ExternalLinkM />} color={theme.palette['grey-600']} />
+  </Button>
+</Tooltip>
+
 export const CARD_SUMMARY_ITEMS = [
   {
     key: '1',
@@ -79,6 +86,12 @@ export const CARD_SUMMARY_ITEMS = [
     key: '2',
     label: 'Estimated reach',
     value: '34 (30%)',
+  },
+  {
+    key: '5',
+    label: 'Sender name test',
+    value: 'testowy provider long longlong longlong longlong long',
+    valueButton: button,
   },
   {
     key: '3',
