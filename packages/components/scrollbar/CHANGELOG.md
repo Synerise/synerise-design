@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.1.1](https://github.com/Synerise/synerise-design/compare/@synerise/ds-scrollbar@1.1.0...@synerise/ds-scrollbar@1.1.1) (2025-06-26)
+
+
+### Bug Fixes
+
+* **scrollbar:** fixed css import in less ([c740c5d](https://github.com/Synerise/synerise-design/commit/c740c5d4150d283716bb813e1837418b0632fd6b))
+
+
+
+
+
 # [1.1.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-scrollbar@1.0.10...@synerise/ds-scrollbar@1.1.0) (2025-06-24)
 
 

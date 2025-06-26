@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.13.0](https://github.com/Synerise/synerise-design/compare/storybook@1.12.0...storybook@1.13.0) (2025-06-26)
+
+
+### Features
+
+* **card:** add summary value button ([68d3d19](https://github.com/Synerise/synerise-design/commit/68d3d195bd6e83e158d1130122f230a97c419a91))
+
+
+
+
+
 # 1.12.0 (2025-06-24)
 
 

@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.6.1](https://github.com/Synerise/synerise-design/compare/@synerise/ds-item-picker@1.6.0...@synerise/ds-item-picker@1.6.1) (2025-06-26)
+
+
+### Bug Fixes
+
+* **item-picker:** pass error prop to trigger ([3ee19a4](https://github.com/Synerise/synerise-design/commit/3ee19a4dbfde792b26844952e996a4bdad8691c5))
+
+
+
+
+
 # [1.6.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-item-picker@1.5.1...@synerise/ds-item-picker@1.6.0) (2025-06-24)
 
 
