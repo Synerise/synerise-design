@@ -76,6 +76,7 @@ export const ItemPickerNew = <ItemType extends BaseItemType, SectionType extends
         onClear={onClear}
         openDropdown={openDropdown}
         closeDropdown={closeDropdown}
+        error={error}
       />
     );
   }, [
