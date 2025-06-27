@@ -75,7 +75,8 @@ export const AntdSelect = styled(Select as unknown as React.ComponentType<Props>
 
       .ant-select-selector::after,
       .ant-select-selection-item,
-      .ant-select-selection-search {
+      .ant-select-selection-search,
+      .ant-select-selection-search-input {
         height: 24px; 
         line-height: 22px;
       }
