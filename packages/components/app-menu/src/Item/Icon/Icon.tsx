@@ -1,9 +1,13 @@
-import React from 'react';
+import React, { ReactNode } from 'react';
 import IconComponent from '@synerise/ds-icon';
 
 import * as S from './Icon.styles';
 
-const Icon: React.FC<{ active: React.ReactNode; inActive: React.ReactNode }> = ({ active, inActive }) => {
+type AppMenuIconProps = {
+  active: ReactNode;
+  inActive: ReactNode;
+};
+export const AppMenuIcon = ({ active, inActive }: AppMenuIconProps) => {
   return (
     <S.Wrapper>
       <IconComponent className="item__icon item__icon--active" component={active} />
@@ -12,4 +16,4 @@ const Icon: React.FC<{ active: React.ReactNode; inActive: React.ReactNode }> = (
   );
 };
 
-export default Icon;
+export default AppMenuIcon;
