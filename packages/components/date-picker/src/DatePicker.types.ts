@@ -1,9 +1,10 @@
-import type { ReactElement, ReactNode } from 'react';
+import type { HTMLAttributes, ReactElement, ReactNode } from 'react';
 import type { IntlShape } from 'react-intl';
 
 import type { DateToFormatOptions } from '@synerise/ds-data-format';
-import type { DropdownProps } from '@synerise/ds-dropdown/dist/Dropdown';
+import type { DropdownProps } from '@synerise/ds-dropdown';
 import type { InputProps } from '@synerise/ds-input';
+import type { DataAttributes } from '@synerise/ds-utils';
 
 export type DatePickerProps = {
   autoFocus?: boolean;
@@ -47,6 +48,8 @@ export type DatePickerProps = {
   hideNow?: boolean;
   readOnly?: boolean;
   inputProps?: Pick<InputProps, 'autoResize'>;
+  overlayHTMLAttributes?: HTMLAttributes<HTMLDivElement> & DataAttributes;
+  triggerHTMLAttributes?: HTMLAttributes<HTMLDivElement> & DataAttributes;
 };
 // @deprecated - use DatePickerProps instead
 export type Props = DatePickerProps;

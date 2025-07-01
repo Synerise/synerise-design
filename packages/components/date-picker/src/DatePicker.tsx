@@ -33,6 +33,8 @@ const DatePicker = ({
   renderTrigger,
   inputProps,
   allowClear = true,
+  overlayHTMLAttributes,
+  triggerHTMLAttributes,
   ...rest
 }: DatePickerProps) => {
   const [dropVisible, setDropVisible] = useState(autoFocus || false);
@@ -95,6 +97,7 @@ const DatePicker = ({
       error={error}
       errorText={errorText}
       readOnly={readOnly}
+      triggerHTMLAttributes={triggerHTMLAttributes}
     />
   );
 
@@ -106,6 +109,7 @@ const DatePicker = ({
         <S.OverlayContainer
           data-testid="date-picker-overlay-container"
           ref={ref}
+          {...overlayHTMLAttributes}
         >
           <RawDatePicker
             {...rest}

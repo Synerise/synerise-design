@@ -27,6 +27,7 @@ const PickerInput = ({
   prefixel,
   suffixel,
   allowClear,
+  triggerHTMLAttributes,
   ...rest
 }: PickerInputProps) => {
   const { formatValue } = useDataFormat();
@@ -102,12 +103,14 @@ const PickerInput = ({
       handleIconClick,
     ],
   );
+  const { className, ...restAttributes } = triggerHTMLAttributes ?? {};
 
   return (
     <S.PickerInputWrapper
       prefixel={!!prefixel}
       suffixel={!!suffixel}
-      className="ds-date-input"
+      className={`ds-date-input ${className || ''}`}
+      {...restAttributes}
     >
       {!!prefixel && <S.Prefixel>{prefixel}</S.Prefixel>}
       <S.Container
