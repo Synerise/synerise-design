@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.0.13](https://github.com/Synerise/synerise-design/compare/@synerise/ds-app-menu@1.0.12...@synerise/ds-app-menu@1.0.13) (2025-07-01)
+
+
+### Bug Fixes
+
+* **app-menu:** fallback color for svg ([fcf4b76](https://github.com/Synerise/synerise-design/commit/fcf4b767d40f09da6bc4ae1630f93c949c468d05))
+
+
+
+
+
 ## [1.0.12](https://github.com/Synerise/synerise-design/compare/@synerise/ds-app-menu@1.0.11...@synerise/ds-app-menu@1.0.12) (2025-06-26)
 
 **Note:** Version bump only for package @synerise/ds-app-menu

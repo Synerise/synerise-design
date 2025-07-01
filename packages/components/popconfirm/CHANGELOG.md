@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.0.14](https://github.com/Synerise/synerise-design/compare/@synerise/ds-popconfirm@1.0.13...@synerise/ds-popconfirm@1.0.14) (2025-07-01)
+
+
+### Bug Fixes
+
+* **popconfirm:** new prop persistentVisible to stay open after click outside ([62bcda9](https://github.com/Synerise/synerise-design/commit/62bcda983424438d8a710a7d904d1a6a647a969a))
+
+
+
+
+
 ## [1.0.13](https://github.com/Synerise/synerise-design/compare/@synerise/ds-popconfirm@1.0.12...@synerise/ds-popconfirm@1.0.13) (2025-06-26)
 
 **Note:** Version bump only for package @synerise/ds-popconfirm

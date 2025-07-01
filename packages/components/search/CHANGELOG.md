@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.2.2](https://github.com/Synerise/synerise-design/compare/@synerise/ds-search@1.2.1...@synerise/ds-search@1.2.2) (2025-07-01)
+
+
+### Bug Fixes
+
+* **search:** fix list virtualisation ([29ce3e2](https://github.com/Synerise/synerise-design/commit/29ce3e21adf61ece235d4eca87251df77ceaf6bb))
+
+
+
+
+
 ## [1.2.1](https://github.com/Synerise/synerise-design/compare/@synerise/ds-search@1.2.0...@synerise/ds-search@1.2.1) (2025-06-26)
 
 **Note:** Version bump only for package @synerise/ds-search

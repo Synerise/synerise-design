@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.14.0](https://github.com/Synerise/synerise-design/compare/storybook@1.13.0...storybook@1.14.0) (2025-07-01)
+
+
+### Bug Fixes
+
+* **manageable-list:** swapped sortable library ([8325888](https://github.com/Synerise/synerise-design/commit/8325888e97b14a03720466092e1c8678ed6c09aa))
+* **popconfirm:** new prop persistentVisible to stay open after click outside ([62bcda9](https://github.com/Synerise/synerise-design/commit/62bcda983424438d8a710a7d904d1a6a647a969a))
+
+
+### Features
+
+* **checkbox:** merge checkbox and tristate cb ([ef7f09c](https://github.com/Synerise/synerise-design/commit/ef7f09cb8293728d5e7e73a0022d57e93dcc4748))
+
+
+
+
+
 # [1.13.0](https://github.com/Synerise/synerise-design/compare/storybook@1.12.0...storybook@1.13.0) (2025-06-26)
 
 

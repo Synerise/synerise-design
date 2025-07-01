@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.1.11](https://github.com/Synerise/synerise-design/compare/@synerise/ds-date-picker@1.1.10...@synerise/ds-date-picker@1.1.11) (2025-07-01)
+
+
+### Bug Fixes
+
+* **date-picker:** new props for htmlAttributes ([ba28def](https://github.com/Synerise/synerise-design/commit/ba28def029388f4791b1f4525cda87e108c8f0a3))
+
+
+
+
+
 ## [1.1.10](https://github.com/Synerise/synerise-design/compare/@synerise/ds-date-picker@1.1.9...@synerise/ds-date-picker@1.1.10) (2025-06-26)
 
 **Note:** Version bump only for package @synerise/ds-date-picker

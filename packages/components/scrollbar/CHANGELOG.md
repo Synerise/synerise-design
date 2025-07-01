@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.1.2](https://github.com/Synerise/synerise-design/compare/@synerise/ds-scrollbar@1.1.1...@synerise/ds-scrollbar@1.1.2) (2025-07-01)
+
+
+### Bug Fixes
+
+* **manageable-list:** swapped sortable library ([8325888](https://github.com/Synerise/synerise-design/commit/8325888e97b14a03720466092e1c8678ed6c09aa))
+
+
+
+
+
 ## [1.1.1](https://github.com/Synerise/synerise-design/compare/@synerise/ds-scrollbar@1.1.0...@synerise/ds-scrollbar@1.1.1) (2025-06-26)
 
 

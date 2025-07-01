@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.3.10](https://github.com/Synerise/synerise-design/compare/@synerise/ds-manageable-list@1.3.9...@synerise/ds-manageable-list@1.3.10) (2025-07-01)
+
+
+### Bug Fixes
+
+* **manageable-list:** swapped sortable library ([8325888](https://github.com/Synerise/synerise-design/commit/8325888e97b14a03720466092e1c8678ed6c09aa))
+
+
+
+
+
 ## [1.3.9](https://github.com/Synerise/synerise-design/compare/@synerise/ds-manageable-list@1.3.8...@synerise/ds-manageable-list@1.3.9) (2025-06-26)
 
 **Note:** Version bump only for package @synerise/ds-manageable-list
