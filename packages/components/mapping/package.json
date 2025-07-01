@@ -36,7 +36,6 @@
   "dependencies": {
     "@synerise/ds-button": "^1.4.1",
     "@synerise/ds-checkbox": "^1.0.12",
-    "@synerise/ds-checkbox-tristate": "^1.0.12",
     "@synerise/ds-icon": "^1.5.3",
     "@synerise/ds-tooltip": "^1.1.11",
     "@synerise/ds-typography": "^1.0.12",

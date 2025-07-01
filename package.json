@@ -28,6 +28,7 @@
     "pack:ci": "npx lerna run pack:ci --since origin/master",
     "storybook": "cd packages/storybook && yarn storybook",
     "test:ci": "npx lerna run test --stream --concurrency 3",
+    "tgz-package-json": "node ./scripts/tgz/index.cjs",
     "types": "yarn npx:lerna run types --parallel",
     "upgrade:ds": "yarn npx:lerna run upgrade:ds"
   },

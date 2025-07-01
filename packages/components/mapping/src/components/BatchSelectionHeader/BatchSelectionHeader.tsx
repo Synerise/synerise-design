@@ -1,6 +1,6 @@
 import React from 'react';
 
-import CheckboxTristate from '@synerise/ds-checkbox-tristate';
+import Checkbox from '@synerise/ds-checkbox';
 
 import * as S from '../../Mapping.styles';
 import { type BatchSelectionProps } from '../../Mapping.types';
@@ -25,7 +25,8 @@ export const BatchSelectionHeader = ({
     <S.BatchSelectionWrapper>
       {enabled && (
         <S.RowSelectionWrapper>
-          <CheckboxTristate
+          <Checkbox
+            tristate
             withoutPadding
             checked={checkboxState}
             onChange={handleChange}

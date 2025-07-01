@@ -1,6 +1,6 @@
 type ControlType = 'object' | 'boolean' | 'check' | 'inline-check' | 'radio' | 'inline-radio' | 'select' | 'multi-select' | 'number' | 'range' | 'file' | 'color' | 'date' | 'text';
 
-export const controlFromOptionsArray = <T extends ControlType>(type: T, options: readonly (string | number | undefined | null)[]) => {
+export const controlFromOptionsArray = <T extends ControlType>(type: T, options: readonly (string | number | undefined | null | boolean)[]) => {
   return {
     control: type,
     options: [...options],

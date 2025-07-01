@@ -1,18 +1,21 @@
-import type { AbstractCheckboxProps } from 'antd/lib/checkbox/Checkbox';
+import type {
+  CheckboxTristateChangeEvent as BaseCheckboxTristateChangeEvent,
+  CheckboxTristateChangeEventTarget as BaseCheckboxTristateChangeEventTarget,
+  CheckboxTristateProps as BaseCheckboxTristateProps,
+} from '@synerise/ds-checkbox';
 
-import type { BaseCheckboxProps } from '@synerise/ds-checkbox';
+/**
+ * @deprecated import from @synerise/ds-checkbox
+ */
+export type CheckboxTristateProps = Omit<BaseCheckboxTristateProps, 'tristate'>;
 
-export type CheckboxTristateProps =
-  AbstractCheckboxProps<CheckboxTristateChangeEvent> & BaseCheckboxProps;
+/**
+ * @deprecated import from @synerise/ds-checkbox
+ */
+export type CheckboxTristateChangeEventTarget =
+  BaseCheckboxTristateChangeEventTarget;
 
-export type CheckboxTristateChangeEventTarget = CheckboxTristateProps & {
-  checked: boolean | undefined;
-  onChange?: (e: CheckboxTristateChangeEvent) => void;
-};
-
-export type CheckboxTristateChangeEvent = {
-  target: CheckboxTristateChangeEventTarget;
-  stopPropagation: () => void;
-  preventDefault: () => void;
-  nativeEvent: MouseEvent;
-};
+/**
+ * @deprecated import from @synerise/ds-checkbox
+ */
+export type CheckboxTristateChangeEvent = BaseCheckboxTristateChangeEvent;
