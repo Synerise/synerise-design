@@ -51,6 +51,11 @@ export const withDescription: Story = {
     description: 'This is popconfirm modal example with simple body text here',
   }
 };
+export const withStaticVisible: Story = {
+  args: {
+    staticVisible: true,
+  }
+};
 
 export const Open: Story = {
   args: {

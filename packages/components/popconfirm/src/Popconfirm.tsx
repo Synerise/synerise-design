@@ -30,6 +30,7 @@ const Popconfirm: PopconfirmType = ({
   okText,
   buttonsAlign,
   disabled,
+  staticVisible,
   ...antdProps
 }) => {
   const renderImageCarousel = useMemo(() => {
@@ -50,7 +51,13 @@ const Popconfirm: PopconfirmType = ({
   const popupRef = useRef<HTMLDivElement>(null);
   const [visible, setVisible] = useState<boolean | undefined>(undefined);
   useOnClickOutside(popupRef, () => {
-    setVisible(false);
+    if (staticVisible && visible === undefined) {
+      return setVisible(true);
+    }
+    if (staticVisible && visible === true) {
+      return setVisible(true);
+    }
+    return setVisible(false);
   });
 
   useEffect(() => {
@@ -67,9 +74,10 @@ const Popconfirm: PopconfirmType = ({
       disabled={disabled}
       visible={visible}
       onVisibleChange={(isVisible: boolean): void => {
-        if (antdProps.onVisibleChange) {
-          antdProps.onVisibleChange(isVisible);
-        } else if (isVisible !== visible) {
+        if (!staticVisible && isVisible !== visible) {
+          setVisible(isVisible);
+        }
+        if (staticVisible && visible === false) {
           setVisible(isVisible);
         }
       }}
