@@ -1,6 +1,8 @@
 import React from 'react';
-import { renderWithProvider } from '@synerise/ds-utils/dist/testing';
-import InputGroup from "./InputGroup";
+
+import { renderWithProvider } from '@synerise/ds-utils';
+
+import InputGroup from './InputGroup';
 
 describe('InputGroup', () => {
   it('should render label', () => {
@@ -12,7 +14,9 @@ describe('InputGroup', () => {
 
   it('should render description', () => {
     const DESCRIPTION = 'Description';
-    const { getByText } = renderWithProvider(<InputGroup description={DESCRIPTION} />);
+    const { getByText } = renderWithProvider(
+      <InputGroup description={DESCRIPTION} />,
+    );
 
     expect(getByText(DESCRIPTION)).toBeTruthy();
   });
@@ -20,10 +24,7 @@ describe('InputGroup', () => {
   it('should render errors', () => {
     const FIRST_ERROR = 'First error';
     const SECOND_ERROR = 'Second error';
-    const ERRORS = [
-      FIRST_ERROR,
-      SECOND_ERROR,
-    ];
+    const ERRORS = [FIRST_ERROR, SECOND_ERROR];
     const { getByText } = renderWithProvider(<InputGroup errors={ERRORS} />);
 
     expect(getByText(FIRST_ERROR)).toBeTruthy();

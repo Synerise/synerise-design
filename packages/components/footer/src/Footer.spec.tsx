@@ -1,7 +1,9 @@
 import React from 'react';
-import { renderWithProvider } from '@synerise/ds-utils/dist/testing';
-import { screen } from '@testing-library/react';
+
 import Button from '@synerise/ds-button';
+import { renderWithProvider } from '@synerise/ds-utils';
+import { screen } from '@testing-library/react';
+
 import Footer from '.';
 
 describe('Footer', () => {
@@ -31,7 +33,7 @@ describe('Footer', () => {
         <Button />
         <Button />
         <Button />
-      </Footer>
+      </Footer>,
     );
     expect(screen.getAllByRole('button')).toHaveLength(3);
   });

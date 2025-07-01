@@ -1,7 +1,11 @@
-import React, { ChangeEvent, useEffect, useState } from 'react';
+import React, { type ChangeEvent, useEffect, useState } from 'react';
+
 import { RawInput } from '@synerise/ds-input';
 
-import { DynamicKeyValueType, FactorValueComponentProps } from '../../Factors.types';
+import {
+  type DynamicKeyValueType,
+  type FactorValueComponentProps,
+} from '../../Factors.types';
 import * as S from './DynamicKey.style';
 
 const DynamicKey = ({
@@ -64,7 +68,10 @@ const DynamicKey = ({
   );
 
   return (
-    <S.DynamicKey data-testid="ds-factors-dynamic-key" withoutTypeSelector={withoutTypeSelector}>
+    <S.DynamicKey
+      data-testid="ds-factors-dynamic-key"
+      withoutTypeSelector={withoutTypeSelector}
+    >
       {trigger}
     </S.DynamicKey>
   );

@@ -1,10 +1,13 @@
-import { DAYS_OF_PERIOD_ENUM, COUNTED_FROM_ENUM } from '../../../constants';
-import { DayOptions } from '../../../Shared/TimeWindow/TimeWindow.types';
-import { DateLimitMode } from '../../../Shared/TimeWindow/RangeFormContainer/RangeForm/RangeForm.types';
-import { FilterBaseProps } from '../Filters.types';
-import { WithDisabledProp } from '../../../RangeFilter.types';
-import { FilterErrorType } from '../../../Shared/TimeWindow/RangeFormContainer/RangeFormContainer.types';
-import { Texts } from '../../../../DateRangePicker.types';
+import { type Texts } from '../../../../DateRangePicker.types';
+import { type WithDisabledProp } from '../../../RangeFilter.types';
+import { type DateLimitMode } from '../../../Shared/TimeWindow/RangeFormContainer/RangeForm/RangeForm.types';
+import { type FilterErrorType } from '../../../Shared/TimeWindow/RangeFormContainer/RangeFormContainer.types';
+import { type DayOptions } from '../../../Shared/TimeWindow/TimeWindow.types';
+import {
+  type COUNTED_FROM_ENUM,
+  type DAYS_OF_PERIOD_ENUM,
+} from '../../../constants';
+import { type FilterBaseProps } from '../Filters.types';
 
 export type MonthlyScheduleDayValue = DayOptions & {
   mode: DateLimitMode;

@@ -1,12 +1,12 @@
-import styled from 'styled-components';
 import React from 'react';
+import styled from 'styled-components';
+
 import { IconContainer } from '@synerise/ds-icon';
+
 import Text from '../Text/Text';
 import { ContentWrapper, PrefixelWrapper } from '../Text/Text.styles';
 
-// eslint-disable-next-line import/prefer-default-export
 export const DangerItem = styled(({ children, disabled, ...rest }) => (
-  // eslint-disable-next-line react/jsx-props-no-spreading
   <Text disabled={disabled} {...rest}>
     {children}
   </Text>

@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+
 import Typography from '@synerise/ds-typography';
 
 export const TitleContainer = styled.div`
@@ -14,7 +15,7 @@ export const TitleContainer = styled.div`
 
 export const Title = styled(Typography.Title)`
   width: 100%;
-  color: ${props => props.theme.palette['grey-800']};
+  color: ${(props) => props.theme.palette['grey-800']};
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -42,27 +43,28 @@ export const ActionButtons = styled.div`
 `;
 
 export const BottomBar = styled.div`
-  border-bottom: 1px solid ${props => props.theme.palette['grey-100']};
+  border-bottom: 1px solid ${(props) => props.theme.palette['grey-100']};
 `;
 export const ModalTitleWrapper = styled.div<{ withDescription?: boolean }>`
-  padding: ${props => (props.withDescription ? '20px 24px 12px' : '20px 24px')};
+  padding: ${(props) =>
+    props.withDescription ? '20px 24px 12px' : '20px 24px'};
   font-size: 18px;
   line-height: 32px;
-  border-bottom: 1px solid ${props => props.theme.palette['grey-100']};
+  border-bottom: 1px solid ${(props) => props.theme.palette['grey-100']};
 `;
 
 export const Description = styled.div`
   font-size: 13px;
   font-weight: normal;
   line-height: 18px;
-  color: ${props => props.theme.palette['grey-600']};
+  color: ${(props) => props.theme.palette['grey-600']};
   display: block;
   padding: 12px 0 0;
   margin: 14px 0 0;
 
   background-image: linear-gradient(
     to right,
-    ${props => props.theme.palette['grey-300']} 33%,
+    ${(props) => props.theme.palette['grey-300']} 33%,
     rgba(255, 255, 255, 0) 0%
   );
   background-repeat: repeat-x;

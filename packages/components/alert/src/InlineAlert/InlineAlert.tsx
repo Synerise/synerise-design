@@ -1,7 +1,12 @@
-import React, { useMemo, ReactNode } from 'react';
-import Icon, { Check3M, WarningFillM, InfoFillM } from '@synerise/ds-icon';
-import { InlineAlertProps, InlineAlertType } from './InlineAlert.types';
+import React, { type ReactNode, useMemo } from 'react';
+
+import Icon, { Check3M, InfoFillM, WarningFillM } from '@synerise/ds-icon';
+
 import * as S from './InlineAlert.styles';
+import {
+  type InlineAlertProps,
+  type InlineAlertType,
+} from './InlineAlert.types';
 
 const ICONS: Record<InlineAlertType, ReactNode> = {
   success: <Check3M />,

@@ -1,8 +1,8 @@
-import React, { ReactNode, useState } from 'react';
+import React, { type ReactNode, useState } from 'react';
 
+import type { ToasterProps } from '../Toaster.types';
 import { TOASTER_DEFAULTS } from '../constants';
 import { ToasterContext } from '../contexts/ToasterContext';
-import type { ToasterProps } from '../Toaster.types';
 
 export const ToasterProvider = ({
   children,

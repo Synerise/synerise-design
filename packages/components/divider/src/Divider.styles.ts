@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+
 import { Title } from '@synerise/ds-typography';
 
 export const Label = styled(Title)`

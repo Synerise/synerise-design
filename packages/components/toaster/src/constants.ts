@@ -1,4 +1,4 @@
-import { ToasterProps } from './Toaster.types';
+import { type ToasterProps } from './Toaster.types';
 
 export const TOASTER_DEFAULTS: ToasterProps = {
   position: 'bottom-left',

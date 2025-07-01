@@ -1,6 +1,7 @@
 import React from 'react';
+
 import * as S from './CardGroup.styles';
-import { CardGroupProps } from './CardGroup.types';
+import { type CardGroupProps } from './CardGroup.types';
 
 const CardGroup = ({ className, children, columns }: CardGroupProps) => {
   return (

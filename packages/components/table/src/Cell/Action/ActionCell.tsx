@@ -1,6 +1,7 @@
 import React from 'react';
+
 import * as S from './ActionCell.styles';
-import { ActionCellProps } from './ActionCell.types';
+import { type ActionCellProps } from './ActionCell.types';
 
 const DEFAULT_GAP_SIZE = 24;
 
@@ -11,7 +12,11 @@ const ActionCell = ({
   ...htmlAttributes
 }: ActionCellProps) => {
   return (
-    <S.ActionCell gapSize={gapSize} contentAlign={contentAlign} {...htmlAttributes}>
+    <S.ActionCell
+      gapSize={gapSize}
+      contentAlign={contentAlign}
+      {...htmlAttributes}
+    >
       {children}
     </S.ActionCell>
   );

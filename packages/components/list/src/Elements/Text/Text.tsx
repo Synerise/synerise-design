@@ -1,5 +1,12 @@
-import React, { ReactNode, KeyboardEvent, MouseEvent, useCallback } from 'react';
-import { WithHTMLAttributes } from '@synerise/ds-utils';
+import React, {
+  type KeyboardEvent,
+  type MouseEvent,
+  type ReactNode,
+  useCallback,
+} from 'react';
+
+import { type WithHTMLAttributes } from '@synerise/ds-utils';
+
 import * as S from './Text.styles';
 
 export type TextProps = WithHTMLAttributes<
@@ -26,8 +33,9 @@ const Text = ({
   ...htmlAttributes
 }: TextProps) => {
   const onKeyUpHandler = useCallback(
-    (event: KeyboardEvent): void | false => event.nativeEvent.code === 'Space' && onSelect && onSelect(event),
-    [onSelect]
+    (event: KeyboardEvent): void | false =>
+      event.nativeEvent.code === 'Space' && onSelect && onSelect(event),
+    [onSelect],
   );
   return (
     <S.Wrapper

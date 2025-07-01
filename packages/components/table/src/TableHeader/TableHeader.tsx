@@ -2,12 +2,12 @@ import React, { useMemo } from 'react';
 
 import { useDataFormat } from '@synerise/ds-data-format';
 
-import * as S from '../Table.styles';
 import FilterTrigger from '../FilterTrigger/FilterTrigger';
-import { Filter } from '../Table.types';
-import TableSelection from './TableSelection';
-import { Props } from './TableHeader.types';
+import * as S from '../Table.styles';
+import { type Filter } from '../Table.types';
+import { type Props } from './TableHeader.types';
 import { TableLimit } from './TableLimit';
+import TableSelection from './TableSelection';
 
 const TableHeader = <T extends object>({
   title,
@@ -76,7 +76,8 @@ const TableHeader = <T extends object>({
         ) : (
           <S.TitleContainer>
             <S.TitlePart>
-              <strong>{formatValue(selectedRows)}</strong> <span>{locale.selected}</span>
+              <strong>{formatValue(selectedRows)}</strong>{' '}
+              <span>{locale.selected}</span>
             </S.TitlePart>
           </S.TitleContainer>
         )}
@@ -97,7 +98,11 @@ const TableHeader = <T extends object>({
         <S.TitleContainer>
           {isLoading && (
             <div style={{ width: '100px' }}>
-              <S.Skeleton width="L" numberOfSkeletons={1} skeletonWidth="100px" />
+              <S.Skeleton
+                width="L"
+                numberOfSkeletons={1}
+                skeletonWidth="100px"
+              />
             </div>
           )}
 
@@ -121,10 +126,16 @@ const TableHeader = <T extends object>({
           {!isLoading && !hideTitlePart && (
             <S.TitlePart>
               {isCounterLoading ? (
-                <S.Skeleton numberOfSkeletons={1} size="S" skeletonWidth="100px" />
+                <S.Skeleton
+                  numberOfSkeletons={1}
+                  size="S"
+                  skeletonWidth="100px"
+                />
               ) : (
                 <>
-                  <strong>{formatValue(dataSourceTotalCount || dataSource.length)}</strong>
+                  <strong>
+                    {formatValue(dataSourceTotalCount || dataSource.length)}
+                  </strong>
                   <span>{locale?.pagination?.items}</span>
                 </>
               )}
@@ -164,7 +175,6 @@ const TableHeader = <T extends object>({
             iconComponent={filter.icon}
             tooltips={filter.tooltips}
             openedLabel={filter.openedLabel}
-            /* eslint-disable-next-line react/jsx-handler-names */
             handleClear={filter.handleClear}
             show={filter.show}
             showList={filter.showList}
@@ -173,10 +183,14 @@ const TableHeader = <T extends object>({
           />
         ))}
         {filterComponent && (
-          <S.RightSideWrapper data-testid="ds-table-filter-wrapper">{filterComponent}</S.RightSideWrapper>
+          <S.RightSideWrapper data-testid="ds-table-filter-wrapper">
+            {filterComponent}
+          </S.RightSideWrapper>
         )}
         {searchComponent && (
-          <S.RightSideWrapper data-testid="ds-table-search-wrapper">{searchComponent}</S.RightSideWrapper>
+          <S.RightSideWrapper data-testid="ds-table-search-wrapper">
+            {searchComponent}
+          </S.RightSideWrapper>
         )}
       </S.Right>
     </S.Header>

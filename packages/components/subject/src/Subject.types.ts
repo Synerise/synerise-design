@@ -1,7 +1,7 @@
 import type { ReactNode, ReactText } from 'react';
 
 export const ALL_TYPES = ['event', 'parameter', 'context'] as const;
-export type SubjectType = typeof ALL_TYPES[number] | string;
+export type SubjectType = (typeof ALL_TYPES)[number] | string;
 
 export type SubjectItem = {
   id: ReactText;
@@ -27,9 +27,15 @@ export type SubjectProps = {
   opened?: boolean;
 };
 
-export type SubjectListProps = Pick<SubjectProps, 'items' | 'onSelectItem' | 'texts'> & { hideDropdown: () => void };
+export type SubjectListProps = Pick<
+  SubjectProps,
+  'items' | 'onSelectItem' | 'texts'
+> & { hideDropdown: () => void };
 
-export type SubjectTriggerProps = Pick<SubjectProps, 'placeholder' | 'iconPlaceholder' | 'selectedItem'> & {
+export type SubjectTriggerProps = Pick<
+  SubjectProps,
+  'placeholder' | 'iconPlaceholder' | 'selectedItem'
+> & {
   color: string;
   onClick: () => void;
 };

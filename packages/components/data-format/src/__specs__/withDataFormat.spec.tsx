@@ -1,7 +1,11 @@
 import React from 'react';
 
-import { renderWithProvider } from '@synerise/ds-utils/dist/testing';
-import { DataFormatNotationType, withDataFormat, WithDataFormatProps } from '@synerise/ds-data-format';
+import {
+  type DataFormatNotationType,
+  type WithDataFormatProps,
+  withDataFormat,
+} from '@synerise/ds-data-format';
+import { renderWithProvider } from '@synerise/ds-utils';
 
 const DATE_TO_FORMAT = new Date('2023-06-25T15:40:00');
 const INT_NUMBER_TO_FORMAT = 1234567;
@@ -34,14 +38,24 @@ describe('withDataFormat', () => {
     return (
       <>
         <span>{formatValue(FLOAT_NUMBER_TO_FORMAT)}</span>
-        <span>{formatValue(INT_NUMBER_TO_FORMAT, { minimumFractionDigits: 2, prefix: 'Salary: ' })}</span>
+        <span>
+          {formatValue(INT_NUMBER_TO_FORMAT, {
+            minimumFractionDigits: 2,
+            prefix: 'Salary: ',
+          })}
+        </span>
         <span>{formatValue(DATE_TO_FORMAT)}</span>
-        <span data-testid="formatted-time">{formatValue(DATE_TO_FORMAT, { targetFormat: 'time' })}</span>
+        <span data-testid="formatted-time">
+          {formatValue(DATE_TO_FORMAT, { targetFormat: 'time' })}
+        </span>
         <span>isSundayFirstWeekDay: {isSundayFirstWeekDay.toString()}</span>
         <span>firstDayOfWeek: {firstDayOfWeek.toString()}</span>
         <span>is12HoursClock: {is12HoursClock.toString()}</span>
         <span>getConstants: {getConstants('weekdays-short').toString()}</span>
-        <span>formatMultipleValues: {formatMultipleValues([123456, 123456789]).toString()}</span>
+        <span>
+          formatMultipleValues:{' '}
+          {formatMultipleValues([123456, 123456789]).toString()}
+        </span>
         <span>decimalDelimiter: {decimalDelimiter}</span>
       </>
     );
@@ -65,14 +79,24 @@ describe('withDataFormat', () => {
       return (
         <>
           <span>{formatValue(FLOAT_NUMBER_TO_FORMAT)}</span>
-          <span>{formatValue(INT_NUMBER_TO_FORMAT, { minimumFractionDigits: 2, prefix: 'Salary: ' })}</span>
+          <span>
+            {formatValue(INT_NUMBER_TO_FORMAT, {
+              minimumFractionDigits: 2,
+              prefix: 'Salary: ',
+            })}
+          </span>
           <span>{formatValue(DATE_TO_FORMAT)}</span>
-          <span data-testid="formatted-time">{formatValue(DATE_TO_FORMAT, { targetFormat: 'time' })}</span>
+          <span data-testid="formatted-time">
+            {formatValue(DATE_TO_FORMAT, { targetFormat: 'time' })}
+          </span>
           <span>isSundayFirstWeekDay: {isSundayFirstWeekDay.toString()}</span>
           <span>firstDayOfWeek: {firstDayOfWeek}</span>
           <span>is12HoursClock: {is12HoursClock.toString()}</span>
           <span>getConstants: {getConstants('weekdays-short').toString()}</span>
-          <span>formatMultipleValues: {formatMultipleValues([123456, 123456789]).toString()}</span>
+          <span>
+            formatMultipleValues:{' '}
+            {formatMultipleValues([123456, 123456789]).toString()}
+          </span>
           <span>decimalDelimiter: {decimalDelimiter}</span>
         </>
       );
@@ -82,7 +106,9 @@ describe('withDataFormat', () => {
 
   it('should render properly FunctionComponentWithDataFormat with default notation', () => {
     // ARRANGE
-    const { getByText } = renderWithProvider(<FunctionComponentWithDataFormat />);
+    const { getByText } = renderWithProvider(
+      <FunctionComponentWithDataFormat />,
+    );
 
     // ASSERT
     expect(getByText(EU_FORMATTED_FLOAT_NUMBER)).toBeTruthy();
@@ -102,14 +128,16 @@ describe('withDataFormat', () => {
     const { getByText, getByTestId } = renderWithProvider(
       <FunctionComponentWithDataFormat />,
       {},
-      { notation: US_NOTATION }
+      { notation: US_NOTATION },
     );
 
     // ASSERT
     expect(getByText(US_FORMATTED_FLOAT_NUMBER)).toBeTruthy();
     expect(getByText(`Salary: ${US_FORMATTED_INT_NUMBER}.00`)).toBeTruthy();
     expect(getByText(US_FORMATTED_DATE)).toBeTruthy();
-    expect(normalizeSpaces(getByTestId('formatted-time').textContent)).toBe(US_FORMATTED_TIME);
+    expect(normalizeSpaces(getByTestId('formatted-time').textContent)).toBe(
+      US_FORMATTED_TIME,
+    );
     expect(getByText('isSundayFirstWeekDay: true')).toBeTruthy();
     expect(getByText('firstDayOfWeek: 0')).toBeTruthy();
     expect(getByText('is12HoursClock: true')).toBeTruthy();
@@ -140,14 +168,16 @@ describe('withDataFormat', () => {
     const { getByText, getByTestId } = renderWithProvider(
       <ClassComponentWithDataFormat />,
       {},
-      { notation: US_NOTATION }
+      { notation: US_NOTATION },
     );
 
     // ASSERT
     expect(getByText(US_FORMATTED_FLOAT_NUMBER)).toBeTruthy();
     expect(getByText(`Salary: ${US_FORMATTED_INT_NUMBER}.00`)).toBeTruthy();
     expect(getByText(US_FORMATTED_DATE)).toBeTruthy();
-    expect(normalizeSpaces(getByTestId('formatted-time').textContent)).toBe(US_FORMATTED_TIME);
+    expect(normalizeSpaces(getByTestId('formatted-time').textContent)).toBe(
+      US_FORMATTED_TIME,
+    );
     expect(getByText('isSundayFirstWeekDay: true')).toBeTruthy();
     expect(getByText('firstDayOfWeek: 0')).toBeTruthy();
     expect(getByText('is12HoursClock: true')).toBeTruthy();

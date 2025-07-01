@@ -1,4 +1,5 @@
 import styled, { css, keyframes } from 'styled-components';
+
 import Icon from '@synerise/ds-icon';
 
 const fadeout = keyframes`
@@ -27,7 +28,7 @@ export const DragPlaceholderContent = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  color: ${props => props.theme.palette['blue-600']}; ;
+  color: ${(props) => props.theme.palette['blue-600']};
 `;
 export const DragPlaceholderTag = styled.div`
   position: absolute;
@@ -40,16 +41,19 @@ export const Content = styled.div`
   flex-direction: column;
   align-items: flex-start;
   justify-content: flex-start;
-  background-color: ${props => props.theme.palette.white};
+  background-color: ${(props) => props.theme.palette.white};
   box-shadow: 0 4px 12px 0 #2329360a;
   border-radius: 3px;
 `;
 
-export const Container = styled.div<{ isDragged?: boolean; isDragOverlay?: boolean }>`
+export const Container = styled.div<{
+  isDragged?: boolean;
+  isDragOverlay?: boolean;
+}>`
   width: 100%;
   min-width: 594px;
 
-  ${props =>
+  ${(props) =>
     (props.isDragged || props.isDragOverlay) &&
     css`
       cursor: grabbing;
@@ -101,7 +105,8 @@ export const Container = styled.div<{ isDragged?: boolean; isDragOverlay?: boole
 `;
 
 export const RecentlyMoved = styled.span<{ duration: number }>`
-  animation: ${fadeout} 0.1s linear ${props => (props.duration - 200) / 1000}s 1 forwards;
+  animation: ${fadeout} 0.1s linear ${(props) => (props.duration - 200) / 1000}s
+    1 forwards;
 `;
 
 export const CountDownWrapper = styled.div`
@@ -115,10 +120,10 @@ export const CountDownWrapper = styled.div`
 export const MoveByOffsetLabel = styled.span``;
 
 export const CountDownSpinner = styled.g<{ duration: number }>`
-  stroke: ${props => props.theme.palette['grey-500']};
+  stroke: ${(props) => props.theme.palette['grey-500']};
   stroke-width: 2px;
   stroke-dasharray: 75;
-  transition: stroke-dashoffset ${props => props.duration}s linear;
+  transition: stroke-dashoffset ${(props) => props.duration}s linear;
 `;
 
 export const MoveByOffset = styled.span<{ offset: number }>`
@@ -126,7 +131,7 @@ export const MoveByOffset = styled.span<{ offset: number }>`
   align-items: center;
   gap: 2px;
   ${MoveByOffsetLabel} {
-    display: ${props => (props.offset === 0 ? 'none' : 'block')};
+    display: ${(props) => (props.offset === 0 ? 'none' : 'block')};
   }
 `;
 
@@ -154,7 +159,7 @@ export const Header = styled.div<{ isDraggable?: boolean }>`
   width: 100%;
   max-width: calc(100% - 24px);
   position: relative;
-  cursor: ${props => (props.isDraggable ? 'grab' : 'default')};
+  cursor: ${(props) => (props.isDraggable ? 'grab' : 'default')};
   &:hover {
     ${RecentlyMoved} {
       display: none;
@@ -198,7 +203,8 @@ export const RightSide = styled.div`
 `;
 
 export const Body = styled.div<{ singleStepCondition: boolean }>`
-  padding: ${({ singleStepCondition }) => (singleStepCondition ? '0' : '0 0 24px')};
+  padding: ${({ singleStepCondition }) =>
+    singleStepCondition ? '0' : '0 0 24px'};
   width: 100%;
 
   .ds-conditions {
@@ -214,12 +220,12 @@ export const Body = styled.div<{ singleStepCondition: boolean }>`
 export const AdditionalFields = styled.div`
   width: 100%;
   padding: 24px 24px 12px;
-  border-top: 1px solid ${props => props.theme.palette['grey-200']};
+  border-top: 1px solid ${(props) => props.theme.palette['grey-200']};
 `;
 
 export const Footer = styled.div`
   background-color: rgba(249, 250, 251, 0.6);
-  border-top: 1px solid ${props => props.theme.palette['grey-100']};
+  border-top: 1px solid ${(props) => props.theme.palette['grey-100']};
   padding: 16px 24px;
   display: flex;
   flex-direction: row;

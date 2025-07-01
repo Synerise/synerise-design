@@ -1,8 +1,12 @@
-import { ReactNode, MouseEvent as ReactMouseEvent } from 'react';
-import { PopconfirmProps as AntdPopconfirmProps } from 'antd/lib/popconfirm';
-import { ConfirmMessageProps } from './ConfirmMessage/ConfirmMessage.types';
+import { type PopconfirmProps as AntdPopconfirmProps } from 'antd/lib/popconfirm';
+import { type MouseEvent as ReactMouseEvent, type ReactNode } from 'react';
 
-export type PopconfirmTexts = Pick<PopconfirmProps, 'okText' | 'description' | 'title' | 'cancelText'>;
+import { type ConfirmMessageProps } from './ConfirmMessage/ConfirmMessage.types';
+
+export type PopconfirmTexts = Pick<
+  PopconfirmProps,
+  'okText' | 'description' | 'title' | 'cancelText'
+>;
 
 export type PopconfirmProps = Omit<AntdPopconfirmProps, 'okType'> & {
   description?: ReactNode;

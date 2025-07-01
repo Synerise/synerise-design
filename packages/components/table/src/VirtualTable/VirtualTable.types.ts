@@ -1,7 +1,11 @@
 import type { RefObject } from 'react';
-import type { FixedSizeList as List, ListOnItemsRenderedProps } from 'react-window';
+import type {
+  FixedSizeList as List,
+  ListOnItemsRenderedProps,
+} from 'react-window';
+
 import type { InfiniteScrollProps } from '../InfiniteScroll/InfiniteLoaderItem.types';
-import type { DSTableProps, DSColumnType } from '../Table.types';
+import type { DSColumnType, DSTableProps } from '../Table.types';
 
 export type VirtualColumnType<T> = DSColumnType<T> & {
   fixedFirst?: boolean;

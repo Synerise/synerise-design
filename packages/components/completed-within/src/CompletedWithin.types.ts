@@ -1,4 +1,5 @@
 import type { ReactNode } from 'react';
+
 import type { LiteralStringUnion } from '@synerise/ds-utils';
 
 export type CompletedWithinTexts = {
@@ -8,7 +9,11 @@ export type CompletedWithinTexts = {
   periodPlaceholder: ReactNode;
 };
 
-export type Period = LiteralStringUnion<'SECONDS' | 'MINUTES' | 'HOURS' | 'DAYS' | 'MONTHS' | 'YEARS'> | undefined;
+export type Period =
+  | LiteralStringUnion<
+      'SECONDS' | 'MINUTES' | 'HOURS' | 'DAYS' | 'MONTHS' | 'YEARS'
+    >
+  | undefined;
 
 export type CustomPeriod = {
   value: Period;

@@ -1,6 +1,7 @@
+import { type MenuProps } from 'antd/lib/menu';
 import type { ReactNode } from 'react';
-import { MenuProps } from 'antd/lib/menu';
-import { MenuItemProps } from '../Item/MenuItem.types';
+
+import { type MenuItemProps } from '../Item/MenuItem.types';
 
 export type SubMenuProps = Omit<MenuProps, 'dataSource' | 'footer'> & {
   key?: string | number;
@@ -24,4 +25,5 @@ export type SubMenuProps = Omit<MenuProps, 'dataSource' | 'footer'> & {
 export type SubMenuState = {
   uuidKey: string;
 };
-export type SubMenuItemProps = SubMenuProps & MenuItemProps & { onClick?: (item: SubMenuProps) => void };
+export type SubMenuItemProps = SubMenuProps &
+  MenuItemProps & { onClick?: (item: SubMenuProps) => void };

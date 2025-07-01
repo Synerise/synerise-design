@@ -1,6 +1,10 @@
-import { ThemeProps as SCThemeProps, useTheme as originalUseTheme } from 'styled-components';
-import vars from './variables';
+import {
+  type ThemeProps as SCThemeProps,
+  useTheme as originalUseTheme,
+} from 'styled-components';
+
 import breakpoints from './breakpoints';
+import vars from './variables';
 
 export type ThemePropsVars = {
   variables: { [key: string]: string };
@@ -18,7 +22,9 @@ export type WithTheme = SCThemeProps<ThemePropsVars>;
 export const useTheme = originalUseTheme as () => ThemePropsVars;
 
 const getBreakpoints = (): string[] =>
-  [breakpoints.small.max, breakpoints.medium.max, breakpoints.large.max].map(item => `${item}px`);
+  [breakpoints.small.max, breakpoints.medium.max, breakpoints.large.max].map(
+    (item) => `${item}px`,
+  );
 
 export const defaultColorsOrder = [
   'blue-600',
@@ -44,8 +50,8 @@ export const defaultColorsOrder = [
   'violet-500',
 ] as const;
 
-export type DefaultColor = typeof defaultColorsOrder[number];
-const colorsOrder = defaultColorsOrder.map(color => vars.colors[color]);
+export type DefaultColor = (typeof defaultColorsOrder)[number];
+const colorsOrder = defaultColorsOrder.map((color) => vars.colors[color]);
 
 export const theme: ThemePropsVars = {
   variables: vars.variables,

@@ -3,7 +3,9 @@ import { useIntl } from 'react-intl';
 
 import type { MappingTexts } from '../Mapping.types';
 
-export const useTexts = (defaultTexts?: Partial<MappingTexts>): MappingTexts => {
+export const useTexts = (
+  defaultTexts?: Partial<MappingTexts>,
+): MappingTexts => {
   const { formatMessage } = useIntl();
   const texts = useMemo(
     () => ({
@@ -17,7 +19,7 @@ export const useTexts = (defaultTexts?: Partial<MappingTexts>): MappingTexts => 
       }),
       ...defaultTexts,
     }),
-    [defaultTexts, formatMessage]
+    [defaultTexts, formatMessage],
   );
 
   return texts;

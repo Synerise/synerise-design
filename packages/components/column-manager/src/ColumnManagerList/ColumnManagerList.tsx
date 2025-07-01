@@ -1,20 +1,32 @@
-import React, { CSSProperties, UIEvent, useMemo, useRef, useState } from 'react';
+import React, {
+  type CSSProperties,
+  type UIEvent,
+  useMemo,
+  useRef,
+  useState,
+} from 'react';
 import type { FixedSizeList } from 'react-window';
-import { DragOverlay } from '@dnd-kit/core';
 
-import { SortableContainer } from '@synerise/ds-sortable';
-import Scrollbar from '@synerise/ds-scrollbar';
+import { DragOverlay } from '@dnd-kit/core';
 import Result from '@synerise/ds-result';
+import Scrollbar from '@synerise/ds-scrollbar';
+import { SortableContainer } from '@synerise/ds-sortable';
 import { useResizeObserver } from '@synerise/ds-utils';
 
-import { ColumnManagerListProps } from './ColumnManagerList.types';
+import type {
+  Column,
+  ColumnManagerItemProps,
+} from '../ColumnManagerItem/ColumManagerItem.types';
+import { ColumnManagerItem } from '../ColumnManagerItem/ColumnManagerItem';
 import { ColumnManagerSortableItem } from '../ColumnManagerSortableItem/ColumnManagerSortableItem';
 import type { ColumnManagerSortableItemProps } from '../ColumnManagerSortableItem/ColumnManagerSortableItem.types';
-import { ColumnManagerItem } from '../ColumnManagerItem/ColumnManagerItem';
-import type { Column, ColumnManagerItemProps } from '../ColumnManagerItem/ColumManagerItem.types';
 import * as S from './ColumnManager.style';
+import { type ColumnManagerListProps } from './ColumnManagerList.types';
 
-export const LIST_STYLE: CSSProperties = { overflowX: 'unset', overflowY: 'unset' };
+export const LIST_STYLE: CSSProperties = {
+  overflowX: 'unset',
+  overflowY: 'unset',
+};
 
 const ColumnManagerList = <ColumnType extends Column>({
   searchQuery,
@@ -24,7 +36,9 @@ const ColumnManagerList = <ColumnType extends Column>({
   toggleColumn,
   texts,
 }: ColumnManagerListProps<ColumnType>) => {
-  const [activeItem, setActiveItem] = useState<ColumnManagerItemProps<ColumnType> | undefined>();
+  const [activeItem, setActiveItem] = useState<
+    ColumnManagerItemProps<ColumnType> | undefined
+  >();
   const [containerHeight, setContainerHeight] = useState(0);
   const listRef = useRef<FixedSizeList>(null);
   const containerRef = useRef<HTMLDivElement | null>(null);
@@ -32,7 +46,7 @@ const ColumnManagerList = <ColumnType extends Column>({
   const isItemDraggable = draggable && !searchQuery;
 
   const items: ColumnManagerItemProps<ColumnType>[] = useMemo(() => {
-    return columns.map(column => ({
+    return columns.map((column) => ({
       key: column.id,
       id: column.id,
       item: column,
@@ -50,18 +64,25 @@ const ColumnManagerList = <ColumnType extends Column>({
     }
   };
 
-  useResizeObserver(containerRef, dimensions => {
+  useResizeObserver(containerRef, (dimensions) => {
     setContainerHeight(dimensions.height);
   });
 
   return (
-    <S.ColumnManagerList ref={containerRef} data-testid="ds-column-manager-list">
+    <S.ColumnManagerList
+      ref={containerRef}
+      data-testid="ds-column-manager-list"
+    >
       {!items.length && searchQuery ? (
-        <Result description={texts.noResults} type="no-results" noSearchResults />
+        <Result
+          description={texts.noResults}
+          type="no-results"
+          noSearchResults
+        />
       ) : (
         <SortableContainer
           onDragStart={({ active }) => {
-            const column = items.find(item => item.id === active.id);
+            const column = items.find((item) => item.id === active.id);
             setActiveItem(column);
           }}
           onDragEnd={() => {
@@ -72,7 +93,12 @@ const ColumnManagerList = <ColumnType extends Column>({
           items={items}
           axis="y"
         >
-          <Scrollbar absolute withDnd onScroll={handleScroll} maxHeight={containerHeight}>
+          <Scrollbar
+            absolute
+            withDnd
+            onScroll={handleScroll}
+            maxHeight={containerHeight}
+          >
             <S.List
               isDragging={!!activeItem}
               height={containerHeight}
@@ -83,10 +109,16 @@ const ColumnManagerList = <ColumnType extends Column>({
               ref={listRef}
               style={LIST_STYLE}
             >
-              {props => <ColumnManagerSortableItem {...(props as ColumnManagerSortableItemProps<ColumnType>)} />}
+              {(props) => (
+                <ColumnManagerSortableItem
+                  {...(props as ColumnManagerSortableItemProps<ColumnType>)}
+                />
+              )}
             </S.List>
           </Scrollbar>
-          <DragOverlay>{activeItem && <ColumnManagerItem {...activeItem} />}</DragOverlay>
+          <DragOverlay>
+            {activeItem && <ColumnManagerItem {...activeItem} />}
+          </DragOverlay>
         </SortableContainer>
       )}
     </S.ColumnManagerList>

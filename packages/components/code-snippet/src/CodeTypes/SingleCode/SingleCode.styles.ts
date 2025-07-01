@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+
 import { FontSize } from '../../CodeSnippet.types';
 
 export const FONT_SIZE_DEFAULT = FontSize.SMALL;

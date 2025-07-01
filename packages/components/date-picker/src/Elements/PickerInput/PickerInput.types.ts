@@ -1,6 +1,8 @@
-import type { ReactNode, CSSProperties } from 'react';
-import { SizeType } from 'antd/lib/config-provider/SizeContext';
+import { type SizeType } from 'antd/lib/config-provider/SizeContext';
+import type { CSSProperties, ReactNode } from 'react';
+
 import type { DateToFormatOptions } from '@synerise/ds-data-format';
+
 import type { DatePickerProps } from '../../DatePicker.types';
 
 type InputProps = DatePickerProps['inputProps'];
@@ -17,7 +19,10 @@ export type Props = InputProps & {
   showTime?: boolean;
   allowClear?: boolean;
   value?: Date | string;
-  onChange?: (dateValue: Date | undefined | null, stringifiedDate: string) => void;
+  onChange?: (
+    dateValue: Date | undefined | null,
+    stringifiedDate: string,
+  ) => void;
   style?: CSSProperties;
   placeholder?: string;
   disabled?: boolean;

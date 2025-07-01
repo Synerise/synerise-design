@@ -1,9 +1,15 @@
-import type { CSSProperties, MouseEvent as ReactMouseEvent, FocusEventHandler, ReactNode } from 'react';
+import type {
+  CSSProperties,
+  FocusEventHandler,
+  MouseEvent as ReactMouseEvent,
+  ReactNode,
+} from 'react';
+
 import type { DateToFormatOptions } from '@synerise/ds-data-format';
 import type { FormFieldCommonProps } from '@synerise/ds-form-field';
 
-import type { DateFilter, DateRange } from '../date.types';
 import type { Texts } from '../DateRangePicker.types';
+import type { DateFilter, DateRange } from '../date.types';
 
 export type RangePickerInputProps = {
   size?: 'large' | 'default' | 'small';

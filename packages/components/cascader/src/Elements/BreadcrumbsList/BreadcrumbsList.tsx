@@ -1,11 +1,12 @@
 import React from 'react';
-import { renderSearchList } from '@synerise/ds-search/dist/Elements/SearchItems/SearchItems';
-import Icon, { CheckS } from '@synerise/ds-icon';
-import { theme } from '@synerise/ds-core';
 
-import { Path } from '../../Cascader.types';
-import { BreadcrumbsListProps } from './BreadcrumbsList.types';
+import { theme } from '@synerise/ds-core';
+import Icon, { CheckS } from '@synerise/ds-icon';
+import { renderSearchList } from '@synerise/ds-search/dist/Elements/SearchItems/SearchItems';
+
+import { type Path } from '../../Cascader.types';
 import Breadcrumb from '../Breadcrumb/Breadcrumb';
+import { type BreadcrumbsListProps } from './BreadcrumbsList.types';
 
 const DEFAULT_VISIBLE_ROWS = 6;
 const DEFAULT_ROW_HEIGHT = 50;

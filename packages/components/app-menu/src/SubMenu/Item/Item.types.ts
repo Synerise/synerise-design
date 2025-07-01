@@ -1,5 +1,6 @@
-import { ReactNode } from 'react';
-import * as S from './Item.styles';
+import { type ReactNode } from 'react';
+
+import type * as S from './Item.styles';
 
 export type ItemProps = {
   active?: boolean;

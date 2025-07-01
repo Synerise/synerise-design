@@ -1,29 +1,42 @@
-import { KeyboardEvent } from 'react';
+import { type KeyboardEvent } from 'react';
 
-const hasFocusableElementInside = (element: HTMLElement, query: string): boolean => {
+const hasFocusableElementInside = (
+  element: HTMLElement,
+  query: string,
+): boolean => {
   return element.querySelectorAll(query).length > 0;
 };
 
-const focusWithArrowKeys = (keyDownEvent: KeyboardEvent, focusableItemClass: string, fallback: () => void): void => {
+const focusWithArrowKeys = (
+  keyDownEvent: KeyboardEvent,
+  focusableItemClass: string,
+  fallback: () => void,
+): void => {
   const selector = `.${focusableItemClass}`;
   const focusableElementsNodeList = document.querySelectorAll(selector);
   const focusableElements = Array.from(focusableElementsNodeList);
   const activeElement = document.activeElement as HTMLElement;
   const activeElementIndex = focusableElements.indexOf(activeElement);
-  const isItemFocused = activeElement && activeElement.classList.contains(focusableItemClass);
+  const isItemFocused =
+    activeElement && activeElement.classList.contains(focusableItemClass);
 
   if (keyDownEvent.key === 'ArrowDown') {
     keyDownEvent.preventDefault();
     let elementToFocusOn;
     if (isItemFocused) {
       const nextSibling = activeElement.nextElementSibling as HTMLElement;
-      const hasFocusableChildren = hasFocusableElementInside(activeElement, selector);
+      const hasFocusableChildren = hasFocusableElementInside(
+        activeElement,
+        selector,
+      );
       elementToFocusOn =
         nextSibling !== null && hasFocusableChildren
           ? nextSibling
           : (focusableElements[activeElementIndex + 1] as HTMLElement);
     } else {
-      elementToFocusOn = document.querySelector(`.${focusableItemClass}`) as HTMLElement;
+      elementToFocusOn = document.querySelector(
+        `.${focusableItemClass}`,
+      ) as HTMLElement;
     }
     if (elementToFocusOn) {
       elementToFocusOn.focus();
@@ -43,7 +56,9 @@ const focusWithArrowKeys = (keyDownEvent: KeyboardEvent, focusableItemClass: str
           ? prevSibling
           : (focusableElements[activeElementIndex - 1] as HTMLElement);
     } else {
-      elementToFocusOn = focusableElements[focusableElements.length - 1] as HTMLElement;
+      elementToFocusOn = focusableElements[
+        focusableElements.length - 1
+      ] as HTMLElement;
     }
     if (elementToFocusOn) {
       elementToFocusOn.focus();

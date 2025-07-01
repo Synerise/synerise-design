@@ -1,11 +1,11 @@
 import styled from 'styled-components';
+
 import { IconContainer } from '@synerise/ds-icon';
 import Menu from '@synerise/ds-menu';
 
 import { ItemLabel } from '../Item.styles';
 import { ItemMeta } from '../ItemMeta/ItemMeta.styles';
 
-// eslint-disable-next-line import/prefer-default-export
 export const SelectFilterItem = styled.div`
   margin-right: 12px;
   cursor: pointer;
@@ -48,7 +48,9 @@ export const MenuItem = styled.div<{ danger?: boolean }>`
     color: ${(props): string => (props.danger ? props.theme.palette['red-600'] : props.theme.palette['grey-700'])};
     &:hover {
       background-color: background-color: ${(props): string =>
-        props.danger ? props.theme.palette['red-050'] : props.theme.palette.white};;
+        props.danger
+          ? props.theme.palette['red-050']
+          : props.theme.palette.white};;
       color: ${(props): string => (props.danger ? props.theme.palette['red-600'] : props.theme.palette['grey-700'])};
     }
     

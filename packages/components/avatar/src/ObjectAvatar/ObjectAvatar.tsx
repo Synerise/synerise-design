@@ -1,14 +1,13 @@
 import React from 'react';
-import Icon, { MailM } from '@synerise/ds-icon';
-import { theme } from '@synerise/ds-core';
 
 import Badge from '@synerise/ds-badge';
+import { theme } from '@synerise/ds-core';
+import Icon, { MailM } from '@synerise/ds-icon';
 import Status from '@synerise/ds-status';
 
 import Avatar from '../Avatar';
-import { getObjectName, addIconColor, getColorByText } from '../utils';
-
-import { ObjectAvatarProps } from '../Avatar.types';
+import { type ObjectAvatarProps } from '../Avatar.types';
+import { addIconColor, getColorByText, getObjectName } from '../utils';
 
 export const DEFAULT_COLOR_HUE = '600';
 export const DEFAULT_COLOR = 'grey';
@@ -28,21 +27,35 @@ const ObjectAvatar = ({
   style,
   ...restProps
 }: ObjectAvatarProps) => {
-  const { name: objectName, description: objectDescription, status: objectStatus, avatar } = object || {};
+  const {
+    name: objectName,
+    description: objectDescription,
+    status: objectStatus,
+    avatar,
+  } = object || {};
   const defaultTooltip = {
     title: objectName || '',
     description: objectDescription || '',
     status: objectStatus ? <Status label={objectStatus} type="disabled" /> : '',
   };
   const avatarText = getObjectName(objectName, text);
-  const [avatarBackgroundColor, avatarBackgroundHue] = getColorByText(avatarText, backgroundColor);
-  const iconColor = theme.palette[`${color || DEFAULT_COLOR}-${DEFAULT_COLOR_HUE}`];
+  const [avatarBackgroundColor, avatarBackgroundHue] = getColorByText(
+    avatarText,
+    backgroundColor,
+  );
+  const iconColor =
+    theme.palette[`${color || DEFAULT_COLOR}-${DEFAULT_COLOR_HUE}`];
   const avatarTooltip =
-    tooltip === undefined && (defaultTooltip.title || defaultTooltip.description) ? defaultTooltip : tooltip;
+    tooltip === undefined &&
+    (defaultTooltip.title || defaultTooltip.description)
+      ? defaultTooltip
+      : tooltip;
 
   const iconElement = addIconColor(iconComponent, iconColor);
 
-  const icon = !avatarText ? iconElement || <Icon component={<MailM />} color={iconColor} /> : null;
+  const icon = !avatarText
+    ? iconElement || <Icon component={<MailM />} color={iconColor} />
+    : null;
 
   const avatarRender = (
     <Avatar

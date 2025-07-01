@@ -9,8 +9,8 @@ import Logic from '../Logic';
 describe('Matching component', () => {
   it('Should render matching toggle with custom sentence', () => {
     const onChange = jest.fn();
-    // @ts-ignore
-    const C = renderWithProvider(
+    
+    renderWithProvider(
       <Logic.Matching
         matching={true}
         onChange={onChange}
@@ -20,7 +20,7 @@ describe('Matching component', () => {
     );
 
     screen.getByText((content, node) => {
-      const hasText = (node: Element): boolean => node.textContent === 'Find all items matching this condition.';
+      const hasText = (element: Element): boolean => element.textContent === 'Find all items matching this condition.';
       const nodeHasText = hasText(node);
       const childrenDontHaveText = Array.from(node.children).every(child => !hasText(child));
 

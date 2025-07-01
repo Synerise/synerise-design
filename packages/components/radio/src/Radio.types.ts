@@ -1,5 +1,8 @@
-import { ReactNode } from 'react';
-import { RadioProps as AntdRadioProps, RadioGroupProps as AntdRadioGroupProps } from 'antd/lib/radio';
+import {
+  type RadioGroupProps as AntdRadioGroupProps,
+  type RadioProps as AntdRadioProps,
+} from 'antd/lib/radio';
+import { type ReactNode } from 'react';
 
 export type RadioProps = AntdRadioProps & {
   description?: ReactNode;

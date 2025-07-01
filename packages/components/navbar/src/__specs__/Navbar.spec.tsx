@@ -1,5 +1,7 @@
 import React from 'react';
-import { renderWithProvider } from '@synerise/ds-utils/dist/testing';
+
+import { renderWithProvider } from '@synerise/ds-utils';
+
 import Navbar from '../index';
 
 describe('Navbar', () => {
@@ -10,7 +12,9 @@ describe('Navbar', () => {
 
   it('should render logo', () => {
     // ARRANGE
-    const { getByRole } = renderWithProvider(<Navbar description={DESCRIPTION} logo={LOGO} actions />);
+    const { getByRole } = renderWithProvider(
+      <Navbar description={DESCRIPTION} logo={LOGO} actions />,
+    );
     // ASSERT
     expect(getByRole('img')).toBeTruthy();
   });
@@ -18,9 +22,9 @@ describe('Navbar', () => {
   it('should render children', () => {
     // ARRANGE
     const { getByText } = renderWithProvider(
-      <Navbar description={DESCRIPTION} logo={LOGO} actions >
+      <Navbar description={DESCRIPTION} logo={LOGO} actions>
         Children
-      </Navbar>
+      </Navbar>,
     );
     // ASSERT
     expect(getByText('Children')).toBeTruthy();
@@ -28,23 +32,33 @@ describe('Navbar', () => {
 
   it('should render description', () => {
     // ARRANGE
-    const { getByText } = renderWithProvider(<Navbar description={DESCRIPTION} logo actions />);
+    const { getByText } = renderWithProvider(
+      <Navbar description={DESCRIPTION} logo actions />,
+    );
     // ASSERT
     expect(getByText(DESCRIPTION)).toBeTruthy();
   });
 
   it('should render actions', () => {
     // ARRANGE
-    const { getByText } = renderWithProvider(<Navbar description={DESCRIPTION} logo actions={ACTIONS} />);
+    const { getByText } = renderWithProvider(
+      <Navbar description={DESCRIPTION} logo actions={ACTIONS} />,
+    );
     // ASSERT
     expect(getByText(ACTIONS)).toBeTruthy();
   });
 
   it('should render alert notification', () => {
     // ARRANGE
-    const { getByText } = renderWithProvider(<Navbar description={DESCRIPTION} logo actions alertNotification={ALERT_NOTIFICATION} />);
+    const { getByText } = renderWithProvider(
+      <Navbar
+        description={DESCRIPTION}
+        logo
+        actions
+        alertNotification={ALERT_NOTIFICATION}
+      />,
+    );
     // ASSERT
     expect(getByText(ALERT_NOTIFICATION)).toBeTruthy();
   });
-
 });

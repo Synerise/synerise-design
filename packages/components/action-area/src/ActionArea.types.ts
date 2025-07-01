@@ -1,5 +1,6 @@
-import { CSSProperties, ReactNode } from 'react';
-import { ButtonProps } from '@synerise/ds-button';
+import { type CSSProperties, type ReactNode } from 'react';
+
+import { type ButtonProps } from '@synerise/ds-button';
 
 type CommonProps = {
   className?: string;
@@ -21,4 +22,5 @@ export type ActionAreaWithStandardActionProps = {
   buttonProps?: Partial<ButtonProps>;
 };
 
-export type ActionAreaProps = CommonProps & (ActionAreaWithCustomActionProps | ActionAreaWithStandardActionProps);
+export type ActionAreaProps = CommonProps &
+  (ActionAreaWithCustomActionProps | ActionAreaWithStandardActionProps);

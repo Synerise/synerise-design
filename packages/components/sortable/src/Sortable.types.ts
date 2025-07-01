@@ -1,12 +1,16 @@
-import type { ReactNode, ReactElement, ComponentType } from 'react';
-
-import type { DndContextProps, DraggableAttributes, DraggableSyntheticListeners } from '@dnd-kit/core';
+import type { ComponentType, ReactElement, ReactNode } from 'react';
 import type { Interpolation } from 'styled-components';
 
-import type { WithHTMLAttributes } from '@synerise/ds-utils';
+import type {
+  DndContextProps,
+  DraggableAttributes,
+  DraggableSyntheticListeners,
+} from '@dnd-kit/core';
 import type { ThemeProps } from '@synerise/ds-core';
+import type { WithHTMLAttributes } from '@synerise/ds-utils';
 
-export type DragHandlePropType = DraggableAttributes & DraggableSyntheticListeners;
+export type DragHandlePropType = DraggableAttributes &
+  DraggableSyntheticListeners;
 
 export type RawBaseItem = {
   id: string | number;

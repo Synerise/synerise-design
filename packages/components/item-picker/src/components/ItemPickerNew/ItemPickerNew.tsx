@@ -1,15 +1,23 @@
 import React, { useEffect, useMemo, useRef, useState } from 'react';
+
 import Dropdown from '@synerise/ds-dropdown';
-import { useOnClickOutside } from '@synerise/ds-utils';
 import FormField from '@synerise/ds-form-field';
+import { useOnClickOutside } from '@synerise/ds-utils';
 
-import Trigger from '../ItemPickerTrigger/Trigger';
-import { useDefaultTexts } from '../../hooks/useDefaultTexts';
-import type { BaseItemType, BaseSectionType, ItemPickerProps } from './ItemPickerNew.types';
 import * as S from '../../ItemPicker.styles';
+import { useDefaultTexts } from '../../hooks/useDefaultTexts';
 import { ItemPickerList } from '../ItemPickerList/ItemPickerList';
+import Trigger from '../ItemPickerTrigger/Trigger';
+import type {
+  BaseItemType,
+  BaseSectionType,
+  ItemPickerProps,
+} from './ItemPickerNew.types';
 
-export const ItemPickerNew = <ItemType extends BaseItemType, SectionType extends BaseSectionType>({
+export const ItemPickerNew = <
+  ItemType extends BaseItemType,
+  SectionType extends BaseSectionType,
+>({
   onFocus,
   onBlur,
   onClear,
@@ -53,7 +61,6 @@ export const ItemPickerNew = <ItemType extends BaseItemType, SectionType extends
   const closeDropdown = () => setVisible(false);
 
   const handleItemSelect = (item: ItemType) => {
-    // eslint-disable-next-line no-unused-expressions
     onChange?.(item);
     closeDropdown();
   };
@@ -62,7 +69,13 @@ export const ItemPickerNew = <ItemType extends BaseItemType, SectionType extends
 
   const trigger = useMemo(() => {
     return renderTrigger ? (
-      renderTrigger({ selected: selectedItem, openDropdown, closeDropdown, error, disabled })
+      renderTrigger({
+        selected: selectedItem,
+        openDropdown,
+        closeDropdown,
+        error,
+        disabled,
+      })
     ) : (
       <Trigger
         size="small"

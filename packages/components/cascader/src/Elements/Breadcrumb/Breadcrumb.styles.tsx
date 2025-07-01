@@ -1,11 +1,15 @@
 import styled, { css } from 'styled-components';
-import { ThemeProps } from '@synerise/ds-core';
+
+import { type ThemeProps } from '@synerise/ds-core';
 import ListItem from '@synerise/ds-list-item';
 import { Inner } from '@synerise/ds-list-item/dist/components/Text/Text.styles';
 
 const TRANSITION_FN = '0.3s ease-in-out';
 
-export const PrefixWrapper = styled.div<{ visible?: boolean; disabled?: boolean }>`
+export const PrefixWrapper = styled.div<{
+  visible?: boolean;
+  disabled?: boolean;
+}>`
   display: flex;
   order: 1;
   opacity: 1;
@@ -20,7 +24,7 @@ export const Highlight = styled.span``;
 
 export const ArrowRight = styled.div<{ visible: boolean }>`
   transition: opacity ${TRANSITION_FN};
-  opacity: ${props => (props.visible ? '1' : '0')};
+  opacity: ${(props) => (props.visible ? '1' : '0')};
   svg {
     transition: fill ${TRANSITION_FN};
   }
@@ -35,7 +39,7 @@ export const Description = styled.div`
   direction: ltr;
   width: 100%;
   font-weight: 400;
-  color: ${props => props.theme.palette['grey-600']};
+  color: ${(props) => props.theme.palette['grey-600']};
   .search-highlight {
     font-weight: 500;
   }
@@ -47,19 +51,19 @@ export const ContentWrapper = styled.div<{ gradientOverlap?: boolean }>`
   &::before {
     pointer-events: none;
     content: '';
-    opacity: ${props => (props.gradientOverlap ? '1' : '0')};
+    opacity: ${(props) => (props.gradientOverlap ? '1' : '0')};
     position: absolute;
     display: block;
     width: 50px;
     height: 18px;
     transition: opacity ${TRANSITION_FN};
-    background-image: ${props =>
+    background-image: ${(props) =>
       `-webkit-linear-gradient( left, ${props.theme.palette['grey-050']} 0%, rgba(255,255,255,0) 100% )`};
   }
   &::after {
     pointer-events: none;
     content: '';
-    opacity: ${props => (props.gradientOverlap ? '1' : '0')};
+    opacity: ${(props) => (props.gradientOverlap ? '1' : '0')};
     position: absolute;
     left: 0;
     top: 0;
@@ -67,7 +71,7 @@ export const ContentWrapper = styled.div<{ gradientOverlap?: boolean }>`
     width: 50px;
     height: 18px;
     transition: opacity ${TRANSITION_FN};
-    background-image: ${props =>
+    background-image: ${(props) =>
       `-webkit-linear-gradient( left, ${props.theme.palette.white} 0%, rgba(255,255,255,0) 100% )`};
   }
 `;
@@ -75,12 +79,14 @@ export const BreadcrumbName = styled.div`
   direction: ltr;
   font-weight: 400;
   transition: color ${TRANSITION_FN};
-  color: ${props => props.theme.palette['grey-600']};
+  color: ${(props) => props.theme.palette['grey-600']};
   .search-highlight {
     font-weight: 500;
   }
 `;
-export const disableDefaultClickingStyles = (props: ThemeProps & { disabled?: boolean }) => css`
+export const disableDefaultClickingStyles = (
+  props: ThemeProps & { disabled?: boolean },
+) => css`
   &, &:focus, &:hover {
     background: ${props.theme.palette.white} !important;
     box-shadow: inset 0 0 0 2px transparent !important;
@@ -139,8 +145,8 @@ export const Breadcrumb = styled(ListItem)<{
   isNavigation?: boolean;
 }>`
   ${BreadcrumbContent} {
-    direction: ${props => (props.compact ? 'rtl' : 'ltr')};
-    flex-wrap: ${props => (props.compact ? 'no-wrap' : 'wrap')};
+    direction: ${(props) => (props.compact ? 'rtl' : 'ltr')};
+    flex-wrap: ${(props) => (props.compact ? 'no-wrap' : 'wrap')};
   }
   &:hover {
     ${ContentWrapper}::after {
@@ -150,7 +156,7 @@ export const Breadcrumb = styled(ListItem)<{
       opacity: 0;
     }
   }
-  ${props =>
+  ${(props) =>
     props.isNavigation
       ? css`
           &:hover, &:active, &:focus, &:focus:active {
@@ -180,11 +186,15 @@ export const Breadcrumb = styled(ListItem)<{
             background: ${props.theme.palette['grey-050']};
             color: ${props.theme.palette['blue-600']};
             ${ArrowRight} > .ds-icon > svg {
-              fill: ${props.disabled ? props.theme.palette['grey-600'] : props.theme.palette['blue-600']};
+              fill: ${props.disabled
+                ? props.theme.palette['grey-600']
+                : props.theme.palette['blue-600']};
             }
 
             ${BreadcrumbName}, ${Description} {
-              color: ${props.disabled ? props.theme.palette['grey-600'] : props.theme.palette['blue-600']};
+              color: ${props.disabled
+                ? props.theme.palette['grey-600']
+                : props.theme.palette['blue-600']};
             }
           }
           &:focus:not(:active) {
@@ -197,7 +207,10 @@ export const Breadcrumb = styled(ListItem)<{
           }
         `}
 
-  ${props => props.clickable && !props.isNavigation && disableDefaultClickingStyles(props)}
+  ${(props) =>
+    props.clickable &&
+    !props.isNavigation &&
+    disableDefaultClickingStyles(props)}
 `;
 
 export const BreadcrumbRoute = styled.div`

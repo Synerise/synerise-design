@@ -1,6 +1,8 @@
 import React from 'react';
-import { screen, waitFor, fireEvent, getByRole } from '@testing-library/react';
-import { renderWithProvider } from '@synerise/ds-utils/dist/testing';
+
+import { renderWithProvider } from '@synerise/ds-utils';
+import { fireEvent, screen } from '@testing-library/react';
+
 import Button from '../index';
 
 describe('<Button.Checkbox />', () => {

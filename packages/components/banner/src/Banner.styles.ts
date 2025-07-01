@@ -1,11 +1,12 @@
-import styled, { css } from 'styled-components';
 import { Carousel } from 'antd';
+import styled, { css } from 'styled-components';
+
 import Tag from '@synerise/ds-tag';
 import { Text, Title } from '@synerise/ds-typography';
 
 export const BannerWrapper = styled.div<{ count: number }>`
   width: 100%;
-  background: ${props => props.theme.palette['grey-100']};
+  background: ${(props) => props.theme.palette['grey-100']};
   position: relative;
   border-radius: 3px;
   overflow: hidden;
@@ -32,7 +33,7 @@ export const BannerHeaderWrapper = styled.div<{ isExpanded: boolean }>`
   gap: 16px;
   align-items: center;
   padding: 8px 16px;
-  ${props =>
+  ${(props) =>
     props.isExpanded &&
     css`
       border-bottom: solid 1px ${props.theme.palette['grey-300']};
@@ -51,7 +52,7 @@ export const BannerHeaderToggle = styled.div``;
 export const BannerDivider = styled.div`
   width: 1px;
   height: 32px;
-  background: ${props => props.theme.palette['grey-300']};
+  background: ${(props) => props.theme.palette['grey-300']};
 `;
 
 export const BannerSlides = styled(Carousel)<{ count?: number }>`
@@ -141,7 +142,7 @@ export const BannerCounterWrapper = styled.div`
   align-items: center;
   justify-content: center;
   gap: 8px;
-  border-top: solid 1px ${props => props.theme.palette['grey-300']};
+  border-top: solid 1px ${(props) => props.theme.palette['grey-300']};
 `;
 
 export const BannerCounterDot = styled.div<{ active?: boolean }>`
@@ -153,7 +154,10 @@ export const BannerCounterDot = styled.div<{ active?: boolean }>`
   &:after {
     content: '';
     transition: background-color 0.2s ease-in-out;
-    background: ${props => (props.active ? props.theme.palette['blue-600'] : props.theme.palette['grey-300'])};
+    background: ${(props) =>
+      props.active
+        ? props.theme.palette['blue-600']
+        : props.theme.palette['grey-300']};
     height: 4px;
     width: 100%;
     border-radius: 2px;
@@ -161,7 +165,10 @@ export const BannerCounterDot = styled.div<{ active?: boolean }>`
   }
   &:hover {
     &:after {
-      background: ${props => (props.active ? props.theme.palette['blue-600'] : props.theme.palette['grey-400'])};
+      background: ${(props) =>
+        props.active
+          ? props.theme.palette['blue-600']
+          : props.theme.palette['grey-400']};
     }
   }
 `;

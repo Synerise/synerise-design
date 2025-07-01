@@ -1,6 +1,8 @@
 import styled, { css } from 'styled-components';
+
 import { IconContainer } from '@synerise/ds-icon';
-import TooltipExtendedProps, { tooltipTypes } from './Tooltip.types';
+
+import { type tooltipTypes } from './Tooltip.types';
 
 export const TooltipDescription = styled.div<{ tooltipType: tooltipTypes }>`
   font-size: 13px;
@@ -12,7 +14,7 @@ export const TooltipDescription = styled.div<{ tooltipType: tooltipTypes }>`
   max-width: 100%;
   display: flex;
   flex-direction: column;
-  ${props =>
+  ${(props) =>
     props.tooltipType === 'largeScrollable' &&
     css`
       margin-top: 6px;
@@ -21,10 +23,11 @@ export const TooltipDescription = styled.div<{ tooltipType: tooltipTypes }>`
 `;
 
 export const TooltipTitle = styled.div<{ tooltipType: tooltipTypes }>`
-  margin-bottom: ${({ tooltipType }) => (tooltipType === 'tutorial' ? '8px' : '0px')};
+  margin-bottom: ${({ tooltipType }) =>
+    tooltipType === 'tutorial' ? '8px' : '0px'};
   font-size: 13px;
   line-height: 1.38;
-  font-weight: ${props => (props.tooltipType === 'default' ? 400 : 500)};
+  font-weight: ${(props) => (props.tooltipType === 'default' ? 400 : 500)};
   display: flex;
   width: 100%;
   align-items: center;
@@ -55,8 +58,8 @@ export const TooltipKey = styled.div`
   min-width: 18px;
   height: 18px;
   padding: 0 4px;
-  background: ${props => props.theme.palette['grey-700']};
-  border-bottom: 1px solid ${props => props.theme.palette['grey-500']};
+  background: ${(props) => props.theme.palette['grey-700']};
+  border-bottom: 1px solid ${(props) => props.theme.palette['grey-500']};
   box-shadow: 0px 1px 8px rgba(35, 41, 54, 0.5);
   border-radius: 3px;
 `;
@@ -91,7 +94,7 @@ export const TooltipImage = styled.div<{ extraMargin: boolean }>`
   display: flex;
   align-items: center;
   flex-direction: column;
-  ${props => props.extraMargin && 'margin-bottom: 4px;'}
+  ${(props) => props.extraMargin && 'margin-bottom: 4px;'}
 
   img,
   video {
@@ -104,7 +107,7 @@ export const TooltipComponent = styled.div<{ tooltipType: tooltipTypes }>`
   min-height: 24px;
   width: 100%;
   border-radius: 3px;
-  color: ${props => props.theme.palette['grey-200']};
+  color: ${(props) => props.theme.palette['grey-200']};
   overflow: hidden;
   text-align: left;
 
@@ -114,7 +117,7 @@ export const TooltipComponent = styled.div<{ tooltipType: tooltipTypes }>`
     align-items: flex-start;
     justify-content: center;
 
-    ${props => {
+    ${(props) => {
       const defaultPadding = css`
         padding: 12px;
       `;
@@ -176,7 +179,8 @@ export const TooltipComponent = styled.div<{ tooltipType: tooltipTypes }>`
         justify-content: center;
         button {
           box-sizing: content-box;
-          background-color: ${(props): string => props.theme.palette['grey-600']};
+          background-color: ${(props): string =>
+            props.theme.palette['grey-600']};
           border: 2px solid rgba(56, 67, 80, 0.9);
           height: 4px;
           width: 4px;
@@ -186,15 +190,17 @@ export const TooltipComponent = styled.div<{ tooltipType: tooltipTypes }>`
       }
       li.slick-active {
         button {
-          border: 2px solid ${(props): string => props.theme.palette['green-600']};
-          background-color: ${(props): string => `${props.theme.palette['grey-800']}E5`};
+          border: 2px solid
+            ${(props): string => props.theme.palette['green-600']};
+          background-color: ${(props): string =>
+            `${props.theme.palette['grey-800']}E5`};
         }
       }
     }
   }
 `;
 
-export const TutorialItem = styled.div<TooltipExtendedProps>`
+export const TutorialItem = styled.div`
   padding: 16px;
   color: ${(props): string => props.theme.palette.white};
 `;

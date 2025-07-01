@@ -1,14 +1,30 @@
-import React, { ReactText, RefObject, SyntheticEvent, useCallback, useEffect, useMemo, useRef, useState } from 'react';
-import SearchBar from '@synerise/ds-search-bar';
-import Icon, { SearchM } from '@synerise/ds-icon';
+import React, {
+  type ReactText,
+  type RefObject,
+  type SyntheticEvent,
+  useCallback,
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+} from 'react';
+
 import { theme } from '@synerise/ds-core';
+import Icon, { SearchM } from '@synerise/ds-icon';
+import SearchBar from '@synerise/ds-search-bar';
 import { useResize } from '@synerise/ds-utils';
+
 import * as S from './Cascader.styles';
-import { CascaderProps, Category, Path } from './Cascader.types';
-import { filterPaths, getAllPaths, hasNestedCategories, searchCategoryWithId } from './utils';
+import { type CascaderProps, type Category, type Path } from './Cascader.types';
 import BreadcrumbsList from './Elements/BreadcrumbsList/BreadcrumbsList';
 import CategoriesList from './Elements/CategoriesList/CategoriesList';
 import Navigation from './Elements/Navigation/Navigation';
+import {
+  filterPaths,
+  getAllPaths,
+  hasNestedCategories,
+  searchCategoryWithId,
+} from './utils';
 
 const VERTICAL_PADDING_OFFSET = 8;
 const BREADCRUMB_ITEM_HEIGHT = 50;
@@ -30,7 +46,9 @@ export const Cascader = ({
   const [filteredPaths, setFilteredPaths] = useState<Path[] | undefined>([]);
   const [enteredCategories, setEnteredCategories] = useState<Category[]>([]);
   const [scrollTop, setScrollTop] = useState(0);
-  const [selectedIds, setSelectedIds] = useState<ReactText[]>(selectedCategoriesIds || []);
+  const [selectedIds, setSelectedIds] = useState<ReactText[]>(
+    selectedCategoriesIds || [],
+  );
 
   const searchResultsContainer = useRef<HTMLDivElement>();
   const categoriesContainer = useRef<HTMLDivElement>();
@@ -40,12 +58,17 @@ export const Cascader = ({
   const isSearching = !!paths && searchQuery.length > 0;
 
   const categoriesMaxHeight = maxHeight
-    ? Math.floor((maxHeight - Number(categoriesContainer?.current?.offsetTop)) / CATEGORY_ITEM_HEIGHT) *
+    ? Math.floor(
+        (maxHeight - Number(categoriesContainer?.current?.offsetTop)) /
+          CATEGORY_ITEM_HEIGHT,
+      ) *
         CATEGORY_ITEM_HEIGHT +
       VERTICAL_PADDING_OFFSET
     : undefined;
   const calculateVisibleRows = useMemo(() => {
-    return Math.floor((height - VERTICAL_PADDING_OFFSET) / BREADCRUMB_ITEM_HEIGHT);
+    return Math.floor(
+      (height - VERTICAL_PADDING_OFFSET) / BREADCRUMB_ITEM_HEIGHT,
+    );
   }, [height]);
 
   useEffect(() => {
@@ -67,14 +90,18 @@ export const Cascader = ({
       newSelectedList = [...selectedIds, item.id];
       onCategorySelect && onCategorySelect(item, true);
     } else {
-      newSelectedList = selectedIds.filter(id => id !== item.id);
+      newSelectedList = selectedIds.filter((id) => id !== item.id);
       onCategorySelect && onCategorySelect(item, false);
     }
     setSelectedIds([...newSelectedList]);
   };
 
   const onCategoryClick = (category: Category) => {
-    const entered = { id: category.id, name: category.name, path: category.path };
+    const entered = {
+      id: category.id,
+      name: category.name,
+      path: category.path,
+    };
     const updatedEnteredCategories = [...enteredCategories, entered];
     const hasMoreCategories = hasNestedCategories(category);
     if (hasMoreCategories) {
@@ -87,13 +114,21 @@ export const Cascader = ({
 
   const onPathClick = useCallback(
     (pathName: string) => {
-      const chosenCategory = enteredCategories.find(enteredCategory => enteredCategory.name === pathName);
+      const chosenCategory = enteredCategories.find(
+        (enteredCategory) => enteredCategory.name === pathName,
+      );
       let updatedEnteredCategories;
       if (chosenCategory) {
-        updatedEnteredCategories = enteredCategories.slice(0, enteredCategories.indexOf(chosenCategory) + 1);
+        updatedEnteredCategories = enteredCategories.slice(
+          0,
+          enteredCategories.indexOf(chosenCategory) + 1,
+        );
       }
       if (chosenCategory?.id) {
-        const nextActiveCategory = searchCategoryWithId(rootCategory, chosenCategory.id);
+        const nextActiveCategory = searchCategoryWithId(
+          rootCategory,
+          chosenCategory.id,
+        );
         if (nextActiveCategory) {
           setActiveCategory(nextActiveCategory);
         }
@@ -102,7 +137,7 @@ export const Cascader = ({
       }
       setEnteredCategories(updatedEnteredCategories || []);
     },
-    [rootCategory, enteredCategories]
+    [rootCategory, enteredCategories],
   );
 
   const onHomeIconClick = useCallback(() => {
@@ -115,19 +150,27 @@ export const Cascader = ({
       if (paths) {
         const filtered = filterPaths(paths, value.toLowerCase());
         setFilteredPaths(filtered);
-      } else setFilteredPaths([]);
+      } else {
+        setFilteredPaths([]);
+      }
     },
-    [paths]
+    [paths],
   );
 
   const handleBreadCrumbClick = (breadcrumb: Path) => {
     const selectedCategory = searchCategoryWithId(rootCategory, breadcrumb?.id);
-    selectedCategory ? onItemSelect(selectedCategory) : onItemSelect(breadcrumb as Category);
+    selectedCategory
+      ? onItemSelect(selectedCategory)
+      : onItemSelect(breadcrumb as Category);
   };
 
   const backActionVisible = useMemo(
-    () => !searchQuery && !!previousCategory && !!previousCategory.name && enteredCategories.length > 1,
-    [enteredCategories.length, previousCategory, searchQuery]
+    () =>
+      !searchQuery &&
+      !!previousCategory &&
+      !!previousCategory.name &&
+      enteredCategories.length > 1,
+    [enteredCategories.length, previousCategory, searchQuery],
   );
 
   return (
@@ -140,7 +183,9 @@ export const Cascader = ({
           }}
           placeholder={searchInputPlaceholder || ''}
           value={searchQuery}
-          iconLeft={<Icon component={<SearchM />} color={theme.palette['grey-600']} />}
+          iconLeft={
+            <Icon component={<SearchM />} color={theme.palette['grey-600']} />
+          }
           onClearInput={() => setSearchQuery('')}
           clearTooltip={searchClearTooltip}
         />

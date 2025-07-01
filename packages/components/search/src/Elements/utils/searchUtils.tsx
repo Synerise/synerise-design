@@ -1,14 +1,14 @@
 export const getAllElementsFiltered = (
   data: object[] | undefined | null,
   value: string,
-  elementTextLookupKey: string
+  elementTextLookupKey: string,
 ): object[] => {
   return (
     (data &&
-      data.filter(el =>
+      data.filter((el) =>
         String(el[elementTextLookupKey])
           .toLowerCase()
-          .includes(value.toLocaleLowerCase())
+          .includes(value.toLocaleLowerCase()),
       )) ||
     []
   );
@@ -17,17 +17,19 @@ export const getAllElementsFiltered = (
 export const hasSomeElementFiltered = (
   data: object[] | undefined | null,
   currentValue: string,
-  elementTextLookupKey: string
+  elementTextLookupKey: string,
 ): boolean => {
   return (
     (!!data &&
-      data.some(el =>
+      data.some((el) =>
         String(el[elementTextLookupKey])
           .toLowerCase()
-          .includes(currentValue.toLocaleLowerCase())
+          .includes(currentValue.toLocaleLowerCase()),
       )) ||
     false
   );
 };
 
-export const hasSomeElement = (data: Record<string, unknown>[] | undefined): boolean => !!data && data.length > 0;
+export const hasSomeElement = (
+  data: Record<string, unknown>[] | undefined,
+): boolean => !!data && data.length > 0;

@@ -1,5 +1,6 @@
-import { WithHTMLAttributes } from '@synerise/ds-utils';
-import React from 'react';
+import type React from 'react';
+
+import { type WithHTMLAttributes } from '@synerise/ds-utils';
 
 export type ValueProps = WithHTMLAttributes<
   HTMLDivElement,

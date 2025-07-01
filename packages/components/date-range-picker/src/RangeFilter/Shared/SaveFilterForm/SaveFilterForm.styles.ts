@@ -1,5 +1,6 @@
 import styled from 'styled-components';
-import Button, { ButtonProps } from '@synerise/ds-button';
+
+import Button, { type ButtonProps } from '@synerise/ds-button';
 
 export const Container = styled.div`
   width: 336px;

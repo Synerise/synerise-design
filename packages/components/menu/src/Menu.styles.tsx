@@ -1,8 +1,13 @@
-import { ReactNode, PropsWithChildren } from 'react';
-import styled, { css, FlattenSimpleInterpolation } from 'styled-components';
-import { ThemeProps } from '@synerise/ds-core';
 import { Menu } from 'antd';
-import { AntdMenuProps, MenuDividerProps } from './Menu.types';
+import { type PropsWithChildren, type ReactNode } from 'react';
+import styled, {
+  type FlattenSimpleInterpolation,
+  css,
+} from 'styled-components';
+
+import { type ThemeProps } from '@synerise/ds-core';
+
+import { type AntdMenuProps, type MenuDividerProps } from './Menu.types';
 
 type SubMenuProps = PropsWithChildren<{
   ordered?: boolean | undefined;
@@ -27,8 +32,10 @@ const arrowDownSvgWithCustomColor = (color: string): string => {
 
 export const MenuDivider = styled.div<{ level?: number }>`
   height: 1px;
-  width: ${(props): string => (props?.level && props?.level > 1 ? '75%' : '100%')};
-  margin: ${(props: MenuDividerProps): string => (props.higher ? '16px' : '8px')}
+  width: ${(props): string =>
+    props?.level && props?.level > 1 ? '75%' : '100%'};
+  margin: ${(props: MenuDividerProps): string =>
+      props.higher ? '16px' : '8px'}
     ${(props): string => (props?.level && props?.level > 1 ? '35px' : '0px')};
   border-top: 1px dashed ${(props): string => props.theme.palette['grey-300']};
 `;
@@ -95,7 +102,8 @@ export const AntdMenu = styled(Menu)<AntdMenuProps>`
     &:focus:not(:active) {
       color: ${(props): string => props.theme.palette['blue-600']};
       background: ${(props): string => props.theme.palette['blue-050']};
-      box-shadow: inset 0 0 0 2px ${(props): string => props.theme.palette['blue-600']};
+      box-shadow: inset 0 0 0 2px
+        ${(props): string => props.theme.palette['blue-600']};
       &::before {
         color: ${(props): string => props.theme.palette['blue-600']};
       }
@@ -164,7 +172,9 @@ export const SubMenuItem = styled(Menu.SubMenu)<SubMenuProps>`
          background: transparent;
       }
 
-      ${(props: SubMenuProps & ThemeProps): FlattenSimpleInterpolation | false =>
+      ${(
+        props: SubMenuProps & ThemeProps,
+      ): FlattenSimpleInterpolation | false =>
         !!props.ordered &&
         css`
           &::before {

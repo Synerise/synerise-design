@@ -14,7 +14,12 @@ export type { InputMultivalueProps } from './InputMultivalue/InputMultivalue.typ
 
 export * as InputStyles from './Input.styles';
 
-export type { BaseProps, EnhancedProps, InputProps, AutoResizeProp } from './Input.types';
+export type {
+  BaseProps,
+  EnhancedProps,
+  InputProps,
+  AutoResizeProp,
+} from './Input.types';
 
 export { default as AutosizeInput } from './AutosizeInput/AutosizeInput';
 export type {

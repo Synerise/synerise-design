@@ -1,11 +1,16 @@
-import styled, { css, FlattenSimpleInterpolation } from 'styled-components';
+import styled, {
+  type FlattenSimpleInterpolation,
+  css,
+} from 'styled-components';
+
 import Button from '@synerise/ds-button';
 import { IconContainer } from '@synerise/ds-icon';
+
 import {
-  CodeSnippetWrapperSingle,
   BlockCodeWrapperSingle,
-  LINE_HEIGHT_DEFAULT,
+  CodeSnippetWrapperSingle,
   FONT_SIZE_DEFAULT,
+  LINE_HEIGHT_DEFAULT,
 } from '../SingleCode/SingleCode.styles';
 
 export const ContentIconWrapper = styled.div`
@@ -68,7 +73,9 @@ export const ExpanderButton = styled(Button)<{
     ${IconContainer} {
       svg {
         transition: transform 0.2s linear;
-        transform: rotate(${(props): string => (props.expanded ? '180deg' : '0deg')});
+        transform: rotate(
+          ${(props): string => (props.expanded ? '180deg' : '0deg')}
+        );
       }
     }
   }
@@ -78,7 +85,8 @@ export const BlockCodeWrapperMulti = styled(BlockCodeWrapperSingle)<{
   isButtonVisible?: boolean;
 }>`
   & {
-    padding-bottom: ${(props): string => (props.isButtonVisible ? '17px' : '12px')};
+    padding-bottom: ${(props): string =>
+      props.isButtonVisible ? '17px' : '12px'};
   }
 `;
 

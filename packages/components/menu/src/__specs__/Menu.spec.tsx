@@ -1,12 +1,12 @@
 import React from 'react';
-import { RenderResult, screen, fireEvent } from '@testing-library/react';
 
-import { renderWithProvider } from '@synerise/ds-utils/dist/testing';
 import { theme } from '@synerise/ds-core';
 import Icon, { CloseS } from '@synerise/ds-icon';
+import { renderWithProvider } from '@synerise/ds-utils';
+import { type RenderResult, fireEvent, screen } from '@testing-library/react';
 
+import { type MenuItemProps } from '../Elements/Item/MenuItem.types';
 import Menu from '../Menu';
-import { MenuItemProps } from '../Elements/Item/MenuItem.types';
 
 describe('Simple menu', () => {
   const data = [
@@ -42,7 +42,9 @@ describe('Simple menu', () => {
     expect(disabledItem).toHaveStyle(`color: ${theme.palette['grey-600']}`);
   });
   it('should display danger item text with proper color', () => {
-    const dangerItemContent = container.querySelectorAll('.ds-menu-content-wrapper')[2];
+    const dangerItemContent = container.querySelectorAll(
+      '.ds-menu-content-wrapper',
+    )[2];
     // ARRANGE
     expect(dangerItemContent).toHaveStyle(`color: ${theme.palette['red-600']}`);
   });
@@ -75,12 +77,18 @@ describe('Menu with nested items', () => {
   });
   it('should display many children from different parents at the same time', () => {
     // ARRANGE
-    const { getAllByText, queryAllByText } = renderWithProvider(<Menu dataSource={data} />);
+    const { getAllByText, queryAllByText } = renderWithProvider(
+      <Menu dataSource={data} />,
+    );
     const firstParent = queryAllByText(
-      (_, element) => element.textContent === 'Option 3' && element.className === 'ant-menu-submenu-title'
+      (_, element) =>
+        element.textContent === 'Option 3' &&
+        element.className === 'ant-menu-submenu-title',
     )[0] as HTMLElement;
     const secondParent = queryAllByText(
-      (_, element) => element.textContent === 'Option 4' && element.className === 'ant-menu-submenu-title'
+      (_, element) =>
+        element.textContent === 'Option 4' &&
+        element.className === 'ant-menu-submenu-title',
     )[0] as HTMLElement;
     fireEvent.click(firstParent);
     fireEvent.click(secondParent);
@@ -132,7 +140,9 @@ describe('Menu with prefix and suffix', () => {
     // ARRANGE
     const { container } = renderedMenu;
     const suffixWrapper = container.querySelector('.suffix-test-wrapper');
-    const suffixElement = container.querySelector('.suffix-test-wrapper > .ds-icon');
+    const suffixElement = container.querySelector(
+      '.suffix-test-wrapper > .ds-icon',
+    );
     // ASSERT
     expect(suffixWrapper).toBeTruthy();
     expect(suffixElement).toBeTruthy();
@@ -141,7 +151,9 @@ describe('Menu with prefix and suffix', () => {
     // ARRANGE
     const { container } = renderedMenu;
     const prefixWrapper = container.querySelector('.prefix-test-wrapper');
-    const prefixElement = container.querySelector('.prefix-test-wrapper > .ds-icon');
+    const prefixElement = container.querySelector(
+      '.prefix-test-wrapper > .ds-icon',
+    );
     // ASSERT
     expect(prefixWrapper).toBeTruthy();
     expect(prefixElement).toBeTruthy();
@@ -149,8 +161,12 @@ describe('Menu with prefix and suffix', () => {
   it('should render grey suffix and prefix icons when disabled', () => {
     // ARRANGE
     const { container } = renderedMenu;
-    const prefixIcon = container.querySelector('.disabled-prefix-test-wrapper > .ds-icon > svg');
-    const suffixIcon = container.querySelector('.disabled-suffix-test-wrapper > .ds-icon > svg');
+    const prefixIcon = container.querySelector(
+      '.disabled-prefix-test-wrapper > .ds-icon > svg',
+    );
+    const suffixIcon = container.querySelector(
+      '.disabled-suffix-test-wrapper > .ds-icon > svg',
+    );
     // ASSERT
     expect(prefixIcon).toHaveStyle(`fill:${theme.palette['grey-600']}`);
     expect(suffixIcon).toHaveStyle(`fill:${theme.palette['grey-600']}`);
@@ -238,7 +254,7 @@ describe('Menu item', () => {
         <Menu.Item className="custom-class another-class" size="large">
           Hello
         </Menu.Item>
-      </Menu>
+      </Menu>,
     );
     const menuItem = container.querySelector('li');
     expect(menuItem).toHaveClass('large');
@@ -250,7 +266,7 @@ describe('Menu item', () => {
     const { container } = renderWithProvider(
       <Menu>
         <Menu.Item className="custom-class another-class">Hello</Menu.Item>
-      </Menu>
+      </Menu>,
     );
     const menuItem = container.querySelector('li');
     expect(menuItem).toHaveClass('default');
@@ -268,18 +284,22 @@ describe('Menu item', () => {
           hoverTooltipProps={{
             mouseEnterDelay: 0,
           }}
-          renderHoverTooltip={() => <div data-testid="hover-tooltip">tooltip content</div>}
+          renderHoverTooltip={() => (
+            <div data-testid="hover-tooltip">tooltip content</div>
+          )}
         >
           Menu item
         </Menu.Item>
-      </Menu>
+      </Menu>,
     );
     const element = screen.getByText('Menu item');
     const tooltip = screen.queryByTestId('hover-tooltip');
     expect(tooltip).not.toBeInTheDocument();
     fireEvent.mouseOver(element);
 
-    expect(await screen.findByTestId('hover-tooltip')).toHaveTextContent('tooltip content');
+    expect(await screen.findByTestId('hover-tooltip')).toHaveTextContent(
+      'tooltip content',
+    );
   });
   it('should show tooltip on hover on disabled item', async () => {
     renderWithProvider(
@@ -292,24 +312,28 @@ describe('Menu item', () => {
           hoverTooltipProps={{
             mouseEnterDelay: 0,
           }}
-          renderHoverTooltip={() => <div data-testid="hover-tooltip">tooltip content</div>}
+          renderHoverTooltip={() => (
+            <div data-testid="hover-tooltip">tooltip content</div>
+          )}
         >
           Menu item
         </Menu.Item>
-      </Menu>
+      </Menu>,
     );
     const element = screen.getByText('Menu item');
     const tooltip = screen.queryByTestId('hover-tooltip');
     expect(tooltip).not.toBeInTheDocument();
     fireEvent.mouseOver(element);
 
-    expect(await screen.findByTestId('hover-tooltip')).toHaveTextContent('tooltip content');
+    expect(await screen.findByTestId('hover-tooltip')).toHaveTextContent(
+      'tooltip content',
+    );
   });
   it('should have data-name attribute with children as value', () => {
     const { container } = renderWithProvider(
       <Menu>
         <Menu.Item>Hello</Menu.Item>
-      </Menu>
+      </Menu>,
     );
     const menuItem = container.querySelector('li');
     expect(menuItem).toHaveAttribute('data-name', 'Hello');
@@ -320,7 +344,7 @@ describe('Menu item', () => {
         <Menu.Item>
           <span>Hello</span>
         </Menu.Item>
-      </Menu>
+      </Menu>,
     );
     const menuItem = container.querySelector('li');
     expect(menuItem).not.toHaveAttribute('data-name');

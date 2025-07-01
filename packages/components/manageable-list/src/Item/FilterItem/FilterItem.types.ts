@@ -1,5 +1,6 @@
-import React from 'react';
-import { ItemProps } from '../Item.types';
+import type React from 'react';
+
+import { type ItemProps } from '../Item.types';
 
 export interface FilterItemProps {
   item: ItemProps;
@@ -12,7 +13,7 @@ export interface FilterItemProps {
   texts: {
     [k: string]: string | React.ReactNode;
   };
-  theme: { [k: string]: string };
+  theme?: { [k: string]: string };
   searchQuery?: string;
   style?: React.CSSProperties;
 }

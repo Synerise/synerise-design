@@ -1,10 +1,14 @@
 import styled, { css } from 'styled-components';
-import { Title as TypographyTitle } from '@synerise/ds-typography';
+
+import {
+  AdditionalData,
+  RadioWrapper,
+} from '@synerise/ds-radio/dist/Radio.styles';
 import Scrollbar from '@synerise/ds-scrollbar';
-import { RadioWrapper, AdditionalData } from '@synerise/ds-radio/dist/Radio.styles';
+import { Title as TypographyTitle } from '@synerise/ds-typography';
 
 const roundedWrapperCSS = css`
-  border: solid ${props => props.theme.palette['grey-200']} 1px;
+  border: solid ${(props) => props.theme.palette['grey-200']} 1px;
   border-radius: 8px;
   padding: 8px;
 `;

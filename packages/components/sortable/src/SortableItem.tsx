@@ -1,8 +1,10 @@
 import React from 'react';
+
 import { useSortable } from '@dnd-kit/sortable';
 import { CSS } from '@dnd-kit/utilities';
-import { SortableItemProps, BaseItem } from './Sortable.types';
+
 import * as S from './Sortable.styles';
+import { type BaseItem, type SortableItemProps } from './Sortable.types';
 
 export const SortableItem = <ItemType extends BaseItem>({
   id,
@@ -14,7 +16,8 @@ export const SortableItem = <ItemType extends BaseItem>({
   placeholderCss,
   ...htmlAttributes
 }: SortableItemProps<ItemType>) => {
-  const { attributes, listeners, setNodeRef, transform, transition } = useSortable({ id });
+  const { attributes, listeners, setNodeRef, transform, transition } =
+    useSortable({ id });
   const itemStyle = {
     ...style,
     transform: CSS.Translate.toString(transform),

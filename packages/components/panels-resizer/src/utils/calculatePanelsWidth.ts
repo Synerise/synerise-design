@@ -1,7 +1,14 @@
-export type InitialVectorOptions = { leftPanel: number } | { rightPanel: number };
+export type InitialVectorOptions =
+  | { leftPanel: number }
+  | { rightPanel: number };
 
-export const getInitialVector = (options: InitialVectorOptions | undefined, containerWidth: number): number => {
-  if (!options) return 0;
+export const getInitialVector = (
+  options: InitialVectorOptions | undefined,
+  containerWidth: number,
+): number => {
+  if (!options) {
+    return 0;
+  }
   const half = containerWidth / 2;
 
   if ('leftPanel' in options) {

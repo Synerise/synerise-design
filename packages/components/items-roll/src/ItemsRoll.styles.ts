@@ -1,7 +1,8 @@
 import styled from 'styled-components';
+
 import Button from '@synerise/ds-button';
-import Icon from '@synerise/ds-icon';
 import DividerBase from '@synerise/ds-divider';
+import Icon from '@synerise/ds-icon';
 
 export const Wrapper = styled.div`
   padding: 12px;
@@ -52,10 +53,12 @@ export const ListWrapper = styled.div`
 
           .element-remove-icon {
             svg {
-              fill: ${({ theme }): string => theme.palette['red-600']} !important;
+              fill: ${({ theme }): string =>
+                theme.palette['red-600']} !important;
 
               :hover {
-                fill: ${({ theme }): string => theme.palette['red-600']} !important;
+                fill: ${({ theme }): string =>
+                  theme.palette['red-600']} !important;
               }
             }
           }
@@ -92,7 +95,8 @@ export const ListWrapper = styled.div`
         width: calc(100% + 12px);
         height: 1px;
         display: block;
-        border-bottom: 1px dashed ${({ theme }): string => theme.palette['grey-300']};
+        border-bottom: 1px dashed
+          ${({ theme }): string => theme.palette['grey-300']};
         margin: 12px 0px 12px -12px;
       }
     }

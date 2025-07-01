@@ -1,8 +1,14 @@
 import styled from 'styled-components';
-import { ErrorText as BaseErrorText, Description as BaseDescription, Label, macro } from '@synerise/ds-typography';
+
+import {
+  Description as BaseDescription,
+  ErrorText as BaseErrorText,
+  Label,
+  macro,
+} from '@synerise/ds-typography';
 
 export const FormFieldWrapper = styled.div<{ hasContent?: boolean }>`
-  ${props =>
+  ${(props) =>
     props.hasContent &&
     `display: flex;
       flex-direction: column;
@@ -54,5 +60,5 @@ export const RightSide = styled.div`
   font-weight: 500;
   flex: 1 0 auto;
   text-align: end;
-  color: ${props => props.theme.palette['grey-500']};
+  color: ${(props) => props.theme.palette['grey-500']};
 `;

@@ -1,9 +1,13 @@
-import styled, { css, FlattenSimpleInterpolation } from 'styled-components';
 import Select from 'antd/lib/select';
-import { ThemeProps } from '@synerise/ds-core';
-import React from 'react';
+import type React from 'react';
+import styled, {
+  type FlattenSimpleInterpolation,
+  css,
+} from 'styled-components';
 
-import { Props } from './Select.types';
+import { type ThemeProps } from '@synerise/ds-core';
+
+import { type Props } from './Select.types';
 
 const { OptGroup, Option } = Select;
 
@@ -43,10 +47,12 @@ export const SelectContainer = styled.div<{ hasBottomMargin?: boolean }>`
   flex-direction: column;
   align-items: stretch;
   justify-content: flex-start;
-  margin: 0 0 ${props => (props.hasBottomMargin ? 16 : 0)}px;
+  margin: 0 0 ${(props) => (props.hasBottomMargin ? 16 : 0)}px;
 `;
 
-export const AntdSelect = styled(Select as unknown as React.ComponentType<Props>)<{
+export const AntdSelect = styled(
+  Select as unknown as React.ComponentType<Props>,
+)<{
   size?: string;
   withPrefixel?: boolean;
   withSuffixel?: boolean;
@@ -90,7 +96,8 @@ export const AntdSelect = styled(Select as unknown as React.ComponentType<Props>
   }
   && {
     .ant-select-selector {
-      ${(props): FlattenSimpleInterpolation | false => !!props.selectorStyle && css(props.selectorStyle)}
+      ${(props): FlattenSimpleInterpolation | false =>
+        !!props.selectorStyle && css(props.selectorStyle)}
     }
   }
 
@@ -121,7 +128,8 @@ export const AntdSelect = styled(Select as unknown as React.ComponentType<Props>
       width: 24px;
       height: 24px;
       background-color: rgba(0, 0, 0, 0);
-      background-image: ${(props): string => `url("${searchIconWithCustomColor(props.theme.palette['grey-400'])}")`};
+      background-image: ${(props): string =>
+        `url("${searchIconWithCustomColor(props.theme.palette['grey-400'])}")`};
     }
   }
 

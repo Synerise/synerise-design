@@ -1,4 +1,4 @@
-import { ListProps } from 'react-window';
+import { type ListProps } from 'react-window';
 
 type ListPropsEnhanced = Partial<ListProps> & {
   scrollTop?: number;

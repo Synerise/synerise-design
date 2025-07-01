@@ -1,9 +1,14 @@
-import { ReactNode, ReactText } from 'react';
-import type { WithHTMLAttributes } from '@synerise/ds-utils';
-import { ItemProps } from '../Item.types';
-import { Texts } from '../../ManageableList.types';
+import { type ReactNode, type ReactText } from 'react';
 
-type BaseContentItemProps = Omit<ContentItemHeaderProps, 'texts' | 'isExapnded' | 'setIsExpanded'> & {
+import type { WithHTMLAttributes } from '@synerise/ds-utils';
+
+import { type Texts } from '../../ManageableList.types';
+import { type ItemProps } from '../Item.types';
+
+type BaseContentItemProps = Omit<
+  ContentItemHeaderProps,
+  'texts' | 'isExapnded' | 'setIsExpanded'
+> & {
   dashed?: boolean;
   expanded?: boolean;
   greyBackground?: boolean;
@@ -32,4 +37,7 @@ export type ContentItemHeaderProps = {
   isLast?: boolean;
 };
 
-export type ContentItemProps = WithHTMLAttributes<HTMLDivElement, BaseContentItemProps>;
+export type ContentItemProps = WithHTMLAttributes<
+  HTMLDivElement,
+  BaseContentItemProps
+>;

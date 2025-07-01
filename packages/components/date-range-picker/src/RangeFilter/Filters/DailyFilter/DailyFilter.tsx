@@ -1,17 +1,25 @@
 import React from 'react';
-import { injectIntl, WrappedComponentProps } from 'react-intl';
-import * as S from './DailyFilter.styles';
-import TimeWindow from '../../Shared/TimeWindow/TimeWindow';
-import { RangeActions as RangeActionsMethods } from '../../Shared/TimeWindow/TimeWindow.types';
-import { Days } from '../../../date.types';
-import { WithTranslations } from '../../../DateRangePicker.types';
-import { ValueSelectionModes, WithDisabledProp } from '../../RangeFilter.types';
-import { RANGE_DISPLAY_MODES } from '../../Shared/TimeWindow/RangeFormContainer/RangeForm/RangeForm.constants';
-import { RangeDisplayMode } from '../../Shared/TimeWindow/RangeFormContainer/RangeForm/RangeForm.types';
+import { type WrappedComponentProps, injectIntl } from 'react-intl';
 
-export interface Props extends WrappedComponentProps, Partial<RangeActionsMethods>, WithTranslations, WithDisabledProp {
+import { type WithTranslations } from '../../../DateRangePicker.types';
+import { type Days } from '../../../date.types';
+import {
+  type ValueSelectionModes,
+  type WithDisabledProp,
+} from '../../RangeFilter.types';
+import { RANGE_DISPLAY_MODES } from '../../Shared/TimeWindow/RangeFormContainer/RangeForm/RangeForm.constants';
+import { type RangeDisplayMode } from '../../Shared/TimeWindow/RangeFormContainer/RangeForm/RangeForm.types';
+import TimeWindow from '../../Shared/TimeWindow/TimeWindow';
+import { type RangeActions as RangeActionsMethods } from '../../Shared/TimeWindow/TimeWindow.types';
+import * as S from './DailyFilter.styles';
+
+export interface Props
+  extends WrappedComponentProps,
+    Partial<RangeActionsMethods>,
+    WithTranslations,
+    WithDisabledProp {
   value: string;
-  onChange: (v: Days) => {};
+  onChange: (v: Days) => void;
   rangeDisplayMode?: RangeDisplayMode;
   valueSelectionModes: ValueSelectionModes;
 }
@@ -21,8 +29,16 @@ const DailyFilter = (props: Props) => {
     const { onChange } = props;
     onChange && onChange(value[0] as Days);
   };
-  const { value, onRangeCopy, onRangePaste, onRangeClear, texts, valueSelectionModes, disabled, rangeDisplayMode } =
-    props;
+  const {
+    value,
+    onRangeCopy,
+    onRangePaste,
+    onRangeClear,
+    texts,
+    valueSelectionModes,
+    disabled,
+    rangeDisplayMode,
+  } = props;
   const hideHeader = rangeDisplayMode !== RANGE_DISPLAY_MODES.SLIDER;
   const headerOptions =
     rangeDisplayMode === RANGE_DISPLAY_MODES.SLIDER

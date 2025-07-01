@@ -1,5 +1,7 @@
-import { WithHTMLAttributes } from '@synerise/ds-utils';
-import { ReactElement } from 'react';
+import { type ReactElement } from 'react';
+
+import { type WithHTMLAttributes } from '@synerise/ds-utils';
+
 import type { CardTabProps } from './CardTab/CardTab.types';
 
 export type CardTabsPropsBase<IdType extends string | number> = {

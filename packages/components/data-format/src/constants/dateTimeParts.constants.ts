@@ -1,4 +1,4 @@
-import { DateTimePartFormat } from '../types';
+import { type DateTimePartFormat } from '../types';
 
 export const WEEKDAY: Intl.DateTimeFormatPartTypes = 'weekday';
 export const MONTH: Intl.DateTimeFormatPartTypes = 'month';

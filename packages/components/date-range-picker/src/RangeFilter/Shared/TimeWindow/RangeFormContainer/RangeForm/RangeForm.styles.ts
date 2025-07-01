@@ -1,4 +1,8 @@
-import styled, { FlattenSimpleInterpolation, css } from 'styled-components';
+import styled, {
+  type FlattenSimpleInterpolation,
+  css,
+} from 'styled-components';
+
 import type { RangeDisplayMode } from './RangeForm.types';
 
 export const RemoveIconWrapper = styled.div`
@@ -32,7 +36,10 @@ export const Container = styled.div`
     }
   }
 `;
-export const Row = styled.div<{ justifyContent: string; mode: RangeDisplayMode }>`
+export const Row = styled.div<{
+  justifyContent: string;
+  mode: RangeDisplayMode;
+}>`
   width: 100%;
   display: flex;
   justify-content: ${(props): string => props.justifyContent};

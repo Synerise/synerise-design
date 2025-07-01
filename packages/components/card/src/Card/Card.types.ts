@@ -1,6 +1,11 @@
-import { SyntheticEvent, ReactNode, CSSProperties } from 'react';
+import { type CSSProperties, type ReactNode, type SyntheticEvent } from 'react';
 
-export type Backgrounds = 'white' | 'white-shadow' | 'grey' | 'grey-shadow' | 'outline';
+export type Backgrounds =
+  | 'white'
+  | 'white-shadow'
+  | 'grey'
+  | 'grey-shadow'
+  | 'outline';
 
 export interface CardProps {
   raised?: boolean;

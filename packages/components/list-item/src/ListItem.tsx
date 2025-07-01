@@ -1,9 +1,10 @@
 import React from 'react';
+
 import '@synerise/ds-core/dist/js/style';
 
-import { ListItemProps, itemTypes } from './ListItem.types';
-import { Text, Danger, Select } from './components';
 import { MenuDivider } from './ListItem.styles';
+import { type ListItemProps, itemTypes } from './ListItem.types';
+import { Danger, Select, Text } from './components';
 
 const ListItem = (props: ListItemProps) => {
   const { text, children, type, ...rest } = props;

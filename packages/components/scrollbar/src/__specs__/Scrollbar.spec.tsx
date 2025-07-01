@@ -1,5 +1,7 @@
 import React from 'react';
-import { renderWithProvider } from '@synerise/ds-utils/dist/testing';
+
+import { renderWithProvider } from '@synerise/ds-utils';
+
 import Scrollbar from '../Scrollbar';
 
 describe('Scrollbar', () => {
@@ -12,7 +14,7 @@ describe('Scrollbar', () => {
     const { container } = renderWithProvider(
       <Scrollbar maxHeight={MAX_HEIGHT} classes="test">
         {TEXT}
-      </Scrollbar>
+      </Scrollbar>,
     );
 
     const c = container.querySelectorAll('.test')[0];
@@ -29,7 +31,7 @@ describe('Scrollbar', () => {
     const { getByTestId } = renderWithProvider(
       <Scrollbar maxHeight={MAX_HEIGHT} classes="test" withDnd>
         {TEXT}
-      </Scrollbar>
+      </Scrollbar>,
     );
 
     // ASSERT
@@ -44,7 +46,7 @@ describe('Scrollbar', () => {
     const { getByTestId } = renderWithProvider(
       <Scrollbar maxHeight={MAX_HEIGHT} classes="test">
         {TEXT}
-      </Scrollbar>
+      </Scrollbar>,
     );
 
     // ASSERT

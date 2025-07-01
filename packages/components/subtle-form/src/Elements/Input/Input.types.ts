@@ -1,5 +1,6 @@
-import { InputProps } from 'antd/lib/input';
-import { SubtleFieldProps } from '../../SubtleForm.types';
+import { type InputProps } from 'antd/lib/input';
+
+import { type SubtleFieldProps } from '../../SubtleForm.types';
 
 export type SubtleInputProps = {
   onChange?: (value: string) => void;

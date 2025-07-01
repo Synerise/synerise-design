@@ -1,17 +1,21 @@
 import React from 'react';
+
+import { type Texts } from '../../../../DateRangePicker.types';
+import { Header } from '../Header/Header';
+import RangeActions from '../RangeActions/RangeActions';
+import { type ActionsTexts } from '../RangeActions/RangeActions.types';
+import RangeSummary from '../RangeSummary/RangeSummary';
+import { DEFAULT_LIMIT_MODE } from '../TimeWindow';
+import { type DayKey } from '../TimeWindow.types';
+import { getDateFromDayValue, getDefaultFilterForLimitMode } from '../utils';
 import RangeForm from './RangeForm/RangeForm';
 import { RANGE_DISPLAY_MODES } from './RangeForm/RangeForm.constants';
-import { getDateFromDayValue, getDefaultFilterForLimitMode } from '../utils';
-import { DayKey } from '../TimeWindow.types';
-import { Header } from '../Header/Header';
-import RangeSummary from '../RangeSummary/RangeSummary';
-import RangeActions from '../RangeActions/RangeActions';
-import { DateLimitMode } from './RangeForm/RangeForm.types';
-import { ActionsTexts } from '../RangeActions/RangeActions.types';
-import { Texts } from '../../../../DateRangePicker.types';
-import { DEFAULT_LIMIT_MODE } from '../TimeWindow';
+import { type DateLimitMode } from './RangeForm/RangeForm.types';
 import * as S from './RangeFormContainer.styles';
-import type { RangeFormContainerProps, DateValue } from './RangeFormContainer.types';
+import type {
+  DateValue,
+  RangeFormContainerProps,
+} from './RangeFormContainer.types';
 
 const RangeFormContainer = ({
   errorTexts,
@@ -43,7 +47,9 @@ const RangeFormContainer = ({
 }: RangeFormContainerProps) => {
   const dayValue = getDayValue(activeDays[0]);
 
-  const [mode, setMode] = React.useState<DateLimitMode>(dayValue?.mode || valueSelectionModes[0] || DEFAULT_LIMIT_MODE);
+  const [mode, setMode] = React.useState<DateLimitMode>(
+    dayValue?.mode || valueSelectionModes[0] || DEFAULT_LIMIT_MODE,
+  );
 
   const handleModeChange = React.useCallback(
     (selectedMode: DateLimitMode) => {
@@ -52,7 +58,7 @@ const RangeFormContainer = ({
         return;
       }
       const updatedDays = {};
-      activeDays.forEach(i => {
+      activeDays.forEach((i) => {
         updatedDays[i] = {
           ...days[i],
           ...getDefaultFilterForLimitMode(selectedMode),
@@ -61,7 +67,7 @@ const RangeFormContainer = ({
       });
       onChange({ ...days, ...updatedDays });
     },
-    [onChange, days, activeDays, onModeChange]
+    [onChange, days, activeDays, onModeChange],
   );
   React.useEffect((): void => {
     setMode(dayValue?.mode || valueSelectionModes[0] || DEFAULT_LIMIT_MODE);
@@ -71,7 +77,11 @@ const RangeFormContainer = ({
     (start?: Date): void => {
       const dayVal = getDayValue(activeDays[0]);
       const { inverted, stop: end } = dayVal;
-      const value: DateValue = [start, end ? getDateFromDayValue(end, timeFormat) : undefined, Boolean(inverted)];
+      const value: DateValue = [
+        start,
+        end ? getDateFromDayValue(end, timeFormat) : undefined,
+        Boolean(inverted),
+      ];
 
       if (activeDays.length > 1) {
         onMultipleDayTimeChange(value);
@@ -79,7 +89,14 @@ const RangeFormContainer = ({
         onDayTimeChange(value, dayKeys as DayKey);
       }
     },
-    [activeDays, onMultipleDayTimeChange, onDayTimeChange, timeFormat, getDayValue, dayKeys]
+    [
+      activeDays,
+      onMultipleDayTimeChange,
+      onDayTimeChange,
+      timeFormat,
+      getDayValue,
+      dayKeys,
+    ],
   );
 
   const onEndChange = React.useCallback(
@@ -87,7 +104,11 @@ const RangeFormContainer = ({
       const dayVal = getDayValue(activeDays[0]);
       const { start, inverted } = dayVal;
 
-      const value: DateValue = [start ? getDateFromDayValue(start, timeFormat) : undefined, end, Boolean(inverted)];
+      const value: DateValue = [
+        start ? getDateFromDayValue(start, timeFormat) : undefined,
+        end,
+        Boolean(inverted),
+      ];
 
       if (activeDays.length > 1) {
         onMultipleDayTimeChange(value);
@@ -95,7 +116,14 @@ const RangeFormContainer = ({
         onDayTimeChange(value, dayKeys as DayKey);
       }
     },
-    [activeDays, onMultipleDayTimeChange, onDayTimeChange, timeFormat, getDayValue, dayKeys]
+    [
+      activeDays,
+      onMultipleDayTimeChange,
+      onDayTimeChange,
+      timeFormat,
+      getDayValue,
+      dayKeys,
+    ],
   );
 
   const toggleInverted = React.useCallback((): void => {
@@ -113,7 +141,14 @@ const RangeFormContainer = ({
     } else {
       onDayTimeChange(value, dayKeys as DayKey);
     }
-  }, [activeDays, onMultipleDayTimeChange, onDayTimeChange, timeFormat, getDayValue, dayKeys]);
+  }, [
+    activeDays,
+    onMultipleDayTimeChange,
+    onDayTimeChange,
+    timeFormat,
+    getDayValue,
+    dayKeys,
+  ]);
 
   const onExactHourSelect = React.useCallback(
     (value?: Date): void => {
@@ -123,7 +158,7 @@ const RangeFormContainer = ({
         onDayTimeChange([value, value, false], dayKeys as DayKey);
       }
     },
-    [activeDays, onMultipleDayTimeChange, onDayTimeChange, dayKeys]
+    [activeDays, onMultipleDayTimeChange, onDayTimeChange, dayKeys],
   );
 
   const rangeForm = React.useMemo(
@@ -137,8 +172,16 @@ const RangeFormContainer = ({
           handleModeChange(selected);
         }}
         mode={mode}
-        startDate={dayValue?.start ? getDateFromDayValue(dayValue.start, timeFormat) : undefined}
-        endDate={dayValue?.stop ? getDateFromDayValue(dayValue.stop, timeFormat) : undefined}
+        startDate={
+          dayValue?.start
+            ? getDateFromDayValue(dayValue.start, timeFormat)
+            : undefined
+        }
+        endDate={
+          dayValue?.stop
+            ? getDateFromDayValue(dayValue.stop, timeFormat)
+            : undefined
+        }
         onStartChange={onStartChange}
         onEndChange={onEndChange}
         onExactHourSelect={onExactHourSelect}
@@ -168,11 +211,15 @@ const RangeFormContainer = ({
       timePickerProps,
       rangeDisplayMode,
       handleModeChange,
-    ]
+    ],
   );
 
   const invertedToggleLink = React.useMemo(() => {
-    return <S.InvertAction onClick={toggleInverted}>{texts.inverseSelection}</S.InvertAction>;
+    return (
+      <S.InvertAction onClick={toggleInverted}>
+        {texts.inverseSelection}
+      </S.InvertAction>
+    );
   }, [texts.inverseSelection, toggleInverted]);
 
   const suffix = React.useMemo(() => {
@@ -203,7 +250,9 @@ const RangeFormContainer = ({
     headerOptions,
   ]);
 
-  if (hideHeader) return rangeForm;
+  if (hideHeader) {
+    return rangeForm;
+  }
   const { includeSummary = true } = headerOptions;
   return (
     <>

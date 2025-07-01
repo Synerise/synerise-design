@@ -1,9 +1,11 @@
 import type { ReactText } from 'react';
-import type { FactorType, FactorValueType } from '@synerise/ds-factors';
+
 import type { ContextGroup, ContextItem } from '@synerise/ds-context-selector';
-import type { SubjectItem } from '@synerise/ds-subject';
+import type { FactorType, FactorValueType } from '@synerise/ds-factors';
 import type { OperatorsGroup, OperatorsItem } from '@synerise/ds-operators';
-import type { ConditionStep, ConditionProps } from '../Condition.types';
+import type { SubjectItem } from '@synerise/ds-subject';
+
+import type { ConditionProps, ConditionStep } from '../Condition.types';
 
 export type ConditionStepProps = Pick<
   ConditionProps,
@@ -34,12 +36,34 @@ export type ConditionStepProps = Pick<
   updateStepName?: (stepId: ReactText, value: string) => void;
   draggableEnabled?: boolean;
   selectSubject: (value: SubjectItem, stepId: ReactText) => void;
-  selectContext: (value: ContextItem | ContextGroup | undefined, stepId: ReactText) => void;
-  selectActionAttribute: (value: FactorValueType | undefined, stepId: ReactText) => void;
-  selectParameter: (stepId: ReactText, condition: ReactText, value: FactorValueType | undefined) => void;
-  selectOperator: (stepId: ReactText, condition: ReactText, value: OperatorsItem | OperatorsGroup | undefined) => void;
-  setStepConditionFactorType: (stepId: ReactText, condition: ReactText, factorType: FactorType | undefined) => void;
-  setStepConditionFactorValue: (stepId: ReactText, condition: ReactText, value: FactorValueType) => void;
+  selectContext: (
+    value: ContextItem | ContextGroup | undefined,
+    stepId: ReactText,
+  ) => void;
+  selectActionAttribute: (
+    value: FactorValueType | undefined,
+    stepId: ReactText,
+  ) => void;
+  selectParameter: (
+    stepId: ReactText,
+    condition: ReactText,
+    value: FactorValueType | undefined,
+  ) => void;
+  selectOperator: (
+    stepId: ReactText,
+    condition: ReactText,
+    value: OperatorsItem | OperatorsGroup | undefined,
+  ) => void;
+  setStepConditionFactorType: (
+    stepId: ReactText,
+    condition: ReactText,
+    factorType: FactorType | undefined,
+  ) => void;
+  setStepConditionFactorValue: (
+    stepId: ReactText,
+    condition: ReactText,
+    value: FactorValueType,
+  ) => void;
   currentStepId: ReactText;
   currentConditionId: ReactText;
   currentField: ReactText;

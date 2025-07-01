@@ -1,11 +1,14 @@
 import React from 'react';
 
-import { useDataFormat, getDefaultDataTimeOptions } from '@synerise/ds-data-format';
+import {
+  getDefaultDataTimeOptions,
+  useDataFormat,
+} from '@synerise/ds-data-format';
 import DSTimePicker from '@synerise/ds-time-picker';
 
 import Navbar from '../Navbar/Navbar';
 import * as S from './TimePicker.styles';
-import { TimePickerProps } from './TimePicker.types';
+import { type TimePickerProps } from './TimePicker.types';
 
 const TimePicker = ({
   value = new Date(),
@@ -19,7 +22,11 @@ const TimePicker = ({
   onShortPrev,
 }: TimePickerProps) => {
   const { is12HoursClock, formatValue } = useDataFormat();
-  const navbarDate = formatValue(value, { ...getDefaultDataTimeOptions(), targetFormat: 'date', month: 'short' });
+  const navbarDate = formatValue(value, {
+    ...getDefaultDataTimeOptions(),
+    targetFormat: 'date',
+    month: 'short',
+  });
 
   return (
     <>

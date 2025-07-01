@@ -1,6 +1,6 @@
 import * as MainCardStyles from './Card/Card.styles';
-import * as CardGroupStyles from './CardGroup/CardGroup.styles';
 import * as CardBadgeStyles from './CardBadge/CardBadge.styles';
+import * as CardGroupStyles from './CardGroup/CardGroup.styles';
 
 export { default } from './Card/Card';
 export { default as CardGroup } from './CardGroup/CardGroup';

@@ -1,12 +1,13 @@
 import React from 'react';
 import { injectIntl } from 'react-intl';
 import { v4 as uuid } from 'uuid';
+
 import Button from '@synerise/ds-button';
-import Tooltip from '@synerise/ds-tooltip';
 import Icon, { CalendarM, ClockM } from '@synerise/ds-icon';
+import Tooltip from '@synerise/ds-tooltip';
 
 import * as S from './Footer.styles';
-import { Props } from './Footer.types';
+import { type Props } from './Footer.types';
 
 const Footer: React.FC<Props> = ({
   text,
@@ -35,10 +36,14 @@ const Footer: React.FC<Props> = ({
         <Icon component={mode === 'time' ? <CalendarM /> : <ClockM />} />
       </Button>
     ),
-    [mode, onSwitchMode, canSwitchMode]
+    [mode, onSwitchMode, canSwitchMode],
   );
   return (
-    <S.Container className="ds-date-picker-footer" key="date-picker-footer" {...rest}>
+    <S.Container
+      className="ds-date-picker-footer"
+      key="date-picker-footer"
+      {...rest}
+    >
       {!hideNow && (
         <S.Range
           data-testid="range-now"

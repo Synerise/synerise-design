@@ -1,13 +1,15 @@
+import { merge } from 'lodash';
 import { useMemo } from 'react';
 import { useIntl } from 'react-intl';
-import { merge } from 'lodash';
 
-import type { DeepPartial } from '@synerise/ds-utils';
 import { utils as dateRangePickerUtils } from '@synerise/ds-date-range-picker';
+import { type DeepPartial } from '@synerise/ds-utils';
 
 import type { FactorsTexts } from '../Factors.types';
 
-export const useTexts = (defaultTexts?: DeepPartial<FactorsTexts>): FactorsTexts => {
+export const useTexts = (
+  defaultTexts?: DeepPartial<FactorsTexts>,
+): FactorsTexts => {
   const intl = useIntl();
 
   const texts = useMemo(
@@ -16,16 +18,28 @@ export const useTexts = (defaultTexts?: DeepPartial<FactorsTexts>): FactorsTexts
         {
           dateRangePicker: dateRangePickerUtils.getDefaultTexts(intl),
           datePicker: {
-            apply: intl.formatMessage({ id: 'DS.FACTORS.DATE_PICKER.APPLY', defaultMessage: 'Apply' }),
-            clearTooltip: intl.formatMessage({ id: 'DS.FACTORS.DATE_PICKER.CLEAR_TOOLTIP', defaultMessage: 'Clear' }),
+            apply: intl.formatMessage({
+              id: 'DS.FACTORS.DATE_PICKER.APPLY',
+              defaultMessage: 'Apply',
+            }),
+            clearTooltip: intl.formatMessage({
+              id: 'DS.FACTORS.DATE_PICKER.CLEAR_TOOLTIP',
+              defaultMessage: 'Clear',
+            }),
             inputPlaceholder: intl.formatMessage({
               id: 'DS.FACTORS.DATE_PICKER.INPUT_PLACEHOLDER',
               defaultMessage: 'Select date',
             }),
-            now: intl.formatMessage({ id: 'DS.FACTORS.DATE_PICKER.NOW', defaultMessage: 'Now' }),
+            now: intl.formatMessage({
+              id: 'DS.FACTORS.DATE_PICKER.NOW',
+              defaultMessage: 'Now',
+            }),
           },
           dynamicKey: {
-            keyPlaceholder: intl.formatMessage({ id: 'DS.FACTORS.DYNAMIC_KEY.KEY_PLACEHOLDER', defaultMessage: 'Key' }),
+            keyPlaceholder: intl.formatMessage({
+              id: 'DS.FACTORS.DYNAMIC_KEY.KEY_PLACEHOLDER',
+              defaultMessage: 'Key',
+            }),
             valuePlaceholder: intl.formatMessage({
               id: 'DS.FACTORS.DYNAMIC_KEY.VALUE_PLACEHOLDER',
               defaultMessage: 'Value',
@@ -87,13 +101,14 @@ export const useTexts = (defaultTexts?: DeepPartial<FactorsTexts>): FactorsTexts
             triggerValue: intl.formatMessage(
               {
                 id: 'DS.FACTORS.RELATIVE_DATE.TRIGGER_VALUE',
-                defaultMessage: '{value} {interval} {timeRelation} current datetime',
+                defaultMessage:
+                  '{value} {interval} {timeRelation} current datetime',
               },
               {
                 value: '1',
                 interval: 'days',
                 timeRelation: 'before',
-              }
+              },
             ),
           },
           formula: {
@@ -101,7 +116,10 @@ export const useTexts = (defaultTexts?: DeepPartial<FactorsTexts>): FactorsTexts
               id: 'DS.FACTORS.FORMULA.BUTTON_PLACEHOLDER',
               defaultMessage: 'Formula',
             }),
-            defaultName: intl.formatMessage({ id: 'DS.FACTORS.FORMULA.DEFAULT_NAME', defaultMessage: 'Formula' }),
+            defaultName: intl.formatMessage({
+              id: 'DS.FACTORS.FORMULA.DEFAULT_NAME',
+              defaultMessage: 'Formula',
+            }),
           },
           array: {
             triggerLabel: intl.formatMessage({
@@ -130,7 +148,8 @@ export const useTexts = (defaultTexts?: DeepPartial<FactorsTexts>): FactorsTexts
             }),
             collectorPlaceholder: intl.formatMessage({
               id: 'DS.FACTORS.ARRAY.COLLECTOR_PLACEHOLDER',
-              defaultMessage: 'Type value or paste multiple values separated by `,`',
+              defaultMessage:
+                'Type value or paste multiple values separated by `,`',
             }),
             collectorAdd: intl.formatMessage({
               id: 'DS.FACTORS.ARRAY.COLLECTOR_ADD',
@@ -154,7 +173,8 @@ export const useTexts = (defaultTexts?: DeepPartial<FactorsTexts>): FactorsTexts
             }),
             emptyDescription: intl.formatMessage({
               id: 'DS.FACTORS.ARRAY.EMPTY_DESCRIPTION',
-              defaultMessage: 'This is a simple empty state example text. You can easily change it.',
+              defaultMessage:
+                'This is a simple empty state example text. You can easily change it.',
             }),
             emptyResultsTitle: intl.formatMessage({
               id: 'DS.FACTORS.ARRAY.EMPTY_RESULTS_TITLE',
@@ -162,7 +182,8 @@ export const useTexts = (defaultTexts?: DeepPartial<FactorsTexts>): FactorsTexts
             }),
             emptyResultsDescription: intl.formatMessage({
               id: 'DS.FACTORS.ARRAY.EMPTY_RESULTS_DESCRIPTION',
-              defaultMessage: 'This is a simple empty state example text. You can easily change it.',
+              defaultMessage:
+                'This is a simple empty state example text. You can easily change it.',
             }),
             limitPrefix: intl.formatMessage({
               id: 'DS.FACTORS.ARRAY.LIMIT_PREFIX',
@@ -178,7 +199,8 @@ export const useTexts = (defaultTexts?: DeepPartial<FactorsTexts>): FactorsTexts
             }),
             limitExceeded: intl.formatMessage({
               id: 'DS.FACTORS.ARRAY.LIMIT_EXCEEDED',
-              defaultMessage: 'Adding these items will exceed maximum items limit',
+              defaultMessage:
+                'Adding these items will exceed maximum items limit',
             }),
 
             copiedTooltip: intl.formatMessage({
@@ -195,23 +217,56 @@ export const useTexts = (defaultTexts?: DeepPartial<FactorsTexts>): FactorsTexts
               id: 'DS.FACTORS.PARAMETER.SEARCH_PLACEHOLDER',
               defaultMessage: 'Search',
             }),
-            noResults: intl.formatMessage({ id: 'DS.FACTORS.PARAMETER.NO_RESULTS', defaultMessage: 'No results' }),
+            noResults: intl.formatMessage({
+              id: 'DS.FACTORS.PARAMETER.NO_RESULTS',
+              defaultMessage: 'No results',
+            }),
             loadingParameter: intl.formatMessage({
               id: 'DS.FACTORS.PARAMETER.LOADING_PARAMETERS',
               defaultMessage: 'Loading parameters',
             }),
-            showMore: intl.formatMessage({ id: 'DS.FACTORS.PARAMETER.SHOW_MORE', defaultMessage: 'Show more' }),
-            recentItemsGroupName: intl.formatMessage({ id: 'DS.FACTORS.PARAMETER.RECENT', defaultMessage: 'Recent' }),
-            allItemsGroupName: intl.formatMessage({ id: 'DS.FACTORS.PARAMETER.ALL', defaultMessage: 'All' }),
+            showMore: intl.formatMessage({
+              id: 'DS.FACTORS.PARAMETER.SHOW_MORE',
+              defaultMessage: 'Show more',
+            }),
+            recentItemsGroupName: intl.formatMessage({
+              id: 'DS.FACTORS.PARAMETER.RECENT',
+              defaultMessage: 'Recent',
+            }),
+            allItemsGroupName: intl.formatMessage({
+              id: 'DS.FACTORS.PARAMETER.ALL',
+              defaultMessage: 'All',
+            }),
           },
-          valuePlaceholder: intl.formatMessage({ id: 'DS.FACTORS.VALUE_PLACEHOLDER', defaultMessage: 'Value' }),
-          modalApply: intl.formatMessage({ id: 'DS.FACTORS.MODAL_APPLY', defaultMessage: 'Apply' }),
-          modalCancel: intl.formatMessage({ id: 'DS.FACTORS.MODAL_CANCEL', defaultMessage: 'Cancel' }),
-          modalTitle: intl.formatMessage({ id: 'DS.FACTORS.MODAL_TITLE', defaultMessage: 'Value' }),
+          valuePlaceholder: intl.formatMessage({
+            id: 'DS.FACTORS.VALUE_PLACEHOLDER',
+            defaultMessage: 'Value',
+          }),
+          modalApply: intl.formatMessage({
+            id: 'DS.FACTORS.MODAL_APPLY',
+            defaultMessage: 'Apply',
+          }),
+          modalCancel: intl.formatMessage({
+            id: 'DS.FACTORS.MODAL_CANCEL',
+            defaultMessage: 'Cancel',
+          }),
+          modalTitle: intl.formatMessage({
+            id: 'DS.FACTORS.MODAL_TITLE',
+            defaultMessage: 'Value',
+          }),
           factorTypes: {
-            text: intl.formatMessage({ id: 'DS.FACTORS.FACTOR_TYPES.TEXT', defaultMessage: 'Text' }),
-            number: intl.formatMessage({ id: 'DS.FACTORS.FACTOR_TYPES.NUMBER', defaultMessage: 'Number' }),
-            parameter: intl.formatMessage({ id: 'DS.FACTORS.FACTOR_TYPES.PARAMETER', defaultMessage: 'Parameter' }),
+            text: intl.formatMessage({
+              id: 'DS.FACTORS.FACTOR_TYPES.TEXT',
+              defaultMessage: 'Text',
+            }),
+            number: intl.formatMessage({
+              id: 'DS.FACTORS.FACTOR_TYPES.NUMBER',
+              defaultMessage: 'Number',
+            }),
+            parameter: intl.formatMessage({
+              id: 'DS.FACTORS.FACTOR_TYPES.PARAMETER',
+              defaultMessage: 'Parameter',
+            }),
             contextParameter: intl.formatMessage({
               id: 'DS.FACTORS.FACTOR_TYPES.CONTEXT_PARAMETER',
               defaultMessage: 'Context parameter',
@@ -220,19 +275,31 @@ export const useTexts = (defaultTexts?: DeepPartial<FactorsTexts>): FactorsTexts
               id: 'DS.FACTORS.FACTOR_TYPES.DYNAMIC_KEY',
               defaultMessage: 'Dynamic key',
             }),
-            formula: intl.formatMessage({ id: 'DS.FACTORS.FACTOR_TYPES.FORMULA', defaultMessage: 'Formula' }),
-            array: intl.formatMessage({ id: 'DS.FACTORS.FACTOR_TYPES.ARRAY', defaultMessage: 'Array' }),
-            date: intl.formatMessage({ id: 'DS.FACTORS.FACTOR_TYPES.DATE', defaultMessage: 'Date' }),
+            formula: intl.formatMessage({
+              id: 'DS.FACTORS.FACTOR_TYPES.FORMULA',
+              defaultMessage: 'Formula',
+            }),
+            array: intl.formatMessage({
+              id: 'DS.FACTORS.FACTOR_TYPES.ARRAY',
+              defaultMessage: 'Array',
+            }),
+            date: intl.formatMessage({
+              id: 'DS.FACTORS.FACTOR_TYPES.DATE',
+              defaultMessage: 'Date',
+            }),
             relativeDate: intl.formatMessage({
               id: 'DS.FACTORS.FACTOR_TYPES.RELATIVE_DATE',
               defaultMessage: 'Relative date',
             }),
-            dateRange: intl.formatMessage({ id: 'DS.FACTORS.FACTOR_TYPES.DATE_RANGE', defaultMessage: 'Date range' }),
+            dateRange: intl.formatMessage({
+              id: 'DS.FACTORS.FACTOR_TYPES.DATE_RANGE',
+              defaultMessage: 'Date range',
+            }),
           },
         },
-        defaultTexts
+        defaultTexts,
       ),
-    [defaultTexts, intl]
+    [defaultTexts, intl],
   );
 
   return texts;

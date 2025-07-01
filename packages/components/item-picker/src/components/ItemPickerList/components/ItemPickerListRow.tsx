@@ -1,10 +1,21 @@
-import React, { CSSProperties, PropsWithChildren, useCallback, MouseEvent } from 'react';
+import React, {
+  type CSSProperties,
+  type MouseEvent,
+  type PropsWithChildren,
+  useCallback,
+} from 'react';
 
-import ListItem, { ItemData, ListItemProps } from '@synerise/ds-list-item';
+import ListItem, {
+  type ItemData,
+  type ListItemProps,
+} from '@synerise/ds-list-item';
 
-import { isTitle } from '../utils/typeguards.utils';
 import * as S from '../ItemPickerList.styles';
-import { ItemPickerListTexts, TitleListItemProps } from '../ItemPickerList.types';
+import {
+  type ItemPickerListTexts,
+  type TitleListItemProps,
+} from '../ItemPickerList.types';
+import { isTitle } from '../utils/typeguards.utils';
 import { InfiniteLoaderItem } from './InfiniteLoaderItem';
 
 const INFINITE_LOADER_ITEM_HEIGHT = 48;
@@ -39,9 +50,19 @@ export const ItemPickerListRow = ({
       if (isLoading || hasError || !hasMore) {
         return (
           <S.InfiniteLoaderItemWrapper
-            style={{ ...style, top, height: `${INFINITE_LOADER_ITEM_HEIGHT}px`, padding: '6px 0' }}
+            style={{
+              ...style,
+              top,
+              height: `${INFINITE_LOADER_ITEM_HEIGHT}px`,
+              padding: '6px 0',
+            }}
           >
-            <InfiniteLoaderItem hasMore={hasMore} isLoading={isLoading} hasError={hasError} texts={texts} />
+            <InfiniteLoaderItem
+              hasMore={hasMore}
+              isLoading={isLoading}
+              hasError={hasError}
+              texts={texts}
+            />
           </S.InfiniteLoaderItemWrapper>
         );
       }

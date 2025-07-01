@@ -3,16 +3,23 @@ import { v4 as uuid } from 'uuid';
 
 import * as S from '../InformationCard.styles';
 import {
-  InformationCardPropertyItem,
-  InformationCardPropertyListProps,
-  InformationCardPropertyDivider,
+  type InformationCardPropertyDivider,
+  type InformationCardPropertyItem,
+  type InformationCardPropertyListProps,
 } from './InformationCardPropertyList.types';
 
-const isDivider = (item: InformationCardPropertyItem): item is InformationCardPropertyDivider => {
+const isDivider = (
+  item: InformationCardPropertyItem,
+): item is InformationCardPropertyDivider => {
   return 'type' in item && item.type === 'divider';
 };
-export const InformationCardPropertyList = ({ items }: InformationCardPropertyListProps) => {
-  const itemsWithIDs = useMemo(() => items?.map(item => ({ id: uuid(), ...item })), [items]);
+export const InformationCardPropertyList = ({
+  items,
+}: InformationCardPropertyListProps) => {
+  const itemsWithIDs = useMemo(
+    () => items?.map((item) => ({ id: uuid(), ...item })),
+    [items],
+  );
   return (
     <S.InformationCardPropertyListWrapper data-testid="information-card-property-list">
       {itemsWithIDs?.map((item: InformationCardPropertyItem) => {
@@ -22,8 +29,14 @@ export const InformationCardPropertyList = ({ items }: InformationCardPropertyLi
         const { label, value, id } = item;
         return (
           <S.InformationCardPropertyItem key={id}>
-            {label && <S.InformationCardPropertyItemLabel>{label}:</S.InformationCardPropertyItemLabel>}
-            <S.InformationCardPropertyItemValue>{value}</S.InformationCardPropertyItemValue>
+            {label && (
+              <S.InformationCardPropertyItemLabel>
+                {label}:
+              </S.InformationCardPropertyItemLabel>
+            )}
+            <S.InformationCardPropertyItemValue>
+              {value}
+            </S.InformationCardPropertyItemValue>
           </S.InformationCardPropertyItem>
         );
       })}

@@ -1,17 +1,17 @@
 import { groupBy, omit, range } from 'lodash';
-import { COUNTED_FROM_ENUM, DAYS_OF_PERIOD_ENUM, TYPES } from './constants';
 
 import {
-  DenormalizedFilter,
-  FilterDefinition,
-  FilterValue,
-  MonthlyFilterDefinition,
-  NormalizedFilter,
-  NormalizedFilterBase,
-  WeekFilter,
-  WeeklyFilterDefinition,
+  type DenormalizedFilter,
+  type FilterDefinition,
+  type FilterValue,
+  type MonthlyFilterDefinition,
+  type NormalizedFilter,
+  type NormalizedFilterBase,
+  type WeekFilter,
+  type WeeklyFilterDefinition,
 } from './RangeFilter.types';
-import { SavedFilter } from './Shared/FilterDropdown/FilterDropdown.types';
+import { type SavedFilter } from './Shared/FilterDropdown/FilterDropdown.types';
+import { COUNTED_FROM_ENUM, DAYS_OF_PERIOD_ENUM, TYPES } from './constants';
 
 /*
  * Map field from components to datefilter schema
@@ -25,7 +25,10 @@ export const mapTimeSchema = (item: DenormalizedFilter): NormalizedFilter => {
   return {
     from: start,
     to: stop,
-    day: day === undefined || (day !== undefined && Number.isNaN(+day)) ? undefined : +day + 1,
+    day:
+      day === undefined || (day !== undefined && Number.isNaN(+day))
+        ? undefined
+        : +day + 1,
     ...rest,
   };
 };
@@ -36,18 +39,28 @@ export const mapTimeSchema = (item: DenormalizedFilter): NormalizedFilter => {
  * to => stop
  * 1-based => 0-based indexed days
  * */
-export const denormMapTimeSchema = (item: NormalizedFilter): DenormalizedFilter => {
+export const denormMapTimeSchema = (
+  item: NormalizedFilter,
+): DenormalizedFilter => {
   const { from, to, day, ...rest } = item;
   return {
     start: from,
     stop: to,
-    day: day === undefined || (day !== undefined && Number.isNaN(+day)) || Number.isNaN(+day) ? undefined : +day - 1,
+    day:
+      day === undefined ||
+      (day !== undefined && Number.isNaN(+day)) ||
+      Number.isNaN(+day)
+        ? undefined
+        : +day - 1,
     ...rest,
   } as DenormalizedFilter;
 };
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-export const normalizeValue = ({ type, definition }: FilterValue): NormalizedFilterBase | { rules: any } => {
+export const normalizeValue = ({
+  type,
+  definition,
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+}: FilterValue): NormalizedFilterBase | { rules: any } => {
   const result = { type, nestingType: 'IN_PLACE' };
   let days: unknown[];
   let rules: unknown[] = [];
@@ -56,31 +69,43 @@ export const normalizeValue = ({ type, definition }: FilterValue): NormalizedFil
       return { ...mapTimeSchema(definition as DenormalizedFilter), ...result };
     case TYPES.WEEKLY:
       days = Object.values(definition as WeeklyFilterDefinition)
-        .filter(day => day.restricted)
-        .map(item => mapTimeSchema(item as DenormalizedFilter));
+        .filter((day) => day.restricted)
+        .map((item) => mapTimeSchema(item as DenormalizedFilter));
       break;
     case TYPES.MONTHLY:
       rules = [];
-      (definition as MonthlyFilterDefinition[]).map(def => {
+      (definition as MonthlyFilterDefinition[]).map((def) => {
         days = Object.values(def.definition)
-          .filter(day => day.restricted)
-          .map(({ restricted, display, ...rest }) => mapTimeSchema(rest as DenormalizedFilter));
+          .filter((day) => day.restricted)
+          .map(({ restricted, display, ...rest }) =>
+            mapTimeSchema(rest as DenormalizedFilter),
+          );
 
         if (def.period === DAYS_OF_PERIOD_ENUM.DAY_OF_WEEK) {
           rules.push({
-            weeks: Object.entries(groupBy(days, 'week')).map(([week, daysArray]) => ({
-              week: +week + 1,
-              // eslint-disable-next-line @typescript-eslint/no-explicit-any
-              days: daysArray.map((day: any) => {
-                const dayOfWeek = ((day.day - 1) % 7) + 1;
-                return { ...omit(day as object, ['week']), type, day: dayOfWeek };
+            weeks: Object.entries(groupBy(days, 'week')).map(
+              ([week, daysArray]) => ({
+                week: +week + 1,
+                // eslint-disable-next-line @typescript-eslint/no-explicit-any
+                days: daysArray.map((day: any) => {
+                  const dayOfWeek = ((day.day - 1) % 7) + 1;
+                  return {
+                    ...omit(day as object, ['week']),
+                    type,
+                    day: dayOfWeek,
+                  };
+                }),
               }),
-            })),
+            ),
             type: def.period,
             inverted: def.periodType !== COUNTED_FROM_ENUM.BEGINNING,
           });
         } else {
-          rules.push({ days, type: def.period, inverted: def.periodType !== COUNTED_FROM_ENUM.BEGINNING });
+          rules.push({
+            days,
+            type: def.period,
+            inverted: def.periodType !== COUNTED_FROM_ENUM.BEGINNING,
+          });
         }
         return rules;
       });
@@ -90,18 +115,33 @@ export const normalizeValue = ({ type, definition }: FilterValue): NormalizedFil
       break;
   }
 
-  // @ts-ignore
-  result.days = days.map(({ restricted, display, ...rest }) => rest) as Partial<FilterDefinition>[];
+  // @ts-expect-error days doesnt exist in type
+  result.days = days.map(
+    // @ts-expect-error types mismatch
+    ({ restricted, display, ...rest }) => rest,
+  ) as Partial<FilterDefinition>[];
   return result;
 };
 
-export const createWeeklyRange = (days: NormalizedFilter[]): {} =>
+export const createWeeklyRange = (days: NormalizedFilter[]) =>
   range(0, 8).reduce((acc, i) => {
-    const day = days.find(d => d.day === i);
-    return day ? { ...acc, [i - 1]: { ...denormMapTimeSchema(day), restricted: true, display: true } } : acc;
+    const day = days.find((d) => d.day === i);
+    return day
+      ? {
+          ...acc,
+          [i - 1]: {
+            ...denormMapTimeSchema(day),
+            restricted: true,
+            display: true,
+          },
+        }
+      : acc;
   }, {});
 
-export const createMonthlyWeekDayRange = (rules: { weeks?: (NormalizedFilter & WeekFilter)[] }): MonthlyDayRange =>
+export const createMonthlyWeekDayRange = (rules: {
+  weeks?: (NormalizedFilter & WeekFilter)[];
+}): MonthlyDayRange =>
+  // eslint-disable-next-line @typescript-eslint/no-empty-object-type
   range(0, 7 * 5 + 1).reduce((acc: {}, i: number) => {
     const weekStartIndex = Math.floor(i / 7);
     const week = weekStartIndex;
@@ -111,21 +151,42 @@ export const createMonthlyWeekDayRange = (rules: { weeks?: (NormalizedFilter & W
     const days: NormalizedFilter[] =
       rules.weeks &&
       rules.weeks.reduce(
-        // @ts-ignore
-        (prev, item) => [...prev, ...item.days.map(day => ({ ...denormMapTimeSchema(day), week: item.week - 1 }))],
-        []
+        // @ts-expect-error: FIXME: Type 'undefined' is not assignable to type 'NormalizedFilter[]'.ts(2322)
+        (prev, item) => [
+          ...prev,
+          // @ts-expect-error: days doesn't exist in type
+          ...item.days.map((day) => ({
+            ...denormMapTimeSchema(day),
+            week: item.week - 1,
+          })),
+        ],
+        [],
       );
-    const day = days.find(d => d.week === week && d.day === dayOfWeek);
-    return day ? { ...acc, [i]: { ...day, restricted: true, display: true } } : acc;
+    const day = days.find((d) => d.week === week && d.day === dayOfWeek);
+    return day
+      ? { ...acc, [i]: { ...day, restricted: true, display: true } }
+      : acc;
   }, {});
 
 export type MonthlyDayRange = {
   [key: string]: DenormalizedFilter & { restricted: boolean; display: boolean };
 };
-export const createMonthlyDayRange = (rules: { days?: NormalizedFilter[] }): MonthlyDayRange =>
+export const createMonthlyDayRange = (rules: {
+  days?: NormalizedFilter[];
+}): MonthlyDayRange =>
+  // eslint-disable-next-line @typescript-eslint/no-empty-object-type
   range(0, 32).reduce((acc: {}, i: number) => {
-    const day = rules.days && rules.days.find(d => d.day === i);
-    return day ? { ...acc, [i - 1]: { ...denormMapTimeSchema(day), restricted: true, display: true } } : acc;
+    const day = rules.days && rules.days.find((d) => d.day === i);
+    return day
+      ? {
+          ...acc,
+          [i - 1]: {
+            ...denormMapTimeSchema(day),
+            restricted: true,
+            display: true,
+          },
+        }
+      : acc;
   }, {});
 
 export const denormalizers: { [key: string]: Function } = {
@@ -136,10 +197,12 @@ export const denormalizers: { [key: string]: Function } = {
       [DAYS_OF_PERIOD_ENUM.DAY_OF_MONTH]: createMonthlyDayRange,
       [DAYS_OF_PERIOD_ENUM.DAY_OF_WEEK]: createMonthlyWeekDayRange,
     };
-    return values.rules.map(value => ({
+    return values.rules.map((value) => ({
       period: value.type,
       id: Math.random(),
-      periodType: value.inverted ? COUNTED_FROM_ENUM.ENDING : COUNTED_FROM_ENUM.BEGINNING,
+      periodType: value.inverted
+        ? COUNTED_FROM_ENUM.ENDING
+        : COUNTED_FROM_ENUM.BEGINNING,
 
       // @ts-ignore
       definition: monthlyDenormalizers[value.type](value),
@@ -149,32 +212,48 @@ export const denormalizers: { [key: string]: Function } = {
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export const validators: { [key: string]: (values: any) => boolean } = {
-  [TYPES.DAILY]: (values: FilterValue) => Boolean(!!values?.definition?.start && !!values?.definition?.stop),
+  [TYPES.DAILY]: (values: FilterValue) =>
+    Boolean(!!values?.definition?.start && !!values?.definition?.stop),
   [TYPES.WEEKLY]: (values: WeeklyFilterDefinition) =>
     Boolean(values?.definition && !!Object.keys(values.definition).length),
   [TYPES.MONTHLY]: (values: FilterValue<MonthlyFilterDefinition>) =>
     Boolean(
-      values?.definition && !!Object.keys(values.definition) && Object.keys(values.definition[0].definition).length > 0
+      values?.definition &&
+        !!Object.keys(values.definition) &&
+        Object.keys(values.definition[0].definition).length > 0,
     ),
 };
 
-export const denormalizeValue = (values: FilterValue<FilterDefinition>): Partial<FilterValue<FilterDefinition>> => ({
+export const denormalizeValue = (
+  values: FilterValue<FilterDefinition>,
+): Partial<FilterValue<FilterDefinition>> => ({
   type: values.type,
   definition: denormalizers[values.type](values),
 });
 
 const alwaysValid = (): true => true;
 export const isValidValue = (value: FilterValue<FilterDefinition>): boolean => {
-  const validator = typeof validators[value?.type] === 'function' ? validators[value.type] : alwaysValid;
+  const validator =
+    typeof validators[value?.type] === 'function'
+      ? validators[value.type]
+      : alwaysValid;
   return validator(value);
 };
 
-export const isDuplicate = (itemsList: SavedFilter[], item: SavedFilter): boolean => {
-  return itemsList.some(i => i.name.toLowerCase() === item.name.toLowerCase() && i.id !== item.id);
+export const isDuplicate = (
+  itemsList: SavedFilter[],
+  item: SavedFilter,
+): boolean => {
+  return itemsList.some(
+    (i) => i.name.toLowerCase() === item.name.toLowerCase() && i.id !== item.id,
+  );
 };
 const DEFAULT_NAME = 'Filter';
 
-export const addSuffixToDuplicate = (itemsList: SavedFilter[], editedItem: SavedFilter): SavedFilter => {
+export const addSuffixToDuplicate = (
+  itemsList: SavedFilter[],
+  editedItem: SavedFilter,
+): SavedFilter => {
   let newItem = editedItem;
   while (isDuplicate(itemsList, newItem)) {
     newItem = { ...newItem, name: `${newItem.name || DEFAULT_NAME} (1)` };

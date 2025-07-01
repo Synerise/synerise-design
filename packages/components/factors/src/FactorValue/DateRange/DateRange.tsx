@@ -1,9 +1,14 @@
 import React, { useCallback } from 'react';
-import DateRangePicker from '@synerise/ds-date-range-picker';
-import { getPopupContainer } from '@synerise/ds-utils';
-import { DateFilter, DateRange } from '@synerise/ds-date-range-picker/dist/date.types';
 import { useIntl } from 'react-intl';
-import { FactorValueComponentProps } from '../../Factors.types';
+
+import DateRangePicker from '@synerise/ds-date-range-picker';
+import {
+  type DateFilter,
+  type DateRange,
+} from '@synerise/ds-date-range-picker/dist/date.types';
+import { getPopupContainer } from '@synerise/ds-utils';
+
+import { type FactorValueComponentProps } from '../../Factors.types';
 
 const DateRangeInput = ({
   getPopupContainerOverride,
@@ -21,7 +26,7 @@ const DateRangeInput = ({
     (date: Partial<DateFilter> | undefined) => {
       onChange(date);
     },
-    [onChange]
+    [onChange],
   );
 
   const handleVisibleChange = useCallback(
@@ -30,7 +35,7 @@ const DateRangeInput = ({
         onDeactivate && onDeactivate();
       }
     },
-    [onDeactivate]
+    [onDeactivate],
   );
 
   return (

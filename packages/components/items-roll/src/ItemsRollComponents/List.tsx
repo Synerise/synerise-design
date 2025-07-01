@@ -4,15 +4,16 @@ import { FixedSizeList } from 'react-window';
 import Icon, { SearchNoResultsM } from '@synerise/ds-icon';
 import { GroupItem } from '@synerise/ds-list-item';
 
+import * as S from '../ItemsRoll.styles';
+import { type ItemRollElement } from '../ItemsRoll.types';
+import { type ListProps } from './List.types';
 import ItemElement from './ListItem';
 import ItemRenderer from './VirtualizedListItem';
 
-import * as S from '../ItemsRoll.styles';
-import { ItemRollElement } from '../ItemsRoll.types';
-import { ListProps } from './List.types';
-
-export const itemsInGroup = (group: string, items: ItemRollElement[]): ItemRollElement[] =>
-  items.filter(item => item.group === group);
+export const itemsInGroup = (
+  group: string,
+  items: ItemRollElement[],
+): ItemRollElement[] => items.filter((item) => item.group === group);
 
 const List = ({
   groups,
@@ -30,13 +31,12 @@ const List = ({
   const groupedList = useMemo(() => {
     return (
       <>
-        {groups?.map(group => {
+        {groups?.map((group) => {
           const groupItems = itemsInGroup(group, visibleItems);
 
           return groupItems.length > 0 ? (
-            // @ts-ignore
             <GroupItem key={group} title={group}>
-              {groupItems.map(item => (
+              {groupItems.map((item) => (
                 <ItemElement
                   group={group}
                   key={item.id}
@@ -52,12 +52,19 @@ const List = ({
         })}
       </>
     );
-  }, [groups, onItemClick, onItemRemove, removeTooltipLabel, searchValue, visibleItems]);
+  }, [
+    groups,
+    onItemClick,
+    onItemRemove,
+    removeTooltipLabel,
+    searchValue,
+    visibleItems,
+  ]);
 
   const standardList = useMemo(() => {
     return (
       <>
-        {visibleItems.map(item => (
+        {visibleItems.map((item) => (
           <ItemElement
             key={item.id}
             highlight={searchValue}
@@ -69,7 +76,13 @@ const List = ({
         ))}
       </>
     );
-  }, [onItemClick, onItemRemove, removeTooltipLabel, searchValue, visibleItems]);
+  }, [
+    onItemClick,
+    onItemRemove,
+    removeTooltipLabel,
+    searchValue,
+    visibleItems,
+  ]);
 
   const finalItems = groups ? groupedList : standardList;
 

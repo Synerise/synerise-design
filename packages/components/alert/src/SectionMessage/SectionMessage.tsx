@@ -1,16 +1,17 @@
-import React, { useMemo } from 'react';
-import type { ReactNode } from 'react';
+import React, { type ReactNode, useMemo } from 'react';
+
 import Icon, {
-  CloseM,
-  WarningFillM,
   Check3M,
+  CloseM,
   HelpFillM,
-  UserUpM,
-  UpdateDataM,
   NotificationsReceiveM,
+  UpdateDataM,
+  UserUpM,
+  WarningFillM,
 } from '@synerise/ds-icon';
+
 import * as S from './SectionMessage.styles';
-import { Props, AlertTypes } from './SectionMessage.types';
+import { type AlertTypes, type Props } from './SectionMessage.types';
 
 const ICONS: Record<AlertTypes, ReactNode> = {
   positive: <Check3M />,
@@ -48,20 +49,41 @@ const SectionMessage = ({
       <S.AlertContent withLink={withLink}>
         {message && <S.AlertMessage>{message}</S.AlertMessage>}
         <S.Text>
-          {description && <S.AlertDescription>{description}</S.AlertDescription>}
+          {description && (
+            <S.AlertDescription>{description}</S.AlertDescription>
+          )}
           {withLink && <S.LinkWrapper>{withLink}</S.LinkWrapper>}
-          {withEmphasis && !withLink && <S.EmphasisWrapper>{withEmphasis}</S.EmphasisWrapper>}
+          {withEmphasis && !withLink && (
+            <S.EmphasisWrapper>{withEmphasis}</S.EmphasisWrapper>
+          )}
         </S.Text>
-        {onShowMore && showMoreLabel && <S.AlertShowMore onClick={onShowMore}>{showMoreLabel}</S.AlertShowMore>}
+        {onShowMore && showMoreLabel && (
+          <S.AlertShowMore onClick={onShowMore}>
+            {showMoreLabel}
+          </S.AlertShowMore>
+        )}
         {moreButtons}
         {unorderedList && !moreButtons && unorderedList}
       </S.AlertContent>
     );
-  }, [message, description, showMoreLabel, onShowMore, moreButtons, withEmphasis, withLink, unorderedList]);
+  }, [
+    message,
+    description,
+    showMoreLabel,
+    onShowMore,
+    moreButtons,
+    withEmphasis,
+    withLink,
+    unorderedList,
+  ]);
 
   const renderIcon = useMemo(() => {
-    if (icon) return icon;
-    if (ICONS[type]) return ICONS[type];
+    if (icon) {
+      return icon;
+    }
+    if (ICONS[type]) {
+      return ICONS[type];
+    }
     return DEFAULT_ICON;
   }, [icon, type]);
 
@@ -70,7 +92,11 @@ const SectionMessage = ({
   };
 
   return (
-    <S.Container data-testid={`ds-section-message-${type}`} color={color} customColor={customColor}>
+    <S.Container
+      data-testid={`ds-section-message-${type}`}
+      color={color}
+      customColor={customColor}
+    >
       <S.WrapperSectionMessage>
         <S.AllContent>
           <S.IconWrapper color={color} customColorIcon={customColorIcon}>

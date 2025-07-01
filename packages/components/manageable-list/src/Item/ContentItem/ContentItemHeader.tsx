@@ -1,16 +1,20 @@
-import React, { MouseEvent, useCallback, useMemo, useState } from 'react';
+import React, { type MouseEvent, useCallback, useMemo, useState } from 'react';
 
-import Icon, { AngleTopS, AngleBottomS, DragHandleM, OptionHorizontalM } from '@synerise/ds-icon';
 import Button from '@synerise/ds-button';
-import Dropdown from '@synerise/ds-dropdown';
-import Tooltip from '@synerise/ds-tooltip';
 import { useTheme } from '@synerise/ds-core';
+import Dropdown from '@synerise/ds-dropdown';
+import Icon, {
+  AngleBottomS,
+  AngleTopS,
+  DragHandleM,
+  OptionHorizontalM,
+} from '@synerise/ds-icon';
+import Tooltip from '@synerise/ds-tooltip';
 
 import ItemActions from '../ItemActions/ItemActions';
-import ItemName from '../ItemName/ItemName';
 import ItemMeta from '../ItemMeta/ItemMeta';
+import ItemName from '../ItemName/ItemName';
 import ItemNameLarge from '../ItemNameLarge/ItemNameLarge';
-
 import * as S from './ContentItem.styles';
 import type { ContentItemHeaderProps } from './ContentItem.types';
 
@@ -41,7 +45,7 @@ export const ContentItemHeader = ({
       setEditMode(false);
       onUpdate && onUpdate(updateParams);
     },
-    [onUpdate]
+    [onUpdate],
   );
   const enterEditMode = () => {
     setEditMode(true);
@@ -52,7 +56,9 @@ export const ContentItemHeader = ({
 
   const hasPrefix = useMemo(() => {
     if (size === 'large') {
-      return Boolean(headerPrefix || item.headerPrefix || item.tag || item.icon);
+      return Boolean(
+        headerPrefix || item.headerPrefix || item.tag || item.icon,
+      );
     }
     return Boolean(headerPrefix || draggable || item.tag || item.icon);
   }, [draggable, item, size, headerPrefix]);
@@ -66,7 +72,7 @@ export const ContentItemHeader = ({
               <Button
                 type="ghost"
                 mode="single-icon"
-                onClick={event => {
+                onClick={(event) => {
                   event.stopPropagation();
                   onMoveTop(item);
                 }}
@@ -80,7 +86,7 @@ export const ContentItemHeader = ({
               <Button
                 type="ghost"
                 mode="single-icon"
-                onClick={event => {
+                onClick={(event) => {
                   event.stopPropagation();
                   onMoveBottom(item);
                 }}
@@ -109,7 +115,10 @@ export const ContentItemHeader = ({
       {hasPrefix && (
         <S.ItemHeaderPrefix>
           {draggable && (
-            <S.DraggerWrapper className="item-drag-handle" disabled={Boolean(changeOrderDisabled)}>
+            <S.DraggerWrapper
+              className="item-drag-handle"
+              disabled={Boolean(changeOrderDisabled)}
+            >
               <Icon size={24} component={<DragHandleM />} />
             </S.DraggerWrapper>
           )}
@@ -120,7 +129,11 @@ export const ContentItemHeader = ({
               {item.tag && item.tag}
               {item.icon && (
                 <S.IconWrapper>
-                  <Icon size={24} component={item.icon} color={theme.palette['grey-600']} />
+                  <Icon
+                    size={24}
+                    component={item.icon}
+                    color={theme.palette['grey-600']}
+                  />
                 </S.IconWrapper>
               )}
             </>
@@ -137,8 +150,13 @@ export const ContentItemHeader = ({
       )}
 
       <S.ItemHeaderSuffix>
-        <div className={item.hideHeaderSuffixOnHover ? 'suffix--hide-on-hover' : ''}>
-          {((!!headerSuffix || item?.headerSuffix) && headerSuffix) || item.headerSuffix}
+        <div
+          className={
+            item.hideHeaderSuffixOnHover ? 'suffix--hide-on-hover' : ''
+          }
+        >
+          {((!!headerSuffix || item?.headerSuffix) && headerSuffix) ||
+            item.headerSuffix}
         </div>
         {renderMoveButtons}
         <ItemActions
@@ -157,7 +175,9 @@ export const ContentItemHeader = ({
               onClick={(event?: MouseEvent<HTMLElement>) => {
                 !!event && event.stopPropagation();
                 !item.disableExpanding && setIsExpanded(!isExpanded);
-                !item.disableExpanding && onExpand && onExpand(item.id, !isExpanded);
+                !item.disableExpanding &&
+                  onExpand &&
+                  onExpand(item.id, !isExpanded);
               }}
               expanded={isExpanded}
             />
@@ -165,20 +185,31 @@ export const ContentItemHeader = ({
         )}
         {item.dropdown && (
           <S.DropdownWrapper onClick={stopPropagationHandler}>
-            <Dropdown trigger={['click']} overlay={item.dropdown} placement="bottomRight">
+            <Dropdown
+              trigger={['click']}
+              overlay={item.dropdown}
+              placement="bottomRight"
+            >
               <S.DropdownTrigger
                 className="ds-dropdown-trigger"
                 mode="single-icon"
                 type="ghost"
                 onClick={stopPropagationHandler}
               >
-                <Icon component={<OptionHorizontalM />} color={theme.palette['grey-600']} />
+                <Icon
+                  component={<OptionHorizontalM />}
+                  color={theme.palette['grey-600']}
+                />
               </S.DropdownTrigger>
             </Dropdown>
           </S.DropdownWrapper>
         )}
-        {item.additionalSuffix && <S.AdditionalSuffix>{item.additionalSuffix}</S.AdditionalSuffix>}
-        {(item.user || item.created) && <ItemMeta user={item.user} created={item.created} />}
+        {item.additionalSuffix && (
+          <S.AdditionalSuffix>{item.additionalSuffix}</S.AdditionalSuffix>
+        )}
+        {(item.user || item.created) && (
+          <ItemMeta user={item.user} created={item.created} />
+        )}
       </S.ItemHeaderSuffix>
     </S.ItemHeader>
   );

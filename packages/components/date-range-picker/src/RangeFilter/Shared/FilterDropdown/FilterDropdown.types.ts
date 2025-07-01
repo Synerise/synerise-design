@@ -1,5 +1,6 @@
-import React from 'react';
-import { FilterValue } from '../../RangeFilter.types';
+import type React from 'react';
+
+import { type FilterValue } from '../../RangeFilter.types';
 
 export type FilterDropdownProps = {
   filters: SavedFilter[];

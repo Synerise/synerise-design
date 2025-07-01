@@ -7,8 +7,9 @@ export const CardSelectGroupWrapper = styled.div<{
 }>`
   padding: 24px;
   display: grid;
-  grid-template-columns: ${props => new Array(props.columns || props.itemsCount).fill('1fr').join(' ')};
-  gap: ${props => (props.size === 'small' ? '16px' : '24px')};
+  grid-template-columns: ${(props) =>
+    new Array(props.columns || props.itemsCount).fill('1fr').join(' ')};
+  gap: ${(props) => (props.size === 'small' ? '16px' : '24px')};
 `;
 
 // @deprecated - use CardSelectGroupWrapper instead

@@ -1,12 +1,14 @@
-import React, { useEffect, useMemo, useRef, useState } from 'react';
-import '@synerise/ds-core/dist/js/style';
-import './style/index.less';
 import { Carousel } from 'antd';
 import AntdPopconfirm from 'antd/lib/popconfirm';
+import React, { useEffect, useMemo, useRef, useState } from 'react';
+
+import '@synerise/ds-core/dist/js/style';
 import { useOnClickOutside } from '@synerise/ds-utils';
-import * as S from './Popconfirm.styles';
+
 import ConfirmMessage from './ConfirmMessage/ConfirmMessage';
-import { PopconfirmType } from './Popconfirm.types';
+import * as S from './Popconfirm.styles';
+import { type PopconfirmType } from './Popconfirm.types';
+import './style/index.less';
 
 const Popconfirm: PopconfirmType = ({
   icon,
@@ -33,8 +35,12 @@ const Popconfirm: PopconfirmType = ({
   const renderImageCarousel = useMemo(() => {
     return (
       images?.length && (
-        <Carousel autoplay={imagesAutoplay} autoplaySpeed={imagesAutoplaySpeed} effect="fade">
-          {images.map(image => (
+        <Carousel
+          autoplay={imagesAutoplay}
+          autoplaySpeed={imagesAutoplaySpeed}
+          effect="fade"
+        >
+          {images.map((image) => (
             <S.PopconfirmImage key={image} src={image} />
           ))}
         </Carousel>
@@ -79,13 +85,18 @@ const Popconfirm: PopconfirmType = ({
               </S.PopconfirmHeaderWrapper>
               <S.PopconfirmTextWrapper>
                 {description && (
-                  <S.PopconfirmDescription titlePadding={!titlePadding}>{description}</S.PopconfirmDescription>
+                  <S.PopconfirmDescription titlePadding={!titlePadding}>
+                    {description}
+                  </S.PopconfirmDescription>
                 )}
                 {withLink && <S.LinkWrapper>{withLink}</S.LinkWrapper>}
               </S.PopconfirmTextWrapper>
             </S.PopconfirmContentWrapper>
             {closeIcon && (
-              <S.PopconfirmCloseIcon onClick={(): void => setVisible(false)} titlePadding={titlePadding}>
+              <S.PopconfirmCloseIcon
+                onClick={(): void => setVisible(false)}
+                titlePadding={titlePadding}
+              >
                 {closeIcon}
               </S.PopconfirmCloseIcon>
             )}

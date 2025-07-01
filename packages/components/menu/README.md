@@ -85,6 +85,6 @@ const items = [
 ### MenuTexts
 
 | Property | Description         | Type      | Default |
-|----------|---------------------|-----------|---------|
+| -------- | ------------------- | --------- | ------- |
 | showLess | toggle button label | ReactNode | -       |
 | showMore | toggle button label | ReactNode | -       |

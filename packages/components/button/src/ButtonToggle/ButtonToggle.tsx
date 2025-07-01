@@ -1,9 +1,13 @@
-import React, { PointerEvent, useMemo } from 'react';
+import React, { type PointerEvent, useMemo } from 'react';
 
-import type { ButtonToggleProps } from './ButtonToggle.types';
 import * as S from './ButtonToggle.styles';
+import type { ButtonToggleProps } from './ButtonToggle.types';
 
-const ButtonToggle = ({ activated, type, ...buttonProps }: ButtonToggleProps) => {
+const ButtonToggle = ({
+  activated,
+  type,
+  ...buttonProps
+}: ButtonToggleProps) => {
   const mappedButtonType = useMemo(() => {
     switch (type) {
       case 'ghost':
@@ -16,7 +20,7 @@ const ButtonToggle = ({ activated, type, ...buttonProps }: ButtonToggleProps) =>
 
   const handlePointerUp = (event: PointerEvent<HTMLButtonElement>) => {
     const button = event.currentTarget;
-    // eslint-disable-next-line no-unused-expressions
+
     buttonProps.onPointerUp?.(event);
     setTimeout(() => {
       button && button.blur();

@@ -1,5 +1,8 @@
-import styled, { css, FlattenSimpleInterpolation } from 'styled-components';
-import { ResizeProperty } from 'csstype';
+import { type ResizeProperty } from 'csstype';
+import styled, {
+  type FlattenSimpleInterpolation,
+  css,
+} from 'styled-components';
 
 export const TextareaWrapper = styled.div<{
   resize?: ResizeProperty;
@@ -12,20 +15,25 @@ export const TextareaWrapper = styled.div<{
   overflow: hidden;
   resize: ${(props): string => (props.resize ? props.resize : 'vertical')};
   border-radius: 3px;
-  transition: background-color 0.3s ease-in-out, border 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+  transition:
+    background-color 0.3s ease-in-out,
+    border 0.3s ease-in-out,
+    box-shadow 0.3s ease-in-out;
   ${(props): FlattenSimpleInterpolation => {
-    if (props.isReadOnly)
+    if (props.isReadOnly) {
       return css`
         border: 1px solid ${props.theme.palette['grey-300']};
         background-color: ${props.theme.palette['grey-050']};
       `;
-    if (props.isDisabled)
+    }
+    if (props.isDisabled) {
       return css`
         border: 1px solid #dbe0e3;
         background-color: #f9fafb;
         cursor: not-allowed;
       `;
-    if (props.isFocused)
+    }
+    if (props.isFocused) {
       return css`
         box-shadow: inset 0 0 0 1px ${props.theme.palette['blue-600']};
         border: 1px solid ${props.theme.palette['blue-600']};
@@ -39,12 +47,14 @@ export const TextareaWrapper = styled.div<{
           }
         }
       `;
-    if (props.hasError)
+    }
+    if (props.hasError) {
       return css`
         background-color: ${props.theme.palette['red-050']};
         box-shadow: inset 0 0 0 1px ${props.theme.palette['red-600']};
         border: 1px solid ${props.theme.palette['red-600']};
       `;
+    }
     return css`
       border: 1px solid #dbe0e3;
       background-color: #fff;

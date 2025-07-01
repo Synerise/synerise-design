@@ -1,12 +1,22 @@
-import React, { useCallback, useEffect, useState } from 'react';
-import type { MutableRefObject, RefObject, KeyboardEvent } from 'react';
+import React, {
+  type KeyboardEvent,
+  type MutableRefObject,
+  type RefObject,
+  useCallback,
+  useEffect,
+  useState,
+} from 'react';
 
 import { useTheme } from '@synerise/ds-core';
 import Dropdown from '@synerise/ds-dropdown';
 import Icon, { SearchM } from '@synerise/ds-icon';
 import type { SearchBarProps } from '@synerise/ds-search-bar';
 
-import type { ItemPickerTexts, SearchActionType, SearchParamConfig } from '../../ItemPickerNew/ItemPickerNew.types';
+import type {
+  ItemPickerTexts,
+  SearchActionType,
+  SearchParamConfig,
+} from '../../ItemPickerNew/ItemPickerNew.types';
 import * as S from '../ItemPickerList.styles';
 
 const CLEAR_TOOLTIP_PROPS = {
@@ -17,11 +27,16 @@ type ListSearchInputProps = {
   searchParamConfig?: SearchParamConfig;
   searchActionSection?: SearchActionType;
   clearSearchQuery: () => void;
-  setSearchParamConfig: (searchParamConfig: SearchParamConfig | undefined) => void;
+  setSearchParamConfig: (
+    searchParamConfig: SearchParamConfig | undefined,
+  ) => void;
   debouncedChangeSearchQuery: (value: string) => void;
   inputRef: MutableRefObject<HTMLInputElement | null>;
   changeLocalSearchQueryRef: MutableRefObject<((value: string) => void) | null>;
-  searchBarProps?: Omit<SearchBarProps, 'value' | 'onSearchChange' | 'placeholder'>;
+  searchBarProps?: Omit<
+    SearchBarProps,
+    'value' | 'onSearchChange' | 'placeholder'
+  >;
   allTexts: ItemPickerTexts;
 };
 
@@ -40,14 +55,16 @@ export const ListSearchInput = ({
 
   const [localSearchQuery, setLocalSearchQuery] = useState('');
 
-  const isSearchParamOrSearchSectionActive = Boolean(searchParamConfig || searchActionSection);
+  const isSearchParamOrSearchSectionActive = Boolean(
+    searchParamConfig || searchActionSection,
+  );
 
   const handleSearchChange = useCallback(
     (value: string) => {
       setLocalSearchQuery(value);
       debouncedChangeSearchQuery(value);
     },
-    [debouncedChangeSearchQuery]
+    [debouncedChangeSearchQuery],
   );
 
   const handleInputRef = useCallback(
@@ -55,7 +72,7 @@ export const ListSearchInput = ({
       const localRef = inputRef;
       localRef.current = ref.current;
     },
-    [inputRef]
+    [inputRef],
   );
 
   const handleKeyDown = (event: KeyboardEvent<HTMLDivElement>) => {
@@ -80,8 +97,17 @@ export const ListSearchInput = ({
   return (
     <S.SearchWrapper data-testid="search-wrapper">
       <Dropdown.SearchInput
-        iconLeft={<Icon component={searchParamConfig?.icon || <SearchM />} color={theme.palette['grey-600']} />}
-        placeholder={isSearchParamOrSearchSectionActive ? allTexts.basicSearchPlaceholder : allTexts.searchPlaceholder}
+        iconLeft={
+          <Icon
+            component={searchParamConfig?.icon || <SearchM />}
+            color={theme.palette['grey-600']}
+          />
+        }
+        placeholder={
+          isSearchParamOrSearchSectionActive
+            ? allTexts.basicSearchPlaceholder
+            : allTexts.searchPlaceholder
+        }
         {...searchBarProps}
         valuePrefix={searchParamConfig?.paramKeyLabel}
         onKeyDown={handleKeyDown}

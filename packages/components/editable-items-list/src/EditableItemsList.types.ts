@@ -1,5 +1,10 @@
-import React, { ReactElement, ReactNode } from 'react';
-import { ButtonProps } from '@synerise/ds-button';
+import {
+  type MouseEventHandler,
+  type ReactElement,
+  type ReactNode,
+} from 'react';
+
+import { type ButtonProps } from '@synerise/ds-button';
 
 export type EditableItemsListProps<T extends { id: string }> = {
   renderRowElement: (index: number, data: T) => ReactElement | null;
@@ -11,5 +16,5 @@ export type EditableItemsListProps<T extends { id: string }> = {
   maxRowLength?: number;
   deleteTooltip?: string;
   onDelete: (id: string, index: number) => void;
-  onAdd: React.MouseEventHandler<HTMLElement>;
+  onAdd: MouseEventHandler<HTMLElement>;
 };

@@ -1,4 +1,5 @@
 import React, { useEffect, useRef } from 'react';
+
 import * as S from '../CodeArea.styles';
 
 export const AriaContainer = ({ element }: { element: HTMLElement }) => {

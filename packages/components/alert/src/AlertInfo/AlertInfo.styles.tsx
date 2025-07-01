@@ -1,5 +1,10 @@
-import styled, { css, FlattenSimpleInterpolation } from 'styled-components';
+import styled, {
+  type FlattenSimpleInterpolation,
+  css,
+} from 'styled-components';
+
 import { IconContainer } from '@synerise/ds-icon';
+
 import { AlertSize, FontSize } from './AlertInfo.types';
 
 const FONT_SIZE_DEFAULT = 14;
@@ -13,24 +18,35 @@ export const TextWrapper = styled.div<{ labelPosition: 'bottom' | 'right' }>`
   line-height: 16px;
   max-width: 440px;
   word-wrap: break-word;
-  justify-content: ${(props): string => (props.labelPosition === 'bottom' ? 'center' : 'flex-start')};
+  justify-content: ${(props): string =>
+    props.labelPosition === 'bottom' ? 'center' : 'flex-start'};
   text-align: center;
 `;
-export const HeaderWrapper = styled.div<{ fontSize?: AlertSize; size?: AlertSize }>`
+export const HeaderWrapper = styled.div<{
+  fontSize?: AlertSize;
+  size?: AlertSize;
+}>`
   display: flex;
   line-height: 16px;
   color: ${(props): string => props.theme.palette['grey-800']};
-  font-size: ${(props): string => FontSize[props.fontSize as string] || FONT_SIZE_DEFAULT}px;
+  font-size: ${(props): string =>
+    FontSize[props.fontSize as string] || FONT_SIZE_DEFAULT}px;
   font-weight: 500;
-  margin-top: ${(props): string => (props.size === AlertSize.SMALL ? '0px' : '30px')};
-  padding: ${(props): string => (props.fontSize === AlertSize.SMALL ? '4px 0 12px' : '8px 0 18px')};
+  margin-top: ${(props): string =>
+    props.size === AlertSize.SMALL ? '0px' : '30px'};
+  padding: ${(props): string =>
+    props.fontSize === AlertSize.SMALL ? '4px 0 12px' : '8px 0 18px'};
 `;
 export const ButtonWrapper = styled.div`
   padding-top: 12px;
 `;
-export const AlertWrapper = styled.div<{ labelPosition: 'bottom' | 'right'; mode?: 'absolute' }>`
+export const AlertWrapper = styled.div<{
+  labelPosition: 'bottom' | 'right';
+  mode?: 'absolute';
+}>`
   display: flex;
-  flex-direction: ${(props): string => mapElementsPosition[props.labelPosition]};
+  flex-direction: ${(props): string =>
+    mapElementsPosition[props.labelPosition]};
   align-items: center;
   justify-content: center;
   ${(props): FlattenSimpleInterpolation | false =>
@@ -44,7 +60,10 @@ export const AlertWrapper = styled.div<{ labelPosition: 'bottom' | 'right'; mode
 export const AlertIconContainer = styled.div`
   margin: 0 0 12px;
 `;
-export const StatusIconContainer = styled.div<{ iconColor: string; background: string }>`
+export const StatusIconContainer = styled.div<{
+  iconColor: string;
+  background: string;
+}>`
   background-color: ${(props): string => props.theme.palette[props.background]};
   width: 40px;
   height: 40px;

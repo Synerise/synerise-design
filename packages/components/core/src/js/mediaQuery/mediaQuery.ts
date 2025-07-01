@@ -1,4 +1,9 @@
-import { BaseThemedCssFunction, css, FlattenSimpleInterpolation } from 'styled-components';
+import {
+  type BaseThemedCssFunction,
+  type FlattenSimpleInterpolation,
+  css,
+} from 'styled-components';
+
 import breakpoints from '../DSProvider/ThemeProvider/breakpoints';
 
 export type Media = {
@@ -15,7 +20,9 @@ type BreakpointsType = {
 };
 
 export const MEDIA_FROM = Object.keys(breakpoints).reduce((acc, label) => {
-  acc[label] = (...args: [TemplateStringsArray]): FlattenSimpleInterpolation => css`
+  acc[label] = (
+    ...args: [TemplateStringsArray]
+  ): FlattenSimpleInterpolation => css`
     @media (min-width: ${breakpoints[label].max / 16}em) {
       ${css(...args)};
     }
@@ -25,7 +32,9 @@ export const MEDIA_FROM = Object.keys(breakpoints).reduce((acc, label) => {
 }, {});
 
 export const MEDIA_TO = Object.keys(breakpoints).reduce((acc, label) => {
-  acc[label] = (...args: [TemplateStringsArray]): FlattenSimpleInterpolation => css`
+  acc[label] = (
+    ...args: [TemplateStringsArray]
+  ): FlattenSimpleInterpolation => css`
     @media (max-width: ${breakpoints[label].max / 16}em) {
       ${css(...args)};
     }
@@ -35,8 +44,11 @@ export const MEDIA_TO = Object.keys(breakpoints).reduce((acc, label) => {
 }, {});
 
 export const MEDIA_ONLY = Object.keys(breakpoints).reduce((acc, label) => {
-  acc[label] = (...args: [TemplateStringsArray]): FlattenSimpleInterpolation => css`
-    @media (min-width: ${breakpoints[label].min / 16}em) and (max-width: ${breakpoints[label].max / 16}em) {
+  acc[label] = (
+    ...args: [TemplateStringsArray]
+  ): FlattenSimpleInterpolation => css`
+    @media (min-width: ${breakpoints[label].min /
+      16}em) and (max-width: ${breakpoints[label].max / 16}em) {
       ${css(...args)};
     }
   `;

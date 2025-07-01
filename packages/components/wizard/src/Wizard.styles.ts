@@ -40,7 +40,10 @@ export const WizardHeaderAction = styled.div`
   margin-right: 24px;
 `;
 
-export const WizardContainer = styled.div<{ contentWidth?: string; withFooter: boolean }>`
+export const WizardContainer = styled.div<{
+  contentWidth?: string;
+  withFooter: boolean;
+}>`
   background-color: ${(props): string => props.theme.palette.white};
   width: 100%;
   height: 100%;
@@ -62,7 +65,8 @@ export const WizardButtons = styled.div`
 `;
 
 export const WizardContent = styled.div<{ contentWidth?: string }>`
-  width: ${(props): string => (props.contentWidth ? props.contentWidth : '100%')};
+  width: ${(props): string =>
+    props.contentWidth ? props.contentWidth : '100%'};
   max-width: calc(100% - 48px);
   display: flex;
   flex-direction: column;
@@ -109,8 +113,8 @@ export const WizardFooter = styled.div`
   width: calc(100% - 48px);
   padding: 15px 0;
   margin: 0 24px;
-  background-color: ${props => props.theme.palette.white};
-  border-top: 1px solid ${props => props.theme.palette['grey-200']};
+  background-color: ${(props) => props.theme.palette.white};
+  border-top: 1px solid ${(props) => props.theme.palette['grey-200']};
   position: fixed;
   bottom: 0;
   left: 0;

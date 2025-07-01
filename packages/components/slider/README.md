@@ -67,7 +67,7 @@ import Slider from '@synerise/ds-slider';
 | inverted                 | Allow to use slider in inverted mode. Applies only when value is `number or [number, number]`                                                  | Boolean                                     | `false`                                                                                |
 | useColorPalette          | Allow the usage of predefined palette for slider tracks                                                                                        | Boolean                                     | `false`                                                                                |
 | tracksColorMap           | Allow to import your 10 colors color map.                                                                                                      | Object                                      |                                                                                        |
-| handlers                 | Handlers config object for allocation slider. Allow to manipulate handlers e.g. enable to block handler. First handler index is 1.             | HandlerConfig                               | -                                                                                        |
+| handlers                 | Handlers config object for allocation slider. Allow to manipulate handlers e.g. enable to block handler. First handler index is 1.             | HandlerConfig                               | -                                                                                      |
 
 ### AllocationConfig
 

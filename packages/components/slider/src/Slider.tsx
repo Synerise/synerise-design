@@ -1,18 +1,29 @@
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
-import { Label } from '@synerise/ds-typography';
-import '@synerise/ds-core/dist/js/style';
+
 import { defaultColorsOrder } from '@synerise/ds-core';
+import '@synerise/ds-core/dist/js/style';
+import { Label } from '@synerise/ds-typography';
 
-import './style/index.less';
-import * as S from './Slider.styles';
-import { ColorMapProps, SliderProps, SliderTypes } from './Slider.types';
 import Allocation from './Allocation/Allocation';
+import * as S from './Slider.styles';
+import {
+  type ColorMapProps,
+  type SliderProps,
+  SliderTypes,
+} from './Slider.types';
+import './style/index.less';
 
-const getDefaultTooltipPopupContainer = (): HTMLElement => document.querySelector(`.ant-slider`) as HTMLElement;
-const couldBeInverted = (value: number | number[], inverted: boolean): boolean =>
-  inverted && (typeof value === 'number' || value.length < 3);
+const getDefaultTooltipPopupContainer = (): HTMLElement =>
+  document.querySelector(`.ant-slider`) as HTMLElement;
+const couldBeInverted = (
+  value: number | number[],
+  inverted: boolean,
+): boolean => inverted && (typeof value === 'number' || value.length < 3);
 
-const mapToColor = (_: string | object, idx: number): Record<number, string> => ({
+const mapToColor = (
+  _: string | object,
+  idx: number,
+): Record<number, string> => ({
   [idx]: defaultColorsOrder[idx] as string,
 });
 /**
@@ -21,7 +32,10 @@ const mapToColor = (_: string | object, idx: number): Record<number, string> => 
  * @returns Object Record<string, string>
  */
 export const buildDefaultTracksColorMap = (): ColorMapProps =>
-  Object.assign({} as Record<number, string>, ...defaultColorsOrder.map(mapToColor));
+  Object.assign(
+    {} as Record<number, string>,
+    ...defaultColorsOrder.map(mapToColor),
+  );
 
 const Slider = (props: SliderProps): JSX.Element => {
   const {
@@ -50,7 +64,10 @@ const Slider = (props: SliderProps): JSX.Element => {
   const [reachedStart, setReachedStart] = useState(false);
 
   const showValueTooltip = useMemo(() => {
-    return tooltipVisible !== false && (!antdProps.tooltip || antdProps.tooltip.open !== false);
+    return (
+      tooltipVisible !== false &&
+      (!antdProps.tooltip || antdProps.tooltip.open !== false)
+    );
   }, [tooltipVisible, antdProps.tooltip]);
 
   const calcHandlePosition = useCallback(() => {
@@ -61,7 +78,10 @@ const Slider = (props: SliderProps): JSX.Element => {
       const lastMark = markTexts[markTexts.length - 1].getBoundingClientRect();
       const firstHandler = handler[0].getBoundingClientRect();
       const lastHandler = handler[handler.length - 1].getBoundingClientRect();
-      if (firstMark.x + 10 + firstMark.width > firstHandler.x || firstMark.x + 10 + firstMark.width > lastHandler.x) {
+      if (
+        firstMark.x + 10 + firstMark.width > firstHandler.x ||
+        firstMark.x + 10 + firstMark.width > lastHandler.x
+      ) {
         setReachedStart(true);
       } else {
         setReachedStart(false);
@@ -88,7 +108,7 @@ const Slider = (props: SliderProps): JSX.Element => {
           <Label>{label}</Label>
         </S.LabelWrapper>
       ) : null,
-    [label]
+    [label],
   );
   if (type === SliderTypes.ALLOCATION && !!allocationConfig) {
     return (
@@ -103,7 +123,6 @@ const Slider = (props: SliderProps): JSX.Element => {
     <>
       {labelElement}
       <S.AntdSlider
-        // eslint-disable-next-line react/jsx-props-no-spreading
         {...antdProps}
         min={min}
         max={max}
@@ -116,7 +135,11 @@ const Slider = (props: SliderProps): JSX.Element => {
         }}
         range={range}
         reachedStart={reachedStart}
-        className={value && couldBeInverted(value, !!inverted) ? 'ant-slider-inverted' : undefined}
+        className={
+          value && couldBeInverted(value, !!inverted)
+            ? 'ant-slider-inverted'
+            : undefined
+        }
         useColorPalette={useColorPalette}
         thickness={thickness}
         disabled={disabled}
@@ -124,12 +147,18 @@ const Slider = (props: SliderProps): JSX.Element => {
         hideMinAndMaxMarks={hideMinAndMaxMarks}
         tipFormatter={(tipValue?: number) => (
           <S.DescriptionWrapper>
-            {description && <S.Description range={Boolean(range)}>{description}</S.Description>}
+            {description && (
+              <S.Description range={Boolean(range)}>
+                {description}
+              </S.Description>
+            )}
             {tipFormatter && tipFormatter(tipValue)}
           </S.DescriptionWrapper>
         )}
         tracksColorMap={tracksColorMap}
-        getTooltipPopupContainer={getTooltipPopupContainer || getDefaultTooltipPopupContainer}
+        getTooltipPopupContainer={
+          getTooltipPopupContainer || getDefaultTooltipPopupContainer
+        }
       />
     </>
   );

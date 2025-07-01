@@ -1,10 +1,14 @@
 import React from 'react';
+
 import Icon from '@synerise/ds-icon';
 import ListItem from '@synerise/ds-list-item';
-import { ParameterGroup, ParameterItem } from '../../Factors.types';
-import { DropdownItem } from './Parameter.types';
 
-const ParameterDropdownItem = <ItemType extends ParameterItem | ParameterGroup>({
+import { type ParameterGroup, type ParameterItem } from '../../Factors.types';
+import { type DropdownItem } from './Parameter.types';
+
+const ParameterDropdownItem = <
+  ItemType extends ParameterItem | ParameterGroup,
+>({
   item,
   clearSearch,
   searchQuery,

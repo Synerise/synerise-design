@@ -1,4 +1,3 @@
-
 ## General guidelines
 
 An avatar is an object used to represent a particular person in the application. The avatar is usually accompanied by the status (for example, **Active**, **Inactive**, **Blocked**) identifying the availability of any person in the application.
@@ -129,7 +128,7 @@ import Avatar from '@synerise/ds-avatar';
 ## API
 
 | Property           | Description                                                                                        | Type                                                                                                 | Default  |
-|--------------------|----------------------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------------|----------|
+| ------------------ | -------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------- | -------- |
 | backgroundColor    | Background color of the avatar                                                                     | `green` / `grey` / `yellow` / `blue` / `pink`/ `mars`/ `orange`/ `fern`/ `cyan`/ `purple` / `violet` | `orange` |
 | backgroundColorHue | Background color hue of the avatar                                                                 | `900` / `800` / `700` / `600` / `500` / `400` / `300` / `200` / `100` / `050`                        | `400`    |
 | disabled           | Determines if avatar is disabled                                                                   | boolean                                                                                              | `false`  |
@@ -159,7 +158,7 @@ import { UserAvatar } from '@synerise/ds-avatar';
 ```
 
 | Property        | Description                                    | Type                                                                                                          | Default  |
-|-----------------|------------------------------------------------|---------------------------------------------------------------------------------------------------------------|----------|
+| --------------- | ---------------------------------------------- | ------------------------------------------------------------------------------------------------------------- | -------- |
 | user            | User information                               | { firstName: string, lastName: string, email: string, avatar: string }                                        | -        |
 | backgroundColor | Background color of the avatar                 | `auto` / `green` / `grey` / `yellow` / `blue` / `pink`/ `mars`/ `orange`/ `fern`/ `cyan`/ `purple` / `violet` | `auto`   |
 | badgeStatus     | Badge status                                   | `active` / `error` / `warning`                                                                                | -        |
@@ -170,7 +169,7 @@ import { UserAvatar } from '@synerise/ds-avatar';
 
 ## ObjectAvatar
 
-A variant that renders full standard object avatar. 
+A variant that renders full standard object avatar.
 
 This component should be used for ex. in products, services, etc.
 
@@ -185,7 +184,7 @@ import { ObjectAvatar } from '@synerise/ds-avatar';
 ```
 
 |                 | Property                                       | Description                                                                                                   | Type     | Default |
-|-----------------|------------------------------------------------|---------------------------------------------------------------------------------------------------------------|----------|---------|
+| --------------- | ---------------------------------------------- | ------------------------------------------------------------------------------------------------------------- | -------- | ------- |
 | object          | Object information                             | { name: string, description: string, status: string, avatar: string }                                         | -        |         |
 | color           | Background color of the avatar                 | `green` / `grey` / `yellow` / `blue` / `pink`/ `mars`/ `orange`/ `fern`/ `cyan`/ `purple` / `violet`          | `grey`   |         |
 | backgroundColor | Background color of the avatar                 | `auto` / `green` / `grey` / `yellow` / `blue` / `pink`/ `mars`/ `orange`/ `fern`/ `cyan`/ `purple` / `violet` | `auto`   |         |

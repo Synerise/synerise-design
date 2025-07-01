@@ -1,6 +1,8 @@
 import React from 'react';
-import { renderWithProvider } from '@synerise/ds-utils/dist/testing';
-import { fireEvent } from "@testing-library/react";
+
+import { renderWithProvider } from '@synerise/ds-utils';
+import { fireEvent } from '@testing-library/react';
+
 import Radio from '../index';
 
 describe('Radio', () => {
@@ -17,7 +19,9 @@ describe('Radio', () => {
     // ARRANGE
     const RADIO_LABEL = 'Radio label';
     const RADIO_DESCRIPTION = 'Radio description';
-    const { getByText } = renderWithProvider(<Radio description={RADIO_DESCRIPTION}>{RADIO_LABEL}</Radio>);
+    const { getByText } = renderWithProvider(
+      <Radio description={RADIO_DESCRIPTION}>{RADIO_LABEL}</Radio>,
+    );
 
     // ASSERT
     expect(getByText(RADIO_DESCRIPTION)).toBeTruthy();
@@ -33,10 +37,10 @@ describe('Radio', () => {
       const RADIO_VALUE_B = 'Radio value B';
 
       const { getByLabelText } = renderWithProvider(
-        <Radio.Group onChange={e => onChange(e.target.value)}>
+        <Radio.Group onChange={(e) => onChange(e.target.value)}>
           <Radio value={RADIO_VALUE_A}>{RADIO_LABEL_A}</Radio>
           <Radio value={RADIO_VALUE_B}>{RADIO_LABEL_B}</Radio>
-        </Radio.Group>
+        </Radio.Group>,
       );
 
       // ACT

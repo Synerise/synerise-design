@@ -1,14 +1,14 @@
+import ActionCell from './Action/ActionCell';
+import AvatarLabelCell from './AvatarLabel/AvatarLabel';
+import CopyableCell from './Copyable/CopyableCell';
+import EditableCell from './Editable/EditableCell';
+import FlagLabelCell from './FlagLabel/FlagLabelCell';
 import IconLabelCell from './IconLabel/IconLabel';
 import IconTooltipCell from './IconTooltipCell/IconTooltipCell';
-import StatusLabelCell from './StatusLabel/StatusLabel';
-import AvatarLabelCell from './AvatarLabel/AvatarLabel';
-import TagIconCell from './TagIcon/TagIcon';
-import EditableCell from './Editable/EditableCell';
-import CopyableCell from './Copyable/CopyableCell';
-import ActionCell from './Action/ActionCell';
-import FlagLabelCell from './FlagLabel/FlagLabelCell';
-import StarCell from './Star/StarCell';
 import LabelsWithShowMore from './LabelsWithShowMore/LabelsWithShowMore';
+import StarCell from './Star/StarCell';
+import StatusLabelCell from './StatusLabel/StatusLabel';
+import TagIconCell from './TagIcon/TagIcon';
 
 export {
   IconLabelCell,

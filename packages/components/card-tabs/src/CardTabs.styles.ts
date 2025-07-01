@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+
 import { ButtonStyles } from '@synerise/ds-button';
 
 export const CardTabsContainer = styled.div`

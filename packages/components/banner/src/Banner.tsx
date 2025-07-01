@@ -1,14 +1,15 @@
-import React, { useState, useMemo } from 'react';
+import React, { useMemo, useState } from 'react';
 import { v4 as uuid } from 'uuid';
+
 import Button from '@synerise/ds-button';
 import Icon, { CloseM } from '@synerise/ds-icon';
 import Tooltip from '@synerise/ds-tooltip';
 
-import type { BannerProps } from './Banner.types';
-import * as S from './Banner.styles';
-import { BannerSlide, BannerCounter, BannerHeader } from './components';
-import { useTexts, useCarousel } from './hooks';
 import { DEFAULT_SLIDE_SPEED } from './Banner.const';
+import * as S from './Banner.styles';
+import type { BannerProps } from './Banner.types';
+import { BannerCounter, BannerHeader, BannerSlide } from './components';
+import { useCarousel, useTexts } from './hooks';
 
 const Banner = ({
   slides,
@@ -23,17 +24,20 @@ const Banner = ({
   ...htmlAttributes
 }: BannerProps) => {
   const [currentIndex, setCurrentIndex] = useState(0);
-  const [isExpanded, setIsExpanded] = useState(expandable?.isExpanded !== undefined ? expandable?.isExpanded : true);
-  const { bannerRef, handleDotClick, handleNextClick, handlePrevClick } = useCarousel();
+  const [isExpanded, setIsExpanded] = useState(
+    expandable?.isExpanded !== undefined ? expandable?.isExpanded : true,
+  );
+  const { bannerRef, handleDotClick, handleNextClick, handlePrevClick } =
+    useCarousel();
   const allTexts = useTexts(texts);
 
   const slidesWithUUID = useMemo(() => {
-    return slides.map(slide => ({ ...slide, id: uuid() }));
+    return slides.map((slide) => ({ ...slide, id: uuid() }));
   }, [slides]);
 
   const handleBeforeChange = (from: number, to: number) => {
     setCurrentIndex(to);
-    // eslint-disable-next-line no-unused-expressions
+
     onBeforeChange?.(from, to);
   };
   const closeButton = onClose && (
@@ -69,7 +73,7 @@ const Banner = ({
             effect={transitionEffect}
             dots={false}
           >
-            {slidesWithUUID.map(slide => (
+            {slidesWithUUID.map((slide) => (
               <BannerSlide {...slide} key={slide.id} />
             ))}
           </S.BannerSlides>

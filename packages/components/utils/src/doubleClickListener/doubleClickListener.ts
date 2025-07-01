@@ -1,12 +1,11 @@
-import React from 'react';
+import type React from 'react';
 
 const DEFAULT_DELAY = 250;
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-function doubleClickListener<T extends any>(
+function doubleClickListener<T>(
   onClick: (e: React.SyntheticEvent<T>) => void,
   onDblClick: (e: React.SyntheticEvent<T>) => void,
-  delay = DEFAULT_DELAY
+  delay = DEFAULT_DELAY,
 ): React.ReactEventHandler<T> {
   let timeout: ReturnType<typeof setTimeout> | null;
   return (event): void => {

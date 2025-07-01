@@ -1,10 +1,10 @@
 import styled from 'styled-components';
 
+import Button from '@synerise/ds-button';
 import EmptyStateBase from '@synerise/ds-empty-states';
 import Icon from '@synerise/ds-icon';
-import Button from '@synerise/ds-button';
-import ModalBase from '@synerise/ds-modal';
 import { RawTextArea } from '@synerise/ds-input';
+import ModalBase from '@synerise/ds-modal';
 
 export const TextArea = styled(RawTextArea)``;
 
@@ -12,11 +12,11 @@ export const Modal = styled(ModalBase)<{ viewportHeight: number }>`
   && {
     top: 50px;
     .ant-modal-content {
-      height: ${props => props.viewportHeight}vh;
+      height: ${(props) => props.viewportHeight}vh;
     }
   }
   ${TextArea} {
-    height: calc(${props => props.viewportHeight}vh - 211px);
+    height: calc(${(props) => props.viewportHeight}vh - 211px);
     min-height: auto;
     resize: none;
     font-family: 'IBM Plex Mono Regular', monospace;
@@ -96,9 +96,9 @@ export const DeleteIcon = styled(Icon)`
   top: 50%;
   transform: translateY(-50%);
   display: none;
-  color: ${props => props.theme.palette['red-600']};
+  color: ${(props) => props.theme.palette['red-600']};
   &:hover {
-    color: ${props => props.theme.palette['red-500']};
+    color: ${(props) => props.theme.palette['red-500']};
   }
 `;
 

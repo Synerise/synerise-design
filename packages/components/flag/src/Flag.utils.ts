@@ -1,6 +1,5 @@
-import { CountryCode } from './Flag.types';
+import { type CountryCode } from './Flag.types';
 
-// eslint-disable-next-line import/prefer-default-export
 export const countryCodes: CountryCode[] = [
   'AD',
   'AE',

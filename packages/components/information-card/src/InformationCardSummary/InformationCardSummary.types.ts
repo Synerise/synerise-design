@@ -1,4 +1,5 @@
-import type { ReactNode, Key } from 'react';
+import type { Key, ReactNode } from 'react';
+
 import type { TooltipProps } from '@synerise/ds-tooltip';
 
 export type InformationCardSummaryItem = {

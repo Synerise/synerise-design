@@ -1,6 +1,15 @@
-import type { InputHTMLAttributes, CSSProperties, RefObject, MutableRefObject, ReactNode } from 'react';
+import type {
+  CSSProperties,
+  InputHTMLAttributes,
+  MutableRefObject,
+  ReactNode,
+  RefObject,
+} from 'react';
 
-export type AutosizeInputProps = Omit<InputHTMLAttributes<HTMLInputElement>, 'size'> & {
+export type AutosizeInputProps = Omit<
+  InputHTMLAttributes<HTMLInputElement>,
+  'size'
+> & {
   placeholderIsMinWidth?: boolean;
   wrapperClassName?: string;
   wrapperStyle?: CSSProperties;
@@ -10,7 +19,10 @@ export type AutosizeInputProps = Omit<InputHTMLAttributes<HTMLInputElement>, 'si
   preAutosize?: (newWidth: number) => void;
   transformRef?: (element: HTMLElement) => HTMLElement;
   transformWrapperRef?: (element: HTMLElement) => HTMLElement;
-  handleInputRef?: (element: HTMLInputElement, originalElement: HTMLElement) => HTMLElement;
+  handleInputRef?: (
+    element: HTMLInputElement,
+    originalElement: HTMLElement,
+  ) => HTMLElement;
   children: ReactNode;
 };
 

@@ -1,6 +1,6 @@
-import React, { useRef, useMemo, useState, useEffect } from 'react';
-import dayjs from 'dayjs';
+import type dayjs from 'dayjs';
 import { debounce } from 'debounce';
+import React, { useEffect, useMemo, useRef, useState } from 'react';
 
 import Scrollbar from '@synerise/ds-scrollbar';
 
@@ -23,10 +23,17 @@ export type UnitProps = UnitConfig & {
 const CELL_HEIGHT = 32;
 const DEBOUNCE_DELAY = 150;
 
-const Unit = ({ options, disabled, value, unit, onSelect, use12HourClock }: UnitProps) => {
+const Unit = ({
+  options,
+  disabled,
+  value,
+  unit,
+  onSelect,
+  use12HourClock,
+}: UnitProps) => {
   const selected: number | undefined = useMemo(
     () => getUnitSelectedNumber(value, unit, use12HourClock),
-    [unit, use12HourClock, value]
+    [unit, use12HourClock, value],
   );
 
   const [forceUpdate, setForceUpdate] = useState<boolean>(false);
@@ -68,20 +75,37 @@ const Unit = ({ options, disabled, value, unit, onSelect, use12HourClock }: Unit
 
   useEffect(() => {
     if (selectedCellRef.current && unitContainerRef.current) {
-      const offsetToParent = selectedCellRef.current.offsetTop - unitContainerRef.current.offsetTop;
-      const scrollBehaviour = isFirstRender || !containerHeight ? 'auto' : 'smooth';
+      const offsetToParent =
+        selectedCellRef.current.offsetTop - unitContainerRef.current.offsetTop;
+      const scrollBehaviour =
+        isFirstRender || !containerHeight ? 'auto' : 'smooth';
       if (typeof unitContainerRef.current.scrollTo === 'function') {
-        unitContainerRef.current.scrollTo({ top: offsetToParent, behavior: scrollBehaviour });
+        unitContainerRef.current.scrollTo({
+          top: offsetToParent,
+          behavior: scrollBehaviour,
+        });
       }
       setContainerHeight(unitContainerRef.current.offsetHeight);
     }
-  }, [selectedCellRef, unitContainerRef, isFirstRender, forceUpdate, containerHeight]);
+  }, [
+    selectedCellRef,
+    unitContainerRef,
+    isFirstRender,
+    forceUpdate,
+    containerHeight,
+  ]);
 
   return (
     <S.Unit data-testid={`ds-time-picker-unit-${unit}`}>
-      <Scrollbar confineScroll ref={unitContainerRef} onScroll={debouncedScrollHandler} maxHeight={192}>
-        {options.map(option => {
-          const normalizedStringValue = option < 10 ? `0${option}` : option.toString();
+      <Scrollbar
+        confineScroll
+        ref={unitContainerRef}
+        onScroll={debouncedScrollHandler}
+        maxHeight={192}
+      >
+        {options.map((option) => {
+          const normalizedStringValue =
+            option < 10 ? `0${option}` : option.toString();
           const isDisabled = disabled && disabled.includes(option);
           const isSelected = selected === option;
 

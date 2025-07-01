@@ -1,13 +1,20 @@
-import { RefObject, useEffect, useRef } from 'react';
+import { type RefObject, useEffect, useRef } from 'react';
 
 const MOUSEDOWN = 'mousedown';
 const TOUCHSTART = 'touchstart';
-const CLICK = 'click';
-const CONTEXTMENU = 'contextmenu';
+const _CLICK = 'click';
+const _CONTEXTMENU = 'contextmenu';
 
-type HandledEvents = [typeof MOUSEDOWN, typeof TOUCHSTART, typeof CLICK, typeof CONTEXTMENU];
+type HandledEvents = [
+  typeof MOUSEDOWN,
+  typeof TOUCHSTART,
+  typeof _CLICK,
+  typeof _CONTEXTMENU,
+];
 export type HandledEventsType = HandledEvents[number];
-type PossibleEvent = { [Type in HandledEventsType]: HTMLElementEventMap[Type] }[HandledEventsType];
+type PossibleEvent = {
+  [Type in HandledEventsType]: HTMLElementEventMap[Type];
+}[HandledEventsType];
 type Handler = (event: PossibleEvent) => void;
 const defaultEvents: HandledEventsType[] = [MOUSEDOWN, TOUCHSTART];
 
@@ -23,7 +30,7 @@ export const useOnClickOutside = (
   ref: RefObject<HTMLElement>,
   handler: Handler | null,
   customEventsTypes?: HandledEventsType[],
-  ignoreSelectors?: string[]
+  ignoreSelectors?: string[],
 ): void => {
   const handlerRef = useRef(handler);
   const events = customEventsTypes || defaultEvents;
@@ -43,17 +50,21 @@ export const useOnClickOutside = (
       if (ref.current.contains(event.target as Node)) {
         return;
       }
-      if (ignoreSelectors?.some(className => (event.target as HTMLElement)?.closest(className))) {
+      if (
+        ignoreSelectors?.some((className) =>
+          (event.target as HTMLElement)?.closest(className),
+        )
+      ) {
         // if any of parent elements contain one of ignored classes - stop proceeding this event
         return;
       }
       handlerRef.current(event);
     };
-    events.forEach(event => {
+    events.forEach((event) => {
       document.addEventListener(event, listener);
     });
     return (): void => {
-      events.forEach(event => {
+      events.forEach((event) => {
         document.removeEventListener(event, listener);
       });
     };

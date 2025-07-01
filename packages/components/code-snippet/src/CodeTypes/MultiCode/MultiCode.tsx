@@ -1,15 +1,18 @@
+import copy from 'copy-to-clipboard';
 import React from 'react';
 import AnimateHeight from 'react-animate-height';
-import copy from 'copy-to-clipboard';
-import Icon, { DuplicateS, ArrowDownCircleM } from '@synerise/ds-icon';
+
+import Icon, { ArrowDownCircleM, DuplicateS } from '@synerise/ds-icon';
 import Scrollbar from '@synerise/ds-scrollbar';
 
-import { CodeSnippetProps } from '../../CodeSnippet.types';
-import Highlight from '../../Highlight/Highlight';
-import * as S from './MultiCode.styles';
-import { LINE_HEIGHT_DEFAULT, ICON_CLASSNAME } from '../SingleCode/SingleCode.styles';
-
+import { type CodeSnippetProps } from '../../CodeSnippet.types';
 import CopyAction from '../../CopyAction/CopyAction';
+import Highlight from '../../Highlight/Highlight';
+import {
+  ICON_CLASSNAME,
+  LINE_HEIGHT_DEFAULT,
+} from '../SingleCode/SingleCode.styles';
+import * as S from './MultiCode.styles';
 
 const ANIMATE_HEIGHT_TIME = 300;
 
@@ -43,7 +46,7 @@ const MultiCode: React.FC<CodeSnippetProps> = ({
       className: 'btn-expander',
       expanded: expandedState,
     }),
-    [expandedState]
+    [expandedState],
   );
 
   const initialContentHeight = React.useMemo((): number => {
@@ -53,7 +56,9 @@ const MultiCode: React.FC<CodeSnippetProps> = ({
 
   const onMounting = React.useCallback(() => {
     if (!!codeRef && !!codeRef?.current) {
-      setAllRows(Math.round(codeRef.current.offsetHeight / LINE_HEIGHT_DEFAULT));
+      setAllRows(
+        Math.round(codeRef.current.offsetHeight / LINE_HEIGHT_DEFAULT),
+      );
     }
   }, [codeRef]);
 
@@ -63,23 +68,36 @@ const MultiCode: React.FC<CodeSnippetProps> = ({
 
   const handleButton = React.useCallback(
     (isScroll: boolean): void => {
-      setExpandedState(prevState => !prevState);
-      if (isScroll) setTimeout(() => setScrollable(prevState => !prevState), ANIMATE_HEIGHT_TIME);
-      else setScrollable(prevState => !prevState);
+      setExpandedState((prevState) => !prevState);
+      if (isScroll) {
+        setTimeout(
+          () => setScrollable((prevState) => !prevState),
+          ANIMATE_HEIGHT_TIME,
+        );
+      } else {
+        setScrollable((prevState) => !prevState);
+      }
       onExpand && onExpand();
     },
-    [onExpand]
+    [onExpand],
   );
 
-  const isButtonVisible = React.useMemo((): boolean => allRows > rows + 1, [rows, allRows]);
+  const isButtonVisible = React.useMemo(
+    (): boolean => allRows > rows + 1,
+    [rows, allRows],
+  );
   const extraHeightOption = React.useMemo(
     (): number | string => (isButtonVisible ? initialContentHeight : 'auto'),
-    [isButtonVisible, initialContentHeight]
+    [isButtonVisible, initialContentHeight],
   );
 
   const multilineStructureContent = React.useMemo(
     () => (
-      <S.PreBlock wrap={wrap} expanded={expandedState} isButtonVisible={isButtonVisible}>
+      <S.PreBlock
+        wrap={wrap}
+        expanded={expandedState}
+        isButtonVisible={isButtonVisible}
+      >
         <AnimateHeight
           className="content-animation"
           duration={ANIMATE_HEIGHT_TIME}
@@ -92,14 +110,26 @@ const MultiCode: React.FC<CodeSnippetProps> = ({
               marginRight: '17px',
             }}
           >
-            <S.BlockCodeWrapperMulti ref={codeRef} isButtonVisible={isButtonVisible}>
+            <S.BlockCodeWrapperMulti
+              ref={codeRef}
+              isButtonVisible={isButtonVisible}
+            >
               {children}
             </S.BlockCodeWrapperMulti>
           </Scrollbar>
         </AnimateHeight>
       </S.PreBlock>
     ),
-    [wrap, rows, expandedState, isButtonVisible, scrollable, codeRef, extraHeightOption, children]
+    [
+      wrap,
+      rows,
+      expandedState,
+      isButtonVisible,
+      scrollable,
+      codeRef,
+      extraHeightOption,
+      children,
+    ],
   );
   const iconElement = React.useMemo(
     () =>
@@ -116,21 +146,37 @@ const MultiCode: React.FC<CodeSnippetProps> = ({
           customTriggerComponent={customTriggerComponent}
         />
       ),
-    [children, tooltipTitleHover, tooltipTitleClick, onCopy, customTriggerComponent, hideCopyButton]
+    [
+      children,
+      tooltipTitleHover,
+      tooltipTitleClick,
+      onCopy,
+      customTriggerComponent,
+      hideCopyButton,
+    ],
   );
 
   return (
-    <S.CodeSnippetWrapperMulti expanded={expandedState} isButtonVisible={isButtonVisible} className={className}>
+    <S.CodeSnippetWrapperMulti
+      expanded={expandedState}
+      isButtonVisible={isButtonVisible}
+      className={className}
+    >
       <S.ContentIconWrapper>
         {colorSyntax && languages ? (
-          <Highlight languages={languages}>{multilineStructureContent}</Highlight>
+          <Highlight languages={languages}>
+            {multilineStructureContent}
+          </Highlight>
         ) : (
           multilineStructureContent
         )}
         {iconElement}
       </S.ContentIconWrapper>
       {!hideExpandButton && rows && isButtonVisible && (
-        <S.ExpanderButton {...buttonProps} onClick={(): void => handleButton(expandedState)}>
+        <S.ExpanderButton
+          {...buttonProps}
+          onClick={(): void => handleButton(expandedState)}
+        >
           <Icon component={<ArrowDownCircleM />} />
           {expandedState ? labelAfterExpanded : labelBeforeExpanded}
         </S.ExpanderButton>

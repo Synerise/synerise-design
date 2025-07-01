@@ -1,7 +1,14 @@
 import { useMemo } from 'react';
-import type { EmojiVirtualListItem, EmojiCategory } from '../EmojiList/EmojiList.types';
 
-export const useMultipleItemsPerRow = (data: EmojiCategory[], itemsPerRow: number): EmojiVirtualListItem[] => {
+import type {
+  EmojiCategory,
+  EmojiVirtualListItem,
+} from '../EmojiList/EmojiList.types';
+
+export const useMultipleItemsPerRow = (
+  data: EmojiCategory[],
+  itemsPerRow: number,
+): EmojiVirtualListItem[] => {
   const groupedData = useMemo(() => {
     return data.reduce((flatItemsAndCategories, group) => {
       const { title, emojis } = group;

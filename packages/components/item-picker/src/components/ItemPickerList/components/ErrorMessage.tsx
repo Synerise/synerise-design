@@ -4,7 +4,7 @@ import { theme } from '@synerise/ds-core';
 import { WarningL } from '@synerise/ds-icon';
 
 import * as S from '../ItemPickerList.styles';
-import { ItemPickerListTexts } from '../ItemPickerList.types';
+import { type ItemPickerListTexts } from '../ItemPickerList.types';
 
 type ErrorMessageProps = {
   texts: ItemPickerListTexts;

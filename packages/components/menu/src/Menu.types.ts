@@ -1,6 +1,7 @@
-import { ReactNode } from 'react';
-import { MenuProps } from 'antd/lib/menu';
-import { MenuItemProps } from './Elements/Item/MenuItem.types';
+import { type MenuProps } from 'antd/lib/menu';
+import { type ReactNode } from 'react';
+
+import { type MenuItemProps } from './Elements/Item/MenuItem.types';
 
 export type MenuTexts = {
   showLess: ReactNode;

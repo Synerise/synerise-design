@@ -1,5 +1,13 @@
-import styled, { css, FlattenSimpleInterpolation } from 'styled-components';
-import { ORIENTATIONS, StepperOrientation, StepperSize } from '../Stepper.types';
+import styled, {
+  type FlattenSimpleInterpolation,
+  css,
+} from 'styled-components';
+
+import {
+  ORIENTATIONS,
+  type StepperOrientation,
+  type StepperSize,
+} from '../Stepper.types';
 
 export const StepPrefix = styled.div<{ noMargin: boolean }>`
   width: 24px;
@@ -14,7 +22,9 @@ export const StepPrefix = styled.div<{ noMargin: boolean }>`
   border-color: ${(props): string => props.theme.palette['grey-400']};
   margin-right: ${(props): string => (props.noMargin ? '0' : '8px')};
   text-align: center;
-  transition: border-color 0.2s ease-in-out, margin-right 0.2s ease-in-out;
+  transition:
+    border-color 0.2s ease-in-out,
+    margin-right 0.2s ease-in-out;
 `;
 
 export const StepNumber = styled.span`
@@ -122,7 +132,10 @@ export const Step = styled.div<{
   }};
 
   ${(props): FlattenSimpleInterpolation | false => {
-    if (props.size === 'small' && props.orientation === ORIENTATIONS.HORIZONTAL) {
+    if (
+      props.size === 'small' &&
+      props.orientation === ORIENTATIONS.HORIZONTAL
+    ) {
       return css`
         ${StepPrefix} {
           margin-right: 0;
@@ -138,7 +151,11 @@ export const Step = styled.div<{
   }};
 
   ${(props): FlattenSimpleInterpolation | false => {
-    if (props.active && props.size === 'small' && props.orientation === ORIENTATIONS.HORIZONTAL) {
+    if (
+      props.active &&
+      props.size === 'small' &&
+      props.orientation === ORIENTATIONS.HORIZONTAL
+    ) {
       return css`
         ${StepPrefix} {
           margin-right: 8px;
@@ -149,17 +166,19 @@ export const Step = styled.div<{
         }
       `;
     }
-    if (props.active)
+    if (props.active) {
       return css`
         ${StepContent} {
-          padding: ${props.hasChildren ? '16px' : '0'} 0 ${props.hasChildren ? '16px' : '0'} 20px;
+          padding: ${props.hasChildren ? '16px' : '0'} 0
+            ${props.hasChildren ? '16px' : '0'} 20px;
         }
       `;
+    }
     return false;
   }};
 
   ${(props): FlattenSimpleInterpolation | false => {
-    if (props.validated)
+    if (props.validated) {
       return css`
         ${StepPrefix} {
           border-color: ${props.theme.palette['red-600']};
@@ -170,7 +189,8 @@ export const Step = styled.div<{
           font-weight: 400;
         }
       `;
-    if (props.warning)
+    }
+    if (props.warning) {
       return css`
         ${StepPrefix} {
           border-color: ${props.theme.palette['yellow-600']};
@@ -181,7 +201,8 @@ export const Step = styled.div<{
           font-weight: 400;
         }
       `;
-    if (props.done)
+    }
+    if (props.done) {
       return css`
         ${StepPrefix} {
           border-color: ${props.theme.palette['green-600']};
@@ -192,7 +213,8 @@ export const Step = styled.div<{
           font-weight: 400;
         }
       `;
-    if (props.active)
+    }
+    if (props.active) {
       return css`
         ${StepPrefix} {
           border-color: ${props.theme.palette['grey-700']};
@@ -212,6 +234,7 @@ export const Step = styled.div<{
           }
         }
       `;
+    }
     return (
       props.clickable &&
       css`

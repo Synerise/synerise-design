@@ -1,8 +1,8 @@
 import styled, { css } from 'styled-components';
 
 export const Multivalue = styled.div<{ color: string; percent: number }>`
-  background: ${props => props.color};
-  width: ${props => props.percent}%;
+  background: ${(props) => props.color};
+  width: ${(props) => props.percent}%;
   height: 6px;
   border-radius: 6px;
   overflow: hidden;
@@ -14,7 +14,7 @@ export const Container = styled.div<{ stackedBars: boolean }>`
   width: 100%;
   padding-top: 11px;
 
-  ${props =>
+  ${(props) =>
     props.stackedBars
       ? css`
           ${Multivalue}:not(:first-child) {

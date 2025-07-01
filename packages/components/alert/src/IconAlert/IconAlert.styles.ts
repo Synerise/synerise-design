@@ -1,5 +1,6 @@
 import styled, { css } from 'styled-components';
-import { IconAlertType } from './IconAlert.types';
+
+import { type IconAlertType } from './IconAlert.types';
 
 const COLORS: Record<IconAlertType, string> = {
   success: 'green-600',
@@ -24,38 +25,46 @@ export const Message = styled.span`
   margin-left: 4px;
 `;
 
-export const IconAlertWrapper = styled.span<{ type: IconAlertType; hoverButton?: boolean; disabled?: boolean }>`
+export const IconAlertWrapper = styled.span<{
+  type: IconAlertType;
+  hoverButton?: boolean;
+  disabled?: boolean;
+}>`
   display: flex;
   align-items: center;
   justify-content: flex-start;
   flex-direction: row;
   &:hover {
-    cursor: ${props => (props.hoverButton ? 'pointer' : 'auto')};
+    cursor: ${(props) => (props.hoverButton ? 'pointer' : 'auto')};
     svg {
-      color: ${props =>
-        props.hoverButton ? props.theme.palette[COLORS_HOVER[props.type]] : props.theme.palette[COLORS[props.type]]};
-      fill: ${props =>
-        props.hoverButton ? props.theme.palette[COLORS_HOVER[props.type]] : props.theme.palette[COLORS[props.type]]};
+      color: ${(props) =>
+        props.hoverButton
+          ? props.theme.palette[COLORS_HOVER[props.type]]
+          : props.theme.palette[COLORS[props.type]]};
+      fill: ${(props) =>
+        props.hoverButton
+          ? props.theme.palette[COLORS_HOVER[props.type]]
+          : props.theme.palette[COLORS[props.type]]};
     }
   }
   &:active {
     svg {
-      color: ${props => props.theme.palette[COLORS[props.type]]};
-      fill: ${props => props.theme.palette[COLORS[props.type]]};
+      color: ${(props) => props.theme.palette[COLORS[props.type]]};
+      fill: ${(props) => props.theme.palette[COLORS[props.type]]};
     }
   }
   svg {
-    color: ${props => props.theme.palette[COLORS[props.type]]};
-    fill: ${props => props.theme.palette[COLORS[props.type]]};
+    color: ${(props) => props.theme.palette[COLORS[props.type]]};
+    fill: ${(props) => props.theme.palette[COLORS[props.type]]};
   }
-  ${props =>
+  ${(props) =>
     !!props.disabled &&
     css`
       pointer-events: none;
       opacity: 0.4;
     `};
   ${Message} {
-    color: ${props => props.theme.palette['grey-600']};
+    color: ${(props) => props.theme.palette['grey-600']};
   }
 `;
 export const EmphasisWrapper = styled.span`

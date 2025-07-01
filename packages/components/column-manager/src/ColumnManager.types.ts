@@ -1,4 +1,5 @@
 import type { ReactNode } from 'react';
+
 import type { Column } from './ColumnManagerItem/ColumManagerItem.types';
 
 type TextsString = 'searchPlaceholder';

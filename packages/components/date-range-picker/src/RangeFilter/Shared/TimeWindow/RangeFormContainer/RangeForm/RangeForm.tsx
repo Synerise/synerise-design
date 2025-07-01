@@ -1,26 +1,26 @@
-import React, { useState, useEffect } from 'react';
-import { useIntl } from 'react-intl';
 import dayjs from 'dayjs';
+import React, { useEffect, useState } from 'react';
+import { useIntl } from 'react-intl';
 
-import Select from '@synerise/ds-select';
-import Icon, { CloseS } from '@synerise/ds-icon';
-import { useDataFormat } from '@synerise/ds-data-format';
-import TimePicker from '@synerise/ds-time-picker';
-import Slider from '@synerise/ds-slider';
 import { theme } from '@synerise/ds-core';
+import { useDataFormat } from '@synerise/ds-data-format';
+import Icon, { CloseS } from '@synerise/ds-icon';
+import Select from '@synerise/ds-select';
+import Slider from '@synerise/ds-slider';
+import TimePicker from '@synerise/ds-time-picker';
 
-import { DateLimitMode, RangeFormProps } from './RangeForm.types';
-import * as S from './RangeForm.styles';
 import { getDisabledTimeOptions } from '../../../../../RangePicker/utils';
 import {
   FORM_MODES,
   RANGE_DISPLAY_MODES,
   RANGE_FORM_INTL_KEYS,
-  SLIDER_MIN,
   SLIDER_MAX,
+  SLIDER_MIN,
   SLIDER_STEP,
 } from './RangeForm.constants';
-import { numberToDate, dateToNumber } from './RangeForm.utils';
+import * as S from './RangeForm.styles';
+import { type DateLimitMode, type RangeFormProps } from './RangeForm.types';
+import { dateToNumber, numberToDate } from './RangeForm.utils';
 
 // @deprecated, moved to ./RangeForm.constants
 export { FORM_MODES, RANGE_FORM_INTL_KEYS };
@@ -48,8 +48,12 @@ const RangeForm = ({
   const [start, setStart] = useState<Date | undefined>(startDate);
   const [end, setEnd] = useState<Date | undefined>(endDate);
 
-  const [sliderStart, setSliderStart] = useState<number>(startDate ? dateToNumber(startDate) : SLIDER_MIN);
-  const [sliderEnd, setSliderEnd] = useState<number>(endDate ? dateToNumber(endDate) : SLIDER_MAX);
+  const [sliderStart, setSliderStart] = useState<number>(
+    startDate ? dateToNumber(startDate) : SLIDER_MIN,
+  );
+  const [sliderEnd, setSliderEnd] = useState<number>(
+    endDate ? dateToNumber(endDate) : SLIDER_MAX,
+  );
 
   useEffect(() => {
     if (rangeDisplayMode !== RANGE_DISPLAY_MODES.SLIDER) {
@@ -61,7 +65,8 @@ const RangeForm = ({
     }
   }, [rangeDisplayMode, startDate, endDate]);
 
-  const getPopupContainer = (node: HTMLElement) => (node.parentElement != null ? node.parentElement : document.body);
+  const getPopupContainer = (node: HTMLElement) =>
+    node.parentElement !== null ? node.parentElement : document.body;
   const errorForFirstItem = errorTexts?.length && errorTexts[0];
   const errorForSecondItem = errorTexts?.length && errorTexts[1];
   const singleHourPicker = () => (
@@ -69,7 +74,7 @@ const RangeForm = ({
       errorText={errorForFirstItem}
       disabled={disabled}
       clearTooltip={texts.clear}
-      onChange={date => {
+      onChange={(date) => {
         onExactHourSelect(date);
         setStart(date);
         setEnd(date);
@@ -87,7 +92,9 @@ const RangeForm = ({
   const timeFormatByClockMode = is12HoursClock ? 'hh:mm A' : 'HH:mm';
 
   const tipFormatter = (value?: number) => {
-    if (value === undefined) return null;
+    if (value === undefined) {
+      return null;
+    }
     const valueAsDate = numberToDate(value, SLIDER_MAX);
     return dayjs(valueAsDate).format(timeFormatByClockMode);
   };
@@ -101,8 +108,12 @@ const RangeForm = ({
       }
     };
     const handleSliderAfterChange = (range: number[]) => {
-      const currentStartDateAsNumber = startDate ? dateToNumber(startDate) : SLIDER_MIN;
-      const currentEndDateAsNumber = endDate ? dateToNumber(endDate) : SLIDER_MAX;
+      const currentStartDateAsNumber = startDate
+        ? dateToNumber(startDate)
+        : SLIDER_MIN;
+      const currentEndDateAsNumber = endDate
+        ? dateToNumber(endDate)
+        : SLIDER_MAX;
       const newStartDate = numberToDate(range[0], SLIDER_MAX, true);
       const newEndDate = numberToDate(range[1], SLIDER_MAX);
       if (range[0] !== currentStartDateAsNumber) {
@@ -123,7 +134,7 @@ const RangeForm = ({
         inverted={isInvertedRange}
         value={[sliderStart, sliderEnd]}
         included
-        getTooltipPopupContainer={container => container}
+        getTooltipPopupContainer={(container) => container}
         tooltipVisible
         onAfterChange={handleSliderAfterChange}
         onChange={handleSliderChange}
@@ -147,9 +158,27 @@ const RangeForm = ({
           dropdownProps={{
             getPopupContainer,
           }}
-          disabledHours={getDisabledTimeOptions(start || end, 'HOURS', null, end, is12HoursClock)}
-          disabledMinutes={getDisabledTimeOptions(start || end, 'MINUTES', null, end, is12HoursClock)}
-          disabledSeconds={getDisabledTimeOptions(start || end, 'SECONDS', null, end, is12HoursClock)}
+          disabledHours={getDisabledTimeOptions(
+            start || end,
+            'HOURS',
+            null,
+            end,
+            is12HoursClock,
+          )}
+          disabledMinutes={getDisabledTimeOptions(
+            start || end,
+            'MINUTES',
+            null,
+            end,
+            is12HoursClock,
+          )}
+          disabledSeconds={getDisabledTimeOptions(
+            start || end,
+            'SECONDS',
+            null,
+            end,
+            is12HoursClock,
+          )}
           use12HourClock={is12HoursClock}
           valueFormatOptions={valueFormatOptions}
           {...timePickerProps}
@@ -167,9 +196,27 @@ const RangeForm = ({
           dropdownProps={{
             getPopupContainer,
           }}
-          disabledHours={getDisabledTimeOptions(end || start, 'HOURS', start, null, is12HoursClock)}
-          disabledMinutes={getDisabledTimeOptions(end || start, 'MINUTES', start, null, is12HoursClock)}
-          disabledSeconds={getDisabledTimeOptions(end || start, 'SECONDS', start, null, is12HoursClock)}
+          disabledHours={getDisabledTimeOptions(
+            end || start,
+            'HOURS',
+            start,
+            null,
+            is12HoursClock,
+          )}
+          disabledMinutes={getDisabledTimeOptions(
+            end || start,
+            'MINUTES',
+            start,
+            null,
+            is12HoursClock,
+          )}
+          disabledSeconds={getDisabledTimeOptions(
+            end || start,
+            'SECONDS',
+            start,
+            null,
+            is12HoursClock,
+          )}
           use12HourClock={is12HoursClock}
           {...timePickerProps}
         />
@@ -185,7 +232,9 @@ const RangeForm = ({
   };
 
   const getModeLabel = (modeName: DateLimitMode) => {
-    if (texts[modeName.toLocaleLowerCase()]) return texts[modeName.toLocaleLowerCase()];
+    if (texts[modeName.toLocaleLowerCase()]) {
+      return texts[modeName.toLocaleLowerCase()];
+    }
     return intl.formatMessage(RANGE_FORM_INTL_KEYS[modeName]);
   };
 
@@ -194,12 +243,12 @@ const RangeForm = ({
       <Select
         value={mode}
         disabled={disabled}
-        onChange={value => {
+        onChange={(value) => {
           onModeChange(value as DateLimitMode);
         }}
         getPopupContainer={getPopupContainer}
       >
-        {valueSelectionModes.map(modeName => (
+        {valueSelectionModes.map((modeName) => (
           <Select.Option key={modeName} value={modeName}>
             {getModeLabel(modeName)}
           </Select.Option>

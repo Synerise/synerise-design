@@ -1,12 +1,24 @@
 import React, { useState } from 'react';
-
 import { FormattedMessage } from 'react-intl';
-import Tooltip from '@synerise/ds-tooltip';
-import Icon, { RepeatM, FileTypeImageM, Close3M, FileM } from '@synerise/ds-icon';
-import * as S from './FileViewAvatar.styles';
-import { FileViewAvatarProps } from './FileViewAvatar.types';
 
-const previewableMimeTypes = ['image/png', 'image/gif', 'image/jpeg', 'image/svg+xml', 'text/csv'];
+import Icon, {
+  Close3M,
+  FileM,
+  FileTypeImageM,
+  RepeatM,
+} from '@synerise/ds-icon';
+import Tooltip from '@synerise/ds-tooltip';
+
+import * as S from './FileViewAvatar.styles';
+import { type FileViewAvatarProps } from './FileViewAvatar.types';
+
+const previewableMimeTypes = [
+  'image/png',
+  'image/gif',
+  'image/jpeg',
+  'image/svg+xml',
+  'text/csv',
+];
 const mapperOfIcons = {
   'image/png': <FileTypeImageM />,
   'image/gif': <FileTypeImageM />,
@@ -15,12 +27,28 @@ const mapperOfIcons = {
   'text/csv': <FileTypeImageM />,
 };
 
-const FileViewAvatar = ({ data, texts, onRemove, removable, description }: FileViewAvatarProps) => {
+const FileViewAvatar = ({
+  data,
+  texts,
+  onRemove,
+  removable,
+  description,
+}: FileViewAvatarProps) => {
   const { disabled, error, file, progress } = data;
   const fileSource = URL.createObjectURL(data.file);
   const finalTexts = {
-    retryTooltip: <FormattedMessage id="DS.FILE-UPLOADER.RETRY-TOOLTIP" defaultMessage="Retry" />,
-    removeTooltip: <FormattedMessage id="DS.FILE-UPLOADER.REMOVE-TOOLTIP" defaultMessage="Remove" />,
+    retryTooltip: (
+      <FormattedMessage
+        id="DS.FILE-UPLOADER.RETRY-TOOLTIP"
+        defaultMessage="Retry"
+      />
+    ),
+    removeTooltip: (
+      <FormattedMessage
+        id="DS.FILE-UPLOADER.REMOVE-TOOLTIP"
+        defaultMessage="Remove"
+      />
+    ),
     ...texts,
   };
   const hasError = !!error;
@@ -38,7 +66,11 @@ const FileViewAvatar = ({ data, texts, onRemove, removable, description }: FileV
 
   return (
     <S.FileAvatarContainer>
-      <S.AvatarContainer removable={removable} disabled={disabled} source={fileSource}>
+      <S.AvatarContainer
+        removable={removable}
+        disabled={disabled}
+        source={fileSource}
+      >
         {removable && !disabled && !error && !hasProgress && (
           <S.RemoveWrapper
             onClick={handleRemoveAvatar}
@@ -46,7 +78,10 @@ const FileViewAvatar = ({ data, texts, onRemove, removable, description }: FileV
             pressed={pressed}
             data-testid="file-view-avatar-remove"
           >
-            <Tooltip align={{ offset: [0, 8] }} title={finalTexts.removeTooltip}>
+            <Tooltip
+              align={{ offset: [0, 8] }}
+              title={finalTexts.removeTooltip}
+            >
               <Icon component={<Close3M />} size={24} />
             </Tooltip>
           </S.RemoveWrapper>
@@ -54,7 +89,13 @@ const FileViewAvatar = ({ data, texts, onRemove, removable, description }: FileV
       </S.AvatarContainer>
       <S.FileViewContainer>
         <Tooltip overlayStyle={{ maxWidth: '350px' }} title={file.name}>
-          <S.FileView progress={hasProgress} disabled={disabled} error={hasError} removable={removable} type="button">
+          <S.FileView
+            progress={hasProgress}
+            disabled={disabled}
+            error={hasError}
+            removable={removable}
+            type="button"
+          >
             {previewableMimeTypes.indexOf(file.type) > -1 ? (
               <S.PreviewImage>
                 <Icon component={mapperOfIcons[file.type]} size={24} />

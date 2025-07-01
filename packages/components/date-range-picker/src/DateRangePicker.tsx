@@ -1,14 +1,20 @@
-import React, { useCallback, useState, useRef, useMemo, useEffect } from 'react';
-import { isEqual } from 'lodash';
-import './style/index.less';
-import { useIntl } from 'react-intl';
 import { Popover } from 'antd';
+import { isEqual } from 'lodash';
+import React, {
+  useCallback,
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+} from 'react';
+import { useIntl } from 'react-intl';
 
-import RawDateRangePicker from './RawDateRangePicker';
 import * as S from './DateRangePicker.styles';
-import { DateRangePickerProps } from './DateRangePicker.types';
+import { type DateRangePickerProps } from './DateRangePicker.types';
 import RangePickerInput from './RangePickerInput/RangePickerInput';
-import { DateFilter, DateRange } from './date.types';
+import RawDateRangePicker from './RawDateRangePicker';
+import { type DateFilter, type DateRange } from './date.types';
+import './style/index.less';
 import { getDefaultTexts } from './utils';
 
 const DateRangePicker = (props: DateRangePickerProps) => {
@@ -39,7 +45,10 @@ const DateRangePicker = (props: DateRangePickerProps) => {
   const [isTopAligned, setIsTopAligned] = useState(true);
   const wrapperRef = useRef<HTMLDivElement>(null);
 
-  const allTexts = useMemo(() => getDefaultTexts(intl, disableDefaultTexts, texts), [texts, disableDefaultTexts, intl]);
+  const allTexts = useMemo(
+    () => getDefaultTexts(intl, disableDefaultTexts, texts),
+    [texts, disableDefaultTexts, intl],
+  );
 
   useEffect(() => {
     if (!isEqual(selectedRange, selectedDate)) {
@@ -50,12 +59,18 @@ const DateRangePicker = (props: DateRangePickerProps) => {
 
   const checkContentAlignement = useCallback(() => {
     if (wrapperRef.current) {
-      const popoverDomElement = wrapperRef.current.querySelector('.ds-date-range-popover');
+      const popoverDomElement = wrapperRef.current.querySelector(
+        '.ds-date-range-popover',
+      );
 
       if (popoverDomElement) {
         const classNames = Array.from(popoverDomElement.classList);
-        const placementClassName = classNames.find(className => className.startsWith('ant-popover-placement-'));
-        const placement = placementClassName && placementClassName.split('-').pop()?.toLocaleLowerCase();
+        const placementClassName = classNames.find((className) =>
+          className.startsWith('ant-popover-placement-'),
+        );
+        const placement =
+          placementClassName &&
+          placementClassName.split('-').pop()?.toLocaleLowerCase();
         const topAligned = placement?.indexOf('bottom') === -1;
         setIsTopAligned(topAligned);
       }
@@ -68,37 +83,45 @@ const DateRangePicker = (props: DateRangePickerProps) => {
 
   const onApplyCallback = useCallback(
     (range: Partial<DateFilter> | undefined) => {
-      const finalDateRange = range === undefined && defaultValue !== undefined ? defaultValue : range;
+      const finalDateRange =
+        range === undefined && defaultValue !== undefined
+          ? defaultValue
+          : range;
       onApply && onApply(finalDateRange);
       setSelectedDate(finalDateRange as DateRange);
       setPopupVisible(false);
       setInputActive(false);
     },
-    [defaultValue, onApply]
+    [defaultValue, onApply],
   );
 
   const conditionalVisibilityProps = {
     ...(popupVisible === false && { visible: false }),
   };
 
-  const handleRangePickerInputClick = readOnly ? undefined : () => setPopupVisible(true);
+  const handleRangePickerInputClick = readOnly
+    ? undefined
+    : () => setPopupVisible(true);
   const hasCustomTrigger = !!popoverTrigger;
-  const triggerElement = popoverTrigger || renderPopoverTrigger({ setPopupVisible }) || (
-    <RangePickerInput
-      onClick={handleRangePickerInputClick}
-      value={selectedDate}
-      showTime={showTime}
-      texts={allTexts}
-      valueFormatOptions={valueFormatOptions}
-      onChange={onApplyCallback}
-      active={inputActive}
-      {...rangePickerInputProps}
-      readOnly={readOnly}
-      disabled={disabled}
-    />
-  );
+  const triggerElement = popoverTrigger ||
+    renderPopoverTrigger({ setPopupVisible }) || (
+      <RangePickerInput
+        onClick={handleRangePickerInputClick}
+        value={selectedDate}
+        showTime={showTime}
+        texts={allTexts}
+        valueFormatOptions={valueFormatOptions}
+        onChange={onApplyCallback}
+        active={inputActive}
+        {...rangePickerInputProps}
+        readOnly={readOnly}
+        disabled={disabled}
+      />
+    );
 
-  if (readOnly || disabled) return <>{triggerElement}</>;
+  if (readOnly || disabled) {
+    return <>{triggerElement}</>;
+  }
 
   return (
     <S.PickerWrapper ref={wrapperRef} arrowColor={arrowColor}>
@@ -116,8 +139,9 @@ const DateRangePicker = (props: DateRangePickerProps) => {
         }
         getPopupContainer={
           getPopupContainer !== undefined
-            ? node => getPopupContainer(node)
-            : (node): HTMLElement => (node.parentElement != null ? node.parentElement : document.body)
+            ? (node) => getPopupContainer(node)
+            : (node): HTMLElement =>
+                node.parentElement !== null ? node.parentElement : document.body
         }
         trigger="click"
         overlayStyle={{ maxWidth: '700px', fontWeight: 'unset' }}

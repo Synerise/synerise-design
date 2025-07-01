@@ -1,9 +1,10 @@
 import styled from 'styled-components';
+
 import Button from '@synerise/ds-button';
-import SearchBar from '@synerise/ds-search-bar/';
-import Scrollbar from '@synerise/ds-scrollbar';
-import { ScrollbarProps } from '@synerise/ds-scrollbar/dist/Scrollbar.types';
 import { ButtonLabel } from '@synerise/ds-button/dist/Button.styles';
+import Scrollbar from '@synerise/ds-scrollbar';
+import { type ScrollbarProps } from '@synerise/ds-scrollbar/dist/Scrollbar.types';
+import SearchBar from '@synerise/ds-search-bar/';
 
 export const Container = styled.div`
   margin-bottom: 24px;

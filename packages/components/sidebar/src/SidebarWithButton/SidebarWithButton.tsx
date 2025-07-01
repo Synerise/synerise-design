@@ -1,14 +1,19 @@
 import React, { useRef, useState } from 'react';
+
 import Button from '@synerise/ds-button';
-import Icon, { AngleDownS } from '@synerise/ds-icon';
 import Dropdown from '@synerise/ds-dropdown';
-import { useOnClickOutside } from '@synerise/ds-utils';
+import Icon, { AngleDownS } from '@synerise/ds-icon';
 import Menu from '@synerise/ds-menu';
+import { useOnClickOutside } from '@synerise/ds-utils';
 
-import { SidebarWithButtonProps } from './SidebarWithButton.types';
 import * as S from './SidebarWithButton.styles';
+import { type SidebarWithButtonProps } from './SidebarWithButton.types';
 
-const SidebarWithButton = ({ dataSource, buttonLabel, title }: SidebarWithButtonProps) => {
+const SidebarWithButton = ({
+  dataSource,
+  buttonLabel,
+  title,
+}: SidebarWithButtonProps) => {
   const [dropdownVisible, setDropdownVisible] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
   useOnClickOutside(ref, () => {
@@ -25,11 +30,19 @@ const SidebarWithButton = ({ dataSource, buttonLabel, title }: SidebarWithButton
         placement="bottomLeft"
         overlay={
           <Dropdown.Wrapper style={{ width: '220px' }} ref={ref}>
-            <Menu dataSource={dataSource} asDropdownMenu style={{ width: '100%' }} />
+            <Menu
+              dataSource={dataSource}
+              asDropdownMenu
+              style={{ width: '100%' }}
+            />
           </Dropdown.Wrapper>
         }
       >
-        <Button onClick={() => setDropdownVisible(!dropdownVisible)} type="ghost-primary" mode="label-icon">
+        <Button
+          onClick={() => setDropdownVisible(!dropdownVisible)}
+          type="ghost-primary"
+          mode="label-icon"
+        >
           {buttonLabel}
           <Icon component={<AngleDownS />} />
         </Button>

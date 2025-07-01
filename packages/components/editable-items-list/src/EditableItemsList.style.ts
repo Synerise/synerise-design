@@ -1,7 +1,6 @@
 import styled from 'styled-components';
-import React from 'react';
 
-export const CrudWrapper = styled.div<{ marginWithLabel?: boolean | React.ReactNode }>`
+export const CrudWrapper = styled.div`
   padding-left: 4px;
   visibility: hidden;
   margin-top: 0;

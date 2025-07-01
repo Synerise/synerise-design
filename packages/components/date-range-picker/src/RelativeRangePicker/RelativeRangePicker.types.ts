@@ -1,6 +1,15 @@
-import { IntlShape } from 'react-intl';
-import { DateRangePreset, DateRange, RelativeDateRange } from '../date.types';
-import { DateRangePickerProps, RelativeMode, Texts } from '../DateRangePicker.types';
+import { type IntlShape } from 'react-intl';
+
+import {
+  type DateRangePickerProps,
+  type RelativeMode,
+  type Texts,
+} from '../DateRangePicker.types';
+import type {
+  DateRange,
+  DateRangePreset,
+  RelativeDateRange,
+} from '../date.types';
 
 export type RelativeRangePickerProps = {
   ranges?: DateRangePreset[];

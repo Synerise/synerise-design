@@ -1,10 +1,13 @@
 import React from 'react';
-import { renderWithProvider } from '@synerise/ds-utils/dist/testing';
-import { fireEvent } from '@testing-library/react';
-import CheckboxTristate, { checkedValue, nextCheckedValues } from '../index';
-import { CheckboxTristateChangeEvent } from '../CheckboxTristate.types';
 
-const SELECTOR_FALSE = '.ant-checkbox:not(.ant-checkbox-indeterminate):not(.ant-checkbox-indeterminate)';
+import { renderWithProvider } from '@synerise/ds-utils';
+import { fireEvent } from '@testing-library/react';
+
+import { type CheckboxTristateChangeEvent } from '../CheckboxTristate.types';
+import CheckboxTristate, { checkedValue, nextCheckedValues } from '../index';
+
+const SELECTOR_FALSE =
+  '.ant-checkbox:not(.ant-checkbox-indeterminate):not(.ant-checkbox-indeterminate)';
 const SELECTOR_TRUE = '.ant-checkbox-checked:not(.ant-checkbox-indeterminate)';
 const SELECTOR_INDETERMINATE = '.ant-checkbox.ant-checkbox-indeterminate';
 
@@ -14,7 +17,6 @@ const mockOnChange = jest.fn((event: CheckboxTristateChangeEvent) => {
 });
 
 describe('CheckboxTristate', () => {
-
   it('should render without props', () => {
     const checkbox = renderWithProvider(<CheckboxTristate />);
     expect(checkbox).toBeTruthy();
@@ -22,10 +24,12 @@ describe('CheckboxTristate', () => {
 
   it('onChange should return next value', () => {
     const { queryByLabelText } = renderWithProvider(
-      <CheckboxTristate checked={mockChecked} onChange={mockOnChange}>Label</CheckboxTristate>
+      <CheckboxTristate checked={mockChecked} onChange={mockOnChange}>
+        Label
+      </CheckboxTristate>,
     );
     const input = queryByLabelText('Label') as HTMLInputElement;
-    
+
     fireEvent.click(input);
     expect(mockChecked).toBe(false);
   });
@@ -48,21 +52,23 @@ describe('CheckboxTristate', () => {
   describe('Uncontrolled', () => {
     it('should have indeterminate state by default', () => {
       const { container } = renderWithProvider(
-        <CheckboxTristate>Label</CheckboxTristate>
+        <CheckboxTristate>Label</CheckboxTristate>,
       );
-      expect(container.querySelector('.ant-checkbox-indeterminate')).toBeTruthy();
+      expect(
+        container.querySelector('.ant-checkbox-indeterminate'),
+      ).toBeTruthy();
     });
-  
+
     it('after clicking it should set proper states', () => {
       const { container, queryByLabelText } = renderWithProvider(
-        <CheckboxTristate>Label</CheckboxTristate>
+        <CheckboxTristate>Label</CheckboxTristate>,
       );
       const input = queryByLabelText('Label') as HTMLInputElement;
-  
+
       // First click
       fireEvent.click(input);
       expect(container.querySelector(SELECTOR_FALSE)).toBeTruthy();
-  
+
       // Second click
       fireEvent.click(input);
       expect(container.querySelector(SELECTOR_TRUE)).toBeTruthy();
@@ -72,11 +78,11 @@ describe('CheckboxTristate', () => {
       expect(container.querySelector(SELECTOR_INDETERMINATE)).toBeTruthy();
     });
   });
-  
+
   describe('Controlled', () => {
     it('should not be able to change state if controlled', () => {
-      const { container, queryByLabelText} = renderWithProvider(
-        <CheckboxTristate checked={false}>Label</CheckboxTristate>
+      const { container, queryByLabelText } = renderWithProvider(
+        <CheckboxTristate checked={false}>Label</CheckboxTristate>,
       );
       const input = queryByLabelText('Label') as HTMLInputElement;
 
@@ -94,7 +100,7 @@ describe('CheckboxTristate', () => {
 
     it('should change checkbox when prop changes', () => {
       const { rerender, container } = renderWithProvider(
-        <CheckboxTristate checked={false}>Label</CheckboxTristate>
+        <CheckboxTristate checked={false}>Label</CheckboxTristate>,
       );
       expect(container.querySelector(SELECTOR_FALSE)).toBeTruthy();
 
@@ -107,7 +113,7 @@ describe('CheckboxTristate', () => {
 
     it('should change checkbox from indeterminate (undefined) to other states', () => {
       const { rerender, container } = renderWithProvider(
-        <CheckboxTristate checked={true}>Label</CheckboxTristate>
+        <CheckboxTristate checked={true}>Label</CheckboxTristate>,
       );
 
       rerender(<CheckboxTristate checked={undefined}>Label</CheckboxTristate>);
@@ -123,5 +129,4 @@ describe('CheckboxTristate', () => {
       expect(container.querySelector(SELECTOR_FALSE)).toBeTruthy();
     });
   });
-  
 });

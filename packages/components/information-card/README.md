@@ -38,7 +38,7 @@ import { InformationCardTooltip } from '@synerise/ds-information-card';
     avatarTooltipText: 'Tooltip Text',
   }}
   triggerProps={{
-    popupPlacement: 'top'
+    popupPlacement: 'top',
   }}
 >
   <button>Element to attach infocard to</button>
@@ -122,7 +122,7 @@ Displays a list of icons with value and optional tooltip
 Displays InformationCard as a tooltip with `children` node as trigger
 
 | Property             | Description                             | Type                                                               | Default |
-|----------------------|-----------------------------------------|--------------------------------------------------------------------|---------|
+| -------------------- | --------------------------------------- | ------------------------------------------------------------------ | ------- |
 | informationCardProps | Props for rendering the InformationCard | `InformationCardProps`                                             | -       |
 | triggerProps         | Trigger props. See rc-trigger           | `Partial<TriggerProps> & { ref?: React.LegacyRef<TriggerHandle> }` | -       |
 | children             | trigger element                         | `ReactNode`                                                        | -       |

@@ -1,12 +1,14 @@
-import React, { useMemo, MouseEvent, useCallback } from 'react';
+import React, { type MouseEvent, useCallback, useMemo } from 'react';
+
+import Button from '@synerise/ds-button';
 import { theme } from '@synerise/ds-core';
 import Icon, { AngleDownS, Close3S, WarningFillM } from '@synerise/ds-icon';
-import Tooltip from '@synerise/ds-tooltip';
-import Button from '@synerise/ds-button';
 import Popconfirm from '@synerise/ds-popconfirm';
+import Tooltip from '@synerise/ds-tooltip';
+
+import { useDefaultTexts } from '../../hooks/useDefaultTexts';
 import * as S from './Trigger.styles';
 import type { ItemPickerTriggerProps } from './Trigger.types';
-import { useDefaultTexts } from '../../hooks/useDefaultTexts';
 
 const Trigger = ({
   selected,
@@ -43,13 +45,15 @@ const Trigger = ({
       closeDropdown();
       onClear && onClear();
     },
-    [onClear, closeDropdown]
+    [onClear, closeDropdown],
   );
 
   const renderClear = useMemo(() => {
     const tooltip = (
       <Tooltip title={allTexts.clear}>
-        <S.ClearIconWrapper onClick={event => withClearConfirmation && event.stopPropagation()}>
+        <S.ClearIconWrapper
+          onClick={(event) => withClearConfirmation && event.stopPropagation()}
+        >
           <Icon component={<Close3S />} color={theme.palette['red-600']} />
         </S.ClearIconWrapper>
       </Tooltip>
@@ -91,7 +95,11 @@ const Trigger = ({
     return (
       size === 'small' && (
         <S.AngleIconWrapper>
-          <Icon data-testid="angle-icon" component={<AngleDownS />} color={theme.palette['grey-600']} />
+          <Icon
+            data-testid="angle-icon"
+            component={<AngleDownS />}
+            color={theme.palette['grey-600']}
+          />
         </S.AngleIconWrapper>
       )
     );
@@ -102,7 +110,7 @@ const Trigger = ({
       event.stopPropagation();
       openDropdown();
     },
-    [openDropdown]
+    [openDropdown],
   );
 
   const handleOpen = useCallback(() => {
@@ -116,13 +124,23 @@ const Trigger = ({
       size === 'large' &&
       withChangeButton && (
         <S.ChangeButtonWrapper>
-          <Button disabled={disabled} type="ghost-primary" onClick={handleChangeButtonClick}>
+          <Button
+            disabled={disabled}
+            type="ghost-primary"
+            onClick={handleChangeButtonClick}
+          >
             {allTexts.changeButtonLabel}
           </Button>
         </S.ChangeButtonWrapper>
       )
     );
-  }, [size, disabled, withChangeButton, handleChangeButtonClick, allTexts.changeButtonLabel]);
+  }, [
+    size,
+    disabled,
+    withChangeButton,
+    handleChangeButtonClick,
+    allTexts.changeButtonLabel,
+  ]);
 
   const renderedTrigger = useMemo(
     () => (
@@ -179,11 +197,13 @@ const Trigger = ({
       renderClear,
       selected,
       size,
-    ]
+    ],
   );
 
   return informationCardTooltipProps ? (
-    <S.TriggerTooltip {...informationCardTooltipProps}>{renderedTrigger}</S.TriggerTooltip>
+    <S.TriggerTooltip {...informationCardTooltipProps}>
+      {renderedTrigger}
+    </S.TriggerTooltip>
   ) : (
     renderedTrigger
   );

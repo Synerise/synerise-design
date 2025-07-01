@@ -1,12 +1,19 @@
 import React, { useRef, useState } from 'react';
+
 import Dropdown from '@synerise/ds-dropdown';
 import { useOnClickOutside } from '@synerise/ds-utils';
 
-import * as S from './EmojiPicker.styles';
 import { EmojiOverlay } from './EmojiOverlay/EmojiOverlay';
+import * as S from './EmojiPicker.styles';
 import type { EmojiPickerProps } from './EmojiPicker.types';
 
-export const EmojiPicker = ({ children, closeOnSelect = true, onSelect, texts, dropdownProps }: EmojiPickerProps) => {
+export const EmojiPicker = ({
+  children,
+  closeOnSelect = true,
+  onSelect,
+  texts,
+  dropdownProps,
+}: EmojiPickerProps) => {
   const [isOpen, setOpen] = useState(false);
   const [focus, setFocus] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
@@ -27,11 +34,11 @@ export const EmojiPicker = ({ children, closeOnSelect = true, onSelect, texts, d
       placement="bottomRight"
       {...dropdownProps}
       overlay={
-        <S.Overlay ref={ref} onClick={event => event.stopPropagation()}>
+        <S.Overlay ref={ref} onClick={(event) => event.stopPropagation()}>
           <EmojiOverlay
-            onSelect={val => {
+            onSelect={(val) => {
               closeOnSelect && toggleOpen(false);
-              // eslint-disable-next-line no-unused-expressions
+
               onSelect?.(val);
             }}
             texts={texts}

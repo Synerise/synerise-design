@@ -1,4 +1,5 @@
 import type { ReactNode } from 'react';
+
 import type { ItemsRollProps, Texts } from '../ItemsRoll.types';
 
 export type HeaderProps = Pick<

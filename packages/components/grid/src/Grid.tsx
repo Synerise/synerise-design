@@ -1,8 +1,10 @@
 import React from 'react';
+
 import { useBreakpoint } from '@synerise/ds-utils';
-import { DimensionsWithBreakpoint } from '@synerise/ds-utils/dist/useBreakpoint/useBreakpoint';
+import { type DimensionsWithBreakpoint } from '@synerise/ds-utils/dist/useBreakpoint/useBreakpoint';
+
 import * as S from './Grid.styles';
-import { GridProps } from './Grid.types';
+import { type GridProps } from './Grid.types';
 import Item from './GridItem/GridItem';
 
 export const GridContext = React.createContext({
@@ -22,7 +24,9 @@ const Grid = ({ children, gutter = DEFAULT_GUTTER, style }: GridProps) => {
       columns={breakpointData.breakpoint?.columns || DEFAULT_COLUMNS_NUMBER}
       gutter={gutter}
     >
-      <GridContext.Provider value={breakpointData}>{children}</GridContext.Provider>
+      <GridContext.Provider value={breakpointData}>
+        {children}
+      </GridContext.Provider>
     </S.GridContainer>
   );
 };

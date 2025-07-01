@@ -1,20 +1,24 @@
 import React from 'react';
-import { fireEvent, screen, waitFor } from '@testing-library/react';
+
+import { FileM } from '@synerise/ds-icon';
 import Tag, { TagShape } from '@synerise/ds-tag';
-import FileM from '@synerise/ds-icon';
-import { renderWithProvider } from '@synerise/ds-utils/dist/testing';
+import { renderWithProvider } from '@synerise/ds-utils';
+import { fireEvent, screen, waitFor } from '@testing-library/react';
+
 import ManageableList from '../ManageableList';
 
-const CONTENT_ITEMS: any = [
+const CONTENT_ITEMS = [
   {
     id: '00000000-0000-0000-0000-000000000000',
     name: 'Position 0',
     canAdd: true,
     canUpdate: false,
     canDelete: false,
-    tag: <Tag name={'A'} shape={TagShape.SINGLE_CHARACTER_ROUND} color={'red'} />,
+    tag: (
+      <Tag name={'A'} shape={TagShape.SINGLE_CHARACTER_ROUND} color={'red'} />
+    ),
     content: <div>content</div>,
-    additionalSuffix: 'additionalSuffix'
+    additionalSuffix: 'additionalSuffix',
   },
   {
     id: '00000000-0000-0000-0000-000000000002',
@@ -22,7 +26,14 @@ const CONTENT_ITEMS: any = [
     canAdd: true,
     canUpdate: true,
     canDelete: true,
-    tag: <Tag name={'1'} shape={TagShape.SINGLE_CHARACTER_SQUARE} color={'#f3f5f6'} textColor={'#949ea6'} />,
+    tag: (
+      <Tag
+        name={'1'}
+        shape={TagShape.SINGLE_CHARACTER_SQUARE}
+        color={'#f3f5f6'}
+        textColor={'#949ea6'}
+      />
+    ),
     content: <div>content</div>,
   },
   {
@@ -42,7 +53,8 @@ const texts = {
   showLessLabel: 'show less',
   more: 'more',
   less: 'less',
-  activateItemTitle: 'By activating this filter, you will cancel your unsaved filter settings',
+  activateItemTitle:
+    'By activating this filter, you will cancel your unsaved filter settings',
   activate: 'Activate',
   cancel: 'Cancel',
   deleteConfirmationTitle: 'Delete filter',
@@ -64,7 +76,7 @@ describe('ManageableList with content items', () => {
         onItemRemove={() => {}}
         type="content"
         texts={texts}
-      />
+      />,
     );
 
     expect(screen.getByTestId('add-item-button')).toBeTruthy();
@@ -85,7 +97,7 @@ describe('ManageableList with content items', () => {
         onItemDuplicate={() => {}}
         type="content"
         texts={texts}
-      />
+      />,
     );
 
     expect(screen.getByTestId('add-item-button')).toBeTruthy();
@@ -107,9 +119,11 @@ describe('ManageableList with content items', () => {
         onItemDuplicate={() => {}}
         type="content"
         texts={texts}
-      />
+      />,
     );
-    const addItemButton = screen.getByTestId('add-item-button').querySelector('button');
+    const addItemButton = screen
+      .getByTestId('add-item-button')
+      .querySelector('button');
 
     expect(screen.getByTestId('add-item-button')).toBeTruthy();
 
@@ -132,13 +146,14 @@ describe('ManageableList with content items', () => {
         onItemDuplicate={() => {}}
         type="content"
         texts={texts}
-      />
+      />,
     );
 
     expect(screen.queryAllByTestId('item-content-wrapper').length).toBe(2);
-    expect(screen.queryAllByTestId('item-toggle-content-wrapper').length).toBe(2);
+    expect(screen.queryAllByTestId('item-toggle-content-wrapper').length).toBe(
+      2,
+    );
   });
-
 
   it('should fire onExpand ', () => {
     const onExpand = jest.fn();
@@ -157,7 +172,7 @@ describe('ManageableList with content items', () => {
         onItemDuplicate={() => {}}
         type="content"
         texts={texts}
-      />
+      />,
     );
     const item = screen.getByText(clickedItem.name);
     fireEvent.click(item);
@@ -166,10 +181,10 @@ describe('ManageableList with content items', () => {
   });
 
   it('should render item.expanded props', () => {
-    const itemsExpanded = CONTENT_ITEMS.map(item => ({
+    const itemsExpanded = CONTENT_ITEMS.map((item) => ({
       ...item,
-      expanded: true
-    }))
+      expanded: true,
+    }));
     renderWithProvider(
       <ManageableList
         items={itemsExpanded}
@@ -182,17 +197,17 @@ describe('ManageableList with content items', () => {
         onItemDuplicate={() => {}}
         type="content"
         texts={texts}
-      />
+      />,
     );
-    
+
     const animationWrappers = screen.queryAllByTestId('item-content-wrapper');
-    animationWrappers.forEach( element => {
+    animationWrappers.forEach((element) => {
       expect(element).toBeVisible();
-    })
+    });
   });
 
   it('should render items collapsed by default', () => {
-    const { container } = renderWithProvider(
+    renderWithProvider(
       <ManageableList
         items={CONTENT_ITEMS}
         loading={false}
@@ -204,13 +219,13 @@ describe('ManageableList with content items', () => {
         onItemDuplicate={() => {}}
         type="content"
         texts={texts}
-      />
+      />,
     );
-    
+
     const animationWrappers = screen.queryAllByTestId('item-content-wrapper');
-    animationWrappers.forEach( element => {
+    animationWrappers.forEach((element) => {
       expect(element).not.toBeVisible();
-    })
+    });
   });
 
   it('should render with action icons', () => {
@@ -228,11 +243,15 @@ describe('ManageableList with content items', () => {
         onItemDuplicate={onItemDuplicate}
         type="content"
         texts={texts}
-      />
+      />,
     );
 
-    const removeIcon = screen.queryAllByTestId('list-item-remove')[0].querySelector('svg');
-    const duplicateIcon = screen.queryAllByTestId('list-item-duplicate')[0].querySelector('svg');
+    const removeIcon = screen
+      .queryAllByTestId('list-item-remove')[0]
+      .querySelector('svg');
+    const duplicateIcon = screen
+      .queryAllByTestId('list-item-duplicate')[0]
+      .querySelector('svg');
 
     removeIcon && fireEvent.click(removeIcon);
     duplicateIcon && fireEvent.click(duplicateIcon);
@@ -262,7 +281,7 @@ describe('ManageableList with content items', () => {
         changeOrderByButtons={true}
         type="content"
         texts={texts}
-      />
+      />,
     );
 
     const items = screen.queryAllByTestId('item-with-content');
@@ -292,7 +311,7 @@ describe('ManageableList with content items', () => {
         changeOrderByButtons={true}
         type="content"
         texts={texts}
-      />
+      />,
     );
 
     const items = screen.queryAllByTestId('item-with-content');
@@ -301,11 +320,19 @@ describe('ManageableList with content items', () => {
 
     fireEvent.click(items[1].querySelector('.angle-top-s') as HTMLElement);
 
-    expect(onChangeOrder).toBeCalledWith([CONTENT_ITEMS[1], CONTENT_ITEMS[0], CONTENT_ITEMS[2]]);
+    expect(onChangeOrder).toBeCalledWith([
+      CONTENT_ITEMS[1],
+      CONTENT_ITEMS[0],
+      CONTENT_ITEMS[2],
+    ]);
 
     fireEvent.click(items[2].querySelector('.angle-top-s') as HTMLElement);
 
-    expect(onChangeOrder).toBeCalledWith([CONTENT_ITEMS[2], CONTENT_ITEMS[0], CONTENT_ITEMS[1]]);
+    expect(onChangeOrder).toBeCalledWith([
+      CONTENT_ITEMS[2],
+      CONTENT_ITEMS[0],
+      CONTENT_ITEMS[1],
+    ]);
   });
   it('should change order of list on click on moveToTopButton', () => {
     const onItemDuplicate = jest.fn();
@@ -325,7 +352,7 @@ describe('ManageableList with content items', () => {
         changeOrderByButtons={true}
         type="content"
         texts={texts}
-      />
+      />,
     );
 
     const items = screen.queryAllByTestId('item-with-content');
@@ -334,11 +361,19 @@ describe('ManageableList with content items', () => {
 
     fireEvent.click(items[0].querySelector('.angle-bottom-s') as HTMLElement);
 
-    expect(onChangeOrder).toBeCalledWith([CONTENT_ITEMS[1], CONTENT_ITEMS[2], CONTENT_ITEMS[0]]);
+    expect(onChangeOrder).toBeCalledWith([
+      CONTENT_ITEMS[1],
+      CONTENT_ITEMS[2],
+      CONTENT_ITEMS[0],
+    ]);
 
     fireEvent.click(items[1].querySelector('.angle-bottom-s') as HTMLElement);
 
-    expect(onChangeOrder).toBeCalledWith([CONTENT_ITEMS[0], CONTENT_ITEMS[2], CONTENT_ITEMS[1]]);
+    expect(onChangeOrder).toBeCalledWith([
+      CONTENT_ITEMS[0],
+      CONTENT_ITEMS[2],
+      CONTENT_ITEMS[1],
+    ]);
   });
   it('should toggle content on click on header', async () => {
     renderWithProvider(
@@ -351,22 +386,31 @@ describe('ManageableList with content items', () => {
         onItemSelect={() => {}}
         type="content"
         texts={texts}
-      />
+      />,
     );
 
     const headers = screen.queryAllByTestId('list-item-name');
     const content = screen.queryAllByTestId('item-content-wrapper');
-    
+
     expect(headers.length).toBe(CONTENT_ITEMS.length);
-    
-    fireEvent.click(headers[0]);
-    
-    waitFor( () => { expect(content[0].parentElement).not.toHaveStyle({display: 'none'}); }, { timeout: 100 });
 
     fireEvent.click(headers[0]);
 
-    waitFor( () => { expect(content[0].parentElement).toHaveStyle({display: 'none'}); }, { timeout: 100 });
+    waitFor(
+      () => {
+        expect(content[0].parentElement).not.toHaveStyle({ display: 'none' });
+      },
+      { timeout: 100 },
+    );
 
+    fireEvent.click(headers[0]);
+
+    waitFor(
+      () => {
+        expect(content[0].parentElement).toHaveStyle({ display: 'none' });
+      },
+      { timeout: 100 },
+    );
   });
   it('should render additionalSuffix', () => {
     renderWithProvider(
@@ -379,7 +423,7 @@ describe('ManageableList with content items', () => {
         onItemSelect={() => {}}
         type="content"
         texts={texts}
-      />
+      />,
     );
     const additionalSuffix = screen.getByText('additionalSuffix');
     expect(additionalSuffix).toBeInTheDocument();

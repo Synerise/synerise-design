@@ -1,13 +1,14 @@
 import styled from 'styled-components';
-import { macro } from '@synerise/ds-typography';
+
 import { FormFieldLabel } from '@synerise/ds-form-field';
+import { macro } from '@synerise/ds-typography';
 
 export const SwitchWrapper = styled.div<{ formElementMargin: boolean }>`
   display: flex;
   gap: 3px 0;
   flex-direction: column;
   justify-content: space-between;
-  ${props => (props.formElementMargin ? 'margin: 0 0 16px 0' : '')};
+  ${(props) => (props.formElementMargin ? 'margin: 0 0 16px 0' : '')};
 `;
 
 export const Texts = styled.div`
@@ -36,12 +37,12 @@ export const LabelSwitchWrapper = styled.div`
 `;
 
 export const Error = styled.div`
-  color: ${props => props.theme.palette['red-600']};
+  color: ${(props) => props.theme.palette['red-600']};
   margin-bottom: 4px;
 `;
 
 export const Description = styled.div`
-  color: ${props => props.theme.palette['grey-600']};
+  color: ${(props) => props.theme.palette['grey-600']};
   transition: 0.3s ease;
 `;
 

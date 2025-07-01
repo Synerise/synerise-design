@@ -1,12 +1,13 @@
 import React from 'react';
+
 import Button from '@synerise/ds-button';
-import Tooltip from '@synerise/ds-tooltip';
+import { theme } from '@synerise/ds-core';
 import Dropdown from '@synerise/ds-dropdown';
 import Icon, { AngleDownS, TrashS } from '@synerise/ds-icon';
+import Tooltip from '@synerise/ds-tooltip';
 
-import { theme } from '@synerise/ds-core';
-import { FilterDropdownProps } from './FilterDropdown.types';
 import * as S from './FilterDropdown.styles';
+import { type FilterDropdownProps } from './FilterDropdown.types';
 
 const FilterDropdown: React.FC<FilterDropdownProps> = ({
   removeTooltip,
@@ -18,7 +19,7 @@ const FilterDropdown: React.FC<FilterDropdownProps> = ({
   const overlay = React.useMemo(
     () => (
       <S.DropdownMenu>
-        {filters.map(filter => (
+        {filters.map((filter) => (
           <S.DropdownMenuItem
             key={filter?.name}
             text={filter?.name}
@@ -32,7 +33,10 @@ const FilterDropdown: React.FC<FilterDropdownProps> = ({
                     onFilterRemove && onFilterRemove(filter?.id);
                   }}
                 >
-                  <Icon component={<TrashS />} color={theme.palette['red-600']} />
+                  <Icon
+                    component={<TrashS />}
+                    color={theme.palette['red-600']}
+                  />
                 </S.RemoveIconWrapper>
               </Tooltip>
             }
@@ -40,7 +44,7 @@ const FilterDropdown: React.FC<FilterDropdownProps> = ({
         ))}
       </S.DropdownMenu>
     ),
-    [filters, onFilterRemove, onFilterSelect, removeTooltip]
+    [filters, onFilterRemove, onFilterSelect, removeTooltip],
   );
   return (
     <Dropdown
@@ -48,7 +52,9 @@ const FilterDropdown: React.FC<FilterDropdownProps> = ({
       trigger={['click']}
       align={{ points: ['tr', 'br'] }}
       overlayStyle={{ boxShadow: '0 4px 12px 0 rgba(35, 41, 54, 0.07)' }}
-      getPopupContainer={(node): HTMLElement => (node.parentElement != null ? node.parentElement : document.body)}
+      getPopupContainer={(node): HTMLElement =>
+        node.parentElement !== null ? node.parentElement : document.body
+      }
     >
       <Button mode="label-icon" type="ghost">
         <span>{label}</span>

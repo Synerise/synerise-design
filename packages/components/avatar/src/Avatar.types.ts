@@ -1,7 +1,8 @@
-import type { ReactNode, MouseEvent as ReactMouseEvent } from 'react';
+import { type AvatarProps as AntAvatarProps } from 'antd/lib/avatar';
+import type { MouseEvent as ReactMouseEvent, ReactNode } from 'react';
+
 import type { BadgeStatus } from '@synerise/ds-badge';
-import { AvatarProps as AntAvatarProps } from 'antd/lib/avatar';
-import { TooltipProps } from '@synerise/ds-tooltip/dist/Tooltip.types';
+import { type TooltipProps } from '@synerise/ds-tooltip';
 
 export type Color =
   | 'red'
@@ -17,7 +18,17 @@ export type Color =
   | 'purple'
   | 'violet';
 
-export type ColorHue = '900' | '800' | '700' | '600' | '500' | '400' | '300' | '200' | '100' | '050';
+export type ColorHue =
+  | '900'
+  | '800'
+  | '700'
+  | '600'
+  | '500'
+  | '400'
+  | '300'
+  | '200'
+  | '100'
+  | '050';
 export type Size = 'small' | 'medium' | 'large' | 'extraLarge' | undefined;
 
 export type TooltipObject = TooltipProps & {
@@ -64,7 +75,10 @@ export type AvatarProps = Omit<AntAvatarProps, 'size' | 'icon' | 'src'> & {
   children?: ReactNode;
 };
 
-type DefinedAvatarProps = Pick<AvatarProps, 'style' | 'disabled' | 'iconComponent' | 'size' | 'src'> & {
+type DefinedAvatarProps = Pick<
+  AvatarProps,
+  'style' | 'disabled' | 'iconComponent' | 'size' | 'src'
+> & {
   backgroundColor?: 'auto' | Color | string;
   badgeStatus?: BadgeStatus;
   text?: string;

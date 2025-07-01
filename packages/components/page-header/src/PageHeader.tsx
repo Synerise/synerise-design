@@ -1,10 +1,10 @@
 import React from 'react';
 
-import { PageHeaderProps } from './PageHeader.types';
 import * as S from './PageHeader.styles';
+import { type PageHeaderProps } from './PageHeader.types';
 import { PageHeaderBack } from './PageHeaderBack';
-import { PageHeaderInlineEdit } from './PageHeaderInlineEdit';
 import { PageHeaderClamp } from './PageHeaderClamp';
+import { PageHeaderInlineEdit } from './PageHeaderInlineEdit';
 import { PageHeaderRightSide } from './PageHeaderRightSide';
 
 const PageHeader = (props: PageHeaderProps) => {
@@ -29,9 +29,14 @@ const PageHeader = (props: PageHeaderProps) => {
   } = props;
 
   return (
-    <S.MainContainer isolated={isolated} className={`${className || ''} ds-page-header`}>
+    <S.MainContainer
+      isolated={isolated}
+      className={`${className || ''} ds-page-header`}
+    >
       <S.PageHeaderContainer>
-        {onGoBack && <PageHeaderBack onGoBack={onGoBack} goBackIcon={goBackIcon} />}
+        {onGoBack && (
+          <PageHeaderBack onGoBack={onGoBack} goBackIcon={goBackIcon} />
+        )}
         {!!avatar && avatar}
         {inlineEdit && <PageHeaderInlineEdit inlineEdit={inlineEdit} />}
         <PageHeaderClamp
@@ -44,7 +49,9 @@ const PageHeader = (props: PageHeaderProps) => {
         </PageHeaderClamp>
 
         {!!more && <S.PageHeaderMore>{more}</S.PageHeaderMore>}
-        {!!description && <S.PageHeaderDescription>{description}</S.PageHeaderDescription>}
+        {!!description && (
+          <S.PageHeaderDescription>{description}</S.PageHeaderDescription>
+        )}
         <PageHeaderRightSide onClose={onClose} rightSide={rightSide} />
       </S.PageHeaderContainer>
 

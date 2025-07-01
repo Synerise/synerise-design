@@ -1,7 +1,12 @@
-import styled, { css, FlattenSimpleInterpolation } from 'styled-components';
-import React from 'react';
 import MenuItem from 'antd/lib/menu/MenuItem';
+import type React from 'react';
+import styled, {
+  type FlattenSimpleInterpolation,
+  css,
+} from 'styled-components';
+
 import { IconContainer } from '@synerise/ds-icon';
+
 import { ItemSize } from '../MenuItem.types';
 
 type WrapperProps = {
@@ -20,7 +25,10 @@ const INDENT_LEVEL_STEP = 16;
 const TRANSITION_FN = '0.2s ease-out';
 
 const calculateIndent = (indentLevel: number | undefined): number => {
-  const indentLevelPadding = indentLevel && Number(indentLevel) > 0 ? indentLevel * INDENT_LEVEL_STEP : 0;
+  const indentLevelPadding =
+    indentLevel && Number(indentLevel) > 0
+      ? indentLevel * INDENT_LEVEL_STEP
+      : 0;
   return indentLevelPadding;
 };
 
@@ -45,16 +53,21 @@ export const Inner = styled.div<{ indentLevel?: number }>`
   display: flex;
 `;
 
-export const PrefixelWrapper = styled.div<{ disabled?: boolean; visible?: boolean }>`
+export const PrefixelWrapper = styled.div<{
+  disabled?: boolean;
+  visible?: boolean;
+}>`
   display: flex;
-  ${(props): FlattenSimpleInterpolation => (props.visible ? visibleElementStyle() : hiddenElementStyle())};
+  ${(props): FlattenSimpleInterpolation =>
+    props.visible ? visibleElementStyle() : hiddenElementStyle()};
   transition: opacity ${TRANSITION_FN};
   margin-top: -7px;
   margin-bottom: -7px;
   margin-left: -4px;
   margin-right: 12px;
   align-items: center;
-  ${(props): string | false => !!props.disabled && `svg {fill: ${props.theme.palette['grey-600']}};`}
+  ${(props): string | false =>
+    !!props.disabled && `svg {fill: ${props.theme.palette['grey-600']}};`}
 `;
 
 const disableOrdering = (): FlattenSimpleInterpolation => css`
@@ -82,9 +95,14 @@ const applySizeStyles = (props: WrapperProps): FlattenSimpleInterpolation => {
 };
 export const Wrapper = styled(MenuItem)<WrapperProps>`
   &&& {
-    ${(props): string | false => !props.description && props.size === ItemSize.DEFAULT && `max-height: 32px;`}
-    ${(props): string | false => props.size === ItemSize.LARGE && `min-height: 50px;`}
-    ${(props): string | FlattenSimpleInterpolation => (props.ordered ? '' : disableOrdering())};
+    ${(props): string | false =>
+      !props.description &&
+      props.size === ItemSize.DEFAULT &&
+      `max-height: 32px;`}
+    ${(props): string | false =>
+      props.size === ItemSize.LARGE && `min-height: 50px;`}
+    ${(props): string | FlattenSimpleInterpolation =>
+      props.ordered ? '' : disableOrdering()};
     color: ${(props): string => props.theme.palette['grey-700']};
     opacity: ${(props): string => (props.disabled ? '0.4' : '1')};
     cursor: ${(props): string => (props.disabled ? 'not-allowed' : 'pointer')};
@@ -104,7 +122,8 @@ export const Wrapper = styled(MenuItem)<WrapperProps>`
     }`
         : ''}
 
-    ${(props): undefined | FlattenSimpleInterpolation => props.size && applySizeStyles(props)}
+    ${(props): undefined | FlattenSimpleInterpolation =>
+      props.size && applySizeStyles(props)}
 
     > .-title-content,
     > .ant-menu-title-content {
@@ -168,10 +187,13 @@ export const Wrapper = styled(MenuItem)<WrapperProps>`
 
     &:focus:not(:active) {
       box-shadow: ${(props): string | false =>
-        !props.disabled && `inset 0 0 0 2px ${props.theme.palette['blue-600']} `};
+        !props.disabled &&
+        `inset 0 0 0 2px ${props.theme.palette['blue-600']} `};
       color: ${(props): string => props.theme.palette['grey-700']};
       background: ${(props): string =>
-        props.description ? props.theme.palette.white : props.theme.palette['grey-050']};
+        props.description
+          ? props.theme.palette.white
+          : props.theme.palette['grey-050']};
       ${PrefixelWrapper} > .ds-icon > svg {
         fill: ${(props): string => props.theme.palette['grey-700']};
       }
@@ -218,12 +240,17 @@ export const Wrapper = styled(MenuItem)<WrapperProps>`
     }
 
     &:focus {
-      color: ${(props): string => (props.description ? `${props.theme.palette['blue-600']} !important` : 'inherit')};
+      color: ${(props): string =>
+        props.description
+          ? `${props.theme.palette['blue-600']} !important`
+          : 'inherit'};
       ${ArrowRight} {
         opacity: 1;
         svg {
           fill: ${(props): string =>
-            props.disabled ? props.theme.palette['grey-700'] : props.theme.palette['blue-600']};
+            props.disabled
+              ? props.theme.palette['grey-700']
+              : props.theme.palette['blue-600']};
         }
       }
     }
@@ -252,7 +279,9 @@ export const Wrapper = styled(MenuItem)<WrapperProps>`
         opacity: 1;
         svg {
           fill: ${(props): string =>
-            props.disabled ? props.theme.palette['grey-600'] : props.theme.palette['blue-600']};
+            props.disabled
+              ? props.theme.palette['grey-600']
+              : props.theme.palette['blue-600']};
         }
       }
       ${(props): string | false =>
@@ -299,11 +328,15 @@ export const Description = styled.div`
   width: 100%;
 `;
 
-export const SuffixWraper = styled.div<{ disabled?: boolean; visible?: boolean }>`
+export const SuffixWraper = styled.div<{
+  disabled?: boolean;
+  visible?: boolean;
+}>`
   justify-content: flex-end;
   display: flex;
   transition: opacity ${TRANSITION_FN};
-  ${(props): FlattenSimpleInterpolation => (props.visible ? visibleElementStyle() : hiddenElementStyle())};
+  ${(props): FlattenSimpleInterpolation =>
+    props.visible ? visibleElementStyle() : hiddenElementStyle()};
   ${(props): string | false =>
     !!props.disabled &&
     `svg {

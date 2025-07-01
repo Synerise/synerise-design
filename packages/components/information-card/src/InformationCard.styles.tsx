@@ -1,9 +1,10 @@
 import styled, { createGlobalStyle, css } from 'styled-components';
+
 import { CardStyles } from '@synerise/ds-card';
 import { DescriptionCopyable } from '@synerise/ds-description';
 import DSDivider from '@synerise/ds-divider';
-import { macro } from '@synerise/ds-typography';
 import * as S from '@synerise/ds-tooltip/dist/Tooltip.styles';
+import { macro } from '@synerise/ds-typography';
 
 const INFOCARD_WIDTH = 350;
 
@@ -19,14 +20,14 @@ export const Copyable = styled(DescriptionCopyable)`
 
 export const Divider = styled(DSDivider)`
   && {
-    border-color: ${props => props.theme.palette['grey-300']};
+    border-color: ${(props) => props.theme.palette['grey-300']};
     margin: 8px 0;
   }
 `;
 
 export const FooterWrapper = styled(Flex)`
-  background: ${props => props.theme.palette['grey-050']};
-  border-top: solid 1px ${props => props.theme.palette['grey-100']};
+  background: ${(props) => props.theme.palette['grey-050']};
+  border-top: solid 1px ${(props) => props.theme.palette['grey-100']};
   padding: 8px;
 `;
 export const ActionsMenuItems = styled.div``;
@@ -39,7 +40,7 @@ export const ActionButtonContainer = styled.div``;
 
 export const InfoCardSlidesWrapper = styled.div``;
 export const InfoCardSlide = styled.div<{ height?: number }>`
-  ${props => props.height && `max-height: ${props.height}px;`}
+  ${(props) => props.height && `max-height: ${props.height}px;`}
 `;
 
 export const InfoCardWrapper = styled.div<{
@@ -49,16 +50,18 @@ export const InfoCardWrapper = styled.div<{
   isActionsMenuVisible?: boolean;
   hasFooter?: boolean;
 }>`
-  margin-left: ${props => (props.asTooltip ? '0' : '8px')};
+  margin-left: ${(props) => (props.asTooltip ? '0' : '8px')};
   width: ${INFOCARD_WIDTH}px;
   overflow: hidden;
 
   ${InfoCardSlidesWrapper} {
-    width: ${props => (props.hasActionsMenu ? INFOCARD_WIDTH * 2 : INFOCARD_WIDTH)}px;
+    width: ${(props) =>
+      props.hasActionsMenu ? INFOCARD_WIDTH * 2 : INFOCARD_WIDTH}px;
     display: flex;
     transition: left 0.3s;
     position: relative;
-    left: ${props => (props.isActionsMenuVisible ? `-${INFOCARD_WIDTH}px` : '0')};
+    left: ${(props) =>
+      props.isActionsMenuVisible ? `-${INFOCARD_WIDTH}px` : '0'};
   }
   ${InfoCardSlide} {
     width: ${INFOCARD_WIDTH}px;
@@ -68,11 +71,14 @@ export const InfoCardWrapper = styled.div<{
   overflow-wrap: anywhere;
   background-color: white;
   border-radius: 3px;
-  box-shadow: ${props => (props.asTooltip ? 'unset' : '0 16px 32px 0 rgba(35, 41, 54, 0.1)')}; // gray-900
+  box-shadow: ${(props) =>
+    props.asTooltip
+      ? 'unset'
+      : '0 16px 32px 0 rgba(35, 41, 54, 0.1)'}; // gray-900
 
   ${CardStyles.Card.Container} {
     font-weight: 400;
-    ${props =>
+    ${(props) =>
       !props.hasFooter &&
       css`
         padding-bottom: 8px;
@@ -190,7 +196,7 @@ export const InformationCardPropertyItemValue = styled.span`
 
 export const InformationCardSummaryWrapper = styled(Flex)`
   margin: 0 16px;
-  border-top: dashed 1px ${props => props.theme.palette['grey-300']};
+  border-top: dashed 1px ${(props) => props.theme.palette['grey-300']};
   padding-top: 16px;
   padding-bottom: 8px;
   gap: 4px;

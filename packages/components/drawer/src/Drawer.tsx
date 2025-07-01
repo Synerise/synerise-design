@@ -1,15 +1,16 @@
 import React from 'react';
+
 import {
   AntdDrawer,
   DrawerBody,
   DrawerContent,
   DrawerHeader,
-  DrawerHeaderWithoutPadding,
   DrawerHeaderBack,
   DrawerHeaderBar,
+  DrawerHeaderWithoutPadding,
 } from './Drawer.styles';
+import { type DrawerProps } from './Drawer.types';
 import './style/index.less';
-import { DrawerProps } from './Drawer.types';
 
 class Drawer extends React.PureComponent<DrawerProps> {
   static DrawerBody = DrawerBody;

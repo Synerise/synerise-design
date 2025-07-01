@@ -1,11 +1,13 @@
 import React from 'react';
-import Tabs from '@synerise/ds-tabs';
+
 import Scrollbar from '@synerise/ds-scrollbar';
-import { TabItem } from '@synerise/ds-tabs/dist/Tabs.types';
-import { SidebarObjectProps } from './SidebarObject.types';
+import Tabs from '@synerise/ds-tabs';
+import { type TabItem } from '@synerise/ds-tabs/dist/Tabs.types';
+
 import Header from './Elements/Header/Header';
-import * as S from './SidebarObject.style';
 import { HeaderType } from './Elements/Header/Header.types';
+import * as S from './SidebarObject.style';
+import { type SidebarObjectProps } from './SidebarObject.types';
 
 const SidebarObject = ({
   avatar,
@@ -74,10 +76,14 @@ const SidebarObject = ({
       <Scrollbar
         absolute
         maxHeight="100vh"
-        // @ts-ignore
+        // @ts-expect-error Property 'options' does not exist on type
         options={{ suppressScrollY: !withScrollbar }}
       >
-        {headerTabs[activeTab]?.content && <S.ContentContainer>{headerTabs[activeTab]?.content}</S.ContentContainer>}
+        {headerTabs[activeTab]?.content && (
+          <S.ContentContainer>
+            {headerTabs[activeTab]?.content}
+          </S.ContentContainer>
+        )}
       </Scrollbar>
       <S.ContentPlaceholder />
       {!!footer && <S.FooterContainer> {footer} </S.FooterContainer>}

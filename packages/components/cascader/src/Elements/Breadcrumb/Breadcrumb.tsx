@@ -1,11 +1,17 @@
-import React, { useEffect, useState, useRef, useMemo } from 'react';
-import Icon, { AngleRightS } from '@synerise/ds-icon';
+import React, { useEffect, useMemo, useRef, useState } from 'react';
+
 import { theme } from '@synerise/ds-core';
+import Icon, { AngleRightS } from '@synerise/ds-icon';
 import { renderWithHighlight } from '@synerise/ds-utils';
 
-import { BreadcrumbProps } from './Breadcrumb.types';
 import * as S from './Breadcrumb.styles';
-import { shouldHaveArrowPlaceholder, shouldRenderArrow, isOverflown, attachActiveClassName } from './utils';
+import { type BreadcrumbProps } from './Breadcrumb.types';
+import {
+  attachActiveClassName,
+  isOverflown,
+  shouldHaveArrowPlaceholder,
+  shouldRenderArrow,
+} from './utils';
 
 export const Breadcrumb = ({
   path,
@@ -30,13 +36,19 @@ export const Breadcrumb = ({
   const [gradient, setGradient] = useState<boolean>(false);
 
   useEffect(() => {
-    const shouldRenderGradientOverlap = gradientOverlap && isOverflown(contentRef);
+    const shouldRenderGradientOverlap =
+      gradientOverlap && isOverflown(contentRef);
     setGradient(!!shouldRenderGradientOverlap);
   }, [path, contentRef, gradientOverlap]);
 
   const descriptionWithHighlight = useMemo(() => {
     if (description && typeof description === 'string' && highlight) {
-      return renderWithHighlight(description, highlight, 'search-highlight', 'search-highlight');
+      return renderWithHighlight(
+        description,
+        highlight,
+        'search-highlight',
+        'search-highlight',
+      );
     }
     return description;
   }, [description, highlight]);
@@ -62,31 +74,48 @@ export const Breadcrumb = ({
         )}
         <S.InnerWrapper>
           {!!description && (
-            <S.Description data-testid="ds-cascader-breadcrumb-description">{descriptionWithHighlight}</S.Description>
+            <S.Description data-testid="ds-cascader-breadcrumb-description">
+              {descriptionWithHighlight}
+            </S.Description>
           )}
 
-          <S.ContentWrapper data-testid="ds-cascader-breadcrumb-content" gradientOverlap={gradient}>
-            <S.BreadcrumbContent className="breadcrumb-content" ref={contentRef}>
+          <S.ContentWrapper
+            data-testid="ds-cascader-breadcrumb-content"
+            gradientOverlap={gradient}
+          >
+            <S.BreadcrumbContent
+              className="breadcrumb-content"
+              ref={contentRef}
+            >
               {pathToDisplay.map((item, index) => (
-                // eslint-disable-next-line react/no-array-index-key
                 <S.BreadcrumbRoute className="route" key={`${item}-${index}`}>
                   <S.BreadcrumbName
                     className={`ds-breadcrumb-name ${attachActiveClassName(
                       index,
                       !!highlightActivePath,
                       path,
-                      !!compact
+                      !!compact,
                     )}`}
                     onClick={(): void => {
-                      // eslint-disable-next-line no-unused-expressions
                       onPathClick?.(item);
                     }}
                   >
                     {renderWithHighlight(item, highlight)}
                   </S.BreadcrumbName>
-                  {shouldHaveArrowPlaceholder(index, path, !!compact, !!startWithArrow) && (
-                    <S.ArrowRight className="ds-arrow" visible={shouldRenderArrow(path, index, !!startWithArrow)}>
-                      <Icon component={<AngleRightS />} color={theme.palette['grey-600']} />
+                  {shouldHaveArrowPlaceholder(
+                    index,
+                    path,
+                    !!compact,
+                    !!startWithArrow,
+                  ) && (
+                    <S.ArrowRight
+                      className="ds-arrow"
+                      visible={shouldRenderArrow(path, index, !!startWithArrow)}
+                    >
+                      <Icon
+                        component={<AngleRightS />}
+                        color={theme.palette['grey-600']}
+                      />
                     </S.ArrowRight>
                   )}
                 </S.BreadcrumbRoute>

@@ -1,12 +1,11 @@
 import React from 'react';
 
-import { screen } from '@testing-library/react';
-
-import { renderWithProvider } from '@synerise/ds-utils/dist/testing';
 import {
   FormattedRelativeDateTimeFrom,
   FormattedRelativeDateTimeTo,
 } from '@synerise/ds-data-format';
+import { renderWithProvider } from '@synerise/ds-utils';
+import { screen } from '@testing-library/react';
 
 const TEST_CASES = [
   // TODO - add cases for seconds and minutes when upgraded to jest 27 (useFakeTimers)
@@ -71,28 +70,42 @@ const TEST_CASES = [
 // TODO - switch to useFakeTimers when upgraded to jest 27
 
 describe.skip('FormattedRelativeDateTimeFrom', () => {
-  
+  it.each(TEST_CASES)(
+    'should render relative time from X',
+    ({ dateString, resultFrom }) => {
+      const date = new Date(dateString);
+      renderWithProvider(<FormattedRelativeDateTimeFrom value={date} />);
+      expect(screen.getByText(resultFrom)).toBeInTheDocument();
+    },
+  );
 
-  it.each(TEST_CASES)('should render relative time from X', ({ dateString, resultFrom }) => {
-    const date = new Date(dateString);
-    renderWithProvider(<FormattedRelativeDateTimeFrom value={date} />);
-    expect(screen.getByText(resultFrom)).toBeInTheDocument();
-  });
+  it.each(TEST_CASES)(
+    'should render relative time to X',
+    ({ dateString, resultTo }) => {
+      const date = new Date(dateString);
+      renderWithProvider(<FormattedRelativeDateTimeTo value={date} />);
+      expect(screen.getByText(resultTo)).toBeInTheDocument();
+    },
+  );
+  it.each(TEST_CASES)(
+    'should render relative time from X without suffix',
+    ({ dateString, resultFromWithoutSuffix }) => {
+      const date = new Date(dateString);
+      renderWithProvider(
+        <FormattedRelativeDateTimeFrom withoutSuffix value={date} />,
+      );
+      expect(screen.getByText(resultFromWithoutSuffix)).toBeInTheDocument();
+    },
+  );
 
-  it.each(TEST_CASES)('should render relative time to X', ({ dateString, resultTo }) => {
-    const date = new Date(dateString);
-    renderWithProvider(<FormattedRelativeDateTimeTo value={date} />);
-    expect(screen.getByText(resultTo)).toBeInTheDocument();
-  });
-  it.each(TEST_CASES)('should render relative time from X without suffix', ({ dateString, resultFromWithoutSuffix }) => {
-    const date = new Date(dateString);
-    renderWithProvider(<FormattedRelativeDateTimeFrom withoutSuffix value={date} />);
-    expect(screen.getByText(resultFromWithoutSuffix)).toBeInTheDocument();
-  });
-
-  it.each(TEST_CASES)('should render relative time to X without suffix', ({ dateString, resultToWithoutSuffix }) => {
-    const date = new Date(dateString);
-    renderWithProvider(<FormattedRelativeDateTimeTo withoutSuffix value={date} />);
-    expect(screen.getByText(resultToWithoutSuffix)).toBeInTheDocument();
-  });
+  it.each(TEST_CASES)(
+    'should render relative time to X without suffix',
+    ({ dateString, resultToWithoutSuffix }) => {
+      const date = new Date(dateString);
+      renderWithProvider(
+        <FormattedRelativeDateTimeTo withoutSuffix value={date} />,
+      );
+      expect(screen.getByText(resultToWithoutSuffix)).toBeInTheDocument();
+    },
+  );
 });

@@ -1,6 +1,8 @@
 import React from 'react';
-import { renderWithProvider } from '@synerise/ds-utils/dist/testing';
-import { fireEvent, waitFor } from "@testing-library/react";
+
+import { renderWithProvider } from '@synerise/ds-utils';
+import { fireEvent, waitFor } from '@testing-library/react';
+
 import Dropdown from '../index';
 
 describe('Dropdown', () => {
@@ -8,7 +10,11 @@ describe('Dropdown', () => {
     // ARRANGE
     const TEST_TEXT = 'test text';
     const BUTTON_TEXT = 'button text';
-    const { getByText } = renderWithProvider(<Dropdown overlay={<div>{TEST_TEXT}</div>} trigger={['click']}><button>{BUTTON_TEXT}</button></Dropdown>);
+    const { getByText } = renderWithProvider(
+      <Dropdown overlay={<div>{TEST_TEXT}</div>} trigger={['click']}>
+        <button>{BUTTON_TEXT}</button>
+      </Dropdown>,
+    );
 
     // ACT
     fireEvent.click(getByText(BUTTON_TEXT));
@@ -20,10 +26,14 @@ describe('Dropdown', () => {
   it('by default should open in [data-popup-container]', async () => {
     const { container, getByText } = renderWithProvider(
       <div data-popup-container>
-        <Dropdown overlay={<p>dropdown content</p>} trigger={['click']} visible={true}>
+        <Dropdown
+          overlay={<p>dropdown content</p>}
+          trigger={['click']}
+          visible={true}
+        >
           <button />
         </Dropdown>
-      </div>
+      </div>,
     );
 
     // make sure the dropdown is already opened before assertion
@@ -35,10 +45,14 @@ describe('Dropdown', () => {
   it('if no [data-popup-container] open in body', async () => {
     const { container, getByText } = renderWithProvider(
       <div>
-        <Dropdown overlay={<p>dropdown content</p>} trigger={['click']} visible={true}>
+        <Dropdown
+          overlay={<p>dropdown content</p>}
+          trigger={['click']}
+          visible={true}
+        >
           <button />
         </Dropdown>
-      </div>
+      </div>,
     );
 
     // make sure the dropdown is already opened before assertion
@@ -59,7 +73,7 @@ describe('Dropdown', () => {
           onSearchChange={onSearchChange}
           placeholder={PLACEHOLDER}
           value=""
-        />
+        />,
       );
 
       const input = getByPlaceholderText(PLACEHOLDER) as HTMLInputElement;
@@ -78,11 +92,9 @@ describe('Dropdown', () => {
       const onClickAction = jest.fn();
       const ACTION_TEXT = 'Action';
       const { getByText } = renderWithProvider(
-        <Dropdown.BottomAction
-          onClickAction={onClickAction}
-        >
+        <Dropdown.BottomAction onClickAction={onClickAction}>
           {ACTION_TEXT}
-        </Dropdown.BottomAction>
+        </Dropdown.BottomAction>,
       );
 
       // ACT
@@ -93,4 +105,3 @@ describe('Dropdown', () => {
     });
   });
 });
-

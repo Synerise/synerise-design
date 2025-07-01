@@ -1,14 +1,25 @@
-import React, { ChangeEvent, useCallback, useEffect, useMemo, useState } from 'react';
+import React, {
+  type ChangeEvent,
+  useCallback,
+  useEffect,
+  useMemo,
+  useState,
+} from 'react';
 
-import Tooltip from '@synerise/ds-tooltip';
-import InlineEdit from '@synerise/ds-inline-edit/dist/InlineEdit';
 import { InfoFillS } from '@synerise/ds-icon';
+import InlineEdit from '@synerise/ds-inline-edit/dist/InlineEdit';
+import Tooltip from '@synerise/ds-tooltip';
 import { escapeRegEx } from '@synerise/ds-utils';
 
 import * as S from '../Item.styles';
-import { ItemLabelProps } from './ItemName.types';
+import { type ItemLabelProps } from './ItemName.types';
 
-const ItemName = ({ item, onUpdate, editMode, searchQuery }: ItemLabelProps) => {
+const ItemName = ({
+  item,
+  onUpdate,
+  editMode,
+  searchQuery,
+}: ItemLabelProps) => {
   const [editedName, setEditedName] = useState(item.name);
 
   const updateName = useCallback(() => {
@@ -38,7 +49,9 @@ const ItemName = ({ item, onUpdate, editMode, searchQuery }: ItemLabelProps) => 
   const name = useMemo(() => {
     if (searchQuery) {
       const escapedQuery = escapeRegEx(searchQuery);
-      const startOfQuery = item.name.toLowerCase().search(escapedQuery.toLowerCase());
+      const startOfQuery = item.name
+        .toLowerCase()
+        .search(escapedQuery.toLowerCase());
       const endOfQuery = startOfQuery + searchQuery.length;
       const resultArray = [
         item.name.substring(0, startOfQuery),
@@ -53,10 +66,14 @@ const ItemName = ({ item, onUpdate, editMode, searchQuery }: ItemLabelProps) => 
     return item.name;
   }, [item.id, item.name, searchQuery]);
 
-  const classes = item.nameWrapperClassNames?.length ? ['title', ...item.nameWrapperClassNames] : ['title'];
+  const classes = item.nameWrapperClassNames?.length
+    ? ['title', ...item.nameWrapperClassNames]
+    : ['title'];
 
   return (
-    <S.ItemLabelWrapper data-testid={item.description && 'item-description-icon'}>
+    <S.ItemLabelWrapper
+      data-testid={item.description && 'item-description-icon'}
+    >
       {editMode ? (
         <InlineEdit
           size="small"
@@ -68,11 +85,19 @@ const ItemName = ({ item, onUpdate, editMode, searchQuery }: ItemLabelProps) => 
         />
       ) : (
         <S.ItemLabelWithIcon>
-          <S.ItemLabel data-testid="list-item-name" className={classes.join(' ')}>
+          <S.ItemLabel
+            data-testid="list-item-name"
+            className={classes.join(' ')}
+          >
             {name}
           </S.ItemLabel>
           {item.description && (
-            <Tooltip description={item.description} placement="top" trigger="hover" type="largeSimple">
+            <Tooltip
+              description={item.description}
+              placement="top"
+              trigger="hover"
+              type="largeSimple"
+            >
               <span>
                 <S.DescriptionIcon component={<InfoFillS />} color="#b5bdc3" />
               </span>

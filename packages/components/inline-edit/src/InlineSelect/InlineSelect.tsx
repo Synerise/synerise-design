@@ -1,13 +1,13 @@
-import React, { useRef, useState, useEffect } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 
-import { NOOP, toCamelCase } from '@synerise/ds-utils';
-import Icon, { AngleDownS } from '@synerise/ds-icon';
 import Dropdown from '@synerise/ds-dropdown';
+import Icon, { AngleDownS } from '@synerise/ds-icon';
 import { AutosizeInput } from '@synerise/ds-input';
+import { NOOP, toCamelCase } from '@synerise/ds-utils';
 
 import * as S from './InlineSelect.style';
+import { type InlineSelectProps } from './InlineSelect.types';
 import SelectDropdown from './SelectDropdown/SelectDropdown';
-import { InlineSelectProps } from './InlineSelect.types';
 
 const InlineSelect = ({
   className,
@@ -28,14 +28,15 @@ const InlineSelect = ({
   onValueChange,
 }: InlineSelectProps) => {
   const inputRef = useRef<HTMLInputElement | null>(null);
-  const [selectedValue, setSelectedValue] = useState(initialValue || placeholder || 'option');
+  const [selectedValue, setSelectedValue] = useState(
+    initialValue || placeholder || 'option',
+  );
   const [isOpened, setIsOpened] = useState(Boolean(expanded));
   const [isPressed, setIsPressed] = useState(false);
 
   const { value, onChange, ...inputProps } = input;
 
-  const handleSelect = (item: typeof dataSource[number]) => {
-    // eslint-disable-next-line no-unused-expressions
+  const handleSelect = (item: (typeof dataSource)[number]) => {
     onValueChange?.(item);
     setSelectedValue(item.text as string);
   };

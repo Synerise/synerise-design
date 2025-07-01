@@ -4,10 +4,10 @@ import Button from '@synerise/ds-button';
 import { defaultColorsOrder } from '@synerise/ds-core';
 import Sortable from '@synerise/ds-sortable';
 
-import * as S from './CardTabs.styles';
-import { CardTabsProps } from './CardTabs.types';
-import { CardTabProps } from './CardTab/CardTab.types';
 import CardTab from './CardTab/CardTab';
+import { type CardTabProps } from './CardTab/CardTab.types';
+import * as S from './CardTabs.styles';
+import { type CardTabsProps } from './CardTabs.types';
 
 const CardTabs = <IdType extends string | number>({
   className,
@@ -22,9 +22,14 @@ const CardTabs = <IdType extends string | number>({
     onChangeOrder && onChangeOrder(newOrder);
   };
   const addTab = onAddTab && (
-    <S.CardTabsAddButton className="ds-card-tabs-nodrag" data-testid="card-tabs-add-button">
+    <S.CardTabsAddButton
+      className="ds-card-tabs-nodrag"
+      data-testid="card-tabs-add-button"
+    >
       <Button.Creator
-        disabled={!!maxTabsCount && Children.toArray(children).length >= maxTabsCount}
+        disabled={
+          !!maxTabsCount && Children.toArray(children).length >= maxTabsCount
+        }
         label={addTabLabel ?? ''}
         onClick={onAddTab}
       />
@@ -32,12 +37,16 @@ const CardTabs = <IdType extends string | number>({
   );
 
   const childrenCount = Children.count(children);
-  const childrenData: CardTabProps<IdType>[] = Children.map(children, (child, i) => ({
-    ...child.props,
-    color: defaultColorsOrder[i % defaultColorsOrder.length],
-    draggable: childrenCount > 1 && (Boolean(onChangeOrder) || child.props.draggable),
-    ...(child.props.keyId ? { key: child.props.keyId } : {}),
-  }));
+  const childrenData: CardTabProps<IdType>[] = Children.map(
+    children,
+    (child, i) => ({
+      ...child.props,
+      color: defaultColorsOrder[i % defaultColorsOrder.length],
+      draggable:
+        childrenCount > 1 && (Boolean(onChangeOrder) || child.props.draggable),
+      ...(child.props.keyId ? { key: child.props.keyId } : {}),
+    }),
+  );
 
   const renderChildren = () => (
     <>
@@ -46,8 +55,11 @@ const CardTabs = <IdType extends string | number>({
         return (
           isValidElement(child) &&
           cloneElement(child as React.ReactElement<CardTabProps>, {
-            ...(props.color ? {} : { color: defaultColorsOrder[i % defaultColorsOrder.length] }),
-            draggable: childrenCount > 1 && (Boolean(onChangeOrder) || props.draggable),
+            ...(props.color
+              ? {}
+              : { color: defaultColorsOrder[i % defaultColorsOrder.length] }),
+            draggable:
+              childrenCount > 1 && (Boolean(onChangeOrder) || props.draggable),
           })
         );
       })}
@@ -61,7 +73,11 @@ const CardTabs = <IdType extends string | number>({
     >
       {onChangeOrder && childrenCount > 1 ? (
         <>
-          <Sortable items={childrenData} ItemComponent={CardTab} onOrderChange={handleChangeOrder} />
+          <Sortable
+            items={childrenData}
+            ItemComponent={CardTab}
+            onOrderChange={handleChangeOrder}
+          />
           {addTab}
         </>
       ) : (

@@ -1,12 +1,16 @@
 import React from 'react';
+
 import Button from '@synerise/ds-button';
-import { RawInput } from '@synerise/ds-input';
 import Icon, { CheckM, CloseM } from '@synerise/ds-icon';
+import { RawInput } from '@synerise/ds-input';
 
-import { SaveFilterFormProps } from './SaveFilterForm.types';
 import * as S from './SaveFilterForm.styles';
+import { type SaveFilterFormProps } from './SaveFilterForm.types';
 
-const SaveFilterForm: React.FC<SaveFilterFormProps> = ({ texts, onFilterSave }) => {
+const SaveFilterForm: React.FC<SaveFilterFormProps> = ({
+  texts,
+  onFilterSave,
+}) => {
   const [active, setActive] = React.useState<boolean>(false);
   const [name, setName] = React.useState<string>();
 

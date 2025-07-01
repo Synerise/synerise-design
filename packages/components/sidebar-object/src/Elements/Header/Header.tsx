@@ -1,8 +1,8 @@
-import React, { useState, useRef, useMemo } from 'react';
+import React, { useMemo, useRef, useState } from 'react';
 
-import Typography from '@synerise/ds-typography';
-import Drawer from '@synerise/ds-drawer';
 import Button from '@synerise/ds-button';
+import Drawer from '@synerise/ds-drawer';
+import Dropdown from '@synerise/ds-dropdown';
 import Icon, {
   AngleDownM,
   AngleUpM,
@@ -14,12 +14,12 @@ import Icon, {
   OptionHorizontalM,
   TrashM,
 } from '@synerise/ds-icon';
-import Dropdown from '@synerise/ds-dropdown';
-import Menu, { MenuItemProps } from '@synerise/ds-menu';
+import Menu, { type MenuItemProps } from '@synerise/ds-menu';
+import Typography from '@synerise/ds-typography';
 import { useOnClickOutside } from '@synerise/ds-utils';
 
-import { ButtonVariant, HeaderProps, HeaderType } from './Header.types';
 import * as S from './Header.style';
+import { ButtonVariant, type HeaderProps, HeaderType } from './Header.types';
 
 const Header = ({
   avatar,
@@ -60,7 +60,7 @@ const Header = ({
             value: name,
             maxLength: 120,
             placeholder: texts.inlineEditPlaceholder,
-            onChange: event => {
+            onChange: (event) => {
               onRename && onRename(event.target.value);
             },
             ...inlineEditInputProps,
@@ -71,7 +71,10 @@ const Header = ({
     return <S.SingleTitle>{name}</S.SingleTitle>;
   };
   const renderMenu = !!(onEdit || onDelete || onDuplicate || onMove || onId);
-  const renderMenuDivider = !!((onEdit || onDelete || onDuplicate || onMove) && onId);
+  const renderMenuDivider = !!(
+    (onEdit || onDelete || onDuplicate || onMove) &&
+    onId
+  );
   const menuDataSource = useMemo(() => {
     const menuItems: MenuItemProps[] = [];
     onEdit &&
@@ -169,12 +172,20 @@ const Header = ({
               placement="bottomLeft"
               overlay={
                 <S.DropdownWrapper ref={ref}>
-                  <Menu asDropdownMenu style={{ width: '100%' }} dataSource={menuDataSource} />
+                  <Menu
+                    asDropdownMenu
+                    style={{ width: '100%' }}
+                    dataSource={menuDataSource}
+                  />
                 </S.DropdownWrapper>
               }
             >
               <S.ButtonWrapper data-testid="sidebar-object-dropdown-menu-trigger">
-                <Button onClick={() => setDropdownVisible(!dropdownVisible)} type="ghost" mode="single-icon">
+                <Button
+                  onClick={() => setDropdownVisible(!dropdownVisible)}
+                  type="ghost"
+                  mode="single-icon"
+                >
                   <Icon component={<OptionHorizontalM />} />
                 </Button>
               </S.ButtonWrapper>

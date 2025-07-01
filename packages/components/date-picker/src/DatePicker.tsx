@@ -4,10 +4,10 @@ import { useIntl } from 'react-intl';
 import Dropdown from '@synerise/ds-dropdown';
 import { useOnClickOutside } from '@synerise/ds-utils';
 
-import type { DatePickerProps } from './DatePicker.types';
-import RawDatePicker from './RawDatePicker/RawDatePicker';
-import PickerInput from './Elements/PickerInput/PickerInput';
 import * as S from './DatePicker.styles';
+import type { DatePickerProps } from './DatePicker.types';
+import PickerInput from './Elements/PickerInput/PickerInput';
+import RawDatePicker from './RawDatePicker/RawDatePicker';
 import { getDefaultTexts } from './utils/getDefaultTexts';
 
 const DatePicker = ({
@@ -52,7 +52,7 @@ const DatePicker = ({
     (val: Date | undefined) => {
       onValueChange && onValueChange(val);
     },
-    [onValueChange]
+    [onValueChange],
   );
   const onApplyCallback = useCallback(
     (val: Date | undefined) => {
@@ -60,7 +60,7 @@ const DatePicker = ({
       setSelectedDate(val);
       setDropVisible(false);
     },
-    [onApply]
+    [onApply],
   );
 
   const handleClear = useCallback(() => {
@@ -103,7 +103,10 @@ const DatePicker = ({
   ) : (
     <Dropdown
       overlay={
-        <S.OverlayContainer data-testid="date-picker-overlay-container" ref={ref}>
+        <S.OverlayContainer
+          data-testid="date-picker-overlay-container"
+          ref={ref}
+        >
           <RawDatePicker
             {...rest}
             showTime={showTime}

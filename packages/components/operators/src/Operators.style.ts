@@ -10,8 +10,9 @@ export const ContentPlaceholder = styled.div`
 
 export const ItemsList = styled.div<{ contentHeight?: number }>`
   width: 100%;
-  backgorund: ${props => props.theme.palette.white};
-  ${props => props.contentHeight !== undefined && `height: ${props.contentHeight}px;`}
+  backgorund: ${(props) => props.theme.palette.white};
+  ${(props) =>
+    props.contentHeight !== undefined && `height: ${props.contentHeight}px;`}
 `;
 
 export const SearchResult = styled.span`

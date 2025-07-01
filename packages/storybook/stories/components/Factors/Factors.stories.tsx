@@ -1,22 +1,43 @@
 import React, { useState } from 'react';
-import { Meta, StoryObj } from '@storybook/react-webpack5';
 import { useArgs } from 'storybook/preview-api';
-import { within, userEvent, expect, fn, waitFor } from 'storybook/test';
+import { expect, fn, userEvent, waitFor, within } from 'storybook/test';
 
-import Icon, { CalculatorM, EditM, ParagraphM, SegmentM, VarTypeStringM } from '@synerise/ds-icon';
-import Factors, { ParameterValueType, ALL_FACTOR_TYPES, FactorsProps, FactorValueComponentProps } from '@synerise/ds-factors';
+import { Meta, StoryObj } from '@storybook/react-webpack5';
+import Button from '@synerise/ds-button';
+import Factors, {
+  ALL_FACTOR_TYPES,
+  FactorValueComponentProps,
+  FactorsProps,
+  ParameterValueType,
+} from '@synerise/ds-factors';
+import Icon, {
+  CalculatorM,
+  EditM,
+  ParagraphM,
+  SegmentM,
+  VarTypeStringM,
+} from '@synerise/ds-icon';
+import ItemPicker, {
+  BaseItemType,
+  ItemPickerPropsNew,
+} from '@synerise/ds-item-picker';
+import { ListItemProps } from '@synerise/ds-list-item';
+
 import {
   BOOLEAN_CONTROL,
   controlFromOptionsArray,
   fixedWrapper300,
-  flexColumnWrapper
+  flexColumnWrapper,
 } from '../../utils';
-import { FACTORS_GROUPS, FACTORS_ITEMS, FACTORS_ITEMS_ADDITONAL_DATA, FACTORS_TEXTS, SELECTED_PARAMETER } from './Factors.data';
-import Button from '@synerise/ds-button';
 import { ITEMS_IN_SECTIONS, SECTIONS } from '../ItemPicker/ItemPicker.data';
-import ItemPicker, { BaseItemType, ItemPickerPropsNew } from '@synerise/ds-item-picker';
-import { ListItemProps } from '@synerise/ds-list-item';
 import { SelectedItem } from '../ItemPicker/ItemPicker.stories';
+import {
+  FACTORS_GROUPS,
+  FACTORS_ITEMS,
+  FACTORS_ITEMS_ADDITONAL_DATA,
+  FACTORS_TEXTS,
+  SELECTED_PARAMETER,
+} from './Factors.data';
 
 const FactorsMeta = {
   title: 'Components/Filter/Factors',
@@ -31,17 +52,17 @@ const FactorsMeta = {
       },
     },
   },
-  render: args => {
+  render: (args) => {
     const [{ value, selectedFactorType }, updateArgs] = useArgs();
-    const handleSelectFactorType = factorType => {
+    const handleSelectFactorType = (factorType) => {
       updateArgs({
         value: '',
         selectedFactorType: factorType,
       });
       args.setSelectedFactorType?.(factorType);
     };
-    const handleChangeValue = newValue => {
-      console.log('factor value changed', newValue)
+    const handleChangeValue = (newValue) => {
+      console.log('factor value changed', newValue);
       updateArgs({ value: newValue });
       args.onChangeValue?.(newValue);
     };
@@ -75,7 +96,6 @@ const FactorsMeta = {
     error: BOOLEAN_CONTROL,
     withoutTypeSelector: BOOLEAN_CONTROL,
     selectedFactorType: controlFromOptionsArray('select', ALL_FACTOR_TYPES),
-
   },
   args: {
     onActivate: fn(),
@@ -113,9 +133,9 @@ export const ParameterTypeRenderEmptyGroups: Story = {
       buttonIcon: <VarTypeStringM />,
       groups: FACTORS_GROUPS,
       items: FACTORS_ITEMS,
-      renderEmptyGroups: true
-    }
-  }
+      renderEmptyGroups: true,
+    },
+  },
 };
 
 export const ParameterType: Story = {
@@ -128,8 +148,8 @@ export const ParameterType: Story = {
       buttonIcon: <VarTypeStringM />,
       groups: FACTORS_GROUPS,
       items: FACTORS_ITEMS,
-    }
-  }
+    },
+  },
 };
 
 export const RelativeDate: Story = {
@@ -138,21 +158,18 @@ export const RelativeDate: Story = {
     selectedFactorType: 'relativeDate',
     value: {
       temporalUnit: 'HOURS',
-      temporalModifier: -10
+      temporalModifier: -10,
     },
     relativeDateProps: {
-      availableUnits: [
-        'HOURS',
-        'DAYS',
-        'WEEKS',
-        'MONTHS',
-      ]
-    }
-  }
+      availableUnits: ['HOURS', 'DAYS', 'WEEKS', 'MONTHS'],
+    },
+  },
 };
 
-type ItemType = typeof ITEMS_IN_SECTIONS[number];
-type RenderTriggerType = Required<ItemPickerPropsNew<ItemType, undefined>>['renderTrigger'];
+type ItemType = (typeof ITEMS_IN_SECTIONS)[number];
+type RenderTriggerType = Required<
+  ItemPickerPropsNew<ItemType, undefined>
+>['renderTrigger'];
 type TriggerProps = Parameters<RenderTriggerType>[0];
 
 const mapParameterValueTypeToListItem = (item: ParameterValueType) => {
@@ -161,26 +178,51 @@ const mapParameterValueTypeToListItem = (item: ParameterValueType) => {
     text: item.name,
     informationCardProps: {
       title: item.name,
-      subtitle: item.type
-    }
-  }
-  return listItem
-}
+      subtitle: item.type,
+    },
+  };
+  return listItem;
+};
 
 const mapPickerTypeToFactorValueType = (item: ItemType) => {
   const result: ParameterValueType = {
     id: item.id as string,
     type: 'some type',
     name: item.text,
-    icon: <EditM />
-  }
-  return result
-}
+    icon: <EditM />,
+  };
+  return result;
+};
 
-const CustomParameterFactorValueComponent = ({ onActivate, getPopupContainerOverride, readOnly, onDeactivate, onChange, onParamsClick, opened, value }: FactorValueComponentProps) => {
-  const selectedItem = mapParameterValueTypeToListItem(value as ParameterValueType);
+const CustomParameterFactorValueComponent = ({
+  onActivate,
+  getPopupContainerOverride,
+  readOnly,
+  onDeactivate,
+  onChange,
+  onParamsClick,
+  opened,
+  value,
+}: FactorValueComponentProps) => {
+  const selectedItem = mapParameterValueTypeToListItem(
+    value as ParameterValueType,
+  );
   const renderTrigger = ({ selected, disabled }: Partial<TriggerProps>) => (
-    <Button groupVariant='right-rounded' disabled={disabled} color={selected && 'green'} mode={selected ? 'icon-label' : ''} type={selected ? 'custom-color' : "secondary"}>{selected ? (<><Icon component={<VarTypeStringM />} /> {selected.text}</>) : 'Choose parameter'}</Button>
+    <Button
+      groupVariant="right-rounded"
+      disabled={disabled}
+      color={selected && 'green'}
+      mode={selected ? 'icon-label' : ''}
+      type={selected ? 'custom-color' : 'secondary'}
+    >
+      {selected ? (
+        <>
+          <Icon component={<VarTypeStringM />} /> {selected.text}
+        </>
+      ) : (
+        'Choose parameter'
+      )}
+    </Button>
   );
   const [localOpen, setLocalOpen] = useState(opened);
   const handleOpenChange = (isOpen: boolean) => {
@@ -193,8 +235,8 @@ const CustomParameterFactorValueComponent = ({ onActivate, getPopupContainerOver
   };
   const handleChange = (item: ItemType) => {
     onChange(mapPickerTypeToFactorValueType(item));
-    setLocalOpen(false)
-  }
+    setLocalOpen(false);
+  };
   return readOnly ? (
     renderTrigger({ selected: selectedItem, disabled: true })
   ) : (
@@ -212,7 +254,7 @@ const CustomParameterFactorValueComponent = ({ onActivate, getPopupContainerOver
       renderTrigger={renderTrigger}
     />
   );
-}
+};
 
 export const CustomisedParameterType: Story = {
   args: {
@@ -221,19 +263,17 @@ export const CustomisedParameterType: Story = {
     value: SELECTED_PARAMETER,
     customFactorValueComponents: {
       parameter: {
-        component: CustomParameterFactorValueComponent
-      }
+        component: CustomParameterFactorValueComponent,
+      },
     },
     parameters: {
       buttonLabel: 'Parameter',
       buttonIcon: <VarTypeStringM />,
       groups: FACTORS_GROUPS,
       items: FACTORS_ITEMS,
-    }
-  }
+    },
+  },
 };
-
-
 
 export const ParameterTypeSearch: Story = {
   args: {
@@ -245,20 +285,18 @@ export const ParameterTypeSearch: Story = {
       buttonIcon: <VarTypeStringM />,
       groups: FACTORS_GROUPS,
       items: [...FACTORS_ITEMS, ...FACTORS_ITEMS_ADDITONAL_DATA],
-    }
-  }
+    },
+  },
 };
-
 
 export const ArrayString: Story = {
   args: {
     ...FactorsMeta.args,
     selectedFactorType: 'array',
     value: ['item A', 'item B'],
-    opened: true
-  }
+    opened: true,
+  },
 };
-
 
 export const ArrayNumeric: Story = {
   args: {
@@ -268,9 +306,9 @@ export const ArrayNumeric: Story = {
     opened: true,
     arrayProps: {
       itemType: 'number',
-      limit: 20
-    }
-  }
+      limit: 20,
+    },
+  },
 };
 
 export const Open: Story = {
@@ -281,7 +319,11 @@ export const Open: Story = {
     const canvas = within(canvasElement);
     const typeDropdownTrigger = canvas.getByRole('button');
     await userEvent.click(typeDropdownTrigger);
-    await waitFor(() => expect(canvas.getAllByRole('menuitem')).toHaveLength(ALL_FACTOR_TYPES.length));
+    await waitFor(() =>
+      expect(canvas.getAllByRole('menuitem')).toHaveLength(
+        ALL_FACTOR_TYPES.length,
+      ),
+    );
   },
 };
 
@@ -289,18 +331,25 @@ export const AllTypes: Story = {
   decorators: [flexColumnWrapper],
   parameters: {
     controls: {
-      include: ['readOnly', 'error']
-    }
+      include: ['readOnly', 'error'],
+    },
   },
   args: {
-    onChangeValue: fn()
+    onChangeValue: fn(),
   },
   render: (args) => {
     return (
       <>
         {ALL_FACTOR_TYPES.map((factorType, index) => (
-          <div data-popupindex-container style={{ position: 'relative', zIndex: 100 - index }}>
-            <Factors {...FactorsMeta.args} {...args} selectedFactorType={factorType} />
+          <div
+            data-popupindex-container
+            style={{ position: 'relative', zIndex: 100 - index }}
+          >
+            <Factors
+              {...FactorsMeta.args}
+              {...args}
+              selectedFactorType={factorType}
+            />
           </div>
         ))}
       </>

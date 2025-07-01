@@ -1,23 +1,31 @@
-import { CompareFn } from 'antd/lib/table/interface';
-import { GroupType } from '../GroupTable/GroupTable.types';
-import { DSColumnType } from '../Table.types';
-import { ColumnSortOrder, SortStateAPI } from './useSortState';
+import { type CompareFn } from 'antd/lib/table/interface';
+
+import { type GroupType } from '../GroupTable/GroupTable.types';
+import { type DSColumnType } from '../Table.types';
+import { type ColumnSortOrder, type SortStateAPI } from './useSortState';
 
 export const getColumnsWithActiveSorting = <T extends GroupType<T>>(
   sortStateApi: SortStateAPI,
-  columns?: DSColumnType<T>[]
+  columns?: DSColumnType<T>[],
 ): DSColumnType<T>[] =>
   !columns
     ? []
     : columns.filter(({ key, sorter }) => {
-        if (sortStateApi.getColumnSortOrder(String(key)) && typeof sorter === 'function') {
+        if (
+          sortStateApi.getColumnSortOrder(String(key)) &&
+          typeof sorter === 'function'
+        ) {
           return true;
         }
 
         return false;
       });
 
-export const sortRows = <T>(sortOrder: ColumnSortOrder, compareFn: CompareFn<T>, rows: T[]): T[] => {
+export const sortRows = <T>(
+  sortOrder: ColumnSortOrder,
+  compareFn: CompareFn<T>,
+  rows: T[],
+): T[] => {
   if (sortOrder === 'ascend') {
     return [...rows].sort(compareFn);
   }
@@ -32,7 +40,7 @@ export const sortRows = <T>(sortOrder: ColumnSortOrder, compareFn: CompareFn<T>,
 export const sortDataSourceRows = <T extends GroupType<T>>(
   sortStateApi: SortStateAPI,
   sortingColumns?: DSColumnType<T>[],
-  dataSource?: readonly T[]
+  dataSource?: readonly T[],
 ): readonly T[] => {
   if (!dataSource) {
     return [];
@@ -53,7 +61,7 @@ export const sortDataSourceRows = <T extends GroupType<T>>(
 
         return sortRows(sortOrder, sorter, currRows);
       },
-      [...dataItem.rows]
+      [...dataItem.rows],
     );
 
     return {

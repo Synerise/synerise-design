@@ -2,17 +2,27 @@ import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import { useIntl } from 'react-intl';
 
 import Button from '@synerise/ds-button';
-import { getPopupContainer } from '@synerise/ds-utils';
-import Icon, { AngleDownS } from '@synerise/ds-icon';
 import Dropdown from '@synerise/ds-dropdown';
+import Icon, { AngleDownS } from '@synerise/ds-icon';
 import Tooltip from '@synerise/ds-tooltip';
+import { getPopupContainer } from '@synerise/ds-utils';
 
-import OperatorsDropdown from './OperatorsDropdown/OperatorsDropdown';
-import { OperatorsGroup, OperatorsItem, OperatorsProps } from './Operator.types';
+import {
+  type OperatorsGroup,
+  type OperatorsItem,
+  type OperatorsProps,
+} from './Operator.types';
 import * as S from './Operators.style';
-import { DROPDOWN_HEIGHT, DROPDOWN_HEIGHT_BELOW_THRESHOLD, DROPDOWN_HEIGHT_THRESHOLD } from './constants';
+import OperatorsDropdown from './OperatorsDropdown/OperatorsDropdown';
+import {
+  DROPDOWN_HEIGHT,
+  DROPDOWN_HEIGHT_BELOW_THRESHOLD,
+  DROPDOWN_HEIGHT_THRESHOLD,
+} from './constants';
 
-const isOperatorItem = (item: OperatorsGroup | OperatorsItem): item is OperatorsItem => {
+const isOperatorItem = (
+  item: OperatorsGroup | OperatorsItem,
+): item is OperatorsItem => {
   return 'groupId' in item;
 };
 
@@ -39,21 +49,32 @@ const Operators = ({
 
   const { formatMessage } = useIntl();
   const [dropdownVisible, setDropdownVisible] = useState(false);
-  const [outerHeight, setOuterHeight] = useState(dimensionsConfig.defaultHeight);
+  const [outerHeight, setOuterHeight] = useState(
+    dimensionsConfig.defaultHeight,
+  );
   const text = useMemo(
     () => ({
-      buttonLabel: formatMessage({ id: 'DS.OPERATORS.BUTTON_LABEL', defaultMessage: 'Choose' }),
-      searchPlaceholder: formatMessage({ id: 'DS.OPERATORS.SEARCH_PLACEHOLDER', defaultMessage: 'Search' }),
-      noResults: formatMessage({ id: 'DS.OPERATORS.NO_RESULTS', defaultMessage: 'No results' }),
+      buttonLabel: formatMessage({
+        id: 'DS.OPERATORS.BUTTON_LABEL',
+        defaultMessage: 'Choose',
+      }),
+      searchPlaceholder: formatMessage({
+        id: 'DS.OPERATORS.SEARCH_PLACEHOLDER',
+        defaultMessage: 'Search',
+      }),
+      noResults: formatMessage({
+        id: 'DS.OPERATORS.NO_RESULTS',
+        defaultMessage: 'No results',
+      }),
       ...texts,
     }),
-    [texts, formatMessage]
+    [texts, formatMessage],
   );
   const handleChange = useCallback(
     (val: OperatorsItem | OperatorsGroup) => {
       (!val || isOperatorItem(val)) && onChange(val);
     },
-    [onChange]
+    [onChange],
   );
 
   useEffect(() => {
@@ -73,7 +94,7 @@ const Operators = ({
       newValue && onActivate && onActivate();
       !newValue && onDeactivate && onDeactivate();
     },
-    [onActivate, onDeactivate]
+    [onActivate, onDeactivate],
   );
 
   const triggerMode = useMemo(() => {
@@ -98,7 +119,9 @@ const Operators = ({
         readOnly={readOnly}
       >
         {value && <Icon component={(value as OperatorsItem).icon} />}
-        <S.Value>{value ? (value as OperatorsItem).name : text.buttonLabel}</S.Value>
+        <S.Value>
+          {value ? (value as OperatorsItem).name : text.buttonLabel}
+        </S.Value>
         {!readOnly && <Icon component={<AngleDownS />} />}
       </Button>
     </Tooltip>
@@ -107,14 +130,20 @@ const Operators = ({
   useEffect(() => {
     const checkViewportHeight = () =>
       setOuterHeight(
-        window.innerHeight < dimensionsConfig.threshold ? dimensionsConfig.lowerHeight : dimensionsConfig.defaultHeight
+        window.innerHeight < dimensionsConfig.threshold
+          ? dimensionsConfig.lowerHeight
+          : dimensionsConfig.defaultHeight,
       );
     checkViewportHeight();
     window.addEventListener('resize', checkViewportHeight);
     return () => {
       window.removeEventListener('resize', checkViewportHeight);
     };
-  }, [dimensionsConfig.defaultHeight, dimensionsConfig.lowerHeight, dimensionsConfig.threshold]);
+  }, [
+    dimensionsConfig.defaultHeight,
+    dimensionsConfig.lowerHeight,
+    dimensionsConfig.threshold,
+  ]);
 
   const content = readOnly ? (
     dropdownTrigger

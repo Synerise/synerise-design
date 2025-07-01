@@ -1,7 +1,8 @@
 import React from 'react';
+
+import { renderWithProvider } from '@synerise/ds-utils';
 import { screen } from '@testing-library/react';
 
-import { renderWithProvider } from '@synerise/ds-utils/dist/testing';
 import Modal from './Modal';
 
 describe('Modal', () => {
@@ -13,7 +14,9 @@ describe('Modal', () => {
   });
 
   it('should not render modal if there is no visible prop or visible is false', () => {
-    renderWithProvider(<Modal title={titleMock} description={descriptionMock} />);
+    renderWithProvider(
+      <Modal title={titleMock} description={descriptionMock} />,
+    );
 
     const modalDialog = screen.queryByRole('dialog');
 
@@ -21,7 +24,9 @@ describe('Modal', () => {
   });
 
   it('should render title, description, and blank correctly', () => {
-    renderWithProvider(<Modal title={titleMock} description={descriptionMock} visible />);
+    renderWithProvider(
+      <Modal title={titleMock} description={descriptionMock} visible />,
+    );
 
     const titleElement = screen.getByText(titleMock);
     const descriptionElement = screen.getByText(descriptionMock);
@@ -43,10 +48,11 @@ describe('Modal', () => {
   });
 
   it('should render headerActions when provided', () => {
-    // eslint-disable-next-line react/button-has-type
     const headerActions = <button onClick={jest.fn()}>Test Action</button>;
 
-    renderWithProvider(<Modal title={titleMock} headerActions={headerActions} visible />);
+    renderWithProvider(
+      <Modal title={titleMock} headerActions={headerActions} visible />,
+    );
     const headerActionsElement = screen.getByText('Test Action');
 
     expect(headerActionsElement).toBeInTheDocument();
@@ -72,7 +78,7 @@ describe('Modal', () => {
     const defaultFooter = screen.queryByTestId('modal-footer');
     expect(defaultFooter).not.toBeInTheDocument();
   });
-  
+
   it('should show custom footer if its in props', () => {
     renderWithProvider(<Modal footer={<div>Custom Footer</div>} visible />);
 

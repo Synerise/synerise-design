@@ -1,6 +1,8 @@
-import React, { ReactNode, useRef, useEffect, useState } from 'react';
 import { debounce } from 'lodash';
-import Tooltip, { TooltipProps } from '@synerise/ds-tooltip';
+import React, { type ReactNode, useEffect, useRef, useState } from 'react';
+
+import Tooltip, { type TooltipProps } from '@synerise/ds-tooltip';
+
 import { EllipsisText } from './CommonElements';
 
 export type EllipsisProps = {
@@ -10,7 +12,12 @@ export type EllipsisProps = {
   className?: string;
 };
 
-export const Ellipsis = ({ tooltip, children, className, tooltipProps }: EllipsisProps) => {
+export const Ellipsis = ({
+  tooltip,
+  children,
+  className,
+  tooltipProps,
+}: EllipsisProps) => {
   const textComponentRef = useRef<HTMLDivElement | null>(null);
   const [truncated, setTruncated] = useState(false);
 
@@ -18,12 +25,15 @@ export const Ellipsis = ({ tooltip, children, className, tooltipProps }: Ellipsi
     debounce(
       () => {
         if (textComponentRef && textComponentRef.current) {
-          setTruncated(textComponentRef.current.offsetWidth < textComponentRef.current.scrollWidth);
+          setTruncated(
+            textComponentRef.current.offsetWidth <
+              textComponentRef.current.scrollWidth,
+          );
         }
       },
       100,
-      { leading: true, trailing: true }
-    )
+      { leading: true, trailing: true },
+    ),
   ).current;
 
   const resizeObserver = useRef(new ResizeObserver(debouncedResize)).current;
@@ -40,7 +50,10 @@ export const Ellipsis = ({ tooltip, children, className, tooltipProps }: Ellipsi
   }, [resizeObserver, debouncedResize]);
 
   return (
-    <Tooltip title={truncated ? tooltip : undefined} {...(truncated ? tooltipProps : {})}>
+    <Tooltip
+      title={truncated ? tooltip : undefined}
+      {...(truncated ? tooltipProps : {})}
+    >
       <EllipsisText className={className} ref={textComponentRef}>
         {children}
       </EllipsisText>

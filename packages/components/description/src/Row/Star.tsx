@@ -1,9 +1,10 @@
 import React from 'react';
-import Icon, { StarFillM, StarM } from '@synerise/ds-icon';
 
 import { theme } from '@synerise/ds-core';
+import Icon, { StarFillM, StarM } from '@synerise/ds-icon';
+
 import * as S from './DescriptionRow.styles';
-import { StarProps } from './Star.types';
+import { type StarProps } from './Star.types';
 
 const Star: React.FC<StarProps> = ({ starType, hasPrefixEl }) =>
   starType === 'active' ? (

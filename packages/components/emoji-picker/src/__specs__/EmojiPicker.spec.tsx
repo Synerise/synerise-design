@@ -1,9 +1,10 @@
 import React from 'react';
-import { renderWithProvider } from '@synerise/ds-utils/dist/testing';
-import { screen, waitFor } from '@testing-library/react';
-import userEvent from '@testing-library/user-event';
+
 import Button from '@synerise/ds-button';
 import Icon, { Add3M } from '@synerise/ds-icon';
+import { renderWithProvider } from '@synerise/ds-utils';
+import { screen, waitFor } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 
 import { EmojiPicker } from '../EmojiPicker';
 
@@ -26,7 +27,9 @@ describe('EmojiPicker', () => {
   it('should trigger onSelect', async () => {
     const onSelect = jest.fn();
 
-    renderWithProvider(<EmojiPicker onSelect={onSelect}>{TRIGGER}</EmojiPicker>);
+    renderWithProvider(
+      <EmojiPicker onSelect={onSelect}>{TRIGGER}</EmojiPicker>,
+    );
 
     userEvent.click(screen.getByText(BUTTON_LABEL));
 
@@ -39,15 +42,24 @@ describe('EmojiPicker', () => {
 
   it('should filter by searchQuery', async () => {
     const SEARCH_PLACEHOLDER = 'SEARCH_PLACEHOLDER';
-    renderWithProvider(<EmojiPicker texts={{ placeholder: SEARCH_PLACEHOLDER }}>{TRIGGER}</EmojiPicker>);
+    renderWithProvider(
+      <EmojiPicker texts={{ placeholder: SEARCH_PLACEHOLDER }}>
+        {TRIGGER}
+      </EmojiPicker>,
+    );
 
     userEvent.click(screen.getByText(BUTTON_LABEL));
 
-    await waitFor(() => expect(screen.getByPlaceholderText(SEARCH_PLACEHOLDER)).toBeInTheDocument());
+    await waitFor(() =>
+      expect(
+        screen.getByPlaceholderText(SEARCH_PLACEHOLDER),
+      ).toBeInTheDocument(),
+    );
 
     userEvent.type(screen.getByPlaceholderText(SEARCH_PLACEHOLDER), 'grin');
 
-    await waitFor(() => expect(screen.getAllByTestId('ds-emoji-item')).toHaveLength(9));
-
+    await waitFor(() =>
+      expect(screen.getAllByTestId('ds-emoji-item')).toHaveLength(9),
+    );
   });
 });

@@ -1,9 +1,13 @@
+import Avatar, { type AvatarProps } from 'antd/lib/avatar';
 import React from 'react';
-import styled, { css, FlattenSimpleInterpolation } from 'styled-components';
-import Avatar, { AvatarProps } from 'antd/lib/avatar';
-import { macro } from '@synerise/ds-typography';
-import { ThemeProps } from '@synerise/ds-core';
+import styled, {
+  type FlattenSimpleInterpolation,
+  css,
+} from 'styled-components';
+
 import { IconBadgeIcon } from '@synerise/ds-badge/dist/IconBadge/IconBadge.styles';
+import { type ThemeProps } from '@synerise/ds-core';
+import { macro } from '@synerise/ds-typography';
 
 export const TooltipGroup = styled.div`
   margin: 13px 8px;
@@ -20,14 +24,16 @@ export const TooltipGroup = styled.div`
 `;
 
 const applyBgColors = (
-  props: ThemeProps & { backgroundColor: string; backgroundColorHue: string }
+  props: ThemeProps & { backgroundColor: string; backgroundColorHue: string },
 ): FlattenSimpleInterpolation => css`
   background: ${props.theme.palette[
     `${props.backgroundColor}-${props.backgroundColorHue ? props.backgroundColorHue : '400'}`
   ]};
 `;
 
-const applyDisabledStyles = (props: { disabled: boolean }): FlattenSimpleInterpolation | false =>
+const applyDisabledStyles = (props: {
+  disabled: boolean;
+}): FlattenSimpleInterpolation | false =>
   props.disabled &&
   css`
     opacity: 0.4;
@@ -56,14 +62,16 @@ const ICON_BADGE_POSITION = {
   squareextraLarge: '-11px',
 };
 
-const FONT_SIZE = {
-  small: 'xsAvatar',
-  medium: 'small',
-  large: 'small',
-  extraLarge: 'xlAvatar',
+const MACRO_MAPPING = {
+  small: macro.xsAvatar,
+  medium: macro.small,
+  large: macro.small,
+  extraLarge: macro.xlAvatar,
 };
 
-const applyIconBadgePosition = (props: AvatarProps): FlattenSimpleInterpolation => {
+const applyIconBadgePosition = (
+  props: AvatarProps,
+): FlattenSimpleInterpolation => {
   const { shape = 'circle', size = 'medium' } = props;
   return css`
     top: ${ICON_BADGE_POSITION[`${shape}${size}`] || '0'};
@@ -81,17 +89,24 @@ const applyBadgePosition = (props: AvatarProps): FlattenSimpleInterpolation => {
 
 const applyFontSize = (props: AvatarProps): FlattenSimpleInterpolation => {
   return css`
-    ${macro[FONT_SIZE[`${props.size}`]]};
+    ${MACRO_MAPPING[`${props.size}`]};
   `;
 };
 
-// eslint-disable-next-line react/jsx-props-no-spreading
-export default styled(({ backgroundColorHue, backgroundColor, onClick, hasStatus, hasTooltip, ...rest }) => (
-  <Avatar onClick={onClick} {...rest} />
-))`
+export default styled(
+  ({
+    backgroundColorHue,
+    backgroundColor,
+    onClick,
+    hasStatus,
+    hasTooltip,
+    ...rest
+  }) => <Avatar onClick={onClick} {...rest} />,
+)`
   && {
     ${(props): FlattenSimpleInterpolation => applyBgColors(props)};
-    ${(props): FlattenSimpleInterpolation | false => applyDisabledStyles(props)};
+    ${(props): FlattenSimpleInterpolation | false =>
+      applyDisabledStyles(props)};
     transition: background 0.3s ease;
     user-select: none;
     min-width: 24px;

@@ -1,6 +1,8 @@
 import React from 'react';
+
 import Button from '@synerise/ds-button';
-import { ButtonPanelProps } from './ButtonPanel.types';
+
+import { type ButtonPanelProps } from './ButtonPanel.types';
 
 const ButtonPanel: React.FC<ButtonPanelProps> = ({
   onConfirm,

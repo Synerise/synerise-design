@@ -1,7 +1,9 @@
 import React from 'react';
+
+import { renderWithProvider } from '@synerise/ds-utils';
 import { screen } from '@testing-library/react';
-import { renderWithProvider } from '@synerise/ds-utils/dist/testing';
-import { Flex, Box } from '../index';
+
+import { Box, Flex } from '../index';
 
 const CONTENT = 'CONTENT';
 describe('FlexBox', () => {

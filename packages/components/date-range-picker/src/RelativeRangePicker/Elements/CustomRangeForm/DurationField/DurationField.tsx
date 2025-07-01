@@ -1,12 +1,18 @@
-import React, { useEffect } from 'react';
-import Select from '@synerise/ds-select';
-import InputNumber from '@synerise/ds-input-number';
-import set from 'ramda/src/set';
 import lensPath from 'ramda/src/lensPath';
+import set from 'ramda/src/set';
+import React, { useEffect } from 'react';
+
+import InputNumber from '@synerise/ds-input-number';
+import Select from '@synerise/ds-select';
+
+import {
+  RANGES_MODE,
+  RELATIVE_DURATION_MAX,
+  RELATIVE_UNITS,
+} from '../../../../constants';
+import { type RelativeUnits } from '../../../../date.types';
 import * as S from '../../../RelativeRangePicker.styles';
-import { RELATIVE_UNITS, RANGES_MODE, RELATIVE_DURATION_MAX } from '../../../../constants';
-import { Props } from './DurationField.types';
-import { RelativeUnits } from '../../../../date.types';
+import { type Props } from './DurationField.types';
 
 export const setDurationType = set(lensPath(['duration', 'type']));
 const SELECT_DROPDOWN_OFFSET = -4;
@@ -26,7 +32,9 @@ const DurationField = ({
   }, [duration, handleDurationValueChange]);
   return (
     <>
-      <S.Title>{currentGroup === RANGES_MODE.PAST ? texts.last : texts.next}</S.Title>
+      <S.Title>
+        {currentGroup === RANGES_MODE.PAST ? texts.last : texts.next}
+      </S.Title>
       <S.InputSelectGroup compact>
         <InputNumber
           min={1}
@@ -42,11 +50,18 @@ const DurationField = ({
         />
         <Select
           value={duration?.type}
-          onChange={(type): void => handleChange(setDurationType(type, currentRange))}
-          dropdownAlign={{ points: ['bl', 'tl'], offset: [0, SELECT_DROPDOWN_OFFSET] }}
-          getPopupContainer={(node): HTMLElement => (node.parentElement != null ? node.parentElement : document.body)}
+          onChange={(type): void =>
+            handleChange(setDurationType(type, currentRange))
+          }
+          dropdownAlign={{
+            points: ['bl', 'tl'],
+            offset: [0, SELECT_DROPDOWN_OFFSET],
+          }}
+          getPopupContainer={(node): HTMLElement =>
+            node.parentElement !== null ? node.parentElement : document.body
+          }
         >
-          {((rangeUnits || RELATIVE_UNITS) as RelativeUnits[]).map(type => (
+          {((rangeUnits || RELATIVE_UNITS) as RelativeUnits[]).map((type) => (
             <Select.Option key={type} value={type}>
               {texts[type.toLowerCase()]}
             </Select.Option>

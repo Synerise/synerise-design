@@ -1,5 +1,6 @@
-import styled, { css, Keyframes, keyframes } from 'styled-components';
-import { SkeletonSize, WidthSize, StartOffsetSize } from './Skeleton.types';
+import styled, { type Keyframes, css, keyframes } from 'styled-components';
+
+import { SkeletonSize, StartOffsetSize, WidthSize } from './Skeleton.types';
 
 export const BackgroundGradient = css`
  linear-gradient(90deg, rgba(252,252,255,1) 0%, rgba(243,243,245,1) 17%, rgba(156,157,157,1) 100%);
@@ -23,17 +24,25 @@ export const loadingAnimation = (width?: 'M' | 'L'): Keyframes => keyframes`
 `;
 
 const SIZE_WRAPPER_DEFAULT = 16;
-export const SkeletonBar = styled.div<{ size?: 'S' | 'M' | 'L'; width?: 'M' | 'L' }>`
+export const SkeletonBar = styled.div<{
+  size?: 'S' | 'M' | 'L';
+  width?: 'M' | 'L';
+}>`
   width: 100%;
   height: 100%;
   position: relative;
   top: 0;
   background: ${BackgroundGradient};
-  animation: ${(props): Keyframes => loadingAnimation(props.width)} 1.2s ease-in-out infinite;
+  animation: ${(props): Keyframes => loadingAnimation(props.width)} 1.2s
+    ease-in-out infinite;
   border-radius: ${(props): string => (props.width === 'M' ? '4px' : '0px')};
 `;
 
-export const Wrapper = styled.div<{ size?: 'S' | 'M' | 'L'; width?: 'M' | 'L'; height?: number }>`
+export const Wrapper = styled.div<{
+  size?: 'S' | 'M' | 'L';
+  width?: 'M' | 'L';
+  height?: number;
+}>`
   border-right: transparent;
   border-left: transparent;
   border-radius: ${(props): string => (props.width === 'M' ? '4px' : '2px')};

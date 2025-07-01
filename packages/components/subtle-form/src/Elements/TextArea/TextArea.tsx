@@ -1,12 +1,21 @@
-import React, { ChangeEvent, FocusEvent, useCallback, useEffect, useRef, useState } from 'react';
-import Icon, { EditS } from '@synerise/ds-icon';
-import Tooltip from '@synerise/ds-tooltip';
-import { useTheme } from '@synerise/ds-core';
-import { TextArea } from '@synerise/ds-input';
 import calculateSize from 'calculate-size';
+import React, {
+  type ChangeEvent,
+  type FocusEvent,
+  useCallback,
+  useEffect,
+  useRef,
+  useState,
+} from 'react';
+
+import { useTheme } from '@synerise/ds-core';
+import Icon, { EditS } from '@synerise/ds-icon';
+import { TextArea } from '@synerise/ds-input';
+import Tooltip from '@synerise/ds-tooltip';
+
 import * as S from '../../SubtleForm.styles';
-import { SubtleTextAreaProps } from './TextArea.types';
 import { focusPadding } from '../../SubtleForm.styles';
+import { type SubtleTextAreaProps } from './TextArea.types';
 
 const FONT = 'Graphik LCG Web';
 const FONT_SIZE = '13px';
@@ -53,7 +62,9 @@ const SubtleTextArea = ({
   useEffect(() => {
     const keyboardBasedLines = Number(value?.split('\n').length);
 
-    const refBasedLines = Math.floor((calculateTextHeight() + 2 * VERTICAL_PADDING_PX) / ROW_HEIGHT_PX);
+    const refBasedLines = Math.floor(
+      (calculateTextHeight() + 2 * VERTICAL_PADDING_PX) / ROW_HEIGHT_PX,
+    );
     const lines = Math.max(Number(refBasedLines), keyboardBasedLines);
     if (lines && lines < minRows) {
       setVisibleRows(minRows);
@@ -77,7 +88,7 @@ const SubtleTextArea = ({
       setActive(false);
       setBlurred(true);
     },
-    [textAreaProps]
+    [textAreaProps],
   );
   const handleActivate = useCallback(() => {
     setActive(true);
@@ -86,7 +97,12 @@ const SubtleTextArea = ({
   return (
     <S.Subtle className="ds-subtle-form">
       <S.SubtleFormField active={active} label={label} tooltip={labelTooltip}>
-        <S.Container ref={containerRef} className="ds-subtle-textarea" active={active} disabled={disabled}>
+        <S.Container
+          ref={containerRef}
+          className="ds-subtle-textarea"
+          active={active}
+          disabled={disabled}
+        >
           {(active || hasError) && !disabled ? (
             <TextArea
               autoFocus={!hasError && !disabled}
@@ -125,7 +141,12 @@ const SubtleTextArea = ({
               </S.MainContent>
               <S.Suffix>
                 <Tooltip title={suffixTooltip}>
-                  {suffix ?? <Icon component={<EditS />} color={theme.palette['grey-600']} />}
+                  {suffix ?? (
+                    <Icon
+                      component={<EditS />}
+                      color={theme.palette['grey-600']}
+                    />
+                  )}
                 </Tooltip>
               </S.Suffix>
             </S.Inactive>

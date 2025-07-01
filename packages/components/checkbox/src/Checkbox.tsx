@@ -1,17 +1,29 @@
 import React from 'react';
+
 import '@synerise/ds-core/dist/js/style';
-import './style/index.less';
 import { Description, ErrorText } from '@synerise/ds-typography';
+
 import * as S from './Checkbox.styles';
-import { CheckboxProps } from './Checkbox.types';
+import { type CheckboxProps } from './Checkbox.types';
+import './style/index.less';
 
 class Checkbox extends React.Component<CheckboxProps> {
   static Group = S.AntdCheckbox.Group;
 
   render(): React.ReactNode {
-    const { description, errorText, children, withoutPadding, hasError, ...antdCheckboxProps } = this.props;
+    const {
+      description,
+      errorText,
+      children,
+      withoutPadding,
+      hasError,
+      ...antdCheckboxProps
+    } = this.props;
     return (
-      <S.CheckboxWrapper className="ds-checkbox" withoutPadding={Boolean(withoutPadding)}>
+      <S.CheckboxWrapper
+        className="ds-checkbox"
+        withoutPadding={Boolean(withoutPadding)}
+      >
         <S.AntdCheckbox
           {...antdCheckboxProps}
           className={hasError || errorText ? 'error' : undefined}
@@ -22,7 +34,11 @@ class Checkbox extends React.Component<CheckboxProps> {
         {(errorText || description) && (
           <S.AdditionalData>
             {errorText && <ErrorText>{errorText}</ErrorText>}
-            {description && <Description disabled={antdCheckboxProps.disabled}>{description}</Description>}
+            {description && (
+              <Description disabled={antdCheckboxProps.disabled}>
+                {description}
+              </Description>
+            )}
           </S.AdditionalData>
         )}
       </S.CheckboxWrapper>

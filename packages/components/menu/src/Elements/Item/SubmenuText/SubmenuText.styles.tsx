@@ -1,22 +1,22 @@
-import styled from 'styled-components';
 import React from 'react';
-import { ContentWrapper } from '../Text/Text.styles';
-import Text from '../Text/Text';
+import styled from 'styled-components';
 
-// eslint-disable-next-line @typescript-eslint/no-empty-function
+import Text from '../Text/Text';
+import { ContentWrapper } from '../Text/Text.styles';
+
 const NOOP = (): void => {};
 export const SubtitleItemWrapper = styled.ul`
   display: flex;
   flex: 1;
 `;
 
-// eslint-disable-next-line import/prefer-default-export
-export const SubmenuText = styled(({ children, disabled, childrenCollapsed, ...rest }) => (
-  // eslint-disable-next-line react/jsx-props-no-spreading
-  <Text {...rest} disabled={disabled} onClick={NOOP} tabIndex={-1}>
-    {children}
-  </Text>
-))`
+export const SubmenuText = styled(
+  ({ children, disabled, childrenCollapsed, ...rest }) => (
+    <Text {...rest} disabled={disabled} onClick={NOOP} tabIndex={-1}>
+      {children}
+    </Text>
+  ),
+)`
   &&& {
     padding: 0;
     &:focus:active {

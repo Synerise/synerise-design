@@ -1,15 +1,21 @@
-import React, { FormEvent, MutableRefObject, useEffect, useMemo, useState } from 'react';
-import { FormattedMessage } from 'react-intl';
 import classnames from 'classnames';
+import React, {
+  type FormEvent,
+  type MutableRefObject,
+  useEffect,
+  useMemo,
+  useState,
+} from 'react';
+import { FormattedMessage } from 'react-intl';
 
-import Icon, { Close3M } from '@synerise/ds-icon';
 import { theme } from '@synerise/ds-core';
+import Icon, { Close3M } from '@synerise/ds-icon';
 import Tooltip from '@synerise/ds-tooltip';
 
 import { CLEAR_ICON_SIZE } from './SearchBar.constants';
-import { ValuePrefix } from './ValuePrefix';
-import type { SearchBarProps } from './SearchBar.types';
 import * as S from './SearchBar.styles';
+import type { SearchBarProps } from './SearchBar.types';
+import { ValuePrefix } from './ValuePrefix';
 
 const DEFAULT_PLACEHOLDER_STRING = 'Search';
 
@@ -21,7 +27,9 @@ const SearchBar = ({
   placeholder,
   iconLeft,
   autofocus,
-  clearTooltip = <FormattedMessage id="DS.SEARCH-BAR.CLEAR-TOOLTIP" defaultMessage="Clear" />,
+  clearTooltip = (
+    <FormattedMessage id="DS.SEARCH-BAR.CLEAR-TOOLTIP" defaultMessage="Clear" />
+  ),
   disabled,
   borderRadius,
   handleInputRef,
@@ -34,9 +42,10 @@ const SearchBar = ({
   const [input, setInput] = useState<HTMLInputElement | null>();
   const [valuePrefixWidth, setValuePrefixWidth] = useState<number>(0);
   const handleRef = (ref: MutableRefObject<HTMLInputElement | null>) => {
-    // eslint-disable-next-line no-unused-expressions
     handleInputRef?.(ref);
-    if (ref.current) setInput(ref.current);
+    if (ref.current) {
+      setInput(ref.current);
+    }
   };
 
   useEffect(() => {
@@ -55,9 +64,13 @@ const SearchBar = ({
     }
     return undefined;
   }, [autofocus, autofocusDelay, input]);
-  const placeholderString = typeof placeholder === 'string' ? placeholder : DEFAULT_PLACEHOLDER_STRING;
+  const placeholderString =
+    typeof placeholder === 'string' ? placeholder : DEFAULT_PLACEHOLDER_STRING;
 
-  const finalClassName = useMemo(() => classnames(className, { 'is-focused': isFocused }), [className, isFocused]);
+  const finalClassName = useMemo(
+    () => classnames(className, { 'is-focused': isFocused }),
+    [className, isFocused],
+  );
 
   return (
     <S.SearchBarWrapper
@@ -84,8 +97,17 @@ const SearchBar = ({
           />
         </S.ClearInputWrapper>
       )}
-      {!!valuePrefix && <ValuePrefix value={valuePrefix} setValuePrefixWidth={setValuePrefixWidth} />}
-      {!value && <S.PlaceholderWrapper valuePrefixWidth={valuePrefixWidth}>{placeholder}</S.PlaceholderWrapper>}
+      {!!valuePrefix && (
+        <ValuePrefix
+          value={valuePrefix}
+          setValuePrefixWidth={setValuePrefixWidth}
+        />
+      )}
+      {!value && (
+        <S.PlaceholderWrapper valuePrefixWidth={valuePrefixWidth}>
+          {placeholder}
+        </S.PlaceholderWrapper>
+      )}
       <S.SearchBar
         onChange={(event: FormEvent<HTMLInputElement>): void => {
           onSearchChange(event.currentTarget.value);

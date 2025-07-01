@@ -1,11 +1,12 @@
-import React, { useCallback, useMemo } from 'react';
 import Trigger from 'rc-trigger';
+import React, { useCallback, useMemo } from 'react';
+
 import { useTheme } from '@synerise/ds-core';
 
 import InformationCard from '../InformationCard';
-import { InformationCardTooltipProps } from './InformationCardTooltip.types';
 import { TRIGGER_PLACEMENTS } from './InformationCard.constants';
 import * as S from './InformationCardTooltip.styles';
+import { type InformationCardTooltipProps } from './InformationCardTooltip.types';
 
 export const InformationCardTooltip = ({
   triggerProps,
@@ -17,9 +18,15 @@ export const InformationCardTooltip = ({
   const dsTheme = useTheme();
   const zIndex = parseInt(dsTheme.variables['zindex-tooltip'], 10);
 
-  const renderedInfocard = useMemo(() => <InformationCard {...informationCardProps} />, [informationCardProps]);
+  const renderedInfocard = useMemo(
+    () => <InformationCard {...informationCardProps} />,
+    [informationCardProps],
+  );
 
-  const cancelBubblingEvent = useCallback(() => (event: Event) => event.stopPropagation(), []);
+  const cancelBubblingEvent = useCallback(
+    () => (event: Event) => event.stopPropagation(),
+    [],
+  );
   const { popupAlign } = triggerProps || {};
   const triggerPopupAlign = {
     overflow: {
@@ -31,8 +38,11 @@ export const InformationCardTooltip = ({
   };
 
   return (
-    // eslint-disable-next-line jsx-a11y/no-static-element-interactions
-    <S.InformationCardTooltipWrapper {...rest} onKeyDown={cancelBubblingEvent} onClick={cancelBubblingEvent}>
+    <S.InformationCardTooltipWrapper
+      {...rest}
+      onKeyDown={cancelBubblingEvent}
+      onClick={cancelBubblingEvent}
+    >
       <Trigger
         builtinPlacements={TRIGGER_PLACEMENTS}
         defaultPopupVisible={triggerProps?.defaultPopupVisible ?? false}
@@ -46,7 +56,9 @@ export const InformationCardTooltip = ({
         popupAlign={triggerPopupAlign}
         {...triggerProps}
       >
-        <S.InformationCardTooltipTrigger>{children}</S.InformationCardTooltipTrigger>
+        <S.InformationCardTooltipTrigger>
+          {children}
+        </S.InformationCardTooltipTrigger>
       </Trigger>
     </S.InformationCardTooltipWrapper>
   );

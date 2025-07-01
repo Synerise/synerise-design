@@ -1,8 +1,9 @@
 import styled, { css } from 'styled-components';
+
 import Button from '@synerise/ds-button';
 
 export const OffsetButton = styled(Button)<{ isSticky?: boolean }>`
-  ${props =>
+  ${(props) =>
     props.isSticky
       ? css`
           &&& {

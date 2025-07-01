@@ -1,4 +1,4 @@
-import { KeyboardEvent } from 'react';
+import { type KeyboardEvent } from 'react';
 
 const NAV_KEYS = ['ArrowUp', 'Enter', 'ArrowDown'];
 export const isNavKey = (event: KeyboardEvent) => {

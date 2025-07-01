@@ -46,4 +46,3 @@ Tags UI Component
 | createTagButtonLabel | Label for create tag button for add tag dropdown              | string / React.ReactNode |              |
 | noResultsLabel       | Label displayed when filtering tags returns an empty array    | string / React.ReactNode | `No results` |
 | dropdownNoTags       | Text for a label displayed when no tags are found to be added | string / React.ReactNode |              |
-

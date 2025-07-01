@@ -13,6 +13,10 @@ export type {
   DateConstantsTargetFormat,
 } from './dataFormat.types';
 
-export type { DataFormatNotationType, DataFormatConfig, DataFormatIntls } from './dataFormatConfig.types';
+export type {
+  DataFormatNotationType,
+  DataFormatConfig,
+  DataFormatIntls,
+} from './dataFormatConfig.types';
 
 export type { DateTimePartFormat } from './dateTimeParts.types';

@@ -4,17 +4,21 @@ import React from 'react';
 type Row = any & {
   key?: string;
 };
-// eslint-disable-next-line import/prefer-default-export
+
 export const useRowKey = (
-  rowKey: string | Function | undefined
+  rowKey: string | Function | undefined,
 ): { getRowKey: (row: Row) => string | number | undefined } => {
   const getRowKey = React.useCallback(
     (row: Row): string | number | undefined => {
-      if (typeof rowKey === 'function') return rowKey(row);
-      if (typeof rowKey === 'string') return row[rowKey];
+      if (typeof rowKey === 'function') {
+        return rowKey(row);
+      }
+      if (typeof rowKey === 'string') {
+        return row[rowKey];
+      }
       return row.key || undefined;
     },
-    [rowKey]
+    [rowKey],
   );
 
   return { getRowKey };

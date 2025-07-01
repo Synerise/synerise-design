@@ -1,14 +1,19 @@
-import React, { useState, useCallback, useMemo, useEffect, useRef } from 'react';
+import React, {
+  useCallback,
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+} from 'react';
 import { v4 as uuid } from 'uuid';
 
 import '@synerise/ds-core/dist/js/style';
-
-import FormField from '@synerise/ds-form-field';
 import { useDataFormat } from '@synerise/ds-data-format';
+import FormField from '@synerise/ds-form-field';
 
-import './style/index.less';
 import * as S from './InputNumber.styles';
-import { InputNumberProps } from './InputNumber.types';
+import { type InputNumberProps } from './InputNumber.types';
+import './style/index.less';
 import { formatNumber, parseFormattedNumber } from './utils/inputNumber.utils';
 
 const InputNumber = ({
@@ -29,7 +34,9 @@ const InputNumber = ({
   ...antdProps
 }: InputNumberProps) => {
   const { formatValue, thousandDelimiter, decimalDelimiter } = useDataFormat();
-  const [localValue, setLocalValue] = useState<number | null | undefined>(value ?? defaultValue);
+  const [localValue, setLocalValue] = useState<number | null | undefined>(
+    value ?? defaultValue,
+  );
   const antdInputRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
@@ -44,17 +51,25 @@ const InputNumber = ({
 
   const formatter = useCallback(
     (inputValue: string | number | null | undefined): string => {
-      const formatted = formatNumber(inputValue, formatValue, thousandDelimiter, decimalDelimiter, valueFormatOptions);
+      const formatted = formatNumber(
+        inputValue,
+        formatValue,
+        thousandDelimiter,
+        decimalDelimiter,
+        valueFormatOptions,
+      );
       return formatted;
     },
-    [formatValue, valueFormatOptions, thousandDelimiter, decimalDelimiter]
+    [formatValue, valueFormatOptions, thousandDelimiter, decimalDelimiter],
   );
 
   const parser = useCallback(
     (inputValue: string | undefined): number => {
-      return parseFloat(`${parseFormattedNumber(inputValue, formatValue, thousandDelimiter, decimalDelimiter)}`);
+      return parseFloat(
+        `${parseFormattedNumber(inputValue, formatValue, thousandDelimiter, decimalDelimiter)}`,
+      );
     },
-    [formatValue, thousandDelimiter, decimalDelimiter]
+    [formatValue, thousandDelimiter, decimalDelimiter],
   );
 
   const handleOnChange = useCallback(
@@ -62,12 +77,16 @@ const InputNumber = ({
       const formattedValue = formatter(changedValue);
       const parsedFormattedValue = parser(formattedValue);
       const valueAsNumber =
-        typeof parsedFormattedValue === 'string' ? parseFloat(parsedFormattedValue) : parsedFormattedValue;
-      const resultValue = Number.isNaN(valueAsNumber) ? defaultValue : valueAsNumber;
+        typeof parsedFormattedValue === 'string'
+          ? parseFloat(parsedFormattedValue)
+          : parsedFormattedValue;
+      const resultValue = Number.isNaN(valueAsNumber)
+        ? defaultValue
+        : valueAsNumber;
       setLocalValue(resultValue);
       onChange && onChange(resultValue ?? null);
     },
-    [formatter, parser, defaultValue, onChange]
+    [formatter, parser, defaultValue, onChange],
   );
 
   useEffect(() => {
@@ -87,7 +106,11 @@ const InputNumber = ({
     };
   });
   const rawInput = (
-    <S.InputNumberWrapper prefixel={!!prefixel} suffixel={!!suffixel} style={style}>
+    <S.InputNumberWrapper
+      prefixel={!!prefixel}
+      suffixel={!!suffixel}
+      style={style}
+    >
       {!!prefixel && <S.Prefixel>{prefixel}</S.Prefixel>}
       <S.AntdInputNumber
         {...antdProps}

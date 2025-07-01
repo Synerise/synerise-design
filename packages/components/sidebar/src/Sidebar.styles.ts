@@ -1,6 +1,6 @@
+import Collapse, { type CollapseProps } from 'antd/lib/collapse';
+import type React from 'react';
 import styled from 'styled-components';
-import Collapse, { CollapseProps } from 'antd/lib/collapse';
-import React from 'react';
 
 const { Panel } = Collapse;
 
@@ -20,11 +20,16 @@ type ThemeProps = {
   };
 };
 
-const themePaletteGrey700 = (props: ThemeProps) => props.theme.palette['grey-700'];
-const themePaletteGrey800 = (props: ThemeProps) => props.theme.palette['grey-800'];
-const themePaletteBlue050 = (props: ThemeProps) => props.theme.palette['blue-050'];
-const themePaletteGrey200 = (props: ThemeProps) => props.theme.palette['grey-200'];
-const themePaletteBlue600 = (props: ThemeProps) => props.theme.palette['blue-600'];
+const themePaletteGrey700 = (props: ThemeProps) =>
+  props.theme.palette['grey-700'];
+const themePaletteGrey800 = (props: ThemeProps) =>
+  props.theme.palette['grey-800'];
+const themePaletteBlue050 = (props: ThemeProps) =>
+  props.theme.palette['blue-050'];
+const themePaletteGrey200 = (props: ThemeProps) =>
+  props.theme.palette['grey-200'];
+const themePaletteBlue600 = (props: ThemeProps) =>
+  props.theme.palette['blue-600'];
 
 export const SidebarHandle = styled.div`
   display: flex;
@@ -55,8 +60,9 @@ export const PanelWrapper = styled.div`
   position: relative;
 `;
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-export const AntdCollapse = styled(Collapse as any as React.ComponentType<CollapseProps>)`
+export const AntdCollapse = styled(
+  Collapse as React.ComponentType<CollapseProps>,
+)`
   &.ant-collapse {
     background-color: ${themePaletteBlue050};
     border: none;
@@ -115,7 +121,10 @@ export const AntdCollapse = styled(Collapse as any as React.ComponentType<Collap
     opacity: 1;
   }
 
-  &.ant-collapse-icon-position-end > ${PanelWrapper} > .ant-collapse-item > .ant-collapse-header {
+  &.ant-collapse-icon-position-end
+    > ${PanelWrapper}
+    > .ant-collapse-item
+    > .ant-collapse-header {
     padding: 18px 24px;
     user-select: none;
     .ant-collapse-expand-icon {
@@ -124,7 +133,10 @@ export const AntdCollapse = styled(Collapse as any as React.ComponentType<Collap
     }
   }
 
-  &.ant-collapse-icon-position-end.is-drag-drop > ${PanelWrapper} > .ant-collapse-item > .ant-collapse-header {
+  &.ant-collapse-icon-position-end.is-drag-drop
+    > ${PanelWrapper}
+    > .ant-collapse-item
+    > .ant-collapse-header {
     padding: 18px 24px 18px 0;
     cursor: pointer;
 

@@ -1,6 +1,7 @@
-import { ReactNode } from 'react';
-import { DropzoneRootProps } from 'react-dropzone';
-import { ExtendedFile } from '../FileUploader.types';
+import { type ReactNode } from 'react';
+import { type DropzoneRootProps } from 'react-dropzone';
+
+import { type ExtendedFile } from '../FileUploader.types';
 
 export interface FileViewTexts {
   size?: ReactNode;

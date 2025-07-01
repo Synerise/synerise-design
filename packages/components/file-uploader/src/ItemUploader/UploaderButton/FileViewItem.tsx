@@ -1,13 +1,24 @@
 import React, { useState } from 'react';
-
 import { FormattedMessage } from 'react-intl';
+
+import Icon, {
+  Close3M,
+  FileM,
+  FileTypeTextM,
+  RepeatM,
+} from '@synerise/ds-icon';
 import Tooltip from '@synerise/ds-tooltip';
-import Icon, { RepeatM, FileTypeTextM, Close3M, FileM } from '@synerise/ds-icon';
 
+import { type FileViewAvatarProps } from '../../AvatarUploader/FileViewAvatar/FileViewAvatar.types';
 import * as S from './FileViewItem.styles';
-import { FileViewAvatarProps } from '../../AvatarUploader/FileViewAvatar/FileViewAvatar.types';
 
-const previewableMimeTypes = ['image/png', 'image/gif', 'image/jpeg', 'image/svg+xml', 'text/csv'];
+const previewableMimeTypes = [
+  'image/png',
+  'image/gif',
+  'image/jpeg',
+  'image/svg+xml',
+  'text/csv',
+];
 const mapperOfIcons = {
   'image/png': <FileTypeTextM />,
   'image/gif': <FileTypeTextM />,
@@ -16,12 +27,27 @@ const mapperOfIcons = {
   'text/csv': <FileTypeTextM />,
 };
 
-const FileViewItem = ({ data, texts, onRemove, removable }: FileViewAvatarProps) => {
+const FileViewItem = ({
+  data,
+  texts,
+  onRemove,
+  removable,
+}: FileViewAvatarProps) => {
   const { disabled, error, file, progress } = data;
 
   const finalTexts = {
-    retryTooltip: <FormattedMessage id="DS.FILE-UPLOADER.RETRY-TOOLTIP" defaultMessage="Retry" />,
-    removeTooltip: <FormattedMessage id="DS.FILE-UPLOADER.REMOVE-TOOLTIP" defaultMessage="Remove" />,
+    retryTooltip: (
+      <FormattedMessage
+        id="DS.FILE-UPLOADER.RETRY-TOOLTIP"
+        defaultMessage="Retry"
+      />
+    ),
+    removeTooltip: (
+      <FormattedMessage
+        id="DS.FILE-UPLOADER.REMOVE-TOOLTIP"
+        defaultMessage="Remove"
+      />
+    ),
     ...texts,
   };
 
@@ -36,7 +62,13 @@ const FileViewItem = ({ data, texts, onRemove, removable }: FileViewAvatarProps)
   return (
     <S.FileViewContainer>
       <Tooltip overlayStyle={{ maxWidth: '350px' }} title={file.name}>
-        <S.FileView progress={hasProgress} disabled={disabled} error={hasError} removable={removable} type="button">
+        <S.FileView
+          progress={hasProgress}
+          disabled={disabled}
+          error={hasError}
+          removable={removable}
+          type="button"
+        >
           {previewableMimeTypes.indexOf(file.type) > -1 ? (
             <S.PreviewImage>
               <Icon component={mapperOfIcons[file.type]} size={20} />

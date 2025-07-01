@@ -1,16 +1,25 @@
-import React, { useCallback, useEffect, useMemo } from 'react';
-import { compact, isEqual } from 'lodash';
 import Table from 'antd/lib/table';
+import { compact, isEqual } from 'lodash';
+import React, { useCallback, useEffect, useMemo } from 'react';
 import { FormattedMessage } from 'react-intl';
+
 import Result from '@synerise/ds-result';
 import { usePrevious } from '@synerise/ds-utils';
 
-import { columnsToSortState, useSortState } from '../ColumnSortMenu/useSortState';
 import { columnWithSortButtons } from '../ColumnSortMenu/columnWithSortButtons';
-import { DSColumnType, DSTableProps, RowSelection, RowType } from '../Table.types';
+import {
+  columnsToSortState,
+  useSortState,
+} from '../ColumnSortMenu/useSortState';
+import { RowSelectionColumn } from '../RowSelection';
+import {
+  type DSColumnType,
+  type DSTableProps,
+  type RowSelection,
+  type RowType,
+} from '../Table.types';
 import { useRowKey } from '../hooks/useRowKey';
 import { useRowStar } from '../hooks/useRowStar/useRowStar';
-import { RowSelectionColumn } from '../RowSelection';
 import { getChildrenColumnName, isRecordSelectable } from '../utils';
 
 function DefaultTable<T extends object & RowType<T>>(props: DSTableProps<T>) {
@@ -30,7 +39,9 @@ function DefaultTable<T extends object & RowType<T>>(props: DSTableProps<T>) {
   const previousColumns = usePrevious(columns);
   const sortStateApi = useSortState(columnsToSortState(columns), onSort);
   const { getRowStarColumn } = useRowStar(rowStar?.starredRowKeys || []);
-  const childrenColumnName = getChildrenColumnName(expandable?.childrenColumnName);
+  const childrenColumnName = getChildrenColumnName(
+    expandable?.childrenColumnName,
+  );
 
   const { getRowKey } = useRowKey(rowKey);
 
@@ -43,7 +54,9 @@ function DefaultTable<T extends object & RowType<T>>(props: DSTableProps<T>) {
       emptyDataComponent
     ) : (
       <Result
-        description={locale?.emptyText || <FormattedMessage id="DS.TABLE.EMPTY_TEXT" />}
+        description={
+          locale?.emptyText || <FormattedMessage id="DS.TABLE.EMPTY_TEXT" />
+        }
         type="no-results"
         noSearchResults
       />
@@ -56,24 +69,30 @@ function DefaultTable<T extends object & RowType<T>>(props: DSTableProps<T>) {
     }
   }, [columns, previousColumns, sortStateApi]);
 
-  // @ts-ignore
-  const RenderRow = useCallback(row => {
+  // @ts-expect-error Parameter 'row' implicitly has an 'any' type.ts(7006)
+  const RenderRow = useCallback((row) => {
     const { children, ...rowProps } = row;
-    const classNameWithLevel = row.className.split(' ').find((name: string) => name.includes('row-level'));
+    const classNameWithLevel = row.className
+      .split(' ')
+      .find((name: string) => name.includes('row-level'));
     let level;
     if (classNameWithLevel) {
       level = classNameWithLevel.split('-').pop();
     }
     return (
-      // eslint-disable-next-line react/jsx-handler-names
-      <tr {...rowProps} className={`${row.className} ds-table-row ${level ? `ds-table-row-level-${level}` : ''}`}>
+      <tr
+        {...rowProps}
+        className={`${row.className} ds-table-row ${level ? `ds-table-row-level-${level}` : ''}`}
+      >
         {children}
       </tr>
     );
   }, []);
 
   const prependedColumns = compact<DSColumnType<T>>([!!rowStar && starColumn]);
-  const decoratedColumns = columns?.map(column => columnWithSortButtons(sortStateApi, onSort)(column));
+  const decoratedColumns = columns?.map((column) =>
+    columnWithSortButtons(sortStateApi, onSort)(column),
+  );
   const decoratedComponents =
     components &&
     Object.entries(components)
@@ -95,12 +114,17 @@ function DefaultTable<T extends object & RowType<T>>(props: DSTableProps<T>) {
 
   const selectedRecords = useMemo((): T[] => {
     if (selection) {
-      const { selectedRowKeys, checkRowSelectionStatus } = selection as RowSelection<T>;
+      const { selectedRowKeys, checkRowSelectionStatus } =
+        selection as RowSelection<T>;
       let selectedRows: T[] = [];
       dataSource &&
         dataSource.forEach((row: T): void => {
           const key = getRowKey(row);
-          if (key && selectedRowKeys.indexOf(key) >= 0 && isRecordSelectable(row, checkRowSelectionStatus)) {
+          if (
+            key &&
+            selectedRowKeys.indexOf(key) >= 0 &&
+            isRecordSelectable(row, checkRowSelectionStatus)
+          ) {
             selectedRows = [...selectedRows, row];
           }
 
@@ -126,8 +150,13 @@ function DefaultTable<T extends object & RowType<T>>(props: DSTableProps<T>) {
 
   const renderRowSelection = useCallback(
     (key: string, record: T) => {
-      const { selectedRowKeys, limit, independentSelectionExpandedRows, onChange, checkRowSelectionStatus } =
-        selection as RowSelection<T>;
+      const {
+        selectedRowKeys,
+        limit,
+        independentSelectionExpandedRows,
+        onChange,
+        checkRowSelectionStatus,
+      } = selection as RowSelection<T>;
       return (
         <RowSelectionColumn
           rowKey={rowKey}
@@ -143,7 +172,7 @@ function DefaultTable<T extends object & RowType<T>>(props: DSTableProps<T>) {
         />
       );
     },
-    [locale, rowKey, selectedRecords, selection, childrenColumnName]
+    [locale, rowKey, selectedRecords, selection, childrenColumnName],
   );
 
   return (
@@ -152,7 +181,7 @@ function DefaultTable<T extends object & RowType<T>>(props: DSTableProps<T>) {
       data-popup-container
       columns={[
         ...prependedColumns,
-        // @ts-ignore: decoratedColumns type is different in DSTableProps than AntTableProps
+        // @ts-expect-error: decoratedColumns type is different in DSTableProps than AntTableProps
         ...decoratedColumns,
       ]}
       expandable={{
@@ -163,7 +192,7 @@ function DefaultTable<T extends object & RowType<T>>(props: DSTableProps<T>) {
         ...locale,
         emptyText: emptyData,
       }}
-      // @ts-ignore
+      // @ts-expect-error Type mismatch
       title={title}
       showSorterTooltip={false}
       components={{
@@ -172,7 +201,7 @@ function DefaultTable<T extends object & RowType<T>>(props: DSTableProps<T>) {
         },
         ...decoratedComponents,
       }}
-      // @ts-ignore
+      // @ts-expect-error Type mismatch
       rowSelection={
         selection && {
           ...selection,

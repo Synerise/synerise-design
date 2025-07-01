@@ -1,6 +1,7 @@
-import type { ReactNode } from 'react';
-import type { AutocompleteProps } from '@synerise/ds-autocomplete';
 import type { InputProps } from 'antd/lib/input';
+import type { ReactNode } from 'react';
+
+import type { AutocompleteProps } from '@synerise/ds-autocomplete';
 
 export type EditableParam = { name: string; value: string };
 
@@ -9,7 +10,11 @@ type AddButtonConfigProps = {
   disableAddButton?: boolean;
   onClickAddRow?: () => void;
 };
-type DeleteHandler = (param?: EditableParam, index?: number, params?: EditableParam[]) => void;
+type DeleteHandler = (
+  param?: EditableParam,
+  index?: number,
+  params?: EditableParam[],
+) => void;
 
 export type EditListProps = {
   autocompleteOptions?: ReactNode;
@@ -36,7 +41,7 @@ export type EditListProps = {
         params: EditableParam[],
         actionsCallbacks: {
           onClickDelete?: DeleteHandler;
-        }
+        },
       ) => JSX.Element);
   firstInputProps?: AutocompleteProps;
   secondInputProps?: InputProps;

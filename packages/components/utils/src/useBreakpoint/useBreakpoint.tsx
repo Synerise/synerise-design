@@ -55,7 +55,7 @@ const useBreakpoint = (): DimensionsWithBreakpoint => {
 
   const updateBreakPoint = React.useMemo(() => {
     const { width } = dimensions;
-    const breakpointKey = Object.keys(BREAKPOINTS).filter(key => {
+    const breakpointKey = Object.keys(BREAKPOINTS).filter((key) => {
       return BREAKPOINTS[key].min <= width && BREAKPOINTS[key].max >= width;
     })[0];
 

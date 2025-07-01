@@ -1,17 +1,27 @@
-import type { ReactNode, ReactElement, MutableRefObject } from 'react';
-import type { InputProps as AntdInputProps, TextAreaProps as AntdTextAreaProps } from 'antd/lib/input';
+import type {
+  InputProps as AntdInputProps,
+  TextAreaProps as AntdTextAreaProps,
+} from 'antd/lib/input';
+import type { MutableRefObject, ReactElement, ReactNode } from 'react';
+
 import type { FormFieldCommonProps } from '@synerise/ds-form-field';
 
 import type { AutosizeInputProps } from './AutosizeInput/AutosizeInput.types';
 
-export type AutoResizeProp = boolean | { minWidth: string; maxWidth?: string; stretchToFit?: boolean };
+export type AutoResizeProp =
+  | boolean
+  | { minWidth: string; maxWidth?: string; stretchToFit?: boolean };
 
 /**
  * @deprecated use `InputProps`, `TextareaProps` instead
  */
 export type Props = BaseProps<HTMLInputElement | HTMLTextAreaElement>;
 
-export type BaseProps<RefElementType extends HTMLTextAreaElement | HTMLInputElement = HTMLInputElement> = {
+export type BaseProps<
+  RefElementType extends
+    | HTMLTextAreaElement
+    | HTMLInputElement = HTMLInputElement,
+> = {
   error?: boolean;
   className?: string;
   counterLimit?: number;
@@ -26,7 +36,13 @@ export type BaseProps<RefElementType extends HTMLTextAreaElement | HTMLInputElem
   suffixel?: ReactNode;
   autoResize?: AutoResizeProp;
   autoResizeProps?: Partial<
-    Pick<AutosizeInputProps, 'placeholderIsMinWidth' | 'wrapperClassName' | 'wrapperStyle' | 'extraWidth'>
+    Pick<
+      AutosizeInputProps,
+      | 'placeholderIsMinWidth'
+      | 'wrapperClassName'
+      | 'wrapperStyle'
+      | 'extraWidth'
+    >
   >;
   expandable?: boolean;
   expandableTooltip?: ReactNode;
@@ -35,6 +51,7 @@ export type BaseProps<RefElementType extends HTMLTextAreaElement | HTMLInputElem
 /**
  * @deprecated use `InputProps`, `TextareaProps` instead
  */
-export type EnhancedProps = BaseProps<HTMLInputElement | HTMLTextAreaElement> & (AntdInputProps | AntdTextAreaProps);
+export type EnhancedProps = BaseProps<HTMLInputElement | HTMLTextAreaElement> &
+  (AntdInputProps | AntdTextAreaProps);
 
 export type InputProps = BaseProps & AntdInputProps;

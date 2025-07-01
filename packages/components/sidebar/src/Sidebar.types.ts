@@ -1,5 +1,5 @@
+import { type CollapseProps } from 'antd/lib/collapse';
 import type { ReactElement, ReactNode } from 'react';
-import { CollapseProps } from 'antd/lib/collapse';
 
 export type SidebarProps = CollapseProps & {
   children: ReactNode;
@@ -27,4 +27,7 @@ export type SidebarContextType = {
 
 export type Order = string[] | string;
 
-export type CompareFnType = (a: ReactElement<PanelProps>, b: ReactElement<PanelProps>) => number;
+export type CompareFnType = (
+  a: ReactElement<PanelProps>,
+  b: ReactElement<PanelProps>,
+) => number;

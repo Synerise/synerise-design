@@ -1,7 +1,7 @@
 import React from 'react';
 
-import type { ToolbarDividerProps } from '../../Toolbar.types';
 import * as S from '../../Toolbar.styles';
+import type { ToolbarDividerProps } from '../../Toolbar.types';
 
 export const ToolbarDivider = (props: ToolbarDividerProps) => {
   return <S.ToolbarDivider {...props} />;

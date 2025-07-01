@@ -1,9 +1,18 @@
-import React, { MouseEvent, useCallback, useEffect, useMemo, useRef, useState } from 'react';
-import Divider from '@synerise/ds-divider';
+import React, {
+  type MouseEvent,
+  useCallback,
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+} from 'react';
+
 import Button from '@synerise/ds-button';
+import Divider from '@synerise/ds-divider';
 import { useResizeObserver } from '@synerise/ds-utils';
+
 import * as S from './FieldSet.styles';
-import { FieldSetProps } from './FieldSet.types';
+import { type FieldSetProps } from './FieldSet.types';
 
 const FieldSet = ({
   className,
@@ -24,10 +33,13 @@ const FieldSet = ({
   const containerRef = useRef<HTMLDivElement | null>(null);
   const measureMaxHeightRef = useRef<HTMLDivElement | null>(null);
 
-  useResizeObserver(measureMaxHeightRef, (dimensions: DOMRect) => setMaxHeight(dimensions.height));
+  useResizeObserver(measureMaxHeightRef, (dimensions: DOMRect) =>
+    setMaxHeight(dimensions.height),
+  );
 
   useEffect(() => {
-    containerRef.current?.scrollHeight && setMaxHeight(containerRef.current?.scrollHeight);
+    containerRef.current?.scrollHeight &&
+      setMaxHeight(containerRef.current?.scrollHeight);
   }, [component, button]);
 
   useEffect(() => {
@@ -39,7 +51,10 @@ const FieldSet = ({
       return (
         <S.ButtonWrapper>
           <S.ExpanderWrapper>
-            <Button.Expander expanded={expanded} onClick={() => setExpanded(!expanded)} />
+            <Button.Expander
+              expanded={expanded}
+              onClick={() => setExpanded(!expanded)}
+            />
           </S.ExpanderWrapper>
         </S.ButtonWrapper>
       );
@@ -52,13 +67,16 @@ const FieldSet = ({
       expandable && setExpanded(!expanded);
       onTitleClick && onTitleClick(event);
     },
-    [onTitleClick, expandable, expanded]
+    [onTitleClick, expandable, expanded],
   );
 
   const hasTitleAndDescription = Boolean(title && description);
 
   return (
-    <S.ContainerWrapper className={`ds-field-set ${className}`} {...htmlAttributes}>
+    <S.ContainerWrapper
+      className={`ds-field-set ${className}`}
+      {...htmlAttributes}
+    >
       <S.HeaderWrapper topAlign={Boolean(hasTitleAndDescription)}>
         {headerPrefix}
         <S.FieldSetTitle>

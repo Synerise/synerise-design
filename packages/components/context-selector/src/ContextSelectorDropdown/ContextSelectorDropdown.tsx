@@ -1,45 +1,50 @@
 import React, {
-  CSSProperties,
-  MutableRefObject,
-  UIEvent,
+  type CSSProperties,
+  type MutableRefObject,
+  type UIEvent,
   useCallback,
   useEffect,
   useMemo,
   useRef,
   useState,
 } from 'react';
-import { v4 as uuid } from 'uuid';
 import { VariableSizeList } from 'react-window';
+import { v4 as uuid } from 'uuid';
 
+import { theme } from '@synerise/ds-core';
+import Divider from '@synerise/ds-divider';
 import Dropdown from '@synerise/ds-dropdown';
 import Icon, { ArrowRightCircleM, SearchM } from '@synerise/ds-icon';
+import { itemSizes } from '@synerise/ds-list-item';
+import Result from '@synerise/ds-result';
+import Scrollbar from '@synerise/ds-scrollbar';
 import Tabs from '@synerise/ds-tabs';
 import {
   focusWithArrowKeys,
+  getActiveTabGroup,
   getClosest,
+  getGroupName,
   useOnClickOutside,
   useSearchResults,
-  getActiveTabGroup,
-  getGroupName,
 } from '@synerise/ds-utils';
-import Result from '@synerise/ds-result';
-import Scrollbar from '@synerise/ds-scrollbar';
-import Divider from '@synerise/ds-divider';
-import { theme } from '@synerise/ds-core';
-import { itemSizes } from '@synerise/ds-list-item';
 
 import * as S from '../ContextSelector.styles';
 import {
-  ContextDropdownProps,
-  ContextGroup,
-  ContextItem,
-  ContextItemsInSubGroup,
-  DropdownItemProps,
-  ListDivider,
+  type ContextDropdownProps,
+  type ContextGroup,
+  type ContextItem,
+  type ContextItemsInSubGroup,
+  type DropdownItemProps,
+  type ListDivider,
 } from '../ContextSelector.types';
+import {
+  DROPDOWN_HEIGHT,
+  NO_GROUP_NAME,
+  SEARCH_HEIGHT,
+  SUBGROUP_HEADER_HEIGHT,
+  TABS_HEIGHT,
+} from '../constants';
 import ContextSelectorDropdownItem from './ContextSelectorDropdownItem';
-
-import { NO_GROUP_NAME, DROPDOWN_HEIGHT, TABS_HEIGHT, SUBGROUP_HEADER_HEIGHT, SEARCH_HEIGHT } from '../constants';
 import { isGroup, isListTitle } from './utils';
 
 const ITEM_SIZE = {
@@ -77,7 +82,9 @@ const ContextSelectorDropdown = ({
 }: ContextDropdownProps) => {
   const listStyle: CSSProperties = { overflowX: 'unset', overflowY: 'unset' };
   const defaultTab = useMemo(() => {
-    const defaultIndex = groups?.findIndex((group: ContextGroup) => group.defaultGroup);
+    const defaultIndex = groups?.findIndex(
+      (group: ContextGroup) => group.defaultGroup,
+    );
     return defaultIndex || 0;
   }, [groups]);
 
@@ -85,10 +92,13 @@ const ContextSelectorDropdown = ({
   const overlayRef = useRef<HTMLDivElement>(null);
   const scrollBarRef = useRef<HTMLDivElement>(null);
 
-  const [searchInputHandle, setSearchInputHandle] = useState<MutableRefObject<HTMLInputElement | null>>();
+  const [searchInputHandle, setSearchInputHandle] =
+    useState<MutableRefObject<HTMLInputElement | null>>();
   const [searchQuery, setSearchQuery] = useState('');
   const [activeTab, setActiveTab] = useState(defaultTab);
-  const [activeGroup, setActiveGroup] = useState<ContextGroup | undefined>(undefined);
+  const [activeGroup, setActiveGroup] = useState<ContextGroup | undefined>(
+    undefined,
+  );
   const [searchInputCanBeFocused, setSearchInputFocus] = useState(true);
   const classNames = useMemo(() => {
     return `ds-context-item ds-context-item-${uuid()}`;
@@ -108,19 +118,19 @@ const ContextSelectorDropdown = ({
         resetList();
       }
     },
-    [onSetGroup, setActiveGroup, resetList]
+    [onSetGroup, setActiveGroup, resetList],
   );
 
   useOnClickOutside(
     overlayRef,
-    event => {
+    (event) => {
       if (getClosest(event.target as HTMLElement, '.ds-info-card') === null) {
         onClickOutside && onClickOutside();
         setDropdownVisible(false);
         resetList();
       }
     },
-    onClickOutsideEvents
+    onClickOutsideEvents,
   );
 
   const clearSearch = useCallback(() => {
@@ -138,7 +148,7 @@ const ContextSelectorDropdown = ({
       setActiveGroup(undefined);
       setActiveTab(defaultTab);
     },
-    [defaultTab, setSelected]
+    [defaultTab, setSelected],
   );
 
   const currentTabItems = useMemo((): ContextGroup | undefined => {
@@ -146,13 +156,16 @@ const ContextSelectorDropdown = ({
   }, [groups, activeTab]);
 
   const groupByGroupName = useCallback(
-    (dropdownItems: (ContextItemsInSubGroup | ContextGroup)[], maxItemsInGroup?: number): DropdownItemProps[] => {
+    (
+      dropdownItems: (ContextItemsInSubGroup | ContextGroup)[],
+      maxItemsInGroup?: number,
+    ): DropdownItemProps[] => {
       const itemsNumber = dropdownItems?.length;
       const groupedItems = {};
 
       for (let i = 0; i < itemsNumber; i += 1) {
         const item = dropdownItems[i];
-        // @ts-ignore
+        // @ts-expect-error Property 'groupName' does not exist on type 'ContextGroup
         const groupName = item.groupName || NO_GROUP_NAME;
         const group = groupedItems[groupName] || [];
         group.push(item);
@@ -172,7 +185,9 @@ const ContextSelectorDropdown = ({
             title: key,
           });
         }
-        const groupItems = maxItemsInGroup ? groupedItems[key].slice(0, maxItemsInGroup) : groupedItems[key];
+        const groupItems = maxItemsInGroup
+          ? groupedItems[key].slice(0, maxItemsInGroup)
+          : groupedItems[key];
         groupItems.forEach((item: ContextItemsInSubGroup) => {
           const resultItem = item.isGroup
             ? {
@@ -224,7 +239,7 @@ const ContextSelectorDropdown = ({
       value,
       texts.showMore,
       groups,
-    ]
+    ],
   );
 
   const { searchResults } = useSearchResults(
@@ -234,10 +249,13 @@ const ContextSelectorDropdown = ({
     groupByGroupName,
     activeGroup,
     searchQuery,
-    maxSearchResultsInGroup
+    maxSearchResultsInGroup,
   );
 
-  const hasSubgroups = useMemo(() => Boolean(currentTabItems?.subGroups), [currentTabItems]);
+  const hasSubgroups = useMemo(
+    () => Boolean(currentTabItems?.subGroups),
+    [currentTabItems],
+  );
 
   const activeItems = useMemo((): DropdownItemProps[] => {
     if (!onSearch && searchQuery) {
@@ -246,44 +264,56 @@ const ContextSelectorDropdown = ({
 
     if (hasSubgroups && !activeGroup) {
       const subGroups = hasSubgroups
-        ? currentTabItems?.subGroups?.map(group => ({
+        ? currentTabItems?.subGroups?.map((group) => ({
             ...group,
             isGroup: true,
           }))
         : [];
-      const subItems = items?.reduce((prev: ContextItemsInSubGroup[], curr: ContextItem) => {
-        if (curr.groupId === currentTabItems?.id) {
-          prev.push({
-            ...curr,
-            isGroup: false,
-          });
-        }
-        return prev;
-      }, []);
+      const subItems = items?.reduce(
+        (prev: ContextItemsInSubGroup[], curr: ContextItem) => {
+          if (curr.groupId === currentTabItems?.id) {
+            prev.push({
+              ...curr,
+              isGroup: false,
+            });
+          }
+          return prev;
+        },
+        [],
+      );
 
       return groupByGroupName([...(subGroups || []), ...subItems]);
     }
 
     if (activeGroup) {
-      return groupByGroupName(items?.filter((item: ContextItem) => activeGroup && item.groupId === activeGroup.id));
+      return groupByGroupName(
+        items?.filter(
+          (item: ContextItem) => activeGroup && item.groupId === activeGroup.id,
+        ),
+      );
     }
 
     if (activeTab && groups && groups[activeTab]) {
       return groupByGroupName(
-        items?.filter((item: ContextItem) => item.groupId === (groups[activeTab] as ContextGroup).id)
+        items?.filter(
+          (item: ContextItem) =>
+            item.groupId === (groups[activeTab] as ContextGroup).id,
+        ),
       );
     }
 
     if ((recentItems || []).length > 0) {
-      const recentItemsWithGroup = (recentItems || []).map(item => ({
+      const recentItemsWithGroup = (recentItems || []).map((item) => ({
         ...item,
         groupName: texts.recentItemsGroupName,
       }));
-      const itemsWithAllGroup = (items || []).map(item => ({
+      const itemsWithAllGroup = (items || []).map((item) => ({
         ...item,
         groupName: texts.allItemsGroupName,
       }));
-      const result = groupByGroupName(recentItemsWithGroup.concat(itemsWithAllGroup));
+      const result = groupByGroupName(
+        recentItemsWithGroup.concat(itemsWithAllGroup),
+      );
 
       return result;
     }
@@ -307,7 +337,6 @@ const ContextSelectorDropdown = ({
   ]);
 
   useEffect(() => {
-    // eslint-disable-next-line no-unused-expressions
     listRef.current?.resetAfterIndex(0, false);
   }, [activeItems, listRef]);
 
@@ -317,7 +346,7 @@ const ContextSelectorDropdown = ({
       resetList();
       onSearch && onSearch(val);
     },
-    [setSearchQuery, resetList, onSearch]
+    [setSearchQuery, resetList, onSearch],
   );
 
   const getTabs = useMemo(() => {
@@ -331,8 +360,10 @@ const ContextSelectorDropdown = ({
   const hasTabs = getTabs.length > 1;
 
   const getNoResultContainer = useMemo(
-    () => <Result noSearchResults type="no-results" description={texts.noResults} />,
-    [texts]
+    () => (
+      <Result noSearchResults type="no-results" description={texts.noResults} />
+    ),
+    [texts],
   );
 
   const handleScroll = ({ currentTarget }: UIEvent) => {
@@ -344,9 +375,15 @@ const ContextSelectorDropdown = ({
 
   const getItemSize = (index: number) => {
     const item = activeItems[index];
-    if (isListTitle(item)) return ITEM_SIZE.title;
-    if (isDivider(item)) return ITEM_SIZE.divider;
-    return menuItemHeight ? ITEM_SIZE[menuItemHeight] : ITEM_SIZE[itemSizes.DEFAULT];
+    if (isListTitle(item)) {
+      return ITEM_SIZE.title;
+    }
+    if (isDivider(item)) {
+      return ITEM_SIZE.divider;
+    }
+    return menuItemHeight
+      ? ITEM_SIZE[menuItemHeight]
+      : ITEM_SIZE[itemSizes.DEFAULT];
   };
 
   const dropdownContentHeight = useMemo(() => {
@@ -369,7 +406,7 @@ const ContextSelectorDropdown = ({
     <Dropdown.Wrapper
       style={{ width: '300px', ...dropdownWrapperStyles }}
       ref={overlayRef}
-      onKeyDown={event => {
+      onKeyDown={(event) => {
         if (document?.activeElement === searchInputHandle?.current) {
           setSearchInputFocus(false);
         }
@@ -391,8 +428,10 @@ const ContextSelectorDropdown = ({
           value={searchQuery}
           autofocus={!searchQuery || searchInputCanBeFocused}
           autofocusDelay={50}
-          handleInputRef={ref => setSearchInputHandle(ref)}
-          iconLeft={<Icon component={<SearchM />} color={theme.palette['grey-600']} />}
+          handleInputRef={setSearchInputHandle}
+          iconLeft={
+            <Icon component={<SearchM />} color={theme.palette['grey-600']} />
+          }
         />
       )}
       {hasTabs && (
@@ -410,9 +449,18 @@ const ContextSelectorDropdown = ({
           />
         </S.TabsWrapper>
       )}
-      {activeGroup && <Dropdown.BackAction label={activeGroup.name} onClick={() => setActiveGroup(undefined)} />}
+      {activeGroup && (
+        <Dropdown.BackAction
+          label={activeGroup.name}
+          onClick={() => setActiveGroup(undefined)}
+        />
+      )}
       {loading ? (
-        <S.Skeleton contentHeight={dropdownContentHeight} size="M" numberOfSkeletons={3} />
+        <S.Skeleton
+          contentHeight={dropdownContentHeight}
+          size="M"
+          numberOfSkeletons={3}
+        />
       ) : (
         <S.ItemsList contentHeight={dropdownContentHeight}>
           {activeItems?.length ? (
@@ -425,8 +473,6 @@ const ContextSelectorDropdown = ({
               onScroll={handleScroll}
               ref={scrollBarRef}
             >
-              {/*
-            // @ts-ignore */}
               <VariableSizeList
                 className="ds-context-selector-list"
                 key={`list-${activeGroup}-${activeTab}`}

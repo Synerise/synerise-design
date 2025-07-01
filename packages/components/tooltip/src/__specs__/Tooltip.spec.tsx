@@ -1,6 +1,8 @@
 import React from 'react';
+
+import { renderWithProvider } from '@synerise/ds-utils';
 import { fireEvent, waitFor } from '@testing-library/react';
-import renderWithProvider from '@synerise/ds-utils/dist/testing/renderWithProvider/renderWithProvider';
+
 import Tooltip from '../index';
 
 const TUTORIALS = [
@@ -24,7 +26,9 @@ describe('Tooltip', () => {
 
   it('should render', async () => {
     // ARRANGE
-    const { getByText } = renderWithProvider(<Tooltip visible title={TOOLTIP_TITLE} />);
+    const { getByText } = renderWithProvider(
+      <Tooltip visible title={TOOLTIP_TITLE} />,
+    );
 
     // ASSERT
     await waitFor(() => {
@@ -37,7 +41,7 @@ describe('Tooltip', () => {
     const { getByText, getByTestId } = renderWithProvider(
       <Tooltip title={TOOLTIP_TITLE} mouseEnterDelay={0} mouseLeaveDelay={0}>
         <span data-testid={TEST_ID}>Tooltip will show on mouse enter.</span>
-      </Tooltip>
+      </Tooltip>,
     );
 
     // ACT
@@ -53,7 +57,7 @@ describe('Tooltip', () => {
     const { getByText, getByTestId } = renderWithProvider(
       <Tooltip title={TOOLTIP_TITLE} trigger="click">
         <span data-testid={TEST_ID}>Tooltip will show on mouse enter.</span>
-      </Tooltip>
+      </Tooltip>,
     );
 
     // ACT
@@ -68,9 +72,14 @@ describe('Tooltip', () => {
     // ARRANGE
     const onVisibleChange = jest.fn();
     const { getByTestId } = renderWithProvider(
-      <Tooltip title={TOOLTIP_TITLE} onVisibleChange={onVisibleChange} mouseEnterDelay={0} mouseLeaveDelay={0}>
+      <Tooltip
+        title={TOOLTIP_TITLE}
+        onVisibleChange={onVisibleChange}
+        mouseEnterDelay={0}
+        mouseLeaveDelay={0}
+      >
         <span data-testid={TEST_ID}>Tooltip will show on mouse enter.</span>
-      </Tooltip>
+      </Tooltip>,
     );
 
     // ACT
@@ -84,9 +93,14 @@ describe('Tooltip', () => {
   it('should render with 3 tutorial slides', () => {
     // ARRANGE
     const { getByTestId } = renderWithProvider(
-      <Tooltip type="tutorial" tutorials={TUTORIALS} mouseEnterDelay={0} mouseLeaveDelay={0}>
+      <Tooltip
+        type="tutorial"
+        tutorials={TUTORIALS}
+        mouseEnterDelay={0}
+        mouseLeaveDelay={0}
+      >
         <span data-testid={TEST_ID}>Tooltip will show on mouse enter.</span>
-      </Tooltip>
+      </Tooltip>,
     );
 
     // ACT
@@ -103,10 +117,12 @@ describe('Tooltip', () => {
       <Tooltip
         mouseEnterDelay={0}
         mouseLeaveDelay={0}
-        render={(): React.ReactNode => <span id="CUSTOM_TOOLTIP_COMPONENT">{customTooltipTitlte}</span>}
+        render={(): React.ReactNode => (
+          <span id="CUSTOM_TOOLTIP_COMPONENT">{customTooltipTitlte}</span>
+        )}
       >
         <span data-testid={TEST_ID}>Tooltip will show on mouse enter.</span>
-      </Tooltip>
+      </Tooltip>,
     );
 
     // ACT

@@ -1,28 +1,34 @@
+import classNames from 'classnames';
 import React, {
-  SyntheticEvent,
+  type ChangeEvent,
+  type ClipboardEvent,
+  type FocusEvent,
+  type KeyboardEvent,
+  type MouseEvent,
+  type SyntheticEvent,
+  useCallback,
   useEffect,
   useMemo,
-  useCallback,
   useRef,
   useState,
-  ChangeEvent,
-  FocusEvent,
-  MouseEvent,
-  ClipboardEvent,
-  KeyboardEvent,
 } from 'react';
-import classNames from 'classnames';
 import { FormattedMessage } from 'react-intl';
+
 import { focusWithArrowKeys, useOnClickOutside } from '@synerise/ds-utils';
 
-import { CollectorProps, CollectorValue } from './Collector.types';
 import * as S from './Collector.styles';
+import { type CollectorProps, type CollectorValue } from './Collector.types';
 import ButtonPanel from './Elements/ButtonPanel/ButtonPanel';
-import OptionsDropdown from './Elements/OptionsDropdown/OptionsDropdown';
-import { filterOutNullishArrayItems, filterValueSuggestions, isOverflown, scrollWithHorizontalArrow } from './utils';
-import Values from './Elements/Values/Values';
 import NavigationHint from './Elements/NavigationHint/NavigationHint';
+import OptionsDropdown from './Elements/OptionsDropdown/OptionsDropdown';
+import Values from './Elements/Values/Values';
 import { useTranslations } from './hooks/useTranslations';
+import {
+  filterOutNullishArrayItems,
+  filterValueSuggestions,
+  isOverflown,
+  scrollWithHorizontalArrow,
+} from './utils';
 
 const DROPDOWN_PADDING = 2 * 8;
 const COLLECTOR_CLASSNAME = 'ds-collector';
@@ -76,12 +82,20 @@ const Collector = ({
   const [scrollLeft, setScrollLeft] = useState<number>(0);
   const [value, setValue] = useState<string>(searchValue || '');
   const [selectedValues, setSelectedValues] = useState<CollectorValue[]>(
-    selected && allowMultipleValues ? selected : []
+    selected && allowMultipleValues ? selected : [],
   );
-  const [filteredSuggestions, setFilteredSuggestions] = useState<CollectorValue[]>(suggestions || []);
+  const [filteredSuggestions, setFilteredSuggestions] = useState<
+    CollectorValue[]
+  >(suggestions || []);
 
-  const filterLookupKey = useMemo(() => lookupConfig?.filter || 'text', [lookupConfig]);
-  const displayLookupKey = useMemo(() => lookupConfig?.display || 'text', [lookupConfig]);
+  const filterLookupKey = useMemo(
+    () => lookupConfig?.filter || 'text',
+    [lookupConfig],
+  );
+  const displayLookupKey = useMemo(
+    () => lookupConfig?.display || 'text',
+    [lookupConfig],
+  );
 
   const focusInput = useCallback(() => {
     if (inputRef?.current) {
@@ -92,9 +106,11 @@ const Collector = ({
   const suggestionsIncludesItem = useCallback(
     (item: string) =>
       filteredSuggestions.some(
-        suggestion => suggestion[filterLookupKey]?.trim()?.toLowerCase() === item.trim().toLowerCase()
+        (suggestion) =>
+          suggestion[filterLookupKey]?.trim()?.toLowerCase() ===
+          item.trim().toLowerCase(),
       ),
-    [filterLookupKey, filteredSuggestions]
+    [filterLookupKey, filteredSuggestions],
   );
 
   const createItem = useCallback(
@@ -106,7 +122,7 @@ const Collector = ({
       }
       return null;
     },
-    [allowCustomValue, onItemAdd, suggestionsIncludesItem]
+    [allowCustomValue, onItemAdd, suggestionsIncludesItem],
   );
 
   const onFocusCallback = useCallback(
@@ -118,14 +134,19 @@ const Collector = ({
         setFocused(true);
       }
     },
-    [focusInput]
+    [focusInput],
   );
   const filterSuggestions = useCallback(
     (val: string) => {
-      const filtered = filterValueSuggestions(suggestions, selectedValues, val, filterLookupKey);
+      const filtered = filterValueSuggestions(
+        suggestions,
+        selectedValues,
+        val,
+        filterLookupKey,
+      );
       setFilteredSuggestions(filtered);
     },
-    [suggestions, selectedValues, filterLookupKey]
+    [suggestions, selectedValues, filterLookupKey],
   );
 
   const canCreateItemFromValue = useCallback(() => {
@@ -149,7 +170,12 @@ const Collector = ({
     if (!enableCustomFilteringSuggestions) {
       setFilteredSuggestions([]);
     }
-  }, [allowMultipleValues, allowCustomValue, selected, enableCustomFilteringSuggestions]);
+  }, [
+    allowMultipleValues,
+    allowCustomValue,
+    selected,
+    enableCustomFilteringSuggestions,
+  ]);
 
   useEffect(() => {
     if (!searchValue && allowMultipleValues) {
@@ -170,8 +196,15 @@ const Collector = ({
   }, [selectedValues, mainContentRef, fixedHeight]);
 
   useEffect(() => {
-    if (!enableCustomFilteringSuggestions) filterSuggestions(value);
-  }, [value, selectedValues, filterSuggestions, enableCustomFilteringSuggestions]);
+    if (!enableCustomFilteringSuggestions) {
+      filterSuggestions(value);
+    }
+  }, [
+    value,
+    selectedValues,
+    filterSuggestions,
+    enableCustomFilteringSuggestions,
+  ]);
 
   useEffect(() => {
     setIsAddActive(Boolean(selected.length) || canCreateItemFromValue());
@@ -188,8 +221,13 @@ const Collector = ({
     if (allowMultipleValues && onItemAdd) {
       const pastedText = event.clipboardData.getData('text');
       if (pastedText.includes(valuesSeparator)) {
-        const pastedItems = allowMultipleValues ? pastedText.split(valuesSeparator) : [pastedText];
-        const newValues = filterOutNullishArrayItems(pastedItems.map(createItem));
+        const pastedItems = allowMultipleValues
+          ? pastedText.split(valuesSeparator)
+          : [pastedText];
+        const newValues = filterOutNullishArrayItems(
+          pastedItems.map(createItem),
+        );
+
         if (newValues.length) {
           onMultipleItemsSelect && onMultipleItemsSelect(newValues);
         }
@@ -216,7 +254,12 @@ const Collector = ({
   };
 
   const handleKeyDown = (event: KeyboardEvent<HTMLInputElement>) => {
-    if (allowMultipleValues && event.key === 'Backspace' && !value && !!selectedValues?.length) {
+    if (
+      allowMultipleValues &&
+      event.key === 'Backspace' &&
+      !value &&
+      !!selectedValues?.length
+    ) {
       const lastElement = selected.pop();
       if (lastElement && onItemDeselect) {
         onItemDeselect(lastElement);
@@ -252,7 +295,9 @@ const Collector = ({
     }
     if (allowMultipleValues) {
       const createdItem = value && createItem(value);
-      const finalItems = createdItem ? [...selectedValues, createdItem] : selectedValues;
+      const finalItems = createdItem
+        ? [...selectedValues, createdItem]
+        : selectedValues;
       onConfirm(finalItems);
       clear();
       return;
@@ -261,7 +306,7 @@ const Collector = ({
 
     if (allowCustomValue || suggestionsIncludesCurrentValue) {
       const newValue = onItemAdd && onItemAdd(value);
-      newValue && onConfirm && onConfirm([newValue]);
+      newValue && onConfirm([newValue]);
       clear();
     }
   }, [
@@ -278,7 +323,7 @@ const Collector = ({
 
   const getContainerWidth = useCallback(
     () => Number(containerRef.current?.offsetWidth) - DROPDOWN_PADDING,
-    [containerRef]
+    [containerRef],
   );
 
   const handleDropdownClick = () => {
@@ -287,7 +332,11 @@ const Collector = ({
 
   const handleDropdownSelect = (item: CollectorValue) => {
     onItemSelect && onItemSelect(item);
-    if (!allowMultipleValues && !keepSearchQueryOnSelect && item[filterLookupKey]) {
+    if (
+      !allowMultipleValues &&
+      !keepSearchQueryOnSelect &&
+      item[filterLookupKey]
+    ) {
       setValue(item[filterLookupKey]);
     } else {
       clear();
@@ -308,7 +357,9 @@ const Collector = ({
         if (!isPasteEvent) {
           onSearchValueChange && onSearchValueChange(event.target.value);
           setValue(event.target.value);
-          if (!enableCustomFilteringSuggestions) filterSuggestions(event.target.value);
+          if (!enableCustomFilteringSuggestions) {
+            filterSuggestions(event.target.value);
+          }
         }
       };
 
@@ -363,7 +414,11 @@ const Collector = ({
           disabled={disabled}
           transparent={!!disableSearch}
           hidden={!!disableSearch && !!selectedValues.length}
-          placeholder={selectedValues && selectedValues.length ? undefined : texts?.placeholder}
+          placeholder={
+            selectedValues && selectedValues.length
+              ? undefined
+              : texts?.placeholder
+          }
           hasValues={!!selectedValues?.length}
           data-testid="ds-collector-input"
         />
@@ -394,7 +449,9 @@ const Collector = ({
         </S.ContentAbove>
       )}
       <S.CollectorInput
-        className={classNames(COLLECTOR_CLASSNAME, { [className as string]: !!className })}
+        className={classNames(COLLECTOR_CLASSNAME, {
+          [className as string]: !!className,
+        })}
         tabIndex={0}
         focus={isFocused}
         onFocus={onFocusCallback}
@@ -408,7 +465,7 @@ const Collector = ({
           <S.RightSide
             gradientOverlap={showGradient && !value}
             focus={isFocused}
-            onClick={event => event.stopPropagation()}
+            onClick={(event) => event.stopPropagation()}
           >
             <ButtonPanel
               onCancel={onCancelCallback}
@@ -431,7 +488,8 @@ const Collector = ({
         visible={
           isFocused &&
           !disabled &&
-          (filteredSuggestions.length > 0 || (!!value && allowMultipleValues && allowCustomValue))
+          (filteredSuggestions.length > 0 ||
+            (!!value && allowMultipleValues && allowCustomValue))
         }
         onSelect={handleDropdownSelect}
         onClick={handleDropdownClick}

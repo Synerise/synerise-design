@@ -1,5 +1,7 @@
-import { RefObject, useEffect, useState } from 'react';
+import { type RefObject, useEffect, useState } from 'react';
+
 import { useResizeObserver } from '@synerise/ds-utils';
+
 import type { ContainerHeightType } from '../../ItemPickerNew/ItemPickerNew.types';
 import {
   DEFAULT_HEIGHT,
@@ -31,27 +33,35 @@ export const useListHeight = ({
     ...(typeof heightConfig === 'object' ? heightConfig : {}),
   };
 
-  const [outerHeight, setOuterHeight] = useState(dimensionsConfig.defaultHeight);
+  const [outerHeight, setOuterHeight] = useState(
+    dimensionsConfig.defaultHeight,
+  );
   useEffect(() => {
     const checkViewportHeight = () =>
       setOuterHeight(
         window.innerHeight < dimensionsConfig.viewportHeightThreshold
           ? dimensionsConfig.belowThresholdHeight
-          : dimensionsConfig.defaultHeight
+          : dimensionsConfig.defaultHeight,
       );
     checkViewportHeight();
     window.addEventListener('resize', checkViewportHeight);
     return () => {
       window.removeEventListener('resize', checkViewportHeight);
     };
-  }, [dimensionsConfig.defaultHeight, dimensionsConfig.belowThresholdHeight, dimensionsConfig.viewportHeightThreshold]);
+  }, [
+    dimensionsConfig.defaultHeight,
+    dimensionsConfig.belowThresholdHeight,
+    dimensionsConfig.viewportHeightThreshold,
+  ]);
 
   const [measuredHeight, setMeasuredHeight] = useState<number>();
-  useResizeObserver(containerRef, dimensions => {
+  useResizeObserver(containerRef, (dimensions) => {
     setMeasuredHeight(dimensions.height);
   });
 
-  const offsetSpace = (includeSearchBar ? SEARCH_BAR_HEIGHT : 0) + (includeFooter ? FOOTER_HEIGHT : 0);
+  const offsetSpace =
+    (includeSearchBar ? SEARCH_BAR_HEIGHT : 0) +
+    (includeFooter ? FOOTER_HEIGHT : 0);
 
   let outerWrapperHeight = '0px';
   let listWrapperHeight = 0;

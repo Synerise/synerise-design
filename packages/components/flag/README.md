@@ -6,6 +6,7 @@ title: Flag
 Flag UI Component
 
 ## Installation
+
 ```
 npm i @synerise/ds-flag
 or
@@ -13,6 +14,7 @@ yarn add @synerise/ds-flag
 ```
 
 ## Usage
+
 ```
 import Flag from '@synerise/ds-flag'
 
@@ -26,7 +28,7 @@ import Flag from '@synerise/ds-flag'
 
 ## API
 
-| Property | Description                                             | Type   | Default | 
-| ---      | ---                                                     | ---    | ---     | 
-| country  | The country code (ISO 3166-1 alfa-2) for the image path | string | -       | 
-| size     | The size of the image                                   | number | -       | 
+| Property | Description                                             | Type   | Default |
+| -------- | ------------------------------------------------------- | ------ | ------- |
+| country  | The country code (ISO 3166-1 alfa-2) for the image path | string | -       |
+| size     | The size of the image                                   | number | -       |

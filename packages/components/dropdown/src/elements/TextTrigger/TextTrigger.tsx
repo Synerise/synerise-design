@@ -1,10 +1,11 @@
 import React from 'react';
-import Icon, { AngleDownS } from '@synerise/ds-icon';
 
-import { Title } from '@synerise/ds-typography';
 import { theme } from '@synerise/ds-core';
-import { TextTriggerProps } from './TextTrigger.types';
+import Icon, { AngleDownS } from '@synerise/ds-icon';
+import { Title } from '@synerise/ds-typography';
+
 import * as S from './TextTrigger.styles';
+import { type TextTriggerProps } from './TextTrigger.types';
 
 const TextTrigger: React.FC<TextTriggerProps> = ({
   value,

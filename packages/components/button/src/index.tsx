@@ -1,18 +1,18 @@
 import React from 'react';
-import MainButton from './Button';
-import { Props as ButtonProps } from './Button.types';
-import CheckboxButton from './Checkbox/Checkbox';
-import Creator from './Creator/Creator';
-import Expander from './Expander/Expander';
-import StarButton from './Star/Star';
 
+import MainButton from './Button';
 import * as MainButtonStyles from './Button.styles';
+import { type Props } from './Button.types';
+import CheckboxButton from './Checkbox/Checkbox';
 import * as CheckboxStyles from './Checkbox/Checkbox.styles';
+import Creator from './Creator/Creator';
 import * as CreatorStyles from './Creator/Creator.styles';
+import Expander from './Expander/Expander';
 import * as ExpanderStyles from './Expander/Expander.styles';
+import StarButton from './Star/Star';
 import * as StarStyles from './Star/Star.styles';
 
-class Button extends React.Component<ButtonProps> {
+class Button extends React.Component<Props> {
   static readonly Checkbox = CheckboxButton;
   static readonly Creator = Creator;
   static readonly Expander = Expander;
@@ -28,14 +28,12 @@ export default Button;
 export { default as ButtonToggle } from './ButtonToggle/ButtonToggle';
 
 export type { ButtonToggleProps } from './ButtonToggle/ButtonToggle.types';
-export type { CreatorProps } from './Creator/Creator.types';
+export { type CreatorProps, CreatorStatus } from './Creator/Creator.types';
 export type { StarButtonProps } from './Star/Star.types';
 export type { CheckboxButtonProps } from './Checkbox/Checkbox.types';
-export type { ExpanderProps } from './Expander/Expander.types';
-export type { Props as ButtonProps } from './Button.types';
+export { ExpanderSize, type ExpanderProps } from './Expander/Expander.types';
 
-export { ExpanderSize } from './Expander/Expander.types';
-export { CreatorStatus } from './Creator/Creator.types';
+export type ButtonProps = Props;
 
 export const ButtonStyles = {
   Button: MainButtonStyles,

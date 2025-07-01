@@ -6,6 +6,7 @@ title: FormatPicker
 FormatPicker UI Component
 
 ## Installation
+
 ```
 npm i @synerise/ds-format-picker
 or
@@ -13,6 +14,7 @@ yarn add @synerise/ds-format-picker
 ```
 
 ## Usage
+
 ```
 import FormatPicker from '@synerise/ds-format-picker'
 
@@ -36,7 +38,7 @@ import FormatPicker from '@synerise/ds-format-picker'
 ## API
 
 | Property               | Description                    | Type                               | Default |
-| ---                    | ---                            | ---                                | ---     |
+| ---------------------- | ------------------------------ | ---------------------------------- | ------- |
 | format                 | Format configuration           | FormattingValue                    | -       |
 | value                  | Example value                  | number                             | -       |
 | onDataFormatChange     | Data format change handler     | (format) => void}                  | -       |
@@ -48,11 +50,10 @@ import FormatPicker from '@synerise/ds-format-picker'
 | text                   | Set of custom labels           | Texts                              | -       |
 | buttonType             | type of button                 | string                             | -       |
 
-
 ### Texts
 
 | Property       | Description                       | Type                     | Default              |
-| ---            | ---                               | ---                      | ---                  |
+| -------------- | --------------------------------- | ------------------------ | -------------------- |
 | header         | Header of format settings         | string \ React.ReactNode | `Number format`      |
 | format         | Format label                      | string \ React.ReactNode | `Format`             |
 | numeric        | Numeric type of format tooltip    | string \ React.ReactNode | `Numeric`            |
@@ -62,21 +63,20 @@ import FormatPicker from '@synerise/ds-format-picker'
 | useSeparator   | Use 1000 separator checkbox label | string \ React.ReactNode | `Use 1000 separator` |
 | compactNumbers | Compact number checkbox label     | string \ React.ReactNode | `Compact humbers`    |
 
-
 ### FormattingValue
 
 | Property       | Description              | Type                 | Default |
-| ---            | ---                      | ---                  | ---     |
+| -------------- | ------------------------ | -------------------- | ------- |
 | dataFormat     | Format of data           | FormattingDataFormat | -       |
 | currency       | Selected currency        | CurrencyType         | -       |
 | useSeparator   | Use 1000 separator       | boolean              | -       |
 | compactNumbers | Use compact numbers      | boolean              | -       |
 | fixedLength    | Number of decimal places | number               | -       |
 
-
 ### CurrencyType
+
 Available values: `USD` | `EUR` | `PLN` | `JPY`
 
 ### FormattingDataFormat
-Available values: `numeric` | `percent` | `cash`
 
+Available values: `numeric` | `percent` | `cash`

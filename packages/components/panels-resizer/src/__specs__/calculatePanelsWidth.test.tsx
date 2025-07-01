@@ -1,4 +1,9 @@
-import { getInitialVector, calculateLeftPanelWidth, calculateRightPanelWidth, InitialVectorOptions } from '../utils';
+import {
+  type InitialVectorOptions,
+  calculateLeftPanelWidth,
+  calculateRightPanelWidth,
+  getInitialVector,
+} from '../utils';
 
 describe('Utility Functions', () => {
   describe('getInitialVector', () => {

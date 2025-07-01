@@ -1,5 +1,6 @@
 import type { ReactElement, ReactNode, ReactText } from 'react';
-import type { Texts, AdditionalAction } from '../ManageableList.types';
+
+import type { AdditionalAction, Texts } from '../ManageableList.types';
 
 export type Props = {
   item: ItemProps;
@@ -25,7 +26,7 @@ export type Props = {
   additionalActions?: AdditionalAction[];
 };
 
-export type ItemProps<T extends object = {}> = T & {
+export type ItemProps<T extends object = object> = T & {
   id: ReactText;
   canUpdate?: boolean;
   canDelete?: boolean;
@@ -53,7 +54,6 @@ export type ItemProps<T extends object = {}> = T & {
   uniqueKey?: ReactNode;
   changeOrderDisabled?: boolean;
   user?: {
-    // eslint-disable-next-line camelcase
     avatar_url?: string;
     firstname?: string;
     lastname?: string;

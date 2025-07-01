@@ -1,13 +1,13 @@
-import React, { useState, useCallback, useMemo, useRef } from 'react';
+import React, { useCallback, useMemo, useRef, useState } from 'react';
 import { useIntl } from 'react-intl';
-import FormField from '@synerise/ds-form-field';
 
 import Dropdown from '@synerise/ds-dropdown';
+import FormField from '@synerise/ds-form-field';
+
 import * as S from '../../ItemPicker.styles';
 import ItemPickerDropdown from '../ItemPickerDropdown/ItemPickerDropdown';
-
 import Trigger from '../ItemPickerTrigger/Trigger';
-import { ItemPickerProps } from './ItemPickerLegacy.types';
+import { type ItemPickerProps } from './ItemPickerLegacy.types';
 
 /**
  * @deprecated - use new ItemPicker
@@ -55,16 +55,48 @@ const ItemPickerLegacy = ({
 
   const texts = useMemo(
     () => ({
-      changeButtonLabel: changeButtonLabel || intl.formatMessage({ id: 'DS.ITEM-PICKER.CHANGE-BUTTON' }),
+      changeButtonLabel:
+        changeButtonLabel ||
+        intl.formatMessage({ id: 'DS.ITEM-PICKER.CHANGE-BUTTON' }),
       clear: clear || intl.formatMessage({ id: 'DS.ITEM-PICKER.CLEAR' }),
-      clearConfirmTitle: clearConfirmTitle || intl.formatMessage({ id: 'DS.ITEM-PICKER.CLEAR-CONFIRM' }),
-      noResults: noResults || intl.formatMessage({ id: 'DS.ITEM-PICKER.NO-RESULTS', defaultMessage: 'No results' }),
-      noText: noText || intl.formatMessage({ id: 'DS.ITEM-PICKER.NO-TEXT', defaultMessage: 'No' }),
-      yesText: yesText || intl.formatMessage({ id: 'DS.ITEM-PICKER.YES-TEXT', defaultMessage: 'Yes' }),
+      clearConfirmTitle:
+        clearConfirmTitle ||
+        intl.formatMessage({ id: 'DS.ITEM-PICKER.CLEAR-CONFIRM' }),
+      noResults:
+        noResults ||
+        intl.formatMessage({
+          id: 'DS.ITEM-PICKER.NO-RESULTS',
+          defaultMessage: 'No results',
+        }),
+      noText:
+        noText ||
+        intl.formatMessage({
+          id: 'DS.ITEM-PICKER.NO-TEXT',
+          defaultMessage: 'No',
+        }),
+      yesText:
+        yesText ||
+        intl.formatMessage({
+          id: 'DS.ITEM-PICKER.YES-TEXT',
+          defaultMessage: 'Yes',
+        }),
       searchPlaceholder:
-        searchPlaceholder || intl.formatMessage({ id: 'DS.ITEM-PICKER.SEARCH', defaultMessage: 'Search' }),
+        searchPlaceholder ||
+        intl.formatMessage({
+          id: 'DS.ITEM-PICKER.SEARCH',
+          defaultMessage: 'Search',
+        }),
     }),
-    [changeButtonLabel, clear, clearConfirmTitle, intl, noResults, noText, searchPlaceholder, yesText]
+    [
+      changeButtonLabel,
+      clear,
+      clearConfirmTitle,
+      intl,
+      noResults,
+      noText,
+      searchPlaceholder,
+      yesText,
+    ],
   );
 
   const onVisibilityChange = (state: boolean) => {
@@ -74,7 +106,9 @@ const ItemPickerLegacy = ({
       onFocus();
     }
     if (!state) {
-      clearSearchBarValue.current = clearSearchBarValue.current ? (clearSearchBarValue.current += 1) : 1;
+      clearSearchBarValue.current = clearSearchBarValue.current
+        ? (clearSearchBarValue.current += 1)
+        : 1;
       if (typeof onBlur === 'function') {
         onBlur();
       }
@@ -123,7 +157,7 @@ const ItemPickerLegacy = ({
       dropdownOpened,
       hideSearchBar,
       scrollbarProps,
-    ]
+    ],
   );
 
   const renderTrigger = useMemo(
@@ -167,7 +201,7 @@ const ItemPickerLegacy = ({
       texts.noText,
       texts.yesText,
       withClearConfirmation,
-    ]
+    ],
   );
 
   return (

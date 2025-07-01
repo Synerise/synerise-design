@@ -6,6 +6,7 @@ title: Sortable
 Sortable UI Component
 
 ## Installation
+
 ```
 npm i @synerise/ds-sortable
 or
@@ -13,6 +14,7 @@ yarn add @synerise/ds-sortable
 ```
 
 ## Usage
+
 ```
 import Sortable from '@synerise/ds-sortable'
 
@@ -27,4 +29,4 @@ import Sortable from '@synerise/ds-sortable'
 ## API
 
 | Property | Description | Type | Default |
-| --- | --- | --- | --- |
+| -------- | ----------- | ---- | ------- |

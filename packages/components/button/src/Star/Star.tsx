@@ -1,9 +1,10 @@
 import React from 'react';
-import Icon, { StarM, StarFillM } from '@synerise/ds-icon';
+
+import Icon, { StarFillM, StarM } from '@synerise/ds-icon';
 
 import Button from '../Button';
 import * as S from './Star.styles';
-import { StarButtonProps } from './Star.types';
+import { type StarButtonProps } from './Star.types';
 
 const StarButton = (props: StarButtonProps): React.ReactElement => {
   const { hasError, active, type = 'ghost', ...restProps } = props;

@@ -1,8 +1,9 @@
-import styled from 'styled-components';
 import DayPickerBase from 'react-day-picker';
+import styled from 'styled-components';
 
 const DaySelectorPrefix = `.DayPicker-Day`;
-const daySelector = (modifier: string): string => `${DaySelectorPrefix}--${modifier}`;
+const daySelector = (modifier: string): string =>
+  `${DaySelectorPrefix}--${modifier}`;
 
 export const DayBackground = styled.div``;
 export const DayForeground = styled.div`

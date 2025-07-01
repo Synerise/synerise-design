@@ -1,8 +1,10 @@
+import type React from 'react';
 import styled from 'styled-components';
-import React from 'react';
-import { ThemeProps } from '@synerise/ds-core';
+
 import Button from '@synerise/ds-button';
-import { ColorType } from './BroadcastBar.types';
+import { type ThemeProps } from '@synerise/ds-core';
+
+import { type ColorType } from './BroadcastBar.types';
 
 type InsertShapeStyles = {
   color?: ColorType;
@@ -19,22 +21,37 @@ const getColorIcon = (props: InsertShapeStyles): string => {
   }
   return props.theme.palette.white;
 };
-export const AlertContent = styled.div<{ withLink?: React.ReactNode; color?: ColorType }>`
+export const AlertContent = styled.div<{
+  withLink?: React.ReactNode;
+  color?: ColorType;
+}>`
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   padding: 12px 0;
-  color: ${(props): string => (props.color === 'yellow' ? props.theme.palette['grey-800'] : props.theme.palette.white)};
+  color: ${(props): string =>
+    props.color === 'yellow'
+      ? props.theme.palette['grey-800']
+      : props.theme.palette.white};
 `;
-export const AllContent = styled.div<{ color?: ColorType; close?: boolean | React.ReactNode }>`
+export const AllContent = styled.div<{
+  color?: ColorType;
+  close?: boolean | React.ReactNode;
+}>`
   display: flex;
   margin-left: ${(props): string => (props.close ? '34px' : '0')};
-  color: ${(props): string => (props.color === 'yellow' ? props.theme.palette['grey-800'] : props.theme.palette.white)};
+  color: ${(props): string =>
+    props.color === 'yellow'
+      ? props.theme.palette['grey-800']
+      : props.theme.palette.white};
 `;
 export const Text = styled.div<{ color?: ColorType }>`
   display: flex;
-  color: ${(props): string => (props.color === 'yellow' ? props.theme.palette['grey-800'] : props.theme.palette.white)};
+  color: ${(props): string =>
+    props.color === 'yellow'
+      ? props.theme.palette['grey-800']
+      : props.theme.palette.white};
 `;
 export const IconWrapper = styled.div<{
   color?: ColorType;
@@ -59,10 +76,15 @@ export const ButtonWrapper = styled.div<{ color?: ColorType }>`
   background-color: rgba(255, 255, 255, 0.2);
 `;
 export const BroadcastButton = styled(Button)<{ color?: ColorType }>`
-  color: ${(props): string => (props.color === 'yellow' ? props.theme.palette['grey-800'] : props.theme.palette.white)};
+  color: ${(props): string =>
+    props.color === 'yellow'
+      ? props.theme.palette['grey-800']
+      : props.theme.palette.white};
   &&& :hover {
     color: ${(props): string =>
-      props.color === 'yellow' ? props.theme.palette['grey-800'] : props.theme.palette.white} !important;
+      props.color === 'yellow'
+        ? props.theme.palette['grey-800']
+        : props.theme.palette.white} !important;
   }
 `;
 export const ButtonCloseWrapper = styled.div`
@@ -71,7 +93,10 @@ export const ButtonCloseWrapper = styled.div`
 `;
 export const Wrapper = styled.div<{ color?: ColorType }>`
   margin-top: 10px;
-  color: ${(props): string => (props.color === 'yellow' ? props.theme.palette['grey-800'] : props.theme.palette.white)};
+  color: ${(props): string =>
+    props.color === 'yellow'
+      ? props.theme.palette['grey-800']
+      : props.theme.palette.white};
 `;
 export const Container = styled.div<{
   color?: ColorType;
@@ -82,7 +107,10 @@ export const Container = styled.div<{
 export const WrapperSectionMessage = styled.div<{ color?: ColorType }>`
   font-size: 13px;
   display: flex;
-  color: ${(props): string => (props.color === 'yellow' ? props.theme.palette['grey-800'] : props.theme.palette.white)};
+  color: ${(props): string =>
+    props.color === 'yellow'
+      ? props.theme.palette['grey-800']
+      : props.theme.palette.white};
   justify-content: space-between;
 `;
 
@@ -94,7 +122,10 @@ export const AlertDescription = styled.span<{ color?: ColorType }>`
   line-height: 1.39;
   font-weight: 500;
   margin-top: 1px;
-  color: ${(props): string => (props.color === 'yellow' ? props.theme.palette['grey-800'] : props.theme.palette.white)};
+  color: ${(props): string =>
+    props.color === 'yellow'
+      ? props.theme.palette['grey-800']
+      : props.theme.palette.white};
 `;
 export const EmphasisWrapper = styled.span<{ color?: ColorType }>`
   font-size: 13px;
@@ -102,9 +133,14 @@ export const EmphasisWrapper = styled.span<{ color?: ColorType }>`
   line-height: 1.39;
   font-weight: 500;
   margin-top: 1px;
-  color: ${(props): string => (props.color === 'yellow' ? props.theme.palette['grey-800'] : props.theme.palette.white)};
+  color: ${(props): string =>
+    props.color === 'yellow'
+      ? props.theme.palette['grey-800']
+      : props.theme.palette.white};
 `;
-export const WrapperText = styled.span<{ emphasis?: boolean | React.ReactNode }>`
+export const WrapperText = styled.span<{
+  emphasis?: boolean | React.ReactNode;
+}>`
   font-weight: ${(props): string => (props.emphasis ? '400' : '500')};
   margin-right: 3px;
   max-width: 800px;
@@ -115,7 +151,10 @@ export const LinkWrapper = styled.span<{ color?: ColorType }>`
   max-width: 800px;
   font-weight: 500;
   margin-top: 1px;
-  color: ${(props): string => (props.color === 'yellow' ? props.theme.palette['grey-800'] : props.theme.palette.white)};
+  color: ${(props): string =>
+    props.color === 'yellow'
+      ? props.theme.palette['grey-800']
+      : props.theme.palette.white};
 `;
 export const Link = styled.span`
   text-decoration: underline;

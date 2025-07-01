@@ -1,5 +1,6 @@
-import type { ReactNode, MouseEvent, KeyboardEvent } from 'react';
+import type { KeyboardEvent, MouseEvent, ReactNode } from 'react';
 import type { IntlShape } from 'react-intl';
+
 import type { DefaultColor } from '@synerise/ds-core';
 import type { DragHandlePropType } from '@synerise/ds-sortable';
 
@@ -24,7 +25,9 @@ export type Color =
   | 'purple'
   | 'violet';
 
-export type ListItemEventType = MouseEvent<HTMLElement> | KeyboardEvent<HTMLElement>;
+export type ListItemEventType =
+  | MouseEvent<HTMLElement>
+  | KeyboardEvent<HTMLElement>;
 
 export type CardTabTexts = {
   changeNameTooltip?: ReactNode;
@@ -52,7 +55,11 @@ export type HandlePrefixProps = {
   prefix: prefixType.HANDLE;
 };
 
-export type PrefixProps = DotPrefixProps | HandlePrefixProps | IconPrefixProps | TagPrefixProps;
+export type PrefixProps =
+  | DotPrefixProps
+  | HandlePrefixProps
+  | IconPrefixProps
+  | TagPrefixProps;
 
 type CardTabCommonProps = {
   name: string;

@@ -1,19 +1,19 @@
 import React from 'react';
 import type { PopoverProps } from 'antd/lib/popover';
-import { renderWithProvider, sleep } from '@synerise/ds-utils/dist/testing';
+import { renderWithProvider, sleep } from '@synerise/ds-utils';
 import { waitFor, within, screen, act, fireEvent } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import {
   getDefaultCustomRange,
 } from './RelativeRangePicker/utils';
 import RawDateRangePicker, { defaultValueTransformer } from './RawDateRangePicker';
-import { DateRange, DateRangePreset, RelativeDateRange } from './date.types';
+import { type DateRange, type DateRangePreset } from './date.types';
 import { DAYS, RELATIVE, RELATIVE_PRESETS, ABSOLUTE, ABSOLUTE_PRESETS, ALL_TIME } from './constants';
 import { DEFAULT_RANGE_START, DEFAULT_RANGE_END } from './RangeFilter/constants';
-import { RelativeMode } from './DateRangePicker.types';
+import { type RelativeMode } from './DateRangePicker.types';
 import DateRangePicker from './DateRangePicker';
 import Weekly from './RangeFilter/Filters/new/Weekly/Weekly';
-import { SavedFilter } from './RangeFilter/Shared/FilterDropdown/FilterDropdown.types';
+import { type SavedFilter } from './RangeFilter/Shared/FilterDropdown/FilterDropdown.types';
 
 jest.mock('uuid', () => ({ v4: () => Math.floor(Math.random() * 999999999).toString() }));
 const DAILY_FILTER = {
@@ -142,7 +142,7 @@ const texts = {
   daily: 'daily',
   monthly: 'monthly',
   inverseSelection: 'Inverse selection'
-} as any;
+};
 
 describe('DateRangePicker', () => {
   it('should render', async () => {

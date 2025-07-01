@@ -6,15 +6,15 @@ import { VarTypeStringM } from '@synerise/ds-icon';
 import { renderWithProvider, sleep } from '@synerise/ds-utils';
 
 import Factors from './../Factors';
-import { FactorsProps, FactorType, FactorValueType } from '../Factors.types';
+import { type FactorsProps } from '../Factors.types';
 import { FACTORS_GROUPS, FACTORS_ITEMS, FACTORS_TEXTS } from './data/Factors.data';
 
 
 const DEFAULT_PROPS: FactorsProps = {
     selectedFactorType: 'array',
-    setSelectedFactorType: (type: FactorType) => { },
+    setSelectedFactorType: () => { },
     value: '',
-    onChangeValue: (value: FactorValueType) => { },
+    onChangeValue: () => { },
     textType: 'default',
     defaultFactorType: 'text',
     autocompleteText: {
@@ -32,7 +32,7 @@ const DEFAULT_PROPS: FactorsProps = {
 };
 
 
-const RENDER_FACTORS = (props?: {}) => <Factors {...DEFAULT_PROPS} {...props} />;
+const RENDER_FACTORS = (props = {}) => <Factors {...DEFAULT_PROPS} {...props} />;
 
 const VALUE = ['item1', 'item2'];
 
@@ -107,7 +107,7 @@ describe('Factors array component', () => {
         const LIMIT = 10
         const onChangeValue = jest.fn();
         const NEW_ITEMS = ['item3', 'item4', 'item5', 'item6', 'item7'];
-        renderWithProvider(RENDER_FACTORS({ value: VALUE, onChangeValue: onChangeValue, arrayProps: { limit: LIMIT } }));
+        renderWithProvider(RENDER_FACTORS({ value: VALUE, onChangeValue, arrayProps: { limit: LIMIT } }));
 
         userEvent.click(screen.getByText(VALUE.join(', ')));
 

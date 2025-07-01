@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+
 import Button from '@synerise/ds-button';
 
 export const RowWrapper = styled.div`
@@ -21,7 +22,9 @@ export const AddButton = styled(Button)`
 export const AddIconWrapper = styled.div`
   display: inline-block;
 `;
-export const CrudWrapper = styled.div<{ marginWithLabel?: boolean | React.ReactNode }>`
+export const CrudWrapper = styled.div<{
+  marginWithLabel?: boolean | React.ReactNode;
+}>`
   padding-left: 4px;
   margin-top: ${(props): string => (props.marginWithLabel ? '30px' : '4px')};
 `;

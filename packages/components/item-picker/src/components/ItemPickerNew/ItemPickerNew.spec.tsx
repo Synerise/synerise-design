@@ -227,7 +227,7 @@ describe('ItemPickerNew component', () => {
             />
         );
 
-        expect(screen.queryByTestId(PREFIXEL_TEST_ID)).toBeFalsy;
+        expect(screen.queryByTestId(PREFIXEL_TEST_ID)).toBeFalsy();
     });
 
     it('should render with clear icon', async () => {

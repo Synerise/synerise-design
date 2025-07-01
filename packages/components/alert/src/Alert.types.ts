@@ -1,6 +1,7 @@
-import { AlertProps } from 'antd/lib/alert';
-import React from 'react';
-import InlineAlert from './InlineAlert/InlineAlert';
+import { type AlertProps } from 'antd/lib/alert';
+import type React from 'react';
+
+import type InlineAlert from './InlineAlert/InlineAlert';
 
 export type AlertType = 'success' | 'warning' | 'error' | 'info';
 

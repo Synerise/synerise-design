@@ -1,15 +1,21 @@
-import React, { ReactNode } from 'react';
+import React, { type ReactNode } from 'react';
+
 import Button from '@synerise/ds-button';
 import Icon, { CloseM, CodeTerminalM } from '@synerise/ds-icon';
-import { CodeAreaTexts } from '../CodeArea.types';
+
 import * as S from '../CodeArea.styles';
+import { type CodeAreaTexts } from '../CodeArea.types';
 
 type FullscreenHeaderProps = {
   label?: ReactNode;
   texts: CodeAreaTexts;
   onClick: () => void;
 };
-export const FullscreenHeader = ({ label, texts, onClick }: FullscreenHeaderProps) => {
+export const FullscreenHeader = ({
+  label,
+  texts,
+  onClick,
+}: FullscreenHeaderProps) => {
   return (
     <S.FullscreenHeader>
       <S.LeftSide>
@@ -20,7 +26,12 @@ export const FullscreenHeader = ({ label, texts, onClick }: FullscreenHeaderProp
       </S.LeftSide>
 
       <S.RightSide>
-        <Button type="primary" mode="icon-label" onClick={onClick} icon={<Icon component={<CloseM />} />}>
+        <Button
+          type="primary"
+          mode="icon-label"
+          onClick={onClick}
+          icon={<Icon component={<CloseM />} />}
+        >
           {texts.closeFullscreen}
         </Button>
       </S.RightSide>

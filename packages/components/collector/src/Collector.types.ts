@@ -2,7 +2,7 @@ import type { ReactNode } from 'react';
 
 import type { ButtonProps } from '@synerise/ds-button';
 import type { ScrollbarAdditionalProps } from '@synerise/ds-scrollbar';
-import { DataAttributes } from '@synerise/ds-utils';
+import type { DataAttributes } from '@synerise/ds-utils';
 
 export type CollectorProps = {
   addButtonProps?: Partial<ButtonProps & DataAttributes>;

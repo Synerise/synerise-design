@@ -1,11 +1,13 @@
-import { Input } from '@synerise/ds-input';
-import Autocomplete from '@synerise/ds-autocomplete';
 import React from 'react';
+
+import Autocomplete from '@synerise/ds-autocomplete';
 import { theme } from '@synerise/ds-core';
-import Icon, { Add3M } from '@synerise/ds-icon';
 import Cruds from '@synerise/ds-cruds';
-import { EditListProps, EditableParam } from './editable-list.types';
+import Icon, { Add3M } from '@synerise/ds-icon';
+import { Input } from '@synerise/ds-input';
+
 import * as S from './editable-list.styles';
+import { type EditListProps, type EditableParam } from './editable-list.types';
 
 const defaultFirstInputProps = {
   style: { width: 350 },
@@ -34,7 +36,11 @@ export const EditableList: React.FC<EditListProps> = ({
   secondInputProps = defaultSecondInputProps,
 }) => {
   const [params, setParams] = React.useState<EditableParam[] | undefined>([]);
-  const paramsWithNewValue = (id: number, name: string, newValue: string): { name: string; value: string }[] => {
+  const paramsWithNewValue = (
+    id: number,
+    name: string,
+    newValue: string,
+  ): { name: string; value: string }[] => {
     const updatedParams = [...(params || [])];
     updatedParams[id] = { name, value: newValue };
     return updatedParams;
@@ -43,12 +49,12 @@ export const EditableList: React.FC<EditListProps> = ({
     setParams(value);
   }, [value]);
 
-  const onSetParamsDefault = (): void => setParams(prevParams => [...(prevParams || []), { name: '', value: '' }]);
+  const onSetParamsDefault = (): void =>
+    setParams((prevParams) => [...(prevParams || []), { name: '', value: '' }]);
 
   return (
     <div>
       {params?.map((param, id) => (
-        // eslint-disable-next-line react/no-array-index-key
         <S.RowWrapper key={id}>
           {renderLeftColumn?.(param, id) ?? (
             <S.AutoCompleteWrapper>
@@ -56,9 +62,15 @@ export const EditableList: React.FC<EditListProps> = ({
                 onSearch={onSearch}
                 value={param.name}
                 onChange={(paramName: string): void => {
-                  const newParams = paramsWithNewValue(id, paramName, param.value);
+                  const newParams = paramsWithNewValue(
+                    id,
+                    paramName,
+                    param.value,
+                  );
                   setParams(newParams);
-                  if (onChange) onChange(newParams);
+                  if (onChange) {
+                    onChange(newParams);
+                  }
                 }}
                 label={id === 0 ? leftColumnName : null}
                 error={Boolean(validation?.validateLeftColumn?.(param.name))}
@@ -74,9 +86,15 @@ export const EditableList: React.FC<EditListProps> = ({
               <Input
                 value={param.value}
                 onChange={(ev: React.ChangeEvent<HTMLInputElement>): void => {
-                  const newParams = paramsWithNewValue(id, param.name, ev.target.value);
+                  const newParams = paramsWithNewValue(
+                    id,
+                    param.name,
+                    ev.target.value,
+                  );
                   setParams(newParams);
-                  if (onChange) onChange(newParams);
+                  if (onChange) {
+                    onChange(newParams);
+                  }
                 }}
                 label={id === 0 ? rightColumnName : null}
                 error={Boolean(validation?.validateRightColumn?.(param.value))}
@@ -86,12 +104,18 @@ export const EditableList: React.FC<EditListProps> = ({
             </S.InputWrapper>
           )}
           {renderAdditionalColumn?.(params)}
-          {(typeof renderActions === 'function' && renderActions?.(param, id, params, { onClickDelete })) ||
+          {(typeof renderActions === 'function' &&
+            renderActions?.(param, id, params, { onClickDelete })) ||
             (renderActions === true && (
               <S.CrudWrapper marginWithLabel={id === 0 ? leftColumnName : null}>
                 <Cruds
                   onRemove={(): void => {
-                    const newParams = params ? [...params.slice(0, id), ...params.slice(id + 1, params.length)] : [];
+                    const newParams = params
+                      ? [
+                          ...params.slice(0, id),
+                          ...params.slice(id + 1, params.length),
+                        ]
+                      : [];
                     if (onClickDelete) {
                       onClickDelete(param, id, newParams);
                     } else {
@@ -112,7 +136,11 @@ export const EditableList: React.FC<EditListProps> = ({
             disabled={addButtonConfig?.disableAddButton}
           >
             <S.AddIconWrapper>
-              <Icon component={<Add3M />} size={24} color={theme.palette['blue-600']} />
+              <Icon
+                component={<Add3M />}
+                size={24}
+                color={theme.palette['blue-600']}
+              />
             </S.AddIconWrapper>
             <span>{addButtonConfig?.textAddButton}</span>
           </S.AddButton>

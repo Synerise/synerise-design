@@ -1,5 +1,7 @@
 import React from 'react';
-import { renderWithProvider } from '@synerise/ds-utils/dist/testing';
+
+import { renderWithProvider } from '@synerise/ds-utils';
+
 import CodeSnippet from '../CodeSnippet';
 import { CodeSnippetType } from '../CodeSnippet.types';
 
@@ -10,13 +12,17 @@ const MULTI_CODE_EXAMPLE =
 
 describe('CodeSnippet', () => {
   it('should render CodeSnippet Inline', () => {
-    const { getByText } = renderWithProvider(<CodeSnippet>{INLINE_CODE_EXAMPLE}</CodeSnippet>);
+    const { getByText } = renderWithProvider(
+      <CodeSnippet>{INLINE_CODE_EXAMPLE}</CodeSnippet>,
+    );
     expect(getByText(INLINE_CODE_EXAMPLE)).toBeTruthy();
   });
 
   it('should render CodeSnippet SingleBlock', () => {
     const { getByText } = renderWithProvider(
-      <CodeSnippet type={CodeSnippetType.SINGLE_LINE}>{SINGLE_CODE_EXAMPLE}</CodeSnippet>
+      <CodeSnippet type={CodeSnippetType.SINGLE_LINE}>
+        {SINGLE_CODE_EXAMPLE}
+      </CodeSnippet>,
     );
     expect(getByText(SINGLE_CODE_EXAMPLE)).toBeTruthy();
   });
@@ -25,7 +31,7 @@ describe('CodeSnippet', () => {
     const { getByText } = renderWithProvider(
       <CodeSnippet type={CodeSnippetType.MULTI_LINE} wrap rows={4}>
         {MULTI_CODE_EXAMPLE}
-      </CodeSnippet>
+      </CodeSnippet>,
     );
     expect(getByText(MULTI_CODE_EXAMPLE)).toBeTruthy();
   });

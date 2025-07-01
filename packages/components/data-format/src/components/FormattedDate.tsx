@@ -1,16 +1,19 @@
+import { type Dayjs } from 'dayjs';
+import { type Moment } from 'moment';
 import React from 'react';
-import { Moment } from 'moment';
-import { Dayjs } from 'dayjs';
 
 import { useDataFormat } from '../hooks';
-import { DateToFormatOptions } from '../types';
+import { type DateToFormatOptions } from '../types';
 
 export type FormattedDateProps = {
   value: Date | Moment | Dayjs;
   options?: DateToFormatOptions;
 };
 
-export const FormattedDate: React.FC<FormattedDateProps> = ({ value, options }): JSX.Element => {
+export const FormattedDate: React.FC<FormattedDateProps> = ({
+  value,
+  options,
+}): JSX.Element => {
   const { formatValue } = useDataFormat();
 
   return <>{formatValue(value, options)}</>;

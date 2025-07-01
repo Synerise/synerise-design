@@ -1,22 +1,31 @@
-import React, { ReactNode, useCallback, useMemo } from 'react';
+import React, { type ReactNode, useCallback, useMemo } from 'react';
 import { useIntl } from 'react-intl';
 
-import '@synerise/ds-core/dist/js/style';
-import Icon, { AngleLeftS, AngleRightS } from '@synerise/ds-icon';
 import Button from '@synerise/ds-button';
-import Skeleton from '@synerise/ds-skeleton';
+import '@synerise/ds-core/dist/js/style';
 import { useDataFormat } from '@synerise/ds-data-format';
+import Icon, { AngleLeftS, AngleRightS } from '@synerise/ds-icon';
+import Skeleton from '@synerise/ds-skeleton';
 
-import './style/index.less';
-import * as S from './Table.styles';
-import { DSTableProps } from './Table.types';
-import TableHeader from './TableHeader/TableHeader';
 import DefaultTable from './DefaultTable/DefaultTable';
 import GroupTable from './GroupTable/GroupTable';
-import { GroupType } from './GroupTable/GroupTable.types';
-
-import { useTableLocale, TableLocaleContext, getChildrenColumnName, getSkeletonProps, isGrouped } from './utils';
-import { SELECTION_INVERT, SELECTION_ALL, ITEM_RENDER_TYPE } from './constants/Table.constants';
+import { type GroupType } from './GroupTable/GroupTable.types';
+import * as S from './Table.styles';
+import { type DSTableProps } from './Table.types';
+import TableHeader from './TableHeader/TableHeader';
+import {
+  ITEM_RENDER_TYPE,
+  SELECTION_ALL,
+  SELECTION_INVERT,
+} from './constants/Table.constants';
+import './style/index.less';
+import {
+  TableLocaleContext,
+  getChildrenColumnName,
+  getSkeletonProps,
+  isGrouped,
+  useTableLocale,
+} from './utils';
 
 const DSTable = <T extends object>(props: DSTableProps<T>) => {
   const intl = useIntl();
@@ -54,7 +63,10 @@ const DSTable = <T extends object>(props: DSTableProps<T>) => {
   const { formatValue } = useDataFormat();
 
   const renderHeader = useCallback((): JSX.Element => {
-    const size = selection && selection?.selectedRowKeys && selection?.selectedRowKeys.length;
+    const size =
+      selection &&
+      selection?.selectedRowKeys &&
+      selection?.selectedRowKeys.length;
 
     const data =
       grouped && isGrouped(dataSource)
@@ -68,7 +80,8 @@ const DSTable = <T extends object>(props: DSTableProps<T>) => {
           }, [])
         : dataSource;
 
-    const totalCount = dataSourceTotalCount || dataSource?.length || dataSourceFull?.length;
+    const totalCount =
+      dataSourceTotalCount || dataSource?.length || dataSourceFull?.length;
     return !hideTitleBar ? (
       <TableHeader
         withBorderTop={headerWithBorderTop}
@@ -88,7 +101,9 @@ const DSTable = <T extends object>(props: DSTableProps<T>) => {
         locale={tableLocale}
         renderSelectionTitle={renderSelectionTitle}
         hideTitlePart={hideTitlePart}
-        childrenColumnName={getChildrenColumnName(expandable?.childrenColumnName)}
+        childrenColumnName={getChildrenColumnName(
+          expandable?.childrenColumnName,
+        )}
         isLoading={loading}
       />
     ) : (
@@ -122,9 +137,12 @@ const DSTable = <T extends object>(props: DSTableProps<T>) => {
       showTotal: (total: number, range: number[]) =>
         !hideTitlePart ? (
           <span>
-            <strong>{formatValue(range[0])}</strong>-<strong>{formatValue(range[1])}</strong> of{' '}
+            <strong>{formatValue(range[0])}</strong>-
+            <strong>{formatValue(range[1])}</strong> of{' '}
             <strong>{formatValue(total)}</strong>{' '}
-            {grouped ? tableLocale?.pagination?.groups : tableLocale?.pagination?.items}
+            {grouped
+              ? tableLocale?.pagination?.groups
+              : tableLocale?.pagination?.items}
           </span>
         ) : (
           <div style={{ width: '150px' }}>
@@ -170,7 +188,16 @@ const DSTable = <T extends object>(props: DSTableProps<T>) => {
         {...extraProps}
       />
     );
-  }, [columns, footerPagination, loading, pagination, props, renderHeader, skeletonProps, tableLocale]);
+  }, [
+    columns,
+    footerPagination,
+    loading,
+    pagination,
+    props,
+    renderHeader,
+    skeletonProps,
+    tableLocale,
+  ]);
 
   return (
     <TableLocaleContext.Provider value={tableLocale}>
@@ -180,12 +207,14 @@ const DSTable = <T extends object>(props: DSTableProps<T>) => {
         disableColumnNamesLineBreak={disableColumnNamesLineBreak}
       >
         {!loading && grouped && dataSource?.length ? (
-          // @ts-ignore
+          // @ts-expect-error type 'T' does not satisfy the constraint 'GroupType<T>'.
           <GroupTable<T>
             {...props}
             locale={tableLocale}
             title={renderHeader}
-            pagination={dataSource?.length && pagination ? footerPagination : false}
+            pagination={
+              dataSource?.length && pagination ? footerPagination : false
+            }
           />
         ) : (
           tableContent

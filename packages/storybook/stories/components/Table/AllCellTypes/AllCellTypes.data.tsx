@@ -1,26 +1,33 @@
 import React, { ReactNode } from 'react';
 import { action } from 'storybook/actions';
 
-import Icon, { InfoFillS, LockM, MailM, UserM, VarTypeBooleanM, VarTypeListM, VarTypeStringM } from '@synerise/ds-icon';
-import { theme } from '@synerise/ds-core';
-import { DSColumnType, TableCell } from '@synerise/ds-table';
 import Avatar, { ObjectAvatar } from '@synerise/ds-avatar';
 import Button from '@synerise/ds-button';
-import Select from '@synerise/ds-select';
 import Checkbox from '@synerise/ds-checkbox';
-import ProgressBar from '@synerise/ds-progress-bar';
-
+import { theme } from '@synerise/ds-core';
+import Icon, {
+  InfoFillS,
+  LockM,
+  MailM,
+  UserM,
+  VarTypeBooleanM,
+  VarTypeListM,
+  VarTypeStringM,
+} from '@synerise/ds-icon';
 import Loader from '@synerise/ds-loader';
-import Tooltip from '@synerise/ds-tooltip';
+import ProgressBar from '@synerise/ds-progress-bar';
+import Select from '@synerise/ds-select';
 import Switch from '@synerise/ds-switch';
+import { DSColumnType, TableCell } from '@synerise/ds-table';
 import Tag, { TagShape } from '@synerise/ds-tag';
+import Tooltip from '@synerise/ds-tooltip';
 
 import { AVATAR_IMAGE } from '../../../constants';
 import { Counter } from '../../Loader/Loader.data';
 import { AdditionalColumnData } from '../Table.types';
 import { chromaticCellRender } from '../Table.utils';
 
-export type RelationsType = typeof RELATIONS[number];
+export type RelationsType = (typeof RELATIONS)[number];
 
 export const RELATIONS = [
   {
@@ -1947,8 +1954,8 @@ export const DATA_SOURCE_FULL = [
   },
 ];
 
-export type RowType = typeof DATA_SOURCE_FULL[number];
-export type RowTypeFull = typeof DATA_SOURCE_FULL[number];
+export type RowType = (typeof DATA_SOURCE_FULL)[number];
+export type RowTypeFull = (typeof DATA_SOURCE_FULL)[number];
 
 type ColumnType = AdditionalColumnData & DSColumnType<RowTypeFull>;
 
@@ -1962,7 +1969,7 @@ export const COLUMNS_WITH_AVATARS_LINK: ColumnType[] = [
     ellipsis: true,
     icon: { component: <VarTypeListM /> },
     iconTooltip: { component: <InfoFillS /> },
-    render: avatar => {
+    render: (avatar) => {
       return (
         <a href="#">
           <TableCell.AvatarLabelCell
@@ -1991,7 +1998,7 @@ export const COLUMNS_WITH_TRIGGERS: ColumnType[] = [
     ellipsis: true,
     icon: { component: <VarTypeListM /> },
     iconTooltip: { component: <InfoFillS /> },
-    render: select => (
+    render: (select) => (
       <Select value={select.value}>
         {select.options.map((option: string) => (
           <Select.Option value={option}>{option}</Select.Option>
@@ -2007,7 +2014,7 @@ export const COLUMNS_WITH_TRIGGERS: ColumnType[] = [
     ellipsis: true,
     icon: { component: <VarTypeListM /> },
     iconTooltip: { component: <InfoFillS /> },
-    render: age => (
+    render: (age) => (
       <Button type="secondary" onClick={() => alert(age)}>
         Show age
       </Button>
@@ -2036,7 +2043,7 @@ export const COLUMNS_WITH_TRIGGERS: ColumnType[] = [
     ellipsis: true,
     icon: { component: <VarTypeListM /> },
     iconTooltip: { component: <InfoFillS /> },
-    render: editable => (
+    render: (editable) => (
       <TableCell.EditableCell
         value={editable}
         placeholder={'No data'}
@@ -2052,7 +2059,7 @@ export const COLUMNS_WITH_TRIGGERS: ColumnType[] = [
     ellipsis: true,
     icon: { component: <VarTypeListM /> },
     iconTooltip: { component: <InfoFillS /> },
-    render: name => (
+    render: (name) => (
       <TableCell.CopyableCell
         value={name}
         confirmMessage="Copied to clipboard!"
@@ -2066,7 +2073,8 @@ export const COLUMNS_WITH_TRIGGERS: ColumnType[] = [
     dataIndex: 'checked',
     icon: { component: <VarTypeBooleanM /> },
     iconTooltip: { component: <InfoFillS /> },
-    render: checked => chromaticCellRender(<Checkbox withoutPadding checked={checked} />),
+    render: (checked) =>
+      chromaticCellRender(<Checkbox withoutPadding checked={checked} />),
   },
   {
     render: () => (
@@ -2087,7 +2095,9 @@ export const COLUMNS_WITH_PROGRESS_BAR: ColumnType[] = [
         <ProgressBar
           showLabel={true}
           containerStyles={{ flexDirection: 'row-reverse', width: '80px' }}
-          labelFormatter={(amount, percent) => <div style={{ padding: '8px 0 0 8px' }}>{percent}%</div>}
+          labelFormatter={(amount, percent) => (
+            <div style={{ padding: '8px 0 0 8px' }}>{percent}%</div>
+          )}
           percent={60}
           strokeColor={theme.palette['green-500']}
         ></ProgressBar>
@@ -2111,7 +2121,9 @@ export const COLUMNS_WITH_LABELS: ColumnType[] = [
     },
     width: '200px',
     sortRender: 'string',
-    render: (name, record) => <TableCell.IconLabelCell label={name} disabled={record.inactive} />,
+    render: (name, record) => (
+      <TableCell.IconLabelCell label={name} disabled={record.inactive} />
+    ),
   },
   {
     title: 'Relations',
@@ -2153,7 +2165,9 @@ export const COLUMNS_WITH_ICONS: ColumnType[] = [
       multiple: 2,
     },
     render: (country, record) => {
-      return <TableCell.FlagLabelCell countryCode={country} label={record.name} />;
+      return (
+        <TableCell.FlagLabelCell countryCode={country} label={record.name} />
+      );
     },
   },
 
@@ -2186,7 +2200,9 @@ export const COLUMNS_WITH_STATUSES: ColumnType[] = [
     ellipsis: true,
     icon: { component: <VarTypeBooleanM /> },
     tooltip: { title: 'Tooltip', description: 'Description' },
-    render: status => <TableCell.StatusLabelCell status={status} label={status} />,
+    render: (status) => (
+      <TableCell.StatusLabelCell status={status} label={status} />
+    ),
   },
   {
     title: 'Tag',
@@ -2196,7 +2212,7 @@ export const COLUMNS_WITH_STATUSES: ColumnType[] = [
     ellipsis: true,
     icon: { component: <VarTypeStringM /> },
     iconTooltip: { component: <InfoFillS /> },
-    render: tag => <Tag shape={tag.shape} name={tag.label} />,
+    render: (tag) => <Tag shape={tag.shape} name={tag.label} />,
   },
   {
     title: 'Tag with icon',
@@ -2206,7 +2222,7 @@ export const COLUMNS_WITH_STATUSES: ColumnType[] = [
     ellipsis: true,
     icon: { component: <VarTypeStringM /> },
     iconTooltip: { component: <InfoFillS /> },
-    render: tag => (
+    render: (tag) => (
       <TableCell.TagIconCell>
         <Tag shape={tag.shape} name={tag.label} />
         <Icon component={<LockM />} color="#949ea6" />
@@ -2221,8 +2237,11 @@ export const COLUMNS_WITH_STATUSES: ColumnType[] = [
     ellipsis: true,
     icon: { component: <VarTypeBooleanM /> },
     iconTooltip: { component: <InfoFillS /> },
-    render: enabled => (
-      <Tooltip title={enabled ? 'Switch off' : 'Switch on'} placement={'topLeft'}>
+    render: (enabled) => (
+      <Tooltip
+        title={enabled ? 'Switch off' : 'Switch on'}
+        placement={'topLeft'}
+      >
         <Switch onChange={action('Status change')} checked={enabled} label="" />
       </Tooltip>
     ),
@@ -2239,10 +2258,17 @@ export const COLUMNS_WITH_AVATARS: ColumnType[] = [
     ellipsis: true,
     icon: { component: <VarTypeListM /> },
     iconTooltip: { component: <InfoFillS /> },
-    render: avatar => {
+    render: (avatar) => {
       return (
         <TableCell.AvatarLabelCell
-          avatar={<Avatar backgroundColor="red" backgroundColorHue="050" src={AVATAR_IMAGE} size="small"></Avatar>}
+          avatar={
+            <Avatar
+              backgroundColor="red"
+              backgroundColorHue="050"
+              src={AVATAR_IMAGE}
+              size="small"
+            ></Avatar>
+          }
           title="Test"
         />
       );
@@ -2257,7 +2283,7 @@ export const COLUMNS_WITH_AVATARS: ColumnType[] = [
     ellipsis: true,
     icon: { component: <VarTypeListM /> },
     iconTooltip: { component: <InfoFillS /> },
-    render: avatar => {
+    render: (avatar) => {
       return (
         <TableCell.AvatarLabelCell
           avatarAction={action('Avatar Action')}
@@ -2282,7 +2308,7 @@ export const COLUMNS_WITH_AVATARS: ColumnType[] = [
     ellipsis: true,
     icon: { component: <VarTypeListM /> },
     iconTooltip: { component: <InfoFillS /> },
-    render: avatar => {
+    render: (avatar) => {
       return (
         <TableCell.AvatarLabelCell
           avatar={
@@ -2307,7 +2333,7 @@ export const COLUMNS_WITH_AVATARS: ColumnType[] = [
     ellipsis: true,
     icon: { component: <VarTypeListM /> },
     iconTooltip: { component: <InfoFillS /> },
-    render: avatar => {
+    render: (avatar) => {
       const getPercent = (): number | ReactNode | null => {
         return (
           <div style={{ display: 'flex' }}>
@@ -2317,13 +2343,31 @@ export const COLUMNS_WITH_AVATARS: ColumnType[] = [
       };
       return (
         <TableCell.AvatarLabelCell
-          avatar={<ObjectAvatar badgeStatus="active" iconComponent={<Icon component={avatar.icon} color="red" />} />}
+          avatar={
+            <ObjectAvatar
+              badgeStatus="active"
+              iconComponent={<Icon component={avatar.icon} color="red" />}
+            />
+          }
           title={avatar.titleLarg}
           loader={
-            <div style={{ display: 'flex', width: '100px', alignItems: 'center', margin: '-1px 0 -3px 0' }}>
+            <div
+              style={{
+                display: 'flex',
+                width: '100px',
+                alignItems: 'center',
+                margin: '-1px 0 -3px 0',
+              }}
+            >
               <div>{avatar.labelLoader}</div>
               <div>
-                <Loader percentFormatter={getPercent} size="S" color="blue" label="Loading..." labelPosition="right" />
+                <Loader
+                  percentFormatter={getPercent}
+                  size="S"
+                  color="blue"
+                  label="Loading..."
+                  labelPosition="right"
+                />
               </div>
             </div>
           }
@@ -2340,7 +2384,7 @@ export const COLUMNS_WITH_AVATARS: ColumnType[] = [
     ellipsis: true,
     icon: { component: <VarTypeListM /> },
     iconTooltip: { component: <InfoFillS /> },
-    render: avatar => {
+    render: (avatar) => {
       return (
         <TableCell.AvatarLabelCell
           avatar={

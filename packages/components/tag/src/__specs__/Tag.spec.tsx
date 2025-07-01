@@ -1,6 +1,8 @@
 import React from 'react';
+
+import { renderWithProvider } from '@synerise/ds-utils';
 import { fireEvent, screen } from '@testing-library/react';
-import { renderWithProvider } from '@synerise/ds-utils/dist/testing';
+
 import Tag, { TagShape } from '../index';
 
 describe('Tag', () => {
@@ -18,13 +20,23 @@ describe('Tag', () => {
   });
 
   it('should render with remove button', () => {
-    renderWithProvider(<Tag shape={TagShape.DEFAULT_ROUND} name={TAGNAME} removable />);
+    renderWithProvider(
+      <Tag shape={TagShape.DEFAULT_ROUND} name={TAGNAME} removable />,
+    );
 
     expect(screen.getByTestId(REMOVE_BUTTON_TESTID)).toBeInTheDocument();
   });
 
   it('should onRemove fire', () => {
-    renderWithProvider(<Tag id="test" shape={TagShape.DEFAULT_ROUND} name={TAGNAME} onRemove={onRemove} removable />);
+    renderWithProvider(
+      <Tag
+        id="test"
+        shape={TagShape.DEFAULT_ROUND}
+        name={TAGNAME}
+        onRemove={onRemove}
+        removable
+      />,
+    );
 
     fireEvent.click(screen.getByTestId(REMOVE_BUTTON_TESTID));
 
@@ -32,7 +44,9 @@ describe('Tag', () => {
   });
 
   it('should onClick fire', () => {
-    renderWithProvider(<Tag shape={TagShape.DEFAULT_ROUND} name={TAGNAME} onClick={onClick} />);
+    renderWithProvider(
+      <Tag shape={TagShape.DEFAULT_ROUND} name={TAGNAME} onClick={onClick} />,
+    );
 
     fireEvent.click(screen.getByTestId(TAG_TESTID));
 
@@ -40,7 +54,14 @@ describe('Tag', () => {
   });
 
   it('should onClick fire if disabled', () => {
-    renderWithProvider(<Tag shape={TagShape.DEFAULT_ROUND} name={TAGNAME} onClick={onClick} disabled />);
+    renderWithProvider(
+      <Tag
+        shape={TagShape.DEFAULT_ROUND}
+        name={TAGNAME}
+        onClick={onClick}
+        disabled
+      />,
+    );
 
     fireEvent.click(screen.getByTestId(TAG_TESTID));
 
@@ -49,8 +70,16 @@ describe('Tag', () => {
 
   it('should className be passed down', () => {
     const TEST_CLASS = 'test-class';
-    renderWithProvider(<Tag shape={TagShape.DEFAULT_ROUND} name={TAGNAME} className={TEST_CLASS} />);
+    renderWithProvider(
+      <Tag
+        shape={TagShape.DEFAULT_ROUND}
+        name={TAGNAME}
+        className={TEST_CLASS}
+      />,
+    );
 
-    expect(screen.getByTestId(TAG_TESTID).classList.contains(TEST_CLASS)).toBe(true);
+    expect(screen.getByTestId(TAG_TESTID).classList.contains(TEST_CLASS)).toBe(
+      true,
+    );
   });
 });

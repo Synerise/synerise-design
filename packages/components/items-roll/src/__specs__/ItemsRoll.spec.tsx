@@ -1,9 +1,10 @@
 import React from 'react';
-import { renderWithProvider } from '@synerise/ds-utils/dist/testing';
+
+import { renderWithProvider } from '@synerise/ds-utils';
 import { cleanup, fireEvent, screen, within } from '@testing-library/react';
 
 import ItemsRoll from '../ItemsRoll';
-import { propsFactory, ACTIONS, ITEM_TEXT } from './utils';
+import { ACTIONS, ITEM_TEXT, propsFactory } from './utils';
 
 const DEFAULT_ITEMS_LENGTH = 100;
 const DEFAULT_MAX_TO_SHOW_ITEMS = 10;
@@ -32,24 +33,36 @@ describe('ItemsRoll', () => {
       onItemRemove,
     });
 
-    const { container } = renderWithProvider(<ItemsRoll {...props} useFooter />);
+    const { container } = renderWithProvider(
+      <ItemsRoll {...props} useFooter />,
+    );
 
     const searchInput = container.querySelector('.ant-input')!;
 
-    expect(await screen.findByText(`${DEFAULT_ITEMS_LENGTH}`)).toBeInTheDocument();
+    expect(
+      await screen.findByText(`${DEFAULT_ITEMS_LENGTH}`),
+    ).toBeInTheDocument();
     expect(await screen.findByText('Change selection')).toBeInTheDocument();
-    expect(await screen.findByText(`${DEFAULT_MAX_TO_SHOW_ITEMS}`)).toBeInTheDocument();
-    expect(container.querySelectorAll(`.items-roll-list-item`).length).toBe(DEFAULT_MAX_TO_SHOW_ITEMS);
+    expect(
+      await screen.findByText(`${DEFAULT_MAX_TO_SHOW_ITEMS}`),
+    ).toBeInTheDocument();
+    expect(container.querySelectorAll(`.items-roll-list-item`).length).toBe(
+      DEFAULT_MAX_TO_SHOW_ITEMS,
+    );
     expect(await screen.findByText(`Clear all`)).toBeInTheDocument();
     expect(container.querySelectorAll('.ant-divider').length).toBe(2);
     expect(searchInput.getAttribute('placeholder')).toBe('Search...');
     expect(searchInput).toHaveValue('');
 
-    const firstListItem = container.querySelectorAll('.items-roll-list-item')[0] as HTMLDivElement;
+    const firstListItem = container.querySelectorAll(
+      '.items-roll-list-item',
+    )[0] as HTMLDivElement;
 
     fireEvent.mouseOver(firstListItem);
 
-    const removeIcon = container.querySelector('.element-remove-icon') as HTMLDivElement;
+    const removeIcon = container.querySelector(
+      '.element-remove-icon',
+    ) as HTMLDivElement;
 
     expect(removeIcon).toBeInTheDocument();
 
@@ -61,11 +74,15 @@ describe('ItemsRoll', () => {
 
     expect(onItemRemove).toHaveBeenCalledTimes(1);
 
-    const actionMenuTrigger = container.querySelector('.ant-dropdown-trigger') as HTMLElement;
+    const actionMenuTrigger = container.querySelector(
+      '.ant-dropdown-trigger',
+    ) as HTMLElement;
 
     fireEvent.click(actionMenuTrigger);
 
-    const actionMenu = await screen.findByTestId('items-roll-action-menu') as HTMLElement;
+    const actionMenu = (await screen.findByTestId(
+      'items-roll-action-menu',
+    )) as HTMLElement;
 
     expect(await screen.findByText('Import')).toBeInTheDocument();
     expect(await screen.findByText('Export')).toBeInTheDocument();
@@ -99,7 +116,9 @@ describe('ItemsRoll', () => {
       onClearAll,
     });
 
-    const { container } = renderWithProvider(<ItemsRoll {...props} useFooter />);
+    const { container } = renderWithProvider(
+      <ItemsRoll {...props} useFooter />,
+    );
 
     expect(container.querySelectorAll('.ant-dropdown-trigger').length).toBe(0);
   });
@@ -133,12 +152,14 @@ describe('ItemsRoll', () => {
       onChangeSelection,
       texts: {
         changeSelectionLabel: 'Custom Change Selection',
-      } as any,
+      },
     });
 
     renderWithProvider(<ItemsRoll {...props} />);
 
-    expect(await screen.findByText('Custom Change Selection')).toBeInTheDocument();
+    expect(
+      await screen.findByText('Custom Change Selection'),
+    ).toBeInTheDocument();
   });
 
   it('renders with virtualized list', () => {
@@ -156,7 +177,9 @@ describe('ItemsRoll', () => {
 
     renderWithProvider(<ItemsRoll {...props} useVirtualizedList />);
 
-    expect(screen.getByTestId('items-roll-virtualized-list')).toBeInTheDocument();
+    expect(
+      screen.getByTestId('items-roll-virtualized-list'),
+    ).toBeInTheDocument();
   });
 
   it('renders with grouped list', async () => {
@@ -175,7 +198,7 @@ describe('ItemsRoll', () => {
       },
       {
         groups,
-      }
+      },
     );
 
     renderWithProvider(<ItemsRoll {...props} groups={groups} />);
@@ -198,7 +221,9 @@ describe('ItemsRoll', () => {
       onChangeSelection,
     });
 
-    const { container } = renderWithProvider(<ItemsRoll {...props} useFooter />);
+    const { container } = renderWithProvider(
+      <ItemsRoll {...props} useFooter />,
+    );
 
     const searchInput = container.querySelector('.ant-input') as HTMLElement;
 
@@ -224,10 +249,12 @@ describe('ItemsRoll', () => {
         onChangeSelection,
       },
       undefined,
-      true
+      true,
     );
 
-    const { container } = renderWithProvider(<ItemsRoll {...props} useFooter />);
+    const { container } = renderWithProvider(
+      <ItemsRoll {...props} useFooter />,
+    );
 
     const searchInput = container.querySelector('.ant-input') as HTMLElement;
 
@@ -249,10 +276,14 @@ describe('ItemsRoll', () => {
 
     renderWithProvider(<ItemsRoll {...props} useFooter />);
 
-    const onClearAllButton = await screen.findByText('Clear all') as HTMLElement;
+    const onClearAllButton = (await screen.findByText(
+      'Clear all',
+    )) as HTMLElement;
 
     fireEvent.click(onClearAllButton);
-    const confirmBtn = document.querySelector('.ant-popover .ant-btn-primary') as HTMLButtonElement;
+    const confirmBtn = document.querySelector(
+      '.ant-popover .ant-btn-primary',
+    ) as HTMLButtonElement;
     fireEvent.click(confirmBtn);
 
     expect(onClearAll).toHaveBeenCalledTimes(1);
@@ -273,7 +304,9 @@ describe('ItemsRoll', () => {
 
     renderWithProvider(<ItemsRoll {...props} />);
 
-    const onChangeSelectionButton = await screen.findByText('Change selection') as HTMLElement;
+    const onChangeSelectionButton = (await screen.findByText(
+      'Change selection',
+    )) as HTMLElement;
 
     fireEvent.click(onChangeSelectionButton);
 
@@ -319,7 +352,9 @@ describe('ItemsRoll', () => {
     renderWithProvider(<ItemsRoll {...props} useFooter />);
 
     expect(await screen.findByText(`${SHOW_MORE_STEP}`)).toBeInTheDocument();
-    expect(await screen.findByText(`${ITEM_TEXT}-${MAX_ITEMS_TO_SHOW - 1}`)).toBeInTheDocument();
+    expect(
+      await screen.findByText(`${ITEM_TEXT}-${MAX_ITEMS_TO_SHOW - 1}`),
+    ).toBeInTheDocument();
   });
 
   it('renders with calculated show more button', async () => {
@@ -340,7 +375,9 @@ describe('ItemsRoll', () => {
 
     renderWithProvider(<ItemsRoll {...props} useFooter />);
 
-    expect(await screen.findByText(`${SHOW_MORE_STEP - 100 - 10}`)).toBeInTheDocument();
+    expect(
+      await screen.findByText(`${SHOW_MORE_STEP - 100 - 10}`),
+    ).toBeInTheDocument();
   });
 
   it('renders withChangeSelectionDropdown', async () => {
@@ -352,7 +389,7 @@ describe('ItemsRoll', () => {
     const onChangeSelection = jest.fn();
     const changeSelectionDropdownProps = {
       overlay: <div>Overlay content</div>,
-      trigger: ['click' as 'click'],
+      trigger: ['click' as const],
       onVisibleChange,
     };
 
@@ -362,7 +399,6 @@ describe('ItemsRoll', () => {
       onClearAll,
       onChangeSelection,
       changeSelectionDropdownProps,
-      // @ts-ignore
       texts: {
         changeSelectionLabel: CHANGE_SELECTION_BTN,
       },
@@ -381,8 +417,8 @@ describe('ItemsRoll', () => {
     const onSearchClear = jest.fn();
     const onClearAll = jest.fn();
     const onChangeSelection = jest.fn();
-    const CUSTOM_COUNTER = 'custom counter'
-    const renderCount = (count: number) => <>{`${CUSTOM_COUNTER}-${count}`}</>
+    const CUSTOM_COUNTER = 'custom counter';
+    const renderCount = (count: number) => <>{`${CUSTOM_COUNTER}-${count}`}</>;
 
     const props = propsFactory({
       onSearch,
@@ -391,16 +427,18 @@ describe('ItemsRoll', () => {
       onChangeSelection,
     });
 
-    renderWithProvider(<ItemsRoll {...props} renderCount={renderCount}/>);
+    renderWithProvider(<ItemsRoll {...props} renderCount={renderCount} />);
 
-    expect(await screen.findByText(`${CUSTOM_COUNTER}-${props.items.length}`)).toBeInTheDocument();
+    expect(
+      await screen.findByText(`${CUSTOM_COUNTER}-${props.items.length}`),
+    ).toBeInTheDocument();
   });
   it('does not render clear / remove buttons if isDisabled prop is true', async () => {
     const onSearch = jest.fn();
     const onSearchClear = jest.fn();
     const onClearAll = jest.fn();
     const onChangeSelection = jest.fn();
-    
+
     const props = propsFactory({
       onSearch,
       onSearchClear,
@@ -410,7 +448,9 @@ describe('ItemsRoll', () => {
 
     renderWithProvider(<ItemsRoll {...props} isDisabled />);
     expect(await screen.findByText('Change selection')).toBeInTheDocument();
-    expect(screen.queryByTestId('items-roll-remove-icon')).not.toBeInTheDocument();
+    expect(
+      screen.queryByTestId('items-roll-remove-icon'),
+    ).not.toBeInTheDocument();
     expect(screen.queryByText('Clear all')).not.toBeInTheDocument();
   });
 });

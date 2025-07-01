@@ -1,11 +1,16 @@
-import styled, { keyframes, Keyframes } from 'styled-components';
-import { ReactNode } from 'react';
-import { ThemeProps } from '@synerise/ds-core';
-import { hexToRgba } from '@synerise/ds-utils';
+import { type ReactNode } from 'react';
+import styled, { type Keyframes, keyframes } from 'styled-components';
+
+import { type ThemeProps } from '@synerise/ds-core';
 import { UnorderedList } from '@synerise/ds-unordered-list/dist/Unordered-list.styles';
-import { ToastType } from './Toast.types';
+import { hexToRgba } from '@synerise/ds-utils';
 
-const getDescriptionColorForType = ({ toastType, theme }: ThemeProps & { toastType: ToastType }): string => {
+import { type ToastType } from './Toast.types';
+
+const getDescriptionColorForType = ({
+  toastType,
+  theme,
+}: ThemeProps & { toastType: ToastType }): string => {
   switch (toastType) {
     case 'informative':
       return theme.palette['grey-600'];
@@ -17,7 +22,10 @@ const getDescriptionColorForType = ({ toastType, theme }: ThemeProps & { toastTy
   }
 };
 
-const getIconColorForType = ({ toastType, theme }: ThemeProps & { toastType: ToastType }): string => {
+const getIconColorForType = ({
+  toastType,
+  theme,
+}: ThemeProps & { toastType: ToastType }): string => {
   switch (toastType) {
     case 'informative':
       return theme.palette['grey-600'];
@@ -29,7 +37,10 @@ const getIconColorForType = ({ toastType, theme }: ThemeProps & { toastType: Toa
   }
 };
 
-const getBackgroundColorForType = ({ toastType, theme }: ThemeProps & { toastType: ToastType }): string => {
+const getBackgroundColorForType = ({
+  toastType,
+  theme,
+}: ThemeProps & { toastType: ToastType }): string => {
   switch (toastType) {
     case 'informative':
       return theme.palette['grey-050'];
@@ -81,7 +92,7 @@ export const AlertContent = styled.div<{ hasBottomMargin?: boolean }>`
   align-items: flex-start;
   justify-content: center;
   margin-right: 24px;
-  ${props => props.hasBottomMargin && 'margin-bottom:16px;'}
+  ${(props) => props.hasBottomMargin && 'margin-bottom:16px;'}
 
   ${UnorderedList} {
     margin-bottom: 8px;
@@ -106,7 +117,7 @@ export const IconExpanderWrapper = styled.div<{
   cursor: pointer;
   svg {
     transition: transform 0.1s linear;
-    transform: rotateZ(${props => (props.expanded ? '180deg' : '0deg')});
+    transform: rotateZ(${(props) => (props.expanded ? '180deg' : '0deg')});
   }
 `;
 export const ButtonWrapper = styled.div`
@@ -126,7 +137,7 @@ export const NumberWrapper = styled.div`
   &:hover {
     background-image: linear-gradient(
       to right,
-      ${props => props.theme.palette['grey-400']} 20%,
+      ${(props) => props.theme.palette['grey-400']} 20%,
       rgba(255, 255, 255, 0) 10%
     );
     background-color: transparent;
@@ -136,18 +147,22 @@ export const NumberWrapper = styled.div`
     opacity: 1;
   }
 `;
-export const ListWrapper = styled.div<{ visible?: boolean; description?: ReactNode }>`
+export const ListWrapper = styled.div<{
+  visible?: boolean;
+  description?: ReactNode;
+}>`
   display: flex;
-  visibility: ${props => (props.visible ? 'visible' : 'hidden')};
-  height: ${props => (props.visible ? 'auto' : '0')};
-  margin-top: ${props => (!props.description && props.visible ? '10px' : '0')};
+  visibility: ${(props) => (props.visible ? 'visible' : 'hidden')};
+  height: ${(props) => (props.visible ? 'auto' : '0')};
+  margin-top: ${(props) =>
+    !props.description && props.visible ? '10px' : '0'};
 `;
 export const IconOrderWrapper = styled.div`
   visibility: hidden;
   margin: -4px 0;
   &:hover {
     svg {
-      fill: ${props => props.theme.palette['blue-600']};
+      fill: ${(props) => props.theme.palette['blue-600']};
       cursor: pointer;
     }
   }
@@ -168,11 +183,13 @@ export const OrderWrapper = styled.div`
   }
 `;
 export const Wrapper = styled.div`
-  color: ${props => props.theme.palette['grey-050']};
+  color: ${(props) => props.theme.palette['grey-050']};
 `;
 
 export const AnimationContainer = styled.div<{ show?: boolean }>`
-  animation: ${(props): Keyframes => (props.show ? openingAnimation() : closingAnimation())} 0.5s ease-in-out 0s 1;
+  animation: ${(props): Keyframes =>
+      props.show ? openingAnimation() : closingAnimation()}
+    0.5s ease-in-out 0s 1;
 `;
 
 export const WrapperSectionMessage = styled.div`
@@ -190,12 +207,12 @@ export const AlertMessage = styled.div<{
   font-size: 14px;
   line-height: 20px;
   padding-top: 14px;
-  ${props => props.noToastContent && 'padding-bottom: 14px;'};
+  ${(props) => props.noToastContent && 'padding-bottom: 14px;'};
   font-weight: 500;
   overflow: hidden;
   overflow-wrap: break-word;
   text-overflow: ellipsis;
-  padding-right: ${props => getWidth(props.hasClose, props.hasExpander)};
+  padding-right: ${(props) => getWidth(props.hasClose, props.hasExpander)};
 `;
 export const AlertDescription = styled.div<{
   button?: boolean;
@@ -207,7 +224,8 @@ export const AlertDescription = styled.div<{
   overflow: hidden;
   overflow-wrap: anywhere;
   text-overflow: ellipsis;
-  padding-bottom: ${props => (props.button || props.expandedContent ? '16px' : '0')};
+  padding-bottom: ${(props) =>
+    props.button || props.expandedContent ? '16px' : '0'};
   margin-top: 2px;
 `;
 
@@ -221,8 +239,10 @@ export const Container = styled.div<{
   justify-content: center;
   background-color: ${getBackgroundColorForType};
   border-radius: 4px;
-  box-shadow: ${props =>
-    props.color ? `0px 16px 32px 5px ${hexToRgba(props.theme.palette['grey-900'], 0.2)}` : 'none'};
+  box-shadow: ${(props) =>
+    props.color
+      ? `0px 16px 32px 5px ${hexToRgba(props.theme.palette['grey-900'], 0.2)}`
+      : 'none'};
 
   ${IconExpanderWrapper},
   ${IconOrderWrapper},
@@ -239,7 +259,11 @@ export const Container = styled.div<{
   }
   ${OrderWrapper}:hover {
     ${NumberWrapper} {
-      background-image: linear-gradient(to right, ${getDescriptionColorForType} 20%, rgba(255, 255, 255, 0) 10%);
+      background-image: linear-gradient(
+        to right,
+        ${getDescriptionColorForType} 20%,
+        rgba(255, 255, 255, 0) 10%
+      );
       color: ${getDescriptionColorForType};
     }
   }

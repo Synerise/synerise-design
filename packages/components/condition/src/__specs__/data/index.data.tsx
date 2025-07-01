@@ -1,15 +1,16 @@
 import React from 'react';
+
 import {
-  ExpressionM,
-  FolderM,
-  NotificationsM,
-  VarTypeNumberM,
-  VarTypeStringM,
   BooleanM,
   CalendarM,
+  ExpressionM,
+  FolderM,
   HashM,
   ListM,
+  NotificationsM,
   TextM,
+  VarTypeNumberM,
+  VarTypeStringM,
 } from '@synerise/ds-icon';
 
 export const SUBJECT_ITEMS = [...new Array(30)].map((i, index) => ({

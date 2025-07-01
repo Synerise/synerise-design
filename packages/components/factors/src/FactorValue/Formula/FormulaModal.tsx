@@ -1,10 +1,21 @@
 import React from 'react';
-import ModalProxy from '@synerise/ds-modal';
-import InlineEdit from '@synerise/ds-inline-edit';
-import { FormulaModalProps } from '../../Factors.types';
 
-const FormulaModal: React.FC<FormulaModalProps> = ({ value, onApply, onCancel, visible, texts, formulaEditor }) => {
-  const [formulaName, setFormulaName] = React.useState(value?.name || texts.formula.defaultName);
+import InlineEdit from '@synerise/ds-inline-edit';
+import ModalProxy from '@synerise/ds-modal';
+
+import { type FormulaModalProps } from '../../Factors.types';
+
+const FormulaModal: React.FC<FormulaModalProps> = ({
+  value,
+  onApply,
+  onCancel,
+  visible,
+  texts,
+  formulaEditor,
+}) => {
+  const [formulaName, setFormulaName] = React.useState(
+    value?.name || texts.formula.defaultName,
+  );
 
   const handleOk = React.useCallback(() => {
     onApply({
@@ -23,8 +34,10 @@ const FormulaModal: React.FC<FormulaModalProps> = ({ value, onApply, onCancel, v
             name: 'name-of-input',
             placeholder: texts.formula.buttonPlaceholder,
             onChange: (e): void => setFormulaName(e.target.value),
-            onEnterPress: (e): void => setFormulaName((e.target as HTMLInputElement).value),
-            onBlur: (e): void => setFormulaName(e.target.value || texts.formula.defaultName),
+            onEnterPress: (e): void =>
+              setFormulaName((e.target as HTMLInputElement).value),
+            onBlur: (e): void =>
+              setFormulaName(e.target.value || texts.formula.defaultName),
             value: formulaName,
           }}
         />

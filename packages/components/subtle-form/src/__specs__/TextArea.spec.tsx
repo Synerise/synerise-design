@@ -1,7 +1,9 @@
 import React from 'react';
-import SubtleForm from '../SubtleForm';
-import { renderWithProvider } from '@synerise/ds-utils/dist/testing';
+
+import { renderWithProvider } from '@synerise/ds-utils';
 import { fireEvent, screen, waitFor } from '@testing-library/react';
+
+import SubtleForm from '../SubtleForm';
 
 describe('Subtle Textarea', () => {
   it('should render current value', () => {
@@ -21,18 +23,19 @@ describe('Subtle Textarea', () => {
   });
   it('should not render label container before textarea container if not provided a label', () => {
     const LABEL = 'LABEL';
-    const { rerender } = renderWithProvider(<SubtleForm.TextArea label={LABEL} />);
+    const { rerender } = renderWithProvider(
+      <SubtleForm.TextArea label={LABEL} />,
+    );
     expect(screen.getByText(LABEL)).toBeTruthy();
     rerender(<SubtleForm.TextArea />);
     expect(screen.queryByText(LABEL)).not.toBeInTheDocument();
   });
   it('should call onChange', async () => {
-
     const onChange = jest.fn();
     const oldValue = 'VALUE';
     const newValue = 'HELLO';
     const { getByDisplayValue, container } = renderWithProvider(
-      <SubtleForm.TextArea value={oldValue} onChange={onChange} />
+      <SubtleForm.TextArea value={oldValue} onChange={onChange} />,
     );
 
     const textarea = getByDisplayValue(oldValue) as HTMLInputElement;

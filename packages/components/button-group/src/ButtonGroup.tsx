@@ -1,7 +1,8 @@
-import React from 'react';
 import Button from 'antd/lib/button';
+import React from 'react';
+
 import * as S from './ButtonGroup.styles';
-import { ButtonGroupProps } from './ButtonGroup.types';
+import { type ButtonGroupProps } from './ButtonGroup.types';
 
 const ButtonGroup = ({
   className,

@@ -2,6 +2,7 @@
 Package contains utils used across different DS components:
 
 List of utils:
+
 - doubleClickListener,
 - focusWithArrowKeys,
 - getInitials,

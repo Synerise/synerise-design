@@ -1,11 +1,18 @@
-import React from 'react';
 import classnames from 'classnames';
+import React from 'react';
+
 import Icon, { AngleDownS } from '@synerise/ds-icon';
 
 import * as S from './Expander.styles';
-import { ExpanderProps, ExpanderSize } from './Expander.types';
+import { type ExpanderProps, ExpanderSize } from './Expander.types';
 
-const Expander = ({ size = 'S', expanded, disabled, onClick, className }: ExpanderProps) => {
+const Expander = ({
+  size = 'S',
+  expanded,
+  disabled,
+  onClick,
+  className,
+}: ExpanderProps) => {
   return (
     <S.Expander
       onClick={onClick}

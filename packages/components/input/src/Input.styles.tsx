@@ -1,15 +1,19 @@
+import { type SizeType } from 'antd/es/config-provider/SizeContext';
+import BaseAntInput, { type InputProps, type InputRef } from 'antd/lib/input';
+import TextArea, {
+  type TextAreaProps,
+  type TextAreaRef,
+} from 'antd/lib/input/TextArea';
 import React, { forwardRef } from 'react';
-import styled, { css, FlattenSimpleInterpolation } from 'styled-components';
+import styled, {
+  type FlattenSimpleInterpolation,
+  css,
+} from 'styled-components';
 
-import BaseAntInput, { InputProps, InputRef } from 'antd/lib/input';
-import TextArea, { TextAreaProps, TextAreaRef } from 'antd/lib/input/TextArea';
-
-import { ThemeProps } from '@synerise/ds-core';
-import { SizeType } from 'antd/es/config-provider/SizeContext';
-
-import { TextareaWrapper } from './Textarea/Textarea.styles';
+import { type ThemeProps } from '@synerise/ds-core';
 
 import type { AutoResizeProp } from './Input.types';
+import { TextareaWrapper } from './Textarea/Textarea.styles';
 
 const errorInputStyle = (props: ThemeProps) => `
   &&&, && .ant-input {
@@ -33,15 +37,24 @@ const getIconsWidth = (iconCount: number) => {
   return iconCount > 0 ? iconCount * ICON_SIZE + (iconCount - 1) * 4 : 0;
 };
 
-export function autoresizeConfObjToCss({ autoResize, iconCount, boxSizing = 'content-box' }: AutoSizeConfProps) {
+export function autoresizeConfObjToCss({
+  autoResize,
+  iconCount,
+  boxSizing = 'content-box',
+}: AutoSizeConfProps) {
   // autosized inputs have box-sizing set to content-box!
-  const elementPadding = boxSizing === 'content-box' ? 2 * (INPUT_PADDING + INPUT_BORDER) : 0;
+  const elementPadding =
+    boxSizing === 'content-box' ? 2 * (INPUT_PADDING + INPUT_BORDER) : 0;
   const finalPadding = getIconsWidth(iconCount || 0) + elementPadding;
 
-  if (!autoResize) return '';
+  if (!autoResize) {
+    return '';
+  }
   if (typeof autoResize === 'object') {
     return css`
-      ${autoResize.maxWidth ? `max-width: calc(${autoResize.maxWidth} - ${finalPadding}px);` : ''}
+      ${autoResize.maxWidth
+        ? `max-width: calc(${autoResize.maxWidth} - ${finalPadding}px);`
+        : ''}
       min-width: calc(${autoResize.minWidth} - ${finalPadding}px);
     `;
   }
@@ -58,7 +71,7 @@ export const Wrapper = styled.div`
 export const InputWrapper = styled.div<{ iconCount?: number }>`
   position: relative;
   && .ant-input {
-    padding-right: ${props => {
+    padding-right: ${(props) => {
       return `${getIconsWidth(props.iconCount || 0) + INPUT_PADDING}px`;
     }};
     &::placeholder {
@@ -75,22 +88,23 @@ export const OuterWrapper = styled.div<
     resetMargin?: boolean;
   } & AutoSizeConfProps
 >`
-  margin: ${props => (props.resetMargin ? '0' : '0 0 16px 0')};
+  margin: ${(props) => (props.resetMargin ? '0' : '0 0 16px 0')};
   &.active {
     && {
       input {
-        box-shadow: inset 0 0 0 1px ${props => props.theme.palette['blue-600']};
-        border-color: ${props => props.theme.palette['blue-600']};
-        background-color: ${props => props.theme.palette['blue-050']};
+        box-shadow: inset 0 0 0 1px
+          ${(props) => props.theme.palette['blue-600']};
+        border-color: ${(props) => props.theme.palette['blue-600']};
+        background-color: ${(props) => props.theme.palette['blue-050']};
       }
     }
   }
   input {
     padding: 7px ${INPUT_PADDING}px;
-    ${props => autoresizeConfObjToCss(props)}
+    ${(props) => autoresizeConfObjToCss(props)}
   }
 
-  ${props =>
+  ${(props) =>
     props.autoResize &&
     `
     ${InputWrapper} {
@@ -108,8 +122,8 @@ export const IconsWrapper = styled.div<{ disabled?: boolean }>`
   .icon {
     svg {
       transition: 0.3s all;
-      fill: ${props => props.theme.palette['grey-600']};
-      opacity: ${props => (props.disabled ? '0.4' : '')};
+      fill: ${(props) => props.theme.palette['grey-600']};
+      opacity: ${(props) => (props.disabled ? '0.4' : '')};
     }
   }
 `;
@@ -135,7 +149,7 @@ export const IconsFlexContainer = styled.div<{ type: string }>`
 export const IconWrapper = styled.div`
   .icon:hover {
     svg {
-      fill: ${props => props.theme.palette['blue-600']};
+      fill: ${(props) => props.theme.palette['blue-600']};
       cursor: pointer;
     }
   }
@@ -143,23 +157,36 @@ export const IconWrapper = styled.div`
 
 export const AntdInput = styled(
   forwardRef<InputRef, InputProps & { error?: boolean; size?: SizeType }>(
-    // eslint-disable-next-line
-    ({ error, ...props }, ref) => <BaseAntInput autoComplete="off" {...props} ref={ref} />
-  )
-)<{ error?: boolean; readOnly?: boolean; autoResize?: AutoResizeProp; disabled?: boolean }>`
-  ${props => (props.error ? errorInputStyle(props) : '')};
+    ({ error, ...props }, ref) => (
+      <BaseAntInput autoComplete="off" {...props} ref={ref} />
+    ),
+  ),
+)<{
+  error?: boolean;
+  readOnly?: boolean;
+  autoResize?: AutoResizeProp;
+  disabled?: boolean;
+}>`
+  ${(props) => (props.error ? errorInputStyle(props) : '')};
 
   &&& {
-    min-height: ${props => (props.autoResize ? '16' : '32')}px;
-    transition: all 0.3s, width 0ms, min-width 0ms, max-width 0ms;
+    min-height: ${(props) => (props.autoResize ? '16' : '32')}px;
+    transition:
+      all 0.3s,
+      width 0ms,
+      min-width 0ms,
+      max-width 0ms;
     grid-area: 1 / 1;
-    color: ${props => (props.disabled ? props.theme.palette['grey-500'] : props.theme.palette['grey-700'])};
+    color: ${(props) =>
+      props.disabled
+        ? props.theme.palette['grey-500']
+        : props.theme.palette['grey-700']};
     z-index: 1;
     &::placeholder {
-      color: ${props => props.theme.palette['grey-500']};
+      color: ${(props) => props.theme.palette['grey-500']};
     }
     &::-moz-placeholder {
-      line-height: ${props => (props.size === 'large' ? `2.49` : `1.29`)};
+      line-height: ${(props) => (props.size === 'large' ? `2.49` : `1.29`)};
     }
     .ds-input-prefix {
       border-top-left-radius: 3px;
@@ -187,14 +214,15 @@ export const AntdInput = styled(
 
 export const AntdTextArea = styled(
   forwardRef<TextAreaRef, TextAreaProps & { error?: boolean }>(
-    // eslint-disable-next-line
-    ({ error, ...props }, ref) => <TextArea autoComplete="off" {...props} ref={ref} />
-  )
+    ({ error, ...props }, ref) => (
+      <TextArea autoComplete="off" {...props} ref={ref} />
+    ),
+  ),
 )<{ error?: boolean }>`
-  ${props => (props.error ? errorInputStyle(props) : '')};
+  ${(props) => (props.error ? errorInputStyle(props) : '')};
 
   && {
-    color: ${props => props.theme.palette['grey-700']};
+    color: ${(props) => props.theme.palette['grey-700']};
   }
 `;
 
@@ -232,12 +260,12 @@ export const ContentBelow = styled.div`
 `;
 
 export const ErrorText = styled.div`
-  color: ${props => props.theme.palette['red-600']};
+  color: ${(props) => props.theme.palette['red-600']};
   margin-bottom: 4px;
 `;
 
 export const Label = styled.label`
-  color: ${props => props.theme.palette['grey-800']};
+  color: ${(props) => props.theme.palette['grey-800']};
   font-weight: 500;
   display: block;
 `;
@@ -246,11 +274,11 @@ export const Counter = styled.div`
   font-weight: 500;
   flex: 1 0 auto;
   text-align: end;
-  color: ${props => props.theme.palette['grey-500']};
+  color: ${(props) => props.theme.palette['grey-500']};
 `;
 
 export const Description = styled.div`
-  color: ${props => props.theme.palette['grey-600']};
+  color: ${(props) => props.theme.palette['grey-600']};
 `;
 
 export const ContentAbove = styled.div`
@@ -260,8 +288,8 @@ export const ContentAbove = styled.div`
   min-height: 18px;
 `;
 export const AddonWrapper = styled.div<{ height: number }>`
-  background: ${props => props.theme.palette['grey-050']};
+  background: ${(props) => props.theme.palette['grey-050']};
   display: flex;
   align-items: center;
-  height: ${props => `${props.height}px` || '30px'};
+  height: ${(props) => (props.height ? `${props.height}px` : '30px')};
 `;

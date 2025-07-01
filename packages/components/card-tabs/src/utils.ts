@@ -1,5 +1,11 @@
-export const getColor = (isActive: boolean, activeColor: string, defaultColor: string): string => {
-  if (isActive) return activeColor;
+export const getColor = (
+  isActive: boolean,
+  activeColor: string,
+  defaultColor: string,
+): string => {
+  if (isActive) {
+    return activeColor;
+  }
   return defaultColor;
 };
 export const getLighterColor = (color: string): string => {

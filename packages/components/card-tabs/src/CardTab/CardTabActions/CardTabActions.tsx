@@ -2,8 +2,8 @@ import React from 'react';
 
 import Cruds from '@synerise/ds-cruds';
 
-import type { CardTabActionsProps } from './CardTabActions.types';
 import * as S from '../CardTab.styles';
+import type { CardTabActionsProps } from './CardTabActions.types';
 
 const CardTabActions = ({
   onChangeName,
@@ -14,7 +14,10 @@ const CardTabActions = ({
   texts,
 }: CardTabActionsProps) => {
   return (
-    <S.CardTabSuffix data-testid="card-tab-suffix" className="ds-card-tabs__suffix-nodrag">
+    <S.CardTabSuffix
+      data-testid="card-tab-suffix"
+      className="ds-card-tabs__suffix-nodrag"
+    >
       <Cruds
         onEdit={onChangeName ?? enterEditNameMode}
         editTooltip={texts?.changeNameTooltip}

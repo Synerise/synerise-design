@@ -1,0 +1,5 @@
+registry=https://nexus.snrinternal.com/repository/npm-release
+unsafe-perm=true
+always-auth=true
+auth-type=legacy
+strict-ssl=false

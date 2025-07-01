@@ -1,8 +1,12 @@
 import type { Key, ReactNode } from 'react';
+
 import type { TagProps } from '@synerise/ds-tag';
 import type { TooltipProps } from '@synerise/ds-tooltip';
 
-type CardSelectTagProps = Omit<TagProps, 'shape' | 'removable' | 'asPill' | 'onRemove' | 'image' | 'texts'>;
+type CardSelectTagProps = Omit<
+  TagProps,
+  'shape' | 'removable' | 'asPill' | 'onRemove' | 'image' | 'texts'
+>;
 
 export type CardSelectAlignType = 'left' | 'center' | 'right';
 export type CardSelectSizeType = 'small' | 'medium';

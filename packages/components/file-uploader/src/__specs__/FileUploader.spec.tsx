@@ -1,6 +1,8 @@
 import React from 'react';
-import { renderWithProvider } from '@synerise/ds-utils/dist/testing';
+
+import { renderWithProvider } from '@synerise/ds-utils';
 import { fireEvent } from '@testing-library/react';
+
 import FileUploader from '../index';
 
 const defaultTexts = {
@@ -10,7 +12,9 @@ const defaultTexts = {
   uploading: 'Uploading...',
 };
 
-window.URL.createObjectURL = function() {return ''};
+window.URL.createObjectURL = function () {
+  return '';
+};
 
 describe('FileUploader', () => {
   const REMOVE_BUTTON_TESTID = 'fileview-remove';
@@ -30,14 +34,12 @@ describe('FileUploader', () => {
           ...defaultTexts,
           buttonLabel: BUTTON_LABEL,
         }}
-      />
+      />,
     );
 
     // ASSERT
     expect(getByText(BUTTON_LABEL)).toBeTruthy();
   });
-
-
 
   it('should render with tooltip', () => {
     // ARRANGE
@@ -50,7 +52,7 @@ describe('FileUploader', () => {
         texts={defaultTexts}
         label="Some label"
         tooltip="Some tooltip text"
-      />
+      />,
     );
 
     // ASSERT
@@ -67,7 +69,7 @@ describe('FileUploader', () => {
         files={[]}
         texts={defaultTexts}
         error={ERROR_TEXT}
-      />
+      />,
     );
 
     // ASSERT
@@ -85,7 +87,7 @@ describe('FileUploader', () => {
         texts={defaultTexts}
         onUpload={onUpload}
         disabled
-      />
+      />,
     );
 
     const dropAreaInput = getByTestId('droparea-input');
@@ -103,10 +105,10 @@ describe('FileUploader', () => {
     const { queryByTestId } = renderWithProvider(
       <FileUploader
         mode="single"
-        files={[{file}]}
+        files={[{ file }]}
         texts={defaultTexts}
         removable={false}
-      />
+      />,
     );
 
     // ASSERT
@@ -118,9 +120,9 @@ describe('FileUploader', () => {
     const { queryByTestId } = renderWithProvider(
       <FileUploader
         mode="single"
-        files={[{file, disabled: true}]}
+        files={[{ file, disabled: true }]}
         texts={defaultTexts}
-      />
+      />,
     );
 
     // ASSERT
@@ -134,10 +136,10 @@ describe('FileUploader', () => {
     const { getByText } = renderWithProvider(
       <FileUploader
         mode="single"
-        files={[{file, error: ERROR_TEXT}]}
+        files={[{ file, error: ERROR_TEXT }]}
         accept={['image/*']}
         texts={defaultTexts}
-      />
+      />,
     );
 
     // ASSERT

@@ -1,21 +1,27 @@
 import React from 'react';
-import { v4 as uuid } from 'uuid';
 import { fn } from 'storybook/test';
+import { v4 as uuid } from 'uuid';
 
-import { NotificationsM, VarTypeStringM } from '@synerise/ds-icon';
 import type { ConditionStep, StepConditions } from '@synerise/ds-condition';
 import type { ContextGroup, ContextItem } from '@synerise/ds-context-selector';
+import type { DefinedFactorTypes } from '@synerise/ds-factors';
+import { NotificationsM, VarTypeStringM } from '@synerise/ds-icon';
 import type { OperatorsItem } from '@synerise/ds-operators';
-import type { DefinedFactorTypes } from '@synerise/ds-factors'
 
-import { CONTEXT_ITEMS, CONTEXT_GROUPS, CONTEXT_TEXTS } from '../ContextSelector/data/context.data';
-import { OPERATORS_GROUPS, OPERATORS_ITEMS } from '../Operators/data/index.data';
-
+import {
+  CONTEXT_GROUPS,
+  CONTEXT_ITEMS,
+  CONTEXT_TEXTS,
+} from '../ContextSelector/data/context.data';
 import {
   FACTORS_TEXTS,
   FACTORS_GROUPS as PARAMETER_GROUPS,
   FACTORS_ITEMS as PARAMETER_ITEMS,
 } from '../Factors/Factors.data';
+import {
+  OPERATORS_GROUPS,
+  OPERATORS_ITEMS,
+} from '../Operators/data/index.data';
 
 export const SUBJECT_ITEMS = [...new Array(30)].map((_i, index) => ({
   id: index,
@@ -110,21 +116,50 @@ export const DEFAULT_PARAMETER_VALUE = {
   texts: FACTORS_TEXTS,
 };
 
-export const getAvailableFactorTypes = (operator?: OperatorsItem): DefinedFactorTypes[] | undefined => {
+export const getAvailableFactorTypes = (
+  operator?: OperatorsItem,
+): DefinedFactorTypes[] | undefined => {
   const operatorIdString = operator?.id.toString() || '';
-  if (operatorIdString.includes('BOOL') || operatorIdString.includes('MATCHES_CURRENT')) {
+  if (
+    operatorIdString.includes('BOOL') ||
+    operatorIdString.includes('MATCHES_CURRENT')
+  ) {
     return undefined;
   }
   if (operatorIdString.includes('STRING')) {
-    return ['text', 'parameter', 'contextParameter', 'dynamicKey', 'formula', 'array'];
+    return [
+      'text',
+      'parameter',
+      'contextParameter',
+      'dynamicKey',
+      'formula',
+      'array',
+    ];
   }
   if (operatorIdString.includes('NUMBER')) {
-    return ['number', 'parameter', 'contextParameter', 'dynamicKey', 'formula', 'array'];
+    return [
+      'number',
+      'parameter',
+      'contextParameter',
+      'dynamicKey',
+      'formula',
+      'array',
+    ];
   }
   if (operatorIdString.includes('DATE')) {
     return ['date', 'dateRange'];
   }
-  return ['text', 'number', 'parameter', 'contextParameter', 'dynamicKey', 'formula', 'array', 'date', 'dateRange'];
+  return [
+    'text',
+    'number',
+    'parameter',
+    'contextParameter',
+    'dynamicKey',
+    'formula',
+    'array',
+    'date',
+    'dateRange',
+  ];
 };
 
 export const DEFAULT_CONTEXT_VALUE = {
@@ -134,7 +169,9 @@ export const DEFAULT_CONTEXT_VALUE = {
   texts: CONTEXT_TEXTS,
 };
 
-export const DEFAULT_STEP = (subject?: ContextItem | ContextGroup): ConditionStep => ({
+export const DEFAULT_STEP = (
+  subject?: ContextItem | ContextGroup,
+): ConditionStep => ({
   id: uuid(),
   stepName: '',
   context: {
@@ -201,7 +238,8 @@ export const STEPS_POPULATED = [
         factor: {
           ...DEFAULT_FACTOR_VALUE,
           selectedFactorType: 'text' as const,
-          value: '1,2,3,4,5,671,2,3,4,5,671,2,3,4,5,671,2,3,4,5,671,2,3,4,5,671,2,3,4,5,671,2,3,4,5,671,2,3,4,5,67',
+          value:
+            '1,2,3,4,5,671,2,3,4,5,671,2,3,4,5,671,2,3,4,5,671,2,3,4,5,671,2,3,4,5,671,2,3,4,5,671,2,3,4,5,67',
           availableFactorTypes: getAvailableFactorTypes(OPERATORS_ITEMS[2]),
         },
       },
@@ -224,7 +262,8 @@ export const STEPS_POPULATED = [
         factor: {
           ...DEFAULT_FACTOR_VALUE,
           selectedFactorType: 'text' as const,
-          value: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus volutpat ligula neque, non semper ipsum.',
+          value:
+            'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus volutpat ligula neque, non semper ipsum.',
           availableFactorTypes: getAvailableFactorTypes(OPERATORS_ITEMS[2]),
         },
       },
@@ -386,9 +425,15 @@ export const STEPS_POPULATED = [
           ...DEFAULT_FACTOR_VALUE,
           selectedFactorType: 'array' as const,
           defaultFactorType: 'text' as const,
-          value: [100, 2630, 5160, 7690, 10220, 12750, 15280, 17810, 20340, 22870, 25400, 27930, 30460, 32990, 35520, 38050, 40580, 43110, 45640, 48170, 50700, 53230, 55760, 58290, 60820, 63350, 65880, 68410, 70940, 73470, 76000, 78530, 81060, 83590, 86120, 88650, 91180, 93710, 96240, 98770],
+          value: [
+            100, 2630, 5160, 7690, 10220, 12750, 15280, 17810, 20340, 22870,
+            25400, 27930, 30460, 32990, 35520, 38050, 40580, 43110, 45640,
+            48170, 50700, 53230, 55760, 58290, 60820, 63350, 65880, 68410,
+            70940, 73470, 76000, 78530, 81060, 83590, 86120, 88650, 91180,
+            93710, 96240, 98770,
+          ],
           arrayProps: {
-            itemType: 'number'
+            itemType: 'number',
           },
           availableFactorTypes: getAvailableFactorTypes(OPERATORS_ITEMS[10]),
         },
@@ -414,7 +459,58 @@ export const STEPS_POPULATED = [
           ...DEFAULT_FACTOR_VALUE,
           selectedFactorType: 'array' as const,
           defaultFactorType: 'text' as const,
-          value: ['Apple', 'Banana', 'Carrot', 'Dragonfruit', 'Eggplant', 'Fig', 'Grape', 'Honeydew', 'Iceberg', 'Jalapeno', 'Kiwi', 'Lemon', 'Mango', 'Nectarine', 'Orange', 'Papaya', 'Quince', 'Raspberry', 'Strawberry', 'Tomato', 'Ugli fruit', 'Vanilla bean', 'Watermelon', 'Xigua', 'Yam', 'Zucchini', 'Apricot', 'Blueberry', 'Cantaloupe', 'Date', 'Elderberry', 'Feijoa', 'Guava', 'Huckleberry', 'Indian fig', 'Jackfruit', 'Kumquat', 'Lime', 'Mulberry', 'Nutmeg', 'Olive', 'Peach', 'Quinoa', 'Radish', 'Spinach', 'Turnip', 'Ube', 'Voavanga', 'Walnut', 'Yuzu'],
+          value: [
+            'Apple',
+            'Banana',
+            'Carrot',
+            'Dragonfruit',
+            'Eggplant',
+            'Fig',
+            'Grape',
+            'Honeydew',
+            'Iceberg',
+            'Jalapeno',
+            'Kiwi',
+            'Lemon',
+            'Mango',
+            'Nectarine',
+            'Orange',
+            'Papaya',
+            'Quince',
+            'Raspberry',
+            'Strawberry',
+            'Tomato',
+            'Ugli fruit',
+            'Vanilla bean',
+            'Watermelon',
+            'Xigua',
+            'Yam',
+            'Zucchini',
+            'Apricot',
+            'Blueberry',
+            'Cantaloupe',
+            'Date',
+            'Elderberry',
+            'Feijoa',
+            'Guava',
+            'Huckleberry',
+            'Indian fig',
+            'Jackfruit',
+            'Kumquat',
+            'Lime',
+            'Mulberry',
+            'Nutmeg',
+            'Olive',
+            'Peach',
+            'Quinoa',
+            'Radish',
+            'Spinach',
+            'Turnip',
+            'Ube',
+            'Voavanga',
+            'Walnut',
+            'Yuzu',
+          ],
           availableFactorTypes: getAvailableFactorTypes(OPERATORS_ITEMS[10]),
         },
       },
@@ -431,9 +527,9 @@ export const STEPS_POPULATED = [
   },
 ];
 
-export const STEPS_POPULATED_PARAMETER_ERRORS = STEPS_POPULATED.map(step => ({
+export const STEPS_POPULATED_PARAMETER_ERRORS = STEPS_POPULATED.map((step) => ({
   ...step,
-  conditions: step.conditions.map(condition => ({
+  conditions: step.conditions.map((condition) => ({
     ...condition,
     parameter: {
       ...condition.parameter,
@@ -442,9 +538,9 @@ export const STEPS_POPULATED_PARAMETER_ERRORS = STEPS_POPULATED.map(step => ({
   })),
 }));
 
-export const STEPS_POPULATED_OPERATOR_ERRORS = STEPS_POPULATED.map(step => ({
+export const STEPS_POPULATED_OPERATOR_ERRORS = STEPS_POPULATED.map((step) => ({
   ...step,
-  conditions: step.conditions.map(condition => ({
+  conditions: step.conditions.map((condition) => ({
     ...condition,
     operator: {
       ...condition.operator,
@@ -453,9 +549,9 @@ export const STEPS_POPULATED_OPERATOR_ERRORS = STEPS_POPULATED.map(step => ({
   })),
 }));
 
-export const STEPS_POPULATED_FACTOR_ERRORS = STEPS_POPULATED.map(step => ({
+export const STEPS_POPULATED_FACTOR_ERRORS = STEPS_POPULATED.map((step) => ({
   ...step,
-  conditions: step.conditions.map(condition => ({
+  conditions: step.conditions.map((condition) => ({
     ...condition,
     factor: {
       ...condition.factor,
@@ -464,20 +560,20 @@ export const STEPS_POPULATED_FACTOR_ERRORS = STEPS_POPULATED.map(step => ({
   })),
 }));
 
-export const STEPS_POPULATED_ACTION_ATTRIBUTE = STEPS_POPULATED.map(step => ({
+export const STEPS_POPULATED_ACTION_ATTRIBUTE = STEPS_POPULATED.map((step) => ({
   ...step,
   actionAttribute: {
     ...DEFAULT_ACTION_ATTRIBUTE_VALUE,
-    error: true, errorText: 'Action attribute error text',
+    error: true,
+    errorText: 'Action attribute error text',
     value: {
       type: '',
       ...PARAMETER_ITEMS[2],
     },
-  }
+  },
 }));
 
-
-export const STEPS_POPULATED_CONTEXT_ERROR = STEPS_POPULATED.map(step => ({
+export const STEPS_POPULATED_CONTEXT_ERROR = STEPS_POPULATED.map((step) => ({
   ...step,
   actionAttribute: {
     ...DEFAULT_ACTION_ATTRIBUTE_VALUE,
@@ -490,5 +586,5 @@ export const STEPS_POPULATED_CONTEXT_ERROR = STEPS_POPULATED.map(step => ({
     ...step.context,
     error: true,
     errorText: 'Context error text',
-  }
+  },
 }));

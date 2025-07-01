@@ -1,21 +1,33 @@
-import React, { ChangeEvent, useCallback, useEffect, useMemo, useRef, useState } from 'react';
-import { HexColorPicker as ReactColorful } from 'react-colorful';
-import Divider from '@synerise/ds-divider';
-import Tags, { TagShape, Tag } from '@synerise/ds-tags';
-import Icon, { FormulaPlusM, CopyClipboardM } from '@synerise/ds-icon';
 import copy from 'copy-to-clipboard';
-import Tooltip from '@synerise/ds-tooltip';
+import React, {
+  type ChangeEvent,
+  useCallback,
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+} from 'react';
+import { HexColorPicker as ReactColorful } from 'react-colorful';
+
+import Divider from '@synerise/ds-divider';
 import Dropdown from '@synerise/ds-dropdown';
-import { useOnClickOutside, getPopupContainer as defaultGetPopupContainer } from '@synerise/ds-utils';
+import Icon, { CopyClipboardM, FormulaPlusM } from '@synerise/ds-icon';
+import Tags, { Tag, TagShape } from '@synerise/ds-tags';
+import Tooltip from '@synerise/ds-tooltip';
 import {
-  isValidHexColor,
-  isValidTextColor,
+  getPopupContainer as defaultGetPopupContainer,
+  useOnClickOutside,
+} from '@synerise/ds-utils';
+
+import * as S from './ColorPicker.styles';
+import { type ColorPickerProps } from './ColorPicker.types';
+import {
   convert3DigitHexTo6Digit,
   filterAlphanumeric,
+  isValidHexColor,
+  isValidTextColor,
   standardizeColor,
 } from './utils';
-import { ColorPickerProps } from './ColorPicker.types';
-import * as S from './ColorPicker.styles';
 
 const DEFAULT_MAX_WIDTH_PICKER = 228;
 const DEFAULT_COLOR = '#ffffff';
@@ -77,7 +89,7 @@ const ColorPicker = ({
       }
       setPressed(-1);
     },
-    [onChange, setLocalValues]
+    [onChange, setLocalValues],
   );
 
   const onChangeHexColor = useCallback(
@@ -91,7 +103,7 @@ const ColorPicker = ({
       }
       setPressed(-1);
     },
-    [onChange]
+    [onChange],
   );
 
   const onBlurHandler = useCallback(() => {
@@ -136,8 +148,10 @@ const ColorPicker = ({
   });
 
   const saveColor = () => {
-    setSavedColors(ar => {
-      const colorsArray = (lastValidHexColor ? [lastValidHexColor, ...ar] : ar).slice(0, maxSavedColors);
+    setSavedColors((ar) => {
+      const colorsArray = (
+        lastValidHexColor ? [lastValidHexColor, ...ar] : ar
+      ).slice(0, maxSavedColors);
       onSaveColors && onSaveColors(colorsArray);
       return colorsArray;
     });
@@ -147,7 +161,7 @@ const ColorPicker = ({
     (event: ChangeEvent<HTMLInputElement>) => {
       onChangeTextColor(event.target.value);
     },
-    [onChangeTextColor]
+    [onChangeTextColor],
   );
 
   const swatchSection = (
@@ -185,7 +199,10 @@ const ColorPicker = ({
     <S.Container ref={ref} size={size}>
       <ReactColorful color={lastValidHexColor} onChange={onChangeHexColor} />
       <S.PrefixTag height={isShownSavedColors} size={size}>
-        <Tag shape={TagShape.SINGLE_CHARACTER_SQUARE} color={lastValidHexColor} />
+        <Tag
+          shape={TagShape.SINGLE_CHARACTER_SQUARE}
+          color={lastValidHexColor}
+        />
       </S.PrefixTag>
       <S.SubContainer savedColors={isShownSavedColors}>
         <S.ColorPickerInput
@@ -196,7 +213,14 @@ const ColorPicker = ({
           }}
           onBlur={onBlurHandler}
           placeholder={placeholder}
-          icon1={tooltipText ? <S.CopyIcon onClick={copyHandler} component={<CopyClipboardM />} /> : undefined}
+          icon1={
+            tooltipText ? (
+              <S.CopyIcon
+                onClick={copyHandler}
+                component={<CopyClipboardM />}
+              />
+            ) : undefined
+          }
           icon1Tooltip={tooltipText ? <span>{tooltipText}</span> : undefined}
         />
         {isShownSavedColors && (
@@ -249,10 +273,14 @@ const ColorPicker = ({
     errorText,
     inputProps,
   ]);
-  if (readOnly || disabled) return trigger;
+  if (readOnly || disabled) {
+    return trigger;
+  }
   return (
     <>
-      {maxWidth && maxWidth >= DEFAULT_MAX_WIDTH_PICKER && <S.ColorPickerModalStyle maxWidth={maxWidth} />}
+      {maxWidth && maxWidth >= DEFAULT_MAX_WIDTH_PICKER && (
+        <S.ColorPickerModalStyle maxWidth={maxWidth} />
+      )}
       <Dropdown
         overlayClassName="color-picker-overlay"
         align={{ offset: [0, heightOfDropdown()] }}

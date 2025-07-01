@@ -1,6 +1,5 @@
 import styled from 'styled-components';
 
-// eslint-disable-next-line import/prefer-default-export
 export const DynamicKey = styled.div<{ withoutTypeSelector: boolean }>`
   display: flex;
   flex-direction: row;
@@ -13,7 +12,8 @@ export const DynamicKey = styled.div<{ withoutTypeSelector: boolean }>`
       z-index: 2;
     }
     &:first-of-type {
-      border-radius: ${(props): string => (props.withoutTypeSelector ? '3px 0 0 3px' : '0')};
+      border-radius: ${(props): string =>
+        props.withoutTypeSelector ? '3px 0 0 3px' : '0'};
     }
     &:last-of-type {
       border-radius: 0 3px 3px 0;

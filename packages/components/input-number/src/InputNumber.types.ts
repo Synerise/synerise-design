@@ -1,7 +1,8 @@
-import type { ReactNode } from 'react';
 import type { InputNumberProps as AntdInputNumberProps } from 'antd/lib/input-number';
-import type { FormFieldCommonProps } from '@synerise/ds-form-field';
+import type { ReactNode } from 'react';
+
 import type { NumberToFormatOptions } from '@synerise/ds-data-format';
+import type { FormFieldCommonProps } from '@synerise/ds-form-field';
 
 export type InputNumberProps = AntdInputNumberProps<number> & {
   defaultValue?: number | null;

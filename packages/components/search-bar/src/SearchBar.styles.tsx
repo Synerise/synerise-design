@@ -29,7 +29,9 @@ const getPaddingAndWidthForSearchBarAntInput = ({
     (iconLeft ? ICON_LEFT_SIZE + ICON_LEFT_MARGIN_RIGHT : 0) +
     valuePrefixWidth +
     (valuePrefixWidth ? VALUE_PREFIX_WRAPPER_RIGHT_MARGIN : 0);
-  const rightPadding = SEARCH_BAR_PADDING_RIGHT + (!isEmpty ? CLEAR_ICON_SIZE + CLEAR_ICON_MARGIN_LEFT : 0);
+  const rightPadding =
+    SEARCH_BAR_PADDING_RIGHT +
+    (!isEmpty ? CLEAR_ICON_SIZE + CLEAR_ICON_MARGIN_LEFT : 0);
 
   return `
     padding: 0 ${rightPadding}px 0 ${leftPadding}px;
@@ -76,8 +78,10 @@ export const PlaceholderWrapper = styled.div<{ valuePrefixWidth: number }>`
   z-index: 2;
   height: 52px;
   left: ${({ valuePrefixWidth }) =>
-    VALUE_PREFIX_WRAPPER_LEFT_VALUE + valuePrefixWidth + (valuePrefixWidth ? VALUE_PREFIX_WRAPPER_RIGHT_MARGIN : 0)}px;
-  color: ${props => props.theme.palette['grey-500']};
+    VALUE_PREFIX_WRAPPER_LEFT_VALUE +
+    valuePrefixWidth +
+    (valuePrefixWidth ? VALUE_PREFIX_WRAPPER_RIGHT_MARGIN : 0)}px;
+  color: ${(props) => props.theme.palette['grey-500']};
   line-height: 18px;
 `;
 export const SearchBar = styled(Input)`
@@ -96,7 +100,8 @@ export const SearchBar = styled(Input)`
       box-sizing: content-box;
 
       &:focus {
-        box-shadow: inset 0px -2px 0px 0px ${(props): string => props.theme.palette['blue-600']};
+        box-shadow: inset 0px -2px 0px 0px
+          ${(props): string => props.theme.palette['blue-600']};
       }
       ::-webkit-input-placeholder {
         line-height: 52px;
@@ -137,7 +142,8 @@ export const SearchBarWrapper = styled.div<{
   &&& {
     svg {
       transition: all 0.3s ease-out;
-      fill: ${(props): string => (props.disabled ? props.theme.palette['grey-400'] : '')};
+      fill: ${(props): string =>
+        props.disabled ? props.theme.palette['grey-400'] : ''};
     }
 
     input.ant-input {
@@ -158,7 +164,7 @@ export const SearchBarWrapper = styled.div<{
         }
       }
       ${ValuePrefixTitle} {
-        color: ${props => props.theme.palette['blue-600']};
+        color: ${(props) => props.theme.palette['blue-600']};
       }
     }
   }
@@ -175,7 +181,7 @@ export const SearchBarWrapper = styled.div<{
       }
     }
     ${ValuePrefixTitle} {
-      color: ${props => props.theme.palette['blue-600']};
+      color: ${(props) => props.theme.palette['blue-600']};
     }
   }
 `;

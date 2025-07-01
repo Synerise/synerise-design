@@ -1,4 +1,5 @@
-import React, { CSSProperties, ReactNode } from 'react';
+import React, { type CSSProperties, type ReactNode } from 'react';
+
 import * as S from './Footer.styles';
 
 export type FooterProps = {

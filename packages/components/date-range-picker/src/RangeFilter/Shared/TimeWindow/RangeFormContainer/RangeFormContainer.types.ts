@@ -1,13 +1,28 @@
-import { ReactNode } from 'react';
+import { type ReactNode } from 'react';
 
-import type { TimePickerProps } from '@synerise/ds-time-picker';
 import type { DateToFormatOptions } from '@synerise/ds-data-format';
+import type { TimePickerProps } from '@synerise/ds-time-picker';
 
-import { DayKey, RangeActions, TimeWindowProps, TimeWindowTexts } from '../TimeWindow.types';
-import { FilterDefinition, WithDisabledProp } from '../../../RangeFilter.types';
-import { DateLimitMode, RangeDisplayMode } from './RangeForm/RangeForm.types';
+import {
+  type FilterDefinition,
+  type WithDisabledProp,
+} from '../../../RangeFilter.types';
+import {
+  type DayKey,
+  type RangeActions,
+  type TimeWindowProps,
+  type TimeWindowTexts,
+} from '../TimeWindow.types';
+import {
+  type DateLimitMode,
+  type RangeDisplayMode,
+} from './RangeForm/RangeForm.types';
 
-export type DateValue = [Date | undefined, Date | undefined, boolean | undefined];
+export type DateValue = [
+  Date | undefined,
+  Date | undefined,
+  boolean | undefined,
+];
 
 export type FilterErrorType = [ReactNode?, ReactNode?];
 
@@ -33,7 +48,12 @@ export type RangeFormContainerProps = {
   renderSuffix?: () => ReactNode;
 } & Pick<
   TimeWindowProps,
-  'monthlyFilter' | 'monthlyFilterPeriod' | 'hideHeader' | 'headerOptions' | 'onChange' | 'days'
+  | 'monthlyFilter'
+  | 'monthlyFilterPeriod'
+  | 'hideHeader'
+  | 'headerOptions'
+  | 'onChange'
+  | 'days'
 > &
   WithDisabledProp &
   Partial<RangeActions>;

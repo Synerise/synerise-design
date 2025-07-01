@@ -43,7 +43,7 @@ import ItemFilter from '@synerise/ds-item-filter'
 
 | Property       | Description                                                                     | Type                                     | Default   |
 | -------------- | ------------------------------------------------------------------------------- | ---------------------------------------- | --------- |
-| visible        | Whether the ItemFilter is visible or not.                                       | boolean                                  |`false`    |
+| visible        | Whether the ItemFilter is visible or not.                                       | boolean                                  | `false`   |
 | hide           | Specify a callback that will be called when a user clicks mask or close button. | () => void                               | -         |
 | removeItem     | Specify a callback that will be called when a user removes list item            | (`{ id: string }`) =>void                | -         |
 | editItem       | Specify a callback that will be called when a user change name of list item     | (`{ id: string, name: string }`) => void | -         |
@@ -76,9 +76,9 @@ import ItemFilter from '@synerise/ds-item-filter'
 | Property      | Description                             | Type    | Default |
 | ------------- | --------------------------------------- | ------- | ------- |
 | id            | Id of item                              | string  | -       |
-| canUpdate?    | Whether the item can be edited          | boolean |`false`  |
-| canDelete?    | Whether the item can be deleted         | boolean |`false`  |
-| canDuplicate? | Whether the item can be duplicated      | boolean |`false`  |
+| canUpdate?    | Whether the item can be edited          | boolean | `false` |
+| canDelete?    | Whether the item can be deleted         | boolean | `false` |
+| canDuplicate? | Whether the item can be duplicated      | boolean | `false` |
 | name          | Name of item                            | string  | -       |
 | description?  | Description of item                     | string  | -       |
 | user          | Object contains informations about user | User    | -       |

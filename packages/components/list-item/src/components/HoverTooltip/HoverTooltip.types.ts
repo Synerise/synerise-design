@@ -1,4 +1,5 @@
-import type { ReactNode, CSSProperties } from 'react';
+import type { CSSProperties, ReactNode } from 'react';
+
 import type { BasicItemProps } from '../../ListItem.types';
 
 export type HoverTooltipProps = {

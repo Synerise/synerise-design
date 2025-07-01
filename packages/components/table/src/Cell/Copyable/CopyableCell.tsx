@@ -1,10 +1,11 @@
-import React, { useState, useCallback, useEffect } from 'react';
 import copy from 'copy-to-clipboard';
+import React, { useCallback, useEffect, useState } from 'react';
 
 import Icon, { CopyClipboardM } from '@synerise/ds-icon';
 import Tooltip from '@synerise/ds-tooltip';
+
 import * as S from './Copyable.styles';
-import { CopyableCellProps } from './Copyable.types';
+import { type CopyableCellProps } from './Copyable.types';
 
 const DEFAULT_TIMEOUT = 2000;
 
@@ -24,7 +25,9 @@ const CopyableCell = ({
   }, [tooltipVisible, setTooltipVisible, tooltipTimeout]);
 
   const handleCopy = useCallback(() => {
-    if (copy(value)) setTooltipVisible(true);
+    if (copy(value)) {
+      setTooltipVisible(true);
+    }
   }, [value]);
 
   return (

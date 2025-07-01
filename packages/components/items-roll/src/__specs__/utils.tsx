@@ -1,12 +1,16 @@
 import React from 'react';
-import Icon, { FileDownloadM, FileTypeTableM } from '@synerise/ds-icon';
-import { MenuItemProps } from '@synerise/ds-menu';
 
-import { ItemRollElement, ItemsRollProps } from '../ItemsRoll.types';
+import Icon, { FileDownloadM, FileTypeTableM } from '@synerise/ds-icon';
+import { type MenuItemProps } from '@synerise/ds-menu';
+
+import { type ItemRollElement, type ItemsRollProps } from '../ItemsRoll.types';
 
 const randomId = () => `${Math.random()}-${Date.now()}`;
 
-type PropsFactoryArgs = Omit<ItemsRollProps, 'intl' | 'items' | 'searchValue' | 'searchPlaceholder'>;
+type PropsFactoryArgs = Omit<
+  ItemsRollProps,
+  'intl' | 'items' | 'searchValue' | 'searchPlaceholder'
+>;
 
 type ItemOptionsArgs =
   | {
@@ -18,7 +22,7 @@ export const ITEM_TEXT = 'Test_Item';
 
 const hundredItems = [...Array(100).keys()];
 const getItems = (options: ItemOptionsArgs) =>
-  hundredItems.map(num => ({
+  hundredItems.map((num) => ({
     text: `${ITEM_TEXT}-${num}`,
     id: randomId(),
     ...(options
@@ -28,7 +32,11 @@ const getItems = (options: ItemOptionsArgs) =>
       : {}),
   }));
 
-export const propsFactory = (options: PropsFactoryArgs, itemOptions?: ItemOptionsArgs, customValue?: boolean) => ({
+export const propsFactory = (
+  options: PropsFactoryArgs,
+  itemOptions?: ItemOptionsArgs,
+  customValue?: boolean,
+) => ({
   items: getItems(itemOptions) as ItemRollElement[],
   searchValue: customValue ? '5' : '',
   searchPlaceholder: 'Search...',
@@ -48,4 +56,4 @@ export const ACTIONS: ItemRollElement<MenuItemProps>[] = [
     text: 'Export',
     prefixel: <Icon component={<FileDownloadM />} />,
   },
-]
+];

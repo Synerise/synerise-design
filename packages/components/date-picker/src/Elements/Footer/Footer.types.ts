@@ -1,5 +1,6 @@
-import { WrappedComponentProps } from 'react-intl';
-import { Texts } from '../../DatePicker.types';
+import { type WrappedComponentProps } from 'react-intl';
+
+import { type Texts } from '../../DatePicker.types';
 
 export type Props = {
   text?: string;

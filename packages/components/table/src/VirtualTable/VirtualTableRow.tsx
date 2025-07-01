@@ -1,14 +1,23 @@
-import React, { memo, useCallback, useMemo } from 'react';
-import type { ReactElement, CSSProperties } from 'react';
 import classNames from 'classnames';
+import React, {
+  type CSSProperties,
+  type ReactElement,
+  memo,
+  useCallback,
+  useMemo,
+} from 'react';
 import { areEqual } from 'react-window';
+
 import InfiniteLoaderItem from '../InfiniteScroll/InfiniteLoaderItem';
-import type { InfiniteScrollProps, LoaderItemPosition } from '../InfiniteScroll/InfiniteLoaderItem.types';
-import type { RowSelection, DSColumnType, DSTableProps } from '../Table.types';
-import { EXPANDED_ROW_PROPERTY } from './constants';
+import type {
+  InfiniteScrollProps,
+  LoaderItemPosition,
+} from '../InfiniteScroll/InfiniteLoaderItem.types';
+import type { DSColumnType, DSTableProps, RowSelection } from '../Table.types';
+import { type RowStar } from '../hooks/useRowStar';
+import { calculatePixels, getValueFromPath } from '../utils';
 import * as S from './VirtualTable.styles';
-import { RowStar } from '../hooks/useRowStar';
-import { getValueFromPath, calculatePixels } from '../utils';
+import { EXPANDED_ROW_PROPERTY } from './constants';
 
 export const INFINITE_LOADED_ITEM_HEIGHT = 64;
 
@@ -28,25 +37,50 @@ export interface VirtualTableRowProps<T> {
   style: CSSProperties;
 }
 
-const isColumnSortingActive = <T extends unknown>(columns: DSColumnType<T>[], column: DSColumnType<T>): boolean =>
+const isColumnSortingActive = <T,>(
+  columns: DSColumnType<T>[],
+  column: DSColumnType<T>,
+): boolean =>
   !!columns.find((c): boolean => c.key === column.key && !!c.sortOrder);
 
-const calculateToPixelsIfDefined = (value: string | number | undefined | null): number | undefined | null =>
+const calculateToPixelsIfDefined = (
+  value: string | number | undefined | null,
+): number | undefined | null =>
   value ? calculatePixels(value) : (value as number);
 
 function VirtualTableRow<T extends object>({
   index,
   style,
-  data: { mergedColumns, onRowClick, selection, rowStar, dataSource, cellHeight, infiniteScroll, defaultTableProps },
+  data: {
+    mergedColumns,
+    onRowClick,
+    selection,
+    rowStar,
+    dataSource,
+    cellHeight,
+    infiniteScroll,
+    defaultTableProps,
+  },
 }: VirtualTableRowProps<T>): ReactElement {
-  const renderColumn = useCallback((column: DSColumnType<T>, rowData: T, columnIndex: number) => {
-    if (rowData[EXPANDED_ROW_PROPERTY] && column.childRender) {
-      return column.childRender(getValueFromPath(rowData, column.dataIndex), rowData, columnIndex);
-    }
-    return column.render
-      ? column.render(getValueFromPath(rowData, column.dataIndex), rowData, columnIndex)
-      : getValueFromPath(rowData, column.dataIndex);
-  }, []);
+  const renderColumn = useCallback(
+    (column: DSColumnType<T>, rowData: T, columnIndex: number) => {
+      if (rowData[EXPANDED_ROW_PROPERTY] && column.childRender) {
+        return column.childRender(
+          getValueFromPath(rowData, column.dataIndex),
+          rowData,
+          columnIndex,
+        );
+      }
+      return column.render
+        ? column.render(
+            getValueFromPath(rowData, column.dataIndex),
+            rowData,
+            columnIndex,
+          )
+        : getValueFromPath(rowData, column.dataIndex);
+    },
+    [],
+  );
 
   const rowData = useMemo(() => dataSource[index], [dataSource, index]);
 
@@ -57,14 +91,18 @@ function VirtualTableRow<T extends object>({
       let { top } = style;
 
       if (position === 'TOP') {
-        isVisible = Boolean(infiniteScroll && infiniteScroll.prevPage?.hasMore && index === 0);
+        isVisible = Boolean(
+          infiniteScroll && infiniteScroll.prevPage?.hasMore && index === 0,
+        );
         infiniteLoaderItemProps = infiniteScroll?.prevPage;
         top = `0px`;
       }
       if (position === 'BOTTOM') {
         isVisible = Boolean(index === dataSource.length - 1);
         infiniteLoaderItemProps = infiniteScroll?.nextPage;
-        const prevDataInfiniteLoaderHeight = infiniteScroll?.prevPage?.hasMore ? INFINITE_LOADED_ITEM_HEIGHT : 0;
+        const prevDataInfiniteLoaderHeight = infiniteScroll?.prevPage?.hasMore
+          ? INFINITE_LOADED_ITEM_HEIGHT
+          : 0;
         top = `${Number(style.top) + cellHeight + prevDataInfiniteLoaderHeight}px`;
       }
 
@@ -72,7 +110,13 @@ function VirtualTableRow<T extends object>({
         infiniteLoaderItemProps &&
         isVisible && (
           <S.RowWrapper
-            style={{ ...style, top, height: `${INFINITE_LOADED_ITEM_HEIGHT}px`, padding: '0 24px', display: 'flex' }}
+            style={{
+              ...style,
+              top,
+              height: `${INFINITE_LOADED_ITEM_HEIGHT}px`,
+              padding: '0 24px',
+              display: 'flex',
+            }}
           >
             <InfiniteLoaderItem
               infiniteScroll={{ ...infiniteScroll, ...infiniteLoaderItemProps }}
@@ -82,10 +126,12 @@ function VirtualTableRow<T extends object>({
         )
       );
     },
-    [cellHeight, dataSource.length, index, infiniteScroll, style]
+    [cellHeight, dataSource.length, index, infiniteScroll, style],
   );
 
-  const top = infiniteScroll?.prevPage?.hasMore ? `${Number(style.top) + INFINITE_LOADED_ITEM_HEIGHT}px` : style.top;
+  const top = infiniteScroll?.prevPage?.hasMore
+    ? `${Number(style.top) + INFINITE_LOADED_ITEM_HEIGHT}px`
+    : style.top;
 
   return (
     <>
@@ -102,9 +148,12 @@ function VirtualTableRow<T extends object>({
         onRowClickAvailable={onRowClick !== undefined}
       >
         {mergedColumns.map((column, columnIndex) => {
-          const firstWithSelectionAndStar = selection && rowStar && columnIndex === 2;
-          const firstWithSelectionOrStar = (selection || rowStar) && columnIndex === 1;
-          const firstWithoutSelectionAndStar = columnIndex === 0 && !selection && !rowStar;
+          const firstWithSelectionAndStar =
+            selection && rowStar && columnIndex === 2;
+          const firstWithSelectionOrStar =
+            (selection || rowStar) && columnIndex === 1;
+          const firstWithoutSelectionAndStar =
+            columnIndex === 0 && !selection && !rowStar;
 
           return (
             <S.ColWrapper
@@ -113,19 +162,28 @@ function VirtualTableRow<T extends object>({
               className={classNames(
                 'virtual-table-cell',
                 {
-                  'virtual-table-cell-last': columnIndex === mergedColumns.length - 1,
+                  'virtual-table-cell-last':
+                    columnIndex === mergedColumns.length - 1,
                   'ant-table-selection-column': columnIndex === 0 && selection,
                   'ant-table-cell-fix-right': column.fixed === 'right',
                   'ant-table-cell-fix-left': column.fixed === 'left',
-                  'ant-table-cell-fix-right-first': column.fixed === 'right' && column.fixedFirst,
-                  'ant-table-cell-fix-left-first': column.fixed === 'left' && column.fixedFirst,
-                  'ds-expanded-row-first': rowData[EXPANDED_ROW_PROPERTY] && columnIndex === 0,
+                  'ant-table-cell-fix-right-first':
+                    column.fixed === 'right' && column.fixedFirst,
+                  'ant-table-cell-fix-left-first':
+                    column.fixed === 'left' && column.fixedFirst,
+                  'ds-expanded-row-first':
+                    rowData[EXPANDED_ROW_PROPERTY] && columnIndex === 0,
                   'ds-expanded-row-data':
                     rowData[EXPANDED_ROW_PROPERTY] &&
-                    (firstWithoutSelectionAndStar || firstWithSelectionOrStar || firstWithSelectionAndStar),
+                    (firstWithoutSelectionAndStar ||
+                      firstWithSelectionOrStar ||
+                      firstWithSelectionAndStar),
                 },
-                isColumnSortingActive<T>(defaultTableProps?.columns || [], column) && 'ant-table-column-sort',
-                column.className
+                isColumnSortingActive<T>(
+                  defaultTableProps?.columns || [],
+                  column,
+                ) && 'ant-table-column-sort',
+                column.className,
               )}
               key={`row-${index}-column-${column.dataIndex || column.key}`}
               minWidth={calculateToPixelsIfDefined(column?.minWidth)}

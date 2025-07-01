@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+
 import Icon, { IconContainer } from '@synerise/ds-icon';
 import Menu from '@synerise/ds-menu';
 
@@ -25,9 +26,11 @@ export const ItemPart = styled.div<{ align: string }>`
   align-items: center;
   position: relative;
   height: 56px;
-  justify-content: ${(props): string => (props.align === 'left' ? 'flex-start' : 'flex-end')};
+  justify-content: ${(props): string =>
+    props.align === 'left' ? 'flex-start' : 'flex-end'};
   flex: ${(props): string => (props.align === 'left' ? '1' : 'auto')};
-  max-width: ${(props): string => (props.align === 'left' ? 'calc(100% - 80px)' : '68px')};
+  max-width: ${(props): string =>
+    props.align === 'left' ? 'calc(100% - 80px)' : '68px'};
 
   .switch-texts {
     margin: 0;
@@ -47,10 +50,10 @@ export const ColumnManagerItem = styled.div<{ isDragged?: boolean }>`
   width: 100%;
   padding: 13px 24px;
   position: relative;
-  background: ${props => props.theme.palette.white};
+  background: ${(props) => props.theme.palette.white};
   border-bottom: 1px solid ${(props): string => props.theme.palette['grey-200']};
 
-  ${props =>
+  ${(props) =>
     props.isDragged &&
     `
       opacity: 0;

@@ -1,6 +1,6 @@
-import { createIntl, IntlShape } from 'react-intl';
+import { type IntlShape, createIntl } from 'react-intl';
 
-import { DataFormatConfig, DataFormatNotationType } from '../types';
+import { type DataFormatConfig, type DataFormatNotationType } from '../types';
 
 export const EU_NOTATION: DataFormatNotationType = 'EU';
 export const US_NOTATION: DataFormatNotationType = 'US';

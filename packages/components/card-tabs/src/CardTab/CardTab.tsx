@@ -1,15 +1,23 @@
-import React, { useState, useMemo, useCallback, ChangeEvent } from 'react';
+import React, { type ChangeEvent, useCallback, useMemo, useState } from 'react';
+import { useIntl } from 'react-intl';
+
 import Icon from '@synerise/ds-icon';
 import InlineEdit from '@synerise/ds-inline-edit';
-import { useIntl } from 'react-intl';
 import Tooltip from '@synerise/ds-tooltip';
+
 import * as S from './CardTab.styles';
-import CardTabPrefix from './CardTabPrefix/CardTabPrefix';
+import {
+  type CardTabProps,
+  type CardTabSuffixProps,
+  type ListItemEventType,
+} from './CardTab.types';
 import CardTabActions from './CardTabActions/CardTabActions';
 import CardTabDropdown from './CardTabDropdown/CardTabDropdown';
-import { CardTabProps, CardTabSuffixProps, ListItemEventType } from './CardTab.types';
+import CardTabPrefix from './CardTabPrefix/CardTabPrefix';
 
-const CardTab = <IdType extends string | number>(props: CardTabProps<IdType>) => {
+const CardTab = <IdType extends string | number>(
+  props: CardTabProps<IdType>,
+) => {
   const {
     id,
     name,
@@ -42,12 +50,30 @@ const CardTab = <IdType extends string | number>(props: CardTabProps<IdType>) =>
 
   const getTexts = useMemo(() => {
     return {
-      changeNameTooltip: intl.formatMessage({ id: 'DS.CARD-TAB.RENAME', defaultMessage: 'Rename' }),
-      removeTooltip: intl.formatMessage({ id: 'DS.CARD-TAB.REMOVE', defaultMessage: 'Delete' }),
-      duplicateTooltip: intl.formatMessage({ id: 'DS.CARD-TAB.DUPLICATE', defaultMessage: 'Duplicate' }),
-      changeNameMenuItem: intl.formatMessage({ id: 'DS.CARD-TAB.RENAME', defaultMessage: 'Rename' }),
-      removeMenuItem: intl.formatMessage({ id: 'DS.CARD-TAB.REMOVE', defaultMessage: 'Delete' }),
-      duplicateMenuItem: intl.formatMessage({ id: 'DS.CARD-TAB.DUPLICATE', defaultMessage: 'Duplicate' }),
+      changeNameTooltip: intl.formatMessage({
+        id: 'DS.CARD-TAB.RENAME',
+        defaultMessage: 'Rename',
+      }),
+      removeTooltip: intl.formatMessage({
+        id: 'DS.CARD-TAB.REMOVE',
+        defaultMessage: 'Delete',
+      }),
+      duplicateTooltip: intl.formatMessage({
+        id: 'DS.CARD-TAB.DUPLICATE',
+        defaultMessage: 'Duplicate',
+      }),
+      changeNameMenuItem: intl.formatMessage({
+        id: 'DS.CARD-TAB.RENAME',
+        defaultMessage: 'Rename',
+      }),
+      removeMenuItem: intl.formatMessage({
+        id: 'DS.CARD-TAB.REMOVE',
+        defaultMessage: 'Delete',
+      }),
+      duplicateMenuItem: intl.formatMessage({
+        id: 'DS.CARD-TAB.DUPLICATE',
+        defaultMessage: 'Duplicate',
+      }),
       ...texts,
     };
   }, [texts, intl]);
@@ -107,12 +133,23 @@ const CardTab = <IdType extends string | number>(props: CardTabProps<IdType>) =>
       !!event && event.stopPropagation();
       !edited && onSelectTab && onSelectTab(id);
     },
-    [edited, id, onSelectTab]
+    [edited, id, onSelectTab],
   );
 
   const showCardActions = useCallback((): boolean => {
-    return (!!onChangeName || !!onDuplicateTab || !!onRemoveTab || !!onPreviewTab) && !suffixIcon && !renderSuffix;
-  }, [onChangeName, onDuplicateTab, onRemoveTab, onPreviewTab, suffixIcon, renderSuffix]);
+    return (
+      (!!onChangeName || !!onDuplicateTab || !!onRemoveTab || !!onPreviewTab) &&
+      !suffixIcon &&
+      !renderSuffix
+    );
+  }, [
+    onChangeName,
+    onDuplicateTab,
+    onRemoveTab,
+    onPreviewTab,
+    suffixIcon,
+    renderSuffix,
+  ]);
 
   const suffixProps: CardTabSuffixProps = {
     ...props,
@@ -123,7 +160,8 @@ const CardTab = <IdType extends string | number>(props: CardTabProps<IdType>) =>
   };
 
   const cardSuffix = (() => {
-    const showActionsDropdownMenu = actionsAsDropdown && (onChangeName || handleDuplicate || handleRemove);
+    const showActionsDropdownMenu =
+      actionsAsDropdown && (onChangeName || handleDuplicate || handleRemove);
     if (showActionsDropdownMenu) {
       return (
         <CardTabDropdown
@@ -172,8 +210,17 @@ const CardTab = <IdType extends string | number>(props: CardTabProps<IdType>) =>
       data-testid="card-tab-container"
       itemData={itemData}
     >
-      {!edited && <CardTabPrefix dragHandleProps={dragHandleProps} draggable={draggable} {...prefixProps} />}
-      <S.CardTabLabel onDoubleClick={handleEditName} data-testid="card-tab-label">
+      {!edited && (
+        <CardTabPrefix
+          dragHandleProps={dragHandleProps}
+          draggable={draggable}
+          {...prefixProps}
+        />
+      )}
+      <S.CardTabLabel
+        onDoubleClick={handleEditName}
+        data-testid="card-tab-label"
+      >
         {edited ? (
           <InlineEdit
             className="ds-card-tabs__edit-name"

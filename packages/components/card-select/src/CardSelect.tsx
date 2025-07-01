@@ -1,12 +1,13 @@
-import React, { useState, useRef } from 'react';
+import React, { useRef, useState } from 'react';
 import { withTheme } from 'styled-components';
+
 import Icon, { Check3M, InfoFillS } from '@synerise/ds-icon';
 import { TagShape } from '@synerise/ds-tag';
-import { useOnClickOutside } from '@synerise/ds-utils';
 import Tooltip from '@synerise/ds-tooltip';
+import { useOnClickOutside } from '@synerise/ds-utils';
 
 import * as S from './CardSelect.styles';
-import { CardSelectProps } from './CardSelect.types';
+import { type CardSelectProps } from './CardSelect.types';
 import {
   DEFAULT_ICON_SIZE_LARGE,
   DEFAULT_ICON_SIZE_SMALL,
@@ -46,20 +47,27 @@ const CardSelect = ({
     setIsPressed(true);
 
     setTimeout(() => {
-      // eslint-disable-next-line no-unused-expressions
       tickIconRef.current?.blur();
     });
   };
 
-  const realIconSize = iconSize || (size === 'small' ? DEFAULT_ICON_SIZE_SMALL : DEFAULT_ICON_SIZE_LARGE);
-  const realTickSize = tickSize || (size === 'small' ? DEFAULT_TICK_SIZE_SMALL : DEFAULT_TICK_SIZE_LARGE);
+  const realIconSize =
+    iconSize ||
+    (size === 'small' ? DEFAULT_ICON_SIZE_SMALL : DEFAULT_ICON_SIZE_LARGE);
+  const realTickSize =
+    tickSize ||
+    (size === 'small' ? DEFAULT_TICK_SIZE_SMALL : DEFAULT_TICK_SIZE_LARGE);
 
   const tagElement = tagProps && (
     <S.TagRibbonAnchor>
       <S.TagRibbon {...tagProps} shape={TagShape.DEFAULT_SQUARE} asPill />
     </S.TagRibbonAnchor>
   );
-  const tagElementWithTooltip = tagTooltipProps ? <Tooltip {...tagTooltipProps}>{tagElement}</Tooltip> : tagElement;
+  const tagElementWithTooltip = tagTooltipProps ? (
+    <Tooltip {...tagTooltipProps}>{tagElement}</Tooltip>
+  ) : (
+    tagElement
+  );
 
   useOnClickOutside(wrapperRef, () => {
     isPressed && setIsPressed(false);
@@ -106,7 +114,11 @@ const CardSelect = ({
               {value ? (
                 <Icon
                   size={realTickSize}
-                  color={value ? theme.palette['green-600'] : theme.palette['grey-400']}
+                  color={
+                    value
+                      ? theme.palette['green-600']
+                      : theme.palette['grey-400']
+                  }
                   component={<Check3M />}
                 />
               ) : (
@@ -116,7 +128,10 @@ const CardSelect = ({
           )}
           {infoTooltipProps && (
             <Tooltip {...infoTooltipProps}>
-              <Icon component={<InfoFillS />} color={theme.palette['grey-400']} />
+              <Icon
+                component={<InfoFillS />}
+                color={theme.palette['grey-400']}
+              />
             </Tooltip>
           )}
         </S.Aside>
@@ -142,7 +157,9 @@ const CardSelect = ({
         </S.Main>
 
         {customTickVisible && customTickVisibleComponent && (
-          <S.Aside size={size}>{customTickVisible && customTickVisibleComponent}</S.Aside>
+          <S.Aside size={size}>
+            {customTickVisible && customTickVisibleComponent}
+          </S.Aside>
         )}
       </S.Container>
     </S.CardWrapper>

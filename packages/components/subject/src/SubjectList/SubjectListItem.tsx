@@ -1,7 +1,9 @@
 import React from 'react';
+
 import Icon from '@synerise/ds-icon';
 import ListItem from '@synerise/ds-list-item';
-import { SubjectItem } from '../Subject.types';
+
+import { type SubjectItem } from '../Subject.types';
 
 type Props = {
   item: SubjectItem;
@@ -12,7 +14,14 @@ type Props = {
   className: string;
 };
 
-const SubjectListItem = ({ item, clearSearch, searchQuery, hideDropdown, select, className }: Props) => {
+const SubjectListItem = ({
+  item,
+  clearSearch,
+  searchQuery,
+  hideDropdown,
+  select,
+  className,
+}: Props) => {
   return (
     <ListItem
       className={className}

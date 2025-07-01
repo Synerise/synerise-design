@@ -1,17 +1,27 @@
-import styled, { css, FlattenSimpleInterpolation, StyledProps } from 'styled-components';
-import { SliderProps } from '../Slider.types';
-import { AntdSlider, createTracksStyles } from '../Slider.styles';
+import styled, {
+  type FlattenSimpleInterpolation,
+  type StyledProps,
+  css,
+} from 'styled-components';
+
 import { buildDefaultTracksColorMap } from '../Slider';
+import { AntdSlider, createTracksStyles } from '../Slider.styles';
+import { type SliderProps } from '../Slider.types';
 import type { DefinedCssRuleParameters, TrackProps } from './Allocation.types';
 
-const defineCssSelectorWithRule = ({ indexes, classConstPart, cssRule }: DefinedCssRuleParameters) => {
+const defineCssSelectorWithRule = ({
+  indexes,
+  classConstPart,
+  cssRule,
+}: DefinedCssRuleParameters) => {
   const variantsSize = indexes.length;
   if (variantsSize === 0) {
     return '';
   }
   const definedClassSpecificity = indexes.reduce(
-    (result, item, index) => `${result}${classConstPart}${item}${index + 1 === variantsSize ? '' : ', '}`,
-    ''
+    (result, item, index) =>
+      `${result}${classConstPart}${item}${index + 1 === variantsSize ? '' : ', '}`,
+    '',
   );
 
   return `${definedClassSpecificity} { ${cssRule} }`;
@@ -36,7 +46,11 @@ export const AllocationSliderWrapper = styled.div<{
 }>`
   position: relative;
 
-  ${props => createTracksStyles(props, props.tracksColorMap ? props.tracksColorMap : INDEX_MAP)}
+  ${(props) =>
+    createTracksStyles(
+      props,
+      props.tracksColorMap ? props.tracksColorMap : INDEX_MAP,
+    )}
 
   && ${({ blockedHandlersKeys, theme }) =>
     defineCssSelectorWithRule({
@@ -53,10 +67,18 @@ export const AllocationSliderWrapper = styled.div<{
 `;
 
 export const AllocationSlider = styled(AntdSlider)<SliderProps>`
-  ${props => createTracksStyles(props, props.tracksColorMap ? props.tracksColorMap : INDEX_MAP)}
+  ${(props) =>
+    createTracksStyles(
+      props,
+      props.tracksColorMap ? props.tracksColorMap : INDEX_MAP,
+    )}
 
   &.ant-slider:hover {
-    ${props => createTracksStyles(props, props.tracksColorMap ? props.tracksColorMap : INDEX_MAP)};
+    ${(props) =>
+      createTracksStyles(
+        props,
+        props.tracksColorMap ? props.tracksColorMap : INDEX_MAP,
+      )};
   }
 
   .ant-slider-handle-value,
@@ -77,16 +99,21 @@ export const Mark = styled.div`
   text-align: center;
 `;
 
-const getColor = (props: StyledProps<TrackProps>, defaultColor = 'grey-800') => {
+const getColor = (
+  props: StyledProps<TrackProps>,
+  defaultColor = 'grey-800',
+) => {
   const colors = buildDefaultTracksColorMap();
   if (props.isCustomColor) {
     return (props.getColor && props.getColor(props.index)) || defaultColor;
   }
-  return props.theme.palette[(colors || INDEX_MAP)[props.index] || defaultColor];
+  return props.theme.palette[
+    (colors || INDEX_MAP)[props.index] || defaultColor
+  ];
 };
 
 export const MarkLetter = styled.div<{ index: number | string }>`
-  border-radius: ${props => props.theme.variable('@border-radius-base')};
+  border-radius: ${(props) => props.theme.variable('@border-radius-base')};
   width: 25px;
   height: 25px;
   display: inline-block;
@@ -96,7 +123,8 @@ export const MarkLetter = styled.div<{ index: number | string }>`
   color: white;
   top: -70px;
 
-  background-color: ${props => getColor(props as StyledProps<TrackProps>, 'grey-400')};
+  background-color: ${(props) =>
+    getColor(props as StyledProps<TrackProps>, 'grey-400')};
 `;
 
 export const MarkValue = styled.div`
@@ -112,11 +140,11 @@ export const MarkTooltipWrapper = styled.div`
 `;
 
 export const Track = styled.div<TrackProps>`
-  width: ${props => props.width}%;
+  width: ${(props) => props.width}%;
   height: 6px;
-  background-color: ${props => getColor(props)};
-  border-radius: ${props => props.theme.palette['@border-radius-base']};
-  z-index: ${props => props.index};
+  background-color: ${(props) => getColor(props)};
+  border-radius: ${(props) => props.theme.palette['@border-radius-base']};
+  z-index: ${(props) => props.index};
 `;
 
 export const TrackContainer = styled.div<{ controlGroup?: boolean }>`
@@ -141,7 +169,7 @@ export const TrackContainer = styled.div<{ controlGroup?: boolean }>`
 `;
 
 export const Title = styled.div`
-  color: ${props => props.theme.variable('@gray-color-darker-1')};
+  color: ${(props) => props.theme.variable('@gray-color-darker-1')};
   padding-bottom: 32px;
   font-weight: 500;
 `;

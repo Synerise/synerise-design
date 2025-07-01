@@ -4,12 +4,6 @@ export enum SkeletonSize {
   'L' = 84,
   'XL' = 120,
 }
-export enum SkeletonWidth {
-  'S' = 80,
-  'M' = 80,
-  'L' = 80,
-  'XL' = 80,
-}
 export enum LeftSize {
   'S' = 25,
   'M' = 40,

@@ -1,10 +1,12 @@
 import React from 'react';
 import { FormattedMessage } from 'react-intl';
+
 import Dropdown from '@synerise/ds-dropdown';
 import Menu from '@synerise/ds-menu';
 import Scrollbar from '@synerise/ds-scrollbar';
-import { InformationCardActionsProps } from './InformationCardActions.types';
+
 import * as S from '../InformationCard.styles';
+import { type InformationCardActionsProps } from './InformationCardActions.types';
 
 const NAV_HEIGHT = 61;
 
@@ -19,7 +21,12 @@ export const InformationCardActions = ({
     <>
       <Dropdown.BackAction
         label={
-          navigationLabel || <FormattedMessage id="DS.INFORMATION-CARD.QUICK-ACTIONS" defaultMessage="Quick actions" />
+          navigationLabel || (
+            <FormattedMessage
+              id="DS.INFORMATION-CARD.QUICK-ACTIONS"
+              defaultMessage="Quick actions"
+            />
+          )
         }
         onClick={onHeaderClick}
       />

@@ -1,7 +1,12 @@
 import styled from 'styled-components';
+
 import { InputGroup } from '@synerise/ds-input';
 import { OuterWrapper } from '@synerise/ds-input/dist/Input.styles';
-import { InputGroupWrapper, InputGroupItem } from '@synerise/ds-input/dist/InputGroup.styles';
+import {
+  InputGroupItem,
+  InputGroupWrapper,
+} from '@synerise/ds-input/dist/InputGroup.styles';
+
 import { FactorInput } from '../FactorValue/FactorValue.style';
 
 export const Group = styled(InputGroup)<{ withoutTypeSelector: boolean }>`
@@ -13,7 +18,8 @@ export const Group = styled(InputGroup)<{ withoutTypeSelector: boolean }>`
       min-width: 0;
 
       > .ds-input-group-item-0 {
-        ${(props): string => (props.withoutTypeSelector ? '' : 'flex: 0 0 auto')}
+        ${(props): string =>
+          props.withoutTypeSelector ? '' : 'flex: 0 0 auto'}
       }
 
       > .ds-input-group-item-1 {
@@ -46,7 +52,8 @@ export const Group = styled(InputGroup)<{ withoutTypeSelector: boolean }>`
     }
     ${FactorInput} {
       > * {
-        border-radius: ${(props): string => (props.withoutTypeSelector ? '3px' : '0 3px 3px 0')};
+        border-radius: ${(props): string =>
+          props.withoutTypeSelector ? '3px' : '0 3px 3px 0'};
       }
     }
   }

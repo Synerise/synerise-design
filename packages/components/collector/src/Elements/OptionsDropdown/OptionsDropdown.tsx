@@ -1,18 +1,25 @@
-import React, { SyntheticEvent, useEffect, useState, useCallback } from 'react';
+import React, {
+  type SyntheticEvent,
+  useCallback,
+  useEffect,
+  useState,
+} from 'react';
 
+import Divider from '@synerise/ds-divider';
+import Icon, { Add3M } from '@synerise/ds-icon';
+import ListItem from '@synerise/ds-list-item';
 import Scrollbar from '@synerise/ds-scrollbar';
 import SearchItems from '@synerise/ds-search/dist/Elements/SearchItems/SearchItems';
-import Icon, { Add3M } from '@synerise/ds-icon';
-import Divider from '@synerise/ds-divider';
-import ListItem from '@synerise/ds-list-item';
 
 import * as S from '../../Collector.styles';
-import { OptionsDropdownProps } from './OptionsDropdown.types';
+import { type CollectorValue } from '../../Collector.types';
 import NavigationHint from '../NavigationHint/NavigationHint';
-import { CollectorValue } from '../../Collector.types';
+import { type OptionsDropdownProps } from './OptionsDropdown.types';
 
 const getRowHeight = (size?: string) => {
-  if (size === 'large') return 54;
+  if (size === 'large') {
+    return 54;
+  }
   return 32;
 };
 
@@ -48,7 +55,7 @@ const OptionsDropdown = ({
         </ListItem>
       );
     },
-    [lookupKey, renderItem, dropdownItemHeight]
+    [lookupKey, renderItem, dropdownItemHeight],
   );
   const shouldRenderList = !!options?.length;
   return (

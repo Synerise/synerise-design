@@ -4,7 +4,7 @@ import dayjs from 'dayjs';
 import { renderHook } from '@testing-library/react';
 
 import { DSProvider } from '@synerise/ds-core';
-import { useDataFormat, DataFormatNotationType } from '@synerise/ds-data-format';
+import { useDataFormat, type DataFormatNotationType } from '@synerise/ds-data-format';
 
 const DATE_TO_FORMAT = new Date('2023-06-25T15:40:00');
 const MOMENT_TO_FORMAT = moment(DATE_TO_FORMAT);

@@ -7,6 +7,7 @@ variables:
   MODULE: 'documentation'
   LIBRARY_PIPELINE: 'NO'
   APP_NAME_OVERRIDE: ds-docs
+  NPM_REGISTRY: https://nexus.snrinternal.com/repository/npm-release/
 
 cache:
     key:
@@ -36,6 +37,15 @@ install:
   rules:
     - if: $CI_PIPELINE_SOURCE == "merge_request_event"
     - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
+  before_script:
+    - yarn config set registry $NPM_REGISTRY
+    - yarn config set unsafe-perm true
+    - cp .npmrc.dist .npmrc
+    - echo "" >> .npmrc
+    - export NPM_TOKEN="$(echo -n $SNR_NPM_REGISTRY_USERNAME:$SNR_NPM_REGISTRY_PASSWORD | base64)"
+    - echo "//nexus.snrinternal.com/repository/npm-release/:_auth = $NPM_TOKEN" >> .npmrc
+    - echo "email = $NPM_EMAIL" >> .npmrc
+    - echo "always-auth = true" >> .npmrc
   script:
     - yarn --frozen-lockfile
     - yarn lint

@@ -1,6 +1,8 @@
 import React from 'react';
+
+import { renderWithProvider } from '@synerise/ds-utils';
 import { fireEvent } from '@testing-library/react';
-import { renderWithProvider } from '@synerise/ds-utils/dist/testing';
+
 import Status from '../Status';
 
 describe('Status', () => {
@@ -9,7 +11,7 @@ describe('Status', () => {
   it('should render', () => {
     // ARRANGE
     const { getByText } = renderWithProvider(
-      <Status type="primary" label={STATUS_LABEL} />
+      <Status type="primary" label={STATUS_LABEL} />,
     );
 
     // ASSERT
@@ -20,7 +22,12 @@ describe('Status', () => {
     // ARRANGE
     const onClick = jest.fn();
     const { getByText } = renderWithProvider(
-      <Status type="primary" data-testid="testid1" label={STATUS_LABEL} onClick={onClick} />
+      <Status
+        type="primary"
+        data-testid="testid1"
+        label={STATUS_LABEL}
+        onClick={onClick}
+      />,
     );
 
     // ACT

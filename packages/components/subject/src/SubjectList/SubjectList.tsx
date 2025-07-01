@@ -1,15 +1,22 @@
 import React from 'react';
-import Dropdown from '@synerise/ds-dropdown';
-import Scrollbar from '@synerise/ds-scrollbar';
-import Result from '@synerise/ds-result';
-import { focusWithArrowKeys, useOnClickOutside } from '@synerise/ds-utils';
-import Icon, { SearchM } from '@synerise/ds-icon';
 import { v4 as uuid } from 'uuid';
-import { SubjectItem, SubjectListProps } from '../Subject.types';
+
+import Dropdown from '@synerise/ds-dropdown';
+import Icon, { SearchM } from '@synerise/ds-icon';
+import Result from '@synerise/ds-result';
+import Scrollbar from '@synerise/ds-scrollbar';
+import { focusWithArrowKeys, useOnClickOutside } from '@synerise/ds-utils';
+
+import { type SubjectItem, type SubjectListProps } from '../Subject.types';
 import * as S from './SubjectList.styles';
 import SubjectListItem from './SubjectListItem';
 
-const SubjectList: React.FC<SubjectListProps> = ({ items, onSelectItem, hideDropdown, texts }) => {
+const SubjectList: React.FC<SubjectListProps> = ({
+  items,
+  onSelectItem,
+  hideDropdown,
+  texts,
+}) => {
   const [searchQuery, setSearchQuery] = React.useState('');
   const overlayRef = React.useRef<HTMLDivElement>(null);
   const [searchInputCanBeFocused, setSearchInputFocus] = React.useState(true);
@@ -23,7 +30,9 @@ const SubjectList: React.FC<SubjectListProps> = ({ items, onSelectItem, hideDrop
 
   const renderItems = React.useMemo(() => {
     return items
-      .filter((item: SubjectItem) => item.name.toLowerCase().includes(searchQuery.toLowerCase()))
+      .filter((item: SubjectItem) =>
+        item.name.toLowerCase().includes(searchQuery.toLowerCase()),
+      )
       .map((item: SubjectItem) => {
         return (
           <SubjectListItem
@@ -37,7 +46,14 @@ const SubjectList: React.FC<SubjectListProps> = ({ items, onSelectItem, hideDrop
           />
         );
       });
-  }, [items, searchQuery, hideDropdown, onSelectItem, setSearchQuery, classNames]);
+  }, [
+    items,
+    searchQuery,
+    hideDropdown,
+    onSelectItem,
+    setSearchQuery,
+    classNames,
+  ]);
 
   return (
     <Dropdown.Wrapper
@@ -46,7 +62,7 @@ const SubjectList: React.FC<SubjectListProps> = ({ items, onSelectItem, hideDrop
       data-testid="subject-overlay"
       onKeyDown={(e): void => {
         setSearchInputFocus(false);
-        // eslint-disable-next-line @typescript-eslint/no-empty-function
+
         searchQuery &&
           focusWithArrowKeys(e, classNames.split(' ')[1], () => {
             setSearchInputFocus(true);
@@ -66,7 +82,11 @@ const SubjectList: React.FC<SubjectListProps> = ({ items, onSelectItem, hideDrop
           {renderItems.length ? (
             renderItems
           ) : (
-            <Result noSearchResults type="no-results" description={texts.noResults} />
+            <Result
+              noSearchResults
+              type="no-results"
+              description={texts.noResults}
+            />
           )}
         </Scrollbar>
       </S.ItemsList>

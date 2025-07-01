@@ -1,4 +1,7 @@
-import { CollectorTexts, CollectorProps } from '../../Collector.types';
+import {
+  type CollectorProps,
+  type CollectorTexts,
+} from '../../Collector.types';
 
 export type ButtonPanelProps = {
   onCancel: () => void;

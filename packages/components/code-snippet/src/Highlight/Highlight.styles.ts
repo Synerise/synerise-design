@@ -1,6 +1,5 @@
 import styled from 'styled-components';
 
-// eslint-disable-next-line import/prefer-default-export
 export const Highlight = styled.div`
   .hljs {
     color: ${(props): string => props.theme.palette['grey-700']};

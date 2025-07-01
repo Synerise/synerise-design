@@ -1,7 +1,7 @@
 import React from 'react';
-import { render, screen } from '@testing-library/react';
 
-import { renderWithProvider } from '@synerise/ds-utils/dist/testing';
+import { renderWithProvider } from '@synerise/ds-utils';
+import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 
 import { ModalTitle } from './ModalTitle';
@@ -51,10 +51,11 @@ describe('ModalTitle', () => {
   });
 
   it('should render headerActions when provided', () => {
-    // eslint-disable-next-line react/button-has-type
     const headerActions = <button onClick={jest.fn()}>Test Action</button>;
 
-    renderWithProvider(<ModalTitle title={title} headerActions={headerActions} />);
+    renderWithProvider(
+      <ModalTitle title={title} headerActions={headerActions} />,
+    );
     const headerActionsElement = screen.getByText('Test Action');
 
     expect(headerActionsElement).toBeInTheDocument();
@@ -71,7 +72,9 @@ describe('ModalTitle', () => {
   it('should render custom title container style when provided', () => {
     const customStyle = { backgroundColor: 'red' };
 
-    renderWithProvider(<ModalTitle title={title} titleContainerStyle={customStyle} />);
+    renderWithProvider(
+      <ModalTitle title={title} titleContainerStyle={customStyle} />,
+    );
 
     const titleContainer = screen.getByTestId('modal-title');
 

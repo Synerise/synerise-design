@@ -1,6 +1,7 @@
-import React, { ReactNode, useState } from 'react';
-import { SubtleTextAreaProps } from '@synerise/ds-subtle-form/dist/Elements/TextArea/TextArea.types';
+import React, { type ReactNode, useState } from 'react';
+
 import SubtleForm from '@synerise/ds-subtle-form';
+import { type SubtleTextAreaProps } from '@synerise/ds-subtle-form/dist/Elements/TextArea/TextArea.types';
 
 import * as S from '../InformationCard.styles';
 
@@ -22,7 +23,7 @@ export const InformationCardDescription = ({
         <SubtleForm.TextArea
           minRows={1}
           value={description}
-          onChange={value => {
+          onChange={(value) => {
             descriptionConfig.onChange && descriptionConfig.onChange(value);
             setDescription(value);
           }}

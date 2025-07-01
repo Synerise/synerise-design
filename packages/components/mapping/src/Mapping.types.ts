@@ -1,8 +1,9 @@
-import { ReactNode } from 'react';
-import { TooltipProps } from '@synerise/ds-tooltip';
-import { CheckboxTristateProps } from '@synerise/ds-checkbox-tristate';
-import { CheckboxProps } from '@synerise/ds-checkbox';
-import { WithHTMLAttributes } from '@synerise/ds-utils';
+import { type ReactNode } from 'react';
+
+import { type CheckboxProps } from '@synerise/ds-checkbox';
+import { type CheckboxTristateProps } from '@synerise/ds-checkbox-tristate';
+import { type TooltipProps } from '@synerise/ds-tooltip';
+import { type WithHTMLAttributes } from '@synerise/ds-utils';
 
 export type BaseItemType = {
   id: string | number;

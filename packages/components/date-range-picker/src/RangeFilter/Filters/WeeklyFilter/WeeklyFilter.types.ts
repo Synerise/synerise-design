@@ -1,8 +1,15 @@
-import { IntlShape } from 'react-intl';
-import { DayOptions, RangeActions } from '../../Shared/TimeWindow/TimeWindow.types';
-import { FilterDefinition } from '../../RangeFilter.types';
-import { WithTranslations } from '../../../DateRangePicker.types';
-import { DateLimitMode, RangeDisplayMode } from '../../Shared/TimeWindow/RangeFormContainer/RangeForm/RangeForm.types';
+import { type IntlShape } from 'react-intl';
+
+import { type WithTranslations } from '../../../DateRangePicker.types';
+import { type FilterDefinition } from '../../RangeFilter.types';
+import {
+  type DateLimitMode,
+  type RangeDisplayMode,
+} from '../../Shared/TimeWindow/RangeFormContainer/RangeForm/RangeForm.types';
+import {
+  type DayOptions,
+  type RangeActions,
+} from '../../Shared/TimeWindow/TimeWindow.types';
 
 export type WeeklyFilterProps = {
   value: Days;

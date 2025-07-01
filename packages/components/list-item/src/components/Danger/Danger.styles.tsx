@@ -1,8 +1,10 @@
-import styled from 'styled-components';
 import React from 'react';
+import styled from 'styled-components';
+
 import { IconContainer } from '@synerise/ds-icon';
+
 import Text from '../Text/Text';
-import { Wrapper, Inner, PrefixWrapper } from '../Text/Text.styles';
+import { Inner, PrefixWrapper, Wrapper } from '../Text/Text.styles';
 
 export const DangerItem = styled(({ children, disabled, ...rest }) => (
   <Text disabled={disabled} {...rest}>

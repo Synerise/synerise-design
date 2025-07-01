@@ -1,5 +1,5 @@
-import styled from 'styled-components';
 import { range } from 'lodash';
+import styled from 'styled-components';
 
 export const TimeWindowContainer = styled.div`
   display: flex;

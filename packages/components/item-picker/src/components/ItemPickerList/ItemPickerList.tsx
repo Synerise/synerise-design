@@ -1,44 +1,58 @@
+import { debounce } from 'lodash';
 import React, {
+  type KeyboardEvent as ReactKeyboardEvent,
+  type Ref,
+  type UIEvent,
+  useCallback,
+  useEffect,
+  useMemo,
   useRef,
   useState,
-  UIEvent,
-  useMemo,
-  useEffect,
-  KeyboardEvent as ReactKeyboardEvent,
-  useCallback,
-  Ref,
 } from 'react';
-
-import { VariableSizeList } from 'react-window';
+import { type VariableSizeList } from 'react-window';
 import { v4 as uuid } from 'uuid';
-import { debounce } from 'lodash';
 
-import Dropdown from '@synerise/ds-dropdown';
-import { focusWithArrowKeys, useCombinedRefs, useKeyboardShortcuts, useScrollContain } from '@synerise/ds-utils';
-import { itemSizes } from '@synerise/ds-list-item';
-import Icon, { ArrowLeftM } from '@synerise/ds-icon';
 import { useTheme } from '@synerise/ds-core';
+import Dropdown from '@synerise/ds-dropdown';
+import Icon, { ArrowLeftM } from '@synerise/ds-icon';
+import { itemSizes } from '@synerise/ds-list-item';
+import {
+  focusWithArrowKeys,
+  useCombinedRefs,
+  useKeyboardShortcuts,
+  useScrollContain,
+} from '@synerise/ds-utils';
 
 import { useDefaultTexts } from '../../hooks/useDefaultTexts';
-import type { BaseItemType, BaseSectionType } from '../ItemPickerNew/ItemPickerNew.types';
-
+import type {
+  BaseItemType,
+  BaseSectionType,
+} from '../ItemPickerNew/ItemPickerNew.types';
 import * as S from './ItemPickerList.styles';
 import type { ItemPickerListProps } from './ItemPickerList.types';
-import { useItemsInSections, useListHeight } from './hooks';
-import { ITEM_SIZE, LIST_INNER_PADDING, LIST_STYLE, SECTION_HEADER_HEIGHT } from './constants';
-import { isTitle, isNavKey, findSectionById } from './utils';
 import {
-  ItemPickerListFooter,
-  ItemPickerListRow,
-  ItemPickerListSkeleton,
-  ItemPickerListRowProps,
   EmptyListMessage,
   ErrorMessage,
+  ItemPickerListFooter,
+  ItemPickerListRow,
+  type ItemPickerListRowProps,
+  ItemPickerListSkeleton,
 } from './components';
 import { ListSearchInput } from './components/ListSearchInput';
+import {
+  ITEM_SIZE,
+  LIST_INNER_PADDING,
+  LIST_STYLE,
+  SECTION_HEADER_HEIGHT,
+} from './constants';
+import { useItemsInSections, useListHeight } from './hooks';
+import { findSectionById, isNavKey, isTitle } from './utils';
 import { getSearchActionSectionLabel } from './utils/getSearchActionSectionLabel';
 
-export const ItemPickerList = <ItemType extends BaseItemType, SectionType extends BaseSectionType | undefined>({
+export const ItemPickerList = <
+  ItemType extends BaseItemType,
+  SectionType extends BaseSectionType | undefined,
+>({
   items,
   recents,
   sections,
@@ -69,16 +83,19 @@ export const ItemPickerList = <ItemType extends BaseItemType, SectionType extend
   const containerRef = useRef<HTMLDivElement | null>(null);
 
   const refs: Ref<HTMLDivElement>[] = [containerRef];
-  if (forwardedRef) refs.push(forwardedRef);
+  if (forwardedRef) {
+    refs.push(forwardedRef);
+  }
   const combinedScrollRef = useCombinedRefs(...refs);
   const inputRef = useRef<HTMLInputElement | null>(null);
-  const changeLocalSearchQueryRef = useRef<((value: string) => void) | null>(null);
+  const changeLocalSearchQueryRef = useRef<((value: string) => void) | null>(
+    null,
+  );
   const scrollContainRef = useScrollContain<HTMLDivElement>();
 
   const allTexts = useDefaultTexts(texts);
 
   const changeSearchQuery = useCallback((query: string) => {
-    // eslint-disable-next-line no-unused-expressions
     changeLocalSearchQueryRef.current?.(query);
     setSearchQuery(query);
   }, []);
@@ -86,13 +103,16 @@ export const ItemPickerList = <ItemType extends BaseItemType, SectionType extend
   const debouncedSearchQueryChange = useRef(
     debounce((query: string): void => {
       changeSearchQuery(query);
-    }, 300)
+    }, 300),
   ).current;
-  const classNames = useMemo(() => `ds-item-picker-dropdown ds-item-picker-dropdown-${uuid()}`, []);
+  const classNames = useMemo(
+    () => `ds-item-picker-dropdown ds-item-picker-dropdown-${uuid()}`,
+    [],
+  );
 
   const handleItemSelect = (item: ItemType) => {
     const section = findSectionById(sections, item.sectionId);
-    // eslint-disable-next-line no-unused-expressions
+
     onItemSelect?.(item, section);
   };
 
@@ -142,11 +162,10 @@ export const ItemPickerList = <ItemType extends BaseItemType, SectionType extend
         handleScrollEndReach();
       }
     },
-    [handleScrollEndReach]
+    [handleScrollEndReach],
   );
 
   const focusSearchInput = useCallback(() => {
-    // eslint-disable-next-line no-unused-expressions
     inputRef.current?.focus();
   }, []);
 
@@ -161,10 +180,12 @@ export const ItemPickerList = <ItemType extends BaseItemType, SectionType extend
   const getItemSize = useCallback(
     (index: number) => {
       const item = mergedItemsList && mergedItemsList[index];
-      if (isTitle(item)) return ITEM_SIZE.title;
+      if (isTitle(item)) {
+        return ITEM_SIZE.title;
+      }
       return ITEM_SIZE[item.size || itemSizes.DEFAULT];
     },
-    [mergedItemsList]
+    [mergedItemsList],
   );
 
   const itemData: ItemPickerListRowProps['data'] = useMemo(
@@ -179,7 +200,15 @@ export const ItemPickerList = <ItemType extends BaseItemType, SectionType extend
         hasError: isLoadingMoreError,
       },
     }),
-    [mergedItemsList, classNames, getItemSize, allTexts, isLoadingMore, isLoadedAll, isLoadingMoreError]
+    [
+      mergedItemsList,
+      classNames,
+      getItemSize,
+      allTexts,
+      isLoadingMore,
+      isLoadedAll,
+      isLoadingMoreError,
+    ],
   );
 
   const handleRefresh =
@@ -205,13 +234,19 @@ export const ItemPickerList = <ItemType extends BaseItemType, SectionType extend
     }) || 0;
 
   const isSection = Boolean(currentSection || searchActionSection);
-  const listHeight = (isSection ? listWrapperHeight - SECTION_HEADER_HEIGHT : listWrapperHeight) - LIST_INNER_PADDING;
+  const listHeight =
+    (isSection
+      ? listWrapperHeight - SECTION_HEADER_HEIGHT
+      : listWrapperHeight) - LIST_INNER_PADDING;
 
   const clearSearchQuery = () => {
     changeSearchQuery('');
   };
 
-  const showMessage = !isLoading && !isLoadingItems && (mergedItemsList?.length === 0 || isLoadingError);
+  const showMessage =
+    !isLoading &&
+    !isLoadingItems &&
+    (mergedItemsList?.length === 0 || isLoadingError);
 
   const listContent = useMemo(() => {
     if (isLoadingError) {
@@ -228,7 +263,12 @@ export const ItemPickerList = <ItemType extends BaseItemType, SectionType extend
               title: allTexts.backTooltip,
               shortCuts: [
                 '⌘',
-                <Icon key="hint-arrow-left" size={18} color={theme.palette.white} component={<ArrowLeftM />} />,
+                <Icon
+                  key="hint-arrow-left"
+                  size={18}
+                  color={theme.palette.white}
+                  component={<ArrowLeftM />}
+                />,
               ],
             }}
             label={
@@ -269,7 +309,7 @@ export const ItemPickerList = <ItemType extends BaseItemType, SectionType extend
                 style={LIST_STYLE}
                 ref={listRef}
               >
-                {props => ItemPickerListRow(props as ItemPickerListRowProps)}
+                {(props) => ItemPickerListRow(props as ItemPickerListRowProps)}
               </S.StyledList>
             </S.ScrollContent>
           </S.StyledScrollbar>
@@ -315,7 +355,12 @@ export const ItemPickerList = <ItemType extends BaseItemType, SectionType extend
       listRef.current.resetAfterIndex(0);
       setTimeout(focusSearchInput, 0);
     }
-  }, [searchActionSection, searchParamConfig, currentSection, focusSearchInput]);
+  }, [
+    searchActionSection,
+    searchParamConfig,
+    currentSection,
+    focusSearchInput,
+  ]);
 
   useEffect(() => {
     listRef.current && listRef.current.resetAfterIndex(0);
@@ -326,7 +371,9 @@ export const ItemPickerList = <ItemType extends BaseItemType, SectionType extend
       if (!combinedScrollRef.current?.offsetParent) {
         return;
       }
-      (event.metaKey || event.ctrlKey) && currentSection && resetCurrentSection();
+      (event.metaKey || event.ctrlKey) &&
+        currentSection &&
+        resetCurrentSection();
       event.preventDefault();
     },
     Escape: (event: KeyboardEvent) => {
@@ -348,7 +395,10 @@ export const ItemPickerList = <ItemType extends BaseItemType, SectionType extend
     },
   });
 
-  const containerHeightMode = !containerHeight || typeof containerHeight === 'object' ? 'preset' : containerHeight;
+  const containerHeightMode =
+    !containerHeight || typeof containerHeight === 'object'
+      ? 'preset'
+      : containerHeight;
   return (
     <S.ListContainer
       data-testid="ds-item-picker-dropdown"

@@ -1,7 +1,7 @@
-import type { TimePickerProps } from '@synerise/ds-time-picker';
 import type { DateToFormatOptions } from '@synerise/ds-data-format';
+import type { TimePickerProps } from '@synerise/ds-time-picker';
 
-import { DateLimitMode } from '../../Shared/TimeWindow/RangeFormContainer/RangeForm/RangeForm.types';
+import { type DateLimitMode } from '../../Shared/TimeWindow/RangeFormContainer/RangeForm/RangeForm.types';
 
 export type FilterBaseProps = {
   maxEntries?: number;

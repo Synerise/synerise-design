@@ -1,5 +1,6 @@
-import type { Key, MouseEvent, Component, ReactNode, LegacyRef } from 'react';
 import type { TriggerProps } from 'rc-trigger';
+import type { Component, Key, LegacyRef, MouseEvent, ReactNode } from 'react';
+
 import type { TooltipProps } from '@synerise/ds-tooltip';
 import type { WithHTMLAttributes } from '@synerise/ds-utils';
 
@@ -17,8 +18,8 @@ export const itemSizes = {
   LARGE: 'large',
 } as const;
 
-export type ItemType = typeof itemTypes[keyof typeof itemTypes];
-export type ItemSize = typeof itemSizes[keyof typeof itemSizes];
+export type ItemType = (typeof itemTypes)[keyof typeof itemTypes];
+export type ItemSize = (typeof itemSizes)[keyof typeof itemSizes];
 
 export type ItemData<EventType> = {
   key?: Key;
@@ -26,9 +27,13 @@ export type ItemData<EventType> = {
   domEvent: EventType;
 };
 
-export type ListItemEventHandler<EventType> = (item: ItemData<EventType>) => void;
+export type ListItemEventHandler<EventType> = (
+  item: ItemData<EventType>,
+) => void;
 
-export type TriggerHandle = Component<TriggerProps> & { getPopupDomNode: () => HTMLElement };
+export type TriggerHandle = Component<TriggerProps> & {
+  getPopupDomNode: () => HTMLElement;
+};
 
 export type ListItemProps = WithHTMLAttributes<
   HTMLDivElement,
@@ -68,4 +73,7 @@ export type ListItemProps = WithHTMLAttributes<
   }
 >;
 
-export type BasicItemProps = Omit<ListItemProps, 'type' | 'text' | 'level' | 'higher'>;
+export type BasicItemProps = Omit<
+  ListItemProps,
+  'type' | 'text' | 'level' | 'higher'
+>;

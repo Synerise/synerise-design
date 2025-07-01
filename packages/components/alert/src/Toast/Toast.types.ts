@@ -1,7 +1,12 @@
-import { ReactElement, ReactNode } from 'react';
-import { AlertProps } from 'antd/lib/alert';
+import { type AlertProps } from 'antd/lib/alert';
+import { type ReactElement, type ReactNode } from 'react';
 
-export type ToastType = 'success' | 'warning' | 'negative' | 'informative' | 'neutral';
+export type ToastType =
+  | 'success'
+  | 'warning'
+  | 'negative'
+  | 'informative'
+  | 'neutral';
 
 export type CustomColorType =
   | 'blue'

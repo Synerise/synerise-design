@@ -1,10 +1,26 @@
-import React from 'react';
+import type React from 'react';
 import MomentLocaleUtils from 'react-day-picker/moment';
 import type { LocaleUtils } from 'react-day-picker/types';
 
 const WEEKDAYS_LONG = {
-  en: ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
-  pl: ['Niedziela', 'PoniedziaĹek', 'Wtorek', 'Ĺroda', 'Czwartek', 'PiÄtek', 'obota'],
+  en: [
+    'Sunday',
+    'Monday',
+    'Tuesday',
+    'Wednesday',
+    'Thursday',
+    'Friday',
+    'Saturday',
+  ],
+  pl: [
+    'Niedziela',
+    'PoniedziaĹek',
+    'Wtorek',
+    'Ĺroda',
+    'Czwartek',
+    'PiÄtek',
+    'obota',
+  ],
 };
 
 const WEEKDAYS_SHORT = {
@@ -13,8 +29,34 @@ const WEEKDAYS_SHORT = {
 };
 
 const MONTHS = {
-  en: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
-  pl: ['Sty', 'Lut', 'Mar', 'Kwi', 'Maj', 'Cze', 'Lip', 'Sie', 'Wrz', 'Paź', 'Lis', 'Gru'],
+  en: [
+    'Jan',
+    'Feb',
+    'Mar',
+    'Apr',
+    'May',
+    'Jun',
+    'Jul',
+    'Aug',
+    'Sep',
+    'Oct',
+    'Nov',
+    'Dec',
+  ],
+  pl: [
+    'Sty',
+    'Lut',
+    'Mar',
+    'Kwi',
+    'Maj',
+    'Cze',
+    'Lip',
+    'Sie',
+    'Wrz',
+    'Paź',
+    'Lis',
+    'Gru',
+  ],
 };
 
 const FIRST_DAY = {
@@ -25,10 +67,14 @@ const FIRST_DAY = {
 const DEFAULT_LOCALE = 'en';
 const DEFAULT_FORMAT = 'MMM DD, YYYY';
 
-const getValidLocale = (locale: string): string => (Object.keys(MONTHS).includes(locale) ? locale : DEFAULT_LOCALE);
+const getValidLocale = (locale: string): string =>
+  Object.keys(MONTHS).includes(locale) ? locale : DEFAULT_LOCALE;
 
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-function formatDay(d: Date, format: string = DEFAULT_FORMAT, locale = DEFAULT_LOCALE): string {
+function formatDay(
+  d: Date,
+  _format: string = DEFAULT_FORMAT,
+  locale = DEFAULT_LOCALE,
+): string {
   return `${WEEKDAYS_LONG[getValidLocale(locale)][d.getDay()]}, ${d.getDate()} ${
     MONTHS[getValidLocale(locale)][d.getMonth()]
   } ${d.getFullYear()}`;
@@ -38,11 +84,17 @@ function formatMonthTitle(d: Date, locale = DEFAULT_LOCALE): string {
   return `${MONTHS[getValidLocale(locale)][d.getMonth()]} ${d.getFullYear()}`;
 }
 
-function formatWeekdayShort(i: React.ReactText, locale: string = DEFAULT_LOCALE): string {
+function formatWeekdayShort(
+  i: React.ReactText,
+  locale: string = DEFAULT_LOCALE,
+): string {
   return WEEKDAYS_SHORT[getValidLocale(locale)][i];
 }
 
-function formatWeekdayLong(weekday: number, locale: string = DEFAULT_LOCALE): string {
+function formatWeekdayLong(
+  weekday: number,
+  locale: string = DEFAULT_LOCALE,
+): string {
   return WEEKDAYS_SHORT[getValidLocale(locale)][weekday];
 }
 

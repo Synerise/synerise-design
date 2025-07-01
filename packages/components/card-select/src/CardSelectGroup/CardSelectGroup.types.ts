@@ -1,5 +1,6 @@
 import type { Key, ReactNode } from 'react';
-import { CardSelectProps } from '../CardSelect.types';
+
+import { type CardSelectProps } from '../CardSelect.types';
 
 type CardSelectPropsWithKey = Omit<CardSelectProps, 'key'> & {
   key: Key;

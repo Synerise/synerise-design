@@ -1,5 +1,6 @@
-import { ReactNode } from 'react';
-import { TooltipProps } from '@synerise/ds-tooltip';
+import { type ReactNode } from 'react';
+
+import { type TooltipProps } from '@synerise/ds-tooltip';
 
 export type Props = {
   label: ReactNode;

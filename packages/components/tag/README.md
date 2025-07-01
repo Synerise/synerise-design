@@ -6,6 +6,7 @@ title: Tag
 Tag UI Component
 
 ## Installation
+
 ```
 npm i @synerise/ds-tag
 or
@@ -13,6 +14,7 @@ yarn add @synerise/ds-tag
 ```
 
 ## Usage
+
 ```
 import Tag from '@synerise/ds-tag'
 

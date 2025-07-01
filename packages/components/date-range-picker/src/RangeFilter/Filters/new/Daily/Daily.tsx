@@ -1,22 +1,23 @@
-import React, { useMemo, useCallback } from 'react';
-import { useIntl } from 'react-intl';
 import dayjs from 'dayjs';
+import React, { useCallback, useMemo } from 'react';
+import { useIntl } from 'react-intl';
+
+import { getDefaultTexts } from '../../../../utils';
+import * as S from '../../../RangeFilter.styles';
+import { AddButton } from '../../../Shared';
+import { type DateLimitMode } from '../../../Shared/TimeWindow/RangeFormContainer/RangeForm/RangeForm.types';
+import RangeFormContainer from '../../../Shared/TimeWindow/RangeFormContainer/RangeFormContainer';
+import type { DateValue } from '../../../Shared/TimeWindow/RangeFormContainer/RangeFormContainer.types';
 import {
+  DEFAULT_MAX_ENTRIES,
   DEFAULT_RANGE_END,
   DEFAULT_RANGE_START,
   DEFAULT_TIME_FORMAT,
-  DEFAULT_MAX_ENTRIES,
-  NOOP,
   EMPTY_OBJECT,
+  NOOP,
   RENDER_EMPTY_NODE_FN,
 } from '../constants';
-import * as S from '../../../RangeFilter.styles';
-import { DailyProps, DailySchedule } from './Daily.types';
-import RangeFormContainer from '../../../Shared/TimeWindow/RangeFormContainer/RangeFormContainer';
-import { AddButton } from '../../../Shared';
-import { DateLimitMode } from '../../../Shared/TimeWindow/RangeFormContainer/RangeForm/RangeForm.types';
-import type { DateValue } from '../../../Shared/TimeWindow/RangeFormContainer/RangeFormContainer.types';
-import { getDefaultTexts } from '../../../../utils';
+import { type DailyProps, type DailySchedule } from './Daily.types';
 
 const Daily = ({
   maxEntries = DEFAULT_MAX_ENTRIES,
@@ -31,7 +32,10 @@ const Daily = ({
 }: DailyProps) => {
   const intl = useIntl();
 
-  const allTexts = React.useMemo(() => getDefaultTexts(intl, false, texts), [texts, intl]);
+  const allTexts = React.useMemo(
+    () => getDefaultTexts(intl, false, texts),
+    [texts, intl],
+  );
 
   const defaultDayValue = useMemo(
     () => ({
@@ -42,7 +46,7 @@ const Daily = ({
       inverted: false,
       mode: valueSelectionMode[0],
     }),
-    [valueSelectionMode]
+    [valueSelectionMode],
   );
   const handleDayTimeChange = useCallback(
     (dateValueArray: DateValue, index: number): void => {
@@ -56,7 +60,7 @@ const Daily = ({
       };
       onChange([...updatedSchedule]);
     },
-    [value, onChange]
+    [value, onChange],
   );
   const getDayValue = useCallback(
     (index?: number): DailySchedule => {
@@ -65,7 +69,7 @@ const Daily = ({
       }
       return defaultDayValue;
     },
-    [value, defaultDayValue]
+    [value, defaultDayValue],
   );
   const handleModeChange = useCallback(
     (selectedMode: DateLimitMode, elementIndex: number): void => {
@@ -75,15 +79,15 @@ const Daily = ({
         mode: selectedMode,
       };
     },
-    [value]
+    [value],
   );
   const handleRangeDelete = useCallback(
     (index: number): void => {
       const updatedSchedule = value;
       delete updatedSchedule[index];
-      onChange(updatedSchedule.filter(s => Boolean(s)));
+      onChange(updatedSchedule.filter((s) => Boolean(s)));
     },
-    [value, onChange]
+    [value, onChange],
   );
   const handleRangeAdd = useCallback((): void => {
     onChange([...value, getDayValue()]);
@@ -98,7 +102,6 @@ const Daily = ({
             onChange={NOOP}
             errorTexts={errorTexts[index]}
             onMultipleDayTimeChange={NOOP}
-            // eslint-disable-next-line react/no-array-index-key
             key={`range-${index}-${String(s?.start)}`}
             onDayTimeChange={(dateValueArray): void => {
               handleDayTimeChange(dateValueArray, index);
@@ -107,7 +110,9 @@ const Daily = ({
             texts={allTexts}
             activeDays={[0]}
             getDayValue={(): DailySchedule => getDayValue(index)}
-            onRangeDelete={disabled ? undefined : (): void => handleRangeDelete(index)}
+            onRangeDelete={
+              disabled ? undefined : (): void => handleRangeDelete(index)
+            }
             onModeChange={(mode): void => handleModeChange(mode, index)}
             valueSelectionModes={valueSelectionMode}
             renderSuffix={RENDER_EMPTY_NODE_FN}
@@ -117,7 +122,9 @@ const Daily = ({
             hideHeader
           />
         ))}
-      {value.length < maxEntries && !disabled && <AddButton label={allTexts.addTime} onClick={handleRangeAdd} />}
+      {value.length < maxEntries && !disabled && (
+        <AddButton label={allTexts.addTime} onClick={handleRangeAdd} />
+      )}
     </S.NewFilterContainer>
   );
 };

@@ -1,12 +1,13 @@
 import React from 'react';
+
+import { theme } from '@synerise/ds-core';
+import Divider from '@synerise/ds-divider';
 import Icon, { HomeM } from '@synerise/ds-icon';
 
-import Divider from '@synerise/ds-divider';
-import { theme } from '@synerise/ds-core';
 import * as S from '../../Cascader.styles';
 import { BackAction } from '../BackAction/BackAction';
 import { Breadcrumb } from '../Breadcrumb/Breadcrumb';
-import { NavigationProps } from './Navigation.types';
+import { type NavigationProps } from './Navigation.types';
 
 export const Navigation = ({
   backActionVisible,

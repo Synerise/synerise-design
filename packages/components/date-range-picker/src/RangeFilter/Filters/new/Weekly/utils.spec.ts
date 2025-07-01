@@ -1,5 +1,5 @@
 import { removeEmptyEntries } from './utils';
-import { WeeklySchedule, WeeklyScheduleDayValue } from './Weekly.types';
+import { type WeeklySchedule, type WeeklyScheduleDayValue } from './Weekly.types';
 
 
 const dayValue = {

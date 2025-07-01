@@ -1,6 +1,7 @@
+import { type ModalProps as AntdModalProps } from 'antd/lib/modal';
 import type { CSSProperties, ComponentType, ReactNode } from 'react';
-import { ButtonProps } from '@synerise/ds-button';
-import { ModalProps as AntdModalProps } from 'antd/lib/modal';
+
+import { type ButtonProps } from '@synerise/ds-button';
 
 /*
  * @deprecated use `ModalProps`
@@ -11,7 +12,13 @@ export type ModalProps = {
   description?: ReactNode;
   headerBottomBar?: ReactNode;
   headerActions?: ReactNode;
-  size?: 'small' | 'medium' | 'large' | 'extraLarge' | 'fullSize' | 'fullScreen';
+  size?:
+    | 'small'
+    | 'medium'
+    | 'large'
+    | 'extraLarge'
+    | 'fullSize'
+    | 'fullScreen';
   bodyBackground?: 'white' | 'grey';
   blank?: boolean;
   titleContainerStyle?: CSSProperties;

@@ -1,5 +1,6 @@
-import { ReactNode } from 'react';
-import { WithHTMLAttributes } from '@synerise/ds-utils';
+import { type ReactNode } from 'react';
+
+import { type WithHTMLAttributes } from '@synerise/ds-utils';
 
 export type StarCellProps = WithHTMLAttributes<
   HTMLDivElement,

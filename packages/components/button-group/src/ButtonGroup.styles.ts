@@ -1,5 +1,11 @@
-import styled, { css, FlattenSimpleInterpolation, keyframes, Keyframes } from 'styled-components';
-import { ThemeProps } from '@synerise/ds-core';
+import styled, {
+  type FlattenSimpleInterpolation,
+  type Keyframes,
+  css,
+  keyframes,
+} from 'styled-components';
+
+import { type ThemeProps } from '@synerise/ds-core';
 
 const mapButtonsPosition = {
   left: 'flex-start',
@@ -34,7 +40,8 @@ export const Container = styled.div<{
     gap: ${(props): string => (props.compact ? '0px' : '8px')};
     flex-direction: row;
     align-items: stretch;
-    justify-content: ${(props): string => mapButtonsPosition[props.buttonsPosition]};
+    justify-content: ${(props): string =>
+      mapButtonsPosition[props.buttonsPosition]};
     ${(props): FlattenSimpleInterpolation | false =>
       !!props.splitMode &&
       !props.error &&

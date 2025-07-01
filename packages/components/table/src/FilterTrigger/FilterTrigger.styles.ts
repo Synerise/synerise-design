@@ -1,4 +1,9 @@
-import styled, { css, FlattenInterpolation, ThemeProps } from 'styled-components';
+import styled, {
+  type FlattenInterpolation,
+  type ThemeProps,
+  css,
+} from 'styled-components';
+
 import Button from '@synerise/ds-button';
 import ButtonGroup from '@synerise/ds-button-group';
 import { IconContainer } from '@synerise/ds-icon';
@@ -16,7 +21,10 @@ export const FilterButtonLabel = styled.span`
   margin-right: 0;
 `;
 
-export const FilterButton = styled(Button)<{ opened: boolean; selected?: object }>`
+export const FilterButton = styled(Button)<{
+  opened: boolean;
+  selected?: object;
+}>`
   &&& {
     &:focus {
       .btn-focus {
@@ -32,7 +40,8 @@ export const FilterButton = styled(Button)<{ opened: boolean; selected?: object 
 
       ${IconContainer} {
         svg {
-          fill: ${(props): string => props.theme.palette['blue-600']} !important;
+          fill: ${(props): string =>
+            props.theme.palette['blue-600']} !important;
         }
       }
     }
@@ -96,7 +105,8 @@ export const ListButton = styled(Button)`
     &:hover {
       ${IconContainer} {
         svg {
-          fill: ${(props): string => props.theme.palette['blue-600']} !important;
+          fill: ${(props): string =>
+            props.theme.palette['blue-600']} !important;
         }
       }
     }

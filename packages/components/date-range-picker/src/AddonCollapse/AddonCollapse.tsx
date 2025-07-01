@@ -1,9 +1,17 @@
 import React from 'react';
-import Button from '@synerise/ds-button';
-import * as S from './AddonCollapse.styles';
-import { Props } from './AddonCollapse.types';
 
-const AddonCollapse: React.FC<Props> = ({ title, content, expanded, onCollapseChange, collapsedSummary }: Props) => {
+import Button from '@synerise/ds-button';
+
+import * as S from './AddonCollapse.styles';
+import { type Props } from './AddonCollapse.types';
+
+const AddonCollapse: React.FC<Props> = ({
+  title,
+  content,
+  expanded,
+  onCollapseChange,
+  collapsedSummary,
+}: Props) => {
   const handleClick = (): void => {
     onCollapseChange && onCollapseChange(!expanded);
   };

@@ -1,9 +1,10 @@
 import React from 'react';
-import { renderWithProvider } from '@synerise/ds-utils/dist/testing';
-import { fireEvent, cleanup, screen } from '@testing-library/react';
+
+import { renderWithProvider } from '@synerise/ds-utils';
+import { cleanup, fireEvent, screen } from '@testing-library/react';
 
 import ColorPicker from '../ColorPicker';
-import { ColorPickerProps } from '../ColorPicker.types';
+import { type ColorPickerProps } from '../ColorPicker.types';
 import {
   convert3DigitHexTo6Digit,
   filterAlphanumeric,
@@ -33,14 +34,14 @@ describe('ColorPicker', () => {
     const colorPicker = screen.getByTestId('color-picker');
     expect(colorPicker).toBeDisabled();
     fireEvent.click(colorPicker as HTMLElement);
-    expect(document.querySelector('.react-colorful')).not.toBeInTheDocument()
+    expect(document.querySelector('.react-colorful')).not.toBeInTheDocument();
   });
 
   it('should render readonly', () => {
     renderWithProvider(<ColorPicker readOnly {...props} />);
     const colorPicker = screen.getByTestId('color-picker');
     fireEvent.click(colorPicker as HTMLElement);
-    expect(document.querySelector('.react-colorful')).not.toBeInTheDocument()
+    expect(document.querySelector('.react-colorful')).not.toBeInTheDocument();
   });
 
   it('should open modal when component is clicked', () => {

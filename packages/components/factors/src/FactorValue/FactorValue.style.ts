@@ -1,4 +1,8 @@
-import styled, { css, FlattenSimpleInterpolation } from 'styled-components';
+import styled, {
+  type FlattenSimpleInterpolation,
+  css,
+} from 'styled-components';
+
 import { Container } from '@synerise/ds-date-picker/dist/Elements/PickerInput/PickerInput.styles';
 
 const DEFAULT_WIDTH = {
@@ -6,8 +10,12 @@ const DEFAULT_WIDTH = {
   'text-default': '147px',
   'text-expansible': '123px',
 };
-// eslint-disable-next-line import/prefer-default-export
-export const FactorInput = styled.div<{ withoutTypeSelector: boolean; inputTextType?: string; inputType?: string }>`
+
+export const FactorInput = styled.div<{
+  withoutTypeSelector: boolean;
+  inputTextType?: string;
+  inputType?: string;
+}>`
   && {
     ${(props): FlattenSimpleInterpolation | false => {
       const { inputType, inputTextType = 'default' } = props;
@@ -29,7 +37,10 @@ export const FactorInput = styled.div<{ withoutTypeSelector: boolean; inputTextT
             }
           `;
         }
-        if (inputType === 'text' && DEFAULT_WIDTH[`${inputType}-${inputTextType}`]) {
+        if (
+          inputType === 'text' &&
+          DEFAULT_WIDTH[`${inputType}-${inputTextType}`]
+        ) {
           return css`
             &&& {
               input {
@@ -47,11 +58,13 @@ export const FactorInput = styled.div<{ withoutTypeSelector: boolean; inputTextT
     }
 
     li.ds-menu-item {
-      border-radius: ${(props): string => (props.withoutTypeSelector ? '3px' : '0')};
+      border-radius: ${(props): string =>
+        props.withoutTypeSelector ? '3px' : '0'};
     }
 
     .ant-menu-item {
-      border-radius: ${(props): string => (props.withoutTypeSelector ? '3px' : '0')};
+      border-radius: ${(props): string =>
+        props.withoutTypeSelector ? '3px' : '0'};
     }
 
     .ds-autocomplete {
@@ -67,12 +80,14 @@ export const FactorInput = styled.div<{ withoutTypeSelector: boolean; inputTextT
         padding: 0;
       }
       .ant-select-selector {
-        border-radius: ${(props): string => (props.withoutTypeSelector ? '3px' : '0 3px 3px 0')};
+        border-radius: ${(props): string =>
+          props.withoutTypeSelector ? '3px' : '0 3px 3px 0'};
       }
     }
     .ant-dropdown-trigger {
       input {
-        border-radius: ${(props): string => (props.withoutTypeSelector ? '3px' : '0 3px 3px 0')};
+        border-radius: ${(props): string =>
+          props.withoutTypeSelector ? '3px' : '0 3px 3px 0'};
       }
     }
   }

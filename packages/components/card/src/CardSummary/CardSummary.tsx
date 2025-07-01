@@ -1,6 +1,7 @@
 import React from 'react';
+
 import * as S from './CardSummary.styles';
-import { CardSummaryProps } from './CardSummary.types';
+import { type CardSummaryProps } from './CardSummary.types';
 import { CardSummaryItem } from './CardSummaryItem';
 
 export const CardSummary = ({ title, items, ...props }: CardSummaryProps) => {

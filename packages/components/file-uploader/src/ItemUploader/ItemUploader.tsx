@@ -1,19 +1,20 @@
 import React from 'react';
 import { useDropzone } from 'react-dropzone';
 
-import Icon, { InfoFillS, Add3M } from '@synerise/ds-icon';
-import Tooltip from '@synerise/ds-tooltip';
 import Button from '@synerise/ds-button';
+import Icon, { Add3M, InfoFillS } from '@synerise/ds-icon';
+import Tooltip from '@synerise/ds-tooltip';
 
+import { type FileViewAvatarTexts } from '../AvatarUploader/FileViewAvatar/FileViewAvatar.types';
+import {
+  type FileContent,
+  type ItemUploaderProps,
+} from '../FileUploader.types';
 import * as S from './ItemUploader.styles';
-
-import { FileViewAvatarTexts } from '../AvatarUploader/FileViewAvatar/FileViewAvatar.types';
 import FileViewItem from './UploaderButton/FileViewItem';
-import { ItemUploaderProps, FileContent } from '../FileUploader.types';
 
 function readAsText(file: File): Promise<FileContent> {
-  return new Promise(resolve => {
-    // eslint-disable-next-line no-undef
+  return new Promise((resolve) => {
     const reader = new FileReader();
     file.type !== 'text/plain' && resolve(null);
     reader.onerror = (): void => resolve(null);
@@ -53,7 +54,7 @@ const ItemUploader: React.FC<ItemUploaderProps> = ({
         onUpload && onUpload(filesWithContent);
       });
     },
-    [onUpload]
+    [onUpload],
   );
 
   const onDrop = React.useCallback(
@@ -69,7 +70,7 @@ const ItemUploader: React.FC<ItemUploaderProps> = ({
         readFilesContent(acceptedFiles);
       }
     },
-    [filesAmount, files, setUploadSuccess, readFilesContent]
+    [filesAmount, files, setUploadSuccess, readFilesContent],
   );
 
   const { getRootProps, getInputProps } = useDropzone({
@@ -80,12 +81,14 @@ const ItemUploader: React.FC<ItemUploaderProps> = ({
   });
 
   if (filesAmount && filesAmount < 1) {
-    // eslint-disable-next-line no-param-reassign
     filesAmount = 1;
     throw new Error('Invalid value of property "filesAmount" ');
   }
   const hasError = Boolean(error) || !uploadSuccess;
-  const errors = hasError && !uploadSuccess ? [error].concat('To many files uploaded') : [error];
+  const errors =
+    hasError && !uploadSuccess
+      ? [error].concat('To many files uploaded')
+      : [error];
 
   return (
     <S.Container className={`ds-file-avatar-uploader ${className || ''}`}>
@@ -101,14 +104,23 @@ const ItemUploader: React.FC<ItemUploaderProps> = ({
           )}
         </S.Label>
       )}
-      {((mode !== 'single' && (filesAmount ? files.length < filesAmount : true)) || files.length === 0) && (
+      {((mode !== 'single' &&
+        (filesAmount ? files.length < filesAmount : true)) ||
+        files.length === 0) && (
         <S.UploaderContainer>
-          {/* eslint-disable-next-line react/jsx-props-no-spreading */}
-          <S.DropAreaContainer canUploadMore={mode !== 'single' && files.length > 0}>
-            {/* eslint-disable-next-line react/jsx-props-no-spreading */}
+          {}
+          <S.DropAreaContainer
+            canUploadMore={mode !== 'single' && files.length > 0}
+          >
+            {}
             <input {...getInputProps()} data-testid="drop-area-input" />
             <>
-              <Button {...getRootProps()} disabled={disabled} type="ghost-primary" mode="icon-label">
+              <Button
+                {...getRootProps()}
+                disabled={disabled}
+                type="ghost-primary"
+                mode="icon-label"
+              >
                 <Icon component={<Add3M />} size={24} />
                 Add file
               </Button>
@@ -130,14 +142,11 @@ const ItemUploader: React.FC<ItemUploaderProps> = ({
       {hasError &&
         errors &&
         errors.map((errorText, index) => (
-          <S.ErrorMessage
-            // eslint-disable-next-line react/no-array-index-key
-            key={index}
-          >
-            {errorText}
-          </S.ErrorMessage>
+          <S.ErrorMessage key={index}>{errorText}</S.ErrorMessage>
         ))}
-      {description && <S.Description hasError={hasError}>{description}</S.Description>}
+      {description && (
+        <S.Description hasError={hasError}>{description}</S.Description>
+      )}
     </S.Container>
   );
 };

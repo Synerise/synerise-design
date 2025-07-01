@@ -1,4 +1,5 @@
 import type { ReactNode, RefObject } from 'react';
+
 import type { TooltipProps } from '@synerise/ds-tooltip';
 
 export type TabsProps = {

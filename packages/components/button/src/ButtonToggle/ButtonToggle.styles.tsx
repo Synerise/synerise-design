@@ -7,7 +7,7 @@ import { ButtonFocus } from '../Button.styles';
 export const ButtonToggle = styled(({ toggleType, activated, ...rest }) => {
   return <Button {...rest} />;
 })`
-  ${props =>
+  ${(props) =>
     props.toggleType === 'ghost' &&
     css`
       &:hover:not(:disabled):not(:focus) {

@@ -16,7 +16,11 @@ export const ScrollbarContent = styled.div`
     display: none;
   }
 `;
-export const ScrollbarWrapper = styled.div<{ absolute?: boolean; loading?: boolean; largeSize?: boolean }>`
+export const ScrollbarWrapper = styled.div<{
+  absolute?: boolean;
+  loading?: boolean;
+  largeSize?: boolean;
+}>`
   padding-right: ${(props): string => {
     if (props.absolute) {
       return '';
@@ -36,17 +40,27 @@ export const ScrollbarWrapper = styled.div<{ absolute?: boolean; loading?: boole
 `;
 
 export const ThumbVertical = styled.div<{ largeSize?: boolean }>`
-  width: ${props => (props.largeSize ? '16px' : '3px')};
-  background-color: ${props => (props.largeSize ? props.theme.palette['blue-050'] : props.theme.palette['grey-300'])};
+  width: ${(props) => (props.largeSize ? '16px' : '3px')};
+  background-color: ${(props) =>
+    props.largeSize
+      ? props.theme.palette['blue-050']
+      : props.theme.palette['grey-300']};
   border-radius: 3px;
-  right: ${props => (props.largeSize ? '0' : '4px')};
+  right: ${(props) => (props.largeSize ? '0' : '4px')};
   position: absolute;
-  border: ${props => (props.largeSize ? `1px solid ${props.theme.palette['grey-300']}` : 'none')};
+  border: ${(props) =>
+    props.largeSize ? `1px solid ${props.theme.palette['grey-300']}` : 'none'};
 
   &:hover,
   &:active {
-    background-color: ${props => (props.largeSize ? props.theme.palette['blue-100'] : props.theme.palette['grey-500'])};
-    border: ${props => (props.largeSize ? `1px solid ${props.theme.palette['grey-400']}` : 'none')};
+    background-color: ${(props) =>
+      props.largeSize
+        ? props.theme.palette['blue-100']
+        : props.theme.palette['grey-500']};
+    border: ${(props) =>
+      props.largeSize
+        ? `1px solid ${props.theme.palette['grey-400']}`
+        : 'none'};
   }
 `;
 
@@ -54,23 +68,34 @@ export const ScrollbarTrackWrapper = styled.div<{ largeSize?: boolean }>`
   display: block;
   height: 100%;
   position: absolute;
-  width: ${props => (props.largeSize ? '24px' : '11px')};
+  width: ${(props) => (props.largeSize ? '24px' : '11px')};
   top: 0;
-  right: ${props => (props.largeSize ? '3px' : '0')};
+  right: ${(props) => (props.largeSize ? '3px' : '0')};
   bottom: 0;
   user-select: none;
 
   ${ThumbVertical} {
-    width: ${props => (props.largeSize ? '16px' : '3px')};
-    background-color: ${props => (props.largeSize ? props.theme.palette['blue-050'] : props.theme.palette['grey-300'])};
-    border: ${props => (props.largeSize ? `1px solid ${props.theme.palette['grey-300']}` : 'none')};
+    width: ${(props) => (props.largeSize ? '16px' : '3px')};
+    background-color: ${(props) =>
+      props.largeSize
+        ? props.theme.palette['blue-050']
+        : props.theme.palette['grey-300']};
+    border: ${(props) =>
+      props.largeSize
+        ? `1px solid ${props.theme.palette['grey-300']}`
+        : 'none'};
   }
 
   &:hover {
     ${ThumbVertical} {
-      background-color: ${props =>
-        props.largeSize ? props.theme.palette['blue-100'] : props.theme.palette['grey-500']};
-      border: ${props => (props.largeSize ? `1px solid ${props.theme.palette['grey-400']}` : 'none')};
+      background-color: ${(props) =>
+        props.largeSize
+          ? props.theme.palette['blue-100']
+          : props.theme.palette['grey-500']};
+      border: ${(props) =>
+        props.largeSize
+          ? `1px solid ${props.theme.palette['grey-400']}`
+          : 'none'};
     }
   }
 `;

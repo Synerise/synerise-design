@@ -1,5 +1,6 @@
-import React from 'react';
-import { ShowMoreTexts } from '../LabelsWithShowMore.types';
+import type React from 'react';
+
+import { type ShowMoreTexts } from '../LabelsWithShowMore.types';
 
 export type DataSourceType = object & {
   key: React.ReactText;

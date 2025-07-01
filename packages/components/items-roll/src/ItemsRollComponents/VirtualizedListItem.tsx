@@ -1,19 +1,27 @@
 import React, { useCallback } from 'react';
-import { ListChildComponentProps } from 'react-window';
+import { type ListChildComponentProps } from 'react-window';
 
-import * as S from './ListItem.styles';
+import { type ItemRollElement } from '../ItemsRoll.types';
 import { RemoveIcon } from './ItemRemoveIcon';
-import { ItemRollElement } from '../ItemsRoll.types';
-import { ItemRendererProps } from './VirtualizedListItem.types';
+import * as S from './ListItem.styles';
+import { type ItemRendererProps } from './VirtualizedListItem.types';
 
 const ItemRenderer =
-  ({ highlight, onItemClick, onItemRemove, tooltipLabel, group }: ItemRendererProps) =>
+  ({
+    highlight,
+    onItemClick,
+    onItemRemove,
+    tooltipLabel,
+    group,
+  }: ItemRendererProps) =>
   ({ index, style, data }: ListChildComponentProps) => {
-    // eslint-disable-next-line react-hooks/rules-of-hooks
     const { suffixel, ...item } = data[index] as ItemRollElement;
 
     // eslint-disable-next-line react-hooks/rules-of-hooks
-    const onClick = useCallback(() => onItemClick && onItemClick(item.id, group), [item.id]);
+    const onClick = useCallback(
+      () => onItemClick && onItemClick(item.id, group),
+      [item.id],
+    );
 
     return (
       <S.ListItem
@@ -26,7 +34,12 @@ const ItemRenderer =
             <>
               {suffixel}
               {!!onItemRemove && (
-                <RemoveIcon id={item.id} handleRemove={onItemRemove} tooltipLabel={tooltipLabel} group={group} />
+                <RemoveIcon
+                  id={item.id}
+                  handleRemove={onItemRemove}
+                  tooltipLabel={tooltipLabel}
+                  group={group}
+                />
               )}
             </>
           </S.SuffixelWrapper>

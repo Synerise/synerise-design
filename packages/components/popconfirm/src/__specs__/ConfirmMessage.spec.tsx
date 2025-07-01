@@ -1,5 +1,6 @@
 import React from 'react';
-import { renderWithProvider } from '@synerise/ds-utils/dist/testing';
+
+import { renderWithProvider } from '@synerise/ds-utils';
 import { fireEvent } from '@testing-library/react';
 
 import Popconfirm from '../Popconfirm';
@@ -10,9 +11,16 @@ const BUTTON_LABEL = 'BUTTON_LABEL';
 describe('Popcofirm.ConfirmMessage', () => {
   it('should render child component', () => {
     // ARRANGE
-    const {getByText} = renderWithProvider(<Popconfirm.ConfirmMessage title={CONFIRM_MESSAGE} onClick={(showConfirmMessage: () => void) => { showConfirmMessage() }}>
-      <button>{ BUTTON_LABEL }</button>
-    </Popconfirm.ConfirmMessage>);
+    const { getByText } = renderWithProvider(
+      <Popconfirm.ConfirmMessage
+        title={CONFIRM_MESSAGE}
+        onClick={(showConfirmMessage: () => void) => {
+          showConfirmMessage();
+        }}
+      >
+        <button>{BUTTON_LABEL}</button>
+      </Popconfirm.ConfirmMessage>,
+    );
 
     // ASSERT
     expect(getByText(BUTTON_LABEL)).toBeTruthy();
@@ -20,9 +28,16 @@ describe('Popcofirm.ConfirmMessage', () => {
 
   it('should show confirm message', () => {
     // ARRANGE
-    const {getByText} = renderWithProvider(<Popconfirm.ConfirmMessage title={CONFIRM_MESSAGE} onClick={(showConfirmMessage: () => void) => { showConfirmMessage() }}>
-      <button>{ BUTTON_LABEL }</button>
-    </Popconfirm.ConfirmMessage>);
+    const { getByText } = renderWithProvider(
+      <Popconfirm.ConfirmMessage
+        title={CONFIRM_MESSAGE}
+        onClick={(showConfirmMessage: () => void) => {
+          showConfirmMessage();
+        }}
+      >
+        <button>{BUTTON_LABEL}</button>
+      </Popconfirm.ConfirmMessage>,
+    );
 
     // ACT
     fireEvent.click(getByText(BUTTON_LABEL));

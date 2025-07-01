@@ -1,26 +1,43 @@
-import React from 'react';
 import { cloneDeep } from 'lodash';
-import ButtonGroup from '@synerise/ds-button-group';
+import React from 'react';
 import { injectIntl } from 'react-intl';
 import { v4 as uuid } from 'uuid';
-import Button from '@synerise/ds-button';
-import * as S from './RangeFilter.styles';
-import { TYPES, TYPES_DATA } from './constants';
-import { addSuffixToDuplicate, denormalizeValue, isValidValue, normalizeValue } from './utils';
-import { FilterDefinition, FilterValue, RangeFilterProps, RangeFilterState } from './RangeFilter.types';
-import FilterDropdown from './Shared/FilterDropdown/FilterDropdown';
-import { SavedFilter } from './Shared/FilterDropdown/FilterDropdown.types';
-import SaveFilterForm from './Shared/SaveFilterForm/SaveFilterForm';
-import { getDefaultTexts } from '../utils';
 
-class RangeFilter extends React.PureComponent<RangeFilterProps, RangeFilterState> {
+import Button from '@synerise/ds-button';
+import ButtonGroup from '@synerise/ds-button-group';
+
+import { getDefaultTexts } from '../utils';
+import * as S from './RangeFilter.styles';
+import {
+  type FilterDefinition,
+  type FilterValue,
+  type RangeFilterProps,
+  type RangeFilterState,
+} from './RangeFilter.types';
+import FilterDropdown from './Shared/FilterDropdown/FilterDropdown';
+import { type SavedFilter } from './Shared/FilterDropdown/FilterDropdown.types';
+import SaveFilterForm from './Shared/SaveFilterForm/SaveFilterForm';
+import { TYPES, TYPES_DATA } from './constants';
+import {
+  addSuffixToDuplicate,
+  denormalizeValue,
+  isValidValue,
+  normalizeValue,
+} from './utils';
+
+class RangeFilter extends React.PureComponent<
+  RangeFilterProps,
+  RangeFilterState
+> {
   static defaultProps = {
     value: { type: TYPES.DAILY, ...TYPES_DATA.DAILY.definition },
   };
 
   constructor(props: RangeFilterProps) {
     super(props);
-    const allowedFilterTypes = props?.allowedFilterTypes?.length ? props?.allowedFilterTypes : Object.keys(TYPES);
+    const allowedFilterTypes = props?.allowedFilterTypes?.length
+      ? props?.allowedFilterTypes
+      : Object.keys(TYPES);
     const valueType =
       props?.value?.type && allowedFilterTypes.includes(props?.value?.type)
         ? props?.value?.type
@@ -36,7 +53,10 @@ class RangeFilter extends React.PureComponent<RangeFilterProps, RangeFilterState
     const { state } = this;
     const { allowedFilterTypes } = this.props;
     const { activeType } = state;
-    if (allowedFilterTypes?.length && !allowedFilterTypes.includes(activeType)) {
+    if (
+      allowedFilterTypes?.length &&
+      !allowedFilterTypes.includes(activeType)
+    ) {
       this.handleTypeChange(allowedFilterTypes[0]);
     }
   };
@@ -61,7 +81,8 @@ class RangeFilter extends React.PureComponent<RangeFilterProps, RangeFilterState
     this.setState({
       activeType: type,
       [type]: {
-        definition: previousDefinition || cloneDeep(TYPES_DATA[type].definition),
+        definition:
+          previousDefinition || cloneDeep(TYPES_DATA[type].definition),
         ...previousValue,
         type,
       } as FilterValue,
@@ -78,14 +99,21 @@ class RangeFilter extends React.PureComponent<RangeFilterProps, RangeFilterState
     const { onFilterSave, savedFilters } = this.props;
     const currentFilter = state[activeType] as SavedFilter;
     const filterList = savedFilters || [];
-    const filter = { ...currentFilter, type: activeType, name: filterName, id: uuid() };
+    const filter = {
+      ...currentFilter,
+      type: activeType,
+      name: filterName,
+      id: uuid(),
+    };
     const filterWithUniqueName = addSuffixToDuplicate(filterList, filter);
     onFilterSave && onFilterSave([...filterList, filterWithUniqueName]);
   };
 
   handleSavedFilterRemove = (removedFilterId: string): void => {
     const { savedFilters, onFilterSave } = this.props;
-    const listWithoutRemovedId = savedFilters ? savedFilters.filter(f => f.id !== removedFilterId) : [];
+    const listWithoutRemovedId = savedFilters
+      ? savedFilters.filter((f) => f.id !== removedFilterId)
+      : [];
     onFilterSave && onFilterSave(listWithoutRemovedId);
   };
 
@@ -101,7 +129,8 @@ class RangeFilter extends React.PureComponent<RangeFilterProps, RangeFilterState
     const { activeType, rangeClipboard } = state;
     const activeValue = state[activeType] as FilterValue;
     const { definition } = activeValue;
-    const Component = activeType && TYPES_DATA[activeType] && TYPES_DATA[activeType].component;
+    const Component =
+      activeType && TYPES_DATA[activeType] && TYPES_DATA[activeType].component;
     const {
       intl,
       savedFilters,
@@ -115,9 +144,13 @@ class RangeFilter extends React.PureComponent<RangeFilterProps, RangeFilterState
 
     const allTexts = getDefaultTexts(intl, false, texts);
 
-    const buttonSource = allowedFilterTypes?.length ? allowedFilterTypes : Object.values(TYPES);
+    const buttonSource = allowedFilterTypes?.length
+      ? allowedFilterTypes
+      : Object.values(TYPES);
     buttonSource.sort((a: string, b: string) => {
-      return Object.values(TYPES).indexOf(a) < Object.values(TYPES).indexOf(b) ? -1 : 1;
+      return Object.values(TYPES).indexOf(a) < Object.values(TYPES).indexOf(b)
+        ? -1
+        : 1;
     });
     return (
       <S.Container>
@@ -136,7 +169,7 @@ class RangeFilter extends React.PureComponent<RangeFilterProps, RangeFilterState
         <S.Body>
           {buttonSource.length > 1 && (
             <ButtonGroup fullWidth size="large">
-              {buttonSource.map(key => (
+              {buttonSource.map((key) => (
                 <Button
                   key={key}
                   type={activeType === key ? 'primary' : undefined}
@@ -155,7 +188,9 @@ class RangeFilter extends React.PureComponent<RangeFilterProps, RangeFilterState
                 rangeDisplayMode={rangeDisplayMode}
                 value={definition}
                 onChange={(def: FilterDefinition): void => {
-                  const updatedFilter = { [activeType]: { ...activeValue, definition: def } };
+                  const updatedFilter = {
+                    [activeType]: { ...activeValue, definition: def },
+                  };
                   this.setState(updatedFilter);
                 }}
                 onRangeCopy={this.handleRangeCopy}
@@ -167,9 +202,18 @@ class RangeFilter extends React.PureComponent<RangeFilterProps, RangeFilterState
         </S.Body>
         {!hideFooter && (
           <S.Footer data-testid="range-filter-footer">
-            {savedFilters && onFilterSave && <SaveFilterForm texts={allTexts} onFilterSave={this.handleFilterSave} />}
+            {savedFilters && onFilterSave && (
+              <SaveFilterForm
+                texts={allTexts}
+                onFilterSave={this.handleFilterSave}
+              />
+            )}
             <S.FooterSeparator />
-            <Button data-testid="range-filter-cancel-button" type="ghost" onClick={this.handleCancel}>
+            <Button
+              data-testid="range-filter-cancel-button"
+              type="ghost"
+              onClick={this.handleCancel}
+            >
               {allTexts.cancel}
             </Button>
             <Button

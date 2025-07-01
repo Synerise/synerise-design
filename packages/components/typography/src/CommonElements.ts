@@ -1,5 +1,21 @@
-import styled, { css, FlattenInterpolation, ThemeProps } from 'styled-components';
-import { h200, h300, h400, h700, h500, h600, h100, medium, xsmall, small } from './style/macro-utils';
+import styled, {
+  type FlattenInterpolation,
+  type ThemeProps,
+  css,
+} from 'styled-components';
+
+import {
+  h100,
+  h200,
+  h300,
+  h400,
+  h500,
+  h600,
+  h700,
+  medium,
+  small,
+  xsmall,
+} from './style/macro-utils';
 
 export const Description = styled.div<{ disabled?: boolean }>`
   color: ${(props): string => props.theme.palette['grey-600']};

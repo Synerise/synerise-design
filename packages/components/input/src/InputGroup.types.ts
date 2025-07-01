@@ -1,5 +1,6 @@
 import type { GroupProps } from 'antd/es/input';
-import { FormFieldCommonProps } from '@synerise/ds-form-field';
+
+import { type FormFieldCommonProps } from '@synerise/ds-form-field';
 
 export type Props = GroupProps & {
   errors?: string[];

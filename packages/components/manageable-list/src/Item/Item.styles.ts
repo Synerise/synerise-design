@@ -1,6 +1,8 @@
 import styled, { css } from 'styled-components';
-import { macro } from '@synerise/ds-typography';
+
 import Icon from '@synerise/ds-icon';
+import { macro } from '@synerise/ds-typography';
+
 import { ItemActionsWrapper } from './ItemActions/ItemActions.styles';
 
 export const ItemLabel = styled.span`
@@ -38,7 +40,11 @@ export const ItemTagList = styled.div`
     top: 0;
     bottom: 0;
     width: 20px;
-    background: linear-gradient(90deg, rgba(0, 0, 0, 0) 0%, rgba(255, 255, 255, 1) 100%);
+    background: linear-gradient(
+      90deg,
+      rgba(0, 0, 0, 0) 0%,
+      rgba(255, 255, 255, 1) 100%
+    );
   }
 `;
 
@@ -52,7 +58,7 @@ export const ItemLabelWrapper = styled.div<{ largeSize?: boolean }>`
     padding: 16px 16px 19px;
   }
 
-  ${props =>
+  ${(props) =>
     props.largeSize
       ? css`
           flex-direction: column;
@@ -71,13 +77,16 @@ export const ItemLabelWrapper = styled.div<{ largeSize?: boolean }>`
         `}
 `;
 
-export const ItemContainer = styled.div<{ isSelected: boolean; isDisabled: boolean }>`
+export const ItemContainer = styled.div<{
+  isSelected: boolean;
+  isDisabled: boolean;
+}>`
   width: 100%;
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: stretch;
-  ${props =>
+  ${(props) =>
     props.isDisabled &&
     `
     opacity: 0.4;
@@ -89,7 +98,8 @@ export const ItemContainer = styled.div<{ isSelected: boolean; isDisabled: boole
   li {
     width: 100%;
     .title {
-      color: ${({ theme, isSelected }): string => (isSelected ? theme.palette['blue-600'] : theme.palette['grey-600'])};
+      color: ${({ theme, isSelected }): string =>
+        isSelected ? theme.palette['blue-600'] : theme.palette['grey-600']};
     }
     & > div {
       height: 24px;
@@ -101,8 +111,10 @@ export const ItemContainer = styled.div<{ isSelected: boolean; isDisabled: boole
 
   .ds-manageable-list-item-icon {
     svg {
-      color: ${({ theme, isSelected }): string => (isSelected ? theme.palette['blue-600'] : theme.palette['grey-600'])};
-      fill: ${({ theme, isSelected }): string => (isSelected ? theme.palette['blue-600'] : theme.palette['grey-600'])};
+      color: ${({ theme, isSelected }): string =>
+        isSelected ? theme.palette['blue-600'] : theme.palette['grey-600']};
+      fill: ${({ theme, isSelected }): string =>
+        isSelected ? theme.palette['blue-600'] : theme.palette['grey-600']};
     }
   }
 

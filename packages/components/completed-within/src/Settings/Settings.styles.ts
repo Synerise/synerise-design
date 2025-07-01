@@ -1,7 +1,7 @@
 import styled from 'styled-components';
+
 import { InputGroupWrapper } from '@synerise/ds-input/dist/InputGroup.styles';
 
-// eslint-disable-next-line import/prefer-default-export
 export const Settings = styled.div`
   display: flex;
   flex-direction: column;

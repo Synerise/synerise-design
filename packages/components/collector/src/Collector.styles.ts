@@ -1,19 +1,23 @@
-import styled, { css, FlattenSimpleInterpolation } from 'styled-components';
+import styled, {
+  type FlattenSimpleInterpolation,
+  css,
+} from 'styled-components';
+
+import Button from '@synerise/ds-button';
+import { type InputProps } from '@synerise/ds-input';
+import Value from '@synerise/ds-input/dist/InputMultivalue/Elements/Value';
 import {
-  InputWrapper,
-  IconWrapper,
   BorderLessInput,
   ContentAbove,
-  Label,
   ContentBelow,
   Description,
   ErrorText,
+  IconWrapper,
+  InputWrapper,
+  Label,
   ValueText,
 } from '@synerise/ds-input/dist/InputMultivalue/InputMultivalue.styles';
 import DSScrollbar from '@synerise/ds-scrollbar';
-import { InputProps } from '@synerise/ds-input';
-import Value from '@synerise/ds-input/dist/InputMultivalue/Elements/Value';
-import Button from '@synerise/ds-button';
 
 export const Container = styled.div``;
 const gradientOverlayStyles = (): FlattenSimpleInterpolation => css`
@@ -79,7 +83,10 @@ export const MainContent = styled.div<{
   )`};
   }
 `;
-export const RightSide = styled.div<{ gradientOverlap?: boolean; focus?: boolean }>`
+export const RightSide = styled.div<{
+  gradientOverlap?: boolean;
+  focus?: boolean;
+}>`
   display: flex;
   margin: 0 4px;
   position: relative;
@@ -98,9 +105,15 @@ export const RightSide = styled.div<{ gradientOverlap?: boolean; focus?: boolean
   }
 `;
 export const Input = styled(BorderLessInput)<
-  InputProps & { disabled?: boolean; hasValues?: boolean; transparent: boolean; hidden: boolean }
+  InputProps & {
+    disabled?: boolean;
+    hasValues?: boolean;
+    transparent: boolean;
+    hidden: boolean;
+  }
 >`
-  margin: ${(props): string => (props.hasValues ? '6px 0 6px 12px' : '4px 0 4px 12px')};
+  margin: ${(props): string =>
+    props.hasValues ? '6px 0 6px 12px' : '4px 0 4px 12px'};
   padding: 1px 0;
   min-width: unset;
   line-height: 18px;
@@ -124,7 +137,7 @@ export const SearchWrapper = styled.div`
 `;
 
 export const CollectorValue = styled(Value)<{ hasError?: boolean }>`
-  ${props =>
+  ${(props) =>
     props.hasError &&
     css`
       && {

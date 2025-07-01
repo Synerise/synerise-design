@@ -19,7 +19,7 @@ Bunch of components to bootstrap application.
 ## API
 
 | Property         | Description                                                              | Type             | Default     |
-|------------------|--------------------------------------------------------------------------|------------------|-------------|
+| ---------------- | ------------------------------------------------------------------------ | ---------------- | ----------- |
 | locale           | Current lang (ex. en-US)                                                 | string           | en          |
 | timeZone         | Current timezone (ex. Europe/Warsaw)                                     | string           |             |
 | messages         | Object with translations                                                 | object           |             |

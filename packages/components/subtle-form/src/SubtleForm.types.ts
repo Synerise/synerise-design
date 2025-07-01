@@ -1,9 +1,11 @@
-import React from 'react';
-import { FormFieldCommonProps } from '@synerise/ds-form-field';
-import { SubtleTextAreaProps } from './Elements/TextArea/TextArea.types';
-import { SubtleSelectProps } from './Elements/Select/Select.types';
-import { SubtleDatePickerProps } from './Elements/DatePicker/DatePicker.types';
-import { SubtleInputProps } from './Elements/Input/Input.types';
+import type React from 'react';
+
+import { type FormFieldCommonProps } from '@synerise/ds-form-field';
+
+import { type SubtleDatePickerProps } from './Elements/DatePicker/DatePicker.types';
+import { type SubtleInputProps } from './Elements/Input/Input.types';
+import { type SubtleSelectProps } from './Elements/Select/Select.types';
+import { type SubtleTextAreaProps } from './Elements/TextArea/TextArea.types';
 
 export type SubtleFormSubComponents = {
   TextArea: React.ElementType<SubtleTextAreaProps>;

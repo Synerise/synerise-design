@@ -1,17 +1,28 @@
-import type { Key, ReactNode, Ref } from 'react';
 import type { ColumnType, TableProps } from 'antd/lib/table';
 import type { TableLocale, TableRowSelection } from 'antd/lib/table/interface';
+import type { Key, ReactNode, Ref } from 'react';
+
 import type { LiteralStringUnion } from '@synerise/ds-utils';
 
-import type DSTable from './Table';
-import type { GroupType } from './GroupTable/GroupTable.types';
-import type { RowStar } from './hooks/useRowStar';
 import type { SortRender } from './ColumnSortMenu/TitleWithSort';
-import type { ColumnSortOrder, ColumnsSortState } from './ColumnSortMenu/useSortState';
+import type {
+  ColumnSortOrder,
+  ColumnsSortState,
+} from './ColumnSortMenu/useSortState';
+import type { GroupType } from './GroupTable/GroupTable.types';
+import type DSTable from './Table';
+import type { RowStar } from './hooks/useRowStar';
 
 export type AntTableProps<T> = Omit<
   TableProps<T>,
-  'title' | 'subTitle' | 'onSearch' | 'itemsMenu' | 'search' | 'locale' | 'columns' | 'loading'
+  | 'title'
+  | 'subTitle'
+  | 'onSearch'
+  | 'itemsMenu'
+  | 'search'
+  | 'locale'
+  | 'columns'
+  | 'loading'
 >;
 
 export type Selection = {
@@ -34,7 +45,10 @@ export type RowSelection<T> = Omit<TableRowSelection<T>, 'selections'> & {
   onChange: (selectedRowKeys: Key[], selectedRows: T[]) => void;
   limit?: number;
   independentSelectionExpandedRows?: boolean;
-  checkRowSelectionStatus?: (record: T) => { disabled?: boolean; unavailable?: boolean };
+  checkRowSelectionStatus?: (record: T) => {
+    disabled?: boolean;
+    unavailable?: boolean;
+  };
 };
 
 export type Filter = {
@@ -99,18 +113,28 @@ export type ScrollProxyType = {
 export type CustomizeScrollBodyInfo = {
   scrollbarSize: number;
   ref: Ref<ScrollProxyType>;
-  onScroll: (info: { currentTarget?: HTMLElement; scrollLeft?: number }) => void;
+  onScroll: (info: {
+    currentTarget?: HTMLElement;
+    scrollLeft?: number;
+  }) => void;
 };
 
 type AntTableComponentsType<T> = AntTableProps<T>['components'];
 
 type DSTableComponentsType<T> = AntTableComponentsType<T> & {
   // This type has been copied from Ant and extended because it's not accessible directly
-  body?: (data: T[], info: CustomizeScrollBodyInfo, defaultTableProps?: DSTableProps<T>) => ReactNode;
+  body?: (
+    data: T[],
+    info: CustomizeScrollBodyInfo,
+    defaultTableProps?: DSTableProps<T>,
+  ) => ReactNode;
 };
 
 export type SingleColumnSort = { columnKey: string; order: ColumnSortOrder };
-export type OnSortFn = (singleColumnSort: SingleColumnSort, sortState: ColumnsSortState) => void;
+export type OnSortFn = (
+  singleColumnSort: SingleColumnSort,
+  sortState: ColumnsSortState,
+) => void;
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export type DSTableProps<T extends any & GroupType<T>> = AntTableProps<T> & {
@@ -136,7 +160,10 @@ export type DSTableProps<T extends any & GroupType<T>> = AntTableProps<T> & {
   columns?: DSColumnType<T>[];
   locale?: Locale;
   components?: AntTableComponentsType<T> | DSTableComponentsType<T>;
-  renderSelectionTitle?: (selection?: RowSelection<T>, filters?: Filter[]) => ReactNode;
+  renderSelectionTitle?: (
+    selection?: RowSelection<T>,
+    filters?: Filter[],
+  ) => ReactNode;
   hideTitlePart?: boolean;
   disableColumnNamesLineBreak?: boolean;
   onSort?: OnSortFn;

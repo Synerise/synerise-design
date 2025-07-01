@@ -2,7 +2,7 @@ import {
   countAllocation,
   mergeAllocationWithVariants,
 } from './allocation.utils';
-import { AllocationVariant } from '../Allocation/Allocation.types';
+import { type AllocationVariant } from '../Allocation/Allocation.types';
 
 const VARIANTS_WITH_ALLOCATION: AllocationVariant[] = [
   { name: 'Variant A', percentage: 20, tabId: 1, tabLetter: 'A' },

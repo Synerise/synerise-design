@@ -1,10 +1,10 @@
 import React from 'react';
 
+import { theme } from '@synerise/ds-core';
 import Icon, { CheckS } from '@synerise/ds-icon';
 import ListItem from '@synerise/ds-list-item';
-import { theme } from '@synerise/ds-core';
 
-import { OperatorsGroup, OperatorsItem } from '../Operator.types';
+import { type OperatorsGroup, type OperatorsItem } from '../Operator.types';
 
 type OperatorsDropdownItemProps = {
   item: OperatorsItem | OperatorsGroup;
@@ -31,7 +31,11 @@ const OperatorsDropdownItem = ({
       key={item.name + item.id}
       prefixel={searchQuery && <Icon component={item.icon} />}
       highlight={searchQuery}
-      suffixel={selected && <Icon component={<CheckS />} color={theme.palette['green-600']} />}
+      suffixel={
+        selected && (
+          <Icon component={<CheckS />} color={theme.palette['green-600']} />
+        )
+      }
       onClick={(): void => {
         clearSearch && clearSearch();
         hideDropdown && hideDropdown();

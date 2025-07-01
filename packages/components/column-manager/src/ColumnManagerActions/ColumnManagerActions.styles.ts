@@ -6,7 +6,7 @@ export const ColumnManagerActions = styled.div`
   flex-direction: row;
   align-items: center;
   justify-content: flex-end;
-  background-color: ${props => props.theme.palette['grey-050']};
+  background-color: ${(props) => props.theme.palette['grey-050']};
   padding: 24px;
 `;
 

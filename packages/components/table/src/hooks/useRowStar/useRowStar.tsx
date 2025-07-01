@@ -1,24 +1,44 @@
 import React from 'react';
+
 import Button from '@synerise/ds-button';
 import Tooltip from '@synerise/ds-tooltip';
-import { DSColumnType } from '../../Table.types';
-import { AnyRecordType, CreateRowStarColumnProps, UseStarredApi } from './useRowStar.types';
+
+import { type DSColumnType } from '../../Table.types';
+import {
+  type AnyRecordType,
+  type CreateRowStarColumnProps,
+  type UseStarredApi,
+} from './useRowStar.types';
 
 const STAR_COL_WIDTH_SINGLE = 64;
 const STAR_COL_WIDTH_SELECTON = 40;
 
 const createRowStarColumn =
-  ({ isStarred, toggleStarred }: Pick<UseStarredApi, 'isStarred' | 'toggleStarred'>) =>
-  ({ locale, rowStar, selection, getRowKey, loading }: CreateRowStarColumnProps): DSColumnType<AnyRecordType> => ({
+  ({
+    isStarred,
+    toggleStarred,
+  }: Pick<UseStarredApi, 'isStarred' | 'toggleStarred'>) =>
+  ({
+    locale,
+    rowStar,
+    selection,
+    getRowKey,
+    loading,
+  }: CreateRowStarColumnProps): DSColumnType<AnyRecordType> => ({
     key: '_row-star',
     className: `${rowStar?.className || ''} ds-table-star-column`,
-    width: !!selection && !!rowStar ? STAR_COL_WIDTH_SELECTON : STAR_COL_WIDTH_SINGLE,
+    width:
+      !!selection && !!rowStar
+        ? STAR_COL_WIDTH_SELECTON
+        : STAR_COL_WIDTH_SINGLE,
     render:
       rowStar?.renderCell ||
       ((value, record): React.ReactNode => {
         const { expandedChild } = record;
         const keyString = String(getRowKey(record));
-        if (loading || (expandedChild && rowStar?.disableForExpandedRows)) return null;
+        if (loading || (expandedChild && rowStar?.disableForExpandedRows)) {
+          return null;
+        }
 
         return (
           <Tooltip title={locale?.starRowTooltip}>
@@ -28,7 +48,11 @@ const createRowStarColumn =
               onClick={(e): void => {
                 const newStarredRowKeys = toggleStarred(keyString);
                 if (typeof rowStar?.onChange === 'function') {
-                  rowStar.onChange(newStarredRowKeys, keyString, isStarred(keyString));
+                  rowStar.onChange(
+                    newStarredRowKeys,
+                    keyString,
+                    isStarred(keyString),
+                  );
                 }
 
                 if (typeof rowStar?.onClick === 'function') {
@@ -41,13 +65,15 @@ const createRowStarColumn =
       }),
   });
 
-// eslint-disable-next-line import/prefer-default-export
 export const useRowStar = (initialStarredKeys: string[]): UseStarredApi => {
   const starredKeys = React.useRef(new Set(initialStarredKeys));
 
   const getStarredRowKeys = (): string[] => Array.from(starredKeys.current);
 
-  const isStarred = React.useCallback((key: string): boolean => starredKeys.current.has(key), [starredKeys]);
+  const isStarred = React.useCallback(
+    (key: string): boolean => starredKeys.current.has(key),
+    [starredKeys],
+  );
 
   const toggleStarred = React.useCallback(
     (key: string): string[] => {
@@ -59,12 +85,12 @@ export const useRowStar = (initialStarredKeys: string[]): UseStarredApi => {
 
       return getStarredRowKeys();
     },
-    [starredKeys]
+    [starredKeys],
   );
 
   const getRowStarColumn = React.useMemo(
     () => createRowStarColumn({ isStarred, toggleStarred }),
-    [isStarred, toggleStarred]
+    [isStarred, toggleStarred],
   );
 
   return {

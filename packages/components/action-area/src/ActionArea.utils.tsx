@@ -1,15 +1,23 @@
-import React from 'react';
-import type { ReactNode } from 'react';
+import React, { type ReactNode } from 'react';
+
 import Button from '@synerise/ds-button';
-import { ActionAreaWithCustomActionProps, ActionAreaWithStandardActionProps } from './ActionArea.types';
+
+import {
+  type ActionAreaWithCustomActionProps,
+  type ActionAreaWithStandardActionProps,
+} from './ActionArea.types';
 
 const isCustomActionArea = (
-  props: Partial<ActionAreaWithCustomActionProps | ActionAreaWithStandardActionProps>
+  props: Partial<
+    ActionAreaWithCustomActionProps | ActionAreaWithStandardActionProps
+  >,
 ): props is ActionAreaWithCustomActionProps => {
   return 'customAction' in props;
 };
 
-export const renderAction = (props: ActionAreaWithCustomActionProps | ActionAreaWithStandardActionProps): ReactNode => {
+export const renderAction = (
+  props: ActionAreaWithCustomActionProps | ActionAreaWithStandardActionProps,
+): ReactNode => {
   if (isCustomActionArea(props)) {
     const { customAction } = props;
     return customAction;

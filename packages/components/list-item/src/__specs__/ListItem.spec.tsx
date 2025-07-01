@@ -1,7 +1,9 @@
 import React from 'react';
+
+import { renderWithProvider } from '@synerise/ds-utils';
 import { fireEvent, screen } from '@testing-library/react';
+
 import ListItem from '../ListItem';
-import { renderWithProvider } from '@synerise/ds-utils/dist/testing';
 
 describe('ListItem', () => {
   it('should render with children', () => {
@@ -11,9 +13,10 @@ describe('ListItem', () => {
 
   it('should handle click events', () => {
     const handleClick = jest.fn();
-    renderWithProvider(<ListItem onClick={handleClick}>Clickable Item</ListItem>);
+    renderWithProvider(
+      <ListItem onClick={handleClick}>Clickable Item</ListItem>,
+    );
     fireEvent.click(screen.getByText('Clickable Item'));
     expect(handleClick).toHaveBeenCalled();
   });
-
 });

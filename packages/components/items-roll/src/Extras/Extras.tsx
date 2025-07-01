@@ -1,9 +1,10 @@
 import React from 'react';
 import styled from 'styled-components';
-import Dropdown from '@synerise/ds-dropdown';
-import Menu, { MenuItemProps } from '@synerise/ds-menu';
+
 import Button from '@synerise/ds-button';
+import Dropdown from '@synerise/ds-dropdown';
 import Icon, { OptionHorizontalM } from '@synerise/ds-icon';
+import Menu, { type MenuItemProps } from '@synerise/ds-menu';
 
 import type { ItemRollElement } from '../ItemsRoll.types';
 

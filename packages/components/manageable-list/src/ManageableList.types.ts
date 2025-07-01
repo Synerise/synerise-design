@@ -1,5 +1,7 @@
 import type { CSSProperties, ReactNode, ReactText } from 'react';
+
 import type { ExactlyOne } from '@synerise/ds-utils';
+
 import type { ItemProps } from './Item/Item.types';
 
 export enum ExpansionBehaviour {

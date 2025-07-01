@@ -1,7 +1,9 @@
-import { RelativeDateRange } from '../../date.types';
-import { RELATIVE, RANGES_MODE } from '../../constants';
+import { RANGES_MODE, RELATIVE } from '../../constants';
+import { type RelativeDateRange } from '../../date.types';
 
-export const getDefaultCustomRange = (currentGroup: string | null): RelativeDateRange => ({
+export const getDefaultCustomRange = (
+  currentGroup: string | null,
+): RelativeDateRange => ({
   type: RELATIVE,
   from: undefined,
   to: undefined,

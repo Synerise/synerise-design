@@ -1,8 +1,15 @@
 import React from 'react';
+
 import Icon from '@synerise/ds-icon';
 
-import { getActionItem, matchesSearchQuery } from '../hooks/useItemsInSections.utils';
-import type { SearchActionType, SearchParamConfig } from '../../ItemPickerNew/ItemPickerNew.types';
+import type {
+  SearchActionType,
+  SearchParamConfig,
+} from '../../ItemPickerNew/ItemPickerNew.types';
+import {
+  getActionItem,
+  matchesSearchQuery,
+} from '../hooks/useItemsInSections.utils';
 
 type GetSearchActionItemsOptions = {
   action: SearchActionType;
@@ -19,27 +26,32 @@ export const getSearchActionItems = ({
   setSearchActionSection,
   changeSearchQuery,
 }: GetSearchActionItemsOptions) => {
-  const filteredSearchParams = action?.searchParams?.filter(searchParam => {
+  const filteredSearchParams = action?.searchParams?.filter((searchParam) => {
     if (!searchQuery) {
       return true;
     }
-    return matchesSearchQuery(searchParam.searchLabel || searchParam.paramKeyLabel, searchQuery);
+    return matchesSearchQuery(
+      searchParam.searchLabel || searchParam.paramKeyLabel,
+      searchQuery,
+    );
   });
 
-  return filteredSearchParams.map(searchParam =>
+  return filteredSearchParams.map((searchParam) =>
     getActionItem(
       {
         text: searchParam.paramListLabel,
         id: searchParam.paramKey,
         actionType: 'custom',
-        prefixel: searchParam.icon ? <Icon component={searchParam.icon} /> : undefined,
+        prefixel: searchParam.icon ? (
+          <Icon component={searchParam.icon} />
+        ) : undefined,
         onClick: () => {
           changeSearchQuery('');
           setSearchParamConfig(searchParam);
           setSearchActionSection(undefined);
         },
       },
-      searchQuery
-    )
+      searchQuery,
+    ),
   );
 };

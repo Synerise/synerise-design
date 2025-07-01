@@ -1,11 +1,17 @@
-import React, { useState, useMemo, useEffect, UIEvent, useRef } from 'react';
+import React, {
+  type UIEvent,
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+} from 'react';
 
-import SearchBar from '@synerise/ds-search-bar';
+import Icon, { SearchM } from '@synerise/ds-icon';
 import type { ListItemProps } from '@synerise/ds-list-item';
 import Result from '@synerise/ds-result';
-import Icon, { SearchM } from '@synerise/ds-icon';
-import { useKeyboardShortcuts } from '@synerise/ds-utils';
+import SearchBar from '@synerise/ds-search-bar';
 import { SearchItems } from '@synerise/ds-search/dist/Elements';
+import { useKeyboardShortcuts } from '@synerise/ds-utils';
 
 import * as S from './ItemPickerDropdown.style';
 import type { ItemPickerDropdownProps } from './ItemPickerDropdown.types';
@@ -65,7 +71,11 @@ const ItemPickerDropdown = ({
 
   const filteredDataSource = useMemo(() => {
     return searchQuery
-      ? dataSource.filter(item => item.text && String(item.text).toLowerCase().includes(searchQuery.toLowerCase()))
+      ? dataSource.filter(
+          (item) =>
+            item.text &&
+            String(item.text).toLowerCase().includes(searchQuery.toLowerCase()),
+        )
       : dataSource;
   }, [searchQuery, dataSource]);
 
@@ -73,9 +83,15 @@ const ItemPickerDropdown = ({
     const bottomAction = !closeOnBottomAction ? (
       dropdownBottomAction
     ) : (
-      <S.BottomActionWrapper onClick={handleClose}>{dropdownBottomAction}</S.BottomActionWrapper>
+      <S.BottomActionWrapper onClick={handleClose}>
+        {dropdownBottomAction}
+      </S.BottomActionWrapper>
     );
-    return dropdownBottomAction && <S.DropdownFooter>{bottomAction}</S.DropdownFooter>;
+    return (
+      dropdownBottomAction && (
+        <S.DropdownFooter>{bottomAction}</S.DropdownFooter>
+      )
+    );
   };
 
   return (
@@ -92,24 +108,29 @@ const ItemPickerDropdown = ({
         />
       )}
       <S.ListWrapper>
-        {filteredDataSource?.length === 0 && <Result type="no-results" description={noResults} />}
+        {filteredDataSource?.length === 0 && (
+          <Result type="no-results" description={noResults} />
+        )}
         <S.StyledScrollbar
           maxHeight={rowCount * rowHeight}
           absolute
-          onScroll={(event: UIEvent): void => setScrollTop(event.currentTarget.scrollTop)}
+          onScroll={(event: UIEvent): void =>
+            setScrollTop(event.currentTarget.scrollTop)
+          }
           style={{ paddingRight: '8px' }}
           {...scrollbarProps}
         >
           <SearchItems
             data={filteredDataSource}
             highlight={searchBarProps?.value ?? searchQuery}
-            itemRender={(item: ListItemProps) => <S.ListItem key={item?.text as string} {...item} />}
+            itemRender={(item: ListItemProps) => (
+              <S.ListItem key={item?.text as string} {...item} />
+            )}
             onItemClick={(i): void => handleChange(i)}
             rowHeight={rowHeight}
             height={rowCount * rowHeight}
             visibleRows={rowCount}
             listProps={{ scrollTop }}
-            // @ts-ignore
             width="100%"
             renderInMenu={false}
           />

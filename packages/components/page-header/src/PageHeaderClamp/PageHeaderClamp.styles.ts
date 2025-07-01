@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+
 import { macro } from '@synerise/ds-typography';
 
 export const WrapperPageHeaderClamp = styled.div`

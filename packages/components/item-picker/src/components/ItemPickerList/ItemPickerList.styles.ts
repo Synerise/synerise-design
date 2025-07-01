@@ -1,19 +1,26 @@
-import styled, { css } from 'styled-components';
 import { VariableSizeList } from 'react-window';
+import styled, { css } from 'styled-components';
 
-import Scrollbar from '@synerise/ds-scrollbar';
 import Dropdown from '@synerise/ds-dropdown';
-import DropdownSkeleton from '@synerise/ds-skeleton';
-import DSLoader from '@synerise/ds-loader';
 import DSEmptyStates from '@synerise/ds-empty-states';
+import DSLoader from '@synerise/ds-loader';
+import Scrollbar from '@synerise/ds-scrollbar';
 import { PlaceholderWrapper } from '@synerise/ds-search-bar/dist/SearchBar.styles';
+import DropdownSkeleton from '@synerise/ds-skeleton';
+
 import { LIST_INNER_PADDING } from './constants';
 
-export const ListWrapper = styled.div<{ wrapperHeight?: number; centered?: boolean; offsetSpace: number }>`
+export const ListWrapper = styled.div<{
+  wrapperHeight?: number;
+  centered?: boolean;
+  offsetSpace: number;
+}>`
   position: relative;
-  flex: 1 0 calc(100% - ${props => props.offsetSpace}px);
-  ${props => props.wrapperHeight !== undefined && `height: ${props.wrapperHeight + LIST_INNER_PADDING}px;`}
-  ${props =>
+  flex: 1 0 calc(100% - ${(props) => props.offsetSpace}px);
+  ${(props) =>
+    props.wrapperHeight !== undefined &&
+    `height: ${props.wrapperHeight + LIST_INNER_PADDING}px;`}
+  ${(props) =>
     props.centered &&
     css`
       display: flex;
@@ -26,7 +33,7 @@ export const ListContainer = styled(Dropdown.Wrapper)<{
   wrapperHeight: string;
 }>`
   width: 100%;
-  height: ${props => props.wrapperHeight};
+  height: ${(props) => props.wrapperHeight};
   display: flex;
   flex-direction: column;
 
@@ -80,9 +87,12 @@ export const ScrollContent = styled.div`
   padding-right: ${LIST_INNER_PADDING}px;
 `;
 
-export const StyledScrollbar = styled(Scrollbar)<{ withSectionHeader?: boolean }>`
+export const StyledScrollbar = styled(Scrollbar)<{
+  withSectionHeader?: boolean;
+}>`
   padding: ${LIST_INNER_PADDING}px 0 0 ${LIST_INNER_PADDING}px;
-  height: ${props => (props.withSectionHeader ? 'calc(100% - 53px)' : '100%')};
+  height: ${(props) =>
+    props.withSectionHeader ? 'calc(100% - 53px)' : '100%'};
   && {
     .ps__rail-y {
       left: unset !important;
@@ -95,7 +105,8 @@ export const StyledList = styled(VariableSizeList)<{ maxHeight?: number }>`
   overflow-x: unset;
   overflow-y: unset;
   height: auto !important;
-  ${props => props.maxHeight !== undefined && `max-height: ${props.maxHeight}px;`}
+  ${(props) =>
+    props.maxHeight !== undefined && `max-height: ${props.maxHeight}px;`}
 
   &:after {
     content: '';
@@ -109,7 +120,8 @@ export const Skeleton = styled(DropdownSkeleton)`
 `;
 
 export const SkeletonWrapper = styled.div<{ wrapperHeight?: number }>`
-  ${props => props.wrapperHeight !== undefined && `height: ${props.wrapperHeight}px;`}
+  ${(props) =>
+    props.wrapperHeight !== undefined && `height: ${props.wrapperHeight}px;`}
   display: flex;
   flex-direction: column;
   gap: 16px;

@@ -1,16 +1,24 @@
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
 
 import Button from '@synerise/ds-button';
-import Icon, { Add3M, AngleDownS } from '@synerise/ds-icon';
-import Menu, { MenuItemProps } from '@synerise/ds-menu';
 import Dropdown from '@synerise/ds-dropdown';
+import Icon, { Add3M, AngleDownS } from '@synerise/ds-icon';
 import InformationCard from '@synerise/ds-information-card';
+import Menu, { type MenuItemProps } from '@synerise/ds-menu';
 import { getPopupContainer } from '@synerise/ds-utils';
 
+import { ErrorWrapper, ItemWrapper } from './ContextSelector.styles';
+import {
+  type ContextGroup,
+  type ContextItem,
+  type ContextProps,
+} from './ContextSelector.types';
 import ContextSelectorDropdown from './ContextSelectorDropdown/ContextSelectorDropdown';
-import { ContextGroup, ContextItem, ContextProps } from './ContextSelector.types';
-import { ItemWrapper, ErrorWrapper } from './ContextSelector.styles';
-import { DROPDOWN_HEIGHT, DROPDOWN_HEIGHT_BELOW_THRESHOLD, DROPDOWN_HEIGHT_THRESHOLD } from './constants';
+import {
+  DROPDOWN_HEIGHT,
+  DROPDOWN_HEIGHT_BELOW_THRESHOLD,
+  DROPDOWN_HEIGHT_THRESHOLD,
+} from './constants';
 import { useTexts } from './hooks/useTexts';
 
 const ContextSelector = ({
@@ -49,26 +57,36 @@ const ContextSelector = ({
   dropdownDimensionsConfig,
 }: ContextProps) => {
   const allTexts = useTexts(texts);
-  const [dropdownVisible, setDropdownVisible] = useState(defaultDropdownVisibility ?? false);
+  const [dropdownVisible, setDropdownVisible] = useState(
+    defaultDropdownVisibility ?? false,
+  );
   const dimensionsConfig = {
     defaultHeight: DROPDOWN_HEIGHT,
     lowerHeight: DROPDOWN_HEIGHT_BELOW_THRESHOLD,
     threshold: DROPDOWN_HEIGHT_THRESHOLD,
     ...dropdownDimensionsConfig,
   };
-  const [outerHeight, setOuterHeight] = useState(dimensionsConfig.defaultHeight);
+  const [outerHeight, setOuterHeight] = useState(
+    dimensionsConfig.defaultHeight,
+  );
 
   useEffect(() => {
     const checkViewportHeight = () =>
       setOuterHeight(
-        window.innerHeight < dimensionsConfig.threshold ? dimensionsConfig.lowerHeight : dimensionsConfig.defaultHeight
+        window.innerHeight < dimensionsConfig.threshold
+          ? dimensionsConfig.lowerHeight
+          : dimensionsConfig.defaultHeight,
       );
     checkViewportHeight();
     window.addEventListener('resize', checkViewportHeight);
     return () => {
       window.removeEventListener('resize', checkViewportHeight);
     };
-  }, [dimensionsConfig.defaultHeight, dimensionsConfig.lowerHeight, dimensionsConfig.threshold]);
+  }, [
+    dimensionsConfig.defaultHeight,
+    dimensionsConfig.lowerHeight,
+    dimensionsConfig.threshold,
+  ]);
 
   useEffect(() => {
     setDropdownVisible(defaultDropdownVisibility ?? false);
@@ -78,13 +96,13 @@ const ContextSelector = ({
       setDropdownVisible(false);
       onSelectItem(val);
     },
-    [onSelectItem]
+    [onSelectItem],
   );
   const handleOnSetGroup = useCallback(
     (val: ContextItem | ContextGroup) => {
       onSetGroup && onSetGroup(val);
     },
-    [onSetGroup]
+    [onSetGroup],
   );
 
   useEffect(() => {
@@ -102,7 +120,9 @@ const ContextSelector = ({
   }, [selectedItem, readOnly]);
 
   const triggerColor = useMemo(() => {
-    if (!selectedItem) return 'blue';
+    if (!selectedItem) {
+      return 'blue';
+    }
     return type === 'event' ? 'cyan' : 'green';
   }, [selectedItem, type]);
 
@@ -147,7 +167,9 @@ const ContextSelector = ({
                 readOnly={readOnly}
               >
                 {selectedItem ? <Icon component={selectedItem.icon} /> : null}
-                <ItemWrapper>{selectedItem ? selectedItem.name : buttonLabel}</ItemWrapper>
+                <ItemWrapper>
+                  {selectedItem ? selectedItem.name : buttonLabel}
+                </ItemWrapper>
                 {!readOnly && <Icon component={<AngleDownS />} />}
               </Button>
             ),
@@ -162,10 +184,16 @@ const ContextSelector = ({
                     icon={selectedItem.icon}
                     subtitle={selectedItem.subtitle}
                     title={selectedItem.name}
-                    renderAdditionalDescription={selectedItem.renderAdditionalDescription}
+                    renderAdditionalDescription={
+                      selectedItem.renderAdditionalDescription
+                    }
                     descriptionConfig={
                       selectedItem.description
-                        ? { value: selectedItem.description as string, disabled: true, label: undefined }
+                        ? {
+                            value: selectedItem.description as string,
+                            disabled: true,
+                            label: undefined,
+                          }
                         : undefined
                     }
                     {...selectedItem.informationCardProps}
@@ -203,10 +231,12 @@ const ContextSelector = ({
         setDropdownVisible(false);
       }
     },
-    [onActivate, onDeactivate]
+    [onActivate, onDeactivate],
   );
 
-  if (readOnly) return <>{customTriggerComponent ?? triggerButton}</>;
+  if (readOnly) {
+    return <>{customTriggerComponent ?? triggerButton}</>;
+  }
 
   return (
     <>

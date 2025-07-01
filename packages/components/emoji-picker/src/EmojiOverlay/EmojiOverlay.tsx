@@ -1,13 +1,18 @@
 import React, { useState } from 'react';
-import Icon, { SearchM } from '@synerise/ds-icon';
+
 import { theme } from '@synerise/ds-core';
 import Dropdown from '@synerise/ds-dropdown';
+import Icon, { SearchM } from '@synerise/ds-icon';
 
-import { EmojiOverlayType } from './EmojiOverlay.types';
 import { EmojiList } from '../EmojiList/EmojiList';
 import { useEmojiTranslations } from '../hooks/useEmojiTranslations';
+import { type EmojiOverlayType } from './EmojiOverlay.types';
 
-export const EmojiOverlay = ({ texts: customTexts, onSelect, focus }: EmojiOverlayType) => {
+export const EmojiOverlay = ({
+  texts: customTexts,
+  onSelect,
+  focus,
+}: EmojiOverlayType) => {
   const texts = useEmojiTranslations(customTexts);
   const [searchQuery, setSearchQuery] = useState('');
   const handleClearInput = () => {
@@ -24,7 +29,9 @@ export const EmojiOverlay = ({ texts: customTexts, onSelect, focus }: EmojiOverl
         placeholder={texts.placeholder}
         value={searchQuery}
         autofocus={focus}
-        iconLeft={<Icon component={<SearchM />} color={theme.palette['grey-600']} />}
+        iconLeft={
+          <Icon component={<SearchM />} color={theme.palette['grey-600']} />
+        }
       />
       <EmojiList onSelect={onSelect} searchQuery={searchQuery} texts={texts} />
     </>

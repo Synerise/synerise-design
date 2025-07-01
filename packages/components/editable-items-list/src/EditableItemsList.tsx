@@ -1,10 +1,12 @@
 import React from 'react';
+
 import Button from '@synerise/ds-button';
-import Icon, { Add3M } from '@synerise/ds-icon';
-import Cruds from '@synerise/ds-cruds';
 import { theme } from '@synerise/ds-core';
+import Cruds from '@synerise/ds-cruds';
+import Icon, { Add3M } from '@synerise/ds-icon';
+
 import * as S from './EditableItemsList.style';
-import { EditableItemsListProps } from './EditableItemsList.types';
+import { type EditableItemsListProps } from './EditableItemsList.types';
 
 const DEFAULT_ADD_BUTTON_PROPS = {
   type: 'ghost-primary',
@@ -53,7 +55,13 @@ const EditableItemsList = <T extends { id: string }>({
         onClick={onAdd}
         disabled={maxRowLength !== undefined && items.length >= maxRowLength}
       >
-        {addButtonIcon || <Icon component={<Add3M />} size={24} color={theme.palette['blue-600']} />}
+        {addButtonIcon || (
+          <Icon
+            component={<Add3M />}
+            size={24}
+            color={theme.palette['blue-600']}
+          />
+        )}
         {addButtonLabel}
       </Button>
     </>

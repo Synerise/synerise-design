@@ -1,12 +1,20 @@
-import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
-import Icon, { CalendarM } from '@synerise/ds-icon';
-import Tooltip from '@synerise/ds-tooltip';
+import React, {
+  useCallback,
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+} from 'react';
+
 import { useTheme } from '@synerise/ds-core';
 import DatePicker from '@synerise/ds-date-picker';
 import format from '@synerise/ds-date-picker/dist/format';
+import Icon, { CalendarM } from '@synerise/ds-icon';
+import Tooltip from '@synerise/ds-tooltip';
+
 import * as S from '../../SubtleForm.styles';
-import { SelectContainer, MaskedDatePlaceholder } from './DatePicker.styles';
-import { SubtleDatePickerProps } from './DatePicker.types';
+import { MaskedDatePlaceholder, SelectContainer } from './DatePicker.styles';
+import { type SubtleDatePickerProps } from './DatePicker.types';
 import { getFormattingString, replaceLettersWithUnderscore } from './utils';
 
 const SubtleDatePicker = ({
@@ -33,13 +41,18 @@ const SubtleDatePicker = ({
   const theme = useTheme();
   const hasError = error || !!errorText;
   const { showTime } = rest;
-  const dateFormattingString = useMemo(() => getFormattingString(dateFormat, showTime), [dateFormat, showTime]);
+  const dateFormattingString = useMemo(
+    () => getFormattingString(dateFormat, showTime),
+    [dateFormat, showTime],
+  );
   const formatValue = useCallback(
     (val: Date) => {
-      if (!val) return '';
+      if (!val) {
+        return '';
+      }
       return format(val, dateFormattingString);
     },
-    [dateFormattingString]
+    [dateFormattingString],
   );
   const getDisplayText = useCallback((): string | undefined => {
     return value && !!String(value).trim() ? formatValue(value) : placeholder;
@@ -63,7 +76,11 @@ const SubtleDatePicker = ({
 
   return (
     <S.Subtle className="ds-subtle-form">
-      <S.SubtleFormField active={active || hasError} label={label} tooltip={labelTooltip}>
+      <S.SubtleFormField
+        active={active || hasError}
+        label={label}
+        tooltip={labelTooltip}
+      >
         <SelectContainer
           disabled={!!disabled}
           ref={containerRef}
@@ -106,14 +123,21 @@ const SubtleDatePicker = ({
               <S.MainContent hasMargin>
                 {getDisplayText()}
                 {!disabled && (
-                  <MaskedDatePlaceholder>{replaceLettersWithUnderscore(dateFormattingString)}</MaskedDatePlaceholder>
+                  <MaskedDatePlaceholder>
+                    {replaceLettersWithUnderscore(dateFormattingString)}
+                  </MaskedDatePlaceholder>
                 )}
               </S.MainContent>
 
               {!active && (
                 <S.Suffix select>
                   <Tooltip title={suffixTooltip}>
-                    {suffix ?? <Icon component={<CalendarM />} color={theme.palette['grey-600']} />}
+                    {suffix ?? (
+                      <Icon
+                        component={<CalendarM />}
+                        color={theme.palette['grey-600']}
+                      />
+                    )}
                   </Tooltip>
                 </S.Suffix>
               )}

@@ -1,22 +1,29 @@
-import React, { useState, useEffect, useRef, ChangeEvent, useMemo, MouseEvent, FocusEvent, useCallback } from 'react';
-import { v4 as uuid } from 'uuid';
 import type { InputRef } from 'antd/lib/input';
 import type { TextAreaRef } from 'antd/lib/input/TextArea';
-
-import { useResizeObserver } from '@synerise/ds-utils';
-import FormField from '@synerise/ds-form-field';
+import React, {
+  type ChangeEvent,
+  type FocusEvent,
+  type MouseEvent,
+  useCallback,
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+} from 'react';
+import { v4 as uuid } from 'uuid';
 
 import '@synerise/ds-core/dist/js/style';
-import './style/index.less';
-import * as S from './Input.styles';
+import FormField from '@synerise/ds-form-field';
+import { useResizeObserver } from '@synerise/ds-utils';
 
-import { ElementIcons, AutosizeWrapper, ExpandableWrapper } from './components';
-import { useInputAddonHeight, useElementFocus } from './hooks';
-import { getCharCount } from './utils';
-
-import type { InputProps } from './Input.types';
 import type { AutosizeInputRefType } from './AutosizeInput/AutosizeInput.types';
+import * as S from './Input.styles';
+import type { InputProps } from './Input.types';
+import { AutosizeWrapper, ElementIcons, ExpandableWrapper } from './components';
+import { useElementFocus, useInputAddonHeight } from './hooks';
 import { useCounterLimit } from './hooks/useCounterLimit';
+import './style/index.less';
+import { getCharCount } from './utils';
 
 const VERTICAL_BORDER_OFFSET = 2;
 
@@ -80,26 +87,33 @@ export const Input = ({
 
   useEffect(() => {
     if (inputRef.current?.input) {
-      const { paddingLeft, paddingRight } = getComputedStyle(inputRef.current.input);
+      const { paddingLeft, paddingRight } = getComputedStyle(
+        inputRef.current.input,
+      );
       paddingDiff.current = parseFloat(paddingLeft) + parseFloat(paddingRight);
     }
   });
   useEffect(() => {
     if (!autoResize && expandable && inputRef.current?.input) {
-      setOverflown(inputRef.current.input.scrollWidth > inputRef.current.input.clientWidth);
+      setOverflown(
+        inputRef.current.input.scrollWidth > inputRef.current.input.clientWidth,
+      );
     }
   }, [autoResize, expandable, expanded]);
 
-  const handleTextareaChange = (event: ChangeEvent<HTMLInputElement> & ChangeEvent<HTMLTextAreaElement>) => {
+  const handleTextareaChange = (
+    event: ChangeEvent<HTMLInputElement> & ChangeEvent<HTMLTextAreaElement>,
+  ) => {
     const { value: newValue } = event.currentTarget;
     if (counterLimit && newValue.length > counterLimit) {
       return;
     }
-    // @ts-ignore
     antdInputProps.onChange && antdInputProps.onChange(event);
   };
 
-  const handleExpandableTextareaBlur = (event: FocusEvent<HTMLTextAreaElement>) => {
+  const handleExpandableTextareaBlur = (
+    event: FocusEvent<HTMLTextAreaElement>,
+  ) => {
     setExpanded(false);
     if (inputRef.current?.input) {
       inputRef.current.input.value = event.target.value;
@@ -111,8 +125,8 @@ export const Input = ({
     event.stopPropagation();
 
     if (inputRef.current && expandableTextAreaRef.current) {
-      // @ts-ignore
-      expandableTextAreaRef.current.value = inputRef.current.input.value;
+      // @ts-expect-error Property 'value' does not exist on type 'TextAreaRef'.
+      expandableTextAreaRef.current.value = inputRef.current.input?.value;
       expandableTextAreaRef.current.focus();
     }
     setExpanded(true);
@@ -132,34 +146,48 @@ export const Input = ({
       if (!autoResize && expandable && isNowOverflown !== overflown) {
         setOverflown(isNowOverflown);
       }
-      if (counterLimit && newValue.length > counterLimit) return;
-      // @ts-ignore
+      if (counterLimit && newValue.length > counterLimit) {
+        return;
+      }
       antdInputProps.onChange && antdInputProps.onChange(event);
     },
-    [antdInputProps, autoResize, counterLimit, expandable, overflown]
+    [antdInputProps, autoResize, counterLimit, expandable, overflown],
   );
 
-  const stretchToFit = autoResize && autoResize !== true && Boolean(autoResize.stretchToFit);
+  const stretchToFit =
+    autoResize && autoResize !== true && Boolean(autoResize.stretchToFit);
   const preAutosize = useCallback(() => {
     scrollLeftRef.current = inputRef.current?.input?.scrollLeft || 0;
-    inputRef.current?.input && inputRef.current.input.style.removeProperty('max-width');
+    inputRef.current?.input &&
+      inputRef.current.input.style.removeProperty('max-width');
   }, []);
 
   const onAutosize = useCallback(
     (newWidth?: number) => {
-      const parentRect = elementRef.current && elementRef.current.getBoundingClientRect();
-      if (stretchToFit && inputRef.current?.input && parentRect?.width && paddingDiff.current) {
+      const parentRect =
+        elementRef.current && elementRef.current.getBoundingClientRect();
+      if (
+        stretchToFit &&
+        inputRef.current?.input &&
+        parentRect?.width &&
+        paddingDiff.current
+      ) {
         inputRef.current.input.style.maxWidth = `${parentRect?.width - paddingDiff.current}px`;
         inputRef.current.input.scrollLeft = scrollLeftRef.current;
       }
 
-      if (newWidth !== undefined && autoResize && inputRef.current?.input && expandable) {
+      if (
+        newWidth !== undefined &&
+        autoResize &&
+        inputRef.current?.input &&
+        expandable
+      ) {
         const style = window.getComputedStyle(inputRef.current.input);
         const minWidth = parseInt(style.minWidth, 10);
         setOverflown(newWidth > minWidth);
       }
     },
-    [autoResize, expandable, stretchToFit]
+    [autoResize, expandable, stretchToFit],
   );
 
   const handleWrapperResize = useCallback(() => {
@@ -169,7 +197,11 @@ export const Input = ({
 
   useResizeObserver(elementRef, handleWrapperResize);
 
-  const rightSide = useCounterLimit({ renderCustomCounter, counterLimit, charCount });
+  const rightSide = useCounterLimit({
+    renderCustomCounter,
+    counterLimit,
+    charCount,
+  });
 
   const autoSizedComponent = (
     <AutosizeWrapper
@@ -186,14 +218,20 @@ export const Input = ({
         className={hasErrorMessage || error ? 'error' : undefined}
         addonBefore={
           !!prefixel && (
-            <S.AddonWrapper className="ds-input-prefix" height={inputAddonHeight - VERTICAL_BORDER_OFFSET}>
+            <S.AddonWrapper
+              className="ds-input-prefix"
+              height={inputAddonHeight - VERTICAL_BORDER_OFFSET}
+            >
               {prefixel}
             </S.AddonWrapper>
           )
         }
         addonAfter={
           !!suffixel && (
-            <S.AddonWrapper className="ds-input-suffix" height={inputAddonHeight - VERTICAL_BORDER_OFFSET}>
+            <S.AddonWrapper
+              className="ds-input-suffix"
+              height={inputAddonHeight - VERTICAL_BORDER_OFFSET}
+            >
               {suffixel}
             </S.AddonWrapper>
           )

@@ -1,7 +1,9 @@
-import { renderWithProvider } from '@synerise/ds-utils/dist/testing';
 import React from 'react';
-import Stepper from '../Stepper';
+
+import { renderWithProvider } from '@synerise/ds-utils';
 import userEvent from '@testing-library/user-event';
+
+import Stepper from '../Stepper';
 
 describe('Stepper component', () => {
   it('Should render with 3 steps', () => {
@@ -11,7 +13,7 @@ describe('Stepper component', () => {
         <Stepper.Step label="First step" stepNumber={1} />
         <Stepper.Step label="Second step" stepNumber={2} />
         <Stepper.Step label="Third step" stepNumber={3} />
-      </Stepper>
+      </Stepper>,
     );
 
     // ASSERT
@@ -36,7 +38,7 @@ describe('Stepper component', () => {
         <Stepper.Step label="Third step" stepNumber={3}>
           Step 3 content
         </Stepper.Step>
-      </Stepper>
+      </Stepper>,
     );
 
     // ASSERT
@@ -53,7 +55,7 @@ describe('Stepper component', () => {
         <Stepper.Step label="First step" stepNumber={1} onClick={onClick}>
           Step 1 content
         </Stepper.Step>
-      </Stepper>
+      </Stepper>,
     );
 
     // ACT
@@ -68,10 +70,16 @@ describe('Stepper component', () => {
     const onClick = jest.fn();
     const { container } = renderWithProvider(
       <Stepper orientation="vertical">
-        <Stepper.Step label="First step" stepNumber={1} onClick={onClick} active tooltip={'Tooltip info'}>
+        <Stepper.Step
+          label="First step"
+          stepNumber={1}
+          onClick={onClick}
+          active
+          tooltip={'Tooltip info'}
+        >
           Step 1 content
         </Stepper.Step>
-      </Stepper>
+      </Stepper>,
     );
 
     // ASSERT

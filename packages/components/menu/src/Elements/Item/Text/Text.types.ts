@@ -1,5 +1,6 @@
-import type { CSSProperties, ReactNode } from 'react';
 import type { MenuProps } from 'antd/lib/menu';
+import type { CSSProperties, ReactNode } from 'react';
+
 import type { MenuItemProps } from '../MenuItem.types';
 
 export type AddonRenderer = (hovered: boolean) => ReactNode;

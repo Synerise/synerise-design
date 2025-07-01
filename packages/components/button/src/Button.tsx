@@ -1,13 +1,19 @@
-import React, { useEffect, useState, MouseEvent, useMemo, useRef } from 'react';
-import '@synerise/ds-core/dist/js/style';
-import './style/index.less';
+import React, {
+  type MouseEvent,
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+} from 'react';
 
+import '@synerise/ds-core/dist/js/style';
 import Icon, { SpinnerM } from '@synerise/ds-icon';
 import { TagShape } from '@synerise/ds-tag';
 import Tooltip from '@synerise/ds-tooltip';
 
 import * as S from './Button.styles';
-import { ButtonMode, ButtonProps } from './Button.types';
+import { ButtonMode, type ButtonProps } from './Button.types';
+import './style/index.less';
 
 const RIPPLE_ANIMATION_OFFSET = 50;
 
@@ -66,9 +72,15 @@ const Button = ({
 
   const buttonLabel = useMemo(() => {
     const label = (
-      <S.ButtonLabel withTooltip={!!tooltipProps} data-testid="ds-button-label" className="ds-button-label">
+      <S.ButtonLabel
+        withTooltip={!!tooltipProps}
+        data-testid="ds-button-label"
+        className="ds-button-label"
+      >
         {children}
-        {tagProps && mode !== ButtonMode.SINGLE_ICON && <S.Tag {...tagProps} shape={TagShape.MEDIUM_ROUND} asPill />}
+        {tagProps && mode !== ButtonMode.SINGLE_ICON && (
+          <S.Tag {...tagProps} shape={TagShape.MEDIUM_ROUND} asPill />
+        )}
       </S.ButtonLabel>
     );
     return tooltipProps ? <Tooltip {...tooltipProps}>{label}</Tooltip> : label;
@@ -94,7 +106,12 @@ const Button = ({
       customColor={color}
       {...antdProps}
     >
-      {!antdProps.readOnly && <S.RippleEffect ref={rippleRef} className={`btn-ripple ${rippleClassName}`} />}
+      {!antdProps.readOnly && (
+        <S.RippleEffect
+          ref={rippleRef}
+          className={`btn-ripple ${rippleClassName}`}
+        />
+      )}
       {buttonLabel}
       {loading && (
         <S.Spinner className="btn-spinner" data-testid="button-spinner">

@@ -2,13 +2,18 @@ import React, { useCallback, useEffect, useMemo } from 'react';
 import { useIntl } from 'react-intl';
 
 import Button from '@synerise/ds-button';
+import {
+  type NumberToFormatOptions,
+  useDataFormat,
+} from '@synerise/ds-data-format';
 import Dropdown from '@synerise/ds-dropdown';
 import Icon, { HashM } from '@synerise/ds-icon';
-import { NumberToFormatOptions, useDataFormat } from '@synerise/ds-data-format';
 
+import {
+  type FormatPickerProps,
+  type FormatPickerTexts,
+} from './FomartPicker.types';
 import FormatSettings from './FormatSettings/FormatSettings';
-
-import { FormatPickerProps, FormatPickerTexts } from './FomartPicker.types';
 
 const FormatPicker = ({
   onUseSeparatorChange,
@@ -31,26 +36,56 @@ const FormatPicker = ({
 
   const texts: FormatPickerTexts = useMemo(
     () => ({
-      header: intl.formatMessage({ id: 'DS.FORMAT-PICKER.HEADER', defaultMessage: 'Number format' }),
-      format: intl.formatMessage({ id: 'DS.FORMAT-PICKER.FORMAT', defaultMessage: 'Format' }),
-      numeric: intl.formatMessage({ id: 'DS.FORMAT-PICKER.NUMERIC', defaultMessage: 'Numeric' }),
-      cash: intl.formatMessage({ id: 'DS.FORMAT-PICKER.CASH', defaultMessage: 'Cash' }),
-      percentage: intl.formatMessage({ id: 'DS.FORMAT-PICKER.PERCENTAGE', defaultMessage: 'Percentage' }),
-      setDefault: intl.formatMessage({ id: 'DS.FORMAT-PICKER.SET-DEFAULT', defaultMessage: 'Set default' }),
-      useSeparator: intl.formatMessage({ id: 'DS.FORMAT-PICKER.USE-SEPARATOR', defaultMessage: 'Use 1000 separator' }),
-      currencyMenuItemPrefix: intl.formatMessage({ id: 'DS.FORMAT-PICKER.EG', defaultMessage: 'e.g.' }),
+      header: intl.formatMessage({
+        id: 'DS.FORMAT-PICKER.HEADER',
+        defaultMessage: 'Number format',
+      }),
+      format: intl.formatMessage({
+        id: 'DS.FORMAT-PICKER.FORMAT',
+        defaultMessage: 'Format',
+      }),
+      numeric: intl.formatMessage({
+        id: 'DS.FORMAT-PICKER.NUMERIC',
+        defaultMessage: 'Numeric',
+      }),
+      cash: intl.formatMessage({
+        id: 'DS.FORMAT-PICKER.CASH',
+        defaultMessage: 'Cash',
+      }),
+      percentage: intl.formatMessage({
+        id: 'DS.FORMAT-PICKER.PERCENTAGE',
+        defaultMessage: 'Percentage',
+      }),
+      setDefault: intl.formatMessage({
+        id: 'DS.FORMAT-PICKER.SET-DEFAULT',
+        defaultMessage: 'Set default',
+      }),
+      useSeparator: intl.formatMessage({
+        id: 'DS.FORMAT-PICKER.USE-SEPARATOR',
+        defaultMessage: 'Use 1000 separator',
+      }),
+      currencyMenuItemPrefix: intl.formatMessage({
+        id: 'DS.FORMAT-PICKER.EG',
+        defaultMessage: 'e.g.',
+      }),
       compactNumbers: intl.formatMessage({
         id: 'DS.FORMAT-PICKER.COMPACT-NUMBERS',
         defaultMessage: 'Use compact numbers',
       }),
       ...text,
     }),
-    [text, intl]
+    [text, intl],
   );
 
   const getFormattedValue = useCallback(
     (overrideOptions?: NumberToFormatOptions) => {
-      const { useSeparator, compactNumbers, currency, dataFormat, fixedLength } = format;
+      const {
+        useSeparator,
+        compactNumbers,
+        currency,
+        dataFormat,
+        fixedLength,
+      } = format;
       let options: NumberToFormatOptions = { useGrouping: useSeparator };
 
       if (compactNumbers) {
@@ -75,7 +110,7 @@ const FormatPicker = ({
       }
       return formatValue(value, options);
     },
-    [value, format, formatValue]
+    [value, format, formatValue],
   );
 
   useEffect(() => {

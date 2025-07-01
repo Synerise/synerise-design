@@ -10,7 +10,8 @@ export const Container = styled.div`
   min-width: 318px;
   padding-top: 12px;
   > *:not(:last-child) {
-    border-bottom: 1px solid ${(props): string => props.theme.palette['grey-200']};
+    border-bottom: 1px solid
+      ${(props): string => props.theme.palette['grey-200']};
   }
   .ds-date-picker-nav {
     .long-prev,

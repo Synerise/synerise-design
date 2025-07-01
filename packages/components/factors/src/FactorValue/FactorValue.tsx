@@ -1,6 +1,7 @@
 import React from 'react';
+
+import { type FactorValueProps } from '../Factors.types';
 import * as S from './FactorValue.style';
-import { FactorValueProps } from '../Factors.types';
 
 const FactorValue = ({
   selectedFactorType,
@@ -44,7 +45,11 @@ const FactorValue = ({
         textType={textType}
         factorType={selectedFactorType}
         autocompleteText={autocompleteText}
-        parameters={['parameter', 'contextParameter'].indexOf(selectedFactorType) >= 0 ? parameters : undefined}
+        parameters={
+          ['parameter', 'contextParameter'].indexOf(selectedFactorType) >= 0
+            ? parameters
+            : undefined
+        }
         withoutTypeSelector={withoutTypeSelector}
         texts={texts}
         arrayProps={arrayProps}
@@ -92,7 +97,11 @@ const FactorValue = ({
     relativeDateProps,
   ]);
   return (
-    <S.FactorInput inputType={selectedFactorType} inputTextType={textType} withoutTypeSelector={withoutTypeSelector}>
+    <S.FactorInput
+      inputType={selectedFactorType}
+      inputTextType={textType}
+      withoutTypeSelector={withoutTypeSelector}
+    >
       {inputType}
     </S.FactorInput>
   );

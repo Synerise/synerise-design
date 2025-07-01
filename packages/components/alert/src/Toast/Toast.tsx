@@ -1,8 +1,16 @@
-import React, { useCallback, useMemo, ReactNode } from 'react';
-import Icon, { CloseM, WarningFillM, Check3M, HelpFillM, InfoFillM, AngleDownS } from '@synerise/ds-icon';
+import React, { type ReactNode, useCallback, useMemo } from 'react';
+
+import Icon, {
+  AngleDownS,
+  Check3M,
+  CloseM,
+  HelpFillM,
+  InfoFillM,
+  WarningFillM,
+} from '@synerise/ds-icon';
 
 import * as S from './Toast.styles';
-import { Props, ToastType } from './Toast.types';
+import { type Props, type ToastType } from './Toast.types';
 
 const ICONS: Record<ToastType, ReactNode> = {
   success: <Check3M />,
@@ -38,7 +46,11 @@ const Toast = ({
 }: Props) => {
   const hasToastContent = button || description || expandedContent;
   const toastContent = hasToastContent && (
-    <S.AlertContent hasBottomMargin={Boolean(button || description || (expandedContent && expanded))}>
+    <S.AlertContent
+      hasBottomMargin={Boolean(
+        button || description || (expandedContent && expanded),
+      )}
+    >
       {description && (
         <S.AlertDescription
           expandedContent={!!expandedContent}
@@ -59,8 +71,12 @@ const Toast = ({
   );
 
   const renderIcon = useMemo(() => {
-    if (icon) return icon;
-    if (ICONS[type]) return ICONS[type];
+    if (icon) {
+      return icon;
+    }
+    if (ICONS[type]) {
+      return ICONS[type];
+    }
     return DEFAULT_ICON;
   }, [icon, type]);
   const expandContent = useCallback(() => {
@@ -98,7 +114,11 @@ const Toast = ({
             </S.IconExpanderWrapper>
           )}
           {withClose && (
-            <S.IconCloseWrapper onClick={onCloseClick} customColorText={customColorText} color={color}>
+            <S.IconCloseWrapper
+              onClick={onCloseClick}
+              customColorText={customColorText}
+              color={color}
+            >
               <Icon component={<CloseM />} />
             </S.IconCloseWrapper>
           )}

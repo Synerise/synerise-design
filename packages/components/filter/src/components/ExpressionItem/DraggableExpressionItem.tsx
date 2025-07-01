@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react';
-import { useDndMonitor, arrayMove } from '@synerise/ds-sortable';
 
-import type { ExpressionItemProps } from './ExpressionItem.types';
+import { arrayMove, useDndMonitor } from '@synerise/ds-sortable';
+
 import { ExpressionItem } from './ExpressionItem';
+import type { ExpressionItemProps } from './ExpressionItem.types';
 
 export const DraggableExpressionItem = ({
   expressionsOrder,
@@ -10,19 +11,21 @@ export const DraggableExpressionItem = ({
   index: sortableIndex,
   ...rest
 }: ExpressionItemProps & { index?: number }) => {
-  const [dragIndex, setDragIndex] = useState(expressionsOrder.indexOf(expression.id));
+  const [dragIndex, setDragIndex] = useState(
+    expressionsOrder.indexOf(expression.id),
+  );
 
   useEffect(() => {
     setDragIndex(expressionsOrder.indexOf(expression.id));
   }, [expressionsOrder, expression.id]);
 
   useDndMonitor({
-    onDragMove: event => {
+    onDragMove: (event) => {
       if (event.over?.data.current?.sortable?.index !== undefined) {
         const tempOrder = arrayMove(
           expressionsOrder,
           event.active.data.current?.sortable?.index,
-          event.over?.data.current?.sortable?.index
+          event.over?.data.current?.sortable?.index,
         );
         setDragIndex(tempOrder.indexOf(expression.id));
       }

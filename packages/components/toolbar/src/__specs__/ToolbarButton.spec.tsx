@@ -1,6 +1,8 @@
 import React from 'react';
+
+import { renderWithProvider } from '@synerise/ds-utils';
 import { fireEvent, screen } from '@testing-library/react';
-import { renderWithProvider } from '@synerise/ds-utils/dist/testing';
+
 import { ToolbarButton } from '../index';
 
 const CONTENT = 'CONTENT';
@@ -13,7 +15,9 @@ describe('ToolbarButton', () => {
   });
 
   it('should fire onClick', function () {
-    renderWithProvider(<ToolbarButton onClick={onClick}>{CONTENT}</ToolbarButton>);
+    renderWithProvider(
+      <ToolbarButton onClick={onClick}>{CONTENT}</ToolbarButton>,
+    );
 
     fireEvent.click(screen.getByText(CONTENT));
 

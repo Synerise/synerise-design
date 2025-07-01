@@ -1,6 +1,7 @@
 import styled from 'styled-components';
-import { ThemeProps } from '@synerise/ds-core';
+
 import Button from '@synerise/ds-button';
+import { type ThemeProps } from '@synerise/ds-core';
 
 export const NavButton = styled(Button)<{ hidden?: boolean }>`
   .ds-icon > svg {

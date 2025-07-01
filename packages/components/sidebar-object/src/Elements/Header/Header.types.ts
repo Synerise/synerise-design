@@ -1,5 +1,6 @@
-import { ReactNode } from 'react';
-import { InputProps } from '@synerise/ds-inline-edit/dist/InlineEdit.types';
+import { type ReactNode } from 'react';
+
+import { type InputProps } from '@synerise/ds-inline-edit/dist/InlineEdit.types';
 
 export type HeaderProps = {
   avatar: ReactNode;

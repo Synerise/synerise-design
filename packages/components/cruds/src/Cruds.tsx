@@ -1,9 +1,21 @@
 import React from 'react';
-import { AddS, CloseS, DragHandleM, DuplicateS, EditS, TrashS, ArrowDownS, ArrowUpS, ShowM } from '@synerise/ds-icon';
+
+import {
+  AddS,
+  ArrowDownS,
+  ArrowUpS,
+  CloseS,
+  DragHandleM,
+  DuplicateS,
+  EditS,
+  ShowM,
+  TrashS,
+} from '@synerise/ds-icon';
+
 import * as S from './Cruds.styles';
+import { type CrudsProps, type CrudsSubComponents } from './Cruds.types';
 import SingleAction from './SingleAction';
-import { CrudsProps, CrudsSubComponents } from './Cruds.types';
-import { SingleActionProps } from './SingleAction.types';
+import { type SingleActionProps } from './SingleAction.types';
 
 const Cruds: React.FC<CrudsProps> & CrudsSubComponents = ({
   onDelete,
@@ -51,7 +63,13 @@ const Cruds: React.FC<CrudsProps> & CrudsSubComponents = ({
         />
       )}
       {onAdd && (
-        <SingleAction title={addTooltip} className="add" onClick={onAdd} icon={<AddS />} data-testid="ds-cruds-add" />
+        <SingleAction
+          title={addTooltip}
+          className="add"
+          onClick={onAdd}
+          icon={<AddS />}
+          data-testid="ds-cruds-add"
+        />
       )}
 
       {onEdit && (
@@ -112,7 +130,9 @@ const Cruds: React.FC<CrudsProps> & CrudsSubComponents = ({
   );
 };
 
-Cruds.CustomAction = (props: SingleActionProps): React.ReactElement<SingleActionProps> =>
+Cruds.CustomAction = (
+  props: SingleActionProps,
+): React.ReactElement<SingleActionProps> =>
   SingleAction(props) as React.ReactElement<SingleActionProps>;
 
 export default Cruds;

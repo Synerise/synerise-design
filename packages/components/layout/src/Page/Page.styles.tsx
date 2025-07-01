@@ -20,7 +20,8 @@ export const ContentWrapper = styled.div<{ withNavBar: boolean }>`
   width: 100%;
   position: absolute;
   top: ${(props): string => (props.withNavBar ? '56px' : '0')};
-  height: ${(props): string => (props.withNavBar ? 'calc(100% - 56px)' : '100%')};
+  height: ${(props): string =>
+    props.withNavBar ? 'calc(100% - 56px)' : '100%'};
 `;
 
 export const MenuWrapper = styled.div<{ withAppMenu: boolean }>`
@@ -31,7 +32,8 @@ export const MenuWrapper = styled.div<{ withAppMenu: boolean }>`
 `;
 
 export const LayoutWrapper = styled.div<{ withAppMenu: boolean }>`
-  width: ${(props): string => (props.withAppMenu ? 'calc(100% - 64px)' : '100%')};
+  width: ${(props): string =>
+    props.withAppMenu ? 'calc(100% - 64px)' : '100%'};
   display: flex;
   flex-direction: column;
   height: 100%;

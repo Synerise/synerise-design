@@ -1,12 +1,13 @@
 import React, { useMemo } from 'react';
-import { SearchInput } from '@synerise/ds-search/dist/Elements';
-import Icon, { EditM } from '@synerise/ds-icon';
+
 import Dropdown from '@synerise/ds-dropdown';
+import Icon, { EditM } from '@synerise/ds-icon';
+import { SearchInput } from '@synerise/ds-search/dist/Elements';
 import { NOOP } from '@synerise/ds-utils';
 
 import Extras from '../Extras';
-import { HeaderProps } from './Header.types';
 import * as S from '../ItemsRoll.styles';
+import { type HeaderProps } from './Header.types';
 
 const Header = ({
   actions,
@@ -24,12 +25,16 @@ const Header = ({
 }: HeaderProps) => {
   const ChangeSelectionButton = useMemo(
     () => (
-      <S.ChangeSelection type="ghost" mode="icon-label" onClick={onChangeSelection}>
+      <S.ChangeSelection
+        type="ghost"
+        mode="icon-label"
+        onClick={onChangeSelection}
+      >
         <Icon component={<ChangeSelectionIcon />} size={24} />
         {allTexts.changeSelectionLabel}
       </S.ChangeSelection>
     ),
-    [ChangeSelectionIcon, onChangeSelection, allTexts.changeSelectionLabel]
+    [ChangeSelectionIcon, onChangeSelection, allTexts.changeSelectionLabel],
   );
 
   return (
@@ -38,7 +43,9 @@ const Header = ({
       <S.HeaderRight>
         {onChangeSelection &&
           (changeSelectionDropdownProps ? (
-            <Dropdown {...changeSelectionDropdownProps}>{ChangeSelectionButton}</Dropdown>
+            <Dropdown {...changeSelectionDropdownProps}>
+              {ChangeSelectionButton}
+            </Dropdown>
           ) : (
             ChangeSelectionButton
           ))}

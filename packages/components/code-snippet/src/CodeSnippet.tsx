@@ -1,10 +1,14 @@
 import React from 'react';
 
-import './style/index.less';
+import {
+  type CodeSnippetProps,
+  CodeSnippetType,
+  FontSize,
+} from './CodeSnippet.types';
 import InlineCode from './CodeTypes/InlineCode/InlineCode';
-import SingleCode from './CodeTypes/SingleCode/SingleCode';
 import MultiCode from './CodeTypes/MultiCode/MultiCode';
-import { CodeSnippetProps, CodeSnippetType, FontSize } from './CodeSnippet.types';
+import SingleCode from './CodeTypes/SingleCode/SingleCode';
+import './style/index.less';
 
 const CodeSnippet = ({
   type = CodeSnippetType.INLINE,

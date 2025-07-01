@@ -1,5 +1,6 @@
 import React from 'react';
-import { renderWithProvider } from '@synerise/ds-utils/dist/testing';
+
+import { renderWithProvider } from '@synerise/ds-utils';
 import { screen } from '@testing-library/react';
 
 import Banner from '../index';
@@ -22,7 +23,7 @@ const SLIDES = [
 describe('Banner', () => {
   it('should render', () => {
     renderWithProvider(<Banner slides={SLIDES} />);
-    expect(screen.getAllByText(SLIDE_CONTENT)[0]).toBeInTheDocument()
+    expect(screen.getAllByText(SLIDE_CONTENT)[0]).toBeInTheDocument();
   });
   it('should render without counter if only single slide', () => {
     renderWithProvider(<Banner slides={[SLIDES[0]]} />);

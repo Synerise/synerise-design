@@ -18,7 +18,11 @@ yarn add @synerise/ds-popconfirm
 ```javascript
 import Popconfirm from '@synerise/ds-popconfirm';
 
-<Popconfirm title="title" onConfirm={() => alert('confirm')} onCancel={() => alert('cancel')}>
+<Popconfirm
+  title="title"
+  onConfirm={() => alert('confirm')}
+  onCancel={() => alert('cancel')}
+>
   <button>text</button>
 </Popconfirm>;
 ```

@@ -1,8 +1,10 @@
 import styled from 'styled-components';
+
 import { macro } from '@synerise/ds-typography';
 
 export const Navbar = styled.div<{ color?: string }>`
-  background-color: ${(props): string => (props.color ? props.color : props.theme.palette['blue-600'])};
+  background-color: ${(props): string =>
+    props.color ? props.color : props.theme.palette['blue-600']};
   padding: 16px 24px;
   height: 56px;
   display: flex;

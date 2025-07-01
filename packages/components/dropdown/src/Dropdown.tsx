@@ -1,13 +1,25 @@
-import React, { ReactNode, ComponentType, useState, useRef, useCallback, useEffect } from 'react';
+import AntdDropdown, {
+  type DropDownProps as AntDropDownProps,
+  type DropdownButtonProps,
+} from 'antd/lib/dropdown';
+import React, {
+  type ComponentType,
+  type ReactNode,
+  useCallback,
+  useEffect,
+  useRef,
+  useState,
+} from 'react';
+
 import '@synerise/ds-core/dist/js/style';
-import './style/index.less';
-import AntdDropdown, { DropDownProps as AntDropDownProps, DropdownButtonProps } from 'antd/lib/dropdown';
 import SearchBar from '@synerise/ds-search-bar/';
 import { getPopupContainer } from '@synerise/ds-utils';
-import BottomAction from './elements/BottomAction/BottomAction';
+
+import { OverlayWrapper, Wrapper } from './Dropdown.styles';
 import BackAction from './elements/BackAction/BackAction';
-import { Wrapper, OverlayWrapper } from './Dropdown.styles';
+import BottomAction from './elements/BottomAction/BottomAction';
 import TextTrigger from './elements/TextTrigger/TextTrigger';
+import './style/index.less';
 
 export type DropdownProps = AntDropDownProps & {
   destroyPopupOnHide?: boolean;
@@ -38,7 +50,8 @@ const Dropdown: ComponentType<DropdownProps> & SubComponents = ({
   ...rest
 }: DropdownProps) => {
   const openMerged = open !== undefined ? open : visible;
-  const onOpenChangeMerged = onOpenChange !== undefined ? onOpenChange : onVisibleChange;
+  const onOpenChangeMerged =
+    onOpenChange !== undefined ? onOpenChange : onVisibleChange;
 
   const [isOpen, setIsOpen] = useState(openMerged || false);
   const overlayWrapperRef = useRef<HTMLDivElement | null>(null);
@@ -51,7 +64,11 @@ const Dropdown: ComponentType<DropdownProps> & SubComponents = ({
     onOpenChangeMerged && onOpenChangeMerged(newIsOpen);
     setIsOpen(newIsOpen);
   };
-  const offsetVertical = topPlacements.find(topPlacement => topPlacement === placement) !== undefined ? -8 : 8;
+  const offsetVertical =
+    topPlacements.find((topPlacement) => topPlacement === placement) !==
+    undefined
+      ? -8
+      : 8;
 
   const renderContent = useCallback(
     (originNode: ReactNode) => {
@@ -60,18 +77,29 @@ const Dropdown: ComponentType<DropdownProps> & SubComponents = ({
       }
       return dropdownRender && dropdownRender(originNode);
     },
-    [dropdownRender, overlay]
+    [dropdownRender, overlay],
   );
 
   const renderOverlay = useCallback(
-    (originNode: ReactNode) => <OverlayWrapper ref={overlayWrapperRef}>{renderContent(originNode)}</OverlayWrapper>,
-    [renderContent]
+    (originNode: ReactNode) => (
+      <OverlayWrapper ref={overlayWrapperRef}>
+        {renderContent(originNode)}
+      </OverlayWrapper>
+    ),
+    [renderContent],
   );
 
   useEffect(() => {
     const handleOverlayClick = (event: MouseEvent) => {
-      if (overlayWrapperRef.current && hideOnItemClick && event.target instanceof HTMLElement) {
-        const itemSelector = typeof hideOnItemClick === 'string' ? hideOnItemClick : '[role="menuitem"]';
+      if (
+        overlayWrapperRef.current &&
+        hideOnItemClick &&
+        event.target instanceof HTMLElement
+      ) {
+        const itemSelector =
+          typeof hideOnItemClick === 'string'
+            ? hideOnItemClick
+            : '[role="menuitem"]';
         const listItem = event.target.closest(itemSelector);
         if (overlayWrapperRef.current.contains(listItem)) {
           setIsOpen(false);
@@ -81,7 +109,8 @@ const Dropdown: ComponentType<DropdownProps> & SubComponents = ({
     const overlayNode = overlayWrapperRef.current;
     overlayNode && overlayNode.addEventListener('click', handleOverlayClick);
     return () => {
-      overlayNode && overlayNode.removeEventListener('click', handleOverlayClick);
+      overlayNode &&
+        overlayNode.removeEventListener('click', handleOverlayClick);
     };
   });
 

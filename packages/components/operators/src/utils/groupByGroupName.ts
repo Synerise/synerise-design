@@ -1,4 +1,4 @@
-import { OperatorsItem } from '../Operator.types';
+import { type OperatorsItem } from '../Operator.types';
 import { NO_GROUP_NAME } from '../constants';
 
 export const groupByGroupName = (activeItems: OperatorsItem[]) => {

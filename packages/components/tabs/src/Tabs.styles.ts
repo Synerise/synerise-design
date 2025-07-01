@@ -1,12 +1,14 @@
 import styled from 'styled-components';
-import Button, { ButtonProps } from '@synerise/ds-button';
-import Menu, { AntdMenuProps } from '@synerise/ds-menu';
+
+import Button, { type ButtonProps } from '@synerise/ds-button';
+import Menu, { type AntdMenuProps } from '@synerise/ds-menu';
 
 export const TabsContainer = styled.div<{ block?: boolean }>`
   padding-top: 5px;
   display: flex;
   flex-direction: row;
-  align-items: ${(props): string | false => (props.block ? `center` : `flex-end`)};
+  align-items: ${(props): string | false =>
+    props.block ? `center` : `flex-end`};
   justify-content: flex-start;
   max-width: 100%;
   overflow-x: hidden;

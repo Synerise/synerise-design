@@ -1,5 +1,6 @@
-import { ReactNode } from 'react';
-import { ButtonProps } from '@synerise/ds-button';
+import { type ReactNode } from 'react';
+
+import { type ButtonProps } from '@synerise/ds-button';
 import type { PageHeaderProps } from '@synerise/ds-page-header';
 
 export type WizardProps = {

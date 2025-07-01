@@ -1,13 +1,21 @@
 import type { ReactNode } from 'react';
+
 import type { ButtonProps } from '@synerise/ds-button';
 import type { ListItemProps } from '@synerise/ds-list-item';
-import type { RadioProps } from '@synerise/ds-radio';
 import type { ModalProps } from '@synerise/ds-modal';
+import type { RadioProps } from '@synerise/ds-radio';
 import type { DataAttributes } from '@synerise/ds-utils';
 
-export type ConfirmationType = 'success' | 'warning' | 'negative' | 'informative';
+export type ConfirmationType =
+  | 'success'
+  | 'warning'
+  | 'negative'
+  | 'informative';
 
-export type ConfirmationButtonProps = Pick<ButtonProps, 'mode' | 'loading' | 'readOnly' | 'disabled' | 'tagProps'> &
+export type ConfirmationButtonProps = Pick<
+  ButtonProps,
+  'mode' | 'loading' | 'readOnly' | 'disabled' | 'tagProps'
+> &
   DataAttributes;
 
 export type ConfirmationTexts = {
@@ -37,7 +45,10 @@ export type DecisionSectionProps = {
 
 export type DisplayMode = 'default' | 'related-objects';
 
-type SharedProps = Pick<ModalProps, 'open' | 'title' | 'zIndex' | 'onCancel' | 'onOk'> & {
+type SharedProps = Pick<
+  ModalProps,
+  'open' | 'title' | 'zIndex' | 'onCancel' | 'onOk'
+> & {
   title: ReactNode;
 
   texts?: Partial<ConfirmationTexts>;

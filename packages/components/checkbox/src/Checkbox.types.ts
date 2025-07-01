@@ -1,5 +1,5 @@
-import { ReactNode } from 'react';
-import { CheckboxProps as AntCheckboxProps } from 'antd/lib/checkbox/Checkbox';
+import { type CheckboxProps as AntCheckboxProps } from 'antd/lib/checkbox/Checkbox';
+import { type ReactNode } from 'react';
 
 export type BaseCheckboxProps = {
   description?: ReactNode;

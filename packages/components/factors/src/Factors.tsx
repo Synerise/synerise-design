@@ -13,22 +13,30 @@ import {
 } from '@synerise/ds-icon';
 import { NOOP } from '@synerise/ds-utils';
 
-import * as S from './style/Factors.style';
-import { DefinedFactorTypes, FactorsProps, FactorTypeMapping, SelectedFactorType } from './Factors.types';
 import FactorTypeSelector from './FactorTypeSelector/FactorTypeSelector';
-import FactorValue from './FactorValue/FactorValue';
-import DynamicKey from './FactorValue/DynamicKey/DynamicKey';
-import DateInput from './FactorValue/Date/Date';
-import FormulaInput from './FactorValue/Formula/Formula';
-import TextInput from './FactorValue/Text/Text';
-import ParameterInput from './FactorValue/Parameter/Parameter';
-import NumberInput from './FactorValue/Number/NumberInput';
-import DateRangeInput from './FactorValue/DateRange/DateRange';
-import RelativeDateInput from './FactorValue/RelativeDate/RelativeDate';
-import { useTexts } from './hooks/useTexts';
 import { Array } from './FactorValue/Array/Array';
+import DateInput from './FactorValue/Date/Date';
+import DateRangeInput from './FactorValue/DateRange/DateRange';
+import DynamicKey from './FactorValue/DynamicKey/DynamicKey';
+import FactorValue from './FactorValue/FactorValue';
+import FormulaInput from './FactorValue/Formula/Formula';
+import NumberInput from './FactorValue/Number/NumberInput';
+import ParameterInput from './FactorValue/Parameter/Parameter';
+import RelativeDateInput from './FactorValue/RelativeDate/RelativeDate';
+import TextInput from './FactorValue/Text/Text';
+import {
+  type DefinedFactorTypes,
+  type FactorTypeMapping,
+  type FactorsProps,
+  type SelectedFactorType,
+} from './Factors.types';
+import { useTexts } from './hooks/useTexts';
+import * as S from './style/Factors.style';
 
-export const FACTOR_TYPE_MAPPING: Record<DefinedFactorTypes, SelectedFactorType> = {
+export const FACTOR_TYPE_MAPPING: Record<
+  DefinedFactorTypes,
+  SelectedFactorType
+> = {
   text: {
     icon: <TextM />,
     name: 'Text',
@@ -125,7 +133,6 @@ const Factors = ({
         return [type, { ...factorTypeData, ...mergedData }];
       })
       .reduce((result, [type, factorTypeData]) => {
-        // eslint-disable-next-line no-param-reassign
         result[type] = factorTypeData;
         return result;
       }, {}) as FactorTypeMapping;

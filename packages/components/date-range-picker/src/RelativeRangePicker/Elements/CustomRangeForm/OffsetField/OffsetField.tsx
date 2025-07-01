@@ -1,11 +1,17 @@
 import React, { useEffect } from 'react';
-import Select from '@synerise/ds-select';
+
 import InputNumber from '@synerise/ds-input-number';
+import Select from '@synerise/ds-select';
+
+import {
+  RANGES_MODE,
+  RELATIVE_OFFSET_MAX,
+  RELATIVE_UNITS,
+} from '../../../../constants';
+import { type RelativeUnits } from '../../../../date.types';
 import * as S from '../../../RelativeRangePicker.styles';
-import { RELATIVE_UNITS, RANGES_MODE, RELATIVE_OFFSET_MAX } from '../../../../constants';
 import { setOffsetType } from '../CustomRangeForm';
-import { Props } from './OffsetField.types';
-import { RelativeUnits } from '../../../../date.types';
+import { type Props } from './OffsetField.types';
 
 const SELECT_DROPDOWN_OFFSET = -4;
 const OffsetField = ({
@@ -25,7 +31,9 @@ const OffsetField = ({
   return (
     <>
       {' '}
-      <S.Title>{currentGroup === RANGES_MODE.PAST ? texts.before : texts.after}</S.Title>
+      <S.Title>
+        {currentGroup === RANGES_MODE.PAST ? texts.before : texts.after}
+      </S.Title>
       <S.InputSelectGroup compact>
         <InputNumber
           min={0}
@@ -40,11 +48,18 @@ const OffsetField = ({
         />
         <Select
           value={offset?.type}
-          onChange={(type): void => handleChange(setOffsetType(type, currentRange))}
-          dropdownAlign={{ points: ['bl', 'tl'], offset: [0, SELECT_DROPDOWN_OFFSET] }}
-          getPopupContainer={(node): HTMLElement => (node.parentElement != null ? node.parentElement : document.body)}
+          onChange={(type): void =>
+            handleChange(setOffsetType(type, currentRange))
+          }
+          dropdownAlign={{
+            points: ['bl', 'tl'],
+            offset: [0, SELECT_DROPDOWN_OFFSET],
+          }}
+          getPopupContainer={(node): HTMLElement =>
+            node.parentElement !== null ? node.parentElement : document.body
+          }
         >
-          {((rangeUnits || RELATIVE_UNITS) as RelativeUnits[]).map(type => (
+          {((rangeUnits || RELATIVE_UNITS) as RelativeUnits[]).map((type) => (
             <Select.Option key={type} value={type}>
               {texts[type.toLowerCase()]}
             </Select.Option>

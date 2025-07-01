@@ -1,14 +1,18 @@
 import React from 'react';
-import { renderWithProvider } from '@synerise/ds-utils/dist/testing';
+
 import type { DataFormatNotationType } from '@synerise/ds-data-format';
+import { renderWithProvider } from '@synerise/ds-utils';
 import { fireEvent } from '@testing-library/react';
+
 import InputNumber from '../index';
 
 describe('InputNumber', () => {
   it('should render', () => {
     // ARRANGE
     const TEST_ID = 'test-id';
-    const { getByTestId } = renderWithProvider(<InputNumber data-testid={TEST_ID} />);
+    const { getByTestId } = renderWithProvider(
+      <InputNumber data-testid={TEST_ID} />,
+    );
 
     // ASSERT
     expect(getByTestId(TEST_ID)).toBeTruthy();
@@ -17,11 +21,15 @@ describe('InputNumber', () => {
   it('should handle increase', () => {
     // ARRANGE
     const TEST_ID = 'test-id';
-    const { getByTestId } = renderWithProvider(<InputNumber data-testid={TEST_ID} defaultValue={3} />);
+    const { getByTestId } = renderWithProvider(
+      <InputNumber data-testid={TEST_ID} defaultValue={3} />,
+    );
     const input = getByTestId(TEST_ID) as HTMLInputElement;
 
     // ACT
-    fireEvent.mouseDown(document.getElementsByClassName('ant-input-number-handler-up')[0]);
+    fireEvent.mouseDown(
+      document.getElementsByClassName('ant-input-number-handler-up')[0],
+    );
 
     // ASSERT
     expect(input.value).toEqual('4');
@@ -30,14 +38,18 @@ describe('InputNumber', () => {
   it('should handle decrease', () => {
     // ARRANGE
     const TEST_ID = 'test-id';
-    const { getByTestId } = renderWithProvider(<InputNumber data-testid={TEST_ID} defaultValue={3} />);
+    const { getByTestId } = renderWithProvider(
+      <InputNumber data-testid={TEST_ID} defaultValue={3} />,
+    );
     const input = getByTestId(TEST_ID) as HTMLInputElement;
 
     // ASSERT
     expect(input.value).toEqual('3');
 
     // ACT
-    fireEvent.mouseDown(document.getElementsByClassName('ant-input-number-handler-down')[0]);
+    fireEvent.mouseDown(
+      document.getElementsByClassName('ant-input-number-handler-down')[0],
+    );
 
     // ASSERT
     expect(input.value).toEqual('2');
@@ -46,11 +58,15 @@ describe('InputNumber', () => {
   it('should keep min value', () => {
     // ARRANGE
     const TEST_ID = 'test-id';
-    const { getByTestId } = renderWithProvider(<InputNumber data-testid={TEST_ID} defaultValue={2} min={2} />);
+    const { getByTestId } = renderWithProvider(
+      <InputNumber data-testid={TEST_ID} defaultValue={2} min={2} />,
+    );
     const input = getByTestId(TEST_ID) as HTMLInputElement;
 
     // ACT
-    fireEvent.mouseDown(document.getElementsByClassName('ant-input-number-handler-down')[0]);
+    fireEvent.mouseDown(
+      document.getElementsByClassName('ant-input-number-handler-down')[0],
+    );
 
     // ASSERT
     expect(input.value).toEqual('2');
@@ -59,11 +75,15 @@ describe('InputNumber', () => {
   it('should keep max value', () => {
     // ARRANGE
     const TEST_ID = 'test-id';
-    const { getByTestId } = renderWithProvider(<InputNumber data-testid={TEST_ID} defaultValue={2} max={2} />);
+    const { getByTestId } = renderWithProvider(
+      <InputNumber data-testid={TEST_ID} defaultValue={2} max={2} />,
+    );
     const input = getByTestId(TEST_ID) as HTMLInputElement;
 
     // ACT
-    fireEvent.mouseDown(document.getElementsByClassName('ant-input-number-handler-up')[0]);
+    fireEvent.mouseDown(
+      document.getElementsByClassName('ant-input-number-handler-up')[0],
+    );
 
     // ASSERT
     expect(input.value).toEqual('2');
@@ -72,7 +92,9 @@ describe('InputNumber', () => {
   it('should render label', () => {
     // ARRANGE
     const LABEL = 'label';
-    const { getByLabelText } = renderWithProvider(<InputNumber label={LABEL} />);
+    const { getByLabelText } = renderWithProvider(
+      <InputNumber label={LABEL} />,
+    );
 
     // ASSERT
     expect(getByLabelText(LABEL)).toBeTruthy();
@@ -81,7 +103,9 @@ describe('InputNumber', () => {
   it('should render description', () => {
     // ARRANGE
     const DESCRIPTION = 'description';
-    const { getByText } = renderWithProvider(<InputNumber description={DESCRIPTION} />);
+    const { getByText } = renderWithProvider(
+      <InputNumber description={DESCRIPTION} />,
+    );
 
     // ASSERT
     expect(getByText(DESCRIPTION)).toBeTruthy();
@@ -90,7 +114,9 @@ describe('InputNumber', () => {
   it('should handle error state', () => {
     // ARRANGE
     const ERROR_MESSAGE = 'error message';
-    const { getByText, container } = renderWithProvider(<InputNumber errorText={ERROR_MESSAGE} />);
+    const { getByText, container } = renderWithProvider(
+      <InputNumber errorText={ERROR_MESSAGE} />,
+    );
 
     // ASSERT
     expect(getByText(ERROR_MESSAGE)).toBeTruthy();
@@ -101,7 +127,9 @@ describe('InputNumber', () => {
     // ARRANGE
     const PREFIX = 'Prefix value';
     const SUFFIX = 'Suffix value';
-    const { getByText } = renderWithProvider(<InputNumber prefixel={PREFIX} suffixel={SUFFIX} />);
+    const { getByText } = renderWithProvider(
+      <InputNumber prefixel={PREFIX} suffixel={SUFFIX} />,
+    );
 
     // ASSERT
     expect(getByText(PREFIX)).toBeTruthy();
@@ -112,7 +140,9 @@ describe('InputNumber', () => {
     // ARRANGE
     const TOOLTIP = 'Tooltip title';
     const LABEL = 'Label';
-    const { getByText } = renderWithProvider(<InputNumber label={LABEL} tooltip={TOOLTIP} />);
+    const { getByText } = renderWithProvider(
+      <InputNumber label={LABEL} tooltip={TOOLTIP} />,
+    );
 
     // ASSERT
     expect(getByText(LABEL)).toBeTruthy();
@@ -122,7 +152,9 @@ describe('InputNumber', () => {
   it('should have proper value and formatting for EU notation', () => {
     // ARRANGE
     const TEST_ID = 'test-id';
-    const { getByTestId } = renderWithProvider(<InputNumber data-testid={TEST_ID} defaultValue={1234567.89} />);
+    const { getByTestId } = renderWithProvider(
+      <InputNumber data-testid={TEST_ID} defaultValue={1234567.89} />,
+    );
     const input = getByTestId(TEST_ID) as HTMLInputElement;
 
     // ASSERT
@@ -136,7 +168,7 @@ describe('InputNumber', () => {
     const { getByTestId } = renderWithProvider(
       <InputNumber data-testid={TEST_ID} defaultValue={1234567.89} />,
       {},
-      { notation: 'US' }
+      { notation: 'US' },
     );
     const input = getByTestId(TEST_ID) as HTMLInputElement;
 
@@ -155,7 +187,7 @@ describe('InputNumber', () => {
         valueFormatOptions={{ maximumFractionDigits: 3 }}
       />,
       {},
-      { notation: 'US' }
+      { notation: 'US' },
     );
     const input = getByTestId(TEST_ID) as HTMLInputElement;
 
@@ -173,10 +205,10 @@ describe('InputNumber', () => {
         data-testid={TEST_ID}
         defaultValue={1234567.891234}
         onChange={onChange}
-      />
+      />,
     );
     const input = getByTestId(TEST_ID) as HTMLInputElement;
-    fireEvent.change(input, {target: {value: changedValue}});
+    fireEvent.change(input, { target: { value: changedValue } });
 
     // ASSERT
     expect(onChange).toBeCalledWith(changedValue);
@@ -188,11 +220,15 @@ describe('InputNumber', () => {
     const expectedValue = 1234567.891;
     const onChange = jest.fn();
     const { getByTestId } = renderWithProvider(
-      <InputNumber data-testid={TEST_ID} defaultValue={1234567.89} onChange={onChange} />
+      <InputNumber
+        data-testid={TEST_ID}
+        defaultValue={1234567.89}
+        onChange={onChange}
+      />,
     );
     const input = getByTestId(TEST_ID) as HTMLInputElement;
-    fireEvent.change(input, {target: {value: changedValue}});
-    
+    fireEvent.change(input, { target: { value: changedValue } });
+
     // ASSERT
     expect(onChange).toBeCalledWith(expectedValue);
   });
@@ -209,7 +245,7 @@ const setup = ({
   const { getByTestId } = renderWithProvider(
     <InputNumber data-testid={TEST_ID} defaultValue={defaultValue} />,
     {},
-    { notation: notation }
+    { notation },
   );
   const input = getByTestId(TEST_ID) as HTMLInputElement;
   return { input };
@@ -241,8 +277,14 @@ describe('InputNumber near MAX_SAFE_INTEGER', () => {
 
   for (const testCase of testCases) {
     it(`should have proper value and formatting near MAX_SAFE_INTEGER for: ${testCase.initialValue}`, async () => {
-      const { input: euInput } = setup({ defaultValue: testCase.initialValue, notation: 'EU' });
-      const { input: usInput } = setup({ defaultValue: testCase.initialValue, notation: 'US' });
+      const { input: euInput } = setup({
+        defaultValue: testCase.initialValue,
+        notation: 'EU',
+      });
+      const { input: usInput } = setup({
+        defaultValue: testCase.initialValue,
+        notation: 'US',
+      });
 
       expect(euInput).toHaveValue(testCase.expectedEuResult);
       expect(usInput).toHaveValue(testCase.expectedUsResult);
@@ -296,8 +338,14 @@ describe('InputNumber with zeros', () => {
 
   for (const testCase of testCases) {
     it(`should have proper value and formatting with zeros for: ${testCase.initialValue}`, async () => {
-      const { input: euInput } = setup({ defaultValue: testCase.initialValue, notation: 'EU' });
-      const { input: usInput } = setup({ defaultValue: testCase.initialValue, notation: 'US' });
+      const { input: euInput } = setup({
+        defaultValue: testCase.initialValue,
+        notation: 'EU',
+      });
+      const { input: usInput } = setup({
+        defaultValue: testCase.initialValue,
+        notation: 'US',
+      });
 
       expect(euInput).toHaveValue(testCase.expectedEuResult);
       expect(usInput).toHaveValue(testCase.expectedUsResult);

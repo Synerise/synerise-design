@@ -1,11 +1,12 @@
 import React from 'react';
-import Icon, { SearchM } from '@synerise/ds-icon';
+
 import { useTheme } from '@synerise/ds-core';
 import Dropdown from '@synerise/ds-dropdown';
+import Icon, { SearchM } from '@synerise/ds-icon';
 
-import { OverlayType } from './Overlay.types';
+import { type SourceType } from '../../IconPicker.types';
 import List from '../List/List';
-import { SourceType } from '../../IconPicker.types';
+import { type OverlayType } from './Overlay.types';
 
 const Overlay = <Source extends SourceType>({
   value,
@@ -26,7 +27,9 @@ const Overlay = <Source extends SourceType>({
         placeholder={placeholder}
         value={value}
         autofocus={focus}
-        iconLeft={<Icon component={<SearchM />} color={theme.palette['grey-600']} />}
+        iconLeft={
+          <Icon component={<SearchM />} color={theme.palette['grey-600']} />
+        }
       />
       <List onSelect={onSelect} data={data} noResultMsg={noResultMsg} />
     </>

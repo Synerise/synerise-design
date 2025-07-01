@@ -1,8 +1,9 @@
 import React from 'react';
-import * as S from './RangeSummary.styles';
-import { RangeSummaryProps } from './RangeSummary.types';
-import { DayKey } from '../TimeWindow.types';
+
 import { SPACE_UNICODE } from '../../../constants';
+import { type DayKey } from '../TimeWindow.types';
+import * as S from './RangeSummary.styles';
+import { type RangeSummaryProps } from './RangeSummary.types';
 
 const RangeSummary: React.FC<RangeSummaryProps> = ({
   dayKeys,
@@ -17,7 +18,9 @@ const RangeSummary: React.FC<RangeSummaryProps> = ({
     }
     return dayKeys.map((k: DayKey, index: number) => (
       <S.DayShortname key={k}>
-        {!monthlyFilter || monthlyFilterPeriod !== 'WEEK' ? getDayLabel(k, false) : null}
+        {!monthlyFilter || monthlyFilterPeriod !== 'WEEK'
+          ? getDayLabel(k, false)
+          : null}
         {monthlyFilter && getDayLabel(k, true)}
         {index + 1 !== dayKeys.length && `,${SPACE_UNICODE}`}
       </S.DayShortname>

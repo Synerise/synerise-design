@@ -1,12 +1,15 @@
-import { VirtualColumnType } from '../VirtualTable/VirtualTable.types';
+import { type VirtualColumnType } from '../VirtualTable/VirtualTable.types';
 import { calculatePixels } from './calculatePixels';
 
-export const calculateColumnWidths = <T extends object>(columns: VirtualColumnType<T>[], availableSpace: number) => {
+export const calculateColumnWidths = <T extends object>(
+  columns: VirtualColumnType<T>[],
+  availableSpace: number,
+) => {
   let baseSum = 0;
   let flexibleColumnCount = 0;
   let noMaxColumnCount = 0;
 
-  const baseWidths = columns.map(column => {
+  const baseWidths = columns.map((column) => {
     const baseWidth = calculatePixels(column.width || column.minWidth) || 0;
 
     flexibleColumnCount += Number(!column.width);

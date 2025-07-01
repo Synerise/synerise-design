@@ -1,7 +1,12 @@
 import React from 'react';
-import { Props } from './GroupTableHeader.types';
 
-function GroupTableHeader<T extends unknown>({ header, activeColumnKey, sortColumn }: Props<T>): JSX.Element {
+import { type Props } from './GroupTableHeader.types';
+
+function GroupTableHeader<T>({
+  header,
+  activeColumnKey,
+  sortColumn,
+}: Props<T>): JSX.Element {
   const clickHandle = React.useCallback(
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     (child: any): void => {
@@ -9,7 +14,7 @@ function GroupTableHeader<T extends unknown>({ header, activeColumnKey, sortColu
         sortColumn(child);
       }
     },
-    [sortColumn]
+    [sortColumn],
   );
   return (
     <tr>
@@ -22,7 +27,11 @@ function GroupTableHeader<T extends unknown>({ header, activeColumnKey, sortColu
             <th
               key={child.key}
               rowSpan={child.props.rowspan}
-              onClick={isColumnActive ? (e): void => e.preventDefault() : (): void => clickHandle(child)}
+              onClick={
+                isColumnActive
+                  ? (e): void => e.preventDefault()
+                  : (): void => clickHandle(child)
+              }
               className={`${child.props.className} ${child.props.additionalProps?.className || ''} ${
                 isColumnActive ? 'ds-table-active-column' : ''
               }`}
@@ -30,7 +39,7 @@ function GroupTableHeader<T extends unknown>({ header, activeColumnKey, sortColu
               {child.props.children}
             </th>
           );
-        }
+        },
       )}
     </tr>
   );

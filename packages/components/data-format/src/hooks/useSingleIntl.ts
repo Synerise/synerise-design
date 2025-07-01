@@ -1,4 +1,9 @@
-import { createIntl, createIntlCache, IntlShape, useIntl } from 'react-intl';
+import {
+  type IntlShape,
+  createIntl,
+  createIntlCache,
+  useIntl,
+} from 'react-intl';
 
 export const useSingleIntl = (locale: string): { intl: IntlShape } => {
   const cache = createIntlCache();

@@ -1,13 +1,14 @@
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
-import Icon, { HideM, TaskCheckM } from '@synerise/ds-icon';
-import Button from '@synerise/ds-button';
 
-import type { BaseItemType, MappingProps } from './Mapping.types';
+import Button from '@synerise/ds-button';
+import Icon, { HideM, TaskCheckM } from '@synerise/ds-icon';
+
 import * as S from './Mapping.styles';
+import type { BaseItemType, MappingProps } from './Mapping.types';
 import { BatchSelectionHeader, RowSelection, TitleRow } from './components';
-import { renderCounter as defaultRenderCounter } from './utils/counter';
 import { useBatchSelection } from './hooks/useBatchSelection';
 import { useTexts } from './hooks/useTexts';
+import { renderCounter as defaultRenderCounter } from './utils/counter';
 
 const Mapping = <ItemType extends BaseItemType>({
   batchSelection,
@@ -27,16 +28,24 @@ const Mapping = <ItemType extends BaseItemType>({
   const isCompact = dataSource.length === 1;
   const [selectionEnabled, setSelectionEnabled] = useState(false);
   const allTexts = useTexts(texts);
-  const { selectedItemIds, setSelectedItemIds, handleBatchCheckboxChange, batchSelectionCheckboxState } =
-    useBatchSelection(dataSource, hasSelection);
+  const {
+    selectedItemIds,
+    setSelectedItemIds,
+    handleBatchCheckboxChange,
+    batchSelectionCheckboxState,
+  } = useBatchSelection(dataSource, hasSelection);
 
-  const { actionButtons, onSelectionChange, renderCounter = defaultRenderCounter } = batchSelection || {};
+  const {
+    actionButtons,
+    onSelectionChange,
+    renderCounter = defaultRenderCounter,
+  } = batchSelection || {};
 
   const handleItemSelection = (checked: boolean, id: ItemType['id']) => {
     if (checked) {
       setSelectedItemIds([...selectedItemIds, id]);
     } else {
-      setSelectedItemIds(selectedItemIds.filter(itemId => itemId !== id));
+      setSelectedItemIds(selectedItemIds.filter((itemId) => itemId !== id));
     }
   };
 
@@ -45,7 +54,7 @@ const Mapping = <ItemType extends BaseItemType>({
       setSelectionEnabled(newState);
       setSelectedItemIds([]);
     },
-    [setSelectedItemIds]
+    [setSelectedItemIds],
   );
 
   const batchButton = useMemo(() => {
@@ -67,7 +76,12 @@ const Mapping = <ItemType extends BaseItemType>({
         )}
       </Button>
     );
-  }, [allTexts.disableBatchSelection, allTexts.enableBatchSelection, selectionEnabled, toggleBatchButton]);
+  }, [
+    allTexts.disableBatchSelection,
+    allTexts.enableBatchSelection,
+    selectionEnabled,
+    toggleBatchButton,
+  ]);
 
   useEffect(() => {
     onSelectionChange && onSelectionChange(selectedItemIds);
@@ -105,8 +119,14 @@ const Mapping = <ItemType extends BaseItemType>({
             />
           )}
           <S.MappingRowLeft>{leftComponent({ item, index })}</S.MappingRowLeft>
-          {hasCenterComponent && <S.MappingRowCenter>{centerComponent({ item, index })}</S.MappingRowCenter>}
-          <S.MappingRowRight>{rightComponent({ item, index })}</S.MappingRowRight>
+          {hasCenterComponent && (
+            <S.MappingRowCenter>
+              {centerComponent({ item, index })}
+            </S.MappingRowCenter>
+          )}
+          <S.MappingRowRight>
+            {rightComponent({ item, index })}
+          </S.MappingRowRight>
         </S.MappingRow>
       ))}
     </S.MappingWrapper>

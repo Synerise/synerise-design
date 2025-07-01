@@ -1,10 +1,12 @@
 import React from 'react';
-import { renderWithProvider } from '@synerise/ds-utils/dist/testing';
+
+import { renderWithProvider } from '@synerise/ds-utils';
+
 import CardSelect from '../index';
 
 const tickIconSelector = '.ds-card-select .ds-card-select-tick';
 describe('CardSelect', () => {
-  it('should render', function() {
+  it('should render', function () {
     // ARRANGE
     const { getByText } = renderWithProvider(
       <CardSelect
@@ -12,7 +14,7 @@ describe('CardSelect', () => {
         iconSize={32}
         title="Selectable card"
         description="Description of selectable card"
-      />
+      />,
     );
 
     // ACT
@@ -21,7 +23,7 @@ describe('CardSelect', () => {
     expect(getByText('Selectable card')).toBeTruthy();
   });
 
-  it('should onChange be called', function() {
+  it('should onChange be called', function () {
     // ARRANGE
     const onChange = jest.fn();
 
@@ -32,17 +34,19 @@ describe('CardSelect', () => {
         title="Selectable card"
         description="Description of selectable card"
         onChange={onChange}
-      />
+      />,
     );
-const renderedTickIcon = container.querySelector(tickIconSelector) as HTMLElement;
+    const renderedTickIcon = container.querySelector(
+      tickIconSelector,
+    ) as HTMLElement;
     // ACT
-    renderedTickIcon.click()
+    renderedTickIcon.click();
 
     // ASSERT
     expect(onChange).toBeCalled();
   });
 
-  it('should onChange be called if disabled', function() {
+  it('should onChange be called if disabled', function () {
     // ARRANGE
     const onChange = jest.fn();
 
@@ -53,17 +57,19 @@ const renderedTickIcon = container.querySelector(tickIconSelector) as HTMLElemen
         title="Disabled Card"
         disabled={true}
         onChange={onChange}
-      />
+      />,
     );
-    const renderedTickIcon = container.querySelector(tickIconSelector) as HTMLElement;
+    const renderedTickIcon = container.querySelector(
+      tickIconSelector,
+    ) as HTMLElement;
     // ACT
-    renderedTickIcon.click()
+    renderedTickIcon.click();
 
     // ASSERT
     expect(onChange).toBeCalled();
   });
 
-  it('should onClick be called', function() {
+  it('should onClick be called', function () {
     // ARRANGE
     const onChange = jest.fn();
     const onClick = jest.fn();
@@ -75,11 +81,13 @@ const renderedTickIcon = container.querySelector(tickIconSelector) as HTMLElemen
         title="Disabled Card"
         disabled={true}
         onClick={onClick}
-      />
+      />,
     );
-    const renderedTickIcon = container.querySelector(tickIconSelector) as HTMLElement;
+    const renderedTickIcon = container.querySelector(
+      tickIconSelector,
+    ) as HTMLElement;
     // ACT
-    renderedTickIcon.click()
+    renderedTickIcon.click();
 
     // ASSERT
     expect(onChange).toBeCalledTimes(0);

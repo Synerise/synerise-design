@@ -1,9 +1,15 @@
 import React from 'react';
-import Icon from '@synerise/ds-icon';
-import * as S from './BottomAction.styles';
-import { BottomActionProps } from './BottomAction.types';
 
-export const BottomAction = ({ onClickAction, children, icon }: BottomActionProps) => (
+import Icon from '@synerise/ds-icon';
+
+import * as S from './BottomAction.styles';
+import { type BottomActionProps } from './BottomAction.types';
+
+export const BottomAction = ({
+  onClickAction,
+  children,
+  icon,
+}: BottomActionProps) => (
   <S.BottomAction onClick={onClickAction}>
     {icon && (
       <S.IconWrapper>

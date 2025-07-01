@@ -1,16 +1,17 @@
 import React from 'react';
+
 import Icon, {
-  UserCheckM,
-  UpdateDataM,
-  WarningFillM,
-  InfoFillM,
   Check3M,
   HelpFillM,
+  InfoFillM,
   NotificationsReceiveM,
+  UpdateDataM,
+  UserCheckM,
+  WarningFillM,
 } from '@synerise/ds-icon';
 
 import * as S from './AlertSemanticColor.styles';
-import { AlertType, Props } from './AlertSemanticColor.types';
+import { type AlertType, type Props } from './AlertSemanticColor.types';
 
 const ICONS: Record<AlertType, React.ReactNode> = {
   positive: <Check3M />,
@@ -24,10 +25,19 @@ const ICONS: Record<AlertType, React.ReactNode> = {
 };
 const DEFAULT_ICON = <WarningFillM />;
 
-const AlertSemanticColor: React.FC<Props> = ({ icon, type, color, mode }: Props) => {
+const AlertSemanticColor: React.FC<Props> = ({
+  icon,
+  type,
+  color,
+  mode,
+}: Props) => {
   const renderIcon = React.useMemo(() => {
-    if (icon) return icon;
-    if (ICONS[type]) return ICONS[type];
+    if (icon) {
+      return icon;
+    }
+    if (ICONS[type]) {
+      return ICONS[type];
+    }
     return DEFAULT_ICON;
   }, [icon, type]);
 

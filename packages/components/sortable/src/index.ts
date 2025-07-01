@@ -5,4 +5,10 @@ export { CSS } from '@dnd-kit/utilities';
 export { default } from './Sortable';
 export { SortableContainer } from './SortableContainer';
 
-export type { DragHandlePropType, SortableItemProps, SortableProps, BaseItem, WithIndex } from './Sortable.types';
+export type {
+  DragHandlePropType,
+  SortableItemProps,
+  SortableProps,
+  BaseItem,
+  WithIndex,
+} from './Sortable.types';

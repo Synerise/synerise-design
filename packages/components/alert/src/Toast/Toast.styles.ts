@@ -1,10 +1,16 @@
-import styled, { keyframes, Keyframes } from 'styled-components';
-import { ReactNode } from 'react';
-import { ThemeProps } from '@synerise/ds-core';
-import { hexToRgba } from '@synerise/ds-utils';
-import { UnorderedList } from '@synerise/ds-unordered-list/dist/Unordered-list.styles';
 import 'animate.css';
-import { ColorIconType, ColorType, CustomColorType } from './Toast.types';
+import { type ReactNode } from 'react';
+import styled, { type Keyframes, keyframes } from 'styled-components';
+
+import { type ThemeProps } from '@synerise/ds-core';
+import { UnorderedList } from '@synerise/ds-unordered-list/dist/Unordered-list.styles';
+import { hexToRgba } from '@synerise/ds-utils';
+
+import {
+  type ColorIconType,
+  type ColorType,
+  type CustomColorType,
+} from './Toast.types';
 
 type InsertShapeStyles = {
   colorIcon?: ColorIconType;
@@ -88,7 +94,7 @@ export const AlertContent = styled.div<{ hasBottomMargin?: boolean }>`
   align-items: flex-start;
   justify-content: center;
   margin-right: 24px;
-  ${props => props.hasBottomMargin && 'margin-bottom:16px;'}
+  ${(props) => props.hasBottomMargin && 'margin-bottom:16px;'}
 
   ${UnorderedList} {
     margin-bottom: 8px;
@@ -107,16 +113,25 @@ export const IconWrapper = styled.div<{
   display: flex;
   svg {
     color: ${(props): string =>
-      props.customColorIcon ? props.theme.palette[`${props.customColorIcon}-600`] : getColorIcon};
+      props.customColorIcon
+        ? props.theme.palette[`${props.customColorIcon}-600`]
+        : getColorIcon};
     fill: ${(props): string =>
-      props.customColorIcon ? props.theme.palette[`${props.customColorIcon}-600`] : getColorIcon};
+      props.customColorIcon
+        ? props.theme.palette[`${props.customColorIcon}-600`]
+        : getColorIcon};
   }
 `;
-export const IconCloseWrapper = styled.div<{ customColorText?: CustomColorType; color?: ColorType }>`
+export const IconCloseWrapper = styled.div<{
+  customColorText?: CustomColorType;
+  color?: ColorType;
+}>`
   cursor: pointer;
   svg {
     fill: ${(props): string =>
-      props.customColorText ? props.theme.palette[`${props.customColorText}-600`] : getColorText(props)};
+      props.customColorText
+        ? props.theme.palette[`${props.customColorText}-600`]
+        : getColorText(props)};
   }
 `;
 export const IconExpanderWrapper = styled.div<{
@@ -127,9 +142,13 @@ export const IconExpanderWrapper = styled.div<{
   cursor: pointer;
   svg {
     fill: ${(props): string =>
-      props.customColorText ? props.theme.palette[`${props.customColorText}-600`] : getColorText(props)};
+      props.customColorText
+        ? props.theme.palette[`${props.customColorText}-600`]
+        : getColorText(props)};
     transition: transform 0.1s linear;
-    transform: rotateZ(${(props): string => (props.expanded ? '180deg' : '0deg')});
+    transform: rotateZ(
+      ${(props): string => (props.expanded ? '180deg' : '0deg')}
+    );
   }
 `;
 export const ButtonWrapper = styled.div`
@@ -138,10 +157,16 @@ export const ButtonWrapper = styled.div`
   top: 12px;
   display: flex;
 `;
-export const FirstButtonWrapper = styled.div<{ customColorText?: CustomColorType; color?: ColorType }>`
+export const FirstButtonWrapper = styled.div<{
+  customColorText?: CustomColorType;
+  color?: ColorType;
+}>`
   margin-right: 8px;
 `;
-export const NumberWrapper = styled.div<{ customColorText?: CustomColorType; color?: ColorType }>`
+export const NumberWrapper = styled.div<{
+  customColorText?: CustomColorType;
+  color?: ColorType;
+}>`
   margin-left: 4px;
   color: inherit;
   opacity: 0.6;
@@ -158,21 +183,32 @@ export const NumberWrapper = styled.div<{ customColorText?: CustomColorType; col
     background-repeat: repeat-x;
     opacity: 1;
     color: ${(props): string =>
-      props.customColorText ? props.theme.palette[`${props.customColorText}-600`] : getColorText(props)};
+      props.customColorText
+        ? props.theme.palette[`${props.customColorText}-600`]
+        : getColorText(props)};
   }
 `;
-export const ListWrapper = styled.div<{ visible?: boolean; description?: ReactNode }>`
+export const ListWrapper = styled.div<{
+  visible?: boolean;
+  description?: ReactNode;
+}>`
   display: flex;
-  visibility: ${props => (props.visible ? 'visible' : 'hidden')};
-  height: ${props => (props.visible ? 'auto' : '0')};
-  margin-top: ${props => (!props.description && props.visible ? '10px' : '0')};
+  visibility: ${(props) => (props.visible ? 'visible' : 'hidden')};
+  height: ${(props) => (props.visible ? 'auto' : '0')};
+  margin-top: ${(props) =>
+    !props.description && props.visible ? '10px' : '0'};
 `;
-export const IconOrderWrapper = styled.div<{ customColorText?: CustomColorType; color?: ColorType }>`
+export const IconOrderWrapper = styled.div<{
+  customColorText?: CustomColorType;
+  color?: ColorType;
+}>`
   visibility: hidden;
   margin: -4px 0;
   svg {
     fill: ${(props): string =>
-      props.customColorText ? props.theme.palette[`${props.customColorText}-600`] : getColorText(props)};
+      props.customColorText
+        ? props.theme.palette[`${props.customColorText}-600`]
+        : getColorText(props)};
   }
   &:hover {
     svg {
@@ -181,10 +217,15 @@ export const IconOrderWrapper = styled.div<{ customColorText?: CustomColorType; 
     }
   }
 `;
-export const OrderWrapper = styled.div<{ customColorText?: CustomColorType; color?: ColorType }>`
+export const OrderWrapper = styled.div<{
+  customColorText?: CustomColorType;
+  color?: ColorType;
+}>`
   display: flex;
   color: ${(props): string =>
-    props.customColorText ? props.theme.palette[`${props.customColorText}-600`] : getColorText(props)};
+    props.customColorText
+      ? props.theme.palette[`${props.customColorText}-600`]
+      : getColorText(props)};
   &:hover {
     ${IconOrderWrapper} {
       visibility: visible;
@@ -193,7 +234,9 @@ export const OrderWrapper = styled.div<{ customColorText?: CustomColorType; colo
       background-image: linear-gradient(
         to right,
         ${(props): string =>
-            props.customColorText ? props.theme.palette[`${props.customColorText}-600`] : getColorText(props)}
+            props.customColorText
+              ? props.theme.palette[`${props.customColorText}-600`]
+              : getColorText(props)}
           20%,
         rgba(255, 255, 255, 0) 10%
       );
@@ -203,7 +246,9 @@ export const OrderWrapper = styled.div<{ customColorText?: CustomColorType; colo
       background-repeat: repeat-x;
       opacity: 1;
       color: ${(props): string =>
-        props.customColorText ? props.theme.palette[`${props.customColorText}-600`] : getColorText(props)};
+        props.customColorText
+          ? props.theme.palette[`${props.customColorText}-600`]
+          : getColorText(props)};
     }
   }
 `;
@@ -212,7 +257,9 @@ export const Wrapper = styled.div`
 `;
 
 export const AnimationContainer = styled.div<{ show?: boolean }>`
-  animation: ${(props): Keyframes => (props.show ? openingAnimation() : closingAnimation())} 0.5s ease-in-out 0s 1;
+  animation: ${(props): Keyframes =>
+      props.show ? openingAnimation() : closingAnimation()}
+    0.5s ease-in-out 0s 1;
 `;
 export const Container = styled.div<{
   color?: ColorType;
@@ -224,10 +271,14 @@ export const Container = styled.div<{
   align-items: flex-start;
   justify-content: center;
   background-color: ${(props): string =>
-    props.customColor ? props.theme.palette[`${props.customColor}-600`] : getColorBackground(props)};
+    props.customColor
+      ? props.theme.palette[`${props.customColor}-600`]
+      : getColorBackground(props)};
   border-radius: 4px;
   box-shadow: ${(props): string =>
-    props.color ? `0px 16px 32px 5px ${hexToRgba(props.theme.palette['grey-900'], 0.2)}` : 'none'};
+    props.color
+      ? `0px 16px 32px 5px ${hexToRgba(props.theme.palette['grey-900'], 0.2)}`
+      : 'none'};
 `;
 export const WrapperSectionMessage = styled.div`
   position: relative;
@@ -246,14 +297,16 @@ export const AlertMessage = styled.div<{
   font-size: 14px;
   line-height: 20px;
   padding-top: 14px;
-  ${props => props.noToastContent && 'padding-bottom: 14px;'};
+  ${(props) => props.noToastContent && 'padding-bottom: 14px;'};
   font-weight: 500;
   overflow: hidden;
   overflow-wrap: break-word;
   text-overflow: ellipsis;
-  padding-right: ${props => getWidth(props.hasClose, props.hasExpander)};
+  padding-right: ${(props) => getWidth(props.hasClose, props.hasExpander)};
   color: ${(props): string =>
-    props.customColorText ? props.theme.palette[`${props.customColorText}-600`] : getColorText(props)};
+    props.customColorText
+      ? props.theme.palette[`${props.customColorText}-600`]
+      : getColorText(props)};
 `;
 export const AlertDescription = styled.div<{
   customColorText?: CustomColorType;
@@ -267,8 +320,11 @@ export const AlertDescription = styled.div<{
   overflow: hidden;
   overflow-wrap: anywhere;
   text-overflow: ellipsis;
-  padding-bottom: ${(props): string => (props.button || props.expandedContent ? '16px' : '0')};
+  padding-bottom: ${(props): string =>
+    props.button || props.expandedContent ? '16px' : '0'};
   margin-top: 2px;
   color: ${(props): string =>
-    props.customColorText ? props.theme.palette[`${props.customColorText}-600`] : getColorText(props)};
+    props.customColorText
+      ? props.theme.palette[`${props.customColorText}-600`]
+      : getColorText(props)};
 `;

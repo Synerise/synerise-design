@@ -1,6 +1,6 @@
-import styled, { css, FlattenInterpolation } from 'styled-components';
+import styled, { type FlattenInterpolation, css } from 'styled-components';
 
-export const GridContainer = styled.div<{ columns: number; gutter: number; }>`
+export const GridContainer = styled.div<{ columns: number; gutter: number }>`
   width: 100%;
   display: grid;
   grid-template-columns: repeat(${(props): number => props.columns}, 1fr);
@@ -8,7 +8,11 @@ export const GridContainer = styled.div<{ columns: number; gutter: number; }>`
   grid-column-gap: ${(props): string => `${props.gutter}px`};
 `;
 
-export const GridItem = styled.div<{ columns?: number; contentWrapper: boolean; maxColumns: number }>`
+export const GridItem = styled.div<{
+  columns?: number;
+  contentWrapper: boolean;
+  maxColumns: number;
+}>`
   grid-column: span ${(props): number => props.columns || 1};
   display: ${(props): string => (props.columns === 0 ? 'none' : 'inherit')};
   ${(props): FlattenInterpolation<unknown> | false =>
@@ -16,7 +20,9 @@ export const GridItem = styled.div<{ columns?: number; contentWrapper: boolean; 
     Boolean(props.maxColumns) &&
     Boolean(props.columns) &&
     css`
-      grid-column-start: ${props.maxColumns && props.columns ? (props.maxColumns - props.columns) / 2 + 1 : 'span'};
+      grid-column-start: ${props.maxColumns && props.columns
+        ? (props.maxColumns - props.columns) / 2 + 1
+        : 'span'};
       grid-column-end: ${props.maxColumns && props.columns
         ? (props.maxColumns - props.columns) / 2 + 1 + props.columns
         : 1};

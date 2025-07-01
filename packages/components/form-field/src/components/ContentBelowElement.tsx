@@ -1,9 +1,12 @@
 import React from 'react';
 
 import * as S from '../FormField.styles';
-import { ContentBelowProps } from '../FormField.types';
+import { type ContentBelowProps } from '../FormField.types';
 
-export const ContentBelowElement = ({ description, errorText }: ContentBelowProps) => {
+export const ContentBelowElement = ({
+  description,
+  errorText,
+}: ContentBelowProps) => {
   if (!errorText && !description) {
     return null;
   }

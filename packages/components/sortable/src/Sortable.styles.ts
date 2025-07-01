@@ -1,5 +1,6 @@
-import { ThemeProps } from '@synerise/ds-core';
-import styled, { css, Interpolation } from 'styled-components';
+import styled, { type Interpolation, css } from 'styled-components';
+
+import { type ThemeProps } from '@synerise/ds-core';
 
 export const SortableItemContent = styled.div``;
 
@@ -8,7 +9,7 @@ export const SortableItemWrapper = styled.div<{
   isDragged: boolean;
   placeholderCss?: Interpolation<ThemeProps>;
 }>`
-  ${props =>
+  ${(props) =>
     props.isDragged &&
     css`
       ${SortableItemContent} {
@@ -28,7 +29,7 @@ export const SortableItemWrapper = styled.div<{
         ${props.placeholderCss}
       }
     `}
-  ${props =>
+  ${(props) =>
     props.isGrabbed &&
     css`
       ${SortableItemContent} {

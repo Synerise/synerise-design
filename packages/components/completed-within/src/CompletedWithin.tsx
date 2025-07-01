@@ -1,14 +1,25 @@
 import React, { useCallback, useMemo, useState } from 'react';
 import { useIntl } from 'react-intl';
-import Icon, { ClockM, Close3S } from '@synerise/ds-icon';
 
 import Dropdown from '@synerise/ds-dropdown';
+import Icon, { ClockM, Close3S } from '@synerise/ds-icon';
 import Tooltip from '@synerise/ds-tooltip';
-import Settings from './Settings/Settings';
-import { CompletedWithinProps, Period } from './CompletedWithin.types';
-import * as S from './CompleteWithin.styles';
 
-export const DEFAULT_PERIODS = ['SECONDS', 'MINUTES', 'HOURS', 'DAYS', 'MONTHS', 'YEARS'];
+import * as S from './CompleteWithin.styles';
+import {
+  type CompletedWithinProps,
+  type Period,
+} from './CompletedWithin.types';
+import Settings from './Settings/Settings';
+
+export const DEFAULT_PERIODS = [
+  'SECONDS',
+  'MINUTES',
+  'HOURS',
+  'DAYS',
+  'MONTHS',
+  'YEARS',
+];
 
 const CompletedWithin = ({
   value,
@@ -24,51 +35,66 @@ const CompletedWithin = ({
 
   const texts = useMemo(
     () => ({
-      header: intl.formatMessage({ id: 'DS.COMPLETED-WITHIN.HEADER', defaultMessage: 'Completed within' }),
+      header: intl.formatMessage({
+        id: 'DS.COMPLETED-WITHIN.HEADER',
+        defaultMessage: 'Completed within',
+      }),
       completedLabel: intl.formatMessage({
         id: 'DS.COMPLETED-WITHIN.COMPLETED-WIHITN',
         defaultMessage: 'Completed within',
       }),
-      clear: intl.formatMessage({ id: 'DS.COMPLETED-WITHIN.CLEAR', defaultMessage: 'Clear' }),
+      clear: intl.formatMessage({
+        id: 'DS.COMPLETED-WITHIN.CLEAR',
+        defaultMessage: 'Clear',
+      }),
       periodPlaceholder: intl.formatMessage({
         id: 'DS.COMPLETED-WITHIN.PERIOD-PLACEHOLDER',
         defaultMessage: 'Interval',
       }),
       ...text,
     }),
-    [text, intl]
+    [text, intl],
   );
 
   const getPeriods = useMemo(() => {
     if (periods !== undefined && periods.length) {
       return periods;
     }
-    return DEFAULT_PERIODS.map(period => ({
+    return DEFAULT_PERIODS.map((period) => ({
       value: period,
-      label: intl.formatMessage({ id: `DS.COMPLETED-WITHIN.${period}`, defaultMessage: period }),
+      label: intl.formatMessage({
+        id: `DS.COMPLETED-WITHIN.${period}`,
+        defaultMessage: period,
+      }),
     }));
   }, [periods, intl]);
 
-  const [innerValue, setInnerValue] = useState<string | number | undefined | null>(value.value);
+  const [innerValue, setInnerValue] = useState<
+    string | number | undefined | null
+  >(value.value);
   const [innerPeriod, setInnerPeriod] = useState<Period>(value.period);
   const [tooltipVisible, setTooltipVisible] = useState(false);
   const [settingsVisible, setSettingsVisible] = useState(false);
 
-  const hasValue = useMemo(() => value.value !== undefined && value.value > 0, [value]);
+  const hasValue = useMemo(
+    () => value.value !== undefined && value.value > 0,
+    [value],
+  );
 
   const handleVisibleChange = useCallback(
     (visible: boolean) => {
       setSettingsVisible(visible);
       setTooltipVisible(false);
       if (!visible && innerValue && innerPeriod) {
-        const newValue = maxValue && maxValue < Number(innerValue) ? maxValue : innerValue;
+        const newValue =
+          maxValue && maxValue < Number(innerValue) ? maxValue : innerValue;
         onSetValue({
           value: Number(newValue),
           period: innerPeriod,
         });
       }
     },
-    [innerPeriod, innerValue, maxValue, onSetValue]
+    [innerPeriod, innerValue, maxValue, onSetValue],
   );
 
   const handleClear = useCallback(() => {
@@ -78,14 +104,17 @@ const CompletedWithin = ({
   }, [onSetValue]);
 
   const triggerMode = useMemo(() => {
-    if (hasValue || placeholder) return 'icon-label';
+    if (hasValue || placeholder) {
+      return 'icon-label';
+    }
     return 'single-icon';
   }, [hasValue, placeholder]);
 
   const triggerLabel = useMemo(() => {
     return hasValue
       ? `${texts.completedLabel} ${value.value} ${
-          getPeriods.find(singlePeriod => singlePeriod.value === value.period)?.label
+          getPeriods.find((singlePeriod) => singlePeriod.value === value.period)
+            ?.label
         }`
       : placeholder;
   }, [getPeriods, hasValue, texts, value, placeholder]);
@@ -119,7 +148,11 @@ const CompletedWithin = ({
         <Dropdown
           overlay={
             <Settings
-              value={{ value: innerValue !== undefined ? Number(innerValue) : undefined, period: innerPeriod }}
+              value={{
+                value:
+                  innerValue !== undefined ? Number(innerValue) : undefined,
+                period: innerPeriod,
+              }}
               maxValue={maxValue}
               onValueChange={setInnerValue}
               onPeriodChange={setInnerPeriod}
@@ -139,7 +172,12 @@ const CompletedWithin = ({
       )}
       {hasValue && !readOnly && (
         <Tooltip title={texts.clear}>
-          <S.ClearButton mode="single-icon" type="ghost" onClick={handleClear} data-testid="clear-button">
+          <S.ClearButton
+            mode="single-icon"
+            type="ghost"
+            onClick={handleClear}
+            data-testid="clear-button"
+          >
             <Icon component={<Close3S />} />
           </S.ClearButton>
         </Tooltip>

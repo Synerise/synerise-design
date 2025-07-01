@@ -1,12 +1,17 @@
-import React, { useMemo, useCallback, useState, ChangeEvent } from 'react';
+import React, { type ChangeEvent, useCallback, useMemo, useState } from 'react';
 
 import Icon, { EditNolineS } from '@synerise/ds-icon';
 import { Input } from '@synerise/ds-input';
 
 import * as S from './EditableCell.styles';
-import { EditableCellProps } from './EditableCell.types';
+import { type EditableCellProps } from './EditableCell.types';
 
-const EditableCell = ({ value, onChange, placeholder, ...htmlAttributes }: EditableCellProps) => {
+const EditableCell = ({
+  value,
+  onChange,
+  placeholder,
+  ...htmlAttributes
+}: EditableCellProps) => {
   const [editMode, setEditMode] = useState(false);
   const [editValue, setEditValue] = useState(value || '');
 
@@ -16,13 +21,14 @@ const EditableCell = ({ value, onChange, placeholder, ...htmlAttributes }: Edita
 
   const render = useMemo(() => {
     return editMode ? (
-      // eslint-disable-next-line react/jsx-handler-names
       <Input
         value={editValue}
         autoFocus
         resetMargin
         placeholder={placeholder}
-        onChange={(event: ChangeEvent<HTMLInputElement>): void => setEditValue(event.target.value)}
+        onChange={(event: ChangeEvent<HTMLInputElement>): void =>
+          setEditValue(event.target.value)
+        }
         onBlur={(): void => {
           setEditMode(false);
           onChange(editValue);
@@ -34,7 +40,15 @@ const EditableCell = ({ value, onChange, placeholder, ...htmlAttributes }: Edita
         <Icon onClick={enterEditMode} component={<EditNolineS />} />
       </>
     );
-  }, [editMode, value, enterEditMode, editValue, setEditValue, onChange, placeholder]);
+  }, [
+    editMode,
+    value,
+    enterEditMode,
+    editValue,
+    setEditValue,
+    onChange,
+    placeholder,
+  ]);
 
   return <S.EditableCell {...htmlAttributes}>{render}</S.EditableCell>;
 };

@@ -1,6 +1,10 @@
 import React from 'react';
-import styled, { css, FlattenSimpleInterpolation } from 'styled-components';
-import { ThemeProps } from '@synerise/ds-core';
+import styled, {
+  type FlattenSimpleInterpolation,
+  css,
+} from 'styled-components';
+
+import { type ThemeProps } from '@synerise/ds-core';
 import { IconContainer } from '@synerise/ds-icon';
 import { hexToRgba } from '@synerise/ds-utils';
 
@@ -12,7 +16,7 @@ export const CreatorLabel = styled.span`
   && {
     margin: 0 12px 0 0;
     transition: all 0.3s ease;
-    color: ${props => props.theme.palette['grey-500']};
+    color: ${(props) => props.theme.palette['grey-500']};
   }
 `;
 const errorStyles = ({ theme }: ThemeProps): FlattenSimpleInterpolation => css`
@@ -79,25 +83,32 @@ const uploadStyles = ({ theme }: ThemeProps): FlattenSimpleInterpolation => css`
     }
   }
 `;
-export const Creator = styled(({ status, pressed, withLabel, ...rest }) => <Button {...rest} />)<{
+export const Creator = styled(({ status, pressed, withLabel, ...rest }) => (
+  <Button {...rest} />
+))<{
   withLabel: boolean;
   pressed: boolean;
   status: string;
 }>`
   &&& {
-    width: ${props => {
-      if (!props.withLabel) return '48px';
-      if (props.block) return '100%';
+    width: ${(props) => {
+      if (!props.withLabel) {
+        return '48px';
+      }
+      if (props.block) {
+        return '100%';
+      }
       return 'auto';
     }};
-    opacity: ${props => (props.disabled ? `0.4` : '1')};
+    opacity: ${(props) => (props.disabled ? `0.4` : '1')};
     height: 48px;
-    padding: ${props => (props.withLabel ? `0 12px 0 0` : '0')};
+    padding: ${(props) => (props.withLabel ? `0 12px 0 0` : '0')};
     border-radius: 3px;
     border: 1px dashed ${({ theme }) => theme.palette['grey-300']};
     background: transparent;
     transition: all 0.3s ease;
-    justify-content: ${props => (props.withLabel && !props.block ? `flex-start` : 'center')};
+    justify-content: ${(props) =>
+      props.withLabel && !props.block ? `flex-start` : 'center'};
     align-items: center;
 
     &.ant-btn > span {
@@ -109,12 +120,12 @@ export const Creator = styled(({ status, pressed, withLabel, ...rest }) => <Butt
       margin: auto 12px;
       svg {
         transition: all 0.3s ease;
-        color: ${props => props.theme.palette['grey-500']};
-        fill: ${props => props.theme.palette['grey-500']};
+        color: ${(props) => props.theme.palette['grey-500']};
+        fill: ${(props) => props.theme.palette['grey-500']};
       }
     }
     ${RippleEffect} {
-      background-color: ${props => props.theme.palette['grey-050']};
+      background-color: ${(props) => props.theme.palette['grey-050']};
     }
 
     ${ButtonFocus} {
@@ -123,34 +134,37 @@ export const Creator = styled(({ status, pressed, withLabel, ...rest }) => <Butt
     &:hover:not(:disabled) {
       ${IconContainer} {
         svg {
-          color: ${props => props.theme.palette['grey-600']} !important;
-          fill: ${props => props.theme.palette['grey-600']} !important;
+          color: ${(props) => props.theme.palette['grey-600']} !important;
+          fill: ${(props) => props.theme.palette['grey-600']} !important;
         }
       }
       ${CreatorLabel} {
-        color: ${props => props.theme.palette['grey-600']};
+        color: ${(props) => props.theme.palette['grey-600']};
       }
     }
     &:hover:not(:disabled):not(:focus) {
       border: 1px dashed ${({ theme }) => theme.palette['grey-400']};
-      background-color: ${({ theme }) => hexToRgba(theme.palette['grey-200'], 0.25)};
+      background-color: ${({ theme }) =>
+        hexToRgba(theme.palette['grey-200'], 0.25)};
     }
-    ${props => props.pressed && `&&{ background-color: ${hexToRgba(props.theme.palette['grey-200'], 0.4)}; }`}
+    ${(props) =>
+      props.pressed &&
+      `&&{ background-color: ${hexToRgba(props.theme.palette['grey-200'], 0.4)}; }`}
 
     &:focus:active {
-      border: 1px dashed ${props => props.theme.palette['grey-400']} !important ;
+      border: 1px dashed ${(props) => props.theme.palette['grey-400']} !important ;
       box-shadow: none;
-      background-color: ${props => props.theme.palette['grey-050']};
+      background-color: ${(props) => props.theme.palette['grey-050']};
     }
     &:focus {
-      border: 1px dashed ${props => props.theme.palette['blue-600']};
+      border: 1px dashed ${(props) => props.theme.palette['blue-600']};
       box-shadow: none;
     }
     &:disabled {
-      border-color: ${props => props.theme.palette['grey-300']};
-      background-color: ${props => props.theme.palette['grey-050']};
+      border-color: ${(props) => props.theme.palette['grey-300']};
+      background-color: ${(props) => props.theme.palette['grey-050']};
     }
-    ${props => props.status === CreatorStatus.Error && errorStyles(props)}
-    ${props => props.status === CreatorStatus.Upload && uploadStyles(props)}
+    ${(props) => props.status === CreatorStatus.Error && errorStyles(props)}
+    ${(props) => props.status === CreatorStatus.Upload && uploadStyles(props)}
   }
 `;

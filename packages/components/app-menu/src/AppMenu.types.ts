@@ -1,4 +1,4 @@
-import { ReactNode, ReactNodeArray } from 'react';
+import { type ReactNode, type ReactNodeArray } from 'react';
 
 export type AppMenuProps = {
   className?: string;

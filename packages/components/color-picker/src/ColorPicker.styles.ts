@@ -1,9 +1,10 @@
 import styled, { createGlobalStyle } from 'styled-components';
 
-import { TagsStyles, Tag } from '@synerise/ds-tags';
 import Button from '@synerise/ds-button';
 import Icon from '@synerise/ds-icon';
 import { Input } from '@synerise/ds-input';
+import { Tag, TagsStyles } from '@synerise/ds-tags';
+
 import { ColorPickerSize } from './ColorPicker.types';
 
 export const TagDot = styled.div<{ pressed?: boolean }>`
@@ -54,13 +55,15 @@ export const Container = styled.div<{ size?: 'S' | 'M' | 'L' }>`
   }
   .react-colorful {
     width: 100%;
-    height: ${(props): number => ColorPickerSize[props.size as string] || SIZE_DEFAULT}px;
+    height: ${(props): number =>
+      ColorPickerSize[props.size as string] || SIZE_DEFAULT}px;
   }
   .react-colorful__hue-pointer {
     border: 1px solid ${(props): string => props.theme.palette['grey-300']};
     box-shadow: none !important;
     .react-colorful__pointer-fill {
-      background-color: ${(props): string => props.theme.palette.white} !important;
+      background-color: ${(props): string =>
+        props.theme.palette.white} !important;
     }
   }
   .ant-divider-horizontal {
@@ -119,7 +122,10 @@ export const ColorPickerSelect = styled(Input)`
   }
 `;
 
-export const PrefixTag = styled.div<{ height?: boolean; size?: 'S' | 'M' | 'L' }>`
+export const PrefixTag = styled.div<{
+  height?: boolean;
+  size?: 'S' | 'M' | 'L';
+}>`
   &&& .ds-tag {
     margin: 0;
     width: 24px;
@@ -133,7 +139,8 @@ export const PrefixTag = styled.div<{ height?: boolean; size?: 'S' | 'M' | 'L' }
   }
   position: absolute;
   right: 16px;
-  top: ${(props): number => (ColorPickerSize[props.size as string] || SIZE_DEFAULT) - 25}px;
+  top: ${(props): number =>
+    (ColorPickerSize[props.size as string] || SIZE_DEFAULT) - 25}px;
   z-index: 2;
   cursor: auto;
 `;

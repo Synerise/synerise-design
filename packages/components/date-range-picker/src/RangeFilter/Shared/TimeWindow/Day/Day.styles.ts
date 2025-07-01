@@ -38,6 +38,8 @@ export const IconWrapper = styled.div<{ active: boolean; readonly?: boolean }>`
   pointer-events: ${(props): string => (props.readonly ? 'none' : 'all')};
   &&& .ds-icon svg {
     fill: ${(props): string =>
-      props.active && !props.readonly ? props.theme.palette['red-600'] : props.theme.palette['green-600']} !important;
+      props.active && !props.readonly
+        ? props.theme.palette['red-600']
+        : props.theme.palette['green-600']} !important;
   }
 `;

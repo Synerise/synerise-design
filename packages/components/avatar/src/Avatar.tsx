@@ -1,12 +1,12 @@
-import React, { ReactElement, cloneElement } from 'react';
-import Tooltip from '@synerise/ds-tooltip';
+import React, { type ReactElement, cloneElement } from 'react';
+
 import '@synerise/ds-core/dist/js/style';
+import Tooltip from '@synerise/ds-tooltip';
 
-import { isIconComponent, getTooltipProps } from './utils';
 import AntdAvatar from './Avatar.styles';
-import { AvatarProps } from './Avatar.types';
-
+import { type AvatarProps } from './Avatar.types';
 import './style/index.less';
+import { getTooltipProps, isIconComponent } from './utils';
 
 export const DEFAULT_SIZE = 'medium';
 export const ICON_SIZES = {
@@ -48,10 +48,16 @@ const Avatar = ({
   const { type, ...tooltipProps } = getTooltipProps(tooltip);
 
   const hasTooltip =
-    Object.keys(tooltipProps).length && !!Object.values(tooltipProps).reduce((prev, next) => next || prev);
+    Object.keys(tooltipProps).length &&
+    !!Object.values(tooltipProps).reduce((prev, next) => next || prev);
 
   return (
-    <Tooltip type={type} mouseLeaveDelay={0} mouseEnterDelay={0} {...tooltipProps}>
+    <Tooltip
+      type={type}
+      mouseLeaveDelay={0}
+      mouseEnterDelay={0}
+      {...tooltipProps}
+    >
       <AntdAvatar
         className="ds-avatar"
         hasStatus={hasStatus}

@@ -1,40 +1,62 @@
-import React from 'react';
-import { flow } from 'lodash';
 import Table from 'antd/lib/table';
-import { DSTableProps, DSColumnType } from '../Table.types';
-import { columnsToSortState, useSortState, SortStateAPI } from '../ColumnSortMenu/useSortState';
+import { flow } from 'lodash';
+import React from 'react';
+
 import { columnWithSortButtons } from '../ColumnSortMenu/columnWithSortButtons';
-import GroupTableBody from './GroupTableBody/GroupTableBody';
+import {
+  getColumnsWithActiveSorting,
+  sortDataSourceRows,
+} from '../ColumnSortMenu/groupedColumnsSort';
+import {
+  type SortStateAPI,
+  columnsToSortState,
+  useSortState,
+} from '../ColumnSortMenu/useSortState';
+import { type DSColumnType, type DSTableProps } from '../Table.types';
 import '../style/index.less';
-import { getColumnsWithActiveSorting, sortDataSourceRows } from '../ColumnSortMenu/groupedColumnsSort';
-import { GroupType } from './GroupTable.types';
+import { type GroupType } from './GroupTable.types';
+import GroupTableBody from './GroupTableBody/GroupTableBody';
 
 const addActiveColumnClass =
-  <T extends unknown>(activeColumn?: string) =>
+  <T,>(activeColumn?: string) =>
   (column: DSColumnType<T>): DSColumnType<T> =>
     column.key === activeColumn
-      ? { ...column, onHeaderCell: (): React.HTMLAttributes<HTMLElement> => ({ className: 'ds-table-active-column' }) }
+      ? {
+          ...column,
+          onHeaderCell: (): React.HTMLAttributes<HTMLElement> => ({
+            className: 'ds-table-active-column',
+          }),
+        }
       : column;
 
-const clearDefaultColumnSortOrder = <T extends unknown>(column: DSColumnType<T>): DSColumnType<T> => ({
+const clearDefaultColumnSortOrder = <T,>(
+  column: DSColumnType<T>,
+): DSColumnType<T> => ({
   ...column,
   sortOrder: null,
 });
 
 const addSortClassByState =
-  <T extends unknown>(sortStateApi: SortStateAPI) =>
+  <T,>(sortStateApi: SortStateAPI) =>
   (column: DSColumnType<T>): DSColumnType<T> =>
     sortStateApi.getColumnSortOrder(String(column.key))
-      ? { ...column, onHeaderCell: (): React.HTMLAttributes<HTMLElement> => ({ className: 'ant-table-column-sort' }) }
+      ? {
+          ...column,
+          onHeaderCell: (): React.HTMLAttributes<HTMLElement> => ({
+            className: 'ant-table-column-sort',
+          }),
+        }
       : column;
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
 function GroupTable<T extends GroupType<T>>(
   props: DSTableProps<T> & {
-    addItem?: (column: string, value: React.ReactText | boolean | object) => void;
+    addItem?: (
+      column: string,
+      value: React.ReactText | boolean | object,
+    ) => void;
     hideGroupExpander?: boolean;
     initialGroupsCollapsed?: boolean;
-  }
+  },
 ): React.ReactElement {
   const {
     selection,
@@ -49,7 +71,9 @@ function GroupTable<T extends GroupType<T>>(
     onSort,
   } = props;
   const [expandedGroups, setExpandedGroups] = React.useState<React.ReactText[]>(
-    initialGroupsCollapsed || !dataSource ? [] : dataSource.map(group => group.key)
+    initialGroupsCollapsed || !dataSource
+      ? []
+      : dataSource.map((group) => group.key),
   );
   const sortStateApi = useSortState(columnsToSortState(columns), onSort);
 
@@ -57,18 +81,22 @@ function GroupTable<T extends GroupType<T>>(
 
   React.useEffect(() => {
     setData(dataSource || []);
-    setExpandedGroups(initialGroupsCollapsed || !dataSource ? [] : dataSource.map(group => group.key));
+    setExpandedGroups(
+      initialGroupsCollapsed || !dataSource
+        ? []
+        : dataSource.map((group) => group.key),
+    );
   }, [dataSource, initialGroupsCollapsed]);
 
   const toggleExpand = React.useCallback(
     (groupKey: React.ReactText) => {
       if (expandedGroups.indexOf(groupKey) >= 0) {
-        setExpandedGroups(expandedGroups.filter(key => key !== groupKey));
+        setExpandedGroups(expandedGroups.filter((key) => key !== groupKey));
       } else {
         setExpandedGroups([...expandedGroups, groupKey]);
       }
     },
-    [expandedGroups, setExpandedGroups]
+    [expandedGroups, setExpandedGroups],
   );
 
   const activeColumn = React.useMemo(() => {
@@ -77,7 +105,10 @@ function GroupTable<T extends GroupType<T>>(
 
   const allItems = React.useMemo<T[]>(() => {
     const result: T[] = [];
-    dataSource && dataSource.forEach(group => group.rows.forEach(row => result.push(row)));
+    dataSource &&
+      dataSource.forEach((group) =>
+        group.rows.forEach((row) => result.push(row)),
+      );
     return result;
   }, [dataSource]);
 
@@ -90,28 +121,36 @@ function GroupTable<T extends GroupType<T>>(
       }
       return undefined;
     },
-    [data]
+    [data],
   );
 
   const groupTableColumnDecorator = flow(
     addActiveColumnClass<T>(activeColumn),
     addSortClassByState<T>(sortStateApi),
-    clearDefaultColumnSortOrder
+    clearDefaultColumnSortOrder,
   );
-  const columnsWithCustomSorting = columns?.map(columnWithSortButtons(sortStateApi));
-  const decoratedColumns = columnsWithCustomSorting?.map(groupTableColumnDecorator);
-  const columnsWithActiveSorting = getColumnsWithActiveSorting(sortStateApi, columns);
+  const columnsWithCustomSorting = columns?.map(
+    columnWithSortButtons(sortStateApi),
+  );
+  const decoratedColumns = columnsWithCustomSorting?.map(
+    groupTableColumnDecorator,
+  );
+  const columnsWithActiveSorting = getColumnsWithActiveSorting(
+    sortStateApi,
+    columns,
+  );
 
   const sortedRowsData = activeColumn
     ? sortDataSourceRows(sortStateApi, columnsWithActiveSorting, dataSource)
     : dataSource;
 
   return (
-    <div className={`ds-table ds-table-cell-size-${cellSize} ${roundedHeader ? 'ds-table-rounded' : ''}`}>
+    <div
+      className={`ds-table ds-table-cell-size-${cellSize} ${roundedHeader ? 'ds-table-rounded' : ''}`}
+    >
       <Table<T>
         {...props}
         dataSource={sortedRowsData}
-        // @ts-ignore: FIXME: antd table columns type is not compatible with DS
         columns={decoratedColumns}
         components={{
           body: {
@@ -126,7 +165,7 @@ function GroupTable<T extends GroupType<T>>(
                   allItems={allItems}
                   expanded={expandedGroups.indexOf(record['data-row-key']) >= 0}
                   expandGroup={toggleExpand}
-                  // @ts-ignore: FIXME: Type 'DSColumnType<T>[]' is not assignable to type 'GroupColumnsType<T>[]'.
+                  // @ts-expect-error: FIXME: Type 'DSColumnType<T>[]' is not assignable to type 'GroupColumnsType<T>[]'.
                   columns={columnsWithCustomSorting}
                   addItem={addItem}
                   activeGroup={activeGroup}
@@ -136,7 +175,7 @@ function GroupTable<T extends GroupType<T>>(
             },
           },
         }}
-        // @ts-ignore
+        // @ts-expect-error  Type 'undefined' is not assignable to type 'INTERNAL_SELECTION_ITEM'.
         rowSelection={
           selection && {
             ...selection,

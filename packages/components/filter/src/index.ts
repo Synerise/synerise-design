@@ -1,3 +1,8 @@
 export { default } from './Filter';
 
-export type { Expression, StepType, LogicType, FilterProps } from './Filter.types';
+export type {
+  Expression,
+  StepType,
+  LogicType,
+  FilterProps,
+} from './Filter.types';

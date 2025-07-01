@@ -1,14 +1,21 @@
-import React, { useState, useMemo, useCallback, MouseEvent } from 'react';
-import Tooltip from '@synerise/ds-tooltip';
-import Icon, { CopyClipboardM } from '@synerise/ds-icon';
-
 import copy from 'copy-to-clipboard';
+import React, { type MouseEvent, useCallback, useMemo, useState } from 'react';
 import { useIntl } from 'react-intl';
-import * as S from './DescriptionRow.styles';
-import { CopyProps } from './Copy.types';
-import { RowTexts } from './DescriptionRow.types';
 
-const Copy = ({ copyValue, texts, className, onMouseEnter, onMouseLeave }: CopyProps) => {
+import Icon, { CopyClipboardM } from '@synerise/ds-icon';
+import Tooltip from '@synerise/ds-tooltip';
+
+import { type CopyProps } from './Copy.types';
+import * as S from './DescriptionRow.styles';
+import { type RowTexts } from './DescriptionRow.types';
+
+const Copy = ({
+  copyValue,
+  texts,
+  className,
+  onMouseEnter,
+  onMouseLeave,
+}: CopyProps) => {
   const { formatMessage } = useIntl();
   const textsObj: RowTexts = useMemo(
     () =>
@@ -16,7 +23,7 @@ const Copy = ({ copyValue, texts, className, onMouseEnter, onMouseLeave }: CopyP
         copiedTooltip: formatMessage({ id: 'DS.DESCRIPTION.COPIED' }),
         copyTooltip: formatMessage({ id: 'DS.DESCRIPTION.COPY-VALUE' }),
       },
-    [texts, formatMessage]
+    [texts, formatMessage],
   );
 
   const [tooltipVisible, setTooltipVisible] = useState<boolean>(false);
@@ -36,7 +43,7 @@ const Copy = ({ copyValue, texts, className, onMouseEnter, onMouseLeave }: CopyP
       setTooltipVisible(true);
       onMouseEnter && onMouseEnter(event);
     },
-    [setTooltipVisible, textsObj, onMouseEnter]
+    [setTooltipVisible, textsObj, onMouseEnter],
   );
 
   const handleMouseLeave = useCallback(
@@ -45,7 +52,7 @@ const Copy = ({ copyValue, texts, className, onMouseEnter, onMouseLeave }: CopyP
       setTooltipVisible(false);
       onMouseLeave && onMouseLeave(event);
     },
-    [setTooltipVisible, onMouseLeave]
+    [setTooltipVisible, onMouseLeave],
   );
 
   return (

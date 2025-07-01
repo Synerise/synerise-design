@@ -1,12 +1,14 @@
 import React, { useState } from 'react';
-import Dropdown from '@synerise/ds-dropdown';
+
 import Button from '@synerise/ds-button';
+import Dropdown from '@synerise/ds-dropdown';
 import Icon, { AngleDownS } from '@synerise/ds-icon';
-import * as S from '../Header/Header.style';
-import DropdownOverlay from '../DropdownOverlay/DropdownOverlay';
+
 import Content from '../Content/Content';
+import DropdownOverlay from '../DropdownOverlay/DropdownOverlay';
+import * as S from '../Header/Header.style';
 import ObjectSummary from '../ObjectSummary/ObjectSummary';
-import { OverviewObjectProps } from './Overview.types';
+import { type OverviewObjectProps } from './Overview.types';
 
 const Overview = ({
   inputObject,
@@ -56,7 +58,11 @@ const Overview = ({
                 />
               }
             >
-              <Button onClick={(): void => setDropdownVisible(!dropdownVisible)} mode="label-icon" type="ghost">
+              <Button
+                onClick={(): void => setDropdownVisible(!dropdownVisible)}
+                mode="label-icon"
+                type="ghost"
+              >
                 {parentFolder?.name}
                 <Icon component={<AngleDownS />} />
               </Button>

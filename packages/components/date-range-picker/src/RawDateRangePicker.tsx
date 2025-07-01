@@ -1,30 +1,55 @@
-import React, { ReactNode, useState, useMemo, useCallback, useEffect } from 'react';
-import { omitBy, isUndefined } from 'lodash';
-import { useIntl } from 'react-intl';
 import fnsIsValid from 'date-fns/isValid';
 import fnsStartOfSecond from 'date-fns/startOfSecond';
+import { isUndefined, omitBy } from 'lodash';
+import React, {
+  type ReactNode,
+  useCallback,
+  useEffect,
+  useMemo,
+  useState,
+} from 'react';
+import { useIntl } from 'react-intl';
+
 import { legacyParse } from '@date-fns/upgrade/v2';
-import { Container, Separator, Addon, PopupWrapper } from './DateRangePicker.styles';
-import RangePicker from './RangePicker/RangePicker';
-import { RELATIVE, ABSOLUTE, MODES, RELATIVE_PRESETS, ABSOLUTE_PRESETS } from './constants';
-import * as CONST from './constants';
-import relativeToAbsolute from './dateUtils/relativeToAbsolute';
-import type { DateRangePickerProps, AddonType } from './DateRangePicker.types';
-import type { DateFilter, DateRange, RelativeDateRange } from './date.types';
+
 import AddonCollapse from './AddonCollapse/AddonCollapse';
-import RelativeRangePicker from './RelativeRangePicker/RelativeRangePicker';
+import {
+  Addon,
+  Container,
+  PopupWrapper,
+  Separator,
+} from './DateRangePicker.styles';
+import type { AddonType, DateRangePickerProps } from './DateRangePicker.types';
 import Footer from './Footer/Footer';
-import { getDefaultTexts, normalizeRange, toIsoString } from './utils';
 import RangeFilter from './RangeFilter/RangeFilter';
+import {
+  type FilterDefinition,
+  type FilterValue,
+} from './RangeFilter/RangeFilter.types';
 import RangeFilterStatus from './RangeFilter/Shared/RangeFilterStatus/RangeFilterStatus';
-import { FilterDefinition, FilterValue } from './RangeFilter/RangeFilter.types';
+import RangePicker from './RangePicker/RangePicker';
 import { isLifetime } from './RelativeRangePicker/Elements/RangeDropdown/RangeDropdown';
+import RelativeRangePicker from './RelativeRangePicker/RelativeRangePicker';
+import {
+  ABSOLUTE,
+  ABSOLUTE_PRESETS,
+  MODES,
+  RELATIVE,
+  RELATIVE_PRESETS,
+} from './constants';
+import * as CONST from './constants';
+import type { DateFilter, DateRange, RelativeDateRange } from './date.types';
+import relativeToAbsolute from './dateUtils/relativeToAbsolute';
+import { getDefaultTexts, normalizeRange, toIsoString } from './utils';
 
 const isRelative = (dateRange: DateRange): dateRange is RelativeDateRange => {
-  const isLegacyCustom = Object.keys(dateRange).includes('key') && dateRange.key === undefined;
+  const isLegacyCustom =
+    Object.keys(dateRange).includes('key') && dateRange.key === undefined;
   return (
     (dateRange.key &&
-      (CONST.RELATIVE_PRESETS.map(preset => preset.key).includes(dateRange.key) ||
+      (CONST.RELATIVE_PRESETS.map((preset) => preset.key).includes(
+        dateRange.key,
+      ) ||
         dateRange.key === CONST.CUSTOM_RANGE_KEY)) ||
     isLegacyCustom
   );
@@ -104,7 +129,9 @@ export const RawDateRangePicker = ({
 }: RawDateRangePickerProps) => {
   const [localValue, setLocalValue] = useState(normalizeRange(value));
   const [mode, setMode] = useState(MODES.DATE);
-  const [visibleAddonKey, setVisibleAddonKey] = useState<string | undefined>('relative-picker');
+  const [visibleAddonKey, setVisibleAddonKey] = useState<string | undefined>(
+    'relative-picker',
+  );
 
   const intl = useIntl();
   const { timeZone } = intl;
@@ -135,7 +162,10 @@ export const RawDateRangePicker = ({
           newValue.to = fnsStartOfSecond(legacyParse(newValue.to));
         }
       }
-      if ((newValue.type === 'RELATIVE' || newValue.key === CONST.ALL_TIME) && mode === MODES.TIME) {
+      if (
+        (newValue.type === 'RELATIVE' || newValue.key === CONST.ALL_TIME) &&
+        mode === MODES.TIME
+      ) {
         setMode(MODES.DATE);
       }
       if (range?.key) {
@@ -147,19 +177,22 @@ export const RawDateRangePicker = ({
       setLocalValue({ ...legacyValue, translationKey: range?.translationKey });
       onValueChange && onValueChange(legacyValue);
     },
-    [isTruncateMs, mode, localValue.filter, onValueChange, valueTransformer]
+    [isTruncateMs, mode, localValue.filter, onValueChange, valueTransformer],
   );
 
-  const handleAddonCollapse = useCallback((addonKey: string, expanded: boolean) => {
-    setVisibleAddonKey(expanded ? addonKey : undefined);
-  }, []);
+  const handleAddonCollapse = useCallback(
+    (addonKey: string, expanded: boolean) => {
+      setVisibleAddonKey(expanded ? addonKey : undefined);
+    },
+    [],
+  );
 
   const handleFilterApply = useCallback(
     (filter?: FilterValue<FilterDefinition>) => {
       setMode(MODES.DATE);
       setLocalValue({ ...localValue, filter: filter as DateFilter });
     },
-    [localValue]
+    [localValue],
   );
 
   const handleRemoveFilterClick = useCallback(() => {
@@ -212,7 +245,11 @@ export const RawDateRangePicker = ({
   }, [mode]);
 
   const fullValue = useMemo(() => {
-    if (localValue && localValue.type === 'RELATIVE' && (!localValue.from || !localValue.to)) {
+    if (
+      localValue &&
+      localValue.type === 'RELATIVE' &&
+      (!localValue.from || !localValue.to)
+    ) {
       const { to, from } = normalizeRange(localValue);
       return {
         ...localValue,
@@ -247,8 +284,12 @@ export const RawDateRangePicker = ({
             }
             expanded={addonKey === visibleAddonKey}
             title={allTexts.relativeDateRange}
-            onCollapseChange={expanded => handleAddonCollapse(addonKey, expanded)}
-            collapsedSummary={rangeTranslationKey && allTexts[rangeTranslationKey]}
+            onCollapseChange={(expanded) =>
+              handleAddonCollapse(addonKey, expanded)
+            }
+            collapsedSummary={
+              rangeTranslationKey && allTexts[rangeTranslationKey]
+            }
           />
         ),
         key: addonKey,
@@ -256,8 +297,11 @@ export const RawDateRangePicker = ({
     }
     if (showFilter) {
       const addonKey = 'filter';
-      const filterEnabled = (fullValue.from && fullValue.to) || isLifetime(fullValue);
-      const label = localValue?.filter ? allTexts.filterEnabled : allTexts.selectDateFilter;
+      const filterEnabled =
+        (fullValue.from && fullValue.to) || isLifetime(fullValue);
+      const label = localValue?.filter
+        ? allTexts.filterEnabled
+        : allTexts.selectDateFilter;
       result.push({
         content: (
           <RangeFilterStatus
@@ -313,14 +357,26 @@ export const RawDateRangePicker = ({
   } else {
     const { from, to, key } = localValue;
     const validator = validate ? validate(localValue) : { valid: true };
-    const isValidAbsolute = !Object.keys(localValue).includes('key') && Boolean(from && to);
+    const isValidAbsolute =
+      !Object.keys(localValue).includes('key') && Boolean(from && to);
 
-    const isValidRelative = isRelative(localValue) && Boolean(localValue.offset && localValue.duration);
-    const isValidSince = localValue.type === 'SINCE' && Boolean(localValue.offset && localValue.duration);
+    const isValidRelative =
+      isRelative(localValue) &&
+      Boolean(localValue.offset && localValue.duration);
+    const isValidSince =
+      localValue.type === 'SINCE' &&
+      Boolean(localValue.offset && localValue.duration);
     // TODO apply ranges and find mapped lifetime here, this applies only for defaultValueTransformer
-    const isValid = (isValidAbsolute || isValidRelative || isValidSince || key === CONST.ALL_TIME) && validator.valid;
+    const isValid =
+      (isValidAbsolute ||
+        isValidRelative ||
+        isValidSince ||
+        key === CONST.ALL_TIME) &&
+      validator.valid;
     const canSwitchToTimePicker =
-      isValid && !isLifetime(localValue) && (!disableAbsoluteTimepickerInRelative || localValue.type === 'ABSOLUTE');
+      isValid &&
+      !isLifetime(localValue) &&
+      (!disableAbsoluteTimepickerInRelative || localValue.type === 'ABSOLUTE');
 
     content = (
       <Container className={containerClass}>
@@ -340,10 +396,14 @@ export const RawDateRangePicker = ({
         {addons.length > 0 && <Separator />}
         {addons.map(
           (addon, index: number): ReactNode => (
-            <Addon last={addons.length === index + 1} className="addon-wrapper" key={addon.key}>
+            <Addon
+              last={addons.length === index + 1}
+              className="addon-wrapper"
+              key={addon.key}
+            >
               {addon.content}
             </Addon>
-          )
+          ),
         )}
         <Footer
           canApply={isValid || isLifetime(localValue)}

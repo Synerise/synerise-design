@@ -1,13 +1,24 @@
-import React, { useState, useRef, MouseEvent } from 'react';
+import React, { type MouseEvent, useRef, useState } from 'react';
+
 import Dropdown from '@synerise/ds-dropdown';
+import Icon, {
+  DuplicateM,
+  EditM,
+  OptionVerticalM,
+  TrashM,
+} from '@synerise/ds-icon';
+import Menu, { type MenuItemProps } from '@synerise/ds-menu';
 import { useOnClickOutside } from '@synerise/ds-utils';
-import Icon, { OptionVerticalM, EditM, DuplicateM, TrashM } from '@synerise/ds-icon';
-import Menu, { MenuItemProps } from '@synerise/ds-menu';
 
 import * as S from '../CardTab.styles';
-import { CardTabDropdownProps } from './CardTabDropdown.types';
+import { type CardTabDropdownProps } from './CardTabDropdown.types';
 
-const CardTabDropdown = ({ editNameHandler, duplicateHandler, removeHandler, texts }: CardTabDropdownProps) => {
+const CardTabDropdown = ({
+  editNameHandler,
+  duplicateHandler,
+  removeHandler,
+  texts,
+}: CardTabDropdownProps) => {
   const [open, setOpen] = useState<boolean>(false);
   const ref = useRef<HTMLDivElement>(null);
   const menuItems: MenuItemProps[] = [];
@@ -18,7 +29,7 @@ const CardTabDropdown = ({ editNameHandler, duplicateHandler, removeHandler, tex
 
   if (editNameHandler) {
     menuItems.push({
-      onClick: event => {
+      onClick: (event) => {
         editNameHandler(event.domEvent);
         setOpen(false);
       },
@@ -29,7 +40,7 @@ const CardTabDropdown = ({ editNameHandler, duplicateHandler, removeHandler, tex
   }
   if (duplicateHandler) {
     menuItems.push({
-      onClick: event => {
+      onClick: (event) => {
         duplicateHandler(event.domEvent);
         setOpen(false);
       },
@@ -41,7 +52,7 @@ const CardTabDropdown = ({ editNameHandler, duplicateHandler, removeHandler, tex
   if (removeHandler) {
     menuItems.push({
       prefixel: <Icon component={<TrashM />} />,
-      onClick: event => {
+      onClick: (event) => {
         removeHandler(event.domEvent);
         setOpen(false);
       },
@@ -52,7 +63,10 @@ const CardTabDropdown = ({ editNameHandler, duplicateHandler, removeHandler, tex
   }
 
   return (
-    <S.CardTabSuffix data-testid="card-tab-suffix" className="ds-card-tabs__suffix-nodrag">
+    <S.CardTabSuffix
+      data-testid="card-tab-suffix"
+      className="ds-card-tabs__suffix-nodrag"
+    >
       <Dropdown
         visible={open}
         placement="bottomLeft"

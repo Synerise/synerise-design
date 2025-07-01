@@ -1,20 +1,37 @@
-import React, { useEffect, useCallback, useRef, useState, useMemo } from 'react';
+import React, {
+  useCallback,
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+} from 'react';
 import { v4 as uuid } from 'uuid';
 
+import { theme } from '@synerise/ds-core';
 import Dropdown from '@synerise/ds-dropdown';
 import Icon, { SearchM } from '@synerise/ds-icon';
-import Tabs from '@synerise/ds-tabs';
-import { focusWithArrowKeys, useOnClickOutside } from '@synerise/ds-utils';
 import Result from '@synerise/ds-result';
 import Scrollbar from '@synerise/ds-scrollbar';
-import { theme } from '@synerise/ds-core';
+import Tabs from '@synerise/ds-tabs';
+import { focusWithArrowKeys, useOnClickOutside } from '@synerise/ds-utils';
 
-import OperatorsDropdownItem from './OperatorsDropdownItem';
-import OperatorsDropdownGroupName from './OperatorsDropdownGroupName';
+import {
+  type OperatorsDropdownProps,
+  type OperatorsGroup,
+  type OperatorsItem,
+} from '../Operator.types';
 import * as S from '../Operators.style';
+import {
+  DEFAULT_TAB_INDEX,
+  DROPDOWN_HEIGHT,
+  NO_GROUP_NAME,
+  PADDING,
+  SEARCH_HEIGHT,
+  TABS_HEIGHT,
+} from '../constants';
 import { groupByGroupName } from '../utils';
-import { NO_GROUP_NAME, DROPDOWN_HEIGHT, TABS_HEIGHT, PADDING, DEFAULT_TAB_INDEX, SEARCH_HEIGHT } from '../constants';
-import { OperatorsDropdownProps, OperatorsGroup, OperatorsItem } from '../Operator.types';
+import OperatorsDropdownGroupName from './OperatorsDropdownGroupName';
+import OperatorsDropdownItem from './OperatorsDropdownItem';
 
 const OperatorsDropdown = ({
   texts,
@@ -28,12 +45,15 @@ const OperatorsDropdown = ({
   const overlayRef = useRef<HTMLDivElement>(null);
   const [searchQuery, setSearchQuery] = useState<string>('');
   const [activeTab, setActiveTab] = useState<number>(DEFAULT_TAB_INDEX);
-  const [activeGroup, setActiveGroup] = useState<OperatorsGroup | undefined>(undefined);
+  const [activeGroup, setActiveGroup] = useState<OperatorsGroup | undefined>(
+    undefined,
+  );
   const [searchInputCanBeFocused, setSearchInputFocus] = useState(true);
 
   useEffect(() => {
     const defaultIndex = groups?.findIndex(
-      (group: OperatorsGroup) => group.defaultGroup || (value && group.id === value.groupId)
+      (group: OperatorsGroup) =>
+        group.defaultGroup || (value && group.id === value.groupId),
     );
     setActiveTab(defaultIndex === -1 ? DEFAULT_TAB_INDEX : defaultIndex);
   }, [groups, value]);
@@ -52,7 +72,12 @@ const OperatorsDropdown = ({
       const renderedItems: JSX.Element[] = [];
       Object.keys(groupedItems).forEach((key: string) => {
         if (key !== NO_GROUP_NAME) {
-          renderedItems.push(<OperatorsDropdownGroupName data-testid="operator-group-title" name={key} />);
+          renderedItems.push(
+            <OperatorsDropdownGroupName
+              data-testid="operator-group-title"
+              name={key}
+            />,
+          );
         }
         groupedItems[key].forEach((item: OperatorsItem) =>
           renderedItems.push(
@@ -64,14 +89,14 @@ const OperatorsDropdown = ({
               hideDropdown={(): void => setDropdownVisible(false)}
               select={setSelected}
               selected={Boolean(value) && item.id === value?.id}
-            />
-          )
+            />,
+          ),
         );
       });
 
       return renderedItems;
     },
-    [searchQuery, setDropdownVisible, setSelected, value, classNames]
+    [searchQuery, setDropdownVisible, setSelected, value, classNames],
   );
 
   const currentTabItems = useMemo(() => {
@@ -83,7 +108,9 @@ const OperatorsDropdown = ({
   const filteredItems = useMemo(
     () =>
       items
-        .filter((item: OperatorsItem) => item.name.toLowerCase().includes(searchQuery.toLowerCase()))
+        .filter((item: OperatorsItem) =>
+          item.name.toLowerCase().includes(searchQuery.toLowerCase()),
+        )
         .map((item: OperatorsItem) => {
           return (
             <OperatorsDropdownItem
@@ -98,7 +125,7 @@ const OperatorsDropdown = ({
             />
           );
         }),
-    [items, searchQuery, setDropdownVisible, setSelected, value, classNames]
+    [items, searchQuery, setDropdownVisible, setSelected, value, classNames],
   );
 
   const currentItems = useMemo(() => {
@@ -121,10 +148,15 @@ const OperatorsDropdown = ({
     }
 
     if (activeGroup?.id) {
-      return renderGroupedItems(items?.filter((item: OperatorsItem) => item.groupId === activeGroup.id));
+      return renderGroupedItems(
+        items?.filter((item: OperatorsItem) => item.groupId === activeGroup.id),
+      );
     }
     return renderGroupedItems(
-      items?.filter((item: OperatorsItem) => item.groupId === (groups[activeTab] as OperatorsGroup)?.id)
+      items?.filter(
+        (item: OperatorsItem) =>
+          item.groupId === (groups[activeTab] as OperatorsGroup)?.id,
+      ),
     );
   }, [
     currentTabItems,
@@ -142,7 +174,7 @@ const OperatorsDropdown = ({
     (val: string) => {
       setSearchQuery(val);
     },
-    [setSearchQuery]
+    [setSearchQuery],
   );
 
   const getTabs = useMemo(() => {
@@ -157,7 +189,9 @@ const OperatorsDropdown = ({
   const hasTabs = getTabs.length > 1;
 
   const dropdownContentHeight = useMemo(() => {
-    return outerHeight - (!searchQuery && hasTabs ? TABS_HEIGHT : 0) - SEARCH_HEIGHT;
+    return (
+      outerHeight - (!searchQuery && hasTabs ? TABS_HEIGHT : 0) - SEARCH_HEIGHT
+    );
   }, [hasTabs, searchQuery, outerHeight]);
 
   return (
@@ -167,7 +201,7 @@ const OperatorsDropdown = ({
       ref={overlayRef}
       onKeyDown={(e): void => {
         setSearchInputFocus(false);
-        // eslint-disable-next-line @typescript-eslint/no-empty-function
+
         searchQuery &&
           focusWithArrowKeys(e, classNames.split(' ')[1], () => {
             setSearchInputFocus(true);
@@ -181,7 +215,9 @@ const OperatorsDropdown = ({
         value={searchQuery}
         autofocus={!searchQuery || searchInputCanBeFocused}
         autofocusDelay={50}
-        iconLeft={<Icon component={<SearchM />} color={theme.palette['grey-600']} />}
+        iconLeft={
+          <Icon component={<SearchM />} color={theme.palette['grey-600']} />
+        }
       />
       {searchQuery === '' && hasTabs && (
         <S.TabsWrapper>
@@ -197,11 +233,19 @@ const OperatorsDropdown = ({
         </S.TabsWrapper>
       )}
       <S.ItemsList contentHeight={dropdownContentHeight}>
-        <Scrollbar absolute maxHeight={dropdownContentHeight} style={{ padding: PADDING }}>
+        <Scrollbar
+          absolute
+          maxHeight={dropdownContentHeight}
+          style={{ padding: PADDING }}
+        >
           {currentItems?.length ? (
             currentItems
           ) : (
-            <Result noSearchResults type="no-results" description={texts.noResults} />
+            <Result
+              noSearchResults
+              type="no-results"
+              description={texts.noResults}
+            />
           )}
         </Scrollbar>
       </S.ItemsList>

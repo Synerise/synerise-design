@@ -1,30 +1,33 @@
+import classNames from 'classnames';
+import copy from 'copy-to-clipboard';
+import Trigger from 'rc-trigger';
+import 'rc-trigger/assets/index.less';
 import React, {
-  CSSProperties,
-  FC,
-  PropsWithChildren,
-  ReactElement,
-  ReactNode,
+  type CSSProperties,
+  type FC,
+  type PropsWithChildren,
+  type ReactElement,
+  type ReactNode,
   useCallback,
   useMemo,
   useState,
 } from 'react';
-import 'rc-trigger/assets/index.less';
-import classNames from 'classnames';
 import { useTheme } from 'styled-components';
-import copy from 'copy-to-clipboard';
-import Trigger from 'rc-trigger';
 
+import { type ThemePropsVars, theme } from '@synerise/ds-core';
+import Icon, { AngleRightS, CheckS } from '@synerise/ds-icon';
 import Tooltip from '@synerise/ds-tooltip';
 import { escapeRegEx } from '@synerise/ds-utils';
-import Icon, { CheckS, AngleRightS } from '@synerise/ds-icon';
-import { theme, ThemePropsVars } from '@synerise/ds-core';
 
-import * as S from './Text.styles';
-import { triggerPlacements } from '../../../utils';
 import { VisibilityTrigger } from '../../../Menu.types';
-import { AddonRenderer, BasicItemProps } from './Text.types';
+import { triggerPlacements } from '../../../utils';
+import * as S from './Text.styles';
+import { type AddonRenderer, type BasicItemProps } from './Text.types';
 
-const renderAddon = (addon: ReactNode | AddonRenderer, ...params: Parameters<AddonRenderer>): ReactNode => {
+const renderAddon = (
+  addon: ReactNode | AddonRenderer,
+  ...params: Parameters<AddonRenderer>
+): ReactNode => {
   return addon instanceof Function ? addon(...params) : addon;
 };
 
@@ -34,7 +37,12 @@ export type HoverTooltipProps = PropsWithChildren<{
   style?: CSSProperties;
 }>;
 
-function WithHoverTooltip({ hoverTooltipProps, renderHoverTooltip, children, style }: HoverTooltipProps): JSX.Element {
+function WithHoverTooltip({
+  hoverTooltipProps,
+  renderHoverTooltip,
+  children,
+  style,
+}: HoverTooltipProps): JSX.Element {
   const dsTheme = useTheme() as ThemePropsVars;
   const zIndex = parseInt(dsTheme.variables['zindex-tooltip'], 10);
 
@@ -43,11 +51,10 @@ function WithHoverTooltip({ hoverTooltipProps, renderHoverTooltip, children, sty
       (ev: Event): void => {
         ev.stopPropagation();
       },
-    []
+    [],
   );
   // onKeyDown is used to disallow propagating key events to tooltip's container element
   return (
-    // eslint-disable-next-line jsx-a11y/no-static-element-interactions
     <div onKeyDown={cancelBubblingEvent} onClick={cancelBubblingEvent}>
       <Trigger
         builtinPlacements={triggerPlacements}
@@ -100,17 +107,27 @@ const Text: FC<BasicItemProps> = ({
   const showSuffixOnHover = suffixVisibilityTrigger === VisibilityTrigger.HOVER;
   const showPrefixOnHover = prefixVisibilityTrigger === VisibilityTrigger.HOVER;
 
-  const suffixElement = useMemo(() => renderAddon(suffixel, hovered), [suffixel, hovered]);
-  const prefixElement = useMemo(() => renderAddon(prefixel, hovered), [prefixel, hovered]);
+  const suffixElement = useMemo(
+    () => renderAddon(suffixel, hovered),
+    [suffixel, hovered],
+  );
+  const prefixElement = useMemo(
+    () => renderAddon(prefixel, hovered),
+    [prefixel, hovered],
+  );
 
   const renderChildren = (): ReactNode => {
     if (highlight && typeof children === 'string') {
-      const index = children.toLocaleLowerCase().indexOf(highlight.toLocaleLowerCase());
+      const index = children
+        .toLocaleLowerCase()
+        .indexOf(highlight.toLocaleLowerCase());
       if (index === -1) {
         return children;
       }
       const escapedHighlight = escapeRegEx(highlight);
-      const startOfQuery = children.toLowerCase().search(escapedHighlight.toLowerCase());
+      const startOfQuery = children
+        .toLowerCase()
+        .search(escapedHighlight.toLowerCase());
       const endOfQuery = startOfQuery + highlight.length;
       const resultArray = [
         children.substring(0, startOfQuery),
@@ -146,7 +163,6 @@ const Text: FC<BasicItemProps> = ({
   const mergedStyle = { ...style, paddingLeft: 'revert-layer' };
 
   const element = (
-    // eslint-disable-next-line jsx-a11y/mouse-events-have-key-events
     <S.Wrapper
       onMouseOver={(): void => {
         setHovered(true);
@@ -179,7 +195,11 @@ const Text: FC<BasicItemProps> = ({
         <S.Inner indentLevel={Number(indentLevel)}>
           <S.ContentWrapper className="ds-menu-content-wrapper">
             {shouldRenderPrefix && (
-              <S.PrefixelWrapper className="ds-menu-prefix" visible={shouldRenderPrefix} disabled={disabled}>
+              <S.PrefixelWrapper
+                className="ds-menu-prefix"
+                visible={shouldRenderPrefix}
+                disabled={disabled}
+              >
                 {renderPrefixElement(hovered)}
               </S.PrefixelWrapper>
             )}
@@ -189,13 +209,21 @@ const Text: FC<BasicItemProps> = ({
             </S.Content>
             {parent && (
               <S.ArrowRight disabled={disabled}>
-                <Icon component={<AngleRightS />} color={theme.palette['grey-600']} />
+                <Icon
+                  component={<AngleRightS />}
+                  color={theme.palette['grey-600']}
+                />
               </S.ArrowRight>
             )}
             <S.ContentDivider />
             {(!!suffixElement || !!checked) && (
               <S.SuffixWraper visible={shouldRenderSuffix} disabled={disabled}>
-                {!!checked && <Icon component={<CheckS />} color={theme.palette[`green-600`]} />}
+                {!!checked && (
+                  <Icon
+                    component={<CheckS />}
+                    color={theme.palette[`green-600`]}
+                  />
+                )}
                 {suffixElement}
               </S.SuffixWraper>
             )}

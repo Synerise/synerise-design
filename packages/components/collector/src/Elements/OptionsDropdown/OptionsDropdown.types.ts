@@ -1,7 +1,11 @@
-import React from 'react';
-import { ScrollbarAdditionalProps } from '@synerise/ds-scrollbar';
+import type React from 'react';
 
-import { CollectorTexts, CollectorValue } from '../../Collector.types';
+import { type ScrollbarAdditionalProps } from '@synerise/ds-scrollbar';
+
+import {
+  type CollectorTexts,
+  type CollectorValue,
+} from '../../Collector.types';
 
 export type OptionsDropdownProps = {
   showAddButton?: boolean;

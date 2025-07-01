@@ -21,7 +21,11 @@ const calculateInputWidth = ({
   if (sizerWidth && hasValue) {
     /* If the input field has content, update the sizer to match its width  */
     width = sizerWidth;
-    if (placeholderIsMinWidth && placeholderWidth && sizerWidth < placeholderWidth) {
+    if (
+      placeholderIsMinWidth &&
+      placeholderWidth &&
+      sizerWidth < placeholderWidth
+    ) {
       width = placeholderWidth;
     }
     if (minWidth !== undefined && width < minWidth) {

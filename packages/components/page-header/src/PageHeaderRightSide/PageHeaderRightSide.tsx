@@ -1,10 +1,10 @@
 import React from 'react';
 
 import Button from '@synerise/ds-button';
-import Icon, { CloseM } from '@synerise/ds-icon';
 import { theme } from '@synerise/ds-core';
-import type { PageHeaderProps } from '../PageHeader.types';
+import Icon, { CloseM } from '@synerise/ds-icon';
 
+import type { PageHeaderProps } from '../PageHeader.types';
 import * as S from './PageHeaderRightSide.styles';
 
 type PageHeaderRightSideProps = Pick<
@@ -12,7 +12,10 @@ type PageHeaderRightSideProps = Pick<
   'rightSide' | 'onClose' | 'title' | 'tooltipIcon' | 'handleTooltipClick'
 >;
 
-export const PageHeaderRightSide = ({ rightSide, onClose }: PageHeaderRightSideProps) => {
+export const PageHeaderRightSide = ({
+  rightSide,
+  onClose,
+}: PageHeaderRightSideProps) => {
   return (
     <S.WrapperPageHeaderRightSide>
       <div>

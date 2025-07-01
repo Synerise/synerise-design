@@ -1,16 +1,24 @@
-import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import type { editor } from 'monaco-editor/esm/vs/editor/editor.api';
+import React, {
+  useCallback,
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+} from 'react';
 
 import { FormFieldLabel } from '@synerise/ds-form-field';
 import { useResizeObserver } from '@synerise/ds-utils';
 
-import { getCharCount } from '../utils/getCharCount';
-import { ContentAbove, ContentBelow, FullscreenHeader } from './index';
-import { CodeAreaEditorRaw } from './CodeAreaEditorRaw';
 import * as S from '../CodeArea.styles';
-import { getDefaultTexts } from '../utils/getDefaultTexts';
+import { type CodeAreaEditorProps } from '../CodeArea.types';
 import { calculateRequiredSpace } from '../utils/calculateRequiredSpace';
-import { CodeAreaEditorProps } from '../CodeArea.types';
+import { getCharCount } from '../utils/getCharCount';
+import { getDefaultTexts } from '../utils/getDefaultTexts';
+import { CodeAreaEditorRaw } from './CodeAreaEditorRaw';
+import { ContentAbove } from './ContentAbove';
+import { ContentBelow } from './ContentBelow';
+import { FullscreenHeader } from './FullscreenHeader';
 
 export const CodeAreaEditor = ({
   renderAdditionalDescription,
@@ -58,7 +66,7 @@ export const CodeAreaEditor = ({
         )
       );
     },
-    [counterLimit, counter, count]
+    [counterLimit, counter, count],
   );
 
   const handleOnDidChangeMarkers = useCallback((markers: editor.IMarker[]) => {
@@ -96,18 +104,23 @@ export const CodeAreaEditor = ({
           })}
         </S.AdditionalDescription>
       ),
-    [count, isValid, isFullscreen, renderAdditionalDescription]
+    [count, isValid, isFullscreen, renderAdditionalDescription],
   );
 
   useEffect(() => {
     setIsValid(!errorText);
   }, [errorText]);
 
-  const isSyntaxSelectVisible = syntaxOptions && syntaxOptions.length > 1 && !readOnly;
+  const isSyntaxSelectVisible =
+    syntaxOptions && syntaxOptions.length > 1 && !readOnly;
   const isBottomBarShowing = Boolean(
-    isSyntaxSelectVisible || (allowFullscreen && !isFullscreen) || renderFooterContent
+    isSyntaxSelectVisible ||
+      (allowFullscreen && !isFullscreen) ||
+      renderFooterContent,
   );
-  const requiredSpace = isFullscreen ? calculateRequiredSpace(isBottomBarShowing, contentBelowHeight) : 0;
+  const requiredSpace = isFullscreen
+    ? calculateRequiredSpace(isBottomBarShowing, contentBelowHeight)
+    : 0;
 
   const allTexts = getDefaultTexts(texts);
 
@@ -122,9 +135,15 @@ export const CodeAreaEditor = ({
       customHeight={height}
     >
       {isFullscreen && (
-        <FullscreenHeader label={fullscreenLabel || labelWithTooltip} texts={allTexts} onClick={toggleFullscreen} />
+        <FullscreenHeader
+          label={fullscreenLabel || labelWithTooltip}
+          texts={allTexts}
+          onClick={toggleFullscreen}
+        />
       )}
-      {!isFullscreen && <ContentAbove label={labelWithTooltip} counter={renderCounter('top')} />}
+      {!isFullscreen && (
+        <ContentAbove label={labelWithTooltip} counter={renderCounter('top')} />
+      )}
       <S.CodeAreaContent>
         <CodeAreaEditorRaw
           {...props}

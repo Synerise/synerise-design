@@ -1,19 +1,27 @@
 import React from 'react';
-import { fireEvent, screen } from '@testing-library/react';
 
-import { renderWithProvider } from '@synerise/ds-utils/dist/testing';
+import { renderWithProvider } from '@synerise/ds-utils';
+import { fireEvent, screen } from '@testing-library/react';
 
 import { PanelsResizer } from '../PanelsResizer';
 
 describe('PanelsResizer Component', () => {
-  const LeftPanel = () => <div data-testid="left-panel">Left Panel Content</div>;
-  const RightPanel = () => <div data-testid="right-panel">Right Panel Content</div>;
+  const LeftPanel = () => (
+    <div data-testid="left-panel">Left Panel Content</div>
+  );
+  const RightPanel = () => (
+    <div data-testid="right-panel">Right Panel Content</div>
+  );
 
   const setup = (props = {}) => {
     return renderWithProvider(
       <div style={{ width: '1000px', height: '800px' }}>
-        <PanelsResizer leftPanel={<LeftPanel />} rightPanel={<RightPanel />} {...props} />
-      </div>
+        <PanelsResizer
+          leftPanel={<LeftPanel />}
+          rightPanel={<RightPanel />}
+          {...props}
+        />
+      </div>,
     );
   };
 

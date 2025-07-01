@@ -1,6 +1,5 @@
 import styled from 'styled-components';
 
-// eslint-disable-next-line import/prefer-default-export
 export const Logic = styled.div<{ readOnly?: boolean }>`
   user-select: none;
   position: relative;

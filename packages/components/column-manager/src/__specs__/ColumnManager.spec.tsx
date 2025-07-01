@@ -1,6 +1,8 @@
 import React from 'react';
+
+import { renderWithProvider } from '@synerise/ds-utils';
 import { fireEvent, screen, waitFor } from '@testing-library/react';
-import renderWithProvider from '@synerise/ds-utils/dist/testing/renderWithProvider/renderWithProvider';
+
 import ColumnManager from '../ColumnManager';
 
 const TEXTS = {
@@ -54,12 +56,10 @@ const COLUMNS = [
   },
 ];
 
-
-
 const COLUMN_MANAGER = (
   visible: boolean = true,
-  hide: () => void = () => { },
-  onApply = () => { }
+  hide: () => void = () => {},
+  onApply = () => {},
 ) => (
   <ColumnManager
     hide={hide}
@@ -75,10 +75,9 @@ describe('ColumnManager', () => {
     renderWithProvider(
       COLUMN_MANAGER(
         true,
-        () => { },
-        () => { },
-
-      )
+        () => {},
+        () => {},
+      ),
     );
 
     expect(screen.getByText('Manage columns')).toBeInTheDocument();
@@ -88,13 +87,7 @@ describe('ColumnManager', () => {
 
   it('should close himself when close or cancel button has been clicked', () => {
     const hide = jest.fn();
-    renderWithProvider(
-      COLUMN_MANAGER(
-        true,
-        hide,
-        () => { },
-      )
-    );
+    renderWithProvider(COLUMN_MANAGER(true, hide, () => {}));
 
     fireEvent.click(screen.getByTestId('ds-column-manager-close'));
     fireEvent.click(screen.getByTestId('ds-column-manager-cancel'));
@@ -118,13 +111,14 @@ describe('ColumnManager', () => {
 
     renderWithProvider(COLUMN_MANAGER(true, hide, apply));
 
-    fireEvent.change(screen.getByPlaceholderText('Search'), { target: { value: 'City' } });
+    fireEvent.change(screen.getByPlaceholderText('Search'), {
+      target: { value: 'City' },
+    });
     await waitFor(() => {
       const filteredColumns = screen.queryAllByTestId('ds-column-manager-item');
       expect(filteredColumns.length).toBe(1);
     });
   });
-
 
   it('should show no results message', async () => {
     const hide = jest.fn();
@@ -132,10 +126,11 @@ describe('ColumnManager', () => {
 
     renderWithProvider(COLUMN_MANAGER(true, hide, apply));
 
-    fireEvent.change(screen.getByPlaceholderText('Search'), { target: { value: 'No such item' } });
+    fireEvent.change(screen.getByPlaceholderText('Search'), {
+      target: { value: 'No such item' },
+    });
     await waitFor(() => {
       expect(screen.getByText('No results')).toBeInTheDocument();
     });
   });
-
 });

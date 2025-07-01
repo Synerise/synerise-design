@@ -1,4 +1,8 @@
-import styled, { css, FlattenSimpleInterpolation } from 'styled-components';
+import styled, {
+  type FlattenSimpleInterpolation,
+  css,
+} from 'styled-components';
+
 import { Text } from '@synerise/ds-typography';
 
 export const AvatarLabel = styled.div<{ onClick?: () => void }>`
@@ -55,7 +59,10 @@ export const Title = styled(Text)<{
     `};
 `;
 
-export const Labels = styled.span<{ ellipsis: boolean; maxWidth: number | undefined }>`
+export const Labels = styled.span<{
+  ellipsis: boolean;
+  maxWidth: number | undefined;
+}>`
   font-size: 13px;
   line-height: 1.38;
   font-weight: 400;

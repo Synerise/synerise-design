@@ -1,9 +1,10 @@
-import React from 'react';
 import classnames from 'classnames';
-import { Title, Description } from '@synerise/ds-typography';
+import React from 'react';
 
-import type { ActionAreaProps } from './ActionArea.types';
+import { Description, Title } from '@synerise/ds-typography';
+
 import * as S from './ActionArea.styles';
+import type { ActionAreaProps } from './ActionArea.types';
 import { renderAction } from './ActionArea.utils';
 
 const ActionArea = ({
@@ -19,7 +20,11 @@ const ActionArea = ({
   const isErrorText = isError && Boolean(errorText);
   const actionContent = renderAction(rest);
   return (
-    <S.ActionAreaWrapper style={style} className={classnames('ds-action-area', className)} isFullWidth={isFullWidth}>
+    <S.ActionAreaWrapper
+      style={style}
+      className={classnames('ds-action-area', className)}
+      isFullWidth={isFullWidth}
+    >
       <S.ActionAreaContent isError={isError} data-testid="action-area-content">
         {label && <Title level={6}>{label}</Title>}
         <Description>{description}</Description>

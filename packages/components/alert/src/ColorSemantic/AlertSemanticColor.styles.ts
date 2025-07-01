@@ -1,6 +1,8 @@
 import styled from 'styled-components';
-import { ThemeProps } from '@synerise/ds-core';
-import { ColorType, ModeType } from './AlertSemanticColor.types';
+
+import { type ThemeProps } from '@synerise/ds-core';
+
+import { type ColorType, type ModeType } from './AlertSemanticColor.types';
 
 type AlertStyles = {
   mode?: ModeType;
@@ -44,10 +46,17 @@ export const Container = styled.div<{
   justify-content: center;
   background-color: ${getAlertColor};
   border: 1px solid
-    ${(props): string => (props.mode === 'background-outline' ? props.theme.palette[`${props.color}-200`] : 'none')};
+    ${(props): string =>
+      props.mode === 'background-outline'
+        ? props.theme.palette[`${props.color}-200`]
+        : 'none'};
   border-radius: 4px;
   -webkit-box-shadow: ${(props): string =>
-    props.mode === 'shadow' ? `0px 16px 32px 5px ${props.theme.palette[`grey-300`]}` : 'none'};
+    props.mode === 'shadow'
+      ? `0px 16px 32px 5px ${props.theme.palette[`grey-300`]}`
+      : 'none'};
   box-shadow: ${(props): string =>
-    props.mode === 'shadow' ? `0px 16px 32px 5px ${props.theme.palette[`grey-300`]}` : 'none'};
+    props.mode === 'shadow'
+      ? `0px 16px 32px 5px ${props.theme.palette[`grey-300`]}`
+      : 'none'};
 `;

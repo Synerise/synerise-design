@@ -1,4 +1,5 @@
 import React from 'react';
+
 import * as S from '../Operators.style';
 
 const OperatorsDropdownGroupName = ({ name }: { name: string }) => {

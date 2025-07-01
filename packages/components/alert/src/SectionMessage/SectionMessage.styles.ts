@@ -1,6 +1,7 @@
+import type React from 'react';
 import styled from 'styled-components';
-import React from 'react';
-import { ColorType, CustomColorType } from './SectionMessage.types';
+
+import { type ColorType, type CustomColorType } from './SectionMessage.types';
 
 export const AlertContent = styled.div<{ withLink?: React.ReactNode }>`
   display: flex;
@@ -118,13 +119,19 @@ export const Container = styled.div<{
   align-items: center;
   justify-content: center;
   background-color: ${(props): string =>
-    props.customColor ? props.theme.palette[`${props.customColor}-050`] : props.theme.palette[`${props.color}-050`]};
+    props.customColor
+      ? props.theme.palette[`${props.customColor}-050`]
+      : props.theme.palette[`${props.color}-050`]};
   border: 1px solid
     ${(props): string =>
-      props.customColor ? props.theme.palette[`${props.customColor}-200`] : props.theme.palette[`${props.color}-200`]};
+      props.customColor
+        ? props.theme.palette[`${props.customColor}-200`]
+        : props.theme.palette[`${props.color}-200`]};
   border-top: 2px solid
     ${(props): string =>
-      props.customColor ? props.theme.palette[`${props.customColor}-600`] : props.theme.palette[`${props.color}-600`]};
+      props.customColor
+        ? props.theme.palette[`${props.customColor}-600`]
+        : props.theme.palette[`${props.color}-600`]};
   border-radius: 2px;
 `;
 export const WrapperSectionMessage = styled.div`

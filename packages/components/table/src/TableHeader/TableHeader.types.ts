@@ -1,5 +1,6 @@
-import { ReactNode } from 'react';
-import { Filter, Locale, RowSelection } from '../Table.types';
+import { type ReactNode } from 'react';
+
+import { type Filter, type Locale, type RowSelection } from '../Table.types';
 
 export type Props<T extends object> = {
   title?: ReactNode | (() => ReactNode);
@@ -16,7 +17,10 @@ export type Props<T extends object> = {
   withBorderTop?: boolean;
   headerButton?: ReactNode;
   locale: Locale;
-  renderSelectionTitle?: (selection?: RowSelection<T>, filters?: Filter[]) => ReactNode;
+  renderSelectionTitle?: (
+    selection?: RowSelection<T>,
+    filters?: Filter[],
+  ) => ReactNode;
   hideTitlePart?: boolean;
   dataSourceTotalCount?: number;
   childrenColumnName: string;

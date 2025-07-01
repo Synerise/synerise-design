@@ -1,26 +1,35 @@
-import React, { PureComponent, ReactNode, ReactText } from 'react';
+import React, { PureComponent, type ReactNode, type ReactText } from 'react';
 import { FormattedMessage, injectIntl } from 'react-intl';
+import { v4 as uuid } from 'uuid';
+
+import Button from '@synerise/ds-button';
+import { theme } from '@synerise/ds-core';
 import ContentItem from '@synerise/ds-manageable-list/dist/Item/ContentItem/ContentItem';
 import Tag, { TagShape } from '@synerise/ds-tag';
-import { theme } from '@synerise/ds-core';
-import Button from '@synerise/ds-button';
-import { v4 as uuid } from 'uuid';
-import { Month, MonthlyFilterProps, MonthlyFilterState } from './MonthlyFilter.types';
+
+import { getDefaultTexts } from '../../../utils';
+import TimeWindow from '../../Shared/TimeWindow/TimeWindow';
+import { type TimeWindowProps } from '../../Shared/TimeWindow/TimeWindow.types';
 import {
-  MONTH_DAYS,
-  DEFAULT_DAYS_OF_PERIODS,
-  DEFAULT_COUNTED_FROM,
-  defaultId,
-  DAYS_OF_PERIOD_ENUM,
   COUNTED_FROM_ENUM,
+  DAYS_OF_PERIOD_ENUM,
+  DEFAULT_COUNTED_FROM,
+  DEFAULT_DAYS_OF_PERIODS,
+  MONTH_DAYS,
   SPACE_UNICODE,
+  defaultId,
 } from '../../constants';
 import * as S from './MonthlyFilter.styles';
-import TimeWindow from '../../Shared/TimeWindow/TimeWindow';
-import { TimeWindowProps } from '../../Shared/TimeWindow/TimeWindow.types';
-import { getDefaultTexts } from '../../../utils';
+import {
+  type Month,
+  type MonthlyFilterProps,
+  type MonthlyFilterState,
+} from './MonthlyFilter.types';
 
-class MonthlyFilter extends PureComponent<MonthlyFilterProps, MonthlyFilterState> {
+class MonthlyFilter extends PureComponent<
+  MonthlyFilterProps,
+  MonthlyFilterState
+> {
   static defaultProps = {
     maxEntries: 4,
   };
@@ -45,8 +54,17 @@ class MonthlyFilter extends PureComponent<MonthlyFilterProps, MonthlyFilterState
     const id = uuid();
     const { value, countedFromPeriods, daysOfPeriods } = this.props;
     const defaultPeriod = (daysOfPeriods || DEFAULT_DAYS_OF_PERIODS)[0].value;
-    const defaultPeriodType = (countedFromPeriods || DEFAULT_COUNTED_FROM)[0].value;
-    this.setData([...value, { period: defaultPeriod, periodType: defaultPeriodType, definition: {}, id }]);
+    const defaultPeriodType = (countedFromPeriods || DEFAULT_COUNTED_FROM)[0]
+      .value;
+    this.setData([
+      ...value,
+      {
+        period: defaultPeriod,
+        periodType: defaultPeriodType,
+        definition: {},
+        id,
+      },
+    ]);
     this.handleCollapse(id);
   };
 
@@ -60,10 +78,12 @@ class MonthlyFilter extends PureComponent<MonthlyFilterProps, MonthlyFilterState
   handleRemoveRowCollapse = (deletedId: string) => {
     const { value } = this.props;
     const { visible } = this.state;
-    const itemKey = value.findIndex(item => item.id === deletedId);
+    const itemKey = value.findIndex((item) => item.id === deletedId);
     const next = value[itemKey + 1];
     const prev = value[itemKey - 1];
-    visible[deletedId] && (next || prev) && this.handleCollapse(next ? next.id : prev.id);
+    visible[deletedId] &&
+      (next || prev) &&
+      this.handleCollapse(next ? next.id : prev.id);
   };
 
   handleTypeChange = (val: string, index: number) => {
@@ -102,13 +122,17 @@ class MonthlyFilter extends PureComponent<MonthlyFilterProps, MonthlyFilterState
     const { intl } = this.props;
     const weekStartIndex = Math.floor(index / 7);
     const dayOfWeek = index - weekStartIndex * 7;
-    const weekday = intl.formatMessage({ id: `DS.DATE-RANGE-PICKER.WEEKDAYS_LONG.${dayOfWeek + 1}` });
+    const weekday = intl.formatMessage({
+      id: `DS.DATE-RANGE-PICKER.WEEKDAYS_LONG.${dayOfWeek + 1}`,
+    });
     const nthWeek = intl.formatMessage({
       id: `DS.DATE-RANGE-PICKER.NTH.${weekStartIndex === 5 ? 'LAST' : weekStartIndex + 1}`,
     });
     return long
       ? `${nthWeek} ${weekday}`
-      : intl.formatMessage({ id: `DS.DATE-RANGE-PICKER.WEEKDAYS-SHORT-${dayOfWeek}` });
+      : intl.formatMessage({
+          id: `DS.DATE-RANGE-PICKER.WEEKDAYS-SHORT-${dayOfWeek}`,
+        });
   };
 
   dayMonthFormatter = (i: number, long?: boolean): string => {
@@ -116,7 +140,10 @@ class MonthlyFilter extends PureComponent<MonthlyFilterProps, MonthlyFilterState
 
     const locale = intl.locale.substring(0, 2);
     return long
-      ? intl.formatMessage({ id: 'DS.DATE-RANGE-PICKER.NTH-DAY-OF-MONTH' }, { nth: MONTH_DAYS(locale)[i] })
+      ? intl.formatMessage(
+          { id: 'DS.DATE-RANGE-PICKER.NTH-DAY-OF-MONTH' },
+          { nth: MONTH_DAYS(locale)[i] },
+        )
       : MONTH_DAYS(locale)[i];
   };
 
@@ -132,7 +159,9 @@ class MonthlyFilter extends PureComponent<MonthlyFilterProps, MonthlyFilterState
         numberOfDays: 31,
         reverseGroup: 1,
         inverted: item.periodType === COUNTED_FROM_ENUM.ENDING,
-        dayTemplate: (dayOfMonth: number): { day: number } => ({ day: dayOfMonth }),
+        dayTemplate: (dayOfMonth: number): { day: number } => ({
+          day: dayOfMonth,
+        }),
         dayFormatter: this.dayMonthFormatter,
       },
       [DAYS_OF_PERIOD_ENUM.DAY_OF_WEEK]: {
@@ -174,15 +203,19 @@ class MonthlyFilter extends PureComponent<MonthlyFilterProps, MonthlyFilterState
         </S.PeriodMode>
       );
     }
-    const dataSource = (daysOfPeriods || DEFAULT_DAYS_OF_PERIODS).map(period => ({
-      checked: item?.period === period.value,
-      text: intl.formatMessage({ id: period.translationKey as string }),
-      onClick: () => {
-        this.handleTypeChange(period.value as string, key);
-      },
-    }));
+    const dataSource = (daysOfPeriods || DEFAULT_DAYS_OF_PERIODS).map(
+      (period) => ({
+        checked: item?.period === period.value,
+        text: intl.formatMessage({ id: period.translationKey as string }),
+        onClick: () => {
+          this.handleTypeChange(period.value as string, key);
+        },
+      }),
+    );
 
-    const daysOfPeriodValue = (daysOfPeriods || DEFAULT_DAYS_OF_PERIODS).find(period => item?.period === period.value);
+    const daysOfPeriodValue = (daysOfPeriods || DEFAULT_DAYS_OF_PERIODS).find(
+      (period) => item?.period === period.value,
+    );
 
     return (
       <S.Select
@@ -192,11 +225,16 @@ class MonthlyFilter extends PureComponent<MonthlyFilterProps, MonthlyFilterState
           minWidth: '150px',
         }}
         dropdownProps={{
-          getPopupContainer: (triggerNode: HTMLElement) => triggerNode.closest('.monthly-wrapper') || document.body,
+          getPopupContainer: (triggerNode: HTMLElement) =>
+            triggerNode.closest('.monthly-wrapper') || document.body,
         }}
-        placeholder={intl.formatMessage({ id: (daysOfPeriods || DEFAULT_DAYS_OF_PERIODS)[0].translationKey })}
+        placeholder={intl.formatMessage({
+          id: (daysOfPeriods || DEFAULT_DAYS_OF_PERIODS)[0].translationKey,
+        })}
         input={{
-          value: daysOfPeriodValue ? intl.formatMessage({ id: daysOfPeriodValue?.translationKey }) : undefined,
+          value: daysOfPeriodValue
+            ? intl.formatMessage({ id: daysOfPeriodValue?.translationKey })
+            : undefined,
           name: 'days-of-period',
           maxLength: 120,
         }}
@@ -219,30 +257,40 @@ class MonthlyFilter extends PureComponent<MonthlyFilterProps, MonthlyFilterState
         </S.PeriodMode>
       );
     }
-    const dataSource = (countedFromPeriods || DEFAULT_COUNTED_FROM).map(i => ({
-      checked: item?.periodType === i.value,
-      text: intl.formatMessage({ id: i.translationKey as string }),
-      onClick: () => {
-        this.handlePeriodTypeChange(i.value as string, key);
-      },
-    }));
+    const dataSource = (countedFromPeriods || DEFAULT_COUNTED_FROM).map(
+      (i) => ({
+        checked: item?.periodType === i.value,
+        text: intl.formatMessage({ id: i.translationKey as string }),
+        onClick: () => {
+          this.handlePeriodTypeChange(i.value as string, key);
+        },
+      }),
+    );
 
-    const countedFromValue = (countedFromPeriods || DEFAULT_COUNTED_FROM).find(i => item?.periodType === i.value);
+    const countedFromValue = (countedFromPeriods || DEFAULT_COUNTED_FROM).find(
+      (i) => item?.periodType === i.value,
+    );
 
     return (
       <S.Select
         disabled={disabled}
         expanded={false}
         dropdownProps={{
-          getPopupContainer: (triggerNode: HTMLElement) => triggerNode.closest('.monthly-wrapper') || document.body,
+          getPopupContainer: (triggerNode: HTMLElement) =>
+            triggerNode.closest('.monthly-wrapper') || document.body,
         }}
         dropdownOverlayStyle={{
           minWidth: '150px',
         }}
-        placeholder={intl.formatMessage({ id: (countedFromPeriods || DEFAULT_COUNTED_FROM)[0].translationKey })}
+        placeholder={intl.formatMessage({
+          id: (countedFromPeriods || DEFAULT_COUNTED_FROM)[0].translationKey,
+        })}
         input={{
           value: countedFromValue
-            ? intl.formatMessage({ id: countedFromValue?.translationKey, defaultMessage: item?.periodType })
+            ? intl.formatMessage({
+                id: countedFromValue?.translationKey,
+                defaultMessage: item?.periodType,
+              })
             : undefined,
           name: 'counted-from-select',
           maxLength: 120,
@@ -272,7 +320,7 @@ class MonthlyFilter extends PureComponent<MonthlyFilterProps, MonthlyFilterState
       rangeDisplayMode,
       intl,
     } = this.props;
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars, @typescript-eslint/no-explicit-any
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const { min = 1 } = this.props as any;
     const { visible } = this.state;
     const data = [...value];
@@ -280,7 +328,8 @@ class MonthlyFilter extends PureComponent<MonthlyFilterProps, MonthlyFilterState
     const allTexts = getDefaultTexts(intl, false, texts);
 
     /** if `min` is undefined, then entry can be always deleted, otherwise it's key has to be greated or equal than N */
-    const deletableDueToEntriesLimit = (key: number): boolean => min === undefined || (min !== undefined && key >= min);
+    const deletableDueToEntriesLimit = (key: number): boolean =>
+      min === undefined || (min !== undefined && key >= min);
     return (
       <S.MonthlyFilterWrapper className="monthly-wrapper">
         {data.map((item, key) => (
@@ -305,8 +354,12 @@ class MonthlyFilter extends PureComponent<MonthlyFilterProps, MonthlyFilterState
               // @ts-ignore
               name: (
                 <S.DropdownHeader
-                  onClick={event => event.stopPropagation()}
-                  className={visible[item.id] ? 'dropdown-header-visible' : 'dropdown-header'}
+                  onClick={(event) => event.stopPropagation()}
+                  className={
+                    visible[item.id]
+                      ? 'dropdown-header-visible'
+                      : 'dropdown-header'
+                  }
                 >
                   <S.DropdownLabel>
                     {allTexts.daysOf}
@@ -328,7 +381,6 @@ class MonthlyFilter extends PureComponent<MonthlyFilterProps, MonthlyFilterState
                     disabled={disabled}
                     readOnly={!!disabled}
                     texts={allTexts}
-                    // eslint-disable-next-line react/no-array-index-key
                     key={`${item.period}_${key}`}
                     showSelectAll
                     invertibleTime
@@ -336,7 +388,9 @@ class MonthlyFilter extends PureComponent<MonthlyFilterProps, MonthlyFilterState
                     // @ts-expect-error: FIXME: Type '{ [day: number]: DenormalizedFilter; }' is not assignable to type 'Days'.
                     days={item.definition}
                     // @ts-expect-error: FIXME: Type '(definition: Month) => void' is not assignable to type '(days: Days) => void'.
-                    onChange={(definition: Month) => this.handleDefinitionChange(definition, key)}
+                    onChange={(definition: Month) =>
+                      this.handleDefinitionChange(definition, key)
+                    }
                     onRangeClear={onRangeClear}
                     onRangeCopy={onRangeCopy}
                     onRangePaste={onRangePaste}
@@ -363,7 +417,11 @@ class MonthlyFilter extends PureComponent<MonthlyFilterProps, MonthlyFilterState
         ))}
         <S.AddContainer>
           {!disabled && value.length < Number(maxEntries) && (
-            <Button.Creator label={allTexts.addRule} onClick={this.handleAddRow} block />
+            <Button.Creator
+              label={allTexts.addRule}
+              onClick={this.handleAddRow}
+              block
+            />
           )}
         </S.AddContainer>
       </S.MonthlyFilterWrapper>

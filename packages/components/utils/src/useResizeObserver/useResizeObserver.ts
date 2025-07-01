@@ -1,12 +1,18 @@
-import { useEffect, useState, useRef, RefObject, useCallback } from 'react';
+import {
+  type RefObject,
+  useCallback,
+  useEffect,
+  useRef,
+  useState,
+} from 'react';
 
 const useResizeObserver = (
   elementRef: RefObject<HTMLElement | undefined>,
-  resizeHandler?: (dimensions: DOMRect) => void
+  resizeHandler?: (dimensions: DOMRect) => void,
 ) => {
   const [dimensions, setDimensions] = useState<DOMRect>(new DOMRect());
   const resizeObserver = useRef(
-    new ResizeObserver(entries => {
+    new ResizeObserver((entries) => {
       const runHandler = () => {
         const { contentRect } = entries[0];
         setDimensions(contentRect);
@@ -17,7 +23,7 @@ const useResizeObserver = (
       } else {
         setTimeout(runHandler, 0);
       }
-    })
+    }),
   ).current;
 
   const observe = useCallback(() => {

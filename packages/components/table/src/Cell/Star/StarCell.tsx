@@ -1,12 +1,20 @@
 import React, { useMemo } from 'react';
-
 import { withTheme } from 'styled-components';
+
 import Icon, { StarFillM, StarM } from '@synerise/ds-icon';
 import Tooltip from '@synerise/ds-tooltip/dist/Tooltip';
-import * as S from './StarCell.styles';
-import { StarCellProps } from './StarCell.types';
 
-const StarCell = ({ children, active, onClick, theme, starTooltip, ...htmlAttributes }: StarCellProps) => {
+import * as S from './StarCell.styles';
+import { type StarCellProps } from './StarCell.types';
+
+const StarCell = ({
+  children,
+  active,
+  onClick,
+  theme,
+  starTooltip,
+  ...htmlAttributes
+}: StarCellProps) => {
   const icon = useMemo(() => {
     return active ? (
       <Icon component={<StarFillM />} color={theme.palette['yellow-600']} />

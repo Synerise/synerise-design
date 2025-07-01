@@ -1,10 +1,11 @@
 import styled, { css } from 'styled-components';
-import Icon from '@synerise/ds-icon';
+
 import Cruds from '@synerise/ds-cruds';
+import Icon from '@synerise/ds-icon';
 import { InputGroupItem } from '@synerise/ds-input/dist/InputGroup.styles';
 
 export const ErrorWrapper = styled.div`
-  color: ${props => props.theme.palette['red-600']};
+  color: ${(props) => props.theme.palette['red-600']};
   margin-top: 8px;
 `;
 
@@ -32,7 +33,7 @@ export const StepConditions = styled.div<{ withCruds?: boolean }>`
   justify-content: flex-start;
   margin-top: 0;
   padding: 0 24px;
-  width: ${props => (props.withCruds ? 'calc(100% - 48px)' : '100%')};
+  width: ${(props) => (props.withCruds ? 'calc(100% - 48px)' : '100%')};
 
   ${DragIcon} {
     left: 0;
@@ -43,7 +44,7 @@ export const StepConditions = styled.div<{ withCruds?: boolean }>`
 export const StepName = styled.div`
   font-size: 13px;
   line-height: 1.84;
-  color: ${props => props.theme.palette['grey-800']};
+  color: ${(props) => props.theme.palette['grey-800']};
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -114,7 +115,7 @@ export const DraggedLabel = styled.span`
   align-items: center;
   justify-content: flex-start;
   padding-left: 18px;
-  color: ${props => props.theme.palette['grey-600']};
+  color: ${(props) => props.theme.palette['grey-600']};
   font-size: 13px;
 `;
 
@@ -124,9 +125,10 @@ export const Step = styled.div<{
   hoverDisabled?: boolean;
   singleStepCondition?: boolean;
 }>`
-  padding: ${({ singleStepCondition }) => (singleStepCondition ? '24px 0' : '12px 0')};
+  padding: ${({ singleStepCondition }) =>
+    singleStepCondition ? '24px 0' : '12px 0'};
   position: relative;
-  ${props =>
+  ${(props) =>
     props.showSuffix &&
     css`
       &:after {
@@ -143,10 +145,14 @@ export const Step = styled.div<{
       }
     `}
 
-  background-color: ${props =>
-    props.active && !props.singleStepCondition ? props.theme.palette['grey-050'] : 'transparent'};
+  background-color: ${(props) =>
+    props.active && !props.singleStepCondition
+      ? props.theme.palette['grey-050']
+      : 'transparent'};
   &:hover {
-    ${props => !props.hoverDisabled && `background-color: ${props.theme.palette['grey-050']}`};
+    ${(props) =>
+      !props.hoverDisabled &&
+      `background-color: ${props.theme.palette['grey-050']}`};
     ${StepCruds} {
       opacity: 1;
       visibility: visible;
@@ -172,8 +178,11 @@ export const DragLabel = styled.div`
   gap: 8px;
 `;
 
-export const StepWrapper = styled.div<{ isDragOverlay?: boolean; isDragged?: boolean }>`
-  ${props =>
+export const StepWrapper = styled.div<{
+  isDragOverlay?: boolean;
+  isDragged?: boolean;
+}>`
+  ${(props) =>
     props.isDragOverlay &&
     css`
       ${Step} {
@@ -190,7 +199,7 @@ export const StepWrapper = styled.div<{ isDragOverlay?: boolean; isDragged?: boo
         display: flex;
       }
     `}
-  ${props =>
+  ${(props) =>
     props.isDragged &&
     css`
       ${Step} {
@@ -212,7 +221,9 @@ export const StepWrapper = styled.div<{ isDragOverlay?: boolean; isDragged?: boo
 
 export const Subject = styled.div``;
 
-export const RemoveIconWrapper = styled.span.attrs({ 'data-testid': 'ds-conditions-remove-row' })`
+export const RemoveIconWrapper = styled.span.attrs({
+  'data-testid': 'ds-conditions-remove-row',
+})`
   visibility: hidden;
   pointer-events: none;
   opacity: 0;
@@ -226,7 +237,7 @@ export const RemoveIconWrapper = styled.span.attrs({ 'data-testid': 'ds-conditio
 `;
 
 export const ConditionWrapper = styled.div<{ withRemoveTrigger?: boolean }>`
-  ${props =>
+  ${(props) =>
     Boolean(props.withRemoveTrigger) &&
     css`
       & {
@@ -269,7 +280,11 @@ export const AddConditionRow = styled.div`
   flex-direction: row;
 `;
 
-export const ConditionConnections = styled.span<{ first?: boolean; last?: boolean; readOnly?: boolean }>`
+export const ConditionConnections = styled.span<{
+  first?: boolean;
+  last?: boolean;
+  readOnly?: boolean;
+}>`
   display: flex;
   width: 32px;
   min-width: 32px;
@@ -280,22 +295,25 @@ export const ConditionConnections = styled.span<{ first?: boolean; last?: boolea
   &:before {
     position: absolute;
     content: '';
-    width: ${props => (props.first ? '100%' : '16px')};
+    width: ${(props) => (props.first ? '100%' : '16px')};
     height: 1px;
     top: 16px;
-    left: ${props => (props.first ? '0' : '16px')};
-    background-color: ${props => props.theme.palette['grey-300']};
+    left: ${(props) => (props.first ? '0' : '16px')};
+    background-color: ${(props) => props.theme.palette['grey-300']};
   }
   &:after {
-    display: ${props => ((props.first && props.last) || (props.last && props.readOnly) ? 'none' : 'flex')};
+    display: ${(props) =>
+      (props.first && props.last) || (props.last && props.readOnly)
+        ? 'none'
+        : 'flex'};
     position: absolute;
     content: '';
     width: 1px;
     left: 50%;
     height: auto;
-    top: ${props => (props.first ? '16px' : '0')};
-    bottom: ${props => (props.last ? '16px' : '-100%')};
-    background-color: ${props => props.theme.palette['grey-300']};
+    top: ${(props) => (props.first ? '16px' : '0')};
+    bottom: ${(props) => (props.last ? '16px' : '-100%')};
+    background-color: ${(props) => props.theme.palette['grey-300']};
   }
 `;
 export const ConditionRow = styled.div<{
@@ -304,13 +322,13 @@ export const ConditionRow = styled.div<{
   onlyChild?: boolean;
   last?: boolean;
 }>`
-  padding-bottom: ${props => (props.onlyChild ? '0' : '16px')};
+  padding-bottom: ${(props) => (props.onlyChild ? '0' : '16px')};
   display: flex;
   flex-grow: 1;
   
   ${ConditionConnections} {
-    height: ${props => (props.withError ? 'auto' : '32px')};
-    ${props =>
+    height: ${(props) => (props.withError ? 'auto' : '32px')};
+    ${(props) =>
       props.withError &&
       css`
           &:after {

@@ -1,8 +1,11 @@
 import React from 'react';
 
-import type { ToolbarLabelProps } from '../../Toolbar.types';
 import * as S from '../../Toolbar.styles';
+import type { ToolbarLabelProps } from '../../Toolbar.types';
 
-export const ToolbarLabel = ({ children, ...htmlAttributes }: ToolbarLabelProps) => {
+export const ToolbarLabel = ({
+  children,
+  ...htmlAttributes
+}: ToolbarLabelProps) => {
   return <S.ToolbarLabel {...htmlAttributes}>{children}</S.ToolbarLabel>;
 };

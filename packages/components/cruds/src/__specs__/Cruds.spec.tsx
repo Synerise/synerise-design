@@ -1,7 +1,9 @@
 import React from 'react';
-import renderWithProvider from '@synerise/ds-utils/dist/testing/renderWithProvider/renderWithProvider';
-import { fireEvent } from '@testing-library/react';
+
 import { Settings2S } from '@synerise/ds-icon';
+import { renderWithProvider } from '@synerise/ds-utils';
+import { fireEvent } from '@testing-library/react';
+
 import Cruds from '../Cruds';
 
 const ICON = {
@@ -38,7 +40,7 @@ describe('Cruds', () => {
         editTooltip={'Edit'}
         moveTooltip={'Move'}
         removeTooltip={'Remove'}
-      />
+      />,
     );
 
     // ASSERT
@@ -73,13 +75,15 @@ describe('Cruds', () => {
         editTooltip={'Edit'}
         moveTooltip={'Move'}
         removeTooltip={'Remove'}
-      />
+      />,
     );
 
     // ACT
     const addIcon = container.querySelector(ICON.add) as HTMLElement;
     const editIcon = container.querySelector(ICON.edit) as HTMLElement;
-    const duplicateIcon = container.querySelector(ICON.duplicate) as HTMLElement;
+    const duplicateIcon = container.querySelector(
+      ICON.duplicate,
+    ) as HTMLElement;
     const deleteIcon = container.querySelector(ICON.delete) as HTMLElement;
     const moveIcon = container.querySelector(ICON.move) as HTMLElement;
     const removeIcon = container.querySelector(ICON.remove) as HTMLElement;
@@ -105,7 +109,12 @@ describe('Cruds', () => {
     const handleClick = jest.fn();
 
     const { container } = renderWithProvider(
-      <Cruds.CustomAction className="settings" title={'Settings'} icon={<Settings2S />} onClick={handleClick} />
+      <Cruds.CustomAction
+        className="settings"
+        title={'Settings'}
+        icon={<Settings2S />}
+        onClick={handleClick}
+      />,
     );
 
     // ACT

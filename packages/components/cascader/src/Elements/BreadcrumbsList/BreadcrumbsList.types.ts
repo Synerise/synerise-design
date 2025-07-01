@@ -1,4 +1,5 @@
 import type { ReactText } from 'react';
+
 import type { Path } from '../../Cascader.types';
 
 export type BreadcrumbsListProps = {

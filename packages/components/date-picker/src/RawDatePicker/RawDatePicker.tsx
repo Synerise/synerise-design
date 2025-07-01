@@ -1,23 +1,39 @@
 import React from 'react';
-import { injectIntl, WrappedComponentProps } from 'react-intl';
-import { DayModifiers, Modifiers } from 'react-day-picker';
+import { type DayModifiers, type Modifiers } from 'react-day-picker';
+import { type WrappedComponentProps, injectIntl } from 'react-intl';
+
 import { legacyParse } from '@date-fns/upgrade/v2';
-import Footer from '../Elements/Footer/Footer';
+
 import * as S from '../DatePicker.styles';
-import { State, Texts } from '../DatePicker.types';
+import { type State, type Texts } from '../DatePicker.types';
 import DayPicker from '../Elements/DayPicker/DayPicker';
+import {
+  DayBackground,
+  DayForeground,
+  DayText,
+} from '../Elements/DayPicker/DayPicker.styles';
+import Footer from '../Elements/Footer/Footer';
 import MonthPicker from '../Elements/MonthPicker/MonthPicker';
-import YearPicker from '../Elements/YearPicker/YearPicker';
-import fnsFormat from '../format';
 import TimePicker from '../Elements/TimePicker/TimePicker';
-
-import { DayBackground, DayText, DayForeground } from '../Elements/DayPicker/DayPicker.styles';
-import { fnsStartOfMonth, fnsSetYear, fnsSetMonth, fnsSetDate, fnsStartOfDay, fnsEndOfDay, fnsAddDays } from '../fns';
+import YearPicker from '../Elements/YearPicker/YearPicker';
+import {
+  fnsAddDays,
+  fnsEndOfDay,
+  fnsSetDate,
+  fnsSetMonth,
+  fnsSetYear,
+  fnsStartOfDay,
+  fnsStartOfMonth,
+} from '../fns';
+import fnsFormat from '../format';
 import { changeDayWithHoursPreserved } from '../utils';
-import { RawDatePickerProps } from './RawDatePicker.types';
 import { getDefaultTexts } from '../utils/getDefaultTexts';
+import { type RawDatePickerProps } from './RawDatePicker.types';
 
-class RawDatePicker extends React.Component<RawDatePickerProps & WrappedComponentProps, State> {
+class RawDatePicker extends React.Component<
+  RawDatePickerProps & WrappedComponentProps,
+  State
+> {
   static defaultProps = {
     showTime: false,
     disabledHours: [],
@@ -44,7 +60,9 @@ class RawDatePicker extends React.Component<RawDatePickerProps & WrappedComponen
     return getDefaultTexts(intl, texts);
   }
 
-  getSnapshotBeforeUpdate(prevProps: Readonly<RawDatePickerProps & WrappedComponentProps>): null {
+  getSnapshotBeforeUpdate(
+    prevProps: Readonly<RawDatePickerProps & WrappedComponentProps>,
+  ): null {
     const { value } = this.props;
     const { mode } = this.state;
     if (prevProps?.value !== value) {
@@ -62,7 +80,10 @@ class RawDatePicker extends React.Component<RawDatePickerProps & WrappedComponen
     const { onValueChange } = this.props;
     const { mode, value: valueFromState } = this.state;
     if (mode === 'date' && !!valueFromState && !!value) {
-      const dateToBeUpdated = changeDayWithHoursPreserved(valueFromState, value);
+      const dateToBeUpdated = changeDayWithHoursPreserved(
+        valueFromState,
+        value,
+      );
       this.setState({ value: dateToBeUpdated, changed: true });
       onValueChange && onValueChange(dateToBeUpdated);
     } else {
@@ -79,12 +100,23 @@ class RawDatePicker extends React.Component<RawDatePickerProps & WrappedComponen
     const { changed: isChanged, value } = this.state;
     const { useStartOfDay, useEndOfDay, showTime } = this.props;
 
-    if (modifiers.disabled) return;
+    if (modifiers.disabled) {
+      return;
+    }
 
     let nextDateWithCurrentTime = isChanged && value ? value : new Date();
-    nextDateWithCurrentTime = fnsSetYear(nextDateWithCurrentTime, day.getFullYear());
-    nextDateWithCurrentTime = fnsSetMonth(nextDateWithCurrentTime, day.getMonth());
-    nextDateWithCurrentTime = fnsSetDate(nextDateWithCurrentTime, day.getDate());
+    nextDateWithCurrentTime = fnsSetYear(
+      nextDateWithCurrentTime,
+      day.getFullYear(),
+    );
+    nextDateWithCurrentTime = fnsSetMonth(
+      nextDateWithCurrentTime,
+      day.getMonth(),
+    );
+    nextDateWithCurrentTime = fnsSetDate(
+      nextDateWithCurrentTime,
+      day.getDate(),
+    );
 
     if (useStartOfDay) {
       this.handleChange(fnsStartOfDay(nextDateWithCurrentTime));
@@ -100,7 +132,9 @@ class RawDatePicker extends React.Component<RawDatePickerProps & WrappedComponen
 
   handleApply = (date: Date | undefined): void => {
     const { onApply } = this.props;
-    if (!onApply) return;
+    if (!onApply) {
+      return;
+    }
     const { value } = this.state;
 
     if (date instanceof Date) {
@@ -112,7 +146,8 @@ class RawDatePicker extends React.Component<RawDatePickerProps & WrappedComponen
     this.handleModeSwitch('date');
   };
 
-  handleMonthChange = (month: Date, mode: string): void => this.setState({ month, mode });
+  handleMonthChange = (month: Date, mode: string): void =>
+    this.setState({ month, mode });
 
   renderDay = (day: Date): React.ReactNode => {
     const text = day.getDate();
@@ -130,7 +165,9 @@ class RawDatePicker extends React.Component<RawDatePickerProps & WrappedComponen
     return (
       <YearPicker
         value={month}
-        onChange={(changedMonth): void => changedMonth && this.handleMonthChange(changedMonth, 'date')}
+        onChange={(changedMonth): void =>
+          changedMonth && this.handleMonthChange(changedMonth, 'date')
+        }
       />
     );
   };
@@ -140,7 +177,9 @@ class RawDatePicker extends React.Component<RawDatePickerProps & WrappedComponen
     return (
       <MonthPicker
         value={month}
-        onChange={(changedMonth): void => changedMonth && this.handleMonthChange(changedMonth, 'date')}
+        onChange={(changedMonth): void =>
+          changedMonth && this.handleMonthChange(changedMonth, 'date')
+        }
       />
     );
   };
@@ -172,7 +211,9 @@ class RawDatePicker extends React.Component<RawDatePickerProps & WrappedComponen
         onDayMouseLeave={this.handleDayMouseLeave}
         onMonthNameClick={(): void => this.handleModeSwitch('month')}
         onYearNameClick={(): void => this.handleModeSwitch('year')}
-        onMonthChange={(selectedMonth: Date): void => this.handleMonthChange(selectedMonth, 'date')}
+        onMonthChange={(selectedMonth: Date): void =>
+          this.handleMonthChange(selectedMonth, 'date')
+        }
         modifiers={modifiers as unknown as Modifiers}
       />
     );
@@ -182,12 +223,15 @@ class RawDatePicker extends React.Component<RawDatePickerProps & WrappedComponen
     const { disabledDates } = this.props;
 
     // @ts-ignore
-    this.handleDayClick(day, { disabled: disabledDates ? disabledDates(day) : false });
+    this.handleDayClick(day, {
+      disabled: disabledDates ? disabledDates(day) : false,
+    });
   };
 
   renderTimePicker = (): React.ReactNode => {
     const { value } = this.state;
-    const { disabledHours, disabledMinutes, disabledSeconds, disabledDates } = this.props;
+    const { disabledHours, disabledMinutes, disabledSeconds, disabledDates } =
+      this.props;
     const prevDay = fnsAddDays(legacyParse(value), -1);
     const nextDay = fnsAddDays(legacyParse(value), 1);
     const inactivePrev = disabledDates ? disabledDates(prevDay) : false;
@@ -241,7 +285,9 @@ class RawDatePicker extends React.Component<RawDatePickerProps & WrappedComponen
           dateOnly={!showTime}
           mode={mode}
           canSwitchMode={isValid}
-          onSwitchMode={(): void => this.handleModeSwitch(mode === 'time' ? 'date' : 'time')}
+          onSwitchMode={(): void =>
+            this.handleModeSwitch(mode === 'time' ? 'date' : 'time')
+          }
           texts={texts}
           hideNow={hideNow}
         />

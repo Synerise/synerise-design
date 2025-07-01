@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+
 import { ListType } from './ManageableList.types';
 
 type ManageableListProps = {
@@ -11,7 +12,8 @@ export const ManageableListContainer = styled.div<ManageableListProps>`
   flex-direction: column;
   align-items: flex-start;
   justify-content: flex-start;
-  padding: ${({ listType }): string => (listType === ListType.CONTENT ? '24px' : '0')};
+  padding: ${({ listType }): string =>
+    listType === ListType.CONTENT ? '24px' : '0'};
 
   & > div {
     width: 100%;

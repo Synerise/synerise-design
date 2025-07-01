@@ -1,4 +1,5 @@
 import type { ReactNode } from 'react';
+
 import type { DragHandlePropType } from '@synerise/ds-sortable';
 
 export type StepCardTexts = {
@@ -34,7 +35,10 @@ export type StepCardProps = {
   singleStepCondition?: boolean;
   headerRightSide?: ReactNode;
   dropLabel?: ReactNode;
-  renderHeaderRightSide?: (index: number, options?: { placeholder?: boolean }) => ReactNode;
+  renderHeaderRightSide?: (
+    index: number,
+    options?: { placeholder?: boolean },
+  ) => ReactNode;
   getMoveByLabel?: (moveByOffset: number) => string;
   additionalFields?: JSX.Element;
   dragHandleProps?: DragHandlePropType;

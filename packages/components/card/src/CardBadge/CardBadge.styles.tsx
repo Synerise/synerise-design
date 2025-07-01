@@ -1,6 +1,8 @@
 import styled from 'styled-components';
-import { ThemePropsVars } from '@synerise/ds-core';
-import { BadgeStatus } from './CardBadge.types';
+
+import { type ThemePropsVars } from '@synerise/ds-core';
+
+import { type BadgeStatus } from './CardBadge.types';
 
 const background = {
   success: 'green-600',
@@ -16,18 +18,23 @@ const color = {
   default: 'grey-400',
 };
 
-const boxShadow = (props: { status: BadgeStatus; theme: ThemePropsVars }): string => {
-  return props.status === 'default' ? `${props.theme.palette['grey-400']} 0px 0px 0px 1.5px inset` : 'none';
+const boxShadow = (props: {
+  status: BadgeStatus;
+  theme: ThemePropsVars;
+}): string => {
+  return props.status === 'default'
+    ? `${props.theme.palette['grey-400']} 0px 0px 0px 1.5px inset`
+    : 'none';
 };
 
-// eslint-disable-next-line import/prefer-default-export
 export const CardBadge = styled.div<{ status: BadgeStatus }>`
   width: 24px;
   height: 24px;
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: ${(props): string => props.theme.palette[background[props.status]]};
+  background-color: ${(props): string =>
+    props.theme.palette[background[props.status]]};
   box-shadow: ${(props): string => boxShadow(props)};
   border-radius: 50%;
   &&& svg {

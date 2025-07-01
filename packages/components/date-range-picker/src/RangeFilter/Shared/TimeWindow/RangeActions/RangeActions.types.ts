@@ -1,5 +1,6 @@
-import React from 'react';
-import { RangeActions } from '../TimeWindow.types';
+import type React from 'react';
+
+import { type RangeActions } from '../TimeWindow.types';
 
 export type RangeActionsProps = {
   texts: ActionsTexts;

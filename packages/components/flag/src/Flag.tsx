@@ -1,7 +1,8 @@
 import React from 'react';
+
 import * as S from './Flag.styles';
+import { type FlagProps } from './Flag.types';
 import * as Flags from './icons';
-import { FlagProps } from './Flag.types';
 
 export const FLAG_SIZE_RATIO = 15 / 21;
 const DEFAULT_SIZE = 24;

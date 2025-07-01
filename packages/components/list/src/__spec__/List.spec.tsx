@@ -1,10 +1,11 @@
 import React from 'react';
-import { renderWithProvider } from '@synerise/ds-utils/dist/testing';
+
 import Radio from '@synerise/ds-radio';
+import { renderWithProvider } from '@synerise/ds-utils';
 import { fireEvent } from '@testing-library/react';
 
-import List from '../index';
 import { isNestedArray } from '../List';
+import List from '../index';
 
 describe('List', () => {
   const defaultData = [['Option A', 'Option B']];
@@ -14,8 +15,10 @@ describe('List', () => {
     const { getByText } = renderWithProvider(
       <List
         dataSource={defaultData}
-        renderItem={(item): React.ReactNode => <List.Item size="small">{item}</List.Item>}
-      />
+        renderItem={(item): React.ReactNode => (
+          <List.Item size="small">{item}</List.Item>
+        )}
+      />,
     );
 
     // ASSERT
@@ -31,7 +34,7 @@ describe('List', () => {
         dataSource={defaultData}
         header={HEADER_TEXT}
         renderItem={(item): React.ReactNode => <List.Item>{item}</List.Item>}
-      />
+      />,
     );
 
     // ASSERT
@@ -48,7 +51,7 @@ describe('List', () => {
         dataSource={data}
         header={HEADER_TEXT}
         renderItem={(item): React.ReactNode => <List.Item>{item}</List.Item>}
-      />
+      />,
     );
 
     // ASSERT
@@ -79,7 +82,7 @@ describe('List', () => {
             {item}
           </List.Item>
         )}
-      />
+      />,
     );
 
     // ACT
@@ -104,10 +107,11 @@ describe('List', () => {
         dataSource={data}
         radio
         options={{ defaultValue: 'A' }}
-        renderItem={(item: { value: string; label: string | React.ReactNode }): React.ReactNode => (
-          <Radio value={item.value}>{item.label}</Radio>
-        )}
-      />
+        renderItem={(item: {
+          value: string;
+          label: string | React.ReactNode;
+        }): React.ReactNode => <Radio value={item.value}>{item.label}</Radio>}
+      />,
     );
 
     // ASSERT
@@ -119,12 +123,16 @@ describe('List', () => {
     const { container } = renderWithProvider(
       <List
         dataSource={defaultData}
-        renderItem={(item): React.ReactNode => <List.Item size="medium">{item}</List.Item>}
-      />
+        renderItem={(item): React.ReactNode => (
+          <List.Item size="medium">{item}</List.Item>
+        )}
+      />,
     );
 
     // ASSERT
-    expect(container.querySelector('.ant-list-items > li')).toHaveStyle('padding: 12px 12px 12px 16px');
+    expect(container.querySelector('.ant-list-items > li')).toHaveStyle(
+      'padding: 12px 12px 12px 16px',
+    );
   });
   it('should recognize if dataSource is nested or not', () => {
     // ARRANGE

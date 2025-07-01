@@ -1,4 +1,4 @@
-import { CardTabProps, PrefixProps } from '../CardTab.types';
+import { type CardTabProps, type PrefixProps } from '../CardTab.types';
 
 export type CardTabPrefixProps = PrefixProps & {
   draggable?: boolean;

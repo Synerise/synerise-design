@@ -1,5 +1,10 @@
-import React, { ReactNode } from 'react';
-import { MediumParagraph, SmallParagraph, XSmallParagraph } from './CommonElements';
+import React, { type ReactNode } from 'react';
+
+import {
+  MediumParagraph,
+  SmallParagraph,
+  XSmallParagraph,
+} from './CommonElements';
 
 type TextProps = {
   size?: 'medium' | 'small' | 'xsmall';

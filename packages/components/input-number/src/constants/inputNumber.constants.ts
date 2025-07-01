@@ -1,4 +1,4 @@
-import { Delimiter } from '@synerise/ds-data-format';
+import { type Delimiter } from '@synerise/ds-data-format';
 
 export const MAXIMUM_FRACTION_DIGITS = 20;
 

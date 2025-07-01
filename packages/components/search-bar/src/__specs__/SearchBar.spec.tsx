@@ -1,8 +1,9 @@
 import React from 'react';
-import { renderWithProvider } from '@synerise/ds-utils/dist/testing';
+
+import { renderWithProvider } from '@synerise/ds-utils';
+import { fireEvent, waitFor } from '@testing-library/react';
+
 import SearchBar from './../SearchBar';
-import { fireEvent } from '@testing-library/react';
-import { waitFor } from '@testing-library/react';
 
 describe('SearchBar', () => {
   const PLACEHOLDER = 'placeholder';
@@ -11,7 +12,11 @@ describe('SearchBar', () => {
 
   it('should render', () => {
     const { getByPlaceholderText } = renderWithProvider(
-      <SearchBar placeholder={PLACEHOLDER} onSearchChange={() => {}} value={''} />
+      <SearchBar
+        placeholder={PLACEHOLDER}
+        onSearchChange={() => {}}
+        value={''}
+      />,
     );
 
     expect(getByPlaceholderText(PLACEHOLDER)).toBeTruthy();
@@ -19,7 +24,11 @@ describe('SearchBar', () => {
 
   it('should change value', () => {
     const { getByPlaceholderText } = renderWithProvider(
-      <SearchBar placeholder={PLACEHOLDER} onSearchChange={onChange} value={''} />
+      <SearchBar
+        placeholder={PLACEHOLDER}
+        onSearchChange={onChange}
+        value={''}
+      />,
     );
 
     const input = getByPlaceholderText(PLACEHOLDER) as HTMLInputElement;
@@ -31,7 +40,12 @@ describe('SearchBar', () => {
 
   it('autofocus', async () => {
     const { getByTestId } = renderWithProvider(
-      <SearchBar placeholder={PLACEHOLDER} onSearchChange={() => {}} autofocus={true} value={''} />
+      <SearchBar
+        placeholder={PLACEHOLDER}
+        onSearchChange={() => {}}
+        autofocus={true}
+        value={''}
+      />,
     );
     const input = getByTestId('input-autosize-input');
     await waitFor(() => expect(input).toHaveFocus());
@@ -46,7 +60,7 @@ describe('SearchBar', () => {
         autofocus={true}
         autofocusDelay={DELAY}
         value={''}
-      />
+      />,
     );
     const input = getByTestId('input-autosize-input');
     await waitFor(() => expect(input).toHaveFocus());

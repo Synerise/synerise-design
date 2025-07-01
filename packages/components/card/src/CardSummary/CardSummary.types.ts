@@ -1,4 +1,5 @@
-import type { ReactElement, ReactNode, Key } from 'react';
+import type { Key, ReactElement, ReactNode } from 'react';
+
 import type { WithHTMLAttributes } from '@synerise/ds-utils';
 
 export type CardSummaryItemProps = WithHTMLAttributes<

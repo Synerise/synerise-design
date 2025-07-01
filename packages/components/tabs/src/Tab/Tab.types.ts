@@ -1,4 +1,5 @@
 import type { RefObject } from 'react';
+
 import type { TabItem } from '../Tabs.types';
 
 export type TabProps = TabItem & {

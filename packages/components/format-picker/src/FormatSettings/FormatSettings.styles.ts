@@ -1,8 +1,9 @@
 import styled from 'styled-components';
-import DSListItem from '@synerise/ds-list-item';
-import { SuffixWrapper } from '@synerise/ds-list-item/dist/components/Text/Text.styles';
+
 import Button from '@synerise/ds-button';
 import ButtonGroup from '@synerise/ds-button-group';
+import DSListItem from '@synerise/ds-list-item';
+import { SuffixWrapper } from '@synerise/ds-list-item/dist/components/Text/Text.styles';
 
 export const FormatSettingsContainer = styled.div`
   display: flex;
@@ -83,7 +84,7 @@ export const DropdownWrapper = styled.div`
   justify-content: flex-start;
   width: 100%;
   padding: 8px;
-  background: ${props => props.theme.palette.white};
+  background: ${(props) => props.theme.palette.white};
 `;
 
 export const ListItem = styled(DSListItem)`

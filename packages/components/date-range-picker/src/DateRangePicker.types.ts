@@ -1,20 +1,23 @@
-import { ReactNode } from 'react';
-import { IntlShape } from 'react-intl';
-import { PopoverProps } from 'antd/lib/popover';
+import { type PopoverProps } from 'antd/lib/popover';
+import { type ReactNode } from 'react';
+import { type IntlShape } from 'react-intl';
 
-import { DateToFormatOptions } from '@synerise/ds-data-format';
+import { type DateToFormatOptions } from '@synerise/ds-data-format';
 
-import { DateFilter, DateRange, DateRangePreset, RelativeUnits } from './date.types';
-import { FilterDefinition } from './RangeFilter/RangeFilter.types';
-import { SavedFilter } from './RangeFilter/Shared/FilterDropdown/FilterDropdown.types';
-import { Props as FooterProps } from './Footer/Footer.types';
-import { RangePickerInputProps } from './RangePickerInput/RangePickerInput.types';
+import { type Props as FooterProps } from './Footer/Footer.types';
+import { type FilterDefinition } from './RangeFilter/RangeFilter.types';
+import { type SavedFilter } from './RangeFilter/Shared/FilterDropdown/FilterDropdown.types';
 import {
-  DateLimitMode,
-  RangeDisplayMode,
+  type DateLimitMode,
+  type RangeDisplayMode,
 } from './RangeFilter/Shared/TimeWindow/RangeFormContainer/RangeForm/RangeForm.types';
-
-export { DateRange } from './date.types';
+import { type RangePickerInputProps } from './RangePickerInput/RangePickerInput.types';
+import {
+  type DateFilter,
+  type DateRange,
+  type DateRangePreset,
+  type RelativeUnits,
+} from './date.types';
 
 export type CustomColorArrow =
   | 'blue'
@@ -87,7 +90,10 @@ export type DateRangePickerProps = {
   valueTransformer?: (value: DateRange) => DateRange;
   arrowColor?: AdditionalMapper;
   disableAbsoluteTimepickerInRelative?: boolean;
-  rangePickerInputProps?: Omit<RangePickerInputProps, 'disabled' | 'readOnly'> & {
+  rangePickerInputProps?: Omit<
+    RangePickerInputProps,
+    'disabled' | 'readOnly'
+  > & {
     /**
      * @deprecated - pass 'disabled' prop directly to DateRangePicker
      */
@@ -98,7 +104,7 @@ export type DateRangePickerProps = {
     readOnly?: RangePickerInputProps['readOnly'];
   };
   allowedFilterTypes?: string[];
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any, @typescript-eslint/no-unused-vars
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   renderPopoverTrigger?: (...args: any) => JSX.Element;
   isTruncateMs?: boolean;
   filterValueSelectionModes?: DateLimitMode[];

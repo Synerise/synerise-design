@@ -1,11 +1,13 @@
-import React, { ReactNode } from 'react';
-import moment from 'moment';
 import dayjs from 'dayjs';
+import moment from 'moment';
+import React, { type ReactNode } from 'react';
 
+import {
+  type DataFormatNotationType,
+  FormattedDateTime,
+} from '@synerise/ds-data-format';
+import { renderWithProvider } from '@synerise/ds-utils';
 import { screen } from '@testing-library/react';
-
-import { renderWithProvider } from '@synerise/ds-utils/dist/testing';
-import { FormattedDateTime, DataFormatNotationType } from '@synerise/ds-data-format';
 
 const DATE_TO_FORMAT = new Date('2023-06-25T15:40:00');
 const MOMENT_TO_FORMAT = moment(DATE_TO_FORMAT);
@@ -24,23 +26,27 @@ const EU_FORMATTED_TIME = '15:40';
 const WRAPPER_TESTID = 'test_result';
 const renderInWrapper = (content: ReactNode, ...rest) => {
   return renderWithProvider(
-    <div data-testid={WRAPPER_TESTID}>
-      {content}
-    </div>,
-    ...rest
+    <div data-testid={WRAPPER_TESTID}>{content}</div>,
+    ...rest,
   );
-}
+};
 const normalizedResult = () => {
-  return screen.getByTestId(WRAPPER_TESTID).textContent?.replace(/\u00A0|\u202F/g, ' ')
-}
+  return screen
+    .getByTestId(WRAPPER_TESTID)
+    .textContent?.replace(/\u00A0|\u202F/g, ' ');
+};
 
 describe('FormattedDateTime', () => {
   it('should render properly datetime with default notation', () => {
     // ARRANGE
-    const { getByText } = renderWithProvider(<FormattedDateTime value={DATE_TO_FORMAT} />);
+    const { getByText } = renderWithProvider(
+      <FormattedDateTime value={DATE_TO_FORMAT} />,
+    );
 
     // ASSERT
-    expect(getByText(`${EU_FORMATTED_DATE}, ${EU_FORMATTED_TIME}`)).toBeTruthy();
+    expect(
+      getByText(`${EU_FORMATTED_DATE}, ${EU_FORMATTED_TIME}`),
+    ).toBeTruthy();
   });
 
   it('should render properly datetime with EU notation', () => {
@@ -48,22 +54,24 @@ describe('FormattedDateTime', () => {
     const { getByText } = renderWithProvider(
       <FormattedDateTime value={DATE_TO_FORMAT} />,
       {},
-      { notation: EU_NOTATION }
+      { notation: EU_NOTATION },
     );
 
     // ASSERT
-    expect(getByText(`${EU_FORMATTED_DATE}, ${EU_FORMATTED_TIME}`)).toBeTruthy();
+    expect(
+      getByText(`${EU_FORMATTED_DATE}, ${EU_FORMATTED_TIME}`),
+    ).toBeTruthy();
   });
 
   it('should render properly datetime with US notation', () => {
     renderInWrapper(
       <FormattedDateTime value={DATE_TO_FORMAT} />,
       {},
-      { notation: US_NOTATION }
+      { notation: US_NOTATION },
     );
-    
+
     expect(normalizedResult()).toBe(
-      `${US_FORMATTED_DATE}, ${US_FORMATTED_TIME}`
+      `${US_FORMATTED_DATE}, ${US_FORMATTED_TIME}`,
     );
   });
 
@@ -71,31 +79,40 @@ describe('FormattedDateTime', () => {
     renderInWrapper(
       <FormattedDateTime value={MOMENT_TO_FORMAT} />,
       {},
-      { notation: US_NOTATION }
+      { notation: US_NOTATION },
     );
-    expect(normalizedResult()).toBe(`${US_FORMATTED_DATE}, ${US_FORMATTED_TIME}`);
+    expect(normalizedResult()).toBe(
+      `${US_FORMATTED_DATE}, ${US_FORMATTED_TIME}`,
+    );
   });
 
   it('should render properly datetime from daysjs', () => {
     renderInWrapper(
       <FormattedDateTime value={DAYJS_TO_FORMAT} />,
       {},
-      { notation: US_NOTATION }
+      { notation: US_NOTATION },
     );
 
-    expect(normalizedResult()).toBe(`${US_FORMATTED_DATE}, ${US_FORMATTED_TIME}`);
+    expect(normalizedResult()).toBe(
+      `${US_FORMATTED_DATE}, ${US_FORMATTED_TIME}`,
+    );
   });
 
   it('should render properly datetime with options', () => {
     renderInWrapper(
       <FormattedDateTime
         value={DAYJS_TO_FORMAT}
-        options={{ dateOptions: { month: 'long' }, timeOptions: { second: 'numeric' } }}
+        options={{
+          dateOptions: { month: 'long' },
+          timeOptions: { second: 'numeric' },
+        }}
       />,
       {},
-      { notation: US_NOTATION }
+      { notation: US_NOTATION },
     );
 
-    expect(normalizedResult()).toBe(`${US_FORMATTED_LONG_DATE}, ${US_FORMATTED_TIME_WITH_SECONDS}`);
+    expect(normalizedResult()).toBe(
+      `${US_FORMATTED_LONG_DATE}, ${US_FORMATTED_TIME_WITH_SECONDS}`,
+    );
   });
 });

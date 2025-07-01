@@ -1,6 +1,13 @@
 import React from 'react';
-import { ArrowRightM, ArrowLeftM, SinceArrowRightM } from '@synerise/ds-icon';
-import { RelativeDateRangePreset, AbsoluteDateRangePreset, RelativeUnits, RangeKey } from './date.types';
+
+import { ArrowLeftM, ArrowRightM, SinceArrowRightM } from '@synerise/ds-icon';
+
+import {
+  type AbsoluteDateRangePreset,
+  type RangeKey,
+  type RelativeDateRangePreset,
+  type RelativeUnits,
+} from './date.types';
 
 export const SECONDS = 'SECONDS';
 export const MINUTES = 'MINUTES';
@@ -13,7 +20,15 @@ export const ABSOLUTE = 'ABSOLUTE';
 export const RELATIVE = 'RELATIVE';
 export const RELATIVE_OFFSET_MAX = 999999;
 export const RELATIVE_DURATION_MAX = 999999;
-export const RELATIVE_UNITS: RelativeUnits[] = [SECONDS, MINUTES, HOURS, DAYS, WEEKS, MONTHS, YEARS];
+export const RELATIVE_UNITS: RelativeUnits[] = [
+  SECONDS,
+  MINUTES,
+  HOURS,
+  DAYS,
+  WEEKS,
+  MONTHS,
+  YEARS,
+];
 export const ALL_TIME: RangeKey = 'ALL_TIME';
 
 export const RANGES_MODE = {
@@ -33,7 +48,7 @@ export const range = (start: number, end: number): number[] => {
     return [];
   }
   const size = end - start;
-  return Array.from(Array(size).keys()).map(i => i + start);
+  return Array.from(Array(size).keys()).map((i) => i + start);
 };
 export const CUSTOM_RANGE_KEY = 'custom';
 export const DURATION_MODIFIERS = {

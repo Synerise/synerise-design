@@ -1,14 +1,20 @@
-import React, { ChangeEvent, useEffect, useLayoutEffect, useRef, useState } from 'react';
-import Input, { InputRef } from 'antd/lib/input';
+import Input, { type InputRef } from 'antd/lib/input';
+import React, {
+  type ChangeEvent,
+  useEffect,
+  useLayoutEffect,
+  useRef,
+  useState,
+} from 'react';
 
-import Tooltip from '@synerise/ds-tooltip';
-import { useOnClickOutside, usePrevious } from '@synerise/ds-utils';
 import { theme } from '@synerise/ds-core';
 import Icon, { Close3M } from '@synerise/ds-icon';
+import Tooltip from '@synerise/ds-tooltip';
+import { useOnClickOutside, usePrevious } from '@synerise/ds-utils';
 
 import * as S from '../../Search.styles';
-import { SearchInputProps } from './SearchInput.types';
 import SearchButton from '../SearchButton/SearchButton';
+import { type SearchInputProps } from './SearchInput.types';
 
 const SearchInput = ({
   alwaysExpanded,
@@ -36,7 +42,9 @@ const SearchInput = ({
 }: SearchInputProps) => {
   const inputRef = useRef<InputRef>(null);
   const wrapperRef = useRef<HTMLDivElement>(null);
-  const [isInputOpen, setIsInputOpen] = useState(alwaysExpanded || !!value || !!filterLabel);
+  const [isInputOpen, setIsInputOpen] = useState(
+    alwaysExpanded || !!value || !!filterLabel,
+  );
   const [inputOffset, setInputOffset] = useState(0);
   const [isResultChosen, setIsResultChosen] = useState(false);
   const [isInputFocused, setIsInputFocused] = useState(true);
@@ -50,7 +58,10 @@ const SearchInput = ({
     if (prevFocusTrigger !== undefined && prevFocusTrigger !== focusTrigger) {
       focusInput();
     }
-    if (prevToggleTrigger !== undefined && prevToggleTrigger !== toggleTrigger) {
+    if (
+      prevToggleTrigger !== undefined &&
+      prevToggleTrigger !== toggleTrigger
+    ) {
       toggleOpen();
     }
   });
@@ -75,13 +86,15 @@ const SearchInput = ({
     ref && setInputOffset(ref.getBoundingClientRect().width);
   };
 
-  const handleChangeValue = ({ target: { value: changedValue } }: ChangeEvent<HTMLInputElement>) => {
+  const handleChangeValue = ({
+    target: { value: changedValue },
+  }: ChangeEvent<HTMLInputElement>) => {
     onChange(changedValue);
     setIsResultChosen(false);
   };
 
   const toggleOpen = () => {
-    setIsInputOpen(open => {
+    setIsInputOpen((open) => {
       onToggle && onToggle(!open);
       return !open;
     });
@@ -114,7 +127,11 @@ const SearchInput = ({
     <S.SearchInputWrapper ref={wrapperRef}>
       {!disabled && (
         <S.SearchInputContent
-          className={renderInputOpened ? 'is-open search-input-wrapper' : 'search-input-wrapper'}
+          className={
+            renderInputOpened
+              ? 'is-open search-input-wrapper'
+              : 'search-input-wrapper'
+          }
           offset={inputOffset}
           filterLabel={filterLabel}
           onClick={handleSearchInputContentClick}
@@ -122,8 +139,13 @@ const SearchInput = ({
           <S.LeftSide isOpen={isInputOpen}>
             {filterLabel && (
               <S.Filter ref={handleOffsetWithFilter}>
-                {filterLabel.icon && !isResultChosen && <Icon component={filterLabel.icon} />}
-                <span>{filterLabel[filterLookupKey || ''] || filterLabel[textLookupKey || '']}</span>
+                {filterLabel.icon && !isResultChosen && (
+                  <Icon component={filterLabel.icon} />
+                )}
+                <span>
+                  {filterLabel[filterLookupKey || ''] ||
+                    filterLabel[textLookupKey || '']}
+                </span>
               </S.Filter>
             )}
           </S.LeftSide>

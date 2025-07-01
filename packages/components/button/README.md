@@ -1,5 +1,6 @@
 ```js noeditor
 import { version } from './package.json';
+
 `Current version: ${version}`;
 ```
 
@@ -70,20 +71,20 @@ import { AngleDownS } from '@synerise/ds-icon';
 
 ## ButtonToggle
 
-Special type of Button, with two states: default and activated (selected). Inherits most props from Button. 
+Special type of Button, with two states: default and activated (selected). Inherits most props from Button.
 
-| Property       | Description                                                                  | Type                                                                                                 | Default |
-| -------------- | ---------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------- | ------- |
-| disabled       | Defines if the button is disabled.                                           | boolean                                                                                              | `false` |
-| groupVariant   | Defines shape of the button                                                  | `left-rounded` / `squared` / `right-rounded`                                                         | -       |
-| justifyContent | Defines justify of content in button.                                        | JustifyContentProperty (React.CSSPRroperties)                                                        | -       |
-| loading        | Sets the loading status of button.                                           | boolean / `{ delay?: number }`                                                                       | `false` |
-| mode           | Defines the mode of the button content. It affects content inside the button | `single-icon` / `split` / `two-icons` /`label-icon` / `icon-label`                                   | -       |
-| onClick        | Callback executed after clicking the button                                  | (event: React.MouseEvent) => void                                                                    | -       |
-| type           | Defines the type of the button.                                              | `solid` / `ghost`                                                                                    | `solid` |
-| error          | Defines if the button has error button styles .                              | boolean                                                                                              | `false` |
-| activated      | Defines if the button has activated button styles .                          | boolean                                                                                              | `false` |
-| tagProps       | Renders a status tag next to button label                                    | TagProps see ds-tag                                                                                  | -       |
+| Property       | Description                                                                  | Type                                                               | Default |
+| -------------- | ---------------------------------------------------------------------------- | ------------------------------------------------------------------ | ------- |
+| disabled       | Defines if the button is disabled.                                           | boolean                                                            | `false` |
+| groupVariant   | Defines shape of the button                                                  | `left-rounded` / `squared` / `right-rounded`                       | -       |
+| justifyContent | Defines justify of content in button.                                        | JustifyContentProperty (React.CSSPRroperties)                      | -       |
+| loading        | Sets the loading status of button.                                           | boolean / `{ delay?: number }`                                     | `false` |
+| mode           | Defines the mode of the button content. It affects content inside the button | `single-icon` / `split` / `two-icons` /`label-icon` / `icon-label` | -       |
+| onClick        | Callback executed after clicking the button                                  | (event: React.MouseEvent) => void                                  | -       |
+| type           | Defines the type of the button.                                              | `solid` / `ghost`                                                  | `solid` |
+| error          | Defines if the button has error button styles .                              | boolean                                                            | `false` |
+| activated      | Defines if the button has activated button styles .                          | boolean                                                            | `false` |
+| tagProps       | Renders a status tag next to button label                                    | TagProps see ds-tag                                                | -       |
 
 ## Button.Creator
 
