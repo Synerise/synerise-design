@@ -52,6 +52,7 @@ import Popconfirm from '@synerise/ds-popconfirm';
 | hideButtons         | prop to hide buttons                   | React.ReactNode              | -                                    |
 | titlePadding        | prop to set padding                    | boolean                      | `false`                              |
 | buttonsAlign        | Sets footer buttons align              | 'right' / 'left' / undefined | `'right'`                            |
+| staticVisible       | stay open even after click outside     | boolean                      | `false`                              |
 
 # Popcofirm.ConfirmMessage
 

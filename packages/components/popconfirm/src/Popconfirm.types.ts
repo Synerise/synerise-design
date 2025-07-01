@@ -21,6 +21,7 @@ export type PopconfirmProps = Omit<AntdPopconfirmProps, 'okType'> & {
   buttonsAlign?: 'left' | 'right';
   okType?: AntdPopconfirmProps['okType'] | string;
   children?: ReactNode;
+  staticVisible?: boolean;
 };
 
 export type PopconfirmType = {
