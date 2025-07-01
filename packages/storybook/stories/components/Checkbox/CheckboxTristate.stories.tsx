@@ -1,14 +1,15 @@
 import React from 'react';
 import { Meta, StoryObj } from '@storybook/react-webpack5';
 import { useArgs } from 'storybook/preview-api';
+import { fn } from 'storybook/test';
 
-import CheckboxTristate, { CheckboxTristateProps } from '@synerise/ds-checkbox-tristate';
+import Checkbox, { CheckboxTristateProps } from '@synerise/ds-checkbox';
 import { BOOLEAN_CONTROL, CLASSNAME_ARG_CONTROL, PREFIXCLS_ARG_CONTROL, controlFromOptionsArray, REACT_NODE_AS_STRING, STRING_CONTROL, STYLE_ARG_CONTROL } from '../../utils';
 
 export default {
   title: 'Components/Checkbox/CheckboxTristate',
   tags: ['autodocs'],
-  component: CheckboxTristate,
+  component: Checkbox,
 
   parameters: {
     controls: {
@@ -30,23 +31,29 @@ export default {
     name: STRING_CONTROL,
     id: STRING_CONTROL,
     value: STRING_CONTROL,
+  },
+  args: {
+    onChange: fn()
   }
 } as Meta<CheckboxTristateProps>;
 
 export const Default: StoryObj<CheckboxTristateProps> = {
-  render: (args) => <CheckboxTristate {...args} />
+  render: (args) => <Checkbox {...args} tristate />
 }
 
 export const Controlled: StoryObj<CheckboxTristateProps> = {
   render: (args) => {
     const [{ checked }, updateArgs] = useArgs();
-    function onChange() {
+    function onChange(event) {
+      args.onChange?.(event)
       updateArgs({ checked: !checked });
     }
 
-    return <CheckboxTristate
+    return <Checkbox
+      checked={undefined}
       {...args}
       onChange={onChange}
+      tristate
     />
   },
   parameters: {

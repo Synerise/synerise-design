@@ -1,7 +1,9 @@
 import { type ReactNode } from 'react';
 
-import { type CheckboxProps } from '@synerise/ds-checkbox';
-import { type CheckboxTristateProps } from '@synerise/ds-checkbox-tristate';
+import {
+  type CheckboxProps,
+  type CheckboxTristateProps,
+} from '@synerise/ds-checkbox';
 import { type TooltipProps } from '@synerise/ds-tooltip';
 import { type WithHTMLAttributes } from '@synerise/ds-utils';
 
