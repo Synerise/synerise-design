@@ -1,16 +1,15 @@
-import React, { ReactNode, useMemo } from 'react';
+import React, { type ReactNode, useMemo } from 'react';
 
-import Factors from '@synerise/ds-factors';
+import { theme } from '@synerise/ds-core';
+import Factors, { type ParameterValueType } from '@synerise/ds-factors';
+import Icon, { CloseS } from '@synerise/ds-icon';
 import Operators from '@synerise/ds-operators';
 import Tooltip from '@synerise/ds-tooltip';
-import Icon, { CloseS } from '@synerise/ds-icon';
-import { theme } from '@synerise/ds-core';
 import { getPopupContainer } from '@synerise/ds-utils';
-import type { ParameterValueType } from '@synerise/ds-factors';
 
-import { FACTOR, OPERATOR, PARAMETER } from '../../constants';
 import * as S from '../../Condition.style';
-import * as T from './ConditionRow.types';
+import { FACTOR, OPERATOR, PARAMETER } from '../../constants';
+import type * as T from './ConditionRow.types';
 
 export const ConditionRow = ({
   index,
@@ -45,7 +44,11 @@ export const ConditionRow = ({
   const conditionParameterErrorText = conditionParameter?.errorText;
   const conditionOperatorErrorText = conditionOperator?.errorText;
 
-  const rowHasError = !!(conditionParameterErrorText || conditionOperatorErrorText || conditionFactorErrorText);
+  const rowHasError = !!(
+    conditionParameterErrorText ||
+    conditionOperatorErrorText ||
+    conditionFactorErrorText
+  );
 
   const conditionErrorMessage = useMemo(() => {
     let errorText: ReactNode | string;
@@ -57,24 +60,36 @@ export const ConditionRow = ({
       errorText = conditionFactorErrorText;
     }
     return errorText ? <S.ErrorWrapper>{errorText}</S.ErrorWrapper> : <></>;
-  }, [conditionOperatorErrorText, conditionFactorErrorText, conditionParameterErrorText]);
+  }, [
+    conditionOperatorErrorText,
+    conditionFactorErrorText,
+    conditionParameterErrorText,
+  ]);
 
-  const removeConditionTrigger = !readOnly && removeCondition && conditionsNumber > minConditionLength && (
-    <S.RemoveIconWrapper onClick={() => removeCondition(stepId, conditionId)} className="ds-conditions-remove-row">
-      <Tooltip title={texts.removeConditionRowTooltip} trigger={['hover']}>
-        <Icon component={<CloseS />} color={theme.palette['red-600']} />
-      </Tooltip>
-    </S.RemoveIconWrapper>
-  );
+  const removeConditionTrigger = !readOnly &&
+    removeCondition &&
+    conditionsNumber > minConditionLength && (
+      <S.RemoveIconWrapper
+        onClick={() => removeCondition(stepId, conditionId)}
+        className="ds-conditions-remove-row"
+      >
+        <Tooltip title={texts.removeConditionRowTooltip} trigger={['hover']}>
+          <Icon component={<CloseS />} color={theme.palette['red-600']} />
+        </Tooltip>
+      </S.RemoveIconWrapper>
+    );
 
   const renderConditionParameterWrapper = Boolean(conditionParameter);
   const renderConditionOperatorWrapper = Boolean(
     (!conditionParameter ||
-      (conditionParameter?.value && (conditionParameter?.value as ParameterValueType).name !== '')) &&
-      conditionOperator
+      (conditionParameter?.value &&
+        (conditionParameter?.value as ParameterValueType).name !== '')) &&
+      conditionOperator,
   );
   const renderConditionFactorWrapper = Boolean(
-    conditionFactor !== undefined && conditionOperator?.value && conditionFactor?.availableFactorTypes !== null
+    conditionFactor !== undefined &&
+      conditionOperator?.value &&
+      conditionFactor?.availableFactorTypes !== null,
   );
 
   let lastConditionWrapper = '';
@@ -117,7 +132,7 @@ export const ConditionRow = ({
                 addCondition &&
                   index + 1 === conditionsNumber &&
                   maxConditionLength !== undefined &&
-                  conditionsNumber === maxConditionLength
+                  conditionsNumber === maxConditionLength,
               )
         }
         readOnly={readOnly}
@@ -145,10 +160,14 @@ export const ConditionRow = ({
                 }
                 {...conditionParameter}
                 inputProps={inputProps}
-                getPopupContainerOverride={getPopupContainerOverride || getPopupContainer}
+                getPopupContainerOverride={
+                  getPopupContainerOverride || getPopupContainer
+                }
                 onActivate={() => onActivate && onActivate(PARAMETER)}
                 onDeactivate={onDeactivate}
-                onChangeValue={value => selectParameter(stepId, conditionId, value)}
+                onChangeValue={(value) =>
+                  selectParameter(stepId, conditionId, value)
+                }
                 opened={
                   hasPriority &&
                   stepId === currentStepId &&
@@ -170,10 +189,12 @@ export const ConditionRow = ({
                 groups={[]}
                 items={[]}
                 {...conditionOperator}
-                getPopupContainerOverride={getPopupContainerOverride || getPopupContainer}
+                getPopupContainerOverride={
+                  getPopupContainerOverride || getPopupContainer
+                }
                 onActivate={() => onActivate && onActivate(OPERATOR)}
                 onDeactivate={onDeactivate}
-                onChange={value => selectOperator(stepId, conditionId, value)}
+                onChange={(value) => selectOperator(stepId, conditionId, value)}
                 opened={
                   hasPriority &&
                   stepId === currentStepId &&
@@ -208,11 +229,17 @@ export const ConditionRow = ({
                   }
                   {...conditionFactorProps}
                   inputProps={inputProps}
-                  getPopupContainerOverride={getPopupContainerOverride || getPopupContainer}
+                  getPopupContainerOverride={
+                    getPopupContainerOverride || getPopupContainer
+                  }
                   onActivate={() => onActivate && onActivate(FACTOR)}
                   onDeactivate={onDeactivate}
-                  setSelectedFactorType={factorType => setStepConditionFactorType(stepId, conditionId, factorType)}
-                  onChangeValue={value => setStepConditionFactorValue(stepId, conditionId, value)}
+                  setSelectedFactorType={(factorType) =>
+                    setStepConditionFactorType(stepId, conditionId, factorType)
+                  }
+                  onChangeValue={(value) =>
+                    setStepConditionFactorValue(stepId, conditionId, value)
+                  }
                   factorKey={conditionId}
                   error={Boolean(conditionFactorProps.errorText)}
                   opened={

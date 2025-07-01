@@ -1,6 +1,6 @@
-import { DSColumnType } from '../../Table.types';
-import { SortStateAPI } from '../useSortState';
-import { GroupType } from '../../GroupTable/GroupTable.types';
+import { type DSColumnType } from '../../Table.types';
+import { type SortStateAPI } from '../useSortState';
+import { type GroupType } from '../../GroupTable/GroupTable.types';
 import { getColumnsWithActiveSorting, sortRows, sortDataSourceRows } from '../groupedColumnsSort';
 
 // For tests column data can be any

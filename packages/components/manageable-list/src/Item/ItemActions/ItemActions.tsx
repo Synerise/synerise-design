@@ -1,9 +1,11 @@
 import React from 'react';
-import Icon, { EditS, DuplicateS, CloseS } from '@synerise/ds-icon';
-import Tooltip from '@synerise/ds-tooltip';
+
 import { theme } from '@synerise/ds-core';
+import Icon, { CloseS, DuplicateS, EditS } from '@synerise/ds-icon';
+import Tooltip from '@synerise/ds-tooltip';
+
 import * as S from './ItemActions.styles';
-import { ItemActionsProps } from './ItemActions.types';
+import { type ItemActionsProps } from './ItemActions.types';
 
 const DEFAULT_COLOR = theme.palette['grey-500'];
 
@@ -23,7 +25,7 @@ const ItemActions: React.FC<ItemActionsProps> = ({
       const { id } = item;
       duplicateAction && duplicateAction({ id });
     },
-    [item, duplicateAction]
+    [item, duplicateAction],
   );
 
   const handleRemove = React.useCallback(
@@ -32,7 +34,7 @@ const ItemActions: React.FC<ItemActionsProps> = ({
       const { id } = item;
       removeAction && removeAction({ id });
     },
-    [item, removeAction]
+    [item, removeAction],
   );
 
   const handleEdit = React.useCallback(
@@ -40,7 +42,7 @@ const ItemActions: React.FC<ItemActionsProps> = ({
       event.stopPropagation();
       editAction && editAction();
     },
-    [editAction]
+    [editAction],
   );
 
   const renderIcon = React.useCallback(
@@ -50,19 +52,24 @@ const ItemActions: React.FC<ItemActionsProps> = ({
       color: string,
       handleClick: (event: React.MouseEvent) => void,
       testId: string,
-      tooltip: string | React.ReactNode
+      tooltip: string | React.ReactNode,
     ): React.ReactNode => {
       return (
         condition && (
           <Tooltip type="default" trigger="hover" title={tooltip}>
             <div data-testid={testId}>
-              <Icon component={icon} size={24} color={color} onClick={handleClick} />
+              <Icon
+                component={icon}
+                size={24}
+                color={color}
+                onClick={handleClick}
+              />
             </div>
           </Tooltip>
         )
       );
     },
-    []
+    [],
   );
   const renderAdditionalActions = React.useMemo(() => {
     return (
@@ -74,8 +81,8 @@ const ItemActions: React.FC<ItemActionsProps> = ({
           action.color || DEFAULT_COLOR,
           () => action.onClick(item),
           `additional-action-${index}`,
-          action.tooltip
-        )
+          action.tooltip,
+        ),
       )
     );
   }, [additionalActions, item, renderIcon]);
@@ -83,14 +90,21 @@ const ItemActions: React.FC<ItemActionsProps> = ({
   return (
     <S.ItemActionsWrapper>
       {additionalActions && renderAdditionalActions}
-      {renderIcon(Boolean(item.canUpdate), <EditS />, DEFAULT_COLOR, handleEdit, 'list-item-edit', editActionTooltip)}
+      {renderIcon(
+        Boolean(item.canUpdate),
+        <EditS />,
+        DEFAULT_COLOR,
+        handleEdit,
+        'list-item-edit',
+        editActionTooltip,
+      )}
       {renderIcon(
         Boolean(item.canDuplicate),
         <DuplicateS />,
         DEFAULT_COLOR,
         handleDuplicate,
         'list-item-duplicate',
-        duplicateActionTooltip
+        duplicateActionTooltip,
       )}
       {renderIcon(
         Boolean(item.canDelete),
@@ -98,7 +112,7 @@ const ItemActions: React.FC<ItemActionsProps> = ({
         theme.palette['red-600'],
         handleRemove,
         'list-item-remove',
-        removeActionTooltip
+        removeActionTooltip,
       )}
     </S.ItemActionsWrapper>
   );

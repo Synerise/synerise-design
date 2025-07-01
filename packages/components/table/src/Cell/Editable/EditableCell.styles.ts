@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+
 import { IconContainer } from '@synerise/ds-icon';
 
 export const EditableCell = styled.div`
@@ -20,5 +21,6 @@ export const EditableCell = styled.div`
 `;
 
 export const Value = styled.span<{ asPlaceholder: boolean }>`
-  color: ${(props): string => (props.asPlaceholder ? props.theme.palette['grey-400'] : 'inherit')};
+  color: ${(props): string =>
+    props.asPlaceholder ? props.theme.palette['grey-400'] : 'inherit'};
 `;

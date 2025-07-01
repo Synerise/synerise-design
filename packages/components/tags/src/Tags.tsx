@@ -1,12 +1,13 @@
 import React from 'react';
+
 import { useTheme } from '@synerise/ds-core';
 import Dropdown from '@synerise/ds-dropdown';
 import Icon, { Add3M, SearchM, SettingsM } from '@synerise/ds-icon';
 import Result from '@synerise/ds-result';
-import Tag, { TagProps } from '@synerise/ds-tag';
+import Tag, { type TagProps } from '@synerise/ds-tag';
 
-import type { TagsProps } from './Tags.types';
 import * as S from './Tags.styles';
+import type { TagsProps } from './Tags.types';
 
 const Tags = ({
   data = [],
@@ -44,27 +45,36 @@ const Tags = ({
       return;
     }
 
-    const removedTag = selected.find(tag => tag.id === tagKey);
+    const removedTag = selected.find((tag) => tag.id === tagKey);
 
     if (!removedTag) {
       return;
     }
 
     onSelectedChange(
-      selected.filter(tag => tag.id !== tagKey),
+      selected.filter((tag) => tag.id !== tagKey),
       {
         type: 'REMOVE',
         tag: removedTag,
-      }
+      },
     );
   };
 
-  const notSelectedList = data && selected && data.filter(t => !selected.find(s => s.id === t.id));
+  const notSelectedList =
+    data &&
+    selected &&
+    data.filter((t) => !selected.find((s) => s.id === t.id));
   const selectablePool = !searchQuery
     ? notSelectedList
     : notSelectedList &&
-      notSelectedList.filter(t => t.name && t.name.toLowerCase().includes(searchQuery.toLowerCase()));
-  const isExactMatchFound = searchQuery && selectablePool && selectablePool.find(t => t.name === searchQuery);
+      notSelectedList.filter(
+        (t) =>
+          t.name && t.name.toLowerCase().includes(searchQuery.toLowerCase()),
+      );
+  const isExactMatchFound =
+    searchQuery &&
+    selectablePool &&
+    selectablePool.find((t) => t.name === searchQuery);
   const emptyPool = selectablePool && selectablePool.length === 0;
   const isCreatable = creatable && !isExactMatchFound && searchQuery;
   const isSeperated = !(!manageLink && emptyPool);
@@ -96,7 +106,9 @@ const Tags = ({
         value={searchQuery}
         onSearchChange={setSearchQuery}
         placeholder={(texts && texts.searchPlaceholder) || ''}
-        iconLeft={<Icon component={<SearchM />} color={theme.palette['grey-600']} />}
+        iconLeft={
+          <Icon component={<SearchM />} color={theme.palette['grey-600']} />
+        }
         onClearInput={(): void => setSearchQuery('')}
         clearTooltip={texts && texts.clearTooltip}
       />
@@ -119,11 +131,19 @@ const Tags = ({
         )}
 
         {!emptyPool && (
-          <S.DropdownTagsContainer data-testid="ds-tags-available-tags" isCreatable={!!isCreatable}>
+          <S.DropdownTagsContainer
+            data-testid="ds-tags-available-tags"
+            isCreatable={!!isCreatable}
+          >
             {selectablePool &&
-              selectablePool.map(tag => (
-                // eslint-disable-next-line react/jsx-props-no-spreading
-                <Tag {...tag} key={tag.id} shape={tagShape} onClick={(): void => onPoolTagSelect(tag)} texts={texts} />
+              selectablePool.map((tag) => (
+                <Tag
+                  {...tag}
+                  key={tag.id}
+                  shape={tagShape}
+                  onClick={(): void => onPoolTagSelect(tag)}
+                  texts={texts}
+                />
               ))}
           </S.DropdownTagsContainer>
         )}
@@ -132,7 +152,11 @@ const Tags = ({
           <S.DropdownNoTags>{texts && texts.dropdownNoTags}</S.DropdownNoTags>
         )}
         {emptyPool && isCreatable && (
-          <Result type="no-results" noSearchResults description={texts?.noResultsLabel || 'No results'} />
+          <Result
+            type="no-results"
+            noSearchResults
+            description={texts?.noResultsLabel || 'No results'}
+          />
         )}
       </S.DropdownContainer>
       {manageLink && selectablePool && !selectablePool.length && (
@@ -148,7 +172,11 @@ const Tags = ({
             href={manageLink}
             onlyChild={!!(emptyPool && !isCreatable)}
           >
-            <Icon component={<SettingsM />} size={20} color={theme.palette['grey-500']} />{' '}
+            <Icon
+              component={<SettingsM />}
+              size={20}
+              color={theme.palette['grey-500']}
+            />{' '}
             {texts && texts.manageLinkLabel}
           </S.ManageLinkButton>
         </Dropdown.BottomAction>
@@ -157,10 +185,14 @@ const Tags = ({
   );
 
   return (
-    <S.Container className={`ds-tags ${className || ''}`} style={style} data-testid="tags">
+    <S.Container
+      className={`ds-tags ${className || ''}`}
+      style={style}
+      data-testid="tags"
+    >
       <S.SelectedTags>
         {selected &&
-          selected.map(tag => (
+          selected.map((tag) => (
             <Tag
               key={tag.id}
               shape={tagShape}
@@ -181,9 +213,14 @@ const Tags = ({
             overlay={dropdownOverlay}
             overlayStyle={overlayStyle}
           >
-            <S.AddButton type="ghost" marginless={selected && !selected.length ? true : undefined}>
+            <S.AddButton
+              type="ghost"
+              marginless={selected && !selected.length ? true : undefined}
+            >
               {addIcon}
-              {texts && texts.addButtonLabel && <span>{texts.addButtonLabel}</span>}
+              {texts && texts.addButtonLabel && (
+                <span>{texts.addButtonLabel}</span>
+              )}
             </S.AddButton>
           </Dropdown>
         )}

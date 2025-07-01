@@ -1,14 +1,20 @@
-import React from 'react';
-import { WrappedComponentProps } from 'react-intl';
+import type React from 'react';
+import { type WrappedComponentProps } from 'react-intl';
 
-import type { TimePickerProps } from '@synerise/ds-time-picker';
 import type { WithDataFormatProps } from '@synerise/ds-data-format';
+import type { TimePickerProps } from '@synerise/ds-time-picker';
 
-import { DayProps } from './Day/Day.types';
-import { FilterDefinition, WithDisabledProp } from '../../RangeFilter.types';
-import { Texts } from '../../../DateRangePicker.types';
-import { GridTexts } from './Grid/Grid.types';
-import { DateLimitMode, RangeDisplayMode } from './RangeFormContainer/RangeForm/RangeForm.types';
+import { type Texts } from '../../../DateRangePicker.types';
+import {
+  type FilterDefinition,
+  type WithDisabledProp,
+} from '../../RangeFilter.types';
+import { type DayProps } from './Day/Day.types';
+import { type GridTexts } from './Grid/Grid.types';
+import {
+  type DateLimitMode,
+  type RangeDisplayMode,
+} from './RangeFormContainer/RangeForm/RangeForm.types';
 
 export type DayKey = number | string;
 

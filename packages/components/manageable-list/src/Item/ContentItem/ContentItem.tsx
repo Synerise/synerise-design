@@ -1,10 +1,10 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import AnimateHeight from 'react-animate-height';
 
-import { ContentItemProps } from './ContentItem.types';
-import * as S from './ContentItem.styles';
-import { ContentItemHeader } from './ContentItemHeader';
 import { useTexts } from '../../hooks/useTexts';
+import * as S from './ContentItem.styles';
+import { type ContentItemProps } from './ContentItem.types';
+import { ContentItemHeader } from './ContentItemHeader';
 
 const ContentItemComponent = ({
   onRemove,
@@ -76,7 +76,10 @@ const ContentItemComponent = ({
           duration={300}
           height={!item.disableExpanding && !isExpanded ? 0 : 'auto'}
         >
-          <S.ContentWrapper data-testid="item-content-wrapper" withoutPadding={Boolean(contentWithoutPadding)}>
+          <S.ContentWrapper
+            data-testid="item-content-wrapper"
+            withoutPadding={Boolean(contentWithoutPadding)}
+          >
             {item.content}
           </S.ContentWrapper>
         </AnimateHeight>

@@ -1,12 +1,16 @@
 import React, { useMemo } from 'react';
 
+import { CloseM, InboxNoResultsL } from '@synerise/ds-icon';
 import { Input } from '@synerise/ds-input';
 import InputNumber from '@synerise/ds-input-number';
 import Tooltip from '@synerise/ds-tooltip';
-import { InboxNoResultsL, CloseM } from '@synerise/ds-icon';
 
 import * as S from '../Array.styles';
-import type { ArrayCreatorProps, ArrayValueElement, ArrayValueWithID } from '../Array.types';
+import type {
+  ArrayCreatorProps,
+  ArrayValueElement,
+  ArrayValueWithID,
+} from '../Array.types';
 import { matchesSearchQuery } from '../Array.utils';
 import { ArrayCollector } from './ArrayCollector';
 
@@ -24,7 +28,10 @@ export const ArrayCreator = <ItemType extends 'string' | 'number'>({
     return [...arrayValue].reverse();
   }, [arrayValue]);
 
-  const handleItemChange = (valueIndex: number, newValue: ArrayValueElement<ItemType>) => {
+  const handleItemChange = (
+    valueIndex: number,
+    newValue: ArrayValueElement<ItemType>,
+  ) => {
     const updatedArray = arrayReversed
       .map((currentValue, index) =>
         index === valueIndex
@@ -32,14 +39,19 @@ export const ArrayCreator = <ItemType extends 'string' | 'number'>({
               ...currentValue,
               value: newValue,
             }
-          : currentValue
+          : currentValue,
       )
       .reverse();
     onValueChange(updatedArray);
   };
 
   const handleItemRemove = (valueIndex: number) => {
-    onValueChange([...arrayReversed.slice(0, valueIndex), ...arrayReversed.slice(valueIndex + 1)].reverse());
+    onValueChange(
+      [
+        ...arrayReversed.slice(0, valueIndex),
+        ...arrayReversed.slice(valueIndex + 1),
+      ].reverse(),
+    );
   };
 
   const handleConfirm = (rawItemValues: ArrayValueWithID<ItemType>[]) => {
@@ -47,7 +59,11 @@ export const ArrayCreator = <ItemType extends 'string' | 'number'>({
   };
 
   const filteredItems = useMemo(() => {
-    return searchQuery ? arrayReversed.filter(item => matchesSearchQuery(item.value, searchQuery)) : arrayReversed;
+    return searchQuery
+      ? arrayReversed.filter((item) =>
+          matchesSearchQuery(item.value, searchQuery),
+        )
+      : arrayReversed;
   }, [searchQuery, arrayReversed]);
 
   return (
@@ -72,15 +88,24 @@ export const ArrayCreator = <ItemType extends 'string' | 'number'>({
                   <Input
                     resetMargin
                     readOnly={readOnly}
-                    onChange={event => handleItemChange(index, event.target.value as ArrayValueElement<ItemType>)}
+                    onChange={(event) =>
+                      handleItemChange(
+                        index,
+                        event.target.value as ArrayValueElement<ItemType>,
+                      )
+                    }
                     value={item.value}
                   />
                 ) : (
                   <InputNumber
                     raw
                     readOnly={readOnly}
-                    onChange={changedValue =>
-                      changedValue && handleItemChange(index, changedValue as ArrayValueElement<ItemType>)
+                    onChange={(changedValue) =>
+                      changedValue &&
+                      handleItemChange(
+                        index,
+                        changedValue as ArrayValueElement<ItemType>,
+                      )
                     }
                     value={item.value as number}
                   />
@@ -100,8 +125,16 @@ export const ArrayCreator = <ItemType extends 'string' | 'number'>({
         ) : (
           <S.EmptyState
             customIcon={<InboxNoResultsL />}
-            text={searchQuery ? texts.array.emptyResultsTitle : texts.array.emptyTitle}
-            label={searchQuery ? texts.array.emptyResultsDescription : texts.array.emptyDescription}
+            text={
+              searchQuery
+                ? texts.array.emptyResultsTitle
+                : texts.array.emptyTitle
+            }
+            label={
+              searchQuery
+                ? texts.array.emptyResultsDescription
+                : texts.array.emptyDescription
+            }
           />
         )}
       </>

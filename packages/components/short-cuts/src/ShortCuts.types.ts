@@ -1,5 +1,6 @@
-import { ReactNode } from 'react';
-import { ExactlyOne, WithHTMLAttributes } from '@synerise/ds-utils';
+import { type ReactNode } from 'react';
+
+import { type ExactlyOne, type WithHTMLAttributes } from '@synerise/ds-utils';
 
 export type ShortCutsProps = WithHTMLAttributes<
   HTMLDivElement,

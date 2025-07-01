@@ -1,14 +1,20 @@
+import { type XYCoord } from 'dnd-core';
 import React, { useContext, useMemo, useRef } from 'react';
 import { useDrag, useDrop } from 'react-dnd';
-import { XYCoord } from 'dnd-core';
-import Icon, { DragHandleM } from '@synerise/ds-icon';
-import { theme } from '@synerise/ds-core';
 
-import { PanelProps, DraggablePanelProps } from '../Sidebar.types';
+import { theme } from '@synerise/ds-core';
+import Icon, { DragHandleM } from '@synerise/ds-icon';
+
 import { SidebarContext } from '../Sidebar.context';
 import * as S from '../Sidebar.styles';
+import { type DraggablePanelProps, type PanelProps } from '../Sidebar.types';
 
-const DraggablePanel = ({ id, context, order, children }: DraggablePanelProps) => {
+const DraggablePanel = ({
+  id,
+  context,
+  order,
+  children,
+}: DraggablePanelProps) => {
   const ref = useRef<HTMLDivElement>(null);
   const index = order ? order.indexOf(id) : 0;
 
@@ -49,8 +55,8 @@ const DraggablePanel = ({ id, context, order, children }: DraggablePanelProps) =
     begin: () => ({
       ...{ type: 'PANEL', index },
     }),
-    isDragging: monitor => monitor.getItem().index === index,
-    collect: monitor => ({
+    isDragging: (monitor) => monitor.getItem().index === index,
+    collect: (monitor) => ({
       isDragging: monitor.isDragging(),
     }),
   });
@@ -77,7 +83,10 @@ export const Panel = ({ header, children, id, ...props }: PanelProps) => {
             <span data-testid={`header-${id}`}>{header}</span>
             {isDragDrop && (
               <S.SidebarHandle>
-                <Icon color={theme.palette['grey-400']} component={<DragHandleM />} />
+                <Icon
+                  color={theme.palette['grey-400']}
+                  component={<DragHandleM />}
+                />
               </S.SidebarHandle>
             )}
           </S.SidebarHeader>
@@ -88,7 +97,7 @@ export const Panel = ({ header, children, id, ...props }: PanelProps) => {
         <S.SidebarContentWrapper>{children}</S.SidebarContentWrapper>
       </S.AntdPanel>
     ),
-    [header, isDragDrop, id, props, children]
+    [header, isDragDrop, id, props, children],
   );
 
   return isDragDrop ? (

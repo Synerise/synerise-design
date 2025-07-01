@@ -1,7 +1,7 @@
-import React, { ReactNode } from 'react';
+import React, { type ReactNode } from 'react';
 import { ThemeProvider as ThemeProviderBase } from 'styled-components';
 
-import dsTheme, { ThemePropsVars } from './theme';
+import dsTheme, { type ThemePropsVars } from './theme';
 
 export type ThemeProviderProps = {
   theme?: ThemePropsVars;

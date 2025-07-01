@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
+
 import InputNumber from '@synerise/ds-input-number';
-import { FactorValueComponentProps } from '../../Factors.types';
+
+import { type FactorValueComponentProps } from '../../Factors.types';
 
 const NumberInput = ({
   error,
@@ -11,7 +13,9 @@ const NumberInput = ({
   onDeactivate,
   readOnly = false,
 }: FactorValueComponentProps) => {
-  const [localValue, setLocalValue] = useState<string | number | null | undefined>(value as number);
+  const [localValue, setLocalValue] = useState<
+    string | number | null | undefined
+  >(value as number);
 
   useEffect(() => {
     setLocalValue(value as number);

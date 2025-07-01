@@ -1,18 +1,21 @@
-import { ReactNode } from 'react';
+import { type ReactNode } from 'react';
+
 import type { RequiredProps } from '@synerise/ds-utils';
 
 import type { ArrayProps, FactorsTexts } from '../../Factors.types';
 
-export type ArrayModalProps<ItemType extends 'string' | 'number'> = RequiredProps<ArrayProps, 'itemType'> & {
-  visible?: boolean;
-  readOnly?: boolean;
-  onApply: (updatedValue: ArrayValueElement<ItemType>[]) => void;
-  onCancel: () => void;
-  texts: FactorsTexts;
-  value?: ArrayValueElement<ItemType>[];
-};
+export type ArrayModalProps<ItemType extends 'string' | 'number'> =
+  RequiredProps<ArrayProps, 'itemType'> & {
+    visible?: boolean;
+    readOnly?: boolean;
+    onApply: (updatedValue: ArrayValueElement<ItemType>[]) => void;
+    onCancel: () => void;
+    texts: FactorsTexts;
+    value?: ArrayValueElement<ItemType>[];
+  };
 
-export type ArrayValueElement<ItemType extends 'string' | 'number'> = ItemType extends 'number' ? number : string;
+export type ArrayValueElement<ItemType extends 'string' | 'number'> =
+  ItemType extends 'number' ? number : string;
 
 export type ArrayValueWithID<ItemType extends 'string' | 'number'> = {
   value: ArrayValueElement<ItemType>;

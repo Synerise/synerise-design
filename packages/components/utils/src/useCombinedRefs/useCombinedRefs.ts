@@ -1,10 +1,12 @@
 import React from 'react';
 
-const useCombinedRefs = <T extends unknown>(...refs: React.Ref<T | null>[]): React.MutableRefObject<T | null> => {
+const useCombinedRefs = <T>(
+  ...refs: React.Ref<T | null>[]
+): React.MutableRefObject<T | null> => {
   const targetRef = React.useRef<T>(null);
 
   React.useEffect(() => {
-    refs.forEach(ref => {
+    refs.forEach((ref) => {
       if (!ref) {
         return;
       }
@@ -12,7 +14,6 @@ const useCombinedRefs = <T extends unknown>(...refs: React.Ref<T | null>[]): Rea
       if (typeof ref === 'function') {
         ref(targetRef.current);
       } else {
-        // eslint-disable-next-line no-param-reassign
         (ref as React.MutableRefObject<T | null>).current = targetRef.current;
       }
     });

@@ -1,18 +1,18 @@
-import React, { useCallback, useMemo } from 'react';
-import type { Key } from 'react';
-import Dropdown from '@synerise/ds-dropdown';
-import type { MenuItemProps } from '@synerise/ds-menu';
+import React, { type Key, useCallback, useMemo } from 'react';
+
 import Button from '@synerise/ds-button';
-import Tooltip from '@synerise/ds-tooltip';
+import Dropdown from '@synerise/ds-dropdown';
 import Icon, { OptionVerticalM } from '@synerise/ds-icon';
+import type { MenuItemProps } from '@synerise/ds-menu';
+import Tooltip from '@synerise/ds-tooltip';
 
 import * as S from '../Table.styles';
 import type { Selection, SelectionItem } from '../Table.types';
 import { SELECTION_ALL, SELECTION_INVERT } from '../constants/Table.constants';
-import type { TableSelectionProps } from './TableSelection.types';
-import { isRecordSelectable } from '../utils';
-import { useRowKey } from '../hooks/useRowKey';
 import { useBulkSelectionCount } from '../hooks/useBulkSelection';
+import { useRowKey } from '../hooks/useRowKey';
+import { isRecordSelectable } from '../utils';
+import type { TableSelectionProps } from './TableSelection.types';
 
 const TableSelection = <T extends { children?: T[] }>({
   dataSource,
@@ -26,7 +26,8 @@ const TableSelection = <T extends { children?: T[] }>({
   const { getRowKey } = useRowKey(rowKey);
 
   const allData = dataSourceFull || dataSource;
-  const isShowingSubset = dataSourceFull && dataSourceFull.length !== dataSource.length;
+  const isShowingSubset =
+    dataSourceFull && dataSourceFull.length !== dataSource.length;
 
   const getRowsForKeys = useCallback(
     (keys: Key[]) => {
@@ -35,14 +36,17 @@ const TableSelection = <T extends { children?: T[] }>({
         allData.forEach((record: T) => {
           const rowChildren = record[childrenColumnName];
           if (Array.isArray(rowChildren)) {
-            rowChildren.forEach(child => {
+            rowChildren.forEach((child) => {
               const key = getRowKey(child) as Key;
               if (rowChildren && key && keys.includes(key)) {
                 rows = [...rows, record];
               }
             });
           }
-          if (!Array.isArray(rowChildren) || selection.independentSelectionExpandedRows) {
+          if (
+            !Array.isArray(rowChildren) ||
+            selection.independentSelectionExpandedRows
+          ) {
             const key = getRowKey(record);
             if (key && keys.includes(key)) {
               rows = [...rows, record];
@@ -53,7 +57,7 @@ const TableSelection = <T extends { children?: T[] }>({
       }
       return [];
     },
-    [allData, getRowKey, selection, childrenColumnName]
+    [allData, getRowKey, selection, childrenColumnName],
   );
 
   const selectAll = useCallback(() => {
@@ -68,16 +72,23 @@ const TableSelection = <T extends { children?: T[] }>({
             ...keys,
             ...rowChildren.reduce((acc: Key[], child: T) => {
               const key = getRowKey(child);
-              return key && (isRecordSelectable(child, checkRowSelectionStatus) || selectedRowKeys.includes(key))
+              return key &&
+                (isRecordSelectable(child, checkRowSelectionStatus) ||
+                  selectedRowKeys.includes(key))
                 ? [...acc, key]
                 : acc;
             }, []),
           ];
         }
-        if (!Array.isArray(rowChildren) || selection.independentSelectionExpandedRows) {
+        if (
+          !Array.isArray(rowChildren) ||
+          selection.independentSelectionExpandedRows
+        ) {
           const key = getRowKey(record);
           keys =
-            key !== undefined && (isRecordSelectable(record, checkRowSelectionStatus) || selectedRowKeys.includes(key))
+            key !== undefined &&
+            (isRecordSelectable(record, checkRowSelectionStatus) ||
+              selectedRowKeys.includes(key))
               ? [...keys, key]
               : [...keys];
         }
@@ -86,7 +97,14 @@ const TableSelection = <T extends { children?: T[] }>({
       const rows = getRowsForKeys(uniqueKeys);
       selection.onChange(uniqueKeys, rows);
     }
-  }, [childrenColumnName, dataSource, selection, isShowingSubset, getRowsForKeys, getRowKey]);
+  }, [
+    childrenColumnName,
+    dataSource,
+    selection,
+    isShowingSubset,
+    getRowsForKeys,
+    getRowKey,
+  ]);
 
   const unselectAll = useCallback(() => {
     if (selection) {
@@ -101,19 +119,27 @@ const TableSelection = <T extends { children?: T[] }>({
             ...keysToUnselect,
             ...rowChildren.reduce((acc: Key[], child: T) => {
               const key = getRowKey(child) as Key;
-              return key && isRecordSelectable(child, checkRowSelectionStatus) ? [...acc, key] : acc;
+              return key && isRecordSelectable(child, checkRowSelectionStatus)
+                ? [...acc, key]
+                : acc;
             }, []),
           ];
         }
-        if (!Array.isArray(rowChildren) || selection.independentSelectionExpandedRows) {
+        if (
+          !Array.isArray(rowChildren) ||
+          selection.independentSelectionExpandedRows
+        ) {
           const key = getRowKey(record);
           keysToUnselect =
-            key !== undefined && isRecordSelectable(record, checkRowSelectionStatus)
+            key !== undefined &&
+            isRecordSelectable(record, checkRowSelectionStatus)
               ? [...keysToUnselect, key]
               : [...keysToUnselect];
         }
       });
-      const keysLeft = selectedRowKeys.filter(key => !keysToUnselect.includes(key));
+      const keysLeft = selectedRowKeys.filter(
+        (key) => !keysToUnselect.includes(key),
+      );
       const rows = getRowsForKeys(keysLeft);
       selection.onChange(keysLeft, rows);
     }
@@ -121,14 +147,17 @@ const TableSelection = <T extends { children?: T[] }>({
 
   const getSelectableChildren = useCallback(
     (children: T[] | undefined) => {
-      const selectionStatusValidator = selection?.checkRowSelectionStatus || undefined;
+      const selectionStatusValidator =
+        selection?.checkRowSelectionStatus || undefined;
       return children
         ? children.filter(
-            (child: T) => isRecordSelectable(child, selectionStatusValidator) && getRowKey(child) !== undefined
+            (child: T) =>
+              isRecordSelectable(child, selectionStatusValidator) &&
+              getRowKey(child) !== undefined,
           )
         : [];
     },
-    [getRowKey, selection?.checkRowSelectionStatus]
+    [getRowKey, selection?.checkRowSelectionStatus],
   );
 
   const selectInvert = useCallback(() => {
@@ -139,7 +168,9 @@ const TableSelection = <T extends { children?: T[] }>({
         const rowChildren = record[childrenColumnName];
 
         const hasChildren = Array.isArray(rowChildren);
-        const selectableChildren = hasChildren ? getSelectableChildren(rowChildren) : false;
+        const selectableChildren = hasChildren
+          ? getSelectableChildren(rowChildren)
+          : false;
         if (selectableChildren) {
           selectableChildren.forEach((child: T) => {
             const key = getRowKey(child) as Key;
@@ -152,8 +183,13 @@ const TableSelection = <T extends { children?: T[] }>({
         }
         if (!selectableChildren || selection.independentSelectionExpandedRows) {
           const key = getRowKey(record) as Key;
-          const isSelectable = isRecordSelectable(record, checkRowSelectionStatus);
-          if (!isSelectable) return;
+          const isSelectable = isRecordSelectable(
+            record,
+            checkRowSelectionStatus,
+          );
+          if (!isSelectable) {
+            return;
+          }
           if (selectedRowKeys.includes(key)) {
             keys.splice(keys.indexOf(key), 1);
           } else {
@@ -164,42 +200,72 @@ const TableSelection = <T extends { children?: T[] }>({
       const rows = getRowsForKeys(keys);
       selection.onChange(keys, rows);
     }
-  }, [childrenColumnName, dataSource, selection, getRowsForKeys, getSelectableChildren, getRowKey]);
+  }, [
+    childrenColumnName,
+    dataSource,
+    selection,
+    getRowsForKeys,
+    getSelectableChildren,
+    getRowKey,
+  ]);
 
-  const { allRecordsCount, selectableRecordsCount, selectableAndSelectedRecordsCount, selectedRecordsCount } =
-    useBulkSelectionCount({ dataSource, selection, childrenColumnName, rowKey });
-  const isIndeterminate = selectedRecordsCount > 0 && selectableRecordsCount !== selectableAndSelectedRecordsCount;
+  const {
+    allRecordsCount,
+    selectableRecordsCount,
+    selectableAndSelectedRecordsCount,
+    selectedRecordsCount,
+  } = useBulkSelectionCount({
+    dataSource,
+    selection,
+    childrenColumnName,
+    rowKey,
+  });
+  const isIndeterminate =
+    selectedRecordsCount > 0 &&
+    selectableRecordsCount !== selectableAndSelectedRecordsCount;
   const disabledBulkSelection =
-    allRecordsCount === 0 || selectableRecordsCount === 0 || (hasSelectionLimit && selectedRecordsCount === 0);
-  const isAllSelected = !disabledBulkSelection && selectableRecordsCount === selectableAndSelectedRecordsCount;
+    allRecordsCount === 0 ||
+    selectableRecordsCount === 0 ||
+    (hasSelectionLimit && selectedRecordsCount === 0);
+  const isAllSelected =
+    !disabledBulkSelection &&
+    selectableRecordsCount === selectableAndSelectedRecordsCount;
   const isAnySelected = allRecordsCount > 0 && selectedRecordsCount > 0;
 
-  const selectionTooltipTitle = !isAllSelected ? locale?.selectAllTooltip : locale?.unselectAll;
+  const selectionTooltipTitle = !isAllSelected
+    ? locale?.selectAllTooltip
+    : locale?.unselectAll;
 
   const menuDataSource = useMemo(() => {
     return selection?.selections
       ?.filter(Boolean)
-      .flatMap((selectionMenuElement: Selection | SelectionItem): MenuItemProps | MenuItemProps[] => {
-        switch (selectionMenuElement) {
-          case SELECTION_ALL: {
-            const items: MenuItemProps[] = [];
-            if (!isAllSelected && !hasSelectionLimit) {
-              items.push({ onClick: selectAll, text: locale?.selectAll });
+      .flatMap(
+        (
+          selectionMenuElement: Selection | SelectionItem,
+        ): MenuItemProps | MenuItemProps[] => {
+          switch (selectionMenuElement) {
+            case SELECTION_ALL: {
+              const items: MenuItemProps[] = [];
+              if (!isAllSelected && !hasSelectionLimit) {
+                items.push({ onClick: selectAll, text: locale?.selectAll });
+              }
+              if (isAnySelected) {
+                items.push({ onClick: unselectAll, text: locale?.unselectAll });
+              }
+              return items;
             }
-            if (isAnySelected) {
-              items.push({ onClick: unselectAll, text: locale?.unselectAll });
+            case SELECTION_INVERT: {
+              return !hasSelectionLimit
+                ? { onClick: selectInvert, text: locale?.selectInvert }
+                : [];
             }
-            return items;
+            default: {
+              const sel = selectionMenuElement as Selection;
+              return { ...sel, text: sel.label };
+            }
           }
-          case SELECTION_INVERT: {
-            return !hasSelectionLimit ? { onClick: selectInvert, text: locale?.selectInvert } : [];
-          }
-          default: {
-            const sel = selectionMenuElement as Selection;
-            return { ...sel, text: sel.label };
-          }
-        }
-      });
+        },
+      );
   }, [
     isAllSelected,
     locale?.selectAll,
@@ -240,7 +306,11 @@ const TableSelection = <T extends { children?: T[] }>({
           hideOnItemClick
         >
           <Tooltip title={locale?.selectionOptionsTooltip}>
-            <Button disabled={disabledBulkSelection || menuDataSource?.length === 0} mode="single-icon" type="ghost">
+            <Button
+              disabled={disabledBulkSelection || menuDataSource?.length === 0}
+              mode="single-icon"
+              type="ghost"
+            >
               <Icon component={<OptionVerticalM />} />
             </Button>
           </Tooltip>

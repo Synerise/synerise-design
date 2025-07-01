@@ -1,8 +1,8 @@
 import styled from 'styled-components';
-import { Title, Text, macro } from '@synerise/ds-typography';
-import DSIcon from '@synerise/ds-icon';
 
+import DSIcon from '@synerise/ds-icon';
 import { Tag } from '@synerise/ds-tag/dist/Tag.styles';
+import { Text, Title, macro } from '@synerise/ds-typography';
 
 export const CardSummaryWrapper = styled.div``;
 export const CardSummaryTitle = styled(Title)``;
@@ -51,7 +51,7 @@ export const IconWrapper = styled.div`
 `;
 
 export const Icon = styled(DSIcon)<{ isOpen: boolean }>`
-  transform: rotate(${props => (props.isOpen ? '180' : '0')}deg);
+  transform: rotate(${(props) => (props.isOpen ? '180' : '0')}deg);
 `;
 export const CardSummaryItemObjects = styled.div`
   display: flex;

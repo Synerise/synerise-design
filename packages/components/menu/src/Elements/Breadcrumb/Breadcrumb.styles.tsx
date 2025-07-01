@@ -1,10 +1,14 @@
 import React from 'react';
-import styled, { FlattenSimpleInterpolation, css } from 'styled-components';
-import { ThemeProps } from '@synerise/ds-core';
+import styled, {
+  type FlattenSimpleInterpolation,
+  css,
+} from 'styled-components';
+
+import { type ThemeProps } from '@synerise/ds-core';
+
 import Text from '../Item/Text/Text';
 import { PrefixelWrapper } from '../Item/Text/Text.styles';
 
-// eslint-disable-next-line @typescript-eslint/no-empty-function
 const NOOP = (): void => {};
 
 export const ArrowRight = styled.div<{ visible: boolean }>`
@@ -70,7 +74,7 @@ export const BreadcrumbName = styled.div`
   }
 `;
 export const disableDefaultClickingStyles = (
-  props: ThemeProps & { disabled?: boolean }
+  props: ThemeProps & { disabled?: boolean },
 ): FlattenSimpleInterpolation => css`
   &, &:focus, &:hover {
     background: ${props.theme.palette.white} !important;
@@ -101,11 +105,13 @@ export const disableDefaultClickingStyles = (
   }
 `;
 
-export const Breadcrumb = styled(({ children, disabled, onPathClick, compact, ...rest }) => (
-  <Text disabled={disabled} onClick={NOOP} {...rest}>
-    {children}
-  </Text>
-))`
+export const Breadcrumb = styled(
+  ({ children, disabled, onPathClick, compact, ...rest }) => (
+    <Text disabled={disabled} onClick={NOOP} {...rest}>
+      {children}
+    </Text>
+  ),
+)`
   min-height: 50px;
   ${BreadcrumbContent} {
     direction: ${(props): string => (props.compact ? 'rtl' : 'ltr')};
@@ -113,10 +119,16 @@ export const Breadcrumb = styled(({ children, disabled, onPathClick, compact, ..
   }
   &:hover {
     ${ArrowRight} > .ds-icon > svg {
-      fill: ${(props): string => (props.disabled ? props.theme.palette['grey-600'] : props.theme.palette['blue-600'])};
+      fill: ${(props): string =>
+        props.disabled
+          ? props.theme.palette['grey-600']
+          : props.theme.palette['blue-600']};
     }
     ${BreadcrumbName}, ${Description} {
-      color: ${(props): string => (props.disabled ? props.theme.palette['grey-600'] : props.theme.palette['blue-600'])};
+      color: ${(props): string =>
+        props.disabled
+          ? props.theme.palette['grey-600']
+          : props.theme.palette['blue-600']};
     }
     ${ContentWrapper}::after {
       opacity: 0;
@@ -133,7 +145,8 @@ export const Breadcrumb = styled(({ children, disabled, onPathClick, compact, ..
   )`};
     }
   }
-  ${(props): FlattenSimpleInterpolation | false => !!props.onPathClick && disableDefaultClickingStyles(props)}
+  ${(props): FlattenSimpleInterpolation | false =>
+    !!props.onPathClick && disableDefaultClickingStyles(props)}
 `;
 
 export const BreadcrumbRoute = styled.div`

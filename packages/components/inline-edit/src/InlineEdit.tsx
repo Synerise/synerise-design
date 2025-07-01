@@ -1,13 +1,21 @@
-import React, { useCallback, useRef, useState, KeyboardEvent, FocusEvent, ChangeEvent, useEffect } from 'react';
+import React, {
+  type ChangeEvent,
+  type FocusEvent,
+  type KeyboardEvent,
+  useCallback,
+  useEffect,
+  useRef,
+  useState,
+} from 'react';
 
-import Tooltip from '@synerise/ds-tooltip';
-import Icon, { EditS } from '@synerise/ds-icon';
-import { toCamelCase } from '@synerise/ds-utils';
-import { AutosizeInput } from '@synerise/ds-input';
 import { theme } from '@synerise/ds-core';
+import Icon, { EditS } from '@synerise/ds-icon';
+import { AutosizeInput } from '@synerise/ds-input';
+import Tooltip from '@synerise/ds-tooltip';
+import { toCamelCase } from '@synerise/ds-utils';
 
 import * as S from './InlineEdit.styles';
-import { InlineEditProps } from './InlineEdit.types';
+import { type InlineEditProps } from './InlineEdit.types';
 
 const InlineEdit = ({
   className,
@@ -26,10 +34,9 @@ const InlineEdit = ({
 
   const handleChange = useCallback(
     (event: ChangeEvent<HTMLInputElement>) => {
-      // eslint-disable-next-line no-unused-expressions
       input.onChange?.(event);
     },
-    [input]
+    [input],
   );
 
   const handleFocus = () => {
@@ -42,7 +49,7 @@ const InlineEdit = ({
       inputRef.current && inputRef.current.scrollTo({ left: 0 });
       setFocused(true);
     },
-    [input]
+    [input],
   );
 
   const handleKeyPress = useCallback(
@@ -52,7 +59,7 @@ const InlineEdit = ({
         inputRef.current && inputRef.current.blur();
       }
     },
-    [input]
+    [input],
   );
 
   const handleFocusInput = useCallback(() => {
@@ -96,8 +103,17 @@ const InlineEdit = ({
       </AutosizeInput>
       {!hideIcon && (
         <Tooltip data-testid="inline-edit-icon" title={tooltipTitle}>
-          <S.IconWrapper customIcon={Boolean(customIcon)} disabled={disabled} onClick={handleFocusInput} size={size}>
-            <Icon color={theme.palette[`grey-600`]} component={customIcon || <EditS />} size={24} />
+          <S.IconWrapper
+            customIcon={Boolean(customIcon)}
+            disabled={disabled}
+            onClick={handleFocusInput}
+            size={size}
+          >
+            <Icon
+              color={theme.palette[`grey-600`]}
+              component={customIcon || <EditS />}
+              size={24}
+            />
           </S.IconWrapper>
         </Tooltip>
       )}

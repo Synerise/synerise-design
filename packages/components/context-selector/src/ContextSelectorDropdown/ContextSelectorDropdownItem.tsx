@@ -1,9 +1,10 @@
 import React from 'react';
+
+import { theme } from '@synerise/ds-core';
 import Icon, { CheckS } from '@synerise/ds-icon';
 import ListItem from '@synerise/ds-list-item';
-import { theme } from '@synerise/ds-core';
 
-import { ContextSelectorDropdownItemProps } from '../ContextSelector.types';
+import { type ContextSelectorDropdownItemProps } from '../ContextSelector.types';
 
 const ContextSelectorDropdownItem = ({
   item,
@@ -28,7 +29,9 @@ const ContextSelectorDropdownItem = ({
       suffixel={
         item?.customSuffix
           ? item.customSuffix
-          : selected && <Icon component={<CheckS />} color={theme.palette['green-600']} />
+          : selected && (
+              <Icon component={<CheckS />} color={theme.palette['green-600']} />
+            )
       }
       onClick={() => {
         clearSearch && clearSearch();

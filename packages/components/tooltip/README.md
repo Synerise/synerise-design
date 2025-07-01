@@ -12,7 +12,7 @@ Tooltip UI Component
 ## API
 
 | Property              | Description                                                                                            | Type                                                                                                                                                | Default                    |
-|-----------------------|--------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------|----------------------------|
+| --------------------- | ------------------------------------------------------------------------------------------------------ | --------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------- |
 | align                 | this value will be merged into placement's config, please refer to the settings rc-tooltip             | Object                                                                                                                                              | -                          |
 | arrowPointAtCenter    | Whether the arrow is pointed at the center of target, supported after `antd@1.11+`                     | boolean                                                                                                                                             | `false`                    |
 | autoAdjustOverflow    | Whether to adjust popup placement automatically when popup is off screen                               | boolean                                                                                                                                             | `true`                     |
@@ -39,7 +39,6 @@ Tooltip UI Component
 | timeToHideAfterClick  | time after which tooltip disappears [ms] (value 0 inactivate this functionality)                       | number                                                                                                                                              | 0                          |
 | render                | render prop that allows to render custom component as tooltip                                          | () => React.ReactNode                                                                                                                               | -                          |
 | disabled              | Determines if tooltip is disabled                                                                      | boolean                                                                                                                                             | `false`                    |
-
 
 ### ButtonSettings
 

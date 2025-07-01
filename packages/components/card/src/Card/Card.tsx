@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
-import Icon from '@synerise/ds-icon';
-
 import AnimateHeight from 'react-animate-height';
 import VisibilitySensor from 'react-visibility-sensor';
-import * as S from './Card.styles';
-import { CardProps } from './Card.types';
+
+import Icon from '@synerise/ds-icon';
+
 import { ANIMATION_DURATION } from '../constants';
+import * as S from './Card.styles';
+import { type CardProps } from './Card.types';
 
 const Card = ({
   children,
@@ -42,7 +43,11 @@ const Card = ({
       return null;
     }
     return (
-      <S.TitleWrapper data-testid="card-title" compact={compactHeader} description={Boolean(description)}>
+      <S.TitleWrapper
+        data-testid="card-title"
+        compact={compactHeader}
+        description={Boolean(description)}
+      >
         {title && (
           <S.Title level={4} fat={!!fatTitle}>
             {title}
@@ -79,14 +84,26 @@ const Card = ({
             avatar ||
             (renderBadge && renderBadge())}
 
-          <S.HeaderContent compact={compactHeader} hasIconOrAvatar={Boolean(icon || avatar)}>
+          <S.HeaderContent
+            compact={compactHeader}
+            hasIconOrAvatar={Boolean(icon || avatar)}
+          >
             {renderTitle()}
-            {description && <S.Description data-testid="card-description">{description}</S.Description>}
+            {description && (
+              <S.Description data-testid="card-description">
+                {description}
+              </S.Description>
+            )}
           </S.HeaderContent>
 
           {headerSideChildren && (
-            <VisibilitySensor partialVisibility onChange={setHeaderActionsVisible}>
-              <S.HeaderSideChildren onClick={(event): void => event.stopPropagation()}>
+            <VisibilitySensor
+              partialVisibility
+              onChange={setHeaderActionsVisible}
+            >
+              <S.HeaderSideChildren
+                onClick={(event): void => event.stopPropagation()}
+              >
                 {headerSideChildren}
               </S.HeaderSideChildren>
             </VisibilitySensor>
@@ -101,16 +118,26 @@ const Card = ({
           height={hideContent ? 'auto' : 0}
         >
           <S.ChildrenContainer data-testid="card-static-content">
-            <S.PaddingWrapper withoutPadding={withoutPadding} withHeader={withHeader}>
+            <S.PaddingWrapper
+              withoutPadding={withoutPadding}
+              withHeader={withHeader}
+            >
               {staticContent}
             </S.PaddingWrapper>
           </S.ChildrenContainer>
         </AnimateHeight>
       )}
 
-      <AnimateHeight className="card-animation" duration={ANIMATION_DURATION} height={hideContent ? 0 : 'auto'}>
+      <AnimateHeight
+        className="card-animation"
+        duration={ANIMATION_DURATION}
+        height={hideContent ? 0 : 'auto'}
+      >
         <S.ChildrenContainer data-testid="card-content">
-          <S.PaddingWrapper withoutPadding={withoutPadding} withHeader={withHeader}>
+          <S.PaddingWrapper
+            withoutPadding={withoutPadding}
+            withHeader={withHeader}
+          >
             {children}
           </S.PaddingWrapper>
         </S.ChildrenContainer>

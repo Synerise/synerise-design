@@ -1,10 +1,11 @@
-import React from 'react';
 import copy from 'copy-to-clipboard';
+import React from 'react';
+
 import { DuplicateS } from '@synerise/ds-icon';
 
+import { FontSize } from '../../CodeSnippet.types';
 import CopyAction from '../../CopyAction/CopyAction';
 import * as S from './SingleCode.styles';
-import { FontSize } from '../../CodeSnippet.types';
 
 export interface SingleCodeProps {
   children?: string;
@@ -41,13 +42,21 @@ const SingleCode: React.FC<SingleCodeProps> = ({
         data-testid="ds-copy-code-snippet"
       />
     ),
-    [children, tooltipTitleHover, tooltipTitleClick, onCopy, customTriggerComponent]
+    [
+      children,
+      tooltipTitleHover,
+      tooltipTitleClick,
+      onCopy,
+      customTriggerComponent,
+    ],
   );
 
   return (
     <S.CodeSnippetWrapperSingle fontSize={fontSize} className={className}>
       <S.ContentIconWrapper>
-        <S.BlockCodeWrapperSingle fontSize={fontSize}>{children}</S.BlockCodeWrapperSingle>
+        <S.BlockCodeWrapperSingle fontSize={fontSize}>
+          {children}
+        </S.BlockCodeWrapperSingle>
         {iconElement}
       </S.ContentIconWrapper>
     </S.CodeSnippetWrapperSingle>

@@ -1,5 +1,14 @@
-import styled, { FlattenSimpleInterpolation, css } from 'styled-components';
-import { ThemeProps, ThemePropsVars } from '@synerise/ds-core';
+import styled, {
+  type FlattenSimpleInterpolation,
+  css,
+} from 'styled-components';
+
+import { type ThemeProps, type ThemePropsVars } from '@synerise/ds-core';
+
+import {
+  type DescriptionRatio,
+  type DescriptionType,
+} from './Description.types';
 import {
   PrefixWrapper,
   RowLabel,
@@ -8,9 +17,10 @@ import {
   SuffixWrapper,
   ValueWrapper,
 } from './Row/DescriptionRow.styles';
-import { DescriptionRatio, DescriptionType } from './Description.types';
 
-const getColumnsWidth = (ratio: DescriptionRatio | null = null): string | false => {
+const getColumnsWidth = (
+  ratio: DescriptionRatio | null = null,
+): string | false => {
   const mapRatioToWidth = {
     '20-80': '2fr 8fr',
     '30-70': '3fr 7fr',
@@ -21,10 +31,14 @@ const getColumnsWidth = (ratio: DescriptionRatio | null = null): string | false 
     '80-20': '8fr 2fr',
     auto: 'auto auto',
   };
-  return ratio !== null && mapRatioToWidth[ratio] ? mapRatioToWidth[ratio] : '1fr auto';
+  return ratio !== null && mapRatioToWidth[ratio]
+    ? mapRatioToWidth[ratio]
+    : '1fr auto';
 };
 
-const tableStyles = (ratio?: DescriptionRatio): FlattenSimpleInterpolation => css`
+const tableStyles = (
+  ratio?: DescriptionRatio,
+): FlattenSimpleInterpolation => css`
   ${RowWrapper} {
     display: grid;
     grid-column-gap: 16px;
@@ -49,7 +63,9 @@ const inlineStyles = (): FlattenSimpleInterpolation => css`
   }
 `;
 
-const dottedListStyles = (theme: ThemePropsVars): FlattenSimpleInterpolation => css`
+const dottedListStyles = (
+  theme: ThemePropsVars,
+): FlattenSimpleInterpolation => css`
   ${inlineStyles()};
   ${RowWrapper} {
     ${RowLabel} {
@@ -68,7 +84,9 @@ const dottedListStyles = (theme: ThemePropsVars): FlattenSimpleInterpolation => 
     }
   }
 `;
-const numberedListStyles = (theme: ThemePropsVars): FlattenSimpleInterpolation => css`
+const numberedListStyles = (
+  theme: ThemePropsVars,
+): FlattenSimpleInterpolation => css`
   ${inlineStyles()};
   counter-reset: count-description-rows;
   ${RowWrapper} {
@@ -89,8 +107,11 @@ const numberedListStyles = (theme: ThemePropsVars): FlattenSimpleInterpolation =
   }
 `;
 
-// eslint-disable-next-line import/prefer-default-export
-export const Description = styled.div<{ type: DescriptionType; ratio?: DescriptionRatio; singleRow: boolean }>`
+export const Description = styled.div<{
+  type: DescriptionType;
+  ratio?: DescriptionRatio;
+  singleRow: boolean;
+}>`
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
@@ -101,7 +122,9 @@ export const Description = styled.div<{ type: DescriptionType; ratio?: Descripti
   ${RowLabel} {
     padding: ${(props): string => (props.singleRow ? '0' : '7px 0')};
   }
-  ${(props: ThemeProps & { type: DescriptionType; ratio?: DescriptionRatio }): FlattenSimpleInterpolation | false => {
+  ${(
+    props: ThemeProps & { type: DescriptionType; ratio?: DescriptionRatio },
+  ): FlattenSimpleInterpolation | false => {
     switch (props.type) {
       case 'table': {
         return tableStyles(props.ratio);

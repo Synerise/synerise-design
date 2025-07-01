@@ -1,7 +1,7 @@
 import React from 'react';
-import { renderWithProvider } from '@synerise/ds-utils/dist/testing';
+import { renderWithProvider } from '@synerise/ds-utils';
 import AvatarGroup from './../AvatarGroup';
-import { DataSource } from '../AvatarGroup.types';
+import { type DataSource } from '../AvatarGroup.types';
 
 const groupAvatars: DataSource[] = [
   {

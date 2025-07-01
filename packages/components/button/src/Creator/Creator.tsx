@@ -1,11 +1,20 @@
-import React, { useCallback, useState } from 'react';
 import classnames from 'classnames';
+import React, { useCallback, useState } from 'react';
+
 import Icon, { AddM } from '@synerise/ds-icon';
 
 import * as S from './Creator.styles';
-import { CreatorProps } from './Creator.types';
+import { type CreatorProps } from './Creator.types';
 
-const Creator = ({ onClick, disabled, label, block, status, className, ...htmlAttributes }: CreatorProps) => {
+const Creator = ({
+  onClick,
+  disabled,
+  label,
+  block,
+  status,
+  className,
+  ...htmlAttributes
+}: CreatorProps) => {
   const [pressed, setPressed] = useState(false);
   const onPress = useCallback(() => {
     setPressed(true);
@@ -29,7 +38,11 @@ const Creator = ({ onClick, disabled, label, block, status, className, ...htmlAt
     >
       <>
         <Icon component={<AddM />} />
-        {label && <S.CreatorLabel data-testid="ds-add-button-label">{label}</S.CreatorLabel>}
+        {label && (
+          <S.CreatorLabel data-testid="ds-add-button-label">
+            {label}
+          </S.CreatorLabel>
+        )}
       </>
     </S.Creator>
   );

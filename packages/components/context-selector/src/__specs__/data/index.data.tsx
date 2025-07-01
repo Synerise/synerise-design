@@ -1,11 +1,12 @@
-import { ApiM, FolderM, FormM, MegaphoneM, WebhookM } from '@synerise/ds-icon';
 import React from 'react';
+
+import { ApiM, FolderM, FormM, MegaphoneM, WebhookM } from '@synerise/ds-icon';
 
 export const CONTEXT_TEXTS = {
   buttonLabel: 'Choose',
   searchPlaceholder: 'Search',
   noResults: 'No results',
-  showMore: 'Show more'
+  showMore: 'Show more',
 };
 
 export const CONTEXT_GROUPS = [

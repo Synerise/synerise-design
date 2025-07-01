@@ -1,23 +1,42 @@
 import type { MouseEventHandler, ReactNode } from 'react';
-import styled, { css, FlattenSimpleInterpolation } from 'styled-components';
+import styled, {
+  type FlattenSimpleInterpolation,
+  css,
+} from 'styled-components';
+
+import { type ThemePropsVars } from '@synerise/ds-core';
 import { Title as DSTitle } from '@synerise/ds-typography';
-import { ThemePropsVars } from '@synerise/ds-core';
-import { Backgrounds } from './Card.types';
+
 import { CardSummaryWrapper } from '../CardSummary/CardSummary.styles';
+import { type Backgrounds } from './Card.types';
 
 const whiteBg = ['white', 'white-shadow'];
 const greyBg = ['grey', 'grey-shadow'];
 const withBoxShadow = ['white-shadow', 'grey-shadow'];
 const withOutline = ['outline'];
-const backgroundColor = (props: { background: Backgrounds; theme: ThemePropsVars }): string => {
-  if (whiteBg.includes(props.background)) return props.theme.palette.white;
-  if (greyBg.includes(props.background)) return props.theme.palette['grey-050'];
+const backgroundColor = (props: {
+  background: Backgrounds;
+  theme: ThemePropsVars;
+}): string => {
+  if (whiteBg.includes(props.background)) {
+    return props.theme.palette.white;
+  }
+  if (greyBg.includes(props.background)) {
+    return props.theme.palette['grey-050'];
+  }
   return props.theme.palette.transparent;
 };
 
-const boxShadow = (props: { background: Backgrounds; theme: ThemePropsVars }): string => {
-  if (withBoxShadow.includes(props.background)) return `0 4px 12px 0 rgba(35, 41, 54, 0.04)` as string;
-  if (withOutline.includes(props.background)) return `${props.theme.palette['grey-200']} 0px 0px 0px 1px inset`;
+const boxShadow = (props: {
+  background: Backgrounds;
+  theme: ThemePropsVars;
+}): string => {
+  if (withBoxShadow.includes(props.background)) {
+    return `0 4px 12px 0 rgba(35, 41, 54, 0.04)` as string;
+  }
+  if (withOutline.includes(props.background)) {
+    return `${props.theme.palette['grey-200']} 0px 0px 0px 1px inset`;
+  }
   return 'none';
 };
 
@@ -26,10 +45,14 @@ export const HeaderSideChildren = styled.div`
   padding-left: 24px;
 `;
 
-export const IconContainer = styled.div<{ compact?: boolean; description?: ReactNode }>`
+export const IconContainer = styled.div<{
+  compact?: boolean;
+  description?: ReactNode;
+}>`
   display: flex;
   width: 24px;
-  height: ${(props): string => (props.description && !props.compact ? '24px' : '32px')};
+  height: ${(props): string =>
+    props.description && !props.compact ? '24px' : '32px'};
   align-items: center;
 `;
 
@@ -39,9 +62,14 @@ export const Container = styled.div<{
   lively?: boolean;
   background: Backgrounds;
 }>`
-  background-color: ${(props): string => (props.background ? backgroundColor(props) : props.theme.palette.transparent)};
-  box-shadow: ${(props): string => (props.background ? boxShadow(props) : 'none')};
-  border-radius: ${(props): string => props.theme.variable('@border-radius-base')};
+  background-color: ${(props): string =>
+    props.background
+      ? backgroundColor(props)
+      : props.theme.palette.transparent};
+  box-shadow: ${(props): string =>
+    props.background ? boxShadow(props) : 'none'};
+  border-radius: ${(props): string =>
+    props.theme.variable('@border-radius-base')};
   display: flex;
   flex-flow: column;
   width: 100%;
@@ -105,7 +133,8 @@ export const Header = styled.div<{
     right: 24px;
     height: 1px;
     content: '';
-    display: ${(props): string => (props.headerBorderBottom ? 'block' : 'none')};
+    display: ${(props): string =>
+      props.headerBorderBottom ? 'block' : 'none'};
     background-color: ${(props): string => props.theme.palette['grey-100']};
   }
   &:hover {
@@ -128,12 +157,16 @@ export const Title = styled(DSTitle)<{ fat: boolean }>`
   }
 `;
 
-export const TitleWrapper = styled.div<{ compact?: boolean; description?: boolean }>`
+export const TitleWrapper = styled.div<{
+  compact?: boolean;
+  description?: boolean;
+}>`
   display: flex;
   flex-direction: row;
   gap: 4px;
   align-items: center;
-  margin-bottom: ${(props): string => (props.description && !props.compact ? '6px' : '0')};
+  margin-bottom: ${(props): string =>
+    props.description && !props.compact ? '6px' : '0'};
 `;
 
 export const TitleTag = styled.div``;
@@ -147,7 +180,10 @@ export const Description = styled.div`
   }
 `;
 
-export const HeaderContent = styled.div<{ compact?: boolean; hasIconOrAvatar: boolean }>`
+export const HeaderContent = styled.div<{
+  compact?: boolean;
+  hasIconOrAvatar: boolean;
+}>`
   max-width: 100%;
   flex: 1;
   display: flex;
@@ -183,7 +219,10 @@ export const HeaderContent = styled.div<{ compact?: boolean; hasIconOrAvatar: bo
 
 export const ChildrenContainer = styled.div``;
 
-export const PaddingWrapper = styled.div<{ withHeader?: boolean; withoutPadding?: boolean }>`
+export const PaddingWrapper = styled.div<{
+  withHeader?: boolean;
+  withoutPadding?: boolean;
+}>`
   padding: ${(props): string => (props.withoutPadding ? '0' : `24px`)};
   ${(props): string | false => !!props.withHeader && `padding-top: 0;`}
   ${CardSummaryWrapper} {

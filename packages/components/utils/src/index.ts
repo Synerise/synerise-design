@@ -1,6 +1,9 @@
 export { default as hexToRgba } from './hexToRgba/hexToRgba';
 export { default as toCamelCase } from './toCamelCase/toCamelCase';
-export { useOnClickOutside } from './useOnClickOutside/useOnClickOutside';
+export {
+  useOnClickOutside,
+  type HandledEventsType,
+} from './useOnClickOutside/useOnClickOutside';
 export { renderWithHighlight } from './renderWithHighlight/renderWithHighlight';
 export { default as selectColorByLetter } from './selectColorByLetter/selectColorByLetter';
 export { default as focusWithArrowKeys } from './focusWithArrowKeys/focusWithArrowKeys';
@@ -24,8 +27,7 @@ export * from './useTraceUpdate';
 export * from './getPopupContainer';
 export * from './useLatestRef';
 
-export const NOOP = (): void => {}; // eslint-disable-line @typescript-eslint/no-empty-function
-export type { HandledEventsType } from './useOnClickOutside/useOnClickOutside';
+export const NOOP = (): void => {};
 
 export type {
   DataAttributes,

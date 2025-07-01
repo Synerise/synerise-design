@@ -1,9 +1,15 @@
 import { useMemo } from 'react';
-import { FilterElement, GroupedFilterElement, SourceType, ValueTypeForSource } from '../IconPicker.types';
+
+import {
+  type FilterElement,
+  type GroupedFilterElement,
+  type SourceType,
+  type ValueTypeForSource,
+} from '../IconPicker.types';
 
 export const useGroupItems = <Source extends SourceType>(
   data: FilterElement<ValueTypeForSource<Source>>[],
-  itemsPerRow: number
+  itemsPerRow: number,
 ): GroupedFilterElement<Source>[] => {
   const groupedData = useMemo(() => {
     return data.reduce((flatItemsAndCategories, group) => {

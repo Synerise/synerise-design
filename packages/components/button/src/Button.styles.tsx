@@ -1,7 +1,8 @@
+import Button from 'antd/lib/button';
 import React from 'react';
 import styled, { css, keyframes } from 'styled-components';
-import { ThemeProps } from '@synerise/ds-core';
-import Button from 'antd/lib/button';
+
+import { type ThemeProps } from '@synerise/ds-core';
 import { IconContainer } from '@synerise/ds-icon';
 import DSTag from '@synerise/ds-tag';
 
@@ -119,7 +120,7 @@ export const ButtonLabel = styled.div<{ withTooltip?: boolean }>`
   flex-grow: 1;
   min-width: 0;
   justify-content: center;
-  ${props =>
+  ${(props) =>
     props.withTooltip &&
     `
     && {
@@ -143,8 +144,14 @@ export const AntdButton = styled(
     error,
     ...rest
   }) => {
-    return <Button type={type === 'custom-color-ghost' ? 'ghost-primary' : type} size={size} {...rest} />;
-  }
+    return (
+      <Button
+        type={type === 'custom-color-ghost' ? 'ghost-primary' : type}
+        size={size}
+        {...rest}
+      />
+    );
+  },
 )`  
   && {
     -webkit-mask-image: -webkit-radial-gradient(white, black);
@@ -153,8 +160,8 @@ export const AntdButton = styled(
     padding: 0 12px;
     position: relative;
     overflow: hidden;
-    justify-content: ${props => props.justifyContent};
-    ${props =>
+    justify-content: ${(props) => props.justifyContent};
+    ${(props) =>
       props.shape &&
       props.shape === 'circle' &&
       css`
@@ -185,10 +192,12 @@ export const AntdButton = styled(
     }
 
     
-    ${props =>
+    ${(props) =>
       props.mode !== 'single-icon' &&
       css`
-        &.ant-btn:not(.ds-expander):not(.ds-button-creator):not(.btn-search):not(.btn-search-open) {
+        &.ant-btn:not(.ds-expander):not(.ds-button-creator):not(
+            .btn-search
+          ):not(.btn-search-open) {
           min-width: 54px;
         }
       `}
@@ -196,7 +205,7 @@ export const AntdButton = styled(
     &&.ant-btn-default:not(.ds-expander):not(.ds-button-creator):not(.read-only):not([disabled]),
     &&.ant-btn-secondary:not(.ds-expander):not(.ds-button-creator):not(.read-only):not([disabled]){
       &:active{
-        ${props => pressedStyles(props)}
+        ${(props) => pressedStyles(props)}
       }
       &:focus:not(:active) {
         color: ${(props): string => (props.error ? props.theme.palette['red-600'] : props.theme.palette['grey-600'])};
@@ -222,7 +231,7 @@ export const AntdButton = styled(
         }
       }
     }
-    ${props =>
+    ${(props) =>
       props.readOnly &&
       css`
         &&.ant-btn {
@@ -261,7 +270,7 @@ export const AntdButton = styled(
           }
         }
       `}
-    ${props =>
+    ${(props) =>
       props.loading &&
       css`
         > *:not(.btn-focus) {
@@ -273,14 +282,16 @@ export const AntdButton = styled(
           visibility: visible;
         }
       `};
-    ${props =>
+    ${(props) =>
       props.type === buttonType[props.type] &&
       !props.error &&
       css`
         &.ant-btn {
           &:not(:disabled) {
             svg {
-              fill: ${props.iconColor ? props.theme.palette[`${props.iconColor}-600`] : 'currentColor'};
+              fill: ${props.iconColor
+                ? props.theme.palette[`${props.iconColor}-600`]
+                : 'currentColor'};
             }
             &:hover {
               svg {
@@ -290,7 +301,7 @@ export const AntdButton = styled(
           }
         }
       `}
-    ${props =>
+    ${(props) =>
       props.mode === 'split' &&
       css`
         &.ant-btn {
@@ -317,7 +328,7 @@ export const AntdButton = styled(
           }
         }
       `}
-    ${props =>
+    ${(props) =>
       props.mode === 'two-icons' &&
       css`
         &.ant-btn {
@@ -341,7 +352,7 @@ export const AntdButton = styled(
           margin: 0 12px 0 0;
         }
       `}
-    ${props =>
+    ${(props) =>
       props.mode === 'label-icon' &&
       css`
         &.ant-btn {
@@ -358,7 +369,7 @@ export const AntdButton = styled(
           margin: 0 12px 0 0;
         }
       `}
-    ${props =>
+    ${(props) =>
       props.mode === 'icon-label' &&
       css`
         &.ant-btn {
@@ -370,7 +381,7 @@ export const AntdButton = styled(
           }
         }
       `}
-    ${props =>
+    ${(props) =>
       props.mode === 'single-icon' &&
       css`
         &.ant-btn:not(.ds-expander) {
@@ -389,7 +400,7 @@ export const AntdButton = styled(
           }
         }
       `}
-    ${props =>
+    ${(props) =>
       props.mode === 'single-icon' &&
       props.size === 'large' &&
       css`
@@ -397,21 +408,21 @@ export const AntdButton = styled(
           width: 48px;
         }
       `}
-    ${props =>
+    ${(props) =>
       props.groupVariant === 'squared' &&
       css`
         &.ant-btn {
           border-radius: 0;
         }
       `}
-    ${props =>
+    ${(props) =>
       props.groupVariant === 'left-rounded' &&
       css`
         &.ant-btn {
           border-radius: 3px 0 0 3px;
         }
       `}
-    ${props =>
+    ${(props) =>
       props.groupVariant === 'right-rounded' &&
       css`
         &.ant-btn {
@@ -419,7 +430,7 @@ export const AntdButton = styled(
         }
       `}
      
-      ${props =>
+      ${(props) =>
         props.error &&
         css`
           &.ant-btn {
@@ -472,7 +483,7 @@ export const AntdButton = styled(
             background-color: ${props.theme.palette[`red-700`]};
           }
         `}
-          ${props =>
+          ${(props) =>
             props.error &&
             props.type === 'secondary' &&
             css`
@@ -495,7 +506,8 @@ export const AntdButton = styled(
                 }
                 &&&:focus:not(:active) {
                   .btn-focus {
-                    box-shadow: inset 0 0 0 2px ${props.theme.palette['blue-600']};
+                    box-shadow: inset 0 0 0 2px
+                      ${props.theme.palette['blue-600']};
                   }
                 }
                 &&&:active {
@@ -514,7 +526,7 @@ export const AntdButton = styled(
             `}
         
 
-    ${props =>
+    ${(props) =>
       props.type === 'custom-color' &&
       !props.error &&
       css`
@@ -536,7 +548,9 @@ export const AntdButton = styled(
           }
 
           ${RippleEffect} {
-            background-color: ${props.theme.palette[`${props.customColor}-700`]};
+            background-color: ${props.theme.palette[
+              `${props.customColor}-700`
+            ]};
           }
 
           &:focus:not(.read-only) {
@@ -547,7 +561,9 @@ export const AntdButton = styled(
 
           &:hover:not(:disabled):not(:focus) {
             background-color: ${props.theme.palette[
-              props.readOnly ? `${props.customColor}-600` : `${props.customColor}-500`
+              props.readOnly
+                ? `${props.customColor}-600`
+                : `${props.customColor}-500`
             ]};
             ${ButtonLabel} {
               color: ${props.theme.palette.white};
@@ -560,7 +576,9 @@ export const AntdButton = styled(
 
           &:disabled {
             opacity: 0.4;
-            background-color: ${props.theme.palette[`${props.customColor}-600`]};
+            background-color: ${props.theme.palette[
+              `${props.customColor}-600`
+            ]};
 
             ${ButtonLabel} {
               color: ${props.theme.palette.white};
@@ -573,7 +591,7 @@ export const AntdButton = styled(
           }
         }
       `}
-      ${props =>
+      ${(props) =>
         props.type === 'custom-color-ghost' &&
         !props.error &&
         css`
@@ -588,14 +606,18 @@ export const AntdButton = styled(
                 color: ${props.theme.palette[`${props.customColor}-500`]};
               }
               svg {
-                fill: ${props.theme.palette[`${props.customColor}-500`]} !important;
+                fill: ${props.theme.palette[
+                  `${props.customColor}-500`
+                ]} !important;
               }
             }
             &:disabled {
               opacity: 0.4;
               color: ${props.theme.palette[`${props.customColor}-600`]};
               .ds-icon > svg {
-                fill: ${props.theme.palette[`${props.customColor}-600`]} !important;
+                fill: ${props.theme.palette[
+                  `${props.customColor}-600`
+                ]} !important;
               }
             }
           }
@@ -603,7 +625,7 @@ export const AntdButton = styled(
 
     &:hover:not(:disabled):not(:focus) {
       ${Tag} span {
-        color: ${props => props.theme.palette.white};
+        color: ${(props) => props.theme.palette.white};
         cursor: inherit;
       }
     }

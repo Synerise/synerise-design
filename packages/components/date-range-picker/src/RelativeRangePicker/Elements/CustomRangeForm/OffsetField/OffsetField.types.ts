@@ -1,4 +1,4 @@
-import { FieldProps } from '../CustomRangeForm.types';
+import { type FieldProps } from '../CustomRangeForm.types';
 
 export type Props = {
   handleOffsetValueChange: (value?: string | number | null) => void;

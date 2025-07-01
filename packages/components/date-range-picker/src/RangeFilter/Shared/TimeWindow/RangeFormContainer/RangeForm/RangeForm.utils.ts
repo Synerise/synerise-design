@@ -1,8 +1,13 @@
 import dayjs from 'dayjs';
-import startOf from '../../../../../dateUtils/startOf';
-import endOf from '../../../../../dateUtils/endOf';
 
-export const numberToDate = (number: number, max: number, isRangeStart?: boolean): Date => {
+import endOf from '../../../../../dateUtils/endOf';
+import startOf from '../../../../../dateUtils/startOf';
+
+export const numberToDate = (
+  number: number,
+  max: number,
+  isRangeStart?: boolean,
+): Date => {
   if (number === max) {
     return dayjs().endOf('day').toDate();
   }

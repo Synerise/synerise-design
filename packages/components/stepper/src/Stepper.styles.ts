@@ -1,15 +1,19 @@
 import styled from 'styled-components';
-import { ORIENTATIONS, StepperOrientation } from './Stepper.types';
+
 import { Step, StepContent, StepWrapper } from './Step/Step.styles';
+import { ORIENTATIONS, type StepperOrientation } from './Stepper.types';
 
 export const StepperWrapper = styled.div<{ orientation: StepperOrientation }>`
   display: flex;
-  flex-direction: ${(props): string => (props.orientation === ORIENTATIONS.VERTICAL ? 'column' : 'row')};
-  align-items: ${(props): string => (props.orientation === ORIENTATIONS.VERTICAL ? 'flex-start' : 'center')};
+  flex-direction: ${(props): string =>
+    props.orientation === ORIENTATIONS.VERTICAL ? 'column' : 'row'};
+  align-items: ${(props): string =>
+    props.orientation === ORIENTATIONS.VERTICAL ? 'flex-start' : 'center'};
   justify-content: flex-start;
   width: auto;
   ${Step} {
-    align-items: ${(props): string => (props.orientation === ORIENTATIONS.VERTICAL ? 'flex-start' : 'center')};
+    align-items: ${(props): string =>
+      props.orientation === ORIENTATIONS.VERTICAL ? 'flex-start' : 'center'};
 
     &:first-of-type {
       margin-top: 0;
@@ -17,13 +21,16 @@ export const StepperWrapper = styled.div<{ orientation: StepperOrientation }>`
     &:last-of-type {
       margin-bottom: 0;
     }
-    flex-direction: ${(props): string => (props.orientation === ORIENTATIONS.VERTICAL ? 'column' : 'row')};
+    flex-direction: ${(props): string =>
+      props.orientation === ORIENTATIONS.VERTICAL ? 'column' : 'row'};
   }
   ${StepWrapper} {
-    margin: ${(props): string => (props.orientation === ORIENTATIONS.VERTICAL ? '8px 0' : '0')};
+    margin: ${(props): string =>
+      props.orientation === ORIENTATIONS.VERTICAL ? '8px 0' : '0'};
   }
   ${StepContent} {
-    display: ${(props): string => (props.orientation === ORIENTATIONS.VERTICAL ? 'flex' : 'none')};
+    display: ${(props): string =>
+      props.orientation === ORIENTATIONS.VERTICAL ? 'flex' : 'none'};
   }
 `;
 

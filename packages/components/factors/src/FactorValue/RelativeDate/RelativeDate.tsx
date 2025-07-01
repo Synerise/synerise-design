@@ -1,13 +1,17 @@
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
+
 import { useTheme } from '@synerise/ds-core';
-import { getPopupContainer } from '@synerise/ds-utils';
 import Dropdown from '@synerise/ds-dropdown';
 import Icon, { AngleDownS, Close3S } from '@synerise/ds-icon';
+import { getPopupContainer } from '@synerise/ds-utils';
 
-import { FactorValueComponentProps, RelativeDateValueType } from '../../Factors.types';
+import {
+  type FactorValueComponentProps,
+  type RelativeDateValueType,
+} from '../../Factors.types';
+import { defaultTriggerModifier } from './RelativeDate.utils';
 import { RelativeDateDropdown } from './RelativeDateDropdown';
 import * as S from './RelativeDateDropdown.styles';
-import { defaultTriggerModifier } from './RelativeDate.utils';
 
 const RelativeDateInput = ({
   value,
@@ -24,7 +28,9 @@ const RelativeDateInput = ({
   availableUnits,
 }: FactorValueComponentProps) => {
   const [isOpen, setIsOpen] = useState(opened);
-  const [localValue, setLocalValue] = useState<RelativeDateValueType>(value as RelativeDateValueType);
+  const [localValue, setLocalValue] = useState<RelativeDateValueType>(
+    value as RelativeDateValueType,
+  );
   const theme = useTheme();
   const { relativeDate: texts } = allTexts;
   useEffect(() => {
@@ -40,7 +46,7 @@ const RelativeDateInput = ({
       }
       setIsOpen(open);
     },
-    [onActivate, onDeactivate]
+    [onActivate, onDeactivate],
   );
 
   const handleApply = useCallback(
@@ -48,7 +54,7 @@ const RelativeDateInput = ({
       onChange(date);
       handleOpenChange(false);
     },
-    [onChange, handleOpenChange]
+    [onChange, handleOpenChange],
   );
 
   const handleClear = useCallback(() => {
@@ -67,15 +73,23 @@ const RelativeDateInput = ({
     if (!localValue) {
       return undefined;
     }
-    return triggerValueFormatter ? triggerValueFormatter(localValue) : defaultTriggerModifier(localValue, texts);
+    return triggerValueFormatter
+      ? triggerValueFormatter(localValue)
+      : defaultTriggerModifier(localValue, texts);
   }, [texts, localValue, triggerValueFormatter]);
 
   const icon = useMemo(() => {
-    if (!localValue || !allowClear) return <Icon component={<AngleDownS />} onClick={handleOpen} />;
+    if (!localValue || !allowClear) {
+      return <Icon component={<AngleDownS />} onClick={handleOpen} />;
+    }
     return (
       <S.IconWrapper>
         <S.ChevronIcon onClick={handleOpen} component={<AngleDownS />} />
-        <S.ClearIcon onClick={handleClear} color={theme.palette['red-600']} component={<Close3S />} />
+        <S.ClearIcon
+          onClick={handleClear}
+          color={theme.palette['red-600']}
+          component={<Close3S />}
+        />
       </S.IconWrapper>
     );
   }, [localValue, allowClear, handleClear, handleOpen, theme.palette]);

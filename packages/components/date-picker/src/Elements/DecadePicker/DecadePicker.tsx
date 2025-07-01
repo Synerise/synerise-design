@@ -1,13 +1,17 @@
-import React from 'react';
 import { range } from 'lodash';
+import React from 'react';
 
 import { legacyParse } from '@date-fns/upgrade/v2';
+
+import { fnsAddYears, fnsGetYear, fnsSetYear } from '../../fns';
+import { getCenturyRange, getDecadeRange } from '../../utils';
 import GridPicker from '../GridPicker/GridPicker';
+import { type Cell } from '../GridPicker/GridPicker.types';
 import Navbar from '../Navbar/Navbar';
-import { Cell } from '../GridPicker/GridPicker.types';
-import { DecadePickerProps, DecadePickerState } from './DecadePicker.types';
-import { getDecadeRange, getCenturyRange } from '../../utils';
-import { fnsAddYears, fnsSetYear, fnsGetYear } from '../../fns';
+import {
+  type DecadePickerProps,
+  type DecadePickerState,
+} from './DecadePicker.types';
 
 function getInitialState(props: DecadePickerProps): DecadePickerState {
   return {
@@ -17,7 +21,7 @@ function getInitialState(props: DecadePickerProps): DecadePickerState {
 
 function getCells(cursor: Date): Cell[] {
   const startYear = getCenturyRange(cursor)[0];
-  return range(0, 10).map(index => {
+  return range(0, 10).map((index) => {
     const date = fnsAddYears(fnsSetYear(cursor, startYear), index * 10);
     return {
       key: date.toISOString(),
@@ -26,7 +30,10 @@ function getCells(cursor: Date): Cell[] {
   });
 }
 
-export default class DecadePicker extends React.PureComponent<DecadePickerProps, DecadePickerState> {
+export default class DecadePicker extends React.PureComponent<
+  DecadePickerProps,
+  DecadePickerState
+> {
   state = getInitialState(this.props);
 
   getSnapshotBeforeUpdate(prevProps: Readonly<DecadePickerProps>): null {
@@ -76,9 +83,17 @@ export default class DecadePicker extends React.PureComponent<DecadePickerProps,
       : null;
     const selectedKey = valueCell ? valueCell.key : null;
     cells = [
-      { key: -1, text: `${centuryRange[0] - 10}-${centuryRange[0] - 1}`, outside: true },
+      {
+        key: -1,
+        text: `${centuryRange[0] - 10}-${centuryRange[0] - 1}`,
+        outside: true,
+      },
       ...cells,
-      { key: 1, text: `${centuryRange[1] + 1}-${centuryRange[1] + 10}`, outside: true },
+      {
+        key: 1,
+        text: `${centuryRange[1] + 1}-${centuryRange[1] + 10}`,
+        outside: true,
+      },
     ];
     return [
       <Navbar
@@ -88,7 +103,12 @@ export default class DecadePicker extends React.PureComponent<DecadePickerProps,
         onLongNext={this.handleLongNext}
         key="head"
       />,
-      <GridPicker selectedKey={selectedKey} cells={cells} onCellClick={this.handleCellClick} key="body" />,
+      <GridPicker
+        selectedKey={selectedKey}
+        cells={cells}
+        onCellClick={this.handleCellClick}
+        key="body"
+      />,
     ];
   }
 }

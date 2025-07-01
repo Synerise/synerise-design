@@ -1,9 +1,9 @@
 import React from 'react';
+
+import Button, { type ButtonProps } from '@synerise/ds-button';
+import { renderWithProvider } from '@synerise/ds-utils';
 import { screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-
-import { renderWithProvider } from '@synerise/ds-utils/dist/testing';
-import Button, { ButtonProps } from '@synerise/ds-button';
 
 import { ModalFooter } from './ModalFooter';
 
@@ -36,7 +36,13 @@ describe('ModalFooter', () => {
       okButton: 'Custom Apply',
     };
 
-    renderWithProvider(<ModalFooter onCancel={onCancelMock} onOk={onOkMock} texts={customTexts} />);
+    renderWithProvider(
+      <ModalFooter
+        onCancel={onCancelMock}
+        onOk={onOkMock}
+        texts={customTexts}
+      />,
+    );
     const cancelButton = screen.getByText('Custom Cancel');
     const okButton = screen.getByText('Custom Apply');
 
@@ -63,7 +69,13 @@ describe('ModalFooter', () => {
     const suffixNode = <div data-testid="suffix">Suffix Node</div>;
 
     renderWithProvider(
-      <ModalFooter onCancel={onCancelMock} onOk={onOkMock} prefix={prefixNode} suffix={suffixNode} infix={infixNode} />
+      <ModalFooter
+        onCancel={onCancelMock}
+        onOk={onOkMock}
+        prefix={prefixNode}
+        suffix={suffixNode}
+        infix={infixNode}
+      />,
     );
 
     const prefixElement = screen.getByTestId('prefix');
@@ -76,7 +88,13 @@ describe('ModalFooter', () => {
   });
 
   it('renders custom DSButton component for cancel and apply buttons', () => {
-    renderWithProvider(<ModalFooter onCancel={onCancelMock} onOk={onOkMock} CustomFooterButton={CustomButtonMock} />);
+    renderWithProvider(
+      <ModalFooter
+        onCancel={onCancelMock}
+        onOk={onOkMock}
+        CustomFooterButton={CustomButtonMock}
+      />,
+    );
 
     const cancelButton = screen.getByText('Custom Cancel');
     const okButton = screen.getByText('Custom Apply');

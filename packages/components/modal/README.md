@@ -69,8 +69,6 @@ Some features of the Modal component have been deprecated. Please refer to the [
 | maskStyle           | Style for modal's mask element.                                                                            | object                                                                 | {}                                              |
 | maxHeightViewport   | height of modal with with scrollbar                                                                        | true / number                                                          | 80                                              |
 
-
-
 and it is extended by props for ModalFooterBuilder:
 
 | Property     | Description                                                  | Type      | Default | Version |

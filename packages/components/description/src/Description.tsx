@@ -1,15 +1,27 @@
-import React from 'react';
 import classnames from 'classnames';
-import * as S from './Description.styles';
-import { DescriptionProps } from './Description.types';
+import React from 'react';
 
-const Description = ({ type = 'table', children, ratio = '30-70' }: DescriptionProps) => {
+import * as S from './Description.styles';
+import { type DescriptionProps } from './Description.types';
+
+const Description = ({
+  type = 'table',
+  children,
+  ratio = '30-70',
+}: DescriptionProps) => {
   const hasSingleChild = React.useMemo(() => {
     return !Array.isArray(children);
   }, [children]);
-  const className = classnames('ds-description', { 'single-row': hasSingleChild });
+  const className = classnames('ds-description', {
+    'single-row': hasSingleChild,
+  });
   return (
-    <S.Description type={type} ratio={ratio} className={className} singleRow={hasSingleChild}>
+    <S.Description
+      type={type}
+      ratio={ratio}
+      className={className}
+      singleRow={hasSingleChild}
+    >
       {children}
     </S.Description>
   );

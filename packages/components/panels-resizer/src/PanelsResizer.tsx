@@ -1,10 +1,20 @@
-import React, { useCallback, useState, useRef, useEffect } from 'react';
-import type { ReactNode, MouseEvent } from 'react';
+import React, {
+  type MouseEvent,
+  type ReactNode,
+  useCallback,
+  useEffect,
+  useRef,
+  useState,
+} from 'react';
 
-import { Resizer } from './Resizer';
-import type { InitialVectorOptions } from './utils';
-import { calculateLeftPanelWidth, calculateRightPanelWidth, getInitialVector } from './utils';
 import * as S from './PanelResizer.styles';
+import { Resizer } from './Resizer';
+import {
+  type InitialVectorOptions,
+  calculateLeftPanelWidth,
+  calculateRightPanelWidth,
+  getInitialVector,
+} from './utils';
 
 type PanelsResizerProps = {
   leftPanel: ReactNode;
@@ -13,7 +23,12 @@ type PanelsResizerProps = {
   scrollable?: boolean;
 };
 
-export const PanelsResizer = ({ leftPanel, rightPanel, initial, scrollable }: PanelsResizerProps) => {
+export const PanelsResizer = ({
+  leftPanel,
+  rightPanel,
+  initial,
+  scrollable,
+}: PanelsResizerProps) => {
   const containerRef = useRef<HTMLDivElement>(null);
   const [isResizing, setIsResizing] = useState(false);
   const [vector, setVector] = useState(0);
@@ -30,25 +45,34 @@ export const PanelsResizer = ({ leftPanel, rightPanel, initial, scrollable }: Pa
 
   const handleMouseMove = useCallback(
     (event: MouseEvent<HTMLDivElement>) => {
-      if (!isResizing) return;
+      if (!isResizing) {
+        return;
+      }
 
       const deltaX = event.clientX - startClientXRef.current;
-      setVector(prevVector => (prevVector !== null ? prevVector + deltaX : deltaX));
+      setVector((prevVector) =>
+        prevVector !== null ? prevVector + deltaX : deltaX,
+      );
       startClientXRef.current = event.clientX;
     },
-    [isResizing]
+    [isResizing],
   );
 
   const handleMouseUpOrLeave = useCallback(() => {
-    if (!isResizing) return;
+    if (!isResizing) {
+      return;
+    }
 
     setIsResizing(false);
   }, [isResizing]);
 
-  const handleMouseDownOnResizer = useCallback((event: MouseEvent<HTMLDivElement>) => {
-    setIsResizing(true);
-    startClientXRef.current = event.clientX;
-  }, []);
+  const handleMouseDownOnResizer = useCallback(
+    (event: MouseEvent<HTMLDivElement>) => {
+      setIsResizing(true);
+      startClientXRef.current = event.clientX;
+    },
+    [],
+  );
 
   return (
     <S.PanelsResizerContainer

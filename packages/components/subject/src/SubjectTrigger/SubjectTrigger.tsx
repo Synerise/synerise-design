@@ -1,7 +1,9 @@
 import React from 'react';
+
 import Button from '@synerise/ds-button';
 import Icon, { AngleDownS } from '@synerise/ds-icon';
-import { SubjectTriggerProps } from '../Subject.types';
+
+import { type SubjectTriggerProps } from '../Subject.types';
 
 const SubjectTrigger: React.FC<SubjectTriggerProps> = ({
   iconPlaceholder,
@@ -19,7 +21,13 @@ const SubjectTrigger: React.FC<SubjectTriggerProps> = ({
   }, [selectedItem, placeholder]);
 
   return (
-    <Button data-testid="subject-trigger" type="custom-color" mode="two-icons" color={color} onClick={onClick}>
+    <Button
+      data-testid="subject-trigger"
+      type="custom-color"
+      mode="two-icons"
+      color={color}
+      onClick={onClick}
+    >
       <Icon component={icon} />
       {label}
       <Icon component={<AngleDownS />} />

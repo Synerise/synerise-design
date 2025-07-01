@@ -1,23 +1,32 @@
-import React, { ReactNode } from 'react';
+import React, { type ReactNode } from 'react';
 
-import type { DSColumnType, DSTableProps } from '../Table.types';
 import * as S from '../Table.styles';
+import type { DSColumnType, DSTableProps } from '../Table.types';
 import {
+  DEFAULT_ROW_COUNT,
   HEADER_HEIGHT,
   ROW_HEIGHT,
   SUBHEADER_HEIGHT,
-  DEFAULT_ROW_COUNT,
   getDefaultSkeletonColumns,
 } from '../constants/TableSkeleton.constants';
 
-const getRowCount = (headerHeight: number, subheaderHeight: number, cellHeight: number, maxHeight?: number) => {
-  if (!maxHeight) return DEFAULT_ROW_COUNT;
-  return Math.floor((maxHeight - (headerHeight + subheaderHeight)) / cellHeight);
+const getRowCount = (
+  headerHeight: number,
+  subheaderHeight: number,
+  cellHeight: number,
+  maxHeight?: number,
+) => {
+  if (!maxHeight) {
+    return DEFAULT_ROW_COUNT;
+  }
+  return Math.floor(
+    (maxHeight - (headerHeight + subheaderHeight)) / cellHeight,
+  );
 };
 
 export const getSkeletonProps = <T extends object>(
   skeletonProps: DSTableProps<T>['skeletonProps'],
-  columns?: DSColumnType<T>[]
+  columns?: DSColumnType<T>[],
 ): Partial<DSTableProps<T>> => {
   const {
     cellHeight = ROW_HEIGHT,
@@ -25,10 +34,15 @@ export const getSkeletonProps = <T extends object>(
     subheaderHeight = SUBHEADER_HEIGHT,
     maxHeight,
   } = skeletonProps || {};
-  const rowCount = getRowCount(headerHeight, subheaderHeight, cellHeight, maxHeight);
+  const rowCount = getRowCount(
+    headerHeight,
+    subheaderHeight,
+    cellHeight,
+    maxHeight,
+  );
 
   const skeletonColumns = columns?.length
-    ? columns.map(column => ({
+    ? columns.map((column) => ({
         ...column,
         render: () => {
           return (

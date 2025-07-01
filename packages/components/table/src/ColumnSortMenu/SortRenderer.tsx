@@ -1,13 +1,21 @@
-import React, { useState, MouseEvent as ReactMouseEvent } from 'react';
 import { partial } from 'lodash';
+import React, { type MouseEvent as ReactMouseEvent, useState } from 'react';
+
 import Dropdown from '@synerise/ds-dropdown';
-import Icon, { Close2M, SortAscendingM, SortDescendingM, SortAzM, SortZaM } from '@synerise/ds-icon';
-import Menu, { MenuItemProps } from '@synerise/ds-menu';
-import { DSColumnType, OnSortFn } from '../Table.types';
+import Icon, {
+  Close2M,
+  SortAscendingM,
+  SortAzM,
+  SortDescendingM,
+  SortZaM,
+} from '@synerise/ds-icon';
+import Menu, { type MenuItemProps } from '@synerise/ds-menu';
+
+import { type DSColumnType, type OnSortFn } from '../Table.types';
 import { useTableLocaleContext } from '../utils/locale';
-import * as S from './SortRender.styles';
-import { SortStateAPI, toSortOrder } from './useSortState';
 import { CheckIcon, DefaultSortIcon, StringSortIcon } from './SortIcons';
+import * as S from './SortRender.styles';
+import { type SortStateAPI, toSortOrder } from './useSortState';
 
 type SortRendererProps<T> = {
   sortStateApi: SortStateAPI;
@@ -19,7 +27,10 @@ const handleButtonClick = (event: ReactMouseEvent<HTMLElement, MouseEvent>) => {
   event.stopPropagation();
 };
 
-export const CommonRenderer = <T extends unknown>({ column, sortStateApi }: SortRendererProps<T>) => {
+export const CommonRenderer = <T,>({
+  column,
+  sortStateApi,
+}: SortRendererProps<T>) => {
   const { getColumnSortOrder, setColumnSortOrder } = sortStateApi;
   const columnKey = String(column.key);
   const columnSortOrder = column.key ? getColumnSortOrder(columnKey) : null;
@@ -52,7 +63,7 @@ export const CommonRenderer = <T extends unknown>({ column, sortStateApi }: Sort
   }
   return (
     <Dropdown
-      onVisibleChange={isVisible => {
+      onVisibleChange={(isVisible) => {
         if (isVisible !== isDropdownVisible) {
           setIsDropdownVisible(isVisible);
         }
@@ -84,7 +95,10 @@ export const CommonRenderer = <T extends unknown>({ column, sortStateApi }: Sort
   );
 };
 
-export const StringRenderer = <T extends unknown>({ column, sortStateApi }: SortRendererProps<T>) => {
+export const StringRenderer = <T,>({
+  column,
+  sortStateApi,
+}: SortRendererProps<T>) => {
   const { getColumnSortOrder, setColumnSortOrder } = sortStateApi;
   const columnKey = String(column.key);
   const columnSortOrder = column.key ? getColumnSortOrder(columnKey) : null;
@@ -116,7 +130,7 @@ export const StringRenderer = <T extends unknown>({ column, sortStateApi }: Sort
 
   return (
     <Dropdown
-      onVisibleChange={isVisible => {
+      onVisibleChange={(isVisible) => {
         if (isVisible !== isDropdownVisible) {
           setIsDropdownVisible(isVisible);
         }

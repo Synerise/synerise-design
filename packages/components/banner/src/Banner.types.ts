@@ -1,6 +1,7 @@
 import type { ReactNode } from 'react';
-import type { WithHTMLAttributes } from '@synerise/ds-utils';
+
 import type { TagProps } from '@synerise/ds-tag';
+import type { WithHTMLAttributes } from '@synerise/ds-utils';
 
 type Texts = 'expand' | 'collapse' | 'closeTooltip';
 export type BannerTexts = {
@@ -35,8 +36,12 @@ export type BannerSlideProps = WithHTMLAttributes<
   HTMLDivElement,
   {
     mainContent?: BannerSlideTextContentProps | BannerSlideMediaContentProps;
-    leftSideContent?: BannerSlideTextContentProps | BannerSlideMediaContentProps;
-    rightSideContent?: BannerSlideTextContentProps | BannerSlideMediaContentProps;
+    leftSideContent?:
+      | BannerSlideTextContentProps
+      | BannerSlideMediaContentProps;
+    rightSideContent?:
+      | BannerSlideTextContentProps
+      | BannerSlideMediaContentProps;
   }
 >;
 export type BannerSlideContentProps = {

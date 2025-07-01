@@ -64,10 +64,13 @@ import Button from '@synerise/ds-button';
 ### Additional methods
 
 #### removeToast(toastId?)
+
 Removes a specific or all displayed toasts instantly
 
 #### dismissToast(toastId?)
+
 Removes a specific or all displayed toasts with an exit animation.
 
 #### showToast(type, toastProps, toastOptions?)
+
 enders a Toast of specified `type`, using toastProps and then displays it using the Toaster with toastOptoins. returns a toastID that can be later used to remove / dismiss that toast manually.

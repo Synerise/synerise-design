@@ -1,14 +1,16 @@
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
+import { type MoveEvent, ReactSortable } from 'react-sortablejs';
+
 import List from '@synerise/ds-list';
-import { ReactSortable, MoveEvent } from 'react-sortablejs';
-import * as S from './ManageableList.styles';
-import Item from './Item/Item';
-import AddItemWithName from './AddItemWithName/AddItemWithName';
-import AddItem from './AddItem/AddItem';
-import { ManageableListProps, ListType } from './ManageableList.types';
-import { ItemProps } from './Item/Item.types';
-import { useTexts } from './hooks/useTexts';
+
 import AddBlankItem from './AddBlankItem/AddBlankItem';
+import AddItem from './AddItem/AddItem';
+import AddItemWithName from './AddItemWithName/AddItemWithName';
+import Item from './Item/Item';
+import { type ItemProps } from './Item/Item.types';
+import * as S from './ManageableList.styles';
+import { ListType, type ManageableListProps } from './ManageableList.types';
+import { useTexts } from './hooks/useTexts';
 
 const SORTABLE_CONFIG = {
   ghostClass: 'sortable-list-ghost-element',
@@ -62,7 +64,9 @@ const ManageableListComponent = <T extends object>({
   const getExpandedIds = useCallback(() => {
     return expandedIds !== undefined
       ? expandedIds
-      : items.filter((item: ItemProps) => item.expanded).map((item: ItemProps) => item.id);
+      : items
+          .filter((item: ItemProps) => item.expanded)
+          .map((item: ItemProps) => item.id);
   }, [expandedIds, items]);
 
   const [allExpandedIds, setAllExpandedIds] = useState(getExpandedIds());
@@ -72,7 +76,9 @@ const ManageableListComponent = <T extends object>({
   }, [expandedIds, items, getExpandedIds]);
 
   const getItemsOverLimit = useMemo(() => {
-    if (visibleLimit) return items.length - visibleLimit;
+    if (visibleLimit) {
+      return items.length - visibleLimit;
+    }
     return 0;
   }, [items, visibleLimit]);
 
@@ -82,7 +88,7 @@ const ManageableListComponent = <T extends object>({
 
   const buttonLabel = useMemo(
     () => (allItemsVisible ? allTexts.showLessLabel : allTexts.showMoreLabel),
-    [allItemsVisible, allTexts.showLessLabel, allTexts.showMoreLabel]
+    [allItemsVisible, allTexts.showLessLabel, allTexts.showMoreLabel],
   );
 
   const buttonLabelDiff = useMemo(
@@ -96,7 +102,7 @@ const ManageableListComponent = <T extends object>({
           + {getItemsOverLimit} {allTexts.more}{' '}
         </>
       ),
-    [allItemsVisible, getItemsOverLimit, allTexts.less, allTexts.more]
+    [allItemsVisible, getItemsOverLimit, allTexts.less, allTexts.more],
   );
 
   const toggleAllItems = useCallback(() => {
@@ -109,18 +115,24 @@ const ManageableListComponent = <T extends object>({
 
   const onMoveTop = useCallback(
     (item: ItemProps) => {
-      const newOrder = [item, ...items.filter((i: ItemProps) => i.id !== item.id)];
+      const newOrder = [
+        item,
+        ...items.filter((i: ItemProps) => i.id !== item.id),
+      ];
       onChangeOrder && onChangeOrder(newOrder as ItemProps<T>[]);
     },
-    [items, onChangeOrder]
+    [items, onChangeOrder],
   );
 
   const onMoveBottom = useCallback(
     (item: ItemProps) => {
-      const newOrder = [...items.filter((i: ItemProps) => i.id !== item.id), item];
+      const newOrder = [
+        ...items.filter((i: ItemProps) => i.id !== item.id),
+        item,
+      ];
       onChangeOrder && onChangeOrder(newOrder as ItemProps<T>[]);
     },
-    [items, onChangeOrder]
+    [items, onChangeOrder],
   );
 
   const getItem = useCallback(
@@ -173,7 +185,7 @@ const ManageableListComponent = <T extends object>({
       allExpandedIds,
       additionalActions,
       renderItem,
-    ]
+    ],
   );
 
   const toggleMoreItemsButton =
@@ -185,7 +197,10 @@ const ManageableListComponent = <T extends object>({
             total: items.length,
             limit: visibleLimit,
           })) || (
-          <S.ShowMoreButton onClick={toggleAllItems} data-testid="show-more-button">
+          <S.ShowMoreButton
+            onClick={toggleAllItems}
+            data-testid="show-more-button"
+          >
             <span>{buttonLabelDiff}</span>
             <strong>{buttonLabel}</strong>
           </S.ShowMoreButton>
@@ -208,18 +223,35 @@ const ManageableListComponent = <T extends object>({
         />
       )}
       {onChangeOrder && !changeOrderDisabled ? (
-        <ReactSortable {...SORTABLE_CONFIG} list={visibleItems} setList={onChangeOrder}>
+        <ReactSortable
+          {...SORTABLE_CONFIG}
+          list={visibleItems}
+          setList={onChangeOrder}
+        >
           {visibleItems.map(getItem)}
         </ReactSortable>
       ) : (
-        <List loading={loading} dataSource={visibleItems} renderItem={getItem} />
+        <List
+          loading={loading}
+          dataSource={visibleItems}
+          renderItem={getItem}
+        />
       )}
       {toggleMoreItemsButton}
-      {(type === ListType.CONTENT || type === ListType.CONTENT_LARGE) && Boolean(onItemAdd) && (
-        <AddItem addItemLabel={allTexts.addItemLabel} onItemAdd={createItem} disabled={addButtonDisabled} />
-      )}
+      {(type === ListType.CONTENT || type === ListType.CONTENT_LARGE) &&
+        Boolean(onItemAdd) && (
+          <AddItem
+            addItemLabel={allTexts.addItemLabel}
+            onItemAdd={createItem}
+            disabled={addButtonDisabled}
+          />
+        )}
       {type === ListType.BLANK && Boolean(onItemAdd) && (
-        <AddBlankItem addItemLabel={allTexts.addItemLabel} onItemAdd={createItem} disabled={addButtonDisabled} />
+        <AddBlankItem
+          addItemLabel={allTexts.addItemLabel}
+          onItemAdd={createItem}
+          disabled={addButtonDisabled}
+        />
       )}
     </S.ManageableListContainer>
   );

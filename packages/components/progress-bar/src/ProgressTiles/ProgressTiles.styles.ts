@@ -3,16 +3,16 @@ import styled from 'styled-components';
 export const TileContainer = styled.div<{ width: string }>`
   position: relative;
   margin-right: 2px;
-  width: ${props => props.width};
+  width: ${(props) => props.width};
   height: 6px;
-  background: ${props => props.theme.palette['grey-200']};
+  background: ${(props) => props.theme.palette['grey-200']};
 `;
 
 export const TileProgress = styled.div<{ color: string; width: string }>`
   position: absolute;
   height: 100%;
-  width: ${props => props.width};
-  background-color: ${props => props.color};
+  width: ${(props) => props.width};
+  background-color: ${(props) => props.color};
 `;
 
 export const TilesWrapper = styled.div`

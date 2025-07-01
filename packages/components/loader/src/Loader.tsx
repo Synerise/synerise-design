@@ -1,6 +1,7 @@
 import React from 'react';
-import { LoaderProps } from './Loader.types';
+
 import * as S from './Loader.styles';
+import { type LoaderProps } from './Loader.types';
 
 const Loader = ({
   size = 'M',
@@ -15,14 +16,20 @@ const Loader = ({
   className,
 }: LoaderProps) => {
   return (
-    <S.LoaderWrapper mode={mode} className={`ds-loader ${className}`} labelPosition={labelPosition}>
+    <S.LoaderWrapper
+      mode={mode}
+      className={`ds-loader ${className}`}
+      labelPosition={labelPosition}
+    >
       <S.Wrapper size={size}>
         <S.Loader size={size} color={color} />
       </S.Wrapper>
       {text && <S.HeaderWrapper fontSize={fontSize}>{text}</S.HeaderWrapper>}
       <S.TextWrapper size={size} labelPosition={labelPosition}>
         {label}
-        {percentFormatter && <S.PercentWrapper>{percentFormatter(percent)}</S.PercentWrapper>}
+        {percentFormatter && (
+          <S.PercentWrapper>{percentFormatter(percent)}</S.PercentWrapper>
+        )}
       </S.TextWrapper>
     </S.LoaderWrapper>
   );

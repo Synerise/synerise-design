@@ -1,12 +1,19 @@
-import React, { ChangeEvent, FocusEvent, useCallback, useRef, useState } from 'react';
-import Tooltip from '@synerise/ds-tooltip';
-import Icon, { EditS } from '@synerise/ds-icon';
+import React, {
+  type ChangeEvent,
+  type FocusEvent,
+  useCallback,
+  useRef,
+  useState,
+} from 'react';
+
 import { useTheme } from '@synerise/ds-core';
+import Icon, { EditS } from '@synerise/ds-icon';
 import { Input } from '@synerise/ds-input';
+import Tooltip from '@synerise/ds-tooltip';
 
 import * as S from '../../SubtleForm.styles';
 import { focusPadding } from '../../SubtleForm.styles';
-import { SubtleInputProps } from './Input.types';
+import { type SubtleInputProps } from './Input.types';
 
 const SubtleInput = ({
   disabled,
@@ -38,7 +45,7 @@ const SubtleInput = ({
       setActive(false);
       setBlurred(true);
     },
-    [inputProps]
+    [inputProps],
   );
   const handleActivate = useCallback(() => {
     setActive(true);
@@ -47,9 +54,13 @@ const SubtleInput = ({
   return (
     <S.Subtle className="ds-subtle-form">
       <S.SubtleFormField active={active} label={label} tooltip={labelTooltip}>
-        <S.Container ref={containerRef} className="ds-subtle-input" active={active} disabled={disabled}>
+        <S.Container
+          ref={containerRef}
+          className="ds-subtle-input"
+          active={active}
+          disabled={disabled}
+        >
           {(active || hasError) && !disabled ? (
-            // @ts-ignore
             <Input
               autoFocus={!hasError && !disabled}
               disabled={disabled}
@@ -66,11 +77,22 @@ const SubtleInput = ({
               {...inputProps}
             />
           ) : (
-            <S.Inactive onClick={!disabled ? handleActivate : undefined} blurred={blurred} disabled={disabled}>
-              <S.MainContent>{value && !!value.trim() ? value : placeholder}</S.MainContent>
+            <S.Inactive
+              onClick={!disabled ? handleActivate : undefined}
+              blurred={blurred}
+              disabled={disabled}
+            >
+              <S.MainContent>
+                {value && !!value.trim() ? value : placeholder}
+              </S.MainContent>
               <S.Suffix>
                 <Tooltip title={suffixTooltip}>
-                  {suffix ?? <Icon component={<EditS />} color={theme.palette['grey-600']} />}
+                  {suffix ?? (
+                    <Icon
+                      component={<EditS />}
+                      color={theme.palette['grey-600']}
+                    />
+                  )}
                 </Tooltip>
               </S.Suffix>
             </S.Inactive>

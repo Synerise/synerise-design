@@ -1,4 +1,4 @@
-import { DailySchedule } from './Daily/Daily.types';
+import { type DailySchedule } from './Daily/Daily.types';
 
 export const DAY_VALUE_HOUR = {
     "start":"00:00:00.000",

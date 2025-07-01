@@ -1,7 +1,8 @@
 import React from 'react';
-import * as S from './InputMultivalue.styles';
+
 import Value from './Elements/Value';
-import { InputMultivalueProps } from './InputMultivalue.types';
+import * as S from './InputMultivalue.styles';
+import { type InputMultivalueProps } from './InputMultivalue.types';
 
 const emptyValue = '';
 const InputMultivalue = (props: InputMultivalueProps) => {
@@ -59,10 +60,9 @@ const InputMultivalue = (props: InputMultivalueProps) => {
         {selectedValues.map((val, index) => (
           <Value
             disabled={disabled}
-            // eslint-disable-next-line react/no-array-index-key
             key={`${val}-${index}`}
             onRemoveClick={(): void => {
-              const filteredValues = selectedValues.filter(v => v !== val);
+              const filteredValues = selectedValues.filter((v) => v !== val);
               handleNewValue(filteredValues);
             }}
             value={val}

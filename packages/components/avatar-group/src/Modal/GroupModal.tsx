@@ -1,16 +1,16 @@
 import React from 'react';
-import ModalProxy from '@synerise/ds-modal';
-import { VirtualTable, TableCell } from '@synerise/ds-table';
-import Avatar from '@synerise/ds-avatar';
-import Dropdown from '@synerise/ds-dropdown';
-import Button from '@synerise/ds-button';
-import Icon, { OptionHorizontalM } from '@synerise/ds-icon';
-import Badge from '@synerise/ds-badge';
-import { AvatarProps } from '@synerise/ds-avatar/dist/Avatar.types';
 
-import { DataSource } from '../AvatarGroup.types';
+import Avatar, { type AvatarProps } from '@synerise/ds-avatar';
+import Badge from '@synerise/ds-badge';
+import Button from '@synerise/ds-button';
+import Dropdown from '@synerise/ds-dropdown';
+import Icon, { OptionHorizontalM } from '@synerise/ds-icon';
+import ModalProxy from '@synerise/ds-modal';
+import { TableCell, VirtualTable } from '@synerise/ds-table';
+
+import { type DataSource } from '../AvatarGroup.types';
 import * as S from './GroupModal.styles';
-import { GroupModalProps } from './GroupModal.types';
+import { type GroupModalProps } from './GroupModal.types';
 
 const GroupModal = ({
   renderRowMenu,
@@ -36,7 +36,12 @@ const GroupModal = ({
             <TableCell.AvatarLabelCell
               avatar={
                 <Badge key={record.id} status={record.status}>
-                  <Avatar {...avatar} hasStatus={showStatus} size="medium" shape="circle">
+                  <Avatar
+                    {...avatar}
+                    hasStatus={showStatus}
+                    size="medium"
+                    shape="circle"
+                  >
                     {record.initials}
                   </Avatar>
                 </Badge>
@@ -54,7 +59,11 @@ const GroupModal = ({
         width: 72,
         render: (id: React.ReactText, record: DataSource): React.ReactNode => (
           <TableCell.ActionCell contentAlign="right">
-            <Dropdown overlay={renderRowMenu(record)} trigger={['click']} placement="bottomRight">
+            <Dropdown
+              overlay={renderRowMenu(record)}
+              trigger={['click']}
+              placement="bottomRight"
+            >
               <Button type="ghost" mode="single-icon">
                 <Icon component={<OptionHorizontalM />} />
               </Button>

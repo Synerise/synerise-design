@@ -1,5 +1,6 @@
-import styled, { css, SimpleInterpolation } from 'styled-components';
-import { ThemeProps } from '@synerise/ds-core';
+import styled, { type SimpleInterpolation, css } from 'styled-components';
+
+import { type ThemeProps } from '@synerise/ds-core';
 
 type WrapperProps = {
   disabled?: boolean;
@@ -17,9 +18,13 @@ export const IconWrapper = styled.div``;
 
 export const Wrapper = styled.li<WrapperProps>`
   color: ${(props: WrapperProps & ThemeProps): string => {
-    if (props.danger) return props.theme.palette['red-600'];
+    if (props.danger) {
+      return props.theme.palette['red-600'];
+    }
 
-    if (props.disabled) return props.theme.palette['grey-700'];
+    if (props.disabled) {
+      return props.theme.palette['grey-700'];
+    }
 
     return props.theme.palette['grey-700'];
   }};
@@ -67,7 +72,8 @@ export const Wrapper = styled.li<WrapperProps>`
   }
 
   &:focus {
-    box-shadow: inset 0 0 0 2px ${(props): string => props.theme.palette['blue-600']};
+    box-shadow: inset 0 0 0 2px
+      ${(props): string => props.theme.palette['blue-600']};
   }
 `;
 

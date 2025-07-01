@@ -1,42 +1,66 @@
-import React, { useRef, useState, useMemo, useCallback, UIEvent, useEffect } from 'react';
-import { VariableSizeList } from 'react-window';
+import React, {
+  type UIEvent,
+  useCallback,
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+} from 'react';
+import { type VariableSizeList } from 'react-window';
 import { v4 as uuid } from 'uuid';
 
-import Dropdown from '@synerise/ds-dropdown';
-import Divider from '@synerise/ds-divider';
-import Icon, { ArrowRightCircleM, SearchM } from '@synerise/ds-icon';
-import Tabs from '@synerise/ds-tabs';
-import { useSearchResults, getGroupName, focusWithArrowKeys, useOnClickOutside, getClosest } from '@synerise/ds-utils';
-import Result from '@synerise/ds-result';
 import { theme } from '@synerise/ds-core';
-import Scrollbar from '@synerise/ds-scrollbar';
+import Divider from '@synerise/ds-divider';
+import Dropdown from '@synerise/ds-dropdown';
+import Icon, { ArrowRightCircleM, SearchM } from '@synerise/ds-icon';
 import { itemSizes } from '@synerise/ds-list-item';
+import Result from '@synerise/ds-result';
+import Scrollbar from '@synerise/ds-scrollbar';
+import Tabs from '@synerise/ds-tabs';
+import {
+  focusWithArrowKeys,
+  getClosest,
+  getGroupName,
+  useOnClickOutside,
+  useSearchResults,
+} from '@synerise/ds-utils';
 
-import * as S from './Parameter.style';
-import { ParameterDropdownProps, ParameterGroup, ParameterItem } from '../../Factors.types';
-import ParameterDropdownItem from './ParameterDropdownItem';
-import { groupItems } from './utils';
-
-import { useGroups } from './useGroups';
-import type { MixedDropdownItemProps, ParameterDropdownTitleProps, DropdownItem } from './Parameter.types';
+import {
+  type ParameterDropdownProps,
+  type ParameterGroup,
+  type ParameterItem,
+} from '../../Factors.types';
 import {
   DROPDOWN_HEIGHT,
-  SEARCH_HEGIHT,
-  TABS_HEIGHT,
-  SUBGROUP_HEADER_HEIGHT,
   ITEM_SIZE,
   LIST_STYLE,
   NO_GROUP_NAME,
+  SEARCH_HEGIHT,
+  SUBGROUP_HEADER_HEIGHT,
+  TABS_HEIGHT,
 } from './Parameter.constants';
+import * as S from './Parameter.style';
+import type {
+  DropdownItem,
+  MixedDropdownItemProps,
+  ParameterDropdownTitleProps,
+} from './Parameter.types';
+import ParameterDropdownItem from './ParameterDropdownItem';
+import { useGroups } from './useGroups';
+import { groupItems } from './utils';
 
 export type TitleItem = { type: 'title'; title: string };
 export type DividerItem = { type: 'divider' };
 
-const isListTitle = (element?: MixedDropdownItemProps): element is ParameterDropdownTitleProps => {
+const isListTitle = (
+  element?: MixedDropdownItemProps,
+): element is ParameterDropdownTitleProps => {
   return (element as ParameterDropdownTitleProps).title !== undefined;
 };
 
-const isDivider = (item: MixedDropdownItemProps | TitleItem | DividerItem): item is DividerItem => {
+const isDivider = (
+  item: MixedDropdownItemProps | TitleItem | DividerItem,
+): item is DividerItem => {
   return (item as DividerItem).type === 'divider';
 };
 
@@ -59,17 +83,23 @@ const ParameterDropdown = ({
   const overlayRef = useRef<HTMLDivElement>(null);
   const scrollBarRef = useRef<HTMLDivElement>(null);
 
-  const { visibleGroups, tabs, defaultTab } = useGroups(items, groups, renderEmptyGroups);
+  const { visibleGroups, tabs, defaultTab } = useGroups(
+    items,
+    groups,
+    renderEmptyGroups,
+  );
   const [searchQuery, setSearchQuery] = useState<string>('');
   const [activeTab, setActiveTab] = useState<number>(defaultTab);
-  const [activeGroup, setActiveGroup] = useState<ParameterGroup | undefined>(undefined);
+  const [activeGroup, setActiveGroup] = useState<ParameterGroup | undefined>(
+    undefined,
+  );
   const [searchInputCanBeFocused, setSearchInputFocus] = useState(true);
 
   const classNames = useMemo(() => {
     return `ds-parameter-item ds-parameter-item-${uuid()}`;
   }, []);
 
-  useOnClickOutside(overlayRef, event => {
+  useOnClickOutside(overlayRef, (event) => {
     if (getClosest(event.target as HTMLElement, '.ds-info-card') === null) {
       setDropdownVisible(false);
     }
@@ -102,13 +132,15 @@ const ParameterDropdown = ({
   }, [setDropdownVisible, resetList]);
 
   const groupByGroupName = useCallback(
-    (dropdownItems: (ParameterItem | ParameterGroup)[], maxItemsInGroup?: number): MixedDropdownItemProps[] => {
+    (
+      dropdownItems: (ParameterItem | ParameterGroup)[],
+      maxItemsInGroup?: number,
+    ): MixedDropdownItemProps[] => {
       const itemsNumber = dropdownItems?.length;
       const groupedItems = {};
 
       for (let i = 0; i < itemsNumber; i += 1) {
         const item = dropdownItems[i];
-        // @ts-ignore
         const groupName = item.groupName || NO_GROUP_NAME;
         const group = groupedItems[groupName] || [];
         group.push(item);
@@ -123,7 +155,9 @@ const ParameterDropdown = ({
             title: key,
           });
         }
-        const maxGroupedItems = maxItemsInGroup ? groupedItems[key].slice(0, maxItemsInGroup) : groupedItems[key];
+        const maxGroupedItems = maxItemsInGroup
+          ? groupedItems[key].slice(0, maxItemsInGroup)
+          : groupedItems[key];
         maxGroupedItems.forEach((item: ParameterItem) => {
           const resultItem = !item.groupId
             ? {
@@ -172,7 +206,7 @@ const ParameterDropdown = ({
       value,
       texts.parameter.showMore,
       groups,
-    ]
+    ],
   );
 
   const { searchResults } = useSearchResults(
@@ -182,7 +216,7 @@ const ParameterDropdown = ({
     groupByGroupName,
     activeGroup,
     searchQuery,
-    maxSearchResultsInGroup
+    maxSearchResultsInGroup,
   );
 
   const mapItemToDropdownItem = React.useCallback(
@@ -195,7 +229,7 @@ const ParameterDropdown = ({
         select: setSelected,
       };
     },
-    [classNames, searchQuery, hideDropdown, setSelected]
+    [classNames, searchQuery, hideDropdown, setSelected],
   );
 
   const currentItems = useMemo((): MixedDropdownItemProps[] | undefined => {
@@ -207,30 +241,37 @@ const ParameterDropdown = ({
       const groupedItems = (items || [])
         .filter((item: ParameterItem) => item.groupId === currentTabItems?.id)
         .map(mapItemToDropdownItem);
-      const subGroups = (currentTabItems?.subGroups || []).map((subGroup: ParameterGroup) => {
-        return {
-          className: classNames,
-          item: subGroup,
-          searchQuery,
-          select: (group: ParameterGroup) => {
-            setActiveGroup(group);
-            resetList();
-          },
-        };
-      });
+      const subGroups = (currentTabItems?.subGroups || []).map(
+        (subGroup: ParameterGroup) => {
+          return {
+            className: classNames,
+            item: subGroup,
+            searchQuery,
+            select: (group: ParameterGroup) => {
+              setActiveGroup(group);
+              resetList();
+            },
+          };
+        },
+      );
 
       return groupItems([...groupedItems, ...subGroups], activeGroup);
     }
     if (activeGroup) {
       return groupItems(
-        (items || []).filter((item: ParameterItem) => item.groupId === activeGroup.id).map(mapItemToDropdownItem),
-        activeGroup
+        (items || [])
+          .filter((item: ParameterItem) => item.groupId === activeGroup.id)
+          .map(mapItemToDropdownItem),
+        activeGroup,
       );
     }
 
     if (activeTab && visibleGroups && visibleGroups[activeTab]) {
       return items
-        ?.filter((item: ParameterItem) => item.groupId === (visibleGroups[activeTab] as ParameterGroup).id)
+        ?.filter(
+          (item: ParameterItem) =>
+            item.groupId === (visibleGroups[activeTab] as ParameterGroup).id,
+        )
         .map((item: ParameterItem) => {
           return {
             className: classNames,
@@ -245,22 +286,27 @@ const ParameterDropdown = ({
     if (activeTab && groups && groups[activeTab]) {
       return groupItems(
         (items || [])
-          .filter((item: ParameterItem) => item.groupId === (groups[activeTab] as ParameterGroup).id)
+          .filter(
+            (item: ParameterItem) =>
+              item.groupId === (groups[activeTab] as ParameterGroup).id,
+          )
           .map(mapItemToDropdownItem),
-        activeGroup
+        activeGroup,
       );
     }
 
     if ((recentItems || []).length > 0) {
-      const recentItemsWithGroup = (recentItems || []).map(item => ({
+      const recentItemsWithGroup = (recentItems || []).map((item) => ({
         ...item,
         groupName: texts.parameter.recentItemsGroupName,
       }));
-      const itemsWithAllGroup = (items || []).map(item => ({
+      const itemsWithAllGroup = (items || []).map((item) => ({
         ...item,
         groupName: texts.parameter.allItemsGroupName,
       }));
-      const result = groupByGroupName(recentItemsWithGroup.concat(itemsWithAllGroup));
+      const result = groupByGroupName(
+        recentItemsWithGroup.concat(itemsWithAllGroup),
+      );
 
       return result;
     }
@@ -298,12 +344,18 @@ const ParameterDropdown = ({
     (newSearchQuery: string) => {
       setSearchQuery(newSearchQuery);
     },
-    [setSearchQuery]
+    [setSearchQuery],
   );
 
   const getNoResultContainer = useMemo(
-    () => <Result noSearchResults type="no-results" description={texts.parameter.noResults} />,
-    [texts]
+    () => (
+      <Result
+        noSearchResults
+        type="no-results"
+        description={texts.parameter.noResults}
+      />
+    ),
+    [texts],
   );
 
   const handleScroll = ({ currentTarget }: UIEvent) => {
@@ -322,7 +374,9 @@ const ParameterDropdown = ({
 
   const getItemSize = (index: number) => {
     const item = currentItems && currentItems[index];
-    if (isListTitle(item)) return ITEM_SIZE.title;
+    if (isListTitle(item)) {
+      return ITEM_SIZE.title;
+    }
     return ITEM_SIZE[itemSizes.DEFAULT];
   };
 
@@ -331,7 +385,9 @@ const ParameterDropdown = ({
 
   const dropdownContentHeight = useMemo(() => {
     const fixedContentHeight =
-      SEARCH_HEGIHT + (!hasSearch && hasTabs ? TABS_HEIGHT : 0) + (activeGroup ? SUBGROUP_HEADER_HEIGHT : 0);
+      SEARCH_HEGIHT +
+      (!hasSearch && hasTabs ? TABS_HEIGHT : 0) +
+      (activeGroup ? SUBGROUP_HEADER_HEIGHT : 0);
     return outerHeight - fixedContentHeight;
   }, [activeGroup, hasSearch, hasTabs, outerHeight]);
 
@@ -340,9 +396,9 @@ const ParameterDropdown = ({
       data-testid="ds-factors-parameter-dropdown-wrapper"
       style={{ width: '300px' }}
       ref={overlayRef}
-      onKeyDown={event => {
+      onKeyDown={(event) => {
         setSearchInputFocus(false);
-        // eslint-disable-next-line @typescript-eslint/no-empty-function
+
         searchQuery &&
           focusWithArrowKeys(event, classNames.split(' ')[1], () => {
             setSearchInputFocus(true);
@@ -356,7 +412,9 @@ const ParameterDropdown = ({
         value={searchQuery}
         autofocus={!searchQuery || searchInputCanBeFocused}
         autofocusDelay={50}
-        iconLeft={<Icon component={<SearchM />} color={theme.palette['grey-600']} />}
+        iconLeft={
+          <Icon component={<SearchM />} color={theme.palette['grey-600']} />
+        }
       />
       {tabs.length > 1 && (
         <S.TabsWrapper>
@@ -372,9 +430,18 @@ const ParameterDropdown = ({
           />
         </S.TabsWrapper>
       )}
-      {activeGroup && <Dropdown.BackAction label={activeGroup.name} onClick={() => setActiveGroup(undefined)} />}
+      {activeGroup && (
+        <Dropdown.BackAction
+          label={activeGroup.name}
+          onClick={() => setActiveGroup(undefined)}
+        />
+      )}
       {loading ? (
-        <S.Skeleton contentHeight={dropdownContentHeight} size="M" numberOfSkeletons={3} />
+        <S.Skeleton
+          contentHeight={dropdownContentHeight}
+          size="M"
+          numberOfSkeletons={3}
+        />
       ) : (
         <S.ItemsList contentHeight={dropdownContentHeight}>
           {currentItems?.length ? (
@@ -408,7 +475,10 @@ const ParameterDropdown = ({
                   return isListTitle(listItem) ? (
                     <S.Title style={style}>{listItem.title}</S.Title>
                   ) : (
-                    <ParameterDropdownItem style={style} {...(listItem as DropdownItem<typeof listItem.item>)} />
+                    <ParameterDropdownItem
+                      style={style}
+                      {...(listItem as DropdownItem<typeof listItem.item>)}
+                    />
                   );
                 }}
               </S.StyledList>

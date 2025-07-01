@@ -4,16 +4,19 @@ export const UnorderedList = styled.ul<{ listStyle?: string }>`
   display: flex;
   flex-direction: column;
   padding: 0;
-  list-style-type: ${(props): string => (props.listStyle ? props.listStyle : 'none')};
+  list-style-type: ${(props): string =>
+    props.listStyle ? props.listStyle : 'none'};
   list-style-position: inside;
   ul {
     margin-left: 20px;
     padding: 5px 0 5px 0;
-    list-style-type: ${(props): string => (props.listStyle ? props.listStyle : 'none')};
+    list-style-type: ${(props): string =>
+      props.listStyle ? props.listStyle : 'none'};
   }
   li {
     margin-right: 4px;
-    list-style-type: ${(props): string => (props.listStyle ? props.listStyle : 'none')};
+    list-style-type: ${(props): string =>
+      props.listStyle ? props.listStyle : 'none'};
   }
 `;
 export const Label = styled.label`

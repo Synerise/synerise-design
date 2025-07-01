@@ -1,12 +1,16 @@
-import type { HandlerConfig } from '../Slider.types';
 import type { AllocationVariant } from '../Allocation/Allocation.types';
+import type { HandlerConfig } from '../Slider.types';
 
-export const calculateHandlersPercentagePosition = (variants?: AllocationVariant[]) => {
+export const calculateHandlersPercentagePosition = (
+  variants?: AllocationVariant[],
+) => {
   if (!variants) {
     return [];
   }
   return variants
-    ?.reduce<number[]>((prev, curr) => [...prev, curr.percentage + (prev.length ? prev[prev.length - 1] : 0)], [])
+    ?.reduce<
+      number[]
+    >((prev, curr) => [...prev, curr.percentage + (prev.length ? prev[prev.length - 1] : 0)], [])
     .slice(0, -1);
 };
 
@@ -15,23 +19,27 @@ export const getBlockedHandlersKeys = (handlers?: HandlerConfig) => {
     return [];
   }
 
-  const blockedHandlersKeys = Object.keys(handlers).filter(handlerKey => handlers[handlerKey].blocked);
+  const blockedHandlersKeys = Object.keys(handlers).filter(
+    (handlerKey) => handlers[handlerKey].blocked,
+  );
 
   return blockedHandlersKeys.map(Number);
 };
 
-export const checkIsBlockedHandlersConfigEnabled = (handlers?: HandlerConfig) => {
+export const checkIsBlockedHandlersConfigEnabled = (
+  handlers?: HandlerConfig,
+) => {
   return !!handlers && Object.values(handlers).some(({ blocked }) => blocked);
 };
 
 export const checkIsBlockedVariantsChange = (
   blockedHandlersKeys: number[],
   currentHandlersPercentagePositions: number[],
-  afterChangeHandlersPercentagePositions: number[]
+  afterChangeHandlersPercentagePositions: number[],
 ) => {
   return blockedHandlersKeys.some(
-    blockedHandlerKey =>
+    (blockedHandlerKey) =>
       currentHandlersPercentagePositions[blockedHandlerKey - 1] !==
-      afterChangeHandlersPercentagePositions[blockedHandlerKey - 1]
+      afterChangeHandlersPercentagePositions[blockedHandlerKey - 1],
   );
 };

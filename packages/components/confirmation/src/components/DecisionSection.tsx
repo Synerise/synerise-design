@@ -1,8 +1,9 @@
 import React from 'react';
+
 import Radio from '@synerise/ds-radio';
 
-import type { DecisionSectionProps } from '../Confirmation.types';
 import * as S from '../Confirmation.styles';
+import type { DecisionSectionProps } from '../Confirmation.types';
 
 export const DecisionSection = ({ options, title }: DecisionSectionProps) => {
   return (
@@ -10,7 +11,7 @@ export const DecisionSection = ({ options, title }: DecisionSectionProps) => {
       <S.ConfirmationExtraTitle level={6}>{title}</S.ConfirmationExtraTitle>
       <S.DecisionOptions>
         <Radio.Group>
-          {options.map(option => (
+          {options.map((option) => (
             <Radio key={option.id} {...option} />
           ))}
         </Radio.Group>

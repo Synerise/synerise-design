@@ -3,7 +3,9 @@ import { useIntl } from 'react-intl';
 
 import type { ContextTexts } from '../ContextSelector.types';
 
-export const useTexts = (defaultTexts?: Partial<ContextTexts>): ContextTexts => {
+export const useTexts = (
+  defaultTexts?: Partial<ContextTexts>,
+): ContextTexts => {
   const { formatMessage } = useIntl();
   const texts = useMemo(
     () => ({
@@ -34,7 +36,7 @@ export const useTexts = (defaultTexts?: Partial<ContextTexts>): ContextTexts => 
 
       ...defaultTexts,
     }),
-    [defaultTexts, formatMessage]
+    [defaultTexts, formatMessage],
   );
 
   return texts;

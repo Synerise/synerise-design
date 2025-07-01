@@ -1,14 +1,21 @@
-import type { ReactNode, CSSProperties } from 'react';
 import type { ProgressProps as AntProgressProps } from 'antd/lib/progress/progress';
-import { ExactlyOne, WithHTMLAttributes } from '@synerise/ds-utils';
+import type { CSSProperties, ReactNode } from 'react';
+
+import { type ExactlyOne, type WithHTMLAttributes } from '@synerise/ds-utils';
 
 export type ProgressProps = WithHTMLAttributes<
   HTMLDivElement,
-  Pick<AntProgressProps, 'percent' | 'type' | 'status' | 'strokeColor' | 'strokeLinecap'> & {
+  Pick<
+    AntProgressProps,
+    'percent' | 'type' | 'status' | 'strokeColor' | 'strokeLinecap'
+  > & {
     amount?: number;
     showLabel?: boolean;
     description?: ReactNode;
-    labelFormatter?: (amount?: string | number, percent?: string | number) => ReactNode;
+    labelFormatter?: (
+      amount?: string | number,
+      percent?: string | number,
+    ) => ReactNode;
     /**
      * @deprecated - use style prop
      */

@@ -1,10 +1,10 @@
 import type {
-  ReactNode,
-  ChangeEvent,
   CSSProperties,
+  ChangeEvent,
   FocusEventHandler,
   InputHTMLAttributes,
   KeyboardEventHandler,
+  ReactNode,
 } from 'react';
 
 export type InputProps = {

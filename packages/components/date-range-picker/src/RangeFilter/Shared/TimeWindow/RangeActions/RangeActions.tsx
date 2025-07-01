@@ -1,13 +1,24 @@
 import React from 'react';
+
 import Button from '@synerise/ds-button';
-import Icon, { ArrowDownCircleM, CloseM, DuplicateM, OptionHorizontalM } from '@synerise/ds-icon';
-import Dropdown from '@synerise/ds-dropdown';
-
 import { theme } from '@synerise/ds-core';
-import { RangeActionsProps } from './RangeActions.types';
-import * as S from './RangeActions.styles';
+import Dropdown from '@synerise/ds-dropdown';
+import Icon, {
+  ArrowDownCircleM,
+  CloseM,
+  DuplicateM,
+  OptionHorizontalM,
+} from '@synerise/ds-icon';
 
-const RangeActions: React.FC<RangeActionsProps> = ({ texts, onRangeClear, onRangeCopy, onRangePaste }) => {
+import * as S from './RangeActions.styles';
+import { type RangeActionsProps } from './RangeActions.types';
+
+const RangeActions: React.FC<RangeActionsProps> = ({
+  texts,
+  onRangeClear,
+  onRangeCopy,
+  onRangePaste,
+}) => {
   const overlay = React.useMemo(() => {
     return (
       <S.ActionsMenu>
@@ -53,7 +64,9 @@ const RangeActions: React.FC<RangeActionsProps> = ({ texts, onRangeClear, onRang
       overlayStyle={{ boxShadow: '0 4px 12px 0 rgba(35, 41, 54, 0.07)' }}
       trigger={['click']}
       align={{ points: ['tr', 'br'] }}
-      getPopupContainer={(node): HTMLElement => (node.parentElement != null ? node.parentElement : document.body)}
+      getPopupContainer={(node): HTMLElement =>
+        node.parentElement !== null ? node.parentElement : document.body
+      }
     >
       {trigger}
     </Dropdown>

@@ -1,6 +1,8 @@
-import styled from 'styled-components';
-import DropdownSkeleton from '@synerise/ds-skeleton';
 import { VariableSizeList } from 'react-window';
+import styled from 'styled-components';
+
+// TESTME
+import DropdownSkeleton from '@synerise/ds-skeleton';
 
 export const TabsWrapper = styled.div`
   width: 100%;
@@ -12,7 +14,8 @@ export const ContentPlaceholder = styled.div`
 
 export const ItemsList = styled.div<{ contentHeight?: number }>`
   width: 100%;
-  ${props => props.contentHeight !== undefined && `height: ${props.contentHeight}px;`}
+  ${(props) =>
+    props.contentHeight !== undefined && `height: ${props.contentHeight}px;`}
 `;
 
 export const SearchResult = styled.span`
@@ -39,7 +42,8 @@ export const StyledList = styled(VariableSizeList)`
 `;
 
 export const Skeleton = styled(DropdownSkeleton)<{ contentHeight?: number }>`
-  ${props => props.contentHeight !== undefined && `height: ${props.contentHeight}px;`}
+  ${(props) =>
+    props.contentHeight !== undefined && `height: ${props.contentHeight}px;`}
 `;
 
 export const Title = styled.div`

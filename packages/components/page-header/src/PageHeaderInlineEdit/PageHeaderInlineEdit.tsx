@@ -7,7 +7,9 @@ import * as S from './PageHeaderInlineEdit.styles';
 
 type PageHeaderInlineEditProps = Required<Pick<PageHeaderProps, 'inlineEdit'>>;
 
-export const PageHeaderInlineEdit = ({ inlineEdit }: PageHeaderInlineEditProps) => {
+export const PageHeaderInlineEdit = ({
+  inlineEdit,
+}: PageHeaderInlineEditProps) => {
   return (
     <S.WrapperPageHeaderInlineEdit>
       <InlineEdit

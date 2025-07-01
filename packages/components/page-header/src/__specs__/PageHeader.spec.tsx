@@ -1,9 +1,11 @@
 import React from 'react';
-import { fireEvent } from '@testing-library/react';
-import { renderWithProvider } from '@synerise/ds-utils/dist/testing';
-import PageHeader from '../index';
+
 import { HelpM } from '@synerise/ds-icon';
+import { renderWithProvider } from '@synerise/ds-utils';
+import { fireEvent } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
+
+import PageHeader from '../index';
 
 describe('PageHeader', () => {
   const onClick = jest.fn();
@@ -14,35 +16,45 @@ describe('PageHeader', () => {
 
   it('should render title', () => {
     // ARRANGE
-    const { getByText } = renderWithProvider(<PageHeader title={TITLE} onGoBack={onClick} />);
+    const { getByText } = renderWithProvider(
+      <PageHeader title={TITLE} onGoBack={onClick} />,
+    );
     // ASSERT
     expect(getByText('TEST TITLE')).toBeTruthy();
   });
 
   it('should render description', () => {
     // ARRANGE
-    const { getByText } = renderWithProvider(<PageHeader title={TITLE} description={DESCRIPTION} onGoBack={onClick} />);
+    const { getByText } = renderWithProvider(
+      <PageHeader title={TITLE} description={DESCRIPTION} onGoBack={onClick} />,
+    );
     // ASSERT
     expect(getByText('TEST TITLE')).toBeTruthy();
   });
 
   it('should render rightSide', () => {
     // ARRANGE
-    const { getByText } = renderWithProvider(<PageHeader title={TITLE} onGoBack={onClick} rightSide={RIGHT_SIDE} />);
+    const { getByText } = renderWithProvider(
+      <PageHeader title={TITLE} onGoBack={onClick} rightSide={RIGHT_SIDE} />,
+    );
     // ASSERT
     expect(getByText(RIGHT_SIDE)).toBeTruthy();
   });
 
   it('should render bar', () => {
     // ARRANGE
-    const { getByTestId } = renderWithProvider(<PageHeader title={TITLE} bar={<div data-testid="bar">bar</div>} />);
+    const { getByTestId } = renderWithProvider(
+      <PageHeader title={TITLE} bar={<div data-testid="bar">bar</div>} />,
+    );
     // ASSERT
     expect(getByTestId('bar') as HTMLElement).toBeTruthy();
   });
 
   it('should render tabs', () => {
     // ARRANGE
-    const { getByTestId } = renderWithProvider(<PageHeader title={TITLE} tabs={<div data-testid="tabs">tabs</div>} />);
+    const { getByTestId } = renderWithProvider(
+      <PageHeader title={TITLE} tabs={<div data-testid="tabs">tabs</div>} />,
+    );
     // ASSERT
     expect(getByTestId('tabs') as HTMLElement).toBeTruthy();
   });
@@ -50,7 +62,10 @@ describe('PageHeader', () => {
   it('should render avatar', () => {
     // ARRANGE
     const { getByTestId } = renderWithProvider(
-      <PageHeader title={TITLE} avatar={<div data-testid="avatar">avatar</div>} />
+      <PageHeader
+        title={TITLE}
+        avatar={<div data-testid="avatar">avatar</div>}
+      />,
     );
     // ASSERT
     expect(getByTestId('avatar') as HTMLElement).toBeTruthy();
@@ -58,7 +73,9 @@ describe('PageHeader', () => {
 
   it('should render more', () => {
     // ARRANGE
-    const { getByTestId } = renderWithProvider(<PageHeader title={TITLE} more={<div data-testid="more">more</div>} />);
+    const { getByTestId } = renderWithProvider(
+      <PageHeader title={TITLE} more={<div data-testid="more">more</div>} />,
+    );
     // ASSERT
     expect(getByTestId('more') as HTMLElement).toBeTruthy();
   });
@@ -79,7 +96,7 @@ describe('PageHeader', () => {
           placeholder: 'test',
           size: 'normal',
         }}
-      />
+      />,
     );
     // ASSERT
     expect(getByPlaceholderText('test')).toBeTruthy();
@@ -90,7 +107,7 @@ describe('PageHeader', () => {
     const { getByText } = renderWithProvider(
       <PageHeader title={TITLE} onGoBack={onClick}>
         Children
-      </PageHeader>
+      </PageHeader>,
     );
     // ASSERT
     expect(getByText('Children')).toBeTruthy();
@@ -101,11 +118,13 @@ describe('PageHeader', () => {
     const { container } = renderWithProvider(
       <PageHeader title={TITLE} onGoBack={onClick}>
         Children
-      </PageHeader>
+      </PageHeader>,
     );
 
     // ACT
-    fireEvent.click(container.querySelector('.page-header__back') as HTMLElement);
+    fireEvent.click(
+      container.querySelector('.page-header__back') as HTMLElement,
+    );
 
     // ASSERT
     expect(onClick).toHaveBeenCalled();
@@ -116,11 +135,13 @@ describe('PageHeader', () => {
     const { container } = renderWithProvider(
       <PageHeader title={TITLE} onClose={onClick}>
         Children
-      </PageHeader>
+      </PageHeader>,
     );
 
     // ACT
-    fireEvent.click(container.querySelector('.page-header__close') as HTMLElement);
+    fireEvent.click(
+      container.querySelector('.page-header__close') as HTMLElement,
+    );
 
     // ASSERT
     expect(onClick).toHaveBeenCalled();
@@ -129,7 +150,11 @@ describe('PageHeader', () => {
   it('should render with title tooltip', () => {
     // ARRANGE
     const { container } = renderWithProvider(
-      <PageHeader title={TITLE} tooltip={{ trigger: ['hover'], title: TOOLTIP }} tooltipIcon={<HelpM />} />
+      <PageHeader
+        title={TITLE}
+        tooltip={{ trigger: ['hover'], title: TOOLTIP }}
+        tooltipIcon={<HelpM />}
+      />,
     );
 
     // ASSERT
@@ -145,7 +170,7 @@ describe('PageHeader', () => {
         tooltip={{ trigger: ['hover'], title: TOOLTIP }}
         tooltipIcon={<HelpM />}
         handleTooltipClick={handleTooltipClick}
-      />
+      />,
     );
 
     // ACT

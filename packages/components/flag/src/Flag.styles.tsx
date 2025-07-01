@@ -1,5 +1,6 @@
-import styled, { css, SimpleInterpolation } from 'styled-components';
-import React from 'react';
+import type React from 'react';
+import styled, { type SimpleInterpolation, css } from 'styled-components';
+
 import { FLAG_SIZE_RATIO } from './Flag';
 
 type Props = {
@@ -7,7 +8,6 @@ type Props = {
   onClick?: React.MouseEventHandler;
 };
 
-// eslint-disable-next-line import/prefer-default-export
 export const FlagContainer = styled.div<Props>`
   ${(props): SimpleInterpolation => css`
     vertical-align: middle;

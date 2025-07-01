@@ -1,5 +1,6 @@
-import type { IconName, IconPrefix } from '@fortawesome/fontawesome-svg-core';
 import type { CSSProperties, ReactElement, ReactNode } from 'react';
+
+import type { IconName, IconPrefix } from '@fortawesome/fontawesome-svg-core';
 
 export type FilterItem<ValueType extends FAValue | ReactNode> = {
   keywords?: string;
@@ -7,9 +8,10 @@ export type FilterItem<ValueType extends FAValue | ReactNode> = {
   item: ReactNode;
 };
 
-export type FilterElement<ValueType extends FAValue | ReactNode = ReactNode> = Category & {
-  items: FilterItem<ValueType>[];
-};
+export type FilterElement<ValueType extends FAValue | ReactNode = ReactNode> =
+  Category & {
+    items: FilterItem<ValueType>[];
+  };
 
 export type DataSource = Category & {
   items: { item: ReactNode; value?: ReactNode; keywords?: string }[];
@@ -21,11 +23,16 @@ export type Category = {
 
 export type FAValue = [IconPrefix, IconName];
 
-export type ValueTypeForSource<Source extends SourceType> = Source extends FASource ? FAValue : ReactNode;
+export type ValueTypeForSource<Source extends SourceType> =
+  Source extends FASource ? FAValue : ReactNode;
 
-export type SelectItemHandler<Source extends SourceType> = (prop: ValueTypeForSource<Source>) => void;
+export type SelectItemHandler<Source extends SourceType> = (
+  prop: ValueTypeForSource<Source>,
+) => void;
 
-export type GroupedFilterElement<Source extends SourceType> = Category[] | FilterItem<ValueTypeForSource<Source>>[];
+export type GroupedFilterElement<Source extends SourceType> =
+  | Category[]
+  | FilterItem<ValueTypeForSource<Source>>[];
 
 export type FASource = 'font-awesome';
 

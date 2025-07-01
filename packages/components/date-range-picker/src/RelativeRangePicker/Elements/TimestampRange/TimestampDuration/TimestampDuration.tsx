@@ -1,10 +1,12 @@
 import React from 'react';
-import Select from '@synerise/ds-select';
+
 import InputNumber from '@synerise/ds-input-number';
-import * as S from '../../../RelativeRangePicker.styles';
+import Select from '@synerise/ds-select';
+
 import * as CONST from '../../../../constants';
 import { DURATION_MODIFIERS } from '../../../../constants';
-import { Props } from './TimestampDuration.types';
+import * as S from '../../../RelativeRangePicker.styles';
+import { type Props } from './TimestampDuration.types';
 
 const SELECT_DROPDOWN_OFFSET = -4;
 const TimestampDuration: React.FC<Props> = ({
@@ -28,10 +30,15 @@ const TimestampDuration: React.FC<Props> = ({
             onDurationModifierChange(modifier as string);
           }}
           dropdownStyle={{ minWidth: '125px' }}
-          dropdownAlign={{ points: ['bl', 'tl'], offset: [0, SELECT_DROPDOWN_OFFSET] }}
-          getPopupContainer={(node): HTMLElement => (node.parentElement != null ? node.parentElement : document.body)}
+          dropdownAlign={{
+            points: ['bl', 'tl'],
+            offset: [0, SELECT_DROPDOWN_OFFSET],
+          }}
+          getPopupContainer={(node): HTMLElement =>
+            node.parentElement !== null ? node.parentElement : document.body
+          }
         >
-          {durationModiferValues.map(modifier => (
+          {durationModiferValues.map((modifier) => (
             <Select.Option key={modifier} value={modifier}>
               {texts[modifier]}
             </Select.Option>
@@ -49,10 +56,15 @@ const TimestampDuration: React.FC<Props> = ({
           value={unit}
           dropdownStyle={{ minWidth: '125px' }}
           onChange={(type): void => onDurationUnitChange(type as string)}
-          dropdownAlign={{ points: ['bl', 'tl'], offset: [0, SELECT_DROPDOWN_OFFSET] }}
-          getPopupContainer={(node): HTMLElement => (node.parentElement != null ? node.parentElement : document.body)}
+          dropdownAlign={{
+            points: ['bl', 'tl'],
+            offset: [0, SELECT_DROPDOWN_OFFSET],
+          }}
+          getPopupContainer={(node): HTMLElement =>
+            node.parentElement !== null ? node.parentElement : document.body
+          }
         >
-          {CONST.RELATIVE_UNITS.map(type => (
+          {CONST.RELATIVE_UNITS.map((type) => (
             <Select.Option key={type} value={type}>
               {texts[type.toLowerCase()]}
             </Select.Option>

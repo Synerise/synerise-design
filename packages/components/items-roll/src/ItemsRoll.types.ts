@@ -1,10 +1,13 @@
-import type { ReactNode, CSSProperties, SVGProps } from 'react';
+import type { CSSProperties, ReactNode, SVGProps } from 'react';
 import type { IntlShape } from 'react-intl';
-import type { MenuItemProps } from '@synerise/ds-menu';
-import type { ListItemProps } from '@synerise/ds-list-item';
-import type { DropdownProps } from '@synerise/ds-dropdown/dist/Dropdown';
 
-export type ItemRollElement<BaseType extends ListItemProps | MenuItemProps = ListItemProps> = BaseType & {
+import type { DropdownProps } from '@synerise/ds-dropdown/dist/Dropdown';
+import type { ListItemProps } from '@synerise/ds-list-item';
+import type { MenuItemProps } from '@synerise/ds-menu';
+
+export type ItemRollElement<
+  BaseType extends ListItemProps | MenuItemProps = ListItemProps,
+> = BaseType & {
   id: string;
   group?: string;
 };

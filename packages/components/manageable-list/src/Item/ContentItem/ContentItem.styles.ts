@@ -1,7 +1,9 @@
 import styled, { css } from 'styled-components';
-import { Tag } from '@synerise/ds-tag/dist/Tag.styles';
+
 import Button from '@synerise/ds-button';
-import { ThemeProps } from '@synerise/ds-core';
+import { type ThemeProps } from '@synerise/ds-core';
+import { Tag } from '@synerise/ds-tag/dist/Tag.styles';
+
 import { ItemLabel } from '../Item.styles';
 import { ItemActionsWrapper } from '../ItemActions/ItemActions.styles';
 import { ItemMeta } from '../ItemMeta/ItemMeta.styles';
@@ -77,8 +79,8 @@ export const ItemHeaderSuffix = styled.div`
     &.ant-dropdown-open,
     &:hover {
       svg {
-        color: ${props => props.theme.palette['blue-600']};
-        fill: ${props => props.theme.palette['blue-600']};
+        color: ${(props) => props.theme.palette['blue-600']};
+        fill: ${(props) => props.theme.palette['blue-600']};
       }
     }
   }
@@ -99,7 +101,7 @@ export const ItemHeader = styled.div<{
   max-height: 48px;
   position: relative;
 
-  ${props =>
+  ${(props) =>
     props.size === 'large' &&
     css`
       ${props.hasDescription && 'align-items: flex-start;'}
@@ -110,11 +112,11 @@ export const ItemHeader = styled.div<{
     `}
 
   ${ItemHeaderPrefix} {
-    gap: ${props => (props.size === 'large' ? 16 : 12)}px;
+    gap: ${(props) => (props.size === 'large' ? 16 : 12)}px;
   }
-  gap: ${props => (props.size === 'large' ? 16 : 12)}px;
+  gap: ${(props) => (props.size === 'large' ? 16 : 12)}px;
 
-  ${props => !props.hasPrefix && `padding-left:16px;`}
+  ${(props) => !props.hasPrefix && `padding-left:16px;`}
 
   ${ItemMeta} {
     padding: 0;
@@ -143,14 +145,19 @@ export const ItemHeader = styled.div<{
 `;
 
 export const ContentWrapper = styled.div<{ withoutPadding: boolean }>`
-  padding: ${props => (props.withoutPadding ? '0px' : '16px 24px 24px')};
+  padding: ${(props) => (props.withoutPadding ? '0px' : '16px 24px 24px')};
   width: 100%;
   border-top: 1px solid ${({ theme }) => theme.palette['grey-200']};
   opacity: 1;
 `;
 
-const standardShadow = ({ greyBackground, theme }: ThemeProps & { greyBackground?: boolean }) => {
-  return greyBackground ? '0 4px 12px 0 rgba(35, 41, 54, 0.04)' : `0 0 0 1px ${theme.palette['grey-200']}`;
+const standardShadow = ({
+  greyBackground,
+  theme,
+}: ThemeProps & { greyBackground?: boolean }) => {
+  return greyBackground
+    ? '0 4px 12px 0 rgba(35, 41, 54, 0.04)'
+    : `0 0 0 1px ${theme.palette['grey-200']}`;
 };
 
 export const ItemContainer = styled.div<{
@@ -169,7 +176,7 @@ export const ItemContainer = styled.div<{
   border-radius: 3px;
   position: relative;
   background-color: ${({ theme }) => theme.palette.white};
-  ${props =>
+  ${(props) =>
     props.isDisabled &&
     `
     opacity: 0.4;
@@ -189,16 +196,18 @@ export const ItemContainer = styled.div<{
 
   &.sortable-drag {
     opacity: 1 !important;
-    box-shadow: ${standardShadow}, 0 16px 32px 0 rgba(35, 41, 54, 0.1);
+    box-shadow:
+      ${standardShadow},
+      0 16px 32px 0 rgba(35, 41, 54, 0.1);
   }
 
   && .item-content-animation {
     width: 100%;
   }
 
-  ${props => !!props.dashed && dashedStyle(props)}
+  ${(props) => !!props.dashed && dashedStyle(props)}
 
-  ${props =>
+  ${(props) =>
     props.size === 'large' &&
     css`
       ${ItemHeader} {

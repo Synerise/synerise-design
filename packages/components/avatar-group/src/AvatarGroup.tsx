@@ -1,10 +1,12 @@
 import React from 'react';
-import Tooltip from '@synerise/ds-tooltip/dist/Tooltip';
-import Badge from '@synerise/ds-badge';
+
 import Avatar from '@synerise/ds-avatar';
+import Badge from '@synerise/ds-badge';
+import Tooltip from '@synerise/ds-tooltip/dist/Tooltip';
+
 import * as S from './AvatarGroup.styles';
+import { type AvatarGroupProps } from './AvatarGroup.types';
 import GroupModal from './Modal/GroupModal';
-import { AvatarGroupProps } from './AvatarGroup.types';
 
 const AvatarGroup: React.FC<AvatarGroupProps> = ({
   dataSource,
@@ -27,7 +29,10 @@ const AvatarGroup: React.FC<AvatarGroupProps> = ({
   }, [setModalVisible, groupModal]);
 
   const dataSourceWithKeys = React.useMemo(() => {
-    return dataSource.map((avatar, index) => ({ ...avatar, key: `${avatar.initials}-${index}` }));
+    return dataSource.map((avatar, index) => ({
+      ...avatar,
+      key: `${avatar.initials}-${index}`,
+    }));
   }, [dataSource]);
 
   const renderMoreInfo = React.useMemo(() => {
@@ -44,7 +49,9 @@ const AvatarGroup: React.FC<AvatarGroupProps> = ({
   }, [dataSource, numberOfVisibleUsers, size, moreInfoTooltip, showModal]);
 
   const renderGroupModal = React.useMemo(() => {
-    if (!groupModal) return null;
+    if (!groupModal) {
+      return null;
+    }
     return (
       <GroupModal
         {...groupModal}
@@ -57,9 +64,14 @@ const AvatarGroup: React.FC<AvatarGroupProps> = ({
   }, [dataSource, groupModal, modalVisible, hideModal, hasStatus]);
   return (
     <S.Group size={size} className="ds-avatar-group">
-      {dataSourceWithKeys.slice(0, numberOfVisibleUsers).map(avatar => (
+      {dataSourceWithKeys.slice(0, numberOfVisibleUsers).map((avatar) => (
         <Badge key={avatar.key} status={avatar.status}>
-          <Avatar size={size} shape="circle" hasStatus={hasStatus} {...avatar.avatarProps}>
+          <Avatar
+            size={size}
+            shape="circle"
+            hasStatus={hasStatus}
+            {...avatar.avatarProps}
+          >
             {avatar.initials}
           </Avatar>
         </Badge>

@@ -1,13 +1,16 @@
-import type { ReactText, ReactNode, ComponentType } from 'react';
+import type { ComponentType, ReactNode, ReactText } from 'react';
 
 import type { CollectorValue } from '@synerise/ds-collector';
-import type { DateFilter, RelativeUnits } from '@synerise/ds-date-range-picker/dist/date.types';
-import type { DateRangePickerTexts as DateRangeTexts } from '@synerise/ds-date-range-picker';
-import type { MenuItemProps } from '@synerise/ds-menu';
-import type { AutoResizeProp, InputProps } from '@synerise/ds-input';
+import type { Texts as DateRangeTexts } from '@synerise/ds-date-range-picker/dist/DateRangePicker.types';
+import type {
+  DateFilter,
+  RelativeUnits,
+} from '@synerise/ds-date-range-picker/dist/date.types';
 import type { InformationCardProps } from '@synerise/ds-information-card';
+import type { AutoResizeProp, InputProps } from '@synerise/ds-input';
 import type { ListItemProps } from '@synerise/ds-list-item';
-import type { LiteralStringUnion, DeepPartial } from '@synerise/ds-utils';
+import type { MenuItemProps } from '@synerise/ds-menu';
+import type { DeepPartial, LiteralStringUnion } from '@synerise/ds-utils';
 
 import type { ArrayValueElement } from './FactorValue/Array/Array.types';
 
@@ -23,8 +26,8 @@ export const ALL_FACTOR_TYPES = [
   'relativeDate',
   'dateRange',
 ] as const;
-export type FactorType = LiteralStringUnion<typeof ALL_FACTOR_TYPES[number]>;
-export type DefinedFactorTypes = typeof ALL_FACTOR_TYPES[number];
+export type FactorType = LiteralStringUnion<(typeof ALL_FACTOR_TYPES)[number]>;
+export type DefinedFactorTypes = (typeof ALL_FACTOR_TYPES)[number];
 
 export type RelativeDateUnit = Exclude<RelativeUnits, 'SINCE'>;
 export type RelativeTimeRelation = 'BEFORE' | 'AFTER';
@@ -35,7 +38,10 @@ export type RelativeDateValueType = {
 
 export type DynamicKeyValueType = { key: ReactText; value: ReactText };
 export type FormulaValueType = { name: string; value: string };
-export type ParameterValueType = Pick<ListItemProps, 'renderHoverTooltip' | 'hoverTooltipProps' | 'disabled'> & {
+export type ParameterValueType = Pick<
+  ListItemProps,
+  'renderHoverTooltip' | 'hoverTooltipProps' | 'disabled'
+> & {
   type: string;
   icon: ReactNode;
   name: string;
@@ -67,7 +73,9 @@ export type ParameterItem = {
 };
 
 export type ArrayItemType = 'string' | 'number';
-export type ArrayValue = ArrayValueElement<'string'>[] | ArrayValueElement<'number'>[];
+export type ArrayValue =
+  | ArrayValueElement<'string'>[]
+  | ArrayValueElement<'number'>[];
 
 export type FactorValueType =
   | string
@@ -160,7 +168,10 @@ export type FactorsTexts = {
   };
 };
 
-export type FactorTypeMapping = Record<DefinedFactorTypes, Partial<SelectedFactorType>>;
+export type FactorTypeMapping = Record<
+  DefinedFactorTypes,
+  Partial<SelectedFactorType>
+>;
 
 export type ArrayProps = {
   itemType?: ArrayItemType;
@@ -239,7 +250,10 @@ export type FactorsProps = {
 
 export type FactorTypeSelectorProps = Pick<
   FactorsProps,
-  'unavailableFactorTypes' | 'availableFactorTypes' | 'selectedFactorType' | 'readOnly'
+  | 'unavailableFactorTypes'
+  | 'availableFactorTypes'
+  | 'selectedFactorType'
+  | 'readOnly'
 > & {
   setSelectedFactorType: (factor: FactorType) => void;
   selectedFactor: SelectedFactorType;

@@ -1,10 +1,10 @@
 import React from 'react';
-import { screen, waitFor } from '@testing-library/react';
-import userEvent from '@testing-library/user-event';
-import { renderWithProvider } from '@synerise/ds-utils/dist/testing';
-import { fireEvent } from '@testing-library/react';
-import Menu from '@synerise/ds-menu';
+
 import { VarTypeStringM } from '@synerise/ds-icon';
+import Menu from '@synerise/ds-menu';
+import { renderWithProvider } from '@synerise/ds-utils';
+import { fireEvent, screen, waitFor } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 
 import Search from './../Search';
 
@@ -33,21 +33,27 @@ const parametersDisplayProps = {
   title: PARAMETERS_TITLE,
   rowHeight: 32,
   visibleRows: 3,
-  itemRender: (item: object) => <Menu.Item>{item && (item as { text: string }).text}</Menu.Item>,
+  itemRender: (item: object) => (
+    <Menu.Item>{item && (item as { text: string }).text}</Menu.Item>
+  ),
 };
 const suggestionsDisplayProps = {
   tooltip: 'Suggest',
   title: SUGGESTIONS_TITLE,
   rowHeight: 32,
   visibleRows: 3,
-  itemRender: (item: object) => <Menu.Item>{item && (item as { text: string }).text}</Menu.Item>,
+  itemRender: (item: object) => (
+    <Menu.Item>{item && (item as { text: string }).text}</Menu.Item>
+  ),
 };
 const recentDisplayProps = {
   tooltip: 'Recent',
   title: RECENT_TITLE,
   rowHeight: 32,
   visibleRows: 3,
-  itemRender: (item: object) => <Menu.Item>{item && (item as { text: string }).text}</Menu.Item>,
+  itemRender: (item: object) => (
+    <Menu.Item>{item && (item as { text: string }).text}</Menu.Item>
+  ),
 };
 
 const dropdownMaxHeight = 400;
@@ -75,7 +81,7 @@ describe('Search with dropdown', () => {
         textLookupConfig={textLookupConfig}
         value={INPUT_VALUE}
         width={200}
-      />
+      />,
     );
 
     expect(screen.getByPlaceholderText(PLACEHOLDER)).toBeTruthy();
@@ -104,7 +110,7 @@ describe('Search with dropdown', () => {
         textLookupConfig={textLookupConfig}
         value={''}
         width={200}
-      />
+      />,
     );
 
     const input = screen.getByPlaceholderText(PLACEHOLDER);
@@ -137,7 +143,7 @@ describe('Search with dropdown', () => {
         textLookupConfig={textLookupConfig}
         value={''}
         width={200}
-      />
+      />,
     );
 
     const btn = screen.getByTestId('btn');
@@ -147,11 +153,14 @@ describe('Search with dropdown', () => {
       () => {
         const parameter = screen.getByText('City');
         parameter.click();
-            expect(onParameterValueChange).toBeCalledWith('City', { text: 'City', icon: <VarTypeStringM /> });
+        expect(onParameterValueChange).toBeCalledWith('City', {
+          text: 'City',
+          icon: <VarTypeStringM />,
+        });
       },
       {
         timeout: 1000,
-      }
+      },
     );
   });
 
@@ -178,7 +187,7 @@ describe('Search with dropdown', () => {
         textLookupConfig={textLookupConfig}
         value={'TestValue'}
         width={200}
-      />
+      />,
     );
 
     const btn = screen.getByTestId('btn');
@@ -213,7 +222,7 @@ describe('Search with dropdown', () => {
           value=""
           width={200}
         />
-      </div>
+      </div>,
     );
 
     userEvent.click(screen.getByText(/City/i));
@@ -248,13 +257,13 @@ describe('Search with dropdown', () => {
           value=""
           width={200}
         />
-      </div>
+      </div>,
     );
 
     const btn = screen.getByTestId('btn');
     userEvent.click(btn);
-    userEvent.click(await screen.findByRole('textbox'))
-    
+    userEvent.click(await screen.findByRole('textbox'));
+
     const title = await screen.findByText(PARAMETERS_TITLE);
     expect(title).toBeTruthy();
   });
@@ -285,11 +294,11 @@ describe('Search with dropdown', () => {
           value=""
           width={200}
         />
-      </div>
+      </div>,
     );
 
     const btn = screen.getByTestId('btn');
-    
+
     btn.click();
     const title = await screen.findByText(RECENT_TITLE);
     expect(title).toBeTruthy();
@@ -318,7 +327,7 @@ describe('Search with dropdown', () => {
         textLookupConfig={textLookupConfig}
         value="Chicago"
         width={200}
-      />
+      />,
     );
     userEvent.click(screen.getByTestId('clear'));
 

@@ -7,6 +7,6 @@ export default (str: string): string =>
     .replace(/[^\w\s]/g, '')
     // Uppercases the first character in each group immediately following a space
     // (delimited by spaces)
-    .replace(/ (.)/g, $1 => $1.toUpperCase())
+    .replace(/ (.)/g, ($1) => $1.toUpperCase())
     // Removes spaces
     .replace(/ /g, '');

@@ -1,7 +1,8 @@
 import React from 'react';
-import userEvent from '@testing-library/user-event';
+
+import { renderWithProvider } from '@synerise/ds-utils';
 import { screen, waitFor } from '@testing-library/react';
-import { renderWithProvider } from '@synerise/ds-utils/dist/testing';
+import userEvent from '@testing-library/user-event';
 
 import { SearchInput } from '../Elements';
 
@@ -26,7 +27,7 @@ describe('SearchInput component', () => {
         onKeyDown={onKeyDown}
         onClick={onClick}
         onToggle={onToggle}
-      />
+      />,
     );
 
     expect(screen.getByPlaceholderText(PLACEHOLDER)).toBeTruthy();
@@ -49,7 +50,7 @@ describe('SearchInput component', () => {
         onKeyDown={onKeyDown}
         onClick={onClick}
         onToggle={onToggle}
-      />
+      />,
     );
 
     userEvent.click(screen.getByTestId('btn') as HTMLElement);
@@ -79,7 +80,7 @@ describe('SearchInput component', () => {
         onKeyDown={onKeyDown}
         onClick={onClick}
         onToggle={onToggle}
-      />
+      />,
     );
 
     const btn = screen.getByTestId('btn') as HTMLElement;
@@ -110,10 +111,12 @@ describe('SearchInput component', () => {
         onKeyDown={onKeyDown}
         onClick={onClick}
         onToggle={onToggle}
-      />
+      />,
     );
 
-    userEvent.click(screen.getByPlaceholderText(PLACEHOLDER) as HTMLInputElement);
+    userEvent.click(
+      screen.getByPlaceholderText(PLACEHOLDER) as HTMLInputElement,
+    );
 
     expect(onClick).toBeCalled();
   });
@@ -135,11 +138,14 @@ describe('SearchInput component', () => {
         onKeyDown={onKeyDown}
         onClick={onClick}
         onToggle={onToggle}
-      />
+      />,
     );
 
     userEvent.click(screen.getByTestId('btn') as HTMLInputElement);
-    userEvent.type(screen.getByPlaceholderText(PLACEHOLDER) as HTMLDivElement, INPUT_VALUE);
+    userEvent.type(
+      screen.getByPlaceholderText(PLACEHOLDER) as HTMLDivElement,
+      INPUT_VALUE,
+    );
     userEvent.click(screen.getByTestId('clear'));
 
     expect(onClear).toBeCalledTimes(1);
@@ -166,7 +172,7 @@ describe('SearchInput component', () => {
           onToggle={onToggle}
           closeOnClickOutside
         />
-      </div>
+      </div>,
     );
 
     userEvent.click(screen.getByTestId('btn') as HTMLInputElement);

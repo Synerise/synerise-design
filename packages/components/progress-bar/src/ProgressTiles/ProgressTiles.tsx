@@ -1,12 +1,19 @@
 import React, { useCallback } from 'react';
 
 import { FormFieldLabel } from '@synerise/ds-form-field';
-import { ProgressTilesProps } from './ProgressTiles.types';
+
 import * as S from './ProgressTiles.styles';
+import { type ProgressTilesProps } from './ProgressTiles.types';
 
 const MAX_PERCENT = 100;
 
-export const ProgressTiles = ({ colors, label, tileWidth, percent, ...rest }: ProgressTilesProps) => {
+export const ProgressTiles = ({
+  colors,
+  label,
+  tileWidth,
+  percent,
+  ...rest
+}: ProgressTilesProps) => {
   const getTilesConfig = useCallback(() => {
     const TILES_COUNT = colors.length;
 
@@ -25,10 +32,12 @@ export const ProgressTiles = ({ colors, label, tileWidth, percent, ...rest }: Pr
 
   return (
     <S.TilesWrapper {...rest}>
-      {label && <FormFieldLabel className="progress-bar-label">{label}</FormFieldLabel>}
+      {label && (
+        <FormFieldLabel className="progress-bar-label">{label}</FormFieldLabel>
+      )}
 
       <div className="progress-bar-wrapper">
-        {getTilesConfig().map(tile => (
+        {getTilesConfig().map((tile) => (
           <S.TileContainer key={`key-${tile.key}`} width={tileWidth}>
             <S.TileProgress color={tile.color} width={tile.width} />
           </S.TileContainer>

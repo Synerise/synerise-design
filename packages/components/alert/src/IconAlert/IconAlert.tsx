@@ -1,7 +1,9 @@
-import React, { ReactNode, useMemo } from 'react';
-import Icon, { Check3M, WarningFillM, InfoFillM } from '@synerise/ds-icon';
-import { IconAlertProps, IconAlertType } from './IconAlert.types';
+import React, { type ReactNode, useMemo } from 'react';
+
+import Icon, { Check3M, InfoFillM, WarningFillM } from '@synerise/ds-icon';
+
 import * as S from './IconAlert.styles';
+import { type IconAlertProps, type IconAlertType } from './IconAlert.types';
 
 const ICONS: Record<IconAlertType, ReactNode> = {
   success: <Check3M />,
@@ -25,13 +27,21 @@ const IconAlert = ({
     return ICONS[type];
   }, [type]);
   return (
-    <S.IconAlertWrapper {...rest} type={type} disabled={disabled} hoverButton={hoverButton} className="ds-inline-alert">
+    <S.IconAlertWrapper
+      {...rest}
+      type={type}
+      disabled={disabled}
+      hoverButton={hoverButton}
+      className="ds-inline-alert"
+    >
       {iconAlert && (customIcon || <Icon component={icon} />)}
       {message && (
         <S.Message>
           {message}
           {withLink && <S.LinkWrapper>{withLink}</S.LinkWrapper>}
-          {withEmphasis && !withLink && <S.EmphasisWrapper>{withEmphasis}</S.EmphasisWrapper>}
+          {withEmphasis && !withLink && (
+            <S.EmphasisWrapper>{withEmphasis}</S.EmphasisWrapper>
+          )}
         </S.Message>
       )}
     </S.IconAlertWrapper>

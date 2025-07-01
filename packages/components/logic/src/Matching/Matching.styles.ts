@@ -1,5 +1,6 @@
 import styled, { css } from 'styled-components';
-import { ThemeProps } from '@synerise/ds-core';
+
+import { type ThemeProps } from '@synerise/ds-core';
 
 type MatchingProps = ThemeProps & {
   matching: boolean;
@@ -7,7 +8,12 @@ type MatchingProps = ThemeProps & {
   hovered?: boolean;
 };
 
-const getColor = ({ theme, matching, readOnly, hovered = false }: MatchingProps) => {
+const getColor = ({
+  theme,
+  matching,
+  readOnly,
+  hovered = false,
+}: MatchingProps) => {
   if (readOnly) {
     return theme.palette[`grey-800`];
   }
@@ -19,7 +25,7 @@ export const MatchingWrapper = styled.div`
   font-size: 16px;
   font-weight: 500;
   line-height: 1.25;
-  color: ${props => props.theme.palette['grey-800']};
+  color: ${(props) => props.theme.palette['grey-800']};
   text-align: left;
   user-select: none;
   &:first-letter {
@@ -38,7 +44,7 @@ export const Toggle = styled.span<{ matching: boolean; readOnly?: boolean }>`
   position: relative;
   display: inline-flex;
 
-  ${props => {
+  ${(props) => {
     const color = getColor(props);
     const { readOnly, theme } = props;
     return (
@@ -63,7 +69,7 @@ export const Toggle = styled.span<{ matching: boolean; readOnly?: boolean }>`
     );
   }}
 
-  ${props => {
+  ${(props) => {
     const hoveredColor = getColor({ ...props, hovered: true });
     const { readOnly, theme } = props;
     return (

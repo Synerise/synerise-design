@@ -1,17 +1,20 @@
 import React, { useEffect, useMemo, useState } from 'react';
 
-import { Title } from '@synerise/ds-typography';
-import Drawer from '@synerise/ds-drawer';
 import Button from '@synerise/ds-button';
-import Icon, { CloseM, SearchM } from '@synerise/ds-icon';
 import { useTheme } from '@synerise/ds-core';
+import Drawer from '@synerise/ds-drawer';
+import Icon, { CloseM, SearchM } from '@synerise/ds-icon';
+import { Title } from '@synerise/ds-typography';
 
-import { ColumnManagerActions } from './ColumnManagerActions/ColumnManagerActions';
-import ColumnManagerList from './ColumnManagerList/ColumnManagerList';
-import type { ColumnManagerProps } from './ColumnManager.types';
 import * as S from './ColumnManager.styles';
+import type { ColumnManagerProps } from './ColumnManager.types';
+import { ColumnManagerActions } from './ColumnManagerActions/ColumnManagerActions';
+import type {
+  Column,
+  ColumnManagerItemProps,
+} from './ColumnManagerItem/ColumManagerItem.types';
+import ColumnManagerList from './ColumnManagerList/ColumnManagerList';
 import { useTranslations } from './hooks/useTranslations';
-import type { Column, ColumnManagerItemProps } from './ColumnManagerItem/ColumManagerItem.types';
 import { matchesSearchQuery } from './utils/matchesSearchQuery';
 
 const ColumnManager = <ColumnType extends Column>({
@@ -48,21 +51,23 @@ const ColumnManager = <ColumnType extends Column>({
 
   const handleToggleColumn = (id: string, updatedVisible: boolean) => {
     setCurrentColumns(
-      currentColumns.map(column =>
+      currentColumns.map((column) =>
         column.id === id
           ? {
               ...column,
               visible: updatedVisible,
             }
-          : column
-      )
+          : column,
+      ),
     );
   };
 
-  const handleOrderChange = (newOrder: ColumnManagerItemProps<ColumnType>[]) => {
-    const idOrder = newOrder.map(item => item.id);
+  const handleOrderChange = (
+    newOrder: ColumnManagerItemProps<ColumnType>[],
+  ) => {
+    const idOrder = newOrder.map((item) => item.id);
     const updatedColumns = [...currentColumns].sort(
-      (a: Column, b: Column) => idOrder.indexOf(a.id) - idOrder.indexOf(b.id)
+      (a: Column, b: Column) => idOrder.indexOf(a.id) - idOrder.indexOf(b.id),
     );
     setCurrentColumns(updatedColumns);
   };
@@ -72,7 +77,11 @@ const ColumnManager = <ColumnType extends Column>({
   };
 
   const filteredColumns = useMemo(() => {
-    return searchQuery ? currentColumns.filter(column => matchesSearchQuery(column.name, searchQuery)) : currentColumns;
+    return searchQuery
+      ? currentColumns.filter((column) =>
+          matchesSearchQuery(column.name, searchQuery),
+        )
+      : currentColumns;
   }, [currentColumns, searchQuery]);
 
   return (
@@ -98,7 +107,9 @@ const ColumnManager = <ColumnType extends Column>({
         placeholder={texts.searchPlaceholder}
         value={searchQuery}
         onClearInput={() => handleSearchChange('')}
-        iconLeft={<Icon component={<SearchM />} color={theme.palette['grey-600']} />}
+        iconLeft={
+          <Icon component={<SearchM />} color={theme.palette['grey-600']} />
+        }
         clearTooltip={(texts.searchClearTooltip as string) || ''}
       />
       <S.ColumnManagerListWrapper>
@@ -113,7 +124,11 @@ const ColumnManager = <ColumnType extends Column>({
           />
         </Drawer.DrawerContent>
       </S.ColumnManagerListWrapper>
-      <ColumnManagerActions onApply={handleApply} onCancel={handleCancel} texts={texts} />
+      <ColumnManagerActions
+        onApply={handleApply}
+        onCancel={handleCancel}
+        texts={texts}
+      />
     </S.ColumnManager>
   );
 };

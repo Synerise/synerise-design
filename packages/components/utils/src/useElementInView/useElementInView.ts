@@ -1,4 +1,4 @@
-import { MutableRefObject, useEffect, useRef, useState } from 'react';
+import { type MutableRefObject, useEffect, useRef, useState } from 'react';
 
 type IntersectionObserverOptions = {
   rootMargin?: string;
@@ -7,7 +7,7 @@ type IntersectionObserverOptions = {
 
 const useElementInView = <T extends HTMLElement = HTMLElement>(
   options: IntersectionObserverOptions,
-  rootElementRef?: MutableRefObject<HTMLDivElement | null | undefined>
+  rootElementRef?: MutableRefObject<HTMLDivElement | null | undefined>,
 ) => {
   const elementRef = useRef<T>(null);
   const [isVisible, setIsVisible] = useState<boolean>(false);
@@ -20,7 +20,7 @@ const useElementInView = <T extends HTMLElement = HTMLElement>(
       {
         ...options,
         root: rootElementRef?.current || null,
-      }
+      },
     );
 
     if (elementRef.current) {

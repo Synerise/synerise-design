@@ -1,5 +1,6 @@
 import { FixedSizeList } from 'react-window';
 import styled from 'styled-components';
+
 import Icon from '@synerise/ds-icon';
 
 export const List = styled.div`
@@ -19,7 +20,7 @@ export const ClearIcon = styled(Icon)`
 
 export const ListItem = styled.div<{ itemsPerRow: number }>`
   display: flex;
-  width: ${props => 100 / props.itemsPerRow}%;
+  width: ${(props) => 100 / props.itemsPerRow}%;
   align-items: center;
   justify-content: center;
   button {
@@ -31,7 +32,7 @@ export const OverlayWrapper = styled.div`
 `;
 
 export const VirtualList = styled(FixedSizeList)<{ listHeight: number }>`
-  max-height: ${props => props.listHeight}px;
+  max-height: ${(props) => props.listHeight}px;
   height: auto !important;
   overflow-x: unset !important;
   overflow-y: unset !important;
@@ -73,11 +74,11 @@ export const Title = styled.div<{ elementSize: string }>`
   line-height: 1.6;
   font-weight: 500;
   text-transform: uppercase;
-  color: ${props => props.theme.palette['grey-500']};
+  color: ${(props) => props.theme.palette['grey-500']};
   padding: 0 12px;
   flex-basis: 100%;
-  height: ${props => props.elementSize};
-  line-height: ${props => props.elementSize};
+  height: ${(props) => props.elementSize};
+  line-height: ${(props) => props.elementSize};
 `;
 
 export const FontIcon = styled.div`

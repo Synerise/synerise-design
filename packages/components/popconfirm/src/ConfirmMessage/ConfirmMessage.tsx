@@ -1,7 +1,8 @@
-import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import AntdTooltip from 'antd/lib/tooltip';
+import React, { useCallback, useEffect, useMemo, useState } from 'react';
+
 import * as S from './ConfirmMessage.style';
-import { ConfirmMessageProps } from './ConfirmMessage.types';
+import { type ConfirmMessageProps } from './ConfirmMessage.types';
 
 export const ConfirmMessage = ({
   children,

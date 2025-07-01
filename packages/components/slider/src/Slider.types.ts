@@ -1,9 +1,9 @@
+import type { SliderRangeProps, SliderSingleProps } from 'antd/lib/slider';
 import type { ReactNode } from 'react';
-import type { SliderSingleProps, SliderRangeProps } from 'antd/lib/slider';
 
 import type { TooltipProps } from '@synerise/ds-tooltip';
 
-import { AllocationConfig } from './Allocation/Allocation.types';
+import { type AllocationConfig } from './Allocation/Allocation.types';
 
 type AntSliderProps = SliderSingleProps | SliderRangeProps;
 

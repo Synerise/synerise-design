@@ -1,6 +1,16 @@
 import React from 'react';
-import { ExpressionM, FolderM, VarTypeNumberM, VarTypeStringM } from '@synerise/ds-icon';
-import type { FactorValueType, ParameterItem, ParameterValueType } from '@synerise/ds-factors';
+
+import type {
+  FactorValueType,
+  ParameterItem,
+  ParameterValueType,
+} from '@synerise/ds-factors';
+import {
+  ExpressionM,
+  FolderM,
+  VarTypeNumberM,
+  VarTypeStringM,
+} from '@synerise/ds-icon';
 import InformationCard from '@synerise/ds-information-card';
 
 const generateInfoCard = (item: ParameterValueType) => {
@@ -12,7 +22,11 @@ const generateInfoCard = (item: ParameterValueType) => {
         icon={item.icon}
         title={item.name}
         propertyListItems={[{ label: 'Some property', value: randomCount }]}
-        descriptionConfig={item.description ? { label: item.description, disabled: true } : undefined}
+        descriptionConfig={
+          item.description
+            ? { label: item.description, disabled: true }
+            : undefined
+        }
         {...item.informationCardProps}
       />
     ),
@@ -40,7 +54,7 @@ export const FACTORS_TEXTS = {
     loadingParameter: 'Loading parameters',
     showMore: 'Show more',
     recentItemsGroupName: 'Recent',
-    allItemsGroupName: 'All'
+    allItemsGroupName: 'All',
   },
   valuePlaceholder: 'Value',
   modalApply: 'Apply',
@@ -146,7 +160,6 @@ export const FACTORS_ITEMS_DATA: ParameterItem[] = [
 ];
 
 export const FACTORS_ITEMS_ADDITONAL_DATA = [
-
   {
     id: 8,
     name: 'Expression #1',
@@ -197,15 +210,15 @@ export const FACTORS_ITEMS_ADDITONAL_DATA = [
   },
 ].map(generateInfoCard);
 
-export const FACTORS_ITEMS: ParameterItem[] = [...FACTORS_ITEMS_DATA].map(generateInfoCard);
+export const FACTORS_ITEMS: ParameterItem[] = [...FACTORS_ITEMS_DATA].map(
+  generateInfoCard,
+);
 
 export const SELECTED_PARAMETER: FactorValueType = {
   ...FACTORS_ITEMS[0],
   icon: <VarTypeStringM />,
   type: '',
 };
-
-
 
 export const ARRAY_VALUE = ['TEST VALUE', 'TEST VALUE 2', 'TEST VALUE 3'];
 export const ARRAY_VALUE_NUMERIC = [1212, 234234, 345534];

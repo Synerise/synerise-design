@@ -3,13 +3,13 @@ import { injectIntl } from 'react-intl';
 
 import { useDataFormat } from '@synerise/ds-data-format';
 
-import fnsFormat from '../../format';
-import Navbar from '../Navbar/Navbar';
 import { fnsAddMonths, fnsAddYears } from '../../fns';
+import fnsFormat from '../../format';
 import localeUtils from '../../localeUtils';
-import { DayPickerProps } from './DayPicker.types';
-import { DayPicker } from './DayPicker.styles';
+import Navbar from '../Navbar/Navbar';
 import * as S from '../Navbar/Navbar.styles';
+import { DayPicker } from './DayPicker.styles';
+import { type DayPickerProps } from './DayPicker.types';
 
 const captionElement = (): null => null;
 
@@ -39,19 +39,45 @@ const Picker = (props: DayPickerProps) => {
         <Navbar
           title={
             <>
-              <S.Link data-testid="datapicker-nav-title-monthpicker-link" onClick={onMonthNameClick}>
+              <S.Link
+                data-testid="datapicker-nav-title-monthpicker-link"
+                onClick={onMonthNameClick}
+              >
                 {fnsFormat(month, 'MMM', intl.locale)}
               </S.Link>
               {'  '}
-              <S.Link data-testid="datapicker-nav-title-yearpicker-link" onClick={onYearNameClick}>
+              <S.Link
+                data-testid="datapicker-nav-title-yearpicker-link"
+                onClick={onYearNameClick}
+              >
                 {fnsFormat(month, 'yyyy', intl.locale)}
               </S.Link>
             </>
           }
-          onLongPrev={hideLongPrev ? undefined : (): void => onMonthChange && onMonthChange(fnsAddYears(month, -1))}
-          onShortPrev={hideShortPrev ? undefined : (): void => onMonthChange && onMonthChange(fnsAddMonths(month, -1))}
-          onLongNext={hideLongNext ? undefined : (): void => onMonthChange && onMonthChange(fnsAddYears(month, 1))}
-          onShortNext={hideShortNext ? undefined : (): void => onMonthChange && onMonthChange(fnsAddMonths(month, 1))}
+          onLongPrev={
+            hideLongPrev
+              ? undefined
+              : (): void =>
+                  onMonthChange && onMonthChange(fnsAddYears(month, -1))
+          }
+          onShortPrev={
+            hideShortPrev
+              ? undefined
+              : (): void =>
+                  onMonthChange && onMonthChange(fnsAddMonths(month, -1))
+          }
+          onLongNext={
+            hideLongNext
+              ? undefined
+              : (): void =>
+                  onMonthChange && onMonthChange(fnsAddYears(month, 1))
+          }
+          onShortNext={
+            hideShortNext
+              ? undefined
+              : (): void =>
+                  onMonthChange && onMonthChange(fnsAddMonths(month, 1))
+          }
           key="head"
         />
       )}

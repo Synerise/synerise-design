@@ -1,5 +1,6 @@
-import { ReactNode } from 'react';
+import { type ReactNode } from 'react';
 import styled, { css } from 'styled-components';
+
 import { IconContainer } from '@synerise/ds-icon';
 
 const TRANSITION_FN = '0.2s ease-out';
@@ -29,17 +30,23 @@ type StyledListItemProps = {
   size?: 'default' | 'large';
 };
 
-export const SuffixWrapper = styled.div<{ visible?: boolean; disabled?: boolean }>`
+export const SuffixWrapper = styled.div<{
+  visible?: boolean;
+  disabled?: boolean;
+}>`
   display: flex;
   order: 10;
   justify-content: flex-end;
-  ${props => (props.visible ? visibleElementStyle() : hiddenElementStyle())};
+  ${(props) => (props.visible ? visibleElementStyle() : hiddenElementStyle())};
 `;
 
-export const PrefixWrapper = styled.div<{ visible?: boolean; disabled?: boolean }>`
+export const PrefixWrapper = styled.div<{
+  visible?: boolean;
+  disabled?: boolean;
+}>`
   display: flex;
   order: 1;
-  ${props => (props.visible ? visibleElementStyle() : hiddenElementStyle())};
+  ${(props) => (props.visible ? visibleElementStyle() : hiddenElementStyle())};
   transition: opacity ${TRANSITION_FN};
   margin-top: -7px;
   margin-bottom: -7px;
@@ -53,18 +60,20 @@ const baseStyles = css<StyledListItemProps>`
   display: flex;
   align-items: center;
   margin: 0;
-  padding-left: ${props => (props.prefixel ? '8px' : '12px')};
+  padding-left: ${(props) => (props.prefixel ? '8px' : '12px')};
   padding-right: 12px;
   font-size: 13px;
   line-height: 1.39;
   font-weight: 500;
   user-select: none;
   border-radius: 3px;
-  transition: background-color 0.2s ease-out, color 0.2s ease-out;
-  min-height: ${props => (props.size === 'large' ? '50px' : '32px')};
-  background: ${props => props.theme.palette.white};
+  transition:
+    background-color 0.2s ease-out,
+    color 0.2s ease-out;
+  min-height: ${(props) => (props.size === 'large' ? '50px' : '32px')};
+  background: ${(props) => props.theme.palette.white};
   border: none;
-  color: ${props => props.theme.palette['grey-700']};
+  color: ${(props) => props.theme.palette['grey-700']};
   cursor: pointer;
   opacity: 1;
 `;
@@ -84,11 +93,11 @@ export const Inner = styled.div`
 `;
 
 const selectedStyle = css<StyledListItemProps>`
-  background: ${props => props.theme.palette['blue-050']};
-  color: ${props => props.theme.palette['blue-600']};
+  background: ${(props) => props.theme.palette['blue-050']};
+  color: ${(props) => props.theme.palette['blue-600']};
   ${PrefixWrapper} {
     svg {
-      fill: ${props => props.theme.palette['blue-600']};
+      fill: ${(props) => props.theme.palette['blue-600']};
     }
   }
 `;
@@ -109,12 +118,12 @@ const orderedStyle = css`
 export const Wrapper = styled.div<StyledListItemProps>`
   display: flex;
   min-width: 175px;
-  ${props =>
+  ${(props) =>
     props.inTooltip &&
     css`
       height: 100%;
     `}
-  ${props =>
+  ${(props) =>
     props.disabled
       ? css`
           cursor: not-allowed;
@@ -142,7 +151,9 @@ export const Wrapper = styled.div<StyledListItemProps>`
                 !props.noHover &&
                 css`
                   & {
-                    color: ${props.noHover ? props.theme.palette['grey-700'] : props.theme.palette['blue-600']};
+                    color: ${props.noHover
+                      ? props.theme.palette['grey-700']
+                      : props.theme.palette['blue-600']};
                   }
 
                   ${PrefixWrapper} {
@@ -188,7 +199,7 @@ export const Wrapper = styled.div<StyledListItemProps>`
     `}
 
   ${Inner} {
-    ${props =>
+    ${(props) =>
       props.ordered &&
       css`
         &::before {
@@ -205,15 +216,15 @@ export const Wrapper = styled.div<StyledListItemProps>`
       opacity: ${(props): string => (props.disabled ? '1' : '0')};
     }
 
-    ${props => props.selected && selectedStyle}
+    ${(props) => props.selected && selectedStyle}
 
     &.ant-menu-item-selected,
     &.-item-selected {
       ${selectedStyle}
     }
 
-    ${props => props.highlight && highlightStyle}
-    ${props => !props.ordered && orderedStyle}
+    ${(props) => props.highlight && highlightStyle}
+    ${(props) => !props.ordered && orderedStyle}
     
     .ds-checkbox,
     .ds-checkbox > .ant-checkbox-wrapper {

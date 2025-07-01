@@ -1,9 +1,9 @@
-import React, { useEffect, useCallback, useRef } from 'react';
 // @ts-ignore
 import hljs from 'highlight.js/lib/core';
+import React, { useCallback, useEffect, useRef } from 'react';
 
 import * as S from './Highlight.styles';
-import { HighlightProps } from './Highlight.types';
+import { type HighlightProps } from './Highlight.types';
 
 const Highlight = ({ languages, style, children }: HighlightProps) => {
   const elementRef = useRef<HTMLDivElement>(null);
@@ -12,13 +12,13 @@ const Highlight = ({ languages, style, children }: HighlightProps) => {
     if (elementRef.current) {
       const elements = elementRef.current.querySelectorAll('pre code');
       await Promise.all(
-        languages.map(async language => {
+        languages.map(async (language) => {
           const module = await import(`highlight.js/lib/languages/${language}`);
           return hljs.registerLanguage(language, module.default);
-        })
+        }),
       );
 
-      elements.forEach(element => {
+      elements.forEach((element) => {
         hljs.highlightElement(element as HTMLElement);
       });
     }

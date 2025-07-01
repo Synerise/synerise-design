@@ -27,6 +27,7 @@ import Scrollbar from '@synerise/ds-scrollbar'
 <iframe src="/storybook-static/iframe.html?id=components-scrollbar--default"></iframe>
 
 ## API
+
 | Property      | Description                                                                      | Type                     | Default |
 | ------------- | -------------------------------------------------------------------------------- | ------------------------ | ------- |
 | absolute      | Whether the scrollbar is over content                                            | boolean                  | `true`  |

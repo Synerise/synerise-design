@@ -1,7 +1,7 @@
 import React from 'react';
 
-import * as S from './Danger.styles';
 import type { BasicItemProps } from '../../ListItem.types';
+import * as S from './Danger.styles';
 
 const Danger = ({ children, ...rest }: BasicItemProps) => {
   return <S.DangerItem {...rest}>{children}</S.DangerItem>;

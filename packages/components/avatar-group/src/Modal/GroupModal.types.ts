@@ -1,4 +1,4 @@
-import { GroupModalSettings, DataSource } from '../AvatarGroup.types';
+import { type DataSource, type GroupModalSettings } from '../AvatarGroup.types';
 
 export type GroupModalProps = GroupModalSettings & {
   visible: boolean;

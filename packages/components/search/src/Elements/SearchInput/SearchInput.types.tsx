@@ -1,5 +1,6 @@
-import type { ReactNode, KeyboardEvent } from 'react';
 import type { InputProps } from 'antd/lib/input';
+import type { KeyboardEvent, ReactNode } from 'react';
+
 import type { TooltipProps } from '@synerise/ds-tooltip';
 
 export type SearchInputProps = {

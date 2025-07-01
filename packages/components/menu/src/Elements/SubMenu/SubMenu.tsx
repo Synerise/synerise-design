@@ -1,15 +1,23 @@
+import classNames from 'classnames';
 import React from 'react';
 import { v4 as uuid } from 'uuid';
-import classNames from 'classnames';
+
 import '@synerise/ds-core/dist/js/style';
+
 import * as S from '../../Menu.styles';
-
 import MenuItem from '../Item/MenuItem';
-import { MenuItemProps } from '../Item/MenuItem.types';
-import { SubMenuItemProps, SubMenuProps, SubMenuState } from './SubMenu.types';
+import { type MenuItemProps } from '../Item/MenuItem.types';
 import SubmenuText from '../Item/SubmenuText/SubmenuText';
+import {
+  type SubMenuItemProps,
+  type SubMenuProps,
+  type SubMenuState,
+} from './SubMenu.types';
 
-class SubMenuItem extends React.PureComponent<SubMenuProps & MenuItemProps, SubMenuState> {
+class SubMenuItem extends React.PureComponent<
+  SubMenuProps & MenuItemProps,
+  SubMenuState
+> {
   constructor(props: SubMenuProps & MenuItemProps) {
     super(props);
     // eslint-disable-next-line react/state-in-constructor
@@ -62,11 +70,14 @@ class SubMenuItem extends React.PureComponent<SubMenuProps & MenuItemProps, SubM
         tabIndex={!disabled ? 0 : -1}
         {...rest}
         className={classNames('ds-menu-item', {
-          'ant-menu-item-selected': !!menuItemKey && !!selectedKeys && selectedKeys.includes(menuItemKey as string),
+          'ant-menu-item-selected':
+            !!menuItemKey &&
+            !!selectedKeys &&
+            selectedKeys.includes(menuItemKey as string),
         })}
       >
         {Boolean(subMenu) &&
-          // @ts-ignore */
+          // @ts-expect-error Type 'SubMenuProps' is missing the following properties from type 'MenuInfo': keyPath, item, domEvent
           subMenu.map((subItem: SubMenuItemProps, index: number) => (
             <MenuItem
               parent={subItem.parent}
@@ -76,15 +87,16 @@ class SubMenuItem extends React.PureComponent<SubMenuProps & MenuItemProps, SubM
               text={subItem.text}
               danger={subItem.danger}
               subMenu={subItem.subMenu}
-              ordered={subItem.ordered === undefined ? ordered : subItem.ordered}
+              ordered={
+                subItem.ordered === undefined ? ordered : subItem.ordered
+              }
               description={subItem.description}
               suffixVisibilityTrigger={subItem.suffixVisibilityTrigger}
               prefixVisibilityTrigger={subItem.prefixVisibilityTrigger}
-              // eslint-disable-next-line react/jsx-handler-names
               onClick={(): void => {
                 subItem.onClick && subItem.onClick(subItem);
               }}
-              key={subItem.key || `${uuidKey}-${index}`} // eslint-disable-line react/no-array-index-key
+              key={subItem.key || `${uuidKey}-${index}`}
               menuItemKey={subItem.key || `${uuidKey}-${index}`}
               selectedKeys={selectedKeys}
               {...subItem}

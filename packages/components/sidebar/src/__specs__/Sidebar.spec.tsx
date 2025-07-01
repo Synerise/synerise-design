@@ -1,8 +1,10 @@
 import React from 'react';
-import { renderWithProvider } from '@synerise/ds-utils/dist/testing';
-import Sidebar from "../index";
+
+import { renderWithProvider } from '@synerise/ds-utils';
+import { fireEvent, screen } from '@testing-library/react';
+
 import SidebarWithButton from '../../dist/SidebarWithButton/SidebarWithButton';
-import { screen, fireEvent } from '@testing-library/react';
+import Sidebar from '../index';
 
 describe('Sidebar', () => {
   const HEADER_1 = 'header first';
@@ -14,15 +16,15 @@ describe('Sidebar', () => {
   const CHILDREN = 'Children';
 
   it('should render header', () => {
-    const { getByText, container } = renderWithProvider(
-      <Sidebar defaultActiveKey={['0']} order={[ID_2, ID_1,]}>
+    renderWithProvider(
+      <Sidebar defaultActiveKey={['0']} order={[ID_2, ID_1]}>
         <Sidebar.Panel header={HEADER_1} id={ID_1} key={ID_1}>
           {CHILDREN}
         </Sidebar.Panel>
         <Sidebar.Panel header={HEADER_2} id={ID_2}>
           {CHILDREN}
         </Sidebar.Panel>
-      </Sidebar>
+      </Sidebar>,
     );
 
     expect(screen.getByTestId(`header-${ID_1}`)).toBeInTheDocument();
@@ -30,37 +32,36 @@ describe('Sidebar', () => {
 
   it('should render active panel', () => {
     const { getByText } = renderWithProvider(
-      <Sidebar defaultActiveKey={['0']} order={[ID_2, ID_1,]}>
+      <Sidebar defaultActiveKey={['0']} order={[ID_2, ID_1]}>
         <Sidebar.Panel header={HEADER_1} id={ID_1} key={ID_1}>
           {CHILDREN}
         </Sidebar.Panel>
         <Sidebar.Panel header={HEADER_2} id={ID_2}>
           {CHILDREN}
         </Sidebar.Panel>
-      </Sidebar>
+      </Sidebar>,
     );
 
     expect(getByText(HEADER_1)).toBeTruthy();
   });
   it('should render text Button', () => {
     const { getByText } = renderWithProvider(
-      <SidebarWithButton buttonLabel="Button" dataSource={null}/>
+      <SidebarWithButton buttonLabel="Button" dataSource={null} />,
     );
 
-    expect(getByText("Button")).toBeTruthy();
+    expect(getByText('Button')).toBeTruthy();
   });
-
 
   it('should fire open collapse', async () => {
     const { getByText } = renderWithProvider(
-      <Sidebar defaultActiveKey={['0']} order={[ID_2, ID_1,]}>
+      <Sidebar defaultActiveKey={['0']} order={[ID_2, ID_1]}>
         <Sidebar.Panel header={HEADER_1} id={ID_1} key={ID_1}>
           {CHILDREN}
         </Sidebar.Panel>
         <Sidebar.Panel header={HEADER_2} id={ID_2}>
           {CHILDREN}
         </Sidebar.Panel>
-      </Sidebar>
+      </Sidebar>,
     );
 
     fireEvent.click(getByText(HEADER_1));
@@ -68,10 +69,9 @@ describe('Sidebar', () => {
     expect(getByText(CHILDREN)).toBeTruthy();
   });
 
-
   it('should render order in draggable mode', () => {
     const { getByText, container } = renderWithProvider(
-      <Sidebar order={[ ID_3, ID_2, ID_1,]}>
+      <Sidebar order={[ID_3, ID_2, ID_1]}>
         <Sidebar.Panel header={HEADER_1} id={ID_1}>
           {CHILDREN}
         </Sidebar.Panel>
@@ -81,23 +81,28 @@ describe('Sidebar', () => {
         <Sidebar.Panel header={HEADER_3} id={ID_3}>
           {CHILDREN}
         </Sidebar.Panel>
-      </Sidebar>
+      </Sidebar>,
     );
 
     fireEvent.click(getByText(HEADER_1));
     fireEvent.click(getByText(HEADER_2));
     fireEvent.click(getByText(HEADER_3));
 
-    expect(container.querySelectorAll('.ant-collapse-header')[0].textContent).toEqual(HEADER_3);
-    expect(container.querySelectorAll('.ant-collapse-header')[1].textContent).toEqual(HEADER_2);
-    expect(container.querySelectorAll('.ant-collapse-header')[2].textContent).toEqual(HEADER_1);
+    expect(
+      container.querySelectorAll('.ant-collapse-header')[0].textContent,
+    ).toEqual(HEADER_3);
+    expect(
+      container.querySelectorAll('.ant-collapse-header')[1].textContent,
+    ).toEqual(HEADER_2);
+    expect(
+      container.querySelectorAll('.ant-collapse-header')[2].textContent,
+    ).toEqual(HEADER_1);
     expect(container.querySelector('.ant-collapse.is-drag-drop')).toBeTruthy();
   });
 
   it('should change cursor to "move" in drag and drop mode', () => {
-
-    const { getByText, container } = renderWithProvider(
-      <Sidebar order={[ ID_3, ID_2, ID_1,]}>
+    const { container } = renderWithProvider(
+      <Sidebar order={[ID_3, ID_2, ID_1]}>
         <Sidebar.Panel header={HEADER_1} id={ID_1}>
           {CHILDREN}
         </Sidebar.Panel>
@@ -107,12 +112,14 @@ describe('Sidebar', () => {
         <Sidebar.Panel header={HEADER_3} id={ID_3}>
           {CHILDREN}
         </Sidebar.Panel>
-      </Sidebar>
+      </Sidebar>,
     );
 
-    const headerElement = container.querySelector(".ant-collapse-header");
+    const headerElement = container.querySelector('.ant-collapse-header');
     fireEvent.mouseOver(headerElement);
 
-    expect(window.getComputedStyle(headerElement).getPropertyValue("cursor")).toBe("pointer");
+    expect(
+      window.getComputedStyle(headerElement).getPropertyValue('cursor'),
+    ).toBe('pointer');
   });
 });

@@ -1,18 +1,21 @@
-import React, { useMemo, useCallback } from 'react';
+import React, { useCallback, useMemo } from 'react';
 import { useIntl } from 'react-intl';
 
 import Button from '@synerise/ds-button';
-import Tooltip from '@synerise/ds-tooltip';
+import {
+  getDefaultDataTimeOptions,
+  useDataFormat,
+} from '@synerise/ds-data-format';
 import Icon, { ArrowRightS } from '@synerise/ds-icon';
-import { getDefaultDataTimeOptions, useDataFormat } from '@synerise/ds-data-format';
+import Tooltip from '@synerise/ds-tooltip';
 
-import * as S from './Footer.styles';
-import { Props } from './Footer.types';
+import { isLifetime } from '../RelativeRangePicker/Elements/RangeDropdown/RangeDropdown';
+import * as CONST from '../constants';
 import fnsFormat from '../dateUtils/format';
 import getDateFromString from '../dateUtils/getDateFromString';
-import * as CONST from '../constants';
-import { isLifetime } from '../RelativeRangePicker/Elements/RangeDropdown/RangeDropdown';
 import { toIsoStringWithoutZone } from '../utils';
+import * as S from './Footer.styles';
+import { type Props } from './Footer.types';
 
 const Footer = ({
   canApply,
@@ -32,7 +35,8 @@ const Footer = ({
 }: Props) => {
   const { formatValue } = useDataFormat();
   const { locale } = useIntl();
-  const footerFormat = format || (showTime ? 'MMM D, YYYY, HH:mm' : 'MMM D, YYYY');
+  const footerFormat =
+    format || (showTime ? 'MMM D, YYYY, HH:mm' : 'MMM D, YYYY');
 
   const footerDateToString = useCallback(
     (date: Date | string) => {
@@ -42,25 +46,34 @@ const Footer = ({
 
       const parseDate = new Date(toIsoStringWithoutZone(date));
 
-      return formatValue(parseDate, { ...getDefaultDataTimeOptions(showTime), ...valueFormatOptions });
+      return formatValue(parseDate, {
+        ...getDefaultDataTimeOptions(showTime),
+        ...valueFormatOptions,
+      });
     },
-    [footerFormat, format, formatValue, locale, valueFormatOptions, showTime]
+    [footerFormat, format, formatValue, locale, valueFormatOptions, showTime],
   );
 
   const ChosenRange = useMemo(() => {
     if (value?.key === CONST.ALL_TIME || (value && isLifetime(value))) {
       return (
         <S.ChosenRange className="ds-date-range-picker-value">
-          {value?.translationKey ? texts[value.translationKey] ?? value.translationKey : value?.key || 'LIFETIME'}
+          {value?.translationKey
+            ? (texts[value.translationKey] ?? value.translationKey)
+            : value?.key || 'LIFETIME'}
         </S.ChosenRange>
       );
     }
     return (
       <S.ChosenRange className={displayDateContainerClass}>
-        {!!value && !!value.from ? footerDateToString(value?.from) : texts.startDatePlaceholder}
+        {!!value && !!value.from
+          ? footerDateToString(value?.from)
+          : texts.startDatePlaceholder}
         <S.InvisibleTextContent>{' – '}</S.InvisibleTextContent>
         <Icon component={<ArrowRightS />} />
-        {!!value && !!value.to ? footerDateToString(value?.to) : texts.endDatePlaceholder}
+        {!!value && !!value.to
+          ? footerDateToString(value?.to)
+          : texts.endDatePlaceholder}
       </S.ChosenRange>
     );
   }, [value, texts, displayDateContainerClass, footerDateToString]);

@@ -1,10 +1,15 @@
 import React, { useCallback, useMemo } from 'react';
-import Icon, { CloseM, AngleDownS } from '@synerise/ds-icon';
+
+import Icon, { AngleDownS, CloseM } from '@synerise/ds-icon';
 
 import * as S from './Toast.styles';
-import { ShowToastProps, ToastCustomisationOptions, ToastProps } from './Toast.types';
-import { showToast } from './utils/showToast';
+import {
+  type ShowToastProps,
+  type ToastCustomisationOptions,
+  type ToastProps,
+} from './Toast.types';
 import { ICONS } from './constants';
+import { showToast } from './utils/showToast';
 
 export const Toast = ({
   type,
@@ -22,9 +27,16 @@ export const Toast = ({
 }: ToastProps) => {
   const hasToastContent = button || description || expandedContent;
   const toastContent = hasToastContent && (
-    <S.AlertContent hasBottomMargin={Boolean(button || description || (expandedContent && expanded))}>
+    <S.AlertContent
+      hasBottomMargin={Boolean(
+        button || description || (expandedContent && expanded),
+      )}
+    >
       {description && (
-        <S.AlertDescription expandedContent={!!expandedContent} button={!!button}>
+        <S.AlertDescription
+          expandedContent={!!expandedContent}
+          button={!!button}
+        >
           {description}
         </S.AlertDescription>
       )}
@@ -47,10 +59,16 @@ export const Toast = ({
 
   return (
     <S.Container toastType={type} {...htmlAttributes}>
-      <S.IconWrapper>{customIcon || <Icon component={iconComponentForType} />}</S.IconWrapper>
+      <S.IconWrapper>
+        {customIcon || <Icon component={iconComponentForType} />}
+      </S.IconWrapper>
 
       <S.WrapperSectionMessage>
-        <S.AlertMessage noToastContent={!hasToastContent} hasClose={!!withClose} hasExpander={!!expander}>
+        <S.AlertMessage
+          noToastContent={!hasToastContent}
+          hasClose={!!withClose}
+          hasExpander={!!expander}
+        >
           {message}
         </S.AlertMessage>
 
@@ -73,7 +91,10 @@ export const Toast = ({
   );
 };
 
-Toast.success = (props: ShowToastProps, options?: ToastCustomisationOptions) => {
+Toast.success = (
+  props: ShowToastProps,
+  options?: ToastCustomisationOptions,
+) => {
   return showToast('success', props, options);
 };
 Toast.error = (props: ShowToastProps, options?: ToastCustomisationOptions) => {
@@ -82,6 +103,9 @@ Toast.error = (props: ShowToastProps, options?: ToastCustomisationOptions) => {
 Toast.info = (props: ShowToastProps, options?: ToastCustomisationOptions) => {
   return showToast('informative', props, options);
 };
-Toast.warning = (props: ShowToastProps, options?: ToastCustomisationOptions) => {
+Toast.warning = (
+  props: ShowToastProps,
+  options?: ToastCustomisationOptions,
+) => {
   return showToast('warning', props, options);
 };

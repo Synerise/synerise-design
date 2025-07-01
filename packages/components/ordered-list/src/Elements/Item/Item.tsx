@@ -1,7 +1,8 @@
 import React from 'react';
-import * as S from './Item.styles';
-import { ListProps, OrderedListItem } from '../../Ordered-list.types';
+
 import OrderedList from '../../Ordered-list';
+import { type ListProps, type OrderedListItem } from '../../Ordered-list.types';
+import * as S from './Item.styles';
 
 const Item: React.FC<OrderedListItem & Pick<ListProps, 'indexFormatter'>> = ({
   label,
@@ -17,7 +18,9 @@ const Item: React.FC<OrderedListItem & Pick<ListProps, 'indexFormatter'>> = ({
   return (
     <>
       <S.ItemWrapper>
-        <S.IndexFormatterWrapper>{indexFormatter ? indexFormatter(index) : index}</S.IndexFormatterWrapper>
+        <S.IndexFormatterWrapper>
+          {indexFormatter ? indexFormatter(index) : index}
+        </S.IndexFormatterWrapper>
         {prefixel}
         {label}
         {suffixel}

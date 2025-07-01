@@ -1,5 +1,12 @@
 import type { ReactNode } from 'react';
-import type { LogicOperator, LogicOperatorValue, LogicProps, MatchingProps, MatchingTexts } from '@synerise/ds-logic';
+
+import type {
+  LogicOperator,
+  LogicOperatorValue,
+  LogicProps,
+  MatchingProps,
+  MatchingTexts,
+} from '@synerise/ds-logic';
 import type { StepCardProps } from '@synerise/ds-step-card';
 import type { DeepPartial } from '@synerise/ds-utils';
 
@@ -65,9 +72,18 @@ export type FilterProps = {
   onDeleteStep?: (id: string) => void;
   onDuplicateStep?: (id: string) => void;
   renderStepFooter?: (expression: Expression) => ReactNode;
-  renderStepContent?: (expression: Expression, hoverDisabled?: boolean) => ReactNode;
-  renderStepHeaderRightSide?: (expression: Expression, index: number, options?: { placeholder?: boolean }) => ReactNode;
-  addFilterComponent?: ReactNode | ((arg: addFilterComponentProps) => ReactNode);
+  renderStepContent?: (
+    expression: Expression,
+    hoverDisabled?: boolean,
+  ) => ReactNode;
+  renderStepHeaderRightSide?: (
+    expression: Expression,
+    index: number,
+    options?: { placeholder?: boolean },
+  ) => ReactNode;
+  addFilterComponent?:
+    | ReactNode
+    | ((arg: addFilterComponentProps) => ReactNode);
   logicOptions?: LogicOperator[];
   readOnly?: boolean;
   singleStepCondition?: boolean;

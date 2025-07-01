@@ -1,28 +1,31 @@
-import React, { useState, useCallback, ReactText, useMemo } from 'react';
-import { withTheme } from 'styled-components';
+import React, { type ReactText, useCallback, useMemo, useState } from 'react';
 
+import Button from '@synerise/ds-button';
+import { useTheme } from '@synerise/ds-core';
+import Dropdown from '@synerise/ds-dropdown';
 import Icon, {
   CheckS,
   CircleShapeM,
-  OptionHorizontalM,
-  WarningFillM,
-  EditM,
   DuplicateM,
+  EditM,
+  OptionHorizontalM,
   TrashM,
+  WarningFillM,
 } from '@synerise/ds-icon';
-import Popconfirm from '@synerise/ds-popconfirm';
+import { ItemType, type MenuItemProps } from '@synerise/ds-menu';
 import ModalProxy from '@synerise/ds-modal';
+import Popconfirm from '@synerise/ds-popconfirm';
 import Result from '@synerise/ds-result';
-import Button from '@synerise/ds-button';
-import Dropdown from '@synerise/ds-dropdown';
-import { ItemType, MenuItemProps } from '@synerise/ds-menu';
-
-import ItemName from '../ItemName/ItemName';
-import ItemMeta from '../ItemMeta/ItemMeta';
 
 import * as S from '../ContentItem/ContentItem.styles';
-import { SelectFilterItem, ItemHeader, DropdownMenu } from './FilterItem.styles';
-import { FilterItemProps } from './FilterItem.types';
+import ItemMeta from '../ItemMeta/ItemMeta';
+import ItemName from '../ItemName/ItemName';
+import {
+  DropdownMenu,
+  ItemHeader,
+  SelectFilterItem,
+} from './FilterItem.styles';
+import { type FilterItemProps } from './FilterItem.types';
 
 const FilterItemComponent = ({
   item,
@@ -33,19 +36,20 @@ const FilterItemComponent = ({
   onUpdate,
   onSelect,
   texts,
-  theme,
   searchQuery,
   style,
 }: FilterItemProps) => {
   const [editMode, setEditMode] = useState(false);
   const [confirmDeleteVisible, setConfirmDeleteVisible] = useState(false);
 
+  const theme = useTheme();
+
   const updateName = useCallback(
     (updateParams: { id: ReactText; name: string }): void => {
       setEditMode(false);
       onUpdate && onUpdate(updateParams);
     },
-    [onUpdate]
+    [onUpdate],
   );
 
   const enterEditMode = useCallback((): void => {
@@ -65,14 +69,18 @@ const FilterItemComponent = ({
     if (item.canUpdate) {
       menuItems.push({
         onClick: enterEditMode,
-        prefixel: <Icon component={<EditM />} color={theme.palette['grey-600']} />,
+        prefixel: (
+          <Icon component={<EditM />} color={theme.palette['grey-600']} />
+        ),
         text: texts.itemActionRename,
       });
     }
     if (item.canDuplicate) {
       menuItems.push({
         onClick: handleDuplicate,
-        prefixel: <Icon component={<DuplicateM />} color={theme.palette['grey-600']} />,
+        prefixel: (
+          <Icon component={<DuplicateM />} color={theme.palette['grey-600']} />
+        ),
         text: texts.itemActionDuplicate,
       });
     }
@@ -111,8 +119,11 @@ const FilterItemComponent = ({
           <S.ItemHeaderPrefix>
             <SelectFilterItem data-testid={selected && 'filter-item-selected'}>
               {selected ? (
-                // @ts-ignore
-                <Icon className="selected-item-icon" component={<CheckS />} color={theme.palette.white} />
+                <Icon
+                  className="selected-item-icon"
+                  component={<CheckS />}
+                  color={theme.palette.white}
+                />
               ) : (
                 <Popconfirm
                   okText={texts.activate}
@@ -121,23 +132,45 @@ const FilterItemComponent = ({
                   placement="top"
                   onConfirm={(): void => onSelect({ id: item.id })}
                   title={texts.activateItemTitle}
-                  icon={<Icon component={<WarningFillM />} color={theme.palette['yellow-600']} />}
+                  icon={
+                    <Icon
+                      component={<WarningFillM />}
+                      color={theme.palette['yellow-600']}
+                    />
+                  }
                 >
-                  <Icon component={<CircleShapeM />} color={theme.palette['grey-300']} />
+                  <Icon
+                    component={<CircleShapeM />}
+                    color={theme.palette['grey-300']}
+                  />
                 </Popconfirm>
               )}
             </SelectFilterItem>
           </S.ItemHeaderPrefix>
-          <ItemName item={item} editMode={editMode} onUpdate={updateName} searchQuery={searchQuery} />
+          <ItemName
+            item={item}
+            editMode={editMode}
+            onUpdate={updateName}
+            searchQuery={searchQuery}
+          />
           <S.ItemHeaderSuffix>
-            {(item.user || item.created) && <ItemMeta user={item.user} created={item.created} />}
+            {(item.user || item.created) && (
+              <ItemMeta user={item.user} created={item.created} />
+            )}
             <Dropdown
               trigger={['click']}
               placement="bottomRight"
               overlay={<DropdownMenu dataSource={dropdownMenuDataSource} />}
             >
-              <S.FilterDropdownTrigger className="ds-dropdown-trigger" mode="single-icon" type="ghost">
-                <Icon component={<OptionHorizontalM />} color={theme.palette['grey-600']} />
+              <S.FilterDropdownTrigger
+                className="ds-dropdown-trigger"
+                mode="single-icon"
+                type="ghost"
+              >
+                <Icon
+                  component={<OptionHorizontalM />}
+                  color={theme.palette['grey-600']}
+                />
               </S.FilterDropdownTrigger>
             </Dropdown>
           </S.ItemHeaderSuffix>
@@ -156,10 +189,16 @@ const FilterItemComponent = ({
           description={texts.deleteConfirmationDescription}
           buttons={
             <>
-              <Button type="default" onClick={(): void => setConfirmDeleteVisible(false)}>
+              <Button
+                type="default"
+                onClick={(): void => setConfirmDeleteVisible(false)}
+              >
                 {texts.deleteConfirmationNo}
               </Button>
-              <Button type="primary" onClick={(): void => onRemove && onRemove({ id: item.id })}>
+              <Button
+                type="primary"
+                onClick={(): void => onRemove && onRemove({ id: item.id })}
+              >
                 {texts.deleteConfirmationYes}
               </Button>
             </>
@@ -170,7 +209,7 @@ const FilterItemComponent = ({
   );
 };
 
-const FilterItem = Object.assign(withTheme(FilterItemComponent), {
+const FilterItem = Object.assign(FilterItemComponent, {
   AdditionalSuffix: S.AdditionalSuffix,
   ContentWrapper: S.ContentWrapper,
   DraggerWrapper: S.DraggerWrapper,

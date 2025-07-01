@@ -1,5 +1,5 @@
 import React from 'react';
-import { renderWithProvider } from '@synerise/ds-utils/dist/testing';
+import { renderWithProvider } from '@synerise/ds-utils';
 import Monthly from './Monthly';
 import { fireEvent, screen } from '@testing-library/react';
 import { ERROR_MESSAGE, MONTHLY_SCHEDULE_TEST_DATA } from '../filters.spec.constants';

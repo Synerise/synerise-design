@@ -1,8 +1,8 @@
 import React from 'react';
+
+import { renderWithProvider } from '@synerise/ds-utils';
 import { screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-
-import { renderWithProvider } from '@synerise/ds-utils/dist/testing';
 
 import Mapping from '../index';
 
@@ -28,26 +28,27 @@ const DATA = [
     id: '3',
   },
 ];
-const LEFT_COMPONENT = ({ item, index }) => <>{item.nameLeft}</>;
-const RIGHT_COMPONENT = ({ item, index }) => <>{item.nameRight}</>;
-const CENTER_COMPONENT = ({ item, index }) => <>{DIVIDER}</>;
+const LEFT_COMPONENT = ({ item }) => <>{item.nameLeft}</>;
+const RIGHT_COMPONENT = ({ item }) => <>{item.nameRight}</>;
+const CENTER_COMPONENT = () => <>{DIVIDER}</>;
 const SELECTION = {
   onSelectionChange: jest.fn(),
   actionButtons: <>{BUTTONS}</>,
 };
 const ENABLE_BATCH = 'ENABLE_BATCH';
 
-const MAPPING = props => (
-  <Mapping dataSource={DATA} leftComponent={LEFT_COMPONENT} rightComponent={RIGHT_COMPONENT} {...props} />
+const MAPPING = (props) => (
+  <Mapping
+    dataSource={DATA}
+    leftComponent={LEFT_COMPONENT}
+    rightComponent={RIGHT_COMPONENT}
+    {...props}
+  />
 );
 
 describe('Mapping', () => {
   it('should render', () => {
-    renderWithProvider(
-      <MAPPING
-        centerComponent={CENTER_COMPONENT}
-      />
-    );
+    renderWithProvider(<MAPPING centerComponent={CENTER_COMPONENT} />);
 
     expect(screen.getAllByText(LEFT)).toHaveLength(DATA.length);
     expect(screen.getAllByText(RIGHT)).toHaveLength(DATA.length);
@@ -68,10 +69,12 @@ describe('Mapping', () => {
         texts={{
           enableBatchSelection: ENABLE_BATCH,
         }}
-      />
+      />,
     );
     userEvent.click(screen.getByText(ENABLE_BATCH));
-    await waitFor(() => expect(screen.getAllByRole('checkbox')).toHaveLength(DATA.length + 1));
+    await waitFor(() =>
+      expect(screen.getAllByRole('checkbox')).toHaveLength(DATA.length + 1),
+    );
     expect(screen.queryByText(BUTTONS)).not.toBeInTheDocument();
   });
   it('action buttons should not be visible when items are not selected', async () => {
@@ -81,10 +84,12 @@ describe('Mapping', () => {
         texts={{
           enableBatchSelection: ENABLE_BATCH,
         }}
-      />
+      />,
     );
     userEvent.click(screen.getByText(ENABLE_BATCH));
-    await waitFor(() => expect(screen.getAllByRole('checkbox')).toHaveLength(DATA.length + 1));
+    await waitFor(() =>
+      expect(screen.getAllByRole('checkbox')).toHaveLength(DATA.length + 1),
+    );
     expect(screen.queryByText(BUTTONS)).not.toBeInTheDocument();
   });
 
@@ -95,10 +100,12 @@ describe('Mapping', () => {
         texts={{
           enableBatchSelection: ENABLE_BATCH,
         }}
-      />
+      />,
     );
     userEvent.click(screen.getByText(ENABLE_BATCH));
-    await waitFor(() => expect(screen.getAllByRole('checkbox')).toHaveLength(DATA.length + 1));
+    await waitFor(() =>
+      expect(screen.getAllByRole('checkbox')).toHaveLength(DATA.length + 1),
+    );
     const checkboxes = screen.getAllByRole('checkbox');
     userEvent.click(checkboxes[1]);
     expect(await screen.findByText(BUTTONS)).toBeInTheDocument();
@@ -111,10 +118,12 @@ describe('Mapping', () => {
         texts={{
           enableBatchSelection: ENABLE_BATCH,
         }}
-      />
+      />,
     );
     userEvent.click(screen.getByText(ENABLE_BATCH));
-    await waitFor(() => expect(screen.getAllByRole('checkbox')).toHaveLength(DATA.length + 1));
+    await waitFor(() =>
+      expect(screen.getAllByRole('checkbox')).toHaveLength(DATA.length + 1),
+    );
     const checkboxes = screen.getAllByRole('checkbox');
     userEvent.click(checkboxes[1]);
     await waitFor(() => expect(SELECTION.onSelectionChange).toHaveBeenCalled());

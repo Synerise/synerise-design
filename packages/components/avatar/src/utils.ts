@@ -1,33 +1,66 @@
-import { cloneElement, ReactElement, ReactNode } from 'react';
-import Icon from '@synerise/ds-icon';
-import selectColorByLetter, { ColorObject } from '@synerise/ds-utils/dist/selectColorByLetter/selectColorByLetter';
+import { type ReactElement, type ReactNode, cloneElement } from 'react';
 
-import { Color, ColorHue, UserAvatar, AvatarProps, TooltipObject } from './Avatar.types';
+import Icon from '@synerise/ds-icon';
+import selectColorByLetter, {
+  type ColorObject,
+} from '@synerise/ds-utils/dist/selectColorByLetter/selectColorByLetter';
+
+import {
+  type AvatarProps,
+  type Color,
+  type ColorHue,
+  type TooltipObject,
+  type UserAvatar,
+} from './Avatar.types';
 
 function getFirstLetter(from: string | null): string {
   return (from || '').substr(0, 1).toUpperCase();
 }
 
-export function getUserText(user: UserAvatar, src: string | null = '', text: string | null = ''): string | null {
+export function getUserText(
+  user: UserAvatar,
+  src: string | null = '',
+  text: string | null = '',
+): string | null {
   const { firstName = '', lastName = '', email = '', avatar = '' } = user;
-  if (src || avatar) return null;
-  if (text) return text;
-  if (firstName || lastName) return `${getFirstLetter(firstName)}${getFirstLetter(lastName)}`;
-  if (email) return getFirstLetter(email);
+  if (src || avatar) {
+    return null;
+  }
+  if (text) {
+    return text;
+  }
+  if (firstName || lastName) {
+    return `${getFirstLetter(firstName)}${getFirstLetter(lastName)}`;
+  }
+  if (email) {
+    return getFirstLetter(email);
+  }
   return null;
 }
 
 export function isIconComponent(component: ReactNode | undefined): boolean {
-  return component ? (component as unknown as Function).name === Icon.name : false;
+  return component
+    ? (component as unknown as Function).name === Icon.name
+    : false;
 }
 
-export function getObjectName(name: string | null = '', text = ''): string | null {
-  if (text) return text.toUpperCase();
-  if (name) return name.substr(0, 1).toUpperCase();
+export function getObjectName(
+  name: string | null = '',
+  text = '',
+): string | null {
+  if (text) {
+    return text.toUpperCase();
+  }
+  if (name) {
+    return name.substr(0, 1).toUpperCase();
+  }
   return null;
 }
 
-export function addIconColor(iconComponent: ReactNode, color: string): ReactElement {
+export function addIconColor(
+  iconComponent: ReactNode,
+  color: string,
+): ReactElement {
   let iconElement = iconComponent as ReactElement;
   if (iconElement && !iconElement?.props?.color) {
     iconElement = cloneElement(iconElement, { color });
@@ -35,16 +68,30 @@ export function addIconColor(iconComponent: ReactNode, color: string): ReactElem
   return iconElement;
 }
 
-export function getColorByText(text: string | null, backgroundColor?: 'auto' | Color | string): [Color, ColorHue] {
-  if (backgroundColor && backgroundColor.indexOf('-') !== -1) return backgroundColor.split('-') as [Color, ColorHue];
+export function getColorByText(
+  text: string | null,
+  backgroundColor?: 'auto' | Color | string,
+): [Color, ColorHue] {
+  if (backgroundColor && backgroundColor.indexOf('-') !== -1) {
+    return backgroundColor.split('-') as [Color, ColorHue];
+  }
   const autoColor =
-    ((typeof text === 'string' ? selectColorByLetter(text.slice(0, 1), true) : {}) as ColorObject)?.color || 'grey';
-  const color = text && backgroundColor && backgroundColor !== 'auto' ? (backgroundColor as Color) : autoColor;
+    (
+      (typeof text === 'string'
+        ? selectColorByLetter(text.slice(0, 1), true)
+        : {}) as ColorObject
+    )?.color || 'grey';
+  const color =
+    text && backgroundColor && backgroundColor !== 'auto'
+      ? (backgroundColor as Color)
+      : autoColor;
   const hue = text ? '500' : '100';
   return [color as Color, hue as ColorHue];
 }
 
-export function getTooltipProps(tooltip: AvatarProps['tooltip']): TooltipObject {
+export function getTooltipProps(
+  tooltip: AvatarProps['tooltip'],
+): TooltipObject {
   const tooltipProps: TooltipObject =
     typeof tooltip === 'object'
       ? {
@@ -55,7 +102,10 @@ export function getTooltipProps(tooltip: AvatarProps['tooltip']): TooltipObject 
       : {};
 
   const tooltipType =
-    ['title', 'description', 'status'].reduce((prev, next) => (tooltipProps[next] ? prev + 1 : prev), 0) === 1
+    ['title', 'description', 'status'].reduce(
+      (prev, next) => (tooltipProps[next] ? prev + 1 : prev),
+      0,
+    ) === 1
       ? 'default'
       : 'avatar';
 
@@ -63,7 +113,10 @@ export function getTooltipProps(tooltip: AvatarProps['tooltip']): TooltipObject 
     tooltipType === 'default'
       ? {
           ...tooltipProps,
-          title: tooltipProps.title || tooltipProps.description || tooltipProps.status,
+          title:
+            tooltipProps.title ||
+            tooltipProps.description ||
+            tooltipProps.status,
           type: 'default',
         }
       : {

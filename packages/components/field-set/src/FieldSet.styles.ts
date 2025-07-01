@@ -1,6 +1,9 @@
 import styled, { css } from 'styled-components';
 
-export const Title = styled.div<{ description?: boolean; isClickable?: boolean }>`
+export const Title = styled.div<{
+  description?: boolean;
+  isClickable?: boolean;
+}>`
   display: flex;
   line-height: 16px;
   max-width: 800px;
@@ -8,8 +11,8 @@ export const Title = styled.div<{ description?: boolean; isClickable?: boolean }
   font-weight: 500;
   word-wrap: break-word;
   align-items: center;
-  color: ${props => props.theme.palette['grey-800']};
-  cursor: ${props => (props.isClickable ? 'pointer' : 'default')};
+  color: ${(props) => props.theme.palette['grey-800']};
+  cursor: ${(props) => (props.isClickable ? 'pointer' : 'default')};
 `;
 export const ContainerWrapper = styled.div`
   display: flex;
@@ -20,7 +23,7 @@ export const HeaderWrapper = styled.div<{ topAlign?: boolean }>`
   display: flex;
   align-items: center;
   gap: 16px;
-  align-items: ${props => (props.topAlign ? 'flex-start' : 'center')};
+  align-items: ${(props) => (props.topAlign ? 'flex-start' : 'center')};
 `;
 export const ButtonWrapper = styled.div`
   display: flex;
@@ -48,9 +51,13 @@ export const Description = styled.div`
   font-size: 13px;
   word-wrap: break-word;
 `;
-export const CollapsibleContent = styled.div<{ expandable?: boolean; expanded?: boolean; maxHeight?: number }>`
+export const CollapsibleContent = styled.div<{
+  expandable?: boolean;
+  expanded?: boolean;
+  maxHeight?: number;
+}>`
   position: relative;
-  ${props =>
+  ${(props) =>
     props.expandable &&
     css`
       transition: max-height 0.7s ease-in-out;

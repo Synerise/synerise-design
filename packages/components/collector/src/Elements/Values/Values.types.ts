@@ -1,4 +1,4 @@
-import { CollectorValue } from '../../Collector.types';
+import { type CollectorValue } from '../../Collector.types';
 
 export type ValuesProps = {
   values: CollectorValue[];

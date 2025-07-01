@@ -1,11 +1,19 @@
 import type { ReactNode, ReactText } from 'react';
-import type { FactorsProps, FactorValueComponentProps } from '@synerise/ds-factors';
+
+import type {
+  FactorValueComponentProps,
+  FactorsProps,
+} from '@synerise/ds-factors';
 import type { OperatorsProps } from '@synerise/ds-operators';
+
 import type { ConditionProps, ConditionTexts } from '../../Condition.types';
 
 export type ConditionRowProps = Pick<
   ConditionProps,
-  'removeCondition' | 'getPopupContainerOverride' | 'factorParameterSelectorComponent' | 'parameterSelectorComponent'
+  | 'removeCondition'
+  | 'getPopupContainerOverride'
+  | 'factorParameterSelectorComponent'
+  | 'parameterSelectorComponent'
 > & {
   index: number;
   error?: boolean;
@@ -16,7 +24,9 @@ export type ConditionRowProps = Pick<
   addCondition?: (stepId: ReactText) => void;
   conditionParameter?: Omit<FactorsProps, 'onChangeValue'>;
   conditionOperator?: Omit<OperatorsProps, 'onChange'>;
-  conditionFactor?: Omit<FactorsProps, 'onChangeValue'> & { withCustomFactor?: ReactNode };
+  conditionFactor?: Omit<FactorsProps, 'onChangeValue'> & {
+    withCustomFactor?: ReactNode;
+  };
   conditionsNumber: number;
   stepId: ReactText;
   currentStepId: ReactText;

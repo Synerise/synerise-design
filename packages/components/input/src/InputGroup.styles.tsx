@@ -1,4 +1,7 @@
-import styled, { FlattenSimpleInterpolation, css } from 'styled-components';
+import styled, {
+  type FlattenSimpleInterpolation,
+  css,
+} from 'styled-components';
 
 export const InputGroupItem = styled.div``;
 

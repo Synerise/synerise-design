@@ -1,6 +1,7 @@
 import React from 'react';
+
 import * as S from './Navbar.styles';
-import { NavbarProps } from './Navbar.types';
+import { type NavbarProps } from './Navbar.types';
 
 const Navbar = ({
   className,
@@ -19,11 +20,13 @@ const Navbar = ({
       <S.NavbarDescription>{description}</S.NavbarDescription>
       {alertNotification && (
         <>
-          <S.NavbarAlertNotification>{alertNotification}</S.NavbarAlertNotification>
+          <S.NavbarAlertNotification>
+            {alertNotification}
+          </S.NavbarAlertNotification>
           <S.NavbarDivider />
         </>
       )}
-      {additionalNodes?.map(node => (
+      {additionalNodes?.map((node) => (
         <>
           <S.AdditionalNode>{node}</S.AdditionalNode>
           <S.NavbarDivider />

@@ -46,7 +46,7 @@ const buildIconsSet = (path, libDir, indexDistFile) => {
           {
             template: tpl,
             typescript: true,
-            plugins: ['@svgr/plugin-svgo', '@svgr/plugin-jsx', '@svgr/plugin-prettier'],
+            plugins: ['@svgr/plugin-svgo', '@svgr/plugin-jsx'],
             svgoConfig: {
               "plugins": [
                 {

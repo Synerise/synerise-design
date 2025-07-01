@@ -1,36 +1,47 @@
-import React, { RefObject, useRef, useEffect, useCallback, useState, useMemo } from 'react';
-import { useIntl } from 'react-intl';
 import dayjs from 'dayjs';
+import React, {
+  type RefObject,
+  useCallback,
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+} from 'react';
+import { useIntl } from 'react-intl';
 import { v4 as uuid } from 'uuid';
 
 import { useDataFormat } from '@synerise/ds-data-format';
 
-import RangeFormContainer from '../../../Shared/TimeWindow/RangeFormContainer/RangeFormContainer';
-import { SelectionCount, SelectionHint, AddButton } from '../../../Shared';
-import Grid from '../../../Shared/TimeWindow/Grid/Grid';
-import Day from '../../../Shared/TimeWindow/Day/Day';
+import { getDefaultTexts } from '../../../../utils';
 import * as S from '../../../RangeFilter.styles';
-import { WeeklyProps, WeeklySchedule } from './Weekly.types';
-import { DateLimitMode } from '../../../Shared/TimeWindow/RangeFormContainer/RangeForm/RangeForm.types';
+import { AddButton, SelectionCount, SelectionHint } from '../../../Shared';
+import Day from '../../../Shared/TimeWindow/Day/Day';
+import Grid from '../../../Shared/TimeWindow/Grid/Grid';
+import { type DateLimitMode } from '../../../Shared/TimeWindow/RangeFormContainer/RangeForm/RangeForm.types';
+import RangeFormContainer from '../../../Shared/TimeWindow/RangeFormContainer/RangeFormContainer';
 import type { DateValue } from '../../../Shared/TimeWindow/RangeFormContainer/RangeFormContainer.types';
-import { DayKey } from '../../WeeklyFilter/WeeklyFilter.types';
-
-import { useShiftAndControlKeys } from '../hooks/useShiftAndControlKeys';
-import { canAddAnotherRange, haveActiveDaysCommonRange, range, removeEmptyEntries } from './utils';
-import {
-  DEFAULT_RANGE_START,
-  DEFAULT_RANGE_END,
-  DEFAULT_TIME_FORMAT,
-  EMPTY_OBJECT,
-  DEFAULT_MAX_ENTRIES,
-  RENDER_EMPTY_NODE_FN,
-  NOOP,
-} from '../constants';
 import {
   EU_NOTATION_WEEK_DAYS_INDEXES,
   US_NOTATION_WEEK_DAYS_INDEXES,
 } from '../../../Shared/TimeWindow/constants/timeWindow.constants';
-import { getDefaultTexts } from '../../../../utils';
+import { type DayKey } from '../../WeeklyFilter/WeeklyFilter.types';
+import {
+  DEFAULT_MAX_ENTRIES,
+  DEFAULT_RANGE_END,
+  DEFAULT_RANGE_START,
+  DEFAULT_TIME_FORMAT,
+  EMPTY_OBJECT,
+  NOOP,
+  RENDER_EMPTY_NODE_FN,
+} from '../constants';
+import { useShiftAndControlKeys } from '../hooks/useShiftAndControlKeys';
+import { type WeeklyProps, type WeeklySchedule } from './Weekly.types';
+import {
+  canAddAnotherRange,
+  haveActiveDaysCommonRange,
+  range,
+  removeEmptyEntries,
+} from './utils';
 
 const Weekly = ({
   maxEntries = DEFAULT_MAX_ENTRIES,
@@ -45,7 +56,10 @@ const Weekly = ({
   errorTexts,
 }: WeeklyProps) => {
   const intl = useIntl();
-  const allTexts = useMemo(() => getDefaultTexts(intl, false, texts), [texts, intl]);
+  const allTexts = useMemo(
+    () => getDefaultTexts(intl, false, texts),
+    [texts, intl],
+  );
   const defaultDayValue = useMemo(
     () => ({
       start: DEFAULT_RANGE_START,
@@ -55,9 +69,11 @@ const Weekly = ({
       inverted: false,
       mode: valueSelectionMode[0],
     }),
-    [valueSelectionMode]
+    [valueSelectionMode],
   );
-  const [filteredSchedule, setFilteredSchedule] = useState<string[]>(Object.keys(value));
+  const [filteredSchedule, setFilteredSchedule] = useState<string[]>(
+    Object.keys(value),
+  );
   const [activeDays, setActiveDays] = useState<DayKey[]>([]);
   const ref = useRef<HTMLDivElement>();
   const [controlKeyPressed, shiftKeyPressed] = useShiftAndControlKeys(ref);
@@ -65,15 +81,22 @@ const Weekly = ({
   const { isSundayFirstWeekDay } = useDataFormat();
 
   const allKeys = useMemo(
-    () => (isSundayFirstWeekDay ? US_NOTATION_WEEK_DAYS_INDEXES : EU_NOTATION_WEEK_DAYS_INDEXES),
-    [isSundayFirstWeekDay]
+    () =>
+      isSundayFirstWeekDay
+        ? US_NOTATION_WEEK_DAYS_INDEXES
+        : EU_NOTATION_WEEK_DAYS_INDEXES,
+    [isSundayFirstWeekDay],
   );
 
   useEffect(() => {
     removeEmptyEntries(value);
     const entriesWithActiveDaysValue = activeDays.length
-      ? Object.keys(value).filter(id =>
-          activeDays.every(day => !!value[id][day] && haveActiveDaysCommonRange(value[id], activeDays))
+      ? Object.keys(value).filter((id) =>
+          activeDays.every(
+            (day) =>
+              !!value[id][day] &&
+              haveActiveDaysCommonRange(value[id], activeDays),
+          ),
         )
       : [];
     setFilteredSchedule(entriesWithActiveDaysValue);
@@ -84,12 +107,14 @@ const Weekly = ({
       const updatedSchedule = value;
       const [start, end, inverted] = dayValue;
       if (dayKey instanceof Array) {
-        dayKey.forEach(day => {
+        dayKey.forEach((day) => {
           if (guid in updatedSchedule) {
             updatedSchedule[guid][day] = {
               ...value[guid][day],
               restricted: true,
-              start: start ? dayjs(start).format(DEFAULT_TIME_FORMAT) : undefined,
+              start: start
+                ? dayjs(start).format(DEFAULT_TIME_FORMAT)
+                : undefined,
               stop: end ? dayjs(end).format(DEFAULT_TIME_FORMAT) : undefined,
               inverted: Boolean(inverted),
             };
@@ -106,7 +131,7 @@ const Weekly = ({
       }
       onChange(updatedSchedule);
     },
-    [value, onChange]
+    [value, onChange],
   );
   const getDayValue = useCallback(
     (dayKey: DayKey, guid: string) => {
@@ -115,12 +140,12 @@ const Weekly = ({
       }
       return defaultDayValue;
     },
-    [value, defaultDayValue]
+    [value, defaultDayValue],
   );
   const handleModeChange = useCallback(
     (selectedMode: DateLimitMode, dayKeys: DayKey[], guid: string) => {
       const updatedSchedule = value;
-      dayKeys.forEach(day => {
+      dayKeys.forEach((day) => {
         updatedSchedule[guid][day] = {
           ...value[guid][day],
           mode: selectedMode,
@@ -128,7 +153,7 @@ const Weekly = ({
       });
       onChange(updatedSchedule);
     },
-    [value, onChange]
+    [value, onChange],
   );
   const handleRangeDelete = useCallback(
     (guid: string, activeDaysArray: DayKey[]) => {
@@ -138,12 +163,15 @@ const Weekly = ({
       });
       onChange({ ...updatedSchedule });
     },
-    [value, onChange]
+    [value, onChange],
   );
 
   const dayFormatter = useCallback(
-    (dayKey: DayKey) => intl.formatMessage({ id: `DS.DATE-RANGE-PICKER.WEEKDAYS-SHORT-${dayKey}` }),
-    [intl]
+    (dayKey: DayKey) =>
+      intl.formatMessage({
+        id: `DS.DATE-RANGE-PICKER.WEEKDAYS-SHORT-${dayKey}`,
+      }),
+    [intl],
   );
 
   const checkDay = useCallback((dayKey: DayKey) => {
@@ -154,39 +182,39 @@ const Weekly = ({
     (dayKey: DayKey) => {
       return dayFormatter(dayKey);
     },
-    [dayFormatter]
+    [dayFormatter],
   );
 
   const excludeDayFromActive = useCallback(
     (dayKey: DayKey) => {
-      setActiveDays(activeDays.filter(day => day !== dayKey));
+      setActiveDays(activeDays.filter((day) => day !== dayKey));
     },
-    [activeDays]
+    [activeDays],
   );
 
   const isDayRestricted = useCallback(
     (dayKey: DayKey) => {
       return Object.keys(value).some((key: string) => !!value[key][dayKey]);
     },
-    [value]
+    [value],
   );
 
   const removeDaySelection = useCallback(
     (dayKey: DayKey) => {
       const updatedSchedule = value;
-      Object.keys(value).forEach(key => {
+      Object.keys(value).forEach((key) => {
         delete updatedSchedule[key][dayKey];
       });
       excludeDayFromActive(dayKey);
       onChange(updatedSchedule);
     },
-    [value, onChange, excludeDayFromActive]
+    [value, onChange, excludeDayFromActive],
   );
   const uncheckActiveDay = useCallback(
     (dayKey: DayKey) => {
       removeDaySelection(dayKey);
     },
-    [removeDaySelection]
+    [removeDaySelection],
   );
   const handleSelectAll = useCallback(() => {
     setActiveDays(allKeys);
@@ -201,31 +229,45 @@ const Weekly = ({
       }
       let updatedActiveDay: DayKey[] = [];
       if (controlKeyPressed) {
-        updatedActiveDay = activeDays.includes(dayKey) ? activeDays : [...activeDays, dayKey];
+        updatedActiveDay = activeDays.includes(dayKey)
+          ? activeDays
+          : [...activeDays, dayKey];
       } else if (activeDays.length > 0 && shiftKeyPressed) {
         updatedActiveDay =
-          activeDays[0] < dayKey ? range(+activeDays[0], +dayKey + 1) : range(+dayKey, +activeDays[0] + 1);
+          activeDays[0] < dayKey
+            ? range(+activeDays[0], +dayKey + 1)
+            : range(+dayKey, +activeDays[0] + 1);
       } else {
         updatedActiveDay = [dayKey];
       }
       setActiveDays(updatedActiveDay);
     },
-    [checkDay, isDayRestricted, activeDays, controlKeyPressed, shiftKeyPressed]
+    [checkDay, isDayRestricted, activeDays, controlKeyPressed, shiftKeyPressed],
   );
 
   const handleToggleDay = useCallback(
     (dayKey: DayKey, forcedState?: boolean) => {
       if (typeof forcedState !== 'undefined') {
         if (controlKeyPressed && forcedState) {
-          activeDays.includes(dayKey) ? excludeDayFromActive(dayKey) : checkActiveDay(dayKey);
+          activeDays.includes(dayKey)
+            ? excludeDayFromActive(dayKey)
+            : checkActiveDay(dayKey);
           return;
         }
         forcedState ? checkActiveDay(dayKey) : uncheckActiveDay(dayKey);
       } else {
-        activeDays.includes(dayKey) ? uncheckActiveDay(dayKey) : checkActiveDay(dayKey);
+        activeDays.includes(dayKey)
+          ? uncheckActiveDay(dayKey)
+          : checkActiveDay(dayKey);
       }
     },
-    [controlKeyPressed, activeDays, uncheckActiveDay, checkActiveDay, excludeDayFromActive]
+    [
+      controlKeyPressed,
+      activeDays,
+      uncheckActiveDay,
+      checkActiveDay,
+      excludeDayFromActive,
+    ],
   );
 
   const renderDay = useCallback(
@@ -247,13 +289,24 @@ const Weekly = ({
         />
       );
     },
-    [activeDays, getDayLabel, isDayRestricted, disabled, intl, handleToggleDay, removeDaySelection, allTexts]
+    [
+      activeDays,
+      getDayLabel,
+      isDayRestricted,
+      disabled,
+      intl,
+      handleToggleDay,
+      removeDaySelection,
+      allTexts,
+    ],
   );
 
   const handleRangeAdd = useCallback(() => {
     const updatedDay = {};
-    const guid = Object.keys(value).find(key => activeDays.every(day => value[key][day] === undefined));
-    activeDays.forEach(day => {
+    const guid = Object.keys(value).find((key) =>
+      activeDays.every((day) => value[key][day] === undefined),
+    );
+    activeDays.forEach((day) => {
       updatedDay[day] = defaultDayValue;
     });
     const restOfScheduleObject = guid ? value[guid] : EMPTY_OBJECT;
@@ -268,14 +321,25 @@ const Weekly = ({
   }, [value, activeDays, defaultDayValue, onChange]);
 
   const renderGridTitle = useCallback(
-    (count: number) => <SelectionCount selectedDayCount={count} label={allTexts.selected} />,
-    [allTexts.selected]
+    (count: number) => (
+      <SelectionCount selectedDayCount={count} label={allTexts.selected} />
+    ),
+    [allTexts.selected],
   );
   const canAddRange = canAddAnotherRange(value, activeDays, maxEntries);
   const isAnyDaySelected = activeDays.length > 0;
-  const shouldRenderAddButton = isAnyDaySelected && filteredSchedule.length < maxEntries && canAddRange && !disabled;
+  const shouldRenderAddButton =
+    isAnyDaySelected &&
+    filteredSchedule.length < maxEntries &&
+    canAddRange &&
+    !disabled;
   const getErrorTextsForFormRow = (guid: string) => {
-    return activeDays.length === 1 && errorTexts && errorTexts[guid] && errorTexts[guid][activeDays[0]];
+    return (
+      activeDays.length === 1 &&
+      errorTexts &&
+      errorTexts[guid] &&
+      errorTexts[guid][activeDays[0]]
+    );
   };
   return (
     <S.NewFilterContainer ref={ref as RefObject<HTMLDivElement>}>
@@ -304,14 +368,18 @@ const Weekly = ({
               handleDayTimeChange(dayValue, dayKey, guid);
             }}
             texts={allTexts}
-            onMultipleDayTimeChange={dates => handleDayTimeChange(dates, activeDays, guid)}
+            onMultipleDayTimeChange={(dates) =>
+              handleDayTimeChange(dates, activeDays, guid)
+            }
             dayKeys={activeDays}
             // eslint-disable-next-line @typescript-eslint/no-explicit-any
             getDayLabel={getDayLabel as any}
             activeDays={activeDays}
             getDayValue={(dayKey: DayKey) => getDayValue(dayKey, guid)}
-            onRangeDelete={disabled ? undefined : () => handleRangeDelete(guid, activeDays)}
-            onModeChange={mode => handleModeChange(mode, activeDays, guid)}
+            onRangeDelete={
+              disabled ? undefined : () => handleRangeDelete(guid, activeDays)
+            }
+            onModeChange={(mode) => handleModeChange(mode, activeDays, guid)}
             valueSelectionModes={valueSelectionMode}
             hideHeader={index !== 0}
             renderSuffix={RENDER_EMPTY_NODE_FN}
@@ -321,11 +389,19 @@ const Weekly = ({
             disabled={disabled}
           />
         ))}
-      {isAnyDaySelected && !canAddRange && <SelectionHint message={allTexts.maximumRanges} />}
-      {shouldRenderAddButton && (
-        <AddButton data-testid="drp-filter-add-range" label={allTexts.addTime} onClick={handleRangeAdd} />
+      {isAnyDaySelected && !canAddRange && (
+        <SelectionHint message={allTexts.maximumRanges} />
       )}
-      {!isAnyDaySelected && !disabled && <SelectionHint message={allTexts.selectDaysDescription} />}
+      {shouldRenderAddButton && (
+        <AddButton
+          data-testid="drp-filter-add-range"
+          label={allTexts.addTime}
+          onClick={handleRangeAdd}
+        />
+      )}
+      {!isAnyDaySelected && !disabled && (
+        <SelectionHint message={allTexts.selectDaysDescription} />
+      )}
     </S.NewFilterContainer>
   );
 };

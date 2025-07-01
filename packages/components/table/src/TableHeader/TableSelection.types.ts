@@ -1,4 +1,4 @@
-import type { RowSelection, Locale } from '../Table.types';
+import type { Locale, RowSelection } from '../Table.types';
 
 export type TableSelectionProps<T extends object> = {
   selection?: RowSelection<T>;

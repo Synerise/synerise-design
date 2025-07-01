@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+
 import DropdownSkeleton from '@synerise/ds-skeleton';
 
 export const TabsWrapper = styled.div`
@@ -11,12 +12,13 @@ export const ContentPlaceholder = styled.div`
 
 export const ItemsList = styled.div<{ contentHeight?: number }>`
   width: 100%;
-  background: ${props => props.theme.palette.white};
+  background: ${(props) => props.theme.palette.white};
   .ds-context-selector-list {
     height: auto !important;
     max-height: 300px;
   }
-  ${props => props.contentHeight !== undefined && `height: ${props.contentHeight}px;`}
+  ${(props) =>
+    props.contentHeight !== undefined && `height: ${props.contentHeight}px;`}
 `;
 
 export const SearchResult = styled.span`
@@ -54,5 +56,6 @@ export const ErrorWrapper = styled.div`
 `;
 
 export const Skeleton = styled(DropdownSkeleton)<{ contentHeight?: number }>`
-  ${props => props.contentHeight !== undefined && `height: ${props.contentHeight}px;`}
+  ${(props) =>
+    props.contentHeight !== undefined && `height: ${props.contentHeight}px;`}
 `;

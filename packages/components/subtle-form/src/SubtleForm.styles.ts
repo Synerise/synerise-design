@@ -1,11 +1,22 @@
-import styled, { css, FlattenSimpleInterpolation, keyframes } from 'styled-components';
+import styled, {
+  type FlattenSimpleInterpolation,
+  css,
+  keyframes,
+} from 'styled-components';
+
 import type { ThemeProps } from '@synerise/ds-core';
 import FormField from '@synerise/ds-form-field';
+
 import { MaskedDatePlaceholder } from './Elements/DatePicker/DatePicker.styles';
 
-const disableBlinkingCursor = (props: ThemeProps & { grey: boolean }): FlattenSimpleInterpolation => css`
+const disableBlinkingCursor = (
+  props: ThemeProps & { grey: boolean },
+): FlattenSimpleInterpolation => css`
   color: transparent;
-  text-shadow: 0 1px ${props.grey ? props.theme.palette['grey-500'] : props.theme.palette['grey-600']};
+  text-shadow: 0 1px
+    ${props.grey
+      ? props.theme.palette['grey-500']
+      : props.theme.palette['grey-600']};
 `;
 
 export const blurPadding = `7px 40px 7px 0px`;
@@ -19,8 +30,11 @@ export const blurAnimation = keyframes`
   }
 `;
 
-export const MainContent = styled.div<{ hasMargin?: boolean; breakWord?: boolean }>`
-  ${props =>
+export const MainContent = styled.div<{
+  hasMargin?: boolean;
+  breakWord?: boolean;
+}>`
+  ${(props) =>
     props.breakWord
       ? css`
           display: flex;
@@ -39,7 +53,7 @@ export const MainContent = styled.div<{ hasMargin?: boolean; breakWord?: boolean
   width: 100%;
   height: 100%;
   transition: color 0.1s ease-in 0.2s;
-  ${props =>
+  ${(props) =>
     !!props.hasMargin &&
     `margin-top:1px;
 `}
@@ -47,7 +61,7 @@ export const MainContent = styled.div<{ hasMargin?: boolean; breakWord?: boolean
 
 export const Suffix = styled.div<{ select?: boolean }>`
   position: absolute;
-  right: ${props => (props.select ? `9px` : `6px`)};
+  right: ${(props) => (props.select ? `9px` : `6px`)};
   top: 6px;
   display: flex;
   opacity: 0;
@@ -68,13 +82,15 @@ export const Inactive = styled.div<{
   width: 100%;
   height: 32px;
   display: flex;
-  ${props => !!props.rows && `height: ${props.rows * 17 + 17}px;`}
+  ${(props) => !!props.rows && `height: ${props.rows * 17 + 17}px;`}
   align-items: flex-start;
-  background: ${props => props.theme.palette.white};
+  background: ${(props) => props.theme.palette.white};
   padding: ${blurPadding};
-  opacity: ${props => (props.disabled ? `0.5` : `1`)};
+  opacity: ${(props) => (props.disabled ? `0.5` : `1`)};
   border-radius: 3px;
-  transition: padding 0.1s ease-in, background 0.1s ease-in;
+  transition:
+    padding 0.1s ease-in,
+    background 0.1s ease-in;
   transition-delay: 0.2s;
 
   && {
@@ -187,5 +203,5 @@ export const Subtle = styled.div<{ disabled?: boolean }>`
 `;
 
 export const SubtleFormField = styled(FormField)<{ active: boolean }>`
-  gap: ${props => (props.active ? `10px` : `8px`)};
+  gap: ${(props) => (props.active ? `10px` : `8px`)};
 `;

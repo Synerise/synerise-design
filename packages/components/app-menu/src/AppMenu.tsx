@@ -1,13 +1,21 @@
 import React from 'react';
-import { useOnClickOutside } from '@synerise/ds-utils';
-import SubMenu from './SubMenu/SubMenu';
-import MenuContext from './MenuContext/MenuContext';
-import Item from './Item/Item';
-import NavigableItems from './NavigableItems/NavigableItems';
-import * as S from './AppMenu.styles';
-import { AppMenuProps } from './AppMenu.types';
 
-const AppMenu = ({ className, children, footer, activeItem: activeId, top = 0 }: AppMenuProps) => {
+import { useOnClickOutside } from '@synerise/ds-utils';
+
+import * as S from './AppMenu.styles';
+import { type AppMenuProps } from './AppMenu.types';
+import Item from './Item/Item';
+import MenuContext from './MenuContext/MenuContext';
+import NavigableItems from './NavigableItems/NavigableItems';
+import SubMenu from './SubMenu/SubMenu';
+
+const AppMenu = ({
+  className,
+  children,
+  footer,
+  activeItem: activeId,
+  top = 0,
+}: AppMenuProps) => {
   const [isOpened, setOpened] = React.useState(false);
   const [activeItem, setActiveItem] = React.useState(activeId);
   const ref = React.useRef<HTMLDivElement>(null);
@@ -24,8 +32,12 @@ const AppMenu = ({ className, children, footer, activeItem: activeId, top = 0 }:
       top={top}
     >
       <S.ItemsWrapper>
-        <MenuContext.Provider value={{ isOpened, setOpened, activeItem, setActiveItem }}>
-          <NavigableItems onHideMenu={(): void => setOpened(false)}>{children}</NavigableItems>
+        <MenuContext.Provider
+          value={{ isOpened, setOpened, activeItem, setActiveItem }}
+        >
+          <NavigableItems onHideMenu={(): void => setOpened(false)}>
+            {children}
+          </NavigableItems>
           {footer && (
             <>
               <S.ItemsDivider />

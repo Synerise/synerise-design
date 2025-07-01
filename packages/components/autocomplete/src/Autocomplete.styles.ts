@@ -1,24 +1,33 @@
 import styled, { css } from 'styled-components';
-import { AutoResizeProp } from '@synerise/ds-input';
+
+import { type AutoResizeProp } from '@synerise/ds-input';
 import { autoresizeConfObjToCss } from '@synerise/ds-input/dist/Input.styles';
 
 const active = () => css`
-  transition: ease-in-out all 0.2s, width 0s, min-width 0s, max-width 0s;
-  box-shadow: inset 0 0 0 1px ${props => props.theme.palette['blue-600']};
-  border: 1px solid ${props => props.theme.palette['blue-600']};
-  background-color: ${props => props.theme.palette['blue-050']};
+  transition:
+    ease-in-out all 0.2s,
+    width 0s,
+    min-width 0s,
+    max-width 0s;
+  box-shadow: inset 0 0 0 1px ${(props) => props.theme.palette['blue-600']};
+  border: 1px solid ${(props) => props.theme.palette['blue-600']};
+  background-color: ${(props) => props.theme.palette['blue-050']};
 `;
 
 const error = () => css`
-  transition: ease-in-out all 0.2s, width 0s, min-width 0s, max-width 0s;
-  box-shadow: inset 0 0 0 1px ${props => props.theme.palette['red-600']};
-  background: ${props => props.theme.palette['red-050']};
-  border: 1px solid ${props => props.theme.palette['red-600']};
+  transition:
+    ease-in-out all 0.2s,
+    width 0s,
+    min-width 0s,
+    max-width 0s;
+  box-shadow: inset 0 0 0 1px ${(props) => props.theme.palette['red-600']};
+  background: ${(props) => props.theme.palette['red-050']};
+  border: 1px solid ${(props) => props.theme.palette['red-600']};
 `;
 
 const readonly = () => css`
-  background-color: ${props => props.theme.palette.white};
-  color: ${props => props.theme.palette['grey-700']};
+  background-color: ${(props) => props.theme.palette.white};
+  color: ${(props) => props.theme.palette['grey-700']};
   input {
     cursor: auto;
   }
@@ -29,8 +38,8 @@ export const AutocompleteWrapper = styled.div<{ autoResize?: AutoResizeProp }>`
     font-feature-settings: 'tnum';
   }
   .ant-select-auto-complete {
-    width: ${props => (props.autoResize ? '100%' : '200px')};
-    ${props => autoresizeConfObjToCss({ ...props, boxSizing: 'border-box' })};
+    width: ${(props) => (props.autoResize ? '100%' : '200px')};
+    ${(props) => autoresizeConfObjToCss({ ...props, boxSizing: 'border-box' })};
     grid-area: 1 / 1;
   }
 
@@ -51,7 +60,7 @@ export const AutocompleteWrapper = styled.div<{ autoResize?: AutoResizeProp }>`
 
     .ant-select-selection__clear {
       font-size: 15px;
-      color: ${props => props.theme.palette['grey-600']};
+      color: ${(props) => props.theme.palette['grey-600']};
       width: 16px;
       height: 16px;
       margin-top: -7px;
@@ -61,7 +70,7 @@ export const AutocompleteWrapper = styled.div<{ autoResize?: AutoResizeProp }>`
       right: 12px;
 
       &:hover {
-        color: ${props => props.theme.palette['grey-700']};
+        color: ${(props) => props.theme.palette['grey-700']};
       }
     }
 
@@ -78,11 +87,14 @@ export const AutocompleteWrapper = styled.div<{ autoResize?: AutoResizeProp }>`
   }
 `;
 
-export const ComponentWrapper = styled.div<{ error?: boolean; readOnly?: boolean }>`
+export const ComponentWrapper = styled.div<{
+  error?: boolean;
+  readOnly?: boolean;
+}>`
 &&& {
   .ant-select-auto-complete {
     
-    ${props => {
+    ${(props) => {
       if (props.readOnly) {
         return css`
           .ant-select-selector {
@@ -109,7 +121,11 @@ export const ComponentWrapper = styled.div<{ error?: boolean; readOnly?: boolean
             padding: 0 10px;
           }
           .ant-input {
-            transition: ease-in-out all 0.3s, width 0s, min-width 0s, max-width 0s;
+            transition:
+              ease-in-out all 0.3s,
+              width 0s,
+              min-width 0s,
+              max-width 0s;
             &:focus {
               ${active()}
               &:hover {

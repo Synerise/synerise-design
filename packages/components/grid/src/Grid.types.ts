@@ -1,4 +1,4 @@
-import { CSSProperties, ReactNode } from 'react';
+import { type CSSProperties, type ReactNode } from 'react';
 
 export type GridProps = {
   gutter?: number;

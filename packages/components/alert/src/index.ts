@@ -1,7 +1,7 @@
-import * as SectionMessageStyles from './SectionMessage/SectionMessage.styles';
-import * as ToastStyles from './Toast/Toast.styles';
 import * as MainAlertStyles from './Alert.styles';
 import * as IconAlertStyles from './IconAlert/IconAlert.styles';
+import * as SectionMessageStyles from './SectionMessage/SectionMessage.styles';
+import * as ToastStyles from './Toast/Toast.styles';
 
 export { default } from './Alert';
 

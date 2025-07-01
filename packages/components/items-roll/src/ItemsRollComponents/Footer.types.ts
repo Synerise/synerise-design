@@ -1,7 +1,11 @@
 import type { ReactNode } from 'react';
-import type { Texts, ItemsRollProps } from '../ItemsRoll.types';
 
-export type FooterProps = Pick<ItemsRollProps, 'onClearAll' | 'maxToShowItems' | 'showMoreStep'> & {
+import type { ItemsRollProps, Texts } from '../ItemsRoll.types';
+
+export type FooterProps = Pick<
+  ItemsRollProps,
+  'onClearAll' | 'maxToShowItems' | 'showMoreStep'
+> & {
   allTexts: { [k in Texts]: ReactNode };
   itemsCount: number;
   showAdditionalItems: () => void;

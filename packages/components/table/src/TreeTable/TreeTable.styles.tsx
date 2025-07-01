@@ -1,9 +1,20 @@
 import styled from 'styled-components';
 
-const LEVELS = ['yellow', 'green', 'cyan', 'violet', 'orange', 'purple', 'blue', 'grey'];
+const LEVELS = [
+  'yellow',
+  'green',
+  'cyan',
+  'violet',
+  'orange',
+  'purple',
+  'blue',
+  'grey',
+];
 
 const getColor = (active: boolean, level: number): string => {
-  if (level === LEVELS.indexOf('cyan') && active) return '500';
+  if (level === LEVELS.indexOf('cyan') && active) {
+    return '500';
+  }
   return active ? '600' : '200';
 };
 
@@ -18,7 +29,11 @@ export const Indents = styled.div<{ width: number; withSelection: boolean }>`
   justify-content: flex-start;
 `;
 
-export const Indent = styled.span<{ width: number; active: boolean; level: number }>`
+export const Indent = styled.span<{
+  width: number;
+  active: boolean;
+  level: number;
+}>`
   width: 42px;
   position: relative;
   height: 100%;
@@ -31,7 +46,9 @@ export const Indent = styled.span<{ width: number; active: boolean; level: numbe
     width: 2px;
     background-color: ${(props): string =>
       props.level >= 0
-        ? props.theme.palette[`${LEVELS[props.level % LEVELS.length]}-${getColor(props.active, props.level)}`]
+        ? props.theme.palette[
+            `${LEVELS[props.level % LEVELS.length]}-${getColor(props.active, props.level)}`
+          ]
         : props.theme.palette['grey-600']};
   }
 `;

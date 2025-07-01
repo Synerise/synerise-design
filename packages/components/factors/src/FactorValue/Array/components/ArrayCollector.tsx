@@ -1,12 +1,16 @@
 import React, { useEffect, useState } from 'react';
 import { v4 as uuid } from 'uuid';
 
-import Collector, { CollectorValue } from '@synerise/ds-collector';
+import Collector, { type CollectorValue } from '@synerise/ds-collector';
 
-import { isArrayOfNumbersAsString, isNumberAsString, sanitiseValues } from '../Array.utils';
-import { useCollector } from '../hooks/useCollector';
 import * as S from '../Array.styles';
-import { ArrayCollectorProps } from '../Array.types';
+import { type ArrayCollectorProps } from '../Array.types';
+import {
+  isArrayOfNumbersAsString,
+  isNumberAsString,
+  sanitiseValues,
+} from '../Array.utils';
+import { useCollector } from '../hooks/useCollector';
 
 export const ArrayCollector = <ItemType extends 'string' | 'number'>({
   limit,
@@ -17,7 +21,14 @@ export const ArrayCollector = <ItemType extends 'string' | 'number'>({
   collectorSuggestions,
 }: ArrayCollectorProps<ItemType>) => {
   const [collectorValues, setCollectorValues] = useState<CollectorValue[]>([]);
-  const { disabled, error, errorMessage, addEnabled, setHasTypeError, exceedsLimit } = useCollector({
+  const {
+    disabled,
+    error,
+    errorMessage,
+    addEnabled,
+    setHasTypeError,
+    exceedsLimit,
+  } = useCollector({
     limit,
     collectorCount: collectorValues.length,
     arrayValueCount,
@@ -26,7 +37,9 @@ export const ArrayCollector = <ItemType extends 'string' | 'number'>({
 
   useEffect(() => {
     if (itemType === 'number') {
-      const plainValues = collectorValues.map(item => sanitiseValues(item.value));
+      const plainValues = collectorValues.map((item) =>
+        sanitiseValues(item.value),
+      );
       setHasTypeError(!isArrayOfNumbersAsString(plainValues));
     }
   }, [collectorValues, setHasTypeError, itemType]);
@@ -36,10 +49,10 @@ export const ArrayCollector = <ItemType extends 'string' | 'number'>({
   };
 
   const handleConfirm = (items: CollectorValue[]) => {
-    const hasError = items.some(item => item.hasError);
+    const hasError = items.some((item) => item.hasError);
     const hasExceededLimit = exceedsLimit(items.length);
     if (!hasError && !hasExceededLimit) {
-      const rawItemValues = items.map(item => ({
+      const rawItemValues = items.map((item) => ({
         value: item.value,
         id: item.id,
       }));
@@ -65,7 +78,11 @@ export const ArrayCollector = <ItemType extends 'string' | 'number'>({
   };
 
   const handleItemDeselect = (deselectedItem: CollectorValue) => {
-    setCollectorValues(collectorValues.filter(collectorItem => collectorItem.id !== deselectedItem.id));
+    setCollectorValues(
+      collectorValues.filter(
+        (collectorItem) => collectorItem.id !== deselectedItem.id,
+      ),
+    );
   };
 
   const handleMultipleItemSelect = (items: CollectorValue[]) => {

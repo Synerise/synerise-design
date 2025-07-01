@@ -1,14 +1,14 @@
-import React, { useRef } from 'react';
-import classnames from 'classnames';
 import { Modal as AntModal } from 'antd';
+import classnames from 'classnames';
+import React, { useRef } from 'react';
 
 import '@synerise/ds-core/dist/js/style';
 
-import { ModalFooter, ModalFooterProps } from './Elements/ModalFooter';
+import { ModalFooter, type ModalFooterProps } from './Elements/ModalFooter';
 import { ModalTitle } from './Elements/ModalTitle';
+import * as S from './Modal.styles';
 import type { ModalProps } from './Modal.types';
 import './style/index.less';
-import * as S from './Modal.styles';
 
 const mapSizeToWidth = {
   small: 520,
@@ -20,7 +20,9 @@ const mapSizeToWidth = {
 };
 
 /** @deprecated */
-export const buildModalFooter = (props: ModalFooterProps) => <ModalFooter {...props} />;
+export const buildModalFooter = (props: ModalFooterProps) => (
+  <ModalFooter {...props} />
+);
 
 export const Modal = (props: ModalProps) => {
   const {
@@ -42,7 +44,7 @@ export const Modal = (props: ModalProps) => {
     `bodybg-${bodyBackground}`,
     antModalProps.className,
     { 'modal-blank': Boolean(blank) },
-    { 'with-description': Boolean(description) }
+    { 'with-description': Boolean(description) },
   );
 
   const mainSlideRef = useRef<HTMLDivElement>(null);
@@ -68,8 +70,16 @@ export const Modal = (props: ModalProps) => {
       isFullscreen={isFullscreen}
       width={size && mapSizeToWidth[size]}
       closable={false}
-      title={(title || description || blank || headerBottomBar) && <ModalTitle {...props} />}
-      footer={antModalProps.footer !== null ? antModalProps.footer || <ModalFooter {...props} /> : null}
+      title={
+        (title || description || blank || headerBottomBar) && (
+          <ModalTitle {...props} />
+        )
+      }
+      footer={
+        antModalProps.footer !== null
+          ? antModalProps.footer || <ModalFooter {...props} />
+          : null
+      }
     >
       {maxHeight() ? (
         <S.ModalWrapper ref={mainSlideRef}>

@@ -1,10 +1,15 @@
+import { type Dayjs } from 'dayjs';
+import { type Moment } from 'moment';
 import React from 'react';
-import { Moment } from 'moment';
-import { Dayjs } from 'dayjs';
 
+import {
+  RELATIVE_FROM,
+  RELATIVE_FROM_WITHOUT_SUFFIX,
+  RELATIVE_TO,
+  RELATIVE_TO_WITHOUT_SUFFIX,
+} from '../constants';
 import { useDataFormat } from '../hooks';
-import { DateToFormatOptions } from '../types';
-import { RELATIVE_FROM_WITHOUT_SUFFIX, RELATIVE_FROM, RELATIVE_TO, RELATIVE_TO_WITHOUT_SUFFIX } from '../constants';
+import { type DateToFormatOptions } from '../types';
 
 export type FormattedRelativeDateTimeProps = {
   value: Date | Moment | Dayjs;
@@ -20,7 +25,12 @@ export const FormattedRelativeDateTimeTo = ({
   const { formatValue } = useDataFormat();
 
   return (
-    <>{formatValue(value, { ...options, targetFormat: withoutSuffix ? RELATIVE_TO_WITHOUT_SUFFIX : RELATIVE_TO })}</>
+    <>
+      {formatValue(value, {
+        ...options,
+        targetFormat: withoutSuffix ? RELATIVE_TO_WITHOUT_SUFFIX : RELATIVE_TO,
+      })}
+    </>
   );
 };
 
@@ -33,7 +43,12 @@ export const FormattedRelativeDateTimeFrom = ({
 
   return (
     <>
-      {formatValue(value, { ...options, targetFormat: withoutSuffix ? RELATIVE_FROM_WITHOUT_SUFFIX : RELATIVE_FROM })}
+      {formatValue(value, {
+        ...options,
+        targetFormat: withoutSuffix
+          ? RELATIVE_FROM_WITHOUT_SUFFIX
+          : RELATIVE_FROM,
+      })}
     </>
   );
 };

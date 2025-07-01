@@ -4,8 +4,18 @@ import { RemoveIcon } from './ItemRemoveIcon';
 import * as S from './ListItem.styles';
 import type { ItemElementProps } from './ListItem.types';
 
-const ItemElement = ({ item, group, highlight, onItemClick, onItemRemove, removeTooltipLabel }: ItemElementProps) => {
-  const onClick = useCallback(() => onItemClick && onItemClick(item.id, group), [onItemClick, item.id, group]);
+const ItemElement = ({
+  item,
+  group,
+  highlight,
+  onItemClick,
+  onItemRemove,
+  removeTooltipLabel,
+}: ItemElementProps) => {
+  const onClick = useCallback(
+    () => onItemClick && onItemClick(item.id, group),
+    [onItemClick, item.id, group],
+  );
   const renderSuffixElement = (hovered: boolean) =>
     item.suffixel instanceof Function ? item.suffixel(hovered) : item.suffixel;
   return (
@@ -17,7 +27,12 @@ const ItemElement = ({ item, group, highlight, onItemClick, onItemRemove, remove
         <S.SuffixelWrapper>
           {renderSuffixElement(hovered) || null}
           {onItemRemove && (
-            <RemoveIcon id={item.id} handleRemove={onItemRemove} tooltipLabel={removeTooltipLabel} group={group} />
+            <RemoveIcon
+              id={item.id}
+              handleRemove={onItemRemove}
+              tooltipLabel={removeTooltipLabel}
+              group={group}
+            />
           )}
         </S.SuffixelWrapper>
       )}

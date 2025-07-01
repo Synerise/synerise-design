@@ -1,15 +1,17 @@
 import React from 'react';
-import { renderWithProvider } from '@synerise/ds-utils/dist/testing';
-import { fireEvent, waitFor, screen } from '@testing-library/react';
 
-import { VarTypeNumberM } from '@synerise/ds-icon';
-import Icon from '@synerise/ds-icon';
-
-import Operators from './../Operators';
-
-import { OperatorsProps } from '../Operator.types';
-import { OPERATORS_TEXTS, OPERATORS_ITEMS, OPERATORS_GROUPS } from './data/Operators.data';
+import Icon, { VarTypeNumberM } from '@synerise/ds-icon';
+import { renderWithProvider } from '@synerise/ds-utils';
+import { screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
+
+import { type OperatorsProps } from '../Operator.types';
+import Operators from './../Operators';
+import {
+  OPERATORS_GROUPS,
+  OPERATORS_ITEMS,
+  OPERATORS_TEXTS,
+} from './data/Operators.data';
 
 const DEFAULT_PROPS: OperatorsProps = {
   texts: OPERATORS_TEXTS,
@@ -18,7 +20,9 @@ const DEFAULT_PROPS: OperatorsProps = {
   items: OPERATORS_ITEMS,
   groups: OPERATORS_GROUPS,
 };
-const RENDER_OPERATORS = (props?: {}) => <Operators {...DEFAULT_PROPS} {...props} />;
+const RENDER_OPERATORS = (props = {}) => (
+  <Operators {...DEFAULT_PROPS} {...props} />
+);
 
 describe('Operators component', () => {
   test('Should render', () => {
@@ -32,7 +36,9 @@ describe('Operators component', () => {
     const trigger = screen.getByText(OPERATORS_TEXTS.buttonLabel);
     userEvent.click(trigger);
 
-    const search = await screen.findByPlaceholderText(OPERATORS_TEXTS.searchPlaceholder);
+    const search = await screen.findByPlaceholderText(
+      OPERATORS_TEXTS.searchPlaceholder,
+    );
     const tabs = await screen.findByTestId('tabs-container');
     const dateOptions = await screen.findByText('Date');
 
@@ -43,7 +49,7 @@ describe('Operators component', () => {
 
   test('Should show no tabs if single group', async () => {
     const groups = OPERATORS_GROUPS.slice(0, 1);
-    renderWithProvider(RENDER_OPERATORS({ groups: groups }));
+    renderWithProvider(RENDER_OPERATORS({ groups }));
 
     const trigger = screen.getByText(OPERATORS_TEXTS.buttonLabel);
     userEvent.click(trigger);
@@ -62,7 +68,7 @@ describe('Operators component', () => {
           groupId: 'NUMBER_ONE',
           id: '00001',
         },
-      })
+      }),
     );
 
     expect(screen.getByText('Equal')).toBeInTheDocument();
@@ -84,8 +90,11 @@ describe('Operators component', () => {
     renderWithProvider(
       <>
         <div>{OTHER_ELEMENT}</div>
-        {RENDER_OPERATORS({ onDeactivate: handleDeactivate, onActivate: handleActivate })}
-      </>
+        {RENDER_OPERATORS({
+          onDeactivate: handleDeactivate,
+          onActivate: handleActivate,
+        })}
+      </>,
     );
 
     userEvent.click(screen.getByText(OPERATORS_TEXTS.buttonLabel));

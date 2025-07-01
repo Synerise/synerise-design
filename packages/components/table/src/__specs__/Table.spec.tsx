@@ -1,8 +1,16 @@
 import React from 'react';
-import { renderWithProvider } from '@synerise/ds-utils/dist/testing';
-import Table from '../index';
-import { fireEvent, screen, within, getByRole, waitFor } from '@testing-library/react';
+
 import { Grid2M } from '@synerise/ds-icon';
+import { renderWithProvider } from '@synerise/ds-utils';
+import {
+  fireEvent,
+  getByRole,
+  screen,
+  waitFor,
+  within,
+} from '@testing-library/react';
+
+import Table from '../index';
 
 const props = {
   dataSource: [
@@ -64,16 +72,27 @@ const props = {
 
 describe('Table', () => {
   it('should render correctly', () => {
-    renderWithProvider(<Table dataSource={props.dataSource} columns={props.columns} />);
+    renderWithProvider(
+      <Table dataSource={props.dataSource} columns={props.columns} />,
+    );
 
     expect(screen.getByText('Name')).toBeTruthy();
   });
 
   it.skip('should render "no data"', async () => {
     // FIXME
-    renderWithProvider(<Table dataSource={[]} columns={props.columns} locale={{ emptyText: 'No Data' }} />);
+    renderWithProvider(
+      <Table
+        dataSource={[]}
+        columns={props.columns}
+        locale={{ emptyText: 'No Data' }}
+      />,
+    );
 
-    await waitFor(async() => expect(await screen.findByText('No Data')).toBeTruthy(), {timeout:2000});
+    await waitFor(
+      async () => expect(await screen.findByText('No Data')).toBeTruthy(),
+      { timeout: 2000 },
+    );
   });
 
   it('should updates columns when receiving props', () => {
@@ -84,7 +103,9 @@ describe('Table', () => {
         dataIndex: 'name',
       },
     ];
-    const { rerender } = renderWithProvider(<Table dataSource={[]} columns={columns} />);
+    const { rerender } = renderWithProvider(
+      <Table dataSource={[]} columns={columns} />,
+    );
 
     rerender(<Table columns={props.columns} dataSource={props.dataSource} />);
 
@@ -94,13 +115,17 @@ describe('Table', () => {
 
   it('should render title with results count', () => {
     const TEXT = 'test title 0 results';
-    renderWithProvider(<Table dataSource={[]} columns={props.columns} title={TEXT} />);
+    renderWithProvider(
+      <Table dataSource={[]} columns={props.columns} title={TEXT} />,
+    );
 
     expect(screen.getByText(TEXT)).toBeTruthy();
   });
 
   it('should not render pagination', () => {
-    const { container } = renderWithProvider(<Table dataSource={props.dataSource} columns={props.columns} />);
+    const { container } = renderWithProvider(
+      <Table dataSource={props.dataSource} columns={props.columns} />,
+    );
 
     expect(container.querySelector('.ant-table-pagination')).toBeNull();
   });
@@ -117,12 +142,16 @@ describe('Table', () => {
           onChange: handleChange,
           pageSize: 3,
         }}
-      />
+      />,
     );
 
     expect(container.querySelector('.ant-table-pagination')).toBeTruthy();
-    expect(container.querySelector('.ant-pagination-options-size-changer')).toBeTruthy();
-    expect(container.querySelector('.ant-pagination-options-quick-jumper')).toBeTruthy();
+    expect(
+      container.querySelector('.ant-pagination-options-size-changer'),
+    ).toBeTruthy();
+    expect(
+      container.querySelector('.ant-pagination-options-quick-jumper'),
+    ).toBeTruthy();
   });
 
   it('should call handleChange', () => {
@@ -137,7 +166,7 @@ describe('Table', () => {
           onChange: handleChange,
           pageSize: 3,
         }}
-      />
+      />,
     );
 
     const paginationItem = container.querySelector('.ant-pagination-item-2');
@@ -156,14 +185,14 @@ describe('Table', () => {
       <Table
         dataSource={props.dataSource}
         columns={props.columns}
-        onRow={(record, index) => ({
+        onRow={() => ({
           onClick,
           onDoubleClick,
           onContextMenu,
           onMouseEnter,
           onMouseLeave,
         })}
-      />
+      />,
     );
 
     const row = container.querySelector('.ds-table-row');
@@ -181,8 +210,12 @@ describe('Table', () => {
   });
 
   it('should show loading state of table', () => {
-    const { container } = renderWithProvider(<Table dataSource={props.dataSource} columns={props.columns} loading />);
-    expect(container.querySelector('.ds-table-skeleton-cell')).toBeInTheDocument();
+    const { container } = renderWithProvider(
+      <Table dataSource={props.dataSource} columns={props.columns} loading />,
+    );
+    expect(
+      container.querySelector('.ds-table-skeleton-cell'),
+    ).toBeInTheDocument();
   });
 
   it('should render filters', () => {
@@ -197,15 +230,20 @@ describe('Table', () => {
           {
             key: 'view',
             icon: <Grid2M />,
-            tooltips: { default: 'Table view', clear: 'Clear view', define: 'Define view', list: 'Saved views' },
+            tooltips: {
+              default: 'Table view',
+              clear: 'Clear view',
+              define: 'Define view',
+              list: 'Saved views',
+            },
             openedLabel: 'Define',
             showList: handleShowList,
             show: handleShowFilter,
-            handleClear: handleClear,
+            handleClear,
             selected: undefined,
           },
         ]}
-      />
+      />,
     );
     expect(screen.getByTestId('filter-trigger-view')).toBeTruthy();
   });
@@ -222,15 +260,20 @@ describe('Table', () => {
           {
             key: 'view',
             icon: <Grid2M />,
-            tooltips: { default: 'Table view', clear: 'Clear view', define: 'Define view', list: 'Saved views' },
+            tooltips: {
+              default: 'Table view',
+              clear: 'Clear view',
+              define: 'Define view',
+              list: 'Saved views',
+            },
             openedLabel: 'Define',
             showList: handleShowList,
             show: handleShowFilter,
-            handleClear: handleClear,
+            handleClear,
             selected: { name: 'Selected filter' },
           },
         ]}
-      />
+      />,
     );
     const clearBtn = screen.getByTestId('clear-button');
     const showListBtn = screen.getByTestId('show-list-button');
@@ -248,23 +291,41 @@ describe('Table', () => {
 
   it('Should render results title', () => {
     renderWithProvider(
-      <Table dataSource={props.dataSource} columns={props.columns} locale={{ pagination: { items: 'results' } }} />
+      <Table
+        dataSource={props.dataSource}
+        columns={props.columns}
+        locale={{ pagination: { items: 'results' } }}
+      />,
     );
-    expect(screen.getByTestId('ds-table-title').textContent).toEqual('6results');
+    expect(screen.getByTestId('ds-table-title').textContent).toEqual(
+      '6results',
+    );
   });
 
   it.skip('Should render custom empty component', async () => {
     // FIXME
     const EMPTY_STATE = 'empty state';
-    renderWithProvider(<Table dataSource={[]} columns={props.columns} emptyDataComponent={EMPTY_STATE} />);
+    renderWithProvider(
+      <Table
+        dataSource={[]}
+        columns={props.columns}
+        emptyDataComponent={EMPTY_STATE}
+      />,
+    );
     expect(await screen.findByText(EMPTY_STATE)).toBeInTheDocument();
   });
 
   it('Should render results title with custom locale', () => {
     renderWithProvider(
-      <Table dataSource={props.dataSource} columns={props.columns} locale={{ pagination: { items: 'records' } }} />
+      <Table
+        dataSource={props.dataSource}
+        columns={props.columns}
+        locale={{ pagination: { items: 'records' } }}
+      />,
     );
-    expect(screen.getByTestId('ds-table-title').textContent).toEqual('6records');
+    expect(screen.getByTestId('ds-table-title').textContent).toEqual(
+      '6records',
+    );
   });
 
   it('Should render with unchecked and disabled row selection checkbox', () => {
@@ -275,10 +336,13 @@ describe('Table', () => {
         columns={props.columns}
         title="Title"
         selection={{ selectedRowKeys: [], onChange: handleChangeSelection }}
-      />
+      />,
     );
 
-    const rowSelectionCheckbox = getByRole(screen.getByTestId('ds-table-title'), 'checkbox');
+    const rowSelectionCheckbox = getByRole(
+      screen.getByTestId('ds-table-title'),
+      'checkbox',
+    );
 
     expect(rowSelectionCheckbox).not.toBeChecked();
     expect(rowSelectionCheckbox).toBeDisabled();
@@ -294,10 +358,12 @@ describe('Table', () => {
         title="Title"
         selection={{
           selectedRowKeys: [],
-          checkRowSelectionStatus: record => ({ unavailable: !allowSelectionForKeys.includes(record.key) }),
+          checkRowSelectionStatus: (record) => ({
+            unavailable: !allowSelectionForKeys.includes(record.key),
+          }),
           onChange: handleChangeSelection,
         }}
-      />
+      />,
     );
     const allButtons = screen.getAllByTestId('ds-table-selection-button');
     expect(allButtons.length).toEqual(allowSelectionForKeys.length);
@@ -305,20 +371,27 @@ describe('Table', () => {
 
   describe('row star', () => {
     it('should render with correct initial rows starred', () => {
-      const { container } = renderWithProvider(
+      renderWithProvider(
         <Table
           {...props}
           rowStar={{
             starredRowKeys: ['3', '4', '6'],
           }}
-        />
+        />,
       );
 
       const buttonsPressedValues = screen
         .getAllByTestId('ds-table-star-button')
-        .map(elem => elem.getAttribute('aria-pressed'));
+        .map((elem) => elem.getAttribute('aria-pressed'));
 
-      expect(buttonsPressedValues).toEqual(['false', 'false', 'true', 'true', 'false', 'true']);
+      expect(buttonsPressedValues).toEqual([
+        'false',
+        'false',
+        'true',
+        'true',
+        'false',
+        'true',
+      ]);
     });
 
     it('should call onChange callback with updated starred keys after click', () => {
@@ -330,7 +403,7 @@ describe('Table', () => {
             starredRowKeys: ['4'],
             onChange: onChangeSpy,
           }}
-        />
+        />,
       );
 
       const starButtons = screen.getAllByTestId('ds-table-star-button');
@@ -349,13 +422,15 @@ describe('Table', () => {
   describe('skeleton', () => {
     it.skip('Should render skeleton when loading initial data', () => {
       renderWithProvider(<Table {...props} dataSource={undefined} loading />);
-      expect(screen.getByTestId('ds-table-skeleton')).toBeInTheDocument()
+      expect(screen.getByTestId('ds-table-skeleton')).toBeInTheDocument();
     });
 
     it('Should render skeleton in place of total count', () => {
       renderWithProvider(<Table {...props} isCounterLoading />);
 
-      expect(within(screen.getByTestId('ds-table-title')).getByTestId('ds-skeleton')).toBeInTheDocument()
+      expect(
+        within(screen.getByTestId('ds-table-title')).getByTestId('ds-skeleton'),
+      ).toBeInTheDocument();
     });
   });
 });

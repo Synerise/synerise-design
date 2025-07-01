@@ -1,9 +1,16 @@
-import React from 'react';
-import { IntlShape } from 'react-intl';
-import { SavedFilter } from './Shared/FilterDropdown/FilterDropdown.types';
-import { DateLimitMode, RangeDisplayMode } from './Shared/TimeWindow/RangeFormContainer/RangeForm/RangeForm.types';
-import { DateRangePickerProps, Texts } from '../DateRangePicker.types';
-import { COUNTED_FROM_ENUM, DAYS_OF_PERIOD_ENUM } from './constants';
+import type React from 'react';
+import { type IntlShape } from 'react-intl';
+
+import {
+  type DateRangePickerProps,
+  type Texts,
+} from '../DateRangePicker.types';
+import { type SavedFilter } from './Shared/FilterDropdown/FilterDropdown.types';
+import {
+  type DateLimitMode,
+  type RangeDisplayMode,
+} from './Shared/TimeWindow/RangeFormContainer/RangeForm/RangeForm.types';
+import { type COUNTED_FROM_ENUM, type DAYS_OF_PERIOD_ENUM } from './constants';
 
 export type FilterValue<T = FilterDefinition> = {
   definition?: Partial<T>;
@@ -27,7 +34,11 @@ export type RangeFilterProps = {
 
 export type RangeFilterState = {
   previousFilter?: FilterValue;
-  [filterType: string]: FilterValue | Partial<FilterDefinition> | string | undefined;
+  [filterType: string]:
+    | FilterValue
+    | Partial<FilterDefinition>
+    | string
+    | undefined;
   activeType: string;
   rangeClipboard?: Partial<FilterDefinition>;
 };

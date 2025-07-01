@@ -1,8 +1,9 @@
-import styled, { css, SimpleInterpolation } from 'styled-components';
-import { ThemeProps } from '@synerise/ds-core';
 import AntdRadio from 'antd/lib/radio';
-import { macro } from '@synerise/ds-typography/';
 import React from 'react';
+import styled, { type SimpleInterpolation, css } from 'styled-components';
+
+import { type ThemeProps } from '@synerise/ds-core';
+import { macro } from '@synerise/ds-typography/';
 
 export const RadioWrapper = styled.div`
   & {
@@ -32,7 +33,10 @@ export const AntRadio = styled(({ ...rest }) => <AntdRadio {...rest} />)`
   }
 `;
 
-export const AntRadioGroup = styled(AntdRadio.Group)<{ fullWidth?: boolean; big?: boolean }>`
+export const AntRadioGroup = styled(AntdRadio.Group)<{
+  fullWidth?: boolean;
+  big?: boolean;
+}>`
   ${(props): SimpleInterpolation =>
     props.fullWidth &&
     css`

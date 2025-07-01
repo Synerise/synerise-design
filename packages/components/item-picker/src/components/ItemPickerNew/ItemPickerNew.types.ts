@@ -1,13 +1,19 @@
 import type { ReactNode } from 'react';
 
-import type { ListItemProps } from '@synerise/ds-list-item';
-import type { InformationCardProps } from '@synerise/ds-information-card';
-import type { WithHTMLAttributes } from '@synerise/ds-utils';
 import type { DropdownProps } from '@synerise/ds-dropdown';
 import type { FormFieldCommonProps } from '@synerise/ds-form-field';
+import type { InformationCardProps } from '@synerise/ds-information-card';
+import type { ListItemProps } from '@synerise/ds-list-item';
+import type { WithHTMLAttributes } from '@synerise/ds-utils';
 
-import type { ItemPickerListProps, ItemPickerListTexts } from '../ItemPickerList/ItemPickerList.types';
-import type { ItemPickerTriggerProps, ItemPickerTriggerTexts } from '../ItemPickerTrigger/Trigger.types';
+import type {
+  ItemPickerListProps,
+  ItemPickerListTexts,
+} from '../ItemPickerList/ItemPickerList.types';
+import type {
+  ItemPickerTriggerProps,
+  ItemPickerTriggerTexts,
+} from '../ItemPickerTrigger/Trigger.types';
 
 type HeightConfig = {
   defaultHeight: number;
@@ -34,9 +40,10 @@ export type BaseSectionType = InheritedFromListItem & {
   id: string | number;
 };
 
-export type BaseSectionTypeWithFolders<SectionType extends BaseSectionType> = SectionType & {
-  folders?: BaseSectionTypeWithFolders<SectionType>[];
-};
+export type BaseSectionTypeWithFolders<SectionType extends BaseSectionType> =
+  SectionType & {
+    folders?: BaseSectionTypeWithFolders<SectionType>[];
+  };
 
 export type BaseItemType = InheritedFromListItem & {
   text: string;
@@ -91,17 +98,23 @@ type CustomActionType = BasicActionType & {
 
 export type ItemPickerTexts = ItemPickerListTexts & ItemPickerTriggerTexts;
 
-export type ActionType = RedirectActionType | CustomActionType | SearchActionType;
+export type ActionType =
+  | RedirectActionType
+  | CustomActionType
+  | SearchActionType;
 
 export type ItemPickerProps<
   ItemType extends BaseItemType,
-  SectionType extends BaseSectionType | undefined
+  SectionType extends BaseSectionType | undefined,
 > = WithHTMLAttributes<
   HTMLDivElement,
   {
     isNewVersion: true;
     renderTrigger?: (
-      props: Pick<ItemPickerTriggerProps, 'disabled' | 'error' | 'selected' | 'openDropdown' | 'closeDropdown'>
+      props: Pick<
+        ItemPickerTriggerProps,
+        'disabled' | 'error' | 'selected' | 'openDropdown' | 'closeDropdown'
+      >,
     ) => ReactNode;
     texts?: Partial<ItemPickerTexts>;
     triggerProps?: {
@@ -142,7 +155,9 @@ export type ItemPickerProps<
   >
 > &
   FormFieldCommonProps &
-  Partial<Pick<ItemPickerTriggerProps, 'placeholder' | 'placeholderIcon' | 'onClear'>>;
+  Partial<
+    Pick<ItemPickerTriggerProps, 'placeholder' | 'placeholderIcon' | 'onClear'>
+  >;
 
 export type SearchConfig = {
   actionType: 'search';

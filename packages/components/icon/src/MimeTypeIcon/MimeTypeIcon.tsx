@@ -1,8 +1,8 @@
 import React, { useMemo } from 'react';
 
 import Icon from '../Icon';
-import { mapMimeTypeToIcon } from './MimeTypeIcon.utils';
 import type { MimeTypeIconsProps } from './MimeTypeIcon.types';
+import { mapMimeTypeToIcon } from './MimeTypeIcon.utils';
 
 const MimeTypeIcon = ({ type, ...iconProps }: MimeTypeIconsProps) => {
   const component = useMemo(() => {

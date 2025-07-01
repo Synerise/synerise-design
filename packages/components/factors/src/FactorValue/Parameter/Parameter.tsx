@@ -1,16 +1,24 @@
-import React, { useCallback, useMemo, useState, useEffect } from 'react';
+import React, { useCallback, useEffect, useMemo, useState } from 'react';
 
-import Dropdown from '@synerise/ds-dropdown';
 import Button from '@synerise/ds-button';
-import Menu, { MenuItemProps } from '@synerise/ds-menu';
+import Dropdown from '@synerise/ds-dropdown';
 import Icon, { AngleDownS } from '@synerise/ds-icon';
-import { getPopupContainer } from '@synerise/ds-utils';
 import InformationCard from '@synerise/ds-information-card';
+import Menu, { type MenuItemProps } from '@synerise/ds-menu';
+import { getPopupContainer } from '@synerise/ds-utils';
 
-import { FactorValueComponentProps, ParameterItem, ParameterValueType } from '../../Factors.types';
+import {
+  type FactorValueComponentProps,
+  type ParameterItem,
+  type ParameterValueType,
+} from '../../Factors.types';
+import {
+  DROPDOWN_HEIGHT,
+  DROPDOWN_HEIGHT_BELOW_THRESHOLD,
+  DROPDOWN_HEIGHT_THRESHOLD,
+} from './Parameter.constants';
 import { Value } from './Parameter.style';
 import ParameterDropdown from './ParameterDropdown';
-import { DROPDOWN_HEIGHT, DROPDOWN_HEIGHT_BELOW_THRESHOLD, DROPDOWN_HEIGHT_THRESHOLD } from './Parameter.constants';
 
 const ParameterInput = ({
   value,
@@ -28,8 +36,13 @@ const ParameterInput = ({
   loading,
   getMenuEntryProps,
 }: FactorValueComponentProps) => {
-  const { buttonIcon, buttonLabel, selectedButtonColored, dropdownDimensionsConfig, ...restParameters } =
-    parameters || {};
+  const {
+    buttonIcon,
+    buttonLabel,
+    selectedButtonColored,
+    dropdownDimensionsConfig,
+    ...restParameters
+  } = parameters || {};
   const dimensionsConfig = {
     defaultHeight: DROPDOWN_HEIGHT,
     lowerHeight: DROPDOWN_HEIGHT_BELOW_THRESHOLD,
@@ -38,7 +51,9 @@ const ParameterInput = ({
   };
 
   const [dropdownVisible, setDropdownVisible] = useState(false);
-  const [outerHeight, setOuterHeight] = useState(dimensionsConfig.defaultHeight);
+  const [outerHeight, setOuterHeight] = useState(
+    dimensionsConfig.defaultHeight,
+  );
   const parameter = useMemo(() => value as ParameterValueType, [value]);
   const { parameterIcon, parameterName, isSelected } = useMemo(
     () => ({
@@ -46,14 +61,14 @@ const ParameterInput = ({
       parameterIcon: parameter?.icon || buttonIcon,
       parameterName: parameter?.name || buttonLabel,
     }),
-    [parameter, buttonIcon, buttonLabel]
+    [parameter, buttonIcon, buttonLabel],
   );
 
   const handleChange = useCallback(
     (val: ParameterItem) => {
       onChange(val as ParameterValueType);
     },
-    [onChange]
+    [onChange],
   );
 
   const handleOnClick = useCallback(() => {
@@ -68,12 +83,12 @@ const ParameterInput = ({
       onParamsClick && onParamsClick();
       onActivate && onActivate();
     }
-    // eslint-disable-next-line
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [opened]);
 
   useEffect(() => {
     !preventAutoloadData && onParamsClick && onParamsClick();
-    // eslint-disable-next-line
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const onDropdownVisibilityChange = useCallback(
@@ -84,7 +99,7 @@ const ParameterInput = ({
         setDropdownVisible(false);
       }
     },
-    [onActivate, onDeactivate]
+    [onActivate, onDeactivate],
   );
 
   const triggerMode = useMemo(() => {
@@ -131,7 +146,11 @@ const ParameterInput = ({
                   title={parameterName as string}
                   descriptionConfig={
                     parameter.description
-                      ? { value: parameter.description as string, disabled: true, label: undefined }
+                      ? {
+                          value: parameter.description as string,
+                          disabled: true,
+                          label: undefined,
+                        }
                       : undefined
                   }
                   {...parameter.informationCardProps}
@@ -147,14 +166,20 @@ const ParameterInput = ({
   useEffect(() => {
     const checkViewportHeight = () =>
       setOuterHeight(
-        window.innerHeight < dimensionsConfig.threshold ? dimensionsConfig.lowerHeight : dimensionsConfig.defaultHeight
+        window.innerHeight < dimensionsConfig.threshold
+          ? dimensionsConfig.lowerHeight
+          : dimensionsConfig.defaultHeight,
       );
     checkViewportHeight();
     window.addEventListener('resize', checkViewportHeight);
     return () => {
       window.removeEventListener('resize', checkViewportHeight);
     };
-  }, [dimensionsConfig.defaultHeight, dimensionsConfig.lowerHeight, dimensionsConfig.threshold]);
+  }, [
+    dimensionsConfig.defaultHeight,
+    dimensionsConfig.lowerHeight,
+    dimensionsConfig.threshold,
+  ]);
 
   return readOnly ? (
     trigger

@@ -1,14 +1,21 @@
-import React, { useCallback, createRef, useMemo, useState, useRef, useEffect } from 'react';
 import { debounce } from 'lodash';
+import React, {
+  createRef,
+  useCallback,
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+} from 'react';
 
 import { theme } from '@synerise/ds-core';
 import Dropdown from '@synerise/ds-dropdown';
 import Icon, { OptionHorizontalM } from '@synerise/ds-icon';
-import { useResizeObserver, NOOP } from '@synerise/ds-utils';
+import { NOOP, useResizeObserver } from '@synerise/ds-utils';
 
-import * as S from './Tabs.styles';
 import Tab from './Tab/Tab';
-import { TabsProps, TabWithRef } from './Tabs.types';
+import * as S from './Tabs.styles';
+import { type TabWithRef, type TabsProps } from './Tabs.types';
 
 const MARGIN_BETWEEN_TABS = 24;
 const DROPDOWN_TRIGGER_SIZE = 32;
@@ -17,7 +24,14 @@ const DROPDOWN_OVERLAY_STYLE = {
   zIndex: parseInt(theme.variables['zindex-modal'], 10) - 1,
 };
 
-const Tabs = ({ activeTab, tabs, handleTabClick, configuration, underscore, block }: TabsProps) => {
+const Tabs = ({
+  activeTab,
+  tabs,
+  handleTabClick,
+  configuration,
+  underscore,
+  block,
+}: TabsProps) => {
   const [containerWidth, setContainerWidth] = useState(0);
   const containerRef = useRef<HTMLDivElement>(null);
   const helperContainerRef = useRef<HTMLDivElement>(null);
@@ -28,19 +42,23 @@ const Tabs = ({ activeTab, tabs, handleTabClick, configuration, underscore, bloc
   const [visibleTabs, setVisibleTabs] = useState<TabWithRef[]>([]);
   const [isDropdownVisible, setIsDropdownVisible] = useState(false);
   const [hiddenTabs, setHiddenTabs] = useState<TabWithRef[]>([]);
-  const debouncedEventHandler = useMemo(() => debounce((newWidth: number) => setContainerWidth(newWidth), 200), []);
+  const debouncedEventHandler = useMemo(
+    () => debounce((newWidth: number) => setContainerWidth(newWidth), 200),
+    [],
+  );
 
   useEffect(() => {
     debouncedEventHandler(width);
   }, [width, debouncedEventHandler]);
 
   useEffect(() => {
-    containerRef.current && setContainerWidth(containerRef.current?.offsetWidth);
+    containerRef.current &&
+      setContainerWidth(containerRef.current?.offsetWidth);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [containerRef.current]);
 
   useEffect(() => {
-    const newTabs = tabs.map(tab => {
+    const newTabs = tabs.map((tab) => {
       return {
         ...tab,
         ref: createRef<HTMLButtonElement>(),
@@ -55,7 +73,10 @@ const Tabs = ({ activeTab, tabs, handleTabClick, configuration, underscore, bloc
     if (widthsAreNonZero) {
       const itemsWithWidths: number[] = [];
       items.forEach((item, index) => {
-        itemsWithWidths[index] = item.ref.current !== null ? item.ref.current.offsetWidth + MARGIN_BETWEEN_TABS : 0;
+        itemsWithWidths[index] =
+          item.ref.current !== null
+            ? item.ref.current.offsetWidth + MARGIN_BETWEEN_TABS
+            : 0;
       });
       setItemsWidths(itemsWithWidths);
     }
@@ -97,7 +118,7 @@ const Tabs = ({ activeTab, tabs, handleTabClick, configuration, underscore, bloc
       setIsDropdownVisible(false);
       handleTabClick(index);
     },
-    [handleTabClick]
+    [handleTabClick],
   );
   const dropdownMenuItems = hiddenTabs.map((item, index) => ({
     key: `${item.label}-dropdown-${index}`,
@@ -108,7 +129,9 @@ const Tabs = ({ activeTab, tabs, handleTabClick, configuration, underscore, bloc
   const renderHiddenTabs = useMemo(() => {
     return (
       <S.TabsDropdownContainer data-testid="tabs-dropdown-container">
-        {hiddenTabs.length > 0 && <S.DropdownMenu dataSource={dropdownMenuItems} />}
+        {hiddenTabs.length > 0 && (
+          <S.DropdownMenu dataSource={dropdownMenuItems} />
+        )}
         {hiddenTabs.length > 0 && configuration && <S.TabsDropdownDivider />}
         {configuration && (
           <S.DropdownMenu
@@ -124,7 +147,12 @@ const Tabs = ({ activeTab, tabs, handleTabClick, configuration, underscore, bloc
         )}
       </S.TabsDropdownContainer>
     );
-  }, [hiddenTabs.length, dropdownMenuItems, configuration, handleConfigurationAction]);
+  }, [
+    hiddenTabs.length,
+    dropdownMenuItems,
+    configuration,
+    handleConfigurationAction,
+  ]);
 
   const renderDropdown = () => {
     return (
@@ -157,7 +185,7 @@ const Tabs = ({ activeTab, tabs, handleTabClick, configuration, underscore, bloc
     return (
       <>
         {visibleTabs
-          .filter(tab => Boolean(tab))
+          .filter((tab) => Boolean(tab))
           .map((tab, index) => {
             const key = `tabs-tab-${index}`;
             const { ref, ...tabProps } = tab;
@@ -180,7 +208,11 @@ const Tabs = ({ activeTab, tabs, handleTabClick, configuration, underscore, bloc
 
   const renderHelpers = useMemo(() => {
     return (
-      <S.HiddenTabs ref={helperContainerRef} data-testid="ds-tabs-hidden-helper" className="ds-hidden-helper">
+      <S.HiddenTabs
+        ref={helperContainerRef}
+        data-testid="ds-tabs-hidden-helper"
+        className="ds-hidden-helper"
+      >
         {items.map((tab, index) => {
           const key = `tabs-tab-helper-${index}`;
           const { ref, ...tabProps } = tab;

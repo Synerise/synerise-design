@@ -1,26 +1,33 @@
-import React, { useMemo, useState, useEffect } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
+
 import {
   DndContext,
-  closestCenter,
+  type DragEndEvent,
+  type DragStartEvent,
   KeyboardSensor,
-  PointerSensor,
   MouseSensor,
+  PointerSensor,
+  closestCenter,
   useSensor,
   useSensors,
-  DragEndEvent,
-  DragStartEvent,
 } from '@dnd-kit/core';
 import {
-  arrayMove,
+  restrictToHorizontalAxis,
+  restrictToVerticalAxis,
+} from '@dnd-kit/modifiers';
+import {
   SortableContext,
-  sortableKeyboardCoordinates,
-  verticalListSortingStrategy,
+  arrayMove,
   horizontalListSortingStrategy,
   rectSortingStrategy,
+  sortableKeyboardCoordinates,
+  verticalListSortingStrategy,
 } from '@dnd-kit/sortable';
-import { restrictToVerticalAxis, restrictToHorizontalAxis } from '@dnd-kit/modifiers';
 
-import { RawBaseItem, SortableContainerProps } from './Sortable.types';
+import {
+  type RawBaseItem,
+  type SortableContainerProps,
+} from './Sortable.types';
 
 export const SortableContainer = <ItemType extends RawBaseItem>({
   items,
@@ -38,14 +45,14 @@ export const SortableContainer = <ItemType extends RawBaseItem>({
     useSensor(PointerSensor),
     useSensor(KeyboardSensor, {
       coordinateGetter: sortableKeyboardCoordinates,
-    })
+    }),
   );
 
   const handleDragEnd = (event: DragEndEvent) => {
     const { active, over } = event;
     if (active.id !== over?.id) {
-      const oldIndex = order.findIndex(item => item.id === active.id);
-      const newIndex = order.findIndex(item => item.id === over?.id);
+      const oldIndex = order.findIndex((item) => item.id === active.id);
+      const newIndex = order.findIndex((item) => item.id === over?.id);
       const updatedOrder = arrayMove(order, oldIndex, newIndex);
       setOrder(updatedOrder);
       onOrderChange?.(updatedOrder);

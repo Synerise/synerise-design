@@ -1,4 +1,5 @@
 import type { ReactNode } from 'react';
+
 import { TITLE_PATH_SEPARATOR } from '../constants';
 
 export const createTitleFromTitlePath = (titlePath: ReactNode[]) => {

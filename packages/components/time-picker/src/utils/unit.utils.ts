@@ -1,13 +1,19 @@
 import dayjs from 'dayjs';
 
-import { HOUR, HOUR_12, MAP_24_HOUR_TO_12 } from '../constants/timePicker.constants';
+import {
+  HOUR,
+  HOUR_12,
+  MAP_24_HOUR_TO_12,
+} from '../constants/timePicker.constants';
 
 export const getUnitSelectedNumber = (
   value: Date | undefined,
   unit: dayjs.UnitType,
-  use12HourClock: boolean | undefined
+  use12HourClock: boolean | undefined,
 ): number | undefined => {
-  if (value === undefined) return undefined;
+  if (value === undefined) {
+    return undefined;
+  }
 
   let result = value && dayjs(value).get(unit);
 

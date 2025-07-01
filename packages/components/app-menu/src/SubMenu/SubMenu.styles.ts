@@ -1,4 +1,5 @@
 import styled, { css } from 'styled-components';
+
 import { macro } from '@synerise/ds-typography';
 
 export const MenuGroupWrapper = styled.div`
@@ -40,11 +41,11 @@ export const MenuGroupWrapper = styled.div`
   }
 
   ${[...Array(100).keys()].map(
-    k => css`
+    (k) => css`
       > *:nth-child(${k}) {
         transition-delay: ${0.1 + (k * 10) / 500}s;
       }
-    `
+    `,
   )}
 
   &:hover {

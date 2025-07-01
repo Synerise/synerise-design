@@ -1,13 +1,12 @@
-import React, { MouseEvent, useCallback } from 'react';
+import React, { type MouseEvent, useCallback } from 'react';
 
-import Tooltip from '@synerise/ds-tooltip';
-import Icon, { CloseS, DragHandleM, DuplicateS } from '@synerise/ds-icon';
 import { useTheme } from '@synerise/ds-core';
-
-import { BlankItemProps } from './BlankItem.types';
-import * as S from './BlankItem.styles';
+import Icon, { CloseS, DragHandleM, DuplicateS } from '@synerise/ds-icon';
+import Tooltip from '@synerise/ds-tooltip';
 
 import { useTexts } from '../../hooks/useTexts';
+import * as S from './BlankItem.styles';
+import { type BlankItemProps } from './BlankItem.types';
 
 const BlankItem = <T extends object>({
   onRemove,
@@ -28,7 +27,7 @@ const BlankItem = <T extends object>({
       const { id } = item;
       onRemove && onRemove({ id });
     },
-    [item, onRemove]
+    [item, onRemove],
   );
   const handleDuplicate = useCallback(
     (event: MouseEvent) => {
@@ -36,10 +35,15 @@ const BlankItem = <T extends object>({
       const { id } = item;
       onDuplicate && onDuplicate({ id });
     },
-    [item, onDuplicate]
+    [item, onDuplicate],
   );
   return (
-    <S.BlankItemWrapper key={item.id} data-testid="manageable-list-blank-item" rowGap={rowGap} {...rest}>
+    <S.BlankItemWrapper
+      key={item.id}
+      data-testid="manageable-list-blank-item"
+      rowGap={rowGap}
+      {...rest}
+    >
       {draggable && (
         <S.DragHandle className="item-drag-handle">
           <Icon size={24} component={<DragHandleM color="currentColor" />} />
@@ -49,13 +53,31 @@ const BlankItem = <T extends object>({
       {(onRemove || onDuplicate) && (
         <S.BlankItemActions>
           {onDuplicate && (
-            <Tooltip type="default" trigger="hover" title={allTexts.itemActionDuplicateTooltip}>
-              <Icon component={<DuplicateS />} color={theme.palette['grey-600']} size={24} onClick={handleDuplicate} />
+            <Tooltip
+              type="default"
+              trigger="hover"
+              title={allTexts.itemActionDuplicateTooltip}
+            >
+              <Icon
+                component={<DuplicateS />}
+                color={theme.palette['grey-600']}
+                size={24}
+                onClick={handleDuplicate}
+              />
             </Tooltip>
           )}
           {onRemove && (
-            <Tooltip type="default" trigger="hover" title={allTexts.itemActionDeleteTooltip}>
-              <Icon component={<CloseS />} size={24} color={theme.palette['red-600']} onClick={handleRemove} />
+            <Tooltip
+              type="default"
+              trigger="hover"
+              title={allTexts.itemActionDeleteTooltip}
+            >
+              <Icon
+                component={<CloseS />}
+                size={24}
+                color={theme.palette['red-600']}
+                onClick={handleRemove}
+              />
             </Tooltip>
           )}
         </S.BlankItemActions>

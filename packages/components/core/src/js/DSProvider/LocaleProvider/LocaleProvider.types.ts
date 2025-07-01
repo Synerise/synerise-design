@@ -1,8 +1,11 @@
 import type { ReactNode } from 'react';
-import type { OnErrorFn } from '@formatjs/intl';
-import type { MessageFormatElement } from '@formatjs/icu-messageformat-parser';
 
-export type IntlMessages = Record<string, string> | Record<string, MessageFormatElement[]>;
+import type { MessageFormatElement } from '@formatjs/icu-messageformat-parser';
+import type { OnErrorFn } from '@formatjs/intl';
+
+export type IntlMessages =
+  | Record<string, string>
+  | Record<string, MessageFormatElement[]>;
 
 export type NestedMessages = {
   [key: string]: string | NestedMessages;

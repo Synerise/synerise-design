@@ -1,9 +1,11 @@
-import React, { Ref, forwardRef, useState } from 'react';
 import type { TextAreaRef } from 'antd/lib/input/TextArea';
+import React, { type Ref, forwardRef, useState } from 'react';
+
 import Scrollbar from '@synerise/ds-scrollbar';
-import * as S from './Textarea.styles';
+
 import * as InputStyles from '../Input.styles';
-import { RawTextAreaProps } from './Textarea.types';
+import * as S from './Textarea.styles';
+import { type RawTextAreaProps } from './Textarea.types';
 
 export const RawTextArea = forwardRef(
   (
@@ -19,7 +21,7 @@ export const RawTextArea = forwardRef(
       readOnly,
       ...props
     }: RawTextAreaProps,
-    ref: Ref<TextAreaRef>
+    ref: Ref<TextAreaRef>,
   ) => {
     const [focus, setFocus] = useState(false);
     return (
@@ -30,7 +32,10 @@ export const RawTextArea = forwardRef(
         isReadOnly={readOnly}
         hasError={Boolean(error)}
         resize={resize}
-        style={{ height: autoSize ? 'auto' : `${rows * 17}px`, ...wrapperStyle }}
+        style={{
+          height: autoSize ? 'auto' : `${rows * 17}px`,
+          ...wrapperStyle,
+        }}
       >
         <Scrollbar absolute classes="textarea-scrollbar">
           <InputStyles.AntdTextArea
@@ -51,7 +56,7 @@ export const RawTextArea = forwardRef(
         </Scrollbar>
       </S.TextareaWrapper>
     );
-  }
+  },
 );
 
 export default RawTextArea;

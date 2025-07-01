@@ -1,4 +1,5 @@
-import React, { ReactElement, ReactNode, useMemo } from 'react';
+import React, { type ReactElement, type ReactNode, useMemo } from 'react';
+
 import * as S from './Page.styles';
 
 type PageProps = {
@@ -22,8 +23,12 @@ const Page = ({ navBar, appMenu, children, className }: PageProps) => {
     <S.PageContainer className={className}>
       {navBar}
       <S.ContentWrapper withNavBar={Boolean(navBar)}>
-        <S.MenuWrapper withAppMenu={Boolean(appMenu)}>{renderAppMenu}</S.MenuWrapper>
-        <S.LayoutWrapper withAppMenu={Boolean(appMenu)}>{children}</S.LayoutWrapper>
+        <S.MenuWrapper withAppMenu={Boolean(appMenu)}>
+          {renderAppMenu}
+        </S.MenuWrapper>
+        <S.LayoutWrapper withAppMenu={Boolean(appMenu)}>
+          {children}
+        </S.LayoutWrapper>
       </S.ContentWrapper>
     </S.PageContainer>
   );

@@ -1,17 +1,17 @@
-import React, { forwardRef, useState, useRef, useEffect } from 'react';
-import { SegmentM } from '@synerise/ds-icon';
-import Card from '@synerise/ds-card';
-import { useResizeObserver } from '@synerise/ds-utils';
-import { RowWrapper } from '@synerise/ds-description/dist/Row/DescriptionRow.styles';
 import 'rc-trigger/assets/index.less';
+import React, { forwardRef, useEffect, useRef, useState } from 'react';
+
+import Card from '@synerise/ds-card';
+import { RowWrapper } from '@synerise/ds-description/dist/Row/DescriptionRow.styles';
+import { SegmentM } from '@synerise/ds-icon';
+import { useResizeObserver } from '@synerise/ds-utils';
 
 import * as S from './InformationCard.styles';
-import { InformationCardProps } from './InformationCard.types';
-import { InformationCardFooter } from './InformationCardFooter/InformationCardFooter';
+import { type InformationCardProps } from './InformationCard.types';
 import { buildIconBadge } from './InformationCard.utils';
-
 import { InformationCardActions } from './InformationCardActions/InformationCardActions';
 import { InformationCardDescription } from './InformationCardDescription/InformationCardDescription';
+import { InformationCardFooter } from './InformationCardFooter/InformationCardFooter';
 import { InformationCardPropertyList } from './InformationCardPropertyList/InformationCardPropertyList';
 import { InformationCardSummary } from './InformationCardSummary/InformationCardSummary';
 
@@ -41,7 +41,7 @@ const InformationCard = forwardRef<HTMLDivElement, InformationCardProps>(
       summaryItems,
       ...props
     },
-    ref
+    ref,
   ) => {
     const [isActionsMenuVisible, setIsActionsMenuVisible] = useState(false);
     const mainSlideRef = useRef<HTMLDivElement>(null);
@@ -50,7 +50,13 @@ const InformationCard = forwardRef<HTMLDivElement, InformationCardProps>(
     const copyableSlot = (content: string) =>
       content && (
         <RowWrapper copyable>
-          <S.Flex style={{ backgroundColor: '', alignItems: 'center', textAlign: 'left' }}>
+          <S.Flex
+            style={{
+              backgroundColor: '',
+              alignItems: 'center',
+              textAlign: 'left',
+            }}
+          >
             <span>{content}</span>
             <S.Copyable
               copyValue={content}
@@ -92,13 +98,20 @@ const InformationCard = forwardRef<HTMLDivElement, InformationCardProps>(
                 return (
                   renderBadge !== null && (
                     <div style={{ marginRight: '16px' }}>
-                      {renderBadge?.() ?? buildIconBadge({ iconElement, iconColor, avatarTooltipText })}
+                      {renderBadge?.() ??
+                        buildIconBadge({
+                          iconElement,
+                          iconColor,
+                          avatarTooltipText,
+                        })}
                     </div>
                   )
                 );
               }}
               title={typeof title === 'string' ? copyableSlot(title) : title}
-              description={typeof subtitle === 'string' ? copyableSlot(subtitle) : subtitle}
+              description={
+                typeof subtitle === 'string' ? copyableSlot(subtitle) : subtitle
+              }
               headerSideChildren={undefined}
               compactHeader={false}
               withoutPadding
@@ -106,10 +119,15 @@ const InformationCard = forwardRef<HTMLDivElement, InformationCardProps>(
               withHeader
             >
               {(descriptionConfig !== null || notice) && (
-                <InformationCardDescription extraInformation={notice || <></>} descriptionConfig={descriptionConfig} />
+                <InformationCardDescription
+                  extraInformation={notice || <></>}
+                  descriptionConfig={descriptionConfig}
+                />
               )}
               {renderAdditionalDescription && renderAdditionalDescription()}
-              {propertyListItems && <InformationCardPropertyList items={propertyListItems} />}
+              {propertyListItems && (
+                <InformationCardPropertyList items={propertyListItems} />
+              )}
               {summaryItems && <InformationCardSummary items={summaryItems} />}
               {(renderFooter && renderFooter()) ||
                 (hasFooter && (
@@ -119,7 +137,11 @@ const InformationCard = forwardRef<HTMLDivElement, InformationCardProps>(
                     actionButtonCallback={actionButtonCallback}
                     actionButtonTooltipText={actionButtonTooltipText}
                     actionsMenuButtonLabel={actionsMenu?.buttonLabel}
-                    actionsMenuButtonOnClick={actionsMenu ? () => setIsActionsMenuVisible(true) : undefined}
+                    actionsMenuButtonOnClick={
+                      actionsMenu
+                        ? () => setIsActionsMenuVisible(true)
+                        : undefined
+                    }
                   />
                 ))}
             </Card>
@@ -136,7 +158,7 @@ const InformationCard = forwardRef<HTMLDivElement, InformationCardProps>(
         </S.InfoCardSlidesWrapper>
       </S.InfoCardWrapper>
     );
-  }
+  },
 );
 
 export default InformationCard;

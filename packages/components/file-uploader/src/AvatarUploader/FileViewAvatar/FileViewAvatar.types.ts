@@ -1,5 +1,6 @@
-import { ReactNode } from 'react';
-import { ExtendedFile } from '../../FileUploader.types';
+import { type ReactNode } from 'react';
+
+import { type ExtendedFile } from '../../FileUploader.types';
 
 export interface FileViewAvatarTexts {
   removeTooltip?: ReactNode;

@@ -1,9 +1,13 @@
-import { ReactNode } from 'react';
-import styled, { css, FlattenSimpleInterpolation } from 'styled-components';
-import { Label } from '@synerise/ds-typography';
+import { type ReactNode } from 'react';
+import styled, {
+  type FlattenSimpleInterpolation,
+  css,
+} from 'styled-components';
+
+import DSDropdown from '@synerise/ds-dropdown';
 import Icon from '@synerise/ds-icon';
 import { Input } from '@synerise/ds-input';
-import DSDropdown from '@synerise/ds-dropdown';
+import { Label } from '@synerise/ds-typography';
 
 export const Dropdown = styled(DSDropdown)<{ children?: ReactNode }>`
   margin: 0;
@@ -83,7 +87,7 @@ export const Cell = styled.button<{ active?: boolean }>`
       cursor: not-allowed;
       background-color: ${(props): string => props.theme.palette.white};
 
-      ${props =>
+      ${(props) =>
         props.active &&
         `
           background-color: ${props.theme.palette['blue-600']};

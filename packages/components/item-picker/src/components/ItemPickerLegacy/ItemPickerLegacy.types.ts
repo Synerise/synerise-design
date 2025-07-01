@@ -1,11 +1,12 @@
 import type { ReactNode } from 'react';
 import type { IntlShape } from 'react-intl';
-import type { SearchBarProps } from '@synerise/ds-search-bar';
+
 import type { DropdownProps } from '@synerise/ds-dropdown';
+import type { FormFieldCommonProps } from '@synerise/ds-form-field';
 import type { InformationCardTooltipProps } from '@synerise/ds-information-card';
 import type { ListItemProps } from '@synerise/ds-list-item';
 import type { ScrollbarAdditionalProps } from '@synerise/ds-scrollbar';
-import type { FormFieldCommonProps } from '@synerise/ds-form-field';
+import type { SearchBarProps } from '@synerise/ds-search-bar';
 
 export type ItemPickerSize = 'small' | 'large';
 

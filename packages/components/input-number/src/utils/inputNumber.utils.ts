@@ -1,8 +1,15 @@
-import { ReactText } from 'react';
+import { type ReactText } from 'react';
 
-import { NumberToFormatOptions, Delimiter } from '@synerise/ds-data-format';
+import {
+  type Delimiter,
+  type NumberToFormatOptions,
+} from '@synerise/ds-data-format';
 
-import { MAXIMUM_FRACTION_DIGITS, MAXIMUM_NUMBER_DIGITS, NUMBER_DELIMITER } from '../constants/inputNumber.constants';
+import {
+  MAXIMUM_FRACTION_DIGITS,
+  MAXIMUM_NUMBER_DIGITS,
+  NUMBER_DELIMITER,
+} from '../constants/inputNumber.constants';
 
 // input case 1: not formatted number string (on input change)
 // input case 2: not formatted number (on blur)
@@ -13,13 +20,20 @@ export const formatNumber = (
   formatValue: (value: number, options: NumberToFormatOptions) => string,
   notationThousandDelimiter: Delimiter,
   notationDecimalDelimiter: Delimiter,
-  valueFormatOptions?: NumberToFormatOptions
+  valueFormatOptions?: NumberToFormatOptions,
 ): string => {
-  if (value === undefined || value === '' || value === null) return '';
+  if (value === undefined || value === '' || value === null) {
+    return '';
+  }
 
-  if (value === '-') return '-';
+  if (value === '-') {
+    return '-';
+  }
 
-  const formatOptions = { maximumFractionDigits: MAXIMUM_FRACTION_DIGITS, ...valueFormatOptions };
+  const formatOptions = {
+    maximumFractionDigits: MAXIMUM_FRACTION_DIGITS,
+    ...valueFormatOptions,
+  };
 
   if (typeof value === 'number') {
     return formatValue(value, formatOptions);
@@ -28,9 +42,12 @@ export const formatNumber = (
   let result = '';
   const lastChar = value?.slice(-1);
   const numberResult = parseFloat(value);
-  const notationDecimalChar = lastChar === NUMBER_DELIMITER ? notationDecimalDelimiter : '';
+  const notationDecimalChar =
+    lastChar === NUMBER_DELIMITER ? notationDecimalDelimiter : '';
   const zerosAtTheEnd = value.match(new RegExp('0+$'))?.[0];
-  const zerosWithDecimalDelimiterAtTheEnd = value.match(new RegExp(`\\${NUMBER_DELIMITER}0+$`))?.[0];
+  const zerosWithDecimalDelimiterAtTheEnd = value.match(
+    new RegExp(`\\${NUMBER_DELIMITER}0+$`),
+  )?.[0];
   const numberDelimiterExists = new RegExp(`\\${NUMBER_DELIMITER}`).test(value);
 
   if (Number.isNaN(numberResult)) {
@@ -55,7 +72,7 @@ export const parseFormattedNumber = (
   value: string | undefined,
   formatValue: (value: number, options: NumberToFormatOptions) => string,
   notationThousandDelimiter: Delimiter,
-  notationDecimalDelimiter: Delimiter
+  notationDecimalDelimiter: Delimiter,
 ): ReactText => {
   if (value === undefined || value === '') {
     return '';
@@ -73,7 +90,9 @@ export const parseFormattedNumber = (
     result = result.replace(notationDecimalDelimiter, NUMBER_DELIMITER);
   }
 
-  if ((result.match(new RegExp(`\\${NUMBER_DELIMITER}`, 'g')) || []).length > 1) {
+  if (
+    (result.match(new RegExp(`\\${NUMBER_DELIMITER}`, 'g')) || []).length > 1
+  ) {
     const lastDecimalDelimiterIndex = result.lastIndexOf(NUMBER_DELIMITER);
     result = result.slice(0, lastDecimalDelimiterIndex);
   }

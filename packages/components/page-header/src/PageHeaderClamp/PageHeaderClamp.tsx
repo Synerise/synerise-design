@@ -1,8 +1,9 @@
 import React from 'react';
 
-import Tooltip from '@synerise/ds-tooltip';
 import Icon from '@synerise/ds-icon';
-import { PageHeaderProps } from '../PageHeader.types';
+import Tooltip from '@synerise/ds-tooltip';
+
+import { type PageHeaderProps } from '../PageHeader.types';
 import * as S from './PageHeaderClamp.styles';
 
 type PageHeaderClampProps = Pick<

@@ -1,8 +1,9 @@
 import React from 'react';
-import { renderWithProvider } from '@synerise/ds-utils/dist/testing';
-import Block from "../index";
-import Icon, { EditM } from "@synerise/ds-icon";
 
+import Icon, { EditM } from '@synerise/ds-icon';
+import { renderWithProvider } from '@synerise/ds-utils';
+
+import Block from '../index';
 
 describe('Sidebar', () => {
   const TITLE = 'Title';
@@ -12,7 +13,7 @@ describe('Sidebar', () => {
     const { getByText } = renderWithProvider(
       <Block isDragging={false} icon={<Icon component={<EditM />} />}>
         {TITLE}
-      </Block>
+      </Block>,
     );
 
     // ASSERT

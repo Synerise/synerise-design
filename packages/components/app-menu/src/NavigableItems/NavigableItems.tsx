@@ -1,8 +1,9 @@
 import React from 'react';
+
 import Icon, { AngleDownS, AngleUpS } from '@synerise/ds-icon';
 
-import * as S from './NavigableItems.styles';
 import * as ItemStyles from '../Item/Item.styles';
+import * as S from './NavigableItems.styles';
 
 type NavigableItemsProps = {
   onHideMenu: () => void;
@@ -12,12 +13,16 @@ type NavigableItemsProps = {
 const itemHeight = 64;
 const animationTime = 100;
 
-const NavigableItems: React.FC<NavigableItemsProps> = ({ children, onHideMenu }) => {
+const NavigableItems: React.FC<NavigableItemsProps> = ({
+  children,
+  onHideMenu,
+}) => {
   const ref = React.useRef<HTMLUListElement>(null);
   const [itemsCapacity, setItemsCapacity] = React.useState(Infinity);
   const [currentIndex, setIndex] = React.useState(0);
   const isNavigateTopVisible = currentIndex > 0;
-  const isNavigateBottomVisible = currentIndex + itemsCapacity <= children.length;
+  const isNavigateBottomVisible =
+    currentIndex + itemsCapacity <= children.length;
   const [animationInProgress, setAnimationInProgress] = React.useState('');
   const [lastHeight, setLastHeight] = React.useState(0);
 
@@ -72,7 +77,10 @@ const NavigableItems: React.FC<NavigableItemsProps> = ({ children, onHideMenu })
     return (
       <S.Wrapper ref={ref} className={`animation--${animationInProgress}`}>
         {isNavigateTopVisible && (
-          <ItemStyles.ItemWrapper onClick={handleNavigateTop} className="nav-button nav-button--top">
+          <ItemStyles.ItemWrapper
+            onClick={handleNavigateTop}
+            className="nav-button nav-button--top"
+          >
             <ItemStyles.ItemLink>
               <Icon component={<AngleUpS />} />
             </ItemStyles.ItemLink>
@@ -80,10 +88,14 @@ const NavigableItems: React.FC<NavigableItemsProps> = ({ children, onHideMenu })
         )}
         {React.Children.toArray(children).splice(
           currentIndex,
-          itemsCapacity - (isNavigateBottomVisible && isNavigateTopVisible ? 2 : 1)
+          itemsCapacity -
+            (isNavigateBottomVisible && isNavigateTopVisible ? 2 : 1),
         )}
         {isNavigateBottomVisible && (
-          <ItemStyles.ItemWrapper onClick={handelNavigateBottom} className="nav-button nav-button--bottom">
+          <ItemStyles.ItemWrapper
+            onClick={handelNavigateBottom}
+            className="nav-button nav-button--bottom"
+          >
             <ItemStyles.ItemLink>
               <Icon component={<AngleDownS />} />
             </ItemStyles.ItemLink>

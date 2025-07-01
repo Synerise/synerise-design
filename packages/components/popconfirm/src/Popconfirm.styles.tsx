@@ -1,10 +1,14 @@
 import styled from 'styled-components';
-import Button, { ButtonProps } from '@synerise/ds-button';
 
-export const PopconfirmContent = styled.div<{ buttonsAlign?: 'left' | 'right' }>`
+import Button, { type ButtonProps } from '@synerise/ds-button';
+
+export const PopconfirmContent = styled.div<{
+  buttonsAlign?: 'left' | 'right';
+}>`
   display: flex;
   flex-direction: column;
-  align-items: ${({ buttonsAlign }): string => (buttonsAlign === 'left' ? 'flex-start' : 'flex-end')};
+  align-items: ${({ buttonsAlign }): string =>
+    buttonsAlign === 'left' ? 'flex-start' : 'flex-end'};
   justify-content: flex-start;
   margin: 0px;
 
@@ -34,7 +38,8 @@ export const PopconfirmContent = styled.div<{ buttonsAlign?: 'left' | 'right' }>
         justify-content: center;
         button {
           box-sizing: content-box;
-          background-color: ${(props): string => props.theme.palette['grey-600']};
+          background-color: ${(props): string =>
+            props.theme.palette['grey-600']};
           border: 2px solid ${(props): string => props.theme.palette.white};
           height: 4px;
           width: 4px;
@@ -44,8 +49,10 @@ export const PopconfirmContent = styled.div<{ buttonsAlign?: 'left' | 'right' }>
       }
       li.slick-active {
         button {
-          border: 2px solid ${(props): string => props.theme.palette['green-600']};
-          background-color: ${(props): string => `${props.theme.palette.white}`};
+          border: 2px solid
+            ${(props): string => props.theme.palette['green-600']};
+          background-color: ${(props): string =>
+            `${props.theme.palette.white}`};
         }
       }
     }

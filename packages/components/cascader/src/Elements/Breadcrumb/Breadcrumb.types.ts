@@ -1,5 +1,6 @@
-import { ListItemProps } from '@synerise/ds-list-item';
 import type { CSSProperties, ReactNode } from 'react';
+
+import { type ListItemProps } from '@synerise/ds-list-item';
 
 export type BreadcrumbProps = ListItemProps & {
   prefixel?: ReactNode;

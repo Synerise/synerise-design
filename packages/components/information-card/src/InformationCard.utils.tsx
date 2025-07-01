@@ -1,14 +1,17 @@
-import React, { PropsWithChildren } from 'react';
+import React, { type PropsWithChildren } from 'react';
 
 import Alert from '@synerise/ds-alert';
-import { InlineAlertType } from '@synerise/ds-alert/dist/InlineAlert/InlineAlert.types';
+import { type InlineAlertType } from '@synerise/ds-alert/dist/InlineAlert/InlineAlert.types';
 import Avatar, { ObjectAvatar } from '@synerise/ds-avatar';
-import { Color, ObjectAvatarProps } from '@synerise/ds-avatar/dist/Avatar.types';
+import {
+  type Color,
+  type ObjectAvatarProps,
+} from '@synerise/ds-avatar/dist/Avatar.types';
 import Badge from '@synerise/ds-badge';
 import Icon from '@synerise/ds-icon';
 
-import { BadgeData } from './InformationCard.types';
 import * as S from './InformationCard.styles';
+import { type BadgeData } from './InformationCard.types';
 
 export function buildInitialsBadge(name: string) {
   return <Initials name={name} />;
@@ -24,7 +27,10 @@ export function buildExtraInfo(message: string, level?: InlineAlertType) {
 
 export function getInitials(name: string) {
   const hasTokens = name.indexOf(' ') !== -1;
-  return name.substring(0, hasTokens ? 1 : 2) + (hasTokens ? name.charAt(name.lastIndexOf(' ') + 1) : '');
+  return (
+    name.substring(0, hasTokens ? 1 : 2) +
+    (hasTokens ? name.charAt(name.lastIndexOf(' ') + 1) : '')
+  );
 }
 
 type InitialsProps = PropsWithChildren<{

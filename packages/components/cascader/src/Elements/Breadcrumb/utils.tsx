@@ -4,7 +4,7 @@ export const attachActiveClassName = (
   index: number,
   highlightActivePath: boolean,
   path: Array<string>,
-  compact: boolean
+  compact: boolean,
 ) => {
   if (compact) {
     return highlightActivePath && index === 0 ? 'active' : '';
@@ -12,7 +12,11 @@ export const attachActiveClassName = (
   return highlightActivePath && index === path.length - 1 ? 'active' : '';
 };
 
-export const shouldRenderArrow = (breadCrumbPath: string[], index: number, startWithArrow: boolean) => {
+export const shouldRenderArrow = (
+  breadCrumbPath: string[],
+  index: number,
+  startWithArrow: boolean,
+) => {
   if (!breadCrumbPath || !breadCrumbPath.length) {
     return false;
   }
@@ -27,7 +31,7 @@ export const shouldHaveArrowPlaceholder = (
   index: number,
   path: string[],
   compact: boolean,
-  startWithArrow: boolean
+  startWithArrow: boolean,
 ) => {
   if (compact) {
     return startWithArrow || (index < path.length - 1 && path.length > 1);

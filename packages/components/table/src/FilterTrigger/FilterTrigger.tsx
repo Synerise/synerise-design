@@ -1,9 +1,11 @@
 import React from 'react';
+
 import Icon, { Close3S, FolderM } from '@synerise/ds-icon';
 import Tooltip from '@synerise/ds-tooltip';
 import { useOnClickOutside } from '@synerise/ds-utils';
+
 import * as S from './FilterTrigger.styles';
-import { Props } from './FilterTrigger.types';
+import { type Props } from './FilterTrigger.types';
 
 const FilterTrigger: React.FC<Props> = ({
   name,
@@ -55,19 +57,31 @@ const FilterTrigger: React.FC<Props> = ({
             data-testid={`filter-trigger-${name}`}
           >
             <Icon component={iconComponent} />
-            <S.FilterButtonLabel>{selected?.name || openedLabel}</S.FilterButtonLabel>
+            <S.FilterButtonLabel>
+              {selected?.name || openedLabel}
+            </S.FilterButtonLabel>
           </S.FilterButton>
         </Tooltip>
         {selected && (
           <Tooltip title={tooltips.clear}>
-            <S.ClearButton mode="single-icon" type="tertiary" onClick={handleClear} data-testid="clear-button">
+            <S.ClearButton
+              mode="single-icon"
+              type="tertiary"
+              onClick={handleClear}
+              data-testid="clear-button"
+            >
               <Icon component={<Close3S />} />
             </S.ClearButton>
           </Tooltip>
         )}
         {opened && (
           <Tooltip title={tooltips.list}>
-            <S.ListButton mode="single-icon" type="tertiary" onClick={showList} data-testid="show-list-button">
+            <S.ListButton
+              mode="single-icon"
+              type="tertiary"
+              onClick={showList}
+              data-testid="show-list-button"
+            >
               <Icon component={<FolderM />} />
             </S.ListButton>
           </Tooltip>

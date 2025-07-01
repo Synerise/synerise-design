@@ -1,10 +1,11 @@
 import React from 'react';
-import Tooltip from '@synerise/ds-tooltip';
-import Icon, { InfoFillS } from '@synerise/ds-icon';
-import { theme } from '@synerise/ds-core';
 
-import type { TitleRowProps } from '../../Mapping.types';
+import { theme } from '@synerise/ds-core';
+import Icon, { InfoFillS } from '@synerise/ds-icon';
+import Tooltip from '@synerise/ds-tooltip';
+
 import * as S from '../../Mapping.styles';
+import type { TitleRowProps } from '../../Mapping.types';
 
 export const TitleRow = ({
   leftTitle,
@@ -22,7 +23,10 @@ export const TitleRow = ({
           {leftTitle}{' '}
           {leftTitleTooltip && (
             <Tooltip {...leftTitleTooltip}>
-              <Icon component={<InfoFillS />} color={theme.palette['grey-400']} />
+              <Icon
+                component={<InfoFillS />}
+                color={theme.palette['grey-400']}
+              />
             </Tooltip>
           )}
         </S.ColumnTitle>
@@ -33,7 +37,10 @@ export const TitleRow = ({
           {rightTitle}{' '}
           {rightTitleTooltip && (
             <Tooltip {...rightTitleTooltip}>
-              <Icon component={<InfoFillS />} color={theme.palette['grey-400']} />
+              <Icon
+                component={<InfoFillS />}
+                color={theme.palette['grey-400']}
+              />
             </Tooltip>
           )}
         </S.ColumnTitle>

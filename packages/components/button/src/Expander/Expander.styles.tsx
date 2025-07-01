@@ -1,7 +1,14 @@
-import styled, { keyframes, css, FlattenSimpleInterpolation, Keyframes } from 'styled-components';
 import React from 'react';
-import { ThemeProps } from '@synerise/ds-core';
+import styled, {
+  type FlattenSimpleInterpolation,
+  type Keyframes,
+  css,
+  keyframes,
+} from 'styled-components';
+
+import { type ThemeProps } from '@synerise/ds-core';
 import { IconContainer } from '@synerise/ds-icon';
+
 import Button from '../Button';
 
 export type ExpanderProps = {
@@ -24,7 +31,6 @@ export const focusAnimation = ({ theme }: ThemeProps): Keyframes => keyframes`
 
 const SIZE_DEFAULT = 24;
 export const Expander = styled(({ children, expanded, size, ...rest }) => (
-  // eslint-disable-next-line react/jsx-props-no-spreading
   <Button mode="single-icon" {...rest}>
     {children}
   </Button>
@@ -36,15 +42,22 @@ export const Expander = styled(({ children, expanded, size, ...rest }) => (
     background-color: ${(props): string => props.theme.palette['grey-050']};
     ${IconContainer} {
       svg {
-        opacity: ${(props: ExpanderProps): string => (props.disabled ? `0.4` : `1`)};
-        fill: ${(props: ThemeProps): string => props.theme.palette['grey-600']} !important;
+        opacity: ${(props: ExpanderProps): string =>
+          props.disabled ? `0.4` : `1`};
+        fill: ${(props: ThemeProps): string =>
+          props.theme.palette['grey-600']} !important;
         transition: transform 0.1s linear;
-        transform: rotate(${(props): string => (props.expanded ? '180deg' : '0deg')});
+        transform: rotate(
+          ${(props): string => (props.expanded ? '180deg' : '0deg')}
+        );
       }
     }
     .btn-focus {
       box-shadow: inset 0 0 0 1px
-        ${(props): string => (props.disabled ? props.theme.palette['grey-200'] : props.theme.palette['grey-300'])};
+        ${(props): string =>
+          props.disabled
+            ? props.theme.palette['grey-200']
+            : props.theme.palette['grey-300']};
     }
     ${(props: ExpanderProps & ThemeProps): FlattenSimpleInterpolation | false =>
       !props.disabled &&

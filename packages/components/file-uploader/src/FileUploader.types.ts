@@ -1,5 +1,6 @@
-import { ReactNode } from 'react';
-import { FileViewTexts } from './FileView/FileView.types';
+import { type ReactNode } from 'react';
+
+import { type FileViewTexts } from './FileView/FileView.types';
 
 export interface ExtendedFile {
   file: FileWithContent;

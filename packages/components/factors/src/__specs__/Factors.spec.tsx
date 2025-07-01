@@ -1,17 +1,23 @@
 import React from 'react';
+
 import { VarTypeStringM } from '@synerise/ds-icon';
-import Factors from './../Factors';
-import { FactorsProps, FactorType, FactorValueType } from '../Factors.types';
-import { FACTORS_GROUPS, FACTORS_ITEMS, FACTORS_TEXTS } from './data/Factors.data';
-import renderWithProvider from '@synerise/ds-utils/dist/testing/renderWithProvider/renderWithProvider';
-import { fireEvent, prettyDOM, screen, waitFor, within } from '@testing-library/react';
+import { renderWithProvider } from '@synerise/ds-utils';
+import { fireEvent, screen, waitFor, within } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
+
+import { type FactorsProps } from '../Factors.types';
+import Factors from './../Factors';
+import {
+  FACTORS_GROUPS,
+  FACTORS_ITEMS,
+  FACTORS_TEXTS,
+} from './data/Factors.data';
 
 const DEFAULT_PROPS: FactorsProps = {
   selectedFactorType: '',
-  setSelectedFactorType: (type: FactorType) => { },
+  setSelectedFactorType: () => {},
   value: '',
-  onChangeValue: (value: FactorValueType) => { },
+  onChangeValue: () => {},
   textType: 'default',
   defaultFactorType: 'text',
   autocompleteText: {
@@ -29,7 +35,9 @@ const DEFAULT_PROPS: FactorsProps = {
   texts: FACTORS_TEXTS,
 };
 
-const RENDER_FACTORS = (props?: {}) => <Factors {...DEFAULT_PROPS} {...props} />;
+const RENDER_FACTORS = (props = {}) => (
+  <Factors {...DEFAULT_PROPS} {...props} />
+);
 
 describe('Factors component', () => {
   beforeEach(() => {
@@ -40,14 +48,20 @@ describe('Factors component', () => {
     const { container } = renderWithProvider(RENDER_FACTORS());
 
     expect(container.querySelector('.ds-factors')).toBeInTheDocument();
-    expect(container.querySelector('.ds-factors-type-selector')).toBeInTheDocument();
+    expect(
+      container.querySelector('.ds-factors-type-selector'),
+    ).toBeInTheDocument();
   });
 
   test('Should render with default type and placeholder', () => {
     const { container } = renderWithProvider(RENDER_FACTORS());
 
-    expect(container.querySelector(`.ds-factors-${DEFAULT_PROPS.defaultFactorType}`)).toBeInTheDocument();
-    expect(screen.getByPlaceholderText(FACTORS_TEXTS.valuePlaceholder)).toBeInTheDocument();
+    expect(
+      container.querySelector(`.ds-factors-${DEFAULT_PROPS.defaultFactorType}`),
+    ).toBeInTheDocument();
+    expect(
+      screen.getByPlaceholderText(FACTORS_TEXTS.valuePlaceholder),
+    ).toBeInTheDocument();
   });
 
   test('Should render with value', () => {
@@ -58,14 +72,20 @@ describe('Factors component', () => {
   });
 
   test('Should render without change factor type button', () => {
-    const { container } = renderWithProvider(RENDER_FACTORS({ withoutTypeSelector: true }));
+    const { container } = renderWithProvider(
+      RENDER_FACTORS({ withoutTypeSelector: true }),
+    );
 
-    expect(container.querySelector('.ds-factors-type-selector')).not.toBeInTheDocument();
+    expect(
+      container.querySelector('.ds-factors-type-selector'),
+    ).not.toBeInTheDocument();
   });
 
   test('Should display list of available factor types', () => {
     const { container } = renderWithProvider(RENDER_FACTORS());
-    const factorsTypeSelector = container.querySelector('.ds-factors-type-selector');
+    const factorsTypeSelector = container.querySelector(
+      '.ds-factors-type-selector',
+    );
 
     factorsTypeSelector && fireEvent.click(factorsTypeSelector);
 
@@ -81,8 +101,12 @@ describe('Factors component', () => {
   });
 
   test('Should display list of factor types, without excluded ones', () => {
-    const { container } = renderWithProvider(RENDER_FACTORS({ unavailableFactorTypes: ['number', 'formula'] }));
-    const factorsTypeSelector = container.querySelector('.ds-factors-type-selector');
+    const { container } = renderWithProvider(
+      RENDER_FACTORS({ unavailableFactorTypes: ['number', 'formula'] }),
+    );
+    const factorsTypeSelector = container.querySelector(
+      '.ds-factors-type-selector',
+    );
 
     factorsTypeSelector && fireEvent.click(factorsTypeSelector);
 
@@ -99,8 +123,12 @@ describe('Factors component', () => {
 
   test('Should change selected factor type', () => {
     const selectFactorType = jest.fn();
-    const { container } = renderWithProvider(RENDER_FACTORS({ setSelectedFactorType: selectFactorType }));
-    const factorsTypeSelector = container.querySelector('.ds-factors-type-selector');
+    const { container } = renderWithProvider(
+      RENDER_FACTORS({ setSelectedFactorType: selectFactorType }),
+    );
+    const factorsTypeSelector = container.querySelector(
+      '.ds-factors-type-selector',
+    );
 
     factorsTypeSelector && fireEvent.click(factorsTypeSelector);
     const numberFactroType = screen.queryByText('Number');
@@ -112,7 +140,13 @@ describe('Factors component', () => {
   test('should call onActivate / onDeactivate Parameter factor', async () => {
     const handleDeactivate = jest.fn();
     const handleActivate = jest.fn();
-    renderWithProvider(RENDER_FACTORS({ selectedFactorType: 'parameter', onActivate: handleActivate, onDeactivate: handleDeactivate }));
+    renderWithProvider(
+      RENDER_FACTORS({
+        selectedFactorType: 'parameter',
+        onActivate: handleActivate,
+        onDeactivate: handleDeactivate,
+      }),
+    );
 
     userEvent.click(screen.getByText('Parameter'));
 
@@ -125,9 +159,19 @@ describe('Factors component', () => {
   test('should call onActivate / onDeactivate Relative date factor', async () => {
     const handleActivate = jest.fn();
     const handleDeactivate = jest.fn();
-    renderWithProvider(RENDER_FACTORS({ selectedFactorType: 'relativeDate', onActivate: handleActivate, onDeactivate: handleDeactivate }));
+    renderWithProvider(
+      RENDER_FACTORS({
+        selectedFactorType: 'relativeDate',
+        onActivate: handleActivate,
+        onDeactivate: handleDeactivate,
+      }),
+    );
 
-    userEvent.click(screen.getByPlaceholderText(FACTORS_TEXTS.relativeDate.triggerPlaceholder));
+    userEvent.click(
+      screen.getByPlaceholderText(
+        FACTORS_TEXTS.relativeDate.triggerPlaceholder,
+      ),
+    );
 
     await waitFor(() => expect(handleActivate).toBeCalled());
     userEvent.click(document.body);
@@ -137,7 +181,13 @@ describe('Factors component', () => {
   test('should call onActivate / onDeactivate Text factor', async () => {
     const handleActivate = jest.fn();
     const handleDeactivate = jest.fn();
-    renderWithProvider(RENDER_FACTORS({ selectedFactorType: 'text', onActivate: handleActivate, onDeactivate: handleDeactivate }));
+    renderWithProvider(
+      RENDER_FACTORS({
+        selectedFactorType: 'text',
+        onActivate: handleActivate,
+        onDeactivate: handleDeactivate,
+      }),
+    );
 
     userEvent.click(screen.getByPlaceholderText('Value'));
     await waitFor(() => expect(handleActivate).toBeCalled());
@@ -151,7 +201,11 @@ describe('Factors component', () => {
 
     userEvent.click(await screen.findByText('Start date'));
     userEvent.click(await screen.findByText('Today'));
-    await waitFor(async () => expect(screen.getByText('Select date filter').closest('button')).not.toBeDisabled());
+    await waitFor(async () =>
+      expect(
+        screen.getByText('Select date filter').closest('button'),
+      ).not.toBeDisabled(),
+    );
 
     userEvent.click(screen.getByText('Select date filter'));
 

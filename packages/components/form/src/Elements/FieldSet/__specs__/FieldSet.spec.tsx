@@ -1,15 +1,18 @@
 import React from 'react';
-import { renderWithProvider } from '@synerise/ds-utils/dist/testing';
 
-import FieldSet from "../FieldSet";
+import { renderWithProvider } from '@synerise/ds-utils';
+
+import FieldSet from '../FieldSet';
 
 describe('FieldSet', () => {
-  const HEADING = "Heading";
-  const DESCRIPTION = "Description";
+  const HEADING = 'Heading';
+  const DESCRIPTION = 'Description';
 
   it('should render heading and description', () => {
     // ARRANGE
-    const { getByText } = renderWithProvider(<FieldSet heading={HEADING} description={DESCRIPTION} />);
+    const { getByText } = renderWithProvider(
+      <FieldSet heading={HEADING} description={DESCRIPTION} />,
+    );
 
     // ASSERT
     expect(getByText(HEADING)).toBeTruthy();
@@ -19,16 +22,16 @@ describe('FieldSet', () => {
   it('should render divider', () => {
     // ARRANGE
     const { rerender, queryByRole } = renderWithProvider(
-      <FieldSet heading={HEADING} description={DESCRIPTION} withLine />
+      <FieldSet heading={HEADING} description={DESCRIPTION} withLine />,
     );
 
     // ASSERT
-    expect(queryByRole("separator")).toBeTruthy();
+    expect(queryByRole('separator')).toBeTruthy();
 
     // ARRANGE
     rerender(<FieldSet heading={HEADING} description={DESCRIPTION} />);
 
     // ASSERT
-    expect(queryByRole("separator")).toBeNull();
+    expect(queryByRole('separator')).toBeNull();
   });
 });

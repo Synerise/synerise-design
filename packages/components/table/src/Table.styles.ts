@@ -1,16 +1,18 @@
 import styled, { keyframes } from 'styled-components';
-import { macro, Text } from '@synerise/ds-typography';
+
 import { CheckboxWrapper } from '@synerise/ds-checkbox/dist/Checkbox.styles';
-import Menu from '@synerise/ds-menu';
 import { IconContainer } from '@synerise/ds-icon';
+import Menu from '@synerise/ds-menu';
 import DSSkeleton from '@synerise/ds-skeleton';
+import { Text, macro } from '@synerise/ds-typography';
 
 export const Header = styled.div<{ withBorderTop?: boolean }>`
   background: #ffffff;
   padding: 20px 24px;
   display: flex;
   justify-content: space-between;
-  border-top: ${(props): string => (props.withBorderTop ? `1px solid ${props.theme.palette['grey-200']}` : '0')};
+  border-top: ${(props): string =>
+    props.withBorderTop ? `1px solid ${props.theme.palette['grey-200']}` : '0'};
   border-bottom: 1px solid ${(props): string => props.theme.palette['grey-200']};
 `;
 
@@ -97,8 +99,12 @@ export const Input = styled.div<{ isOpen?: boolean }>`
   }
 `;
 
-export const InputWrapper = styled.div<{ isOpen?: boolean; searchValue: string | undefined }>`
-  ${(props): string => (props.searchValue !== '' || props.isOpen ? `width: 100%` : 'width: 30px')};
+export const InputWrapper = styled.div<{
+  isOpen?: boolean;
+  searchValue: string | undefined;
+}>`
+  ${(props): string =>
+    props.searchValue !== '' || props.isOpen ? `width: 100%` : 'width: 30px'};
   transition: all 0.5s ease;
   position: relative;
   display: flex;
@@ -106,15 +112,19 @@ export const InputWrapper = styled.div<{ isOpen?: boolean; searchValue: string |
   direction: ltr;
 
   ${Input} {
-    opacity: ${(props): string => (props.searchValue || props.isOpen ? '1 !important' : '0')};
-    width: ${(props): string => (props.searchValue || props.isOpen ? 'auto' : '0')};
+    opacity: ${(props): string =>
+      props.searchValue || props.isOpen ? '1 !important' : '0'};
+    width: ${(props): string =>
+      props.searchValue || props.isOpen ? 'auto' : '0'};
   }
 
   & {
     input {
       padding-left: 32px;
       ${(props): string =>
-        props.searchValue !== '' || props.isOpen ? `cursor: initial!important;` : 'cursor: pointer!important'};
+        props.searchValue !== '' || props.isOpen
+          ? `cursor: initial!important;`
+          : 'cursor: pointer!important'};
     }
   }
 
@@ -186,7 +196,10 @@ export const Spinner = styled.div`
   }
 `;
 
-export const TableWrapper = styled.div<{ hideColumnNames?: boolean; disableColumnNamesLineBreak?: boolean }>`
+export const TableWrapper = styled.div<{
+  hideColumnNames?: boolean;
+  disableColumnNamesLineBreak?: boolean;
+}>`
   table {
     .ant-table-thead {
       ${(props): string => (props.hideColumnNames ? 'display: none' : '')};
@@ -205,12 +218,16 @@ export const TableWrapper = styled.div<{ hideColumnNames?: boolean; disableColum
     }
   }
 
-  .ant-table .ant-table-cell.ant-table-selection-column + .ant-table-cell.ds-table-star-column {
+  .ant-table
+    .ant-table-cell.ant-table-selection-column
+    + .ant-table-cell.ds-table-star-column {
     padding-left: 0;
   }
 
   .ant-table .ant-table-thead th {
-    transition: background 0.3s, border-color 0.3s;
+    transition:
+      background 0.3s,
+      border-color 0.3s;
     background-color: ${({ theme }): string => theme.palette.white};
     border-bottom-color: ${({ theme }): string => theme.palette['grey-300']};
 
@@ -220,7 +237,8 @@ export const TableWrapper = styled.div<{ hideColumnNames?: boolean; disableColum
 
     &.ant-table-column-has-sorters:hover {
       background-color: ${({ theme }): string => theme.palette['grey-050']};
-      border-bottom: 2px solid ${({ theme }): string => theme.palette['grey-400']};
+      border-bottom: 2px solid
+        ${({ theme }): string => theme.palette['grey-400']};
 
       > * {
         margin-bottom: -1px;
@@ -238,11 +256,13 @@ export const TableWrapper = styled.div<{ hideColumnNames?: boolean; disableColum
 
     &.ant-table-column-sort {
       background-color: ${({ theme }): string => theme.palette['blue-050']};
-      border-bottom: 2px solid ${({ theme }): string => theme.palette['blue-400']};
+      border-bottom: 2px solid
+        ${({ theme }): string => theme.palette['blue-400']};
 
       &:hover {
         background-color: ${({ theme }): string => theme.palette['blue-100']};
-        border-bottom: 2px solid ${({ theme }): string => theme.palette['blue-600']};
+        border-bottom: 2px solid
+          ${({ theme }): string => theme.palette['blue-600']};
       }
 
       & > [class^='ant-table-column-sorters'] {
@@ -266,12 +286,14 @@ export const TableWrapper = styled.div<{ hideColumnNames?: boolean; disableColum
 
     &.ds-table-active-column {
       background-color: ${({ theme }): string => theme.palette['yellow-050']};
-      border-bottom: 2px solid ${({ theme }): string => theme.palette['yellow-400']};
+      border-bottom: 2px solid
+        ${({ theme }): string => theme.palette['yellow-400']};
       cursor: default;
 
       &:hover {
         background-color: ${({ theme }): string => theme.palette['yellow-100']};
-        border-bottom: 2px solid ${({ theme }): string => theme.palette['yellow-600']};
+        border-bottom: 2px solid
+          ${({ theme }): string => theme.palette['yellow-600']};
       }
 
       .ant-table-column-sorter {
@@ -303,7 +325,9 @@ export const TableWrapper = styled.div<{ hideColumnNames?: boolean; disableColum
     opacity: 1;
   }
 
-  .ant-table-wrapper.virtual-table.virtual-table-infinite-scroll .ant-table .ant-table-header {
+  .ant-table-wrapper.virtual-table.virtual-table-infinite-scroll
+    .ant-table
+    .ant-table-header {
     box-shadow: 0 4px 12px 0 rgba(35, 41, 54, 0.04);
   }
 
@@ -311,7 +335,9 @@ export const TableWrapper = styled.div<{ hideColumnNames?: boolean; disableColum
     overflow: auto hidden;
   }
 
-  .virtual-table .virtual-table-row:not(:hover) .virtual-table-cell.ant-table-column-sort {
+  .virtual-table
+    .virtual-table-row:not(:hover)
+    .virtual-table-cell.ant-table-column-sort {
     background-color: ${({ theme }): string => theme.palette['blue-050']};
   }
 
@@ -319,26 +345,32 @@ export const TableWrapper = styled.div<{ hideColumnNames?: boolean; disableColum
     box-shadow: none;
   }
   & .ant-table th.ant-table-cell {
-    white-space: ${(props): string => (props.disableColumnNamesLineBreak ? 'nowrap' : 'normal')};
+    white-space: ${(props): string =>
+      props.disableColumnNamesLineBreak ? 'nowrap' : 'normal'};
   }
 
   &&&
     .ant-table-thead
     > tr
-    > th:not(:last-child):not(.ant-table-selection-column):not(.ant-table-row-expand-icon-cell):not([colspan])::before {
+    > th:not(:last-child):not(.ant-table-selection-column):not(
+      .ant-table-row-expand-icon-cell
+    ):not([colspan])::before {
     position: relative;
   }
 `;
 
 export const Skeleton = styled(DSSkeleton)<{ skeletonWidth?: string }>`
   padding: 0;
-  ${props => props.skeletonWidth && `width: ${props.skeletonWidth};`}
+  ${(props) => props.skeletonWidth && `width: ${props.skeletonWidth};`}
 `;
 
-export const TableSkeletonCell = styled.div<{ height?: number; width?: string }>`
+export const TableSkeletonCell = styled.div<{
+  height?: number;
+  width?: string;
+}>`
   display: flex;
-  height: ${props => `${props.height}px` || 'auto'};
-  width: ${props => `${props.width}` || '50%'};
+  height: ${(props) => (props.height ? `${props.height}px` : 'auto')};
+  width: ${(props) => `${props.width}` || '50%'};
   align-items: center;
   justify-content: flex-start;
 `;

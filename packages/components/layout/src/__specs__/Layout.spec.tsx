@@ -1,5 +1,7 @@
 import React from 'react';
-import { renderWithProvider } from '@synerise/ds-utils/dist/testing';
+
+import { renderWithProvider } from '@synerise/ds-utils';
+
 import Layout from '../index';
 
 describe('Layout', () => {
@@ -13,7 +15,7 @@ describe('Layout', () => {
     const { getByText } = renderWithProvider(
       <Layout header={TITLE}>
         <>{TEXT_TEST}</>
-      </Layout>
+      </Layout>,
     );
     // ASSERT
     expect(getByText(TITLE)).toBeTruthy();
@@ -24,7 +26,7 @@ describe('Layout', () => {
     const { getByText } = renderWithProvider(
       <Layout right={{ content: RIGHT_SIDEBAR }}>
         <p>{TEXT_TEST}</p>
-      </Layout>
+      </Layout>,
     );
     // ASSERT
     expect(getByText(RIGHT_SIDEBAR)).toBeTruthy();
@@ -35,7 +37,7 @@ describe('Layout', () => {
     const { getByText } = renderWithProvider(
       <Layout left={{ content: LEFT_SIDEBAR }}>
         <p>{TEXT_TEST}</p>
-      </Layout>
+      </Layout>,
     );
     // ASSERT
     expect(getByText(LEFT_SIDEBAR)).toBeTruthy();

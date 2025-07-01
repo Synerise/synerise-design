@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+
 import Button from '@synerise/ds-button';
 import { ButtonLabel } from '@synerise/ds-button/dist/Button.styles';
 import DSContentItem from '@synerise/ds-manageable-list/dist/Item/ContentItem/ContentItem';

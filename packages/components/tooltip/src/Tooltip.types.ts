@@ -1,5 +1,5 @@
-import { ReactNode } from 'react';
-import { TooltipPropsWithTitle } from 'antd/lib/tooltip';
+import { type TooltipPropsWithTitle } from 'antd/lib/tooltip';
+import { type ReactNode } from 'react';
 
 export type tooltipTypes =
   | 'default'
@@ -36,4 +36,5 @@ export type TooltipExtendedProps = {
 };
 export default TooltipExtendedProps;
 
-export type TooltipProps = Omit<TooltipPropsWithTitle, 'title'> & TooltipExtendedProps;
+export type TooltipProps = Omit<TooltipPropsWithTitle, 'title'> &
+  TooltipExtendedProps;

@@ -1,8 +1,8 @@
-import React from 'react';
-import type { ReactNode, MouseEvent } from 'react';
+import React, { type MouseEvent, type ReactNode } from 'react';
 import { v4 as uuid } from 'uuid';
+
 import * as S from './AvatarLabel.styles';
-import { AvatarLabelProps } from './AvatarLabel.types';
+import { type AvatarLabelProps } from './AvatarLabel.types';
 
 const AvatarLabel = ({
   avatar,
@@ -31,7 +31,12 @@ const AvatarLabel = ({
       {icon && <S.Icon>{icon}</S.Icon>}
       <S.Avatar clickable={Boolean(avatarAction)}>{avatar}</S.Avatar>
       <S.Description>
-        <S.Title {...titleEllipsisProps} hasEllipsis={ellipsis} maxWidth={maxWidth} avatarSize={avatarSize}>
+        <S.Title
+          {...titleEllipsisProps}
+          hasEllipsis={ellipsis}
+          maxWidth={maxWidth}
+          avatarSize={avatarSize}
+        >
           {title}
         </S.Title>
         {labels && (

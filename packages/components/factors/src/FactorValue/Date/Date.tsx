@@ -1,7 +1,12 @@
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
-import { getPopupContainer } from '@synerise/ds-utils';
+
 import DatePicker from '@synerise/ds-date-picker';
-import { FactorsProps, FactorValueComponentProps } from '../../Factors.types';
+import { getPopupContainer } from '@synerise/ds-utils';
+
+import {
+  type FactorValueComponentProps,
+  type FactorsProps,
+} from '../../Factors.types';
 
 const DateInput = ({
   value,
@@ -25,10 +30,13 @@ const DateInput = ({
     (date: Date | undefined) => {
       onChange(date);
     },
-    [onChange]
+    [onChange],
   );
 
-  const localValueAsDate = useMemo(() => (localValue ? new Date(String(localValue)) : undefined), [localValue]);
+  const localValueAsDate = useMemo(
+    () => (localValue ? new Date(String(localValue)) : undefined),
+    [localValue],
+  );
 
   const handleClear = useCallback(() => {
     onChange(undefined);
@@ -43,7 +51,7 @@ const DateInput = ({
         onActivate && onActivate();
       }
     },
-    [localValueAsDate, onActivate, onChange, onDeactivate]
+    [localValueAsDate, onActivate, onChange, onDeactivate],
   );
 
   return (

@@ -5,11 +5,14 @@ import Icon, { ArrowLeftM } from '@synerise/ds-icon';
 import Tooltip from '@synerise/ds-tooltip';
 
 import * as S from './BackAction.styles';
-import { Props } from './BackAction.types';
+import { type Props } from './BackAction.types';
 
 const BackAction = ({ label, onClick, tooltip, tooltipProps }: Props) => (
   <S.BackActionWrapper>
-    <S.ContentWrapper data-testid="dropdown-back-action-arrow" onClick={onClick}>
+    <S.ContentWrapper
+      data-testid="dropdown-back-action-arrow"
+      onClick={onClick}
+    >
       <Tooltip title={tooltip} {...tooltipProps}>
         <S.IconWrapper>
           <Icon component={<ArrowLeftM />} />

@@ -1,7 +1,10 @@
 import React from 'react';
 
-import { renderWithProvider } from '@synerise/ds-utils/dist/testing';
-import { FormattedNumber, DataFormatNotationType } from '@synerise/ds-data-format';
+import {
+  type DataFormatNotationType,
+  FormattedNumber,
+} from '@synerise/ds-data-format';
+import { renderWithProvider } from '@synerise/ds-utils';
 
 const INT_NUMBER_TO_FORMAT = 1234567;
 const FLOAT_NUMBER_TO_FORMAT = 1234567.89;
@@ -17,7 +20,9 @@ const EU_FORMATTED_FLOAT_NUMBER = '1 234 567,89';
 describe('FormattedNumber', () => {
   it('should render properly value with default notation', () => {
     // ARRANGE
-    const { getByText } = renderWithProvider(<FormattedNumber value={INT_NUMBER_TO_FORMAT} />);
+    const { getByText } = renderWithProvider(
+      <FormattedNumber value={INT_NUMBER_TO_FORMAT} />,
+    );
 
     // ASSERT
     expect(getByText(EU_FORMATTED_INT_NUMBER)).toBeTruthy();
@@ -28,7 +33,7 @@ describe('FormattedNumber', () => {
     const { getByText } = renderWithProvider(
       <FormattedNumber value={INT_NUMBER_TO_FORMAT} />,
       {},
-      { notation: EU_NOTATION }
+      { notation: EU_NOTATION },
     );
 
     // ASSERT
@@ -40,7 +45,7 @@ describe('FormattedNumber', () => {
     const { getByText } = renderWithProvider(
       <FormattedNumber value={FLOAT_NUMBER_TO_FORMAT} />,
       {},
-      { notation: EU_NOTATION }
+      { notation: EU_NOTATION },
     );
 
     // ASSERT
@@ -52,7 +57,7 @@ describe('FormattedNumber', () => {
     const { getByText } = renderWithProvider(
       <FormattedNumber value={INT_NUMBER_TO_FORMAT} />,
       {},
-      { notation: US_NOTATION }
+      { notation: US_NOTATION },
     );
 
     // ASSERT
@@ -64,7 +69,7 @@ describe('FormattedNumber', () => {
     const { getByText } = renderWithProvider(
       <FormattedNumber value={FLOAT_NUMBER_TO_FORMAT} />,
       {},
-      { notation: US_NOTATION }
+      { notation: US_NOTATION },
     );
 
     // ASSERT
@@ -74,9 +79,12 @@ describe('FormattedNumber', () => {
   it('should render properly number value with options', () => {
     // ARRANGE
     const { getByText } = renderWithProvider(
-      <FormattedNumber value={INT_NUMBER_TO_FORMAT} options={{ minimumFractionDigits: 2, prefix: 'Salary: ' }} />,
+      <FormattedNumber
+        value={INT_NUMBER_TO_FORMAT}
+        options={{ minimumFractionDigits: 2, prefix: 'Salary: ' }}
+      />,
       {},
-      { notation: US_NOTATION }
+      { notation: US_NOTATION },
     );
 
     // ASSERT

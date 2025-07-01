@@ -1,6 +1,6 @@
 import '@testing-library/jest-dom';
 import { denormalizeValue, isValidValue, normalizeValue } from './utils';
-import { FilterValue } from './RangeFilter.types';
+import { type FilterValue } from './RangeFilter.types';
 
 const denormalizeWeeklyFilter = {
   definition: {
@@ -300,6 +300,7 @@ describe('DateRangePicker utils ', () => {
       expect(isValidValue(VALID_DAILY_FILTER)).toBe(true);
     });
     it('should return false for invalid daily filter', () => {
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       expect(isValidValue(INVALID_DAILY_FILTER as any)).toBe(false);
     });
   });

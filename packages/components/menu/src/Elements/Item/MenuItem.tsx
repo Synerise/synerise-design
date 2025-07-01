@@ -1,14 +1,15 @@
 import React from 'react';
+
 import '@synerise/ds-core/dist/js/style';
 
-import { ItemType, MenuItemProps } from './MenuItem.types';
-import SubMenuItem from '../SubMenu/SubMenu';
-import { SubMenuProps } from '../SubMenu/SubMenu.types';
-import Text from './Text/Text';
-import Select from './Select/Select';
-import Danger from './Danger/Danger';
 import { MenuDivider } from '../../Menu.styles';
-import { MenuDividerProps } from '../../Menu.types';
+import { type MenuDividerProps } from '../../Menu.types';
+import SubMenuItem from '../SubMenu/SubMenu';
+import { type SubMenuProps } from '../SubMenu/SubMenu.types';
+import Danger from './Danger/Danger';
+import { ItemType, type MenuItemProps } from './MenuItem.types';
+import Select from './Select/Select';
+import Text from './Text/Text';
 
 const MenuItem = ({
   prefixel,
@@ -60,7 +61,7 @@ const MenuItem = ({
           disabled={disabled}
           description={description}
           indentLevel={indentLevel || 0}
-          onClick={menuInfo => {
+          onClick={(menuInfo) => {
             menuInfo.domEvent.stopPropagation();
             onClick && onClick(menuInfo);
           }}
@@ -78,7 +79,7 @@ const MenuItem = ({
           disabled={disabled}
           description={description}
           indentLevel={indentLevel || 0}
-          onClick={menuInfo => {
+          onClick={(menuInfo) => {
             menuInfo.domEvent.stopPropagation();
             onClick && onClick(menuInfo);
           }}
@@ -100,7 +101,7 @@ const MenuItem = ({
           description={description}
           timeToHideTooltip={timeToHideTooltip}
           indentLevel={indentLevel || 0}
-          onClick={menuInfo => {
+          onClick={(menuInfo) => {
             menuInfo.domEvent.stopPropagation();
             onClick && onClick(menuInfo);
           }}

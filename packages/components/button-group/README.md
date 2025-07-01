@@ -58,4 +58,4 @@ import ButtonGroup from '@synerise/ds-button-group'
 | buttonsPosition | Defines the horizontal position of buttons.              | `left` / `center` / `right` | `center` |
 | fullWidth       | Set buttons width to fill all available space            | boolean                     | `false`  |
 | children        | Buttons used in the group                                | React.ReactNode             | -        |
-| splitMode       | Enables split mode - adds borders to single-icon buttons | boolean                     | `false`   |
+| splitMode       | Enables split mode - adds borders to single-icon buttons | boolean                     | `false`  |

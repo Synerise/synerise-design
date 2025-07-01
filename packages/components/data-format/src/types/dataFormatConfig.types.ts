@@ -1,7 +1,8 @@
-import { IntlShape } from 'react-intl';
+import { type IntlShape } from 'react-intl';
 
-const DATA_FORMAT_NOTATION_TYPES = ['US', 'EU'] as const;
-export type DataFormatNotationType = typeof DATA_FORMAT_NOTATION_TYPES[number];
+const _DATA_FORMAT_NOTATION_TYPES = ['US', 'EU'] as const;
+export type DataFormatNotationType =
+  (typeof _DATA_FORMAT_NOTATION_TYPES)[number];
 
 export type DataFormatConfig = {
   startWeekDayNotation?: DataFormatNotationType;

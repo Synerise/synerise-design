@@ -1,10 +1,11 @@
 import React from 'react';
+
 import Logic from '@synerise/ds-logic';
 import StepCard from '@synerise/ds-step-card';
 
-import type { ExpressionItemProps } from './ExpressionItem.types';
 import * as S from '../../Filter.styles';
 import { isStepType } from '../../utils';
+import type { ExpressionItemProps } from './ExpressionItem.types';
 
 export const ExpressionItem = ({
   handleTransitionEnd,
@@ -24,7 +25,12 @@ export const ExpressionItem = ({
 }: ExpressionItemProps) => {
   const { data, id } = expression;
   const shouldRenderLogic =
-    isStepType(expression) && expression.logic && !isLast && !isDragged && !isDragOverlay && expressionIndex !== -1;
+    isStepType(expression) &&
+    expression.logic &&
+    !isLast &&
+    !isDragged &&
+    !isDragOverlay &&
+    expressionIndex !== -1;
   return (
     <S.ExpressionWrapper
       data-testid="condition-step"
@@ -33,7 +39,7 @@ export const ExpressionItem = ({
       key={id}
       onMouseDown={handleMouseDown}
     >
-      {/* @ts-expect-error */}
+      {/* @ts-expect-error Types of property 'matching' are incompatible. */}
       <StepCard
         expressionIndex={expressionIndex}
         expressionCount={expressionsOrder.length}
@@ -47,8 +53,12 @@ export const ExpressionItem = ({
       />
       {shouldRenderLogic && (
         <S.LogicWrapper data-testid="condition-logic">
-          {/* @ts-expect-error */}
-          <Logic {...logicProps} {...expression.logic.data} readOnly={readOnly} />
+          {/* @ts-expect-error Types of property 'value' are incompatible. */}
+          <Logic
+            {...logicProps}
+            {...expression.logic?.data}
+            readOnly={readOnly}
+          />
         </S.LogicWrapper>
       )}
     </S.ExpressionWrapper>

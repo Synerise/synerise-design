@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+
 import Drawer from '@synerise/ds-drawer';
 import SearchBarBase from '@synerise/ds-search-bar';
 

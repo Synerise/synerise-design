@@ -31,25 +31,23 @@ import Tabs from '@synerise/ds-tabs'
 ### Tabs
 
 | Property       | Description                                | Type                    | Default |
-|----------------|--------------------------------------------|-------------------------|---------|
+| -------------- | ------------------------------------------ | ----------------------- | ------- |
 | activeTab      | Active tab index                           | number                  | -       |
 | configuration  | Shows additional position in tabs dropdown | Configuration           | -       |
 | handleTabClick | Callback fired when user clicks on the tab | (index: number) => void | -       |
 | tabs           | Array of tabs                              | Tab[]                   | []      |
 | underscore     | Underscore active item                     | boolean                 | `true`  |
 
-
 ### Tab
 
 | Property     | Description                    | Type         | Default |
-|--------------|--------------------------------|--------------|---------|
+| ------------ | ------------------------------ | ------------ | ------- |
 | disabled     | Flag of disabled tabs          | boolean      | `false` |
 | icon         | tab icon                       | Icon         | -       |
 | label        | Label of tab                   | ReactNode    | -       |
 | tooltip      | Tab tooltip text               | ReactNode    | -       |
 | tooltipProps | Tooltip props (see ds-tooltip) | TooltipProps | -       |
 | underscore   | Underscore active item         | boolean      | `true`  |
-
 
 #### Configuration
 

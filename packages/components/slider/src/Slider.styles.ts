@@ -1,8 +1,16 @@
+import Slider, {
+  type SliderRangeProps,
+  type SliderSingleProps,
+} from 'antd/lib/slider';
+import { type ComponentType } from 'react';
 import styled, { css } from 'styled-components';
-import Slider, { SliderSingleProps, SliderRangeProps } from 'antd/lib/slider';
-import { ThemeProps } from '@synerise/ds-core';
-import { ComponentType } from 'react';
-import { ColorMapProps, SliderProps as DsSliderProps } from './Slider.types';
+
+import { type ThemeProps } from '@synerise/ds-core';
+
+import {
+  type ColorMapProps,
+  type SliderProps as DsSliderProps,
+} from './Slider.types';
 
 type SliderProps = SliderSingleProps | SliderRangeProps;
 
@@ -21,10 +29,10 @@ const INDEX_MAP = {
 
 export const Description = styled.div<{ range?: boolean }>`
   bottom: 70px;
-  color: ${props => props.theme.palette['grey-500']};
+  color: ${(props) => props.theme.palette['grey-500']};
   font-weight: 400;
   position: absolute;
-  opacity: ${props => (props.range ? '0' : '1')};
+  opacity: ${(props) => (props.range ? '0' : '1')};
 `;
 
 export const LabelWrapper = styled.div`
@@ -43,7 +51,9 @@ export const DescriptionWrapper = styled.div`
   right: 0;
 `;
 
-export const applyTooltipStyles = (props: ThemeProps & DsSliderProps & SliderStyles) => css`
+export const applyTooltipStyles = (
+  props: ThemeProps & DsSliderProps & SliderStyles,
+) => css`
   .ant-tooltip-inner {
     font-size: 13px;
     padding: 3px 7px;
@@ -125,7 +135,10 @@ export const applyTooltipStyles = (props: ThemeProps & DsSliderProps & SliderSty
     box-shadow: 0 0 0 3px rgba(35, 138, 254, 0.25) !important;
   }
 `;
-export const createTracksStyles = (props: ThemeProps, colorsMap: ColorMapProps) => {
+export const createTracksStyles = (
+  props: ThemeProps,
+  colorsMap: ColorMapProps,
+) => {
   const styles = Object.values(colorsMap).map(
     (color: string, index: number) => `
       .ant-slider-segment-${index},
@@ -138,7 +151,7 @@ export const createTracksStyles = (props: ThemeProps, colorsMap: ColorMapProps) 
       .ant-slider-dot-active${index + 11} {
         background-color: ${props.theme.palette[color]};
       }
-  `
+  `,
   );
   const style = styles.join('');
   return css`
@@ -185,33 +198,42 @@ type SliderStyles = {
   reachedStart?: boolean;
 };
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-export const AntdSlider = styled(Slider as any as ComponentType<Omit<SliderProps, 'value'>>)<
-  DsSliderProps & SliderStyles
->`
-  ${props =>
-    props.useColorPalette ? createTracksStyles(props, props.tracksColorMap ? props.tracksColorMap : INDEX_MAP) : css``}
+export const AntdSlider = styled(
+  Slider as ComponentType<Omit<SliderProps, 'value'>>,
+)<DsSliderProps & SliderStyles>`
+  ${(props) =>
+    props.useColorPalette
+      ? createTracksStyles(
+          props,
+          props.tracksColorMap ? props.tracksColorMap : INDEX_MAP,
+        )
+      : css``}
   .ant-slider-track {
-    height: ${props => (props.thickness ? `${props.thickness}px` : `3px`)};
+    height: ${(props) => (props.thickness ? `${props.thickness}px` : `3px`)};
   }
   &.ant-slider:hover {
-    ${props =>
+    ${(props) =>
       props.useColorPalette
-        ? createTracksStyles(props, props.tracksColorMap ? props.tracksColorMap : INDEX_MAP)
+        ? createTracksStyles(
+            props,
+            props.tracksColorMap ? props.tracksColorMap : INDEX_MAP,
+          )
         : css``};
   }
   .ant-slider-rail {
-    height: ${props => (props.thickness ? `${props.thickness}px` : `3px`)};
+    height: ${(props) => (props.thickness ? `${props.thickness}px` : `3px`)};
   }
-  ${props => applyTooltipStyles(props)}
+  ${(props) => applyTooltipStyles(props)}
   .ant-slider-handle {
     z-index: 99;
-    margin-top: ${props => (props.thickness && props.thickness > 5 ? '-7px' : '-8px')};
+    margin-top: ${(props) =>
+      props.thickness && props.thickness > 5 ? '-7px' : '-8px'};
   }
   .ant-slider-dot {
-    margin-top: ${props => (props.thickness && props.thickness > 5 ? '0px' : '-1px')};
+    margin-top: ${(props) =>
+      props.thickness && props.thickness > 5 ? '0px' : '-1px'};
   }
   &&&.ant-slider {
-    margin-top: ${props => (props.description ? '38px' : '24px')};
+    margin-top: ${(props) => (props.description ? '38px' : '24px')};
   }
 `;

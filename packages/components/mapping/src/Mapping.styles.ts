@@ -5,7 +5,7 @@ import { Title } from '@synerise/ds-typography';
 export const MappingWrapper = styled.div<{ isCompact: boolean }>`
   display: flex;
   flex-direction: column;
-  ${props => !props.isCompact && `gap: 16px`};
+  ${(props) => !props.isCompact && `gap: 16px`};
 `;
 export const MappingRow = styled.div`
   display: flex;
@@ -34,7 +34,7 @@ export const BatchSelectionWrapper = styled.div`
   align-items: center;
   justify-content: space-between;
   gap: 14px;
-  border-bottom: solid 1px ${props => props.theme.palette['grey-300']};
+  border-bottom: solid 1px ${(props) => props.theme.palette['grey-300']};
   height: 64px;
 `;
 export const BatchActionButtons = styled.div`

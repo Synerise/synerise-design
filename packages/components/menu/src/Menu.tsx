@@ -1,22 +1,24 @@
-import React, { Children, Component, ReactNode } from 'react';
+import React, { Children, Component, type ReactNode } from 'react';
+import { FormattedMessage } from 'react-intl';
 
 import Button from '@synerise/ds-button';
+import '@synerise/ds-core/dist/js/style';
 import Icon, { ArrowDownCircleM, ArrowUpCircleM } from '@synerise/ds-icon';
 import Tooltip from '@synerise/ds-tooltip';
-import '@synerise/ds-core/dist/js/style';
 
-import './style/index.less';
-import { FormattedMessage } from 'react-intl';
-import * as S from './Menu.styles';
-
-import SubMenuItem from './Elements/SubMenu/SubMenu';
-import type { AntdMenuProps } from './Menu.types';
-import MenuItem from './Elements/Item/MenuItem';
-import type { MenuItemProps } from './Elements/Item/MenuItem.types';
 import Breadcrumb from './Elements/Breadcrumb/Breadcrumb';
 import Header from './Elements/Header/Header';
+import MenuItem from './Elements/Item/MenuItem';
+import type { MenuItemProps } from './Elements/Item/MenuItem.types';
+import SubMenuItem from './Elements/SubMenu/SubMenu';
+import * as S from './Menu.styles';
+import type { AntdMenuProps } from './Menu.types';
+import './style/index.less';
 
-export class Menu extends Component<AntdMenuProps, { allItemsVisible: boolean }> {
+export class Menu extends Component<
+  AntdMenuProps,
+  { allItemsVisible: boolean }
+> {
   static Item: typeof MenuItem = MenuItem;
   static Breadcrumb: typeof Breadcrumb = Breadcrumb;
   static Header: typeof Header = Header;
@@ -34,27 +36,57 @@ export class Menu extends Component<AntdMenuProps, { allItemsVisible: boolean }>
   }
 
   render(): ReactNode {
-    const { dataSource, ordered, selectable, children, showTextTooltip, texts, maxToShowItems, ...rest } = this.props;
+    const {
+      dataSource,
+      ordered,
+      selectable,
+      children,
+      showTextTooltip,
+      texts,
+      maxToShowItems,
+      ...rest
+    } = this.props;
     const { allItemsVisible } = this.state;
 
     const allTexts = {
-      showLess: <FormattedMessage id="DS.MENU.SHOW-LESS" defaultMessage="Show less" />,
-      showMore: <FormattedMessage id="DS.MENU.SHOW-MORE" defaultMessage="Show more" />,
+      showLess: (
+        <FormattedMessage id="DS.MENU.SHOW-LESS" defaultMessage="Show less" />
+      ),
+      showMore: (
+        <FormattedMessage id="DS.MENU.SHOW-MORE" defaultMessage="Show more" />
+      ),
       ...texts,
     };
     const isListTogglable = maxToShowItems !== undefined;
     const isDataSource = dataSource !== undefined;
     const childrenArray = Children.toArray(children);
 
-    const itemsCount = (isDataSource ? dataSource.length : childrenArray.length) || 0;
+    const itemsCount =
+      (isDataSource ? dataSource.length : childrenArray.length) || 0;
     const itemsOverLimit = isListTogglable ? itemsCount - maxToShowItems : 0;
-    const visibleItems = allItemsVisible || !isListTogglable ? dataSource : dataSource?.slice(0, maxToShowItems);
-    const visibleChildren = allItemsVisible || !isListTogglable ? children : childrenArray.slice(0, maxToShowItems);
-    const toggleButtonLabel = allItemsVisible ? allTexts.showLess : allTexts.showMore;
+    const visibleItems =
+      allItemsVisible || !isListTogglable
+        ? dataSource
+        : dataSource?.slice(0, maxToShowItems);
+    const visibleChildren =
+      allItemsVisible || !isListTogglable
+        ? children
+        : childrenArray.slice(0, maxToShowItems);
+    const toggleButtonLabel = allItemsVisible
+      ? allTexts.showLess
+      : allTexts.showMore;
 
     const toggleButton = isListTogglable && itemsOverLimit > 0 && (
-      <Button onClick={() => this.toggleItems()} type="ghost-primary" mode="icon-label">
-        <Icon component={allItemsVisible ? <ArrowUpCircleM /> : <ArrowDownCircleM />} />
+      <Button
+        onClick={() => this.toggleItems()}
+        type="ghost-primary"
+        mode="icon-label"
+      >
+        <Icon
+          component={
+            allItemsVisible ? <ArrowUpCircleM /> : <ArrowDownCircleM />
+          }
+        />
         {toggleButtonLabel}
       </Button>
     );
@@ -76,16 +108,24 @@ export class Menu extends Component<AntdMenuProps, { allItemsVisible: boolean }>
                     prefixel={item.prefixel}
                     suffixel={item.suffixel}
                     disabled={item.disabled}
-                    text={showTextTooltip ? <Tooltip title={item.text}>{item.text}</Tooltip> : item.text}
+                    text={
+                      showTextTooltip ? (
+                        <Tooltip title={item.text}>{item.text}</Tooltip>
+                      ) : (
+                        item.text
+                      )
+                    }
                     description={item.description}
                     subMenu={item.subMenu}
-                    ordered={item.ordered === undefined ? ordered : item.ordered}
+                    ordered={
+                      item.ordered === undefined ? ordered : item.ordered
+                    }
                     copyable={item.copyable}
                     copyHint={item.copyHint}
                     copyValue={item.copyValue}
                     suffixVisibilityTrigger={item.suffixVisibilityTrigger}
                     prefixVisibilityTrigger={item.prefixVisibilityTrigger}
-                    key={item.key || `${item.text}${index}`} // eslint-disable-line react/no-array-index-key
+                    key={item.key || `${item.text}${index}`}
                     menuItemKey={item.key || `${item.text}${index}`}
                     {...rest}
                     {...item}
@@ -97,10 +137,18 @@ export class Menu extends Component<AntdMenuProps, { allItemsVisible: boolean }>
                     prefixel={item.prefixel}
                     suffixel={item.suffixel}
                     disabled={item.disabled}
-                    text={showTextTooltip ? <Tooltip title={item.text}>{item.text}</Tooltip> : item.text}
+                    text={
+                      showTextTooltip ? (
+                        <Tooltip title={item.text}>{item.text}</Tooltip>
+                      ) : (
+                        item.text
+                      )
+                    }
                     description={item.description}
                     subMenu={item.subMenu}
-                    ordered={item.ordered === undefined ? ordered : item.ordered}
+                    ordered={
+                      item.ordered === undefined ? ordered : item.ordered
+                    }
                     copyable={item.copyable}
                     copyHint={item.copyHint}
                     copyValue={item.copyValue}
@@ -109,12 +157,12 @@ export class Menu extends Component<AntdMenuProps, { allItemsVisible: boolean }>
                     prefixVisibilityTrigger={item.prefixVisibilityTrigger}
                     indentLevel={item.indentLevel || 0}
                     type={item.type}
-                    key={item.key || `${item.text}${index}`} // eslint-disable-line react/no-array-index-key
+                    key={item.key || `${item.text}${index}`}
                     menuItemKey={item.key || `${item.text}${index}`}
                     {...rest}
                     {...item}
                   />
-                )
+                ),
               )
             : visibleChildren}
         </S.AntdMenu>

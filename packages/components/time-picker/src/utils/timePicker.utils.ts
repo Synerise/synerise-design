@@ -1,7 +1,14 @@
 import dayjs from 'dayjs';
 
-import { AM, HOUR, HOUR_12, MAP_12_AM_TO_24_HOUR, MAP_12_PM_TO_24_HOUR, PM } from '../constants/timePicker.constants';
-import { UnitConfig } from '../Unit';
+import { type UnitConfig } from '../Unit';
+import {
+  AM,
+  HOUR,
+  HOUR_12,
+  MAP_12_AM_TO_24_HOUR,
+  MAP_12_PM_TO_24_HOUR,
+  PM,
+} from '../constants/timePicker.constants';
 
 export const handleTimeChange = (
   value: Date | undefined,
@@ -10,7 +17,7 @@ export const handleTimeChange = (
   clockModeChanged = false,
   use12HourClock: boolean | undefined,
   clockMode: string,
-  unitConfig: UnitConfig[]
+  unitConfig: UnitConfig[],
 ): Date => {
   const wasUndefined = value === undefined;
   let dateBuilder = dayjs(value);
@@ -21,7 +28,10 @@ export const handleTimeChange = (
 
   let hourToMap = dateBuilder.get(HOUR);
   if (use12HourClock) {
-    hourToMap = clockMode === AM ? MAP_12_AM_TO_24_HOUR[hourToMap] : MAP_12_PM_TO_24_HOUR[hourToMap];
+    hourToMap =
+      clockMode === AM
+        ? MAP_12_AM_TO_24_HOUR[hourToMap]
+        : MAP_12_PM_TO_24_HOUR[hourToMap];
     if (unit === HOUR || clockModeChanged) {
       dateBuilder = dateBuilder.set(HOUR, hourToMap);
     }
@@ -30,8 +40,10 @@ export const handleTimeChange = (
   if (wasUndefined) {
     // set remaining time fields to 0, HH:00:00, 00:mm:00, 00:00:ss
     unitConfig
-      .filter(unitDefinition => unitDefinition.unit !== unit)
-      .forEach(unitDefinition => (dateBuilder = dateBuilder[unitDefinition.unit](0)));
+      .filter((unitDefinition) => unitDefinition.unit !== unit)
+      .forEach(
+        (unitDefinition) => (dateBuilder = dateBuilder[unitDefinition.unit](0)),
+      );
     if (use12HourClock && clockMode === PM && unit !== HOUR) {
       dateBuilder = dateBuilder.set(HOUR, HOUR_12);
     }

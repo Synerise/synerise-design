@@ -1,7 +1,7 @@
 import React from 'react';
 
-import type { ToolbarProps } from './Toolbar.types';
 import * as S from './Toolbar.styles';
+import type { ToolbarProps } from './Toolbar.types';
 
 const Toolbar = ({ children, ...htmlAttributes }: ToolbarProps) => {
   return <S.ToolbarWrapper {...htmlAttributes}>{children}</S.ToolbarWrapper>;

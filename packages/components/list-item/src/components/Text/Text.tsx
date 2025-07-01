@@ -1,14 +1,20 @@
-import React, { useState, useMemo, MouseEvent, FocusEvent } from 'react';
 import copy from 'copy-to-clipboard';
-import { renderWithHighlight } from '@synerise/ds-utils';
-import Tooltip from '@synerise/ds-tooltip';
-import Icon, { AngleRightS, CheckS } from '@synerise/ds-icon';
-import { theme } from '@synerise/ds-core';
+import React, {
+  type FocusEvent,
+  type MouseEvent,
+  useMemo,
+  useState,
+} from 'react';
 
-import { BasicItemProps, itemSizes } from '../../ListItem.types';
-import * as S from './Text.styles';
+import { theme } from '@synerise/ds-core';
+import Icon, { AngleRightS, CheckS } from '@synerise/ds-icon';
+import Tooltip from '@synerise/ds-tooltip';
+import { renderWithHighlight } from '@synerise/ds-utils';
+
+import { type BasicItemProps, itemSizes } from '../../ListItem.types';
 import { HoverTooltip } from '../index';
-import { renderAddon, removeHandlerProps } from './utils';
+import * as S from './Text.styles';
+import { removeHandlerProps, renderAddon } from './utils';
 
 const Text = (props: BasicItemProps) => {
   const {
@@ -56,8 +62,14 @@ const Text = (props: BasicItemProps) => {
   const showSuffixOnHover = suffixVisibilityTrigger === 'hover';
   const showPrefixOnHover = prefixVisibilityTrigger === 'hover';
 
-  const suffixElement = useMemo(() => renderAddon(suffixel, hovered), [suffixel, hovered]);
-  const prefixElement = useMemo(() => renderAddon(prefixel, hovered), [prefixel, hovered]);
+  const suffixElement = useMemo(
+    () => renderAddon(suffixel, hovered),
+    [suffixel, hovered],
+  );
+  const prefixElement = useMemo(
+    () => renderAddon(prefixel, hovered),
+    [prefixel, hovered],
+  );
 
   const shouldRenderSuffix = useMemo(() => {
     if (showSuffixOnHover) {
@@ -75,7 +87,12 @@ const Text = (props: BasicItemProps) => {
 
   const childrenWithHighlight = useMemo(() => {
     if (highlight && typeof children === 'string') {
-      return renderWithHighlight(children, highlight, 'ds-list-item-highlight', 'ds-list-item-highlight');
+      return renderWithHighlight(
+        children,
+        highlight,
+        'ds-list-item-highlight',
+        'ds-list-item-highlight',
+      );
     }
     return children;
   }, [children, highlight]);
@@ -142,22 +159,42 @@ const Text = (props: BasicItemProps) => {
       >
         <S.Inner>
           {prefixElement && (
-            <S.PrefixWrapper data-testid="list-item-prefix" visible={shouldRenderPrefix} disabled={disabled}>
+            <S.PrefixWrapper
+              data-testid="list-item-prefix"
+              visible={shouldRenderPrefix}
+              disabled={disabled}
+            >
               {prefixElement}
             </S.PrefixWrapper>
           )}
           <S.Content className="ds-list-item-content" highlight={!!highlight}>
-            {canCopyToClipboard && hovered && copyHint ? copyHint : childrenWithHighlight}
-            {description && size === itemSizes.LARGE && <S.Description>{description}</S.Description>}
+            {canCopyToClipboard && hovered && copyHint
+              ? copyHint
+              : childrenWithHighlight}
+            {description && size === itemSizes.LARGE && (
+              <S.Description>{description}</S.Description>
+            )}
           </S.Content>
           {parent && (
             <S.ArrowRight>
-              <Icon component={<AngleRightS />} color={theme.palette['grey-600']} />
+              <Icon
+                component={<AngleRightS />}
+                color={theme.palette['grey-600']}
+              />
             </S.ArrowRight>
           )}
           {(!!suffixElement || !!checked) && (
-            <S.SuffixWrapper data-testid="list-item-suffix" visible={shouldRenderSuffix} disabled={disabled}>
-              {!!checked && <Icon component={<CheckS />} color={theme.palette[`green-600`]} />}
+            <S.SuffixWrapper
+              data-testid="list-item-suffix"
+              visible={shouldRenderSuffix}
+              disabled={disabled}
+            >
+              {!!checked && (
+                <Icon
+                  component={<CheckS />}
+                  color={theme.palette[`green-600`]}
+                />
+              )}
               {suffixElement}
             </S.SuffixWrapper>
           )}
@@ -167,7 +204,11 @@ const Text = (props: BasicItemProps) => {
   );
   if (renderHoverTooltip) {
     return (
-      <HoverTooltip hoverTooltipProps={hoverTooltipProps} renderHoverTooltip={renderHoverTooltip} style={style}>
+      <HoverTooltip
+        hoverTooltipProps={hoverTooltipProps}
+        renderHoverTooltip={renderHoverTooltip}
+        style={style}
+      >
         {TextNode}
       </HoverTooltip>
     );

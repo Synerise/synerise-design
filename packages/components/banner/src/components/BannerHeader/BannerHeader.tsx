@@ -1,14 +1,26 @@
 import React, { useMemo } from 'react';
+
 import Button from '@synerise/ds-button';
 import Icon, { AngleDownS, AngleUpS } from '@synerise/ds-icon';
 
-import type { BannerHeaderProps } from '../../Banner.types';
 import * as S from '../../Banner.styles';
+import type { BannerHeaderProps } from '../../Banner.types';
 
-export const BannerHeader = ({ closeButton, icon, title, isExpanded = true, texts, onToggle }: BannerHeaderProps) => {
+export const BannerHeader = ({
+  closeButton,
+  icon,
+  title,
+  isExpanded = true,
+  texts,
+  onToggle,
+}: BannerHeaderProps) => {
   const toggleButtonElement = useMemo(() => {
     return (
-      <Button mode="label-icon" type="ghost-primary" onClick={() => onToggle(!isExpanded)}>
+      <Button
+        mode="label-icon"
+        type="ghost-primary"
+        onClick={() => onToggle(!isExpanded)}
+      >
         {isExpanded ? texts.collapse : texts.expand}
         <Icon component={isExpanded ? <AngleUpS /> : <AngleDownS />} />
       </Button>

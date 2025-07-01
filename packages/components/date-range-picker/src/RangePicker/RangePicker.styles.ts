@@ -1,5 +1,6 @@
 import styled from 'styled-components';
-import Button, { ButtonProps } from '@synerise/ds-button';
+
+import Button, { type ButtonProps } from '@synerise/ds-button';
 
 export const Sides = styled.div`
   display: grid;
@@ -26,7 +27,8 @@ export const Side = styled.div<{ mode: string }>`
       }`}
 
   > *:not(:last-child) {
-    border-bottom: 1px solid ${(props): string => props.theme.palette['grey-200']};
+    border-bottom: 1px solid
+      ${(props): string => props.theme.palette['grey-200']};
   }
   && .ds-time-picker {
     padding: 16px 16px 0px 16px;

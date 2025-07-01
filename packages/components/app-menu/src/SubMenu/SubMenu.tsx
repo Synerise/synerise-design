@@ -1,10 +1,15 @@
 import React from 'react';
-import * as S from './SubMenu.styles';
-import Item from './Item/Item';
-import SubMenuContext from './SubMenuContext/SubMenuContext';
-import { SubComponents, SubMenuProps } from './SubMenu.types';
 
-const SubMenu: React.FC<SubMenuProps> & SubComponents = ({ children, className, style }) => {
+import Item from './Item/Item';
+import * as S from './SubMenu.styles';
+import { type SubComponents, type SubMenuProps } from './SubMenu.types';
+import SubMenuContext from './SubMenuContext/SubMenuContext';
+
+const SubMenu: React.FC<SubMenuProps> & SubComponents = ({
+  children,
+  className,
+  style,
+}) => {
   const subMenuContext = React.useContext(SubMenuContext);
 
   if (!subMenuContext) {

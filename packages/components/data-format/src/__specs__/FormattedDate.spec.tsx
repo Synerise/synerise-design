@@ -1,9 +1,12 @@
-import React from 'react';
-import moment from 'moment';
 import dayjs from 'dayjs';
+import moment from 'moment';
+import React from 'react';
 
-import { renderWithProvider } from '@synerise/ds-utils/dist/testing';
-import { FormattedDate, DataFormatNotationType } from '@synerise/ds-data-format';
+import {
+  type DataFormatNotationType,
+  FormattedDate,
+} from '@synerise/ds-data-format';
+import { renderWithProvider } from '@synerise/ds-utils';
 
 const DATE_TO_FORMAT = new Date('2023-06-25T15:40:00');
 const MOMENT_TO_FORMAT = moment(DATE_TO_FORMAT);
@@ -19,7 +22,9 @@ const EU_FORMATTED_DATE = '25.06.2023';
 describe('FormattedDate', () => {
   it('should render properly date with default notation', () => {
     // ARRANGE
-    const { getByText } = renderWithProvider(<FormattedDate value={DATE_TO_FORMAT} />);
+    const { getByText } = renderWithProvider(
+      <FormattedDate value={DATE_TO_FORMAT} />,
+    );
 
     // ASSERT
     expect(getByText(EU_FORMATTED_DATE)).toBeTruthy();
@@ -27,7 +32,11 @@ describe('FormattedDate', () => {
 
   it('should render properly date with EU notation', () => {
     // ARRANGE
-    const { getByText } = renderWithProvider(<FormattedDate value={DATE_TO_FORMAT} />, {}, { notation: EU_NOTATION });
+    const { getByText } = renderWithProvider(
+      <FormattedDate value={DATE_TO_FORMAT} />,
+      {},
+      { notation: EU_NOTATION },
+    );
 
     // ASSERT
     expect(getByText(EU_FORMATTED_DATE)).toBeTruthy();
@@ -35,7 +44,11 @@ describe('FormattedDate', () => {
 
   it('should render properly date with US notation', () => {
     // ARRANGE
-    const { getByText } = renderWithProvider(<FormattedDate value={DATE_TO_FORMAT} />, {}, { notation: US_NOTATION });
+    const { getByText } = renderWithProvider(
+      <FormattedDate value={DATE_TO_FORMAT} />,
+      {},
+      { notation: US_NOTATION },
+    );
 
     // ASSERT
     expect(getByText(US_FORMATTED_DATE)).toBeTruthy();
@@ -43,7 +56,11 @@ describe('FormattedDate', () => {
 
   it('should render properly date from moment', () => {
     // ARRANGE
-    const { getByText } = renderWithProvider(<FormattedDate value={MOMENT_TO_FORMAT} />, {}, { notation: US_NOTATION });
+    const { getByText } = renderWithProvider(
+      <FormattedDate value={MOMENT_TO_FORMAT} />,
+      {},
+      { notation: US_NOTATION },
+    );
 
     // ASSERT
     expect(getByText(US_FORMATTED_DATE)).toBeTruthy();
@@ -51,7 +68,11 @@ describe('FormattedDate', () => {
 
   it('should render properly date from daysjs', () => {
     // ARRANGE
-    const { getByText } = renderWithProvider(<FormattedDate value={DAYJS_TO_FORMAT} />, {}, { notation: US_NOTATION });
+    const { getByText } = renderWithProvider(
+      <FormattedDate value={DAYJS_TO_FORMAT} />,
+      {},
+      { notation: US_NOTATION },
+    );
 
     // ASSERT
     expect(getByText(US_FORMATTED_DATE)).toBeTruthy();
@@ -62,7 +83,7 @@ describe('FormattedDate', () => {
     const { getByText } = renderWithProvider(
       <FormattedDate value={DAYJS_TO_FORMAT} options={{ month: 'long' }} />,
       {},
-      { notation: US_NOTATION }
+      { notation: US_NOTATION },
     );
 
     // ASSERT
@@ -74,7 +95,7 @@ describe('FormattedDate', () => {
     const { getByText } = renderWithProvider(
       <FormattedDate value={DAYJS_TO_FORMAT} options={{ month: 'long' }} />,
       {},
-      { locale: 'pl', notation: EU_NOTATION }
+      { locale: 'pl', notation: EU_NOTATION },
     );
 
     // ASSERT
@@ -86,7 +107,7 @@ describe('FormattedDate', () => {
     const { getByText } = renderWithProvider(
       <FormattedDate value={DAYJS_TO_FORMAT} options={{ month: 'short' }} />,
       {},
-      { locale: 'pl', notation: EU_NOTATION }
+      { locale: 'pl', notation: EU_NOTATION },
     );
 
     // ASSERT
@@ -96,9 +117,12 @@ describe('FormattedDate', () => {
   it('should render properly weekday-long', () => {
     // ARRANGE
     const { getByText } = renderWithProvider(
-      <FormattedDate value={DAYJS_TO_FORMAT} options={{ targetFormat: 'weekday-long' }} />,
+      <FormattedDate
+        value={DAYJS_TO_FORMAT}
+        options={{ targetFormat: 'weekday-long' }}
+      />,
       {},
-      { notation: US_NOTATION }
+      { notation: US_NOTATION },
     );
 
     // ASSERT
@@ -108,9 +132,12 @@ describe('FormattedDate', () => {
   it('should render properly weekday-long and PL locale', () => {
     // ARRANGE
     const { getByText } = renderWithProvider(
-      <FormattedDate value={DAYJS_TO_FORMAT} options={{ targetFormat: 'weekday-long' }} />,
+      <FormattedDate
+        value={DAYJS_TO_FORMAT}
+        options={{ targetFormat: 'weekday-long' }}
+      />,
       {},
-      { locale: 'pl', notation: US_NOTATION }
+      { locale: 'pl', notation: US_NOTATION },
     );
 
     // ASSERT
@@ -120,9 +147,12 @@ describe('FormattedDate', () => {
   it('should render properly weekday-short', () => {
     // ARRANGE
     const { getByText } = renderWithProvider(
-      <FormattedDate value={DAYJS_TO_FORMAT} options={{ targetFormat: 'weekday-short' }} />,
+      <FormattedDate
+        value={DAYJS_TO_FORMAT}
+        options={{ targetFormat: 'weekday-short' }}
+      />,
       {},
-      { notation: US_NOTATION }
+      { notation: US_NOTATION },
     );
 
     // ASSERT
@@ -132,9 +162,12 @@ describe('FormattedDate', () => {
   it('should render properly month-long', () => {
     // ARRANGE
     const { getByText } = renderWithProvider(
-      <FormattedDate value={DAYJS_TO_FORMAT} options={{ targetFormat: 'month-long' }} />,
+      <FormattedDate
+        value={DAYJS_TO_FORMAT}
+        options={{ targetFormat: 'month-long' }}
+      />,
       {},
-      { notation: US_NOTATION }
+      { notation: US_NOTATION },
     );
 
     // ASSERT
@@ -144,9 +177,12 @@ describe('FormattedDate', () => {
   it('should render properly month-long with PL locale', () => {
     // ARRANGE
     const { getByText } = renderWithProvider(
-      <FormattedDate value={DAYJS_TO_FORMAT} options={{ targetFormat: 'month-long' }} />,
+      <FormattedDate
+        value={DAYJS_TO_FORMAT}
+        options={{ targetFormat: 'month-long' }}
+      />,
       {},
-      { locale: 'pl', notation: US_NOTATION }
+      { locale: 'pl', notation: US_NOTATION },
     );
 
     // ASSERT
@@ -156,9 +192,12 @@ describe('FormattedDate', () => {
   it('should render properly month-short', () => {
     // ARRANGE
     const { getByText } = renderWithProvider(
-      <FormattedDate value={DAYJS_TO_FORMAT} options={{ targetFormat: 'month-short' }} />,
+      <FormattedDate
+        value={DAYJS_TO_FORMAT}
+        options={{ targetFormat: 'month-short' }}
+      />,
       {},
-      { notation: US_NOTATION }
+      { notation: US_NOTATION },
     );
 
     // ASSERT
@@ -168,9 +207,12 @@ describe('FormattedDate', () => {
   it('should render properly month-short with PL locale', () => {
     // ARRANGE
     const { getByText } = renderWithProvider(
-      <FormattedDate value={DAYJS_TO_FORMAT} options={{ targetFormat: 'month-short' }} />,
+      <FormattedDate
+        value={DAYJS_TO_FORMAT}
+        options={{ targetFormat: 'month-short' }}
+      />,
       {},
-      { locale: 'pl', notation: US_NOTATION }
+      { locale: 'pl', notation: US_NOTATION },
     );
 
     // ASSERT

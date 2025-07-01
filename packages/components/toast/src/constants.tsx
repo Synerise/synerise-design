@@ -1,6 +1,8 @@
-import React, { ReactNode } from 'react';
-import { WarningFillM, Check3M, InfoFillM } from '@synerise/ds-icon';
-import { ToastType } from './Toast.types';
+import React, { type ReactNode } from 'react';
+
+import { Check3M, InfoFillM, WarningFillM } from '@synerise/ds-icon';
+
+import { type ToastType } from './Toast.types';
 
 export const ICONS: Record<ToastType, ReactNode> = {
   success: <Check3M />,

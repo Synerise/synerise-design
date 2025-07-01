@@ -1,22 +1,25 @@
 import React from 'react';
-import { renderWithProvider } from '@synerise/ds-utils/dist/testing';
+
+import { renderWithProvider } from '@synerise/ds-utils';
+
 import ManageableList from '../ManageableList';
 
-const FILTER_LIST_ITEMS = [{
-  id: "00000000-0000-0000-0000-000000000000",
-  name: "Position 0",
-  description: 'The last 10 days of all customers sales ',
-  canAdd: true,
-  canUpdate: true,
-  canDelete: true,
-  user: {
-    avatar_url: 'https://www.w3schools.com/howto/img_avatar.png'
-  },
-  created: '2020-02-14T08:50:05+00:00',
-},
+const FILTER_LIST_ITEMS = [
   {
-    id: "00000000-0000-0000-0000-000000000002",
-    name: "Position 1",
+    id: '00000000-0000-0000-0000-000000000000',
+    name: 'Position 0',
+    description: 'The last 10 days of all customers sales ',
+    canAdd: true,
+    canUpdate: true,
+    canDelete: true,
+    user: {
+      avatar_url: 'https://www.w3schools.com/howto/img_avatar.png',
+    },
+    created: '2020-02-14T08:50:05+00:00',
+  },
+  {
+    id: '00000000-0000-0000-0000-000000000002',
+    name: 'Position 1',
     canAdd: true,
     canUpdate: true,
     canDelete: true,
@@ -25,7 +28,7 @@ const FILTER_LIST_ITEMS = [{
       lastname: 'Nowak',
     },
     created: '2020-02-12T08:50:05+00:00',
-  }
+  },
 ];
 
 const texts = {
@@ -34,11 +37,13 @@ const texts = {
   showLessLabel: 'show less',
   more: 'more',
   less: 'less',
-  activateItemTitle: 'By activating this filter, you will cancel your unsaved filter settings',
+  activateItemTitle:
+    'By activating this filter, you will cancel your unsaved filter settings',
   activate: 'Activate',
   cancel: 'Cancel',
   deleteConfirmationTitle: 'Delete filter',
-  deleteConfirmationDescription: 'Deleting this filter will permanently remove it from templates library. All tables using this filter will be reset.',
+  deleteConfirmationDescription:
+    'Deleting this filter will permanently remove it from templates library. All tables using this filter will be reset.',
   deleteLabel: 'Delete',
 };
 
@@ -56,7 +61,7 @@ describe('ManageableList with filter items', () => {
         onItemEdit={edit}
         onItemSelect={select}
         onItemDuplicate={duplicate}
-        type='filter'
+        type="filter"
         items={FILTER_LIST_ITEMS}
         loading={false}
         addButtonDisabled={false}
@@ -64,7 +69,8 @@ describe('ManageableList with filter items', () => {
         greyBackground={false}
         selectedItemId={undefined}
         texts={texts}
-      />);
+      />,
+    );
 
     // ASSERT
     expect(queryAllByTestId('filter-item').length).toBe(2);
@@ -83,7 +89,7 @@ describe('ManageableList with filter items', () => {
         onItemEdit={edit}
         onItemSelect={select}
         onItemDuplicate={duplicate}
-        type='filter'
+        type="filter"
         items={[]}
         loading={false}
         addButtonDisabled={false}
@@ -91,7 +97,8 @@ describe('ManageableList with filter items', () => {
         greyBackground={false}
         selectedItemId={undefined}
         texts={texts}
-      />);
+      />,
+    );
 
     // ASSERT
     expect(queryByTestId('filter-item')).toBeFalsy();
@@ -110,7 +117,7 @@ describe('ManageableList with filter items', () => {
         onItemEdit={edit}
         onItemSelect={select}
         onItemDuplicate={duplicate}
-        type='filter'
+        type="filter"
         items={FILTER_LIST_ITEMS}
         loading={false}
         addButtonDisabled={false}
@@ -118,7 +125,8 @@ describe('ManageableList with filter items', () => {
         greyBackground={false}
         selectedItemId={'00000000-0000-0000-0000-000000000000'}
         texts={texts}
-      />);
+      />,
+    );
 
     // ASSERT
     expect(queryByTestId('filter-item-selected')).toBeTruthy();
@@ -137,7 +145,7 @@ describe('ManageableList with filter items', () => {
         onItemEdit={edit}
         onItemSelect={select}
         onItemDuplicate={duplicate}
-        type='filter'
+        type="filter"
         items={FILTER_LIST_ITEMS}
         loading={false}
         addButtonDisabled={false}
@@ -145,10 +153,10 @@ describe('ManageableList with filter items', () => {
         greyBackground={false}
         selectedItemId={'00000000-0000-0000-0000-000000000000'}
         texts={texts}
-      />);
+      />,
+    );
 
     // ASSERT
     expect(queryByTestId('item-description-icon')).toBeTruthy();
   });
-
 });

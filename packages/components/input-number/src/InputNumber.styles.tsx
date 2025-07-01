@@ -1,7 +1,10 @@
+import BaseAntInputNumber, {
+  type InputNumberProps,
+} from 'antd/lib/input-number';
 import React, { forwardRef } from 'react';
 import styled from 'styled-components';
-import BaseAntInputNumber, { InputNumberProps } from 'antd/lib/input-number';
-import { ThemeProps } from '@synerise/ds-core';
+
+import { type ThemeProps } from '@synerise/ds-core';
 
 export const InputNumberContainer = styled.div`
   display: flex;
@@ -10,12 +13,15 @@ export const InputNumberContainer = styled.div`
   justify-content: flex-start;
 `;
 
-const NumberOnlyBaseAntInputNumber = forwardRef<HTMLInputElement, InputNumberProps<number>>(
-  (props: InputNumberProps<number>, ref) => <BaseAntInputNumber<number> {...props} ref={ref} />
-);
+const NumberOnlyBaseAntInputNumber = forwardRef<
+  HTMLInputElement,
+  InputNumberProps<number>
+>((props: InputNumberProps<number>, ref) => (
+  <BaseAntInputNumber<number> {...props} ref={ref} />
+));
 
 export const AntdInputNumber = styled(NumberOnlyBaseAntInputNumber)`
-  color: ${props => props.theme.palette['grey-700']};
+  color: ${(props) => props.theme.palette['grey-700']};
 
   input,
   input:focus {
@@ -40,7 +46,10 @@ export const Suffixel = styled.div`
   border-left-width: 0;
 `;
 
-export const InputNumberWrapper = styled.div<{ prefixel: boolean; suffixel: boolean }>`
+export const InputNumberWrapper = styled.div<{
+  prefixel: boolean;
+  suffixel: boolean;
+}>`
   display: flex;
   align-items: center;
 
@@ -52,7 +61,7 @@ export const InputNumberWrapper = styled.div<{ prefixel: boolean; suffixel: bool
     padding: 0 12px;
   }
 
-  ${props =>
+  ${(props) =>
     props.prefixel &&
     `
     ${AntdInputNumber} {
@@ -61,7 +70,7 @@ export const InputNumberWrapper = styled.div<{ prefixel: boolean; suffixel: bool
     }
   `}
 
-  ${props =>
+  ${(props) =>
     props.suffixel &&
     `
     ${AntdInputNumber} {

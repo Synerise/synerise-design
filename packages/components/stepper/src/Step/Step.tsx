@@ -1,13 +1,13 @@
-import React, { useState, useCallback, useEffect } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import AnimateHeight from 'react-animate-height';
 
-import Icon, { CheckS, WarningFillS } from '@synerise/ds-icon';
 import { theme } from '@synerise/ds-core';
+import Icon, { CheckS, WarningFillS } from '@synerise/ds-icon';
 import Tooltip from '@synerise/ds-tooltip';
 
-import { StepProps } from './Step.types';
-import * as S from './Step.styles';
 import { ORIENTATIONS } from '../Stepper.types';
+import * as S from './Step.styles';
+import { type StepProps } from './Step.types';
 
 const Step = ({
   stepNumber,
@@ -54,7 +54,14 @@ const Step = ({
         <Tooltip trigger={['hover']} title={label}>
           <S.StepPrefix noMargin={!label}>
             {done && !validated ? (
-              <Icon component={<CheckS />} color={warning ? theme.palette['yellow-600'] : theme.palette['green-600']} />
+              <Icon
+                component={<CheckS />}
+                color={
+                  warning
+                    ? theme.palette['yellow-600']
+                    : theme.palette['green-600']
+                }
+              />
             ) : (
               <S.StepNumber>{stepNumber}</S.StepNumber>
             )}
@@ -64,13 +71,20 @@ const Step = ({
           <S.StepLabel>{label}</S.StepLabel>
           {tooltip && active && (
             <Tooltip trigger={['hover']} title={tooltip}>
-              <Icon component={<WarningFillS />} color={theme.palette['yellow-600']} />
+              <Icon
+                component={<WarningFillS />}
+                color={theme.palette['yellow-600']}
+              />
             </Tooltip>
           )}
         </S.StepName>
       </S.StepWrapper>
       <S.StepContent>
-        <AnimateHeight className="ds-step-content" duration={200} height={active ? 'auto' : 0}>
+        <AnimateHeight
+          className="ds-step-content"
+          duration={200}
+          height={active ? 'auto' : 0}
+        >
           {children}
         </AnimateHeight>
       </S.StepContent>

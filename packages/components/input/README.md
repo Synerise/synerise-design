@@ -50,19 +50,19 @@ Input UI Component
 
 ```
 type AutoResizeProp = `boolean` | {
-    minWidth: string; 
-    maxWidth?: string; 
-    stretchToFit?: boolean 
+    minWidth: string;
+    maxWidth?: string;
+    stretchToFit?: boolean
 };
 ```
 
 Setting `stretchToFit: true` will make the field stretch to fit the containing element. The component observes the width of the wrapper and adjusts the maxWidth accordingly.  
-**Important** if the Input is within a flex-item then there is necessary CSS that needs to be applied to the flex-item containers in order for the flex-item to grow to fill the allowed space, but at the same time not stretch the flex container (identical issue happens when text-overflow needs to happen inside a flex-item). 
+**Important** if the Input is within a flex-item then there is necessary CSS that needs to be applied to the flex-item containers in order for the flex-item to grow to fill the allowed space, but at the same time not stretch the flex container (identical issue happens when text-overflow needs to happen inside a flex-item).
 
 ```css
 $flexItemSurroundingTheInput {
-    min-width: 0;
-    flex-grow: 1
+  min-width: 0;
+  flex-grow: 1;
 }
 ```
 
@@ -77,10 +77,10 @@ See https://css-tricks.com/flexbox-truncated-text/ for more details.
 
 #### TextArea
 
-| Property | Description                                                                                             | Type    | Default |
-| -------- | ------------------------------------------------------------------------------------------------------- | ------- | ------- |
-| autoSize  |   Autosizing the height to fit the content   | `{ minRows: number; maxRows: number; }` | - |
-| errorText      | Error message, if provided textarea will be set in error state                                                                                                        | string                                                                  | -         |
-| error          | If provided textarea will be set in error state, without error message                                                                                                | boolean                                                                 | -         |
-| resize         | 'resize' CSS property passed to the textarea component                                                                                                                | `none` / `both` / `horizontal` / `vertical` / `initial` / `inherit`     | -         |
-| wrapperStyle         | CSS properties passed to the textarea component wrapper                                                                                                                | `React.CSSProperties`     | -         |
+| Property     | Description                                                            | Type                                                                | Default |
+| ------------ | ---------------------------------------------------------------------- | ------------------------------------------------------------------- | ------- |
+| autoSize     | Autosizing the height to fit the content                               | `{ minRows: number; maxRows: number; }`                             | -       |
+| errorText    | Error message, if provided textarea will be set in error state         | string                                                              | -       |
+| error        | If provided textarea will be set in error state, without error message | boolean                                                             | -       |
+| resize       | 'resize' CSS property passed to the textarea component                 | `none` / `both` / `horizontal` / `vertical` / `initial` / `inherit` | -       |
+| wrapperStyle | CSS properties passed to the textarea component wrapper                | `React.CSSProperties`                                               | -       |

@@ -1,4 +1,11 @@
-import { SourceType, FASource, DSSource, DataSource, GroupedFilterElement, Category } from '../IconPicker.types';
+import {
+  type Category,
+  type DSSource,
+  type DataSource,
+  type FASource,
+  type GroupedFilterElement,
+  type SourceType,
+} from '../IconPicker.types';
 
 export const isFASourceType = (data: SourceType): data is FASource => {
   return data === 'font-awesome';
@@ -11,7 +18,7 @@ export const isData = (data: SourceType): data is DataSource[] => {
 };
 
 export const isCategories = <Source extends SourceType>(
-  element: GroupedFilterElement<Source>
+  element: GroupedFilterElement<Source>,
 ): element is Category[] => {
   return !!('category' in element[0] && element[0].category);
 };

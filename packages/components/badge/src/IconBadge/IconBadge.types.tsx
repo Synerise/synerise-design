@@ -1,5 +1,6 @@
-import { ReactElement, ReactNode, HTMLAttributes } from 'react';
-import { Status } from '../Badge.types';
+import { type HTMLAttributes, type ReactElement, type ReactNode } from 'react';
+
+import { type Status } from '../Badge.types';
 
 export type CustomIconBadgeProps = {
   icon: ReactElement;

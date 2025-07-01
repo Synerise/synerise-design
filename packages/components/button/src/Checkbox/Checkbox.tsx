@@ -1,11 +1,21 @@
 import React from 'react';
-import Icon, { CheckboxIndeterminateM, CheckboxSelectedFillM } from '@synerise/ds-icon';
+
+import Icon, {
+  CheckboxIndeterminateM,
+  CheckboxSelectedFillM,
+} from '@synerise/ds-icon';
 
 import Button from '../Button';
 import * as S from './Checkbox.styles';
-import { CheckboxButtonProps, ButtonCheckboxIconProps } from './Checkbox.types';
+import {
+  type ButtonCheckboxIconProps,
+  type CheckboxButtonProps,
+} from './Checkbox.types';
 
-const CheckboxButtonIcon = ({ checked, indeterminate }: ButtonCheckboxIconProps): React.ReactElement => {
+const CheckboxButtonIcon = ({
+  checked,
+  indeterminate,
+}: ButtonCheckboxIconProps): React.ReactElement => {
   if (indeterminate) {
     return <CheckboxIndeterminateM />;
   }
@@ -22,7 +32,10 @@ const CheckboxButtonIcon = ({ checked, indeterminate }: ButtonCheckboxIconProps)
   );
 };
 
-const getNextCheckedState = (prevState: boolean, { checked, indeterminate }: CheckboxButtonProps): boolean => {
+const getNextCheckedState = (
+  prevState: boolean,
+  { checked, indeterminate }: CheckboxButtonProps,
+): boolean => {
   if (indeterminate === true) {
     return true;
   }
@@ -35,10 +48,20 @@ const getNextCheckedState = (prevState: boolean, { checked, indeterminate }: Che
 };
 
 const CheckboxButton = (props: CheckboxButtonProps): React.ReactElement => {
-  const { checked, defaultChecked = false, hasError, indeterminate, onChange, onClick, ...restProps } = props;
+  const {
+    checked,
+    defaultChecked = false,
+    hasError,
+    indeterminate,
+    onChange,
+    onClick,
+    ...restProps
+  } = props;
   const [isCheckedState, setIsCheckedState] = React.useState(defaultChecked);
 
-  const handleButtonClick = (e: React.MouseEvent<HTMLElement, MouseEvent>): void => {
+  const handleButtonClick = (
+    e: React.MouseEvent<HTMLElement, MouseEvent>,
+  ): void => {
     if (typeof onClick === 'function') {
       onClick(e);
     }
@@ -68,7 +91,14 @@ const CheckboxButton = (props: CheckboxButtonProps): React.ReactElement => {
       {...restProps}
     >
       <S.IconWrapper active={indeterminate || isChecked} error={hasError}>
-        <Icon component={<CheckboxButtonIcon checked={isChecked} indeterminate={indeterminate} />} />
+        <Icon
+          component={
+            <CheckboxButtonIcon
+              checked={isChecked}
+              indeterminate={indeterminate}
+            />
+          }
+        />
       </S.IconWrapper>
     </Button>
   );

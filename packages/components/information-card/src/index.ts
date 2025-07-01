@@ -7,7 +7,11 @@ export type {
   InformationCardPropertyListProps,
 } from './InformationCardPropertyList/InformationCardPropertyList.types';
 
-export { buildExtraInfo, buildIconBadge, buildInitialsBadge } from './InformationCard.utils';
+export {
+  buildExtraInfo,
+  buildIconBadge,
+  buildInitialsBadge,
+} from './InformationCard.utils';
 export type { InformationCardProps } from './InformationCard.types';
 
 export { InformationCardTooltip } from './InformationCardTooltip/InformationCardTooltip';

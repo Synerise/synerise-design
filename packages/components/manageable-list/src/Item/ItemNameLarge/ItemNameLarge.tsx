@@ -1,10 +1,12 @@
 import React from 'react';
 
 import * as S from '../Item.styles';
-import { ItemNameLargeProps } from './ItemNameLarge.types';
+import { type ItemNameLargeProps } from './ItemNameLarge.types';
 
 const ItemNameLarge = ({ item }: ItemNameLargeProps) => {
-  const classes = item.nameWrapperClassNames?.length ? ['title', ...item.nameWrapperClassNames] : ['title'];
+  const classes = item.nameWrapperClassNames?.length
+    ? ['title', ...item.nameWrapperClassNames]
+    : ['title'];
 
   return (
     <S.ItemLabelWrapper largeSize>
@@ -16,7 +18,9 @@ const ItemNameLarge = ({ item }: ItemNameLargeProps) => {
         {item.tags && <S.ItemTagList>{item.tags}</S.ItemTagList>}
       </S.ItemLabelTop>
 
-      {item.description && <S.ItemDescription>{item.description}</S.ItemDescription>}
+      {item.description && (
+        <S.ItemDescription>{item.description}</S.ItemDescription>
+      )}
     </S.ItemLabelWrapper>
   );
 };

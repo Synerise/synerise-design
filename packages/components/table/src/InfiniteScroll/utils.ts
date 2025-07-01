@@ -1,4 +1,7 @@
-import { InfiniteScrollProps, InfiniteScrollState } from './InfiniteLoaderItem.types';
+import {
+  type InfiniteScrollProps,
+  type InfiniteScrollState,
+} from './InfiniteLoaderItem.types';
 
 export const infiniteScrollPropsToState = ({
   hasError,

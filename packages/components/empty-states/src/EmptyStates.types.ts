@@ -1,4 +1,4 @@
-import { ReactElement, ReactNode } from 'react';
+import { type ReactElement, type ReactNode } from 'react';
 
 export type EmptyStatesProps = {
   size?: EmptyStatesSize;
@@ -22,5 +22,11 @@ export enum EmptyStatesSize {
   MEDIUM = 'medium',
 }
 
-export const IconSize = { [EmptyStatesSize.SMALL]: 48, [EmptyStatesSize.MEDIUM]: 96 };
-export const FontSize = { [EmptyStatesSize.SMALL]: 14, [EmptyStatesSize.MEDIUM]: 18 };
+export const IconSize = {
+  [EmptyStatesSize.SMALL]: 48,
+  [EmptyStatesSize.MEDIUM]: 96,
+};
+export const FontSize = {
+  [EmptyStatesSize.SMALL]: 14,
+  [EmptyStatesSize.MEDIUM]: 18,
+};

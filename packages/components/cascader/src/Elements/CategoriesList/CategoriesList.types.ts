@@ -1,4 +1,5 @@
 import type { ReactNode, ReactText } from 'react';
+
 import type { Category } from '../../Cascader.types';
 
 export interface CategoriesListProps {

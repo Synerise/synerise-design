@@ -1,23 +1,31 @@
 import dayjs from 'dayjs';
 
-import { DateConstantsTargetFormat, DateToFormatOptions, DateTargetFormat } from '../types';
 import {
-  MONTH_LONG,
-  MONTH_SHORT,
   MONTHS_LONG,
   MONTHS_SHORT,
+  MONTH_LONG,
+  MONTH_SHORT,
   UPPER_FIRST,
-  WEEKDAY_LONG,
-  WEEKDAY_SHORT,
   WEEKDAYS_LONG,
   WEEKDAYS_SHORT,
+  WEEKDAY_LONG,
+  WEEKDAY_SHORT,
 } from '../constants';
+import {
+  type DateConstantsTargetFormat,
+  type DateTargetFormat,
+  type DateToFormatOptions,
+} from '../types';
 
-export const getDatesRange = (start: Date, end: Date, interval: dayjs.UnitType): Date[] => {
+export const getDatesRange = (
+  start: Date,
+  end: Date,
+  interval: dayjs.UnitType,
+): Date[] => {
   const startDate = dayjs(start);
   const endDate = dayjs(end);
   const diffInUnits = endDate.diff(startDate, interval);
-  return Array.from(Array(diffInUnits + 1).keys()).map(i => {
+  return Array.from(Array(diffInUnits + 1).keys()).map((i) => {
     return startDate.add(i, interval as dayjs.ManipulateType).toDate();
   });
 };
@@ -27,7 +35,7 @@ export const getConstantDatesAndFormattingOptions = (
   isSundayFirstWeekDay: boolean,
   customStartDate?: Date,
   customEndDate?: Date,
-  customInterval?: dayjs.UnitType
+  customInterval?: dayjs.UnitType,
 ): { constantDates: Date[]; defaultOptions: DateToFormatOptions } => {
   const startDate = new Date(2023, 0, isSundayFirstWeekDay ? 1 : 2);
   const endDate = new Date(2023, 0, isSundayFirstWeekDay ? 1 : 2);
@@ -61,7 +69,14 @@ export const getConstantDatesAndFormattingOptions = (
   }
 
   return {
-    constantDates: getDatesRange(customStartDate ?? startDate, customEndDate ?? endDate, customInterval ?? interval),
-    defaultOptions: { namingConvention: UPPER_FIRST, targetFormat: defaultTargetFormat },
+    constantDates: getDatesRange(
+      customStartDate ?? startDate,
+      customEndDate ?? endDate,
+      customInterval ?? interval,
+    ),
+    defaultOptions: {
+      namingConvention: UPPER_FIRST,
+      targetFormat: defaultTargetFormat,
+    },
   };
 };

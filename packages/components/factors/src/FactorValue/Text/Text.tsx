@@ -1,11 +1,20 @@
-import React, { useCallback, useEffect, useMemo, useState, MutableRefObject, ReactNode, ChangeEvent } from 'react';
 import type { RefSelectProps } from 'antd';
-import Icon, { FullScreenM } from '@synerise/ds-icon';
-import { theme } from '@synerise/ds-core';
+import React, {
+  type ChangeEvent,
+  type MutableRefObject,
+  type ReactNode,
+  useCallback,
+  useEffect,
+  useMemo,
+  useState,
+} from 'react';
+
 import Autocomplete from '@synerise/ds-autocomplete';
+import { theme } from '@synerise/ds-core';
+import Icon, { FullScreenM } from '@synerise/ds-icon';
 import { Input } from '@synerise/ds-input';
 
-import { FactorValueComponentProps } from '../../Factors.types';
+import { type FactorValueComponentProps } from '../../Factors.types';
 import * as S from './Text.styles';
 import TextModal from './TextModal';
 
@@ -25,7 +34,10 @@ const TextInput = ({
   readOnly = false,
 }: FactorValueComponentProps) => {
   const [openExpanseEditor, setOpenExpanseEditor] = useState(false);
-  const [inputRef, setInputRef] = useState<MutableRefObject<HTMLInputElement | RefSelectProps | null | undefined>>();
+  const [inputRef, setInputRef] =
+    useState<
+      MutableRefObject<HTMLInputElement | RefSelectProps | null | undefined>
+    >();
   const [localValue, setLocalValue] = useState(value);
   const [localError, setLocalError] = useState(false);
 
@@ -45,7 +57,7 @@ const TextInput = ({
         setLocalError(false);
       }
     },
-    [setLocalValue, setLocalError, onChange]
+    [setLocalValue, setLocalError, onChange],
   );
 
   const handleApply = useCallback(
@@ -54,7 +66,7 @@ const TextInput = ({
       setLocalValue(val);
       onChange(val);
     },
-    [onChange]
+    [onChange],
   );
 
   const handleAutocomplete = useCallback(
@@ -62,7 +74,7 @@ const TextInput = ({
       setLocalValue(val);
       onChange(val);
     },
-    [onChange]
+    [onChange],
   );
 
   useEffect(() => {
@@ -72,11 +84,16 @@ const TextInput = ({
   const autocompleteOptions = useMemo(() => {
     return (
       (autocompleteText &&
-        autocompleteText.options.filter(option => option.toLowerCase().includes(String(localValue).toLowerCase()))) ||
+        autocompleteText.options.filter((option) =>
+          option.toLowerCase().includes(String(localValue).toLowerCase()),
+        )) ||
       []
     );
   }, [localValue, autocompleteText]);
-  const renderInput = (typesOfInput: typeof textType, factorsType: typeof factorType): ReactNode => {
+  const renderInput = (
+    typesOfInput: typeof textType,
+    factorsType: typeof factorType,
+  ): ReactNode => {
     if (typesOfInput === 'autocomplete' && factorsType === 'text') {
       return (
         <Autocomplete
@@ -92,7 +109,7 @@ const TextInput = ({
           getPopupContainer={getPopupContainerOverride}
           readOnly={readOnly}
         >
-          {autocompleteOptions?.map(option => (
+          {autocompleteOptions?.map((option) => (
             <Autocomplete.Option key={option} value={option}>
               {option}
             </Autocomplete.Option>
@@ -128,7 +145,9 @@ const TextInput = ({
               <S.IconWrapper onClick={(): void => setOpenExpanseEditor(true)}>
                 {!readOnly && (
                   <Icon
-                    component={<FullScreenM data-testid="ds-factors-expansible-icon" />}
+                    component={
+                      <FullScreenM data-testid="ds-factors-expansible-icon" />
+                    }
                     color={theme.palette['grey-600']}
                   />
                 )}

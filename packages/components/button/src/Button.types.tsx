@@ -1,9 +1,10 @@
-import type { ElementType, MouseEvent } from 'react';
 import type { ButtonProps as AntdButtonProps } from 'antd/lib/button';
 import type { JustifyContentProperty } from 'csstype';
-import type { LiteralStringUnion } from '@synerise/ds-utils';
+import type { ElementType, MouseEvent } from 'react';
+
 import type { TagProps } from '@synerise/ds-tag';
 import type { TooltipProps } from '@synerise/ds-tooltip';
+import type { LiteralStringUnion } from '@synerise/ds-utils';
 
 export enum ButtonMode {
   SINGLE_ICON = 'single-icon',
@@ -45,12 +46,25 @@ export type ButtonProps = Omit<AntdButtonProps, 'type' | 'ghost'> & {
    * @default red
    */
   color?: LiteralStringUnion<
-    'blue' | 'grey' | 'red' | 'green' | 'yellow' | 'pink' | 'mars' | 'orange' | 'fern' | 'cyan' | 'purple' | 'violet'
+    | 'blue'
+    | 'grey'
+    | 'red'
+    | 'green'
+    | 'yellow'
+    | 'pink'
+    | 'mars'
+    | 'orange'
+    | 'fern'
+    | 'cyan'
+    | 'purple'
+    | 'violet'
   >;
   /**
    * Defines shape of the button.
    */
-  groupVariant?: LiteralStringUnion<'left-rounded' | 'squared' | 'right-rounded'>;
+  groupVariant?: LiteralStringUnion<
+    'left-rounded' | 'squared' | 'right-rounded'
+  >;
   /**
    * Defines justify of content in button.
    */
@@ -65,7 +79,18 @@ export type ButtonProps = Omit<AntdButtonProps, 'type' | 'ghost'> & {
    */
   onClick?: (event: MouseEvent<HTMLElement>) => void;
   iconColor?: LiteralStringUnion<
-    'blue' | 'grey' | 'red' | 'green' | 'yellow' | 'pink' | 'mars' | 'orange' | 'fern' | 'cyan' | 'purple' | 'violet'
+    | 'blue'
+    | 'grey'
+    | 'red'
+    | 'green'
+    | 'yellow'
+    | 'pink'
+    | 'mars'
+    | 'orange'
+    | 'fern'
+    | 'cyan'
+    | 'purple'
+    | 'violet'
   >;
   error?: boolean;
   readOnly?: boolean;

@@ -1,5 +1,5 @@
-import { AlertProps } from 'antd/lib/alert';
-import React from 'react';
+import { type AlertProps } from 'antd/lib/alert';
+import type React from 'react';
 
 export type BroadcastBarTypes = 'success' | 'warning' | 'negative';
 export type ColorType = 'red' | 'green' | 'yellow';

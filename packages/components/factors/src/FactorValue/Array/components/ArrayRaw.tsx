@@ -1,8 +1,19 @@
-import React, { ChangeEvent, useEffect, useMemo, useRef, useState } from 'react';
 import type { TextAreaRef } from 'antd/lib/input/TextArea';
-import { ArrayRawProps, ArrayValueElement } from '../Array.types';
-import { arrayWithUUID, isArrayOfNumbersAsString, sanitiseValues } from '../Array.utils';
+import React, {
+  type ChangeEvent,
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+} from 'react';
+
 import * as S from '../Array.styles';
+import { type ArrayRawProps, type ArrayValueElement } from '../Array.types';
+import {
+  arrayWithUUID,
+  isArrayOfNumbersAsString,
+  sanitiseValues,
+} from '../Array.utils';
 
 export const ArrayRaw = <ItemType extends 'string' | 'number'>({
   value = [],
@@ -15,7 +26,7 @@ export const ArrayRaw = <ItemType extends 'string' | 'number'>({
 }: ArrayRawProps<ItemType>) => {
   const ref = useRef<TextAreaRef>(null);
   const plainValues = useMemo(() => {
-    return value.map(item => item.value).join(',');
+    return value.map((item) => item.value).join(',');
   }, [value]);
 
   const [textareaValue, setTextareaValue] = useState(plainValues || '');
@@ -38,8 +49,11 @@ export const ArrayRaw = <ItemType extends 'string' | 'number'>({
 
     const items = stringifiedValue?.split(',') || [];
     const sanitisedItems = items.map(sanitiseValues);
-    const lastItemIsDelimiter = sanitisedItems.at(sanitisedItems.length - 1) === '';
-    const itemsToValidate = lastItemIsDelimiter ? [...sanitisedItems.slice(0, -1)] : sanitisedItems;
+    const lastItemIsDelimiter =
+      sanitisedItems.at(sanitisedItems.length - 1) === '';
+    const itemsToValidate = lastItemIsDelimiter
+      ? [...sanitisedItems.slice(0, -1)]
+      : sanitisedItems;
     const exceedsLimit = limit && items.length > limit;
 
     if (itemType === 'number' && !isArrayOfNumbersAsString(itemsToValidate)) {
@@ -53,9 +67,17 @@ export const ArrayRaw = <ItemType extends 'string' | 'number'>({
 
     onError(null);
     if (itemType === 'string') {
-      onValueChange(arrayWithUUID(itemsToValidate as ArrayValueElement<ItemType>[]));
+      onValueChange(
+        arrayWithUUID(itemsToValidate as ArrayValueElement<ItemType>[]),
+      );
     } else {
-      onValueChange(arrayWithUUID(itemsToValidate.map(item => parseFloat(item)) as ArrayValueElement<ItemType>[]));
+      onValueChange(
+        arrayWithUUID(
+          itemsToValidate.map((item) =>
+            parseFloat(item),
+          ) as ArrayValueElement<ItemType>[],
+        ),
+      );
     }
   };
 

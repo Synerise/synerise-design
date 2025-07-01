@@ -1,10 +1,10 @@
 import React from 'react';
 
-import Tooltip from '@synerise/ds-tooltip/dist/Tooltip';
 import Icon, { InfoFillS } from '@synerise/ds-icon';
+import Tooltip from '@synerise/ds-tooltip/dist/Tooltip';
 
 import * as S from './Header.styles';
-import { HeaderProps } from './Header.types';
+import { type HeaderProps } from './Header.types';
 
 const MenuHeader = ({ headerText, tooltip }: HeaderProps) => {
   return (

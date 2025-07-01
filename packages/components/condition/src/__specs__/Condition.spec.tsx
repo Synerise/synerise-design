@@ -1,8 +1,15 @@
 import React from 'react';
-import { screen, fireEvent, prettyDOM } from '@testing-library/react';
 
 import { NotificationsM, VarTypeStringM } from '@synerise/ds-icon';
-import renderWithProvider from '@synerise/ds-utils/dist/testing/renderWithProvider/renderWithProvider';
+import { renderWithProvider } from '@synerise/ds-utils';
+import { fireEvent, screen, waitFor } from '@testing-library/react';
+
+import Condition from '../Condition';
+import {
+  type ConditionProps,
+  type ConditionStep,
+  type StepConditions,
+} from '../Condition.types';
 import {
   FACTORS_TEXTS,
   OPERATORS_GROUPS,
@@ -12,17 +19,10 @@ import {
   PARAMETER_ITEMS,
   SUBJECT_ITEMS,
 } from './data/index.data';
-import Condition from '../Condition';
 
-import { ConditionProps, ConditionStep, StepConditions } from '../Condition.types';
-
-const lodash = require('lodash');
-lodash.debounce = jest.fn(fn => { 
-  fn.cancel = () => {};
-  return fn;
-});
-
-const DEFAULT_CONDITION_ROW: { [P in keyof StepConditions]: Partial<StepConditions[P]> } = {
+const DEFAULT_CONDITION_ROW: {
+  [P in keyof StepConditions]: Partial<StepConditions[P]>;
+} = {
   id: 'e5b71a06-0eb2-434f-9411-0259b1804862',
   parameter: {
     value: '',
@@ -63,51 +63,56 @@ const DEFAULT_STATE = {
 };
 
 const getConditions = (conditionsNumber: number): StepConditions[] => {
-  return new Array(conditionsNumber).fill(DEFAULT_CONDITION_ROW).map(condition => ({
-    id: condition.id,
-    setSelectedFactorType: () => {},
-    onChangeValue: () => {},
-    onChangeContext: () => {},
-    onChangeParameter: () => {},
-    onChangeOperator: () => {},
-    parameter: {
-      availableFactorTypes: ['parameter'],
-      selectedFactorType: 'parameter',
-      defaultFactorType: 'parameter',
-      value: condition.parameter.value,
-      parameters: {
-        buttonLabel: 'Parameter',
-        buttonIcon: <VarTypeStringM />,
-        groups: PARAMETER_GROUPS,
-        items: PARAMETER_ITEMS,
+  return new Array(conditionsNumber)
+    .fill(DEFAULT_CONDITION_ROW)
+    .map((condition) => ({
+      id: condition.id,
+      setSelectedFactorType: () => {},
+      onChangeValue: () => {},
+      onChangeContext: () => {},
+      onChangeParameter: () => {},
+      onChangeOperator: () => {},
+      parameter: {
+        availableFactorTypes: ['parameter'],
+        selectedFactorType: 'parameter',
+        defaultFactorType: 'parameter',
+        value: condition.parameter.value,
+        parameters: {
+          buttonLabel: 'Parameter',
+          buttonIcon: <VarTypeStringM />,
+          groups: PARAMETER_GROUPS,
+          items: PARAMETER_ITEMS,
+        },
+        withoutTypeSelector: true,
+        texts: FACTORS_TEXTS,
       },
-      withoutTypeSelector: true,
-      texts: FACTORS_TEXTS,
-    },
-    operator: {
-      value: condition.operator.value,
-      items: OPERATORS_ITEMS,
-      groups: OPERATORS_GROUPS,
-      texts: OPERATORS_TEXTS,
-    },
-    factor: {
-      selectedFactorType: condition.factor.selectedFactorType,
-      defaultFactorType: 'text',
-      textType: 'default',
-      value: condition.factor.value,
-      formulaEditor: <div>Formula editor</div>,
-      parameters: {
-        buttonLabel: 'Parameter',
-        buttonIcon: <VarTypeStringM />,
-        groups: PARAMETER_GROUPS,
-        items: PARAMETER_ITEMS,
+      operator: {
+        value: condition.operator.value,
+        items: OPERATORS_ITEMS,
+        groups: OPERATORS_GROUPS,
+        texts: OPERATORS_TEXTS,
       },
-      texts: FACTORS_TEXTS,
-    },
-  }));
+      factor: {
+        selectedFactorType: condition.factor.selectedFactorType,
+        defaultFactorType: 'text',
+        textType: 'default',
+        value: condition.factor.value,
+        formulaEditor: <div>Formula editor</div>,
+        parameters: {
+          buttonLabel: 'Parameter',
+          buttonIcon: <VarTypeStringM />,
+          groups: PARAMETER_GROUPS,
+          items: PARAMETER_ITEMS,
+        },
+        texts: FACTORS_TEXTS,
+      },
+    }));
 };
 
-const getSteps = (stepsNumber: number, conditionsNumber: number): ConditionStep[] => {
+const getSteps = (
+  stepsNumber: number,
+  conditionsNumber: number,
+): ConditionStep[] => {
   return [...new Array(stepsNumber)].map((_, index) => {
     return {
       ...DEFAULT_STEP,
@@ -155,26 +160,39 @@ const RENDER_CONDITIONS = (props?: Partial<ConditionProps>) => {
 };
 
 describe('Condition component', () => {
+  beforeAll(() => {
+    jest.mock('lodash', () => {
+      const module = jest.requireActual('lodash');
+      module.debounce = jest.fn((fn) => fn);
+      return module;
+    });
+  });
   test('Should render', () => {
     const { container } = renderWithProvider(RENDER_CONDITIONS());
 
     expect(container.querySelector('.ds-conditions')).toBeTruthy();
   });
-  test('Should update step name', () => {
+  test('Should update step name', async () => {
     const NEW_STEP_NAME = 'First step';
     const STEP_ID = DEFAULT_STATE.steps[0].id;
     const onUpdateStepName = jest.fn();
-    const { container } = renderWithProvider(RENDER_CONDITIONS({ onUpdateStepName }));
+    const { container } = renderWithProvider(
+      RENDER_CONDITIONS({ onUpdateStepName }),
+    );
     const input = container.querySelector(`#conditionStepName${STEP_ID}`);
 
     input && fireEvent.change(input, { target: { value: NEW_STEP_NAME } });
 
-    expect(onUpdateStepName).toBeCalledWith(STEP_ID, NEW_STEP_NAME);
+    await waitFor(() =>
+      expect(onUpdateStepName).toBeCalledWith(STEP_ID, NEW_STEP_NAME),
+    );
   });
 
   test('Should not render add condition row button', () => {
     renderWithProvider(RENDER_CONDITIONS({ addCondition: undefined }));
-    const addConditionButton = screen.queryByText(DEFAULT_TEXTS.addConditionRowButton);
+    const addConditionButton = screen.queryByText(
+      DEFAULT_TEXTS.addConditionRowButton,
+    );
 
     expect(addConditionButton).not.toBeInTheDocument();
   });
@@ -189,8 +207,10 @@ describe('Condition component', () => {
   test('Should call addCondition callback', () => {
     const addCondition = jest.fn();
     renderWithProvider(RENDER_CONDITIONS({ addCondition }));
-    
-    const addConditionButton = screen.getByText(DEFAULT_TEXTS.addConditionRowButton);
+
+    const addConditionButton = screen.getByText(
+      DEFAULT_TEXTS.addConditionRowButton,
+    );
 
     fireEvent.click(addConditionButton);
 
@@ -199,7 +219,9 @@ describe('Condition component', () => {
 
   test('Should call removeCondition callback', () => {
     const removeCondition = jest.fn();
-    const { getAllByTestId } = renderWithProvider(RENDER_CONDITIONS({ removeCondition, steps: getSteps(1, 2) }));
+    const { getAllByTestId } = renderWithProvider(
+      RENDER_CONDITIONS({ removeCondition, steps: getSteps(1, 2) }),
+    );
     const removeButton = getAllByTestId('ds-conditions-remove-row')[0];
 
     removeButton && fireEvent.click(removeButton);
@@ -223,14 +245,18 @@ describe('Condition component', () => {
 
   test('Should render with drag handle icon', () => {
     const onChangeOrder = jest.fn();
-    const { container } = renderWithProvider(RENDER_CONDITIONS({ steps: getSteps(2, 1), onChangeOrder }));
+    const { container } = renderWithProvider(
+      RENDER_CONDITIONS({ steps: getSteps(2, 1), onChangeOrder }),
+    );
     const dragIcons = container.querySelectorAll('.drag-handle-m');
 
     expect(dragIcons.length).toBe(2);
   });
 
   test('Should render without drag icon', () => {
-    const { container } = renderWithProvider(RENDER_CONDITIONS({ steps: getSteps(2, 1), onChangeOrder: undefined }));
+    const { container } = renderWithProvider(
+      RENDER_CONDITIONS({ steps: getSteps(2, 1), onChangeOrder: undefined }),
+    );
     const dragIcons = container.querySelectorAll('.drag-handle-m');
 
     expect(dragIcons.length).toBe(0);
@@ -248,7 +274,9 @@ describe('Condition component', () => {
 
   test('Should call duplicate step callback', () => {
     const duplicateStep = jest.fn();
-    const { container } = renderWithProvider(RENDER_CONDITIONS({ duplicateStep }));
+    const { container } = renderWithProvider(
+      RENDER_CONDITIONS({ duplicateStep }),
+    );
     const duplicateIcon = container.querySelector('.ds-cruds .duplicate');
 
     fireEvent.click(duplicateIcon as HTMLElement);
@@ -286,7 +314,7 @@ describe('Condition component', () => {
             ],
           },
         ],
-      })
+      }),
     );
 
     expect(screen.getByText('Parameter label')).toBeTruthy();
@@ -321,7 +349,7 @@ describe('Condition component', () => {
             ],
           },
         ],
-      })
+      }),
     );
 
     expect(screen.getByText('Operator name')).toBeTruthy();
@@ -369,7 +397,7 @@ describe('Condition component', () => {
             ],
           },
         ],
-      })
+      }),
     );
 
     expect(screen.getByText('Parameter label')).toBeTruthy();
@@ -418,7 +446,7 @@ describe('Condition component', () => {
             ],
           },
         ],
-      })
+      }),
     );
 
     expect(screen.getByText('Parameter label')).toBeTruthy();
@@ -474,7 +502,7 @@ describe('Condition component', () => {
             ],
           },
         ],
-      })
+      }),
     );
 
     expect(screen.getByText('Parameter label')).toBeTruthy();
@@ -538,7 +566,7 @@ describe('Condition component', () => {
             ],
           },
         ],
-      })
+      }),
     );
 
     expect(screen.getByText('Parameter label')).toBeTruthy();
@@ -603,7 +631,7 @@ describe('Condition component', () => {
             ],
           },
         ],
-      })
+      }),
     );
 
     expect(screen.getByText('With custom factor')).toBeTruthy();
@@ -611,13 +639,17 @@ describe('Condition component', () => {
     expect(screen.queryByDisplayValue('factor value')).toBeFalsy();
   });
   it('should not render step name', () => {
-    const { container } = renderWithProvider(RENDER_CONDITIONS({ onUpdateStepName: undefined }));
+    const { container } = renderWithProvider(
+      RENDER_CONDITIONS({ onUpdateStepName: undefined }),
+    );
 
     expect(container.querySelector('.ds-condition-step-header')).toBeNull();
   });
   it('should render custom add step component', () => {
     renderWithProvider(
-      RENDER_CONDITIONS({ renderAddStep: () => <span>CUSTOM ADD STEP BUTTON</span> })
+      RENDER_CONDITIONS({
+        renderAddStep: () => <span>CUSTOM ADD STEP BUTTON</span>,
+      }),
     );
 
     expect(screen.getByText('CUSTOM ADD STEP BUTTON')).toBeTruthy();
@@ -641,7 +673,7 @@ describe('Condition component', () => {
                 id: 'a',
                 name: 'TEST_SELECTED_ITEM',
                 subtitle: 'TEST_SELECTED_ITEM_SUBTITLE',
-                icon: VarTypeStringM,
+                icon: <VarTypeStringM />,
               },
               groups: [],
               items: [
@@ -649,15 +681,17 @@ describe('Condition component', () => {
                   id: 'a',
                   name: 'TEST_SELECTED_ITEM',
                   subtitle: 'TEST_SELECTED_ITEM_SUBTITLE',
-                  icon: VarTypeStringM,
+                  icon: <VarTypeStringM />,
                 },
               ],
             },
           },
         ],
-      })
+      }),
     );
     fireEvent.mouseOver(screen.getByText('TEST_SELECTED_ITEM'));
-    expect(await screen.findByText('TEST_SELECTED_ITEM_SUBTITLE')).toBeInTheDocument();
+    expect(
+      await screen.findByText('TEST_SELECTED_ITEM_SUBTITLE'),
+    ).toBeInTheDocument();
   });
 });

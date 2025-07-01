@@ -1,23 +1,48 @@
-import React, { ReactNode, useRef, useState, useMemo, useEffect, MouseEvent } from 'react';
-import '@synerise/ds-core/dist/js/style';
-import './style/index.less';
-import AntdTooltip from 'antd/lib/tooltip';
 import { Carousel } from 'antd';
-import { getPopupContainer } from '@synerise/ds-utils';
-import Icon, { NotificationsM } from '@synerise/ds-icon';
-import { theme } from '@synerise/ds-core';
-import Scrollbar from '@synerise/ds-scrollbar';
-import * as S from './Tooltip.styles';
-import { tooltipTypes, descriptionType, TooltipProps } from './Tooltip.types';
+import AntdTooltip from 'antd/lib/tooltip';
+import React, {
+  type MouseEvent,
+  type ReactNode,
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+} from 'react';
 
-const shouldRenderDescription = (description: descriptionType, type: tooltipTypes): descriptionType | null => {
-  if (type === 'default' || !description) return null;
+import { theme } from '@synerise/ds-core';
+import '@synerise/ds-core/dist/js/style';
+import Icon, { NotificationsM } from '@synerise/ds-icon';
+import Scrollbar from '@synerise/ds-scrollbar';
+import { getPopupContainer } from '@synerise/ds-utils';
+
+import * as S from './Tooltip.styles';
+import {
+  type TooltipProps,
+  type descriptionType,
+  type tooltipTypes,
+} from './Tooltip.types';
+import './style/index.less';
+
+const shouldRenderDescription = (
+  description: descriptionType,
+  type: tooltipTypes,
+): descriptionType | null => {
+  if (type === 'default' || !description) {
+    return null;
+  }
   return description;
 };
 
-const shouldRenderIcon = (tooltipType: tooltipTypes, tooltipIcon: ReactNode): ReactNode | undefined => {
-  if (tooltipType !== 'icon') return tooltipIcon;
-  return <Icon component={<NotificationsM />} color={theme.palette['orange-500']} />;
+const shouldRenderIcon = (
+  tooltipType: tooltipTypes,
+  tooltipIcon: ReactNode,
+): ReactNode | undefined => {
+  if (tooltipType !== 'icon') {
+    return tooltipIcon;
+  }
+  return (
+    <Icon component={<NotificationsM />} color={theme.palette['orange-500']} />
+  );
 };
 
 const Tooltip = ({
@@ -59,8 +84,9 @@ const Tooltip = ({
             {shortCuts && (
               <S.TooltipHint>
                 {Array.isArray(shortCuts) ? (
-                  // eslint-disable-next-line react/no-array-index-key
-                  shortCuts.map((hint, index) => <S.TooltipKey key={`key-${index}`}>{hint}</S.TooltipKey>)
+                  shortCuts.map((hint, index) => (
+                    <S.TooltipKey key={`key-${index}`}>{hint}</S.TooltipKey>
+                  ))
                 ) : (
                   <S.TooltipKey>{shortCuts}</S.TooltipKey>
                 )}
@@ -68,7 +94,11 @@ const Tooltip = ({
             )}
           </S.TooltipTitle>
         )}
-        {image && <S.TooltipImage extraMargin={!!finalDescription}>{image}</S.TooltipImage>}
+        {image && (
+          <S.TooltipImage extraMargin={!!finalDescription}>
+            {image}
+          </S.TooltipImage>
+        )}
         {finalDescription && (
           <S.TooltipDescription tooltipType={type}>
             {type === 'largeScrollable' ? (
@@ -87,25 +117,36 @@ const Tooltip = ({
 
   const tutorialComponent = (
     <S.TooltipComponent onClick={captureClick} tooltipType={type}>
-      <Carousel autoplay={tutorialAutoplay} autoplaySpeed={tutorialAutoplaySpeed} effect="fade">
+      <Carousel
+        autoplay={tutorialAutoplay}
+        autoplaySpeed={tutorialAutoplaySpeed}
+        effect="fade"
+      >
         {tutorials &&
-          tutorials.map(tutorial => (
+          tutorials.map((tutorial) => (
             <S.TutorialItem key={`${JSON.stringify(tutorial.title)}`}>
-              <S.TooltipTitle tooltipType="tutorial">{tutorial.title}</S.TooltipTitle>
-              <S.TooltipDescription tooltipType="tutorial">{tutorial.description}</S.TooltipDescription>
+              <S.TooltipTitle tooltipType="tutorial">
+                {tutorial.title}
+              </S.TooltipTitle>
+              <S.TooltipDescription tooltipType="tutorial">
+                {tutorial.description}
+              </S.TooltipDescription>
             </S.TutorialItem>
           ))}
       </Carousel>
     </S.TooltipComponent>
   );
 
-  const tooltipContent = type === 'tutorial' ? tutorialComponent : tooltipComponent;
+  const tooltipContent =
+    type === 'tutorial' ? tutorialComponent : tooltipComponent;
 
   const overlayClassName = useMemo(() => {
     return `ds-tooltip-offset-${offset} ds-tooltip-type-${type}`;
   }, [offset, type]);
 
-  const titleExists = Boolean(description || title || icon || tutorials?.length);
+  const titleExists = Boolean(
+    description || title || icon || tutorials?.length,
+  );
 
   useEffect(() => {
     return () => {
@@ -125,7 +166,6 @@ const Tooltip = ({
     }
   };
 
-  /* eslint-disable-next-line react/destructuring-assignment */
   const handleHideAfterClick = props.trigger === 'click' &&
     timeToHideAfterClick && {
       visible: isVisible,

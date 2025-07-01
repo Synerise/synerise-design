@@ -1,6 +1,7 @@
-import type { ReactNode, ReactText } from 'react';
 import type { SelectProps, SelectValue } from 'antd/lib/select';
+import type { ReactNode, ReactText } from 'react';
 import type { CSSObject } from 'styled-components';
+
 import type { FormFieldCommonProps } from '@synerise/ds-form-field';
 
 export type Props<T = SelectValue> = Omit<SelectProps<T>, 'listHeight'> & {

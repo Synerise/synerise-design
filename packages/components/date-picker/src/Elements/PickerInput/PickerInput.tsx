@@ -1,13 +1,16 @@
-import React, { useCallback, useMemo, useState, MouseEvent } from 'react';
-
-import Icon, { CalendarM, Close3S } from '@synerise/ds-icon';
-import Tooltip from '@synerise/ds-tooltip';
-import { getDefaultDataTimeOptions, useDataFormat } from '@synerise/ds-data-format';
+import React, { type MouseEvent, useCallback, useMemo, useState } from 'react';
 
 import { legacyParse } from '@date-fns/upgrade/v2';
-import { PickerInputProps } from './PickerInput.types';
-import * as S from './PickerInput.styles';
+import {
+  getDefaultDataTimeOptions,
+  useDataFormat,
+} from '@synerise/ds-data-format';
+import Icon, { CalendarM, Close3S } from '@synerise/ds-icon';
+import Tooltip from '@synerise/ds-tooltip';
+
 import format from '../../format';
+import * as S from './PickerInput.styles';
+import { type PickerInputProps } from './PickerInput.types';
 
 const PickerInput = ({
   disabled,
@@ -31,22 +34,32 @@ const PickerInput = ({
   const [hovered, setHovered] = useState(false);
 
   const getText = useCallback(() => {
-    if (!value) return '';
+    if (!value) {
+      return '';
+    }
     if (dateFormat) {
       return format(legacyParse(value), dateFormat);
     }
     if (typeof value === 'string') {
-      return format(legacyParse(value), dateFormat || showTime ? 'MMM d, yyyy, HH:mm' : 'MMM d, yyyy');
+      return format(
+        legacyParse(value),
+        dateFormat || showTime ? 'MMM d, yyyy, HH:mm' : 'MMM d, yyyy',
+      );
     }
-    return formatValue(value, { ...getDefaultDataTimeOptions(showTime), ...valueFormatOptions });
+    return formatValue(value, {
+      ...getDefaultDataTimeOptions(showTime),
+      ...valueFormatOptions,
+    });
   }, [value, dateFormat, showTime, formatValue, valueFormatOptions]);
 
   const handleApply = useCallback(
     (date?: Date | null) => {
-      if (!onChange) return;
+      if (!onChange) {
+        return;
+      }
       onChange(date, getText());
     },
-    [onChange, getText]
+    [onChange, getText],
   );
 
   const handleIconClick = useCallback(
@@ -55,7 +68,7 @@ const PickerInput = ({
       onClear && onClear();
       handleApply(null);
     },
-    [onClear, handleApply]
+    [onClear, handleApply],
   );
 
   const handleInputClick = useCallback(
@@ -63,7 +76,7 @@ const PickerInput = ({
       event.stopPropagation();
       onClick && onClick();
     },
-    [onClick]
+    [onClick],
   );
 
   const iconInput = useMemo(
@@ -79,11 +92,23 @@ const PickerInput = ({
           <Icon component={<CalendarM />} />
         </S.DefaultIconWrapper>
       ),
-    [hovered, highlight, allowClear, readOnly, value, clearTooltip, handleIconClick]
+    [
+      hovered,
+      highlight,
+      allowClear,
+      readOnly,
+      value,
+      clearTooltip,
+      handleIconClick,
+    ],
   );
 
   return (
-    <S.PickerInputWrapper prefixel={!!prefixel} suffixel={!!suffixel} className="ds-date-input">
+    <S.PickerInputWrapper
+      prefixel={!!prefixel}
+      suffixel={!!suffixel}
+      className="ds-date-input"
+    >
       {!!prefixel && <S.Prefixel>{prefixel}</S.Prefixel>}
       <S.Container
         onMouseEnter={!disabled ? () => setHovered(true) : undefined}

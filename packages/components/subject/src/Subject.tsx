@@ -1,10 +1,12 @@
 import React from 'react';
+
 import Dropdown from '@synerise/ds-dropdown';
 import Icon, { ShowM } from '@synerise/ds-icon';
-import SubjectTrigger from './SubjectTrigger/SubjectTrigger';
-import { SubjectProps } from './Subject.types';
+
 import * as S from './Subject.style';
+import { type SubjectProps } from './Subject.types';
 import SubjectList from './SubjectList/SubjectList';
+import SubjectTrigger from './SubjectTrigger/SubjectTrigger';
 
 const Subject: React.FC<SubjectProps> = ({
   selectedItem,
@@ -31,7 +33,7 @@ const Subject: React.FC<SubjectProps> = ({
       value && onActivate && onActivate('');
       !value && onDeactivate && onDeactivate();
     },
-    [onActivate, onDeactivate]
+    [onActivate, onDeactivate],
   );
 
   React.useEffect(() => {
@@ -62,7 +64,12 @@ const Subject: React.FC<SubjectProps> = ({
         />
       </Dropdown>
       {onShowPreview && (
-        <S.ShowPreviewButton onClick={onShowPreview} type="custom-color" mode="single-icon" color={color}>
+        <S.ShowPreviewButton
+          onClick={onShowPreview}
+          type="custom-color"
+          mode="single-icon"
+          color={color}
+        >
           <Icon component={<ShowM />} />
         </S.ShowPreviewButton>
       )}

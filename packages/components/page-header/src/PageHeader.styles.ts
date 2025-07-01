@@ -10,7 +10,10 @@ export const MainContainer = styled.div<{ isolated?: boolean }>`
     bottom: 0;
     width: 100%;
     height: 1px;
-    ${(props): string => (props.isolated ? `background-color: ${props.theme.palette['grey-100']}` : '')};
+    ${(props): string =>
+      props.isolated
+        ? `background-color: ${props.theme.palette['grey-100']}`
+        : ''};
     z-index: 0;
   }
 `;

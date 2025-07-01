@@ -1,9 +1,14 @@
-import { FormatDateOptions, FormatNumberOptions, FormatPluralOptions } from 'react-intl';
-import { Moment } from 'moment';
-import dayjs, { Dayjs } from 'dayjs';
-import { DATE_CONSTANTS_TARGET_FORMATS } from '../constants';
+import { type Dayjs, type default as dayjs } from 'dayjs';
+import { type Moment } from 'moment';
+import {
+  type FormatDateOptions,
+  type FormatNumberOptions,
+  type FormatPluralOptions,
+} from 'react-intl';
 
-const DATE_TARGET_FORMATS = [
+import { type DATE_CONSTANTS_TARGET_FORMATS } from '../constants';
+
+const _DATE_TARGET_FORMATS = [
   'date',
   'datetime',
   'relative-from',
@@ -16,15 +21,24 @@ const DATE_TARGET_FORMATS = [
   'month-long',
   'month-short',
 ] as const;
-export type DateTargetFormat = typeof DATE_TARGET_FORMATS[number];
+export type DateTargetFormat = (typeof _DATE_TARGET_FORMATS)[number];
 
-const NUMBER_TARGET_FORMATS = ['compact-larger-number', 'compact-decimal-larger-number'] as const;
-export type NumberTargetFormat = typeof NUMBER_TARGET_FORMATS[number];
+const _NUMBER_TARGET_FORMATS = [
+  'compact-larger-number',
+  'compact-decimal-larger-number',
+] as const;
+export type NumberTargetFormat = (typeof _NUMBER_TARGET_FORMATS)[number];
 
-const NAMING_CONVENTIONS = ['upperCase', 'upperFirst', 'lowerCase', 'lowerFirst'] as const;
-export type NamingConvention = typeof NAMING_CONVENTIONS[number];
+const _NAMING_CONVENTIONS = [
+  'upperCase',
+  'upperFirst',
+  'lowerCase',
+  'lowerFirst',
+] as const;
+export type NamingConvention = (typeof _NAMING_CONVENTIONS)[number];
 
-export type DateConstantsTargetFormat = typeof DATE_CONSTANTS_TARGET_FORMATS[number];
+export type DateConstantsTargetFormat =
+  (typeof DATE_CONSTANTS_TARGET_FORMATS)[number];
 
 export type DateToFormat = Date | Moment | Dayjs;
 
@@ -55,7 +69,10 @@ export type OverloadFormatValue = {
 
 export type OverloadFormatMultipleValues = {
   (values: number[], options?: NumberToFormatOptions): string[];
-  (values: Date[] | Moment[] | Dayjs[], options?: DateToFormatOptions): string[];
+  (
+    values: Date[] | Moment[] | Dayjs[],
+    options?: DateToFormatOptions,
+  ): string[];
   (values: string[], options?: CommonFormatOptions): string[];
 };
 
@@ -65,9 +82,9 @@ export type OverloadGetConstants = {
     options?: DateToFormatOptions,
     customStartDate?: Date,
     customEndDate?: Date,
-    customInterval?: dayjs.UnitType
+    customInterval?: dayjs.UnitType,
   ): string[] | undefined;
 };
 
-const DELIMITERS = [',', '.', ' '] as const;
-export type Delimiter = typeof DELIMITERS[number];
+const _DELIMITERS = [',', '.', ' '] as const;
+export type Delimiter = (typeof _DELIMITERS)[number];

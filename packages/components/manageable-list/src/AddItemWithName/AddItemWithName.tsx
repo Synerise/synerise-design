@@ -1,13 +1,20 @@
-import React, { ChangeEvent, useCallback, useState } from 'react';
-import { Input } from '@synerise/ds-input';
-import Icon, { Add3M } from '@synerise/ds-icon';
+import React, { type ChangeEvent, useCallback, useState } from 'react';
+
 import Button from '@synerise/ds-button';
+import Icon, { Add3M } from '@synerise/ds-icon';
+import { Input } from '@synerise/ds-input';
+
 import * as S from './AddItemWithName.styles';
-import { Props } from './AddItemWithName.types';
+import { type Props } from './AddItemWithName.types';
 
 const DEFAULT_NAME = '';
 
-const AddItemWithName = ({ onItemAdd, addItemLabel, disabled, placeholder }: Props) => {
+const AddItemWithName = ({
+  onItemAdd,
+  addItemLabel,
+  disabled,
+  placeholder,
+}: Props) => {
   const [active, setActive] = useState(false);
   const [name, setName] = useState(DEFAULT_NAME);
 
@@ -16,9 +23,12 @@ const AddItemWithName = ({ onItemAdd, addItemLabel, disabled, placeholder }: Pro
     setName(DEFAULT_NAME);
   }, []);
 
-  const handleNameChange = useCallback((event: ChangeEvent<HTMLInputElement>): void => {
-    setName(event.target.value);
-  }, []);
+  const handleNameChange = useCallback(
+    (event: ChangeEvent<HTMLInputElement>): void => {
+      setName(event.target.value);
+    },
+    [],
+  );
 
   const toggleInput = useCallback((): void => {
     setActive(!active);
@@ -32,7 +42,12 @@ const AddItemWithName = ({ onItemAdd, addItemLabel, disabled, placeholder }: Pro
 
   return (
     <S.AddItemLayout data-testid="add-item-with-name-button">
-      <Button type="ghost-primary" mode="icon-label" onClick={toggleInput} disabled={disabled}>
+      <Button
+        type="ghost-primary"
+        mode="icon-label"
+        onClick={toggleInput}
+        disabled={disabled}
+      >
         <Icon component={<Add3M />} size={24} />
         {addItemLabel}
       </Button>

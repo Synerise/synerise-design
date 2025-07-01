@@ -1,36 +1,34 @@
 import React from 'react';
+
+import Button from '@synerise/ds-button';
+import { renderWithProvider } from '@synerise/ds-utils';
 import { fireEvent } from '@testing-library/react';
-import { renderWithProvider } from '@synerise/ds-utils/dist/testing';
 
 import ButtonGroup from '../';
-import Button from '@synerise/ds-button';
 
 describe('ButtonGroup', () => {
   const onClick = jest.fn();
-  it('should render', function() {
+  it('should render', function () {
     // ARRANGE
     const { getByText } = renderWithProvider(
       <ButtonGroup>
         <Button onClick={onClick}>Button Text</Button>
-      </ButtonGroup>
+      </ButtonGroup>,
     );
 
     // ASSERT
     expect(getByText('Button Text')).toBeTruthy();
   });
 
-  it('should render with title and description', function() {
+  it('should render with title and description', function () {
     // ARRANGE
     const TITLE = 'Title of ButtonGroup';
     const DESCRIPTION = 'Description of ButtonGroup';
 
     const { getByText } = renderWithProvider(
-      <ButtonGroup
-        title={TITLE}
-        description={DESCRIPTION}
-      >
+      <ButtonGroup title={TITLE} description={DESCRIPTION}>
         <Button onClick={onClick}>Button Text</Button>
-      </ButtonGroup>
+      </ButtonGroup>,
     );
 
     // ASSERT
@@ -38,12 +36,12 @@ describe('ButtonGroup', () => {
     expect(getByText(DESCRIPTION)).toBeTruthy();
   });
 
-  it('should button onClick be called', function() {
+  it('should button onClick be called', function () {
     // ARRANGE
     const { getByText } = renderWithProvider(
       <ButtonGroup>
         <Button onClick={onClick}>Button Text</Button>
-      </ButtonGroup>
+      </ButtonGroup>,
     );
 
     // ACT

@@ -1,7 +1,8 @@
-import { ReactNode } from 'react';
-import { ListItemProps } from '@synerise/ds-list-item';
-import { ScrollbarAdditionalProps } from '@synerise/ds-scrollbar';
-import { SearchBarProps } from '@synerise/ds-search-bar/dist/SearchBar.types';
+import { type ReactNode } from 'react';
+
+import { type ListItemProps } from '@synerise/ds-list-item';
+import { type ScrollbarAdditionalProps } from '@synerise/ds-scrollbar';
+import { type SearchBarProps } from '@synerise/ds-search-bar/dist/SearchBar.types';
 
 export type ItemPickerDropdownProps = {
   onChange: (item: ListItemProps) => void;

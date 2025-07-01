@@ -7,7 +7,12 @@ const ParsedDate: React.FC<{ date: Date }> = (props: { date: Date }) => {
     <>
       <FormattedDate value={date} year="numeric" month="short" day="numeric" />
       &nbsp;
-      <FormattedTime value={date} day="numeric" hour="numeric" minute="numeric" />
+      <FormattedTime
+        value={date}
+        day="numeric"
+        hour="numeric"
+        minute="numeric"
+      />
     </>
   );
 };

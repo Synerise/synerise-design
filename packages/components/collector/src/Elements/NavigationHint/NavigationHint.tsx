@@ -1,9 +1,13 @@
 import React from 'react';
-import Icon, { KeyboardEnterM, KeyboardKeysM } from '@synerise/ds-icon';
-import { NavigationHintProps } from './NavigationHint.types';
-import * as S from '../../Collector.styles';
 
-const NavigationHint: React.FC<NavigationHintProps> = ({ texts }: NavigationHintProps) => {
+import Icon, { KeyboardEnterM, KeyboardKeysM } from '@synerise/ds-icon';
+
+import * as S from '../../Collector.styles';
+import { type NavigationHintProps } from './NavigationHint.types';
+
+const NavigationHint: React.FC<NavigationHintProps> = ({
+  texts,
+}: NavigationHintProps) => {
   return (
     <S.NavigationWrapper>
       <Icon component={<KeyboardKeysM />} />

@@ -1,9 +1,11 @@
-import type { Component, LegacyRef, ReactNode } from 'react';
-import { MenuProps } from 'antd/lib/menu';
+import { type MenuProps } from 'antd/lib/menu';
 import type { TriggerProps } from 'rc-trigger';
-import { TooltipProps } from '@synerise/ds-tooltip/dist/Tooltip.types';
-import { VisibilityTrigger } from '../../Menu.types';
-import { SubMenuProps } from '../SubMenu/SubMenu.types';
+import type { Component, LegacyRef, ReactNode } from 'react';
+
+import { type TooltipProps } from '@synerise/ds-tooltip/dist/Tooltip.types';
+
+import { type VisibilityTrigger } from '../../Menu.types';
+import { type SubMenuProps } from '../SubMenu/SubMenu.types';
 
 export enum ItemType {
   DEFAULT = 'default',
@@ -17,7 +19,9 @@ export enum ItemSize {
   LARGE = 'large',
 }
 
-export type TriggerHandle = Component<TriggerProps> & { getPopupDomNode: () => HTMLElement };
+export type TriggerHandle = Component<TriggerProps> & {
+  getPopupDomNode: () => HTMLElement;
+};
 
 export type MenuItemProps = Omit<MenuProps, 'dataSource' | 'footer'> & {
   key?: string | number;

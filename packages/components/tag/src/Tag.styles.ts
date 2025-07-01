@@ -1,5 +1,7 @@
-import { ThemeProps, ThemePropsVars } from '@synerise/ds-core';
 import styled, { css } from 'styled-components';
+
+import { type ThemeProps, type ThemePropsVars } from '@synerise/ds-core';
+
 import { TagShape } from './Tag.types';
 
 const defaultStatusStyles = css`
@@ -14,7 +16,9 @@ const defaultStatusStyles = css`
   line-height: 18px;
 `;
 export const getColorText = (theme: ThemePropsVars, color?: string): string => {
-  return color === theme.palette['grey-200'] ? theme.palette['grey-600'] : theme.palette.white;
+  return color === theme.palette['grey-200']
+    ? theme.palette['grey-600']
+    : theme.palette.white;
 };
 
 type InsertShapeStyles = {
@@ -85,7 +89,7 @@ export const RemoveButton = styled.div`
   opacity: 0.8;
 
   &:before {
-    color: ${props => props.color || props.theme.palette['red-600']};
+    color: ${(props) => props.color || props.theme.palette['red-600']};
     filter: brightness(70%);
     opacity: 0.3;
     content: '';
@@ -98,7 +102,7 @@ export const RemoveButton = styled.div`
 
   &&&:hover {
     .ds-icon svg {
-      fill: ${props => props.theme.palette['red-600']} !important;
+      fill: ${(props) => props.theme.palette['red-600']} !important;
     }
   }
   .icon {
@@ -251,7 +255,9 @@ const insertShapeStyles = (props: InsertShapeStyles) => {
     case TagShape.STATUS_NEUTRAL:
       return css`
         border: 1px solid ${props.color || props.theme.palette['grey-500']};
-        color: ${props.textColor || props.color || props.theme.palette['grey-500']};
+        color: ${props.textColor ||
+        props.color ||
+        props.theme.palette['grey-500']};
         ${defaultStatusStyles}
       `;
 
@@ -304,7 +310,7 @@ export const Content = styled.div<{ iconHover?: boolean }>`
   flex-grow: 0;
   flex-shrink: 1;
   max-width: 100%;
-  ${props =>
+  ${(props) =>
     !!props.iconHover &&
     `
     &&& {
@@ -313,8 +319,8 @@ export const Content = styled.div<{ iconHover?: boolean }>`
 `}
 `;
 export const PrefixWrapper = styled.div<{ iconHover?: boolean }>`
-  ${props => addonStyles(props)};
-  ${props =>
+  ${(props) => addonStyles(props)};
+  ${(props) =>
     !!props.iconHover &&
     `.ant-scroll-number{ 
     color: ${props.theme.palette['red-600']}!important;
@@ -325,11 +331,11 @@ export const PrefixWrapper = styled.div<{ iconHover?: boolean }>`
 }`}
 `;
 export const SuffixWrapper = styled.div`
-  ${props => addonStyles(props)};
+  ${(props) => addonStyles(props)};
 `;
 export const DefaultSuffixWrapper = styled.div``;
 export const DefaultPrefixWrapper = styled.div<{ iconHover?: boolean }>`
-  ${props =>
+  ${(props) =>
     !!props.iconHover &&
     `.ant-scroll-number{ 
     color: ${props.theme.palette['red-600']}!important;
@@ -357,8 +363,8 @@ export const Tag = styled.div<TagProps>`
       }
     `}
 
-  ${props => insertShapeStyles(props)};
-  ${props =>
+  ${(props) => insertShapeStyles(props)};
+  ${(props) =>
     !!props.iconHover &&
     `
     &&&:before{
@@ -399,7 +405,7 @@ export const Tag = styled.div<TagProps>`
     margin: 0 -2px 0 1px;
   }
 
-  ${props =>
+  ${(props) =>
     !!props.isActionable &&
     css`
       &:hover {
@@ -419,10 +425,16 @@ export const Tag = styled.div<TagProps>`
     margin-right: 0;
   }
   ${SuffixWrapper},${DefaultSuffixWrapper} {
-    margin: ${props => (!props.removable && props.suffixel ? '0px -8px 3px 5px' : '0 4px 3px 1px')};
+    margin: ${(props) =>
+      !props.removable && props.suffixel
+        ? '0px -8px 3px 5px'
+        : '0 4px 3px 1px'};
   }
   ${PrefixWrapper},${DefaultPrefixWrapper} {
-    margin: ${props => (!props.removable && props.preffixel ? '0px 5px 3px -8px' : '0 1px 3px 4px')};
+    margin: ${(props) =>
+      !props.removable && props.preffixel
+        ? '0px 5px 3px -8px'
+        : '0 1px 3px 4px'};
   }
 `;
 

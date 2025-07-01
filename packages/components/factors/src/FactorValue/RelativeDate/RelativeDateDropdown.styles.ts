@@ -1,8 +1,9 @@
 import styled from 'styled-components';
-import Icon from '@synerise/ds-icon';
-import { InputNumberWrapper } from '@synerise/ds-input-number/dist/InputNumber.styles';
+
 import Dropdown from '@synerise/ds-dropdown';
+import Icon from '@synerise/ds-icon';
 import { Input } from '@synerise/ds-input';
+import { InputNumberWrapper } from '@synerise/ds-input-number/dist/InputNumber.styles';
 
 export const RelativeDateDropdownWrapper = styled(Dropdown.Wrapper)`
   padding: 24px;
@@ -19,7 +20,7 @@ export const RelativeDateDropdownWrapper = styled(Dropdown.Wrapper)`
   }
 `;
 export const RelativeDateDropdownFooter = styled.div`
-  background: ${props => props.theme.palette['grey-100']};
+  background: ${(props) => props.theme.palette['grey-100']};
   display: flex;
   align-items: center;
   justify-content: flex-end;
@@ -43,10 +44,10 @@ export const Trigger = styled(Input)`
     ${ClearIcon} {
       display: block;
       svg {
-        fill: ${props => props.theme.palette['red-600']};
+        fill: ${(props) => props.theme.palette['red-600']};
       }
       &:hover svg {
-        fill: ${props => props.theme.palette['red-500']};
+        fill: ${(props) => props.theme.palette['red-500']};
       }
     }
     ${ChevronIcon} {

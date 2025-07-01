@@ -1,5 +1,4 @@
-
-export interface Props<T extends unknown> {
+export interface Props<T> {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   header: any;
   activeColumnKey?: string;

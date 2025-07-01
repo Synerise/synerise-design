@@ -1,4 +1,5 @@
 import styled, { css } from 'styled-components';
+
 import Scrollbar from '@synerise/ds-scrollbar';
 
 type ColWrapperProps = {
@@ -10,22 +11,28 @@ type ColWrapperProps = {
 };
 const numberToPixels = (num: number): string => `${num}px`;
 
-const getColumnWidth = (props: ColWrapperProps): React.CSSProperties['width'] => {
+const getColumnWidth = (
+  props: ColWrapperProps,
+): React.CSSProperties['width'] => {
   return props.width ? numberToPixels(props.width) : 'initial';
 };
 
 export const RowWrapper = styled.div<{ onRowClickAvailable?: boolean }>`
   display: inline-table;
-  cursor: ${props => (props.onRowClickAvailable ? 'pointer' : 'default')};
+  cursor: ${(props) => (props.onRowClickAvailable ? 'pointer' : 'default')};
 `;
 
 export const InnerListElement = styled.div`
-  background: ${props => props.theme.palette.white};
+  background: ${(props) => props.theme.palette.white};
 `;
 export const VirtualListSpace = styled.div``;
 
-export const VirtualListWrapper = styled.div<{ isSticky: boolean; listHeight: number; listWidth: number }>`
-  ${props =>
+export const VirtualListWrapper = styled.div<{
+  isSticky: boolean;
+  listHeight: number;
+  listWidth: number;
+}>`
+  ${(props) =>
     props.isSticky &&
     css`
       width: ${numberToPixels(props.listWidth)};
@@ -50,15 +57,18 @@ export const VirtualListWrapper = styled.div<{ isSticky: boolean; listHeight: nu
   overscroll-behavior-x: contain;
 `;
 
-export const StickyScrollbar = styled(Scrollbar)<{ offset: number; isStuck: boolean }>`
+export const StickyScrollbar = styled(Scrollbar)<{
+  offset: number;
+  isStuck: boolean;
+}>`
   position: sticky;
   bottom: 0;
-  z-index: ${props => (props.isStuck ? 2 : 0)};
-  transform: translate(5px, ${props => numberToPixels(props.offset)});
+  z-index: ${(props) => (props.isStuck ? 2 : 0)};
+  transform: translate(5px, ${(props) => numberToPixels(props.offset)});
 `;
 
 export const StickyScrollbarContent = styled.div<{ scrollWidth: number }>`
-  width: ${props => numberToPixels(props.scrollWidth)};
+  width: ${(props) => numberToPixels(props.scrollWidth)};
   height: 10px;
 `;
 
@@ -66,10 +76,12 @@ export const ColWrapper = styled.div<ColWrapperProps>`
   display: table-cell;
   vertical-align: middle;
 
-  ${props => props.left !== undefined && `left: ${numberToPixels(props.left)}`};
-  ${props => props.right !== undefined && `right: ${numberToPixels(props.right)}`};
+  ${(props) =>
+    props.left !== undefined && `left: ${numberToPixels(props.left)}`};
+  ${(props) =>
+    props.right !== undefined && `right: ${numberToPixels(props.right)}`};
 
-  ${props => {
+  ${(props) => {
     const width = getColumnWidth(props);
     return css`
       width: ${width};
@@ -92,7 +104,8 @@ export const ColWrapper = styled.div<ColWrapperProps>`
     }
   }
 
-  &.virtual-table-cell.ant-table-selection-column + .virtual-table-cell.ds-table-star-column {
+  &.virtual-table-cell.ant-table-selection-column
+    + .virtual-table-cell.ds-table-star-column {
     padding-left: 0;
   }
 `;
@@ -103,7 +116,7 @@ export const VirtualTableWrapper = styled.div<{
   titleBarTop: number;
   isHeaderVisible?: boolean;
 }>`
-  ${props =>
+  ${(props) =>
     props.isSticky
       ? css`
           .ant-table-title {

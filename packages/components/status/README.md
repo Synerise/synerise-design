@@ -28,11 +28,11 @@ import Status from '@synerise/ds-status'
 
 ## API
 
-| Property  | Description            | Type                                                      | Default   |
-| --------- | ---------------------- | --------------------------------------------------------- | --------- |
-| type      | type of status         | `primary` / `success` / `warning` / `danger` / `info` / `disabled` / `default` | `primary` / `custom` |
-| label     | text inside the status | string                                                    | -         |
-| className | wrapper class name     | string                                                    | -         |
-| onClick   | onClick event          | () => void                                                | -         |
-| color     | type of color (works with type="custom")  | string                                 | -         |
-| dashed    | make dashed border     | boolean                                                   | -         |
+| Property  | Description                              | Type                                                                           | Default              |
+| --------- | ---------------------------------------- | ------------------------------------------------------------------------------ | -------------------- |
+| type      | type of status                           | `primary` / `success` / `warning` / `danger` / `info` / `disabled` / `default` | `primary` / `custom` |
+| label     | text inside the status                   | string                                                                         | -                    |
+| className | wrapper class name                       | string                                                                         | -                    |
+| onClick   | onClick event                            | () => void                                                                     | -                    |
+| color     | type of color (works with type="custom") | string                                                                         | -                    |
+| dashed    | make dashed border                       | boolean                                                                        | -                    |

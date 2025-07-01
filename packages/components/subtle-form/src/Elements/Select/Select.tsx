@@ -1,11 +1,13 @@
 import React, { useCallback, useRef, useState } from 'react';
-import Icon, { AngleDownS } from '@synerise/ds-icon';
-import Tooltip from '@synerise/ds-tooltip';
+
 import { useTheme } from '@synerise/ds-core';
+import Icon, { AngleDownS } from '@synerise/ds-icon';
 import Select from '@synerise/ds-select';
+import Tooltip from '@synerise/ds-tooltip';
+
 import * as S from '../../SubtleForm.styles';
-import { SubtleSelectProps } from './Select.types';
 import { SelectContainer } from './Select.styles';
+import { type SubtleSelectProps } from './Select.types';
 
 const SubtleSelect = ({
   disabled,
@@ -37,7 +39,11 @@ const SubtleSelect = ({
   return (
     <S.Subtle className="ds-subtle-form" disabled={disabled}>
       <S.SubtleFormField active={active} label={label} tooltip={labelTooltip}>
-        <SelectContainer ref={containerRef} className="ds-subtle-select" active={active}>
+        <SelectContainer
+          ref={containerRef}
+          className="ds-subtle-select"
+          active={active}
+        >
           {(active && !blurred) || hasError ? (
             <Select
               disabled={disabled}
@@ -67,7 +73,12 @@ const SubtleSelect = ({
               {!active && !disabled && (
                 <S.Suffix select>
                   <Tooltip title={suffixTooltip}>
-                    {suffix ?? <Icon component={<AngleDownS />} color={theme.palette['grey-600']} />}
+                    {suffix ?? (
+                      <Icon
+                        component={<AngleDownS />}
+                        color={theme.palette['grey-600']}
+                      />
+                    )}
                   </Tooltip>
                 </S.Suffix>
               )}

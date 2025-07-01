@@ -1,11 +1,11 @@
-import React, { ComponentType } from 'react';
+import React, { type ComponentType } from 'react';
 
-import { useDataFormat, UseDataFormatProps } from '../hooks';
+import { type UseDataFormatProps, useDataFormat } from '../hooks';
 
 export type WithDataFormatProps = UseDataFormatProps;
 
 export const withDataFormat = <Props extends object>(
-  WrappedComponent: ComponentType<Props>
+  WrappedComponent: ComponentType<Props>,
 ): ComponentType<Omit<Props, keyof UseDataFormatProps>> => {
   return (props: Omit<Props, keyof UseDataFormatProps>): JSX.Element => {
     const dataFormatProps = useDataFormat();

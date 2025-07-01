@@ -1,4 +1,4 @@
-import { ColumnManagerTexts } from '../ColumnManager.types';
+import { type ColumnManagerTexts } from '../ColumnManager.types';
 
 export type ColumnManagerActionsProps = {
   onApply: () => void;

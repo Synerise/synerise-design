@@ -1,11 +1,10 @@
-import styled from 'styled-components';
 import React from 'react';
-import { SuffixWraper } from '../Text/Text.styles';
-import Text from '../Text/Text';
+import styled from 'styled-components';
 
-// eslint-disable-next-line import/prefer-default-export
+import Text from '../Text/Text';
+import { SuffixWraper } from '../Text/Text.styles';
+
 export const SelectItem = styled(({ children, disabled, ...rest }) => (
-  // eslint-disable-next-line react/jsx-props-no-spreading
   <Text disabled={disabled} {...rest}>
     {children}
   </Text>
@@ -14,7 +13,9 @@ export const SelectItem = styled(({ children, disabled, ...rest }) => (
   & {
     ${SuffixWraper} > * {
       filter: opacity(0);
-      transition: filter 0.3s ease-in-out, color 0.3s ease-in-out;
+      transition:
+        filter 0.3s ease-in-out,
+        color 0.3s ease-in-out;
     }
   }
   &:hover,

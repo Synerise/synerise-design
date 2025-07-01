@@ -1,8 +1,8 @@
 import * as medium from './icons';
 import * as large from './icons/L';
 import * as xLarge from './icons/XL';
-import * as color from './icons/colorIcons';
 import * as additional from './icons/additional';
+import * as color from './icons/colorIcons';
 
 export { default } from './Icon';
 export * from './Icon.types';

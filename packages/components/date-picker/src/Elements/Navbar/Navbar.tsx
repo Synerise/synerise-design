@@ -1,10 +1,15 @@
 import React from 'react';
 import { v4 as uuid } from 'uuid';
 
-import Icon, { AngleLeftS, AngleRightS, DoubleAngleLeftS, DoubleAngleRightS } from '@synerise/ds-icon';
+import Icon, {
+  AngleLeftS,
+  AngleRightS,
+  DoubleAngleLeftS,
+  DoubleAngleRightS,
+} from '@synerise/ds-icon';
 
 import * as S from './Navbar.styles';
-import { NavbarProps } from './Navbar.types';
+import { type NavbarProps } from './Navbar.types';
 
 const Navbar: React.FC<NavbarProps> = (props: NavbarProps) => {
   const {
@@ -55,7 +60,9 @@ const Navbar: React.FC<NavbarProps> = (props: NavbarProps) => {
           <S.ArrowPlaceholder className="arrow-placeholder short-prev" />
         )}
       </S.ArrowContainer>
-      <S.Text>{onTitleClick ? <S.Link onClick={onTitleClick}>{title}</S.Link> : title}</S.Text>
+      <S.Text>
+        {onTitleClick ? <S.Link onClick={onTitleClick}>{title}</S.Link> : title}
+      </S.Text>
       <S.ArrowContainer>
         {onShortNext && !hideNext ? (
           <S.NavButton

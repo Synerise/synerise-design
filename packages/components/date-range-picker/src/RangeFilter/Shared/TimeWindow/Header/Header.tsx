@@ -19,9 +19,12 @@ const HeaderBase = ({ title, actions, suffix }: HeaderProps) => (
     <S.Title data-attr="title">{title}</S.Title>
     <S.Actions data-attr="actions">
       {actions &&
-        actions.map(action => (
-          // eslint-disable-next-line react/jsx-handler-names
-          <S.Action key={action.key} data-attr={action.key} onClick={action.onClick}>
+        actions.map((action) => (
+          <S.Action
+            key={action.key}
+            data-attr={action.key}
+            onClick={action.onClick}
+          >
             {action.label}
           </S.Action>
         ))}

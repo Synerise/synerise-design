@@ -1,6 +1,7 @@
-import React from 'react';
-import { AdditionalAction } from '../../ManageableList.types';
-import { ItemProps } from '../Item.types';
+import type React from 'react';
+
+import { type AdditionalAction } from '../../ManageableList.types';
+import { type ItemProps } from '../Item.types';
 
 export type ItemActionsProps = {
   item: ItemProps;

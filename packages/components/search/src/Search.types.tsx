@@ -1,7 +1,8 @@
-import React from 'react';
-import { ListProps } from 'react-window';
-import { InputProps } from 'antd/lib/input';
-import { TooltipProps } from '@synerise/ds-tooltip';
+import { type InputProps } from 'antd/lib/input';
+import type React from 'react';
+import { type ListProps } from 'react-window';
+
+import { type TooltipProps } from '@synerise/ds-tooltip';
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export type AnyObject = Record<string, any>;

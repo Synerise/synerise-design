@@ -1,4 +1,4 @@
-import type { ReactNode, ReactText, CSSProperties } from 'react';
+import type { CSSProperties, ReactNode, ReactText } from 'react';
 
 export type Texts = 'searchPlaceholder';
 export type Category = {

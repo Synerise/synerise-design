@@ -1,5 +1,6 @@
-import dayjs from 'dayjs';
-import { ClockModes } from '../types/TimePicker.types';
+import type dayjs from 'dayjs';
+
+import { type ClockModes } from '../types/TimePicker.types';
 
 export const HOUR: dayjs.UnitType = 'hour';
 export const MINUTE: dayjs.UnitType = 'minute';

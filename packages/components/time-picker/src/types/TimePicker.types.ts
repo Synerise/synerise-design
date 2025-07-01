@@ -1,13 +1,13 @@
-import type { ReactNode, CSSProperties } from 'react';
 import type dayjs from 'dayjs';
-import type { InputProps } from '@synerise/ds-input';
+import type { CSSProperties, ReactNode } from 'react';
 
-import type { DropdownProps } from '@synerise/ds-dropdown';
 import type { DateToFormatOptions } from '@synerise/ds-data-format';
+import type { DropdownProps } from '@synerise/ds-dropdown';
+import type { InputProps } from '@synerise/ds-input';
 
 import type { CLOCK_MODES } from '../constants/timePicker.constants';
 
-export type ClockModes = typeof CLOCK_MODES[number];
+export type ClockModes = (typeof CLOCK_MODES)[number];
 
 export type TimePickerDisabledUnits = {
   disabledSeconds?: number[];
@@ -28,7 +28,13 @@ export type TimePickerProps = TimePickerDisabledUnits & {
   onClockModeChange?: (mode: string) => void;
   overlayClassName?: string;
   placeholder?: string;
-  placement?: 'topLeft' | 'topCenter' | 'topRight' | 'bottomLeft' | 'bottomCenter' | 'bottomRight';
+  placement?:
+    | 'topLeft'
+    | 'topCenter'
+    | 'topRight'
+    | 'bottomLeft'
+    | 'bottomCenter'
+    | 'bottomRight';
   raw?: boolean;
   /**
    * @deprecated use `valueFormatOptions` instead

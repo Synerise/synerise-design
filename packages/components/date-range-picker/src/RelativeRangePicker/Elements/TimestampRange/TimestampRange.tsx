@@ -1,14 +1,20 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import React from 'react';
 import { useIntl } from 'react-intl';
+
 import DatePicker from '@synerise/ds-date-picker/dist/DatePicker';
 import { getDefaultTexts } from '@synerise/ds-date-picker/dist/utils/getDefaultTexts';
+
+import { CUSTOM_RANGE_KEY, DURATION_MODIFIERS } from '../../../constants';
+import {
+  type Duration,
+  type RelativeDateRange,
+  type RelativeUnits,
+} from '../../../date.types';
+import { DEFAULT_RANGE } from '../../../utils';
 import * as S from '../../RelativeRangePicker.styles';
 import TimestampDuration from './TimestampDuration/TimestampDuration';
-import { TimestampRangeProps as Props } from './TimestampRange.types';
-import { CUSTOM_RANGE_KEY, DURATION_MODIFIERS } from '../../../constants';
-import { RelativeUnits, Duration, RelativeDateRange } from '../../../date.types';
-import { DEFAULT_RANGE } from '../../../utils';
+import { type TimestampRangeProps as Props } from './TimestampRange.types';
 
 const TimestampRange: React.FC<Props> = ({
   currentRange,
@@ -27,8 +33,12 @@ const TimestampRange: React.FC<Props> = ({
   const [durationModifier, setDurationModifier] = React.useState<
     typeof DURATION_MODIFIERS.LAST | typeof DURATION_MODIFIERS.NEXT
   >(currentRange?.future ? DURATION_MODIFIERS.NEXT : DURATION_MODIFIERS.LAST);
-  const [durationValue, setDurationValue] = React.useState<number>(currentRange?.duration?.value);
-  const [durationUnit, setDurationUnit] = React.useState<string>(currentRange?.duration?.type);
+  const [durationValue, setDurationValue] = React.useState<number>(
+    currentRange?.duration?.value,
+  );
+  const [durationUnit, setDurationUnit] = React.useState<string>(
+    currentRange?.duration?.type,
+  );
   const [error, setError] = React.useState<boolean>(!timestamp);
   const intl = useIntl();
   const allTexts = getDefaultTexts(intl, texts);
@@ -36,7 +46,10 @@ const TimestampRange: React.FC<Props> = ({
     setError(!timestamp);
   }, [timestamp]);
 
-  const handleRangeChange = (date: Date | undefined, duration: Duration): void => {
+  const handleRangeChange = (
+    date: Date | undefined,
+    duration: Duration,
+  ): void => {
     if (date) {
       const offsetToTimestamp = {
         future: durationModifier === DURATION_MODIFIERS.NEXT,
@@ -50,7 +63,10 @@ const TimestampRange: React.FC<Props> = ({
   };
 
   React.useEffect((): void => {
-    const duration: Duration = { type: durationUnit as RelativeUnits, value: durationValue };
+    const duration: Duration = {
+      type: durationUnit as RelativeUnits,
+      value: durationValue,
+    };
     handleRangeChange(timestamp, duration);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [durationValue, durationModifier, durationUnit, timestamp]);
@@ -71,7 +87,8 @@ const TimestampRange: React.FC<Props> = ({
             onTimestampChange && onTimestampChange(getValueOnReset() as any); // FIXME cannot reselect date after clearing
           }}
           dropdownProps={{
-            getPopupContainer: (node): HTMLElement => (node.parentElement != null ? node.parentElement : document.body),
+            getPopupContainer: (node): HTMLElement =>
+              node.parentElement !== null ? node.parentElement : document.body,
           }}
           texts={{
             apply: allTexts.apply,
@@ -111,3 +128,4 @@ const TimestampRange: React.FC<Props> = ({
 };
 
 export default TimestampRange;
+/* eslint-enable @typescript-eslint/no-explicit-any */

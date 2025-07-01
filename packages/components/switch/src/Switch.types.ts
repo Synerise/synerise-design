@@ -1,5 +1,5 @@
-import { SwitchProps as AntdSwitchProps } from 'antd/lib/switch';
-import { ReactNode } from 'react';
+import { type SwitchProps as AntdSwitchProps } from 'antd/lib/switch';
+import { type ReactNode } from 'react';
 
 type TooltipProps = {
   tooltipIcon?: ReactNode;

@@ -1,10 +1,13 @@
 import styled, { css } from 'styled-components';
 
-export const SelectContainer = styled.div<{ active: boolean; disabled: boolean }>`
+export const SelectContainer = styled.div<{
+  active: boolean;
+  disabled: boolean;
+}>`
   position: relative;
   min-height: 32px;
   width: 100%;
-  ${props =>
+  ${(props) =>
     props.active &&
     css`
       margin: -2px 0 0 -1px;
@@ -14,7 +17,7 @@ export const SelectContainer = styled.div<{ active: boolean; disabled: boolean }
     margin: 0;
   }
 
-  ${props =>
+  ${(props) =>
     !!props.disabled &&
     css`
       && {
@@ -29,5 +32,8 @@ export const MaskedDatePlaceholder = styled.div<{ disabled?: boolean }>`
   position: absolute;
   left: 0;
   top: 8px;
-  transition: ${props => (props.disabled ? 'none' : 'left 0.1s ease-in 0.2s, color 0.1s ease-in 0.2s')};
+  transition: ${(props) =>
+    props.disabled
+      ? 'none'
+      : 'left 0.1s ease-in 0.2s, color 0.1s ease-in 0.2s'};
 `;

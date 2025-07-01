@@ -1,18 +1,36 @@
 import React, { useMemo } from 'react';
+
+import Icon, {
+  ArrowDownCircleM,
+  ArrowUpCircleM,
+  CloseS,
+  WarningFillM,
+} from '@synerise/ds-icon';
 import Popconfirm from '@synerise/ds-popconfirm';
-import Icon, { ArrowDownCircleM, ArrowUpCircleM, CloseS, WarningFillM } from '@synerise/ds-icon';
 
 import * as S from '../ItemsRoll.styles';
-import { ShowLessButtonProps, ShowMoreButtonProps, FooterProps } from './Footer.types';
+import {
+  type FooterProps,
+  type ShowLessButtonProps,
+  type ShowMoreButtonProps,
+} from './Footer.types';
 
-const ShowLessButton = ({ showDefaultItemsAmount, showLessLabel }: ShowLessButtonProps) => (
+const ShowLessButton = ({
+  showDefaultItemsAmount,
+  showLessLabel,
+}: ShowLessButtonProps) => (
   <S.ShowButton type="ghost" mode="icon-label" onClick={showDefaultItemsAmount}>
     <S.ArrowIcon component={<ArrowUpCircleM />} size={20} />
     <span className="bold-label">{showLessLabel}</span>
   </S.ShowButton>
 );
 
-const ShowMoreButton = ({ showLabel, moreLabel, showAdditionalItems, getShowMoreNumber }: ShowMoreButtonProps) => (
+const ShowMoreButton = ({
+  showLabel,
+  moreLabel,
+  showAdditionalItems,
+  getShowMoreNumber,
+}: ShowMoreButtonProps) => (
   <S.ShowButton type="ghost" mode="icon-label" onClick={showAdditionalItems}>
     <S.ArrowIcon component={<ArrowDownCircleM />} size={20} />
     <S.ShowButtonLabel>
@@ -37,8 +55,11 @@ const Footer = ({
   searchMode,
 }: FooterProps) => {
   const getShowMoreNumber = useMemo(
-    () => (visibleItemsCount + showMoreStep < itemsCount ? showMoreStep : itemsCount - visibleItemsCount),
-    [itemsCount, showMoreStep, visibleItemsCount]
+    () =>
+      visibleItemsCount + showMoreStep < itemsCount
+        ? showMoreStep
+        : itemsCount - visibleItemsCount,
+    [itemsCount, showMoreStep, visibleItemsCount],
   );
 
   const showDivider = useMemo(() => {
@@ -46,10 +67,16 @@ const Footer = ({
   }, [searchMode, maxToShowItems, itemsCount]);
 
   const buttonsConfiguration = useMemo(() => {
-    if (visibleItemsCount === itemsCount)
-      return <ShowLessButton showLessLabel={allTexts.showLessLabel} showDefaultItemsAmount={showDefaultItemsAmount} />;
+    if (visibleItemsCount === itemsCount) {
+      return (
+        <ShowLessButton
+          showLessLabel={allTexts.showLessLabel}
+          showDefaultItemsAmount={showDefaultItemsAmount}
+        />
+      );
+    }
 
-    if (visibleItemsCount === maxToShowItems)
+    if (visibleItemsCount === maxToShowItems) {
       return (
         <ShowMoreButton
           getShowMoreNumber={getShowMoreNumber}
@@ -58,6 +85,7 @@ const Footer = ({
           showAdditionalItems={showAdditionalItems}
         />
       );
+    }
 
     return (
       <S.ShowButtonsWrapper>
@@ -67,7 +95,10 @@ const Footer = ({
           showLabel={allTexts.showLabel}
           showAdditionalItems={showAdditionalItems}
         />
-        <ShowLessButton showLessLabel={allTexts.showLessLabel} showDefaultItemsAmount={showDefaultItemsAmount} />
+        <ShowLessButton
+          showLessLabel={allTexts.showLessLabel}
+          showDefaultItemsAmount={showDefaultItemsAmount}
+        />
       </S.ShowButtonsWrapper>
     );
   }, [
@@ -93,7 +124,11 @@ const Footer = ({
             okText={allTexts.popconfirmYesLabel}
             title={allTexts.popconfirmTitleLabel}
           >
-            <S.ClearButton type="custom-color-ghost" color="red" mode="icon-label">
+            <S.ClearButton
+              type="custom-color-ghost"
+              color="red"
+              mode="icon-label"
+            >
               <Icon component={<CloseS />} size={22} />
               {allTexts.clearAllLabel}
             </S.ClearButton>

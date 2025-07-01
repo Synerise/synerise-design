@@ -1,10 +1,16 @@
-import React, { useState, useMemo, useCallback } from 'react';
+import React, { useCallback, useMemo, useState } from 'react';
+
+import Badge from '@synerise/ds-badge';
 import Button from '@synerise/ds-button';
 import Icon, { EditS } from '@synerise/ds-icon';
-import Badge from '@synerise/ds-badge';
-import { FactorValueType, FormulaValueType, FactorValueComponentProps } from '../../Factors.types';
-import FormulaModal from './FormulaModal';
+
+import {
+  type FactorValueComponentProps,
+  type FactorValueType,
+  type FormulaValueType,
+} from '../../Factors.types';
 import * as S from './Formula.styles';
+import FormulaModal from './FormulaModal';
 
 const FormulaInput = ({
   value,
@@ -30,7 +36,9 @@ const FormulaInput = ({
   }, [value]);
 
   const label = useMemo(() => {
-    return value ? (value as FormulaValueType).name : texts.formula.buttonPlaceholder;
+    return value
+      ? (value as FormulaValueType).name
+      : texts.formula.buttonPlaceholder;
   }, [value, texts.formula.buttonPlaceholder]);
 
   const handleChange = useCallback(
@@ -38,14 +46,25 @@ const FormulaInput = ({
       setOpenFormulaModal(false);
       onChange(val);
     },
-    [onChange]
+    [onChange],
   );
 
-  const handleClick = !readOnly ? (): void => setOpenFormulaModal(true) : undefined;
+  const handleClick = !readOnly
+    ? (): void => setOpenFormulaModal(true)
+    : undefined;
 
   return (
-    <S.FormulaButton data-testid="ds-factors-formula" withoutTypeSelector={withoutTypeSelector}>
-      <Button readOnly={readOnly} type="secondary" error={error} mode={triggerMode} onClick={handleClick}>
+    <S.FormulaButton
+      data-testid="ds-factors-formula"
+      withoutTypeSelector={withoutTypeSelector}
+    >
+      <Button
+        readOnly={readOnly}
+        type="secondary"
+        error={error}
+        mode={triggerMode}
+        onClick={handleClick}
+      >
         {activeIcon}
         {label}
         <Icon component={<EditS />} />

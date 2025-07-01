@@ -1,14 +1,19 @@
 import React, { useEffect, useRef, useState } from 'react';
-import Dropdown from '@synerise/ds-dropdown';
-import { useOnClickOutside } from '@synerise/ds-utils';
 
 import Button from '@synerise/ds-button';
-import Icon, { AddM, Close3S } from '@synerise/ds-icon';
 import ButtonGroup from '@synerise/ds-button-group';
+import Dropdown from '@synerise/ds-dropdown';
+import Icon, { AddM, Close3S } from '@synerise/ds-icon';
 import Tooltip from '@synerise/ds-tooltip';
+import { useOnClickOutside } from '@synerise/ds-utils';
+
 import * as S from './IconPicker.styles';
+import {
+  type IconPickerProps,
+  type SourceType,
+  type ValueTypeForSource,
+} from './IconPicker.types';
 import Overlay from './components/Overlay/Overlay';
-import { IconPickerProps, SourceType, ValueTypeForSource } from './IconPicker.types';
 import { useIconSourceLoader } from './hooks/useIconSourceLoader';
 import { matchesSearchQuery } from './utils/matchesSearchQuery';
 
@@ -34,14 +39,17 @@ const IconPicker = <IconSource extends SourceType>({
   useEffect(() => {
     if (searchQuery) {
       const groups = items
-        .map(group => {
-          const matching = group.items.filter(icon => icon.keywords && matchesSearchQuery(icon.keywords, searchQuery));
+        .map((group) => {
+          const matching = group.items.filter(
+            (icon) =>
+              icon.keywords && matchesSearchQuery(icon.keywords, searchQuery),
+          );
           return {
             ...group,
             items: matching,
           };
         })
-        .filter(group => group.items.length);
+        .filter((group) => group.items.length);
       setFilteredItems(groups);
       return;
     }

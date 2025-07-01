@@ -1,6 +1,7 @@
 import type { ReactNode } from 'react';
-import type { WithHTMLAttributes } from '@synerise/ds-utils';
+
 import type { TooltipProps } from '@synerise/ds-tooltip';
+import type { WithHTMLAttributes } from '@synerise/ds-utils';
 
 export type ContentAboveProps = BaseLabelProps & {
   rightSide?: ReactNode;
@@ -13,7 +14,8 @@ type BaseLabelProps = {
   id?: string;
 };
 
-export type FormFieldCommonProps = Omit<ContentAboveProps, 'id' | 'rightSide'> & ContentBelowProps;
+export type FormFieldCommonProps = Omit<ContentAboveProps, 'id' | 'rightSide'> &
+  ContentBelowProps;
 
 export type FormFieldProps = WithHTMLAttributes<
   HTMLDivElement,

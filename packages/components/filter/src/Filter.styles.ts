@@ -1,11 +1,12 @@
 import styled, { css } from 'styled-components';
+
 import { SortableItemContent } from '@synerise/ds-sortable/dist/Sortable.styles';
 
 export const placeholderCss = css`
   height: calc(100% - 24px);
-  background-color: ${props => props.theme.palette['blue-050']};
+  background-color: ${(props) => props.theme.palette['blue-050']};
   border: 0;
-  border-left: 2px solid ${props => props.theme.palette['blue-600']};
+  border-left: 2px solid ${(props) => props.theme.palette['blue-600']};
   border-radius: 3px;
 `;
 
@@ -58,7 +59,10 @@ export const LogicWrapper = styled.div`
   margin: 22px 0;
 `;
 
-export const ExpressionWrapper = styled.div<{ index?: number; isDragged?: boolean }>`
+export const ExpressionWrapper = styled.div<{
+  index?: number;
+  isDragged?: boolean;
+}>`
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -66,7 +70,7 @@ export const ExpressionWrapper = styled.div<{ index?: number; isDragged?: boolea
   justify-content: center;
   position: relative;
 
-  ${props =>
+  ${(props) =>
     (props.isDragged || props.index === -1) &&
     `
     ${LogicWrapper} {
@@ -88,7 +92,7 @@ export const FilterTitle = styled.div`
   font-size: 16px;
   font-weight: 500;
   line-height: 1.25;
-  color: ${props => props.theme.palette['grey-800']};
+  color: ${(props) => props.theme.palette['grey-800']};
   text-align: left;
   user-select: none;
   flex: 0 0 auto;

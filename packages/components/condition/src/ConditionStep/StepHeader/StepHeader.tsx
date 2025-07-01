@@ -1,13 +1,20 @@
-import React, { useRef, useState, useEffect, useCallback, ChangeEvent } from 'react';
 import { debounce } from 'lodash';
-import InlineEdit from '@synerise/ds-inline-edit';
+import React, {
+  type ChangeEvent,
+  useCallback,
+  useEffect,
+  useRef,
+  useState,
+} from 'react';
+
 import Cruds from '@synerise/ds-cruds';
 import { DragHandleM } from '@synerise/ds-icon';
+import InlineEdit from '@synerise/ds-inline-edit';
 import { NOOP } from '@synerise/ds-utils';
 
 import * as S from '../../Condition.style';
 import { StepName } from '../StepName/StepName';
-import * as T from './StepHeader.types';
+import type * as T from './StepHeader.types';
 
 export const StepHeader = ({
   stepName,
@@ -21,7 +28,9 @@ export const StepHeader = ({
   dragHandleProps = {},
   readOnly = false,
 }: T.StepHeaderProps) => {
-  const onChangeNameDebounce = useRef(debounce(updateStepName || NOOP, 300)).current;
+  const onChangeNameDebounce = useRef(
+    debounce(updateStepName || NOOP, 300),
+  ).current;
   const [localName, setLocalName] = useState(stepName);
 
   useEffect(() => {
@@ -39,11 +48,15 @@ export const StepHeader = ({
       setLocalName(event.target.value);
       onChangeNameDebounce(stepId, event.target.value);
     },
-    [onChangeNameDebounce, stepId]
+    [onChangeNameDebounce, stepId],
   );
 
   const dragHandleElement = !readOnly && draggableEnabled && (
-    <S.DragIcon className="step-drag-handler" component={<DragHandleM />} {...dragHandleProps} />
+    <S.DragIcon
+      className="step-drag-handler"
+      component={<DragHandleM />}
+      {...dragHandleProps}
+    />
   );
 
   const stepNameElement = readOnly ? (
@@ -63,7 +76,9 @@ export const StepHeader = ({
   const crudElement = !readOnly && (
     <S.StepCruds>
       <Cruds
-        onDuplicate={duplicateStep ? (): void => duplicateStep(stepId) : undefined}
+        onDuplicate={
+          duplicateStep ? (): void => duplicateStep(stepId) : undefined
+        }
         onDelete={removeStep ? (): void => removeStep(stepId) : undefined}
         duplicateTooltip={texts.duplicateTooltip}
         deleteTooltip={texts.removeTooltip}
@@ -72,7 +87,10 @@ export const StepHeader = ({
   );
 
   return (
-    <S.StepHeader className="ds-condition-step-header" draggable={draggableEnabled}>
+    <S.StepHeader
+      className="ds-condition-step-header"
+      draggable={draggableEnabled}
+    >
       <S.LeftSide>
         {dragHandleElement}
         <StepName name={stepNameElement} index={index} texts={texts} />

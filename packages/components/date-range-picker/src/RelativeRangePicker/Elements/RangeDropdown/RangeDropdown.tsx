@@ -1,16 +1,18 @@
-import React, { MouseEvent, useCallback, useRef, useState } from 'react';
-import find from 'ramda/src/find';
 import { isEqual } from 'lodash';
-import Icon, { AngleDownS, CheckS } from '@synerise/ds-icon';
-import { useOnClickOutside } from '@synerise/ds-utils';
-import Scrollbar from '@synerise/ds-scrollbar';
+import find from 'ramda/src/find';
+import React, { type MouseEvent, useCallback, useRef, useState } from 'react';
+
 import { theme } from '@synerise/ds-core';
+import Icon, { AngleDownS, CheckS } from '@synerise/ds-icon';
 import type { ItemData } from '@synerise/ds-list-item';
-import * as S from '../../RelativeRangePicker.styles';
-import { RangeDropdownProps } from './RangeDropdown.types';
-import { DateRange } from '../../../date.types';
+import Scrollbar from '@synerise/ds-scrollbar';
+import { useOnClickOutside } from '@synerise/ds-utils';
+
 import { ALL_TIME } from '../../../constants';
+import { type DateRange } from '../../../date.types';
+import * as S from '../../RelativeRangePicker.styles';
 import { findRangeByKey } from '../../utils';
+import { type RangeDropdownProps } from './RangeDropdown.types';
 
 const MAX_ITEMS_COUNT = 7;
 const ITEMS_HEIGHT = 32;
@@ -28,11 +30,18 @@ export const isLifetime = (range?: DateRange, fallback = false): boolean => {
     return false;
   }
   const keys = Object.keys(range);
-  const legacyDef = range.type === 'ABSOLUTE' && !keys.includes('from') && !keys.includes('to');
+  const legacyDef =
+    range.type === 'ABSOLUTE' && !keys.includes('from') && !keys.includes('to');
   // reasonable def comes from the fact that empty from and to sometimes might be also set like this (from/to as undefined)
-  const reasonableDef = range.type === 'ABSOLUTE' && range.from === undefined && range.to === undefined;
-  const legacyValueButLifetimeForSure = reasonableDef && range.translationKey === 'allTime';
-  return legacyDef || (fallback && reasonableDef) || legacyValueButLifetimeForSure;
+  const reasonableDef =
+    range.type === 'ABSOLUTE' &&
+    range.from === undefined &&
+    range.to === undefined;
+  const legacyValueButLifetimeForSure =
+    reasonableDef && range.translationKey === 'allTime';
+  return (
+    legacyDef || (fallback && reasonableDef) || legacyValueButLifetimeForSure
+  );
 };
 
 const RangeDropdown = ({
@@ -55,18 +64,22 @@ const RangeDropdown = ({
       onChange(range);
       setDropVisible(false);
     },
-    [onChange, ranges]
+    [onChange, ranges],
   );
 
-  if (!ranges || ranges.length === 0) return null;
+  if (!ranges || ranges.length === 0) {
+    return null;
+  }
   const mappedRanges = ranges.map(valueTransformer);
   const transformedCurrentRange = valueTransformer(currentRange);
-  const anyOfTransformedRangesMatchesCurrentRange = isLifetime(transformedCurrentRange as DateRange)
+  const anyOfTransformedRangesMatchesCurrentRange = isLifetime(
+    transformedCurrentRange as DateRange,
+  )
     ? false
-    : find(r => isEqual(transformedCurrentRange, r), mappedRanges);
+    : find((r) => isEqual(transformedCurrentRange, r), mappedRanges);
   const containsCurrentRange =
     (currentRange &&
-      find(range => {
+      find((range) => {
         const key = isLifetime(currentRange) ? ALL_TIME : currentRange.key;
         return range.key === key;
       }, ranges)) ||
@@ -79,14 +92,23 @@ const RangeDropdown = ({
         absolute
       >
         <S.DropMenu>
-          {ranges.map(range => {
-            const selected = currentRange?.key === range.key || (isLifetime(currentRange) && range.key === ALL_TIME);
+          {ranges.map((range) => {
+            const selected =
+              currentRange?.key === range.key ||
+              (isLifetime(currentRange) && range.key === ALL_TIME);
             return (
               <S.DropMenuItem
                 onClick={onMenuItemClick}
                 key={range.key || range.id}
                 itemKey={range.key || range.id}
-                suffixel={selected && <Icon component={<CheckS />} color={theme.palette['green-600']} />}
+                suffixel={
+                  selected && (
+                    <Icon
+                      component={<CheckS />}
+                      color={theme.palette['green-600']}
+                    />
+                  )
+                }
               >
                 {range.translationKey ? texts[range.translationKey] : range.key}
               </S.DropMenuItem>
@@ -105,7 +127,11 @@ const RangeDropdown = ({
         onClick={(): void => setDropVisible(!dropVisible)}
       >
         {currentRange &&
-          texts[containsCurrentRange && currentRange.translationKey ? currentRange.translationKey : 'more']}
+          texts[
+            containsCurrentRange && currentRange.translationKey
+              ? currentRange.translationKey
+              : 'more'
+          ]}
 
         <Icon component={<AngleDownS />} />
       </S.Range>

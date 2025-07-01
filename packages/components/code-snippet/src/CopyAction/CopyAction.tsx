@@ -1,9 +1,11 @@
 import React from 'react';
-import Tooltip from '@synerise/ds-tooltip';
+
 import Icon from '@synerise/ds-icon';
+import Tooltip from '@synerise/ds-tooltip';
 import { useOnClickOutside } from '@synerise/ds-utils';
+
 import * as S from './CopyAction.styles';
-import { CopyActionProps } from './CopyAction.types';
+import { type CopyActionProps } from './CopyAction.types';
 
 const CopyAction: React.FC<CopyActionProps> = ({
   tooltipTitleHover,
@@ -17,7 +19,9 @@ const CopyAction: React.FC<CopyActionProps> = ({
 }) => {
   const [hideHoverTooltip, setHideHoverTooltip] = React.useState(false);
   const iconRef = React.useRef<HTMLDivElement>(null);
-  const timeoutClickRef = React.useRef<ReturnType<typeof setTimeout> | null>(null);
+  const timeoutClickRef = React.useRef<ReturnType<typeof setTimeout> | null>(
+    null,
+  );
 
   React.useEffect(() => {
     return (): void => {
@@ -39,8 +43,15 @@ const CopyAction: React.FC<CopyActionProps> = ({
     }, 3000);
   };
   return (
-    <Tooltip title={tooltipTitleClick} trigger="click" timeToHideAfterClick={timeToHideTooltip}>
-      <Tooltip title={tooltipTitleHover} overlayStyle={hideHoverTooltip ? { display: 'none' } : undefined}>
+    <Tooltip
+      title={tooltipTitleClick}
+      trigger="click"
+      timeToHideAfterClick={timeToHideTooltip}
+    >
+      <Tooltip
+        title={tooltipTitleHover}
+        overlayStyle={hideHoverTooltip ? { display: 'none' } : undefined}
+      >
         <S.IconWrapper
           customTriggerComponent={!!customTriggerComponent}
           ref={iconRef}
@@ -51,7 +62,9 @@ const CopyAction: React.FC<CopyActionProps> = ({
             onClick && onClick();
           }}
         >
-          {customTriggerComponent || <Icon component={icon} size={iconSize || 24} />}
+          {customTriggerComponent || (
+            <Icon component={icon} size={iconSize || 24} />
+          )}
         </S.IconWrapper>
       </Tooltip>
     </Tooltip>

@@ -2,10 +2,11 @@ import React from 'react';
 import styled from 'styled-components';
 
 import Button, { ButtonToggle } from '@synerise/ds-button';
-import ListItem from '@synerise/ds-list-item';
 import { InputGroup } from '@synerise/ds-input';
 import { InputGroupItem } from '@synerise/ds-input/dist/InputGroup.styles';
-import { Props as InputGroupProps } from '@synerise/ds-input/dist/InputGroup.types';
+import { type Props as InputGroupProps } from '@synerise/ds-input/dist/InputGroup.types';
+import ListItem from '@synerise/ds-list-item';
+
 // import 'antd/lib/input/style/index.css' // this style might be in imported scopes as we use input; not needed here, but worth to mention this
 
 export const Container = styled.div``;
@@ -58,7 +59,6 @@ export const InputSelectGroup = styled(InputGroup)<InputGroupProps>`
 `;
 
 export const ModeDropdownTrigger = styled(({ children, ...rest }) => (
-  // eslint-disable-next-line react/jsx-props-no-spreading
   <Button type="tertiary" {...rest}>
     {children}
   </Button>
@@ -69,7 +69,6 @@ export const ModeDropdownTrigger = styled(({ children, ...rest }) => (
 `;
 
 export const Range = styled(({ children, ...rest }) => (
-  // eslint-disable-next-line react/jsx-props-no-spreading
   <ButtonToggle type="solid" {...rest}>
     {children}
   </ButtonToggle>

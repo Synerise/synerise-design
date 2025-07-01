@@ -1,13 +1,23 @@
 import React, { useCallback, useState } from 'react';
-import List from '@synerise/ds-list';
+
 import Icon from '@synerise/ds-icon';
+import List from '@synerise/ds-list';
+
+import { useTexts } from '../../hooks/useTexts';
 import * as S from '../Item.styles';
 import ItemActions from '../ItemActions/ItemActions';
 import ItemName from '../ItemName/ItemName';
-import { Props } from './SimpleItem.types';
-import { useTexts } from '../../hooks/useTexts';
+import { type Props } from './SimpleItem.types';
 
-const SimpleItemComponent = ({ item, onRemove, onSelect, onUpdate, texts, additionalActions, selected }: Props) => {
+const SimpleItemComponent = ({
+  item,
+  onRemove,
+  onSelect,
+  onUpdate,
+  texts,
+  additionalActions,
+  selected,
+}: Props) => {
   const [editMode, setEditMode] = useState(false);
   const allTexts = useTexts(texts);
   const updateName = useCallback(
@@ -15,7 +25,7 @@ const SimpleItemComponent = ({ item, onRemove, onSelect, onUpdate, texts, additi
       setEditMode(false);
       onUpdate && onUpdate(updateParams);
     },
-    [onUpdate]
+    [onUpdate],
   );
 
   const handleSelect = useCallback(() => {
@@ -27,9 +37,19 @@ const SimpleItemComponent = ({ item, onRemove, onSelect, onUpdate, texts, additi
   }, []);
 
   return (
-    <S.ItemContainer isDisabled={!!item.disabled} data-active={!!selected} isSelected={!!selected}>
+    <S.ItemContainer
+      isDisabled={!!item.disabled}
+      data-active={!!selected}
+      isSelected={!!selected}
+    >
       <List.Item
-        icon={<Icon className="ds-manageable-list-item-icon" component={item.icon} size={24} />}
+        icon={
+          <Icon
+            className="ds-manageable-list-item-icon"
+            component={item.icon}
+            size={24}
+          />
+        }
         onSelect={handleSelect}
         actions={
           <ItemActions

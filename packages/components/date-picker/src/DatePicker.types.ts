@@ -1,8 +1,8 @@
+import type { ReactElement, ReactNode } from 'react';
 import type { IntlShape } from 'react-intl';
-import type { ReactNode, ReactElement } from 'react';
 
-import type { DropdownProps } from '@synerise/ds-dropdown/dist/Dropdown';
 import type { DateToFormatOptions } from '@synerise/ds-data-format';
+import type { DropdownProps } from '@synerise/ds-dropdown/dist/Dropdown';
 import type { InputProps } from '@synerise/ds-input';
 
 export type DatePickerProps = {
@@ -29,7 +29,13 @@ export type DatePickerProps = {
   allowClear?: boolean;
   error?: boolean;
   errorText?: ReactNode;
-  popoverPlacement?: 'topLeft' | 'topCenter' | 'topRight' | 'bottomLeft' | 'bottomCenter' | 'bottomRight';
+  popoverPlacement?:
+    | 'topLeft'
+    | 'topCenter'
+    | 'topRight'
+    | 'bottomLeft'
+    | 'bottomCenter'
+    | 'bottomRight';
   prefixel?: ReactNode;
   suffixel?: ReactNode;
   showTime?: boolean;

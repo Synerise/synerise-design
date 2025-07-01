@@ -1,6 +1,8 @@
-import { DataFormatConfig, DataFormatNotationType } from '../types';
+import { type DataFormatConfig, type DataFormatNotationType } from '../types';
 
-export const getDataFormatConfigFromNotation = (notation: DataFormatNotationType): DataFormatConfig => ({
+export const getDataFormatConfigFromNotation = (
+  notation: DataFormatNotationType,
+): DataFormatConfig => ({
   startWeekDayNotation: notation,
   dateFormatNotation: notation,
   timeFormatNotation: notation,

@@ -1,6 +1,7 @@
-import { AlertProps } from 'antd/lib/alert';
-import React from 'react';
-import { AlertType } from '../ColorSemantic/AlertSemanticColor.types';
+import { type AlertProps } from 'antd/lib/alert';
+import type React from 'react';
+
+import { type AlertType } from '../ColorSemantic/AlertSemanticColor.types';
 
 export type AlertTypes = Exclude<AlertType, 'informative'>;
 export type CustomColorType =
@@ -16,8 +17,19 @@ export type CustomColorType =
   | 'cyan'
   | 'purple'
   | 'violet';
-export type ColorType = 'grey' | 'red' | 'green' | 'yellow' | 'violet' | 'purple' | 'cyan';
-export type ModeType = 'background' | 'background-outline' | 'outline' | 'clear';
+export type ColorType =
+  | 'grey'
+  | 'red'
+  | 'green'
+  | 'yellow'
+  | 'violet'
+  | 'purple'
+  | 'cyan';
+export type ModeType =
+  | 'background'
+  | 'background-outline'
+  | 'outline'
+  | 'clear';
 
 export interface Props extends Omit<AlertProps, 'type' | 'message'> {
   message?: React.ReactNode;

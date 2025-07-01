@@ -1,20 +1,27 @@
-import React, { ReactNode } from 'react';
-import Icon, { FolderM, ArrowRightCircleM } from '@synerise/ds-icon';
-import { ListItemProps } from '@synerise/ds-list-item';
-import InformationCard from '@synerise/ds-information-card';
+import React, { type ReactNode } from 'react';
 
-import { TitleListItemProps, ItemPickerListTexts } from '../ItemPickerList.types';
+import Icon, { ArrowRightCircleM, FolderM } from '@synerise/ds-icon';
+import InformationCard from '@synerise/ds-information-card';
+import { type ListItemProps } from '@synerise/ds-list-item';
+
 import {
-  ActionType,
-  BaseItemType,
-  BaseSectionType,
-  BaseSectionTypeWithFolders,
-  SearchActionType,
+  type ActionType,
+  type BaseItemType,
+  type BaseSectionType,
+  type BaseSectionTypeWithFolders,
+  type SearchActionType,
 } from '../../ItemPickerNew/ItemPickerNew.types';
+import {
+  type ItemPickerListTexts,
+  type TitleListItemProps,
+} from '../ItemPickerList.types';
 import { createTitleFromTitlePath, isTruthy } from '../utils';
 import { getGlobalOrLocalSearchActionType } from '../utils/getGlobalOrLocalSearchActionType';
 
-export const getFolderItem = (item: ListItemProps, onClick: ListItemProps['onClick']): ListItemProps => {
+export const getFolderItem = (
+  item: ListItemProps,
+  onClick: ListItemProps['onClick'],
+): ListItemProps => {
   return {
     ...item,
     prefixel: <Icon component={<FolderM />} />,
@@ -22,7 +29,10 @@ export const getFolderItem = (item: ListItemProps, onClick: ListItemProps['onCli
   };
 };
 
-export const getShowMoreItem = (label: ReactNode, onClick: ListItemProps['onClick']): ListItemProps => {
+export const getShowMoreItem = (
+  label: ReactNode,
+  onClick: ListItemProps['onClick'],
+): ListItemProps => {
   return {
     text: label,
     prefixel: <Icon component={<ArrowRightCircleM />} />,
@@ -43,7 +53,7 @@ export const getListItem = <ItemType extends ListItemProps>(
   searchQuery?: string,
   onItemSelect?: (item: ItemType) => void,
   renderHoverTooltip?: () => JSX.Element,
-  isSearchParam?: boolean
+  isSearchParam?: boolean,
 ): ListItemProps => {
   return {
     ...item,
@@ -56,12 +66,15 @@ export const getListItem = <ItemType extends ListItemProps>(
 
 export const getActionItem = (
   action: ActionType & { onClick?: (action: ActionType) => void },
-  searchQuery?: string
+  searchQuery?: string,
 ): ListItemProps => {
   return {
     ...action,
     highlight: searchQuery,
-    onClick: 'onClick' in action && action.onClick ? () => action.onClick?.(action) : undefined,
+    onClick:
+      'onClick' in action && action.onClick
+        ? () => action.onClick?.(action)
+        : undefined,
   };
 };
 
@@ -72,9 +85,11 @@ export const matchesSearchQuery = (text: ReactNode, searchQuery: string) => {
 export const getItemsSectionTitle = (
   texts: ItemPickerListTexts,
   showItemsSectionLabel: boolean,
-  searchQuery?: string
+  searchQuery?: string,
 ) => {
-  if (searchQuery) return [getTitleItem(texts.resultsSectionLabel)];
+  if (searchQuery) {
+    return [getTitleItem(texts.resultsSectionLabel)];
+  }
   return showItemsSectionLabel ? [getTitleItem(texts.itemsSectionLabel)] : [];
 };
 
@@ -93,11 +108,19 @@ export const getActionItems = ({
   setSearchActionSection: (value: SearchActionType | undefined) => void;
   changeSearchQuery: (query: string) => void;
 }) => {
-  const globalSearchByParameterAction = getGlobalOrLocalSearchActionType(actions, undefined);
-  const localSearchByParameterAction = getGlobalOrLocalSearchActionType(actions, sectionId);
+  const globalSearchByParameterAction = getGlobalOrLocalSearchActionType(
+    actions,
+    undefined,
+  );
+  const localSearchByParameterAction = getGlobalOrLocalSearchActionType(
+    actions,
+    sectionId,
+  );
 
-  const searchByParameterAction = localSearchByParameterAction || globalSearchByParameterAction;
-  const searchByParameterActionVisible = searchByParameterAction?.searchParams?.length
+  const searchByParameterAction =
+    localSearchByParameterAction || globalSearchByParameterAction;
+  const searchByParameterActionVisible = searchByParameterAction?.searchParams
+    ?.length
     ? searchByParameterAction
     : undefined;
 
@@ -105,7 +128,7 @@ export const getActionItems = ({
   return actions?.length
     ? [
         getTitleItem(texts.actionsSectionLabel),
-        ...actions.map(action => {
+        ...actions.map((action) => {
           if (action.actionType === 'search') {
             if (isExistSearchByParameter) {
               return undefined;
@@ -120,7 +143,7 @@ export const getActionItems = ({
                       setSearchActionSection(searchByParameterActionVisible);
                     },
                   },
-                  searchQuery
+                  searchQuery,
                 )
               : undefined;
           }
@@ -146,9 +169,9 @@ export const getSectionActionItems = ({
   changeSearchQuery: (query: string) => void;
 }) => {
   const filteredActions = actions?.filter(
-    action =>
+    (action) =>
       (action.actionType === 'search' || action.sectionId === sectionId) &&
-      (!searchQuery || matchesSearchQuery(action.text, searchQuery))
+      (!searchQuery || matchesSearchQuery(action.text, searchQuery)),
   );
   return getActionItems({
     actions: filteredActions,
@@ -178,8 +201,15 @@ export const getRecentItems = <ItemType extends BaseItemType>({
   return recents?.length && !searchQuery
     ? [
         getTitleItem(texts.recentsSectionLabel),
-        ...recents.map(item =>
-          getListItem(item, isSelected, searchQuery, handleItemSelect, getInformationCardTooltip(item), isSearchParam)
+        ...recents.map((item) =>
+          getListItem(
+            item,
+            isSelected,
+            searchQuery,
+            handleItemSelect,
+            getInformationCardTooltip(item),
+            isSearchParam,
+          ),
         ),
       ]
     : [];
@@ -215,8 +245,15 @@ export const getItems = <ItemType extends BaseItemType>({
   const results = items?.length
     ? [
         ...sectionTitle,
-        ...items.map(item =>
-          getListItem(item, isSelected, searchQuery, handleItemSelect, getInformationCardTooltip(item), isSearchParam)
+        ...items.map((item) =>
+          getListItem(
+            item,
+            isSelected,
+            searchQuery,
+            handleItemSelect,
+            getInformationCardTooltip(item),
+            isSearchParam,
+          ),
         ),
       ]
     : [];
@@ -226,13 +263,17 @@ export const getItems = <ItemType extends BaseItemType>({
     const hasMore = results.splice(maxItemsWithTitle, Infinity);
 
     if (hasMore.length) {
-      results.push(getShowMoreItem(texts.showMoreResultsLabel, showMoreOnClick));
+      results.push(
+        getShowMoreItem(texts.showMoreResultsLabel, showMoreOnClick),
+      );
     }
   }
   return results;
 };
 
-export const getFolderItems = <SectionType extends BaseSectionTypeWithFolders<BaseSectionType>>({
+export const getFolderItems = <
+  SectionType extends BaseSectionTypeWithFolders<BaseSectionType>,
+>({
   handleSectionChange,
   sections,
 }: {
@@ -240,20 +281,27 @@ export const getFolderItems = <SectionType extends BaseSectionTypeWithFolders<Ba
   handleSectionChange: (section?: SectionType | BaseSectionType) => void;
 }) => {
   return sections
-    ? sections.reduce((itemsArray, section) => {
-        const folderItemsWithTitle = section.folders?.length
-          ? [
-              getTitleItem(section.text),
-              ...section.folders.map(folder => getFolderItem(folder, () => handleSectionChange(folder))),
-            ]
-          : [];
+    ? sections.reduce(
+        (itemsArray, section) => {
+          const folderItemsWithTitle = section.folders?.length
+            ? [
+                getTitleItem(section.text),
+                ...section.folders.map((folder) =>
+                  getFolderItem(folder, () => handleSectionChange(folder)),
+                ),
+              ]
+            : [];
 
-        return [...itemsArray, ...folderItemsWithTitle];
-      }, [] as (ListItemProps | TitleListItemProps)[])
+          return [...itemsArray, ...folderItemsWithTitle];
+        },
+        [] as (ListItemProps | TitleListItemProps)[],
+      )
     : [];
 };
 
-export const getInformationCardTooltip = <ItemType extends BaseItemType>(item: ItemType) => {
+export const getInformationCardTooltip = <ItemType extends BaseItemType>(
+  item: ItemType,
+) => {
   const { informationCardProps, renderHoverTooltip } = item;
   if (informationCardProps) {
     return () => {

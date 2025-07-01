@@ -1,4 +1,10 @@
-import React, { ReactNode, useCallback, useEffect, useMemo, useState } from 'react';
+import React, {
+  type ReactNode,
+  useCallback,
+  useEffect,
+  useMemo,
+  useState,
+} from 'react';
 
 import { IconAlert } from '@synerise/ds-alert';
 import Button, { ButtonToggle } from '@synerise/ds-button';
@@ -7,14 +13,14 @@ import Icon, { CodeM, EditM, TrashM } from '@synerise/ds-icon';
 import { SearchInput } from '@synerise/ds-search';
 import { useIsMounted } from '@synerise/ds-utils';
 
-import { ArrayModalProps, ArrayValueWithID } from '../Array.types';
-import * as S from '../Array.styles';
-import { ArrayCreator } from './ArrayCreator';
-import { ArrayRaw } from './ArrayRaw';
-import { arrayWithUUID } from '../Array.utils';
-import { ArrayLimit } from './ArrayLimit';
-import { CopyButton } from './CopyButton';
 import { MODAL_VIEWPORT_HEIGHT } from '../Array.const';
+import * as S from '../Array.styles';
+import { type ArrayModalProps, type ArrayValueWithID } from '../Array.types';
+import { arrayWithUUID } from '../Array.utils';
+import { ArrayCreator } from './ArrayCreator';
+import { ArrayLimit } from './ArrayLimit';
+import { ArrayRaw } from './ArrayRaw';
+import { CopyButton } from './CopyButton';
 
 export const ArrayModal = <ItemType extends 'string' | 'number'>({
   value,
@@ -36,14 +42,16 @@ export const ArrayModal = <ItemType extends 'string' | 'number'>({
 
   useEffect(() => {
     isMounted.current && setArrayValue(arrayWithUUID(value || []));
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [value, isMounted]);
 
   const handleRawEditorError = (errorMessage: ReactNode) => {
     setRawEditorError(errorMessage);
   };
 
-  const plainArrayValue = useMemo(() => arrayValue.map(item => item.value), [arrayValue]);
+  const plainArrayValue = useMemo(
+    () => arrayValue.map((item) => item.value),
+    [arrayValue],
+  );
 
   const handleOk = useCallback(() => {
     onApply(plainArrayValue);
@@ -85,10 +93,13 @@ export const ArrayModal = <ItemType extends 'string' | 'number'>({
     setSearchQuery(query || '');
   };
 
-  const handleValueChange = useCallback((updatedArray: ArrayValueWithID<ItemType>[]) => {
-    setArrayValue(updatedArray);
-    setSearchQuery('');
-  }, []);
+  const handleValueChange = useCallback(
+    (updatedArray: ArrayValueWithID<ItemType>[]) => {
+      setArrayValue(updatedArray);
+      setSearchQuery('');
+    },
+    [],
+  );
 
   const mainModalContent = useMemo(() => {
     return currentMode === 'creator' ? (
@@ -113,7 +124,17 @@ export const ArrayModal = <ItemType extends 'string' | 'number'>({
         value={arrayValue}
       />
     );
-  }, [currentMode, texts, readOnly, itemType, arrayValue, limit, searchQuery, handleValueChange, collectorSuggestions]);
+  }, [
+    currentMode,
+    texts,
+    readOnly,
+    itemType,
+    arrayValue,
+    limit,
+    searchQuery,
+    handleValueChange,
+    collectorSuggestions,
+  ]);
 
   return (
     <S.Modal
@@ -146,9 +167,20 @@ export const ArrayModal = <ItemType extends 'string' | 'number'>({
             {rawEditorError ? (
               <IconAlert iconAlert type="alert" message={rawEditorError} />
             ) : (
-              <>{limit && <ArrayLimit limit={limit} count={arrayValue.length} texts={texts} />}</>
+              <>
+                {limit && (
+                  <ArrayLimit
+                    limit={limit}
+                    count={arrayValue.length}
+                    texts={texts}
+                  />
+                )}
+              </>
             )}
-            <CopyButton texts={texts} copyValue={plainArrayValue?.join(',') || ''} />
+            <CopyButton
+              texts={texts}
+              copyValue={plainArrayValue?.join(',') || ''}
+            />
             <S.SearchWrapper>
               <SearchInput
                 disabled={currentMode === 'raw'}
@@ -175,7 +207,9 @@ export const ArrayModal = <ItemType extends 'string' | 'number'>({
       footer={readOnly ? null : undefined}
       prefix={clearButton}
       viewportHeight={MODAL_VIEWPORT_HEIGHT}
-      maxViewportHeight={currentMode === 'creator' ? MODAL_VIEWPORT_HEIGHT : undefined}
+      maxViewportHeight={
+        currentMode === 'creator' ? MODAL_VIEWPORT_HEIGHT : undefined
+      }
     >
       <>{mainModalContent}</>
     </S.Modal>

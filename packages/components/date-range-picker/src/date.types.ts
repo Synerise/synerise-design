@@ -1,6 +1,7 @@
-import React from 'react';
-import type startOf from './dateUtils/startOf';
+import type React from 'react';
+
 import type endOf from './dateUtils/endOf';
+import type startOf from './dateUtils/startOf';
 
 export type RelativeUnits =
   | 'SECONDS'

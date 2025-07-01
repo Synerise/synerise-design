@@ -1,5 +1,7 @@
-export { DataFormatConfigProvider } from './providers/DataFormatConfigProvider';
-export type { DataFormatConfigProviderProps } from './providers/DataFormatConfigProvider';
+export {
+  DataFormatConfigProvider,
+  type DataFormatConfigProviderProps,
+} from './providers/DataFormatConfigProvider';
 
 export {
   FormattedDate,
@@ -10,13 +12,23 @@ export {
   FormattedRelativeDateTimeTo,
 } from './components';
 
-export { useDataFormat, useDataFormatUtils, useDataFormatConfig, useDataFormatIntls } from './hooks';
-export type { UseDataFormatProps } from './hooks';
+export {
+  useDataFormat,
+  useDataFormatUtils,
+  useDataFormatConfig,
+  useDataFormatIntls,
+  type UseDataFormatProps,
+} from './hooks';
 
-export { withDataFormat } from './hocs/withDataFormat';
-export type { WithDataFormatProps } from './hocs/withDataFormat';
+export {
+  withDataFormat,
+  type WithDataFormatProps,
+} from './hocs/withDataFormat';
 
-export { getDataFormatConfigFromNotation, getDefaultDataTimeOptions } from './utils';
+export {
+  getDataFormatConfigFromNotation,
+  getDefaultDataTimeOptions,
+} from './utils';
 
 export * from './constants';
 

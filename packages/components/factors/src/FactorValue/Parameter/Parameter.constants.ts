@@ -1,7 +1,11 @@
-import { CSSProperties } from 'react';
+import { type CSSProperties } from 'react';
+
 import { itemSizes } from '@synerise/ds-list-item';
 
-export const LIST_STYLE: CSSProperties = { overflowX: 'unset', overflowY: 'unset' };
+export const LIST_STYLE: CSSProperties = {
+  overflowX: 'unset',
+  overflowY: 'unset',
+};
 export const NO_GROUP_NAME = 'NO_GROUP_NAME';
 export const ITEM_SIZE = {
   [itemSizes.LARGE]: 50,

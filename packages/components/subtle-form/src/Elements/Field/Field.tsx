@@ -1,11 +1,12 @@
 import React, { useCallback, useEffect, useRef, useState } from 'react';
-import Tooltip from '@synerise/ds-tooltip';
-import Icon, { EditS } from '@synerise/ds-icon';
-import { useTheme } from '@synerise/ds-core';
 
+import { useTheme } from '@synerise/ds-core';
+import Icon, { EditS } from '@synerise/ds-icon';
+import Tooltip from '@synerise/ds-tooltip';
 import { useOnClickOutside } from '@synerise/ds-utils';
+
 import * as S from '../../SubtleForm.styles';
-import { SubtleFieldProps } from '../../SubtleForm.types';
+import { type SubtleFieldProps } from '../../SubtleForm.types';
 import { MaskedDatePlaceholder } from '../DatePicker/DatePicker.styles';
 
 const SubtleField = ({
@@ -37,7 +38,9 @@ const SubtleField = ({
 
   useEffect(() => setActive(activeProp), [activeProp]);
 
-  const isActive = Boolean(errorText || (active && !blurred && !!activeElement));
+  const isActive = Boolean(
+    errorText || (active && !blurred && !!activeElement),
+  );
 
   useOnClickOutside(containerRef, () => {
     handleDeactivate();
@@ -45,7 +48,11 @@ const SubtleField = ({
   return (
     <S.Subtle className="ds-subtle-form" disabled={disabled}>
       <S.SubtleFormField active={isActive} label={label} tooltip={labelTooltip}>
-        <S.Container ref={containerRef} className="ds-subtle-field" active={active}>
+        <S.Container
+          ref={containerRef}
+          className="ds-subtle-field"
+          active={active}
+        >
           {isActive && activeElement ? (
             activeElement()
           ) : (
@@ -60,12 +67,19 @@ const SubtleField = ({
             >
               <S.MainContent hasMargin>
                 {inactiveElement && inactiveElement()}
-                {!disabled && maskVisible && <MaskedDatePlaceholder>{mask}</MaskedDatePlaceholder>}
+                {!disabled && maskVisible && (
+                  <MaskedDatePlaceholder>{mask}</MaskedDatePlaceholder>
+                )}
               </S.MainContent>
               {!active && !disabled && (
                 <S.Suffix select>
                   <Tooltip title={suffixTooltip}>
-                    {suffix ?? <Icon component={<EditS />} color={theme.palette['grey-600']} />}
+                    {suffix ?? (
+                      <Icon
+                        component={<EditS />}
+                        color={theme.palette['grey-600']}
+                      />
+                    )}
                   </Tooltip>
                 </S.Suffix>
               )}

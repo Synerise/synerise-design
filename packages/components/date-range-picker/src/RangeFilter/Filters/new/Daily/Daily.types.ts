@@ -1,9 +1,9 @@
-import { FilterBaseProps } from '../Filters.types';
-import { DateLimitMode } from '../../../Shared/TimeWindow/RangeFormContainer/RangeForm/RangeForm.types';
-import { DayOptions } from '../../../Shared/TimeWindow/TimeWindow.types';
-import { WithDisabledProp } from '../../../RangeFilter.types';
-import { FilterErrorType } from '../../../Shared/TimeWindow/RangeFormContainer/RangeFormContainer.types';
-import { Texts } from '../../../../DateRangePicker.types';
+import { type Texts } from '../../../../DateRangePicker.types';
+import { type WithDisabledProp } from '../../../RangeFilter.types';
+import { type DateLimitMode } from '../../../Shared/TimeWindow/RangeFormContainer/RangeForm/RangeForm.types';
+import { type FilterErrorType } from '../../../Shared/TimeWindow/RangeFormContainer/RangeFormContainer.types';
+import { type DayOptions } from '../../../Shared/TimeWindow/TimeWindow.types';
+import { type FilterBaseProps } from '../Filters.types';
 
 export type DailySchedule = DayOptions & {
   mode: DateLimitMode;

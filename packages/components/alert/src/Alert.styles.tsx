@@ -1,8 +1,14 @@
-import React from 'react';
 import Alert from 'antd/lib/alert';
-import styled, { css, FlattenInterpolation, ThemeProps } from 'styled-components';
-import { ThemePropsVars } from '@synerise/ds-core';
-import { Props } from './Alert.types';
+import React from 'react';
+import styled, {
+  type FlattenInterpolation,
+  type ThemeProps,
+  css,
+} from 'styled-components';
+
+import { type ThemePropsVars } from '@synerise/ds-core';
+
+import { type Props } from './Alert.types';
 
 const DARKER_COLORS = ['green', 'yellow'];
 
@@ -12,7 +18,9 @@ const getColor = (props: Props & { theme: ThemePropsVars }): string => {
   return theme.palette[`${color}-${hue}`];
 };
 
-export const AntdAlert = styled((props: Props & { message: React.ReactNode }) => <Alert {...props} />)`
+export const AntdAlert = styled(
+  (props: Props & { message: React.ReactNode }) => <Alert {...props} />,
+)`
   ${(props): FlattenInterpolation<ThemeProps<Props>> | false =>
     Boolean(props.color) &&
     css`

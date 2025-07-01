@@ -1,21 +1,24 @@
-import React, { ReactNode } from 'react';
+import AntdList from 'antd/lib/list';
+import { type RadioGroupProps } from 'antd/lib/radio';
+import React, { type ReactNode } from 'react';
 import { v4 as uuid } from 'uuid';
+
 import '@synerise/ds-core/dist/js/style';
 import Radio from '@synerise/ds-radio';
-import AntdList from 'antd/lib/list';
-import { RadioGroupProps } from 'antd/lib/radio';
+
+import { ItemWrapper, ListDivider, TextItem } from './Elements';
+import { type ListPropsType } from './List.types';
 import './style/index.less';
 
-import { TextItem, ListDivider, ItemWrapper } from './Elements';
-import { ListPropsType } from './List.types';
-
-type RadioGroupWrapperProps = { options?: RadioGroupProps; children?: ReactNode };
+type RadioGroupWrapperProps = {
+  options?: RadioGroupProps;
+  children?: ReactNode;
+};
 const RadioGroupWrapper = ({ children, options }: RadioGroupWrapperProps) => (
   <Radio.Group {...options}>{children}</Radio.Group>
 );
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-export const isNestedArray = <V extends any>(array: V[] | V[][]): boolean => {
+export const isNestedArray = <V,>(array: V[] | V[][]): boolean => {
   return !!array.length && array[0] instanceof Array;
 };
 
@@ -36,14 +39,16 @@ class List<T> extends React.PureComponent<ListPropsType<T>> {
     if (isNestedArray(dataSource)) {
       ReadyList =
         !!dataSource &&
-        // @ts-ignore
+        // @ts-expect-error type mismatch
         dataSource.map((singleDataSource: T[] | undefined, index: number) => {
           const isLastItem = dataSource.length === index + 1;
           if (index === 0) {
             return (
               <React.Fragment key={uuid()}>
                 <AntdList {...rest} dataSource={singleDataSource} />
-                {!isLastItem && <ListDivider dashed={!!dashed} data-testid="divider" />}
+                {!isLastItem && (
+                  <ListDivider dashed={!!dashed} data-testid="divider" />
+                )}
               </React.Fragment>
             );
           }
@@ -51,7 +56,9 @@ class List<T> extends React.PureComponent<ListPropsType<T>> {
           return (
             <React.Fragment key={uuid()}>
               <AntdList {...rest} header={null} dataSource={singleDataSource} />
-              {!isLastItem && <ListDivider dashed={!!dashed} data-testid="divider" />}
+              {!isLastItem && (
+                <ListDivider dashed={!!dashed} data-testid="divider" />
+              )}
             </React.Fragment>
           );
         });
@@ -63,7 +70,15 @@ class List<T> extends React.PureComponent<ListPropsType<T>> {
       );
     }
 
-    return <>{radio ? <RadioGroupWrapper options={options}>{ReadyList}</RadioGroupWrapper> : ReadyList}</>;
+    return (
+      <>
+        {radio ? (
+          <RadioGroupWrapper options={options}>{ReadyList}</RadioGroupWrapper>
+        ) : (
+          ReadyList
+        )}
+      </>
+    );
   }
 }
 

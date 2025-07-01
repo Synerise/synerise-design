@@ -1,6 +1,7 @@
 import styled, { keyframes } from 'styled-components';
-import { SkeletonSize } from './CheckboxSkeleton.types';
+
 import { BackgroundGradient } from '../Skeleton.styles';
+import { SkeletonSize } from './CheckboxSkeleton.types';
 
 export const loadingAnimation = keyframes`
 
@@ -26,7 +27,8 @@ const SIZE_DEFAULT = 16;
 const SIZE_WRAPPER_DEFAULT = 16;
 export const SkeletonBar = styled.div<{ size?: 'S' | 'M' | 'L' }>`
   width: 100%;
-  height: ${(props): string => SkeletonSize[props.size as string] || SIZE_DEFAULT}px;
+  height: ${(props): string =>
+    SkeletonSize[props.size as string] || SIZE_DEFAULT}px;
   position: relative;
   animation: ${loadingAnimation} 1.2s ease-in-out infinite;
 `;
@@ -36,7 +38,8 @@ export const Wrapper = styled.div<{ size?: 'S' | 'M' | 'L' }>`
   margin-bottom: 5px;
   border-radius: 2px;
   width: 150px;
-  height: ${(props): string => SkeletonSize[props.size as string] || SIZE_WRAPPER_DEFAULT}px;
+  height: ${(props): string =>
+    SkeletonSize[props.size as string] || SIZE_WRAPPER_DEFAULT}px;
   background-color: ${(props): string => props.theme.palette[`grey-050`]};
 `;
 export const SkeletonWrapper = styled.div`

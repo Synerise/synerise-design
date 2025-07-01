@@ -1,7 +1,9 @@
 import React from 'react';
+
 import { useTheme } from '@synerise/ds-core';
+
 import * as S from './ProgressBar.styles';
-import { ProgressProps } from './ProgressBar.types';
+import { type ProgressProps } from './ProgressBar.types';
 
 const ProgressBar = ({
   showLabel = false,
@@ -41,7 +43,9 @@ const ProgressBar = ({
           labelFormatter(amount, percent)
         ) : (
           <span className="progress-bar-label" data-testid="progress-bar-label">
-            <S.MaxValue data-testid="progress-bar-max-value">{amount}</S.MaxValue>
+            <S.MaxValue data-testid="progress-bar-max-value">
+              {amount}
+            </S.MaxValue>
             <span data-testid="progress-bar-max-percent">{` (${percent}%)`}</span>
           </span>
         ))}
@@ -56,7 +60,10 @@ const ProgressBar = ({
         showInfo={false}
       />
       {description && (
-        <span className="progress-bar-description" data-testid="progress-bar-description">
+        <span
+          className="progress-bar-description"
+          data-testid="progress-bar-description"
+        >
           {description}
         </span>
       )}

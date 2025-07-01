@@ -1,15 +1,15 @@
 import React from 'react';
 
 import { legacyParse } from '@date-fns/upgrade/v2';
-import fnsFormat from '../../format';
 
+import { fnsAddYears, fnsIsSameYear, fnsSetYear } from '../../fns';
+import fnsFormat from '../../format';
+import { getDecadeRange } from '../../utils';
 import DecadePicker from '../DecadePicker/DecadePicker';
 import GridPicker from '../GridPicker/GridPicker';
+import { type Cell } from '../GridPicker/GridPicker.types';
 import Navbar from '../Navbar/Navbar';
-import { YearPickerProps, YearPickerState } from './YearPicker.types';
-import { Cell } from '../GridPicker/GridPicker.types';
-import { getDecadeRange } from '../../utils';
-import { fnsAddYears, fnsSetYear, fnsIsSameYear } from '../../fns';
+import { type YearPickerProps, type YearPickerState } from './YearPicker.types';
 
 function getInitialState(props: YearPickerProps): YearPickerState {
   return {
@@ -29,7 +29,10 @@ function getCells(cursor: Date): Cell[] {
   });
 }
 
-export default class YearPicker extends React.PureComponent<YearPickerProps, YearPickerState> {
+export default class YearPicker extends React.PureComponent<
+  YearPickerProps,
+  YearPickerState
+> {
   state = getInitialState(this.props);
   getSnapshotBeforeUpdate(prevProps: Readonly<YearPickerProps>): null {
     const { value } = this.props;
@@ -69,7 +72,11 @@ export default class YearPicker extends React.PureComponent<YearPickerProps, Yea
     const { value } = this.props;
     const decadeRange = getDecadeRange(cursor);
     let cells = getCells(cursor);
-    const valueCell = value ? cells.find((cell: Cell): boolean => fnsIsSameYear(value, legacyParse(cell.key))) : null;
+    const valueCell = value
+      ? cells.find((cell: Cell): boolean =>
+          fnsIsSameYear(value, legacyParse(cell.key)),
+        )
+      : null;
     const selectedKey = valueCell ? valueCell.key : null;
     cells = [
       { key: -1, text: decadeRange[0] - 1, outside: true },
@@ -80,7 +87,9 @@ export default class YearPicker extends React.PureComponent<YearPickerProps, Yea
       return (
         <DecadePicker
           value={cursor}
-          onChange={(selectedDecade): void => this.setState({ cursor: selectedDecade, decadeMode: false })}
+          onChange={(selectedDecade): void =>
+            this.setState({ cursor: selectedDecade, decadeMode: false })
+          }
         />
       );
     }
@@ -93,7 +102,12 @@ export default class YearPicker extends React.PureComponent<YearPickerProps, Yea
           onLongNext={this.handleLongNext}
           key="head"
         />
-        <GridPicker selectedKey={selectedKey} cells={cells} onCellClick={this.handleCellClick} key="body" />
+        <GridPicker
+          selectedKey={selectedKey}
+          cells={cells}
+          onCellClick={this.handleCellClick}
+          key="body"
+        />
       </>
     );
   }

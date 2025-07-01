@@ -1,17 +1,23 @@
-import React, { useEffect, useRef, useCallback, ChangeEvent, useMemo } from 'react';
+import React, {
+  type ChangeEvent,
+  useCallback,
+  useEffect,
+  useMemo,
+  useRef,
+} from 'react';
 import { v4 as uuid } from 'uuid';
-import FormField from '@synerise/ds-form-field';
 
 import '@synerise/ds-core/dist/js/style';
-import './style/index.less';
+import FormField from '@synerise/ds-form-field';
 
 import * as S from './Input.styles';
-import { ElementIcons } from './components';
+import { type TextareaProps } from './TextArea.types';
 import DSTextArea from './Textarea/Textarea';
-import { TextareaProps } from './TextArea.types';
+import { ElementIcons } from './components/ElementIcons';
 import { useElementFocus } from './hooks';
-import { getCharCount } from './utils';
 import { useCounterLimit } from './hooks/useCounterLimit';
+import './style/index.less';
+import { getCharCount } from './utils';
 
 export const TextArea = ({
   className,
@@ -52,9 +58,13 @@ export const TextArea = ({
       }
       antdTextareaProps.onChange && antdTextareaProps.onChange(e);
     },
-    [antdTextareaProps, counterLimit]
+    [antdTextareaProps, counterLimit],
   );
-  const rightSide = useCounterLimit({ renderCustomCounter, counterLimit, charCount });
+  const rightSide = useCounterLimit({
+    renderCustomCounter,
+    counterLimit,
+    charCount,
+  });
 
   return (
     <S.OuterWrapper className={className} resetMargin={resetMargin}>

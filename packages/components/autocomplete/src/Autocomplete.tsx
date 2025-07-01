@@ -1,16 +1,14 @@
-import React, { useRef, useEffect, useCallback } from 'react';
-import './style/index.less';
-
 import AntdAutoComplete from 'antd/lib/auto-complete';
 import type { RefSelectProps } from 'antd/lib/select';
+import React, { useCallback, useEffect, useRef } from 'react';
 
 import FormField from '@synerise/ds-form-field';
-import { AutosizeWrapper } from '@synerise/ds-input';
-import type { AutosizeInputRefType } from '@synerise/ds-input';
+import { type AutosizeInputRefType, AutosizeWrapper } from '@synerise/ds-input';
 import { useResizeObserver } from '@synerise/ds-utils';
 
-import { AutocompleteProps } from './Autocomplete.types';
 import * as S from './Autocomplete.styles';
+import { type AutocompleteProps } from './Autocomplete.types';
+import './style/index.less';
 
 const AUTOSIZE_EXTRA_WIDTH = 27;
 
@@ -42,7 +40,8 @@ const Autocomplete = ({
 
   useEffect(() => {
     if (autosizeRef.current) {
-      autocompleteInputRef.current = autosizeRef.current.inputWrapperRef.current;
+      autocompleteInputRef.current =
+        autosizeRef.current.inputWrapperRef.current;
       inputRef.current = autosizeRef.current.inputRef.current;
     }
   }, []);
@@ -51,16 +50,20 @@ const Autocomplete = ({
     return triggerNode.parentNode as HTMLElement;
   };
 
-  const stretchToFit = autoResize && autoResize !== true && Boolean(autoResize.stretchToFit);
-  const placeholderString = typeof rest.placeholder === 'string' ? rest.placeholder : undefined;
+  const stretchToFit =
+    autoResize && autoResize !== true && Boolean(autoResize.stretchToFit);
+  const placeholderString =
+    typeof rest.placeholder === 'string' ? rest.placeholder : undefined;
 
   const handlePreAutosize = useCallback(() => {
     scrollLeftRef.current = inputRef.current?.scrollLeft || 0;
-    autocompleteInputRef.current && autocompleteInputRef.current.style.removeProperty('max-width');
+    autocompleteInputRef.current &&
+      autocompleteInputRef.current.style.removeProperty('max-width');
   }, []);
 
   const handleAutosize = useCallback(() => {
-    const parentRect = elementRef.current && elementRef.current.getBoundingClientRect();
+    const parentRect =
+      elementRef.current && elementRef.current.getBoundingClientRect();
     if (stretchToFit && autocompleteInputRef.current && parentRect?.width) {
       autocompleteInputRef.current.style.maxWidth = `${parentRect?.width + 1}px`;
       inputRef.current && inputRef.current.scrollTo(scrollLeftRef.current, 0);
@@ -80,7 +83,11 @@ const Autocomplete = ({
   useResizeObserver(elementRef, handleWrapperResize);
 
   return (
-    <S.AutocompleteWrapper ref={elementRef} autoResize={autoResize} className={`ds-autocomplete ${className || ''}`}>
+    <S.AutocompleteWrapper
+      ref={elementRef}
+      autoResize={autoResize}
+      className={`ds-autocomplete ${className || ''}`}
+    >
       <FormField
         label={label}
         tooltip={tooltip}

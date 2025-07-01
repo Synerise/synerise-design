@@ -14,7 +14,7 @@ yarn add @synerise/ds-code-area
 ```
 
 To have syntax validation you need to follow the integration instructions here:
-https://github.com/microsoft/monaco-editor/blob/main/docs/integrate-esm.md 
+https://github.com/microsoft/monaco-editor/blob/main/docs/integrate-esm.md
 
 ## Usage
 
@@ -41,16 +41,15 @@ const syntaxOptions = [
 
 ```
 
-
 ## API
 
 | Property                    | Description                                                    | Type                                                    | Default |
-|-----------------------------|----------------------------------------------------------------|---------------------------------------------------------|---------|
+| --------------------------- | -------------------------------------------------------------- | ------------------------------------------------------- | ------- |
 | label                       | label above editor                                             | `ReactNode`                                             | -       |
 | fullscreenLabel             | label above editor in fullscreen mode (defaults to label prop) | `ReactNode`                                             | -       |
 | description                 | description below editor                                       | `ReactNode`                                             | -       |
 | counter                     | limit character count                                          | `{ limit: number; placement?: 'bottom' &#124; 'top'; }` | -       |
-| errorText                   | error message to show below editor  (also adds "error styles") | `ReactNode`                                             | -       |
+| errorText                   | error message to show below editor (also adds "error styles")  | `ReactNode`                                             | -       |
 | syntaxOptions               | array of available syntaxes                                    | `CodeAreaSyntaxOption[]`                                | -       |
 | currentSyntax               | current syntax of editor value                                 | `CodeAreaSyntax`                                        | -       |
 | allowFullscreen             | renders fullscreen mode button                                 | `boolean`                                               | -       |
@@ -66,31 +65,28 @@ const syntaxOptions = [
 | texts                       | customise displayed texts                                      | `CodeAreaTexts`                                         | -       |
 | getPopupContainer           | customise where fullscreen layer is rendered into              | getPopupContainer (@synerise/ds-utils)                  | -       |
 
-
 ### CodeAreaTexts
 
 Customisable user-facing labels
 
-| Property           | Description                                         | Type          | Default        |
-| ------------------ | --------------------------------------------------- | ------------- | -------------- |
-| fullscreen         | fullscreen button label                             | `ReactNode`   | -              |
-| closeFullscreen    | close fullscreen button label                       | `ReactNode`   | -              |
-| fullscreenTitle    | used in fullscreen mode if no `label` prop provided | `ReactNode`   | -              |
-
-
+| Property        | Description                                         | Type        | Default |
+| --------------- | --------------------------------------------------- | ----------- | ------- |
+| fullscreen      | fullscreen button label                             | `ReactNode` | -       |
+| closeFullscreen | close fullscreen button label                       | `ReactNode` | -       |
+| fullscreenTitle | used in fullscreen mode if no `label` prop provided | `ReactNode` | -       |
 
 ### CodeAreaSyntaxOption
 
 At least one syntax option must be provided.
 
-| Property           | Description                                    | Type             | Default        |
-| ------------------ | ---------------------------------------------- | ---------------- | -------------- |
-| language           | language of editor `value`                     | `CodeAreaSyntax` | -              |
-| label              | optional user-friendly display name            | `string`         | -              |
+| Property | Description                         | Type             | Default |
+| -------- | ----------------------------------- | ---------------- | ------- |
+| language | language of editor `value`          | `CodeAreaSyntax` | -       |
+| label    | optional user-friendly display name | `string`         | -       |
 
 ### CodeAreaSyntax
 
-See list of languages supported by monaco here: https://github.com/microsoft/monaco-editor/tree/main/src/basic-languages. 
+See list of languages supported by monaco here: https://github.com/microsoft/monaco-editor/tree/main/src/basic-languages.
 
 ```js
 CodeAreaSyntax = 'json' | 'html' | 'css' | 'typescript' | 'javascript' | string;
@@ -100,8 +96,8 @@ CodeAreaSyntax = 'json' | 'html' | 'css' | 'typescript' | 'javascript' | string;
 
 Props passed to `renderAdditionalDescription()` and `renderFooterContent()`.
 
-| Property           | Description                                  | Type          | Default        |
-| ------------------ | -------------------------------------------- | ------------- | -------------- |
-| isFullscreen       | is fullscreen mode on or off                 | `boolean`     | -              |
-| count              | current character count                      | `number`      | -              |
-| isValid            | is editor value valid                        | `boolean`     | -              |
+| Property     | Description                  | Type      | Default |
+| ------------ | ---------------------------- | --------- | ------- |
+| isFullscreen | is fullscreen mode on or off | `boolean` | -       |
+| count        | current character count      | `number`  | -       |
+| isValid      | is editor value valid        | `boolean` | -       |

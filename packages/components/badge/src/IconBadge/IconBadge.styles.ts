@@ -1,4 +1,5 @@
 import styled, { css, keyframes } from 'styled-components';
+
 import DSIcon from '@synerise/ds-icon';
 
 const spinnerAnimation = keyframes`
@@ -22,7 +23,7 @@ export const IconBadgeIcon = styled.div`
 `;
 
 export const Icon = styled(DSIcon)<{ status?: string }>`
-  ${props =>
+  ${(props) =>
     props.status === 'processing' &&
     css`
       animation: ${spinnerAnimation} 2s linear infinite;

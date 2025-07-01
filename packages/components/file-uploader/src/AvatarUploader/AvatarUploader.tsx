@@ -1,20 +1,21 @@
 import React from 'react';
 import { useDropzone } from 'react-dropzone';
 
-import Tooltip from '@synerise/ds-tooltip';
-import Icon, { InfoFillS, Add3M, FileTypePictureL } from '@synerise/ds-icon';
 import Button from '@synerise/ds-button';
 import { useTheme } from '@synerise/ds-core';
+import Icon, { Add3M, FileTypePictureL, InfoFillS } from '@synerise/ds-icon';
+import Tooltip from '@synerise/ds-tooltip';
 
-import FileViewAvatar from './FileViewAvatar/FileViewAvatar';
-
+import {
+  type FileContent,
+  type FileUploaderProps,
+} from '../FileUploader.types';
 import * as S from './AvatarUploader.styles';
-import { FileViewAvatarTexts } from './FileViewAvatar/FileViewAvatar.types';
-import { FileUploaderProps, FileContent } from '../FileUploader.types';
+import FileViewAvatar from './FileViewAvatar/FileViewAvatar';
+import { type FileViewAvatarTexts } from './FileViewAvatar/FileViewAvatar.types';
 
 function readAsText(file: File): Promise<FileContent> {
-  return new Promise(resolve => {
-    // eslint-disable-next-line no-undef
+  return new Promise((resolve) => {
     const reader = new FileReader();
     file.type !== 'text/plain' && resolve(null);
     reader.onerror = (): void => resolve(null);
@@ -56,7 +57,7 @@ const AvatarUploader = ({
         onUpload && onUpload(filesWithContent);
       });
     },
-    [onUpload]
+    [onUpload],
   );
 
   const onDrop = React.useCallback(
@@ -72,7 +73,7 @@ const AvatarUploader = ({
         readFilesContent(acceptedFiles);
       }
     },
-    [filesAmount, files, setUploadSuccess, readFilesContent]
+    [filesAmount, files, setUploadSuccess, readFilesContent],
   );
 
   const { getRootProps, getInputProps, isDragActive } = useDropzone({
@@ -83,7 +84,6 @@ const AvatarUploader = ({
   });
 
   if (filesAmount && filesAmount < 1) {
-    // eslint-disable-next-line no-param-reassign
     filesAmount = 1;
     throw new Error('Invalid value of property "filesAmount" ');
   }
@@ -98,7 +98,11 @@ const AvatarUploader = ({
           {tooltip && (
             <Tooltip trigger="hover" placement="top" title={tooltip}>
               <span data-testid="tooltip-info">
-                <Icon component={<InfoFillS />} color={theme.palette['grey-400']} size={24} />
+                <Icon
+                  component={<InfoFillS />}
+                  color={theme.palette['grey-400']}
+                  size={24}
+                />
               </span>
             </Tooltip>
           )}
@@ -115,11 +119,16 @@ const AvatarUploader = ({
             description={description}
           />
         ))}
-      {((mode !== 'single' && (filesAmount ? files.length < filesAmount : true)) || files.length === 0) && (
+      {((mode !== 'single' &&
+        (filesAmount ? files.length < filesAmount : true)) ||
+        files.length === 0) && (
         <S.UploaderContainer>
-          {/* eslint-disable-next-line react/jsx-props-no-spreading */}
-          <S.DropAreaContainer {...getRootProps()} canUploadMore={mode !== 'single' && files.length > 0}>
-            {/* eslint-disable-next-line react/jsx-props-no-spreading */}
+          {}
+          <S.DropAreaContainer
+            {...getRootProps()}
+            canUploadMore={mode !== 'single' && files.length > 0}
+          >
+            {}
             <input {...getInputProps()} data-testid="drop-area-input" />
 
             <S.DropAreaButton
@@ -142,13 +151,22 @@ const AvatarUploader = ({
         </S.UploaderContainer>
       )}
       <div>
-        {((mode !== 'single' && (filesAmount ? files.length < filesAmount : true)) || files.length === 0) && (
+        {((mode !== 'single' &&
+          (filesAmount ? files.length < filesAmount : true)) ||
+          files.length === 0) && (
           <>
-            <Button {...getRootProps()} disabled={disabled} type="secondary" mode="icon-label">
+            <Button
+              {...getRootProps()}
+              disabled={disabled}
+              type="secondary"
+              mode="icon-label"
+            >
               <Icon component={<Add3M />} size={24} />
               Add file
             </Button>
-            {description && <S.Description hasError={hasError}>{description}</S.Description>}
+            {description && (
+              <S.Description hasError={hasError}>{description}</S.Description>
+            )}
           </>
         )}
       </div>

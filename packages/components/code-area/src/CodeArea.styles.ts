@@ -1,5 +1,6 @@
 import styled, { css } from 'styled-components';
-import { Title, Text } from '@synerise/ds-typography';
+
+import { Text, Title } from '@synerise/ds-typography';
 
 const FlexRow = styled.div`
   display: flex;
@@ -21,14 +22,18 @@ export const CodeAreaContent = styled.div`
 `;
 
 export const EditorWrapper = styled.div<{ hasError: boolean }>`
-  border: solid 1px ${props => (props.hasError ? props.theme.palette['red-600'] : props.theme.palette['grey-200'])};
+  border: solid 1px
+    ${(props) =>
+      props.hasError
+        ? props.theme.palette['red-600']
+        : props.theme.palette['grey-200']};
   border-radius: 3px;
   display: flex;
   flex-direction: column;
   flex: 1 1 100%;
   min-height: 0;
   padding-top: 12px;
-  ${props =>
+  ${(props) =>
     props.hasError &&
     css`
       background: ${props.theme.palette['red-050']};
@@ -57,13 +62,15 @@ export const CodeAreaWrapper = styled.div<{
   customHeight?: number | string;
   zIndex?: number | string;
 }>`
-  ${props => {
+  ${(props) => {
     if (props.isFullscreen) {
       return css`
         position: fixed;
         width: 100vw;
         height: 100vh;
-        z-index: ${props.zIndex !== undefined ? props.zIndex : props.theme.variables['zindex-modal']};
+        z-index: ${props.zIndex !== undefined
+          ? props.zIndex
+          : props.theme.variables['zindex-modal']};
         left: 0;
         top: 0;
         background: ${props.theme.palette.white};
@@ -82,7 +89,9 @@ export const CodeAreaWrapper = styled.div<{
               flex: 1 1 100%;
               min-height: 0;
             }
-            height: ${typeof props.customHeight === 'number' ? `${props.customHeight}px` : props.customHeight};
+            height: ${typeof props.customHeight === 'number'
+              ? `${props.customHeight}px`
+              : props.customHeight};
           `
         : css`
             ${EditorInnerWrapper} {
@@ -95,7 +104,7 @@ export const CodeAreaWrapper = styled.div<{
     `;
   }}
   ${EditorWrapper} {
-    ${props =>
+    ${(props) =>
       props.readOnly &&
       css`
         background: ${props.theme.palette['grey-050']};
@@ -111,7 +120,7 @@ export const AdditionalDescription = styled.div`
 `;
 
 export const ContentBelow = styled(FlexRow)<{ isEmpty?: boolean }>`
-  ${props => !props.isEmpty && `margin-top: 8px;`}
+  ${(props) => !props.isEmpty && `margin-top: 8px;`}
   align-items: flex-start;
 `;
 export const ContentAbove = styled(FlexRow)`
@@ -122,7 +131,7 @@ export const ContentAbove = styled(FlexRow)`
 export const SyntaxTitle = styled(Text)``;
 
 export const BottomBar = styled(FlexRow)`
-  border-top: solid 1px ${props => props.theme.palette['grey-200']};
+  border-top: solid 1px ${(props) => props.theme.palette['grey-200']};
   padding: 8px;
   flex: 0 0 auto;
 `;
@@ -144,6 +153,6 @@ export const Counter = styled.div`
 `;
 
 export const ErrorText = styled.div`
-  color: ${props => props.theme.palette['red-600']};
+  color: ${(props) => props.theme.palette['red-600']};
   margin-bottom: 4px;
 `;

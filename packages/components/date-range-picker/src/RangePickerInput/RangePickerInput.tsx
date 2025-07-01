@@ -1,17 +1,19 @@
-import React, { useCallback, useMemo, useState, MouseEvent } from 'react';
+import React, { type MouseEvent, useCallback, useMemo, useState } from 'react';
 
-import Icon, { ArrowRightS, CalendarM, Close3S } from '@synerise/ds-icon';
 import { useTheme } from '@synerise/ds-core';
-import Tooltip from '@synerise/ds-tooltip';
-import { getDefaultDataTimeOptions, useDataFormat } from '@synerise/ds-data-format';
+import {
+  getDefaultDataTimeOptions,
+  useDataFormat,
+} from '@synerise/ds-data-format';
 import FormField from '@synerise/ds-form-field';
+import Icon, { ArrowRightS, CalendarM, Close3S } from '@synerise/ds-icon';
+import Tooltip from '@synerise/ds-tooltip';
 
-import { RangePickerInputProps } from './RangePickerInput.types';
-import * as S from './RangePickerInput.styles';
-
-import { normalizeRange } from '../utils';
-import type { DateRange, NullableDateLimit } from '../date.types';
 import { isLifetime } from '../RelativeRangePicker/Elements/RangeDropdown/RangeDropdown';
+import type { DateRange, NullableDateLimit } from '../date.types';
+import { normalizeRange } from '../utils';
+import * as S from './RangePickerInput.styles';
+import { type RangePickerInputProps } from './RangePickerInput.types';
 
 const RangePickerInput = ({
   value,
@@ -51,15 +53,18 @@ const RangePickerInput = ({
       event.stopPropagation();
       onChange && onChange(undefined);
     },
-    [onChange]
+    [onChange],
   );
 
   const getText = useCallback(
     (dateToDisplay?: NullableDateLimit): string => {
       const dateValue = dateToDisplay ? new Date(dateToDisplay) : new Date();
-      return formatValue(dateValue, { ...getDefaultDataTimeOptions(showTime), ...valueFormatOptions });
+      return formatValue(dateValue, {
+        ...getDefaultDataTimeOptions(showTime),
+        ...valueFormatOptions,
+      });
     },
-    [showTime, formatValue, valueFormatOptions]
+    [showTime, formatValue, valueFormatOptions],
   );
 
   const renderFromDate = useCallback(() => {
@@ -70,7 +75,13 @@ const RangePickerInput = ({
       ) : (
         texts?.startDatePlaceholder
       );
-    return <S.DateWrapper highlight={active && !disabled && !isFromDateDefined && highlight}>{text}</S.DateWrapper>;
+    return (
+      <S.DateWrapper
+        highlight={active && !disabled && !isFromDateDefined && highlight}
+      >
+        {text}
+      </S.DateWrapper>
+    );
   }, [dateRangeValue, getText, active, disabled, texts, highlight]);
 
   const renderEndDate = useCallback(() => {
@@ -84,7 +95,13 @@ const RangePickerInput = ({
         texts?.endDatePlaceholder
       );
     return (
-      <S.DateWrapper highlight={active && !!isFromDateDefined && !isEndDateDefined && highlight}>{text}</S.DateWrapper>
+      <S.DateWrapper
+        highlight={
+          active && !!isFromDateDefined && !isEndDateDefined && highlight
+        }
+      >
+        {text}
+      </S.DateWrapper>
     );
   }, [dateRangeValue, getText, active, texts, highlight]);
 
@@ -103,7 +120,15 @@ const RangePickerInput = ({
         {preferRelativeDesc && dateRangeValue?.translationKey && value && ')'}
       </>
     );
-  }, [value, preferRelativeDesc, dateRangeValue?.translationKey, texts, renderFromDate, theme.palette, renderEndDate]);
+  }, [
+    value,
+    preferRelativeDesc,
+    dateRangeValue?.translationKey,
+    texts,
+    renderFromDate,
+    theme.palette,
+    renderEndDate,
+  ]);
 
   return (
     <>
@@ -135,12 +160,19 @@ const RangePickerInput = ({
             {!readOnly && !disabled && hovered && hasValue && allowClear ? (
               <Tooltip title={texts?.clear}>
                 <S.ClearIconWrapper>
-                  <Icon component={<Close3S />} data-testid="date-range-picker-input-clear" onClick={handleClear} />
+                  <Icon
+                    component={<Close3S />}
+                    data-testid="date-range-picker-input-clear"
+                    onClick={handleClear}
+                  />
                 </S.ClearIconWrapper>
               </Tooltip>
             ) : (
               <S.DefaultIconWrapper>
-                <Icon component={<CalendarM />} color={theme.palette['grey-600']} />
+                <Icon
+                  component={<CalendarM />}
+                  color={theme.palette['grey-600']}
+                />
               </S.DefaultIconWrapper>
             )}
           </S.RangeInputWrapper>

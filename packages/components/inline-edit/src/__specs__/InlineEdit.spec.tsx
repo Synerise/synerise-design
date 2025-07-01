@@ -1,6 +1,7 @@
 import React from 'react';
-import { renderWithProvider } from '@synerise/ds-utils/dist/testing';
-import { fireEvent, waitFor, screen } from '@testing-library/react';
+
+import { renderWithProvider } from '@synerise/ds-utils';
+import { fireEvent, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 
 import InlineEdit from '../';
@@ -30,18 +31,18 @@ const setup = ({
       input={{
         name,
         value: INPUT_VALUE,
-        onChange: e => onChange(e.target.value),
-        onEnterPress: e => onEnterPress(e),
-        onBlur: e => onBlur(e),
-        maxLength: maxLength,
+        onChange: (e) => onChange(e.target.value),
+        onEnterPress: (e) => onEnterPress(e),
+        onBlur: (e) => onBlur(e),
+        maxLength,
         placeholder: PLACEHOLDER,
-        autoComplete: autoComplete,
+        autoComplete,
       }}
       size={'normal'}
       error={false}
       disabled={disabled}
       hideIcon={hideIcon}
-    />
+    />,
   );
   const input = screen.getByPlaceholderText(PLACEHOLDER) as HTMLInputElement;
 
@@ -59,14 +60,19 @@ describe('InlineEdit', () => {
 
   it('should trigger onChange', async () => {
     const { input } = setup({});
-    userEvent.type(input, INPUT_VALUE_CHANGED, { allAtOnce: true});
+    userEvent.type(input, INPUT_VALUE_CHANGED, { allAtOnce: true });
     await waitFor(() => expect(onChange).toHaveBeenCalled());
   });
   beforeEach(() => {
     Element.prototype.scrollTo = jest.fn();
   });
 
-  const names = ['is-input-name', 'test_input', 'is_input_name', 'is-input_test-name'];
+  const names = [
+    'is-input-name',
+    'test_input',
+    'is_input_name',
+    'is-input_test-name',
+  ];
   const ids = ['isInputName', 'testInput', 'isInputName', 'isInputTestName'];
   names.map((name: string, i: number) => {
     it(`should have id of string ${name} wrote by camelCase`, () => {

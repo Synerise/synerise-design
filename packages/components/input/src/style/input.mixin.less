@@ -32,7 +32,9 @@ textarea.@{ant-prefix}-input {
   padding: 8px 12px 8px 12px;
 
   &::-webkit-scrollbar {
-    transition: background-color 0.3s ease-in-out, border 0.3s ease-in-out;
+    transition:
+      background-color 0.3s ease-in-out,
+      border 0.3s ease-in-out;
     width: 11px;
     height: 11px;
     cursor: default;
@@ -146,7 +148,10 @@ textarea.@{ant-prefix}-input {
     font-size: @input-font-size-base;
   }
 }
-.ant-input-group.ant-input-group-compact > .ds-select-wrapper > .ant-select > .ant-select-selector {
+.ant-input-group.ant-input-group-compact
+  > .ds-select-wrapper
+  > .ant-select
+  > .ant-select-selector {
   border-radius: 0;
 }
 .ant-input-group.ant-input-group-compact {
@@ -162,14 +167,18 @@ textarea.@{ant-prefix}-input {
   > .ant-input:focus {
     z-index: 2;
   }
-  > *:first-child.ds-select-wrapper:not(.white) > .ant-select:not(.error) > .ant-select-selector {
+  > *:first-child.ds-select-wrapper:not(.white)
+    > .ant-select:not(.error)
+    > .ant-select-selector {
     background: @grey-050;
   }
   > *:last-child.ds-select-wrapper > .ant-select > .ant-select-selector {
     border-top-right-radius: 3px;
     border-bottom-right-radius: 3px;
   }
-  > *:last-child.ds-select-wrapper:not(.white) > .ant-select > .ant-select-selector {
+  > *:last-child.ds-select-wrapper:not(.white)
+    > .ant-select
+    > .ant-select-selector {
     background: @grey-050;
   }
   && > .ds-select-wrapper > .ant-select.error > .ant-select-selector {

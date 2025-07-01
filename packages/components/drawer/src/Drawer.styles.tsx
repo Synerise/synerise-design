@@ -1,11 +1,14 @@
-import React from 'react';
 import Drawer from 'antd/lib/drawer';
+import React from 'react';
 import styled from 'styled-components';
 
 export const AntdDrawer = styled(({ ...rest }) => <Drawer {...rest} />)`
   && {
     .ant-drawer-mask {
-      background-color: rgba(${({ theme }): string => theme.palette['grey-500']}, 0.1);
+      background-color: rgba(
+        ${({ theme }): string => theme.palette['grey-500']},
+        0.1
+      );
     }
 
     .ant-drawer-body {

@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+
 import { ItemContainer } from '@synerise/ds-manageable-list/dist/Item/ContentItem/ContentItem.styles';
 
 export const FiltersList = styled.div`

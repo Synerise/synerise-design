@@ -1,11 +1,12 @@
-import React, { useMemo, useState, useEffect } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import { v4 as uuid } from 'uuid';
-import { DragStartEvent, DragOverlay } from '@dnd-kit/core';
+
+import { DragOverlay, type DragStartEvent } from '@dnd-kit/core';
 import { restrictToParentElement } from '@dnd-kit/modifiers';
 
-import { SortableItem } from './SortableItem';
-import { SortableProps, BaseItem } from './Sortable.types';
+import { type BaseItem, type SortableProps } from './Sortable.types';
 import { SortableContainer } from './SortableContainer';
+import { SortableItem } from './SortableItem';
 
 export const Sortable = <ItemType extends BaseItem>({
   items,
@@ -22,7 +23,7 @@ export const Sortable = <ItemType extends BaseItem>({
     setActiveItem(undefined);
   };
   const handleDragStart = (event: DragStartEvent) => {
-    setActiveItem(items.find(item => item.id === event.active.id));
+    setActiveItem(items.find((item) => item.id === event.active.id));
   };
 
   const handleOrderChange = (newOrder: Array<ItemType>) => {

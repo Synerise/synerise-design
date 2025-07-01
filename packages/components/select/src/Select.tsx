@@ -1,14 +1,15 @@
-import React, { ReactNode, Component } from 'react';
+import classNames from 'classnames';
+import React, { Component, type ReactNode } from 'react';
+
 import '@synerise/ds-core/dist/js/style';
-import './style/index.less';
+import FormField from '@synerise/ds-form-field';
 import Icon, { Close3M, CloseS } from '@synerise/ds-icon';
 import Tooltip from '@synerise/ds-tooltip';
-import FormField from '@synerise/ds-form-field';
 import { getPopupContainer as defaultGetPopupContainer } from '@synerise/ds-utils';
 
-import classNames from 'classnames';
 import * as S from './Select.styles';
-import { Props } from './Select.types';
+import { type Props } from './Select.types';
+import './style/index.less';
 
 class Select extends Component<Props> {
   static Option = S.AntdSelectOption;
@@ -37,7 +38,10 @@ class Select extends Component<Props> {
     const { size } = antdProps;
     const hasBottomMargin = asFormElement || Boolean(errorText || description);
     return (
-      <S.SelectContainer className="ds-select-container" hasBottomMargin={hasBottomMargin}>
+      <S.SelectContainer
+        className="ds-select-container"
+        hasBottomMargin={hasBottomMargin}
+      >
         <FormField
           errorText={errorText}
           description={description}
@@ -51,7 +55,7 @@ class Select extends Component<Props> {
             className={classNames(
               'ds-select-wrapper',
               { error: errorText || error },
-              { [className as string]: !!className }
+              { [className as string]: !!className },
             )}
             style={style}
           >
@@ -67,13 +71,19 @@ class Select extends Component<Props> {
               clearIcon={
                 <Tooltip title={clearTooltip}>
                   <span>
-                    <Icon component={<Close3M />} size={size === 'small' ? 18 : 24} />
+                    <Icon
+                      component={<Close3M />}
+                      size={size === 'small' ? 18 : 24}
+                    />
                   </span>
                 </Tooltip>
               }
               removeIcon={<Icon component={<CloseS />} />}
               className={classNames({ error: errorText || error })}
-              dropdownClassName={classNames('ps__child--consume', dropdownClassName)}
+              dropdownClassName={classNames(
+                'ps__child--consume',
+                dropdownClassName,
+              )}
             />
             {!!suffixel && <S.SuffixWrapper>{suffixel}</S.SuffixWrapper>}
           </S.SelectWrapper>

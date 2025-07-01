@@ -6,9 +6,8 @@ enum KEYS {
   CONTROL = 'Control',
 }
 
-// eslint-disable-next-line import/prefer-default-export
 export const useShiftAndControlKeys = (
-  ref: React.MutableRefObject<HTMLElement | undefined>
+  ref: React.MutableRefObject<HTMLElement | undefined>,
 ): readonly [boolean, boolean] => {
   const [controlPressed, setControlPressed] = React.useState(false);
   const [shiftPressed, setShiftPressed] = React.useState(false);

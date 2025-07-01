@@ -16,46 +16,27 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 # [1.2.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-sortable@1.1.3...@synerise/ds-sortable@1.2.0) (2025-06-05)
 
-
 ### Features
 
-* **column-manager:** removed unnecessary features ([152d3c0](https://github.com/Synerise/synerise-design/commit/152d3c0d87449977f8c4264bb7abd278210470e9))
-* **filter:** change dnd lib and update ux ([f5a979e](https://github.com/Synerise/synerise-design/commit/f5a979e6c9e5d9c8251c3f57da8ce57c416dadab))
-
-
-
-
+- **column-manager:** removed unnecessary features ([152d3c0](https://github.com/Synerise/synerise-design/commit/152d3c0d87449977f8c4264bb7abd278210470e9))
+- **filter:** change dnd lib and update ux ([f5a979e](https://github.com/Synerise/synerise-design/commit/f5a979e6c9e5d9c8251c3f57da8ce57c416dadab))
 
 ## [1.1.3](https://github.com/Synerise/synerise-design/compare/@synerise/ds-sortable@1.1.2...@synerise/ds-sortable@1.1.3) (2025-05-26)
 
 **Note:** Version bump only for package @synerise/ds-sortable
 
-
-
-
-
 ## [1.1.2](https://github.com/Synerise/synerise-design/compare/@synerise/ds-sortable@1.1.1...@synerise/ds-sortable@1.1.2) (2025-05-07)
 
 **Note:** Version bump only for package @synerise/ds-sortable
 
-
-
-
-
 ## [1.1.1](https://github.com/Synerise/synerise-design/compare/@synerise/ds-sortable@1.1.0...@synerise/ds-sortable@1.1.1) (2025-04-24)
-
 
 ### Bug Fixes
 
-* **icon:** new mimetype icons ([f8b50d1](https://github.com/Synerise/synerise-design/commit/f8b50d16287e747c7c72e4c4aea660d02d54fe99))
-
-
-
-
+- **icon:** new mimetype icons ([f8b50d1](https://github.com/Synerise/synerise-design/commit/f8b50d16287e747c7c72e4c4aea660d02d54fe99))
 
 # 1.1.0 (2025-03-31)
 
-
 ### Features
 
-* **sortable:** new component ([181e09f](https://github.com/Synerise/synerise-design/commit/181e09fab834c9964995d1abb81349a564e2c956))
+- **sortable:** new component ([181e09f](https://github.com/Synerise/synerise-design/commit/181e09fab834c9964995d1abb81349a564e2c956))

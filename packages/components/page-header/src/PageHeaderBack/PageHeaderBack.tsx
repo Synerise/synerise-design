@@ -1,17 +1,25 @@
 import React from 'react';
 
-import { theme } from '@synerise/ds-core';
 import Button from '@synerise/ds-button';
+import { theme } from '@synerise/ds-core';
 import Icon, { ArrowLeftM } from '@synerise/ds-icon';
 
-import { PageHeaderProps } from '../PageHeader.types';
+import { type PageHeaderProps } from '../PageHeader.types';
 import * as S from './PageHeaderBack.styles';
 
 type PageHeaderBackProps = Pick<PageHeaderProps, 'goBackIcon' | 'onGoBack'>;
 
-export const PageHeaderBack = ({ goBackIcon, onGoBack }: PageHeaderBackProps) => {
+export const PageHeaderBack = ({
+  goBackIcon,
+  onGoBack,
+}: PageHeaderBackProps) => {
   const backIcon = goBackIcon || (
-    <Icon className="page-header__back" color={theme.palette['grey-600']} component={<ArrowLeftM />} size={24} />
+    <Icon
+      className="page-header__back"
+      color={theme.palette['grey-600']}
+      component={<ArrowLeftM />}
+      size={24}
+    />
   );
 
   return (

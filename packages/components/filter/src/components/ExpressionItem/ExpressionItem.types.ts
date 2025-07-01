@@ -1,7 +1,13 @@
-import type { MouseEventHandler, ReactNode, TransitionEventHandler } from 'react';
+import type {
+  MouseEventHandler,
+  ReactNode,
+  TransitionEventHandler,
+} from 'react';
+
 import type { LogicProps } from '@synerise/ds-logic';
-import type { StepCardProps } from '@synerise/ds-step-card';
 import type { DragHandlePropType } from '@synerise/ds-sortable';
+import type { StepCardProps } from '@synerise/ds-step-card';
+
 import type { Expression } from '../../Filter.types';
 
 export type ExpressionItemProps = {

@@ -1,5 +1,5 @@
+import BaseAntCheckbox, { type CheckboxProps } from 'antd/lib/checkbox';
 import styled, { css } from 'styled-components';
-import BaseAntCheckbox, { CheckboxProps } from 'antd/lib/checkbox';
 
 const checkSvgWithCustomColor = (color: string) => {
   const colorValueForSvg = color.replace(/#/, '%23');
@@ -14,15 +14,19 @@ const soloCss = css`
 /**
  * error TS4023: Exported variable 'AntdCheckbox' has or is using name 'CompoundedComponent' from external module "/Users/biedronne/Documents/Work/DS2/synerise-design/node_modules/antd/lib/checkbox/index" but cannot be named.
  */
-type CompoundedComponent = React.ForwardRefExoticComponent<CheckboxProps & React.RefAttributes<HTMLInputElement>> & {
+type CompoundedComponent = React.ForwardRefExoticComponent<
+  CheckboxProps & React.RefAttributes<HTMLInputElement>
+> & {
   Group: typeof BaseAntCheckbox.Group;
 };
-export const AntdCheckbox = styled(BaseAntCheckbox as CompoundedComponent)<{ solo: boolean }>`
+export const AntdCheckbox = styled(BaseAntCheckbox as CompoundedComponent)<{
+  solo: boolean;
+}>`
   && {
     display: flex;
     align-items: center;
     line-height: 1;
-    ${props => props.solo && soloCss};
+    ${(props) => props.solo && soloCss};
 
     .ant-checkbox {
       top: 0;
@@ -30,16 +34,18 @@ export const AntdCheckbox = styled(BaseAntCheckbox as CompoundedComponent)<{ sol
   }
 
   .ant-checkbox-input:focus + .ant-checkbox-inner {
-    border: 1px solid ${props => props.theme.palette['blue-600']};
-    box-shadow: inset 0 0 0 1px ${props => props.theme.palette['blue-600']};
+    border: 1px solid ${(props) => props.theme.palette['blue-600']};
+    box-shadow: inset 0 0 0 1px ${(props) => props.theme.palette['blue-600']};
   }
 
   && > .ant-checkbox-disabled.ant-checkbox-checked > span.ant-checkbox-inner {
-    background-image: ${props => `url("${checkSvgWithCustomColor(props.theme.palette['grey-400'])}")`};
+    background-image: ${(props) =>
+      `url("${checkSvgWithCustomColor(props.theme.palette['grey-400'])}")`};
   }
 
   && > .ant-checkbox-checked > span.ant-checkbox-inner {
-    background-image: ${props => `url("${checkSvgWithCustomColor(props.theme.palette.white)}")`};
+    background-image: ${(props) =>
+      `url("${checkSvgWithCustomColor(props.theme.palette.white)}")`};
 
     ::after {
       display: none;
@@ -54,8 +60,8 @@ export const AntdCheckbox = styled(BaseAntCheckbox as CompoundedComponent)<{ sol
     > .ant-checkbox-indeterminate,
     .ant-checkbox-indeterminate.ant-checkbox-checked {
       > span.ant-checkbox-inner {
-        background-color: ${props => props.theme.palette['blue-600']};
-        border: 1px solid ${props => props.theme.palette['blue-600']};
+        background-color: ${(props) => props.theme.palette['blue-600']};
+        border: 1px solid ${(props) => props.theme.palette['blue-600']};
         background-image: none;
 
         ::after {
@@ -70,7 +76,7 @@ export const AntdCheckbox = styled(BaseAntCheckbox as CompoundedComponent)<{ sol
       > .ant-checkbox-indeterminate,
       .ant-checkbox-indeterminate.ant-checkbox-checked {
         > span.ant-checkbox-inner {
-          background-color: ${props => props.theme.palette['blue-500']};
+          background-color: ${(props) => props.theme.palette['blue-500']};
         }
       }
     }
@@ -78,14 +84,17 @@ export const AntdCheckbox = styled(BaseAntCheckbox as CompoundedComponent)<{ sol
 
   /* displays checked icon on hover */
   &&:hover
-    > .ant-checkbox:not(.ant-checkbox-checked):not(.ant-checkbox-indeterminate):not(.ant-checkbox-disabled)
+    > .ant-checkbox:not(.ant-checkbox-checked):not(
+      .ant-checkbox-indeterminate
+    ):not(.ant-checkbox-disabled)
     > span.ant-checkbox-inner {
     border-width: 1px;
     border-style: solid;
     /* used important to override antd's error border color */
-    border-color: ${props => props.theme.palette['blue-600']} !important;
+    border-color: ${(props) => props.theme.palette['blue-600']} !important;
     outline: none;
-    background-image: ${props => `url("${checkSvgWithCustomColor(props.theme.palette['blue-600'])}")`};
+    background-image: ${(props) =>
+      `url("${checkSvgWithCustomColor(props.theme.palette['blue-600'])}")`};
   }
 `;
 
@@ -95,6 +104,6 @@ export const AdditionalData = styled.div`
 
 export const CheckboxWrapper = styled.div<{ withoutPadding: boolean }>`
   display: flex;
-  padding: ${props => (props.withoutPadding ? '0' : '4px 12px 8px 8px')};
+  padding: ${(props) => (props.withoutPadding ? '0' : '4px 12px 8px 8px')};
   flex-direction: column;
 `;

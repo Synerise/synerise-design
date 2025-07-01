@@ -1,7 +1,10 @@
-import { Category } from '../Cascader.types';
-import { renderWithProvider } from '@synerise/ds-utils/dist/testing';
-import Cascader from '../Cascader';
 import React from 'react';
+
+import { renderWithProvider } from '@synerise/ds-utils';
+
+import Cascader from '../Cascader';
+import { type Category } from '../Cascader.types';
+
 const mock = {
   id: 0,
   name: 'Home',
@@ -20,7 +23,11 @@ const mock = {
 describe('Cascader', () => {
   it('Should render nested categories', () => {
     const { getByText } = renderWithProvider(
-      <Cascader categorySuffix={<div>select</div>} rootCategory={mock as Category} selectedCategoriesIds={[]} />
+      <Cascader
+        categorySuffix={<div>select</div>}
+        rootCategory={mock as Category}
+        selectedCategoriesIds={[]}
+      />,
     );
     // ACT & ASSERT
     expect(getByText('Phone')).toBeTruthy();

@@ -1,11 +1,15 @@
 import React from 'react';
-import Tooltip from '@synerise/ds-tooltip/dist/Tooltip';
+
 import Icon, { InfoFillS } from '@synerise/ds-icon';
+import Tooltip from '@synerise/ds-tooltip/dist/Tooltip';
 
 import * as S from '../../Search.styles';
-import { SearchHeaderProps } from './SearchHeader.types';
+import { type SearchHeaderProps } from './SearchHeader.types';
 
-const SearchHeader: React.FC<SearchHeaderProps> = ({ headerText, tooltip }: SearchHeaderProps) => {
+const SearchHeader: React.FC<SearchHeaderProps> = ({
+  headerText,
+  tooltip,
+}: SearchHeaderProps) => {
   return (
     <S.MenuHeader>
       {headerText}

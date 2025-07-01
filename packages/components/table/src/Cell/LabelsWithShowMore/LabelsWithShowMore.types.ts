@@ -1,5 +1,6 @@
-import { ReactNode, Component } from 'react';
-import { WithHTMLAttributes } from '@synerise/ds-utils';
+import { type Component, type ReactNode } from 'react';
+
+import { type WithHTMLAttributes } from '@synerise/ds-utils';
 
 export type ShowMoreTexts = {
   tooltip: ReactNode;

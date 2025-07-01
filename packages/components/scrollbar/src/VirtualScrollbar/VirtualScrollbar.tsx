@@ -1,13 +1,19 @@
-import React, { useCallback, forwardRef, useRef, useEffect, useState } from 'react';
-import PerfectScrollbar from '@ofsajd/react-perfect-scrollbar';
 import classnames from 'classnames';
+import React, {
+  forwardRef,
+  useCallback,
+  useEffect,
+  useRef,
+  useState,
+} from 'react';
 
+import PerfectScrollbar from '@ofsajd/react-perfect-scrollbar';
 import { useCombinedRefs, useResizeObserver } from '@synerise/ds-utils';
+
+import { type VirtualScrollbarProps } from '../Scrollbar.types';
 import '../style/index.less';
 import * as S from './VirtualScrollbar.styles';
-import { VirtualScrollbarProps } from '../Scrollbar.types';
 
-// eslint-disable-next-line import/prefer-default-export
 export const VirtualScrollbar = forwardRef<HTMLElement, VirtualScrollbarProps>(
   (
     {
@@ -25,7 +31,7 @@ export const VirtualScrollbar = forwardRef<HTMLElement, VirtualScrollbarProps>(
       onYReachEnd,
       confineScroll,
     },
-    forwardedRef
+    forwardedRef,
   ) => {
     const scrollRef = useRef<HTMLElement>();
     const wrapperRef = useRef<HTMLDivElement | null>(null);
@@ -37,7 +43,8 @@ export const VirtualScrollbar = forwardRef<HTMLElement, VirtualScrollbarProps>(
     const triggerScrollbarGeometryUpdate = useCallback(() => {
       const scrollEvent = new window.Event('scroll');
       wrapperRef.current && wrapperRef.current.dispatchEvent(scrollEvent);
-      combinedScrollRef.current && combinedScrollRef.current.dispatchEvent(scrollEvent);
+      combinedScrollRef.current &&
+        combinedScrollRef.current.dispatchEvent(scrollEvent);
     }, [combinedScrollRef]);
 
     useEffect(() => {
@@ -49,7 +56,8 @@ export const VirtualScrollbar = forwardRef<HTMLElement, VirtualScrollbarProps>(
         return;
       }
 
-      combinedScrollRef.current && setLastScrollTop(combinedScrollRef.current.scrollTop);
+      combinedScrollRef.current &&
+        setLastScrollTop(combinedScrollRef.current.scrollTop);
 
       if (typeof onYReachEnd === 'function') {
         onYReachEnd();
@@ -58,7 +66,14 @@ export const VirtualScrollbar = forwardRef<HTMLElement, VirtualScrollbarProps>(
       if (!loading && hasMore && fetchData) {
         fetchData();
       }
-    }, [loading, hasMore, lastScrollTop, fetchData, onYReachEnd, combinedScrollRef]);
+    }, [
+      loading,
+      hasMore,
+      lastScrollTop,
+      fetchData,
+      onYReachEnd,
+      combinedScrollRef,
+    ]);
 
     const handleScrollUp = useCallback(() => {
       if (combinedScrollRef?.current?.scrollTop !== 0) {
@@ -75,13 +90,19 @@ export const VirtualScrollbar = forwardRef<HTMLElement, VirtualScrollbarProps>(
       const wrapper = wrapperRef.current;
       wrapper && handleWheel && wrapper.addEventListener('wheel', handleWheel);
       return () => {
-        wrapper && handleWheel && wrapper.removeEventListener('wheel', handleWheel);
+        wrapper &&
+          handleWheel &&
+          wrapper.removeEventListener('wheel', handleWheel);
       };
     }, [confineScroll]);
 
     useEffect(() => {
       const endHandler = ({ target }: TransitionEvent | AnimationEvent) => {
-        if (target instanceof HTMLElement && combinedScrollRef.current && target.contains(combinedScrollRef.current)) {
+        if (
+          target instanceof HTMLElement &&
+          combinedScrollRef.current &&
+          target.contains(combinedScrollRef.current)
+        ) {
           triggerScrollbarGeometryUpdate();
         }
       };
@@ -93,11 +114,13 @@ export const VirtualScrollbar = forwardRef<HTMLElement, VirtualScrollbarProps>(
       };
     });
 
-    const className = classnames('perfect-scrollbar-wrapper', { 'large-size': largeSize });
+    const className = classnames('perfect-scrollbar-wrapper', {
+      'large-size': largeSize,
+    });
 
     return (
       <PerfectScrollbar
-        containerRef={ref => {
+        containerRef={(ref) => {
           combinedScrollRef.current = ref;
         }} // workaround: https://github.com/goldenyz/react-perfect-scrollbar/issues/94#issuecomment-619131257
         onScroll={onScroll}
@@ -106,7 +129,11 @@ export const VirtualScrollbar = forwardRef<HTMLElement, VirtualScrollbarProps>(
         onYReachEnd={handleReachEnd}
         className={className}
       >
-        <S.ScrollbarContent className={`${classes}`} style={{ maxHeight }} data-testid="virtual-scrollbar">
+        <S.ScrollbarContent
+          className={`${classes}`}
+          style={{ maxHeight }}
+          data-testid="virtual-scrollbar"
+        >
           <S.ScrollbarWrapper
             ref={wrapperRef}
             absolute={absolute}
@@ -119,5 +146,5 @@ export const VirtualScrollbar = forwardRef<HTMLElement, VirtualScrollbarProps>(
         </S.ScrollbarContent>
       </PerfectScrollbar>
     );
-  }
+  },
 );

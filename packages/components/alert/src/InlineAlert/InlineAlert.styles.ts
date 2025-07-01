@@ -1,5 +1,6 @@
 import styled from 'styled-components';
-import { InlineAlertType } from './InlineAlert.types';
+
+import { type InlineAlertType } from './InlineAlert.types';
 
 const COLORS: Record<InlineAlertType, string> = {
   success: 'green-600',
@@ -23,10 +24,10 @@ export const InlineAlertWrapper = styled.span<{ type: InlineAlertType }>`
   justify-content: flex-start;
   flex-direction: row;
   svg {
-    color: ${props => props.theme.palette[COLORS[props.type]]};
-    fill: ${props => props.theme.palette[COLORS[props.type]]};
+    color: ${(props) => props.theme.palette[COLORS[props.type]]};
+    fill: ${(props) => props.theme.palette[COLORS[props.type]]};
   }
   ${Message} {
-    color: ${props => props.theme.palette['grey-600']};
+    color: ${(props) => props.theme.palette['grey-600']};
   }
 `;

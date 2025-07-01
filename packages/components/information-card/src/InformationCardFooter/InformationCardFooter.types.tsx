@@ -1,6 +1,7 @@
-import { MouseEvent } from 'react';
-import { InformationCardActionsProps } from '../InformationCardActions/InformationCardActions.types';
-import { InformationCardProps } from '../InformationCard.types';
+import { type MouseEvent } from 'react';
+
+import { type InformationCardProps } from '../InformationCard.types';
+import { type InformationCardActionsProps } from '../InformationCardActions/InformationCardActions.types';
 
 export type InformationCardFooterProps = {
   text: InformationCardProps['footerText'];
@@ -8,5 +9,8 @@ export type InformationCardFooterProps = {
   actionsMenuButtonOnClick?: (event: MouseEvent) => void;
 } & Pick<
   InformationCardProps,
-  'actionButton' | 'actionButtonTooltipText' | 'actionButtonTooltipText' | 'actionButtonCallback'
+  | 'actionButton'
+  | 'actionButtonTooltipText'
+  | 'actionButtonTooltipText'
+  | 'actionButtonCallback'
 >;

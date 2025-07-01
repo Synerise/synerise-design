@@ -1,17 +1,29 @@
-import React, { memo, useCallback, useMemo, useState } from 'react';
 import dayjs from 'dayjs';
 import customParseFormatPlugin from 'dayjs/plugin/customParseFormat';
-import Button from '@synerise/ds-button';
-import Icon, { CheckS, Close3S } from '@synerise/ds-icon';
+import React, { memo, useCallback, useMemo, useState } from 'react';
 
+import Button from '@synerise/ds-button';
 import { theme } from '@synerise/ds-core';
+import Icon, { CheckS, Close3S } from '@synerise/ds-icon';
 import Tooltip from '@synerise/ds-tooltip';
-import { DayProps } from './Day.types';
+
 import * as S from './Day.styles';
+import { type DayProps } from './Day.types';
 
 dayjs.extend(customParseFormatPlugin);
 
-const Day = ({ active, label, onToggle, onClear, readOnly, restricted, dayKey, texts, intl, ...rest }: DayProps) => {
+const Day = ({
+  active,
+  label,
+  onToggle,
+  onClear,
+  readOnly,
+  restricted,
+  dayKey,
+  texts,
+  intl,
+  ...rest
+}: DayProps) => {
   const [hovered, setHovered] = useState(false);
   const type = useMemo(() => (active ? 'primary' : 'secondary'), [active]);
   const handleIconClick = useCallback((): void => {
@@ -28,21 +40,34 @@ const Day = ({ active, label, onToggle, onClear, readOnly, restricted, dayKey, t
 
   const icon = useMemo(() => {
     return hovered && !readOnly ? (
-      <Icon component={<Close3S />} onClick={handleIconClick} color={theme.palette['red-600']} />
+      <Icon
+        component={<Close3S />}
+        onClick={handleIconClick}
+        color={theme.palette['red-600']}
+      />
     ) : (
       <Icon component={<CheckS />} color={theme.palette['green-600']} />
     );
   }, [hovered, handleIconClick, readOnly]);
 
   const getPopupContainer = useCallback(
-    (node: HTMLElement): HTMLElement => (node.parentElement ? node.parentElement : document.body),
-    []
+    (node: HTMLElement): HTMLElement =>
+      node.parentElement ? node.parentElement : document.body,
+    [],
   );
   const labelForTooltip = typeof label === 'function' ? label(false) : label;
-  const handleTooltipVisibleChange = useCallback((visible: boolean): void => setHovered(visible), []);
+  const handleTooltipVisibleChange = useCallback(
+    (visible: boolean): void => setHovered(visible),
+    [],
+  );
   return (
     <S.Container>
-      <Tooltip trigger={['hover']} title={active ? labelForTooltip : texts.clickToSelect || 'Click to select'}>
+      <Tooltip
+        trigger={['hover']}
+        title={
+          active ? labelForTooltip : texts.clickToSelect || 'Click to select'
+        }
+      >
         <Button
           {...rest}
           onMouseLeave={handleMouseLeave}

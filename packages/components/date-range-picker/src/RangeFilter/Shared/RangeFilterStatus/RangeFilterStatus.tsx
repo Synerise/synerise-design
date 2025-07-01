@@ -1,21 +1,33 @@
-import React, { MouseEvent } from 'react';
+import React, { type MouseEvent } from 'react';
+import { useIntl } from 'react-intl';
 
 import Badge from '@synerise/ds-badge';
-import Icon, { CloseS, FilterM } from '@synerise/ds-icon';
-
-import Tooltip from '@synerise/ds-tooltip';
-import { useIntl } from 'react-intl';
 import { theme } from '@synerise/ds-core';
-import * as S from './RangeFilterStatus.styles';
-import { RangeFilterStatusProps } from './RangeFilterStatus.types';
+import Icon, { CloseS, FilterM } from '@synerise/ds-icon';
+import Tooltip from '@synerise/ds-tooltip';
 
-const RangeFilterStatus = ({ onFilterRemove, disabled, filter, label, onClick, texts }: RangeFilterStatusProps) => {
+import * as S from './RangeFilterStatus.styles';
+import { type RangeFilterStatusProps } from './RangeFilterStatus.types';
+
+const RangeFilterStatus = ({
+  onFilterRemove,
+  disabled,
+  filter,
+  label,
+  onClick,
+  texts,
+}: RangeFilterStatusProps) => {
   const intl = useIntl();
   return (
     <S.Container>
       <S.Title>{texts.filter}</S.Title>
       {!filter ? (
-        <S.CreatorButton label={label} disabled={disabled} onClick={onClick} block />
+        <S.CreatorButton
+          label={label}
+          disabled={disabled}
+          onClick={onClick}
+          block
+        />
       ) : (
         <S.ContentItem
           onClick={(event: MouseEvent<HTMLDivElement>) => {
@@ -41,7 +53,10 @@ const RangeFilterStatus = ({ onFilterRemove, disabled, filter, label, onClick, t
             id: 'filter-trigger',
             name:
               texts[filter.type.toLocaleLowerCase()] ||
-              intl.formatMessage({ id: `DS.DATE-RANGE-PICKER.${filter.type}`, defaultMessage: 'Filter' }),
+              intl.formatMessage({
+                id: `DS.DATE-RANGE-PICKER.${filter.type}`,
+                defaultMessage: 'Filter',
+              }),
             tag: (
               <S.BadgeWrapper>
                 <Badge status="active" flag pulsing>

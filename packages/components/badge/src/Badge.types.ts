@@ -1,5 +1,6 @@
-import { BadgeProps as AntBadgeProps } from 'antd/lib/badge';
-import { DefaultColor } from '@synerise/ds-core';
+import { type BadgeProps as AntBadgeProps } from 'antd/lib/badge';
+
+import { type DefaultColor } from '@synerise/ds-core';
 
 export const color = [
   'red',
@@ -18,11 +19,27 @@ export const color = [
   'transparent',
 ] as const;
 
-export type Color = typeof color[number];
+export type Color = (typeof color)[number];
 
-export type ColorHue = '900' | '800' | '700' | '600' | '500' | '400' | '300' | '200' | '100' | '050';
+export type ColorHue =
+  | '900'
+  | '800'
+  | '700'
+  | '600'
+  | '500'
+  | '400'
+  | '300'
+  | '200'
+  | '100'
+  | '050';
 
-export type Status = 'active' | 'inactive' | 'blocked' | 'processing' | 'warning' | undefined;
+export type Status =
+  | 'active'
+  | 'inactive'
+  | 'blocked'
+  | 'processing'
+  | 'warning'
+  | undefined;
 
 export type BadgeProps = Omit<AntBadgeProps, 'status'> & {
   flag?: boolean;

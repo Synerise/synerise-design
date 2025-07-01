@@ -1,10 +1,17 @@
 import React from 'react';
-import { FormFieldLabel } from '@synerise/ds-form-field';
-import * as S from './Unordered-list.styles';
-import Item from './Elements/Item/Item';
-import { UnorderedListProps } from './Unordered-list.types';
 
-const UnorderedList = ({ data, indexFormatter, text, className }: UnorderedListProps) => {
+import { FormFieldLabel } from '@synerise/ds-form-field';
+
+import Item from './Elements/Item/Item';
+import * as S from './Unordered-list.styles';
+import { type UnorderedListProps } from './Unordered-list.types';
+
+const UnorderedList = ({
+  data,
+  indexFormatter,
+  text,
+  className,
+}: UnorderedListProps) => {
   return (
     <div className={className}>
       {text && (
@@ -14,7 +21,12 @@ const UnorderedList = ({ data, indexFormatter, text, className }: UnorderedListP
       )}
       <S.UnorderedList>
         {data.map(({ index, ...item }, i) => (
-          <Item index={i} key={String(item?.id)} indexFormatter={indexFormatter} {...item} />
+          <Item
+            index={i}
+            key={String(item?.id)}
+            indexFormatter={indexFormatter}
+            {...item}
+          />
         ))}
       </S.UnorderedList>
     </div>

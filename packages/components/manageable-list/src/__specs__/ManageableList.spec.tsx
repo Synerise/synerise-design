@@ -1,13 +1,13 @@
 import React from 'react';
 import { IntlProvider } from 'react-intl';
-import { fireEvent } from '@testing-library/react';
 
 import { FileM } from '@synerise/ds-icon';
-import { renderWithProvider } from '@synerise/ds-utils/dist/testing';
+import { renderWithProvider } from '@synerise/ds-utils';
+import { fireEvent } from '@testing-library/react';
 
 import ManageableList from '../ManageableList';
 
-const DEFAULT_ITEMS: any = [
+const DEFAULT_ITEMS = [
   {
     id: '00000000-0000-0000-0000-000000000000',
     name: 'Default',
@@ -38,7 +38,7 @@ const DEFAULT_ITEMS: any = [
   },
 ];
 
-const ITEMS: any = [
+const ITEMS = [
   {
     id: '00000000-0000-0000-0000-000000000000',
     name: 'Default',
@@ -96,7 +96,8 @@ const texts = {
   showLessLabel: 'Show less',
   more: 'more',
   less: 'less',
-  activateItemTitle: 'By activating this filter, you will cancel your unsaved filter settings',
+  activateItemTitle:
+    'By activating this filter, you will cancel your unsaved filter settings',
   activate: 'Activate',
   cancel: 'Cancel',
   deleteConfirmationTitle: 'Delete filter',
@@ -119,7 +120,7 @@ describe('ManageableList', () => {
         onItemRemove={() => {}}
         type="default"
         texts={texts}
-      />
+      />,
     );
 
     // ASSERT
@@ -141,7 +142,7 @@ describe('ManageableList', () => {
         onItemRemove={() => {}}
         type="default"
         texts={texts}
-      />
+      />,
     );
 
     // ASSERT
@@ -165,7 +166,7 @@ describe('ManageableList', () => {
         onItemRemove={() => {}}
         type="default"
         texts={texts}
-      />
+      />,
     );
     const showMore = getByTestId('show-more-button');
 
@@ -189,7 +190,7 @@ describe('ManageableList', () => {
         onItemRemove={() => {}}
         type="default"
         texts={texts}
-      />
+      />,
     );
     const showMore = getByTestId('show-more-button');
 
@@ -215,7 +216,7 @@ describe('ManageableList', () => {
         onItemRemove={() => {}}
         type="default"
         texts={texts}
-      />
+      />,
     );
 
     //ACT
@@ -223,7 +224,9 @@ describe('ManageableList', () => {
     fireEvent.click(firstListItem);
 
     // ASSERT
-    expect(onItemSelect).toHaveBeenCalledWith({ id: '00000000-0000-0000-0000-000000000000' });
+    expect(onItemSelect).toHaveBeenCalledWith({
+      id: '00000000-0000-0000-0000-000000000000',
+    });
   });
 
   it('should fire remove item', () => {
@@ -240,7 +243,7 @@ describe('ManageableList', () => {
         onItemRemove={onItemRemove}
         type="default"
         texts={texts}
-      />
+      />,
     );
     const firstRemoveButton = queryAllByTestId('list-item-remove')[0];
     const removeItemIcon = firstRemoveButton.querySelector('svg');
@@ -266,10 +269,12 @@ describe('ManageableList', () => {
         onItemRemove={() => {}}
         type="default"
         texts={texts}
-      />
+      />,
     );
     const NEW_FOLDER_NAME = 'New folder';
-    const addItemButton = getByTestId('add-item-with-name-button').getElementsByTagName('button')[0];
+    const addItemButton = getByTestId(
+      'add-item-with-name-button',
+    ).getElementsByTagName('button')[0];
 
     // ASSERT
     expect(addItemButton).toBeTruthy();
@@ -308,7 +313,7 @@ describe('ManageableList', () => {
           type="default"
           texts={{}}
         />
-      </IntlProvider>
+      </IntlProvider>,
     );
     const showMore = getByTestId('show-more-button');
 

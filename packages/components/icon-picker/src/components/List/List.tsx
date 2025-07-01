@@ -1,19 +1,21 @@
-import React, { UIEvent, useRef } from 'react';
+import React, { type UIEvent, useRef } from 'react';
 import { FormattedMessage } from 'react-intl';
-import { FixedSizeList } from 'react-window';
+import { type FixedSizeList } from 'react-window';
 
-import Scrollbar from '@synerise/ds-scrollbar';
-import Icon, { SearchNoResultsM } from '@synerise/ds-icon';
 import { useTheme } from '@synerise/ds-core';
+import Icon, { SearchNoResultsM } from '@synerise/ds-icon';
+import Scrollbar from '@synerise/ds-scrollbar';
 
-import type { ListProps, RowItemProps, SourceType } from '../../IconPicker.types';
-
-import { createItemData } from '../../utils/createItemData';
-import { useGroupItems } from '../../hooks/useGroupItems';
-import { RowItem } from '../RowItem';
-
-import * as S from '../../IconPicker.styles';
 import { ELEMENT_HEIGHT, ITEMS_PER_ROW } from '../../IconPicker.const';
+import * as S from '../../IconPicker.styles';
+import type {
+  ListProps,
+  RowItemProps,
+  SourceType,
+} from '../../IconPicker.types';
+import { useGroupItems } from '../../hooks/useGroupItems';
+import { createItemData } from '../../utils/createItemData';
+import { RowItem } from '../RowItem';
 
 const List = <Source extends SourceType>({
   data,
@@ -32,16 +34,29 @@ const List = <Source extends SourceType>({
     }
   };
 
-  const itemData = createItemData(groupedData, ELEMENT_HEIGHT, onSelect, ITEMS_PER_ROW);
+  const itemData = createItemData(
+    groupedData,
+    ELEMENT_HEIGHT,
+    onSelect,
+    ITEMS_PER_ROW,
+  );
 
   return (
-    <Scrollbar absolute data-testid="icon-list" maxHeight={330} onScroll={handleScroll}>
+    <Scrollbar
+      absolute
+      data-testid="icon-list"
+      maxHeight={330}
+      onScroll={handleScroll}
+    >
       {!data.length ? (
         <S.OverlayWrapper>
           <S.NoResults>
             <S.Content>
               <S.NoResultIcon>
-                <Icon component={<SearchNoResultsM />} color={theme.palette['grey-600']} />
+                <Icon
+                  component={<SearchNoResultsM />}
+                  color={theme.palette['grey-600']}
+                />
               </S.NoResultIcon>
               <p>{noResultMsg}</p>
             </S.Content>
@@ -57,7 +72,7 @@ const List = <Source extends SourceType>({
           itemSize={ELEMENT_HEIGHT}
           width="100%"
         >
-          {props => <RowItem {...(props as RowItemProps<Source>)} />}
+          {(props) => <RowItem {...(props as RowItemProps<Source>)} />}
         </S.VirtualList>
       )}
     </Scrollbar>

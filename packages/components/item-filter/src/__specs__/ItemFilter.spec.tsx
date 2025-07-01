@@ -1,10 +1,13 @@
 import React from 'react';
-import { renderWithProvider } from '@synerise/ds-utils/dist/testing';
+
+import { renderWithProvider } from '@synerise/ds-utils';
 import { fireEvent } from '@testing-library/react';
+
 import ItemFilter from '../ItemFilter';
 
 const TEXTS = {
-  activateItemTitle: 'By activating this filter, you will cancel your unsaved filter settings',
+  activateItemTitle:
+    'By activating this filter, you will cancel your unsaved filter settings',
   activate: 'Activate',
   cancel: 'Cancel',
   deleteConfirmationTitle: 'Delete filter',
@@ -179,7 +182,7 @@ const CATEGORIES = [
           lastname: 'Nowak',
         },
       },
-    ]
+    ],
   },
   {
     label: 'My filters',
@@ -241,13 +244,17 @@ const CATEGORIES = [
           lastname: 'Nowak',
         },
       },
-    ]
+    ],
   },
 ];
 
-const NOOP = () => {}
+const NOOP = () => {};
 
-const ITEM_FILTER = (visible: boolean, hide: () => void, selectedItemId?: string) => (
+const ITEM_FILTER = (
+  visible: boolean,
+  hide: () => void,
+  selectedItemId?: string,
+) => (
   <ItemFilter
     visible={visible}
     hide={hide}
@@ -266,13 +273,15 @@ describe('Drawer component', () => {
   it('should render selected item on first position', () => {
     // ARRANGE
     const hideFn = jest.fn();
-    const { queryAllByTestId } = renderWithProvider(ITEM_FILTER(true, hideFn, '0008'));
+    const { queryAllByTestId } = renderWithProvider(
+      ITEM_FILTER(true, hideFn, '0008'),
+    );
 
     const items = queryAllByTestId('filter-item');
 
     // ASSERT
     expect(items[0].querySelector('.selected-item-icon')).toBeTruthy();
-  }); 
+  });
 
   it('should render title from props', () => {
     // ARRANGE
@@ -310,7 +319,9 @@ describe('category list items order', () => {
 
   it('should show items sorted by selected element', () => {
     const secondItemId = '0001';
-    const { getAllByText } = renderWithProvider(ITEM_FILTER(true, NOOP, secondItemId));
+    const { getAllByText } = renderWithProvider(
+      ITEM_FILTER(true, NOOP, secondItemId),
+    );
 
     const [firstItem, secondItem, ...restItems] = CATEGORIES[0].items;
     const itemsByExpectedOrder = [secondItem, firstItem, ...restItems];

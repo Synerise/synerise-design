@@ -2,7 +2,11 @@ import styled from 'styled-components';
 
 export const ScrollbarContent = styled.div``;
 
-export const ScrollbarWrapper = styled.div<{ absolute?: boolean; loading?: boolean; largeSize?: boolean }>`
+export const ScrollbarWrapper = styled.div<{
+  absolute?: boolean;
+  loading?: boolean;
+  largeSize?: boolean;
+}>`
   padding-right: ${(props): string => {
     if (props.absolute) {
       return '';

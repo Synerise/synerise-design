@@ -1,9 +1,15 @@
 import React from 'react';
 
-import Icon, { WarningM, CheckM, HourglassM, InformationNoSearchResultL, InfoM } from '@synerise/ds-icon';
+import Icon, {
+  CheckM,
+  HourglassM,
+  InfoM,
+  InformationNoSearchResultL,
+  WarningM,
+} from '@synerise/ds-icon';
 
 import * as S from './Result.styles';
-import { ResultProps } from './Result.types';
+import { type ResultProps } from './Result.types';
 
 const mapTypeToStatus = {
   info: {
@@ -49,12 +55,18 @@ const Result: React.FC<ResultProps> = ({
 }) => {
   const { IconComponent, ...iconContainerStyles } = mapTypeToStatus[type];
   return (
-    <S.ResultContainer className={`ds-result ${className || ''}`} noSearchResults={noSearchResults}>
+    <S.ResultContainer
+      className={`ds-result ${className || ''}`}
+      noSearchResults={noSearchResults}
+    >
       <S.MainPanel>
         <S.ResultIconContainer>
           {customIcon || (
             <S.StatusIconContainer {...iconContainerStyles}>
-              <Icon component={<IconComponent />} size={mapTypeToStatus['no-results'] ? 48 : 24} />
+              <Icon
+                component={<IconComponent />}
+                size={mapTypeToStatus['no-results'] ? 48 : 24}
+              />
             </S.StatusIconContainer>
           )}
         </S.ResultIconContainer>

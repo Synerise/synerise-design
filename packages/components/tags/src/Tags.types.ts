@@ -1,5 +1,6 @@
 import type { CSSProperties } from 'react';
-import { TagProps, TagShape, TagTexts } from '@synerise/ds-tag';
+
+import { type TagProps, type TagShape, type TagTexts } from '@synerise/ds-tag';
 
 export type ActionTaken = {
   type: 'ADD' | 'REMOVE';
@@ -27,7 +28,13 @@ export type TagsProps = {
   onSelectedChange?: (tags: Array<TagProps>, action: ActionTaken) => void;
   overlayStyle?: CSSProperties;
   maxHeight?: number;
-  overlayPlacement?: 'topLeft' | 'topCenter' | 'topRight' | 'bottomLeft' | 'bottomCenter' | 'bottomRight';
+  overlayPlacement?:
+    | 'topLeft'
+    | 'topCenter'
+    | 'topRight'
+    | 'bottomLeft'
+    | 'bottomCenter'
+    | 'bottomRight';
   asPill?: boolean;
   onManageTagClick?: () => void;
 };

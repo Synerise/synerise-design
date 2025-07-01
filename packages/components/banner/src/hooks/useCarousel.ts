@@ -1,5 +1,5 @@
+import { type CarouselRef } from 'antd/lib/carousel';
 import { useRef } from 'react';
-import { CarouselRef } from 'antd/lib/carousel';
 
 export const useCarousel = () => {
   const bannerRef = useRef<CarouselRef>(null);

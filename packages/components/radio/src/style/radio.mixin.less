@@ -91,7 +91,9 @@
   content: '';
 }
 
-.@{radio-prefix-cls}-button-wrapper-checked:not(.@{radio-prefix-cls}-button-wrapper-disabled) {
+.@{radio-prefix-cls}-button-wrapper-checked:not(
+    .@{radio-prefix-cls}-button-wrapper-disabled
+  ) {
   box-shadow: -1px 0 0 0 @blue-600;
 }
 
@@ -107,7 +109,10 @@
   opacity: 0.4;
 }
 
-.ant-radio-group-solid .ant-radio-button-wrapper-checked:not(.ant-radio-button-wrapper-disabled):hover {
+.ant-radio-group-solid
+  .ant-radio-button-wrapper-checked:not(
+    .ant-radio-button-wrapper-disabled
+  ):hover {
   color: #fff;
   background: @blue-500;
   border-color: @blue-500;

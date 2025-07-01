@@ -1,16 +1,28 @@
-import React, { useCallback, useEffect, useMemo, useRef } from 'react';
 import type { editor } from 'monaco-editor/esm/vs/editor/editor.api';
-import Editor, { Monaco, EditorProps, loader } from '@monaco-editor/react';
+import React, { useCallback, useEffect, useMemo, useRef } from 'react';
 
-import Loader from '@synerise/ds-loader';
+import Editor, {
+  type EditorProps,
+  type Monaco,
+  loader,
+} from '@monaco-editor/react';
 import { InlineSelect } from '@synerise/ds-inline-edit';
+import Loader from '@synerise/ds-loader';
 import { NOOP, useResizeObserver } from '@synerise/ds-utils';
 
-import { CodeAreaEditorRawProps, CodeAreaSyntaxOption } from '../CodeArea.types';
-import { getDefaultTexts } from '../utils/getDefaultTexts';
-import { DS_MONACO_THEME, DS_MONACO_THEME_NAME, MONACO_DEFAULT_OPTIONS, TRIGGER_SOURCE } from '../constants';
-import { AriaContainer } from './AriaContainer';
 import * as S from '../CodeArea.styles';
+import {
+  type CodeAreaEditorRawProps,
+  type CodeAreaSyntaxOption,
+} from '../CodeArea.types';
+import {
+  DS_MONACO_THEME,
+  DS_MONACO_THEME_NAME,
+  MONACO_DEFAULT_OPTIONS,
+  TRIGGER_SOURCE,
+} from '../constants';
+import { getDefaultTexts } from '../utils/getDefaultTexts';
+import { AriaContainer } from './AriaContainer';
 import { BottomBar } from './BottomBar';
 
 export const CodeAreaEditorRaw = ({
@@ -79,7 +91,7 @@ export const CodeAreaEditorRaw = ({
 
       beforeMount && beforeMount(monacoInstance);
     },
-    [onDidChangeMarkers, beforeMount]
+    [onDidChangeMarkers, beforeMount],
   );
 
   const handleEditorDidMount = useCallback(
@@ -88,13 +100,14 @@ export const CodeAreaEditorRaw = ({
 
       onMount && onMount(monacoEditor, monacoInstance);
     },
-    [onMount]
+    [onMount],
   );
 
   const handleChange = useCallback(
     (newValue: string | undefined, event: editor.IModelContentChangedEvent) => {
       if (counterLimit && newValue && newValue.length > counterLimit) {
-        editorRef.current && editorRef.current.trigger(TRIGGER_SOURCE, 'undo', null);
+        editorRef.current &&
+          editorRef.current.trigger(TRIGGER_SOURCE, 'undo', null);
         return;
       }
       if (editorRef.current) {
@@ -102,7 +115,7 @@ export const CodeAreaEditorRaw = ({
       }
       onChange && onChange(newValue, event);
     },
-    [onChange, counterLimit]
+    [onChange, counterLimit],
   );
 
   const { syntaxDataSource, currentSyntaxItem } = useMemo(() => {
@@ -132,16 +145,24 @@ export const CodeAreaEditorRaw = ({
           value: currentSyntaxItem.label || currentSyntaxItem.language,
           onChange: NOOP,
         }}
-        onValueChange={item => {
+        onValueChange={(item) => {
           item.key && onSyntaxChange && onSyntaxChange(`${item.key}`);
         }}
         initialValue={currentSyntaxItem.label || currentSyntaxItem.language}
         dataSource={syntaxDataSource}
       />
     ) : (
-      <S.SyntaxTitle size="small">{currentSyntaxItem.label || currentSyntaxItem.language}</S.SyntaxTitle>
+      <S.SyntaxTitle size="small">
+        {currentSyntaxItem.label || currentSyntaxItem.language}
+      </S.SyntaxTitle>
     );
-  }, [currentSyntaxItem.label, currentSyntaxItem.language, onSyntaxChange, readOnly, syntaxDataSource]);
+  }, [
+    currentSyntaxItem.label,
+    currentSyntaxItem.language,
+    onSyntaxChange,
+    readOnly,
+    syntaxDataSource,
+  ]);
 
   const customFooterContent = useMemo(() => {
     return (
@@ -160,12 +181,15 @@ export const CodeAreaEditorRaw = ({
   useEffect(() => {
     if (editorRef.current) {
       const currentModel = editorRef.current?.getModel();
-      // eslint-disable-next-line no-unused-expressions
-      currentModel && monacoRef.current?.editor.setModelLanguage(currentModel, currentSyntax);
+
+      currentModel &&
+        monacoRef.current?.editor.setModelLanguage(currentModel, currentSyntax);
     }
   }, [currentSyntax]);
 
-  const isBottomBarShowing = Boolean(isSyntaxSelectVisible || (allowFullscreen && !isFullscreen));
+  const isBottomBarShowing = Boolean(
+    isSyntaxSelectVisible || (allowFullscreen && !isFullscreen),
+  );
 
   return (
     <>

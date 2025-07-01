@@ -43,11 +43,19 @@ export const Wrapper = styled.div<{
   height: ${(props): string => (props.size === 'S' ? '18px' : '24px')};
   width: ${(props): string => getWidth(props)};
   background-color: ${(props): string =>
-    props.color === 'dark' ? props.theme.palette['grey-600'] : props.theme.palette.white};
+    props.color === 'dark'
+      ? props.theme.palette['grey-600']
+      : props.theme.palette.white};
   border-bottom: 1px solid
-    ${(props): string => (props.color === 'dark' ? props.theme.palette['grey-500'] : props.theme.palette['grey-300'])};
+    ${(props): string =>
+      props.color === 'dark'
+        ? props.theme.palette['grey-500']
+        : props.theme.palette['grey-300']};
   border-radius: 3px;
-  color: ${(props): string => (props.color === 'dark' ? props.theme.palette.white : props.theme.palette['grey-600'])};
+  color: ${(props): string =>
+    props.color === 'dark'
+      ? props.theme.palette.white
+      : props.theme.palette['grey-600']};
   padding: ${(props): string => getPadding(props)};
   font-size: 11px;
 `;

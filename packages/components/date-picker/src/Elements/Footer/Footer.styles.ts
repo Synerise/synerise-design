@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+
 import Button from '@synerise/ds-button';
 
 export const Container = styled.div`
@@ -25,6 +26,6 @@ export const Range = styled(Button)`
   }
 `;
 export const ActionsPlaceholder = styled.div`
-  display:flex;
-  flex:1;
-`
+  display: flex;
+  flex: 1;
+`;

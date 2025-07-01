@@ -1,11 +1,11 @@
-import React, { useState } from 'react';
 import classNames from 'classnames';
+import React, { useState } from 'react';
 
 import Icon from '@synerise/ds-icon';
 import Tooltip from '@synerise/ds-tooltip';
 
 import * as S from './Tab.styles';
-import { TabProps } from './Tab.types';
+import { type TabProps } from './Tab.types';
 
 const Tab = ({
   index,
@@ -50,8 +50,12 @@ const Tab = ({
   const tabContent = (
     <S.BlockContentWrapper block={block}>
       <S.TabContent className="tab-content" data-testid="ds-tabs-tab-content">
-        {icon && <Icon data-testid="ds-tabs-tab-icon" component={icon} size={24} />}
-        {label && <S.TabLabel data-testid="ds-tabs-tab-label">{label}</S.TabLabel>}
+        {icon && (
+          <Icon data-testid="ds-tabs-tab-icon" component={icon} size={24} />
+        )}
+        {label && (
+          <S.TabLabel data-testid="ds-tabs-tab-label">{label}</S.TabLabel>
+        )}
         {!!suffixel && renderSuffixel()}
       </S.TabContent>
     </S.BlockContentWrapper>

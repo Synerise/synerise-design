@@ -1,7 +1,14 @@
 import React from 'react';
-import Icon, { CloseM, WarningFillM, Check3M, ErrorFillM } from '@synerise/ds-icon';
+
+import Icon, {
+  Check3M,
+  CloseM,
+  ErrorFillM,
+  WarningFillM,
+} from '@synerise/ds-icon';
+
 import * as S from './BroadcastBar.styles';
-import { BroadcastBarTypes, Props } from './BroadcastBar.types';
+import { type BroadcastBarTypes, type Props } from './BroadcastBar.types';
 
 const ICONS: Record<BroadcastBarTypes, React.ReactNode> = {
   success: <Check3M />,
@@ -27,7 +34,9 @@ const BroadcastBar: React.FC<Props> = ({
     return (
       <S.AlertContent color={color} withLink={withLink}>
         <S.Text color={color}>
-          {description && !withEmphasis && <S.AlertDescription color={color}>{description}</S.AlertDescription>}
+          {description && !withEmphasis && (
+            <S.AlertDescription color={color}>{description}</S.AlertDescription>
+          )}
           {withLink && !withEmphasis && !description && (
             <S.LinkWrapper color={color}>
               <S.WrapperText>{text}</S.WrapperText>
@@ -46,8 +55,12 @@ const BroadcastBar: React.FC<Props> = ({
   }, [description, withEmphasis, withLink, text, color]);
 
   const renderIcon = React.useMemo(() => {
-    if (icon) return icon;
-    if (ICONS[type]) return ICONS[type];
+    if (icon) {
+      return icon;
+    }
+    if (ICONS[type]) {
+      return ICONS[type];
+    }
     return DEFAULT_ICON;
   }, [icon, type]);
 
@@ -62,7 +75,11 @@ const BroadcastBar: React.FC<Props> = ({
           {renderMessage}
           <S.ButtonWrapper color={color}>
             {button && (
-              <S.BroadcastButton color={color} type={color === 'yellow' ? 'tertiary' : 'tertiary-white'} mode="label">
+              <S.BroadcastButton
+                color={color}
+                type={color === 'yellow' ? 'tertiary' : 'tertiary-white'}
+                mode="label"
+              >
                 {textButton}
               </S.BroadcastButton>
             )}

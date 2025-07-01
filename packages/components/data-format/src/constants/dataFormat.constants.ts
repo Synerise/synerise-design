@@ -1,5 +1,12 @@
-import { FormatDateOptions, FormatNumberOptions } from 'react-intl';
-import { DateTargetFormat, NamingConvention, Delimiter, DateConstantsTargetFormat, NumberTargetFormat } from '../types';
+import { type FormatDateOptions, type FormatNumberOptions } from 'react-intl';
+
+import {
+  type DateConstantsTargetFormat,
+  type DateTargetFormat,
+  type Delimiter,
+  type NamingConvention,
+  type NumberTargetFormat,
+} from '../types';
 
 export const DEFAULT_FORMAT_NUMBER_OPTIONS: FormatNumberOptions = {
   maximumFractionDigits: 2,
@@ -38,15 +45,19 @@ export const TIME: DateTargetFormat = 'time';
 export const DATETIME: DateTargetFormat = 'datetime';
 export const RELATIVE_FROM: DateTargetFormat = 'relative-from';
 export const RELATIVE_TO: DateTargetFormat = 'relative-to';
-export const RELATIVE_FROM_WITHOUT_SUFFIX: DateTargetFormat = 'relative-from-without-suffix';
-export const RELATIVE_TO_WITHOUT_SUFFIX: DateTargetFormat = 'relative-to-without-suffix';
+export const RELATIVE_FROM_WITHOUT_SUFFIX: DateTargetFormat =
+  'relative-from-without-suffix';
+export const RELATIVE_TO_WITHOUT_SUFFIX: DateTargetFormat =
+  'relative-to-without-suffix';
 export const WEEKDAY_LONG: DateTargetFormat = 'weekday-long';
 export const WEEKDAY_SHORT: DateTargetFormat = 'weekday-short';
 export const MONTH_LONG: DateTargetFormat = 'month-long';
 export const MONTH_SHORT: DateTargetFormat = 'month-short';
 
-export const COMPACT_LARGER_NUMBER: NumberTargetFormat = 'compact-larger-number';
-export const COMPACT_DECIMAL_LARGER_NUMBER: NumberTargetFormat = 'compact-decimal-larger-number';
+export const COMPACT_LARGER_NUMBER: NumberTargetFormat =
+  'compact-larger-number';
+export const COMPACT_DECIMAL_LARGER_NUMBER: NumberTargetFormat =
+  'compact-decimal-larger-number';
 
 export const LARGER_NUMBER_LIMIT = 999;
 

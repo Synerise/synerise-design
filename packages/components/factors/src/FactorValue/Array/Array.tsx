@@ -1,12 +1,17 @@
 import React, { useMemo, useState } from 'react';
-import Icon, { EditS } from '@synerise/ds-icon';
+
 import { useTheme } from '@synerise/ds-core';
+import Icon, { EditS } from '@synerise/ds-icon';
 import { TagShape } from '@synerise/ds-tag';
 
-import { ArrayItemType, FactorValueComponentProps, FactorValueType } from '../../Factors.types';
-import { ArrayModal } from './components/ArrayModal';
-import { ArrayValueElement } from './Array.types';
+import {
+  type ArrayItemType,
+  type FactorValueComponentProps,
+  type FactorValueType,
+} from '../../Factors.types';
 import * as S from './Array.styles';
+import { type ArrayValueElement } from './Array.types';
+import { ArrayModal } from './components/ArrayModal';
 
 export const Array = <ItemType extends ArrayItemType>({
   value: arrayValue,
@@ -27,7 +32,9 @@ export const Array = <ItemType extends ArrayItemType>({
   };
 
   const buttonLabel = useMemo(() => {
-    if (!(arrayValue as ArrayValueElement<ItemType>[])?.length) return texts.array.triggerLabel;
+    if (!(arrayValue as ArrayValueElement<ItemType>[])?.length) {
+      return texts.array.triggerLabel;
+    }
     return `${(arrayValue as ArrayValueElement<ItemType>[]).join(', ')} `;
   }, [arrayValue, texts.array.triggerLabel]);
 
@@ -69,7 +76,11 @@ export const Array = <ItemType extends ArrayItemType>({
         onClick={handleOnClick}
         tooltipProps={tooltipProps}
         data-testid="ds-factors-array"
-        tagProps={(arrayValue as ArrayValueElement<ItemType>[]).length ? tagProps : undefined}
+        tagProps={
+          (arrayValue as ArrayValueElement<ItemType>[]).length
+            ? tagProps
+            : undefined
+        }
       >
         <S.TriggerButtonLabel>{buttonLabel}</S.TriggerButtonLabel>
         {!readOnly && <Icon component={<EditS />} />}

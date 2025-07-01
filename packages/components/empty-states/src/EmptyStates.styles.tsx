@@ -1,4 +1,5 @@
 import styled, { css } from 'styled-components';
+
 import { EmptyStatesSize, FontSize } from './EmptyStates.types';
 
 const FONT_SIZE_DEFAULT = 14;
@@ -38,14 +39,21 @@ export const TextWrapper = styled.div`
   word-wrap: break-word;
   padding-bottom: 8px;
 `;
-export const HeaderWrapper = styled.div<{ fontSize?: EmptyStatesSize; size?: EmptyStatesSize; hasIcon?: boolean }>`
+export const HeaderWrapper = styled.div<{
+  fontSize?: EmptyStatesSize;
+  size?: EmptyStatesSize;
+  hasIcon?: boolean;
+}>`
   display: flex;
   line-height: 16px;
-  margin-top: ${props => (props.hasIcon && props.size === EmptyStatesSize.SMALL ? '12px' : '')};
-  color: ${props => props.theme.palette['grey-800']};
-  font-size: ${props => FontSize[props.fontSize as string] || FONT_SIZE_DEFAULT}px;
+  margin-top: ${(props) =>
+    props.hasIcon && props.size === EmptyStatesSize.SMALL ? '12px' : ''};
+  color: ${(props) => props.theme.palette['grey-800']};
+  font-size: ${(props) =>
+    FontSize[props.fontSize as string] || FONT_SIZE_DEFAULT}px;
   font-weight: 500;
-  padding-bottom: ${props => (props.fontSize === EmptyStatesSize.SMALL ? '12px' : '18px')};
+  padding-bottom: ${(props) =>
+    props.fontSize === EmptyStatesSize.SMALL ? '12px' : '18px'};
 `;
 
 export const ButtonWrapper = styled.div`
@@ -53,11 +61,14 @@ export const ButtonWrapper = styled.div`
   display: flex;
 `;
 
-export const EmptyStatesWrapper = styled.div<{ iconPosition: 'top' | 'left' | 'right'; mode?: 'absolute' }>`
+export const EmptyStatesWrapper = styled.div<{
+  iconPosition: 'top' | 'left' | 'right';
+  mode?: 'absolute';
+}>`
   display: flex;
-  ${props => getFlexStyle(props.iconPosition)}
+  ${(props) => getFlexStyle(props.iconPosition)}
 
-  ${props =>
+  ${(props) =>
     props.mode === 'absolute' &&
     css`
       position: absolute;
@@ -66,11 +77,13 @@ export const EmptyStatesWrapper = styled.div<{ iconPosition: 'top' | 'left' | 'r
     `};
 `;
 
-export const EmptyStatesContent = styled.div<{ textAlign: 'left' | 'right' | 'center' | 'justify' }>`
+export const EmptyStatesContent = styled.div<{
+  textAlign: 'left' | 'right' | 'center' | 'justify';
+}>`
   display: flex;
   flex-direction: column;
-  text-align: ${props => props.textAlign};
+  text-align: ${(props) => props.textAlign};
   > * {
-    justify-content: ${props => mapTextAlign[props.textAlign]};
+    justify-content: ${(props) => mapTextAlign[props.textAlign]};
   }
 `;

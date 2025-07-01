@@ -1,7 +1,17 @@
-import type { DraggableAttributes, DraggableSyntheticListeners } from '@dnd-kit/core';
+import type {
+  DraggableAttributes,
+  DraggableSyntheticListeners,
+} from '@dnd-kit/core';
+
 import type { ColumnManagerTexts } from '../ColumnManager.types';
 
-export type ColumnIconType = string | 'text' | 'number' | 'date' | 'boolean' | 'list';
+export type ColumnIconType =
+  | string
+  | 'text'
+  | 'number'
+  | 'date'
+  | 'boolean'
+  | 'list';
 
 export type Column = {
   id: string;
@@ -19,6 +29,9 @@ export type ColumnManagerItemProps<ColumnType extends Column> = {
   item: ColumnType;
   texts: ColumnManagerTexts;
   index?: number;
-  dragHandleProps?: { attributes: DraggableAttributes; listeners: DraggableSyntheticListeners };
+  dragHandleProps?: {
+    attributes: DraggableAttributes;
+    listeners: DraggableSyntheticListeners;
+  };
   id: string | number;
 };

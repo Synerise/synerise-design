@@ -1,5 +1,6 @@
-import styled, { css } from 'styled-components';
 import Modal from 'antd/lib/modal';
+import styled, { css } from 'styled-components';
+
 import ScrollbarBase from '@synerise/ds-scrollbar';
 
 export const SettingButton = styled.div`
@@ -23,7 +24,7 @@ export const AntdModal = styled(Modal)<{
   isFullscreen?: boolean;
   maxHeight?: number;
 }>`
-  ${props =>
+  ${(props) =>
     props.isFullscreen &&
     css`
       && {
@@ -47,7 +48,7 @@ export const AntdModal = styled(Modal)<{
       }
     `}
 
-  ${props =>
+  ${(props) =>
     props.maxHeight &&
     css`
       && {

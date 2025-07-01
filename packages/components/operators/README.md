@@ -6,6 +6,7 @@ title: Operators
 Operators UI Component
 
 ## Installation
+
 ```
 npm i @synerise/ds-operators
 or
@@ -13,6 +14,7 @@ yarn add @synerise/ds-operators
 ```
 
 ## Usage
+
 ```
 import Operators from '@synerise/ds-operators'
 
@@ -77,22 +79,22 @@ import Operators from '@synerise/ds-operators'
 ## API
 
 | Property                  | Description                                                | Type                                                       | Default   |
-| ---                       | ---                                                        | ---                                                        | ---       | 
-| error                     | error validation                                         | boolean                                  | - | 
-| getPopupContainerOverride | Popup container function for child tooltips and dropdowns  | (trigger: HTMLElement \ null) => HTMLElement;              | -         | 
-| groups                    | Groups of operators                                        | OperatorsGroup[]                                           | []        | 
-| items                     | Array of operators                                         | OperatorsItem[]                                            | []        | 
-| onActivate                | Callback called when user opens dropdown                   | (fieldType: string) => void                                | -         | 
-| onChange                  | Callback called when user selects operator                 | (item: OperatorsItem \ OperatorsGroup \ undefined) => void | -         | 
-| onDeactivate              | Callback called when user closes dropdown                  | () => void                                                 | -         | 
-| opened                    | Whether if dropdown should opens from outside of component | boolean                                                    | false     |  
-| texts                     | Translations object                                        | OperatorTexts                                              | -         | 
-| value                     | Selected operator                                          | OperatorsItem \ undefined                                  | undefined | 
+| ------------------------- | ---------------------------------------------------------- | ---------------------------------------------------------- | --------- |
+| error                     | error validation                                           | boolean                                                    | -         |
+| getPopupContainerOverride | Popup container function for child tooltips and dropdowns  | (trigger: HTMLElement \ null) => HTMLElement;              | -         |
+| groups                    | Groups of operators                                        | OperatorsGroup[]                                           | []        |
+| items                     | Array of operators                                         | OperatorsItem[]                                            | []        |
+| onActivate                | Callback called when user opens dropdown                   | (fieldType: string) => void                                | -         |
+| onChange                  | Callback called when user selects operator                 | (item: OperatorsItem \ OperatorsGroup \ undefined) => void | -         |
+| onDeactivate              | Callback called when user closes dropdown                  | () => void                                                 | -         |
+| opened                    | Whether if dropdown should opens from outside of component | boolean                                                    | false     |
+| texts                     | Translations object                                        | OperatorTexts                                              | -         |
+| value                     | Selected operator                                          | OperatorsItem \ undefined                                  | undefined |
 
 ### OperatorsGroup
 
 | Property     | Description                      | Type             | Default |
-| ---          | ---                              | ---              | ---     |
+| ------------ | -------------------------------- | ---------------- | ------- |
 | defaultGroup | Whether if this group is default | boolean          | false   |
 | icon         | Icon of group                    | React.ReactNode  | -       |
 | id           | Id of group                      | React.ReactText  | -       |
@@ -104,7 +106,7 @@ import Operators from '@synerise/ds-operators'
 ### OperatorsItem
 
 | Property  | Description           | Type             | Default |
-| ---       | ---                   | ---              | ---     |
+| --------- | --------------------- | ---------------- | ------- |
 | group     | Group of item         | string           | -       |
 | groupId   | Id of group           | React.ReactText  | -       |
 | groupName | Name of group         | string           | -       |
@@ -118,7 +120,7 @@ import Operators from '@synerise/ds-operators'
 ### OperatorTexts
 
 | Property          | Description            | Type         | Default |
-| ---               | ---                    | ---          | ---     |
-| buttonLabel       | Button label           | 'Choose'     | 
-| noResults         | No results info        | 'No results' | 
-| searchPlaceholder | Search box placeholder | 'Search'     | 
+| ----------------- | ---------------------- | ------------ | ------- |
+| buttonLabel       | Button label           | 'Choose'     |
+| noResults         | No results info        | 'No results' |
+| searchPlaceholder | Search box placeholder | 'Search'     |

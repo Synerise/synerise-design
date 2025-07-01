@@ -6,6 +6,7 @@ title: ActionArea
 ActionArea UI Component
 
 ## Installation
+
 ```
 npm i @synerise/ds-action-area
 or
@@ -13,6 +14,7 @@ yarn add @synerise/ds-action-area
 ```
 
 ## Usage
+
 ```
 import ActionArea from '@synerise/ds-action-area'
 
@@ -29,7 +31,7 @@ import ActionArea from '@synerise/ds-action-area'
 Either both `action` & `actionLabel` OR `customAction` is required.
 
 | Property     | Description                                      | Type                  | Default |
-|--------------|--------------------------------------------------|-----------------------|---------|
+| ------------ | ------------------------------------------------ | --------------------- | ------- |
 | action       | Function called when user clicks on ActionButton | `Function`            | -       |
 | actionLabel  | Label of action button                           | `React.ReactNode`     | -       |
 | customAction | content to render below description              | `React.ReactNode`     | -       |

@@ -1,5 +1,6 @@
 import type { ReactElement, ReactNode } from 'react';
 import type { ToastOptions } from 'react-hot-toast';
+
 import type { WithHTMLAttributes } from '@synerise/ds-utils';
 
 export type ToastType = 'success' | 'warning' | 'negative' | 'informative';

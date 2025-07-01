@@ -1,5 +1,10 @@
 import styled, { keyframes } from 'styled-components';
-import { ANIMATION_DURATION, LABEL_LEFT_OFFSET, MAX_FILTER_WIDTH } from './const';
+
+import {
+  ANIMATION_DURATION,
+  LABEL_LEFT_OFFSET,
+  MAX_FILTER_WIDTH,
+} from './const';
 
 export const openDropdownAnimation = keyframes`
   0% {
@@ -24,7 +29,10 @@ export const SearchInputWrapper = styled.div<{ width?: number }>`
   height: 32px;
 `;
 
-export const SearchWrapper = styled.div<{ width?: number; inputOpen?: boolean }>`
+export const SearchWrapper = styled.div<{
+  width?: number;
+  inputOpen?: boolean;
+}>`
   ${(props): string | false =>
     !!props.width &&
     `
@@ -80,9 +88,14 @@ export const Label = styled.div`
   color: ${(props): string => props.theme.palette['blue-600']};
 `;
 
-export const SearchButton = styled.div<{ isOpen: boolean; clickable?: boolean; inputFocused?: boolean }>`
+export const SearchButton = styled.div<{
+  isOpen: boolean;
+  clickable?: boolean;
+  inputFocused?: boolean;
+}>`
   position: absolute;
-  ${(props): string | false => !props.clickable && `pointer-events:none !important;`};
+  ${(props): string | false =>
+    !props.clickable && `pointer-events:none !important;`};
   z-index: 1;
   top: 0;
   right: 0;
@@ -108,12 +121,18 @@ export const SearchButton = styled.div<{ isOpen: boolean; clickable?: boolean; i
     `}
     button {
       padding: 4px;
-      transition: padding-right 0.15s ease-in-out, background 0.2s ease-in-out;
-      ${(props): string | false => !props.clickable && `pointer-events:none !important;`}
+      transition:
+        padding-right 0.15s ease-in-out,
+        background 0.2s ease-in-out;
+      ${(props): string | false =>
+        !props.clickable && `pointer-events:none !important;`}
     }
   }
 `;
-export const SearchInner = styled.div<{ hasValue: boolean; alwaysHighlight?: boolean }>`
+export const SearchInner = styled.div<{
+  hasValue: boolean;
+  alwaysHighlight?: boolean;
+}>`
   direction: ltr;
   margin-bottom: 0;
   ${(props): string | false | undefined =>
@@ -131,7 +150,10 @@ export const SearchInner = styled.div<{ hasValue: boolean; alwaysHighlight?: boo
   }
 `;
 
-export const SearchInputContent = styled.div<{ offset: number; filterLabel: object | null | undefined }>`
+export const SearchInputContent = styled.div<{
+  offset: number;
+  filterLabel: object | null | undefined;
+}>`
   overflow: hidden;
   direction: rtl;
   transition: width ${ANIMATION_DURATION}s ease-in-out;
@@ -149,7 +171,9 @@ export const SearchInputContent = styled.div<{ offset: number; filterLabel: obje
     input {
       color: ${(props): string => props.theme.palette['grey-700']};
       padding-left: ${(props): string =>
-        props.filterLabel && props.offset ? `${Math.round(props.offset + LABEL_LEFT_OFFSET)}px` : '12px'};
+        props.filterLabel && props.offset
+          ? `${Math.round(props.offset + LABEL_LEFT_OFFSET)}px`
+          : '12px'};
       padding-right: 30px;
       opacity: 1;
     }
@@ -168,7 +192,10 @@ export const ClearButton = styled.div`
   padding: 0 10px 0 10px;
 `;
 
-export const SearchDropdownContent = styled.div<{ isOpen?: boolean; maxHeight: number }>`
+export const SearchDropdownContent = styled.div<{
+  isOpen?: boolean;
+  maxHeight: number;
+}>`
   position: absolute;
   top: 40px;
   background: ${(props): string => props.theme.palette.white};
@@ -179,7 +206,9 @@ export const SearchDropdownContent = styled.div<{ isOpen?: boolean; maxHeight: n
   border-radius: 3px;
   box-shadow: 0 16px 32px 0 rgba(35, 41, 54, 0.1);
   box-sizing: border-box;
-  transition: opacity 0.5s ease-in-out, width 0.5s ease-in-out;
+  transition:
+    opacity 0.5s ease-in-out,
+    width 0.5s ease-in-out;
   .ps__rail-y {
     .ps__thumb-y {
       transform: translateX(1px) !important;

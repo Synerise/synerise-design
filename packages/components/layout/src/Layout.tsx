@@ -1,9 +1,11 @@
 import React, { useMemo } from 'react';
-import Scrollbar from '@synerise/ds-scrollbar';
-import { AngleLeftS, AngleRightS, CloseS } from '@synerise/ds-icon';
+
 import { theme } from '@synerise/ds-core';
+import { AngleLeftS, AngleRightS, CloseS } from '@synerise/ds-icon';
+import Scrollbar from '@synerise/ds-scrollbar';
+
 import * as S from './Layout.styles';
-import * as T from './Layout.types';
+import type * as T from './Layout.types';
 
 const DEFAULT_SIDEBAR_WIDTH = 320;
 
@@ -27,16 +29,29 @@ const Layout = ({
   rightSidebarWithDnd = false,
   mainSidebarWithDnd = false,
 }: T.LayoutProps) => {
-  const leftSidebarWidth = useMemo(() => left?.width || DEFAULT_SIDEBAR_WIDTH, [left]);
-  const rightSidebarWidth = useMemo(() => right?.width || DEFAULT_SIDEBAR_WIDTH, [right]);
-  const showLeftSidebar = useMemo(() => left?.opened || !renderLeftSidebarControls, [left, renderLeftSidebarControls]);
+  const leftSidebarWidth = useMemo(
+    () => left?.width || DEFAULT_SIDEBAR_WIDTH,
+    [left],
+  );
+  const rightSidebarWidth = useMemo(
+    () => right?.width || DEFAULT_SIDEBAR_WIDTH,
+    [right],
+  );
+  const showLeftSidebar = useMemo(
+    () => left?.opened || !renderLeftSidebarControls,
+    [left, renderLeftSidebarControls],
+  );
   const showRightSidebar = useMemo(
     () => right?.opened || !renderRightSidebarControls,
-    [right, renderRightSidebarControls]
+    [right, renderRightSidebarControls],
   );
 
   const mainColumnInner = nativeScroll ? (
-    <S.LayoutMainInner fullPage={fullPage} style={styles && styles.mainInner} ref={nativeScrollRef}>
+    <S.LayoutMainInner
+      fullPage={fullPage}
+      style={styles && styles.mainInner}
+      ref={nativeScrollRef}
+    >
       {children}
     </S.LayoutMainInner>
   ) : (
@@ -57,9 +72,13 @@ const Layout = ({
       nativeScroll={nativeScroll}
       className={`ds-layout ${className || ''}`}
     >
-      {header ? <S.LayoutHeader className="ds-layout__header">{header}</S.LayoutHeader> : null}
+      {header ? (
+        <S.LayoutHeader className="ds-layout__header">{header}</S.LayoutHeader>
+      ) : null}
       <S.LayoutContent>
-        <S.LayoutBody allowOverflow={!leftSidebarHasControls || !rightSidebarHasControls}>
+        <S.LayoutBody
+          allowOverflow={!leftSidebarHasControls || !rightSidebarHasControls}
+        >
           <>
             {left ? (
               <S.LayoutSidebarWrapper
@@ -76,10 +95,13 @@ const Layout = ({
                   animationDisabled={!!sidebarAnimationDisabled}
                 >
                   <Scrollbar absolute withDnd={leftSidebarWithDnd}>
-                    <S.LayoutSidebarInner style={styles && styles.leftInner}>{left?.content}</S.LayoutSidebarInner>
+                    <S.LayoutSidebarInner style={styles && styles.leftInner}>
+                      {left?.content}
+                    </S.LayoutSidebarInner>
                   </Scrollbar>
                 </S.LayoutSidebar>
-                {(typeof renderLeftSidebarControls === 'function' && renderLeftSidebarControls()) ||
+                {(typeof renderLeftSidebarControls === 'function' &&
+                  renderLeftSidebarControls()) ||
                   (renderLeftSidebarControls === true && (
                     <S.SidebarButton
                       withSubheader={Boolean(subheader)}
@@ -87,14 +109,24 @@ const Layout = ({
                       opened={!!left?.opened}
                       bothOpened={left?.opened && right?.opened}
                     >
-                      <S.ArrowIcon component={<AngleRightS />} color={theme.palette.white} />
-                      <S.CloseIcon component={<CloseS />} color={theme.palette.white} />
+                      <S.ArrowIcon
+                        component={<AngleRightS />}
+                        color={theme.palette.white}
+                      />
+                      <S.CloseIcon
+                        component={<CloseS />}
+                        color={theme.palette.white}
+                      />
                     </S.SidebarButton>
                   ))}
               </S.LayoutSidebarWrapper>
             ) : null}
           </>
-          <S.LayoutMain className="ds-layout__main" data-popup-container style={styles && styles.main}>
+          <S.LayoutMain
+            className="ds-layout__main"
+            data-popup-container
+            style={styles && styles.main}
+          >
             <S.LayoutSubheader>{subheader}</S.LayoutSubheader>
             {mainColumnInner}
           </S.LayoutMain>
@@ -115,10 +147,13 @@ const Layout = ({
                   animationDisabled={!!sidebarAnimationDisabled}
                 >
                   <Scrollbar absolute withDnd={rightSidebarWithDnd}>
-                    <S.LayoutSidebarInner style={styles && styles.rightInner}>{right?.content}</S.LayoutSidebarInner>
+                    <S.LayoutSidebarInner style={styles && styles.rightInner}>
+                      {right?.content}
+                    </S.LayoutSidebarInner>
                   </Scrollbar>
                 </S.LayoutSidebar>
-                {(typeof renderRightSidebarControls === 'function' && renderRightSidebarControls()) ||
+                {(typeof renderRightSidebarControls === 'function' &&
+                  renderRightSidebarControls()) ||
                   (renderRightSidebarControls === true && (
                     <S.SidebarButton
                       withSubheader={Boolean(subheader)}
@@ -127,8 +162,14 @@ const Layout = ({
                       opened={!!right?.opened}
                       bothOpened={left?.opened && right?.opened}
                     >
-                      <S.ArrowIcon component={<AngleLeftS />} color={theme.palette.white} />
-                      <S.CloseIcon component={<CloseS />} color={theme.palette.white} />
+                      <S.ArrowIcon
+                        component={<AngleLeftS />}
+                        color={theme.palette.white}
+                      />
+                      <S.CloseIcon
+                        component={<CloseS />}
+                        color={theme.palette.white}
+                      />
                     </S.SidebarButton>
                   ))}
               </S.LayoutSidebarWrapper>

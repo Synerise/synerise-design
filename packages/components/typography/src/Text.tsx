@@ -1,8 +1,10 @@
-import React, { ReactNode } from 'react';
+import React, { type ReactNode } from 'react';
+
 import '@synerise/ds-core/dist/js/style';
-import './style/index.less';
+
 import { MediumText, SmallText, XSmallText } from './CommonElements';
-import { Ellipsis, EllipsisProps } from './Ellipsis';
+import { Ellipsis, type EllipsisProps } from './Ellipsis';
+import './style/index.less';
 
 export type TextSize = 'medium' | 'small' | 'xsmall';
 
@@ -19,7 +21,12 @@ const MapSizeToComponent = {
   xsmall: XSmallText,
 };
 
-export const Text = ({ size = 'medium', className, children, ellipsis }: TextProps) => {
+export const Text = ({
+  size = 'medium',
+  className,
+  children,
+  ellipsis,
+}: TextProps) => {
   const Component = MapSizeToComponent[size];
   const textClassNames = `ds-text ${!ellipsis && className}`;
   const content = <Component className={textClassNames}>{children}</Component>;

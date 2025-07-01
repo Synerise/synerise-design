@@ -1,10 +1,11 @@
-import React from 'react';
 import { range, rangeRight } from 'lodash';
-import { GridProps } from './Grid.types';
-import { Action, Header } from '../Header/Header';
+import React from 'react';
+
+import { type Action, Header } from '../Header/Header';
 import * as S from '../TimeWindow.styles';
-import { reverseRange } from '../utils';
 import { HeaderWrapper } from '../TimeWindow.styles';
+import { reverseRange } from '../utils';
+import { type GridProps } from './Grid.types';
 
 const Grid: React.FC<GridProps> = ({
   keys,
@@ -26,25 +27,29 @@ const Grid: React.FC<GridProps> = ({
   const rangeMethod = labelInverted ? rangeRight : range;
   const actions: Action[] = [];
 
-  if (showSelectAll)
+  if (showSelectAll) {
     actions.push({
       key: 'select-all',
       onClick: onSelectAll,
       label: <>{texts.selectAll}</>,
     });
-  if (showUnselectAll)
+  }
+  if (showUnselectAll) {
     actions.push({
       key: 'unselect-all',
       onClick: onUnselectAll,
       label: <>{texts.unselectAll}</>,
     });
+  }
   let grid = React.useMemo(
     () => (
       <S.Days columns={numberOfColumns}>
-        {inverted ? reverseRange(keys, reverseGroup).map(renderDay) : keys.map(renderDay)}
+        {inverted
+          ? reverseRange(keys, reverseGroup).map(renderDay)
+          : keys.map(renderDay)}
       </S.Days>
     ),
-    [numberOfColumns, inverted, keys, reverseGroup, renderDay]
+    [numberOfColumns, inverted, keys, reverseGroup, renderDay],
   );
   const numberOfRows = Math.ceil(numberOfDays / numberOfColumns);
 
@@ -55,7 +60,7 @@ const Grid: React.FC<GridProps> = ({
           {rangeMethod(numberOfRows).map(
             (rowIndex: number): React.ReactNode => (
               <span key={rowIndex}>{rowLabelFormatter(rowIndex)}</span>
-            )
+            ),
           )}
         </S.Labels>
         {grid}

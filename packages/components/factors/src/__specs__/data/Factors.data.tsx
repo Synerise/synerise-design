@@ -1,5 +1,11 @@
 import React from 'react';
-import { ExpressionM, FolderM, VarTypeNumberM, VarTypeStringM } from '@synerise/ds-icon';
+
+import {
+  ExpressionM,
+  FolderM,
+  VarTypeNumberM,
+  VarTypeStringM,
+} from '@synerise/ds-icon';
 
 export const FACTORS_TEXTS = {
   datePicker: {
@@ -14,7 +20,7 @@ export const FACTORS_TEXTS = {
   },
   formula: {
     buttonPlaceholder: 'Define formula',
-    defaultName: 'Formula'
+    defaultName: 'Formula',
   },
   parameter: {
     searchPlaceholder: 'Search',
@@ -25,12 +31,12 @@ export const FACTORS_TEXTS = {
   modalCancel: 'Cancel',
   modalTitle: 'Value',
   relativeDate: {
-    triggerPlaceholder: 'Select date'
+    triggerPlaceholder: 'Select date',
   },
   array: {
-    rawButtonLabel: 'Raw'
-  }
-}
+    rawButtonLabel: 'Raw',
+  },
+};
 
 export const FACTORS_GROUPS = [
   {
@@ -38,26 +44,28 @@ export const FACTORS_GROUPS = [
     id: 1,
     allowEmpty: true,
     defaultGroup: true,
-  }, {
+  },
+  {
     name: 'All',
     id: 2,
-    subGroups: [{
-      name: 'Attributes',
-      id: 3,
-      icon: <FolderM />
-    },
-    {
-      name: 'Expressions',
-      id: 4,
-      icon: <FolderM />
-    },
-    {
-      name: 'Aggregates',
-      id: 3,
-      icon: <FolderM />
-    },
-    ]
-  }
+    subGroups: [
+      {
+        name: 'Attributes',
+        id: 3,
+        icon: <FolderM />,
+      },
+      {
+        name: 'Expressions',
+        id: 4,
+        icon: <FolderM />,
+      },
+      {
+        name: 'Aggregates',
+        id: 3,
+        icon: <FolderM />,
+      },
+    ],
+  },
 ];
 
 export const FACTORS_ITEMS = [
@@ -169,4 +177,4 @@ export const FACTORS_ITEMS = [
     groupId: 5,
     icon: <VarTypeStringM />,
   },
-]
+];

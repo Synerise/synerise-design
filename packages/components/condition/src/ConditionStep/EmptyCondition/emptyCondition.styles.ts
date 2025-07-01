@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+
 import { Text } from '@synerise/ds-typography';
 
 export const LabelWrapper = styled(Text)`

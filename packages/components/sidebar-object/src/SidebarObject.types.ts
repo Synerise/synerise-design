@@ -1,7 +1,13 @@
-import { ReactNode } from 'react';
-import { TabItem } from '@synerise/ds-tabs/dist/Tabs.types';
-import { InputProps } from '@synerise/ds-inline-edit/dist/InlineEdit.types';
-import { HeaderTexts, HeaderType, ButtonVariant } from './Elements/Header/Header.types';
+import { type ReactNode } from 'react';
+
+import { type InputProps } from '@synerise/ds-inline-edit/dist/InlineEdit.types';
+import { type TabItem } from '@synerise/ds-tabs';
+
+import {
+  type ButtonVariant,
+  type HeaderTexts,
+  type HeaderType,
+} from './Elements/Header/Header.types';
 
 export type SidebarObjectProps = {
   avatar?: ReactNode;

@@ -1,13 +1,13 @@
 import React from 'react';
 import { FormattedMessage } from 'react-intl';
 
+import Button from '@synerise/ds-button';
 import Icon, { AngleRightS, ArrowRuCircleM } from '@synerise/ds-icon';
 import Tooltip from '@synerise/ds-tooltip';
 import { Text } from '@synerise/ds-typography';
-import Button from '@synerise/ds-button';
 
 import * as S from '../InformationCard.styles';
-import { InformationCardFooterProps } from './InformationCardFooter.types';
+import { type InformationCardFooterProps } from './InformationCardFooter.types';
 
 export const InformationCardFooter = ({
   actionButton = false,
@@ -18,11 +18,21 @@ export const InformationCardFooter = ({
   text = '',
 }: InformationCardFooterProps) => {
   return (
-    <S.FooterWrapper data-testid="information-card-footer" style={{ alignItems: 'center' }}>
+    <S.FooterWrapper
+      data-testid="information-card-footer"
+      style={{ alignItems: 'center' }}
+    >
       {actionsMenuButtonOnClick && (
-        <Button type="ghost" mode="label-icon" onClick={actionsMenuButtonOnClick}>
+        <Button
+          type="ghost"
+          mode="label-icon"
+          onClick={actionsMenuButtonOnClick}
+        >
           {actionsMenuButtonLabel || (
-            <FormattedMessage id="DS.INFORMATION-CARD.QUICK-ACTIONS" defaultMessage="Quick actions" />
+            <FormattedMessage
+              id="DS.INFORMATION-CARD.QUICK-ACTIONS"
+              defaultMessage="Quick actions"
+            />
           )}
           <Icon component={<AngleRightS />} />
         </Button>
@@ -31,7 +41,11 @@ export const InformationCardFooter = ({
       <S.ActionButtonContainer>
         {(actionButton && actionButton === true && (
           <Tooltip type="default" title={actionButtonTooltipText}>
-            <Button type="ghost" mode="single-icon" onClick={actionButtonCallback}>
+            <Button
+              type="ghost"
+              mode="single-icon"
+              onClick={actionButtonCallback}
+            >
               <ArrowRuCircleM />
             </Button>
           </Tooltip>

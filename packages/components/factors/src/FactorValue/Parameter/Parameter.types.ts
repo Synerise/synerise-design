@@ -1,5 +1,6 @@
-import { CSSProperties, ReactNode } from 'react';
-import type { ParameterItem, ParameterGroup } from '../../Factors.types';
+import { type CSSProperties, type ReactNode } from 'react';
+
+import type { ParameterGroup, ParameterItem } from '../../Factors.types';
 
 export type DropdownItem<ItemType extends ParameterItem | ParameterGroup> = {
   item: ItemType;
@@ -13,12 +14,13 @@ export type DropdownItem<ItemType extends ParameterItem | ParameterGroup> = {
 };
 
 export type DropdownItemProps<ItemType extends ParameterItem | ParameterGroup> =
-  | ParameterDropdownTitleProps
-  | DropdownItem<ItemType>;
+  ParameterDropdownTitleProps | DropdownItem<ItemType>;
 
 export type ParameterDropdownTitleProps = {
   title?: string;
   type?: string;
 };
 
-export type MixedDropdownItemProps = DropdownItemProps<ParameterItem> | DropdownItemProps<ParameterGroup>;
+export type MixedDropdownItemProps =
+  | DropdownItemProps<ParameterItem>
+  | DropdownItemProps<ParameterGroup>;

@@ -70,32 +70,32 @@ yarn add @synerise/ds-card
 
 ### Properties
 
-| Property                          | Description                                                                                                           | Type                                                                         | Default |
-| --------------------------------- | --------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------- | ------- |
-| background                        | Background of Card container                                                                                          | `white` / `white-shadow` / `grey` / `grey-shadow` / `outline`                | `white` |
-| children                          | Defines if the button casts a shadow when the cursor is hovered over                                                  | React.ReactNode                                                              | -       |
-| renderBadge                       | Custom slot content for badge icon                                                                                    | React.ReactNode?                                                             | -       |
-| className                         | Defines the class name of the container                                                                               | string                                                                       | -       |
-| compactHeader                     | Set as `true`, displays the description next to the header. Set as `false`, displays the description below the header | boolean                                                                      | -       |
-| description                       | Defines the content of the card description (in the header)                                                           | React.ReactNode                                                              | string  |
-| disabled                          | Defines if the state of the component is disabled                                                                     | boolean                                                                      | -       |
-| headerBorderBottom                | Show line under CardHeader                                                                                            | boolean                                                                      | `false` |
-| headerSideChildren                | Defines if the container includes a button (in the header)                                                            | React.ReactNode                                                              | -       |
-| staticContent                     | Defines content that's visible even if hideContent is `true`                                                          | React.ReactNode                                                              | -       |
-| hideContent                       | Defines the initial visibility of the content                                                                         | boolean                                                                      | `false` |
-| icon                              | Icon of CardBadge, if defined then avatar prop gets ignored                                                           | React.ReactNode                                                              | -       |
-| iconColor                         | Defines the color of the icon                                                                                         | string                                                                       | -       |
-| avatar                            | Avatar for CardBadge                                                                                                  | React.ReactNode                                                              | -       |
-| lively                            | Defines if the container casts a shadow when the cursor is hovered over                                               | boolean                                                                      | -       |
-| raised                            | Defines if the container casts a shadow on the background                                                             | boolean                                                                      | -       |
-| style                             | Defines the CSS of the container                                                                                      | React.CSSProperties                                                          | -       |
-| size                              | Defines the width of the container (the container width is set to 100% when this property is not passed).             | `small` (472px) / `medium` (588px) / `large` (966px) / `extraLarge` (1232px) | -       |
-| title                             | Defines the title of the card (in the header)                                                                         | string                                                                       | -       |
-| titleTag                          | an optional status tag next to title                                                                                  | ReactElement                                                                 | -       |
-| withHeader                        | Defines if the header is shown                                                                                        | boolean                                                                      | -       |
-| withoutPadding                    | Reset padding of ContentContainer                                                                                     | boolean                                                                      | `false` |
-| showSideChildrenWhenHeaderHidden  | Show headerSideChildren on the bottom when header is scrolled out of view                                             | boolean                                                                      | `false` |
-| defaultHeaderBackgroundColor      | Defines if header should have default white color                                                                     | boolean                                                                      | `false` |
+| Property                         | Description                                                                                                           | Type                                                                         | Default |
+| -------------------------------- | --------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------- | ------- |
+| background                       | Background of Card container                                                                                          | `white` / `white-shadow` / `grey` / `grey-shadow` / `outline`                | `white` |
+| children                         | Defines if the button casts a shadow when the cursor is hovered over                                                  | React.ReactNode                                                              | -       |
+| renderBadge                      | Custom slot content for badge icon                                                                                    | React.ReactNode?                                                             | -       |
+| className                        | Defines the class name of the container                                                                               | string                                                                       | -       |
+| compactHeader                    | Set as `true`, displays the description next to the header. Set as `false`, displays the description below the header | boolean                                                                      | -       |
+| description                      | Defines the content of the card description (in the header)                                                           | React.ReactNode                                                              | string  |
+| disabled                         | Defines if the state of the component is disabled                                                                     | boolean                                                                      | -       |
+| headerBorderBottom               | Show line under CardHeader                                                                                            | boolean                                                                      | `false` |
+| headerSideChildren               | Defines if the container includes a button (in the header)                                                            | React.ReactNode                                                              | -       |
+| staticContent                    | Defines content that's visible even if hideContent is `true`                                                          | React.ReactNode                                                              | -       |
+| hideContent                      | Defines the initial visibility of the content                                                                         | boolean                                                                      | `false` |
+| icon                             | Icon of CardBadge, if defined then avatar prop gets ignored                                                           | React.ReactNode                                                              | -       |
+| iconColor                        | Defines the color of the icon                                                                                         | string                                                                       | -       |
+| avatar                           | Avatar for CardBadge                                                                                                  | React.ReactNode                                                              | -       |
+| lively                           | Defines if the container casts a shadow when the cursor is hovered over                                               | boolean                                                                      | -       |
+| raised                           | Defines if the container casts a shadow on the background                                                             | boolean                                                                      | -       |
+| style                            | Defines the CSS of the container                                                                                      | React.CSSProperties                                                          | -       |
+| size                             | Defines the width of the container (the container width is set to 100% when this property is not passed).             | `small` (472px) / `medium` (588px) / `large` (966px) / `extraLarge` (1232px) | -       |
+| title                            | Defines the title of the card (in the header)                                                                         | string                                                                       | -       |
+| titleTag                         | an optional status tag next to title                                                                                  | ReactElement                                                                 | -       |
+| withHeader                       | Defines if the header is shown                                                                                        | boolean                                                                      | -       |
+| withoutPadding                   | Reset padding of ContentContainer                                                                                     | boolean                                                                      | `false` |
+| showSideChildrenWhenHeaderHidden | Show headerSideChildren on the bottom when header is scrolled out of view                                             | boolean                                                                      | `false` |
+| defaultHeaderBackgroundColor     | Defines if header should have default white color                                                                     | boolean                                                                      | `false` |
 
 #### CardBadge
 
@@ -112,7 +112,6 @@ Renders a summary in a bulletted list form. Can be assigned to Card.staticConten
 | -------- | ------------------------------------------- | ------------------------ | ------- |
 | title    | Otional title rendered above bulletted list | `React.ReactNode`        | -       |
 | items    | Defines the color of badge and icon         | `CardSummaryItemProps[]` | -       |
-
 
 #### CardSummaryItemProps
 

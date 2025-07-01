@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+
 import { CheckboxDeafultM, CheckboxM } from '@synerise/ds-icon';
 
 export const IconWrapper = styled.span<{ active?: boolean; error?: boolean }>`

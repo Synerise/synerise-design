@@ -1,6 +1,7 @@
-import { ReactNode } from 'react';
-import { ButtonGroupProps as AntButtonGroupProps } from 'antd/lib/button/button-group';
-import { LiteralStringUnion } from '@synerise/ds-utils';
+import { type ButtonGroupProps as AntButtonGroupProps } from 'antd/lib/button/button-group';
+import { type ReactNode } from 'react';
+
+import { type LiteralStringUnion } from '@synerise/ds-utils';
 
 export type ButtonGroupProps = AntButtonGroupProps & {
   children?: ReactNode;

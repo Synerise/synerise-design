@@ -1,14 +1,16 @@
-import React, { Key } from 'react';
-import Checkbox from '@synerise/ds-checkbox';
-import Status from '@synerise/ds-status';
+import React, { type Key } from 'react';
+
 import Button from '@synerise/ds-button';
+import Checkbox from '@synerise/ds-checkbox';
 import Icon, { AddS } from '@synerise/ds-icon';
+import Status from '@synerise/ds-status';
+
+import { useRowKey } from '../../hooks/useRowKey';
 import * as S from '../GroupTable.styles';
 import { GROUP_BY } from '../GroupTable.types';
-import { Props } from './GroupTableBody.types';
-import { useRowKey } from '../../hooks/useRowKey';
+import { type Props } from './GroupTableBody.types';
 
-function GroupTableBody<T extends unknown>({
+function GroupTableBody<T>({
   group,
   columns,
   rowKey,
@@ -23,23 +25,34 @@ function GroupTableBody<T extends unknown>({
   const { getRowKey } = useRowKey(rowKey);
 
   const allRowKeys = React.useMemo(() => {
-    return group.children.length ? group.children[0].props.record.rows.map((row: T) => getRowKey(row)) : [];
+    return group.children.length
+      ? group.children[0].props.record.rows.map((row: T) => getRowKey(row))
+      : [];
   }, [group, getRowKey]);
 
   const selectedRowsNumber = React.useMemo(() => {
-    return selection?.selectedRowKeys?.filter((key: Key) => allRowKeys.includes(key)).length || 0;
+    return (
+      selection?.selectedRowKeys?.filter((key: Key) => allRowKeys.includes(key))
+        .length || 0
+    );
   }, [allRowKeys, selection]);
 
   const activeColumn = React.useMemo(() => {
     return group.children.length
-      ? columns?.find(column => column.dataIndex === group.children[0].props.record.column)
+      ? columns?.find(
+          (column) =>
+            column.dataIndex === group.children[0].props.record.column,
+        )
       : undefined;
   }, [columns, group]);
 
   const groupExpander = React.useMemo(() => {
     return (
       !hideGroupExpander && (
-        <Button.Expander onClick={(): void => expandGroup(group['data-row-key'])} expanded={expanded} />
+        <Button.Expander
+          onClick={(): void => expandGroup(group['data-row-key'])}
+          expanded={expanded}
+        />
       )
     );
   }, [expanded, expandGroup, hideGroupExpander, group]);
@@ -53,26 +66,40 @@ function GroupTableBody<T extends unknown>({
               {selection && (
                 <S.GroupSelection>
                   <Checkbox
-                    checked={selectedRowsNumber === allRowKeys.length && allRowKeys.length > 0}
+                    checked={
+                      selectedRowsNumber === allRowKeys.length &&
+                      allRowKeys.length > 0
+                    }
                     disabled={allRowKeys.length === 0}
-                    indeterminate={selectedRowsNumber > 0 && selectedRowsNumber < allRowKeys.length}
+                    indeterminate={
+                      selectedRowsNumber > 0 &&
+                      selectedRowsNumber < allRowKeys.length
+                    }
                     onChange={(event): void => {
                       if (event.target.checked) {
-                        const selectedKeys = Array.from(new Set([...selection?.selectedRowKeys, ...allRowKeys]));
+                        const selectedKeys = Array.from(
+                          new Set([
+                            ...(selection?.selectedRowKeys || []),
+                            ...allRowKeys,
+                          ]),
+                        );
                         selection.onChange(
                           selectedKeys,
-                          allItems.filter(item => selectedKeys.indexOf(getRowKey(item)) >= 0)
+                          allItems.filter(
+                            (item) =>
+                              selectedKeys.indexOf(getRowKey(item)) >= 0,
+                          ),
                         );
                       } else {
                         const selectedKeys = selection?.selectedRowKeys.filter(
-                          selected => allRowKeys.indexOf(selected) < 0
+                          (selected) => allRowKeys.indexOf(selected) < 0,
                         );
                         selection.onChange(
                           selectedKeys,
-                          allItems.filter(item => {
+                          allItems.filter((item) => {
                             const key = getRowKey(item);
                             return key && selectedKeys?.indexOf(key) < 0;
-                          })
+                          }),
                         );
                       }
                     }}
@@ -80,12 +107,22 @@ function GroupTableBody<T extends unknown>({
                 </S.GroupSelection>
               )}
               <S.GroupValue withSelection={Boolean(selection)}>
-                {activeColumn?.render && activeGroup?.groupType === GROUP_BY.value ? (
-                  activeColumn.render(group.children[0].props.record.value, {} as T, -1)
+                {activeColumn?.render &&
+                activeGroup?.groupType === GROUP_BY.value ? (
+                  activeColumn.render(
+                    group.children[0].props.record.value,
+                    {} as T,
+                    -1,
+                  )
                 ) : (
-                  <S.GroupValueLabel>{group.children[0].props.record.value}</S.GroupValueLabel>
+                  <S.GroupValueLabel>
+                    {group.children[0].props.record.value}
+                  </S.GroupValueLabel>
                 )}
-                <Status type="disabled" label={group.children[0].props.record.rows.length} />
+                <Status
+                  type="disabled"
+                  label={group.children[0].props.record.rows.length}
+                />
               </S.GroupValue>
             </S.GroupRowLeft>
             <S.GroupRowRight>
@@ -116,14 +153,22 @@ function GroupTableBody<T extends unknown>({
                 {selection && (
                   <S.SubRow withBorderLeft>
                     <Checkbox
-                      checked={key !== undefined && selection.selectedRowKeys.indexOf(key) >= 0}
+                      checked={
+                        key !== undefined &&
+                        selection.selectedRowKeys.indexOf(key) >= 0
+                      }
                       onChange={(event): void => {
                         if (event.target.checked && key !== undefined) {
-                          selection.onChange([...selection.selectedRowKeys, key], [...allItems, rowRecord]);
+                          selection.onChange(
+                            [...selection.selectedRowKeys, key],
+                            [...allItems, rowRecord],
+                          );
                         } else {
                           selection.onChange(
-                            selection?.selectedRowKeys.filter(item => item !== key),
-                            allItems.filter(item => getRowKey(item) !== key)
+                            selection?.selectedRowKeys.filter(
+                              (item) => item !== key,
+                            ),
+                            allItems.filter((item) => getRowKey(item) !== key),
                           );
                         }
                       }}
@@ -135,10 +180,18 @@ function GroupTableBody<T extends unknown>({
                     column.dataIndex && (
                       <S.SubRow
                         key={column.dataIndex}
-                        selected={column.dataIndex === group.children[0].props.record.column}
+                        selected={
+                          column.dataIndex ===
+                          group.children[0].props.record.column
+                        }
                         sorted={Boolean(column.sortOrder)}
                       >
-                        {(column.render && column.render(rowRecord[column.dataIndex as string], rowRecord, index)) ||
+                        {(column.render &&
+                          column.render(
+                            rowRecord[column.dataIndex as string],
+                            rowRecord,
+                            index,
+                          )) ||
                           rowRecord[column.dataIndex as string]}
                       </S.SubRow>
                     )
@@ -146,7 +199,7 @@ function GroupTableBody<T extends unknown>({
                 })}
               </tr>
             );
-          }
+          },
         )}
     </>
   );

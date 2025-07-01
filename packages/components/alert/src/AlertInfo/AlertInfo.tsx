@@ -1,9 +1,9 @@
 import React from 'react';
 
-import Icon, { CheckL, WarningL, WarningXl, CheckXl } from '@synerise/ds-icon';
+import Icon, { CheckL, CheckXl, WarningL, WarningXl } from '@synerise/ds-icon';
 
-import { AlertInfoProps, AlertSize } from './AlertInfo.types';
 import * as S from './AlertInfo.styles';
+import { type AlertInfoProps, AlertSize } from './AlertInfo.types';
 
 const mapSizeToPx = {
   [AlertSize.SMALL]: 48,
@@ -36,7 +36,11 @@ const AlertInfo: React.FC<AlertInfoProps> = ({
   };
   const { IconComponent, ...iconContainerStyles } = mapTypeToStatus[type];
   return (
-    <S.AlertWrapper mode={mode} className="ds-alert-info" labelPosition={labelPosition}>
+    <S.AlertWrapper
+      mode={mode}
+      className="ds-alert-info"
+      labelPosition={labelPosition}
+    >
       <S.AlertIconContainer>
         <S.StatusIconContainer {...iconContainerStyles}>
           <Icon component={<IconComponent />} size={mapSizeToPx[size]} />

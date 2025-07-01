@@ -1,21 +1,31 @@
-import React, { useMemo, useRef, ReactNode, ReactElement, CSSProperties, useEffect, cloneElement } from 'react';
-import { FixedSizeList as List, ListChildComponentProps } from 'react-window';
-import Menu from '@synerise/ds-menu';
-import type { MenuItemProps } from '@synerise/ds-menu';
+import React, {
+  type CSSProperties,
+  type ReactElement,
+  type ReactNode,
+  cloneElement,
+  useEffect,
+  useMemo,
+  useRef,
+} from 'react';
+import {
+  FixedSizeList as List,
+  type ListChildComponentProps,
+} from 'react-window';
 
-import { SearchItemListProps } from './SearchItems.types';
+import Menu, { type MenuItemProps } from '@synerise/ds-menu';
+
+import { type SearchItemListProps } from './SearchItems.types';
 
 const listStyle: CSSProperties = { overflowX: 'unset', overflowY: 'unset' };
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-export function renderSearchList<V extends any>(
+export function renderSearchList<V>(
   props: SearchItemListProps<V>,
-  children?: ReactNode
+  children?: ReactNode,
 ): ReactElement<SearchItemListProps<V>> {
   return <SearchItems {...props}>{children}</SearchItems>;
 }
 
-type ItemData<T extends unknown> = {
+type ItemData<T> = {
   itemRender: (item: T) => ReactElement;
   onItemClick: undefined | ((e: T) => void);
   items: T[];
@@ -26,11 +36,16 @@ const rowRenderer = ({
   index,
   style,
   data,
-}: Omit<ListChildComponentProps, 'data'> & { data: ItemData<Record<string, unknown>> }): ReactElement => {
+}: Omit<ListChildComponentProps, 'data'> & {
+  data: ItemData<Record<string, unknown>>;
+}): ReactElement => {
   const item = data && data.items[index];
   const itemReturnedFromRenderer = data.itemRender(item);
   const rendererCustomStyles =
-    (itemReturnedFromRenderer && itemReturnedFromRenderer.props && itemReturnedFromRenderer.props.style) || {};
+    (itemReturnedFromRenderer &&
+      itemReturnedFromRenderer.props &&
+      itemReturnedFromRenderer.props.style) ||
+    {};
   const mergedStyles = { ...rendererCustomStyles, ...style };
 
   return cloneElement(itemReturnedFromRenderer, {

@@ -1,41 +1,61 @@
-import React, { ReactNode, PureComponent, FC, createRef, KeyboardEvent } from 'react';
-import { range } from 'lodash';
-import { FormattedMessage, injectIntl } from 'react-intl';
 import dayjs from 'dayjs';
+import { range } from 'lodash';
+import React, {
+  type FC,
+  type KeyboardEvent,
+  PureComponent,
+  type ReactNode,
+  createRef,
+} from 'react';
+import { FormattedMessage, injectIntl } from 'react-intl';
 
 import { withDataFormat } from '@synerise/ds-data-format';
 
-import { DayKey, TimeWindowProps, State, DayOptions, TimeWindowTexts } from './TimeWindow.types';
-import * as S from './TimeWindow.styles';
-import { getDateFromDayValue } from './utils';
-import Grid from './Grid/Grid';
-import SelectionCount from '../SelectionCount/SelectionCount';
-import { DEFAULT_RANGE_END, DEFAULT_RANGE_START, TIME_FORMAT } from '../../constants';
+import {
+  DEFAULT_RANGE_END,
+  DEFAULT_RANGE_START,
+  TIME_FORMAT,
+} from '../../constants';
 import AddButton from '../AddButton/AddButton';
-import RangeFormContainer from './RangeFormContainer/RangeFormContainer';
-import Day from './Day/Day';
+import SelectionCount from '../SelectionCount/SelectionCount';
 import SelectionHint from '../SelectionHint/SelectionHint';
-import { DateLimitMode } from './RangeFormContainer/RangeForm/RangeForm.types';
+import Day from './Day/Day';
+import Grid from './Grid/Grid';
+import { type DateLimitMode } from './RangeFormContainer/RangeForm/RangeForm.types';
+import RangeFormContainer from './RangeFormContainer/RangeFormContainer';
 import type { DateValue } from './RangeFormContainer/RangeFormContainer.types';
+import * as S from './TimeWindow.styles';
+import {
+  type DayKey,
+  type DayOptions,
+  type State,
+  type TimeWindowProps,
+  type TimeWindowTexts,
+} from './TimeWindow.types';
 import {
   EU_NOTATION_MONTH_DAYS_INDEXES,
   EU_NOTATION_WEEK_DAYS_INDEXES,
   US_NOTATION_MONTH_DAYS_INDEXES,
   US_NOTATION_WEEK_DAYS_INDEXES,
 } from './constants/timeWindow.constants';
+import { getDateFromDayValue } from './utils';
 
 export const DEFAULT_LIMIT_MODE: DateLimitMode = 'Range';
 
 class TimeWindowBase extends PureComponent<TimeWindowProps, State> {
-  // eslint-disable-next-line react/destructuring-assignment
-  state: State = { activeDays: this.props.daily ? [0] : [], controlKeyPressed: false };
+  state: State = {
+    activeDays: this.props.daily ? [0] : [],
+    controlKeyPressed: false,
+  };
   private wrapperRef = createRef<HTMLDivElement>();
   static defaultProps: Partial<TimeWindowProps> = {
     days: {},
     numberOfDays: 1,
     showSelectAll: false,
     valueSelectionModes: ['Range', 'Hour'],
-    dayTemplate: (index: string | number): { dayOfWeek: number } => ({ dayOfWeek: Number(index) + 1 }),
+    dayTemplate: (index: string | number): { dayOfWeek: number } => ({
+      dayOfWeek: Number(index) + 1,
+    }),
     dayFormatter: (dayKey: DayKey): ReactNode => (
       <FormattedMessage id={`DS.DATE-RANGE-PICKER.WEEKDAYS-SHORT-${dayKey}`} />
     ),
@@ -49,12 +69,14 @@ class TimeWindowBase extends PureComponent<TimeWindowProps, State> {
     }
   }
 
-  componentDidUpdate(prevProps: Readonly<TimeWindowProps>, prevState: Readonly<State>) {
+  componentDidUpdate(
+    prevProps: Readonly<TimeWindowProps>,
+    prevState: Readonly<State>,
+  ) {
     const { activeDays } = this.state;
     const hasCommonRange = this.haveActiveDaysCommonRange();
     if (prevState.isRangeDefined !== hasCommonRange && activeDays.length) {
-      // eslint-disable-next-line react/no-did-update-set-state
-      this.setState(state => ({ ...state, isRangeDefined: hasCommonRange }));
+      this.setState((state) => ({ ...state, isRangeDefined: hasCommonRange }));
     }
   }
 
@@ -65,27 +87,37 @@ class TimeWindowBase extends PureComponent<TimeWindowProps, State> {
 
   checkActiveDay = (dayKey: DayKey) => {
     const { isRangeDefined } = this.state;
-    if (!this.isDayRestricted(dayKey) && isRangeDefined && !this.haveActiveDaysCommonRange()) this.checkDay(dayKey);
+    if (
+      !this.isDayRestricted(dayKey) &&
+      isRangeDefined &&
+      !this.haveActiveDaysCommonRange()
+    ) {
+      this.checkDay(dayKey);
+    }
     const { activeDays, controlKeyPressed, shiftKeyPressed } = this.state;
     let updatedActiveDay: DayKey[] = [];
     if (controlKeyPressed) {
-      updatedActiveDay = activeDays.includes(dayKey) ? activeDays : [...activeDays, dayKey];
+      updatedActiveDay = activeDays.includes(dayKey)
+        ? activeDays
+        : [...activeDays, dayKey];
     } else if (activeDays.length > 0 && shiftKeyPressed) {
       updatedActiveDay =
-        activeDays[0] < dayKey ? range(+activeDays[0], +dayKey + 1) : range(+dayKey, +activeDays[0] + 1);
+        activeDays[0] < dayKey
+          ? range(+activeDays[0], +dayKey + 1)
+          : range(+dayKey, +activeDays[0] + 1);
     } else {
       updatedActiveDay = [dayKey];
     }
-    this.setState(state => ({ ...state, activeDays: updatedActiveDay }));
+    this.setState((state) => ({ ...state, activeDays: updatedActiveDay }));
   };
 
   uncheckActiveDay = (dayKey: DayKey) => {
     const { activeDays, controlKeyPressed } = this.state;
     let updatedActiveDay: DayKey[] = [];
     if (controlKeyPressed) {
-      updatedActiveDay = activeDays.filter(day => day !== dayKey);
+      updatedActiveDay = activeDays.filter((day) => day !== dayKey);
     }
-    this.setState(state => ({ ...state, activeDays: updatedActiveDay }));
+    this.setState((state) => ({ ...state, activeDays: updatedActiveDay }));
     this.removeDaySelection(dayKey);
   };
 
@@ -93,12 +125,16 @@ class TimeWindowBase extends PureComponent<TimeWindowProps, State> {
     const { activeDays, controlKeyPressed } = this.state;
     if (typeof forcedState !== 'undefined') {
       if (controlKeyPressed && forcedState) {
-        activeDays.includes(dayKey) ? this.uncheckActiveDay(dayKey) : this.checkActiveDay(dayKey);
+        activeDays.includes(dayKey)
+          ? this.uncheckActiveDay(dayKey)
+          : this.checkActiveDay(dayKey);
         return;
       }
       forcedState ? this.checkActiveDay(dayKey) : this.uncheckActiveDay(dayKey);
     } else {
-      activeDays.includes(dayKey) ? this.uncheckActiveDay(dayKey) : this.checkActiveDay(dayKey);
+      activeDays.includes(dayKey)
+        ? this.uncheckActiveDay(dayKey)
+        : this.checkActiveDay(dayKey);
     }
   };
 
@@ -140,8 +176,14 @@ class TimeWindowBase extends PureComponent<TimeWindowProps, State> {
   handleDayTimeChange = (value: DateValue, dayKey: DayKey) => {
     this.handleDayChange(dayKey, {
       restricted: true,
-      start: value[0] !== undefined ? dayjs(value[0]).format(TIME_FORMAT) : DEFAULT_RANGE_START,
-      stop: value[1] !== undefined ? dayjs(value[1]).format(TIME_FORMAT) : DEFAULT_RANGE_END,
+      start:
+        value[0] !== undefined
+          ? dayjs(value[0]).format(TIME_FORMAT)
+          : DEFAULT_RANGE_START,
+      stop:
+        value[1] !== undefined
+          ? dayjs(value[1]).format(TIME_FORMAT)
+          : DEFAULT_RANGE_END,
       inverted: Boolean(value[2]),
     });
   };
@@ -150,7 +192,7 @@ class TimeWindowBase extends PureComponent<TimeWindowProps, State> {
     const { onChange, days } = this.props;
     const { activeDays } = this.state;
     const updatedDays = {};
-    activeDays.forEach(k => {
+    activeDays.forEach((k) => {
       updatedDays[k] = {
         ...this.getDayValue(k),
         day: k,
@@ -167,7 +209,7 @@ class TimeWindowBase extends PureComponent<TimeWindowProps, State> {
     const { onChange, days } = this.props;
     const { activeDays } = this.state;
     const updatedDays = days;
-    activeDays.forEach(k => {
+    activeDays.forEach((k) => {
       delete updatedDays[k];
     });
     onChange({ ...updatedDays });
@@ -186,12 +228,20 @@ class TimeWindowBase extends PureComponent<TimeWindowProps, State> {
   };
 
   getDayValue = (dayKey: DayKey) => {
-    const { days, dayTemplate, customDays, daily, valueSelectionModes } = this.props;
+    const { days, dayTemplate, customDays, daily, valueSelectionModes } =
+      this.props;
     let dayValue = {};
-    if (daily) dayValue = days;
-    else if (days[dayKey]) dayValue = days[dayKey];
-    else if (typeof dayKey === 'number') dayValue = dayTemplate(dayKey);
-    else if (customDays && customDays[dayKey]?.template && customDays[dayKey]?.template !== null) {
+    if (daily) {
+      dayValue = days;
+    } else if (days[dayKey]) {
+      dayValue = days[dayKey];
+    } else if (typeof dayKey === 'number') {
+      dayValue = dayTemplate(dayKey);
+    } else if (
+      customDays &&
+      customDays[dayKey]?.template &&
+      customDays[dayKey]?.template !== null
+    ) {
       dayValue = customDays[dayKey].template as object;
     }
     return {
@@ -209,9 +259,13 @@ class TimeWindowBase extends PureComponent<TimeWindowProps, State> {
     const { dayFormatter, customDays } = this.props;
     let label;
     if (typeof dayKey === 'string' && customDays && customDays[dayKey]) {
-      label = customDays[dayKey][long ? 'longLabel' : 'label'] || customDays[dayKey].label;
+      label =
+        customDays[dayKey][long ? 'longLabel' : 'label'] ||
+        customDays[dayKey].label;
     }
-    if (!label) label = dayFormatter(dayKey, long);
+    if (!label) {
+      label = dayFormatter(dayKey, long);
+    }
     return label;
   };
 
@@ -231,7 +285,7 @@ class TimeWindowBase extends PureComponent<TimeWindowProps, State> {
               getDateFromDayValue(rangeClipboard.stop),
               rangeClipboard?.inverted,
             ],
-            dayKeys
+            dayKeys,
           );
     }
   };
@@ -240,20 +294,35 @@ class TimeWindowBase extends PureComponent<TimeWindowProps, State> {
     const { onRangeCopy } = this.props;
     const { activeDays } = this.state;
     const dayValue = this.getDayValue(activeDays[0]);
-    onRangeCopy && onRangeCopy({ start: dayValue.start, stop: dayValue.stop, inverted: dayValue.inverted });
+    onRangeCopy &&
+      onRangeCopy({
+        start: dayValue.start,
+        stop: dayValue.stop,
+        inverted: dayValue.inverted,
+      });
   };
 
   replaceDaysIndexesForUSNotation = (daysIndexes: number[]) => {
     const { isSundayFirstWeekDay } = this.props;
     const stringifyDaysIndexes = JSON.stringify(daysIndexes);
-    const stringifyEUNotationWeekDaysIndexes = JSON.stringify(EU_NOTATION_WEEK_DAYS_INDEXES);
-    const stringifyEUNotationMonthDaysIndexes = JSON.stringify(EU_NOTATION_MONTH_DAYS_INDEXES);
+    const stringifyEUNotationWeekDaysIndexes = JSON.stringify(
+      EU_NOTATION_WEEK_DAYS_INDEXES,
+    );
+    const stringifyEUNotationMonthDaysIndexes = JSON.stringify(
+      EU_NOTATION_MONTH_DAYS_INDEXES,
+    );
     let result = daysIndexes;
 
-    if (stringifyDaysIndexes === stringifyEUNotationWeekDaysIndexes && isSundayFirstWeekDay) {
+    if (
+      stringifyDaysIndexes === stringifyEUNotationWeekDaysIndexes &&
+      isSundayFirstWeekDay
+    ) {
       result = US_NOTATION_WEEK_DAYS_INDEXES;
     }
-    if (stringifyDaysIndexes === stringifyEUNotationMonthDaysIndexes && isSundayFirstWeekDay) {
+    if (
+      stringifyDaysIndexes === stringifyEUNotationMonthDaysIndexes &&
+      isSundayFirstWeekDay
+    ) {
       result = US_NOTATION_MONTH_DAYS_INDEXES;
     }
     return result;
@@ -263,7 +332,9 @@ class TimeWindowBase extends PureComponent<TimeWindowProps, State> {
     const { numberOfDays, customDays } = this.props;
     let keys = range(numberOfDays);
     keys = this.replaceDaysIndexesForUSNotation(keys).slice();
-    if (customDays) keys = [...keys, ...(Object.keys(customDays) as unknown as number[])];
+    if (customDays) {
+      keys = [...keys, ...(Object.keys(customDays) as unknown as number[])];
+    }
     return keys;
   };
 
@@ -275,7 +346,9 @@ class TimeWindowBase extends PureComponent<TimeWindowProps, State> {
     let Component;
     if (typeof dayKey === 'string' && customDays && customDays[dayKey]) {
       const { component: CustomComponent } = customDays[dayKey];
-      if (CustomComponent) Component = CustomComponent;
+      if (CustomComponent) {
+        Component = CustomComponent;
+      }
     }
     if (!Component) {
       Component = Day;
@@ -358,7 +431,7 @@ class TimeWindowBase extends PureComponent<TimeWindowProps, State> {
     const { activeDays } = this.state;
     const { days } = this.props;
     let previousDay: DayOptions | undefined;
-    const activeDaysHaveDifferentRanges = activeDays.some(dayIndex => {
+    const activeDaysHaveDifferentRanges = activeDays.some((dayIndex) => {
       const currentDay = days[dayIndex as number];
       if (!currentDay) {
         return true;
@@ -367,7 +440,9 @@ class TimeWindowBase extends PureComponent<TimeWindowProps, State> {
         previousDay = currentDay;
         return false;
       }
-      const areRangeDifferent = currentDay?.start !== previousDay?.start || currentDay?.stop !== previousDay?.stop;
+      const areRangeDifferent =
+        currentDay?.start !== previousDay?.start ||
+        currentDay?.stop !== previousDay?.stop;
       previousDay = currentDay;
       return areRangeDifferent;
     });
@@ -376,32 +451,43 @@ class TimeWindowBase extends PureComponent<TimeWindowProps, State> {
 
   handleKeyDown = (e: KeyboardEvent<HTMLDivElement>) => {
     if (e.key === 'Shift') {
-      this.setState(state => ({ ...state, controlKeyPressed: false, shiftKeyPressed: true }));
+      this.setState((state) => ({
+        ...state,
+        controlKeyPressed: false,
+        shiftKeyPressed: true,
+      }));
     }
     if (e.key === 'Control' || e.key === 'Meta') {
-      this.setState(state => ({ ...state, controlKeyPressed: true, shiftKeyPressed: false }));
+      this.setState((state) => ({
+        ...state,
+        controlKeyPressed: true,
+        shiftKeyPressed: false,
+      }));
     }
   };
 
   handleKeyUp = (e: KeyboardEvent<HTMLDivElement>) => {
     if (e.key === 'Control' || e.key === 'Meta') {
-      this.setState(state => ({ ...state, controlKeyPressed: false }));
+      this.setState((state) => ({ ...state, controlKeyPressed: false }));
     }
     if (e.key === 'Shift') {
-      this.setState(state => ({ ...state, shiftKeyPressed: false }));
+      this.setState((state) => ({ ...state, shiftKeyPressed: false }));
     }
   };
 
   render() {
-    const { days, numberOfDays, daily, intl, texts, disabled, ...rest } = this.props;
+    const { days, numberOfDays, daily, intl, texts, disabled, ...rest } =
+      this.props;
     const { activeDays, isRangeDefined } = this.state;
     const keys = this.getAllKeys();
     const singleMode = keys.length === 1;
     const rangeFormKey = singleMode ? keys[0] : activeDays;
 
-    const shouldRenderRangeForm = (!!activeDays.length && isRangeDefined) || !!daily;
+    const shouldRenderRangeForm =
+      (!!activeDays.length && isRangeDefined) || !!daily;
     const shouldRenderSelectionHint = !activeDays.length && !disabled;
-    const shouldRenderAddButton = !!activeDays.length && !daily && !isRangeDefined && !disabled;
+    const shouldRenderAddButton =
+      !!activeDays.length && !daily && !isRangeDefined && !disabled;
     return (
       <S.TimeWindowContainer
         tabIndex={0}
@@ -422,11 +508,18 @@ class TimeWindowBase extends PureComponent<TimeWindowProps, State> {
             texts={texts}
             {...rest}
             showSelectAll={keys.length > activeDays?.length}
-            title={<SelectionCount selectedDayCount={activeDays.length} label={texts.selected} />}
+            title={
+              <SelectionCount
+                selectedDayCount={activeDays.length}
+                label={texts.selected}
+              />
+            }
           />
         )}
         {shouldRenderRangeForm && this.renderRangeForm(rangeFormKey)}
-        {shouldRenderSelectionHint && <SelectionHint message={texts.selectDaysDescription} />}
+        {shouldRenderSelectionHint && (
+          <SelectionHint message={texts.selectDaysDescription} />
+        )}
         {shouldRenderAddButton && (
           <S.AddButtonWrapper>
             <AddButton label={texts.addTime} onClick={this.handleRangeAdd} />
@@ -437,4 +530,6 @@ class TimeWindowBase extends PureComponent<TimeWindowProps, State> {
   }
 }
 
-export default withDataFormat(injectIntl(TimeWindowBase)) as FC<TimeWindowProps>;
+export default withDataFormat(
+  injectIntl(TimeWindowBase),
+) as FC<TimeWindowProps>;

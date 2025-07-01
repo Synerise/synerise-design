@@ -1,6 +1,6 @@
-import React from 'react';
-import { TextAreaProps as AntdTextAreaProps } from 'antd/lib/input';
-import { ResizeProperty } from 'csstype';
+import { type TextAreaProps as AntdTextAreaProps } from 'antd/lib/input';
+import { type ResizeProperty } from 'csstype';
+import type React from 'react';
 
 /**
  * @deprecated Use RawTextAreaProps instead.

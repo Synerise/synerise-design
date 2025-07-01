@@ -1,10 +1,11 @@
 import React from 'react';
+
 import { ListType } from '../ManageableList.types';
-import ContentItem from './ContentItem/ContentItem';
-import SimpleItem from './SimpleItem/SimpleItem';
-import FilterItem from './FilterItem/FilterItem';
-import { Props } from './Item.types';
 import BlankItem from './BlankItem/BlankItem';
+import ContentItem from './ContentItem/ContentItem';
+import FilterItem from './FilterItem/FilterItem';
+import { type Props } from './Item.types';
+import SimpleItem from './SimpleItem/SimpleItem';
 
 const Item = ({
   item,

@@ -1,7 +1,6 @@
-import type { InputProps } from '@synerise/ds-input';
+import { type DropdownProps } from '@synerise/ds-dropdown';
 import type { FormFieldCommonProps } from '@synerise/ds-form-field';
-
-import { DropdownProps } from '@synerise/ds-dropdown';
+import type { InputProps } from '@synerise/ds-input';
 
 export type ColorHookType = {
   color: string;

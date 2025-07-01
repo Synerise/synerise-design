@@ -1,4 +1,5 @@
 import type { MouseEvent, ReactNode } from 'react';
+
 import type { WithHTMLAttributes } from '@synerise/ds-utils';
 
 export enum CreatorStatus {

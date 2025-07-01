@@ -1,18 +1,28 @@
 import React, { useCallback, useMemo } from 'react';
-import { IntlShape, useIntl } from 'react-intl';
+import { type IntlShape, useIntl } from 'react-intl';
 
-import Icon, { AngleDownS, Coin2M, CommaDecM, CommaIncM, HashM, PercentM } from '@synerise/ds-icon';
-import { Title } from '@synerise/ds-typography';
-import Tooltip from '@synerise/ds-tooltip';
-import Radio from '@synerise/ds-radio';
-import ButtonGroup from '@synerise/ds-button-group';
 import Button from '@synerise/ds-button';
+import ButtonGroup from '@synerise/ds-button-group';
 import Checkbox from '@synerise/ds-checkbox';
 import Dropdown from '@synerise/ds-dropdown';
+import Icon, {
+  AngleDownS,
+  Coin2M,
+  CommaDecM,
+  CommaIncM,
+  HashM,
+  PercentM,
+} from '@synerise/ds-icon';
+import Radio from '@synerise/ds-radio';
+import Tooltip from '@synerise/ds-tooltip';
+import { Title } from '@synerise/ds-typography';
 
+import {
+  type FormatPickerTexts,
+  type FormattingType,
+} from '../FomartPicker.types';
 import * as S from './FormatSettings.styles';
-import { FormatPickerTexts, FormattingType } from '../FomartPicker.types';
-import { FormatSettingsProps } from './FormatSettings.types';
+import { type FormatSettingsProps } from './FormatSettings.types';
 
 const DEFAULT_CURRENCIES_CONFIG = [
   {
@@ -33,7 +43,10 @@ const DEFAULT_CURRENCIES_CONFIG = [
   },
 ];
 
-const getFormattingTypes = (intl: IntlShape, text: FormatPickerTexts): FormattingType[] => [
+const getFormattingTypes = (
+  intl: IntlShape,
+  text: FormatPickerTexts,
+): FormattingType[] => [
   {
     format: 'numeric',
     icon: <HashM />,
@@ -86,7 +99,9 @@ const FormatSettings = ({
   }, [onFixedLengthChange, format, maxFixedLength]);
 
   const selectedCurrency = useMemo(() => {
-    return currenciesConfig.find(currency => currency.currency === format.currency);
+    return currenciesConfig.find(
+      (currency) => currency.currency === format.currency,
+    );
   }, [currenciesConfig, format]);
 
   return (
@@ -99,10 +114,18 @@ const FormatSettings = ({
             onChange={(event): void => onDataFormatChange(event.target.value)}
           >
             <ButtonGroup>
-              {getFormattingTypes(intl, text).map(type => (
-                <Tooltip key={type.format} trigger={['hover']} title={type.tooltip}>
+              {getFormattingTypes(intl, text).map((type) => (
+                <Tooltip
+                  key={type.format}
+                  trigger={['hover']}
+                  title={type.tooltip}
+                >
                   <Button
-                    type={type.format === format.dataFormat ? 'primary' : 'secondary'}
+                    type={
+                      type.format === format.dataFormat
+                        ? 'primary'
+                        : 'secondary'
+                    }
                     mode="icon"
                     data-testid={`ds-format-picker-type-${type.format}`}
                     onClick={() => onDataFormatChange(type.format)}
@@ -115,10 +138,20 @@ const FormatSettings = ({
             </ButtonGroup>
           </Radio.Group>
           <S.WrapperButtons buttonsPosition="right">
-            <S.FixedLengthButton type="secondary" mode="icon" onClick={handleDecreaseFixedLength} disabled={disabled}>
+            <S.FixedLengthButton
+              type="secondary"
+              mode="icon"
+              onClick={handleDecreaseFixedLength}
+              disabled={disabled}
+            >
               <Icon component={<CommaDecM />} />
             </S.FixedLengthButton>
-            <S.FixedLengthButton type="secondary" mode="icon" onClick={handleIncreaseFixedLength} disabled={disabled}>
+            <S.FixedLengthButton
+              type="secondary"
+              mode="icon"
+              onClick={handleIncreaseFixedLength}
+              disabled={disabled}
+            >
               <Icon component={<CommaIncM />} />
             </S.FixedLengthButton>
           </S.WrapperButtons>
@@ -152,14 +185,14 @@ const FormatSettings = ({
             </Dropdown>
           )}
           <Checkbox
-            onChange={event => onUseSeparatorChange(event.target.checked)}
+            onChange={(event) => onUseSeparatorChange(event.target.checked)}
             checked={format.useSeparator}
             disabled={disabled}
           >
             {text.useSeparator}
           </Checkbox>
           <Checkbox
-            onChange={event => onCompactNumbersChange(event.target.checked)}
+            onChange={(event) => onCompactNumbersChange(event.target.checked)}
             checked={format.compactNumbers}
             disabled={disabled}
           >

@@ -1,7 +1,11 @@
-import styled, { css, FlattenSimpleInterpolation } from 'styled-components';
+import styled, {
+  type FlattenSimpleInterpolation,
+  css,
+} from 'styled-components';
+
 import Avatar from '@synerise/ds-avatar';
 
-import { Size } from './AvatarGroup.types';
+import { type Size } from './AvatarGroup.types';
 
 const MARGINS = {
   small: '-8px',
@@ -24,7 +28,8 @@ export const Group = styled.div<{ size: Size }>`
   && {
     .ant-badge {
       transition: all 0.3s ease;
-      ${(props): FlattenSimpleInterpolation | false => applyMarginLeft(props.size)};
+      ${(props): FlattenSimpleInterpolation | false =>
+        applyMarginLeft(props.size)};
       &:first-of-type {
         margin-left: 0;
       }
@@ -34,7 +39,8 @@ export const Group = styled.div<{ size: Size }>`
       }
       .ant-avatar {
         pointer-events: none;
-        box-shadow: 0 0 0 2px ${(props): string => `${props.theme.palette.white}FF`};
+        box-shadow: 0 0 0 2px
+          ${(props): string => `${props.theme.palette.white}FF`};
       }
     }
     &:hover {
@@ -48,7 +54,8 @@ export const Group = styled.div<{ size: Size }>`
         }
         .ant-avatar {
           pointer-events: all;
-          box-shadow: 0 0 0 2px ${(props): string => `${props.theme.palette.white}00`};
+          box-shadow: 0 0 0 2px
+            ${(props): string => `${props.theme.palette.white}00`};
         }
       }
     }

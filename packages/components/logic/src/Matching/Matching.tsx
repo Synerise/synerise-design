@@ -1,8 +1,8 @@
 import React from 'react';
 import { useIntl } from 'react-intl';
 
-import { MatchingProps } from './Matching.types';
 import * as S from './Matching.styles';
+import { type MatchingProps } from './Matching.types';
 
 const MATCHING_TOGGLE = '#MATCHING_TOGGLE#';
 
@@ -18,8 +18,14 @@ const Matching = ({
 
   const text = React.useMemo(() => {
     return {
-      matching: intl.formatMessage({ id: 'DS.MATCHING.MATCHING', defaultMessage: 'matching' }),
-      notMatching: intl.formatMessage({ id: 'DS.MATCHING.NOT-MATCHING', defaultMessage: 'not matching' }),
+      matching: intl.formatMessage({
+        id: 'DS.MATCHING.MATCHING',
+        defaultMessage: 'matching',
+      }),
+      notMatching: intl.formatMessage({
+        id: 'DS.MATCHING.NOT-MATCHING',
+        defaultMessage: 'not matching',
+      }),
       ...texts,
     };
   }, [texts, intl]);
@@ -45,13 +51,21 @@ const Matching = ({
     if (sentence) {
       const startOfToggle = sentence?.search(MATCHING_TOGGLE);
       const endOfToggle = startOfToggle + MATCHING_TOGGLE.length;
-      return [sentence.substring(0, startOfToggle), getToggle, sentence.substring(endOfToggle, sentence.length)];
+      return [
+        sentence.substring(0, startOfToggle),
+        getToggle,
+        sentence.substring(endOfToggle, sentence.length),
+      ];
     }
 
     return getToggle;
   }, [getToggle, sentence]);
 
-  return <S.MatchingWrapper {...htmlAttributes}>{getLabelWithToggle}</S.MatchingWrapper>;
+  return (
+    <S.MatchingWrapper {...htmlAttributes}>
+      {getLabelWithToggle}
+    </S.MatchingWrapper>
+  );
 };
 
 export default Matching;

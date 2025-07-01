@@ -1,3 +1,3 @@
-export type ObjectSummaryProps ={
-inputObject: object;
+export type ObjectSummaryProps = {
+  inputObject: object;
 };

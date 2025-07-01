@@ -5,7 +5,6 @@ title: Pagination
 
 Pagination UI Component
 
-
 ## Demo
 
 <iframe src="/storybook-static/iframe.html?id=components-pagination--default"></iframe>
@@ -13,4 +12,4 @@ Pagination UI Component
 ## API
 
 | Property | Description | Type | Default |
-| --- | --- | --- | --- |
+| -------- | ----------- | ---- | ------- |

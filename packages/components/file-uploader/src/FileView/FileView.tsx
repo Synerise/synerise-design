@@ -1,30 +1,31 @@
-import React, { useState } from 'react';
 import filesize from 'filesize.js';
+import React, { useState } from 'react';
+import { FormattedMessage } from 'react-intl';
 
-import ProgressBar from '@synerise/ds-progress-bar';
-import Tooltip from '@synerise/ds-tooltip';
-import Icon, {
-  RepeatM,
-  WarningFillM,
-  FileTypeImage,
-  FileTypePdf,
-  FileTypeVideo,
-  FileTypeSvg,
-  Close3M,
-  Check3M,
-  FileM,
-  FileTypeZip,
-  FileTypeTxt,
-  FileTypeHtml,
-  FileTypeMp3,
-  FileTypeXls,
-  FileTypePptx,
-} from '@synerise/ds-icon';
 import Button from '@synerise/ds-button';
 import { theme } from '@synerise/ds-core';
-import { FormattedMessage } from 'react-intl';
+import Icon, {
+  Check3M,
+  Close3M,
+  FileM,
+  FileTypeHtml,
+  FileTypeImage,
+  FileTypeMp3,
+  FileTypePdf,
+  FileTypePptx,
+  FileTypeSvg,
+  FileTypeTxt,
+  FileTypeVideo,
+  FileTypeXls,
+  FileTypeZip,
+  RepeatM,
+  WarningFillM,
+} from '@synerise/ds-icon';
+import ProgressBar from '@synerise/ds-progress-bar';
+import Tooltip from '@synerise/ds-tooltip';
+
 import * as S from './FileView.styles';
-import { FileViewProps } from './FileView.types';
+import { type FileViewProps } from './FileView.types';
 
 const previewableMimeTypes = [
   'image/png',
@@ -53,29 +54,74 @@ const mapperOfIcons = {
   'video/quicktime': <FileTypeVideo />,
   'audio/mpeg': <FileTypeMp3 />,
   'application/vnd.ms-excel': <FileTypeXls />,
-  'application/vnd.openxmlformats-officedocument.presentationml.presentation': <FileTypePptx />,
+  'application/vnd.openxmlformats-officedocument.presentationml.presentation': (
+    <FileTypePptx />
+  ),
   'text/csv': <FileTypeTxt />,
 };
 
-const FileView = ({ data, texts, onRemove, removable, retry, retryButtonProps }: FileViewProps) => {
+const FileView = ({
+  data,
+  texts,
+  onRemove,
+  removable,
+  retry,
+  retryButtonProps,
+}: FileViewProps) => {
   const getFriendlySize = (size?: number): string => filesize(size || 0);
 
   const { disabled, error, file, progress, success } = data;
 
   const finalTexts = {
     size: <FormattedMessage id="DS.FILE-UPLOADER.SIZE" defaultMessage="Size" />,
-    removeTooltip: <FormattedMessage id="DS.FILE-UPLOADER.REMOVE-TOOLTIP" defaultMessage="Remove" />,
-    cancelText: <FormattedMessage id="DS.FILE-UPLOADER.FILE-VIEW.CANCEL" defaultMessage="Cancel" />,
-    okText: <FormattedMessage id="DS.FILE-UPLOADER.FILE-VIEW.OK" defaultMessage="OK" />,
+    removeTooltip: (
+      <FormattedMessage
+        id="DS.FILE-UPLOADER.REMOVE-TOOLTIP"
+        defaultMessage="Remove"
+      />
+    ),
+    cancelText: (
+      <FormattedMessage
+        id="DS.FILE-UPLOADER.FILE-VIEW.CANCEL"
+        defaultMessage="Cancel"
+      />
+    ),
+    okText: (
+      <FormattedMessage
+        id="DS.FILE-UPLOADER.FILE-VIEW.OK"
+        defaultMessage="OK"
+      />
+    ),
     removeConfirmTitle: (
-      <FormattedMessage id="DS.FILE-UPLOADER.FILE-VIEW.REMOVE-CONFIRM-TITLE" defaultMessage="Remove" />
+      <FormattedMessage
+        id="DS.FILE-UPLOADER.FILE-VIEW.REMOVE-CONFIRM-TITLE"
+        defaultMessage="Remove"
+      />
     ),
-    fileWeight: <FormattedMessage id="DS.FILE-UPLOADER.FILE-VIEW.FILE-WEIGHT" defaultMessage="File weight" />,
-    buttonLabel: <FormattedMessage id="DS.FILE-UPLOADER.FILE-VIEW.BUTTON-LABEL" defaultMessage="Upload a file" />,
+    fileWeight: (
+      <FormattedMessage
+        id="DS.FILE-UPLOADER.FILE-VIEW.FILE-WEIGHT"
+        defaultMessage="File weight"
+      />
+    ),
+    buttonLabel: (
+      <FormattedMessage
+        id="DS.FILE-UPLOADER.FILE-VIEW.BUTTON-LABEL"
+        defaultMessage="Upload a file"
+      />
+    ),
     buttonDescription: (
-      <FormattedMessage id="DS.FILE-UPLOADER.FILE-VIEW.BUTTON-DESCRIPTION" defaultMessage="or drop one here" />
+      <FormattedMessage
+        id="DS.FILE-UPLOADER.FILE-VIEW.BUTTON-DESCRIPTION"
+        defaultMessage="or drop one here"
+      />
     ),
-    retryLabel: <FormattedMessage id="DS.FILE-UPLOADER.FILE-VIEW.RETRY-BUTTON-LABEL" defaultMessage="Retry" />,
+    retryLabel: (
+      <FormattedMessage
+        id="DS.FILE-UPLOADER.FILE-VIEW.RETRY-BUTTON-LABEL"
+        defaultMessage="Retry"
+      />
+    ),
     ...texts,
   };
 
@@ -159,7 +205,12 @@ const FileView = ({ data, texts, onRemove, removable, retry, retryButtonProps }:
         <S.PopconfirmOnRemove
           onConfirm={handleRemove}
           onCancel={(): void => setPressed(false)}
-          icon={<Icon component={<WarningFillM />} color={theme.palette['yellow-600']} />}
+          icon={
+            <Icon
+              component={<WarningFillM />}
+              color={theme.palette['yellow-600']}
+            />
+          }
           cancelText={finalTexts.cancelText}
           okText={finalTexts.okText}
           okType="primary"

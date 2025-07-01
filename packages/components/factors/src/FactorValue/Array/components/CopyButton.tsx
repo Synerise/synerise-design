@@ -1,10 +1,11 @@
-import React, { useCallback, useState, MouseEvent } from 'react';
 import copy from 'copy-to-clipboard';
-import Tooltip from '@synerise/ds-tooltip';
+import React, { type MouseEvent, useCallback, useState } from 'react';
+
 import Button from '@synerise/ds-button';
 import Icon, { CopyClipboardM } from '@synerise/ds-icon';
+import Tooltip from '@synerise/ds-tooltip';
 
-import { CopyButtonProps } from '../Array.types';
+import { type CopyButtonProps } from '../Array.types';
 
 export const CopyButton = ({ copyValue, texts }: CopyButtonProps) => {
   const [tooltipVisible, setTooltipVisible] = useState(false);
@@ -23,7 +24,7 @@ export const CopyButton = ({ copyValue, texts }: CopyButtonProps) => {
       setTooltipTitle(texts.array.copyTooltip);
       setTooltipVisible(true);
     },
-    [setTooltipVisible, texts.array]
+    [setTooltipVisible, texts.array],
   );
 
   const handleMouseLeave = useCallback(
@@ -31,7 +32,7 @@ export const CopyButton = ({ copyValue, texts }: CopyButtonProps) => {
       event.stopPropagation();
       setTooltipVisible(false);
     },
-    [setTooltipVisible]
+    [setTooltipVisible],
   );
   return (
     <Tooltip title={tooltipTitle} visible={tooltipVisible}>

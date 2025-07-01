@@ -1,12 +1,12 @@
 import React from 'react';
 
-import { screen, fireEvent } from '@testing-library/react';
-import Icon, { LaptopM, MobileM, UserM } from '@synerise/ds-icon';
 import Avatar from '@synerise/ds-avatar';
 import DSFlag from '@synerise/ds-flag';
+import Icon, { LaptopM, MobileM, UserM } from '@synerise/ds-icon';
+import { renderWithProvider } from '@synerise/ds-utils';
+import { fireEvent, screen } from '@testing-library/react';
 
 import ItemPicker from './ItemPickerLegacy';
-import { renderWithProvider } from '@synerise/ds-utils/dist/testing';
 
 const imgSrc = 'https://www.w3schools.com/howto/img_avatar.png';
 
@@ -73,7 +73,13 @@ describe('ItemPicker component', () => {
     const handleClear = jest.fn();
     const handleChange = jest.fn();
 
-    renderWithProvider(<ItemPicker {...SHARED_PROPS} onClear={handleClear} onChange={handleChange} />);
+    renderWithProvider(
+      <ItemPicker
+        {...SHARED_PROPS}
+        onClear={handleClear}
+        onChange={handleChange}
+      />,
+    );
 
     expect(screen.getByText(PLACEHOLDER)).toBeTruthy();
   });
@@ -89,7 +95,7 @@ describe('ItemPicker component', () => {
         onChange={handleChange}
         description={DESCRIPTION}
         placeholderIcon={<Icon component={<UserM />} />}
-      />
+      />,
     );
 
     expect(screen.getByTestId(PLACEHOLDER_ICON_TEST_ID)).toBeTruthy();
@@ -99,7 +105,14 @@ describe('ItemPicker component', () => {
     const handleClear = jest.fn();
     const handleChange = jest.fn();
 
-    renderWithProvider(<ItemPicker {...SHARED_PROPS} onClear={handleClear} onChange={handleChange} label={LABEL} />);
+    renderWithProvider(
+      <ItemPicker
+        {...SHARED_PROPS}
+        onClear={handleClear}
+        onChange={handleChange}
+        label={LABEL}
+      />,
+    );
 
     expect(screen.getByText(LABEL)).toBeTruthy();
   });
@@ -109,7 +122,12 @@ describe('ItemPicker component', () => {
     const handleChange = jest.fn();
 
     renderWithProvider(
-      <ItemPicker {...SHARED_PROPS} onClear={handleClear} onChange={handleChange} description={DESCRIPTION} />
+      <ItemPicker
+        {...SHARED_PROPS}
+        onClear={handleClear}
+        onChange={handleChange}
+        description={DESCRIPTION}
+      />,
     );
 
     expect(screen.getByText(DESCRIPTION)).toBeTruthy();
@@ -120,7 +138,12 @@ describe('ItemPicker component', () => {
     const handleChange = jest.fn();
 
     renderWithProvider(
-      <ItemPicker {...SHARED_PROPS} onClear={handleClear} onChange={handleChange} description={DESCRIPTION} />
+      <ItemPicker
+        {...SHARED_PROPS}
+        onClear={handleClear}
+        onChange={handleChange}
+        description={DESCRIPTION}
+      />,
     );
 
     expect(screen.getByTestId(ANGLE_DOWN_TEST_ID)).toBeTruthy();
@@ -137,7 +160,7 @@ describe('ItemPicker component', () => {
         onChange={handleChange}
         description={DESCRIPTION}
         size="large"
-      />
+      />,
     );
 
     expect(screen.queryByTestId(ANGLE_DOWN_TEST_ID)).toBeFalsy();
@@ -155,7 +178,7 @@ describe('ItemPicker component', () => {
         description={DESCRIPTION}
         error
         errorMessage={ERROR_MESSAGE}
-      />
+      />,
     );
 
     expect(screen.getByText(ERROR_MESSAGE)).toBeTruthy();
@@ -166,7 +189,13 @@ describe('ItemPicker component', () => {
     const handleChange = jest.fn();
 
     const { container } = renderWithProvider(
-      <ItemPicker {...SHARED_PROPS} onClear={handleClear} onChange={handleChange} description={DESCRIPTION} disabled />
+      <ItemPicker
+        {...SHARED_PROPS}
+        onClear={handleClear}
+        onChange={handleChange}
+        description={DESCRIPTION}
+        disabled
+      />,
     );
 
     expect(container.querySelectorAll('[disabled]').length).toBe(2);
@@ -183,7 +212,7 @@ describe('ItemPicker component', () => {
         onChange={handleChange}
         description={DESCRIPTION}
         selectedItem={DATA_SOURCE[0]}
-      />
+      />,
     );
 
     expect(screen.getByText(DATA_SOURCE[0].text)).toBeTruthy();
@@ -200,7 +229,7 @@ describe('ItemPicker component', () => {
         onChange={handleChange}
         description={DESCRIPTION}
         selectedItem={DATA_SOURCE[0]}
-      />
+      />,
     );
 
     expect(screen.queryByTestId(PREFIXEL_TEST_ID)).toBeTruthy();
@@ -217,10 +246,10 @@ describe('ItemPicker component', () => {
         onChange={handleChange}
         description={DESCRIPTION}
         selectedItem={DATA_SOURCE[5]}
-      />
+      />,
     );
 
-    expect(screen.queryByTestId(PREFIXEL_TEST_ID)).toBeFalsy;
+    expect(screen.queryByTestId(PREFIXEL_TEST_ID)).toBeFalsy();
   });
 
   it('should render with clear icon', async () => {
@@ -234,7 +263,7 @@ describe('ItemPicker component', () => {
         onChange={handleChange}
         description={DESCRIPTION}
         selectedItem={DATA_SOURCE[0]}
-      />
+      />,
     );
 
     expect(screen.getByTestId(CLEAR_TEST_ID)).toBeTruthy();
@@ -244,7 +273,12 @@ describe('ItemPicker component', () => {
     const handleChange = jest.fn();
 
     renderWithProvider(
-      <ItemPicker {...SHARED_PROPS} onChange={handleChange} description={DESCRIPTION} selectedItem={DATA_SOURCE[0]} />
+      <ItemPicker
+        {...SHARED_PROPS}
+        onChange={handleChange}
+        description={DESCRIPTION}
+        selectedItem={DATA_SOURCE[0]}
+      />,
     );
 
     expect(screen.queryByTestId(CLEAR_TEST_ID)).toBeFalsy();
@@ -264,7 +298,7 @@ describe('ItemPicker component', () => {
         size="large"
         changeButtonLabel={CHANGE_BUTTON_LABEL}
         withClearConfirmation
-      />
+      />,
     );
 
     expect(screen.queryByTestId(CHANGE_BUTTON_LABEL)).toBeFalsy();
@@ -283,7 +317,7 @@ describe('ItemPicker component', () => {
         selectedItem={DATA_SOURCE[0]}
         size="large"
         changeButtonLabel={CHANGE_BUTTON_LABEL}
-      />
+      />,
     );
 
     expect(screen.getByText(CHANGE_BUTTON_LABEL)).toBeTruthy();
@@ -303,7 +337,7 @@ describe('ItemPicker component', () => {
         size="large"
         changeButtonLabel={CHANGE_BUTTON_LABEL}
         dropdownBottomAction={<span>{BOTTOM_ACTION_LABEL}</span>}
-      />
+      />,
     );
 
     fireEvent.click(screen.getByText(CHANGE_BUTTON_LABEL));
@@ -314,7 +348,12 @@ describe('ItemPicker component', () => {
     const handleClear = jest.fn();
     const handleChange = jest.fn();
     const { getByText } = renderWithProvider(
-      <ItemPicker {...SHARED_PROPS} onClear={handleClear} onChange={handleChange} hideSearchBar />
+      <ItemPicker
+        {...SHARED_PROPS}
+        onClear={handleClear}
+        onChange={handleChange}
+        hideSearchBar
+      />,
     );
     fireEvent.click(getByText(PLACEHOLDER));
     expect(screen.queryByPlaceholderText(SEARCH_PLACEHOLDER)).toBeFalsy();
@@ -324,7 +363,11 @@ describe('ItemPicker component', () => {
     const handleClear = jest.fn();
     const handleChange = jest.fn();
     const { getByText } = renderWithProvider(
-      <ItemPicker {...SHARED_PROPS} onClear={handleClear} onChange={handleChange} />
+      <ItemPicker
+        {...SHARED_PROPS}
+        onClear={handleClear}
+        onChange={handleChange}
+      />,
     );
     fireEvent.click(getByText(PLACEHOLDER));
     expect(screen.queryByPlaceholderText(SEARCH_PLACEHOLDER)).toBeTruthy();

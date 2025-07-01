@@ -1,10 +1,14 @@
 import type { ReactNode } from 'react';
+
 import type { WithHTMLAttributes } from '@synerise/ds-utils';
 
-import type { ItemProps } from '../Item.types';
 import type { Texts } from '../../ManageableList.types';
+import type { ItemProps } from '../Item.types';
 
-export type BlankItemBaseProps<T extends object> = Pick<ItemProps<T>, 'id' | 'name'>;
+export type BlankItemBaseProps<T extends object> = Pick<
+  ItemProps<T>,
+  'id' | 'name'
+>;
 
 export type BaseBlankItemProps<T extends object> = {
   texts?: Partial<Texts>;
@@ -17,4 +21,7 @@ export type BaseBlankItemProps<T extends object> = {
   onRemove?: (removeParams: { id: string | number }) => void;
 };
 
-export type BlankItemProps<T extends object> = WithHTMLAttributes<HTMLDivElement, BaseBlankItemProps<T>>;
+export type BlankItemProps<T extends object> = WithHTMLAttributes<
+  HTMLDivElement,
+  BaseBlankItemProps<T>
+>;

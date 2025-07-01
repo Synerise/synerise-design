@@ -33,7 +33,7 @@ ManageableList UI Component
 ## API
 
 | Property                 | Description                                                                                          | Type                                                                                                | Default   |
-|--------------------------|------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------|-----------|
+| ------------------------ | ---------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------- | --------- |
 | maxToShowItems           | Shows x first items, rest are hidden under `show more` button                                        | number                                                                                              | 5         |
 | onItemAdd                | Callback triggered when user hits `enter` key in the new item input field.                           | ({ name: string }) => void                                                                          | -         |
 | onItemRemove             | Callback triggered when user clicks on the remove item button.                                       | ({ id: string }) => void                                                                            | -         |
@@ -53,7 +53,6 @@ ManageableList UI Component
 | renderCustomToggleButton | Customise the show more / show less button                                                           | (props: {onClick: () => void; total: number, limit: number, allItemsVisible: boolean}) => ReactNode | -         |
 | styles                   | Additional styles for ManageableList wrapper                                                         | React.CSSProperties                                                                                 | -         |
 | expandedIds (deprecated) | Array of item ids that should be rendered open                                                       | React.Key[]                                                                                         | -         |
-
 
 ### Texts
 

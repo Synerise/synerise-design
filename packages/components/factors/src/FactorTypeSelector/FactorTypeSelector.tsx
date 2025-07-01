@@ -1,11 +1,17 @@
 import React, { useMemo, useState } from 'react';
+
+import { theme } from '@synerise/ds-core';
 import Dropdown from '@synerise/ds-dropdown';
 import Icon, { CheckS } from '@synerise/ds-icon';
-import Tooltip from '@synerise/ds-tooltip';
 import ListItem from '@synerise/ds-list-item';
-import { theme } from '@synerise/ds-core';
+import Tooltip from '@synerise/ds-tooltip';
+
+import {
+  ALL_FACTOR_TYPES,
+  type FactorType,
+  type FactorTypeSelectorProps,
+} from '../Factors.types';
 import * as S from './FactorTypeSelector.styles';
-import { ALL_FACTOR_TYPES, FactorType, FactorTypeSelectorProps } from '../Factors.types';
 
 const FactorTypeSelector = ({
   selectedFactorType,
@@ -21,7 +27,9 @@ const FactorTypeSelector = ({
   const typesList = useMemo(() => {
     let list = availableFactorTypes || ALL_FACTOR_TYPES;
     if (unavailableFactorTypes !== undefined) {
-      list = [...list].filter(type => unavailableFactorTypes.indexOf(type) < 0);
+      list = [...list].filter(
+        (type) => unavailableFactorTypes.indexOf(type) < 0,
+      );
     }
 
     return (list as FactorType[]).map((type: FactorType) => (
@@ -29,7 +37,13 @@ const FactorTypeSelector = ({
         className="ds-factor-type"
         key={factorTypeMapping[type].name}
         prefixel={<Icon component={factorTypeMapping[type].icon} />}
-        suffixel={type === selectedFactorType ? <Icon component={<CheckS />} color={theme.palette['green-600']} /> : ''}
+        suffixel={
+          type === selectedFactorType ? (
+            <Icon component={<CheckS />} color={theme.palette['green-600']} />
+          ) : (
+            ''
+          )
+        }
         onClick={() => {
           setSelectedFactorType(type);
           setDropdownOpen(false);
@@ -58,7 +72,9 @@ const FactorTypeSelector = ({
     </S.TriggerButton>
   );
 
-  if (readOnly) return trigger;
+  if (readOnly) {
+    return trigger;
+  }
 
   return (
     <Tooltip title={texts[selectedFactorType]} trigger={['hover']}>

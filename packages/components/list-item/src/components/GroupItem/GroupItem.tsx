@@ -1,7 +1,7 @@
-import React, { ReactNode } from 'react';
+import React, { type ReactNode } from 'react';
 
 import ListItem from '../../ListItem';
-import { ListItemProps } from '../../ListItem.types';
+import { type ListItemProps } from '../../ListItem.types';
 import * as S from './GroupItem.styles';
 
 type GroupItemProps = {

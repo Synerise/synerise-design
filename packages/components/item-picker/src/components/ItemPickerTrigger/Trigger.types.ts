@@ -1,6 +1,11 @@
 import type { ReactNode } from 'react';
+
 import type { ListItemProps } from '@synerise/ds-list-item';
-import type { ItemPickerProps, ItemPickerSize } from '../ItemPickerLegacy/ItemPickerLegacy.types';
+
+import type {
+  ItemPickerProps,
+  ItemPickerSize,
+} from '../ItemPickerLegacy/ItemPickerLegacy.types';
 
 export type ItemPickerTriggerTexts = {
   yes: string;

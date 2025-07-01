@@ -1,9 +1,10 @@
 import type { CSSProperties, ReactNode, ReactText } from 'react';
-import type { HandledEventsType } from '@synerise/ds-utils';
+
 import type { DropdownProps } from '@synerise/ds-dropdown';
 import type { FactorsProps } from '@synerise/ds-factors';
 import type { InformationCardProps } from '@synerise/ds-information-card';
-import type { ListItemProps, ItemSize } from '@synerise/ds-list-item';
+import type { ItemSize, ListItemProps } from '@synerise/ds-list-item';
+import type { HandledEventsType } from '@synerise/ds-utils';
 
 export type ContextTexts = {
   buttonLabel: ReactNode;
@@ -18,7 +19,10 @@ export type ContextTexts = {
   allItemsGroupName: string;
 };
 
-export type ContextItem = Pick<ListItemProps, 'renderHoverTooltip' | 'hoverTooltipProps' | 'disabled'> & {
+export type ContextItem = Pick<
+  ListItemProps,
+  'renderHoverTooltip' | 'hoverTooltipProps' | 'disabled'
+> & {
   id: ReactText | null;
   name: string;
   icon: ReactNode;
@@ -79,7 +83,10 @@ export type ContextProps = {
   onOpen?: () => void;
   hasMoreItems?: boolean;
   type?: 'default' | 'attribute' | 'event';
-  dropdownProps?: Omit<DropdownProps, 'trigger' | 'getPopupContainer' | 'onVisibleChange' | 'visible' | 'overlay'>;
+  dropdownProps?: Omit<
+    DropdownProps,
+    'trigger' | 'getPopupContainer' | 'onVisibleChange' | 'visible' | 'overlay'
+  >;
   errorText?: ReactNode;
   isError?: boolean;
   getMenuEntryProps?: FactorsProps['getMenuEntryProps'];

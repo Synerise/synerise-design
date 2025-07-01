@@ -1,8 +1,13 @@
 import type { CSSProperties } from 'react';
+
 import { itemSizes } from '@synerise/ds-list-item';
+
 import type { BaseItemType } from '../ItemPickerNew/ItemPickerNew.types';
 
-export const LIST_STYLE: CSSProperties = { overflowX: 'unset', overflowY: 'unset' };
+export const LIST_STYLE: CSSProperties = {
+  overflowX: 'unset',
+  overflowY: 'unset',
+};
 
 export const ITEM_SIZE = {
   [itemSizes.LARGE]: 50,

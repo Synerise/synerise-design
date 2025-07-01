@@ -1,12 +1,20 @@
 import React, { useEffect } from 'react';
-import { LoaderItemProps } from './InfiniteLoaderItem.types';
-import { infiniteScrollPropsToState } from './utils';
+
 import { ErrorItem } from './ErrorItem';
+import { type LoaderItemProps } from './InfiniteLoaderItem.types';
 import { LoadingItem } from './LoadingItem';
 import { NoMoreItem } from './NoMoreItem';
+import { infiniteScrollPropsToState } from './utils';
 
 const InfiniteLoaderItem = ({ infiniteScroll, position }: LoaderItemProps) => {
-  const { hasMore, isLoading, onScrollEndReach, hasError, onRetryButtonClick, render } = infiniteScroll;
+  const {
+    hasMore,
+    isLoading,
+    onScrollEndReach,
+    hasError,
+    onRetryButtonClick,
+    render,
+  } = infiniteScroll;
 
   const handleRetryClick = onRetryButtonClick
     ? () => {
@@ -15,10 +23,13 @@ const InfiniteLoaderItem = ({ infiniteScroll, position }: LoaderItemProps) => {
     : undefined;
 
   // @ts-expect-error TS7030: Not all code paths return a value
-  // eslint-disable-next-line consistent-return
+
   useEffect(() => {
     if (!isLoading && hasMore) {
-      if ((!position || position === 'BOTTOM') && typeof onScrollEndReach === 'function') {
+      if (
+        (!position || position === 'BOTTOM') &&
+        typeof onScrollEndReach === 'function'
+      ) {
         const timeout = setTimeout(onScrollEndReach, 0);
         return () => {
           clearTimeout(timeout);

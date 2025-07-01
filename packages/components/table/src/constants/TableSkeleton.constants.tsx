@@ -2,8 +2,8 @@ import React from 'react';
 
 import { SkeletonAvatar } from '@synerise/ds-skeleton';
 
-import * as S from '../Table.styles';
 import { AvatarLabelCell } from '../Cell';
+import * as S from '../Table.styles';
 
 export const DEFAULT_ROW_COUNT = 10;
 export const HEADER_HEIGHT = 73;

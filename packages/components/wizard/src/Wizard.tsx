@@ -1,12 +1,14 @@
-import React from 'react';
 import classnames from 'classnames';
-import Layout from '@synerise/ds-layout';
-import PageHeader from '@synerise/ds-page-header';
+import React from 'react';
+import { useIntl } from 'react-intl';
+
 import Button from '@synerise/ds-button';
 import Icon, { ArrowLeftCircleM } from '@synerise/ds-icon';
-import { useIntl } from 'react-intl';
+import Layout from '@synerise/ds-layout';
+import PageHeader from '@synerise/ds-page-header';
+
 import * as S from './Wizard.styles';
-import { WizardProps } from './Wizard.types';
+import { type WizardProps } from './Wizard.types';
 import WizardOnModal from './onModal/onModal';
 
 const Wizard = ({
@@ -36,27 +38,39 @@ const Wizard = ({
   const prevButtonProps = stepButtonProps?.prevButtonProps
     ? stepButtonProps.prevButtonProps
     : { type: prevButtonType, mode: 'icon-label' };
-  const nextButtonProps = stepButtonProps?.nextButtonProps ? stepButtonProps.nextButtonProps : { type: 'primary' };
+  const nextButtonProps = stepButtonProps?.nextButtonProps
+    ? stepButtonProps.nextButtonProps
+    : { type: 'primary' };
 
   const navButtons = (onPrevStep || onNextStep) && (
     <>
       {onPrevStep ? (
         <Button {...prevButtonProps} onClick={onPrevStep}>
           <Icon component={<ArrowLeftCircleM />} />{' '}
-          {texts?.prevButtonLabel || intl.formatMessage({ id: 'DS.WIZARD.PREV-BUTTON', defaultMessage: 'Back' })}
+          {texts?.prevButtonLabel ||
+            intl.formatMessage({
+              id: 'DS.WIZARD.PREV-BUTTON',
+              defaultMessage: 'Back',
+            })}
         </Button>
       ) : (
         <S.ButtonPlaceholder />
       )}
       {onNextStep && (
         <Button {...nextButtonProps} onClick={onNextStep}>
-          {texts?.nextButtonLabel || intl.formatMessage({ id: 'DS.WIZARD.NEXT-BUTTON', defaultMessage: 'Next step' })}
+          {texts?.nextButtonLabel ||
+            intl.formatMessage({
+              id: 'DS.WIZARD.NEXT-BUTTON',
+              defaultMessage: 'Next step',
+            })}
         </Button>
       )}
     </>
   );
 
-  const hasFooter = Boolean(footer || footerLeft || (navigationInFooter && navButtons) || footerAction);
+  const hasFooter = Boolean(
+    footer || footerLeft || (navigationInFooter && navButtons) || footerAction,
+  );
 
   const editableTitle = headerInlineEdit !== undefined;
 
@@ -73,7 +87,9 @@ const Wizard = ({
             rightSide={
               <S.WizardHeader withHeaderAction={!!headerAction}>
                 {stepper && <S.WizardStepper>{stepper}</S.WizardStepper>}
-                {headerAction && <S.WizardHeaderAction>{headerAction}</S.WizardHeaderAction>}
+                {headerAction && (
+                  <S.WizardHeaderAction>{headerAction}</S.WizardHeaderAction>
+                )}
               </S.WizardHeader>
             }
           />
@@ -82,12 +98,16 @@ const Wizard = ({
         <S.WizardContainer withFooter={hasFooter}>
           <S.WizardContent contentWidth={contentWidth}>
             {children}
-            {!navigationInFooter && navButtons && <S.WizardButtons>{navButtons}</S.WizardButtons>}
+            {!navigationInFooter && navButtons && (
+              <S.WizardButtons>{navButtons}</S.WizardButtons>
+            )}
           </S.WizardContent>
         </S.WizardContainer>
         {hasFooter && (
           <S.WizardFooter>
-            {(footerLeft || footer) && <S.FooterLeftSide>{footerLeft || footer}</S.FooterLeftSide>}
+            {(footerLeft || footer) && (
+              <S.FooterLeftSide>{footerLeft || footer}</S.FooterLeftSide>
+            )}
             {(footerAction || (navigationInFooter && navButtons)) && (
               <S.FooterRightSide>
                 {footerAction} {navigationInFooter && navButtons}

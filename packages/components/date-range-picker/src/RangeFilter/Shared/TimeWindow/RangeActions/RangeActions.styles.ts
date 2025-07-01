@@ -1,5 +1,6 @@
-import ListItem from '@synerise/ds-list-item';
 import styled from 'styled-components';
+
+import ListItem from '@synerise/ds-list-item';
 
 export const ActionsMenu = styled.div`
   padding: 8px;

@@ -37,4 +37,3 @@ import Navbar from '@synerise/ds-navbar'
 | description       | Description of navbar                       | string                   | -       |
 | logo              | Src to image or React.Node element          | React.ReactNode / string | -       |
 | alertNotification | React.Node element for IconAlert and Button | React.ReactNode          | -       |
-

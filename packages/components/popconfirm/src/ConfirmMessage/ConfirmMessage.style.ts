@@ -1,7 +1,7 @@
 import styled from 'styled-components';
+
 import { IconContainer } from '@synerise/ds-icon';
 
-// eslint-disable-next-line import/prefer-default-export
 export const Message = styled.div``;
 
 export const ConfirmMessageTitle = styled.span`

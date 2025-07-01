@@ -1,6 +1,7 @@
-import { CSSProperties, ReactNode } from 'react';
-import * as S from './SubMenu.styles';
-import Item from './Item/Item';
+import { type CSSProperties, type ReactNode } from 'react';
+
+import type Item from './Item/Item';
+import type * as S from './SubMenu.styles';
 
 export type SubMenuProps = {
   className?: string;

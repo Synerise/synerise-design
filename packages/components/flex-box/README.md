@@ -6,6 +6,7 @@ title: FlexBox
 FlexBox UI Component
 
 ## Installation
+
 ```
 npm i @synerise/ds-flex-box
 or
@@ -13,6 +14,7 @@ yarn add @synerise/ds-flex-box
 ```
 
 ## Usage
+
 ```
 import {Flex, Box} from '@synerise/ds-flex-box'
 
@@ -30,4 +32,4 @@ import {Flex, Box} from '@synerise/ds-flex-box'
 ## API
 
 | Property | Description | Type | Default |
-| --- | --- | --- | --- |
+| -------- | ----------- | ---- | ------- |

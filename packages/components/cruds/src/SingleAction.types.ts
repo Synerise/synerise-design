@@ -1,4 +1,5 @@
 import type { ReactNode } from 'react';
+
 import type { WithHTMLAttributes } from '@synerise/ds-utils';
 
 export type SingleActionProps = WithHTMLAttributes<

@@ -1,6 +1,8 @@
 import React from 'react';
-import { renderWithProvider } from '@synerise/ds-utils/dist/testing';
-import { fireEvent, waitFor, screen } from '@testing-library/react';
+
+import { renderWithProvider } from '@synerise/ds-utils';
+import { fireEvent, screen, waitFor } from '@testing-library/react';
+
 import Select from '../Select';
 
 const { Option } = Select;
@@ -10,7 +12,7 @@ describe('Select', () => {
     renderWithProvider(
       <Select defaultValue="lucy" disabled>
         <Option value="lucy">Lucy</Option>
-      </Select>
+      </Select>,
     );
 
     expect(screen.getByText('Lucy')).toBeTruthy();
@@ -23,15 +25,17 @@ describe('Select', () => {
     ];
     renderWithProvider(
       <Select open data-testid="select" defaultValue="red">
-        {options.map(o => (
+        {options.map((o) => (
           <Option key={o.value} value={o.value}>
             {o.label}
           </Option>
         ))}
-      </Select>
+      </Select>,
     );
 
-    const select = await waitFor(() => screen.getByTestId('select') as HTMLSelectElement);
+    const select = await waitFor(
+      () => screen.getByTestId('select') as HTMLSelectElement,
+    );
     const selectedOption = select.querySelector('.ant-select-selection-item');
     expect(selectedOption && selectedOption.textContent).toBe('Red');
     fireEvent.click(select);
@@ -44,7 +48,9 @@ describe('Select', () => {
     const onChange = jest.fn();
     const children: JSX.Element[] = [];
     for (let i = 10; i < 36; i++) {
-      children.push(<Option key={i.toString(36) + i}>{i.toString(36) + i}</Option>);
+      children.push(
+        <Option key={i.toString(36) + i}>{i.toString(36) + i}</Option>,
+      );
     }
     renderWithProvider(
       <Select
@@ -56,7 +62,7 @@ describe('Select', () => {
         onChange={onChange}
       >
         {children}
-      </Select>
+      </Select>,
     );
 
     const select = screen.getByTestId('select-multiple') as HTMLSelectElement;
@@ -65,7 +71,9 @@ describe('Select', () => {
     fireEvent.click(select);
     const unselectedOption = await waitFor(() => screen.getAllByText('b11'));
     fireEvent.click(unselectedOption[0]);
-    const selectedOptions = document.querySelectorAll('div[aria-selected="true"]');
+    const selectedOptions = document.querySelectorAll(
+      'div[aria-selected="true"]',
+    );
     expect(selectedOptions.length).toBe(2);
   });
 

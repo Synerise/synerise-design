@@ -1,17 +1,22 @@
 import React from 'react';
+
 import { omitKeys } from '@synerise/ds-utils';
-import type { IconBadgeProps } from './IconBadge.types';
+
 import * as S from './IconBadge.styles';
+import type { IconBadgeProps } from './IconBadge.types';
 import { hasCustomIcon, renderStatusIcon } from './IconBadge.utils';
 
 export const IconBadge = ({ children, ...props }: IconBadgeProps) => {
-  // eslint-disable-next-line react/destructuring-assignment
-  const iconComponent = hasCustomIcon(props) ? props.icon : renderStatusIcon(props.status);
+  const iconComponent = hasCustomIcon(props)
+    ? props.icon
+    : renderStatusIcon(props.status);
   const rest = omitKeys(['icon', 'status'], props);
   return (
     <S.IconBadgeWrapper data-testid="ds-badge-icon-badge" {...rest}>
       {children}
-      <S.IconBadgeIcon className="ds-icon-badge">{iconComponent}</S.IconBadgeIcon>
+      <S.IconBadgeIcon className="ds-icon-badge">
+        {iconComponent}
+      </S.IconBadgeIcon>
     </S.IconBadgeWrapper>
   );
 };

@@ -1,13 +1,18 @@
-import type { ParameterGroup } from '../../Factors.types';
-import { DropdownItem } from './Parameter.types';
-import { DividerItem, TitleItem } from './ParameterDropdown';
+import { type ParameterGroup } from 'Factors.types';
+
+import { type DropdownItem } from './Parameter.types';
+import { type DividerItem, type TitleItem } from './ParameterDropdown';
 
 const NO_GROUP_NAME = 'NO_GROUP_NAME';
 
-export const groupItems = (dropdownItems: DropdownItem<ParameterGroup>[], activeGroup: ParameterGroup | undefined) => {
+export const groupItems = (
+  dropdownItems: DropdownItem<ParameterGroup>[],
+  activeGroup: ParameterGroup | undefined,
+) => {
   const itemsNumber = dropdownItems.length;
   const groupedItems = {};
-  let resultItems: (DropdownItem<ParameterGroup> | TitleItem | DividerItem)[] = [];
+  let resultItems: (DropdownItem<ParameterGroup> | TitleItem | DividerItem)[] =
+    [];
 
   for (let i = 0; i < itemsNumber; i += 1) {
     const item = dropdownItems[i];

@@ -1,5 +1,11 @@
-import React, { useCallback, useEffect, useRef } from 'react';
-import type { ReactNode, Dispatch, SetStateAction } from 'react';
+import React, {
+  type Dispatch,
+  type ReactNode,
+  type SetStateAction,
+  useCallback,
+  useEffect,
+  useRef,
+} from 'react';
 
 import { useResizeObserver } from '@synerise/ds-utils';
 
@@ -10,14 +16,17 @@ type ValuePrefixProps = {
   setValuePrefixWidth: Dispatch<SetStateAction<number>>;
 };
 
-export const ValuePrefix = ({ value, setValuePrefixWidth }: ValuePrefixProps) => {
+export const ValuePrefix = ({
+  value,
+  setValuePrefixWidth,
+}: ValuePrefixProps) => {
   const valuePrefixRef = useRef<HTMLDivElement | null>(null);
 
   const handleValuePrefixWidth = useCallback(
     (dimensions: DOMRect) => {
       setValuePrefixWidth(dimensions.width);
     },
-    [setValuePrefixWidth]
+    [setValuePrefixWidth],
   );
 
   useResizeObserver(valuePrefixRef, handleValuePrefixWidth);

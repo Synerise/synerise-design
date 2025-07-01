@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+
 import { InputWrapper } from '@synerise/ds-input/dist/Input.styles';
 
 export const AddItemLayout = styled.div`

@@ -1,4 +1,5 @@
 import type { TitleProps } from 'antd/es/typography/Title';
+
 import type { EllipsisProps } from './Ellipsis';
 
 export type Props = Omit<TitleProps, 'level' | 'ellipsis'> & {

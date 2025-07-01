@@ -1,8 +1,9 @@
-import React from 'react';
-import { RowSelection } from '../../Table.types';
-import { GroupColumnsType, GroupType } from '../GroupTable.types';
+import type React from 'react';
 
-export interface Props<T extends unknown> {
+import { type RowSelection } from '../../Table.types';
+import { type GroupColumnsType, type GroupType } from '../GroupTable.types';
+
+export interface Props<T> {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   group: any;
   rowKey: string | Function | undefined;

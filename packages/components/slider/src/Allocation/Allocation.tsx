@@ -1,10 +1,11 @@
-import React, { useState, useEffect, useMemo } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import { useIntl } from 'react-intl';
 
 import Tooltip from '@synerise/ds-tooltip';
 
-import { DescriptionWrapper, Description } from '../Slider.styles';
 import { buildDefaultTracksColorMap } from '../Slider';
+import { Description, DescriptionWrapper } from '../Slider.styles';
+import type { SliderProps } from '../Slider.types';
 import {
   checkIsPercentageInBoundaries,
   countAllocation,
@@ -12,16 +13,15 @@ import {
   mapUserAllocationToHandles,
   mapUserAllocationToMarks,
 } from '../utils/allocation.utils';
-import { BlockedHandlersWithTooltip } from './BlockedHandlersWithTooltip';
 import {
   calculateHandlersPercentagePosition,
   checkIsBlockedHandlersConfigEnabled,
   checkIsBlockedVariantsChange,
   getBlockedHandlersKeys,
 } from '../utils/allocationHandlers.utils';
-import type { SliderProps } from '../Slider.types';
-import type { AllocationConfig, AllocationVariant } from './Allocation.types';
 import * as S from './Allocation.styles';
+import type { AllocationConfig, AllocationVariant } from './Allocation.types';
+import { BlockedHandlersWithTooltip } from './BlockedHandlersWithTooltip';
 
 const Allocation = ({
   allocationConfig,
@@ -31,21 +31,41 @@ const Allocation = ({
   handlers,
   ...rest
 }: SliderProps) => {
-  const { variants, onAllocationChange, controlGroupEnabled, controlGroupLabel, controlGroupTooltip } =
-    allocationConfig as AllocationConfig;
-  const [allocations, setAllocations] = useState(countAllocation(variants, controlGroupEnabled));
+  const {
+    variants,
+    onAllocationChange,
+    controlGroupEnabled,
+    controlGroupLabel,
+    controlGroupTooltip,
+  } = allocationConfig as AllocationConfig;
+  const [allocations, setAllocations] = useState(
+    countAllocation(variants, controlGroupEnabled),
+  );
   const intl = useIntl();
 
   useEffect(() => {
     setAllocations(countAllocation(variants, controlGroupEnabled));
   }, [variants, controlGroupEnabled]);
 
-  const markRenderer = (value: number, index: number, allocationVariants: AllocationVariant[]) => (
+  const markRenderer = (
+    value: number,
+    index: number,
+    allocationVariants: AllocationVariant[],
+  ) => (
     <S.Mark className="slider-mark">
       <S.MarkValue>{value}</S.MarkValue>
       {allocationVariants[index] && (
-        <Tooltip title={<S.MarkTooltipWrapper>{allocationVariants[index].tabLetter}</S.MarkTooltipWrapper>}>
-          <S.MarkLetter className={`ant-slider-segment-letter-${index}`} index={index}>
+        <Tooltip
+          title={
+            <S.MarkTooltipWrapper>
+              {allocationVariants[index].tabLetter}
+            </S.MarkTooltipWrapper>
+          }
+        >
+          <S.MarkLetter
+            className={`ant-slider-segment-letter-${index}`}
+            index={index}
+          >
             {allocationVariants[index].tabLetter}
           </S.MarkLetter>
         </Tooltip>
@@ -54,25 +74,34 @@ const Allocation = ({
         <Tooltip
           title={
             controlGroupTooltip ||
-            intl.formatMessage({ id: 'DS.SLIDER.CONTROL-GROUP', defaultMessage: 'Control group' })
+            intl.formatMessage({
+              id: 'DS.SLIDER.CONTROL-GROUP',
+              defaultMessage: 'Control group',
+            })
           }
         >
           <S.MarkLetter index="cg">
-            {controlGroupLabel || intl.formatMessage({ id: 'DS.SLIDER.CONTROL-GROUP-TOOLTIP', defaultMessage: 'CG' })}
+            {controlGroupLabel ||
+              intl.formatMessage({
+                id: 'DS.SLIDER.CONTROL-GROUP-TOOLTIP',
+                defaultMessage: 'CG',
+              })}
           </S.MarkLetter>
         </Tooltip>
       )}
     </S.Mark>
   );
 
-  const currentHandlersPercentagePositions = calculateHandlersPercentagePosition(variants);
+  const currentHandlersPercentagePositions =
+    calculateHandlersPercentagePosition(variants);
 
   const { blockedHandlersKeys, isBlockedHandlersConfigEnabled } = useMemo(
     () => ({
       blockedHandlersKeys: getBlockedHandlersKeys(handlers),
-      isBlockedHandlersConfigEnabled: checkIsBlockedHandlersConfigEnabled(handlers),
+      isBlockedHandlersConfigEnabled:
+        checkIsBlockedHandlersConfigEnabled(handlers),
     }),
-    [handlers]
+    [handlers],
   );
 
   const handleChange = (value: [number, number]) => {
@@ -86,23 +115,27 @@ const Allocation = ({
     }
 
     if (isBlockedHandlersConfigEnabled) {
-      const afterChangeHandlersPercentagePositions = calculateHandlersPercentagePosition(calculatedVariants);
+      const afterChangeHandlersPercentagePositions =
+        calculateHandlersPercentagePosition(calculatedVariants);
       const isBlockedVariantChanged = checkIsBlockedVariantsChange(
         blockedHandlersKeys,
         currentHandlersPercentagePositions,
-        afterChangeHandlersPercentagePositions
+        afterChangeHandlersPercentagePositions,
       );
 
       if (isBlockedVariantChanged) {
         return;
       }
     }
-    // eslint-disable-next-line no-unused-expressions
+
     onAllocationChange?.(calculatedVariants);
   };
 
   return (
-    <S.AllocationSliderWrapper blockedHandlersKeys={blockedHandlersKeys} tracksColorMap={tracksColorMap}>
+    <S.AllocationSliderWrapper
+      blockedHandlersKeys={blockedHandlersKeys}
+      tracksColorMap={tracksColorMap}
+    >
       <S.AllocationSlider
         {...rest}
         useColorPalette
@@ -129,8 +162,12 @@ const Allocation = ({
       />
       <S.TrackContainer controlGroup={controlGroupEnabled}>
         {allocations.map((u: number, index: number) => (
-          // eslint-disable-next-line react/no-array-index-key
-          <S.Track key={`${u}-${index}`} className={`ant-slider-segment-${index}`} index={index} width={u} />
+          <S.Track
+            key={`${u}-${index}`}
+            className={`ant-slider-segment-${index}`}
+            index={index}
+            width={u}
+          />
         ))}
       </S.TrackContainer>
     </S.AllocationSliderWrapper>

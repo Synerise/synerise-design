@@ -1,6 +1,15 @@
-export function getClosest(elem: HTMLElement | null, selector: string): HTMLElement | null {
-  for (let node = elem; node && node !== document.body; node = node.parentElement) {
-    if (node.matches(selector)) return node;
+export function getClosest(
+  elem: HTMLElement | null,
+  selector: string,
+): HTMLElement | null {
+  for (
+    let node = elem;
+    node && node !== document.body;
+    node = node.parentElement
+  ) {
+    if (node.matches(selector)) {
+      return node;
+    }
   }
   return null;
 }

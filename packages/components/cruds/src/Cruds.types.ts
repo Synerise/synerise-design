@@ -1,5 +1,6 @@
-import { MouseEvent, ReactNode } from 'react';
-import SingleAction from './SingleAction';
+import { type MouseEvent, type ReactNode } from 'react';
+
+import type SingleAction from './SingleAction';
 
 export interface CrudsProps {
   addTooltip?: ReactNode;

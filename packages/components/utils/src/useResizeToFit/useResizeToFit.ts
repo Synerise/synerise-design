@@ -1,17 +1,20 @@
-import { useEffect, useRef, useCallback } from 'react';
+import { useCallback, useEffect, useRef } from 'react';
 
 type useResizeToFitProps = {
   onResize: (width: number) => void;
   autoObserve?: boolean;
 };
 
-const useResizeToFit = <T extends HTMLElement = HTMLDivElement>({ onResize, autoObserve }: useResizeToFitProps) => {
+const useResizeToFit = <T extends HTMLElement = HTMLDivElement>({
+  onResize,
+  autoObserve,
+}: useResizeToFitProps) => {
   const elementRef = useRef<T>(null);
 
   const resizeObserver = useRef(
     new ResizeObserver(() => {
       elementRef.current && onResize(elementRef.current.clientWidth);
-    })
+    }),
   ).current;
 
   const observe = useCallback(() => {
