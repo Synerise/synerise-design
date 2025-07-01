@@ -100,14 +100,13 @@ export function getTooltipProps(
           description: tooltip.description || tooltip.email,
         }
       : {};
-
   const tooltipType =
     ['title', 'description', 'status'].reduce(
       (prev, next) => (tooltipProps[next] ? prev + 1 : prev),
       0,
     ) === 1
       ? 'default'
-      : 'avatar';
+      : 'largeSimple';
 
   const finalTooltipProps: TooltipObject =
     tooltipType === 'default'
@@ -121,8 +120,10 @@ export function getTooltipProps(
         }
       : {
           ...tooltipProps,
-          type: 'avatar',
+          type: 'largeSimple',
         };
 
   return finalTooltipProps;
+
+  return tooltipProps;
 }

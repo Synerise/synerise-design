@@ -2,9 +2,9 @@ import styled, { css } from 'styled-components';
 
 import { IconContainer } from '@synerise/ds-icon';
 
-import { type tooltipTypes } from './Tooltip.types';
+import type { TooltipTypes } from './Tooltip.types';
 
-export const TooltipDescription = styled.div<{ tooltipType: tooltipTypes }>`
+export const TooltipDescription = styled.div<{ tooltipType: TooltipTypes }>`
   font-size: 13px;
   line-height: 1.38;
   font-weight: normal;
@@ -22,9 +22,7 @@ export const TooltipDescription = styled.div<{ tooltipType: tooltipTypes }>`
     `};
 `;
 
-export const TooltipTitle = styled.div<{ tooltipType: tooltipTypes }>`
-  margin-bottom: ${({ tooltipType }) =>
-    tooltipType === 'tutorial' ? '8px' : '0px'};
+export const TooltipTitle = styled.div<{ tooltipType: TooltipTypes }>`
   font-size: 13px;
   line-height: 1.38;
   font-weight: ${(props) => (props.tooltipType === 'default' ? 400 : 500)};
@@ -102,7 +100,7 @@ export const TooltipImage = styled.div<{ extraMargin: boolean }>`
   }
 `;
 
-export const TooltipComponent = styled.div<{ tooltipType: tooltipTypes }>`
+export const TooltipComponent = styled.div<{ tooltipType: TooltipTypes }>`
   background-color: rgba(56, 67, 80, 0.9);
   min-height: 24px;
   width: 100%;
@@ -116,91 +114,7 @@ export const TooltipComponent = styled.div<{ tooltipType: tooltipTypes }>`
     flex-direction: column;
     align-items: flex-start;
     justify-content: center;
-
-    ${(props) => {
-      const defaultPadding = css`
-        padding: 12px;
-      `;
-      switch (props.tooltipType) {
-        case 'icon':
-        case 'largeSimple':
-        case 'largeScrollable':
-        case 'avatar':
-        case 'button':
-        case 'header-label':
-          return defaultPadding;
-        // unused type (?) TBC
-        case 'tutorial':
-          return css`
-            padding: 0;
-          `;
-        // unused type (?) TBC
-        case 'status':
-          return css`
-            padding: 6px 25px 10px 21px;
-            text-align: center;
-            align-items: center;
-          `;
-        case 'default':
-          return css`
-            padding: 3px 8px;
-          `;
-        default:
-      }
-      return defaultPadding;
-    }}
+    padding: ${(props) =>
+      props.tooltipType === 'default' ? '3px 8px' : '12px'};
   }
-
-  .ant-carousel {
-    position: relative;
-    width: 100%;
-    .slick-track {
-      width: 100%;
-    }
-    .slick-dots-bottom {
-      position: relative;
-      bottom: 0;
-      height: 32px;
-      padding: 0 18px;
-      display: flex;
-      flex-direction: row;
-      align-items: center;
-      justify-content: flex-start;
-      margin: 0;
-      background-color: rgba(56, 67, 80, 0.9);
-      li {
-        width: 8px;
-        height: 8px;
-        border-radius: 50%;
-        background-color: rgba(56, 67, 80, 0.9);
-        margin: 0 8px 0 0;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        button {
-          box-sizing: content-box;
-          background-color: ${(props): string =>
-            props.theme.palette['grey-600']};
-          border: 2px solid rgba(56, 67, 80, 0.9);
-          height: 4px;
-          width: 4px;
-          border-radius: 50%;
-          opacity: 1;
-        }
-      }
-      li.slick-active {
-        button {
-          border: 2px solid
-            ${(props): string => props.theme.palette['green-600']};
-          background-color: ${(props): string =>
-            `${props.theme.palette['grey-800']}E5`};
-        }
-      }
-    }
-  }
-`;
-
-export const TutorialItem = styled.div`
-  padding: 16px;
-  color: ${(props): string => props.theme.palette.white};
 `;

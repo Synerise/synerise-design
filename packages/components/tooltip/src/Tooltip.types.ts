@@ -1,33 +1,16 @@
 import { type TooltipPropsWithTitle } from 'antd/lib/tooltip';
 import { type ReactNode } from 'react';
 
-export type tooltipTypes =
-  | 'default'
-  | 'icon'
-  | 'largeSimple'
-  | 'largeScrollable'
-  | 'tutorial'
-  | 'avatar'
-  | 'button'
-  | 'header-label'
-  | 'status';
-export type descriptionType = ReactNode;
-export type Tutorial = {
-  title: ReactNode;
-  description: ReactNode;
-};
-// TODO support descriptionType as array of element
+export type TooltipTypes = 'default' | 'largeSimple' | 'largeScrollable';
+
 export type TooltipExtendedProps = {
-  type?: tooltipTypes;
+  type?: TooltipTypes;
   icon?: ReactNode;
   status?: ReactNode;
   title?: ReactNode;
   shortCuts?: ReactNode | ReactNode[];
   image?: ReactNode;
-  description?: descriptionType;
-  tutorials?: Tutorial[];
-  tutorialAutoplay?: boolean;
-  tutorialAutoplaySpeed?: number;
+  description?: ReactNode;
   timeToHideAfterClick?: number;
   offset?: 'default' | 'small';
   button?: ReactNode;
