@@ -27,6 +27,9 @@ const ContentItemComponent = ({
   isFirst,
   isLast,
   size = 'default',
+  dragHandleProps,
+  isDragPlaceholder,
+  isDragOverlay,
   ...rest
 }: ContentItemProps) => {
   const [isExpanded, setIsExpanded] = useState(expanded);
@@ -48,6 +51,8 @@ const ContentItemComponent = ({
       dashed={dashed}
       size={size}
       isDisabled={!!item.disabled}
+      isDragPlaceholder={isDragPlaceholder}
+      isDragOverlay={isDragOverlay}
       {...rest}
     >
       <ContentItemHeader
@@ -58,6 +63,8 @@ const ContentItemComponent = ({
         onRemove={onRemove}
         onDuplicate={onDuplicate}
         draggable={draggable}
+        dragHandleProps={dragHandleProps}
+        isDragOverlay={isDragOverlay}
         changeOrderDisabled={changeOrderDisabled}
         texts={allTexts}
         hideExpander={hideExpander}

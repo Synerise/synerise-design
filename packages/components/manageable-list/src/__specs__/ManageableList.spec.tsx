@@ -1,9 +1,9 @@
 import React from 'react';
 import { IntlProvider } from 'react-intl';
+import { fireEvent, screen } from '@testing-library/react';
 
 import { FileM } from '@synerise/ds-icon';
 import { renderWithProvider } from '@synerise/ds-utils';
-import { fireEvent } from '@testing-library/react';
 
 import ManageableList from '../ManageableList';
 
@@ -108,146 +108,132 @@ const texts = {
 
 describe('ManageableList', () => {
   it('should render with no items', () => {
-    // ARRANGE
-    const { queryByTestId, getByTestId } = renderWithProvider(
+    renderWithProvider(
       <ManageableList
         items={[]}
         loading={false}
         visibleItemsLimit={5}
-        onItemAdd={() => {}}
-        onItemEdit={() => {}}
-        onItemSelect={() => {}}
-        onItemRemove={() => {}}
+        onItemAdd={() => { }}
+        onItemEdit={() => { }}
+        onItemSelect={() => { }}
+        onItemRemove={() => { }}
         type="default"
         texts={texts}
       />,
     );
 
-    // ASSERT
-    expect(getByTestId('add-item-with-name-button')).toBeTruthy();
-    expect(queryByTestId('show-more-button')).toBeNull();
-    expect(queryByTestId('list-item-name')).toBeNull();
+    expect(screen.getByTestId('add-item-with-name-button')).toBeTruthy();
+    expect(screen.queryByTestId('show-more-button')).toBeNull();
+    expect(screen.queryByTestId('list-item-name')).toBeNull();
   });
 
   it('should render with 4 items', () => {
-    const { queryByTestId, queryAllByTestId, getByTestId } = renderWithProvider(
-      // ARRANGE
+    renderWithProvider(
       <ManageableList
         items={DEFAULT_ITEMS}
         loading={false}
         visibleItemsLimit={5}
-        onItemAdd={() => {}}
-        onItemEdit={() => {}}
-        onItemSelect={() => {}}
-        onItemRemove={() => {}}
+        onItemAdd={() => { }}
+        onItemEdit={() => { }}
+        onItemSelect={() => { }}
+        onItemRemove={() => { }}
         type="default"
         texts={texts}
       />,
     );
 
-    // ASSERT
-    expect(getByTestId('add-item-with-name-button')).toBeTruthy();
-    expect(queryByTestId('show-more-button')).toBeNull();
-    expect(queryAllByTestId('list-item-name').length).toBe(4);
-    expect(queryAllByTestId('list-item-edit').length).toBe(3);
-    expect(queryAllByTestId('list-item-remove').length).toBe(3);
+    expect(screen.getByTestId('add-item-with-name-button')).toBeTruthy();
+    expect(screen.queryByTestId('show-more-button')).toBeNull();
+    expect(screen.queryAllByTestId('list-item-name').length).toBe(4);
+    expect(screen.queryAllByTestId('list-item-edit').length).toBe(3);
+    expect(screen.queryAllByTestId('list-item-remove').length).toBe(3);
   });
 
   it('should render with hidden items and show-more button', () => {
-    // ARRANGE
-    const { queryAllByTestId, getByTestId } = renderWithProvider(
+    renderWithProvider(
       <ManageableList
         items={ITEMS}
         loading={false}
         visibleItemsLimit={5}
-        onItemAdd={() => {}}
-        onItemEdit={() => {}}
-        onItemSelect={() => {}}
-        onItemRemove={() => {}}
+        onItemAdd={() => { }}
+        onItemEdit={() => { }}
+        onItemSelect={() => { }}
+        onItemRemove={() => { }}
         type="default"
         texts={texts}
       />,
     );
-    const showMore = getByTestId('show-more-button');
+    const showMore = screen.getByTestId('show-more-button');
 
-    // ASSERT
-    expect(getByTestId('add-item-with-name-button')).toBeTruthy();
+    expect(screen.getByTestId('add-item-with-name-button')).toBeTruthy();
     expect(showMore).toBeTruthy();
-    expect(queryAllByTestId('list-item-name').length).toBe(5);
+    expect(screen.queryAllByTestId('list-item-name').length).toBe(5);
     expect(showMore.textContent).toBe('+ 2 more Show all');
   });
 
   it('should show all items after show more button clicked', () => {
-    // ARRANGE
-    const { queryAllByTestId, getByTestId } = renderWithProvider(
+    renderWithProvider(
       <ManageableList
         items={ITEMS}
         loading={false}
         visibleItemsLimit={5}
-        onItemAdd={() => {}}
-        onItemEdit={() => {}}
-        onItemSelect={() => {}}
-        onItemRemove={() => {}}
+        onItemAdd={() => { }}
+        onItemEdit={() => { }}
+        onItemSelect={() => { }}
+        onItemRemove={() => { }}
         type="default"
         texts={texts}
       />,
     );
-    const showMore = getByTestId('show-more-button');
+    const showMore = screen.getByTestId('show-more-button');
 
-    // ASSERT
     expect(showMore.textContent).toBe('+ 2 more Show all');
-    expect(queryAllByTestId('list-item-name').length).toBe(5);
+    expect(screen.queryAllByTestId('list-item-name').length).toBe(5);
     fireEvent.click(showMore);
     expect(showMore.textContent).toBe('- 2 less Show less');
-    expect(queryAllByTestId('list-item-name').length).toBe(7);
+    expect(screen.queryAllByTestId('list-item-name').length).toBe(7);
   });
 
   it('should fire onItemSelect method on item click', () => {
-    // ARRANGE
     const onItemSelect = jest.fn();
-    const { queryAllByTestId } = renderWithProvider(
+    renderWithProvider(
       <ManageableList
         items={ITEMS}
         loading={false}
         visibleItemsLimit={5}
-        onItemAdd={() => {}}
-        onItemEdit={() => {}}
+        onItemAdd={() => { }}
+        onItemEdit={() => { }}
         onItemSelect={onItemSelect}
-        onItemRemove={() => {}}
+        onItemRemove={() => { }}
         type="default"
         texts={texts}
       />,
     );
 
     //ACT
-    const firstListItem = queryAllByTestId('list-item-name')[0];
+    const firstListItem = screen.queryAllByTestId('list-item-name')[0];
     fireEvent.click(firstListItem);
 
-    // ASSERT
-    expect(onItemSelect).toHaveBeenCalledWith({
-      id: '00000000-0000-0000-0000-000000000000',
-    });
+    expect(onItemSelect).toHaveBeenCalledWith({ id: '00000000-0000-0000-0000-000000000000' });
   });
 
   it('should fire remove item', () => {
-    // ARRANGE
     const onItemRemove = jest.fn();
-    const { queryAllByTestId } = renderWithProvider(
+    renderWithProvider(
       <ManageableList
         items={ITEMS}
         loading={false}
         visibleItemsLimit={5}
-        onItemAdd={() => {}}
-        onItemEdit={() => {}}
-        onItemSelect={() => {}}
+        onItemAdd={() => { }}
+        onItemEdit={() => { }}
+        onItemSelect={() => { }}
         onItemRemove={onItemRemove}
         type="default"
         texts={texts}
       />,
     );
-    const firstRemoveButton = queryAllByTestId('list-item-remove')[0];
+    const firstRemoveButton = screen.queryAllByTestId('list-item-remove')[0];
     const removeItemIcon = firstRemoveButton.querySelector('svg');
-    // ASSERT
     expect(removeItemIcon).toBeTruthy();
     if (removeItemIcon) {
       fireEvent.click(removeItemIcon);
@@ -256,31 +242,27 @@ describe('ManageableList', () => {
   });
 
   it('should fire onItemAdd', () => {
-    // ARRANGE
     const onItemAdd = jest.fn();
-    const { getByTestId } = renderWithProvider(
+    renderWithProvider(
       <ManageableList
         items={DEFAULT_ITEMS}
         loading={false}
         visibleItemsLimit={5}
         onItemAdd={onItemAdd}
-        onItemEdit={() => {}}
-        onItemSelect={() => {}}
-        onItemRemove={() => {}}
+        onItemEdit={() => { }}
+        onItemSelect={() => { }}
+        onItemRemove={() => { }}
         type="default"
         texts={texts}
       />,
     );
     const NEW_FOLDER_NAME = 'New folder';
-    const addItemButton = getByTestId(
-      'add-item-with-name-button',
-    ).getElementsByTagName('button')[0];
+    const addItemButton = screen.getByTestId('add-item-with-name-button').getElementsByTagName('button')[0];
 
-    // ASSERT
     expect(addItemButton).toBeTruthy();
     // SHOW ADD ITEM INPUT
     fireEvent.click(addItemButton);
-    const addItemInput = getByTestId('add-item-input');
+    const addItemInput = screen.getByTestId('add-item-input');
     expect(addItemInput).toBeTruthy();
     // SET ADD ITEM INPUT VALUE
     fireEvent.change(addItemInput, { target: { value: NEW_FOLDER_NAME } });
@@ -291,8 +273,7 @@ describe('ManageableList', () => {
   });
 
   it('should show "show more" without texts props', () => {
-    // ARRANGE
-    const { queryAllByTestId, getByTestId } = renderWithProvider(
+    renderWithProvider(
       <IntlProvider
         locale="en"
         messages={{
@@ -306,22 +287,21 @@ describe('ManageableList', () => {
           items={ITEMS}
           loading={false}
           visibleItemsLimit={5}
-          onItemAdd={() => {}}
-          onItemEdit={() => {}}
-          onItemSelect={() => {}}
-          onItemRemove={() => {}}
+          onItemAdd={() => { }}
+          onItemEdit={() => { }}
+          onItemSelect={() => { }}
+          onItemRemove={() => { }}
           type="default"
           texts={{}}
         />
       </IntlProvider>,
     );
-    const showMore = getByTestId('show-more-button');
+    const showMore = screen.getByTestId('show-more-button');
 
-    // ASSERT
     expect(showMore.textContent).toBe('+ 2 more show more');
-    expect(queryAllByTestId('list-item-name').length).toBe(5);
+    expect(screen.queryAllByTestId('list-item-name').length).toBe(5);
     fireEvent.click(showMore);
     expect(showMore.textContent).toBe('- 2 less show less');
-    expect(queryAllByTestId('list-item-name').length).toBe(7);
+    expect(screen.queryAllByTestId('list-item-name').length).toBe(7);
   });
 });

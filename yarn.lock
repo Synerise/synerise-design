@@ -15038,14 +15038,6 @@ react-perfect-scrollbar@^1.5.8:
     perfect-scrollbar "^1.5.0"
     prop-types "^15.6.1"
 
-react-sortablejs@^6.0.0:
-  version "6.0.0"
-  resolved "https://registry.npmjs.org/react-sortablejs/-/react-sortablejs-6.0.0.tgz"
-  integrity sha512-vzi+TWOnofcYg+dYnC/Iz/ZZkBGG76uM6KaLwuAqBk0349JQxIy3PZizbK0TJdLlK6NnLt4CiEyyQXSSnVYvEw==
-  dependencies:
-    classnames "^2.2.6"
-    tiny-invariant "^1.1.0"
-
 react-visibility-sensor@^5.1.1:
   version "5.1.1"
   resolved "https://registry.npmjs.org/react-visibility-sensor/-/react-visibility-sensor-5.1.1.tgz"
@@ -16253,11 +16245,6 @@ sort-scripts@^1.0.1:
   resolved "https://registry.npmjs.org/sort-scripts/-/sort-scripts-1.0.1.tgz"
   integrity sha512-58eys3wXg05rI51Gg/90Uvc0id0aboGLSzHm4nFvuD0MofSg/y8cyJ7ZqYuZ1eyj6AA8XwFTGaXA+6tApsMv4w==
 
-sortablejs@1.15.0, sortablejs@1.15.1:
-  version "1.15.0"
-  resolved "https://registry.npmjs.org/sortablejs/-/sortablejs-1.15.0.tgz#53230b8aa3502bb77a29e2005808ffdb4a5f7e2a"
-  integrity sha512-bv9qgVMjUMf89wAvM6AxVvS/4MX3sPeN0+agqShejLU5z5GX4C75ow1O2e5k4L6XItUyAK3gH6AxSbXrOM5e8w==
-
 source-map-js@^1.0.1, source-map-js@^1.2.1:
   version "1.2.1"
   resolved "https://registry.npmjs.org/source-map-js/-/source-map-js-1.2.1.tgz#1ce5650fddd87abc099eda37dcff024c2667ae46"
@@ -17192,11 +17179,6 @@ through@2, "through@>=2.2.7 <3", through@^2.3.4, through@^2.3.6:
   version "2.3.8"
   resolved "https://registry.npmjs.org/through/-/through-2.3.8.tgz"
   integrity sha1-DdTJ/6q8NXlgsbckEV1+Doai4fU=
-
-tiny-invariant@^1.1.0:
-  version "1.1.0"
-  resolved "https://registry.npmjs.org/tiny-invariant/-/tiny-invariant-1.1.0.tgz"
-  integrity sha512-ytxQvrb1cPc9WBEI/HSeYYoGD0kWnGEOR8RY6KomWLBVhqz0RgTwVO9dLrGz7dC+nN9llyI7OKAgRq8Vq4ZBSw==
 
 tiny-invariant@^1.3.3:
   version "1.3.3"

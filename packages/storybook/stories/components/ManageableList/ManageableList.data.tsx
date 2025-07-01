@@ -250,6 +250,7 @@ export const CONTENT_ITEMS_AUTOMATION: ContentItemType[] = [
 export const CONTENT_ITEMS_LARGE: ContentItemType[] = [
   {
     name: 'Name',
+    id: '0001',
     uniqueKey: '#name',
     content: <>Some content</>,
     tags: (
@@ -289,6 +290,7 @@ export const CONTENT_ITEMS_LARGE: ContentItemType[] = [
   },
   {
     name: 'Name',
+    id: '0002',
     uniqueKey: '#name',
     content: <>Some content</>,
     tags: (
@@ -327,6 +329,7 @@ export const CONTENT_ITEMS_LARGE: ContentItemType[] = [
   },
   {
     name: 'Name',
+    id: '0003',
     uniqueKey: '#name',
     content: <>Some content</>,
     tags: (

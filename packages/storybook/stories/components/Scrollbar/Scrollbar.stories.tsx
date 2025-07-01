@@ -1,13 +1,13 @@
 import React, { useState, UIEvent } from 'react';
 import { Meta, StoryObj } from '@storybook/react-webpack5';
-import { ReactSortable } from 'react-sortablejs';
 import { FixedSizeList } from 'react-window';
 
 import List from '@synerise/ds-list';
 import Scrollbar, { ScrollbarProps } from '@synerise/ds-scrollbar';
+import Sortable from '@synerise/ds-sortable';
 
 import { fixedWrapper300 } from '../../utils';
-import { getContent, getData, INITIAL_DATA, ItemType, renderItem, SORTABLE_CONFIG } from './Scrollbar.data';
+import { getContent, getData, INITIAL_DATA, ItemType, renderItem } from './Scrollbar.data';
 
 type Story = StoryObj<ScrollbarProps>;
 
@@ -49,14 +49,10 @@ export const DndScrollbar: Story = {
   name: 'DnD Scrollbar',
   render: args => {
     const [data, setData] = useState(INITIAL_DATA);
-    const handleChangeOrder = (newOrder: ItemType[]) => {
-      setData(newOrder);
-    };
+    
     return (
       <Scrollbar {...args}>
-        <ReactSortable {...SORTABLE_CONFIG} list={data} setList={handleChangeOrder}>
-          {data.map(renderItem)}
-        </ReactSortable>
+        <Sortable axis='y' onOrderChange={setData} items={data} ItemComponent={(item) => {return renderItem(item)}} />
       </Scrollbar>
     );
   },

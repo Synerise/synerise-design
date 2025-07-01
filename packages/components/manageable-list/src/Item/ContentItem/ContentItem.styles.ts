@@ -166,6 +166,8 @@ export const ItemContainer = styled.div<{
   size?: 'default' | 'large';
   dashed?: boolean;
   isDisabled?: boolean;
+  isDragOverlay?: boolean;
+  isDragPlaceholder?: boolean;
 }>`
   width: 100%;
   display: flex;
@@ -175,7 +177,33 @@ export const ItemContainer = styled.div<{
   margin-bottom: 16px;
   border-radius: 3px;
   position: relative;
-  background-color: ${({ theme }) => theme.palette.white};
+
+  ${(props) =>
+    props.isDragOverlay
+      ? `box-shadow: ${standardShadow(props)}, 0px 16px 32px 0px ${props.theme.palette['grey-200']};
+`
+      : css`
+          box-shadow: ${standardShadow(props)};
+        `}
+  ${(props) =>
+    props.isDragPlaceholder
+      ? css`
+          background-color: ${props.theme.palette['blue-050']};
+          outline: 1px dashed ${props.theme.palette['blue-300']} !important;
+          box-shadow: 0;
+          box-sizing: border-box;
+          border-radius: 3px;
+          ${ItemHeader} {
+            visibility: hidden;
+            opacity: 0;
+          }
+          ${ContentWrapper} {
+            display: none;
+          }
+        `
+      : css`
+          background-color: ${props.theme.palette.white};
+        `}
   ${(props) =>
     props.isDisabled &&
     `
@@ -184,22 +212,14 @@ export const ItemContainer = styled.div<{
     pointer-events: none;
   `}
 
-  box-shadow: ${standardShadow};
-
-  ${({ greyBackground, theme }) =>
+  ${({ greyBackground, isDragOverlay, theme }) =>
     !greyBackground &&
+    !isDragOverlay &&
     `
       &:hover {
         box-shadow: 0 0 0 1px ${theme.palette['grey-300']};
       }
   `}
-
-  &.sortable-drag {
-    opacity: 1 !important;
-    box-shadow:
-      ${standardShadow},
-      0 16px 32px 0 rgba(35, 41, 54, 0.1);
-  }
 
   && .item-content-animation {
     width: 100%;

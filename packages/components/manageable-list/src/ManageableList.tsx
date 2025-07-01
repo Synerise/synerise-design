@@ -1,31 +1,17 @@
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
-import { type MoveEvent, ReactSortable } from 'react-sortablejs';
 
 import List from '@synerise/ds-list';
+import { DragOverlay, SortableContainer } from '@synerise/ds-sortable';
 
 import AddBlankItem from './AddBlankItem/AddBlankItem';
 import AddItem from './AddItem/AddItem';
 import AddItemWithName from './AddItemWithName/AddItemWithName';
+import { DraggableItem } from './Item/DraggableItem';
 import Item from './Item/Item';
 import { type ItemProps } from './Item/Item.types';
 import * as S from './ManageableList.styles';
 import { ListType, type ManageableListProps } from './ManageableList.types';
 import { useTexts } from './hooks/useTexts';
-
-const SORTABLE_CONFIG = {
-  ghostClass: 'sortable-list-ghost-element',
-  className: 'sortable-list',
-  handle: '.item-drag-handle',
-  animation: 150,
-  group: 'column-manager',
-  forceFallback: true,
-  onStart: (_: MoveEvent, sortable: { el: HTMLElement }) => {
-    sortable.el.classList.add('sorting-started');
-  },
-  onEnd: (_: MoveEvent, sortable: { el: HTMLElement }) => {
-    sortable.el.classList.remove('sorting-started');
-  },
-};
 
 const ManageableListComponent = <T extends object>({
   className,
@@ -57,6 +43,7 @@ const ManageableListComponent = <T extends object>({
   renderCustomToggleButton,
 }: ManageableListProps<T>) => {
   const [allItemsVisible, setAllItemsVisible] = useState(false);
+  const [draggedItem, setDraggedItem] = useState<ItemProps<T>>();
   const allTexts = useTexts(texts);
 
   const visibleLimit: number | undefined = visibleItemsLimit || maxToShowItems;
@@ -136,10 +123,13 @@ const ManageableListComponent = <T extends object>({
   );
 
   const getItem = useCallback(
-    (item: ItemProps, index: number) => {
+    (item: ItemProps, index: number, draggable?: boolean) => {
+      const Component = draggable ? DraggableItem : Item;
       return (
-        <Item
+        <Component
           key={item.id}
+          isDragOverlay={index === -1}
+          isDragPlaceholder={draggedItem?.id === item.id && index > -1}
           isFirst={index === 0}
           isLast={index + 1 === items.length}
           listType={type}
@@ -151,7 +141,7 @@ const ManageableListComponent = <T extends object>({
           onMoveTop={changeOrderByButtons ? onMoveTop : undefined}
           onMoveBottom={changeOrderByButtons ? onMoveBottom : undefined}
           item={item}
-          draggable={Boolean(onChangeOrder)}
+          draggable={draggable}
           changeOrderDisabled={changeOrderDisabled}
           greyBackground={greyBackground}
           selected={Boolean(item.id === selectedItemId)}
@@ -165,6 +155,7 @@ const ManageableListComponent = <T extends object>({
       );
     },
     [
+      draggedItem?.id,
       items.length,
       type,
       onItemSelect,
@@ -175,7 +166,6 @@ const ManageableListComponent = <T extends object>({
       changeOrderByButtons,
       onMoveTop,
       onMoveBottom,
-      onChangeOrder,
       changeOrderDisabled,
       greyBackground,
       selectedItemId,
@@ -207,6 +197,18 @@ const ManageableListComponent = <T extends object>({
         )
       : null;
 
+  const handleDragStart = useCallback(
+    ({ active }: { active: { id: string | number } }) => {
+      const stepIndex = visibleItems.findIndex((item) => item.id === active.id);
+      setDraggedItem({ ...visibleItems[stepIndex], index: stepIndex });
+    },
+    [visibleItems],
+  );
+
+  const handleDragEnd = useCallback(() => {
+    setDraggedItem(undefined);
+  }, []);
+
   return (
     <S.ManageableListContainer
       className={`ds-manageable-list ${className || ''}`}
@@ -223,13 +225,19 @@ const ManageableListComponent = <T extends object>({
         />
       )}
       {onChangeOrder && !changeOrderDisabled ? (
-        <ReactSortable
-          {...SORTABLE_CONFIG}
-          list={visibleItems}
-          setList={onChangeOrder}
+        <SortableContainer
+          axis="y"
+          onDragStart={handleDragStart}
+          onDragEnd={handleDragEnd}
+          onDragCancel={handleDragEnd}
+          onOrderChange={onChangeOrder}
+          items={visibleItems}
         >
-          {visibleItems.map(getItem)}
-        </ReactSortable>
+          {visibleItems.map((item, index) => getItem(item, index, true))}
+          <DragOverlay>
+            {draggedItem && <>{getItem(draggedItem, -1, false)}</>}
+          </DragOverlay>
+        </SortableContainer>
       ) : (
         <List
           loading={loading}

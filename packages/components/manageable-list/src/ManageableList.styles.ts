@@ -26,33 +26,6 @@ export const ManageableListContainer = styled.div<ManageableListProps>`
   .ant-spin-nested-loading {
     width: 100%;
   }
-  .sortable-chosen {
-    cursor: grabbing;
-    background-color: ${(props): string => props.theme.palette.white};
-    opacity: 1;
-  }
-  .sorting-started {
-    user-select: none;
-  }
-  .sortable-drag {
-    opacity: 1 !important;
-    box-shadow: 0 16px 32px 0 rgba(35, 41, 54, 0.1);
-  }
-  .sortable-list-ghost-element {
-    box-shadow: none;
-    background-color: ${(props): string => props.theme.palette['blue-050']};
-    &:hover {
-      box-shadow: none;
-      background-color: ${(props): string => props.theme.palette['blue-050']};
-    }
-    border: dashed 1px ${(props): string => props.theme.palette['blue-300']};
-
-    opacity: 1;
-    cursor: grabbing;
-    * {
-      visibility: hidden;
-    }
-  }
 `;
 
 export const ShowMoreButton = styled.div`

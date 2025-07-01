@@ -1,4 +1,4 @@
-import { type ReactNode, type ReactText } from 'react';
+import { type HTMLAttributes, type ReactNode, type ReactText } from 'react';
 
 import type { WithHTMLAttributes } from '@synerise/ds-utils';
 
@@ -7,7 +7,7 @@ import { type ItemProps } from '../Item.types';
 
 type BaseContentItemProps = Omit<
   ContentItemHeaderProps,
-  'texts' | 'isExapnded' | 'setIsExpanded'
+  'texts' | 'isExpanded' | 'setIsExpanded'
 > & {
   dashed?: boolean;
   expanded?: boolean;
@@ -20,6 +20,7 @@ export type ContentItemHeaderProps = {
   size?: 'default' | 'large';
   changeOrderDisabled?: boolean;
   draggable?: boolean;
+  dragHandleProps?: HTMLAttributes<HTMLDivElement>;
   isExpanded?: boolean;
   setIsExpanded: (expandedState: boolean) => void;
   headerPrefix?: ReactNode;
@@ -35,6 +36,8 @@ export type ContentItemHeaderProps = {
   onMoveBottom?: (item: ItemProps) => void;
   isFirst?: boolean;
   isLast?: boolean;
+  isDragPlaceholder?: boolean;
+  isDragOverlay?: boolean;
 };
 
 export type ContentItemProps = WithHTMLAttributes<
