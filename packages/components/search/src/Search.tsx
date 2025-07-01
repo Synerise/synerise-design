@@ -325,6 +325,7 @@ class Search extends React.PureComponent<
             }
             rowHeight={rowHeight}
             width={itemsListWidth}
+            renderInMenu={false}
           />
         </>
       )
@@ -371,6 +372,7 @@ class Search extends React.PureComponent<
               }),
               ...(listProps || {}),
             }}
+            renderInMenu={false}
           />
         </>
       )
@@ -420,6 +422,7 @@ class Search extends React.PureComponent<
               scrollTop: scrollbarScrollTop,
               ...(suggestionsDisplayProps.listProps || {}),
             }}
+            renderInMenu={false}
           />
         </>
       )

@@ -1,10 +1,10 @@
 import React from 'react';
-
-import { VarTypeStringM } from '@synerise/ds-icon';
-import Menu from '@synerise/ds-menu';
-import { renderWithProvider } from '@synerise/ds-utils';
 import { fireEvent, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
+
+import { VarTypeStringM } from '@synerise/ds-icon';
+import ListItem from '@synerise/ds-list-item';
+import { renderWithProvider } from '@synerise/ds-utils';
 
 import Search from './../Search';
 
@@ -34,7 +34,7 @@ const parametersDisplayProps = {
   rowHeight: 32,
   visibleRows: 3,
   itemRender: (item: object) => (
-    <Menu.Item>{item && (item as { text: string }).text}</Menu.Item>
+    <ListItem>{item && (item as { text: string }).text}</ListItem>
   ),
 };
 const suggestionsDisplayProps = {
@@ -43,7 +43,7 @@ const suggestionsDisplayProps = {
   rowHeight: 32,
   visibleRows: 3,
   itemRender: (item: object) => (
-    <Menu.Item>{item && (item as { text: string }).text}</Menu.Item>
+    <ListItem>{item && (item as { text: string }).text}</ListItem>
   ),
 };
 const recentDisplayProps = {
@@ -52,7 +52,7 @@ const recentDisplayProps = {
   rowHeight: 32,
   visibleRows: 3,
   itemRender: (item: object) => (
-    <Menu.Item>{item && (item as { text: string }).text}</Menu.Item>
+    <ListItem>{item && (item as { text: string }).text}</ListItem>
   ),
 };
 
