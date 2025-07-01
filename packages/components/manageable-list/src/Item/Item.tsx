@@ -28,6 +28,9 @@ const Item = ({
   isFirst,
   isLast,
   additionalActions,
+  isDragPlaceholder,
+  isDragOverlay,
+  dragHandleProps,
   renderItem,
 }: Props) => {
   switch (listType) {
@@ -52,6 +55,9 @@ const Item = ({
           onMoveBottom={onMoveBottom}
           isFirst={Boolean(isFirst)}
           isLast={Boolean(isLast)}
+          isDragPlaceholder={isDragPlaceholder}
+          isDragOverlay={isDragOverlay}
+          dragHandleProps={dragHandleProps}
         />
       );
 
@@ -65,6 +71,9 @@ const Item = ({
           draggable={draggable}
           texts={texts}
           renderItem={renderItem}
+          isDragPlaceholder={isDragPlaceholder}
+          isDragOverlay={isDragOverlay}
+          dragHandleProps={dragHandleProps}
         />
       );
     case ListType.FILTER:

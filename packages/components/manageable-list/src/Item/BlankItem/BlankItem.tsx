@@ -16,6 +16,9 @@ const BlankItem = <T extends object>({
   item,
   texts,
   rowGap = 16,
+  isDragPlaceholder,
+  isDragOverlay,
+  dragHandleProps,
   ...rest
 }: BlankItemProps<T>) => {
   const theme = useTheme();
@@ -37,15 +40,18 @@ const BlankItem = <T extends object>({
     },
     [item, onDuplicate],
   );
+
   return (
     <S.BlankItemWrapper
+      isDragPlaceholder={isDragPlaceholder}
+      isDragOverlay={isDragOverlay}
       key={item.id}
       data-testid="manageable-list-blank-item"
       rowGap={rowGap}
       {...rest}
     >
-      {draggable && (
-        <S.DragHandle className="item-drag-handle">
+      {(draggable || isDragOverlay) && (
+        <S.DragHandle {...dragHandleProps}>
           <Icon size={24} component={<DragHandleM color="currentColor" />} />
         </S.DragHandle>
       )}

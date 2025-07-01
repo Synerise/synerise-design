@@ -59,13 +59,20 @@ export default {
     selectedItemId: STRING_CONTROL,
     type: controlFromOptionsArray('inline-radio', ['default', 'filter', 'content']),
   },
-  render: args => {
+  render: ({ onChangeOrder, ...args }) => {
     const [items, setItems] = useState(args.items);
     const [selectedId, setSelectedId] = useState<string | undefined>(args.selectedItemId);
+
     const handleItemAdd = (params: { name: string } | undefined) => {
       args.onItemAdd?.(params);
       params && setItems([...items, { ...EMPTY_ITEM(), name: params.name }]);
     };
+
+    const handleOrderChange = onChangeOrder ? (newOrder) => {
+      setItems(newOrder);
+      onChangeOrder?.(newOrder)
+    } : undefined
+
     const handleItemSelect = (params: { id: string | number }) => {
       const { id } = params;
       args.onItemSelect?.(params);
@@ -75,6 +82,7 @@ export default {
       <ManageableList
         {...args}
         items={items}
+        onChangeOrder={handleOrderChange}
         onItemAdd={args.onItemAdd && handleItemAdd}
         onItemSelect={handleItemSelect}
         selectedItemId={selectedId}

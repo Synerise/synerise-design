@@ -1,9 +1,9 @@
 import React from 'react';
-
-import { FileM } from '@synerise/ds-icon';
-import Tag, { TagShape } from '@synerise/ds-tag';
-import { renderWithProvider } from '@synerise/ds-utils';
 import { fireEvent, screen, waitFor } from '@testing-library/react';
+
+import Tag, { TagShape } from '@synerise/ds-tag';
+import FileM from '@synerise/ds-icon';
+import { renderWithProvider } from '@synerise/ds-utils';
 
 import ManageableList from '../ManageableList';
 
@@ -70,10 +70,10 @@ describe('ManageableList with content items', () => {
         items={[]}
         loading={false}
         maxToShowItems={5}
-        onItemAdd={() => {}}
-        onItemEdit={() => {}}
-        onItemSelect={() => {}}
-        onItemRemove={() => {}}
+        onItemAdd={() => { }}
+        onItemEdit={() => { }}
+        onItemSelect={() => { }}
+        onItemRemove={() => { }}
         type="content"
         texts={texts}
       />,
@@ -90,11 +90,11 @@ describe('ManageableList with content items', () => {
         items={CONTENT_ITEMS}
         loading={false}
         maxToShowItems={5}
-        onItemAdd={() => {}}
-        onItemEdit={() => {}}
-        onItemSelect={() => {}}
-        onItemRemove={() => {}}
-        onItemDuplicate={() => {}}
+        onItemAdd={() => { }}
+        onItemEdit={() => { }}
+        onItemSelect={() => { }}
+        onItemRemove={() => { }}
+        onItemDuplicate={() => { }}
         type="content"
         texts={texts}
       />,
@@ -113,10 +113,10 @@ describe('ManageableList with content items', () => {
         loading={false}
         maxToShowItems={5}
         onItemAdd={onItemAdd}
-        onItemEdit={() => {}}
-        onItemSelect={() => {}}
-        onItemRemove={() => {}}
-        onItemDuplicate={() => {}}
+        onItemEdit={() => { }}
+        onItemSelect={() => { }}
+        onItemRemove={() => { }}
+        onItemDuplicate={() => { }}
         type="content"
         texts={texts}
       />,
@@ -139,11 +139,11 @@ describe('ManageableList with content items', () => {
         expandedIds={['00000000-0000-0000-0000-000000000000']}
         loading={false}
         maxToShowItems={5}
-        onItemAdd={() => {}}
-        onItemEdit={() => {}}
-        onItemSelect={() => {}}
-        onItemRemove={() => {}}
-        onItemDuplicate={() => {}}
+        onItemAdd={() => { }}
+        onItemEdit={() => { }}
+        onItemSelect={() => { }}
+        onItemRemove={() => { }}
+        onItemDuplicate={() => { }}
         type="content"
         texts={texts}
       />,
@@ -165,11 +165,11 @@ describe('ManageableList with content items', () => {
         onExpand={onExpand}
         loading={false}
         maxToShowItems={5}
-        onItemAdd={() => {}}
-        onItemEdit={() => {}}
-        onItemSelect={() => {}}
-        onItemRemove={() => {}}
-        onItemDuplicate={() => {}}
+        onItemAdd={() => { }}
+        onItemEdit={() => { }}
+        onItemSelect={() => { }}
+        onItemRemove={() => { }}
+        onItemDuplicate={() => { }}
         type="content"
         texts={texts}
       />,
@@ -190,18 +190,18 @@ describe('ManageableList with content items', () => {
         items={itemsExpanded}
         loading={false}
         maxToShowItems={5}
-        onItemAdd={() => {}}
-        onItemEdit={() => {}}
-        onItemSelect={() => {}}
-        onItemRemove={() => {}}
-        onItemDuplicate={() => {}}
+        onItemAdd={() => { }}
+        onItemEdit={() => { }}
+        onItemSelect={() => { }}
+        onItemRemove={() => { }}
+        onItemDuplicate={() => { }}
         type="content"
         texts={texts}
       />,
     );
 
     const animationWrappers = screen.queryAllByTestId('item-content-wrapper');
-    animationWrappers.forEach((element) => {
+    animationWrappers.forEach(element => {
       expect(element).toBeVisible();
     });
   });
@@ -212,18 +212,18 @@ describe('ManageableList with content items', () => {
         items={CONTENT_ITEMS}
         loading={false}
         maxToShowItems={5}
-        onItemAdd={() => {}}
-        onItemEdit={() => {}}
-        onItemSelect={() => {}}
-        onItemRemove={() => {}}
-        onItemDuplicate={() => {}}
+        onItemAdd={() => { }}
+        onItemEdit={() => { }}
+        onItemSelect={() => { }}
+        onItemRemove={() => { }}
+        onItemDuplicate={() => { }}
         type="content"
         texts={texts}
       />,
     );
 
     const animationWrappers = screen.queryAllByTestId('item-content-wrapper');
-    animationWrappers.forEach((element) => {
+    animationWrappers.forEach(element => {
       expect(element).not.toBeVisible();
     });
   });
@@ -236,9 +236,9 @@ describe('ManageableList with content items', () => {
         items={CONTENT_ITEMS}
         loading={false}
         maxToShowItems={5}
-        onItemAdd={() => {}}
-        onItemEdit={() => {}}
-        onItemSelect={() => {}}
+        onItemAdd={() => { }}
+        onItemEdit={() => { }}
+        onItemSelect={() => { }}
         onItemRemove={onItemRemove}
         onItemDuplicate={onItemDuplicate}
         type="content"
@@ -272,9 +272,9 @@ describe('ManageableList with content items', () => {
         items={CONTENT_ITEMS}
         loading={false}
         maxToShowItems={5}
-        onItemAdd={() => {}}
-        onItemEdit={() => {}}
-        onItemSelect={() => {}}
+        onItemAdd={() => { }}
+        onItemEdit={() => { }}
+        onItemSelect={() => { }}
         onItemRemove={onItemRemove}
         onItemDuplicate={onItemDuplicate}
         onChangeOrder={onChangeOrder}
@@ -302,9 +302,9 @@ describe('ManageableList with content items', () => {
         items={CONTENT_ITEMS}
         loading={false}
         maxToShowItems={5}
-        onItemAdd={() => {}}
-        onItemEdit={() => {}}
-        onItemSelect={() => {}}
+        onItemAdd={() => { }}
+        onItemEdit={() => { }}
+        onItemSelect={() => { }}
         onItemRemove={onItemRemove}
         onItemDuplicate={onItemDuplicate}
         onChangeOrder={onChangeOrder}
@@ -343,9 +343,9 @@ describe('ManageableList with content items', () => {
         items={CONTENT_ITEMS}
         loading={false}
         maxToShowItems={5}
-        onItemAdd={() => {}}
-        onItemEdit={() => {}}
-        onItemSelect={() => {}}
+        onItemAdd={() => { }}
+        onItemEdit={() => { }}
+        onItemSelect={() => { }}
         onItemRemove={onItemRemove}
         onItemDuplicate={onItemDuplicate}
         onChangeOrder={onChangeOrder}
@@ -381,9 +381,9 @@ describe('ManageableList with content items', () => {
         items={CONTENT_ITEMS}
         loading={false}
         maxToShowItems={5}
-        onItemAdd={() => {}}
-        onItemEdit={() => {}}
-        onItemSelect={() => {}}
+        onItemAdd={() => { }}
+        onItemEdit={() => { }}
+        onItemSelect={() => { }}
         type="content"
         texts={texts}
       />,
@@ -396,12 +396,11 @@ describe('ManageableList with content items', () => {
 
     fireEvent.click(headers[0]);
 
-    waitFor(
-      () => {
-        expect(content[0].parentElement).not.toHaveStyle({ display: 'none' });
-      },
-      { timeout: 100 },
-    );
+    waitFor(() => { expect(content[0].parentElement).not.toHaveStyle({ display: 'none' }); }, { timeout: 100 });
+
+    fireEvent.click(headers[0]);
+
+    waitFor(() => { expect(content[0].parentElement).toHaveStyle({ display: 'none' }); }, { timeout: 100 });
 
     fireEvent.click(headers[0]);
 
@@ -418,9 +417,9 @@ describe('ManageableList with content items', () => {
         items={CONTENT_ITEMS}
         loading={false}
         maxToShowItems={5}
-        onItemAdd={() => {}}
-        onItemEdit={() => {}}
-        onItemSelect={() => {}}
+        onItemAdd={() => { }}
+        onItemEdit={() => { }}
+        onItemSelect={() => { }}
         type="content"
         texts={texts}
       />,

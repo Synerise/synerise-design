@@ -1,4 +1,4 @@
-import type { ReactNode } from 'react';
+import type { HTMLAttributes, ReactNode } from 'react';
 
 import type { WithHTMLAttributes } from '@synerise/ds-utils';
 
@@ -19,6 +19,9 @@ export type BaseBlankItemProps<T extends object> = {
   rowGap?: number;
   onDuplicate?: (duplicateParams: { id: string | number }) => void;
   onRemove?: (removeParams: { id: string | number }) => void;
+  isDragPlaceholder?: boolean;
+  isDragOverlay?: boolean;
+  dragHandleProps?: HTMLAttributes<HTMLDivElement>;
 };
 
 export type BlankItemProps<T extends object> = WithHTMLAttributes<

@@ -35,7 +35,7 @@ export const ScrollbarWrapper = styled.div<{
   }};
   & > * {
     opacity: ${(props): string => (props.loading ? '0.2' : '1')};
-    transition: all 0.25s ease-in-out;
+    transition: opacity 0.25s ease-in-out;
   }
 `;
 

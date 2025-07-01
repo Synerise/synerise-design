@@ -35,11 +35,14 @@ export const ContentItemHeader = ({
   isFirst,
   isLast,
   isExpanded,
+  dragHandleProps,
+  isDragOverlay,
   setIsExpanded,
   size = 'default',
 }: ContentItemHeaderProps) => {
   const theme = useTheme();
   const [editMode, setEditMode] = useState(false);
+
   const updateName = useCallback(
     (updateParams: { id: string | number; name: string }) => {
       setEditMode(false);
@@ -106,7 +109,7 @@ export const ContentItemHeader = ({
       hasPrefix={hasPrefix}
       hasDescription={!!item.description}
       onClick={() => {
-        if (!item.disableExpanding && !editMode) {
+        if (!item.disableExpanding && !editMode && !item.disableHeaderClick) {
           setIsExpanded(!isExpanded);
           onExpand && onExpand(item.id, !isExpanded);
         }
@@ -114,9 +117,9 @@ export const ContentItemHeader = ({
     >
       {hasPrefix && (
         <S.ItemHeaderPrefix>
-          {draggable && (
+          {(draggable || isDragOverlay) && (
             <S.DraggerWrapper
-              className="item-drag-handle"
+              {...dragHandleProps}
               disabled={Boolean(changeOrderDisabled)}
             >
               <Icon size={24} component={<DragHandleM />} />

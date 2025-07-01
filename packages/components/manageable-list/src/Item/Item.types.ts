@@ -1,4 +1,4 @@
-import type { ReactElement, ReactNode, ReactText } from 'react';
+import type { HTMLAttributes, ReactElement, ReactNode, ReactText } from 'react';
 
 import type { AdditionalAction, Texts } from '../ManageableList.types';
 
@@ -24,6 +24,9 @@ export type Props = {
   hideExpander?: boolean;
   expanded?: boolean;
   additionalActions?: AdditionalAction[];
+  isDragPlaceholder?: boolean;
+  isDragOverlay?: boolean;
+  dragHandleProps?: HTMLAttributes<HTMLDivElement>;
 };
 
 export type ItemProps<T extends object = object> = T & {
@@ -61,7 +64,14 @@ export type ItemProps<T extends object = object> = T & {
   };
   created?: string;
   dropdown?: ReactElement;
+  /**
+   * @description disables expanding item on click - will always show entire content without expanding
+   */
   disableExpanding?: boolean;
+  /**
+   * @description disables header click to expand/collapse item
+   */
+  disableHeaderClick?: boolean;
   expanded?: boolean;
   disabled?: boolean;
   headerSuffix?: ReactNode;

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { HTMLAttributes } from 'react';
 import { faker } from '@faker-js/faker';
 
 export const getContent = (orientation?: string) => (
@@ -22,17 +22,12 @@ export const getContent = (orientation?: string) => (
 export const getData = () =>
   [...new Array(20)].map((_item, index) => {
     return {
-      id: index,
+      id: faker.string.uuid(),
       name: faker.person.fullName(),
     };
   });
 
 export const INITIAL_DATA = getData();
-
-export const SORTABLE_CONFIG = {
-  animation: 200,
-  forceFallback: true,
-};
 
 const ITEM_STYLE = {
   width: '100%',
@@ -43,14 +38,16 @@ const ITEM_STYLE = {
   border: '1px solid #ececec',
   cursor: 'grab',
   margin: '2px 0',
+  background: '#fff'
 };
 
-export const renderItem = (item: ItemType) => {
+export const renderItem = ({id, name, dragHandleProps, ...rest}: ItemType) => {
+  
   return (
-    <div className='chromatic-ignore' style={ITEM_STYLE} key={`${item.id}-${item.name}`}>
-      {item.id}.{item.name}
+    <div className='chromatic-ignore' style={ITEM_STYLE} key={`${id}-${name}`} {...dragHandleProps} {...rest}>
+      {name}
     </div>
   );
 };
 
-export type ItemType = typeof INITIAL_DATA[number];
+export type ItemType = typeof INITIAL_DATA[number] & { dragHandleProps: HTMLAttributes<HTMLElement>};
