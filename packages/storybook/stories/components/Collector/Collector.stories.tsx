@@ -3,7 +3,9 @@ import { isEqual } from 'lodash';
 import { Meta, StoryObj } from '@storybook/react-webpack5';
 import { fn } from 'storybook/test';
 
+import Button from '@synerise/ds-button';
 import Collector, { CollectorProps, CollectorValue } from '@synerise/ds-collector';
+import Icon, { SnippetM } from '@synerise/ds-icon';
 
 import { BOOLEAN_CONTROL, CLASSNAME_ARG_CONTROL, fixedWrapper588, REACT_NODE_AS_STRING, STRING_CONTROL } from '../../utils';
 import { SUGGESTIONS_SAME_LABEL, SUGGESTIONS, TEXTS } from './Collector.const';
@@ -171,5 +173,14 @@ export const VariableHeight: Story = {
   args: {
     ...WithLabelAndDescription.args,
     selected: SUGGESTIONS.slice(1, 12),
+  },
+};
+
+
+export const WithButtonPanelPrefix: Story = {
+  args: {
+    ...WithLabelAndDescription.args,
+    selected: SUGGESTIONS.slice(1, 12),
+    buttonPanelPrefix: <Button type='ghost' mode='single-icon'><Icon component={<SnippetM />} /></Button>
   },
 };

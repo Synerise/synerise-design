@@ -38,6 +38,7 @@ const Collector = ({
   allowCustomValue,
   allowMultipleValues,
   addButtonProps,
+  buttonPanelPrefix,
   cancelButtonProps,
   keepSearchQueryOnSelect,
   error,
@@ -475,6 +476,7 @@ const Collector = ({
               texts={texts}
               addButtonProps={{ disabled: !isAddActive, ...addButtonProps }}
               cancelButtonProps={cancelButtonProps}
+              buttonPanelPrefix={buttonPanelPrefix}
             />
           </S.RightSide>
         )}

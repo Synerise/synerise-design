@@ -41,6 +41,7 @@ import Collector from '@synerise/ds-collector'
 | addButtonProps                   | Props object applied to primary button                                 | ButtonProps                                   | -       |
 | cancelButtonProps                | Props object applied to secondary button                               | ButtonProps                                   | -       |
 | allowCustomValue                 | Enables an option to add value not included in the suggestions array   | boolean                                       | `false` |
+| buttonPanelPrefix                | content to render to the left of the add / cancel buttons              | ReactNode                                     | ---     |
 | className                        | Class added to the parent container                                    | string                                        | ---     |
 | description                      | Description rendered below the main component                          | string / React.ReactNode                      | ---     |
 | disabled                         | Whether the component is disabled.                                     | boolean                                       | `false` |

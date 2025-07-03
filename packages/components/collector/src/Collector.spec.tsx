@@ -56,6 +56,32 @@ describe('Collector', () => {
       { timeout: 500 },
     );
   });
+
+
+  it('Should render buttonPanelPrefix', async () => {
+    const BUTTON_PANEL_PREFIX = 'BUTTON_PANEL_PREFIX'
+    renderWithProvider(
+      <Collector
+        allowCustomValue
+        allowMultipleValues
+        onItemSelect={onSelectFn}
+        selected={[]}
+        searchValue={''}
+        suggestions={SUGGESTIONS}
+        onConfirm={onConfirmFn}
+        buttonPanelPrefix={BUTTON_PANEL_PREFIX}
+        texts={{
+          add: 'Add',
+          cancel: 'Cancel',
+          placeholder: PLACEHOLDER,
+          toSelect: 'to select',
+          toNavigate: 'to navigate',
+        }}
+      />
+    );
+    expect(screen.getByText(BUTTON_PANEL_PREFIX)).toBeInTheDocument();
+  });
+  
   it('Should render selected values', () => {
     renderWithProvider(
       <Collector
