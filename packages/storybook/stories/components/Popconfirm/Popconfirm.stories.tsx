@@ -1,13 +1,17 @@
+import isChromatic from 'chromatic/isChromatic';
 import React from 'react';
-import { Meta, StoryObj } from '@storybook/react-webpack5';
 import { fn } from 'storybook/test';
-import isChromatic from "chromatic/isChromatic";
 
-import Popconfirm, { PopconfirmProps } from '@synerise/ds-popconfirm';
-
-import { BOOLEAN_CONTROL, centeredPaddedWrapper, fixedWrapper300 } from '../../utils';
+import { Meta, StoryObj } from '@storybook/react-webpack5';
 import Button from '@synerise/ds-button';
 import Icon, { CloseM, WarningFillM } from '@synerise/ds-icon';
+import Popconfirm, { PopconfirmProps } from '@synerise/ds-popconfirm';
+
+import {
+  BOOLEAN_CONTROL,
+  centeredPaddedWrapper,
+  fixedWrapper300,
+} from '../../utils';
 
 type Story = StoryObj<PopconfirmProps>;
 
@@ -16,7 +20,7 @@ export default {
   title: 'Components/Popconfirm',
   tags: ['autodocs'],
   decorators: [fixedWrapper300, centeredPaddedWrapper],
-  render: args => {
+  render: (args) => {
     return <Popconfirm {...args} />;
   },
   argTypes: {
@@ -49,12 +53,12 @@ export const Default: Story = {};
 export const withDescription: Story = {
   args: {
     description: 'This is popconfirm modal example with simple body text here',
-  }
+  },
 };
 export const withStaticVisible: Story = {
   args: {
     staticVisible: true,
-  }
+  },
 };
 
 export const Open: Story = {
@@ -69,5 +73,5 @@ export const Open: Story = {
       'https://cdn.pixabay.com/photo/2015/07/05/10/18/tree-832079_960_720.jpg',
     ],
     icon: <Icon component={<WarningFillM />} color="#ffc300" />,
-  }
+  },
 };

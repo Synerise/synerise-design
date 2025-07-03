@@ -33,11 +33,54 @@ class Select extends Component<Props> {
       grey,
       dropdownClassName,
       asFormElement,
+      raw,
       ...antdProps
     } = this.props;
     const { size } = antdProps;
     const hasBottomMargin = asFormElement || Boolean(errorText || description);
-    return (
+    const simpleSelect = (
+      <S.SelectWrapper
+        grey={grey}
+        error={Boolean(errorText)}
+        className={classNames(
+          'ds-select-wrapper',
+          { error: errorText || error },
+          { [className as string]: !!className },
+        )}
+        style={style}
+      >
+        {!!prefixel && <S.PrefixWrapper>{prefixel}</S.PrefixWrapper>}
+        <S.AntdSelect
+          dropdownAlign={{ offset: [0, 8] }} // STOR-588
+          {...antdProps}
+          getPopupContainer={getPopupContainer}
+          listHeight={listHeight}
+          size={size}
+          withPrefixel={!!prefixel}
+          withSuffixel={!!suffixel}
+          clearIcon={
+            <Tooltip title={clearTooltip}>
+              <span>
+                <Icon
+                  component={<Close3M />}
+                  size={size === 'small' ? 18 : 24}
+                />
+              </span>
+            </Tooltip>
+          }
+          removeIcon={<Icon component={<CloseS />} />}
+          className={classNames({ error: errorText || error })}
+          dropdownClassName={classNames(
+            'ps__child--consume',
+            dropdownClassName,
+          )}
+        />
+        {!!suffixel && <S.SuffixWrapper>{suffixel}</S.SuffixWrapper>}
+      </S.SelectWrapper>
+    );
+    return raw ? (
+      simpleSelect
+    ) : (
       <S.SelectContainer
         className="ds-select-container"
         hasBottomMargin={hasBottomMargin}
@@ -49,44 +92,7 @@ class Select extends Component<Props> {
           tooltip={tooltip}
           tooltipConfig={tooltipConfig}
         >
-          <S.SelectWrapper
-            grey={grey}
-            error={Boolean(errorText)}
-            className={classNames(
-              'ds-select-wrapper',
-              { error: errorText || error },
-              { [className as string]: !!className },
-            )}
-            style={style}
-          >
-            {!!prefixel && <S.PrefixWrapper>{prefixel}</S.PrefixWrapper>}
-            <S.AntdSelect
-              dropdownAlign={{ offset: [0, 8] }} // STOR-588
-              {...antdProps}
-              getPopupContainer={getPopupContainer}
-              listHeight={listHeight}
-              size={size}
-              withPrefixel={!!prefixel}
-              withSuffixel={!!suffixel}
-              clearIcon={
-                <Tooltip title={clearTooltip}>
-                  <span>
-                    <Icon
-                      component={<Close3M />}
-                      size={size === 'small' ? 18 : 24}
-                    />
-                  </span>
-                </Tooltip>
-              }
-              removeIcon={<Icon component={<CloseS />} />}
-              className={classNames({ error: errorText || error })}
-              dropdownClassName={classNames(
-                'ps__child--consume',
-                dropdownClassName,
-              )}
-            />
-            {!!suffixel && <S.SuffixWrapper>{suffixel}</S.SuffixWrapper>}
-          </S.SelectWrapper>
+          {simpleSelect}
         </FormField>
       </S.SelectContainer>
     );
