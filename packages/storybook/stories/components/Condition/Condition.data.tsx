@@ -514,6 +514,34 @@ export const STEPS_POPULATED = [
           availableFactorTypes: getAvailableFactorTypes(OPERATORS_ITEMS[10]),
         },
       },
+
+      {
+        id: '75efa0d3-23dd-48e0-a02b-8700a69815qa',
+        parameter: {
+          ...DEFAULT_PARAMETER_VALUE,
+          value: {
+            type: '',
+            ...PARAMETER_ITEMS[1],
+          },
+        },
+        operator: {
+          ...DEFAULT_OPERATOR_VALUE,
+          value: {
+            ...OPERATORS_ITEMS[10],
+          },
+          availableFactors: getAvailableFactorTypes(OPERATORS_ITEMS[10]),
+        },
+        factor: {
+          ...DEFAULT_FACTOR_VALUE,
+          selectedFactorType: 'dynamicKey' as const,
+          defaultFactorType: 'text' as const,
+          value: {
+            key: 'Param key',
+            value: 'Param value',
+          },
+          availableFactorTypes: getAvailableFactorTypes(OPERATORS_ITEMS[10]),
+        },
+      },
     ],
   },
   {

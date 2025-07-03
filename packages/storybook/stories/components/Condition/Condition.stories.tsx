@@ -1,14 +1,15 @@
 import React, { ReactText, useState } from 'react';
 import { v4 as uuid } from 'uuid';
+import { fn } from 'storybook/test';
 
-import { action } from 'storybook/actions';
 import Button from '@synerise/ds-button';
 import Condition, { ConditionStep } from '@synerise/ds-condition';
 import ContextSelector, { ContextGroup, ContextItem } from '@synerise/ds-context-selector';
-import ItemPicker, { ItemPickerProps, ItemPickerPropsNew } from '@synerise/ds-item-picker';
+import { theme } from '@synerise/ds-core';
+import ItemPicker, { ItemPickerPropsNew } from '@synerise/ds-item-picker';
 import type { FactorValueType } from '@synerise/ds-factors';
 import type { OperatorsItem } from '@synerise/ds-operators';
-import Icon, { Add3M } from '@synerise/ds-icon';
+import Icon, { Add3M, SnippetM, UserDownM } from '@synerise/ds-icon';
 
 import type { ConditionMeta, ConditionStory } from './Condition.types';
 
@@ -28,7 +29,7 @@ import { CONTEXT_TEXTS } from '../ContextSelector/data/context.data';
 import { CONTEXT_CLIENT_GROUPS, CONTEXT_CLIENT_ITEMS } from '../ContextSelector/data/client.data';
 import { BOOLEAN_CONTROL, controlFromOptionsArray, fixedWrapper300, NUMBER_CONTROL } from '../../utils';
 import { ITEMS_IN_SECTIONS, SECTIONS } from '../ItemPicker/ItemPicker.data';
-import { fn } from 'storybook/test';
+import { action } from 'storybook/internal/actions';
 
 export default {
   component: Condition,
@@ -324,6 +325,29 @@ export default {
           {...args}
           showActionAttribute={showActionAttribute}
           steps={steps}
+          inputProps={{
+            icon1: <Icon component={<SnippetM />} color={theme.palette['grey-600']} />
+          }}
+          factorValueExtraProps={{
+            text: {
+              autoCompleteProps: {
+                icon1: <Icon component={<SnippetM />} color={theme.palette['grey-600']} onClick={e => {e.preventDefault(); e.stopPropagation(); console.log('icon1 clicked')}} />,
+                icon1Tooltip: 'Autocomplete Tooltip',
+                icon2: <Icon component={<UserDownM />} color={theme.palette['grey-600']} onClick={e => {e.preventDefault(); e.stopPropagation(); console.log('icon2 clicked')}} />,
+                icon2Tooltip: 'User Tooltip'
+              }
+            },
+            dynamicKey: {
+              keyInputProps: {
+                icon1: <Icon component={<SnippetM />} color={theme.palette['grey-600']} />,
+                icon1Tooltip: 'Key Input Tooltip'
+              },
+              valueInputProps: {
+                icon1: <Icon component={<SnippetM />} color={theme.palette['grey-600']} />,
+                icon1Tooltip: 'Value Input Tooltip'
+              }
+            }
+          }}
           onChangeContext={handleChangeContext}
           onChangeSubject={handleChangeContext}
           onChangeParameter={handleChangeParameter}

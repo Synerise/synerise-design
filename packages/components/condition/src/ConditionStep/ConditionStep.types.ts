@@ -26,6 +26,7 @@ export type ConditionStepProps = Pick<
   | 'factorParameterSelectorComponent'
   | 'parameterSelectorComponent'
   | 'actionAttributeParameterSelectorComponent'
+  | 'factorValueExtraProps'
 > & {
   index: number;
   isLast?: boolean;

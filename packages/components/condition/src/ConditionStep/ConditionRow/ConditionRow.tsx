@@ -39,6 +39,7 @@ export const ConditionRow = ({
   readOnly = false,
   parameterSelectorComponent,
   factorParameterSelectorComponent,
+  factorValueExtraProps,
 }: T.ConditionRowProps) => {
   const conditionFactorErrorText = conditionFactor?.errorText;
   const conditionParameterErrorText = conditionParameter?.errorText;
@@ -227,6 +228,7 @@ export const ConditionRow = ({
                       },
                     }
                   }
+                  factorValueExtraProps={factorValueExtraProps}
                   {...conditionFactorProps}
                   inputProps={inputProps}
                   getPopupContainerOverride={

@@ -1,14 +1,16 @@
 import AntdAutoComplete from 'antd/lib/auto-complete';
 import type { RefSelectProps } from 'antd/lib/select';
-import React, { useCallback, useEffect, useRef } from 'react';
+import React, { useCallback, useEffect, useMemo, useRef } from 'react';
 
 import FormField from '@synerise/ds-form-field';
 import { type AutosizeInputRefType, AutosizeWrapper } from '@synerise/ds-input';
+import Tooltip from '@synerise/ds-tooltip';
 import { useResizeObserver } from '@synerise/ds-utils';
 
 import * as S from './Autocomplete.styles';
 import { type AutocompleteProps } from './Autocomplete.types';
 import './style/index.less';
+import { getIconsWidth } from './utils/getIconsWidth';
 
 const AUTOSIZE_EXTRA_WIDTH = 27;
 
@@ -25,6 +27,10 @@ const Autocomplete = ({
   readOnly,
   tooltip,
   tooltipConfig,
+  icon1,
+  icon1Tooltip,
+  icon2,
+  icon2Tooltip,
   ...rest
 }: AutocompleteProps) => {
   const scrollLeftRef = useRef(0);
@@ -81,6 +87,33 @@ const Autocomplete = ({
   }, []);
 
   useResizeObserver(elementRef, handleWrapperResize);
+  const iconCount = +!!icon1 + +!!icon2;
+
+  const handleIconsClick = useCallback(() => {
+    antSelectRef.current?.focus();
+  }, []);
+
+  const icons = useMemo(() => {
+    const icon1WithTooltip = icon1Tooltip ? (
+      <Tooltip title={icon1Tooltip}>{icon1}</Tooltip>
+    ) : (
+      icon1
+    );
+    const icon2WithTooltip = icon2Tooltip ? (
+      <Tooltip title={icon2Tooltip}>{icon2}</Tooltip>
+    ) : (
+      icon2
+    );
+    return (
+      <>
+        {(icon1WithTooltip || icon2WithTooltip) && (
+          <S.IconWrapper onClick={handleIconsClick}>
+            {icon1WithTooltip} {icon2WithTooltip}
+          </S.IconWrapper>
+        )}
+      </>
+    );
+  }, [handleIconsClick, icon1, icon2, icon1Tooltip, icon2Tooltip]);
 
   return (
     <S.AutocompleteWrapper
@@ -95,14 +128,18 @@ const Autocomplete = ({
         description={description}
         errorText={errorText}
       >
-        <S.ComponentWrapper readOnly={readOnly} error={!!errorText || error}>
+        <S.ComponentWrapper
+          readOnly={readOnly}
+          error={!!errorText || error}
+          iconCount={iconCount}
+        >
           <AutosizeWrapper
             autoResize={!!autoResize}
             value={rest.value}
             placeholder={placeholderString}
             transformRef={transformRef}
             ref={autosizeRef}
-            extraWidth={AUTOSIZE_EXTRA_WIDTH}
+            extraWidth={AUTOSIZE_EXTRA_WIDTH + getIconsWidth(iconCount)}
             preAutosize={handlePreAutosize}
             onAutosize={handleAutosize}
           >
@@ -114,6 +151,7 @@ const Autocomplete = ({
               ref={antSelectRef}
               data-testid="autocomplete-autosize-input"
             />
+            {icons}
           </AutosizeWrapper>
         </S.ComponentWrapper>
       </FormField>

@@ -132,6 +132,7 @@ export type ConditionProps = {
     | 'parameter'
     | 'context';
   inputProps?: Partial<InputProps>;
+  factorValueExtraProps?: FactorsProps['factorValueExtraProps'];
   onDeactivate?: (
     currentStepId: ReactText,
     currentConditionId: ReactText,
