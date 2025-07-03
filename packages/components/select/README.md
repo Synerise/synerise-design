@@ -105,6 +105,7 @@ const { Option, OptGroup } = Select;
 | tooltip                  | Tooltip content                                                                                   | React.ReactNode                                                                   | -                                            |
 | tooltipConfig            | Config of tooltip                                                                                 | [TooltipProps](https://design.synerise.com/docs/components/tooltip#api)           | -                                            |
 | value                    | Current selected option.                                                                          | `string` / `string[]` / `number` / `number[]` / `LabeledValue` / `LabeledValue[]` | -                                            |
+| raw                      | Simple select without label, description and margins                                              | boolean                                                                           | `false`                                      |
 
 ### Option props
 
