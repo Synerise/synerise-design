@@ -61,6 +61,7 @@ export const ConditionStep = ({
   parameterSelectorComponent,
   factorParameterSelectorComponent,
   showEmptyConditionPlaceholder = false,
+  factorValueExtraProps,
 }: T.ConditionStepProps) => {
   const { attributes, listeners, setNodeRef, transform, transition } =
     useSortable({ id: step.id });
@@ -238,6 +239,7 @@ export const ConditionStep = ({
           readOnly={readOnly}
           parameterSelectorComponent={parameterSelectorComponent}
           factorParameterSelectorComponent={factorParameterSelectorComponent}
+          factorValueExtraProps={factorValueExtraProps}
         />
       );
     },
@@ -268,6 +270,7 @@ export const ConditionStep = ({
       readOnly,
       parameterSelectorComponent,
       factorParameterSelectorComponent,
+      factorValueExtraProps,
     ],
   );
 

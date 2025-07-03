@@ -1,5 +1,6 @@
 import type { ComponentType, ReactNode, ReactText } from 'react';
 
+import type { AutocompleteProps } from '@synerise/ds-autocomplete';
 import type { CollectorValue } from '@synerise/ds-collector';
 import type { Texts as DateRangeTexts } from '@synerise/ds-date-range-picker/dist/DateRangePicker.types';
 import type {
@@ -173,6 +174,19 @@ export type FactorTypeMapping = Record<
   Partial<SelectedFactorType>
 >;
 
+type InputPropKeys = 'icon1' | 'icon1Tooltip' | 'icon2' | 'icon2Tooltip';
+export type ExtraPropsMapping = {
+  text: {
+    inputProps?: Pick<InputProps, InputPropKeys>;
+    autoCompleteProps?: Partial<AutocompleteProps>;
+  };
+  dynamicKey: {
+    keyInputProps?: Pick<InputProps, InputPropKeys>;
+    valueInputProps?: Pick<InputProps, InputPropKeys>;
+  };
+  // TODO REMAINING COMPONENTS
+};
+
 export type ArrayProps = {
   itemType?: ArrayItemType;
   limit?: number;
@@ -190,6 +204,7 @@ export type FactorsProps = {
   selectedFactorType: FactorType;
   defaultFactorType: FactorType;
   customFactorValueComponents?: Partial<FactorTypeMapping>;
+  factorValueExtraProps?: Partial<ExtraPropsMapping>;
   getPopupContainerOverride?: (trigger: HTMLElement | null) => HTMLElement;
   onActivate?: () => void;
   onDeactivate?: () => void;
@@ -289,6 +304,7 @@ export type FactorValueProps = Pick<
   | 'relativeDateProps'
   | 'arrayProps'
   | 'getMenuEntryProps'
+  | 'factorValueExtraProps'
 > & {
   texts: FactorsTexts;
   selectedFactor: SelectedFactorType;
@@ -312,6 +328,7 @@ export type FactorValueComponentProps = Pick<
   | 'readOnly'
   | 'arrayProps'
   | 'getMenuEntryProps'
+  | 'factorValueExtraProps'
 > & {
   texts: FactorsTexts;
   onChange: (value: FactorValueType) => void;

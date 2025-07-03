@@ -11,6 +11,8 @@ import Loader from '@synerise/ds-loader';
 
 import { BOOLEAN_CONTROL, CLASSNAME_ARG_CONTROL, fixedWrapper400, NUMBER_CONTROL, PREFIXCLS_ARG_CONTROL, REACT_NODE_AS_STRING, STRING_CONTROL } from '../../utils';
 import { AutocompleteWithState } from "./Autocomplete.data";
+import Icon, { EmoticonsM, SnippetM } from '@synerise/ds-icon';
+import { theme } from '@synerise/ds-core';
 
 const meta: Meta<AutocompleteProps> = {
   title: "Components/InputElements/Autocomplete",
@@ -173,5 +175,15 @@ export const WithError: StoryObj<AutocompleteProps> = {
     placeholder: "Placeholder",
     autoResize: false,
     errorText: "Error message"
+  }
+};
+
+export const WithIcons: StoryObj<AutocompleteProps> = {
+  args: {
+    ...Primary.args,
+    icon1: <Icon color={theme.palette['grey-600']} component={<SnippetM />} />,
+    icon1Tooltip: 'Open snippets',
+    icon2: <Icon color={theme.palette['grey-600']} component={<EmoticonsM />} />,
+    icon2Tooltip: 'Emoji picker',
   }
 };

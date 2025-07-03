@@ -117,6 +117,7 @@ const Factors = ({
   inputProps,
   arrayProps,
   readOnly,
+  factorValueExtraProps,
   getMenuEntryProps,
 }: FactorsProps) => {
   const allTexts = useTexts(texts);
@@ -186,6 +187,7 @@ const Factors = ({
         allowClear={allowClear}
         readOnly={readOnly}
         getMenuEntryProps={getMenuEntryProps}
+        factorValueExtraProps={factorValueExtraProps}
       />
     </S.Group>
   );

@@ -10,7 +10,7 @@ import React, {
 } from 'react';
 
 import Autocomplete from '@synerise/ds-autocomplete';
-import { theme } from '@synerise/ds-core';
+import { useTheme } from '@synerise/ds-core';
 import Icon, { FullScreenM } from '@synerise/ds-icon';
 import { Input } from '@synerise/ds-input';
 
@@ -32,6 +32,7 @@ const TextInput = ({
   inputProps,
   getPopupContainerOverride,
   readOnly = false,
+  factorValueExtraProps,
 }: FactorValueComponentProps) => {
   const [openExpanseEditor, setOpenExpanseEditor] = useState(false);
   const [inputRef, setInputRef] =
@@ -40,6 +41,7 @@ const TextInput = ({
     >();
   const [localValue, setLocalValue] = useState(value);
   const [localError, setLocalError] = useState(false);
+  const theme = useTheme();
 
   useEffect(() => {
     if (inputRef?.current && opened) {
@@ -90,6 +92,10 @@ const TextInput = ({
       []
     );
   }, [localValue, autocompleteText]);
+
+  const { autoCompleteProps = {}, inputProps: extraInputProps = {} } =
+    factorValueExtraProps?.text || {};
+
   const renderInput = (
     typesOfInput: typeof textType,
     factorsType: typeof factorType,
@@ -98,6 +104,7 @@ const TextInput = ({
       return (
         <Autocomplete
           {...inputProps}
+          {...autoCompleteProps}
           placeholder={texts.valuePlaceholder}
           value={localValue as string}
           onChange={handleAutocomplete}
@@ -122,6 +129,7 @@ const TextInput = ({
         <S.InputWrapper>
           <Input
             {...inputProps}
+            {...extraInputProps}
             handleInputRef={setInputRef}
             placeholder={texts.valuePlaceholder}
             value={localValue as string}
@@ -130,6 +138,7 @@ const TextInput = ({
             onFocus={onActivate}
             error={localError || error}
             readOnly={readOnly}
+            resetMargin
           />
         </S.InputWrapper>
       );
@@ -139,6 +148,7 @@ const TextInput = ({
         <S.InputWrapper>
           <Input
             {...inputProps}
+            {...extraInputProps}
             handleInputRef={setInputRef}
             placeholder={texts.valuePlaceholder}
             icon1={
@@ -159,6 +169,7 @@ const TextInput = ({
             onFocus={onActivate}
             error={localError || error}
             readOnly={readOnly}
+            resetMargin
           />
         </S.InputWrapper>
         <TextModal

@@ -3,6 +3,9 @@ import styled, { css } from 'styled-components';
 import { type AutoResizeProp } from '@synerise/ds-input';
 import { autoresizeConfObjToCss } from '@synerise/ds-input/dist/Input.styles';
 
+import { ICON_GAP, ICON_OFFSET } from './Autocomplete.const';
+import { getIconsWidth } from './utils/getIconsWidth';
+
 const active = () => css`
   transition:
     ease-in-out all 0.2s,
@@ -84,14 +87,38 @@ export const AutocompleteWrapper = styled.div<{ autoResize?: AutoResizeProp }>`
   }
   .ant-select-selection-search-input {
     padding: 0;
+    padding-right: 10px;
   }
+`;
+
+export const IconWrapper = styled.div`
+  position: absolute;
+  right: ${ICON_OFFSET}px;
+  top: 0;
+  display: flex;
+  bottom: 0;
+  align-items: center;
+  gap: ${ICON_GAP}px;
+  z-index: 5;
 `;
 
 export const ComponentWrapper = styled.div<{
   error?: boolean;
   readOnly?: boolean;
+  iconCount?: number;
 }>`
 &&& {
+  ${(props) =>
+    props.iconCount &&
+    `
+    position: relative;
+    display: inline-block;
+    & {
+        .ant-select .ant-select-selector .ant-select-selection-search {
+          right: ${getIconsWidth(props.iconCount)}px;
+        }
+      }
+  `};
   .ant-select-auto-complete {
     
     ${(props) => {

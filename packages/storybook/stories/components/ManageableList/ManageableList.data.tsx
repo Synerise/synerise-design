@@ -1,15 +1,22 @@
 import React, { ReactElement, ReactNode } from 'react';
-import { faker } from '@faker-js/faker';
 import { action } from 'storybook/actions';
 
-import Icon, { FolderM, InputM, PauseM, PlayM, ShowM, StopM } from '@synerise/ds-icon';
-import { DropdownMenu } from '@synerise/ds-manageable-list/dist/Item/FilterItem/FilterItem.styles';
-import Button from '@synerise/ds-button';
+import { faker } from '@faker-js/faker';
 import Avatar from '@synerise/ds-avatar';
-import Status from '@synerise/ds-status';
-import { Input } from '@synerise/ds-input';
-import Tag, { TagShape } from '@synerise/ds-tag';
+import Button from '@synerise/ds-button';
 import { theme } from '@synerise/ds-core';
+import Icon, {
+  FolderM,
+  InputM,
+  PauseM,
+  PlayM,
+  ShowM,
+  StopM,
+} from '@synerise/ds-icon';
+import { Input } from '@synerise/ds-input';
+import { DropdownMenu } from '@synerise/ds-manageable-list/dist/Item/FilterItem/FilterItem.styles';
+import Status from '@synerise/ds-status';
+import Tag, { TagShape } from '@synerise/ds-tag';
 
 import { avatar1 } from '../../constants';
 
@@ -19,7 +26,8 @@ export const TEXTS = {
   showLessLabel: 'show less',
   more: 'more',
   less: 'less',
-  activateItemTitle: 'By activating this filter, you will cancel your unsaved filter settings',
+  activateItemTitle:
+    'By activating this filter, you will cancel your unsaved filter settings',
   activate: 'Activate',
   cancel: 'Cancel',
   deleteConfirmationTitle: 'Delete filter',
@@ -115,7 +123,15 @@ const BASE_ITEM = (name?: string) => ({
   canDelete: true,
 });
 
-const DROPDOWN_MENU = <DropdownMenu dataSource={[{ text: 'Option 1' }, { text: 'Option 2' }, { text: 'Option 3' }]} />;
+const DROPDOWN_MENU = (
+  <DropdownMenu
+    dataSource={[
+      { text: 'Option 1' },
+      { text: 'Option 2' },
+      { text: 'Option 3' },
+    ]}
+  />
+);
 
 export type ContentItemType = {
   id: string;
@@ -158,7 +174,14 @@ export const CONTENT_ITEMS: ContentItemType[] = [
   {
     ...BASE_ITEM('With tag, icon and expander'),
     icon: <FolderM />,
-    content: <Input label={'Label'} placeholder={'Placeholder'} style={{ width: '472px' }} resetMargin />,
+    content: (
+      <Input
+        label={'Label'}
+        placeholder={'Placeholder'}
+        style={{ width: '472px' }}
+        resetMargin
+      />
+    ),
     tag: (
       <Tag
         name={'A'}
@@ -183,7 +206,11 @@ export const CONTENT_ITEMS: ContentItemType[] = [
   {
     ...BASE_ITEM('With additional suffix'),
     additionalSuffix: (
-      <Button type="ghost" mode="single-icon" onClick={action('additional button action')}>
+      <Button
+        type="ghost"
+        mode="single-icon"
+        onClick={action('additional button action')}
+      >
         <Icon component={<ShowM />} />
       </Button>
     ),
@@ -197,7 +224,14 @@ export const CONTENT_ITEMS: ContentItemType[] = [
     ...BASE_ITEM('With expander and options'),
     icon: <FolderM />,
     dropdown: DROPDOWN_MENU,
-    content: <Input label={'Label'} placeholder={'Placeholder'} style={{ width: '472px' }} resetMargin />,
+    content: (
+      <Input
+        label={'Label'}
+        placeholder={'Placeholder'}
+        style={{ width: '472px' }}
+        resetMargin
+      />
+    ),
   },
 ];
 const BASE_AUTOMATION_ITEM = (name?: string) => ({
@@ -207,7 +241,7 @@ const BASE_AUTOMATION_ITEM = (name?: string) => ({
   canDelete: true,
 });
 
-const createTag = label => {
+const createTag = (label) => {
   return (
     <Tag
       name={label}
@@ -226,7 +260,8 @@ export const CONTENT_ITEMS_AUTOMATION: ContentItemType[] = [
     content: <>Content</>,
     tags: (
       <>
-        {createTag('Mon 14:00, Wed 15:00, Sat 16:00, +4')} from {createTag('23 Aug 2024')} to {createTag('23 Aug 2024')}
+        {createTag('Mon 14:00, Wed 15:00, Sat 16:00, +4')} from{' '}
+        {createTag('23 Aug 2024')} to {createTag('23 Aug 2024')}
       </>
     ),
   },
@@ -278,13 +313,16 @@ export const CONTENT_ITEMS_LARGE: ContentItemType[] = [
         />
       </>
     ),
-    description: 'Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur',
+    description:
+      'Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur',
     headerPrefix: (
       <Avatar
         backgroundColor="orange"
         backgroundColorHue="100"
         shape="square"
-        iconComponent={<Icon component={<InputM />} color={theme.palette['grey-800']} />}
+        iconComponent={
+          <Icon component={<InputM />} color={theme.palette['grey-800']} />
+        }
       />
     ),
   },
@@ -323,7 +361,9 @@ export const CONTENT_ITEMS_LARGE: ContentItemType[] = [
         backgroundColor="orange"
         backgroundColorHue="100"
         shape="square"
-        iconComponent={<Icon component={<InputM />} color={theme.palette['grey-800']} />}
+        iconComponent={
+          <Icon component={<InputM />} color={theme.palette['grey-800']} />
+        }
       />
     ),
   },
@@ -357,25 +397,37 @@ export const CONTENT_ITEMS_LARGE: ContentItemType[] = [
         />
       </>
     ),
-    description: 'Neque porro quisquam est qui dolorem quisquam est qui dolorem ipsum quia dolor sit amet, consectetur qui dolorem ipsum quia dolor sit amet, consectetur',
+    description:
+      'Neque porro quisquam est qui dolorem quisquam est qui dolorem ipsum quia dolor sit amet, consectetur qui dolorem ipsum quia dolor sit amet, consectetur',
     headerPrefix: (
       <Avatar
         backgroundColor="orange"
         backgroundColorHue="100"
         shape="square"
-        iconComponent={<Icon component={<InputM />} color={theme.palette['grey-800']} />}
+        iconComponent={
+          <Icon component={<InputM />} color={theme.palette['grey-800']} />
+        }
       />
     ),
   },
 ];
 
-export const BLANK_DATA = [{ name: 'test', id: '1' }, { name: 'test 2', id: '2' }]
-export const renderBlankItem = (item: typeof BLANK_DATA[number]) => {
-  return <div style={{ display: 'flex', gap: '10px' }}>
-    <div style={{ flex: '1 1 50%' }}><Input resetMargin value={item.name} /></div>
-    <div style={{ flex: '1 1 50%' }}><Input resetMargin /></div>
-  </div>
-}
+export const BLANK_DATA = [
+  { name: 'test', id: '1' },
+  { name: 'test 2', id: '2' },
+];
+export const renderBlankItem = (item: (typeof BLANK_DATA)[number]) => {
+  return (
+    <div style={{ display: 'flex', gap: '10px' }}>
+      <div style={{ flex: '1 1 50%' }}>
+        <Input resetMargin value={item.name} />
+      </div>
+      <div style={{ flex: '1 1 50%' }}>
+        <Input resetMargin />
+      </div>
+    </div>
+  );
+};
 
 export type FilterItemType = {
   id: string;

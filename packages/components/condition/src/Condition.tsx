@@ -78,6 +78,7 @@ const Condition = (props: ConditionProps) => {
     factorParameterSelectorComponent,
     actionAttributeParameterSelectorComponent,
     showEmptyConditionPlaceholder = false,
+    factorValueExtraProps,
   } = props;
   const allTexts = useTranslations(texts);
 
@@ -399,6 +400,7 @@ const Condition = (props: ConditionProps) => {
               singleStepCondition={singleStepCondition}
               showActionAttribute={showActionAttribute}
               showEmptyConditionPlaceholder={showEmptyConditionPlaceholder}
+              factorValueExtraProps={factorValueExtraProps}
             />
           );
         })}

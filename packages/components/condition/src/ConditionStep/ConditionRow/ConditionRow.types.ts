@@ -14,6 +14,7 @@ export type ConditionRowProps = Pick<
   | 'getPopupContainerOverride'
   | 'factorParameterSelectorComponent'
   | 'parameterSelectorComponent'
+  | 'factorValueExtraProps'
 > & {
   index: number;
   error?: boolean;

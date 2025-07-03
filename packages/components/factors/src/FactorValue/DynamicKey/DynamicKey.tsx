@@ -1,7 +1,5 @@
 import React, { type ChangeEvent, useEffect, useState } from 'react';
 
-import { RawInput } from '@synerise/ds-input';
-
 import {
   type DynamicKeyValueType,
   type FactorValueComponentProps,
@@ -16,6 +14,7 @@ const DynamicKey = ({
   opened,
   onDeactivate,
   error,
+  factorValueExtraProps,
   readOnly = false,
 }: FactorValueComponentProps) => {
   const [localValue, setLocalValue] = useState<DynamicKeyValueType>({
@@ -44,9 +43,15 @@ const DynamicKey = ({
     });
   }, [value]);
 
+  const { keyInputProps = {}, valueInputProps = {} } =
+    factorValueExtraProps?.dynamicKey || {};
+
   const trigger = (
     <>
-      <RawInput
+      <S.DynamicKeyInput
+        withoutTypeSelector={withoutTypeSelector}
+        index={0}
+        {...keyInputProps}
         placeholder={texts.dynamicKey.keyPlaceholder}
         value={localValue.key}
         name="key"
@@ -56,7 +61,9 @@ const DynamicKey = ({
         error={localError || error}
         readOnly={readOnly}
       />
-      <RawInput
+      <S.DynamicKeyInput
+        index={1}
+        {...valueInputProps}
         placeholder={texts.dynamicKey.valuePlaceholder}
         value={localValue.value}
         name="value"

@@ -1,40 +1,45 @@
 import React, { useState } from 'react';
-
 import { action } from 'storybook/actions';
-import type { StoryObj, Meta } from '@storybook/react-webpack5';
 import { fn } from 'storybook/test';
 
-import ManageableList, { ManageableListProps } from '@synerise/ds-manageable-list';
-import Icon, { ArrowDownCircleM, ArrowUpCircleM, Settings2S } from '@synerise/ds-icon';
-import { theme } from '@synerise/ds-core';
+import type { Meta, StoryObj } from '@storybook/react-webpack5';
 import Button from '@synerise/ds-button';
+import { theme } from '@synerise/ds-core';
+import Icon, {
+  ArrowDownCircleM,
+  ArrowUpCircleM,
+  Settings2S,
+} from '@synerise/ds-icon';
+import ManageableList, {
+  ManageableListProps,
+} from '@synerise/ds-manageable-list';
 
 import {
   BOOLEAN_CONTROL,
-  centeredPaddedWrapper,
   CLASSNAME_ARG_CONTROL,
-  controlFromOptionsArray,
-  greyBackgroundDecorator,
-  fixedWrapper800,
   NUMBER_CONTROL,
   STRING_CONTROL,
   STYLE_ARG_CONTROL,
+  centeredPaddedWrapper,
+  controlFromOptionsArray,
   fixedWrapper300,
+  fixedWrapper800,
+  greyBackgroundDecorator,
 } from '../../utils';
 import {
-  BlankItemType,
   BLANK_DATA,
-  ContentItemType,
+  BlankItemType,
   CONTENT_ITEMS,
   CONTENT_ITEMS_AUTOMATION,
   CONTENT_ITEMS_LARGE,
+  ContentItemType,
   EMPTY_ITEM,
-  FilterItemType,
   FILTER_ITEMS,
+  FilterItemType,
   ITEMS,
   ItemType,
-  renderBlankItem,
   TEXTS,
+  renderBlankItem,
 } from './ManageableList.data';
 
 export default {
@@ -57,21 +62,29 @@ export default {
     placeholder: STRING_CONTROL,
     searchQuery: STRING_CONTROL,
     selectedItemId: STRING_CONTROL,
-    type: controlFromOptionsArray('inline-radio', ['default', 'filter', 'content']),
+    type: controlFromOptionsArray('inline-radio', [
+      'default',
+      'filter',
+      'content',
+    ]),
   },
   render: ({ onChangeOrder, ...args }) => {
     const [items, setItems] = useState(args.items);
-    const [selectedId, setSelectedId] = useState<string | undefined>(args.selectedItemId);
+    const [selectedId, setSelectedId] = useState<string | undefined>(
+      args.selectedItemId,
+    );
 
     const handleItemAdd = (params: { name: string } | undefined) => {
       args.onItemAdd?.(params);
       params && setItems([...items, { ...EMPTY_ITEM(), name: params.name }]);
     };
 
-    const handleOrderChange = onChangeOrder ? (newOrder) => {
-      setItems(newOrder);
-      onChangeOrder?.(newOrder)
-    } : undefined
+    const handleOrderChange = onChangeOrder
+      ? (newOrder) => {
+          setItems(newOrder);
+          onChangeOrder?.(newOrder);
+        }
+      : undefined;
 
     const handleItemSelect = (params: { id: string | number }) => {
       const { id } = params;
@@ -131,7 +144,9 @@ export const WithCustomToggleButton: Story = {
   args: {
     renderCustomToggleButton: ({ onClick, allItemsVisible, total, limit }) => {
       const icon = allItemsVisible ? <ArrowUpCircleM /> : <ArrowDownCircleM />;
-      const label = allItemsVisible ? `Show ${total - limit} less` : `Show ${total - limit} more`;
+      const label = allItemsVisible
+        ? `Show ${total - limit} less`
+        : `Show ${total - limit} more`;
       return (
         <Button onClick={onClick} type="ghost" mode="icon-label">
           <Icon component={icon} />
@@ -142,36 +157,41 @@ export const WithCustomToggleButton: Story = {
   },
 };
 
-export const ContentItemsList: StoryObj<ManageableListProps<ContentItemType>> = {
-  decorators: [fixedWrapper800, greyBackgroundDecorator],
-  args: {
-    visibleItemsLimit: CONTENT_ITEMS.length,
-    items: CONTENT_ITEMS,
-    type: 'content',
-  },
-};
+export const ContentItemsList: StoryObj<ManageableListProps<ContentItemType>> =
+  {
+    decorators: [fixedWrapper800, greyBackgroundDecorator],
+    args: {
+      visibleItemsLimit: CONTENT_ITEMS.length,
+      items: CONTENT_ITEMS,
+      type: 'content',
+    },
+  };
 
-
-export const ContentItemsAutomation: StoryObj<ManageableListProps<ContentItemType>> = {
+export const ContentItemsAutomation: StoryObj<
+  ManageableListProps<ContentItemType>
+> = {
   decorators: [fixedWrapper800, greyBackgroundDecorator],
   args: {
     visibleItemsLimit: CONTENT_ITEMS.length,
     items: CONTENT_ITEMS_AUTOMATION,
     type: 'content',
     onChangeOrder: fn(),
-    onItemAdd: undefined
+    onItemAdd: undefined,
   },
 };
 
-export const ContentItemsLarge: StoryObj<ManageableListProps<ContentItemType>> = {
-  decorators: [fixedWrapper800, greyBackgroundDecorator],
-  args: {
-    items: CONTENT_ITEMS_LARGE,
-    type: 'content-large',
-  },
-};
+export const ContentItemsLarge: StoryObj<ManageableListProps<ContentItemType>> =
+  {
+    decorators: [fixedWrapper800, greyBackgroundDecorator],
+    args: {
+      items: CONTENT_ITEMS_LARGE,
+      type: 'content-large',
+    },
+  };
 
-export const ContentItemsLargeDraggable: StoryObj<ManageableListProps<ContentItemType>> = {
+export const ContentItemsLargeDraggable: StoryObj<
+  ManageableListProps<ContentItemType>
+> = {
   decorators: [fixedWrapper800, greyBackgroundDecorator],
   args: {
     items: CONTENT_ITEMS_LARGE,
@@ -190,7 +210,9 @@ export const Blank: StoryObj<ManageableListProps<BlankItemType>> = {
   },
 };
 
-export const ContentItemsListSortable: StoryObj<ManageableListProps<ContentItemType>> = {
+export const ContentItemsListSortable: StoryObj<
+  ManageableListProps<ContentItemType>
+> = {
   decorators: [fixedWrapper800, greyBackgroundDecorator],
   args: {
     ...ContentItemsList.args,
