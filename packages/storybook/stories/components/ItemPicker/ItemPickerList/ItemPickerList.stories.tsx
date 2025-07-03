@@ -1,24 +1,31 @@
 import React, { useState } from 'react';
-import { Meta, StoryObj } from '@storybook/react-webpack5';
 import { fn } from 'storybook/test';
 
-import { ItemPickerList, ItemPickerTrigger } from '@synerise/ds-item-picker';
+import { Meta, StoryObj } from '@storybook/react-webpack5';
 import Dropdown from '@synerise/ds-dropdown';
+import { ItemPickerList, ItemPickerTrigger } from '@synerise/ds-item-picker';
 
 import {
+  BOOLEAN_CONTROL,
+  centeredPaddedWrapper,
+  fixedWrapper588,
+} from '../../../utils';
+import {
+  ACTIONS,
   FLAT_DATA_SOURCE,
+  ITEMS_IN_SECTIONS,
+  ITEMS_IN_SECTIONS_NESTED,
+  ITEMS_IN_SECTIONS_SHORT,
+  RECENT,
   SECTIONS,
   SECTIONS_WITH_FOLDERS,
-  ITEMS_IN_SECTIONS,
-  RECENT,
-  ACTIONS,
-  ITEMS_IN_SECTIONS_SHORT,
   SECTIONS_WITH_NESTED_FOLDERS,
-  ITEMS_IN_SECTIONS_NESTED,
 } from '../ItemPicker.data';
-import type { ItemType, SectionType, StoryPropsOverlay } from '../ItemPicker.types';
-
-import { BOOLEAN_CONTROL, centeredPaddedWrapper, fixedWrapper588 } from '../../../utils';
+import type {
+  ItemType,
+  SectionType,
+  StoryPropsOverlay,
+} from '../ItemPicker.types';
 
 export default {
   component: ItemPickerList,
@@ -32,7 +39,9 @@ export default {
   },
   decorators: [fixedWrapper588, centeredPaddedWrapper],
   render: (args: StoryPropsOverlay) => {
-    const [selected, setSelected] = useState<ItemType | undefined>(args.selectedItem);
+    const [selected, setSelected] = useState<ItemType | undefined>(
+      args.selectedItem,
+    );
     const [loading, setLoading] = useState(false);
 
     const handleItemSelect = (item: ItemType, section?: SectionType) => {
@@ -62,6 +71,7 @@ export default {
   },
   args: {
     onItemSelect: fn(),
+    onLoadedData: fn(),
     onSectionChange: fn(),
     items: FLAT_DATA_SOURCE.slice(0, 50),
     recents: RECENT,
@@ -97,7 +107,7 @@ export const SectionsCustomLimit: StoryObj<StoryPropsOverlay> = {
     sections: SECTIONS,
     items: {
       limitPerSection: 5,
-      items: ITEMS_IN_SECTIONS
+      items: ITEMS_IN_SECTIONS,
     },
     recents: RECENT,
     actions: ACTIONS,
@@ -113,7 +123,9 @@ export const SectionsAndFolders: StoryObj<StoryPropsOverlay> = {
 };
 export const WithPickerTrigger: StoryObj<StoryPropsOverlay> = {
   render: (args: StoryPropsOverlay) => {
-    const [selected, setSelected] = useState<ItemType | undefined>(args.selectedItem);
+    const [selected, setSelected] = useState<ItemType | undefined>(
+      args.selectedItem,
+    );
     const [loading, setLoading] = useState(false);
     const [visible, setVisible] = useState(false);
 
@@ -190,4 +202,3 @@ export const SectionsAndNestedFolders: StoryObj<StoryPropsOverlay> = {
     sections: SECTIONS_WITH_NESTED_FOLDERS,
   },
 };
-

@@ -18,4 +18,5 @@ export type {
   BaseItemType,
   ItemLoaderResponse,
   LoaderProps,
+  OnLoadedData,
 } from './components/ItemPickerNew/ItemPickerNew.types';

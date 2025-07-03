@@ -10,6 +10,7 @@ import type {
   ItemPickerListProps,
   ItemPickerListTexts,
 } from '../ItemPickerList/ItemPickerList.types';
+import type { RenderMode } from '../ItemPickerList/types/renderMode';
 import type {
   ItemPickerTriggerProps,
   ItemPickerTriggerTexts,
@@ -68,6 +69,12 @@ export type LoaderProps = {
   abortController?: AbortController;
   searchKey?: string;
 };
+
+export type OnLoadedData = (
+  options: Pick<LoaderProps, 'sectionId' | 'meta'> & {
+    renderMode: RenderMode;
+  },
+) => void;
 
 export type ItemLoaderConfig<ItemType extends BaseItemType> = {
   limitPerPage?: number; // 50
@@ -132,6 +139,7 @@ export type ItemPickerProps<
     onChange?: (item: ItemType) => void;
     onFocus?: () => void;
     onBlur?: () => void;
+    onLoadedData?: OnLoadedData;
     dropdownProps?: Partial<DropdownProps>;
   } & Pick<
     ItemPickerListProps<ItemType, SectionType>,

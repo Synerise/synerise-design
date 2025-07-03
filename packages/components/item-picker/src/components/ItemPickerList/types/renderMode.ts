@@ -1,0 +1,7 @@
+export const RENDER_MODES = {
+  LIST_ITEMS_IN_SECTIONS: 'ITEMS_IN_SECTIONS',
+  LIST_FOLDERS_IN_SECTIONS: 'LIST_FOLDERS_IN_SECTION',
+  LIST_ITEMS: 'LIST_ITEMS',
+} as const;
+
+export type RenderMode = (typeof RENDER_MODES)[keyof typeof RENDER_MODES];

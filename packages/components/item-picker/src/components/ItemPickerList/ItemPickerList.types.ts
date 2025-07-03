@@ -13,6 +13,7 @@ import type {
   ContainerHeightType,
   ItemLoaderConfig,
   ItemsConfig,
+  OnLoadedData,
 } from '../ItemPickerNew/ItemPickerNew.types';
 
 type TextsAsReactNode =
@@ -85,6 +86,7 @@ export type ItemPickerListProps<
     containerRef?: Ref<HTMLDivElement>;
     includeSearchBar?: boolean;
     includeFooter?: boolean;
+    onLoadedData?: OnLoadedData;
   }
 >;
 
