@@ -1,10 +1,11 @@
-import React from 'react';
+import React, { type FocusEvent } from 'react';
 
 import Button from '@synerise/ds-button';
 
+import * as S from './ButtonPanel.styles';
 import { type ButtonPanelProps } from './ButtonPanel.types';
 
-const ButtonPanel: React.FC<ButtonPanelProps> = ({
+const ButtonPanel = ({
   onConfirm,
   onCancel,
   disabled,
@@ -12,9 +13,17 @@ const ButtonPanel: React.FC<ButtonPanelProps> = ({
   texts,
   addButtonProps,
   cancelButtonProps,
-}) => {
+  buttonPanelPrefix,
+}: ButtonPanelProps) => {
   return (
     <>
+      {buttonPanelPrefix && (
+        <S.ButtonPanelPrefix
+          onFocus={(event: FocusEvent) => event.stopPropagation()}
+        >
+          {buttonPanelPrefix}
+        </S.ButtonPanelPrefix>
+      )}
       {showCancel && (
         <Button
           type="ghost"

@@ -1,7 +1,4 @@
-import styled, {
-  type FlattenSimpleInterpolation,
-  css,
-} from 'styled-components';
+import styled, { css } from 'styled-components';
 
 import Button from '@synerise/ds-button';
 import { type InputProps } from '@synerise/ds-input';
@@ -20,7 +17,7 @@ import {
 import DSScrollbar from '@synerise/ds-scrollbar';
 
 export const Container = styled.div``;
-const gradientOverlayStyles = (): FlattenSimpleInterpolation => css`
+const gradientOverlayStyles = () => css`
   display: block;
   pointer-events: none;
   z-index: 2;
@@ -53,13 +50,13 @@ export const MainContent = styled.div<{
 }>`
   display: flex;
   position: relative;
-  padding: ${(props): string => (props.hasValues ? '0' : '2px 0')};
+  padding: ${(props) => (props.hasValues ? '0' : '2px 0')};
   flex: 1;
   align-items: flex-start;
-  flex-wrap: ${(props): string => (props.fixedHeight ? 'nowrap' : 'wrap')};
-  overflow-x: ${(props): string => (props.fixedHeight ? 'scroll' : 'hidden')};
-  overflow-y: ${(props): string => (props.fixedHeight ? 'hidden' : 'scroll')};
-  padding-right: ${(props): string => (props.fixedHeight ? '4px' : '12px')};
+  flex-wrap: ${(props) => (props.fixedHeight ? 'nowrap' : 'wrap')};
+  overflow-x: ${(props) => (props.fixedHeight ? 'scroll' : 'hidden')};
+  overflow-y: ${(props) => (props.fixedHeight ? 'hidden' : 'scroll')};
+  padding-right: ${(props) => (props.fixedHeight ? '4px' : '12px')};
   ::-webkit-scrollbar {
     display: none;
   }
@@ -70,14 +67,14 @@ export const MainContent = styled.div<{
     min-width: fit-content;
     margin: 4px 0 4px 8px;
     right: 0;
-    background: ${(props): string => props.theme.palette['grey-200']};
+    background: ${(props) => props.theme.palette['grey-200']};
   }
   &::before {
     content: '';
-    opacity: ${(props): string => (props.gradientOverlap ? `1` : '0')};
+    opacity: ${(props) => (props.gradientOverlap ? `1` : '0')};
     position: fixed;
     ${gradientOverlayStyles()}
-    background-image: ${(props): string => `-webkit-linear-gradient( left,
+    background-image: ${(props) => `-webkit-linear-gradient( left,
     ${props.focus ? props.theme.palette['blue-050'] : props.theme.palette.white} 0%,
     rgba(255,255,255,0) 100%
   )`};
@@ -89,14 +86,13 @@ export const RightSide = styled.div<{
 }>`
   display: flex;
   margin: 0 4px;
+  gap: 8px;
   position: relative;
-  .ds-button:not(:last-child) {
-    margin-right: 8px;
-  }
+
   &::before {
-    content: ${(props): string => (props.gradientOverlap ? `''` : 'none')};
+    content: ${(props) => (props.gradientOverlap ? `''` : 'none')};
     ${gradientOverlayStyles()}
-    background-image: ${(props): string => `-webkit-linear-gradient( right,
+    background-image: ${(props) => `-webkit-linear-gradient( right,
     ${props.focus ? props.theme.palette['blue-050'] : props.theme.palette.white} 0%,
     rgba(255,255,255,0) 100%
   )`};
@@ -112,20 +108,19 @@ export const Input = styled(BorderLessInput)<
     hidden: boolean;
   }
 >`
-  margin: ${(props): string =>
-    props.hasValues ? '6px 0 6px 12px' : '4px 0 4px 12px'};
+  margin: ${(props) => (props.hasValues ? '6px 0 6px 12px' : '4px 0 4px 12px')};
   padding: 1px 0;
   min-width: unset;
   line-height: 18px;
   width: calc(100% - 12px);
 
-  ${(props): FlattenSimpleInterpolation | false =>
+  ${(props) =>
     props.hidden &&
     css`
       display: none;
     `}
 
-  ${(props): FlattenSimpleInterpolation | false =>
+  ${(props) =>
     props.transparent &&
     css`
       color: transparent;
@@ -164,7 +159,7 @@ export const CustomContentWrapper = styled.div`
   z-index: 99;
 `;
 export const DropdownContent = styled.div<{ visible?: boolean }>`
-  background: ${(props): string => props.theme.palette.white};
+  background: ${(props) => props.theme.palette.white};
   border-radius: 3px;
   padding: 8px 0 8px 8px;
   position: absolute;
@@ -208,16 +203,16 @@ export const DividerContainer = styled.div`
 `;
 export const NavigationWrapper = styled.div`
   margin-top: 8px;
-  border-top: 1px solid ${(props): string => props.theme.palette['grey-100']};
-  background: ${(props): string => props.theme.palette['grey-050']};
+  border-top: 1px solid ${(props) => props.theme.palette['grey-100']};
+  background: ${(props) => props.theme.palette['grey-050']};
   padding: 12px 16px;
   margin-left: -8px;
   margin-bottom: -8px;
-  color: ${(props): string => props.theme.palette['grey-400']};
+  color: ${(props) => props.theme.palette['grey-400']};
   display: flex;
   align-items: center;
   .ds-icon > svg {
-    fill: ${(props): string => props.theme.palette['grey-400']};
+    fill: ${(props) => props.theme.palette['grey-400']};
   }
   span {
     margin-left: 2px;

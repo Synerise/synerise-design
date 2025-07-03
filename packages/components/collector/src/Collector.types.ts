@@ -6,6 +6,7 @@ import type { DataAttributes } from '@synerise/ds-utils';
 
 export type CollectorProps = {
   addButtonProps?: Partial<ButtonProps & DataAttributes>;
+  buttonPanelPrefix?: ReactNode;
   allowCustomValue?: boolean;
   allowMultipleValues?: boolean;
   cancelButtonProps?: Partial<ButtonProps & DataAttributes>;
