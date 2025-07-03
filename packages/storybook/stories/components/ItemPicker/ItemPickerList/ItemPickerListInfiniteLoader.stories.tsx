@@ -1,21 +1,29 @@
 import React, { useState } from 'react';
-import { Meta, StoryObj } from '@storybook/react-webpack5';
 import { fn } from 'storybook/test';
 
+import { Meta, StoryObj } from '@storybook/react-webpack5';
 import { ItemPickerList } from '@synerise/ds-item-picker';
 
 import {
+  BOOLEAN_CONTROL,
+  centeredPaddedWrapper,
+  fixedWrapper588,
+  variableHeightDecorator,
+} from '../../../utils';
+import {
+  ACTIONS,
+  ITEM_LOADER_CONFIG,
+  ITEM_LOADER_CONFIG_ERRORS,
+  RECENT,
   SECTIONS,
   SECTIONS_WITH_FOLDERS,
-  ITEM_LOADER_CONFIG,
-  RECENT,
-  ACTIONS,
-  ITEM_LOADER_CONFIG_ERRORS,
   SECTIONS_WITH_NESTED_FOLDERS,
 } from '../ItemPicker.data';
-import type { ItemType, SectionType, StoryPropsOverlay } from '../ItemPicker.types';
-
-import { BOOLEAN_CONTROL, centeredPaddedWrapper, fixedWrapper588, variableHeightDecorator } from '../../../utils';
+import type {
+  ItemType,
+  SectionType,
+  StoryPropsOverlay,
+} from '../ItemPicker.types';
 
 export default {
   component: ItemPickerList,
@@ -29,7 +37,9 @@ export default {
   },
   decorators: [fixedWrapper588, centeredPaddedWrapper],
   render: (args: StoryPropsOverlay) => {
-    const [selected, setSelected] = useState<ItemType | undefined>(args.selectedItem);
+    const [selected, setSelected] = useState<ItemType | undefined>(
+      args.selectedItem,
+    );
 
     const handleItemSelect = (item: ItemType, section?: SectionType) => {
       args.onItemSelect?.(item, section);
@@ -53,6 +63,7 @@ export default {
   args: {
     onItemSelect: fn(),
     onSectionChange: fn(),
+    onLoadedData: fn(),
     items: ITEM_LOADER_CONFIG,
     recents: RECENT,
     actions: ACTIONS,
@@ -82,13 +93,16 @@ export const SectionsAndNestedFolders: StoryObj<StoryPropsOverlay> = {
   },
 };
 
-export const FillAvailableSpace: StoryObj<StoryPropsOverlay & { variableHeight: string }> = {
+export const FillAvailableSpace: StoryObj<
+  StoryPropsOverlay & { variableHeight: string }
+> = {
   decorators: [variableHeightDecorator],
   argTypes: {
     variableHeight: {
-      description: 'Adjust outer container height to preview `fillSpace` containerHeight prop value',
+      description:
+        'Adjust outer container height to preview `fillSpace` containerHeight prop value',
       table: { category: 'Story options' },
-    }
+    },
   },
   args: {
     variableHeight: '900px',

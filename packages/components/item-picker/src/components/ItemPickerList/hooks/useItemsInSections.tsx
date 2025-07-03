@@ -7,6 +7,7 @@ import type {
   BaseSectionType,
   BaseSectionTypeWithFolders,
   ItemLoaderMeta,
+  OnLoadedData,
   SearchActionType,
   SearchParamConfig,
 } from '../../ItemPickerNew/ItemPickerNew.types';
@@ -23,6 +24,7 @@ import {
   ITEM_SIZE,
   SECTION_HEADER_HEIGHT,
 } from '../constants';
+import { RENDER_MODES } from '../types/renderMode';
 import { isItems, isItemsConfig, isWithOutSections } from '../utils';
 import { getSearchActionItems } from '../utils/getSearchActionItems';
 import { useFlattenFolders } from './useFlattenFolders';
@@ -61,11 +63,7 @@ type ItemsInSectionsType<
   getItemKey?: (item: ItemType) => string | number;
   showItemsSectionLabel: boolean;
   changeSearchQuery: (query: string) => void;
-};
-const RENDER_MODES = {
-  LIST_ITEMS_IN_SECTIONS: 'ITEMS_IN_SECTIONS',
-  LIST_FOLDERS_IN_SECTIONS: 'LIST_FOLDERS_IN_SECTION',
-  LIST_ITEMS: 'LIST_ITEMS',
+  onLoadedData?: OnLoadedData;
 };
 export const useItemsInSections = <
   ItemType extends BaseItemType,
@@ -83,6 +81,7 @@ export const useItemsInSections = <
   getItemKey = GET_ITEM_KEY,
   showItemsSectionLabel,
   changeSearchQuery,
+  onLoadedData,
 }: ItemsInSectionsType<ItemType, SectionType>) => {
   const [currentSection, setCurrentSection] = useState<
     SectionType | BaseSectionType | undefined
@@ -365,6 +364,7 @@ export const useItemsInSections = <
         setIsLoading(false);
         loadedPage.current = FIRST_PAGE;
         metaRef.current[sectionId] = meta;
+        onLoadedData?.({ sectionId, meta, renderMode: listRenderingMode });
         setIsInitialDataLoaded(true);
         setCurrentItems(fetchedItems);
       } catch (_event) {
@@ -381,17 +381,23 @@ export const useItemsInSections = <
       listRenderingMode === RENDER_MODES.LIST_FOLDERS_IN_SECTIONS
         ? [Promise.resolve()]
         : currentFolders?.map((folder) => {
+            const sectionId = folder.id;
             return items
               .loadItems({
                 page: FIRST_PAGE,
                 searchQuery,
                 limit: (items.limitPerSection || ITEMS_PER_SECTION) + 1,
-                sectionId: folder.id,
+                sectionId,
                 meta: undefined,
                 abortController: abortControllerRef.current,
                 searchKey: searchParamConfig?.paramKey,
               })
               .then(({ items: sectionItems, total, meta }) => {
+                onLoadedData?.({
+                  sectionId,
+                  meta,
+                  renderMode: listRenderingMode,
+                });
                 metaRef.current[folder.id] = meta;
                 sectionTotals.current[folder.id] = total;
                 fetchedItems = [...fetchedItems, ...sectionItems];
@@ -424,6 +430,7 @@ export const useItemsInSections = <
     listActions,
     searchQuery,
     searchActionSection,
+    onLoadedData,
   ]);
 
   useEffect(() => {

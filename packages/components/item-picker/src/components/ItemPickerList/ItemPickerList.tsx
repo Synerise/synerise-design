@@ -71,6 +71,7 @@ export const ItemPickerList = <
   containerRef: forwardedRef,
   includeFooter = true,
   includeSearchBar = true,
+  onLoadedData,
   ...htmlAttributes
 }: ItemPickerListProps<ItemType, SectionType>) => {
   const theme = useTheme();
@@ -147,6 +148,7 @@ export const ItemPickerList = <
     onSectionChange,
     showItemsSectionLabel,
     changeSearchQuery,
+    onLoadedData,
   });
 
   const handleScroll = useCallback(
