@@ -1,6 +1,23 @@
-type ControlType = 'object' | 'boolean' | 'check' | 'inline-check' | 'radio' | 'inline-radio' | 'select' | 'multi-select' | 'number' | 'range' | 'file' | 'color' | 'date' | 'text';
+type ControlType =
+  | 'object'
+  | 'boolean'
+  | 'check'
+  | 'inline-check'
+  | 'radio'
+  | 'inline-radio'
+  | 'select'
+  | 'multi-select'
+  | 'number'
+  | 'range'
+  | 'file'
+  | 'color'
+  | 'date'
+  | 'text';
 
-export const controlFromOptionsArray = <T extends ControlType>(type: T, options: readonly (string | number | undefined | null | boolean)[]) => {
+export const controlFromOptionsArray = <T extends ControlType>(
+  type: T,
+  options: readonly (string | number | undefined | null | boolean)[],
+) => {
   return {
     control: type,
     options: [...options],
@@ -13,7 +30,12 @@ type tableConfigOptions = {
   category?: string;
   defaultValue?: string;
 };
-export const tableConfig = ({ category, summary, detail, defaultValue }: tableConfigOptions) => {
+export const tableConfig = ({
+  category,
+  summary,
+  detail,
+  defaultValue,
+}: tableConfigOptions) => {
   return {
     table: {
       category,
@@ -70,7 +92,19 @@ export const COLOR_CONTROL = {
 } as const;
 
 export const COLOR_HUE_CONTROL = {
-  ...controlFromOptionsArray('select', ['050', '100', '200', '300', '300', '400', '500', '600', '700', '800', '900']),
+  ...controlFromOptionsArray('select', [
+    '050',
+    '100',
+    '200',
+    '300',
+    '300',
+    '400',
+    '500',
+    '600',
+    '700',
+    '800',
+    '900',
+  ]),
 };
 
 export const STYLE_ARG_CONTROL = {
@@ -122,17 +156,20 @@ export const stringWithNoControl = (detail?: string) => {
   };
 };
 
-export const THEME_PALETTE_COLOR_NAMES_CONTROL = controlFromOptionsArray('select', [
-  'blue',
-  'grey',
-  'red',
-  'green',
-  'yellow',
-  'pink',
-  'mars',
-  'orange',
-  'fern',
-  'cyan',
-  'purple',
-  'violet',
-]);
+export const THEME_PALETTE_COLOR_NAMES_CONTROL = controlFromOptionsArray(
+  'select',
+  [
+    'blue',
+    'grey',
+    'red',
+    'green',
+    'yellow',
+    'pink',
+    'mars',
+    'orange',
+    'fern',
+    'cyan',
+    'purple',
+    'violet',
+  ],
+);
