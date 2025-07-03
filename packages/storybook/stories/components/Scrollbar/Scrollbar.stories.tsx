@@ -1,13 +1,19 @@
-import React, { useState, UIEvent } from 'react';
-import { Meta, StoryObj } from '@storybook/react-webpack5';
+import React, { UIEvent, useState } from 'react';
 import { FixedSizeList } from 'react-window';
 
+import { Meta, StoryObj } from '@storybook/react-webpack5';
 import List from '@synerise/ds-list';
 import Scrollbar, { ScrollbarProps } from '@synerise/ds-scrollbar';
 import Sortable from '@synerise/ds-sortable';
 
 import { fixedWrapper300 } from '../../utils';
-import { getContent, getData, INITIAL_DATA, ItemType, renderItem } from './Scrollbar.data';
+import {
+  INITIAL_DATA,
+  ItemType,
+  getContent,
+  getData,
+  renderItem,
+} from './Scrollbar.data';
 
 type Story = StoryObj<ScrollbarProps>;
 
@@ -17,7 +23,7 @@ export default {
   tags: ['autodocs'],
 
   decorators: [fixedWrapper300],
-  render: args => {
+  render: (args) => {
     return <Scrollbar {...args} />;
   },
   argTypes: {},
@@ -35,7 +41,7 @@ export const LargeSize: Story = {
   args: {
     largeSize: true,
     children: getContent('horizontal'),
-    maxHeight: undefined
+    maxHeight: undefined,
   },
 };
 
@@ -47,12 +53,19 @@ export const Absolute: Story = {
 
 export const DndScrollbar: Story = {
   name: 'DnD Scrollbar',
-  render: args => {
+  render: (args) => {
     const [data, setData] = useState(INITIAL_DATA);
-    
+
     return (
       <Scrollbar {...args}>
-        <Sortable axis='y' onOrderChange={setData} items={data} ItemComponent={(item) => {return renderItem(item)}} />
+        <Sortable
+          axis="y"
+          onOrderChange={setData}
+          items={data}
+          ItemComponent={(item) => {
+            return renderItem(item);
+          }}
+        />
       </Scrollbar>
     );
   },
@@ -69,7 +82,7 @@ export const Horizontal: Story = {
 };
 
 export const InfiniteScrollbar: Story = {
-  render: args => {
+  render: (args) => {
     const [loading, setLoading] = useState(false);
     const [data, setData] = useState(INITIAL_DATA);
     const fetchMoreData = () => {
@@ -79,11 +92,16 @@ export const InfiniteScrollbar: Story = {
         setData([...data, ...getData()]);
       }, 2000);
     };
-    const getItem = item => {
-      return <List.Item className='chromatic-ignore'>{item.name}</List.Item>;
+    const getItem = (item) => {
+      return <List.Item className="chromatic-ignore">{item.name}</List.Item>;
     };
     return (
-      <Scrollbar {...args} hasMore={1000 > data.length} fetchData={fetchMoreData} loading={loading}>
+      <Scrollbar
+        {...args}
+        hasMore={1000 > data.length}
+        fetchData={fetchMoreData}
+        loading={loading}
+      >
         <List renderItem={getItem} dataSource={[data]}></List>
       </Scrollbar>
     );
@@ -92,7 +110,7 @@ export const InfiniteScrollbar: Story = {
 };
 
 export const VirtualisedList: Story = {
-  render: args => {
+  render: (args) => {
     const listRef = React.createRef<FixedSizeList>();
 
     const handleScroll = ({ currentTarget }: UIEvent) => {
@@ -115,7 +133,11 @@ export const VirtualisedList: Story = {
           {({ index, style }) => {
             const item = INITIAL_DATA[index];
             return (
-              <span className='chromatic-ignore' key={`${item.name}-${index}`} style={style}>
+              <span
+                className="chromatic-ignore"
+                key={`${item.name}-${index}`}
+                style={style}
+              >
                 {index}.{item.name}
               </span>
             );

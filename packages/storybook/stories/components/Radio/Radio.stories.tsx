@@ -19,12 +19,8 @@ export default {
     };
     return (
       <Radio.Group onChange={handleChange} defaultValue={defaultValue}>
-        <Radio {...args} value="A">
-          {children}
-        </Radio>
-        <Radio {...args} value="B">
-          {children}
-        </Radio>
+        <Radio {...args} value="A"/>
+        <Radio {...args} value="B"/>
       </Radio.Group>
     );
   },
@@ -32,7 +28,7 @@ export default {
   args: {
     defaultValue: 'A',
     description: 'Description',
-    children: 'Label',
+    label: 'Label',
   },
 } as Meta<StoryProps>;
 
@@ -92,5 +88,29 @@ export const RadioWithLabelAndTooltip: StoryObj<StoryProps> = {
   },
   args: {
     description: 'Description',
+    label: '',
+  },
+};
+
+export const RadioWithChildren: StoryObj<StoryProps> = {
+  render: ({ defaultValue, onChange, children, ...args }) => {
+    const handleChange = (event: RadioChangeEvent) => {
+      onChange?.(event);
+    };
+    return (
+      <Radio.Group onChange={handleChange} defaultValue={defaultValue}>
+        <Radio {...args} value="A">
+          {children}
+        </Radio>
+        <Radio {...args} value="B">
+          {children}
+        </Radio>
+      </Radio.Group>
+    );
+  },
+  args: {
+    description: 'Description',
+    label: undefined,
+    children: 'Label'
   },
 };

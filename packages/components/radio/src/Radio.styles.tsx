@@ -3,6 +3,7 @@ import React from 'react';
 import styled, { type SimpleInterpolation, css } from 'styled-components';
 
 import { type ThemeProps } from '@synerise/ds-core';
+import { FormFieldLabel } from '@synerise/ds-form-field';
 import { macro } from '@synerise/ds-typography/';
 
 export const RadioWrapper = styled.div`
@@ -16,6 +17,10 @@ export const Description = styled.div<{ disabled?: boolean }>`
   color: ${(props: ThemeProps): string => props.theme.palette['grey-600']};
   ${(props): string => (props.disabled ? `opacity: 0.4;` : '')}
   ${macro.small}
+`;
+
+export const Label = styled(FormFieldLabel)<{ disabled?: boolean }>`
+  ${(props) => (props.disabled ? `opacity: 0.4;` : '')}
 `;
 
 // @deprecated - all styles are now defined in Description

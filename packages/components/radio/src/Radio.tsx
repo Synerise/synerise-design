@@ -17,11 +17,19 @@ const Group = ({ children, fullWidth, big, ...props }: RadioGroupProps) => {
 
 const RadioComponent = ({
   description,
+  label,
+  children,
   ...antdRadioButtonProps
 }: RadioProps) => {
   return (
     <S.RadioWrapper>
-      <S.AntRadio {...antdRadioButtonProps} />
+      <S.AntRadio {...antdRadioButtonProps}>
+        {label ? (
+          <S.Label disabled={antdRadioButtonProps.disabled}>{label}</S.Label>
+        ) : (
+          children
+        )}
+      </S.AntRadio>
       <S.AdditionalData>
         {description && (
           <S.Description disabled={antdRadioButtonProps.disabled}>
