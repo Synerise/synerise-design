@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.4.0](https://github.com/synerise/synerise-design/compare/@synerise/ds-table@1.3.2...@synerise/ds-table@1.4.0) (2025-07-04)
+
+
+### Features
+
+* **table:** adds stopPropagation to handleCopy ([42680aa](https://github.com/synerise/synerise-design/commit/42680aa5b4c90845587f2a53e0f79aa3714c9fb1))
+
+
+
+
+
 ## [1.3.2](https://github.com/synerise/synerise-design/compare/@synerise/ds-table@1.3.1...@synerise/ds-table@1.3.2) (2025-07-01)
 
 **Note:** Version bump only for package @synerise/ds-table

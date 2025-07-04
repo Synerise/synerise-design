@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.4.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-factors@1.3.2...@synerise/ds-factors@1.4.0) (2025-07-04)
+
+
+### Bug Fixes
+
+* **condition:** allow param button to use available space ([b3ea666](https://github.com/Synerise/synerise-design/commit/b3ea666417cd14440ceff58de2e91e58198bfd49))
+
+
+### Features
+
+* **factors:** pass component props ([81f40dd](https://github.com/Synerise/synerise-design/commit/81f40dd18b3e7d88828d5e418efc94b1cb9eda91))
+
+
+
+
+
 ## [1.3.2](https://github.com/Synerise/synerise-design/compare/@synerise/ds-factors@1.3.1...@synerise/ds-factors@1.3.2) (2025-07-01)
 
 **Note:** Version bump only for package @synerise/ds-factors

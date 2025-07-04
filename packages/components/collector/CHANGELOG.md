@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.3.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-collector@1.2.2...@synerise/ds-collector@1.3.0) (2025-07-04)
+
+
+### Features
+
+* **collector:** added buttonPanelPrefix prop ([9919904](https://github.com/Synerise/synerise-design/commit/99199040df9365a991cf82ce985d25b1770ea6e1))
+
+
+
+
+
 ## [1.2.2](https://github.com/Synerise/synerise-design/compare/@synerise/ds-collector@1.2.1...@synerise/ds-collector@1.2.2) (2025-07-01)
 
 **Note:** Version bump only for package @synerise/ds-collector

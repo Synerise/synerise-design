@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.0.14](https://github.com/synerise/synerise-design/compare/@synerise/ds-radio@1.0.13...@synerise/ds-radio@1.0.14) (2025-07-04)
+
+
+### Bug Fixes
+
+* **radio:** new prop label ([7a527d8](https://github.com/synerise/synerise-design/commit/7a527d8cff0b4d513deecaf0bb3b19645e478bba))
+
+
+
+
+
 ## [1.0.13](https://github.com/synerise/synerise-design/compare/@synerise/ds-radio@1.0.12...@synerise/ds-radio@1.0.13) (2025-07-01)
 
 **Note:** Version bump only for package @synerise/ds-radio

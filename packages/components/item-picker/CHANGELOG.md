@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.7.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-item-picker@1.6.2...@synerise/ds-item-picker@1.7.0) (2025-07-04)
+
+
+### Features
+
+* **item-picker:** add onLoadedItems prop ([4a848a9](https://github.com/Synerise/synerise-design/commit/4a848a9cd2b00e8f1f440478f321ad3c06214089))
+
+
+
+
+
 ## [1.6.2](https://github.com/Synerise/synerise-design/compare/@synerise/ds-item-picker@1.6.1...@synerise/ds-item-picker@1.6.2) (2025-07-01)
 
 **Note:** Version bump only for package @synerise/ds-item-picker

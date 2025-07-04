@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.1.9](https://github.com/synerise/synerise-design/compare/@synerise/ds-select@1.1.8...@synerise/ds-select@1.1.9) (2025-07-04)
+
+
+### Bug Fixes
+
+* **select:** new prop raw ([3adc969](https://github.com/synerise/synerise-design/commit/3adc9690534060cde93ccbccd5147748c8ec80e6))
+
+
+
+
+
 ## [1.1.8](https://github.com/synerise/synerise-design/compare/@synerise/ds-select@1.1.7...@synerise/ds-select@1.1.8) (2025-07-01)
 
 

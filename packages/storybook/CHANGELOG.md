@@ -3,6 +3,26 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.15.0](https://github.com/Synerise/synerise-design/compare/storybook@1.14.0...storybook@1.15.0) (2025-07-04)
+
+
+### Bug Fixes
+
+* **condition:** allow param button to use available space ([b3ea666](https://github.com/Synerise/synerise-design/commit/b3ea666417cd14440ceff58de2e91e58198bfd49))
+* **radio:** new prop label ([7a527d8](https://github.com/Synerise/synerise-design/commit/7a527d8cff0b4d513deecaf0bb3b19645e478bba))
+* **select:** new prop raw ([3adc969](https://github.com/Synerise/synerise-design/commit/3adc9690534060cde93ccbccd5147748c8ec80e6))
+
+
+### Features
+
+* **collector:** added buttonPanelPrefix prop ([9919904](https://github.com/Synerise/synerise-design/commit/99199040df9365a991cf82ce985d25b1770ea6e1))
+* **factors:** pass component props ([81f40dd](https://github.com/Synerise/synerise-design/commit/81f40dd18b3e7d88828d5e418efc94b1cb9eda91))
+* **item-picker:** add onLoadedItems prop ([4a848a9](https://github.com/Synerise/synerise-design/commit/4a848a9cd2b00e8f1f440478f321ad3c06214089))
+
+
+
+
+
 # [1.14.0](https://github.com/Synerise/synerise-design/compare/storybook@1.13.0...storybook@1.14.0) (2025-07-01)
 
 
