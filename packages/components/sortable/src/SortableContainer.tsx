@@ -50,7 +50,7 @@ export const SortableContainer = <ItemType extends RawBaseItem>({
 
   const handleDragEnd = (event: DragEndEvent) => {
     const { active, over } = event;
-    if (active.id !== over?.id) {
+    if (over && active.id !== over.id) {
       const oldIndex = order.findIndex((item) => item.id === active.id);
       const newIndex = order.findIndex((item) => item.id === over?.id);
       const updatedOrder = arrayMove(order, oldIndex, newIndex);
