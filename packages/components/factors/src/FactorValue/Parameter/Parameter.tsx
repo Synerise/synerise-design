@@ -1,6 +1,5 @@
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
 
-import Button from '@synerise/ds-button';
 import Dropdown from '@synerise/ds-dropdown';
 import Icon, { AngleDownS } from '@synerise/ds-icon';
 import InformationCard from '@synerise/ds-information-card';
@@ -17,7 +16,7 @@ import {
   DROPDOWN_HEIGHT_BELOW_THRESHOLD,
   DROPDOWN_HEIGHT_THRESHOLD,
 } from './Parameter.constants';
-import { Value } from './Parameter.style';
+import { ParameterButton, Value } from './Parameter.style';
 import ParameterDropdown from './ParameterDropdown';
 
 const ParameterInput = ({
@@ -111,7 +110,7 @@ const ParameterInput = ({
   }, [parameterIcon, readOnly]);
 
   const triggerButton = (
-    <Button
+    <ParameterButton
       error={error}
       type={isSelected && selectedButtonColored ? 'custom-color' : 'secondary'}
       color={isSelected && selectedButtonColored ? 'green' : undefined}
@@ -122,7 +121,7 @@ const ParameterInput = ({
       {parameterIcon && <Icon component={parameterIcon} />}
       <Value>{parameterName}</Value>
       {!readOnly && <Icon component={<AngleDownS />} />}
-    </Button>
+    </ParameterButton>
   );
 
   const trigger = (

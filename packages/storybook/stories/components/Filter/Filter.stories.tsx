@@ -13,17 +13,20 @@ import type { FilterMeta, FilterStory } from './Filter.types';
 import { DEFAULT_EXPRESSION, FILTER_TEXTS } from './Filter.data';
 import { useFilterHandlers } from './hooks/useFilterHandlers';
 
-import { BOOLEAN_CONTROL, controlFromOptionsArray, fixedWrapper300, NUMBER_CONTROL } from '../../utils';
+import { BOOLEAN_CONTROL, controlFromOptionsArray, NUMBER_CONTROL } from '../../utils';
 
 export default {
   component: Filter,
   title: 'Components/Filter/Filter',
   tags: ['autodocs'],
-  decorators: [fixedWrapper300],
+  parameters: {
+    layout: 'padded'
+  },
   argTypes: {
     maxConditionsLimit: NUMBER_CONTROL,
     readOnly: BOOLEAN_CONTROL,
     draggable: BOOLEAN_CONTROL,
+    showActionAttribute: { BOOLEAN_CONTROL, table: { category: 'Story options' } },
     layoutNativeScroll: { BOOLEAN_CONTROL, table: { category: 'Story options' } },
     showStepTags: { BOOLEAN_CONTROL, table: { category: 'Story options' } },
     isDateFilterOn: { BOOLEAN_CONTROL, table: { category: 'Story options' } },
@@ -33,7 +36,7 @@ export default {
       table: { category: 'Story options' },
     },
   },
-  render: ({ draggable, layoutNativeScroll, onAddStep, onExpressionStepChange, showStepTags, isDateFilterOn, conditionFooterRelativeDateRange, ...args }) => {
+  render: ({ draggable, showActionAttribute, layoutNativeScroll, onAddStep, onExpressionStepChange, showStepTags, isDateFilterOn, conditionFooterRelativeDateRange, ...args }) => {
     const {
       expressions,
       handleChangeLogic,
@@ -47,7 +50,7 @@ export default {
       renderHeaderRightSide,
       renderStepContent,
       renderStepHeaderRightSide,
-    } = useFilterHandlers({ ...args, isDateFilterOn, conditionFooterRelativeDateRange, onExpressionStepChange });
+    } = useFilterHandlers({ ...args, isDateFilterOn, conditionFooterRelativeDateRange, showActionAttribute, onExpressionStepChange });
 
     const [matching, setMatching] = useState(true);
 
@@ -139,5 +142,7 @@ export default {
 export const Default: FilterStory = {};
 
 export const WithActionAttribute: FilterStory = {
-  args: {}
+  args: {
+    showActionAttribute: true
+  }
 };

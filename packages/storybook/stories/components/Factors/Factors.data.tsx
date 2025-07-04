@@ -105,7 +105,7 @@ export const FACTORS_ITEMS_DATA: ParameterItem[] = [
   },
   {
     id: 1,
-    name: 'Last name',
+    name: 'Last name very long label that will require ellipsis at some point I hope',
     groupId: 1,
     icon: <VarTypeStringM />,
   },
@@ -117,7 +117,7 @@ export const FACTORS_ITEMS_DATA: ParameterItem[] = [
   },
   {
     id: 3,
-    name: 'Loyality score',
+    name: 'Expression very very very long name with ellipsis',
     groupId: 1,
     icon: <ExpressionM />,
   },

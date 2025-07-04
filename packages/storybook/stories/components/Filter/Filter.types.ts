@@ -17,6 +17,7 @@ export type FilterStoryProps = FilterProps & {
   layoutNativeScroll?: boolean;
   showStepTags?: boolean;
   isDateFilterOn?: boolean;
+  showActionAttribute?: boolean;
   onExpressionStepChange?: () => void;
   onAddStep?: (item: ContextItem | ContextGroup) => void;
   conditionFooterRelativeDateRange?: boolean;

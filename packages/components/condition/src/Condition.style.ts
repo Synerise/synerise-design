@@ -1,6 +1,7 @@
 import styled, { css } from 'styled-components';
 
 import Cruds from '@synerise/ds-cruds';
+import { Value } from '@synerise/ds-factors/dist/FactorValue/Parameter/Parameter.style';
 import Icon from '@synerise/ds-icon';
 import { InputGroupItem } from '@synerise/ds-input/dist/InputGroup.styles';
 
@@ -254,6 +255,21 @@ export const ConditionWrapper = styled.div<{ withRemoveTrigger?: boolean }>`
   ${InputGroupItem} {
     min-width: 0;
   }
+  ${Value} {
+    min-width: 50px;
+    max-width: none;
+  }
+`;
+
+export const ConditionParameterWrapper = styled(ConditionWrapper)`
+  flex: 0 400 auto;
+  min-width: 120px;
+`;
+export const ConditionOperatorWrapper = styled(ConditionWrapper)`
+  flex: 0 0 auto;
+`;
+export const ConditionFactorWrapper = styled(ConditionWrapper)`
+  flex: 30 1 auto;
 `;
 
 export const ConditionRows = styled.div`
