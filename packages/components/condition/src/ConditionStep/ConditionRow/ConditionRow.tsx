@@ -140,11 +140,11 @@ export const ConditionRow = ({
       />
       <S.ConditionRowLine>
         <S.ConditionRowDefinition>
-          <S.ConditionWrapper
-            data-testid="condition-parameter-wrapper"
-            withRemoveTrigger={lastConditionWrapper === 'parameter'}
-          >
-            {renderConditionParameterWrapper && (
+          {renderConditionParameterWrapper && (
+            <S.ConditionParameterWrapper
+              data-testid="condition-parameter-wrapper"
+              withRemoveTrigger={lastConditionWrapper === 'parameter'}
+            >
               <Factors
                 selectedFactorType=""
                 defaultFactorType=""
@@ -178,11 +178,11 @@ export const ConditionRow = ({
                 readOnly={readOnly}
                 error={Boolean(conditionParameter?.errorText)}
               />
-            )}
-            {lastConditionWrapper === 'parameter' && removeConditionTrigger}
-          </S.ConditionWrapper>
+              {lastConditionWrapper === 'parameter' && removeConditionTrigger}
+            </S.ConditionParameterWrapper>
+          )}
           {renderConditionOperatorWrapper && (
-            <S.ConditionWrapper
+            <S.ConditionOperatorWrapper
               data-testid="condition-operator-wrapper"
               withRemoveTrigger={lastConditionWrapper === 'operator'}
             >
@@ -206,10 +206,10 @@ export const ConditionRow = ({
                 errorText={conditionOperator?.errorText}
               />
               {lastConditionWrapper === 'operator' && removeConditionTrigger}
-            </S.ConditionWrapper>
+            </S.ConditionOperatorWrapper>
           )}
           {renderConditionFactorWrapper && (
-            <S.ConditionWrapper
+            <S.ConditionFactorWrapper
               data-testid="condition-factor-wrapper"
               withRemoveTrigger={lastConditionWrapper === 'factor'}
             >
@@ -254,7 +254,7 @@ export const ConditionRow = ({
                 />
               )}
               {lastConditionWrapper === 'factor' && removeConditionTrigger}
-            </S.ConditionWrapper>
+            </S.ConditionFactorWrapper>
           )}
         </S.ConditionRowDefinition>
         {conditionErrorMessage}

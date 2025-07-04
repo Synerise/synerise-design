@@ -5,21 +5,24 @@ import { ConditionStep } from '@synerise/ds-condition';
 import { ContextGroup, ContextItem } from '@synerise/ds-context-selector';
 
 import {
-  DEFAULT_CONTEXT_VALUE,
   DEFAULT_CONDITION_ROW,
-  DEFAULT_PARAMETER_VALUE,
+  DEFAULT_CONTEXT_VALUE,
   DEFAULT_FACTOR_VALUE,
   DEFAULT_OPERATOR_VALUE,
+  DEFAULT_PARAMETER_VALUE,
   DEFAULT_STEP,
 } from '../../Condition/Condition.data';
 
-export const useConditionHandlers = (steps: ConditionStep[], onChange: (steps: ConditionStep[]) => void) => {
+export const useConditionHandlers = (
+  steps: ConditionStep[],
+  onChange: (steps: ConditionStep[]) => void,
+) => {
   const [openedAddStep, setOpenedAddStep] = useState(false);
 
   const setStepContext = useCallback(
     (stepId, item) => {
       onChange(
-        steps.map(step => {
+        steps.map((step) => {
           if (step.id === stepId) {
             return {
               ...step,
@@ -28,24 +31,51 @@ export const useConditionHandlers = (steps: ConditionStep[], onChange: (steps: C
                 ...step.context,
                 selectedItem: item,
               },
-              conditions: step.conditions.length === 0 ? [DEFAULT_CONDITION_ROW()] : step.conditions,
+              conditions:
+                step.conditions.length === 0
+                  ? [DEFAULT_CONDITION_ROW()]
+                  : step.conditions,
             };
           }
           return step;
-        })
+        }),
       );
     },
-    [onChange, steps]
+    [onChange, steps],
+  );
+
+  const setStepActionAttribute = useCallback(
+    (stepId, item) => {
+      onChange(
+        steps.map((step) => {
+          if (step.id === stepId) {
+            return {
+              ...step,
+              actionAttribute: {
+                ...step.actionAttribute,
+                value: item,
+              },
+              conditions:
+                step.conditions.length === 0
+                  ? [DEFAULT_CONDITION_ROW()]
+                  : step.conditions,
+            };
+          }
+          return step;
+        }),
+      );
+    },
+    [onChange, steps],
   );
 
   const setStepConditionParameter = useCallback(
     (stepId, conditionId, value) => {
       onChange(
-        steps.map(step => {
+        steps.map((step) => {
           if (step.id === stepId) {
             return {
               ...step,
-              conditions: step.conditions.map(condition => {
+              conditions: step.conditions.map((condition) => {
                 if (conditionId === condition.id) {
                   return {
                     ...condition,
@@ -61,20 +91,20 @@ export const useConditionHandlers = (steps: ConditionStep[], onChange: (steps: C
             };
           }
           return step;
-        })
+        }),
       );
     },
-    [onChange, steps]
+    [onChange, steps],
   );
 
   const setStepConditionFactorValue = useCallback(
     (stepId, conditionId, value) => {
       onChange(
-        steps.map(step => {
+        steps.map((step) => {
           if (step.id === stepId) {
             return {
               ...step,
-              conditions: step.conditions.map(condition => {
+              conditions: step.conditions.map((condition) => {
                 if (conditionId === condition.id) {
                   return {
                     ...condition,
@@ -90,20 +120,20 @@ export const useConditionHandlers = (steps: ConditionStep[], onChange: (steps: C
             };
           }
           return step;
-        })
+        }),
       );
     },
-    [onChange, steps]
+    [onChange, steps],
   );
 
   const setStepConditionFactorType = useCallback(
     (stepId, conditionId, value) => {
       onChange(
-        steps.map(step => {
+        steps.map((step) => {
           if (step.id === stepId) {
             return {
               ...step,
-              conditions: step.conditions.map(condition => {
+              conditions: step.conditions.map((condition) => {
                 if (condition.id === conditionId) {
                   return {
                     ...condition,
@@ -120,20 +150,20 @@ export const useConditionHandlers = (steps: ConditionStep[], onChange: (steps: C
             };
           }
           return step;
-        })
+        }),
       );
     },
-    [onChange, steps]
+    [onChange, steps],
   );
 
   const setOperatorValue = useCallback(
     (stepId, conditionId, value) => {
       onChange(
-        steps.map(step => {
+        steps.map((step) => {
           if (step.id === stepId) {
             return {
               ...step,
-              conditions: step.conditions.map(condition => {
+              conditions: step.conditions.map((condition) => {
                 if (conditionId === condition.id) {
                   return {
                     ...condition,
@@ -149,17 +179,17 @@ export const useConditionHandlers = (steps: ConditionStep[], onChange: (steps: C
             };
           }
           return step;
-        })
+        }),
       );
     },
-    [onChange, steps]
+    [onChange, steps],
   );
 
   const addStepCondition = useCallback(
     (stepId: ReactText) => {
       const newCondition = { ...DEFAULT_CONDITION_ROW(), id: uuid() };
       onChange(
-        steps.map(step => {
+        steps.map((step) => {
           if (step.id === stepId) {
             return {
               ...step,
@@ -167,34 +197,34 @@ export const useConditionHandlers = (steps: ConditionStep[], onChange: (steps: C
             };
           }
           return step;
-        })
+        }),
       );
       return newCondition.id;
     },
-    [onChange, steps]
+    [onChange, steps],
   );
 
   const removeStepCondition = useCallback(
     (stepId: ReactText, conditionId: ReactText) => {
       onChange(
-        steps.map(step => {
+        steps.map((step) => {
           if (step.id === stepId) {
             return {
               ...step,
-              conditions: step.conditions.filter(c => c.id !== conditionId),
+              conditions: step.conditions.filter((c) => c.id !== conditionId),
             };
           }
           return step;
-        })
+        }),
       );
     },
-    [onChange, steps]
+    [onChange, steps],
   );
 
   const updateStepName = useCallback(
     (stepId, name) => {
       onChange(
-        steps.map(step => {
+        steps.map((step) => {
           if (step.id === stepId) {
             return {
               ...step,
@@ -202,25 +232,25 @@ export const useConditionHandlers = (steps: ConditionStep[], onChange: (steps: C
             };
           }
           return step;
-        })
+        }),
       );
     },
-    [onChange, steps]
+    [onChange, steps],
   );
 
   const removeStep = useCallback(
-    stepId => {
-      onChange(steps.filter(step => step.id !== stepId));
+    (stepId) => {
+      onChange(steps.filter((step) => step.id !== stepId));
     },
-    [onChange, steps]
+    [onChange, steps],
   );
 
   const duplicateStep = useCallback(
-    stepId => {
-      const duplicatedStep = steps.find(step => step.id === stepId);
+    (stepId) => {
+      const duplicatedStep = steps.find((step) => step.id === stepId);
       duplicatedStep && onChange([...steps, { ...duplicatedStep, id: uuid() }]);
     },
-    [onChange, steps]
+    [onChange, steps],
   );
 
   const addStep = useCallback(() => {
@@ -231,7 +261,13 @@ export const useConditionHandlers = (steps: ConditionStep[], onChange: (steps: C
 
   const addCustomStep = (selectedItem?: ContextItem | ContextGroup) => {
     const newStep = DEFAULT_STEP();
-    onChange([...steps, { ...newStep, context: { ...DEFAULT_CONTEXT_VALUE, ...newStep.context, selectedItem } }]);
+    onChange([
+      ...steps,
+      {
+        ...newStep,
+        context: { ...DEFAULT_CONTEXT_VALUE, ...newStep.context, selectedItem },
+      },
+    ]);
     setOpenedAddStep(false);
   };
 
@@ -247,6 +283,7 @@ export const useConditionHandlers = (steps: ConditionStep[], onChange: (steps: C
     setStepConditionFactorType,
     setStepConditionFactorValue,
     setStepConditionParameter,
+    setStepActionAttribute,
     setStepContext,
     removeStep,
     duplicateStep,

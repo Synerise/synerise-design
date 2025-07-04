@@ -549,9 +549,35 @@ export const STEPS_POPULATED = [
     stepName: '',
     context: {
       ...DEFAULT_CONTEXT_VALUE,
-      type: 'event' as const,
+      type: 'attribute' as const,
+      items: CONTEXT_ITEMS,
+      groups: CONTEXT_GROUPS,
+      texts: CONTEXT_TEXTS,
+      selectedItem: {
+        ...CONTEXT_ITEMS[3],
+      },
     },
-    conditions: [],
+    conditions: [
+      {
+        id: '75efa0d3-23dd-48e0-a02b-8700a69815qa',
+        operator: {
+          ...DEFAULT_OPERATOR_VALUE,
+          value: {
+            ...OPERATORS_ITEMS[10],
+          },
+          availableFactors: getAvailableFactorTypes(OPERATORS_ITEMS[10]),
+        },
+        factor: {
+          ...DEFAULT_FACTOR_VALUE,
+          selectedFactorType: 'contextParameter' as const,
+          value: {
+            type: '',
+            ...PARAMETER_ITEMS[2],
+          },
+          availableFactorTypes: getAvailableFactorTypes(OPERATORS_ITEMS[2]),
+        },
+      },
+    ],
   },
 ];
 

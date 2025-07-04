@@ -1,7 +1,7 @@
 import { VariableSizeList } from 'react-window';
 import styled from 'styled-components';
 
-// TESTME
+import Button from '@synerise/ds-button';
 import DropdownSkeleton from '@synerise/ds-skeleton';
 
 export const TabsWrapper = styled.div`
@@ -32,6 +32,11 @@ export const Value = styled.span`
   max-width: 110px;
   text-overflow: ellipsis;
   overflow: hidden;
+  text-align: left;
+`;
+
+export const ParameterButton = styled(Button)`
+  max-width: 100%;
 `;
 
 export const StyledList = styled(VariableSizeList)`

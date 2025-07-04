@@ -16,7 +16,7 @@ import { ExpressionWithSteps } from '../Filter.types';
 import { DEFAULT_EXPRESSION, renderDateRange } from '../Filter.data';
 import { ConditionExample } from '../ConditionExample';
 
-export const useFilterHandlers = ({ isDateFilterOn, conditionFooterRelativeDateRange, ...args }) => {
+export const useFilterHandlers = ({ isDateFilterOn, conditionFooterRelativeDateRange, showActionAttribute, ...args }) => {
   const [expressions, setExpressions] = useState<ExpressionWithSteps[]>(args.expressions);
   const [filters, setFilters] = useState<SavedFilter[]>([]);
 
@@ -164,6 +164,8 @@ export const useFilterHandlers = ({ isDateFilterOn, conditionFooterRelativeDateR
         steps={expression.expressionSteps || []}
         hoverDisabled={hoverDisabled}
         readOnly={args.readOnly}
+        showActionAttribute={showActionAttribute}
+
       />
     );
   };

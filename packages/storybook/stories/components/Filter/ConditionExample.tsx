@@ -35,6 +35,7 @@ export const ConditionExample = forwardRef<HTMLDivElement, ConditionExampleProps
       setStepConditionFactorType,
       setStepConditionFactorValue,
       setStepConditionParameter,
+      setStepActionAttribute,
       setStepContext,
       removeStep,
       removeStepCondition,
@@ -69,7 +70,7 @@ export const ConditionExample = forwardRef<HTMLDivElement, ConditionExampleProps
     };
 
     return (
-      <div ref={ref}>
+      <div ref={ref} data-popup-container>
         <Condition
           texts={CONDITION_TEXTS}
           minConditionsLength={1}
@@ -96,6 +97,7 @@ export const ConditionExample = forwardRef<HTMLDivElement, ConditionExampleProps
           onChangeOperator={setOperatorValue}
           onChangeFactorValue={setStepConditionFactorValue}
           onChangeFactorType={setStepConditionFactorType}
+          onChangeActionAttribute={setStepActionAttribute}
           showSuffix
           getPopupContainerOverride={getPopupContainer}
           hoverDisabled={hoverDisabled}

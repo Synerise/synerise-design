@@ -1,7 +1,7 @@
 import { v4 as uuid } from 'uuid';
 
-import type { ContextGroup, ContextItem } from '@synerise/ds-context-selector';
 import type { ConditionStep } from '@synerise/ds-condition';
+import type { ContextGroup, ContextItem } from '@synerise/ds-context-selector';
 import { DateRange, fnsFormat, utils } from '@synerise/ds-date-range-picker';
 
 import {
@@ -22,16 +22,20 @@ export const renderDateRange = (value: DateRange) => {
   if (value.type === 'ABSOLUTE') {
     if (value.from && value.to)
       return `${fnsFormat(new Date(value.from), 'MMM d, yyyy')} - ${fnsFormat(new Date(value.to), 'MMM d, yyyy')}`;
-    if (!value.from && !value.to) return value.translationKey?.toLocaleUpperCase();
+    if (!value.from && !value.to)
+      return value.translationKey?.toLocaleUpperCase();
     return 'In date range';
   }
   return value.translationKey && value.translationKey !== 'custom'
     ? value.translationKey
-    : `${value.duration.value} ${value.duration.type.toLocaleLowerCase()} before ${value.offset.value
-    } ${value.offset.type.toLocaleLowerCase()}`;
+    : `${value.duration.value} ${value.duration.type.toLocaleLowerCase()} before ${
+        value.offset.value
+      } ${value.offset.type.toLocaleLowerCase()}`;
 };
 
-export const DEFAULT_EXPRESSION = (subject?: ContextItem | ContextGroup): ExpressionWithSteps => ({
+export const DEFAULT_EXPRESSION = (
+  subject?: ContextItem | ContextGroup,
+): ExpressionWithSteps => ({
   type: 'STEP' as const,
   id: uuid(),
   data: {
@@ -80,9 +84,10 @@ export const FILTER_TEXTS = {
   conditionsLimit: 'Conditions limit',
 };
 
-const FILTER_EXPRESSION_STEP: ConditionStep = {
-  ...STEPS_POPULATED[0],
-};
+const FILTER_EXPRESSION_STEPS: ConditionStep[] = [...STEPS_POPULATED];
+
+const FILTER_EXPRESSION_STEP = FILTER_EXPRESSION_STEPS[0];
+
 const FILTER_EXPRESSION_STEP_FACTOR_ERRORS = {
   ...STEPS_POPULATED_FACTOR_ERRORS[0],
 };
@@ -109,7 +114,7 @@ export const EXPRESSIONS: ExpressionWithSteps[] = [
       },
     },
     expressionType: 'event' as const,
-    expressionSteps: [FILTER_EXPRESSION_STEP],
+    expressionSteps: FILTER_EXPRESSION_STEPS,
     footer: {
       completedWithinValue: {
         ...COMPLETED_WITHIN_VALUE,
@@ -145,7 +150,10 @@ export const EXPRESSIONS: ExpressionWithSteps[] = [
       },
     },
     expressionType: 'event',
-    expressionSteps: [FILTER_EXPRESSION_STEP, FILTER_EXPRESSION_STEP_FACTOR_ERRORS],
+    expressionSteps: [
+      FILTER_EXPRESSION_STEP,
+      FILTER_EXPRESSION_STEP_FACTOR_ERRORS,
+    ],
     footer: {
       completedWithinValue: {
         ...COMPLETED_WITHIN_VALUE,
