@@ -1,5 +1,10 @@
 import copy from 'copy-to-clipboard';
-import React, { useCallback, useEffect, useState } from 'react';
+import React, {
+  type MouseEvent,
+  useCallback,
+  useEffect,
+  useState,
+} from 'react';
 
 import Icon, { CopyClipboardM } from '@synerise/ds-icon';
 import Tooltip from '@synerise/ds-tooltip';
@@ -24,11 +29,15 @@ const CopyableCell = ({
     return (): void => clearTimeout(timer);
   }, [tooltipVisible, setTooltipVisible, tooltipTimeout]);
 
-  const handleCopy = useCallback(() => {
-    if (copy(value)) {
-      setTooltipVisible(true);
-    }
-  }, [value]);
+  const handleCopy = useCallback(
+    (e: MouseEvent) => {
+      e.stopPropagation();
+      if (copy(value)) {
+        setTooltipVisible(true);
+      }
+    },
+    [value],
+  );
 
   return (
     <S.Copyable {...htmlAttributes}>
