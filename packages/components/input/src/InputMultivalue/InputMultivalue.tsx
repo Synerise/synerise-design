@@ -62,8 +62,9 @@ const InputMultivalue = (props: InputMultivalueProps) => {
             disabled={disabled}
             key={`${val}-${index}`}
             onRemoveClick={(): void => {
-              const filteredValues = selectedValues.filter((v) => v !== val);
-              handleNewValue(filteredValues);
+              const filteredItems = [...selectedValues];
+              filteredItems.splice(index, 1);
+              handleNewValue(filteredItems);
             }}
             value={val}
             focused={isFocused}
