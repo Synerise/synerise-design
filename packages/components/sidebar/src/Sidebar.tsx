@@ -1,139 +1,202 @@
-import update from 'immutability-helper';
-import React from 'react';
-import { DndProvider } from 'react-dnd';
-import HTML5Backend from 'react-dnd-html5-backend';
+import classNames from 'classnames';
+import React, {
+  Children,
+  type ReactElement,
+  useCallback,
+  useMemo,
+  useRef,
+  useState,
+} from 'react';
+import { createPortal } from 'react-dom';
 
-import { theme } from '@synerise/ds-core';
+import { useTheme } from '@synerise/ds-core';
 import Icon, { AngleDownS, AngleUpS } from '@synerise/ds-icon';
+import { DragOverlay, SortableContainer } from '@synerise/ds-sortable';
 
+import { DragOverlayPanel } from './DragOverlayPanel/DragOverlayPanel';
 import { Panel } from './Panel/Panel';
 import { SidebarContext } from './Sidebar.context';
 import * as S from './Sidebar.styles';
-import {
-  type CompareFnType,
-  type PanelProps,
-  type SidebarProps,
-} from './Sidebar.types';
+import { type PanelProps, type SidebarProps } from './Sidebar.types';
 import './style/index.less';
+import { prefixKeys } from './utils/prefixKeys';
 
-const prependDots = (keys: string | number | (string | number)[]) => {
-  return keys && Array.isArray(keys) ? keys.map((el) => `.${el}`) : `.${keys}`;
-};
-
-const Sidebar: React.FC<SidebarProps> & { Panel: typeof Panel } = ({
+export const Sidebar = ({
   children,
   order = [],
   onChangeOrder,
   defaultActiveKey,
   activeKey,
   onChange,
+  className,
+  getPopupContainer,
   ...collapseProps
-}) => {
-  const isDragDrop = Array.isArray(order) && order.length > 0;
+}: SidebarProps) => {
+  const [draggedItem, setDraggedItem] = useState<PanelProps | undefined>();
+  const isSortable =
+    Array.isArray(order) && order.length > 0 && !!onChangeOrder;
+  const theme = useTheme();
+  const wrapperRef = useRef<HTMLDivElement | null>(null);
 
-  const isActive: (checkActive?: boolean | undefined) => React.ReactElement = (
-    checkActive,
-  ) => {
-    return (
-      <Icon
-        color={theme.palette['grey-600']}
-        component={checkActive ? <AngleUpS /> : <AngleDownS />}
-      />
-    );
-  };
+  const [activeKeys, setActiveKeys] = useState<(string | number)[]>(() => {
+    if (!activeKey && !defaultActiveKey) {
+      return [];
+    }
+    if (activeKey) {
+      return Array.isArray(activeKey) ? activeKey : [activeKey];
+    }
+    if (defaultActiveKey) {
+      return Array.isArray(defaultActiveKey)
+        ? defaultActiveKey
+        : [defaultActiveKey];
+    }
+    return [];
+  });
 
-  const compareByPositionOfKey: CompareFnType = React.useCallback(
-    (a, b) => {
-      if (!isDragDrop) {
-        return 1;
-      }
-      return Array.isArray(order) &&
-        order.indexOf(a.props.id) > order.indexOf(b.props.id)
-        ? 1
-        : -1;
-    },
-    [isDragDrop, order],
+  const sortableItems = useMemo(
+    () =>
+      order.map((id) => ({
+        id,
+      })),
+    [order],
   );
 
-  const changeOrder: (dragIndex: number, hoverIndex: number) => void = (
-    dragIndex,
-    hoverIndex,
-  ) => {
-    const dragItemBlock = order[dragIndex];
-    const orderedItems = update(order, {
-      $splice: [
-        [dragIndex, 1],
-        [hoverIndex, 0, dragItemBlock],
-      ],
-    });
-
-    onChangeOrder && onChangeOrder(orderedItems);
-  };
-
-  const handleOnChange = React.useCallback(
+  const handleOnChange = useCallback(
     (keys: string | string[]) => {
-      const finalKeys = isDragDrop
+      const finalKeys = isSortable
         ? (Array.isArray(keys) ? keys : [keys]).map((key) =>
-            key.startsWith('.') ? key.substring(1) : key,
+            key.startsWith('.$') ? key.substring(2) : key,
           )
         : keys;
-      onChange && onChange(finalKeys);
+      setActiveKeys(Array.isArray(finalKeys) ? finalKeys : [finalKeys]);
+      onChange?.(finalKeys);
     },
-    [isDragDrop, onChange],
+    [isSortable, onChange],
   );
 
-  const antdActiveKey =
-    isDragDrop && activeKey ? prependDots(activeKey) : activeKey;
-  const antdDefaultActiveKey =
-    isDragDrop && defaultActiveKey
-      ? prependDots(defaultActiveKey)
-      : defaultActiveKey;
+  const sortedChildren = useMemo(() => {
+    return (Children.toArray(children) as ReactElement<PanelProps>[]).sort(
+      (a, b) => {
+        if (!isSortable) {
+          return 1;
+        }
+        return Array.isArray(order) &&
+          order.indexOf(a.props.id) > order.indexOf(b.props.id)
+          ? 1
+          : -1;
+      },
+    );
+  }, [children, isSortable, order]);
 
-  const collapseContent = React.useMemo(() => {
-    let activeKeysProp = {};
-    if (antdDefaultActiveKey !== undefined) {
-      activeKeysProp = { defaultActiveKey: antdDefaultActiveKey };
-    } else if (antdActiveKey !== undefined) {
-      activeKeysProp = { activeKey: antdActiveKey };
+  const activeKeysProp = useMemo(() => {
+    const prependedActiveKey =
+      isSortable && activeKey ? prefixKeys(activeKey) : activeKey;
+    const prependedDefaultActiveKey =
+      isSortable && defaultActiveKey
+        ? prefixKeys(defaultActiveKey)
+        : defaultActiveKey;
+
+    let keyProp = {};
+    if (prependedDefaultActiveKey !== undefined) {
+      keyProp = { defaultActiveKey: prependedDefaultActiveKey };
+    } else if (prependedActiveKey !== undefined) {
+      keyProp = { activeKey: prependedActiveKey };
     }
+    return keyProp;
+  }, [isSortable, activeKey, defaultActiveKey]);
+
+  const isDraggedPanelActive = useCallback(
+    (id: string) => {
+      return activeKeys.indexOf(id) > -1;
+    },
+    [activeKeys],
+  );
+
+  const handleDragStart = useCallback(
+    ({ active }: { active: { id: string | number } }) => {
+      const activePanel = sortedChildren.find(
+        (child) => child.props.id === active.id,
+      );
+      setDraggedItem(activePanel?.props);
+    },
+    [sortedChildren],
+  );
+
+  const handleDragEnd = useCallback(() => {
+    setDraggedItem(undefined);
+  }, []);
+
+  const handleOrderChange = (newOrder: { id: string }[]) => {
+    onChangeOrder?.(newOrder.map((item) => item.id));
+  };
+
+  const collapseContent = useMemo(() => {
+    const dragOverlay = (
+      <DragOverlay>
+        {draggedItem && (
+          <DragOverlayPanel
+            isActive={isDraggedPanelActive(draggedItem.id)}
+            forceRender={isDraggedPanelActive(draggedItem.id)}
+            {...draggedItem}
+            draggable
+            id="-1"
+            key="-1"
+          />
+        )}
+      </DragOverlay>
+    );
     return (
-      <S.AntdCollapse
-        {...activeKeysProp}
-        className={isDragDrop ? 'is-drag-drop' : ''}
-        expandIconPosition="end"
-        expandIcon={(panelProps): React.ReactElement => {
-          const checkActive = panelProps.isActive;
-          return isActive(checkActive);
-        }}
-        onChange={handleOnChange}
-        {...collapseProps}
-      >
-        {isDragDrop
-          ? (
-              React.Children.toArray(
-                children,
-              ) as React.ReactElement<PanelProps>[]
-            ).sort(compareByPositionOfKey)
-          : children}
-      </S.AntdCollapse>
+      <div ref={wrapperRef}>
+        <S.AntdCollapse
+          {...activeKeysProp}
+          className={classNames({
+            'is-drag-drop': isSortable,
+            className,
+          })}
+          expandIconPosition="end"
+          expandIcon={({ isActive }) => (
+            <Icon
+              color={theme.palette['grey-600']}
+              component={isActive ? <AngleUpS /> : <AngleDownS />}
+            />
+          )}
+          onChange={handleOnChange}
+          {...collapseProps}
+        >
+          {isSortable ? sortedChildren : children}
+        </S.AntdCollapse>
+        {wrapperRef.current && getPopupContainer
+          ? createPortal(dragOverlay, getPopupContainer(wrapperRef.current))
+          : dragOverlay}
+      </div>
     );
   }, [
-    antdDefaultActiveKey,
-    antdActiveKey,
-    isDragDrop,
+    draggedItem,
+    isDraggedPanelActive,
+    activeKeysProp,
+    isSortable,
+    className,
     handleOnChange,
     collapseProps,
+    sortedChildren,
     children,
-    compareByPositionOfKey,
+    getPopupContainer,
+    theme.palette,
   ]);
 
-  return isDragDrop ? (
-    // @ts-expect-error Property 'children' does not exist on type 'IntrinsicAttributes & DndProviderProps<any, any>'.
-    <DndProvider backend={HTML5Backend}>
-      <SidebarContext.Provider value={{ order, setOrder: changeOrder }}>
+  return isSortable ? (
+    <SortableContainer
+      axis="y"
+      items={sortableItems}
+      onDragStart={handleDragStart}
+      onDragEnd={handleDragEnd}
+      onDragCancel={handleDragEnd}
+      onOrderChange={handleOrderChange}
+    >
+      <SidebarContext.Provider value={{ isSortable }}>
         {collapseContent}
       </SidebarContext.Provider>
-    </DndProvider>
+    </SortableContainer>
   ) : (
     collapseContent
   );

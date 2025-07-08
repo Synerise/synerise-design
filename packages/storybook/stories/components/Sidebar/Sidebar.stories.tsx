@@ -1,13 +1,19 @@
 import React, { useState } from 'react';
+
 import { Meta, StoryObj } from '@storybook/react-webpack5';
-
-import Sidebar, { SidebarWithButton as SidebarWithButtonComponent } from '@synerise/ds-sidebar';
 import Block from '@synerise/ds-block';
-import Icon, { EditM } from '@synerise/ds-icon';
 import { theme } from '@synerise/ds-core';
+import Icon, { EditM } from '@synerise/ds-icon';
+import Sidebar, {
+  SidebarWithButton as SidebarWithButtonComponent,
+} from '@synerise/ds-sidebar';
 
-import { CLASSNAME_ARG_CONTROL, fixedWrapper300, STRING_CONTROL } from '../../utils';
-import { createSidebarPanels, SIDEBAR_WITH_BUTTON_DATA } from './Sidebar.data';
+import {
+  CLASSNAME_ARG_CONTROL,
+  STRING_CONTROL,
+  fixedWrapper300,
+} from '../../utils';
+import { SIDEBAR_WITH_BUTTON_DATA, createSidebarPanels } from './Sidebar.data';
 
 export default {
   component: Sidebar,
@@ -22,15 +28,17 @@ export default {
     children:
       'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque vehicula eget ipsum vel elementum. Interdum et malesuada fames ac ante ipsum primis.',
   },
-  render: args => {
-    const [activeKeys, setActiveKeys] = useState<string | number | (string | number)[] | undefined>(args.activeKey);
+  render: (args) => {
+    const [activeKeys, setActiveKeys] = useState<
+      string | number | (string | number)[] | undefined
+    >(args.activeKey);
     const [order, setOrder] = useState(args.order);
 
     const handleChange = (keys: string | number | (string | number)[]) => {
       args.onChange?.(keys as string | string[]);
       setActiveKeys(keys);
     };
-    const handleChangeOrder = newOrder => {
+    const handleChangeOrder = (newOrder) => {
       args.onChangeOrder?.(newOrder);
       setOrder(newOrder);
     };
@@ -57,6 +65,7 @@ export const DefaultActiveKey: StoryObj<typeof Sidebar> = {
   args: {
     defaultActiveKey: ['1', '2'],
     activeKey: undefined,
+    order: ['2', '3', '1'],
     children: createSidebarPanels(),
   },
 };
@@ -77,7 +86,13 @@ export const WithBlock: StoryObj<typeof Sidebar> = {
           <Block
             key={index}
             isDragging={false}
-            icon={<Icon component={<EditM />} size={24} color={theme.palette['grey-600']} />}
+            icon={
+              <Icon
+                component={<EditM />}
+                size={24}
+                color={theme.palette['grey-600']}
+              />
+            }
           >
             Block name
           </Block>
@@ -88,7 +103,8 @@ export const WithBlock: StoryObj<typeof Sidebar> = {
 };
 
 export const SidebarWithButton: StoryObj<typeof SidebarWithButtonComponent> = {
-  render: args => {
+  tags: ['deprecated'],
+  render: (args) => {
     return <SidebarWithButtonComponent {...args} />;
   },
   args: {

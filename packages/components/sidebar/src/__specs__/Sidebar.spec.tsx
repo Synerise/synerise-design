@@ -1,9 +1,9 @@
+import { fireEvent, screen } from '@testing-library/react';
 import React from 'react';
 
 import { renderWithProvider } from '@synerise/ds-utils';
-import { fireEvent, screen } from '@testing-library/react';
 
-import SidebarWithButton from '../../dist/SidebarWithButton/SidebarWithButton';
+import SidebarWithButton from '../SidebarWithButton/SidebarWithButton';
 import Sidebar from '../index';
 
 describe('Sidebar', () => {
@@ -14,6 +14,7 @@ describe('Sidebar', () => {
   const ID_2 = 'second';
   const ID_3 = 'third';
   const CHILDREN = 'Children';
+  const CHILDREN_2 = 'Children 2';
 
   it('should render header', () => {
     renderWithProvider(
@@ -28,33 +29,36 @@ describe('Sidebar', () => {
     );
 
     expect(screen.getByTestId(`header-${ID_1}`)).toBeInTheDocument();
+    expect(screen.getByText(HEADER_1)).toBeInTheDocument();
+    expect(screen.queryByText(CHILDREN)).not.toBeInTheDocument();
   });
 
-  it('should render active panel', () => {
-    const { getByText } = renderWithProvider(
-      <Sidebar defaultActiveKey={['0']} order={[ID_2, ID_1]}>
+  it('should render active panel open', () => {
+    renderWithProvider(
+      <Sidebar defaultActiveKey={[ID_1]}>
         <Sidebar.Panel header={HEADER_1} id={ID_1} key={ID_1}>
           {CHILDREN}
         </Sidebar.Panel>
         <Sidebar.Panel header={HEADER_2} id={ID_2}>
-          {CHILDREN}
+          {CHILDREN_2}
         </Sidebar.Panel>
       </Sidebar>,
     );
 
-    expect(getByText(HEADER_1)).toBeTruthy();
+    expect(screen.getByText(CHILDREN)).toBeInTheDocument();
+    expect(screen.queryByText(CHILDREN_2)).not.toBeInTheDocument();
   });
   it('should render text Button', () => {
-    const { getByText } = renderWithProvider(
-      <SidebarWithButton buttonLabel="Button" dataSource={null} />,
+    renderWithProvider(
+      <SidebarWithButton buttonLabel="Button" dataSource={[]} />,
     );
 
-    expect(getByText('Button')).toBeTruthy();
+    expect(screen.getByText('Button')).toBeTruthy();
   });
 
-  it('should fire open collapse', async () => {
-    const { getByText } = renderWithProvider(
-      <Sidebar defaultActiveKey={['0']} order={[ID_2, ID_1]}>
+  it('should open collapse on click', async () => {
+    renderWithProvider(
+      <Sidebar order={[ID_2, ID_1]}>
         <Sidebar.Panel header={HEADER_1} id={ID_1} key={ID_1}>
           {CHILDREN}
         </Sidebar.Panel>
@@ -63,15 +67,17 @@ describe('Sidebar', () => {
         </Sidebar.Panel>
       </Sidebar>,
     );
+    expect(screen.queryByText(CHILDREN)).not.toBeInTheDocument();
 
-    fireEvent.click(getByText(HEADER_1));
+    fireEvent.click(screen.getByText(HEADER_1));
 
-    expect(getByText(CHILDREN)).toBeTruthy();
+    expect(screen.getByText(CHILDREN)).toBeInTheDocument();
   });
 
   it('should render order in draggable mode', () => {
-    const { getByText, container } = renderWithProvider(
-      <Sidebar order={[ID_3, ID_2, ID_1]}>
+    const onChangeOrder = jest.fn()
+    const { container } = renderWithProvider(
+      <Sidebar onChangeOrder={onChangeOrder} order={[ID_3, ID_2, ID_1]}>
         <Sidebar.Panel header={HEADER_1} id={ID_1}>
           {CHILDREN}
         </Sidebar.Panel>
@@ -83,24 +89,21 @@ describe('Sidebar', () => {
         </Sidebar.Panel>
       </Sidebar>,
     );
+    const headers = container.querySelectorAll('.ant-collapse-header');
 
-    fireEvent.click(getByText(HEADER_1));
-    fireEvent.click(getByText(HEADER_2));
-    fireEvent.click(getByText(HEADER_3));
-
-    expect(
-      container.querySelectorAll('.ant-collapse-header')[0].textContent,
+    expect(headers).toHaveLength(3)
+    expect(headers[0].textContent,
     ).toEqual(HEADER_3);
-    expect(
-      container.querySelectorAll('.ant-collapse-header')[1].textContent,
+    expect(headers[1].textContent,
     ).toEqual(HEADER_2);
-    expect(
-      container.querySelectorAll('.ant-collapse-header')[2].textContent,
+    expect(headers[2].textContent,
     ).toEqual(HEADER_1);
+
     expect(container.querySelector('.ant-collapse.is-drag-drop')).toBeTruthy();
   });
 
-  it('should change cursor to "move" in drag and drop mode', () => {
+
+  it('should ignore render order in default mode', () => {
     const { container } = renderWithProvider(
       <Sidebar order={[ID_3, ID_2, ID_1]}>
         <Sidebar.Panel header={HEADER_1} id={ID_1}>
@@ -114,12 +117,33 @@ describe('Sidebar', () => {
         </Sidebar.Panel>
       </Sidebar>,
     );
+    const headers = container.querySelectorAll('.ant-collapse-header');
 
-    const headerElement = container.querySelector('.ant-collapse-header');
-    fireEvent.mouseOver(headerElement);
+    expect(headers).toHaveLength(3)
+    expect(headers[0].textContent,
+    ).toEqual(HEADER_1);
+    expect(headers[1].textContent,
+    ).toEqual(HEADER_2);
+    expect(headers[2].textContent,
+    ).toEqual(HEADER_3);
+
+    expect(container.querySelector('.ant-collapse.is-drag-drop')).toBeFalsy();
+  });
+
+  it('should change cursor to "grabbing" in drag and drop mode', () => {
+    const onChangeOrder = jest.fn()
+    renderWithProvider(
+      <Sidebar onChangeOrder={onChangeOrder} order={[ID_1]}>
+        <Sidebar.Panel header={HEADER_1} id={ID_1}>
+          {CHILDREN}
+        </Sidebar.Panel>
+      </Sidebar>,
+    );
+
+    const headerElement = screen.getByTestId('ds-sidebar-header-handle');
 
     expect(
       window.getComputedStyle(headerElement).getPropertyValue('cursor'),
-    ).toBe('pointer');
+    ).toBe('grabbing');
   });
 });
