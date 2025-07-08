@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.3.3](https://github.com/synerise/synerise-design/compare/@synerise/ds-input@1.3.2...@synerise/ds-input@1.3.3) (2025-07-08)
+
+
+### Bug Fixes
+
+* **input:** remove value by index ([9cb8d26](https://github.com/synerise/synerise-design/commit/9cb8d26c0ac7666e58ebdf342dfe0f373d020cab))
+
+
+
+
+
 ## [1.3.2](https://github.com/synerise/synerise-design/compare/@synerise/ds-input@1.3.1...@synerise/ds-input@1.3.2) (2025-07-01)
 
 **Note:** Version bump only for package @synerise/ds-input

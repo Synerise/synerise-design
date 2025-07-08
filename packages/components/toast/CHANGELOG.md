@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.1.7](https://github.com/Synerise/synerise-design/compare/@synerise/ds-toast@1.1.6...@synerise/ds-toast@1.1.7) (2025-07-08)
+
+**Note:** Version bump only for package @synerise/ds-toast
+
+
+
+
+
 ## [1.1.6](https://github.com/Synerise/synerise-design/compare/@synerise/ds-toast@1.1.5...@synerise/ds-toast@1.1.6) (2025-07-01)
 
 **Note:** Version bump only for package @synerise/ds-toast
