@@ -17,14 +17,14 @@ type EmptyListMessageProps = {
   >;
   hasCurrentSection?: boolean;
   listActions: boolean;
-  isSearchSection: boolean;
+  isActionSection: boolean;
   buttonOnClick: () => void;
 };
 
 export const EmptyListMessage = ({
   texts,
   listActions,
-  isSearchSection,
+  isActionSection,
   hasCurrentSection,
   buttonOnClick,
 }: EmptyListMessageProps) => {
@@ -37,7 +37,7 @@ export const EmptyListMessage = ({
       />
     );
   }
-  if (hasCurrentSection && !isSearchSection) {
+  if (hasCurrentSection && !isActionSection) {
     return (
       <S.EmptyStates
         customIcon={<SearchNoResultsL />}

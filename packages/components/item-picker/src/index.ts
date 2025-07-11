@@ -14,9 +14,12 @@ export type {
 export type {
   ItemPickerProps as ItemPickerPropsNew,
   ItemLoaderConfig,
-  BaseSectionTypeWithFolders,
-  BaseItemType,
   ItemLoaderResponse,
   LoaderProps,
   OnLoadedData,
 } from './components/ItemPickerNew/ItemPickerNew.types';
+export type {
+  BaseSectionTypeWithFolders,
+  BaseItemType,
+} from './components/ItemPickerNew/types/baseItemSectionType.types';
+export type { Action } from './components/ItemPickerNew/types/actions.types';

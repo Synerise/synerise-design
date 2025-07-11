@@ -1,14 +1,20 @@
 import { type ListItemProps } from '@synerise/ds-list-item';
 
 import {
-  type ActionType,
+  type ItemLoaderConfig,
+  type ItemsConfig,
+} from '../../ItemPickerNew/ItemPickerNew.types';
+import {
+  ACTION_TYPES,
+  type Action,
+  type SearchByAction,
+  type SearchInAction,
+} from '../../ItemPickerNew/types/actions.types';
+import {
   type BaseItemType,
   type BaseSectionType,
   type BaseSectionTypeWithFolders,
-  type ItemLoaderConfig,
-  type ItemsConfig,
-  type SearchActionType,
-} from '../../ItemPickerNew/ItemPickerNew.types';
+} from '../../ItemPickerNew/types/baseItemSectionType.types';
 import { type TitleListItemProps } from '../ItemPickerList.types';
 
 export const isTitle = (
@@ -47,8 +53,10 @@ export const isTruthy = <T>(value: T): value is NonNullable<T> => {
   return Boolean(value);
 };
 
-export const isSearchActionType = (
-  action?: ActionType,
-): action is SearchActionType => {
-  return action?.actionType === 'search';
+export const isSearchByAction = (action?: Action): action is SearchByAction => {
+  return action?.actionType === ACTION_TYPES.searchBy;
+};
+
+export const isSearchInAction = (action?: Action): action is SearchInAction => {
+  return action?.actionType === ACTION_TYPES.searchIn;
 };

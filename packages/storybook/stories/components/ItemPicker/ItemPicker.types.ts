@@ -1,12 +1,14 @@
-
-import { ItemPickerListProps, ItemPickerPropsNew } from '@synerise/ds-item-picker';
-import { ListItemProps } from '@synerise/ds-list-item';
 import { InformationCardProps } from '@synerise/ds-information-card';
+import {
+  ItemPickerListProps,
+  ItemPickerPropsNew,
+} from '@synerise/ds-item-picker';
+import { ListItemProps } from '@synerise/ds-list-item';
 
 type SharedItemProps = {
   sectionId?: string;
   text: string;
-  informationCardProps?: InformationCardProps
+  informationCardProps?: InformationCardProps;
 } & Omit<Partial<ListItemProps>, 'text'>;
 
 export type SegmentationType = {
@@ -16,7 +18,7 @@ export type SegmentationType = {
   usedIn?: number;
   author?: string;
   value?: number;
-} & SharedItemProps
+} & SharedItemProps;
 
 export type AttributeType = {
   itemType: 'attribute';
@@ -25,21 +27,31 @@ export type AttributeType = {
   usedIn?: number;
   author?: string;
   value?: number;
-} & SharedItemProps
+} & SharedItemProps;
 
 export type FunnelType = {
   itemType: 'funnel';
   createdDate?: string;
   updatedDate?: string;
   usedIn?: number;
-  author?: string
-} & SharedItemProps
+  author?: string;
+} & SharedItemProps;
+
+export type FolderType = {
+  itemType: 'folder';
+  author?: string;
+} & SharedItemProps;
 
 export type SimpleItem = {
   itemType?: undefined;
-} & SharedItemProps
+} & SharedItemProps;
 
-export type ItemType = FunnelType | SegmentationType | SimpleItem | AttributeType;
+export type ItemType =
+  | FunnelType
+  | SegmentationType
+  | SimpleItem
+  | AttributeType
+  | FolderType;
 
 export type SectionType = {
   id: string;
@@ -52,7 +64,6 @@ export type NestedSectionType = {
   text: string;
   folders?: NestedSectionType[];
 };
-
 
 export type StoryPropsOverlay = ItemPickerListProps<ItemType, SectionType>;
 export type StoryProps = ItemPickerPropsNew<ItemType, SectionType>;

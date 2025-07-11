@@ -3,7 +3,7 @@ import { type ReactNode, useMemo } from 'react';
 import type {
   BaseSectionType,
   BaseSectionTypeWithFolders,
-} from '../../ItemPickerNew/ItemPickerNew.types';
+} from '../../ItemPickerNew/types/baseItemSectionType.types';
 
 type NestedFoldersProps<SectionType extends BaseSectionType | undefined> = {
   currentSection?: SectionType extends BaseSectionType

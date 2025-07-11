@@ -8,11 +8,11 @@ import * as S from '../../ItemPicker.styles';
 import { useDefaultTexts } from '../../hooks/useDefaultTexts';
 import { ItemPickerList } from '../ItemPickerList/ItemPickerList';
 import Trigger from '../ItemPickerTrigger/Trigger';
+import type { ItemPickerProps } from './ItemPickerNew.types';
 import type {
   BaseItemType,
   BaseSectionType,
-  ItemPickerProps,
-} from './ItemPickerNew.types';
+} from './types/baseItemSectionType.types';
 
 export const ItemPickerNew = <
   ItemType extends BaseItemType,

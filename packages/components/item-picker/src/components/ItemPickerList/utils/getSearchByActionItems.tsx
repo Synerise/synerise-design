@@ -3,29 +3,27 @@ import React from 'react';
 import Icon from '@synerise/ds-icon';
 
 import type {
-  SearchActionType,
-  SearchParamConfig,
-} from '../../ItemPickerNew/ItemPickerNew.types';
-import {
-  getActionItem,
-  matchesSearchQuery,
-} from '../hooks/useItemsInSections.utils';
+  SearchByAction,
+  SearchByParamConfig,
+} from '../../ItemPickerNew/types/actions.types';
+import { matchesSearchQuery } from '../hooks/useItemsInSections.utils';
+import { getActionItem } from './actionItemsUtils';
 
-type GetSearchActionItemsOptions = {
-  action: SearchActionType;
-  setSearchActionSection: (value: SearchActionType | undefined) => void;
-  setSearchParamConfig: (value: SearchParamConfig | undefined) => void;
+type GetSearchByActionItemsOptions = {
+  action: SearchByAction;
+  setSearchByAction: (value: SearchByAction | undefined) => void;
+  setSearchByParamConfig: (value: SearchByParamConfig | undefined) => void;
   changeSearchQuery: (query: string) => void;
   searchQuery?: string;
 };
 
-export const getSearchActionItems = ({
+export const getSearchByActionItems = ({
   action,
   searchQuery,
-  setSearchParamConfig,
-  setSearchActionSection,
+  setSearchByParamConfig,
+  setSearchByAction,
   changeSearchQuery,
-}: GetSearchActionItemsOptions) => {
+}: GetSearchByActionItemsOptions) => {
   const filteredSearchParams = action?.searchParams?.filter((searchParam) => {
     if (!searchQuery) {
       return true;
@@ -47,8 +45,8 @@ export const getSearchActionItems = ({
         ) : undefined,
         onClick: () => {
           changeSearchQuery('');
-          setSearchParamConfig(searchParam);
-          setSearchActionSection(undefined);
+          setSearchByParamConfig(searchParam);
+          setSearchByAction(undefined);
         },
       },
       searchQuery,

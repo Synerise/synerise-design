@@ -6,15 +6,17 @@ import type { SearchBarProps } from '@synerise/ds-search-bar';
 import type { WithHTMLAttributes } from '@synerise/ds-utils';
 
 import type {
-  ActionType,
-  BaseItemType,
-  BaseSectionType,
-  BaseSectionTypeWithFolders,
   ContainerHeightType,
   ItemLoaderConfig,
   ItemsConfig,
   OnLoadedData,
 } from '../ItemPickerNew/ItemPickerNew.types';
+import type { Action } from '../ItemPickerNew/types/actions.types';
+import type {
+  BaseItemType,
+  BaseSectionType,
+  BaseSectionTypeWithFolders,
+} from '../ItemPickerNew/types/baseItemSectionType.types';
 
 type TextsAsReactNode =
   | 'basicSearchPlaceholder'
@@ -59,7 +61,7 @@ export type ItemPickerListProps<
   HTMLDivElement,
   {
     recents?: ItemType[];
-    actions?: ActionType[];
+    actions?: Action[];
     texts?: Partial<ItemPickerListTexts>;
     containerHeight?: ContainerHeightType;
     showItemsSectionLabel?: boolean;
@@ -70,7 +72,7 @@ export type ItemPickerListProps<
       ? (section?: BaseSectionTypeWithFolders<SectionType>) => void
       : undefined;
     selectedItem?: ItemType;
-    getItemHeight?: (item: ItemType | SectionType | ActionType) => number;
+    getItemHeight?: (item: ItemType | SectionType | Action) => number;
     scrollbarProps?: ScrollbarAdditionalProps;
     searchBarProps?: Omit<
       SearchBarProps,

@@ -2,8 +2,6 @@ import type { ReactNode } from 'react';
 
 import type { DropdownProps } from '@synerise/ds-dropdown';
 import type { FormFieldCommonProps } from '@synerise/ds-form-field';
-import type { InformationCardProps } from '@synerise/ds-information-card';
-import type { ListItemProps } from '@synerise/ds-list-item';
 import type { WithHTMLAttributes } from '@synerise/ds-utils';
 
 import type {
@@ -15,6 +13,10 @@ import type {
   ItemPickerTriggerProps,
   ItemPickerTriggerTexts,
 } from '../ItemPickerTrigger/Trigger.types';
+import type {
+  BaseItemType,
+  BaseSectionType,
+} from './types/baseItemSectionType.types';
 
 type HeightConfig = {
   defaultHeight: number;
@@ -23,34 +25,6 @@ type HeightConfig = {
 };
 
 export type ContainerHeightType = 'fitContent' | 'fillSpace' | HeightConfig;
-
-type InheritedFromListItem = Pick<
-  ListItemProps,
-  | 'id'
-  | 'type'
-  | 'selected'
-  | 'prefixel'
-  | 'highlight'
-  | 'renderHoverTooltip'
-  | 'hoverTooltipProps'
-  | 'timeToHideTooltip'
->;
-
-export type BaseSectionType = InheritedFromListItem & {
-  text: string;
-  id: string | number;
-};
-
-export type BaseSectionTypeWithFolders<SectionType extends BaseSectionType> =
-  SectionType & {
-    folders?: BaseSectionTypeWithFolders<SectionType>[];
-  };
-
-export type BaseItemType = InheritedFromListItem & {
-  text: string;
-  sectionId?: BaseSectionType['id'];
-  informationCardProps?: InformationCardProps;
-};
 
 export type ItemLoaderMeta = Record<string, unknown> | undefined;
 
@@ -68,6 +42,7 @@ export type LoaderProps = {
   meta?: ItemLoaderMeta;
   abortController?: AbortController;
   searchKey?: string;
+  searchInItem?: BaseItemType;
 };
 
 export type OnLoadedData = (
@@ -87,28 +62,7 @@ export type ItemsConfig<ItemType extends BaseItemType> = {
   items: ItemType[];
 };
 
-type BasicActionType = Omit<InheritedFromListItem, 'onClick'> & {
-  sectionId?: BaseSectionType['id'];
-  id: string | number;
-  text: ReactNode;
-  icon?: ReactNode;
-};
-
-type RedirectActionType = BasicActionType & {
-  actionType: 'redirect';
-};
-
-type CustomActionType = BasicActionType & {
-  actionType: 'custom';
-  onClick: (action: ActionType) => void;
-};
-
 export type ItemPickerTexts = ItemPickerListTexts & ItemPickerTriggerTexts;
-
-export type ActionType =
-  | RedirectActionType
-  | CustomActionType
-  | SearchActionType;
 
 export type ItemPickerProps<
   ItemType extends BaseItemType,
@@ -166,19 +120,3 @@ export type ItemPickerProps<
   Partial<
     Pick<ItemPickerTriggerProps, 'placeholder' | 'placeholderIcon' | 'onClear'>
   >;
-
-export type SearchConfig = {
-  actionType: 'search';
-  sectionTitle?: ReactNode;
-  searchParams: SearchParamConfig[];
-};
-
-export type SearchParamConfig = {
-  searchLabel?: ReactNode;
-  paramKeyLabel?: ReactNode;
-  paramListLabel: ReactNode;
-  paramKey: string;
-  icon?: ReactNode;
-};
-
-export type SearchActionType = BasicActionType & SearchConfig;

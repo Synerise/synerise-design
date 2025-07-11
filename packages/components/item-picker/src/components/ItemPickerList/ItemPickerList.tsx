@@ -27,7 +27,7 @@ import { useDefaultTexts } from '../../hooks/useDefaultTexts';
 import type {
   BaseItemType,
   BaseSectionType,
-} from '../ItemPickerNew/ItemPickerNew.types';
+} from '../ItemPickerNew/types/baseItemSectionType.types';
 import * as S from './ItemPickerList.styles';
 import type { ItemPickerListProps } from './ItemPickerList.types';
 import {
@@ -47,7 +47,6 @@ import {
 } from './constants';
 import { useItemsInSections, useListHeight } from './hooks';
 import { findSectionById, isNavKey, isTitle } from './utils';
-import { getSearchActionSectionLabel } from './utils/getSearchActionSectionLabel';
 
 export const ItemPickerList = <
   ItemType extends BaseItemType,
@@ -132,10 +131,13 @@ export const ItemPickerList = <
     refreshItems,
     refreshEnabled,
     contentHeight,
-    searchParamConfig,
-    setSearchParamConfig,
-    searchActionSection,
+    searchByParamConfig,
+    setSearchByParamConfig,
+    searchByAction,
     listActions,
+    searchInAction,
+    searchInItem,
+    canPerformListActions,
   } = useItemsInSections({
     items,
     texts: allTexts,
@@ -217,7 +219,7 @@ export const ItemPickerList = <
     onRefresh || refreshItems
       ? () => {
           changeSearchQuery('');
-          setSearchParamConfig(undefined);
+          setSearchByParamConfig(undefined);
           resetCurrentSection();
           onRefresh && onRefresh();
           if (refreshItems) {
@@ -235,7 +237,11 @@ export const ItemPickerList = <
       includeSearchBar,
     }) || 0;
 
-  const isSection = Boolean(currentSection || searchActionSection);
+  const isActionSection = Boolean(
+    searchByAction || searchInAction || searchInItem,
+  );
+  const isSection = Boolean(currentSection || isActionSection);
+
   const listHeight =
     (isSection
       ? listWrapperHeight - SECTION_HEADER_HEIGHT
@@ -257,6 +263,28 @@ export const ItemPickerList = <
     if (isLoading || isLoadingItems) {
       return <ItemPickerListSkeleton wrapperHeight={listWrapperHeight} />;
     }
+
+    const getSectionLabel = () => {
+      const itemsPath = currentPath || [currentSection?.text];
+
+      const searchByActionLabel =
+        searchByAction?.sectionTitle || searchByAction?.text;
+
+      const searchInActionLabel = searchInAction?.text;
+      const searchInItemLabel =
+        searchInItem &&
+        `${searchInAction?.renderSearchInValueText(searchInItem)}`;
+
+      return [
+        ...itemsPath,
+        searchInActionLabel,
+        searchInItemLabel,
+        searchByActionLabel,
+      ]
+        .filter(Boolean)
+        .join(' - ');
+    };
+
     return (
       <>
         {isSection && (
@@ -273,10 +301,7 @@ export const ItemPickerList = <
                 />,
               ],
             }}
-            label={
-              getSearchActionSectionLabel(searchActionSection) ||
-              (currentPath ? currentPath.join(' - ') : currentSection?.text)
-            }
+            label={getSectionLabel()}
             onClick={goBack}
           />
         )}
@@ -286,7 +311,7 @@ export const ItemPickerList = <
             listActions={listActions}
             hasCurrentSection={isSection}
             texts={allTexts}
-            isSearchSection={!!searchActionSection}
+            isActionSection={isActionSection}
           />
         ) : (
           <S.StyledScrollbar
@@ -345,7 +370,7 @@ export const ItemPickerList = <
     if (isVisible) {
       resetCurrentSection();
       clearSearchQuery();
-      setSearchParamConfig(undefined);
+      setSearchByParamConfig(undefined);
       setTimeout(focusSearchInput, 0);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -358,8 +383,10 @@ export const ItemPickerList = <
       setTimeout(focusSearchInput, 0);
     }
   }, [
-    searchActionSection,
-    searchParamConfig,
+    searchByAction,
+    searchByParamConfig,
+    searchInAction,
+    searchInItem,
     currentSection,
     focusSearchInput,
   ]);
@@ -373,10 +400,13 @@ export const ItemPickerList = <
       if (!combinedScrollRef.current?.offsetParent) {
         return;
       }
-      (event.metaKey || event.ctrlKey) &&
-        currentSection &&
-        resetCurrentSection();
-      event.preventDefault();
+      const isMetaOrCtrlKey = event.metaKey || event.ctrlKey;
+      if (isMetaOrCtrlKey) {
+        event.preventDefault();
+        event.stopPropagation();
+        goBack();
+        return;
+      }
     },
     Escape: (event: KeyboardEvent) => {
       if (!combinedScrollRef.current?.offsetParent) {
@@ -389,10 +419,10 @@ export const ItemPickerList = <
         return;
       }
 
-      if (searchParamConfig) {
+      if (searchByParamConfig) {
         event.preventDefault();
         event.stopPropagation();
-        setSearchParamConfig(undefined);
+        setSearchByParamConfig(undefined);
       }
     },
   });
@@ -413,14 +443,14 @@ export const ItemPickerList = <
       {includeSearchBar && (
         <ListSearchInput
           clearSearchQuery={clearSearchQuery}
-          searchParamConfig={searchParamConfig}
-          searchActionSection={searchActionSection}
-          setSearchParamConfig={setSearchParamConfig}
+          searchByParamConfig={searchByParamConfig}
+          setSearchByParamConfig={setSearchByParamConfig}
           searchBarProps={searchBarProps}
           debouncedChangeSearchQuery={debouncedSearchQueryChange}
           inputRef={inputRef}
           changeLocalSearchQueryRef={changeLocalSearchQueryRef}
           allTexts={allTexts}
+          canPerformListActions={canPerformListActions}
         />
       )}
       <S.ListWrapper
