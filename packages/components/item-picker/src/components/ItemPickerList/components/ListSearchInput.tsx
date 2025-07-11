@@ -12,11 +12,8 @@ import Dropdown from '@synerise/ds-dropdown';
 import Icon, { SearchM } from '@synerise/ds-icon';
 import type { SearchBarProps } from '@synerise/ds-search-bar';
 
-import type {
-  ItemPickerTexts,
-  SearchActionType,
-  SearchParamConfig,
-} from '../../ItemPickerNew/ItemPickerNew.types';
+import type { ItemPickerTexts } from '../../ItemPickerNew/ItemPickerNew.types';
+import type { SearchByParamConfig } from '../../ItemPickerNew/types/actions.types';
 import * as S from '../ItemPickerList.styles';
 
 const CLEAR_TOOLTIP_PROPS = {
@@ -24,11 +21,10 @@ const CLEAR_TOOLTIP_PROPS = {
 };
 
 type ListSearchInputProps = {
-  searchParamConfig?: SearchParamConfig;
-  searchActionSection?: SearchActionType;
+  searchByParamConfig?: SearchByParamConfig;
   clearSearchQuery: () => void;
-  setSearchParamConfig: (
-    searchParamConfig: SearchParamConfig | undefined,
+  setSearchByParamConfig: (
+    searchByParamConfig: SearchByParamConfig | undefined,
   ) => void;
   debouncedChangeSearchQuery: (value: string) => void;
   inputRef: MutableRefObject<HTMLInputElement | null>;
@@ -38,26 +34,23 @@ type ListSearchInputProps = {
     'value' | 'onSearchChange' | 'placeholder'
   >;
   allTexts: ItemPickerTexts;
+  canPerformListActions: boolean;
 };
 
 export const ListSearchInput = ({
-  searchParamConfig,
-  searchActionSection,
+  searchByParamConfig,
   changeLocalSearchQueryRef,
   clearSearchQuery,
-  setSearchParamConfig,
+  setSearchByParamConfig,
   debouncedChangeSearchQuery,
   searchBarProps,
   allTexts,
   inputRef,
+  canPerformListActions,
 }: ListSearchInputProps) => {
   const theme = useTheme();
 
   const [localSearchQuery, setLocalSearchQuery] = useState('');
-
-  const isSearchParamOrSearchSectionActive = Boolean(
-    searchParamConfig || searchActionSection,
-  );
 
   const handleSearchChange = useCallback(
     (value: string) => {
@@ -77,7 +70,7 @@ export const ListSearchInput = ({
 
   const handleKeyDown = (event: KeyboardEvent<HTMLDivElement>) => {
     if (event.key === 'Backspace' && !localSearchQuery) {
-      setSearchParamConfig(undefined);
+      setSearchByParamConfig(undefined);
     }
   };
 
@@ -86,7 +79,7 @@ export const ListSearchInput = ({
       clearSearchQuery();
       return;
     }
-    setSearchParamConfig(undefined);
+    setSearchByParamConfig(undefined);
   };
 
   useEffect(() => {
@@ -99,17 +92,17 @@ export const ListSearchInput = ({
       <Dropdown.SearchInput
         iconLeft={
           <Icon
-            component={searchParamConfig?.icon || <SearchM />}
+            component={searchByParamConfig?.icon || <SearchM />}
             color={theme.palette['grey-600']}
           />
         }
         placeholder={
-          isSearchParamOrSearchSectionActive
-            ? allTexts.basicSearchPlaceholder
-            : allTexts.searchPlaceholder
+          canPerformListActions
+            ? allTexts.searchPlaceholder
+            : allTexts.basicSearchPlaceholder
         }
         {...searchBarProps}
-        valuePrefix={searchParamConfig?.paramKeyLabel}
+        valuePrefix={searchByParamConfig?.paramKeyLabel}
         onKeyDown={handleKeyDown}
         clearTooltip={allTexts.clearSearchTooltip}
         clearTooltipProps={CLEAR_TOOLTIP_PROPS}

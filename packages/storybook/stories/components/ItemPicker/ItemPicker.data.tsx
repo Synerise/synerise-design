@@ -1,22 +1,33 @@
 import React from 'react';
-import { v4 as uuid } from 'uuid';
 import { action } from 'storybook/actions';
+import { v4 as uuid } from 'uuid';
+
 import { faker } from '@faker-js/faker';
-
-import Icon, { Add3M, AddM, FileM, FunnelM, SegmentM, UserM, SearchM } from '@synerise/ds-icon';
-
+import Icon, {
+  Add3M,
+  AddM,
+  FileM,
+  FolderM,
+  FunnelM,
+  SearchM,
+  SegmentM,
+  UserM,
+} from '@synerise/ds-icon';
+import InformationCard, {
+  InformationCardProps,
+} from '@synerise/ds-information-card';
 import type { ItemLoaderConfig } from '@synerise/ds-item-picker';
-import InformationCard, { InformationCardProps } from '@synerise/ds-information-card';
+import { Action } from '@synerise/ds-item-picker';
 
 import type {
-  SectionType,
-  NestedSectionType,
-  ItemType,
-  FunnelType,
-  SegmentationType,
   AttributeType,
+  FolderType,
+  FunnelType,
+  ItemType,
+  NestedSectionType,
+  SectionType,
+  SegmentationType,
 } from './ItemPicker.types';
-import { ActionType } from '@synerise/ds-item-picker/dist/components/ItemPickerNew/ItemPickerNew.types';
 
 export const ICONS = {
   none: null,
@@ -91,59 +102,61 @@ const infocardGenerator = (item: ItemType) => {
 };
 const STATIC_ITEMS = [
   {
-    "text": "Item 1 Russell Windler DDS",
+    text: 'Item 1 Russell Windler DDS',
     prefixel: <Icon component={<UserM />} />,
   },
   {
-    "text": "Item 2 Michael Leannon",
+    text: 'Item 2 Michael Leannon',
     prefixel: <Icon component={<UserM />} />,
   },
   {
-    "text": "Item 3 Bert McClure",
+    text: 'Item 3 Bert McClure',
     prefixel: <Icon component={<UserM />} />,
   },
   {
-    "text": "Item 4 Benny Roberts",
+    text: 'Item 4 Benny Roberts',
     prefixel: <Icon component={<UserM />} />,
   },
   {
-    "text": "Item 5 Dr. Lucas Gutkowski DVM",
+    text: 'Item 5 Dr. Lucas Gutkowski DVM',
     prefixel: <Icon component={<UserM />} />,
   },
   {
-    "text": "Item 6 Casey Hammes",
+    text: 'Item 6 Casey Hammes',
     prefixel: <Icon component={<UserM />} />,
   },
   {
-    "text": "Item 7 Alexander Spencer",
+    text: 'Item 7 Alexander Spencer',
     prefixel: <Icon component={<UserM />} />,
   },
   {
-    "text": "Item 8 Kristopher Cormier",
+    text: 'Item 8 Kristopher Cormier',
     prefixel: <Icon component={<UserM />} />,
   },
   {
-    "text": "Item 9 Lance Walker",
+    text: 'Item 9 Lance Walker',
     prefixel: <Icon component={<UserM />} />,
   },
   {
-    "text": "Item 10 Lorraine Cole",
+    text: 'Item 10 Lorraine Cole',
     prefixel: <Icon component={<UserM />} />,
   },
   {
-    "text": "Item 11 Maxine Weissnat",
+    text: 'Item 11 Maxine Weissnat',
     prefixel: <Icon component={<UserM />} />,
   },
   {
-    "text": "Item 12 Dallas Goyette",
+    text: 'Item 12 Dallas Goyette',
     prefixel: <Icon component={<UserM />} />,
-  }
-]
+  },
+];
 
-export const FLAT_DATA_SOURCE: ItemType[] = STATIC_ITEMS.concat([...new Array(500)].map((i, k) => ({
-  text: `Item ${k + 1 + STATIC_ITEMS.length} ${faker.person.fullName()}`,
-  prefixel: <Icon component={<UserM />} />,
-})));
+export const FLAT_DATA_SOURCE: ItemType[] = STATIC_ITEMS.concat(
+  [...new Array(500)].map((i, k) => ({
+    text: `Item ${k + 1 + STATIC_ITEMS.length} ${faker.person.fullName()}`,
+    prefixel: <Icon component={<UserM />} />,
+  })),
+);
 
 const segmentationItem = (index: number): SegmentationType => {
   const itemData = {
@@ -163,7 +176,11 @@ const segmentationItem = (index: number): SegmentationType => {
     renderHoverTooltip: infocardGenerator(itemData),
   };
 };
-const attributeItem = (index: number, itemNameSuffix: string, sectionId: string): AttributeType => {
+const attributeItem = (
+  index: number,
+  itemNameSuffix: string,
+  sectionId: string,
+): AttributeType => {
   const itemData = {
     key: uuid(),
     itemType: 'attribute' as const,
@@ -199,20 +216,56 @@ const funnelItem = (index: number): FunnelType => {
     informationCardProps: getInformationCardProps(itemData),
   };
 };
-const SEGMENTATIONS = Array.from({ length: 300 }).map((_val, index) => segmentationItem(index));
+
+const folderItem = (index: number): FolderType => {
+  const itemData = {
+    key: uuid(),
+    itemType: 'folder' as const,
+    text: `Folder ${index + 1}`,
+    sectionId: 'FOLDERS',
+    prefixel: <Icon component={<FolderM />} />,
+    author: faker.person.fullName(),
+  };
+  return itemData;
+};
+
+const SEGMENTATIONS = Array.from({ length: 300 }).map((_val, index) =>
+  segmentationItem(index),
+);
 const ATTRIBUTES_CONFIGURABLE = Array.from({ length: 300 }).map((_val, index) =>
-  attributeItem(index, 'configurable', 'ATTRIBUTES-CONFIGURABLE')
+  attributeItem(index, 'configurable', 'ATTRIBUTES-CONFIGURABLE'),
 );
 const ATTRIBUTES_READY_TO_USE = Array.from({ length: 300 }).map((_val, index) =>
-  attributeItem(index, 'ready to use', 'ATTRIBUTES-READY-TO-USE')
+  attributeItem(index, 'ready to use', 'ATTRIBUTES-READY-TO-USE'),
 );
-const FUNNELS = Array.from({ length: 300 }).map((_val, index) => funnelItem(index));
-export const ITEMS_IN_SECTIONS: ItemType[] = [...SEGMENTATIONS.slice(0, 13), ...FUNNELS.slice(0, 22)];
-export const ITEMS_IN_SECTIONS_NESTED: ItemType[] = [...SEGMENTATIONS.slice(0, 12), ...FUNNELS.slice(0, 22), ...ATTRIBUTES_CONFIGURABLE.slice(0, 32), ...ATTRIBUTES_READY_TO_USE.slice(0, 28)];
-export const ITEMS_IN_SECTIONS_SHORT: ItemType[] = [...SEGMENTATIONS.slice(5, 8), ...FUNNELS.slice(2, 6)];
-export const RECENT: ItemType[] = [SEGMENTATIONS[4], FUNNELS[6], SEGMENTATIONS[11]];
+const FUNNELS = Array.from({ length: 300 }).map((_val, index) =>
+  funnelItem(index),
+);
+const FOLDERS = Array.from({ length: 300 }).map((_val, index) =>
+  folderItem(index),
+);
 
-export const ACTIONS: ActionType[] = [
+export const ITEMS_IN_SECTIONS: ItemType[] = [
+  ...SEGMENTATIONS.slice(0, 13),
+  ...FUNNELS.slice(0, 22),
+];
+export const ITEMS_IN_SECTIONS_NESTED: ItemType[] = [
+  ...SEGMENTATIONS.slice(0, 12),
+  ...FUNNELS.slice(0, 22),
+  ...ATTRIBUTES_CONFIGURABLE.slice(0, 32),
+  ...ATTRIBUTES_READY_TO_USE.slice(0, 28),
+];
+export const ITEMS_IN_SECTIONS_SHORT: ItemType[] = [
+  ...SEGMENTATIONS.slice(5, 8),
+  ...FUNNELS.slice(2, 6),
+];
+export const RECENT: ItemType[] = [
+  SEGMENTATIONS[4],
+  FUNNELS[6],
+  SEGMENTATIONS[11],
+];
+
+export const ACTIONS: Action[] = [
   {
     text: `Add funnel`,
     actionType: 'custom',
@@ -229,7 +282,7 @@ export const ACTIONS: ActionType[] = [
     onClick: action('Action clicked'),
   },
   {
-    actionType: 'search',
+    actionType: 'searchBy',
     id: 'search-by-parameter',
     text: 'Search by parameter',
     prefixel: <Icon component={<SearchM />} />,
@@ -238,37 +291,71 @@ export const ACTIONS: ActionType[] = [
         paramListLabel: 'Name',
         paramKeyLabel: 'Name:',
         paramKey: 'name',
-        icon: <UserM />
+        icon: <UserM />,
       },
       {
         paramListLabel: 'Author',
         paramKeyLabel: 'Author:',
         paramKey: 'author',
-        icon: <UserM />
+        icon: <UserM />,
       },
     ],
   },
   {
-    actionType: 'search',
-    id: 'search-by-parameter',
-    sectionId: 'ATTRIBUTES',
-    text: 'Search by parameter',
+    actionType: 'searchIn',
+    id: 'searchInGlobal',
+    text: 'Search in folders',
+    loadItemsSectionId: 'FOLDERS',
+    renderSearchInValueText: (item) => `Search in ${item.text}`,
     prefixel: <Icon component={<SearchM />} />,
-    searchParams: [{
-      paramListLabel: 'Profile',
-      paramKeyLabel: 'Profile:',
-      paramKey: 'profile',
-      icon: <UserM />
-    }],
   },
   {
-    actionType: 'search',
+    actionType: 'searchIn',
+    id: 'searchInSegmentations',
+    text: 'Search in folders (second)',
+    loadItemsSectionId: 'FOLDERS',
+    searchInSectionId: 'TEST',
+    sectionId: 'SEGMENTATIONS',
+    renderSearchInValueText: (item) => `Search in ${item.text}`,
+    prefixel: <Icon component={<SearchM />} />,
+  },
+  {
+    actionType: 'searchIn',
+    id: 'searchInFunnels',
+    text: 'Search in folders (second)',
+    sectionId: 'FUNNELS',
+    renderSearchInValueText: (item) => `Search in ${item.text}`,
+  },
+  {
+    actionType: 'searchBy',
+    id: 'search-by-parameter',
+    sectionId: 'SEGMENTATIONS',
+    text: 'Search by parameter',
+    prefixel: <Icon component={<SearchM />} />,
+    searchParams: [
+      {
+        paramListLabel: 'Profile',
+        paramKeyLabel: 'Profile:',
+        paramKey: 'profile',
+        icon: <UserM />,
+      },
+    ],
+  },
+  {
+    actionType: 'searchBy',
     id: 'search-by-parameter',
     text: 'Search by parameter',
     sectionId: 'FUNNELS',
     prefixel: <Icon component={<SearchM />} />,
-    searchParams: [],
-  }
+    searchParams: [
+      {
+        paramListLabel: 'Profile',
+        paramKeyLabel: 'Profile:',
+        paramKey: 'profile',
+        icon: <UserM />,
+      },
+    ],
+  },
 ];
 
 const loadItems = (props: {
@@ -293,15 +380,28 @@ const loadItems = (props: {
     case 'FUNNELS':
       source = FUNNELS;
       break;
+    case 'FOLDERS':
+      source = FOLDERS;
+      break;
+    case 'TEST':
+      source = [];
+      break;
   }
 
   const filteredItems = searchQuery
-    ? source.filter(item => item.text && String(item.text).toLowerCase().includes(searchQuery.toLowerCase()))
+    ? source.filter(
+        (item) =>
+          item.text &&
+          String(item.text).toLowerCase().includes(searchQuery.toLowerCase()),
+      )
     : source;
 
   return new Promise((resolve, reject) => {
     setTimeout(() => {
-      resolve({ items: [...filteredItems.slice(page * limit, page * limit + limit)], total: source.length });
+      resolve({
+        items: [...filteredItems.slice(page * limit, page * limit + limit)],
+        total: source.length,
+      });
     }, 800);
   });
 };
@@ -330,13 +430,20 @@ const loadItemsWithError = (props: {
   }
 
   const filteredItems = searchQuery
-    ? source.filter(item => item.text && String(item.text).toLowerCase().includes(searchQuery.toLowerCase()))
+    ? source.filter(
+        (item) =>
+          item.text &&
+          String(item.text).toLowerCase().includes(searchQuery.toLowerCase()),
+      )
     : source;
 
   return new Promise((resolve, reject) => {
     setTimeout(() => {
       if (faker.number.int(10)! % 3) {
-        resolve({ items: [...filteredItems.slice(page * limit, page * limit + limit)], total: source.length });
+        resolve({
+          items: [...filteredItems.slice(page * limit, page * limit + limit)],
+          total: source.length,
+        });
         return;
       }
       reject('random error');

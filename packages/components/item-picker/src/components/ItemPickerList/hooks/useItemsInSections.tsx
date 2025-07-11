@@ -3,14 +3,19 @@ import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { itemSizes } from '@synerise/ds-list-item';
 
 import type {
+  ItemLoaderMeta,
+  OnLoadedData,
+} from '../../ItemPickerNew/ItemPickerNew.types';
+import type {
+  SearchByAction,
+  SearchByParamConfig,
+  SearchInAction,
+} from '../../ItemPickerNew/types/actions.types';
+import type {
   BaseItemType,
   BaseSectionType,
   BaseSectionTypeWithFolders,
-  ItemLoaderMeta,
-  OnLoadedData,
-  SearchActionType,
-  SearchParamConfig,
-} from '../../ItemPickerNew/ItemPickerNew.types';
+} from '../../ItemPickerNew/types/baseItemSectionType.types';
 import type {
   ItemPickerListProps,
   ItemPickerListTexts,
@@ -22,18 +27,22 @@ import {
   ITEMS_PER_SECTION,
   ITEMS_PER_SECTION_IN_SEARCH,
   ITEM_SIZE,
+  SECOND_PAGE,
   SECTION_HEADER_HEIGHT,
 } from '../constants';
 import { RENDER_MODES } from '../types/renderMode';
 import { isItems, isItemsConfig, isWithOutSections } from '../utils';
-import { getSearchActionItems } from '../utils/getSearchActionItems';
-import { useFlattenFolders } from './useFlattenFolders';
 import {
   getActionItems,
+  getSectionActionItems,
+} from '../utils/actionItemsUtils';
+import { getSearchByActionItems } from '../utils/getSearchByActionItems';
+import { resolveSectionId } from '../utils/resolveSectionId';
+import { useFlattenFolders } from './useFlattenFolders';
+import {
   getFolderItems,
   getItems,
   getRecentItems,
-  getSectionActionItems,
   matchesSearchQuery,
 } from './useItemsInSections.utils';
 
@@ -90,12 +99,16 @@ export const useItemsInSections = <
     SectionType | BaseSectionType | undefined
   >();
 
-  const [searchActionSection, setSearchActionSection] = useState<
-    SearchActionType | undefined
+  const [searchByAction, setSearchByAction] = useState<
+    SearchByAction | undefined
   >();
-  const [searchParamConfig, setSearchParamConfig] = useState<
-    SearchParamConfig | undefined
+  const [searchByParamConfig, setSearchByParamConfig] = useState<
+    SearchByParamConfig | undefined
   >();
+  const [searchInAction, setSearchInAction] = useState<
+    SearchInAction | undefined
+  >();
+  const [searchInItem, setSearchInItem] = useState<ItemType | undefined>();
 
   const {
     currentSectionHasFolders,
@@ -108,7 +121,7 @@ export const useItemsInSections = <
   });
 
   const requestIdRef = useRef<string>();
-  const loadedPage = useRef(FIRST_PAGE);
+  const pageToLoad = useRef(FIRST_PAGE);
   const metaRef = useRef<Record<string, ItemLoaderMeta>>({});
   const sectionTotals = useRef<Record<string, number>>({});
   const abortControllerRef = useRef<AbortController>();
@@ -135,14 +148,39 @@ export const useItemsInSections = <
     }
     return [];
   });
-  const listActions =
-    searchQuery === '/' && !searchActionSection && !searchParamConfig;
+  const isSearchInActionActive = !!searchInAction && !searchInItem;
+  const canPerformListActions =
+    !searchByAction && !searchByParamConfig && !isSearchInActionActive;
+  const listActions = searchQuery === '/' && canPerformListActions;
+
   const hasSearchQuery = !!searchQuery;
-  const hasCurrentSection = !!currentSection;
+
+  const { activeSectionId, isListItemsRenderingMode } = resolveSectionId({
+    currentSection,
+    searchInAction,
+    searchInItem,
+  });
+
+  const activeSectionIdWithFallback = activeSectionId || 'DEFAULT';
+
+  const hasCurrentSection = !!activeSectionId;
   const hasSections = !isWithOutSections(sections);
   const hasSectionsAndFolders = useMemo(
     () => hasSections && sections?.some((section) => section.folders?.length),
     [hasSections, sections],
+  );
+
+  const handleItemSelectExtended = useCallback(
+    (item: ItemType) => {
+      if (searchInAction && !searchInItem) {
+        changeSearchQuery('');
+        setSearchInItem(item);
+        setSearchByParamConfig(undefined);
+        return;
+      }
+      handleItemSelect?.(item);
+    },
+    [changeSearchQuery, handleItemSelect, searchInAction, searchInItem],
   );
 
   const itemsLimitPerSection = useMemo(() => {
@@ -158,6 +196,9 @@ export const useItemsInSections = <
   }, [isFixedItemsList, searchQuery, items]);
 
   const { listRenderingMode } = useMemo(() => {
+    if (isListItemsRenderingMode) {
+      return { listRenderingMode: RENDER_MODES.LIST_ITEMS };
+    }
     if (hasSectionsAndFolders) {
       if (hasCurrentSection) {
         if (!currentSectionHasFolders) {
@@ -182,6 +223,7 @@ export const useItemsInSections = <
     hasSearchQuery,
     hasSectionsAndFolders,
     currentSectionHasFolders,
+    isListItemsRenderingMode,
   ]);
 
   const globalActionsLength =
@@ -190,13 +232,26 @@ export const useItemsInSections = <
   const currentItemsLength = currentItems.length;
 
   const resetCurrentSection = useCallback(() => {
+    setSearchInAction(undefined);
+    setSearchInItem(undefined);
     setCurrentSection(undefined);
     setPreviousSection(undefined);
   }, []);
 
   const goBack = useCallback(() => {
-    if (searchActionSection) {
-      setSearchActionSection(undefined);
+    if (searchByAction) {
+      setSearchByAction(undefined);
+      return;
+    }
+    if (searchInItem) {
+      changeSearchQuery('');
+      setSearchByParamConfig(undefined);
+      setSearchInItem(undefined);
+      return;
+    }
+    if (searchInAction) {
+      changeSearchQuery('');
+      setSearchInAction(undefined);
       return;
     }
     if (searchQuery) {
@@ -209,7 +264,15 @@ export const useItemsInSections = <
       return;
     }
     setCurrentSection(undefined);
-  }, [searchActionSection, searchQuery, parentFolder, previousSection]);
+  }, [
+    searchInAction,
+    searchByAction,
+    searchQuery,
+    parentFolder,
+    previousSection,
+    searchInItem,
+    changeSearchQuery,
+  ]);
 
   const handleCurrentSectionChange = useCallback(
     (section?: SectionType | BaseSectionType) => {
@@ -273,7 +336,7 @@ export const useItemsInSections = <
   }, [currentItems, actions]);
 
   const calculatedContentHeight: number | undefined = useMemo(() => {
-    if (isFixedItemsList && !searchQuery && !currentSection) {
+    if (isFixedItemsList && !searchQuery && !activeSectionId) {
       const globalActionsHeight = getSectionHeight(
         globalActionsLength,
         !!globalActionsLength,
@@ -318,7 +381,7 @@ export const useItemsInSections = <
   }, [
     isFixedItemsList,
     searchQuery,
-    currentSection,
+    activeSectionId,
     globalActionsLength,
     recentsLength,
     hasSections,
@@ -337,7 +400,7 @@ export const useItemsInSections = <
   );
 
   const loadItems = useCallback(async () => {
-    if (isFixedItemsList || listActions || searchActionSection) {
+    if (isFixedItemsList || listActions || searchByAction) {
       return;
     }
     setIsLoading(true);
@@ -347,24 +410,28 @@ export const useItemsInSections = <
     requestIdRef.current = currentRequestId;
 
     if (listRenderingMode === RENDER_MODES.LIST_ITEMS) {
-      const sectionId = currentSection?.id || 'DEFAULT';
       try {
         const { items: fetchedItems, meta } = await items.loadItems({
           page: FIRST_PAGE,
           searchQuery,
-          sectionId,
+          sectionId: activeSectionIdWithFallback,
           limit: items.limitPerPage || ITEMS_PER_PAGE,
           meta: undefined,
           abortController: abortControllerRef.current,
-          searchKey: searchParamConfig?.paramKey,
+          searchKey: searchByParamConfig?.paramKey,
+          searchInItem,
         });
         if (currentRequestId !== requestIdRef.current) {
           return;
         }
         setIsLoading(false);
-        loadedPage.current = FIRST_PAGE;
-        metaRef.current[sectionId] = meta;
-        onLoadedData?.({ sectionId, meta, renderMode: listRenderingMode });
+        pageToLoad.current = FIRST_PAGE + 1;
+        metaRef.current[activeSectionIdWithFallback] = meta;
+        onLoadedData?.({
+          sectionId: activeSectionIdWithFallback,
+          meta,
+          renderMode: listRenderingMode,
+        });
         setIsInitialDataLoaded(true);
         setCurrentItems(fetchedItems);
       } catch (_event) {
@@ -390,7 +457,8 @@ export const useItemsInSections = <
                 sectionId,
                 meta: undefined,
                 abortController: abortControllerRef.current,
-                searchKey: searchParamConfig?.paramKey,
+                searchKey: searchByParamConfig?.paramKey,
+                searchInItem,
               })
               .then(({ items: sectionItems, total, meta }) => {
                 onLoadedData?.({
@@ -421,16 +489,17 @@ export const useItemsInSections = <
       setIsLoadingError(true);
     }
   }, [
-    searchParamConfig,
-    currentSection,
+    searchByParamConfig,
     isFixedItemsList,
     currentFolders,
     listRenderingMode,
     items,
     listActions,
     searchQuery,
-    searchActionSection,
+    searchByAction,
     onLoadedData,
+    activeSectionIdWithFallback,
+    searchInItem,
   ]);
 
   useEffect(() => {
@@ -445,8 +514,8 @@ export const useItemsInSections = <
           : allItems;
       if (searchQuery) {
         const matchingItems = itemsInSection.filter((item) => {
-          const matchValue = searchParamConfig
-            ? String(item[searchParamConfig.paramKey as keyof ItemType])
+          const matchValue = searchByParamConfig
+            ? String(item[searchByParamConfig.paramKey as keyof ItemType])
             : item.text;
           return matchValue && matchesSearchQuery(matchValue, searchQuery);
         });
@@ -465,11 +534,11 @@ export const useItemsInSections = <
     items,
     listActions,
     searchQuery,
-    searchParamConfig,
+    searchByParamConfig,
   ]);
 
   useEffect(() => {
-    loadedPage.current = FIRST_PAGE;
+    pageToLoad.current = FIRST_PAGE;
     metaRef.current = {};
     setIsLoadedAll(false);
     setIsLoadingMore(false);
@@ -485,7 +554,7 @@ export const useItemsInSections = <
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [
-    currentSection,
+    activeSectionId,
     isFixedItemsList,
     searchQuery,
     listActions,
@@ -515,33 +584,37 @@ export const useItemsInSections = <
   }, [isFixedItemsList]);
 
   const handleScrollEndReach = useCallback(() => {
+    if (pageToLoad.current < SECOND_PAGE) {
+      return;
+    }
+
     if (hasInfiniteScroll) {
-      const sectionId = currentSection?.id || 'DEFAULT';
       if (isLoadedAll || isLoadingMore) {
         return;
       }
       setIsLoadingMore(true);
       items
         .loadItems({
-          page: loadedPage.current + 1,
+          page: pageToLoad.current,
           limit: items.limitPerPage || ITEMS_PER_PAGE,
           searchQuery,
-          sectionId: currentSection?.id,
-          meta: metaRef.current[sectionId],
-          searchKey: searchParamConfig?.paramKey,
+          sectionId: activeSectionIdWithFallback,
+          meta: metaRef.current[activeSectionIdWithFallback],
+          searchKey: searchByParamConfig?.paramKey,
+          searchInItem,
         })
         .then(({ items: fetchedItems, total, meta }) => {
-          sectionTotals.current[sectionId] = total;
-          metaRef.current[sectionId] = meta;
+          sectionTotals.current[activeSectionIdWithFallback] = total;
+          metaRef.current[activeSectionIdWithFallback] = meta;
           setIsLoadingMore(false);
           setIsLoadingMoreError(false);
           if (
-            sectionTotals.current[sectionId] <=
-            (loadedPage.current + 2) * (items.limitPerPage || ITEMS_PER_PAGE)
+            sectionTotals.current[activeSectionIdWithFallback] <=
+            (pageToLoad.current + 1) * (items.limitPerPage || ITEMS_PER_PAGE)
           ) {
             setIsLoadedAll(true);
           }
-          loadedPage.current += 1;
+          pageToLoad.current += 1;
           setCurrentItems([...currentItems, ...fetchedItems]);
         })
         .catch(() => {
@@ -550,22 +623,25 @@ export const useItemsInSections = <
         });
     }
   }, [
-    searchParamConfig,
+    searchByParamConfig,
     isLoadingMore,
     hasInfiniteScroll,
-    currentSection?.id,
     isLoadedAll,
     items,
     searchQuery,
     currentItems,
+    activeSectionIdWithFallback,
+    searchInItem,
   ]);
 
   const mergedItemsList = useMemo(() => {
-    if (searchActionSection) {
-      return getSearchActionItems({
-        action: searchActionSection,
-        setSearchActionSection,
-        setSearchParamConfig,
+    const isSearchInItemActive = !!searchInItem;
+
+    if (searchByAction) {
+      return getSearchByActionItems({
+        action: searchByAction,
+        setSearchByAction,
+        setSearchByParamConfig,
         searchQuery,
         changeSearchQuery,
       });
@@ -575,70 +651,79 @@ export const useItemsInSections = <
       return getActionItems({
         actions,
         texts,
-        sectionId: currentSection?.id,
-        setSearchActionSection,
+        sectionId: activeSectionId,
+        setSearchByAction,
         changeSearchQuery,
+        setSearchInAction,
+        isSearchInItemActive,
+        searchByParamConfig,
+        setSearchByParamConfig,
       });
     }
-    const globalActions = getSectionActionItems({
-      actions,
-      texts,
-      searchQuery,
-      sectionId: undefined,
-      setSearchActionSection,
-      changeSearchQuery,
-    });
+
     const sectionActions = getSectionActionItems({
       actions,
       texts,
       searchQuery,
-      sectionId: currentSection?.id,
-      setSearchActionSection,
+      sectionId: activeSectionId,
+      setSearchByAction,
       changeSearchQuery,
+      setSearchInAction,
+      isSearchInItemActive,
+      searchByParamConfig,
+      setSearchByParamConfig,
     });
-    const recentItems = getRecentItems({
-      recents,
-      texts,
-      isSelected,
-      searchQuery,
-      handleItemSelect,
-      isSearchParam: !!searchParamConfig,
-    });
+
+    const recentItems =
+      activeSectionId || isSearchInItemActive || searchByParamConfig
+        ? []
+        : getRecentItems({
+            recents,
+            texts,
+            isSelected,
+            searchQuery,
+            handleItemSelect,
+            isSearchParam: !!searchByParamConfig,
+          });
+
     const folderItems = sections
       ? getFolderItems({ sections, handleSectionChange })
       : [];
-    const listItems = currentFolders
-      ? currentFolders.flatMap((folder) => {
-          const itemsInFolder = currentItems.filter(
-            (item) => item.sectionId === folder.id,
-          );
-          return getItems({
-            items: itemsInFolder,
-            titlePath: folder.titles,
+    const listItems =
+      !isListItemsRenderingMode && currentFolders
+        ? currentFolders.flatMap((folder) => {
+            const itemsInFolder = currentItems.filter(
+              (item) => item.sectionId === folder.id,
+            );
+            return getItems({
+              items: itemsInFolder,
+              titlePath: folder.titles,
+              texts,
+              searchQuery,
+              maxItems: itemsLimitPerSection,
+              showMoreOnClick: () => handleSectionChange(folder),
+              showItemsSectionLabel,
+              isSelected,
+              handleItemSelect,
+              isSearchParam: !!searchByParamConfig,
+            });
+          })
+        : getItems({
+            items: currentItems,
             texts,
             searchQuery,
-            maxItems: itemsLimitPerSection,
-            showMoreOnClick: () => handleSectionChange(folder),
             showItemsSectionLabel,
             isSelected,
-            handleItemSelect,
-            isSearchParam: !!searchParamConfig,
+            handleItemSelect: handleItemSelectExtended,
+            isSearchParam: !!searchByParamConfig,
           });
-        })
-      : getItems({
-          items: currentItems,
-          texts,
-          searchQuery,
-          showItemsSectionLabel,
-          isSelected,
-          handleItemSelect,
-          isSearchParam: !!searchParamConfig,
-        });
 
-    const actionsRecentList = currentSection
-      ? [...sectionActions]
-      : [...globalActions, ...recentItems];
-    const composedList = searchParamConfig ? [] : actionsRecentList;
+    const listItemsLength = listItems.length;
+    const isNoActionsRecentList =
+      isSearchInActionActive || (!listItemsLength && isSearchInItemActive);
+    const composedList = isNoActionsRecentList
+      ? []
+      : [...sectionActions, ...recentItems];
 
     switch (listRenderingMode) {
       case RENDER_MODES.LIST_ITEMS:
@@ -652,7 +737,7 @@ export const useItemsInSections = <
     }
   }, [
     listActions,
-    currentSection,
+    activeSectionId,
     actions,
     texts,
     searchQuery,
@@ -666,10 +751,14 @@ export const useItemsInSections = <
     isSelected,
     handleItemSelect,
     handleSectionChange,
-    setSearchParamConfig,
-    searchActionSection,
-    searchParamConfig,
+    setSearchByParamConfig,
+    searchByAction,
+    searchByParamConfig,
     changeSearchQuery,
+    handleItemSelectExtended,
+    isSearchInActionActive,
+    searchInItem,
+    isListItemsRenderingMode,
   ]);
 
   return {
@@ -688,9 +777,12 @@ export const useItemsInSections = <
     isLoadingMoreError,
     contentHeight,
     refreshEnabled: !listActions,
-    searchActionSection,
-    searchParamConfig,
-    setSearchParamConfig,
+    searchByAction,
+    searchByParamConfig,
+    setSearchByParamConfig,
     listActions,
+    searchInItem,
+    searchInAction,
+    canPerformListActions,
   };
 };

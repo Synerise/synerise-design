@@ -5,18 +5,15 @@ import InformationCard from '@synerise/ds-information-card';
 import { type ListItemProps } from '@synerise/ds-list-item';
 
 import {
-  type ActionType,
   type BaseItemType,
   type BaseSectionType,
   type BaseSectionTypeWithFolders,
-  type SearchActionType,
-} from '../../ItemPickerNew/ItemPickerNew.types';
+} from '../../ItemPickerNew/types/baseItemSectionType.types';
 import {
   type ItemPickerListTexts,
   type TitleListItemProps,
 } from '../ItemPickerList.types';
-import { createTitleFromTitlePath, isTruthy } from '../utils';
-import { getGlobalOrLocalSearchActionType } from '../utils/getGlobalOrLocalSearchActionType';
+import { createTitleFromTitlePath } from '../utils';
 
 export const getFolderItem = (
   item: ListItemProps,
@@ -64,20 +61,6 @@ export const getListItem = <ItemType extends ListItemProps>(
   };
 };
 
-export const getActionItem = (
-  action: ActionType & { onClick?: (action: ActionType) => void },
-  searchQuery?: string,
-): ListItemProps => {
-  return {
-    ...action,
-    highlight: searchQuery,
-    onClick:
-      'onClick' in action && action.onClick
-        ? () => action.onClick?.(action)
-        : undefined,
-  };
-};
-
 export const matchesSearchQuery = (text: ReactNode, searchQuery: string) => {
   return String(text).toLowerCase().includes(searchQuery.toLowerCase());
 };
@@ -91,96 +74,6 @@ export const getItemsSectionTitle = (
     return [getTitleItem(texts.resultsSectionLabel)];
   }
   return showItemsSectionLabel ? [getTitleItem(texts.itemsSectionLabel)] : [];
-};
-
-export const getActionItems = ({
-  actions,
-  texts,
-  searchQuery,
-  sectionId,
-  setSearchActionSection,
-  changeSearchQuery,
-}: {
-  actions?: ActionType[];
-  texts: ItemPickerListTexts;
-  searchQuery?: string;
-  sectionId: string | undefined;
-  setSearchActionSection: (value: SearchActionType | undefined) => void;
-  changeSearchQuery: (query: string) => void;
-}) => {
-  const globalSearchByParameterAction = getGlobalOrLocalSearchActionType(
-    actions,
-    undefined,
-  );
-  const localSearchByParameterAction = getGlobalOrLocalSearchActionType(
-    actions,
-    sectionId,
-  );
-
-  const searchByParameterAction =
-    localSearchByParameterAction || globalSearchByParameterAction;
-  const searchByParameterActionVisible = searchByParameterAction?.searchParams
-    ?.length
-    ? searchByParameterAction
-    : undefined;
-
-  let isExistSearchByParameter = false;
-  return actions?.length
-    ? [
-        getTitleItem(texts.actionsSectionLabel),
-        ...actions.map((action) => {
-          if (action.actionType === 'search') {
-            if (isExistSearchByParameter) {
-              return undefined;
-            }
-            isExistSearchByParameter = true;
-            return searchByParameterActionVisible
-              ? getActionItem(
-                  {
-                    ...searchByParameterActionVisible,
-                    onClick: () => {
-                      changeSearchQuery('');
-                      setSearchActionSection(searchByParameterActionVisible);
-                    },
-                  },
-                  searchQuery,
-                )
-              : undefined;
-          }
-          return getActionItem(action, searchQuery);
-        }),
-      ].filter(isTruthy)
-    : [];
-};
-
-export const getSectionActionItems = ({
-  actions,
-  texts,
-  sectionId,
-  searchQuery,
-  setSearchActionSection,
-  changeSearchQuery,
-}: {
-  actions?: ActionType[];
-  texts: ItemPickerListTexts;
-  sectionId?: string;
-  searchQuery?: string;
-  setSearchActionSection: (value: SearchActionType | undefined) => void;
-  changeSearchQuery: (query: string) => void;
-}) => {
-  const filteredActions = actions?.filter(
-    (action) =>
-      (action.actionType === 'search' || action.sectionId === sectionId) &&
-      (!searchQuery || matchesSearchQuery(action.text, searchQuery)),
-  );
-  return getActionItems({
-    actions: filteredActions,
-    texts,
-    searchQuery,
-    sectionId,
-    setSearchActionSection,
-    changeSearchQuery,
-  });
 };
 
 export const getRecentItems = <ItemType extends BaseItemType>({

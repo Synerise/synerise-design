@@ -2,7 +2,7 @@ import type { CSSProperties } from 'react';
 
 import { itemSizes } from '@synerise/ds-list-item';
 
-import type { BaseItemType } from '../ItemPickerNew/ItemPickerNew.types';
+import type { BaseItemType } from '../ItemPickerNew/types/baseItemSectionType.types';
 
 export const LIST_STYLE: CSSProperties = {
   overflowX: 'unset',
@@ -25,6 +25,7 @@ export const FOOTER_HEIGHT = 48;
 export const LIST_INNER_PADDING = 8;
 
 export const FIRST_PAGE = 0;
+export const SECOND_PAGE = 1;
 export const ITEMS_PER_PAGE = 150;
 export const ITEMS_PER_SECTION = 4;
 export const ITEMS_PER_SECTION_IN_SEARCH = 4;

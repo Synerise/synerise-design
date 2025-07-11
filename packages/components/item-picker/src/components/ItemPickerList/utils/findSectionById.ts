@@ -1,7 +1,7 @@
 import type {
   BaseSectionType,
   BaseSectionTypeWithFolders,
-} from '../../ItemPickerNew/ItemPickerNew.types';
+} from '../../ItemPickerNew/types/baseItemSectionType.types';
 
 export const findSectionById = <SectionType extends BaseSectionType>(
   nestedFolders?: BaseSectionTypeWithFolders<SectionType>[],
