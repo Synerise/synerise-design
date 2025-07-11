@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.0.14](https://github.com/Synerise/synerise-design/compare/@synerise/ds-list-item@1.0.13...@synerise/ds-list-item@1.0.14) (2025-07-11)
+
+
+### Bug Fixes
+
+* **list-item:** fixed trigger types ([53cd7ae](https://github.com/Synerise/synerise-design/commit/53cd7aefff2e8e5d931079931eb536f45322dcbe))
+
+
+
+
+
 ## [1.0.13](https://github.com/Synerise/synerise-design/compare/@synerise/ds-list-item@1.0.12...@synerise/ds-list-item@1.0.13) (2025-07-01)
 
 **Note:** Version bump only for package @synerise/ds-list-item

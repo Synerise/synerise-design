@@ -1,6 +1,6 @@
 {
   "name": "@synerise/ds-item-picker",
-  "version": "1.7.1",
+  "version": "1.8.0",
   "description": "ItemPicker UI Component for the Synerise Design System",
   "license": "ISC",
   "repository": "Synerise/synerise-design",
@@ -43,7 +43,7 @@
     "@synerise/ds-form-field": "^1.1.9",
     "@synerise/ds-icon": "^1.5.4",
     "@synerise/ds-information-card": "^1.0.20",
-    "@synerise/ds-list-item": "^1.0.13",
+    "@synerise/ds-list-item": "^1.0.14",
     "@synerise/ds-loader": "^1.0.6",
     "@synerise/ds-popconfirm": "^1.0.15",
     "@synerise/ds-result": "^1.0.15",
