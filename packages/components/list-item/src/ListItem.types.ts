@@ -21,7 +21,7 @@ export const itemSizes = {
 export type ItemType = (typeof itemTypes)[keyof typeof itemTypes];
 export type ItemSize = (typeof itemSizes)[keyof typeof itemSizes];
 
-export type ItemData<EventType> = {
+export type ItemData<EventType = MouseEvent> = {
   key?: Key;
   item: Partial<BasicItemProps>;
   domEvent: EventType;
@@ -51,7 +51,21 @@ export type ListItemProps = WithHTMLAttributes<
     disabled?: boolean;
     higher?: boolean;
     highlight?: string;
-    hoverTooltipProps?: TriggerProps & { ref?: LegacyRef<TriggerHandle> };
+    hoverTooltipProps?: Pick<
+      TriggerProps,
+      | 'onPopupVisibleChange'
+      | 'onPopupClick'
+      | 'mouseEnterDelay'
+      | 'mouseLeaveDelay'
+      | 'defaultPopupVisible'
+      | 'action'
+      | 'afterPopupVisibleChange'
+      | 'popupPlacement'
+      | 'getPopupContainer'
+      | 'forceRender'
+    > & {
+      ref?: LegacyRef<TriggerHandle>;
+    };
     key?: Key;
     itemKey?: Key;
     level?: number;
