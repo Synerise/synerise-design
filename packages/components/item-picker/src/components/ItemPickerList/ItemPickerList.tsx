@@ -16,6 +16,7 @@ import { useTheme } from '@synerise/ds-core';
 import Dropdown from '@synerise/ds-dropdown';
 import Icon, { ArrowLeftM } from '@synerise/ds-icon';
 import { itemSizes } from '@synerise/ds-list-item';
+import { Text } from '@synerise/ds-typography';
 import {
   focusWithArrowKeys,
   useCombinedRefs,
@@ -275,7 +276,7 @@ export const ItemPickerList = <
         searchInItem &&
         `${searchInAction?.renderSearchInValueText(searchInItem)}`;
 
-      return [
+      const labelParts = [
         ...itemsPath,
         searchInActionLabel,
         searchInItemLabel,
@@ -283,6 +284,8 @@ export const ItemPickerList = <
       ]
         .filter(Boolean)
         .join(' - ');
+
+      return <Text ellipsis={{ tooltip: labelParts }}>{labelParts}</Text>;
     };
 
     return (

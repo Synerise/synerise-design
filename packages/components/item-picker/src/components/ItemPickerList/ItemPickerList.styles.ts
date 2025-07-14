@@ -2,6 +2,7 @@ import { VariableSizeList } from 'react-window';
 import styled, { css } from 'styled-components';
 
 import Dropdown from '@synerise/ds-dropdown';
+import { Label as DropdownBackActionLabel } from '@synerise/ds-dropdown/dist/elements/BackAction/BackAction.styles';
 import DSEmptyStates from '@synerise/ds-empty-states';
 import DSLoader from '@synerise/ds-loader';
 import Scrollbar from '@synerise/ds-scrollbar';
@@ -26,6 +27,10 @@ export const ListWrapper = styled.div<{
       display: flex;
       flex-direction: column;
     `}
+
+  ${DropdownBackActionLabel} {
+    min-width: 0;
+  }
 `;
 
 export const ListContainer = styled(Dropdown.Wrapper)<{
