@@ -64,4 +64,6 @@ export const theme: ThemePropsVars = {
   },
 };
 
+export const themeVariables = vars.variables;
+
 export default theme;
