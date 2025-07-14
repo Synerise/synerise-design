@@ -16,8 +16,7 @@ import Icon, {
 import InformationCard, {
   InformationCardProps,
 } from '@synerise/ds-information-card';
-import type { ItemLoaderConfig } from '@synerise/ds-item-picker';
-import { Action } from '@synerise/ds-item-picker';
+import type { ItemLoaderConfig, Action } from '@synerise/ds-item-picker';
 
 import type {
   AttributeType,
@@ -34,6 +33,7 @@ export const ICONS = {
   user: <Icon component={<UserM />} />,
   add: <Icon component={<Add3M />} />,
   file: <Icon component={<FileM />} />,
+  segment: <Icon component={<SegmentM />} />,
 };
 
 const isSegmentationType = (item: ItemType): item is SegmentationType => {
