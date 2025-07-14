@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.16.1](https://github.com/Synerise/synerise-design/compare/storybook@1.16.0...storybook@1.16.1) (2025-07-14)
+
+
+### Bug Fixes
+
+* **item-picker:** back action overflow with ellipsis ([c35f1c2](https://github.com/Synerise/synerise-design/commit/c35f1c2340e4fd905e9df0e723856d192c8f4d6c))
+
+
+
+
+
 # [1.16.0](https://github.com/Synerise/synerise-design/compare/storybook@1.15.1...storybook@1.16.0) (2025-07-11)
 
 

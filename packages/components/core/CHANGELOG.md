@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.4.3](https://github.com/synerise/synerise-design/compare/@synerise/ds-core@1.4.2...@synerise/ds-core@1.4.3) (2025-07-14)
+
+
+### Bug Fixes
+
+* **core:** add theme variables export ([52b23ed](https://github.com/synerise/synerise-design/commit/52b23edf3f83a2b2410251b4d371b31ca4bd93cd))
+
+
+
+
+
 ## [1.4.2](https://github.com/synerise/synerise-design/compare/@synerise/ds-core@1.4.1...@synerise/ds-core@1.4.2) (2025-07-08)
 
 **Note:** Version bump only for package @synerise/ds-core
