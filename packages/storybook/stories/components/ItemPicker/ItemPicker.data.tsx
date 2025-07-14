@@ -221,7 +221,7 @@ const folderItem = (index: number): FolderType => {
   const itemData = {
     key: uuid(),
     itemType: 'folder' as const,
-    text: `Folder ${index + 1}`,
+    text: `Folder with a very long name that will get clipped with ellipsis ${index + 1}`,
     sectionId: 'FOLDERS',
     prefixel: <Icon component={<FolderM />} />,
     author: faker.person.fullName(),
