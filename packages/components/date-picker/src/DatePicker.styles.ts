@@ -1,17 +1,11 @@
 import styled from 'styled-components';
 
 export const Container = styled.div`
-  background-color: ${(props): string => props.theme.palette.white};
+  background-color: ${(props) => props.theme.palette.white};
   user-select: none;
-  display: grid;
-  grid-template-rows: 48px 300px 1fr;
-  align-items: stretch;
-  justify-content: stretch;
-  min-width: 318px;
   padding-top: 12px;
   > *:not(:last-child) {
-    border-bottom: 1px solid
-      ${(props): string => props.theme.palette['grey-200']};
+    border-bottom: 1px solid ${(props) => props.theme.palette['grey-200']};
   }
   .ds-date-picker-nav {
     .long-prev,
@@ -20,7 +14,16 @@ export const Container = styled.div`
     }
   }
 `;
-
+export const ContentWrapper = styled.div`
+  display: flex;
+`;
+export const PickerWrapper = styled.div`
+  display: grid;
+  min-width: 318px;
+  align-items: stretch;
+  justify-content: stretch;
+  grid-template-rows: 48px 300px 1fr;
+`;
 export const OverlayContainer = styled.div`
   overflow: visible;
 `;

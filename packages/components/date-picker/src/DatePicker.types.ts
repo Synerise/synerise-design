@@ -6,6 +6,11 @@ import type { DropdownProps } from '@synerise/ds-dropdown';
 import type { InputProps } from '@synerise/ds-input';
 import type { DataAttributes } from '@synerise/ds-utils';
 
+export type QuickPick = {
+  label: ReactNode;
+  value: Date;
+};
+
 export type DatePickerProps = {
   autoFocus?: boolean;
   disabled?: boolean;
@@ -46,6 +51,7 @@ export type DatePickerProps = {
   useStartOfDay?: boolean;
   useEndOfDay?: boolean;
   hideNow?: boolean;
+  quickPicks?: QuickPick[];
   readOnly?: boolean;
   inputProps?: Pick<InputProps, 'autoResize'>;
   overlayHTMLAttributes?: HTMLAttributes<HTMLDivElement> & DataAttributes;
@@ -77,4 +83,5 @@ export type Texts = {
   now: ReactNode;
   inputPlaceholder: string;
   clearTooltip: ReactNode;
+  quickPicks: ReactNode;
 };

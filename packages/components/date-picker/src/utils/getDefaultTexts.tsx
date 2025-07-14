@@ -12,6 +12,12 @@ export const getDefaultTexts = (
       <FormattedMessage id="DS.DATE-PICKER.APPLY" defaultMessage="Apply" />
     ),
     now: <FormattedMessage id="DS.DATE-PICKER.NOW" defaultMessage="Now" />,
+    quickPicks: (
+      <FormattedMessage
+        id="DS.DATE-PICKER.QUICK-PICKS"
+        defaultMessage="Quick picks"
+      />
+    ),
     inputPlaceholder: intl.formatMessage({ id: 'DS.DATE-PICKER.SELECT-DATE' }),
     clearTooltip: (
       <FormattedMessage

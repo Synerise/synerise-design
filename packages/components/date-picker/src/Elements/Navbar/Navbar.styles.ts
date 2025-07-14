@@ -29,7 +29,8 @@ export const Text = styled.div`
 export const Container = styled.div`
   display: flex;
   align-items: center;
-  margin: 0 24px;
+  padding: 0 24px;
+  border-bottom: 1px solid ${(props) => props.theme.palette['grey-200']};
   ${ArrowContainer}:first-of-type {
     ${NavButton}, ${ArrowPlaceholder} {
       margin-right: 8px;
