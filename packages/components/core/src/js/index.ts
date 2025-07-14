@@ -4,6 +4,7 @@ export {
   theme,
   useTheme,
   defaultColorsOrder,
+  themeVariables,
   type ThemePropsVars,
   type ThemeProps,
   type WithTheme,
