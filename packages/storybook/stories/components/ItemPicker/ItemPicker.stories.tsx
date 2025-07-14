@@ -1,33 +1,35 @@
 import React, { useState } from 'react';
+
 import { Meta, StoryObj } from '@storybook/react-webpack5';
-
-import ItemPicker from '@synerise/ds-item-picker';
 import Button from '@synerise/ds-button';
-
-import { FLAT_DATA_SOURCE, ICONS } from './ItemPicker.data';
-import { FLAT_DATA_SOURCE as LEGACY_FLAT_DATA_SOURCE } from './ItemPickerLegacy.data';
-import { ItemType, StoryProps } from './ItemPicker.types';
+import ItemPicker from '@synerise/ds-item-picker';
 
 import {
   BOOLEAN_CONTROL,
+  REACT_NODE_AS_STRING,
+  STRING_CONTROL,
   centeredPaddedWrapper,
   controlFromOptionsArray,
   fixedWrapper300,
-  sideBySide,
-  REACT_NODE_AS_STRING,
-  STRING_CONTROL,
   fixedWrapper800,
+  sideBySide,
   sleep,
 } from '../../utils';
-
+import { FLAT_DATA_SOURCE, ICONS, ITEMS_IN_SECTIONS } from './ItemPicker.data';
+import { ItemType, StoryProps } from './ItemPicker.types';
+import { FLAT_DATA_SOURCE as LEGACY_FLAT_DATA_SOURCE } from './ItemPickerLegacy.data';
 
 export type Story = StoryObj<StoryProps>;
 
-const DEPRECATED = { control: false, description: 'deprecated', table: { category: 'Deprecated props' } };
+const DEPRECATED = {
+  control: false,
+  description: 'deprecated',
+  table: { category: 'Deprecated props' },
+};
 
 const ItemPickerStory = (args) => {
-  const [selectedItem, setSelectedItem] = useState(args.selectedItem)
-  const handleChange = item => {
+  const [selectedItem, setSelectedItem] = useState(args.selectedItem);
+  const handleChange = (item) => {
     setSelectedItem(item);
     args.onChange?.(item);
   };
@@ -36,9 +38,17 @@ const ItemPickerStory = (args) => {
     args.onClear?.();
   };
   return (
-    <div style={{ flex: '1 1 auto' }}><ItemPicker {...args} isNewVersion selectedItem={selectedItem} onChange={handleChange} onClear={handleClear} /></div>
+    <div style={{ flex: '1 1 auto' }}>
+      <ItemPicker
+        {...args}
+        isNewVersion
+        selectedItem={selectedItem}
+        onChange={handleChange}
+        onClear={handleClear}
+      />
+    </div>
   );
-}
+};
 export default {
   component: ItemPicker,
   title: 'Components/Pickers/ItemPicker/ItemPicker',
@@ -49,10 +59,8 @@ export default {
       exclude: ['dataSource'],
     },
   },
-  render: args => {
-    return (
-      <ItemPickerStory {...args} />
-    );
+  render: (args) => {
+    return <ItemPickerStory {...args} />;
   },
   argTypes: {
     items: { control: false },
@@ -98,21 +106,36 @@ export const Default: Story = {
   parameters: {
     docs: {
       source: {
-        code: `<ItemPicker isNewVersion items={FLAT_DATA_SOURCE} showItemsSectionLabel={false} />`
-      }
-    }
+        code: `<ItemPicker isNewVersion items={FLAT_DATA_SOURCE} showItemsSectionLabel={false} />`,
+      },
+    },
   },
 };
 export const RelativeHeight: Story = {
   parameters: { layout: 'padded' },
-  decorators: [sideBySide, fixedWrapper800,],
+  decorators: [sideBySide, fixedWrapper800],
   render: ({ items, ...args }) => {
     const itemsLong = [...items, ...items.slice(0, 5)];
     return (
       <>
-        <ItemPickerStory {...args} opened placeholder='5 items' items={items.slice(0, 5)} />
-        <ItemPickerStory {...args} opened placeholder='10 items' items={items.slice(0, 10)} />
-        <ItemPickerStory {...args} open placeholder={`${itemsLong.length} items`} items={itemsLong} />
+        <ItemPickerStory
+          {...args}
+          opened
+          placeholder="5 items"
+          items={items.slice(0, 5)}
+        />
+        <ItemPickerStory
+          {...args}
+          opened
+          placeholder="10 items"
+          items={items.slice(0, 10)}
+        />
+        <ItemPickerStory
+          {...args}
+          open
+          placeholder={`${itemsLong.length} items`}
+          items={itemsLong}
+        />
       </>
     );
   },
@@ -120,21 +143,22 @@ export const RelativeHeight: Story = {
     showItemsSectionLabel: false,
     items: LEGACY_FLAT_DATA_SOURCE as ItemType[],
     containerHeight: 'fitContent',
-    texts: { searchPlaceholder: 'Search' }
-  }
+    texts: { searchPlaceholder: 'Search' },
+  },
 };
 export const WithPlaceholder: Story = {
   decorators: [fixedWrapper300, centeredPaddedWrapper],
   parameters: {
     docs: {
       source: {
-        code: `<ItemPicker isNewVersion placeholder="Set customer" placeholderIcon={ICONS['user']} items={FLAT_DATA_SOURCE} />`
-      }
-    }
+        code: `<ItemPicker isNewVersion placeholder="Set customer" placeholderIcon={ICONS['user']} items={FLAT_DATA_SOURCE} />`,
+      },
+    },
   },
   args: {
-    placeholder: 'Set customer',
-    placeholderIcon: ICONS['user'],
+    items: ITEMS_IN_SECTIONS,
+    placeholder: 'Select segmentation',
+    placeholderIcon: ICONS['segment'],
   },
 };
 
@@ -143,9 +167,9 @@ export const SelectedItem: Story = {
   parameters: {
     docs: {
       source: {
-        code: `<ItemPicker isNewVersion placeholder="Set customer" placeholderIcon={ICONS['user']} items={FLAT_DATA_SOURCE} />`
-      }
-    }
+        code: `<ItemPicker isNewVersion placeholder="Set customer" placeholderIcon={ICONS['user']} items={FLAT_DATA_SOURCE} />`,
+      },
+    },
   },
   args: {
     selectedItem: FLAT_DATA_SOURCE[3],
@@ -156,9 +180,9 @@ export const LargeTriggerSize: Story = {
   parameters: {
     docs: {
       source: {
-        code: `<ItemPicker isNewVersion selectedItem={FLAT_DATA_SOURCE[3]} triggerProps={{ size: 'large', allowClear: true, withChangeButton: true }} items={FLAT_DATA_SOURCE} />`
-      }
-    }
+        code: `<ItemPicker isNewVersion selectedItem={FLAT_DATA_SOURCE[3]} triggerProps={{ size: 'large', allowClear: true, withChangeButton: true }} items={FLAT_DATA_SOURCE} />`,
+      },
+    },
   },
   args: {
     triggerProps: {
@@ -176,9 +200,9 @@ export const CustomTrigger: Story = {
       source: {
         code: `<ItemPicker isNewVersion renderTrigger={({ selected, openDropdown }) => (
     <Button onClick={openDropdown}>{selected?.text || 'Select'}</Button>
-  )} items={FLAT_DATA_SOURCE} />`
-      }
-    }
+  )} items={FLAT_DATA_SOURCE} />`,
+      },
+    },
   },
   decorators: [fixedWrapper300, centeredPaddedWrapper],
   args: {
@@ -198,15 +222,15 @@ export const LabelDescriptionAndErrorMessage: Story = {
     tooltip="tooltip text"
     label="Label"
     items={FLAT_DATA_SOURCE}
-  />`
-      }
-    }
+  />`,
+      },
+    },
   },
   args: {
     ...Default.args,
-    description: "Field description",
-    errorMessage: "Error message",
-    tooltip: "tooltip text",
-    label: "Label"
-  }
+    description: 'Field description',
+    errorMessage: 'Error message',
+    tooltip: 'tooltip text',
+    label: 'Label',
+  },
 };

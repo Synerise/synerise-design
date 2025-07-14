@@ -1,8 +1,7 @@
-import React, { useEffect, useMemo, useRef, useState } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 
 import Dropdown from '@synerise/ds-dropdown';
 import FormField from '@synerise/ds-form-field';
-import { useOnClickOutside } from '@synerise/ds-utils';
 
 import * as S from '../../ItemPicker.styles';
 import { useDefaultTexts } from '../../hooks/useDefaultTexts';
@@ -39,11 +38,6 @@ export const ItemPickerNew = <
   tooltipConfig,
   ...rest
 }: ItemPickerProps<ItemType, SectionType>) => {
-  const overlayRef = useRef<HTMLDivElement>(null);
-  useOnClickOutside(overlayRef, () => {
-    closeDropdown();
-  });
-
   const [selected, setSelected] = useState<ItemType | undefined>(selectedItem);
   const [visible, setVisible] = useState(false);
   const allTexts = useDefaultTexts(texts);
@@ -128,7 +122,6 @@ export const ItemPickerNew = <
               isVisible={visible}
               selectedItem={selected}
               onItemSelect={handleItemSelect}
-              containerRef={overlayRef}
             />
           }
         >
