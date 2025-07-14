@@ -2,7 +2,7 @@ import React from 'react';
 
 import { US_NOTATION } from '@synerise/ds-data-format';
 import { renderWithProvider } from '@synerise/ds-utils';
-import { fireEvent, screen } from '@testing-library/react';
+import { fireEvent, screen, waitFor } from '@testing-library/react';
 
 import DatePicker from '../DatePicker';
 import RawDatePicker from '../RawDatePicker/RawDatePicker';
@@ -19,6 +19,7 @@ describe('RawDatePicker', () => {
     const element = renderWithProvider(
       <RawDatePicker
         showTime={true}
+        onApply={jest.fn()}
         texts={{
           apply: 'Apply',
           now: 'Now',
@@ -32,6 +33,7 @@ describe('RawDatePicker', () => {
     renderWithProvider(
       <RawDatePicker
         showTime={true}
+        onApply={jest.fn()}
         texts={{
           apply: 'Apply',
           now: 'Now',
@@ -46,6 +48,7 @@ describe('RawDatePicker', () => {
     renderWithProvider(
       <RawDatePicker
         showTime={true}
+        onApply={jest.fn()}
         texts={{
           apply: 'Apply',
           now: 'Now',
@@ -62,6 +65,7 @@ describe('RawDatePicker', () => {
     renderWithProvider(
       <RawDatePicker
         showTime={true}
+        onApply={jest.fn()}
         texts={{
           apply: 'Apply',
           now: 'Now',
@@ -78,6 +82,7 @@ describe('RawDatePicker', () => {
     renderWithProvider(
       <RawDatePicker
         showTime={true}
+        onApply={jest.fn()}
         texts={{
           apply: 'Apply',
           now: 'Now',
@@ -95,6 +100,7 @@ describe('RawDatePicker', () => {
     const { container } = renderWithProvider(
       <RawDatePicker
         showTime={true}
+        onApply={jest.fn()}
         texts={{
           apply: 'Apply',
           now: 'Now',
@@ -110,6 +116,7 @@ describe('RawDatePicker', () => {
     const { container } = renderWithProvider(
       <RawDatePicker
         showTime={true}
+        onApply={jest.fn()}
         texts={{
           apply: 'Apply',
           now: 'Now',
@@ -126,6 +133,7 @@ describe('RawDatePicker', () => {
   it('should show previous month on left arrow click', async () => {
     const { container } = renderWithProvider(
       <RawDatePicker
+        onApply={jest.fn()}
         showTime={true}
         texts={{
           apply: 'Apply',
@@ -143,6 +151,7 @@ describe('RawDatePicker', () => {
   it('should show next month on right arrow click', async () => {
     const { container } = renderWithProvider(
       <RawDatePicker
+        onApply={jest.fn()}
         showTime={true}
         texts={{
           apply: 'Apply',
@@ -160,6 +169,7 @@ describe('RawDatePicker', () => {
   it('should show next year on right arrow click', async () => {
     const { container } = renderWithProvider(
       <RawDatePicker
+        onApply={jest.fn()}
         showTime={true}
         texts={{
           apply: 'Apply',
@@ -248,6 +258,7 @@ describe('RawDatePicker', () => {
   it('should render month picker using locale', async () => {
     renderWithProvider(
       <RawDatePicker
+        onApply={jest.fn()}
         showTime={true}
         texts={{
           apply: 'Apply',
@@ -265,6 +276,7 @@ describe('RawDatePicker', () => {
   it('should render day picker using locale', async () => {
     renderWithProvider(
       <RawDatePicker
+        onApply={jest.fn()}
         showTime={true}
         texts={{
           apply: 'Apply',
@@ -297,6 +309,7 @@ describe('RawDatePicker', () => {
     };
     const { container } = renderWithProvider(
       <RawDatePicker
+        onApply={jest.fn()}
         showTime={true}
         texts={{
           apply: 'Apply',
@@ -315,4 +328,30 @@ describe('RawDatePicker', () => {
     expect(toNextDay).toBeDisabled();
     expect(toPrevDay).toBeDisabled();
   });
+  it('Should render quick picks', async () => {
+    const QUICK_PICK = {
+      label: 'QUICK_PICK_1',
+      value: new Date(2010,0,10)
+    }
+    const onValueChange = jest.fn()
+    renderWithProvider(
+      <RawDatePicker
+        showTime={true}
+        texts={{
+          apply: 'Apply',
+          now: 'Now',
+        }}
+        onValueChange={onValueChange}
+        onApply={jest.fn()}
+        quickPicks={[QUICK_PICK]}
+      />,
+    );
+
+    expect(screen.getByText(QUICK_PICK.label)).toBeInTheDocument();
+
+    fireEvent.click(screen.getByText(QUICK_PICK.label));
+
+    await waitFor(() => expect(onValueChange).toHaveBeenCalledWith(QUICK_PICK.value));
+
+  })
 });

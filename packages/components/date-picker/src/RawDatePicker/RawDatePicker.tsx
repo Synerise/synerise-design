@@ -14,6 +14,7 @@ import {
 } from '../Elements/DayPicker/DayPicker.styles';
 import Footer from '../Elements/Footer/Footer';
 import MonthPicker from '../Elements/MonthPicker/MonthPicker';
+import { QuickPicks } from '../Elements/QuickPicks/QuickPicks';
 import TimePicker from '../Elements/TimePicker/TimePicker';
 import YearPicker from '../Elements/YearPicker/YearPicker';
 import {
@@ -253,7 +254,7 @@ class RawDatePicker extends React.Component<
 
   render(): React.ReactNode {
     const { mode, changed, value, texts } = this.state;
-    const { showTime, hideNow } = this.props;
+    const { showTime, hideNow, quickPicks } = this.props;
 
     const isValid = !!value;
 
@@ -278,7 +279,20 @@ class RawDatePicker extends React.Component<
 
     return (
       <S.Container>
-        {picker}
+        <S.ContentWrapper>
+          {quickPicks?.length && (
+            <QuickPicks
+              value={value}
+              onChange={(item) => {
+                this.handleMonthChange(item.value, 'date');
+                this.handleChange(item.value);
+              }}
+              items={quickPicks}
+              texts={texts}
+            />
+          )}
+          <S.PickerWrapper>{picker}</S.PickerWrapper>
+        </S.ContentWrapper>
         <Footer
           canApply={isValid && changed}
           onApply={this.handleApply}

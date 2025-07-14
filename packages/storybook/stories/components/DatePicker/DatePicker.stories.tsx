@@ -1,15 +1,22 @@
-import React, { useState } from 'react';
 import dayjs from 'dayjs';
-import { Meta, StoryObj } from '@storybook/react-webpack5';
+import moment from 'moment';
+import React, { useState } from 'react';
 import { action } from 'storybook/actions';
 
+import { Meta, StoryObj } from '@storybook/react-webpack5';
 import DatePicker from '@synerise/ds-date-picker';
 
-import { BOOLEAN_CONTROL, fixedWrapper200, REACT_NODE_AS_STRING } from '../../utils';
+import {
+  BOOLEAN_CONTROL,
+  REACT_NODE_AS_STRING,
+  fixedWrapper200,
+} from '../../utils';
 import { baseArgs } from './constants';
 
 const disabledDates = (date?: Date): boolean => {
-  return Math.abs(dayjs().startOf('day').diff(dayjs(date).startOf('day'), 'day')) > 2;
+  return (
+    Math.abs(dayjs().startOf('day').diff(dayjs(date).startOf('day'), 'day')) > 2
+  );
 };
 
 export default {
@@ -19,13 +26,13 @@ export default {
   parameters: {
     date: new Date('March 10, 2021 10:00:00'),
   },
-  render: args => {
+  render: (args) => {
     const [value, setValue] = useState<Date | undefined>(args.value);
     return (
       <div data-popup-container>
         <DatePicker
           {...args}
-          onApply={newValue => {
+          onApply={(newValue) => {
             args.onApply?.(newValue);
             setValue(newValue);
           }}
@@ -66,6 +73,32 @@ export const WithTime: Story = {
   args: {
     ...baseArgs,
     showTime: true,
+  },
+};
+
+export const WithQuickPicks: Story = {
+  args: {
+    ...baseArgs,
+    hideNow: true,
+    useStartOfDay: true,
+    quickPicks: [
+      {
+        label: 'In 3 days',
+        value: moment().startOf('day').add(3, 'days').toDate(),
+      },
+      {
+        label: 'In 1 week',
+        value: moment().startOf('day').add(1, 'week').toDate(),
+      },
+      {
+        label: 'In 1 month',
+        value: moment().startOf('day').add(1, 'month').toDate(),
+      },
+      {
+        label: 'End of year',
+        value: moment().endOf('year').startOf('day').toDate(),
+      },
+    ],
   },
 };
 
