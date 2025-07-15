@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.8.2](https://github.com/Synerise/synerise-design/compare/@synerise/ds-item-picker@1.8.1...@synerise/ds-item-picker@1.8.2) (2025-07-15)
+
+
+### Bug Fixes
+
+* **item-picker:** allow click on infocard ([f2c035b](https://github.com/Synerise/synerise-design/commit/f2c035b52872e1908a4e0695345e170b3256f29f))
+
+
+
+
+
 ## [1.8.1](https://github.com/Synerise/synerise-design/compare/@synerise/ds-item-picker@1.8.0...@synerise/ds-item-picker@1.8.1) (2025-07-14)
 
 

@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.17.0](https://github.com/Synerise/synerise-design/compare/storybook@1.16.1...storybook@1.17.0) (2025-07-15)
+
+
+### Bug Fixes
+
+* **item-picker:** allow click on infocard ([f2c035b](https://github.com/Synerise/synerise-design/commit/f2c035b52872e1908a4e0695345e170b3256f29f))
+
+
+### Features
+
+* **date-picker:** quick picks ([0df17cf](https://github.com/Synerise/synerise-design/commit/0df17cff8b8695cf005970b96c82fffd9b8c8b00))
+
+
+
+
+
 ## [1.16.1](https://github.com/Synerise/synerise-design/compare/storybook@1.16.0...storybook@1.16.1) (2025-07-14)
 
 
