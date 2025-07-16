@@ -92,6 +92,19 @@ export const ModalWizardButtons = styled.div`
   width: 100%;
 `;
 
+export const ModalWizardButtonsInfix = styled.div`
+  align-self: center;
+  display: flex;
+`;
+export const ModalWizardButtonsSuffix = styled.div`
+  align-self: flex-end;
+  display: flex;
+`;
+export const ModalWizardButtonsPrefix = styled.div`
+  align-self: flex-start;
+  display: flex;
+`;
+
 export const FooterLeftSide = styled.div`
   display: flex;
   justify-content: flex-start;

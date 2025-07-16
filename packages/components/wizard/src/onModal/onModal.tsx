@@ -28,6 +28,7 @@ const WizardOnModal = ({
   const nextButtonProps = stepButtonProps?.nextButtonProps
     ? stepButtonProps.nextButtonProps
     : { type: 'primary' };
+
   return (
     <Modal
       visible={visible}
@@ -41,26 +42,43 @@ const WizardOnModal = ({
       }
       footer={
         <S.ModalWizardButtons>
-          {onPrevStep ? (
-            <Button {...prevButtonProps} onClick={onPrevStep}>
-              <Icon component={<ArrowLeftCircleM />} />{' '}
-              {texts?.prevButtonLabel ||
-                intl.formatMessage({
-                  id: 'DS.WIZARD.PREV-BUTTON',
-                  defaultMessage: 'Back',
-                })}
-            </Button>
+          {modalProps?.prefix || onPrevStep ? (
+            <S.ModalWizardButtonsPrefix>
+              {modalProps.prefix}
+              {onPrevStep && (
+                <Button {...prevButtonProps} onClick={onPrevStep}>
+                  <Icon component={<ArrowLeftCircleM />} />{' '}
+                  {texts?.prevButtonLabel ||
+                    intl.formatMessage({
+                      id: 'DS.WIZARD.PREV-BUTTON',
+                      defaultMessage: 'Back',
+                    })}
+                </Button>
+              )}
+            </S.ModalWizardButtonsPrefix>
           ) : (
             <S.ButtonPlaceholder />
           )}
-          {onNextStep && (
-            <Button {...nextButtonProps} onClick={onNextStep}>
-              {texts?.nextButtonLabel ||
-                intl.formatMessage({
-                  id: 'DS.WIZARD.NEXT-BUTTON',
-                  defaultMessage: 'Next step',
-                })}
-            </Button>
+
+          {modalProps?.infix && (
+            <S.ModalWizardButtonsInfix>
+              {modalProps.infix}
+            </S.ModalWizardButtonsInfix>
+          )}
+
+          {(modalProps?.suffix || onNextStep) && (
+            <S.ModalWizardButtonsSuffix>
+              {onNextStep && (
+                <Button {...nextButtonProps} onClick={onNextStep}>
+                  {texts?.nextButtonLabel ||
+                    intl.formatMessage({
+                      id: 'DS.WIZARD.NEXT-BUTTON',
+                      defaultMessage: 'Next step',
+                    })}
+                </Button>
+              )}
+              {modalProps.suffix}
+            </S.ModalWizardButtonsSuffix>
           )}
         </S.ModalWizardButtons>
       }
