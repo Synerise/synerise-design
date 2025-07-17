@@ -162,26 +162,6 @@ describe('ItemsRoll', () => {
     ).toBeInTheDocument();
   });
 
-  it('renders with virtualized list', () => {
-    const onSearch = jest.fn();
-    const onSearchClear = jest.fn();
-    const onClearAll = jest.fn();
-    const onChangeSelection = jest.fn();
-
-    const props = propsFactory({
-      onSearch,
-      onSearchClear,
-      onClearAll,
-      onChangeSelection,
-    });
-
-    renderWithProvider(<ItemsRoll {...props} useVirtualizedList />);
-
-    expect(
-      screen.getByTestId('items-roll-virtualized-list'),
-    ).toBeInTheDocument();
-  });
-
   it('renders with grouped list', async () => {
     const onSearch = jest.fn();
     const onSearchClear = jest.fn();

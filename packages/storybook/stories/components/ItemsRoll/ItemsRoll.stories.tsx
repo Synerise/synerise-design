@@ -1,24 +1,31 @@
 import React, { useState } from 'react';
-import { Meta, StoryObj } from '@storybook/react-webpack5';
 import { action } from 'storybook/actions';
 
-import ItemsRoll, { ItemsRollProps } from '@synerise/ds-items-roll';
-import Dropdown from '@synerise/ds-dropdown';
-import { focusWithArrowKeys } from '@synerise/ds-utils';
-import Menu from '@synerise/ds-menu';
+import { Meta, StoryObj } from '@storybook/react-webpack5';
 import Button from '@synerise/ds-button';
-import Icon, { SaveM } from '@synerise/ds-icon';
 import { theme } from '@synerise/ds-core';
+import Dropdown from '@synerise/ds-dropdown';
+import Icon, { SaveM } from '@synerise/ds-icon';
+import ItemsRoll, { ItemsRollProps } from '@synerise/ds-items-roll';
+import Menu from '@synerise/ds-menu';
+import { focusWithArrowKeys } from '@synerise/ds-utils';
 
-import { ACTIONS, GROUPED_ITEMS, ICONS, ITEMS_100, ITEMS_1000, SEARCH_PLACEHOLDER } from './ItemsRoll.data';
 import {
   BOOLEAN_CONTROL,
+  NUMBER_CONTROL,
+  STRING_CONTROL,
   centeredPaddedWrapper,
   controlFromOptionsArray,
   fixedWrapper800,
-  NUMBER_CONTROL,
-  STRING_CONTROL,
 } from '../../utils';
+import {
+  ACTIONS,
+  GROUPED_ITEMS,
+  ICONS,
+  ITEMS_100,
+  ITEMS_1000,
+  SEARCH_PLACEHOLDER,
+} from './ItemsRoll.data';
 
 type StoryType = ItemsRollProps & {
   withChangeSelectionDropdown: boolean;
@@ -50,7 +57,7 @@ export default {
     };
 
     const onItemRemove = (itemId: string, grouId?: string) => {
-      setItems(items.filter(item => item.id !== itemId));
+      setItems(items.filter((item) => item.id !== itemId));
       args.onItemRemove?.(itemId, grouId);
     };
 
@@ -58,7 +65,9 @@ export default {
       const lookupItems = args.items;
 
       if (searchValue !== value) {
-        const filteredItems = lookupItems.filter(item => `${item.text}`.toLowerCase().includes(value.toLowerCase()));
+        const filteredItems = lookupItems.filter((item) =>
+          `${item.text}`.toLowerCase().includes(value.toLowerCase()),
+        );
         setSearchValue(value);
         setItems(filteredItems);
       }
@@ -71,22 +80,24 @@ export default {
     const [visible, setVisible] = useState(false);
     const changeSelectionDropdownProps = withChangeSelectionDropdown
       ? {
-        overlay: (
-          <Dropdown.Wrapper
-            style={{ width: '157px' }}
-            onKeyDown={event => focusWithArrowKeys(event, 'ds-menu-item', () => { })}
-          >
-            <Menu
-              dataSource={[{ text: 'Option 1' }, { text: 'Option 2' }]}
-              asDropdownMenu={true}
-              style={{ width: '100%' }}
-            />
-          </Dropdown.Wrapper>
-        ),
-        trigger: ['click' as const],
-        visible,
-        onVisibleChange: () => setVisible(!visible),
-      }
+          overlay: (
+            <Dropdown.Wrapper
+              style={{ width: '157px' }}
+              onKeyDown={(event) =>
+                focusWithArrowKeys(event, 'ds-menu-item', () => {})
+              }
+            >
+              <Menu
+                dataSource={[{ text: 'Option 1' }, { text: 'Option 2' }]}
+                asDropdownMenu={true}
+                style={{ width: '100%' }}
+              />
+            </Dropdown.Wrapper>
+          ),
+          trigger: ['click' as const],
+          visible,
+          onVisibleChange: () => setVisible(!visible),
+        }
       : undefined;
 
     return (
@@ -110,6 +121,10 @@ export default {
     hideSearch: BOOLEAN_CONTROL,
     isDisabled: BOOLEAN_CONTROL,
     searchPlaceholder: STRING_CONTROL,
+    onChangeSelection: BOOLEAN_CONTROL,
+    texts: {
+      noResultsLabel: STRING_CONTROL,
+    },
     items: {
       control: false,
     },
@@ -134,18 +149,23 @@ export default {
 
 export const Default: Story = {};
 
-export const Empty: Story = {
+export const Simple: Story = {
   args: {
-    items: [],
+    onChangeSelection: false,
+    renderCount: () => <></>,
+    actions: null,
+    hideSearch: true,
+    useFooter: false,
   },
 };
 
-export const VirtualisedList: Story = {
+export const Empty: Story = {
   args: {
-    useVirtualizedList: true,
-    renderCount: undefined,
-    virtualizedRowHeight: 32,
-    items: ITEMS_1000,
+    items: [],
+    onChangeSelection: false,
+    texts: {
+      noResultsLabel: 'No items added',
+    },
   },
 };
 
@@ -169,7 +189,9 @@ export const CustomSidebarActions: Story = {
         <Button
           mode="icon-label"
           type="ghost"
-          icon={<Icon component={<SaveM />} color={theme.palette['grey-600']} />}
+          icon={
+            <Icon component={<SaveM />} color={theme.palette['grey-600']} />
+          }
           onClick={action('Click custom action')}
         >
           Save list

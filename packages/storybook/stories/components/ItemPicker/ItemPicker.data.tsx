@@ -16,7 +16,7 @@ import Icon, {
 import InformationCard, {
   InformationCardProps,
 } from '@synerise/ds-information-card';
-import type { ItemLoaderConfig, Action } from '@synerise/ds-item-picker';
+import type { Action, ItemLoaderConfig } from '@synerise/ds-item-picker';
 
 import type {
   AttributeType,

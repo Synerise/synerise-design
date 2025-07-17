@@ -56,7 +56,10 @@ export type ItemsRollProps = {
     [k in Texts]?: ReactNode;
   };
   useFooter?: boolean;
+  /** @deprecated */
   useVirtualizedList?: boolean;
+  /** @deprecated */
   virtualizedRowHeight?: number;
+  /** @deprecated */
   virtualizedRowWidth?: number;
 };

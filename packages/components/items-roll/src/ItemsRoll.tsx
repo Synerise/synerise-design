@@ -29,9 +29,6 @@ export const ItemsRoll = ({
   style,
   texts,
   useFooter,
-  useVirtualizedList,
-  virtualizedRowWidth,
-  virtualizedRowHeight,
 }: ItemsRollProps) => {
   const intl = useIntl();
 
@@ -132,10 +129,7 @@ export const ItemsRoll = ({
         noResultsLabel={allTexts.noResultsLabel}
         removeTooltipLabel={allTexts.removeTooltipLabel}
         searchValue={searchValue}
-        useVirtualizedList={useVirtualizedList}
         visibleItems={visibleItems}
-        virtualizedRowHeight={virtualizedRowHeight}
-        virtualizedRowWidth={virtualizedRowWidth}
       />
       {useFooter && (
         <Footer
