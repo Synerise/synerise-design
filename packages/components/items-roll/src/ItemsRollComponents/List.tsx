@@ -1,14 +1,12 @@
 import React, { useMemo } from 'react';
-import { FixedSizeList } from 'react-window';
 
-import Icon, { SearchNoResultsM } from '@synerise/ds-icon';
+import Icon, { InformationNoSearchResultL } from '@synerise/ds-icon';
 import { GroupItem } from '@synerise/ds-list-item';
 
 import * as S from '../ItemsRoll.styles';
 import { type ItemRollElement } from '../ItemsRoll.types';
 import { type ListProps } from './List.types';
 import ItemElement from './ListItem';
-import ItemRenderer from './VirtualizedListItem';
 
 export const itemsInGroup = (
   group: string,
@@ -17,16 +15,12 @@ export const itemsInGroup = (
 
 const List = ({
   groups,
-  items,
   onItemClick,
   onItemRemove,
   noResultsLabel,
   removeTooltipLabel,
   searchValue,
-  useVirtualizedList,
   visibleItems,
-  virtualizedRowHeight = 32,
-  virtualizedRowWidth,
 }: ListProps) => {
   const groupedList = useMemo(() => {
     return (
@@ -89,33 +83,12 @@ const List = ({
   return visibleItems.length === 0 ? (
     <S.NoResults>
       <S.NoResultIconWrapper>
-        <Icon component={<SearchNoResultsM />} size={25} />
+        <Icon component={<InformationNoSearchResultL />} size={48} />
       </S.NoResultIconWrapper>
       {noResultsLabel}
     </S.NoResults>
   ) : (
-    <S.ListWrapper>
-      {useVirtualizedList && !groups ? (
-        <div data-testid="items-roll-virtualized-list">
-          <FixedSizeList
-            height={visibleItems.length * virtualizedRowHeight}
-            itemData={items}
-            itemCount={visibleItems.length}
-            itemSize={virtualizedRowHeight}
-            width={virtualizedRowWidth || '100%'}
-          >
-            {ItemRenderer({
-              highlight: searchValue,
-              onItemClick,
-              onItemRemove,
-              tooltipLabel: removeTooltipLabel,
-            })}
-          </FixedSizeList>
-        </div>
-      ) : (
-        finalItems
-      )}
-    </S.ListWrapper>
+    <S.ListWrapper>{finalItems}</S.ListWrapper>
   );
 };
 

@@ -180,7 +180,6 @@ export const NoResultIconWrapper = styled.div`
   width: 40px;
   height: 40px;
   border-radius: 50%;
-  background: ${({ theme }): string => theme.palette['grey-200']};
   margin-bottom: 16px;
   display: flex;
   align-items: center;
