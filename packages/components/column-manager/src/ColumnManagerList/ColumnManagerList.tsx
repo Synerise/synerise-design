@@ -74,11 +74,7 @@ const ColumnManagerList = <ColumnType extends Column>({
       data-testid="ds-column-manager-list"
     >
       {!items.length && searchQuery ? (
-        <Result
-          description={texts.noResults}
-          type="no-results"
-          noSearchResults
-        />
+        <Result description={texts.noResults} type="no-results" />
       ) : (
         <SortableContainer
           onDragStart={({ active }) => {

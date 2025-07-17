@@ -15,5 +15,6 @@ export type ResultProps = {
   buttons?: React.ReactNode;
   panel?: React.ReactNode;
   customIcon?: React.ReactElement;
+  /** @deprecated */
   noSearchResults?: boolean;
 };
