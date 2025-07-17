@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.17.1](https://github.com/Synerise/synerise-design/compare/storybook@1.17.0...storybook@1.17.1) (2025-07-17)
+
+
+### Bug Fixes
+
+* **items-roll:** change icons and add new stories ([c813c6f](https://github.com/Synerise/synerise-design/commit/c813c6f10d2a5b107a534f7abfd54765a6e5e7a7))
+* **wizard:** pass modal footer props to wizard on modal ([2be7c31](https://github.com/Synerise/synerise-design/commit/2be7c31cbd827f8baaa0d85f5b2958cc5add585a))
+
+
+
+
+
 # [1.17.0](https://github.com/Synerise/synerise-design/compare/storybook@1.16.1...storybook@1.17.0) (2025-07-15)
 
 

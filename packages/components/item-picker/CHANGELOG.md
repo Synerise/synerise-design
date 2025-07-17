@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.8.3](https://github.com/Synerise/synerise-design/compare/@synerise/ds-item-picker@1.8.2...@synerise/ds-item-picker@1.8.3) (2025-07-17)
+
+
+### Bug Fixes
+
+* **item-picker:** fix fillSpace height mode corner case ([b4e3766](https://github.com/Synerise/synerise-design/commit/b4e3766413e8583ffa3e715d49f7a6207ca46b49))
+
+
+
+
+
 ## [1.8.2](https://github.com/Synerise/synerise-design/compare/@synerise/ds-item-picker@1.8.1...@synerise/ds-item-picker@1.8.2) (2025-07-15)
 
 

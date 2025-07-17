@@ -1,6 +1,6 @@
 {
   "name": "@synerise/ds-panels-resizer",
-  "version": "1.0.13",
+  "version": "1.0.14",
   "description": "PanelResizer UI Component for the Synerise Design System",
   "license": "ISC",
   "repository": "Synerise/synerise-design",
@@ -34,7 +34,7 @@
   ],
   "types": "dist/index.d.ts",
   "dependencies": {
-    "@synerise/ds-icon": "^1.6.0"
+    "@synerise/ds-icon": "^1.6.1"
   },
   "peerDependencies": {
     "@synerise/ds-core": "*",

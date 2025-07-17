@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.0.22](https://github.com/Synerise/synerise-design/compare/@synerise/ds-wizard@1.0.21...@synerise/ds-wizard@1.0.22) (2025-07-17)
+
+
+### Bug Fixes
+
+* **wizard:** pass modal footer props to wizard on modal ([2be7c31](https://github.com/Synerise/synerise-design/commit/2be7c31cbd827f8baaa0d85f5b2958cc5add585a))
+
+
+
+
+
 ## [1.0.21](https://github.com/Synerise/synerise-design/compare/@synerise/ds-wizard@1.0.20...@synerise/ds-wizard@1.0.21) (2025-07-15)
 
 **Note:** Version bump only for package @synerise/ds-wizard
