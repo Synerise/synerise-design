@@ -1,10 +1,28 @@
 import React, { useState } from 'react';
-import { Meta, StoryObj } from '@storybook/react-webpack5';
 import { action } from 'storybook/actions';
 
-import { SectionMessage, SectionMessageProps } from '@synerise/ds-alert';
+import { Meta, StoryObj } from '@storybook/react-webpack5';
+import Button from '@synerise/ds-button';
 import Card, { CardBadge } from '@synerise/ds-card';
+import Icon, { CheckS, DuplicateS, UserAddM } from '@synerise/ds-icon';
 import Modal from '@synerise/ds-modal';
+import SectionMessage, {
+  SectionMessageProps,
+} from '@synerise/ds-section-message';
+import Tooltip from '@synerise/ds-tooltip';
+import UnorderedList from '@synerise/ds-unordered-list';
+
+import {
+  BOOLEAN_CONTROL,
+  CLASSNAME_ARG_CONTROL,
+  PREFIXCLS_ARG_CONTROL,
+  REACT_NODE_AS_STRING,
+  STYLE_ARG_CONTROL,
+  controlFromOptionsArray,
+  fixedWrapper800,
+  gappedColumnDecorator,
+} from '../../utils';
+import { TYPE_MAPPING } from './SectionMessage.data';
 import {
   ButtonsWrapper,
   FirstButtonWrapper,
@@ -12,23 +30,7 @@ import {
   NumberWrapper,
   OrderWrapper,
   Wrapper,
-} from '@synerise/ds-alert/dist/SectionMessage/SectionMessage.styles';
-import Tooltip from '@synerise/ds-tooltip';
-import Button from '@synerise/ds-button';
-import Icon, { CheckS, DuplicateS, UserAddM } from '@synerise/ds-icon';
-import UnorderedList from '@synerise/ds-unordered-list';
-
-import {
-  BOOLEAN_CONTROL,
-  CLASSNAME_ARG_CONTROL,
-  controlFromOptionsArray,
-  fixedWrapper800,
-  gappedColumnDecorator,
-  PREFIXCLS_ARG_CONTROL,
-  REACT_NODE_AS_STRING,
-  STYLE_ARG_CONTROL,
-} from '../../utils';
-import { TYPE_MAPPING } from './SectionMessage.data';
+} from './stories.styles';
 
 type StoryProps = SectionMessageProps & {
   showTagInHeader: boolean;
@@ -102,17 +104,21 @@ export const WithButtons: Story = {
 };
 
 export const WithList: Story = {
-  render: args => {
+  render: (args) => {
     const [iconCopied, setIconCopied] = useState(false);
     const LIST_DATA = [
       {
         label: (
           <OrderWrapper>
-            <div style={{ marginRight: '10px' }}>•</div> Schedule section must be defined
+            <div style={{ marginRight: '10px' }}>•</div> Schedule section must
+            be defined
             <NumberWrapper>(505-456)</NumberWrapper>
             <Tooltip title={iconCopied ? 'Copied!' : 'Copy'}>
               <IconOrderWrapper>
-                <Icon onClick={(): void => setIconCopied(!iconCopied)} component={<DuplicateS />} />
+                <Icon
+                  onClick={(): void => setIconCopied(!iconCopied)}
+                  component={<DuplicateS />}
+                />
               </IconOrderWrapper>
             </Tooltip>
           </OrderWrapper>
@@ -127,7 +133,10 @@ export const WithList: Story = {
             <NumberWrapper>(505-456)</NumberWrapper>
             <Tooltip title={iconCopied ? 'Copied!' : 'Copy'}>
               <IconOrderWrapper>
-                <Icon onClick={(): void => setIconCopied(!iconCopied)} component={<DuplicateS />} />
+                <Icon
+                  onClick={(): void => setIconCopied(!iconCopied)}
+                  component={<DuplicateS />}
+                />
               </IconOrderWrapper>
             </Tooltip>
           </OrderWrapper>
@@ -153,7 +162,7 @@ export const WithList: Story = {
 };
 
 export const AllTypes: Story = {
-  render: args => {
+  render: (args) => {
     return (
       <>
         {Object.keys(TYPE_MAPPING).map((type: string) => (
@@ -170,7 +179,7 @@ export const AllTypes: Story = {
 };
 
 export const CardWithSectionMessage: Story = {
-  render: args => {
+  render: (args) => {
     return (
       <Card
         lively
@@ -194,7 +203,7 @@ export const CardWithSectionMessage: Story = {
 };
 
 export const ModalWithSectionMessage: Story = {
-  render: args => {
+  render: (args) => {
     return (
       <Modal size="medium" visible title="Modal header">
         <div style={{ width: '566px', margin: '0 70px' }}>
