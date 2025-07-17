@@ -1,11 +1,11 @@
 import React from 'react';
 
 import Icon, {
-  CheckM,
-  HourglassM,
-  InfoM,
+  CheckL,
+  InfoL,
   InformationNoSearchResultL,
-  WarningM,
+  TimeL,
+  WarningL,
 } from '@synerise/ds-icon';
 
 import * as S from './Result.styles';
@@ -13,29 +13,24 @@ import { type ResultProps } from './Result.types';
 
 const mapTypeToStatus = {
   info: {
-    IconComponent: InfoM,
+    IconComponent: InfoL,
     iconColor: 'blue-600',
-    background: 'blue-050',
   },
   warning: {
-    IconComponent: WarningM,
+    IconComponent: WarningL,
     iconColor: 'yellow-600',
-    background: 'yellow-100',
   },
   error: {
-    IconComponent: WarningM,
+    IconComponent: WarningL,
     iconColor: 'red-600',
-    background: 'red-100',
   },
   success: {
-    IconComponent: CheckM,
+    IconComponent: CheckL,
     iconColor: 'green-600',
-    background: 'green-100',
   },
   progress: {
-    IconComponent: HourglassM,
+    IconComponent: TimeL,
     iconColor: 'grey-600',
-    background: 'grey-100',
   },
   'no-results': {
     IconComponent: InformationNoSearchResultL,
@@ -43,22 +38,18 @@ const mapTypeToStatus = {
   },
 };
 
-const Result: React.FC<ResultProps> = ({
+const Result = ({
   className,
   type,
   title,
   description,
   panel,
   buttons,
-  customIcon = null,
-  noSearchResults = false,
-}) => {
+  customIcon,
+}: ResultProps) => {
   const { IconComponent, ...iconContainerStyles } = mapTypeToStatus[type];
   return (
-    <S.ResultContainer
-      className={`ds-result ${className || ''}`}
-      noSearchResults={noSearchResults}
-    >
+    <S.ResultContainer className={`ds-result ${className || ''}`}>
       <S.MainPanel>
         <S.ResultIconContainer>
           {customIcon || (
@@ -66,6 +57,7 @@ const Result: React.FC<ResultProps> = ({
               <Icon
                 component={<IconComponent />}
                 size={mapTypeToStatus['no-results'] ? 48 : 24}
+                color={iconContainerStyles.iconColor}
               />
             </S.StatusIconContainer>
           )}

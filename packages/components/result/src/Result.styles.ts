@@ -1,4 +1,4 @@
-import styled, { css } from 'styled-components';
+import styled from 'styled-components';
 
 import { ButtonStyles } from '@synerise/ds-button';
 import * as T from '@synerise/ds-typography';
@@ -15,7 +15,7 @@ export const MainPanel = styled.div`
 
 export const Title = styled.h4`
   ${T.macro.h500};
-  margin: 0 0 24px;
+  margin: 0 0 8px;
   text-align: center;
   word-break: break-word;
 `;
@@ -60,14 +60,12 @@ export const PanelContainer = styled.div`
 `;
 
 export const ResultIconContainer = styled.div`
-  margin: 0 0 24px;
+  margin: 0 0 12px;
 `;
 
 export const StatusIconContainer = styled.div<{
   iconColor: string;
-  background: string;
 }>`
-  background-color: ${(props) => props.theme.palette[props.background]};
   width: 40px;
   height: 40px;
   border-radius: 20px;
@@ -79,25 +77,8 @@ export const StatusIconContainer = styled.div<{
   color: ${(props) => props.theme.palette[props.iconColor]};
 `;
 
-export const ResultContainer = styled.div<{ noSearchResults: boolean }>`
+export const ResultContainer = styled.div`
   width: 100%;
   padding: 24px;
   position: relative;
-
-  ${(props) =>
-    props.noSearchResults &&
-    css`
-      ${ResultIconContainer} {
-        margin: 0 0 16px;
-      }
-      ${Title} {
-        margin: 0 0 16px;
-      }
-      ${Description} {
-        margin: 0 0 16px;
-        font-size: 14px;
-        line-height: 1.43;
-        color: ${props.theme.palette['grey-600']};
-      }
-    `}
 `;
