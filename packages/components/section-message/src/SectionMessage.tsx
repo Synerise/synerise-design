@@ -1,0 +1,103 @@
+import React, { useMemo } from 'react';
+
+import Icon, { CloseM } from '@synerise/ds-icon';
+
+import * as S from './SectionMessage.styles';
+import { type SectionMessageProps } from './SectionMessage.types';
+import { DEFAULT_ICON, ICONS } from './utils/utils';
+
+const SectionMessage = ({
+  icon,
+  type,
+  message,
+  description,
+  showMoreLabel,
+  onShowMore,
+  onClose,
+  suffixel,
+  moreButtons,
+  withEmphasis,
+  withLink,
+  unorderedList,
+  color,
+  withClose,
+  customColor,
+  customColorIcon,
+  customIcon,
+  ...htmlAttributes
+}: SectionMessageProps) => {
+  const renderMessage = useMemo(() => {
+    return (
+      <S.AlertContent withLink={withLink}>
+        {message && <S.AlertMessage>{message}</S.AlertMessage>}
+        <S.Text>
+          {description && (
+            <S.AlertDescription>{description}</S.AlertDescription>
+          )}
+          {withLink && <S.LinkWrapper>{withLink}</S.LinkWrapper>}
+          {withEmphasis && !withLink && (
+            <S.EmphasisWrapper>{withEmphasis}</S.EmphasisWrapper>
+          )}
+        </S.Text>
+        {onShowMore && showMoreLabel && (
+          <S.AlertShowMore onClick={onShowMore}>
+            {showMoreLabel}
+          </S.AlertShowMore>
+        )}
+        {moreButtons}
+        {unorderedList && !moreButtons && unorderedList}
+      </S.AlertContent>
+    );
+  }, [
+    message,
+    description,
+    showMoreLabel,
+    onShowMore,
+    moreButtons,
+    withEmphasis,
+    withLink,
+    unorderedList,
+  ]);
+
+  const renderIcon = useMemo(() => {
+    if (icon) {
+      return icon;
+    }
+    if (ICONS[type]) {
+      return ICONS[type];
+    }
+    return DEFAULT_ICON;
+  }, [icon, type]);
+
+  const handleClose = () => {
+    onClose && onClose();
+  };
+
+  return (
+    <S.Container
+      data-testid={`ds-section-message-${type}`}
+      color={color}
+      customColor={customColor}
+      {...htmlAttributes}
+    >
+      <S.WrapperSectionMessage>
+        <S.AllContent>
+          <S.IconWrapper color={color} customColorIcon={customColorIcon}>
+            {customIcon || <Icon component={renderIcon} />}
+          </S.IconWrapper>
+          {renderMessage}
+        </S.AllContent>
+        <S.ButtonWrapper>
+          {suffixel && <S.SuffixWrapper>{suffixel}</S.SuffixWrapper>}
+          {withClose && (
+            <S.IconCloseWrapper onClick={handleClose}>
+              <Icon component={<CloseM />} />
+            </S.IconCloseWrapper>
+          )}
+        </S.ButtonWrapper>
+      </S.WrapperSectionMessage>
+    </S.Container>
+  );
+};
+
+export default SectionMessage;

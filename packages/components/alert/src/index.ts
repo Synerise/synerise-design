@@ -1,24 +1,17 @@
 import * as MainAlertStyles from './Alert.styles';
 import * as IconAlertStyles from './IconAlert/IconAlert.styles';
-import * as SectionMessageStyles from './SectionMessage/SectionMessage.styles';
 import * as ToastStyles from './Toast/Toast.styles';
 
 export { default } from './Alert';
 
 export const AlertStyles = {
   Alert: MainAlertStyles,
-  SectionMessage: SectionMessageStyles,
   Toast: ToastStyles,
   IconAlert: IconAlertStyles,
 };
 
+/** @deprecated use `@synerise/ds-section-message` instead */
 export { default as SectionMessage } from './SectionMessage/SectionMessage';
-
-export type {
-  Props as SectionMessageProps,
-  ColorType as SectionMessageColorType,
-  AlertTypes as SectionMessageAlertTypes,
-} from './SectionMessage/SectionMessage.types';
 
 export { default as Toast } from './Toast/Toast';
 export { default as BroadcastBar } from './BroadcastBar/BroadcastBar';
