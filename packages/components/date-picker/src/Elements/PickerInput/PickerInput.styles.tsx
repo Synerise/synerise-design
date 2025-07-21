@@ -82,6 +82,9 @@ export const ClearIconWrapper = styled.div`
 `;
 
 export const DefaultIconWrapper = styled.div`
+  .ds-icon svg {
+    fill: ${(props): string => props.theme.palette['grey-400']};
+  }
   &&:hover {
     .ds-icon svg {
       fill: ${(props): string => props.theme.palette['grey-600']};

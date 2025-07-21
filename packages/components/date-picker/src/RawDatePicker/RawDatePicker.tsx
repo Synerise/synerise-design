@@ -279,7 +279,7 @@ class RawDatePicker extends React.Component<
 
     return (
       <S.Container>
-        <S.ContentWrapper>
+        <S.ContentWrapper withQuickPicks={!!quickPicks?.length}>
           {quickPicks?.length && (
             <QuickPicks
               value={value}

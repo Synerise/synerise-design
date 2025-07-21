@@ -14,8 +14,13 @@ export const Container = styled.div`
     }
   }
 `;
-export const ContentWrapper = styled.div`
-  display: flex;
+export const ContentWrapper = styled.div<{ withQuickPicks?: boolean }>`
+  ${(props) =>
+    props.withQuickPicks &&
+    `
+    display: flex;
+    justify-content: center;
+    `}
 `;
 export const PickerWrapper = styled.div`
   display: grid;
