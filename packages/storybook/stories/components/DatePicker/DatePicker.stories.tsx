@@ -9,7 +9,7 @@ import DatePicker from '@synerise/ds-date-picker';
 import {
   BOOLEAN_CONTROL,
   REACT_NODE_AS_STRING,
-  fixedWrapper200,
+  fixedWrapper588,
 } from '../../utils';
 import { baseArgs } from './constants';
 
@@ -41,7 +41,7 @@ export default {
       </div>
     );
   },
-  decorators: [fixedWrapper200],
+  decorators: [fixedWrapper588],
   argTypes: {
     prefixel: {
       ...REACT_NODE_AS_STRING,

@@ -1,6 +1,7 @@
 import React, { type MouseEvent, useCallback, useMemo, useState } from 'react';
 
 import { legacyParse } from '@date-fns/upgrade/v2';
+import { useTheme } from '@synerise/ds-core';
 import {
   getDefaultDataTimeOptions,
   useDataFormat,
@@ -31,6 +32,7 @@ const PickerInput = ({
   ...rest
 }: PickerInputProps) => {
   const { formatValue } = useDataFormat();
+  const theme = useTheme();
 
   const [hovered, setHovered] = useState(false);
 
@@ -90,7 +92,7 @@ const PickerInput = ({
         </S.ClearIconWrapper>
       ) : (
         <S.DefaultIconWrapper>
-          <Icon component={<CalendarM />} />
+          <Icon component={<CalendarM />} color={theme.palette['grey-400']} />
         </S.DefaultIconWrapper>
       ),
     [
@@ -99,6 +101,7 @@ const PickerInput = ({
       allowClear,
       readOnly,
       value,
+      theme,
       clearTooltip,
       handleIconClick,
     ],
