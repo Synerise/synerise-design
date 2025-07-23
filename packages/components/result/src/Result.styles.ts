@@ -3,19 +3,9 @@ import styled from 'styled-components';
 import { ButtonStyles } from '@synerise/ds-button';
 import * as T from '@synerise/ds-typography';
 
-export const MainPanel = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  > div:last-of-type {
-    margin-bottom: 0;
-  }
-`;
-
 export const Title = styled.h4`
   ${T.macro.h500};
-  margin: 0 0 8px;
+  margin: 0;
   text-align: center;
   word-break: break-word;
 `;
@@ -23,7 +13,6 @@ export const Title = styled.h4`
 export const Description = styled(T.Description)`
   padding: 0;
   text-align: center;
-  margin: 0 0 24px;
 `;
 
 export const ButtonContainer = styled.div`
@@ -44,7 +33,6 @@ export const ButtonContainer = styled.div`
 `;
 
 export const PanelContainer = styled.div`
-  margin: 0 0 24px;
   width: 100%;
   &&& {
     textarea {
@@ -59,9 +47,7 @@ export const PanelContainer = styled.div`
   }
 `;
 
-export const ResultIconContainer = styled.div`
-  margin: 0 0 12px;
-`;
+export const ResultIconContainer = styled.div``;
 
 export const StatusIconContainer = styled.div<{
   iconColor: string;
@@ -78,7 +64,18 @@ export const StatusIconContainer = styled.div<{
 `;
 
 export const ResultContainer = styled.div`
-  width: 100%;
-  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
   position: relative;
+  gap: 24px;
+  max-width: 440px;
+`;
+
+export const ResultContent = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
 `;

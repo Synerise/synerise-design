@@ -10,6 +10,9 @@ const mapSizeToPx = {
   [AlertSize.MEDIUM]: 96,
 };
 
+/**
+ * @deprecated use `@synerise/ds-result` instead
+ */
 const AlertInfo: React.FC<AlertInfoProps> = ({
   size = AlertSize.SMALL,
   label,

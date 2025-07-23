@@ -25,6 +25,9 @@ const ICONS: Record<AlertType, React.ReactNode> = {
 };
 const DEFAULT_ICON = <WarningFillM />;
 
+/**
+ * @deprecated
+ */
 const AlertSemanticColor: React.FC<Props> = ({
   icon,
   type,

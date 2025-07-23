@@ -50,25 +50,26 @@ const Result = ({
   const { IconComponent, ...iconContainerStyles } = mapTypeToStatus[type];
   return (
     <S.ResultContainer className={`ds-result ${className || ''}`}>
-      <S.MainPanel>
-        <S.ResultIconContainer>
-          {customIcon || (
-            <S.StatusIconContainer {...iconContainerStyles}>
-              <Icon
-                component={<IconComponent />}
-                size={mapTypeToStatus['no-results'] ? 48 : 24}
-                color={iconContainerStyles.iconColor}
-              />
-            </S.StatusIconContainer>
-          )}
-        </S.ResultIconContainer>
+      <S.ResultIconContainer>
+        {customIcon || (
+          <S.StatusIconContainer {...iconContainerStyles}>
+            <Icon
+              component={<IconComponent />}
+              size={mapTypeToStatus['no-results'] ? 48 : 24}
+              color={iconContainerStyles.iconColor}
+            />
+          </S.StatusIconContainer>
+        )}
+      </S.ResultIconContainer>
 
-        {title && <S.Title>{title}</S.Title>}
-
-        {description && <S.Description>{description}</S.Description>}
-        {panel && <S.PanelContainer>{panel}</S.PanelContainer>}
-        {buttons && <S.ButtonContainer>{buttons}</S.ButtonContainer>}
-      </S.MainPanel>
+      {(title || description) && (
+        <S.ResultContent>
+          {title && <S.Title>{title}</S.Title>}
+          {description && <S.Description>{description}</S.Description>}
+        </S.ResultContent>
+      )}
+      {panel && <S.PanelContainer>{panel}</S.PanelContainer>}
+      {buttons && <S.ButtonContainer>{buttons}</S.ButtonContainer>}
     </S.ResultContainer>
   );
 };

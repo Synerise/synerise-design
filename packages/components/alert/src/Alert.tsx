@@ -20,6 +20,9 @@ const ICONS: Record<AlertType, React.ReactNode> = {
 
 const DEFAULT_ICON = <Check2M />;
 
+/**
+ * @deprecated use `@synerise/ds-section-message` or `@synerise/ds-toast`  instead
+ */
 const Alert: React.FC<Props> & AlertSubComponents = (props: Props) => {
   const { icon, type, message, description, showMoreLabel, onShowMore } = props;
 
