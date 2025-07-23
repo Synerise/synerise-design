@@ -1,6 +1,11 @@
 import { type ReactNode } from 'react';
 
-import { type Filter, type Locale, type RowSelection } from '../Table.types';
+import {
+  type CustomCounterFn,
+  type Filter,
+  type Locale,
+  type RowSelection,
+} from '../Table.types';
 
 export type Props<T extends object> = {
   title?: ReactNode | (() => ReactNode);
@@ -22,6 +27,7 @@ export type Props<T extends object> = {
     filters?: Filter[],
   ) => ReactNode;
   hideTitlePart?: boolean;
+  renderCustomCounter?: CustomCounterFn;
   dataSourceTotalCount?: number;
   childrenColumnName: string;
   isLoading?: boolean;

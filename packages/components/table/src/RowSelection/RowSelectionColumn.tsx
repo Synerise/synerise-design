@@ -13,6 +13,7 @@ export function RowSelectionColumn<T extends object & RowType<T>>({
   record,
   limit,
   independentSelectionExpandedRows,
+  isGlobalAllSelected,
   selectedRowKeys,
   selectedRecords,
   tableLocale,
@@ -144,23 +145,24 @@ export function RowSelectionColumn<T extends object & RowType<T>>({
     record,
   );
 
+  const disabledProp =
+    isGlobalAllSelected ||
+    (!isChecked &&
+      Boolean(limit !== undefined && limit <= selectedRowKeys.length)) ||
+    disabled;
   return recordKey !== undefined && !unavailable ? (
     <Tooltip title={tableLocale?.selectRowTooltip} mouseLeaveDelay={0}>
       <Button.Checkbox
         key={`checkbox-${recordKey}`}
         data-testid="ds-table-selection-button"
-        checked={isChecked}
-        disabled={
-          (!isChecked &&
-            Boolean(limit !== undefined && limit <= selectedRowKeys.length)) ||
-          disabled
-        }
+        checked={isChecked || isGlobalAllSelected}
+        disabled={disabledProp}
         indeterminate={isIndeterminate}
         onClick={(event) => {
           event.stopPropagation();
         }}
         onChange={(isCheckedNext) =>
-          handleSelectionChange(isCheckedNext, record)
+          !isGlobalAllSelected && handleSelectionChange(isCheckedNext, record)
         }
       />
     </Tooltip>

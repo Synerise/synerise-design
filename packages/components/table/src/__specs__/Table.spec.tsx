@@ -1,4 +1,5 @@
 import React from 'react';
+import userEvent from '@testing-library/user-event';
 
 import { Grid2M } from '@synerise/ds-icon';
 import { renderWithProvider } from '@synerise/ds-utils';
@@ -347,6 +348,38 @@ describe('Table', () => {
     expect(rowSelectionCheckbox).not.toBeChecked();
     expect(rowSelectionCheckbox).toBeDisabled();
   });
+
+  it('Should render with "select all" selection item', async () => {
+    const handleChangeSelection = jest.fn();
+    const handleChangeGlobalSelection = jest.fn();
+    const SELECT_GLOBAL_ALL = 'SELECT_GLOBAL_ALL'
+    const UNSELECT_GLOBAL_ALL = 'UNSELECT_GLOBAL_ALL'
+    renderWithProvider(
+      <Table
+        dataSource={props.dataSource}
+        columns={props.columns}
+        title="Title"
+        locale={{
+          selectGlobalAll: SELECT_GLOBAL_ALL,
+          unselectGlobalAll: UNSELECT_GLOBAL_ALL
+        }}
+        selection={{ selectedRowKeys: [], onChange: handleChangeSelection, globalSelection: { isSelected: true, onChange: handleChangeGlobalSelection} }}
+      />
+    );
+
+    screen.getAllByTestId('ds-table-selection-button').forEach(checkbox => {
+      expect(checkbox).toBeChecked();
+      expect(checkbox).toBeDisabled();
+    })
+    
+    userEvent.click(screen.getByTestId('ds-table-batch-selection-options'));
+    await waitFor(async () => expect(await screen.findByText(UNSELECT_GLOBAL_ALL)).toBeInTheDocument());
+
+    userEvent.click(screen.getByText(UNSELECT_GLOBAL_ALL));
+    await waitFor(() => expect(handleChangeGlobalSelection).toHaveBeenCalledWith(false));
+
+  });
+
 
   it('Should render with selection checkboxes only for specific items', () => {
     const handleChangeSelection = jest.fn();

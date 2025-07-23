@@ -13,6 +13,7 @@ export function TableLimit<T extends { children?: T[] }>({
   itemsMenu,
   selection,
   isCounterLoading,
+  renderCustomCounter,
 }: TableLimitProps<T>) {
   const { formatValue } = useDataFormat();
   const { selectedRowKeys, limit } = selection;
@@ -34,6 +35,11 @@ export function TableLimit<T extends { children?: T[] }>({
   );
 
   const selected = useMemo(() => {
+    const counterContent = (
+      <>
+        <strong>{formatValue(total)}</strong> {locale.pagination?.items}
+      </>
+    );
     return selectedRows > 0 ? (
       <S.Title>
         <strong>{`${formatValue(selectedRows)} / ${formatValue(limit)}`}</strong>{' '}
@@ -45,13 +51,19 @@ export function TableLimit<T extends { children?: T[] }>({
           <Skeleton numberOfSkeletons={1} size="S" skeletonWidth="100px" />
         ) : (
           <>
-            <strong>{formatValue(total)}</strong> {locale.pagination?.items}
+            {renderCustomCounter
+              ? renderCustomCounter({
+                  count: total,
+                  content: counterContent,
+                })
+              : counterContent}
           </>
         )}
       </S.Title>
     );
   }, [
     formatValue,
+    renderCustomCounter,
     limit,
     locale.pagination,
     locale.selected,

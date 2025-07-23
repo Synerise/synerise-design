@@ -57,6 +57,7 @@ const DSTable = <T extends object>(props: DSTableProps<T>) => {
     columns,
     skeletonProps,
     isCounterLoading,
+    renderCustomCounter,
   } = props;
 
   const tableLocale = useTableLocale(intl, locale);
@@ -99,6 +100,7 @@ const DSTable = <T extends object>(props: DSTableProps<T>) => {
         headerButton={headerButton}
         rowKey={rowKey}
         locale={tableLocale}
+        renderCustomCounter={renderCustomCounter}
         renderSelectionTitle={renderSelectionTitle}
         hideTitlePart={hideTitlePart}
         childrenColumnName={getChildrenColumnName(
@@ -125,6 +127,7 @@ const DSTable = <T extends object>(props: DSTableProps<T>) => {
     headerButton,
     rowKey,
     tableLocale,
+    renderCustomCounter,
     renderSelectionTitle,
     hideTitlePart,
     expandable?.childrenColumnName,
