@@ -34,8 +34,8 @@ import Description, {DescriptionRow} from '@synerise/ds-description';
 
 | Property | Description                                                                                                                                                                                                               | Type                                                          | Default |
 | -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------- | ------- |
-| type     | Type of description: `table` - description will looks like vertical table, `inline` - value will aligns to label, `dotted-list` - list with dots as prefix, without label, `numbered-list` - counted list, without labels | `table`/ `inline`/ `dotted-list`/ `numbered-list`             | `table` |
-| ratio    | Define size of column if type='table'                                                                                                                                                                                     | `20-80`/ `30-70`/ `40-60`/ `50-50`/ `60-40`/ `70-30`/ `80-20` | `30-70` |
+| type     | Type of description: `table` - description will looks like vertical table, `inline` - value will aligns to label, `corner` -  label and value have space-between them                                                     | `table`/ `inline`/ `corner`                                   | `table` |
+| ratio    | Define size of column if type='table'                                                                                                                                                                                     | `50-50`/ `25-75`                                              | `50-50` |
 
 ### DescriptionRow
 
