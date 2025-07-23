@@ -15,6 +15,9 @@ const ICONS: Record<InlineAlertType, ReactNode> = {
   info: <InfoFillM />,
 };
 
+/**
+ * @deprecated use `@synerise/ds-inline-alert` instead
+ */
 const InlineAlert = ({ type = 'warning', message }: InlineAlertProps) => {
   const icon = useMemo(() => {
     return ICONS[type];
