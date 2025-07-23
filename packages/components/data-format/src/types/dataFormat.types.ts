@@ -59,6 +59,7 @@ export type DateToFormatOptions = FormatDateOptions &
     dateOptions?: FormatDateOptions;
     timeOptions?: FormatDateOptions;
     targetFormat?: DateTargetFormat;
+    applyTimeZoneOffset?: boolean;
   };
 
 export type OverloadFormatValue = {

@@ -38,29 +38,15 @@ const normalizedResult = () => {
 
 describe('FormattedDateTime', () => {
   it('should render properly datetime with default notation', () => {
-    // ARRANGE
-    const { getByText } = renderWithProvider(
-      <FormattedDateTime value={DATE_TO_FORMAT} />,
-    );
-
-    // ASSERT
-    expect(
-      getByText(`${EU_FORMATTED_DATE}, ${EU_FORMATTED_TIME}`),
-    ).toBeTruthy();
+    renderWithProvider(<FormattedDateTime value={DATE_TO_FORMAT} />);
+    
+    expect(screen.getByText(`${EU_FORMATTED_DATE}, ${EU_FORMATTED_TIME}`)).toBeTruthy();
   });
 
   it('should render properly datetime with EU notation', () => {
-    // ARRANGE
-    const { getByText } = renderWithProvider(
-      <FormattedDateTime value={DATE_TO_FORMAT} />,
-      {},
-      { notation: EU_NOTATION },
-    );
+    renderWithProvider(<FormattedDateTime value={DATE_TO_FORMAT} />, {}, { notation: EU_NOTATION });
 
-    // ASSERT
-    expect(
-      getByText(`${EU_FORMATTED_DATE}, ${EU_FORMATTED_TIME}`),
-    ).toBeTruthy();
+    expect(screen.getByText(`${EU_FORMATTED_DATE}, ${EU_FORMATTED_TIME}`)).toBeTruthy();
   });
 
   it('should render properly datetime with US notation', () => {

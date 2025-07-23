@@ -12,6 +12,7 @@ export const DEFAULT_DATA_FORMAT_CONFIG: DataFormatConfig = {
   dateFormatNotation: DEFAULT_DATA_FORMAT_NOTATION,
   timeFormatNotation: DEFAULT_DATA_FORMAT_NOTATION,
   numberFormatNotation: DEFAULT_DATA_FORMAT_NOTATION,
+  applyTimeZoneOffset: false,
 };
 
 export const DEFAULT_DATA_FORMAT_INTL: IntlShape = createIntl({

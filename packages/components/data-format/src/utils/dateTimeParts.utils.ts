@@ -1,6 +1,3 @@
-import dayjs from 'dayjs';
-import timezone from 'dayjs/plugin/timezone';
-import utc from 'dayjs/plugin/utc';
 import { type FormatDateOptions, type IntlShape } from 'react-intl';
 
 import {
@@ -20,41 +17,31 @@ import {
   WEEKDAY_SHORT,
 } from '../constants';
 import { type DateToFormatOptions, type Delimiter } from '../types';
-
-dayjs.extend(utc);
-dayjs.extend(timezone);
-const defaultTimezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
-const getValueWithTimezone = (value: Date, intlObject: IntlShape) => {
-  return dayjs(value)
-    .tz(intlObject?.timeZone || defaultTimezone, true)
-    .format();
-};
+import { dateToIsoWithOffset } from './timeZone.utils';
 
 export const getDateParts = (
   value: Date,
   dateFormatIntl: IntlShape,
   option?: FormatDateOptions,
-): Intl.DateTimeFormatPart[] =>
-  dateFormatIntl.formatDateToParts(
-    getValueWithTimezone(value, dateFormatIntl),
+): Intl.DateTimeFormatPart[] => {
+  return dateFormatIntl.formatDateToParts(
+    dateToIsoWithOffset(value, dateFormatIntl),
     {
       ...DEFAULT_FORMAT_DATE_OPTIONS,
       ...option,
     },
   );
+};
 
 export const getTimeParts = (
   value: Date,
   timeFormatIntl: IntlShape,
   option?: FormatDateOptions,
 ): Intl.DateTimeFormatPart[] =>
-  timeFormatIntl.formatDateToParts(
-    getValueWithTimezone(value, timeFormatIntl),
-    {
-      ...DEFAULT_FORMAT_TIME_OPTIONS,
-      ...option,
-    },
-  );
+  timeFormatIntl.formatDateToParts(dateToIsoWithOffset(value, timeFormatIntl), {
+    ...DEFAULT_FORMAT_TIME_OPTIONS,
+    ...option,
+  });
 
 export const getWeekdayLongDateParts = (
   value: Date,

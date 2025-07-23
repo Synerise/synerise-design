@@ -44,6 +44,7 @@ import {
   convertDateToWeekdayShortString,
   convertNumberString,
 } from '../utils';
+import { getLocalDateInTimeZone } from '../utils/timeZone.utils';
 import { useDataFormatConfig } from './useDataFormatConfig';
 
 export const useDataFormatUtils = (): {
@@ -85,7 +86,7 @@ export const useDataFormatUtils = (): {
   ) => Delimiter;
 } => {
   const languageIntl = useIntl();
-  const { numberFormatNotation } = useDataFormatConfig();
+  const { numberFormatNotation, applyTimeZoneOffset } = useDataFormatConfig();
 
   const getLocaleFromNotation = useCallback(
     (notation?: DataFormatNotationType): string => {
@@ -159,6 +160,8 @@ export const useDataFormatUtils = (): {
     ],
   );
 
+  const { timeZone: globalTimeZone } = useIntl();
+
   const getFormattedDate = useCallback(
     (
       value: Date,
@@ -166,9 +169,14 @@ export const useDataFormatUtils = (): {
       timeFormatIntl: IntlShape,
       options?: DateToFormatOptions,
     ): string => {
+      const valueInTimezone =
+        globalTimeZone && applyTimeZoneOffset
+          ? getLocalDateInTimeZone(value.toISOString(), globalTimeZone)
+          : value;
+
       if (options?.targetFormat === DATETIME) {
         return convertDateToDateTimeString(
-          value,
+          valueInTimezone,
           dateFormatIntl,
           timeFormatIntl,
           languageIntl,
@@ -177,7 +185,11 @@ export const useDataFormatUtils = (): {
       }
 
       if (options?.targetFormat === TIME) {
-        return convertDateToTimeString(value, timeFormatIntl, options);
+        return convertDateToTimeString(
+          valueInTimezone,
+          timeFormatIntl,
+          options,
+        );
       }
 
       if (options?.targetFormat === RELATIVE_TO) {
@@ -198,7 +210,7 @@ export const useDataFormatUtils = (): {
 
       if (options?.targetFormat === WEEKDAY_LONG) {
         return convertDateToWeekdayLongString(
-          value,
+          valueInTimezone,
           dateFormatIntl,
           languageIntl,
           options,
@@ -207,7 +219,7 @@ export const useDataFormatUtils = (): {
 
       if (options?.targetFormat === WEEKDAY_SHORT) {
         return convertDateToWeekdayShortString(
-          value,
+          valueInTimezone,
           dateFormatIntl,
           languageIntl,
           options,
@@ -216,7 +228,7 @@ export const useDataFormatUtils = (): {
 
       if (options?.targetFormat === MONTH_LONG) {
         return convertDateToMonthLongString(
-          value,
+          valueInTimezone,
           dateFormatIntl,
           languageIntl,
           options,
@@ -225,7 +237,7 @@ export const useDataFormatUtils = (): {
 
       if (options?.targetFormat === MONTH_SHORT) {
         return convertDateToMonthShortString(
-          value,
+          valueInTimezone,
           dateFormatIntl,
           languageIntl,
           options,
@@ -234,7 +246,7 @@ export const useDataFormatUtils = (): {
 
       if (options?.targetFormat === DATE || !options?.targetFormat) {
         return convertDateToDateString(
-          value,
+          valueInTimezone,
           dateFormatIntl,
           languageIntl,
           options,
@@ -243,7 +255,7 @@ export const useDataFormatUtils = (): {
 
       return value?.toString() ?? '';
     },
-    [languageIntl],
+    [globalTimeZone, applyTimeZoneOffset, languageIntl],
   );
 
   const getFormattedDateFromMoment = useCallback(

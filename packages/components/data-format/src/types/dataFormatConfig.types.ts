@@ -9,6 +9,7 @@ export type DataFormatConfig = {
   dateFormatNotation?: DataFormatNotationType;
   timeFormatNotation?: DataFormatNotationType;
   numberFormatNotation?: DataFormatNotationType;
+  applyTimeZoneOffset?: boolean;
 };
 
 export type DataFormatIntls = {
