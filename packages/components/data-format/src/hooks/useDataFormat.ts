@@ -10,6 +10,7 @@ import {
   type OverloadGetConstants,
 } from '../types';
 import { getConstantDatesAndFormattingOptions } from '../utils';
+import { isValidDate } from '../utils/date.utils';
 import { useDataFormatConfig } from './useDataFormatConfig';
 import { useDataFormatIntls } from './useDataFormatIntls';
 import { useDataFormatUtils } from './useDataFormatUtils';
@@ -81,6 +82,10 @@ export const useDataFormat = (): UseDataFormatProps => {
       }
 
       if (value instanceof Date) {
+        if (!isValidDate(value)) {
+          console.warn('invalid date', value);
+          return value.toString();
+        }
         result = getFormattedDate(
           value,
           dateFormatIntl,

@@ -30,6 +30,10 @@ export const getDatesRange = (
   });
 };
 
+export const isValidDate = (date: Date) => {
+  return !isNaN(date.getTime());
+};
+
 export const getConstantDatesAndFormattingOptions = (
   targetFormat: DateConstantsTargetFormat,
   isSundayFirstWeekDay: boolean,

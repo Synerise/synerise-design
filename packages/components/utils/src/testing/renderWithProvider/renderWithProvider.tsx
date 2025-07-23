@@ -20,15 +20,22 @@ const renderWithProvider = (
   options?: Options,
   props?: Partial<Omit<DSProviderProps, 'onErrorIntl' | 'dataFormatConfig'>> & {
     notation?: DataFormatNotationType;
+    applyTimeZoneOffset?: boolean;
   },
 ): RenderResult => {
-  const { notation, ...providerProps } = props || {};
+  const { notation, applyTimeZoneOffset, ...providerProps } = props || {};
+  const dataFormatConfigProps =
+    applyTimeZoneOffset !== undefined || notation
+      ? {
+          ...(notation ? getDataFormatConfigFromNotation(notation) : {}),
+          applyTimeZoneOffset,
+        }
+      : {};
+
   const rendered = render(
     <DSProvider
       onErrorIntl={NOOP}
-      {...(notation
-        ? { dataFormatConfig: getDataFormatConfigFromNotation(notation) }
-        : {})}
+      dataFormatConfig={dataFormatConfigProps}
       {...providerProps}
     >
       {node}
