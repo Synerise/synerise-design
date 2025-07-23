@@ -1,6 +1,8 @@
-import React from 'react';
+import React, { useState } from 'react';
+import styled from 'styled-components';
 
-import { InfoFillS, VarTypeStringM } from '@synerise/ds-icon';
+import Button from '@synerise/ds-button';
+import Icon, { InfoFillS, RefreshM, VarTypeStringM } from '@synerise/ds-icon';
 import { DSColumnType } from '@synerise/ds-table';
 
 import { AdditionalColumnData } from '../Table.types';
@@ -5008,7 +5010,7 @@ export const DATA_SOURCE = [
   },
 ];
 
-type RowType = typeof DATA_SOURCE[number];
+type RowType = (typeof DATA_SOURCE)[number];
 type ColumnType = AdditionalColumnData & DSColumnType<RowType>;
 
 export const COLUMNS: Partial<ColumnType>[] = [
@@ -5064,7 +5066,6 @@ export const FIXED_COLUMNS = [
   { ...COLUMNS[COLUMNS.length], fixed: RIGHT },
 ];
 
-
 export const RESPONSIVE_COLUMNS = [
   {
     title: 'User name (min 200px -> max 400px)',
@@ -5076,7 +5077,7 @@ export const RESPONSIVE_COLUMNS = [
     sortRender: 'string',
     fixed: 'left',
     minWidth: 200,
-    maxWidth: 400
+    maxWidth: 400,
   },
   {
     title: 'Address (min 150px no max)',
@@ -5084,7 +5085,7 @@ export const RESPONSIVE_COLUMNS = [
     dataIndex: 'address',
     sorter: (a, b) => a.address.localeCompare(b.address),
     sortRender: 'string',
-    minWidth: 150
+    minWidth: 150,
   },
   {
     title: 'City (min 100px no max)',
@@ -5092,14 +5093,14 @@ export const RESPONSIVE_COLUMNS = [
     dataIndex: 'city',
     sorter: (a, b) => a.city.localeCompare(b.city),
     sortRender: 'string',
-    minWidth: 100
+    minWidth: 100,
   },
   {
     title: 'Number (100px)',
     key: 'number',
     dataIndex: 'number',
     sorter: (a, b) => a.number.localeCompare(b.number),
-    width: 100
+    width: 100,
   },
   {
     title: 'Type (120px)',
@@ -5108,6 +5109,29 @@ export const RESPONSIVE_COLUMNS = [
     dataIndex: 'transactionType',
     sorter: (a, b) => a.transactionType.localeCompare(b.transactionType),
     sortRender: 'string',
-    width: 120
+    width: 120,
   },
 ];
+
+const RefreshCountWrapper = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 4px;
+`;
+export const RefreshCount = ({ count }: { count: number }) => {
+  const [isHover, setIsHover] = useState(false);
+  return (
+    <RefreshCountWrapper
+      onMouseOver={() => setIsHover(true)}
+      onMouseLeave={() => setIsHover(false)}
+    >
+      <span>{count} Items </span>
+      {isHover && (
+        <Button type="ghost" mode="icon-label">
+          <Icon component={<RefreshM />} />
+          Refresh
+        </Button>
+      )}
+    </RefreshCountWrapper>
+  );
+};

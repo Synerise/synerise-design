@@ -95,6 +95,7 @@ const TableSelection = <T extends { children?: T[] }>({
       });
       const uniqueKeys = Array.from(new Set(keys));
       const rows = getRowsForKeys(uniqueKeys);
+      selection.globalSelection?.onChange(false);
       selection.onChange(uniqueKeys, rows);
     }
   }, [
@@ -144,6 +145,15 @@ const TableSelection = <T extends { children?: T[] }>({
       selection.onChange(keysLeft, rows);
     }
   }, [dataSource, getRowKey, getRowsForKeys, selection, childrenColumnName]);
+
+  const selectGlobalAll = useCallback(() => {
+    unselectAll();
+    selection.globalSelection?.onChange(true);
+  }, [unselectAll, selection.globalSelection]);
+
+  const unselectGlobalAll = useCallback(() => {
+    selection.globalSelection?.onChange(false);
+  }, [selection.globalSelection]);
 
   const getSelectableChildren = useCallback(
     (children: T[] | undefined) => {
@@ -237,7 +247,22 @@ const TableSelection = <T extends { children?: T[] }>({
     : locale?.unselectAll;
 
   const menuDataSource = useMemo(() => {
-    return selection?.selections
+    const isGlobalAllSelected = selection.globalSelection?.isSelected;
+    const globalSelectionItem = selection.globalSelection
+      ? [
+          isGlobalAllSelected
+            ? {
+                onClick: unselectGlobalAll,
+                text: locale?.unselectGlobalAll,
+              }
+            : {
+                onClick: selectGlobalAll,
+                text: locale?.selectGlobalAll,
+              },
+        ]
+      : [];
+
+    const menuItems = selection?.selections
       ?.filter(Boolean)
       .flatMap(
         (
@@ -266,17 +291,23 @@ const TableSelection = <T extends { children?: T[] }>({
           }
         },
       );
+    return [...globalSelectionItem, ...(menuItems || [])];
   }, [
-    isAllSelected,
-    locale?.selectAll,
-    locale?.selectInvert,
-    locale?.unselectAll,
-    selectAll,
-    selectInvert,
+    selection.globalSelection,
     selection?.selections,
-    unselectAll,
-    isAnySelected,
+    unselectGlobalAll,
+    locale?.unselectGlobalAll,
+    locale?.selectGlobalAll,
+    locale?.selectAll,
+    locale?.unselectAll,
+    locale?.selectInvert,
+    selectGlobalAll,
+    isAllSelected,
     hasSelectionLimit,
+    isAnySelected,
+    selectAll,
+    unselectAll,
+    selectInvert,
   ]);
 
   return selection?.selectedRowKeys ? (
@@ -286,9 +317,11 @@ const TableSelection = <T extends { children?: T[] }>({
           <Button.Checkbox
             disabled={disabledBulkSelection}
             data-testid="ds-table-batch-selection-button"
-            checked={isAllSelected}
+            checked={isAllSelected || selection.globalSelection?.isSelected}
             onChange={() => {
-              if (!isAllSelected) {
+              if (selection.globalSelection?.isSelected) {
+                unselectGlobalAll();
+              } else if (!isAllSelected) {
                 selectAll();
               } else {
                 unselectAll();
@@ -298,7 +331,7 @@ const TableSelection = <T extends { children?: T[] }>({
           />
         </Tooltip>
       )}
-      {selection?.selections && (
+      {(selection.selections || menuDataSource?.length) && (
         <Dropdown
           disabled={disabledBulkSelection || menuDataSource?.length === 0}
           trigger={['click']}
@@ -310,6 +343,7 @@ const TableSelection = <T extends { children?: T[] }>({
               disabled={disabledBulkSelection || menuDataSource?.length === 0}
               mode="single-icon"
               type="ghost"
+              data-testid="ds-table-batch-selection-options"
             >
               <Icon component={<OptionVerticalM />} />
             </Button>

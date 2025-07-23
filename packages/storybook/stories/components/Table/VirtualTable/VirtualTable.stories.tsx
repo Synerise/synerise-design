@@ -1,30 +1,47 @@
+import isChromatic from 'chromatic/isChromatic';
 import React, { Key, useEffect, useMemo, useRef, useState } from 'react';
 import { FixedSizeList } from 'react-window';
-import { Meta, StoryObj } from '@storybook/react-webpack5';
-import isChromatic from "chromatic/isChromatic";
-import { fn } from 'storybook/test';
 import { action } from 'storybook/actions';
+import { fn } from 'storybook/test';
 
+import { Meta, StoryObj } from '@storybook/react-webpack5';
 import Button from '@synerise/ds-button';
-import Icon, { AddM } from '@synerise/ds-icon';
-import Table, { VirtualTableProps, VirtualTable, VirtualTableRef } from '@synerise/ds-table';
+import Icon, { AddM, EditM, FileDownloadM, TrashM } from '@synerise/ds-icon';
 import { SearchInput } from '@synerise/ds-search';
+import Table, {
+  ItemsMenu,
+  VirtualTable,
+  VirtualTableProps,
+  VirtualTableRef,
+} from '@synerise/ds-table';
 
-import { COLUMNS, DATA_SOURCE, FIXED_COLUMNS, RESPONSIVE_COLUMNS } from './VirtualTable.data';
-import { renderWithIconInHeaders, TableMeta } from '../Table.utils';
-import { useInfiniteScroll } from './useInfiniteScroll';
 import { fixedWrapper1000, responsiveTableWrapper } from '../../../utils';
+import { TableMeta, renderWithIconInHeaders } from '../Table.utils';
+import {
+  COLUMNS,
+  DATA_SOURCE,
+  FIXED_COLUMNS,
+  RESPONSIVE_COLUMNS,
+  RefreshCount,
+} from './VirtualTable.data';
+import { useInfiniteScroll } from './useInfiniteScroll';
 
-type RowType = typeof DATA_SOURCE[number];
-type VirtualTableType = VirtualTableProps<RowType> & { randomiseSelectionColumn?: boolean };
+type RowType = (typeof DATA_SOURCE)[number];
+type VirtualTableType = VirtualTableProps<RowType> & {
+  randomiseSelectionColumn?: boolean;
+};
 type Story = StoryObj<VirtualTableType>;
 
-const randomStatus = _record => ({ disabled: _record.disabled, unavailable: _record.unavailable });
+const randomStatus = (_record) => ({
+  disabled: _record.disabled,
+  unavailable: _record.unavailable,
+});
 
-const defaultRender: Meta<VirtualTableType>['render'] = args => {
+const defaultRender: Meta<VirtualTableType>['render'] = (args) => {
   const [searchValue, setSearchValue] = useState('');
   const [selectedRowKeys, setSelectedRowKeys] = useState<Key[]>([]);
   const [starredRowKeys, setStarredRowKey] = useState<string[]>([]);
+  const [isGlobalAllSelected, setIsGlobalAllSelected] = useState(false);
 
   const { dataSourceFull, selection, rowStar, randomiseSelectionColumn } = args;
   const handleSelectionChange = (selectedRowKeys: Key[], selectedRows) => {
@@ -33,27 +50,43 @@ const defaultRender: Meta<VirtualTableType>['render'] = args => {
   };
   const selectionProp = selection
     ? {
-      ...selection,
-      onChange: handleSelectionChange,
-      checkRowSelectionStatus: randomiseSelectionColumn ? randomStatus : undefined,
-      selectedRowKeys: selectedRowKeys,
-    }
+        ...selection,
+        onChange: handleSelectionChange,
+        checkRowSelectionStatus: randomiseSelectionColumn
+          ? randomStatus
+          : undefined,
+        selectedRowKeys: selectedRowKeys,
+        globalSelection: selection.globalSelection
+          ? {
+              ...selection.globalSelection,
+              isSelected: isGlobalAllSelected,
+              onChange: (newState: boolean) => {
+                setIsGlobalAllSelected(newState);
+                action('global all', newState);
+                selection.globalSelection.onChange(newState);
+              },
+            }
+          : undefined,
+      }
     : undefined;
   const rowStarProp = rowStar
     ? {
-      starredRowKeys: starredRowKeys,
-      onChange: (starredRowKeys: string[]): void => {
-        setStarredRowKey(starredRowKeys);
-      },
-    }
+        starredRowKeys: starredRowKeys,
+        onChange: (starredRowKeys: string[]): void => {
+          setStarredRowKey(starredRowKeys);
+        },
+      }
     : undefined;
 
   const dataSource = useMemo(() => {
     return !searchValue
       ? dataSourceFull
-      : dataSourceFull?.filter(record => {
-        return typeof record.name === 'string' && record.name.toLowerCase().includes(searchValue.toLowerCase());
-      });
+      : dataSourceFull?.filter((record) => {
+          return (
+            typeof record.name === 'string' &&
+            record.name.toLowerCase().includes(searchValue.toLowerCase())
+          );
+        });
   }, [searchValue, dataSourceFull]);
 
   return (
@@ -88,8 +121,8 @@ export default {
   parameters: {
     ...TableMeta.parameters,
     controls: {
-      exclude: ['randomiseSelectionColumn']
-    }
+      exclude: ['randomiseSelectionColumn'],
+    },
   },
   title: 'Components/Table/VirtualTable',
   render: defaultRender,
@@ -102,7 +135,7 @@ export default {
     scroll: { y: 500, x: 0 },
     initialWidth: 792,
     cellHeight: 51,
-    rowKey: row => row.key,
+    rowKey: (row) => row.key,
     onSort: fn(),
     title: 'Virtualized table',
     columns: COLUMNS,
@@ -121,8 +154,8 @@ export const Empty: Story = {
 export const HiddenBatchSelection: Story = {
   parameters: {
     controls: {
-      exclude: []
-    }
+      exclude: [],
+    },
   },
   args: {
     selection: {
@@ -158,15 +191,88 @@ export const WithRowStar: Story = {
 export const WithSelection: Story = {
   parameters: {
     controls: {
-      exclude: []
-    }
+      exclude: [],
+    },
   },
   args: {
     selection: {
       onChange: fn(),
       selectedRowKeys: [],
       selections: [Table.SELECTION_ALL, Table.SELECTION_INVERT],
-      limit: 5,
+    },
+    itemsMenu: (
+      <ItemsMenu>
+        <Button onClick={fn()} type="secondary" mode="icon-label">
+          <Icon component={<FileDownloadM />} />
+          Export
+        </Button>
+        <Button onClick={fn()} type="secondary" mode="icon-label">
+          <Icon component={<EditM />} />
+          Edit
+        </Button>
+        <Button onClick={fn()} type="secondary" mode="icon-label">
+          <Icon component={<TrashM />} />
+          Delete
+        </Button>
+      </ItemsMenu>
+    ),
+  },
+};
+
+export const WithSelectionGlobal: Story = {
+  parameters: {
+    controls: {
+      exclude: [],
+    },
+  },
+  args: {
+    ...WithSelection.args,
+    selection: {
+      onChange: fn(),
+      selectedRowKeys: [],
+      selections: [Table.SELECTION_ALL, Table.SELECTION_INVERT],
+      globalSelection: {
+        isSelected: true,
+        onChange: fn(),
+      },
+    },
+  },
+};
+
+export const WithSelectionLimit: Story = {
+  parameters: {
+    controls: {
+      exclude: [],
+    },
+  },
+  args: {
+    ...WithSelection.args,
+    selection: {
+      onChange: fn(),
+      selectedRowKeys: [],
+      selections: [Table.SELECTION_ALL],
+      limit: 10,
+    },
+  },
+};
+
+export const WithCustomCounter: Story = {
+  parameters: {
+    controls: {
+      exclude: [],
+    },
+  },
+  args: {
+    ...WithSelection.args,
+    renderCustomCounter: ({ count }) => <RefreshCount count={count} />,
+    selection: {
+      onChange: fn(),
+      selectedRowKeys: [],
+      selections: [Table.SELECTION_ALL, Table.SELECTION_INVERT],
+      globalSelection: {
+        isSelected: true,
+        onChange: fn(),
+      },
     },
   },
 };
@@ -188,7 +294,11 @@ export const WithResponsiveColumns: Story = {
 export const WithHeaderButton: Story = {
   args: {
     headerButton: (
-      <Button type="ghost" mode="icon-label" onClick={action('headerButton onClick')}>
+      <Button
+        type="ghost"
+        mode="icon-label"
+        onClick={action('headerButton onClick')}
+      >
         <Icon component={<AddM />} />
         Add row
       </Button>
@@ -202,11 +312,13 @@ const DEFAULT_SCROLLABLE_HEIGHT = 800;
 export const WithStickyHeader: Story = {
   parameters: {
     controls: {
-      exclude: []
-    }
+      exclude: [],
+    },
   },
   render: (args, context) => {
-    const [scrollableHeight, setScrollableHeight] = useState(DEFAULT_SCROLLABLE_HEIGHT);
+    const [scrollableHeight, setScrollableHeight] = useState(
+      DEFAULT_SCROLLABLE_HEIGHT,
+    );
     const containerRef = useRef<HTMLDivElement | null>(null);
     const virtualListRef = useRef<FixedSizeList | null>(null);
     const virtualTableRefs = useRef<VirtualTableRef>();
@@ -215,25 +327,35 @@ export const WithStickyHeader: Story = {
 
     useEffect(() => {
       if (virtualTableRefs.current) {
-        virtualListRef.current = virtualTableRefs.current.virtualListRef.current;
+        virtualListRef.current =
+          virtualTableRefs.current.virtualListRef.current;
         listOuterRef.current = virtualTableRefs.current.outerListRef.current;
-        listOuterRef.current && (listOuterRef.current.style.overflow = 'visible');
+        listOuterRef.current &&
+          (listOuterRef.current.style.overflow = 'visible');
       }
     });
 
     const scrollTableContent = useRef((event: Event) => {
       if (virtualTableRefs.current && containerRef.current) {
-        virtualTableRefs.current.scrollTo(containerRef.current.scrollTop - STICKY_SCROLL_THRESHOLD);
+        virtualTableRefs.current.scrollTo(
+          containerRef.current.scrollTop - STICKY_SCROLL_THRESHOLD,
+        );
       }
     }).current;
 
     useEffect(() => {
       if (containerRef.current) {
         containerRef.current.addEventListener('scroll', scrollTableContent);
-        setScrollableHeight(containerRef.current.offsetHeight - STICKY_SCROLL_THRESHOLD - PADDING);
+        setScrollableHeight(
+          containerRef.current.offsetHeight - STICKY_SCROLL_THRESHOLD - PADDING,
+        );
       }
       return () => {
-        containerRef.current && containerRef.current.removeEventListener('scroll', scrollTableContent);
+        containerRef.current &&
+          containerRef.current.removeEventListener(
+            'scroll',
+            scrollTableContent,
+          );
       };
     }, []);
 
@@ -265,7 +387,7 @@ export const WithStickyHeader: Story = {
               getContainer: () => containerRef && containerRef.current,
             },
           },
-          context
+          context,
         )}
       </div>
     );
@@ -282,11 +404,19 @@ type InfiniteScrollRowType = {
   color: string;
 };
 
-const renderColumn = value => <div className="chromatic-ignore">{value}</div>;
+const renderColumn = (value) => <div className="chromatic-ignore">{value}</div>;
 
-export const WithInfiniteScroll: StoryObj<VirtualTableProps<InfiniteScrollRowType>> = {
-  render: args => {
-    const { dataSource, prevPage, nextPage, fakeFetchNextPageData, fakeFetchPrevPageData } = useInfiniteScroll();
+export const WithInfiniteScroll: StoryObj<
+  VirtualTableProps<InfiniteScrollRowType>
+> = {
+  render: (args) => {
+    const {
+      dataSource,
+      prevPage,
+      nextPage,
+      fakeFetchNextPageData,
+      fakeFetchPrevPageData,
+    } = useInfiniteScroll();
     return (
       <div style={{ width: '100%' }}>
         <VirtualTable
@@ -321,8 +451,18 @@ export const WithInfiniteScroll: StoryObj<VirtualTableProps<InfiniteScrollRowTyp
   args: {
     columns: [
       { title: 'Name', key: 'name', dataIndex: 'name', render: renderColumn },
-      { title: 'Price', key: 'price', dataIndex: 'price', render: renderColumn },
-      { title: 'Color', key: 'color', dataIndex: 'color', render: renderColumn },
+      {
+        title: 'Price',
+        key: 'price',
+        dataIndex: 'price',
+        render: renderColumn,
+      },
+      {
+        title: 'Color',
+        key: 'color',
+        dataIndex: 'color',
+        render: renderColumn,
+      },
     ],
   },
 };

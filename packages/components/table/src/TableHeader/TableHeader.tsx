@@ -26,13 +26,22 @@ const TableHeader = <T extends object>({
   headerButton,
   locale,
   renderSelectionTitle,
+  renderCustomCounter,
   hideTitlePart,
   childrenColumnName,
   isLoading,
 }: Props<T>) => {
   const { formatValue } = useDataFormat();
 
+  const hasSelectedItems = useMemo(
+    () =>
+      (selectedRows && selectedRows > 0) ||
+      selection?.globalSelection?.isSelected,
+    [selectedRows, selection?.globalSelection?.isSelected],
+  );
+
   const renderLeftSide = useMemo(() => {
+    const tableTotal = dataSourceTotalCount || dataSource.length;
     const { hideSelectAll } = selection || {};
     if (selection && selection.limit) {
       return (
@@ -49,17 +58,26 @@ const TableHeader = <T extends object>({
             />
           )}
           <TableLimit
-            total={dataSourceTotalCount || dataSource.length}
+            total={tableTotal}
             selection={{ ...selection, limit: selection.limit }}
             itemsMenu={itemsMenu}
             locale={locale}
+            renderCustomCounter={renderCustomCounter}
             isCounterLoading={isCounterLoading}
           />
         </S.Left>
       );
     }
+    const selectedItemsCount = selectedRows || tableTotal;
 
-    return selectedRows && selectedRows > 0 ? (
+    const counterContent = (
+      <>
+        <strong>{formatValue(tableTotal)}</strong>
+        <span>{locale?.pagination?.items}</span>
+      </>
+    );
+
+    return hasSelectedItems ? (
       <S.Left data-testid="ds-table-selection">
         {selection && !hideSelectAll && (
           <TableSelection
@@ -75,10 +93,18 @@ const TableHeader = <T extends object>({
           <>{renderSelectionTitle(selection, filters)}</>
         ) : (
           <S.TitleContainer>
-            <S.TitlePart>
-              <strong>{formatValue(selectedRows)}</strong>{' '}
-              <span>{locale.selected}</span>
-            </S.TitlePart>
+            {isCounterLoading ? (
+              <S.Skeleton
+                numberOfSkeletons={1}
+                size="S"
+                skeletonWidth="100px"
+              />
+            ) : (
+              <S.TitlePart>
+                <strong>{formatValue(selectedItemsCount)}</strong>{' '}
+                <span>{locale.selected}</span>
+              </S.TitlePart>
+            )}
           </S.TitleContainer>
         )}
         {itemsMenu}
@@ -133,10 +159,12 @@ const TableHeader = <T extends object>({
                 />
               ) : (
                 <>
-                  <strong>
-                    {formatValue(dataSourceTotalCount || dataSource.length)}
-                  </strong>
-                  <span>{locale?.pagination?.items}</span>
+                  {renderCustomCounter
+                    ? renderCustomCounter({
+                        count: tableTotal,
+                        content: counterContent,
+                      })
+                    : counterContent}
                 </>
               )}
             </S.TitlePart>
@@ -146,21 +174,23 @@ const TableHeader = <T extends object>({
     );
   }, [
     selection,
+    selectedRows,
     dataSourceTotalCount,
     dataSource,
-    itemsMenu,
-    locale,
-    selectedRows,
+    hasSelectedItems,
     rowKey,
     dataSourceFull,
-    isCounterLoading,
+    locale,
     childrenColumnName,
     renderSelectionTitle,
     filters,
+    isCounterLoading,
+    renderCustomCounter,
     formatValue,
+    itemsMenu,
+    isLoading,
     title,
     hideTitlePart,
-    isLoading,
   ]);
 
   return (

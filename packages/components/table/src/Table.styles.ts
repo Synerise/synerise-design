@@ -29,6 +29,7 @@ export const TitleContainer = styled.div`
   display: flex;
   max-width: 100%;
   min-width: 0;
+  align-items: center;
 
   ${macro.small};
   color: ${(props): string => props.theme.palette['grey-700']};

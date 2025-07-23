@@ -111,7 +111,6 @@ const VirtualTable = <
       if (prevFirstItemIndex >= 0 && listRef?.current) {
         if (onScrollToRecordIndex) {
           onScrollToRecordIndex(prevFirstItemIndex, () => {
-            // error    Expected an assignment or function call and instead saw an expression
             listRef?.current &&
               listRef.current.scrollToItem(prevFirstItemIndex, 'start');
           });
@@ -217,7 +216,7 @@ const VirtualTable = <
 
   const selectedRecords = useMemo(() => {
     if (selection) {
-      const { selectedRowKeys } = selection as RowSelection<T>;
+      const { selectedRowKeys = [] } = selection as RowSelection<T>;
       let selectedRows: T[] = [];
       allData.forEach((row: T) => {
         const key = getRowKey(row);
@@ -264,6 +263,7 @@ const VirtualTable = <
           independentSelectionExpandedRows={independentSelectionExpandedRows}
           onChange={handleChange}
           selectedRecords={selectedRecords}
+          isGlobalAllSelected={selection?.globalSelection?.isSelected}
           tableLocale={locale}
           checkRowSelectionStatus={checkRowSelectionStatus}
           childrenColumnName={childrenColumnName}

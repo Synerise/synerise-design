@@ -1,7 +1,7 @@
 import type { Locale, RowSelection } from '../Table.types';
 
 export type TableSelectionProps<T extends object> = {
-  selection?: RowSelection<T>;
+  selection: RowSelection<T>;
   dataSource: readonly T[];
   dataSourceFull?: T[];
   locale?: Locale;

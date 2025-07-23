@@ -224,7 +224,7 @@
       "SELECTION_LIMIT_WARNING": "Selection limit has been reached.",
       "STAR_ROW_TOOLTIP": "Starred",
       "SELECT_ROW_TOOLTIP": "Select",
-      "SELECT_ALL_TOOLTIP": "Select all",
+      "SELECT_ALL_TOOLTIP": "Select visible",
       "SELECTION_OPTIONS": "Options",
       "COLUMN": {
         "SORT_AZ": "Sort a-z",
@@ -240,8 +240,10 @@
         "LOADING": "Loading more items",
         "BACK_TO_TOP": "Back to top"
       },
-      "SELECT_ALL": "Select all",
-      "UNSELECT_ALL": "Unselect all",
+      "SELECT_ALL": "Select visible",
+      "UNSELECT_ALL": "Unselect visible",
+      "SELECT_GLOBAL_ALL": "Select all",
+      "UNSELECT_GLOBAL_ALL": "Unselect all",
       "SELECT_INVERT": "Invert selection"
     },
     "ICON-PICKER": {

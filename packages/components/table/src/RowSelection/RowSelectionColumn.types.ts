@@ -6,6 +6,7 @@ import { type DSTableProps, type RowSelection } from '../Table.types';
 export type RowSelectionProps<T> = {
   rowKey: TableProps<T>['rowKey'];
   independentSelectionExpandedRows?: boolean;
+  isGlobalAllSelected?: boolean;
   selectedRowKeys: Key[];
   selectedRecords: T[];
   limit?: number;

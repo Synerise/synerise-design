@@ -84,10 +84,18 @@ export const getDefaultLocale = (intl: IntlShape): Locale => ({
   }),
   unselectAll: intl.formatMessage({
     id: 'DS.TABLE.UNSELECT_ALL',
-    defaultMessage: 'Unselect all',
+    defaultMessage: 'Unselect visible',
   }),
   selectAll: intl.formatMessage({
     id: 'DS.TABLE.SELECT_ALL',
+    defaultMessage: 'Select visible',
+  }),
+  unselectGlobalAll: intl.formatMessage({
+    id: 'DS.TABLE.UNSELECT_GLOBAL_ALL',
+    defaultMessage: 'Unselect all',
+  }),
+  selectGlobalAll: intl.formatMessage({
+    id: 'DS.TABLE.SELECT_GLOBAL_ALL',
     defaultMessage: 'Select all',
   }),
   selectInvert: intl.formatMessage({

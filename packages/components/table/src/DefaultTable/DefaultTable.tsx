@@ -166,6 +166,7 @@ function DefaultTable<T extends object & RowType<T>>(props: DSTableProps<T>) {
           independentSelectionExpandedRows={independentSelectionExpandedRows}
           onChange={onChange}
           selectedRecords={selectedRecords}
+          isGlobalAllSelected={selection?.globalSelection?.isSelected}
           tableLocale={locale}
           checkRowSelectionStatus={checkRowSelectionStatus}
           childrenColumnName={childrenColumnName}

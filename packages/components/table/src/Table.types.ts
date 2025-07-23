@@ -42,6 +42,17 @@ export type RowSelection<T> = Omit<TableRowSelection<T>, 'selections'> & {
   fixed?: boolean;
   selectedRowKeys: Key[];
   selections?: SelectionItem[];
+  /**
+   * @param globalSelection
+   * @description for paginated tables or tables with infinite loader - allows setting all items (even ones not loaded yet) as selected.
+   * This will NOT provide ketys of selected rows (as those are unknown), only a boolean flag that can be used for batch actions on the entire set
+   * Adding this prop will render additional items in the selection dropdown, in the table header.
+   * Labels for this prop should be provided via `locale` prop
+   */
+  globalSelection?: {
+    isSelected: boolean;
+    onChange: (selected: boolean) => void;
+  };
   onChange: (selectedRowKeys: Key[], selectedRows: T[]) => void;
   limit?: number;
   independentSelectionExpandedRows?: boolean;
@@ -85,6 +96,7 @@ export type Locale = TableLocale & {
   };
   selectRowTooltip?: string;
   selectVisible?: string;
+  selectGlobalAll?: string;
   selectAllTooltip?: string;
   starRowTooltip?: string;
   selectionOptionsTooltip?: string;
@@ -99,6 +111,7 @@ export type Locale = TableLocale & {
   infiniteScrollLoading?: string;
   infiniteScrollBackToTop?: string;
   unselectAll?: string;
+  unselectGlobalAll?: string;
 };
 
 export type DSColumnType<T> = Omit<ColumnType<T>, 'fixed'> & {
@@ -136,6 +149,12 @@ export type OnSortFn = (
   sortState: ColumnsSortState,
 ) => void;
 
+export type CustomCounterArgs = {
+  count: number;
+  content: ReactNode;
+};
+export type CustomCounterFn = (props: CustomCounterArgs) => ReactNode;
+
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export type DSTableProps<T extends any & GroupType<T>> = AntTableProps<T> & {
   title?: ReactNode | (() => ReactNode);
@@ -170,6 +189,7 @@ export type DSTableProps<T extends any & GroupType<T>> = AntTableProps<T> & {
   dataSourceFull?: T[];
   dataSourceTotalCount?: number;
   isCounterLoading?: boolean;
+  renderCustomCounter?: CustomCounterFn;
   skeletonProps?: {
     maxHeight?: number;
     headerHeight?: number;
