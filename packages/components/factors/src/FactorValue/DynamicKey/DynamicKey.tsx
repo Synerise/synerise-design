@@ -16,11 +16,12 @@ const DynamicKey = ({
   error,
   factorValueExtraProps,
   readOnly = false,
+  uncontrolledComponent,
 }: FactorValueComponentProps) => {
-  const [localValue, setLocalValue] = useState<DynamicKeyValueType>({
+  const [localValue, setLocalValue] = useState<DynamicKeyValueType>(() => ({
     key: (value as DynamicKeyValueType).key,
     value: (value as DynamicKeyValueType).value,
-  });
+  }));
   const [localError, setLocalError] = useState(false);
 
   const handleChange = (inputKey: 'key' | 'value', inputValue: string) => {
@@ -37,11 +38,13 @@ const DynamicKey = ({
   };
 
   useEffect(() => {
-    setLocalValue({
-      key: (value as DynamicKeyValueType).key,
-      value: (value as DynamicKeyValueType).value,
-    });
-  }, [value]);
+    if (!uncontrolledComponent) {
+      setLocalValue({
+        key: (value as DynamicKeyValueType).key,
+        value: (value as DynamicKeyValueType).value,
+      });
+    }
+  }, [value, uncontrolledComponent]);
 
   const { keyInputProps = {}, valueInputProps = {} } =
     factorValueExtraProps?.dynamicKey || {};

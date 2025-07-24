@@ -33,13 +33,14 @@ const TextInput = ({
   getPopupContainerOverride,
   readOnly = false,
   factorValueExtraProps,
+  uncontrolledComponent,
 }: FactorValueComponentProps) => {
   const [openExpanseEditor, setOpenExpanseEditor] = useState(false);
   const [inputRef, setInputRef] =
     useState<
       MutableRefObject<HTMLInputElement | RefSelectProps | null | undefined>
     >();
-  const [localValue, setLocalValue] = useState(value);
+  const [localValue, setLocalValue] = useState(() => value);
   const [localError, setLocalError] = useState(false);
   const theme = useTheme();
 
@@ -80,8 +81,10 @@ const TextInput = ({
   );
 
   useEffect(() => {
-    setLocalValue(value);
-  }, [value]);
+    if (!uncontrolledComponent) {
+      setLocalValue(value);
+    }
+  }, [value, uncontrolledComponent]);
 
   const autocompleteOptions = useMemo(() => {
     return (

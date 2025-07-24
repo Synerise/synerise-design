@@ -277,6 +277,7 @@ export type FactorsProps = {
   >;
   readOnly?: boolean;
   getMenuEntryProps?: (arg?: ParameterValueType) => MenuItemProps;
+  uncontrolledComponent?: boolean;
 };
 
 export type FactorTypeSelectorProps = Pick<
@@ -321,6 +322,7 @@ export type FactorValueProps = Pick<
   | 'arrayProps'
   | 'getMenuEntryProps'
   | 'factorValueExtraProps'
+  | 'uncontrolledComponent'
 > & {
   texts: FactorsTexts;
   selectedFactor: SelectedFactorType;
@@ -345,6 +347,7 @@ export type FactorValueComponentProps = Pick<
   | 'arrayProps'
   | 'getMenuEntryProps'
   | 'factorValueExtraProps'
+  | 'uncontrolledComponent'
 > & {
   texts: FactorsTexts;
   onChange: (value: FactorValueType) => void;

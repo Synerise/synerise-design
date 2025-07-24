@@ -12,14 +12,17 @@ const NumberInput = ({
   opened,
   onDeactivate,
   readOnly = false,
+  uncontrolledComponent,
 }: FactorValueComponentProps) => {
   const [localValue, setLocalValue] = useState<
     string | number | null | undefined
-  >(value as number);
+  >(() => value as number);
 
   useEffect(() => {
-    setLocalValue(value as number);
-  }, [value]);
+    if (!uncontrolledComponent) {
+      setLocalValue(value as number);
+    }
+  }, [value, uncontrolledComponent]);
 
   const handleChange = (val: string | number | null | undefined) => {
     setLocalValue(val);
