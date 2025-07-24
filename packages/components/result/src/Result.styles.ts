@@ -71,6 +71,8 @@ export const ResultContainer = styled.div`
   position: relative;
   gap: 24px;
   max-width: 440px;
+  padding: 24px 0;
+  margin: auto;
 `;
 
 export const ResultContent = styled.div`
