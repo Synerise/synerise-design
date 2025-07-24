@@ -16,8 +16,14 @@ export const searchCategoryWithId = (
     property = keys[i];
     if (
       Object.prototype.hasOwnProperty.call(category, property) &&
+      // @ts-expect-error rootCategory is in fact more than what Category type defines
+      // apart from id, name and path it can have nested categories with any key
+      // STOR-1904
       typeof category[property] === 'object'
     ) {
+      // @ts-expect-error rootCategory is in fact more than what Category type defines
+      // apart from id, name and path it can have nested categories with any key
+      // STOR-1904
       result = searchCategoryWithId(category[property], id);
       if (result) {
         return result;
@@ -41,8 +47,14 @@ export const getAllPaths = (
     property = keys[i];
     if (
       Object.prototype.hasOwnProperty.call(category, property) &&
+      // @ts-expect-error rootCategory is in fact more than what Category type defines
+      // apart from id, name and path it can have nested categories with any key
+      // STOR-1904
       typeof category[property] === 'object'
     ) {
+      // @ts-expect-error rootCategory is in fact more than what Category type defines
+      // apart from id, name and path it can have nested categories with any key
+      // STOR-1904
       results = getAllPaths(category[property], results);
     }
   }
@@ -69,7 +81,11 @@ export const hasNestedCategories = (category: Category): boolean => {
     property = keys[i];
     if (
       Object.prototype.hasOwnProperty.call(category, property) &&
+      // @ts-expect-error rootCategory is in fact more than what Category type defines
+      // apart from id, name and path it can have nested categories with any key
       typeof category[property] === 'object' &&
+      // @ts-expect-error rootCategory is in fact more than what Category type defines
+      // apart from id, name and path it can have nested categories with any key
       Object.prototype.toString.call(category[property]) === '[object Object]'
     ) {
       return true;

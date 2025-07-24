@@ -264,7 +264,9 @@ export const MODES = {
   TIME: 'time',
   FILTER: 'filter',
 };
+const LEFT = 'left' as const;
+const RIGHT = 'right' as const;
 export const COLUMNS = {
-  LEFT: 'left',
-  RIGHT: 'right',
+  LEFT,
+  RIGHT,
 };

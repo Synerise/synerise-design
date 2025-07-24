@@ -1,6 +1,10 @@
 import memoize from 'memoize-one';
+import {
+  type Emoji,
+  getEmojisByGroup as getEmojisByGroupBase,
+} from 'unicode-emoji-utils';
 
-import type { ListItemData } from './EmojiList.types';
+import type { EmojiCategories, ListItemData } from './EmojiList.types';
 
 export const createItemData = memoize(
   (
@@ -15,3 +19,7 @@ export const createItemData = memoize(
     itemsPerRow,
   }),
 );
+
+export const getEmojisByGroup = getEmojisByGroupBase as (
+  ...props: Parameters<typeof getEmojisByGroupBase>
+) => Map<EmojiCategories, Emoji[]>;

@@ -3,7 +3,7 @@ import type React from 'react';
 import { type AvatarProps } from '@synerise/ds-avatar/dist/Avatar.types';
 import type { BadgeProps } from '@synerise/ds-badge/dist/Badge.types';
 
-export type Size = 'small' | 'medium' | 'large' | undefined;
+export type Size = 'small' | 'medium' | 'large';
 
 export type DataSource = Omit<BadgeProps, 'children'> & {
   initials: string;

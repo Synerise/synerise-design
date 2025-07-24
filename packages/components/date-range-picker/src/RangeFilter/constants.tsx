@@ -32,6 +32,8 @@ export const TYPES = {
   MONTHLY: 'MONTHLY',
 };
 
+export type RangeFilterType = keyof typeof TYPES;
+
 export const DEFAULT_DAYS_OF_PERIODS: MonthlySelectValue<DAYS_OF_PERIOD_ENUM>[] =
   [
     {

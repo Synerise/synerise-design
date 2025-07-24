@@ -277,7 +277,7 @@ class Search extends React.PureComponent<
       moveCursorToEnd: true,
     });
 
-    onValueChange(item[textLookupConfig[dataKey]]);
+    onValueChange(item[textLookupConfig[dataKey] as keyof typeof item]);
   }
 
   selectFilter(item: object): void {
@@ -296,12 +296,15 @@ class Search extends React.PureComponent<
       moveCursorToEnd: true,
     });
 
-    if (filterLookupKey && item[filterLookupKey]) {
-      onValueChange(item[textLookupConfig.parameters]);
-      onParameterValueChange(item[filterLookupKey], item);
+    if (filterLookupKey && item[filterLookupKey as keyof typeof item]) {
+      onValueChange(item[textLookupConfig.parameters as keyof typeof item]);
+      onParameterValueChange(item[filterLookupKey as keyof typeof item], item);
       this.setState({ isResultChosen: true });
     } else {
-      onParameterValueChange(item[textLookupConfig.parameters], item);
+      onParameterValueChange(
+        item[textLookupConfig.parameters as keyof typeof item],
+        item,
+      );
     }
   }
 

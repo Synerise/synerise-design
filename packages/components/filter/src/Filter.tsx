@@ -34,8 +34,8 @@ import { isStepType } from './utils';
 
 const TRANSITION_DURATION = 0.5;
 const TRANSITION_DURATION_MAX = 1.5;
-const TOP_TRANSITION_ZINDEX = 1003;
-const BOTTOM_TRANSITION_ZINDEX = 1002;
+const TOP_TRANSITION_ZINDEX = '1003';
+const BOTTOM_TRANSITION_ZINDEX = '1002';
 
 const rearrangeItems = (
   sourceArray: Expression[],
@@ -72,7 +72,7 @@ const Filter = ({
   const [activeExpressionId, setActiveExpressionId] = useState<string | null>(
     null,
   );
-  const expressionRefs = useRef({});
+  const expressionRefs = useRef<Record<string, HTMLDivElement>>({});
   const movedExpressionId = useRef<string | null>(null);
 
   useEffect(() => {

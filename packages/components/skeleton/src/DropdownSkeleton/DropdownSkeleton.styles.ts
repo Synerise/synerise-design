@@ -28,8 +28,8 @@ const SIZE_DEFAULT = 16;
 const SIZE_WRAPPER_DEFAULT = 16;
 export const SkeletonBar = styled.div<{ size?: 'S' | 'M' | 'L' }>`
   width: 100%;
-  height: ${(props): string =>
-    SkeletonSize[props.size as string] || SIZE_DEFAULT}px;
+  height: ${(props) =>
+    props.size ? SkeletonSize[props.size] : SIZE_DEFAULT}px;
   position: relative;
   animation: ${loadingAnimation} 1.2s ease-in-out infinite;
 `;
@@ -39,7 +39,7 @@ export const Wrapper = styled.div<{ size?: 'S' | 'M' | 'L' }>`
   margin: 15px 0;
   border-radius: 2px;
   width: 100%;
-  height: ${(props): string =>
-    SkeletonSize[props.size as string] || SIZE_WRAPPER_DEFAULT}px;
-  background-color: ${(props): string => props.theme.palette[`grey-050`]};
+  height: ${(props) =>
+    props.size ? SkeletonSize[props.size] : SIZE_WRAPPER_DEFAULT}px;
+  background-color: ${(props) => props.theme.palette[`grey-050`]};
 `;

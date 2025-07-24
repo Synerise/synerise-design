@@ -6,7 +6,7 @@ export type TableSelectionProps<T extends object> = {
   dataSourceFull?: T[];
   locale?: Locale;
   rowKey?: Function | string;
-  childrenColumnName: string;
+  childrenColumnName: keyof T;
   hasSelectionLimit?: boolean;
 };
 

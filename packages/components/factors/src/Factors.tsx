@@ -26,12 +26,14 @@ import RelativeDateInput from './FactorValue/RelativeDate/RelativeDate';
 import TextInput from './FactorValue/Text/Text';
 import {
   type DefinedFactorTypes,
-  type FactorTypeMapping,
   type FactorsProps,
+  type MergedFactorTypeMapping,
   type SelectedFactorType,
 } from './Factors.types';
 import { useTexts } from './hooks/useTexts';
 import * as S from './style/Factors.style';
+
+export const DEFAULT_FACTOR_TYPE: DefinedFactorTypes = 'text';
 
 export const FACTOR_TYPE_MAPPING: Record<
   DefinedFactorTypes,
@@ -89,6 +91,13 @@ export const FACTOR_TYPE_MAPPING: Record<
   },
 };
 
+const isDefinedFactorType = (type: string): type is DefinedFactorTypes => {
+  return (
+    (FACTOR_TYPE_MAPPING as Record<string, SelectedFactorType>)[type] !==
+    undefined
+  );
+};
+
 const Factors = ({
   selectedFactorType,
   setSelectedFactorType = NOOP,
@@ -96,7 +105,7 @@ const Factors = ({
   onParamsClick,
   value,
   defaultFactorType = 'text',
-  textType = 'Default',
+  textType = 'default',
   unavailableFactorTypes,
   availableFactorTypes,
   parameters,
@@ -126,21 +135,32 @@ const Factors = ({
   }, [selectedFactorType, defaultFactorType]);
 
   const mergedFactorData = useMemo(() => {
-    return Object.entries(FACTOR_TYPE_MAPPING)
+    return (
+      Object.entries(FACTOR_TYPE_MAPPING) as [
+        DefinedFactorTypes,
+        SelectedFactorType,
+      ][]
+    )
       .map(([type, factorTypeData]) => {
         const mergedData = customFactorValueComponents
           ? { ...factorTypeData, ...customFactorValueComponents[type] }
           : factorTypeData;
-        return [type, { ...factorTypeData, ...mergedData }];
+        const dataTuple: [DefinedFactorTypes, SelectedFactorType] = [
+          type,
+          { ...factorTypeData, ...mergedData },
+        ];
+        return dataTuple;
       })
       .reduce((result, [type, factorTypeData]) => {
         result[type] = factorTypeData;
         return result;
-      }, {}) as FactorTypeMapping;
+      }, {} as MergedFactorTypeMapping);
   }, [customFactorValueComponents]);
 
   const selectedFactorData = useMemo(() => {
-    return mergedFactorData[factorType];
+    return mergedFactorData[
+      isDefinedFactorType(factorType) ? factorType : DEFAULT_FACTOR_TYPE
+    ];
   }, [mergedFactorData, factorType]);
 
   return (

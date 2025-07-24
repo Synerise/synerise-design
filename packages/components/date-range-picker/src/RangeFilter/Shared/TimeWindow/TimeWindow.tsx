@@ -191,7 +191,7 @@ class TimeWindowBase extends PureComponent<TimeWindowProps, State> {
   handleMultipleDayTimeChange = (value: DateValue) => {
     const { onChange, days } = this.props;
     const { activeDays } = this.state;
-    const updatedDays = {};
+    const updatedDays: Record<DayKey, DayOptions & { day: DayKey }> = {};
     activeDays.forEach((k) => {
       updatedDays[k] = {
         ...this.getDayValue(k),

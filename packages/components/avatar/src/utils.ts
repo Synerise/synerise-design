@@ -101,7 +101,7 @@ export function getTooltipProps(
         }
       : {};
   const tooltipType =
-    ['title', 'description', 'status'].reduce(
+    (['title', 'description', 'status'] as const).reduce(
       (prev, next) => (tooltipProps[next] ? prev + 1 : prev),
       0,
     ) === 1

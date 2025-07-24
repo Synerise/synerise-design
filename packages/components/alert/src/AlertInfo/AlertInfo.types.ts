@@ -1,15 +1,15 @@
-import type React from 'react';
+import type { ReactNode } from 'react';
 
 export type AlertInfoProps = {
   size?: AlertSize;
   fontSize?: AlertSize;
-  text?: string | React.ReactNode;
-  button?: string | React.ReactNode;
-  label?: string | React.ReactNode;
+  text?: ReactNode;
+  button?: ReactNode;
+  label?: ReactNode;
   labelPosition?: 'bottom' | 'right';
   mode?: 'absolute';
   customIcon?: React.ReactElement;
-  type: string | 'warning' | 'error' | 'success';
+  type: 'warning' | 'error' | 'success';
 };
 export enum AlertSize {
   SMALL = 'small',

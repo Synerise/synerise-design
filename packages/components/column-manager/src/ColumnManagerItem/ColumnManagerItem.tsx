@@ -1,14 +1,7 @@
 import React, { useMemo } from 'react';
 
 import { useTheme } from '@synerise/ds-core';
-import Icon, {
-  DragHandleM,
-  VarTypeBooleanM,
-  VarTypeDateM,
-  VarTypeListM,
-  VarTypeNumberM,
-  VarTypeStringM,
-} from '@synerise/ds-icon';
+import Icon, { DragHandleM } from '@synerise/ds-icon';
 import { RawSwitch } from '@synerise/ds-switch';
 import Tooltip from '@synerise/ds-tooltip';
 import { escapeRegEx } from '@synerise/ds-utils';
@@ -17,17 +10,12 @@ import {
   type Column,
   type ColumnManagerItemProps,
 } from './ColumManagerItem.types';
+import {
+  DEFAULT_ITEM_TYPE,
+  ICON_MAP,
+  TYPES_WITH_ICONS,
+} from './ColumnManagerItem.const';
 import * as S from './ColumnManagerItem.styles';
-
-const DEFAULT_TYPE = 'text';
-
-const typeIcon = {
-  text: <VarTypeStringM />,
-  number: <VarTypeNumberM />,
-  date: <VarTypeDateM />,
-  boolean: <VarTypeBooleanM />,
-  list: <VarTypeListM />,
-};
 
 export const ColumnManagerItem = <ColumnType extends Column>({
   item,
@@ -41,7 +29,12 @@ export const ColumnManagerItem = <ColumnType extends Column>({
   ...rest
 }: ColumnManagerItemProps<ColumnType>) => {
   const theme = useTheme();
-
+  const iconComponent =
+    ICON_MAP[
+      item.type && TYPES_WITH_ICONS.includes(item.type)
+        ? item.type
+        : DEFAULT_ITEM_TYPE
+    ];
   const columnName = useMemo(() => {
     if (searchQuery) {
       const escapedQuery = escapeRegEx(searchQuery);
@@ -72,10 +65,7 @@ export const ColumnManagerItem = <ColumnType extends Column>({
             {...dragHandleProps?.listeners}
           />
         )}
-        <Icon
-          component={typeIcon[item.type || DEFAULT_TYPE]}
-          color={theme.palette['grey-600']}
-        />
+        <Icon component={iconComponent} color={theme.palette['grey-600']} />
         <S.ColumnManagerItemName
           dangerouslySetInnerHTML={{ __html: columnName }}
         />

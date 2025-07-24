@@ -8,6 +8,7 @@ import {
 import { withTheme } from 'styled-components';
 
 import Button from '@synerise/ds-button';
+import { useTheme } from '@synerise/ds-core';
 import Drawer from '@synerise/ds-drawer';
 import Icon, { CloseM, SearchM } from '@synerise/ds-icon';
 import { FilterItem } from '@synerise/ds-manageable-list';
@@ -80,13 +81,12 @@ const ItemFilter = ({
     }),
   },
   categories,
-  theme,
   fetchData,
   loading,
   search,
 }: ItemFilterProps & WrappedComponentProps) => {
   const listRef = React.createRef<FixedSizeList>();
-
+  const theme = useTheme();
   const [listHeight, setListHeight] = React.useState(0);
   const [activeTab, setActiveTab] = React.useState(0);
   const listStyle: React.CSSProperties = {
@@ -211,7 +211,6 @@ const ItemFilter = ({
                   style={listStyle}
                   ref={listRef}
                 >
-                  {/* @ts-expect-error Type mismatch */}
                   {RenderRow}
                 </List>
               </Scrollbar>

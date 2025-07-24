@@ -1,4 +1,6 @@
-export default {
+import { type BreakpointsData } from '../../mediaQuery/mediaQuery';
+
+export const breakpoints: BreakpointsData = {
   xsmall: {
     min: 0,
     max: 320,
@@ -24,3 +26,5 @@ export default {
     max: 0,
   },
 };
+
+export default breakpoints;

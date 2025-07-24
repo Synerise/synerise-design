@@ -1,11 +1,11 @@
 import { path } from 'ramda';
 
-export const getValueFromPath = (
-  object: object,
+export const getValueFromPath = <T extends object>(
+  object: T,
   valuePath?: string | number | readonly (string | number)[],
-): string | number | boolean => {
+) => {
   if (typeof valuePath === 'string') {
-    return object[valuePath];
+    return object[valuePath as keyof T];
   }
   if (Array.isArray(valuePath)) {
     return path(valuePath, object) || '';

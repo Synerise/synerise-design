@@ -21,7 +21,7 @@ export const getUnitSelectedNumber = (
     if (!result) {
       result = HOUR_12;
     }
-    result = MAP_24_HOUR_TO_12[result];
+    result = MAP_24_HOUR_TO_12[result as keyof typeof MAP_24_HOUR_TO_12];
   }
   return result;
 };

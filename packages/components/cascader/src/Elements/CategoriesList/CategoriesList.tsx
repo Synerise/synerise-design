@@ -48,9 +48,15 @@ export const CategoriesList = ({
   return (
     <>
       {Object.keys(rootCategory)
+        // @ts-expect-error rootCategory is in fact more than what Category type defines
+        // apart from id, name and path it can have nested categories with any key
+        // STOR-1904
         .filter((key) => rootCategory[key]?.name)
         .map((key) => {
-          const item = rootCategory[key];
+          // @ts-expect-error rootCategory is in fact more than what Category type defines
+          // apart from id, name and path it can have nested categories with any key
+          // STOR-1904
+          const item = rootCategory[key] as Category;
           return (
             <ListItem
               text={item.name}

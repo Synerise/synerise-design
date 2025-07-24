@@ -1,31 +1,13 @@
 import React, { useState } from 'react';
 import { FormattedMessage } from 'react-intl';
 
-import Icon, {
-  Close3M,
-  FileM,
-  FileTypeImageM,
-  RepeatM,
-} from '@synerise/ds-icon';
+import Icon, { Close3M, FileM, RepeatM } from '@synerise/ds-icon';
 import Tooltip from '@synerise/ds-tooltip';
 
+import { ICON_MAP } from './FileViewAvatar.const';
 import * as S from './FileViewAvatar.styles';
 import { type FileViewAvatarProps } from './FileViewAvatar.types';
-
-const previewableMimeTypes = [
-  'image/png',
-  'image/gif',
-  'image/jpeg',
-  'image/svg+xml',
-  'text/csv',
-];
-const mapperOfIcons = {
-  'image/png': <FileTypeImageM />,
-  'image/gif': <FileTypeImageM />,
-  'image/jpeg': <FileTypeImageM />,
-  'image/svg+xml': <FileTypeImageM />,
-  'text/csv': <FileTypeImageM />,
-};
+import { isPreviewableMimeType } from './FileViewAvatar.util';
 
 const FileViewAvatar = ({
   data,
@@ -96,9 +78,9 @@ const FileViewAvatar = ({
             removable={removable}
             type="button"
           >
-            {previewableMimeTypes.indexOf(file.type) > -1 ? (
+            {isPreviewableMimeType(file.type) ? (
               <S.PreviewImage>
-                <Icon component={mapperOfIcons[file.type]} size={24} />
+                <Icon component={ICON_MAP[file.type]} size={24} />
               </S.PreviewImage>
             ) : (
               <S.PlaceholderImage>

@@ -4,16 +4,18 @@ import { flatten } from 'flat';
 import React from 'react';
 import { IntlProvider } from 'react-intl';
 
-import dsMessages from '../../../i18n';
 import {
   type IntlMessages,
   type LocaleProviderProps,
   type NestedMessages,
 } from './LocaleProvider.types';
-import antMessages from './antLocales';
+import {
+  getAntMessages,
+  getDSMessages,
+  getLangForCode,
+} from './LocaleProvider.utils';
 
 const DEFAULT_LANG = 'en-US';
-const getLangForCode = (code: string): string => code.substring(0, 2);
 
 const LocaleProvider = ({
   locale = DEFAULT_LANG,
@@ -27,12 +29,8 @@ const LocaleProvider = ({
   const code = locale || DEFAULT_LANG;
   const lang = getLangForCode(code);
 
-  const antLocale = Object.prototype.hasOwnProperty.call(antMessages, lang)
-    ? antMessages[lang]
-    : antMessages.default;
-  const dsLocale = Object.prototype.hasOwnProperty.call(dsMessages, lang)
-    ? dsMessages[lang]
-    : dsMessages.default;
+  const antLocale = getAntMessages(lang);
+  const dsLocale = getDSMessages(lang);
   const localeData = messages[lang] || {};
   const currentMessages: IntlMessages = flatten({
     ...dsLocale,

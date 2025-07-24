@@ -21,7 +21,9 @@ const format = (
     return '';
   }
   return fnsFormat(legacyParse(date), convertTokens(formatStr), {
-    locale: locales[locale.substring(0, 2)],
+    locale:
+      locales[locale.substring(0, 2) as keyof typeof locales] ||
+      locales[defaultLocale],
   });
 };
 export default format;

@@ -4,7 +4,7 @@ import { type DateRange, type RelativeDateRange } from '../../../date.types';
 export type Props = {
   ranges?: DateRange[];
   currentRange: RelativeDateRange;
-  currentGroup: string | null;
+  currentGroup: RelativeMode | null;
   onModeChange: (mode: RelativeMode | null) => void;
   modes: RelativeMode[];
   texts: Texts;

@@ -11,7 +11,7 @@ import {
   type ContextGroup,
   type ContextItem,
 } from '@synerise/ds-context-selector';
-import { type FactorValueType } from '@synerise/ds-factors';
+import { type FactorType, type FactorValueType } from '@synerise/ds-factors';
 import Icon, { Add3M, DragHandleM } from '@synerise/ds-icon';
 import {
   type OperatorsGroup,
@@ -277,7 +277,7 @@ const Condition = (props: ConditionProps) => {
     (
       stepId: string | number,
       conditionId: string | number,
-      factorType?: string,
+      factorType?: FactorType,
     ): void => {
       setCurrentConditionId(conditionId);
       setCurrentStepId(stepId);

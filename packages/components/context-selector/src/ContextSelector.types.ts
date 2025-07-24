@@ -52,6 +52,12 @@ export type ContextGroup = {
   useCustomIcon?: boolean;
 };
 
+export const isContextItemsInSubGroup = (
+  item: ContextGroup | ContextItemsInSubGroup,
+): item is ContextItemsInSubGroup => {
+  return !!(item as ContextItemsInSubGroup).isGroup;
+};
+
 export type ContextItemsInSubGroup = ContextItem & { isGroup?: boolean };
 
 export type ContextProps = {

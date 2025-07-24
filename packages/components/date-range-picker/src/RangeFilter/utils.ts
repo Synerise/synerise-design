@@ -220,6 +220,7 @@ export const validators: { [key: string]: (values: any) => boolean } = {
     Boolean(
       values?.definition &&
         !!Object.keys(values.definition) &&
+        // @ts-expect-error requires type refactor
         Object.keys(values.definition[0].definition).length > 0,
     ),
 };

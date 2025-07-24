@@ -4,7 +4,7 @@ import { theme } from '@synerise/ds-core';
 import Icon, { CheckS } from '@synerise/ds-icon';
 import { useOnClickOutside } from '@synerise/ds-utils';
 
-import { type RelativeMode } from '../../../DateRangePicker.types';
+import { type RelativeMode, type Texts } from '../../../DateRangePicker.types';
 import { RANGES_ICON } from '../../../constants';
 import * as S from '../../RelativeRangePicker.styles';
 import { type Props } from './ModeDropdown.types';
@@ -46,7 +46,7 @@ const ModeDrop = ({ currentGroup, onModeChange, modes, texts }: Props) => {
               ) : null
             }
           >
-            {texts[MODE_TRANSLATION_KEYS[mode]]}
+            {texts[MODE_TRANSLATION_KEYS[mode] as keyof Texts]}
           </S.DropMenuItem>
         ))}
       </S.DropMenu>

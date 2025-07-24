@@ -137,7 +137,8 @@ const ParameterDropdown = ({
       maxItemsInGroup?: number,
     ): MixedDropdownItemProps[] => {
       const itemsNumber = dropdownItems?.length;
-      const groupedItems = {};
+      const groupedItems: Record<string, (ParameterItem | ParameterGroup)[]> =
+        {};
 
       for (let i = 0; i < itemsNumber; i += 1) {
         const item = dropdownItems[i];
@@ -178,7 +179,7 @@ const ParameterDropdown = ({
           resultItems.push(resultItem);
         });
         if (maxItemsInGroup && groupedItems[key].length > maxItemsInGroup) {
-          const anyItem = maxGroupedItems[0];
+          const anyItem = maxGroupedItems[0] as ParameterItem;
           resultItems.push({
             className: classNames,
             select: handleOnSetGroup,

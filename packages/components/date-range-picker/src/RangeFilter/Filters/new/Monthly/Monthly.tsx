@@ -142,6 +142,7 @@ const Monthly = ({
       ? Object.keys(value).filter((id) =>
           activeDays.every(
             (day) =>
+              // @ts-expect-error - requires type refactor
               !!value[id][day] &&
               haveActiveDaysCommonRange(value[id], activeDays),
           ),
@@ -158,7 +159,9 @@ const Monthly = ({
 
       if (dayKey instanceof Array) {
         dayKey.forEach((day) => {
+          // @ts-expect-error - requires type refactor
           updatedSchedule[guid][day] = {
+            // @ts-expect-error - requires type refactor
             ...value[guid][day],
             restricted: true,
             start: start ? dayjs(start).format(DEFAULT_TIME_FORMAT) : undefined,
@@ -167,7 +170,9 @@ const Monthly = ({
           };
         });
       } else {
+        // @ts-expect-error - requires type refactor
         updatedSchedule[guid][dayKey] = {
+          // @ts-expect-error - requires type refactor
           ...value[guid][dayKey],
           restricted: true,
           start: start ? dayjs(start).format(DEFAULT_TIME_FORMAT) : undefined,
@@ -182,7 +187,9 @@ const Monthly = ({
   );
   const getDayValue = useCallback(
     (dayKey: DayKey, guid: string) => {
+      // @ts-expect-error - requires type refactor
       if (typeof dayKey === 'number' && value[guid] && !!value[guid][dayKey]) {
+        // @ts-expect-error - requires type refactor
         return value[guid][dayKey];
       }
       return defaultDayValue;
@@ -194,7 +201,9 @@ const Monthly = ({
     (selectedMode: DateLimitMode, dayKeys: DayKey[], guid: string) => {
       const updatedSchedule = value;
       dayKeys.forEach((day) => {
+        // @ts-expect-error - requires type refactor
         updatedSchedule[guid][day] = {
+          // @ts-expect-error - requires type refactor
           ...value[guid][day],
           mode: selectedMode,
         };
@@ -208,6 +217,7 @@ const Monthly = ({
     (guid: string, activeDaysArray: DayKey[]) => {
       const updatedSchedule = value;
       activeDaysArray.forEach((activeDay: DayKey) => {
+        // @ts-expect-error - requires type refactor
         delete updatedSchedule[guid][activeDay];
       });
       onChange({ ...updatedSchedule });
@@ -237,6 +247,7 @@ const Monthly = ({
   const dayMonthFormatter = useCallback(
     (dayKey: DayKey) => {
       const locale = intl.locale.substring(0, 2);
+      // @ts-expect-error - requires type refactor
       return MONTH_DAYS(locale)[dayKey];
     },
     [intl],
@@ -272,6 +283,7 @@ const Monthly = ({
 
   const isDayRestricted = useCallback(
     (dayKey: DayKey) => {
+      // @ts-expect-error - requires type refactor
       return Object.keys(value).some((key: string) => !!value[key][dayKey]);
     },
     [value],
@@ -281,6 +293,7 @@ const Monthly = ({
     (dayKey: DayKey) => {
       const updatedSchedule = value;
       Object.keys(value).forEach((key) => {
+        // @ts-expect-error - requires type refactor
         delete updatedSchedule[key][dayKey];
       });
       excludeDayFromActive(dayKey);
@@ -383,9 +396,11 @@ const Monthly = ({
   const handleRangeAdd = useCallback(() => {
     const updatedDay = {};
     const guid = Object.keys(value).find((key) =>
+      // @ts-expect-error - requires type refactor
       activeDays.every((day) => value[key][day] === undefined),
     );
     activeDays.forEach((day) => {
+      // @ts-expect-error - requires type refactor
       updatedDay[day] = defaultDayValue;
     });
     const restOfScheduleObject = guid ? value[guid] : EMPTY_OBJECT;
@@ -417,6 +432,7 @@ const Monthly = ({
       activeDays.length === 1 &&
       errorTexts &&
       errorTexts[guid] &&
+      // @ts-expect-error - requires type refactor
       errorTexts[guid][activeDays[0]]
     );
   };

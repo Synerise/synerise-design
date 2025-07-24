@@ -97,7 +97,7 @@ export const Cascader = ({
   };
 
   const onCategoryClick = (category: Category) => {
-    const entered = {
+    const entered: Category = {
       id: category.id,
       name: category.name,
       path: category.path,

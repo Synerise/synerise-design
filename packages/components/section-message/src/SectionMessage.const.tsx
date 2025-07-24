@@ -9,7 +9,7 @@ import {
   WarningFillM,
 } from '@synerise/ds-icon';
 
-import { type SectionType } from '../SectionMessage.types';
+import { type SectionType } from './SectionMessage.types';
 
 export const ICONS: Record<SectionType, ReactNode> = {
   positive: <Check3M />,
@@ -22,3 +22,13 @@ export const ICONS: Record<SectionType, ReactNode> = {
 };
 
 export const DEFAULT_ICON = <WarningFillM />;
+
+export const SECTION_TYPES = [
+  'positive',
+  'notice',
+  'negative',
+  'neutral',
+  'supply',
+  'service',
+  'entity',
+] as const;

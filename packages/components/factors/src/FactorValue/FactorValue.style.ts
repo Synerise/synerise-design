@@ -13,7 +13,7 @@ const DEFAULT_WIDTH = {
 
 export const FactorInput = styled.div<{
   withoutTypeSelector: boolean;
-  inputTextType?: string;
+  inputTextType?: 'autocomplete' | 'default' | 'expansible';
   inputType?: string;
 }>`
   && {

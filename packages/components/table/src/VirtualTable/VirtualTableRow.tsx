@@ -64,7 +64,7 @@ function VirtualTableRow<T extends object>({
 }: VirtualTableRowProps<T>): ReactElement {
   const renderColumn = useCallback(
     (column: DSColumnType<T>, rowData: T, columnIndex: number) => {
-      if (rowData[EXPANDED_ROW_PROPERTY] && column.childRender) {
+      if (rowData[EXPANDED_ROW_PROPERTY as keyof T] && column.childRender) {
         return column.childRender(
           getValueFromPath(rowData, column.dataIndex),
           rowData,
@@ -138,7 +138,7 @@ function VirtualTableRow<T extends object>({
       {infiniteLoader('TOP')}
       <S.RowWrapper
         className={classNames('virtual-table-row', {
-          'ds-expanded-row': rowData[EXPANDED_ROW_PROPERTY],
+          'ds-expanded-row': rowData[EXPANDED_ROW_PROPERTY as keyof T],
         })}
         style={{ ...style, top }}
         onClick={(event): void => {
@@ -172,9 +172,10 @@ function VirtualTableRow<T extends object>({
                   'ant-table-cell-fix-left-first':
                     column.fixed === 'left' && column.fixedFirst,
                   'ds-expanded-row-first':
-                    rowData[EXPANDED_ROW_PROPERTY] && columnIndex === 0,
+                    rowData[EXPANDED_ROW_PROPERTY as keyof T] &&
+                    columnIndex === 0,
                   'ds-expanded-row-data':
-                    rowData[EXPANDED_ROW_PROPERTY] &&
+                    rowData[EXPANDED_ROW_PROPERTY as keyof T] &&
                     (firstWithoutSelectionAndStar ||
                       firstWithSelectionOrStar ||
                       firstWithSelectionAndStar),

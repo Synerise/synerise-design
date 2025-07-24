@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { type ReactNode, useMemo } from 'react';
 
 import Icon, {
   Check3M,
@@ -10,14 +10,14 @@ import Icon, {
 import * as S from './BroadcastBar.styles';
 import { type BroadcastBarTypes, type Props } from './BroadcastBar.types';
 
-const ICONS: Record<BroadcastBarTypes, React.ReactNode> = {
+const ICONS: Record<BroadcastBarTypes, ReactNode> = {
   success: <Check3M />,
   warning: <WarningFillM />,
   negative: <ErrorFillM />,
 };
 const DEFAULT_ICON = <WarningFillM />;
 
-const BroadcastBar: React.FC<Props> = ({
+const BroadcastBar = ({
   icon,
   type,
   description,
@@ -30,7 +30,7 @@ const BroadcastBar: React.FC<Props> = ({
   onCloseClick,
   text,
 }: Props) => {
-  const renderMessage = React.useMemo(() => {
+  const renderMessage = useMemo(() => {
     return (
       <S.AlertContent color={color} withLink={withLink}>
         <S.Text color={color}>
@@ -54,7 +54,7 @@ const BroadcastBar: React.FC<Props> = ({
     );
   }, [description, withEmphasis, withLink, text, color]);
 
-  const renderIcon = React.useMemo(() => {
+  const renderIcon = useMemo(() => {
     if (icon) {
       return icon;
     }

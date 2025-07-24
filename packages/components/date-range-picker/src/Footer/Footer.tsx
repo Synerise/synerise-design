@@ -9,6 +9,7 @@ import {
 import Icon, { ArrowRightS } from '@synerise/ds-icon';
 import Tooltip from '@synerise/ds-tooltip';
 
+import { type Texts } from '../DateRangePicker.types';
 import { isLifetime } from '../RelativeRangePicker/Elements/RangeDropdown/RangeDropdown';
 import * as CONST from '../constants';
 import fnsFormat from '../dateUtils/format';
@@ -59,7 +60,8 @@ const Footer = ({
       return (
         <S.ChosenRange className="ds-date-range-picker-value">
           {value?.translationKey
-            ? (texts[value.translationKey] ?? value.translationKey)
+            ? (texts[value.translationKey as keyof Texts] ??
+              value.translationKey)
             : value?.key || 'LIFETIME'}
         </S.ChosenRange>
       );

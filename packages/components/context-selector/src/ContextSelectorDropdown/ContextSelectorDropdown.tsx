@@ -36,6 +36,7 @@ import {
   type ContextItemsInSubGroup,
   type DropdownItemProps,
   type ListDivider,
+  isContextItemsInSubGroup,
 } from '../ContextSelector.types';
 import {
   DROPDOWN_HEIGHT,
@@ -161,7 +162,10 @@ const ContextSelectorDropdown = ({
       maxItemsInGroup?: number,
     ): DropdownItemProps[] => {
       const itemsNumber = dropdownItems?.length;
-      const groupedItems = {};
+      const groupedItems: Record<
+        string,
+        (ContextItemsInSubGroup | ContextGroup)[]
+      > = {};
 
       for (let i = 0; i < itemsNumber; i += 1) {
         const item = dropdownItems[i];
@@ -188,8 +192,8 @@ const ContextSelectorDropdown = ({
         const groupItems = maxItemsInGroup
           ? groupedItems[key].slice(0, maxItemsInGroup)
           : groupedItems[key];
-        groupItems.forEach((item: ContextItemsInSubGroup) => {
-          const resultItem = item.isGroup
+        groupItems.forEach((item: ContextItemsInSubGroup | ContextGroup) => {
+          const resultItem = isContextItemsInSubGroup(item)
             ? {
                 className: classNames,
                 item,
@@ -210,7 +214,7 @@ const ContextSelectorDropdown = ({
           resultItems.push(resultItem);
         });
         if (maxItemsInGroup && groupedItems[key].length > maxItemsInGroup) {
-          const anyItem = groupItems[0];
+          const anyItem = groupItems[0] as ContextItemsInSubGroup;
           resultItems.push({
             className: classNames,
             select: handleOnSetGroup,

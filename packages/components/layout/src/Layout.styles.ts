@@ -141,26 +141,33 @@ export const SidebarButton = styled.button<SidebarButtonProps>`
   visibility: visible;
   transition: all 0.3s ease;
   z-index: 1;
-  ${mediaQuery.to.medium`display: flex; opacity: 1; visibility: visible`};
+  ${(props) =>
+    mediaQuery.to
+      .medium`display: flex; ${props.theme.palette.white} opacity: 1; visibility: visible`};
 
   ${ArrowIcon} {
     transition: transform 0.3s ease;
   }
-  ${mediaQuery.to.medium`${(
-    props: SidebarButtonProps,
-  ): string | undefined | false =>
-    props.right && props.opened && 'left: -44px'}`};
-  ${mediaQuery.to.medium`${(
-    props: SidebarButtonProps,
-  ): string | undefined | false =>
-    !props.right && props.opened && 'right: -44px'}`};
+  ${(props) => mediaQuery.to.medium`
+    ${props.right && props.opened && 'left: -44px'}
+  `};
 
-  ${mediaQuery.to.small`${(
-    props: SidebarButtonProps,
-  ): string | undefined | false =>
-    props.right && props.bothOpened && 'transform: translateY(56px)'}`}
+  ${(props) =>
+    props.right &&
+    props.opened &&
+    mediaQuery.to.medium`
+    'left: -44px'}
+  `};
 
-  ${(props): FlattenSimpleInterpolation | false =>
+  ${(props) =>
+    !props.right && props.opened && mediaQuery.to.medium`right: -44px`};
+
+  ${(props) =>
+    props.right &&
+    props.bothOpened &&
+    mediaQuery.to.small`transform: translateY(56px)`}
+
+  ${(props) =>
     props.opened &&
     css`
       right: ${props.right ? 'auto' : '-4px'};
@@ -203,21 +210,22 @@ export const LayoutSidebar = styled.div<LayoutSidebarProps>`
   max-width: 100%;
 
   ${mediaQuery.to.medium`flex: 0 0 auto;`};
-  ${mediaQuery.from
-    .medium`flex: 0 1 ${(props: LayoutSidebarProps): string => `${props.openedWidth}px`}; width: ${(
-    props: LayoutSidebarProps,
-  ): string => `${props.openedWidth}px;`}`};
-  ${mediaQuery.from.medium`max-width: ${(props: LayoutSidebarProps): string =>
-    props.opened ? `${props.openedWidth}px` : '0px'};`};
-  ${mediaQuery.from.medium`
+  ${(props) =>
+    mediaQuery.from.medium`
+    flex: 0 1 ${props.openedWidth}px;
+    width: ${props.openedWidth}px;`};
+
+  ${(props) => mediaQuery.from.medium`
+    max-width: ${props.opened ? props.openedWidth : 0}px`};
+  ${(props) => mediaQuery.from.medium`
     &.slide-enter {
       max-width: 0;
     }
     &.slide-enter.slide-enter-active {
-      max-width: ${(props: LayoutSidebarProps): string => `${props.openedWidth}px`};
+      max-width: ${props.openedWidth}px;
     }
     &.slide-leave {
-      max-width: ${(props: LayoutSidebarProps): string => `${props.openedWidth}px`};
+      max-width: ${props.openedWidth}px;
     }
     &.slide-leave.slide-leave-active {
       max-width: 0;
@@ -257,14 +265,8 @@ export const LayoutSidebarWrapper = styled.div<LayoutSidebarWrapperProps>`
       background-color: ${(props): string => props.theme.palette['grey-600']};
       left: ${(props): string => (props.right ? '-32px' : 'auto')};
       right: ${(props): string => (props.right ? 'auto' : '-32px')};
-      ${mediaQuery.to.medium`${(
-        props: SidebarButtonProps,
-      ): string | undefined | false =>
-        props.right && props.opened && 'left: -44px'}`};
-      ${mediaQuery.to.medium`${(
-        props: SidebarButtonProps,
-      ): string | undefined | false =>
-        !props.right && props.opened && 'right: -44px'}`};
+      ${(props) => mediaQuery.to.medium`${props.right && props.opened && 'left: -44px'}`};
+      ${(props) => mediaQuery.to.medium`${!props.right && props.opened && 'right: -44px'}`};
 
     }
   }

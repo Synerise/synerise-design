@@ -30,6 +30,8 @@ export const ALL_FACTOR_TYPES = [
 export type FactorType = LiteralStringUnion<(typeof ALL_FACTOR_TYPES)[number]>;
 export type DefinedFactorTypes = (typeof ALL_FACTOR_TYPES)[number];
 
+export type TupleType = [DefinedFactorTypes, SelectedFactorType];
+
 export type RelativeDateUnit = Exclude<RelativeUnits, 'SINCE'>;
 export type RelativeTimeRelation = 'BEFORE' | 'AFTER';
 export type RelativeDateValueType = {
@@ -96,22 +98,32 @@ export type SelectedFactorType = {
   icon: ReactNode;
   component: ComponentType<FactorValueComponentProps>;
 };
-export type RelativeDateFactorTexts = {
-  triggerValue: string;
-  triggerPlaceholder: string;
-  currentDatetime: ReactNode;
-  seconds: string;
-  minutes: string;
-  hours: string;
-  days: string;
-  weeks: string;
-  months: string;
-  years: string;
-  before: string;
-  after: string;
-  apply: ReactNode;
-  cancel: ReactNode;
+export const RelativeDateKeysString = [
+  'triggerValue',
+  'triggerPlaceholder',
+  'seconds',
+  'minutes',
+  'hours',
+  'days',
+  'weeks',
+  'months',
+  'years',
+  'before',
+  'after',
+] as const;
+export const RelativeDateKeysReactNode = [
+  'currentDatetime',
+  'apply',
+  'cancel',
+] as const;
+
+export type RelativeDateFactorTextsString = {
+  [K in (typeof RelativeDateKeysString)[number]]: string;
 };
+export type RelativeDateFactorTexts = RelativeDateFactorTextsString & {
+  [K in (typeof RelativeDateKeysReactNode)[number]]: ReactNode;
+};
+
 export type FactorsTexts = {
   dateRangePicker: DateRangeTexts;
   datePicker: {
@@ -173,6 +185,10 @@ export type FactorTypeMapping = Record<
   DefinedFactorTypes,
   Partial<SelectedFactorType>
 >;
+export type MergedFactorTypeMapping = Record<
+  DefinedFactorTypes,
+  SelectedFactorType
+>;
 
 type InputPropKeys = 'icon1' | 'icon1Tooltip' | 'icon2' | 'icon2Tooltip';
 export type ExtraPropsMapping = {
@@ -211,7 +227,7 @@ export type FactorsProps = {
   onChangeValue: (value: FactorValueType) => void;
   value: FactorValueType;
   arrayProps?: ArrayProps;
-  textType?: LiteralStringUnion<'autocomplete' | 'expansible' | 'default'>;
+  textType?: 'autocomplete' | 'expansible' | 'default';
   autoResize?: AutoResizeProp;
   relativeDateProps?: {
     triggerValueFormatter?: (value: RelativeDateValueType) => string;

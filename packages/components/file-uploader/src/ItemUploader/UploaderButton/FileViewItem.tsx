@@ -1,31 +1,12 @@
 import React, { useState } from 'react';
 import { FormattedMessage } from 'react-intl';
 
-import Icon, {
-  Close3M,
-  FileM,
-  FileTypeTextM,
-  RepeatM,
-} from '@synerise/ds-icon';
+import Icon, { Close3M, FileM, RepeatM } from '@synerise/ds-icon';
 import Tooltip from '@synerise/ds-tooltip';
 
 import { type FileViewAvatarProps } from '../../AvatarUploader/FileViewAvatar/FileViewAvatar.types';
+import { ICON_MAP, isPreviewableMimeType } from './FileViewItem.const';
 import * as S from './FileViewItem.styles';
-
-const previewableMimeTypes = [
-  'image/png',
-  'image/gif',
-  'image/jpeg',
-  'image/svg+xml',
-  'text/csv',
-];
-const mapperOfIcons = {
-  'image/png': <FileTypeTextM />,
-  'image/gif': <FileTypeTextM />,
-  'image/jpeg': <FileTypeTextM />,
-  'image/svg+xml': <FileTypeTextM />,
-  'text/csv': <FileTypeTextM />,
-};
 
 const FileViewItem = ({
   data,
@@ -54,7 +35,7 @@ const FileViewItem = ({
   const hasError = !!error;
   const hasProgress = typeof progress === 'number';
   const [removeButtonPressed, removeButtonSetPressed] = useState(false);
-  const handleRemove = (): void => {
+  const handleRemove = () => {
     onRemove && onRemove();
     removeButtonSetPressed(false);
   };
@@ -69,9 +50,9 @@ const FileViewItem = ({
           removable={removable}
           type="button"
         >
-          {previewableMimeTypes.indexOf(file.type) > -1 ? (
+          {isPreviewableMimeType(file.type) ? (
             <S.PreviewImage>
-              <Icon component={mapperOfIcons[file.type]} size={20} />
+              <Icon component={ICON_MAP[file.type]} size={20} />
             </S.PreviewImage>
           ) : (
             <S.PlaceholderImage>

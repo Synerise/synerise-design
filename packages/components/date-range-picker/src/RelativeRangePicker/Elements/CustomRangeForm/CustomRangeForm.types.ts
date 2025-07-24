@@ -12,7 +12,7 @@ import {
 export type Props = {
   ranges?: DateRange[];
   currentRange: RelativeDateRange;
-  currentGroup: string | null;
+  currentGroup: RelativeMode | null;
   handleChange: (value: DateRange) => void;
   handleDurationValueChange: (value?: string | number | null) => void;
   handleOffsetValueChange: (value?: string | number | null) => void;

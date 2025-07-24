@@ -4,18 +4,20 @@ import { type ThemePropsVars } from '@synerise/ds-core';
 
 import { type BadgeStatus } from './CardBadge.types';
 
-const background = {
+const background: Record<BadgeStatus, string> = {
   success: 'green-600',
   warning: 'yellow-600',
   error: 'red-600',
   default: 'transparent',
+  checked: 'transparent',
 };
 
-const color = {
+const color: Record<BadgeStatus, string> = {
   success: 'white',
   warning: 'white',
   error: 'white',
   default: 'grey-400',
+  checked: 'grey-400',
 };
 
 const boxShadow = (props: {
@@ -39,6 +41,5 @@ export const CardBadge = styled.div<{ status: BadgeStatus }>`
   border-radius: 50%;
   &&& svg {
     color: ${(props): string => props.theme.palette[color[props.status]]};
-    fill: ${(props): string => props.theme.palette[color[props.status]]};
   }
 `;

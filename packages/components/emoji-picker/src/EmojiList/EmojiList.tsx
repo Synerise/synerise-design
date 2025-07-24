@@ -1,6 +1,5 @@
 import React, { type UIEvent, useMemo, useRef } from 'react';
 import type { FixedSizeList } from 'react-window';
-import { getEmojisByGroup } from 'unicode-emoji-utils';
 
 import EmptyState, { EmptyStatesSize } from '@synerise/ds-empty-states';
 import { SearchNoResultsL } from '@synerise/ds-icon';
@@ -15,7 +14,7 @@ import type {
   EmojiListProps,
   RowItemProps,
 } from './EmojiList.types';
-import { createItemData } from './EmojiList.utils';
+import { createItemData, getEmojisByGroup } from './EmojiList.utils';
 import { EmojiListItem } from './EmojiListItem';
 
 export const EmojiList = ({

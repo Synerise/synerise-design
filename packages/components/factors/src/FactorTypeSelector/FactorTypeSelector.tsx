@@ -8,7 +8,7 @@ import Tooltip from '@synerise/ds-tooltip';
 
 import {
   ALL_FACTOR_TYPES,
-  type FactorType,
+  type DefinedFactorTypes,
   type FactorTypeSelectorProps,
 } from '../Factors.types';
 import * as S from './FactorTypeSelector.styles';
@@ -32,26 +32,29 @@ const FactorTypeSelector = ({
       );
     }
 
-    return (list as FactorType[]).map((type: FactorType) => (
-      <ListItem
-        className="ds-factor-type"
-        key={factorTypeMapping[type].name}
-        prefixel={<Icon component={factorTypeMapping[type].icon} />}
-        suffixel={
-          type === selectedFactorType ? (
-            <Icon component={<CheckS />} color={theme.palette['green-600']} />
-          ) : (
-            ''
-          )
-        }
-        onClick={() => {
-          setSelectedFactorType(type);
-          setDropdownOpen(false);
-        }}
-      >
-        {texts[type]}
-      </ListItem>
-    ));
+    return (list as DefinedFactorTypes[]).map((type) => {
+      const typeData = factorTypeMapping[type];
+      return (
+        <ListItem
+          className="ds-factor-type"
+          key={typeData.name}
+          prefixel={<Icon component={typeData.icon} />}
+          suffixel={
+            type === selectedFactorType ? (
+              <Icon component={<CheckS />} color={theme.palette['green-600']} />
+            ) : (
+              ''
+            )
+          }
+          onClick={() => {
+            setSelectedFactorType(type);
+            setDropdownOpen(false);
+          }}
+        >
+          {texts[type]}
+        </ListItem>
+      );
+    });
   }, [
     availableFactorTypes,
     unavailableFactorTypes,
@@ -77,6 +80,7 @@ const FactorTypeSelector = ({
   }
 
   return (
+    // @ts-expect-error selectedFactorType can be any string - requires type refactor in analytics-core
     <Tooltip title={texts[selectedFactorType]} trigger={['hover']}>
       <Dropdown
         open={dropdownOpen}

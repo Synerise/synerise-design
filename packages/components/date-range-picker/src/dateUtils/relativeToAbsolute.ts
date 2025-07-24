@@ -25,16 +25,20 @@ const relativeToAbsolute = (range: RelativeDateRange): DateFilter => {
 
   if (future) {
     left = legacyParse(
+      // @ts-expect-error - requires type refactor
       ADD[offset.type](START_OF[offset.type](now), offset.value),
     );
     right = legacyParse(
+      // @ts-expect-error - requires type refactor
       ADD[duration.type](END_OF[duration.type](left), duration.value - 1),
     );
   } else {
     right = legacyParse(
+      // @ts-expect-error - requires type refactor
       ADD[offset.type](END_OF[offset.type](now), -offset.value),
     );
     left = legacyParse(
+      // @ts-expect-error - requires type refactor
       ADD[duration.type](START_OF[duration.type](right), 1 - duration.value),
     );
   }

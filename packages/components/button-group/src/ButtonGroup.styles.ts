@@ -1,17 +1,24 @@
-import styled, {
-  type FlattenSimpleInterpolation,
-  type Keyframes,
-  css,
-  keyframes,
-} from 'styled-components';
+import styled, { type Keyframes, css, keyframes } from 'styled-components';
 
 import { type ThemeProps } from '@synerise/ds-core';
+import { type LiteralStringUnion } from '@synerise/ds-utils';
 
-const mapButtonsPosition = {
-  left: 'flex-start',
-  right: 'flex-end',
-  center: 'center',
+const getButtonsPosition = (position: string) => {
+  const mapButtonsPosition = {
+    left: 'flex-start',
+    right: 'flex-end',
+    center: 'center',
+  };
+  switch (position) {
+    case 'left':
+    case 'right':
+    case 'center':
+      return mapButtonsPosition[position];
+    default:
+      return '';
+  }
 };
+
 export const focusAnimation = ({ theme }: ThemeProps): Keyframes => keyframes`
   0% {
       box-shadow: inset 0 0 0 1px inherit;
@@ -27,22 +34,21 @@ export const focusAnimation = ({ theme }: ThemeProps): Keyframes => keyframes`
 export const Container = styled.div<{
   options?: boolean;
   fullWidth?: boolean;
-  buttonsPosition: string | 'left' | 'center' | 'right';
+  buttonsPosition: LiteralStringUnion<'left' | 'center' | 'right'>;
   disabled?: boolean;
   splitMode?: boolean;
   compact?: boolean;
   error?: boolean;
 }>`
-  ${(props): string => (props.fullWidth ? 'width: 100%;' : '')};
+  ${(props) => (props.fullWidth ? 'width: 100%;' : '')};
   .ant-btn-group {
     width: 100%;
     display: flex;
-    gap: ${(props): string => (props.compact ? '0px' : '8px')};
+    gap: ${(props) => (props.compact ? '0px' : '8px')};
     flex-direction: row;
     align-items: stretch;
-    justify-content: ${(props): string =>
-      mapButtonsPosition[props.buttonsPosition]};
-    ${(props): FlattenSimpleInterpolation | false =>
+    justify-content: ${(props) => getButtonsPosition(props.buttonsPosition)};
+    ${(props) =>
       !!props.splitMode &&
       !props.error &&
       css`
@@ -100,7 +106,7 @@ export const Container = styled.div<{
           }
         }
       `};
-    ${(props): FlattenSimpleInterpolation | false =>
+    ${(props) =>
       !!props.splitMode &&
       !!props.error &&
       css`
@@ -148,8 +154,8 @@ export const Container = styled.div<{
 
     & > .ant-btn {
       width: auto;
-      flex: ${(props): string => (props.fullWidth ? '1' : 'none')};
-      border-radius: ${(props): string => (props.compact ? '0px' : '3px')};
+      flex: ${(props) => (props.fullWidth ? '1' : 'none')};
+      border-radius: ${(props) => (props.compact ? '0px' : '3px')};
 
       &.ant-btn-primary {
         &:focus {
@@ -166,5 +172,5 @@ export const Title = styled.h4`
 
 export const Description = styled.p`
   margin: 8px 0 0;
-  color: ${(props): string => props.theme.palette['grey-500']};
+  color: ${(props) => props.theme.palette['grey-500']};
 `;

@@ -16,3 +16,10 @@ export interface FileViewAvatarProps {
   onRemove?: () => void;
   description?: ReactNode;
 }
+
+export type PreviewableMimeType =
+  | 'image/png'
+  | 'image/gif'
+  | 'image/jpeg'
+  | 'image/svg+xml'
+  | 'text/csv';

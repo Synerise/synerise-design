@@ -1,7 +1,4 @@
-import styled, {
-  type FlattenSimpleInterpolation,
-  css,
-} from 'styled-components';
+import styled, { css } from 'styled-components';
 
 import { IconContainer } from '@synerise/ds-icon';
 
@@ -18,7 +15,7 @@ export const TextWrapper = styled.div<{ labelPosition: 'bottom' | 'right' }>`
   line-height: 16px;
   max-width: 440px;
   word-wrap: break-word;
-  justify-content: ${(props): string =>
+  justify-content: ${(props) =>
     props.labelPosition === 'bottom' ? 'center' : 'flex-start'};
   text-align: center;
 `;
@@ -28,13 +25,12 @@ export const HeaderWrapper = styled.div<{
 }>`
   display: flex;
   line-height: 16px;
-  color: ${(props): string => props.theme.palette['grey-800']};
-  font-size: ${(props): string =>
-    FontSize[props.fontSize as string] || FONT_SIZE_DEFAULT}px;
+  color: ${(props) => props.theme.palette['grey-800']};
+  font-size: ${(props) =>
+    props.fontSize ? FontSize[props.fontSize] : FONT_SIZE_DEFAULT}px;
   font-weight: 500;
-  margin-top: ${(props): string =>
-    props.size === AlertSize.SMALL ? '0px' : '30px'};
-  padding: ${(props): string =>
+  margin-top: ${(props) => (props.size === AlertSize.SMALL ? '0px' : '30px')};
+  padding: ${(props) =>
     props.fontSize === AlertSize.SMALL ? '4px 0 12px' : '8px 0 18px'};
 `;
 export const ButtonWrapper = styled.div`
@@ -45,11 +41,10 @@ export const AlertWrapper = styled.div<{
   mode?: 'absolute';
 }>`
   display: flex;
-  flex-direction: ${(props): string =>
-    mapElementsPosition[props.labelPosition]};
+  flex-direction: ${(props) => mapElementsPosition[props.labelPosition]};
   align-items: center;
   justify-content: center;
-  ${(props): FlattenSimpleInterpolation | false =>
+  ${(props) =>
     props.mode === 'absolute' &&
     css`
       position: absolute;
@@ -62,9 +57,7 @@ export const AlertIconContainer = styled.div`
 `;
 export const StatusIconContainer = styled.div<{
   iconColor: string;
-  background: string;
 }>`
-  background-color: ${(props): string => props.theme.palette[props.background]};
   width: 40px;
   height: 40px;
   border-radius: 20px;
@@ -76,7 +69,7 @@ export const StatusIconContainer = styled.div<{
 
   && {
     ${IconContainer} {
-      fill: ${(props): string => props.theme.palette[props.iconColor]};
+      fill: ${(props) => props.theme.palette[props.iconColor]};
     }
   }
 `;

@@ -27,7 +27,19 @@ const sizerStyle: CSSProperties = {
   whiteSpace: 'pre',
 };
 
-const FONT_CSS_PROPS: (keyof CSSProperties)[] = [
+type TextCSSPropertyKeys = keyof Pick<
+  CSSProperties,
+  | 'fontSize'
+  | 'fontFamily'
+  | 'fontWeight'
+  | 'fontFeatureSettings'
+  | 'fontStyle'
+  | 'letterSpacing'
+  | 'fontStretch'
+  | 'textTransform'
+>;
+
+const FONT_CSS_PROPS: Array<TextCSSPropertyKeys> = [
   'fontSize',
   'fontFamily',
   'fontWeight',

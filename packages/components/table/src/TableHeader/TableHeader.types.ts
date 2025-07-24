@@ -23,6 +23,6 @@ export type Props<T extends object> = {
   ) => ReactNode;
   hideTitlePart?: boolean;
   dataSourceTotalCount?: number;
-  childrenColumnName: string;
+  childrenColumnName: keyof T;
   isLoading?: boolean;
 };

@@ -7,7 +7,7 @@ export type RangeFilterStatusProps = {
   filter: DateFilter | undefined;
   disabled: boolean;
   label: ReactNode;
-  texts: Pick<Texts, 'filter' | 'change' | 'remove'>;
+  texts: Texts;
   onClick: () => void;
   onFilterRemove: () => void;
 };

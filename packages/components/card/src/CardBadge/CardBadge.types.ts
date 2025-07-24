@@ -1,4 +1,4 @@
-import type React from 'react';
+import type { ReactNode } from 'react';
 
 export type BadgeStatus =
   | 'success'
@@ -8,6 +8,6 @@ export type BadgeStatus =
   | 'default';
 
 export type CardBadgeProps = {
-  icon: React.ReactNode;
+  icon: ReactNode;
   status?: BadgeStatus;
 };

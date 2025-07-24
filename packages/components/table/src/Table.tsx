@@ -101,8 +101,8 @@ const DSTable = <T extends object>(props: DSTableProps<T>) => {
         locale={tableLocale}
         renderSelectionTitle={renderSelectionTitle}
         hideTitlePart={hideTitlePart}
-        childrenColumnName={getChildrenColumnName(
-          expandable?.childrenColumnName,
+        childrenColumnName={getChildrenColumnName<T>(
+          expandable?.childrenColumnName as keyof T,
         )}
         isLoading={loading}
       />

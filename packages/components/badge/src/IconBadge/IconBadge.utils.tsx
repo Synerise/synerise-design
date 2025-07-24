@@ -14,6 +14,9 @@ export const hasCustomIcon = (
 };
 
 export const renderStatusIcon = (status: StatusIconBadgeProps['status']) => {
+  if (!status || status === 'inactive') {
+    return null;
+  }
   return STATUS_ICONS[status] ? (
     <S.Icon status={status} {...STATUS_ICONS[status]} />
   ) : null;

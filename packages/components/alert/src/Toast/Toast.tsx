@@ -74,8 +74,8 @@ const Toast = ({
     if (icon) {
       return icon;
     }
-    if (ICONS[type]) {
-      return ICONS[type];
+    if (ICONS[type as ToastType]) {
+      return ICONS[type as ToastType];
     }
     return DEFAULT_ICON;
   }, [icon, type]);

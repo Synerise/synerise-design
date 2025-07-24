@@ -1,8 +1,10 @@
-import type React from 'react';
 import MomentLocaleUtils from 'react-day-picker/moment';
 import type { LocaleUtils } from 'react-day-picker/types';
 
-const WEEKDAYS_LONG = {
+const LOCALES = ['en', 'pl'];
+type Locale = (typeof LOCALES)[number];
+
+const WEEKDAYS_LONG: Record<Locale, string[]> = {
   en: [
     'Sunday',
     'Monday',
@@ -23,12 +25,12 @@ const WEEKDAYS_LONG = {
   ],
 };
 
-const WEEKDAYS_SHORT = {
+const WEEKDAYS_SHORT: Record<Locale, string[]> = {
   en: ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa'],
   pl: ['Nd', 'Pn', 'Wt', 'Śr', 'Cz', 'Pt', 'Sb'],
 };
 
-const MONTHS = {
+const MONTHS: Record<Locale, string[]> = {
   en: [
     'Jan',
     'Feb',
@@ -59,7 +61,7 @@ const MONTHS = {
   ],
 };
 
-const FIRST_DAY = {
+const FIRST_DAY: Record<Locale, number> = {
   en: 0,
   pl: 1,
 };
@@ -67,8 +69,12 @@ const FIRST_DAY = {
 const DEFAULT_LOCALE = 'en';
 const DEFAULT_FORMAT = 'MMM DD, YYYY';
 
-const getValidLocale = (locale: string): string =>
-  Object.keys(MONTHS).includes(locale) ? locale : DEFAULT_LOCALE;
+const isValidLocale = (locale: string): locale is Locale => {
+  return LOCALES.includes(locale);
+};
+
+const getValidLocale = (locale: string): Locale =>
+  isValidLocale(locale) ? locale : DEFAULT_LOCALE;
 
 function formatDay(
   d: Date,
@@ -85,7 +91,7 @@ function formatMonthTitle(d: Date, locale = DEFAULT_LOCALE): string {
 }
 
 function formatWeekdayShort(
-  i: React.ReactText,
+  i: number,
   locale: string = DEFAULT_LOCALE,
 ): string {
   return WEEKDAYS_SHORT[getValidLocale(locale)][i];

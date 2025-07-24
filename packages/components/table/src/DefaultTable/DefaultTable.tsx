@@ -39,8 +39,8 @@ function DefaultTable<T extends object & RowType<T>>(props: DSTableProps<T>) {
   const previousColumns = usePrevious(columns);
   const sortStateApi = useSortState(columnsToSortState(columns), onSort);
   const { getRowStarColumn } = useRowStar(rowStar?.starredRowKeys || []);
-  const childrenColumnName = getChildrenColumnName(
-    expandable?.childrenColumnName,
+  const childrenColumnName = getChildrenColumnName<T>(
+    expandable?.childrenColumnName as keyof T,
   );
 
   const { getRowKey } = useRowKey(rowKey);

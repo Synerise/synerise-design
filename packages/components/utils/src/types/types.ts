@@ -33,3 +33,10 @@ export type RequiredProps<BaseType, PropName extends keyof BaseType> = Required<
   Pick<BaseType, PropName>
 > &
   Omit<BaseType, PropName>;
+
+/**
+ * Literal string union of keys from object
+ */
+export type ObjectStringKeys<T> = {
+  [K in keyof T]: T[K] extends string ? K : never;
+}[keyof T];

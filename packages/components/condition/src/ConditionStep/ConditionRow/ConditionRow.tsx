@@ -146,8 +146,8 @@ export const ConditionRow = ({
               withRemoveTrigger={lastConditionWrapper === 'parameter'}
             >
               <Factors
-                selectedFactorType=""
-                defaultFactorType=""
+                selectedFactorType="parameter"
+                defaultFactorType="parameter"
                 value=""
                 customFactorValueComponents={
                   parameterSelectorComponent && {
@@ -215,8 +215,8 @@ export const ConditionRow = ({
             >
               {conditionFactor?.withCustomFactor || (
                 <Factors
-                  selectedFactorType=""
-                  defaultFactorType=""
+                  selectedFactorType="text"
+                  defaultFactorType="text"
                   value=""
                   customFactorValueComponents={
                     factorParameterSelectorComponent && {

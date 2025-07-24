@@ -8,7 +8,8 @@ export type StarCellProps = WithHTMLAttributes<
     children: ReactNode | ReactNode[];
     active?: boolean;
     onClick?: () => void;
-    theme: {
+    /** @deprecated theme will be read from Theme Provider */
+    theme?: {
       [key: string]: string;
     };
     starTooltip?: ReactNode;

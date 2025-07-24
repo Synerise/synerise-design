@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useMemo, useState } from 'react';
 
 import Modal from '@synerise/ds-modal';
 import SearchInput from '@synerise/ds-search/dist/Elements/SearchInput/SearchInput';
@@ -6,7 +6,7 @@ import SearchInput from '@synerise/ds-search/dist/Elements/SearchInput/SearchInp
 import VirtualTable from '../../../VirtualTable/VirtualTable';
 import { type DataSourceType, type ModalProps } from './Modal.types';
 
-const DetailsModal: React.FC<ModalProps<DataSourceType>> = ({
+const DetailsModal = ({
   visible,
   hide,
   items,
@@ -14,10 +14,10 @@ const DetailsModal: React.FC<ModalProps<DataSourceType>> = ({
   renderItem,
   labelKey,
   loading,
-}) => {
-  const [searchQuery, setSearchQuery] = React.useState('');
+}: ModalProps<DataSourceType>) => {
+  const [searchQuery, setSearchQuery] = useState('');
 
-  const columns = React.useMemo(
+  const columns = useMemo(
     () => [
       {
         dataIndex: labelKey,
@@ -28,7 +28,7 @@ const DetailsModal: React.FC<ModalProps<DataSourceType>> = ({
     [renderItem, labelKey],
   );
 
-  const filteredItems = React.useMemo(() => {
+  const filteredItems = useMemo(() => {
     return searchQuery !== ''
       ? items.filter((item) =>
           item[labelKey].toLowerCase().includes(searchQuery.toLowerCase()),

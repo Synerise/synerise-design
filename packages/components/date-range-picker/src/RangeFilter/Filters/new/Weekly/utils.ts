@@ -23,7 +23,7 @@ export const haveActiveDaysCommonRange = (
   let previousDay: DayOptions | undefined;
   const activeDaysHaveDifferentRanges = activeDaysArray.some(
     (dayIndex): boolean => {
-      const currentDay = days[dayIndex as number];
+      const currentDay = days[dayIndex as DayOfWeekIndex];
       if (!currentDay) {
         return true;
       }
@@ -50,8 +50,9 @@ export const canAddAnotherRange = (
     Object.keys(schedule).length < maxRanges ||
     Object.keys(schedule).some(
       (key) =>
-        activeDays.every((day) => schedule[key][day] === undefined) &&
-        !haveActiveDaysCommonRange(schedule[key], activeDays),
+        activeDays.every(
+          (day) => schedule[key][day as DayOfWeekIndex] === undefined,
+        ) && !haveActiveDaysCommonRange(schedule[key], activeDays),
     )
   );
 };

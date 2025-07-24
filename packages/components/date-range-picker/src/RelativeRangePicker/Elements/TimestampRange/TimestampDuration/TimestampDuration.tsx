@@ -3,6 +3,7 @@ import React from 'react';
 import InputNumber from '@synerise/ds-input-number';
 import Select from '@synerise/ds-select';
 
+import { type Texts } from '../../../../DateRangePicker.types';
 import * as CONST from '../../../../constants';
 import { DURATION_MODIFIERS } from '../../../../constants';
 import * as S from '../../../RelativeRangePicker.styles';
@@ -66,7 +67,7 @@ const TimestampDuration: React.FC<Props> = ({
         >
           {CONST.RELATIVE_UNITS.map((type) => (
             <Select.Option key={type} value={type}>
-              {texts[type.toLowerCase()]}
+              {texts[type.toLowerCase() as keyof Texts]}
             </Select.Option>
           ))}
         </Select>

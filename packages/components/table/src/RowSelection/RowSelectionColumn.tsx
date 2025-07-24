@@ -22,7 +22,7 @@ export function RowSelectionColumn<T extends object & RowType<T>>({
 }: RowSelectionProps<T>) {
   const { getRowKey } = useRowKey(rowKey);
   const recordKey = getRowKey(record);
-  const rowChildren = record[childrenColumnName];
+  const rowChildren = record[childrenColumnName] as T[] | undefined;
 
   const isSelectable = useCallback(
     (item: T) => isRecordSelectable(item, checkRowSelectionStatus),
