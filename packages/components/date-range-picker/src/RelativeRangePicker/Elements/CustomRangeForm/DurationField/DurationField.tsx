@@ -5,6 +5,7 @@ import React, { useEffect } from 'react';
 import InputNumber from '@synerise/ds-input-number';
 import Select from '@synerise/ds-select';
 
+import { type Texts } from '../../../../DateRangePicker.types';
 import {
   RANGES_MODE,
   RELATIVE_DURATION_MAX,
@@ -63,7 +64,7 @@ const DurationField = ({
         >
           {((rangeUnits || RELATIVE_UNITS) as RelativeUnits[]).map((type) => (
             <Select.Option key={type} value={type}>
-              {texts[type.toLowerCase()]}
+              {texts[type.toLowerCase() as keyof Texts]}
             </Select.Option>
           ))}
         </Select>

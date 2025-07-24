@@ -15,7 +15,7 @@ export type LabelsWithShowMoreProps<T extends object> = WithHTMLAttributes<
   {
     items: T[];
     numberOfVisibleItems: number;
-    labelKey: string;
+    labelKey: keyof T;
     renderItem: (label: string, item: T) => JSX.Element | Component;
     texts: ShowMoreTexts;
     loading?: boolean;

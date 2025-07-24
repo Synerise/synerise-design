@@ -5,7 +5,7 @@ import Description, { DescriptionRow } from '@synerise/ds-description';
 import { type ObjectSummaryProps } from './ObjectSummary.types';
 
 const ObjectSummary = ({ inputObject }: ObjectSummaryProps) => {
-  const keys = Object.keys(inputObject);
+  const keys = Object.keys(inputObject) as Array<keyof typeof inputObject>;
   return (
     <Description>
       {keys.map((key) => (

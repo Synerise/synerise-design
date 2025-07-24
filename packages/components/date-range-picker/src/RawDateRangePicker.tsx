@@ -19,7 +19,11 @@ import {
   PopupWrapper,
   Separator,
 } from './DateRangePicker.styles';
-import type { AddonType, DateRangePickerProps } from './DateRangePicker.types';
+import type {
+  AddonType,
+  DateRangePickerProps,
+  Texts,
+} from './DateRangePicker.types';
 import Footer from './Footer/Footer';
 import RangeFilter from './RangeFilter/RangeFilter';
 import {
@@ -288,7 +292,8 @@ export const RawDateRangePicker = ({
               handleAddonCollapse(addonKey, expanded)
             }
             collapsedSummary={
-              rangeTranslationKey && allTexts[rangeTranslationKey]
+              rangeTranslationKey &&
+              allTexts[rangeTranslationKey as keyof Texts]
             }
           />
         ),

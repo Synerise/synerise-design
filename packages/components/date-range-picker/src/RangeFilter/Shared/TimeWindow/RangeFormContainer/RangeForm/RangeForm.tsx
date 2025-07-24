@@ -10,6 +10,7 @@ import Slider from '@synerise/ds-slider';
 import TimePicker from '@synerise/ds-time-picker';
 
 import { getDisabledTimeOptions } from '../../../../../RangePicker/utils';
+import { type TimeWindowTexts } from '../../TimeWindow.types';
 import {
   FORM_MODES,
   RANGE_DISPLAY_MODES,
@@ -232,8 +233,8 @@ const RangeForm = ({
   };
 
   const getModeLabel = (modeName: DateLimitMode) => {
-    if (texts[modeName.toLocaleLowerCase()]) {
-      return texts[modeName.toLocaleLowerCase()];
+    if (texts[modeName.toLocaleLowerCase() as keyof TimeWindowTexts]) {
+      return texts[modeName.toLocaleLowerCase() as keyof TimeWindowTexts];
     }
     return intl.formatMessage(RANGE_FORM_INTL_KEYS[modeName]);
   };

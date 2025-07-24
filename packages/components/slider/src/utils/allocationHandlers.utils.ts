@@ -20,7 +20,7 @@ export const getBlockedHandlersKeys = (handlers?: HandlerConfig) => {
   }
 
   const blockedHandlersKeys = Object.keys(handlers).filter(
-    (handlerKey) => handlers[handlerKey].blocked,
+    (handlerKey) => handlers[parseInt(handlerKey)].blocked,
   );
 
   return blockedHandlersKeys.map(Number);

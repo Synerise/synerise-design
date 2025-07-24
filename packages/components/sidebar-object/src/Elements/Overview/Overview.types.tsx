@@ -12,9 +12,9 @@ export type OverviewObjectProps = {
   contentTags: ReactNode;
   descriptionProps?: SubtleTextAreaProps;
   folders: FolderItem[];
-  foldersFilterKey?: string;
-  foldersDisplayKey?: string;
-  foldersIdKey?: string;
+  foldersFilterKey?: keyof FolderItem;
+  foldersDisplayKey?: keyof FolderItem;
+  foldersIdKey?: keyof FolderItem;
   parentFolder: FolderItem;
   texts: OverviewTexts;
   textDescription: string;

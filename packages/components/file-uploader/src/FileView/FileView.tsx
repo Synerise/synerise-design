@@ -8,57 +8,15 @@ import Icon, {
   Check3M,
   Close3M,
   FileM,
-  FileTypeHtml,
-  FileTypeImage,
-  FileTypeMp3,
-  FileTypePdf,
-  FileTypePptx,
-  FileTypeSvg,
-  FileTypeTxt,
-  FileTypeVideo,
-  FileTypeXls,
-  FileTypeZip,
   RepeatM,
   WarningFillM,
 } from '@synerise/ds-icon';
 import ProgressBar from '@synerise/ds-progress-bar';
 import Tooltip from '@synerise/ds-tooltip';
 
+import { ICON_MAP, isPreviewableMimeType } from './FileView.const';
 import * as S from './FileView.styles';
 import { type FileViewProps } from './FileView.types';
-
-const previewableMimeTypes = [
-  'image/png',
-  'image/gif',
-  'image/jpeg',
-  'image/svg+xml',
-  'text/plain',
-  'text/html',
-  'video/quicktime',
-  'application/pdf',
-  'application/zip',
-  'audio/mpeg',
-  'application/vnd.ms-excel',
-  'application/vnd.openxmlformats-officedocument.presentationml.presentation',
-  'text/csv',
-];
-const mapperOfIcons = {
-  'image/png': <FileTypeImage />,
-  'image/gif': <FileTypePdf />,
-  'image/jpeg': <FileTypeImage />,
-  'image/svg+xml': <FileTypeSvg />,
-  'application/pdf': <FileTypePdf />,
-  'application/zip': <FileTypeZip />,
-  'text/plain': <FileTypeTxt />,
-  'text/html': <FileTypeHtml />,
-  'video/quicktime': <FileTypeVideo />,
-  'audio/mpeg': <FileTypeMp3 />,
-  'application/vnd.ms-excel': <FileTypeXls />,
-  'application/vnd.openxmlformats-officedocument.presentationml.presentation': (
-    <FileTypePptx />
-  ),
-  'text/csv': <FileTypeTxt />,
-};
 
 const FileView = ({
   data,
@@ -142,9 +100,9 @@ const FileView = ({
       removable={removable}
       type="button"
     >
-      {previewableMimeTypes.indexOf(file.type) > -1 ? (
+      {isPreviewableMimeType(file.type) ? (
         <S.PreviewImage>
-          <Icon component={mapperOfIcons[file.type]} size={40} />
+          <Icon component={ICON_MAP[file.type]} size={40} />
         </S.PreviewImage>
       ) : (
         <S.PlaceholderImage>

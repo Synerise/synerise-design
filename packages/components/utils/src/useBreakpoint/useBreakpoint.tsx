@@ -5,11 +5,13 @@ export type Dimensions = {
   height: number;
 };
 
+export type BreakpointKey = 'xxl' | 'xl' | 'lg' | 'md' | 'sm' | 'xs';
+
 export type Breakpoint = {
   min: number;
   max: number;
   columns: number;
-  name: string;
+  name: BreakpointKey;
 };
 
 export type DimensionsWithBreakpoint = {
@@ -17,7 +19,7 @@ export type DimensionsWithBreakpoint = {
   breakpoint?: Breakpoint;
 };
 
-const BREAKPOINTS = {
+const BREAKPOINTS: Record<BreakpointKey, Omit<Breakpoint, 'name'>> = {
   xxl: {
     max: Infinity,
     min: 1601,
@@ -50,14 +52,16 @@ const BREAKPOINTS = {
   },
 };
 
-const useBreakpoint = (): DimensionsWithBreakpoint => {
+export const useBreakpoint = (): DimensionsWithBreakpoint => {
   const [dimensions, setDimensions] = React.useState({ width: 0, height: 0 });
 
   const updateBreakPoint = React.useMemo(() => {
     const { width } = dimensions;
-    const breakpointKey = Object.keys(BREAKPOINTS).filter((key) => {
-      return BREAKPOINTS[key].min <= width && BREAKPOINTS[key].max >= width;
-    })[0];
+    const breakpointKey = (Object.keys(BREAKPOINTS) as BreakpointKey[]).filter(
+      (key) => {
+        return BREAKPOINTS[key].min <= width && BREAKPOINTS[key].max >= width;
+      },
+    )[0];
 
     return {
       breakpoint: {

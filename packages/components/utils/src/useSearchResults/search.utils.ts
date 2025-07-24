@@ -24,10 +24,12 @@ export const getActiveTabGroup = <GroupType extends BaseGroupType<GroupType>>(
 };
 
 export const getGroupName = <GroupType extends BaseGroupType<GroupType>>(
-  groupId: ReactText,
+  groupId: ReactText | undefined,
   groups: BaseGroupType<GroupType>[],
 ): string | undefined => {
-  return groups
-    .flatMap((group) => (group.subGroups ? group.subGroups : group))
-    .find((group) => group.id === groupId)?.name;
+  return groupId
+    ? groups
+        .flatMap((group) => (group.subGroups ? group.subGroups : group))
+        .find((group) => group.id === groupId)?.name
+    : undefined;
 };

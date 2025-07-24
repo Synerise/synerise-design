@@ -1,5 +1,6 @@
 import React from 'react';
 
+import { type Texts } from '../../../DateRangePicker.types';
 import { findMatchingPreset } from '../../../RelativeRangePicker/utils';
 import { ALL_TIME } from '../../../constants';
 import * as S from '../../RelativeRangePicker.styles';
@@ -22,7 +23,9 @@ const RangeButtons = ({ ranges, currentRange, texts, onChange }: Props) => {
             (isLifetime(currentRange) && range.key === ALL_TIME)
           }
         >
-          {range.translationKey ? texts[range.translationKey] : texts?.custom}
+          {range.translationKey
+            ? texts[range.translationKey as keyof Texts]
+            : texts?.custom}
         </S.Range>
       ))}
     </>

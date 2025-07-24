@@ -17,10 +17,10 @@ export type DataSetProps = {
   listProps?: Partial<ListProps>;
 };
 
-export type SearchLookupConfig = {
-  parameters: string;
-  recent: string;
-  suggestions: string;
+export type SearchLookupConfig<T extends AnyObject, U extends AnyObject> = {
+  parameters: keyof U;
+  recent: keyof T;
+  suggestions: keyof T;
 };
 
 export type SearchProps<T extends AnyObject, U extends AnyObject> = {
@@ -41,7 +41,7 @@ export type SearchProps<T extends AnyObject, U extends AnyObject> = {
   style?: React.CSSProperties;
   suggestions?: T[] | null;
   suggestionsDisplayProps?: DataSetProps | null;
-  textLookupConfig: SearchLookupConfig;
+  textLookupConfig: SearchLookupConfig<T, U>;
   value: string;
   width?: number;
   hideLabel?: boolean;

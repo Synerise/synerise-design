@@ -1,10 +1,26 @@
 import {
-  type BaseThemedCssFunction,
   type FlattenSimpleInterpolation,
+  type SimpleInterpolation,
   css,
 } from 'styled-components';
 
 import breakpoints from '../DSProvider/ThemeProvider/breakpoints';
+
+export type BreakpointKey =
+  | 'xsmall'
+  | 'small'
+  | 'medium'
+  | 'large'
+  | 'xlarge'
+  | 'xxlarge';
+
+export type BreakpointsData = Record<
+  BreakpointKey,
+  {
+    min: number;
+    max: number;
+  }
+>;
 
 export type Media = {
   from: BreakpointsType;
@@ -12,49 +28,58 @@ export type Media = {
   only: BreakpointsType;
 };
 
-type BreakpointsType = {
-  [key: string]: BaseThemedCssFunction<{
-    min: number;
-    max: number;
-  }>;
-};
+type MediaTemplateFunction = (
+  strings: TemplateStringsArray,
+  ...interpolations: SimpleInterpolation[]
+) => FlattenSimpleInterpolation;
 
-export const MEDIA_FROM = Object.keys(breakpoints).reduce((acc, label) => {
-  acc[label] = (
-    ...args: [TemplateStringsArray]
+type BreakpointsType = Record<BreakpointKey, MediaTemplateFunction>;
+
+export const MEDIA_FROM: BreakpointsType = (
+  Object.keys(breakpoints) as BreakpointKey[]
+).reduce((acc, label) => {
+  const mediaTemplateFunction: MediaTemplateFunction = (
+    strings,
+    ...interpolations
   ): FlattenSimpleInterpolation => css`
     @media (min-width: ${breakpoints[label].max / 16}em) {
-      ${css(...args)};
+      ${css(strings, ...interpolations)};
     }
   `;
+  acc[label] = mediaTemplateFunction;
 
   return acc;
-}, {});
+}, {} as BreakpointsType);
 
-export const MEDIA_TO = Object.keys(breakpoints).reduce((acc, label) => {
+export const MEDIA_TO: BreakpointsType = (
+  Object.keys(breakpoints) as BreakpointKey[]
+).reduce((acc, label) => {
   acc[label] = (
-    ...args: [TemplateStringsArray]
+    strings: TemplateStringsArray,
+    ...interpolations: SimpleInterpolation[]
   ): FlattenSimpleInterpolation => css`
     @media (max-width: ${breakpoints[label].max / 16}em) {
-      ${css(...args)};
+      ${css(strings, ...interpolations)};
     }
   `;
-
   return acc;
-}, {});
+}, {} as BreakpointsType);
 
-export const MEDIA_ONLY = Object.keys(breakpoints).reduce((acc, label) => {
+export const MEDIA_ONLY: BreakpointsType = (
+  Object.keys(breakpoints) as BreakpointKey[]
+).reduce((acc, label) => {
   acc[label] = (
-    ...args: [TemplateStringsArray]
+    strings: TemplateStringsArray,
+    ...interpolations: SimpleInterpolation[]
   ): FlattenSimpleInterpolation => css`
     @media (min-width: ${breakpoints[label].min /
       16}em) and (max-width: ${breakpoints[label].max / 16}em) {
-      ${css(...args)};
+      ${css(strings, ...interpolations)};
     }
   `;
 
   return acc;
-}, {});
+}, {} as BreakpointsType);
 
 const mediaQuery: Media = {
   from: MEDIA_FROM,

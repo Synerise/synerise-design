@@ -1,6 +1,7 @@
 import React, { useRef, useState } from 'react';
 import { withTheme } from 'styled-components';
 
+import { useTheme } from '@synerise/ds-core';
 import Icon, { Check3M, InfoFillS } from '@synerise/ds-icon';
 import { TagShape } from '@synerise/ds-tag';
 import Tooltip from '@synerise/ds-tooltip';
@@ -33,13 +34,13 @@ const CardSelect = ({
   elementsPosition = 'center',
   className,
   onClick,
-  theme,
   error,
   tagProps,
   tagTooltipProps,
   infoTooltipProps,
 }: CardSelectProps) => {
   const [isPressed, setIsPressed] = useState(false);
+  const theme = useTheme();
   const wrapperRef = useRef(null);
   const tickIconRef = useRef<HTMLDivElement>(null);
   const handleClick = () => {

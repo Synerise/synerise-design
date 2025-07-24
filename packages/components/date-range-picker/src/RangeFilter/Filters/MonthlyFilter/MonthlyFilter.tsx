@@ -71,6 +71,7 @@ class MonthlyFilter extends PureComponent<
   handleRemoveRow = (index: ReactText) => {
     const { value } = this.props;
     const result = value.filter((item, key) => key !== index);
+    // @ts-expect-error requires types refactor
     this.handleRemoveRowCollapse(value[index].id);
     this.setData([...result]);
   };
@@ -86,7 +87,7 @@ class MonthlyFilter extends PureComponent<
       this.handleCollapse(next ? next.id : prev.id);
   };
 
-  handleTypeChange = (val: string, index: number) => {
+  handleTypeChange = (val: DAYS_OF_PERIOD_ENUM, index: number) => {
     const { value } = this.props;
 
     value[index] = {
@@ -182,7 +183,7 @@ class MonthlyFilter extends PureComponent<
 
   handleCollapse = (id: ReactText) => {
     const { visible } = this.state;
-    const updatedVisible = {};
+    const updatedVisible: Record<string, boolean> = {};
     const visibleKeys = visible ? Object.keys(visible) : [];
     for (let i = 0; i < visibleKeys.length; i += 1) {
       const currentIndex = visibleKeys[i];
@@ -208,7 +209,7 @@ class MonthlyFilter extends PureComponent<
         checked: item?.period === period.value,
         text: intl.formatMessage({ id: period.translationKey as string }),
         onClick: () => {
-          this.handleTypeChange(period.value as string, key);
+          this.handleTypeChange(period.value, key);
         },
       }),
     );

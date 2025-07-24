@@ -10,7 +10,11 @@ import {
   type DateLimitMode,
   type RangeDisplayMode,
 } from './Shared/TimeWindow/RangeFormContainer/RangeForm/RangeForm.types';
-import { type COUNTED_FROM_ENUM, type DAYS_OF_PERIOD_ENUM } from './constants';
+import {
+  type COUNTED_FROM_ENUM,
+  type DAYS_OF_PERIOD_ENUM,
+  type RangeFilterType,
+} from './constants';
 
 export type FilterValue<T = FilterDefinition> = {
   definition?: Partial<T>;
@@ -26,7 +30,7 @@ export type RangeFilterProps = {
   savedFilters?: SavedFilter[];
   onFilterSave?: (filters: SavedFilter[]) => void;
   texts?: Partial<Texts>;
-  allowedFilterTypes?: string[];
+  allowedFilterTypes?: RangeFilterType[];
   valueSelectionModes?: DateLimitMode[];
   rangeDisplayMode?: RangeDisplayMode;
   rangeUnits?: Pick<DateRangePickerProps, 'rangeUnits'>;
@@ -39,7 +43,7 @@ export type RangeFilterState = {
     | Partial<FilterDefinition>
     | string
     | undefined;
-  activeType: string;
+  activeType: RangeFilterType;
   rangeClipboard?: Partial<FilterDefinition>;
 };
 export type FilterDefinition = {

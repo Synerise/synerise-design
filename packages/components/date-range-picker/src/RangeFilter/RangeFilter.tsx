@@ -1,3 +1,8 @@
+import {
+  type Translations,
+  type TranslationsPlaceholders,
+} from 'DateRangePicker.types';
+
 import { cloneDeep } from 'lodash';
 import React from 'react';
 import { injectIntl } from 'react-intl';
@@ -17,7 +22,7 @@ import {
 import FilterDropdown from './Shared/FilterDropdown/FilterDropdown';
 import { type SavedFilter } from './Shared/FilterDropdown/FilterDropdown.types';
 import SaveFilterForm from './Shared/SaveFilterForm/SaveFilterForm';
-import { TYPES, TYPES_DATA } from './constants';
+import { type RangeFilterType, TYPES, TYPES_DATA } from './constants';
 import {
   addSuffixToDuplicate,
   denormalizeValue,
@@ -74,7 +79,7 @@ class RangeFilter extends React.PureComponent<
     onCancel && onCancel();
   };
 
-  handleTypeChange = (type: string): void => {
+  handleTypeChange = (type: RangeFilterType): void => {
     const { state } = this;
     const previousValue = state[type] as FilterValue;
     const previousDefinition = previousValue?.definition;
@@ -89,7 +94,7 @@ class RangeFilter extends React.PureComponent<
     });
   };
 
-  handleRangeCopy = (range: Partial<FilterDefinition>): void => {
+  handleRangeCopy = (range?: Partial<FilterDefinition>): void => {
     this.setState({ rangeClipboard: range });
   };
 
@@ -144,10 +149,10 @@ class RangeFilter extends React.PureComponent<
 
     const allTexts = getDefaultTexts(intl, false, texts);
 
-    const buttonSource = allowedFilterTypes?.length
+    const buttonSource: RangeFilterType[] = allowedFilterTypes?.length
       ? allowedFilterTypes
-      : Object.values(TYPES);
-    buttonSource.sort((a: string, b: string) => {
+      : (Object.values(TYPES) as RangeFilterType[]);
+    buttonSource.sort((a: RangeFilterType, b: RangeFilterType) => {
       return Object.values(TYPES).indexOf(a) < Object.values(TYPES).indexOf(b)
         ? -1
         : 1;
@@ -173,9 +178,15 @@ class RangeFilter extends React.PureComponent<
                 <Button
                   key={key}
                   type={activeType === key ? 'primary' : undefined}
-                  onClick={(): void => this.handleTypeChange(key)}
+                  onClick={() => this.handleTypeChange(key)}
                 >
-                  {allTexts[key.toLowerCase()]}
+                  {
+                    allTexts[
+                      key.toLowerCase() as
+                        | Translations
+                        | TranslationsPlaceholders
+                    ]
+                  }
                 </Button>
               ))}
             </ButtonGroup>
@@ -186,7 +197,9 @@ class RangeFilter extends React.PureComponent<
                 intl={intl}
                 texts={allTexts}
                 rangeDisplayMode={rangeDisplayMode}
+                // @ts-expect-error - requires type refactor
                 value={definition}
+                // @ts-expect-error - requires type refactor
                 onChange={(def: FilterDefinition): void => {
                   const updatedFilter = {
                     [activeType]: { ...activeValue, definition: def },
@@ -194,7 +207,9 @@ class RangeFilter extends React.PureComponent<
                   this.setState(updatedFilter);
                 }}
                 onRangeCopy={this.handleRangeCopy}
+                // @ts-expect-error - requires type refactor
                 rangeClipboard={rangeClipboard}
+                // @ts-expect-error - requires type refactor
                 valueSelectionModes={valueSelectionModes}
               />
             )}

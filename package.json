@@ -29,7 +29,7 @@
     "storybook": "cd packages/storybook && yarn storybook",
     "test:ci": "npx lerna run test --stream --concurrency 3",
     "tgz-package-json": "node ./scripts/tgz/index.cjs",
-    "types": "yarn npx:lerna run types --parallel",
+    "types": "yarn npx:lerna run types --stream  --concurrency 5",
     "upgrade:ds": "yarn npx:lerna run upgrade:ds"
   },
   "husky": {
@@ -117,11 +117,11 @@
     "npm-check-updates": "^16",
     "react-intl": "^6.8.7",
     "sass": "^1.43.4",
-    "stylelint": "16.20.0",
-    "stylelint-config-standard": "38.0.0",
     "style-loader": "^4.0.0",
     "styled-components": "^5.3.3",
-    "typescript": "4.9.5",
+    "stylelint": "16.20.0",
+    "stylelint-config-standard": "38.0.0",
+    "typescript": "^5.8.0",
     "webpack": "^5.98.0"
   }
 }

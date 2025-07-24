@@ -214,7 +214,7 @@ class RangePicker extends PureComponent<Props & WithDataFormatProps, State> {
     const opposite = side === COLUMNS.LEFT ? COLUMNS.RIGHT : COLUMNS.LEFT;
     const { state } = this;
     const { forceAdjacentMonths } = this.props;
-    if (fnsIsSameMonth(month, state[opposite])) {
+    if (fnsIsSameMonth(month, legacyParse(state[opposite].month))) {
       const dir = fnsIsAfter(month, legacyParse(state[side].month)) ? 1 : -1;
       const adjacentMonth = ADD.MONTHS(month, dir);
       this.setState((prevState) => ({
@@ -227,7 +227,10 @@ class RangePicker extends PureComponent<Props & WithDataFormatProps, State> {
       const dir = side === COLUMNS.RIGHT ? -1 : 1;
       this.setState((prevState) => ({
         ...prevState,
-        [opposite]: { ...state[opposite], month: ADD.MONTHS(month, dir) },
+        [opposite]: {
+          ...state[opposite as keyof typeof state],
+          month: ADD.MONTHS(month, dir),
+        },
         [side]: { ...state[side], month, mode },
       }));
       return;
@@ -241,7 +244,7 @@ class RangePicker extends PureComponent<Props & WithDataFormatProps, State> {
   handleSideModeChange = (side: string, mode: string): void => {
     this.setState((prevState) => ({
       ...prevState,
-      [side]: { ...prevState[side], mode },
+      [side]: { ...prevState[side as keyof typeof prevState], mode },
     }));
   };
 

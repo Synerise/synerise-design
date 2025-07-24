@@ -30,7 +30,8 @@ export type CardSelectProps = {
   tagProps?: CardSelectTagProps;
   tagTooltipProps?: TooltipProps;
   infoTooltipProps?: TooltipProps;
-  theme: { [k: string]: string };
+  /** @deprecated */
+  theme?: { [k: string]: string };
   onChange?: (value: boolean) => void;
   onClick?: () => void;
   elementsPosition?: CardSelectAlignType;

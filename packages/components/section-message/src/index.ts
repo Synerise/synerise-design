@@ -1,3 +1,8 @@
 export { default } from './SectionMessage';
 
-export type { SectionMessageProps } from './SectionMessage.types';
+export type {
+  SectionMessageProps,
+  SectionType,
+  ColorType,
+  CustomColorType,
+} from './SectionMessage.types';

@@ -6,7 +6,7 @@ import RangeActions from '../RangeActions/RangeActions';
 import { type ActionsTexts } from '../RangeActions/RangeActions.types';
 import RangeSummary from '../RangeSummary/RangeSummary';
 import { DEFAULT_LIMIT_MODE } from '../TimeWindow';
-import { type DayKey } from '../TimeWindow.types';
+import { type DayKey, type DayOptions } from '../TimeWindow.types';
 import { getDateFromDayValue, getDefaultFilterForLimitMode } from '../utils';
 import RangeForm from './RangeForm/RangeForm';
 import { RANGE_DISPLAY_MODES } from './RangeForm/RangeForm.constants';
@@ -57,7 +57,8 @@ const RangeFormContainer = ({
         onModeChange(selectedMode);
         return;
       }
-      const updatedDays = {};
+      const updatedDays: Record<DayKey, DayOptions & { mode: DateLimitMode }> =
+        {};
       activeDays.forEach((i) => {
         updatedDays[i] = {
           ...days[i],

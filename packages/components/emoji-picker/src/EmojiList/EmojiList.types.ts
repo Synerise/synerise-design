@@ -13,6 +13,8 @@ export type EmojiListTexts = {
   flags: ReactNode;
 };
 
+export type EmojiCategories = keyof EmojiListTexts;
+
 export type EmojiListProps = {
   texts?: Partial<EmojiListTexts>;
   onSelect?: (emoji: Emoji) => void;

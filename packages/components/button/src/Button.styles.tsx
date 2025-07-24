@@ -12,16 +12,10 @@ const leftIcon = '0 4px 0 8px';
 const rightIcon = '0 8px 0 4px';
 const rippleInitialSize = 20;
 
-const buttonType = {
-  secondary: 'secondary',
-  tertiary: 'tertiary',
-  ghost: 'ghost',
-};
+const buttonTypes = ['secondary', 'tertiary', 'ghost'];
 
-const splitType = {
-  secondary: 'secondary',
-  tertiary: 'tertiary',
-};
+const splitTypes = ['secondary', 'tertiary'];
+
 const pressedStyles = (props: ThemeProps) => css`
   color: ${props.theme.palette['blue-600']};
   background: ${props.theme.palette['blue-100']};
@@ -283,7 +277,7 @@ export const AntdButton = styled(
         }
       `};
     ${(props) =>
-      props.type === buttonType[props.type] &&
+      buttonTypes.includes(props.type) &&
       !props.error &&
       css`
         &.ant-btn {
@@ -315,7 +309,7 @@ export const AntdButton = styled(
             position: relative;
             &:before {
               content: '';
-              background-color: ${props.type !== splitType[props.type]
+              background-color: ${!splitTypes.includes(props.type)
                 ? `rgba(255, 255, 255, 0.15);`
                 : props.theme.palette['grey-300']};
               top: ${props.size === 'large' ? '-12px' : '-4px'};

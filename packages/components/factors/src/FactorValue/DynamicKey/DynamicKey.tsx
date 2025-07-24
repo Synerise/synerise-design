@@ -23,13 +23,13 @@ const DynamicKey = ({
   });
   const [localError, setLocalError] = useState(false);
 
-  const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
+  const handleChange = (inputKey: 'key' | 'value', inputValue: string) => {
     const newValue = { ...(value as DynamicKeyValueType) };
-    newValue[event.target.name] = event.target.value;
+    newValue[inputKey] = inputValue;
     setLocalValue(newValue);
     onChange(newValue);
 
-    if (!event.target.value.length) {
+    if (!inputValue.length) {
       setLocalError(true);
     } else {
       setLocalError(false);
@@ -55,7 +55,9 @@ const DynamicKey = ({
         placeholder={texts.dynamicKey.keyPlaceholder}
         value={localValue.key}
         name="key"
-        onChange={handleChange}
+        onChange={(event: ChangeEvent<HTMLInputElement>) =>
+          handleChange('key', event.target.value)
+        }
         autoFocus={opened}
         onBlur={onDeactivate}
         error={localError || error}
@@ -67,7 +69,9 @@ const DynamicKey = ({
         placeholder={texts.dynamicKey.valuePlaceholder}
         value={localValue.value}
         name="value"
-        onChange={handleChange}
+        onChange={(event: ChangeEvent<HTMLInputElement>) =>
+          handleChange('value', event.target.value)
+        }
         error={localError || error}
         readOnly={readOnly}
       />

@@ -28,7 +28,7 @@ export type MonthlyFilterProps = {
   daysOfPeriods?: MonthlySelectValue<DAYS_OF_PERIOD_ENUM>[];
   countedFromPeriods?: MonthlySelectValue<COUNTED_FROM_ENUM>[];
   timePickerProps?: Partial<TimePickerProps>;
-  rangeClipboard?: Partial<FilterDefinition>;
+  rangeClipboard?: Partial<FilterDefinition> | undefined;
   valueSelectionModes?: DateLimitMode[];
   rangeDisplayMode?: RangeDisplayMode;
 } & WithDisabledProp &
@@ -37,7 +37,7 @@ export type MonthlyFilterProps = {
 
 export type Month<T = DenormalizedFilter> = {
   id: string | number;
-  period: string;
+  period: DAYS_OF_PERIOD_ENUM.DAY_OF_MONTH | DAYS_OF_PERIOD_ENUM.DAY_OF_WEEK;
   periodType?: string;
   definition: {
     [day: number]: T;

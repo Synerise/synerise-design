@@ -103,8 +103,8 @@ const DSTable = <T extends object>(props: DSTableProps<T>) => {
         renderCustomCounter={renderCustomCounter}
         renderSelectionTitle={renderSelectionTitle}
         hideTitlePart={hideTitlePart}
-        childrenColumnName={getChildrenColumnName(
-          expandable?.childrenColumnName,
+        childrenColumnName={getChildrenColumnName<T>(
+          expandable?.childrenColumnName as keyof T,
         )}
         isLoading={loading}
       />

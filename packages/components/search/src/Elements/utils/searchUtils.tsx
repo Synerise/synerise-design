@@ -1,7 +1,7 @@
-export const getAllElementsFiltered = (
-  data: object[] | undefined | null,
+export const getAllElementsFiltered = <T extends object>(
+  data: T[] | undefined | null,
   value: string,
-  elementTextLookupKey: string,
+  elementTextLookupKey: keyof T,
 ): object[] => {
   return (
     (data &&
@@ -14,10 +14,10 @@ export const getAllElementsFiltered = (
   );
 };
 
-export const hasSomeElementFiltered = (
-  data: object[] | undefined | null,
+export const hasSomeElementFiltered = <T extends object>(
+  data: T[] | undefined | null,
   currentValue: string,
-  elementTextLookupKey: string,
+  elementTextLookupKey: keyof T,
 ): boolean => {
   return (
     (!!data &&

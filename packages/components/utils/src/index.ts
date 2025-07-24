@@ -11,7 +11,7 @@ export { default as escapeRegEx } from './regex/regex';
 export { default as doubleClickListener } from './doubleClickListener/doubleClickListener';
 export { default as useResize } from './useResize/useResize';
 export { default as useResizeObserver } from './useResizeObserver/useResizeObserver';
-export { default as useBreakpoint } from './useBreakpoint/useBreakpoint';
+export * from './useBreakpoint/useBreakpoint';
 export { default as useCombinedRefs } from './useCombinedRefs/useCombinedRefs';
 export { default as usePrevious } from './usePrevious/usePrevious';
 export { useIsMounted } from './useIsMounted/useIsMounted';
@@ -36,4 +36,5 @@ export type {
   WithHTMLAttributes,
   DeepPartial,
   RequiredProps,
+  ObjectStringKeys,
 } from './types/types';

@@ -17413,10 +17413,10 @@ typescript-eslint@^8.26.1:
     "@typescript-eslint/parser" "8.34.1"
     "@typescript-eslint/utils" "8.34.1"
 
-typescript@4.9.5:
-  version "4.9.5"
-  resolved "https://nexus.snrinternal.com/repository/npm-release/typescript/-/typescript-4.9.5.tgz"
-  integrity sha1-CVl5+bzA0J2jJNWNA86Pg3TL5lo=
+typescript@^5.8.0:
+  version "5.8.3"
+  resolved "https://registry.npmjs.org/typescript/-/typescript-5.8.3.tgz#92f8a3e5e3cf497356f4178c34cd65a7f5e8440e"
+  integrity sha512-p1diW6TqL9L07nNxvRMM7hMMw4c5XOo/1ibL4aAIGmSAt9slTE1Xgw5KWuof2uTOvCg9BY7ZRi+GaF+7sfgPeQ==
 
 uglify-js@^3.1.4:
   version "3.8.0"

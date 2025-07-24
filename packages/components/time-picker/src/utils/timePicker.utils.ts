@@ -23,6 +23,7 @@ export const handleTimeChange = (
   let dateBuilder = dayjs(value);
 
   if (unit) {
+    // @ts-expect-error - `unit` const maps to dayjs method
     dateBuilder = dateBuilder[unit](newValue);
   }
 
@@ -30,8 +31,8 @@ export const handleTimeChange = (
   if (use12HourClock) {
     hourToMap =
       clockMode === AM
-        ? MAP_12_AM_TO_24_HOUR[hourToMap]
-        : MAP_12_PM_TO_24_HOUR[hourToMap];
+        ? MAP_12_AM_TO_24_HOUR[hourToMap as keyof typeof MAP_12_AM_TO_24_HOUR]
+        : MAP_12_PM_TO_24_HOUR[hourToMap as keyof typeof MAP_12_PM_TO_24_HOUR];
     if (unit === HOUR || clockModeChanged) {
       dateBuilder = dateBuilder.set(HOUR, hourToMap);
     }
@@ -42,6 +43,7 @@ export const handleTimeChange = (
     unitConfig
       .filter((unitDefinition) => unitDefinition.unit !== unit)
       .forEach(
+        // @ts-expect-error - `unit` const maps to dayjs method
         (unitDefinition) => (dateBuilder = dateBuilder[unitDefinition.unit](0)),
       );
     if (use12HourClock && clockMode === PM && unit !== HOUR) {

@@ -12,7 +12,7 @@ export interface Props {
   onSearchChange: (value: string) => void;
   searchValue: string;
   onFolderSelect: (item: FolderItem) => void;
-  foldersFilterKey: string;
-  foldersDisplayKey: string;
-  foldersIdKey: string;
+  foldersFilterKey: keyof FolderItem;
+  foldersDisplayKey: keyof FolderItem;
+  foldersIdKey: keyof FolderItem;
 }

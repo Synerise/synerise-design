@@ -2,9 +2,10 @@ import React, { useMemo } from 'react';
 
 import Icon, { CloseM } from '@synerise/ds-icon';
 
+import { DEFAULT_ICON, ICONS } from './SectionMessage.const';
 import * as S from './SectionMessage.styles';
 import { type SectionMessageProps } from './SectionMessage.types';
-import { DEFAULT_ICON, ICONS } from './utils/utils';
+import { isSectionType } from './SectionMessage.utils';
 
 const SectionMessage = ({
   icon,
@@ -63,7 +64,7 @@ const SectionMessage = ({
     if (icon) {
       return icon;
     }
-    if (ICONS[type]) {
+    if (isSectionType(type)) {
       return ICONS[type];
     }
     return DEFAULT_ICON;

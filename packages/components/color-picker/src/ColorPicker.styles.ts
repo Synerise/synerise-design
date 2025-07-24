@@ -8,10 +8,10 @@ import { Tag, TagsStyles } from '@synerise/ds-tags';
 import { ColorPickerSize } from './ColorPicker.types';
 
 export const TagDot = styled.div<{ pressed?: boolean }>`
-  display: ${(props): string => (props.pressed ? 'flex' : 'none')};
+  display: ${(props) => (props.pressed ? 'flex' : 'none')};
   width: 4px;
   height: 4px;
-  background-color: ${(props): string => props.theme.palette.white};
+  background-color: ${(props) => props.theme.palette.white};
   border-radius: 50%;
 `;
 
@@ -21,7 +21,7 @@ export const Container = styled.div<{ size?: 'S' | 'M' | 'L' }>`
   width: 100%;
   @media (min-width: 200px) {
     min-width: 200px;
-    background-color: ${(props): string => props.theme.palette.white};
+    background-color: ${(props) => props.theme.palette.white};
   }
   .react-colorful__last-control {
     margin: 24px 56px 8px 17px;
@@ -40,7 +40,7 @@ export const Container = styled.div<{ size?: 'S' | 'M' | 'L' }>`
   &&& .ds-tag {
     width: 16px;
     height: 16px;
-    border: 1px solid ${(props): string => props.theme.palette['grey-300']};
+    border: 1px solid ${(props) => props.theme.palette['grey-300']};
     margin: 0 0 0 4px;
     &:hover {
       ${TagDot} {
@@ -55,15 +55,14 @@ export const Container = styled.div<{ size?: 'S' | 'M' | 'L' }>`
   }
   .react-colorful {
     width: 100%;
-    height: ${(props): number =>
-      ColorPickerSize[props.size as string] || SIZE_DEFAULT}px;
+    height: ${(props) =>
+      props.size ? ColorPickerSize[props.size] : SIZE_DEFAULT}px;
   }
   .react-colorful__hue-pointer {
-    border: 1px solid ${(props): string => props.theme.palette['grey-300']};
+    border: 1px solid ${(props) => props.theme.palette['grey-300']};
     box-shadow: none !important;
     .react-colorful__pointer-fill {
-      background-color: ${(props): string =>
-        props.theme.palette.white} !important;
+      background-color: ${(props) => props.theme.palette.white} !important;
     }
   }
   .ant-divider-horizontal {
@@ -77,13 +76,13 @@ export const Container = styled.div<{ size?: 'S' | 'M' | 'L' }>`
 
 export const SubContainer = styled.div<{ savedColors?: boolean }>`
   padding: 8px 16px 16px;
-  margin-bottom: ${(props): string => (props.savedColors ? `0` : `-16px`)};
+  margin-bottom: ${(props) => (props.savedColors ? `0` : `-16px`)};
 `;
 
 export const ColorTag = styled(Tag)`
   width: 16px;
   height: 16px;
-  border: 1px solid ${(props): string => props.theme.palette['grey-300']};
+  border: 1px solid ${(props) => props.theme.palette['grey-300']};
 `;
 
 export const AddColorButton = styled(Button)`
@@ -130,7 +129,7 @@ export const PrefixTag = styled.div<{
     margin: 0;
     width: 24px;
     height: 24px;
-    border: 1px solid ${(props): string => props.theme.palette['grey-300']};
+    border: 1px solid ${(props) => props.theme.palette['grey-300']};
     cursor: auto;
     &:hover:before {
       cursor: auto;
@@ -139,8 +138,8 @@ export const PrefixTag = styled.div<{
   }
   position: absolute;
   right: 16px;
-  top: ${(props): number =>
-    (ColorPickerSize[props.size as string] || SIZE_DEFAULT) - 25}px;
+  top: ${(props) =>
+    (props.size ? ColorPickerSize[props.size] : SIZE_DEFAULT) - 25}px;
   z-index: 2;
   cursor: auto;
 `;
@@ -155,7 +154,7 @@ export const PreffixWrapper = styled.div`
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
-  color: ${(props): string => props.theme.palette['grey-500']};
+  color: ${(props) => props.theme.palette['grey-500']};
 `;
 
 export const ValueWrapper = styled.div`
@@ -166,7 +165,7 @@ export const ValueWrapper = styled.div`
 export const ColorPickerModalStyle = createGlobalStyle<{ maxWidth: number }>`
 .color-picker-overlay {
   min-width: unset !important;
-  max-width: ${({ maxWidth }): number => maxWidth}px; 
+  max-width: ${({ maxWidth }) => maxWidth}px; 
   width: 100%;
 }`;
 

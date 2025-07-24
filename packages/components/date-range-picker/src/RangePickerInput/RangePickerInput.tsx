@@ -9,6 +9,7 @@ import FormField from '@synerise/ds-form-field';
 import Icon, { ArrowRightS, CalendarM, Close3S } from '@synerise/ds-icon';
 import Tooltip from '@synerise/ds-tooltip';
 
+import { type Texts } from '../DateRangePicker.types';
 import { isLifetime } from '../RelativeRangePicker/Elements/RangeDropdown/RangeDropdown';
 import type { DateRange, NullableDateLimit } from '../date.types';
 import { normalizeRange } from '../utils';
@@ -113,7 +114,7 @@ const RangePickerInput = ({
       <>
         {preferRelativeDesc &&
           dateRangeValue?.translationKey &&
-          `${texts?.[dateRangeValue.translationKey] || dateRangeValue?.translationKey} (`}
+          `${texts?.[dateRangeValue.translationKey as keyof Texts] || dateRangeValue?.translationKey} (`}
         {renderFromDate()}
         <Icon component={<ArrowRightS />} color={theme.palette['grey-400']} />
         {renderEndDate()}

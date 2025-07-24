@@ -1,18 +1,20 @@
-import React from 'react';
+import React, { useContext, useMemo } from 'react';
 
-import { type DimensionsWithBreakpoint } from '@synerise/ds-utils/dist/useBreakpoint/useBreakpoint';
+import {
+  type BreakpointKey,
+  type DimensionsWithBreakpoint,
+} from '@synerise/ds-utils';
 
 import { DEFAULT_COLUMNS_NUMBER, GridContext } from '../Grid';
 import * as S from '../Grid.styles';
 import { type GridItemProps } from '../Grid.types';
 
-const BREAKPOINTS = ['xxl', 'xl', 'lg', 'md', 'sm', 'xs'];
+const BREAKPOINTS: BreakpointKey[] = ['xxl', 'xl', 'lg', 'md', 'sm', 'xs'];
 
 const Item = ({ children, contentWrapper, ...props }: GridItemProps) => {
-  const breakpointData: DimensionsWithBreakpoint =
-    React.useContext(GridContext);
+  const breakpointData: DimensionsWithBreakpoint = useContext(GridContext);
 
-  const definedBreakpoints = React.useMemo(() => {
+  const definedBreakpoints = useMemo(() => {
     return BREAKPOINTS.filter(
       (breakpoint) => props[breakpoint] !== undefined,
     ).map((breakpoint) => {
@@ -23,7 +25,7 @@ const Item = ({ children, contentWrapper, ...props }: GridItemProps) => {
     });
   }, [props]);
 
-  const breakpointColumns = React.useMemo((): number | undefined => {
+  const breakpointColumns = useMemo((): number | undefined => {
     if (breakpointData.breakpoint) {
       const { name } = breakpointData.breakpoint;
       if (props[name] !== undefined) {
@@ -40,7 +42,7 @@ const Item = ({ children, contentWrapper, ...props }: GridItemProps) => {
     return undefined;
   }, [breakpointData.breakpoint, definedBreakpoints, props]);
 
-  const getColumns = React.useMemo(() => {
+  const getColumns = useMemo(() => {
     if (breakpointColumns !== undefined) {
       return breakpointColumns;
     }

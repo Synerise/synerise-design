@@ -278,6 +278,11 @@ export const CARD_HEADER_VARIANTS = [
     headerSideChildren: <></>,
   },
   {
+    title: 'With Icon Badge Checked',
+    icon: <CardBadge icon={<CheckS />} status="checked" />,
+    headerSideChildren: <></>,
+  },
+  {
     title: 'with Header Bottom Border',
     headerBorderBottom: true,
     headerSideChildren: <></>,

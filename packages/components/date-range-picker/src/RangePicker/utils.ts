@@ -110,13 +110,13 @@ export const getDisabledTimeOptions = (
   const intervalStartDate = lowerLimit ? legacyParse(lowerLimit) : undefined;
   const intervalEndDate = upperLimit ? legacyParse(upperLimit) : undefined;
   const interval = getInterval(dayAsDate, intervalStartDate, intervalEndDate);
-  const options = TIME_OPTIONS[granularity].map((option: number) =>
-    SET[granularity](dayAsDate, option),
+  const options = TIME_OPTIONS[granularity as keyof typeof TIME_OPTIONS].map(
+    (option: number) => SET[granularity as keyof typeof SET](dayAsDate, option),
   );
 
   let result = options
     .filter((opt: Date) => !fnsIsWithinRange(opt, interval))
-    .map((option: number) => GET[granularity](option));
+    .map((option: Date) => GET[granularity as keyof typeof GET](option));
 
   if (is12HoursClock && granularity === HOURS_GRANULARITY) {
     if (dayClockMode === AM) {
@@ -124,7 +124,10 @@ export const getDisabledTimeOptions = (
     } else if (dayClockMode === PM) {
       result = result.filter((item: number) => item >= HOUR_12);
     }
-    result = result.map((item: number) => MAP_24_HOUR_TO_12[item]);
+    result = result.map(
+      (item: number) =>
+        MAP_24_HOUR_TO_12[item as keyof typeof MAP_24_HOUR_TO_12],
+    );
 
     if (disableMeridienToggle) {
       result.push(DISABLE_CLOCK_MODE_HOUR);

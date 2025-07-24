@@ -1,5 +1,4 @@
-import { type ParameterGroup } from 'Factors.types';
-
+import { type ParameterGroup } from '../../Factors.types';
 import { type DropdownItem } from './Parameter.types';
 import { type DividerItem, type TitleItem } from './ParameterDropdown';
 
@@ -10,7 +9,7 @@ export const groupItems = (
   activeGroup: ParameterGroup | undefined,
 ) => {
   const itemsNumber = dropdownItems.length;
-  const groupedItems = {};
+  const groupedItems: Record<string, DropdownItem<ParameterGroup>[]> = {};
   let resultItems: (DropdownItem<ParameterGroup> | TitleItem | DividerItem)[] =
     [];
 

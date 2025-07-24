@@ -1,13 +1,12 @@
-import Avatar, { type AvatarProps } from 'antd/lib/avatar';
+import Avatar from 'antd/lib/avatar';
 import React from 'react';
-import styled, {
-  type FlattenSimpleInterpolation,
-  css,
-} from 'styled-components';
+import styled, { css } from 'styled-components';
 
 import { IconBadgeIcon } from '@synerise/ds-badge/dist/IconBadge/IconBadge.styles';
 import { type ThemeProps } from '@synerise/ds-core';
 import { macro } from '@synerise/ds-typography';
+
+import { type AvatarProps } from './Avatar.types';
 
 export const TooltipGroup = styled.div`
   margin: 13px 8px;
@@ -25,15 +24,13 @@ export const TooltipGroup = styled.div`
 
 const applyBgColors = (
   props: ThemeProps & { backgroundColor: string; backgroundColorHue: string },
-): FlattenSimpleInterpolation => css`
+) => css`
   background: ${props.theme.palette[
     `${props.backgroundColor}-${props.backgroundColorHue ? props.backgroundColorHue : '400'}`
   ]};
 `;
 
-const applyDisabledStyles = (props: {
-  disabled: boolean;
-}): FlattenSimpleInterpolation | false =>
+const applyDisabledStyles = (props: { disabled: boolean }) =>
   props.disabled &&
   css`
     opacity: 0.4;
@@ -69,27 +66,28 @@ const MACRO_MAPPING = {
   extraLarge: macro.xlAvatar,
 };
 
-const applyIconBadgePosition = (
-  props: AvatarProps,
-): FlattenSimpleInterpolation => {
+const applyIconBadgePosition = (props: AvatarProps) => {
   const { shape = 'circle', size = 'medium' } = props;
+  const badgeKey = `${shape}${size}` satisfies keyof typeof ICON_BADGE_POSITION;
   return css`
-    top: ${ICON_BADGE_POSITION[`${shape}${size}`] || '0'};
-    right: ${ICON_BADGE_POSITION[`${shape}${size}`] || '0'};
+    top: ${ICON_BADGE_POSITION[badgeKey] || '0'};
+    right: ${ICON_BADGE_POSITION[badgeKey] || '0'};
   `;
 };
 
-const applyBadgePosition = (props: AvatarProps): FlattenSimpleInterpolation => {
+const applyBadgePosition = (props: AvatarProps) => {
   const { shape = 'circle', size = 'medium' } = props;
+  const badgeKey = `${shape}${size}` satisfies keyof typeof BADGE_POSITION;
   return css`
-    top: ${BADGE_POSITION[`${shape}${size}`] || '0'};
-    right: ${BADGE_POSITION[`${shape}${size}`] || '0'};
+    top: ${BADGE_POSITION[badgeKey] || '0'};
+    right: ${BADGE_POSITION[badgeKey] || '0'};
   `;
 };
 
-const applyFontSize = (props: AvatarProps): FlattenSimpleInterpolation => {
+const applyFontSize = (props: AvatarProps) => {
+  const { size = 'medium' } = props;
   return css`
-    ${MACRO_MAPPING[`${props.size}`]};
+    ${MACRO_MAPPING[size]};
   `;
 };
 
@@ -104,15 +102,14 @@ export default styled(
   }) => <Avatar onClick={onClick} {...rest} />,
 )`
   && {
-    ${(props): FlattenSimpleInterpolation => applyBgColors(props)};
-    ${(props): FlattenSimpleInterpolation | false =>
-      applyDisabledStyles(props)};
+    ${(props) => applyBgColors(props)};
+    ${(props) => applyDisabledStyles(props)};
     transition: background 0.3s ease;
     user-select: none;
     min-width: 24px;
 
     span {
-      color: ${(props): string => props.theme.palette.white} !important;
+      color: ${(props) => props.theme.palette.white} !important;
     }
 
     &.ant-avatar-square {
@@ -126,7 +123,7 @@ export default styled(
       position: relative;
       font-size: 11px;
       transform: none !important;
-      ${(props): FlattenSimpleInterpolation => applyFontSize(props)};
+      ${(props) => applyFontSize(props)};
       ${macro.flexCentered};
       user-select: none;
       pointer-events: none;
@@ -152,7 +149,7 @@ export default styled(
       border-radius: inherit;
     }
 
-    ${(props): FlattenSimpleInterpolation | false =>
+    ${(props) =>
       (props.onClick || props.hasTooltip) &&
       css`
         &:hover {
@@ -162,7 +159,7 @@ export default styled(
         }
       `};
 
-    ${(props): FlattenSimpleInterpolation | false =>
+    ${(props) =>
       props.onClick
         ? css`
             cursor: pointer;
@@ -179,7 +176,7 @@ export default styled(
       display: none;
     }
 
-    ${(props): FlattenSimpleInterpolation | false =>
+    ${(props) =>
       props.hasStatus &&
       css`
         & + .ant-badge-dot {
@@ -197,7 +194,7 @@ export default styled(
         }
       `};
 
-    ${(props): FlattenSimpleInterpolation | false =>
+    ${(props) =>
       props.size === 'medium' &&
       css`
         width: 40px;
@@ -217,7 +214,7 @@ export default styled(
         `};
       `};
 
-    ${(props): FlattenSimpleInterpolation | false =>
+    ${(props) =>
       props.size === 'large' &&
       css`
         width: 84px;
@@ -238,7 +235,7 @@ export default styled(
         `};
       `};
 
-    ${(props): FlattenSimpleInterpolation | false =>
+    ${(props) =>
       props.size === 'extraLarge' &&
       css`
         width: 120px;

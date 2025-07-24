@@ -3,7 +3,7 @@ import {
   useTheme as originalUseTheme,
 } from 'styled-components';
 
-import breakpoints from './breakpoints';
+import { breakpoints } from './breakpoints';
 import vars from './variables';
 
 export type ThemePropsVars = {

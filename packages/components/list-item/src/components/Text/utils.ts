@@ -11,6 +11,8 @@ export const renderAddon = (
 
 export const removeHandlerProps = (props: BasicItemProps) => {
   return Object.fromEntries(
-    Object.entries(props).filter(([key]) => typeof props[key] !== 'function'),
+    Object.entries(props).filter(
+      ([key]) => typeof props[key as keyof BasicItemProps] !== 'function',
+    ),
   );
 };

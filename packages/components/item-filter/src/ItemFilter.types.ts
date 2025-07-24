@@ -32,6 +32,7 @@ export type ItemFilterProps = {
   texts?: {
     [k: string]: string | React.ReactNode;
   };
+  /** @deprecated theme will be read from DSProvider */
   theme: {
     [k: string]: string;
   };

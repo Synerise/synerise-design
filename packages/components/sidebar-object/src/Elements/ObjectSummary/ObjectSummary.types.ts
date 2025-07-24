@@ -1,3 +1,5 @@
+import { type ReactNode } from 'react';
+
 export type ObjectSummaryProps = {
-  inputObject: object;
+  inputObject: Record<string, ReactNode>;
 };

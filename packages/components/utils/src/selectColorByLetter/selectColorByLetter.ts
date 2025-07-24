@@ -23,7 +23,7 @@ export const palette = [
 ];
 
 function getColorByLetter(): ColorByLetter {
-  const colors = {};
+  const colors: Record<string, string> = {};
   for (let i = 0; i <= 25; i += 1) {
     colors[String.fromCharCode(i + 65)] = palette[i % palette.length];
   }

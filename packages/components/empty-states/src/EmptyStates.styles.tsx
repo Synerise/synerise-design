@@ -50,7 +50,7 @@ export const HeaderWrapper = styled.div<{
     props.hasIcon && props.size === EmptyStatesSize.SMALL ? '12px' : ''};
   color: ${(props) => props.theme.palette['grey-800']};
   font-size: ${(props) =>
-    FontSize[props.fontSize as string] || FONT_SIZE_DEFAULT}px;
+    props.fontSize ? FontSize[props.fontSize] : FONT_SIZE_DEFAULT}px;
   font-weight: 500;
   padding-bottom: ${(props) =>
     props.fontSize === EmptyStatesSize.SMALL ? '12px' : '18px'};

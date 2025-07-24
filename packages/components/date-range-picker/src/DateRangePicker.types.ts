@@ -11,6 +11,7 @@ import {
   type DateLimitMode,
   type RangeDisplayMode,
 } from './RangeFilter/Shared/TimeWindow/RangeFormContainer/RangeForm/RangeForm.types';
+import { type RangeFilterType } from './RangeFilter/constants';
 import { type RangePickerInputProps } from './RangePickerInput/RangePickerInput.types';
 import {
   type DateFilter,
@@ -103,7 +104,7 @@ export type DateRangePickerProps = {
      */
     readOnly?: RangePickerInputProps['readOnly'];
   };
-  allowedFilterTypes?: string[];
+  allowedFilterTypes?: RangeFilterType[];
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   renderPopoverTrigger?: (...args: any) => JSX.Element;
   isTruncateMs?: boolean;

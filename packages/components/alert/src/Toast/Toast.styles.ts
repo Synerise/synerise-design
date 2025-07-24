@@ -12,14 +12,6 @@ import {
   type CustomColorType,
 } from './Toast.types';
 
-type InsertShapeStyles = {
-  colorIcon?: ColorIconType;
-  color?: ColorType;
-  expandedContent?: ReactNode;
-  expander?: ReactNode;
-  withClose?: ReactNode;
-} & ThemeProps;
-
 const getWidth = (hasClose?: boolean, hasExpander?: boolean) => {
   if (hasClose && hasExpander) {
     return '72px';
@@ -29,7 +21,7 @@ const getWidth = (hasClose?: boolean, hasExpander?: boolean) => {
   }
   return '24px';
 };
-const getColorIcon = (props: InsertShapeStyles): string => {
+const getColorIcon = (props: ThemeProps & { colorIcon?: ColorIconType }) => {
   switch (props.colorIcon) {
     case 'white':
       return props.theme.palette.white;
@@ -41,7 +33,7 @@ const getColorIcon = (props: InsertShapeStyles): string => {
       return props.theme.palette['blue-600'];
   }
 };
-const getColorText = (props: InsertShapeStyles): string => {
+const getColorText = (props: ThemeProps & { color?: ColorType }) => {
   switch (props.color) {
     case 'red':
       return props.theme.palette.white;
@@ -53,7 +45,7 @@ const getColorText = (props: InsertShapeStyles): string => {
       return props.theme.palette['grey-600'];
   }
 };
-const getColorBackground = (props: InsertShapeStyles): string => {
+const getColorBackground = (props: ThemeProps & { color?: ColorType }) => {
   switch (props.color) {
     case 'grey':
       return props.theme.palette.white;
@@ -112,14 +104,14 @@ export const IconWrapper = styled.div<{
   margin: 12px;
   display: flex;
   svg {
-    color: ${(props): string =>
+    color: ${(props) =>
       props.customColorIcon
         ? props.theme.palette[`${props.customColorIcon}-600`]
-        : getColorIcon};
-    fill: ${(props): string =>
+        : getColorIcon(props)};
+    fill: ${(props) =>
       props.customColorIcon
         ? props.theme.palette[`${props.customColorIcon}-600`]
-        : getColorIcon};
+        : getColorIcon(props)};
   }
 `;
 export const IconCloseWrapper = styled.div<{
@@ -128,7 +120,7 @@ export const IconCloseWrapper = styled.div<{
 }>`
   cursor: pointer;
   svg {
-    fill: ${(props): string =>
+    fill: ${(props) =>
       props.customColorText
         ? props.theme.palette[`${props.customColorText}-600`]
         : getColorText(props)};
@@ -141,14 +133,12 @@ export const IconExpanderWrapper = styled.div<{
 }>`
   cursor: pointer;
   svg {
-    fill: ${(props): string =>
+    fill: ${(props) =>
       props.customColorText
         ? props.theme.palette[`${props.customColorText}-600`]
         : getColorText(props)};
     transition: transform 0.1s linear;
-    transform: rotateZ(
-      ${(props): string => (props.expanded ? '180deg' : '0deg')}
-    );
+    transform: rotateZ(${(props) => (props.expanded ? '180deg' : '0deg')});
   }
 `;
 export const ButtonWrapper = styled.div`
@@ -174,7 +164,7 @@ export const NumberWrapper = styled.div<{
   &:hover {
     background-image: linear-gradient(
       to right,
-      ${(props): string => props.theme.palette['grey-400']} 20%,
+      ${(props) => props.theme.palette['grey-400']} 20%,
       rgba(255, 255, 255, 0) 10%
     );
     background-color: transparent;
@@ -182,7 +172,7 @@ export const NumberWrapper = styled.div<{
     background-size: 5px 1px;
     background-repeat: repeat-x;
     opacity: 1;
-    color: ${(props): string =>
+    color: ${(props) =>
       props.customColorText
         ? props.theme.palette[`${props.customColorText}-600`]
         : getColorText(props)};
@@ -205,14 +195,14 @@ export const IconOrderWrapper = styled.div<{
   visibility: hidden;
   margin: -4px 0;
   svg {
-    fill: ${(props): string =>
+    fill: ${(props) =>
       props.customColorText
         ? props.theme.palette[`${props.customColorText}-600`]
         : getColorText(props)};
   }
   &:hover {
     svg {
-      fill: ${(props): string => props.theme.palette['blue-600']};
+      fill: ${(props) => props.theme.palette['blue-600']};
       cursor: pointer;
     }
   }
@@ -222,7 +212,7 @@ export const OrderWrapper = styled.div<{
   color?: ColorType;
 }>`
   display: flex;
-  color: ${(props): string =>
+  color: ${(props) =>
     props.customColorText
       ? props.theme.palette[`${props.customColorText}-600`]
       : getColorText(props)};
@@ -233,7 +223,7 @@ export const OrderWrapper = styled.div<{
     ${NumberWrapper} {
       background-image: linear-gradient(
         to right,
-        ${(props): string =>
+        ${(props) =>
             props.customColorText
               ? props.theme.palette[`${props.customColorText}-600`]
               : getColorText(props)}
@@ -245,7 +235,7 @@ export const OrderWrapper = styled.div<{
       background-size: 5px 1px;
       background-repeat: repeat-x;
       opacity: 1;
-      color: ${(props): string =>
+      color: ${(props) =>
         props.customColorText
           ? props.theme.palette[`${props.customColorText}-600`]
           : getColorText(props)};
@@ -253,7 +243,7 @@ export const OrderWrapper = styled.div<{
   }
 `;
 export const Wrapper = styled.div`
-  color: ${(props): string => props.theme.palette['grey-050']};
+  color: ${(props) => props.theme.palette['grey-050']};
 `;
 
 export const AnimationContainer = styled.div<{ show?: boolean }>`
@@ -270,12 +260,12 @@ export const Container = styled.div<{
   max-width: 500px;
   align-items: flex-start;
   justify-content: center;
-  background-color: ${(props): string =>
+  background-color: ${(props) =>
     props.customColor
       ? props.theme.palette[`${props.customColor}-600`]
       : getColorBackground(props)};
   border-radius: 4px;
-  box-shadow: ${(props): string =>
+  box-shadow: ${(props) =>
     props.color
       ? `0px 16px 32px 5px ${hexToRgba(props.theme.palette['grey-900'], 0.2)}`
       : 'none'};
@@ -303,7 +293,7 @@ export const AlertMessage = styled.div<{
   overflow-wrap: break-word;
   text-overflow: ellipsis;
   padding-right: ${(props) => getWidth(props.hasClose, props.hasExpander)};
-  color: ${(props): string =>
+  color: ${(props) =>
     props.customColorText
       ? props.theme.palette[`${props.customColorText}-600`]
       : getColorText(props)};
@@ -320,10 +310,10 @@ export const AlertDescription = styled.div<{
   overflow: hidden;
   overflow-wrap: anywhere;
   text-overflow: ellipsis;
-  padding-bottom: ${(props): string =>
+  padding-bottom: ${(props) =>
     props.button || props.expandedContent ? '16px' : '0'};
   margin-top: 2px;
-  color: ${(props): string =>
+  color: ${(props) =>
     props.customColorText
       ? props.theme.palette[`${props.customColorText}-600`]
       : getColorText(props)};

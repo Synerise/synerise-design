@@ -14,5 +14,5 @@ export type RowSelectionProps<T> = {
   tableLocale: DSTableProps<T>['locale'];
   onChange: RowSelection<T>['onChange'];
   checkRowSelectionStatus?: RowSelection<T>['checkRowSelectionStatus'];
-  childrenColumnName: string;
+  childrenColumnName: keyof T;
 };

@@ -9,6 +9,10 @@ const locales = {
   es,
 };
 
+const isLocaleKey = (key: string): key is keyof typeof locales => {
+  return Object.prototype.hasOwnProperty.call(locales, key);
+};
+
 const defaultLocale = 'en';
 
 export default function (
@@ -19,7 +23,10 @@ export default function (
   if (!fnsIsValid(date)) {
     return '';
   }
+  const localeKey = locale.substring(0, 2);
   return fnsFormat(date, formatStr, {
-    locale: locales[locale.substring(0, 2)],
+    locale: isLocaleKey(localeKey)
+      ? locales[localeKey]
+      : locales[defaultLocale],
   });
 }

@@ -94,8 +94,8 @@ const VirtualTable = <
   const [isHeaderVisible, setIsHeaderVisible] = useState(false);
   const [firstItem, setFirstItem] = useState<T | null>(null);
 
-  const childrenColumnName = getChildrenColumnName(
-    expandable?.childrenColumnName,
+  const childrenColumnName = getChildrenColumnName<T>(
+    expandable?.childrenColumnName as keyof T,
   );
 
   const hasInfiniteScroll = Boolean(infiniteScroll);
@@ -147,8 +147,10 @@ const VirtualTable = <
         return;
       }
       if (typeof rowKey === 'string') {
-        if (dataSource[0][rowKey] !== firstItem[rowKey]) {
-          updateFirstItem((item) => item[rowKey] === firstItem[rowKey]);
+        if (dataSource[0][rowKey as keyof T] !== firstItem[rowKey as keyof T]) {
+          updateFirstItem(
+            (item) => item[rowKey as keyof T] === firstItem[rowKey as keyof T],
+          );
         }
         return;
       }

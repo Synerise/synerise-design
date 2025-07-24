@@ -56,9 +56,15 @@ export const normalizeRange = (range: DateRange): DateRange => {
     if (offset?.type === 'SINCE') {
       if (future) {
         left = offset.value;
-        right = ADD[duration.type](offset.value, duration.value);
+        right = ADD[duration.type as keyof typeof ADD](
+          offset.value,
+          duration.value,
+        );
       } else {
-        left = ADD[duration.type](offset.value, -duration.value);
+        left = ADD[duration.type as keyof typeof ADD](
+          offset.value,
+          -duration.value,
+        );
         right = offset.value;
       }
     } else {
@@ -82,15 +88,15 @@ export const normalizeRange = (range: DateRange): DateRange => {
       }
       if (future) {
         left = ADD[offset.type](START_OF[offset.type](now), offset.value);
-        right = END_OF[duration.type](
-          ADD[duration.type](left, duration.value - 1),
+        right = END_OF[duration.type as keyof typeof END_OF](
+          ADD[duration.type as keyof typeof ADD](left, duration.value - 1),
         );
       } else {
-        right = END_OF[rightBoundaryRoundingUnit](
+        right = END_OF[rightBoundaryRoundingUnit as keyof typeof END_OF](
           ADD[offset.type](now, -offset.value),
         );
-        left = ADD[duration.type](
-          START_OF[duration.type](right),
+        left = ADD[duration.type as keyof typeof ADD](
+          START_OF[duration.type as keyof typeof START_OF](right),
           1 - duration.value,
         );
       }

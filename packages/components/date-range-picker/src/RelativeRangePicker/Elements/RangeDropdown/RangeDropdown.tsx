@@ -8,6 +8,7 @@ import type { ItemData } from '@synerise/ds-list-item';
 import Scrollbar from '@synerise/ds-scrollbar';
 import { useOnClickOutside } from '@synerise/ds-utils';
 
+import { type Texts } from '../../../DateRangePicker.types';
 import { ALL_TIME } from '../../../constants';
 import { type DateRange } from '../../../date.types';
 import * as S from '../../RelativeRangePicker.styles';
@@ -110,7 +111,9 @@ const RangeDropdown = ({
                   )
                 }
               >
-                {range.translationKey ? texts[range.translationKey] : range.key}
+                {range.translationKey
+                  ? texts[range.translationKey as keyof Texts]
+                  : range.key}
               </S.DropMenuItem>
             );
           })}
@@ -129,7 +132,7 @@ const RangeDropdown = ({
         {currentRange &&
           texts[
             containsCurrentRange && currentRange.translationKey
-              ? currentRange.translationKey
+              ? (currentRange.translationKey as keyof Texts)
               : 'more'
           ]}
 

@@ -29,6 +29,6 @@ export type Props<T extends object> = {
   hideTitlePart?: boolean;
   renderCustomCounter?: CustomCounterFn;
   dataSourceTotalCount?: number;
-  childrenColumnName: string;
+  childrenColumnName: keyof T;
   isLoading?: boolean;
 };

@@ -1,3 +1,5 @@
+import { type Texts } from 'DateRangePicker.types';
+
 import React, { type MouseEvent } from 'react';
 import { useIntl } from 'react-intl';
 
@@ -51,8 +53,9 @@ const RangeFilterStatus = ({
           }
           item={{
             id: 'filter-trigger',
+            // @ts-expect-error requires DRP types refactor
             name:
-              texts[filter.type.toLocaleLowerCase()] ||
+              texts[filter.type.toLocaleLowerCase() as keyof Texts] ||
               intl.formatMessage({
                 id: `DS.DATE-RANGE-PICKER.${filter.type}`,
                 defaultMessage: 'Filter',
