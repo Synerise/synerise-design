@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.4.0](https://github.com/synerise/synerise-design/compare/@synerise/ds-utils@1.3.1...@synerise/ds-utils@1.4.0) (2025-07-24)
+
+
+### Features
+
+* **data-format:** conditionally apply timezone offset ([aa91c76](https://github.com/synerise/synerise-design/commit/aa91c76a88261745bbfd46e0a0dd779877931624))
+
+
+
+
+
 ## [1.3.1](https://github.com/synerise/synerise-design/compare/@synerise/ds-utils@1.3.0...@synerise/ds-utils@1.3.1) (2025-07-01)
 
 **Note:** Version bump only for package @synerise/ds-utils

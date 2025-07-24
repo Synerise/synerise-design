@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.1.11](https://github.com/Synerise/synerise-design/compare/@synerise/ds-alert@1.1.10...@synerise/ds-alert@1.1.11) (2025-07-24)
+
+
+### Bug Fixes
+
+* **result:** fix styles to match figma ([1b17374](https://github.com/Synerise/synerise-design/commit/1b173747daf73f5a768241a3116ba7b3c7c90eb1))
+
+
+
+
+
 ## [1.1.10](https://github.com/Synerise/synerise-design/compare/@synerise/ds-alert@1.1.9...@synerise/ds-alert@1.1.10) (2025-07-17)
 
 **Note:** Version bump only for package @synerise/ds-alert

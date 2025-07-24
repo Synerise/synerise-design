@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.1.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-data-format@1.0.1...@synerise/ds-data-format@1.1.0) (2025-07-24)
+
+
+### Features
+
+* **data-format:** conditionally apply timezone offset ([aa91c76](https://github.com/Synerise/synerise-design/commit/aa91c76a88261745bbfd46e0a0dd779877931624))
+
+
+
+
+
 ## [1.0.1](https://github.com/Synerise/synerise-design/compare/@synerise/ds-data-format@1.0.0...@synerise/ds-data-format@1.0.1) (2025-07-01)
 
 **Note:** Version bump only for package @synerise/ds-data-format

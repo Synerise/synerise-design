@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.5.0](https://github.com/synerise/synerise-design/compare/@synerise/ds-table@1.4.3...@synerise/ds-table@1.5.0) (2025-07-24)
+
+
+### Features
+
+* **table:** global selection ([358b8e2](https://github.com/synerise/synerise-design/commit/358b8e2ac1af14fe3e36b34cc1a35615801bae44))
+
+
+
+
+
 ## [1.4.3](https://github.com/synerise/synerise-design/compare/@synerise/ds-table@1.4.2...@synerise/ds-table@1.4.3) (2025-07-17)
 
 **Note:** Version bump only for package @synerise/ds-table

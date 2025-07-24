@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.18.0](https://github.com/Synerise/synerise-design/compare/storybook@1.17.1...storybook@1.18.0) (2025-07-24)
+
+
+### Bug Fixes
+
+* **date-picker:** center picker and quick picks ([06f9301](https://github.com/Synerise/synerise-design/commit/06f930140ea450c6b28f6fbe72792fb7295fcd35))
+* **result:** fix styles to match figma ([1b17374](https://github.com/Synerise/synerise-design/commit/1b173747daf73f5a768241a3116ba7b3c7c90eb1))
+
+
+### Features
+
+* **table:** global selection ([358b8e2](https://github.com/Synerise/synerise-design/commit/358b8e2ac1af14fe3e36b34cc1a35615801bae44))
+
+
+
+
+
 ## [1.17.1](https://github.com/Synerise/synerise-design/compare/storybook@1.17.0...storybook@1.17.1) (2025-07-17)
 
 

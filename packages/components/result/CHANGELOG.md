@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.0.18](https://github.com/Synerise/synerise-design/compare/@synerise/ds-result@1.0.17...@synerise/ds-result@1.0.18) (2025-07-24)
+
+
+### Bug Fixes
+
+* **result:** fix styles to match figma ([1b17374](https://github.com/Synerise/synerise-design/commit/1b173747daf73f5a768241a3116ba7b3c7c90eb1))
+
+
+
+
+
 ## [1.0.17](https://github.com/Synerise/synerise-design/compare/@synerise/ds-result@1.0.16...@synerise/ds-result@1.0.17) (2025-07-17)
 
 **Note:** Version bump only for package @synerise/ds-result
