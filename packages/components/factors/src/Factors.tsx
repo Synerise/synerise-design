@@ -119,6 +119,7 @@ const Factors = ({
   readOnly,
   factorValueExtraProps,
   getMenuEntryProps,
+  uncontrolledComponent = false,
 }: FactorsProps) => {
   const allTexts = useTexts(texts);
   const factorType = useMemo(() => {
@@ -188,6 +189,7 @@ const Factors = ({
         readOnly={readOnly}
         getMenuEntryProps={getMenuEntryProps}
         factorValueExtraProps={factorValueExtraProps}
+        uncontrolledComponent={uncontrolledComponent}
       />
     </S.Group>
   );

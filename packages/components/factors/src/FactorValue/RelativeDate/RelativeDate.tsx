@@ -26,16 +26,20 @@ const RelativeDateInput = ({
   triggerValueFormatter,
   getPopupContainerOverride,
   availableUnits,
+  uncontrolledComponent,
 }: FactorValueComponentProps) => {
   const [isOpen, setIsOpen] = useState(opened);
   const [localValue, setLocalValue] = useState<RelativeDateValueType>(
-    value as RelativeDateValueType,
+    () => value as RelativeDateValueType,
   );
   const theme = useTheme();
   const { relativeDate: texts } = allTexts;
+
   useEffect(() => {
-    setLocalValue(value as RelativeDateValueType);
-  }, [value]);
+    if (!uncontrolledComponent) {
+      setLocalValue(value as RelativeDateValueType);
+    }
+  }, [value, uncontrolledComponent]);
 
   const handleOpenChange = useCallback(
     (open: boolean) => {

@@ -19,12 +19,15 @@ const DateInput = ({
   allowClear,
   readOnly = false,
   getPopupContainerOverride,
+  uncontrolledComponent,
 }: FactorValueComponentProps) => {
   const [localValue, setLocalValue] = useState<FactorsProps['value']>(value);
 
   useEffect(() => {
-    setLocalValue(value);
-  }, [value]);
+    if (!uncontrolledComponent) {
+      setLocalValue(value);
+    }
+  }, [value, uncontrolledComponent]);
 
   const changeHandler = useCallback(
     (date: Date | undefined) => {

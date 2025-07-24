@@ -30,6 +30,7 @@ const FactorValue = ({
   relativeDateProps,
   arrayProps,
   factorValueExtraProps,
+  uncontrolledComponent,
 }: FactorValueProps) => {
   const inputType = React.useMemo(() => {
     if (!selectedFactor) {
@@ -69,6 +70,7 @@ const FactorValue = ({
         inputProps={inputProps}
         factorValueExtraProps={factorValueExtraProps}
         {...relativeDateProps}
+        uncontrolledComponent={uncontrolledComponent}
       />
     );
   }, [
@@ -98,6 +100,7 @@ const FactorValue = ({
     getMenuEntryProps,
     relativeDateProps,
     factorValueExtraProps,
+    uncontrolledComponent,
   ]);
   return (
     <S.FactorInput
