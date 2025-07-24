@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.0.19](https://github.com/Synerise/synerise-design/compare/@synerise/ds-result@1.0.18...@synerise/ds-result@1.0.19) (2025-07-24)
+
+
+### Bug Fixes
+
+* **result:** center result in container ([f213965](https://github.com/Synerise/synerise-design/commit/f213965b0492904d7b444ff22bd609752ac29621))
+
+
+
+
+
 ## [1.0.18](https://github.com/Synerise/synerise-design/compare/@synerise/ds-result@1.0.17...@synerise/ds-result@1.0.18) (2025-07-24)
 
 

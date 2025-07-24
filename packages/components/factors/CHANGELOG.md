@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.5.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-factors@1.4.5...@synerise/ds-factors@1.5.0) (2025-07-24)
+
+
+### Features
+
+* add uncontrolledComponent prop in factors ([1b40c36](https://github.com/Synerise/synerise-design/commit/1b40c36f8348b730bc8df924c039e4cb6be4c6b8))
+
+
+
+
+
 ## [1.4.5](https://github.com/Synerise/synerise-design/compare/@synerise/ds-factors@1.4.4...@synerise/ds-factors@1.4.5) (2025-07-24)
 
 **Note:** Version bump only for package @synerise/ds-factors
