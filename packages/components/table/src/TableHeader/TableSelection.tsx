@@ -331,7 +331,7 @@ const TableSelection = <T extends { children?: T[] }>({
           />
         </Tooltip>
       )}
-      {(selection.selections || menuDataSource?.length) && (
+      {(selection.selections || !!menuDataSource?.length) && (
         <Dropdown
           disabled={disabledBulkSelection || menuDataSource?.length === 0}
           trigger={['click']}
