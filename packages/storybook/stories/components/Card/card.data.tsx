@@ -9,7 +9,9 @@ import { theme } from '@synerise/ds-core';
 import Icon, {
   AiSearchGreyM,
   AnalyticsGreyM,
+  BookmarkM,
   CheckS,
+  Close2M,
   ExternalLinkM,
   FileCodeM,
   FilterM,
@@ -211,6 +213,25 @@ export const CUSTOM_BADGES = {
   undefined: undefined,
   text: <div>Badge</div>,
 };
+
+export const TYPES_OF_BADGES = [
+  {
+    icon: <CardBadge icon={<CheckS />} />,
+  },
+  {
+    icon: <CardBadge icon={<CheckS />} status="success" />,
+  },
+  {
+    icon: <Icon component={<BookmarkM />} />,
+  },
+  {
+    icon: (
+      <div style={{ marginRight: '16px' }}>
+        <ObjectAvatar iconComponent={<Icon component={<Close2M />} />} />
+      </div>
+    ),
+  },
+];
 
 const titleTag = (
   <Tag

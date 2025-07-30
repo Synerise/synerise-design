@@ -1,28 +1,28 @@
 import React, { useState } from 'react';
+
 import { Meta, StoryObj } from '@storybook/react-webpack5';
-
-import Card, { CardBadge, CardSummary, CardGroup } from '@synerise/ds-card';
-
-import { CheckS } from '@synerise/ds-icon';
+import Card, { CardBadge, CardGroup, CardSummary } from '@synerise/ds-card';
 import type { CardProps } from '@synerise/ds-card';
+import { CheckS } from '@synerise/ds-icon';
 import Layout from '@synerise/ds-layout';
 
+import {
+  BOOLEAN_CONTROL,
+  CLASSNAME_ARG_CONTROL,
+  REACT_NODE_AS_STRING,
+  STYLE_ARG_CONTROL,
+  controlFromOptionsArray,
+} from '../../utils';
 import * as S from '../Layout/components/Layout.styles';
 import {
-  CardWithState,
   CARD_CONTENT,
   CARD_HEADER_VARIANTS,
   CARD_SUMMARY_ITEMS,
   CUSTOM_BADGES,
+  CardWithState,
+  TYPES_OF_BADGES,
   defaultRender,
 } from './card.data';
-import {
-  BOOLEAN_CONTROL,
-  CLASSNAME_ARG_CONTROL,
-  controlFromOptionsArray,
-  REACT_NODE_AS_STRING,
-  STYLE_ARG_CONTROL,
-} from '../../utils';
 
 type Story = StoryObj<CardProps>;
 
@@ -68,7 +68,7 @@ export const Default: Story = {
   },
 };
 export const withLayout: Story = {
-  render: args => {
+  render: (args) => {
     const [leftOpened, setLeftOpened] = useState(false);
     const [rightOpened, setRightOpened] = useState(false);
 
@@ -91,7 +91,7 @@ export const withLayout: Story = {
           {CARD_CONTENT}
         </Layout>
       </Card>
-    )
+    );
   },
   args: {
     icon: <CardBadge icon={<CheckS />} />,
@@ -105,14 +105,12 @@ export const withLayout: Story = {
 };
 
 export const Static: Story = {
-  render: args => (
-    <Card {...args}>{CARD_CONTENT}</Card>
-  ),
+  render: (args) => <Card {...args}>{CARD_CONTENT}</Card>,
   args: {
     icon: <CardBadge icon={<CheckS />} />,
     hideContent: false,
     title: 'title',
-    description: 'description'
+    description: 'description',
   },
 };
 
@@ -127,12 +125,18 @@ export const WithGreyBackground: Story = {
 export const WithStaticSummary: Story = {
   args: {
     icon: <CardBadge icon={<CheckS />} />,
-    staticContent: <CardSummary title="Summary" items={CARD_SUMMARY_ITEMS} data-tesid="card-summary-example" />,
+    staticContent: (
+      <CardSummary
+        title="Summary"
+        items={CARD_SUMMARY_ITEMS}
+        data-tesid="card-summary-example"
+      />
+    ),
   },
 };
 
 export const HeaderVariants: Story = {
-  render: args => (
+  render: (args) => (
     <CardGroup columns={1}>
       {CARD_HEADER_VARIANTS.map((variantArgs: Partial<CardProps>) => (
         <CardWithState {...args} {...variantArgs} />
@@ -156,8 +160,18 @@ export const HeaderVariants: Story = {
   },
 };
 
+export const BadgeVariants: Story = {
+  render: (args) => (
+    <CardGroup columns={1}>
+      {TYPES_OF_BADGES.map((icons) => (
+        <Card {...args} icon={icons.icon} />
+      ))}
+    </CardGroup>
+  ),
+};
+
 export const CustomBadge: StoryObj<CardProps & { customBadgeType: string }> = {
-  render: args => {
+  render: (args) => {
     const renderBadge = () => {
       return CUSTOM_BADGES[args.customBadgeType];
     };
