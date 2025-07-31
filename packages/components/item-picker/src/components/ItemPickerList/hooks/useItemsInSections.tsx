@@ -176,6 +176,7 @@ export const useItemsInSections = <
         changeSearchQuery('');
         setSearchInItem(item);
         setSearchByParamConfig(undefined);
+        searchInAction.onSearchInItemClick?.(item);
         return;
       }
       handleItemSelect?.(item);
