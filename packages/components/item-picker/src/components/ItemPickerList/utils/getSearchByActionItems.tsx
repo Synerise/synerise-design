@@ -47,6 +47,7 @@ export const getSearchByActionItems = ({
           changeSearchQuery('');
           setSearchByParamConfig(searchParam);
           setSearchByAction(undefined);
+          action.onSearchByParamClick?.(searchParam);
         },
       },
       searchQuery,

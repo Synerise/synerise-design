@@ -33,6 +33,7 @@ export type SearchByConfig = {
   actionType: typeof ACTION_TYPES.searchBy;
   sectionTitle?: ReactNode;
   searchParams: SearchByParamConfig[];
+  onSearchByParamClick?: (searchByParam: SearchByParamConfig) => void;
 };
 
 export type SearchByParamConfig = {
@@ -50,6 +51,7 @@ export type SearchInConfig = {
   loadItemsSectionId?: BaseSectionType['id'];
   searchInSectionId?: BaseSectionType['id'];
   renderSearchInValueText: (item: BaseItemType) => ReactNode;
+  onSearchInItemClick?: (item: BaseItemType) => void;
 };
 
 export type SearchInAction = BasicAction & SearchInConfig;
