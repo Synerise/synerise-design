@@ -90,6 +90,7 @@ const FileView = ({
     onRemove && onRemove();
     setPressed(false);
   };
+
   return (
     <S.FileViewContainer
       success={success}
@@ -117,7 +118,7 @@ const FileView = ({
               {file.name} <S.FileWeight>{finalTexts.fileWeight}</S.FileWeight>
             </S.Name>
             <div style={{ display: 'flex' }}>
-              <ProgressBar amount={100} percent={finalTexts.percent} />
+              <ProgressBar amount={100} percent={progress} />
               <S.RemoveWrapper onClick={onRemove} data-testid="fileview-remove">
                 <Tooltip title={finalTexts.removeTooltip}>
                   <Icon component={<Close3M />} size={20} />
