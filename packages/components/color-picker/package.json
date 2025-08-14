@@ -1,6 +1,6 @@
 {
   "name": "@synerise/ds-color-picker",
-  "version": "1.2.15",
+  "version": "1.2.16",
   "description": "Color-Picker Component for the Synerise Design System",
   "license": "ISC",
   "repository": "Synerise/synerise-design",
@@ -34,13 +34,13 @@
   ],
   "types": "dist/index.d.ts",
   "dependencies": {
-    "@synerise/ds-button": "^1.4.6",
-    "@synerise/ds-divider": "^1.0.17",
-    "@synerise/ds-dropdown": "^1.0.19",
-    "@synerise/ds-icon": "^1.6.2",
-    "@synerise/ds-input": "^1.3.6",
-    "@synerise/ds-tags": "^1.1.20",
-    "@synerise/ds-tooltip": "^1.1.15",
+    "@synerise/ds-button": "^1.4.7",
+    "@synerise/ds-divider": "^1.0.18",
+    "@synerise/ds-dropdown": "^1.0.20",
+    "@synerise/ds-icon": "^1.7.0",
+    "@synerise/ds-input": "^1.3.7",
+    "@synerise/ds-tags": "^1.1.21",
+    "@synerise/ds-tooltip": "^1.1.16",
     "@synerise/ds-utils": "^1.4.0",
     "copy-to-clipboard": "^3.3.1",
     "react-colorful": "^5.2.0"

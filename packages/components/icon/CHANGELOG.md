@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.7.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-icon@1.6.2...@synerise/ds-icon@1.7.0) (2025-08-14)
+
+
+### Bug Fixes
+
+* **icon:** add new icons ([3a68839](https://github.com/Synerise/synerise-design/commit/3a688395eff0fe0c5c4e163a7882be53411341da))
+
+
+### Features
+
+* add globe-clock icon SVG ([8f30904](https://github.com/Synerise/synerise-design/commit/8f30904f076b51c7c7d4ce96c92ef4a24af0aca0))
+
+
+
+
+
 ## [1.6.2](https://github.com/Synerise/synerise-design/compare/@synerise/ds-icon@1.6.1...@synerise/ds-icon@1.6.2) (2025-07-24)
 
 **Note:** Version bump only for package @synerise/ds-icon

@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.9.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-item-picker@1.8.5...@synerise/ds-item-picker@1.9.0) (2025-08-14)
+
+
+### Features
+
+* **item-picker:** add extra action callbacks ([c9421e9](https://github.com/Synerise/synerise-design/commit/c9421e97c6645810111d9fec8ace86afaf684d26))
+
+
+
+
+
 ## [1.8.5](https://github.com/Synerise/synerise-design/compare/@synerise/ds-item-picker@1.8.4...@synerise/ds-item-picker@1.8.5) (2025-07-24)
 
 **Note:** Version bump only for package @synerise/ds-item-picker
