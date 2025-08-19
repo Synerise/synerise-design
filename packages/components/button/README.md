@@ -88,13 +88,14 @@ Special type of Button, with two states: default and activated (selected). Inher
 
 ## Button.Creator
 
-| Property | Description                                            | Type                              | Default   |
-| -------- | ------------------------------------------------------ | --------------------------------- | --------- |
-| block    | Defines if the button should take all available space. | boolean                           | `false`   |
-| disabled | Defines if the button is disabled.                     | boolean                           | `false`   |
-| label    | Label of the button.                                   | string / React.ReactNode          | -         |
-| onClick  | Callback executed after clicking the button            | (event: React.MouseEvent) => void | -         |
-| status   | Defines the color of the button.                       | `upload` / `error`/ `default`     | `default` |
+| Property      | Description                                            | Type                              | Default   |
+| ------------- | ------------------------------------------------------ | --------------------------------- | --------- |
+| block         | Defines if the button should take all available space. | boolean                           | `false`   |
+| disabled      | Defines if the button is disabled.                     | boolean                           | `false`   |
+| label         | Label of the button.                                   | string / React.ReactNode          | -         |
+| onClick       | Callback executed after clicking the button            | (event: React.MouseEvent) => void | -         |
+| status        | Defines the color of the button.                       | `upload` / `error`/ `default`     | `default` |
+| labelAlign    | Defines label in center or left                        | `center` / `left`                 | `center`  |
 
 ## Button.Expander
 
