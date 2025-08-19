@@ -52,7 +52,7 @@ export const WizardContainer = styled.div<{
   align-items: flex-start;
   justify-content: center;
   padding-top: 122px;
-  padding-bottom: ${(props): string => (props.withFooter ? '80px' : '0')};
+  padding-bottom: ${(props): string => (props.withFooter ? '100px' : '0')};
 `;
 
 export const WizardButtons = styled.div`
@@ -123,9 +123,8 @@ export const FooterRightSide = styled.div`
 export const WizardFooter = styled.div`
   display: flex;
   justify-content: space-between;
-  width: calc(100% - 48px);
-  padding: 15px 0;
-  margin: 0 24px;
+  width: 100%;
+  padding: 24px;
   background-color: ${(props) => props.theme.palette.white};
   border-top: 1px solid ${(props) => props.theme.palette['grey-200']};
   position: fixed;
