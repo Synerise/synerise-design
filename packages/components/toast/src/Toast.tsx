@@ -58,7 +58,7 @@ export const Toast = ({
   }, [onExpand, expanded]);
 
   return (
-    <S.Container toastType={type} {...htmlAttributes}>
+    <S.Container toastType={type} data-toastType={type} {...htmlAttributes}>
       <S.IconWrapper>
         {customIcon || <Icon component={iconComponentForType} />}
       </S.IconWrapper>
