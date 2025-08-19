@@ -94,13 +94,3 @@ import Badge from '@synerise/ds-badge'
 | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `green` / `grey` / `yellow` / `blue` / `pink`/ `mars`/ `orange`/ `fern`/ `cyan`/ `purple` / `violet` / `blue-600` / `green-600` / `mars-600` / `purple-600` / `cyan-600` / `yellow-600` / `violet-600` / `blue-700` / `green-700` / `mars-700` / `purple-700` / `cyan-700` / `yellow-700` / `violet-700` / `blue-500` / `green-500` / `mars-500` / `purple-500` / `cyan-500` / `yellow-500` / `violet-500` |
 
-### IconBadge
-
-Displays a predefined (depending on status) or custom icon as badge
-
-| Property | Description               | Type                                                         | Default |
-| -------- | ------------------------- | ------------------------------------------------------------ | ------- |
-| status   | Set badge as a status dot | `active` / `inactive` / `blocked` / `processing` / `warning` | -       |
-| icon     | Custom icon to display    | `ReactNode`                                                  | -       |
-
-Either icon or status is mandatory.

@@ -1,28 +1,25 @@
 import React, { CSSProperties } from 'react';
+
 import { Meta, StoryObj } from '@storybook/react-webpack5';
-
-import Badge, { IconBadge } from '@synerise/ds-badge';
-import Icon, { AppleFillM, Close3M, ErrorFillM, FacebookFillM, FileM, HelpFillM, IconProps } from '@synerise/ds-icon';
 import Avatar from '@synerise/ds-avatar';
-import { theme } from '@synerise/ds-core';
-
-import type { BadgeProps, CustomIconBadgeProps, StatusIconBadgeProps } from '@synerise/ds-badge';
 import type { AvatarProps } from '@synerise/ds-avatar';
+import Badge from '@synerise/ds-badge';
+import type { BadgeProps } from '@synerise/ds-badge';
+import { theme } from '@synerise/ds-core';
+import Icon, { FileM, IconProps } from '@synerise/ds-icon';
 
+import { AVATAR_IMAGE, COLOR_NAMES } from '../../constants';
 import {
   BOOLEAN_CONTROL,
   COLOR_CONTROL,
   COLOR_HUE_CONTROL,
+  NUMBER_CONTROL,
+  STRING_CONTROL,
   controlFromOptionsArray,
   fixedWrapper200,
   fixedWrapper400,
-  NUMBER_CONTROL,
-  reactNodeAsSelect,
-  STRING_CONTROL,
 } from '../../utils';
-import { AVATAR_IMAGE, COLOR_NAMES } from '../../constants';
-
-import { STATUSES, AVATAR_ARG_TYPES } from './constants';
+import { AVATAR_ARG_TYPES, STATUSES } from './constants';
 
 export default {
   title: 'Components/Badge',
@@ -68,13 +65,15 @@ export default {
 } as Meta<BadgeProps>;
 
 export const Standalone: StoryObj<BadgeProps> = {
-  render: args => {
+  render: (args) => {
     return (
       <>
         <div
           style={{
             display: 'flex',
-            background: args.outlined ? theme.palette['grey-200'] : 'transparent',
+            background: args.outlined
+              ? theme.palette['grey-200']
+              : 'transparent',
             alignItems: 'center',
             justifyContent: 'center',
           }}
@@ -128,7 +127,9 @@ export const Standalone: StoryObj<BadgeProps> = {
               textColorHue="500"
               {...args}
               style={{
-                boxShadow: args.outlined ? `0 0 0 1px ${theme.palette['grey-500']}` : '',
+                boxShadow: args.outlined
+                  ? `0 0 0 1px ${theme.palette['grey-500']}`
+                  : '',
                 minWidth: '16px',
                 minHeight: '16px',
                 margin: '9px 8px 7px 8px',
@@ -174,7 +175,11 @@ export const Dot: StoryObj<
   render: ({ iconColor, iconSize }) => (
     <div style={{ display: 'flex', justifyContent: 'space-around' }}>
       <Badge dot>
-        <Icon color={'#fcc600' || iconColor} size={iconSize} component={<FileM />} />
+        <Icon
+          color={'#fcc600' || iconColor}
+          size={iconSize}
+          component={<FileM />}
+        />
       </Badge>
 
       <Badge dot>
@@ -196,14 +201,20 @@ export const Dot: StoryObj<
 
 export const Count: StoryObj<BadgeProps> = {
   decorators: [fixedWrapper200],
-  render: args => {
+  render: (args) => {
     const iconStyles: CSSProperties = {
       position: 'absolute',
       top: '14px',
       right: '2px',
     };
     return (
-      <div style={{ display: 'flex', justifyContent: 'space-around', alignItems: 'center' }}>
+      <div
+        style={{
+          display: 'flex',
+          justifyContent: 'space-around',
+          alignItems: 'center',
+        }}
+      >
         <Badge {...args}>
           <div
             style={{
@@ -215,7 +226,17 @@ export const Count: StoryObj<BadgeProps> = {
           />
         </Badge>
 
-        <Badge {...args} count={<Icon component={<FileM />} size={24} color="#f5222d" style={iconStyles} />}>
+        <Badge
+          {...args}
+          count={
+            <Icon
+              component={<FileM />}
+              size={24}
+              color="#f5222d"
+              style={iconStyles}
+            />
+          }
+        >
           <div
             style={{
               width: '48px',
@@ -245,7 +266,9 @@ export const StatusDot: StoryObj<BadgeProps> = {
   },
 };
 
-export const StatusDotWithAvatar: StoryObj<Omit<BadgeProps, 'size'> & AvatarProps> = {
+export const StatusDotWithAvatar: StoryObj<
+  Omit<BadgeProps, 'size'> & AvatarProps
+> = {
   render: ({ status, size, shape }) => (
     <Badge status={status}>
       <Avatar size={size} shape={shape} src={AVATAR_IMAGE} hasStatus />
@@ -259,7 +282,12 @@ export const StatusDotWithAvatar: StoryObj<Omit<BadgeProps, 'size'> & AvatarProp
   argTypes: {
     size: {
       defaultValue: 'default',
-      ...controlFromOptionsArray('select', ['extraLarge', 'large', 'default', 'small']),
+      ...controlFromOptionsArray('select', [
+        'extraLarge',
+        'large',
+        'default',
+        'small',
+      ]),
     },
     shape: {
       defaultValue: 'circle',
@@ -273,61 +301,13 @@ export const StatusDotWithAvatar: StoryObj<Omit<BadgeProps, 'size'> & AvatarProp
   },
 };
 
-export const StatusIconWithAvatar: StoryObj<StatusIconBadgeProps & AvatarProps> = {
-  parameters: {
-    controls: {
-      include: ['shape', 'size', 'status'],
-    },
-  },
-  render: ({ status, size, shape }) => (
-    <IconBadge status={status}>
-      <Avatar size={size} shape={shape} src={AVATAR_IMAGE} hasStatus />
-    </IconBadge>
-  ),
-  args: {
-    status: 'active',
-    shape: 'circle',
-    size: 'medium',
-  },
-};
-
-export const CustomIconWithAvatar: StoryObj<CustomIconBadgeProps & AvatarProps> = {
-  parameters: {
-    controls: {
-      include: ['shape', 'size', 'icon'],
-    },
-  },
-  render: ({ icon, size, shape }) => (
-    <IconBadge icon={icon}>
-      <Avatar size={size} shape={shape} src={AVATAR_IMAGE} hasStatus />
-    </IconBadge>
-  ),
-  argTypes: {
-    ...AVATAR_ARG_TYPES,
-    icon: {
-      ...reactNodeAsSelect(['AppleFillM', 'Close3M', 'ErrorFillM', 'FacebookFillM', 'HelpFillM'], {
-        AppleFillM: <Icon component={<AppleFillM />} color={theme.palette['fern-600']} />,
-        Close3M: <Icon component={<Close3M />} color={theme.palette['grey-400']} />,
-        ErrorFillM: <Icon component={<ErrorFillM />} color={theme.palette['red-600']} />,
-        HelpFillM: <Icon component={<HelpFillM />} color={theme.palette['orange-600']} />,
-        FacebookFillM: <Icon component={<FacebookFillM />} color={theme.palette['blue-600']} />,
-      }),
-    },
-  },
-  args: {
-    icon: <Icon component={<HelpFillM />} color={theme.palette['orange-600']} />,
-    shape: 'circle',
-    size: 'medium',
-  },
-};
-
 export const StatusDotPulsing: StoryObj<BadgeProps> = {
   parameters: {
     controls: {
       include: ['status'],
     },
   },
-  render: args => <Badge {...args} pulsing={true} flag={true} />,
+  render: (args) => <Badge {...args} pulsing={true} flag={true} />,
   args: {
     status: 'active',
   },
@@ -339,7 +319,9 @@ export const StatusDotPulsingWithLabel: StoryObj<BadgeProps> = {
       include: ['status'],
     },
   },
-  render: args => <Badge {...args} text={'Success'} pulsing={true} flag={true} />,
+  render: (args) => (
+    <Badge {...args} text={'Success'} pulsing={true} flag={true} />
+  ),
   args: {
     status: 'active',
   },
@@ -351,9 +333,16 @@ export const StatusDotPulsingWithElement: StoryObj<BadgeProps> = {
       include: ['status'],
     },
   },
-  render: args => (
+  render: (args) => (
     <Badge {...args} pulsing={true} flag={true}>
-      <div style={{ width: '48px', height: '48px', background: 'grey', borderRadius: '5px' }} />
+      <div
+        style={{
+          width: '48px',
+          height: '48px',
+          background: 'grey',
+          borderRadius: '5px',
+        }}
+      />
     </Badge>
   ),
   args: {
@@ -369,7 +358,7 @@ export const StatusDotPulsingWithIcon: StoryObj<
       include: ['status', 'color', 'size'],
     },
   },
-  render: args => {
+  render: (args) => {
     const { color, size, ...badgeProps } = args;
     return (
       <Badge {...badgeProps} flag={true}>
@@ -394,7 +383,9 @@ export const StatusDotPulsingWithIcon: StoryObj<
   },
 };
 
-export const StatusDotPulsingWithAvatar: StoryObj<Pick<BadgeProps, 'status' | 'pulsing'> & AvatarProps> = {
+export const StatusDotPulsingWithAvatar: StoryObj<
+  Pick<BadgeProps, 'status' | 'pulsing'> & AvatarProps
+> = {
   parameters: {
     controls: {
       include: ['status', 'size', 'shape', 'pulsing'],
@@ -403,7 +394,12 @@ export const StatusDotPulsingWithAvatar: StoryObj<Pick<BadgeProps, 'status' | 'p
   render: ({ status, pulsing, size, shape }) => {
     return (
       <Badge status={status} pulsing={pulsing} flag={true}>
-        <Avatar size={size} shape={'circle' || shape} src={AVATAR_IMAGE} hasStatus />
+        <Avatar
+          size={size}
+          shape={'circle' || shape}
+          src={AVATAR_IMAGE}
+          hasStatus
+        />
       </Badge>
     );
   },

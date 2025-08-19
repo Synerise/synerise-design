@@ -2,7 +2,6 @@ import Avatar from 'antd/lib/avatar';
 import React from 'react';
 import styled, { css } from 'styled-components';
 
-import { IconBadgeIcon } from '@synerise/ds-badge/dist/IconBadge/IconBadge.styles';
 import { type ThemeProps } from '@synerise/ds-core';
 import { macro } from '@synerise/ds-typography';
 
@@ -48,31 +47,11 @@ const BADGE_POSITION = {
   squareextraLarge: '3px',
 };
 
-const ICON_BADGE_POSITION = {
-  circlesmall: '-10px',
-  circlemedium: '-8px',
-  circlelarge: '-2px',
-  circleextraLarge: '4px',
-  squaresmall: '-11px',
-  squaremedium: '-11px',
-  squarelarge: '-11px',
-  squareextraLarge: '-11px',
-};
-
 const MACRO_MAPPING = {
   small: macro.xsAvatar,
   medium: macro.small,
   large: macro.small,
   extraLarge: macro.xlAvatar,
-};
-
-const applyIconBadgePosition = (props: AvatarProps) => {
-  const { shape = 'circle', size = 'medium' } = props;
-  const badgeKey = `${shape}${size}` satisfies keyof typeof ICON_BADGE_POSITION;
-  return css`
-    top: ${ICON_BADGE_POSITION[badgeKey] || '0'};
-    right: ${ICON_BADGE_POSITION[badgeKey] || '0'};
-  `;
 };
 
 const applyBadgePosition = (props: AvatarProps) => {
@@ -187,10 +166,6 @@ export default styled(
           height: 10px;
           box-shadow: none;
           ${applyBadgePosition(props)};
-        }
-
-        & + ${IconBadgeIcon} {
-          ${applyIconBadgePosition(props)};
         }
       `};
 

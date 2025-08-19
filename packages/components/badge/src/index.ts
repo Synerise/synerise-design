@@ -6,10 +6,3 @@ export type {
   Color as BadgeColor,
   ColorHue as BadgeColorHue,
 } from './Badge.types';
-
-export * from './IconBadge/IconBadge';
-export type {
-  IconBadgeProps,
-  StatusIconBadgeProps,
-  CustomIconBadgeProps,
-} from './IconBadge/IconBadge.types';
