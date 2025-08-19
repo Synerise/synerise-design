@@ -13,6 +13,7 @@ const Creator = ({
   block,
   status,
   className,
+  labelAlign = 'center',
   ...htmlAttributes
 }: CreatorProps) => {
   const [pressed, setPressed] = useState(false);
@@ -25,6 +26,7 @@ const Creator = ({
   return (
     <S.Creator
       block={block}
+      labelAlign={labelAlign}
       className={classnames([className, 'ds-button-creator'])}
       disabled={disabled}
       onClick={onClick}

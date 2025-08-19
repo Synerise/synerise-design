@@ -111,6 +111,13 @@ export const Creator = styled(({ status, pressed, withLabel, ...rest }) => (
       props.withLabel && !props.block ? `flex-start` : 'center'};
     align-items: center;
 
+    &.ant-btn {
+      & .ds-button-label {
+        justify-content: ${(props) =>
+          props.labelAlign === 'center' ? 'center' : 'flex-start'};
+      }
+    }
+
     &.ant-btn > span {
       display: flex;
       align-items: center;

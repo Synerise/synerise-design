@@ -14,6 +14,7 @@ export type CreatorProps = WithHTMLAttributes<
     disabled?: boolean;
     label?: ReactNode;
     block?: boolean;
+    labelAlign?: 'left' | 'center';
     status?: CreatorStatus;
     className?: string;
   }
