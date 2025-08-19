@@ -155,7 +155,7 @@ export function RowSelectionColumn<T extends object & RowType<T>>({
       <Button.Checkbox
         key={`checkbox-${recordKey}`}
         data-testid="ds-table-selection-button"
-        checked={isChecked || isGlobalAllSelected}
+        checked={isGlobalAllSelected || isChecked}
         disabled={disabledProp}
         indeterminate={isIndeterminate}
         onClick={(event) => {
