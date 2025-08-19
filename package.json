@@ -93,7 +93,7 @@
     "@types/ramda": "^0.28.23",
     "@types/react-highlight-words": "^0.16.4",
     "@types/react-onclickoutside": "^6.7.4",
-    "@types/react-window": "^1.8.5",
+    "@types/react-window": "^1.8.8",
     "@types/resize-observer-browser": "^0.1.7",
     "@types/styled-components": "5.1.27",
     "@types/uuid": "9.0.4",

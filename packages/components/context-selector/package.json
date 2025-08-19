@@ -48,7 +48,7 @@
     "@synerise/ds-skeleton": "^1.0.18",
     "@synerise/ds-tabs": "^1.0.20",
     "@synerise/ds-utils": "^1.4.0",
-    "react-window": "1.8.5",
+    "react-window": "1.8.11",
     "uuid": "^8.3.2"
   },
   "peerDependencies": {

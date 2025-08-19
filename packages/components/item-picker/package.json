@@ -55,7 +55,7 @@
     "@synerise/ds-tooltip": "^1.1.15",
     "@synerise/ds-utils": "^1.4.0",
     "lodash": "^4.17.21",
-    "react-window": "^1.8.5",
+    "react-window": "^1.8.11",
     "uuid": "^8.3.2"
   },
   "peerDependencies": {

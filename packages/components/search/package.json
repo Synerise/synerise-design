@@ -41,7 +41,7 @@
     "@synerise/ds-tooltip": "^1.1.15",
     "@synerise/ds-utils": "^1.4.0",
     "react-onclickoutside": "^6.9.0",
-    "react-window": "^1.8.5"
+    "react-window": "^1.8.11"
   },
   "peerDependencies": {
     "@synerise/ds-core": "*",
