@@ -43,7 +43,7 @@
     "@synerise/ds-tooltip": "^1.1.16",
     "@synerise/ds-typography": "^1.0.18",
     "@synerise/ds-utils": "^1.4.0",
-    "react-window": "1.8.5"
+    "react-window": "1.8.11"
   },
   "peerDependencies": {
     "@synerise/ds-core": "*",
