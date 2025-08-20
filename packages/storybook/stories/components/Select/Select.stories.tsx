@@ -98,6 +98,9 @@ export default {
     disabled: {
       ...BOOLEAN_CONTROL,
     },
+    readOnly: {
+      ...BOOLEAN_CONTROL,
+    },
     error: {
       ...BOOLEAN_CONTROL,
     },
