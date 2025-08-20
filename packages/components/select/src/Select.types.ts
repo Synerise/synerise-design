@@ -14,4 +14,6 @@ export type Props<T = SelectValue> = Omit<SelectProps<T>, 'listHeight'> & {
   asFormElement?: boolean;
   selectorStyle?: CSSObject;
   raw?: boolean;
+  readOnly?: boolean;
+  disabled?: boolean;
 } & FormFieldCommonProps;

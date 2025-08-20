@@ -34,6 +34,8 @@ class Select extends Component<Props> {
       dropdownClassName,
       asFormElement,
       raw,
+      readOnly,
+      disabled,
       ...antdProps
     } = this.props;
     const { size } = antdProps;
@@ -58,6 +60,8 @@ class Select extends Component<Props> {
           size={size}
           withPrefixel={!!prefixel}
           withSuffixel={!!suffixel}
+          disabled={disabled || readOnly}
+          readOnly={readOnly}
           clearIcon={
             <Tooltip title={clearTooltip}>
               <span>

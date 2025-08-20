@@ -56,6 +56,7 @@ export const AntdSelect = styled(
   size?: string;
   withPrefixel?: boolean;
   withSuffixel?: boolean;
+  readOnly?: boolean;
 }>`
   ${(props): string | false =>
     props.size === 'large' &&
@@ -140,6 +141,23 @@ export const AntdSelect = styled(
     }
     .ant-select-clear {
       background-color: ${(props): string => props.theme.palette['red-050']};
+    }
+  }
+
+  &&&.ant-select-disabled {
+    .ant-select-selector.ant-select-selector {
+      color: ${(props) =>
+        props.readOnly
+          ? props.theme.palette['grey-600']
+          : props.theme.palette['grey-400']};
+      cursor: ${(props) => (props.readOnly ? 'default' : 'not-allowed')};
+      background-color: ${(props) =>
+        props.readOnly
+          ? props.theme.palette.white
+          : props.theme.palette['grey-050']};
+    }
+    .ant-select-arrow {
+      opacity: 0.5;
     }
   }
 `;
