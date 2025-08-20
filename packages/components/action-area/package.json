@@ -1,6 +1,6 @@
 {
   "name": "@synerise/ds-action-area",
-  "version": "1.0.19",
+  "version": "1.0.20",
   "description": "ActionArea UI Component for the Synerise Design System",
   "license": "ISC",
   "repository": "Synerise/synerise-design",
@@ -34,7 +34,7 @@
   ],
   "types": "dist/index.d.ts",
   "dependencies": {
-    "@synerise/ds-button": "^1.4.7",
+    "@synerise/ds-button": "^1.4.8",
     "@synerise/ds-typography": "^1.0.18",
     "@synerise/ds-utils": "^1.4.0",
     "classnames": "^2.5.1"

@@ -1,6 +1,6 @@
 {
   "name": "@synerise/ds-card",
-  "version": "1.2.6",
+  "version": "1.2.7",
   "description": "Card UI Component for the Synerise Design System",
   "license": "ISC",
   "repository": "Synerise/synerise-design",
@@ -34,7 +34,7 @@
   ],
   "types": "dist/index.d.ts",
   "dependencies": {
-    "@synerise/ds-avatar": "^1.0.18",
+    "@synerise/ds-avatar": "^1.0.19",
     "@synerise/ds-icon": "^1.7.0",
     "@synerise/ds-tag": "^1.1.16",
     "@synerise/ds-typography": "^1.0.18",

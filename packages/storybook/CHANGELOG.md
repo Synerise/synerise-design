@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.18.1](https://github.com/Synerise/synerise-design/compare/storybook@1.18.0...storybook@1.18.1) (2025-08-20)
+
+
+### Bug Fixes
+
+* **button:** add new prop centerLabel ([fb9dcd1](https://github.com/Synerise/synerise-design/commit/fb9dcd1bfc6b853e46f8bd1989efaee48f6bc1b3))
+* **card:** new stories with badges variants ([f390c13](https://github.com/Synerise/synerise-design/commit/f390c1323d8398ac4c5a88339f17dc967f386c3b))
+
+
+
+
+
 # [1.18.0](https://github.com/Synerise/synerise-design/compare/storybook@1.17.1...storybook@1.18.0) (2025-07-24)
 
 

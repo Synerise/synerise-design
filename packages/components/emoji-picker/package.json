@@ -1,6 +1,6 @@
 {
   "name": "@synerise/ds-emoji-picker",
-  "version": "1.2.13",
+  "version": "1.2.14",
   "description": "EmojiPicker UI Component for the Synerise Design System",
   "license": "ISC",
   "repository": "Synerise/synerise-design",
@@ -34,7 +34,7 @@
   ],
   "types": "dist/index.d.ts",
   "dependencies": {
-    "@synerise/ds-button": "^1.4.7",
+    "@synerise/ds-button": "^1.4.8",
     "@synerise/ds-divider": "^1.0.18",
     "@synerise/ds-dropdown": "^1.0.20",
     "@synerise/ds-icon": "^1.7.0",

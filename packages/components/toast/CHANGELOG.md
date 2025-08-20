@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.2.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-toast@1.1.11...@synerise/ds-toast@1.2.0) (2025-08-20)
+
+
+### Features
+
+* **toast:** adds data-toastType attr ([c2ce47b](https://github.com/Synerise/synerise-design/commit/c2ce47bd6b62273517d8ecb3bb003baf564bbe10))
+
+
+
+
+
 ## [1.1.11](https://github.com/Synerise/synerise-design/compare/@synerise/ds-toast@1.1.10...@synerise/ds-toast@1.1.11) (2025-08-14)
 
 **Note:** Version bump only for package @synerise/ds-toast
