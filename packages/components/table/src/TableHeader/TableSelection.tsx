@@ -317,7 +317,7 @@ const TableSelection = <T extends { children?: T[] }>({
           <Button.Checkbox
             disabled={disabledBulkSelection}
             data-testid="ds-table-batch-selection-button"
-            checked={isAllSelected || selection.globalSelection?.isSelected}
+            checked={selection.globalSelection?.isSelected || isAllSelected}
             onChange={() => {
               if (selection.globalSelection?.isSelected) {
                 unselectGlobalAll();
