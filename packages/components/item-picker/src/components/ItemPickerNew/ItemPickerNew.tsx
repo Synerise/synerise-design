@@ -118,6 +118,7 @@ export const ItemPickerNew = <
           overlay={
             <ItemPickerList
               {...rest}
+              isDropdown
               texts={allTexts}
               isVisible={visible}
               selectedItem={selected}

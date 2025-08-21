@@ -2,6 +2,7 @@ import type { ReactNode } from 'react';
 
 import type { DropdownProps } from '@synerise/ds-dropdown';
 import type { FormFieldCommonProps } from '@synerise/ds-form-field';
+import type { InformationCardTooltipProps } from '@synerise/ds-information-card';
 import type { WithHTMLAttributes } from '@synerise/ds-utils';
 
 import type {
@@ -83,6 +84,10 @@ export type ItemPickerProps<
       allowClear?: boolean;
       withChangeButton?: ItemPickerTriggerProps['withChangeButton'];
       withClearConfirmation?: ItemPickerTriggerProps['withClearConfirmation'];
+      informationCardTooltipProps?: Omit<
+        InformationCardTooltipProps,
+        'children'
+      >;
     };
     /**
      * @deprecated - use errorText prop instead

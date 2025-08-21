@@ -89,6 +89,7 @@ export type ItemPickerListProps<
     includeSearchBar?: boolean;
     includeFooter?: boolean;
     onLoadedData?: OnLoadedData;
+    isDropdown?: boolean;
   }
 >;
 
