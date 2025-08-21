@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.1.15](https://github.com/synerise/synerise-design/compare/@synerise/ds-select@1.1.14...@synerise/ds-select@1.1.15) (2025-08-21)
+
+
+### Bug Fixes
+
+* **select:** new prop readonly ([9f15684](https://github.com/synerise/synerise-design/commit/9f1568408f601f11d201aa739a17d9a15be52f25))
+
+
+
+
+
 ## [1.1.14](https://github.com/synerise/synerise-design/compare/@synerise/ds-select@1.1.13...@synerise/ds-select@1.1.14) (2025-08-14)
 
 **Note:** Version bump only for package @synerise/ds-select

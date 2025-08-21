@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.18.2](https://github.com/Synerise/synerise-design/compare/storybook@1.18.1...storybook@1.18.2) (2025-08-21)
+
+
+### Bug Fixes
+
+* **select:** new prop readonly ([9f15684](https://github.com/Synerise/synerise-design/commit/9f1568408f601f11d201aa739a17d9a15be52f25))
+
+
+
+
+
 ## [1.18.1](https://github.com/Synerise/synerise-design/compare/storybook@1.18.0...storybook@1.18.1) (2025-08-20)
 
 
