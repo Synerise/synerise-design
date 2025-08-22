@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.5.4](https://github.com/Synerise/synerise-design/compare/@synerise/ds-factors@1.5.3...@synerise/ds-factors@1.5.4) (2025-08-22)
+
+
+### Bug Fixes
+
+* **factors:** array numeric value format ([f7a2a2e](https://github.com/Synerise/synerise-design/commit/f7a2a2ee1c1fdcae8eb3bdc99b15dabc5532ce33))
+
+
+
+
+
 ## [1.5.3](https://github.com/Synerise/synerise-design/compare/@synerise/ds-factors@1.5.2...@synerise/ds-factors@1.5.3) (2025-08-21)
 
 **Note:** Version bump only for package @synerise/ds-factors
