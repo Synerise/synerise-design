@@ -53,7 +53,7 @@ export const ArrayCollector = <ItemType extends 'string' | 'number'>({
     const hasExceededLimit = exceedsLimit(items.length);
     if (!hasError && !hasExceededLimit) {
       const rawItemValues = items.map((item) => ({
-        value: item.value,
+        value: itemType === 'number' ? Number(item.value) : item.value,
         id: item.id,
       }));
       onConfirm(rawItemValues);
