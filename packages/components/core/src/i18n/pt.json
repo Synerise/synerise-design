@@ -1,5 +1,33 @@
 {
     "DS": {
+        "CODE-AREA": {
+            "FULLSCREEN": "Tela cheia",
+            "CLOSE-FULLSCREEN": "Fechar tela cheia",
+            "FULLSCREEN-TITLE": "Editor em tela cheia"
+        },
+        "MAPPING": {
+            "BULK_SELECTION_ENABLE": "Ações em massa",
+            "BULK_SELECTION_DISABLE": "Ocultar ações"
+        },
+        "COLLECTOR": {
+            "ADD": "Adicionar",
+            "CANCEL": "Cancelar",
+            "PLACEHOLDER": "Digite o valor",
+            "TO-NAVIGATE": "para navegar",
+            "TO-SELECT": "para selecionar"
+        },
+        "MENU": {
+            "SHOW-LESS": "Mostrar menos",
+            "SHOW-MORE": "Mostrar mais"
+        },
+        "CONTEXT-SELECTOR": {
+            "BUTTON_LABEL": "Escolher",
+            "SEARCH_PLACEHOLDER": "Buscar",
+            "NO_RESULTS": "Sem resultados",
+            "SHOW_MORE": "Mostrar mais",
+            "RECENT": "Recentes",
+            "ALL": "Todos"
+        },
         "DESCRIPTION": {
             "COPY-VALUE": "Valor de cópia",
             "COPIED": "Copiado"
@@ -18,11 +46,14 @@
             "PARAMETER": {
                 "NO_RESULTS": "Sem resultados",
                 "SEARCH_PLACEHOLDER": "Procurar",
-                "LOADING_PARAMETERS": "Parâmetros de carregamento"
+                "LOADING_PARAMETERS": "Parâmetros de carregamento",
+                "ALL": "Todos",
+                "RECENT": "Recentes",
+                "SHOW_MORE": "Mostrar mais"
             },
             "FORMULA": {
                 "BUTTON_PLACEHOLDER": "Fórmula",
-                "DEFAULT_NAME": "Formula"
+                "DEFAULT_NAME": "Fórmula"
             },
             "DYNAMIC_KEY": {
                 "VALUE_PLACEHOLDER": "Valor",
@@ -82,9 +113,21 @@
         },
         "FILE-UPLOADER": {
             "BUTTON-LABEL": "Carregar um novo arquivo",
+            "BUTTON-LABEL-LARGE": "Carregar um novo arquivo",
             "BUTTON-DESC": "ou arrastar um aqui",
             "SIZE": "Tamanho:",
-            "UPLOADING": "Carregando..."
+            "UPLOADING": "Carregando...",
+            "REMOVE-TOOLTIP": "Remover",
+            "RETRY-TOOLTIP": "Tentar novamente",
+            "FILE-VIEW": {
+                "CANCEL": "Cancelar",
+                "OK": "OK",
+                "REMOVE-CONFIRM-TITLE": "Remover",
+                "FILE-WEIGHT": "Tamanho do arquivo",
+                "BUTTON-LABEL": "Carregar",
+                "BUTTON-DESCRIPTION": "Descrição do botão",
+                "RETRY-BUTTON-LABEL": "Tentar novamente"
+            }
         },
         "ITEM-FILTER": {
             "ACTIVATE-ITEM-TITLE": "Ao ativar este filtro, você cancelará suas configurações de filtro não salvas",
@@ -98,6 +141,27 @@
             "SEARCH-PLACEHOLDER": "Procurar",
             "SEARCH-CLEAR": "Limpar",
             "TITLE": "Filtros"
+        },
+        "ITEM-PICKER-DROPDOWN": {
+            "NO-ITEMS": "Sem itens",
+            "NO-SEARCH-RESULTS": "Nenhum resultado encontrado",
+            "NO-SEARCH-RESULTS-FOLDER": "Verifique sua frase ou tente buscar em outras pastas",
+            "NO-ACTIONS": "Nenhuma ação disponível",
+            "REFRESH": "Atualizar",
+            "RECENTS": "Recentes",
+            "ACTIONS": "Ações",
+            "RESULTS": "Resultados",
+            "ITEMS": "Itens",
+            "LOADING-MORE": "Carregando mais itens...",
+            "LOADING-ERROR": "Erro ao carregar",
+            "LOADED-ALL": "Todos os itens carregados",
+            "ERROR-TITLE": "Não foi possível carregar os itens",
+            "ERROR-DESCRIPTION": "Tente atualizar a lista mais tarde",
+            "SHOW-MORE": "Mostrar mais",
+            "CLEAR-SEARCH-TOOLTIP": "Limpar",
+            "BACK-TOOLTIP": "Voltar",
+            "SEARCH-EVERYWHERE": "Buscar em todas as pastas",
+            "SEARCH-PLACEHOLDER": "Busque um objeto ou digite {shortCutKey} para exibir ações"
         },
         "ITEM-PICKER": {
             "CLEAR-CONFIRM": "Você tem certeza de que quer remover esta seleção?",
@@ -178,7 +242,9 @@
             },
             "SELECT_ALL": "Selecionar todos",
             "UNSELECT_ALL": "Desselecionar todos",
-            "SELECT_INVERT": "Inverter a seleção"
+            "SELECT_GLOBAL_ALL": "Selecionar tudo",
+            "UNSELECT_GLOBAL_ALL": "Deselecionar tudo",
+            "SELECT_INVERT": "Inverter seleção"
         },
         "ICON-PICKER": {
             "NO-RESULTS": "Sem resultados"
@@ -204,13 +270,18 @@
             "SHOW": "Mostrar",
             "SHOW-LESS": "Mostrar menos"
         },
+        "INFORMATION-CARD": {
+            "QUICK-ACTIONS": "Ações rápidas"
+        },
         "DATE-PICKER": {
             "APPLY": "Aplicar",
             "SELECT-DATE": "Selecionar data",
             "SELECT-TIME": "Selecionar o tempo",
-            "NOW": "Agora"
+            "NOW": "Agora",
+            "CLEAR-TOOLTIP": "Limpar"
         },
         "DATE-RANGE-PICKER": {
+            "EMPTY-DATE-ERROR": "A data não pode ficar vazia",
             "TODAY": "Hoje",
             "YESTERDAY": "Ontem",
             "LAST-7-DAYS": "Últimos 7 dias",
@@ -221,7 +292,7 @@
             "LAST-3-MONTHS": "Últimos 3 meses",
             "LAST-6-MONTHS": "Últimos 6 meses",
             "LAST-YEAR": "Ano passado",
-            "ALL-TIME": "Lifetime",
+            "ALL-TIME": "Todo o período",
             "TOMORROW": "Amanhã",
             "NEXT-7-DAYS": "Próximos 7 dias",
             "NEXT-WEEK": "Próxima semana",
@@ -327,14 +398,15 @@
             "DUPLICATE": "Duplicar"
         },
         "FORMAT-PICKER": {
-            "HEADER": "Formato dos números",
+            "HEADER": "Formato dos numéros",
             "FORMAT": "Formato",
             "NUMERIC": "Numérico",
             "PERCENTAGE": "Porcentagem",
             "CASH": "Dinheiro",
             "SET-DEFAULT": "Definir padrão",
             "USE-SEPARATOR": "Usar milhares de separadores",
-            "COMPACT-NUMBERS": "Usar números compactos"
+            "COMPACT-NUMBERS": "Usar números compactos",
+            "EG": "ex."
         },
         "COMPLETED-WITHIN": {
             "INTERVAL": "Intervalo",
@@ -369,15 +441,18 @@
             "NOT-CONDITION-TYPE": "não event",
             "MOVE": "Mover",
             "DELETE": "Excluir",
-            "DUPLICATE": "Duplicar"
+            "DUPLICATE": "Duplicar",
+            "MOVE-DOWN": "Mover para baixo",
+            "MOVE-UP": "Mover para cima"
         },
         "WIZARD": {
             "BACK-BUTTON": "Voltar",
-            "NEXT-BUTTON": "Próximo passo"
+            "NEXT-BUTTON": "Próxima passo"
         },
         "FILTER": {
             "DROP-ME-HERE": "Deixe-me aqui",
-            "ADD-FILTER": "Adicionar filtro"
+            "ADD-FILTER": "Adicionar filtro",
+            "CONDITIONS-LIMIT": "Limite de condições"
         },
         "CONDITION": {
             "STEP_NAME-PLACEHOLDER": "Nome do passo",
@@ -387,6 +462,7 @@
             "ADD-CONDITION-ROW-BUTTON": "Adicionar condição",
             "ADD-STEP": "e depois...",
             "DROP-LABEL": "Deixe-me aqui",
+            "EMPTY_CONDITION_LABEL": "Selecione evento primeiro",
             "MOVE-TOOLTIP": "Mover",
             "DUPLICATE-TOOLTIP": "Duplicar",
             "REMOVE-TOOLTIP": "Excluir",
