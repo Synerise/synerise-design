@@ -49,6 +49,6 @@ export const CreatorBlock: StoryObj<CreatorProps> = {
   args: {
     label: 'Label',
     block: true,
-    labelAlign: true,
+    labelAlign: 'center',
   },
 };
