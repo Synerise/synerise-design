@@ -39,6 +39,7 @@
   "types": "dist/index.d.ts",
   "dependencies": {
     "dayjs": "^1.8.36",
+    "date-fns-tz": "^1.0.0",
     "moment": "^2.30.1"
   },
   "peerDependencies": {
