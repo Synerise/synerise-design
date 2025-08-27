@@ -1,28 +1,29 @@
 import React, { useState } from 'react';
-import { Meta, StoryObj } from '@storybook/react-webpack5';
 
-import Search, { SearchProps } from '@synerise/ds-search';
+import { Meta, StoryObj } from '@storybook/react-webpack5';
+import { theme } from '@synerise/ds-core';
+import Divider from '@synerise/ds-divider';
 import Icon from '@synerise/ds-icon';
 import ListItem from '@synerise/ds-list-item';
-import Divider from '@synerise/ds-divider';
-import { theme } from '@synerise/ds-core';
+import Search, { SearchProps } from '@synerise/ds-search';
 
-import { fixedWrapper300 } from '../../utils';
+import { NUMBER_CONTROL } from '../../utils';
 import {
-  getItemsWithAvatar,
-  getSuggestions,
   ItemType,
-  parameters,
   PARAMETERS_COUNT,
   PARAMETERS_TITLE,
   PARAMETERS_TOOLTIP,
   ParameterType,
-  recent,
   RECENT_COUNT,
   RECENT_TITLE,
   RECENT_TOOLTIP,
   SUGGESTIONS_TITLE,
   SUGGESTIONS_TOOLTIP,
+  SearchDecorator,
+  getItemsWithAvatar,
+  getSuggestions,
+  parameters,
+  recent,
 } from './Search.data';
 
 type StorySearchProps = SearchProps<ItemType, ParameterType>;
@@ -32,8 +33,8 @@ export default {
   component: Search,
   title: 'Components/Search/Search',
   tags: ['autodocs'],
-  decorators: [fixedWrapper300],
-  render: args => {
+  decorators: [SearchDecorator],
+  render: (args) => {
     const [value, setValue] = useState('');
     const [parameterValue, setParameterValue] = useState('');
     const [suggestions, setSuggestions] = useState<any[] | null>(null);
@@ -57,10 +58,17 @@ export default {
         parameterValue={parameterValue}
         parametersDisplayProps={{
           ...args.parametersDisplayProps,
-          itemRender: item => (
+          itemRender: (item) => (
             <ListItem
               highlight={value}
-              prefixel={item && <Icon component={item && item.icon} color={theme.palette['grey-600']} />}
+              prefixel={
+                item && (
+                  <Icon
+                    component={item && item.icon}
+                    color={theme.palette['grey-600']}
+                  />
+                )
+              }
             >
               {item && item.text}
             </ListItem>
@@ -68,13 +76,15 @@ export default {
         }}
         recentDisplayProps={{
           ...args.recentDisplayProps,
-          itemRender: item => <ListItem {...item}>{item && item.text}</ListItem>,
+          itemRender: (item) => (
+            <ListItem {...item}>{item && item.text}</ListItem>
+          ),
         }}
         suggestionsDisplayProps={{
           rowHeight: 32,
           title: SUGGESTIONS_TITLE,
           ...args.suggestionsDisplayProps,
-          itemRender: item => <ListItem>{item && item.text}</ListItem>,
+          itemRender: (item) => <ListItem>{item && item.text}</ListItem>,
         }}
         suggestions={suggestions}
         onClear={handleClear}
@@ -83,7 +93,10 @@ export default {
       />
     );
   },
-  argTypes: {},
+  argTypes: {
+    searchWidth: NUMBER_CONTROL,
+    dropdownWidth: NUMBER_CONTROL,
+  },
   args: {
     clearTooltip: 'Clear',
     searchTooltipProps: {
@@ -110,7 +123,9 @@ export default {
       itemRender: () => <></>,
     },
     divider: (
-      <div style={{ padding: '12px', paddingBottom: '0px', paddingRight: '20px' }}>
+      <div
+        style={{ padding: '12px', paddingBottom: '0px', paddingRight: '20px' }}
+      >
         <Divider dashed />
       </div>
     ),
@@ -137,10 +152,10 @@ export const WithItemsWithAvatars: Story = {
     recent: getItemsWithAvatar(10),
 
     recentDisplayProps: {
-        tooltip: RECENT_TOOLTIP,
-        title: RECENT_TITLE,
-        rowHeight: 50,
-        itemRender: () => <></>,
-      },
+      tooltip: RECENT_TOOLTIP,
+      title: RECENT_TITLE,
+      rowHeight: 50,
+      itemRender: () => <></>,
+    },
   },
 };
