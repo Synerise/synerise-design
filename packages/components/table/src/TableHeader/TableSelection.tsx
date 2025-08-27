@@ -242,9 +242,18 @@ const TableSelection = <T extends { children?: T[] }>({
     selectableRecordsCount === selectableAndSelectedRecordsCount;
   const isAnySelected = allRecordsCount > 0 && selectedRecordsCount > 0;
 
-  const selectionTooltipTitle = !isAllSelected
-    ? locale?.selectAllTooltip
-    : locale?.unselectAll;
+  const selectionTooltipTitle = useMemo(() => {
+    if (selection.globalSelection?.isSelected) {
+      return locale?.unselectGlobalAll;
+    }
+    return isAllSelected ? locale?.unselectAll : locale?.selectAllTooltip;
+  }, [
+    isAllSelected,
+    locale?.selectAllTooltip,
+    locale?.unselectAll,
+    locale?.unselectGlobalAll,
+    selection.globalSelection?.isSelected,
+  ]);
 
   const menuDataSource = useMemo(() => {
     const isGlobalAllSelected = selection.globalSelection?.isSelected;
