@@ -43,7 +43,12 @@ export type SearchProps<T extends AnyObject, U extends AnyObject> = {
   suggestionsDisplayProps?: DataSetProps | null;
   textLookupConfig: SearchLookupConfig<T, U>;
   value: string;
+  /** @deprecated - use searchWidth instead */
   width?: number;
+  /** @description - by default the suggestions dropdown will match the search input width, provide `dropdownWidth` param if you want to customise dropdown width  */
+  searchWidth?: number;
+  /** @description - by default the suggestions dropdown will match the search input width, provide `dropdownWidth` param if you want to customise dropdown width  */
+  dropdownWidth?: number;
   hideLabel?: boolean;
   disableInput?: boolean;
   alwaysExpanded?: boolean;

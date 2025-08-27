@@ -113,7 +113,8 @@ return (
 | suggestionsDisplayProps | An object containing the details of how suggestions list should render                 | DataSetProps or undefined or null                                        | -       |
 | textLookupConfig        | config of keys for lookup in parameters, recent and suggestions datasets               | { parameters: string; recent: string; suggestions: string}               | -       |
 | value                   | The input content value                                                                | string                                                                   | -       |
-| width                   | Width of the search input when expanded                                                | number                                                                   | -       |
+| searchWidth             | Width of the search input when expanded                                                | number                                                                   | -       |
+| dropdownWidth           | Width of the suggestions dropdown. Will match search input if undefined                | number                                                                   | -       |
 | alwaysExpanded          | Enable expanded input on Search component with dropdown                                | boolean / undefined                                                      | -       |
 
 ### DataSetProps

@@ -46,6 +46,7 @@ class Search extends React.PureComponent<
 
   constructor(props: SearchProps<AnyObject, AnyObject>) {
     super(props);
+    const searchWidth = props.width || props.searchWidth;
     // eslint-disable-next-line react/state-in-constructor
     this.state = {
       isInputOpen:
@@ -61,7 +62,7 @@ class Search extends React.PureComponent<
       filteredSuggestions: props.suggestions,
       isListVisible: false,
       isResultChosen: false,
-      itemsListWidth: props.width ? props.width - MENU_WIDTH_OFFSET : 0,
+      itemsListWidth: searchWidth ? searchWidth - MENU_WIDTH_OFFSET : 0,
       toggleInputTrigger: false,
       focusInputTrigger: false,
       scrollbarScrollTop: 0,
@@ -309,7 +310,7 @@ class Search extends React.PureComponent<
   }
 
   renderRecentItems(): React.ReactNode | false {
-    const { recent, recentDisplayProps, value } = this.props;
+    const { recent, recentDisplayProps, dropdownWidth, value } = this.props;
     const { label, filteredRecent, itemsListWidth } = this.state;
     const { title, tooltip, rowHeight, itemRender } = recentDisplayProps;
 
@@ -327,7 +328,9 @@ class Search extends React.PureComponent<
               this.selectResult(item, SelectResultDataKeys.RECENT)
             }
             rowHeight={rowHeight}
-            width={itemsListWidth}
+            width={
+              dropdownWidth ? dropdownWidth - MENU_WIDTH_OFFSET : itemsListWidth
+            }
             renderInMenu={false}
           />
         </>
@@ -341,6 +344,7 @@ class Search extends React.PureComponent<
       parametersDisplayProps,
       value,
       dropdownMaxHeight,
+      dropdownWidth,
       recentDisplayProps,
     } = this.props;
     const {
@@ -366,7 +370,9 @@ class Search extends React.PureComponent<
             itemRender={itemRender}
             onItemClick={(item: AnyObject): void => this.selectFilter(item)}
             rowHeight={rowHeight}
-            width={itemsListWidth}
+            width={
+              dropdownWidth ? dropdownWidth - MENU_WIDTH_OFFSET : itemsListWidth
+            }
             listProps={{
               scrollTop: getParametersScrollTop({
                 scrollTop: scrollbarScrollTop,
@@ -388,6 +394,7 @@ class Search extends React.PureComponent<
       parameterValue,
       suggestionsDisplayProps,
       value,
+      dropdownWidth,
       dropdownMaxHeight,
     } = this.props;
     const {
@@ -420,7 +427,9 @@ class Search extends React.PureComponent<
               this.selectResult(item, SelectResultDataKeys.SUGGESTIONS)
             }
             rowHeight={suggestionsDisplayProps.rowHeight}
-            width={itemsListWidth}
+            width={
+              dropdownWidth ? dropdownWidth - MENU_WIDTH_OFFSET : itemsListWidth
+            }
             listProps={{
               scrollTop: scrollbarScrollTop,
               ...(suggestionsDisplayProps.listProps || {}),
@@ -496,7 +505,14 @@ class Search extends React.PureComponent<
   }
 
   render(): React.ReactElement {
-    const { divider, dropdownMaxHeight, width, style } = this.props;
+    const {
+      divider,
+      dropdownMaxHeight,
+      width,
+      searchWidth,
+      style,
+      dropdownWidth,
+    } = this.props;
     const {
       isInputOpen,
       label,
@@ -507,12 +523,14 @@ class Search extends React.PureComponent<
       filteredRecent,
     } = this.state;
 
+    const mergedWidth = searchWidth !== undefined ? searchWidth : width;
+
     return (
       <S.SearchWrapper
         ref={this.wrapperRef}
         className="SearchWrapper"
         inputOpen={isInputOpen}
-        width={width}
+        $width={mergedWidth}
         onKeyDown={(e): void => {
           focusWithArrowKeys(e, 'ds-search-item', () => {
             this.setState({ focusInputTrigger: !focusInputTrigger });
@@ -523,6 +541,7 @@ class Search extends React.PureComponent<
         {this.renderInputWrapper()}
         {isListVisible && (
           <S.SearchDropdownWrapper
+            dropdownWidth={dropdownWidth}
             onClick={(): void => {
               this.setState({ focusInputTrigger: !focusInputTrigger });
             }}

@@ -21,7 +21,7 @@ export const openDropdownAnimation = keyframes`
   }
 `;
 
-export const SearchInputWrapper = styled.div<{ width?: number }>`
+export const SearchInputWrapper = styled.div`
   position: relative;
   direction: rtl;
   overflow-x: hidden;
@@ -30,13 +30,13 @@ export const SearchInputWrapper = styled.div<{ width?: number }>`
 `;
 
 export const SearchWrapper = styled.div<{
-  width?: number;
+  $width?: number;
   inputOpen?: boolean;
 }>`
   ${(props): string | false =>
-    !!props.width &&
+    !!props.$width &&
     `
-   ${props.inputOpen ? `width:${props.width}px;` : `width:32px`};
+   ${props.inputOpen ? `width:${props.$width}px;` : `width:32px`};
   `};
   position: relative;
   direction: rtl;
@@ -235,10 +235,11 @@ export const HeaderIconWrapper = styled.div`
   }
 `;
 
-export const SearchDropdownWrapper = styled.div`
+export const SearchDropdownWrapper = styled.div<{ dropdownWidth?: number }>`
   width: 0;
   & > .search-list-open {
-    width: 100%;
+    width: ${(props) =>
+      props.dropdownWidth ? `${props.dropdownWidth}px` : '100%'};
     animation: ${openDropdownAnimation} 0.3s ease-in-out 0s 1;
     opacity: 1;
     display: initial;

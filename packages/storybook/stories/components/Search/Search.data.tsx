@@ -1,13 +1,18 @@
 import React, { ReactNode } from 'react';
-import { faker } from '@faker-js/faker';
+import styled from 'styled-components';
 
+import { faker } from '@faker-js/faker';
 import { UserAvatar } from '@synerise/ds-avatar';
-import { VarTypeListM, VarTypeNumberM, VarTypeStringM } from '@synerise/ds-icon';
+import {
+  VarTypeListM,
+  VarTypeNumberM,
+  VarTypeStringM,
+} from '@synerise/ds-icon';
 import { AnyObject } from '@synerise/ds-search/dist/Search.types';
 
 import { avatar1 } from '../../constants';
 
-export const populateCities = numberOfCities => {
+export const populateCities = (numberOfCities) => {
   const result: string[] = [];
   for (let i = 0; i < numberOfCities; i++) {
     result.push(faker.location.city());
@@ -15,7 +20,7 @@ export const populateCities = numberOfCities => {
   result.sort((a, b) => a.localeCompare(b));
   return result;
 };
-export const populateFirstName = numberOfCities => {
+export const populateFirstName = (numberOfCities) => {
   const result: string[] = [];
   for (let i = 0; i < numberOfCities; i++) {
     result.push(faker.name.firstName());
@@ -23,7 +28,7 @@ export const populateFirstName = numberOfCities => {
   result.sort((a, b) => a.localeCompare(b));
   return result;
 };
-export const popuLateLastName = numberOfCities => {
+export const popuLateLastName = (numberOfCities) => {
   const result: string[] = [];
   for (let i = 0; i < numberOfCities; i++) {
     result.push(faker.name.lastName());
@@ -32,11 +37,11 @@ export const popuLateLastName = numberOfCities => {
   return result;
 };
 
-const cities = populateCities(25).map(item => ({ text: item }));
-const firstNames = populateFirstName(25).map(item => ({ text: item }));
-const lastNames = popuLateLastName(25).map(item => ({ text: item }));
+const cities = populateCities(25).map((item) => ({ text: item }));
+const firstNames = populateFirstName(25).map((item) => ({ text: item }));
+const lastNames = popuLateLastName(25).map((item) => ({ text: item }));
 
-export const getSuggestions = filter => {
+export const getSuggestions = (filter) => {
   if (filter === 'City') {
     return cities;
   }
@@ -48,11 +53,22 @@ export const getSuggestions = filter => {
   }
   if (filter === 'Sex') {
     return [{ text: 'Female' }, { text: 'Male' }];
-  } else return [{ text: 'Some suggestions' }, { text: 'not matched' }, { text: 'by filter type' }, { text: 'yet' }];
+  } else
+    return [
+      { text: 'Some suggestions' },
+      { text: 'not matched' },
+      { text: 'by filter type' },
+      { text: 'yet' },
+    ];
 };
 
-export const getItemsWithAvatar = numberOfItems => {
-  const results: Array<{ text: string; filter: string; description: string; prefixel: ReactNode }> = [];
+export const getItemsWithAvatar = (numberOfItems) => {
+  const results: Array<{
+    text: string;
+    filter: string;
+    description: string;
+    prefixel: ReactNode;
+  }> = [];
   for (let i = 0; i < numberOfItems; i++) {
     const user = {
       firstName: faker.person.firstName(),
@@ -68,7 +84,6 @@ export const getItemsWithAvatar = numberOfItems => {
       prefixel: <UserAvatar badgeStatus="active" user={user} />,
     });
   }
-  console.log(results)
   return results;
 };
 
@@ -112,3 +127,12 @@ export const PARAMETERS_COUNT = 6;
 
 export const SUGGESTIONS_TITLE = 'Suggestions';
 export const SUGGESTIONS_TOOLTIP = 'Suggestions tooltip';
+
+const SearchWrapper = styled.div`
+  display: 'flex';
+  justify-content: flex-end;
+  width: 300px;
+`;
+export const SearchDecorator = (Story) => (
+  <SearchWrapper>{Story()}</SearchWrapper>
+);
