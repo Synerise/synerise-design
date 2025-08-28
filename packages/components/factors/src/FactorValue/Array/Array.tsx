@@ -17,14 +17,13 @@ export const Array = <ItemType extends ArrayItemType>({
   value: arrayValue,
   onChange,
   texts,
-  opened,
   onActivate,
   onDeactivate,
   readOnly = false,
   error,
   arrayProps = {},
 }: FactorValueComponentProps) => {
-  const [isVisible, setIsVisible] = useState(opened);
+  const [isVisible, setIsVisible] = useState(false);
 
   const handleOnClick = () => {
     setIsVisible(true);
