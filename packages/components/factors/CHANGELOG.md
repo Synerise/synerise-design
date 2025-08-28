@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.5.5](https://github.com/Synerise/synerise-design/compare/@synerise/ds-factors@1.5.4...@synerise/ds-factors@1.5.5) (2025-08-28)
+
+
+### Bug Fixes
+
+* **factors:** array factor auto-open removed ([95e68db](https://github.com/Synerise/synerise-design/commit/95e68db4951bc5c8c5cb1bfbec2603de318fc62e))
+
+
+
+
+
 ## [1.5.4](https://github.com/Synerise/synerise-design/compare/@synerise/ds-factors@1.5.3...@synerise/ds-factors@1.5.4) (2025-08-22)
 
 

@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.5.1](https://github.com/synerise/synerise-design/compare/@synerise/ds-core@1.5.0...@synerise/ds-core@1.5.1) (2025-08-28)
+
+
+### Bug Fixes
+
+* **core:** add translations of es and pt ([370b279](https://github.com/synerise/synerise-design/commit/370b279431a7fbb634c5b2ba69d9af6206ab8213))
+
+
+
+
+
 # [1.5.0](https://github.com/synerise/synerise-design/compare/@synerise/ds-core@1.4.3...@synerise/ds-core@1.5.0) (2025-07-24)
 
 

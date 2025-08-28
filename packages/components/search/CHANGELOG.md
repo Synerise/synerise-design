@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.3.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-search@1.2.8...@synerise/ds-search@1.3.0) (2025-08-28)
+
+
+### Features
+
+* **search:** allow custom dropdown width ([0555d9d](https://github.com/Synerise/synerise-design/commit/0555d9d39abc49868a490e5b559184c720e4d8d3))
+
+
+
+
+
 ## [1.2.8](https://github.com/Synerise/synerise-design/compare/@synerise/ds-search@1.2.7...@synerise/ds-search@1.2.8) (2025-08-20)
 
 **Note:** Version bump only for package @synerise/ds-search

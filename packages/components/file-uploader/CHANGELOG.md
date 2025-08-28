@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.0.22](https://github.com/Synerise/synerise-design/compare/@synerise/ds-file-uploader@1.0.21...@synerise/ds-file-uploader@1.0.22) (2025-08-28)
+
+
+### Bug Fixes
+
+* **file-uploader:** ellipsis for file name ([a18d2de](https://github.com/Synerise/synerise-design/commit/a18d2de070615f9865aeee9f5efb44bcfbb2a9f6))
+
+
+
+
+
 ## [1.0.21](https://github.com/Synerise/synerise-design/compare/@synerise/ds-file-uploader@1.0.20...@synerise/ds-file-uploader@1.0.21) (2025-08-20)
 
 **Note:** Version bump only for package @synerise/ds-file-uploader

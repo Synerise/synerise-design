@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.5.6](https://github.com/synerise/synerise-design/compare/@synerise/ds-table@1.5.5...@synerise/ds-table@1.5.6) (2025-08-28)
+
+
+### Bug Fixes
+
+* **table:** batch selection tooltip fixed ([cdc5b80](https://github.com/synerise/synerise-design/commit/cdc5b80d5a9af3dd87aef6c4f8fbc02be7d2ae9c))
+
+
+
+
+
 ## [1.5.5](https://github.com/synerise/synerise-design/compare/@synerise/ds-table@1.5.4...@synerise/ds-table@1.5.5) (2025-08-21)
 
 

@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.19.0](https://github.com/Synerise/synerise-design/compare/storybook@1.18.2...storybook@1.19.0) (2025-08-28)
+
+
+### Bug Fixes
+
+* **button:** fixes to button creator ([9044134](https://github.com/Synerise/synerise-design/commit/9044134a9efccb116a9cc3d85d5f8d73d541e7d2))
+
+
+### Features
+
+* **search:** allow custom dropdown width ([0555d9d](https://github.com/Synerise/synerise-design/commit/0555d9d39abc49868a490e5b559184c720e4d8d3))
+
+
+
+
+
 ## [1.18.2](https://github.com/Synerise/synerise-design/compare/storybook@1.18.1...storybook@1.18.2) (2025-08-21)
 
 

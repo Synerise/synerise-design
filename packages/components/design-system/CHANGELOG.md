@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.5.25](https://github.com/Synerise/synerise-design/compare/@synerise/design-system@1.5.24...@synerise/design-system@1.5.25) (2025-08-28)
+
+**Note:** Version bump only for package @synerise/design-system
+
+
+
+
+
 ## [1.5.24](https://github.com/Synerise/synerise-design/compare/@synerise/design-system@1.5.23...@synerise/design-system@1.5.24) (2025-08-22)
 
 **Note:** Version bump only for package @synerise/design-system
