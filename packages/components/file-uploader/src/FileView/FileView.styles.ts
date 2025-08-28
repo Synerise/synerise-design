@@ -44,16 +44,19 @@ export const FileWeight = styled.div`
   font-weight: normal;
   font-size: 13px;
 `;
-
+export const FileName = styled.div`
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  min-width: 0;
+`;
 export const Name = styled(Label)`
   && {
     color: ${(props) => props.theme.palette['grey-600']};
-    display: flex;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
     max-width: 100%;
     cursor: initial;
+    white-space: nowrap;
+    display: flex;
     justify-content: space-between;
   }
 `;
