@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import { FormattedMessage } from 'react-intl';
 
 import Button from '@synerise/ds-button';
-import { theme } from '@synerise/ds-core';
+import { useTheme } from '@synerise/ds-core';
 import Icon, {
   Check3M,
   Close3M,
@@ -27,6 +27,7 @@ const FileView = ({
   retryButtonProps,
 }: FileViewProps) => {
   const getFriendlySize = (size?: number): string => filesize(size || 0);
+  const theme = useTheme();
 
   const { disabled, error, file, progress, success } = data;
 
@@ -115,7 +116,10 @@ const FileView = ({
         {hasProgress ? (
           <>
             <S.Name>
-              {file.name} <S.FileWeight>{finalTexts.fileWeight}</S.FileWeight>
+              <S.FileName>{file.name}</S.FileName>{' '}
+              <S.FileWeight>
+                {filesize((progress / 100) * file.size)}
+              </S.FileWeight>
             </S.Name>
             <div style={{ display: 'flex' }}>
               <ProgressBar amount={100} percent={progress} />
@@ -128,7 +132,9 @@ const FileView = ({
           </>
         ) : (
           <>
-            <S.Name>{file.name}</S.Name>
+            <S.Name>
+              <S.FileName>{file.name}</S.FileName>
+            </S.Name>
 
             <S.SizeOrError>
               {error || (
