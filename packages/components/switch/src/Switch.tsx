@@ -20,6 +20,7 @@ export const Switch = ({
   tooltipIcon,
   tooltip,
   className,
+  tooltipConfig,
   ...antdSwitchProps
 }: Props) => {
   const id = useId();
@@ -53,6 +54,7 @@ export const Switch = ({
             className="switch-label"
             label={label}
             tooltip={tooltip}
+            tooltipConfig={tooltipConfig}
           />
         </S.Texts>
       </S.LabelSwitchWrapper>
