@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.9.4](https://github.com/Synerise/synerise-design/compare/@synerise/ds-item-picker@1.9.3...@synerise/ds-item-picker@1.9.4) (2025-09-02)
+
+
+### Bug Fixes
+
+* **item-picker:** fix invoking handleScroll on close dropdown ([b0de970](https://github.com/Synerise/synerise-design/commit/b0de970c895a0b2708563824c9e02553ec037fa3))
+
+
+
+
+
 ## [1.9.3](https://github.com/Synerise/synerise-design/compare/@synerise/ds-item-picker@1.9.2...@synerise/ds-item-picker@1.9.3) (2025-08-28)
 
 **Note:** Version bump only for package @synerise/ds-item-picker

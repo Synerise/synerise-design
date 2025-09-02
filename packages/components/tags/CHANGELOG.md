@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.1.24](https://github.com/Synerise/synerise-design/compare/@synerise/ds-tags@1.1.23...@synerise/ds-tags@1.1.24) (2025-09-02)
+
+
+### Bug Fixes
+
+* **tags:** dropdown min width ([fe2a609](https://github.com/Synerise/synerise-design/commit/fe2a609149374271642ab268f42501aa138c4c5b))
+
+
+
+
+
 ## [1.1.23](https://github.com/Synerise/synerise-design/compare/@synerise/ds-tags@1.1.22...@synerise/ds-tags@1.1.23) (2025-08-28)
 
 **Note:** Version bump only for package @synerise/ds-tags

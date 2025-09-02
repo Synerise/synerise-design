@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.1.15](https://github.com/synerise/synerise-design/compare/@synerise/ds-switch@1.1.14...@synerise/ds-switch@1.1.15) (2025-09-02)
+
+
+### Bug Fixes
+
+* **switch:** add tooltipConfig ([d2d752f](https://github.com/synerise/synerise-design/commit/d2d752f373da31c1e2ac708237a2e7840b6ba015))
+
+
+
+
+
 ## [1.1.14](https://github.com/synerise/synerise-design/compare/@synerise/ds-switch@1.1.13...@synerise/ds-switch@1.1.14) (2025-08-28)
 
 **Note:** Version bump only for package @synerise/ds-switch
