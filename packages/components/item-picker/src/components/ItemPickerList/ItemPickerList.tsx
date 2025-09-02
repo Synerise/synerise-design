@@ -72,6 +72,7 @@ export const ItemPickerList = <
   includeFooter = true,
   includeSearchBar = true,
   onLoadedData,
+  isDropdown,
   ...htmlAttributes
 }: ItemPickerListProps<ItemType, SectionType>) => {
   const theme = useTheme();
@@ -161,13 +162,17 @@ export const ItemPickerList = <
         listRef.current.scrollTo(scrollTop);
       }
 
+      if (isDropdown && !isVisible) {
+        return;
+      }
+
       const max = scrollHeight - clientHeight;
 
       if (scrollTop >= max - 20) {
         handleScrollEndReach();
       }
     },
-    [handleScrollEndReach],
+    [handleScrollEndReach, isDropdown, isVisible],
   );
 
   const focusSearchInput = useCallback(() => {
