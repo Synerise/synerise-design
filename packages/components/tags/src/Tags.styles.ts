@@ -119,5 +119,6 @@ export const DropdownNoTags = styled.div`
 `;
 
 export const Overlay = styled.div`
+  width: 216px;
   background-color: ${(props): string => props.theme.palette.white};
 `;
