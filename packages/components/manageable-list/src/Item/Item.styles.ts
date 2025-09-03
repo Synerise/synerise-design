@@ -52,6 +52,7 @@ export const ItemLabelWrapper = styled.div<{ largeSize?: boolean }>`
   flex: 1;
   display: flex;
   flex-grow: 1;
+  min-width: 0;
 
   .ant-tooltip-inner {
     max-width: 164px;
@@ -147,7 +148,10 @@ export const ItemLabelWithIcon = styled.span`
   flex-grow: 1;
 `;
 
-export const ItemDescription = styled.div``;
+export const ItemDescription = styled.div`
+  overflow-wrap: break-word;
+  min-width: 0;
+`;
 export const ItemUniqueKey = styled.div``;
 export const ItemLabelTop = styled.div`
   display: flex;
