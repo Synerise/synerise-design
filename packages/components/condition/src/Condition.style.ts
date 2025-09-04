@@ -145,11 +145,14 @@ export const Step = styled.div<{
         color: #3f4c5b;
       }
     `}
-
-  background-color: ${(props) =>
-    props.active && !props.singleStepCondition
-      ? props.theme.palette['grey-050']
-      : 'transparent'};
+  ${(props) =>
+    props.active &&
+    !props.singleStepCondition &&
+    css`
+      &:hover {
+        background-color: ${props.theme.palette['grey-050']};
+      }
+    `}
   &:hover {
     ${(props) =>
       !props.hoverDisabled &&
