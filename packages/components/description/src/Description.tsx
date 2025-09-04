@@ -7,7 +7,7 @@ import { type DescriptionProps } from './Description.types';
 const Description = ({
   type = 'table',
   children,
-  ratio = '30-70',
+  ratio = '50-50',
 }: DescriptionProps) => {
   const hasSingleChild = React.useMemo(() => {
     return !Array.isArray(children);
