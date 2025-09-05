@@ -1,19 +1,24 @@
 import React from 'react';
-import { Meta, StoryObj } from '@storybook/react-webpack5';
 import { fn } from 'storybook/test';
 
+import { Meta, StoryObj } from '@storybook/react-webpack5';
 import ActionArea from '@synerise/ds-action-area';
 import Button from '@synerise/ds-button';
 import Tooltip from '@synerise/ds-tooltip';
 
-import { BOOLEAN_CONTROL, fixedWrapper400, centeredPaddedWrapper, REACT_NODE_AS_STRING } from '../../utils';
+import {
+  BOOLEAN_CONTROL,
+  REACT_NODE_AS_STRING,
+  centeredPaddedWrapper,
+  fixedWrapper400,
+} from '../../utils';
 
 export default {
   component: ActionArea,
   title: 'Components/ActionArea',
   tags: ['autodocs'],
   decorators: [centeredPaddedWrapper],
-  render: args => <ActionArea {...args} />,
+  render: (args) => <ActionArea {...args} />,
 
   argTypes: {
     label: REACT_NODE_AS_STRING,
@@ -33,9 +38,9 @@ export const Default: Story = {
   parameters: {
     docs: {
       source: {
-        code: `<ActionArea\n  label=\"Label\"\n  description=\"Very long description\"\n  actionLabel=\"Define\"\n  action={fn()}\n/>`
-      }
-    }
+        code: `<ActionArea\n  label=\"Label\"\n  description=\"Very long description\"\n  actionLabel=\"Define\"\n  action={fn()}\n/>`,
+      },
+    },
   },
   args: {
     label: 'Label',
@@ -49,10 +54,9 @@ export const CustomisedActionButton: Story = {
   parameters: {
     docs: {
       source: {
-        code: `<ActionArea\n  label=\"Label\"\n  description=\"Very long description\"\n  actionLabel=\"Define\"\n  action={fn()}\n  buttonProps={{\n    type: 'secondary',\n  }}\n/>`
-
-      }
-    }
+        code: `<ActionArea\n  label=\"Label\"\n  description=\"Very long description\"\n  actionLabel=\"Define\"\n  action={fn()}\n  buttonProps={{\n    type: 'secondary',\n  }}\n/>`,
+      },
+    },
   },
   args: {
     ...Default.args,
@@ -65,13 +69,13 @@ export const CustomisedActionButton: Story = {
 export const CustomContent: Story = {
   parameters: {
     controls: {
-      exclude: ['actionLabel', 'action', 'buttonProps']
+      exclude: ['actionLabel', 'action', 'buttonProps'],
     },
     docs: {
       source: {
-        code: `<ActionArea\n  label=\"Choose a template or create a new message\"\n  customAction={\n    <div style={{ display: 'flex', gap: 16 }}>\n      <Tooltip title=\"You must first choose mobile push type in the card above\">\n        <span>\n          <Button disabled type=\"primary\">\n            Select template\n          </Button>\n        </span>\n      </Tooltip>\n      <Tooltip title=\"You must first choose mobile push type in the card above\">\n        <span>\n          <Button type=\"secondary\" readOnly>\n            Create new message\n          </Button>\n        </span>\n      </Tooltip>\n    </div>\n  }\n/>`
-      }
-    }
+        code: `<ActionArea\n  label=\"Choose a template or create a new message\"\n  customAction={\n    <div style={{ display: 'flex', gap: 16 }}>\n      <Tooltip title=\"You must first choose mobile push type in the card above\">\n        <span>\n          <Button disabled type=\"primary\">\n            Select template\n          </Button>\n        </span>\n      </Tooltip>\n      <Tooltip title=\"You must first choose mobile push type in the card above\">\n        <span>\n          <Button type=\"secondary\" readOnly>\n            Create new message\n          </Button>\n        </span>\n      </Tooltip>\n    </div>\n  }\n/>`,
+      },
+    },
   },
   args: {
     label: 'Choose a template or create a new message',
@@ -86,7 +90,7 @@ export const CustomContent: Story = {
         </Tooltip>
         <Tooltip title="You must first choose mobile push type in the card above">
           <span>
-            <Button type='secondary' readOnly>
+            <Button type="secondary" readOnly>
               Create new message
             </Button>
           </span>
@@ -100,9 +104,9 @@ export const FullWidthActionButton: Story = {
   parameters: {
     docs: {
       source: {
-        code: `<ActionArea\n  isFullWidth={true}\n  label=\"Label\"\n  description=\"Very long description\"\n  actionLabel=\"Define\"\n  action={fn()}\n  buttonProps={{\n    type: 'primary',\n  }}\n/>`
-      }
-    }
+        code: `<ActionArea\n  isFullWidth={true}\n  label=\"Label\"\n  description=\"Very long description\"\n  actionLabel=\"Define\"\n  action={fn()}\n  buttonProps={{\n    type: 'primary',\n  }}\n/>`,
+      },
+    },
   },
   args: {
     isFullWidth: true,
@@ -116,9 +120,9 @@ export const WithValidationActionButton: Story = {
   parameters: {
     docs: {
       source: {
-        code: `<ActionArea\n  isError={true}\n  errorText=\"Error\"\n  label=\"Label\"\n  description=\"Very long description\"\n  actionLabel=\"Define\"\n  action={fn()}\n  buttonProps={{\n    type: 'primary',\n  }}\n/>`
-      }
-    }
+        code: `<ActionArea\n  isError={true}\n  errorText=\"Error\"\n  label=\"Label\"\n  description=\"Very long description\"\n  actionLabel=\"Define\"\n  action={fn()}\n  buttonProps={{\n    type: 'primary',\n  }}\n/>`,
+      },
+    },
   },
   args: {
     isError: true,

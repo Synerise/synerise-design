@@ -1,0 +1,58 @@
+import { Meta, Canvas, Story, ArgsTable } from '@storybook/addon-docs/blocks';
+import React from 'react';
+import Tray, { TrayProvider, useTray } from '@synerise/ds-tray';
+import TrayMeta, { Default, AutoOpen } from './Tray.stories'
+
+<Meta component={Tray} of={TrayMeta} />
+
+# Tray
+
+A slide-over panel (tray) rendered from the edge of the screen. The `Tray` component itself is an instance that gets its content and visibility from the `TrayProvider` context. Use the `useTray` hook to open/close trays by id and pass the UI payload (title/content/footer/headerRightSide).
+
+## Implementation details
+
+- Component: `Tray` — `packages/components/tray/src/Tray.tsx`  
+  The component only accepts HTML div attributes plus a required `id` and reads its state from the provider via `getTrayState(id)`. If the tray for that id is not open it returns `null`.
+- Props type: `TrayProps` — `packages/components/tray/src/Tray.types.ts`  
+  `WithHTMLAttributes<HTMLDivElement, { id: string | number }>`
+- Provider & data shape: `TrayProvider` / `TrayData` — `packages/components/tray/src/components/TrayProvider.tsx`  
+  TrayData shape:
+  - `content: ReactNode`
+  - `title: ReactNode`
+  - `headerRightSide?: ReactNode`
+  - `footer?: ReactNode`
+  - `onClose?: (id: string | number) => void`
+- Hooks: `useTray()` — `packages/components/tray/src/hooks/useTray.ts`  
+  Returns `{ open, close }`. Call `open(id, TrayData)` to show a tray and `close(id)` to hide it.
+
+For full source see:
+- `packages/components/tray/src/Tray.tsx`  
+- `packages/components/tray/src/components/TrayProvider.tsx`  
+- `packages/components/tray/src/hooks/useTray.ts`
+
+---
+
+## Basic usage
+
+Wrap your app (or the story) with `TrayProvider`. Mount `<Tray id="some-id" />` once where you want the tray to render, then open it from anywhere inside the provider using `useTray().open`.
+
+<Canvas of={Default} />
+
+---
+
+## API & Props
+
+The `Tray` component accepts:
+
+- `id` (string | number) — required — the id that binds this instance to provider state.
+- `Tray` component is positioned absolutely. Make sure you adjust it's position to suit the requirements of each implementation. Tray accepts both `className`, `style` to allow this.
+- any other standard HTMLDivElement attributes (`className`, `style`, `data-*`, etc.) because `TrayProps` extends HTML div attributes.
+
+---
+
+## Notes & tips
+
+- Mount one (or more) `<Tray id="...">` components inside the same `TrayProvider`. Use distinct ids to open different trays.
+- All UI (title/content/footer/headerRightSide) is supplied to the provider via `open(id, TrayData)`. The `Tray` instance only renders what the provider holds for its id.
+- The built-in close button calls `closeTray(id)` and will call `TrayData.onClose` if provided.
+- For exact runtime behavior and style details see:

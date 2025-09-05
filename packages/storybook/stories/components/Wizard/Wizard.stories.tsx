@@ -10,6 +10,7 @@ import Icon, { AcademyM, ChatM, EditM, HelpM, MailM } from '@synerise/ds-icon';
 import Stepper from '@synerise/ds-stepper';
 import Wizard, { WizardProps } from '@synerise/ds-wizard';
 
+import { Placeholder } from '../../constants';
 import { BOOLEAN_CONTROL, REACT_NODE_AS_STRING } from '../../utils';
 import { STEPS } from './Wizard.data';
 
@@ -30,10 +31,10 @@ export default {
       <div
         style={{
           width: '100%',
-          height: '400px',
-          backgroundColor: theme.palette['red-200'],
         }}
-      ></div>
+      >
+        <Placeholder $height={400} />
+      </div>
     ),
     visible: true,
     headerAction: <Button>Save and skip wizard</Button>,

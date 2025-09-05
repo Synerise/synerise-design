@@ -1,51 +1,55 @@
 import React, { useState } from 'react';
-import { Meta, StoryObj } from '@storybook/react-webpack5';
-import Modal from '@synerise/ds-modal';
-import { ObjectAvatar } from '@synerise/ds-avatar';
-import Icon, { MailM, UserM } from '@synerise/ds-icon';
-import Stepper from '@synerise/ds-stepper';
-import { theme } from '@synerise/ds-core';
-import * as S from './styles';
-import { sizes, headerWithPrefix, color } from './Modal.data';
-import { StepData, STEPPER_STEPS } from '../Stepper/Stepper.data';
 
+import { Meta, StoryObj } from '@storybook/react-webpack5';
+import { ObjectAvatar } from '@synerise/ds-avatar';
+import { theme } from '@synerise/ds-core';
+import Icon, { MailM, UserM } from '@synerise/ds-icon';
+import Modal from '@synerise/ds-modal';
+import Stepper from '@synerise/ds-stepper';
+
+import { Placeholder } from '../../constants';
 import {
   BOOLEAN_CONTROL,
+  CLASSNAME_ARG_CONTROL,
+  NUMBER_CONTROL,
+  REACT_NODE_AS_STRING,
   centeredPaddedWrapper,
-  CLASSNAME_ARG_CONTROL, controlFromOptionsArray, NUMBER_CONTROL,
-  REACT_NODE_AS_STRING, reactNodeAsSelect,
+  controlFromOptionsArray,
+  reactNodeAsSelect,
 } from '../../utils';
-
-
+import { STEPPER_STEPS, StepData } from '../Stepper/Stepper.data';
+import { color, headerWithPrefix, sizes } from './Modal.data';
+import * as S from './styles';
 
 export default {
-  title: "Components/Modal",
+  title: 'Components/Modal',
   component: Modal,
   render: (args, storyContext) => {
     const visible = storyContext.viewMode === 'docs' ? false : args.visible;
-    return <Modal {...args} visible={visible} />
+    return <Modal {...args} visible={visible} />;
   },
   decorators: [centeredPaddedWrapper],
   argTypes: {
     wrapClassName: CLASSNAME_ARG_CONTROL,
     visible: BOOLEAN_CONTROL,
     title: {
-      ...reactNodeAsSelect(
-        ['blank', 'title', 'withAvatar', 'iconAndLabel'],
-        {
-          blank: '',
-          title: 'Title',
-          withAvatar: headerWithPrefix(
-            'Header with avatar',
-            <ObjectAvatar
-              badgeStatus="active"
-              iconComponent={<Icon component={<MailM />} color={theme.palette['red-500']} />}
-            />
-          ),
-          iconAndLabel: headerWithPrefix('Header with icon', <Icon component={<UserM />} color={theme.palette['grey-600']} />),
-
-        }
-      ),
+      ...reactNodeAsSelect(['blank', 'title', 'withAvatar', 'iconAndLabel'], {
+        blank: '',
+        title: 'Title',
+        withAvatar: headerWithPrefix(
+          'Header with avatar',
+          <ObjectAvatar
+            badgeStatus="active"
+            iconComponent={
+              <Icon component={<MailM />} color={theme.palette['red-500']} />
+            }
+          />,
+        ),
+        iconAndLabel: headerWithPrefix(
+          'Header with icon',
+          <Icon component={<UserM />} color={theme.palette['grey-600']} />,
+        ),
+      }),
     },
     description: REACT_NODE_AS_STRING,
     cancelText: REACT_NODE_AS_STRING,
@@ -75,12 +79,10 @@ export default {
     size: {
       ...controlFromOptionsArray('select', sizes),
     },
-
   },
 } as Meta<typeof Modal>;
 
 type Story = StoryObj<typeof Modal>;
-
 
 export const Blank: Story = {
   args: {
@@ -103,14 +105,13 @@ export const withHeader: Story = {
   },
 };
 
-
 export const Fullscreen: Story = {
   args: {
     visible: true,
     title: 'title',
     description: 'Description',
     size: 'fullScreen',
-    children: <div style={{ height: 1400, backgroundColor: 'rgba(0,0,0,0.2)' }}></div>,
+    children: <Placeholder $height={1400} />,
   },
 };
 
@@ -133,42 +134,31 @@ export const withScroll: Story = {
     description: 'Description',
     footer: null,
     size: 'small',
-    children: <div> Modal content... Modal content... Modal content... Modal content... Modal content... Modal
-      content... Modal content... Modal content...Modal content... Modal content... Modal content... Modal content...
-      Modal content... Modal content... Modal content... Modal content... Modal content... Modal content... Modal
-      content... Modal content... Modal content... Modal content... Modal content... Modal content... Modal content...
-      Modal content... Modal content... Modal content... Modal content... Modal content... Modal content... Modal
-      content...Modal content... Modal content... Modal content... Modal content... Modal content... Modal content...
-      Modal content... Modal content... Modal content... Modal content... Modal content... Modal content... Modal
-      content... Modal content... Modal content... Modal content...Modal content... Modal content... Modal content...
-      Modal content... Modal content... Modal content... Modal content... Modal content...Modal content... Modal
-      content... Modal content... Modal content... Modal content... Modal content... Modal content... Modal content...
-      Modal content... Modal content... Modal content... Modal content... Modal content... Modal content... Modal
-      content... Modal content...</div>,
+    children: <Placeholder $height={600} />,
     maxViewportHeight: 70,
   },
 };
 
 export const ModalWithStepper: Story = {
-  render: ({activeIndex, ...args }) => {
+  render: ({ activeIndex, ...args }) => {
     const [activeStep, setActiveStep] = useState(activeIndex);
-    const handleStepClick = index => setActiveStep(index);
+    const handleStepClick = (index) => setActiveStep(index);
     return (
-        <Modal {...args} >
-          <S.StepperWrapper>
-            <Stepper style={{ width: '100%', justifyContent: 'center' }}>
-              {STEPPER_STEPS.map((step: StepData, index: number) => (
-                <Stepper.Step
-                  {...step}
-                  onClick={() => handleStepClick(index)}
-                  active={index === activeStep}
-                  done={index < activeStep}
-                />
-              ))}
-            </Stepper>
-          </S.StepperWrapper>
-        </Modal>
-    )
+      <Modal {...args}>
+        <S.StepperWrapper>
+          <Stepper style={{ width: '100%', justifyContent: 'center' }}>
+            {STEPPER_STEPS.map((step: StepData, index: number) => (
+              <Stepper.Step
+                {...step}
+                onClick={() => handleStepClick(index)}
+                active={index === activeStep}
+                done={index < activeStep}
+              />
+            ))}
+          </Stepper>
+        </S.StepperWrapper>
+      </Modal>
+    );
   },
   args: {
     visible: true,
@@ -179,5 +169,3 @@ export const ModalWithStepper: Story = {
     size: 'medium',
   },
 };
-
-
