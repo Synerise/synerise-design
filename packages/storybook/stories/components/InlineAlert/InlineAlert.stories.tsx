@@ -1,18 +1,21 @@
 import React from 'react';
 
-import type { StoryObj, Meta } from '@storybook/react-webpack5';
+import type { Meta, StoryObj } from '@storybook/react-webpack5';
+import InlineAlert from '@synerise/ds-inline-alert';
 
-// This is called InlineNote in figma
-import { IconAlert } from '@synerise/ds-alert';
-
-import { centeredPaddedWrapper, REACT_NODE_AS_STRING, controlFromOptionsArray, BOOLEAN_CONTROL } from '../../utils';
+import {
+  BOOLEAN_CONTROL,
+  REACT_NODE_AS_STRING,
+  centeredPaddedWrapper,
+  controlFromOptionsArray,
+} from '../../utils';
 
 const TYPES = ['success', 'warning', 'alert', 'info'] as const;
 
 export default {
-  title: 'Components/Alert/IconAlert',
+  title: 'Components/Alert/InlineAlert',
   tags: ['autodocs'],
-  component: IconAlert,
+  component: InlineAlert,
   decorators: [centeredPaddedWrapper],
   argTypes: {
     type: { ...controlFromOptionsArray('select', TYPES) },
@@ -29,9 +32,9 @@ export default {
     iconAlert: true,
     message: 'This is a sample message',
   },
-} as Meta<typeof IconAlert>;
+} as Meta<typeof InlineAlert>;
 
-type Story = StoryObj<typeof IconAlert>;
+type Story = StoryObj<typeof InlineAlert>;
 
 export const Default: Story = {
   args: {
@@ -42,7 +45,7 @@ export const Default: Story = {
 export const withLink: Story = {
   args: {
     type: 'success',
-    withLink: 'Reset the screen!'
+    withLink: 'Reset the screen!',
   },
 };
 
@@ -54,11 +57,11 @@ export const withEmphasis: Story = {
 };
 
 export const AllTypes: Story = {
-  render: args => {
+  render: (args) => {
     return (
       <div>
-        {TYPES.map(type => (
-          <IconAlert {...args} type={type} />
+        {TYPES.map((type) => (
+          <InlineAlert {...args} type={type} />
         ))}
       </div>
     );

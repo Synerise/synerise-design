@@ -1,15 +1,15 @@
 import styled, { css } from 'styled-components';
 
-import { type IconAlertType } from './IconAlert.types';
+import { type InlineAlertType } from './InlineAlert.types';
 
-const COLORS: Record<IconAlertType, string> = {
+const COLORS: Record<InlineAlertType, string> = {
   success: 'green-600',
   warning: 'yellow-600',
   alert: 'red-600',
   info: 'grey-600',
 };
 
-const COLORS_HOVER: Record<IconAlertType, string> = {
+const COLORS_HOVER: Record<InlineAlertType, string> = {
   success: 'green-700',
   warning: 'yellow-700',
   alert: 'red-700',
@@ -18,6 +18,7 @@ const COLORS_HOVER: Record<IconAlertType, string> = {
 
 export const Message = styled.span`
   display: flex;
+  align-items: center;
   font-size: 13px;
   line-height: 18px;
   font-weight: 400;
@@ -25,38 +26,26 @@ export const Message = styled.span`
   margin-left: 4px;
 `;
 
-export const IconAlertWrapper = styled.span<{
-  type: IconAlertType;
+export const InlineAlertWrapper = styled.span<{
+  type: InlineAlertType;
   hoverButton?: boolean;
   disabled?: boolean;
 }>`
   display: flex;
-  align-items: center;
   justify-content: flex-start;
   flex-direction: row;
   &:hover {
     cursor: ${(props) => (props.hoverButton ? 'pointer' : 'auto')};
-    svg {
-      color: ${(props) =>
-        props.hoverButton
-          ? props.theme.palette[COLORS_HOVER[props.type]]
-          : props.theme.palette[COLORS[props.type]]};
-      fill: ${(props) =>
-        props.hoverButton
-          ? props.theme.palette[COLORS_HOVER[props.type]]
-          : props.theme.palette[COLORS[props.type]]};
-    }
+    color: ${(props) =>
+      props.hoverButton
+        ? props.theme.palette[COLORS_HOVER[props.type]]
+        : props.theme.palette[COLORS[props.type]]};
   }
   &:active {
-    svg {
-      color: ${(props) => props.theme.palette[COLORS[props.type]]};
-      fill: ${(props) => props.theme.palette[COLORS[props.type]]};
-    }
-  }
-  svg {
     color: ${(props) => props.theme.palette[COLORS[props.type]]};
-    fill: ${(props) => props.theme.palette[COLORS[props.type]]};
   }
+  color: ${(props) => props.theme.palette[COLORS[props.type]]};
+
   ${(props) =>
     !!props.disabled &&
     css`
