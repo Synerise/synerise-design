@@ -15,14 +15,14 @@ Progress-Bar UI Component
 
 | Property    | Description                                                           | Type                            | Default   |
 | ----------- | --------------------------------------------------------------------- | ------------------------------- | --------- |
-| amount      | Number visibile in progress bar label                                 | number                          | -         |
+| steps       | Number of steps in progress bar                                       | number                          | -         |
 | description | Text of description under progress bar                                | string                          | -         |
 | percent     | Value of progress bar, also visible in label                          | number                          | -         |
-| thin        | Displays a thinner line                                               | boolean                         | -         |
-| showLabel   | Shows label above progress bar, label contains amount and percentage. | boolean                         | `false`   |
-| type        | Type of progress bar                                                  | `line` / `circle` / `dashboard` | `line`    |
-| strokeLine  | To set the style of the progress linecap                              | `round` / `square`              | `round`   |
-| strokeColor | Color of progress bar                                                 | string                          | `#76dc25` |
+| thin        | Displays a thinner line                                               | boolean                         | `false`   |
+| label       | Optional label above progress bar                                     | string                          | -         |
+| customColor | Bar color                                                             | string                          | -         |
+| width       | CSS width property of progress-bar                                    | string                          | -         |
+| inline      | set percent value next to progress bar                                | boolean                         | `false`   |
 
 ### ProgressTiles
 
