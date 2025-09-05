@@ -10,14 +10,13 @@ const ProgressBar = ({
   description = '',
   label,
   steps = 1,
-  width = '',
+  width = '100%',
   customColor = '',
   percent = 50,
   className,
   thin = false,
   containerStyles,
   inline = false,
-  style,
   ...rest
 }: ProgressProps) => {
   const tiles = useMemo(

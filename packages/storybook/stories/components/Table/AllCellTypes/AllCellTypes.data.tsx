@@ -2093,13 +2093,12 @@ export const COLUMNS_WITH_PROGRESS_BAR: ColumnType[] = [
     render: () => {
       return (
         <ProgressBar
-          showLabel={true}
-          containerStyles={{ flexDirection: 'row-reverse', width: '80px' }}
-          labelFormatter={(amount, percent) => (
-            <div style={{ padding: '8px 0 0 8px' }}>{percent}%</div>
-          )}
+          width="80px"
+          // showLabel={true}
+          inline
+          label="60%"
           percent={60}
-          strokeColor={theme.palette['green-500']}
+          style={{ justifyContent: 'flex-start' }}
         ></ProgressBar>
       );
     },
