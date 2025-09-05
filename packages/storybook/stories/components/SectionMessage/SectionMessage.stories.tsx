@@ -42,7 +42,7 @@ export default {
   tags: ['autodocs'],
   decorators: [gappedColumnDecorator, fixedWrapper800],
   argTypes: {
-    type: controlFromOptionsArray('select', Object.keys(TYPE_MAPPING)),
+    type: { ...controlFromOptionsArray('select', TYPE_MAPPING) },
     banner: BOOLEAN_CONTROL,
     closable: BOOLEAN_CONTROL,
     showIcon: BOOLEAN_CONTROL,
@@ -59,7 +59,6 @@ export default {
     type: 'positive',
     message: 'This is a message',
     description: 'This is a section message description',
-    color: TYPE_MAPPING['positive'].color,
     withClose: true,
     suffixel: (
       <Button type="ghost" mode="icon-label">
@@ -165,11 +164,10 @@ export const AllTypes: Story = {
   render: (args) => {
     return (
       <>
-        {Object.keys(TYPE_MAPPING).map((type: string) => (
+        {TYPE_MAPPING.map((type: string) => (
           <SectionMessage
             {...args}
             type={type}
-            color={TYPE_MAPPING[type].color}
             description={`This is a "${type}" type section message`}
           />
         ))}

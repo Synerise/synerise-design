@@ -32,7 +32,6 @@ import SectionMessage from '@synerise/ds-section-message'
 | message         | Message of section messsage                                                                                            | `ReactNode` | -          |
 | customColor     | type of colors,options:`red`, `blue`, `green`,`yellow`,`grey`,`purple`,`violet`, `cyan`,`fern`,`orange`, `mars`,`pink` | `string`    | -          |
 | customColorIcon | type of colors,options:`red`, `blue`, `green`,`yellow`,`grey`,`purple`,`violet`, `cyan`,`fern`,`orange`, `mars`,`pink` | `string`    | -          |
-| color           | type of colors,options: `red`, `green`,`yellow`,`grey`,`purple`,`violet`, `cyan`                                       | `string`    | -          |
 | showMoreLabel   | prop to show label                                                                                                     | `ReactNode` | -          |
 | onShowMore      | callback executed after clicking                                                                                       | `void`      | -          |
 | moreButtons     | prop to show buttons                                                                                                   | `ReactNode` | -          |
