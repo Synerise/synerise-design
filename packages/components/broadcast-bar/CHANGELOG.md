@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.0.2](https://github.com/Synerise/synerise-design/compare/@synerise/ds-broadcast-bar@1.0.1...@synerise/ds-broadcast-bar@1.0.2) (2025-09-05)
+
+
+### Bug Fixes
+
+* fixed regressions ([7280298](https://github.com/Synerise/synerise-design/commit/7280298de410dd67bb858afda6c2367436bbc192))
+
+
+
+
+
 ## 1.0.1 (2025-09-05)
 
 **Note:** Version bump only for package @synerise/ds-broadcast-bar

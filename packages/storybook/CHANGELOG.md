@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.20.1](https://github.com/Synerise/synerise-design/compare/storybook@1.20.0...storybook@1.20.1) (2025-09-05)
+
+
+### Bug Fixes
+
+* fixed regressions ([7280298](https://github.com/Synerise/synerise-design/commit/7280298de410dd67bb858afda6c2367436bbc192))
+
+
+
+
+
 # [1.20.0](https://github.com/Synerise/synerise-design/compare/storybook@1.19.0...storybook@1.20.0) (2025-09-05)
 
 

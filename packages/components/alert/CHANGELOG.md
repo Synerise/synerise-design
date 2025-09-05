@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.1.16](https://github.com/Synerise/synerise-design/compare/@synerise/ds-alert@1.1.15...@synerise/ds-alert@1.1.16) (2025-09-05)
+
+
+### Bug Fixes
+
+* fixed regressions ([7280298](https://github.com/Synerise/synerise-design/commit/7280298de410dd67bb858afda6c2367436bbc192))
+
+
+
+
+
 ## [1.1.15](https://github.com/Synerise/synerise-design/compare/@synerise/ds-alert@1.1.14...@synerise/ds-alert@1.1.15) (2025-09-05)
 
 **Note:** Version bump only for package @synerise/ds-alert
