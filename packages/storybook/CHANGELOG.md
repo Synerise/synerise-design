@@ -3,6 +3,24 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.20.0](https://github.com/Synerise/synerise-design/compare/storybook@1.19.0...storybook@1.20.0) (2025-09-05)
+
+
+### Bug Fixes
+
+* **description:** refactor description ([3f32923](https://github.com/Synerise/synerise-design/commit/3f32923ed7f33e01e5fe79bb3da1ac01e10274da))
+* **progress-bar:** refactor progress bar and remove ant ([3324544](https://github.com/Synerise/synerise-design/commit/33245443d076da967561558ca8506d6ab0d904e5))
+* **section-message:** remove prop color ([569a1d7](https://github.com/Synerise/synerise-design/commit/569a1d72db5f723f0dd345e897c10ecbd46a5ab6))
+
+
+### Features
+
+* **tray:** new component ([4f747b8](https://github.com/Synerise/synerise-design/commit/4f747b8ed29591ec8358d8b7c54d2d7d40374524))
+
+
+
+
+
 # [1.19.0](https://github.com/Synerise/synerise-design/compare/storybook@1.18.2...storybook@1.19.0) (2025-08-28)
 
 

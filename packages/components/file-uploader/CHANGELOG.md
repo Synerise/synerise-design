@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.1.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-file-uploader@1.0.22...@synerise/ds-file-uploader@1.1.0) (2025-09-05)
+
+
+### Bug Fixes
+
+* **file-uploader:** removeable prop during uploading ([0500b62](https://github.com/Synerise/synerise-design/commit/0500b628b4a07453f585338dece23995a1f5ebd7))
+* **progress-bar:** refactor progress bar and remove ant ([3324544](https://github.com/Synerise/synerise-design/commit/33245443d076da967561558ca8506d6ab0d904e5))
+
+
+### Features
+
+* **file-uploader:** accept ref to allow programmatic open ([dac9f01](https://github.com/Synerise/synerise-design/commit/dac9f01cf35f8bf3630e89bef93e9668e41bec95))
+
+
+
+
+
 ## [1.0.22](https://github.com/Synerise/synerise-design/compare/@synerise/ds-file-uploader@1.0.21...@synerise/ds-file-uploader@1.0.22) (2025-08-28)
 
 

@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.4.12](https://github.com/Synerise/synerise-design/compare/@synerise/ds-condition@1.4.11...@synerise/ds-condition@1.4.12) (2025-09-05)
+
+
+### Bug Fixes
+
+* **condition:** fixes to hover style of condition ([6f8fd2d](https://github.com/Synerise/synerise-design/commit/6f8fd2d396c20ff8fb6dca6386d41cc24a0dd87a))
+
+
+
+
+
 ## [1.4.11](https://github.com/Synerise/synerise-design/compare/@synerise/ds-condition@1.4.10...@synerise/ds-condition@1.4.11) (2025-08-28)
 
 **Note:** Version bump only for package @synerise/ds-condition

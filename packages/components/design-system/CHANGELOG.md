@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.6.0](https://github.com/Synerise/synerise-design/compare/@synerise/design-system@1.5.26...@synerise/design-system@1.6.0) (2025-09-05)
+
+
+### Features
+
+* **tray:** new component ([4f747b8](https://github.com/Synerise/synerise-design/commit/4f747b8ed29591ec8358d8b7c54d2d7d40374524))
+
+
+
+
+
 ## [1.5.26](https://github.com/Synerise/synerise-design/compare/@synerise/design-system@1.5.25...@synerise/design-system@1.5.26) (2025-09-02)
 
 **Note:** Version bump only for package @synerise/design-system

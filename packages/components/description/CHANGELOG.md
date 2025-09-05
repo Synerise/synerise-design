@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.1.9](https://github.com/Synerise/synerise-design/compare/@synerise/ds-description@1.1.8...@synerise/ds-description@1.1.9) (2025-09-05)
+
+
+### Bug Fixes
+
+* **description:** refactor description ([3f32923](https://github.com/Synerise/synerise-design/commit/3f32923ed7f33e01e5fe79bb3da1ac01e10274da))
+
+
+
+
+
 ## [1.1.8](https://github.com/Synerise/synerise-design/compare/@synerise/ds-description@1.1.7...@synerise/ds-description@1.1.8) (2025-08-28)
 
 **Note:** Version bump only for package @synerise/ds-description

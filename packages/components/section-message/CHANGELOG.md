@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.0.6](https://github.com/Synerise/synerise-design/compare/@synerise/ds-section-message@1.0.5...@synerise/ds-section-message@1.0.6) (2025-09-05)
+
+
+### Bug Fixes
+
+* **section-message:** remove prop color ([569a1d7](https://github.com/Synerise/synerise-design/commit/569a1d72db5f723f0dd345e897c10ecbd46a5ab6))
+
+
+
+
+
 ## [1.0.5](https://github.com/Synerise/synerise-design/compare/@synerise/ds-section-message@1.0.4...@synerise/ds-section-message@1.0.5) (2025-08-28)
 
 **Note:** Version bump only for package @synerise/ds-section-message

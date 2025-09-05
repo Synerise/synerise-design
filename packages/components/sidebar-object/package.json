@@ -1,6 +1,6 @@
 {
   "name": "@synerise/ds-sidebar-object",
-  "version": "1.0.28",
+  "version": "1.0.29",
   "description": "SidebarObject UI Component for the Synerise Design System",
   "license": "ISC",
   "repository": "Synerise/synerise-design",
@@ -35,7 +35,7 @@
   "types": "dist/index.d.ts",
   "dependencies": {
     "@synerise/ds-button": "^1.4.9",
-    "@synerise/ds-description": "^1.1.8",
+    "@synerise/ds-description": "^1.1.9",
     "@synerise/ds-drawer": "^1.0.8",
     "@synerise/ds-dropdown": "^1.0.21",
     "@synerise/ds-icon": "^1.7.1",

@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.1.15](https://github.com/Synerise/synerise-design/compare/@synerise/ds-progress-bar@1.1.14...@synerise/ds-progress-bar@1.1.15) (2025-09-05)
+
+
+### Bug Fixes
+
+* **progress-bar:** refactor progress bar and remove ant ([3324544](https://github.com/Synerise/synerise-design/commit/33245443d076da967561558ca8506d6ab0d904e5))
+
+
+
+
+
 ## [1.1.14](https://github.com/Synerise/synerise-design/compare/@synerise/ds-progress-bar@1.1.13...@synerise/ds-progress-bar@1.1.14) (2025-08-28)
 
 **Note:** Version bump only for package @synerise/ds-progress-bar
