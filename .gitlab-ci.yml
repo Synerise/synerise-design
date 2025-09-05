@@ -110,19 +110,19 @@ chromatic_publish:
   rules:
     - if: $CI_PIPELINE_SOURCE == "merge_request_event"
   script:
-    - apt-get -qq update
-    - apt-get install -y jq
+    # - apt-get -qq update
+    # - apt-get install -y jq
     - test ! -e packages/storybook/storybook-static && (cd packages/storybook; yarn build-storybook --quiet --stats-json)
     - yarn npx:lerna run pack:ci --since origin/master
     - (cd packages/storybook/storybook-static/static; ls > index.txt)
     - (cd packages/storybook; npx chromatic --diagnostics --project-token=$CHROMATIC_PROJECT_TOKEN_SB7 --storybook-build-dir ./storybook-static/ --exit-zero-on-changes)
-    - CHROMATIC_SB_URL=$(jq -r '.storybookUrl' packages/storybook/chromatic-diagnostics.json)
-    - echo "CHROMATIC_SB_URL=$CHROMATIC_SB_URL" >> deploy.env
+    # - CHROMATIC_SB_URL=$(jq -r '.storybookUrl' packages/storybook/chromatic-diagnostics.json)
+    # - echo "CHROMATIC_SB_URL=$CHROMATIC_SB_URL" >> deploy.env
     - yarn tgz-package-json --url $CHROMATIC_SB_URL --inputFilePath packages/storybook/storybook-static/static/index.txt --outputFilePath packages.json
   artifacts:
-    reports:
-      dotenv: deploy.env
-    expose_as: "package tgz versions json"
+    # reports:
+      # dotenv: deploy.env
+    # expose_as: "package tgz versions json"
     paths:
       - packages.json
       - packages/storybook/chromatic-diagnostics.json
