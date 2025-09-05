@@ -1,4 +1,4 @@
-import { type ReactNode } from 'react';
+import { type ReactNode, type RefObject } from 'react';
 
 import { type FileViewTexts } from './FileView/FileView.types';
 
@@ -43,4 +43,10 @@ export interface FileUploaderProps {
 
 export type ItemUploaderProps = Omit<FileUploaderProps, 'mode'> & {
   mode: 'single' | 'multi';
+};
+
+export type FileUploaderRef = {
+  open: () => void;
+  inputRef: RefObject<HTMLInputElement>;
+  rootRef: RefObject<HTMLElement>;
 };
