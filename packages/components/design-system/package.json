@@ -40,6 +40,7 @@
     "@synerise/ds-badge": "^1.0.20",
     "@synerise/ds-banner": "^1.1.20",
     "@synerise/ds-block": "^1.0.19",
+    "@synerise/ds-broadcast-bar": "^1.0.0",
     "@synerise/ds-button": "^1.4.9",
     "@synerise/ds-button-group": "^1.1.13",
     "@synerise/ds-card": "^1.2.8",
