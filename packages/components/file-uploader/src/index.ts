@@ -12,6 +12,8 @@ export type {
   FileUploaderProps,
   ExtendedFile,
   FileWithContent,
+  FileUploaderRef,
+  FileContent,
 } from './FileUploader.types';
 
 export const FileUploaderStyles = {
