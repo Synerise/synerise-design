@@ -12,6 +12,7 @@ export const AlertStyles = {
 export { default as SectionMessage } from './SectionMessage/SectionMessage';
 
 export { default as Toast } from './Toast/Toast';
+/** @deprecated - use Broadcast-Bar instead */
 export { default as BroadcastBar } from './BroadcastBar/BroadcastBar';
 
 /** @deprecated use `@synerise/ds-inline-alert` instead */
