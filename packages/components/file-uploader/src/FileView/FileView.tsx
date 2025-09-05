@@ -122,7 +122,7 @@ const FileView = ({
               </S.FileWeight>
             </S.Name>
             <div style={{ display: 'flex' }}>
-              <ProgressBar amount={100} percent={progress} />
+              <ProgressBar width="300px" percent={finalTexts.percent} />
               <S.RemoveWrapper onClick={onRemove} data-testid="fileview-remove">
                 <Tooltip title={finalTexts.removeTooltip}>
                   <Icon component={<Close3M />} size={20} />

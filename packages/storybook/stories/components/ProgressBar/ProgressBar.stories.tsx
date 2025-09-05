@@ -1,90 +1,62 @@
 import React from 'react';
-import { Meta, StoryObj } from '@storybook/react-webpack5';
 
-import ProgressBar, { ProgressProps } from '@synerise/ds-progress-bar';
+import { Meta, StoryObj } from '@storybook/react-webpack5';
+import ProgressBar from '@synerise/ds-progress-bar';
 
 import {
   BOOLEAN_CONTROL,
-  COLOR_CONTROL,
-  fixedWrapper300,
   NUMBER_CONTROL,
   STRING_CONTROL,
+  fixedWrapper300,
 } from '../../utils';
-
-
-type Story = StoryObj<Omit<ProgressProps, 'thick'>>;
 
 export default {
   component: ProgressBar,
   title: 'Components/ProgressBar',
   tags: ['autodocs'],
   decorators: [fixedWrapper300],
-  render: args => {
-    return <ProgressBar {...args} />;
-  },
-  args: {
-    amount: 60,
-    percent: 21,
-    showLabel: false,
-  },
   argTypes: {
-    strokeColor: COLOR_CONTROL,
     description: STRING_CONTROL,
-    amount: NUMBER_CONTROL,
+    label: STRING_CONTROL,
     percent: NUMBER_CONTROL,
-    maxPercent: BOOLEAN_CONTROL,
-    showLabel: BOOLEAN_CONTROL,
-    thick: BOOLEAN_CONTROL,
-    thin: BOOLEAN_CONTROL
-  }
-} as Meta<ProgressProps>;
+    thin: BOOLEAN_CONTROL,
+    customColor: STRING_CONTROL,
+    steps: NUMBER_CONTROL,
+    width: STRING_CONTROL,
+    inline: BOOLEAN_CONTROL,
+  },
+} as Meta<typeof ProgressBar>;
 
-export const SoloBar: Story = {
-  parameters: {
-    docs: {
-      source: {
-        code: `<ProgressBar amount={60} percent={21} showLabel={false} />`
-      }
-    }
-  }
-};
-export const SoloBarSmall: Story = {
+type Story = StoryObj<typeof ProgressBar>;
+
+export const Default: Story = {
   args: {
+    percent: 21,
+    width: '300px',
+    inline: false,
+  },
+};
+
+export const withLabelAndDescription: Story = {
+  ...Default,
+  args: {
+    ...Default.args,
+    description: 'Description',
+    label: 'ProgressBar Label',
+  },
+};
+
+export const withSteps: Story = {
+  ...Default,
+  args: {
+    ...Default.args,
+    steps: 6,
+  },
+};
+export const thinProgressBar: Story = {
+  ...Default,
+  args: {
+    ...Default.args,
     thin: true,
   },
-  parameters: {
-    docs: {
-      source: {
-        code: `<ProgressBar amount={60} percent={21} showLabel={false} thin />`
-      }
-    }
-  }
 };
-export const SoloBarWithLabel: Story = {
-  args: {
-    showLabel: true,
-    maxPercent: true,
-  },
-  parameters: {
-    docs: {
-      source: {
-        code: `<ProgressBar amount={60} percent={21} showLabel maxPercent />`
-      }
-    }
-  }
-};
-
-export const SoloBarWithLabelAndDescription: Story = {
-  args: {
-    ...SoloBarWithLabel.args,
-    description: 'Description',
-  },
-  parameters: {
-    docs: {
-      source: {
-        code: `<ProgressBar amount={60} percent={21} showLabel maxPercent description="Description" />`
-      }
-    }
-  }
-};
-

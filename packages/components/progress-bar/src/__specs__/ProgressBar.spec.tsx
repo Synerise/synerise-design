@@ -1,49 +1,48 @@
 import React from 'react';
-
+import { screen } from '@testing-library/react';
 import { renderWithProvider } from '@synerise/ds-utils';
 
 import ProgressBar from '../index';
 
 describe('ProgressBar', () => {
   it('should render', () => {
-    const { getByTestId, queryByTestId } = renderWithProvider(
-      <ProgressBar showLabel={false} percent={60} amount={60} />,
+    renderWithProvider(
+      <ProgressBar showLabel={false} percent={60} width={'300px'} customColor={'green'} />,
     );
-    expect(getByTestId('progress-bar-container')).toBeTruthy();
-    expect(queryByTestId('progress-bar-label')).toBeNull();
-    expect(queryByTestId('progress-bar-description')).toBeNull();
+    expect(screen.getByTestId('progress-bar-container')).toBeTruthy();
+    expect(screen.queryByTestId('progress-bar-label')).toBeNull();
+    expect(screen.queryByTestId('progress-bar-description')).toBeNull();
   });
 });
 
 describe('ProgressBar', () => {
   it('should render with label', () => {
-    const { getByTestId, queryByTestId } = renderWithProvider(
-      <ProgressBar showLabel={true} percent={60} amount={60} />,
+    renderWithProvider(
+      <ProgressBar label="Label" percent={60} width={'300px'} customColor={'green'} />,
     );
-    expect(getByTestId('progress-bar-container')).toBeTruthy();
-    expect(getByTestId('progress-bar-label')).toBeTruthy();
-    expect(getByTestId('progress-bar-max-value').textContent).toBe('60');
-    expect(getByTestId('progress-bar-max-percent').textContent).toBe(' (60%)');
-    expect(queryByTestId('progress-bar-description')).toBeNull();
+    expect(screen.getByTestId('progress-bar-container')).toBeTruthy();
+    expect(screen.getByTestId('progress-bar-label')).toBeTruthy();
+    expect(screen.getByTestId('progress-bar-max-percent').textContent).toBe('60%');
+    expect(screen.queryByTestId('progress-bar-description')).toBeNull();
   });
 });
 
 describe('ProgressBar', () => {
   it('should render with label and description', () => {
-    const { getByTestId } = renderWithProvider(
+    renderWithProvider(
       <ProgressBar
-        showLabel={true}
+        label="Label"
         percent={60}
-        amount={60}
+        width={'300px'}
+        customColor={'green'}
         description="Description"
       />,
     );
-    expect(getByTestId('progress-bar-container')).toBeTruthy();
-    expect(getByTestId('progress-bar-label')).toBeTruthy();
-    expect(getByTestId('progress-bar-max-value').textContent).toBe('60');
-    expect(getByTestId('progress-bar-max-percent').textContent).toBe(' (60%)');
-    expect(getByTestId('progress-bar-description')).toBeTruthy();
-    expect(getByTestId('progress-bar-description').textContent).toBe(
+    expect(screen.getByTestId('progress-bar-container')).toBeTruthy();
+    expect(screen.getByTestId('progress-bar-label')).toBeTruthy();
+    expect(screen.getByTestId('progress-bar-max-percent').textContent).toBe('60%');
+    expect(screen.queryByTestId('progress-bar-description')).toBeTruthy();
+    expect(screen.getByTestId('progress-bar-description').textContent).toBe(
       'Description',
     );
   });
