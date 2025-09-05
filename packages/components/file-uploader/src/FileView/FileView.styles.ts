@@ -61,6 +61,10 @@ export const Name = styled(Label)`
   }
 `;
 
+export const FlexRow = styled.div`
+  display: flex;
+`;
+
 export const SizeOrError = styled(Typography.Text)`
   && {
     color: ${(props) => props.theme.palette['grey-600']};

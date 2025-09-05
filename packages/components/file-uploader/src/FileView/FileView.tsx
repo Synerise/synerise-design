@@ -87,7 +87,7 @@ const FileView = ({
   const hasError = !!error;
   const hasProgress = typeof progress === 'number';
   const [pressed, setPressed] = useState<boolean>(false);
-  const handleRemove = (): void => {
+  const handleRemove = () => {
     onRemove && onRemove();
     setPressed(false);
   };
@@ -121,14 +121,19 @@ const FileView = ({
                 {filesize((progress / 100) * file.size)}
               </S.FileWeight>
             </S.Name>
-            <div style={{ display: 'flex' }}>
+            <S.FlexRow>
               <ProgressBar width="300px" percent={finalTexts.percent} />
-              <S.RemoveWrapper onClick={onRemove} data-testid="fileview-remove">
-                <Tooltip title={finalTexts.removeTooltip}>
-                  <Icon component={<Close3M />} size={20} />
-                </Tooltip>
-              </S.RemoveWrapper>
-            </div>
+              {removable && (
+                <S.RemoveWrapper
+                  onClick={onRemove}
+                  data-testid="fileview-remove"
+                >
+                  <Tooltip title={finalTexts.removeTooltip}>
+                    <Icon component={<Close3M />} size={20} />
+                  </Tooltip>
+                </S.RemoveWrapper>
+              )}
+            </S.FlexRow>
           </>
         ) : (
           <>
@@ -148,7 +153,7 @@ const FileView = ({
       </S.Info>
       {error && retry && !hasProgress && (
         <Button
-          onClick={(event): void => {
+          onClick={(event) => {
             onRemove && onRemove();
             if (retryButtonProps?.onClick) {
               retryButtonProps.onClick(event);
@@ -169,7 +174,7 @@ const FileView = ({
       {removable && !disabled && !error && !hasProgress && (
         <S.PopconfirmOnRemove
           onConfirm={handleRemove}
-          onCancel={(): void => setPressed(false)}
+          onCancel={() => setPressed(false)}
           icon={
             <Icon
               component={<WarningFillM />}
@@ -186,7 +191,7 @@ const FileView = ({
           trigger="click"
         >
           <S.RemoveButtonWrapper
-            onMouseDown={(): void => setPressed(true)}
+            onMouseDown={() => setPressed(true)}
             pressed={pressed}
             data-testid="fileview-remove"
           >
