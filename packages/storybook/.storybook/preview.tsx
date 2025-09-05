@@ -1,15 +1,21 @@
 import React from 'react';
-import { Preview } from '@storybook/react-webpack5';
+import { mockDateDecorator } from 'storybook-mock-date-decorator';
 import { configure } from 'storybook/test';
 
+import {
+  Description,
+  Primary,
+  Stories,
+  Subtitle,
+  Title,
+} from '@storybook/addon-docs/blocks';
+import { Preview } from '@storybook/react-webpack5';
 import { DSProvider, theme } from '@synerise/ds-core';
 import { DEFAULT_DATA_FORMAT_NOTATION } from '@synerise/ds-data-format';
-import { Description, Primary, Stories, Subtitle, Title } from '@storybook/addon-docs/blocks';
-import { mockDateDecorator } from 'storybook-mock-date-decorator';
 import { TOASTER_DEFAULTS } from '@synerise/ds-toaster';
+import { TrayProvider } from '@synerise/ds-tray';
 
 configure({ asyncUtilTimeout: 3000 });
-
 
 const preview: Preview = {
   globalTypes: {
@@ -36,7 +42,14 @@ const preview: Preview = {
       toolbar: {
         title: 'Timezone',
         icon: 'time',
-        items: ['Europe/Warsaw', 'UTC', 'America/New_York', 'Asia/Tokyo', 'Australia/Darwin', 'US/Samoa'],
+        items: [
+          'Europe/Warsaw',
+          'UTC',
+          'America/New_York',
+          'Asia/Tokyo',
+          'Australia/Darwin',
+          'US/Samoa',
+        ],
       },
     },
   },
@@ -52,9 +65,13 @@ const preview: Preview = {
         },
         locale: storyContext.globals.locale,
         timeZone: storyContext.globals.timeZone,
-        toasterProps: TOASTER_DEFAULTS
+        toasterProps: TOASTER_DEFAULTS,
       };
-      return <DSProvider {...DSProviderProps}>{Story()}</DSProvider>;
+      return (
+        <DSProvider {...DSProviderProps}>
+          <TrayProvider>{Story()}</TrayProvider>
+        </DSProvider>
+      );
     },
   ],
 
