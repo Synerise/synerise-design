@@ -1,7 +1,12 @@
 import type { ReactNode } from 'react';
 import styled from 'styled-components';
 
-import { type ColorType, type CustomColorType } from './SectionMessage.types';
+import { type CustomColorType, type SectionType } from './SectionMessage.types';
+import {
+  getColorBackground,
+  getColorBorder,
+  getColorIconAndBorderTop,
+} from './SectionMessage.utils';
 
 export const AlertContent = styled.div<{ withLink?: ReactNode }>`
   display: flex;
@@ -18,7 +23,7 @@ export const Text = styled.div`
   display: flex;
 `;
 export const IconWrapper = styled.div<{
-  color?: ColorType;
+  type?: SectionType;
   customColorIcon?: CustomColorType;
 }>`
   margin: 10px 12px;
@@ -26,7 +31,7 @@ export const IconWrapper = styled.div<{
   color: ${(props) =>
     props.customColorIcon
       ? props.theme.palette[`${props.customColorIcon}-600`]
-      : props.theme.palette[`${props.color}-600`]};
+      : getColorIconAndBorderTop(props.type!, props.theme)};
 `;
 export const IconCloseWrapper = styled.div`
   margin: 3px 5px 2px;
@@ -43,7 +48,7 @@ export const SuffixWrapper = styled.div`
 `;
 
 export const Container = styled.div<{
-  color?: ColorType;
+  type?: SectionType;
   customColor?: CustomColorType;
 }>`
   width: 100%;
@@ -52,17 +57,17 @@ export const Container = styled.div<{
   background-color: ${(props) =>
     props.customColor
       ? props.theme.palette[`${props.customColor}-050`]
-      : props.theme.palette[`${props.color}-050`]};
+      : getColorBackground(props.type!, props.theme)};
   border: 1px solid
     ${(props) =>
       props.customColor
         ? props.theme.palette[`${props.customColor}-200`]
-        : props.theme.palette[`${props.color}-200`]};
+        : getColorBorder(props.type!, props.theme)};
   border-top: 2px solid
     ${(props) =>
       props.customColor
         ? props.theme.palette[`${props.customColor}-600`]
-        : props.theme.palette[`${props.color}-600`]};
+        : getColorIconAndBorderTop(props.type!, props.theme)};
   border-radius: 2px;
 `;
 export const WrapperSectionMessage = styled.div`

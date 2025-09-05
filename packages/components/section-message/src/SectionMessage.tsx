@@ -20,7 +20,6 @@ const SectionMessage = ({
   withEmphasis,
   withLink,
   unorderedList,
-  color,
   withClose,
   customColor,
   customColorIcon,
@@ -77,13 +76,13 @@ const SectionMessage = ({
   return (
     <S.Container
       data-testid={`ds-section-message-${type}`}
-      color={color}
+      type={type}
       customColor={customColor}
       {...htmlAttributes}
     >
       <S.WrapperSectionMessage>
         <S.AllContent>
-          <S.IconWrapper color={color} customColorIcon={customColorIcon}>
+          <S.IconWrapper type={type} customColorIcon={customColorIcon}>
             {customIcon || <Icon component={renderIcon} />}
           </S.IconWrapper>
           {renderMessage}

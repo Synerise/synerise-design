@@ -17,6 +17,8 @@ export type CustomColorType =
   | 'cyan'
   | 'purple'
   | 'violet';
+
+/** @deprecated */
 export type ColorType =
   | 'grey'
   | 'red'
@@ -32,10 +34,9 @@ export type SectionMessageProps = WithHTMLAttributes<
   HTMLDivElement,
   {
     message?: ReactNode;
-    type: string | SectionType;
+    type: SectionType;
     customColor?: CustomColorType;
     customColorIcon?: CustomColorType;
-    color?: ColorType;
     description?: ReactNode;
     showMoreLabel?: ReactNode;
     onShowMore?: () => void;
@@ -47,6 +48,8 @@ export type SectionMessageProps = WithHTMLAttributes<
     unorderedList?: ReactNode;
     withClose?: ReactNode;
     customIcon?: ReactElement;
+    /** @deprecated - color is defined by type, use customColor property if you need to voerwrite it */
+    color?: ColorType;
     icon?: ReactNode;
   }
 >;

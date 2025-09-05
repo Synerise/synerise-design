@@ -1,10 +1,9 @@
-export const TYPE_MAPPING = {
-  positive: { color: 'green' },
-  notice: { color: 'yellow' },
-  negative: { color: 'red' },
-  neutral: { color: 'grey' },
-  supply: { color: 'violet' },
-  service: { color: 'purple' },
-  entity: { color: 'cyan' },
-};
-
+export const TYPE_MAPPING = [
+  'positive',
+  'notice',
+  'negative',
+  'neutral',
+  'supply',
+  'service',
+  'entity',
+];
