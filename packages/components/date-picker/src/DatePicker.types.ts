@@ -1,7 +1,7 @@
 import type { HTMLAttributes, ReactElement, ReactNode } from 'react';
 import type { IntlShape } from 'react-intl';
 
-import type { DateToFormatOptions } from '@synerise/ds-data-format';
+import type { DateToFormatOptions } from '@synerise/ds-core';
 import type { DropdownProps } from '@synerise/ds-dropdown';
 import type { InputProps } from '@synerise/ds-input';
 import type { DataAttributes } from '@synerise/ds-utils';

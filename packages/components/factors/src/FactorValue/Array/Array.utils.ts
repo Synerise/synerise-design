@@ -1,6 +1,7 @@
 import { v4 as uuid } from 'uuid';
 
-import { type ArrayValueElement, type ArrayValueWithID } from './Array.types';
+import { type ArrayValueElement } from '../../Factors.types';
+import { type ArrayValueWithID } from './Array.types';
 
 export const matchesSearchQuery = (
   item: string | number,

@@ -1,7 +1,5 @@
 import type { CSSProperties, ReactNode } from 'react';
 
-import type Step from './Step/Step';
-
 export type StepperOrientation = 'vertical' | 'horizontal' | string;
 export type StepperSize = 'small' | 'default' | string;
 
@@ -19,5 +17,3 @@ export type StepperProps = {
   size?: StepperSize;
   children?: ReactNode;
 };
-
-export type StepperSubComponents = { Step: typeof Step };

@@ -17,8 +17,8 @@
     "bootstrap": "yarn npx:lerna bootstrap",
     "build": "yarn build:core && yarn build:all",
     "build-storybook": "cd packages/storybook && yarn build-storybook",
-    "build:all": "yarn npx:lerna run build --ignore=@synerise/ds-{toaster,data-format,core}",
-    "build:core": "yarn npx:lerna run build --scope=@synerise/ds-{toaster,data-format,core}",
+    "build:all": "yarn npx:lerna run build --ignore=@synerise/ds-core",
+    "build:core": "yarn npx:lerna run build --scope=@synerise/ds-core",
     "component:create": "node ./scripts/create-component/index.js",
     "lerna:version": "yarn npx:lerna version --conventional-commits",
     "lint": "eslint ./packages/components --ext ts,tsx",
@@ -30,6 +30,7 @@
     "test:ci": "npx lerna run test --stream --concurrency 3",
     "tgz-package-json": "node ./scripts/tgz/index.cjs",
     "types": "yarn npx:lerna run types --stream  --concurrency 5",
+    "check:circular-dependencies": "yarn npx:lerna run check:circular-dependencies",
     "upgrade:ds": "yarn npx:lerna run upgrade:ds"
   },
   "husky": {
@@ -114,6 +115,7 @@
     "less-plugin-clean-css": "^1.6.0",
     "less-plugin-npm-import": "^2.1.0",
     "lint-staged": "16.1.0",
+    "madge": "^8.0.0",
     "npm-check-updates": "^16",
     "react-intl": "^6.8.7",
     "sass": "^1.43.4",

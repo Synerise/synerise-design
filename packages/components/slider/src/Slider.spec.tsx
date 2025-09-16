@@ -1,7 +1,6 @@
 import React from 'react';
 
-import { defaultColorsOrder, theme } from '@synerise/ds-core';
-import { renderWithProvider } from '@synerise/ds-utils';
+import { defaultColorsOrder, theme , renderWithProvider } from '@synerise/ds-core';
 import { fireEvent, screen, waitFor } from '@testing-library/react';
 
 import { type AllocationVariant } from './Allocation/Allocation.types';

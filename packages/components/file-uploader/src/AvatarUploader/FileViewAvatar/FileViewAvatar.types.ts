@@ -2,20 +2,20 @@ import { type ReactNode } from 'react';
 
 import { type ExtendedFile } from '../../FileUploader.types';
 
-export interface FileViewAvatarTexts {
+export type FileViewAvatarTexts = {
   removeTooltip?: ReactNode;
   retryTooltip?: ReactNode;
   buttonLabel?: ReactNode;
   buttonDescription?: ReactNode;
-}
+};
 
-export interface FileViewAvatarProps {
+export type FileViewAvatarProps = {
   data: ExtendedFile;
   texts?: FileViewAvatarTexts;
   removable?: boolean;
   onRemove?: () => void;
   description?: ReactNode;
-}
+};
 
 export type PreviewableMimeType =
   | 'image/png'

@@ -2,10 +2,7 @@ import React, { useCallback, useMemo } from 'react';
 import { useIntl } from 'react-intl';
 
 import Button from '@synerise/ds-button';
-import {
-  getDefaultDataTimeOptions,
-  useDataFormat,
-} from '@synerise/ds-data-format';
+import { getDefaultDataTimeOptions, useDataFormat } from '@synerise/ds-core';
 import Icon, { ArrowRightS } from '@synerise/ds-icon';
 import Tooltip from '@synerise/ds-tooltip';
 

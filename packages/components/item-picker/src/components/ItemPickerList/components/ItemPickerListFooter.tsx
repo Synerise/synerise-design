@@ -4,8 +4,8 @@ import Button, { type ButtonProps } from '@synerise/ds-button';
 import { theme } from '@synerise/ds-core';
 import Icon, { RefreshM } from '@synerise/ds-icon';
 
+import { type ItemPickerListTexts } from '../../ItemPickerNew/ItemPickerNew.types';
 import * as S from '../ItemPickerList.styles';
-import { type ItemPickerListTexts } from '../ItemPickerList.types';
 
 type ItemPickerListFooterProps = {
   texts: ItemPickerListTexts;

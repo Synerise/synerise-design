@@ -2,7 +2,11 @@ import { type ReactNode } from 'react';
 
 import type { RequiredProps } from '@synerise/ds-utils';
 
-import type { ArrayProps, FactorsTexts } from '../../Factors.types';
+import type {
+  ArrayProps,
+  ArrayValueElement,
+  FactorsTexts,
+} from '../../Factors.types';
 
 export type ArrayModalProps<ItemType extends 'string' | 'number'> =
   RequiredProps<ArrayProps, 'itemType'> & {
@@ -13,9 +17,6 @@ export type ArrayModalProps<ItemType extends 'string' | 'number'> =
     texts: FactorsTexts;
     value?: ArrayValueElement<ItemType>[];
   };
-
-export type ArrayValueElement<ItemType extends 'string' | 'number'> =
-  ItemType extends 'number' ? number : string;
 
 export type ArrayValueWithID<ItemType extends 'string' | 'number'> = {
   value: ArrayValueElement<ItemType>;

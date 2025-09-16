@@ -4,8 +4,8 @@
   "description": "Icon UI Component for the Synerise Design System",
   "license": "ISC",
   "repository": "Synerise/synerise-design",
-  "main": "dist/esm/index.js",
-  "module": "dist/esm/index.js",
+  "main": "dist/index.js",
+  "module": "dist/index.js",
   "files": [
     "/dist",
     "CHANGELOG.md",
@@ -17,12 +17,9 @@
     "access": "public"
   },
   "scripts": {
-    "build": "rm -rf dist && npm run build:svgr && (BUILD_TYPE=esm npm run build-module & BUILD_TYPE=cjs npm run build-module)",
-    "build-module": "npm run build-ts:$BUILD_TYPE ",
-    "build-ts:cjs": "tsc --module commonjs  --outDir dist/cjs",
-    "build-ts:esm": "tsc --module esnext --outDir dist/esm ",
-    "build:cjs": "babel --root-mode upward src --env-name cjs --extensions '.js,.ts,.tsx' -d dist/cjs/ src/ ",
-    "build:esm": "babel --root-mode upward src --extensions '.js,.ts,.tsx' -d dist/esm/ src/ ",
+    "build": "rm -rf dist && npm run build:svgr && npm run build:js && npm run defs",
+    "build:js": "babel --delete-dir-on-start --root-mode upward src --out-dir dist --extensions '.js,.ts,.tsx'",
+    "defs": "tsc --declaration --outDir dist/ --emitDeclarationOnly",
     "build:svgr": "node ./build/svgr.js",
     "build:watch": "npm run build:js -- --watch",
     "pack:ci": "npm pack --pack-destination ../../storybook/storybook-static/static",
@@ -30,17 +27,14 @@
     "test": "jest",
     "test:watch": "npm run test -- --watchAll",
     "types": "tsc --noEmit",
+    "check:circular-dependencies": "madge --circular --extensions ts,tsx,js,jsx --ts-config tsconfig.json src/ --exclude '/dist/'",
     "upgrade:ds": "ncu -f \"@synerise/ds-*\" -u"
-  },
-  "exports": {
-    ".": "./dist/esm",
-    "./dist/": "./dist/esm/"
   },
   "sideEffects": [
     "dist/style/*",
     "*.less"
   ],
-  "types": "dist/esm/index.d.ts",
+  "types": "dist/index.d.ts",
   "dependencies": {
     "@synerise/ds-utils": "^1.4.1"
   },

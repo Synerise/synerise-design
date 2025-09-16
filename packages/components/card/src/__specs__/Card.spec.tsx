@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { ObjectAvatar } from '@synerise/ds-avatar';
-import { renderWithProvider } from '@synerise/ds-utils';
+import { renderWithProvider } from '@synerise/ds-core';
 import { screen, waitFor } from '@testing-library/react';
 
 import Card from '../index';

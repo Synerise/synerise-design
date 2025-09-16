@@ -1,6 +1,20 @@
 import type { ReactNode } from 'react';
 
-import type { Column } from './ColumnManagerItem/ColumManagerItem.types';
+export type Column = {
+  id: string;
+  name: string;
+  visible: boolean;
+  readOnly?: boolean;
+  type?: ColumnIconType;
+};
+
+export type ColumnIconType =
+  | string
+  | 'text'
+  | 'number'
+  | 'date'
+  | 'boolean'
+  | 'list';
 
 type TextsString = 'searchPlaceholder';
 type TextsReactNode =

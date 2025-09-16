@@ -1,6 +1,6 @@
 import type React from 'react';
 
-import { type ItemProps } from '../Item.types';
+import { type ItemProps } from '../../ManageableList.types';
 
 export type ItemLabelProps = {
   item: ItemProps;

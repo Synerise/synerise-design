@@ -156,4 +156,5 @@ const SubtleTextArea = ({
     </S.Subtle>
   );
 };
+SubtleTextArea.displayName = 'SubtleTextArea';
 export default SubtleTextArea;

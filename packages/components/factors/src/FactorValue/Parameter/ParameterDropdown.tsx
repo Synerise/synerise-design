@@ -40,29 +40,10 @@ import {
   TABS_HEIGHT,
 } from './Parameter.constants';
 import * as S from './Parameter.style';
-import type {
-  DropdownItem,
-  MixedDropdownItemProps,
-  ParameterDropdownTitleProps,
-} from './Parameter.types';
+import type { DropdownItem, MixedDropdownItemProps } from './Parameter.types';
 import ParameterDropdownItem from './ParameterDropdownItem';
 import { useGroups } from './useGroups';
-import { groupItems } from './utils';
-
-export type TitleItem = { type: 'title'; title: string };
-export type DividerItem = { type: 'divider' };
-
-const isListTitle = (
-  element?: MixedDropdownItemProps,
-): element is ParameterDropdownTitleProps => {
-  return (element as ParameterDropdownTitleProps).title !== undefined;
-};
-
-const isDivider = (
-  item: MixedDropdownItemProps | TitleItem | DividerItem,
-): item is DividerItem => {
-  return (item as DividerItem).type === 'divider';
-};
+import { groupItems, isDivider, isListTitle } from './utils';
 
 const ParameterDropdown = ({
   setSelected,

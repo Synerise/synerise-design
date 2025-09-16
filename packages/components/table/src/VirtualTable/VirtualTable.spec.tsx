@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { Grid2M } from '@synerise/ds-icon';
-import { renderWithProvider } from '@synerise/ds-utils';
+import { renderWithProvider } from '@synerise/ds-core';
 import { fireEvent, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 

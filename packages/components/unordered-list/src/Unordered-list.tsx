@@ -26,6 +26,8 @@ const UnorderedList = ({
             key={String(item?.id)}
             indexFormatter={indexFormatter}
             {...item}
+            // pass component to avoid circular dependencies
+            NestedList={UnorderedList}
           />
         ))}
       </S.UnorderedList>

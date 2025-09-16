@@ -1,27 +1,15 @@
-import type React from 'react';
+import type { ReactElement, ReactNode } from 'react';
 
 import { type FormFieldCommonProps } from '@synerise/ds-form-field';
 
-import { type SubtleDatePickerProps } from './Elements/DatePicker/DatePicker.types';
-import { type SubtleInputProps } from './Elements/Input/Input.types';
-import { type SubtleSelectProps } from './Elements/Select/Select.types';
-import { type SubtleTextAreaProps } from './Elements/TextArea/TextArea.types';
-
-export type SubtleFormSubComponents = {
-  TextArea: React.ElementType<SubtleTextAreaProps>;
-  Select: React.ElementType<SubtleSelectProps>;
-  DatePicker: React.ElementType<SubtleDatePickerProps>;
-  Field: React.ElementType<SubtleFieldProps>;
-  Input: React.ElementType<SubtleInputProps>;
-};
 export type SubtleFieldProps = {
   active?: boolean;
   disabled?: boolean;
   labelTooltip?: FormFieldCommonProps['tooltip'];
-  suffix?: React.ReactNode | string;
-  suffixTooltip?: React.ReactNode | string;
-  activeElement?: () => React.ReactElement;
-  inactiveElement?: () => React.ReactElement;
+  suffix?: ReactNode;
+  suffixTooltip?: ReactNode;
+  activeElement?: () => ReactElement;
+  inactiveElement?: () => ReactElement;
   mask?: string;
   maskVisible?: boolean;
 } & Pick<FormFieldCommonProps, 'label' | 'errorText'>;

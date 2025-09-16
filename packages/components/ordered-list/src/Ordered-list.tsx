@@ -27,6 +27,8 @@ const OrderedList = ({
             key={String(item?.id)}
             indexFormatter={indexFormatter}
             {...item}
+            // pass the component to avoid circular dependencies
+            NestedList={OrderedList}
           />
         ))}
       </S.OrderedList>

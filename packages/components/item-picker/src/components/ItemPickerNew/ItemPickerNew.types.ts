@@ -1,22 +1,23 @@
-import type { ReactNode } from 'react';
+import { type ItemSelectHandler } from 'components/ItemPickerList/ItemPickerList.types';
+import type { ReactNode, Ref } from 'react';
 
 import type { DropdownProps } from '@synerise/ds-dropdown';
 import type { FormFieldCommonProps } from '@synerise/ds-form-field';
 import type { InformationCardTooltipProps } from '@synerise/ds-information-card';
+import { type ScrollbarAdditionalProps } from '@synerise/ds-scrollbar';
+import { type SearchBarProps } from '@synerise/ds-search-bar';
 import type { WithHTMLAttributes } from '@synerise/ds-utils';
 
-import type {
-  ItemPickerListProps,
-  ItemPickerListTexts,
-} from '../ItemPickerList/ItemPickerList.types';
 import type { RenderMode } from '../ItemPickerList/types/renderMode';
 import type {
   ItemPickerTriggerProps,
   ItemPickerTriggerTexts,
 } from '../ItemPickerTrigger/Trigger.types';
+import { type Action } from './types/actions.types';
 import type {
   BaseItemType,
   BaseSectionType,
+  BaseSectionTypeWithFolders,
 } from './types/baseItemSectionType.types';
 
 type HeightConfig = {
@@ -125,3 +126,68 @@ export type ItemPickerProps<
   Partial<
     Pick<ItemPickerTriggerProps, 'placeholder' | 'placeholderIcon' | 'onClear'>
   >;
+
+export type TextsAsReactNode =
+  | 'basicSearchPlaceholder'
+  | 'searchPlaceholder'
+  | 'refreshButtonLabel'
+  | 'showMoreResultsLabel'
+  | 'noItems'
+  | 'noResults'
+  | 'noResultsInSection'
+  | 'searchAllFoldersButtonLabel'
+  | 'recentsSectionLabel'
+  | 'actionsSectionLabel'
+  | 'resultsSectionLabel'
+  | 'noActions'
+  | 'itemsSectionLabel'
+  | 'infiniteScrollLoadingMore'
+  | 'infiniteScrollLoadingError'
+  | 'errorMessageTitle'
+  | 'errorMessageDetails'
+  | 'backTooltip'
+  | 'clearSearchTooltip'
+  | 'infiniteScrollAllLoaded';
+
+export type ItemPickerListTexts = {
+  [key in TextsAsReactNode]: ReactNode;
+};
+
+export type ItemPickerListProps<
+  ItemType extends BaseItemType,
+  SectionType extends BaseSectionType | undefined,
+> = WithHTMLAttributes<
+  HTMLDivElement,
+  {
+    recents?: ItemType[];
+    actions?: Action[];
+    texts?: Partial<ItemPickerListTexts>;
+    containerHeight?: ContainerHeightType;
+    showItemsSectionLabel?: boolean;
+    noResultsIcon?: ReactNode;
+    emptyListIcon?: ReactNode;
+    onItemSelect: ItemSelectHandler<ItemType, SectionType>;
+    onSectionChange?: SectionType extends BaseSectionType
+      ? (section?: BaseSectionTypeWithFolders<SectionType>) => void
+      : undefined;
+    selectedItem?: ItemType;
+    getItemHeight?: (item: ItemType | SectionType | Action) => number;
+    scrollbarProps?: ScrollbarAdditionalProps;
+    searchBarProps?: Omit<
+      SearchBarProps,
+      'value' | 'onSearchChange' | 'placeholder'
+    >;
+    onRefresh?: () => void;
+    items: ItemType[] | ItemsConfig<ItemType> | ItemLoaderConfig<ItemType>;
+    isLoading?: boolean;
+    isVisible?: boolean;
+    sections?: SectionType extends BaseSectionType
+      ? BaseSectionTypeWithFolders<SectionType>[]
+      : undefined;
+    containerRef?: Ref<HTMLDivElement>;
+    includeSearchBar?: boolean;
+    includeFooter?: boolean;
+    onLoadedData?: OnLoadedData;
+    isDropdown?: boolean;
+  }
+>;

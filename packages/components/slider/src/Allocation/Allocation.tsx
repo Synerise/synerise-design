@@ -3,9 +3,9 @@ import { useIntl } from 'react-intl';
 
 import Tooltip from '@synerise/ds-tooltip';
 
-import { buildDefaultTracksColorMap } from '../Slider';
 import { Description, DescriptionWrapper } from '../Slider.styles';
 import type { SliderProps } from '../Slider.types';
+import { buildDefaultTracksColorMap } from '../utils/Slider.utils';
 import {
   checkIsPercentageInBoundaries,
   countAllocation,

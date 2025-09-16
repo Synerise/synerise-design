@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { SearchM } from '@synerise/ds-icon';
-import { renderWithProvider } from '@synerise/ds-utils';
+import { renderWithProvider } from '@synerise/ds-core';
 import { screen, within } from '@testing-library/react';
 
 import Tabs from '../Tabs';

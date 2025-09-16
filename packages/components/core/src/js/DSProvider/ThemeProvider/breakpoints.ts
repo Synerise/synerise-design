@@ -1,4 +1,18 @@
-import { type BreakpointsData } from '../../mediaQuery/mediaQuery';
+export type BreakpointKey =
+  | 'xsmall'
+  | 'small'
+  | 'medium'
+  | 'large'
+  | 'xlarge'
+  | 'xxlarge';
+
+export type BreakpointsData = Record<
+  BreakpointKey,
+  {
+    min: number;
+    max: number;
+  }
+>;
 
 export const breakpoints: BreakpointsData = {
   xsmall: {

@@ -1,7 +1,7 @@
 import React from 'react';
 
 import Icon, { EditM } from '@synerise/ds-icon';
-import { renderWithProvider } from '@synerise/ds-utils';
+import { renderWithProvider } from '@synerise/ds-core';
 
 import Block from '../index';
 

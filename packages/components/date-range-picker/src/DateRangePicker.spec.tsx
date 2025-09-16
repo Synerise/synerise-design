@@ -1,6 +1,6 @@
 import React from 'react';
 import type { PopoverProps } from 'antd/lib/popover';
-import { renderWithProvider, sleep } from '@synerise/ds-utils';
+import { renderWithProvider, sleep } from '@synerise/ds-core';
 import { waitFor, within, screen, act, fireEvent } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import {

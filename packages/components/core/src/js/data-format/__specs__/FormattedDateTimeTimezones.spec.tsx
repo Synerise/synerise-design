@@ -1,8 +1,8 @@
 import React from 'react';
 import { screen } from '@testing-library/react';
 
-import { renderWithProvider } from '@synerise/ds-utils';
-import { FormattedDateTime, type DataFormatNotationType } from '@synerise/ds-data-format';
+import { renderWithProvider } from '../../testing';
+import { FormattedDateTime, type DataFormatNotationType } from '../index';
 
 import {TIMEZONE_DATA, TZ_DATE_TO_FORMAT } from './Timezones.data'
 

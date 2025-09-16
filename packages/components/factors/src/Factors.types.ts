@@ -13,8 +13,6 @@ import type { ListItemProps } from '@synerise/ds-list-item';
 import type { MenuItemProps } from '@synerise/ds-menu';
 import type { DeepPartial, LiteralStringUnion } from '@synerise/ds-utils';
 
-import type { ArrayValueElement } from './FactorValue/Array/Array.types';
-
 export const ALL_FACTOR_TYPES = [
   'text',
   'number',
@@ -390,3 +388,6 @@ export type FormulaModalProps = {
   texts: FactorsTexts;
   formulaEditor?: ReactNode;
 };
+
+export type ArrayValueElement<ItemType extends 'string' | 'number'> =
+  ItemType extends 'number' ? number : string;

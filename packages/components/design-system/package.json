@@ -23,6 +23,7 @@
     "defs": "tsc --declaration --outDir dist/ --emitDeclarationOnly",
     "prepublish": "npm run build",
     "types": "tsc --noEmit",
+    "check:circular-dependencies": "madge --circular --extensions ts,tsx,js,jsx --ts-config tsconfig.json src/ --exclude '/dist/'",
     "upgrade:ds": "ncu -f \"@synerise/ds-*\" -u"
   },
   "sideEffects": [
@@ -134,7 +135,6 @@
     "@synerise/ds-tags": "^1.1.24",
     "@synerise/ds-time-picker": "^1.1.16",
     "@synerise/ds-toast": "^1.2.1",
-    "@synerise/ds-toaster": "^1.1.2",
     "@synerise/ds-toolbar": "^1.1.20",
     "@synerise/ds-tooltip": "^1.1.17",
     "@synerise/ds-tray": "^1.1.0",

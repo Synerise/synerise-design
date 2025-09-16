@@ -71,12 +71,12 @@ export const US_DECIMAL_DELIMITER: Delimiter = '.';
 export const EU_THOUSAND_DELIMITER: Delimiter = ' ';
 export const EU_DECIMAL_DELIMITER: Delimiter = ',';
 
-export const DATE_CONSTANTS_TARGET_FORMATS = [
+export const DATE_CONSTANTS_TARGET_FORMATS: DateConstantsTargetFormat[] = [
   'months-long',
   'months-short',
   'weekdays-long',
   'weekdays-short',
-] as const;
+];
 export const MONTHS_LONG: DateConstantsTargetFormat = 'months-long';
 export const MONTHS_SHORT: DateConstantsTargetFormat = 'months-short';
 export const WEEKDAYS_LONG: DateConstantsTargetFormat = 'weekdays-long';

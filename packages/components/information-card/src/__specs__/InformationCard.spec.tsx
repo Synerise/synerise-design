@@ -2,11 +2,11 @@ import React from 'react';
 
 import Button from '@synerise/ds-button';
 import Dropdown from '@synerise/ds-dropdown';
+import { renderWithProvider } from '@synerise/ds-core';
 import Menu, { type MenuItemProps } from '@synerise/ds-menu';
 import {
   NOOP,
   focusWithArrowKeys,
-  renderWithProvider,
   useOnClickOutside,
 } from '@synerise/ds-utils';
 import { fireEvent, screen, waitFor } from '@testing-library/react';

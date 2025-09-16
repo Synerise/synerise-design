@@ -23,7 +23,7 @@ export const ICONS: Record<SectionType, ReactNode> = {
 
 export const DEFAULT_ICON = <WarningFillM />;
 
-export const SECTION_TYPES = [
+export const SECTION_TYPES: SectionType[] = [
   'positive',
   'notice',
   'negative',
@@ -31,4 +31,4 @@ export const SECTION_TYPES = [
   'supply',
   'service',
   'entity',
-] as const;
+];

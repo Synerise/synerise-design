@@ -1,8 +1,6 @@
 import React, { type ReactNode } from 'react';
 
-import { theme } from '@synerise/ds-core';
-import { TOASTER_DEFAULTS } from '@synerise/ds-toaster';
-import { renderWithProvider } from '@synerise/ds-utils';
+import { theme , TOASTER_DEFAULTS , renderWithProvider } from '@synerise/ds-core';
 import { screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 
@@ -138,4 +136,5 @@ describe('Toast', () => {
 
     await waitFor(() => expect(screen.getAllByText(MESSAGE)).toHaveLength(2));
   });
+  
 });

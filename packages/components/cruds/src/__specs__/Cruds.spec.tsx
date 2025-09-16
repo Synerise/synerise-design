@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { Settings2S } from '@synerise/ds-icon';
-import { renderWithProvider } from '@synerise/ds-utils';
+import { renderWithProvider } from '@synerise/ds-core';
 import { fireEvent } from '@testing-library/react';
 
 import Cruds from '../Cruds';

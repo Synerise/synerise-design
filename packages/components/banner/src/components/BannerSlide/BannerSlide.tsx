@@ -3,7 +3,8 @@ import React, { useMemo } from 'react';
 import * as S from '../../Banner.styles';
 import type { BannerSlideProps } from '../../Banner.types';
 import { isMediaContent } from '../../utils/isMediaContent';
-import { BannerSlideMediaContent, BannerSlideTextContent } from '../index';
+import { BannerSlideMediaContent } from '../BannerSlideMediaContent/BannerSlideMediaContent';
+import { BannerSlideTextContent } from '../BannerSlideTextContent/BannerSlideTextContent';
 
 export const BannerSlide = ({
   mainContent,

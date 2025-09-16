@@ -1,7 +1,7 @@
 import React from 'react';
 
 import Button from '@synerise/ds-button';
-import { renderWithProvider } from '@synerise/ds-utils';
+import { renderWithProvider } from '@synerise/ds-core';
 import { fireEvent } from '@testing-library/react';
 
 import ButtonGroup from '../';

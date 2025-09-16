@@ -24,3 +24,6 @@ export type ParameterDropdownTitleProps = {
 export type MixedDropdownItemProps =
   | DropdownItemProps<ParameterItem>
   | DropdownItemProps<ParameterGroup>;
+
+export type TitleItem = { type: 'title'; title: string };
+export type DividerItem = { type: 'divider' };

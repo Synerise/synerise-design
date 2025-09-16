@@ -18,7 +18,6 @@ export { useIsMounted } from './useIsMounted/useIsMounted';
 export { default as useElementInView } from './useElementInView/useElementInView';
 export { default as useOverscrollBlock } from './useOverscrollBlock/useOverscrollBlock';
 export { default as useResizeToFit } from './useResizeToFit/useResizeToFit';
-export * from './testing';
 export * from './useScrollContain/useScrollContain';
 export * from './useSearchResults';
 export * from './useKeyboardShortcuts/useKeyboardShortcuts';

@@ -102,4 +102,5 @@ const SubtleInput = ({
     </S.Subtle>
   );
 };
+SubtleInput.displayName = 'SubtleInput';
 export default SubtleInput;

@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { renderWithProvider } from '@synerise/ds-utils';
+import { renderWithProvider } from '@synerise/ds-core';
 
 import Description from '../Description';
 import { type DescriptionRowProps } from '../Row/DescriptionRow.types';

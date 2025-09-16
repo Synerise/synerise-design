@@ -11,11 +11,15 @@ import Icon, {
 } from '@synerise/ds-icon';
 import Menu, { type MenuItemProps } from '@synerise/ds-menu';
 
-import { type DSColumnType, type OnSortFn } from '../Table.types';
+import {
+  type DSColumnType,
+  type OnSortFn,
+  type SortStateAPI,
+} from '../Table.types';
 import { useTableLocaleContext } from '../utils/locale';
 import { CheckIcon, DefaultSortIcon, StringSortIcon } from './SortIcons';
 import * as S from './SortRender.styles';
-import { type SortStateAPI, toSortOrder } from './useSortState';
+import { toSortOrder } from './useSortState';
 
 type SortRendererProps<T> = {
   sortStateApi: SortStateAPI;

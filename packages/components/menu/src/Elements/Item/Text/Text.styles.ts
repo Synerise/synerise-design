@@ -7,7 +7,7 @@ import styled, {
 
 import { IconContainer } from '@synerise/ds-icon';
 
-import { ItemSize } from '../MenuItem.types';
+import { ItemSize } from '../../../Menu.types';
 
 type WrapperProps = {
   disabled?: boolean;

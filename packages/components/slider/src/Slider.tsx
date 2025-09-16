@@ -1,43 +1,19 @@
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
 
-import { defaultColorsOrder } from '@synerise/ds-core';
 import '@synerise/ds-core/dist/js/style';
 import { Label } from '@synerise/ds-typography';
 
 import Allocation from './Allocation/Allocation';
 import * as S from './Slider.styles';
-import {
-  type ColorMapProps,
-  type SliderProps,
-  SliderTypes,
-} from './Slider.types';
+import { type SliderProps, SliderTypes } from './Slider.types';
 import './style/index.less';
+import {
+  buildDefaultTracksColorMap,
+  couldBeInverted,
+  getDefaultTooltipPopupContainer,
+} from './utils/Slider.utils';
 
-const getDefaultTooltipPopupContainer = (): HTMLElement =>
-  document.querySelector(`.ant-slider`) as HTMLElement;
-const couldBeInverted = (
-  value: number | number[],
-  inverted: boolean,
-): boolean => inverted && (typeof value === 'number' || value.length < 3);
-
-const mapToColor = (
-  _: string | object,
-  idx: number,
-): Record<number, string> => ({
-  [idx]: defaultColorsOrder[idx] as string,
-});
-/**
- * Converts an array of strings (e.g. colors) `["blue-600", "yellow-600"]`
- * into `{"0": "blue-600", "1": "yellow-600"}`.
- * @returns Object Record<string, string>
- */
-export const buildDefaultTracksColorMap = (): ColorMapProps =>
-  Object.assign(
-    {} as Record<number, string>,
-    ...defaultColorsOrder.map(mapToColor),
-  );
-
-const Slider = (props: SliderProps): JSX.Element => {
+const Slider = (props: SliderProps) => {
   const {
     useColorPalette,
     label,

@@ -14,7 +14,7 @@ import {
   type WithDataFormatProps,
   getDefaultDataTimeOptions,
   withDataFormat,
-} from '@synerise/ds-data-format';
+} from '@synerise/ds-core';
 import DayPicker from '@synerise/ds-date-picker/dist/Elements/DayPicker/DayPicker';
 import {
   DayBackground,

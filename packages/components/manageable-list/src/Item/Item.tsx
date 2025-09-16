@@ -1,10 +1,12 @@
 import React from 'react';
 
-import { ListType } from '../ManageableList.types';
+import {
+  ListType,
+  type ManageableListItemProps,
+} from '../ManageableList.types';
 import BlankItem from './BlankItem/BlankItem';
 import ContentItem from './ContentItem/ContentItem';
 import FilterItem from './FilterItem/FilterItem';
-import { type Props } from './Item.types';
 import SimpleItem from './SimpleItem/SimpleItem';
 
 const Item = ({
@@ -32,7 +34,7 @@ const Item = ({
   isDragOverlay,
   dragHandleProps,
   renderItem,
-}: Props) => {
+}: ManageableListItemProps) => {
   switch (listType) {
     case ListType.CONTENT:
     case ListType.CONTENT_LARGE:

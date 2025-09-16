@@ -3,14 +3,13 @@ import React, { type PropsWithChildren } from 'react';
 import {
   DataFormatConfigProvider,
   type DataFormatConfigProviderProps,
-} from '@synerise/ds-data-format';
+} from '../data-format';
+import '../style';
 import Toaster, {
   TOASTER_DEFAULTS,
   type ToasterProps,
   ToasterProvider,
-} from '@synerise/ds-toaster';
-
-import '../style';
+} from '../toaster';
 import LocaleProvider from './LocaleProvider';
 import { type LocaleProviderProps } from './LocaleProvider/LocaleProvider.types';
 import ThemeProvider from './ThemeProvider';

@@ -1,7 +1,7 @@
 import dayjs from 'dayjs';
 import React from 'react';
 
-import { renderWithProvider, sleep } from '@synerise/ds-utils';
+import { renderWithProvider, sleep } from '@synerise/ds-core';
 import { fireEvent, screen, waitFor, within } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 

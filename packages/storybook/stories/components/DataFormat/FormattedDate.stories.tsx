@@ -1,14 +1,15 @@
 import React from 'react';
 
-import { FormattedDate } from '@synerise/ds-data-format';
 import type { Meta, StoryObj } from '@storybook/react-webpack5';
+import { FormattedDate } from '@synerise/ds-core';
+
 import { fixedWrapper200 } from '../../utils';
 
 export default {
   component: FormattedDate,
   title: 'Components/DataFormat/FormattedDate',
   tags: ['autodocs'],
-  render: args => {
+  render: (args) => {
     return <FormattedDate {...args} />;
   },
   decorators: [fixedWrapper200],

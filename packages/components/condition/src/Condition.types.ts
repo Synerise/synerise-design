@@ -16,7 +16,10 @@ import type {
 import type { OperatorsItem, OperatorsProps } from '@synerise/ds-operators';
 import type { SubjectItem, SubjectProps } from '@synerise/ds-subject';
 
-import type { ConditionStepCrudActions } from './ConditionStep/ConditionStep.types';
+export type ConditionStepCrudActions = {
+  removeStep?: (stepId: ReactText) => void;
+  duplicateStep?: (stepId: ReactText) => void;
+};
 
 export type StepConditions = {
   id: ReactText;

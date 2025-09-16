@@ -11,7 +11,7 @@ import Icon, {
   SortZaM,
 } from '@synerise/ds-icon';
 
-import { type ColumnSortOrder } from './useSortState';
+import { type ColumnSortOrder } from '../Table.types';
 
 const CheckIconBase = ({
   isActive,

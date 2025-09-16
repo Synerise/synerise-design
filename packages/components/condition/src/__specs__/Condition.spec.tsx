@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { NotificationsM, VarTypeStringM } from '@synerise/ds-icon';
-import { renderWithProvider } from '@synerise/ds-utils';
+import { renderWithProvider } from '@synerise/ds-core';
 import { fireEvent, screen, waitFor } from '@testing-library/react';
 
 import Condition from '../Condition';

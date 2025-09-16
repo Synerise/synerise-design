@@ -1,7 +1,7 @@
 import React from 'react';
 
 import Button, { type ButtonProps } from '@synerise/ds-button';
-import { renderWithProvider } from '@synerise/ds-utils';
+import { renderWithProvider } from '@synerise/ds-core';
 import { screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 

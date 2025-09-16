@@ -1,13 +1,11 @@
 import type dayjs from 'dayjs';
 import type { CSSProperties, ReactNode } from 'react';
 
-import type { DateToFormatOptions } from '@synerise/ds-data-format';
+import type { DateToFormatOptions } from '@synerise/ds-core';
 import type { DropdownProps } from '@synerise/ds-dropdown';
 import type { InputProps } from '@synerise/ds-input';
 
-import type { CLOCK_MODES } from '../constants/timePicker.constants';
-
-export type ClockModes = (typeof CLOCK_MODES)[number];
+export type ClockModes = 'AM' | 'PM';
 
 export type TimePickerDisabledUnits = {
   disabledSeconds?: number[];

@@ -4,23 +4,9 @@ import {
   css,
 } from 'styled-components';
 
-import breakpoints from '../DSProvider/ThemeProvider/breakpoints';
-
-export type BreakpointKey =
-  | 'xsmall'
-  | 'small'
-  | 'medium'
-  | 'large'
-  | 'xlarge'
-  | 'xxlarge';
-
-export type BreakpointsData = Record<
-  BreakpointKey,
-  {
-    min: number;
-    max: number;
-  }
->;
+import breakpoints, {
+  type BreakpointKey,
+} from '../DSProvider/ThemeProvider/breakpoints';
 
 export type Media = {
   from: BreakpointsType;

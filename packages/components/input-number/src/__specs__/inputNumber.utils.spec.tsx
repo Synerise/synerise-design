@@ -1,7 +1,6 @@
 import React from 'react';
 import { renderHook } from '@testing-library/react';
-import { type DataFormatNotationType, useDataFormat } from '@synerise/ds-data-format';
-import { DSProvider } from '@synerise/ds-core';
+import { type DataFormatNotationType, useDataFormat , DSProvider } from '@synerise/ds-core';
 import { formatNumber, parseFormattedNumber } from '../utils/inputNumber.utils';
 
 const parserTestCases = [

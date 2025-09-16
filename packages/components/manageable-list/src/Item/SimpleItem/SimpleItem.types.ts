@@ -1,7 +1,10 @@
 import type { ReactText } from 'react';
 
-import { type AdditionalAction, type Texts } from '../../ManageableList.types';
-import { type ItemProps } from '../Item.types';
+import {
+  type AdditionalAction,
+  type ItemProps,
+  type Texts,
+} from '../../ManageableList.types';
 
 export type Props = {
   item: ItemProps;

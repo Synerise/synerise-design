@@ -1,7 +1,7 @@
 import React from 'react';
 import { fireEvent, screen, waitFor } from '@testing-library/react';
 
-import renderWithProvider from '../../testing/renderWithProvider/renderWithProvider';
+import { renderWithProvider } from '@synerise/ds-core';
 import focusWithArrowKeys from '../focusWithArrowKeys';
 
 describe('focusWithArrowKeys', () => {

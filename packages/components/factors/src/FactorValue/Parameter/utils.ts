@@ -1,6 +1,11 @@
 import { type ParameterGroup } from '../../Factors.types';
-import { type DropdownItem } from './Parameter.types';
-import { type DividerItem, type TitleItem } from './ParameterDropdown';
+import {
+  type DividerItem,
+  type DropdownItem,
+  type MixedDropdownItemProps,
+  type ParameterDropdownTitleProps,
+  type TitleItem,
+} from './Parameter.types';
 
 const NO_GROUP_NAME = 'NO_GROUP_NAME';
 
@@ -37,4 +42,16 @@ export const groupItems = (
   });
 
   return resultItems;
+};
+
+export const isListTitle = (
+  element?: MixedDropdownItemProps,
+): element is ParameterDropdownTitleProps => {
+  return (element as ParameterDropdownTitleProps).title !== undefined;
+};
+
+export const isDivider = (
+  item: MixedDropdownItemProps | TitleItem | DividerItem,
+): item is DividerItem => {
+  return (item as DividerItem).type === 'divider';
 };

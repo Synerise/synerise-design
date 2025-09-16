@@ -5,6 +5,7 @@
   "license": "ISC",
   "repository": "synerise/synerise-design",
   "main": "dist/js/index.js",
+  "types": "dist/js/index.d.ts",
   "files": [
     "/dist",
     "CHANGELOG.md",
@@ -24,18 +25,24 @@
     "defs": "tsc --declaration --outDir dist/ --emitDeclarationOnly",
     "pack:ci": "npm pack --pack-destination ../../storybook/storybook-static/static",
     "prepublish": "npm run build",
-    "test": "jest",
+    "test": "jest && yarn test:timezones",
+    "test:timezone-ny": "TZ=America/New_York jest -t TimezoneTesting",
+    "test:timezone-utc": "TZ=UTC jest -t TimezoneTesting",
+    "test:timezone-waw": "TZ=Europe/Warsaw jest -t TimezoneTesting",
+    "test:timezones": "yarn test:timezone-utc && yarn test:timezone-ny && yarn test:timezone-waw",
     "test:watch": "npm run test -- --watchAll",
     "types": "tsc --noEmit",
+    "check:circular-dependencies": "madge --circular --extensions ts,tsx,js,jsx --ts-config tsconfig.json src/ --exclude '/dist/'",
     "upgrade:ds": "ncu -f \"@synerise/ds-*\" -u",
     "vars": "node ./build/vars.js"
   },
-  "types": "dist/js/index.js",
   "dependencies": {
-    "@synerise/ds-data-format": "^1.1.1",
-    "@synerise/ds-toaster": "^1.1.2",
     "deepmerge": "^4.2.2",
-    "flat": "^5.0.2"
+    "date-fns-tz": "^1.1.4",
+    "flat": "^5.0.2",
+    "dayjs": "^1.8.36",
+    "moment": "^2.30.1",
+    "react-hot-toast": "^2.5.2"
   },
   "peerDependencies": {
     "antd": "4.24.16",

@@ -1,14 +1,16 @@
 import { type ColumnTitleProps } from 'antd/lib/table/interface';
 import React from 'react';
 
-import { type DSColumnType, type OnSortFn } from '../Table.types';
-import { CommonRenderer, StringRenderer } from './SortRenderer';
 import {
+  type DSColumnType,
+  type OnSortFn,
   type SortButtonsRenderer,
   type SortRender,
-  TitleWithSort,
-} from './TitleWithSort';
-import { type SortStateAPI } from './useSortState';
+  type SortStateAPI,
+} from '../Table.types';
+import { CommonRenderer, StringRenderer } from './SortRenderer';
+import { TitleWithSort } from './TitleWithSort';
+import './useSortState';
 
 const getSortRenderer = <T,>(
   sortRender: SortRender<T> = 'default',
@@ -20,7 +22,7 @@ const getSortRenderer = <T,>(
 
   switch (sortRender) {
     case 'string':
-      return (sortStateApi, column): React.ReactElement => (
+      return (sortStateApi, column) => (
         <StringRenderer<T>
           sortStateApi={sortStateApi}
           column={column}
@@ -29,7 +31,7 @@ const getSortRenderer = <T,>(
       );
     case 'default':
     default:
-      return (sortStateApi, column): React.ReactElement => (
+      return (sortStateApi, column) => (
         <CommonRenderer<T>
           sortStateApi={sortStateApi}
           column={column}
@@ -50,7 +52,7 @@ export const columnWithSortButtons =
           sortOrder: column.key
             ? sortStateApi.getColumnSortOrder(String(column.key))
             : null,
-          title: (titleProps: ColumnTitleProps<T>): React.ReactElement => (
+          title: (titleProps: ColumnTitleProps<T>) => (
             <TitleWithSort
               column={column}
               sortRender={sortRenderer(sortStateApi, column)}

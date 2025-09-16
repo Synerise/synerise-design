@@ -25,12 +25,12 @@ import {
 } from '@synerise/ds-utils';
 
 import { useDefaultTexts } from '../../hooks/useDefaultTexts';
+import { type ItemPickerListProps } from '../ItemPickerNew/ItemPickerNew.types';
 import type {
   BaseItemType,
   BaseSectionType,
 } from '../ItemPickerNew/types/baseItemSectionType.types';
 import * as S from './ItemPickerList.styles';
-import type { ItemPickerListProps } from './ItemPickerList.types';
 import {
   EmptyListMessage,
   ErrorMessage,

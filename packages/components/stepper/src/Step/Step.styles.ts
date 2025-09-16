@@ -1,7 +1,4 @@
-import styled, {
-  type FlattenSimpleInterpolation,
-  css,
-} from 'styled-components';
+import styled, { css } from 'styled-components';
 
 import {
   ORIENTATIONS,
@@ -19,8 +16,8 @@ export const StepPrefix = styled.div<{ noMargin: boolean }>`
   border-radius: 50%;
   border-width: 1px;
   border-style: solid;
-  border-color: ${(props): string => props.theme.palette['grey-400']};
-  margin-right: ${(props): string => (props.noMargin ? '0' : '8px')};
+  border-color: ${(props) => props.theme.palette['grey-400']};
+  margin-right: ${(props) => (props.noMargin ? '0' : '8px')};
   text-align: center;
   transition:
     border-color 0.2s ease-in-out,
@@ -37,7 +34,7 @@ export const StepNumber = styled.span`
   justify-content: center;
   align-items: center;
   transition: color 0.2s ease-in-out;
-  color: ${(props): string => props.theme.palette['grey-400']};
+  color: ${(props) => props.theme.palette['grey-400']};
 `;
 
 export const StepName = styled.span`
@@ -68,7 +65,7 @@ export const StepName = styled.span`
 
 export const StepLabel = styled.span`
   transition: color 0.2s ease-in-out;
-  color: ${(props): string => props.theme.palette['grey-400']};
+  color: ${(props) => props.theme.palette['grey-400']};
   overflow: hidden;
   display: block;
   white-space: nowrap;
@@ -92,7 +89,7 @@ export const StepContent = styled.div`
   margin-left: 12px;
   outline: 0;
   && {
-    border-left: 1px solid ${(props): string => props.theme.palette['grey-400']};
+    border-left: 1px solid ${(props) => props.theme.palette['grey-400']};
   }
 `;
 
@@ -113,7 +110,7 @@ export const Step = styled.div<{
   justify-content: flex-start;
   position: relative;
 
-  ${(props): FlattenSimpleInterpolation | false => {
+  ${(props) => {
     if (props.wasActive) {
       return css`
         ${StepName} {
@@ -131,7 +128,7 @@ export const Step = styled.div<{
     return false;
   }};
 
-  ${(props): FlattenSimpleInterpolation | false => {
+  ${(props) => {
     if (
       props.size === 'small' &&
       props.orientation === ORIENTATIONS.HORIZONTAL
@@ -150,7 +147,7 @@ export const Step = styled.div<{
     return false;
   }};
 
-  ${(props): FlattenSimpleInterpolation | false => {
+  ${(props) => {
     if (
       props.active &&
       props.size === 'small' &&
@@ -177,7 +174,7 @@ export const Step = styled.div<{
     return false;
   }};
 
-  ${(props): FlattenSimpleInterpolation | false => {
+  ${(props) => {
     if (props.validated) {
       return css`
         ${StepPrefix} {
@@ -257,6 +254,6 @@ export const Step = styled.div<{
     }
   }
   ${StepWrapper} {
-    cursor: ${(props): string => (props.clickable ? 'pointer' : 'default')};
+    cursor: ${(props) => (props.clickable ? 'pointer' : 'default')};
   }
 `;

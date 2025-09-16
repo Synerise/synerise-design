@@ -1,23 +1,13 @@
 import { groupBy, merge } from 'lodash';
 import React from 'react';
 
-import { type DSColumnType, type OnSortFn } from '../Table.types';
-
-export type ColumnSortOrder = 'descend' | 'ascend' | null;
-
-export interface ColumnsSortState {
-  [key: string]: {
-    sortOrder: ColumnSortOrder;
-    multiple: number | false;
-  };
-}
-
-export interface SortStateAPI {
-  columnsSortState: ColumnsSortState;
-  getColumnSortOrder: (key: string) => ColumnSortOrder;
-  setColumnSortOrder: (key: string, sort: ColumnSortOrder) => void;
-  updateColumnsData: (columns: ColumnsSortState) => void;
-}
+import {
+  type ColumnSortOrder,
+  type ColumnsSortState,
+  type DSColumnType,
+  type OnSortFn,
+  type SortStateAPI,
+} from '../Table.types';
 
 export const toSortOrder = (
   value: string | null | undefined,

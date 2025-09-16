@@ -1,10 +1,12 @@
-import React from 'react';
+import React, { type ReactElement } from 'react';
 
-import OrderedList from '../../Ordered-list';
-import { type ListProps, type OrderedListItem } from '../../Ordered-list.types';
+import {
+  type OrderedListItem,
+  type OrderedListProps,
+} from '../../Ordered-list.types';
 import * as S from './Item.styles';
 
-const Item: React.FC<OrderedListItem & Pick<ListProps, 'indexFormatter'>> = ({
+const Item = ({
   label,
   suffixel,
   prefixel,
@@ -14,7 +16,11 @@ const Item: React.FC<OrderedListItem & Pick<ListProps, 'indexFormatter'>> = ({
   listStyle,
   subMenuProps,
   text,
-}) => {
+  NestedList,
+}: OrderedListItem &
+  Pick<OrderedListProps, 'indexFormatter'> & {
+    NestedList?: (props: OrderedListProps) => ReactElement;
+  }) => {
   return (
     <>
       <S.ItemWrapper>
@@ -25,8 +31,8 @@ const Item: React.FC<OrderedListItem & Pick<ListProps, 'indexFormatter'>> = ({
         {label}
         {suffixel}
       </S.ItemWrapper>
-      {!!subMenu && subMenu?.length > 0 && (
-        <OrderedList
+      {!!subMenu && subMenu?.length > 0 && NestedList && (
+        <NestedList
           text={text}
           indexFormatter={indexFormatter}
           data={subMenu}

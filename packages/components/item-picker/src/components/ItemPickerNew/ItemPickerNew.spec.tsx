@@ -2,7 +2,7 @@ import React from 'react';
 
 import { screen, fireEvent } from '@testing-library/react';
 import Icon, { LaptopM, MobileM, UserM } from '@synerise/ds-icon';
-import { renderWithProvider } from '@synerise/ds-utils';
+import { renderWithProvider } from '@synerise/ds-core';
 import Avatar from '@synerise/ds-avatar';
 import DSFlag from '@synerise/ds-flag';
 

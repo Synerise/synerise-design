@@ -13,8 +13,12 @@ import type {
   InfiniteScrollProps,
   LoaderItemPosition,
 } from '../InfiniteScroll/InfiniteLoaderItem.types';
-import type { DSColumnType, DSTableProps, RowSelection } from '../Table.types';
-import { type RowStar } from '../hooks/useRowStar';
+import {
+  type DSColumnType,
+  type DSTableProps,
+  type RowSelection,
+  type RowStar,
+} from '../Table.types';
 import { calculatePixels, getValueFromPath } from '../utils';
 import * as S from './VirtualTable.styles';
 import { EXPANDED_ROW_PROPERTY } from './constants';

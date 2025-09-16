@@ -5,14 +5,13 @@ import { v4 as uuid } from 'uuid';
 import '@synerise/ds-core/dist/js/style';
 
 import * as S from '../../Menu.styles';
-import MenuItem from '../Item/MenuItem';
-import { type MenuItemProps } from '../Item/MenuItem.types';
-import SubmenuText from '../Item/SubmenuText/SubmenuText';
 import {
+  type MenuItemProps,
   type SubMenuItemProps,
   type SubMenuProps,
   type SubMenuState,
-} from './SubMenu.types';
+} from '../../Menu.types';
+import SubmenuText from '../Item/SubmenuText/SubmenuText';
 
 class SubMenuItem extends React.PureComponent<
   SubMenuProps & MenuItemProps,
@@ -26,7 +25,7 @@ class SubMenuItem extends React.PureComponent<
     };
   }
 
-  render(): React.ReactNode {
+  render() {
     const {
       text,
       prefixel,
@@ -42,6 +41,7 @@ class SubMenuItem extends React.PureComponent<
       prefixVisibilityTrigger,
       size,
       description,
+      ItemComponent,
       ...rest
     } = this.props;
     const { uuidKey } = this.state;
@@ -79,7 +79,7 @@ class SubMenuItem extends React.PureComponent<
         {Boolean(subMenu) &&
           // @ts-expect-error Type 'SubMenuProps' is missing the following properties from type 'MenuInfo': keyPath, item, domEvent
           subMenu.map((subItem: SubMenuItemProps, index: number) => (
-            <MenuItem
+            <ItemComponent
               parent={subItem.parent}
               prefixel={subItem.prefixel}
               suffixel={subItem.suffixel}

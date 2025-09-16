@@ -1,8 +1,11 @@
 import { type CompareFn } from 'antd/lib/table/interface';
 
 import { type GroupType } from '../GroupTable/GroupTable.types';
-import { type DSColumnType } from '../Table.types';
-import { type ColumnSortOrder, type SortStateAPI } from './useSortState';
+import {
+  type ColumnSortOrder,
+  type DSColumnType,
+  type SortStateAPI,
+} from '../Table.types';
 
 export const getColumnsWithActiveSorting = <T extends GroupType<T>>(
   sortStateApi: SortStateAPI,

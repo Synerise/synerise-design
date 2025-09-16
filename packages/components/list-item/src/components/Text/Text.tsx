@@ -12,7 +12,7 @@ import Tooltip from '@synerise/ds-tooltip';
 import { renderWithHighlight } from '@synerise/ds-utils';
 
 import { type BasicItemProps, itemSizes } from '../../ListItem.types';
-import { HoverTooltip } from '../index';
+import HoverTooltip from '../HoverTooltip/HoverTooltip';
 import * as S from './Text.styles';
 import { removeHandlerProps, renderAddon } from './utils';
 

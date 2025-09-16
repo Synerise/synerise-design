@@ -3,7 +3,7 @@ import userEvent from '@testing-library/user-event';
 import { screen, waitFor, within } from '@testing-library/react';
 
 import { VarTypeStringM } from '@synerise/ds-icon';
-import { renderWithProvider, sleep } from '@synerise/ds-utils';
+import { renderWithProvider, sleep } from '@synerise/ds-core';
 
 import Factors from './../Factors';
 import { type FactorsProps } from '../Factors.types';
