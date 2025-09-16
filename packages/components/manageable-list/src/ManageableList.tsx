@@ -8,9 +8,12 @@ import AddItem from './AddItem/AddItem';
 import AddItemWithName from './AddItemWithName/AddItemWithName';
 import { DraggableItem } from './Item/DraggableItem';
 import Item from './Item/Item';
-import { type ItemProps } from './Item/Item.types';
 import * as S from './ManageableList.styles';
-import { ListType, type ManageableListProps } from './ManageableList.types';
+import {
+  type ItemProps,
+  ListType,
+  type ManageableListProps,
+} from './ManageableList.types';
 import { useTexts } from './hooks/useTexts';
 
 const ManageableListComponent = <T extends object>({

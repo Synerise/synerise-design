@@ -26,6 +26,7 @@
     "test": "jest",
     "test:watch": "npm run test -- --watchAll",
     "types": "tsc --noEmit",
+    "check:circular-dependencies": "node -e 'const pkg = require(\"./package.json\").name; console.log(\"\\x1b[31m%s\\x1b[0m\", `[WARN] skipping circular dependencies in ${pkg}`)'",
     "upgrade:ds": "ncu -f \"@synerise/ds-*\" -u"
   },
   "sideEffects": [
@@ -38,7 +39,6 @@
     "@synerise/ds-badge": "^1.0.20",
     "@synerise/ds-button": "^1.4.9",
     "@synerise/ds-button-group": "^1.1.13",
-    "@synerise/ds-data-format": "^1.1.1",
     "@synerise/ds-date-picker": "^1.2.5",
     "@synerise/ds-dropdown": "^1.0.21",
     "@synerise/ds-form-field": "^1.1.14",

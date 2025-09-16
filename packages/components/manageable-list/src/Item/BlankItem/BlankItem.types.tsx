@@ -2,8 +2,7 @@ import type { HTMLAttributes, ReactNode } from 'react';
 
 import type { WithHTMLAttributes } from '@synerise/ds-utils';
 
-import type { Texts } from '../../ManageableList.types';
-import type { ItemProps } from '../Item.types';
+import type { ItemProps, Texts } from '../../ManageableList.types';
 
 export type BlankItemBaseProps<T extends object> = Pick<
   ItemProps<T>,

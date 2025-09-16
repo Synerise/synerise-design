@@ -1,4 +1,4 @@
-import { type NumberToFormatOptions } from '@synerise/ds-data-format';
+import { type NumberToFormatOptions } from '@synerise/ds-core';
 
 import type {
   FormatPickerProps,

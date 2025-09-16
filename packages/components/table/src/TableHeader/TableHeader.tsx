@@ -1,6 +1,6 @@
 import React, { useMemo } from 'react';
 
-import { useDataFormat } from '@synerise/ds-data-format';
+import { useDataFormat } from '@synerise/ds-core';
 
 import FilterTrigger from '../FilterTrigger/FilterTrigger';
 import * as S from '../Table.styles';

@@ -2,8 +2,7 @@ import { type HTMLAttributes, type ReactNode, type ReactText } from 'react';
 
 import type { WithHTMLAttributes } from '@synerise/ds-utils';
 
-import { type Texts } from '../../ManageableList.types';
-import { type ItemProps } from '../Item.types';
+import { type ItemProps, type Texts } from '../../ManageableList.types';
 
 type BaseContentItemProps = Omit<
   ContentItemHeaderProps,

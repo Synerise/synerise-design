@@ -2,7 +2,7 @@ import React from 'react';
 
 import { SkeletonAvatar } from '@synerise/ds-skeleton';
 
-import { AvatarLabelCell } from '../Cell';
+import AvatarLabelCell from '../Cell/AvatarLabel/AvatarLabel';
 import * as S from '../Table.styles';
 
 export const DEFAULT_ROW_COUNT = 10;

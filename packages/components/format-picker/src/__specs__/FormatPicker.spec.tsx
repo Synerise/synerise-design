@@ -2,7 +2,8 @@ import React from 'react';
 import { screen, waitFor, within } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 
-import { renderWithProvider, NOOP } from '@synerise/ds-utils';
+import { renderWithProvider } from '@synerise/ds-core';
+import { NOOP } from '@synerise/ds-utils';
 
 import FormatPicker from '../FormatPicker';
 

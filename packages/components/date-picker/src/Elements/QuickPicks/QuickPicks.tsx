@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { ButtonToggle } from '@synerise/ds-button';
-import { useDataFormat } from '@synerise/ds-data-format';
+import { useDataFormat } from '@synerise/ds-core';
 import { Title } from '@synerise/ds-typography';
 
 import type { QuickPick, Texts } from '../../DatePicker.types';

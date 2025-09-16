@@ -3,8 +3,8 @@ import React from 'react';
 import {
   type DataFormatNotationType,
   FormattedNumber,
-} from '@synerise/ds-data-format';
-import { renderWithProvider } from '@synerise/ds-utils';
+} from '../index';
+import { renderWithProvider } from '../../testing';
 
 const INT_NUMBER_TO_FORMAT = 1234567;
 const FLOAT_NUMBER_TO_FORMAT = 1234567.89;

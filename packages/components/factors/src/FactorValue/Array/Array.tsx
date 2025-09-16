@@ -6,11 +6,11 @@ import { TagShape } from '@synerise/ds-tag';
 
 import {
   type ArrayItemType,
+  type ArrayValueElement,
   type FactorValueComponentProps,
   type FactorValueType,
 } from '../../Factors.types';
 import * as S from './Array.styles';
-import { type ArrayValueElement } from './Array.types';
 import { ArrayModal } from './components/ArrayModal';
 
 export const Array = <ItemType extends ArrayItemType>({

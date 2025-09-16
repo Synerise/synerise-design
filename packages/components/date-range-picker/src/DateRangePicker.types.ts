@@ -2,7 +2,7 @@ import { type PopoverProps } from 'antd/lib/popover';
 import { type ReactNode } from 'react';
 import { type IntlShape } from 'react-intl';
 
-import { type DateToFormatOptions } from '@synerise/ds-data-format';
+import { type DateToFormatOptions } from '@synerise/ds-core';
 
 import { type Props as FooterProps } from './Footer/Footer.types';
 import { type FilterDefinition } from './RangeFilter/RangeFilter.types';

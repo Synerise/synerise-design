@@ -148,4 +148,5 @@ const SubtleDatePicker = ({
     </S.Subtle>
   );
 };
+SubtleDatePicker.displayName = 'SubtleDatePicker';
 export default SubtleDatePicker;

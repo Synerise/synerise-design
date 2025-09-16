@@ -11,7 +11,7 @@ import { theme } from '@synerise/ds-core';
 import Icon, { AngleRightS } from '@synerise/ds-icon';
 import { escapeRegEx } from '@synerise/ds-utils';
 
-import { type MenuItemProps } from '../Item/MenuItem.types';
+import { type MenuItemProps } from '../../Menu.types';
 import * as S from './Breadcrumb.styles';
 import { type BreadcrumbProps } from './Breadcrumb.types';
 

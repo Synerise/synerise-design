@@ -3,23 +3,7 @@ import type {
   DraggableSyntheticListeners,
 } from '@dnd-kit/core';
 
-import type { ColumnManagerTexts } from '../ColumnManager.types';
-
-export type ColumnIconType =
-  | string
-  | 'text'
-  | 'number'
-  | 'date'
-  | 'boolean'
-  | 'list';
-
-export type Column = {
-  id: string;
-  name: string;
-  visible: boolean;
-  readOnly?: boolean;
-  type?: ColumnIconType;
-};
+import type { Column, ColumnManagerTexts } from '../ColumnManager.types';
 
 export type ColumnManagerItemProps<ColumnType extends Column> = {
   draggable?: boolean;

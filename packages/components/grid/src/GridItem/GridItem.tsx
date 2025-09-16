@@ -5,7 +5,8 @@ import {
   type DimensionsWithBreakpoint,
 } from '@synerise/ds-utils';
 
-import { DEFAULT_COLUMNS_NUMBER, GridContext } from '../Grid';
+import { DEFAULT_COLUMNS_NUMBER } from '../Grid.const';
+import { GridContext } from '../Grid.context';
 import * as S from '../Grid.styles';
 import { type GridItemProps } from '../Grid.types';
 

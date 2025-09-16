@@ -1,5 +1,5 @@
 import React from 'react';
-import { renderWithProvider } from '@synerise/ds-utils';
+import { renderWithProvider } from '@synerise/ds-core';
 import Daily from './Daily';
 import { screen } from '@testing-library/react';
 import { DAILY_SCHEDULE_TEST_DATA, ERROR_MESSAGE } from '../filters.spec.constants';

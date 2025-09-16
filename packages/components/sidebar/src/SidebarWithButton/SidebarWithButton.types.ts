@@ -1,4 +1,4 @@
-import { type MenuItemProps } from '@synerise/ds-menu/dist/Elements/Item/MenuItem.types';
+import { type MenuItemProps } from '@synerise/ds-menu';
 
 export type SidebarWithButtonProps = {
   dataSource: MenuItemProps[];

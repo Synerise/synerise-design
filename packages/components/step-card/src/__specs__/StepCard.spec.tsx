@@ -1,5 +1,5 @@
 import React from 'react';
-import { renderWithProvider } from '@synerise/ds-utils';
+import { renderWithProvider } from '@synerise/ds-core';
 import { fireEvent, waitFor, screen } from '@testing-library/react';
 
 import StepCard, { REORDER_THROTTLE } from './../StepCard';

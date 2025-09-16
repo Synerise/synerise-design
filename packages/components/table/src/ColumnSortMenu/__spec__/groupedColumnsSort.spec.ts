@@ -1,5 +1,4 @@
-import { type DSColumnType } from '../../Table.types';
-import { type SortStateAPI } from '../useSortState';
+import { type DSColumnType, type SortStateAPI } from '../../Table.types';
 import { type GroupType } from '../../GroupTable/GroupTable.types';
 import { getColumnsWithActiveSorting, sortRows, sortDataSourceRows } from '../groupedColumnsSort';
 

@@ -1,6 +1,6 @@
 import type React from 'react';
 
-import { type ItemProps } from '@synerise/ds-manageable-list/dist/Item/Item.types';
+import { type ItemProps } from '@synerise/ds-manageable-list';
 
 export type Category = {
   label: string;

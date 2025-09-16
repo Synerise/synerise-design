@@ -5,11 +5,7 @@ export { default as ItemPickerTrigger } from './components/ItemPickerTrigger/Tri
 
 export { ItemPickerList } from './components/ItemPickerList/ItemPickerList';
 export { ItemPickerNew } from './components/ItemPickerNew/ItemPickerNew';
-export type {
-  ItemPickerListProps,
-  ItemPickerListTexts,
-  ItemSelectHandler,
-} from './components/ItemPickerList/ItemPickerList.types';
+export type { ItemSelectHandler } from './components/ItemPickerList/ItemPickerList.types';
 
 export type {
   ItemPickerProps as ItemPickerPropsNew,
@@ -17,6 +13,8 @@ export type {
   ItemLoaderResponse,
   LoaderProps,
   OnLoadedData,
+  ItemPickerListProps,
+  ItemPickerListTexts,
 } from './components/ItemPickerNew/ItemPickerNew.types';
 export type {
   BaseSectionTypeWithFolders,

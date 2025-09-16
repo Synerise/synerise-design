@@ -90,4 +90,5 @@ const SubtleField = ({
     </S.Subtle>
   );
 };
+SubtleField.displayName = 'SubtleField';
 export default SubtleField;

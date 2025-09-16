@@ -5,8 +5,8 @@ import React from 'react';
 import {
   type DataFormatNotationType,
   FormattedDate,
-} from '@synerise/ds-data-format';
-import { renderWithProvider } from '@synerise/ds-utils';
+} from '../index';
+import { renderWithProvider } from '../../testing';
 
 const DATE_TO_FORMAT = new Date('2023-06-25T15:40:00');
 const MOMENT_TO_FORMAT = moment(DATE_TO_FORMAT);

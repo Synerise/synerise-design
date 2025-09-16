@@ -4,7 +4,9 @@ import '@synerise/ds-core/dist/js/style';
 
 import { MenuDivider } from './ListItem.styles';
 import { type ListItemProps, itemTypes } from './ListItem.types';
-import { Danger, Select, Text } from './components';
+import Danger from './components/Danger/Danger';
+import Select from './components/Select/Select';
+import Text from './components/Text/Text';
 
 const ListItem = (props: ListItemProps) => {
   const { text, children, type, ...rest } = props;

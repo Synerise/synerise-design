@@ -5,7 +5,11 @@ import type { FactorType, FactorValueType } from '@synerise/ds-factors';
 import type { OperatorsGroup, OperatorsItem } from '@synerise/ds-operators';
 import type { SubjectItem } from '@synerise/ds-subject';
 
-import type { ConditionProps, ConditionStep } from '../Condition.types';
+import type {
+  ConditionProps,
+  ConditionStep,
+  ConditionStepCrudActions,
+} from '../Condition.types';
 
 export type ConditionStepProps = Pick<
   ConditionProps,
@@ -73,8 +77,3 @@ export type ConditionStepProps = Pick<
   setCurrentStep: (stepId: ReactText) => void;
   onDeactivate: () => void;
 } & ConditionStepCrudActions;
-
-export type ConditionStepCrudActions = {
-  removeStep?: (stepId: ReactText) => void;
-  duplicateStep?: (stepId: ReactText) => void;
-};

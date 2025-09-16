@@ -1,7 +1,7 @@
 import type React from 'react';
 import { type WrappedComponentProps } from 'react-intl';
 
-import type { WithDataFormatProps } from '@synerise/ds-data-format';
+import type { WithDataFormatProps } from '@synerise/ds-core';
 import type { TimePickerProps } from '@synerise/ds-time-picker';
 
 import { type Texts } from '../../../DateRangePicker.types';

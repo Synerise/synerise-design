@@ -10,7 +10,7 @@ import React, {
 import { useIntl } from 'react-intl';
 import { v4 as uuid } from 'uuid';
 
-import { useDataFormat } from '@synerise/ds-data-format';
+import { useDataFormat } from '@synerise/ds-core';
 
 import { getDefaultTexts } from '../../../../utils';
 import * as S from '../../../RangeFilter.styles';

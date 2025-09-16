@@ -3,8 +3,8 @@ import React from 'react';
 import { theme } from '@synerise/ds-core';
 import { WarningL } from '@synerise/ds-icon';
 
+import { type ItemPickerListTexts } from '../../ItemPickerNew/ItemPickerNew.types';
 import * as S from '../ItemPickerList.styles';
-import { type ItemPickerListTexts } from '../ItemPickerList.types';
 
 type ErrorMessageProps = {
   texts: ItemPickerListTexts;

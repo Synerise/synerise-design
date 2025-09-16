@@ -12,7 +12,7 @@ module.exports = {
     '\\.(jpg|jpeg|png|gif|eot|otf|webp|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$':
       '<rootDir>/config/jest/__mocks__/fileMock.js',
     '\\.svg$': '<rootDir>/config/jest/__mocks__/svgrMock.js',
-    '^rc-virtual-list$': '<rootDir>/config/jest/__mocks__/rc-virtual-list.js',
+    '^rc-virtual-list$': '<rootDir>/config/jest/__mocks__/rc-virtual-list.js'
   },
   rootDir: path.resolve(__dirname, '..', '..'),
   setupFilesAfterEnv: ['<rootDir>/config/jest/setup/index.js'],

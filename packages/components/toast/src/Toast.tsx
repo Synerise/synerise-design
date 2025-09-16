@@ -1,4 +1,5 @@
 import React, { useCallback, useMemo } from 'react';
+import toast from 'react-hot-toast';
 
 import Icon, { AngleDownS, CloseM } from '@synerise/ds-icon';
 
@@ -7,9 +8,9 @@ import {
   type ShowToastProps,
   type ToastCustomisationOptions,
   type ToastProps,
+  type ToastType,
 } from './Toast.types';
 import { ICONS } from './constants';
-import { showToast } from './utils/showToast';
 
 export const Toast = ({
   type,
@@ -89,6 +90,14 @@ export const Toast = ({
       </S.WrapperSectionMessage>
     </S.Container>
   );
+};
+
+export const showToast = (
+  type: ToastType,
+  props: ShowToastProps,
+  options?: ToastCustomisationOptions,
+) => {
+  return toast.custom(<Toast {...props} type={type} />, options);
 };
 
 Toast.success = (

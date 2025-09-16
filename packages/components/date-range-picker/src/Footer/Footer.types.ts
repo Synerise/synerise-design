@@ -1,4 +1,4 @@
-import type { DateToFormatOptions } from '@synerise/ds-data-format';
+import type { DateToFormatOptions } from '@synerise/ds-core';
 
 import type { Texts } from '../DateRangePicker.types';
 import type { DateRange } from '../date.types';

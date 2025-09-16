@@ -2,8 +2,6 @@ import type { ReactElement, ReactNode } from 'react';
 
 import type { WithHTMLAttributes } from '@synerise/ds-utils';
 
-import { type SECTION_TYPES } from './SectionMessage.const';
-
 export type CustomColorType =
   | 'blue'
   | 'grey'
@@ -28,7 +26,14 @@ export type ColorType =
   | 'purple'
   | 'cyan';
 
-export type SectionType = (typeof SECTION_TYPES)[number];
+export type SectionType =
+  | 'positive'
+  | 'notice'
+  | 'negative'
+  | 'neutral'
+  | 'supply'
+  | 'service'
+  | 'entity';
 
 export type SectionMessageProps = WithHTMLAttributes<
   HTMLDivElement,

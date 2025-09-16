@@ -1,7 +1,7 @@
 import React from 'react';
 
 import Icon, { Close3S } from '@synerise/ds-icon';
-import { renderWithProvider } from '@synerise/ds-utils';
+import { renderWithProvider } from '@synerise/ds-core';
 import { type RenderResult } from '@testing-library/react';
 
 import UnorderedList from '../Unordered-list';

@@ -1,19 +1,7 @@
-import { type ReactText, useMemo } from 'react';
+import { useMemo } from 'react';
 
 import { getActiveTabGroup, getGroupName, isItemInGroup } from './search.utils';
-
-export type BaseItemType = {
-  id: ReactText | null;
-  groupId?: ReactText;
-  subtitle?: string;
-  name: string;
-};
-
-export type BaseGroupType<SubGroupType> = {
-  id: ReactText;
-  name: string;
-  subGroups?: SubGroupType[];
-};
+import { type BaseGroupType, type BaseItemType } from './types';
 
 export const useSearchResults = <
   ItemType extends BaseItemType,

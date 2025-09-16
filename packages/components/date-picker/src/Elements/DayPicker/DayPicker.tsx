@@ -1,7 +1,7 @@
 import React from 'react';
 import { injectIntl } from 'react-intl';
 
-import { useDataFormat } from '@synerise/ds-data-format';
+import { useDataFormat } from '@synerise/ds-core';
 
 import { fnsAddMonths, fnsAddYears } from '../../fns';
 import fnsFormat from '../../format';

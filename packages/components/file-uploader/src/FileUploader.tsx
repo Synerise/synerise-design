@@ -16,9 +16,9 @@ import {
   type FileContent,
   type FileUploaderProps,
   type FileUploaderRef,
+  type FileViewTexts,
 } from './FileUploader.types';
 import FileView from './FileView/FileView';
-import { type FileViewTexts } from './FileView/FileView.types';
 
 function readAsText(file: File): Promise<FileContent> {
   return new Promise((resolve) => {

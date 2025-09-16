@@ -9,10 +9,9 @@ import Tooltip from '@synerise/ds-tooltip';
 import Breadcrumb from './Elements/Breadcrumb/Breadcrumb';
 import Header from './Elements/Header/Header';
 import MenuItem from './Elements/Item/MenuItem';
-import type { MenuItemProps } from './Elements/Item/MenuItem.types';
 import SubMenuItem from './Elements/SubMenu/SubMenu';
 import * as S from './Menu.styles';
-import type { AntdMenuProps } from './Menu.types';
+import type { AntdMenuProps, MenuItemProps } from './Menu.types';
 import './style/index.less';
 
 export class Menu extends Component<
@@ -129,6 +128,7 @@ export class Menu extends Component<
                     menuItemKey={item.key || `${item.text}${index}`}
                     {...rest}
                     {...item}
+                    ItemComponent={MenuItem}
                   />
                 ) : (
                   <MenuItem

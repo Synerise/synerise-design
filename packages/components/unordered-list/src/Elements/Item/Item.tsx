@@ -1,13 +1,12 @@
-import React from 'react';
+import React, { type ReactElement } from 'react';
 
-import UnorderedList from '../../Unordered-list';
 import {
-  type ListProps,
   type UnorderedListItem,
+  type UnorderedListProps,
 } from '../../Unordered-list.types';
 import * as S from './Item.styles';
 
-const Item: React.FC<UnorderedListItem & Pick<ListProps, 'indexFormatter'>> = ({
+const Item = ({
   label,
   suffixel,
   prefixel,
@@ -16,7 +15,11 @@ const Item: React.FC<UnorderedListItem & Pick<ListProps, 'indexFormatter'>> = ({
   index,
   subMenuProps,
   text,
-}) => {
+  NestedList,
+}: UnorderedListItem &
+  Pick<UnorderedListProps, 'indexFormatter'> & {
+    NestedList?: (props: UnorderedListProps) => ReactElement;
+  }) => {
   return (
     <>
       <S.ItemWrapper>
@@ -29,8 +32,8 @@ const Item: React.FC<UnorderedListItem & Pick<ListProps, 'indexFormatter'>> = ({
         {label}
         {suffixel}
       </S.ItemWrapper>
-      {!!subMenu && subMenu?.length > 0 && (
-        <UnorderedList
+      {!!subMenu && subMenu?.length > 0 && NestedList && (
+        <NestedList
           text={text}
           indexFormatter={indexFormatter}
           data={subMenu}

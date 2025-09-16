@@ -4,9 +4,9 @@ import styled, {
   css,
 } from 'styled-components';
 
-import { buildDefaultTracksColorMap } from '../Slider';
 import { AntdSlider, createTracksStyles } from '../Slider.styles';
 import { type SliderProps } from '../Slider.types';
+import { buildDefaultTracksColorMap } from '../utils/Slider.utils';
 import type { DefinedCssRuleParameters, TrackProps } from './Allocation.types';
 
 const defineCssSelectorWithRule = ({

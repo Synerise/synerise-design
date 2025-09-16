@@ -13,10 +13,8 @@ import Scrollbar from '@synerise/ds-scrollbar';
 import { SortableContainer } from '@synerise/ds-sortable';
 import { useResizeObserver } from '@synerise/ds-utils';
 
-import type {
-  Column,
-  ColumnManagerItemProps,
-} from '../ColumnManagerItem/ColumManagerItem.types';
+import { type Column } from '../ColumnManager.types';
+import type { ColumnManagerItemProps } from '../ColumnManagerItem/ColumManagerItem.types';
 import { ColumnManagerItem } from '../ColumnManagerItem/ColumnManagerItem';
 import { ColumnManagerSortableItem } from '../ColumnManagerSortableItem/ColumnManagerSortableItem';
 import type { ColumnManagerSortableItemProps } from '../ColumnManagerSortableItem/ColumnManagerSortableItem.types';

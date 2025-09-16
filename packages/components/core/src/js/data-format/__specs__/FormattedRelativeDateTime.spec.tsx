@@ -3,8 +3,8 @@ import React from 'react';
 import {
   FormattedRelativeDateTimeFrom,
   FormattedRelativeDateTimeTo,
-} from '@synerise/ds-data-format';
-import { renderWithProvider } from '@synerise/ds-utils';
+} from '../index';
+import { renderWithProvider } from '../../testing';
 import { screen } from '@testing-library/react';
 
 const TEST_CASES = [

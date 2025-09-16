@@ -6,7 +6,7 @@ export const HOUR: dayjs.UnitType = 'hour';
 export const MINUTE: dayjs.UnitType = 'minute';
 export const SECOND: dayjs.UnitType = 'second';
 
-export const CLOCK_MODES = ['AM', 'PM'] as const;
+export const CLOCK_MODES: ClockModes[] = ['AM', 'PM'];
 
 export const PM: ClockModes = 'PM';
 export const AM: ClockModes = 'AM';

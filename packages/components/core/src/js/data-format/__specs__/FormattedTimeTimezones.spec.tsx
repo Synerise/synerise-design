@@ -1,8 +1,8 @@
 import React from 'react';
 import { screen } from '@testing-library/react';
 
-import { renderWithProvider } from '@synerise/ds-utils';
-import { FormattedTime, type DataFormatNotationType } from '@synerise/ds-data-format';
+import { renderWithProvider } from '../../testing';
+import { FormattedTime, type DataFormatNotationType } from '../index';
 
 const EU_NOTATION: DataFormatNotationType = 'EU';
 const US_NOTATION: DataFormatNotationType = 'US';

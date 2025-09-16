@@ -1,17 +1,31 @@
 import type { ColumnType, TableProps } from 'antd/lib/table';
-import type { TableLocale, TableRowSelection } from 'antd/lib/table/interface';
+import type {
+  ColumnTitleProps,
+  TableLocale,
+  TableRowSelection,
+} from 'antd/lib/table/interface';
+import type {
+  SELECTION_ALL,
+  SELECTION_INVERT,
+} from 'constants/Table.constants';
 import type { Key, ReactNode, Ref } from 'react';
 
 import type { LiteralStringUnion } from '@synerise/ds-utils';
 
-import type { SortRender } from './ColumnSortMenu/TitleWithSort';
-import type {
-  ColumnSortOrder,
-  ColumnsSortState,
-} from './ColumnSortMenu/useSortState';
 import type { GroupType } from './GroupTable/GroupTable.types';
-import type DSTable from './Table';
-import type { RowStar } from './hooks/useRowStar';
+
+export type RowStar<T> = {
+  className?: string;
+  starredRowKeys: string[];
+  renderCell?: ColumnType<T>['render'];
+  onClick?: (e: React.MouseEvent<HTMLElement, MouseEvent>) => void;
+  onChange?: (
+    starredRowKeys: string[],
+    starredKey: string,
+    isStarred: boolean,
+  ) => void;
+  disableForExpandedRows?: boolean;
+};
 
 export type AntTableProps<T> = Omit<
   TableProps<T>,
@@ -32,8 +46,8 @@ export type Selection = {
 };
 
 export type SelectionItem =
-  | typeof DSTable.SELECTION_ALL
-  | typeof DSTable.SELECTION_INVERT
+  | typeof SELECTION_ALL
+  | typeof SELECTION_INVERT
   | Selection
   | null
   | undefined;
@@ -197,3 +211,35 @@ export type DSTableProps<T extends any & GroupType<T>> = AntTableProps<T> & {
     cellHeight?: number;
   };
 };
+
+export type ColumnSortOrder = 'descend' | 'ascend' | null;
+
+export interface ColumnsSortState {
+  [key: string]: {
+    sortOrder: ColumnSortOrder;
+    multiple: number | false;
+  };
+}
+
+export interface SortStateAPI {
+  columnsSortState: ColumnsSortState;
+  getColumnSortOrder: (key: string) => ColumnSortOrder;
+  setColumnSortOrder: (key: string, sort: ColumnSortOrder) => void;
+  updateColumnsData: (columns: ColumnsSortState) => void;
+}
+
+export type SortButtonsRenderer<T> = (
+  sortStateApi: SortStateAPI,
+  column: DSColumnType<T>,
+) => React.ReactElement;
+
+export type SortRender<T> = 'default' | 'string' | SortButtonsRenderer<T>;
+
+export interface TitleWithSortOwnProps<T> {
+  column: DSColumnType<T>;
+  sortRender: React.ReactElement;
+  titleProps: ColumnTitleProps<T>;
+}
+
+export type TitleWithSortProps<T> = TitleWithSortOwnProps<T> &
+  React.ComponentPropsWithoutRef<'span'>;

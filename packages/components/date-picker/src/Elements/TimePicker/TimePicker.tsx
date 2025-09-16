@@ -1,9 +1,6 @@
 import React from 'react';
 
-import {
-  getDefaultDataTimeOptions,
-  useDataFormat,
-} from '@synerise/ds-data-format';
+import { getDefaultDataTimeOptions, useDataFormat } from '@synerise/ds-core';
 import DSTimePicker from '@synerise/ds-time-picker';
 
 import Navbar from '../Navbar/Navbar';

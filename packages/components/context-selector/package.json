@@ -26,6 +26,7 @@
     "test": "jest",
     "test:watch": "npm run test -- --watchAll",
     "types": "tsc --noEmit",
+    "check:circular-dependencies": "madge --circular --extensions ts,tsx,js,jsx --ts-config tsconfig.json src/ --exclude '/dist/'",
     "upgrade:ds": "ncu -f \"@synerise/ds-*\" -u"
   },
   "gitHead": "fb9af91dbebaf4d5ac135be15a78712786cca0f2",

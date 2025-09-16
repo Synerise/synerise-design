@@ -1,11 +1,9 @@
 import React from 'react';
 
+import { DEFAULT_SIZE, FLAG_SIZE_RATIO } from './Flag.const';
 import * as S from './Flag.styles';
 import { type FlagProps } from './Flag.types';
 import * as Flags from './icons';
-
-export const FLAG_SIZE_RATIO = 15 / 21;
-const DEFAULT_SIZE = 24;
 
 const DSFlag = ({ country, size = DEFAULT_SIZE }: FlagProps) => {
   const code = String(country)

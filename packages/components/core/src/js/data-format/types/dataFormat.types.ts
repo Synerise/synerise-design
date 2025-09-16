@@ -6,8 +6,6 @@ import {
   type FormatPluralOptions,
 } from 'react-intl';
 
-import { type DATE_CONSTANTS_TARGET_FORMATS } from '../constants';
-
 const _DATE_TARGET_FORMATS = [
   'date',
   'datetime',
@@ -38,7 +36,10 @@ const _NAMING_CONVENTIONS = [
 export type NamingConvention = (typeof _NAMING_CONVENTIONS)[number];
 
 export type DateConstantsTargetFormat =
-  (typeof DATE_CONSTANTS_TARGET_FORMATS)[number];
+  | 'months-long'
+  | 'months-short'
+  | 'weekdays-long'
+  | 'weekdays-short';
 
 export type DateToFormat = Date | Moment | Dayjs;
 

@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { ArrowDownM } from '@synerise/ds-icon';
-import { renderWithProvider } from '@synerise/ds-utils';
+import { renderWithProvider } from '@synerise/ds-core';
 import { screen } from '@testing-library/react';
 
 import ShortCuts from '../index';

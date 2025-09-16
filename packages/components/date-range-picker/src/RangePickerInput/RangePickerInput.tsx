@@ -1,10 +1,10 @@
 import React, { type MouseEvent, useCallback, useMemo, useState } from 'react';
 
-import { useTheme } from '@synerise/ds-core';
 import {
   getDefaultDataTimeOptions,
   useDataFormat,
-} from '@synerise/ds-data-format';
+  useTheme,
+} from '@synerise/ds-core';
 import FormField from '@synerise/ds-form-field';
 import Icon, { ArrowRightS, CalendarM, Close3S } from '@synerise/ds-icon';
 import Tooltip from '@synerise/ds-tooltip';

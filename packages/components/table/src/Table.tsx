@@ -2,8 +2,8 @@ import React, { type ReactNode, useCallback, useMemo } from 'react';
 import { useIntl } from 'react-intl';
 
 import Button from '@synerise/ds-button';
+import { useDataFormat } from '@synerise/ds-core';
 import '@synerise/ds-core/dist/js/style';
-import { useDataFormat } from '@synerise/ds-data-format';
 import Icon, { AngleLeftS, AngleRightS } from '@synerise/ds-icon';
 import Skeleton from '@synerise/ds-skeleton';
 

@@ -1,5 +1,5 @@
 import React from 'react';
-import { renderWithProvider } from "@synerise/ds-utils/dist/testing";
+import { renderWithProvider } from "@synerise/ds-core";
 import { fireEvent, screen, waitFor } from "@testing-library/react";
 import Button from "@synerise/ds-button";
 import Icon, { Add3M } from "@synerise/ds-icon";

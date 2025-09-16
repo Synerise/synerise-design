@@ -1,17 +1,16 @@
 import React, { type ReactNode } from 'react';
 
-import { DSProvider, type DSProviderProps } from '@synerise/ds-core';
-import {
-  type DataFormatNotationType,
-  getDataFormatConfigFromNotation,
-} from '@synerise/ds-data-format';
 import {
   type RenderOptions,
   type RenderResult,
   render,
 } from '@testing-library/react';
 
-import { NOOP } from '../../index';
+import DSProvider, { type DSProviderProps } from '../../DSProvider/DSProvider';
+import {
+  type DataFormatNotationType,
+  getDataFormatConfigFromNotation,
+} from '../../data-format';
 
 type Options = Omit<RenderOptions, 'queries'>;
 
@@ -34,7 +33,7 @@ const renderWithProvider = (
 
   const rendered = render(
     <DSProvider
-      onErrorIntl={NOOP}
+      onErrorIntl={() => {}}
       dataFormatConfig={dataFormatConfigProps}
       {...providerProps}
     >

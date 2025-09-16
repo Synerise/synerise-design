@@ -6,10 +6,8 @@ import { RawSwitch } from '@synerise/ds-switch';
 import Tooltip from '@synerise/ds-tooltip';
 import { escapeRegEx } from '@synerise/ds-utils';
 
-import {
-  type Column,
-  type ColumnManagerItemProps,
-} from './ColumManagerItem.types';
+import { type Column } from '../ColumnManager.types';
+import { type ColumnManagerItemProps } from './ColumManagerItem.types';
 import {
   DEFAULT_ITEM_TYPE,
   ICON_MAP,

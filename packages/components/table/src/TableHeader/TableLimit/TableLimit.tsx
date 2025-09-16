@@ -1,7 +1,7 @@
 import React, { useMemo } from 'react';
 
 import Alert from '@synerise/ds-alert';
-import { useDataFormat } from '@synerise/ds-data-format';
+import { useDataFormat } from '@synerise/ds-core';
 
 import { Skeleton } from '../../Table.styles';
 import * as S from './TableLimit.styles';

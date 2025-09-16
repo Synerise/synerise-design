@@ -7,12 +7,9 @@ import Icon, { CloseM, SearchM } from '@synerise/ds-icon';
 import { Title } from '@synerise/ds-typography';
 
 import * as S from './ColumnManager.styles';
-import type { ColumnManagerProps } from './ColumnManager.types';
+import type { Column, ColumnManagerProps } from './ColumnManager.types';
 import { ColumnManagerActions } from './ColumnManagerActions/ColumnManagerActions';
-import type {
-  Column,
-  ColumnManagerItemProps,
-} from './ColumnManagerItem/ColumManagerItem.types';
+import type { ColumnManagerItemProps } from './ColumnManagerItem/ColumManagerItem.types';
 import ColumnManagerList from './ColumnManagerList/ColumnManagerList';
 import { useTranslations } from './hooks/useTranslations';
 import { matchesSearchQuery } from './utils/matchesSearchQuery';

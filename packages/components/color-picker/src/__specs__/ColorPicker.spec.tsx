@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { renderWithProvider } from '@synerise/ds-utils';
+import { renderWithProvider } from '@synerise/ds-core';
 import { cleanup, fireEvent, screen } from '@testing-library/react';
 
 import ColorPicker from '../ColorPicker';

@@ -1,39 +1,28 @@
+/** @deprecated import from @synerise/ds-core instead */
 export {
   DataFormatConfigProvider,
-  type DataFormatConfigProviderProps,
-} from './providers/DataFormatConfigProvider';
-
-export {
   FormattedDate,
   FormattedDateTime,
   FormattedNumber,
   FormattedTime,
   FormattedRelativeDateTimeFrom,
   FormattedRelativeDateTimeTo,
-} from './components';
-
-export {
   useDataFormat,
   useDataFormatUtils,
   useDataFormatConfig,
   useDataFormatIntls,
-  type UseDataFormatProps,
-} from './hooks';
-
-export {
   withDataFormat,
-  type WithDataFormatProps,
-} from './hocs/withDataFormat';
-
-export {
   getDataFormatConfigFromNotation,
   getDefaultDataTimeOptions,
-} from './utils';
+  DataFormatConfigContext,
+  DataFormatIntlsContext,
+} from '@synerise/ds-core';
 
-export * from './constants';
+/** @deprecated import from @synerise/ds-core instead */
+export * from '@synerise/ds-core/dist/js/data-format/constants';
 
-export { DataFormatConfigContext, DataFormatIntlsContext } from './contexts';
-
+/** @deprecated import from @synerise/ds-core instead */
+// eslint-disable-next-line no-duplicate-imports
 export type {
   DataFormatNotationType,
   NumberToFormatOptions,
@@ -51,4 +40,7 @@ export type {
   OverloadGetConstants,
   DateTimePartFormat,
   DataFormatIntls,
-} from './types';
+  WithDataFormatProps,
+  UseDataFormatProps,
+  DataFormatConfigProviderProps,
+} from '@synerise/ds-core';

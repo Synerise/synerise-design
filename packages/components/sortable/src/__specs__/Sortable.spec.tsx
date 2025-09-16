@@ -1,6 +1,6 @@
 import React, { type HTMLAttributes } from 'react';
 import { screen } from '@testing-library/react';
-import { renderWithProvider } from '@synerise/ds-utils';
+import { renderWithProvider } from '@synerise/ds-core';
 import Sortable from '../index';
 
 const ITEMS: ItemProps[] = [

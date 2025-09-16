@@ -3,7 +3,7 @@
   "exclude": ["src/__specs__/**/*.ts", "src/__specs__/**/*.tsx"],
   "extends": "../../../config/typescript/tsconfig.base.json",
   "compilerOptions": {
-    "rootDirs": ["./icon-components", "src"],
+    "rootDir": "src",
     "baseUrl": "src",
     "jsx": "react",
     "sourceMap": false,

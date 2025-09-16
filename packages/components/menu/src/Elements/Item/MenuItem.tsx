@@ -3,11 +3,14 @@ import React from 'react';
 import '@synerise/ds-core/dist/js/style';
 
 import { MenuDivider } from '../../Menu.styles';
-import { type MenuDividerProps } from '../../Menu.types';
+import {
+  ItemType,
+  type MenuDividerProps,
+  type MenuItemProps,
+  type SubMenuProps,
+} from '../../Menu.types';
 import SubMenuItem from '../SubMenu/SubMenu';
-import { type SubMenuProps } from '../SubMenu/SubMenu.types';
 import Danger from './Danger/Danger';
-import { ItemType, type MenuItemProps } from './MenuItem.types';
 import Select from './Select/Select';
 import Text from './Text/Text';
 
@@ -28,7 +31,7 @@ const MenuItem = ({
   menuItemKey,
   onTitleClick,
   ...rest
-}: SubMenuProps & MenuItemProps & MenuDividerProps) => {
+}: Omit<SubMenuProps, 'ItemComponent'> & MenuItemProps & MenuDividerProps) => {
   if (subMenu) {
     return (
       <SubMenuItem
@@ -48,6 +51,7 @@ const MenuItem = ({
         menuItemKey={menuItemKey}
         onTitleClick={onTitleClick}
         {...rest}
+        ItemComponent={MenuItem}
       />
     );
   }

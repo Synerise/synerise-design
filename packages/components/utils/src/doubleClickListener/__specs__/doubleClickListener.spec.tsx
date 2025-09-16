@@ -1,6 +1,6 @@
 import React from 'react';
 import { fireEvent } from '@testing-library/react';
-import renderWithProvider from '../../testing/renderWithProvider/renderWithProvider';
+import { renderWithProvider } from '@synerise/ds-core';
 import { doubleClickListener } from '../../index';
 
 describe('doubleClickListener', () => {

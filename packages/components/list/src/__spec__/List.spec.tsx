@@ -1,7 +1,7 @@
 import React from 'react';
 
 import Radio from '@synerise/ds-radio';
-import { renderWithProvider } from '@synerise/ds-utils';
+import { renderWithProvider } from '@synerise/ds-core';
 import { fireEvent } from '@testing-library/react';
 
 import { isNestedArray } from '../List';

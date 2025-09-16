@@ -2,10 +2,7 @@ import React, { useCallback, useEffect, useMemo } from 'react';
 import { useIntl } from 'react-intl';
 
 import Button from '@synerise/ds-button';
-import {
-  type NumberToFormatOptions,
-  useDataFormat,
-} from '@synerise/ds-data-format';
+import { type NumberToFormatOptions, useDataFormat } from '@synerise/ds-core';
 import Dropdown from '@synerise/ds-dropdown';
 import Icon, { HashM } from '@synerise/ds-icon';
 

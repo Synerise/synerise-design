@@ -1,15 +1,9 @@
-import type React from 'react';
-import styled, { type SimpleInterpolation, css } from 'styled-components';
+import styled, { css } from 'styled-components';
 
-import { FLAG_SIZE_RATIO } from './Flag';
+import { FLAG_SIZE_RATIO } from './Flag.const';
 
-type Props = {
-  size: number;
-  onClick?: React.MouseEventHandler;
-};
-
-export const FlagContainer = styled.div<Props>`
-  ${(props): SimpleInterpolation => css`
+export const FlagContainer = styled.div<{ size: number }>`
+  ${(props) => css`
     vertical-align: middle;
     display: flex;
     width: ${props.size}px;

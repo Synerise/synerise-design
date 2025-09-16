@@ -1,8 +1,7 @@
 import React from 'react';
 
-import { theme } from '@synerise/ds-core';
+import { theme , renderWithProvider } from '@synerise/ds-core';
 import Icon, { CloseS } from '@synerise/ds-icon';
-import { renderWithProvider } from '@synerise/ds-utils';
 import { type RenderResult, fireEvent, screen } from '@testing-library/react';
 
 import { type MenuItemProps } from '../Elements/Item/MenuItem.types';

@@ -25,6 +25,7 @@
     "prepublish": "npm run build",
     "test": "jest",
     "types": "tsc --noEmit",
+    "check:circular-dependencies": "madge --circular --extensions ts,tsx,js,jsx --ts-config tsconfig.json src/ --exclude '/dist/'",
     "upgrade:ds": "ncu -f \"@synerise/ds-*\" -u"
   },
   "sideEffects": [
@@ -33,11 +34,10 @@
   ],
   "types": "dist/index.d.ts",
   "dependencies": {
-    "@synerise/ds-data-format": "^1.1.1",
     "latinize": "^0.5.0"
   },
   "peerDependencies": {
-    "@synerise/ds-core": "*",
+    "@synerise/ds-core": "^1",
     "react": ">=16.9.0 <= 18.3.1",
     "styled-components": "^5.3.3"
   }

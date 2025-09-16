@@ -1,14 +1,15 @@
 import React from 'react';
 
 import type { Meta, StoryObj } from '@storybook/react-webpack5';
-import { FormattedNumber } from '@synerise/ds-data-format';
+import { FormattedNumber } from '@synerise/ds-core';
+
 import { fixedWrapper200 } from '../../utils';
 
 export default {
   component: FormattedNumber,
   title: 'Components/DataFormat/FormattedNumber',
   tags: ['autodocs'],
-  render: args => {
+  render: (args) => {
     return <FormattedNumber {...args} />;
   },
   decorators: [fixedWrapper200],

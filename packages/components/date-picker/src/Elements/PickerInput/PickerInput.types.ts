@@ -1,7 +1,7 @@
 import { type SizeType } from 'antd/lib/config-provider/SizeContext';
 import type { CSSProperties, HTMLAttributes, ReactNode } from 'react';
 
-import type { DateToFormatOptions } from '@synerise/ds-data-format';
+import type { DateToFormatOptions } from '@synerise/ds-core';
 import type { DataAttributes } from '@synerise/ds-utils';
 
 import type { DatePickerProps } from '../../DatePicker.types';

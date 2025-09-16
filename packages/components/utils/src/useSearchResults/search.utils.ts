@@ -1,9 +1,7 @@
-import { type ReactText } from 'react';
-
-import { type BaseGroupType } from './useSearchResults';
+import { type BaseGroupType } from './types';
 
 export const isItemInGroup = <GroupType extends BaseGroupType<GroupType>>(
-  groupId?: ReactText,
+  groupId?: string | number,
   currentGroup?: GroupType,
 ): boolean => {
   if (!currentGroup || !groupId) {
@@ -24,7 +22,7 @@ export const getActiveTabGroup = <GroupType extends BaseGroupType<GroupType>>(
 };
 
 export const getGroupName = <GroupType extends BaseGroupType<GroupType>>(
-  groupId: ReactText | undefined,
+  groupId: string | number | undefined,
   groups: BaseGroupType<GroupType>[],
 ): string | undefined => {
   return groupId

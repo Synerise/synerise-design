@@ -1,6 +1,6 @@
 import React, { type ReactNode } from 'react';
 
-import { escapeRegEx } from '../index';
+import escapeRegEx from '../regex/regex';
 
 export const renderWithHighlight = (
   name: string,

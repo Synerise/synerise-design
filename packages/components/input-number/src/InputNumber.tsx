@@ -7,8 +7,8 @@ import React, {
 } from 'react';
 import { v4 as uuid } from 'uuid';
 
+import { useDataFormat } from '@synerise/ds-core';
 import '@synerise/ds-core/dist/js/style';
-import { useDataFormat } from '@synerise/ds-data-format';
 import FormField from '@synerise/ds-form-field';
 
 import * as S from './InputNumber.styles';

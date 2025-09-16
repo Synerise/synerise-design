@@ -26,6 +26,7 @@
     "test": "jest",
     "test:watch": "npm run test -- --watchAll",
     "types": "tsc --noEmit",
+    "check:circular-dependencies": "madge --circular --extensions ts,tsx,js,jsx --ts-config tsconfig.json src/ --exclude '/dist/'",
     "upgrade:ds": "ncu -f \"@synerise/ds-*\" -u"
   },
   "sideEffects": [
@@ -40,7 +41,6 @@
     "@synerise/ds-button-group": "^1.1.13",
     "@synerise/ds-checkbox": "^1.1.6",
     "@synerise/ds-column-manager": "^1.2.12",
-    "@synerise/ds-data-format": "^1.1.1",
     "@synerise/ds-dropdown": "^1.0.21",
     "@synerise/ds-flag": "^1.0.3",
     "@synerise/ds-icon": "^1.7.1",

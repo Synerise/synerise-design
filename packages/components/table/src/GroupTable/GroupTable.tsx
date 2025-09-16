@@ -8,11 +8,14 @@ import {
   sortDataSourceRows,
 } from '../ColumnSortMenu/groupedColumnsSort';
 import {
-  type SortStateAPI,
   columnsToSortState,
   useSortState,
 } from '../ColumnSortMenu/useSortState';
-import { type DSColumnType, type DSTableProps } from '../Table.types';
+import {
+  type DSColumnType,
+  type DSTableProps,
+  type SortStateAPI,
+} from '../Table.types';
 import '../style/index.less';
 import { type GroupType } from './GroupTable.types';
 import GroupTableBody from './GroupTableBody/GroupTableBody';

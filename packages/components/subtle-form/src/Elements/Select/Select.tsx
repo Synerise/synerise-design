@@ -89,4 +89,5 @@ const SubtleSelect = ({
     </S.Subtle>
   );
 };
+SubtleSelect.displayName = 'SubtleSelect';
 export default SubtleSelect;

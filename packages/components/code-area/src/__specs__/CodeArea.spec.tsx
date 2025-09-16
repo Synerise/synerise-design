@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { renderWithProvider } from '@synerise/ds-utils';
+import { renderWithProvider } from '@synerise/ds-core';
 import { getByText, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 

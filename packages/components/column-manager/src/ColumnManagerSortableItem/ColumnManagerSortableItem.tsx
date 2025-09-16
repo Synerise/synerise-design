@@ -3,7 +3,7 @@ import React from 'react';
 import { useSortable } from '@dnd-kit/sortable';
 import { CSS } from '@dnd-kit/utilities';
 
-import { type Column } from '../ColumnManagerItem/ColumManagerItem.types';
+import { type Column } from '../ColumnManager.types';
 import { ColumnManagerItem } from '../ColumnManagerItem/ColumnManagerItem';
 import { type ColumnManagerSortableItemProps } from './ColumnManagerSortableItem.types';
 

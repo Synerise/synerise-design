@@ -1,9 +1,6 @@
 import { type ReactText } from 'react';
 
-import {
-  type Delimiter,
-  type NumberToFormatOptions,
-} from '@synerise/ds-data-format';
+import { type Delimiter, type NumberToFormatOptions } from '@synerise/ds-core';
 
 import {
   MAXIMUM_FRACTION_DIGITS,

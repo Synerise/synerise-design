@@ -2,8 +2,7 @@ import dayjs from 'dayjs';
 import React, { useEffect, useState } from 'react';
 import { useIntl } from 'react-intl';
 
-import { theme } from '@synerise/ds-core';
-import { useDataFormat } from '@synerise/ds-data-format';
+import { theme, useDataFormat } from '@synerise/ds-core';
 import Icon, { CloseS } from '@synerise/ds-icon';
 import Select from '@synerise/ds-select';
 import Slider from '@synerise/ds-slider';

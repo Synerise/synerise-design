@@ -1,6 +1,6 @@
 import { type ReactNode } from 'react';
 
-import type { DateToFormatOptions } from '@synerise/ds-data-format';
+import type { DateToFormatOptions } from '@synerise/ds-core';
 import type { TimePickerProps } from '@synerise/ds-time-picker';
 
 import {

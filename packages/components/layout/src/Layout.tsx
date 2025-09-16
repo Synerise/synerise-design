@@ -1,6 +1,6 @@
 import React, { useMemo } from 'react';
 
-import { theme } from '@synerise/ds-core';
+import { useTheme } from '@synerise/ds-core';
 import { AngleLeftS, AngleRightS, CloseS } from '@synerise/ds-icon';
 import Scrollbar from '@synerise/ds-scrollbar';
 
@@ -29,6 +29,7 @@ const Layout = ({
   rightSidebarWithDnd = false,
   mainSidebarWithDnd = false,
 }: T.LayoutProps) => {
+  const theme = useTheme();
   const leftSidebarWidth = useMemo(
     () => left?.width || DEFAULT_SIDEBAR_WIDTH,
     [left],

@@ -1,18 +1,29 @@
 import { type ReactNode, type RefObject } from 'react';
 
-import { type FileViewTexts } from './FileView/FileView.types';
+export type FileViewTexts = {
+  size?: ReactNode;
+  cancelText?: ReactNode;
+  removeTooltip?: ReactNode;
+  okText?: ReactNode;
+  removeConfirmTitle?: ReactNode;
+  fileWeight?: ReactNode;
+  percent?: number;
+  buttonLabel?: ReactNode;
+  buttonDescription?: ReactNode;
+  retryLabel?: ReactNode;
+};
 
-export interface ExtendedFile {
+export type ExtendedFile = {
   file: FileWithContent;
   error?: string;
   disabled?: boolean;
   progress?: number;
   success?: boolean;
-}
+};
 
-export interface FileWithContent extends File {
+export type FileWithContent = File & {
   content?: FileContent;
-}
+};
 
 export type FileContent = string | ArrayBuffer | null;
 
@@ -22,7 +33,7 @@ type FileUploaderTexts = FileViewTexts & {
   buttonDescription?: ReactNode;
 };
 
-export interface FileUploaderProps {
+export type FileUploaderProps = {
   className?: string;
   mode: 'single' | 'multi-medium' | 'multi-large';
   filesAmount?: number;
@@ -39,7 +50,7 @@ export interface FileUploaderProps {
   onRemove?: (file: FileWithContent, index: number) => void;
   onUpload?: (files: FileWithContent[]) => void;
   retry?: boolean;
-}
+};
 
 export type ItemUploaderProps = Omit<FileUploaderProps, 'mode'> & {
   mode: 'single' | 'multi';

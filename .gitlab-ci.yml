@@ -81,6 +81,25 @@ build_packages:
   artifacts:
     untracked: true
 
+circular_dependencies:
+  stage: test
+  needs: ['build_packages']
+  variables:
+    KUBERNETES_CPU_REQUEST: 4
+    KUBERNETES_MEMORY_REQUEST: 16Gi
+    KUBERNETES_MEMORY_LIMIT: 22Gi
+  cache:
+    key:
+      files:
+        - yarn.lock
+    paths:
+      - node_modules
+    policy: pull
+  rules:
+    - if: $CI_PIPELINE_SOURCE == "merge_request_event"
+  script:
+    - yarn check:circular-dependencies
+
 run_tests:
   stage: test
   needs: ['build_packages']

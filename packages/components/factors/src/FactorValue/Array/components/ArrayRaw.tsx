@@ -7,8 +7,9 @@ import React, {
   useState,
 } from 'react';
 
+import { type ArrayValueElement } from '../../../Factors.types';
 import * as S from '../Array.styles';
-import { type ArrayRawProps, type ArrayValueElement } from '../Array.types';
+import { type ArrayRawProps } from '../Array.types';
 import {
   arrayWithUUID,
   isArrayOfNumbersAsString,

@@ -9,7 +9,7 @@ import React, {
 } from 'react';
 import { FormattedMessage, injectIntl } from 'react-intl';
 
-import { withDataFormat } from '@synerise/ds-data-format';
+import { withDataFormat } from '@synerise/ds-core';
 
 import {
   DEFAULT_RANGE_END,

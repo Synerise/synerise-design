@@ -10,9 +10,12 @@ import {
   Title,
 } from '@storybook/addon-docs/blocks';
 import { Preview } from '@storybook/react-webpack5';
-import { DSProvider, theme } from '@synerise/ds-core';
-import { DEFAULT_DATA_FORMAT_NOTATION } from '@synerise/ds-data-format';
-import { TOASTER_DEFAULTS } from '@synerise/ds-toaster';
+import {
+  DEFAULT_DATA_FORMAT_NOTATION,
+  DSProvider,
+  TOASTER_DEFAULTS,
+  theme,
+} from '@synerise/ds-core';
 import { TrayProvider } from '@synerise/ds-tray';
 
 configure({ asyncUtilTimeout: 3000 });
