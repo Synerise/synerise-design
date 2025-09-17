@@ -24,6 +24,13 @@ const NumberInput = ({
     }
   }, [value, uncontrolledComponent]);
 
+  useEffect(() => {
+    if (uncontrolledComponent && !value && localValue !== value) {
+      setLocalValue(value);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [value, uncontrolledComponent]);
+
   const handleChange = (val: string | number | null | undefined) => {
     setLocalValue(val);
     onChange(val);
