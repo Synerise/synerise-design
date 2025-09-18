@@ -53,6 +53,9 @@ export const InfoCardWrapper = styled.div<{
   margin-left: ${(props) => (props.asTooltip ? '0' : '8px')};
   width: ${INFOCARD_WIDTH}px;
   overflow: hidden;
+  color: ${(props) => props.theme.palette['grey-600']};
+  text-align: left;
+  font-size: 13px;
 
   ${InfoCardSlidesWrapper} {
     width: ${(props) =>

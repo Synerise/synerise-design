@@ -1,5 +1,6 @@
 import type { ReactNode } from 'react';
 
+import { type TooltipProps } from '@synerise/ds-tooltip';
 import type { WithHTMLAttributes } from '@synerise/ds-utils';
 
 export type TagTexts = {
@@ -31,6 +32,7 @@ export type TagProps = WithHTMLAttributes<
     texts?: TagTexts;
     asPill?: boolean;
     dashed?: boolean;
+    tooltipProps?: TooltipProps;
   }
 >;
 

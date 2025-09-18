@@ -43,7 +43,8 @@
     "@synerise/ds-search-bar": "^1.3.11",
     "@synerise/ds-tag": "^1.1.18",
     "@synerise/ds-tooltip": "^1.1.18",
-    "@synerise/ds-utils": "^1.4.2"
+    "@synerise/ds-utils": "^1.4.2",
+    "@synerise/ds-information-card": "^1.0.30"
   },
   "peerDependencies": {
     "@synerise/ds-core": "*",

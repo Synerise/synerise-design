@@ -120,6 +120,7 @@ const Tooltip = ({
         autoAdjustOverflow={false}
         title={render()}
         align={{ offset: [0, 0] }}
+        overlayStyle={{ maxWidth: 'unset' }}
         getPopupContainer={getPopupContainer}
         {...handleHideAfterClick}
         {...props}

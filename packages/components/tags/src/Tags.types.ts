@@ -1,5 +1,6 @@
 import type { CSSProperties, ReactNode } from 'react';
 
+import { type InformationCardProps } from '@synerise/ds-information-card';
 import { type TagProps, type TagShape, type TagTexts } from '@synerise/ds-tag';
 
 export type ActionTaken = {
@@ -8,8 +9,16 @@ export type ActionTaken = {
 };
 
 export type TagsProps = {
-  data?: Array<TagProps>;
-  selected?: Array<TagProps>;
+  data?: Array<
+    TagProps & {
+      informationCardProps?: InformationCardProps;
+    }
+  >;
+  selected?: Array<
+    TagProps & {
+      informationCardProps?: InformationCardProps;
+    }
+  >;
   tagShape?: TagShape;
   className?: string;
   style?: CSSProperties;

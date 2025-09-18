@@ -28,19 +28,20 @@ import Tag from '@synerise/ds-tag'
 
 ## API
 
-| Property  | Description                              | Type                              | Default                |
-| --------- | ---------------------------------------- | --------------------------------- | ---------------------- |
-| className | tag container class                      | string                            | -                      |
-| color     | primary color (background/border) of tag | string                            | -                      |
-| disabled  | whether tag should be disabled           | boolean                           | -                      |
-| id        | id of tag (necessary if using Tags)      | string / number                   | -                      |
-| name      | title of tag                             | string                            | -                      |
-| onClick   | onClick event on tag body                | () => void                        | -                      |
-| onRemove  | callback when tag is removed             | (tagKey: string / number) => void | -                      |
-| removable | show remove button                       | boolean                           | -                      |
-| shape     | shape of the tag                         | TagShape                          | TagShape.DEFAULT_ROUND |
-| textColor | color of tag name label                  | string                            | -                      |
-| dashed    | make border dashed                       | boolean                           | -                      |
+| Property     | Description                                     | Type                              | Default                |
+|--------------|-------------------------------------------------|-----------------------------------|------------------------|
+| className    | tag container class                             | string                            | -                      |
+| color        | primary color (background/border) of tag        | string                            | -                      |
+| disabled     | whether tag should be disabled                  | boolean                           | -                      |
+| id           | id of tag (necessary if using Tags)             | string / number                   | -                      |
+| name         | title of tag                                    | string                            | -                      |
+| onClick      | onClick event on tag body                       | () => void                        | -                      |
+| onRemove     | callback when tag is removed                    | (tagKey: string / number) => void | -                      |
+| removable    | show remove button                              | boolean                           | -                      |
+| shape        | shape of the tag                                | TagShape                          | TagShape.DEFAULT_ROUND |
+| textColor    | color of tag name label                         | string                            | -                      |
+| dashed       | make border dashed                              | boolean                           | -                      |
+| tooltipProps | tooltip to show over entire tag. see ds-tooltip | TooltipProps                      |                        |
 
 ## TagShape Enum
 

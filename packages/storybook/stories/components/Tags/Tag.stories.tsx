@@ -1,22 +1,24 @@
 import React from 'react';
-import { Meta, StoryObj } from '@storybook/react-webpack5';
 
+import { Meta, StoryObj } from '@storybook/react-webpack5';
 import Badge from '@synerise/ds-badge';
 import { theme } from '@synerise/ds-core';
 import Icon, { Add3M } from '@synerise/ds-icon';
-import Tag, { TagShape, TagProps } from '@synerise/ds-tag';
+import InformationCard from '@synerise/ds-information-card';
+import Tag, { TagProps, TagShape } from '@synerise/ds-tag';
 import { getColorText } from '@synerise/ds-tag/dist/Tag.styles';
 
 import {
   BOOLEAN_CONTROL,
   CLASSNAME_ARG_CONTROL,
   COLOR_CONTROL,
-  controlFromOptionsArray,
   STRING_CONTROL,
   STYLE_ARG_CONTROL,
+  controlFromOptionsArray,
 } from '../../utils';
-import { getTagNameForShape } from './Tags.utils';
+import { CompleteExample } from '../InformationCard/InformationCard.stories';
 import { TAG_COLOR } from './Tags.constants';
+import { getTagNameForShape } from './Tags.utils';
 
 type Story = StoryObj<TagProps>;
 
@@ -58,19 +60,38 @@ export const AllTagShapes: Story = {
   render: ({ name, ...args }) => {
     return (
       <>
-        {Object.values(TagShape).map(shape => (
+        {Object.values(TagShape).map((shape) => (
           <div>
-            <Tag {...args} name={getTagNameForShape(shape, name)} shape={shape} />
+            <Tag
+              {...args}
+              name={getTagNameForShape(shape, name)}
+              shape={shape}
+            />
           </div>
         ))}
       </>
     );
   },
 };
+
 export const Pill: Story = {
   args: {
     asPill: true,
     shape: TagShape.SMALL_ROUND,
+  },
+};
+export const WithInformationCard: Story = {
+  args: {
+    tooltipProps: {
+      render: () => (
+        <InformationCard
+          {...CompleteExample.args}
+          title="Tag Information"
+          subtitle="Additional details about the tag"
+          asTooltip
+        />
+      ),
+    },
   },
 };
 
@@ -123,6 +144,13 @@ export const WithIconPrefix: Story = {
   args: {
     shape: TagShape.DEFAULT_ROUND,
     color: TAG_COLOR,
-    prefixel: <Icon className="icon1" component={<Add3M />} size={20} color={getColorText(theme, TAG_COLOR)} />,
+    prefixel: (
+      <Icon
+        className="icon1"
+        component={<Add3M />}
+        size={20}
+        color={getColorText(theme, TAG_COLOR)}
+      />
+    ),
   },
 };
