@@ -1,4 +1,6 @@
 import { theme } from '@synerise/ds-core';
+import { InformationCardProps } from '@synerise/ds-information-card';
+import { type TagProps } from '@synerise/ds-tag';
 
 export const TAG_TEXTS = {
   clearTooltip: 'Clear',
@@ -8,7 +10,7 @@ export const TAG_TEXTS = {
   createTagButtonLabel: 'Add tag',
   searchPlaceholder: 'Search tag...',
   dropdownNoTags: 'No tags found',
-}; 
+};
 
 export const TAG_PROP_CATEGORY = {
   table: {
@@ -17,21 +19,41 @@ export const TAG_PROP_CATEGORY = {
 };
 export const TAG_COLOR = theme.palette['fern-600'];
 
-export const ALL_TAGS = [
+export const ALL_TAGS: Array<
+  TagProps & { informationCardProps?: InformationCardProps }
+> = [
   {
     id: '0',
     name: 'Tag Name 1',
     color: theme.palette['grey-200'],
+    informationCardProps: {
+      title: 'Tag Name 1',
+      subtitle: 'de2ba6d0-8cb3-40f7-ad35-adc6b2406214',
+      descriptionConfig:
+        'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla et risus ut lacus pulvinar tristique ac quis mi. Nulla sem ex, finibus ac neque et, ultricies fermentum sapien.',
+    },
   },
   {
     id: '1',
     name: 'Tag Name 2',
     color: theme.palette['grey-600'],
+    informationCardProps: {
+      title: 'Tag Name 2',
+      subtitle: 'de2ba6d0-8cb3-40f7-ad35-adc6b2406214',
+      descriptionConfig:
+        'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla et risus ut lacus pulvinar tristique ac quis mi. Nulla sem ex, finibus ac neque et, ultricies fermentum sapien.',
+    },
   },
   {
     id: '2',
     name: 'Tag Name 3',
     color: theme.palette['mars-600'],
+    informationCardProps: {
+      title: 'Tag Name 3',
+      subtitle: 'de2ba6d0-8cb3-40f7-ad35-adc6b2406214',
+      descriptionConfig:
+        'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla et risus ut lacus pulvinar tristique ac quis mi. Nulla sem ex, finibus ac neque et, ultricies fermentum sapien.',
+    },
   },
   {
     id: '3',

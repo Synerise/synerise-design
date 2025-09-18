@@ -1,6 +1,6 @@
 import React, { type MouseEvent, useState } from 'react';
 
-import { theme } from '@synerise/ds-core';
+import { useTheme } from '@synerise/ds-core';
 import Icon, { CloseS } from '@synerise/ds-icon';
 import Tooltip from '@synerise/ds-tooltip';
 
@@ -25,8 +25,10 @@ const Tag = ({
   texts,
   asPill,
   dashed,
+  tooltipProps,
   ...htmlAttributes
 }: TagProps) => {
+  const theme = useTheme();
   const isDefaultType =
     shape && [TagShape.DEFAULT_ROUND, TagShape.DEFAULT_SQUARE].includes(shape);
   const isDefaultRound = shape === TagShape.DEFAULT_ROUND;
@@ -75,7 +77,7 @@ const Tag = ({
     htmlAttributes.onMouseLeave?.(event);
   };
 
-  return (
+  const renderedTag = (
     <S.Tag
       className={`ds-tag ${className ?? ''}`}
       isStatusShape={isStatusShape}
@@ -103,7 +105,7 @@ const Tag = ({
         {isRemovable && (
           <Tooltip
             title={texts?.deleteTooltip || 'Delete'}
-            visible={isIconHovered}
+            open={isIconHovered}
           >
             <S.RemoveButton
               onClick={onRemoveCall}
@@ -122,6 +124,11 @@ const Tag = ({
         )}
       </S.Content>
     </S.Tag>
+  );
+  return tooltipProps ? (
+    <Tooltip {...tooltipProps}>{renderedTag}</Tooltip>
+  ) : (
+    renderedTag
   );
 };
 

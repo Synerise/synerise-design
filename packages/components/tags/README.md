@@ -11,22 +11,21 @@ Tags UI Component
 
 ## Tags API (Group of <Tag />)
 
-| Property         | Description                                                         | Type                                            | Default |
-| ---------------- | ------------------------------------------------------------------- | ----------------------------------------------- | ------- |
-| addable          | Allow adding tags from `data` (which are not present in `selected`) | boolean                                         | -       |
-| className        | Tag Group container class                                           | string                                          | -       |
-| creatable        | Allow creating new tags                                             | boolean                                         | -       |
-| data             | All available tags                                                  | Tag[]                                           | []      |
-| disabled         | Disable entire group (all tags)                                     | boolean                                         | -       |
-| manageLink       | optional link visible in add tag dropdown                           | string                                          | -       |
-| onCreate         | fired whenever a new tag has been created                           | (tagName: string) => void                       | -       |
-| onSelectedChange | fired whenever the list of selected tags changes                    | (tags: Tag[], actionTaken: ActionTaken) => void | -       |
-| removable        | Allow removing tags from `selected`                                 | boolean                                         | -       |
-| style            | Tag Group container styles                                          | React.CSSProperties                             | -       |
-| selected         | Selected tags                                                       | Tag[]                                           | []      |
-| tagShape         | Shape of tags                                                       | TagShape                                        | -       |
-| texts            | necessary texts to render tags group                                | TagsTexts                                       | {}      |
-
+| Property         | Description                                                         | Type                                                    | Default |
+|------------------|---------------------------------------------------------------------|---------------------------------------------------------|---------|
+| addable          | Allow adding tags from `data` (which are not present in `selected`) | boolean                                                 | -       |
+| className        | Tag Group container class                                           | string                                                  | -       |
+| creatable        | Allow creating new tags                                             | boolean                                                 | -       |
+| data             | All available tags                                                  | (Tag & {informationCardProps?: InformationCardProps})[] | []      |
+| disabled         | Disable entire group (all tags)                                     | boolean                                                 | -       |
+| manageLink       | optional link visible in add tag dropdown                           | string                                                  | -       |
+| onCreate         | fired whenever a new tag has been created                           | (tagName: string) => void                               | -       |
+| onSelectedChange | fired whenever the list of selected tags changes                    | (tags: Tag[], actionTaken: ActionTaken) => void         | -       |
+| removable        | Allow removing tags from `selected`                                 | boolean                                                 | -       |
+| style            | Tag Group container styles                                          | React.CSSProperties                                     | -       |
+| selected         | Selected tags                                                       | (Tag & {informationCardProps?: InformationCardProps})[] | []      |
+| tagShape         | Shape of tags                                                       | TagShape                                                | -       |
+| texts            | necessary texts to render tags group                                | TagsTexts                                               | {}      |
 ## ActionTaken
 
 | Property | Description                                                    | Type             |

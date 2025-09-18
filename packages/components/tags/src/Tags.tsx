@@ -4,6 +4,7 @@ import Button from '@synerise/ds-button';
 import { useTheme } from '@synerise/ds-core';
 import Dropdown from '@synerise/ds-dropdown';
 import Icon, { Add3M, SearchM, SettingsM } from '@synerise/ds-icon';
+import InformationCard from '@synerise/ds-information-card';
 import Result from '@synerise/ds-result';
 import Tag, { type TagProps } from '@synerise/ds-tag';
 
@@ -142,6 +143,21 @@ const Tags = ({
                   shape={tagShape}
                   onClick={(): void => onPoolTagSelect(tag)}
                   texts={texts}
+                  tooltipProps={
+                    tag.informationCardProps
+                      ? {
+                          render: () => (
+                            <InformationCard
+                              title={tag.name}
+                              {...tag.informationCardProps}
+                              asTooltip
+                            />
+                          ),
+                          placement: 'bottomLeft',
+                          ...tag.tooltipProps,
+                        }
+                      : undefined
+                  }
                 />
               ))}
           </S.DropdownTagsContainer>
@@ -204,6 +220,21 @@ const Tags = ({
                   texts={texts}
                   asPill={asPill}
                   {...tag}
+                  tooltipProps={
+                    tag.informationCardProps
+                      ? {
+                          render: () => (
+                            <InformationCard
+                              title={tag.name}
+                              {...tag.informationCardProps}
+                              asTooltip
+                            />
+                          ),
+                          placement: 'bottomLeft',
+                          ...tag.tooltipProps,
+                        }
+                      : undefined
+                  }
                 />
               </S.TagOverflow>
             ))}
