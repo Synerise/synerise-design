@@ -1,4 +1,4 @@
-import type { CSSProperties } from 'react';
+import type { CSSProperties, ReactNode } from 'react';
 
 import { type TagProps, type TagShape, type TagTexts } from '@synerise/ds-tag';
 
@@ -14,6 +14,7 @@ export type TagsProps = {
   className?: string;
   style?: CSSProperties;
   addable?: boolean;
+  title?: ReactNode;
   removable?: boolean;
   creatable?: boolean;
   disabled?: boolean;

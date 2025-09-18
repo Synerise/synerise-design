@@ -5,35 +5,40 @@ import { ButtonLabel } from '@synerise/ds-button/dist/Button.styles';
 import Scrollbar from '@synerise/ds-scrollbar';
 import { type ScrollbarProps } from '@synerise/ds-scrollbar/dist/Scrollbar.types';
 import SearchBar from '@synerise/ds-search-bar/';
+import { type TagShape } from '@synerise/ds-tag';
 
 export const Container = styled.div`
+  display: flex;
+`;
+
+export const TagOverflow = styled.div`
+  display: flex;
+  height: 32px;
+  align-items: center;
+`;
+export const TagsWrapper = styled.div`
   margin-bottom: 24px;
   display: flex;
-  align-items: flex-start;
+  align-items: center;
   flex-direction: row;
   flex-wrap: wrap;
+`;
+
+export const Title = styled.div<{ shape?: TagShape }>`
+  color: ${(props): string => props.theme.palette['grey-800']};
+  font-weight: 500;
+  display: block;
+  margin: 6px 4px 0 0;
 `;
 
 export const SelectedTags = styled.div`
   display: flex;
   flex-direction: row;
-  align-items: flex-start;
+  align-items: center;
   flex-wrap: wrap;
   && .ds-tag {
     margin: 4px;
   }
-`;
-
-export const AddButton = styled(Button)<{ marginless?: boolean }>`
-  margin: ${(props): string => (props.marginless ? '0' : '0 0 0 4px')};
-
-  span {
-    padding: 0 4px;
-  }
-`;
-
-export const AddIconWrapper = styled.div`
-  display: inline-block;
 `;
 
 export const CreateTagDropdownButton = styled(Button)<{ marginless: boolean }>`
@@ -54,9 +59,6 @@ export const CreateTagDropdownButton = styled(Button)<{ marginless: boolean }>`
     text-align: left;
     width: 100%;
     justify-content: flex-start;
-    ${AddIconWrapper} {
-      transform: translate(-4px, 0px);
-    }
   }
 
   strong {

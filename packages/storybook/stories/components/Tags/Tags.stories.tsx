@@ -10,7 +10,7 @@ import {
   BOOLEAN_CONTROL,
   CLASSNAME_ARG_CONTROL,
   COLOR_CONTROL,
-  controlFromOptionsArray,
+  controlFromOptionsArray, REACT_NODE_AS_STRING,
   STRING_CONTROL,
   STYLE_ARG_CONTROL,
 } from '../../utils';
@@ -49,6 +49,7 @@ const TagsMeta = {
     addable: BOOLEAN_CONTROL,
     removable: BOOLEAN_CONTROL,
     manageLink: STRING_CONTROL,
+    title: REACT_NODE_AS_STRING,
     creatable: BOOLEAN_CONTROL,
     disabled: BOOLEAN_CONTROL,
     color: {
@@ -129,5 +130,6 @@ export const TagGroup: Story = {
     creatable: true,
     addable: true,
     removable: true,
+    title: 'Tags:'
   },
 };
