@@ -1,5 +1,6 @@
 import React from 'react';
 
+import Button from '@synerise/ds-button';
 import { useTheme } from '@synerise/ds-core';
 import Dropdown from '@synerise/ds-dropdown';
 import Icon, { Add3M, SearchM, SettingsM } from '@synerise/ds-icon';
@@ -23,7 +24,7 @@ const Tags = ({
   className,
   manageLink,
   onCreate,
-
+  title,
   maxHeight,
   overlayStyle,
   overlayPlacement,
@@ -33,12 +34,6 @@ const Tags = ({
   const [isAdding, setAddingState] = React.useState<boolean>(false);
   const [searchQuery, setSearchQuery] = React.useState<string>('');
   const theme = useTheme();
-
-  const addIcon = (
-    <S.AddIconWrapper>
-      <Icon component={<Add3M />} size={24} color={theme.palette['grey-500']} />
-    </S.AddIconWrapper>
-  );
 
   const onRemove = (tagKey: string | number): void => {
     if (!onSelectedChange || !selected) {
@@ -121,7 +116,11 @@ const Tags = ({
               onClick={onCreateNewTag}
               marginless={!isSeperated}
             >
-              {addIcon}
+              <Icon
+                component={<Add3M />}
+                size={24}
+                color={theme.palette['grey-500']}
+              />
               <span>{texts && texts.createTagButtonLabel}</span>
               <strong>{searchQuery}</strong>
             </S.CreateTagDropdownButton>
@@ -190,41 +189,48 @@ const Tags = ({
       style={style}
       data-testid="tags"
     >
-      <S.SelectedTags>
-        {selected &&
-          selected.map((tag) => (
-            <Tag
-              key={tag.id}
-              shape={tagShape}
-              removable={removable}
-              onRemove={removable ? onRemove : undefined}
-              disabled={disabled}
-              texts={texts}
-              asPill={asPill}
-              {...tag}
-            />
-          ))}
-        {addable && (
-          <Dropdown
-            trigger={['click']}
-            placement={overlayPlacement}
-            visible={isAdding}
-            onVisibleChange={setAddingState}
-            overlay={dropdownOverlay}
-            overlayStyle={overlayStyle}
-          >
-            <S.AddButton
-              type="ghost"
-              marginless={selected && !selected.length ? true : undefined}
+      {title && <S.Title shape={tagShape}>{title}</S.Title>}
+      <S.TagsWrapper>
+        <S.SelectedTags>
+          {selected &&
+            selected.map((tag) => (
+              <S.TagOverflow>
+                <Tag
+                  key={tag.id}
+                  shape={tagShape}
+                  removable={removable}
+                  onRemove={removable ? onRemove : undefined}
+                  disabled={disabled}
+                  texts={texts}
+                  asPill={asPill}
+                  {...tag}
+                />
+              </S.TagOverflow>
+            ))}
+          {addable && (
+            <Dropdown
+              trigger={['click']}
+              placement={overlayPlacement}
+              visible={isAdding}
+              onVisibleChange={setAddingState}
+              overlay={dropdownOverlay}
+              overlayStyle={overlayStyle}
             >
-              {addIcon}
-              {texts && texts.addButtonLabel && (
-                <span>{texts.addButtonLabel}</span>
-              )}
-            </S.AddButton>
-          </Dropdown>
-        )}
-      </S.SelectedTags>
+              <Button
+                type="ghost"
+                mode={texts?.addButtonLabel ? 'icon-label' : 'single-icon'}
+              >
+                <Icon
+                  component={<Add3M />}
+                  size={24}
+                  color={theme.palette['grey-500']}
+                />
+                {texts && texts.addButtonLabel}
+              </Button>
+            </Dropdown>
+          )}
+        </S.SelectedTags>
+      </S.TagsWrapper>
     </S.Container>
   );
 };
