@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.1.8](https://github.com/synerise/synerise-design/compare/@synerise/ds-checkbox@1.1.7...@synerise/ds-checkbox@1.1.8) (2025-09-19)
+
+**Note:** Version bump only for package @synerise/ds-checkbox
+
+
+
+
+
 ## [1.1.7](https://github.com/synerise/synerise-design/compare/@synerise/ds-checkbox@1.1.6...@synerise/ds-checkbox@1.1.7) (2025-09-16)
 
 **Note:** Version bump only for package @synerise/ds-checkbox

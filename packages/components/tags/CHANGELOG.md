@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.2.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-tags@1.1.25...@synerise/ds-tags@1.2.0) (2025-09-19)
+
+
+### Bug Fixes
+
+* **tags:** add title label to tags group ([b1ca594](https://github.com/Synerise/synerise-design/commit/b1ca5946cfa427e51d581efa4cdabe4fca5813e0))
+
+
+### Features
+
+* **tag:** Implementation Infocard in Tag component ([d1f31fa](https://github.com/Synerise/synerise-design/commit/d1f31fa44a73da3787df1966e2046c5a577afd96))
+
+
+
+
+
 ## [1.1.25](https://github.com/Synerise/synerise-design/compare/@synerise/ds-tags@1.1.24...@synerise/ds-tags@1.1.25) (2025-09-16)
 
 **Note:** Version bump only for package @synerise/ds-tags

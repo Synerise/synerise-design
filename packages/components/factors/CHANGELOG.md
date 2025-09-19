@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.5.9](https://github.com/Synerise/synerise-design/compare/@synerise/ds-factors@1.5.8...@synerise/ds-factors@1.5.9) (2025-09-19)
+
+
+### Bug Fixes
+
+* add value clearing on factory type change ([a5ab3e1](https://github.com/Synerise/synerise-design/commit/a5ab3e1046201d26a88c3ca4c04bede7450ca4ae))
+
+
+
+
+
 ## [1.5.8](https://github.com/Synerise/synerise-design/compare/@synerise/ds-factors@1.5.7...@synerise/ds-factors@1.5.8) (2025-09-16)
 
 **Note:** Version bump only for package @synerise/ds-factors

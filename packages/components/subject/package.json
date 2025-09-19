@@ -1,6 +1,6 @@
 {
   "name": "@synerise/ds-subject",
-  "version": "1.0.27",
+  "version": "1.0.28",
   "description": "Subject UI Component for the Synerise Design System",
   "license": "ISC",
   "repository": "Synerise/synerise-design",
@@ -35,11 +35,11 @@
   ],
   "types": "dist/index.d.ts",
   "dependencies": {
-    "@synerise/ds-button": "^1.4.10",
-    "@synerise/ds-dropdown": "^1.0.22",
+    "@synerise/ds-button": "^1.4.11",
+    "@synerise/ds-dropdown": "^1.0.23",
     "@synerise/ds-icon": "^1.7.2",
-    "@synerise/ds-list-item": "^1.0.20",
-    "@synerise/ds-result": "^1.0.23",
+    "@synerise/ds-list-item": "^1.0.21",
+    "@synerise/ds-result": "^1.0.24",
     "@synerise/ds-scrollbar": "^1.1.8",
     "@synerise/ds-utils": "^1.4.2",
     "uuid": "^8.3.2"

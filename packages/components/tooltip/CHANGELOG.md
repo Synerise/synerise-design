@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.2.0](https://github.com/synerise/synerise-design/compare/@synerise/ds-tooltip@1.1.18...@synerise/ds-tooltip@1.2.0) (2025-09-19)
+
+
+### Features
+
+* **tag:** Implementation Infocard in Tag component ([d1f31fa](https://github.com/synerise/synerise-design/commit/d1f31fa44a73da3787df1966e2046c5a577afd96))
+
+
+
+
+
 ## [1.1.18](https://github.com/synerise/synerise-design/compare/@synerise/ds-tooltip@1.1.17...@synerise/ds-tooltip@1.1.18) (2025-09-16)
 
 **Note:** Version bump only for package @synerise/ds-tooltip
