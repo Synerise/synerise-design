@@ -10,6 +10,7 @@ import {
 
 export const AlertContent = styled.div<{ withLink?: ReactNode }>`
   display: flex;
+  min-width: 0;
   flex-direction: column;
   align-items: flex-start;
   justify-content: flex-start;
@@ -17,10 +18,13 @@ export const AlertContent = styled.div<{ withLink?: ReactNode }>`
 `;
 export const AllContent = styled.div`
   display: flex;
+  min-width: 0;
   color: inherit;
 `;
 export const Text = styled.div`
   display: flex;
+  min-width: 0;
+  width: 100%;
 `;
 export const IconWrapper = styled.div<{
   type?: SectionType;
@@ -81,14 +85,15 @@ export const AlertMessage = styled.span`
   font-size: 13px;
   line-height: 1.39;
   font-weight: 500;
-  max-width: 400px;
-  overflow: hidden;
-  text-overflow: ellipsis;
+  overflow-wrap: break-word;
+  min-width: 0;
+  width: 100%;
   color: ${(props) => props.theme.palette['grey-700']};
 `;
 
 export const AlertDescription = styled.span`
-  display: flex;
+  overflow-wrap: break-word;
+  min-width: 0;
   font-size: 13px;
   line-height: 1.39;
   font-weight: normal;

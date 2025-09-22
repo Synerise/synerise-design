@@ -6,6 +6,7 @@ title: SectionMessage
 SectionMessage UI Component
 
 ## Installation
+
 ```
 npm i @synerise/ds-section-message
 or
@@ -13,6 +14,7 @@ yarn add @synerise/ds-section-message
 ```
 
 ## Usage
+
 ```
 import SectionMessage from '@synerise/ds-section-message'
 
@@ -27,7 +29,7 @@ import SectionMessage from '@synerise/ds-section-message'
 ## API
 
 | Property        | Description                                                                                                            | Type        | Default    |
-| --------------- | ---------------------------------------------------------------------------------------------------------------------- | ------------| ---------- |
+| --------------- | ---------------------------------------------------------------------------------------------------------------------- | ----------- | ---------- |
 | type            | Type of SectionMessage, options: `notice`, `negative`, `positive`,`neutral`,`supply`,`service`,`entity`                | `string`    | `negative` |
 | message         | Message of section messsage                                                                                            | `ReactNode` | -          |
 | customColor     | type of colors,options:`red`, `blue`, `green`,`yellow`,`grey`,`purple`,`violet`, `cyan`,`fern`,`orange`, `mars`,`pink` | `string`    | -          |
