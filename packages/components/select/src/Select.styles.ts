@@ -185,7 +185,7 @@ export const SelectWrapper = styled.div<{ error?: boolean; grey?: boolean }>`
     props.grey &&
     !props.error &&
     css`
-      && {
+      &&& {
         .ant-select-selector {
           background-color: ${props.theme.palette['grey-050']};
         }
