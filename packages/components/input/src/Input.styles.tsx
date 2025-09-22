@@ -238,6 +238,7 @@ export const ExpandableWrapper = styled.div<{ expanded: boolean }>`
     z-index: 999;
     resize: none;
     max-height: 124px;
+    min-height: 65px;
     min-width: 282px;
 
     ${(props): FlattenSimpleInterpolation => {
