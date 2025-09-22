@@ -1,10 +1,8 @@
 import React from 'react';
+import { fireEvent, screen, within } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 
 import { renderWithProvider } from '@synerise/ds-core';
-import {
-  fireEvent,
-  getByText as globalGetByText,
-} from '@testing-library/react';
 
 import Tags, { TagShape } from '../index';
 
@@ -12,7 +10,7 @@ describe('Tags', () => {
   const TAGS_TESTID = 'tags';
   const ADD_TAG_BUTTON = 'Add tag';
   const CREATE_TAG_BUTTON = 'Create tag';
-  const DROPDOWN_TESTID = 'dropdown';
+  const DROPDOWN_TESTID = 'ds-tags-dropdown-overlay';
   const SEARCH_PLACEHOLDER = 'Search...';
   const MANAGE_LINK_LABEL = 'Manage Link Label';
 
@@ -34,25 +32,30 @@ describe('Tags', () => {
     name: 'Tag Three',
   };
 
-  it('should render without any props', () => {
-    const { getByTestId } = renderWithProvider(<Tags />);
+  const tagFour = {
+    id: 3,
+    name: 'Tag Four',
+  };
 
-    expect(getByTestId(TAGS_TESTID)).toBeTruthy();
+  it('should render without any props', () => {
+    renderWithProvider(<Tags />);
+
+    expect(screen.getByTestId(TAGS_TESTID)).toBeInTheDocument();
   });
 
   it('should render with selected tags', () => {
     const selected = [tagOne, tagTwo];
 
-    const { getByTestId } = renderWithProvider(
+    renderWithProvider(
       <Tags tagShape={TagShape.DEFAULT_ROUND} selected={selected} />,
     );
 
-    expect(getByTestId('tag-0')).toBeTruthy();
-    expect(getByTestId('tag-1')).toBeTruthy();
+    expect(screen.getByTestId('tag-0')).toBeInTheDocument();
+    expect(screen.getByTestId('tag-1')).toBeInTheDocument();
   });
 
   it('should render with add tag button', () => {
-    const { getByText } = renderWithProvider(
+    renderWithProvider(
       <Tags
         texts={{
           addButtonLabel: ADD_TAG_BUTTON,
@@ -61,14 +64,14 @@ describe('Tags', () => {
       />,
     );
 
-    expect(getByText(ADD_TAG_BUTTON)).toBeTruthy();
+    expect(screen.getByText(ADD_TAG_BUTTON)).toBeInTheDocument();
   });
 
   it('should render with available tags in dropdown', () => {
     const data = [tagOne, tagTwo, tagThree];
     const selected = [tagOne];
 
-    const { getByText, getByTestId } = renderWithProvider(
+    renderWithProvider(
       <Tags
         data={data}
         selected={selected}
@@ -79,24 +82,22 @@ describe('Tags', () => {
       />,
     );
 
-    fireEvent.click(getByText(ADD_TAG_BUTTON));
+    userEvent.click(screen.getByText(ADD_TAG_BUTTON));
 
-    const dropdown = getByTestId(DROPDOWN_TESTID);
-
-    expect(dropdown).toBeTruthy();
+    const dropdown = screen.getByTestId(DROPDOWN_TESTID);
     expect(
-      dropdown.querySelector(`[data-testid="tag-${tagOne.id}"]`),
-    ).toBeFalsy(); // already selected tag
+      within(dropdown).queryByTestId(`tag-${tagOne.id}`)
+    ).not.toBeInTheDocument(); // already selected tag
     expect(
-      dropdown.querySelector(`[data-testid="tag-${tagTwo.id}"]`),
-    ).toBeTruthy(); // not selected tag
+      within(dropdown).getByTestId(`tag-${tagTwo.id}`),
+    ).toBeInTheDocument(); // not selected tag
   });
 
   it('should render with create button', () => {
     const data = [tagOne, tagTwo, tagThree];
     const selected = [];
 
-    const { getByText, getByTestId, getByPlaceholderText } = renderWithProvider(
+    renderWithProvider(
       <Tags
         data={data}
         selected={selected}
@@ -111,50 +112,45 @@ describe('Tags', () => {
       />,
     );
 
-    fireEvent.click(getByText(ADD_TAG_BUTTON));
-    fireEvent.change(getByPlaceholderText(SEARCH_PLACEHOLDER), {
-      target: { value: tagOne.name.slice(0, -1) },
-    });
-    fireEvent.click(getByText(CREATE_TAG_BUTTON));
+    userEvent.click(screen.getByText(ADD_TAG_BUTTON));
+    userEvent.type(screen.getByPlaceholderText(SEARCH_PLACEHOLDER), tagOne.name.slice(0, -1));
+    userEvent.click(screen.getByText(CREATE_TAG_BUTTON));
 
-    const dropdown = getByTestId(DROPDOWN_TESTID);
-    const foundTag = globalGetByText(dropdown, tagOne.name);
+    const foundTag = screen.getByText(tagOne.name);
 
     expect(onCreate).toHaveBeenCalled();
-    expect(foundTag).toBeTruthy();
+    expect(foundTag).toBeInTheDocument();
   });
 
-  it('should render with manage link', () => {
+  it('should render with manage link as dropdownFooter', () => {
     const data = [tagOne, tagTwo, tagThree];
     const selected = [];
 
-    const { getByText, getByPlaceholderText } = renderWithProvider(
+    renderWithProvider(
       <Tags
         data={data}
         selected={selected}
-        manageLink="https://synerise.com"
         texts={{
           addButtonLabel: ADD_TAG_BUTTON,
           manageLinkLabel: MANAGE_LINK_LABEL,
           searchPlaceholder: SEARCH_PLACEHOLDER,
         }}
         addable
+        dropdownFooter={MANAGE_LINK_LABEL}
       />,
     );
 
-    fireEvent.click(getByText(ADD_TAG_BUTTON));
-    fireEvent.change(getByPlaceholderText(SEARCH_PLACEHOLDER), {
-      target: { value: 'anything' },
-    });
+    userEvent.click(screen.getByText(ADD_TAG_BUTTON));
+    userEvent.type(screen.getByPlaceholderText(SEARCH_PLACEHOLDER), 'anything');
 
-    expect(getByText(MANAGE_LINK_LABEL)).toBeTruthy();
+    expect(screen.getByText(MANAGE_LINK_LABEL)).toBeInTheDocument();
   });
 
   it('should fire onSelectedChange', () => {
     const data = [tagOne, tagTwo, tagThree];
     const selected = [];
 
-    const { getByText, getByTestId } = renderWithProvider(
+    renderWithProvider(
       <Tags
         data={data}
         selected={selected}
@@ -168,13 +164,47 @@ describe('Tags', () => {
       />,
     );
 
-    fireEvent.click(getByText(ADD_TAG_BUTTON));
+    userEvent.click(screen.getByText(ADD_TAG_BUTTON));
 
-    const dropdown = getByTestId(DROPDOWN_TESTID);
-    const foundTag = globalGetByText(dropdown, tagOne.name);
+    const foundTag = screen.getByText(tagOne.name);
 
-    fireEvent.click(foundTag);
+    userEvent.click(foundTag);
 
     expect(onSelectedChange).toHaveBeenCalled();
+  });
+  
+  it('should only display up to maxVisibleTags selected tags', async () => {
+    const data = [tagOne, tagTwo, tagThree, tagFour];
+    const selected = [tagTwo, tagThree, tagFour];
+
+    renderWithProvider(
+      <Tags
+        data={data}
+        selected={selected}
+        onSelectedChange={onSelectedChange}
+        texts={{
+          addButtonLabel: ADD_TAG_BUTTON,
+          searchPlaceholder: SEARCH_PLACEHOLDER,
+        }}
+        addable
+        creatable
+        maxVisibleTags={1}
+      />,
+    );
+
+     expect(screen.getByTestId(`tag-${tagTwo.id}`)).toBeInTheDocument();
+     expect(screen.queryByTestId(`tag-${tagThree.id}`)).not.toBeInTheDocument();
+     expect(screen.queryByTestId(`tag-${tagFour.id}`)).not.toBeInTheDocument();
+     
+    const limitedTag = screen.getByTestId('tag-limited-tags');
+    expect(limitedTag).toHaveTextContent('+2');
+
+    fireEvent.mouseOver(limitedTag);
+
+    const dropdown = await screen.findByTestId(DROPDOWN_TESTID);
+
+     expect(within(dropdown).queryByTestId(`tag-${tagTwo.id}`)).not.toBeInTheDocument();
+     expect(within(dropdown).getByTestId(`tag-${tagThree.id}`)).toBeInTheDocument();
+     expect(within(dropdown).getByTestId(`tag-${tagFour.id}`)).toBeInTheDocument();
   });
 });

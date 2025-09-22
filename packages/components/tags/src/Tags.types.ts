@@ -8,17 +8,13 @@ export type ActionTaken = {
   tag: TagProps;
 };
 
+export type ExtendedTagProps = TagProps & {
+  informationCardProps?: InformationCardProps;
+};
+
 export type TagsProps = {
-  data?: Array<
-    TagProps & {
-      informationCardProps?: InformationCardProps;
-    }
-  >;
-  selected?: Array<
-    TagProps & {
-      informationCardProps?: InformationCardProps;
-    }
-  >;
+  data?: ExtendedTagProps[];
+  selected?: ExtendedTagProps[];
   tagShape?: TagShape;
   className?: string;
   style?: CSSProperties;
@@ -27,7 +23,6 @@ export type TagsProps = {
   removable?: boolean;
   creatable?: boolean;
   disabled?: boolean;
-  manageLink?: string;
   texts?: TagTexts;
 
   /**
@@ -46,7 +41,8 @@ export type TagsProps = {
     | 'bottomCenter'
     | 'bottomRight';
   asPill?: boolean;
-  onManageTagClick?: () => void;
+  dropdownFooter?: ReactNode;
+  maxVisibleTags?: number;
 };
 
 /**

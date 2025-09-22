@@ -1,8 +1,11 @@
 import React from 'react';
-import { Meta, StoryObj } from '@storybook/react-webpack5';
 import { useArgs } from 'storybook/preview-api';
 import { v4 as uuid } from 'uuid';
 
+import { Meta, StoryObj } from '@storybook/react-webpack5';
+import Button from '@synerise/ds-button';
+import { theme } from '@synerise/ds-core';
+import Icon, { ExternalLinkM } from '@synerise/ds-icon';
 import Tags, { TagShape } from '@synerise/ds-tags';
 import type { TagProps, TagsProps } from '@synerise/ds-tags';
 
@@ -10,13 +13,14 @@ import {
   BOOLEAN_CONTROL,
   CLASSNAME_ARG_CONTROL,
   COLOR_CONTROL,
-  controlFromOptionsArray, REACT_NODE_AS_STRING,
+  NUMBER_CONTROL,
+  REACT_NODE_AS_STRING,
   STRING_CONTROL,
   STYLE_ARG_CONTROL,
+  controlFromOptionsArray,
 } from '../../utils';
-import { getTagNameForShape } from './Tags.utils';
-import { theme } from '@synerise/ds-core';
 import { ALL_TAGS, TAG_PROP_CATEGORY, TAG_TEXTS } from './Tags.constants';
+import { getTagNameForShape } from './Tags.utils';
 
 type TagStoryProps = TagsProps & {
   color: TagProps['color'];
@@ -32,11 +36,11 @@ const TagsMeta = {
   },
   render: ({ selected, color, ...args }) => {
     const selectedProp = selected?.length
-      ? selected.map(tagData => ({
-        ...tagData,
-        name: getTagNameForShape(args.tagShape!),
-        color,
-      }))
+      ? selected.map((tagData) => ({
+          ...tagData,
+          name: getTagNameForShape(args.tagShape!),
+          color,
+        }))
       : [];
     return <Tags selected={selectedProp} {...args} />;
   },
@@ -75,10 +79,11 @@ const TagsMeta = {
       'bottomCenter',
       'bottomRight',
     ]),
+    maxVisibleTags: NUMBER_CONTROL,
   },
   args: {
     tagShape: TagShape[0],
-    texts: TAG_TEXTS
+    texts: TAG_TEXTS,
   },
 } as Meta<TagStoryProps>;
 export default TagsMeta;
@@ -88,13 +93,13 @@ export const Default: Story = {
     selected: [
       {
         id: 0,
-        name: 'Tag name'
+        name: 'Tag name',
       },
     ],
   },
 };
 export const TagGroup: Story = {
-  render: args => {
+  render: (args) => {
     const [{ selected, data }, updateArgs] = useArgs();
 
     return (
@@ -103,7 +108,7 @@ export const TagGroup: Story = {
         selected={selected}
         data={data}
         maxHeight={200}
-        onCreate={name => {
+        onCreate={(name) => {
           const tag = {
             id: uuid(),
             name,
@@ -121,6 +126,16 @@ export const TagGroup: Story = {
           });
           args.onSelectedChange?.(tags, actionTaken);
         }}
+        dropdownFooter={
+          <Button type="ghost" mode="icon-label">
+            <Icon
+              component={<ExternalLinkM />}
+              size={24}
+              color={theme.palette['grey-600']}
+            />{' '}
+            Manage tags
+          </Button>
+        }
       />
     );
   },
@@ -130,6 +145,7 @@ export const TagGroup: Story = {
     creatable: true,
     addable: true,
     removable: true,
-    title: 'Tags:'
+    title: 'Tags:',
+    maxVisibleTags: 5,
   },
 };
