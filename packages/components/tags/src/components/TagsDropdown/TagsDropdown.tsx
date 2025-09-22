@@ -1,0 +1,111 @@
+import React, { type ReactNode } from 'react';
+
+import Dropdown, { type DropdownProps } from '@synerise/ds-dropdown';
+import InformationCard from '@synerise/ds-information-card';
+import Tag, {
+  type TagProps,
+  type TagShape,
+  type TagTexts,
+} from '@synerise/ds-tag';
+import { NOOP } from '@synerise/ds-utils';
+
+import { type ExtendedTagProps } from '../../Tags.types';
+import * as S from './TagsDropdown.styles';
+
+const DROPDOWN_BOTTOM_ACTION_STYLES = { padding: '0 8px', cursor: 'auto' };
+const DROPDOWN_CONTAINER_STYLES = { padding: '8px' };
+
+type TagDropdownProps = {
+  tags?: ExtendedTagProps[];
+  texts?: TagTexts;
+  removable?: boolean;
+  disabled?: boolean;
+  asPill?: boolean;
+  tagShape?: TagShape;
+  dropdownFooter?: ReactNode;
+  noTagsContent?: ReactNode;
+  aboveTagsContent?: ReactNode;
+  dropdownHeader?: ReactNode;
+  maxHeight?: number;
+  onRemove?: (tagKey: string | number) => void;
+  onTagClick?: (tag: TagProps) => void;
+} & DropdownProps;
+
+export const TagsDropdown = ({
+  tags,
+  tagShape,
+  texts,
+  removable,
+  disabled,
+  onRemove,
+  asPill,
+  dropdownFooter,
+  noTagsContent,
+  dropdownHeader,
+  aboveTagsContent,
+  maxHeight,
+  onTagClick,
+  ...dropdownProps
+}: TagDropdownProps) => {
+  const areTags = !!tags?.length;
+
+  return (
+    <Dropdown
+      {...dropdownProps}
+      overlay={
+        <S.Overlay data-testid="ds-tags-dropdown-overlay">
+          {dropdownHeader}
+          <S.DropdownContainer
+            absolute
+            maxHeight={maxHeight}
+            style={DROPDOWN_CONTAINER_STYLES}
+          >
+            {aboveTagsContent}
+            {areTags ? (
+              <S.DropdownTagsContainer data-testid="ds-tags-available-tags">
+                {tags.map((tag) => (
+                  <Tag
+                    {...tag}
+                    key={tag.id}
+                    shape={tagShape}
+                    removable={removable}
+                    onRemove={removable ? onRemove : undefined}
+                    disabled={disabled}
+                    asPill={asPill}
+                    onClick={() => onTagClick?.(tag)}
+                    texts={texts}
+                    tooltipProps={
+                      tag.informationCardProps
+                        ? {
+                            render: () => (
+                              <InformationCard
+                                title={tag.name}
+                                {...tag.informationCardProps}
+                                asTooltip
+                              />
+                            ),
+                            placement: 'right',
+                            ...tag.tooltipProps,
+                          }
+                        : undefined
+                    }
+                  />
+                ))}
+              </S.DropdownTagsContainer>
+            ) : (
+              noTagsContent
+            )}
+          </S.DropdownContainer>
+          {dropdownFooter && (
+            <Dropdown.BottomAction
+              onClickAction={NOOP}
+              style={DROPDOWN_BOTTOM_ACTION_STYLES}
+            >
+              {dropdownFooter}
+            </Dropdown.BottomAction>
+          )}
+        </S.Overlay>
+      }
+    />
+  );
+};

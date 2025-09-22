@@ -1,12 +1,11 @@
+import { expect, fn, userEvent, waitFor, within } from 'storybook/test';
+
 import { Meta, StoryObj } from '@storybook/react-webpack5';
-
-import { within, userEvent, expect, fn, waitFor } from 'storybook/test';
-
 import type { TagsProps } from '@synerise/ds-tags';
 
-import StoriesMeta, { TagGroup } from './Tags.stories';
 import { centeredPaddedWrapper, sleep } from '../../utils';
 import { ALL_TAGS, TAG_TEXTS } from './Tags.constants';
+import StoriesMeta, { TagGroup } from './Tags.stories';
 
 export default {
   ...StoriesMeta,
@@ -22,15 +21,24 @@ type Story = StoryObj<TagsProps>;
 
 const openDropdown = async (canvas) => {
   await userEvent.click(canvas.getByText(TAG_TEXTS.addButtonLabel));
-  const dropdown = canvas.getByTestId('dropdown');
+  const dropdown = canvas.getByTestId('ds-tags-dropdown-overlay');
   await waitFor(() => expect(dropdown).toBeInTheDocument());
-  await waitFor(() => expect(canvas.getByPlaceholderText(TAG_TEXTS.searchPlaceholder)).not.toHaveStyle({ pointerEvents: 'none' }));
-  await waitFor(async () => await userEvent.click(canvas.getByPlaceholderText(TAG_TEXTS.searchPlaceholder)));
+  await waitFor(() =>
+    expect(
+      canvas.getByPlaceholderText(TAG_TEXTS.searchPlaceholder),
+    ).not.toHaveStyle({ pointerEvents: 'none' }),
+  );
+  await waitFor(
+    async () =>
+      await userEvent.click(
+        canvas.getByPlaceholderText(TAG_TEXTS.searchPlaceholder),
+      ),
+  );
   return {
     dropdown,
-    input: canvas.getByPlaceholderText(TAG_TEXTS.searchPlaceholder)
-  }
-}
+    input: canvas.getByPlaceholderText(TAG_TEXTS.searchPlaceholder),
+  };
+};
 
 export const ShowDropdown: Story = {
   ...TagGroup,
@@ -41,10 +49,9 @@ export const ShowDropdown: Story = {
   },
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement.parentElement!);
-    await openDropdown(canvas)
+    await openDropdown(canvas);
   },
 };
-
 
 export const SearchTag: Story = {
   ...TagGroup,
@@ -61,8 +68,16 @@ export const SearchTag: Story = {
     userEvent.click(input);
     await userEvent.type(input, 'Sear');
 
-    await waitFor(() => expect(dropdownWrapper.getByTestId('ds-tags-create-button')).toBeInTheDocument());
-    await waitFor(() => expect(dropdownWrapper.getByTestId('ds-tags-available-tags').children).toHaveLength(2))
+    await waitFor(() =>
+      expect(
+        dropdownWrapper.getByTestId('ds-tags-create-button'),
+      ).toBeInTheDocument(),
+    );
+    await waitFor(() =>
+      expect(
+        dropdownWrapper.getByTestId('ds-tags-available-tags').children,
+      ).toHaveLength(2),
+    );
   },
 };
 
@@ -72,6 +87,7 @@ export const AddTag: Story = {
     ...TagGroup.args,
     maxHeight: 200,
     texts: TAG_TEXTS,
+    maxVisibleTags: undefined,
   },
   play: async ({ canvasElement, args }) => {
     const canvas = within(canvasElement.parentElement!);
@@ -79,8 +95,51 @@ export const AddTag: Story = {
 
     await userEvent.click(canvas.getByText(ALL_TAGS[8].name));
     const tagsWrapper = within(canvas.getByTestId('tags'));
-    await waitFor(() => expect(tagsWrapper.queryByTestId(`tag-${ALL_TAGS[8].id}`)).toBeInTheDocument());
-    await waitFor(() => expect(canvas.getByTestId('dropdown')).not.toBeVisible());
+    await waitFor(() =>
+      expect(
+        tagsWrapper.queryByTestId(`tag-${ALL_TAGS[8].id}`),
+      ).toBeInTheDocument(),
+    );
+    await waitFor(() =>
+      expect(canvas.getByTestId('ds-tags-dropdown-overlay')).not.toBeVisible(),
+    );
+  },
+};
 
+export const LimitedTags: Story = {
+  ...TagGroup,
+  args: {
+    ...TagGroup.args,
+    maxHeight: 200,
+    texts: TAG_TEXTS,
+    maxVisibleTags: 3,
+  },
+  play: async ({ canvasElement, args }) => {
+    const canvas = within(canvasElement.parentElement!);
+
+    const tagsWrapper = within(canvas.getByTestId('tags'));
+    await userEvent.hover(tagsWrapper.getByTestId('tag-limited-tags'));
+
+    const limitedTagsDropdown = await canvas.findByTestId(
+      'ds-tags-dropdown-overlay',
+    );
+
+    await waitFor(() => expect(limitedTagsDropdown).toBeInTheDocument());
+
+    await waitFor(() =>
+      expect(
+        within(limitedTagsDropdown).getByTestId(`tag-${ALL_TAGS[3].id}`),
+      ).toBeInTheDocument(),
+    );
+    await waitFor(() =>
+      expect(
+        within(limitedTagsDropdown).getByTestId(`tag-${ALL_TAGS[4].id}`),
+      ).toBeInTheDocument(),
+    );
+    await waitFor(() =>
+      expect(
+        within(limitedTagsDropdown).getByTestId(`tag-${ALL_TAGS[5].id}`),
+      ).toBeInTheDocument(),
+    );
   },
 };

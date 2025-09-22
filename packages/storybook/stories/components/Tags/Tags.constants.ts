@@ -10,6 +10,7 @@ export const TAG_TEXTS = {
   createTagButtonLabel: 'Add tag',
   searchPlaceholder: 'Search tag...',
   dropdownNoTags: 'No tags found',
+  noResultsLabel: 'No results',
 };
 
 export const TAG_PROP_CATEGORY = {
