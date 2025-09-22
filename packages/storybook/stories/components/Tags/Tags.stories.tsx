@@ -146,6 +146,5 @@ export const TagGroup: Story = {
     addable: true,
     removable: true,
     title: 'Tags:',
-    maxVisibleTags: 5,
   },
 };
