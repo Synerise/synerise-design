@@ -7,6 +7,13 @@ export const BUTTON_COLOR_MAPPING: Record<ConfirmationType, string> = {
   informative: 'blue',
 };
 
+export const ICON_COLOR_MAPPING: Record<ConfirmationType, string> = {
+  negative: 'red-600',
+  success: 'green-600',
+  warning: 'yellow-600',
+  informative: 'grey-600',
+};
+
 export const ITEM_SIZE = 32;
 
 export const MAX_ITEMS = 6;

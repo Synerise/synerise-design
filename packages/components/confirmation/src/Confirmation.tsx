@@ -10,6 +10,7 @@ import { Paragraph } from '@synerise/ds-typography';
 import { BUTTON_COLOR_MAPPING } from './Confirmation.const';
 import * as S from './Confirmation.styles';
 import type { ConfirmationProps, DisplayMode } from './Confirmation.types';
+import { getIconColor } from './Confirmation.utils';
 import { BatchItemsList } from './components/BatchItemsList';
 import { DecisionSection } from './components/DecisionSection';
 import { useDefaultTexts } from './hooks/useDefaultTexts';
@@ -35,8 +36,7 @@ const Confirmation = <ItemType extends ListItemProps>({
   const allTexts = useDefaultTexts(texts);
 
   const buttonColor = BUTTON_COLOR_MAPPING[type];
-  const iconColor =
-    type === 'negative' ? theme.palette['red-600'] : theme.palette['grey-800'];
+  const iconColor = getIconColor(type, theme);
 
   const modalContent = useMemo(() => {
     if (mode === 'default') {
