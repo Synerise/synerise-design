@@ -1,5 +1,5 @@
 import classNames from 'classnames';
-import React, { Component, type ReactNode } from 'react';
+import React from 'react';
 
 import '@synerise/ds-core/dist/js/style';
 import FormField from '@synerise/ds-form-field';
@@ -11,96 +11,89 @@ import * as S from './Select.styles';
 import { type Props } from './Select.types';
 import './style/index.less';
 
-class Select extends Component<Props> {
-  static Option = S.AntdSelectOption;
-  static OptGroup = S.AntdSelectOptGroup;
+export const Select = ({
+  label,
+  description,
+  errorText,
+  error,
+  tooltip,
+  tooltipConfig,
+  clearTooltip,
+  prefixel,
+  suffixel,
+  style,
+  size,
+  listHeight,
+  className,
+  getPopupContainer = defaultGetPopupContainer,
+  grey,
+  dropdownClassName,
+  asFormElement,
+  raw,
+  readOnly,
+  disabled,
+  ...antdProps
+}: Props) => {
+  const hasBottomMargin = asFormElement || Boolean(errorText || description);
 
-  render(): ReactNode {
-    const {
-      label,
-      description,
-      errorText,
-      error,
-      tooltip,
-      tooltipConfig,
-      clearTooltip,
-      prefixel,
-      suffixel,
-      style,
-      listHeight,
-      className,
-      getPopupContainer = defaultGetPopupContainer,
-      grey,
-      dropdownClassName,
-      asFormElement,
-      raw,
-      readOnly,
-      disabled,
-      ...antdProps
-    } = this.props;
-    const { size } = antdProps;
-    const hasBottomMargin = asFormElement || Boolean(errorText || description);
-    const simpleSelect = (
-      <S.SelectWrapper
-        grey={grey}
-        error={Boolean(errorText)}
-        className={classNames(
-          'ds-select-wrapper',
-          { error: errorText || error },
-          { [className as string]: !!className },
-        )}
-        style={style}
+  const simpleSelect = (
+    <S.SelectWrapper
+      grey={grey}
+      error={Boolean(errorText)}
+      className={classNames(
+        'ds-select-wrapper',
+        { error: errorText || error },
+        { [className as string]: !!className },
+      )}
+      style={style}
+    >
+      {!!prefixel && <S.PrefixWrapper>{prefixel}</S.PrefixWrapper>}
+      <S.AntdSelect
+        dropdownAlign={{ offset: [0, 8] }} // STOR-588
+        {...antdProps}
+        getPopupContainer={getPopupContainer}
+        listHeight={listHeight}
+        size={size}
+        withPrefixel={!!prefixel}
+        withSuffixel={!!suffixel}
+        disabled={disabled || readOnly}
+        readOnly={readOnly}
+        clearIcon={
+          <Tooltip title={clearTooltip}>
+            <span>
+              <Icon component={<Close3M />} size={size === 'small' ? 18 : 24} />
+            </span>
+          </Tooltip>
+        }
+        removeIcon={<Icon component={<CloseS />} />}
+        className={classNames({ error: errorText || error })}
+        dropdownClassName={classNames('ps__child--consume', dropdownClassName)}
+      />
+      {!!suffixel && <S.SuffixWrapper>{suffixel}</S.SuffixWrapper>}
+    </S.SelectWrapper>
+  );
+
+  return raw ? (
+    simpleSelect
+  ) : (
+    <S.SelectContainer
+      className="ds-select-container"
+      hasBottomMargin={hasBottomMargin}
+    >
+      <FormField
+        errorText={errorText}
+        description={description}
+        label={label}
+        tooltip={tooltip}
+        tooltipConfig={tooltipConfig}
       >
-        {!!prefixel && <S.PrefixWrapper>{prefixel}</S.PrefixWrapper>}
-        <S.AntdSelect
-          dropdownAlign={{ offset: [0, 8] }} // STOR-588
-          {...antdProps}
-          getPopupContainer={getPopupContainer}
-          listHeight={listHeight}
-          size={size}
-          withPrefixel={!!prefixel}
-          withSuffixel={!!suffixel}
-          disabled={disabled || readOnly}
-          readOnly={readOnly}
-          clearIcon={
-            <Tooltip title={clearTooltip}>
-              <span>
-                <Icon
-                  component={<Close3M />}
-                  size={size === 'small' ? 18 : 24}
-                />
-              </span>
-            </Tooltip>
-          }
-          removeIcon={<Icon component={<CloseS />} />}
-          className={classNames({ error: errorText || error })}
-          dropdownClassName={classNames(
-            'ps__child--consume',
-            dropdownClassName,
-          )}
-        />
-        {!!suffixel && <S.SuffixWrapper>{suffixel}</S.SuffixWrapper>}
-      </S.SelectWrapper>
-    );
-    return raw ? (
-      simpleSelect
-    ) : (
-      <S.SelectContainer
-        className="ds-select-container"
-        hasBottomMargin={hasBottomMargin}
-      >
-        <FormField
-          errorText={errorText}
-          description={description}
-          label={label}
-          tooltip={tooltip}
-          tooltipConfig={tooltipConfig}
-        >
-          {simpleSelect}
-        </FormField>
-      </S.SelectContainer>
-    );
-  }
-}
+        {simpleSelect}
+      </FormField>
+    </S.SelectContainer>
+  );
+};
+
+Select.Option = S.AntdSelectOption;
+Select.OptGroup = S.AntdSelectOptGroup;
 
 export default Select;

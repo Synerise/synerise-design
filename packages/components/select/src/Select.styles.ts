@@ -11,28 +11,28 @@ import { type Props } from './Select.types';
 
 const { OptGroup, Option } = Select;
 
-const errorStyle = (props: ThemeProps): string => `
+const errorStyle = (props: ThemeProps) => `
   border-color: ${props.theme.palette['red-600']};
   box-shadow: inset 0 0 0 1px ${props.theme.palette['red-600']};
   background: ${props.theme.palette['red-050']};
 `;
 
-const searchIconWithCustomColor = (color: string): string => {
+const searchIconWithCustomColor = (color: string) => {
   const colorValueForSvg = color.replace(/#/, '%23');
   const iconWithColor = `data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='-6 -6 36 36' >/><path fill='none' d='M0 0h24v24H0z' /><path style='fill: ${colorValueForSvg};' d='M10.734 17.234a6.463 6.463 0 004.03-1.41l3.721 3.722a.75.75 0 001.06-1.06l-3.72-3.722a6.494 6.494 0 10-5.09 2.47zm0-11.5a5 5 0 11-5 5 5.006 5.006 0 015-5z'/></svg>`;
   return iconWithColor;
 };
 
-const withPrefixStyles = (): string => `
+const withPrefixStyles = () => `
   border-top-left-radius:0;
   border-bottom-left-radius:0;
 `;
-const withSuffixStyles = (): string => `
+const withSuffixStyles = () => `
   border-top-right-radius:0;
   border-bottom-right-radius:0;
 `;
 
-const addonStyles = (props: ThemeProps): string => `
+const addonStyles = (props: ThemeProps) => `
   display: flex;
   align-items: center;
   background: ${props.theme.palette['grey-050']};
@@ -130,17 +130,17 @@ export const AntdSelect = styled(
       width: 24px;
       height: 24px;
       background-color: rgba(0, 0, 0, 0);
-      background-image: ${(props): string =>
+      background-image: ${(props) =>
         `url("${searchIconWithCustomColor(props.theme.palette['grey-400'])}")`};
     }
   }
 
   &.error {
     .ant-select-selector.ant-select-selector {
-      ${(props): string => errorStyle(props)}
+      ${(props) => errorStyle(props)}
     }
     .ant-select-clear {
-      background-color: ${(props): string => props.theme.palette['red-050']};
+      background-color: ${(props) => props.theme.palette['red-050']};
     }
   }
 
@@ -170,13 +170,13 @@ export const PrefixWrapper = styled.div`
   border-radius: 3px 0 0 3px;
   margin-right: -2px;
   padding-right: 1px;
-  ${(props): string => addonStyles(props)};
+  ${(props) => addonStyles(props)};
 `;
 
 export const SuffixWrapper = styled.div`
   border-radius: 0 3px 3px 0;
   margin-left: -1px;
-  ${(props): string => addonStyles(props)};
+  ${(props) => addonStyles(props)};
 `;
 
 export const SelectWrapper = styled.div<{ error?: boolean; grey?: boolean }>`
