@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.3.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-tags@1.2.0...@synerise/ds-tags@1.3.0) (2025-09-23)
+
+
+### Features
+
+* **tags:** add dropdownFooter and maxVisibleTags ([cfb0358](https://github.com/Synerise/synerise-design/commit/cfb035830ea4fd8ec5ba800985f1bea50194f25c))
+
+
+
+
+
 # [1.2.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-tags@1.1.25...@synerise/ds-tags@1.2.0) (2025-09-19)
 
 

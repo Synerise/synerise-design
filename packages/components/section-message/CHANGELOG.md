@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.0.8](https://github.com/Synerise/synerise-design/compare/@synerise/ds-section-message@1.0.7...@synerise/ds-section-message@1.0.8) (2025-09-23)
+
+
+### Bug Fixes
+
+* **section-message:** fixes to section message overflow ([8189069](https://github.com/Synerise/synerise-design/commit/81890698e348490e75cd991e2d97ca456592941c))
+
+
+
+
+
 ## [1.0.7](https://github.com/Synerise/synerise-design/compare/@synerise/ds-section-message@1.0.6...@synerise/ds-section-message@1.0.7) (2025-09-16)
 
 **Note:** Version bump only for package @synerise/ds-section-message

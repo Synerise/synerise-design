@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.1.19](https://github.com/synerise/synerise-design/compare/@synerise/ds-select@1.1.18...@synerise/ds-select@1.1.19) (2025-09-23)
+
+
+### Bug Fixes
+
+* **select:** raise style specificity ([e640060](https://github.com/synerise/synerise-design/commit/e640060afd414886fe4e4e5c838c3c1b5c0bbf13))
+
+
+
+
+
 ## [1.1.18](https://github.com/synerise/synerise-design/compare/@synerise/ds-select@1.1.17...@synerise/ds-select@1.1.18) (2025-09-19)
 
 **Note:** Version bump only for package @synerise/ds-select

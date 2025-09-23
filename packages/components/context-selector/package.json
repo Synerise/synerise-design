@@ -1,6 +1,6 @@
 {
   "name": "@synerise/ds-context-selector",
-  "version": "1.1.32",
+  "version": "1.1.33",
   "description": "ContextSelector UI Component for the Synerise Design System",
   "license": "ISC",
   "repository": "Synerise/synerise-design",
@@ -38,16 +38,16 @@
   "dependencies": {
     "@synerise/ds-button": "^1.4.11",
     "@synerise/ds-divider": "^1.0.21",
-    "@synerise/ds-dropdown": "^1.0.23",
-    "@synerise/ds-factors": "^1.5.9",
+    "@synerise/ds-dropdown": "^1.0.24",
+    "@synerise/ds-factors": "^1.5.10",
     "@synerise/ds-icon": "^1.7.2",
-    "@synerise/ds-information-card": "^1.1.0",
+    "@synerise/ds-information-card": "^1.1.1",
     "@synerise/ds-list-item": "^1.0.21",
     "@synerise/ds-menu": "^1.0.23",
     "@synerise/ds-result": "^1.0.24",
     "@synerise/ds-scrollbar": "^1.1.8",
     "@synerise/ds-skeleton": "^1.0.22",
-    "@synerise/ds-tabs": "^1.0.25",
+    "@synerise/ds-tabs": "^1.0.26",
     "@synerise/ds-utils": "^1.4.2",
     "react-window": "1.8.11",
     "uuid": "^8.3.2"

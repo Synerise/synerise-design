@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.22.0](https://github.com/Synerise/synerise-design/compare/storybook@1.21.0...storybook@1.22.0) (2025-09-23)
+
+
+### Features
+
+* **insight:** new component ([090427d](https://github.com/Synerise/synerise-design/commit/090427d8c7aba94ccf60342b065480c43d7baeb3))
+* **tags:** add dropdownFooter and maxVisibleTags ([cfb0358](https://github.com/Synerise/synerise-design/commit/cfb035830ea4fd8ec5ba800985f1bea50194f25c))
+
+
+
+
+
 # [1.21.0](https://github.com/Synerise/synerise-design/compare/storybook@1.20.2...storybook@1.21.0) (2025-09-19)
 
 
