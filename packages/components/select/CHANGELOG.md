@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.2.0](https://github.com/synerise/synerise-design/compare/@synerise/ds-select@1.1.19...@synerise/ds-select@1.2.0) (2025-09-24)
+
+
+### Features
+
+* **select:** refactor select component ([3b63570](https://github.com/synerise/synerise-design/commit/3b6357056d44051a7f1807ac9ff650c85980056d))
+
+
+
+
+
 ## [1.1.19](https://github.com/synerise/synerise-design/compare/@synerise/ds-select@1.1.18...@synerise/ds-select@1.1.19) (2025-09-23)
 
 

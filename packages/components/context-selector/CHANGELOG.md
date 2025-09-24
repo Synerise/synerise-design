@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.1.34](https://github.com/Synerise/synerise-design/compare/@synerise/ds-context-selector@1.1.33...@synerise/ds-context-selector@1.1.34) (2025-09-24)
+
+**Note:** Version bump only for package @synerise/ds-context-selector
+
+
+
+
+
 ## [1.1.33](https://github.com/Synerise/synerise-design/compare/@synerise/ds-context-selector@1.1.32...@synerise/ds-context-selector@1.1.33) (2025-09-23)
 
 **Note:** Version bump only for package @synerise/ds-context-selector

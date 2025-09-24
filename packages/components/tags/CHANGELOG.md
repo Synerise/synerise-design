@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.3.1](https://github.com/Synerise/synerise-design/compare/@synerise/ds-tags@1.3.0...@synerise/ds-tags@1.3.1) (2025-09-24)
+
+
+### Bug Fixes
+
+* **tags:** revert visual regressiojn ([eeae84b](https://github.com/Synerise/synerise-design/commit/eeae84be675ceb48fe3adf8269cada6ec47fc809))
+
+
+
+
+
 # [1.3.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-tags@1.2.0...@synerise/ds-tags@1.3.0) (2025-09-23)
 
 
