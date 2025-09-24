@@ -4,6 +4,7 @@ import { type TagShape } from '@synerise/ds-tag';
 
 export const Container = styled.div`
   display: flex;
+  margin-bottom: 24px;
 `;
 
 export const TagOverflow = styled.div`
@@ -13,7 +14,6 @@ export const TagOverflow = styled.div`
 `;
 
 export const TagsWrapper = styled.div`
-  margin-bottom: 24px;
   display: flex;
   align-items: center;
   flex-direction: row;
