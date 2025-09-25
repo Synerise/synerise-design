@@ -468,6 +468,16 @@
     },
     "PLACEHOLDER": {
       "CHOOSE-CONDITION": "Elige el tipo de condición abajo"
+    },
+    "TAG": {
+      "SEARCH-PLACEHOLDER": "Buscar",
+      "ADD-BUTTON-LABEL": "Agregar etiqueta",
+      "MANAGE-LINK-LABEL": "Administrar etiquetas",
+      "CREATE-TAG-LABEL": "Crear etiqueta",
+      "NO-TAGS": "Sin datos",
+      "CLEAR-TOOLTIP": "Borrar",
+      "DELETE-TOOLTIP": "Eliminar",
+      "NO-SEARCH-RESULTS": "No se encontraron etiquetas"
     }
   }
 }

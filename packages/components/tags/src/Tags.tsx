@@ -1,7 +1,7 @@
 import React from 'react';
 
 import InformationCard from '@synerise/ds-information-card';
-import Tag from '@synerise/ds-tag';
+import Tag, { useDefaultTexts } from '@synerise/ds-tag';
 
 import * as S from './Tags.styles';
 import type { TagsProps } from './Tags.types';
@@ -16,7 +16,7 @@ const Tags = ({
   removable,
   addable,
   creatable,
-  texts = {},
+  texts,
   selected = [],
   style,
   className,
@@ -27,9 +27,11 @@ const Tags = ({
   overlayPlacement,
   asPill,
   dropdownFooter,
+  addButtonType,
   maxVisibleTags,
 }: TagsProps) => {
   const isMaxVisibleTagsDefined = typeof maxVisibleTags === 'number';
+  const allTexts = useDefaultTexts(texts);
 
   const visibleSelectedTags = isMaxVisibleTagsDefined
     ? selected.slice(0, maxVisibleTags)
@@ -76,7 +78,7 @@ const Tags = ({
                   removable={removable}
                   onRemove={removable ? onRemove : undefined}
                   disabled={disabled}
-                  texts={texts}
+                  texts={allTexts}
                   asPill={asPill}
                   {...tag}
                   tooltipProps={
@@ -115,12 +117,13 @@ const Tags = ({
               creatable={creatable}
               overlayPlacement={overlayPlacement}
               overlayStyle={overlayStyle}
-              texts={texts}
+              texts={allTexts}
               tagShape={tagShape}
               maxHeight={maxHeight}
               dropdownFooter={dropdownFooter}
               onSelectedChange={onSelectedChange}
               onCreate={onCreate}
+              addButtonType={addButtonType}
             />
           )}
         </S.SelectedTags>

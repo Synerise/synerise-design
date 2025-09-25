@@ -9,6 +9,7 @@ import LabelsWithShowMore from './LabelsWithShowMore/LabelsWithShowMore';
 import StarCell from './Star/StarCell';
 import StatusLabelCell from './StatusLabel/StatusLabel';
 import TagIconCell from './TagIcon/TagIcon';
+import { TagsGroupCell } from './TagsGroup/TagsGroup';
 
 export {
   IconLabelCell,
@@ -22,4 +23,5 @@ export {
   FlagLabelCell,
   StarCell,
   LabelsWithShowMore,
+  TagsGroupCell,
 };

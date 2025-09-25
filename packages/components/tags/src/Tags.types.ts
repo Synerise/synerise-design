@@ -19,11 +19,12 @@ export type TagsProps = {
   className?: string;
   style?: CSSProperties;
   addable?: boolean;
+  addButtonType?: 'single-icon' | 'icon-label';
   title?: ReactNode;
   removable?: boolean;
   creatable?: boolean;
   disabled?: boolean;
-  texts?: TagTexts;
+  texts?: Partial<TagTexts>;
 
   /**
    * @deprecated deprecated in favour of useTheme hook

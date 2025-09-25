@@ -48,3 +48,5 @@ export const Separator = styled.hr`
   background-size: 4px 1px;
   background-position: top;
 `;
+
+export const AddTagButton = styled(Button)``;

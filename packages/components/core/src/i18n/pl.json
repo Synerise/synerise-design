@@ -410,6 +410,16 @@
     },
     "PLACEHOLDER": {
       "CHOOSE-CONDITION": "Wybierz rodzaj warunku"
+    },
+    "TAG": {
+      "SEARCH-PLACEHOLDER": "Szukaj",
+      "ADD-BUTTON-LABEL": "Dodaj tag",
+      "MANAGE-LINK-LABEL": "Zarządzaj tagami",
+      "CREATE-TAG-LABEL": "Utwórz tag",
+      "NO-TAGS": "Brak danych",
+      "CLEAR-TOOLTIP": "Wyczyść",
+      "DELETE-TOOLTIP": "Usuń",
+      "NO-SEARCH-RESULTS": "Nie znaleziono tagów"
     }
   }
 }
