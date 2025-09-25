@@ -23,7 +23,7 @@ import { getTagNameForShape } from './Tags.utils';
 type Story = StoryObj<TagProps>;
 
 const TagMeta = {
-  title: 'Components/Tags',
+  title: 'Components/Tags/Tag',
   component: Tag,
   tags: ['autodocs'],
   parameters: {

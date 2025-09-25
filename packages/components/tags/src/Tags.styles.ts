@@ -5,12 +5,14 @@ import { type TagShape } from '@synerise/ds-tag';
 export const Container = styled.div`
   display: flex;
   margin-bottom: 24px;
+  max-width: 100%;
 `;
 
 export const TagOverflow = styled.div`
   display: flex;
   height: 32px;
   align-items: center;
+  max-width: 100%;
 `;
 
 export const TagsWrapper = styled.div`
@@ -18,6 +20,7 @@ export const TagsWrapper = styled.div`
   align-items: center;
   flex-direction: row;
   flex-wrap: wrap;
+  min-width: 0;
 `;
 
 export const Title = styled.div<{ shape?: TagShape }>`
@@ -32,6 +35,7 @@ export const SelectedTags = styled.div`
   flex-direction: row;
   align-items: center;
   flex-wrap: wrap;
+  min-width: 0;
   && .ds-tag {
     margin: 4px;
   }

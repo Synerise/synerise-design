@@ -18,6 +18,7 @@ import {
   STRING_CONTROL,
   STYLE_ARG_CONTROL,
   controlFromOptionsArray,
+  fixedWrapper400,
 } from '../../utils';
 import { ALL_TAGS, TAG_PROP_CATEGORY, TAG_TEXTS } from './Tags.constants';
 import { getTagNameForShape } from './Tags.utils';
@@ -28,7 +29,7 @@ type TagStoryProps = TagsProps & {
 type Story = StoryObj<TagStoryProps>;
 
 const TagsMeta = {
-  title: 'Components/Tags',
+  title: 'Components/Tags/Tags',
   component: Tags,
   tags: ['autodocs'],
   parameters: {
@@ -84,6 +85,7 @@ const TagsMeta = {
   args: {
     tagShape: TagShape[0],
     texts: TAG_TEXTS,
+    title: 'Tags:',
   },
 } as Meta<TagStoryProps>;
 export default TagsMeta;
@@ -98,7 +100,8 @@ export const Default: Story = {
     ],
   },
 };
-export const TagGroup: Story = {
+
+export const WithAddButton: Story = {
   render: (args) => {
     const [{ selected, data }, updateArgs] = useArgs();
 
@@ -145,6 +148,10 @@ export const TagGroup: Story = {
     creatable: true,
     addable: true,
     removable: true,
-    title: 'Tags:',
   },
+};
+
+export const InNarrowContainer = {
+  decorators: [fixedWrapper400],
+  ...WithAddButton,
 };

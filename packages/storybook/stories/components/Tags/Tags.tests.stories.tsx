@@ -3,9 +3,9 @@ import { expect, fn, userEvent, waitFor, within } from 'storybook/test';
 import { Meta, StoryObj } from '@storybook/react-webpack5';
 import type { TagsProps } from '@synerise/ds-tags';
 
-import { centeredPaddedWrapper, sleep } from '../../utils';
+import { centeredPaddedWrapper } from '../../utils';
 import { ALL_TAGS, TAG_TEXTS } from './Tags.constants';
-import StoriesMeta, { TagGroup } from './Tags.stories';
+import StoriesMeta, { WithAddButton } from './Tags.stories';
 
 export default {
   ...StoriesMeta,
@@ -13,7 +13,7 @@ export default {
     layout: 'fullscreen',
   },
   decorators: [centeredPaddedWrapper],
-  title: 'Components/Tags/Tests',
+  title: 'Components/Tags/Tags/Tests',
   tags: ['visualtests'],
 } as Meta<TagsProps>;
 
@@ -41,9 +41,9 @@ const openDropdown = async (canvas) => {
 };
 
 export const ShowDropdown: Story = {
-  ...TagGroup,
+  ...WithAddButton,
   args: {
-    ...TagGroup.args,
+    ...WithAddButton.args,
     maxHeight: 200,
     texts: TAG_TEXTS,
   },
@@ -54,9 +54,9 @@ export const ShowDropdown: Story = {
 };
 
 export const SearchTag: Story = {
-  ...TagGroup,
+  ...WithAddButton,
   args: {
-    ...TagGroup.args,
+    ...WithAddButton.args,
     maxHeight: 200,
     texts: TAG_TEXTS,
   },
@@ -82,9 +82,9 @@ export const SearchTag: Story = {
 };
 
 export const AddTag: Story = {
-  ...TagGroup,
+  ...WithAddButton,
   args: {
-    ...TagGroup.args,
+    ...WithAddButton.args,
     maxHeight: 200,
     texts: TAG_TEXTS,
     maxVisibleTags: undefined,
@@ -107,9 +107,9 @@ export const AddTag: Story = {
 };
 
 export const LimitedTags: Story = {
-  ...TagGroup,
+  ...WithAddButton,
   args: {
-    ...TagGroup.args,
+    ...WithAddButton.args,
     maxHeight: 200,
     texts: TAG_TEXTS,
     maxVisibleTags: 3,
