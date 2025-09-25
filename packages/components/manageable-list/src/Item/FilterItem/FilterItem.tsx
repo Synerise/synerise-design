@@ -130,7 +130,7 @@ const FilterItemComponent = ({
                   cancelText={texts.cancel}
                   okType="primary"
                   placement="top"
-                  onConfirm={(): void => onSelect({ id: item.id })}
+                  onConfirm={(): void => onSelect?.({ id: item.id })}
                   title={texts.activateItemTitle}
                   icon={
                     <Icon

@@ -8,7 +8,7 @@ export type FilterItemProps = {
   onRemove?: (removeParams: { id: React.ReactText }) => void;
   onDuplicate?: (duplicateParams: { id: React.ReactText }) => void;
   onUpdate?: (updateParams: { id: React.ReactText; name: string }) => void;
-  onSelect: (selectParams: { id: React.ReactText }) => void;
+  onSelect?: (selectParams: { id: React.ReactText }) => void;
   selected: boolean;
   texts: {
     [k: string]: string | React.ReactNode;
