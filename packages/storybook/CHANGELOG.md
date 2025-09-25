@@ -3,6 +3,25 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.23.0](https://github.com/Synerise/synerise-design/compare/storybook@1.22.0...storybook@1.23.0) (2025-09-25)
+
+
+### Bug Fixes
+
+* **tags:** fix flex with overflow in narrow containers ([8bd538d](https://github.com/Synerise/synerise-design/commit/8bd538d1563438a0d6ef6f7459b8ec360d2102a3))
+
+
+### Features
+
+* **code-area:** add placeholder prop ([a02bb94](https://github.com/Synerise/synerise-design/commit/a02bb949f56a736cff8bb056e70d954ca1663cf1))
+* **divider:** refactor divider component ([ea117aa](https://github.com/Synerise/synerise-design/commit/ea117aa015f372ad42c7ac60d4f3691c9e9555e0))
+* **manageable-list:** enable selecting content items ([5fb2491](https://github.com/Synerise/synerise-design/commit/5fb249199343ad9bc31a3a853a57e48b1fa95ddb))
+* **table:** cell with tags list ([109820e](https://github.com/Synerise/synerise-design/commit/109820ed06f931a178580633277a7643aebe1072))
+
+
+
+
+
 # [1.22.0](https://github.com/Synerise/synerise-design/compare/storybook@1.21.0...storybook@1.22.0) (2025-09-23)
 
 

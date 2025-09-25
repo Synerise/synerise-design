@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.0.22](https://github.com/Synerise/synerise-design/compare/@synerise/ds-list-item@1.0.21...@synerise/ds-list-item@1.0.22) (2025-09-25)
+
+
+### Bug Fixes
+
+* **list-item:** move focus styles to focus-visible ([75d197e](https://github.com/Synerise/synerise-design/commit/75d197e6019d13f148b336ce7d26494b388db4ca))
+
+
+
+
+
 ## [1.0.21](https://github.com/Synerise/synerise-design/compare/@synerise/ds-list-item@1.0.20...@synerise/ds-list-item@1.0.21) (2025-09-19)
 
 **Note:** Version bump only for package @synerise/ds-list-item

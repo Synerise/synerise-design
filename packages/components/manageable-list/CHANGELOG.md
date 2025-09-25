@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.4.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-manageable-list@1.3.24...@synerise/ds-manageable-list@1.4.0) (2025-09-25)
+
+
+### Features
+
+* **manageable-list:** enable selecting content items ([5fb2491](https://github.com/Synerise/synerise-design/commit/5fb249199343ad9bc31a3a853a57e48b1fa95ddb))
+
+
+
+
+
 ## [1.3.24](https://github.com/Synerise/synerise-design/compare/@synerise/ds-manageable-list@1.3.23...@synerise/ds-manageable-list@1.3.24) (2025-09-23)
 
 **Note:** Version bump only for package @synerise/ds-manageable-list

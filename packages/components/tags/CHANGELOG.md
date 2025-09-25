@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.4.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-tags@1.3.1...@synerise/ds-tags@1.4.0) (2025-09-25)
+
+
+### Bug Fixes
+
+* **tags:** fix flex with overflow in narrow containers ([8bd538d](https://github.com/Synerise/synerise-design/commit/8bd538d1563438a0d6ef6f7459b8ec360d2102a3))
+
+
+### Features
+
+* **table:** cell with tags list ([109820e](https://github.com/Synerise/synerise-design/commit/109820ed06f931a178580633277a7643aebe1072))
+
+
+
+
+
 ## [1.3.1](https://github.com/Synerise/synerise-design/compare/@synerise/ds-tags@1.3.0...@synerise/ds-tags@1.3.1) (2025-09-24)
 
 

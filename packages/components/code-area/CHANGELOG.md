@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.2.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-code-area@1.1.23...@synerise/ds-code-area@1.2.0) (2025-09-25)
+
+
+### Features
+
+* **code-area:** add placeholder prop ([a02bb94](https://github.com/Synerise/synerise-design/commit/a02bb949f56a736cff8bb056e70d954ca1663cf1))
+
+
+
+
+
 ## [1.1.23](https://github.com/Synerise/synerise-design/compare/@synerise/ds-code-area@1.1.22...@synerise/ds-code-area@1.1.23) (2025-09-23)
 
 **Note:** Version bump only for package @synerise/ds-code-area

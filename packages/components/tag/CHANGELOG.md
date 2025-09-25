@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.3.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-tag@1.2.0...@synerise/ds-tag@1.3.0) (2025-09-25)
+
+
+### Features
+
+* **table:** cell with tags list ([109820e](https://github.com/Synerise/synerise-design/commit/109820ed06f931a178580633277a7643aebe1072))
+
+
+
+
+
 # [1.2.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-tag@1.1.18...@synerise/ds-tag@1.2.0) (2025-09-19)
 
 

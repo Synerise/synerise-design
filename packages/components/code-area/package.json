@@ -1,6 +1,6 @@
 {
   "name": "@synerise/ds-code-area",
-  "version": "1.1.23",
+  "version": "1.2.0",
   "description": "CodeArea UI Component for the Synerise Design System",
   "license": "ISC",
   "repository": "Synerise/synerise-design",
@@ -36,12 +36,12 @@
   "types": "dist/index.d.ts",
   "dependencies": {
     "@monaco-editor/react": "4.4.6",
-    "@synerise/ds-button": "^1.4.11",
-    "@synerise/ds-core": "^1.5.2",
+    "@synerise/ds-button": "^1.4.12",
+    "@synerise/ds-core": "^1.6.0",
     "@synerise/ds-form-field": "^1.1.16",
     "@synerise/ds-icon": "^1.7.2",
-    "@synerise/ds-inline-edit": "^1.0.28",
-    "@synerise/ds-loader": "^1.0.9",
+    "@synerise/ds-inline-edit": "^1.0.29",
+    "@synerise/ds-loader": "^1.0.10",
     "@synerise/ds-tooltip": "^1.2.0",
     "@synerise/ds-typography": "^1.0.21",
     "@synerise/ds-utils": "^1.4.2"

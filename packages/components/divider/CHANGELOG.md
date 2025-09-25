@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.1.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-divider@1.0.21...@synerise/ds-divider@1.1.0) (2025-09-25)
+
+
+### Features
+
+* **divider:** refactor divider component ([ea117aa](https://github.com/Synerise/synerise-design/commit/ea117aa015f372ad42c7ac60d4f3691c9e9555e0))
+
+
+
+
+
 ## [1.0.21](https://github.com/Synerise/synerise-design/compare/@synerise/ds-divider@1.0.20...@synerise/ds-divider@1.0.21) (2025-09-19)
 
 **Note:** Version bump only for package @synerise/ds-divider
