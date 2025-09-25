@@ -47,10 +47,10 @@ export const ALL_TAGS: Array<
   },
   {
     id: '2',
-    name: 'Tag Name 3',
+    name: 'Tag Name 3 with a very long name that may have ellipsis',
     color: theme.palette['mars-600'],
     informationCardProps: {
-      title: 'Tag Name 3',
+      title: 'Tag Name 3 with a very long name that may have ellipsis',
       subtitle: 'de2ba6d0-8cb3-40f7-ad35-adc6b2406214',
       descriptionConfig:
         'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla et risus ut lacus pulvinar tristique ac quis mi. Nulla sem ex, finibus ac neque et, ultricies fermentum sapien.',
