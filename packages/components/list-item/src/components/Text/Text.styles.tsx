@@ -171,13 +171,13 @@ export const Wrapper = styled.div<StyledListItemProps>`
               };
             }
           }
-          &:focus:not(:active) {
+          &:focus-visible:not(:active) {
             ${Inner} {
               box-shadow: inset 0 0 0 2px ${props.theme.palette['blue-600']};
             }
           }
 
-          &:focus:active,
+          &:focus-visible:active,
           &:active {
             ${Inner} {
               background: ${props.theme.palette['blue-050']};
@@ -213,7 +213,7 @@ export const Wrapper = styled.div<StyledListItemProps>`
 
     ${ArrowRight} {
       transition: all ${TRANSITION_FN};
-      opacity: ${(props): string => (props.disabled ? '1' : '0')};
+      opacity: ${(props) => (props.disabled ? '1' : '0')};
     }
 
     ${(props) => props.selected && selectedStyle}
@@ -247,7 +247,7 @@ export const Divider = styled.div`
 export const Description = styled.div`
   text-overflow: ellipsis;
   overflow: hidden;
-  color: ${(props): string => props.theme.palette['grey-600']};
+  color: ${(props) => props.theme.palette['grey-600']};
   font-weight: normal;
   line-height: 1.39;
   font-size: 13px;

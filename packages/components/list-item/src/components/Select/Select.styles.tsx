@@ -21,7 +21,7 @@ export const SelectItem = styled(({ children, disabled, ...rest }) => (
   &:focus {
     ${SuffixWrapper} > * {
       opacity: 1;
-      color: ${(props): string => props.theme.palette['blue-600']};
+      color: ${(props) => props.theme.palette['blue-600']};
     }
   }
 `;
