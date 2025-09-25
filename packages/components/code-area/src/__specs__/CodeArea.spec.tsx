@@ -167,4 +167,62 @@ describe('CodeArea', () => {
 
     expect(onFullscreenChange).toHaveBeenCalledTimes(1);
   });
+
+  it('should render CodeArea with placeholder', () => {
+    const PLACEHOLDER = 'PLACEHOLDER';
+    renderWithProvider(
+      <CodeArea
+        currentSyntax={SYNTAX}
+        label={LABEL}
+        placeholder={PLACEHOLDER}
+        syntaxOptions={SYNTAX_OPTIONS}
+      />,
+    );
+    expect(screen.getByText(PLACEHOLDER)).toBeInTheDocument();
+    expect(screen.getByText(PLACEHOLDER)).toBeVisible();
+  });
+
+  it('should render CodeArea with placeholder hidden', () => {
+    const PLACEHOLDER = 'PLACEHOLDER';
+    renderWithProvider(
+      <CodeArea
+        currentSyntax={SYNTAX}
+        label={LABEL}
+        value="Any value"
+        placeholder={PLACEHOLDER}
+        syntaxOptions={SYNTAX_OPTIONS}
+      />,
+    );
+    expect(screen.getByText(PLACEHOLDER)).toBeInTheDocument();
+    expect(screen.getByText(PLACEHOLDER)).not.toBeVisible();
+  });
+
+
+
+  it('should show placeholder when value changes to empty string', async () => {
+    const PLACEHOLDER = 'PLACEHOLDER';
+    const DATA_TEST_ID = 'DATA_TEST_ID'
+    const handleChange = jest.fn();
+    renderWithProvider(
+      <CodeArea
+        currentSyntax={SYNTAX}
+        label={LABEL}
+        defaultValue="test"
+        placeholder={PLACEHOLDER}
+        syntaxOptions={SYNTAX_OPTIONS}
+        data-testid={DATA_TEST_ID}
+        onChange={handleChange}
+      />,
+    );
+    expect(screen.getByText(PLACEHOLDER)).toBeInTheDocument();
+    expect(screen.getByText(PLACEHOLDER)).not.toBeVisible();
+    
+    userEvent.type(screen.getByTestId(DATA_TEST_ID), '{Backspace}{Backspace}{Backspace}{Backspace}');
+    await waitFor(() => expect(handleChange).toBeCalled());
+    
+    
+    expect(screen.getByText(PLACEHOLDER)).toBeVisible();
+
+  });
+
 });

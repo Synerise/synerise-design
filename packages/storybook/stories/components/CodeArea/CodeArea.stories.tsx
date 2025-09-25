@@ -1,21 +1,24 @@
 import React, { useState } from 'react';
-import { Meta, StoryObj } from '@storybook/react-webpack5';
 import { fn } from 'storybook/test';
 
-import CodeArea, { CodeAreaProps, CodeAreaSyntax } from '@synerise/ds-code-area';
+import { Meta, StoryObj } from '@storybook/react-webpack5';
+import Alert from '@synerise/ds-alert';
+import Button from '@synerise/ds-button';
+import CodeArea, {
+  CodeAreaProps,
+  CodeAreaSyntax,
+} from '@synerise/ds-code-area';
+import Icon, { Add3M } from '@synerise/ds-icon';
+import Switch from '@synerise/ds-switch';
 
 import {
   BOOLEAN_CONTROL,
   CLASSNAME_ARG_CONTROL,
-  fixedHeightWrapper,
   REACT_NODE_AS_STRING,
   STRING_CONTROL,
   STYLE_ARG_CONTROL,
+  fixedHeightWrapper,
 } from '../../utils';
-import Alert from '@synerise/ds-alert';
-import Switch from '@synerise/ds-switch';
-import Button from '@synerise/ds-button';
-import Icon, { Add3M } from '@synerise/ds-icon';
 import { AVAILABLE_SYNTAXES, SAMPLE_DATA } from './CodeArea.data';
 
 type Story = StoryObj<CodeAreaProps>;
@@ -28,7 +31,7 @@ export default {
     layout: 'centered',
   },
   decorators: [fixedHeightWrapper],
-  render: args => {
+  render: (args) => {
     const [content, setContent] = useState(args.value);
     const [syntax, setSyntax] = useState(args.currentSyntax);
     const handleChange: CodeAreaProps['onChange'] = (updatedContent, event) => {
@@ -61,6 +64,7 @@ export default {
     width: STRING_CONTROL,
     fullscreenLabel: REACT_NODE_AS_STRING,
     description: REACT_NODE_AS_STRING,
+    placeholder: REACT_NODE_AS_STRING,
     tooltip: REACT_NODE_AS_STRING,
     readOnly: BOOLEAN_CONTROL,
   },
@@ -68,6 +72,7 @@ export default {
     value: '',
     allowFullscreen: true,
     defaultValue: '// Enter code',
+    placeholder: 'Placeholder content',
     label: 'Label',
     description: 'Description',
     tooltip: 'Tooltip content',
@@ -88,8 +93,8 @@ export const Default: Story = {};
 export const Populated: Story = {
   args: {
     currentSyntax: 'json',
-    value: SAMPLE_DATA
-  }
+    value: SAMPLE_DATA,
+  },
 };
 
 export const WithSingleSyntaxOption: Story = {
@@ -100,10 +105,14 @@ export const WithSingleSyntaxOption: Story = {
 
 export const WithCustomFooterContent: Story = {
   args: {
-    renderFooterContent: _props => (
+    renderFooterContent: (_props) => (
       <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
         <Switch label="Code Preview" defaultChecked />
-        <Button type="ghost-primary" mode="icon-label" icon={<Icon component={<Add3M />} />}>
+        <Button
+          type="ghost-primary"
+          mode="icon-label"
+          icon={<Icon component={<Add3M />} />}
+        >
           Insert
         </Button>
       </div>
@@ -151,6 +160,6 @@ export const WithErrorText: Story = {
     ...WithCustomFooterContent.args,
     ...WithCounter.args,
     ...WithSyntaxValidation.args,
-    errorText: 'An error has occurred'
+    errorText: 'An error has occurred',
   },
 };
