@@ -9,12 +9,18 @@ variables:
   APP_NAME_OVERRIDE: ds-docs
   NPM_REGISTRY: https://nexus.snrinternal.com/repository/npm-release/
 
-cache:
-    key:
-      files:
+default: 
+  cache:
+    - key:
+        files:
         - yarn.lock
-    paths:
-      - node_modules
+      paths:
+        - node_modules
+      policy: pull
+    - key: $CI_COMMIT_REF_SLUG
+      paths:
+        - .nx
+      policy: pull-push
 
 stages:
   - install
@@ -55,7 +61,7 @@ install:
         - yarn.lock
     paths:
       - node_modules
-    policy: pull-push
+    policy: pull
   artifacts:
     untracked: true
 
@@ -67,12 +73,16 @@ build_packages:
     KUBERNETES_MEMORY_REQUEST: 16Gi
     KUBERNETES_MEMORY_LIMIT: 22Gi
   cache:
-    key:
-      files:
+    - key:
+        files:
         - yarn.lock
-    paths:
-      - node_modules
-    policy: pull
+      paths:
+        - node_modules
+      policy: pull
+    - key: $CI_COMMIT_REF_SLUG
+      paths:
+        - .nx
+      policy: pull-push
   rules:
     - if: $CI_PIPELINE_SOURCE == "merge_request_event"
     - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
@@ -80,6 +90,8 @@ build_packages:
     - yarn build
   artifacts:
     untracked: true
+    expire_in: 1h
+    when: on_success
 
 circular_dependencies:
   stage: test
@@ -89,12 +101,16 @@ circular_dependencies:
     KUBERNETES_MEMORY_REQUEST: 16Gi
     KUBERNETES_MEMORY_LIMIT: 22Gi
   cache:
-    key:
-      files:
+    - key:
+        files:
         - yarn.lock
-    paths:
-      - node_modules
-    policy: pull
+      paths:
+        - node_modules
+      policy: pull
+    - key: $CI_COMMIT_REF_SLUG
+      paths:
+        - .nx
+      policy: pull-push
   rules:
     - if: $CI_PIPELINE_SOURCE == "merge_request_event"
   script:
@@ -108,12 +124,16 @@ run_tests:
     KUBERNETES_MEMORY_REQUEST: 16Gi
     KUBERNETES_MEMORY_LIMIT: 22Gi
   cache:
-    key:
-      files:
+    - key:
+        files:
         - yarn.lock
-    paths:
-      - node_modules
-    policy: pull
+      paths:
+        - node_modules
+      policy: pull
+    - key: $CI_COMMIT_REF_SLUG
+      paths:
+        - .nx
+      policy: pull-push
   rules:
     - if: $CI_PIPELINE_SOURCE == "merge_request_event"
   script:
@@ -129,19 +149,19 @@ chromatic_publish:
   rules:
     - if: $CI_PIPELINE_SOURCE == "merge_request_event"
   script:
-    # - apt-get -qq update
-    # - apt-get install -y jq
+    - apt-get -qq update
+    - apt-get install -y jq
     - test ! -e packages/storybook/storybook-static && (cd packages/storybook; yarn build-storybook --quiet --stats-json)
-    - yarn npx:lerna run pack:ci --since origin/master
+    - npx lerna run pack:ci --since origin/master
     - (cd packages/storybook/storybook-static/static; ls > index.txt)
     - (cd packages/storybook; npx chromatic --diagnostics --project-token=$CHROMATIC_PROJECT_TOKEN_SB7 --storybook-build-dir ./storybook-static/ --exit-zero-on-changes)
-    # - CHROMATIC_SB_URL=$(jq -r '.storybookUrl' packages/storybook/chromatic-diagnostics.json)
-    # - echo "CHROMATIC_SB_URL=$CHROMATIC_SB_URL" >> deploy.env
+    - CHROMATIC_SB_URL=$(jq -r '.storybookUrl' packages/storybook/chromatic-diagnostics.json)
+    - echo "CHROMATIC_SB_URL=$CHROMATIC_SB_URL" >> deploy.env
     - yarn tgz-package-json --url $CHROMATIC_SB_URL --inputFilePath packages/storybook/storybook-static/static/index.txt --outputFilePath packages.json
   artifacts:
-    # reports:
-      # dotenv: deploy.env
-    # expose_as: "package tgz versions json"
+    reports:
+      dotenv: deploy.env
+    expose_as: "package tgz versions json"
     paths:
       - packages.json
       - packages/storybook/chromatic-diagnostics.json
@@ -179,6 +199,8 @@ build_storybook:
   artifacts:
     paths:
       - packages/docs-site
+    expire_in: 1h
+    when: on_success
 
 deploy_storybook:
   image: docker.nexus.snrinternal.com/docker:stable

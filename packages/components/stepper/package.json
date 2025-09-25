@@ -37,7 +37,6 @@
   "dependencies": {
     "@synerise/ds-icon": "^1.7.2",
     "@synerise/ds-tooltip": "^1.2.0",
-    "@synerise/ds-utils": "^1.4.2",
     "react-animate-height": "^2.0.23"
   },
   "peerDependencies": {

@@ -3,9 +3,13 @@ import React from 'react';
 import * as S from './CardGroup.styles';
 import { type CardGroupProps } from './CardGroup.types';
 
-const CardGroup = ({ className, children, columns }: CardGroupProps) => {
+const CardGroup = ({
+  children,
+  columns,
+  ...htmlAttributes
+}: CardGroupProps) => {
   return (
-    <S.Container className={className} items={columns}>
+    <S.Container items={columns} {...htmlAttributes}>
       {children}
     </S.Container>
   );

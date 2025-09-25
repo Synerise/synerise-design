@@ -27,7 +27,10 @@ export const EmojiListItem = memo(
                   itemsPerRow={itemsPerRow}
                   key={item.emoji}
                 >
-                  <S.EmojiButton data-testid="ds-emoji-item">
+                  <S.EmojiButton
+                    data-testid="ds-emoji-item"
+                    data-keywords={item.keywords?.join(',')}
+                  >
                     {item.emoji}
                   </S.EmojiButton>
                 </S.EmojiItem>

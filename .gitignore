@@ -58,3 +58,5 @@ styleguide/
 
 ca.crt
 bundle.crt
+
+.nx/

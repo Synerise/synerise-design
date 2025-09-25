@@ -39,7 +39,6 @@
     "@synerise/ds-icon": "^1.7.2",
     "@synerise/ds-scrollbar": "^1.1.8",
     "@synerise/ds-typography": "^1.0.21",
-    "@synerise/ds-utils": "^1.4.2",
     "classnames": "^2.5.1"
   },
   "peerDependencies": {

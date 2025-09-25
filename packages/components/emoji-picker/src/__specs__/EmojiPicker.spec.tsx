@@ -42,6 +42,7 @@ describe('EmojiPicker', () => {
 
   it('should filter by searchQuery', async () => {
     const SEARCH_PLACEHOLDER = 'SEARCH_PLACEHOLDER';
+    const SEARCH_QUERY = 'grin';
     renderWithProvider(
       <EmojiPicker texts={{ placeholder: SEARCH_PLACEHOLDER }}>
         {TRIGGER}
@@ -56,10 +57,10 @@ describe('EmojiPicker', () => {
       ).toBeInTheDocument(),
     );
 
-    userEvent.type(screen.getByPlaceholderText(SEARCH_PLACEHOLDER), 'grin');
+    userEvent.type(screen.getByPlaceholderText(SEARCH_PLACEHOLDER), SEARCH_QUERY);
 
-    await waitFor(() =>
-      expect(screen.getAllByTestId('ds-emoji-item')).toHaveLength(9),
-    );
-  });
+    screen.getAllByTestId('ds-emoji-item').forEach(element => {
+      expect(element.dataset.keywords?.split(',').some(keyword => keyword.match(SEARCH_QUERY))).toBeTruthy();
+    });
+  })
 });

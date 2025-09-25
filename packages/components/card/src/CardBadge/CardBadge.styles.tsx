@@ -20,10 +20,7 @@ const color: Record<BadgeStatus, string> = {
   checked: 'grey-400',
 };
 
-const boxShadow = (props: {
-  status: BadgeStatus;
-  theme: ThemePropsVars;
-}): string => {
+const boxShadow = (props: { status: BadgeStatus; theme: ThemePropsVars }) => {
   return props.status === 'default'
     ? `${props.theme.palette['grey-400']} 0px 0px 0px 1.5px inset`
     : 'none';
@@ -35,11 +32,10 @@ export const CardBadge = styled.div<{ status: BadgeStatus }>`
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: ${(props): string =>
-    props.theme.palette[background[props.status]]};
-  box-shadow: ${(props): string => boxShadow(props)};
+  background-color: ${(props) => props.theme.palette[background[props.status]]};
+  box-shadow: ${(props) => boxShadow(props)};
   border-radius: 50%;
   &&& svg {
-    color: ${(props): string => props.theme.palette[color[props.status]]};
+    color: ${(props) => props.theme.palette[color[props.status]]};
   }
 `;

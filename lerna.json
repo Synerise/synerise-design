@@ -1,14 +1,19 @@
 {
-  "packages": ["packages/components/*", "packages/storybook"],
+  "packages": [
+    "packages/components/*",
+    "packages/storybook"
+  ],
   "version": "independent",
-  "useWorkspaces": true,
   "npmClient": "yarn",
   "command": {
     "run": {
       "npmClient": "yarn"
     },
     "version": {
-      "allowBranch": ["master", "beta/*"],
+      "allowBranch": [
+        "master",
+        "beta/*"
+      ],
       "message": "build: publish"
     }
   }

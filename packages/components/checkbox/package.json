@@ -34,8 +34,7 @@
     "*.less"
   ],
   "dependencies": {
-    "@synerise/ds-typography": "^1.0.21",
-    "@synerise/ds-utils": "^1.4.2"
+    "@synerise/ds-typography": "^1.0.21"
   },
   "peerDependencies": {
     "@synerise/ds-core": "*",

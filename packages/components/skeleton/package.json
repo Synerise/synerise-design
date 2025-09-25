@@ -36,7 +36,6 @@
   "types": "dist/index.d.ts",
   "dependencies": {
     "@synerise/ds-checkbox": "^1.1.8",
-    "@synerise/ds-utils": "^1.4.2",
     "uuid": "^8.3.2"
   },
   "peerDependencies": {

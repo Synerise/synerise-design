@@ -214,19 +214,19 @@ export type DSTableProps<T extends any & GroupType<T>> = AntTableProps<T> & {
 
 export type ColumnSortOrder = 'descend' | 'ascend' | null;
 
-export interface ColumnsSortState {
+export type ColumnsSortState = {
   [key: string]: {
     sortOrder: ColumnSortOrder;
     multiple: number | false;
   };
-}
+};
 
-export interface SortStateAPI {
+export type SortStateAPI = {
   columnsSortState: ColumnsSortState;
   getColumnSortOrder: (key: string) => ColumnSortOrder;
   setColumnSortOrder: (key: string, sort: ColumnSortOrder) => void;
   updateColumnsData: (columns: ColumnsSortState) => void;
-}
+};
 
 export type SortButtonsRenderer<T> = (
   sortStateApi: SortStateAPI,
@@ -235,11 +235,11 @@ export type SortButtonsRenderer<T> = (
 
 export type SortRender<T> = 'default' | 'string' | SortButtonsRenderer<T>;
 
-export interface TitleWithSortOwnProps<T> {
+export type TitleWithSortOwnProps<T> = {
   column: DSColumnType<T>;
   sortRender: React.ReactElement;
   titleProps: ColumnTitleProps<T>;
-}
+};
 
 export type TitleWithSortProps<T> = TitleWithSortOwnProps<T> &
   React.ComponentPropsWithoutRef<'span'>;

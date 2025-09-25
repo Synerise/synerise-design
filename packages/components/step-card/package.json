@@ -39,8 +39,7 @@
     "@synerise/ds-cruds": "^1.0.20",
     "@synerise/ds-icon": "^1.7.2",
     "@synerise/ds-logic": "^1.1.11",
-    "@synerise/ds-typography": "^1.0.21",
-    "@synerise/ds-utils": "^1.4.2"
+    "@synerise/ds-typography": "^1.0.21"
   },
   "peerDependencies": {
     "@synerise/ds-core": "*",
