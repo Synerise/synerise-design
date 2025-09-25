@@ -12,7 +12,20 @@ export const AriaContainer = styled.div`
   flex: 0 0 0;
 `;
 
-export const EditorInnerWrapper = styled.div``;
+export const EditorPlaceholder = styled.div<{
+  shouldShowPlaceholder?: boolean;
+}>`
+  pointer-events: none;
+  position: absolute;
+  left: 62px;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  display: ${(props) => (props.shouldShowPlaceholder ? 'block' : 'none')};
+`;
+export const EditorInnerWrapper = styled.div`
+  position: relative;
+`;
 
 export const CodeAreaContent = styled.div`
   flex: 1 1 100%;

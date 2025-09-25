@@ -1,5 +1,11 @@
 import type { editor } from 'monaco-editor/esm/vs/editor/editor.api';
-import React, { useCallback, useEffect, useMemo, useRef } from 'react';
+import React, {
+  useCallback,
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+} from 'react';
 
 import Editor, {
   type EditorProps,
@@ -46,12 +52,16 @@ export const CodeAreaEditorRaw = ({
   readOnly,
   onSyntaxChange,
   loaderConfig,
+  placeholder = 'placeholder content',
+  value,
+  defaultValue,
   ...props
 }: CodeAreaEditorRawProps) => {
   const monacoRef = useRef<Monaco | null>(null);
   const loaderConfigSet = useRef(false);
   const editorRef = useRef<editor.IStandaloneCodeEditor | null>(null);
   const wrapperRef = useRef<HTMLDivElement>(null);
+  const [isTouched, setIsTouched] = useState(false);
 
   const { height, width } = useResizeObserver(wrapperRef);
   const monacoAriaContainerElement = useMemo(() => {
@@ -113,6 +123,7 @@ export const CodeAreaEditorRaw = ({
       if (editorRef.current) {
         editorRef.current.pushUndoStop();
       }
+      setIsTouched(true);
       onChange && onChange(newValue, event);
     },
     [onChange, counterLimit],
@@ -191,6 +202,10 @@ export const CodeAreaEditorRaw = ({
     isSyntaxSelectVisible || (allowFullscreen && !isFullscreen),
   );
 
+  const shouldShowPlaceholder = useMemo(() => {
+    return (isTouched && !value) || (!value && !defaultValue);
+  }, [defaultValue, isTouched, value]);
+
   return (
     <>
       <S.EditorWrapper hasError={Boolean(errorText)}>
@@ -198,6 +213,8 @@ export const CodeAreaEditorRaw = ({
           <Editor
             {...props}
             width={width}
+            value={value}
+            defaultValue={defaultValue}
             height={height}
             language={currentSyntax}
             theme={DS_MONACO_THEME_NAME}
@@ -207,6 +224,11 @@ export const CodeAreaEditorRaw = ({
             onMount={handleEditorDidMount}
             loading={<Loader />}
           />
+          {placeholder && (
+            <S.EditorPlaceholder shouldShowPlaceholder={shouldShowPlaceholder}>
+              {placeholder}
+            </S.EditorPlaceholder>
+          )}
         </S.EditorInnerWrapper>
         {isBottomBarShowing && (
           <BottomBar

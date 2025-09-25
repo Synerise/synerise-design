@@ -40,6 +40,7 @@ export type CodeAreaCommonProps<
   currentSyntax: SyntaxName;
   allowFullscreen?: boolean;
   isFullscreen: boolean;
+  placeholder?: ReactNode;
   toggleFullscreen: () => void;
   value?: string;
   defaultValue?: string;
