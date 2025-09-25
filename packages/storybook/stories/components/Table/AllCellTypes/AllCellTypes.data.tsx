@@ -29,6 +29,72 @@ import { chromaticCellRender } from '../Table.utils';
 
 export type RelationsType = (typeof RELATIONS)[number];
 
+export const TAGS = [
+  {
+    id: '0',
+    name: 'Tag Name 1',
+    color: theme.palette['grey-200'],
+    informationCardProps: {
+      title: 'Tag Name 1',
+      subtitle: 'de2ba6d0-8cb3-40f7-ad35-adc6b2406214',
+      descriptionConfig:
+        'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla et risus ut lacus pulvinar tristique ac quis mi. Nulla sem ex, finibus ac neque et, ultricies fermentum sapien.',
+    },
+  },
+  {
+    id: '1',
+    name: 'Tag Name 2',
+    color: theme.palette['grey-600'],
+    informationCardProps: {
+      title: 'Tag Name 2',
+      subtitle: 'de2ba6d0-8cb3-40f7-ad35-adc6b2406214',
+      descriptionConfig:
+        'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla et risus ut lacus pulvinar tristique ac quis mi. Nulla sem ex, finibus ac neque et, ultricies fermentum sapien.',
+    },
+  },
+  {
+    id: '2',
+    name: 'Tag Name 3',
+    color: theme.palette['mars-600'],
+    informationCardProps: {
+      title: 'Tag Name 3',
+      subtitle: 'de2ba6d0-8cb3-40f7-ad35-adc6b2406214',
+      descriptionConfig:
+        'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla et risus ut lacus pulvinar tristique ac quis mi. Nulla sem ex, finibus ac neque et, ultricies fermentum sapien.',
+    },
+  },
+  {
+    id: '3',
+    name: 'Tag Name 4',
+    color: theme.palette['blue-600'],
+  },
+  {
+    id: '4',
+    name: 'Tag Name 5',
+    color: theme.palette['fern-600'],
+  },
+  {
+    id: '5',
+    name: 'Tag Name 6',
+    color: theme.palette['yellow-600'],
+  },
+  {
+    id: '6',
+    name: 'Tag Name 7',
+    color: theme.palette['grey-200'],
+  },
+  {
+    id: '7',
+    name: 'Tag Name 8',
+    color: theme.palette['grey-200'],
+  },
+  {
+    id: '8',
+    name: 'Tag Name 9',
+    color: theme.palette['grey-200'],
+  },
+];
+
 export const RELATIONS = [
   {
     fieldName: 'Milk',
@@ -306,6 +372,17 @@ export const DATA_SOURCE_FULL = [
       label: 'status',
       shape: TagShape.STATUS_NEUTRAL,
     },
+    tags: [
+      {
+        ...TAGS[4],
+      },
+      {
+        ...TAGS[2],
+      },
+      {
+        ...TAGS[5],
+      },
+    ],
     enabled: false,
     checked: false,
     relations: RELATIONS,
@@ -336,6 +413,17 @@ export const DATA_SOURCE_FULL = [
       label: 'status',
       shape: TagShape.STATUS_NEUTRAL,
     },
+    tags: [
+      {
+        ...TAGS[1],
+      },
+      {
+        ...TAGS[3],
+      },
+      {
+        ...TAGS[4],
+      },
+    ],
     enabled: true,
     checked: true,
     relations: RELATIONS,
@@ -367,6 +455,14 @@ export const DATA_SOURCE_FULL = [
       label: 'status',
       shape: TagShape.STATUS_NEUTRAL,
     },
+    tags: [
+      {
+        ...TAGS[4],
+      },
+      {
+        ...TAGS[1],
+      },
+    ],
     enabled: true,
     checked: false,
     relations: RELATIONS,
@@ -397,6 +493,11 @@ export const DATA_SOURCE_FULL = [
       label: 'status',
       shape: TagShape.STATUS_NEUTRAL,
     },
+    tags: [
+      {
+        ...TAGS[7],
+      },
+    ],
     enabled: false,
     checked: true,
     relations: RELATIONS,
@@ -458,6 +559,24 @@ export const DATA_SOURCE_FULL = [
       label: 'status',
       shape: TagShape.STATUS_NEUTRAL,
     },
+
+    tags: [
+      {
+        ...TAGS[4],
+      },
+      {
+        ...TAGS[2],
+      },
+      {
+        ...TAGS[3],
+      },
+      {
+        ...TAGS[8],
+      },
+      {
+        ...TAGS[1],
+      },
+    ],
     enabled: true,
     checked: true,
     relations: RELATIONS,
@@ -489,6 +608,18 @@ export const DATA_SOURCE_FULL = [
       label: 'status',
       shape: TagShape.STATUS_NEUTRAL,
     },
+
+    tags: [
+      {
+        ...TAGS[3],
+      },
+      {
+        ...TAGS[8],
+      },
+      {
+        ...TAGS[1],
+      },
+    ],
     enabled: true,
     editable: 'Leslie Lemke V',
     checked: false,
@@ -520,6 +651,11 @@ export const DATA_SOURCE_FULL = [
       label: 'status',
       shape: TagShape.STATUS_NEUTRAL,
     },
+    tags: [
+      {
+        ...TAGS[1],
+      },
+    ],
     enabled: false,
     checked: true,
     relations: RELATIONS,
@@ -550,6 +686,7 @@ export const DATA_SOURCE_FULL = [
       label: 'status',
       shape: TagShape.STATUS_NEUTRAL,
     },
+    tags: [],
     enabled: true,
     editable: 'Dr. Shaun Sauer',
     checked: false,
@@ -1989,6 +2126,31 @@ export const COLUMNS_WITH_AVATARS_LINK: ColumnType[] = [
   },
 ];
 
+export const COLUMNS_WITH_TAGS: ColumnType[] = [
+  {
+    title: 'Tags list',
+    dataIndex: 'tags',
+    key: 'tags',
+    width: 254,
+    textWrap: 'word-break',
+    ellipsis: true,
+    icon: { component: <VarTypeListM /> },
+    iconTooltip: { component: <InfoFillS /> },
+    render: (tags) => {
+      return (
+        <TableCell.TagsGroupCell
+          tagsProps={{
+            addable: true,
+            removable: true,
+            selected: tags || [],
+            data: TAGS,
+          }}
+        />
+      );
+    },
+  },
+];
+
 export const COLUMNS_WITH_TRIGGERS: ColumnType[] = [
   {
     title: 'Select',
@@ -2407,5 +2569,6 @@ export const COLUMNS_ALL = [
   ...COLUMNS_WITH_AVATARS,
   ...COLUMNS_WITH_STATUSES,
   ...COLUMNS_WITH_TRIGGERS,
+  ...COLUMNS_WITH_TAGS,
   ...COLUMNS_WITH_PROGRESS_BAR,
 ];

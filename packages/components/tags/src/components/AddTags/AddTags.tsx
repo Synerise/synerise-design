@@ -1,29 +1,30 @@
-import React, { type ReactNode, useState } from 'react';
+import React, { useState } from 'react';
 
-import Button from '@synerise/ds-button';
 import { useTheme } from '@synerise/ds-core';
-import { type DropdownProps } from '@synerise/ds-dropdown';
 import Icon, { Add3M, SearchM } from '@synerise/ds-icon';
 import Result from '@synerise/ds-result';
 import SearchBar from '@synerise/ds-search-bar';
-import { type TagProps, type TagShape, type TagTexts } from '@synerise/ds-tag';
+import { type TagProps, type TagTexts } from '@synerise/ds-tag';
 
-import { type ActionTaken } from '../../Tags.types';
+import { type TagsProps } from '../../Tags.types';
 import { TagsDropdown } from '../TagsDropdown/TagsDropdown';
 import * as S from './AddTags.styles';
 
-type AddTagsProps = {
-  creatable?: boolean;
-  data?: TagProps[];
-  selected: TagProps[];
-  overlayPlacement: DropdownProps['placement'];
-  overlayStyle: DropdownProps['overlayStyle'];
-  texts?: TagTexts;
-  maxHeight?: number;
-  dropdownFooter?: ReactNode;
-  tagShape?: TagShape;
-  onSelectedChange?: (tags: Array<TagProps>, action: ActionTaken) => void;
-  onCreate?: (name: string) => void;
+type AddTagsProps = Pick<
+  TagsProps,
+  | 'creatable'
+  | 'data'
+  | 'selected'
+  | 'overlayPlacement'
+  | 'overlayStyle'
+  | 'dropdownFooter'
+  | 'maxHeight'
+  | 'tagShape'
+  | 'onSelectedChange'
+  | 'onCreate'
+  | 'addButtonType'
+> & {
+  texts: TagTexts;
 };
 
 export const AddTags = ({
@@ -38,6 +39,7 @@ export const AddTags = ({
   dropdownFooter,
   onSelectedChange,
   onCreate,
+  addButtonType,
 }: AddTagsProps) => {
   const theme = useTheme();
 
@@ -119,7 +121,7 @@ export const AddTags = ({
                 size={24}
                 color={theme.palette['grey-500']}
               />
-              <span>{texts && texts.createTagButtonLabel}</span>
+              <span>{texts.createTagButtonLabel}</span>
               <strong>{searchQuery}</strong>
             </S.CreateTagDropdownButton>
 
@@ -137,26 +139,29 @@ export const AddTags = ({
         <SearchBar
           value={searchQuery}
           onSearchChange={setSearchQuery}
-          placeholder={(texts && texts.searchPlaceholder) || ''}
+          placeholder={texts.searchPlaceholder || ''}
           iconLeft={
             <Icon component={<SearchM />} color={theme.palette['grey-600']} />
           }
           onClearInput={() => setSearchQuery('')}
-          clearTooltip={texts && texts.clearTooltip}
+          clearTooltip={texts.clearTooltip}
         />
       }
     >
-      <Button
+      <S.AddTagButton
         type="ghost"
-        mode={texts?.addButtonLabel ? 'icon-label' : 'single-icon'}
+        mode={
+          addButtonType ||
+          (texts?.addButtonLabel ? 'icon-label' : 'single-icon')
+        }
       >
         <Icon
           component={<Add3M />}
           size={24}
           color={theme.palette['grey-500']}
         />
-        {texts && texts.addButtonLabel}
-      </Button>
+        {addButtonType !== 'single-icon' && texts.addButtonLabel}
+      </S.AddTagButton>
     </TagsDropdown>
   );
 };

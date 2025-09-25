@@ -7,6 +7,7 @@ import Tooltip from '@synerise/ds-tooltip';
 import * as S from './Tag.styles';
 import { getColorText } from './Tag.styles';
 import { type TagProps, TagShape } from './Tag.types';
+import { useDefaultTexts } from './hooks/useDefaultTexts';
 
 const Tag = ({
   id,
@@ -29,6 +30,8 @@ const Tag = ({
   ...htmlAttributes
 }: TagProps) => {
   const theme = useTheme();
+  const allTexts = useDefaultTexts(texts);
+
   const isDefaultType =
     shape && [TagShape.DEFAULT_ROUND, TagShape.DEFAULT_SQUARE].includes(shape);
   const isDefaultRound = shape === TagShape.DEFAULT_ROUND;
@@ -103,10 +106,7 @@ const Tag = ({
         <S.TagName>{name}</S.TagName>
         {!!suffixel && renderSuffixel()}
         {isRemovable && (
-          <Tooltip
-            title={texts?.deleteTooltip || 'Delete'}
-            open={isIconHovered}
-          >
+          <Tooltip title={allTexts.deleteTooltip} open={isIconHovered}>
             <S.RemoveButton
               onClick={onRemoveCall}
               onMouseOver={handleMouseOver}

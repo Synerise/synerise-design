@@ -1,11 +1,12 @@
 import React from 'react';
 import { fn } from 'storybook/test';
-import { Meta, StoryObj } from '@storybook/react-webpack5';
 
-import Table, { DSTableProps } from '@synerise/ds-table';
+import { Meta, StoryObj } from '@storybook/react-webpack5';
 import Button from '@synerise/ds-button';
 import Icon, { AddM } from '@synerise/ds-icon';
+import Table, { DSTableProps } from '@synerise/ds-table';
 
+import { TableMeta, renderWithIconInHeaders } from '../Table.utils';
 import {
   COLUMNS_ALL,
   COLUMNS_WITH_AVATARS,
@@ -14,11 +15,11 @@ import {
   COLUMNS_WITH_LABELS,
   COLUMNS_WITH_PROGRESS_BAR,
   COLUMNS_WITH_STATUSES,
+  COLUMNS_WITH_TAGS,
   COLUMNS_WITH_TRIGGERS,
   DATA_SOURCE_FULL,
   RowTypeFull,
 } from './AllCellTypes.data';
-import { renderWithIconInHeaders, TableMeta } from '../Table.utils';
 
 type Story = StoryObj<StoryType>;
 type StoryType = DSTableProps<RowTypeFull> & {
@@ -33,11 +34,14 @@ export default {
     ...TableMeta.parameters,
     controls: {
       exclude: ['randomiseSelectionColumn'],
-    }
+    },
   },
   title: 'Components/Table/AllCellTypes',
   render: ({ showIconsInHeader, showHeaderButton, columnsData, ...args }) => {
-    const columns = renderWithIconInHeaders<RowTypeFull>(columnsData, showIconsInHeader);
+    const columns = renderWithIconInHeaders<RowTypeFull>(
+      columnsData,
+      showIconsInHeader,
+    );
     const headerButton = showHeaderButton && (
       <Button type="ghost" mode="icon-label" onClick={fn()}>
         <Icon component={<AddM />} />
@@ -95,5 +99,11 @@ export const WithStatuses: Story = {
 export const WithTriggers: Story = {
   args: {
     columnsData: COLUMNS_WITH_TRIGGERS,
+  },
+};
+
+export const WithTags: Story = {
+  args: {
+    columnsData: COLUMNS_WITH_TAGS,
   },
 };
