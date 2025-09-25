@@ -13,20 +13,20 @@ export const DangerItem = styled(({ children, disabled, ...rest }) => (
 ))`
   &&& {
     ${Inner} {
-      color: ${(props): string => props.theme.palette['red-600']};
+      color: ${(props) => props.theme.palette['red-600']};
       ${Wrapper} {
-        color: ${(props): string => props.theme.palette['red-600']};
+        color: ${(props) => props.theme.palette['red-600']};
       }
       ${PrefixWrapper} {
         .ds-icon > svg {
-          ${(props): string =>
+          ${(props) =>
             `
             fill: ${props.theme.palette['red-600']};
             `}
         }
       }
       &:hover {
-        ${(props): string | false =>
+        ${(props) =>
           !props.disabled &&
           `
             ${PrefixWrapper} > ${IconContainer} > svg {
@@ -35,18 +35,18 @@ export const DangerItem = styled(({ children, disabled, ...rest }) => (
             background: ${props.theme.palette['red-050']};
         `}
       }
-      &:focus {
-        ${(props): string | false =>
+      &:focus-visible {
+        ${(props) =>
           !props.disabled &&
           `
             ${PrefixWrapper} > ${IconContainer} > svg {
-            fill: ${props.theme.palette['red-600']} !important;
+              fill: ${props.theme.palette['red-600']} !important;
             }
             background: ${props.theme.palette['red-050']} !important;
         `}
       }
-      &:focus:active {
-        ${(props): string | false =>
+      &:focus-visible:active {
+        ${(props) =>
           !props.disabled &&
           `
             background: ${props.theme.palette['red-100']} !important;
