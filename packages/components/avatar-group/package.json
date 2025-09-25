@@ -42,8 +42,7 @@
     "@synerise/ds-icon": "^1.7.2",
     "@synerise/ds-modal": "^1.2.11",
     "@synerise/ds-table": "^1.5.13",
-    "@synerise/ds-tooltip": "^1.2.0",
-    "@synerise/ds-utils": "^1.4.2"
+    "@synerise/ds-tooltip": "^1.2.0"
   },
   "peerDependencies": {
     "@synerise/ds-core": "*",

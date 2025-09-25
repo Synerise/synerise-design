@@ -37,7 +37,6 @@
   "dependencies": {
     "@synerise/ds-form-field": "^1.1.16",
     "@synerise/ds-typography": "^1.0.21",
-    "@synerise/ds-utils": "^1.4.2",
     "classnames": "^2.5.1"
   },
   "peerDependencies": {

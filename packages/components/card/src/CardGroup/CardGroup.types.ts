@@ -1,7 +1,11 @@
 import { type ReactNode } from 'react';
 
-export interface CardGroupProps {
-  className?: string;
-  children: ReactNode;
-  columns: number;
-}
+import { type WithHTMLAttributes } from '@synerise/ds-utils';
+
+export type CardGroupProps = WithHTMLAttributes<
+  HTMLDivElement,
+  {
+    children: ReactNode;
+    columns: number;
+  }
+>;

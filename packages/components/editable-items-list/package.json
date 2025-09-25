@@ -37,8 +37,7 @@
   "dependencies": {
     "@synerise/ds-button": "^1.4.11",
     "@synerise/ds-cruds": "^1.0.20",
-    "@synerise/ds-icon": "^1.7.2",
-    "@synerise/ds-utils": "^1.4.2"
+    "@synerise/ds-icon": "^1.7.2"
   },
   "peerDependencies": {
     "@synerise/ds-core": "*",

@@ -39,8 +39,7 @@
     "@synerise/ds-icon": "^1.7.2",
     "@synerise/ds-inline-edit": "^1.0.28",
     "@synerise/ds-tooltip": "^1.2.0",
-    "@synerise/ds-typography": "^1.0.21",
-    "@synerise/ds-utils": "^1.4.2"
+    "@synerise/ds-typography": "^1.0.21"
   },
   "peerDependencies": {
     "@synerise/ds-core": "*",

@@ -41,8 +41,7 @@
     "@synerise/ds-divider": "^1.0.21",
     "@synerise/ds-icon": "^1.7.2",
     "@synerise/ds-input": "^1.3.11",
-    "@synerise/ds-typography": "^1.0.21",
-    "@synerise/ds-utils": "^1.4.2"
+    "@synerise/ds-typography": "^1.0.21"
   },
   "peerDependencies": {
     "@synerise/ds-core": "*",

@@ -12,7 +12,6 @@ const Card = ({
   children,
   raised,
   disabled,
-  style,
   className,
   lively,
   withHeader,
@@ -33,7 +32,7 @@ const Card = ({
   staticContent,
   titleTag,
   showSideChildrenWhenHeaderHidden,
-  ...props
+  ...htmlAttributes
 }: CardProps) => {
   const fatTitle = !description || (description && compactHeader);
   const [headerActionsVisible, setHeaderActionsVisible] = useState(false);
@@ -62,13 +61,12 @@ const Card = ({
     <S.Container
       raised={raised}
       disabled={disabled}
-      style={style}
       className={`ds-card ${className || ''}`}
       lively={lively}
       data-testid="card-wrapper"
       background={background}
       /** Necessary for passing down data-* attributes */
-      {...props}
+      {...htmlAttributes}
     >
       {withHeader && (
         <S.Header

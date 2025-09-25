@@ -1,7 +1,7 @@
 import React, { type MouseEvent, cloneElement } from 'react';
 
 import Icon, { ResizeArrowM } from '@synerise/ds-icon';
-import Tooltip from '@synerise/ds-tooltip/dist/Tooltip';
+import Tooltip from '@synerise/ds-tooltip';
 
 import * as S from '../Input.styles';
 import { type BaseProps } from '../Input.types';

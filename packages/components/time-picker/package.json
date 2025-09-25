@@ -41,7 +41,6 @@
     "@synerise/ds-scrollbar": "^1.1.8",
     "@synerise/ds-tooltip": "^1.2.0",
     "@synerise/ds-typography": "^1.0.21",
-    "@synerise/ds-utils": "^1.4.2",
     "dayjs": "^1.8.19",
     "debounce": "^1.2.0",
     "lodash": "^4.17.21"

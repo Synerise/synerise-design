@@ -1,0 +1,64 @@
+{
+    "targetDefaults": {
+        "build": {
+            "cache": true,
+            "dependsOn": [
+                "^build"
+            ],
+            "outputs": [
+                "{projectRoot}/dist",
+                "{projectRoot}/src/icons"
+            ],
+            "inputs": [
+                "production",
+                "^production",
+                "{workspaceRoot}/scripts/style/less.js",
+                "{workspaceRoot}/config/typescript/**"
+            ]
+        },
+        "test": {
+            "cache": true,
+            "dependsOn": [],
+            "inputs": [
+                "default",
+                "{workspaceRoot}/config/jest/**"
+            ]
+        },
+        "build:svgr": {
+            "cache": true,
+            "dependsOn": [],
+            "outputs": [
+                "{projectRoot}/src/icons"
+            ],
+            "inputs": [
+                "default",
+                "{projectRoot}/build/svgr.js",
+                "{projectRoot}/build/template.js"
+            ]
+        },
+        "lint": {
+            "cache": true,
+            "dependsOn": [],
+            "inputs": [
+                "default",
+                "{workspaceRoot}/eslint.config.mjs"
+            ]
+        }
+    },
+    "namedInputs": {
+        "default": [
+            "{projectRoot}/**/*",
+            "sharedGlobals"
+        ], 
+        "production": [
+            "default",
+            "!{projectRoot}/jest.config.ts"
+        ], 
+        "sharedGlobals": [
+            "{workspaceRoot}/package.json",
+            "{workspaceRoot}/yarn.lock",
+            "{workspaceRoot}/babel.config.js",
+            "{workspaceRoot}/.gitignore"
+        ] 
+    }
+}

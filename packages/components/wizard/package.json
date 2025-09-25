@@ -40,7 +40,6 @@
     "@synerise/ds-layout": "^1.0.19",
     "@synerise/ds-modal": "^1.2.11",
     "@synerise/ds-page-header": "^1.0.28",
-    "@synerise/ds-utils": "^1.4.2",
     "classnames": "^2.5.1"
   },
   "peerDependencies": {

@@ -1,8 +1,5 @@
 import type { MouseEventHandler, ReactNode } from 'react';
-import styled, {
-  type FlattenSimpleInterpolation,
-  css,
-} from 'styled-components';
+import styled, { css } from 'styled-components';
 
 import { type ThemePropsVars } from '@synerise/ds-core';
 import { Title as DSTitle } from '@synerise/ds-typography';
@@ -51,8 +48,7 @@ export const IconContainer = styled.div<{
 }>`
   display: flex;
   width: 24px;
-  height: ${(props): string =>
-    props.description && !props.compact ? '24px' : '32px'};
+  height: ${(props) => (props.description && !props.compact ? '24px' : '32px')};
   align-items: center;
 `;
 
@@ -62,14 +58,12 @@ export const Container = styled.div<{
   lively?: boolean;
   background: Backgrounds;
 }>`
-  background-color: ${(props): string =>
+  background-color: ${(props) =>
     props.background
       ? backgroundColor(props)
       : props.theme.palette.transparent};
-  box-shadow: ${(props): string =>
-    props.background ? boxShadow(props) : 'none'};
-  border-radius: ${(props): string =>
-    props.theme.variable('@border-radius-base')};
+  box-shadow: ${(props) => (props.background ? boxShadow(props) : 'none')};
+  border-radius: ${(props) => props.theme.variable('@border-radius-base')};
   display: flex;
   flex-flow: column;
   width: 100%;
@@ -87,13 +81,13 @@ export const Container = styled.div<{
     }
   }
 
-  ${(props): FlattenSimpleInterpolation | false =>
+  ${(props) =>
     !!props.raised &&
     css`
       box-shadow: ${props.theme.variable('@box-shadow-active')};
     `}
 
-  ${(props): FlattenSimpleInterpolation | false =>
+  ${(props) =>
     !!props.disabled &&
     css`
       pointer-events: none;
@@ -106,7 +100,7 @@ export const Container = styled.div<{
       }
     `};
 
-  ${(props): FlattenSimpleInterpolation | false =>
+  ${(props) =>
     !!props.lively &&
     css`
       &:hover {
@@ -133,14 +127,13 @@ export const Header = styled.div<{
     right: 24px;
     height: 1px;
     content: '';
-    display: ${(props): string =>
-      props.headerBorderBottom ? 'block' : 'none'};
-    background-color: ${(props): string => props.theme.palette['grey-100']};
+    display: ${(props) => (props.headerBorderBottom ? 'block' : 'none')};
+    background-color: ${(props) => props.theme.palette['grey-100']};
   }
   &:hover {
-    ${(props): string | false => !!props.onClick && `cursor:pointer;`}
+    ${(props) => !!props.onClick && `cursor:pointer;`}
   }
-  ${(props): FlattenSimpleInterpolation | false =>
+  ${(props) =>
     !!props.defaultHeaderBackgroundColor &&
     css`
       background-color: ${props.theme.palette.white};
@@ -151,7 +144,7 @@ export const Title = styled(DSTitle)<{ fat: boolean }>`
   && {
     display: flex;
     align-items: center;
-    min-height: ${(props): string => (props.fat ? '32px' : '20px')};
+    min-height: ${(props) => (props.fat ? '32px' : '20px')};
     margin: 0;
     line-height: 1.4;
   }
@@ -165,7 +158,7 @@ export const TitleWrapper = styled.div<{
   flex-direction: row;
   gap: 4px;
   align-items: center;
-  margin-bottom: ${(props): string =>
+  margin-bottom: ${(props) =>
     props.description && !props.compact ? '6px' : '0'};
 `;
 
@@ -173,7 +166,7 @@ export const TitleTag = styled.div``;
 
 export const Description = styled.div`
   && {
-    color: ${(props): string => props.theme.palette['grey-600']};
+    color: ${(props) => props.theme.palette['grey-600']};
     font-size: 13px;
     line-height: 1.38;
     margin: 0;
@@ -187,18 +180,18 @@ export const HeaderContent = styled.div<{
   max-width: 100%;
   flex: 1;
   display: flex;
-  flex-direction: ${(props): string => (props.compact ? 'row' : 'column')};
-  align-items: ${(props): string => (props.compact ? 'center' : 'flex-start')};
+  flex-direction: ${(props) => (props.compact ? 'row' : 'column')};
+  align-items: ${(props) => (props.compact ? 'center' : 'flex-start')};
 
   margin: 0 0 0
-    ${(props): string => {
+    ${(props) => {
       if (props.hasIconOrAvatar) {
         return '24px';
       }
       return '0';
     }};
 
-  ${(props): FlattenSimpleInterpolation | false =>
+  ${(props) =>
     !!props.compact &&
     css`
       ${Title} {
@@ -223,8 +216,8 @@ export const PaddingWrapper = styled.div<{
   withHeader?: boolean;
   withoutPadding?: boolean;
 }>`
-  padding: ${(props): string => (props.withoutPadding ? '0' : `24px`)};
-  ${(props): string | false => !!props.withHeader && `padding-top: 0;`}
+  padding: ${(props) => (props.withoutPadding ? '0' : `24px`)};
+  ${(props) => !!props.withHeader && `padding-top: 0;`}
   ${CardSummaryWrapper} {
     margin: 0 48px;
   }
@@ -234,6 +227,6 @@ export const FooterContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: flex-end;
-  background: ${(props): string => props.theme.palette.white};
-  border-top: solid 1px ${(props): string => props.theme.palette['grey-100']};
+  background: ${(props) => props.theme.palette.white};
+  border-top: solid 1px ${(props) => props.theme.palette['grey-100']};
 `;
