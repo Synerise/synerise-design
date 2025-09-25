@@ -31,89 +31,45 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 **Note:** Version bump only for package @synerise/ds-form
 
-
-
-
-
 ## [1.0.23](https://github.com/Synerise/synerise-design/compare/@synerise/ds-form@1.0.22...@synerise/ds-form@1.0.23) (2025-08-20)
 
 **Note:** Version bump only for package @synerise/ds-form
-
-
-
-
 
 ## [1.0.22](https://github.com/Synerise/synerise-design/compare/@synerise/ds-form@1.0.21...@synerise/ds-form@1.0.22) (2025-08-14)
 
 **Note:** Version bump only for package @synerise/ds-form
 
-
-
-
-
 ## [1.0.21](https://github.com/Synerise/synerise-design/compare/@synerise/ds-form@1.0.20...@synerise/ds-form@1.0.21) (2025-07-24)
 
 **Note:** Version bump only for package @synerise/ds-form
-
-
-
-
 
 ## [1.0.20](https://github.com/Synerise/synerise-design/compare/@synerise/ds-form@1.0.19...@synerise/ds-form@1.0.20) (2025-07-17)
 
 **Note:** Version bump only for package @synerise/ds-form
 
-
-
-
-
 ## [1.0.19](https://github.com/Synerise/synerise-design/compare/@synerise/ds-form@1.0.18...@synerise/ds-form@1.0.19) (2025-07-15)
 
 **Note:** Version bump only for package @synerise/ds-form
-
-
-
-
 
 ## [1.0.18](https://github.com/Synerise/synerise-design/compare/@synerise/ds-form@1.0.17...@synerise/ds-form@1.0.18) (2025-07-08)
 
 **Note:** Version bump only for package @synerise/ds-form
 
-
-
-
-
 ## [1.0.17](https://github.com/Synerise/synerise-design/compare/@synerise/ds-form@1.0.16...@synerise/ds-form@1.0.17) (2025-07-04)
 
 **Note:** Version bump only for package @synerise/ds-form
-
-
-
-
 
 ## [1.0.16](https://github.com/Synerise/synerise-design/compare/@synerise/ds-form@1.0.15...@synerise/ds-form@1.0.16) (2025-07-01)
 
 **Note:** Version bump only for package @synerise/ds-form
 
-
-
-
-
 ## [1.0.15](https://github.com/Synerise/synerise-design/compare/@synerise/ds-form@1.0.14...@synerise/ds-form@1.0.15) (2025-06-26)
 
 **Note:** Version bump only for package @synerise/ds-form
 
-
-
-
-
 ## [1.0.14](https://github.com/Synerise/synerise-design/compare/@synerise/ds-form@1.0.13...@synerise/ds-form@1.0.14) (2025-06-24)
 
 **Note:** Version bump only for package @synerise/ds-form
-
-
-
-
 
 ## [1.0.13](https://github.com/Synerise/synerise-design/compare/@synerise/ds-form@1.0.12...@synerise/ds-form@1.0.13) (2025-06-12)
 

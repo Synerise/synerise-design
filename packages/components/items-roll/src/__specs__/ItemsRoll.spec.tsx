@@ -50,7 +50,7 @@ describe('ItemsRoll', () => {
       DEFAULT_MAX_TO_SHOW_ITEMS,
     );
     expect(await screen.findByText(`Clear all`)).toBeInTheDocument();
-    expect(container.querySelectorAll('.ant-divider').length).toBe(2);
+    expect(container.querySelectorAll('.ds-divider-line').length).toBe(2);
     expect(searchInput.getAttribute('placeholder')).toBe('Search...');
     expect(searchInput).toHaveValue('');
 

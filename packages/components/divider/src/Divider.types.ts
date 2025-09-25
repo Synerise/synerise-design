@@ -1,10 +1,18 @@
-import { type DividerProps as AntDividerProps } from 'antd/lib/divider';
 import { type ReactNode } from 'react';
 
-export type DividerProps = AntDividerProps & {
-  marginTop?: number;
-  marginBottom?: number;
-  labelAbove?: ReactNode;
-  labelBelow?: ReactNode;
-  hiddenLine?: boolean;
-};
+import { type WithHTMLAttributes } from '@synerise/ds-utils';
+
+export type DividerType = 'vertical' | 'horizontal';
+
+export type DividerProps = WithHTMLAttributes<
+  HTMLDivElement,
+  {
+    marginTop?: number;
+    marginBottom?: number;
+    labelAbove?: ReactNode;
+    labelBelow?: ReactNode;
+    hiddenLine?: boolean;
+    type?: DividerType;
+    dashed?: boolean;
+  }
+>;

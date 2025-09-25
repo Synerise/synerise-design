@@ -1,31 +1,29 @@
 import React from 'react';
-import { Meta, StoryObj } from '@storybook/react-webpack5';
 
+import { Meta, StoryObj } from '@storybook/react-webpack5';
 import Divider from '@synerise/ds-divider';
-import { STYLE_ARG_CONTROL, CLASSNAME_ARG_CONTROL, PREFIXCLS_ARG_CONTROL } from '../../utils';
+
+import {
+  BOOLEAN_CONTROL,
+  CLASSNAME_ARG_CONTROL,
+  NUMBER_CONTROL,
+  STYLE_ARG_CONTROL,
+} from '../../utils';
 
 export default {
   title: 'Components/Divider',
   component: Divider,
   tags: ['autodocs'],
-  parameters: {
-    controls: {
-      exclude: ['plain', 'orientation'],
-    }
-  },
   argTypes: {
     style: STYLE_ARG_CONTROL,
     className: CLASSNAME_ARG_CONTROL,
-    prefixCls: PREFIXCLS_ARG_CONTROL,
+    hiddenLine: BOOLEAN_CONTROL,
+    marginTop: NUMBER_CONTROL,
+    marginBottom: NUMBER_CONTROL,
     dashed: {
       control: 'boolean',
       defaultValue: false,
       description: 'If true, the divider will be dashed.',
-    },
-    orientation: {
-      control: { type: 'select', options: ['left', 'right', 'center'] },
-      defaultValue: 'center',
-      description: 'The orientation of the divider text.',
     },
     labelAbove: {
       control: 'text',
@@ -36,9 +34,9 @@ export default {
       description: 'The text label below the divider.',
     },
     type: {
-      control: { type: 'select', options: ['undefined', 'horizontal', 'vertical'] },
-      description: 'The type of the divider'
-    }
+      control: { type: 'select', options: ['horizontal', 'vertical'] },
+      description: 'The type of the divider',
+    },
   },
   decorators: [
     (Story) => (
@@ -48,7 +46,6 @@ export default {
     ),
   ],
   render: (args) => <Divider {...args} />,
-  
 } as Meta<typeof Divider>;
 
 export const Default: StoryObj<typeof Divider> = {
@@ -57,7 +54,7 @@ export const Default: StoryObj<typeof Divider> = {
     marginBottom: 24,
     dashed: false,
     labelAbove: ' ',
-    labelBelow: ' '
+    labelBelow: ' ',
   },
 };
 
