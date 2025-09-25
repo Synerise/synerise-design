@@ -1,11 +1,8 @@
 import React from 'react';
 
-import '@synerise/ds-core/dist/js/style';
-
 import * as S from './Divider.styles';
 import { type DividerProps } from './Divider.types';
 import { Line } from './components/Line';
-import './style/index.less';
 
 const Divider = (props: DividerProps) => {
   const { labelAbove, labelBelow, hiddenLine = false } = props;

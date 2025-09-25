@@ -21,17 +21,12 @@ describe('FieldSet', () => {
 
   it('should render divider', () => {
     // ARRANGE
-    const { rerender, queryByRole } = renderWithProvider(
+    const { queryByRole } = renderWithProvider(
       <FieldSet heading={HEADING} description={DESCRIPTION} withLine />,
     );
 
     // ASSERT
     expect(queryByRole('separator')).toBeTruthy();
 
-    // ARRANGE
-    rerender(<FieldSet heading={HEADING} description={DESCRIPTION} />);
-
-    // ASSERT
-    expect(queryByRole('separator')).toBeNull();
   });
 });

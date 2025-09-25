@@ -1,22 +1,25 @@
-import AntdDivider from 'antd/lib/divider';
 import React from 'react';
 
 import { type DividerProps } from '../Divider.types';
+import * as S from './Line.styles';
 
 export const Line = ({
   marginBottom,
   marginTop,
-  style,
-  ...antdDividerProps
+  type = 'horizontal',
+  dashed,
+  className,
+  ...htmlAttributes
 }: DividerProps) => {
   return (
-    <AntdDivider
-      {...antdDividerProps}
-      style={{
-        marginBottom,
-        marginTop,
-        ...style,
-      }}
+    <S.Line
+      className={`ds-divider-line ${className}`}
+      role="separator"
+      marginTop={marginTop}
+      marginBottom={marginBottom}
+      type={type}
+      dashed={dashed}
+      {...htmlAttributes}
     />
   );
 };
