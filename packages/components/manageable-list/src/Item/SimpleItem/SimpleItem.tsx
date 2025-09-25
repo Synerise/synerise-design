@@ -29,7 +29,7 @@ const SimpleItemComponent = ({
   );
 
   const handleSelect = useCallback(() => {
-    !editMode && onSelect({ id: item.id });
+    !editMode && onSelect?.({ id: item.id });
   }, [onSelect, item.id, editMode]);
 
   const enterEditMode = useCallback(() => {

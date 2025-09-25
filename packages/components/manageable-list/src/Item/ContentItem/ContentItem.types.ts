@@ -10,6 +10,7 @@ type BaseContentItemProps = Omit<
 > & {
   dashed?: boolean;
   expanded?: boolean;
+  selected?: boolean;
   greyBackground?: boolean;
   contentWithoutPadding?: boolean;
   texts?: ContentItemHeaderProps['texts'] | undefined;
@@ -28,6 +29,7 @@ export type ContentItemHeaderProps = {
   item: ItemProps;
   onDuplicate?: (duplicateParams: { id: ReactText }) => void;
   onExpand?: (id: ReactText, isExpanded: boolean) => void;
+  onSelect?: (selectParams: { id: ReactText }) => void;
   onRemove?: (removeParams: { id: ReactText }) => void;
   onUpdate?: (updateParams: { id: ReactText; name: string }) => void;
   texts?: Partial<Texts>;

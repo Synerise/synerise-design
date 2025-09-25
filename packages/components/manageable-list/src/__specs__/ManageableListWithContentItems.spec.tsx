@@ -167,7 +167,6 @@ describe('ManageableList with content items', () => {
         maxToShowItems={5}
         onItemAdd={() => { }}
         onItemEdit={() => { }}
-        onItemSelect={() => { }}
         onItemRemove={() => { }}
         onItemDuplicate={() => { }}
         type="content"
@@ -178,6 +177,31 @@ describe('ManageableList with content items', () => {
     fireEvent.click(item);
     expect(onExpand).toHaveBeenCalledTimes(1);
     expect(onExpand).toHaveBeenCalledWith(clickedItem.id, true);
+  });
+
+  it('should fire onItemSelect ', () => {
+    const onItemSelect = jest.fn();
+    const clickedIndex = 1;
+    const clickedItem = CONTENT_ITEMS[clickedIndex];
+    renderWithProvider(
+      <ManageableList
+        items={CONTENT_ITEMS}
+        onExpand={() => {}}
+        loading={false}
+        maxToShowItems={5}
+        onItemAdd={() => {}}
+        onItemSelect={onItemSelect}
+        onItemEdit={() => { }}
+        onItemRemove={() => { }}
+        onItemDuplicate={() => { }}
+        type="content"
+        texts={texts}
+      />,
+    );
+    const item = screen.getByText(clickedItem.name);
+    fireEvent.click(item);
+    expect(onItemSelect).toHaveBeenCalledTimes(1);
+    expect(onItemSelect).toHaveBeenCalledWith({id: clickedItem.id});
   });
 
   it('should render item.expanded props', () => {

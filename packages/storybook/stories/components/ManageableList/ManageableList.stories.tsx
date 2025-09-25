@@ -97,7 +97,7 @@ export default {
         items={items}
         onChangeOrder={handleOrderChange}
         onItemAdd={args.onItemAdd && handleItemAdd}
-        onItemSelect={handleItemSelect}
+        onItemSelect={args.onItemSelect ? handleItemSelect : undefined}
         selectedItemId={selectedId}
       />
     );
@@ -107,6 +107,12 @@ export default {
     visibleItemsLimit: 5,
     items: ITEMS,
     onChangeOrder: undefined,
+    onExpand: fn(),
+    onItemAdd: fn(),
+    onItemEdit: fn(),
+    onItemDuplicate: fn(),
+    onItemRemove: fn(),
+    onItemSelect: undefined,
     additionalActions: [
       {
         color: theme.palette['blue-600'],
@@ -166,6 +172,18 @@ export const ContentItemsList: StoryObj<ManageableListProps<ContentItemType>> =
       type: 'content',
     },
   };
+
+export const ContentItemsListSelectable: StoryObj<
+  ManageableListProps<ContentItemType>
+> = {
+  decorators: [fixedWrapper800, greyBackgroundDecorator],
+  args: {
+    visibleItemsLimit: CONTENT_ITEMS.length,
+    items: CONTENT_ITEMS,
+    type: 'content',
+    onItemSelect: fn(),
+  },
+};
 
 export const ContentItemsAutomation: StoryObj<
   ManageableListProps<ContentItemType>

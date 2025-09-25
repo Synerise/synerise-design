@@ -28,6 +28,7 @@ export const ContentItemHeader = ({
   texts,
   hideExpander,
   onExpand,
+  onSelect,
   headerSuffix,
   headerPrefix,
   onMoveTop,
@@ -109,7 +110,13 @@ export const ContentItemHeader = ({
       hasPrefix={hasPrefix}
       hasDescription={!!item.description}
       onClick={() => {
-        if (!item.disableExpanding && !editMode && !item.disableHeaderClick) {
+        if (onSelect && !editMode) {
+          onSelect({ id: item.id });
+        } else if (
+          !item.disableExpanding &&
+          !editMode &&
+          !item.disableHeaderClick
+        ) {
           setIsExpanded(!isExpanded);
           onExpand && onExpand(item.id, !isExpanded);
         }

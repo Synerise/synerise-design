@@ -35,7 +35,7 @@ export type ManageableListProps<T extends object> = {
   onItemAdd?: (addParams?: { name: string }) => void;
   onItemRemove?: (removeParams: { id: ReactText }) => void;
   onItemEdit?: (editParams: { id: ReactText; name: string }) => void;
-  onItemSelect: (selectParams: { id: ReactText }) => void;
+  onItemSelect?: (selectParams: { id: ReactText }) => void;
   onItemDuplicate?: (duplicateParams: { id: ReactText }) => void;
   onChangeOrder?: (newOrder: ItemProps<T>[]) => void;
   items: ItemProps<T>[];
@@ -106,7 +106,7 @@ export type ManageableListItemProps = {
   onMoveTop?: (item: ItemProps) => void;
   onMoveBottom?: (item: ItemProps) => void;
   onRemove?: (removeParams: { id: ReactText }) => void;
-  onSelect: (selectParams: { id: ReactText }) => void;
+  onSelect?: (selectParams: { id: ReactText }) => void;
   onUpdate?: (updateParams: { id: ReactText; name: string }) => void;
   onDuplicate?: (duplicateParams: { id: ReactText }) => void;
   draggable?: boolean;
@@ -169,6 +169,7 @@ export type ItemProps<T extends object = object> = T & {
    */
   disableHeaderClick?: boolean;
   expanded?: boolean;
+  selected?: boolean;
   disabled?: boolean;
   headerSuffix?: ReactNode;
   hideHeaderSuffixOnHover?: boolean;

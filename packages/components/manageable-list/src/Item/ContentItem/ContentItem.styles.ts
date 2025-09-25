@@ -162,6 +162,7 @@ const standardShadow = ({
 
 export const ItemContainer = styled.div<{
   opened: boolean;
+  selected?: boolean;
   greyBackground: boolean | undefined;
   size?: 'default' | 'large';
   dashed?: boolean;
@@ -177,6 +178,12 @@ export const ItemContainer = styled.div<{
   margin-bottom: 16px;
   border-radius: 3px;
   position: relative;
+
+  ${(props) =>
+    props.selected &&
+    `
+    outline: 2px solid ${props.theme.palette['blue-600']} !important;
+  `}
 
   ${(props) =>
     props.isDragOverlay

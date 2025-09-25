@@ -19,6 +19,8 @@ const ContentItemComponent = ({
   hideExpander,
   expanded,
   onExpand,
+  selected,
+  onSelect,
   headerSuffix,
   headerPrefix,
   contentWithoutPadding,
@@ -45,6 +47,7 @@ const ContentItemComponent = ({
   return (
     <S.ItemContainer
       opened={!!isExpanded}
+      selected={!!selected}
       greyBackground={greyBackground}
       key={item.id}
       data-testid="item-with-content"
@@ -69,6 +72,7 @@ const ContentItemComponent = ({
         texts={allTexts}
         hideExpander={hideExpander}
         onExpand={onExpand}
+        onSelect={onSelect}
         headerSuffix={headerSuffix}
         headerPrefix={headerPrefix}
         onMoveTop={onMoveTop}
