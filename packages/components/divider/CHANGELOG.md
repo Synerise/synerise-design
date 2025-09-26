@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.1.1](https://github.com/Synerise/synerise-design/compare/@synerise/ds-divider@1.1.0...@synerise/ds-divider@1.1.1) (2025-09-26)
+
+
+### Bug Fixes
+
+* **divider:** added legacy classes - custom styles in puib ([3cab5f4](https://github.com/Synerise/synerise-design/commit/3cab5f4627e399aeb99eba17e7c8618f247e90eb))
+
+
+
+
+
 # [1.1.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-divider@1.0.21...@synerise/ds-divider@1.1.0) (2025-09-25)
 
 

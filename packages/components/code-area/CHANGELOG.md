@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.2.1](https://github.com/Synerise/synerise-design/compare/@synerise/ds-code-area@1.2.0...@synerise/ds-code-area@1.2.1) (2025-09-26)
+
+
+### Bug Fixes
+
+* **code-area:** drop default value ([abb250e](https://github.com/Synerise/synerise-design/commit/abb250e38136c4a18f768aa8a4a25ef5de286ee6))
+
+
+
+
+
 # [1.2.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-code-area@1.1.23...@synerise/ds-code-area@1.2.0) (2025-09-25)
 
 
