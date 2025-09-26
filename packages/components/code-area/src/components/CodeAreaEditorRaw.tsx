@@ -52,7 +52,7 @@ export const CodeAreaEditorRaw = ({
   readOnly,
   onSyntaxChange,
   loaderConfig,
-  placeholder = 'placeholder content',
+  placeholder,
   value,
   defaultValue,
   ...props
