@@ -13,7 +13,7 @@ export const Line = ({
 }: DividerProps) => {
   return (
     <S.Line
-      className={`ds-divider-line ${className}`}
+      className={`ds-divider-line ds-divider-${type} ds-divider-${dashed ? 'dashed' : 'solid'} ${className}`}
       role="separator"
       marginTop={marginTop}
       marginBottom={marginBottom}
