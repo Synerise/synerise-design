@@ -13,6 +13,10 @@ export const InputGroupWrapper = styled.div<{ compact?: boolean }>`
       }
     }
 
+    .ant-input.ant-input {
+      float: none;
+    }
+
     display: flex;
     min-width: 0;
 
