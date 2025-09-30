@@ -199,10 +199,8 @@ export const InformationCardPropertyItemValue = styled.span`
 
 export const InformationCardSummaryWrapper = styled(Flex)`
   margin: 0 16px;
-  border-top: dashed 1px ${(props) => props.theme.palette['grey-300']};
-  padding-top: 16px;
   padding-bottom: 8px;
-  gap: 4px;
+  gap: 0 4px;
   flex-wrap: wrap;
 `;
 export const InformationCardSummaryItem = styled(Flex)`

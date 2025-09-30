@@ -7,7 +7,7 @@ import styled, {
 
 import { type ThemeProps } from '@synerise/ds-core';
 
-import { type AntdMenuProps, type MenuDividerProps } from './Menu.types';
+import { type AntdMenuProps } from './Menu.types';
 
 type SubMenuProps = PropsWithChildren<{
   ordered?: boolean | undefined;
@@ -29,16 +29,6 @@ const arrowDownSvgWithCustomColor = (color: string): string => {
   const iconWithColor = `data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' >/><path fill='none' d='M0 0h24v24H0z' /><path style='fill: ${colorValueForSvg};' d='M14.71973,9.84473,12,12.56445,9.28027,9.84473a.74992.74992,0,0,0-1.06054,1.06054l3.25,3.25a.74971.74971,0,0,0,1.06054,0l3.25-3.25a.74992.74992,0,0,0-1.06054-1.06054Z'/></svg>`;
   return iconWithColor;
 };
-
-export const MenuDivider = styled.div<{ level?: number }>`
-  height: 1px;
-  width: ${(props): string =>
-    props?.level && props?.level > 1 ? '75%' : '100%'};
-  margin: ${(props: MenuDividerProps): string =>
-      props.higher ? '16px' : '8px'}
-    ${(props): string => (props?.level && props?.level > 1 ? '35px' : '0px')};
-  border-top: 1px dashed ${(props): string => props.theme.palette['grey-300']};
-`;
 
 export const AntdMenu = styled(Menu)<AntdMenuProps>`
   ${(props: AntdMenuProps & ThemeProps): FlattenSimpleInterpolation | false =>

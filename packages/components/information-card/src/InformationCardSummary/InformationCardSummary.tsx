@@ -1,6 +1,7 @@
 import React, { useMemo } from 'react';
 import { v4 as uuid } from 'uuid';
 
+import Divider from '@synerise/ds-divider';
 import Tooltip from '@synerise/ds-tooltip';
 
 import * as S from '../InformationCard.styles';
@@ -15,6 +16,7 @@ export const InformationCardSummary = ({
   );
   return (
     <S.InformationCardSummaryWrapper data-testid="information-card-summary">
+      <Divider dashed marginBottom={16} />
       {itemsWithIDs?.map(({ icon, label, tooltip, tooltipProps, id }) => {
         const item = (
           <S.InformationCardSummaryItem key={id}>

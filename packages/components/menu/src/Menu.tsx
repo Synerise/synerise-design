@@ -7,6 +7,7 @@ import Icon, { ArrowDownCircleM, ArrowUpCircleM } from '@synerise/ds-icon';
 import Tooltip from '@synerise/ds-tooltip';
 
 import Breadcrumb from './Elements/Breadcrumb/Breadcrumb';
+import { Divider } from './Elements/Divider/Divider';
 import Header from './Elements/Header/Header';
 import MenuItem from './Elements/Item/MenuItem';
 import SubMenuItem from './Elements/SubMenu/SubMenu';
@@ -23,7 +24,7 @@ export class Menu extends Component<
   static Header: typeof Header = Header;
   static ItemGroup: typeof S.AntdMenu.ItemGroup = S.AntdMenu.ItemGroup;
   static SubMenu = S.AntdMenu.SubMenu;
-  static Divider = S.MenuDivider;
+  static Divider: typeof Divider = Divider;
 
   state = {
     allItemsVisible: false,
