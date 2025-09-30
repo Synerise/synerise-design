@@ -2,13 +2,13 @@ import React from 'react';
 
 import '@synerise/ds-core/dist/js/style';
 
-import { MenuDivider } from '../../Menu.styles';
 import {
   ItemType,
   type MenuDividerProps,
   type MenuItemProps,
   type SubMenuProps,
 } from '../../Menu.types';
+import { Divider } from '../Divider/Divider';
 import SubMenuItem from '../SubMenu/SubMenu';
 import Danger from './Danger/Danger';
 import Select from './Select/Select';
@@ -93,7 +93,7 @@ const MenuItem = ({
         </Danger>
       );
     case ItemType.DIVIDER:
-      return <MenuDivider level={rest.level} />;
+      return <Divider level={rest.level} />;
     default:
       return (
         <Text

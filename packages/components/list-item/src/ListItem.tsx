@@ -2,9 +2,9 @@ import React from 'react';
 
 import '@synerise/ds-core/dist/js/style';
 
-import { MenuDivider } from './ListItem.styles';
 import { type ListItemProps, itemTypes } from './ListItem.types';
 import Danger from './components/Danger/Danger';
+import { Divider } from './components/Divider/Divider';
 import Select from './components/Select/Select';
 import Text from './components/Text/Text';
 
@@ -16,7 +16,7 @@ const ListItem = (props: ListItemProps) => {
     case itemTypes.SELECT:
       return <Select {...rest}>{text || children}</Select>;
     case itemTypes.DIVIDER:
-      return <MenuDivider level={rest.level} />;
+      return <Divider level={rest.level} />;
     default:
       return <Text {...rest}>{text || children}</Text>;
   }
