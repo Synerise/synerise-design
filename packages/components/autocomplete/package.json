@@ -27,7 +27,8 @@
     "test:watch": "npm run test -- --watchAll",
     "types": "tsc --noEmit",
     "check:circular-dependencies": "madge --circular --extensions ts,tsx,js,jsx --ts-config tsconfig.json src/ --exclude '/dist/'",
-    "upgrade:ds": "ncu -f \"@synerise/ds-*\" -u"
+    "upgrade:ds": "ncu -f \"@synerise/ds-*\" -u",
+    "depcheck": "depcheck ."
   },
   "sideEffects": [
     "dist/style/*",
@@ -37,6 +38,7 @@
   "dependencies": {
     "@synerise/ds-form-field": "^1.1.16",
     "@synerise/ds-input": "^1.3.12",
+    "@synerise/ds-tooltip": "^1.2.0",
     "@synerise/ds-utils": "^1.4.2"
   },
   "peerDependencies": {

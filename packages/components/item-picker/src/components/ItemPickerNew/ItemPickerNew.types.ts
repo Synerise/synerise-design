@@ -1,4 +1,3 @@
-import { type ItemSelectHandler } from 'components/ItemPickerList/ItemPickerList.types';
 import type { ReactNode, Ref } from 'react';
 
 import type { DropdownProps } from '@synerise/ds-dropdown';
@@ -8,6 +7,7 @@ import { type ScrollbarAdditionalProps } from '@synerise/ds-scrollbar';
 import { type SearchBarProps } from '@synerise/ds-search-bar';
 import type { WithHTMLAttributes } from '@synerise/ds-utils';
 
+import { type ItemSelectHandler } from '../ItemPickerList/ItemPickerList.types';
 import type { RenderMode } from '../ItemPickerList/types/renderMode';
 import type {
   ItemPickerTriggerProps,

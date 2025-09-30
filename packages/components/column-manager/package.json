@@ -27,7 +27,8 @@
     "test:watch": "npm run test -- --watchAll",
     "types": "tsc --noEmit",
     "check:circular-dependencies": "madge --circular --extensions ts,tsx,js,jsx --ts-config tsconfig.json src/ --exclude '/dist/'",
-    "upgrade:ds": "ncu -f \"@synerise/ds-*\" -u"
+    "upgrade:ds": "ncu -f \"@synerise/ds-*\" -u",
+    "depcheck": "depcheck ."
   },
   "sideEffects": false,
   "types": "dist/index.d.ts",
@@ -48,6 +49,7 @@
   },
   "peerDependencies": {
     "@synerise/ds-core": "*",
+    "@dnd-kit/core": "^6.1.0",
     "antd": "4.24.16",
     "react": ">=16.9.0 <= 18.3.1",
     "react-intl": ">=3.12.0 <= 6.8",

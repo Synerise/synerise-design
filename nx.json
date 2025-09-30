@@ -24,6 +24,15 @@
                 "{workspaceRoot}/config/jest/**"
             ]
         },
+        "depcheck": {
+            "cache": true,
+            "dependsOn": [],
+            "inputs": [
+                "default",
+                "{workspaceRoot}/.depcheckrc",
+                "{projectRoot}/.depcheckrc"
+            ]
+        },
         "build:svgr": {
             "cache": true,
             "dependsOn": [],
@@ -49,16 +58,16 @@
         "default": [
             "{projectRoot}/**/*",
             "sharedGlobals"
-        ], 
+        ],
         "production": [
             "default",
             "!{projectRoot}/jest.config.ts"
-        ], 
+        ],
         "sharedGlobals": [
             "{workspaceRoot}/package.json",
             "{workspaceRoot}/yarn.lock",
             "{workspaceRoot}/babel.config.js",
             "{workspaceRoot}/.gitignore"
-        ] 
+        ]
     }
 }

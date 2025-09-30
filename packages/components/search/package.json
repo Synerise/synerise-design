@@ -27,7 +27,8 @@
     "test:watch": "npm run test -- --watchAll",
     "types": "tsc --noEmit",
     "check:circular-dependencies": "madge --circular --extensions ts,tsx,js,jsx --ts-config tsconfig.json src/ --exclude '/dist/'",
-    "upgrade:ds": "ncu -f \"@synerise/ds-*\" -u"
+    "upgrade:ds": "ncu -f \"@synerise/ds-*\" -u",
+    "depcheck": "depcheck ."
   },
   "sideEffects": [
     "dist/style/*",
@@ -37,6 +38,7 @@
   "dependencies": {
     "@synerise/ds-button": "^1.4.12",
     "@synerise/ds-icon": "^1.7.2",
+    "@synerise/ds-list-item": "^1.0.22",
     "@synerise/ds-menu": "^1.0.26",
     "@synerise/ds-scrollbar": "^1.1.8",
     "@synerise/ds-tooltip": "^1.2.0",
