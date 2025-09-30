@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.0.23](https://github.com/Synerise/synerise-design/compare/@synerise/ds-list-item@1.0.22...@synerise/ds-list-item@1.0.23) (2025-09-30)
+
+
+### Bug Fixes
+
+* **divider:** fix style ([7a1db45](https://github.com/Synerise/synerise-design/commit/7a1db453d85eb52f887486f74575de17bb3f8ee0))
+
+
+
+
+
 ## [1.0.22](https://github.com/Synerise/synerise-design/compare/@synerise/ds-list-item@1.0.21...@synerise/ds-list-item@1.0.22) (2025-09-25)
 
 
