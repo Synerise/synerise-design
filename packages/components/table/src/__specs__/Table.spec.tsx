@@ -329,33 +329,35 @@ describe('Table', () => {
     );
   });
 
-  it('Should render with unchecked and disabled row selection checkbox', () => {
-    const handleChangeSelection = jest.fn();
-    renderWithProvider(
-      <Table
+  describe('Table selection', () => {
+
+    it('Should render with unchecked and disabled row selection checkbox', () => {
+      const handleChangeSelection = jest.fn();
+      renderWithProvider(
+        <Table
         dataSource={[]}
         columns={props.columns}
         title="Title"
         selection={{ selectedRowKeys: [], onChange: handleChangeSelection }}
-      />,
-    );
-
-    const rowSelectionCheckbox = getByRole(
-      screen.getByTestId('ds-table-title'),
-      'checkbox',
-    );
-
-    expect(rowSelectionCheckbox).not.toBeChecked();
-    expect(rowSelectionCheckbox).toBeDisabled();
-  });
-
-  it('Should render with "select all" selection item', async () => {
-    const handleChangeSelection = jest.fn();
-    const handleChangeGlobalSelection = jest.fn();
-    const SELECT_GLOBAL_ALL = 'SELECT_GLOBAL_ALL'
-    const UNSELECT_GLOBAL_ALL = 'UNSELECT_GLOBAL_ALL'
-    renderWithProvider(
-      <Table
+        />,
+      );
+      
+      const rowSelectionCheckbox = getByRole(
+        screen.getByTestId('ds-table-title'),
+        'checkbox',
+      );
+      
+      expect(rowSelectionCheckbox).not.toBeChecked();
+      expect(rowSelectionCheckbox).toBeDisabled();
+    });
+    
+    it('Should render with "select all" selection item', async () => {
+      const handleChangeSelection = jest.fn();
+      const handleChangeGlobalSelection = jest.fn();
+      const SELECT_GLOBAL_ALL = 'SELECT_GLOBAL_ALL'
+      const UNSELECT_GLOBAL_ALL = 'UNSELECT_GLOBAL_ALL'
+      renderWithProvider(
+        <Table
         dataSource={props.dataSource}
         columns={props.columns}
         title="Title"
@@ -364,28 +366,71 @@ describe('Table', () => {
           unselectGlobalAll: UNSELECT_GLOBAL_ALL
         }}
         selection={{ selectedRowKeys: [], onChange: handleChangeSelection, globalSelection: { isSelected: true, onChange: handleChangeGlobalSelection} }}
-      />
-    );
-
-    screen.getAllByTestId('ds-table-selection-button').forEach(checkbox => {
-      expect(checkbox).toBeChecked();
-      expect(checkbox).toBeDisabled();
-    })
+        />
+      );
+      
+      screen.getAllByTestId('ds-table-selection-button').forEach(checkbox => {
+        expect(checkbox).toBeChecked();
+        expect(checkbox).toBeDisabled();
+      })
+      
+      userEvent.click(screen.getByTestId('ds-table-batch-selection-options'));
+      await waitFor(async () => expect(await screen.findByText(UNSELECT_GLOBAL_ALL)).toBeInTheDocument());
+      
+      userEvent.click(screen.getByText(UNSELECT_GLOBAL_ALL));
+      await waitFor(() => expect(handleChangeGlobalSelection).toHaveBeenCalledWith(false));
+      
+    });
     
-    userEvent.click(screen.getByTestId('ds-table-batch-selection-options'));
-    await waitFor(async () => expect(await screen.findByText(UNSELECT_GLOBAL_ALL)).toBeInTheDocument());
+    it('Should toggle "all global" on batch checkbox click', async () => {
+      const handleChangeSelection = jest.fn();
+      const handleChangeGlobalSelection = jest.fn();
+      renderWithProvider(
+        <Table
+        dataSource={props.dataSource}
+        columns={props.columns}
+        title="Title"
+        selection={{ selectedRowKeys: [], onChange: handleChangeSelection, globalSelection: { isSelected: true, onChange: handleChangeGlobalSelection} }}
+        />
+      );
+      
+      screen.getAllByTestId('ds-table-selection-button').forEach(checkbox => {
+        expect(checkbox).toBeChecked();
+        expect(checkbox).toBeDisabled();
+      })
+      
+      userEvent.click(screen.getByTestId('ds-table-batch-selection-button'));
+      await waitFor(() => expect(handleChangeGlobalSelection).toHaveBeenCalledWith(false));
+      
+    });
+    
 
-    userEvent.click(screen.getByText(UNSELECT_GLOBAL_ALL));
-    await waitFor(() => expect(handleChangeGlobalSelection).toHaveBeenCalledWith(false));
-
-  });
-
-
-  it('Should render with selection checkboxes only for specific items', () => {
-    const handleChangeSelection = jest.fn();
-    const allowSelectionForKeys = ['2', '4'];
-    renderWithProvider(
-      <Table
+    it('Should toggle "all visible" on batch checkbox click', async () => {
+      const handleChangeSelection = jest.fn();
+      renderWithProvider(
+        <Table
+        dataSource={props.dataSource}
+        columns={props.columns}
+        title="Title"
+        selection={{ selectedRowKeys: [], onChange: handleChangeSelection }}
+        />
+      );
+      
+      screen.getAllByTestId('ds-table-selection-button').forEach(checkbox => {
+        expect(checkbox).not.toBeChecked();
+        expect(checkbox).not.toBeDisabled();
+      })
+      
+      userEvent.click(screen.getByTestId('ds-table-batch-selection-button'));
+      await waitFor(() => expect(handleChangeSelection).toHaveBeenCalled());
+      
+    });
+    
+    it('Should render with selection checkboxes only for specific items', () => {
+      const handleChangeSelection = jest.fn();
+      const allowSelectionForKeys = ['2', '4'];
+      renderWithProvider(
+        <Table
         dataSource={props.dataSource}
         columns={props.columns}
         title="Title"
@@ -396,12 +441,13 @@ describe('Table', () => {
           }),
           onChange: handleChangeSelection,
         }}
-      />,
-    );
-    const allButtons = screen.getAllByTestId('ds-table-selection-button');
-    expect(allButtons.length).toEqual(allowSelectionForKeys.length);
-  });
-
+        />,
+      );
+      const allButtons = screen.getAllByTestId('ds-table-selection-button');
+      expect(allButtons.length).toEqual(allowSelectionForKeys.length);
+    });
+  })
+    
   describe('row star', () => {
     it('should render with correct initial rows starred', () => {
       renderWithProvider(

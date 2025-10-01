@@ -243,16 +243,19 @@ const TableSelection = <T extends { children?: T[] }>({
   const isAnySelected = allRecordsCount > 0 && selectedRecordsCount > 0;
 
   const selectionTooltipTitle = useMemo(() => {
-    if (selection.globalSelection?.isSelected) {
-      return locale?.unselectGlobalAll;
+    if (selection.globalSelection) {
+      return selection.globalSelection.isSelected
+        ? locale?.unselectGlobalAll
+        : locale?.selectGlobalAll;
     }
     return isAllSelected ? locale?.unselectAll : locale?.selectAllTooltip;
   }, [
     isAllSelected,
     locale?.selectAllTooltip,
+    locale?.selectGlobalAll,
     locale?.unselectAll,
     locale?.unselectGlobalAll,
-    selection.globalSelection?.isSelected,
+    selection.globalSelection,
   ]);
 
   const menuDataSource = useMemo(() => {
@@ -319,6 +322,15 @@ const TableSelection = <T extends { children?: T[] }>({
     selectInvert,
   ]);
 
+  const handleBatchSelectionChange = () => {
+    const isSelected = selection.globalSelection?.isSelected ?? isAllSelected;
+    if (selection.globalSelection) {
+      isSelected ? unselectGlobalAll() : selectGlobalAll();
+    } else {
+      isSelected ? unselectAll() : selectAll();
+    }
+  };
+
   return selection?.selectedRowKeys ? (
     <S.Selection data-popup-container>
       {!hasSelectionLimit && (
@@ -327,15 +339,7 @@ const TableSelection = <T extends { children?: T[] }>({
             disabled={disabledBulkSelection}
             data-testid="ds-table-batch-selection-button"
             checked={selection.globalSelection?.isSelected || isAllSelected}
-            onChange={() => {
-              if (selection.globalSelection?.isSelected) {
-                unselectGlobalAll();
-              } else if (!isAllSelected) {
-                selectAll();
-              } else {
-                unselectAll();
-              }
-            }}
+            onChange={handleBatchSelectionChange}
             indeterminate={isIndeterminate}
           />
         </Tooltip>
