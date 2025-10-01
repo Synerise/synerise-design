@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.6.4](https://github.com/synerise/synerise-design/compare/@synerise/ds-table@1.6.3...@synerise/ds-table@1.6.4) (2025-10-01)
+
+
+### Bug Fixes
+
+* **table:** updated batch checkbox change logic ([666bb54](https://github.com/synerise/synerise-design/commit/666bb54ed31e6d8417fedc3a9281b81643fd8bbd))
+
+
+
+
+
 ## [1.6.3](https://github.com/synerise/synerise-design/compare/@synerise/ds-table@1.6.2...@synerise/ds-table@1.6.3) (2025-09-30)
 
 **Note:** Version bump only for package @synerise/ds-table
