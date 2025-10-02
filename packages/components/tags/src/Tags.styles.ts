@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-import { type TagShape } from '@synerise/ds-tag';
+import Tag, { type TagShape } from '@synerise/ds-tag';
 
 export const Container = styled.div`
   display: flex;
@@ -13,6 +13,12 @@ export const TagOverflow = styled.div`
   height: 32px;
   align-items: center;
   max-width: 100%;
+  min-width: 0;
+  flex: 0 1 auto;
+`;
+
+export const LimitedTag = styled(Tag)`
+  flex: 0 0 auto;
 `;
 
 export const TagsWrapper = styled.div`
