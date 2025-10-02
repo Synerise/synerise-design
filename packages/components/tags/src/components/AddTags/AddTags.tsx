@@ -149,6 +149,7 @@ export const AddTags = ({
       }
     >
       <S.AddTagButton
+        isOpen={isTagAddDropdownOpen}
         type="ghost"
         mode={
           addButtonType ||

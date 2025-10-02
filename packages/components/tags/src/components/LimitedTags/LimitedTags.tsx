@@ -1,7 +1,8 @@
 import React from 'react';
 
-import Tag, { type TagProps, type TagShape } from '@synerise/ds-tag';
+import { type TagProps, type TagShape } from '@synerise/ds-tag';
 
+import * as S from '../../Tags.styles';
 import { TagsDropdown } from '../TagsDropdown/TagsDropdown';
 
 type LimitedTagsProps = {
@@ -35,7 +36,7 @@ export const LimitedTags = ({
       disabled={disabled}
       asPill={asPill}
     >
-      <Tag
+      <S.LimitedTag
         id="limited-tags"
         shape={tagShape}
         name={`+${limitedSelectedTags.length}`}

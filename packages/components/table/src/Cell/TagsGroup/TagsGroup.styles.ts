@@ -1,13 +1,13 @@
 import styled from 'styled-components';
 
-import { SelectedTags, TagsWrapper } from '@synerise/ds-tags/dist/Tags.styles';
+import { Container, SelectedTags } from '@synerise/ds-tags/dist/Tags.styles';
 import { AddTagButton } from '@synerise/ds-tags/dist/components/AddTags/AddTags.styles';
 
 export const TagsGroupWrapper = styled.div<{
   isDisabled?: boolean;
   isEmpty?: boolean;
 }>`
-  ${TagsWrapper} {
+  ${Container} {
     margin-bottom: 0;
   }
   ${SelectedTags} {
@@ -23,7 +23,7 @@ export const TagsGroupWrapper = styled.div<{
         ${AddTagButton}${AddTagButton}${AddTagButton} svg {
             transition: none;
         }
-        ${AddTagButton} {
+        ${AddTagButton}:not(:focus) {
             visibility: hidden;
         }
         tr:hover &, 

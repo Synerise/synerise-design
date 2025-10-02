@@ -49,4 +49,7 @@ export const Separator = styled.hr`
   background-position: top;
 `;
 
-export const AddTagButton = styled(Button)``;
+export const AddTagButton = styled(Button)<{ isOpen?: boolean }>`
+  flex: 0 0 auto;
+  ${(props) => props.isOpen && ` &&&&& { visibility: visible }`}
+`;
