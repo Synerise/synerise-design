@@ -44,6 +44,7 @@
     "@synerise/ds-flag": "^1.0.5",
     "@synerise/ds-icon": "^1.7.2",
     "@synerise/ds-input": "^1.3.12",
+    "@synerise/ds-input-number": "^1.2.12",
     "@synerise/ds-loader": "^1.0.10",
     "@synerise/ds-menu": "^1.0.26",
     "@synerise/ds-modal": "^1.2.12",

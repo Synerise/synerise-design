@@ -12,6 +12,7 @@ import {
   COLUMNS_WITH_AVATARS,
   COLUMNS_WITH_AVATARS_LINK,
   COLUMNS_WITH_ICONS,
+  COLUMNS_WITH_INPUT_NUMBER,
   COLUMNS_WITH_LABELS,
   COLUMNS_WITH_PROGRESS_BAR,
   COLUMNS_WITH_STATUSES,
@@ -99,6 +100,12 @@ export const WithStatuses: Story = {
 export const WithTriggers: Story = {
   args: {
     columnsData: COLUMNS_WITH_TRIGGERS,
+  },
+};
+
+export const WithInputElements: Story = {
+  args: {
+    columnsData: COLUMNS_WITH_INPUT_NUMBER,
   },
 };
 

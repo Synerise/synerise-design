@@ -2562,6 +2562,55 @@ export const COLUMNS_WITH_AVATARS: ColumnType[] = [
     },
   },
 ];
+export const COLUMNS_WITH_INPUT_NUMBER: ColumnType[] = [
+  {
+    title: 'Limit',
+    dataIndex: 'input-number',
+    key: 'input-number',
+    width: 150,
+    textWrap: 'word-break',
+    icon: { component: <VarTypeListM /> },
+    iconTooltip: { component: <InfoFillS /> },
+    render: () => {
+      return (
+        <TableCell.InputNumberCell
+          inputNumberProps={{ placeholder: 'Enter Limit' }}
+        />
+      );
+    },
+  },
+  {
+    title: 'Select',
+    render: () => {
+      return <Select placeholder="Placeholder"></Select>;
+    },
+  },
+  {
+    title: 'Checkbox',
+    key: 'checked',
+    dataIndex: 'checked',
+    icon: { component: <VarTypeBooleanM /> },
+    iconTooltip: { component: <InfoFillS /> },
+    render: (checked) =>
+      chromaticCellRender(<Checkbox withoutPadding checked={checked} />),
+  },
+  {
+    title: 'Editable row',
+    dataIndex: 'editable',
+    key: 'editable',
+    textWrap: 'word-break',
+    ellipsis: true,
+    icon: { component: <VarTypeListM /> },
+    iconTooltip: { component: <InfoFillS /> },
+    render: (editable) => (
+      <TableCell.EditableCell
+        value={editable}
+        placeholder={'No data'}
+        onChange={action('onChange')}
+      />
+    ),
+  },
+];
 
 export const COLUMNS_ALL = [
   ...COLUMNS_WITH_LABELS,
@@ -2571,4 +2620,5 @@ export const COLUMNS_ALL = [
   ...COLUMNS_WITH_TRIGGERS,
   ...COLUMNS_WITH_TAGS,
   ...COLUMNS_WITH_PROGRESS_BAR,
+  ...COLUMNS_WITH_INPUT_NUMBER,
 ];
