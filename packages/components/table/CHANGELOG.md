@@ -69,171 +69,89 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 **Note:** Version bump only for package @synerise/ds-table
 
-
-
-
-
 ## [1.5.10](https://github.com/synerise/synerise-design/compare/@synerise/ds-table@1.5.9...@synerise/ds-table@1.5.10) (2025-09-16)
 
 **Note:** Version bump only for package @synerise/ds-table
-
-
-
-
 
 ## [1.5.9](https://github.com/synerise/synerise-design/compare/@synerise/ds-table@1.5.8...@synerise/ds-table@1.5.9) (2025-09-05)
 
 **Note:** Version bump only for package @synerise/ds-table
 
-
-
-
-
 ## [1.5.8](https://github.com/synerise/synerise-design/compare/@synerise/ds-table@1.5.7...@synerise/ds-table@1.5.8) (2025-09-05)
 
 **Note:** Version bump only for package @synerise/ds-table
-
-
-
-
 
 ## [1.5.7](https://github.com/synerise/synerise-design/compare/@synerise/ds-table@1.5.6...@synerise/ds-table@1.5.7) (2025-09-02)
 
 **Note:** Version bump only for package @synerise/ds-table
 
-
-
-
-
 ## [1.5.6](https://github.com/synerise/synerise-design/compare/@synerise/ds-table@1.5.5...@synerise/ds-table@1.5.6) (2025-08-28)
-
 
 ### Bug Fixes
 
-* **table:** batch selection tooltip fixed ([cdc5b80](https://github.com/synerise/synerise-design/commit/cdc5b80d5a9af3dd87aef6c4f8fbc02be7d2ae9c))
-
-
-
-
+- **table:** batch selection tooltip fixed ([cdc5b80](https://github.com/synerise/synerise-design/commit/cdc5b80d5a9af3dd87aef6c4f8fbc02be7d2ae9c))
 
 ## [1.5.5](https://github.com/synerise/synerise-design/compare/@synerise/ds-table@1.5.4...@synerise/ds-table@1.5.5) (2025-08-21)
 
-
 ### Bug Fixes
 
-* **table:** row selection checked state ([d379390](https://github.com/synerise/synerise-design/commit/d3793909ab9e080918e34f41532ef73370b24380))
-
-
-
-
+- **table:** row selection checked state ([d379390](https://github.com/synerise/synerise-design/commit/d3793909ab9e080918e34f41532ef73370b24380))
 
 ## [1.5.4](https://github.com/synerise/synerise-design/compare/@synerise/ds-table@1.5.3...@synerise/ds-table@1.5.4) (2025-08-20)
 
 **Note:** Version bump only for package @synerise/ds-table
 
-
-
-
-
 ## [1.5.3](https://github.com/synerise/synerise-design/compare/@synerise/ds-table@1.5.2...@synerise/ds-table@1.5.3) (2025-08-14)
 
 **Note:** Version bump only for package @synerise/ds-table
 
-
-
-
-
 ## [1.5.2](https://github.com/synerise/synerise-design/compare/@synerise/ds-table@1.5.1...@synerise/ds-table@1.5.2) (2025-07-25)
-
 
 ### Bug Fixes
 
-* **table:** fix condition ([9e69596](https://github.com/synerise/synerise-design/commit/9e695967427610cff7d214a7c981559a67700d72))
-
-
-
-
+- **table:** fix condition ([9e69596](https://github.com/synerise/synerise-design/commit/9e695967427610cff7d214a7c981559a67700d72))
 
 ## [1.5.1](https://github.com/synerise/synerise-design/compare/@synerise/ds-table@1.5.0...@synerise/ds-table@1.5.1) (2025-07-24)
 
 **Note:** Version bump only for package @synerise/ds-table
 
-
-
-
-
 # [1.5.0](https://github.com/synerise/synerise-design/compare/@synerise/ds-table@1.4.3...@synerise/ds-table@1.5.0) (2025-07-24)
-
 
 ### Features
 
-* **table:** global selection ([358b8e2](https://github.com/synerise/synerise-design/commit/358b8e2ac1af14fe3e36b34cc1a35615801bae44))
-
-
-
-
+- **table:** global selection ([358b8e2](https://github.com/synerise/synerise-design/commit/358b8e2ac1af14fe3e36b34cc1a35615801bae44))
 
 ## [1.4.3](https://github.com/synerise/synerise-design/compare/@synerise/ds-table@1.4.2...@synerise/ds-table@1.4.3) (2025-07-17)
 
 **Note:** Version bump only for package @synerise/ds-table
 
-
-
-
-
 ## [1.4.2](https://github.com/synerise/synerise-design/compare/@synerise/ds-table@1.4.1...@synerise/ds-table@1.4.2) (2025-07-15)
 
 **Note:** Version bump only for package @synerise/ds-table
-
-
-
-
 
 ## [1.4.1](https://github.com/synerise/synerise-design/compare/@synerise/ds-table@1.4.0...@synerise/ds-table@1.4.1) (2025-07-08)
 
 **Note:** Version bump only for package @synerise/ds-table
 
-
-
-
-
 # [1.4.0](https://github.com/synerise/synerise-design/compare/@synerise/ds-table@1.3.2...@synerise/ds-table@1.4.0) (2025-07-04)
-
 
 ### Features
 
-* **table:** adds stopPropagation to handleCopy ([42680aa](https://github.com/synerise/synerise-design/commit/42680aa5b4c90845587f2a53e0f79aa3714c9fb1))
-
-
-
-
+- **table:** adds stopPropagation to handleCopy ([42680aa](https://github.com/synerise/synerise-design/commit/42680aa5b4c90845587f2a53e0f79aa3714c9fb1))
 
 ## [1.3.2](https://github.com/synerise/synerise-design/compare/@synerise/ds-table@1.3.1...@synerise/ds-table@1.3.2) (2025-07-01)
 
 **Note:** Version bump only for package @synerise/ds-table
 
-
-
-
-
 ## [1.3.1](https://github.com/synerise/synerise-design/compare/@synerise/ds-table@1.3.0...@synerise/ds-table@1.3.1) (2025-06-26)
 
 **Note:** Version bump only for package @synerise/ds-table
 
-
-
-
-
 # [1.3.0](https://github.com/synerise/synerise-design/compare/@synerise/ds-table@1.2.2...@synerise/ds-table@1.3.0) (2025-06-24)
-
 
 ### Features
 
-* **table:** disabled prop for 3 cell types ([0c52c2c](https://github.com/synerise/synerise-design/commit/0c52c2c74eb7b91bb0cca0be18c9da916f5902bb))
-
-
-
-
+- **table:** disabled prop for 3 cell types ([0c52c2c](https://github.com/synerise/synerise-design/commit/0c52c2c74eb7b91bb0cca0be18c9da916f5902bb))
 
 ## [1.2.2](https://github.com/synerise/synerise-design/compare/@synerise/ds-table@1.2.1...@synerise/ds-table@1.2.2) (2025-06-12)
 
