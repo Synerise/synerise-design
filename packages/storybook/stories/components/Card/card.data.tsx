@@ -17,6 +17,7 @@ import Icon, {
   FilterM,
   SearchM,
   SegmentM,
+  ShowM,
   UserCircleM,
   UserM,
   WarningFillM,
@@ -129,17 +130,32 @@ export const CARD_SUMMARY_ITEMS = [
   {
     key: '3',
     label: 'Selected segments',
-    value: '3',
+    value: '5',
     summaryRowObjects: [
       objectWithTag('A', theme.palette['blue-600']),
       objectWithTag('B', theme.palette['mars-600']),
       objectWithTag('C', theme.palette['fern-600']),
+      objectWithTag('D', theme.palette['violet-600']),
+      objectWithTag('E', theme.palette['orange-600']),
     ],
   },
   {
     key: '4',
     label: 'Users',
     value: '2',
+    summaryRowObjects: [
+      objectUserAvatar('Tom', 'Hilding'),
+      objectUserAvatar('Martha', 'Thompson'),
+    ],
+  },
+  {
+    key: '5',
+    label: 'Data Source',
+    value: (
+      <Button type="ghost" mode="icon-label">
+        <Icon component={<ShowM />} /> Show configuration
+      </Button>
+    ),
     summaryRowObjects: [
       objectUserAvatar('Tom', 'Hilding'),
       objectUserAvatar('Martha', 'Thompson'),

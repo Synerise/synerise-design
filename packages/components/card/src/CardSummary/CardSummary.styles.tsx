@@ -17,22 +17,23 @@ export const CardSummaryItemDetailsWrapper = styled.div`
   display: flex;
   align-items: center;
   gap: 12px;
+  min-height: 32px;
 `;
 
 export const CardSummaryItemDetails = styled.div`
   &:before {
     content: '•';
-    margin-right: 8px;
   }
   display: flex;
-  gap: 4px;
-  line-height: 24px;
-  padding: 4px 0;
+  gap: 12px;
+  align-items: center;
 `;
 
 export const CardSummaryItemLabelValueWrapper = styled.span`
   align-self: center;
   word-break: break-all;
+  display: flex;
+  align-items: center;
 `;
 
 export const CardSummaryItemLabel = styled(Text)`
@@ -42,25 +43,29 @@ export const CardSummaryItemLabel = styled(Text)`
 
 export const CardSummaryItemValue = styled.span`
   ${macro.h200}
-  line-height: 24px;
+  display: flex;
+  align-items: center;
+  gap: 4px;
 `;
 
-export const IconWrapper = styled.div`
-  display: inline-block;
-  height: 24px;
-`;
+export const IconWrapper = styled.div``;
 
 export const Icon = styled(DSIcon)<{ isOpen: boolean }>`
   transform: rotate(${(props) => (props.isOpen ? '180' : '0')}deg);
 `;
 export const CardSummaryItemObjects = styled.div`
+  --cols: 4;
+  --gap: 8px;
+
   display: flex;
-  gap: 8px;
-  margin-left: 16px;
-  margin-top: 8px;
+  flex-wrap: wrap;
+  gap: 0 var(--gap);
+  margin: 8px 0 8px 16px;
 `;
 export const CardSummaryItemObject = styled.div`
-  flex-basis: 25%;
+  flex-basis: calc(
+    100% / var(--cols) - var(--gap) / var(--cols) * (var(--cols) - 1)
+  );
   min-width: 0;
   ${Tag} {
     margin-left: 0;
