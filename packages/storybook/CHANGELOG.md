@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.23.1](https://github.com/Synerise/synerise-design/compare/storybook@1.23.0...storybook@1.23.1) (2025-10-03)
+
+
+### Bug Fixes
+
+* **card:** summary styles refactor ([faa301f](https://github.com/Synerise/synerise-design/commit/faa301f17de5475ae80bac13fac0158fb3d2eb03))
+* **table:** add new cell with input number ([6a0e2a1](https://github.com/Synerise/synerise-design/commit/6a0e2a1ee4a4454f28d845687548063502fe07ca))
+
+
+
+
+
 # [1.23.0](https://github.com/Synerise/synerise-design/compare/storybook@1.22.0...storybook@1.23.0) (2025-09-25)
 
 

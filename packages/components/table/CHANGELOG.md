@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.6.5](https://github.com/synerise/synerise-design/compare/@synerise/ds-table@1.6.4...@synerise/ds-table@1.6.5) (2025-10-03)
+
+
+### Bug Fixes
+
+* **table:** add new cell with input number ([6a0e2a1](https://github.com/synerise/synerise-design/commit/6a0e2a1ee4a4454f28d845687548063502fe07ca))
+* **table:** tags in table cell layout ([a072a1b](https://github.com/synerise/synerise-design/commit/a072a1ba596043c31fa9eb92bf00a5b044e94898))
+
+
+
+
+
 ## [1.6.4](https://github.com/synerise/synerise-design/compare/@synerise/ds-table@1.6.3...@synerise/ds-table@1.6.4) (2025-10-01)
 
 

@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.4.4](https://github.com/Synerise/synerise-design/compare/@synerise/ds-tags@1.4.3...@synerise/ds-tags@1.4.4) (2025-10-03)
+
+
+### Bug Fixes
+
+* **table:** tags in table cell layout ([a072a1b](https://github.com/Synerise/synerise-design/commit/a072a1ba596043c31fa9eb92bf00a5b044e94898))
+
+
+
+
+
 ## [1.4.3](https://github.com/Synerise/synerise-design/compare/@synerise/ds-tags@1.4.2...@synerise/ds-tags@1.4.3) (2025-09-30)
 
 **Note:** Version bump only for package @synerise/ds-tags
