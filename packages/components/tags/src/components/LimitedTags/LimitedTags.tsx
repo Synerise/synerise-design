@@ -1,5 +1,6 @@
 import React from 'react';
 
+import { useTheme } from '@synerise/ds-core';
 import { type TagProps, type TagShape } from '@synerise/ds-tag';
 
 import * as S from '../../Tags.styles';
@@ -25,6 +26,7 @@ export const LimitedTags = ({
   onRemove,
 }: LimitedTagsProps) => {
   const limitedSelectedTags = selected.slice(maxVisibleTags);
+  const theme = useTheme();
 
   return (
     <TagsDropdown
@@ -35,6 +37,9 @@ export const LimitedTags = ({
       onRemove={removable ? onRemove : undefined}
       disabled={disabled}
       asPill={asPill}
+      overlayStyle={{
+        zIndex: parseInt(theme.variables['zindex-dropdown'], 10) + 1,
+      }}
     >
       <S.LimitedTag
         id="limited-tags"
