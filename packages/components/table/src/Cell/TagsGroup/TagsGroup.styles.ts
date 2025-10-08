@@ -7,6 +7,7 @@ export const TagsGroupWrapper = styled.div<{
   isDisabled?: boolean;
   isEmpty?: boolean;
 }>`
+  min-width: 0;
   ${Container} {
     margin-bottom: 0;
   }
@@ -22,6 +23,12 @@ export const TagsGroupWrapper = styled.div<{
       : `
         ${AddTagButton}${AddTagButton}${AddTagButton} svg {
             transition: none;
+        }
+        ${
+          !props.isEmpty &&
+          `${AddTagButton} {
+            flex-shrink: 0
+          }`
         }
         ${AddTagButton}:not(:focus) {
             visibility: hidden;

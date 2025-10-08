@@ -56,6 +56,7 @@ const OuterListElement = (
             ref={ref}
             onWheel={onWheelHandler}
             data-testid="virtual-table-scrollable-window-sticky"
+            data-popup-container
             style={{ ...rest, maxHeight: height }}
           >
             {children}
