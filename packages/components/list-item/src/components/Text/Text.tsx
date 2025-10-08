@@ -1,27 +1,27 @@
 import copy from 'copy-to-clipboard';
 import React, {
   type FocusEvent,
+  type KeyboardEvent,
   type MouseEvent,
+  forwardRef,
   useMemo,
   useState,
 } from 'react';
 
-import { theme } from '@synerise/ds-core';
-import Icon, { AngleRightS, CheckS } from '@synerise/ds-icon';
-import Tooltip from '@synerise/ds-tooltip';
-import { renderWithHighlight } from '@synerise/ds-utils';
+import { renderWithHighlight, useStableId } from '@synerise/ds-utils';
 
-import { type BasicItemProps, itemSizes } from '../../ListItem.types';
+import { type BasicItemProps } from '../../ListItem.types';
 import HoverTooltip from '../HoverTooltip/HoverTooltip';
-import * as S from './Text.styles';
+import { SubMenu } from '../SubMenu/SubMenu';
+import { ItemLabel } from './ItemLabel';
 import { removeHandlerProps, renderAddon } from './utils';
 
-const Text = (props: BasicItemProps) => {
+const Text = forwardRef<HTMLDivElement, BasicItemProps>((props, ref) => {
   const {
     checked,
     className,
     children,
-    itemKey,
+    itemKey: menuItemKey,
     noHover,
     size,
     prefixel,
@@ -36,13 +36,17 @@ const Text = (props: BasicItemProps) => {
     description,
     parent,
     ordered,
+    indentLevel,
 
     onClick,
+    onItemSelect,
     onMouseOver,
     onMouseDown,
     onMouseLeave,
+    onBlur,
     onFocus,
     onItemHover,
+    onKeyDown,
 
     prefixVisibilityTrigger,
     suffixVisibilityTrigger,
@@ -52,8 +56,16 @@ const Text = (props: BasicItemProps) => {
 
     hoverTooltipProps,
     renderHoverTooltip,
+    subMenu,
+    ItemComponent,
+
     ...rest
   } = props;
+
+  const stableId = useStableId();
+  const itemKey = menuItemKey ?? stableId;
+
+  const [subMenuOpen, setSubMenuOpen] = useState(false);
 
   const [hovered, setHovered] = useState(false);
 
@@ -97,15 +109,32 @@ const Text = (props: BasicItemProps) => {
     return children;
   }, [children, highlight]);
 
-  const handleClick = (event: MouseEvent<HTMLDivElement>) => {
-    if (!disabled) {
-      onClick && onClick({ ...itemData, domEvent: event });
-    }
-  };
-
   const itemData = {
     key: itemKey,
     item: removeHandlerProps(props),
+  };
+
+  const handleClick = (event: MouseEvent<HTMLDivElement>) => {
+    if (!disabled) {
+      if (subMenu) {
+        setSubMenuOpen(!subMenuOpen);
+      } else {
+        onItemSelect && onItemSelect({ ...itemData, domEvent: event });
+        onClick && onClick({ ...itemData, domEvent: event });
+      }
+    }
+  };
+
+  const handleKeyDown = (event: KeyboardEvent<HTMLDivElement>) => {
+    if (!disabled && event.key === 'Enter') {
+      if (subMenu) {
+        setSubMenuOpen(!subMenuOpen);
+      } else {
+        canCopyToClipboard && copyValue && copy(copyValue);
+        onItemSelect && onItemSelect({ ...itemData, domEvent: event });
+      }
+    }
+    onKeyDown && onKeyDown(event);
   };
 
   const handleMouseOver = (event: MouseEvent<HTMLDivElement>) => {
@@ -123,6 +152,10 @@ const Text = (props: BasicItemProps) => {
     setHovered(true);
     onFocus && onFocus(event);
   };
+  const handleBlur = (event: FocusEvent<HTMLDivElement>) => {
+    setHovered(false);
+    onBlur && onBlur(event);
+  };
 
   const handleMouseDown = (event: MouseEvent<HTMLDivElement>) => {
     setHovered(true);
@@ -131,76 +164,45 @@ const Text = (props: BasicItemProps) => {
   };
 
   const TextNode = (
-    <S.Wrapper
+    <ItemLabel
       role="menuitem"
       data-testid="ds-list-item"
-      className={`ds-list-item ${className} ${checked ? 'ds-list-item-selected' : ''}`}
-      tabIndex={disabled ? -1 : 0}
+      className={className}
       onClick={handleClick}
+      onKeyDown={handleKeyDown}
       onMouseOver={handleMouseOver}
       onMouseLeave={handleMouseLeave}
       onFocus={handleFocus}
+      onBlur={handleBlur}
       onMouseDown={handleMouseDown}
       ordered={ordered}
       disabled={disabled}
       noHover={noHover}
-      highlight={!!highlight}
+      hasHighlight={!!highlight}
       size={size}
       style={renderHoverTooltip ? undefined : style}
       inTooltip={!!renderHoverTooltip}
+      ref={ref}
+      parent={parent}
+      hasSubMenu={!!(subMenu && subMenu.length)}
+      subMenuOpen={subMenuOpen}
+      timeToHideTooltip={timeToHideTooltip}
+      tooltipProps={tooltipProps}
+      copyTooltip={copyTooltip}
+      prefixElement={prefixElement}
+      prefixVisible={shouldRenderPrefix}
+      description={description}
+      checked={checked}
+      suffixElement={suffixElement}
+      suffixVisible={shouldRenderSuffix}
+      indentLevel={indentLevel}
+      content={
+        canCopyToClipboard && hovered && copyHint
+          ? copyHint
+          : childrenWithHighlight
+      }
       {...rest}
-    >
-      <Tooltip
-        type="default"
-        trigger="click"
-        title={copyTooltip}
-        timeToHideAfterClick={timeToHideTooltip}
-        {...tooltipProps}
-      >
-        <S.Inner>
-          {prefixElement && (
-            <S.PrefixWrapper
-              data-testid="list-item-prefix"
-              visible={shouldRenderPrefix}
-              disabled={disabled}
-            >
-              {prefixElement}
-            </S.PrefixWrapper>
-          )}
-          <S.Content className="ds-list-item-content" highlight={!!highlight}>
-            {canCopyToClipboard && hovered && copyHint
-              ? copyHint
-              : childrenWithHighlight}
-            {description && size === itemSizes.LARGE && (
-              <S.Description>{description}</S.Description>
-            )}
-          </S.Content>
-          {parent && (
-            <S.ArrowRight>
-              <Icon
-                component={<AngleRightS />}
-                color={theme.palette['grey-600']}
-              />
-            </S.ArrowRight>
-          )}
-          {(!!suffixElement || !!checked) && (
-            <S.SuffixWrapper
-              data-testid="list-item-suffix"
-              visible={shouldRenderSuffix}
-              disabled={disabled}
-            >
-              {!!checked && (
-                <Icon
-                  component={<CheckS />}
-                  color={theme.palette[`green-600`]}
-                />
-              )}
-              {suffixElement}
-            </S.SuffixWrapper>
-          )}
-        </S.Inner>
-      </Tooltip>
-    </S.Wrapper>
+    />
   );
   if (renderHoverTooltip) {
     return (
@@ -213,7 +215,24 @@ const Text = (props: BasicItemProps) => {
       </HoverTooltip>
     );
   }
+
+  if (subMenu && subMenu.length) {
+    const nextIndentLevel = indentLevel ? indentLevel + 1 : 1;
+    return (
+      <>
+        {TextNode}
+        <SubMenu
+          onClick={onClick}
+          onItemSelect={onItemSelect}
+          indentLevel={nextIndentLevel}
+          dataSource={subMenu}
+          isOpen={subMenuOpen}
+          ItemComponent={ItemComponent}
+        />
+      </>
+    );
+  }
   return TextNode;
-};
+});
 
 export default Text;

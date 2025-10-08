@@ -3,6 +3,8 @@ import styled, { css } from 'styled-components';
 
 import { IconContainer } from '@synerise/ds-icon';
 
+import { INDENT_WIDTH } from './ItemLabel.const';
+
 const TRANSITION_FN = '0.2s ease-out';
 
 const hiddenElementStyle = () => css`
@@ -56,11 +58,20 @@ export const PrefixWrapper = styled.div<{
 `;
 export const Highlight = styled.span``;
 
+const getPaddingFromIndentLevel = (indentLevel = 0) => {
+  return indentLevel * INDENT_WIDTH;
+};
+const calculatePadding = (indentLevel = 0, withPrefixel = false) => {
+  return getPaddingFromIndentLevel(indentLevel) + (withPrefixel ? 8 : 12);
+};
+
 const baseStyles = css<StyledListItemProps>`
   display: flex;
   align-items: center;
   margin: 0;
-  padding-left: ${(props) => (props.prefixel ? '8px' : '12px')};
+  padding-left: ${(props) =>
+    calculatePadding(props.indentLevel, !!props.prefixel)}px;
+
   padding-right: 12px;
   font-size: 13px;
   line-height: 1.39;

@@ -3,7 +3,6 @@ import styled, { createGlobalStyle, css } from 'styled-components';
 import { CardStyles } from '@synerise/ds-card';
 import { DescriptionCopyable } from '@synerise/ds-description';
 import DSDivider from '@synerise/ds-divider';
-import * as S from '@synerise/ds-tooltip/dist/Tooltip.styles';
 import { macro } from '@synerise/ds-typography';
 
 const INFOCARD_WIDTH = 350;
@@ -20,8 +19,14 @@ export const Copyable = styled(DescriptionCopyable)`
 
 export const Divider = styled(DSDivider)`
   && {
-    border-color: ${(props) => props.theme.palette['grey-300']};
     margin: 8px 0;
+    width: 100%;
+  }
+`;
+export const BottomDivider = styled(DSDivider)`
+  && {
+    margin-left: 16px;
+    margin-right: 16px;
   }
 `;
 
@@ -81,6 +86,7 @@ export const InfoCardWrapper = styled.div<{
 
   ${CardStyles.Card.Container} {
     font-weight: 400;
+    gap: 16px;
     ${(props) =>
       !props.hasFooter &&
       css`
@@ -97,7 +103,7 @@ export const InfoCardWrapper = styled.div<{
   }
   ${CardStyles.Card.Header} {
     padding: 16px 16px 1px 16px;
-    margin-bottom: 16px;
+    margin-bottom: 0;
   }
   ${CardStyles.Card.IconContainer} {
     align-self: center;
@@ -168,8 +174,6 @@ export const GlobalCSSHidePopoverArrow = createGlobalStyle`
 export const ExtraInfo = styled.div`
   margin-bottom: 1px;
 `;
-
-export const TooltipComponentClassName = S.TooltipComponent;
 
 export const InformationCardActionsWrapper = styled.div`
   padding: 8px;

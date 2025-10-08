@@ -18,7 +18,9 @@
         },
         "test": {
             "cache": true,
-            "dependsOn": [],
+            "dependsOn": [
+                "^test"
+            ],
             "inputs": [
                 "default",
                 "{workspaceRoot}/config/jest/**"
@@ -49,16 +51,16 @@
         "default": [
             "{projectRoot}/**/*",
             "sharedGlobals"
-        ], 
+        ],
         "production": [
             "default",
             "!{projectRoot}/jest.config.ts"
-        ], 
+        ],
         "sharedGlobals": [
             "{workspaceRoot}/package.json",
             "{workspaceRoot}/yarn.lock",
             "{workspaceRoot}/babel.config.js",
             "{workspaceRoot}/.gitignore"
-        ] 
+        ]
     }
 }

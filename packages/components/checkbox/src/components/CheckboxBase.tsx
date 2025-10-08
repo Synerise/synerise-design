@@ -21,7 +21,7 @@ export const CheckboxBase = ({
       <S.AntdCheckbox
         {...antdCheckboxProps}
         className={hasError || errorText ? 'error' : undefined}
-        solo={!children && !errorText && !description}
+        $solo={!children && !errorText && !description}
       >
         {children}
       </S.AntdCheckbox>

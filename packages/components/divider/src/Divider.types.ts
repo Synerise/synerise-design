@@ -12,6 +12,7 @@ export type DividerProps = WithHTMLAttributes<
     labelAbove?: ReactNode;
     labelBelow?: ReactNode;
     hiddenLine?: boolean;
+    withSideMargin?: boolean;
     type?: DividerType;
     dashed?: boolean;
   }

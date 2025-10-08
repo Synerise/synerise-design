@@ -23,9 +23,7 @@ export const BackActionWrapper = styled.div`
       color: ${(props): string => props.theme.palette['blue-600']};
     }
     ${IconWrapper} {
-      svg {
-        fill: ${(props): string => props.theme.palette['blue-600']};
-      }
+      color: ${(props): string => props.theme.palette['blue-600']};
     }
   }
 `;

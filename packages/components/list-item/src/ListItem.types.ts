@@ -1,5 +1,13 @@
 import type { TriggerProps } from 'rc-trigger';
-import type { Component, Key, LegacyRef, MouseEvent, ReactNode } from 'react';
+import type {
+  Component,
+  ComponentType,
+  Key,
+  KeyboardEvent,
+  LegacyRef,
+  MouseEvent,
+  ReactNode,
+} from 'react';
 
 import type { TooltipProps } from '@synerise/ds-tooltip';
 import type { WithHTMLAttributes } from '@synerise/ds-utils';
@@ -11,6 +19,7 @@ export const itemTypes = {
   DANGER: 'danger',
   DIVIDER: 'divider',
   SELECT: 'select',
+  HEADER: 'header',
 } as const;
 
 export const itemSizes = {
@@ -35,59 +44,71 @@ export type TriggerHandle = Component<TriggerProps> & {
   getPopupDomNode: () => HTMLElement;
 };
 
+export type BaseListItemProps = ListItemDividerProps & {
+  checked?: boolean;
+  selected?: boolean;
+  children?: ReactNode;
+  className?: string;
+  copyable?: boolean;
+  copyHint?: ReactNode;
+  copyValue?: string;
+  copyTooltip?: ReactNode;
+  description?: ReactNode;
+  direction?: 'ltr' | 'rtl';
+  disabled?: boolean;
+
+  highlight?: string;
+  hoverTooltipProps?: Pick<
+    TriggerProps,
+    | 'onPopupVisibleChange'
+    | 'onPopupClick'
+    | 'mouseEnterDelay'
+    | 'mouseLeaveDelay'
+    | 'defaultPopupVisible'
+    | 'action'
+    | 'afterPopupVisibleChange'
+    | 'popupPlacement'
+    | 'getPopupContainer'
+    | 'forceRender'
+  > & {
+    ref?: LegacyRef<TriggerHandle>;
+  };
+  key?: Key;
+  itemKey?: Key;
+  noHover?: boolean;
+  onItemHover?: ListItemEventHandler<MouseEvent<HTMLDivElement>>;
+  onItemSelect?: ListItemEventHandler<
+    MouseEvent<HTMLDivElement> | KeyboardEvent<HTMLDivElement>
+  >;
+  onClick?: ListItemEventHandler<MouseEvent<HTMLDivElement>>;
+  ordered?: boolean;
+  parent?: boolean;
+  prefixel?: ReactNode | AddonRenderer;
+  prefixVisibilityTrigger?: 'hover' | 'default';
+  renderHoverTooltip?: () => JSX.Element;
+  size?: ItemSize;
+  suffixel?: ReactNode | AddonRenderer;
+  suffixVisibilityTrigger?: 'hover' | 'default';
+  text?: ReactNode;
+  timeToHideTooltip?: number;
+  tooltipProps?: TooltipProps;
+  type?: ItemType;
+  subMenu?: ListItemProps[];
+  indentLevel?: number;
+};
+
 export type ListItemProps = WithHTMLAttributes<
   HTMLDivElement,
-  {
-    checked?: boolean;
-    selected?: boolean;
-    children?: ReactNode;
-    className?: string;
-    copyable?: boolean;
-    copyHint?: ReactNode;
-    copyValue?: string;
-    copyTooltip?: ReactNode;
-    description?: ReactNode;
-    direction?: 'ltr' | 'rtl';
-    disabled?: boolean;
-    higher?: boolean;
-    highlight?: string;
-    hoverTooltipProps?: Pick<
-      TriggerProps,
-      | 'onPopupVisibleChange'
-      | 'onPopupClick'
-      | 'mouseEnterDelay'
-      | 'mouseLeaveDelay'
-      | 'defaultPopupVisible'
-      | 'action'
-      | 'afterPopupVisibleChange'
-      | 'popupPlacement'
-      | 'getPopupContainer'
-      | 'forceRender'
-    > & {
-      ref?: LegacyRef<TriggerHandle>;
-    };
-    key?: Key;
-    itemKey?: Key;
-    level?: number;
-    noHover?: boolean;
-    onItemHover?: ListItemEventHandler<MouseEvent<HTMLDivElement>>;
-    onClick?: ListItemEventHandler<MouseEvent<HTMLDivElement>>;
-    ordered?: boolean;
-    parent?: boolean;
-    prefixel?: ReactNode | AddonRenderer;
-    prefixVisibilityTrigger?: 'hover' | 'default';
-    renderHoverTooltip?: () => JSX.Element;
-    size?: ItemSize;
-    suffixel?: ReactNode | AddonRenderer;
-    suffixVisibilityTrigger?: 'hover' | 'default';
-    text?: ReactNode;
-    timeToHideTooltip?: number;
-    tooltipProps?: TooltipProps;
-    type?: ItemType;
-  }
+  BaseListItemProps
 >;
+export type ListItemDividerProps = {
+  level?: number;
+  higher?: boolean;
+};
 
 export type BasicItemProps = Omit<
   ListItemProps,
   'type' | 'text' | 'level' | 'higher'
->;
+> & {
+  ItemComponent: ComponentType<ListItemProps>;
+};

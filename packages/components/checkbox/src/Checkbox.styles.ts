@@ -20,13 +20,13 @@ type CompoundedComponent = React.ForwardRefExoticComponent<
   Group: typeof BaseAntCheckbox.Group;
 };
 export const AntdCheckbox = styled(BaseAntCheckbox as CompoundedComponent)<{
-  solo: boolean;
+  $solo: boolean;
 }>`
   && {
     display: flex;
     align-items: center;
     line-height: 1;
-    ${(props) => props.solo && soloCss};
+    ${(props) => props.$solo && soloCss};
 
     .ant-checkbox {
       top: 0;

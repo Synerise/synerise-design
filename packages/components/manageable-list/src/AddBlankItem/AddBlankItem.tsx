@@ -1,7 +1,6 @@
 import React from 'react';
 
 import Button from '@synerise/ds-button';
-import Divider from '@synerise/ds-divider';
 import Icon, { Add3S } from '@synerise/ds-icon';
 
 import * as S from './AddBlankItem.styles';
@@ -14,7 +13,7 @@ const AddBlankItem = ({
 }: AddBlankItemProps) => {
   return (
     <S.AddContentButtonWrapper data-testid="add-item-button">
-      <Divider dashed marginTop={8} />
+      <S.StyledDivider dashed marginTop={8} />
       <Button
         type="ghost-primary"
         mode="icon-label"
