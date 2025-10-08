@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.6.6](https://github.com/synerise/synerise-design/compare/@synerise/ds-table@1.6.5...@synerise/ds-table@1.6.6) (2025-10-08)
+
+
+### Bug Fixes
+
+* **table:** popup conatiner attr and tags wrapper styles ([5153e44](https://github.com/synerise/synerise-design/commit/5153e440469e7d81808ef102c70f0a38f2e6596f))
+
+
+
+
+
 ## [1.6.5](https://github.com/synerise/synerise-design/compare/@synerise/ds-table@1.6.4...@synerise/ds-table@1.6.5) (2025-10-03)
 
 

@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.23.2](https://github.com/Synerise/synerise-design/compare/storybook@1.23.1...storybook@1.23.2) (2025-10-08)
+
+
+### Bug Fixes
+
+* **table:** popup conatiner attr and tags wrapper styles ([5153e44](https://github.com/Synerise/synerise-design/commit/5153e440469e7d81808ef102c70f0a38f2e6596f))
+* **tags:** fixed dropdown bottom padding ([1bf9236](https://github.com/Synerise/synerise-design/commit/1bf92361cb032a7b142866727cdac43cfe6db8ad))
+
+
+
+
+
 ## [1.23.1](https://github.com/Synerise/synerise-design/compare/storybook@1.23.0...storybook@1.23.1) (2025-10-03)
 
 

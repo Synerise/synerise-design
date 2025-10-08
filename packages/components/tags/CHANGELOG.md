@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.4.5](https://github.com/Synerise/synerise-design/compare/@synerise/ds-tags@1.4.4...@synerise/ds-tags@1.4.5) (2025-10-08)
+
+
+### Bug Fixes
+
+* **table:** popup conatiner attr and tags wrapper styles ([5153e44](https://github.com/Synerise/synerise-design/commit/5153e440469e7d81808ef102c70f0a38f2e6596f))
+* **tags:** dropdowns zindex ([2a751e1](https://github.com/Synerise/synerise-design/commit/2a751e15c5ba940b6ad1065a2b8f18682137ccca))
+* **tags:** fixed dropdown bottom padding ([1bf9236](https://github.com/Synerise/synerise-design/commit/1bf92361cb032a7b142866727cdac43cfe6db8ad))
+
+
+
+
+
 ## [1.4.4](https://github.com/Synerise/synerise-design/compare/@synerise/ds-tags@1.4.3...@synerise/ds-tags@1.4.4) (2025-10-03)
 
 
