@@ -53,6 +53,20 @@ export const ShowDropdown: Story = {
   },
 };
 
+export const ShowDropdownWithoutBottomAcxtion: Story = {
+  ...WithAddButton,
+  args: {
+    ...WithAddButton.args,
+    maxHeight: 200,
+    texts: TAG_TEXTS,
+    dropdownFooter: undefined,
+  },
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement.parentElement!);
+    await openDropdown(canvas);
+  },
+};
+
 export const SearchTag: Story = {
   ...WithAddButton,
   args: {

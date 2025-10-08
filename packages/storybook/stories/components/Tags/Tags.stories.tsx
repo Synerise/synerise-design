@@ -53,8 +53,8 @@ const TagsMeta = {
     asPill: BOOLEAN_CONTROL,
     addable: BOOLEAN_CONTROL,
     removable: BOOLEAN_CONTROL,
-    manageLink: STRING_CONTROL,
     title: REACT_NODE_AS_STRING,
+    dropdownFooter: REACT_NODE_AS_STRING,
     creatable: BOOLEAN_CONTROL,
     disabled: BOOLEAN_CONTROL,
     color: {
@@ -86,6 +86,16 @@ const TagsMeta = {
     tagShape: TagShape[0],
     texts: TAG_TEXTS,
     title: 'Tags:',
+    dropdownFooter: (
+      <Button type="ghost" mode="icon-label">
+        <Icon
+          component={<ExternalLinkM />}
+          size={24}
+          color={theme.palette['grey-600']}
+        />{' '}
+        Manage tags
+      </Button>
+    ),
   },
 } as Meta<TagStoryProps>;
 export default TagsMeta;
@@ -129,16 +139,6 @@ export const WithAddButton: Story = {
           });
           args.onSelectedChange?.(tags, actionTaken);
         }}
-        dropdownFooter={
-          <Button type="ghost" mode="icon-label">
-            <Icon
-              component={<ExternalLinkM />}
-              size={24}
-              color={theme.palette['grey-600']}
-            />{' '}
-            Manage tags
-          </Button>
-        }
       />
     );
   },

@@ -12,9 +12,6 @@ import { NOOP } from '@synerise/ds-utils';
 import { type ExtendedTagProps } from '../../Tags.types';
 import * as S from './TagsDropdown.styles';
 
-const DROPDOWN_BOTTOM_ACTION_STYLES = { padding: '0 8px', cursor: 'auto' };
-const DROPDOWN_CONTAINER_STYLES = { padding: '8px' };
-
 type TagDropdownProps = {
   tags?: ExtendedTagProps[];
   texts?: TagTexts;
@@ -55,11 +52,7 @@ export const TagsDropdown = ({
       overlay={
         <S.Overlay data-testid="ds-tags-dropdown-overlay">
           {dropdownHeader}
-          <S.DropdownContainer
-            absolute
-            maxHeight={maxHeight}
-            style={DROPDOWN_CONTAINER_STYLES}
-          >
+          <S.DropdownContainer absolute maxHeight={maxHeight}>
             {aboveTagsContent}
             {areTags ? (
               <S.DropdownTagsContainer data-testid="ds-tags-available-tags">
@@ -97,12 +90,9 @@ export const TagsDropdown = ({
             )}
           </S.DropdownContainer>
           {dropdownFooter && (
-            <Dropdown.BottomAction
-              onClickAction={NOOP}
-              style={DROPDOWN_BOTTOM_ACTION_STYLES}
-            >
+            <S.BottomAction onClickAction={NOOP}>
               {dropdownFooter}
-            </Dropdown.BottomAction>
+            </S.BottomAction>
           )}
         </S.Overlay>
       }

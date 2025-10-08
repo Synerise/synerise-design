@@ -1,8 +1,14 @@
-import type { CSSProperties, ReactElement, ReactNode } from 'react';
+import type { ReactElement, ReactNode } from 'react';
 
-export interface Props {
-  onClickAction: () => void;
-  icon?: ReactElement;
-  children?: ReactNode;
-  style?: CSSProperties;
-}
+import { type WithHTMLAttributes } from '@synerise/ds-utils';
+
+export type BottomActionProps = WithHTMLAttributes<
+  HTMLDivElement,
+  {
+    onClickAction: () => void;
+    icon?: ReactElement;
+    children?: ReactNode;
+  }
+>;
+
+export type Props = BottomActionProps;
