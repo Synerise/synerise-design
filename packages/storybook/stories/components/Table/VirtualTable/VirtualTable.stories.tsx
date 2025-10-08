@@ -287,6 +287,7 @@ export const WithFixedColumns: Story = {
 export const WithResponsiveColumns: Story = {
   decorators: [responsiveTableWrapper],
   args: {
+    cellHeight: 65,
     columns: RESPONSIVE_COLUMNS,
   },
 };

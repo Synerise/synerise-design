@@ -44,6 +44,8 @@ export const LimitedTags = ({
       <S.LimitedTag
         id="limited-tags"
         shape={tagShape}
+        color={theme.palette['grey-100']}
+        textColor={theme.palette['grey-700']}
         name={`+${limitedSelectedTags.length}`}
         asPill
       />

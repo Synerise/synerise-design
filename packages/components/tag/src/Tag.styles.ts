@@ -354,7 +354,7 @@ export const Tag = styled.div<TagProps>`
   overflow: hidden;
   cursor: default;
 
-  ${(props: TagProps) =>
+  ${(props) =>
     !props.asPill &&
     css`
       cursor: pointer;
@@ -372,14 +372,14 @@ export const Tag = styled.div<TagProps>`
    }
 `}
 
-  ${(props: TagProps) =>
+  ${(props) =>
     !!props.disabled &&
     css`
       opacity: 0.4;
       cursor: not-allowed;
     `}
 
-  ${(props: TagProps) =>
+  ${(props) =>
     !props.isStatusShape &&
     css`
       &:before {
@@ -421,9 +421,6 @@ export const Tag = styled.div<TagProps>`
       }
     `};
 
-  &:last-of-type {
-    margin-right: 0;
-  }
   ${SuffixWrapper},${DefaultSuffixWrapper} {
     margin: ${(props) =>
       !props.removable && props.suffixel

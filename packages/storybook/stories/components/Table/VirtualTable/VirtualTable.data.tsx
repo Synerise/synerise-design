@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 
+import { faker } from '@faker-js/faker';
 import Button from '@synerise/ds-button';
 import Icon, { InfoFillS, RefreshM, VarTypeStringM } from '@synerise/ds-icon';
-import { DSColumnType } from '@synerise/ds-table';
+import { DSColumnType, TableCell } from '@synerise/ds-table';
 
+import { TAGS } from '../AllCellTypes/AllCellTypes.data';
 import { AdditionalColumnData } from '../Table.types';
 
 export const DATA_SOURCE = [
@@ -5088,12 +5090,31 @@ export const RESPONSIVE_COLUMNS = [
     minWidth: 150,
   },
   {
+    title: 'Tags (230px)',
+    key: 'transactionType',
+
+    dataIndex: 'transactionType',
+    render: () => {
+      const tagIndex = faker.number.int({ min: 0, max: TAGS.length - 1 });
+      return (
+        <TableCell.TagsGroupCell
+          tagsProps={{
+            addable: true,
+            removable: true,
+            selected: [TAGS[tagIndex]],
+            data: TAGS,
+          }}
+        />
+      );
+    },
+    width: 230,
+  },
+  {
     title: 'City (min 100px no max)',
     key: 'city',
     dataIndex: 'city',
     sorter: (a, b) => a.city.localeCompare(b.city),
     sortRender: 'string',
-    minWidth: 100,
   },
   {
     title: 'Number (100px)',
@@ -5109,7 +5130,7 @@ export const RESPONSIVE_COLUMNS = [
     dataIndex: 'transactionType',
     sorter: (a, b) => a.transactionType.localeCompare(b.transactionType),
     sortRender: 'string',
-    width: 120,
+    width: 180,
   },
 ];
 

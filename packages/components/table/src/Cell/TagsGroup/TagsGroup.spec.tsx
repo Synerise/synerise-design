@@ -31,11 +31,11 @@ describe('TagsGroupCell', () => {
         expect(screen.getByText(TAGS[0].name)).toBeInTheDocument();
         expect(screen.queryByText(TAGS[1].name)).toBeInTheDocument();
         expect(screen.queryByText(TAGS[2].name)).not.toBeInTheDocument();
+        expect(screen.queryByText(TEXTS.addButtonLabel)).not.toBeInTheDocument();
     });
 
-    it('Should render add button hidden', () => {
+    it('Should render add button', () => {
         renderWithProvider(<TagsGroupCell tagsProps={{ selected: [], addable: true, texts: TEXTS}} />);
         expect(screen.getByText(TEXTS.addButtonLabel)).toBeInTheDocument();
-        expect(screen.getByText(TEXTS.addButtonLabel)).not.toBeVisible();
     });
 });
