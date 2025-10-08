@@ -1,0 +1,4 @@
+- Use <ListWrapper> around <ListItem> elements to provide a single `onClick` / `onItemSelect` handler for all items. 
+- It also wraps the list with appropriate padding and background applied. Styles can be further customised by using styled(ListWrapper)``
+- If there's `onClick` / `onItemSelect` passed as a prop to any child `ListItem` both the `ListWrapper` and `ListItem` handlers will get triggered.
+- `ListItem`s do not need to be direct children, you can compose the children prop to suit your needs (eg. to support virtualisation).

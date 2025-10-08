@@ -9,6 +9,7 @@ export const Line = ({
   marginTop,
   type = 'horizontal',
   dashed,
+  withSideMargin,
   className,
   ...htmlAttributes
 }: DividerProps) => {
@@ -19,6 +20,7 @@ export const Line = ({
       role="separator"
       marginTop={marginTop}
       marginBottom={marginBottom}
+      withSideMargin={withSideMargin}
       type={type}
       dashed={dashed}
       {...htmlAttributes}
@@ -29,7 +31,7 @@ export const Line = ({
           strokeWidth={2}
           vectorEffect="non-scaling-stroke"
           stroke="currentColor"
-          stroke-dasharray={`${dashed ? '1 2' : ''}`}
+          strokeDasharray={`${dashed ? '1 2' : ''}`}
         />
       </svg>
     </S.Line>

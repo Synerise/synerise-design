@@ -77,6 +77,13 @@ const InformationCard = forwardRef<HTMLDivElement, InformationCardProps>(
         setIsActionsMenuVisible(false);
       }
     });
+    const showBottomDivider = !!(
+      summaryItems &&
+      (propertyListItems ||
+        descriptionConfig ||
+        notice ||
+        renderAdditionalDescription)
+    );
     return (
       <S.InfoCardWrapper
         data-testid="information-card"
@@ -118,9 +125,9 @@ const InformationCard = forwardRef<HTMLDivElement, InformationCardProps>(
               lively={false}
               withHeader
             >
-              {(descriptionConfig !== null || notice) && (
+              {(!!descriptionConfig || notice) && (
                 <InformationCardDescription
-                  extraInformation={notice || <></>}
+                  extraInformation={notice}
                   descriptionConfig={descriptionConfig}
                 />
               )}
@@ -128,6 +135,7 @@ const InformationCard = forwardRef<HTMLDivElement, InformationCardProps>(
               {propertyListItems && (
                 <InformationCardPropertyList items={propertyListItems} />
               )}
+              {showBottomDivider && <S.BottomDivider dashed marginBottom={8} />}
               {summaryItems && <InformationCardSummary items={summaryItems} />}
               {(renderFooter && renderFooter()) ||
                 (hasFooter && (

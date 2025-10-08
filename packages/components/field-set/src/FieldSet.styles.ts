@@ -1,5 +1,7 @@
 import styled, { css } from 'styled-components';
 
+import Divider from '@synerise/ds-divider';
+
 export const Title = styled.div<{
   description?: boolean;
   isClickable?: boolean;
@@ -72,3 +74,8 @@ export const CollapsibleContent = styled.div<{
     `}
 `;
 export const CollapsibleContentInner = styled.div``;
+
+export const StyledDivider = styled(Divider)`
+  width: 100%;
+  display: flex;
+`;

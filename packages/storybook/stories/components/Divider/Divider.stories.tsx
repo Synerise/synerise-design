@@ -18,6 +18,7 @@ export default {
     style: STYLE_ARG_CONTROL,
     className: CLASSNAME_ARG_CONTROL,
     hiddenLine: BOOLEAN_CONTROL,
+    withSideMargin: BOOLEAN_CONTROL,
     marginTop: NUMBER_CONTROL,
     marginBottom: NUMBER_CONTROL,
     dashed: {
@@ -61,6 +62,7 @@ export const Default: StoryObj<typeof Divider> = {
 export const WithLabelAbove: StoryObj<typeof Divider> = {
   args: {
     ...Default.args,
+    withSideMargin: true,
     labelAbove: 'Label Above',
   },
 };
@@ -68,6 +70,7 @@ export const WithLabelAbove: StoryObj<typeof Divider> = {
 export const WithLabelBelow: StoryObj<typeof Divider> = {
   args: {
     ...Default.args,
+    withSideMargin: true,
     labelBelow: 'Label Below',
   },
 };
@@ -75,6 +78,7 @@ export const WithLabelBelow: StoryObj<typeof Divider> = {
 export const WithBothLabels: StoryObj<typeof Divider> = {
   args: {
     ...Default.args,
+    withSideMargin: true,
     labelAbove: 'Label Above',
     labelBelow: 'Label Below',
   },

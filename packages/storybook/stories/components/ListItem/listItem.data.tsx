@@ -1,6 +1,16 @@
-import React, { useRef, useState } from 'react';
+import React, { ChangeEvent, useRef, useState } from 'react';
 
-import Tooltip from '@synerise/ds-tooltip';
+import { faker } from '@faker-js/faker';
+import Avatar from '@synerise/ds-avatar';
+import Badge from '@synerise/ds-badge';
+import Checkbox, {
+  CheckboxBaseProps,
+  type CheckboxTristateChangeEvent,
+} from '@synerise/ds-checkbox';
+import { theme } from '@synerise/ds-core';
+import Dropdown from '@synerise/ds-dropdown';
+import DSFlag from '@synerise/ds-flag';
+import { FormFieldLabel } from '@synerise/ds-form-field';
 import Icon, {
   CheckS,
   CloseS,
@@ -17,20 +27,15 @@ import Icon, {
   UserS,
   WarningFillS,
 } from '@synerise/ds-icon';
-import { theme } from '@synerise/ds-core';
-import { FormFieldLabel } from '@synerise/ds-form-field';
-import Dropdown from '@synerise/ds-dropdown';
-import Checkbox from '@synerise/ds-checkbox';
+import { ListItemProps } from '@synerise/ds-list-item';
 import Menu from '@synerise/ds-menu';
+import { RawSwitch } from '@synerise/ds-switch';
+import Tooltip from '@synerise/ds-tooltip';
 import { useOnClickOutside } from '@synerise/ds-utils';
-
-import * as S from './styles';
-import Badge from '@synerise/ds-badge';
-import Avatar from '@synerise/ds-avatar';
 
 import { AVATAR_IMAGE } from '../../constants/images';
 import { controlFromOptionsArray } from '../../utils';
-import { RawSwitch } from '@synerise/ds-switch';
+import * as S from './styles';
 
 export const suffixType = {
   renameAndDelete: 'rename,delete',
@@ -45,7 +50,7 @@ export const suffixType = {
   star: 'star',
   rename: 'rename',
   none: 'none',
-};
+} as const;
 
 export const prefixType = {
   singleIcon: 'singleIcon',
@@ -53,7 +58,7 @@ export const prefixType = {
   avatar: 'avatar',
   checkbox: 'checkbox',
   none: 'none',
-};
+} as const;
 
 export const prefixArgTypes = {
   prefixType: controlFromOptionsArray('select', Object.values(prefixType)),
@@ -106,7 +111,11 @@ const ActionsMenu = ({ onSelectClick }) => {
       align={{ offset: [-38, 8] }}
       overlay={
         <div style={{ width: '167px' }} ref={ref}>
-          <Menu asDropdownMenu style={{ width: '100%' }} dataSource={menuItems} />
+          <Menu
+            asDropdownMenu
+            style={{ width: '100%' }}
+            dataSource={menuItems}
+          />
         </div>
       }
     >
@@ -124,11 +133,22 @@ const ActionsMenu = ({ onSelectClick }) => {
   );
 };
 
-const CheckboxWithTooltip = ({ checked, onChecked }) => {
+const CheckboxWithTooltip = ({
+  checked,
+  onChecked,
+}: {
+  checked?: boolean;
+  onChecked?: (val: boolean) => void;
+}) => {
+  const [isChecked, setIsChecked] = useState(checked);
+  const handleChange: CheckboxBaseProps['onChange'] = (e) => {
+    onChecked ? onChecked(e.target.checked) : setIsChecked(e.target.checked);
+  };
+  const checkedMerged = checked !== undefined ? checked : isChecked;
   return (
     <Tooltip type="default" title={'Checkbox'}>
-      <div onClick={e => e.stopPropagation()}>
-        <Checkbox checked={checked} onChange={e => onChecked(e.target.checked)} />
+      <div onClick={(e) => e.stopPropagation()}>
+        <Checkbox checked={checkedMerged} onChange={handleChange} />
       </div>
     </Tooltip>
   );
@@ -154,14 +174,21 @@ const Rename = ({ onSelectEdit }) => {
 const StarWithTooltip = () => {
   const [checked, setChecked] = useState(false);
   const iconComponent = checked ? <StarFillM /> : <StarM />;
-  const iconColor = checked ? theme.palette['yellow-600'] : theme.palette['grey-600'];
+  const iconColor = checked
+    ? theme.palette['yellow-600']
+    : theme.palette['grey-600'];
   const handleClick = () => {
     setChecked(!checked);
   };
   return (
     <Tooltip type="default" title={'Star'}>
-      <div onClick={e => e.stopPropagation()}>
-        <Icon onClick={handleClick} color={iconColor} component={iconComponent} data-testid="star-icon" />
+      <div onClick={(e) => e.stopPropagation()}>
+        <Icon
+          onClick={handleClick}
+          color={iconColor}
+          component={iconComponent}
+          data-testid="star-icon"
+        />
       </div>
     </Tooltip>
   );
@@ -193,7 +220,11 @@ const RenameWithDelete = ({ onClickEdit }) => {
 const SwitchWithTooltip = () => {
   const [checked, setChecked] = useState(false);
   return (
-    <Tooltip type="default" trigger="hover" title={checked ? 'Switch off' : 'Switch on'}>
+    <Tooltip
+      type="default"
+      trigger="hover"
+      title={checked ? 'Switch off' : 'Switch on'}
+    >
       <RawSwitch
         onChange={(value, event) => {
           event.stopPropagation();
@@ -207,7 +238,11 @@ const SwitchWithTooltip = () => {
   );
 };
 
-export const renderPrefix = (prefixElementType: string, isChecked?: boolean, onChecked?: (value: boolean) => void) => {
+export const renderPrefix = (
+  prefixElementType: string,
+  isChecked?: boolean,
+  onChecked?: (value: boolean) => void,
+) => {
   switch (prefixElementType) {
     case prefixType.twoIcons:
       return (
@@ -219,7 +254,11 @@ export const renderPrefix = (prefixElementType: string, isChecked?: boolean, onC
           </Tooltip>
           <Tooltip type="default" title={'Delete'}>
             <div>
-              <Icon color={theme.palette['grey-700']} style={{ marginLeft: '8px' }} component={<ShowM />} />
+              <Icon
+                color={theme.palette['grey-700']}
+                style={{ marginLeft: '8px' }}
+                component={<ShowM />}
+              />
             </div>
           </Tooltip>
         </>
@@ -242,7 +281,7 @@ export const renderPrefix = (prefixElementType: string, isChecked?: boolean, onC
 export function renderSuffix(
   suffixElementType: string,
   selectSuffixCallback?: () => void,
-  clickSuffixCallback?: () => void
+  clickSuffixCallback?: () => void,
 ) {
   switch (suffixElementType) {
     case suffixType.star:
@@ -264,7 +303,12 @@ export function renderSuffix(
     case suffixType.check:
       return <Icon color={theme.palette['green-600']} component={<CheckS />} />;
     case suffixType.warning:
-      return <Icon color={theme.palette['orange-600']} component={<WarningFillS />} />;
+      return (
+        <Icon
+          color={theme.palette['orange-600']}
+          component={<WarningFillS />}
+        />
+      );
     case suffixType.icon:
       return (
         <S.HoverableIconWrapper className="icon-suffix">
@@ -275,7 +319,9 @@ export function renderSuffix(
       return (
         <FormFieldLabel
           label={
-            <div style={{ color: theme.palette['grey-400'], lineHeight: '18px' }}>
+            <div
+              style={{ color: theme.palette['grey-400'], lineHeight: '18px' }}
+            >
               <span>Text</span>
             </div>
           }
@@ -286,7 +332,13 @@ export function renderSuffix(
         <FormFieldLabel
           label={
             <Tooltip type="default" trigger="hover" title={'Select product'}>
-              <div style={{ lineHeight: '18px', marginRight: '4px', color: theme.palette['blue-600'] }}>
+              <div
+                style={{
+                  lineHeight: '18px',
+                  marginRight: '4px',
+                  color: theme.palette['blue-600'],
+                }}
+              >
                 <span>select</span>
               </div>
             </Tooltip>
@@ -301,3 +353,63 @@ export function renderSuffix(
       return null;
   }
 }
+
+type MakeItemProps = ListItemProps & {
+  suffixType?: keyof typeof suffixType;
+  prefixType?: keyof typeof prefixType;
+};
+const makeItem = ({
+  suffixType,
+  prefixType,
+  ...props
+}: MakeItemProps): ListItemProps => {
+  const prefix = prefixType && renderPrefix(prefixType);
+  const suffix = suffixType && renderSuffix(suffixType);
+  return {
+    prefixel: prefix,
+    suffixel: suffix,
+    itemKey: faker.string.uuid(),
+    key: faker.string.uuid(),
+    ...props,
+  };
+};
+
+const SUB_ITEMS: ListItemProps[] = [
+  makeItem({ text: 'Sub Item 1' }),
+  makeItem({ text: 'Sub Item 2' }),
+  makeItem({ text: 'Sub Item 3' }),
+];
+
+export const LIST_ITEMS: ListItemProps[] = [
+  makeItem({ text: 'Prefixes', type: 'header' }),
+  makeItem({ text: 'Icon', prefixType: 'singleIcon' }),
+  makeItem({ text: 'Two icons', prefixType: 'twoIcons' }),
+  makeItem({ text: 'Avatar', prefixType: 'avatar' }),
+  makeItem({ text: 'Checkbox', prefixType: 'checkbox' }),
+  makeItem({ text: 'Flag', prefixel: <DSFlag country="de" /> }),
+
+  makeItem({ type: 'divider' }),
+
+  makeItem({ text: 'Suffixes', type: 'header' }),
+  makeItem({ text: 'Switch suffix', suffixType: 'switch' }),
+  makeItem({ text: 'Select suffix', suffixType: 'select' }),
+  makeItem({ text: 'Check suffix', suffixType: 'check' }),
+  makeItem({ text: 'Delete suffix', suffixType: 'delete' }),
+  makeItem({ text: 'Dropdown suffix', suffixType: 'dropdown' }),
+  makeItem({ text: 'Icon suffix', suffixType: 'icon' }),
+  makeItem({ text: 'Label suffix', suffixType: 'label' }),
+  makeItem({ text: 'Rename suffix', suffixType: 'rename' }),
+  makeItem({ text: 'Rename and delete suffix', suffixType: 'renameAndDelete' }),
+  makeItem({ text: 'Star suffix', suffixType: 'star' }),
+  makeItem({ text: 'Warning suffix', suffixType: 'warning' }),
+  makeItem({ text: 'With submenu', subMenu: SUB_ITEMS }),
+
+  makeItem({ type: 'divider' }),
+
+  makeItem({ text: 'Header type', type: 'header' }),
+  makeItem({
+    text: 'Danger type',
+    type: 'danger',
+    prefixel: <Icon component={<TrashM />} />,
+  }),
+];

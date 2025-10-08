@@ -1,30 +1,36 @@
 import React, { useState } from 'react';
-import { Meta, StoryObj } from '@storybook/react-webpack5';
 import { useArgs } from 'storybook/preview-api';
+import { fn } from 'storybook/test';
 
+import { Meta, StoryObj } from '@storybook/react-webpack5';
 import Avatar, { ObjectAvatar } from '@synerise/ds-avatar';
+import Badge from '@synerise/ds-badge';
 import { theme } from '@synerise/ds-core';
 import DSFlag from '@synerise/ds-flag';
-import { RawSwitch } from '@synerise/ds-switch';
 import Icon, { CopyClipboardM, TrashM } from '@synerise/ds-icon';
 import ListItem, { ListItemProps } from '@synerise/ds-list-item';
+import { RawSwitch } from '@synerise/ds-switch';
 import Tag, { TagShape } from '@synerise/ds-tag';
 
+import { AVATAR_IMAGE } from '../../constants/images';
 import {
   BOOLEAN_CONTROL,
   CLASSNAME_ARG_CONTROL,
-  controlFromOptionsArray,
-  fixedWrapper200,
   NUMBER_CONTROL,
   REACT_NODE_AS_STRING,
   STRING_CONTROL,
+  controlFromOptionsArray,
+  fixedWrapper200,
 } from '../../utils';
-import { renderSuffix, suffixType, prefixType, renderPrefix, prefixArgTypes } from './listItem.data';
-
+import {
+  LIST_ITEMS,
+  prefixArgTypes,
+  prefixType,
+  renderPrefix,
+  renderSuffix,
+  suffixType,
+} from './listItem.data';
 import * as S from './styles';
-import { AVATAR_IMAGE } from '../../constants/images';
-import Badge from '@synerise/ds-badge';
-import { fn } from 'storybook/test';
 
 type Story = StoryObj<ListItemProps>;
 const renderListItem = (args: ListItemProps) => {
@@ -38,12 +44,14 @@ const renderWithPrefixAndSuffix = ({
   const [isChecked, setChecked] = useState(false);
 
   const suffixel = args.suffixel || (suffixType && renderSuffix(suffixType));
-  const prefixel = args.prefixel || (prefixType && renderPrefix(prefixType, isChecked, setChecked));
+  const prefixel =
+    args.prefixel ||
+    (prefixType && renderPrefix(prefixType, isChecked, setChecked));
   return renderListItem({
     ...args,
     suffixel,
     prefixel,
-    onClick: itemData => {
+    onClick: (itemData) => {
       args.onClick && args.onClick(itemData);
       setChecked(!isChecked);
     },
@@ -80,7 +88,8 @@ export default {
     },
     copyable: {
       ...BOOLEAN_CONTROL,
-      description: 'To enable `copyable` also `copyHint` and `copyValue` need to be defined',
+      description:
+        'To enable `copyable` also `copyHint` and `copyValue` need to be defined',
     },
     checked: {
       ...BOOLEAN_CONTROL,
@@ -121,22 +130,29 @@ export default {
       },
     },
     type: {
-      ...controlFromOptionsArray('inline-radio', ['default', 'danger', 'select', 'divider']),
+      ...controlFromOptionsArray('inline-radio', [
+        'default',
+        'danger',
+        'select',
+        'divider',
+      ]),
     },
     onClick: { action: 'onClick' },
   },
   args: {
-    key: 'list-item-key-0',
-    children: 'List Item',
     onItemHover: fn(),
     onSelect: fn(),
+    onItemSelect: fn(),
+    onFocus: fn(),
+    onBlur: fn(),
     onClick: fn(),
+    children: 'List Item',
   },
 } as Meta<ListItemProps>;
 
 export const LabelOnly: Story = {
   args: {
-    key: 'list-item-key-0',
+    key: 'list-item-key-1',
     title: 'List Item Title',
   },
 };
@@ -144,7 +160,9 @@ export const LabelOnly: Story = {
 export const WithoutHover: Story = {
   args: {
     noHover: true,
-    prefixel: <Icon color={theme.palette['grey-700']} component={<CopyClipboardM />} />,
+    prefixel: (
+      <Icon color={theme.palette['grey-700']} component={<CopyClipboardM />} />
+    ),
     suffixel: <div>{'select'}</div>,
   },
 };
@@ -169,7 +187,7 @@ export const WithParent: Story = {
 };
 
 export const WithOrderedList: Story = {
-  render: args => {
+  render: (args) => {
     return (
       <S.ListWrapper>
         <S.StyledListItem {...args} />
@@ -186,7 +204,7 @@ export const WithOrderedList: Story = {
 };
 
 export const WithSelection: Story = {
-  render: args => {
+  render: (args) => {
     const [{ checked }, updateArgs] = useArgs();
 
     function onClick() {
@@ -201,7 +219,7 @@ export const WithSelection: Story = {
       suffixel,
       type,
       checked,
-      onClick: itemData => {
+      onClick: (itemData) => {
         args.onClick && args.onClick(itemData);
         onClick();
       },
@@ -212,7 +230,9 @@ export const WithSelection: Story = {
 export const WithCopyable: Story = {
   render: renderListItem,
   args: {
-    prefixel: <Icon color={theme.palette['grey-700']} component={<CopyClipboardM />} />,
+    prefixel: (
+      <Icon color={theme.palette['grey-700']} component={<CopyClipboardM />} />
+    ),
     copyable: true,
     copyHint: 'Copy to clipboard',
     copyValue: 'Item',
@@ -227,8 +247,6 @@ export const Divider: Story = {
   },
 };
 
-
-
 export const WithStar: StoryObj<ListItemProps & { suffixType?: string }> = {
   render: renderWithPrefixAndSuffix,
   args: {
@@ -242,9 +260,8 @@ export const WithStar: StoryObj<ListItemProps & { suffixType?: string }> = {
   },
 };
 
-
 export const WithTag: StoryObj<ListItemProps & { tagShape?: TagShape }> = {
-  render: args => {
+  render: (args) => {
     const tagName = args.tagShape?.includes('single') ? 'A' : 'Tag';
     const suffixel = <Tag name={tagName} shape={args.tagShape} />;
     return renderListItem({
@@ -284,18 +301,26 @@ export const WithFlagPrefix: Story = {
 
 export const WithHoverTooltip: Story = {
   args: {
-    renderHoverTooltip: () => <S.StyledTooltip>Tooltip content</S.StyledTooltip>,
+    renderHoverTooltip: () => (
+      <S.StyledTooltip>Tooltip content</S.StyledTooltip>
+    ),
   },
 };
 
 export const WithSwitchPrefix: Story = {
-  render: args => {
+  render: (args) => {
     const [isChecked, setChecked] = useState(false);
-    const prefixel = <RawSwitch id={'toggle'} checked={isChecked} onChange={() => setChecked(!isChecked)} />;
+    const prefixel = (
+      <RawSwitch
+        id={'toggle'}
+        checked={isChecked}
+        onChange={() => setChecked(!isChecked)}
+      />
+    );
     return renderListItem({
       ...args,
       prefixel,
-      onClick: itemData => {
+      onClick: (itemData) => {
         args.onClick && args.onClick(itemData);
         setChecked(!isChecked);
       },
@@ -303,9 +328,13 @@ export const WithSwitchPrefix: Story = {
   },
 };
 
-export const WithObjectAvatarPrefix: StoryObj<ListItemProps & { object?: Record<string, any> }> = {
+export const WithObjectAvatarPrefix: StoryObj<
+  ListItemProps & { object?: Record<string, any> }
+> = {
   render: ({ object, ...args }) => {
-    const prefixel = <ObjectAvatar object={object} size="small" tooltip={false} />;
+    const prefixel = (
+      <ObjectAvatar object={object} size="small" tooltip={false} />
+    );
     return renderListItem({
       ...args,
       prefixel,
@@ -327,11 +356,19 @@ export const WithObjectAvatarPrefix: StoryObj<ListItemProps & { object?: Record<
   },
 };
 
-export const WithSmallAvatarPrefix: StoryObj<ListItemProps & { prefixType?: string; suffixType?: string }> = {
+export const WithSmallAvatarPrefix: StoryObj<
+  ListItemProps & { prefixType?: string; suffixType?: string }
+> = {
   render: renderWithPrefixAndSuffix,
   parameters: {
     controls: {
-      include: ['children', 'description', 'size', 'suffixType', 'suffixVisibilityTrigger'],
+      include: [
+        'children',
+        'description',
+        'size',
+        'suffixType',
+        'suffixVisibilityTrigger',
+      ],
     },
   },
   argTypes: prefixArgTypes,
@@ -347,11 +384,19 @@ export const WithSmallAvatarPrefix: StoryObj<ListItemProps & { prefixType?: stri
   },
 };
 
-export const WithMediumAvatarPrefix: StoryObj<ListItemProps & { prefixType?: string; suffixType?: string }> = {
+export const WithMediumAvatarPrefix: StoryObj<
+  ListItemProps & { prefixType?: string; suffixType?: string }
+> = {
   render: renderWithPrefixAndSuffix,
   parameters: {
     controls: {
-      include: ['children', 'description', 'size', 'suffixType', 'suffixVisibilityTrigger'],
+      include: [
+        'children',
+        'description',
+        'size',
+        'suffixType',
+        'suffixVisibilityTrigger',
+      ],
     },
   },
   argTypes: prefixArgTypes,
@@ -367,18 +412,27 @@ export const WithMediumAvatarPrefix: StoryObj<ListItemProps & { prefixType?: str
   },
 };
 
-export const WithCheckboxPrefix: StoryObj<ListItemProps & { prefixType?: string; suffixType?: string }> = {
+export const WithCheckboxPrefix: StoryObj<
+  ListItemProps & { prefixType?: string; suffixType?: string }
+> = {
   render: renderWithPrefixAndSuffix,
   args: {
     prefixType: 'checkbox',
   },
 };
 
-export const PrefixAndSuffixOnHover: StoryObj<ListItemProps & { prefixType?: string; suffixType?: string }> = {
+export const PrefixAndSuffixOnHover: StoryObj<
+  ListItemProps & { prefixType?: string; suffixType?: string }
+> = {
   render: renderWithPrefixAndSuffix,
   parameters: {
     controls: {
-      include: ['suffixType', 'prefixType', 'prefixVisibilityTrigger', 'suffixVisibilityTrigger'],
+      include: [
+        'suffixType',
+        'prefixType',
+        'prefixVisibilityTrigger',
+        'suffixVisibilityTrigger',
+      ],
     },
   },
   argTypes: prefixArgTypes,
@@ -418,5 +472,41 @@ export const AllPrefixes: StoryObj<ListItemProps & { prefixType?: string }> = {
   },
   args: {
     prefixType: 'singleIcon',
+  },
+};
+
+export const AllCombinations: StoryObj<
+  ListItemProps & { items: ListItemProps[] }
+> = {
+  render: ({ items, ...args }) => {
+    return (
+      <div>
+        {items.map((props) => (
+          <ListItem {...args} {...props} />
+        ))}
+      </div>
+    );
+  },
+  args: {
+    items: LIST_ITEMS,
+  },
+};
+
+export const AllCombinationsLarge: StoryObj<
+  ListItemProps & { items: ListItemProps[] }
+> = {
+  render: ({ items, ...args }) => {
+    return (
+      <div>
+        {items.map((props) => (
+          <ListItem {...args} {...props} />
+        ))}
+      </div>
+    );
+  },
+  args: {
+    size: 'large',
+    description: 'Description',
+    items: LIST_ITEMS,
   },
 };

@@ -99,9 +99,11 @@ const Collector = ({
   );
 
   const focusInput = useCallback(() => {
-    if (inputRef?.current) {
-      inputRef.current.focus({ preventScroll: true });
-    }
+    setTimeout(() => {
+      if (inputRef?.current) {
+        inputRef.current.focus({ preventScroll: true });
+      }
+    }, 0);
   }, [inputRef]);
 
   const suggestionsIncludesItem = useCallback(

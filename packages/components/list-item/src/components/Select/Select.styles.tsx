@@ -1,14 +1,9 @@
-import React from 'react';
 import styled from 'styled-components';
 
 import Text from '../Text/Text';
 import { SuffixWrapper } from '../Text/Text.styles';
 
-export const SelectItem = styled(({ children, disabled, ...rest }) => (
-  <Text disabled={disabled} {...rest}>
-    {children}
-  </Text>
-))`
+export const SelectItem = styled(Text)`
   & {
     ${SuffixWrapper} > * {
       opacity: 0;

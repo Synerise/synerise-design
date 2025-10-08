@@ -1,4 +1,3 @@
-import React from 'react';
 import styled from 'styled-components';
 
 import { IconContainer } from '@synerise/ds-icon';
@@ -6,11 +5,7 @@ import { IconContainer } from '@synerise/ds-icon';
 import Text from '../Text/Text';
 import { Inner, PrefixWrapper, Wrapper } from '../Text/Text.styles';
 
-export const DangerItem = styled(({ children, disabled, ...rest }) => (
-  <Text disabled={disabled} {...rest}>
-    {children}
-  </Text>
-))`
+export const DangerItem = styled(Text)`
   &&& {
     ${Inner} {
       color: ${(props) => props.theme.palette['red-600']};

@@ -8,7 +8,6 @@ import React, {
 } from 'react';
 
 import Button from '@synerise/ds-button';
-import Divider from '@synerise/ds-divider';
 import { useResizeObserver } from '@synerise/ds-utils';
 
 import * as S from './FieldSet.styles';
@@ -92,7 +91,7 @@ const FieldSet = ({
           {description && <S.Description>{description}</S.Description>}
         </S.FieldSetTitle>
       </S.HeaderWrapper>
-      {divider && <Divider />}
+      {divider && <S.StyledDivider />}
       {(component || button) && (
         <S.CollapsibleContent
           data-testid="field-set-collapsible"

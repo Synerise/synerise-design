@@ -5,6 +5,7 @@ export {
   type HandledEventsType,
 } from './useOnClickOutside/useOnClickOutside';
 export { renderWithHighlight } from './renderWithHighlight/renderWithHighlight';
+export { useStableId } from './useStableId/useStableId';
 export { default as selectColorByLetter } from './selectColorByLetter/selectColorByLetter';
 export { default as focusWithArrowKeys } from './focusWithArrowKeys/focusWithArrowKeys';
 export { default as escapeRegEx } from './regex/regex';
