@@ -1,27 +1,27 @@
 import React, { type ReactNode } from 'react';
 
 import {
-  Check3M,
-  HelpFillM,
+  Check2M,
+  InfoM,
   NotificationsReceiveM,
   UpdateDataM,
   UserUpM,
-  WarningFillM,
+  WarningM,
 } from '@synerise/ds-icon';
 
 import { type SectionType } from './SectionMessage.types';
 
 export const ICONS: Record<SectionType, ReactNode> = {
-  positive: <Check3M />,
-  notice: <WarningFillM />,
-  negative: <WarningFillM />,
-  neutral: <HelpFillM />,
+  positive: <Check2M />,
+  notice: <WarningM />,
+  negative: <WarningM />,
+  neutral: <InfoM />,
   supply: <UserUpM />,
   service: <UpdateDataM />,
   entity: <NotificationsReceiveM />,
 };
 
-export const DEFAULT_ICON = <WarningFillM />;
+export const DEFAULT_ICON = <WarningM />;
 
 export const SECTION_TYPES: SectionType[] = [
   'positive',
