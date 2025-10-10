@@ -466,6 +466,10 @@
       "REMOVE-TOOLTIP": "Eliminar",
       "SUFFIX": "y"
     },
+    "INPUT": {
+      "SHOW-PASSWORD": "Mostrar contraseña",
+      "HIDE-PASSWORD": "Ocultar contraseña"
+    },
     "PLACEHOLDER": {
       "CHOOSE-CONDITION": "Elige el tipo de condición abajo"
     },

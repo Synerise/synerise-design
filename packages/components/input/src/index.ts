@@ -28,3 +28,9 @@ export type {
   AutosizeInputRefType,
 } from './AutosizeInput/AutosizeInput.types';
 export { AutosizeWrapper } from './components/AutosizeWrapper';
+
+export { PasswordInput } from './PasswordInput';
+export type {
+  PasswordInputProps,
+  PasswordInputTexts,
+} from './PasswordInput.types';

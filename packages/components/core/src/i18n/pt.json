@@ -468,6 +468,10 @@
             "REMOVE-TOOLTIP": "Excluir",
             "AND-SUFFIX": "e"
         },
+        "INPUT": {
+            "SHOW-PASSWORD": "Mostrar senha",
+            "HIDE-PASSWORD": "Ocultar senha"
+        },
         "PLACEHOLDER": {
             "CHOOSE-CONDITION": "Escolha o tipo de condição abaixo"
         },
