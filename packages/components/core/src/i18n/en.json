@@ -467,6 +467,10 @@
       "REMOVE-TOOLTIP": "Delete",
       "SUFFIX": "and"
     },
+    "INPUT": {
+      "SHOW-PASSWORD": "Show password",
+      "HIDE-PASSWORD": "Hide password"
+    },
     "PLACEHOLDER": {
       "CHOOSE-CONDITION": "Choose type of condition below"
     },

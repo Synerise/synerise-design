@@ -408,6 +408,10 @@
       "DROP-ME-HERE": "Upuść mnie tutaj",
       "ADD-FILTER": "Dodaj filtr"
     },
+    "INPUT": {
+      "SHOW-PASSWORD": "Pokaż hasło",
+      "HIDE-PASSWORD": "Ukryj hasło"
+    },
     "PLACEHOLDER": {
       "CHOOSE-CONDITION": "Wybierz rodzaj warunku"
     },
