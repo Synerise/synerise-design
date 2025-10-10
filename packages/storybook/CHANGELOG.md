@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.24.0](https://github.com/Synerise/synerise-design/compare/storybook@1.23.2...storybook@1.24.0) (2025-10-10)
+
+
+### Features
+
+* **input:** add PasswordInput ([a9e9466](https://github.com/Synerise/synerise-design/commit/a9e9466491246857a24807b1ac3a72f442de50d5))
+* **list-item:** submenu and header ([71fa4bf](https://github.com/Synerise/synerise-design/commit/71fa4bfadd5fdb52d61dfe8fe87a9e47567e5d16))
+
+
+
+
+
 ## [1.23.2](https://github.com/Synerise/synerise-design/compare/storybook@1.23.1...storybook@1.23.2) (2025-10-08)
 
 

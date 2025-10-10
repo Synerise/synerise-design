@@ -1,6 +1,6 @@
 {
   "name": "@synerise/ds-confirmation",
-  "version": "1.1.24",
+  "version": "1.1.25",
   "description": "Confirmation UI Component for the Synerise Design System",
   "license": "ISC",
   "repository": "Synerise/synerise-design",
@@ -35,14 +35,14 @@
   ],
   "types": "dist/index.d.ts",
   "dependencies": {
-    "@synerise/ds-button": "^1.4.13",
-    "@synerise/ds-icon": "^1.7.2",
-    "@synerise/ds-list-item": "^1.0.24",
-    "@synerise/ds-modal": "^1.2.13",
-    "@synerise/ds-radio": "^1.0.23",
-    "@synerise/ds-scrollbar": "^1.1.8",
-    "@synerise/ds-typography": "^1.0.21",
-    "@synerise/ds-utils": "^1.4.2"
+    "@synerise/ds-button": "^1.4.14",
+    "@synerise/ds-icon": "^1.7.3",
+    "@synerise/ds-list-item": "^1.1.0",
+    "@synerise/ds-modal": "^1.2.14",
+    "@synerise/ds-radio": "^1.0.24",
+    "@synerise/ds-scrollbar": "^1.1.9",
+    "@synerise/ds-typography": "^1.0.22",
+    "@synerise/ds-utils": "^1.5.0"
   },
   "peerDependencies": {
     "@synerise/ds-core": "*",

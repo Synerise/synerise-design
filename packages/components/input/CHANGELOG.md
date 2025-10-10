@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.4.0](https://github.com/synerise/synerise-design/compare/@synerise/ds-input@1.3.13...@synerise/ds-input@1.4.0) (2025-10-10)
+
+
+### Features
+
+* **input:** add PasswordInput ([a9e9466](https://github.com/synerise/synerise-design/commit/a9e9466491246857a24807b1ac3a72f442de50d5))
+
+
+
+
+
 ## [1.3.13](https://github.com/synerise/synerise-design/compare/@synerise/ds-input@1.3.12...@synerise/ds-input@1.3.13) (2025-10-03)
 
 

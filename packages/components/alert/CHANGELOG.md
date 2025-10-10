@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.1.22](https://github.com/Synerise/synerise-design/compare/@synerise/ds-alert@1.1.21...@synerise/ds-alert@1.1.22) (2025-10-10)
+
+**Note:** Version bump only for package @synerise/ds-alert
+
+
+
+
+
 ## [1.1.21](https://github.com/Synerise/synerise-design/compare/@synerise/ds-alert@1.1.20...@synerise/ds-alert@1.1.21) (2025-10-08)
 
 **Note:** Version bump only for package @synerise/ds-alert

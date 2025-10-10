@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.1.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-field-set@1.0.29...@synerise/ds-field-set@1.1.0) (2025-10-10)
+
+
+### Features
+
+* **list-item:** submenu and header ([71fa4bf](https://github.com/Synerise/synerise-design/commit/71fa4bfadd5fdb52d61dfe8fe87a9e47567e5d16))
+
+
+
+
+
 ## [1.0.29](https://github.com/Synerise/synerise-design/compare/@synerise/ds-field-set@1.0.28...@synerise/ds-field-set@1.0.29) (2025-10-08)
 
 **Note:** Version bump only for package @synerise/ds-field-set

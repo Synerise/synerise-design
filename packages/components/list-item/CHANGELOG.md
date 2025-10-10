@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.1.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-list-item@1.0.24...@synerise/ds-list-item@1.1.0) (2025-10-10)
+
+
+### Features
+
+* **list-item:** submenu and header ([71fa4bf](https://github.com/Synerise/synerise-design/commit/71fa4bfadd5fdb52d61dfe8fe87a9e47567e5d16))
+
+
+
+
+
 ## [1.0.24](https://github.com/Synerise/synerise-design/compare/@synerise/ds-list-item@1.0.23...@synerise/ds-list-item@1.0.24) (2025-09-30)
 
 **Note:** Version bump only for package @synerise/ds-list-item
