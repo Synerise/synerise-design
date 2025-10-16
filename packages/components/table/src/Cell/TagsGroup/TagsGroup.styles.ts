@@ -41,3 +41,9 @@ export const TagsGroupWrapper = styled.div<{
         }
     `}
 `;
+
+export const TagsGroupSkeleton = styled.div`
+  display: flex;
+  align-items: center;
+  width: 100%;
+`;
