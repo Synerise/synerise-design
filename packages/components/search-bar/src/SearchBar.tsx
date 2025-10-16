@@ -112,7 +112,9 @@ const SearchBar = ({
         onChange={(event: FormEvent<HTMLInputElement>): void => {
           onSearchChange(event.currentTarget.value);
         }}
-        onFocus={() => setFocus(true)}
+        onFocus={() => {
+          setFocus(true);
+        }}
         onBlur={() => setFocus(false)}
         value={value}
         resetMargin

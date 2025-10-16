@@ -107,7 +107,6 @@ const Tags = ({
               removable={removable}
               onRemove={removable ? onRemove : undefined}
               disabled={disabled}
-              asPill={asPill}
             />
           )}
           {addable && (

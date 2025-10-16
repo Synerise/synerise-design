@@ -106,7 +106,11 @@ const Tag = ({
         <S.TagName>{name}</S.TagName>
         {!!suffixel && renderSuffixel()}
         {isRemovable && (
-          <Tooltip title={allTexts.deleteTooltip} open={isIconHovered}>
+          <Tooltip
+            title={allTexts.deleteTooltip}
+            open={isIconHovered}
+            zIndex={parseInt(theme.variables['@zindex-tooltip'], 10) + 1}
+          >
             <S.RemoveButton
               onClick={onRemoveCall}
               onMouseOver={handleMouseOver}

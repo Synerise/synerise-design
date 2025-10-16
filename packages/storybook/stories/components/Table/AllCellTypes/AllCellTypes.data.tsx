@@ -2136,9 +2136,11 @@ export const COLUMNS_WITH_TAGS: ColumnType[] = [
     ellipsis: true,
     icon: { component: <VarTypeListM /> },
     iconTooltip: { component: <InfoFillS /> },
-    render: (tags) => {
+    render: (tags, _sourceData, index) => {
       return (
         <TableCell.TagsGroupCell
+          isError={index === 2}
+          isLoading={index === 1}
           tagsProps={{
             addable: true,
             removable: true,
