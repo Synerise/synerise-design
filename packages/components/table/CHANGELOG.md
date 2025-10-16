@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.6.8](https://github.com/synerise/synerise-design/compare/@synerise/ds-table@1.6.7...@synerise/ds-table@1.6.8) (2025-10-16)
+
+
+### Bug Fixes
+
+* **tags:** adjust tags to table requirements ([fe1aa4d](https://github.com/synerise/synerise-design/commit/fe1aa4d00f8ad95fb191f866b548af72863a8963))
+
+
+
+
+
 ## [1.6.7](https://github.com/synerise/synerise-design/compare/@synerise/ds-table@1.6.6...@synerise/ds-table@1.6.7) (2025-10-10)
 
 **Note:** Version bump only for package @synerise/ds-table

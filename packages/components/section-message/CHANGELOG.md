@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.0.10](https://github.com/Synerise/synerise-design/compare/@synerise/ds-section-message@1.0.9...@synerise/ds-section-message@1.0.10) (2025-10-16)
+
+
+### Bug Fixes
+
+* **section-message:** changed icons ([b87f2a8](https://github.com/Synerise/synerise-design/commit/b87f2a83c265a384285234d92c3da2301f6d84af))
+
+
+
+
+
 ## [1.0.9](https://github.com/Synerise/synerise-design/compare/@synerise/ds-section-message@1.0.8...@synerise/ds-section-message@1.0.9) (2025-10-10)
 
 **Note:** Version bump only for package @synerise/ds-section-message

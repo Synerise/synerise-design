@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.1.26](https://github.com/Synerise/synerise-design/compare/@synerise/ds-banner@1.1.25...@synerise/ds-banner@1.1.26) (2025-10-16)
+
+**Note:** Version bump only for package @synerise/ds-banner
+
+
+
+
+
 ## [1.1.25](https://github.com/Synerise/synerise-design/compare/@synerise/ds-banner@1.1.24...@synerise/ds-banner@1.1.25) (2025-10-10)
 
 **Note:** Version bump only for package @synerise/ds-banner

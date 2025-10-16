@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.24.1](https://github.com/Synerise/synerise-design/compare/storybook@1.24.0...storybook@1.24.1) (2025-10-16)
+
+
+### Bug Fixes
+
+* **tags:** adjust tags to table requirements ([fe1aa4d](https://github.com/Synerise/synerise-design/commit/fe1aa4d00f8ad95fb191f866b548af72863a8963))
+
+
+
+
+
 # [1.24.0](https://github.com/Synerise/synerise-design/compare/storybook@1.23.2...storybook@1.24.0) (2025-10-10)
 
 
