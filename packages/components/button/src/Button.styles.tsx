@@ -227,6 +227,7 @@ export const AntdButton = styled(
     }
     ${(props) =>
       props.readOnly &&
+      props.type !== 'custom-color-ghost' &&
       css`
         &&.ant-btn {
           cursor: default;
@@ -248,11 +249,28 @@ export const AntdButton = styled(
             }
           }
         }
+        &&.ant-btn-primary {
+          &:hover,
+          &:focus {
+            background: ${props.theme.palette['blue-600']};
+            .btn-focus {
+              box-shadow: inset 0 0 0 1px ${props.theme.palette['blue-600']};
+            }
+            ${ButtonLabel},
+            svg {
+              color: ${props.theme.palette['grey-050']};
+            }
+            svg {
+              fill: ${props.theme.palette['grey-050']} !important;
+            }
+          }
+        }
         &&.ant-btn-tertiary {
           &:hover,
           &:focus {
+            background: ${props.theme.palette['grey-100']};
             .btn-focus {
-              box-shadow: inset 0 0 0 0 ${props.theme.palette['grey-300']};
+              box-shadow: inset 0 0 0 0 ${props.theme.palette['grey-100']};
             }
             ${ButtonLabel},
             svg {
@@ -260,6 +278,70 @@ export const AntdButton = styled(
             }
             svg {
               fill: ${props.theme.palette['grey-700']} !important;
+            }
+          }
+        }
+        &&.ant-btn-tertiary-white {
+          &:hover,
+          &:focus {
+            background: rgba(219, 224, 227, 0.15);
+            .btn-focus {
+              box-shadow: inset 0 0 0 0 rgba(219, 224, 227, 0.15);
+            }
+            ${ButtonLabel},
+            svg {
+              color: ${props.theme.palette['grey-050']};
+            }
+            svg {
+              fill: ${props.theme.palette['grey-050']} !important;
+            }
+          }
+        }
+        &&.ant-btn-ghost-primary {
+          &:hover,
+          &:focus {
+            background: ${props.theme.palette.white};
+            .btn-focus {
+              box-shadow: inset 0 0 0 0 ${props.theme.palette.white};
+            }
+            ${ButtonLabel},
+            svg {
+              color: ${props.theme.palette['blue-600']};
+            }
+            svg {
+              fill: ${props.theme.palette['blue-600']} !important;
+            }
+          }
+        }
+        &&.ant-btn-ghost {
+          &:hover,
+          &:focus {
+            background: ${props.theme.palette.white};
+            .btn-focus {
+              box-shadow: inset 0 0 0 0 ${props.theme.palette.white};
+            }
+            ${ButtonLabel},
+            svg {
+              color: ${props.theme.palette['grey-600']};
+            }
+            svg {
+              fill: ${props.theme.palette['grey-600']} !important;
+            }
+          }
+        }
+        &&.ant-btn-ghost-white {
+          &:hover,
+          &:focus {
+            background: ${props.theme.palette['grey-600']};
+            .btn-focus {
+              box-shadow: inset 0 0 0 0 ${props.theme.palette['grey-600']};
+            }
+            ${ButtonLabel},
+            svg {
+              color: ${props.theme.palette['grey-050']};
+            }
+            svg {
+              fill: ${props.theme.palette['grey-050']} !important;
             }
           }
         }
@@ -594,17 +676,6 @@ export const AntdButton = styled(
             .ds-icon > svg {
               fill: ${props.theme.palette[`${props.customColor}-600`]};
             }
-            &:hover:not(:disabled):not(:focus) {
-              color: ${props.theme.palette[`${props.customColor}-500`]};
-              ${ButtonLabel} {
-                color: ${props.theme.palette[`${props.customColor}-500`]};
-              }
-              svg {
-                fill: ${props.theme.palette[
-                  `${props.customColor}-500`
-                ]} !important;
-              }
-            }
             &:disabled {
               opacity: 0.4;
               color: ${props.theme.palette[`${props.customColor}-600`]};
@@ -615,6 +686,32 @@ export const AntdButton = styled(
               }
             }
           }
+        `}
+        ${(props) =>
+          props.readOnly &&
+          props.type === 'custom-color-ghost' &&
+          css`
+          &&.ant-btn {
+            cursor: default;
+            transition: none;
+          }
+          &&.ant-btn-ghost-primary {
+          &:hover,
+          &:focus {
+          background: ${props.theme.palette.white};
+          .btn-focus {
+              box-shadow: inset 0 0 0 0 ${props.theme.palette.white};
+            }
+            ${ButtonLabel},
+            svg {
+              color: ${props.theme.palette[`${props.customColor}-600`]};
+            }
+            svg {
+              fill: ${props.theme.palette[`${props.customColor}-600`]}; !important;
+            }
+          }
+        }
+  
         `}
 
     &:hover:not(:disabled):not(:focus) {
