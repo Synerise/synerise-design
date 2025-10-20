@@ -2,6 +2,8 @@ import React, { type ReactElement, memo } from 'react';
 import { areEqual } from 'react-window';
 import { type Emoji } from 'unicode-emoji-utils';
 
+import Tooltip from '@synerise/ds-tooltip';
+
 import * as S from './EmojiList.styles';
 import { type RowItemProps, type TitleItem } from './EmojiList.types';
 
@@ -22,18 +24,20 @@ export const EmojiListItem = memo(
           ) : (
             rowItems.map((item) => {
               return (
-                <S.EmojiItem
-                  onClick={() => onSelect && onSelect(item)}
-                  itemsPerRow={itemsPerRow}
-                  key={item.emoji}
-                >
-                  <S.EmojiButton
-                    data-testid="ds-emoji-item"
-                    data-keywords={item.keywords?.join(',')}
+                <Tooltip title={item.keywords?.join(', ')}>
+                  <S.EmojiItem
+                    onClick={() => onSelect && onSelect(item)}
+                    itemsPerRow={itemsPerRow}
+                    key={item.emoji}
                   >
-                    {item.emoji}
-                  </S.EmojiButton>
-                </S.EmojiItem>
+                    <S.EmojiButton
+                      data-testid="ds-emoji-item"
+                      data-keywords={item.keywords?.join(',')}
+                    >
+                      {item.emoji}
+                    </S.EmojiButton>
+                  </S.EmojiItem>
+                </Tooltip>
               );
             })
           )}

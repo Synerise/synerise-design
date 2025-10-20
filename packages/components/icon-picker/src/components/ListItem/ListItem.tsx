@@ -1,6 +1,7 @@
 import React from 'react';
 
 import Button from '@synerise/ds-button';
+import Tooltip from '@synerise/ds-tooltip';
 
 import * as S from '../../IconPicker.styles';
 import { type SourceType } from '../../IconPicker.types';
@@ -24,17 +25,19 @@ const ListItem = <Source extends SourceType>({
           {element.item}
         </S.IconTrigger>
       ) : (
-        <Button type="ghost" mode="single-icon" onClick={selectIcon}>
-          <S.IconTrigger data-testid={`icon-${index}`}>
-            <div className="icon-wrapper">
-              {typeof element.item === 'string' ? (
-                <S.FontIcon>{element.item}</S.FontIcon>
-              ) : (
-                element.item
-              )}
-            </div>
-          </S.IconTrigger>
-        </Button>
+        <Tooltip title={element.keywords}>
+          <Button type="ghost" mode="single-icon" onClick={selectIcon}>
+            <S.IconTrigger data-testid={`icon-${index}`}>
+              <div className="icon-wrapper">
+                {typeof element.item === 'string' ? (
+                  <S.FontIcon>{element.item}</S.FontIcon>
+                ) : (
+                  element.item
+                )}
+              </div>
+            </S.IconTrigger>
+          </Button>
+        </Tooltip>
       )}
     </S.ListItem>
   );
