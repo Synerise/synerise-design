@@ -2,6 +2,8 @@ export { default } from './Tags';
 export * as TagsStyles from './Tags.styles';
 export type { TagsProps, ActionTaken, ExtendedTagProps } from './Tags.types';
 
+export { AddTags, type AddTagsProps } from './components/AddTags/AddTags';
+
 /**
  * @deprecated import directly from @synerise/ds-tag
  */

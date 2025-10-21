@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 
 import { useTheme } from '@synerise/ds-core';
 import Icon, { Add3M, SearchM } from '@synerise/ds-icon';
@@ -10,7 +10,7 @@ import { type TagsProps } from '../../Tags.types';
 import { TagsDropdown } from '../TagsDropdown/TagsDropdown';
 import * as S from './AddTags.styles';
 
-type AddTagsProps = Pick<
+export type AddTagsProps = Pick<
   TagsProps,
   | 'creatable'
   | 'data'
@@ -42,6 +42,7 @@ export const AddTags = ({
   addButtonType,
 }: AddTagsProps) => {
   const theme = useTheme();
+  const searchRef = useRef<HTMLInputElement | null>(null);
 
   const [searchQuery, setSearchQuery] = useState('');
   const [isTagAddDropdownOpen, setIsTagAddDropdownOpen] = useState(false);
@@ -94,6 +95,12 @@ export const AddTags = ({
       ? texts?.noResultsLabel
       : texts?.dropdownNoTags;
 
+  useEffect(() => {
+    if (isTagAddDropdownOpen) {
+      setTimeout(() => searchRef.current?.focus(), 0);
+    }
+  }, [isTagAddDropdownOpen]);
+
   return (
     <TagsDropdown
       tags={selectablePool}
@@ -137,6 +144,7 @@ export const AddTags = ({
       }
       dropdownHeader={
         <SearchBar
+          handleInputRef={(ref) => (searchRef.current = ref.current)}
           value={searchQuery}
           onSearchChange={setSearchQuery}
           placeholder={texts.searchPlaceholder || ''}
