@@ -22,6 +22,18 @@ describe('Confirmation component', () => {
     expect(await screen.findByText(PROPS.description)).toBeInTheDocument();
   });
 
+  it('Should render without main button', async () => {
+    renderWithProvider(<Confirmation {...PROPS} onOk={undefined} type="negative" open />);
+    
+    expect(screen.queryByTestId(PROPS.mainButtonProps['data-testid'])).not.toBeInTheDocument();
+  });
+  
+  it('Should render without secondary button', async () => {
+    renderWithProvider(<Confirmation {...PROPS} onCancel={undefined} type="negative" open />);
+
+    expect(screen.queryByTestId(PROPS.secondaryButtonProps['data-testid'])).not.toBeInTheDocument();
+  });
+  
   it.each(COLOR_TEST_CASES)(
     'Should render correct color',
     async ({ type, color }) => {
