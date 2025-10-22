@@ -81,7 +81,7 @@ const Confirmation = <ItemType extends ListItemProps>({
   ]);
 
   const modalFooter = useMemo(() => {
-    return mode === 'default' ? (
+    return mode === 'default' && (relatedObjects || onOk || onCancel) ? (
       <S.Footer>
         {relatedObjects && (
           <S.FooterLeft>
@@ -95,19 +95,29 @@ const Confirmation = <ItemType extends ListItemProps>({
             </Button>
           </S.FooterLeft>
         )}
-        <S.FooterRight>
-          <Button type="secondary" onClick={onCancel} {...secondaryButtonProps}>
-            {allTexts.secondaryButtonLabel}
-          </Button>
-          <Button
-            type="custom-color"
-            onClick={onOk}
-            color={buttonColor}
-            {...mainButtonProps}
-          >
-            {allTexts.mainButtonLabel}
-          </Button>
-        </S.FooterRight>
+        {(onOk || onCancel) && (
+          <S.FooterRight>
+            {onCancel && (
+              <Button
+                type="secondary"
+                onClick={onCancel}
+                {...secondaryButtonProps}
+              >
+                {allTexts.secondaryButtonLabel}
+              </Button>
+            )}
+            {onOk && (
+              <Button
+                type="custom-color"
+                onClick={onOk}
+                color={buttonColor}
+                {...mainButtonProps}
+              >
+                {allTexts.mainButtonLabel}
+              </Button>
+            )}
+          </S.FooterRight>
+        )}
       </S.Footer>
     ) : null;
   }, [

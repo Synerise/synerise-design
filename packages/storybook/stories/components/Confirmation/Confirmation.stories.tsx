@@ -1,19 +1,24 @@
 import React from 'react';
-import { Meta, StoryObj } from '@storybook/react-webpack5';
 
+import { Meta, StoryObj } from '@storybook/react-webpack5';
 import Confirmation, { ConfirmationProps } from '@synerise/ds-confirmation';
 import Description, { DescriptionRow } from '@synerise/ds-description';
-import { PlayXl, ErrorXl, PauseXl, LaunchXl } from '@synerise/ds-icon';
-
-import { BATCH_ITEMS, COLUMNS, DECISION_OPTIONS, RELATED_OBJECTS_COUNT, RELATED_OBJECTS_DATA } from './Confirmation.data';
-import { TreeTable } from '@synerise/ds-table';
+import { ErrorXl, LaunchXl, PauseXl, PlayXl } from '@synerise/ds-icon';
 import { ListItemProps } from '@synerise/ds-list-item';
+import { TreeTable } from '@synerise/ds-table';
 
 import {
-  REACT_NODE_AS_STRING,
   BOOLEAN_CONTROL,
   NUMBER_CONTROL,
+  REACT_NODE_AS_STRING,
 } from '../../utils';
+import {
+  BATCH_ITEMS,
+  COLUMNS,
+  DECISION_OPTIONS,
+  RELATED_OBJECTS_COUNT,
+  RELATED_OBJECTS_DATA,
+} from './Confirmation.data';
 
 export default {
   component: Confirmation,
@@ -29,8 +34,8 @@ export default {
     open: true,
     texts: {
       mainButtonLabel: 'Yes, activate',
-      secondaryButtonLabel: 'No, cancel'
-    }
+      secondaryButtonLabel: 'No, cancel',
+    },
   },
   argTypes: {
     description: REACT_NODE_AS_STRING,
@@ -44,73 +49,80 @@ export default {
   },
 } as Meta<ConfirmationProps<ListItemProps>>;
 
-export const BatchActionConfirmation: StoryObj<ConfirmationProps<ListItemProps>> = {
+export const BatchActionConfirmation: StoryObj<
+  ConfirmationProps<ListItemProps>
+> = {
   args: {
     type: 'negative',
     title: 'Delete 54 aggregates?',
-    description: 'Deleting this analysis will cause errors in 3 analyses that contain it. This action can’t be undone',
+    description:
+      'Deleting this analysis will cause errors in 3 analyses that contain it. This action can’t be undone',
     texts: {
       mainButtonLabel: 'Yes, delete',
-      secondaryButtonLabel: 'No, keep'
+      secondaryButtonLabel: 'No, keep',
     },
     batchActionItems: BATCH_ITEMS,
-  }
+  },
 };
 
 export const SuccessType: StoryObj<ConfirmationProps<ListItemProps>> = {
   args: {
-    title: "Launch campaign?",
+    title: 'Launch campaign?',
     type: 'success',
     icon: <PlayXl />,
     texts: {
       mainButtonLabel: 'Yes, activate',
-      secondaryButtonLabel: 'No, cancel'
-    }
-  }
+      secondaryButtonLabel: 'No, cancel',
+    },
+    onCancel: undefined,
+  },
 };
 
 export const InformativeType: StoryObj<ConfirmationProps<ListItemProps>> = {
   args: {
-    title: "Launch campaign?",
+    title: 'Launch campaign?',
     type: 'informative',
     icon: <LaunchXl />,
     texts: {
       mainButtonLabel: 'Yes, launch',
-      secondaryButtonLabel: 'No, cancel'
+      secondaryButtonLabel: 'No, cancel',
     },
-    additionalInfo: <Description type='inline'>
-      <DescriptionRow label='Audience:' value='22 123' />
-      <DescriptionRow label='Scheduled:' value='23 May, 2024, 13:25' />
-    </Description>
-  }
+    additionalInfo: (
+      <Description type="inline">
+        <DescriptionRow label="Audience:" value="22 123" />
+        <DescriptionRow label="Scheduled:" value="23 May, 2024, 13:25" />
+      </Description>
+    ),
+  },
 };
 
 export const WarningType: StoryObj<ConfirmationProps<ListItemProps>> = {
   args: {
-    title: "Launch campaign?",
+    title: 'Launch campaign?',
     type: 'warning',
     icon: <PauseXl />,
     texts: {
       mainButtonLabel: 'Yes, activate',
-      secondaryButtonLabel: 'No, cancel'
-    }
-  }
+      secondaryButtonLabel: 'No, cancel',
+    },
+  },
 };
 
-export const DecisionConfirmation: StoryObj<ConfirmationProps<ListItemProps>> = {
-  args: {
-    title: 'Delete folder?',
-    description: 'Folder contain 23 objects.',
-    type: 'negative',
-    icon: <ErrorXl />,
-    texts: {
-      mainButtonLabel: 'Delete',
-      secondaryButtonLabel: 'No, keep',
-      decisionTitle: 'What do you want to do with items in this folder?'
+export const DecisionConfirmation: StoryObj<ConfirmationProps<ListItemProps>> =
+  {
+    args: {
+      title: 'Delete folder?',
+      description: 'Folder contain 23 objects.',
+      type: 'negative',
+      icon: <ErrorXl />,
+      texts: {
+        mainButtonLabel: 'Delete',
+        secondaryButtonLabel: 'No, keep',
+        decisionTitle: 'What do you want to do with items in this folder?',
+      },
+      decisionOptions: DECISION_OPTIONS,
     },
-    decisionOptions: DECISION_OPTIONS
-  }
-};
+  };
 
 export const RelatedObjects: StoryObj<ConfirmationProps<ListItemProps>> = {
   args: {
@@ -121,8 +133,15 @@ export const RelatedObjects: StoryObj<ConfirmationProps<ListItemProps>> = {
       mainButtonLabel: 'Delete',
       secondaryButtonLabel: 'No, keep',
       relatedObjectsTitle: 'Related objects',
-      relatedObjectsButtonLabel: `Show ${RELATED_OBJECTS_COUNT} related objects`
+      relatedObjectsButtonLabel: `Show ${RELATED_OBJECTS_COUNT} related objects`,
     },
-    relatedObjects: <TreeTable showHeader={false} hideTitleBar={true} dataSource={RELATED_OBJECTS_DATA} columns={COLUMNS} />
-  }
+    relatedObjects: (
+      <TreeTable
+        showHeader={false}
+        hideTitleBar={true}
+        dataSource={RELATED_OBJECTS_DATA}
+        columns={COLUMNS}
+      />
+    ),
+  },
 };
