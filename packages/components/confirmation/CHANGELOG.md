@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.1.27](https://github.com/Synerise/synerise-design/compare/@synerise/ds-confirmation@1.1.26...@synerise/ds-confirmation@1.1.27) (2025-10-22)
+
+
+### Bug Fixes
+
+* **confirmation:** render footer buttons only if handler ([1ebf087](https://github.com/Synerise/synerise-design/commit/1ebf087f662ecbda475d4f190d848a61012a4415))
+
+
+
+
+
 ## [1.1.26](https://github.com/Synerise/synerise-design/compare/@synerise/ds-confirmation@1.1.25...@synerise/ds-confirmation@1.1.26) (2025-10-16)
 
 **Note:** Version bump only for package @synerise/ds-confirmation

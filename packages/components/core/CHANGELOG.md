@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.7.1](https://github.com/synerise/synerise-design/compare/@synerise/ds-core@1.7.0...@synerise/ds-core@1.7.1) (2025-10-22)
+
+
+### Bug Fixes
+
+* **core:** body bg color ([f322752](https://github.com/synerise/synerise-design/commit/f322752adb4e46a7d744cd5b90b4e2927cd09f6b))
+
+
+
+
+
 # [1.7.0](https://github.com/synerise/synerise-design/compare/@synerise/ds-core@1.6.0...@synerise/ds-core@1.7.0) (2025-10-10)
 
 

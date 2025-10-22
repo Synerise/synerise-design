@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.24.2](https://github.com/Synerise/synerise-design/compare/storybook@1.24.1...storybook@1.24.2) (2025-10-22)
+
+
+### Bug Fixes
+
+* **confirmation:** render footer buttons only if handler ([1ebf087](https://github.com/Synerise/synerise-design/commit/1ebf087f662ecbda475d4f190d848a61012a4415))
+* **table:** column width calculations ([61047c4](https://github.com/Synerise/synerise-design/commit/61047c46ad39e96a10b7e913d33ecc6137e62172))
+
+
+
+
+
 ## [1.24.1](https://github.com/Synerise/synerise-design/compare/storybook@1.24.0...storybook@1.24.1) (2025-10-16)
 
 

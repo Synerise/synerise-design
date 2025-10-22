@@ -1,6 +1,6 @@
 {
   "name": "@synerise/ds-progress-bar",
-  "version": "1.1.19",
+  "version": "1.1.20",
   "description": "Progress-Bar UI Component for the Synerise Design System",
   "license": "ISC",
   "repository": "Synerise/synerise-design",
@@ -35,7 +35,7 @@
   ],
   "types": "dist/index.d.ts",
   "dependencies": {
-    "@synerise/ds-form-field": "^1.1.17",
+    "@synerise/ds-form-field": "^1.1.18",
     "@synerise/ds-utils": "^1.5.0"
   },
   "peerDependencies": {

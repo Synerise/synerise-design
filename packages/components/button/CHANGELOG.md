@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.4.16](https://github.com/synerise/synerise-design/compare/@synerise/ds-button@1.4.15...@synerise/ds-button@1.4.16) (2025-10-22)
+
+
+### Bug Fixes
+
+* **button:** fixes to readOnly button fo every type ([c9998c0](https://github.com/synerise/synerise-design/commit/c9998c0ad2d56d625763e34a3c5fcb2d4f46857e))
+
+
+
+
+
 ## [1.4.15](https://github.com/synerise/synerise-design/compare/@synerise/ds-button@1.4.14...@synerise/ds-button@1.4.15) (2025-10-16)
 
 **Note:** Version bump only for package @synerise/ds-button

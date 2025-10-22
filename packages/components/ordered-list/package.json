@@ -1,6 +1,6 @@
 {
   "name": "@synerise/ds-ordered-list",
-  "version": "1.1.18",
+  "version": "1.1.19",
   "description": "OrderedList UI Component for the Synerise Design System",
   "license": "ISC",
   "repository": "Synerise/synerise-design",
@@ -28,7 +28,7 @@
   ],
   "types": "dist/index.d.ts",
   "dependencies": {
-    "@synerise/ds-form-field": "^1.1.17",
+    "@synerise/ds-form-field": "^1.1.18",
     "@synerise/ds-icon": "^1.7.3"
   },
   "peerDependencies": {

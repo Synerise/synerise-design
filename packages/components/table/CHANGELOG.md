@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.6.9](https://github.com/synerise/synerise-design/compare/@synerise/ds-table@1.6.8...@synerise/ds-table@1.6.9) (2025-10-22)
+
+
+### Bug Fixes
+
+* **table:** column width calculations ([61047c4](https://github.com/synerise/synerise-design/commit/61047c46ad39e96a10b7e913d33ecc6137e62172))
+
+
+
+
+
 ## [1.6.8](https://github.com/synerise/synerise-design/compare/@synerise/ds-table@1.6.7...@synerise/ds-table@1.6.8) (2025-10-16)
 
 

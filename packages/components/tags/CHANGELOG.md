@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.4.8](https://github.com/Synerise/synerise-design/compare/@synerise/ds-tags@1.4.7...@synerise/ds-tags@1.4.8) (2025-10-22)
+
+
+### Bug Fixes
+
+* **tags:** add tags component fixes ([02ff302](https://github.com/Synerise/synerise-design/commit/02ff30284dc035293ff0a11a101a00658102115b))
+
+
+
+
+
 ## [1.4.7](https://github.com/Synerise/synerise-design/compare/@synerise/ds-tags@1.4.6...@synerise/ds-tags@1.4.7) (2025-10-16)
 
 
