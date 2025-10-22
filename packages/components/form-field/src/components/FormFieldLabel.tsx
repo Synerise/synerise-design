@@ -26,7 +26,6 @@ export const FormFieldLabel = ({
             title={tooltip}
             placement="top"
             trigger="hover"
-            transitionName="zoom-big-fast"
             {...tooltipConfig}
           >
             <S.IconWrapper data-testid="label-tooltip-trigger">
