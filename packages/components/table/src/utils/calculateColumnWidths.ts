@@ -30,10 +30,9 @@ export const calculateColumnWidths = <T extends object>(
     columns.forEach((column, index) => {
       if (!column.width) {
         const maxWidthAsNumber = calculatePixels(column.maxWidth);
-        baseWidths[index] =
-          maxWidthAsNumber !== undefined
-            ? Math.min(maxWidthAsNumber, baseWidths[index] + extraWidth)
-            : baseWidths[index] + extraWidth;
+        baseWidths[index] = maxWidthAsNumber
+          ? Math.min(maxWidthAsNumber, baseWidths[index] + extraWidth)
+          : baseWidths[index] + extraWidth;
       }
       interimSum += baseWidths[index];
     });

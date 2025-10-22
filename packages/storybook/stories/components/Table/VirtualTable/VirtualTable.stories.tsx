@@ -278,7 +278,6 @@ export const WithCustomCounter: Story = {
 };
 
 export const WithFixedColumns: Story = {
-  decorators: [fixedWrapper1000],
   args: {
     columns: FIXED_COLUMNS,
   },
