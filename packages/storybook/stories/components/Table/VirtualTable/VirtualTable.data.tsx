@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import { faker } from '@faker-js/faker';
 import Button from '@synerise/ds-button';
 import Icon, { InfoFillS, RefreshM, VarTypeStringM } from '@synerise/ds-icon';
-import { DSColumnType, TableCell } from '@synerise/ds-table';
+import { TableCell, VirtualColumnType } from '@synerise/ds-table';
 
 import { TAGS } from '../AllCellTypes/AllCellTypes.data';
 import { AdditionalColumnData } from '../Table.types';
@@ -5013,7 +5013,7 @@ export const DATA_SOURCE = [
 ];
 
 type RowType = (typeof DATA_SOURCE)[number];
-type ColumnType = AdditionalColumnData & DSColumnType<RowType>;
+type ColumnType = AdditionalColumnData & VirtualColumnType<RowType>;
 
 export const COLUMNS: Partial<ColumnType>[] = [
   {
@@ -5024,7 +5024,8 @@ export const COLUMNS: Partial<ColumnType>[] = [
     iconTooltip: { component: <InfoFillS /> },
     sorter: (a, b) => a.name.localeCompare(b.name),
     sortRender: 'string',
-    width: 200,
+    minWidth: 600,
+    maxWidth: 900,
   },
   {
     title: 'Address',
@@ -5032,7 +5033,7 @@ export const COLUMNS: Partial<ColumnType>[] = [
     dataIndex: 'address',
     sorter: (a, b) => a.address.localeCompare(b.address),
     sortRender: 'string',
-    width: '300px',
+    minWidth: 250,
   },
   {
     title: 'City',
@@ -5040,14 +5041,14 @@ export const COLUMNS: Partial<ColumnType>[] = [
     dataIndex: 'city',
     sorter: (a, b) => a.city.localeCompare(b.city),
     sortRender: 'string',
-    width: '400px',
+    minWidth: 250,
   },
   {
     title: 'Number',
     key: 'number',
     dataIndex: 'number',
     sorter: (a, b) => a.number.localeCompare(b.number),
-    width: 140,
+    minWidth: 250,
   },
   {
     title: 'Type',
@@ -5065,7 +5066,7 @@ const RIGHT = 'right' as const;
 export const FIXED_COLUMNS = [
   { ...COLUMNS[0], fixed: LEFT },
   ...COLUMNS.slice(1, -1),
-  { ...COLUMNS[COLUMNS.length], fixed: RIGHT },
+  { ...COLUMNS[COLUMNS.length - 1], fixed: RIGHT },
 ];
 
 export const RESPONSIVE_COLUMNS = [
