@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.4.9](https://github.com/Synerise/synerise-design/compare/@synerise/ds-tags@1.4.8...@synerise/ds-tags@1.4.9) (2025-10-27)
+
+
+### Bug Fixes
+
+* **tags:** delay search focus ([7cefbd1](https://github.com/Synerise/synerise-design/commit/7cefbd16ee75a46df6d6de2fe62ad62ddba6e464))
+
+
+
+
+
 ## [1.4.8](https://github.com/Synerise/synerise-design/compare/@synerise/ds-tags@1.4.7...@synerise/ds-tags@1.4.8) (2025-10-22)
 
 
