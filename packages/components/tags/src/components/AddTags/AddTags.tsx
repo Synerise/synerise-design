@@ -97,7 +97,8 @@ export const AddTags = ({
 
   useEffect(() => {
     if (isTagAddDropdownOpen) {
-      setTimeout(() => searchRef.current?.focus(), 0);
+      // revert delay to 0 after STOR-1881
+      setTimeout(() => searchRef.current?.focus(), 500);
     }
   }, [isTagAddDropdownOpen]);
 
