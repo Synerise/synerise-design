@@ -3,8 +3,10 @@ import React, {
   type KeyboardEvent as ReactKeyboardEvent,
   type Ref,
   type UIEvent,
+  forwardRef,
   useCallback,
   useEffect,
+  useImperativeHandle,
   useMemo,
   useRef,
   useState,
@@ -31,6 +33,7 @@ import type {
   BaseSectionType,
 } from '../ItemPickerNew/types/baseItemSectionType.types';
 import * as S from './ItemPickerList.styles';
+import { type ItemPickerListRef } from './ItemPickerList.types';
 import {
   EmptyListMessage,
   ErrorMessage,
@@ -49,32 +52,35 @@ import {
 import { useItemsInSections, useListHeight } from './hooks';
 import { findSectionById, isNavKey, isTitle } from './utils';
 
-export const ItemPickerList = <
+const ItemPickerListInner = <
   ItemType extends BaseItemType,
   SectionType extends BaseSectionType | undefined,
->({
-  items,
-  recents,
-  sections,
-  actions,
-  texts,
-  isLoading,
-  selectedItem,
-  scrollbarProps,
-  searchBarProps,
-  showItemsSectionLabel = true,
-  onItemSelect,
-  onRefresh,
-  containerHeight,
-  isVisible,
-  onSectionChange,
-  containerRef: forwardedRef,
-  includeFooter = true,
-  includeSearchBar = true,
-  onLoadedData,
-  isDropdown,
-  ...htmlAttributes
-}: ItemPickerListProps<ItemType, SectionType>) => {
+>(
+  {
+    items,
+    recents,
+    sections,
+    actions,
+    texts,
+    isLoading,
+    selectedItem,
+    scrollbarProps,
+    searchBarProps,
+    showItemsSectionLabel = true,
+    onItemSelect,
+    onRefresh,
+    containerHeight,
+    isVisible,
+    onSectionChange,
+    containerRef: containerRefProp,
+    includeFooter = true,
+    includeSearchBar = true,
+    onLoadedData,
+    isDropdown,
+    ...htmlAttributes
+  }: ItemPickerListProps<ItemType, SectionType>,
+  forwardedRef: ItemPickerListRef,
+) => {
   const theme = useTheme();
 
   const [searchQuery, setSearchQuery] = useState('');
@@ -85,8 +91,8 @@ export const ItemPickerList = <
   const containerRef = useRef<HTMLDivElement | null>(null);
 
   const refs: Ref<HTMLDivElement>[] = [containerRef];
-  if (forwardedRef) {
-    refs.push(forwardedRef);
+  if (containerRefProp) {
+    refs.push(containerRefProp);
   }
   const combinedScrollRef = useCombinedRefs(...refs);
   const inputRef = useRef<HTMLInputElement | null>(null);
@@ -140,6 +146,8 @@ export const ItemPickerList = <
     searchInAction,
     searchInItem,
     canPerformListActions,
+    reloadActiveSection,
+    activeSectionId,
   } = useItemsInSections({
     items,
     texts: allTexts,
@@ -154,6 +162,14 @@ export const ItemPickerList = <
     changeSearchQuery,
     onLoadedData,
   });
+
+  useImperativeHandle(forwardedRef, () => {
+    return {
+      currentSection,
+      activeSectionId,
+      reloadActiveSection,
+    };
+  }, [activeSectionId, currentSection, reloadActiveSection]);
 
   const handleScroll = useCallback(
     ({ currentTarget }: UIEvent) => {
@@ -482,4 +498,15 @@ export const ItemPickerList = <
   );
 };
 
-export default ItemPickerList;
+type ItemPickerListType = <
+  ItemType extends BaseItemType,
+  SectionType extends BaseSectionType,
+>(
+  p: ItemPickerListProps<ItemType, SectionType> & {
+    ref?: ItemPickerListRef;
+  },
+) => ReturnType<typeof ItemPickerListInner>;
+
+export const ItemPickerList = forwardRef(
+  ItemPickerListInner,
+) as ItemPickerListType;

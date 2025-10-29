@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useState } from 'react';
+import React, { forwardRef, useEffect, useMemo, useState } from 'react';
 
 import Dropdown from '@synerise/ds-dropdown';
 import FormField from '@synerise/ds-form-field';
@@ -6,6 +6,7 @@ import FormField from '@synerise/ds-form-field';
 import * as S from '../../ItemPicker.styles';
 import { useDefaultTexts } from '../../hooks/useDefaultTexts';
 import { ItemPickerList } from '../ItemPickerList/ItemPickerList';
+import { type ItemPickerListRef } from '../ItemPickerList/ItemPickerList.types';
 import Trigger from '../ItemPickerTrigger/Trigger';
 import type { ItemPickerProps } from './ItemPickerNew.types';
 import type {
@@ -13,31 +14,34 @@ import type {
   BaseSectionType,
 } from './types/baseItemSectionType.types';
 
-export const ItemPickerNew = <
+const ItemPickerNewInner = <
   ItemType extends BaseItemType,
   SectionType extends BaseSectionType,
->({
-  onFocus,
-  onBlur,
-  onClear,
-  selectedItem,
-  onChange,
-  dropdownProps,
-  texts,
-  triggerProps,
-  renderTrigger,
-  placeholder,
-  placeholderIcon,
-  label,
-  description,
-  error,
-  errorMessage,
-  errorText,
-  disabled,
-  tooltip,
-  tooltipConfig,
-  ...rest
-}: ItemPickerProps<ItemType, SectionType>) => {
+>(
+  {
+    onFocus,
+    onBlur,
+    onClear,
+    selectedItem,
+    onChange,
+    dropdownProps,
+    texts,
+    triggerProps,
+    renderTrigger,
+    placeholder,
+    placeholderIcon,
+    label,
+    description,
+    error,
+    errorMessage,
+    errorText,
+    disabled,
+    tooltip,
+    tooltipConfig,
+    ...rest
+  }: ItemPickerProps<ItemType, SectionType>,
+  forwardedRef: ItemPickerListRef,
+) => {
   const [selected, setSelected] = useState<ItemType | undefined>(selectedItem);
   const [visible, setVisible] = useState(false);
   const allTexts = useDefaultTexts(texts);
@@ -123,6 +127,7 @@ export const ItemPickerNew = <
               isVisible={visible}
               selectedItem={selected}
               onItemSelect={handleItemSelect}
+              ref={forwardedRef}
             />
           }
         >
@@ -132,3 +137,16 @@ export const ItemPickerNew = <
     </S.ItemPickerWrapper>
   );
 };
+
+type ItemPickerNewType = <
+  ItemType extends BaseItemType,
+  SectionType extends BaseSectionType,
+>(
+  p: ItemPickerProps<ItemType, SectionType> & {
+    ref?: ItemPickerListRef;
+  },
+) => ReturnType<typeof ItemPickerNewInner>;
+
+export const ItemPickerNew = forwardRef(
+  ItemPickerNewInner,
+) as ItemPickerNewType;
