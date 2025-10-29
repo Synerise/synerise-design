@@ -1,3 +1,5 @@
+import { type Ref } from 'react';
+
 import { type ListItemProps } from '@synerise/ds-list-item';
 
 import type {
@@ -19,3 +21,14 @@ export type ItemSelectHandler<
 export type TitleListItemProps = Omit<ListItemProps, 'type'> & {
   type: 'title';
 };
+
+export type ItemPickerListAPI = {
+  reloadActiveSection: () => void;
+  currentSection:
+    | BaseSectionType
+    | BaseSectionTypeWithFolders<BaseSectionType>
+    | undefined;
+  activeSectionId: string | undefined;
+};
+
+export type ItemPickerListRef = Ref<ItemPickerListAPI | null>;

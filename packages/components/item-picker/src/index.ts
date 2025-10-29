@@ -5,7 +5,10 @@ export { default as ItemPickerTrigger } from './components/ItemPickerTrigger/Tri
 
 export { ItemPickerList } from './components/ItemPickerList/ItemPickerList';
 export { ItemPickerNew } from './components/ItemPickerNew/ItemPickerNew';
-export type { ItemSelectHandler } from './components/ItemPickerList/ItemPickerList.types';
+export type {
+  ItemSelectHandler,
+  ItemPickerListAPI,
+} from './components/ItemPickerList/ItemPickerList.types';
 
 export type {
   ItemPickerProps as ItemPickerPropsNew,
@@ -21,3 +24,4 @@ export type {
   BaseItemType,
 } from './components/ItemPickerNew/types/baseItemSectionType.types';
 export type { Action } from './components/ItemPickerNew/types/actions.types';
+export { findSectionById } from './components/ItemPickerList/utils/findSectionById';

@@ -4,7 +4,7 @@ import { renderWithProvider } from '@synerise/ds-core';
 import { fireEvent, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 
-import ItemPickerList from './ItemPickerList';
+import { ItemPickerList } from './ItemPickerList';
 
 const FLAT_DATA_SOURCE = [...new Array(50)].map((i, k) => ({
   text: `Item ${k + 1}`,

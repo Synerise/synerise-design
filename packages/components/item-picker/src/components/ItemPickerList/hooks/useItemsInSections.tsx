@@ -760,6 +760,19 @@ export const useItemsInSections = <
     isListItemsRenderingMode,
   ]);
 
+  const reloadActiveSection = useCallback(() => {
+    pageToLoad.current = FIRST_PAGE;
+    metaRef.current = {};
+    setIsLoadedAll(false);
+    setIsLoadingMore(false);
+    sectionTotals.current = {};
+    abortControllerRef.current?.abort();
+    abortControllerRef.current = new AbortController();
+    if (!listActions) {
+      loadItems();
+    }
+  }, [listActions, loadItems]);
+
   return {
     currentSection: !listActions ? currentSection : undefined,
     currentPath,
@@ -783,5 +796,7 @@ export const useItemsInSections = <
     searchInItem,
     searchInAction,
     canPerformListActions,
+    reloadActiveSection,
+    activeSectionId,
   };
 };
