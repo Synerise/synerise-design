@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.10.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-item-picker@1.9.19...@synerise/ds-item-picker@1.10.0) (2025-10-29)
+
+
+### Features
+
+* **item-picker:** add useImperativeHandle to enable some api ([0cef717](https://github.com/Synerise/synerise-design/commit/0cef71778c75b412eca946efc825058778d22cc8))
+
+
+
+
+
 ## [1.9.19](https://github.com/Synerise/synerise-design/compare/@synerise/ds-item-picker@1.9.18...@synerise/ds-item-picker@1.9.19) (2025-10-22)
 
 **Note:** Version bump only for package @synerise/ds-item-picker
