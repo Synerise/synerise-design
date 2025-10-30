@@ -202,3 +202,11 @@ export const SectionsAndNestedFolders: StoryObj<StoryPropsOverlay> = {
     sections: SECTIONS_WITH_NESTED_FOLDERS,
   },
 };
+
+export const NoActions: StoryObj<StoryPropsOverlay> = {
+  args: {
+    actions: undefined,
+    items: ITEMS_IN_SECTIONS,
+    sections: SECTIONS,
+  },
+};

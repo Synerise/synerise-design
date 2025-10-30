@@ -18,8 +18,8 @@ export const getFolderItem = (
   onClick: ListItemProps['onClick'],
 ): ListItemProps => {
   return {
-    ...item,
     prefixel: <Icon component={<FolderM />} />,
+    ...item,
     onClick,
   };
 };

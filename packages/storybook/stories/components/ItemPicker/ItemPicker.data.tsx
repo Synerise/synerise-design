@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { type MouseEvent } from 'react';
 import { action } from 'storybook/actions';
 import { v4 as uuid } from 'uuid';
 
@@ -6,6 +6,8 @@ import { faker } from '@faker-js/faker';
 import Icon, {
   Add3M,
   AddM,
+  CopyClipboardM,
+  DatabaseM,
   FileM,
   FolderM,
   FunnelM,
@@ -463,6 +465,13 @@ export const ITEM_LOADER_CONFIG_ERRORS: ItemLoaderConfig<ItemType> = {
   loadItems: loadItemsWithError,
 };
 
+const ClickToCopy = ({ value }: { value: string }) => {
+  const handleClick = (e: MouseEvent<HTMLDivElement>) => {
+    e.stopPropagation();
+  };
+  return <Icon onClick={handleClick} component={<CopyClipboardM />} />;
+};
+
 export const SECTIONS_WITH_FOLDERS: SectionType[] = [
   {
     id: 'ANALYTICS',
@@ -471,10 +480,16 @@ export const SECTIONS_WITH_FOLDERS: SectionType[] = [
       {
         id: 'SEGMENTATIONS',
         text: 'Segmentations',
+        prefixel: <Icon component={<DatabaseM />} />,
+        suffixel: <ClickToCopy value="folder name" />,
+        suffixVisibilityTrigger: 'hover',
       },
       {
         id: 'FUNNELS',
         text: 'Funnels',
+        prefixel: <Icon component={<DatabaseM />} />,
+        suffixel: <ClickToCopy value="folder name" />,
+        suffixVisibilityTrigger: 'hover',
       },
     ],
   },
