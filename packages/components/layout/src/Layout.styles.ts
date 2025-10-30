@@ -12,7 +12,9 @@ const DEFAULT_TOP_OFFSET = 55;
 export const ArrowIcon = styled(Icon)``;
 
 export const CloseIcon = styled(Icon)`
-  display: none;
+  && {
+    display: none;
+  }
 `;
 
 export const LayoutContent = styled.div`
@@ -175,11 +177,11 @@ export const SidebarButton = styled.button<SidebarButtonProps>`
       ${mediaQuery.to.medium`width: 44px;`};
       ${mediaQuery.to
         .medium`background-color: ${props.theme.palette['grey-600']};`};
-      ${ArrowIcon} {
+      ${ArrowIcon}${ArrowIcon} {
         transform: rotateZ(180deg);
         ${mediaQuery.to.medium`display: none;`};
       }
-      ${CloseIcon} {
+      ${CloseIcon}${CloseIcon} {
         ${mediaQuery.to.medium`display: flex;`};
       }
     `};
