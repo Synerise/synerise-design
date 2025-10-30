@@ -128,6 +128,20 @@ describe('ItemPickerList', () => {
     fireEvent.click(screen.getByText('folder A'));
     await waitFor(() => expect(screen.getByText('Item 2')).toBeInTheDocument());
   });
+  
+  it('should render basic search if no actions', async () => {
+    const onItemSelect = jest.fn();
+    renderWithProvider(
+      <ItemPickerList
+        texts={{ basicSearchPlaceholder: 'SEARCH BASIC' }}
+        onItemSelect={onItemSelect}
+        sections={SECTION_WITH_FOLDERS}
+        items={DATA_SOURCE}
+      />,
+    );
+    await waitFor(() => expect(screen.getByPlaceholderText('SEARCH BASIC')).toBeInTheDocument());
+  });
+
   it('should render search results from all folders', async () => {
     const SEARCH_QUERY = 'Item 2';
 
@@ -136,6 +150,7 @@ describe('ItemPickerList', () => {
       <ItemPickerList
         texts={{ searchPlaceholder: 'SEARCH' }}
         onItemSelect={onItemSelect}
+        actions={[]}
         sections={SECTION_WITH_FOLDERS}
         items={DATA_SOURCE}
       />,

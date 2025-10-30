@@ -148,7 +148,10 @@ export const useItemsInSections = <
   });
   const isSearchInActionActive = !!searchInAction && !searchInItem;
   const canPerformListActions =
-    !searchByAction && !searchByParamConfig && !isSearchInActionActive;
+    actions !== undefined &&
+    !searchByAction &&
+    !searchByParamConfig &&
+    !isSearchInActionActive;
   const listActions = searchQuery === '/' && canPerformListActions;
 
   const hasSearchQuery = !!searchQuery;
