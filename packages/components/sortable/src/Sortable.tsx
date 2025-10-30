@@ -48,7 +48,7 @@ export const Sortable = <ItemType extends BaseItem>({
           id={item.id}
           index={index}
           placeholderCss={placeholderCss}
-          isDragged={activeItem?.id === item.id}
+          isDragged={activeItem && activeItem?.id === item.id}
           key={`sortable-item-${sortableId}-${item.id}`}
           data={item}
           component={ItemComponent}

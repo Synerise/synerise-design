@@ -48,7 +48,7 @@ const ColumnManagerList = <ColumnType extends Column>({
       key: column.id,
       id: column.id,
       item: column,
-      isDragged: activeItem?.id === column.id,
+      isDragged: activeItem && activeItem?.id === column.id,
       switchAction: toggleColumn,
       draggable: isItemDraggable,
       texts,

@@ -354,7 +354,7 @@ const Condition = (props: ConditionProps) => {
             <ConditionStep
               key={`step-id-${step.id}`}
               step={step}
-              isDragged={draggedStep?.id === step.id}
+              isDragged={draggedStep && draggedStep?.id === step.id}
               isLast={index === steps.length - 1}
               texts={allTexts}
               index={index}
