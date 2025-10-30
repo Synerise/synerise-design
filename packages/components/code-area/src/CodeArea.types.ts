@@ -85,6 +85,7 @@ export type CodeAreaEditorRawProps<
 > = CodeAreaCommonProps<SyntaxName> & {
   isValid: boolean;
   isSyntaxSelectVisible?: boolean;
+  isBottomBarShowing?: boolean;
   onDidChangeMarkers?: (markers: editor.IMarker[]) => void;
   counterLimit?: number;
   count?: number;
