@@ -26,19 +26,18 @@ const CodeArea = ({
         {...codeAreaProps}
         toggleFullscreen={toggleFullscreen}
         isFullscreen={false}
+        ref={wrapperRef}
       />
-      <div ref={wrapperRef}>
-        {wrapperRef.current &&
-          isFullscreen &&
-          createPortal(
-            <CodeAreaEditor
-              {...codeAreaProps}
-              toggleFullscreen={toggleFullscreen}
-              isFullscreen={isFullscreen}
-            />,
-            getPopupContainer(wrapperRef.current),
-          )}
-      </div>
+      {wrapperRef.current &&
+        isFullscreen &&
+        createPortal(
+          <CodeAreaEditor
+            {...codeAreaProps}
+            toggleFullscreen={toggleFullscreen}
+            isFullscreen={isFullscreen}
+          />,
+          getPopupContainer(wrapperRef.current),
+        )}
     </>
   );
 };

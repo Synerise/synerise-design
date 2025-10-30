@@ -40,6 +40,7 @@ export const CodeAreaEditorRaw = ({
   allowFullscreen,
   toggleFullscreen,
   renderFooterContent,
+  isBottomBarShowing,
   isFullscreen,
   count,
   counterLimit,
@@ -197,10 +198,6 @@ export const CodeAreaEditorRaw = ({
         monacoRef.current?.editor.setModelLanguage(currentModel, currentSyntax);
     }
   }, [currentSyntax]);
-
-  const isBottomBarShowing = Boolean(
-    isSyntaxSelectVisible || (allowFullscreen && !isFullscreen),
-  );
 
   const shouldShowPlaceholder = useMemo(() => {
     return (isTouched && !value) || (!value && !defaultValue);

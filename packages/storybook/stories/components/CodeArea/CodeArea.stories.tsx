@@ -151,6 +151,7 @@ export const Readonly: Story = {
     ...WithCustomFooterContent.args,
     ...WithCounter.args,
     ...WithSyntaxValidation.args,
+    value: SAMPLE_DATA,
     readOnly: true,
   },
 };
