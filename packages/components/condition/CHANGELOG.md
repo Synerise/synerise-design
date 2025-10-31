@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.4.27](https://github.com/Synerise/synerise-design/compare/@synerise/ds-condition@1.4.26...@synerise/ds-condition@1.4.27) (2025-10-31)
+
+
+### Bug Fixes
+
+* **sortable:** prevent rendering drop label when id is undef ([81898e8](https://github.com/Synerise/synerise-design/commit/81898e87348199cc540ac188b26ea0dd5e621f62))
+
+
+
+
+
 ## [1.4.26](https://github.com/Synerise/synerise-design/compare/@synerise/ds-condition@1.4.25...@synerise/ds-condition@1.4.26) (2025-10-22)
 
 **Note:** Version bump only for package @synerise/ds-condition

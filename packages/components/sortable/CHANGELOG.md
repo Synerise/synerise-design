@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.3.7](https://github.com/Synerise/synerise-design/compare/@synerise/ds-sortable@1.3.6...@synerise/ds-sortable@1.3.7) (2025-10-31)
+
+
+### Bug Fixes
+
+* **sortable:** prevent rendering drop label when id is undef ([81898e8](https://github.com/Synerise/synerise-design/commit/81898e87348199cc540ac188b26ea0dd5e621f62))
+
+
+
+
+
 ## [1.3.6](https://github.com/Synerise/synerise-design/compare/@synerise/ds-sortable@1.3.5...@synerise/ds-sortable@1.3.6) (2025-10-10)
 
 **Note:** Version bump only for package @synerise/ds-sortable

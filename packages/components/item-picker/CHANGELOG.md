@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.11.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-item-picker@1.10.0...@synerise/ds-item-picker@1.11.0) (2025-10-31)
+
+
+### Features
+
+* **item-picker:** extend folder item options ([a99df65](https://github.com/Synerise/synerise-design/commit/a99df65c0856521a0bb510a4f94817e20298b2b0))
+
+
+
+
+
 # [1.10.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-item-picker@1.9.19...@synerise/ds-item-picker@1.10.0) (2025-10-29)
 
 

@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.0.21](https://github.com/synerise/synerise-design/compare/@synerise/ds-layout@1.0.20...@synerise/ds-layout@1.0.21) (2025-10-31)
+
+
+### Bug Fixes
+
+* **layout:** sidebar button sc workaround ([7fd9198](https://github.com/synerise/synerise-design/commit/7fd91987948610e5d7a55c47852b533f63929a1f))
+
+
+
+
+
 ## [1.0.20](https://github.com/synerise/synerise-design/compare/@synerise/ds-layout@1.0.19...@synerise/ds-layout@1.0.20) (2025-10-10)
 
 **Note:** Version bump only for package @synerise/ds-layout

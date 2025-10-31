@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.1.34](https://github.com/Synerise/synerise-design/compare/@synerise/ds-subtle-form@1.1.33...@synerise/ds-subtle-form@1.1.34) (2025-10-31)
+
+**Note:** Version bump only for package @synerise/ds-subtle-form
+
+
+
+
+
 ## [1.1.33](https://github.com/Synerise/synerise-design/compare/@synerise/ds-subtle-form@1.1.32...@synerise/ds-subtle-form@1.1.33) (2025-10-22)
 
 **Note:** Version bump only for package @synerise/ds-subtle-form

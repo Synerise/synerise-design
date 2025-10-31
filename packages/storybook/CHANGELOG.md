@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.25.0](https://github.com/Synerise/synerise-design/compare/storybook@1.24.2...storybook@1.25.0) (2025-10-31)
+
+
+### Bug Fixes
+
+* **code-area:** footer content rendering fixed ([543415e](https://github.com/Synerise/synerise-design/commit/543415e2d1ad9c427e019c8eaf0df004f5e9dcac))
+
+
+### Features
+
+* **item-picker:** extend folder item options ([a99df65](https://github.com/Synerise/synerise-design/commit/a99df65c0856521a0bb510a4f94817e20298b2b0))
+
+
+
+
+
 ## [1.24.2](https://github.com/Synerise/synerise-design/compare/storybook@1.24.1...storybook@1.24.2) (2025-10-22)
 
 

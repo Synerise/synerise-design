@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.2.9](https://github.com/Synerise/synerise-design/compare/@synerise/ds-code-area@1.2.8...@synerise/ds-code-area@1.2.9) (2025-10-31)
+
+
+### Bug Fixes
+
+* **code-area:** footer content rendering fixed ([543415e](https://github.com/Synerise/synerise-design/commit/543415e2d1ad9c427e019c8eaf0df004f5e9dcac))
+
+
+
+
+
 ## [1.2.8](https://github.com/Synerise/synerise-design/compare/@synerise/ds-code-area@1.2.7...@synerise/ds-code-area@1.2.8) (2025-10-22)
 
 **Note:** Version bump only for package @synerise/ds-code-area

@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.2.24](https://github.com/Synerise/synerise-design/compare/@synerise/ds-column-manager@1.2.23...@synerise/ds-column-manager@1.2.24) (2025-10-31)
+
+
+### Bug Fixes
+
+* **sortable:** prevent rendering drop label when id is undef ([81898e8](https://github.com/Synerise/synerise-design/commit/81898e87348199cc540ac188b26ea0dd5e621f62))
+
+
+
+
+
 ## [1.2.23](https://github.com/Synerise/synerise-design/compare/@synerise/ds-column-manager@1.2.22...@synerise/ds-column-manager@1.2.23) (2025-10-22)
 
 **Note:** Version bump only for package @synerise/ds-column-manager
