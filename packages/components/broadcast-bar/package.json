@@ -26,7 +26,8 @@
     "test": "jest",
     "test:watch": "npm run test -- --watchAll",
     "types": "tsc --noEmit",
-    "upgrade:ds": "ncu -f \"@synerise/ds-*\" -u"
+    "upgrade:ds": "ncu -f \"@synerise/ds-*\" -u",
+    "knip": "knip"
   },
   "sideEffects": [
     "dist/style/*",

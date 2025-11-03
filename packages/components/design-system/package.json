@@ -24,7 +24,8 @@
     "prepublish": "npm run build",
     "types": "tsc --noEmit",
     "check:circular-dependencies": "madge --circular --extensions ts,tsx,js,jsx --ts-config tsconfig.json src/ --exclude '/dist/'",
-    "upgrade:ds": "ncu -f \"@synerise/ds-*\" -u"
+    "upgrade:ds": "ncu -f \"@synerise/ds-*\" -u",
+    "knip": "knip"
   },
   "sideEffects": [
     "dist/style/*",

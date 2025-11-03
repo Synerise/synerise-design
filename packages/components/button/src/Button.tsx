@@ -78,7 +78,7 @@ const Button = ({
         className="ds-button-label"
       >
         {children}
-        {tagProps && mode !== ButtonMode.SINGLE_ICON && (
+        {tagProps && mode !== ButtonMode.SPLIT && (
           <S.Tag {...tagProps} shape={TagShape.MEDIUM_ROUND} asPill />
         )}
       </S.ButtonLabel>

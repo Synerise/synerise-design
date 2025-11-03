@@ -26,7 +26,8 @@
     "pack:ci": "npm pack --pack-destination ../../storybook/storybook-static/static",
     "test": "jest",
     "test:watch": "npm run test -- --watchAll",
-    "upgrade:ds": "ncu -f \"@synerise/ds-*\" -u"
+    "upgrade:ds": "ncu -f \"@synerise/ds-*\" -u",
+    "knip": "knip"
   },
   "sideEffects": [
     "dist/style/*",

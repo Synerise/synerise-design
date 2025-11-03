@@ -31,7 +31,9 @@
     "tgz-package-json": "node ./scripts/tgz/index.cjs",
     "types": "lerna run types --stream  --concurrency 5",
     "check:circular-dependencies": "lerna run check:circular-dependencies",
-    "upgrade:ds": "lerna run upgrade:ds"
+    "upgrade:ds": "lerna run upgrade:ds",
+    "knip": "knip"
+
   },
   "husky": {
     "hooks": {
@@ -91,6 +93,7 @@
     "@types/flat": "5.0.3",
     "@types/highlightjs": "^9.12.6",
     "@types/jest": "27",
+    "@types/node": "^24.9.2",
     "@types/ramda": "^0.28.23",
     "@types/react-highlight-words": "^0.16.4",
     "@types/react-onclickoutside": "^6.7.4",
@@ -109,6 +112,7 @@
     "inquirer": "7.1.0",
     "jest": "^27",
     "jest-environment-jsdom": "^27",
+    "knip": "^5.66.4",
     "lerna": "^8.2.2",
     "less": "3.11.1",
     "less-loader": "^12.3.0",
@@ -123,7 +127,7 @@
     "styled-components": "^5.3.3",
     "stylelint": "16.20.0",
     "stylelint-config-standard": "38.0.0",
-    "typescript": "^5.8.0",
+    "typescript": "^5.9.3",
     "webpack": "^5.98.0"
   }
 }
