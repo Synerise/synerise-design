@@ -1,6 +1,4 @@
 {
-  "entry": ["src/index.ts"],
-  "project": ["src/**/*.{ts,tsx}"],
   "ignoreDependencies": [
     "@testing-library/jest-dom",
     "@testing-library/react",
