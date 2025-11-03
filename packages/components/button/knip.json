@@ -13,8 +13,5 @@
     "react-dom",
     "react-intl"
   ],
-  "ignoreBinaries": ["babel", "tsc", "jest", "madge", "ncu", "knip", "eslint",
-    "prettier",
-    "chromatic",
-    "test-storybook"]
+  "ignoreBinaries": ["babel", "tsc", "jest", "madge", "ncu", "knip"]
 }
