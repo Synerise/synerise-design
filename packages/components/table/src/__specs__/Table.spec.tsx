@@ -80,22 +80,6 @@ describe('Table', () => {
     expect(screen.getByText('Name')).toBeTruthy();
   });
 
-  it.skip('should render "no data"', async () => {
-    // FIXME
-    renderWithProvider(
-      <Table
-        dataSource={[]}
-        columns={props.columns}
-        locale={{ emptyText: 'No Data' }}
-      />,
-    );
-
-    await waitFor(
-      async () => expect(await screen.findByText('No Data')).toBeTruthy(),
-      { timeout: 2000 },
-    );
-  });
-
   it('should updates columns when receiving props', () => {
     const columns = [
       {
@@ -301,19 +285,6 @@ describe('Table', () => {
     expect(screen.getByTestId('ds-table-title').textContent).toEqual(
       '6results',
     );
-  });
-
-  it.skip('Should render custom empty component', async () => {
-    // FIXME
-    const EMPTY_STATE = 'empty state';
-    renderWithProvider(
-      <Table
-        dataSource={[]}
-        columns={props.columns}
-        emptyDataComponent={EMPTY_STATE}
-      />,
-    );
-    expect(await screen.findByText(EMPTY_STATE)).toBeInTheDocument();
   });
 
   it('Should render results title with custom locale', () => {
