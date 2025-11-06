@@ -1,35 +1,35 @@
 import React, { useState } from 'react';
 
-import type { StoryObj, Meta } from '@storybook/react-webpack5';
-
-import PageHeader from '@synerise/ds-page-header';
-import { theme }from '@synerise/ds-core';
-import Button from '@synerise/ds-button';
-import Skeleton, { SkeletonAvatar } from '@synerise/ds-skeleton';
-import Icon, { AngleDownS, EditM, HelpM, MailM, OptionHorizontalM } from '@synerise/ds-icon';
-
-import Tabs from '@synerise/ds-tabs';
-import Dropdown from '@synerise/ds-dropdown';
-import Menu from '@synerise/ds-menu';
+import type { Meta, StoryObj } from '@storybook/react-webpack5';
 import { ObjectAvatar } from '@synerise/ds-avatar';
+import Button from '@synerise/ds-button';
+import { theme } from '@synerise/ds-core';
+import Dropdown from '@synerise/ds-dropdown';
+import Icon, {
+  AngleDownS,
+  EditM,
+  HelpM,
+  MailM,
+  OptionHorizontalM,
+} from '@synerise/ds-icon';
+import Menu from '@synerise/ds-menu';
+import PageHeader from '@synerise/ds-page-header';
+import Skeleton, { SkeletonAvatar } from '@synerise/ds-skeleton';
 import Stepper from '@synerise/ds-stepper';
+import Tabs from '@synerise/ds-tabs';
 import { useOnClickOutside } from '@synerise/ds-utils';
 
-import { tabsSkeleton, tabs, steps, StepData } from './PageHeader.data';
-
 import {
+  BOOLEAN_CONTROL,
   CLASSNAME_ARG_CONTROL,
   REACT_NODE_AS_STRING,
-  BOOLEAN_CONTROL, reactNodeAsSelect, headerWrapper,
+  headerWrapper,
+  reactNodeAsSelect,
 } from '../../utils';
-
-
-
-
-
+import { StepData, steps, tabs, tabsSkeleton } from './PageHeader.data';
 
 export default {
-  title: "Components/PageHeader",
+  title: 'Components/PageHeader',
   tags: ['autodocs'],
   component: PageHeader,
   decorators: [headerWrapper],
@@ -41,19 +41,29 @@ export default {
     onGoBack: BOOLEAN_CONTROL,
     isolated: BOOLEAN_CONTROL,
     tooltip: {
-      trigger:{...reactNodeAsSelect([ 'hover', 'click'], {hover: 'hover', click: 'click'})},
+      trigger: {
+        ...reactNodeAsSelect(['hover', 'click'], {
+          hover: 'hover',
+          click: 'click',
+        }),
+      },
       title: REACT_NODE_AS_STRING,
     },
     tooltipIcon: REACT_NODE_AS_STRING,
-    bar: { ...reactNodeAsSelect([ 'Button', 'None', 'Skeleton'], {
-        Button: <>
-          <Button type="tertiary">Function</Button>
-        </>,
+    bar: {
+      ...reactNodeAsSelect(['Button', 'None', 'Skeleton'], {
+        Button: (
+          <>
+            <Button type="tertiary">Function</Button>
+          </>
+        ),
         None: undefined,
-        Skeleton: <div style={{width: '150px'}}>
-          <Skeleton numberOfSkeletons={1}/>
-        </div>,
-      })
+        Skeleton: (
+          <div style={{ width: '150px' }}>
+            <Skeleton numberOfSkeletons={1} />
+          </div>
+        ),
+      }),
     },
   },
 } as Meta<typeof PageHeader>;
@@ -124,7 +134,6 @@ export const withClose: Story = {
   },
 };
 
-
 export const withDropdown: Story = {
   render: () => {
     const [value, setValue] = React.useState('');
@@ -137,104 +146,123 @@ export const withDropdown: Story = {
     });
 
     const menuData = [
-      { text: 'CRM' , onClick: () => {
+      {
+        text: 'CRM',
+        onClick: () => {
           setSelectedSpace('CRM');
           setDropdownVisible(false);
-        }, checked: selectedSpace === 'CRM' },
-      { text: 'Campaign', onClick: () => {
+        },
+        checked: selectedSpace === 'CRM',
+      },
+      {
+        text: 'Campaign',
+        onClick: () => {
           setSelectedSpace('Campaign');
           setDropdownVisible(false);
-        }, checked: selectedSpace === 'Campaign'  },
-      { text: 'Automation', onClick: () => {
+        },
+        checked: selectedSpace === 'Campaign',
+      },
+      {
+        text: 'Automation',
+        onClick: () => {
           setSelectedSpace('Automation');
           setDropdownVisible(false);
-        }, checked: selectedSpace === 'Automation'  },
+        },
+        checked: selectedSpace === 'Automation',
+      },
     ];
     return (
-    <PageHeader
-      onGoBack={true}
-      bar={
-        <>
-          <Button type="tertiary">Function</Button>
-        </>
-      }
-      inlineEdit={{
-        name: 'name-of-input',
-        value: value,
-        maxLength: 60,
-        handleOnChange: event => {
-          setValue(event.target.value);
-        },
-        placeholder: 'Example text',
-        size: 'normal',
-        customIcon: <EditM/>,
-      }}
-      more={
-        <Dropdown
-          overlay={
-            <div ref={ref}>
-              <Menu dataSource={menuData} selectable={true} asDropdownMenu/>
-            </div>
-          }
-          visible={dropdownVisible}
-        >
-          <Dropdown.TextTrigger
-            size={2}
-            expanded={dropdownVisible}
-            inactiveColor="blue-600"
-            value={selectedSpace}
-            onFocus={() => setFocused(isFocused)}
-            onClick={() => setDropdownVisible(true)}
-          />
-        </Dropdown>
-      }
-      avatar={
-        <ObjectAvatar iconComponent={<Icon component={<MailM/>} color={theme.palette['red-600']}/>}
-                      badgeStatus="active"/>
-      }
-      tabs={
-        <Tabs
-          tabs={tabs}
-          activeTab={0}
-          handleTabClick={(index: number) => {
-          }}
-          configuration={{
-            label: 'Manage dashboards',
-          }}
-        />
-      }
-      rightSide={
-        <>
-          <Button>Duplicate</Button>
-          <Button mode={'split'} type={'primary'}>
-            Edit
-            <Icon component={<AngleDownS/>} color={'#ffffff'}/>
-          </Button>
-        </>
-      }
-    />
-    )
-  },
-  args: {
-  },
-};
-
-export const withStepper: Story = {
-  render: ({ activeIndex, ...args }) => {
-    const [activeStep, setActiveStep] = useState(activeIndex);
-    const handleStepClick = index => setActiveStep(index);
-    const [value, setValue] = React.useState('');
-
-    return (
       <PageHeader
-        avatar={
-          <ObjectAvatar iconComponent={<Icon component={<MailM />} color={theme.palette['red-600']} />} badgeStatus="active" />
+        onGoBack={true}
+        bar={
+          <>
+            <Button type="tertiary">Function</Button>
+          </>
         }
         inlineEdit={{
           name: 'name-of-input',
           value: value,
           maxLength: 60,
-          handleOnChange: event => {
+          handleOnChange: (event) => {
+            setValue(event.target.value);
+          },
+          placeholder: 'Example text',
+          size: 'normal',
+          customIcon: <EditM />,
+        }}
+        more={
+          <Dropdown
+            overlay={
+              <div ref={ref}>
+                <Menu dataSource={menuData} selectable={true} asDropdownMenu />
+              </div>
+            }
+            open={dropdownVisible}
+          >
+            <Dropdown.TextTrigger
+              size={2}
+              expanded={dropdownVisible}
+              inactiveColor="blue-600"
+              value={selectedSpace}
+              onFocus={() => setFocused(isFocused)}
+              onClick={() => setDropdownVisible(true)}
+            />
+          </Dropdown>
+        }
+        avatar={
+          <ObjectAvatar
+            iconComponent={
+              <Icon component={<MailM />} color={theme.palette['red-600']} />
+            }
+            badgeStatus="active"
+          />
+        }
+        tabs={
+          <Tabs
+            tabs={tabs}
+            activeTab={0}
+            handleTabClick={(index: number) => {}}
+            configuration={{
+              label: 'Manage dashboards',
+            }}
+          />
+        }
+        rightSide={
+          <>
+            <Button>Duplicate</Button>
+            <Button mode={'split'} type={'primary'}>
+              Edit
+              <Icon component={<AngleDownS />} color={'#ffffff'} />
+            </Button>
+          </>
+        }
+      />
+    );
+  },
+  args: {},
+};
+
+export const withStepper: Story = {
+  render: ({ activeIndex, ...args }) => {
+    const [activeStep, setActiveStep] = useState(activeIndex);
+    const handleStepClick = (index) => setActiveStep(index);
+    const [value, setValue] = React.useState('');
+
+    return (
+      <PageHeader
+        avatar={
+          <ObjectAvatar
+            iconComponent={
+              <Icon component={<MailM />} color={theme.palette['red-600']} />
+            }
+            badgeStatus="active"
+          />
+        }
+        inlineEdit={{
+          name: 'name-of-input',
+          value: value,
+          maxLength: 60,
+          handleOnChange: (event) => {
             setValue(event.target.value);
           },
           placeholder: 'Example text',
@@ -261,45 +289,36 @@ export const withStepper: Story = {
         }
       />
     );
-    },
-  args: {
-
   },
+  args: {},
 };
 
 export const withSkeleton: Story = {
-  render: () => <PageHeader
-    bar={
-      <div style={{width: '150px'}}>
-        <Skeleton numberOfSkeletons={1}/>
-      </div>
-    }
-
-    more={
-      <div style={{width: '150px'}}>
-        <Skeleton numberOfSkeletons={1}/>
-      </div>
-    }
-    avatar={
-      <SkeletonAvatar size='M' shape={true} />
-    }
-    tabs={
-      <Tabs
-        tabs={tabsSkeleton}
-      />
-    }
-    rightSide={
-      <>
-        <div style={{width: '150px'}}>
-          <Skeleton numberOfSkeletons={1}/>
+  render: () => (
+    <PageHeader
+      bar={
+        <div style={{ width: '150px' }}>
+          <Skeleton numberOfSkeletons={1} />
         </div>
-        <div style={{width: '66px'}}>
-          <Skeleton numberOfSkeletons={1} width='M'/>
+      }
+      more={
+        <div style={{ width: '150px' }}>
+          <Skeleton numberOfSkeletons={1} />
         </div>
-      </>
-    }
-  />,
-  args: {
-  },
+      }
+      avatar={<SkeletonAvatar size="M" shape={true} />}
+      tabs={<Tabs tabs={tabsSkeleton} />}
+      rightSide={
+        <>
+          <div style={{ width: '150px' }}>
+            <Skeleton numberOfSkeletons={1} />
+          </div>
+          <div style={{ width: '66px' }}>
+            <Skeleton numberOfSkeletons={1} width="M" />
+          </div>
+        </>
+      }
+    />
+  ),
+  args: {},
 };
-

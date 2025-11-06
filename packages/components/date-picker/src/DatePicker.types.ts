@@ -2,7 +2,7 @@ import type { HTMLAttributes, ReactElement, ReactNode } from 'react';
 import type { IntlShape } from 'react-intl';
 
 import type { DateToFormatOptions } from '@synerise/ds-core';
-import type { DropdownProps } from '@synerise/ds-dropdown';
+import type { DropdownSharedProps } from '@synerise/ds-dropdown';
 import type { InputProps } from '@synerise/ds-input';
 import type { DataAttributes } from '@synerise/ds-utils';
 
@@ -18,7 +18,7 @@ export type DatePickerProps = {
   disabledHours?: number[];
   disabledMinutes?: number[];
   disabledSeconds?: number[];
-  dropdownProps?: Partial<DropdownProps>;
+  dropdownProps?: Partial<Omit<DropdownSharedProps, 'children' | 'overlay'>>;
   /**
    * @deprecated use `valueFormatOptions` instead
    */

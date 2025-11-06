@@ -2,7 +2,7 @@ import React from 'react';
 
 import { ApiM } from '@synerise/ds-icon';
 import { renderWithProvider } from '@synerise/ds-core';
-import { screen, waitFor } from '@testing-library/react';
+import { fireEvent, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 
 import ContextSelector from '../ContextSelector';
@@ -51,15 +51,18 @@ describe('Context selector component', () => {
     expect(screen.getByText('Schema builder app')).toBeTruthy();
   });
 
-  test('should call onActivate', () => {
+  // moved to chromatic test
+  test.skip('should call onActivate', async () => {
     const handleActivate = jest.fn();
     renderWithProvider(RENDER_CONTEXT_SELECTOR({ onActivate: handleActivate }));
 
-    userEvent.click(screen.getByText(CONTEXT_TEXTS.buttonLabel));
+    fireEvent.click(screen.getByText(CONTEXT_TEXTS.buttonLabel));
 
-    expect(handleActivate).toBeCalled();
+    await waitFor(() => expect(handleActivate).toBeCalled());
   });
-  test('should call onDeactivate', async () => {
+
+  // moved to chromatic test
+  test.skip('should call onDeactivate', async () => {
     const handleDeactivate = jest.fn();
     const handleActivate = jest.fn();
     renderWithProvider(
@@ -69,9 +72,9 @@ describe('Context selector component', () => {
       }),
     );
 
-    userEvent.click(screen.getByText(CONTEXT_TEXTS.buttonLabel));
+    fireEvent.click(screen.getByText(CONTEXT_TEXTS.buttonLabel));
     await waitFor(() => expect(handleActivate).toHaveBeenCalled());
-    userEvent.click(document.body);
+    fireEvent.click(document.body);
 
     await waitFor(() => expect(handleDeactivate).toHaveBeenCalled());
   });

@@ -30,7 +30,7 @@ export const itemSizes = {
 export type ItemType = (typeof itemTypes)[keyof typeof itemTypes];
 export type ItemSize = (typeof itemSizes)[keyof typeof itemSizes];
 
-export type ItemData<EventType = MouseEvent> = {
+export type ItemData<EventType = MouseEvent | KeyboardEvent> = {
   key?: Key;
   item: Partial<BasicItemProps>;
   domEvent: EventType;
@@ -43,16 +43,44 @@ export type ListItemEventHandler<EventType> = (
 export type TriggerHandle = Component<TriggerProps> & {
   getPopupDomNode: () => HTMLElement;
 };
+/**
+ * @deprecated
+ * provide Copyable type instead
+ */
+type CopyableBoolean = boolean;
+export type Copyable = {
+  timeToReset?: number;
+  copyValue: string;
+  copiedLabel?: ReactNode;
+  delayClickEvent?: number | false;
+};
 
 export type BaseListItemProps = ListItemDividerProps & {
   checked?: boolean;
   selected?: boolean;
   children?: ReactNode;
   className?: string;
-  copyable?: boolean;
-  copyHint?: ReactNode;
+  copyable?: CopyableBoolean | Copyable;
+  /**
+   * @deprecated. Provide copyable: Copyable instead
+   */
   copyValue?: string;
+  /**
+   * @deprecated - there's no hint on hover anymore
+   */
+  copyHint?: ReactNode;
+  /**
+   * @deprecated - there's no tooltip after copying anymore
+   */
   copyTooltip?: ReactNode;
+  /**
+   * @deprecated - there's no tooltip after copying anymore
+   */
+  timeToHideTooltip?: number;
+  /**
+   * @deprecated - there's no tooltip after copying anymore
+   */
+  tooltipProps?: TooltipProps;
   description?: ReactNode;
   direction?: 'ltr' | 'rtl';
   disabled?: boolean;
@@ -77,10 +105,9 @@ export type BaseListItemProps = ListItemDividerProps & {
   itemKey?: Key;
   noHover?: boolean;
   onItemHover?: ListItemEventHandler<MouseEvent<HTMLDivElement>>;
-  onItemSelect?: ListItemEventHandler<
+  onClick?: ListItemEventHandler<
     MouseEvent<HTMLDivElement> | KeyboardEvent<HTMLDivElement>
   >;
-  onClick?: ListItemEventHandler<MouseEvent<HTMLDivElement>>;
   ordered?: boolean;
   parent?: boolean;
   prefixel?: ReactNode | AddonRenderer;
@@ -90,8 +117,6 @@ export type BaseListItemProps = ListItemDividerProps & {
   suffixel?: ReactNode | AddonRenderer;
   suffixVisibilityTrigger?: 'hover' | 'default';
   text?: ReactNode;
-  timeToHideTooltip?: number;
-  tooltipProps?: TooltipProps;
   type?: ItemType;
   subMenu?: ListItemProps[];
   indentLevel?: number;
@@ -106,9 +131,11 @@ export type ListItemDividerProps = {
   higher?: boolean;
 };
 
+export type NestedItemProps = {
+  ItemComponent: ComponentType<ListItemProps>;
+};
+
 export type BasicItemProps = Omit<
   ListItemProps,
   'type' | 'text' | 'level' | 'higher'
-> & {
-  ItemComponent: ComponentType<ListItemProps>;
-};
+>;

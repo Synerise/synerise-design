@@ -181,6 +181,7 @@ const Factors = ({
           availableFactorTypes={availableFactorTypes}
           unavailableFactorTypes={unavailableFactorTypes}
           readOnly={readOnly}
+          getPopupContainerOverride={getPopupContainerOverride}
         />
       )}
       <FactorValue

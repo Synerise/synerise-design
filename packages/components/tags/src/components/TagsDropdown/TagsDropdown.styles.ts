@@ -3,10 +3,7 @@ import styled from 'styled-components';
 import Dropdown from '@synerise/ds-dropdown';
 import Scrollbar, { type ScrollbarProps } from '@synerise/ds-scrollbar';
 
-export const Overlay = styled.div`
-  width: 216px;
-  background-color: ${(props) => props.theme.palette.white};
-`;
+export const Overlay = styled.div``;
 
 export const DropdownContainer = styled(Scrollbar)<ScrollbarProps>`
   display: flex;

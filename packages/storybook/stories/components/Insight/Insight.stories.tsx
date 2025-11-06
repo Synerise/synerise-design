@@ -1,17 +1,20 @@
 import React from 'react';
-import { Meta, StoryObj } from '@storybook/react-webpack5';
-
-import Insight, { InsightProps } from '@synerise/ds-insight';
 import { fn } from 'storybook/test';
+
+import { Meta, StoryObj } from '@storybook/react-webpack5';
 import Avatar from '@synerise/ds-avatar';
-import Icon, {AngleDownS, EditM, NotificationsM, RefreshM } from '@synerise/ds-icon';
 import Button from '@synerise/ds-button';
 import { theme } from '@synerise/ds-core';
+import Icon, {
+  AngleDownS,
+  EditM,
+  NotificationsM,
+  RefreshM,
+} from '@synerise/ds-icon';
+import Insight, { InsightProps } from '@synerise/ds-insight';
 
-
-import { fixedWrapper400, REACT_NODE_AS_STRING } from '../../utils';
 import { Placeholder } from '../../constants';
-
+import { REACT_NODE_AS_STRING, fixedWrapper400 } from '../../utils';
 
 export default {
   component: Insight,
@@ -38,9 +41,13 @@ export const Default: Story = {
   args: {
     title: 'Get File SFTP',
     content: <Placeholder $height={50} />,
-    headerRightSide: <Button type='ghost' mode='icon-label'><Icon component={<EditM/>}/> Edit</Button>,
-    onClick: undefined
-  }
+    headerRightSide: (
+      <Button type="ghost" mode="icon-label">
+        <Icon component={<EditM />} /> Edit
+      </Button>
+    ),
+    onClick: undefined,
+  },
 };
 
 export const InsightWithOnClick: Story = {
@@ -48,27 +55,47 @@ export const InsightWithOnClick: Story = {
   args: {
     ...Default.args,
     onClick: fn(),
-  }
+  },
 };
 
 export const WithInlineAlert: Story = {
   args: {
     title: 'Get File SFTP',
     content: [
-      { message: 'New email campaign template version is ready to update', type: 'warning' },
+      {
+        message: 'New email campaign template version is ready to update',
+        type: 'warning',
+      },
       { message: 'Info message', type: 'info' },
     ],
-    headerRightSide: <Button type='ghost' mode='icon-label'><Icon component={<EditM/>}/> Edit</Button>,
-    onClick: undefined
-  }
+    headerRightSide: (
+      <Button type="ghost" mode="icon-label">
+        <Icon component={<EditM />} /> Edit
+      </Button>
+    ),
+    onClick: undefined,
+  },
 };
 
 export const withAvatar: Story = {
   ...WithInlineAlert,
   args: {
     ...WithInlineAlert.args,
-    avatar: <Avatar backgroundColor='grey' backgroundColorHue='100' iconComponent={<Icon component={<NotificationsM/>} color={theme.palette['orange-500']} />} size="medium" shape="square" />,
-  }
+    avatar: (
+      <Avatar
+        backgroundColor="grey"
+        backgroundColorHue="100"
+        iconComponent={
+          <Icon
+            component={<NotificationsM />}
+            color={theme.palette['orange-500']}
+          />
+        }
+        size="medium"
+        shape="square"
+      />
+    ),
+  },
 };
 
 export const withSubTitle: Story = {
@@ -76,21 +103,23 @@ export const withSubTitle: Story = {
   args: {
     ...withAvatar.args,
     subTitle: 'Custom mode name',
-  }
+  },
 };
 
 export const withFooter: Story = {
   ...withSubTitle,
   args: {
     ...withSubTitle.args,
-    footer: <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-      <Button mode="label-icon">
-        More
-        <Icon component={<AngleDownS/>}/>
-      </Button>
-      <Button mode="icon-label" icon={<Icon component={<RefreshM/>}/>}>
-        Update template
-      </Button>
-    </div>,
-  }
+    footer: (
+      <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+        <Button mode="label-icon">
+          More
+          <Icon component={<AngleDownS />} />
+        </Button>
+        <Button mode="icon-label" icon={<Icon component={<RefreshM />} />}>
+          Update template
+        </Button>
+      </div>
+    ),
+  },
 };

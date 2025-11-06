@@ -1,7 +1,10 @@
 import React, { useRef, useState } from 'react';
+
 import Avatar, { ObjectAvatar } from '@synerise/ds-avatar';
 import Badge from '@synerise/ds-badge';
-import { RawSwitch} from '@synerise/ds-switch';
+import Checkbox from '@synerise/ds-checkbox';
+import { theme } from '@synerise/ds-core';
+import Dropdown from '@synerise/ds-dropdown';
 import Icon, {
   CheckS,
   CloseS,
@@ -17,19 +20,16 @@ import Icon, {
   WarningFillS,
 } from '@synerise/ds-icon';
 import { Label } from '@synerise/ds-input';
-import { theme } from '@synerise/ds-core';
-import Tooltip from '@synerise/ds-tooltip';
-import { DropdownWrapper } from '@synerise/ds-sidebar-object/dist/Elements/Header/Header.style';
 import Menu from '@synerise/ds-menu';
-import Dropdown from '@synerise/ds-dropdown';
-import Checkbox from '@synerise/ds-checkbox';
+import { DropdownWrapper } from '@synerise/ds-sidebar-object/dist/Elements/Header/Header.style';
+import { RawSwitch } from '@synerise/ds-switch';
+import Tooltip from '@synerise/ds-tooltip';
 import { useOnClickOutside } from '@synerise/ds-utils';
-import * as S from './Menu.styles';
 
 import { avatar10 } from '../../constants';
+import * as S from './Menu.styles';
 
 export const TEXT_PLACEHOLDER = 'Option';
-
 
 export const suffixType = {
   renameAndDelete: 'rename,delete',
@@ -56,8 +56,11 @@ export const prefixType = {
 export const CheckboxWithTooltip = ({ checked, onChecked }) => {
   return (
     <Tooltip type="default" title={'Checkbox'}>
-      <div style={{ padding: '0 4px' }} onClick={e => e.stopPropagation()}>
-        <Checkbox checked={checked} onChange={e => onChecked(e.target.checked)} />
+      <div style={{ padding: '0 4px' }} onClick={(e) => e.stopPropagation()}>
+        <Checkbox
+          checked={checked}
+          onChange={(e) => onChecked(e.target.checked)}
+        />
       </div>
     </Tooltip>
   );
@@ -104,7 +107,11 @@ export const RenameWithDelete = ({ onClickEdit }) => {
 export const SwitchWithTooltip = () => {
   const [checked, setChecked] = useState(false);
   return (
-    <Tooltip type="default" trigger="hover" title={checked ? 'Switch off' : 'Switch on'}>
+    <Tooltip
+      type="default"
+      trigger="hover"
+      title={checked ? 'Switch off' : 'Switch on'}
+    >
       <RawSwitch
         onChange={(value, event) => {
           event.stopPropagation();
@@ -117,34 +124,50 @@ export const SwitchWithTooltip = () => {
   );
 };
 export const ActionsMenu = ({ onSelectClick }) => {
-  const ref = useRef<HTMLDivElement>(null);
-  useOnClickOutside(ref, () => {
-    setDropdownVisible(false);
-  });
   const [dropdownVisible, setDropdownVisible] = useState(false);
 
   const menuData = [
-    { text: 'Rename' , onClick: () => {
+    {
+      text: 'Rename',
+      onClick: () => {
         setDropdownVisible(!dropdownVisible);
-      }, prefixel: <Icon component={<EditM />} />},
-    { text: 'Duplicate', onClick: () => {
+      },
+      prefixel: <Icon component={<EditM />} />,
+    },
+    {
+      text: 'Duplicate',
+      onClick: () => {
         setDropdownVisible(!dropdownVisible);
-      }, prefixel: <Icon component={<DuplicateM />} />},
-    { text: 'Select', onClick: () => {
+      },
+      prefixel: <Icon component={<DuplicateM />} />,
+    },
+    {
+      text: 'Select',
+      onClick: () => {
         setDropdownVisible(!dropdownVisible);
-      }, prefixel: <Icon component={<TaskCheckM />} />},
-    { text: 'Delete' , onClick: () => {
+      },
+      prefixel: <Icon component={<TaskCheckM />} />,
+    },
+    {
+      text: 'Delete',
+      onClick: () => {
         setDropdownVisible(!dropdownVisible);
-      }, prefixel: <Icon component={<TrashM />} />},
+      },
+      prefixel: <Icon component={<TrashM />} />,
+    },
   ];
   return (
     <Dropdown
-      visible={dropdownVisible}
+      open={dropdownVisible}
       placement="bottomCenter"
       align={{ offset: [-38, 8] }}
       overlay={
-        <DropdownWrapper style={{ width: '167px' }} ref={ref}>
-          <Menu dataSource={menuData} asDropdownMenu style={{ width: '100%' }}/>
+        <DropdownWrapper style={{ width: '167px' }}>
+          <Menu
+            dataSource={menuData}
+            asDropdownMenu
+            style={{ width: '100%' }}
+          />
         </DropdownWrapper>
       }
     >
@@ -162,11 +185,10 @@ export const ActionsMenu = ({ onSelectClick }) => {
   );
 };
 
-
 export const renderSuffix = (
   suffixElementType: string,
   selectSuffixCallback?: () => void,
-  clickSuffixCallback?: () => void
+  clickSuffixCallback?: () => void,
 ) => {
   switch (suffixElementType) {
     case suffixType.renameAndDelete:
@@ -186,7 +208,12 @@ export const renderSuffix = (
     case suffixType.check:
       return <Icon color={theme.palette['green-600']} component={<CheckS />} />;
     case suffixType.warning:
-      return <Icon color={theme.palette['orange-600']} component={<WarningFillS />} />;
+      return (
+        <Icon
+          color={theme.palette['orange-600']}
+          component={<WarningFillS />}
+        />
+      );
     case suffixType.icon:
       return (
         <S.HoverableIconWrapper className="icon-suffix">
@@ -197,7 +224,9 @@ export const renderSuffix = (
       return (
         <Label
           label={
-            <div style={{ color: theme.palette['grey-400'], lineHeight: '18px' }}>
+            <div
+              style={{ color: theme.palette['grey-400'], lineHeight: '18px' }}
+            >
               <span>Text</span>
             </div>
           }
@@ -208,7 +237,13 @@ export const renderSuffix = (
         <Label
           label={
             <Tooltip type="default" trigger="hover" title={'Select product'}>
-              <div style={{ lineHeight: '18px', marginRight: '4px', color: theme.palette['blue-600'] }}>
+              <div
+                style={{
+                  lineHeight: '18px',
+                  marginRight: '4px',
+                  color: theme.palette['blue-600'],
+                }}
+              >
                 <span>select</span>
               </div>
             </Tooltip>
@@ -224,7 +259,11 @@ export const renderSuffix = (
   }
 };
 
-export const renderPrefix = (prefixIconType: string, isChecked?: boolean, onChecked?: (value: boolean) => void) => {
+export const renderPrefix = (
+  prefixIconType: string,
+  isChecked?: boolean,
+  onChecked?: (value: boolean) => void,
+) => {
   switch (prefixIconType) {
     case prefixType.twoIcons:
       return (
@@ -236,7 +275,11 @@ export const renderPrefix = (prefixIconType: string, isChecked?: boolean, onChec
           </Tooltip>
           <Tooltip type="default" title={'Delete'}>
             <div>
-              <Icon color={theme.palette['grey-700']} style={{ marginLeft: '8px' }} component={<ShowM />} />
+              <Icon
+                color={theme.palette['grey-700']}
+                style={{ marginLeft: '8px' }}
+                component={<ShowM />}
+              />
             </div>
           </Tooltip>
         </>
@@ -256,8 +299,6 @@ export const renderPrefix = (prefixIconType: string, isChecked?: boolean, onChec
   }
 };
 
-
-
 export const simpleText = [{ text: 'Option' }];
 
 export const multipleItems = [
@@ -272,15 +313,12 @@ export const multipleItems = [
   { text: 'Option I' },
 ];
 
-
 export const ordered = [
   { text: TEXT_PLACEHOLDER, key: '1' },
   { text: TEXT_PLACEHOLDER, key: '2' },
   { text: TEXT_PLACEHOLDER, key: '3' },
   { text: TEXT_PLACEHOLDER, key: '4' },
 ];
-
-
 
 export const deleteState = [
   {
@@ -307,7 +345,7 @@ export const MenuPrefixAndSuffixVariants = [
     typeSuffixel: suffixType.switch,
   },
   {
-    typePrefixel: prefixType.twoIcons ,
+    typePrefixel: prefixType.twoIcons,
     typeSuffixel: suffixType.select,
   },
   {
@@ -339,5 +377,3 @@ export const MenuPrefixAndSuffixVariants = [
     typeSuffixel: suffixType.none,
   },
 ];
-
-

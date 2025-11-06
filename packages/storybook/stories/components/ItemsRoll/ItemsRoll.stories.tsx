@@ -24,6 +24,7 @@ import {
   ICONS,
   ITEMS_100,
   ITEMS_1000,
+  ITEMS_LARGE,
   SEARCH_PLACEHOLDER,
 } from './ItemsRoll.data';
 
@@ -80,9 +81,9 @@ export default {
     const [visible, setVisible] = useState(false);
     const changeSelectionDropdownProps = withChangeSelectionDropdown
       ? {
+          size: 160,
           overlay: (
             <Dropdown.Wrapper
-              style={{ width: '157px' }}
               onKeyDown={(event) =>
                 focusWithArrowKeys(event, 'ds-menu-item', () => {})
               }
@@ -151,6 +152,17 @@ export const Default: Story = {};
 
 export const Simple: Story = {
   args: {
+    onChangeSelection: false,
+    renderCount: () => <></>,
+    actions: null,
+    hideSearch: true,
+    useFooter: false,
+  },
+};
+
+export const LargeItems: Story = {
+  args: {
+    items: ITEMS_LARGE,
     onChangeSelection: false,
     renderCount: () => <></>,
     actions: null,

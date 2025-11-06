@@ -5,6 +5,7 @@ import { faker } from '@faker-js/faker';
 import Avatar from '@synerise/ds-avatar';
 import Button from '@synerise/ds-button';
 import { theme } from '@synerise/ds-core';
+import { Dropdown } from '@synerise/ds-dropdown';
 import Icon, {
   FolderM,
   InputM,
@@ -14,7 +15,7 @@ import Icon, {
   StopM,
 } from '@synerise/ds-icon';
 import { Input } from '@synerise/ds-input';
-import { DropdownMenu } from '@synerise/ds-manageable-list/dist/Item/FilterItem/FilterItem.styles';
+import ListItem from '@synerise/ds-list-item';
 import Status from '@synerise/ds-status';
 import Tag, { TagShape } from '@synerise/ds-tag';
 
@@ -122,15 +123,17 @@ const BASE_ITEM = (name?: string) => ({
   canDuplicate: true,
   canDelete: true,
 });
-
+const menuDataSource = [
+  { text: 'Option 1' },
+  { text: 'Option 2' },
+  { text: 'Option 3' },
+];
 const DROPDOWN_MENU = (
-  <DropdownMenu
-    dataSource={[
-      { text: 'Option 1' },
-      { text: 'Option 2' },
-      { text: 'Option 3' },
-    ]}
-  />
+  <Dropdown.MenuWrapper>
+    {menuDataSource.map((item) => (
+      <ListItem {...item} />
+    ))}
+  </Dropdown.MenuWrapper>
 );
 
 export type ContentItemType = {

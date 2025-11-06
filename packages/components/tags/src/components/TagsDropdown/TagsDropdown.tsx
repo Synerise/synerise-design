@@ -1,6 +1,6 @@
 import React, { type ReactNode } from 'react';
 
-import Dropdown, { type DropdownProps } from '@synerise/ds-dropdown';
+import Dropdown, { type DropdownSharedProps } from '@synerise/ds-dropdown';
 import InformationCard from '@synerise/ds-information-card';
 import Tag, {
   type TagProps,
@@ -26,7 +26,8 @@ type TagDropdownProps = {
   maxHeight?: number;
   onRemove?: (tagKey: string | number) => void;
   onTagClick?: (tag: TagProps) => void;
-} & DropdownProps;
+  componentId: string;
+} & Omit<DropdownSharedProps, 'overlay'>;
 
 export const TagsDropdown = ({
   tags,
@@ -42,13 +43,20 @@ export const TagsDropdown = ({
   aboveTagsContent,
   maxHeight,
   onTagClick,
+  componentId,
   ...dropdownProps
 }: TagDropdownProps) => {
   const areTags = !!tags?.length;
 
   return (
     <Dropdown
+      popoverProps={{
+        componentId,
+        testId: `${componentId}`,
+        ...dropdownProps?.popoverProps,
+      }}
       {...dropdownProps}
+      size="small"
       overlay={
         <S.Overlay data-testid="ds-tags-dropdown-overlay">
           {dropdownHeader}

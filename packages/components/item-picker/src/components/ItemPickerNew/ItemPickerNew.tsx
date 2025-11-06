@@ -113,12 +113,18 @@ const ItemPickerNewInner = <
         description={description}
       >
         <Dropdown
-          overlayStyle={{ width: '400px' }}
+          overlayStyle={{ minWidth: '400px' }}
+          size="match-trigger"
+          asChild
           {...dropdownProps}
-          visible={visible}
+          popoverProps={{
+            testId: 'item-picker',
+            ...dropdownProps?.popoverProps,
+          }}
+          open={visible}
           trigger={['click']}
           disabled={disabled}
-          onVisibleChange={handleVisibilityChange}
+          onOpenChange={handleVisibilityChange}
           overlay={
             <ItemPickerList
               {...rest}

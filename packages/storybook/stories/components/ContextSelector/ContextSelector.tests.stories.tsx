@@ -1,18 +1,21 @@
-import { Meta, StoryObj } from '@storybook/react-webpack5';
+import { expect, fn, userEvent, waitFor, within } from 'storybook/test';
 
-import { within, userEvent, expect, waitFor, fn } from 'storybook/test';
+import { Meta, StoryObj } from '@storybook/react-webpack5';
 import type { ContextProps } from '@synerise/ds-context-selector';
 import { theme } from '@synerise/ds-core';
 
-import { CONTEXT_GROUPS, CONTEXT_ITEMS, CONTEXT_TEXTS } from './data/context.data';
+import { sleep } from '../../utils';
 import ContextSelectorMeta, {
   BusinessContext,
   ClientContext,
-  LargeItems,
   FlatListDataStructure,
+  LargeItems,
 } from './ContextSelector.stories';
-
-import { sleep } from '../../utils';
+import {
+  CONTEXT_GROUPS,
+  CONTEXT_ITEMS,
+  CONTEXT_TEXTS,
+} from './data/context.data';
 
 const SLEEP_TIME = 200;
 
@@ -37,7 +40,9 @@ export const SelectItemFromCategory: Story = {
   play: async ({ args, canvasElement }) => {
     const canvas = within(canvasElement.parentElement!);
     const subGroupName =
-      CONTEXT_GROUPS[1].subGroups && CONTEXT_GROUPS[1].subGroups[0] && CONTEXT_GROUPS[1].subGroups[0].name;
+      CONTEXT_GROUPS[1].subGroups &&
+      CONTEXT_GROUPS[1].subGroups[0] &&
+      CONTEXT_GROUPS[1].subGroups[0].name;
     if (subGroupName) {
       await userEvent.click(canvas.getByText(CONTEXT_TEXTS.buttonLabel));
 
@@ -48,8 +53,11 @@ export const SelectItemFromCategory: Story = {
       await userEvent.click(canvas.getAllByTestId('tab-container')[1]);
 
       await waitFor(
-        () => expect(canvas.getByText(subGroupName)).not.toHaveStyle({ pointerEvents: 'none' }),
-        TIMEOUT_OPTIONS
+        () =>
+          expect(canvas.getByText(subGroupName)).not.toHaveStyle({
+            pointerEvents: 'none',
+          }),
+        TIMEOUT_OPTIONS,
       );
       await sleep(SLEEP_TIME);
       await userEvent.click(canvas.getByText(subGroupName));
@@ -57,31 +65,50 @@ export const SelectItemFromCategory: Story = {
       await sleep(SLEEP_TIME);
 
       await waitFor(() => {
-        expect(canvas.getByTestId('dropdown-back-action-label')).toBeInTheDocument();
+        expect(
+          canvas.getByTestId('dropdown-back-action-label'),
+        ).toBeInTheDocument();
       }, TIMEOUT_OPTIONS);
 
       await userEvent.click(canvas.getAllByRole('menuitem')[3]);
 
-      await waitFor(() => expect(args.onSelectItem).toHaveBeenCalledWith(CONTEXT_ITEMS[9]));
+      await waitFor(() =>
+        expect(args.onSelectItem).toHaveBeenCalledWith(CONTEXT_ITEMS[9]),
+      );
 
-      await waitFor(() => expect(canvas.getByText(CONTEXT_ITEMS[9].name)).toBeInTheDocument());
+      await waitFor(() =>
+        expect(canvas.getByText(CONTEXT_ITEMS[9].name)).toBeInTheDocument(),
+      );
 
       await userEvent.click(canvas.getByText(CONTEXT_ITEMS[9].name));
 
-      await waitFor(async () => expect(await canvas.findByText(CONTEXT_GROUPS[0].name)).toBeInTheDocument());
-      await waitFor(async () => expect(await canvas.findByText(CONTEXT_GROUPS[0].name)).toHaveStyle({ color: theme.palette['blue-600'] }));
+      await waitFor(async () =>
+        expect(
+          await canvas.findByText(CONTEXT_GROUPS[0].name),
+        ).toBeInTheDocument(),
+      );
+      await waitFor(async () =>
+        expect(await canvas.findByText(CONTEXT_GROUPS[0].name)).toHaveStyle({
+          color: theme.palette['blue-600'],
+        }),
+      );
+
+      expect(args.onDeactivate).not.toHaveBeenCalled();
     }
   },
 };
 
-const play = async ({ canvasElement }) => {
+const play: Story['play'] = async ({ canvasElement, args }) => {
   const canvas = within(canvasElement);
   await userEvent.click(canvas.getByText(CONTEXT_TEXTS.buttonLabel));
   await waitFor(
     () =>
-      expect(canvas.getByPlaceholderText(CONTEXT_TEXTS.searchPlaceholder)).not.toHaveStyle({ pointerEvents: 'none' }),
-    TIMEOUT_OPTIONS
+      expect(
+        canvas.getByPlaceholderText(CONTEXT_TEXTS.searchPlaceholder),
+      ).not.toHaveStyle({ pointerEvents: 'none' }),
+    TIMEOUT_OPTIONS,
   );
+  await waitFor(() => expect(args.onActivate).toHaveBeenCalled());
 };
 
 export const BusinessContextOpen: Story = {
@@ -102,4 +129,22 @@ export const LargeItemsOpen: Story = {
 export const FlatListDataStructureOpen: Story = {
   ...FlatListDataStructure,
   play,
+};
+
+export const Deactivate: Story = {
+  ...BusinessContext,
+  play: async ({ canvasElement, args }) => {
+    const canvas = within(canvasElement);
+    await userEvent.click(canvas.getByText(CONTEXT_TEXTS.buttonLabel));
+    await waitFor(
+      () =>
+        expect(
+          canvas.getByPlaceholderText(CONTEXT_TEXTS.searchPlaceholder),
+        ).not.toHaveStyle({ pointerEvents: 'none' }),
+      TIMEOUT_OPTIONS,
+    );
+    await waitFor(() => expect(args.onActivate).toHaveBeenCalled());
+    await userEvent.click(document.body);
+    await waitFor(() => expect(args.onDeactivate).toHaveBeenCalled());
+  },
 };

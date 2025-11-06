@@ -13,10 +13,12 @@ export const EmojiItem = styled.div<{ itemsPerRow: number }>`
 export const EmojiButton = styled((props) => (
   <Button {...props} type="ghost" mode="single-icon" />
 ))`
-  font-size: 24px;
-  display: flex;
-  align-items: center;
-  cursor: pointer;
+  && {
+    font-size: 24px;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+  }
 `;
 export const EmptyList = styled.div`
   padding: 12px;

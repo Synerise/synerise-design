@@ -214,12 +214,18 @@ const ItemPickerLegacy = ({
         description={description}
       >
         <Dropdown
-          visible={dropdownOpened}
+          open={dropdownOpened}
           disabled={disabled}
           trigger={['click']}
           overlay={dropdownOverlay}
-          onVisibleChange={onVisibilityChange}
+          onOpenChange={onVisibilityChange}
+          asChild
+          size="match-trigger"
           {...dropdownProps}
+          popoverProps={{
+            testId: 'item-picker-legacy',
+            ...dropdownProps?.popoverProps,
+          }}
         >
           {renderTrigger}
         </Dropdown>

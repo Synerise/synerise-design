@@ -1,8 +1,7 @@
-import React from 'react';
-import styled, {
-  type FlattenSimpleInterpolation,
-  css,
-} from 'styled-components';
+import { type ButtonProps } from 'Button.types';
+
+import React, { forwardRef } from 'react';
+import styled, { css } from 'styled-components';
 
 import { type ThemeProps } from '@synerise/ds-core';
 import { IconContainer } from '@synerise/ds-icon';
@@ -19,7 +18,7 @@ export const CreatorLabel = styled.span`
     color: ${(props) => props.theme.palette['grey-500']};
   }
 `;
-const errorStyles = ({ theme }: ThemeProps): FlattenSimpleInterpolation => css`
+const errorStyles = ({ theme }: ThemeProps) => css`
   border: 1px dashed ${theme.palette['red-600']};
   background: ${theme.palette['red-050']};
 
@@ -32,7 +31,7 @@ const errorStyles = ({ theme }: ThemeProps): FlattenSimpleInterpolation => css`
   }
 `;
 
-const uploadStyles = ({ theme }: ThemeProps): FlattenSimpleInterpolation => css`
+const uploadStyles = ({ theme }: ThemeProps) => css`
   & {
     border: 1px dashed ${theme.palette['blue-300']};
     background-color: ${theme.palette['blue-050']};
@@ -83,13 +82,20 @@ const uploadStyles = ({ theme }: ThemeProps): FlattenSimpleInterpolation => css`
     }
   }
 `;
-export const Creator = styled(({ status, pressed, withLabel, ...rest }) => (
-  <Button {...rest} />
-))<{
+
+type StyledCreatorProps = {
   withLabel: boolean;
   pressed: boolean;
-  status: string;
-}>`
+  status?: string;
+  labelAlign: 'left' | 'center';
+};
+export const Creator = styled(
+  forwardRef<HTMLButtonElement, ButtonProps & StyledCreatorProps>(
+    ({ status, pressed, withLabel, ...rest }, ref) => (
+      <Button ref={ref} {...rest} />
+    ),
+  ),
+)<StyledCreatorProps>`
   &&& {
     width: ${(props) => {
       if (!props.withLabel) {

@@ -282,12 +282,14 @@ const ColorPicker = ({
         <S.ColorPickerModalStyle maxWidth={maxWidth} />
       )}
       <Dropdown
-        overlayClassName="color-picker-overlay"
+        className="color-picker-overlay"
         align={{ offset: [0, heightOfDropdown()] }}
-        visible={dropdownVisible}
+        open={dropdownVisible}
         overlay={dropdown}
         placement="bottomLeft"
+        asChild
         getPopupContainer={getPopupContainer}
+        popoverProps={{ testId: 'color-picker' }}
       >
         {trigger}
       </Dropdown>

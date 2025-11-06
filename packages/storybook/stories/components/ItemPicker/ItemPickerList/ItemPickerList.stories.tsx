@@ -147,8 +147,8 @@ export const WithPickerTrigger: StoryObj<StoryPropsOverlay> = {
 
     return (
       <Dropdown
-        visible={visible}
-        onVisibleChange={onVisibilityChange}
+        open={visible}
+        onOpenChange={onVisibilityChange}
         trigger={['click']}
         overlayStyle={{ width: '480px' }}
         overlay={

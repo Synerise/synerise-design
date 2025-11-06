@@ -9,7 +9,7 @@ import React, {
 import { type VariableSizeList } from 'react-window';
 import { v4 as uuid } from 'uuid';
 
-import { theme } from '@synerise/ds-core';
+import { useTheme } from '@synerise/ds-core';
 import Divider from '@synerise/ds-divider';
 import Dropdown from '@synerise/ds-dropdown';
 import Icon, { ArrowRightCircleM, SearchM } from '@synerise/ds-icon';
@@ -63,6 +63,7 @@ const ParameterDropdown = ({
   const listRef = useRef<VariableSizeList>(null);
   const overlayRef = useRef<HTMLDivElement>(null);
   const scrollBarRef = useRef<HTMLDivElement>(null);
+  const theme = useTheme();
 
   const { visibleGroups, tabs, defaultTab } = useGroups(
     items,
@@ -376,7 +377,6 @@ const ParameterDropdown = ({
   return (
     <Dropdown.Wrapper
       data-testid="ds-factors-parameter-dropdown-wrapper"
-      style={{ width: '300px' }}
       ref={overlayRef}
       onKeyDown={(event) => {
         setSearchInputFocus(false);

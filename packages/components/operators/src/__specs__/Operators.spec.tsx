@@ -74,7 +74,8 @@ describe('Operators component', () => {
     expect(screen.getByText('Equal')).toBeInTheDocument();
   });
 
-  test('should call onActivate', async () => {
+  // moved to chromatic test
+  test.skip('should call onActivate', async () => {
     const handleActivate = jest.fn();
     renderWithProvider(RENDER_OPERATORS({ onActivate: handleActivate }));
 
@@ -83,7 +84,8 @@ describe('Operators component', () => {
     await waitFor(() => expect(handleActivate).toBeCalled());
   });
 
-  test('should call onDeactivate', async () => {
+  // moved to chromatic test
+  test.skip('should call onDeactivate', async () => {
     const handleDeactivate = jest.fn();
     const handleActivate = jest.fn();
     const OTHER_ELEMENT = 'OTHER_ELEMENT';

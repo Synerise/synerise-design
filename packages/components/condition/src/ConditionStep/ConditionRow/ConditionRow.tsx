@@ -164,7 +164,9 @@ export const ConditionRow = ({
                 getPopupContainerOverride={
                   getPopupContainerOverride || getPopupContainer
                 }
-                onActivate={() => onActivate && onActivate(PARAMETER)}
+                onActivate={() => {
+                  onActivate && onActivate(PARAMETER);
+                }}
                 onDeactivate={onDeactivate}
                 onChangeValue={(value) =>
                   selectParameter(stepId, conditionId, value)
@@ -193,7 +195,9 @@ export const ConditionRow = ({
                 getPopupContainerOverride={
                   getPopupContainerOverride || getPopupContainer
                 }
-                onActivate={() => onActivate && onActivate(OPERATOR)}
+                onActivate={() => {
+                  onActivate && onActivate(OPERATOR);
+                }}
                 onDeactivate={onDeactivate}
                 onChange={(value) => selectOperator(stepId, conditionId, value)}
                 opened={
@@ -234,7 +238,9 @@ export const ConditionRow = ({
                   getPopupContainerOverride={
                     getPopupContainerOverride || getPopupContainer
                   }
-                  onActivate={() => onActivate && onActivate(FACTOR)}
+                  onActivate={() => {
+                    onActivate && onActivate(FACTOR);
+                  }}
                   onDeactivate={onDeactivate}
                   setSelectedFactorType={(factorType) =>
                     setStepConditionFactorType(stepId, conditionId, factorType)

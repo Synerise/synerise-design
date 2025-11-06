@@ -1,7 +1,7 @@
 import { type ItemSelectHandler } from 'components/ItemPickerList/ItemPickerList.types';
 import type { ReactNode, Ref } from 'react';
 
-import type { DropdownProps } from '@synerise/ds-dropdown';
+import type { DropdownSharedProps } from '@synerise/ds-dropdown';
 import type { FormFieldCommonProps } from '@synerise/ds-form-field';
 import type { InformationCardTooltipProps } from '@synerise/ds-information-card';
 import { type ScrollbarAdditionalProps } from '@synerise/ds-scrollbar';
@@ -100,7 +100,9 @@ export type ItemPickerProps<
     onFocus?: () => void;
     onBlur?: () => void;
     onLoadedData?: OnLoadedData;
-    dropdownProps?: Partial<DropdownProps>;
+    dropdownProps?: Partial<
+      Omit<DropdownSharedProps, 'children' | 'overlay' | 'disabled'>
+    >;
   } & Pick<
     ItemPickerListProps<ItemType, SectionType>,
     | 'items'

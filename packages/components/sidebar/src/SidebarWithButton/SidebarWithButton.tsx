@@ -26,10 +26,15 @@ const SidebarWithButton = ({
       </S.TextWrapper>
       <Dropdown
         overlayStyle={{ borderRadius: '3px' }}
-        visible={dropdownVisible}
+        open={dropdownVisible}
         placement="bottomLeft"
+        size={220}
+        popoverProps={{
+          testId: 'sidebar-menu',
+        }}
+        asChild
         overlay={
-          <Dropdown.Wrapper style={{ width: '220px' }} ref={ref}>
+          <Dropdown.Wrapper ref={ref}>
             <Menu
               dataSource={dataSource}
               asDropdownMenu

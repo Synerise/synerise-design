@@ -18,7 +18,7 @@ const FilterDropdown: React.FC<FilterDropdownProps> = ({
 }) => {
   const overlay = React.useMemo(
     () => (
-      <S.DropdownMenu>
+      <Dropdown.MenuWrapper>
         {filters.map((filter) => (
           <S.DropdownMenuItem
             key={filter?.name}
@@ -42,7 +42,7 @@ const FilterDropdown: React.FC<FilterDropdownProps> = ({
             }
           />
         ))}
-      </S.DropdownMenu>
+      </Dropdown.MenuWrapper>
     ),
     [filters, onFilterRemove, onFilterSelect, removeTooltip],
   );
@@ -51,10 +51,13 @@ const FilterDropdown: React.FC<FilterDropdownProps> = ({
       overlay={overlay}
       trigger={['click']}
       align={{ points: ['tr', 'br'] }}
-      overlayStyle={{ boxShadow: '0 4px 12px 0 rgba(35, 41, 54, 0.07)' }}
       getPopupContainer={(node): HTMLElement =>
         node.parentElement !== null ? node.parentElement : document.body
       }
+      popoverProps={{
+        testId: 'date-range-picker-saved-filters',
+      }}
+      asChild
     >
       <Button mode="label-icon" type="ghost">
         <span>{label}</span>

@@ -2,8 +2,9 @@ import type dayjs from 'dayjs';
 import type { CSSProperties, ReactNode } from 'react';
 
 import type { DateToFormatOptions } from '@synerise/ds-core';
-import type { DropdownProps } from '@synerise/ds-dropdown';
+import type { DropdownSharedProps } from '@synerise/ds-dropdown';
 import type { InputProps } from '@synerise/ds-input';
+import { type PopoverTriggerType } from '@synerise/ds-popover';
 
 export type ClockModes = 'AM' | 'PM';
 
@@ -20,7 +21,12 @@ export type TimePickerProps = TimePickerDisabledUnits & {
   containerStyle?: CSSProperties;
   defaultOpen?: boolean;
   disabled?: boolean;
-  dropdownProps?: Partial<DropdownProps>;
+  dropdownProps?: Partial<
+    Omit<
+      DropdownSharedProps,
+      'children' | 'overlay' | 'open' | 'onOpenChange' | 'disabled'
+    >
+  >;
   inputProps?: Partial<InputProps>;
   onChange?: (value: Date | undefined, timeString: string) => void;
   onClockModeChange?: (mode: string) => void;
@@ -38,7 +44,7 @@ export type TimePickerProps = TimePickerDisabledUnits & {
    * @deprecated use `valueFormatOptions` instead
    */
   timeFormat?: string;
-  trigger?: ('click' | 'hover' | 'contextMenu')[];
+  trigger?: PopoverTriggerType[];
   units?: dayjs.UnitType[];
   /**
    * @deprecated use DSProvider::dataFormatConfig instead

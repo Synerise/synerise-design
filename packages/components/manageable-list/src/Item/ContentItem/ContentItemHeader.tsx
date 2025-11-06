@@ -199,12 +199,15 @@ export const ContentItemHeader = ({
               trigger={['click']}
               overlay={item.dropdown}
               placement="bottomRight"
+              hideOnItemClick
+              popoverProps={{
+                testId: 'manageable-list-content-item',
+              }}
             >
               <S.DropdownTrigger
                 className="ds-dropdown-trigger"
                 mode="single-icon"
                 type="ghost"
-                onClick={stopPropagationHandler}
               >
                 <Icon
                   component={<OptionHorizontalM />}

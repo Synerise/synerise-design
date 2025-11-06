@@ -3,6 +3,8 @@ import styled, { css } from 'styled-components';
 
 import { IconContainer } from '@synerise/ds-icon';
 
+import { LIST_ITEM_SIZE_MAPPING } from '../../ListItem.const';
+import { type ItemSize } from '../../ListItem.types';
 import { INDENT_WIDTH } from './ItemLabel.const';
 
 const TRANSITION_FN = '0.2s ease-out';
@@ -29,7 +31,7 @@ type StyledListItemProps = {
   highlight?: boolean;
   noHover?: boolean;
   inTooltip?: boolean;
-  size?: 'default' | 'large';
+  size?: ItemSize;
 };
 
 export const SuffixWrapper = styled.div<{
@@ -81,7 +83,7 @@ const baseStyles = css<StyledListItemProps>`
   transition:
     background-color 0.2s ease-out,
     color 0.2s ease-out;
-  min-height: ${(props) => (props.size === 'large' ? '50px' : '32px')};
+  min-height: ${(props) => LIST_ITEM_SIZE_MAPPING[props.size || 'default']}px;
   background: ${(props) => props.theme.palette.white};
   border: none;
   color: ${(props) => props.theme.palette['grey-700']};
@@ -128,7 +130,7 @@ const orderedStyle = css`
 
 export const Wrapper = styled.div<StyledListItemProps>`
   display: flex;
-  min-width: 175px;
+  min-width: 173px;
   ${(props) =>
     props.inTooltip &&
     css`
@@ -253,6 +255,35 @@ export const Content = styled.div<{ highlight: boolean }>`
 `;
 export const Divider = styled.div`
   flex-grow: 1;
+`;
+
+export const DynamicLabelMain = styled.div``;
+
+export const DynamicLabelAlternate = styled.div``;
+
+export const DynamicLabelWrapper = styled.div<{ showAlternative?: boolean }>`
+  ${(props) =>
+    props.showAlternative
+      ? css`
+          ${DynamicLabelMain} {
+            height: 0;
+            visibility: hidden;
+          }
+          ${DynamicLabelAlternate} {
+            height: auto;
+            visibility: visible;
+          }
+        `
+      : css`
+          ${DynamicLabelMain} {
+            height: auto;
+            visibility: visible;
+          }
+          ${DynamicLabelAlternate} {
+            height: 0;
+            visibility: hidden;
+          }
+        `}
 `;
 
 export const Description = styled.div`

@@ -1,22 +1,22 @@
-import React, { useMemo, useRef, useState } from 'react';
+import React, { useMemo } from 'react';
 
 import Button from '@synerise/ds-button';
 import Drawer from '@synerise/ds-drawer';
-import Dropdown from '@synerise/ds-dropdown';
+import {
+  DropdownMenu,
+  type DropdownMenuListItemProps,
+} from '@synerise/ds-dropdown';
 import Icon, {
   AngleDownM,
   AngleUpM,
   CloseM,
-  CopyClipboardM,
   DuplicateM,
   EditM,
   FolderM,
   OptionHorizontalM,
   TrashM,
 } from '@synerise/ds-icon';
-import Menu, { type MenuItemProps } from '@synerise/ds-menu';
 import Typography from '@synerise/ds-typography';
-import { useOnClickOutside } from '@synerise/ds-utils';
 
 import * as S from './Header.style';
 import { ButtonVariant, type HeaderProps, HeaderType } from './Header.types';
@@ -45,11 +45,6 @@ const Header = ({
   onCancelClick,
   onApplyClick,
 }: HeaderProps) => {
-  const [dropdownVisible, setDropdownVisible] = useState(false);
-  const ref = useRef<HTMLDivElement>(null);
-  useOnClickOutside(ref, () => {
-    setDropdownVisible(false);
-  });
   const renderBackTitle = (titleType: typeof type) => {
     if (titleType === HeaderType.EDITABLE) {
       return (
@@ -76,11 +71,10 @@ const Header = ({
     onId
   );
   const menuDataSource = useMemo(() => {
-    const menuItems: MenuItemProps[] = [];
+    const menuItems: DropdownMenuListItemProps[] = [];
     onEdit &&
       menuItems.push({
         onClick: () => {
-          setDropdownVisible(!dropdownVisible);
           onEdit(inputObject);
         },
         prefixel: <Icon component={<EditM />} />,
@@ -90,7 +84,6 @@ const Header = ({
     onDuplicate &&
       menuItems.push({
         onClick: () => {
-          setDropdownVisible(!dropdownVisible);
           onDuplicate(inputObject);
         },
         prefixel: <Icon component={<DuplicateM />} />,
@@ -101,7 +94,6 @@ const Header = ({
     onMove &&
       menuItems.push({
         onClick: () => {
-          setDropdownVisible(!dropdownVisible);
           onMove(inputObject);
         },
         prefixel: <Icon component={<FolderM />} />,
@@ -111,7 +103,6 @@ const Header = ({
     onDelete &&
       menuItems.push({
         onClick: () => {
-          setDropdownVisible(!dropdownVisible);
           onDelete(inputObject);
         },
         type: 'danger',
@@ -124,16 +115,16 @@ const Header = ({
     onId &&
       menuItems.push({
         onClick: () => {
-          setDropdownVisible(!dropdownVisible);
           onId(inputObject);
         },
-        style: { padding: '0 12px' },
-        prefixel: <Icon component={<CopyClipboardM />} />,
-        text: `ID: ${inputObject[inputObjectIdKey]}`,
+        copyable: {
+          copiedLabel: 'Copied!',
+          copyValue: `${inputObject[inputObjectIdKey]}`,
+        },
+        text: `Copy ID`,
       });
     return menuItems;
   }, [
-    dropdownVisible,
     inputObject,
     inputObjectIdKey,
     onDelete,
@@ -167,29 +158,20 @@ const Header = ({
             </S.ButtonWrapper>
           )}
           {renderMenu && (
-            <Dropdown
-              visible={dropdownVisible}
+            <DropdownMenu
+              dataSource={menuDataSource}
               placement="bottomLeft"
-              overlay={
-                <S.DropdownWrapper ref={ref}>
-                  <Menu
-                    asDropdownMenu
-                    style={{ width: '100%' }}
-                    dataSource={menuDataSource}
-                  />
-                </S.DropdownWrapper>
-              }
+              popoverProps={{
+                testId: 'sidebar-object-menu',
+              }}
+              asChild
             >
               <S.ButtonWrapper data-testid="sidebar-object-dropdown-menu-trigger">
-                <Button
-                  onClick={() => setDropdownVisible(!dropdownVisible)}
-                  type="ghost"
-                  mode="single-icon"
-                >
+                <Button type="ghost" mode="single-icon">
                   <Icon component={<OptionHorizontalM />} />
                 </Button>
               </S.ButtonWrapper>
-            </Dropdown>
+            </DropdownMenu>
           )}
           <S.ButtonWrapper>
             <Button type="ghost" mode="single-icon" onClick={onCloseClick}>

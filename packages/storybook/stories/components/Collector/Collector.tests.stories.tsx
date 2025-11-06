@@ -1,11 +1,10 @@
-import { Meta, StoryObj } from '@storybook/react-webpack5';
-import { within, waitFor, expect, fn, userEvent } from 'storybook/test';
+import { expect, fn, userEvent, waitFor, within } from 'storybook/test';
 
+import { Meta, StoryObj } from '@storybook/react-webpack5';
 import type { CollectorProps } from '@synerise/ds-collector';
 
-import CollectorMeta, { WithCounter } from './Collector.stories';
 import { TEXTS } from './Collector.const';
-
+import CollectorMeta, { WithCounter } from './Collector.stories';
 
 export default {
   ...CollectorMeta,
@@ -14,7 +13,7 @@ export default {
   args: {
     ...CollectorMeta.args,
     onCategorySelect: fn(),
-    categorySuffix: 'select'
+    categorySuffix: 'select',
   },
 } as Meta<CollectorProps>;
 
@@ -27,8 +26,8 @@ export const OpenDropdown: Story = {
     userEvent.click(canvas.getByPlaceholderText(TEXTS.placeholder));
     const dropdown = await canvas.findByTestId('ds-collector-dropdown');
     await waitFor(() => expect(dropdown).toBeVisible());
-  }
-}
+  },
+};
 
 export const SelectWithKeyboard: Story = {
   ...WithCounter,
@@ -38,8 +37,7 @@ export const SelectWithKeyboard: Story = {
     const dropdown = await canvas.findByTestId('ds-collector-dropdown');
     await waitFor(() => expect(dropdown).toBeVisible());
     await userEvent.keyboard('{ArrowDown}{ArrowDown}{Enter}', { delay: 200 });
-    const items = await canvas.findAllByTestId('ds-input-value-wrapper')
+    const items = await canvas.findAllByTestId('ds-input-value-wrapper');
     expect(items).toHaveLength(1);
-  }
-}
-
+  },
+};

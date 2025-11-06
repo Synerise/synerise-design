@@ -28,6 +28,17 @@ export enum VisibilityTrigger {
   DEFAULT = 'default',
   HOVER = 'hover',
 }
+/**
+ * @deprecated
+ * provide Copyable type instead
+ */
+type CopyableBoolean = boolean;
+export type Copyable = {
+  timeToReset?: number;
+  copyValue: string;
+  copiedLabel?: ReactNode;
+  delayClickEvent?: number | false;
+};
 
 export type SubMenuProps = Omit<MenuProps, 'dataSource' | 'footer'> & {
   key?: string | number;
@@ -40,9 +51,19 @@ export type SubMenuProps = Omit<MenuProps, 'dataSource' | 'footer'> & {
   description?: ReactNode;
   ordered?: boolean | undefined;
   subMenu?: SubMenuProps[];
-  copyable?: boolean;
-  copyHint?: ReactNode;
+  copyable?: CopyableBoolean | Copyable;
+  /**
+   * @deprecated. Provide copyable: Copyable instead
+   */
   copyValue?: string;
+  /**
+   * @deprecated - there's no hint on hover anymore
+   */
+  copyHint?: ReactNode;
+  /**
+   * @deprecated - there's no tooltip after copying anymore
+   */
+  copyTooltip?: ReactNode;
   childrenCollapsed?: boolean;
   onTitleClick?: () => void;
   checked?: boolean;
@@ -83,11 +104,27 @@ export type MenuItemProps = Omit<MenuProps, 'dataSource' | 'footer'> & {
   ordered?: boolean | undefined;
   description?: ReactNode;
   subMenu?: SubMenuProps[];
-  copyable?: boolean;
-  copyHint?: ReactNode;
+  copyable?: CopyableBoolean | Copyable;
+  /**
+   * @deprecated. Provide copyable: Copyable instead
+   */
   copyValue?: string;
+  /**
+   * @deprecated - there's no hint on hover anymore
+   */
+  copyHint?: ReactNode;
+  /**
+   * @deprecated - there's no tooltip after copying anymore
+   */
   copyTooltip?: ReactNode;
+  /**
+   * @deprecated - there's no tooltip after copying anymore
+   */
   timeToHideTooltip?: number;
+  /**
+   * @deprecated - there's no tooltip after copying anymore
+   */
+  tooltipProps?: TooltipProps;
   highlight?: string;
   suffixVisibilityTrigger?: VisibilityTrigger | string;
   prefixVisibilityTrigger?: VisibilityTrigger | string;
@@ -98,7 +135,6 @@ export type MenuItemProps = Omit<MenuProps, 'dataSource' | 'footer'> & {
   menuItemKey?: string | number;
   checked?: boolean;
   size?: 'default' | 'large';
-  tooltipProps?: TooltipProps;
   hoverTooltipProps?: TriggerProps & { ref?: LegacyRef<TriggerHandle> };
   renderHoverTooltip?: () => JSX.Element;
 };

@@ -72,7 +72,7 @@ export const REACT_NODE_NO_CONTROL = {
       summary: 'ReactNode',
     },
   },
-  control: 'false',
+  control: false,
 } as const;
 
 export const BOOLEAN_CONTROL = {

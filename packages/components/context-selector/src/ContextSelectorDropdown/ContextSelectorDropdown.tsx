@@ -22,9 +22,7 @@ import Tabs from '@synerise/ds-tabs';
 import {
   focusWithArrowKeys,
   getActiveTabGroup,
-  getClosest,
   getGroupName,
-  useOnClickOutside,
   useSearchResults,
 } from '@synerise/ds-utils';
 
@@ -73,8 +71,6 @@ const ContextSelectorDropdown = ({
   loading,
   menuItemHeight,
   dropdownWrapperStyles,
-  onClickOutsideEvents,
-  onClickOutside,
   onSearch,
   onFetchData,
   hasMoreItems,
@@ -122,17 +118,20 @@ const ContextSelectorDropdown = ({
     [onSetGroup, setActiveGroup, resetList],
   );
 
-  useOnClickOutside(
-    overlayRef,
-    (event) => {
-      if (getClosest(event.target as HTMLElement, '.ds-info-card') === null) {
-        onClickOutside && onClickOutside();
-        setDropdownVisible(false);
-        resetList();
-      }
-    },
-    onClickOutsideEvents,
-  );
+  // useOnClickOutside(
+  //   overlayRef,
+  //   (event) => {
+  //     if (getClosest(event.target as HTMLElement, '.ds-info-card') === null) {
+  //       onClickOutside && onClickOutside();
+  //       setDropdownVisible(false);
+  //       console.log('useonclickoutside context selector');
+  //       onDeactivate?.();
+  //  TODO:
+  //       resetList();
+  //     }
+  //   },
+  //   onClickOutsideEvents,
+  // );
 
   const clearSearch = useCallback(() => {
     setSearchQuery('');
@@ -408,7 +407,7 @@ const ContextSelectorDropdown = ({
 
   return (
     <Dropdown.Wrapper
-      style={{ width: '300px', ...dropdownWrapperStyles }}
+      style={dropdownWrapperStyles}
       ref={overlayRef}
       onKeyDown={(event) => {
         if (document?.activeElement === searchInputHandle?.current) {

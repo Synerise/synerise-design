@@ -1,14 +1,15 @@
-import React, { type MouseEvent, useRef, useState } from 'react';
+import React from 'react';
 
-import Dropdown from '@synerise/ds-dropdown';
+import {
+  DropdownMenu,
+  type DropdownMenuListItemProps,
+} from '@synerise/ds-dropdown';
 import Icon, {
   DuplicateM,
   EditM,
   OptionVerticalM,
   TrashM,
 } from '@synerise/ds-icon';
-import Menu, { type MenuItemProps } from '@synerise/ds-menu';
-import { useOnClickOutside } from '@synerise/ds-utils';
 
 import * as S from '../CardTab.styles';
 import { type CardTabDropdownProps } from './CardTabDropdown.types';
@@ -19,19 +20,12 @@ const CardTabDropdown = ({
   removeHandler,
   texts,
 }: CardTabDropdownProps) => {
-  const [open, setOpen] = useState<boolean>(false);
-  const ref = useRef<HTMLDivElement>(null);
-  const menuItems: MenuItemProps[] = [];
-
-  useOnClickOutside(ref, () => {
-    setOpen(false);
-  });
+  const menuItems: DropdownMenuListItemProps[] = [];
 
   if (editNameHandler) {
     menuItems.push({
       onClick: (event) => {
         editNameHandler(event.domEvent);
-        setOpen(false);
       },
       key: 'card-tabs-menu-item-rename',
       prefixel: <Icon component={<EditM />} />,
@@ -42,7 +36,6 @@ const CardTabDropdown = ({
     menuItems.push({
       onClick: (event) => {
         duplicateHandler(event.domEvent);
-        setOpen(false);
       },
       key: 'card-tabs-menu-item-duplicate',
       prefixel: <Icon component={<DuplicateM />} />,
@@ -54,7 +47,6 @@ const CardTabDropdown = ({
       prefixel: <Icon component={<TrashM />} />,
       onClick: (event) => {
         removeHandler(event.domEvent);
-        setOpen(false);
       },
       key: 'card-tabs-menu-item-delete',
       type: 'danger',
@@ -67,25 +59,19 @@ const CardTabDropdown = ({
       data-testid="card-tab-suffix"
       className="ds-card-tabs__suffix-nodrag"
     >
-      <Dropdown
-        visible={open}
+      <DropdownMenu
+        dataSource={menuItems}
         placement="bottomLeft"
-        trigger={['click']}
-        overlay={
-          <div data-testid="card-tabs-dropdown" ref={ref}>
-            <Menu asDropdownMenu dataSource={menuItems} />
-          </div>
-        }
+        hideOnItemClick
+        trigger="click"
+        asChild
+        popoverProps={{ testId: 'card-tabs-contextmenu' }}
       >
         <Icon
-          onClick={(event: MouseEvent) => {
-            event.stopPropagation();
-            setOpen(!open);
-          }}
           data-testid="ds-card-tabs-contextmenu"
           component={<OptionVerticalM />}
         />
-      </Dropdown>
+      </DropdownMenu>
     </S.CardTabSuffix>
   );
 };

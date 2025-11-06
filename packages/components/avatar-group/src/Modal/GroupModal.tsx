@@ -60,9 +60,13 @@ const GroupModal = ({
         render: (id: React.ReactText, record: DataSource): React.ReactNode => (
           <TableCell.ActionCell contentAlign="right">
             <Dropdown
+              asChild
               overlay={renderRowMenu(record)}
               trigger={['click']}
               placement="bottomRight"
+              popoverProps={{
+                testId: 'avatar-group-actions',
+              }}
             >
               <Button type="ghost" mode="single-icon">
                 <Icon component={<OptionHorizontalM />} />

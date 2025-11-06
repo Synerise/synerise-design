@@ -1,4 +1,4 @@
-import type { MouseEvent, ReactNode } from 'react';
+import type { MouseEvent, ReactNode, RefObject } from 'react';
 
 import type { WithHTMLAttributes } from '@synerise/ds-utils';
 
@@ -17,5 +17,6 @@ export type CreatorProps = WithHTMLAttributes<
     labelAlign?: 'left' | 'center';
     status?: CreatorStatus;
     className?: string;
+    ref?: RefObject<HTMLDivElement>;
   }
 >;

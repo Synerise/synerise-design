@@ -1,11 +1,11 @@
-import React, { useState } from 'react';
+import React, { useMemo, useState } from 'react';
 
 import Button from '@synerise/ds-button';
-import Dropdown from '@synerise/ds-dropdown';
-import Icon, { AngleDownS } from '@synerise/ds-icon';
+import { useTheme } from '@synerise/ds-core';
+import { DropdownMenu } from '@synerise/ds-dropdown';
+import Icon, { Add3M, AngleDownS, FolderM } from '@synerise/ds-icon';
 
 import Content from '../Content/Content';
-import DropdownOverlay from '../DropdownOverlay/DropdownOverlay';
 import * as S from '../Header/Header.style';
 import ObjectSummary from '../ObjectSummary/ObjectSummary';
 import { type OverviewObjectProps } from './Overview.types';
@@ -25,48 +25,81 @@ const Overview = ({
   descriptionProps = {},
   onAddFolderClick,
 }: OverviewObjectProps) => {
-  const [dropdownVisible, setDropdownVisible] = useState(false);
-  const [value, setValue] = useState('');
-  const onClearInput = (): void => {
-    setValue('');
-  };
+  const theme = useTheme();
+  const [searchQuery, setSearchQuery] = useState('');
+
+  const filteredData = useMemo(
+    () =>
+      folders.filter(
+        (item) =>
+          typeof item[foldersFilterKey] === 'string' &&
+          (item[foldersFilterKey] as string)
+            .toLowerCase()
+            .includes(searchQuery.toLowerCase()),
+      ),
+    [folders, foldersFilterKey, searchQuery],
+  );
+
+  const menuDataSource = useMemo(() => {
+    return filteredData.map((item) => ({
+      key: `${item[foldersIdKey]}-${item.id}`,
+      onClick: () => onFolderSelect(item),
+      checked: parentFolder[foldersIdKey] === item[foldersIdKey],
+      prefixel: <Icon component={<FolderM />} />,
+      // highlight: value,
+      text: item[foldersDisplayKey],
+      ...item,
+    }));
+  }, [
+    filteredData,
+    foldersDisplayKey,
+    foldersIdKey,
+    onFolderSelect,
+    parentFolder,
+  ]);
+
   return (
     <S.OverviewWrapper>
       <S.HeaderWrapper dashed={!!onFolderSelect}>
+        {/* @ts-expect-error tbd whether this was meant to be optional or not */}
         {onFolderSelect && (
           <>
             {texts?.folder}:{' '}
-            <Dropdown
-              visible={dropdownVisible}
-              overlay={
-                <DropdownOverlay
-                  texts={texts}
-                  parentFolder={parentFolder}
-                  data={folders}
-                  onDropdownOutsideClick={(): void => setDropdownVisible(false)}
-                  onClearInput={onClearInput}
-                  searchValue={value}
-                  onSearchChange={setValue}
-                  onFolderSelect={(folder): void => {
-                    onFolderSelect && onFolderSelect(folder);
-                    setDropdownVisible(false);
-                  }}
-                  foldersDisplayKey={foldersDisplayKey}
-                  foldersFilterKey={foldersFilterKey}
-                  foldersIdKey={foldersIdKey}
-                  onAddFolderClick={onAddFolderClick}
-                />
+            <DropdownMenu
+              withSearch
+              popoverProps={{
+                testId: 'sidebar-object-folders',
+              }}
+              asChild
+              dataSource={menuDataSource}
+              itemMatchesSearchQuery={() => true}
+              onSearchQueryChange={setSearchQuery}
+              footer={
+                onAddFolderClick
+                  ? {
+                      left: (
+                        <Button
+                          type="ghost"
+                          mode="icon-label"
+                          onClick={() => onAddFolderClick(searchQuery)}
+                        >
+                          <Icon
+                            component={<Add3M />}
+                            size={24}
+                            color={theme.palette['grey-500']}
+                          />
+                          <div>{texts.addFolder}</div>
+                        </Button>
+                      ),
+                    }
+                  : undefined
               }
             >
-              <Button
-                onClick={(): void => setDropdownVisible(!dropdownVisible)}
-                mode="label-icon"
-                type="ghost"
-              >
+              <Button mode="label-icon" type="ghost">
                 {parentFolder?.name}
                 <Icon component={<AngleDownS />} />
               </Button>
-            </Dropdown>
+            </DropdownMenu>
           </>
         )}
       </S.HeaderWrapper>

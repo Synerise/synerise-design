@@ -1,15 +1,17 @@
 import React, { useCallback, useRef, useState } from 'react';
-import { Meta, StoryObj } from '@storybook/react-webpack5';
 import { fn } from 'storybook/test';
 
-import Menu, { MenuItemProps } from '@synerise/ds-menu';
+import { Meta, StoryObj } from '@storybook/react-webpack5';
+import Button from '@synerise/ds-button';
+import Dropdown from '@synerise/ds-dropdown';
 import type { InformationCardProps } from '@synerise/ds-information-card';
 import InformationCard from '@synerise/ds-information-card';
-import Dropdown from '@synerise/ds-dropdown';
+import Menu, { MenuItemProps } from '@synerise/ds-menu';
 import { focusWithArrowKeys, useOnClickOutside } from '@synerise/ds-utils';
-import Button from '@synerise/ds-button';
 
-import InformationCardMeta, { CompleteExample } from './InformationCard.stories';
+import InformationCardMeta, {
+  CompleteExample,
+} from './InformationCard.stories';
 
 export default {
   ...InformationCardMeta,
@@ -42,11 +44,18 @@ const renderMenuWithCard = (renderHoverTooltip, title) => {
       renderHoverTooltip: renderHoverTooltip,
     },
   ];
-  return <Menu dataSource={data} asDropdownMenu={true} style={{ width: '100%' }} showTextTooltip={true} />;
+  return (
+    <Menu
+      dataSource={data}
+      asDropdownMenu={true}
+      style={{ width: '100%' }}
+      showTextTooltip={true}
+    />
+  );
 };
 
 export const WithMenu: StoryObj<InformationCardProps> = {
-  render: args => {
+  render: (args) => {
     return renderMenuWithCard(() => <InformationCard {...args} />, 'Menu item');
   },
   args: {
@@ -62,8 +71,10 @@ export const WithDropdown: StoryObj<InformationCardProps> = {
       setDropdownVisible(false);
     });
     const popoverProps = useCallback(
-      visible => ({ defaultPopupVisible: dropdownVisible && (visible ?? true) }),
-      [dropdownVisible]
+      (visible) => ({
+        defaultPopupVisible: dropdownVisible && (visible ?? true),
+      }),
+      [dropdownVisible],
     );
     const buildMenuEntry = (visible): Partial<MenuItemProps> => ({
       text: 'Menu item',
@@ -75,16 +86,19 @@ export const WithDropdown: StoryObj<InformationCardProps> = {
     return (
       <Dropdown
         overlayStyle={{ borderRadius: '3px' }}
-        visible={dropdownVisible}
+        open={dropdownVisible}
         placement="bottomLeft"
+        size={220}
+        popoverProps={{ testId: 'infocard-story' }}
         overlay={
           <Dropdown.Wrapper
-            style={{ width: '220px' }}
-            onKeyDown={e => focusWithArrowKeys(e, 'ds-menu-item', () => { })}
+            onKeyDown={(e) => focusWithArrowKeys(e, 'ds-menu-item', () => {})}
             ref={ref}
           >
             <Menu
-              dataSource={Array.from(Array(3)).map((_e, i) => buildMenuEntry(i === 0))}
+              dataSource={Array.from(Array(3)).map((_e, i) =>
+                buildMenuEntry(i === 0),
+              )}
               asDropdownMenu={true}
               style={{ width: '100%' }}
               showTextTooltip={true}
@@ -92,7 +106,10 @@ export const WithDropdown: StoryObj<InformationCardProps> = {
           </Dropdown.Wrapper>
         }
       >
-        <Button onClick={() => setDropdownVisible(!dropdownVisible)} type="primary">
+        <Button
+          onClick={() => setDropdownVisible(!dropdownVisible)}
+          type="primary"
+        >
           Dropdown
         </Button>
       </Dropdown>
@@ -102,5 +119,3 @@ export const WithDropdown: StoryObj<InformationCardProps> = {
     ...CompleteExample.args,
   },
 };
-
-

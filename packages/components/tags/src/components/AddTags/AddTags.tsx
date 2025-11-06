@@ -114,6 +114,7 @@ export const AddTags = ({
       tagShape={tagShape}
       onTagClick={onPoolTagSelect}
       dropdownFooter={dropdownFooter}
+      componentId="tags-add"
       aboveTagsContent={
         isCreatable && (
           <>

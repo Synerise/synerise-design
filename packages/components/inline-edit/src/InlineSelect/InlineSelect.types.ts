@@ -1,6 +1,6 @@
 import type { CSSProperties } from 'react';
 
-import type { DropdownProps } from '@synerise/ds-dropdown/dist/Dropdown';
+import type { DropdownSharedProps } from '@synerise/ds-dropdown';
 import type { ListItemProps } from '@synerise/ds-list-item';
 
 import type { InputProps } from '../InlineEdit.types';
@@ -15,7 +15,12 @@ export type InlineSelectProps<ItemType extends ListItemProps = ListItemProps> =
     style?: CSSProperties;
     dropdownOverlayStyle?: CSSProperties;
     inputStyle?: CSSProperties;
-    dropdownProps?: Partial<DropdownProps>;
+    dropdownProps?: Partial<
+      Omit<
+        DropdownSharedProps,
+        'open' | 'onOpenChange' | 'children' | 'overlay' | 'disabled'
+      >
+    >;
     autoFocus?: boolean;
     error?: boolean;
     hideIcon?: boolean;

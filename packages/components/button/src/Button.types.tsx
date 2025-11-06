@@ -1,6 +1,6 @@
 import type { ButtonProps as AntdButtonProps } from 'antd/lib/button';
 import type { JustifyContentProperty } from 'csstype';
-import type { ElementType, MouseEvent } from 'react';
+import type { MouseEvent } from 'react';
 
 import type { TagProps } from '@synerise/ds-tag';
 import type { TooltipProps } from '@synerise/ds-tooltip';
@@ -98,10 +98,5 @@ export type ButtonProps = Omit<AntdButtonProps, 'type' | 'ghost'> & {
   tooltipProps?: TooltipProps;
 };
 
-// @deprecated - use ButtonProps instead
+/** @deprecated - use ButtonProps instead */
 export type Props = ButtonProps;
-
-export type ButtonSubComponents = {
-  Expander: ElementType;
-  Creator: ElementType;
-};

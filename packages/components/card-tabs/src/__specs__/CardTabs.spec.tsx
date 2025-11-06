@@ -326,7 +326,7 @@ describe('Card Tabs', () => {
   it('should render dropdown menu as suffix', () => {
     const onDuplicate = jest.fn();
     const onChangeName = jest.fn();
-    const { container } = renderWithProvider(
+    renderWithProvider(
       <CardTabs maxTabsCount={3}>
         {ITEMS.map((item, index) => (
           <CardTab
@@ -340,8 +340,8 @@ describe('Card Tabs', () => {
         ))}
       </CardTabs>,
     );
-    const suffix = container.querySelector('.ant-dropdown-trigger');
-    expect(suffix).toBeTruthy();
+    const suffix = screen.getAllByTestId('ds-card-tabs-contextmenu')
+    expect(suffix).toHaveLength(ITEMS.length);
   });
 
   it('should enter edit mode on label doubleclick', async () => {

@@ -34,6 +34,7 @@ export const LimitedTags = ({
       removable={removable}
       onRemove={removable ? onRemove : undefined}
       disabled={disabled}
+      componentId={'tags-limited'}
       asPill
       overlayStyle={{
         zIndex: parseInt(theme.variables['zindex-dropdown'], 10) + 1,
