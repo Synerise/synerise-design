@@ -1,10 +1,12 @@
-import Button from 'antd/lib/button';
-import React from 'react';
+import Button, { type ButtonProps as AntdButtonProps } from 'antd/lib/button';
+import React, { forwardRef } from 'react';
 import styled, { css, keyframes } from 'styled-components';
 
 import { type ThemeProps } from '@synerise/ds-core';
 import { IconContainer } from '@synerise/ds-icon';
 import DSTag from '@synerise/ds-tag';
+
+import { type ButtonProps } from './Button.types';
 
 export const RIPPLE_ANIMATION_TIME = 500;
 
@@ -121,31 +123,45 @@ export const ButtonLabel = styled.div<{ withTooltip?: boolean }>`
       pointer-events: all;
     }`}
 `;
-
+type StyledButtonProps = Omit<AntdButtonProps, 'type'> &
+  Pick<
+    ButtonProps,
+    'mode' | 'justifyContent' | 'groupVariant' | 'iconColor' | 'error'
+  > & {
+    pressed: boolean;
+    customColor: string;
+    readOnly?: boolean;
+    type: string;
+  };
 export const AntdButton = styled(
-  ({
-    mode,
-    type,
-    loading,
-    justifyContent,
-    groupVariant,
-    customColor,
-    rightIconSize,
-    leftIconSize,
-    pressed,
-    size,
-    iconColor,
-    error,
-    ...rest
-  }) => {
-    return (
-      <Button
-        type={type === 'custom-color-ghost' ? 'ghost-primary' : type}
-        size={size}
-        {...rest}
-      />
-    );
-  },
+  forwardRef<HTMLButtonElement, StyledButtonProps>(
+    (
+      {
+        mode,
+        type,
+        loading,
+        justifyContent,
+        groupVariant,
+        customColor,
+        pressed,
+        size,
+        iconColor,
+        error,
+        ...rest
+      },
+      ref,
+    ) => {
+      return (
+        <Button
+          ref={ref}
+          // @ts-expect-error type type mismatch
+          type={type === 'custom-color-ghost' ? 'ghost-primary' : type}
+          size={size}
+          {...rest}
+        />
+      );
+    },
+  ),
 )`  
   && {
     -webkit-mask-image: -webkit-radial-gradient(white, black);

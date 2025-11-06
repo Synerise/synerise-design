@@ -43,10 +43,8 @@ export default {
   argTypes: {
     className: CLASSNAME_ARG_CONTROL,
     onClick: { action: 'onClick' },
-    onItemSelect: { action: 'onItemSelect' },
   },
   args: {
-    onItemSelect: fn(),
     onClick: fn(),
   },
 } as Meta<ListWrapperProps>;

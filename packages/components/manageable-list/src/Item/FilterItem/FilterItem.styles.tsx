@@ -1,7 +1,6 @@
 import styled from 'styled-components';
 
 import { IconContainer } from '@synerise/ds-icon';
-import Menu from '@synerise/ds-menu';
 
 import { ItemLabel } from '../Item.styles';
 import { ItemMeta } from '../ItemMeta/ItemMeta.styles';
@@ -82,8 +81,4 @@ export const ItemHeader = styled.div`
   ${ItemMeta} {
     margin-right: 12px;
   }
-`;
-
-export const DropdownMenu = styled(Menu)`
-  padding: 8px;
 `;

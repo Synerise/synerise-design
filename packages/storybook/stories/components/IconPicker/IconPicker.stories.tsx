@@ -1,20 +1,35 @@
 import React, { ReactNode, useState } from 'react';
-import type { Meta, StoryObj } from '@storybook/react-webpack5';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import IconPicker from '@synerise/ds-icon-picker';
 import { fn } from 'storybook/test';
+
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import type { Meta, StoryObj } from '@storybook/react-webpack5';
 import Button from '@synerise/ds-button';
 import Icon, { Add3M } from '@synerise/ds-icon';
+import IconPicker from '@synerise/ds-icon-picker';
+import type {
+  DSSource,
+  DataSource,
+  FASource,
+  FAValue,
+  IconPickerProps,
+  SourceType,
+} from '@synerise/ds-icon-picker';
 
-import { centeredPaddedWrapper, fixedWrapper300, REACT_NODE_AS_STRING, STRING_CONTROL } from '../../utils';
+import {
+  REACT_NODE_AS_STRING,
+  STRING_CONTROL,
+  centeredPaddedWrapper,
+  fixedWrapper300,
+} from '../../utils';
 import { PICKER_DATA } from './IconPicker.data';
-import type { DSSource, FASource, DataSource, SourceType, FAValue, IconPickerProps } from '@synerise/ds-icon-picker';
 
-type Story<Source extends SourceType = DataSource[]> = StoryObj<IconPickerProps<Source>>;
+type Story<Source extends SourceType = DataSource[]> = StoryObj<
+  IconPickerProps<Source>
+>;
 
 const isFAValue = (icon: FAValue | ReactNode): icon is FAValue => {
-  return Array.isArray(icon)
-}
+  return Array.isArray(icon);
+};
 
 export default {
   component: IconPicker,
@@ -24,7 +39,7 @@ export default {
     layout: 'fullscreen',
   },
   decorators: [centeredPaddedWrapper],
-  render: args => {
+  render: (args) => {
     const [icon, setIcon] = useState<ReactNode | null>(null);
     const handleSelect = (selectedIcon: ReactNode) => {
       setIcon(selectedIcon);
@@ -33,17 +48,19 @@ export default {
 
     const renderSelected = () => {
       if (args.data === 'font-awesome' && isFAValue(icon)) {
-        return <FontAwesomeIcon icon={icon} />
+        return <FontAwesomeIcon icon={icon} />;
       }
-      return icon
-    }
+      return icon;
+    };
 
     return (
       <>
         <IconPicker
           {...args}
           selectedIcon={renderSelected()}
-          onClear={() => { setIcon(!icon) }}
+          onClear={() => {
+            setIcon(!icon);
+          }}
           onSelect={handleSelect}
         />
       </>
@@ -54,23 +71,23 @@ export default {
     noResultMsg: REACT_NODE_AS_STRING,
     clearTooltip: REACT_NODE_AS_STRING,
     data: {
-      control: false
-    }
+      control: false,
+    },
   },
   args: {
-    placeholder: 'search',
+    placeholder: 'Search',
     trigger: ['click'],
     noResultMsg: 'No results',
     clearTooltip: 'clear',
     data: PICKER_DATA,
-    onSelect: fn()
+    onSelect: fn(),
   },
 } as Meta<IconPickerProps<SourceType>>;
 
 export const Default: Story = {};
 
 export const CustomTrigger: Story = {
-  render: args => {
+  render: (args) => {
     const [icon, setIcon] = useState<ReactNode | null>(null);
     const handleSelect = (selectedIcon: ReactNode) => {
       setIcon(selectedIcon);
@@ -79,14 +96,14 @@ export const CustomTrigger: Story = {
 
     const renderSelected = () => {
       if (args.data === 'font-awesome' && isFAValue(icon)) {
-        return <FontAwesomeIcon icon={icon} />
+        return <FontAwesomeIcon icon={icon} />;
       }
-      return icon
-    }
+      return icon;
+    };
 
     return (
       <>
-        {icon && (<div>Selected: {renderSelected()}</div>)}
+        {icon && <div>Selected: {renderSelected()}</div>}
         <IconPicker
           {...args}
           button={
@@ -104,24 +121,24 @@ export const CustomTrigger: Story = {
     placeholder: STRING_CONTROL,
     noResultMsg: REACT_NODE_AS_STRING,
     data: {
-      control: false
-    }
+      control: false,
+    },
   },
   args: {
-    placeholder: 'search',
+    placeholder: 'Search',
     trigger: ['click'],
     noResultMsg: 'No results',
     data: PICKER_DATA,
-    onSelect: fn()
+    onSelect: fn(),
   },
 };
 export const DesignSystemIcons: Story<DSSource> = {
   args: {
-    data: 'design-system'
-  }
+    data: 'design-system',
+  },
 };
 export const FontAwesomeIcons: Story<FASource> = {
   args: {
-    data: 'font-awesome'
-  }
+    data: 'font-awesome',
+  },
 };

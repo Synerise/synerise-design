@@ -1,7 +1,7 @@
 import type { CSSProperties, ReactNode, SVGProps } from 'react';
 import type { IntlShape } from 'react-intl';
 
-import type { DropdownProps } from '@synerise/ds-dropdown/dist/Dropdown';
+import type { DropdownProps } from '@synerise/ds-dropdown';
 import type { ListItemProps } from '@synerise/ds-list-item';
 import type { MenuItemProps } from '@synerise/ds-menu';
 
@@ -28,7 +28,9 @@ export type Texts =
 
 export type ItemsRollGroup = string;
 
-export type ItemsRollProps = {
+export type ItemsRollProps<
+  ActionItemType extends ListItemProps | MenuItemProps = ListItemProps,
+> = {
   // @deprecated
   intl?: IntlShape;
   isDisabled?: boolean;
@@ -38,9 +40,9 @@ export type ItemsRollProps = {
   onSearchClear?: () => void;
   searchValue?: string;
   searchPlaceholder?: string;
-  actions?: ItemRollElement<MenuItemProps>[];
+  actions?: ItemRollElement<ActionItemType>[];
   changeSelectionIcon?: (props: SVGProps<SVGSVGElement>) => JSX.Element;
-  changeSelectionDropdownProps?: DropdownProps;
+  changeSelectionDropdownProps?: Omit<DropdownProps, 'children'>;
   customSidebarActions?: ReactNode;
   className?: string;
   groups?: ItemsRollGroup[];

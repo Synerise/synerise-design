@@ -43,7 +43,13 @@ const Header = ({
       <S.HeaderRight>
         {onChangeSelection &&
           (changeSelectionDropdownProps ? (
-            <Dropdown {...changeSelectionDropdownProps}>
+            <Dropdown
+              {...changeSelectionDropdownProps}
+              popoverProps={{
+                testId: 'items-roll-change-selection',
+                ...changeSelectionDropdownProps?.popoverProps,
+              }}
+            >
               {ChangeSelectionButton}
             </Dropdown>
           ) : (

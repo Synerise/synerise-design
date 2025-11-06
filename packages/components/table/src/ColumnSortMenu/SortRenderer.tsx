@@ -1,7 +1,14 @@
 import { partial } from 'lodash';
-import React, { type MouseEvent as ReactMouseEvent, useState } from 'react';
+import React, {
+  type KeyboardEvent,
+  type MouseEvent as ReactMouseEvent,
+  useState,
+} from 'react';
 
-import Dropdown from '@synerise/ds-dropdown';
+import {
+  DropdownMenu,
+  type DropdownMenuListItemProps,
+} from '@synerise/ds-dropdown';
 import Icon, {
   Close2M,
   SortAscendingM,
@@ -9,7 +16,7 @@ import Icon, {
   SortDescendingM,
   SortZaM,
 } from '@synerise/ds-icon';
-import Menu, { type MenuItemProps } from '@synerise/ds-menu';
+import { type ItemData } from '@synerise/ds-list-item';
 
 import {
   type DSColumnType,
@@ -17,7 +24,7 @@ import {
   type SortStateAPI,
 } from '../Table.types';
 import { useTableLocaleContext } from '../utils/locale';
-import { CheckIcon, DefaultSortIcon, StringSortIcon } from './SortIcons';
+import { DefaultSortIcon, StringSortIcon } from './SortIcons';
 import * as S from './SortRender.styles';
 import { toSortOrder } from './useSortState';
 
@@ -41,61 +48,61 @@ export const CommonRenderer = <T,>({
   const onSortOrderChange = partial(setColumnSortOrder, columnKey);
   const [isDropdownVisible, setIsDropdownVisible] = useState(false);
   const locale = useTableLocaleContext();
-  const menuDataSource: MenuItemProps[] = [
+  const handleClick = ({ key }: ItemData<ReactMouseEvent | KeyboardEvent>) => {
+    onSortOrderChange(toSortOrder(String(key)));
+  };
+
+  const dropdownDataSource: DropdownMenuListItemProps[] = [
     {
       key: 'ascend',
+      onClick: handleClick,
       prefixel: <Icon component={<SortAscendingM />} />,
-      suffixel: <CheckIcon isActive={columnSortOrder === 'ascend'} />,
+      selected: columnSortOrder === 'ascend',
       text: locale.columnSortAscend,
     },
 
     {
       key: 'descend',
       prefixel: <Icon component={<SortDescendingM />} />,
-      suffixel: <CheckIcon isActive={columnSortOrder === 'descend'} />,
-
+      selected: columnSortOrder === 'descend',
+      onClick: handleClick,
       text: locale.columnSortDescend,
     },
   ];
   if (columnSortOrder) {
-    menuDataSource.push({
+    dropdownDataSource.push({
       key: 'null',
       type: 'danger',
       prefixel: <Icon component={<Close2M />} />,
       text: locale.columnSortClear,
+      onClick: handleClick,
     });
   }
   return (
-    <Dropdown
-      onVisibleChange={(isVisible) => {
-        if (isVisible !== isDropdownVisible) {
-          setIsDropdownVisible(isVisible);
-        }
-      }}
-      overlay={
-        <Dropdown.Wrapper style={{ width: 220 }}>
-          <Menu
-            asDropdownMenu
-            onClick={({ key }) => {
-              onSortOrderChange(toSortOrder(String(key)));
-            }}
-            style={{ width: 220 }}
-            dataSource={menuDataSource}
-          />
-        </Dropdown.Wrapper>
-      }
-    >
-      <S.ToggleButton
-        isVisible={isDropdownVisible}
-        type="ghost"
-        mode="single-icon"
-        className="ds-sort-dropdown-button"
-        onClick={handleButtonClick}
-        data-testid="table-common-sorter-button"
+    <div onClick={handleButtonClick}>
+      <DropdownMenu
+        dataSource={dropdownDataSource}
+        onOpenChange={(isVisible: boolean) => {
+          if (isVisible !== isDropdownVisible) {
+            setIsDropdownVisible(isVisible);
+          }
+        }}
+        open={isDropdownVisible}
+        popoverProps={{
+          testId: 'table-sort-common',
+        }}
       >
-        <DefaultSortIcon sortOrder={columnSortOrder} />
-      </S.ToggleButton>
-    </Dropdown>
+        <S.ToggleButton
+          isVisible={isDropdownVisible}
+          type="ghost"
+          mode="single-icon"
+          className="ds-sort-dropdown-button"
+          data-testid="table-common-sorter-button"
+        >
+          <DefaultSortIcon sortOrder={columnSortOrder} />
+        </S.ToggleButton>
+      </DropdownMenu>
+    </div>
   );
 };
 
@@ -109,59 +116,55 @@ export const StringRenderer = <T,>({
   const onSortOrderChange = partial(setColumnSortOrder, columnKey);
   const [isDropdownVisible, setIsDropdownVisible] = useState(false);
   const locale = useTableLocaleContext();
-  const menuDataSource: MenuItemProps[] = [
+  const handleClick = (data: ItemData<ReactMouseEvent | KeyboardEvent>) => {
+    onSortOrderChange(toSortOrder(String(data.key)));
+  };
+  const dropdownDataSource: DropdownMenuListItemProps[] = [
     {
       key: 'ascend',
       prefixel: <Icon component={<SortAzM />} />,
-      suffixel: <CheckIcon isActive={columnSortOrder === 'ascend'} />,
+      selected: columnSortOrder === 'ascend',
       text: locale.columnSortAz,
+      onClick: handleClick,
     },
     {
       key: 'descend',
       prefixel: <Icon component={<SortZaM />} />,
-      suffixel: <CheckIcon isActive={columnSortOrder === 'descend'} />,
+      selected: columnSortOrder === 'descend',
       text: locale.columnSortZa,
+      onClick: handleClick,
     },
   ];
   if (columnSortOrder) {
-    menuDataSource.push({
+    dropdownDataSource.push({
       key: 'null',
       type: 'danger',
       prefixel: <Icon component={<Close2M />} />,
       text: locale.columnSortClear,
+      onClick: handleClick,
     });
   }
 
   return (
-    <Dropdown
-      onVisibleChange={(isVisible) => {
-        if (isVisible !== isDropdownVisible) {
-          setIsDropdownVisible(isVisible);
-        }
-      }}
-      overlay={
-        <Dropdown.Wrapper style={{ width: 170 }}>
-          <Menu
-            asDropdownMenu
-            onClick={({ key }) => {
-              onSortOrderChange(toSortOrder(String(key)));
-            }}
-            style={{ width: 170 }}
-            dataSource={menuDataSource}
-          />
-        </Dropdown.Wrapper>
-      }
-    >
-      <S.ToggleButton
-        isVisible={isDropdownVisible}
-        type="ghost"
-        mode="single-icon"
-        className="ds-sort-dropdown-button"
-        onClick={handleButtonClick}
-        data-testid="table-string-sorter-button"
+    <div onClick={handleButtonClick}>
+      <DropdownMenu
+        onOpenChange={setIsDropdownVisible}
+        open={isDropdownVisible}
+        dataSource={dropdownDataSource}
+        popoverProps={{
+          testId: 'table-sort-string',
+        }}
       >
-        <StringSortIcon sortOrder={columnSortOrder} />
-      </S.ToggleButton>
-    </Dropdown>
+        <S.ToggleButton
+          isVisible={isDropdownVisible}
+          type="ghost"
+          mode="single-icon"
+          className="ds-sort-dropdown-button"
+          data-testid="table-string-sorter-button"
+        >
+          <StringSortIcon sortOrder={columnSortOrder} />
+        </S.ToggleButton>
+      </DropdownMenu>
+    </div>
   );
 };

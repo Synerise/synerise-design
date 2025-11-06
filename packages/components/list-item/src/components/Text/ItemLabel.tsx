@@ -14,7 +14,6 @@ import Icon, {
   AngleUpS,
   CheckS,
 } from '@synerise/ds-icon';
-import Tooltip, { type TooltipProps } from '@synerise/ds-tooltip';
 import { type WithHTMLAttributes } from '@synerise/ds-utils';
 
 import { type ItemSize } from '../../ListItem.types';
@@ -47,12 +46,9 @@ type ItemLabelProps = WithHTMLAttributes<
 
     prefixElement?: ReactNode;
     suffixElement?: ReactNode;
-    copyTooltip?: ReactNode;
+
     description?: ReactNode;
     content?: ReactNode;
-    tooltipProps?: TooltipProps;
-
-    timeToHideTooltip?: number;
     indentLevel?: number;
   }
 >;
@@ -81,10 +77,7 @@ export const ItemLabel = forwardRef<HTMLDivElement, ItemLabelProps>(
       subMenuOpen,
       content,
       inTooltip,
-      copyTooltip,
-      timeToHideTooltip,
       parent,
-      tooltipProps,
       description,
       size,
       indentLevel,
@@ -120,62 +113,49 @@ export const ItemLabel = forwardRef<HTMLDivElement, ItemLabelProps>(
         indentLevel={indentLevel}
         {...rest}
       >
-        <Tooltip
-          type="default"
-          trigger="click"
-          title={copyTooltip}
-          timeToHideAfterClick={timeToHideTooltip}
-          {...tooltipProps}
-        >
-          <S.Inner>
-            {prefixElement && (
-              <S.PrefixWrapper
-                data-testid="list-item-prefix"
-                visible={prefixVisible}
-                disabled={disabled}
-              >
-                {prefixElement}
-              </S.PrefixWrapper>
-            )}
-            <S.Content
-              className="ds-list-item-content"
-              highlight={hasHighlight}
+        <S.Inner>
+          {prefixElement && (
+            <S.PrefixWrapper
+              data-testid="list-item-prefix"
+              visible={prefixVisible}
+              disabled={disabled}
             >
-              {content}
-              {description && size === 'large' && (
-                <S.Description>{description}</S.Description>
-              )}
-            </S.Content>
-            {parent && (
-              <S.ArrowRight>
+              {prefixElement}
+            </S.PrefixWrapper>
+          )}
+          <S.Content className="ds-list-item-content" highlight={hasHighlight}>
+            {content}
+            {description && size === 'large' && (
+              <S.Description>{description}</S.Description>
+            )}
+          </S.Content>
+          {parent && (
+            <S.ArrowRight>
+              <Icon
+                component={<AngleRightS />}
+                color={theme.palette['grey-600']}
+              />
+            </S.ArrowRight>
+          )}
+          {(!!suffixElement || !!checked || hasSubMenu) && (
+            <S.SuffixWrapper
+              data-testid="list-item-suffix"
+              visible={suffixVisible || hasSubMenu}
+              disabled={disabled}
+            >
+              {!!checked && (
                 <Icon
-                  component={<AngleRightS />}
-                  color={theme.palette['grey-600']}
+                  component={<CheckS />}
+                  color={theme.palette[`green-600`]}
                 />
-              </S.ArrowRight>
-            )}
-            {(!!suffixElement || !!checked || hasSubMenu) && (
-              <S.SuffixWrapper
-                data-testid="list-item-suffix"
-                visible={suffixVisible || hasSubMenu}
-                disabled={disabled}
-              >
-                {!!checked && (
-                  <Icon
-                    component={<CheckS />}
-                    color={theme.palette[`green-600`]}
-                  />
-                )}
-                {hasSubMenu && (
-                  <Icon
-                    component={subMenuOpen ? <AngleUpS /> : <AngleDownS />}
-                  />
-                )}
-                {suffixElement}
-              </S.SuffixWrapper>
-            )}
-          </S.Inner>
-        </Tooltip>
+              )}
+              {hasSubMenu && (
+                <Icon component={subMenuOpen ? <AngleUpS /> : <AngleDownS />} />
+              )}
+              {suffixElement}
+            </S.SuffixWrapper>
+          )}
+        </S.Inner>
       </S.Wrapper>
     );
   },

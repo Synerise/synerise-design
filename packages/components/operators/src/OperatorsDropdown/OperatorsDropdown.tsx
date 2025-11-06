@@ -13,7 +13,7 @@ import Icon, { SearchM } from '@synerise/ds-icon';
 import Result from '@synerise/ds-result';
 import Scrollbar from '@synerise/ds-scrollbar';
 import Tabs from '@synerise/ds-tabs';
-import { focusWithArrowKeys, useOnClickOutside } from '@synerise/ds-utils';
+import { focusWithArrowKeys } from '@synerise/ds-utils';
 
 import {
   type OperatorsDropdownProps,
@@ -61,10 +61,6 @@ const OperatorsDropdown = ({
   const classNames = useMemo(() => {
     return `ds-operator-item ds-operator-item-${uuid()}`;
   }, []);
-
-  useOnClickOutside(overlayRef, () => {
-    setDropdownVisible(false);
-  });
 
   const renderGroupedItems = useCallback(
     (activeItems: OperatorsItem[]) => {
@@ -197,7 +193,7 @@ const OperatorsDropdown = ({
   return (
     <Dropdown.Wrapper
       data-testid="ds-operators-dropdown-wrapper"
-      style={{ width: '300px', zIndex: 1005 }}
+      style={{ zIndex: 1005 }}
       ref={overlayRef}
       onKeyDown={(e): void => {
         setSearchInputFocus(false);

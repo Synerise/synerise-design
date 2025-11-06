@@ -151,6 +151,13 @@ export const WithAddButton: Story = {
   },
 };
 
+export const WithLimit = {
+  ...WithAddButton,
+  args: {
+    ...WithAddButton.args,
+    maxVisibleTags: 2,
+  },
+};
 export const InNarrowContainer = {
   decorators: [fixedWrapper400],
   ...WithAddButton,

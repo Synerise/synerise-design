@@ -45,6 +45,9 @@
     "@synerise/ds-tag": "^1.3.3",
     "@synerise/ds-tooltip": "^1.2.1"
   },
+  "devDependencies": {
+    "@testing-library/user-event": "^14"
+  },
   "peerDependencies": {
     "@synerise/ds-core": "*",
     "react": ">=16.9.0 <= 18.3.1",

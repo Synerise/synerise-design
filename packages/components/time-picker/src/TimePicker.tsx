@@ -5,6 +5,7 @@ import React, { Fragment, useCallback, useMemo, useState } from 'react';
 import { FormattedMessage, useIntl } from 'react-intl';
 
 import { useDataFormat } from '@synerise/ds-core';
+import Dropdown from '@synerise/ds-dropdown';
 import Icon, { ClockM, Close3S } from '@synerise/ds-icon';
 import Tooltip from '@synerise/ds-tooltip/dist/Tooltip';
 
@@ -273,13 +274,15 @@ const TimePicker = ({
       data-testid="tp-container"
       style={containerStyle}
     >
-      <S.Dropdown
+      <Dropdown
         trigger={trigger}
         open={alwaysOpen || open}
         onOpenChange={onVisibleChange}
         placement={placement}
         overlay={overlay}
         disabled={disabled}
+        asChild
+        size="match-trigger"
         {...dropdownProps}
       >
         <S.TimePickerInput
@@ -293,7 +296,7 @@ const TimePicker = ({
           icon1={timePickerIcon}
           {...inputProps}
         />
-      </S.Dropdown>
+      </Dropdown>
     </S.Container>
   );
 };

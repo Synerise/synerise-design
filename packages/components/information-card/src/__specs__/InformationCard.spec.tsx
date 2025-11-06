@@ -202,11 +202,12 @@ function WithDropdown(numberOfElements = 1) {
   return (
     <Dropdown
       overlayStyle={{ borderRadius: '3px' }}
-      visible={dropdownVisible}
+      open={dropdownVisible}
       placement="bottomLeft"
+      size={220}
+      asChild
       overlay={
         <Dropdown.Wrapper
-          style={{ width: '220px' }}
           onKeyDown={(e) => focusWithArrowKeys(e, 'ds-menu-item', () => {})}
           ref={ref}
         >

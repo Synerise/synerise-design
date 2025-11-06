@@ -1,8 +1,11 @@
 import styled from 'styled-components';
 
-export const Wrapper = styled.div`
-  background: #fff;
-  width: 200px;
-`;
+import { Wrapper as ListItemWrapper } from '@synerise/ds-list-item/dist/components/Text/Text.styles';
 
-export const OverlayWrapper = styled.div``;
+export const Wrapper = styled.div`
+  overflow: hidden;
+  background: ${(props) => props.theme.palette.white};
+  ${ListItemWrapper} {
+    min-width: 0;
+  }
+`;

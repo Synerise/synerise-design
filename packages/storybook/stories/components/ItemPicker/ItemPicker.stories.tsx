@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { fn } from 'storybook/test';
 
 import { Meta, StoryObj } from '@storybook/react-webpack5';
 import Button from '@synerise/ds-button';
@@ -97,6 +98,8 @@ export default {
   },
   args: {
     items: FLAT_DATA_SOURCE,
+    onBlur: fn(),
+    onFocus: fn(),
   },
 } as Meta<StoryProps>;
 
@@ -144,6 +147,8 @@ export const RelativeHeight: Story = {
     items: LEGACY_FLAT_DATA_SOURCE as ItemType[],
     containerHeight: 'fitContent',
     texts: { searchPlaceholder: 'Search' },
+    onBlur: fn(),
+    onFocus: fn(),
   },
 };
 export const WithPlaceholder: Story = {

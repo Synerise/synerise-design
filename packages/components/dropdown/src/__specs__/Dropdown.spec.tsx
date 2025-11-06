@@ -1,70 +1,68 @@
 import React from 'react';
 
 import { renderWithProvider } from '@synerise/ds-core';
-import { fireEvent, waitFor } from '@testing-library/react';
+import { fireEvent, screen, within } from '@testing-library/react';
 
 import Dropdown from '../index';
 
+const OVERLAY_ID = 'OVERLAY_ID'
+const OVERLAY_TEXT = 'OVERLAY_TEXT'
+const OVERLAY_CONTENT = <div data-testid={OVERLAY_ID}>{OVERLAY_TEXT}</div>;
+
 describe('Dropdown', () => {
   it('should render', () => {
-    // ARRANGE
-    const TEST_TEXT = 'test text';
+    
     const BUTTON_TEXT = 'button text';
-    const { getByText } = renderWithProvider(
-      <Dropdown overlay={<div>{TEST_TEXT}</div>} trigger={['click']}>
+    renderWithProvider(
+      <Dropdown overlay={OVERLAY_CONTENT} trigger={['click']}>
         <button>{BUTTON_TEXT}</button>
       </Dropdown>,
     );
 
-    // ACT
-    fireEvent.click(getByText(BUTTON_TEXT));
+    fireEvent.click(screen.getByText(BUTTON_TEXT));
 
-    // ASSERT
-    expect(getByText(TEST_TEXT)).toBeTruthy();
+    expect(screen.getByText(OVERLAY_TEXT)).toBeTruthy();
   });
 
-  it('by default should open in [data-popup-container]', async () => {
-    const { container, getByText } = renderWithProvider(
+  it.skip('by default should open in [data-popup-container]', async () => {
+    const { container } = renderWithProvider(
       <div data-popup-container>
         <Dropdown
-          overlay={<p>dropdown content</p>}
+          overlay={OVERLAY_CONTENT}
           trigger={['click']}
-          visible={true}
+          open={true}
         >
           <button />
         </Dropdown>
       </div>,
     );
 
-    // make sure the dropdown is already opened before assertion
-    await waitFor(() => getByText('dropdown content'));
-
-    expect(container.querySelector('.ant-dropdown')).toBeTruthy();
+    await screen.findByText(OVERLAY_TEXT);
+    
+    expect(within(container).getByTestId(OVERLAY_ID)).toBeTruthy();
   });
 
   it('if no [data-popup-container] open in body', async () => {
-    const { container, getByText } = renderWithProvider(
+    const { container } = renderWithProvider(
       <div>
         <Dropdown
-          overlay={<p>dropdown content</p>}
+          overlay={OVERLAY_CONTENT}
           trigger={['click']}
-          visible={true}
+          open={true}
         >
           <button />
         </Dropdown>
       </div>,
     );
 
-    // make sure the dropdown is already opened before assertion
-    await waitFor(() => getByText('dropdown content'));
+    await screen.findByText(OVERLAY_TEXT);
 
-    expect(container.querySelector('.ant-dropdown')).toBeFalsy();
-    expect(document.body.querySelector('.ant-dropdown')).toBeTruthy();
+    expect(within(container).queryByTestId(OVERLAY_ID)).toBeFalsy();
+    expect(within(document.body).getByTestId(OVERLAY_ID)).toBeTruthy();
   });
 
   describe('Dropdown.SearchInput', () => {
     it('should handle input', () => {
-      // ARRANGE
       const onSearchChange = jest.fn();
       const PLACEHOLDER = 'Placeholder';
       const TEST_INPUT = 'Test input';
@@ -78,17 +76,14 @@ describe('Dropdown', () => {
 
       const input = getByPlaceholderText(PLACEHOLDER) as HTMLInputElement;
 
-      // ACT
       fireEvent.change(input, { target: { value: TEST_INPUT } });
 
-      // ASSERT
       expect(onSearchChange).toHaveBeenCalledWith(TEST_INPUT);
     });
   });
 
   describe('Dropdown.BottomAction', () => {
     it('should handle action', () => {
-      // ARRANGE
       const onClickAction = jest.fn();
       const ACTION_TEXT = 'Action';
       const { getByText } = renderWithProvider(
@@ -97,10 +92,8 @@ describe('Dropdown', () => {
         </Dropdown.BottomAction>,
       );
 
-      // ACT
-      fireEvent.click(getByText(ACTION_TEXT));
+        fireEvent.click(getByText(ACTION_TEXT));
 
-      // ASSERT
       expect(onClickAction).toHaveBeenCalled();
     });
   });

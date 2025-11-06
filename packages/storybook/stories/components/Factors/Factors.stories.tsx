@@ -228,8 +228,6 @@ const CustomParameterFactorValueComponent = ({
   const handleOpenChange = (isOpen: boolean) => {
     if (isOpen) {
       onActivate?.();
-    } else {
-      onDeactivate?.();
     }
     setLocalOpen(isOpen);
   };
@@ -243,6 +241,9 @@ const CustomParameterFactorValueComponent = ({
     <ItemPicker
       dropdownProps={{
         onOpenChange: handleOpenChange,
+        onDismiss: () => {
+          onDeactivate?.();
+        },
         getPopupContainer: getPopupContainerOverride,
         open: localOpen,
       }}

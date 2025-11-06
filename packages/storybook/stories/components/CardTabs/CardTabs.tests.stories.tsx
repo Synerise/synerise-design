@@ -1,7 +1,9 @@
-import { Meta, StoryObj } from '@storybook/react-webpack5';
-import { waitFor, within, expect, fireEvent } from 'storybook/test';
+import { expect, userEvent, waitFor, within } from 'storybook/test';
 
+import { Meta, StoryObj } from '@storybook/react-webpack5';
 import type { CardTabProps, CardTabsProps } from '@synerise/ds-card-tabs';
+
+import { sleep } from '../../utils';
 import CardTabsMeta, { Default } from './CardTabs.stories';
 
 export default {
@@ -14,22 +16,25 @@ export const OpenContextMenu: StoryObj<CardTabProps & CardTabProps> = {
   ...Default,
   parameters: {
     pseudo: {
-      hover: true
-    }
+      hover: true,
+    },
   },
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement.parentElement!);
+    await sleep(400);
     const tab = canvas.getAllByTestId('card-tab-container')[0];
 
     const contextMenuIcon = within(tab).getByTestId('ds-card-tabs-contextmenu');
 
-    await fireEvent.click(contextMenuIcon);
-    await fireEvent.mouseDown(contextMenuIcon);
+    await userEvent.click(contextMenuIcon);
 
-    const overlay = await canvas.findByTestId('card-tabs-dropdown');
+    const overlay = await canvas.findByTestId(
+      'popover-card-tabs-contextmenu-content',
+    );
 
-    await waitFor(() => expect(within(overlay).getAllByRole('menuitem')).toHaveLength(3))
+    await waitFor(() =>
+      expect(within(overlay).getAllByRole('menuitem')).toHaveLength(3),
+    );
     await waitFor(() => expect(overlay).toBeVisible());
-
   },
 };

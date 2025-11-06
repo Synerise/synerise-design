@@ -1,6 +1,9 @@
 import React from 'react';
 import { action } from 'storybook/actions';
 
+import { UserAvatar } from '@synerise/ds-avatar';
+import Button from '@synerise/ds-button';
+import Dropdown from '@synerise/ds-dropdown';
 import Icon, {
   InfoFillS,
   OptionHorizontalM,
@@ -11,16 +14,13 @@ import Icon, {
   VarTypeNumberM,
   VarTypeStringM,
 } from '@synerise/ds-icon';
-import { DSColumnType, TableCell } from '@synerise/ds-table';
-import Button from '@synerise/ds-button';
-import { UserAvatar } from '@synerise/ds-avatar';
-import { focusWithArrowKeys } from '@synerise/ds-utils';
 import Menu from '@synerise/ds-menu';
-import Dropdown from '@synerise/ds-dropdown';
+import { DSColumnType, TableCell } from '@synerise/ds-table';
+import { focusWithArrowKeys } from '@synerise/ds-utils';
 
+import { AVATAR_IMAGE } from '../../../constants';
 import { RELATIONS } from '../AllCellTypes/AllCellTypes.data';
 import { AdditionalColumnData } from '../Table.types';
-import { AVATAR_IMAGE } from '../../../constants';
 
 const menuData = [
   { text: 'Preview' },
@@ -1332,7 +1332,7 @@ export const DATA_SOURCE = [
   },
 ];
 
-export type RowType = typeof DATA_SOURCE[number];
+export type RowType = (typeof DATA_SOURCE)[number];
 export type ColumnType = DSColumnType<RowType> & AdditionalColumnData;
 
 export const COLUMNS: ColumnType[] = [
@@ -1432,17 +1432,24 @@ export const COLUMNS_WITH_FIXED_ACTION: ColumnType[] = [
     render: (_avatar, record) => {
       const user = true
         ? {
-          tooltip: true,
-          firstName: record.name,
-          lastName: record.lastName,
-          email: `${record.name}.${record.lastName}@synerise.com`,
-          avatar: AVATAR_IMAGE,
-        }
+            tooltip: true,
+            firstName: record.name,
+            lastName: record.lastName,
+            email: `${record.name}.${record.lastName}@synerise.com`,
+            avatar: AVATAR_IMAGE,
+          }
         : {};
       return (
         <TableCell.AvatarLabelCell
           avatarAction={action('Avatar Action')}
-          avatar={<UserAvatar user={user} badgeStatus="active" size="medium" backgroundColor={record.color} />}
+          avatar={
+            <UserAvatar
+              user={user}
+              badgeStatus="active"
+              size="medium"
+              backgroundColor={record.color}
+            />
+          }
           title={`${record.name} ${record.lastName}`}
         />
       );
@@ -1455,7 +1462,7 @@ export const COLUMNS_WITH_FIXED_ACTION: ColumnType[] = [
     icon: { component: <VarTypeStringM /> },
     iconTooltip: { component: <InfoFillS /> },
     className: 'chromatic-ignore',
-    render: record => <>{`${record.name}.${record.lastName}@synerise.com`}</>,
+    render: (record) => <>{`${record.name}.${record.lastName}@synerise.com`}</>,
   },
   {
     title: 'Phone',
@@ -1508,7 +1515,9 @@ export const COLUMNS_WITH_FIXED_ACTION: ColumnType[] = [
     icon: { component: <VarTypeBooleanM /> },
     tooltip: { title: 'Tooltip', description: 'Description' },
     className: 'chromatic-ignore',
-    render: status => <TableCell.StatusLabelCell status={status} label={status} />,
+    render: (status) => (
+      <TableCell.StatusLabelCell status={status} label={status} />
+    ),
   },
   {
     title: (
@@ -1525,15 +1534,21 @@ export const COLUMNS_WITH_FIXED_ACTION: ColumnType[] = [
     icon: { component: <VarTypeListM /> },
     iconTooltip: { component: <InfoFillS /> },
     className: 'chromatic-ignore',
-    render: button => {
+    render: (button) => {
       return (
         <Dropdown
+          size={220}
           overlay={
             <Dropdown.Wrapper
-              style={{ width: '220px' }}
-              onKeyDown={event => focusWithArrowKeys(event, 'ds-menu-item', () => { })}
+              onKeyDown={(event) =>
+                focusWithArrowKeys(event, 'ds-menu-item', () => {})
+              }
             >
-              <Menu dataSource={menuData} asDropdownMenu={true} style={{ width: '100%' }} />
+              <Menu
+                dataSource={menuData}
+                asDropdownMenu={true}
+                style={{ width: '100%' }}
+              />
             </Dropdown.Wrapper>
           }
         >

@@ -1,14 +1,19 @@
 import React, { useState } from 'react';
-import { v4 as uuid } from 'uuid';
+import { action } from 'storybook/actions';
 import { fn } from 'storybook/test';
+import { v4 as uuid } from 'uuid';
 
-import Tags, { TagShape } from '@synerise/ds-tags';
 import { theme } from '@synerise/ds-core';
 import Overview from '@synerise/ds-sidebar-object/dist/Elements/Overview/Overview';
+import Tags, { TagShape } from '@synerise/ds-tags';
 
-import { DATA, OVERVIEW_INPUT_OBJECT, OVERVIEW_TEXTS } from '../SidebarObject.data';
+import {
+  DATA,
+  OVERVIEW_INPUT_OBJECT,
+  OVERVIEW_TEXTS,
+} from '../SidebarObject.data';
 
-export const useSidebarObjectOverview = allTags => {
+export const useSidebarObjectOverview = (allTags) => {
   const [tags, setTags] = useState<Array<any>>(allTags);
   const [selected, setSelected] = useState<Array<any>>(allTags.slice(0, 2));
   const [description, setDescription] = useState('');
@@ -31,7 +36,7 @@ export const useSidebarObjectOverview = allTags => {
         searchPlaceholder: 'Search tag...',
         dropdownNoTags: 'No tags found',
       }}
-      onCreate={name => {
+      onCreate={(name) => {
         const tag = {
           id: uuid(),
           name,
@@ -56,13 +61,13 @@ export const useSidebarObjectOverview = allTags => {
           parentFolder={DATA[0]}
           onDescriptionChange={setDescription}
           textDescription={description}
-          onFolderSelect={fn()}
+          onFolderSelect={action('onFolderSelect')}
           descriptionProps={{
             autoSize: { minRows: 3, maxRows: 10 },
           }}
           texts={OVERVIEW_TEXTS}
           inputObject={OVERVIEW_INPUT_OBJECT}
-          onAddFolderClick={fn()}
+          onAddFolderClick={action('onAddFolderClick')}
         />
       ),
     },

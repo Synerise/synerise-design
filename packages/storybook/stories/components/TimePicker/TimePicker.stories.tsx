@@ -1,19 +1,19 @@
 import React from 'react';
-import { Meta, StoryObj } from '@storybook/react-webpack5';
 import { useArgs } from 'storybook/preview-api';
+import { within } from 'storybook/test';
 
+import { Meta, StoryObj } from '@storybook/react-webpack5';
 import TimePicker, { TimePickerProps } from '@synerise/ds-time-picker';
 
 import {
   BOOLEAN_CONTROL,
-  centeredPaddedWrapper,
   CLASSNAME_ARG_CONTROL,
-  fixedWrapper300,
-  reactNodeAsSelect,
   REACT_NODE_AS_STRING,
   STRING_CONTROL,
+  centeredPaddedWrapper,
+  fixedWrapper300,
+  reactNodeAsSelect,
 } from '../../utils';
-import { within } from 'storybook/test';
 
 type Story = StoryObj<TimePickerProps>;
 
@@ -25,7 +25,7 @@ export default {
     layout: 'fullscreen',
   },
   decorators: [fixedWrapper300, centeredPaddedWrapper],
-  render: args => {
+  render: (args) => {
     const [{ value }, updateArgs] = useArgs();
     const handleChange = (newValue: Date | undefined, timestring: string) => {
       updateArgs({ value: newValue });
@@ -54,13 +54,20 @@ export default {
     placeholder: STRING_CONTROL,
     raw: BOOLEAN_CONTROL,
     placement: {
-      ...reactNodeAsSelect('select', ['topLeft', 'topCenter', 'topRight', 'bottomLeft', 'bottomCenter', 'bottomRight']),
+      ...reactNodeAsSelect('select', [
+        'topLeft',
+        'topCenter',
+        'topRight',
+        'bottomLeft',
+        'bottomCenter',
+        'bottomRight',
+      ]),
     },
-    trigger: reactNodeAsSelect('inline-radio', ['click', 'hover', 'contextMenu']),
+    trigger: reactNodeAsSelect('inline-radio', ['click', 'hover']),
     use12HourClock: BOOLEAN_CONTROL,
     valueFormatOptions: { control: false }, // DateToFormatOptions;
 
-    errorText: REACT_NODE_AS_STRING
+    errorText: REACT_NODE_AS_STRING,
   },
   args: {},
 } as Meta<TimePickerProps>;
@@ -80,7 +87,7 @@ export const OpenAlways: Story = {
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement.parentElement!);
     await canvas.findByTestId('tp-overlay-container');
-  }
+  },
 };
 export const OpenByDefault: Story = {
   args: {
@@ -89,5 +96,5 @@ export const OpenByDefault: Story = {
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement.parentElement!);
     await canvas.findByTestId('tp-overlay-container');
-  }
+  },
 };

@@ -1,30 +1,28 @@
 import React, { useState } from 'react';
 import { v4 as uuid } from 'uuid';
-import type { StoryObj, Meta } from '@storybook/react-webpack5';
 
+import type { Meta, StoryObj } from '@storybook/react-webpack5';
 import Menu, { MenuItemProps } from '@synerise/ds-menu';
 import { focusWithArrowKeys } from '@synerise/ds-utils';
 
 import {
-  multipleItems,
-  suffixType,
-  prefixType,
-  deleteState,
-  ordered,
-  simpleText,
-  renderPrefix,
-  renderSuffix,
-  MenuPrefixAndSuffixVariants,
-} from './Menu.data';
-
-import {
-  fixedWrapper200,
+  BOOLEAN_CONTROL,
   CLASSNAME_ARG_CONTROL,
   REACT_NODE_AS_STRING,
   controlFromOptionsArray,
-  BOOLEAN_CONTROL,
+  fixedWrapper200,
 } from '../../utils';
-
+import {
+  MenuPrefixAndSuffixVariants,
+  deleteState,
+  multipleItems,
+  ordered,
+  prefixType,
+  renderPrefix,
+  renderSuffix,
+  simpleText,
+  suffixType,
+} from './Menu.data';
 
 export default {
   title: 'Components/Menu/Menu',
@@ -40,7 +38,10 @@ export default {
     suffixVisibilityTrigger: BOOLEAN_CONTROL,
     setDivider: BOOLEAN_CONTROL,
     disabled: BOOLEAN_CONTROL,
-    suffixel: { ...controlFromOptionsArray('select', Object.keys(suffixType)), mapping: suffixType },
+    suffixel: {
+      ...controlFromOptionsArray('select', Object.keys(suffixType)),
+      mapping: suffixType,
+    },
     prefixel: {
       ...controlFromOptionsArray('select', Object.keys(prefixType)),
       mapping: prefixType,
@@ -58,7 +59,7 @@ export const Default: Story = {
   render: ({ prefixel, suffixel, dataSource, children, ...rest }) => {
     const renderedPrefixel = prefixel && renderPrefix(prefixel);
     const renderedSuffixel = suffixel && renderSuffix(suffixel);
-    const dataSourceEnriched = dataSource?.map(item => ({
+    const dataSourceEnriched = dataSource?.map((item) => ({
       ...item,
       ...rest,
       suffixel: renderedSuffixel,
@@ -70,7 +71,7 @@ export const Default: Story = {
     return (
       <div
         style={{ width: '200px', borderRadius: '3px', overflow: 'hidden' }}
-        onKeyDown={e => focusWithArrowKeys(e, 'ds-menu-item', () => {})}
+        onKeyDown={(e) => focusWithArrowKeys(e, 'ds-menu-item', () => {})}
       >
         <div style={{ background: 'rgba(0,0,0,0)', width: '200px' }}>
           <Menu ordered={rest.ordered} dataSource={dataSourceEnriched} />
@@ -125,6 +126,18 @@ export const withDeleteState: Story = {
     ...Default.args,
     dataSource: deleteState,
     prefixel: 'singleIcon',
+  },
+};
+
+export const withCopyTooltip: Story = {
+  ...Default,
+  args: {
+    ...Default.args,
+    prefixel: 'singleIcon',
+    copyable: {
+      copyValue: 'Copy test value',
+      copiedLabel: 'Copied',
+    },
   },
 };
 
@@ -199,8 +212,8 @@ export const withSubMenu: Story = {
     const [selectedKeys, setSelectedKeys] = useState<string[]>([]);
     const [openKeys, setOpenKeys] = useState<string[]>(['Parent 1']);
     const handleOpenChange = (updatedOpenKeys) => {
-      setOpenKeys(updatedOpenKeys)
-    }
+      setOpenKeys(updatedOpenKeys);
+    };
     const onClickCallback = (clickedKey: string) => {
       if (selectedKeys.indexOf(clickedKey) !== -1) {
         setSelectedKeys([]);
@@ -208,12 +221,12 @@ export const withSubMenu: Story = {
       }
       setSelectedKeys([clickedKey]);
     };
-    const itemsWithOnClick = props.dataSource.map(item => {
+    const itemsWithOnClick = props.dataSource.map((item) => {
       let newItem = item;
       newItem.onTitleClick = () => {
         onClickCallback(item.key);
       };
-      newItem.subMenu = item.subMenu.map(submenuItem => ({
+      newItem.subMenu = item.subMenu.map((submenuItem) => ({
         ...submenuItem,
         onClick: () => {
           onClickCallback(submenuItem.key);
@@ -225,10 +238,17 @@ export const withSubMenu: Story = {
     return (
       <div
         style={{ width: '200px', borderRadius: '3px', overflow: 'hidden' }}
-        onKeyDown={e => focusWithArrowKeys(e, 'ds-menu-item', () => {})}
+        onKeyDown={(e) => focusWithArrowKeys(e, 'ds-menu-item', () => {})}
       >
         <div style={{ background: 'rgba(0,0,0,0)', width: '200px' }}>
-          <Menu onOpenChange={handleOpenChange} dataSource={itemsWithOnClick} selectable selectedKeys={selectedKeys} openKeys={openKeys} ordered />
+          <Menu
+            onOpenChange={handleOpenChange}
+            dataSource={itemsWithOnClick}
+            selectable
+            selectedKeys={selectedKeys}
+            openKeys={openKeys}
+            ordered
+          />
         </div>
       </div>
     );
@@ -244,23 +264,32 @@ export const withVariants: Story = {
   render: ({ prefixel, suffixel, dataSource, children, ...rest }) => {
     return (
       <>
-        {MenuPrefixAndSuffixVariants.map(({typePrefixel: prefixel, typeSuffixel: suffixel}) => (
-          <div
-            style={{ marginTop: '8px', width: '200px', borderRadius: '3px', overflow: 'hidden' }}
-            onKeyDown={e => focusWithArrowKeys(e, 'ds-menu-item', () => {})}
-          >
-            <div style={{ background: 'rgba(0,0,0,0)', width: '200px' }}>
-              <Menu dataSource={dataSource?.map(item => ({
-                suffixel: renderSuffix(suffixel),
-                prefixel: renderPrefix(prefixel),
-                ...item,
-                ...rest,
-                key: !!item.key ? item.key : uuid(),
-                className: 'ds-menu-item',
-              }))} />
+        {MenuPrefixAndSuffixVariants.map(
+          ({ typePrefixel: prefixel, typeSuffixel: suffixel }) => (
+            <div
+              style={{
+                marginTop: '8px',
+                width: '200px',
+                borderRadius: '3px',
+                overflow: 'hidden',
+              }}
+              onKeyDown={(e) => focusWithArrowKeys(e, 'ds-menu-item', () => {})}
+            >
+              <div style={{ background: 'rgba(0,0,0,0)', width: '200px' }}>
+                <Menu
+                  dataSource={dataSource?.map((item) => ({
+                    suffixel: renderSuffix(suffixel),
+                    prefixel: renderPrefix(prefixel),
+                    ...item,
+                    ...rest,
+                    key: !!item.key ? item.key : uuid(),
+                    className: 'ds-menu-item',
+                  }))}
+                />
+              </div>
             </div>
-          </div>
-        ))}
+          ),
+        )}
       </>
     );
   },
@@ -283,7 +312,6 @@ export const withVariants: Story = {
   },
 };
 
-
 export const withHighlight: Story = {
   ...Default,
   args: {
@@ -295,10 +323,17 @@ export const withHighlight: Story = {
 export const withBreadcrumb: Story = {
   render: () => {
     return (
-      <div style={{ background: 'rgba(0,0,0,0)', width: '200px', borderRadius: '3px', overflow: 'hidden' }}>
+      <div
+        style={{
+          background: 'rgba(0,0,0,0)',
+          width: '200px',
+          borderRadius: '3px',
+          overflow: 'hidden',
+        }}
+      >
         <Menu>
           <Menu.Breadcrumb
-            onPathClick={item => {
+            onPathClick={(item) => {
               console.log('Clicked', item);
             }}
             description={'Description'}

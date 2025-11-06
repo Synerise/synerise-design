@@ -18,7 +18,6 @@ const RelativeDateInput = ({
   onChange,
   texts: allTexts,
   opened,
-  onDeactivate,
   onActivate,
   error,
   allowClear,
@@ -43,14 +42,12 @@ const RelativeDateInput = ({
 
   const handleOpenChange = useCallback(
     (open: boolean) => {
-      if (!open) {
-        onDeactivate && onDeactivate();
-      } else {
+      if (open) {
         onActivate && onActivate();
       }
       setIsOpen(open);
     },
-    [onActivate, onDeactivate],
+    [onActivate],
   );
 
   const handleApply = useCallback(
@@ -123,7 +120,12 @@ const RelativeDateInput = ({
       getPopupContainer={getPopupContainerOverride || getPopupContainer}
       open={isOpen}
       onOpenChange={handleOpenChange}
-      dropdownRender={() => (
+      asChild={false}
+      size={420}
+      popoverProps={{
+        testId: 'factors-relative-date',
+      }}
+      overlay={
         <RelativeDateDropdown
           onApply={handleApply}
           onCancel={handleClose}
@@ -131,7 +133,7 @@ const RelativeDateInput = ({
           texts={texts}
           availableUnits={availableUnits}
         />
-      )}
+      }
     >
       {trigger}
     </Dropdown>

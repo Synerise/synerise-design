@@ -5,7 +5,7 @@ import Dropdown from '@synerise/ds-dropdown';
 import Icon, { SearchM } from '@synerise/ds-icon';
 import Result from '@synerise/ds-result';
 import Scrollbar from '@synerise/ds-scrollbar';
-import { focusWithArrowKeys, useOnClickOutside } from '@synerise/ds-utils';
+import { focusWithArrowKeys } from '@synerise/ds-utils';
 
 import { type SubjectItem, type SubjectListProps } from '../Subject.types';
 import * as S from './SubjectList.styles';
@@ -23,10 +23,6 @@ const SubjectList: React.FC<SubjectListProps> = ({
   const classNames = React.useMemo(() => {
     return `ds-subject-item ds-subject-item-${uuid()}`;
   }, []);
-
-  useOnClickOutside(overlayRef, () => {
-    hideDropdown();
-  });
 
   const renderItems = React.useMemo(() => {
     return items
@@ -57,7 +53,6 @@ const SubjectList: React.FC<SubjectListProps> = ({
 
   return (
     <Dropdown.Wrapper
-      style={{ width: '300px' }}
       ref={overlayRef}
       data-testid="subject-overlay"
       onKeyDown={(e): void => {

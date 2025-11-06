@@ -2,7 +2,10 @@ import React, { type ReactText, useCallback, useMemo, useState } from 'react';
 
 import Button from '@synerise/ds-button';
 import { useTheme } from '@synerise/ds-core';
-import Dropdown from '@synerise/ds-dropdown';
+import {
+  DropdownMenu,
+  type DropdownMenuListItemProps,
+} from '@synerise/ds-dropdown';
 import Icon, {
   CheckS,
   CircleShapeM,
@@ -12,7 +15,6 @@ import Icon, {
   TrashM,
   WarningFillM,
 } from '@synerise/ds-icon';
-import { ItemType, type MenuItemProps } from '@synerise/ds-menu';
 import ModalProxy from '@synerise/ds-modal';
 import Popconfirm from '@synerise/ds-popconfirm';
 import Result from '@synerise/ds-result';
@@ -20,11 +22,7 @@ import Result from '@synerise/ds-result';
 import * as S from '../ContentItem/ContentItem.styles';
 import ItemMeta from '../ItemMeta/ItemMeta';
 import ItemName from '../ItemName/ItemName';
-import {
-  DropdownMenu,
-  ItemHeader,
-  SelectFilterItem,
-} from './FilterItem.styles';
+import { ItemHeader, SelectFilterItem } from './FilterItem.styles';
 import { type FilterItemProps } from './FilterItem.types';
 
 const FilterItemComponent = ({
@@ -65,7 +63,7 @@ const FilterItemComponent = ({
   }, [item.id, onDuplicate]);
 
   const dropdownMenuDataSource = useMemo(() => {
-    const menuItems: MenuItemProps[] = [];
+    const menuItems: DropdownMenuListItemProps[] = [];
     if (item.canUpdate) {
       menuItems.push({
         onClick: enterEditMode,
@@ -86,7 +84,7 @@ const FilterItemComponent = ({
     }
     if (item.canDelete) {
       menuItems.push({
-        type: ItemType.DANGER,
+        type: 'danger',
         onClick: handleRemove,
         prefixel: <Icon component={<TrashM />} />,
         text: texts.itemActionDelete,
@@ -157,10 +155,13 @@ const FilterItemComponent = ({
             {(item.user || item.created) && (
               <ItemMeta user={item.user} created={item.created} />
             )}
-            <Dropdown
+            <DropdownMenu
               trigger={['click']}
+              dataSource={dropdownMenuDataSource}
               placement="bottomRight"
-              overlay={<DropdownMenu dataSource={dropdownMenuDataSource} />}
+              popoverProps={{
+                testId: 'manageable-list-filter-item',
+              }}
             >
               <S.FilterDropdownTrigger
                 className="ds-dropdown-trigger"
@@ -172,7 +173,7 @@ const FilterItemComponent = ({
                   color={theme.palette['grey-600']}
                 />
               </S.FilterDropdownTrigger>
-            </Dropdown>
+            </DropdownMenu>
           </S.ItemHeaderSuffix>
         </ItemHeader>
       </S.ItemContainer>

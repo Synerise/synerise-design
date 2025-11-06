@@ -1,10 +1,10 @@
-import React, { useMemo, useState } from 'react';
+import React, { useMemo } from 'react';
 
 import { theme } from '@synerise/ds-core';
-import Dropdown from '@synerise/ds-dropdown';
+import { DropdownMenu } from '@synerise/ds-dropdown';
 import Icon, { CheckS } from '@synerise/ds-icon';
-import ListItem from '@synerise/ds-list-item';
 import Tooltip from '@synerise/ds-tooltip';
+import { getPopupContainer } from '@synerise/ds-utils';
 
 import {
   ALL_FACTOR_TYPES,
@@ -20,11 +20,11 @@ const FactorTypeSelector = ({
   availableFactorTypes,
   factorTypeMapping,
   selectedFactor,
+  getPopupContainerOverride,
   texts,
   readOnly,
 }: FactorTypeSelectorProps) => {
-  const [dropdownOpen, setDropdownOpen] = useState(false);
-  const typesList = useMemo(() => {
+  const typesListData = useMemo(() => {
     let list = availableFactorTypes || ALL_FACTOR_TYPES;
     if (unavailableFactorTypes !== undefined) {
       list = [...list].filter(
@@ -34,26 +34,21 @@ const FactorTypeSelector = ({
 
     return (list as DefinedFactorTypes[]).map((type) => {
       const typeData = factorTypeMapping[type];
-      return (
-        <ListItem
-          className="ds-factor-type"
-          key={typeData.name}
-          prefixel={<Icon component={typeData.icon} />}
-          suffixel={
-            type === selectedFactorType ? (
-              <Icon component={<CheckS />} color={theme.palette['green-600']} />
-            ) : (
-              ''
-            )
-          }
-          onClick={() => {
-            setSelectedFactorType(type);
-            setDropdownOpen(false);
-          }}
-        >
-          {texts[type]}
-        </ListItem>
-      );
+      return {
+        className: 'ds-factor-type',
+        key: typeData.name,
+        prefixel: <Icon component={typeData.icon} />,
+        suffixel:
+          type === selectedFactorType ? (
+            <Icon component={<CheckS />} color={theme.palette['green-600']} />
+          ) : (
+            ''
+          ),
+        onClick: () => {
+          setSelectedFactorType(type);
+        },
+        text: texts[type],
+      };
     });
   }, [
     availableFactorTypes,
@@ -82,15 +77,18 @@ const FactorTypeSelector = ({
   return (
     // @ts-expect-error selectedFactorType can be any string - requires type refactor in analytics-core
     <Tooltip title={texts[selectedFactorType]} trigger={['hover']}>
-      <Dropdown
-        open={dropdownOpen}
-        onOpenChange={setDropdownOpen}
-        dropdownRender={() => <S.FactorTypeList>{typesList}</S.FactorTypeList>}
+      <DropdownMenu
+        dataSource={typesListData}
         trigger={['click']}
         disabled={readOnly}
+        getPopupContainer={getPopupContainerOverride || getPopupContainer}
+        popoverProps={{
+          testId: 'factors-types',
+        }}
+        asChild
       >
         {trigger}
-      </Dropdown>
+      </DropdownMenu>
     </Tooltip>
   );
 };

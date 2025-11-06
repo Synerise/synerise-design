@@ -1,14 +1,10 @@
 import React, {
   type CSSProperties,
-  type MouseEvent,
   type PropsWithChildren,
   useCallback,
 } from 'react';
 
-import ListItem, {
-  type ItemData,
-  type ListItemProps,
-} from '@synerise/ds-list-item';
+import ListItem, { type ListItemProps } from '@synerise/ds-list-item';
 
 import { type ItemPickerListTexts } from '../../ItemPickerNew/ItemPickerNew.types';
 import * as S from '../ItemPickerList.styles';
@@ -73,14 +69,7 @@ export const ItemPickerListRow = ({
   }
   return (
     <>
-      <ListItem
-        {...listItem}
-        style={style}
-        className={classNames}
-        onClick={(eventData: ItemData<MouseEvent<HTMLDivElement>>) => {
-          listItem.onClick && listItem.onClick(eventData);
-        }}
-      />
+      <ListItem {...listItem} style={style} className={classNames} />
       {index === dataSource.length - 1 && infiniteLoaderItem()}
     </>
   );

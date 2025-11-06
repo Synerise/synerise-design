@@ -834,7 +834,7 @@ describe('DateRangePicker', () => {
       fail('No timepickers in dom')
     }
 
-    userEvent.click(inputs[0]);
+    fireEvent.click(inputs[0]);
 
     const clearIcon = wrapper0.querySelector('svg');
     if (!clearIcon) {
@@ -846,7 +846,7 @@ describe('DateRangePicker', () => {
 
     expect(inputs[0]).toHaveValue(DEFAULT_RANGE_START.substring(0, 8));
 
-    userEvent.click(inputs[1]);
+    fireEvent.click(inputs[1]);
 
     const clearIcon1 = wrapper1.querySelector('svg');
     if (!clearIcon1) {

@@ -1,9 +1,10 @@
 import type { CSSProperties, ReactNode, ReactText } from 'react';
 
-import type { DropdownProps } from '@synerise/ds-dropdown';
+import type { DropdownSharedProps } from '@synerise/ds-dropdown';
 import type { FactorsProps } from '@synerise/ds-factors';
 import type { InformationCardProps } from '@synerise/ds-information-card';
 import type { ItemSize, ListItemProps } from '@synerise/ds-list-item';
+import { type PopoverTriggerType } from '@synerise/ds-popover';
 import type { HandledEventsType } from '@synerise/ds-utils';
 
 export type ContextTexts = {
@@ -78,7 +79,7 @@ export type ContextProps = {
   addMode?: boolean;
   loading?: boolean;
   customTriggerComponent?: ReactNode;
-  trigger?: ('click' | 'hover' | 'contextMenu')[];
+  trigger?: PopoverTriggerType | PopoverTriggerType[];
   menuItemHeight?: ItemSize;
   dropdownWrapperStyles?: CSSProperties;
   onClickOutsideEvents?: HandledEventsType[];
@@ -90,8 +91,8 @@ export type ContextProps = {
   hasMoreItems?: boolean;
   type?: 'default' | 'attribute' | 'event';
   dropdownProps?: Omit<
-    DropdownProps,
-    'trigger' | 'getPopupContainer' | 'onVisibleChange' | 'visible' | 'overlay'
+    DropdownSharedProps,
+    'trigger' | 'getPopupContainer' | 'overlay' | 'children'
   >;
   errorText?: ReactNode;
   isError?: boolean;
@@ -103,7 +104,7 @@ export type ContextProps = {
   };
 };
 
-export type ContextDropdownProps = {
+export type ContextDropdownProps = Pick<ContextProps, 'onDeactivate'> & {
   setDropdownVisible: (show: boolean) => void;
   setSelected: (val: ContextItem | ContextGroup) => void;
   groups: ContextGroup[];

@@ -1,7 +1,7 @@
 import React from 'react';
 
 import Badge from '@synerise/ds-badge';
-import { theme } from '@synerise/ds-core';
+import { useTheme } from '@synerise/ds-core';
 import Icon, { UserM, UserS } from '@synerise/ds-icon';
 
 import Avatar from '../Avatar';
@@ -25,6 +25,7 @@ const UserAvatar: React.FC<UserAvatarProps> = ({
   style,
   ...restProps
 }) => {
+  const theme = useTheme();
   const { firstName = '', lastName = '', email = '', avatar } = user || {};
   const avatarText = getUserText(user, src, text);
   const defaultTooltip = {

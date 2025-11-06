@@ -53,8 +53,8 @@ const InlineSelect = ({
 
   return (
     <Dropdown
-      visible={!disabled && isOpened}
-      onVisibleChange={setIsOpened}
+      open={!disabled && isOpened}
+      onOpenChange={setIsOpened}
       placement="bottomRight"
       disabled={disabled}
       overlay={
@@ -66,7 +66,12 @@ const InlineSelect = ({
         />
       }
       trigger={['click']}
+      asChild
       {...dropdownProps}
+      popoverProps={{
+        testId: 'inline-select',
+        ...dropdownProps?.popoverProps,
+      }}
     >
       <S.InPlaceEditableInputContainer
         className={`ds-inline-edit ${className || ''}`}

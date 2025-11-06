@@ -9,7 +9,6 @@ export const Placeholder = styled.div<{
   --stripe: ${(props) => props.$foreground || props.theme.palette['grey-100']};
   --size: 16px;
   height: ${(props) => props.$height || 400}px;
-  margin-top: 24px;
   background:
     repeating-linear-gradient(
       135deg,

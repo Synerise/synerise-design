@@ -27,7 +27,7 @@ import Icon, {
   UserS,
   WarningFillS,
 } from '@synerise/ds-icon';
-import { ListItemProps } from '@synerise/ds-list-item';
+import { type ListItemProps } from '@synerise/ds-list-item';
 import Menu from '@synerise/ds-menu';
 import { RawSwitch } from '@synerise/ds-switch';
 import Tooltip from '@synerise/ds-tooltip';
@@ -106,7 +106,7 @@ const ActionsMenu = ({ onSelectClick }) => {
 
   return (
     <Dropdown
-      visible={dropdownVisible}
+      open={dropdownVisible}
       placement="bottomCenter"
       align={{ offset: [-38, 8] }}
       overlay={

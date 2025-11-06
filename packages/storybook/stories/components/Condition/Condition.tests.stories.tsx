@@ -1,7 +1,14 @@
-import { within, userEvent, expect, waitFor, fn, fireEvent } from 'storybook/test';
+import {
+  expect,
+  fireEvent,
+  fn,
+  userEvent,
+  waitFor,
+  within,
+} from 'storybook/test';
 
-import type { ConditionMeta, ConditionStory } from './Condition.types';
-import StoriesMeta from './Condition.stories';
+import { sleep } from '../../utils';
+import { FACTORS_ITEMS as PARAMETER_ITEMS } from '../Factors/Factors.data';
 import {
   STEPS_POPULATED,
   STEPS_POPULATED_ACTION_ATTRIBUTE,
@@ -11,8 +18,8 @@ import {
   STEPS_POPULATED_PARAMETER_ERRORS,
   SUBJECT_ITEMS,
 } from './Condition.data';
-import { FACTORS_ITEMS as PARAMETER_ITEMS } from '../Factors/Factors.data';
-import { sleep } from '../../utils';
+import StoriesMeta from './Condition.stories';
+import type { ConditionMeta, ConditionStory } from './Condition.types';
 
 export default {
   ...StoriesMeta,
@@ -69,7 +76,7 @@ export const ContextErrorMessage: ConditionStory = {
 
 export const PopulateStep: ConditionStory = {
   parameters: {
-    test: { dangerouslyIgnoreUnhandledErrors: true }
+    test: { dangerouslyIgnoreUnhandledErrors: true },
   },
   args: {
     onChangeContext: fn(),
@@ -86,35 +93,66 @@ export const PopulateStep: ConditionStory = {
   },
   play: async ({ canvasElement, args }) => {
     const canvas = within(canvasElement.parentElement!);
-    const contextWrapper = within(canvas.getByTestId('condition-subject-or-context'));
+    const contextWrapper = within(
+      canvas.getByTestId('condition-subject-or-context'),
+    );
     await userEvent.click(contextWrapper.getByRole('button'));
-    await sleep(1500)
+    await sleep(1500);
     await canvas.findByText(SUBJECT_ITEMS[3].name);
-    await waitFor(() => expect(canvas.getByText(SUBJECT_ITEMS[3].name)).not.toHaveStyle({ pointerEvents: 'none' }))
+    await waitFor(() =>
+      expect(canvas.getByText(SUBJECT_ITEMS[3].name)).not.toHaveStyle({
+        pointerEvents: 'none',
+      }),
+    );
     await userEvent.click(canvas.getByText(SUBJECT_ITEMS[3].name));
-    await sleep(1500)
+    await sleep(1500);
     await waitFor(() => expect(args.onChangeContext).toHaveBeenCalled());
     await canvas.findAllByText(PARAMETER_ITEMS[5].name);
-    await waitFor(() => expect(canvas.getAllByText(PARAMETER_ITEMS[5].name)[0]).not.toHaveStyle({ pointerEvents: 'none' }))
+    await waitFor(() =>
+      expect(canvas.getAllByText(PARAMETER_ITEMS[5].name)[0]).not.toHaveStyle({
+        pointerEvents: 'none',
+      }),
+    );
     await userEvent.click(canvas.getAllByText(PARAMETER_ITEMS[5].name)[0]);
-    await sleep(1500)
+    await sleep(1500);
     await waitFor(() => expect(args.onChangeParameter).toHaveBeenCalled());
-    const operatorsDropdown = await canvas.findByTestId('ds-operators-dropdown-wrapper');
-    const operatorsTabs = await within(operatorsDropdown).findAllByTestId('tab-container');
+    const operatorsDropdown = await canvas.findByTestId(
+      'ds-operators-dropdown-wrapper',
+    );
+    const operatorsTabs =
+      await within(operatorsDropdown).findAllByTestId('tab-container');
 
     expect(operatorsTabs).toHaveLength(5);
-    await waitFor(() => expect(within(operatorsDropdown).getAllByTestId('tab-container')[2]).not.toHaveStyle({ pointerEvents: 'none' }))
-    await userEvent.click(within(operatorsDropdown).getAllByTestId('tab-container')[2]);
+    await waitFor(() =>
+      expect(
+        within(operatorsDropdown).getAllByTestId('tab-container')[2],
+      ).not.toHaveStyle({ pointerEvents: 'none' }),
+    );
+    await userEvent.click(
+      within(operatorsDropdown).getAllByTestId('tab-container')[2],
+    );
 
     await within(operatorsDropdown).findByText('Starts with');
 
-    await waitFor(() => expect(within(operatorsDropdown).getByText('Starts with')).not.toHaveStyle({ pointerEvents: 'none' }))
+    await waitFor(() =>
+      expect(
+        within(operatorsDropdown).getByText('Starts with'),
+      ).not.toHaveStyle({ pointerEvents: 'none' }),
+    );
     await userEvent.click(within(operatorsDropdown).getByText('Starts with'));
     await waitFor(() => expect(args.onChangeOperator).toHaveBeenCalled());
 
     await canvas.findByTestId('autocomplete-autosize-input');
-    await userEvent.click(within(canvas.getByTestId('autocomplete-autosize-input')).getByRole('combobox'));
-    fireEvent.focus(within(canvas.getByTestId('autocomplete-autosize-input')).getByRole('combobox'));
+    await userEvent.click(
+      within(canvas.getByTestId('autocomplete-autosize-input')).getByRole(
+        'combobox',
+      ),
+    );
+    fireEvent.focus(
+      within(canvas.getByTestId('autocomplete-autosize-input')).getByRole(
+        'combobox',
+      ),
+    );
     await userEvent.keyboard('Autosize text input parameter value');
     await sleep(500);
   },

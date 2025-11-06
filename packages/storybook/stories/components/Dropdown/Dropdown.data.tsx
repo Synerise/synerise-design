@@ -1,4 +1,5 @@
 import React from 'react';
+import { action } from 'storybook/actions';
 
 import Icon, {
   BooleanM,
@@ -25,30 +26,40 @@ export const dataCopy = [
   { text: 'Edit', prefixel: <Icon component={<EditM />} /> },
   { text: 'Duplicate', prefixel: <Icon component={<DuplicateM />} /> },
   { text: 'Move To', prefixel: <Icon component={<FolderM />} /> },
-  { text: 'Delete', type: 'danger', prefixel: <Icon component={<TrashM />} /> },
+  {
+    text: 'Delete',
+    type: 'danger' as const,
+    prefixel: <Icon component={<TrashM />} />,
+  },
   { type: 'divider' },
   {
-    text: 'ID:6b7c3084-b6c...',
-    copyHint: 'Copy ID',
-    copyTooltip: 'Copied!',
-    copyValue: 'Fake ID',
-    copyable: true,
+    text: 'Copy ID',
+    copyable: {
+      copyValue: 'Fake ID',
+      copiedLabel: 'Copied!',
+    },
     prefixel: <Icon component={<CopyClipboardM />} />,
   },
 ];
 
+export const menuData = [
+  { text: 'Preview', onClick: action('Preview clicked') },
+  { text: 'Edit', onClick: action('Edit clicked') },
+  { text: 'Duplicate', onClick: action('Duplicate clicked') },
+];
+
 const subItems = [
   { text: 'sub 1' },
-  { text: 'sub 2' },
-  { text: 'sub 3' },
-  { text: 'sub 4' },
-  { text: 'sub 5' },
-  { text: 'sub 6' },
-  { text: 'sub 7' },
-  { text: 'sub 8' },
-  { text: 'sub 9' },
-  { text: 'sub 10' },
-  { text: 'sub 11' },
+  { text: 'sub 1' },
+  { text: 'sub 1' },
+  { text: 'sub 1' },
+  { text: 'sub 1' },
+  { text: 'sub 1' },
+  { text: 'sub 1' },
+  { text: 'sub 1' },
+  { text: 'sub 1' },
+  { text: 'sub 1' },
+  { text: 'sub 1' },
 ];
 export const dataItems = [
   { text: 'Item 1' },
@@ -74,3 +85,12 @@ export const tabsWithIcons = [
     icon: <ListM />,
   },
 ];
+
+export const PLACEMENTS = {
+  topLeft: 'Top left',
+  topRight: 'Top right',
+  topCenter: 'Top center',
+  bottomLeft: 'Bottom left',
+  bottomRight: 'Bottom right',
+  bottomCenter: 'Bottom center',
+};

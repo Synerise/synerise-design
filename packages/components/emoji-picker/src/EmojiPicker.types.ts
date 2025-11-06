@@ -1,7 +1,7 @@
 import type { ReactElement, ReactNode } from 'react';
 import type { Emoji } from 'unicode-emoji-utils';
 
-import type { DropdownProps } from '@synerise/ds-dropdown';
+import type { DropdownSharedProps } from '@synerise/ds-dropdown';
 
 import type { EmojiListTexts } from './EmojiList/EmojiList.types';
 
@@ -13,7 +13,12 @@ export type EmojiPickerTexts = EmojiListTexts & {
 export type EmojiPickerProps = {
   children?: ReactElement;
   onSelect?: (emoji: Emoji) => void;
-  dropdownProps?: Partial<DropdownProps>;
+  dropdownProps?: Partial<
+    Omit<
+      DropdownSharedProps,
+      'children' | 'size' | 'overlay' | 'onOpenChage' | 'open'
+    >
+  >;
   texts?: Partial<EmojiPickerTexts>;
   closeOnSelect?: boolean;
 };

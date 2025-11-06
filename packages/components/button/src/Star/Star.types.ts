@@ -8,9 +8,7 @@ type ButtonPropsOmitted = Omit<
   | 'groupVariant'
   | 'icon'
   | 'iconColor'
-  | 'leftIconSize'
   | 'mode'
-  | 'rightIconSize'
   | 'size'
   | 'onChange'
 >;

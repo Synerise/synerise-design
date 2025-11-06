@@ -1,5 +1,5 @@
 import React from 'react';
-import { fireEvent, screen, within } from '@testing-library/react';
+import { fireEvent, screen, waitFor, within } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 
 import { renderWithProvider } from '@synerise/ds-core';
@@ -67,10 +67,9 @@ describe('Tags', () => {
     expect(screen.getByText(ADD_TAG_BUTTON)).toBeInTheDocument();
   });
 
-  it('should render with available tags in dropdown', () => {
+  it('should render with available tags in dropdown', async () => {
     const data = [tagOne, tagTwo, tagThree];
     const selected = [tagOne];
-
     renderWithProvider(
       <Tags
         data={data}
@@ -82,9 +81,12 @@ describe('Tags', () => {
       />,
     );
 
-    userEvent.click(screen.getByText(ADD_TAG_BUTTON));
+    await userEvent.click(screen.getByText(ADD_TAG_BUTTON));
 
-    const dropdown = screen.getByTestId(DROPDOWN_TESTID);
+    const dropdown = await screen.findByTestId(DROPDOWN_TESTID);
+
+    expect(dropdown).toBeTruthy();
+
     expect(
       within(dropdown).queryByTestId(`tag-${tagOne.id}`)
     ).not.toBeInTheDocument(); // already selected tag
@@ -93,14 +95,14 @@ describe('Tags', () => {
     ).toBeInTheDocument(); // not selected tag
   });
 
-  it('should render with create button', () => {
+  it('should render with create button', async () => {
     const data = [tagOne, tagTwo, tagThree];
-    const selected = [];
-
+    const SEARCH_QUERY = 'NEW_TAG_NAME';
+    
     renderWithProvider(
       <Tags
         data={data}
-        selected={selected}
+        selected={[]}
         onCreate={onCreate}
         texts={{
           createTagButtonLabel: CREATE_TAG_BUTTON,
@@ -112,24 +114,22 @@ describe('Tags', () => {
       />,
     );
 
-    userEvent.click(screen.getByText(ADD_TAG_BUTTON));
-    userEvent.type(screen.getByPlaceholderText(SEARCH_PLACEHOLDER), tagOne.name.slice(0, -1));
-    userEvent.click(screen.getByText(CREATE_TAG_BUTTON));
+    await userEvent.click(screen.getByText(ADD_TAG_BUTTON));
 
-    const foundTag = screen.getByText(tagOne.name);
+    await waitFor(() => expect(screen.getByRole('dialog')).toBeInTheDocument());
+    await userEvent.type(screen.getByPlaceholderText(SEARCH_PLACEHOLDER), SEARCH_QUERY);
 
-    expect(onCreate).toHaveBeenCalled();
-    expect(foundTag).toBeInTheDocument();
+    fireEvent.click(screen.getByText(CREATE_TAG_BUTTON));
+    expect(onCreate).toHaveBeenCalledWith(SEARCH_QUERY);
   });
 
-  it('should render with manage link as dropdownFooter', () => {
+  it('should render with manage link as dropdownFooter', async () => {
     const data = [tagOne, tagTwo, tagThree];
-    const selected = [];
-
+    
     renderWithProvider(
       <Tags
         data={data}
-        selected={selected}
+        selected={[]}
         texts={{
           addButtonLabel: ADD_TAG_BUTTON,
           manageLinkLabel: MANAGE_LINK_LABEL,
@@ -140,20 +140,18 @@ describe('Tags', () => {
       />,
     );
 
-    userEvent.click(screen.getByText(ADD_TAG_BUTTON));
-    userEvent.type(screen.getByPlaceholderText(SEARCH_PLACEHOLDER), 'anything');
-
+    await userEvent.click(screen.getByText(ADD_TAG_BUTTON));
+    
     expect(screen.getByText(MANAGE_LINK_LABEL)).toBeInTheDocument();
   });
 
-  it('should fire onSelectedChange', () => {
+  it('should fire onSelectedChange', async () => {
     const data = [tagOne, tagTwo, tagThree];
-    const selected = [];
-
+    
     renderWithProvider(
       <Tags
         data={data}
-        selected={selected}
+        selected={[]}
         onSelectedChange={onSelectedChange}
         texts={{
           addButtonLabel: ADD_TAG_BUTTON,
@@ -164,11 +162,11 @@ describe('Tags', () => {
       />,
     );
 
-    userEvent.click(screen.getByText(ADD_TAG_BUTTON));
+    await userEvent.click(screen.getByText(ADD_TAG_BUTTON));
 
     const foundTag = screen.getByText(tagOne.name);
 
-    userEvent.click(foundTag);
+    await userEvent.click(foundTag);
 
     expect(onSelectedChange).toHaveBeenCalled();
   });
@@ -199,9 +197,10 @@ describe('Tags', () => {
     const limitedTag = screen.getByTestId('tag-limited-tags');
     expect(limitedTag).toHaveTextContent('+2');
 
-    fireEvent.mouseOver(limitedTag);
+    // fireEvent.mouseOver(limitedTag);
+    userEvent.hover(limitedTag);
 
-    const dropdown = await screen.findByTestId(DROPDOWN_TESTID);
+    const dropdown = await screen.findByRole('dialog');
 
      expect(within(dropdown).queryByTestId(`tag-${tagTwo.id}`)).not.toBeInTheDocument();
      expect(within(dropdown).getByTestId(`tag-${tagThree.id}`)).toBeInTheDocument();

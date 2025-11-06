@@ -1,6 +1,6 @@
 import { isEqual } from 'lodash';
 import find from 'ramda/src/find';
-import React, { type MouseEvent, useCallback, useRef, useState } from 'react';
+import React, { useCallback, useRef, useState } from 'react';
 
 import { theme } from '@synerise/ds-core';
 import Icon, { AngleDownS, CheckS } from '@synerise/ds-icon';
@@ -60,7 +60,7 @@ const RangeDropdown = ({
   });
 
   const onMenuItemClick = useCallback(
-    (itemData: ItemData<MouseEvent>): void => {
+    (itemData: ItemData): void => {
       const range = findRangeByKey(ranges, itemData.key as string);
       onChange(range);
       setDropVisible(false);

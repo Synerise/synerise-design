@@ -4,7 +4,7 @@ import { Meta, StoryObj } from '@storybook/react-webpack5';
 import { ALL_FACTOR_TYPES } from '@synerise/ds-factors';
 import type { FactorsProps } from '@synerise/ds-factors';
 
-import { centeredPaddedWrapper, sleep } from '../../utils';
+import { centeredPaddedWrapper, fixedWrapper300, sleep } from '../../utils';
 import {
   ARRAY_VALUE,
   ARRAY_VALUE_NUMERIC,
@@ -91,7 +91,7 @@ export const SelectParameterFactorValue: StoryObj<FactorsProps> = {
         expect(canvas.getByPlaceholderText('Search')).toBeInTheDocument(),
       );
     });
-    await step('select new factor type', async () => {
+    await step('select new parameter', async () => {
       await waitFor(() =>
         expect(canvas.getByText('Points')).not.toHaveStyle({
           pointerEvents: 'none',
@@ -116,27 +116,30 @@ export const RelativeDateOpen: StoryObj<FactorsProps> = {
       },
     },
   },
-  play: async ({ canvasElement, step }) => {
+  play: async ({ canvasElement, args, step }) => {
     const canvas = within(canvasElement.parentElement!);
     await step('open relative date dropdown', async () => {
       const dropdownTrigger = canvas.getByTestId(
-        'ds-factors-relative-date-trigger',
+        'popover-factors-relative-date-trigger',
       );
       await userEvent.click(dropdownTrigger);
       return await waitFor(() =>
         expect(
-          canvas.getByTestId('ds-factors-relative-date-dropdown'),
+          canvas.getByTestId('popover-factors-relative-date-content'),
         ).toBeInTheDocument(),
       );
     });
-    console.log(canvas.getByTestId('ds-factors-relative-date-dropdown'));
+    console.log(canvas.getByTestId('popover-factors-relative-date-content'));
     await waitFor(() =>
       expect(
         within(
-          canvas.getByTestId('ds-factors-relative-date-dropdown'),
+          canvas.getByTestId('popover-factors-relative-date-content'),
         ).getByText(NOW),
       ).not.toHaveStyle({ pointerEvents: 'none' }),
     );
+
+    await waitFor(() => expect(args.onActivate).toHaveBeenCalled());
+    await sleep(200);
   },
 };
 
@@ -157,18 +160,18 @@ export const RelativeDateValueChange: StoryObj<FactorsProps> = {
     const canvas = within(canvasElement.parentElement!);
     await step('open relative date dropdown', async () => {
       const dropdownTrigger = canvas.getByTestId(
-        'ds-factors-relative-date-trigger',
+        'popover-factors-relative-date-trigger',
       );
       await userEvent.click(dropdownTrigger);
       await waitFor(() =>
         expect(
-          canvas.getByTestId('ds-factors-relative-date-dropdown'),
+          canvas.getByTestId('popover-factors-relative-date-content'),
         ).toBeInTheDocument(),
       );
       await waitFor(() => expect(args.onActivate).toHaveBeenCalled());
     });
     const dropdownWrapper = within(
-      canvas.getByTestId('ds-factors-relative-date-dropdown'),
+      canvas.getByTestId('popover-factors-relative-date-content'),
     );
     await step('update relative date value', async () => {
       await userEvent.click(dropdownWrapper.getByText('Hours'));
@@ -261,6 +264,8 @@ export const ArrayEditorOpen: StoryObj<FactorsProps> = {
         expect(canvas.getByDisplayValue(item)).toBeInTheDocument(),
       );
     });
+
+    await waitFor(() => expect(args.onActivate).toHaveBeenCalled());
   },
 };
 
@@ -517,7 +522,7 @@ export const DateRangePickerOpen: StoryObj<FactorsProps> = {
     date: new Date('March 10, 2021 10:00:00'),
     layout: 'centered',
   },
-  play: async ({ canvasElement }) => {
+  play: async ({ canvasElement, args }) => {
     const canvas = within(canvasElement.parentElement!);
     await userEvent.click(await canvas.findByText('Start date'));
     await waitFor(() =>
@@ -537,5 +542,44 @@ export const AllTypesReadOnly: StoryObj<FactorsProps> = {
   ...AllTypes,
   args: {
     readOnly: true,
+  },
+};
+
+export const ParameterDeactivate: StoryObj<FactorsProps> = {
+  ...SelectParameterFactorValue,
+  play: async ({ canvasElement, args, step }) => {
+    const canvas = within(canvasElement);
+    await step('open parameter dropdown', async () => {
+      const parameterDropdownTrigger = canvas.getByText('Parameter');
+      await sleep(1000);
+      await userEvent.click(parameterDropdownTrigger);
+
+      await waitFor(() => expect(args.onActivate).toHaveBeenCalled());
+      return await waitFor(() =>
+        expect(canvas.getByPlaceholderText('Search')).toBeInTheDocument(),
+      );
+    });
+
+    await userEvent.click(document.body);
+    await waitFor(() => expect(args.onDeactivate).toHaveBeenCalled());
+  },
+};
+
+export const TextAutocompleteDeactivate: StoryObj<FactorsProps> = {
+  ...Default,
+  decorators: [fixedWrapper300],
+  args: {
+    selectedFactorType: 'text',
+    textType: 'autocomplete',
+  },
+  play: async ({ canvasElement, args }) => {
+    const canvas = within(canvasElement);
+
+    await userEvent.click(canvas.getByRole('combobox'));
+
+    await waitFor(() => expect(args.onActivate).toHaveBeenCalled());
+
+    await userEvent.click(document.body);
+    await waitFor(() => expect(args.onDeactivate).toHaveBeenCalled());
   },
 };

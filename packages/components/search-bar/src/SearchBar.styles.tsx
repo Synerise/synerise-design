@@ -74,6 +74,7 @@ export const PlaceholderWrapper = styled.div<{ valuePrefixWidth: number }>`
   pointer-events: none;
   position: absolute;
   display: flex;
+  white-space: nowrap;
   align-items: center;
   z-index: 2;
   height: 52px;
@@ -138,6 +139,7 @@ export const SearchBarWrapper = styled.div<{
   pointer-events: ${(props): string => (props.disabled ? 'none' : '')};
   user-select: ${(props): string => (props.disabled ? 'none' : '')};
   border-radius: ${(props): string => (props.borderRadius ? '3px' : '')};
+  min-width: 150px;
 
   &&& {
     svg {

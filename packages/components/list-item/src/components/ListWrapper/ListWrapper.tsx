@@ -15,15 +15,12 @@ export type ListWrapperProps = WithHTMLAttributes<
 
 export const ListWrapper = ({
   children,
-  onItemSelect,
   onClick,
   ...htmlAttributes
 }: ListWrapperProps) => {
   return (
     <S.ListWrapperContainer {...htmlAttributes}>
-      <ListContextProvider onItemSelect={onItemSelect} onClick={onClick}>
-        {children}
-      </ListContextProvider>
+      <ListContextProvider onClick={onClick}>{children}</ListContextProvider>
     </S.ListWrapperContainer>
   );
 };

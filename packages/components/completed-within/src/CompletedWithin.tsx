@@ -73,18 +73,18 @@ const CompletedWithin = ({
     string | number | undefined | null
   >(value.value);
   const [innerPeriod, setInnerPeriod] = useState<Period>(value.period);
-  const [tooltipVisible, setTooltipVisible] = useState(false);
-  const [settingsVisible, setSettingsVisible] = useState(false);
+  const [tooltipOpen, setTooltipOpen] = useState(false);
+  const [settingsOpen, setSettingsVisible] = useState(false);
 
   const hasValue = useMemo(
     () => value.value !== undefined && value.value > 0,
     [value],
   );
 
-  const handleVisibleChange = useCallback(
+  const handleOpenChange = useCallback(
     (visible: boolean) => {
       setSettingsVisible(visible);
-      setTooltipVisible(false);
+      setTooltipOpen(false);
       if (!visible && innerValue && innerPeriod) {
         const newValue =
           maxValue && maxValue < Number(innerValue) ? maxValue : innerValue;
@@ -124,8 +124,8 @@ const CompletedWithin = ({
       type="largeSimple"
       description={tooltip}
       trigger={['hover']}
-      onVisibleChange={setTooltipVisible}
-      visible={!settingsVisible && tooltipVisible}
+      onVisibleChange={setTooltipOpen}
+      visible={!settingsOpen && tooltipOpen}
     >
       <S.TriggerButton
         data-testid="completed-within-trigger"
@@ -162,10 +162,11 @@ const CompletedWithin = ({
             />
           }
           trigger={['click']}
-          visible={settingsVisible}
-          onVisibleChange={handleVisibleChange}
+          open={settingsOpen}
+          onOpenChange={handleOpenChange}
           placement="topLeft"
-          overlayStyle={{ maxWidth: '238px', minWidth: '238px' }}
+          size={238}
+          popoverProps={{ testId: 'completed-within' }}
         >
           {trigger}
         </Dropdown>

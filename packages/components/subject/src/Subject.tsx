@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 
 import Dropdown from '@synerise/ds-dropdown';
 import Icon, { ShowM } from '@synerise/ds-icon';
@@ -8,7 +8,7 @@ import { type SubjectProps } from './Subject.types';
 import SubjectList from './SubjectList/SubjectList';
 import SubjectTrigger from './SubjectTrigger/SubjectTrigger';
 
-const Subject: React.FC<SubjectProps> = ({
+const Subject = ({
   selectedItem,
   iconPlaceholder,
   items,
@@ -21,7 +21,7 @@ const Subject: React.FC<SubjectProps> = ({
   onDeactivate,
   texts,
   opened,
-}) => {
+}: SubjectProps) => {
   const [dropdownVisible, setDropdownVisible] = React.useState(false);
 
   const color = React.useMemo(() => {
@@ -31,21 +31,24 @@ const Subject: React.FC<SubjectProps> = ({
   const onDropdownVisibilityChange = React.useCallback(
     (value: boolean) => {
       value && onActivate && onActivate('');
-      !value && onDeactivate && onDeactivate();
+      setDropdownVisible(value);
     },
-    [onActivate, onDeactivate],
+    [onActivate],
   );
 
-  React.useEffect(() => {
+  useEffect(() => {
     setDropdownVisible(Boolean(opened));
   }, [opened]);
 
   return (
     <S.Subject>
       <Dropdown
-        visible={dropdownVisible}
+        open={dropdownVisible}
         getPopupContainer={getPopupContainerOverride}
-        onVisibleChange={onDropdownVisibilityChange}
+        onOpenChange={onDropdownVisibilityChange}
+        onDismiss={onDeactivate}
+        size="medium"
+        asChild
         overlay={
           <SubjectList
             texts={texts}
@@ -54,6 +57,9 @@ const Subject: React.FC<SubjectProps> = ({
             hideDropdown={(): void => setDropdownVisible(false)}
           />
         }
+        popoverProps={{
+          testId: 'subject',
+        }}
       >
         <SubjectTrigger
           onClick={(): void => setDropdownVisible(true)}

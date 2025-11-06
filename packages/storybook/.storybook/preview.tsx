@@ -81,22 +81,16 @@ const preview: Preview = {
   parameters: {
     layout: 'centered',
     actions: { argTypesRegex: '^on[A-Z].*' },
+
     backgrounds: {
-      default: 'white',
-      values: [
-        {
-          name: 'white',
-          value: '#ffffff',
-        },
-        {
-          name: 'grey',
-          value: theme.palette['grey-300'],
-        },
-        {
-          name: 'dark',
-          value: theme.palette['grey-700'],
-        },
-      ],
+      options: {
+        dark: { name: 'Dark', value: theme.palette['grey-700'] },
+        grey: { name: 'Grey', value: theme.palette['grey-300'] },
+        light: { name: 'Light', value: '#ffffff' },
+      },
+    },
+    initialGlobals: {
+      backgrounds: { value: 'light' },
     },
     controls: {
       sort: 'requiredFirst',

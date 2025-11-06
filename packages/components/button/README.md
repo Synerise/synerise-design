@@ -113,7 +113,7 @@ It behaves like checkbox input due to `role="checkbox"` and `aria-checked` attri
 
 ### Props
 
-It inherits all `Button`'s props excluding `type`, `block`, `color`, `groupVariant`, `icon`, `iconColor`, `leftIconSize`, `mode`, `rightIconSize`, `size`, `onChange`.
+It inherits all `Button`'s props excluding `type`, `block`, `color`, `groupVariant`, `icon`, `iconColor`, `mode`, `size`, `onChange`.
 
 | Property       | Description                                                | Type                         | Default     |
 | -------------- | ---------------------------------------------------------- | ---------------------------- | ----------- |

@@ -162,6 +162,11 @@ const FormatSettings = ({
               trigger={['click']}
               disabled={disabled}
               hideOnItemClick
+              popoverProps={{
+                testId: 'format-picker-settings',
+              }}
+              asChild
+              size="match-trigger"
               overlay={
                 <S.DropdownWrapper>
                   {currenciesConfig.map(({ currency, label }) => (

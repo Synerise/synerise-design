@@ -360,3 +360,32 @@ export const ContentWrapper = styled.div`
 export const ContentDivider = styled.div`
   flex: 1;
 `;
+
+export const DynamicLabelMain = styled.div``;
+
+export const DynamicLabelAlternate = styled.div``;
+
+export const DynamicLabelWrapper = styled.div<{ showAlternative?: boolean }>`
+  ${(props) =>
+    props.showAlternative
+      ? css`
+          ${DynamicLabelMain} {
+            height: 0;
+            visibility: hidden;
+          }
+          ${DynamicLabelAlternate} {
+            height: auto;
+            visibility: visible;
+          }
+        `
+      : css`
+          ${DynamicLabelMain} {
+            height: auto;
+            visibility: visible;
+          }
+          ${DynamicLabelAlternate} {
+            height: 0;
+            visibility: hidden;
+          }
+        `}
+`;

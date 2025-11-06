@@ -1,0 +1,46 @@
+{
+  "name": "@synerise/ds-popover",
+  "version": "1.0.0",
+  "description": "Popover UI Component for the Synerise Design System",
+  "license": "ISC",
+  "repository": "Synerise/synerise-design",
+  "main": "dist/index.js",
+  "files": [
+    "/dist",
+    "CHANGELOG.md",
+    "README.md",
+    "package.json",
+    "LICENSE.md"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "scripts": {
+    "build": "npm run build:js && npm run build:css && npm run defs",
+    "build:css": "node ../../../scripts/style/less.js",
+    "build:js": "babel --delete-dir-on-start --root-mode upward src --out-dir dist --extensions '.js,.ts,.tsx'",
+    "build:watch": "npm run build:js -- --watch",
+    "defs": "tsc --declaration --outDir dist/ --emitDeclarationOnly",
+    "prepublish": "npm run build",
+    "types": "tsc --noEmit",
+    "pack:ci": "npm pack --pack-destination ../../storybook/storybook-static/static",
+    "test": "jest",
+    "test:watch": "npm run test -- --watchAll",
+    "upgrade:ds": "ncu -f \"@synerise/ds-*\" -u"
+  },
+  "sideEffects": [
+    "dist/style/*",
+    "*.less"
+  ],
+  "types": "dist/index.d.ts",
+  "dependencies": {
+    "@floating-ui/react": "^0.27.13"
+  },
+  "devDependencies": {
+    "@testing-library/user-event": "^14"
+  },
+  "peerDependencies": {
+    "@synerise/ds-core": "*",
+    "react": ">=16.9.0 <= 18.3.1"
+  }
+}

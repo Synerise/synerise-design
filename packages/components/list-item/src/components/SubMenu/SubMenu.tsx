@@ -7,7 +7,6 @@ import * as S from './SubMenu.styles';
 type SubMenuProps = {
   dataSource?: ListItemProps[];
   onClick?: ListItemProps['onClick'];
-  onItemSelect?: ListItemProps['onItemSelect'];
   isOpen?: boolean;
   indentLevel: number;
   ItemComponent: ComponentType<ListItemProps>;
@@ -15,11 +14,11 @@ type SubMenuProps = {
 
 export const SubMenu = forwardRef<HTMLDivElement, SubMenuProps>(
   (
-    { onClick, onItemSelect, isOpen, dataSource, indentLevel, ItemComponent },
+    { onClick, isOpen, dataSource, indentLevel, ItemComponent },
     forwardedRef,
   ) => {
     return (
-      <ListContextProvider onItemSelect={onItemSelect} onClick={onClick}>
+      <ListContextProvider onClick={onClick}>
         <S.SubMenuContainer ref={forwardedRef} isOpen={isOpen}>
           {dataSource?.map((item) => (
             <ItemComponent

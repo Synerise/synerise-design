@@ -43,7 +43,7 @@
     "@synerise/ds-inline-edit": "^1.0.38",
     "@synerise/ds-input": "^1.4.2",
     "@synerise/ds-list": "^1.1.5",
-    "@synerise/ds-menu": "^1.1.2",
+    "@synerise/ds-list-item": "^1.1.0",
     "@synerise/ds-modal": "^1.2.16",
     "@synerise/ds-popconfirm": "^1.0.28",
     "@synerise/ds-result": "^1.0.29",
