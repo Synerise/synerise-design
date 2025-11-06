@@ -19,6 +19,7 @@ import type {
   BaseSectionType,
   BaseSectionTypeWithFolders,
 } from './types/baseItemSectionType.types';
+import { type ItemPickerListTexts } from './types/itemPickerListTexts.types';
 
 type HeightConfig = {
   defaultHeight: number;
@@ -126,32 +127,6 @@ export type ItemPickerProps<
   Partial<
     Pick<ItemPickerTriggerProps, 'placeholder' | 'placeholderIcon' | 'onClear'>
   >;
-
-export type TextsAsReactNode =
-  | 'basicSearchPlaceholder'
-  | 'searchPlaceholder'
-  | 'refreshButtonLabel'
-  | 'showMoreResultsLabel'
-  | 'noItems'
-  | 'noResults'
-  | 'noResultsInSection'
-  | 'searchAllFoldersButtonLabel'
-  | 'recentsSectionLabel'
-  | 'actionsSectionLabel'
-  | 'resultsSectionLabel'
-  | 'noActions'
-  | 'itemsSectionLabel'
-  | 'infiniteScrollLoadingMore'
-  | 'infiniteScrollLoadingError'
-  | 'errorMessageTitle'
-  | 'errorMessageDetails'
-  | 'backTooltip'
-  | 'clearSearchTooltip'
-  | 'infiniteScrollAllLoaded';
-
-export type ItemPickerListTexts = {
-  [key in TextsAsReactNode]: ReactNode;
-};
 
 export type ItemPickerListProps<
   ItemType extends BaseItemType,
