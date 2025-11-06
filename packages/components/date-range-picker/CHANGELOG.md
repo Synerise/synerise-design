@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.4.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-date-range-picker@1.3.36...@synerise/ds-date-range-picker@1.4.0) (2025-11-06)
+
+
+### Features
+
+* **dropdown:** dropdownMenu component ([f0ec827](https://github.com/Synerise/synerise-design/commit/f0ec82792cdcb021fa9a454912f6e7a892e53895))
+
+
+
+
+
 ## [1.3.36](https://github.com/Synerise/synerise-design/compare/@synerise/ds-date-range-picker@1.3.35...@synerise/ds-date-range-picker@1.3.36) (2025-10-31)
 
 **Note:** Version bump only for package @synerise/ds-date-range-picker
