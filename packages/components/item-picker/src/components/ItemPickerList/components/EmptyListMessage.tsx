@@ -3,7 +3,8 @@ import React from 'react';
 import Button from '@synerise/ds-button';
 import { SearchNoResultsL } from '@synerise/ds-icon';
 
-import { type ItemPickerListTexts } from '../../ItemPickerNew/ItemPickerNew.types';
+import { type BaseSectionType } from '../../ItemPickerNew/types/baseItemSectionType.types';
+import { type ItemPickerListTexts } from '../../ItemPickerNew/types/itemPickerListTexts.types';
 import * as S from '../ItemPickerList.styles';
 
 type EmptyListMessageProps = {
@@ -19,6 +20,7 @@ type EmptyListMessageProps = {
   listActions: boolean;
   isActionSection: boolean;
   buttonOnClick: () => void;
+  currentSection: BaseSectionType | undefined;
 };
 
 export const EmptyListMessage = ({
@@ -27,11 +29,11 @@ export const EmptyListMessage = ({
   isActionSection,
   hasCurrentSection,
   buttonOnClick,
+  currentSection,
 }: EmptyListMessageProps) => {
   if (listActions) {
     return (
       <S.EmptyStates
-        labelPosition="bottom"
         customIcon={<SearchNoResultsL />}
         label={texts.noActions}
       />
@@ -41,21 +43,19 @@ export const EmptyListMessage = ({
     return (
       <S.EmptyStates
         customIcon={<SearchNoResultsL />}
-        label={texts.noResultsInSection}
-        labelPosition="bottom"
+        label={
+          currentSection?.texts?.noResultsInSection || texts.noResultsInSection
+        }
         button={
           <Button type="primary" onClick={buttonOnClick}>
-            {texts.searchAllFoldersButtonLabel}
+            {currentSection?.texts?.searchAllFoldersButtonLabel ||
+              texts.searchAllFoldersButtonLabel}
           </Button>
         }
       />
     );
   }
   return (
-    <S.EmptyStates
-      labelPosition="bottom"
-      customIcon={<SearchNoResultsL />}
-      label={texts.noResults}
-    />
+    <S.EmptyStates customIcon={<SearchNoResultsL />} label={texts.noResults} />
   );
 };

@@ -6,7 +6,7 @@ import React, {
 
 import ListItem, { type ListItemProps } from '@synerise/ds-list-item';
 
-import { type ItemPickerListTexts } from '../../ItemPickerNew/ItemPickerNew.types';
+import type { ItemPickerListTexts } from '../../ItemPickerNew/types/itemPickerListTexts.types';
 import * as S from '../ItemPickerList.styles';
 import { type TitleListItemProps } from '../ItemPickerList.types';
 import { isTitle } from '../utils/typeguards.utils';

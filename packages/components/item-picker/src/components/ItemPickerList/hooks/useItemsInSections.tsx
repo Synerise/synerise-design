@@ -5,7 +5,6 @@ import { itemSizes } from '@synerise/ds-list-item';
 import type {
   ItemLoaderMeta,
   ItemPickerListProps,
-  ItemPickerListTexts,
   OnLoadedData,
 } from '../../ItemPickerNew/ItemPickerNew.types';
 import type {
@@ -18,6 +17,7 @@ import type {
   BaseSectionType,
   BaseSectionTypeWithFolders,
 } from '../../ItemPickerNew/types/baseItemSectionType.types';
+import type { ItemPickerListTexts } from '../../ItemPickerNew/types/itemPickerListTexts.types';
 import {
   FIRST_PAGE,
   GET_ITEM_KEY,

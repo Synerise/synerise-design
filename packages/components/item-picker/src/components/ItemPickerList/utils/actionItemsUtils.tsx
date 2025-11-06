@@ -1,6 +1,5 @@
 import { type ListItemProps } from '@synerise/ds-list-item';
 
-import { type ItemPickerListTexts } from '../../ItemPickerNew/ItemPickerNew.types';
 import {
   ACTION_TYPES,
   type Action,
@@ -9,6 +8,7 @@ import {
   type SearchByParamConfig,
   type SearchInAction,
 } from '../../ItemPickerNew/types/actions.types';
+import { type ItemPickerListTexts } from '../../ItemPickerNew/types/itemPickerListTexts.types';
 import {
   getTitleItem,
   matchesSearchQuery,
