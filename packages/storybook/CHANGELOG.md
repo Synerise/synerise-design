@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.26.1](https://github.com/Synerise/synerise-design/compare/storybook@1.26.0...storybook@1.26.1) (2025-11-13)
+
+
+### Bug Fixes
+
+* **progress-bar:** layout tweaks ([53c1d2e](https://github.com/Synerise/synerise-design/commit/53c1d2efe614035cae18122a0f2bfa8589d05745))
+
+
+
+
+
 # [1.26.0](https://github.com/Synerise/synerise-design/compare/storybook@1.25.0...storybook@1.26.0) (2025-11-06)
 
 
