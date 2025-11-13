@@ -46,6 +46,17 @@ export const withLabelAndDescription: Story = {
   },
 };
 
+export const InlineCustomLabel: Story = {
+  ...Default,
+  args: {
+    ...Default.args,
+    inline: true,
+    percent: (4 / 6) * 100,
+    description: 'Description',
+    label: '4/6',
+  },
+};
+
 export const withSteps: Story = {
   ...Default,
   args: {

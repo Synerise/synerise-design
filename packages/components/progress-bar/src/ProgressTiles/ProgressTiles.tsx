@@ -1,7 +1,5 @@
 import React, { useCallback } from 'react';
 
-import { FormFieldLabel } from '@synerise/ds-form-field';
-
 import * as S from './ProgressTiles.styles';
 import { type ProgressTilesProps } from './ProgressTiles.types';
 
@@ -32,9 +30,7 @@ export const ProgressTiles = ({
 
   return (
     <S.TilesWrapper {...rest}>
-      {label && (
-        <FormFieldLabel className="progress-bar-label">{label}</FormFieldLabel>
-      )}
+      {label && <S.Label>{label}</S.Label>}
 
       <div className="progress-bar-wrapper">
         {getTilesConfig().map((tile) => (
