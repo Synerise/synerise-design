@@ -33,39 +33,31 @@ const ProgressBar = ({
     <S.Container
       className={`${className || ''} progress-bar-container`}
       data-testid="progress-bar-container"
-      steps={steps}
-      inline={inline}
+      $steps={steps}
+      $inline={inline}
       {...rest}
     >
       {label && !inline && (
         <S.LabelWrapper>
-          <S.Label
-            data-testid="progress-bar-label"
-            className="progress-bar-label"
-          >
-            {label}
-          </S.Label>
-          <span data-testid="progress-bar-max-percent">{`${percent}%`}</span>
+          {label && <S.Label data-testid="progress-bar-label">{label}</S.Label>}
+          <S.Percent data-testid="progress-bar-max-percent">{`${percent}%`}</S.Percent>
         </S.LabelWrapper>
       )}
-      <div className="progress-div">
+      <S.ProgressOuter>
         {tiles.map((tile, i) => (
-          <S.ProgressWrapper thin={thin} key={`key-${tile.id}`} width={width}>
+          <S.ProgressWrapper $thin={thin} key={`key-${tile.id}`} $width={width}>
             <S.ProgressBar
               customColor={customColor}
-              width={`${(tilesWidthRatios[i] || 0) * MAX_PERCENT}%`}
+              $width={`${(tilesWidthRatios[i] || 0) * MAX_PERCENT}%`}
             />
           </S.ProgressWrapper>
         ))}
-      </div>
-      {inline && <S.PercentWrapper>{`${percent}%`}</S.PercentWrapper>}
+      </S.ProgressOuter>
+      {inline && <S.PercentWrapper>{label || `${percent}%`}</S.PercentWrapper>}
       {description && !inline && (
-        <span
-          className="progress-bar-description"
-          data-testid="progress-bar-description"
-        >
+        <S.ProgressBarDescription data-testid="progress-bar-description">
           {description}
-        </span>
+        </S.ProgressBarDescription>
       )}
     </S.Container>
   );
