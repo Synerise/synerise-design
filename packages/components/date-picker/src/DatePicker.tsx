@@ -134,7 +134,7 @@ const DatePicker = ({
       asChild={false}
       {...dropdownProps}
       onOpenChange={handleOpenChange}
-      open={(dropVisible || dropdownProps?.open) && !disabled}
+      open={(dropdownProps?.open || dropVisible) && !disabled}
       popoverProps={{
         testId: 'date-picker',
         ...dropdownProps?.popoverProps,

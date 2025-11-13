@@ -153,6 +153,7 @@ const Operators = ({
       onDismiss={onDeactivate}
       popoverProps={{
         testId: 'operators',
+        returnFocus: false,
       }}
       overlay={
         <OperatorsDropdown

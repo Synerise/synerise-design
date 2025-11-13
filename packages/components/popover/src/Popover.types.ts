@@ -34,6 +34,11 @@ export type PopoverOptions = {
   componentId?: string;
   autoUpdate?: boolean | AutoUpdateOptions;
   open?: boolean;
+  /**
+   * @default true
+   * set to false in order to prevent returning focus to the trigger element after popover closes
+   */
+  returnFocus?: boolean;
   offsetConfig?: OffsetConfig;
   flipConfig?: FlipConfig;
   shiftConfig?: ShiftConfig;

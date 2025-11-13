@@ -32,6 +32,7 @@ export const PopoverContent = forwardRef<
     descriptionId,
     transitionStyles,
     componentId,
+    returnFocus = true,
     zIndex,
   } = usePopoverContext();
   const theme = useTheme();
@@ -74,6 +75,7 @@ export const PopoverContent = forwardRef<
         initialFocus={-1}
         context={floatingContext}
         modal={modal}
+        returnFocus={returnFocus}
       >
         <div
           {...dataProps}
