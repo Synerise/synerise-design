@@ -205,6 +205,7 @@ const ParameterInput = ({
         }
         popoverProps={{
           testId: 'factors-parameters',
+          returnFocus: false,
         }}
       >
         {trigger}
