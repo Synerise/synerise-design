@@ -7,7 +7,7 @@ const chalk = require('chalk');
 const inquirer = require('inquirer');
 const copyTemplateDir = require('copy-template-dir');
 
-const { getPackages, toPackageName } = require('../utils/packages.js');
+const { toPackageName } = require('../utils/packages.js');
 const { createComponent } = require('../utils/templates.js');
 const { smush, pascalize } = require('../utils/string.js');
 
@@ -28,12 +28,7 @@ const copyPackageFromTemplateDir = (source, dest, vars) => {
 };
 
 async function main() {
-  const packages = await getPackages();
-  const packagesMap = packages.reduce((acc, pkg) => ({
-    ...acc,
-    [pkg.name]: pkg.version,
-  }));
-
+  
   const suggestedExternalDependencies = [];
 
   const suggestedDependencies = ['button', 'typography', 'card'].map(toPackageName);
