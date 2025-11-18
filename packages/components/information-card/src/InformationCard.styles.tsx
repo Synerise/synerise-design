@@ -3,6 +3,8 @@ import styled, { createGlobalStyle, css } from 'styled-components';
 import { CardStyles } from '@synerise/ds-card';
 import { DescriptionCopyable } from '@synerise/ds-description';
 import DSDivider from '@synerise/ds-divider';
+import { Container } from '@synerise/ds-skeleton/dist/Skeleton.styles';
+import { StatusTag } from '@synerise/ds-status/dist/Status.styles';
 import { macro } from '@synerise/ds-typography';
 
 const INFOCARD_WIDTH = 350;
@@ -184,6 +186,12 @@ export const InformationCardPropertyListWrapper = styled.div`
   flex-direction: column;
   padding: 0 16px 8px;
   gap: 8px;
+  ${Container} {
+    padding: 0;
+  }
+  ${StatusTag} {
+    margin: 0;
+  }
 `;
 export const InformationCardPropertyItem = styled.div`
   display: flex;
@@ -198,6 +206,7 @@ export const InformationCardPropertyItemLabel = styled.span`
 `;
 export const InformationCardPropertyItemValue = styled.span`
   ${macro.small}
+  flex-grow: 1;
   font-weight: 500;
 `;
 
