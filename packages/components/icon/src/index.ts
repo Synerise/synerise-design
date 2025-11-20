@@ -15,6 +15,8 @@ export * from './icons/XL';
 export * from './icons/additional';
 export { default as MimeTypeIcon } from './MimeTypeIcon/MimeTypeIcon';
 
+export { DynamicIcon } from './DynamicIcon/DynamicIcon';
+
 export type { MimeTypeIconsProps } from './MimeTypeIcon/MimeTypeIcon.types';
 export type { IconProps } from './Icon.types';
 export { medium, large, xLarge, color, additional };
