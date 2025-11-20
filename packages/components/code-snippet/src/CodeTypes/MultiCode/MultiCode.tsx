@@ -1,4 +1,3 @@
-import copy from 'copy-to-clipboard';
 import React from 'react';
 import AnimateHeight from 'react-animate-height';
 
@@ -6,7 +5,6 @@ import Icon, { ArrowDownCircleM, DuplicateS } from '@synerise/ds-icon';
 import Scrollbar from '@synerise/ds-scrollbar';
 
 import { type CodeSnippetProps } from '../../CodeSnippet.types';
-import CopyAction from '../../CopyAction/CopyAction';
 import Highlight from '../../Highlight/Highlight';
 import {
   ICON_CLASSNAME,
@@ -134,16 +132,19 @@ const MultiCode: React.FC<CodeSnippetProps> = ({
   const iconElement = React.useMemo(
     () =>
       !hideCopyButton && (
-        <CopyAction
-          tooltipTitleHover={tooltipTitleHover}
-          tooltipTitleClick={tooltipTitleClick}
-          className={ICON_CLASSNAME}
-          onClick={(): void => {
-            copy(children);
-            onCopy && onCopy();
+        <S.MultiIconCopy
+          copyValue={children}
+          texts={{
+            copyTooltip: tooltipTitleHover,
+            copiedTooltip: tooltipTitleClick,
           }}
-          icon={<DuplicateS />}
-          customTriggerComponent={customTriggerComponent}
+          onCopy={onCopy}
+          className={ICON_CLASSNAME}
+          icon={
+            customTriggerComponent || (
+              <Icon component={<DuplicateS />} size={24} />
+            )
+          }
         />
       ),
     [

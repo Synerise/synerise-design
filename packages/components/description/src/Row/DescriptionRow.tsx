@@ -1,6 +1,5 @@
 import React from 'react';
 
-import Copy from './Copy';
 import * as S from './DescriptionRow.styles';
 import { type DescriptionRowProps } from './DescriptionRow.types';
 import Star from './Star';
@@ -48,7 +47,7 @@ const DescriptionRow: React.FC<DescriptionRowProps> = ({
           </S.SuffixWrapper>
         )}
         {typeof copyValue === 'string' && (
-          <Copy copyValue={copyValue} texts={texts} />
+          <S.StyledCopyIcon copyValue={copyValue} texts={texts} />
         )}
       </S.RowValue>
     </S.RowWrapper>

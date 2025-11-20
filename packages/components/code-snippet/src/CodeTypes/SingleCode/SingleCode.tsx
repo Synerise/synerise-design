@@ -1,10 +1,8 @@
-import copy from 'copy-to-clipboard';
 import React from 'react';
 
-import { DuplicateS } from '@synerise/ds-icon';
+import Icon, { DuplicateS } from '@synerise/ds-icon';
 
 import { FontSize } from '../../CodeSnippet.types';
-import CopyAction from '../../CopyAction/CopyAction';
 import * as S from './SingleCode.styles';
 
 export interface SingleCodeProps {
@@ -29,16 +27,19 @@ const SingleCode: React.FC<SingleCodeProps> = ({
 }) => {
   const iconElement = React.useMemo(
     () => (
-      <CopyAction
-        tooltipTitleHover={tooltipTitleHover}
-        tooltipTitleClick={tooltipTitleClick}
-        className={S.ICON_CLASSNAME}
-        onClick={(): void => {
-          copy(children);
-          onCopy && onCopy();
+      <S.StyledCopyIcon
+        copyValue={children}
+        texts={{
+          copyTooltip: tooltipTitleHover,
+          copiedTooltip: tooltipTitleClick,
         }}
-        icon={<DuplicateS />}
-        customTriggerComponent={customTriggerComponent}
+        onCopy={onCopy}
+        icon={
+          customTriggerComponent || (
+            <Icon component={<DuplicateS />} size={24} />
+          )
+        }
+        className={S.ICON_CLASSNAME}
         data-testid="ds-copy-code-snippet"
       />
     ),

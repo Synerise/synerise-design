@@ -1,7 +1,7 @@
 import styled, { createGlobalStyle } from 'styled-components';
 
 import Button from '@synerise/ds-button';
-import Icon from '@synerise/ds-icon';
+import CopyIcon from '@synerise/ds-copy-icon';
 import { Input } from '@synerise/ds-input';
 import { Tag, TagsStyles } from '@synerise/ds-tags';
 
@@ -93,13 +93,13 @@ export const AddColorButton = styled(Button)`
   }
 `;
 
-export const CopyIcon = styled(Icon)`
+export const StyledCopyIcon = styled(CopyIcon)`
   display: none;
 `;
 
 export const ColorPickerInput = styled(Input)`
   &:hover {
-    ${CopyIcon} {
+    ${StyledCopyIcon} {
       display: flex;
     }
   }

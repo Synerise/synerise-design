@@ -1,5 +1,7 @@
 import styled from 'styled-components';
 
+import CopyIcon from '@synerise/ds-copy-icon';
+
 import { FontSize } from '../../CodeSnippet.types';
 
 export const FONT_SIZE_DEFAULT = FontSize.SMALL;
@@ -10,6 +12,18 @@ export const ContentIconWrapper = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
+`;
+
+export const StyledCopyIcon = styled(CopyIcon)`
+  && {
+    cursor: pointer;
+    background-color: ${(props): string => props.theme.palette['grey-100']};
+    color: ${(props): string => props.theme.palette['grey-400']};
+  }
+
+  &:hover {
+    color: ${(props): string => props.theme.palette['blue-600']};
+  }
 `;
 
 export const CodeSnippetWrapperSingle = styled.div<{
@@ -30,19 +44,6 @@ export const CodeSnippetWrapperSingle = styled.div<{
         padding-top: ${props.fontSize === FontSize.SMALL ? '4px' : '12px'};
         padding-bottom: ${props.fontSize === FontSize.SMALL ? '4px' : '12px'};
     `};
-  }
-  .copy {
-    cursor: pointer;
-    background-color: ${(props): string => props.theme.palette['grey-100']};
-    svg {
-      fill: ${(props): string => props.theme.palette['grey-400']};
-    }
-  }
-
-  .copy:hover {
-    svg {
-      fill: ${(props): string => props.theme.palette['blue-600']};
-    }
   }
 `;
 
