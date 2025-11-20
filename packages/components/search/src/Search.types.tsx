@@ -55,21 +55,6 @@ export type SearchProps<T extends AnyObject, U extends AnyObject> = {
   searchTooltipProps?: TooltipProps;
 };
 
-export type SearchState<T extends AnyObject> = {
-  isInputOpen: boolean;
-  label: T | null | undefined;
-  filteredParameters: T[];
-  filteredRecent: T[];
-  filteredSuggestions?: T[] | null;
-  isListVisible: boolean;
-  focusInputTrigger: boolean;
-  toggleInputTrigger: boolean;
-  isResultChosen: boolean;
-  itemsListWidth: number;
-  scrollbarScrollTop: number;
-  moveCursorToEnd: boolean;
-};
-
 export enum SelectResultDataKeys {
   RECENT = 'recent',
   SUGGESTIONS = 'suggestions',
