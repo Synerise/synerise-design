@@ -4,6 +4,7 @@ const { glob } = require('glob');
 const fs = require('fs');
 const path = require('path');
 const tpl = require('./template.js');
+const { generateObjectLiteral } = require('./generateObjectLiteral.js');
 
 const LIB_DIR = 'src/icons';
 const ADDITIONAL_LIB_DIR = 'src/icons/additional';
@@ -52,79 +53,88 @@ const kebabCaseFilename = filePath => {
 };
 
 const buildIconsSet = (path, libDir, indexDistFile, options = {}) => {
+  const iconComponentNames = [];
+  const { iconSet = '' } = options;
   glob(path, {}).then(function(files) {
-    const { iconSet = '' } = options
-    for (let file of files) {
-      const componentName = pascalCaseFilename(file);
-      const componentClassName = kebabCaseFilename(file);
-      fs.readFile(file, 'UTF-8', (err, content) => {
-        transform(
-          content,
-          {
-            template: tpl,
-            typescript: true,
-            plugins: ['@svgr/plugin-svgo', '@svgr/plugin-jsx'],
-            svgoConfig: {
-              "plugins": [
-                {
-                  name: "addAttributesToSVGElement",
-                  params: {
-                    attributes: [`data-testid="ds-icon-${componentClassName}"`]
-                  }
-                },
-                {
-                  name: 'prefixIds',
-                  params: {
-                    delim: '',
-                    prefix: () => `svg-${hash(file)}`,
-                  },
-                },
-                {
-                  name: "cleanupIds",
-                  params: {
-                    remove: true,
-                    minify: true,
-                    preservePrefixes: [`svg-${hash(file)}`]
-                  }
-                },
-                {
-                  name: 'addClassesToSVGElement',
-                  params: {
-                    className: `${componentClassName} ds-icon-set-${iconSet}`,
-                  }
-                },
-                'removeDimensions',
-                "removeTitle",
-                'convertStyleToAttrs',
-                {
-                  name: "removeAttrs",
-                  params: {
-                    attrs: 'enable-background',
-                    elemSeparator: ":",
-                    preserveCurrentColor: false
-                  }
-                },
-                {
-                  name: "inlineStyles",
-                  params: {
-                    onlyMatchedOnce: false,
-                    removeMatchedSelectors: true
-                  }
+    return Promise.all(files.map(file => {  
+        const componentName = pascalCaseFilename(file);
+        const componentClassName = kebabCaseFilename(file);
+        return new Promise((resolve, reject) => {
+          fs.readFile(file, 'UTF-8', (err, content) => {
+            transform(
+              content,
+              {
+                template: tpl,
+                typescript: true,
+                plugins: ['@svgr/plugin-svgo', '@svgr/plugin-jsx'],
+                svgoConfig: {
+                  "plugins": [
+                    {
+                      name: "addAttributesToSVGElement",
+                      params: {
+                        attributes: [`data-testid="ds-icon-${componentClassName}"`]
+                      }
+                    },
+                    {
+                      name: 'prefixIds',
+                      params: {
+                        delim: '',
+                        prefix: () => `svg-${hash(file)}`,
+                      },
+                    },
+                    {
+                      name: "cleanupIds",
+                      params: {
+                        remove: true,
+                        minify: true,
+                        preservePrefixes: [`svg-${hash(file)}`]
+                      }
+                    },
+                    {
+                      name: 'addClassesToSVGElement',
+                      params: {
+                        className: `${componentClassName} ds-icon-set-${iconSet}`,
+                      }
+                    },
+                    'removeDimensions',
+                    "removeTitle",
+                    'convertStyleToAttrs',
+                    {
+                      name: "removeAttrs",
+                      params: {
+                        attrs: 'enable-background',
+                        elemSeparator: ":",
+                        preserveCurrentColor: false
+                      }
+                    },
+                    {
+                      name: "inlineStyles",
+                      params: {
+                        onlyMatchedOnce: false,
+                        removeMatchedSelectors: true
+                      }
+                    }
+                  ]
                 }
-              ]
-            }
-          },
-          { componentName }
-        ).then(jsCode => {
-          fs.writeFile(`${libDir}/${componentName}.tsx`, jsCode, function(err) {
-            fs.appendFileSync(indexDistFile, `export { default as ${componentName} } from './${componentName}';\n`);
-            if (err) {
-              return console.log(err);
-            }
+              },
+              { componentName }
+            ).then(jsCode => {
+              iconComponentNames.unshift(componentName);
+              fs.writeFile(`${libDir}/${componentName}.tsx`, jsCode, function(err) {
+                fs.appendFileSync(indexDistFile, `import { default as ${componentName} } from './${componentName}';\nexport { default as ${componentName} } from './${componentName}';\n`);
+                if (err) {
+                  return console.log(err);
+                }
+              });
+              resolve(componentName);
+            });
           });
-        });
-      });
-    }
+        })
+      
+      }))
+  }).then(() => {
+    const mapping = generateObjectLiteral(iconComponentNames);
+    fs.appendFileSync(indexDistFile, `\n\n export const ${iconSet}IconMapping = ${mapping} \n\n`);
   });
 };
 
