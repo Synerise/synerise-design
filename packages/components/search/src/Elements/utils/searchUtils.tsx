@@ -1,3 +1,6 @@
+import { type AnyObject } from '../../Search.types';
+import { LIST_HEADER_HEIGHT } from '../../const';
+
 export const getAllElementsFiltered = <T extends object>(
   data: T[] | undefined | null,
   value: string,
@@ -33,3 +36,16 @@ export const hasSomeElementFiltered = <T extends object>(
 export const hasSomeElement = (
   data: Record<string, unknown>[] | undefined,
 ): boolean => !!data && data.length > 0;
+
+export const getParametersScrollTop = ({
+  scrollTop,
+  rowHeight,
+  recent,
+}: {
+  scrollTop: number;
+  rowHeight: number;
+  recent: AnyObject[];
+}): number =>
+  scrollTop -
+  LIST_HEADER_HEIGHT -
+  (hasSomeElement(recent) ? recent.length * rowHeight : 0);
