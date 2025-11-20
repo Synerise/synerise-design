@@ -1,7 +1,8 @@
 import styled, { createGlobalStyle, css } from 'styled-components';
 
 import { CardStyles } from '@synerise/ds-card';
-import { DescriptionCopyable } from '@synerise/ds-description';
+import CopyIcon from '@synerise/ds-copy-icon';
+import { RowWrapper } from '@synerise/ds-description/dist/Row/DescriptionRow.styles';
 import DSDivider from '@synerise/ds-divider';
 import { Container } from '@synerise/ds-skeleton/dist/Skeleton.styles';
 import { StatusTag } from '@synerise/ds-status/dist/Status.styles';
@@ -13,10 +14,23 @@ export const Flex = styled.div`
   display: flex;
 `;
 
-export const Copyable = styled(DescriptionCopyable)`
+export const Copyable = styled(CopyIcon)`
   display: flex;
   align-items: center;
   height: 20px;
+  visibility: hidden;
+  position: relative;
+  margin-left: 8px;
+  opacity: 0;
+`;
+
+export const CopyWrapper = styled(RowWrapper)`
+  &:hover {
+    ${Copyable} {
+      visibility: visible;
+      opacity: 1;
+    }
+  }
 `;
 
 export const Divider = styled(DSDivider)`

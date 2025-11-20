@@ -2,7 +2,6 @@ import 'rc-trigger/assets/index.less';
 import React, { forwardRef, useEffect, useRef, useState } from 'react';
 
 import Card from '@synerise/ds-card';
-import { RowWrapper } from '@synerise/ds-description/dist/Row/DescriptionRow.styles';
 import { SegmentM } from '@synerise/ds-icon';
 import { useResizeObserver } from '@synerise/ds-utils';
 
@@ -49,7 +48,7 @@ const InformationCard = forwardRef<HTMLDivElement, InformationCardProps>(
     const { height } = useResizeObserver(mainSlideRef);
     const copyableSlot = (content: string) =>
       content && (
-        <RowWrapper copyable>
+        <S.CopyWrapper copyable>
           <S.Flex
             style={{
               backgroundColor: '',
@@ -66,7 +65,7 @@ const InformationCard = forwardRef<HTMLDivElement, InformationCardProps>(
               }}
             />
           </S.Flex>
-        </RowWrapper>
+        </S.CopyWrapper>
       );
 
     const hasFooter = !!(footerText || actionButton || actionsMenu);

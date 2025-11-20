@@ -59,6 +59,7 @@
     "@synerise/ds-condition": "^1.5.1",
     "@synerise/ds-confirmation": "^1.1.28",
     "@synerise/ds-context-selector": "^1.2.1",
+    "@synerise/ds-copy-icon": "^1.0.0",
     "@synerise/ds-core": "^1.8.0",
     "@synerise/ds-cruds": "^1.0.22",
     "@synerise/ds-data-format": "^1.1.2",

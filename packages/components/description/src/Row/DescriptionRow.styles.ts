@@ -1,5 +1,6 @@
 import styled, { css } from 'styled-components';
 
+import CopyIcon from '@synerise/ds-copy-icon';
 import { IconContainer } from '@synerise/ds-icon';
 
 export const RowLabel = styled.span`
@@ -61,6 +62,13 @@ export const Copyable = styled.div`
   }
 `;
 
+export const StyledCopyIcon = styled(CopyIcon)`
+  visibility: hidden;
+  position: relative;
+  margin-left: 8px;
+  opacity: 0;
+`;
+
 export const RowWrapper = styled.div<{ copyable: boolean }>`
   width: 100%;
   ${Copyable} {
@@ -75,6 +83,12 @@ export const RowWrapper = styled.div<{ copyable: boolean }>`
   }
   &:hover {
     ${Copyable} {
+      visibility: visible;
+      opacity: 1;
+    }
+  }
+  &:hover {
+    ${StyledCopyIcon} {
       visibility: visible;
       opacity: 1;
     }

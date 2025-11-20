@@ -28,6 +28,10 @@
       "RECENT": "Recent",
       "ALL": "All"
     },
+    "COPY-ICON": {
+      "COPIED": "Copied!",
+      "COPY-VALUE": "Copy"
+    },
     "DESCRIPTION": {
       "COPY-VALUE": "Copy value",
       "COPIED": "Copied"
