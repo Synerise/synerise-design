@@ -35,6 +35,7 @@
   ],
   "types": "dist/index.d.ts",
   "dependencies": {
+    "@floating-ui/react": "^0.27.16",
     "@synerise/ds-form-field": "^1.1.19",
     "@synerise/ds-icon": "^1.8.0",
     "@synerise/ds-scrollbar": "^1.2.0",
@@ -48,6 +49,7 @@
     "@synerise/ds-core": "*",
     "antd": "4.24.16",
     "react": ">=16.9.0 <= 18.3.1",
+    "react-intl": ">= 3.12.0 <= 6.8",
     "styled-components": "^5.3.3"
   }
 }
