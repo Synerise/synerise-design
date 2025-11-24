@@ -24,7 +24,11 @@ import {
 } from './const';
 import './style/index.less';
 
-export function Search<T extends AnyObject, U extends AnyObject>({
+export function Search<
+  T extends AnyObject,
+  U extends AnyObject,
+  S extends AnyObject,
+>({
   divider,
   dropdownMaxHeight,
   width,
@@ -51,7 +55,7 @@ export function Search<T extends AnyObject, U extends AnyObject>({
   disableInput,
   inputProps,
   searchTooltipProps,
-}: SearchProps<T, U>) {
+}: SearchProps<T, U, S>) {
   const wrapperRef = useRef<HTMLDivElement>(null);
 
   const [label, setLabel] = useState<T | null>(() => {
@@ -68,7 +72,7 @@ export function Search<T extends AnyObject, U extends AnyObject>({
   const [filteredParameters, setFilteredParameters] =
     useState<(T | U)[]>(parameters);
   const [filteredRecent, setFilteredRecent] = useState<T[]>(recent);
-  const [filteredSuggestions, setFilteredSuggestions] = useState<T[] | null>(
+  const [filteredSuggestions, setFilteredSuggestions] = useState<S[] | null>(
     suggestions ?? null,
   );
 
@@ -97,7 +101,7 @@ export function Search<T extends AnyObject, U extends AnyObject>({
 
   useEffect(() => {
     setFilteredRecent(
-      getAllElementsFiltered(recent, value, textLookupConfig.recent) as T[],
+      getAllElementsFiltered(recent, value, textLookupConfig.recent),
     );
   }, [recent, value, textLookupConfig.recent]);
 
@@ -105,11 +109,11 @@ export function Search<T extends AnyObject, U extends AnyObject>({
     setFilteredParameters(
       parameterValue
         ? parameters
-        : (getAllElementsFiltered(
+        : getAllElementsFiltered(
             parameters,
             value,
             textLookupConfig.parameters,
-          ) as T[]),
+          ),
     );
   }, [parameters, value, parameterValue, textLookupConfig.parameters]);
 
@@ -117,10 +121,10 @@ export function Search<T extends AnyObject, U extends AnyObject>({
     if (suggestions) {
       setFilteredSuggestions(
         getAllElementsFiltered(
-          suggestions as unknown as U[],
+          suggestions,
           value,
-          textLookupConfig.suggestions as keyof U,
-        ) as T[],
+          textLookupConfig.suggestions,
+        ),
       );
     } else {
       setFilteredSuggestions(null);
@@ -221,7 +225,7 @@ export function Search<T extends AnyObject, U extends AnyObject>({
         textLookupConfig.suggestions,
       );
 
-      setFilteredSuggestions(matchingSuggestions as T[]);
+      setFilteredSuggestions(matchingSuggestions);
       setIsResultChosen(false);
       setIsListVisible(matchingSuggestions.length > 0);
     } else {
@@ -237,8 +241,8 @@ export function Search<T extends AnyObject, U extends AnyObject>({
         textLookupConfig.parameters,
       );
 
-      setFilteredParameters(matchingParameters as T[]);
-      setFilteredRecent(matchingRecent as T[]);
+      setFilteredParameters(matchingParameters);
+      setFilteredRecent(matchingRecent);
       setIsResultChosen(false);
       setIsListVisible(
         matchingRecent.length > 0 || matchingParameters.length > 0,

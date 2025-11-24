@@ -1,11 +1,11 @@
 import { type AnyObject } from '../../Search.types';
 import { LIST_HEADER_HEIGHT } from '../../const';
 
-export const getAllElementsFiltered = <T extends object>(
+export const getAllElementsFiltered = <T extends AnyObject>(
   data: T[] | undefined | null,
   value: string,
   elementTextLookupKey: keyof T,
-): object[] => {
+): T[] => {
   return (
     (data &&
       data.filter((el) =>
@@ -17,7 +17,7 @@ export const getAllElementsFiltered = <T extends object>(
   );
 };
 
-export const hasSomeElementFiltered = <T extends object>(
+export const hasSomeElementFiltered = <T extends AnyObject>(
   data: T[] | undefined | null,
   currentValue: string,
   elementTextLookupKey: keyof T,
