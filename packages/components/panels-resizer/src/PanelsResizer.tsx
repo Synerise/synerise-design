@@ -68,6 +68,7 @@ export const PanelsResizer = ({
 
   const handleMouseDownOnResizer = useCallback(
     (event: MouseEvent<HTMLDivElement>) => {
+      event.preventDefault();
       setIsResizing(true);
       startClientXRef.current = event.clientX;
     },
