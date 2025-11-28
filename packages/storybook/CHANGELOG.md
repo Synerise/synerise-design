@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.27.0](https://github.com/Synerise/synerise-design/compare/storybook@1.26.1...storybook@1.27.0) (2025-11-28)
+
+
+### Bug Fixes
+
+* **information-card:** styles 4 components within property list ([0155693](https://github.com/Synerise/synerise-design/commit/01556934649db5aefdc3525fea6862e26b8853a4))
+
+
+### Features
+
+* **icon:** dynamic icon ([585fb33](https://github.com/Synerise/synerise-design/commit/585fb331c86c55e7368c6cc0c5707db85c9e6d72))
+
+
+
+
+
 ## [1.26.1](https://github.com/Synerise/synerise-design/compare/storybook@1.26.0...storybook@1.26.1) (2025-11-13)
 
 

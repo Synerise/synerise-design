@@ -1,6 +1,6 @@
 {
   "name": "@synerise/ds-broadcast-bar",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "BroadcastBar UI Component for the Synerise Design System",
   "license": "ISC",
   "repository": "Synerise/synerise-design",
@@ -34,7 +34,7 @@
   ],
   "types": "dist/index.d.ts",
   "dependencies": {
-    "@synerise/ds-icon": "^1.8.0",
+    "@synerise/ds-icon": "^1.9.0",
     "animate.css": "^4.1.1"
   },
   "peerDependencies": {

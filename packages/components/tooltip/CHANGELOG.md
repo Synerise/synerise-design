@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.3.1](https://github.com/synerise/synerise-design/compare/@synerise/ds-tooltip@1.3.0...@synerise/ds-tooltip@1.3.1) (2025-11-28)
+
+
+### Bug Fixes
+
+* package.json - missing deps ([77c6563](https://github.com/synerise/synerise-design/commit/77c6563cded8c1f4aae754b91cfdd6f2ce5539c5))
+
+
+
+
+
 # [1.3.0](https://github.com/synerise/synerise-design/compare/@synerise/ds-tooltip@1.2.1...@synerise/ds-tooltip@1.3.0) (2025-11-06)
 
 

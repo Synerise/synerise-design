@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.5.2](https://github.com/Synerise/synerise-design/compare/@synerise/ds-card-tabs@1.5.1...@synerise/ds-card-tabs@1.5.2) (2025-11-28)
+
+
+### Bug Fixes
+
+* **card-tabs:** persist suffix visibility ([2fe182d](https://github.com/Synerise/synerise-design/commit/2fe182d08869c43f9dbe6d4b67cd2e7b70d8643f))
+
+
+
+
+
 ## [1.5.1](https://github.com/Synerise/synerise-design/compare/@synerise/ds-card-tabs@1.5.0...@synerise/ds-card-tabs@1.5.1) (2025-11-13)
 
 **Note:** Version bump only for package @synerise/ds-card-tabs
