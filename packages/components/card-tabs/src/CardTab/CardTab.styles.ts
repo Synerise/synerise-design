@@ -11,6 +11,9 @@ export const CardTabSuffix = styled.div`
   justify-content: flex-end;
   height: 24px;
   display: none;
+  :has([data-popover-trigger][data-state='open']) {
+    display: flex;
+  }
 `;
 
 export const CardTabName = styled.span`
