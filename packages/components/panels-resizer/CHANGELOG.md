@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.0.22](https://github.com/Synerise/synerise-design/compare/@synerise/ds-panels-resizer@1.0.21...@synerise/ds-panels-resizer@1.0.22) (2025-12-01)
+
+
+### Bug Fixes
+
+* **panels-resizer:** ignore text selection on drag ([1215b61](https://github.com/Synerise/synerise-design/commit/1215b61a9e552d51d46317acbeb364a729182ecd))
+
+
+
+
+
 ## [1.0.21](https://github.com/Synerise/synerise-design/compare/@synerise/ds-panels-resizer@1.0.20...@synerise/ds-panels-resizer@1.0.21) (2025-11-28)
 
 **Note:** Version bump only for package @synerise/ds-panels-resizer
