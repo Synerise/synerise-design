@@ -40,5 +40,7 @@ export type LayoutProps = {
   renderRightSidebarControls?: boolean | (() => ReactNode);
   leftSidebarWithDnd?: boolean;
   rightSidebarWithDnd?: boolean;
+  leftSidebarWithScrollbar?: boolean;
+  rightSidebarWithScrollbar?: boolean;
   mainSidebarWithDnd?: boolean;
 };
