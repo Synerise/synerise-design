@@ -16,7 +16,8 @@ import { useIsMounted } from '@synerise/ds-utils';
 import { MODAL_VIEWPORT_HEIGHT } from '../Array.const';
 import * as S from '../Array.styles';
 import { type ArrayModalProps, type ArrayValueWithID } from '../Array.types';
-import { arrayWithUUID } from '../Array.utils';
+import { arrayWithUUID, sanitiseValues } from '../Array.utils';
+import { type ArrayValueElement } from './../../../Factors.types';
 import { ArrayCreator } from './ArrayCreator';
 import { ArrayLimit } from './ArrayLimit';
 import { ArrayRaw } from './ArrayRaw';
@@ -49,7 +50,12 @@ export const ArrayModal = <ItemType extends 'string' | 'number'>({
   };
 
   const plainArrayValue = useMemo(
-    () => arrayValue.map((item) => item.value),
+    () =>
+      arrayValue.map((item) =>
+        typeof item.value === 'string'
+          ? (sanitiseValues(item.value) as ArrayValueElement<ItemType>)
+          : item.value,
+      ),
     [arrayValue],
   );
 
