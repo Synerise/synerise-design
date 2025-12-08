@@ -387,8 +387,8 @@ export const ArrayEditorModifyValues: StoryObj<FactorsProps> = {
 
     await waitFor(() =>
       expect(args.onChangeValue).toHaveBeenCalledWith([
+        'TEST VALUE',
         'TEST VALUE 2',
-        'TEST VALUE 3',
         'item1',
         'item2',
         'item3',
