@@ -115,7 +115,9 @@ export const AddTag: Story = {
       ).toBeInTheDocument(),
     );
     await waitFor(() =>
-      expect(canvas.getByTestId('ds-tags-dropdown-overlay')).not.toBeVisible(),
+      expect(
+        canvas.queryByTestId('ds-tags-dropdown-overlay'),
+      ).not.toBeInTheDocument(),
     );
   },
 };
