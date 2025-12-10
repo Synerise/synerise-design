@@ -1,4 +1,16 @@
 {
+  "entry": [
+    "src/index.ts",
+    "src/index.tsx"
+  ],
+  "project": [
+    "src/**/*.{ts,tsx}"
+  ],
+  "ignore": [
+    "**/__specs__/**",
+    "**/*.spec.ts",
+    "**/*.spec.tsx"
+  ],
   "ignoreDependencies": [
     "@testing-library/jest-dom",
     "@testing-library/react",
@@ -11,8 +23,16 @@
     "react-dom",
     "react-intl"
   ],
-  "ignoreBinaries": ["babel", "tsc", "jest", "madge", "ncu", "knip", "eslint",
+  "ignoreBinaries": [
+    "babel",
+    "tsc",
+    "jest",
+    "madge",
+    "ncu",
+    "knip",
+    "eslint",
     "prettier",
     "chromatic",
-    "test-storybook"]
+    "test-storybook"
+  ]
 }
