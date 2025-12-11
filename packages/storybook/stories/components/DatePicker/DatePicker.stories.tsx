@@ -1,7 +1,6 @@
 import dayjs from 'dayjs';
 import moment from 'moment';
 import React, { useState } from 'react';
-import { action } from 'storybook/actions';
 
 import { Meta, StoryObj } from '@storybook/react-webpack5';
 import DatePicker from '@synerise/ds-date-picker';

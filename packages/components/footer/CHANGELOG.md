@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.0.30](https://github.com/Synerise/synerise-design/compare/@synerise/ds-footer@1.0.29...@synerise/ds-footer@1.0.30) (2025-11-28)
+
+**Note:** Version bump only for package @synerise/ds-footer
+
+
+
+
+
+## [1.0.29](https://github.com/Synerise/synerise-design/compare/@synerise/ds-footer@1.0.28...@synerise/ds-footer@1.0.29) (2025-11-06)
+
+**Note:** Version bump only for package @synerise/ds-footer
+
+
+
+
+
 ## [1.0.28](https://github.com/Synerise/synerise-design/compare/@synerise/ds-footer@1.0.27...@synerise/ds-footer@1.0.28) (2025-10-22)
 
 **Note:** Version bump only for package @synerise/ds-footer

@@ -1,4 +1,3 @@
-import copy from 'copy-to-clipboard';
 import React, {
   type ChangeEvent,
   useCallback,
@@ -11,7 +10,7 @@ import { HexColorPicker as ReactColorful } from 'react-colorful';
 
 import Divider from '@synerise/ds-divider';
 import Dropdown from '@synerise/ds-dropdown';
-import Icon, { CopyClipboardM, FormulaPlusM } from '@synerise/ds-icon';
+import Icon, { FormulaPlusM } from '@synerise/ds-icon';
 import Tags, { Tag, TagShape } from '@synerise/ds-tags';
 import Tooltip from '@synerise/ds-tooltip';
 import {
@@ -43,7 +42,6 @@ const ColorPicker = ({
   placeholder,
   inputProps,
   maxSavedColors = 9,
-  tooltip,
   isShownSavedColors,
   size = 'M',
   errorText,
@@ -51,6 +49,7 @@ const ColorPicker = ({
   disabled,
   error,
   readOnly,
+  tooltip,
 }: ColorPickerProps) => {
   const [colorTextInput, setColorTextInput] = useState(value);
   const [colorHexInput, setColorHexInput] = useState(value);
@@ -60,7 +59,6 @@ const ColorPicker = ({
   const [pressed, setPressed] = useState(-1);
   const [dropdownVisible, setDropdownVisible] = useState(false);
   const [savedColors, setSavedColors] = useState(colors);
-  const [tooltipText, setTooltipText] = useState(tooltip?.copy);
 
   const setLocalValues = useCallback((colorValue: string) => {
     setColorTextInput(colorValue);
@@ -114,14 +112,6 @@ const ColorPicker = ({
   const onClickHandler = useCallback(() => {
     setDropdownVisible(!dropdownVisible);
   }, [dropdownVisible]);
-
-  const copyHandler = useCallback(() => {
-    lastValidHexColor && copy(lastValidHexColor);
-    setTooltipText(tooltip?.copied);
-    setTimeout(() => {
-      setTooltipText(tooltip?.copy);
-    }, 3000);
-  }, [lastValidHexColor, tooltip]);
 
   useEffect(() => {
     if (value && (isValidHexColor(value) || isValidTextColor(value))) {
@@ -214,14 +204,14 @@ const ColorPicker = ({
           onBlur={onBlurHandler}
           placeholder={placeholder}
           icon1={
-            tooltipText ? (
-              <S.CopyIcon
-                onClick={copyHandler}
-                component={<CopyClipboardM />}
-              />
-            ) : undefined
+            <S.StyledCopyIcon
+              copyValue={lastValidHexColor ?? ''}
+              texts={{
+                copyTooltip: tooltip?.copy,
+                copiedTooltip: tooltip?.copied,
+              }}
+            />
           }
-          icon1Tooltip={tooltipText ? <span>{tooltipText}</span> : undefined}
         />
         {isShownSavedColors && (
           <div>
@@ -282,12 +272,14 @@ const ColorPicker = ({
         <S.ColorPickerModalStyle maxWidth={maxWidth} />
       )}
       <Dropdown
-        overlayClassName="color-picker-overlay"
+        className="color-picker-overlay"
         align={{ offset: [0, heightOfDropdown()] }}
-        visible={dropdownVisible}
+        open={dropdownVisible}
         overlay={dropdown}
         placement="bottomLeft"
+        asChild
         getPopupContainer={getPopupContainer}
+        popoverProps={{ testId: 'color-picker' }}
       >
         {trigger}
       </Dropdown>

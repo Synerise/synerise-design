@@ -31,4 +31,5 @@ export const PickerWrapper = styled.div`
 `;
 export const OverlayContainer = styled.div`
   overflow: visible;
+  min-width: 318px;
 `;

@@ -1,138 +1,109 @@
-import AntdDropdown, {
-  type DropDownProps as AntDropDownProps,
-  type DropdownButtonProps,
-} from 'antd/lib/dropdown';
-import React, {
-  type ComponentType,
-  type ReactNode,
-  useCallback,
-  useEffect,
-  useRef,
-  useState,
-} from 'react';
+import React, { type ComponentType, useMemo, useState } from 'react';
 
-import '@synerise/ds-core/dist/js/style';
-import SearchBar from '@synerise/ds-search-bar/';
-import { getPopupContainer } from '@synerise/ds-utils';
+import SearchBar from '@synerise/ds-search-bar';
+import { getPopupContainer as getPopupContainerDefault } from '@synerise/ds-utils';
 
-import { OverlayWrapper, Wrapper } from './Dropdown.styles';
-import BackAction from './elements/BackAction/BackAction';
-import BottomAction from './elements/BottomAction/BottomAction';
-import TextTrigger from './elements/TextTrigger/TextTrigger';
-import './style/index.less';
+import { Wrapper } from './Dropdown.styles';
+import { type DropdownProps } from './Dropdown.types';
+import { BackAction } from './components/BackAction/BackAction';
+import { BottomAction } from './components/BottomAction/BottomAction';
+import { DropdownFooter } from './components/DropdownFooter/DropdownFooter';
+import { MenuWrapper } from './components/DropdownMenuList/DropdownMenuList.styles';
+import { DropdownPopover } from './components/DropdownPopover/DropdownPopover';
+import { TextTrigger } from './components/TextTrigger/TextTrigger';
+import { useDropdownVisibility } from './hooks/useDropdownVisibility';
 
-export type DropdownProps = AntDropDownProps & {
-  destroyPopupOnHide?: boolean;
-  hideOnItemClick?: string | boolean;
-};
-
-type DropdownButtonType = ComponentType<DropdownButtonProps>;
-
-const topPlacements = ['topLeft', 'topRight', 'topCenter'];
 type SubComponents = {
   Wrapper: typeof Wrapper;
+  MenuWrapper: typeof MenuWrapper;
   SearchInput: typeof SearchBar;
   BottomAction: typeof BottomAction;
   BackAction: typeof BackAction;
-  Button: DropdownButtonType;
   TextTrigger: typeof TextTrigger;
 };
 
-const Dropdown: ComponentType<DropdownProps> & SubComponents = ({
+export const Dropdown: ComponentType<DropdownProps> & SubComponents = ({
   hideOnItemClick,
   placement,
   dropdownRender,
-  visible,
   open,
-  onVisibleChange,
   onOpenChange,
+  onDismiss,
   overlay,
-  ...rest
+  trigger = 'click',
+  size,
+  asChild,
+  children,
+  overlayStyle,
+  overlayClassName,
+  disabled,
+  destroyPopupOnHide, // unused
+  align, // unused
+  getPopupContainer = getPopupContainerDefault,
+  popoverProps,
+  popoverTriggerProps,
+  footer,
+  ...htmlAttributes
 }: DropdownProps) => {
-  const openMerged = open !== undefined ? open : visible;
-  const onOpenChangeMerged =
-    onOpenChange !== undefined ? onOpenChange : onVisibleChange;
-
-  const [isOpen, setIsOpen] = useState(openMerged || false);
-  const overlayWrapperRef = useRef<HTMLDivElement | null>(null);
-
-  useEffect(() => {
-    openMerged !== undefined && setIsOpen(openMerged);
-  }, [openMerged]);
-
-  const handleOpenChange = (newIsOpen: boolean) => {
-    onOpenChangeMerged && onOpenChangeMerged(newIsOpen);
-    setIsOpen(newIsOpen);
-  };
-  const offsetVertical =
-    topPlacements.find((topPlacement) => topPlacement === placement) !==
-    undefined
-      ? -8
-      : 8;
-
-  const renderContent = useCallback(
-    (originNode: ReactNode) => {
-      if (overlay) {
-        return typeof overlay === 'function' ? overlay() : overlay;
-      }
-      return dropdownRender && dropdownRender(originNode);
-    },
-    [dropdownRender, overlay],
-  );
-
-  const renderOverlay = useCallback(
-    (originNode: ReactNode) => (
-      <OverlayWrapper ref={overlayWrapperRef}>
-        {renderContent(originNode)}
-      </OverlayWrapper>
-    ),
-    [renderContent],
-  );
-
-  useEffect(() => {
-    const handleOverlayClick = (event: MouseEvent) => {
-      if (
-        overlayWrapperRef.current &&
-        hideOnItemClick &&
-        event.target instanceof HTMLElement
-      ) {
-        const itemSelector =
-          typeof hideOnItemClick === 'string'
-            ? hideOnItemClick
-            : '[role="menuitem"]';
-        const listItem = event.target.closest(itemSelector);
-        if (overlayWrapperRef.current.contains(listItem)) {
-          setIsOpen(false);
-        }
-      }
-    };
-    const overlayNode = overlayWrapperRef.current;
-    overlayNode && overlayNode.addEventListener('click', handleOverlayClick);
-    return () => {
-      overlayNode &&
-        overlayNode.removeEventListener('click', handleOverlayClick);
-    };
+  const { open: isOpen, toggleOpen } = useDropdownVisibility({
+    open,
+    onOpenChange,
   });
+  const [activeIndex, setActiveIndex] = useState<number | null>(null);
 
-  return (
-    <AntdDropdown
+  const renderedOverlay = useMemo(() => {
+    return overlay ? overlay : dropdownRender && dropdownRender();
+  }, [dropdownRender, overlay]);
+
+  const isTriggeredByClick = Array.isArray(trigger)
+    ? trigger.includes('click')
+    : trigger === 'click';
+
+  return disabled ? (
+    <>{children}</>
+  ) : (
+    <DropdownPopover
       getPopupContainer={getPopupContainer}
-      align={{ offset: [0, offsetVertical] }}
-      trigger={['click']}
+      overlayHTMLAttributes={htmlAttributes}
       open={isOpen}
-      onOpenChange={handleOpenChange}
-      dropdownRender={renderOverlay}
       placement={placement}
-      {...rest}
-    />
+      asChild={asChild}
+      overlay={
+        <>
+          {renderedOverlay}
+          {footer && <DropdownFooter footer={footer} />}
+        </>
+      }
+      handleOpenChange={toggleOpen}
+      handleTriggerClick={() => {
+        isTriggeredByClick && toggleOpen(!isOpen);
+      }}
+      hideOnItemClick={hideOnItemClick}
+      handleItemClick={() => {
+        if (hideOnItemClick) {
+          toggleOpen(false);
+        }
+      }}
+      onDismiss={onDismiss}
+      popoverProps={{ ...popoverProps, componentId: 'dropdown' }}
+      popoverTriggerProps={popoverTriggerProps}
+      trigger={trigger}
+      size={size}
+      overlayStyle={overlayStyle}
+      overlayClassName={overlayClassName}
+      activeIndex={activeIndex}
+      setActiveIndex={setActiveIndex}
+    >
+      {children}
+    </DropdownPopover>
   );
 };
 
 Dropdown.Wrapper = Wrapper;
+Dropdown.MenuWrapper = MenuWrapper;
 Dropdown.SearchInput = SearchBar;
 Dropdown.BottomAction = BottomAction;
 Dropdown.BackAction = BackAction;
-Dropdown.Button = AntdDropdown.Button;
 Dropdown.TextTrigger = TextTrigger;
 
 export default Dropdown;

@@ -15,10 +15,5 @@ export const ActionCell = styled.div<{
   display: flex;
   align-items: center;
   justify-content: ${(props): string => align[props.contentAlign]};
-  & > * {
-    margin-right: ${(props): string => `${props.gapSize}px`};
-    &:last-child {
-      margin-right: 0;
-    }
-  }
+  gap: ${(props): string => `${props.gapSize}px`};
 `;

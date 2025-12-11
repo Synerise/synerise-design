@@ -1,18 +1,32 @@
 import React, { ReactText, useState } from 'react';
-import { v4 as uuid } from 'uuid';
+import { action } from 'storybook/internal/actions';
 import { fn } from 'storybook/test';
+import { v4 as uuid } from 'uuid';
 
 import Button from '@synerise/ds-button';
 import Condition, { ConditionStep } from '@synerise/ds-condition';
-import ContextSelector, { ContextGroup, ContextItem } from '@synerise/ds-context-selector';
+import ContextSelector, {
+  ContextGroup,
+  ContextItem,
+} from '@synerise/ds-context-selector';
 import { theme } from '@synerise/ds-core';
-import ItemPicker, { ItemPickerPropsNew } from '@synerise/ds-item-picker';
 import type { FactorValueType } from '@synerise/ds-factors';
-import type { OperatorsItem } from '@synerise/ds-operators';
 import Icon, { Add3M, SnippetM, UserDownM } from '@synerise/ds-icon';
+import ItemPicker, { ItemPickerPropsNew } from '@synerise/ds-item-picker';
+import type { OperatorsItem } from '@synerise/ds-operators';
 
-import type { ConditionMeta, ConditionStory } from './Condition.types';
-
+import {
+  BOOLEAN_CONTROL,
+  NUMBER_CONTROL,
+  controlFromOptionsArray,
+  fixedWrapper300,
+} from '../../utils';
+import {
+  CONTEXT_CLIENT_GROUPS,
+  CONTEXT_CLIENT_ITEMS,
+} from '../ContextSelector/data/client.data';
+import { CONTEXT_TEXTS } from '../ContextSelector/data/context.data';
+import { ITEMS_IN_SECTIONS, SECTIONS } from '../ItemPicker/ItemPicker.data';
 import {
   CONDITION_TEXTS,
   DEFAULT_ACTION_ATTRIBUTE_VALUE,
@@ -24,12 +38,7 @@ import {
   DEFAULT_STEP,
   getAvailableFactorTypes,
 } from './Condition.data';
-
-import { CONTEXT_TEXTS } from '../ContextSelector/data/context.data';
-import { CONTEXT_CLIENT_GROUPS, CONTEXT_CLIENT_ITEMS } from '../ContextSelector/data/client.data';
-import { BOOLEAN_CONTROL, controlFromOptionsArray, fixedWrapper300, NUMBER_CONTROL } from '../../utils';
-import { ITEMS_IN_SECTIONS, SECTIONS } from '../ItemPicker/ItemPicker.data';
-import { action } from 'storybook/internal/actions';
+import type { ConditionMeta, ConditionStory } from './Condition.types';
 
 export default {
   component: Condition,
@@ -49,77 +58,96 @@ export default {
     const [steps, setSteps] = useState(args.steps);
     const [openedAddStep, setOpenedAddStep] = useState(false);
 
-    const handleChangeContext = (stepId: ReactText, item?: ContextItem | ContextGroup) => {
+    const handleChangeContext = (
+      stepId: ReactText,
+      item?: ContextItem | ContextGroup,
+    ) => {
       setSteps(
-        steps.map(step => {
+        steps.map((step) => {
           return step.id === stepId
             ? {
-              ...step,
-              context: {
-                ...DEFAULT_CONTEXT_VALUE,
-                ...step.context,
-                selectedItem: item as ContextItem,
-              },
-              conditions:
-                step.conditions.length === 0 && !showActionAttribute ? [DEFAULT_CONDITION_ROW()] : step.conditions,
-            }
+                ...step,
+                context: {
+                  ...DEFAULT_CONTEXT_VALUE,
+                  ...step.context,
+                  selectedItem: item as ContextItem,
+                },
+                conditions:
+                  step.conditions.length === 0 && !showActionAttribute
+                    ? [DEFAULT_CONDITION_ROW()]
+                    : step.conditions,
+              }
             : step;
-        })
+        }),
       );
       args.onChangeContext?.(stepId, item);
     };
 
-    const handleChangeActionAttribute = (stepId: ReactText, item?: FactorValueType) => {
+    const handleChangeActionAttribute = (
+      stepId: ReactText,
+      item?: FactorValueType,
+    ) => {
       setSteps(
-        steps.map(step => {
+        steps.map((step) => {
           return step.id === stepId
             ? {
-              ...step,
-              actionAttribute: {
-                ...DEFAULT_ACTION_ATTRIBUTE_VALUE,
-                ...step.actionAttribute,
-                value: item,
-              },
-              conditions: step.conditions.length === 0 ? [DEFAULT_CONDITION_ROW()] : step.conditions,
-            }
+                ...step,
+                actionAttribute: {
+                  ...DEFAULT_ACTION_ATTRIBUTE_VALUE,
+                  ...step.actionAttribute,
+                  value: item,
+                },
+                conditions:
+                  step.conditions.length === 0
+                    ? [DEFAULT_CONDITION_ROW()]
+                    : step.conditions,
+              }
             : step;
-        })
+        }),
       );
       args.onChangeActionAttribute?.(stepId, item);
     };
 
-    const handleChangeParameter = (stepId: ReactText, conditionId: ReactText, value: FactorValueType) => {
+    const handleChangeParameter = (
+      stepId: ReactText,
+      conditionId: ReactText,
+      value: FactorValueType,
+    ) => {
       setSteps(
-        steps.map(step => {
+        steps.map((step) => {
           return step.id === stepId
             ? {
-              ...step,
-              conditions: step.conditions?.map(condition => {
-                return conditionId === condition.id
-                  ? {
-                    ...condition,
-                    parameter: {
-                      ...DEFAULT_PARAMETER_VALUE,
-                      ...condition.parameter,
-                      value: value,
-                    },
-                  }
-                  : condition;
-              }),
-            }
+                ...step,
+                conditions: step.conditions?.map((condition) => {
+                  return conditionId === condition.id
+                    ? {
+                        ...condition,
+                        parameter: {
+                          ...DEFAULT_PARAMETER_VALUE,
+                          ...condition.parameter,
+                          value: value,
+                        },
+                      }
+                    : condition;
+                }),
+              }
             : step;
-        })
+        }),
       );
       args.onChangeParameter?.(stepId, conditionId, value);
     };
 
-    const handleChangeFactorValue = (stepId: ReactText, conditionId: ReactText, value: FactorValueType) => {
+    const handleChangeFactorValue = (
+      stepId: ReactText,
+      conditionId: ReactText,
+      value: FactorValueType,
+    ) => {
       setSteps(
-        steps.map(step => {
+        steps.map((step) => {
           if (step.id === stepId) {
             return {
               ...step,
-              conditions: step.conditions.map(condition => {
+              conditions: step.conditions.map((condition) => {
                 if (conditionId === condition.id) {
                   return {
                     ...condition,
@@ -127,7 +155,9 @@ export default {
                       ...DEFAULT_FACTOR_VALUE,
                       ...condition.factor,
                       textType: textFactorInputType,
-                      withCustomFactor: withCustomFactor && <span>Custom factor component</span>,
+                      withCustomFactor: withCustomFactor && (
+                        <span>Custom factor component</span>
+                      ),
                       value: value,
                     },
                   };
@@ -137,74 +167,88 @@ export default {
             };
           }
           return step;
-        })
+        }),
       );
       args.onChangeFactorValue?.(stepId, conditionId, value);
     };
 
-    const handleChangeFactorType = (stepId: ReactText, conditionId: ReactText, value?: string) => {
+    const handleChangeFactorType = (
+      stepId: ReactText,
+      conditionId: ReactText,
+      value?: string,
+    ) => {
       setSteps(
-        steps.map(step => {
+        steps.map((step) => {
           return value && step.id === stepId
             ? {
-              ...step,
-              conditions: step.conditions.map(condition => {
-                if (condition.id === conditionId) {
-                  return {
-                    ...condition,
-                    factor: {
-                      ...DEFAULT_FACTOR_VALUE,
-                      ...condition.factor,
-                      textType: textFactorInputType,
-                      withCustomFactor: withCustomFactor && <span>Custom factor component</span>,
-                      value: '',
-                      selectedFactorType: value,
-                    },
-                  };
-                }
-                return condition;
-              }),
-            }
+                ...step,
+                conditions: step.conditions.map((condition) => {
+                  if (condition.id === conditionId) {
+                    return {
+                      ...condition,
+                      factor: {
+                        ...DEFAULT_FACTOR_VALUE,
+                        ...condition.factor,
+                        textType: textFactorInputType,
+                        withCustomFactor: withCustomFactor && (
+                          <span>Custom factor component</span>
+                        ),
+                        value: '',
+                        selectedFactorType: value,
+                      },
+                    };
+                  }
+                  return condition;
+                }),
+              }
             : step;
-        })
+        }),
       );
       args.onChangeFactorType?.(stepId, conditionId, value);
     };
 
-    const handleChangeOperator = (stepId: ReactText, conditionId: ReactText, value?: OperatorsItem) => {
+    const handleChangeOperator = (
+      stepId: ReactText,
+      conditionId: ReactText,
+      value?: OperatorsItem,
+    ) => {
       setSteps(
-        steps.map(step => {
+        steps.map((step) => {
           return step.id === stepId
             ? {
-              ...step,
-              conditions: step.conditions.map(condition => {
-                if (conditionId === condition.id) {
-                  const availableFactorTypes = getAvailableFactorTypes(value);
+                ...step,
+                conditions: step.conditions.map((condition) => {
+                  if (conditionId === condition.id) {
+                    const availableFactorTypes = getAvailableFactorTypes(value);
 
-                  return {
-                    ...condition,
-                    operator: {
-                      ...DEFAULT_OPERATOR_VALUE,
-                      ...condition.operator,
-                      value: value,
-                    },
-                    factor: availableFactorTypes
-                      ? {
-                        ...DEFAULT_FACTOR_VALUE,
-                        ...condition.factor,
-                        textType: textFactorInputType,
-                        withCustomFactor: withCustomFactor && <span>Custom factor component</span>,
-                        availableFactorTypes,
-                        selectedFactorType: availableFactorTypes ? availableFactorTypes[0] : '',
-                      }
-                      : undefined,
-                  };
-                }
-                return condition;
-              }),
-            }
+                    return {
+                      ...condition,
+                      operator: {
+                        ...DEFAULT_OPERATOR_VALUE,
+                        ...condition.operator,
+                        value: value,
+                      },
+                      factor: availableFactorTypes
+                        ? {
+                            ...DEFAULT_FACTOR_VALUE,
+                            ...condition.factor,
+                            textType: textFactorInputType,
+                            withCustomFactor: withCustomFactor && (
+                              <span>Custom factor component</span>
+                            ),
+                            availableFactorTypes,
+                            selectedFactorType: availableFactorTypes
+                              ? availableFactorTypes[0]
+                              : '',
+                          }
+                        : undefined,
+                    };
+                  }
+                  return condition;
+                }),
+              }
             : step;
-        })
+        }),
       );
       args.onChangeOperator?.(stepId, conditionId, value);
     };
@@ -212,36 +256,41 @@ export default {
     const handleAddCondition = (stepId: ReactText) => {
       const newCondition = { ...DEFAULT_CONDITION_ROW(), id: uuid() };
       setSteps(
-        steps.map(step => {
+        steps.map((step) => {
           return step.id === stepId
             ? {
-              ...step,
-              conditions: [...step.conditions, newCondition],
-            }
+                ...step,
+                conditions: [...step.conditions, newCondition],
+              }
             : step;
-        })
+        }),
       );
       args.addCondition?.(stepId);
       return newCondition.id;
     };
 
-    const handleRemoveCondition = (stepId: ReactText, conditionId: ReactText) => {
+    const handleRemoveCondition = (
+      stepId: ReactText,
+      conditionId: ReactText,
+    ) => {
       setSteps(
-        steps.map(step => {
+        steps.map((step) => {
           return step.id === stepId
             ? {
-              ...step,
-              conditions: step.conditions.filter(condition => condition.id !== conditionId),
-            }
+                ...step,
+                conditions: step.conditions.filter(
+                  (condition) => condition.id !== conditionId,
+                ),
+              }
             : step;
-        })
+        }),
       );
       args.removeCondition?.(stepId, conditionId);
     };
 
     const handleUpdateStepName = (stepId: ReactText, name: string) => {
       setSteps(
-        steps.map(step => {
+        steps.map((step) => {
           if (step.id === stepId) {
             return {
               ...step,
@@ -249,18 +298,18 @@ export default {
             };
           }
           return step;
-        })
+        }),
       );
       args.onUpdateStepName?.(stepId, name);
     };
 
     const handleRemoveStep = (stepId: ReactText) => {
-      setSteps(steps.filter(step => step.id !== stepId));
+      setSteps(steps.filter((step) => step.id !== stepId));
       args.removeStep?.(stepId);
     };
 
     const handleDuplicateStep = (stepId: ReactText) => {
-      const stepToDuplicate = steps.find(step => step.id === stepId);
+      const stepToDuplicate = steps.find((step) => step.id === stepId);
       if (stepToDuplicate) {
         setSteps([...steps, { ...stepToDuplicate, id: uuid() }]);
       }
@@ -276,7 +325,10 @@ export default {
 
     const addCustomStep = (selectedItem?: ContextItem | ContextGroup) => {
       const newStep = DEFAULT_STEP();
-      setSteps([...steps, { ...newStep, context: { ...newStep.context, selectedItem } }]);
+      setSteps([
+        ...steps,
+        { ...newStep, context: { ...newStep.context, selectedItem } },
+      ]);
       setOpenedAddStep(false);
     };
 
@@ -298,7 +350,11 @@ export default {
           opened={openedAddStep}
           onClickOutside={() => setOpenedAddStep(false)}
           customTriggerComponent={
-            <Button type="ghost" mode="icon-label" onClick={() => setOpenedAddStep(true)}>
+            <Button
+              type="ghost"
+              mode="icon-label"
+              onClick={() => setOpenedAddStep(true)}
+            >
               <Icon component={<Add3M />} />
               and then...
             </Button>
@@ -326,27 +382,62 @@ export default {
           showActionAttribute={showActionAttribute}
           steps={steps}
           inputProps={{
-            icon1: <Icon component={<SnippetM />} color={theme.palette['grey-600']} />
+            icon1: (
+              <Icon
+                component={<SnippetM />}
+                color={theme.palette['grey-600']}
+              />
+            ),
           }}
           factorValueExtraProps={{
             text: {
               autoCompleteProps: {
-                icon1: <Icon component={<SnippetM />} color={theme.palette['grey-600']} onClick={e => {e.preventDefault(); e.stopPropagation(); console.log('icon1 clicked')}} />,
+                icon1: (
+                  <Icon
+                    component={<SnippetM />}
+                    color={theme.palette['grey-600']}
+                    onClick={(e) => {
+                      e.preventDefault();
+                      e.stopPropagation();
+                      console.log('icon1 clicked');
+                    }}
+                  />
+                ),
                 icon1Tooltip: 'Autocomplete Tooltip',
-                icon2: <Icon component={<UserDownM />} color={theme.palette['grey-600']} onClick={e => {e.preventDefault(); e.stopPropagation(); console.log('icon2 clicked')}} />,
-                icon2Tooltip: 'User Tooltip'
-              }
+                icon2: (
+                  <Icon
+                    component={<UserDownM />}
+                    color={theme.palette['grey-600']}
+                    onClick={(e) => {
+                      e.preventDefault();
+                      e.stopPropagation();
+                      console.log('icon2 clicked');
+                    }}
+                  />
+                ),
+                icon2Tooltip: 'User Tooltip',
+              },
             },
             dynamicKey: {
               keyInputProps: {
-                icon1: <Icon component={<SnippetM />} color={theme.palette['grey-600']} />,
-                icon1Tooltip: 'Key Input Tooltip'
+                icon1: (
+                  <Icon
+                    component={<SnippetM />}
+                    color={theme.palette['grey-600']}
+                  />
+                ),
+                icon1Tooltip: 'Key Input Tooltip',
               },
               valueInputProps: {
-                icon1: <Icon component={<SnippetM />} color={theme.palette['grey-600']} />,
-                icon1Tooltip: 'Value Input Tooltip'
-              }
-            }
+                icon1: (
+                  <Icon
+                    component={<SnippetM />}
+                    color={theme.palette['grey-600']}
+                  />
+                ),
+                icon1Tooltip: 'Value Input Tooltip',
+              },
+            },
           }}
           onChangeContext={handleChangeContext}
           onChangeSubject={handleChangeContext}
@@ -356,7 +447,9 @@ export default {
           onChangeOperator={handleChangeOperator}
           addCondition={enableAddCondition ? handleAddCondition : undefined}
           removeCondition={handleRemoveCondition}
-          renderAddStep={addStepType === 'Custom' ? renderCustomAddStep : undefined}
+          renderAddStep={
+            addStepType === 'Custom' ? renderCustomAddStep : undefined
+          }
           onChangeFactorValue={handleChangeFactorValue}
           onChangeFactorType={handleChangeFactorType}
           removeStep={handleRemoveStep}
@@ -386,15 +479,32 @@ export default {
     texts: { control: false },
 
     showStepName: { ...BOOLEAN_CONTROL, table: { category: 'Story options' } },
-    enableAddCondition: { ...BOOLEAN_CONTROL, table: { category: 'Story options' } },
-    addStepType: {
-      ...controlFromOptionsArray('inline-radio', ['Default', 'Custom', undefined]),
+    enableAddCondition: {
+      ...BOOLEAN_CONTROL,
       table: { category: 'Story options' },
     },
-    enableChangeOrder: { ...BOOLEAN_CONTROL, table: { category: 'Story options' } },
-    withCustomFactor: { ...BOOLEAN_CONTROL, table: { category: 'Story options' } },
+    addStepType: {
+      ...controlFromOptionsArray('inline-radio', [
+        'Default',
+        'Custom',
+        undefined,
+      ]),
+      table: { category: 'Story options' },
+    },
+    enableChangeOrder: {
+      ...BOOLEAN_CONTROL,
+      table: { category: 'Story options' },
+    },
+    withCustomFactor: {
+      ...BOOLEAN_CONTROL,
+      table: { category: 'Story options' },
+    },
     textFactorInputType: {
-      ...controlFromOptionsArray('inline-radio', ['autocomplete', 'expansible', 'default']),
+      ...controlFromOptionsArray('inline-radio', [
+        'autocomplete',
+        'expansible',
+        'default',
+      ]),
       table: { category: 'Story options' },
     },
   },
@@ -429,8 +539,10 @@ export default {
   },
 } as ConditionMeta;
 
-type RenderTriggerType = Required<ItemPickerPropsNew<ItemType, undefined>>['renderTrigger'];
-type ItemType = typeof ITEMS_IN_SECTIONS[number];
+type RenderTriggerType = Required<
+  ItemPickerPropsNew<ItemType, undefined>
+>['renderTrigger'];
+type ItemType = (typeof ITEMS_IN_SECTIONS)[number];
 type TriggerProps = Parameters<RenderTriggerType>[0];
 
 const CustomContextSelector = ({
@@ -443,27 +555,42 @@ const CustomContextSelector = ({
   readOnly,
 }) => {
   const renderTrigger = ({ selected, disabled }: Partial<TriggerProps>) => (
-    <Button disabled={disabled} mode={selected ? 'icon-label' : ''} type="primary">{selected ? (<>{selected.prefixel} {selected.text}</>) : 'Choose context'}</Button>
+    <Button
+      disabled={disabled}
+      mode={selected ? 'icon-label' : ''}
+      type="primary"
+    >
+      {selected ? (
+        <>
+          {selected.prefixel} {selected.text}
+        </>
+      ) : (
+        'Choose context'
+      )}
+    </Button>
   );
   const [localOpen, setLocalOpen] = useState(opened);
   const handleOpenChange = (isOpen: boolean) => {
     if (isOpen) {
       onActivate();
     } else {
-      onDeactivate();
+      //onDeactivate();
     }
     setLocalOpen(isOpen);
   };
   const handleChange = (item: ItemType) => {
     onSelectItem(item);
-    setLocalOpen(false)
-  }
+    setLocalOpen(false);
+  };
   return readOnly ? (
     renderTrigger({ selected: selectedItem, disabled: true })
   ) : (
     <ItemPicker
       dropdownProps={{
         onOpenChange: handleOpenChange,
+        onDismiss: () => {
+          onDeactivate?.();
+        },
         getPopupContainer,
         open: localOpen,
       }}

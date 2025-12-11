@@ -1,15 +1,19 @@
 import React, { useState } from 'react';
-import type { Meta, StoryObj } from '@storybook/react-webpack5';
-import { fn, within, expect, userEvent } from 'storybook/test';
+import { expect, fn, userEvent, within } from 'storybook/test';
 import type { Emoji } from 'unicode-emoji-utils';
 
-import { Input } from '@synerise/ds-input';
-import EmojiPicker, { EmojiPickerProps } from '@synerise/ds-emoji-picker';
+import type { Meta, StoryObj } from '@storybook/react-webpack5';
 import Button from '@synerise/ds-button';
-import Icon, { EmoticonsM } from '@synerise/ds-icon';
 import { theme } from '@synerise/ds-core';
+import EmojiPicker, { EmojiPickerProps } from '@synerise/ds-emoji-picker';
+import Icon, { EmoticonsM } from '@synerise/ds-icon';
+import { Input } from '@synerise/ds-input';
 
-import { BOOLEAN_CONTROL, centeredPaddedWrapper, fixedWrapper300 } from '../../utils';
+import {
+  BOOLEAN_CONTROL,
+  centeredPaddedWrapper,
+  fixedWrapper300,
+} from '../../utils';
 
 export default {
   component: EmojiPicker,
@@ -27,23 +31,36 @@ export default {
   argTypes: {
     closeOnSelect: BOOLEAN_CONTROL,
     children: { control: false },
-  }
+  },
 } as Meta<EmojiPickerProps>;
 
 export const Default: StoryObj<EmojiPickerProps> = {};
 
 export const InputWithEmojiPicker: StoryObj<EmojiPickerProps> = {
-  render: () => {
+  render: (args) => {
     const [inputValue, setInputValue] = useState('');
     const handleSelectEmoji = (emoji: Emoji) => {
       setInputValue(`${inputValue}${emoji.emoji}`);
+      args.onSelect?.(emoji);
     };
     const Picker = (
-      <EmojiPicker closeOnSelect={false} onSelect={handleSelectEmoji}>
-        <Icon data-testid='emoji-icon-trigger' color={theme.palette['grey-600']} component={<EmoticonsM />} />
+      <EmojiPicker {...args} onSelect={handleSelectEmoji}>
+        <Icon
+          data-testid="emoji-icon-trigger"
+          color={theme.palette['grey-600']}
+          component={<EmoticonsM />}
+        />
       </EmojiPicker>
     );
-    return <Input value={inputValue} icon1={Picker} onChange={event => setInputValue(event.target.value)} />;
+    return (
+      <Input
+        value={inputValue}
+        icon1={Picker}
+        onChange={(event) => setInputValue(event.target.value)}
+      />
+    );
+  },
+  args: {
+    closeOnSelect: false,
   },
 };
-

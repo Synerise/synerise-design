@@ -1,7 +1,7 @@
 import type { ReactNode } from 'react';
 import type { IntlShape } from 'react-intl';
 
-import type { DropdownProps } from '@synerise/ds-dropdown';
+import type { DropdownSharedProps } from '@synerise/ds-dropdown';
 import type { FormFieldCommonProps } from '@synerise/ds-form-field';
 import type { InformationCardTooltipProps } from '@synerise/ds-information-card';
 import type { ListItemProps } from '@synerise/ds-list-item';
@@ -22,7 +22,9 @@ export type ItemPickerProps<ItemType extends ListItemProps = ListItemProps> = {
   closeOnBottomAction?: boolean;
   disabled?: boolean;
   dropdownBottomAction?: ReactNode;
-  dropdownProps?: Partial<DropdownProps>;
+  dropdownProps?: Partial<
+    Omit<DropdownSharedProps, 'onOpenChange' | 'children' | 'disabled'>
+  >;
   dropdownRowHeight?: number;
   dropdownVisibleRows?: number;
   error?: boolean;

@@ -5,7 +5,7 @@ import Dropdown from '@synerise/ds-dropdown';
 import Icon, { Add3M, AngleDownS } from '@synerise/ds-icon';
 import InformationCard from '@synerise/ds-information-card';
 import Menu, { type MenuItemProps } from '@synerise/ds-menu';
-import { getPopupContainer } from '@synerise/ds-utils';
+import { getClosest, getPopupContainer } from '@synerise/ds-utils';
 
 import { ErrorWrapper, ItemWrapper } from './ContextSelector.styles';
 import {
@@ -136,19 +136,17 @@ const ContextSelector = ({
     const hasError = Boolean(errorText) || isError;
 
     return addMode && !selectedItem ? (
-      <>
-        <Button
-          error={hasError}
-          disabled={disabled}
-          type="primary"
-          mode="icon-label"
-          onClick={!readOnly ? handleClick : undefined}
-          readOnly={readOnly}
-        >
-          <Icon component={<Add3M />} />
-          {buttonLabel}
-        </Button>
-      </>
+      <Button
+        error={hasError}
+        disabled={disabled}
+        type="primary"
+        mode="icon-label"
+        onClick={!readOnly ? handleClick : undefined}
+        readOnly={readOnly}
+      >
+        <Icon component={<Add3M />} />
+        {buttonLabel}
+      </Button>
     ) : (
       <Menu
         asDropdownMenu
@@ -227,29 +225,43 @@ const ContextSelector = ({
         onActivate && onActivate('');
         setDropdownVisible(true);
       } else {
-        onDeactivate && onDeactivate();
         setDropdownVisible(false);
       }
     },
-    [onActivate, onDeactivate],
+    [onActivate],
   );
 
   if (readOnly) {
     return <>{customTriggerComponent ?? triggerButton}</>;
   }
-
   return (
     <>
       <div data-popup-container>
         <Dropdown
-          {...dropdownProps}
           getPopupContainer={getPopupContainerOverride || getPopupContainer}
-          onVisibleChange={onDropdownVisibilityChange}
+          onOpenChange={onDropdownVisibilityChange}
+          onDismiss={() => {
+            onClickOutside && onClickOutside();
+            // TODO resetList();
+            onDeactivate?.();
+          }}
           trigger={trigger}
-          visible={dropdownVisible}
+          open={dropdownVisible}
+          size="medium"
+          {...dropdownProps}
+          popoverProps={{
+            testId: 'context-selector',
+            ...dropdownProps?.popoverProps,
+            dismissConfig: {
+              outsidePress: (event) =>
+                getClosest(event.target as HTMLElement, '.ds-info-card') ===
+                null,
+            },
+          }}
           overlay={
             <ContextSelectorDropdown
               value={selectedItem}
+              onDeactivate={onDeactivate}
               setDropdownVisible={setDropdownVisible}
               setSelected={handleChange}
               onSetGroup={handleOnSetGroup}

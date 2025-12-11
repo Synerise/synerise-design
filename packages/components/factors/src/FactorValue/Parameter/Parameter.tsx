@@ -93,12 +93,13 @@ const ParameterInput = ({
   const onDropdownVisibilityChange = useCallback(
     (newValue: boolean) => {
       newValue && onActivate && onActivate();
-      if (!newValue) {
-        onDeactivate && onDeactivate();
-        setDropdownVisible(false);
-      }
+      setDropdownVisible(newValue);
+      // if (!newValue) {
+      //   // onDeactivate && onDeactivate();
+      //   setDropdownVisible(false);
+      // }
     },
-    [onActivate, onDeactivate],
+    [onActivate],
   );
 
   const triggerMode = useMemo(() => {
@@ -185,9 +186,12 @@ const ParameterInput = ({
   ) : (
     <div data-popup-container data-testid="ds-factors-parameter">
       <Dropdown
-        visible={dropdownVisible}
+        open={dropdownVisible}
         getPopupContainer={getPopupContainerOverride || getPopupContainer}
-        onVisibleChange={onDropdownVisibilityChange}
+        onOpenChange={onDropdownVisibilityChange}
+        asChild={false}
+        size={300}
+        onDismiss={onDeactivate}
         overlay={
           <ParameterDropdown
             setDropdownVisible={setDropdownVisible}
@@ -199,6 +203,10 @@ const ParameterInput = ({
             value={isSelected ? parameter : undefined}
           />
         }
+        popoverProps={{
+          testId: 'factors-parameters',
+          returnFocus: false,
+        }}
       >
         {trigger}
       </Dropdown>

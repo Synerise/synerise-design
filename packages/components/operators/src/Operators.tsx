@@ -79,22 +79,18 @@ const Operators = ({
 
   useEffect(() => {
     setDropdownVisible(Boolean(opened));
-    if (opened) {
-      onActivate && onActivate();
-    }
-  }, [onActivate, opened]);
+  }, [opened]);
 
   const handleClick = useCallback(() => {
-    onActivate && onActivate();
-    setDropdownVisible(true);
+    onActivate?.();
   }, [onActivate]);
 
   const onDropdownVisibilityChange = useCallback(
     (newValue: boolean) => {
-      newValue && onActivate && onActivate();
-      !newValue && onDeactivate && onDeactivate();
+      setDropdownVisible(newValue);
+      newValue && onActivate?.();
     },
-    [onActivate, onDeactivate],
+    [onActivate],
   );
 
   const triggerMode = useMemo(() => {
@@ -149,9 +145,16 @@ const Operators = ({
     dropdownTrigger
   ) : (
     <Dropdown
-      visible={dropdownVisible}
-      onVisibleChange={onDropdownVisibilityChange}
+      open={dropdownVisible}
+      onOpenChange={onDropdownVisibilityChange}
       getPopupContainer={getPopupContainerOverride || getPopupContainer}
+      asChild={false}
+      size="medium"
+      onDismiss={onDeactivate}
+      popoverProps={{
+        testId: 'operators',
+        returnFocus: false,
+      }}
       overlay={
         <OperatorsDropdown
           value={value}

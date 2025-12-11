@@ -1,5 +1,4 @@
 import React from 'react';
-import userEvent from '@testing-library/user-event';
 
 import { Grid2M } from '@synerise/ds-icon';
 import { renderWithProvider } from '@synerise/ds-core';
@@ -78,22 +77,6 @@ describe('Table', () => {
     );
 
     expect(screen.getByText('Name')).toBeTruthy();
-  });
-
-  it.skip('should render "no data"', async () => {
-    // FIXME
-    renderWithProvider(
-      <Table
-        dataSource={[]}
-        columns={props.columns}
-        locale={{ emptyText: 'No Data' }}
-      />,
-    );
-
-    await waitFor(
-      async () => expect(await screen.findByText('No Data')).toBeTruthy(),
-      { timeout: 2000 },
-    );
   });
 
   it('should updates columns when receiving props', () => {
@@ -303,19 +286,6 @@ describe('Table', () => {
     );
   });
 
-  it.skip('Should render custom empty component', async () => {
-    // FIXME
-    const EMPTY_STATE = 'empty state';
-    renderWithProvider(
-      <Table
-        dataSource={[]}
-        columns={props.columns}
-        emptyDataComponent={EMPTY_STATE}
-      />,
-    );
-    expect(await screen.findByText(EMPTY_STATE)).toBeInTheDocument();
-  });
-
   it('Should render results title with custom locale', () => {
     renderWithProvider(
       <Table
@@ -365,23 +335,24 @@ describe('Table', () => {
           selectGlobalAll: SELECT_GLOBAL_ALL,
           unselectGlobalAll: UNSELECT_GLOBAL_ALL
         }}
-        selection={{ selectedRowKeys: [], onChange: handleChangeSelection, globalSelection: { isSelected: true, onChange: handleChangeGlobalSelection} }}
-        />
-      );
-      
-      screen.getAllByTestId('ds-table-selection-button').forEach(checkbox => {
-        expect(checkbox).toBeChecked();
-        expect(checkbox).toBeDisabled();
-      })
-      
-      userEvent.click(screen.getByTestId('ds-table-batch-selection-options'));
-      await waitFor(async () => expect(await screen.findByText(UNSELECT_GLOBAL_ALL)).toBeInTheDocument());
-      
-      userEvent.click(screen.getByText(UNSELECT_GLOBAL_ALL));
-      await waitFor(() => expect(handleChangeGlobalSelection).toHaveBeenCalledWith(false));
-      
-    });
+        selection={{ selectedRowKeys: [], onChange: handleChangeSelection, selections: [Table.SELECTION_ALL], globalSelection: { isSelected: true, onChange: handleChangeGlobalSelection} }}
+      />
+    );
+
+    screen.getAllByTestId('ds-table-selection-button').forEach(checkbox => {
+      expect(checkbox).toBeChecked();
+      expect(checkbox).toBeDisabled();
+    })
     
+    fireEvent.click(await screen.findByTestId('ds-table-batch-selection-options'));
+    await waitFor(async () => expect(await screen.findByText(UNSELECT_GLOBAL_ALL)).toBeInTheDocument());
+
+    fireEvent.click(screen.getByText(UNSELECT_GLOBAL_ALL));
+    await waitFor(() => expect(handleChangeGlobalSelection).toHaveBeenCalledWith(false));
+
+  });
+
+
     it('Should toggle "all global" on batch checkbox click', async () => {
       const handleChangeSelection = jest.fn();
       const handleChangeGlobalSelection = jest.fn();
@@ -399,7 +370,7 @@ describe('Table', () => {
         expect(checkbox).toBeDisabled();
       })
       
-      userEvent.click(screen.getByTestId('ds-table-batch-selection-button'));
+      fireEvent.click(screen.getByTestId('ds-table-batch-selection-button'));
       await waitFor(() => expect(handleChangeGlobalSelection).toHaveBeenCalledWith(false));
       
     });
@@ -421,7 +392,7 @@ describe('Table', () => {
         expect(checkbox).not.toBeDisabled();
       })
       
-      userEvent.click(screen.getByTestId('ds-table-batch-selection-button'));
+      fireEvent.click(screen.getByTestId('ds-table-batch-selection-button'));
       await waitFor(() => expect(handleChangeSelection).toHaveBeenCalled());
       
     });

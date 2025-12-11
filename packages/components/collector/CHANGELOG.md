@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.4.5](https://github.com/Synerise/synerise-design/compare/@synerise/ds-collector@1.4.4...@synerise/ds-collector@1.4.5) (2025-11-28)
+
+**Note:** Version bump only for package @synerise/ds-collector
+
+
+
+
+
+## [1.4.4](https://github.com/Synerise/synerise-design/compare/@synerise/ds-collector@1.4.3...@synerise/ds-collector@1.4.4) (2025-11-06)
+
+**Note:** Version bump only for package @synerise/ds-collector
+
+
+
+
+
 ## [1.4.3](https://github.com/Synerise/synerise-design/compare/@synerise/ds-collector@1.4.2...@synerise/ds-collector@1.4.3) (2025-10-31)
 
 **Note:** Version bump only for package @synerise/ds-collector

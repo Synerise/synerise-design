@@ -14,18 +14,31 @@ export const Label = styled(FormFieldLabel)`
   }
 `;
 
-export const ProgressWrapper = styled.div<{ width: string; thin: boolean }>`
+export const ProgressWrapper = styled.div<{ $width: string; $thin: boolean }>`
   position: relative;
   margin-right: 2px;
-  width: ${(props) => props.width};
-  height: ${(props) => (props.thin ? '4px' : '6px')};
+  width: ${(props) => props.$width};
+  height: ${(props) => (props.$thin ? '4px' : '6px')};
   background: ${(props) => props.theme.palette['grey-200']};
 `;
 
-export const ProgressBar = styled.div<{ customColor: string; width: string }>`
+export const ProgressOuter = styled.div`
+  display: flex;
+  align-items: center;
+  min-width: 0;
+  flex: 1 1 auto;
+`;
+
+export const Percent = styled.span``;
+
+export const ProgressBarDescription = styled.span`
+  margin-top: 8px;
+`;
+
+export const ProgressBar = styled.div<{ customColor: string; $width: string }>`
   position: absolute;
   height: 100%;
-  width: ${(props) => props.width};
+  width: ${(props) => props.$width};
   background-color: ${(props) =>
     props.customColor ? props.customColor : props.theme.palette['green-500']};
 `;
@@ -36,20 +49,11 @@ export const PercentWrapper = styled.div`
   font-weight: 400;
 `;
 
-export const Container = styled.div<{ steps?: number; inline?: boolean }>`
+export const Container = styled.div<{ $steps?: number; $inline?: boolean }>`
   width: 100%;
   display: flex;
   justify-content: center;
-  flex-direction: ${(props) => (props.inline ? 'row' : 'column')};
-
-  .progress-bar-description {
-    margin-top: 8px;
-  }
-
-  .progress-div {
-    display: flex;
-    align-items: center;
-  }
+  flex-direction: ${(props) => (props.$inline ? 'row' : 'column')};
 
   ${ProgressWrapper}:last-of-type {
     border-radius: 3px;
@@ -60,7 +64,7 @@ export const Container = styled.div<{ steps?: number; inline?: boolean }>`
   }
 
   ${(props) =>
-    props.steps !== 1 &&
+    props.$steps !== 1 &&
     css`
       ${ProgressWrapper}:first-of-type {
         border-radius: 3px 0 0 3px;

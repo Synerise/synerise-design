@@ -1,11 +1,11 @@
-import React, { useState, useEffect, useRef } from 'react';
 import { debounce } from 'lodash';
+import React, { useEffect, useRef, useState } from 'react';
+
 import Dropdown from '@synerise/ds-dropdown';
 import Icon, { SearchM } from '@synerise/ds-icon';
+import Menu from '@synerise/ds-menu';
 import Result from '@synerise/ds-result';
 import Scrollbar from '@synerise/ds-scrollbar';
-import Menu from '@synerise/ds-menu';
-
 
 type AdvancedProps = {
   value: string;
@@ -19,9 +19,19 @@ type AdvancedProps = {
   onVisibilityChange: (state: boolean) => void;
   visible: boolean;
   children: React.ReactNode;
-}
+};
 
-const Advanced = ({ value, visible, onVisibilityChange, onSearch, onLoadMore, children, dropdownMaxHeight = 320, debounceTimeout = 1500, data, }: AdvancedProps) => {
+const Advanced = ({
+  value,
+  visible,
+  onVisibilityChange,
+  onSearch,
+  onLoadMore,
+  children,
+  dropdownMaxHeight = 320,
+  debounceTimeout = 1500,
+  data,
+}: AdvancedProps) => {
   const [searchQuery, setSearchQuery] = useState<string>('');
   const searchDebounce = useRef(debounce(onSearch, debounceTimeout)).current;
 
@@ -53,8 +63,8 @@ const Advanced = ({ value, visible, onVisibilityChange, onSearch, onLoadMore, ch
 
   return (
     <Dropdown
-      visible={visible}
-      onVisibleChange={onVisibilityChange}
+      open={visible}
+      onOpenChange={onVisibilityChange}
       overlay={
         <>
           <Dropdown.SearchInput
@@ -66,7 +76,11 @@ const Advanced = ({ value, visible, onVisibilityChange, onSearch, onLoadMore, ch
           />
 
           {data?.length === 0 ? (
-            <Result type="no-results" noSearchResults description={'No results'} />
+            <Result
+              type="no-results"
+              noSearchResults
+              description={'No results'}
+            />
           ) : (
             <Scrollbar maxHeight={dropdownMaxHeight} onScroll={onMenuScroll}>
               <Menu
@@ -87,4 +101,4 @@ const Advanced = ({ value, visible, onVisibilityChange, onSearch, onLoadMore, ch
   );
 };
 
-export default Advanced
+export default Advanced;

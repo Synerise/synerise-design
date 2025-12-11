@@ -100,7 +100,7 @@
     "@types/react-window": "^1.8.8",
     "@types/resize-observer-browser": "^0.1.7",
     "@types/styled-components": "5.1.27",
-    "@types/uuid": "9.0.4",
+    "@types/uuid": "^8.0.0",
     "@welldone-software/why-did-you-render": "^6.0.3",
     "babel-jest": "27",
     "babel-loader": "^8.3.0",

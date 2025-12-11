@@ -1,6 +1,4 @@
-import React from 'react';
-
-import MainButton from './Button';
+import Button from './Button';
 import * as MainButtonStyles from './Button.styles';
 import { type Props } from './Button.types';
 import CheckboxButton from './Checkbox/Checkbox';
@@ -12,18 +10,7 @@ import * as ExpanderStyles from './Expander/Expander.styles';
 import StarButton from './Star/Star';
 import * as StarStyles from './Star/Star.styles';
 
-class Button extends React.Component<Props> {
-  static readonly Checkbox = CheckboxButton;
-  static readonly Creator = Creator;
-  static readonly Expander = Expander;
-  static readonly Star = StarButton;
-
-  render() {
-    return <MainButton {...this.props} />;
-  }
-}
-
-export default Button;
+export { Expander, Creator, StarButton as Star, CheckboxButton as Checkbox };
 
 export { default as ButtonToggle } from './ButtonToggle/ButtonToggle';
 
@@ -42,3 +29,16 @@ export const ButtonStyles = {
   Expander: ExpanderStyles,
   Star: StarStyles,
 };
+
+const staticComponents = {
+  /** @deprecated - use named export `Creator` */
+  Creator,
+  /** @deprecated - use named export `Expander` */
+  Expander,
+  /** @deprecated - use named export `Star` */
+  Star: StarButton,
+  /** @deprecated - use named export `Checkbox` */
+  Checkbox: CheckboxButton,
+};
+
+export default Object.assign(Button, staticComponents);

@@ -1,9 +1,11 @@
 import React, { type Key, useCallback, useMemo } from 'react';
 
 import Button from '@synerise/ds-button';
-import Dropdown from '@synerise/ds-dropdown';
+import {
+  DropdownMenu,
+  type DropdownMenuListItemProps,
+} from '@synerise/ds-dropdown';
 import Icon, { OptionVerticalM } from '@synerise/ds-icon';
-import type { MenuItemProps } from '@synerise/ds-menu';
 import Tooltip from '@synerise/ds-tooltip';
 
 import * as S from '../Table.styles';
@@ -258,7 +260,7 @@ const TableSelection = <T extends { children?: T[] }>({
     selection.globalSelection,
   ]);
 
-  const menuDataSource = useMemo(() => {
+  const dropdownDataSource = useMemo(() => {
     const isGlobalAllSelected = selection.globalSelection?.isSelected;
     const globalSelectionItem = selection.globalSelection
       ? [
@@ -279,15 +281,21 @@ const TableSelection = <T extends { children?: T[] }>({
       .flatMap(
         (
           selectionMenuElement: Selection | SelectionItem,
-        ): MenuItemProps | MenuItemProps[] => {
+        ): DropdownMenuListItemProps | DropdownMenuListItemProps[] => {
           switch (selectionMenuElement) {
             case SELECTION_ALL: {
-              const items: MenuItemProps[] = [];
+              const items: DropdownMenuListItemProps[] = [];
               if (!isAllSelected && !hasSelectionLimit) {
-                items.push({ onClick: selectAll, text: locale?.selectAll });
+                items.push({
+                  onClick: selectAll,
+                  text: locale?.selectAll,
+                });
               }
               if (isAnySelected) {
-                items.push({ onClick: unselectAll, text: locale?.unselectAll });
+                items.push({
+                  onClick: unselectAll,
+                  text: locale?.unselectAll,
+                });
               }
               return items;
             }
@@ -344,16 +352,20 @@ const TableSelection = <T extends { children?: T[] }>({
           />
         </Tooltip>
       )}
-      {(selection.selections || !!menuDataSource?.length) && (
-        <Dropdown
-          disabled={disabledBulkSelection || menuDataSource?.length === 0}
-          trigger={['click']}
-          overlay={<S.SelectionMenu dataSource={menuDataSource} />}
-          hideOnItemClick
+      {selection.selections && (
+        <DropdownMenu
+          disabled={disabledBulkSelection || dropdownDataSource?.length === 0}
+          getPopupContainer={() => document.body}
+          dataSource={dropdownDataSource || []}
+          popoverProps={{
+            testId: 'table-selection',
+          }}
         >
           <Tooltip title={locale?.selectionOptionsTooltip}>
             <Button
-              disabled={disabledBulkSelection || menuDataSource?.length === 0}
+              disabled={
+                disabledBulkSelection || dropdownDataSource?.length === 0
+              }
               mode="single-icon"
               type="ghost"
               data-testid="ds-table-batch-selection-options"
@@ -361,7 +373,7 @@ const TableSelection = <T extends { children?: T[] }>({
               <Icon component={<OptionVerticalM />} />
             </Button>
           </Tooltip>
-        </Dropdown>
+        </DropdownMenu>
       )}
     </S.Selection>
   ) : null;

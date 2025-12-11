@@ -1,0 +1,36 @@
+import { Meta, Canvas } from '@storybook/addon-docs/blocks';
+import { Copyable, Default  } from './Dropdown.stories'
+
+<Meta title="Components/Dropdown" />
+
+# Dropdown
+
+A flexible dropdown component with a customizable overlay and a handful of static subcomponents for building consistent overlay UIs (search input, list wrapper, footer actions, back action, text trigger).
+
+
+## Quick overview
+
+- Wrap `Dropdown` around a trigger element. When the trigger is activated (click / hover), the overlay is shown.
+- Use `open` / `onOpenChange` for controlled mode.
+- Provide overlay content using the `overlay` prop (JSX). Use `Dropdown` static subcomponents to compose consistent overlays.
+- Use `ListItem` from `@synerise/ds-list-item` for menu rows. 
+- use `useDropdown()` hook in components inside the dropdown overlay to access and control dropdown's open state
+- `asChild` property controls whether or not the trigger node is wrapped in an extra span that has event handlersa applied. By default the trigger is wrapped in a `span` element. Set asChild to `true` to clone the trigger element and apply ref / event handlers to the trigger dirrectly. **Important** the trigger node must accept refs (use a component that is wrapped in forwardRef)
+
+
+## Basic example 
+
+<Canvas of={Default} sourceState="shown" />
+
+## Hiding dropdown on item click
+
+It is best to use DropdownMenu component for easiest implementation of a simple dropdown menu. It has this functionality built in via prop `hideOnItemClick` which is set to true by default.   
+If you do need to compose the content of the dropdown use `ListItem` from `@synerise/ds-list-item` (Menu.Item is deprecated) and `hideOnItemClick`. 
+ListItem uses the `useDropdown` hook internally and triggers closing the dropdown.   
+If the ListItem has a copyable prop the dropdown will hide after a delay necessary to show the updated label after copying. See ListItem copyable prop type for managing the duration of the delay.
+
+<Canvas of={Copyable} sourceState="shown" />
+
+If the dropdown has custom content, not plain list items, use the `useDropdown` hook in the component that will be used as `overlay`, via which you can check and control the dropdown open state.
+
+<Canvas useDropdownsourceState="shown" />

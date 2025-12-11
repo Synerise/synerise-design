@@ -45,16 +45,11 @@ const DateInput = ({
     onChange(undefined);
   }, [onChange]);
 
-  const handleVisibleChange = useCallback(
-    (visible: boolean) => {
-      if (!visible) {
-        onDeactivate && onDeactivate();
-        onChange(localValueAsDate);
-      } else {
-        onActivate && onActivate();
-      }
+  const handleOpenChange = useCallback(
+    (open: boolean) => {
+      open && onActivate && onActivate();
     },
-    [localValueAsDate, onActivate, onChange, onDeactivate],
+    [onActivate],
   );
 
   return (
@@ -68,11 +63,16 @@ const DateInput = ({
       error={error}
       readOnly={readOnly}
       allowClear={allowClear}
+      autoFocus={opened}
       inputProps={{ autoResize: { minWidth: '123px' } }}
+      onDropdownVisibleChange={handleOpenChange}
       dropdownProps={{
-        visible: opened,
+        open: opened,
+        onOpenChange: handleOpenChange,
         getPopupContainer: getPopupContainerOverride || getPopupContainer,
-        onVisibleChange: handleVisibleChange,
+        onDismiss: () => {
+          onDeactivate?.();
+        },
       }}
     />
   );

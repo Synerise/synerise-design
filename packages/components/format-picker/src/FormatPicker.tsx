@@ -135,6 +135,11 @@ const FormatPicker = ({
         />
       }
       placement="topCenter"
+      popoverProps={{
+        testId: 'format-picker',
+      }}
+      size="auto"
+      asChild
     >
       <Button type={buttonType} mode="icon-label" disabled={disabled}>
         <Icon component={<HashM />} />

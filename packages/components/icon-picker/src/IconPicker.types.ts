@@ -1,6 +1,7 @@
 import type { CSSProperties, ReactElement, ReactNode } from 'react';
 
 import type { IconName, IconPrefix } from '@fortawesome/fontawesome-svg-core';
+import { type PopoverTriggerType } from '@synerise/ds-popover';
 
 export type FilterItem<ValueType extends FAValue | ReactNode> = {
   keywords?: string;
@@ -44,7 +45,7 @@ export type IconPickerProps<Source extends SourceType> = {
   button: ReactElement;
   data: Source;
   onSelect: SelectItemHandler<Source>;
-  trigger: ('click' | 'hover' | 'contextMenu')[];
+  trigger: PopoverTriggerType[];
   placeholder: string;
   noResultMsg?: ReactNode;
   selectedIcon?: ReactNode;

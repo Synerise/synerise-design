@@ -1,30 +1,29 @@
-import React from 'react';
-
-import { action } from 'storybook/actions';
-import type { StoryObj, Meta } from '@storybook/react-webpack5';
-import { userEvent, waitFor, within, expect, fn } from 'storybook/test';
 import isChromatic from 'chromatic/isChromatic';
+import React from 'react';
+import { action } from 'storybook/actions';
+import { expect, fn, userEvent, waitFor, within } from 'storybook/test';
 
-import Tooltip, { TooltipProps } from '@synerise/ds-tooltip';
-import Tag, { TagShape } from '@synerise/ds-tag';
+import type { Meta, StoryObj } from '@storybook/react-webpack5';
 import { UserAvatar } from '@synerise/ds-avatar';
-import InformationCard from '@synerise/ds-information-card';
 import Button from '@synerise/ds-button';
-import Icon, { InfoFillS, InfoM, SegmentM } from '@synerise/ds-icon';
 import { theme } from '@synerise/ds-core';
+import Icon, { InfoFillS, InfoM, SegmentM } from '@synerise/ds-icon';
+import InformationCard from '@synerise/ds-information-card';
+import Tag, { TagShape } from '@synerise/ds-tag';
+import Tooltip, { TooltipProps } from '@synerise/ds-tooltip';
 
+import { tooltipImage } from '../../constants/images';
 import {
   BOOLEAN_CONTROL,
-  centeredPaddedWrapper,
   CLASSNAME_ARG_CONTROL,
-  controlFromOptionsArray,
   NUMBER_CONTROL,
   PREFIXCLS_ARG_CONTROL,
   REACT_NODE_AS_STRING,
   STYLE_ARG_CONTROL,
+  centeredPaddedWrapper,
+  controlFromOptionsArray,
 } from '../../utils';
 import { TOOLTIP_TITLE } from './Tooltip.data';
-import { tooltipImage } from '../../constants/images';
 
 export type StoryProps = TooltipProps & {};
 
@@ -50,13 +49,21 @@ export default {
     autoAdjustOverflow: BOOLEAN_CONTROL,
     tutorialAutoplay: BOOLEAN_CONTROL,
     tutorialAutoplaySpeed: NUMBER_CONTROL,
-    trigger: controlFromOptionsArray('inline-radio', ['hover', 'focus', 'click', 'contextMenu']),
+    trigger: controlFromOptionsArray('inline-radio', [
+      'hover',
+      'focus',
+      'click',
+    ]),
   },
   render: ({ ...args }) => {
     return (
       <Tooltip {...args}>
         <span style={{ display: 'flex' }}>
-          <Icon data-testid="tooltip-trigger" component={<InfoFillS />} color={theme.palette['grey-400']} />
+          <Icon
+            data-testid="tooltip-trigger"
+            component={<InfoFillS />}
+            color={theme.palette['grey-400']}
+          />
         </span>
       </Tooltip>
     );
@@ -82,7 +89,11 @@ export default {
       propToFind = args.tutorials![0].title;
     }
     if (!args.render) {
-      await waitFor(async () => expect(await canvas.findByText(propToFind as string)).toBeInTheDocument());
+      await waitFor(async () =>
+        expect(
+          await canvas.findByText(propToFind as string),
+        ).toBeInTheDocument(),
+      );
     }
   },
 } as Meta<StoryProps>;
@@ -151,9 +162,16 @@ export const AvatarWithTooltip: Story = {
     title: `${firstName} ${lastName}`,
     description: 'jan.nowak@gmail.com',
   },
-  render: args => {
+  render: (args) => {
     const user = { firstName, lastName };
-    return <UserAvatar data-testid="tooltip-trigger" backgroundColor="blue" user={user} tooltip={args} />;
+    return (
+      <UserAvatar
+        data-testid="tooltip-trigger"
+        backgroundColor="blue"
+        user={user}
+        tooltip={args}
+      />
+    );
   },
 };
 

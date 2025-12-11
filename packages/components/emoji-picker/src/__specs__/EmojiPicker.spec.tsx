@@ -3,7 +3,7 @@ import React from 'react';
 import Button from '@synerise/ds-button';
 import Icon, { Add3M } from '@synerise/ds-icon';
 import { renderWithProvider } from '@synerise/ds-core';
-import { screen, waitFor } from '@testing-library/react';
+import { fireEvent, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 
 import { EmojiPicker } from '../EmojiPicker';
@@ -31,11 +31,11 @@ describe('EmojiPicker', () => {
       <EmojiPicker onSelect={onSelect}>{TRIGGER}</EmojiPicker>,
     );
 
-    userEvent.click(screen.getByText(BUTTON_LABEL));
+    fireEvent.click(screen.getByText(BUTTON_LABEL));
 
     await waitFor(() => expect(screen.getByText('😀')).toBeInTheDocument());
 
-    userEvent.click(screen.getByText('😀'));
+    fireEvent.click(screen.getByText('😀'));
 
     await waitFor(() => expect(onSelect).toHaveBeenCalled());
   }, 8000);

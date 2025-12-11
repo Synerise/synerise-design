@@ -1,13 +1,6 @@
-import copy from 'copy-to-clipboard';
-import React, {
-  type MouseEvent,
-  useCallback,
-  useEffect,
-  useState,
-} from 'react';
+import React, { useEffect, useState } from 'react';
 
-import Icon, { CopyClipboardM } from '@synerise/ds-icon';
-import Tooltip from '@synerise/ds-tooltip';
+import CopyIcon from '@synerise/ds-copy-icon';
 
 import * as S from './Copyable.styles';
 import { type CopyableCellProps } from './Copyable.types';
@@ -29,22 +22,14 @@ const CopyableCell = ({
     return (): void => clearTimeout(timer);
   }, [tooltipVisible, setTooltipVisible, tooltipTimeout]);
 
-  const handleCopy = useCallback(
-    (e: MouseEvent) => {
-      e.stopPropagation();
-      if (copy(value)) {
-        setTooltipVisible(true);
-      }
-    },
-    [value],
-  );
-
   return (
     <S.Copyable {...htmlAttributes}>
       <span>{value}</span>
-      <Tooltip visible={tooltipVisible} title={confirmMessage} placement="left">
-        <Icon onClick={handleCopy} component={<CopyClipboardM />} />
-      </Tooltip>
+      <CopyIcon
+        copyValue={value}
+        placement="left"
+        texts={{ copiedTooltip: confirmMessage }}
+      />
     </S.Copyable>
   );
 };

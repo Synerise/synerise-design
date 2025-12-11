@@ -47,7 +47,7 @@ import IconPicker from '@synerise/ds-icon-picker'
 | noResultMsg  | Node displayed when no items matches searched query | ReactNode                                       | -       |
 | onSelect     | Action on icon select                               | OnSelectType                                    | -       |
 | placeholder  | Input placeholder                                   | string                                          | -       |
-| trigger      | Trigger type                                        | `['click', 'hover', 'contextMenu']`             | []      |
+| trigger      | Trigger type                                        | `['click', 'hover']`             | []      |
 | onClear      | Action on icon delete                               | OnSelectType                                    | -       |
 | selectedIcon | Icon Node                                           | ReactElement                                    | -       |
 | clearTooltip | tooltip text                                        | string                                          | -       |

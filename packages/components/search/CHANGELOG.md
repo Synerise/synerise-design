@@ -3,6 +3,26 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.3.11](https://github.com/Synerise/synerise-design/compare/@synerise/ds-search@1.3.10...@synerise/ds-search@1.3.11) (2025-11-28)
+
+
+### Bug Fixes
+
+* **search:** fix types ([44042fa](https://github.com/Synerise/synerise-design/commit/44042fa0e22f04800969f5a25ea6335b4552f4ab))
+* **search:** refactor search component from class to function ([16e3c0c](https://github.com/Synerise/synerise-design/commit/16e3c0c2b04082e811cdd625f564321faf8811ed))
+
+
+
+
+
+## [1.3.10](https://github.com/Synerise/synerise-design/compare/@synerise/ds-search@1.3.9...@synerise/ds-search@1.3.10) (2025-11-06)
+
+**Note:** Version bump only for package @synerise/ds-search
+
+
+
+
+
 ## [1.3.9](https://github.com/Synerise/synerise-design/compare/@synerise/ds-search@1.3.8...@synerise/ds-search@1.3.9) (2025-10-22)
 
 **Note:** Version bump only for package @synerise/ds-search

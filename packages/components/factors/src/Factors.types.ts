@@ -284,6 +284,7 @@ export type FactorTypeSelectorProps = Pick<
   | 'availableFactorTypes'
   | 'selectedFactorType'
   | 'readOnly'
+  | 'getPopupContainerOverride'
 > & {
   setSelectedFactorType: (factor: FactorType) => void;
   selectedFactor: SelectedFactorType;

@@ -4,12 +4,12 @@ import Icon, { ArrowRightCircleM, FolderM } from '@synerise/ds-icon';
 import InformationCard from '@synerise/ds-information-card';
 import { type ListItemProps } from '@synerise/ds-list-item';
 
-import { type ItemPickerListTexts } from '../../ItemPickerNew/ItemPickerNew.types';
 import {
   type BaseItemType,
   type BaseSectionType,
   type BaseSectionTypeWithFolders,
 } from '../../ItemPickerNew/types/baseItemSectionType.types';
+import { type ItemPickerListTexts } from '../../ItemPickerNew/types/itemPickerListTexts.types';
 import { type TitleListItemProps } from '../ItemPickerList.types';
 import { createTitleFromTitlePath } from '../utils';
 

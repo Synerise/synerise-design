@@ -2,7 +2,8 @@ import React from 'react';
 
 import { theme , renderWithProvider } from '@synerise/ds-core';
 import Icon, { CloseS } from '@synerise/ds-icon';
-import { type RenderResult, fireEvent, screen } from '@testing-library/react';
+import { type RenderResult, fireEvent, screen, waitFor } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 
 import { type MenuItemProps } from '../Elements/Item/MenuItem.types';
 import Menu from '../Menu';
@@ -193,56 +194,57 @@ describe('Menu with copyable items', () => {
   const data = [
     {
       text: 'Item 1',
-      copyable: true,
-      copyHint: 'Copy to clipboard',
-      copyValue: 'Item',
-    },
-    {
-      text: 'Item 2',
-      copyable: false,
-      copyHint: 'Copy to clipboard',
-      copyValue: 'Item',
+      copyable: {
+        copyValue: 'Item',
+        copiedLabel: 'Copy item 1 clipboard',
+      }
     },
     {
       text: 'Item 3',
-      copyable: true,
-      copyHint: 'Copy to clipboard',
+      copyable: {
+        copiedLabel: 'Copy item 3 to clipboard',
+        copyValue: undefined
+      }
     },
     {
       text: 'Disabled',
       disabled: true,
-      copyable: true,
-      copyHint: 'Copy to clipboard',
-      copyValue: 'Item',
+      copyable: {
+        copiedLabel: 'Copy disabled to clipboard',
+        copyValue: 'Item',
+      },
     },
   ];
-  let renderedMenu: RenderResult;
+  
   beforeEach(() => {
-    renderedMenu = renderWithProvider(<Menu dataSource={data} />);
+    renderWithProvider(<Menu dataSource={data} />);
   });
-  it('should display copyHint on hover', () => {
-    // ARRANGE
-    const { getByText } = renderedMenu;
-    const element = getByText('Item 1') as HTMLElement;
-    fireEvent.mouseOver(element);
-    // ASSERT
-    expect(element).toHaveTextContent('Copy to clipboard');
+  it('should display copiedLabel on click', async () => {
+    
+    expect(screen.getByText('Copy item 1 clipboard')).not.toBeVisible();
+    expect(screen.getByText('Item 1')).toBeVisible();
+
+    userEvent.click(screen.getByText('Item 1'));
+    
+    await waitFor(() => expect(screen.getByText('Copy item 1 clipboard')).toBeVisible());
   });
-  it('should not display copyHint when copyable prop is false', () => {
-    // ARRANGE
-    const { getByText } = renderedMenu;
-    const element = getByText('Item 2') as HTMLElement;
-    fireEvent.mouseOver(element);
-    // ASSERT
-    expect(element.textContent).toBe('Item 2');
+
+  it('should not display copiedLabel when copyValue is undefined', async () => {
+    
+    expect(screen.getByText('Item 3')).toBeVisible();
+    expect(screen.queryByText('Copy item 3 to clipboard')).not.toBeInTheDocument();
+    
+    await waitFor(() => expect(screen.getByText('Item 3')).toBeVisible());
   });
-  it('should not display copyHint when item is disabled', () => {
-    // ARRANGE
-    const { getByText } = renderedMenu;
-    const element = getByText('Disabled') as HTMLElement;
-    fireEvent.mouseOver(element);
-    // ASSERT
-    expect(element.textContent).toBe('Disabled');
+  
+  it('should not display copiedLabel when item is disabled', async () => {
+    
+    expect(screen.getByText('Disabled')).toBeVisible();
+    expect(screen.queryByText('Copy Disabled to clipboard')).not.toBeInTheDocument();
+    
+    userEvent.click(screen.getByText('Disabled'));
+    
+    await waitFor(() => expect(screen.getByText('Disabled')).toBeVisible());
   });
 });
 

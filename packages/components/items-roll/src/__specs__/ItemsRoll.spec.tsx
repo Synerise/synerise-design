@@ -74,19 +74,17 @@ describe('ItemsRoll', () => {
 
     expect(onItemRemove).toHaveBeenCalledTimes(1);
 
-    const actionMenuTrigger = container.querySelector(
-      '.ant-dropdown-trigger',
-    ) as HTMLElement;
+    expect(screen.queryByRole('dialog')).not.toBeInTheDocument();
+
+    const actionMenuTrigger = await screen.findByTestId('popover-items-roll-actions-trigger');
 
     fireEvent.click(actionMenuTrigger);
 
-    const actionMenu = (await screen.findByTestId(
-      'items-roll-action-menu',
-    )) as HTMLElement;
-
+    const dropdown = await screen.findByRole('dialog');
+    
     expect(await screen.findByText('Import')).toBeInTheDocument();
     expect(await screen.findByText('Export')).toBeInTheDocument();
-    expect(within(actionMenu).queryAllByRole('menuitem').length).toBe(2);
+    expect(within(dropdown).queryAllByRole('menuitem').length).toBe(2);
   });
 
   it('renders without change selection when onChangeSelection is NOT provided', () => {
@@ -362,7 +360,7 @@ describe('ItemsRoll', () => {
 
   it('renders withChangeSelectionDropdown', async () => {
     const CHANGE_SELECTION_BTN = 'Change selection';
-    const onVisibleChange = jest.fn();
+    const onOpenChange = jest.fn();
     const onSearch = jest.fn();
     const onSearchClear = jest.fn();
     const onClearAll = jest.fn();
@@ -370,7 +368,7 @@ describe('ItemsRoll', () => {
     const changeSelectionDropdownProps = {
       overlay: <div>Overlay content</div>,
       trigger: ['click' as const],
-      onVisibleChange,
+      onOpenChange,
     };
 
     const props = propsFactory({
@@ -389,7 +387,7 @@ describe('ItemsRoll', () => {
     fireEvent.click(await screen.findByText(CHANGE_SELECTION_BTN));
 
     expect(onChangeSelection).toHaveBeenCalled();
-    expect(onVisibleChange).toHaveBeenCalled();
+    expect(onOpenChange).toHaveBeenCalled();
   });
 
   it('renders with custom counter', async () => {

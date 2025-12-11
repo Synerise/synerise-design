@@ -1,6 +1,6 @@
 {
   "name": "@synerise/ds-alert",
-  "version": "1.1.24",
+  "version": "1.1.26",
   "description": "Alert UI Component for the Synerise Design System",
   "license": "ISC",
   "repository": "Synerise/synerise-design",
@@ -36,12 +36,12 @@
   ],
   "types": "dist/index.d.ts",
   "dependencies": {
-    "@synerise/ds-broadcast-bar": "^1.0.5",
-    "@synerise/ds-button": "^1.4.16",
-    "@synerise/ds-icon": "^1.7.3",
-    "@synerise/ds-inline-alert": "^1.0.3",
-    "@synerise/ds-section-message": "^1.0.10",
-    "@synerise/ds-unordered-list": "^1.1.19",
+    "@synerise/ds-broadcast-bar": "^1.1.1",
+    "@synerise/ds-button": "^1.5.1",
+    "@synerise/ds-icon": "^1.9.0",
+    "@synerise/ds-inline-alert": "^1.1.1",
+    "@synerise/ds-section-message": "^1.0.12",
+    "@synerise/ds-unordered-list": "^1.1.21",
     "@synerise/ds-utils": "^1.5.0",
     "animate.css": "^4.1.1"
   },

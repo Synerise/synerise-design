@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { type ItemPickerListTexts } from '../../ItemPickerNew/ItemPickerNew.types';
+import { type ItemPickerListTexts } from '../../ItemPickerNew/types/itemPickerListTexts.types';
 import { ErrorItem } from './ErrorItem';
 import { LoadingItem } from './LoadingItem';
 import { NoMoreItem } from './NoMoreItem';

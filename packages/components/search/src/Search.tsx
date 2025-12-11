@@ -1,12 +1,13 @@
-import React from 'react';
-import onClickOutside from 'react-onclickoutside';
+import React, { type ReactNode, useEffect, useRef, useState } from 'react';
 
 import Scrollbar from '@synerise/ds-scrollbar';
-import { focusWithArrowKeys } from '@synerise/ds-utils';
+import { focusWithArrowKeys, useOnClickOutside } from '@synerise/ds-utils';
 
-import { SearchHeader, SearchInput, SearchItems } from './Elements';
+import { SearchInput } from './Elements';
+import SearchRenderer from './Elements/SearchRenderer/SearchRenderer';
 import {
   getAllElementsFiltered,
+  getParametersScrollTop,
   hasSomeElement,
   hasSomeElementFiltered,
 } from './Elements/utils/searchUtils';
@@ -14,241 +15,244 @@ import * as S from './Search.styles';
 import {
   type AnyObject,
   type SearchProps,
-  type SearchState,
   SelectResultDataKeys,
 } from './Search.types';
 import {
   INPUT_EXPAND_ANIMATION_DURATION,
-  LIST_HEADER_HEIGHT,
   MENU_WIDTH_OFFSET,
   SCROLLBAR_HEIGHT_OFFSET,
 } from './const';
 import './style/index.less';
 
-const getParametersScrollTop = ({
-  scrollTop,
-  rowHeight,
+export function Search<
+  T extends AnyObject,
+  U extends AnyObject,
+  S extends AnyObject,
+>({
+  divider,
+  dropdownMaxHeight,
+  width,
+  searchWidth,
+  style,
+  dropdownWidth,
   recent,
-}: {
-  scrollTop: number;
-  rowHeight: number;
-  recent: AnyObject[];
-}): number =>
-  scrollTop -
-  LIST_HEADER_HEIGHT -
-  (hasSomeElement(recent) ? recent.length * rowHeight : 0);
+  suggestions = null,
+  parameters,
+  value,
+  textLookupConfig,
+  hideLabel,
+  parameterValue,
+  onParameterValueChange,
+  alwaysExpanded,
+  onClear,
+  onValueChange,
+  filterLookupKey,
+  recentDisplayProps,
+  parametersDisplayProps,
+  suggestionsDisplayProps,
+  placeholder,
+  clearTooltip,
+  disableInput,
+  inputProps,
+  searchTooltipProps,
+}: SearchProps<T, U, S>) {
+  const wrapperRef = useRef<HTMLDivElement>(null);
 
-class Search extends React.PureComponent<
-  SearchProps<AnyObject, AnyObject>,
-  SearchState<AnyObject>
-> {
-  private wrapperRef = React.createRef<HTMLDivElement>();
-
-  constructor(props: SearchProps<AnyObject, AnyObject>) {
-    super(props);
-    const searchWidth = props.width || props.searchWidth;
-    // eslint-disable-next-line react/state-in-constructor
-    this.state = {
-      isInputOpen:
-        !!props.value || !!props.parameterValue || !!props.alwaysExpanded,
-      label: props.parameterValue
-        ? props.parameters.find(
-            (param) =>
-              param[props.textLookupConfig.parameters] === props.parameterValue,
-          )
-        : null,
-      filteredParameters: props.parameters,
-      filteredRecent: props.recent,
-      filteredSuggestions: props.suggestions,
-      isListVisible: false,
-      isResultChosen: false,
-      itemsListWidth: searchWidth ? searchWidth - MENU_WIDTH_OFFSET : 0,
-      toggleInputTrigger: false,
-      focusInputTrigger: false,
-      scrollbarScrollTop: 0,
-      moveCursorToEnd: true,
-    };
-  }
-
-  componentDidUpdate(prevProps: SearchProps<AnyObject, AnyObject>): void {
-    const {
-      recent,
-      suggestions,
-      parameters,
-      value,
-      textLookupConfig,
-      hideLabel,
-      parameterValue,
-    } = this.props;
-
-    if (
-      (prevProps.value !== value && !value) ||
-      (prevProps.parameterValue && !parameterValue)
-    ) {
-      this.handleChange(value);
-
-      this.setState({ isResultChosen: false });
+  const [label, setLabel] = useState<T | null>(() => {
+    if (parameterValue) {
+      const found = parameters.find(
+        (param) =>
+          param[textLookupConfig.parameters as keyof U] === parameterValue,
+      );
+      return (found as T) ?? null;
     }
+    return null;
+  });
 
-    if (prevProps.recent.length !== recent.length) {
-      this.setState({
-        filteredRecent: getAllElementsFiltered(
-          recent,
-          value,
-          textLookupConfig.recent,
-        ),
-      });
+  const [filteredParameters, setFilteredParameters] =
+    useState<(T | U)[]>(parameters);
+  const [filteredRecent, setFilteredRecent] = useState<T[]>(recent);
+  const [filteredSuggestions, setFilteredSuggestions] = useState<S[] | null>(
+    suggestions ?? null,
+  );
+
+  const [isListVisible, setIsListVisible] = useState(false);
+  const [isResultChosen, setIsResultChosen] = useState(false);
+  const [toggleInputTrigger, setToggleInputTrigger] = useState(false);
+  const [focusInputTrigger, setFocusInputTrigger] = useState(false);
+  const [scrollbarScrollTop, setScrollbarScrollTop] = useState(0);
+  const [moveCursorToEnd, setMoveCursorToEnd] = useState(true);
+
+  const [itemsListWidth, setItemsListWidth] = useState<number>(
+    width || searchWidth ? (width || searchWidth)! - MENU_WIDTH_OFFSET : 0,
+  );
+
+  useEffect(() => {
+    if (parameterValue) {
+      const found = parameters.find(
+        (param) =>
+          param[textLookupConfig.parameters as keyof U] === parameterValue,
+      );
+      setLabel((found as T) ?? null);
+    } else {
+      setLabel(null);
     }
+  }, [parameterValue, parameters, textLookupConfig.parameters]);
 
-    if (prevProps.parameters.length !== parameters.length) {
-      this.setState({
-        filteredParameters: parameterValue
-          ? parameters
-          : getAllElementsFiltered(
-              parameters,
-              value,
-              textLookupConfig.parameters,
-            ),
-      });
-    }
+  useEffect(() => {
+    setFilteredRecent(
+      getAllElementsFiltered(recent, value, textLookupConfig.recent),
+    );
+  }, [recent, value, textLookupConfig.recent]);
 
-    if (suggestions && prevProps.suggestions?.length !== suggestions.length) {
-      this.setState({
-        filteredSuggestions: getAllElementsFiltered(
+  useEffect(() => {
+    setFilteredParameters(
+      parameterValue
+        ? parameters
+        : getAllElementsFiltered(
+            parameters,
+            value,
+            textLookupConfig.parameters,
+          ),
+    );
+  }, [parameters, value, parameterValue, textLookupConfig.parameters]);
+
+  useEffect(() => {
+    if (suggestions) {
+      setFilteredSuggestions(
+        getAllElementsFiltered(
           suggestions,
           value,
           textLookupConfig.suggestions,
         ),
-      });
+      );
+    } else {
+      setFilteredSuggestions(null);
     }
+  }, [suggestions, value, textLookupConfig.suggestions]);
 
-    if (hideLabel && prevProps.hideLabel !== hideLabel) {
-      this.setState({
-        label: null,
-        isResultChosen: false,
-      });
+  useEffect(() => {
+    const newWidth = (width || searchWidth || 0) - MENU_WIDTH_OFFSET;
+    setItemsListWidth(Math.max(0, newWidth));
+  }, [width, searchWidth]);
+
+  useEffect(() => {
+    if (hideLabel) {
+      setLabel(null);
+      setIsResultChosen(false);
     }
-  }
+  }, [hideLabel]);
 
-  onKeyDown(e: React.KeyboardEvent<HTMLInputElement>): void {
-    const { value, onParameterValueChange, recent } = this.props;
-    const { isInputOpen } = this.state;
-
-    if (e.key === 'Backspace' && value === '' && isInputOpen) {
-      this.setState({
-        label: null,
-        filteredRecent: recent,
-      });
-      onParameterValueChange('', null);
-      return;
+  useEffect(() => {
+    if (!value) {
+      setIsResultChosen(false);
     }
+  }, [value]);
 
-    if (e.key === 'Enter' && isInputOpen) {
-      this.setState({ isResultChosen: !!value });
-    }
-    this.setState({ moveCursorToEnd: false });
-  }
-
-  getSearchWrapperWidth(): number {
-    const { width } = this.props;
-    if (width) {
-      return width - MENU_WIDTH_OFFSET;
-    }
-
-    if (
-      this.wrapperRef !== null &&
-      this.wrapperRef.current &&
-      this.wrapperRef.current.clientWidth > MENU_WIDTH_OFFSET
-    ) {
-      return this.wrapperRef.current.clientWidth - MENU_WIDTH_OFFSET;
-    }
-
-    return 0;
-  }
-
-  // This handler is used for onClickOutside HOC
-  handleClickOutside = (): void => {
-    const { isInputOpen, label, toggleInputTrigger } = this.state;
-    const { value, alwaysExpanded } = this.props;
-
-    if (isInputOpen && !value && !label && !alwaysExpanded) {
-      this.setState({ toggleInputTrigger: !toggleInputTrigger });
-    }
-    this.setState({ isListVisible: false, scrollbarScrollTop: 0 });
+  const handleScroll = (event: React.SyntheticEvent): void => {
+    const scrollTop = (event.currentTarget as HTMLElement).scrollTop;
+    setScrollbarScrollTop(scrollTop);
   };
 
-  handleClearValue = (): void => {
-    const { parameters, recent, suggestions, onClear } = this.props;
-
-    onClear && onClear();
-    this.setState({
-      label: null,
-      filteredRecent: recent,
-      filteredParameters: parameters,
-      filteredSuggestions: suggestions,
-      isResultChosen: false,
+  const handleKeyDownWrapper = (event: React.KeyboardEvent): void => {
+    focusWithArrowKeys(event, 'ds-search-item', () => {
+      setFocusInputTrigger((prev) => !prev);
     });
   };
 
-  handleChange(currentValue: string): void {
-    const {
-      parameterValue,
-      recent,
-      suggestions,
-      parameters,
-      onValueChange,
-      textLookupConfig,
-    } = this.props;
-    let isAnythingToShow;
+  const handleDropdownClick = (): void => {
+    setFocusInputTrigger((prev) => !prev);
+  };
 
-    onValueChange(currentValue);
+  const mergedWidth = searchWidth !== undefined ? searchWidth : width;
+
+  const onKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
+    if (event.key === 'Backspace' && value === '' && isOpen) {
+      setLabel(null);
+      setFilteredRecent(recent);
+      onParameterValueChange?.('', null);
+      return;
+    }
+
+    if (event.key === 'Enter' && isOpen) {
+      setIsResultChosen(!!value);
+    }
+
+    setMoveCursorToEnd(false);
+  };
+
+  const getSearchWrapperWidth = (): number => {
+    if (width) {
+      return width - MENU_WIDTH_OFFSET;
+    }
+    if (
+      wrapperRef.current &&
+      wrapperRef.current.clientWidth > MENU_WIDTH_OFFSET
+    ) {
+      return wrapperRef.current.clientWidth - MENU_WIDTH_OFFSET;
+    }
+    return 0;
+  };
+
+  const [isOpen, setIsOpen] = useState(false);
+
+  useOnClickOutside(wrapperRef, () => {
+    if (isOpen && !value && !label && !alwaysExpanded) {
+      setToggleInputTrigger((prev) => !prev);
+    }
+    setIsOpen(false);
+    setIsListVisible(false);
+    setScrollbarScrollTop(0);
+  });
+
+  const handleClearValue = () => {
+    onClear?.();
+
+    setLabel(null);
+    setFilteredRecent(recent);
+    setFilteredParameters(parameters);
+    setFilteredSuggestions(suggestions ?? null);
+    setIsResultChosen(false);
+  };
+
+  const handleChange = (currentValue: string) => {
+    onValueChange?.(currentValue);
 
     if (parameterValue) {
       const matchingSuggestions = getAllElementsFiltered(
-        suggestions,
+        suggestions ?? [],
         currentValue,
         textLookupConfig.suggestions,
       );
-      this.setState({ filteredSuggestions: matchingSuggestions });
-      isAnythingToShow = matchingSuggestions.length > 0;
+
+      setFilteredSuggestions(matchingSuggestions);
+      setIsResultChosen(false);
+      setIsListVisible(matchingSuggestions.length > 0);
     } else {
       const matchingRecent = getAllElementsFiltered(
         recent,
         currentValue,
         textLookupConfig.recent,
       );
+
       const matchingParameters = getAllElementsFiltered(
         parameters,
         currentValue,
         textLookupConfig.parameters,
       );
-      this.setState({
-        filteredParameters: matchingParameters,
-        filteredRecent: matchingRecent,
-      });
-      isAnythingToShow =
-        matchingRecent.length > 0 || matchingParameters.length > 0;
+
+      setFilteredParameters(matchingParameters);
+      setFilteredRecent(matchingRecent);
+      setIsResultChosen(false);
+      setIsListVisible(
+        matchingRecent.length > 0 || matchingParameters.length > 0,
+      );
     }
+  };
 
-    this.setState({
-      isResultChosen: false,
-      isListVisible: isAnythingToShow,
-    });
-  }
-
-  isListItemRendered(): boolean {
-    const {
-      suggestions,
-      recent,
-      parameters,
-      value,
-      parameterValue,
-      textLookupConfig,
-    } = this.props;
-    let isAnythingToShow;
-
+  const isListItemRendered = (): boolean => {
     if (parameterValue) {
-      isAnythingToShow = hasSomeElementFiltered(
+      return hasSomeElementFiltered(
         suggestions,
         value,
         textLookupConfig.suggestions,
@@ -264,202 +268,80 @@ class Search extends React.PureComponent<
         value,
         textLookupConfig.parameters,
       );
-      isAnythingToShow = anyFilter || anyRecentItem;
+      return anyRecentItem || anyFilter;
     }
+  };
 
-    return isAnythingToShow;
-  }
+  const selectResult = (
+    item: AnyObject,
+    dataKey: SelectResultDataKeys,
+  ): void => {
+    const newValue = item[textLookupConfig[dataKey] as keyof typeof item];
+    onValueChange?.(newValue);
 
-  selectResult(item: object, dataKey: SelectResultDataKeys): void {
-    const { onValueChange, textLookupConfig } = this.props;
+    setIsResultChosen(true);
+    setMoveCursorToEnd(true);
+  };
 
-    this.setState({
-      isResultChosen: true,
-      moveCursorToEnd: true,
-    });
+  const selectFilter = (item: AnyObject): void => {
+    const paramKey = textLookupConfig.parameters as keyof typeof item;
+    const paramValue = item[paramKey];
 
-    onValueChange(item[textLookupConfig[dataKey] as keyof typeof item]);
-  }
+    onValueChange?.('');
 
-  selectFilter(item: object): void {
-    const {
-      onValueChange,
-      onParameterValueChange,
-      filterLookupKey,
-      textLookupConfig,
-    } = this.props;
-    const { focusInputTrigger } = this.state;
-
-    onValueChange('');
-    this.setState({
-      label: item,
-      focusInputTrigger: !focusInputTrigger,
-      moveCursorToEnd: true,
-    });
+    setLabel(item as T);
+    setFocusInputTrigger((prev) => !prev);
+    setMoveCursorToEnd(true);
 
     if (filterLookupKey && item[filterLookupKey as keyof typeof item]) {
-      onValueChange(item[textLookupConfig.parameters as keyof typeof item]);
-      onParameterValueChange(item[filterLookupKey as keyof typeof item], item);
-      this.setState({ isResultChosen: true });
+      const inputValue = item[paramKey];
+      const filterValue = item[filterLookupKey as keyof typeof item];
+
+      onValueChange?.(inputValue);
+      onParameterValueChange?.(filterValue, item as U);
+
+      setIsResultChosen(true);
     } else {
-      onParameterValueChange(
-        item[textLookupConfig.parameters as keyof typeof item],
-        item,
-      );
+      onParameterValueChange?.(paramValue, item as U);
     }
-  }
-
-  renderRecentItems(): React.ReactNode | false {
-    const { recent, recentDisplayProps, dropdownWidth, value } = this.props;
-    const { label, filteredRecent, itemsListWidth } = this.state;
-    const { title, tooltip, rowHeight, itemRender } = recentDisplayProps;
-
-    return (
-      recent &&
-      !label &&
-      hasSomeElement(filteredRecent) && (
-        <>
-          {!!title && <SearchHeader headerText={title} tooltip={tooltip} />}
-          <SearchItems
-            data={filteredRecent}
-            highlight={value}
-            itemRender={itemRender}
-            onItemClick={(item: AnyObject): void =>
-              this.selectResult(item, SelectResultDataKeys.RECENT)
-            }
-            rowHeight={rowHeight}
-            width={
-              dropdownWidth ? dropdownWidth - MENU_WIDTH_OFFSET : itemsListWidth
-            }
-            renderInMenu={false}
-          />
-        </>
-      )
-    );
-  }
-
-  renderParameters(): React.ReactNode | false {
-    const {
-      parameters,
-      parametersDisplayProps,
-      value,
-      dropdownMaxHeight,
-      dropdownWidth,
-      recentDisplayProps,
-    } = this.props;
-    const {
-      label,
-      filteredParameters,
-      itemsListWidth,
-      scrollbarScrollTop,
-      filteredRecent,
-    } = this.state;
-    const { title, tooltip, rowHeight, itemRender, listProps } =
-      parametersDisplayProps;
-
-    return (
-      parameters &&
-      !label &&
-      hasSomeElement(filteredParameters) && (
-        <>
-          {!!title && <SearchHeader headerText={title} tooltip={tooltip} />}
-          <SearchItems
-            data={filteredParameters}
-            height={dropdownMaxHeight}
-            highlight={value}
-            itemRender={itemRender}
-            onItemClick={(item: AnyObject): void => this.selectFilter(item)}
-            rowHeight={rowHeight}
-            width={
-              dropdownWidth ? dropdownWidth - MENU_WIDTH_OFFSET : itemsListWidth
-            }
-            listProps={{
-              scrollTop: getParametersScrollTop({
-                scrollTop: scrollbarScrollTop,
-                recent: filteredRecent,
-                rowHeight: recentDisplayProps.rowHeight,
-              }),
-              ...(listProps || {}),
-            }}
-            renderInMenu={false}
-          />
-        </>
-      )
-    );
-  }
-
-  renderSuggestions(): React.ReactNode | false {
-    const {
-      suggestions,
-      parameterValue,
-      suggestionsDisplayProps,
-      value,
-      dropdownWidth,
-      dropdownMaxHeight,
-    } = this.props;
-    const {
-      isResultChosen,
-      itemsListWidth,
-      filteredSuggestions,
-      scrollbarScrollTop,
-    } = this.state;
-
-    return (
-      suggestions &&
+  };
+  const widthDropdownSearch = dropdownWidth
+    ? dropdownWidth - MENU_WIDTH_OFFSET
+    : itemsListWidth;
+  const shouldRenderRecent = Boolean(
+    recent && !label && hasSomeElement(filteredRecent),
+  );
+  const shouldRenderParameters = Boolean(
+    parameters && !label && hasSomeElement(filteredParameters),
+  );
+  const shouldRenderSuggestions = Boolean(
+    suggestions &&
       suggestionsDisplayProps &&
       parameterValue &&
       !isResultChosen &&
       filteredSuggestions &&
-      hasSomeElement(filteredSuggestions) && (
-        <>
-          {!!suggestionsDisplayProps.title && (
-            <SearchHeader
-              headerText={suggestionsDisplayProps.title}
-              tooltip={suggestionsDisplayProps.tooltip}
-            />
-          )}
-          <SearchItems
-            data={filteredSuggestions}
-            height={dropdownMaxHeight}
-            highlight={value}
-            itemRender={suggestionsDisplayProps.itemRender}
-            onItemClick={(item: AnyObject): void =>
-              this.selectResult(item, SelectResultDataKeys.SUGGESTIONS)
-            }
-            rowHeight={suggestionsDisplayProps.rowHeight}
-            width={
-              dropdownWidth ? dropdownWidth - MENU_WIDTH_OFFSET : itemsListWidth
-            }
-            listProps={{
-              scrollTop: scrollbarScrollTop,
-              ...(suggestionsDisplayProps.listProps || {}),
-            }}
-            renderInMenu={false}
-          />
-        </>
-      )
-    );
-  }
+      hasSomeElement(filteredSuggestions),
+  );
 
-  renderInputWrapper(): React.ReactNode {
-    const {
-      placeholder,
-      clearTooltip,
-      value,
-      textLookupConfig,
-      filterLookupKey,
-      disableInput,
-      inputProps,
-      alwaysExpanded,
-      searchTooltipProps,
-    } = this.props;
-    const {
-      label,
-      isListVisible,
-      focusInputTrigger,
-      toggleInputTrigger,
-      moveCursorToEnd,
-    } = this.state;
+  const renderInputWrapper = (): ReactNode => {
+    const handleInputClick = () => {
+      setIsOpen(true);
+      setIsListVisible(true);
+      setItemsListWidth(getSearchWrapperWidth());
+    };
+
+    const handleToggle = (toggle: boolean) => {
+      setIsOpen(toggle);
+      setIsListVisible(toggle);
+
+      setTimeout(() => {
+        setItemsListWidth(getSearchWrapperWidth());
+      }, INPUT_EXPAND_ANIMATION_DURATION);
+    };
+
+    const handleButtonClick = () => {
+      setFocusInputTrigger((prev) => !prev);
+    };
 
     return (
       <SearchInput
@@ -467,29 +349,15 @@ class Search extends React.PureComponent<
         clearTooltip={clearTooltip}
         searchTooltipProps={searchTooltipProps}
         filterLookupKey={filterLookupKey}
-        textLookupKey={textLookupConfig.parameters}
+        textLookupKey={String(textLookupConfig.parameters)}
         filterLabel={label}
         focusTrigger={focusInputTrigger}
-        onButtonClick={(): void =>
-          this.setState({ focusInputTrigger: !focusInputTrigger })
-        }
-        onChange={(newValue: string): void => this.handleChange(newValue)}
-        onClear={this.handleClearValue}
-        onClick={(): void => {
-          this.setState({
-            isListVisible: true,
-            itemsListWidth: this.getSearchWrapperWidth(),
-          });
-        }}
-        onKeyDown={(e: React.KeyboardEvent<HTMLInputElement>): void =>
-          this.onKeyDown(e)
-        }
-        onToggle={(toggle: boolean): void => {
-          this.setState({ isListVisible: toggle, isInputOpen: toggle });
-          setTimeout(() => {
-            this.setState({ itemsListWidth: this.getSearchWrapperWidth() });
-          }, INPUT_EXPAND_ANIMATION_DURATION);
-        }}
+        onButtonClick={handleButtonClick}
+        onChange={handleChange}
+        onClear={handleClearValue}
+        onClick={handleInputClick}
+        onKeyDown={onKeyDown}
+        onToggle={handleToggle}
         placeholder={placeholder}
         toggleTrigger={toggleInputTrigger}
         value={value}
@@ -502,80 +370,91 @@ class Search extends React.PureComponent<
         }
       />
     );
-  }
+  };
 
-  render(): React.ReactElement {
-    const {
-      divider,
-      dropdownMaxHeight,
-      width,
-      searchWidth,
-      style,
-      dropdownWidth,
-    } = this.props;
-    const {
-      isInputOpen,
-      label,
-      isListVisible,
-      focusInputTrigger,
-      isResultChosen,
-      filteredParameters,
-      filteredRecent,
-    } = this.state;
-
-    const mergedWidth = searchWidth !== undefined ? searchWidth : width;
-
-    return (
-      <S.SearchWrapper
-        ref={this.wrapperRef}
-        className="SearchWrapper"
-        inputOpen={isInputOpen}
-        $width={mergedWidth}
-        onKeyDown={(e): void => {
-          focusWithArrowKeys(e, 'ds-search-item', () => {
-            this.setState({ focusInputTrigger: !focusInputTrigger });
-          });
-        }}
-        style={style}
-      >
-        {this.renderInputWrapper()}
-        {isListVisible && (
-          <S.SearchDropdownWrapper
-            dropdownWidth={dropdownWidth}
-            onClick={(): void => {
-              this.setState({ focusInputTrigger: !focusInputTrigger });
-            }}
+  return (
+    <S.SearchWrapper
+      ref={wrapperRef}
+      className="SearchWrapper"
+      inputOpen={isOpen}
+      $width={mergedWidth}
+      onKeyDown={handleKeyDownWrapper}
+      style={style}
+    >
+      {renderInputWrapper()}
+      {isListVisible && (
+        <S.SearchDropdownWrapper
+          dropdownWidth={dropdownWidth}
+          onClick={handleDropdownClick}
+        >
+          <S.SearchDropdownContent
+            maxHeight={dropdownMaxHeight}
+            className={
+              isOpen && !isResultChosen && isListItemRendered()
+                ? 'search-list-open'
+                : ''
+            }
           >
-            <S.SearchDropdownContent
-              maxHeight={dropdownMaxHeight}
-              className={
-                isInputOpen && !isResultChosen && this.isListItemRendered()
-                  ? 'search-list-open'
-                  : ''
-              }
+            <Scrollbar
+              absolute
+              maxHeight={dropdownMaxHeight - SCROLLBAR_HEIGHT_OFFSET}
+              onScroll={handleScroll}
             >
-              <Scrollbar
-                absolute
-                maxHeight={dropdownMaxHeight - SCROLLBAR_HEIGHT_OFFSET}
-                onScroll={({ currentTarget }: React.SyntheticEvent): void => {
-                  this.setState({
-                    scrollbarScrollTop: currentTarget.scrollTop,
-                  });
-                }}
-              >
-                {this.renderRecentItems()}
-                {!!filteredParameters?.length &&
-                  !!filteredRecent?.length &&
-                  !label &&
-                  divider}
-                {this.renderParameters()}
-                {this.renderSuggestions()}
-              </Scrollbar>
-            </S.SearchDropdownContent>
-          </S.SearchDropdownWrapper>
-        )}
-      </S.SearchWrapper>
-    );
-  }
+              {shouldRenderRecent && (
+                <SearchRenderer
+                  data={filteredRecent}
+                  highlight={value}
+                  width={widthDropdownSearch}
+                  onItemClick={(item) =>
+                    selectResult(item, SelectResultDataKeys.RECENT)
+                  }
+                  {...recentDisplayProps}
+                />
+              )}
+              {!!filteredParameters?.length &&
+                !!filteredRecent?.length &&
+                !label &&
+                divider}
+              {shouldRenderParameters && (
+                <SearchRenderer
+                  data={filteredParameters}
+                  highlight={value}
+                  width={widthDropdownSearch}
+                  height={dropdownMaxHeight}
+                  listProps={{
+                    scrollTop: getParametersScrollTop({
+                      scrollTop: scrollbarScrollTop,
+                      recent: filteredRecent,
+                      rowHeight: recentDisplayProps.rowHeight,
+                    }),
+                    ...(parametersDisplayProps.listProps || {}),
+                  }}
+                  onItemClick={(item) => selectFilter(item)}
+                  {...parametersDisplayProps}
+                />
+              )}
+              {shouldRenderSuggestions && (
+                <SearchRenderer
+                  data={filteredSuggestions || []}
+                  highlight={value}
+                  width={widthDropdownSearch}
+                  height={dropdownMaxHeight}
+                  listProps={{
+                    scrollTop: scrollbarScrollTop,
+                    ...(suggestionsDisplayProps?.listProps || {}),
+                  }}
+                  onItemClick={(item) =>
+                    selectResult(item, SelectResultDataKeys.SUGGESTIONS)
+                  }
+                  {...suggestionsDisplayProps}
+                />
+              )}
+            </Scrollbar>
+          </S.SearchDropdownContent>
+        </S.SearchDropdownWrapper>
+      )}
+    </S.SearchWrapper>
+  );
 }
-export default onClickOutside(Search);
+
+export default Search;

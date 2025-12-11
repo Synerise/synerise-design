@@ -1,10 +1,8 @@
 import React from 'react';
-import { withTheme } from 'styled-components';
 
-import { type ThemeProps } from '@synerise/ds-core';
+import { useTheme } from '@synerise/ds-core';
 import Icon, {
   ArrangeM,
-  CheckS,
   SortAscendingM,
   SortAzM,
   SortDescendingM,
@@ -13,20 +11,12 @@ import Icon, {
 
 import { type ColumnSortOrder } from '../Table.types';
 
-const CheckIconBase = ({
-  isActive,
-  theme,
-}: { isActive: boolean } & ThemeProps): React.ReactElement | null =>
-  isActive ? (
-    <Icon component={<CheckS />} color={theme.palette['green-500']} />
-  ) : null;
-
-export const CheckIcon = withTheme(CheckIconBase);
-
-const DefaultSortIconBase = ({
+export const DefaultSortIcon = ({
   sortOrder,
-  theme,
-}: { sortOrder: ColumnSortOrder } & ThemeProps): React.ReactElement => {
+}: {
+  sortOrder: ColumnSortOrder;
+}) => {
+  const theme = useTheme();
   if (sortOrder === 'ascend') {
     return (
       <Icon component={<SortAscendingM />} color={theme.palette['gray-600']} />
@@ -42,12 +32,12 @@ const DefaultSortIconBase = ({
   return <Icon component={<ArrangeM />} color={theme.palette['gray-600']} />;
 };
 
-export const DefaultSortIcon = withTheme(DefaultSortIconBase);
-
-const StringSortIconBase = ({
+export const StringSortIcon = ({
   sortOrder,
-  theme,
-}: { sortOrder: ColumnSortOrder } & ThemeProps): React.ReactElement => {
+}: {
+  sortOrder: ColumnSortOrder;
+}) => {
+  const theme = useTheme();
   if (sortOrder === 'ascend') {
     return <Icon component={<SortAzM />} color={theme.palette['gray-600']} />;
   }
@@ -58,5 +48,3 @@ const StringSortIconBase = ({
 
   return <Icon component={<ArrangeM />} color={theme.palette['gray-600']} />;
 };
-
-export const StringSortIcon = withTheme(StringSortIconBase);

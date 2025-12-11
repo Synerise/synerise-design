@@ -1,5 +1,7 @@
 import styled from 'styled-components';
 
+import { FormFieldLabel } from '@synerise/ds-form-field';
+
 export const TileContainer = styled.div<{ width: string }>`
   position: relative;
   margin-right: 2px;
@@ -15,16 +17,16 @@ export const TileProgress = styled.div<{ color: string; width: string }>`
   background-color: ${(props) => props.color};
 `;
 
+export const Label = styled(FormFieldLabel)`
+  margin-bottom: 12px;
+  cursor: pointer;
+`;
+
 export const TilesWrapper = styled.div`
   width: 100%;
   display: flex;
   justify-content: center;
   flex-direction: column;
-
-  .progress-bar-label {
-    margin-bottom: 12px;
-    cursor: pointer;
-  }
 
   .progress-bar-wrapper {
     display: flex;

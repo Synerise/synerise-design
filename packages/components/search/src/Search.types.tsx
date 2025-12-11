@@ -17,13 +17,21 @@ export type DataSetProps = {
   listProps?: Partial<ListProps>;
 };
 
-export type SearchLookupConfig<T extends AnyObject, U extends AnyObject> = {
+export type SearchLookupConfig<
+  T extends AnyObject,
+  U extends AnyObject,
+  S extends AnyObject,
+> = {
   parameters: keyof U;
   recent: keyof T;
-  suggestions: keyof T;
+  suggestions: keyof S;
 };
 
-export type SearchProps<T extends AnyObject, U extends AnyObject> = {
+export type SearchProps<
+  T extends AnyObject,
+  U extends AnyObject,
+  S extends AnyObject,
+> = {
   clearTooltip: string;
   divider?: React.ReactNode;
   dropdownMaxHeight: number;
@@ -39,9 +47,9 @@ export type SearchProps<T extends AnyObject, U extends AnyObject> = {
   recent: T[];
   recentDisplayProps: DataSetProps;
   style?: React.CSSProperties;
-  suggestions?: T[] | null;
+  suggestions?: S[] | null;
   suggestionsDisplayProps?: DataSetProps | null;
-  textLookupConfig: SearchLookupConfig<T, U>;
+  textLookupConfig: SearchLookupConfig<T, U, S>;
   value: string;
   /** @deprecated - use searchWidth instead */
   width?: number;
@@ -53,21 +61,6 @@ export type SearchProps<T extends AnyObject, U extends AnyObject> = {
   disableInput?: boolean;
   alwaysExpanded?: boolean;
   searchTooltipProps?: TooltipProps;
-};
-
-export type SearchState<T extends AnyObject> = {
-  isInputOpen: boolean;
-  label: T | null | undefined;
-  filteredParameters: T[];
-  filteredRecent: T[];
-  filteredSuggestions?: T[] | null;
-  isListVisible: boolean;
-  focusInputTrigger: boolean;
-  toggleInputTrigger: boolean;
-  isResultChosen: boolean;
-  itemsListWidth: number;
-  scrollbarScrollTop: number;
-  moveCursorToEnd: boolean;
 };
 
 export enum SelectResultDataKeys {

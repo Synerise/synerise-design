@@ -1,12 +1,19 @@
 {
-  "include": ["packages/*/src"],
+  "include": [
+    "packages/*/src"
+  ],
   "compilerOptions": {
     "jsx": "preserve",
     "declaration": true,
     "module": "esnext",
     "moduleResolution": "node",
     "target": "es6",
-    "lib": ["dom", "dom.iterable", "esnext", "es2018"],
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "esnext",
+      "es2018"
+    ],
     "sourceMap": true,
     "strict": true,
     "forceConsistentCasingInFileNames": true,
@@ -19,7 +26,9 @@
     "resolveJsonModule": true,
     "baseUrl": ".",
     "paths": {
-      "@synerise/ds-*": ["packages/*/src"]
+      "@synerise/ds-*": [
+        "packages/*/src"
+      ]
     }
   }
 }

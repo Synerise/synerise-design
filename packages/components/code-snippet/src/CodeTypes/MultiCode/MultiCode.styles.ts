@@ -11,6 +11,7 @@ import {
   CodeSnippetWrapperSingle,
   FONT_SIZE_DEFAULT,
   LINE_HEIGHT_DEFAULT,
+  StyledCopyIcon,
 } from '../SingleCode/SingleCode.styles';
 
 export const ContentIconWrapper = styled.div`
@@ -54,7 +55,9 @@ export const CodeSnippetWrapperMulti = styled(CodeSnippetWrapperSingle)<{
         }
         `};
   }
-  .copy {
+`;
+export const MultiIconCopy = styled(StyledCopyIcon)`
+  && {
     position: absolute;
     top: 0;
     right: 0;

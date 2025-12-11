@@ -77,10 +77,15 @@ const IconPicker = <IconSource extends SourceType>({
 
   return (
     <Dropdown
-      visible={isOpen}
-      onVisibleChange={toggleOpen}
+      open={isOpen}
+      onOpenChange={toggleOpen}
       trigger={trigger}
       placement="bottomRight"
+      size="auto"
+      asChild={false}
+      popoverProps={{
+        testId: 'icon-picker',
+      }}
       overlay={
         <S.Overlay ref={ref}>
           <Overlay

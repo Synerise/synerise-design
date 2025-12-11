@@ -17,8 +17,14 @@ export const EmojiPicker = ({
   const [isOpen, setOpen] = useState(false);
   const [focus, setFocus] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
+  const triggerRef = useRef<HTMLSpanElement>(null);
 
-  useOnClickOutside(ref, () => {
+  useOnClickOutside(ref, (event) => {
+    if (triggerRef.current && event.target) {
+      if (triggerRef.current.contains(event.target as HTMLElement)) {
+        return;
+      }
+    }
     setOpen(false);
   });
 
@@ -29,16 +35,21 @@ export const EmojiPicker = ({
 
   return (
     <Dropdown
-      visible={isOpen}
-      onVisibleChange={toggleOpen}
+      open={isOpen}
+      onOpenChange={toggleOpen}
       placement="bottomRight"
+      asChild
       {...dropdownProps}
+      popoverProps={{
+        testId: 'emojipicker',
+        ...dropdownProps?.popoverProps,
+      }}
+      size="medium"
       overlay={
         <S.Overlay ref={ref} onClick={(event) => event.stopPropagation()}>
           <EmojiOverlay
             onSelect={(val) => {
               closeOnSelect && toggleOpen(false);
-
               onSelect?.(val);
             }}
             texts={texts}

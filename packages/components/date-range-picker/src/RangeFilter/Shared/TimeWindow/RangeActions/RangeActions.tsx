@@ -67,6 +67,10 @@ const RangeActions: React.FC<RangeActionsProps> = ({
       getPopupContainer={(node): HTMLElement =>
         node.parentElement !== null ? node.parentElement : document.body
       }
+      asChild
+      popoverProps={{
+        testId: 'date-range-picker-filter-actions',
+      }}
     >
       {trigger}
     </Dropdown>

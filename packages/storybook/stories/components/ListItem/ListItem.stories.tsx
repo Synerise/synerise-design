@@ -142,7 +142,6 @@ export default {
   args: {
     onItemHover: fn(),
     onSelect: fn(),
-    onItemSelect: fn(),
     onFocus: fn(),
     onBlur: fn(),
     onClick: fn(),
@@ -233,10 +232,10 @@ export const WithCopyable: Story = {
     prefixel: (
       <Icon color={theme.palette['grey-700']} component={<CopyClipboardM />} />
     ),
-    copyable: true,
-    copyHint: 'Copy to clipboard',
-    copyValue: 'Item',
-    copyTooltip: 'Copied!',
+    copyable: {
+      copyValue: 'Copy test value',
+      copiedLabel: 'Copied',
+    },
   },
 };
 
@@ -279,10 +278,10 @@ export const WithTag: StoryObj<ListItemProps & { tagShape?: TagShape }> = {
   },
   args: {
     tagShape: TagShape.SMALL_SQUARE,
-    copyable: true,
-    copyHint: 'Copy to clipboard',
-    copyValue: 'Item',
-    copyTooltip: 'Copied!',
+    copyable: {
+      copyValue: 'Copy test value',
+      copiedLabel: 'Copied',
+    },
   },
 };
 

@@ -9,7 +9,10 @@ import React, {
 } from 'react';
 
 import { theme } from '@synerise/ds-core';
-import Dropdown from '@synerise/ds-dropdown';
+import {
+  DropdownMenu,
+  type DropdownMenuListItemProps,
+} from '@synerise/ds-dropdown';
 import Icon, { OptionHorizontalM } from '@synerise/ds-icon';
 import { NOOP, useResizeObserver } from '@synerise/ds-utils';
 
@@ -20,7 +23,6 @@ import { type TabWithRef, type TabsProps } from './Tabs.types';
 const MARGIN_BETWEEN_TABS = 24;
 const DROPDOWN_TRIGGER_SIZE = 32;
 const DROPDOWN_OVERLAY_STYLE = {
-  boxShadow: '0 4px 12px 0 rgba(35, 41, 54, 0.07)',
   zIndex: parseInt(theme.variables['zindex-modal'], 10) - 1,
 };
 
@@ -120,33 +122,29 @@ const Tabs = ({
     },
     [handleTabClick],
   );
+
   const dropdownMenuItems = hiddenTabs.map((item, index) => ({
     key: `${item.label}-dropdown-${index}`,
     onClick: () => handleHiddenTabClick(visibleTabs.length + index),
     disabled: item.disabled,
     text: item.label,
   }));
-  const renderHiddenTabs = useMemo(() => {
-    return (
-      <S.TabsDropdownContainer data-testid="tabs-dropdown-container">
-        {hiddenTabs.length > 0 && (
-          <S.DropdownMenu dataSource={dropdownMenuItems} />
-        )}
-        {hiddenTabs.length > 0 && configuration && <S.TabsDropdownDivider />}
-        {configuration && (
-          <S.DropdownMenu
-            dataSource={[
-              {
-                key: 'configuration-btn',
-                onClick: handleConfigurationAction,
-                disabled: !!configuration?.disabled,
-                text: configuration.label,
-              },
-            ]}
-          />
-        )}
-      </S.TabsDropdownContainer>
-    );
+
+  const hiddenTabsItems = useMemo(() => {
+    const temp: DropdownMenuListItemProps[] =
+      hiddenTabs.length > 0 ? [...dropdownMenuItems] : [];
+    if (hiddenTabs.length > 0 && configuration) {
+      temp.push({ type: 'divider' });
+    }
+    if (configuration) {
+      temp.push({
+        key: 'configuration-btn',
+        onClick: handleConfigurationAction,
+        disabled: !!configuration?.disabled,
+        text: configuration.label,
+      });
+    }
+    return temp;
   }, [
     hiddenTabs.length,
     dropdownMenuItems,
@@ -158,14 +156,24 @@ const Tabs = ({
     return (
       <>
         {(hiddenTabs.length || configuration) && (
-          <Dropdown
-            trigger={['click']}
-            data-testid="tabs-dropdown"
-            visible={isDropdownVisible}
-            onVisibleChange={setIsDropdownVisible}
-            overlay={renderHiddenTabs}
+          <DropdownMenu
+            trigger="click"
+            dataSource={hiddenTabsItems}
+            open={isDropdownVisible}
+            onOpenChange={setIsDropdownVisible}
             disabled={!!configuration?.disabled && !hiddenTabs.length}
             overlayStyle={DROPDOWN_OVERLAY_STYLE}
+            placement="bottomLeft"
+            popoverProps={{
+              testId: 'tabs-hidden',
+              autoUpdate: {
+                ancestorScroll: true,
+                ancestorResize: true,
+                elementResize: true,
+                layoutShift: true,
+                animationFrame: true,
+              },
+            }}
           >
             <S.ShowHiddenTabsTrigger
               data-testid="tabs-dropdown-trigger"
@@ -175,7 +183,7 @@ const Tabs = ({
             >
               <Icon component={<OptionHorizontalM />} />
             </S.ShowHiddenTabsTrigger>
-          </Dropdown>
+          </DropdownMenu>
         )}
       </>
     );

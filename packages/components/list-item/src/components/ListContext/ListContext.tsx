@@ -4,7 +4,6 @@ import type { ListItemProps } from '../../ListItem.types';
 
 export type ListContextProps = {
   onClick?: ListItemProps['onClick'];
-  onItemSelect?: ListItemProps['onItemSelect'];
   selectedKeys?: [];
   multiple?: boolean;
 };

@@ -13,12 +13,14 @@ export const ScrollbarWrapper = styled.div<{
     }
     return props.largeSize ? '24px !important' : '11px !important';
   }};
-  padding-bottom: ${(props): string => {
-    if (props.absolute) {
-      return '';
-    }
-    return props.largeSize ? '20px !important' : '11px !important';
-  }};
+  .ps--active-x & {
+    padding-bottom: ${(props): string => {
+      if (props.absolute) {
+        return '';
+      }
+      return props.largeSize ? '20px !important' : '11px !important';
+    }};
+  }
   & > * {
     opacity: ${(props): string => (props.loading ? '0.2' : '1')};
     transition: all 0.25s ease-in-out;

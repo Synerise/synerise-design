@@ -37,7 +37,7 @@ export const AntdMenu = styled(Menu)<AntdMenuProps>`
     css`
       && {
         padding: 8px;
-        width: 194px;
+        width: 100%;
     `}
   ${(props: AntdMenuProps & ThemeProps): FlattenSimpleInterpolation | false =>
     !!props.ordered &&

@@ -1,6 +1,13 @@
-import React, { forwardRef, useContext } from 'react';
+import React, {
+  type KeyboardEvent,
+  type MouseEvent,
+  forwardRef,
+  useContext,
+} from 'react';
 
-import { type ListItemProps, itemTypes } from './ListItem.types';
+import { useDropdown } from '@synerise/ds-core';
+
+import { type ItemData, type ListItemProps, itemTypes } from './ListItem.types';
 import Danger from './components/Danger/Danger';
 import { Divider } from './components/Divider/Divider';
 import { Header } from './components/Header/Header';
@@ -10,28 +17,28 @@ import Text from './components/Text/Text';
 
 const ListItem = forwardRef<HTMLDivElement, ListItemProps>(
   (props, forwardedRef) => {
-    const {
-      text,
-      children,
-      type,
-      onClick: onClickProp,
-      onItemSelect: onItemSelectProp,
-      ...rest
-    } = props;
+    const { text, children, type, onClick: onClickProp, ...rest } = props;
     const listItemContext = useContext(ListContext);
+    const dropdownContext = useDropdown();
+
+    const handleClick = (
+      itemData: ItemData<
+        MouseEvent<HTMLDivElement> | KeyboardEvent<HTMLDivElement>
+      >,
+    ) => {
+      listItemContext?.onClick?.(itemData);
+      onClickProp?.(itemData);
+      if (dropdownContext?.hideOnItemClick === true) {
+        dropdownContext?.setIsOpen(false);
+      }
+    };
+
     switch (type) {
       case itemTypes.DANGER:
         return (
           <Danger
             ref={forwardedRef}
-            onClick={(itemData) => {
-              listItemContext?.onClick?.(itemData);
-              onClickProp?.(itemData);
-            }}
-            onItemSelect={(itemData) => {
-              listItemContext?.onItemSelect?.(itemData);
-              onItemSelectProp?.(itemData);
-            }}
+            onClick={handleClick}
             ItemComponent={ListItem}
             {...rest}
           >
@@ -42,14 +49,7 @@ const ListItem = forwardRef<HTMLDivElement, ListItemProps>(
         return (
           <Select
             ref={forwardedRef}
-            onClick={(itemData) => {
-              listItemContext?.onClick?.(itemData);
-              onClickProp?.(itemData);
-            }}
-            onItemSelect={(itemData) => {
-              listItemContext?.onItemSelect?.(itemData);
-              onItemSelectProp?.(itemData);
-            }}
+            onClick={handleClick}
             ItemComponent={ListItem}
             {...rest}
           >
@@ -72,14 +72,7 @@ const ListItem = forwardRef<HTMLDivElement, ListItemProps>(
         return (
           <Text
             ref={forwardedRef}
-            onClick={(itemData) => {
-              listItemContext?.onClick?.(itemData);
-              onClickProp?.(itemData);
-            }}
-            onItemSelect={(itemData) => {
-              listItemContext?.onItemSelect?.(itemData);
-              onItemSelectProp?.(itemData);
-            }}
+            onClick={handleClick}
             {...rest}
             ItemComponent={ListItem}
           >

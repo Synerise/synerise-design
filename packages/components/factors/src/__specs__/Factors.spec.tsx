@@ -137,7 +137,8 @@ describe('Factors component', () => {
     expect(selectFactorType).toBeCalledWith('number');
   });
 
-  test('should call onActivate / onDeactivate Parameter factor', async () => {
+  // moved to chromatic test
+  test.skip('should call onActivate / onDeactivate Parameter factor', async () => {
     const handleDeactivate = jest.fn();
     const handleActivate = jest.fn();
     renderWithProvider(
@@ -156,7 +157,8 @@ describe('Factors component', () => {
     await waitFor(() => expect(handleDeactivate).toBeCalled());
   });
 
-  test('should call onActivate / onDeactivate Relative date factor', async () => {
+  // moved to chromatic test
+  test.skip('should call onActivate / onDeactivate Relative date factor', async () => {
     const handleActivate = jest.fn();
     const handleDeactivate = jest.fn();
     renderWithProvider(
@@ -178,7 +180,9 @@ describe('Factors component', () => {
 
     await waitFor(() => expect(handleDeactivate).toBeCalled());
   });
-  test('should call onActivate / onDeactivate Text factor', async () => {
+
+  // moved to chromatic test
+  test.skip('should call onActivate / onDeactivate Text factor', async () => {
     const handleActivate = jest.fn();
     const handleDeactivate = jest.fn();
     renderWithProvider(

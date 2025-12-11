@@ -16,10 +16,6 @@ export type BasicItemProps = {
   children?: ReactNode;
   onClick?: MenuProps['onClick'];
   description?: ReactNode;
-  copyable?: boolean;
-  copyHint?: ReactNode;
-  copyValue?: string;
-  copyTooltip?: ReactNode;
   highlight?: string;
   style?: CSSProperties;
   suffixVisibilityTrigger?: MenuItemProps['suffixVisibilityTrigger'];
@@ -29,8 +25,14 @@ export type BasicItemProps = {
   key?: string | number;
   checked?: boolean;
   size?: 'default' | 'large';
-  timeToHideTooltip?: number;
-  tooltipProps?: MenuItemProps['tooltipProps'];
   hoverTooltipProps?: MenuItemProps['hoverTooltipProps'];
   renderHoverTooltip?: MenuItemProps['renderHoverTooltip'];
-};
+} & Pick<
+  MenuItemProps,
+  | 'copyHint'
+  | 'copyValue'
+  | 'copyTooltip'
+  | 'copyable'
+  | 'timeToHideTooltip'
+  | 'tooltipProps'
+>;

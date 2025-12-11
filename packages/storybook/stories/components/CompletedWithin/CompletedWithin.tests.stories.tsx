@@ -1,11 +1,10 @@
+import { expect, fn, userEvent, waitFor, within } from 'storybook/test';
+
 import { Meta, StoryObj } from '@storybook/react-webpack5';
-
-import { within, waitFor, userEvent, fn, expect } from 'storybook/test';
 import type { CompletedWithinProps } from '@synerise/ds-completed-within';
-import { sleep } from '../../utils';
 
+// import { sleep } from '../../utils';
 import CompletedWithinMeta from './CompletedWithin.stories';
-
 
 export default {
   ...CompletedWithinMeta,
@@ -24,14 +23,18 @@ export const PopupOpen: Story = {
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement.parentElement!);
     await canvas.findByText(PLACEHOLDER);
-    await sleep(3000)
+    // await sleep(1000);
 
     await userEvent.click(canvas.getByRole('button'));
-    await sleep(3000)
+    // await sleep(1000);
 
     await waitFor(() => expect(canvas.getByRole('spinbutton')).toBeVisible());
-    await sleep(1000);
-    await waitFor(() => expect(canvas.getByRole('spinbutton')).not.toHaveStyle({ pointerEvents: 'none' }));
+    // await sleep(1000);
+    await waitFor(() =>
+      expect(canvas.getByRole('spinbutton')).not.toHaveStyle({
+        pointerEvents: 'none',
+      }),
+    );
   },
 };
 export const SelectNumber: Story = {
@@ -42,17 +45,25 @@ export const SelectNumber: Story = {
   play: async ({ canvasElement, args }) => {
     const canvas = within(canvasElement.parentElement!);
     await canvas.findByText(PLACEHOLDER);
-    await sleep(3000)
+    // await sleep(1000);
 
     await userEvent.click(canvas.getByRole('button'));
-    await sleep(3000)
+    // await sleep(1000);
     await waitFor(() => expect(canvas.getByRole('spinbutton')).toBeVisible());
-    await sleep(1000)
-    await waitFor(() => expect(canvas.getByRole('spinbutton')).not.toHaveStyle({ pointerEvents: 'none' }));
-    await userEvent.type(canvas.getByRole('spinbutton'), '4')
+    // await sleep(1000);
+    await waitFor(() =>
+      expect(canvas.getByRole('spinbutton')).not.toHaveStyle({
+        pointerEvents: 'none',
+      }),
+    );
+    await userEvent.type(canvas.getByRole('spinbutton'), '4');
     await userEvent.click(canvas.getByRole('combobox'));
-    await sleep(1000)
-    await waitFor(() => expect(canvas.getByText('Days')).not.toHaveStyle({ pointerEvents: 'none' }));
+    // await sleep(1000);
+    await waitFor(() =>
+      expect(canvas.getByText('Days')).not.toHaveStyle({
+        pointerEvents: 'none',
+      }),
+    );
     await userEvent.click(canvas.getByText('Days'));
     await userEvent.click(canvasElement.parentElement!);
     await waitFor(() => expect(args.onSetValue).toHaveBeenCalled());

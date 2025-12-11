@@ -1,9 +1,9 @@
-import React, { useCallback, useEffect, useRef, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { useIntl } from 'react-intl';
 
 import Dropdown from '@synerise/ds-dropdown';
-import { useOnClickOutside } from '@synerise/ds-utils';
 
+import { TRIGGER_PROPS } from './DatePicker.const';
 import * as S from './DatePicker.styles';
 import type { DatePickerProps } from './DatePicker.types';
 import PickerInput from './Elements/PickerInput/PickerInput';
@@ -39,12 +39,9 @@ const DatePicker = ({
 }: DatePickerProps) => {
   const [dropVisible, setDropVisible] = useState(autoFocus || false);
   const [selectedDate, setSelectedDate] = useState(value);
-  const ref = useRef<HTMLDivElement>(null);
+
   const intl = useIntl();
   const allTexts = getDefaultTexts(intl, texts);
-  useOnClickOutside(ref, () => {
-    !!dropVisible && setDropVisible(false);
-  });
 
   useEffect(() => {
     setSelectedDate(value);
@@ -63,6 +60,15 @@ const DatePicker = ({
       setDropVisible(false);
     },
     [onApply],
+  );
+
+  const handleOpenChange = useCallback(
+    (newOpen: boolean) => {
+      onDropdownVisibleChange?.(newOpen);
+      dropdownProps?.onOpenChange?.(newOpen);
+      setDropVisible(newOpen);
+    },
+    [dropdownProps, onDropdownVisibleChange],
   );
 
   const handleClear = useCallback(() => {
@@ -108,7 +114,6 @@ const DatePicker = ({
       overlay={
         <S.OverlayContainer
           data-testid="date-picker-overlay-container"
-          ref={ref}
           {...overlayHTMLAttributes}
         >
           <RawDatePicker
@@ -122,13 +127,22 @@ const DatePicker = ({
           />
         </S.OverlayContainer>
       }
-      overlayStyle={{ boxShadow: '0 4px 12px 0 rgba(35, 41, 54, 0.07)' }}
-      onVisibleChange={onDropdownVisibleChange}
       trigger={['click']}
       placement={popoverPlacement}
-      visible={!!dropVisible && !disabled}
       disabled={disabled}
+      size="min-match-trigger"
+      asChild={false}
       {...dropdownProps}
+      onOpenChange={handleOpenChange}
+      open={(dropdownProps?.open || dropVisible) && !disabled}
+      popoverProps={{
+        testId: 'date-picker',
+        ...dropdownProps?.popoverProps,
+      }}
+      popoverTriggerProps={{
+        ...TRIGGER_PROPS,
+        ...dropdownProps?.popoverTriggerProps,
+      }}
     >
       {trigger}
     </Dropdown>

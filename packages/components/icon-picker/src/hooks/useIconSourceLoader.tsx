@@ -1,7 +1,7 @@
 import React, { useCallback, useState } from 'react';
 
 import type { IconDefinition } from '@fortawesome/fontawesome-svg-core';
-import Icon, { medium } from '@synerise/ds-icon';
+import Icon, { mediumIconMapping } from '@synerise/ds-icon';
 
 import {
   type FilterElement,
@@ -69,13 +69,15 @@ export const useIconSourceLoader = <Source extends SourceType>(
       };
 
       if (isDSSourceType(data)) {
-        const iconItems = Object.entries(medium).map(([name, Component]) => ({
-          keywords: name,
-          item: <Icon component={<Component />} />,
-          value: (
-            <Icon component={<Component />} />
-          ) as ValueTypeForSource<Source>,
-        }));
+        const iconItems = Object.entries(mediumIconMapping).map(
+          ([name, Component]) => ({
+            keywords: name,
+            item: <Icon component={<Component />} />,
+            value: (
+              <Icon component={<Component />} />
+            ) as ValueTypeForSource<Source>,
+          }),
+        );
         setItems([
           {
             category: 'DS Icons',

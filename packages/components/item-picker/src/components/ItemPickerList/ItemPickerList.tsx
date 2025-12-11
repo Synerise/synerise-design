@@ -336,6 +336,7 @@ const ItemPickerListInner = <
             hasCurrentSection={isSection}
             texts={allTexts}
             isActionSection={isActionSection}
+            currentSection={currentSection}
           />
         ) : (
           <S.StyledScrollbar

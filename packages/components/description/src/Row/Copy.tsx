@@ -9,6 +9,9 @@ import { type CopyProps } from './Copy.types';
 import * as S from './DescriptionRow.styles';
 import { type RowTexts } from './DescriptionRow.types';
 
+/**
+ *  @deprecated it will receive no further updates and will be removed from future DS versions
+ */
 const Copy = ({
   copyValue,
   texts,

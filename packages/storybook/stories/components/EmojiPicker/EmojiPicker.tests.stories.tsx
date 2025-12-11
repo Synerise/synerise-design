@@ -1,15 +1,20 @@
 import React, { useState } from 'react';
-import type { Meta, StoryObj } from '@storybook/react-webpack5';
-import { fn, within, waitFor, expect, userEvent } from 'storybook/test';
+import { expect, fn, userEvent, waitFor, within } from 'storybook/test';
 import type { Emoji } from 'unicode-emoji-utils';
 
-import { Input } from '@synerise/ds-input';
-import EmojiPicker, { EmojiPickerProps } from '@synerise/ds-emoji-picker';
+import type { Meta, StoryObj } from '@storybook/react-webpack5';
 import Button from '@synerise/ds-button';
-import Icon, { EmoticonsM } from '@synerise/ds-icon';
 import { theme } from '@synerise/ds-core';
+import EmojiPicker, { EmojiPickerProps } from '@synerise/ds-emoji-picker';
+import Icon, { EmoticonsM } from '@synerise/ds-icon';
+import { Input } from '@synerise/ds-input';
 
-import { BOOLEAN_CONTROL, centeredPaddedWrapper, fixedWrapper300, sleep } from '../../utils';
+import {
+  BOOLEAN_CONTROL,
+  centeredPaddedWrapper,
+  fixedWrapper300,
+  sleep,
+} from '../../utils';
 import { Default, InputWithEmojiPicker } from './EmojiPicker.stories';
 
 export default {
@@ -46,7 +51,7 @@ export const Open: StoryObj<EmojiPickerProps> = {
 
     expect(await canvas.findByPlaceholderText(PLACEHOLDER)).toBeInTheDocument();
 
-    await sleep(500)
+    await sleep(500);
   },
 };
 
@@ -64,7 +69,7 @@ export const Search: StoryObj<EmojiPickerProps> = {
 
     userEvent.type(await canvas.findByPlaceholderText(PLACEHOLDER), 'grin');
 
-    await sleep(500)
+    await sleep(500);
   },
 };
 
@@ -72,6 +77,7 @@ export const PopulateInput: StoryObj<EmojiPickerProps> = {
   ...InputWithEmojiPicker,
   args: {
     ...Default.args,
+    closeOnSelect: false,
     texts: {
       placeholder: PLACEHOLDER,
     },
@@ -82,8 +88,8 @@ export const PopulateInput: StoryObj<EmojiPickerProps> = {
 
     await userEvent.click(canvas.getAllByTestId('ds-emoji-item')[0]);
     await userEvent.click(canvas.getAllByTestId('ds-emoji-item')[3]);
-    await userEvent.click(canvasElement.parentElement!)
+    await userEvent.click(canvasElement.parentElement!);
 
-    await sleep(500)
+    await sleep(500);
   },
 };
