@@ -1,8 +1,10 @@
 import React from 'react';
+
 import { Meta, StoryObj } from '@storybook/react-webpack5';
 import { Multivalue } from '@synerise/ds-progress-bar';
-import { COLORS } from './ProgressBar.constants';
+
 import { BOOLEAN_CONTROL, fixedWrapper300 } from '../../utils';
+import { COLORS } from './ProgressBar.constants';
 
 type MultivalueProps = typeof Multivalue;
 
@@ -11,12 +13,12 @@ export default {
   title: 'Components/ProgressBar',
   tags: ['autodocs'],
   decorators: [fixedWrapper300],
-  render: args => {
+  render: (args) => {
     return <Multivalue {...args} />;
   },
   argTypes: {
     values: { control: false },
-    stackedBars: BOOLEAN_CONTROL
+    stackedBars: BOOLEAN_CONTROL,
   },
   args: {
     values: [
@@ -36,8 +38,54 @@ export default {
   },
 } as Meta<MultivalueProps>;
 
-export const MultivalueBar: StoryObj<MultivalueProps> = {};
+export const MultivalueBar: StoryObj<MultivalueProps> = {
+  parameters: {
+    docs: {
+      source: {
+        code: `<Multivalue
+  values={[
+    {
+      percent: 10,
+      color: COLORS.mars,
+    },
+    {
+      percent: 15,
+      color: COLORS.yellow,
+    },
+    {
+      percent: 40,
+      color: COLORS.cyan,
+    },
+  ]}
+/>`,
+      },
+    },
+  },
+};
 export const MultivalueBarNotStacked: StoryObj<MultivalueProps> = {
+  parameters: {
+    docs: {
+      source: {
+        code: `<Multivalue
+  stackedBars={false}
+  values={[
+    {
+      percent: 10,
+      color: COLORS.mars,
+    },
+    {
+      percent: 25,
+      color: COLORS.yellow,
+    },
+    {
+      percent: 65,
+      color: COLORS.grey,
+    },
+  ]}
+/>`,
+      },
+    },
+  },
   args: {
     stackedBars: false,
     values: [
@@ -54,5 +102,5 @@ export const MultivalueBarNotStacked: StoryObj<MultivalueProps> = {
         color: COLORS.grey,
       },
     ],
-  }
+  },
 };
