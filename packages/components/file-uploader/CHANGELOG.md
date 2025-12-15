@@ -31,168 +31,88 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 **Note:** Version bump only for package @synerise/ds-file-uploader
 
-
-
-
-
 ## [1.1.7](https://github.com/Synerise/synerise-design/compare/@synerise/ds-file-uploader@1.1.6...@synerise/ds-file-uploader@1.1.7) (2025-10-16)
 
 **Note:** Version bump only for package @synerise/ds-file-uploader
-
-
-
-
 
 ## [1.1.6](https://github.com/Synerise/synerise-design/compare/@synerise/ds-file-uploader@1.1.5...@synerise/ds-file-uploader@1.1.6) (2025-10-10)
 
 **Note:** Version bump only for package @synerise/ds-file-uploader
 
-
-
-
-
 ## [1.1.5](https://github.com/Synerise/synerise-design/compare/@synerise/ds-file-uploader@1.1.4...@synerise/ds-file-uploader@1.1.5) (2025-10-08)
 
 **Note:** Version bump only for package @synerise/ds-file-uploader
-
-
-
-
 
 ## [1.1.4](https://github.com/Synerise/synerise-design/compare/@synerise/ds-file-uploader@1.1.3...@synerise/ds-file-uploader@1.1.4) (2025-09-25)
 
 **Note:** Version bump only for package @synerise/ds-file-uploader
 
-
-
-
-
 ## [1.1.3](https://github.com/Synerise/synerise-design/compare/@synerise/ds-file-uploader@1.1.2...@synerise/ds-file-uploader@1.1.3) (2025-09-19)
 
 **Note:** Version bump only for package @synerise/ds-file-uploader
-
-
-
-
 
 ## [1.1.2](https://github.com/Synerise/synerise-design/compare/@synerise/ds-file-uploader@1.1.1...@synerise/ds-file-uploader@1.1.2) (2025-09-16)
 
 **Note:** Version bump only for package @synerise/ds-file-uploader
 
-
-
-
-
 ## [1.1.1](https://github.com/Synerise/synerise-design/compare/@synerise/ds-file-uploader@1.1.0...@synerise/ds-file-uploader@1.1.1) (2025-09-05)
 
 **Note:** Version bump only for package @synerise/ds-file-uploader
 
-
-
-
-
 # [1.1.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-file-uploader@1.0.22...@synerise/ds-file-uploader@1.1.0) (2025-09-05)
-
 
 ### Bug Fixes
 
-* **file-uploader:** removeable prop during uploading ([0500b62](https://github.com/Synerise/synerise-design/commit/0500b628b4a07453f585338dece23995a1f5ebd7))
-* **progress-bar:** refactor progress bar and remove ant ([3324544](https://github.com/Synerise/synerise-design/commit/33245443d076da967561558ca8506d6ab0d904e5))
-
+- **file-uploader:** removeable prop during uploading ([0500b62](https://github.com/Synerise/synerise-design/commit/0500b628b4a07453f585338dece23995a1f5ebd7))
+- **progress-bar:** refactor progress bar and remove ant ([3324544](https://github.com/Synerise/synerise-design/commit/33245443d076da967561558ca8506d6ab0d904e5))
 
 ### Features
 
-* **file-uploader:** accept ref to allow programmatic open ([dac9f01](https://github.com/Synerise/synerise-design/commit/dac9f01cf35f8bf3630e89bef93e9668e41bec95))
-
-
-
-
+- **file-uploader:** accept ref to allow programmatic open ([dac9f01](https://github.com/Synerise/synerise-design/commit/dac9f01cf35f8bf3630e89bef93e9668e41bec95))
 
 ## [1.0.22](https://github.com/Synerise/synerise-design/compare/@synerise/ds-file-uploader@1.0.21...@synerise/ds-file-uploader@1.0.22) (2025-08-28)
 
-
 ### Bug Fixes
 
-* **file-uploader:** ellipsis for file name ([a18d2de](https://github.com/Synerise/synerise-design/commit/a18d2de070615f9865aeee9f5efb44bcfbb2a9f6))
-
-
-
-
+- **file-uploader:** ellipsis for file name ([a18d2de](https://github.com/Synerise/synerise-design/commit/a18d2de070615f9865aeee9f5efb44bcfbb2a9f6))
 
 ## [1.0.21](https://github.com/Synerise/synerise-design/compare/@synerise/ds-file-uploader@1.0.20...@synerise/ds-file-uploader@1.0.21) (2025-08-20)
 
 **Note:** Version bump only for package @synerise/ds-file-uploader
 
-
-
-
-
 ## [1.0.20](https://github.com/Synerise/synerise-design/compare/@synerise/ds-file-uploader@1.0.19...@synerise/ds-file-uploader@1.0.20) (2025-08-14)
-
 
 ### Bug Fixes
 
-* handle progress bar in file-uploader ([c9dc655](https://github.com/Synerise/synerise-design/commit/c9dc6551b47050c58941225968d7667ab77280b5))
-
-
-
-
+- handle progress bar in file-uploader ([c9dc655](https://github.com/Synerise/synerise-design/commit/c9dc6551b47050c58941225968d7667ab77280b5))
 
 ## [1.0.19](https://github.com/Synerise/synerise-design/compare/@synerise/ds-file-uploader@1.0.18...@synerise/ds-file-uploader@1.0.19) (2025-07-24)
 
 **Note:** Version bump only for package @synerise/ds-file-uploader
 
-
-
-
-
 ## [1.0.18](https://github.com/Synerise/synerise-design/compare/@synerise/ds-file-uploader@1.0.17...@synerise/ds-file-uploader@1.0.18) (2025-07-17)
 
 **Note:** Version bump only for package @synerise/ds-file-uploader
-
-
-
-
 
 ## [1.0.17](https://github.com/Synerise/synerise-design/compare/@synerise/ds-file-uploader@1.0.16...@synerise/ds-file-uploader@1.0.17) (2025-07-15)
 
 **Note:** Version bump only for package @synerise/ds-file-uploader
 
-
-
-
-
 ## [1.0.16](https://github.com/Synerise/synerise-design/compare/@synerise/ds-file-uploader@1.0.15...@synerise/ds-file-uploader@1.0.16) (2025-07-08)
 
 **Note:** Version bump only for package @synerise/ds-file-uploader
-
-
-
-
 
 ## [1.0.15](https://github.com/Synerise/synerise-design/compare/@synerise/ds-file-uploader@1.0.14...@synerise/ds-file-uploader@1.0.15) (2025-07-01)
 
 **Note:** Version bump only for package @synerise/ds-file-uploader
 
-
-
-
-
 ## [1.0.14](https://github.com/Synerise/synerise-design/compare/@synerise/ds-file-uploader@1.0.13...@synerise/ds-file-uploader@1.0.14) (2025-06-26)
 
 **Note:** Version bump only for package @synerise/ds-file-uploader
 
-
-
-
-
 ## [1.0.13](https://github.com/Synerise/synerise-design/compare/@synerise/ds-file-uploader@1.0.12...@synerise/ds-file-uploader@1.0.13) (2025-06-24)
 
 **Note:** Version bump only for package @synerise/ds-file-uploader
-
-
-
-
 
 ## [1.0.12](https://github.com/Synerise/synerise-design/compare/@synerise/ds-file-uploader@1.0.11...@synerise/ds-file-uploader@1.0.12) (2025-06-05)
 

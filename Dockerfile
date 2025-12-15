@@ -16,7 +16,7 @@ COPY package.json ./
 
 COPY . .
 
-RUN yarn bootstrap
+# RUN pnpm bootstrap
 
 USER app
 
@@ -24,4 +24,4 @@ ENV PORT=9099
 
 EXPOSE 9099
 
-CMD ["yarn", "storybook"]
+CMD ["pnpm", "storybook"]

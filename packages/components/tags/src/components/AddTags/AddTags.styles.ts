@@ -1,9 +1,15 @@
 import styled from 'styled-components';
 
-import Button from '@synerise/ds-button';
+import Button, { type StyledButton } from '@synerise/ds-button';
 import { ButtonLabel } from '@synerise/ds-button/dist/Button.styles';
 
-export const CreateTagDropdownButton = styled(Button)<{ marginless: boolean }>`
+type ExtraProps = {
+  marginless: boolean;
+};
+
+export const CreateTagDropdownButton: StyledButton<ExtraProps> = styled(
+  Button,
+)<ExtraProps>`
   margin: ${(props): string => (props.marginless ? '0' : '0 0 8px')};
   white-space: nowrap;
   overflow: hidden;
@@ -49,7 +55,9 @@ export const Separator = styled.hr`
   background-position: top;
 `;
 
-export const AddTagButton = styled(Button)<{ isOpen?: boolean }>`
+export const AddTagButton: StyledButton<{ isOpen?: boolean }> = styled(Button)<{
+  isOpen?: boolean;
+}>`
   flex: 0 0 auto;
   ${(props) => props.isOpen && ` &&&&& { visibility: visible }`}
 `;

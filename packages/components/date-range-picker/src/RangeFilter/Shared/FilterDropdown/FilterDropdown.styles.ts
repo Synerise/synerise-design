@@ -1,8 +1,11 @@
 import styled from 'styled-components';
 
-import ListItem from '@synerise/ds-list-item';
+import ListItem, { type StyledListItem } from '@synerise/ds-list-item';
 
-export const DropdownMenuItem = styled(ListItem)`
+export const DropdownMenu = styled.div`
+  padding: 8px;
+`;
+export const DropdownMenuItem: StyledListItem = styled(ListItem)`
   max-height: 32px;
   min-width: 200px;
 `;

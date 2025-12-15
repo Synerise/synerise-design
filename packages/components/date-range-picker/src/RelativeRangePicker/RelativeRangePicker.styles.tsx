@@ -5,7 +5,7 @@ import Button, { ButtonToggle } from '@synerise/ds-button';
 import { InputGroup } from '@synerise/ds-input';
 import { InputGroupItem } from '@synerise/ds-input/dist/InputGroup.styles';
 import { type Props as InputGroupProps } from '@synerise/ds-input/dist/InputGroup.types';
-import ListItem from '@synerise/ds-list-item';
+import ListItem, { type StyledListItem } from '@synerise/ds-list-item';
 
 // import 'antd/lib/input/style/index.css' // this style might be in imported scopes as we use input; not needed here, but worth to mention this
 
@@ -94,7 +94,7 @@ export const DatePickerWrapper = styled.div<{ error: boolean }>`
 export const DropMenu = styled.div`
   padding: 0 8px 0 0;
 `;
-export const DropMenuItem = styled(ListItem)`
+export const DropMenuItem: StyledListItem = styled(ListItem)`
   max-height: 32px;
   min-width: auto;
   .ds-icon {

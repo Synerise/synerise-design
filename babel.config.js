@@ -1,6 +1,24 @@
-const { packages } = require('./lerna.json');
+const { getPackagesSync } = require('./scripts/utils/packages');
+
 
 module.exports = api => {
+  
+  let packages = [];
+  try {
+    const res = getPackagesSync();
+    // if res is iterable (Array or Set, Map.values()), convert to array
+    if (Array.isArray(res)) {
+      packages = res;
+    } else if (res && typeof res[Symbol.iterator] === 'function') {
+      packages = Array.from(res);
+    } else if (res && typeof res === 'object') {
+      // Lerna-like object shape { packages: [...] } or single package object
+      packages = Array.isArray(res.packages) ? res.packages : [res];
+    }
+  } catch (e) {
+    packages = [];
+  }
+
   const isTest = api.env('test');
 
   let ignore = ['**/dist/!(es)'];

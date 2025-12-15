@@ -3,7 +3,7 @@ import styled, {
   css,
 } from 'styled-components';
 
-import Button from '@synerise/ds-button';
+import Button, { type StyledButton } from '@synerise/ds-button';
 import { IconContainer } from '@synerise/ds-icon';
 
 import {
@@ -65,7 +65,7 @@ export const MultiIconCopy = styled(StyledCopyIcon)`
   }
 `;
 
-export const ExpanderButton = styled(Button)<{
+export const ExpanderButton: StyledButton = styled(Button)<{
   expanded?: boolean;
 }>`
   && {

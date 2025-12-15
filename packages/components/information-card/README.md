@@ -16,14 +16,6 @@ or
 yarn add @synerise/ds-information-card
 ```
 
-## Development
-
-```zsh
-# lerna bootstrap # install all required reused shared lerna packages
-yarn workspace @synerise/ds-information-card lint
-yarn workspace @synerise/ds-information-card build
-```
-
 ## Usage
 
 ```js

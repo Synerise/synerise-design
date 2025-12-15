@@ -5,76 +5,41 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 ## [1.3.7](https://github.com/Synerise/synerise-design/compare/@synerise/ds-sortable@1.3.6...@synerise/ds-sortable@1.3.7) (2025-10-31)
 
-
 ### Bug Fixes
 
-* **sortable:** prevent rendering drop label when id is undef ([81898e8](https://github.com/Synerise/synerise-design/commit/81898e87348199cc540ac188b26ea0dd5e621f62))
-
-
-
-
+- **sortable:** prevent rendering drop label when id is undef ([81898e8](https://github.com/Synerise/synerise-design/commit/81898e87348199cc540ac188b26ea0dd5e621f62))
 
 ## [1.3.6](https://github.com/Synerise/synerise-design/compare/@synerise/ds-sortable@1.3.5...@synerise/ds-sortable@1.3.6) (2025-10-10)
 
 **Note:** Version bump only for package @synerise/ds-sortable
 
-
-
-
-
 ## [1.3.5](https://github.com/Synerise/synerise-design/compare/@synerise/ds-sortable@1.3.4...@synerise/ds-sortable@1.3.5) (2025-09-16)
 
 **Note:** Version bump only for package @synerise/ds-sortable
-
-
-
-
 
 ## [1.3.4](https://github.com/Synerise/synerise-design/compare/@synerise/ds-sortable@1.3.3...@synerise/ds-sortable@1.3.4) (2025-08-28)
 
 **Note:** Version bump only for package @synerise/ds-sortable
 
-
-
-
-
 ## [1.3.3](https://github.com/Synerise/synerise-design/compare/@synerise/ds-sortable@1.3.2...@synerise/ds-sortable@1.3.3) (2025-07-24)
 
 **Note:** Version bump only for package @synerise/ds-sortable
 
-
-
-
-
 ## [1.3.2](https://github.com/Synerise/synerise-design/compare/@synerise/ds-sortable@1.3.1...@synerise/ds-sortable@1.3.2) (2025-07-04)
-
 
 ### Bug Fixes
 
-* **sortable:** fix sorting ([bb697f5](https://github.com/Synerise/synerise-design/commit/bb697f5e1ca38db2ca7b5762e8ba9726c2521381))
-
-
-
-
+- **sortable:** fix sorting ([bb697f5](https://github.com/Synerise/synerise-design/commit/bb697f5e1ca38db2ca7b5762e8ba9726c2521381))
 
 ## [1.3.1](https://github.com/Synerise/synerise-design/compare/@synerise/ds-sortable@1.3.0...@synerise/ds-sortable@1.3.1) (2025-07-01)
 
 **Note:** Version bump only for package @synerise/ds-sortable
 
-
-
-
-
 # [1.3.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-sortable@1.2.0...@synerise/ds-sortable@1.3.0) (2025-06-24)
-
 
 ### Features
 
-* **condition:** sortable lib ([8cbc3f5](https://github.com/Synerise/synerise-design/commit/8cbc3f5956ce9138f1a6b0a5eb0e7cd85bb7f4e7))
-
-
-
-
+- **condition:** sortable lib ([8cbc3f5](https://github.com/Synerise/synerise-design/commit/8cbc3f5956ce9138f1a6b0a5eb0e7cd85bb7f4e7))
 
 # [1.2.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-sortable@1.1.3...@synerise/ds-sortable@1.2.0) (2025-06-05)
 

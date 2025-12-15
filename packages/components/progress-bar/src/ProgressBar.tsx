@@ -39,11 +39,16 @@ const ProgressBar = ({
     >
       {label && !inline && (
         <S.LabelWrapper>
-          {label && <S.Label data-testid="progress-bar-label">{label}</S.Label>}
-          <S.Percent data-testid="progress-bar-max-percent">{`${percent}%`}</S.Percent>
+          <S.Label
+            data-testid="progress-bar-label"
+            className="progress-bar-label"
+          >
+            {label}
+          </S.Label>
+          <span data-testid="progress-bar-max-percent">{`${percent}%`}</span>
         </S.LabelWrapper>
       )}
-      <S.ProgressOuter>
+      <div className="progress-div">
         {tiles.map((tile, i) => (
           <S.ProgressWrapper $thin={thin} key={`key-${tile.id}`} $width={width}>
             <S.ProgressBar
@@ -52,12 +57,15 @@ const ProgressBar = ({
             />
           </S.ProgressWrapper>
         ))}
-      </S.ProgressOuter>
-      {inline && <S.PercentWrapper>{label || `${percent}%`}</S.PercentWrapper>}
+      </div>
+      {inline && <S.PercentWrapper>{`${percent}%`}</S.PercentWrapper>}
       {description && !inline && (
-        <S.ProgressBarDescription data-testid="progress-bar-description">
+        <span
+          className="progress-bar-description"
+          data-testid="progress-bar-description"
+        >
           {description}
-        </S.ProgressBarDescription>
+        </span>
       )}
     </S.Container>
   );

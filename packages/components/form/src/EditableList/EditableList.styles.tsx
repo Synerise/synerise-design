@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-import Button from '@synerise/ds-button';
+import Button, { type StyledButton } from '@synerise/ds-button';
 
 export const RowWrapper = styled.div`
   @media (min-width: 1280px) {
@@ -14,7 +14,7 @@ export const AutoCompleteWrapper = styled.div`
   margin-bottom: 15px;
 `;
 export const ButtonWrapper = styled.div``;
-export const AddButton = styled(Button)`
+export const AddButton: StyledButton = styled(Button)`
   span {
     padding: 0 4px;
   }
@@ -26,7 +26,7 @@ export const CrudWrapper = styled.div<{
   marginWithLabel?: boolean | React.ReactNode;
 }>`
   padding-left: 4px;
-  margin-top: ${(props): string => (props.marginWithLabel ? '30px' : '4px')};
+  margin-top: ${(props) => (props.marginWithLabel ? '30px' : '4px')};
 `;
 export const InputWrapper = styled.div`
   padding-left: 4px;

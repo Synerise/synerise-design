@@ -26,148 +26,75 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 **Note:** Version bump only for package @synerise/ds-search-bar
 
-
-
-
-
 ## [1.3.18](https://github.com/Synerise/synerise-design/compare/@synerise/ds-search-bar@1.3.17...@synerise/ds-search-bar@1.3.18) (2025-10-22)
 
 **Note:** Version bump only for package @synerise/ds-search-bar
 
-
-
-
-
 ## [1.3.17](https://github.com/Synerise/synerise-design/compare/@synerise/ds-search-bar@1.3.16...@synerise/ds-search-bar@1.3.17) (2025-10-16)
-
 
 ### Bug Fixes
 
-* **tags:** adjust tags to table requirements ([fe1aa4d](https://github.com/Synerise/synerise-design/commit/fe1aa4d00f8ad95fb191f866b548af72863a8963))
-
-
-
-
+- **tags:** adjust tags to table requirements ([fe1aa4d](https://github.com/Synerise/synerise-design/commit/fe1aa4d00f8ad95fb191f866b548af72863a8963))
 
 ## [1.3.16](https://github.com/Synerise/synerise-design/compare/@synerise/ds-search-bar@1.3.15...@synerise/ds-search-bar@1.3.16) (2025-10-10)
 
 **Note:** Version bump only for package @synerise/ds-search-bar
 
-
-
-
-
 ## [1.3.15](https://github.com/Synerise/synerise-design/compare/@synerise/ds-search-bar@1.3.14...@synerise/ds-search-bar@1.3.15) (2025-10-03)
 
 **Note:** Version bump only for package @synerise/ds-search-bar
-
-
-
-
 
 ## [1.3.14](https://github.com/Synerise/synerise-design/compare/@synerise/ds-search-bar@1.3.13...@synerise/ds-search-bar@1.3.14) (2025-09-25)
 
 **Note:** Version bump only for package @synerise/ds-search-bar
 
-
-
-
-
 ## [1.3.13](https://github.com/Synerise/synerise-design/compare/@synerise/ds-search-bar@1.3.12...@synerise/ds-search-bar@1.3.13) (2025-09-23)
 
 **Note:** Version bump only for package @synerise/ds-search-bar
-
-
-
-
 
 ## [1.3.12](https://github.com/Synerise/synerise-design/compare/@synerise/ds-search-bar@1.3.11...@synerise/ds-search-bar@1.3.12) (2025-09-19)
 
 **Note:** Version bump only for package @synerise/ds-search-bar
 
-
-
-
-
 ## [1.3.11](https://github.com/Synerise/synerise-design/compare/@synerise/ds-search-bar@1.3.10...@synerise/ds-search-bar@1.3.11) (2025-09-16)
 
 **Note:** Version bump only for package @synerise/ds-search-bar
-
-
-
-
 
 ## [1.3.10](https://github.com/Synerise/synerise-design/compare/@synerise/ds-search-bar@1.3.9...@synerise/ds-search-bar@1.3.10) (2025-08-28)
 
 **Note:** Version bump only for package @synerise/ds-search-bar
 
-
-
-
-
 ## [1.3.9](https://github.com/Synerise/synerise-design/compare/@synerise/ds-search-bar@1.3.8...@synerise/ds-search-bar@1.3.9) (2025-08-14)
 
 **Note:** Version bump only for package @synerise/ds-search-bar
-
-
-
-
 
 ## [1.3.8](https://github.com/Synerise/synerise-design/compare/@synerise/ds-search-bar@1.3.7...@synerise/ds-search-bar@1.3.8) (2025-07-24)
 
 **Note:** Version bump only for package @synerise/ds-search-bar
 
-
-
-
-
 ## [1.3.7](https://github.com/Synerise/synerise-design/compare/@synerise/ds-search-bar@1.3.6...@synerise/ds-search-bar@1.3.7) (2025-07-17)
 
 **Note:** Version bump only for package @synerise/ds-search-bar
-
-
-
-
 
 ## [1.3.6](https://github.com/Synerise/synerise-design/compare/@synerise/ds-search-bar@1.3.5...@synerise/ds-search-bar@1.3.6) (2025-07-15)
 
 **Note:** Version bump only for package @synerise/ds-search-bar
 
-
-
-
-
 ## [1.3.5](https://github.com/Synerise/synerise-design/compare/@synerise/ds-search-bar@1.3.4...@synerise/ds-search-bar@1.3.5) (2025-07-08)
 
 **Note:** Version bump only for package @synerise/ds-search-bar
-
-
-
-
 
 ## [1.3.4](https://github.com/Synerise/synerise-design/compare/@synerise/ds-search-bar@1.3.3...@synerise/ds-search-bar@1.3.4) (2025-07-01)
 
 **Note:** Version bump only for package @synerise/ds-search-bar
 
-
-
-
-
 ## [1.3.3](https://github.com/Synerise/synerise-design/compare/@synerise/ds-search-bar@1.3.2...@synerise/ds-search-bar@1.3.3) (2025-06-26)
 
 **Note:** Version bump only for package @synerise/ds-search-bar
 
-
-
-
-
 ## [1.3.2](https://github.com/Synerise/synerise-design/compare/@synerise/ds-search-bar@1.3.1...@synerise/ds-search-bar@1.3.2) (2025-06-24)
 
 **Note:** Version bump only for package @synerise/ds-search-bar
-
-
-
-
 
 ## [1.3.1](https://github.com/Synerise/synerise-design/compare/@synerise/ds-search-bar@1.3.0...@synerise/ds-search-bar@1.3.1) (2025-06-12)
 

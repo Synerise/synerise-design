@@ -23,18 +23,12 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 **Note:** Version bump only for package @synerise/ds-insight
 
-
-
-
-
 # 1.1.0 (2025-09-23)
-
 
 ### Bug Fixes
 
-* **insight:** update dependencies ([5c097ea](https://github.com/Synerise/synerise-design/commit/5c097ea0f99eb2e7a39274afd1ea7aa7a0027fce))
-
+- **insight:** update dependencies ([5c097ea](https://github.com/Synerise/synerise-design/commit/5c097ea0f99eb2e7a39274afd1ea7aa7a0027fce))
 
 ### Features
 
-* **insight:** new component ([090427d](https://github.com/Synerise/synerise-design/commit/090427d8c7aba94ccf60342b065480c43d7baeb3))
+- **insight:** new component ([090427d](https://github.com/Synerise/synerise-design/commit/090427d8c7aba94ccf60342b065480c43d7baeb3))

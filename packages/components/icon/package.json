@@ -22,7 +22,7 @@
     "defs": "tsc --declaration --outDir dist/ --emitDeclarationOnly",
     "build:svgr": "node ./build/svgr.js",
     "build:watch": "npm run build:js -- --watch",
-    "pack:ci": "npm pack --pack-destination ../../storybook/storybook-static/static",
+    "pack:ci": "pnpm pack --pack-destination ../../storybook/storybook-static/static",
     "prepublish": "npm run build",
     "test": "jest",
     "test:watch": "npm run test -- --watchAll",
@@ -36,7 +36,7 @@
   ],
   "types": "dist/index.d.ts",
   "dependencies": {
-    "@synerise/ds-utils": "^1.5.0"
+    "@synerise/ds-utils": "workspace:^"
   },
   "peerDependencies": {
     "@synerise/ds-core": "*",

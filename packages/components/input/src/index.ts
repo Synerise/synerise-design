@@ -19,6 +19,7 @@ export type {
   EnhancedProps,
   InputProps,
   AutoResizeProp,
+  StyledInput,
 } from './Input.types';
 
 export { default as AutosizeInput } from './AutosizeInput/AutosizeInput';

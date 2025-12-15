@@ -21,7 +21,7 @@
     "build:js": "babel --delete-dir-on-start --root-mode upward src --out-dir dist --extensions '.js,.ts,.tsx'",
     "build:watch": "npm run build:js -- --watch",
     "defs": "tsc --declaration --outDir dist/ --emitDeclarationOnly",
-    "pack:ci": "npm pack --pack-destination ../../storybook/storybook-static/static",
+    "pack:ci": "pnpm pack --pack-destination ../../storybook/storybook-static/static",
     "prepublish": "npm run build",
     "test": "jest",
     "test:watch": "npm run test -- --watchAll",
@@ -35,14 +35,14 @@
   ],
   "types": "dist/index.d.ts",
   "dependencies": {
-    "@synerise/ds-avatar": "^1.1.1",
-    "@synerise/ds-badge": "^1.0.26",
-    "@synerise/ds-button": "^1.5.1",
-    "@synerise/ds-dropdown": "^1.1.2",
-    "@synerise/ds-icon": "^1.9.0",
-    "@synerise/ds-modal": "^1.2.18",
-    "@synerise/ds-table": "^1.7.2",
-    "@synerise/ds-tooltip": "^1.3.1"
+    "@synerise/ds-avatar": "workspace:^",
+    "@synerise/ds-badge": "workspace:^",
+    "@synerise/ds-button": "workspace:^",
+    "@synerise/ds-dropdown": "workspace:^",
+    "@synerise/ds-icon": "workspace:^",
+    "@synerise/ds-modal": "workspace:^",
+    "@synerise/ds-table": "workspace:^",
+    "@synerise/ds-tooltip": "workspace:^"
   },
   "peerDependencies": {
     "@synerise/ds-core": "*",

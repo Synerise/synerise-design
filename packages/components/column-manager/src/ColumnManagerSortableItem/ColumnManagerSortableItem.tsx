@@ -1,7 +1,6 @@
 import React from 'react';
 
-import { useSortable } from '@dnd-kit/sortable';
-import { CSS } from '@dnd-kit/utilities';
+import { CSS, useSortable } from '@synerise/ds-sortable';
 
 import { type Column } from '../ColumnManager.types';
 import { ColumnManagerItem } from '../ColumnManagerItem/ColumnManagerItem';

@@ -9,13 +9,20 @@ variables:
   APP_NAME_OVERRIDE: ds-docs
   NPM_REGISTRY: https://nexus.snrinternal.com/repository/npm-release/
 
-default: 
+
+.install_pnpm: &install_pnpm
+  - npm install -g pnpm@latest-10
+  - pnpm config set store-dir .pnpm-store
+  - export NPM_TOKEN="$(echo -n $SNR_NPM_REGISTRY_USERNAME:$SNR_NPM_REGISTRY_PASSWORD | base64)"
+  - cp .npmrc.dist .npmrc
+
+default:
   cache:
     - key:
         files:
-        - yarn.lock
+          - pnpm-lock.yaml
       paths:
-        - node_modules
+        - .pnpm-store
       policy: pull
     - key: $CI_COMMIT_REF_SLUG
       paths:
@@ -44,8 +51,9 @@ install:
     - if: $CI_PIPELINE_SOURCE == "merge_request_event"
     - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
   before_script:
-    - yarn config set registry $NPM_REGISTRY
-    - yarn config set unsafe-perm true
+    - !reference [.install_pnpm]
+    - pnpm config set registry $NPM_REGISTRY
+    - pnpm config set unsafe-perm true
     - cp .npmrc.dist .npmrc
     - echo "" >> .npmrc
     - export NPM_TOKEN="$(echo -n $SNR_NPM_REGISTRY_USERNAME:$SNR_NPM_REGISTRY_PASSWORD | base64)"
@@ -53,17 +61,16 @@ install:
     - echo "email = $NPM_EMAIL" >> .npmrc
     - echo "always-auth = true" >> .npmrc
   script:
-    - yarn --frozen-lockfile
-    - yarn lint
+    - pnpm install --frozen-lockfile
+    - pnpm lint
+    - rm -f .npmrc
   cache:
     key:
       files:
-        - yarn.lock
+        - pnpm-lock.yaml
     paths:
-      - node_modules
-    policy: pull
-  artifacts:
-    untracked: true
+        - .pnpm-store
+    policy: pull-push
 
 build_packages:
   stage: prepare
@@ -75,9 +82,9 @@ build_packages:
   cache:
     - key:
         files:
-        - yarn.lock
+        - pnpm-lock.yaml
       paths:
-        - node_modules
+        - .pnpm-store
       policy: pull
     - key: $CI_COMMIT_REF_SLUG
       paths:
@@ -86,12 +93,18 @@ build_packages:
   rules:
     - if: $CI_PIPELINE_SOURCE == "merge_request_event"
     - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
+  before_script:
+    - !reference [.install_pnpm]
   script:
-    - yarn build
+    - pnpm install --frozen-lockfile --offline
+    - pnpm build
   artifacts:
-    untracked: true
+    paths: 
+      - packages/components/*/dist
+      - packages/components/flag/src/icons
+      - packages/components/icon/src/icons
     expire_in: 1h
-    when: on_success
+    # when: on_success
 
 circular_dependencies:
   stage: test
@@ -103,18 +116,18 @@ circular_dependencies:
   cache:
     - key:
         files:
-        - yarn.lock
+        - pnpm-lock.yaml
       paths:
-        - node_modules
+        - .pnpm-store
       policy: pull
-    - key: $CI_COMMIT_REF_SLUG
-      paths:
-        - .nx
-      policy: pull-push
   rules:
     - if: $CI_PIPELINE_SOURCE == "merge_request_event"
+  before_script:
+    - !reference [.install_pnpm]
   script:
-    - yarn check:circular-dependencies
+    - pnpm install --frozen-lockfile --offline
+    - pnpm check:circular-dependencies
+
 
 run_tests:
   stage: test
@@ -126,9 +139,9 @@ run_tests:
   cache:
     - key:
         files:
-        - yarn.lock
+        - pnpm-lock.yaml
       paths:
-        - node_modules
+        - .pnpm-store
       policy: pull
     - key: $CI_COMMIT_REF_SLUG
       paths:
@@ -136,8 +149,13 @@ run_tests:
       policy: pull-push
   rules:
     - if: $CI_PIPELINE_SOURCE == "merge_request_event"
+  before_script:
+    - !reference [.install_pnpm]
   script:
-    - yarn test:ci
+    - ls -l packages/components/core
+    - pnpm install --frozen-lockfile --offline
+    - ls -l packages/components/core
+    - pnpm test:ci
 
 chromatic_publish:
   stage: test
@@ -146,18 +164,29 @@ chromatic_publish:
     KUBERNETES_CPU_REQUEST: 4
     KUBERNETES_MEMORY_REQUEST: 16Gi
     KUBERNETES_MEMORY_LIMIT: 22Gi
+  cache:
+    - key:
+        files:
+        - pnpm-lock.yaml
+      paths:
+        - .pnpm-store
+      policy: pull
   rules:
     - if: $CI_PIPELINE_SOURCE == "merge_request_event"
+  before_script:
+    - !reference [.install_pnpm]
   script:
+    - ls -l packages/components/core
+    - pnpm install --frozen-lockfile --prefer-offline
     - apt-get -qq update
     - apt-get install -y jq
-    - test ! -e packages/storybook/storybook-static && (cd packages/storybook; yarn build-storybook --quiet --stats-json)
+    - test ! -e packages/storybook/storybook-static && (cd packages/storybook; pnpm build-storybook --quiet --stats-json)
     - npx lerna run pack:ci --since origin/master
     - (cd packages/storybook/storybook-static/static; ls > index.txt)
-    - (cd packages/storybook; npx chromatic --diagnostics --project-token=$CHROMATIC_PROJECT_TOKEN_SB7 --storybook-build-dir ./storybook-static/ --exit-zero-on-changes)
+    - (cd packages/storybook; npx chromatic --diagnostics-file --project-token=$CHROMATIC_PROJECT_TOKEN_SB7 --storybook-build-dir ./storybook-static/ --exit-zero-on-changes)
     - CHROMATIC_SB_URL=$(jq -r '.storybookUrl' packages/storybook/chromatic-diagnostics.json)
     - echo "CHROMATIC_SB_URL=$CHROMATIC_SB_URL" >> deploy.env
-    - yarn tgz-package-json --url $CHROMATIC_SB_URL --inputFilePath packages/storybook/storybook-static/static/index.txt --outputFilePath packages.json
+    - pnpm tgz-package-json --url $CHROMATIC_SB_URL --inputFilePath packages/storybook/storybook-static/static/index.txt --outputFilePath packages.json
   artifacts:
     reports:
       dotenv: deploy.env
@@ -173,13 +202,23 @@ chromatic_publish:
 publish_packages:
   stage: build
   needs: ['build_packages']
+  cache:
+    - key:
+        files:
+        - pnpm-lock.yaml
+      paths:
+        - .pnpm-store
+      policy: pull
   environment:
     name: npm
   variables:
     PUBLISH_TITLE: "build: publish"
   rules:
     - if: ($CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH && $CI_COMMIT_TITLE == $PUBLISH_TITLE)
+  before_script:
+    - !reference [.install_pnpm]
   script:
+    - pnpm install --frozen-lockfile --offline
     - echo "Tag version $CI_COMMIT_TAG"
     - echo "Commit ref $CI_COMMIT_REF_NAME"
     - echo "Commit title $CI_COMMIT_TITLE"
@@ -187,14 +226,25 @@ publish_packages:
     - echo '//registry.npmjs.org/:_authToken=${NPM_TOKEN}'>.npmrc
     - echo "email = $GITLAB_USER_EMAIL" >> .npmrc
     - npx lerna publish from-package --no-git-tag-version --yes
+    - rm -f .npmrc
 
 build_storybook:
   stage: build
   needs: ['build_packages']
+  cache:
+    - key:
+        files:
+        - pnpm-lock.yaml
+      paths:
+        - .pnpm-store
+      policy: pull
   rules:
     - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
+  before_script:
+    - !reference [.install_pnpm]
   script:
-    - yarn build-storybook
+    - pnpm install --frozen-lockfile --offline
+    - pnpm build-storybook
     - mv packages/storybook/storybook-static/ packages/docs-site/storybook-static
   artifacts:
     paths:
@@ -246,6 +296,13 @@ k8s-prod-gitops:
 chromatic_publish_baseline:
   stage: deploy
   needs: ['build_packages']
+  cache:
+    - key:
+        files:
+        - pnpm-lock.yaml
+      paths:
+        - .pnpm-store
+      policy: pull
   allow_failure: true
   variables:
     PUBLISH_TITLE: "build: publish"
@@ -254,6 +311,9 @@ chromatic_publish_baseline:
       when: on_success
     - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
       when: manual
+  before_script:
+    - !reference [.install_pnpm]
   script:
-    - (cd packages/storybook; yarn chromatic --project-token=$CHROMATIC_PROJECT_TOKEN_SB7 --auto-accept-changes)
+    - pnpm install --frozen-lockfile --offline
+    - (cd packages/storybook; pnpm chromatic --project-token=$CHROMATIC_PROJECT_TOKEN_SB7 --auto-accept-changes)
   interruptible: true

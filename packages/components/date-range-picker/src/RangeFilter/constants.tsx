@@ -93,10 +93,12 @@ export const TYPES_DATA = {
 
 export const SPACE_UNICODE = '\u00A0';
 
-export const MONTHLY_SCHEDULER_INTL_KEYS_NTH_WEEK = range(1, 6).map((i) => ({
-  id: `DS.DATE-RANGE-PICKER.NTH.${i}`,
-  defaultMessage: `Week ${i}`,
-}));
+export const MONTHLY_SCHEDULER_INTL_KEYS_NTH_WEEK = range(1, 6).map(
+  (i: number) => ({
+    id: `DS.DATE-RANGE-PICKER.NTH.${i}`,
+    defaultMessage: `Week ${i}`,
+  }),
+);
 
 export const MONTHLY_SCHEDULER_INTL_KEYS_WEEKDAYS_LONG = [
   { id: 'DS.DATE-RANGE-PICKER.WEEKDAYS_LONG.1', defaultMessage: 'Monday' },

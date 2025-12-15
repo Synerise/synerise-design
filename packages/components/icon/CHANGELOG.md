@@ -29,87 +29,47 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 **Note:** Version bump only for package @synerise/ds-icon
 
-
-
-
-
 ## [1.7.2](https://github.com/Synerise/synerise-design/compare/@synerise/ds-icon@1.7.1...@synerise/ds-icon@1.7.2) (2025-09-16)
 
 **Note:** Version bump only for package @synerise/ds-icon
 
-
-
-
-
 ## [1.7.1](https://github.com/Synerise/synerise-design/compare/@synerise/ds-icon@1.7.0...@synerise/ds-icon@1.7.1) (2025-08-28)
-
 
 ### Bug Fixes
 
-* **icon:** new icons XL ([183619b](https://github.com/Synerise/synerise-design/commit/183619b69d96e50d174ed703982ffaac958e9ddf))
-
-
-
-
+- **icon:** new icons XL ([183619b](https://github.com/Synerise/synerise-design/commit/183619b69d96e50d174ed703982ffaac958e9ddf))
 
 # [1.7.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-icon@1.6.2...@synerise/ds-icon@1.7.0) (2025-08-14)
 
-
 ### Bug Fixes
 
-* **icon:** add new icons ([3a68839](https://github.com/Synerise/synerise-design/commit/3a688395eff0fe0c5c4e163a7882be53411341da))
-
+- **icon:** add new icons ([3a68839](https://github.com/Synerise/synerise-design/commit/3a688395eff0fe0c5c4e163a7882be53411341da))
 
 ### Features
 
-* add globe-clock icon SVG ([8f30904](https://github.com/Synerise/synerise-design/commit/8f30904f076b51c7c7d4ce96c92ef4a24af0aca0))
-
-
-
-
+- add globe-clock icon SVG ([8f30904](https://github.com/Synerise/synerise-design/commit/8f30904f076b51c7c7d4ce96c92ef4a24af0aca0))
 
 ## [1.6.2](https://github.com/Synerise/synerise-design/compare/@synerise/ds-icon@1.6.1...@synerise/ds-icon@1.6.2) (2025-07-24)
 
 **Note:** Version bump only for package @synerise/ds-icon
 
-
-
-
-
 ## [1.6.1](https://github.com/Synerise/synerise-design/compare/@synerise/ds-icon@1.6.0...@synerise/ds-icon@1.6.1) (2025-07-17)
 
 **Note:** Version bump only for package @synerise/ds-icon
 
-
-
-
-
 # [1.6.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-icon@1.5.4...@synerise/ds-icon@1.6.0) (2025-07-15)
-
 
 ### Features
 
-* **icon:** new icons ([33f6a5d](https://github.com/Synerise/synerise-design/commit/33f6a5dba0cb18850ae45b7a5f6a75aeb6501d09))
-
-
-
-
+- **icon:** new icons ([33f6a5d](https://github.com/Synerise/synerise-design/commit/33f6a5dba0cb18850ae45b7a5f6a75aeb6501d09))
 
 ## [1.5.4](https://github.com/Synerise/synerise-design/compare/@synerise/ds-icon@1.5.3...@synerise/ds-icon@1.5.4) (2025-07-01)
 
 **Note:** Version bump only for package @synerise/ds-icon
 
-
-
-
-
 ## [1.5.3](https://github.com/Synerise/synerise-design/compare/@synerise/ds-icon@1.5.2...@synerise/ds-icon@1.5.3) (2025-06-24)
 
 **Note:** Version bump only for package @synerise/ds-icon
-
-
-
-
 
 ## [1.5.2](https://github.com/Synerise/synerise-design/compare/@synerise/ds-icon@1.5.1...@synerise/ds-icon@1.5.2) (2025-06-05)
 

@@ -8,7 +8,7 @@ import React, {
   useState,
 } from 'react';
 
-import { theme } from '@synerise/ds-core';
+import { useTheme } from '@synerise/ds-core';
 import Icon, { EditS } from '@synerise/ds-icon';
 import { AutosizeInput } from '@synerise/ds-input';
 import Tooltip from '@synerise/ds-tooltip';
@@ -31,6 +31,7 @@ const InlineEdit = ({
 }: InlineEditProps) => {
   const inputRef = useRef<HTMLInputElement | null>(null);
   const [focused, setFocused] = useState<boolean>();
+  const theme = useTheme();
 
   const handleChange = useCallback(
     (event: ChangeEvent<HTMLInputElement>) => {

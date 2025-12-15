@@ -5,60 +5,33 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 # [1.5.0](https://github.com/synerise/synerise-design/compare/@synerise/ds-utils@1.4.2...@synerise/ds-utils@1.5.0) (2025-10-10)
 
-
 ### Features
 
-* **list-item:** submenu and header ([71fa4bf](https://github.com/synerise/synerise-design/commit/71fa4bfadd5fdb52d61dfe8fe87a9e47567e5d16))
-
-
-
-
+- **list-item:** submenu and header ([71fa4bf](https://github.com/synerise/synerise-design/commit/71fa4bfadd5fdb52d61dfe8fe87a9e47567e5d16))
 
 ## [1.4.2](https://github.com/synerise/synerise-design/compare/@synerise/ds-utils@1.4.1...@synerise/ds-utils@1.4.2) (2025-09-16)
 
 **Note:** Version bump only for package @synerise/ds-utils
 
-
-
-
-
 ## [1.4.1](https://github.com/synerise/synerise-design/compare/@synerise/ds-utils@1.4.0...@synerise/ds-utils@1.4.1) (2025-08-28)
 
 **Note:** Version bump only for package @synerise/ds-utils
 
-
-
-
-
 # [1.4.0](https://github.com/synerise/synerise-design/compare/@synerise/ds-utils@1.3.1...@synerise/ds-utils@1.4.0) (2025-07-24)
-
 
 ### Features
 
-* **data-format:** conditionally apply timezone offset ([aa91c76](https://github.com/synerise/synerise-design/commit/aa91c76a88261745bbfd46e0a0dd779877931624))
-
-
-
-
+- **data-format:** conditionally apply timezone offset ([aa91c76](https://github.com/synerise/synerise-design/commit/aa91c76a88261745bbfd46e0a0dd779877931624))
 
 ## [1.3.1](https://github.com/synerise/synerise-design/compare/@synerise/ds-utils@1.3.0...@synerise/ds-utils@1.3.1) (2025-07-01)
 
 **Note:** Version bump only for package @synerise/ds-utils
 
-
-
-
-
 # [1.3.0](https://github.com/synerise/synerise-design/compare/@synerise/ds-utils@1.2.0...@synerise/ds-utils@1.3.0) (2025-06-24)
-
 
 ### Features
 
-* **factors:** array factor type ([195d328](https://github.com/synerise/synerise-design/commit/195d3286e98b5f07fc9c1e56001e6ae844b7a080))
-
-
-
-
+- **factors:** array factor type ([195d328](https://github.com/synerise/synerise-design/commit/195d3286e98b5f07fc9c1e56001e6ae844b7a080))
 
 # [1.2.0](https://github.com/synerise/synerise-design/compare/@synerise/ds-utils@1.1.1...@synerise/ds-utils@1.2.0) (2025-06-05)
 

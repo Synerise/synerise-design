@@ -1,7 +1,5 @@
 {
-  "include": [
-    "src",
-  ],
+  "include": ["src"],
   "exclude": ["src/__specs__/**/*.ts", "src/__specs__/**/*.tsx"],
   "extends": "../../../config/typescript/tsconfig.base.json",
   "compilerOptions": {
@@ -10,6 +8,6 @@
     "baseUrl": "src",
     "jsx": "preserve"
   },
-  "types":  ["resize-observer-browser"],
+  "types": ["resize-observer-browser"],
   "references": []
 }

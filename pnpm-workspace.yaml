@@ -1,0 +1,16 @@
+packages:
+  - packages/components/*
+  - packages/storybook
+
+onlyBuiltDependencies:
+  - '@swc/core'
+  - core-js
+  - esbuild
+  - husky
+  - nx
+
+linkWorkspacePackages: "deep"
+preferWorkspacePackages: true
+hoistWorkspacePackages: true
+publicHoistPattern:
+  - "*eslint*"

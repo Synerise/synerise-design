@@ -23,140 +23,71 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 **Note:** Version bump only for package @synerise/ds-mapping
 
-
-
-
-
 ## [1.1.13](https://github.com/Synerise/synerise-design/compare/@synerise/ds-mapping@1.1.12...@synerise/ds-mapping@1.1.13) (2025-10-16)
 
 **Note:** Version bump only for package @synerise/ds-mapping
-
-
-
-
 
 ## [1.1.12](https://github.com/Synerise/synerise-design/compare/@synerise/ds-mapping@1.1.11...@synerise/ds-mapping@1.1.12) (2025-10-10)
 
 **Note:** Version bump only for package @synerise/ds-mapping
 
-
-
-
-
 ## [1.1.11](https://github.com/Synerise/synerise-design/compare/@synerise/ds-mapping@1.1.10...@synerise/ds-mapping@1.1.11) (2025-10-08)
 
 **Note:** Version bump only for package @synerise/ds-mapping
-
-
-
-
 
 ## [1.1.10](https://github.com/Synerise/synerise-design/compare/@synerise/ds-mapping@1.1.9...@synerise/ds-mapping@1.1.10) (2025-09-25)
 
 **Note:** Version bump only for package @synerise/ds-mapping
 
-
-
-
-
 ## [1.1.9](https://github.com/Synerise/synerise-design/compare/@synerise/ds-mapping@1.1.8...@synerise/ds-mapping@1.1.9) (2025-09-19)
 
 **Note:** Version bump only for package @synerise/ds-mapping
-
-
-
-
 
 ## [1.1.8](https://github.com/Synerise/synerise-design/compare/@synerise/ds-mapping@1.1.7...@synerise/ds-mapping@1.1.8) (2025-09-16)
 
 **Note:** Version bump only for package @synerise/ds-mapping
 
-
-
-
-
 ## [1.1.7](https://github.com/Synerise/synerise-design/compare/@synerise/ds-mapping@1.1.6...@synerise/ds-mapping@1.1.7) (2025-08-28)
 
 **Note:** Version bump only for package @synerise/ds-mapping
-
-
-
-
 
 ## [1.1.6](https://github.com/Synerise/synerise-design/compare/@synerise/ds-mapping@1.1.5...@synerise/ds-mapping@1.1.6) (2025-08-20)
 
 **Note:** Version bump only for package @synerise/ds-mapping
 
-
-
-
-
 ## [1.1.5](https://github.com/Synerise/synerise-design/compare/@synerise/ds-mapping@1.1.4...@synerise/ds-mapping@1.1.5) (2025-08-14)
 
 **Note:** Version bump only for package @synerise/ds-mapping
-
-
-
-
 
 ## [1.1.4](https://github.com/Synerise/synerise-design/compare/@synerise/ds-mapping@1.1.3...@synerise/ds-mapping@1.1.4) (2025-07-24)
 
 **Note:** Version bump only for package @synerise/ds-mapping
 
-
-
-
-
 ## [1.1.3](https://github.com/Synerise/synerise-design/compare/@synerise/ds-mapping@1.1.2...@synerise/ds-mapping@1.1.3) (2025-07-17)
 
 **Note:** Version bump only for package @synerise/ds-mapping
-
-
-
-
 
 ## [1.1.2](https://github.com/Synerise/synerise-design/compare/@synerise/ds-mapping@1.1.1...@synerise/ds-mapping@1.1.2) (2025-07-15)
 
 **Note:** Version bump only for package @synerise/ds-mapping
 
-
-
-
-
 ## [1.1.1](https://github.com/Synerise/synerise-design/compare/@synerise/ds-mapping@1.1.0...@synerise/ds-mapping@1.1.1) (2025-07-08)
 
 **Note:** Version bump only for package @synerise/ds-mapping
 
-
-
-
-
 # [1.1.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-mapping@1.0.13...@synerise/ds-mapping@1.1.0) (2025-07-01)
-
 
 ### Features
 
-* **checkbox:** merge checkbox and tristate cb ([ef7f09c](https://github.com/Synerise/synerise-design/commit/ef7f09cb8293728d5e7e73a0022d57e93dcc4748))
-
-
-
-
+- **checkbox:** merge checkbox and tristate cb ([ef7f09c](https://github.com/Synerise/synerise-design/commit/ef7f09cb8293728d5e7e73a0022d57e93dcc4748))
 
 ## [1.0.13](https://github.com/Synerise/synerise-design/compare/@synerise/ds-mapping@1.0.12...@synerise/ds-mapping@1.0.13) (2025-06-26)
 
 **Note:** Version bump only for package @synerise/ds-mapping
 
-
-
-
-
 ## [1.0.12](https://github.com/Synerise/synerise-design/compare/@synerise/ds-mapping@1.0.11...@synerise/ds-mapping@1.0.12) (2025-06-24)
 
 **Note:** Version bump only for package @synerise/ds-mapping
-
-
-
-
 
 ## [1.0.11](https://github.com/Synerise/synerise-design/compare/@synerise/ds-mapping@1.0.10...@synerise/ds-mapping@1.0.11) (2025-06-05)
 

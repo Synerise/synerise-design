@@ -1,6 +1,6 @@
 import AntdAutoComplete from 'antd/lib/auto-complete';
 import type { RefSelectProps } from 'antd/lib/select';
-import React, { useCallback, useEffect, useMemo, useRef } from 'react';
+import React, { type FC, useCallback, useEffect, useMemo, useRef } from 'react';
 
 import FormField from '@synerise/ds-form-field';
 import { type AutosizeInputRefType, AutosizeWrapper } from '@synerise/ds-input';
@@ -14,7 +14,9 @@ import { getIconsWidth } from './utils/getIconsWidth';
 
 const AUTOSIZE_EXTRA_WIDTH = 27;
 
-const Autocomplete = ({
+const Autocomplete: FC<AutocompleteProps> & {
+  Option: typeof AntdAutoComplete.Option;
+} = ({
   className,
   label,
   description,

@@ -7,17 +7,9 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 **Note:** Version bump only for package @synerise/ds-message
 
-
-
-
-
 ## [1.0.3](https://github.com/Synerise/synerise-design/compare/@synerise/ds-message@1.0.2...@synerise/ds-message@1.0.3) (2025-07-01)
 
 **Note:** Version bump only for package @synerise/ds-message
-
-
-
-
 
 ## [1.0.2](https://github.com/Synerise/synerise-design/compare/@synerise/ds-message@1.0.1...@synerise/ds-message@1.0.2) (2025-05-07)
 

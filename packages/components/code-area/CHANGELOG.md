@@ -29,212 +29,109 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 ## [1.2.9](https://github.com/Synerise/synerise-design/compare/@synerise/ds-code-area@1.2.8...@synerise/ds-code-area@1.2.9) (2025-10-31)
 
-
 ### Bug Fixes
 
-* **code-area:** footer content rendering fixed ([543415e](https://github.com/Synerise/synerise-design/commit/543415e2d1ad9c427e019c8eaf0df004f5e9dcac))
-
-
-
-
+- **code-area:** footer content rendering fixed ([543415e](https://github.com/Synerise/synerise-design/commit/543415e2d1ad9c427e019c8eaf0df004f5e9dcac))
 
 ## [1.2.8](https://github.com/Synerise/synerise-design/compare/@synerise/ds-code-area@1.2.7...@synerise/ds-code-area@1.2.8) (2025-10-22)
 
 **Note:** Version bump only for package @synerise/ds-code-area
 
-
-
-
-
 ## [1.2.7](https://github.com/Synerise/synerise-design/compare/@synerise/ds-code-area@1.2.6...@synerise/ds-code-area@1.2.7) (2025-10-16)
 
 **Note:** Version bump only for package @synerise/ds-code-area
-
-
-
-
 
 ## [1.2.6](https://github.com/Synerise/synerise-design/compare/@synerise/ds-code-area@1.2.5...@synerise/ds-code-area@1.2.6) (2025-10-10)
 
 **Note:** Version bump only for package @synerise/ds-code-area
 
-
-
-
-
 ## [1.2.5](https://github.com/Synerise/synerise-design/compare/@synerise/ds-code-area@1.2.4...@synerise/ds-code-area@1.2.5) (2025-10-08)
 
 **Note:** Version bump only for package @synerise/ds-code-area
-
-
-
-
 
 ## [1.2.4](https://github.com/Synerise/synerise-design/compare/@synerise/ds-code-area@1.2.3...@synerise/ds-code-area@1.2.4) (2025-10-03)
 
 **Note:** Version bump only for package @synerise/ds-code-area
 
-
-
-
-
 ## [1.2.3](https://github.com/Synerise/synerise-design/compare/@synerise/ds-code-area@1.2.2...@synerise/ds-code-area@1.2.3) (2025-09-30)
 
 **Note:** Version bump only for package @synerise/ds-code-area
-
-
-
-
 
 ## [1.2.2](https://github.com/Synerise/synerise-design/compare/@synerise/ds-code-area@1.2.1...@synerise/ds-code-area@1.2.2) (2025-09-30)
 
 **Note:** Version bump only for package @synerise/ds-code-area
 
-
-
-
-
 ## [1.2.1](https://github.com/Synerise/synerise-design/compare/@synerise/ds-code-area@1.2.0...@synerise/ds-code-area@1.2.1) (2025-09-26)
-
 
 ### Bug Fixes
 
-* **code-area:** drop default value ([abb250e](https://github.com/Synerise/synerise-design/commit/abb250e38136c4a18f768aa8a4a25ef5de286ee6))
-
-
-
-
+- **code-area:** drop default value ([abb250e](https://github.com/Synerise/synerise-design/commit/abb250e38136c4a18f768aa8a4a25ef5de286ee6))
 
 # [1.2.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-code-area@1.1.23...@synerise/ds-code-area@1.2.0) (2025-09-25)
 
-
 ### Features
 
-* **code-area:** add placeholder prop ([a02bb94](https://github.com/Synerise/synerise-design/commit/a02bb949f56a736cff8bb056e70d954ca1663cf1))
-
-
-
-
+- **code-area:** add placeholder prop ([a02bb94](https://github.com/Synerise/synerise-design/commit/a02bb949f56a736cff8bb056e70d954ca1663cf1))
 
 ## [1.1.23](https://github.com/Synerise/synerise-design/compare/@synerise/ds-code-area@1.1.22...@synerise/ds-code-area@1.1.23) (2025-09-23)
 
 **Note:** Version bump only for package @synerise/ds-code-area
 
-
-
-
-
 ## [1.1.22](https://github.com/Synerise/synerise-design/compare/@synerise/ds-code-area@1.1.21...@synerise/ds-code-area@1.1.22) (2025-09-19)
 
 **Note:** Version bump only for package @synerise/ds-code-area
-
-
-
-
 
 ## [1.1.21](https://github.com/Synerise/synerise-design/compare/@synerise/ds-code-area@1.1.20...@synerise/ds-code-area@1.1.21) (2025-09-16)
 
 **Note:** Version bump only for package @synerise/ds-code-area
 
-
-
-
-
 ## [1.1.20](https://github.com/Synerise/synerise-design/compare/@synerise/ds-code-area@1.1.19...@synerise/ds-code-area@1.1.20) (2025-08-28)
 
 **Note:** Version bump only for package @synerise/ds-code-area
-
-
-
-
 
 ## [1.1.19](https://github.com/Synerise/synerise-design/compare/@synerise/ds-code-area@1.1.18...@synerise/ds-code-area@1.1.19) (2025-08-20)
 
 **Note:** Version bump only for package @synerise/ds-code-area
 
-
-
-
-
 ## [1.1.18](https://github.com/Synerise/synerise-design/compare/@synerise/ds-code-area@1.1.17...@synerise/ds-code-area@1.1.18) (2025-08-14)
 
 **Note:** Version bump only for package @synerise/ds-code-area
-
-
-
-
 
 ## [1.1.17](https://github.com/Synerise/synerise-design/compare/@synerise/ds-code-area@1.1.16...@synerise/ds-code-area@1.1.17) (2025-07-24)
 
 **Note:** Version bump only for package @synerise/ds-code-area
 
-
-
-
-
 ## [1.1.16](https://github.com/Synerise/synerise-design/compare/@synerise/ds-code-area@1.1.15...@synerise/ds-code-area@1.1.16) (2025-07-17)
 
 **Note:** Version bump only for package @synerise/ds-code-area
-
-
-
-
 
 ## [1.1.15](https://github.com/Synerise/synerise-design/compare/@synerise/ds-code-area@1.1.14...@synerise/ds-code-area@1.1.15) (2025-07-15)
 
 **Note:** Version bump only for package @synerise/ds-code-area
 
-
-
-
-
 ## [1.1.14](https://github.com/Synerise/synerise-design/compare/@synerise/ds-code-area@1.1.13...@synerise/ds-code-area@1.1.14) (2025-07-14)
 
 **Note:** Version bump only for package @synerise/ds-code-area
-
-
-
-
 
 ## [1.1.13](https://github.com/Synerise/synerise-design/compare/@synerise/ds-code-area@1.1.12...@synerise/ds-code-area@1.1.13) (2025-07-11)
 
 **Note:** Version bump only for package @synerise/ds-code-area
 
-
-
-
-
 ## [1.1.12](https://github.com/Synerise/synerise-design/compare/@synerise/ds-code-area@1.1.11...@synerise/ds-code-area@1.1.12) (2025-07-08)
 
 **Note:** Version bump only for package @synerise/ds-code-area
-
-
-
-
 
 ## [1.1.11](https://github.com/Synerise/synerise-design/compare/@synerise/ds-code-area@1.1.10...@synerise/ds-code-area@1.1.11) (2025-07-01)
 
 **Note:** Version bump only for package @synerise/ds-code-area
 
-
-
-
-
 ## [1.1.10](https://github.com/Synerise/synerise-design/compare/@synerise/ds-code-area@1.1.9...@synerise/ds-code-area@1.1.10) (2025-06-26)
 
 **Note:** Version bump only for package @synerise/ds-code-area
 
-
-
-
-
 ## [1.1.9](https://github.com/Synerise/synerise-design/compare/@synerise/ds-code-area@1.1.8...@synerise/ds-code-area@1.1.9) (2025-06-24)
 
 **Note:** Version bump only for package @synerise/ds-code-area
-
-
-
-
 
 ## [1.1.8](https://github.com/Synerise/synerise-design/compare/@synerise/ds-code-area@1.1.7...@synerise/ds-code-area@1.1.8) (2025-06-12)
 

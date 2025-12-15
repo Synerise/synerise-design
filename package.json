@@ -3,22 +3,18 @@
   "version": "0.0.0",
   "private": true,
   "engines": {
-    "node": "^22"
+    "node": "^22",
+    "pnpm": "^10"
   },
   "repository": {
     "type": "git",
     "url": "https://github.com/Synerise/synerise-design.git"
   },
-  "workspaces": [
-    "packages/components/*",
-    "packages/storybook"
-  ],
   "scripts": {
-    "bootstrap": "lerna bootstrap",
-    "build": "yarn build:core && yarn build:all",
+    "build": "pnpm build:core && pnpm build:all",
     "build:all": "lerna run build",
     "build:core": "lerna run build --scope=@synerise/ds-core",
-    "build-storybook": "cd packages/storybook && yarn build-storybook",
+    "build-storybook": "cd packages/storybook && pnpm build-storybook",
     "clean": "lerna clean --yes && rm -rf node_modules && rm -rf packages/components/*/dist",
     "component:create": "node ./scripts/create-component/index.js",
     "lerna:version": "lerna version --conventional-commits",
@@ -26,18 +22,12 @@
     "lint:fix": "eslint ./packages/components --fix --ext ts,tsx",
     "prettier": "prettier --write ./packages/components",
     "pack:ci": "lerna run pack:ci --since origin/master",
-    "storybook": "cd packages/storybook && yarn storybook",
+    "storybook": "cd packages/storybook && pnpm storybook",
     "test:ci": "lerna run test --stream --concurrency 3",
     "tgz-package-json": "node ./scripts/tgz/index.cjs",
     "types": "lerna run types --stream  --concurrency 5",
     "check:circular-dependencies": "lerna run check:circular-dependencies",
-    "upgrade:ds": "lerna run upgrade:ds"
-  },
-  "husky": {
-    "hooks": {
-      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS",
-      "pre-commit": "lint-staged"
-    }
+    "prepare": "husky"
   },
   "resolutions": {
     "@jest/fake-timers": "^27",
@@ -51,12 +41,9 @@
     "react": "^18",
     "react-dom": "^18"
   },
-  "volta": {
-    "node": "22.14.0",
-    "yarn": "1.22.22"
-  },
   "dependencies": {
     "antd": "4.24.16",
+    "copy-to-clipboard": "^3.3.1",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "react-perfect-scrollbar": "^1.5.8"
@@ -67,9 +54,9 @@
     "@babel/preset-env": "^7.26.9",
     "@babel/preset-react": "^7.26.3",
     "@babel/preset-typescript": "^7.27.0",
-    "@commitlint/cli": "8.3.5",
-    "@commitlint/config-conventional": "8.3.4",
-    "@commitlint/config-workspace-scopes": "^19.8.1",
+    "@commitlint/cli": "^20",
+    "@commitlint/config-conventional": "^20",
+    "@commitlint/config-pnpm-scopes": "^20",
     "@formatjs/intl-pluralrules": "5.3.1",
     "@formatjs/intl-relativetimeformat": "11.4.1",
     "@fortawesome/fontawesome-svg-core": "^6",
@@ -92,6 +79,8 @@
     "@types/highlightjs": "^9.12.6",
     "@types/jest": "27",
     "@types/ramda": "^0.28.23",
+    "@types/react": "^18",
+    "@types/react-dom": "^18",
     "@types/react-highlight-words": "^0.16.4",
     "@types/react-onclickoutside": "^6.7.4",
     "@types/react-window": "^1.8.8",
@@ -101,11 +90,17 @@
     "@welldone-software/why-did-you-render": "^6.0.3",
     "babel-jest": "27",
     "babel-loader": "^8.3.0",
+    "babel-plugin-styled-components": "^2.1.4",
     "babel-plugin-transform-rename-import": "^2.3.0",
     "copy-template-dir": "1.4.0",
     "css-loader": "^7.1.2",
+    "eslint": "^9.22.0",
+    "eslint-import-resolver-node": "^0.3.9",
+    "eslint-import-resolver-typescript": "^4.4.4",
     "format-package": "5.2.0",
-    "husky": "4.2.3",
+    "fs-extra": "^11.3.2",
+    "glob": "^11.0.2",
+    "husky": "^9.1.7",
     "inquirer": "7.1.0",
     "jest": "^27",
     "jest-environment-jsdom": "^27",
@@ -116,13 +111,16 @@
     "less-plugin-npm-import": "^2.1.0",
     "lint-staged": "16.1.0",
     "madge": "^8.0.0",
+    "minimist": "^1.2.8",
     "npm-check-updates": "^16",
+    "prettier": "^3.5.3",
     "react-intl": "^6.8.7",
     "sass": "^1.43.4",
     "style-loader": "^4.0.0",
     "styled-components": "^5.3.3",
     "stylelint": "16.20.0",
     "stylelint-config-standard": "38.0.0",
+    "tslib": "2",
     "typescript": "^5.8.0",
     "webpack": "^5.98.0"
   }

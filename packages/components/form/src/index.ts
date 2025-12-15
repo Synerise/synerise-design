@@ -1,8 +1,8 @@
-import { EditableList } from './editable-list/editable-list';
+import { EditableList } from './EditableList/EditableList';
 import type {
   EditListProps,
   EditableParam,
-} from './editable-list/editable-list.types';
+} from './EditableList/EditableList.types';
 
 export { EditableList };
 export { default } from './Form';

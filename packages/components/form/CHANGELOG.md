@@ -23,108 +23,55 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 **Note:** Version bump only for package @synerise/ds-form
 
-
-
-
-
 ## [1.1.8](https://github.com/Synerise/synerise-design/compare/@synerise/ds-form@1.1.7...@synerise/ds-form@1.1.8) (2025-10-22)
 
 **Note:** Version bump only for package @synerise/ds-form
-
-
-
-
 
 ## [1.1.7](https://github.com/Synerise/synerise-design/compare/@synerise/ds-form@1.1.6...@synerise/ds-form@1.1.7) (2025-10-16)
 
 **Note:** Version bump only for package @synerise/ds-form
 
-
-
-
-
 ## [1.1.6](https://github.com/Synerise/synerise-design/compare/@synerise/ds-form@1.1.5...@synerise/ds-form@1.1.6) (2025-10-10)
 
 **Note:** Version bump only for package @synerise/ds-form
-
-
-
-
 
 ## [1.1.5](https://github.com/Synerise/synerise-design/compare/@synerise/ds-form@1.1.4...@synerise/ds-form@1.1.5) (2025-10-08)
 
 **Note:** Version bump only for package @synerise/ds-form
 
-
-
-
-
 ## [1.1.4](https://github.com/Synerise/synerise-design/compare/@synerise/ds-form@1.1.3...@synerise/ds-form@1.1.4) (2025-10-03)
 
 **Note:** Version bump only for package @synerise/ds-form
-
-
-
-
 
 ## [1.1.3](https://github.com/Synerise/synerise-design/compare/@synerise/ds-form@1.1.2...@synerise/ds-form@1.1.3) (2025-09-30)
 
 **Note:** Version bump only for package @synerise/ds-form
 
-
-
-
-
 ## [1.1.2](https://github.com/Synerise/synerise-design/compare/@synerise/ds-form@1.1.1...@synerise/ds-form@1.1.2) (2025-09-30)
 
 **Note:** Version bump only for package @synerise/ds-form
-
-
-
-
 
 ## [1.1.1](https://github.com/Synerise/synerise-design/compare/@synerise/ds-form@1.1.0...@synerise/ds-form@1.1.1) (2025-09-26)
 
 **Note:** Version bump only for package @synerise/ds-form
 
-
-
-
-
 # [1.1.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-form@1.0.27...@synerise/ds-form@1.1.0) (2025-09-25)
-
 
 ### Features
 
-* **divider:** refactor divider component ([ea117aa](https://github.com/Synerise/synerise-design/commit/ea117aa015f372ad42c7ac60d4f3691c9e9555e0))
-
-
-
-
+- **divider:** refactor divider component ([ea117aa](https://github.com/Synerise/synerise-design/commit/ea117aa015f372ad42c7ac60d4f3691c9e9555e0))
 
 ## [1.0.27](https://github.com/Synerise/synerise-design/compare/@synerise/ds-form@1.0.26...@synerise/ds-form@1.0.27) (2025-09-23)
 
 **Note:** Version bump only for package @synerise/ds-form
 
-
-
-
-
 ## [1.0.26](https://github.com/Synerise/synerise-design/compare/@synerise/ds-form@1.0.25...@synerise/ds-form@1.0.26) (2025-09-19)
 
 **Note:** Version bump only for package @synerise/ds-form
 
-
-
-
-
 ## [1.0.25](https://github.com/Synerise/synerise-design/compare/@synerise/ds-form@1.0.24...@synerise/ds-form@1.0.25) (2025-09-16)
 
 **Note:** Version bump only for package @synerise/ds-form
-
-
-
-
 
 ## [1.0.24](https://github.com/Synerise/synerise-design/compare/@synerise/ds-form@1.0.23...@synerise/ds-form@1.0.24) (2025-08-28)
 

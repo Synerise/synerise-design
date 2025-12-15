@@ -38,7 +38,7 @@ function getCells(
 ): Cell[] {
   const minDate = min ? fnsStartOfMonth(min) : fnsSetMonth(cursor, 0);
   const maxDate = max ? fnsEndOfMonth(max) : fnsSetMonth(cursor, 12);
-  return range(0, 12).map((index) => {
+  return range(0, 12).map((index: number) => {
     const date = fnsSetMonth(cursor, index);
     return {
       key: date.toISOString(),

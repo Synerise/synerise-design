@@ -1,11 +1,11 @@
 import styled from 'styled-components';
 
 import Drawer from '@synerise/ds-drawer';
-import SearchBarBase from '@synerise/ds-search-bar';
+import SearchBarBase, { type StyledSearchBar } from '@synerise/ds-search-bar';
 
 export const ColumnManager = styled(Drawer)``;
 
-export const SearchBar = styled(SearchBarBase)`
+export const SearchBar: StyledSearchBar = styled(SearchBarBase)`
   min-height: 52px;
   height: 52px;
 `;

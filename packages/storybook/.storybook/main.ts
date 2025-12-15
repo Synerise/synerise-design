@@ -1,16 +1,18 @@
-import type { StorybookConfig } from '@storybook/react-webpack5';
-import { join, dirname } from 'path';
-import deeperSortSetup from "storybook-deeper-sort";
+import { dirname, join } from 'path';
+import deeperSortSetup from 'storybook-deeper-sort';
 
-deeperSortSetup(
-  ["Introduction", "Tokens", "Components", ["*", "Tests"]],
-);
+import type { StorybookConfig } from '@storybook/react-webpack5';
+
+deeperSortSetup(['Introduction', 'Tokens', 'Components', ['*', 'Tests']]);
 
 function getAbsolutePath(value: string): any {
   return dirname(require.resolve(join(value, 'package.json')));
 }
 const config: StorybookConfig = {
-  stories: ['../stories/**/*.mdx', '../stories/**/*.stories.@(js|jsx|mjs|ts|tsx)'],
+  stories: [
+    '../stories/**/*.mdx',
+    '../stories/**/*.stories.@(js|jsx|mjs|ts|tsx)',
+  ],
   addons: [
     getAbsolutePath('@storybook/addon-webpack5-compiler-swc'),
     getAbsolutePath('@storybook/addon-docs'),
@@ -22,7 +24,7 @@ const config: StorybookConfig = {
     options: {},
   },
   docs: {
-    defaultName: 'Overview'
+    defaultName: 'Overview',
   },
   typescript: {
     reactDocgen: 'react-docgen-typescript',
@@ -42,7 +44,9 @@ const config: StorybookConfig = {
     config.module = {
       ...(config.module || {}),
       rules: [
-        ...(config.module?.rules?.filter((f) => f?.test?.toString() !== '/\\.mdx$/') || []),
+        ...(config.module?.rules?.filter(
+          (f) => f?.test?.toString() !== '/\\.mdx$/',
+        ) || []),
         {
           test: /\.(png|jpe?g|gif)$/i,
           type: 'asset/resource',
@@ -64,7 +68,8 @@ const config: StorybookConfig = {
                     {
                       replacements: [
                         {
-                          original: '@synerise/ds-((?!core|data-format|toaster|icon$|icon/)[a-z0-9-]+)(/dist)?(.*)',
+                          original:
+                            '@synerise/ds-((?!core|icon$|icon/)[a-z0-9-]+)(/dist)?(.*)',
                           replacement: '@synerise/ds-$1/src$3',
                         },
                       ],

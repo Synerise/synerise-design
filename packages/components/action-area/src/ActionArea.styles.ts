@@ -26,8 +26,8 @@ export const ActionAreaContent = styled.div<{ isError?: boolean }>`
     word-break: break-word;
   }
   ${Description} {
-    margin-bottom: 16px;
     text-align: center;
+    margin-bottom: 16px;
     word-break: break-word;
   }
 `;

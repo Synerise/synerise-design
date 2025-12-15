@@ -21,6 +21,7 @@ yarn add @synerise/ds-tray
 - Open/close trays via the `useTray` hook which calls `openTray(id, TrayData)` / `closeTray(id)`.
 
 Key source files:
+
 - Component: [`Tray`](packages/components/tray/src/Tray.tsx)
 - Props type: [`TrayProps`](packages/components/tray/src/Tray.types.ts)
 - Provider & data shape: [`TrayProvider` / `TrayData`](packages/components/tray/src/components/TrayProvider.tsx)
@@ -29,10 +30,11 @@ Key source files:
 
 ## Basic usage
 
-1) Wrap your app with the provider and mount a `Tray` with a stable id:
+1. Wrap your app with the provider and mount a `Tray` with a stable id:
 
 ```tsx
 import React from 'react';
+
 import { TrayProvider } from '@synerise/ds-tray';
 import Tray from '@synerise/ds-tray';
 
@@ -45,10 +47,11 @@ const App = () => (
 );
 ```
 
-2) Open the tray from anywhere inside the provider using the hook:
+2. Open the tray from anywhere inside the provider using the hook:
 
 ```tsx
 import React from 'react';
+
 import { useTray } from '@synerise/ds-tray';
 
 const Demo = () => {
@@ -59,7 +62,11 @@ const Demo = () => {
       title: 'Details',
       content: <div>Tray content</div>,
       headerRightSide: <span>Extra</span>,
-      footer: <div><button onClick={() => close('my-tray')}>Close</button></div>,
+      footer: (
+        <div>
+          <button onClick={() => close('my-tray')}>Close</button>
+        </div>
+      ),
       onClose: (id) => console.log('closed', id),
     });
   };
@@ -71,22 +78,22 @@ const Demo = () => {
 ## API
 
 Tray component props
-| Property                      | Description                                        | Type                        | Required |     |
+| Property | Description | Type | Required | |
 |-------------------------------|----------------------------------------------------|-----------------------------|----------|-----|
-| `id`                          | Identifier used to bind the tray to provider state | `string                     | number`  | yes |
-| any other HTML div attributes | `className`, `style`, `data-*`, etc.               | `HTMLDivElement` attributes | no       |     |
-
+| `id` | Identifier used to bind the tray to provider state | `string                     | number` | yes |
+| any other HTML div attributes | `className`, `style`, `data-*`, etc. | `HTMLDivElement` attributes | no | |
 
 Tray data (passed to `open(id, data)`) — [`TrayData`](packages/components/tray/src/components/TrayProvider.tsx)
-| Property          | Description                                    | Type         |                  |
+| Property | Description | Type | |
 |-------------------|------------------------------------------------|--------------|------------------|
-| `content`         | Main content to render inside the tray         | `ReactNode`  |                  |
-| `title`           | Header title (node)                            | `ReactNode`  |                  |
-| `headerRightSide` | Node rendered in header to the right of title  | `ReactNode`  |                  |
-| `footer`          | Footer node rendered at bottom of tray         | `ReactNode`  |                  |
-| `onClose`         | Callback invoked when tray close action occurs | `(id: string | number) => void` |
+| `content` | Main content to render inside the tray | `ReactNode` | |
+| `title` | Header title (node) | `ReactNode` | |
+| `headerRightSide` | Node rendered in header to the right of title | `ReactNode` | |
+| `footer` | Footer node rendered at bottom of tray | `ReactNode` | |
+| `onClose` | Callback invoked when tray close action occurs | `(id: string | number) => void` |
 
 Notes
+
 - The `Tray` component reads its state from context (`getTrayState(id)`) and returns `null` if not open. See [`Tray.tsx`](packages/components/tray/src/Tray.tsx).
 - The provider stores tray entries keyed by id; you can open different trays by using different ids.
 - The close button in the header calls `closeTray(id)` and triggers `TrayData.onClose` if provided.

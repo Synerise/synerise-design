@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, { type StyledComponent } from 'styled-components';
 
 import Button, { type ButtonProps } from '@synerise/ds-button';
 
@@ -69,7 +69,16 @@ export const PopconfirmTitle = styled.div`
   overflow: hidden;
 `;
 
-export const PopconfirmButton = styled(Button)<ButtonProps>`
+export const PopconfirmButton: StyledComponent<
+  React.ForwardRefExoticComponent<
+    ButtonProps &
+      Omit<React.HTMLAttributes<HTMLDivElement>, keyof ButtonProps> &
+      React.RefAttributes<HTMLButtonElement>
+  >,
+  object,
+  object,
+  never
+> = styled(Button)`
   && {
     height: 32px;
   }

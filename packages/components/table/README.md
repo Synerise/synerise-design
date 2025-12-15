@@ -91,8 +91,9 @@ This type of table requires a specific type of dataSource which has to contain a
 | groupType | Type of active grouping                          | `value` / `ranges` / `interval` / undefined | -       |
 
 #### RowSelection
+
 | Property                         | Description                                            | Type                                                            | Default |
-|----------------------------------|--------------------------------------------------------|-----------------------------------------------------------------|---------|
+| -------------------------------- | ------------------------------------------------------ | --------------------------------------------------------------- | ------- |
 | fixed                            | Whether to show selection column as fixed or not       | boolean                                                         | -       |
 | selectedRowKeys                  | Array of selected row keys                             | React.ReactText                                                 | []      |
 | selections                       | Selections options available in table title            | SelectionItem[]                                                 | -       |
@@ -101,7 +102,6 @@ This type of table requires a specific type of dataSource which has to contain a
 | independentSelectionExpandedRows | Allows to select parent and child rows independently   | boolean                                                         | -       |
 | checkRowSelectionStatus          | Validator function record selection status             | (record: T) => SelectionStatus                                  | -       |
 | globalSelection                  | Global selection config (for use with infinite loader) | { isSelected: boolean; onChange: (selected: boolean) => void; } | -       |
-
 
 #### SelectionStatus
 

@@ -1,6 +1,10 @@
 import eslintConfig from '@synerise/eslint-config';
+import { defineConfig } from "eslint/config";
 
-export default [
+
+const testFiles = ['**/*.spec.*', '**/__specs__/**'];
+
+export default defineConfig([
   ...eslintConfig,
   {
     ignores: [
@@ -8,10 +12,9 @@ export default [
       '**/node_modules/',
       '**/dist/',
       '.cache',
-      'scripts/',
+      'scripts/*',
       '*.config.js',
       '**/*.config.js',
-      '*.spec.*',
       'config/',
       '**/core/build/',
       '**/flag/build/',
@@ -19,7 +22,7 @@ export default [
       '**/icon/build/',
       '**/icon/src/icons/',
       'packages/storybook/',
-      '__specs__',
+      ...testFiles
     ],
   },
   {
@@ -39,4 +42,4 @@ export default [
       'import/no-duplicates': 'warn',
     },
   },
-];
+]);

@@ -23,7 +23,7 @@
     "defs": "tsc --declaration --outDir dist/ --emitDeclarationOnly",
     "prepublish": "npm run build",
     "types": "tsc --noEmit",
-    "pack:ci": "npm pack --pack-destination ../../storybook/storybook-static/static",
+    "pack:ci": "pnpm pack --pack-destination ../../storybook/storybook-static/static",
     "test": "jest",
     "test:watch": "npm run test -- --watchAll",
     "upgrade:ds": "ncu -f \"@synerise/ds-*\" -u"
@@ -34,8 +34,8 @@
   ],
   "types": "dist/index.d.ts",
   "dependencies": {
-    "@synerise/ds-inline-alert": "^1.1.1",
-    "@synerise/ds-utils": "^1.5.0"
+    "@synerise/ds-inline-alert": "workspace:^",
+    "@synerise/ds-utils": "workspace:^"
   },
   "peerDependencies": {
     "@synerise/ds-core": "*",

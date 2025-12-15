@@ -2,12 +2,15 @@ import type { TriggerProps } from 'rc-trigger';
 import type {
   Component,
   ComponentType,
+  ForwardRefExoticComponent,
   Key,
   KeyboardEvent,
   LegacyRef,
   MouseEvent,
   ReactNode,
+  RefAttributes,
 } from 'react';
+import { type StyledComponent } from 'styled-components';
 
 import type { TooltipProps } from '@synerise/ds-tooltip';
 import type { WithHTMLAttributes } from '@synerise/ds-utils';
@@ -138,4 +141,14 @@ export type NestedItemProps = {
 export type BasicItemProps = Omit<
   ListItemProps,
   'type' | 'text' | 'level' | 'higher'
->;
+> & {
+  ItemComponent: ComponentType<ListItemProps>;
+};
+
+export type StyledListItem<CustomProps extends object = object> =
+  StyledComponent<
+    ForwardRefExoticComponent<ListItemProps & RefAttributes<HTMLDivElement>>,
+    object,
+    CustomProps,
+    never
+  >;

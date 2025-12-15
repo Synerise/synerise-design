@@ -1,7 +1,7 @@
 import type { ReactNode } from 'react';
 import styled from 'styled-components';
 
-import { Input } from '@synerise/ds-input';
+import { Input, type StyledInput } from '@synerise/ds-input';
 import { Title } from '@synerise/ds-typography';
 
 import {
@@ -85,7 +85,7 @@ export const PlaceholderWrapper = styled.div<{ valuePrefixWidth: number }>`
   color: ${(props) => props.theme.palette['grey-500']};
   line-height: 18px;
 `;
-export const SearchBar = styled(Input)`
+export const SearchBar: StyledInput = styled(Input)`
   &&& {
     position: relative;
     height: 52px;

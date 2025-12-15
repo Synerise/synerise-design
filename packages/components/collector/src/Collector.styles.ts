@@ -1,7 +1,6 @@
 import styled, { css } from 'styled-components';
 
-import Button from '@synerise/ds-button';
-import { type InputProps } from '@synerise/ds-input';
+import Button, { type StyledButton } from '@synerise/ds-button';
 import Value from '@synerise/ds-input/dist/InputMultivalue/Elements/Value';
 import {
   BorderLessInput,
@@ -100,14 +99,12 @@ export const RightSide = styled.div<{
     left: -102px;
   }
 `;
-export const Input = styled(BorderLessInput)<
-  InputProps & {
-    disabled?: boolean;
-    hasValues?: boolean;
-    transparent: boolean;
-    hidden: boolean;
-  }
->`
+export const Input = styled(BorderLessInput)<{
+  disabled?: boolean;
+  hasValues?: boolean;
+  transparent: boolean;
+  hidden: boolean;
+}>`
   margin: ${(props) => (props.hasValues ? '6px 0 6px 12px' : '4px 0 4px 12px')};
   padding: 1px 0;
   min-width: unset;
@@ -170,7 +167,7 @@ export const DropdownContent = styled.div<{ visible?: boolean }>`
   z-index: 99;
 `;
 
-export const DropdownAddButton = styled(Button)`
+export const DropdownAddButton: StyledButton = styled(Button)`
   white-space: nowrap;
   overflow: hidden;
   width: 100%;

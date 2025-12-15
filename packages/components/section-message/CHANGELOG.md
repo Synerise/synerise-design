@@ -21,41 +21,23 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 ## [1.0.10](https://github.com/Synerise/synerise-design/compare/@synerise/ds-section-message@1.0.9...@synerise/ds-section-message@1.0.10) (2025-10-16)
 
-
 ### Bug Fixes
 
-* **section-message:** changed icons ([b87f2a8](https://github.com/Synerise/synerise-design/commit/b87f2a83c265a384285234d92c3da2301f6d84af))
-
-
-
-
+- **section-message:** changed icons ([b87f2a8](https://github.com/Synerise/synerise-design/commit/b87f2a83c265a384285234d92c3da2301f6d84af))
 
 ## [1.0.9](https://github.com/Synerise/synerise-design/compare/@synerise/ds-section-message@1.0.8...@synerise/ds-section-message@1.0.9) (2025-10-10)
 
 **Note:** Version bump only for package @synerise/ds-section-message
 
-
-
-
-
 ## [1.0.8](https://github.com/Synerise/synerise-design/compare/@synerise/ds-section-message@1.0.7...@synerise/ds-section-message@1.0.8) (2025-09-23)
-
 
 ### Bug Fixes
 
-* **section-message:** fixes to section message overflow ([8189069](https://github.com/Synerise/synerise-design/commit/81890698e348490e75cd991e2d97ca456592941c))
-
-
-
-
+- **section-message:** fixes to section message overflow ([8189069](https://github.com/Synerise/synerise-design/commit/81890698e348490e75cd991e2d97ca456592941c))
 
 ## [1.0.7](https://github.com/Synerise/synerise-design/compare/@synerise/ds-section-message@1.0.6...@synerise/ds-section-message@1.0.7) (2025-09-16)
 
 **Note:** Version bump only for package @synerise/ds-section-message
-
-
-
-
 
 ## [1.0.6](https://github.com/Synerise/synerise-design/compare/@synerise/ds-section-message@1.0.5...@synerise/ds-section-message@1.0.6) (2025-09-05)
 

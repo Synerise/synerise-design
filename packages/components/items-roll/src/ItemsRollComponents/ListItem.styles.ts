@@ -1,10 +1,10 @@
 import styled from 'styled-components';
 
-import DSListItem from '@synerise/ds-list-item';
+import DSListItem, { type StyledListItem } from '@synerise/ds-list-item';
 
 import { RemoveIconWrapper } from './ItemRemoveIcon.styles';
 
-export const ListItem = styled(DSListItem)`
+export const ListItem: StyledListItem = styled(DSListItem)`
   & {
     ${RemoveIconWrapper} {
       opacity: 0;

@@ -87,6 +87,6 @@ async function main() {
 main()
   .then(vars => {
     console.info(`\n${vars.componentName} created at: ${vars.folderPath}\n`);
-    console.info(`Next run: ${chalk.magenta('yarn bootstrap')}\n`);
+    console.info(`Next run: ${chalk.magenta('pnpm install')}\n`);
   })
   .catch(console.error);

@@ -1,4 +1,9 @@
-import { type ReactNode } from 'react';
+import {
+  type CSSProperties,
+  type Dispatch,
+  type ReactNode,
+  type SetStateAction,
+} from 'react';
 
 import {
   type AutoUpdateOptions,
@@ -8,6 +13,8 @@ import {
   type Placement,
   type ShiftOptions,
   type UseDismissProps,
+  type UseFloatingReturn,
+  type UseInteractionsReturn,
   type UseListNavigationProps,
   type UseTransitionStylesProps,
 } from '@floating-ui/react';
@@ -49,11 +56,7 @@ export type PopoverOptions = {
    * defaults to theme.variables['zindex-dropdown'],
    */
   zIndex?: number;
-  onOpenChange?: (
-    open: boolean,
-    event?: Event,
-    reason?: OpenChangeReason,
-  ) => void;
+  onOpenChange?: OpenChangeFn;
   onDismiss?: (event?: Event, reason?: OpenChangeReason) => void;
   getPopupContainer?: (element: HTMLElement) => HTMLElement;
   transitionDuration?: number;
@@ -63,3 +66,27 @@ export type PopoverOptions = {
     placement: Placement;
   }) => Partial<UseTransitionStylesProps>;
 };
+
+type OpenChangeFn = (
+  open: boolean,
+  event?: Event,
+  reason?: OpenChangeReason,
+) => void;
+
+// Or if you want an explicit interface:
+export type UsePopoverReturn = Omit<UseFloatingReturn, 'open'> &
+  UseInteractionsReturn & {
+    open: boolean;
+    setOpen: OpenChangeFn;
+    transitionStyles: CSSProperties | undefined;
+    modal: boolean | undefined;
+    labelId: string | undefined;
+    descriptionId: string | undefined;
+    setLabelId: Dispatch<SetStateAction<string | undefined>>;
+    setDescriptionId: Dispatch<SetStateAction<string | undefined>>;
+    getPopupContainer?: (element: HTMLElement) => HTMLElement;
+    testId: string;
+    zIndex?: number;
+    returnFocus?: boolean;
+    componentId?: string;
+  };

@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-import Button, { type ButtonProps } from '@synerise/ds-button';
+import Button, { type StyledButton } from '@synerise/ds-button';
 import Menu, { type AntdMenuProps } from '@synerise/ds-menu';
 
 export const TabsContainer = styled.div<{ block?: boolean }>`
@@ -41,7 +41,7 @@ export const TabsDropdownDivider = styled.div`
   background-repeat: repeat-x;
 `;
 
-export const ShowHiddenTabsTrigger = styled(Button)<ButtonProps>`
+export const ShowHiddenTabsTrigger: StyledButton = styled(Button)`
   margin-bottom: 4px;
 `;
 

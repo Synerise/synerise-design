@@ -40,268 +40,139 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 ## [1.4.27](https://github.com/Synerise/synerise-design/compare/@synerise/ds-condition@1.4.26...@synerise/ds-condition@1.4.27) (2025-10-31)
 
-
 ### Bug Fixes
 
-* **sortable:** prevent rendering drop label when id is undef ([81898e8](https://github.com/Synerise/synerise-design/commit/81898e87348199cc540ac188b26ea0dd5e621f62))
-
-
-
-
+- **sortable:** prevent rendering drop label when id is undef ([81898e8](https://github.com/Synerise/synerise-design/commit/81898e87348199cc540ac188b26ea0dd5e621f62))
 
 ## [1.4.26](https://github.com/Synerise/synerise-design/compare/@synerise/ds-condition@1.4.25...@synerise/ds-condition@1.4.26) (2025-10-22)
 
 **Note:** Version bump only for package @synerise/ds-condition
 
-
-
-
-
 ## [1.4.25](https://github.com/Synerise/synerise-design/compare/@synerise/ds-condition@1.4.24...@synerise/ds-condition@1.4.25) (2025-10-16)
 
 **Note:** Version bump only for package @synerise/ds-condition
-
-
-
-
 
 ## [1.4.24](https://github.com/Synerise/synerise-design/compare/@synerise/ds-condition@1.4.23...@synerise/ds-condition@1.4.24) (2025-10-10)
 
 **Note:** Version bump only for package @synerise/ds-condition
 
-
-
-
-
 ## [1.4.23](https://github.com/Synerise/synerise-design/compare/@synerise/ds-condition@1.4.22...@synerise/ds-condition@1.4.23) (2025-10-08)
 
 **Note:** Version bump only for package @synerise/ds-condition
-
-
-
-
 
 ## [1.4.22](https://github.com/Synerise/synerise-design/compare/@synerise/ds-condition@1.4.21...@synerise/ds-condition@1.4.22) (2025-10-03)
 
 **Note:** Version bump only for package @synerise/ds-condition
 
-
-
-
-
 ## [1.4.21](https://github.com/Synerise/synerise-design/compare/@synerise/ds-condition@1.4.20...@synerise/ds-condition@1.4.21) (2025-09-30)
 
 **Note:** Version bump only for package @synerise/ds-condition
-
-
-
-
 
 ## [1.4.20](https://github.com/Synerise/synerise-design/compare/@synerise/ds-condition@1.4.19...@synerise/ds-condition@1.4.20) (2025-09-30)
 
 **Note:** Version bump only for package @synerise/ds-condition
 
-
-
-
-
 ## [1.4.19](https://github.com/Synerise/synerise-design/compare/@synerise/ds-condition@1.4.18...@synerise/ds-condition@1.4.19) (2025-09-26)
 
 **Note:** Version bump only for package @synerise/ds-condition
-
-
-
-
 
 ## [1.4.18](https://github.com/Synerise/synerise-design/compare/@synerise/ds-condition@1.4.17...@synerise/ds-condition@1.4.18) (2025-09-25)
 
 **Note:** Version bump only for package @synerise/ds-condition
 
-
-
-
-
 ## [1.4.17](https://github.com/Synerise/synerise-design/compare/@synerise/ds-condition@1.4.16...@synerise/ds-condition@1.4.17) (2025-09-24)
 
 **Note:** Version bump only for package @synerise/ds-condition
-
-
-
-
 
 ## [1.4.16](https://github.com/Synerise/synerise-design/compare/@synerise/ds-condition@1.4.15...@synerise/ds-condition@1.4.16) (2025-09-23)
 
 **Note:** Version bump only for package @synerise/ds-condition
 
-
-
-
-
 ## [1.4.15](https://github.com/Synerise/synerise-design/compare/@synerise/ds-condition@1.4.14...@synerise/ds-condition@1.4.15) (2025-09-19)
 
 **Note:** Version bump only for package @synerise/ds-condition
-
-
-
-
 
 ## [1.4.14](https://github.com/Synerise/synerise-design/compare/@synerise/ds-condition@1.4.13...@synerise/ds-condition@1.4.14) (2025-09-16)
 
 **Note:** Version bump only for package @synerise/ds-condition
 
-
-
-
-
 ## [1.4.13](https://github.com/Synerise/synerise-design/compare/@synerise/ds-condition@1.4.12...@synerise/ds-condition@1.4.13) (2025-09-05)
 
 **Note:** Version bump only for package @synerise/ds-condition
 
-
-
-
-
 ## [1.4.12](https://github.com/Synerise/synerise-design/compare/@synerise/ds-condition@1.4.11...@synerise/ds-condition@1.4.12) (2025-09-05)
-
 
 ### Bug Fixes
 
-* **condition:** fixes to hover style of condition ([6f8fd2d](https://github.com/Synerise/synerise-design/commit/6f8fd2d396c20ff8fb6dca6386d41cc24a0dd87a))
-
-
-
-
+- **condition:** fixes to hover style of condition ([6f8fd2d](https://github.com/Synerise/synerise-design/commit/6f8fd2d396c20ff8fb6dca6386d41cc24a0dd87a))
 
 ## [1.4.11](https://github.com/Synerise/synerise-design/compare/@synerise/ds-condition@1.4.10...@synerise/ds-condition@1.4.11) (2025-08-28)
 
 **Note:** Version bump only for package @synerise/ds-condition
 
-
-
-
-
 ## [1.4.10](https://github.com/Synerise/synerise-design/compare/@synerise/ds-condition@1.4.9...@synerise/ds-condition@1.4.10) (2025-08-22)
 
 **Note:** Version bump only for package @synerise/ds-condition
-
-
-
-
 
 ## [1.4.9](https://github.com/Synerise/synerise-design/compare/@synerise/ds-condition@1.4.8...@synerise/ds-condition@1.4.9) (2025-08-21)
 
 **Note:** Version bump only for package @synerise/ds-condition
 
-
-
-
-
 ## [1.4.8](https://github.com/Synerise/synerise-design/compare/@synerise/ds-condition@1.4.7...@synerise/ds-condition@1.4.8) (2025-08-20)
 
 **Note:** Version bump only for package @synerise/ds-condition
-
-
-
-
 
 ## [1.4.7](https://github.com/Synerise/synerise-design/compare/@synerise/ds-condition@1.4.6...@synerise/ds-condition@1.4.7) (2025-08-14)
 
 **Note:** Version bump only for package @synerise/ds-condition
 
-
-
-
-
 ## [1.4.6](https://github.com/Synerise/synerise-design/compare/@synerise/ds-condition@1.4.5...@synerise/ds-condition@1.4.6) (2025-07-24)
 
 **Note:** Version bump only for package @synerise/ds-condition
-
-
-
-
 
 ## [1.4.5](https://github.com/Synerise/synerise-design/compare/@synerise/ds-condition@1.4.4...@synerise/ds-condition@1.4.5) (2025-07-24)
 
 **Note:** Version bump only for package @synerise/ds-condition
 
-
-
-
-
 ## [1.4.4](https://github.com/Synerise/synerise-design/compare/@synerise/ds-condition@1.4.3...@synerise/ds-condition@1.4.4) (2025-07-17)
 
 **Note:** Version bump only for package @synerise/ds-condition
-
-
-
-
 
 ## [1.4.3](https://github.com/Synerise/synerise-design/compare/@synerise/ds-condition@1.4.2...@synerise/ds-condition@1.4.3) (2025-07-15)
 
 **Note:** Version bump only for package @synerise/ds-condition
 
-
-
-
-
 ## [1.4.2](https://github.com/Synerise/synerise-design/compare/@synerise/ds-condition@1.4.1...@synerise/ds-condition@1.4.2) (2025-07-11)
 
 **Note:** Version bump only for package @synerise/ds-condition
-
-
-
-
 
 ## [1.4.1](https://github.com/Synerise/synerise-design/compare/@synerise/ds-condition@1.4.0...@synerise/ds-condition@1.4.1) (2025-07-08)
 
 **Note:** Version bump only for package @synerise/ds-condition
 
-
-
-
-
 # [1.4.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-condition@1.3.2...@synerise/ds-condition@1.4.0) (2025-07-04)
-
 
 ### Bug Fixes
 
-* **condition:** allow param button to use available space ([b3ea666](https://github.com/Synerise/synerise-design/commit/b3ea666417cd14440ceff58de2e91e58198bfd49))
-
+- **condition:** allow param button to use available space ([b3ea666](https://github.com/Synerise/synerise-design/commit/b3ea666417cd14440ceff58de2e91e58198bfd49))
 
 ### Features
 
-* **factors:** pass component props ([81f40dd](https://github.com/Synerise/synerise-design/commit/81f40dd18b3e7d88828d5e418efc94b1cb9eda91))
-
-
-
-
+- **factors:** pass component props ([81f40dd](https://github.com/Synerise/synerise-design/commit/81f40dd18b3e7d88828d5e418efc94b1cb9eda91))
 
 ## [1.3.2](https://github.com/Synerise/synerise-design/compare/@synerise/ds-condition@1.3.1...@synerise/ds-condition@1.3.2) (2025-07-01)
 
 **Note:** Version bump only for package @synerise/ds-condition
 
-
-
-
-
 ## [1.3.1](https://github.com/Synerise/synerise-design/compare/@synerise/ds-condition@1.3.0...@synerise/ds-condition@1.3.1) (2025-06-26)
 
 **Note:** Version bump only for package @synerise/ds-condition
 
-
-
-
-
 # [1.3.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-condition@1.2.2...@synerise/ds-condition@1.3.0) (2025-06-24)
-
 
 ### Features
 
-* **condition:** sortable lib ([8cbc3f5](https://github.com/Synerise/synerise-design/commit/8cbc3f5956ce9138f1a6b0a5eb0e7cd85bb7f4e7))
-
-
-
-
+- **condition:** sortable lib ([8cbc3f5](https://github.com/Synerise/synerise-design/commit/8cbc3f5956ce9138f1a6b0a5eb0e7cd85bb7f4e7))
 
 ## [1.2.2](https://github.com/Synerise/synerise-design/compare/@synerise/ds-condition@1.2.1...@synerise/ds-condition@1.2.2) (2025-06-12)
 

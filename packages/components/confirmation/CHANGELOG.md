@@ -21,185 +21,95 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 ## [1.1.27](https://github.com/Synerise/synerise-design/compare/@synerise/ds-confirmation@1.1.26...@synerise/ds-confirmation@1.1.27) (2025-10-22)
 
-
 ### Bug Fixes
 
-* **confirmation:** render footer buttons only if handler ([1ebf087](https://github.com/Synerise/synerise-design/commit/1ebf087f662ecbda475d4f190d848a61012a4415))
-
-
-
-
+- **confirmation:** render footer buttons only if handler ([1ebf087](https://github.com/Synerise/synerise-design/commit/1ebf087f662ecbda475d4f190d848a61012a4415))
 
 ## [1.1.26](https://github.com/Synerise/synerise-design/compare/@synerise/ds-confirmation@1.1.25...@synerise/ds-confirmation@1.1.26) (2025-10-16)
 
 **Note:** Version bump only for package @synerise/ds-confirmation
 
-
-
-
-
 ## [1.1.25](https://github.com/Synerise/synerise-design/compare/@synerise/ds-confirmation@1.1.24...@synerise/ds-confirmation@1.1.25) (2025-10-10)
 
 **Note:** Version bump only for package @synerise/ds-confirmation
-
-
-
-
 
 ## [1.1.24](https://github.com/Synerise/synerise-design/compare/@synerise/ds-confirmation@1.1.23...@synerise/ds-confirmation@1.1.24) (2025-10-08)
 
 **Note:** Version bump only for package @synerise/ds-confirmation
 
-
-
-
-
 ## [1.1.23](https://github.com/Synerise/synerise-design/compare/@synerise/ds-confirmation@1.1.22...@synerise/ds-confirmation@1.1.23) (2025-09-30)
 
 **Note:** Version bump only for package @synerise/ds-confirmation
-
-
-
-
 
 ## [1.1.22](https://github.com/Synerise/synerise-design/compare/@synerise/ds-confirmation@1.1.21...@synerise/ds-confirmation@1.1.22) (2025-09-30)
 
 **Note:** Version bump only for package @synerise/ds-confirmation
 
-
-
-
-
 ## [1.1.21](https://github.com/Synerise/synerise-design/compare/@synerise/ds-confirmation@1.1.20...@synerise/ds-confirmation@1.1.21) (2025-09-25)
 
 **Note:** Version bump only for package @synerise/ds-confirmation
 
-
-
-
-
 ## [1.1.20](https://github.com/Synerise/synerise-design/compare/@synerise/ds-confirmation@1.1.19...@synerise/ds-confirmation@1.1.20) (2025-09-23)
-
 
 ### Bug Fixes
 
-* **confirmation:** apply icon color ([3ad7ced](https://github.com/Synerise/synerise-design/commit/3ad7cedfca3e530939c7ae2767c23f13f7ea5e44))
-
-
-
-
+- **confirmation:** apply icon color ([3ad7ced](https://github.com/Synerise/synerise-design/commit/3ad7cedfca3e530939c7ae2767c23f13f7ea5e44))
 
 ## [1.1.19](https://github.com/Synerise/synerise-design/compare/@synerise/ds-confirmation@1.1.18...@synerise/ds-confirmation@1.1.19) (2025-09-19)
 
 **Note:** Version bump only for package @synerise/ds-confirmation
 
-
-
-
-
 ## [1.1.18](https://github.com/Synerise/synerise-design/compare/@synerise/ds-confirmation@1.1.17...@synerise/ds-confirmation@1.1.18) (2025-09-16)
 
 **Note:** Version bump only for package @synerise/ds-confirmation
-
-
-
-
 
 ## [1.1.17](https://github.com/Synerise/synerise-design/compare/@synerise/ds-confirmation@1.1.16...@synerise/ds-confirmation@1.1.17) (2025-08-28)
 
 **Note:** Version bump only for package @synerise/ds-confirmation
 
-
-
-
-
 ## [1.1.16](https://github.com/Synerise/synerise-design/compare/@synerise/ds-confirmation@1.1.15...@synerise/ds-confirmation@1.1.16) (2025-08-20)
 
 **Note:** Version bump only for package @synerise/ds-confirmation
-
-
-
-
 
 ## [1.1.15](https://github.com/Synerise/synerise-design/compare/@synerise/ds-confirmation@1.1.14...@synerise/ds-confirmation@1.1.15) (2025-08-14)
 
 **Note:** Version bump only for package @synerise/ds-confirmation
 
-
-
-
-
 ## [1.1.14](https://github.com/Synerise/synerise-design/compare/@synerise/ds-confirmation@1.1.13...@synerise/ds-confirmation@1.1.14) (2025-07-24)
 
 **Note:** Version bump only for package @synerise/ds-confirmation
-
-
-
-
 
 ## [1.1.13](https://github.com/Synerise/synerise-design/compare/@synerise/ds-confirmation@1.1.12...@synerise/ds-confirmation@1.1.13) (2025-07-17)
 
 **Note:** Version bump only for package @synerise/ds-confirmation
 
-
-
-
-
 ## [1.1.12](https://github.com/Synerise/synerise-design/compare/@synerise/ds-confirmation@1.1.11...@synerise/ds-confirmation@1.1.12) (2025-07-15)
 
 **Note:** Version bump only for package @synerise/ds-confirmation
-
-
-
-
 
 ## [1.1.11](https://github.com/Synerise/synerise-design/compare/@synerise/ds-confirmation@1.1.10...@synerise/ds-confirmation@1.1.11) (2025-07-11)
 
 **Note:** Version bump only for package @synerise/ds-confirmation
 
-
-
-
-
 ## [1.1.10](https://github.com/Synerise/synerise-design/compare/@synerise/ds-confirmation@1.1.9...@synerise/ds-confirmation@1.1.10) (2025-07-08)
 
 **Note:** Version bump only for package @synerise/ds-confirmation
-
-
-
-
 
 ## [1.1.9](https://github.com/Synerise/synerise-design/compare/@synerise/ds-confirmation@1.1.8...@synerise/ds-confirmation@1.1.9) (2025-07-04)
 
 **Note:** Version bump only for package @synerise/ds-confirmation
 
-
-
-
-
 ## [1.1.8](https://github.com/Synerise/synerise-design/compare/@synerise/ds-confirmation@1.1.7...@synerise/ds-confirmation@1.1.8) (2025-07-01)
 
 **Note:** Version bump only for package @synerise/ds-confirmation
-
-
-
-
 
 ## [1.1.7](https://github.com/Synerise/synerise-design/compare/@synerise/ds-confirmation@1.1.6...@synerise/ds-confirmation@1.1.7) (2025-06-26)
 
 **Note:** Version bump only for package @synerise/ds-confirmation
 
-
-
-
-
 ## [1.1.6](https://github.com/Synerise/synerise-design/compare/@synerise/ds-confirmation@1.1.5...@synerise/ds-confirmation@1.1.6) (2025-06-24)
 
 **Note:** Version bump only for package @synerise/ds-confirmation
-
-
-
-
 
 ## [1.1.5](https://github.com/Synerise/synerise-design/compare/@synerise/ds-confirmation@1.1.4...@synerise/ds-confirmation@1.1.5) (2025-06-11)
 

@@ -1,4 +1,9 @@
-import type { ReactNode } from 'react';
+import type {
+  ForwardRefExoticComponent,
+  ReactNode,
+  RefAttributes,
+} from 'react';
+import { type StyledComponent } from 'styled-components';
 
 import type { WithHTMLAttributes } from '@synerise/ds-utils';
 
@@ -11,3 +16,10 @@ export type BaseIconProps = {
 };
 
 export type IconProps = WithHTMLAttributes<HTMLDivElement, BaseIconProps>;
+
+export type StyledIcon<CustomProps extends object = object> = StyledComponent<
+  ForwardRefExoticComponent<IconProps & RefAttributes<HTMLDivElement>>,
+  object,
+  CustomProps,
+  never
+>;

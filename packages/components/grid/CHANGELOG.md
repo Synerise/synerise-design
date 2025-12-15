@@ -7,49 +7,25 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 **Note:** Version bump only for package @synerise/ds-grid
 
-
-
-
-
 ## [1.1.8](https://github.com/Synerise/synerise-design/compare/@synerise/ds-grid@1.1.7...@synerise/ds-grid@1.1.8) (2025-09-16)
 
 **Note:** Version bump only for package @synerise/ds-grid
-
-
-
-
 
 ## [1.1.7](https://github.com/Synerise/synerise-design/compare/@synerise/ds-grid@1.1.6...@synerise/ds-grid@1.1.7) (2025-08-28)
 
 **Note:** Version bump only for package @synerise/ds-grid
 
-
-
-
-
 ## [1.1.6](https://github.com/Synerise/synerise-design/compare/@synerise/ds-grid@1.1.5...@synerise/ds-grid@1.1.6) (2025-07-24)
 
 **Note:** Version bump only for package @synerise/ds-grid
-
-
-
-
 
 ## [1.1.5](https://github.com/Synerise/synerise-design/compare/@synerise/ds-grid@1.1.4...@synerise/ds-grid@1.1.5) (2025-07-01)
 
 **Note:** Version bump only for package @synerise/ds-grid
 
-
-
-
-
 ## [1.1.4](https://github.com/Synerise/synerise-design/compare/@synerise/ds-grid@1.1.3...@synerise/ds-grid@1.1.4) (2025-06-24)
 
 **Note:** Version bump only for package @synerise/ds-grid
-
-
-
-
 
 ## [1.1.3](https://github.com/Synerise/synerise-design/compare/@synerise/ds-grid@1.1.2...@synerise/ds-grid@1.1.3) (2025-06-05)
 

@@ -4,14 +4,14 @@ import styled, {
   css,
 } from 'styled-components';
 
-import Button from '@synerise/ds-button';
+import Button, { type StyledButton } from '@synerise/ds-button';
 import { IconContainer } from '@synerise/ds-icon';
 
-export const TriggerButton = styled(Button)`
+export const TriggerButton: StyledButton = styled(Button)`
   transition: padding 0s;
 `;
 
-export const ClearButton = styled(Button)`
+export const ClearButton: StyledButton = styled(Button)`
   &&& {
     opacity: 0;
     pointer-events: none;

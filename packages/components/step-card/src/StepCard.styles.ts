@@ -1,6 +1,6 @@
 import styled, { css, keyframes } from 'styled-components';
 
-import Icon from '@synerise/ds-icon';
+import Icon, { type StyledIcon } from '@synerise/ds-icon';
 
 const fadeout = keyframes`
   from {
@@ -144,7 +144,7 @@ export const CrudsWrapper = styled.div`
   visibility: hidden;
 `;
 
-export const DragIcon = styled(Icon)`
+export const DragIcon: StyledIcon = styled(Icon)`
   visibility: hidden;
   opacity: 0;
 `;

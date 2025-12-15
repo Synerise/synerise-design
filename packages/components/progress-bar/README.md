@@ -13,16 +13,16 @@ Progress-Bar UI Component
 
 ### ProgressBar
 
-| Property    | Description                                                           | Type                            | Default   |
-| ----------- | --------------------------------------------------------------------- | ------------------------------- | --------- |
-| steps       | Number of steps in progress bar                                       | number                          | -         |
-| description | Text of description under progress bar                                | string                          | -         |
-| percent     | Value of progress bar, also visible in label                          | number                          | -         |
-| thin        | Displays a thinner line                                               | boolean                         | `false`   |
-| label       | Optional label above progress bar                                     | string                          | -         |
-| customColor | Bar color                                                             | string                          | -         |
-| width       | CSS width property of progress-bar                                    | string                          | -         |
-| inline      | set percent value next to progress bar                                | boolean                         | `false`   |
+| Property    | Description                                  | Type    | Default |
+| ----------- | -------------------------------------------- | ------- | ------- |
+| steps       | Number of steps in progress bar              | number  | -       |
+| description | Text of description under progress bar       | string  | -       |
+| percent     | Value of progress bar, also visible in label | number  | -       |
+| thin        | Displays a thinner line                      | boolean | `false` |
+| label       | Optional label above progress bar            | string  | -       |
+| customColor | Bar color                                    | string  | -       |
+| width       | CSS width property of progress-bar           | string  | -       |
+| inline      | set percent value next to progress bar       | boolean | `false` |
 
 ### ProgressTiles
 

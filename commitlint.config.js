@@ -1,11 +1,11 @@
-const workspaceScopes = require('@commitlint/config-workspace-scopes');
+const workspaceScopes = require('@commitlint/config-pnpm-scopes');
 
-const { getPackages } = workspaceScopes.default.utils;
+const { getProjects } = workspaceScopes.default.utils;
 
-const prefix = 'ds-';
+const DS_PREFIX = 'ds-';
 
 module.exports = {
-  extends: ['@commitlint/config-conventional', '@commitlint/config-workspace-scopes'],
+  extends: ['@commitlint/config-conventional', '@commitlint/config-pnpm-scopes'],
   rules: {
     'subject-case': [2, 'never', ['start-case', 'pascal-case', 'upper-case']],
     'type-case': [2, 'always', ['lower-case', 'upper-case']],
@@ -15,9 +15,9 @@ module.exports = {
       ['build', 'chore', 'ci', 'docs', 'feat', 'fix', 'perf', 'refactor', 'revert', 'style', 'test', 'WIP'],
     ],
     'scope-enum': async ctx => {
-      const packages = await getPackages(ctx); // workspace package names
+      const packages = await getProjects(ctx); 
       const normalized = packages.map(pkg =>
-        pkg.startsWith(prefix) ? pkg.slice(prefix.length) : pkg
+        pkg.startsWith(DS_PREFIX) ? pkg.slice(DS_PREFIX.length) : pkg
       );
       return [2, 'always', [...normalized, 'scripts']];
     },

@@ -29,7 +29,7 @@ import Tag from '@synerise/ds-tag'
 ## API
 
 | Property     | Description                                     | Type                              | Default                |
-|--------------|-------------------------------------------------|-----------------------------------|------------------------|
+| ------------ | ----------------------------------------------- | --------------------------------- | ---------------------- |
 | className    | tag container class                             | string                            | -                      |
 | color        | primary color (background/border) of tag        | string                            | -                      |
 | disabled     | whether tag should be disabled                  | boolean                           | -                      |

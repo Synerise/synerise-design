@@ -7,25 +7,13 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 **Note:** Version bump only for package @synerise/ds-flex-box
 
-
-
-
-
 ## [1.0.2](https://github.com/Synerise/synerise-design/compare/@synerise/ds-flex-box@1.0.1...@synerise/ds-flex-box@1.0.2) (2025-07-24)
 
 **Note:** Version bump only for package @synerise/ds-flex-box
 
-
-
-
-
 ## [1.0.1](https://github.com/Synerise/synerise-design/compare/@synerise/ds-flex-box@1.0.0...@synerise/ds-flex-box@1.0.1) (2025-07-01)
 
 **Note:** Version bump only for package @synerise/ds-flex-box
-
-
-
-
 
 ## [0.3.1](https://github.com/Synerise/synerise-design/compare/@synerise/ds-flex-box@0.3.0...@synerise/ds-flex-box@0.3.1) (2025-03-10)
 

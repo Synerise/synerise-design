@@ -23,140 +23,71 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 **Note:** Version bump only for package @synerise/ds-modal
 
-
-
-
-
 ## [1.2.15](https://github.com/synerise/synerise-design/compare/@synerise/ds-modal@1.2.14...@synerise/ds-modal@1.2.15) (2025-10-16)
 
 **Note:** Version bump only for package @synerise/ds-modal
-
-
-
-
 
 ## [1.2.14](https://github.com/synerise/synerise-design/compare/@synerise/ds-modal@1.2.13...@synerise/ds-modal@1.2.14) (2025-10-10)
 
 **Note:** Version bump only for package @synerise/ds-modal
 
-
-
-
-
 ## [1.2.13](https://github.com/synerise/synerise-design/compare/@synerise/ds-modal@1.2.12...@synerise/ds-modal@1.2.13) (2025-10-08)
 
 **Note:** Version bump only for package @synerise/ds-modal
-
-
-
-
 
 ## [1.2.12](https://github.com/synerise/synerise-design/compare/@synerise/ds-modal@1.2.11...@synerise/ds-modal@1.2.12) (2025-09-25)
 
 **Note:** Version bump only for package @synerise/ds-modal
 
-
-
-
-
 ## [1.2.11](https://github.com/synerise/synerise-design/compare/@synerise/ds-modal@1.2.10...@synerise/ds-modal@1.2.11) (2025-09-19)
 
 **Note:** Version bump only for package @synerise/ds-modal
-
-
-
-
 
 ## [1.2.10](https://github.com/synerise/synerise-design/compare/@synerise/ds-modal@1.2.9...@synerise/ds-modal@1.2.10) (2025-09-16)
 
 **Note:** Version bump only for package @synerise/ds-modal
 
-
-
-
-
 ## [1.2.9](https://github.com/synerise/synerise-design/compare/@synerise/ds-modal@1.2.8...@synerise/ds-modal@1.2.9) (2025-08-28)
 
 **Note:** Version bump only for package @synerise/ds-modal
-
-
-
-
 
 ## [1.2.8](https://github.com/synerise/synerise-design/compare/@synerise/ds-modal@1.2.7...@synerise/ds-modal@1.2.8) (2025-08-20)
 
 **Note:** Version bump only for package @synerise/ds-modal
 
-
-
-
-
 ## [1.2.7](https://github.com/synerise/synerise-design/compare/@synerise/ds-modal@1.2.6...@synerise/ds-modal@1.2.7) (2025-08-14)
 
 **Note:** Version bump only for package @synerise/ds-modal
-
-
-
-
 
 ## [1.2.6](https://github.com/synerise/synerise-design/compare/@synerise/ds-modal@1.2.5...@synerise/ds-modal@1.2.6) (2025-07-24)
 
 **Note:** Version bump only for package @synerise/ds-modal
 
-
-
-
-
 ## [1.2.5](https://github.com/synerise/synerise-design/compare/@synerise/ds-modal@1.2.4...@synerise/ds-modal@1.2.5) (2025-07-17)
 
 **Note:** Version bump only for package @synerise/ds-modal
-
-
-
-
 
 ## [1.2.4](https://github.com/synerise/synerise-design/compare/@synerise/ds-modal@1.2.3...@synerise/ds-modal@1.2.4) (2025-07-15)
 
 **Note:** Version bump only for package @synerise/ds-modal
 
-
-
-
-
 ## [1.2.3](https://github.com/synerise/synerise-design/compare/@synerise/ds-modal@1.2.2...@synerise/ds-modal@1.2.3) (2025-07-08)
 
 **Note:** Version bump only for package @synerise/ds-modal
-
-
-
-
 
 ## [1.2.2](https://github.com/synerise/synerise-design/compare/@synerise/ds-modal@1.2.1...@synerise/ds-modal@1.2.2) (2025-07-01)
 
 **Note:** Version bump only for package @synerise/ds-modal
 
-
-
-
-
 ## [1.2.1](https://github.com/synerise/synerise-design/compare/@synerise/ds-modal@1.2.0...@synerise/ds-modal@1.2.1) (2025-06-26)
 
 **Note:** Version bump only for package @synerise/ds-modal
 
-
-
-
-
 # [1.2.0](https://github.com/synerise/synerise-design/compare/@synerise/ds-modal@1.1.5...@synerise/ds-modal@1.2.0) (2025-06-24)
-
 
 ### Features
 
-* **factors:** array factor type ([195d328](https://github.com/synerise/synerise-design/commit/195d3286e98b5f07fc9c1e56001e6ae844b7a080))
-
-
-
-
+- **factors:** array factor type ([195d328](https://github.com/synerise/synerise-design/commit/195d3286e98b5f07fc9c1e56001e6ae844b7a080))
 
 ## [1.1.5](https://github.com/synerise/synerise-design/compare/@synerise/ds-modal@1.1.4...@synerise/ds-modal@1.1.5) (2025-06-11)
 

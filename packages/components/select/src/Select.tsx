@@ -1,3 +1,4 @@
+import AntdSelect from 'antd/lib/select';
 import classNames from 'classnames';
 import React, { forwardRef } from 'react';
 
@@ -105,9 +106,13 @@ export const Select = forwardRef<HTMLDivElement, Props>(
     );
   },
 );
-const SelectWithComponents = Object.assign(Select, {
-  Option: S.AntdSelectOption,
-  OptGroup: S.AntdSelectOptGroup,
+type SelectCompoundComponent = typeof Select & {
+  Option: typeof AntdSelect.Option;
+  OptGroup: typeof AntdSelect.OptGroup;
+};
+const SelectWithComponents: SelectCompoundComponent = Object.assign(Select, {
+  Option: AntdSelect.Option,
+  OptGroup: AntdSelect.OptGroup,
 });
 
 export default SelectWithComponents;

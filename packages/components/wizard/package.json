@@ -21,7 +21,7 @@
     "build:js": "babel --delete-dir-on-start --root-mode upward src --out-dir dist --extensions '.js,.ts,.tsx'",
     "build:watch": "npm run build:js -- --watch",
     "defs": "tsc --declaration --outDir dist/ --emitDeclarationOnly",
-    "pack:ci": "npm pack --pack-destination ../../storybook/storybook-static/static",
+    "pack:ci": "pnpm pack --pack-destination ../../storybook/storybook-static/static",
     "prepublish": "npm run build",
     "test": "jest",
     "test:watch": "npm run test -- --watchAll",
@@ -35,12 +35,15 @@
   ],
   "types": "dist/index.d.ts",
   "dependencies": {
-    "@synerise/ds-button": "^1.5.1",
-    "@synerise/ds-icon": "^1.9.0",
-    "@synerise/ds-layout": "^1.1.0",
-    "@synerise/ds-modal": "^1.2.18",
-    "@synerise/ds-page-header": "^1.0.41",
+    "@synerise/ds-button": "workspace:^",
+    "@synerise/ds-icon": "workspace:^",
+    "@synerise/ds-layout": "workspace:^",
+    "@synerise/ds-modal": "workspace:^",
+    "@synerise/ds-page-header": "workspace:^",
     "classnames": "^2.5.1"
+  },
+  "devDependencies": {
+    "@testing-library/react": "14.3.1"
   },
   "peerDependencies": {
     "@synerise/ds-core": "*",

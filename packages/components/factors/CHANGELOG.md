@@ -48,272 +48,141 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 **Note:** Version bump only for package @synerise/ds-factors
 
-
-
-
-
 ## [1.5.20](https://github.com/Synerise/synerise-design/compare/@synerise/ds-factors@1.5.19...@synerise/ds-factors@1.5.20) (2025-10-22)
 
 **Note:** Version bump only for package @synerise/ds-factors
-
-
-
-
 
 ## [1.5.19](https://github.com/Synerise/synerise-design/compare/@synerise/ds-factors@1.5.18...@synerise/ds-factors@1.5.19) (2025-10-16)
 
 **Note:** Version bump only for package @synerise/ds-factors
 
-
-
-
-
 ## [1.5.18](https://github.com/Synerise/synerise-design/compare/@synerise/ds-factors@1.5.17...@synerise/ds-factors@1.5.18) (2025-10-10)
 
 **Note:** Version bump only for package @synerise/ds-factors
-
-
-
-
 
 ## [1.5.17](https://github.com/Synerise/synerise-design/compare/@synerise/ds-factors@1.5.16...@synerise/ds-factors@1.5.17) (2025-10-08)
 
 **Note:** Version bump only for package @synerise/ds-factors
 
-
-
-
-
 ## [1.5.16](https://github.com/Synerise/synerise-design/compare/@synerise/ds-factors@1.5.15...@synerise/ds-factors@1.5.16) (2025-10-03)
 
 **Note:** Version bump only for package @synerise/ds-factors
-
-
-
-
 
 ## [1.5.15](https://github.com/Synerise/synerise-design/compare/@synerise/ds-factors@1.5.14...@synerise/ds-factors@1.5.15) (2025-09-30)
 
 **Note:** Version bump only for package @synerise/ds-factors
 
-
-
-
-
 ## [1.5.14](https://github.com/Synerise/synerise-design/compare/@synerise/ds-factors@1.5.13...@synerise/ds-factors@1.5.14) (2025-09-30)
 
 **Note:** Version bump only for package @synerise/ds-factors
-
-
-
-
 
 ## [1.5.13](https://github.com/Synerise/synerise-design/compare/@synerise/ds-factors@1.5.12...@synerise/ds-factors@1.5.13) (2025-09-26)
 
 **Note:** Version bump only for package @synerise/ds-factors
 
-
-
-
-
 ## [1.5.12](https://github.com/Synerise/synerise-design/compare/@synerise/ds-factors@1.5.11...@synerise/ds-factors@1.5.12) (2025-09-25)
 
 **Note:** Version bump only for package @synerise/ds-factors
-
-
-
-
 
 ## [1.5.11](https://github.com/Synerise/synerise-design/compare/@synerise/ds-factors@1.5.10...@synerise/ds-factors@1.5.11) (2025-09-24)
 
 **Note:** Version bump only for package @synerise/ds-factors
 
-
-
-
-
 ## [1.5.10](https://github.com/Synerise/synerise-design/compare/@synerise/ds-factors@1.5.9...@synerise/ds-factors@1.5.10) (2025-09-23)
 
 **Note:** Version bump only for package @synerise/ds-factors
 
-
-
-
-
 ## [1.5.9](https://github.com/Synerise/synerise-design/compare/@synerise/ds-factors@1.5.8...@synerise/ds-factors@1.5.9) (2025-09-19)
-
 
 ### Bug Fixes
 
-* add value clearing on factory type change ([a5ab3e1](https://github.com/Synerise/synerise-design/commit/a5ab3e1046201d26a88c3ca4c04bede7450ca4ae))
-
-
-
-
+- add value clearing on factory type change ([a5ab3e1](https://github.com/Synerise/synerise-design/commit/a5ab3e1046201d26a88c3ca4c04bede7450ca4ae))
 
 ## [1.5.8](https://github.com/Synerise/synerise-design/compare/@synerise/ds-factors@1.5.7...@synerise/ds-factors@1.5.8) (2025-09-16)
 
 **Note:** Version bump only for package @synerise/ds-factors
 
-
-
-
-
 ## [1.5.7](https://github.com/Synerise/synerise-design/compare/@synerise/ds-factors@1.5.6...@synerise/ds-factors@1.5.7) (2025-09-05)
 
 **Note:** Version bump only for package @synerise/ds-factors
-
-
-
-
 
 ## [1.5.6](https://github.com/Synerise/synerise-design/compare/@synerise/ds-factors@1.5.5...@synerise/ds-factors@1.5.6) (2025-09-05)
 
 **Note:** Version bump only for package @synerise/ds-factors
 
-
-
-
-
 ## [1.5.5](https://github.com/Synerise/synerise-design/compare/@synerise/ds-factors@1.5.4...@synerise/ds-factors@1.5.5) (2025-08-28)
-
 
 ### Bug Fixes
 
-* **factors:** array factor auto-open removed ([95e68db](https://github.com/Synerise/synerise-design/commit/95e68db4951bc5c8c5cb1bfbec2603de318fc62e))
-
-
-
-
+- **factors:** array factor auto-open removed ([95e68db](https://github.com/Synerise/synerise-design/commit/95e68db4951bc5c8c5cb1bfbec2603de318fc62e))
 
 ## [1.5.4](https://github.com/Synerise/synerise-design/compare/@synerise/ds-factors@1.5.3...@synerise/ds-factors@1.5.4) (2025-08-22)
 
-
 ### Bug Fixes
 
-* **factors:** array numeric value format ([f7a2a2e](https://github.com/Synerise/synerise-design/commit/f7a2a2ee1c1fdcae8eb3bdc99b15dabc5532ce33))
-
-
-
-
+- **factors:** array numeric value format ([f7a2a2e](https://github.com/Synerise/synerise-design/commit/f7a2a2ee1c1fdcae8eb3bdc99b15dabc5532ce33))
 
 ## [1.5.3](https://github.com/Synerise/synerise-design/compare/@synerise/ds-factors@1.5.2...@synerise/ds-factors@1.5.3) (2025-08-21)
 
 **Note:** Version bump only for package @synerise/ds-factors
 
-
-
-
-
 ## [1.5.2](https://github.com/Synerise/synerise-design/compare/@synerise/ds-factors@1.5.1...@synerise/ds-factors@1.5.2) (2025-08-20)
 
 **Note:** Version bump only for package @synerise/ds-factors
-
-
-
-
 
 ## [1.5.1](https://github.com/Synerise/synerise-design/compare/@synerise/ds-factors@1.5.0...@synerise/ds-factors@1.5.1) (2025-08-14)
 
 **Note:** Version bump only for package @synerise/ds-factors
 
-
-
-
-
 # [1.5.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-factors@1.4.5...@synerise/ds-factors@1.5.0) (2025-07-24)
-
 
 ### Features
 
-* add uncontrolledComponent prop in factors ([1b40c36](https://github.com/Synerise/synerise-design/commit/1b40c36f8348b730bc8df924c039e4cb6be4c6b8))
-
-
-
-
+- add uncontrolledComponent prop in factors ([1b40c36](https://github.com/Synerise/synerise-design/commit/1b40c36f8348b730bc8df924c039e4cb6be4c6b8))
 
 ## [1.4.5](https://github.com/Synerise/synerise-design/compare/@synerise/ds-factors@1.4.4...@synerise/ds-factors@1.4.5) (2025-07-24)
 
 **Note:** Version bump only for package @synerise/ds-factors
 
-
-
-
-
 ## [1.4.4](https://github.com/Synerise/synerise-design/compare/@synerise/ds-factors@1.4.3...@synerise/ds-factors@1.4.4) (2025-07-17)
 
 **Note:** Version bump only for package @synerise/ds-factors
-
-
-
-
 
 ## [1.4.3](https://github.com/Synerise/synerise-design/compare/@synerise/ds-factors@1.4.2...@synerise/ds-factors@1.4.3) (2025-07-15)
 
 **Note:** Version bump only for package @synerise/ds-factors
 
-
-
-
-
 ## [1.4.2](https://github.com/Synerise/synerise-design/compare/@synerise/ds-factors@1.4.1...@synerise/ds-factors@1.4.2) (2025-07-11)
 
 **Note:** Version bump only for package @synerise/ds-factors
-
-
-
-
 
 ## [1.4.1](https://github.com/Synerise/synerise-design/compare/@synerise/ds-factors@1.4.0...@synerise/ds-factors@1.4.1) (2025-07-08)
 
 **Note:** Version bump only for package @synerise/ds-factors
 
-
-
-
-
 # [1.4.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-factors@1.3.2...@synerise/ds-factors@1.4.0) (2025-07-04)
-
 
 ### Bug Fixes
 
-* **condition:** allow param button to use available space ([b3ea666](https://github.com/Synerise/synerise-design/commit/b3ea666417cd14440ceff58de2e91e58198bfd49))
-
+- **condition:** allow param button to use available space ([b3ea666](https://github.com/Synerise/synerise-design/commit/b3ea666417cd14440ceff58de2e91e58198bfd49))
 
 ### Features
 
-* **factors:** pass component props ([81f40dd](https://github.com/Synerise/synerise-design/commit/81f40dd18b3e7d88828d5e418efc94b1cb9eda91))
-
-
-
-
+- **factors:** pass component props ([81f40dd](https://github.com/Synerise/synerise-design/commit/81f40dd18b3e7d88828d5e418efc94b1cb9eda91))
 
 ## [1.3.2](https://github.com/Synerise/synerise-design/compare/@synerise/ds-factors@1.3.1...@synerise/ds-factors@1.3.2) (2025-07-01)
 
 **Note:** Version bump only for package @synerise/ds-factors
 
-
-
-
-
 ## [1.3.1](https://github.com/Synerise/synerise-design/compare/@synerise/ds-factors@1.3.0...@synerise/ds-factors@1.3.1) (2025-06-26)
 
 **Note:** Version bump only for package @synerise/ds-factors
 
-
-
-
-
 # [1.3.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-factors@1.2.2...@synerise/ds-factors@1.3.0) (2025-06-24)
-
 
 ### Features
 
-* **factors:** array factor type ([195d328](https://github.com/Synerise/synerise-design/commit/195d3286e98b5f07fc9c1e56001e6ae844b7a080))
-
-
-
-
+- **factors:** array factor type ([195d328](https://github.com/Synerise/synerise-design/commit/195d3286e98b5f07fc9c1e56001e6ae844b7a080))
 
 ## [1.2.2](https://github.com/Synerise/synerise-design/compare/@synerise/ds-factors@1.2.1...@synerise/ds-factors@1.2.2) (2025-06-12)
 

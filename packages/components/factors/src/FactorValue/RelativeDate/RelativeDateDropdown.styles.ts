@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 import Dropdown from '@synerise/ds-dropdown';
 import Icon from '@synerise/ds-icon';
-import { Input } from '@synerise/ds-input';
+import { Input, type StyledInput } from '@synerise/ds-input';
 import { InputNumberWrapper } from '@synerise/ds-input-number/dist/InputNumber.styles';
 
 export const RelativeDateDropdownWrapper = styled(Dropdown.Wrapper)`
@@ -36,7 +36,7 @@ export const IconWrapper = styled.div``;
 export const ClearIcon = styled(Icon)``;
 export const ChevronIcon = styled(Icon)``;
 
-export const Trigger = styled(Input)`
+export const Trigger: StyledInput = styled(Input)`
   ${ClearIcon} {
     display: none;
   }

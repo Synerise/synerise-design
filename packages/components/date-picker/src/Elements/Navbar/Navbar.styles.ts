@@ -1,11 +1,10 @@
 import styled from 'styled-components';
 
-import Button from '@synerise/ds-button';
-import { type ThemeProps } from '@synerise/ds-core';
+import Button, { type StyledButton } from '@synerise/ds-button';
 
-export const NavButton = styled(Button)<{ hidden?: boolean }>`
+export const NavButton: StyledButton = styled(Button)`
   .ds-icon > svg {
-    fill: ${(props): string => props.theme.palette['grey-600']};
+    fill: ${(props) => props.theme.palette['grey-600']};
   }
 `;
 
@@ -14,7 +13,7 @@ export const ArrowPlaceholder = styled.div`
   height: 32px;
 `;
 
-export const ArrowContainer = styled.div<{ hidden?: boolean }>`
+export const ArrowContainer = styled.div`
   display: flex;
   align-items: center;
 `;
@@ -48,10 +47,10 @@ export const Link = styled.span`
   transition: 0.3s;
 
   &:hover {
-    color: ${(props: ThemeProps): string => props.theme.palette['blue-600']};
+    color: ${(props) => props.theme.palette['blue-600']};
   }
 
   &:active {
-    color: ${(props: ThemeProps): string => props.theme.palette['blue-600']};
+    color: ${(props) => props.theme.palette['blue-600']};
   }
 `;
