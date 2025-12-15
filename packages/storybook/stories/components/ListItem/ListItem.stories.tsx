@@ -24,6 +24,7 @@ import {
 } from '../../utils';
 import {
   LIST_ITEMS,
+  StarWithTooltip,
   prefixArgTypes,
   prefixType,
   renderPrefix,
@@ -84,6 +85,9 @@ export default {
       ...BOOLEAN_CONTROL,
     },
     disabled: {
+      ...BOOLEAN_CONTROL,
+    },
+    featured: {
       ...BOOLEAN_CONTROL,
     },
     copyable: {
@@ -153,6 +157,13 @@ export const LabelOnly: Story = {
   args: {
     key: 'list-item-key-1',
     title: 'List Item Title',
+  },
+};
+export const withFeatured: Story = {
+  args: {
+    featured: true,
+    prefixel: <Icon component={<CopyClipboardM />} />,
+    suffixel: <StarWithTooltip />,
   },
 };
 

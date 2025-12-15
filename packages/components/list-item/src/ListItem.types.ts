@@ -120,6 +120,7 @@ export type BaseListItemProps = ListItemDividerProps & {
   type?: ItemType;
   subMenu?: ListItemProps[];
   indentLevel?: number;
+  featured?: boolean;
 };
 
 export type ListItemProps = WithHTMLAttributes<
