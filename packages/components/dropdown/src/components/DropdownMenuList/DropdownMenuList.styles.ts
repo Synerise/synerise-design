@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 import EmptyStatesBase from '@synerise/ds-empty-states';
-import ListItemBase from '@synerise/ds-list-item';
+import ListItemBase, { type StyledListItem } from '@synerise/ds-list-item';
 
 export const ScrollableMenuWrapper = styled.div`
   padding: 8px 0 8px 8px;
@@ -13,7 +13,7 @@ export const EmptyStates = styled(EmptyStatesBase)`
   margin: 48px 0;
 `;
 
-export const DropdownMenuListItem = styled(ListItemBase)`
+export const DropdownMenuListItem: StyledListItem = styled(ListItemBase)`
   min-width: 0;
 `;
 

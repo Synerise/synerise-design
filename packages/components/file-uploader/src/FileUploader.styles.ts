@@ -1,6 +1,6 @@
 import styled, { css } from 'styled-components';
 
-import Button from '@synerise/ds-button';
+import Button, { type StyledButton } from '@synerise/ds-button';
 import { IconContainer } from '@synerise/ds-icon';
 import { Text, Label as TypographyLabel } from '@synerise/ds-typography';
 import { hexToRgba } from '@synerise/ds-utils';
@@ -180,4 +180,4 @@ export const Label = styled(TypographyLabel)`
   }
 `;
 
-export const UploadButton = styled(Button)``;
+export const UploadButton: StyledButton = styled(Button)``;

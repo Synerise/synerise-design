@@ -1,7 +1,7 @@
 import type {
   DraggableAttributes,
   DraggableSyntheticListeners,
-} from '@dnd-kit/core';
+} from '@synerise/ds-sortable';
 
 import type { Column, ColumnManagerTexts } from '../ColumnManager.types';
 

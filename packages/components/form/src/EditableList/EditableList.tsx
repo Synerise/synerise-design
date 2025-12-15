@@ -6,8 +6,8 @@ import Cruds from '@synerise/ds-cruds';
 import Icon, { Add3M } from '@synerise/ds-icon';
 import { Input } from '@synerise/ds-input';
 
-import * as S from './editable-list.styles';
-import { type EditListProps, type EditableParam } from './editable-list.types';
+import * as S from './EditableList.styles';
+import { type EditListProps, type EditableParam } from './EditableList.types';
 
 const defaultFirstInputProps = {
   style: { width: 350 },

@@ -16,7 +16,7 @@ import {
 } from '@floating-ui/react';
 
 import { HOVER_CLOSE_DELAY, HOVER_OPEN_DELAY } from '../Popover.const';
-import { type PopoverOptions } from '../Popover.types';
+import { type PopoverOptions, type UsePopoverReturn } from '../Popover.types';
 import { getDefaultTransitionConfig, getMiddleware } from '../utils';
 import { useListNavigationConfig } from './useListNavigationConfig';
 
@@ -41,7 +41,7 @@ export const usePopover = ({
   listNavigationConfig,
   getTransitionConfig = getDefaultTransitionConfig,
   zIndex,
-}: PopoverOptions = {}) => {
+}: PopoverOptions = {}): UsePopoverReturn => {
   const [uncontrolledOpen, setUncontrolledOpen] = useState(initialOpen);
   const [labelId, setLabelId] = useState<string | undefined>();
   const [descriptionId, setDescriptionId] = useState<string | undefined>();

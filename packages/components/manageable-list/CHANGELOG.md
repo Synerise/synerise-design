@@ -34,122 +34,63 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 **Note:** Version bump only for package @synerise/ds-manageable-list
 
-
-
-
-
 ## [1.5.2](https://github.com/Synerise/synerise-design/compare/@synerise/ds-manageable-list@1.5.1...@synerise/ds-manageable-list@1.5.2) (2025-10-22)
 
 **Note:** Version bump only for package @synerise/ds-manageable-list
-
-
-
-
 
 ## [1.5.1](https://github.com/Synerise/synerise-design/compare/@synerise/ds-manageable-list@1.5.0...@synerise/ds-manageable-list@1.5.1) (2025-10-16)
 
 **Note:** Version bump only for package @synerise/ds-manageable-list
 
-
-
-
-
 # [1.5.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-manageable-list@1.4.5...@synerise/ds-manageable-list@1.5.0) (2025-10-10)
-
 
 ### Features
 
-* **list-item:** submenu and header ([71fa4bf](https://github.com/Synerise/synerise-design/commit/71fa4bfadd5fdb52d61dfe8fe87a9e47567e5d16))
-
-
-
-
+- **list-item:** submenu and header ([71fa4bf](https://github.com/Synerise/synerise-design/commit/71fa4bfadd5fdb52d61dfe8fe87a9e47567e5d16))
 
 ## [1.4.5](https://github.com/Synerise/synerise-design/compare/@synerise/ds-manageable-list@1.4.4...@synerise/ds-manageable-list@1.4.5) (2025-10-08)
 
 **Note:** Version bump only for package @synerise/ds-manageable-list
 
-
-
-
-
 ## [1.4.4](https://github.com/Synerise/synerise-design/compare/@synerise/ds-manageable-list@1.4.3...@synerise/ds-manageable-list@1.4.4) (2025-10-03)
 
 **Note:** Version bump only for package @synerise/ds-manageable-list
-
-
-
-
 
 ## [1.4.3](https://github.com/Synerise/synerise-design/compare/@synerise/ds-manageable-list@1.4.2...@synerise/ds-manageable-list@1.4.3) (2025-09-30)
 
 **Note:** Version bump only for package @synerise/ds-manageable-list
 
-
-
-
-
 ## [1.4.2](https://github.com/Synerise/synerise-design/compare/@synerise/ds-manageable-list@1.4.1...@synerise/ds-manageable-list@1.4.2) (2025-09-30)
 
 **Note:** Version bump only for package @synerise/ds-manageable-list
-
-
-
-
 
 ## [1.4.1](https://github.com/Synerise/synerise-design/compare/@synerise/ds-manageable-list@1.4.0...@synerise/ds-manageable-list@1.4.1) (2025-09-26)
 
 **Note:** Version bump only for package @synerise/ds-manageable-list
 
-
-
-
-
 # [1.4.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-manageable-list@1.3.24...@synerise/ds-manageable-list@1.4.0) (2025-09-25)
-
 
 ### Features
 
-* **manageable-list:** enable selecting content items ([5fb2491](https://github.com/Synerise/synerise-design/commit/5fb249199343ad9bc31a3a853a57e48b1fa95ddb))
-
-
-
-
+- **manageable-list:** enable selecting content items ([5fb2491](https://github.com/Synerise/synerise-design/commit/5fb249199343ad9bc31a3a853a57e48b1fa95ddb))
 
 ## [1.3.24](https://github.com/Synerise/synerise-design/compare/@synerise/ds-manageable-list@1.3.23...@synerise/ds-manageable-list@1.3.24) (2025-09-23)
 
 **Note:** Version bump only for package @synerise/ds-manageable-list
 
-
-
-
-
 ## [1.3.23](https://github.com/Synerise/synerise-design/compare/@synerise/ds-manageable-list@1.3.22...@synerise/ds-manageable-list@1.3.23) (2025-09-19)
 
 **Note:** Version bump only for package @synerise/ds-manageable-list
-
-
-
-
 
 ## [1.3.22](https://github.com/Synerise/synerise-design/compare/@synerise/ds-manageable-list@1.3.21...@synerise/ds-manageable-list@1.3.22) (2025-09-16)
 
 **Note:** Version bump only for package @synerise/ds-manageable-list
 
-
-
-
-
 ## [1.3.21](https://github.com/Synerise/synerise-design/compare/@synerise/ds-manageable-list@1.3.20...@synerise/ds-manageable-list@1.3.21) (2025-09-05)
-
 
 ### Bug Fixes
 
-* **manageable-list:** fixes to text ([49edfd2](https://github.com/Synerise/synerise-design/commit/49edfd28dd5c2398c250eda6f338f72143f98f3b))
-
-
-
-
+- **manageable-list:** fixes to text ([49edfd2](https://github.com/Synerise/synerise-design/commit/49edfd28dd5c2398c250eda6f338f72143f98f3b))
 
 ## [1.3.20](https://github.com/Synerise/synerise-design/compare/@synerise/ds-manageable-list@1.3.19...@synerise/ds-manageable-list@1.3.20) (2025-08-28)
 

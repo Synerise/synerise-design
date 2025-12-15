@@ -60,3 +60,4 @@ ca.crt
 bundle.crt
 
 .nx/
+.pnpm-store

@@ -1,6 +1,5 @@
 import Button from './Button';
 import * as MainButtonStyles from './Button.styles';
-import { type Props } from './Button.types';
 import CheckboxButton from './Checkbox/Checkbox';
 import * as CheckboxStyles from './Checkbox/Checkbox.styles';
 import Creator from './Creator/Creator';
@@ -20,7 +19,7 @@ export type { StarButtonProps } from './Star/Star.types';
 export type { CheckboxButtonProps } from './Checkbox/Checkbox.types';
 export { ExpanderSize, type ExpanderProps } from './Expander/Expander.types';
 
-export type ButtonProps = Props;
+export type { ButtonProps, StyledButton } from './Button.types';
 
 export const ButtonStyles = {
   Button: MainButtonStyles,

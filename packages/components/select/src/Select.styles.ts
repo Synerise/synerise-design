@@ -9,8 +9,6 @@ import { type ThemeProps } from '@synerise/ds-core';
 
 import { type Props } from './Select.types';
 
-const { OptGroup, Option } = Select;
-
 const errorStyle = (props: ThemeProps) => `
   border-color: ${props.theme.palette['red-600']};
   box-shadow: inset 0 0 0 1px ${props.theme.palette['red-600']};
@@ -161,10 +159,6 @@ export const AntdSelect = styled(
     }
   }
 `;
-
-export const AntdSelectOption = styled(Option)``;
-
-export const AntdSelectOptGroup = styled(OptGroup)``;
 
 export const PrefixWrapper = styled.div`
   border-radius: 3px 0 0 3px;

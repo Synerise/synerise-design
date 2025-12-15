@@ -1,7 +1,7 @@
 import styled, { css } from 'styled-components';
 
 import { type ThemeProps } from '@synerise/ds-core';
-import ListItem from '@synerise/ds-list-item';
+import ListItem, { type StyledListItem } from '@synerise/ds-list-item';
 import { Inner } from '@synerise/ds-list-item/dist/components/Text/Text.styles';
 
 const TRANSITION_FN = '0.3s ease-in-out';
@@ -135,15 +135,18 @@ export const InnerWrapper = styled.div`
   min-height: 18px;
   user-select: none;
 `;
-
-export const Breadcrumb = styled(ListItem)<{
+type BreadcrumbProps = {
   clickable?: boolean;
   prefixel?: boolean;
   size?: string;
   disabled?: boolean;
   compact?: boolean;
   isNavigation?: boolean;
-}>`
+};
+
+export const Breadcrumb: StyledListItem<BreadcrumbProps> = styled(
+  ListItem,
+)<BreadcrumbProps>`
   ${BreadcrumbContent} {
     direction: ${(props) => (props.compact ? 'rtl' : 'ltr')};
     flex-wrap: ${(props) => (props.compact ? 'no-wrap' : 'wrap')};

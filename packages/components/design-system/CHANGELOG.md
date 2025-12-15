@@ -50,311 +50,157 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 **Note:** Version bump only for package @synerise/design-system
 
-
-
-
-
 ## [1.7.13](https://github.com/Synerise/synerise-design/compare/@synerise/design-system@1.7.12...@synerise/design-system@1.7.13) (2025-10-29)
 
 **Note:** Version bump only for package @synerise/design-system
-
-
-
-
 
 ## [1.7.12](https://github.com/Synerise/synerise-design/compare/@synerise/design-system@1.7.11...@synerise/design-system@1.7.12) (2025-10-27)
 
 **Note:** Version bump only for package @synerise/design-system
 
-
-
-
-
 ## [1.7.11](https://github.com/Synerise/synerise-design/compare/@synerise/design-system@1.7.10...@synerise/design-system@1.7.11) (2025-10-22)
 
 **Note:** Version bump only for package @synerise/design-system
-
-
-
-
 
 ## [1.7.10](https://github.com/Synerise/synerise-design/compare/@synerise/design-system@1.7.9...@synerise/design-system@1.7.10) (2025-10-16)
 
 **Note:** Version bump only for package @synerise/design-system
 
-
-
-
-
 ## [1.7.9](https://github.com/Synerise/synerise-design/compare/@synerise/design-system@1.7.8...@synerise/design-system@1.7.9) (2025-10-10)
 
 **Note:** Version bump only for package @synerise/design-system
-
-
-
-
 
 ## [1.7.8](https://github.com/Synerise/synerise-design/compare/@synerise/design-system@1.7.7...@synerise/design-system@1.7.8) (2025-10-08)
 
 **Note:** Version bump only for package @synerise/design-system
 
-
-
-
-
 ## [1.7.7](https://github.com/Synerise/synerise-design/compare/@synerise/design-system@1.7.6...@synerise/design-system@1.7.7) (2025-10-03)
 
 **Note:** Version bump only for package @synerise/design-system
-
-
-
-
 
 ## [1.7.6](https://github.com/Synerise/synerise-design/compare/@synerise/design-system@1.7.5...@synerise/design-system@1.7.6) (2025-10-01)
 
 **Note:** Version bump only for package @synerise/design-system
 
-
-
-
-
 ## [1.7.5](https://github.com/Synerise/synerise-design/compare/@synerise/design-system@1.7.4...@synerise/design-system@1.7.5) (2025-09-30)
 
 **Note:** Version bump only for package @synerise/design-system
-
-
-
-
 
 ## [1.7.4](https://github.com/Synerise/synerise-design/compare/@synerise/design-system@1.7.3...@synerise/design-system@1.7.4) (2025-09-30)
 
 **Note:** Version bump only for package @synerise/design-system
 
-
-
-
-
 ## [1.7.3](https://github.com/Synerise/synerise-design/compare/@synerise/design-system@1.7.2...@synerise/design-system@1.7.3) (2025-09-26)
 
 **Note:** Version bump only for package @synerise/design-system
-
-
-
-
 
 ## [1.7.2](https://github.com/Synerise/synerise-design/compare/@synerise/design-system@1.7.1...@synerise/design-system@1.7.2) (2025-09-25)
 
 **Note:** Version bump only for package @synerise/design-system
 
-
-
-
-
 ## [1.7.1](https://github.com/Synerise/synerise-design/compare/@synerise/design-system@1.7.0...@synerise/design-system@1.7.1) (2025-09-24)
 
 **Note:** Version bump only for package @synerise/design-system
 
-
-
-
-
 # [1.7.0](https://github.com/Synerise/synerise-design/compare/@synerise/design-system@1.6.3...@synerise/design-system@1.7.0) (2025-09-23)
-
 
 ### Features
 
-* **insight:** new component ([090427d](https://github.com/Synerise/synerise-design/commit/090427d8c7aba94ccf60342b065480c43d7baeb3))
-
-
-
-
+- **insight:** new component ([090427d](https://github.com/Synerise/synerise-design/commit/090427d8c7aba94ccf60342b065480c43d7baeb3))
 
 ## [1.6.3](https://github.com/Synerise/synerise-design/compare/@synerise/design-system@1.6.2...@synerise/design-system@1.6.3) (2025-09-19)
 
 **Note:** Version bump only for package @synerise/design-system
 
-
-
-
-
 ## [1.6.2](https://github.com/Synerise/synerise-design/compare/@synerise/design-system@1.6.1...@synerise/design-system@1.6.2) (2025-09-16)
 
 **Note:** Version bump only for package @synerise/design-system
-
-
-
-
 
 ## [1.6.1](https://github.com/Synerise/synerise-design/compare/@synerise/design-system@1.6.0...@synerise/design-system@1.6.1) (2025-09-05)
 
 **Note:** Version bump only for package @synerise/design-system
 
-
-
-
-
 # [1.6.0](https://github.com/Synerise/synerise-design/compare/@synerise/design-system@1.5.26...@synerise/design-system@1.6.0) (2025-09-05)
-
 
 ### Features
 
-* **tray:** new component ([4f747b8](https://github.com/Synerise/synerise-design/commit/4f747b8ed29591ec8358d8b7c54d2d7d40374524))
-
-
-
-
+- **tray:** new component ([4f747b8](https://github.com/Synerise/synerise-design/commit/4f747b8ed29591ec8358d8b7c54d2d7d40374524))
 
 ## [1.5.26](https://github.com/Synerise/synerise-design/compare/@synerise/design-system@1.5.25...@synerise/design-system@1.5.26) (2025-09-02)
 
 **Note:** Version bump only for package @synerise/design-system
 
-
-
-
-
 ## [1.5.25](https://github.com/Synerise/synerise-design/compare/@synerise/design-system@1.5.24...@synerise/design-system@1.5.25) (2025-08-28)
 
 **Note:** Version bump only for package @synerise/design-system
-
-
-
-
 
 ## [1.5.24](https://github.com/Synerise/synerise-design/compare/@synerise/design-system@1.5.23...@synerise/design-system@1.5.24) (2025-08-22)
 
 **Note:** Version bump only for package @synerise/design-system
 
-
-
-
-
 ## [1.5.23](https://github.com/Synerise/synerise-design/compare/@synerise/design-system@1.5.22...@synerise/design-system@1.5.23) (2025-08-21)
 
 **Note:** Version bump only for package @synerise/design-system
-
-
-
-
 
 ## [1.5.22](https://github.com/Synerise/synerise-design/compare/@synerise/design-system@1.5.21...@synerise/design-system@1.5.22) (2025-08-20)
 
 **Note:** Version bump only for package @synerise/design-system
 
-
-
-
-
 ## [1.5.21](https://github.com/Synerise/synerise-design/compare/@synerise/design-system@1.5.20...@synerise/design-system@1.5.21) (2025-08-14)
 
 **Note:** Version bump only for package @synerise/design-system
-
-
-
-
 
 ## [1.5.20](https://github.com/Synerise/synerise-design/compare/@synerise/design-system@1.5.19...@synerise/design-system@1.5.20) (2025-07-25)
 
 **Note:** Version bump only for package @synerise/design-system
 
-
-
-
-
 ## [1.5.19](https://github.com/Synerise/synerise-design/compare/@synerise/design-system@1.5.18...@synerise/design-system@1.5.19) (2025-07-24)
 
 **Note:** Version bump only for package @synerise/design-system
-
-
-
-
 
 ## [1.5.18](https://github.com/Synerise/synerise-design/compare/@synerise/design-system@1.5.17...@synerise/design-system@1.5.18) (2025-07-24)
 
 **Note:** Version bump only for package @synerise/design-system
 
-
-
-
-
 ## [1.5.17](https://github.com/Synerise/synerise-design/compare/@synerise/design-system@1.5.16...@synerise/design-system@1.5.17) (2025-07-18)
 
 **Note:** Version bump only for package @synerise/design-system
-
-
-
-
 
 ## [1.5.16](https://github.com/Synerise/synerise-design/compare/@synerise/design-system@1.5.15...@synerise/design-system@1.5.16) (2025-07-17)
 
 **Note:** Version bump only for package @synerise/design-system
 
-
-
-
-
 ## [1.5.15](https://github.com/Synerise/synerise-design/compare/@synerise/design-system@1.5.14...@synerise/design-system@1.5.15) (2025-07-15)
 
 **Note:** Version bump only for package @synerise/design-system
-
-
-
-
 
 ## [1.5.14](https://github.com/Synerise/synerise-design/compare/@synerise/design-system@1.5.13...@synerise/design-system@1.5.14) (2025-07-14)
 
 **Note:** Version bump only for package @synerise/design-system
 
-
-
-
-
 ## [1.5.13](https://github.com/Synerise/synerise-design/compare/@synerise/design-system@1.5.12...@synerise/design-system@1.5.13) (2025-07-11)
 
 **Note:** Version bump only for package @synerise/design-system
-
-
-
-
 
 ## [1.5.12](https://github.com/Synerise/synerise-design/compare/@synerise/design-system@1.5.11...@synerise/design-system@1.5.12) (2025-07-08)
 
 **Note:** Version bump only for package @synerise/design-system
 
-
-
-
-
 ## [1.5.11](https://github.com/Synerise/synerise-design/compare/@synerise/design-system@1.5.10...@synerise/design-system@1.5.11) (2025-07-04)
 
 **Note:** Version bump only for package @synerise/design-system
-
-
-
-
 
 ## [1.5.10](https://github.com/Synerise/synerise-design/compare/@synerise/design-system@1.5.9...@synerise/design-system@1.5.10) (2025-07-01)
 
 **Note:** Version bump only for package @synerise/design-system
 
-
-
-
-
 ## [1.5.9](https://github.com/Synerise/synerise-design/compare/@synerise/design-system@1.5.8...@synerise/design-system@1.5.9) (2025-06-26)
 
 **Note:** Version bump only for package @synerise/design-system
 
-
-
-
-
 ## [1.5.8](https://github.com/Synerise/synerise-design/compare/@synerise/design-system@1.5.7...@synerise/design-system@1.5.8) (2025-06-24)
 
 **Note:** Version bump only for package @synerise/design-system
-
-
-
-
 
 ## [1.5.7](https://github.com/Synerise/synerise-design/compare/@synerise/design-system@1.5.6...@synerise/design-system@1.5.7) (2025-06-12)
 

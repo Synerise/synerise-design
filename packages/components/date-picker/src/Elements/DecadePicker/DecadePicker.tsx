@@ -21,7 +21,7 @@ function getInitialState(props: DecadePickerProps): DecadePickerState {
 
 function getCells(cursor: Date): Cell[] {
   const startYear = getCenturyRange(cursor)[0];
-  return range(0, 10).map((index) => {
+  return range(0, 10).map((index: number) => {
     const date = fnsAddYears(fnsSetYear(cursor, startYear), index * 10);
     return {
       key: date.toISOString(),

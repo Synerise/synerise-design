@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-import DSListItem from '@synerise/ds-list-item';
+import DSListItem, { type StyledListItem } from '@synerise/ds-list-item';
 import Scrollbar, { type ScrollbarProps } from '@synerise/ds-scrollbar';
 
 export const DropdownWrapper = styled.div`
@@ -10,7 +10,7 @@ export const DropdownWrapper = styled.div`
   justify-content: flex-start;
   width: 100%;
 `;
-export const ListItem = styled(DSListItem)`
+export const ListItem: StyledListItem = styled(DSListItem)`
   min-width: auto;
 `;
 export const ListWrapper = styled.div`

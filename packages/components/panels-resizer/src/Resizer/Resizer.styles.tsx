@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-import Icon from '@synerise/ds-icon';
+import Icon, { type StyledIcon } from '@synerise/ds-icon';
 
 export const Handler = styled.div<{ width: number }>`
   display: flex;
@@ -16,7 +16,7 @@ export const Handler = styled.div<{ width: number }>`
   }
 `;
 
-export const HandlerIcon = styled(Icon)`
+export const HandlerIcon: StyledIcon = styled(Icon)`
   svg {
     fill: ${(props) => props.theme.palette['grey-600']};
   }

@@ -1,11 +1,15 @@
 import styled, { css } from 'styled-components';
 
-import { Input } from '@synerise/ds-input';
+import { Input, type StyledInput } from '@synerise/ds-input';
 
-export const DynamicKeyInput = styled(Input)<{
+type ExtraProps = {
   index: 0 | 1;
   withoutTypeSelector?: boolean;
-}>`
+};
+
+export const DynamicKeyInput: StyledInput<ExtraProps> = styled(
+  Input,
+)<ExtraProps>`
   flex: 1;
   &:focus {
     z-index: 2;

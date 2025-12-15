@@ -1,7 +1,7 @@
 import styled, { css } from 'styled-components';
 
 import { IconContainer } from '@synerise/ds-icon';
-import Typography, { Label as TypographyLabel } from '@synerise/ds-typography';
+import { Text, Label as TypographyLabel } from '@synerise/ds-typography';
 
 export const Container = styled.div`
   width: 100%;
@@ -15,7 +15,7 @@ export const DropAreaContainer = styled.div<{ canUploadMore: boolean }>`
   margin: ${(props) => (props.canUploadMore ? '12px 0 8px' : '0')};
 `;
 
-export const DropAreaLabel = styled(Typography.Text)`
+export const DropAreaLabel = styled(Text)`
   color: ${(props) => props.theme.palette['grey-700']};
   font-weight: 500;
 `;
@@ -29,7 +29,7 @@ export const LargeDropAreaLabel = styled(TypographyLabel)`
   }
 `;
 
-export const LargeDropAreaDescription = styled(Typography.Text)`
+export const LargeDropAreaDescription = styled(Text)`
   && {
     margin: 4px 0 0;
     display: block;
@@ -146,14 +146,14 @@ export const DropAreaButton = styled.button<{
     `}
 `;
 
-export const ErrorMessage = styled(Typography.Text)`
+export const ErrorMessage = styled(Text)`
   && {
     margin: 8px 0 0;
     display: block;
     color: ${(props) => props.theme.palette['red-600']};
   }
 `;
-export const Description = styled(Typography.Text)<{ hasError?: boolean }>`
+export const Description = styled(Text)<{ hasError?: boolean }>`
   && {
     margin: ${(props) => (props.hasError ? '4px 0 8px' : '8px 0 8px')};
     display: block;

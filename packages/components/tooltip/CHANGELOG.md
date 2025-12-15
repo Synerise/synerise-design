@@ -29,95 +29,49 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 **Note:** Version bump only for package @synerise/ds-tooltip
 
-
-
-
-
 # [1.2.0](https://github.com/synerise/synerise-design/compare/@synerise/ds-tooltip@1.1.18...@synerise/ds-tooltip@1.2.0) (2025-09-19)
-
 
 ### Features
 
-* **tag:** Implementation Infocard in Tag component ([d1f31fa](https://github.com/synerise/synerise-design/commit/d1f31fa44a73da3787df1966e2046c5a577afd96))
-
-
-
-
+- **tag:** Implementation Infocard in Tag component ([d1f31fa](https://github.com/synerise/synerise-design/commit/d1f31fa44a73da3787df1966e2046c5a577afd96))
 
 ## [1.1.18](https://github.com/synerise/synerise-design/compare/@synerise/ds-tooltip@1.1.17...@synerise/ds-tooltip@1.1.18) (2025-09-16)
 
 **Note:** Version bump only for package @synerise/ds-tooltip
 
-
-
-
-
 ## [1.1.17](https://github.com/synerise/synerise-design/compare/@synerise/ds-tooltip@1.1.16...@synerise/ds-tooltip@1.1.17) (2025-08-28)
 
 **Note:** Version bump only for package @synerise/ds-tooltip
-
-
-
-
 
 ## [1.1.16](https://github.com/synerise/synerise-design/compare/@synerise/ds-tooltip@1.1.15...@synerise/ds-tooltip@1.1.16) (2025-08-14)
 
 **Note:** Version bump only for package @synerise/ds-tooltip
 
-
-
-
-
 ## [1.1.15](https://github.com/synerise/synerise-design/compare/@synerise/ds-tooltip@1.1.14...@synerise/ds-tooltip@1.1.15) (2025-07-24)
 
 **Note:** Version bump only for package @synerise/ds-tooltip
-
-
-
-
 
 ## [1.1.14](https://github.com/synerise/synerise-design/compare/@synerise/ds-tooltip@1.1.13...@synerise/ds-tooltip@1.1.14) (2025-07-17)
 
 **Note:** Version bump only for package @synerise/ds-tooltip
 
-
-
-
-
 ## [1.1.13](https://github.com/synerise/synerise-design/compare/@synerise/ds-tooltip@1.1.12...@synerise/ds-tooltip@1.1.13) (2025-07-15)
 
 **Note:** Version bump only for package @synerise/ds-tooltip
 
-
-
-
-
 ## [1.1.12](https://github.com/synerise/synerise-design/compare/@synerise/ds-tooltip@1.1.11...@synerise/ds-tooltip@1.1.12) (2025-07-01)
-
 
 ### Bug Fixes
 
-* **tooltip:** reduced types to only 3 and refactor tooltip ([7e9fceb](https://github.com/synerise/synerise-design/commit/7e9fceb1a2ab7bcd1ed2f4eedcd516d707e4706b))
-
-
-
-
+- **tooltip:** reduced types to only 3 and refactor tooltip ([7e9fceb](https://github.com/synerise/synerise-design/commit/7e9fceb1a2ab7bcd1ed2f4eedcd516d707e4706b))
 
 ## [1.1.11](https://github.com/synerise/synerise-design/compare/@synerise/ds-tooltip@1.1.10...@synerise/ds-tooltip@1.1.11) (2025-06-26)
 
 **Note:** Version bump only for package @synerise/ds-tooltip
 
-
-
-
-
 ## [1.1.10](https://github.com/synerise/synerise-design/compare/@synerise/ds-tooltip@1.1.9...@synerise/ds-tooltip@1.1.10) (2025-06-24)
 
 **Note:** Version bump only for package @synerise/ds-tooltip
-
-
-
-
 
 ## [1.1.9](https://github.com/synerise/synerise-design/compare/@synerise/ds-tooltip@1.1.8...@synerise/ds-tooltip@1.1.9) (2025-06-05)
 

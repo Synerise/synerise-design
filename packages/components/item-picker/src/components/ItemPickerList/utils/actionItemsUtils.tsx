@@ -9,6 +9,7 @@ import {
   type SearchInAction,
 } from '../../ItemPickerNew/types/actions.types';
 import { type ItemPickerListTexts } from '../../ItemPickerNew/types/itemPickerListTexts.types';
+import { type TitleListItemProps } from '../ItemPickerList.types';
 import {
   getTitleItem,
   matchesSearchQuery,
@@ -52,7 +53,7 @@ export const getActionItems = ({
   isSearchInItemActive: boolean;
   searchByParamConfig: SearchByParamConfig | undefined;
   setSearchByParamConfig: (value: SearchByParamConfig | undefined) => void;
-}) => {
+}): (ListItemProps | TitleListItemProps)[] => {
   if (!actions?.length) {
     return [];
   }

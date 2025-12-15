@@ -24,105 +24,58 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 ## [1.7.1](https://github.com/synerise/synerise-design/compare/@synerise/ds-core@1.7.0...@synerise/ds-core@1.7.1) (2025-10-22)
 
-
 ### Bug Fixes
 
-* **core:** body bg color ([f322752](https://github.com/synerise/synerise-design/commit/f322752adb4e46a7d744cd5b90b4e2927cd09f6b))
-
-
-
-
+- **core:** body bg color ([f322752](https://github.com/synerise/synerise-design/commit/f322752adb4e46a7d744cd5b90b4e2927cd09f6b))
 
 # [1.7.0](https://github.com/synerise/synerise-design/compare/@synerise/ds-core@1.6.0...@synerise/ds-core@1.7.0) (2025-10-10)
 
-
 ### Features
 
-* **input:** add PasswordInput ([a9e9466](https://github.com/synerise/synerise-design/commit/a9e9466491246857a24807b1ac3a72f442de50d5))
-* **list-item:** submenu and header ([71fa4bf](https://github.com/synerise/synerise-design/commit/71fa4bfadd5fdb52d61dfe8fe87a9e47567e5d16))
-
-
-
-
+- **input:** add PasswordInput ([a9e9466](https://github.com/synerise/synerise-design/commit/a9e9466491246857a24807b1ac3a72f442de50d5))
+- **list-item:** submenu and header ([71fa4bf](https://github.com/synerise/synerise-design/commit/71fa4bfadd5fdb52d61dfe8fe87a9e47567e5d16))
 
 # [1.6.0](https://github.com/synerise/synerise-design/compare/@synerise/ds-core@1.5.2...@synerise/ds-core@1.6.0) (2025-09-25)
 
-
 ### Features
 
-* **table:** cell with tags list ([109820e](https://github.com/synerise/synerise-design/commit/109820ed06f931a178580633277a7643aebe1072))
-
-
-
-
+- **table:** cell with tags list ([109820e](https://github.com/synerise/synerise-design/commit/109820ed06f931a178580633277a7643aebe1072))
 
 ## [1.5.2](https://github.com/synerise/synerise-design/compare/@synerise/ds-core@1.5.1...@synerise/ds-core@1.5.2) (2025-09-16)
 
 **Note:** Version bump only for package @synerise/ds-core
 
-
-
-
-
 ## [1.5.1](https://github.com/synerise/synerise-design/compare/@synerise/ds-core@1.5.0...@synerise/ds-core@1.5.1) (2025-08-28)
-
 
 ### Bug Fixes
 
-* **core:** add translations of es and pt ([370b279](https://github.com/synerise/synerise-design/commit/370b279431a7fbb634c5b2ba69d9af6206ab8213))
-
-
-
-
+- **core:** add translations of es and pt ([370b279](https://github.com/synerise/synerise-design/commit/370b279431a7fbb634c5b2ba69d9af6206ab8213))
 
 # [1.5.0](https://github.com/synerise/synerise-design/compare/@synerise/ds-core@1.4.3...@synerise/ds-core@1.5.0) (2025-07-24)
 
-
 ### Features
 
-* **table:** global selection ([358b8e2](https://github.com/synerise/synerise-design/commit/358b8e2ac1af14fe3e36b34cc1a35615801bae44))
-
-
-
-
+- **table:** global selection ([358b8e2](https://github.com/synerise/synerise-design/commit/358b8e2ac1af14fe3e36b34cc1a35615801bae44))
 
 ## [1.4.3](https://github.com/synerise/synerise-design/compare/@synerise/ds-core@1.4.2...@synerise/ds-core@1.4.3) (2025-07-14)
 
-
 ### Bug Fixes
 
-* **core:** add theme variables export ([52b23ed](https://github.com/synerise/synerise-design/commit/52b23edf3f83a2b2410251b4d371b31ca4bd93cd))
-
-
-
-
+- **core:** add theme variables export ([52b23ed](https://github.com/synerise/synerise-design/commit/52b23edf3f83a2b2410251b4d371b31ca4bd93cd))
 
 ## [1.4.2](https://github.com/synerise/synerise-design/compare/@synerise/ds-core@1.4.1...@synerise/ds-core@1.4.2) (2025-07-08)
 
 **Note:** Version bump only for package @synerise/ds-core
 
-
-
-
-
 ## [1.4.1](https://github.com/synerise/synerise-design/compare/@synerise/ds-core@1.4.0...@synerise/ds-core@1.4.1) (2025-07-01)
 
 **Note:** Version bump only for package @synerise/ds-core
 
-
-
-
-
 # [1.4.0](https://github.com/synerise/synerise-design/compare/@synerise/ds-core@1.3.1...@synerise/ds-core@1.4.0) (2025-06-24)
-
 
 ### Features
 
-* **factors:** array factor type ([195d328](https://github.com/synerise/synerise-design/commit/195d3286e98b5f07fc9c1e56001e6ae844b7a080))
-
-
-
-
+- **factors:** array factor type ([195d328](https://github.com/synerise/synerise-design/commit/195d3286e98b5f07fc9c1e56001e6ae844b7a080))
 
 ## [1.3.1](https://github.com/synerise/synerise-design/compare/@synerise/ds-core@1.3.0...@synerise/ds-core@1.3.1) (2025-05-26)
 

@@ -515,18 +515,6 @@ const Collector = ({
   );
 };
 
-Collector.Container = S.Container;
-Collector.ContentBelow = S.ContentBelow;
-Collector.Description = S.Description;
-Collector.ErrorText = S.ErrorText;
-Collector.CollectorInput = S.CollectorInput;
-Collector.RightSide = S.RightSide;
-Collector.ContentAbove = S.ContentAbove;
-Collector.MainContent = S.MainContent;
-Collector.Input = S.Input;
-Collector.Counter = S.Counter;
-Collector.Label = S.Label;
-
 Collector.Values = Values;
 Collector.ButtonPanel = ButtonPanel;
 Collector.OptionsDropdown = OptionsDropdown;

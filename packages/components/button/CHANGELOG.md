@@ -24,153 +24,81 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 ## [1.4.16](https://github.com/synerise/synerise-design/compare/@synerise/ds-button@1.4.15...@synerise/ds-button@1.4.16) (2025-10-22)
 
-
 ### Bug Fixes
 
-* **button:** fixes to readOnly button fo every type ([c9998c0](https://github.com/synerise/synerise-design/commit/c9998c0ad2d56d625763e34a3c5fcb2d4f46857e))
-
-
-
-
+- **button:** fixes to readOnly button fo every type ([c9998c0](https://github.com/synerise/synerise-design/commit/c9998c0ad2d56d625763e34a3c5fcb2d4f46857e))
 
 ## [1.4.15](https://github.com/synerise/synerise-design/compare/@synerise/ds-button@1.4.14...@synerise/ds-button@1.4.15) (2025-10-16)
 
 **Note:** Version bump only for package @synerise/ds-button
 
-
-
-
-
 ## [1.4.14](https://github.com/synerise/synerise-design/compare/@synerise/ds-button@1.4.13...@synerise/ds-button@1.4.14) (2025-10-10)
 
 **Note:** Version bump only for package @synerise/ds-button
-
-
-
-
 
 ## [1.4.13](https://github.com/synerise/synerise-design/compare/@synerise/ds-button@1.4.12...@synerise/ds-button@1.4.13) (2025-10-08)
 
 **Note:** Version bump only for package @synerise/ds-button
 
-
-
-
-
 ## [1.4.12](https://github.com/synerise/synerise-design/compare/@synerise/ds-button@1.4.11...@synerise/ds-button@1.4.12) (2025-09-25)
 
 **Note:** Version bump only for package @synerise/ds-button
-
-
-
-
 
 ## [1.4.11](https://github.com/synerise/synerise-design/compare/@synerise/ds-button@1.4.10...@synerise/ds-button@1.4.11) (2025-09-19)
 
 **Note:** Version bump only for package @synerise/ds-button
 
-
-
-
-
 ## [1.4.10](https://github.com/synerise/synerise-design/compare/@synerise/ds-button@1.4.9...@synerise/ds-button@1.4.10) (2025-09-16)
 
 **Note:** Version bump only for package @synerise/ds-button
-
-
-
-
 
 ## [1.4.9](https://github.com/synerise/synerise-design/compare/@synerise/ds-button@1.4.8...@synerise/ds-button@1.4.9) (2025-08-28)
 
 **Note:** Version bump only for package @synerise/ds-button
 
-
-
-
-
 ## [1.4.8](https://github.com/synerise/synerise-design/compare/@synerise/ds-button@1.4.7...@synerise/ds-button@1.4.8) (2025-08-20)
-
 
 ### Bug Fixes
 
-* **button:** add new prop centerLabel ([fb9dcd1](https://github.com/synerise/synerise-design/commit/fb9dcd1bfc6b853e46f8bd1989efaee48f6bc1b3))
-
-
-
-
+- **button:** add new prop centerLabel ([fb9dcd1](https://github.com/synerise/synerise-design/commit/fb9dcd1bfc6b853e46f8bd1989efaee48f6bc1b3))
 
 ## [1.4.7](https://github.com/synerise/synerise-design/compare/@synerise/ds-button@1.4.6...@synerise/ds-button@1.4.7) (2025-08-14)
 
 **Note:** Version bump only for package @synerise/ds-button
 
-
-
-
-
 ## [1.4.6](https://github.com/synerise/synerise-design/compare/@synerise/ds-button@1.4.5...@synerise/ds-button@1.4.6) (2025-07-24)
 
 **Note:** Version bump only for package @synerise/ds-button
-
-
-
-
 
 ## [1.4.5](https://github.com/synerise/synerise-design/compare/@synerise/ds-button@1.4.4...@synerise/ds-button@1.4.5) (2025-07-17)
 
 **Note:** Version bump only for package @synerise/ds-button
 
-
-
-
-
 ## [1.4.4](https://github.com/synerise/synerise-design/compare/@synerise/ds-button@1.4.3...@synerise/ds-button@1.4.4) (2025-07-15)
 
 **Note:** Version bump only for package @synerise/ds-button
-
-
-
-
 
 ## [1.4.3](https://github.com/synerise/synerise-design/compare/@synerise/ds-button@1.4.2...@synerise/ds-button@1.4.3) (2025-07-08)
 
 **Note:** Version bump only for package @synerise/ds-button
 
-
-
-
-
 ## [1.4.2](https://github.com/synerise/synerise-design/compare/@synerise/ds-button@1.4.1...@synerise/ds-button@1.4.2) (2025-07-01)
 
 **Note:** Version bump only for package @synerise/ds-button
-
-
-
-
 
 ## [1.4.1](https://github.com/synerise/synerise-design/compare/@synerise/ds-button@1.4.0...@synerise/ds-button@1.4.1) (2025-06-26)
 
 **Note:** Version bump only for package @synerise/ds-button
 
-
-
-
-
 # [1.4.0](https://github.com/synerise/synerise-design/compare/@synerise/ds-button@1.3.3...@synerise/ds-button@1.4.0) (2025-06-24)
-
 
 ### Bug Fixes
 
-* **button:** fix transition of animation between modes ([7c96663](https://github.com/synerise/synerise-design/commit/7c966638ebb16b0acaf41b0d70df22224c97b89d))
-
+- **button:** fix transition of animation between modes ([7c96663](https://github.com/synerise/synerise-design/commit/7c966638ebb16b0acaf41b0d70df22224c97b89d))
 
 ### Features
 
-* **factors:** array factor type ([195d328](https://github.com/synerise/synerise-design/commit/195d3286e98b5f07fc9c1e56001e6ae844b7a080))
-
-
-
-
+- **factors:** array factor type ([195d328](https://github.com/synerise/synerise-design/commit/195d3286e98b5f07fc9c1e56001e6ae844b7a080))
 
 ## [1.3.3](https://github.com/synerise/synerise-design/compare/@synerise/ds-button@1.3.2...@synerise/ds-button@1.3.3) (2025-06-05)
 

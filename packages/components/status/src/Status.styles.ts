@@ -1,7 +1,7 @@
-import styled, { css } from 'styled-components';
+import styled, { type StyledComponent, css } from 'styled-components';
 
 import { type ThemeProps } from '@synerise/ds-core';
-import Tag from '@synerise/ds-tag';
+import Tag, { type TagProps } from '@synerise/ds-tag';
 
 import type { StatusType } from './Status.types';
 
@@ -17,7 +17,18 @@ const typeColor = (props: ThemeProps & { type: StatusType }) =>
     custom: null,
   })[props.type];
 
-export const StatusTag = styled(Tag)<{ type: StatusType; dashed?: boolean }>`
+type StyledTagProps = { type: StatusType; dashed?: boolean };
+
+export const StatusTag: StyledComponent<
+  React.ForwardRefExoticComponent<
+    TagProps &
+      Omit<React.HTMLAttributes<HTMLDivElement>, keyof TagProps> &
+      React.RefAttributes<HTMLDivElement>
+  >,
+  object,
+  StyledTagProps,
+  never
+> = styled(Tag)<StyledTagProps>`
   && {
     transition: opacity 0.25s;
     border: ${(props) => (props.dashed ? '1px dashed' : '1px solid')};

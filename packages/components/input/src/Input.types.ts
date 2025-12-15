@@ -2,7 +2,14 @@ import type {
   InputProps as AntdInputProps,
   TextAreaProps as AntdTextAreaProps,
 } from 'antd/lib/input';
-import type { MutableRefObject, ReactElement, ReactNode } from 'react';
+import type {
+  ForwardRefExoticComponent,
+  MutableRefObject,
+  ReactElement,
+  ReactNode,
+  RefAttributes,
+} from 'react';
+import { type StyledComponent } from 'styled-components';
 
 import type { FormFieldCommonProps } from '@synerise/ds-form-field';
 
@@ -55,3 +62,10 @@ export type EnhancedProps = BaseProps<HTMLInputElement | HTMLTextAreaElement> &
   (AntdInputProps | AntdTextAreaProps);
 
 export type InputProps = BaseProps & AntdInputProps;
+
+export type StyledInput<CustomProps extends object = object> = StyledComponent<
+  ForwardRefExoticComponent<InputProps & RefAttributes<HTMLDivElement>>,
+  object,
+  CustomProps,
+  never
+>;

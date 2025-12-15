@@ -7,41 +7,21 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 **Note:** Version bump only for package @synerise/ds-flag
 
-
-
-
-
 ## [1.0.4](https://github.com/Synerise/synerise-design/compare/@synerise/ds-flag@1.0.3...@synerise/ds-flag@1.0.4) (2025-09-16)
 
 **Note:** Version bump only for package @synerise/ds-flag
-
-
-
-
 
 ## [1.0.3](https://github.com/Synerise/synerise-design/compare/@synerise/ds-flag@1.0.2...@synerise/ds-flag@1.0.3) (2025-07-24)
 
 **Note:** Version bump only for package @synerise/ds-flag
 
-
-
-
-
 ## [1.0.2](https://github.com/Synerise/synerise-design/compare/@synerise/ds-flag@1.0.1...@synerise/ds-flag@1.0.2) (2025-07-01)
 
 **Note:** Version bump only for package @synerise/ds-flag
 
-
-
-
-
 ## [1.0.1](https://github.com/Synerise/synerise-design/compare/@synerise/ds-flag@1.0.0...@synerise/ds-flag@1.0.1) (2025-06-24)
 
 **Note:** Version bump only for package @synerise/ds-flag
-
-
-
-
 
 ## [0.6.1](https://github.com/Synerise/synerise-design/compare/@synerise/ds-flag@0.6.0...@synerise/ds-flag@0.6.1) (2025-03-10)
 

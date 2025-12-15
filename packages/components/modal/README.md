@@ -29,8 +29,8 @@ Some features of the Modal component have been deprecated. Please refer to the [
 
 ## ModalProps
 
-| Property            | Description                                                                                                | Type                                                                   | Default                                         | 
-| ------------------- | ---------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------- | ----------------------------------------------- | 
+| Property            | Description                                                                                                | Type                                                                   | Default                                         |
+| ------------------- | ---------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------- | ----------------------------------------------- |
 | description         | The modal dialog's description                                                                             | ReactNode                                                              | -                                               |
 | headerBottomBar     | Bottom bar rendered below title and description                                                            | ReactNode                                                              | -                                               |
 | headerActions       | Append additional content to header actions space                                                          | React.ReactNode                                                        | -                                               |

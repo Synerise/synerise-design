@@ -6,6 +6,7 @@ title: InlineAlert
 InlineAlert UI Component
 
 ## Installation
+
 ```
 npm i @synerise/ds-inline-alert
 or
@@ -13,6 +14,7 @@ yarn add @synerise/ds-inline-alert
 ```
 
 ## Usage
+
 ```
 import InlineAlert from '@synerise/ds-inline-alert'
 

@@ -34,160 +34,89 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 **Note:** Version bump only for package @synerise/ds-tags
 
-
-
-
-
 ## [1.4.9](https://github.com/Synerise/synerise-design/compare/@synerise/ds-tags@1.4.8...@synerise/ds-tags@1.4.9) (2025-10-27)
-
 
 ### Bug Fixes
 
-* **tags:** delay search focus ([7cefbd1](https://github.com/Synerise/synerise-design/commit/7cefbd16ee75a46df6d6de2fe62ad62ddba6e464))
-
-
-
-
+- **tags:** delay search focus ([7cefbd1](https://github.com/Synerise/synerise-design/commit/7cefbd16ee75a46df6d6de2fe62ad62ddba6e464))
 
 ## [1.4.8](https://github.com/Synerise/synerise-design/compare/@synerise/ds-tags@1.4.7...@synerise/ds-tags@1.4.8) (2025-10-22)
 
-
 ### Bug Fixes
 
-* **tags:** add tags component fixes ([02ff302](https://github.com/Synerise/synerise-design/commit/02ff30284dc035293ff0a11a101a00658102115b))
-
-
-
-
+- **tags:** add tags component fixes ([02ff302](https://github.com/Synerise/synerise-design/commit/02ff30284dc035293ff0a11a101a00658102115b))
 
 ## [1.4.7](https://github.com/Synerise/synerise-design/compare/@synerise/ds-tags@1.4.6...@synerise/ds-tags@1.4.7) (2025-10-16)
 
-
 ### Bug Fixes
 
-* **tags:** adjust tags to table requirements ([fe1aa4d](https://github.com/Synerise/synerise-design/commit/fe1aa4d00f8ad95fb191f866b548af72863a8963))
-
-
-
-
+- **tags:** adjust tags to table requirements ([fe1aa4d](https://github.com/Synerise/synerise-design/commit/fe1aa4d00f8ad95fb191f866b548af72863a8963))
 
 ## [1.4.6](https://github.com/Synerise/synerise-design/compare/@synerise/ds-tags@1.4.5...@synerise/ds-tags@1.4.6) (2025-10-10)
 
 **Note:** Version bump only for package @synerise/ds-tags
 
-
-
-
-
 ## [1.4.5](https://github.com/Synerise/synerise-design/compare/@synerise/ds-tags@1.4.4...@synerise/ds-tags@1.4.5) (2025-10-08)
-
 
 ### Bug Fixes
 
-* **table:** popup conatiner attr and tags wrapper styles ([5153e44](https://github.com/Synerise/synerise-design/commit/5153e440469e7d81808ef102c70f0a38f2e6596f))
-* **tags:** dropdowns zindex ([2a751e1](https://github.com/Synerise/synerise-design/commit/2a751e15c5ba940b6ad1065a2b8f18682137ccca))
-* **tags:** fixed dropdown bottom padding ([1bf9236](https://github.com/Synerise/synerise-design/commit/1bf92361cb032a7b142866727cdac43cfe6db8ad))
-
-
-
-
+- **table:** popup conatiner attr and tags wrapper styles ([5153e44](https://github.com/Synerise/synerise-design/commit/5153e440469e7d81808ef102c70f0a38f2e6596f))
+- **tags:** dropdowns zindex ([2a751e1](https://github.com/Synerise/synerise-design/commit/2a751e15c5ba940b6ad1065a2b8f18682137ccca))
+- **tags:** fixed dropdown bottom padding ([1bf9236](https://github.com/Synerise/synerise-design/commit/1bf92361cb032a7b142866727cdac43cfe6db8ad))
 
 ## [1.4.4](https://github.com/Synerise/synerise-design/compare/@synerise/ds-tags@1.4.3...@synerise/ds-tags@1.4.4) (2025-10-03)
 
-
 ### Bug Fixes
 
-* **table:** tags in table cell layout ([a072a1b](https://github.com/Synerise/synerise-design/commit/a072a1ba596043c31fa9eb92bf00a5b044e94898))
-
-
-
-
+- **table:** tags in table cell layout ([a072a1b](https://github.com/Synerise/synerise-design/commit/a072a1ba596043c31fa9eb92bf00a5b044e94898))
 
 ## [1.4.3](https://github.com/Synerise/synerise-design/compare/@synerise/ds-tags@1.4.2...@synerise/ds-tags@1.4.3) (2025-09-30)
 
 **Note:** Version bump only for package @synerise/ds-tags
 
-
-
-
-
 ## [1.4.2](https://github.com/Synerise/synerise-design/compare/@synerise/ds-tags@1.4.1...@synerise/ds-tags@1.4.2) (2025-09-30)
 
 **Note:** Version bump only for package @synerise/ds-tags
-
-
-
-
 
 ## [1.4.1](https://github.com/Synerise/synerise-design/compare/@synerise/ds-tags@1.4.0...@synerise/ds-tags@1.4.1) (2025-09-26)
 
 **Note:** Version bump only for package @synerise/ds-tags
 
-
-
-
-
 # [1.4.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-tags@1.3.1...@synerise/ds-tags@1.4.0) (2025-09-25)
-
 
 ### Bug Fixes
 
-* **tags:** fix flex with overflow in narrow containers ([8bd538d](https://github.com/Synerise/synerise-design/commit/8bd538d1563438a0d6ef6f7459b8ec360d2102a3))
-
+- **tags:** fix flex with overflow in narrow containers ([8bd538d](https://github.com/Synerise/synerise-design/commit/8bd538d1563438a0d6ef6f7459b8ec360d2102a3))
 
 ### Features
 
-* **table:** cell with tags list ([109820e](https://github.com/Synerise/synerise-design/commit/109820ed06f931a178580633277a7643aebe1072))
-
-
-
-
+- **table:** cell with tags list ([109820e](https://github.com/Synerise/synerise-design/commit/109820ed06f931a178580633277a7643aebe1072))
 
 ## [1.3.1](https://github.com/Synerise/synerise-design/compare/@synerise/ds-tags@1.3.0...@synerise/ds-tags@1.3.1) (2025-09-24)
 
-
 ### Bug Fixes
 
-* **tags:** revert visual regressiojn ([eeae84b](https://github.com/Synerise/synerise-design/commit/eeae84be675ceb48fe3adf8269cada6ec47fc809))
-
-
-
-
+- **tags:** revert visual regressiojn ([eeae84b](https://github.com/Synerise/synerise-design/commit/eeae84be675ceb48fe3adf8269cada6ec47fc809))
 
 # [1.3.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-tags@1.2.0...@synerise/ds-tags@1.3.0) (2025-09-23)
 
-
 ### Features
 
-* **tags:** add dropdownFooter and maxVisibleTags ([cfb0358](https://github.com/Synerise/synerise-design/commit/cfb035830ea4fd8ec5ba800985f1bea50194f25c))
-
-
-
-
+- **tags:** add dropdownFooter and maxVisibleTags ([cfb0358](https://github.com/Synerise/synerise-design/commit/cfb035830ea4fd8ec5ba800985f1bea50194f25c))
 
 # [1.2.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-tags@1.1.25...@synerise/ds-tags@1.2.0) (2025-09-19)
 
-
 ### Bug Fixes
 
-* **tags:** add title label to tags group ([b1ca594](https://github.com/Synerise/synerise-design/commit/b1ca5946cfa427e51d581efa4cdabe4fca5813e0))
-
+- **tags:** add title label to tags group ([b1ca594](https://github.com/Synerise/synerise-design/commit/b1ca5946cfa427e51d581efa4cdabe4fca5813e0))
 
 ### Features
 
-* **tag:** Implementation Infocard in Tag component ([d1f31fa](https://github.com/Synerise/synerise-design/commit/d1f31fa44a73da3787df1966e2046c5a577afd96))
-
-
-
-
+- **tag:** Implementation Infocard in Tag component ([d1f31fa](https://github.com/Synerise/synerise-design/commit/d1f31fa44a73da3787df1966e2046c5a577afd96))
 
 ## [1.1.25](https://github.com/Synerise/synerise-design/compare/@synerise/ds-tags@1.1.24...@synerise/ds-tags@1.1.25) (2025-09-16)
 
 **Note:** Version bump only for package @synerise/ds-tags
-
-
-
-
 
 ## [1.1.24](https://github.com/Synerise/synerise-design/compare/@synerise/ds-tags@1.1.23...@synerise/ds-tags@1.1.24) (2025-09-02)
 

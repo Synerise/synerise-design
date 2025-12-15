@@ -7,10 +7,9 @@ import React, {
 } from 'react';
 import type { FixedSizeList } from 'react-window';
 
-import { DragOverlay } from '@dnd-kit/core';
 import Result from '@synerise/ds-result';
 import Scrollbar from '@synerise/ds-scrollbar';
-import { SortableContainer } from '@synerise/ds-sortable';
+import { DragOverlay, SortableContainer } from '@synerise/ds-sortable';
 import { useResizeObserver } from '@synerise/ds-utils';
 
 import { type Column } from '../ColumnManager.types';

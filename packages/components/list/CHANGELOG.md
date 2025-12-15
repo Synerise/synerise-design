@@ -23,68 +23,35 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 **Note:** Version bump only for package @synerise/ds-list
 
-
-
-
-
 ## [1.1.4](https://github.com/Synerise/synerise-design/compare/@synerise/ds-list@1.1.3...@synerise/ds-list@1.1.4) (2025-10-10)
 
 **Note:** Version bump only for package @synerise/ds-list
-
-
-
-
 
 ## [1.1.3](https://github.com/Synerise/synerise-design/compare/@synerise/ds-list@1.1.2...@synerise/ds-list@1.1.3) (2025-09-30)
 
 **Note:** Version bump only for package @synerise/ds-list
 
-
-
-
-
 ## [1.1.2](https://github.com/Synerise/synerise-design/compare/@synerise/ds-list@1.1.1...@synerise/ds-list@1.1.2) (2025-09-30)
 
 **Note:** Version bump only for package @synerise/ds-list
-
-
-
-
 
 ## [1.1.1](https://github.com/Synerise/synerise-design/compare/@synerise/ds-list@1.1.0...@synerise/ds-list@1.1.1) (2025-09-26)
 
 **Note:** Version bump only for package @synerise/ds-list
 
-
-
-
-
 # [1.1.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-list@1.0.22...@synerise/ds-list@1.1.0) (2025-09-25)
-
 
 ### Features
 
-* **divider:** refactor divider component ([ea117aa](https://github.com/Synerise/synerise-design/commit/ea117aa015f372ad42c7ac60d4f3691c9e9555e0))
-
-
-
-
+- **divider:** refactor divider component ([ea117aa](https://github.com/Synerise/synerise-design/commit/ea117aa015f372ad42c7ac60d4f3691c9e9555e0))
 
 ## [1.0.22](https://github.com/Synerise/synerise-design/compare/@synerise/ds-list@1.0.21...@synerise/ds-list@1.0.22) (2025-09-19)
 
 **Note:** Version bump only for package @synerise/ds-list
 
-
-
-
-
 ## [1.0.21](https://github.com/Synerise/synerise-design/compare/@synerise/ds-list@1.0.20...@synerise/ds-list@1.0.21) (2025-09-16)
 
 **Note:** Version bump only for package @synerise/ds-list
-
-
-
-
 
 ## [1.0.20](https://github.com/Synerise/synerise-design/compare/@synerise/ds-list@1.0.19...@synerise/ds-list@1.0.20) (2025-08-28)
 

@@ -21,71 +21,39 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 # [1.2.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-divider@1.1.3...@synerise/ds-divider@1.2.0) (2025-10-10)
 
-
 ### Features
 
-* **list-item:** submenu and header ([71fa4bf](https://github.com/Synerise/synerise-design/commit/71fa4bfadd5fdb52d61dfe8fe87a9e47567e5d16))
-
-
-
-
+- **list-item:** submenu and header ([71fa4bf](https://github.com/Synerise/synerise-design/commit/71fa4bfadd5fdb52d61dfe8fe87a9e47567e5d16))
 
 ## [1.1.3](https://github.com/Synerise/synerise-design/compare/@synerise/ds-divider@1.1.2...@synerise/ds-divider@1.1.3) (2025-09-30)
 
 **Note:** Version bump only for package @synerise/ds-divider
 
-
-
-
-
 ## [1.1.2](https://github.com/Synerise/synerise-design/compare/@synerise/ds-divider@1.1.1...@synerise/ds-divider@1.1.2) (2025-09-30)
-
 
 ### Bug Fixes
 
-* **divider:** fix style ([7a1db45](https://github.com/Synerise/synerise-design/commit/7a1db453d85eb52f887486f74575de17bb3f8ee0))
-
-
-
-
+- **divider:** fix style ([7a1db45](https://github.com/Synerise/synerise-design/commit/7a1db453d85eb52f887486f74575de17bb3f8ee0))
 
 ## [1.1.1](https://github.com/Synerise/synerise-design/compare/@synerise/ds-divider@1.1.0...@synerise/ds-divider@1.1.1) (2025-09-26)
 
-
 ### Bug Fixes
 
-* **divider:** added legacy classes - custom styles in puib ([3cab5f4](https://github.com/Synerise/synerise-design/commit/3cab5f4627e399aeb99eba17e7c8618f247e90eb))
-
-
-
-
+- **divider:** added legacy classes - custom styles in puib ([3cab5f4](https://github.com/Synerise/synerise-design/commit/3cab5f4627e399aeb99eba17e7c8618f247e90eb))
 
 # [1.1.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-divider@1.0.21...@synerise/ds-divider@1.1.0) (2025-09-25)
 
-
 ### Features
 
-* **divider:** refactor divider component ([ea117aa](https://github.com/Synerise/synerise-design/commit/ea117aa015f372ad42c7ac60d4f3691c9e9555e0))
-
-
-
-
+- **divider:** refactor divider component ([ea117aa](https://github.com/Synerise/synerise-design/commit/ea117aa015f372ad42c7ac60d4f3691c9e9555e0))
 
 ## [1.0.21](https://github.com/Synerise/synerise-design/compare/@synerise/ds-divider@1.0.20...@synerise/ds-divider@1.0.21) (2025-09-19)
 
 **Note:** Version bump only for package @synerise/ds-divider
 
-
-
-
-
 ## [1.0.20](https://github.com/Synerise/synerise-design/compare/@synerise/ds-divider@1.0.19...@synerise/ds-divider@1.0.20) (2025-09-16)
 
 **Note:** Version bump only for package @synerise/ds-divider
-
-
-
-
 
 ## [1.0.19](https://github.com/Synerise/synerise-design/compare/@synerise/ds-divider@1.0.18...@synerise/ds-divider@1.0.19) (2025-08-28)
 

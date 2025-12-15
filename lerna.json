@@ -1,18 +1,15 @@
 {
-  "packages": [
-    "packages/components/*",
-    "packages/storybook"
-  ],
   "version": "independent",
-  "npmClient": "yarn",
+  "npmClient": "pnpm",
   "command": {
     "run": {
-      "npmClient": "yarn"
+      "npmClient": "pnpm"
     },
     "version": {
       "allowBranch": [
         "master",
-        "beta/*"
+        "beta/*",
+        "chore/pnpm"
       ],
       "message": "build: publish"
     }

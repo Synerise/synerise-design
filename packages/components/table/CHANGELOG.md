@@ -39,132 +39,70 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 **Note:** Version bump only for package @synerise/ds-table
 
-
-
-
-
 ## [1.6.10](https://github.com/synerise/synerise-design/compare/@synerise/ds-table@1.6.9...@synerise/ds-table@1.6.10) (2025-10-27)
 
 **Note:** Version bump only for package @synerise/ds-table
 
-
-
-
-
 ## [1.6.9](https://github.com/synerise/synerise-design/compare/@synerise/ds-table@1.6.8...@synerise/ds-table@1.6.9) (2025-10-22)
-
 
 ### Bug Fixes
 
-* **table:** column width calculations ([61047c4](https://github.com/synerise/synerise-design/commit/61047c46ad39e96a10b7e913d33ecc6137e62172))
-
-
-
-
+- **table:** column width calculations ([61047c4](https://github.com/synerise/synerise-design/commit/61047c46ad39e96a10b7e913d33ecc6137e62172))
 
 ## [1.6.8](https://github.com/synerise/synerise-design/compare/@synerise/ds-table@1.6.7...@synerise/ds-table@1.6.8) (2025-10-16)
 
-
 ### Bug Fixes
 
-* **tags:** adjust tags to table requirements ([fe1aa4d](https://github.com/synerise/synerise-design/commit/fe1aa4d00f8ad95fb191f866b548af72863a8963))
-
-
-
-
+- **tags:** adjust tags to table requirements ([fe1aa4d](https://github.com/synerise/synerise-design/commit/fe1aa4d00f8ad95fb191f866b548af72863a8963))
 
 ## [1.6.7](https://github.com/synerise/synerise-design/compare/@synerise/ds-table@1.6.6...@synerise/ds-table@1.6.7) (2025-10-10)
 
 **Note:** Version bump only for package @synerise/ds-table
 
-
-
-
-
 ## [1.6.6](https://github.com/synerise/synerise-design/compare/@synerise/ds-table@1.6.5...@synerise/ds-table@1.6.6) (2025-10-08)
-
 
 ### Bug Fixes
 
-* **table:** popup conatiner attr and tags wrapper styles ([5153e44](https://github.com/synerise/synerise-design/commit/5153e440469e7d81808ef102c70f0a38f2e6596f))
-
-
-
-
+- **table:** popup conatiner attr and tags wrapper styles ([5153e44](https://github.com/synerise/synerise-design/commit/5153e440469e7d81808ef102c70f0a38f2e6596f))
 
 ## [1.6.5](https://github.com/synerise/synerise-design/compare/@synerise/ds-table@1.6.4...@synerise/ds-table@1.6.5) (2025-10-03)
 
-
 ### Bug Fixes
 
-* **table:** add new cell with input number ([6a0e2a1](https://github.com/synerise/synerise-design/commit/6a0e2a1ee4a4454f28d845687548063502fe07ca))
-* **table:** tags in table cell layout ([a072a1b](https://github.com/synerise/synerise-design/commit/a072a1ba596043c31fa9eb92bf00a5b044e94898))
-
-
-
-
+- **table:** add new cell with input number ([6a0e2a1](https://github.com/synerise/synerise-design/commit/6a0e2a1ee4a4454f28d845687548063502fe07ca))
+- **table:** tags in table cell layout ([a072a1b](https://github.com/synerise/synerise-design/commit/a072a1ba596043c31fa9eb92bf00a5b044e94898))
 
 ## [1.6.4](https://github.com/synerise/synerise-design/compare/@synerise/ds-table@1.6.3...@synerise/ds-table@1.6.4) (2025-10-01)
 
-
 ### Bug Fixes
 
-* **table:** updated batch checkbox change logic ([666bb54](https://github.com/synerise/synerise-design/commit/666bb54ed31e6d8417fedc3a9281b81643fd8bbd))
-
-
-
-
+- **table:** updated batch checkbox change logic ([666bb54](https://github.com/synerise/synerise-design/commit/666bb54ed31e6d8417fedc3a9281b81643fd8bbd))
 
 ## [1.6.3](https://github.com/synerise/synerise-design/compare/@synerise/ds-table@1.6.2...@synerise/ds-table@1.6.3) (2025-09-30)
 
 **Note:** Version bump only for package @synerise/ds-table
 
-
-
-
-
 ## [1.6.2](https://github.com/synerise/synerise-design/compare/@synerise/ds-table@1.6.1...@synerise/ds-table@1.6.2) (2025-09-30)
 
 **Note:** Version bump only for package @synerise/ds-table
-
-
-
-
 
 ## [1.6.1](https://github.com/synerise/synerise-design/compare/@synerise/ds-table@1.6.0...@synerise/ds-table@1.6.1) (2025-09-26)
 
 **Note:** Version bump only for package @synerise/ds-table
 
-
-
-
-
 # [1.6.0](https://github.com/synerise/synerise-design/compare/@synerise/ds-table@1.5.13...@synerise/ds-table@1.6.0) (2025-09-25)
-
 
 ### Features
 
-* **table:** cell with tags list ([109820e](https://github.com/synerise/synerise-design/commit/109820ed06f931a178580633277a7643aebe1072))
-
-
-
-
+- **table:** cell with tags list ([109820e](https://github.com/synerise/synerise-design/commit/109820ed06f931a178580633277a7643aebe1072))
 
 ## [1.5.13](https://github.com/synerise/synerise-design/compare/@synerise/ds-table@1.5.12...@synerise/ds-table@1.5.13) (2025-09-24)
 
 **Note:** Version bump only for package @synerise/ds-table
 
-
-
-
-
 ## [1.5.12](https://github.com/synerise/synerise-design/compare/@synerise/ds-table@1.5.11...@synerise/ds-table@1.5.12) (2025-09-23)
 
 **Note:** Version bump only for package @synerise/ds-table
-
-
-
-
 
 ## [1.5.11](https://github.com/synerise/synerise-design/compare/@synerise/ds-table@1.5.10...@synerise/ds-table@1.5.11) (2025-09-19)
 

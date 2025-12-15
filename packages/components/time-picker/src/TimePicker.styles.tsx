@@ -1,13 +1,23 @@
-import React, { forwardRef } from 'react';
+import { type ForwardRefExoticComponent } from 'react';
 import styled, {
   type FlattenSimpleInterpolation,
+  type StyledComponent,
   css,
 } from 'styled-components';
 
-import Icon from '@synerise/ds-icon';
-import { Input, type InputProps } from '@synerise/ds-input';
+import DSDropdown, { type DropdownProps } from '@synerise/ds-dropdown';
+import Icon, { type StyledIcon } from '@synerise/ds-icon';
+import { Input, type StyledInput } from '@synerise/ds-input';
 import { Label } from '@synerise/ds-typography';
 
+export const Dropdown: StyledComponent<
+  ForwardRefExoticComponent<DropdownProps>,
+  object,
+  object,
+  never
+> = styled(DSDropdown)`
+  margin: 0;
+`;
 export const Container = styled.div`
   min-width: 104px;
   max-width: 208px;
@@ -116,7 +126,7 @@ export const Cell = styled.button<{ active?: boolean }>`
     `};
 `;
 
-export const ClearIcon = styled(Icon)`
+export const ClearIcon: StyledIcon = styled(Icon)`
   &&,
   &&:hover {
     svg {
@@ -126,11 +136,7 @@ export const ClearIcon = styled(Icon)`
   }
 `;
 
-export const TimePickerInput = styled(
-  forwardRef<HTMLInputElement, InputProps>(({ ...props }, ref) => (
-    <Input ref={ref} {...props} />
-  )),
-)`
+export const TimePickerInput: StyledInput = styled(Input)`
   margin-bottom: 0;
   &:not(.active) {
     input {

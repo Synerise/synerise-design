@@ -1,489 +1,489 @@
 {
-    "DS": {
-        "CODE-AREA": {
-            "FULLSCREEN": "Tela cheia",
-            "CLOSE-FULLSCREEN": "Fechar tela cheia",
-            "FULLSCREEN-TITLE": "Editor em tela cheia"
-        },
-        "MAPPING": {
-            "BULK_SELECTION_ENABLE": "Ações em massa",
-            "BULK_SELECTION_DISABLE": "Ocultar ações"
-        },
-        "COLLECTOR": {
-            "ADD": "Adicionar",
-            "CANCEL": "Cancelar",
-            "PLACEHOLDER": "Digite o valor",
-            "TO-NAVIGATE": "para navegar",
-            "TO-SELECT": "para selecionar"
-        },
-        "MENU": {
-            "SHOW-LESS": "Mostrar menos",
-            "SHOW-MORE": "Mostrar mais"
-        },
-        "CONTEXT-SELECTOR": {
-            "BUTTON_LABEL": "Escolher",
-            "SEARCH_PLACEHOLDER": "Buscar",
-            "NO_RESULTS": "Sem resultados",
-            "SHOW_MORE": "Mostrar mais",
-            "RECENT": "Recentes",
-            "ALL": "Todos"
-        },
-        "DESCRIPTION": {
-            "COPY-VALUE": "Valor de cópia",
-            "COPIED": "Copiado"
-        },
-        "FACTORS": {
-            "DATE_PICKER": {
-                "APPLY": "Aplicar",
-                "CLEAR_TOOLTIP": "Limpar",
-                "INPUT_PLACEHOLDER": "Selecionar data",
-                "NOW": "Agora"
-            },
-            "MODAL_TITLE": "Valor",
-            "MODAL_CANCEL": "Cancelar",
-            "MODAL_APPLY": "Aplicar",
-            "VALUE_PLACEHOLDER": "Valor",
-            "PARAMETER": {
-                "NO_RESULTS": "Sem resultados",
-                "SEARCH_PLACEHOLDER": "Procurar",
-                "LOADING_PARAMETERS": "Parâmetros de carregamento",
-                "ALL": "Todos",
-                "RECENT": "Recentes",
-                "SHOW_MORE": "Mostrar mais"
-            },
-            "FORMULA": {
-                "BUTTON_PLACEHOLDER": "Fórmula",
-                "DEFAULT_NAME": "Fórmula"
-            },
-            "DYNAMIC_KEY": {
-                "VALUE_PLACEHOLDER": "Valor",
-                "KEY_PLACEHOLDER": "Chave"
-            },
-            "FACTOR_TYPES": {
-                "TEXT": "Texto",
-                "NUMBER": "Número",
-                "ARRAY": "Matriz",
-                "PARAMETER": "Parâmetro",
-                "CONTEXT_PARAMETER": "Parâmetro de contexto",
-                "DATE": "Data",
-                "DATE_RANGE": "Faixa de datas",
-                "DYNAMIC_KEY": "Chave dinâmica",
-                "FORMULA": "Fórmula"
-            },
-            "ARRAY": {
-                "TRIGGER_LABEL": "Definir array",
-                "MODAL_TITLE": "Array",
-                "CLEAR_BUTTON": "Limpar tudo",
-                "CREATOR": "Criador",
-                "RAW_BUTTON_LABEL": "Bruto",
-                "SEARCH_PLACEHOLDER": "Pesquisar",
-                "COLLECTOR_PLACEHOLDER": "Digite um valor ou cole múltiplos valores separados por `,`",
-                "COLLECTOR_ADD": "Adicionar",
-                "COLLECTOR_CANCEL": "Cancelar",
-                "SEARCH_CLEAR_TOOLTIP": "Limpar",
-                "DELETE_ITEM_TOOLTIP": "Excluir",
-                "EMPTY_TITLE": "Nenhum item definido ainda",
-                "EMPTY_DESCRIPTION": "",
-                "EMPTY_RESULTS_TITLE": "Nenhum item corresponde à sua busca",
-                "EMPTY_RESULTS_DESCRIPTION": "",
-                "LIMIT_PREFIX": "Limite",
-                "NUMERIC_VALIDATION_ERROR": "Alguns dos valores não são numéricos",
-                "LIMIT_REACHED": "O limite foi atingido",
-                "LIMIT_EXCEEDED": "Adicionar esses itens excederá o limite máximo de itens",
-                "COPIED": "Copiado",
-                "COPY-VALUE": "Copiar valor"
-            }
-        },
-        "OPERATORS": {
-            "BUTTON_LABEL": "Escolha",
-            "SEARCH_PLACEHOLDER": "Procurar",
-            "NO_RESULTS": "Sem resultados"
-        },
-        "MANAGABLE-LIST": {
-            "LESS": "menos",
-            "MORE": "mais",
-            "ADD-ITEM": "Adicionar item",
-            "SHOW-MORE": "Mostrar mais",
-            "SHOW-LESS": "Mostrar menos",
-            "ITEM-RENAME": "Renomear",
-            "ITEM-DUPLICATE": "Duplicar",
-            "ITEM-DELETE": "Excluir",
-            "CANCEL": "Não, guarde-o",
-            "DELETE": "Sim, excluir visão"
-        },
-        "FILE-UPLOADER": {
-            "BUTTON-LABEL": "Carregar um novo arquivo",
-            "BUTTON-LABEL-LARGE": "Carregar um novo arquivo",
-            "BUTTON-DESC": "ou arrastar um aqui",
-            "SIZE": "Tamanho:",
-            "UPLOADING": "Carregando...",
-            "REMOVE-TOOLTIP": "Remover",
-            "RETRY-TOOLTIP": "Tentar novamente",
-            "FILE-VIEW": {
-                "CANCEL": "Cancelar",
-                "OK": "OK",
-                "REMOVE-CONFIRM-TITLE": "Remover",
-                "FILE-WEIGHT": "Tamanho do arquivo",
-                "BUTTON-LABEL": "Carregar",
-                "BUTTON-DESCRIPTION": "Descrição do botão",
-                "RETRY-BUTTON-LABEL": "Tentar novamente"
-            }
-        },
-        "ITEM-FILTER": {
-            "ACTIVATE-ITEM-TITLE": "Ao ativar este filtro, você cancelará suas configurações de filtro não salvas",
-            "ACTIVATE": "Ativar",
-            "CANCEL": "Cancelar",
-            "DELETE-CONFIRMATION-TITLE": "Excluir o filtro",
-            "DELETE-CONFIRMATION-DESCRIPTION": "Este filtro será excluído permanentemente da biblioteca de modelos. Todas as tabelas que utilizarem este filtro serão redefinidas. ",
-            "DELETE-CONFIRMATION-YES": "Excluir",
-            "DELETE-CONFIRMATION-NO": "Cancelar",
-            "NO-RESULTS": "Sem resultados",
-            "SEARCH-PLACEHOLDER": "Procurar",
-            "SEARCH-CLEAR": "Limpar",
-            "TITLE": "Filtros"
-        },
-        "ITEM-PICKER-DROPDOWN": {
-            "NO-ITEMS": "Sem itens",
-            "NO-SEARCH-RESULTS": "Nenhum resultado encontrado",
-            "NO-SEARCH-RESULTS-FOLDER": "Verifique sua frase ou tente buscar em outras pastas",
-            "NO-ACTIONS": "Nenhuma ação disponível",
-            "REFRESH": "Atualizar",
-            "RECENTS": "Recentes",
-            "ACTIONS": "Ações",
-            "RESULTS": "Resultados",
-            "ITEMS": "Itens",
-            "LOADING-MORE": "Carregando mais itens...",
-            "LOADING-ERROR": "Erro ao carregar",
-            "LOADED-ALL": "Todos os itens carregados",
-            "ERROR-TITLE": "Não foi possível carregar os itens",
-            "ERROR-DESCRIPTION": "Tente atualizar a lista mais tarde",
-            "SHOW-MORE": "Mostrar mais",
-            "CLEAR-SEARCH-TOOLTIP": "Limpar",
-            "BACK-TOOLTIP": "Voltar",
-            "SEARCH-EVERYWHERE": "Buscar em todas as pastas",
-            "SEARCH-PLACEHOLDER": "Busque um objeto ou digite {shortCutKey} para exibir ações"
-        },
-        "ITEM-PICKER": {
-            "CLEAR-CONFIRM": "Você tem certeza de que quer remover esta seleção?",
-            "YES-TEXT": "Sim",
-            "NO-TEXT": "Não",
-            "CHANGE-BUTTON": "Mudar",
-            "CLEAR": "Remover",
-            "SEARCH": "Procurar",
-            "NO-RESULTS": "Sem resultados"
-        },
-        "COLUMN-MANAGER": {
-            "TITLE": "Gerenciar colunas",
-            "SEARCH-PLACEHOLDER": "Procurar",
-            "SEARCH-RESULTS": "Resultados da procura",
-            "NO-RESULTS": "Sem resultados",
-            "VISIBLE": "Visível",
-            "HIDDEN": "Escondido",
-            "SAVE-VIEW": "Salvar visão",
-            "CANCEL": "Cancelar",
-            "APPLY": "Aplicar",
-            "FIXED-LEFT": "Esquerda fixa",
-            "FIXED-RIGHT": "Direita fixa",
-            "CLEAR": "Limpar",
-            "VIEW-NAME": "Veja o nome",
-            "VIEW-DESCRIPTION": "Descrição",
-            "VIEW-NAME-PLACEHOLDER": "Digite um nome de vista",
-            "VIEW-DESCRIPTION-PLACEHOLDER": "Digite a descrição da vista",
-            "MUST-NOT-BE-EMPTY": "Este campo é obrigatório",
-            "SWITCH-ON": "Ligar",
-            "SWITCH-OFF": "Desligar",
-            "GROUP": "Grupo",
-            "GROUP_BY_VALUE": "Agrupo por valor",
-            "GROUP_BY_RANGERS": "Agrupar por faixas",
-            "GROUP_BY_INTERVALS": "Agrupar por intervalos",
-            "GROUP_DISABLED": "Grupo com deficiência",
-            "GROUP_TITLE": "Grupo de conteúdo da tabela",
-            "SELECT_PLACEHOLDER": "Selecionar",
-            "INTERVAL_PLACEHOLDER": "Intervalo definido",
-            "SET_GROUPING_TYPE": "Tipo de agrupamento de conjuntos",
-            "GROUPING_TYPE_TOOLTIP": "Esta opção permite agrupar os resultados de acordo com o valor (por exemplo, usuários com o mesmo nome), intervalos (por exemplo, usuários com nomes que começam de A a K), e intervalos (por exemplo, os usuários são divididos em grupos de um número definido).",
-            "FROM": "De",
-            "TO": "Para",
-            "REMOVE": "Remover",
-            "ADD_RANGE": "Adicione mais",
-            "NO_RESULTS": "Sem resultados",
-            "ERROR_EMPTY_RANGE": "Preencher pelo menos um dos campos",
-            "ERROR_EMPTY_FROM_FIELD": "Somente o campo \"De\" na primeira faixa pode ser deixado em branco",
-            "ERROR_EMPTY_TO_FIELD": "Somente o campo \"Para\" na última faixa pode ser deixado em branco",
-            "ERROR_CHOOSE_GROUPING": "Escolher o tipo de agrupamento",
-            "ERROR_INTERVAL": "Digite um número",
-            "ERROR_RANGE": "Fornecer um valor correto"
-        },
-        "TABLE": {
-            "PAGINATION": {
-                "ITEMS": "resultados",
-                "GROUPS": "grupos"
-            },
-            "SELECTED": "selecionado",
-            "EMPTY_TEXT": "Sem dados",
-            "SELECTION_LIMIT_WARNING": "O limite de seleção foi atingido.",
-            "STAR_ROW_TOOLTIP": "Com estrela",
-            "SELECT_ROW_TOOLTIP": "Selecionar",
-            "SELECT_ALL_TOOLTIP": "Selecionar tudo",
-            "SELECTION_OPTIONS": "Opções",
-            "COLUMN": {
-                "SORT_AZ": "Classificar de a-z",
-                "SORT_ZA": "Classificar de z-a",
-                "SORT_ASCEND": "Classificar em ordem crescente",
-                "SORT_DESCEND": "Classificar em ordem decrescente",
-                "SORT_CLEAR": "límpido"
-            },
-            "INFINITE_SCROLL": {
-                "ERROR": "Não é possível carregar mais itens",
-                "RETRY": "Repetir",
-                "NO_MORE_DATA": "Não há mais itens para carregar",
-                "LOADING": "Carregando mais itens",
-                "BACK_TO_TOP": "Voltar para o início"
-            },
-            "SELECT_ALL": "Selecionar todos",
-            "UNSELECT_ALL": "Desselecionar todos",
-            "SELECT_GLOBAL_ALL": "Selecionar tudo",
-            "UNSELECT_GLOBAL_ALL": "Deselecionar tudo",
-            "SELECT_INVERT": "Inverter seleção"
-        },
-        "ICON-PICKER": {
-            "NO-RESULTS": "Sem resultados"
-        },
-        "SEARCH-BAR": {
-            "CLEAR-TOOLTIP": "Limpar"
-        },
-        "TIME-PICKER": {
-            "CLEAR-TOOLTIP": "Limpar",
-            "PLACEHOLDER": "Selecionar o tempo"
-        },
-        "ITEMS-ROLL": {
-            "CHANGE-SELECTION": "Mudar a seleção",
-            "CLEAR-ALL": "Limpar tudo",
-            "CLEAR-TOOLTIP": "Limpar",
-            "CONFIRM-NO": "Não",
-            "CONFIRM-TITLE": "Você tem certeza de que quer remover todos os itens da lista?",
-            "CONFIRM-YES": "Sim",
-            "ITEMS": "Itens",
-            "MORE": "mais",
-            "NO-RESULTS": "Sem resultados",
-            "REMOVE-TOOLTIP": "Remover",
-            "SHOW": "Mostrar",
-            "SHOW-LESS": "Mostrar menos"
-        },
-        "INFORMATION-CARD": {
-            "QUICK-ACTIONS": "Ações rápidas"
-        },
-        "DATE-PICKER": {
-            "APPLY": "Aplicar",
-            "SELECT-DATE": "Selecionar data",
-            "SELECT-TIME": "Selecionar o tempo",
-            "NOW": "Agora",
-            "CLEAR-TOOLTIP": "Limpar"
-        },
-        "DATE-RANGE-PICKER": {
-            "EMPTY-DATE-ERROR": "A data não pode ficar vazia",
-            "TODAY": "Hoje",
-            "YESTERDAY": "Ontem",
-            "LAST-7-DAYS": "Últimos 7 dias",
-            "THIS-WEEK": "Esta semana",
-            "LAST-WEEK": "Semana passada",
-            "THIS-MONTH": "Este mês",
-            "LAST-MONTH": "Mês passado",
-            "LAST-3-MONTHS": "Últimos 3 meses",
-            "LAST-6-MONTHS": "Últimos 6 meses",
-            "LAST-YEAR": "Ano passado",
-            "ALL-TIME": "Todo o período",
-            "TOMORROW": "Amanhã",
-            "NEXT-7-DAYS": "Próximos 7 dias",
-            "NEXT-WEEK": "Próxima semana",
-            "NEXT-MONTH": "Próximo mês",
-            "NEXT-3-MONTHS": "Próximos 3 meses",
-            "NEXT-6-MONTHS": "Próximos 6 meses",
-            "NEXT-YEAR": "Próximo ano",
-            "CUSTOM": "Personalizado",
-            "MORE": "Mais",
-            "RELATIVE-DATE-RANGE": "Faixa de datas relativas",
-            "LAST": "Último",
-            "BEFORE": "antes",
-            "AFTER": "depois",
-            "SINCE": "Desde",
-            "NEXT": "Próximo",
-            "SECONDS": "Segundos",
-            "MINUTES": "Minutos",
-            "HOURS": "Horas",
-            "DAYS": "Dias",
-            "WEEKS": "Semanas",
-            "MONTHS": "Meses",
-            "YEARS": "Anos",
-            "TIMESTAMP-LAST": "Último",
-            "TIMESTAMP-NEXT": "Próximo",
-            "TIMESTAMP-TILL": "até",
-            "APPLY": "Aplicar",
-            "NOW": "Agora",
-            "FILTER": "Filtro",
-            "SELECT-DATE": "Selecionar data",
-            "SELECT-TIME": "Selecionar tempo",
-            "START-DATE": "Data de início",
-            "END-DATE": "Data final",
-            "CLEAR": "Limpar",
-            "DAILY": "Todos os dias",
-            "WEEKLY": "Toda semana",
-            "MONTHLY": "Todos os meses",
-            "ADD-RULE": "Adicionar regra",
-            "RULE": "Regra",
-            "COUNTED-FROM": "contados de",
-            "CANCEL": "Cancelar",
-            "SELECT-ALL": "Selecionar todos",
-            "UNSELECT-ALL": "Desselecionar todos",
-            "WEEKDAYS-SHORT-0": "Seg",
-            "WEEKDAYS-SHORT-1": "Ter",
-            "WEEKDAYS-SHORT-2": "Qua",
-            "WEEKDAYS-SHORT-3": "Qui",
-            "WEEKDAYS-SHORT-4": "Sex",
-            "WEEKDAYS-SHORT-5": "Sáb",
-            "WEEKDAYS-SHORT-6": "Dom",
-            "DAYS-OF": "Dias de",
-            "WEEKIN": "semana",
-            "MONTHIN": "mês",
-            "BEGINNING": "início",
-            "END": "fim",
-            "CLICK-TO-SELECT": "Clique para selecionar",
-            "NTH": {
-                "1": "1o.",
-                "2": "2o.",
-                "3": "3o.",
-                "4": "4o.",
-                "5": "5o."
-            },
-            "WEEKDAYS_LONG": {
-                "1": "Segunda-feira",
-                "2": "Terça-feira",
-                "3": "Quarta-feira",
-                "4": "Quinta-feira",
-                "5": "Sexta-feira",
-                "6": "Sábado",
-                "7": "Domingo"
-            },
-            "EVERY_DAY": "todos os dias",
-            "REMOVE": "Remover",
-            "DATES_FILTER": "Filtro de data",
-            "NTH-DAY-OF-MONTH": "dia do mês",
-            "SELECTED": "Selecionado",
-            "MULTIPLE-MODE-HINT": "Use a tecla shift para obter uma seleção múltipla.",
-            "SELECT-DAYS-DESCRIPTION": "Selecione um dia ou muitos. Use a tecla \"shift\" ou a tecla \"ctrl\" para selecionar mais de um.",
-            "ADD-TIME": "Adicionar tempo",
-            "SAVE-FILTER": "Salvar filtro",
-            "FILTER-NAME": "Nome do filtro",
-            "IN-WEEK": "semana",
-            "IN-MONTH": "mês",
-            "MAXIMUM-RANGES-MESSAGE": "Você atingiu uma quantidade máxima de faixas para as entradas selecionadas.",
-            "SET_TIME_FOR": "Definir horário para:",
-            "START-DATE-PLACEHOLDER": "Data de início",
-            "END-DATE-PLACEHOLDER": "Data de término",
-            "ADD-FILTER": "Adicionar filtro",
-            "SELECT-DATE-FILTER": "Selecionar filtro de data",
-            "FILTER-ENABLED": "Filtro ativado",
-            "COPY-RANGE": "Copiar Faixa",
-            "PASTE-RANGE": "Colar Faixa",
-            "CLEAR-RANGE": "Limpar Faixa",
-            "RANGE": "Faixa",
-            "HOUR": "Hora",
-            "SAVED-FILTERS": "Filtros salvos",
-            "CHANGE": "Mudar",
-            "FILTER-INVERSE-SELECTION": "Seleção inversa"
-        },
-        "CARD-TAB": {
-            "REMOVE": "Remover",
-            "RENAME": "Renomear",
-            "DUPLICATE": "Duplicar"
-        },
-        "FORMAT-PICKER": {
-            "HEADER": "Formato dos numéros",
-            "FORMAT": "Formato",
-            "NUMERIC": "Numérico",
-            "PERCENTAGE": "Porcentagem",
-            "CASH": "Dinheiro",
-            "SET-DEFAULT": "Definir padrão",
-            "USE-SEPARATOR": "Usar milhares de separadores",
-            "COMPACT-NUMBERS": "Usar números compactos",
-            "EG": "ex."
-        },
-        "COMPLETED-WITHIN": {
-            "INTERVAL": "Intervalo",
-            "YEARS": "Anos",
-            "MONTHS": "Meses",
-            "DAYS": "Dias",
-            "HOURS": "Horas",
-            "MINUTES": "Minutos",
-            "SECONDS": "Segundos"
-        },
-        "LOGIC": {
-            "AND": "e",
-            "OR": "Ou"
-        },
-        "MATCHING": {
-            "MATCHING": "combinando",
-            "NOT-MATCHING": "não combinando",
-            "PERFORMED": "Executado",
-            "NOT-PERFORMED": "não executado",
-            "HAVE": "Ter",
-            "NOT-HAVE": "Não ter",
-            "EXPRESSION-TYPE": {
-                "ATTRIBUTE": "atribuir",
-                "EVENT": "evento",
-                "NOT_ATTRIBUTE": "não atribuir",
-                "NOT_EVENT": "não evento"
-            }
-        },
-        "STEP-CARD": {
-            "NAME-PLACEHOLDER": "Nome",
-            "CONDITION-TYPE": "evento",
-            "NOT-CONDITION-TYPE": "não event",
-            "MOVE": "Mover",
-            "DELETE": "Excluir",
-            "DUPLICATE": "Duplicar",
-            "MOVE-DOWN": "Mover para baixo",
-            "MOVE-UP": "Mover para cima"
-        },
-        "WIZARD": {
-            "BACK-BUTTON": "Voltar",
-            "NEXT-BUTTON": "Próxima passo"
-        },
-        "FILTER": {
-            "DROP-ME-HERE": "Deixe-me aqui",
-            "ADD-FILTER": "Adicionar filtro",
-            "CONDITIONS-LIMIT": "Limite de condições"
-        },
-        "CONDITION": {
-            "STEP_NAME-PLACEHOLDER": "Nome do passo",
-            "STEP_NAME-PREFIX": "Passo",
-            "REMOVE-CONDITION-ROW-TOOLTIP": "Excluir",
-            "ADD-FIRST-CONDITION-ROW-BUTTON": "Adicionar condição",
-            "ADD-CONDITION-ROW-BUTTON": "Adicionar condição",
-            "ADD-STEP": "e depois...",
-            "DROP-LABEL": "Deixe-me aqui",
-            "EMPTY_CONDITION_LABEL": "Selecione evento primeiro",
-            "MOVE-TOOLTIP": "Mover",
-            "DUPLICATE-TOOLTIP": "Duplicar",
-            "REMOVE-TOOLTIP": "Excluir",
-            "AND-SUFFIX": "e"
-        },
-        "INPUT": {
-            "SHOW-PASSWORD": "Mostrar senha",
-            "HIDE-PASSWORD": "Ocultar senha"
-        },
-        "PLACEHOLDER": {
-            "CHOOSE-CONDITION": "Escolha o tipo de condição abaixo"
-        },
-        "TAG": {
-            "SEARCH-PLACEHOLDER": "Pesquisar",
-            "ADD-BUTTON-LABEL": "Adicionar tag",
-            "MANAGE-LINK-LABEL": "Gerenciar tags",
-            "CREATE-TAG-LABEL": "Criar tag",
-            "NO-TAGS": "Sem dados",
-            "CLEAR-TOOLTIP": "Limpar",
-            "DELETE-TOOLTIP": "Excluir",
-            "NO-SEARCH-RESULTS": "Nenhuma tag encontrada"
-        }
+  "DS": {
+    "CODE-AREA": {
+      "FULLSCREEN": "Tela cheia",
+      "CLOSE-FULLSCREEN": "Fechar tela cheia",
+      "FULLSCREEN-TITLE": "Editor em tela cheia"
+    },
+    "MAPPING": {
+      "BULK_SELECTION_ENABLE": "Ações em massa",
+      "BULK_SELECTION_DISABLE": "Ocultar ações"
+    },
+    "COLLECTOR": {
+      "ADD": "Adicionar",
+      "CANCEL": "Cancelar",
+      "PLACEHOLDER": "Digite o valor",
+      "TO-NAVIGATE": "para navegar",
+      "TO-SELECT": "para selecionar"
+    },
+    "MENU": {
+      "SHOW-LESS": "Mostrar menos",
+      "SHOW-MORE": "Mostrar mais"
+    },
+    "CONTEXT-SELECTOR": {
+      "BUTTON_LABEL": "Escolher",
+      "SEARCH_PLACEHOLDER": "Buscar",
+      "NO_RESULTS": "Sem resultados",
+      "SHOW_MORE": "Mostrar mais",
+      "RECENT": "Recentes",
+      "ALL": "Todos"
+    },
+    "DESCRIPTION": {
+      "COPY-VALUE": "Valor de cópia",
+      "COPIED": "Copiado"
+    },
+    "FACTORS": {
+      "DATE_PICKER": {
+        "APPLY": "Aplicar",
+        "CLEAR_TOOLTIP": "Limpar",
+        "INPUT_PLACEHOLDER": "Selecionar data",
+        "NOW": "Agora"
+      },
+      "MODAL_TITLE": "Valor",
+      "MODAL_CANCEL": "Cancelar",
+      "MODAL_APPLY": "Aplicar",
+      "VALUE_PLACEHOLDER": "Valor",
+      "PARAMETER": {
+        "NO_RESULTS": "Sem resultados",
+        "SEARCH_PLACEHOLDER": "Procurar",
+        "LOADING_PARAMETERS": "Parâmetros de carregamento",
+        "ALL": "Todos",
+        "RECENT": "Recentes",
+        "SHOW_MORE": "Mostrar mais"
+      },
+      "FORMULA": {
+        "BUTTON_PLACEHOLDER": "Fórmula",
+        "DEFAULT_NAME": "Fórmula"
+      },
+      "DYNAMIC_KEY": {
+        "VALUE_PLACEHOLDER": "Valor",
+        "KEY_PLACEHOLDER": "Chave"
+      },
+      "FACTOR_TYPES": {
+        "TEXT": "Texto",
+        "NUMBER": "Número",
+        "ARRAY": "Matriz",
+        "PARAMETER": "Parâmetro",
+        "CONTEXT_PARAMETER": "Parâmetro de contexto",
+        "DATE": "Data",
+        "DATE_RANGE": "Faixa de datas",
+        "DYNAMIC_KEY": "Chave dinâmica",
+        "FORMULA": "Fórmula"
+      },
+      "ARRAY": {
+        "TRIGGER_LABEL": "Definir array",
+        "MODAL_TITLE": "Array",
+        "CLEAR_BUTTON": "Limpar tudo",
+        "CREATOR": "Criador",
+        "RAW_BUTTON_LABEL": "Bruto",
+        "SEARCH_PLACEHOLDER": "Pesquisar",
+        "COLLECTOR_PLACEHOLDER": "Digite um valor ou cole múltiplos valores separados por `,`",
+        "COLLECTOR_ADD": "Adicionar",
+        "COLLECTOR_CANCEL": "Cancelar",
+        "SEARCH_CLEAR_TOOLTIP": "Limpar",
+        "DELETE_ITEM_TOOLTIP": "Excluir",
+        "EMPTY_TITLE": "Nenhum item definido ainda",
+        "EMPTY_DESCRIPTION": "",
+        "EMPTY_RESULTS_TITLE": "Nenhum item corresponde à sua busca",
+        "EMPTY_RESULTS_DESCRIPTION": "",
+        "LIMIT_PREFIX": "Limite",
+        "NUMERIC_VALIDATION_ERROR": "Alguns dos valores não são numéricos",
+        "LIMIT_REACHED": "O limite foi atingido",
+        "LIMIT_EXCEEDED": "Adicionar esses itens excederá o limite máximo de itens",
+        "COPIED": "Copiado",
+        "COPY-VALUE": "Copiar valor"
+      }
+    },
+    "OPERATORS": {
+      "BUTTON_LABEL": "Escolha",
+      "SEARCH_PLACEHOLDER": "Procurar",
+      "NO_RESULTS": "Sem resultados"
+    },
+    "MANAGABLE-LIST": {
+      "LESS": "menos",
+      "MORE": "mais",
+      "ADD-ITEM": "Adicionar item",
+      "SHOW-MORE": "Mostrar mais",
+      "SHOW-LESS": "Mostrar menos",
+      "ITEM-RENAME": "Renomear",
+      "ITEM-DUPLICATE": "Duplicar",
+      "ITEM-DELETE": "Excluir",
+      "CANCEL": "Não, guarde-o",
+      "DELETE": "Sim, excluir visão"
+    },
+    "FILE-UPLOADER": {
+      "BUTTON-LABEL": "Carregar um novo arquivo",
+      "BUTTON-LABEL-LARGE": "Carregar um novo arquivo",
+      "BUTTON-DESC": "ou arrastar um aqui",
+      "SIZE": "Tamanho:",
+      "UPLOADING": "Carregando...",
+      "REMOVE-TOOLTIP": "Remover",
+      "RETRY-TOOLTIP": "Tentar novamente",
+      "FILE-VIEW": {
+        "CANCEL": "Cancelar",
+        "OK": "OK",
+        "REMOVE-CONFIRM-TITLE": "Remover",
+        "FILE-WEIGHT": "Tamanho do arquivo",
+        "BUTTON-LABEL": "Carregar",
+        "BUTTON-DESCRIPTION": "Descrição do botão",
+        "RETRY-BUTTON-LABEL": "Tentar novamente"
+      }
+    },
+    "ITEM-FILTER": {
+      "ACTIVATE-ITEM-TITLE": "Ao ativar este filtro, você cancelará suas configurações de filtro não salvas",
+      "ACTIVATE": "Ativar",
+      "CANCEL": "Cancelar",
+      "DELETE-CONFIRMATION-TITLE": "Excluir o filtro",
+      "DELETE-CONFIRMATION-DESCRIPTION": "Este filtro será excluído permanentemente da biblioteca de modelos. Todas as tabelas que utilizarem este filtro serão redefinidas. ",
+      "DELETE-CONFIRMATION-YES": "Excluir",
+      "DELETE-CONFIRMATION-NO": "Cancelar",
+      "NO-RESULTS": "Sem resultados",
+      "SEARCH-PLACEHOLDER": "Procurar",
+      "SEARCH-CLEAR": "Limpar",
+      "TITLE": "Filtros"
+    },
+    "ITEM-PICKER-DROPDOWN": {
+      "NO-ITEMS": "Sem itens",
+      "NO-SEARCH-RESULTS": "Nenhum resultado encontrado",
+      "NO-SEARCH-RESULTS-FOLDER": "Verifique sua frase ou tente buscar em outras pastas",
+      "NO-ACTIONS": "Nenhuma ação disponível",
+      "REFRESH": "Atualizar",
+      "RECENTS": "Recentes",
+      "ACTIONS": "Ações",
+      "RESULTS": "Resultados",
+      "ITEMS": "Itens",
+      "LOADING-MORE": "Carregando mais itens...",
+      "LOADING-ERROR": "Erro ao carregar",
+      "LOADED-ALL": "Todos os itens carregados",
+      "ERROR-TITLE": "Não foi possível carregar os itens",
+      "ERROR-DESCRIPTION": "Tente atualizar a lista mais tarde",
+      "SHOW-MORE": "Mostrar mais",
+      "CLEAR-SEARCH-TOOLTIP": "Limpar",
+      "BACK-TOOLTIP": "Voltar",
+      "SEARCH-EVERYWHERE": "Buscar em todas as pastas",
+      "SEARCH-PLACEHOLDER": "Busque um objeto ou digite {shortCutKey} para exibir ações"
+    },
+    "ITEM-PICKER": {
+      "CLEAR-CONFIRM": "Você tem certeza de que quer remover esta seleção?",
+      "YES-TEXT": "Sim",
+      "NO-TEXT": "Não",
+      "CHANGE-BUTTON": "Mudar",
+      "CLEAR": "Remover",
+      "SEARCH": "Procurar",
+      "NO-RESULTS": "Sem resultados"
+    },
+    "COLUMN-MANAGER": {
+      "TITLE": "Gerenciar colunas",
+      "SEARCH-PLACEHOLDER": "Procurar",
+      "SEARCH-RESULTS": "Resultados da procura",
+      "NO-RESULTS": "Sem resultados",
+      "VISIBLE": "Visível",
+      "HIDDEN": "Escondido",
+      "SAVE-VIEW": "Salvar visão",
+      "CANCEL": "Cancelar",
+      "APPLY": "Aplicar",
+      "FIXED-LEFT": "Esquerda fixa",
+      "FIXED-RIGHT": "Direita fixa",
+      "CLEAR": "Limpar",
+      "VIEW-NAME": "Veja o nome",
+      "VIEW-DESCRIPTION": "Descrição",
+      "VIEW-NAME-PLACEHOLDER": "Digite um nome de vista",
+      "VIEW-DESCRIPTION-PLACEHOLDER": "Digite a descrição da vista",
+      "MUST-NOT-BE-EMPTY": "Este campo é obrigatório",
+      "SWITCH-ON": "Ligar",
+      "SWITCH-OFF": "Desligar",
+      "GROUP": "Grupo",
+      "GROUP_BY_VALUE": "Agrupo por valor",
+      "GROUP_BY_RANGERS": "Agrupar por faixas",
+      "GROUP_BY_INTERVALS": "Agrupar por intervalos",
+      "GROUP_DISABLED": "Grupo com deficiência",
+      "GROUP_TITLE": "Grupo de conteúdo da tabela",
+      "SELECT_PLACEHOLDER": "Selecionar",
+      "INTERVAL_PLACEHOLDER": "Intervalo definido",
+      "SET_GROUPING_TYPE": "Tipo de agrupamento de conjuntos",
+      "GROUPING_TYPE_TOOLTIP": "Esta opção permite agrupar os resultados de acordo com o valor (por exemplo, usuários com o mesmo nome), intervalos (por exemplo, usuários com nomes que começam de A a K), e intervalos (por exemplo, os usuários são divididos em grupos de um número definido).",
+      "FROM": "De",
+      "TO": "Para",
+      "REMOVE": "Remover",
+      "ADD_RANGE": "Adicione mais",
+      "NO_RESULTS": "Sem resultados",
+      "ERROR_EMPTY_RANGE": "Preencher pelo menos um dos campos",
+      "ERROR_EMPTY_FROM_FIELD": "Somente o campo \"De\" na primeira faixa pode ser deixado em branco",
+      "ERROR_EMPTY_TO_FIELD": "Somente o campo \"Para\" na última faixa pode ser deixado em branco",
+      "ERROR_CHOOSE_GROUPING": "Escolher o tipo de agrupamento",
+      "ERROR_INTERVAL": "Digite um número",
+      "ERROR_RANGE": "Fornecer um valor correto"
+    },
+    "TABLE": {
+      "PAGINATION": {
+        "ITEMS": "resultados",
+        "GROUPS": "grupos"
+      },
+      "SELECTED": "selecionado",
+      "EMPTY_TEXT": "Sem dados",
+      "SELECTION_LIMIT_WARNING": "O limite de seleção foi atingido.",
+      "STAR_ROW_TOOLTIP": "Com estrela",
+      "SELECT_ROW_TOOLTIP": "Selecionar",
+      "SELECT_ALL_TOOLTIP": "Selecionar tudo",
+      "SELECTION_OPTIONS": "Opções",
+      "COLUMN": {
+        "SORT_AZ": "Classificar de a-z",
+        "SORT_ZA": "Classificar de z-a",
+        "SORT_ASCEND": "Classificar em ordem crescente",
+        "SORT_DESCEND": "Classificar em ordem decrescente",
+        "SORT_CLEAR": "límpido"
+      },
+      "INFINITE_SCROLL": {
+        "ERROR": "Não é possível carregar mais itens",
+        "RETRY": "Repetir",
+        "NO_MORE_DATA": "Não há mais itens para carregar",
+        "LOADING": "Carregando mais itens",
+        "BACK_TO_TOP": "Voltar para o início"
+      },
+      "SELECT_ALL": "Selecionar todos",
+      "UNSELECT_ALL": "Desselecionar todos",
+      "SELECT_GLOBAL_ALL": "Selecionar tudo",
+      "UNSELECT_GLOBAL_ALL": "Deselecionar tudo",
+      "SELECT_INVERT": "Inverter seleção"
+    },
+    "ICON-PICKER": {
+      "NO-RESULTS": "Sem resultados"
+    },
+    "SEARCH-BAR": {
+      "CLEAR-TOOLTIP": "Limpar"
+    },
+    "TIME-PICKER": {
+      "CLEAR-TOOLTIP": "Limpar",
+      "PLACEHOLDER": "Selecionar o tempo"
+    },
+    "ITEMS-ROLL": {
+      "CHANGE-SELECTION": "Mudar a seleção",
+      "CLEAR-ALL": "Limpar tudo",
+      "CLEAR-TOOLTIP": "Limpar",
+      "CONFIRM-NO": "Não",
+      "CONFIRM-TITLE": "Você tem certeza de que quer remover todos os itens da lista?",
+      "CONFIRM-YES": "Sim",
+      "ITEMS": "Itens",
+      "MORE": "mais",
+      "NO-RESULTS": "Sem resultados",
+      "REMOVE-TOOLTIP": "Remover",
+      "SHOW": "Mostrar",
+      "SHOW-LESS": "Mostrar menos"
+    },
+    "INFORMATION-CARD": {
+      "QUICK-ACTIONS": "Ações rápidas"
+    },
+    "DATE-PICKER": {
+      "APPLY": "Aplicar",
+      "SELECT-DATE": "Selecionar data",
+      "SELECT-TIME": "Selecionar o tempo",
+      "NOW": "Agora",
+      "CLEAR-TOOLTIP": "Limpar"
+    },
+    "DATE-RANGE-PICKER": {
+      "EMPTY-DATE-ERROR": "A data não pode ficar vazia",
+      "TODAY": "Hoje",
+      "YESTERDAY": "Ontem",
+      "LAST-7-DAYS": "Últimos 7 dias",
+      "THIS-WEEK": "Esta semana",
+      "LAST-WEEK": "Semana passada",
+      "THIS-MONTH": "Este mês",
+      "LAST-MONTH": "Mês passado",
+      "LAST-3-MONTHS": "Últimos 3 meses",
+      "LAST-6-MONTHS": "Últimos 6 meses",
+      "LAST-YEAR": "Ano passado",
+      "ALL-TIME": "Todo o período",
+      "TOMORROW": "Amanhã",
+      "NEXT-7-DAYS": "Próximos 7 dias",
+      "NEXT-WEEK": "Próxima semana",
+      "NEXT-MONTH": "Próximo mês",
+      "NEXT-3-MONTHS": "Próximos 3 meses",
+      "NEXT-6-MONTHS": "Próximos 6 meses",
+      "NEXT-YEAR": "Próximo ano",
+      "CUSTOM": "Personalizado",
+      "MORE": "Mais",
+      "RELATIVE-DATE-RANGE": "Faixa de datas relativas",
+      "LAST": "Último",
+      "BEFORE": "antes",
+      "AFTER": "depois",
+      "SINCE": "Desde",
+      "NEXT": "Próximo",
+      "SECONDS": "Segundos",
+      "MINUTES": "Minutos",
+      "HOURS": "Horas",
+      "DAYS": "Dias",
+      "WEEKS": "Semanas",
+      "MONTHS": "Meses",
+      "YEARS": "Anos",
+      "TIMESTAMP-LAST": "Último",
+      "TIMESTAMP-NEXT": "Próximo",
+      "TIMESTAMP-TILL": "até",
+      "APPLY": "Aplicar",
+      "NOW": "Agora",
+      "FILTER": "Filtro",
+      "SELECT-DATE": "Selecionar data",
+      "SELECT-TIME": "Selecionar tempo",
+      "START-DATE": "Data de início",
+      "END-DATE": "Data final",
+      "CLEAR": "Limpar",
+      "DAILY": "Todos os dias",
+      "WEEKLY": "Toda semana",
+      "MONTHLY": "Todos os meses",
+      "ADD-RULE": "Adicionar regra",
+      "RULE": "Regra",
+      "COUNTED-FROM": "contados de",
+      "CANCEL": "Cancelar",
+      "SELECT-ALL": "Selecionar todos",
+      "UNSELECT-ALL": "Desselecionar todos",
+      "WEEKDAYS-SHORT-0": "Seg",
+      "WEEKDAYS-SHORT-1": "Ter",
+      "WEEKDAYS-SHORT-2": "Qua",
+      "WEEKDAYS-SHORT-3": "Qui",
+      "WEEKDAYS-SHORT-4": "Sex",
+      "WEEKDAYS-SHORT-5": "Sáb",
+      "WEEKDAYS-SHORT-6": "Dom",
+      "DAYS-OF": "Dias de",
+      "WEEKIN": "semana",
+      "MONTHIN": "mês",
+      "BEGINNING": "início",
+      "END": "fim",
+      "CLICK-TO-SELECT": "Clique para selecionar",
+      "NTH": {
+        "1": "1o.",
+        "2": "2o.",
+        "3": "3o.",
+        "4": "4o.",
+        "5": "5o."
+      },
+      "WEEKDAYS_LONG": {
+        "1": "Segunda-feira",
+        "2": "Terça-feira",
+        "3": "Quarta-feira",
+        "4": "Quinta-feira",
+        "5": "Sexta-feira",
+        "6": "Sábado",
+        "7": "Domingo"
+      },
+      "EVERY_DAY": "todos os dias",
+      "REMOVE": "Remover",
+      "DATES_FILTER": "Filtro de data",
+      "NTH-DAY-OF-MONTH": "dia do mês",
+      "SELECTED": "Selecionado",
+      "MULTIPLE-MODE-HINT": "Use a tecla shift para obter uma seleção múltipla.",
+      "SELECT-DAYS-DESCRIPTION": "Selecione um dia ou muitos. Use a tecla \"shift\" ou a tecla \"ctrl\" para selecionar mais de um.",
+      "ADD-TIME": "Adicionar tempo",
+      "SAVE-FILTER": "Salvar filtro",
+      "FILTER-NAME": "Nome do filtro",
+      "IN-WEEK": "semana",
+      "IN-MONTH": "mês",
+      "MAXIMUM-RANGES-MESSAGE": "Você atingiu uma quantidade máxima de faixas para as entradas selecionadas.",
+      "SET_TIME_FOR": "Definir horário para:",
+      "START-DATE-PLACEHOLDER": "Data de início",
+      "END-DATE-PLACEHOLDER": "Data de término",
+      "ADD-FILTER": "Adicionar filtro",
+      "SELECT-DATE-FILTER": "Selecionar filtro de data",
+      "FILTER-ENABLED": "Filtro ativado",
+      "COPY-RANGE": "Copiar Faixa",
+      "PASTE-RANGE": "Colar Faixa",
+      "CLEAR-RANGE": "Limpar Faixa",
+      "RANGE": "Faixa",
+      "HOUR": "Hora",
+      "SAVED-FILTERS": "Filtros salvos",
+      "CHANGE": "Mudar",
+      "FILTER-INVERSE-SELECTION": "Seleção inversa"
+    },
+    "CARD-TAB": {
+      "REMOVE": "Remover",
+      "RENAME": "Renomear",
+      "DUPLICATE": "Duplicar"
+    },
+    "FORMAT-PICKER": {
+      "HEADER": "Formato dos numéros",
+      "FORMAT": "Formato",
+      "NUMERIC": "Numérico",
+      "PERCENTAGE": "Porcentagem",
+      "CASH": "Dinheiro",
+      "SET-DEFAULT": "Definir padrão",
+      "USE-SEPARATOR": "Usar milhares de separadores",
+      "COMPACT-NUMBERS": "Usar números compactos",
+      "EG": "ex."
+    },
+    "COMPLETED-WITHIN": {
+      "INTERVAL": "Intervalo",
+      "YEARS": "Anos",
+      "MONTHS": "Meses",
+      "DAYS": "Dias",
+      "HOURS": "Horas",
+      "MINUTES": "Minutos",
+      "SECONDS": "Segundos"
+    },
+    "LOGIC": {
+      "AND": "e",
+      "OR": "Ou"
+    },
+    "MATCHING": {
+      "MATCHING": "combinando",
+      "NOT-MATCHING": "não combinando",
+      "PERFORMED": "Executado",
+      "NOT-PERFORMED": "não executado",
+      "HAVE": "Ter",
+      "NOT-HAVE": "Não ter",
+      "EXPRESSION-TYPE": {
+        "ATTRIBUTE": "atribuir",
+        "EVENT": "evento",
+        "NOT_ATTRIBUTE": "não atribuir",
+        "NOT_EVENT": "não evento"
+      }
+    },
+    "STEP-CARD": {
+      "NAME-PLACEHOLDER": "Nome",
+      "CONDITION-TYPE": "evento",
+      "NOT-CONDITION-TYPE": "não event",
+      "MOVE": "Mover",
+      "DELETE": "Excluir",
+      "DUPLICATE": "Duplicar",
+      "MOVE-DOWN": "Mover para baixo",
+      "MOVE-UP": "Mover para cima"
+    },
+    "WIZARD": {
+      "BACK-BUTTON": "Voltar",
+      "NEXT-BUTTON": "Próxima passo"
+    },
+    "FILTER": {
+      "DROP-ME-HERE": "Deixe-me aqui",
+      "ADD-FILTER": "Adicionar filtro",
+      "CONDITIONS-LIMIT": "Limite de condições"
+    },
+    "CONDITION": {
+      "STEP_NAME-PLACEHOLDER": "Nome do passo",
+      "STEP_NAME-PREFIX": "Passo",
+      "REMOVE-CONDITION-ROW-TOOLTIP": "Excluir",
+      "ADD-FIRST-CONDITION-ROW-BUTTON": "Adicionar condição",
+      "ADD-CONDITION-ROW-BUTTON": "Adicionar condição",
+      "ADD-STEP": "e depois...",
+      "DROP-LABEL": "Deixe-me aqui",
+      "EMPTY_CONDITION_LABEL": "Selecione evento primeiro",
+      "MOVE-TOOLTIP": "Mover",
+      "DUPLICATE-TOOLTIP": "Duplicar",
+      "REMOVE-TOOLTIP": "Excluir",
+      "AND-SUFFIX": "e"
+    },
+    "INPUT": {
+      "SHOW-PASSWORD": "Mostrar senha",
+      "HIDE-PASSWORD": "Ocultar senha"
+    },
+    "PLACEHOLDER": {
+      "CHOOSE-CONDITION": "Escolha o tipo de condição abaixo"
+    },
+    "TAG": {
+      "SEARCH-PLACEHOLDER": "Pesquisar",
+      "ADD-BUTTON-LABEL": "Adicionar tag",
+      "MANAGE-LINK-LABEL": "Gerenciar tags",
+      "CREATE-TAG-LABEL": "Criar tag",
+      "NO-TAGS": "Sem dados",
+      "CLEAR-TOOLTIP": "Limpar",
+      "DELETE-TOOLTIP": "Excluir",
+      "NO-SEARCH-RESULTS": "Nenhuma tag encontrada"
     }
+  }
 }

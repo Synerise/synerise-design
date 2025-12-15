@@ -29,14 +29,14 @@ import Sidebar from '@synerise/ds-sidebar'
 ## API
 
 #### Sidebar
+
 | Property          | Description                                 | Type                                  | Default |
-|-------------------|---------------------------------------------|---------------------------------------|---------|
+| ----------------- | ------------------------------------------- | ------------------------------------- | ------- |
 | children          | Place for Panel element                     | React.ReactNode                       | -       |
 | order             | Place for optional Array with render order  | string[]                              | -       |
 | onChangeOrder     | Called on drag and drop fired               | (order: string / string[])=>void      | -       |
 | defaultActiveKey  | Place for optional default active panel     | string[]                              | -       |
 | getPopupContainer | Determines where to render the drag overlay | (elem: HTMLDivElement) => HTMLElement | -       |
-
 
 #### Panel
 

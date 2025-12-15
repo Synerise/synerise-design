@@ -26,90 +26,47 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 **Note:** Version bump only for package @synerise/ds-scrollbar
 
-
-
-
-
 ## [1.1.8](https://github.com/Synerise/synerise-design/compare/@synerise/ds-scrollbar@1.1.7...@synerise/ds-scrollbar@1.1.8) (2025-09-16)
 
 **Note:** Version bump only for package @synerise/ds-scrollbar
-
-
-
-
 
 ## [1.1.7](https://github.com/Synerise/synerise-design/compare/@synerise/ds-scrollbar@1.1.6...@synerise/ds-scrollbar@1.1.7) (2025-08-28)
 
 **Note:** Version bump only for package @synerise/ds-scrollbar
 
-
-
-
-
 ## [1.1.6](https://github.com/Synerise/synerise-design/compare/@synerise/ds-scrollbar@1.1.5...@synerise/ds-scrollbar@1.1.6) (2025-08-14)
 
 **Note:** Version bump only for package @synerise/ds-scrollbar
-
-
-
-
 
 ## [1.1.5](https://github.com/Synerise/synerise-design/compare/@synerise/ds-scrollbar@1.1.4...@synerise/ds-scrollbar@1.1.5) (2025-07-24)
 
 **Note:** Version bump only for package @synerise/ds-scrollbar
 
-
-
-
-
 ## [1.1.4](https://github.com/Synerise/synerise-design/compare/@synerise/ds-scrollbar@1.1.3...@synerise/ds-scrollbar@1.1.4) (2025-07-17)
 
 **Note:** Version bump only for package @synerise/ds-scrollbar
-
-
-
-
 
 ## [1.1.3](https://github.com/Synerise/synerise-design/compare/@synerise/ds-scrollbar@1.1.2...@synerise/ds-scrollbar@1.1.3) (2025-07-15)
 
 **Note:** Version bump only for package @synerise/ds-scrollbar
 
-
-
-
-
 ## [1.1.2](https://github.com/Synerise/synerise-design/compare/@synerise/ds-scrollbar@1.1.1...@synerise/ds-scrollbar@1.1.2) (2025-07-01)
-
 
 ### Bug Fixes
 
-* **manageable-list:** swapped sortable library ([8325888](https://github.com/Synerise/synerise-design/commit/8325888e97b14a03720466092e1c8678ed6c09aa))
-
-
-
-
+- **manageable-list:** swapped sortable library ([8325888](https://github.com/Synerise/synerise-design/commit/8325888e97b14a03720466092e1c8678ed6c09aa))
 
 ## [1.1.1](https://github.com/Synerise/synerise-design/compare/@synerise/ds-scrollbar@1.1.0...@synerise/ds-scrollbar@1.1.1) (2025-06-26)
 
-
 ### Bug Fixes
 
-* **scrollbar:** fixed css import in less ([c740c5d](https://github.com/Synerise/synerise-design/commit/c740c5d4150d283716bb813e1837418b0632fd6b))
-
-
-
-
+- **scrollbar:** fixed css import in less ([c740c5d](https://github.com/Synerise/synerise-design/commit/c740c5d4150d283716bb813e1837418b0632fd6b))
 
 # [1.1.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-scrollbar@1.0.10...@synerise/ds-scrollbar@1.1.0) (2025-06-24)
 
-
 ### Features
 
-* **factors:** array factor type ([195d328](https://github.com/Synerise/synerise-design/commit/195d3286e98b5f07fc9c1e56001e6ae844b7a080))
-
-
-
-
+- **factors:** array factor type ([195d328](https://github.com/Synerise/synerise-design/commit/195d3286e98b5f07fc9c1e56001e6ae844b7a080))
 
 ## [1.0.10](https://github.com/Synerise/synerise-design/compare/@synerise/ds-scrollbar@1.0.9...@synerise/ds-scrollbar@1.0.10) (2025-06-05)
 

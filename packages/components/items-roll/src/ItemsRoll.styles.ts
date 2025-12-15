@@ -1,12 +1,12 @@
 import styled from 'styled-components';
 
-import Button from '@synerise/ds-button';
+import Button, { type StyledButton } from '@synerise/ds-button';
 import DividerBase from '@synerise/ds-divider';
 import Icon from '@synerise/ds-icon';
 
 export const Wrapper = styled.div`
   padding: 12px;
-  border: 1px solid ${({ theme }): string => theme.palette['grey-200']};
+  border: 1px solid ${({ theme }) => theme.palette['grey-200']};
   border-radius: 3px;
 `;
 
@@ -23,7 +23,7 @@ export const HeaderRight = styled.div`
 `;
 
 export const HeaderLeft = styled.div`
-  color: ${({ theme }): string => theme.palette['grey-800']};
+  color: ${({ theme }) => theme.palette['grey-800']};
   margin-left: 12px;
   height: 34px;
   display: flex;
@@ -48,17 +48,15 @@ export const ListWrapper = styled.div`
 
         :hover {
           svg {
-            fill: ${({ theme }): string => theme.palette['blue-600']};
+            fill: ${({ theme }) => theme.palette['blue-600']};
           }
 
           .element-remove-icon {
             svg {
-              fill: ${({ theme }): string =>
-                theme.palette['red-600']} !important;
+              fill: ${({ theme }) => theme.palette['red-600']} !important;
 
               :hover {
-                fill: ${({ theme }): string =>
-                  theme.palette['red-600']} !important;
+                fill: ${({ theme }) => theme.palette['red-600']} !important;
               }
             }
           }
@@ -69,7 +67,7 @@ export const ListWrapper = styled.div`
           background: transparent;
         }
         :focus:hover {
-          background-color: ${({ theme }): string => theme.palette['grey-050']};
+          background-color: ${({ theme }) => theme.palette['grey-050']};
         }
       }
 
@@ -82,7 +80,7 @@ export const ListWrapper = styled.div`
       .-item-group-title {
         font-size: 10px;
         text-transform: uppercase;
-        color: ${({ theme }): string => theme.palette['grey-500']};
+        color: ${({ theme }) => theme.palette['grey-500']};
         font-weight: 500;
         padding-left: 0;
         padding-right: 0;
@@ -95,8 +93,7 @@ export const ListWrapper = styled.div`
         width: calc(100% + 12px);
         height: 1px;
         display: block;
-        border-bottom: 1px dashed
-          ${({ theme }): string => theme.palette['grey-300']};
+        border-bottom: 1px dashed ${({ theme }) => theme.palette['grey-300']};
         margin: 12px 0px 12px -12px;
       }
     }
@@ -104,12 +101,12 @@ export const ListWrapper = styled.div`
 `;
 
 export const Bold = styled.span`
-  color: ${({ theme }): string => theme.palette['grey-800']};
+  color: ${({ theme }) => theme.palette['grey-800']};
   font-weight: 500;
   margin-left: 2px;
 `;
 
-export const ChangeSelection = styled(Button)`
+export const ChangeSelection: StyledButton = styled(Button)`
   width: 157px;
   display: flex;
   align-items: center;
@@ -117,12 +114,12 @@ export const ChangeSelection = styled(Button)`
   font-weight: 500;
 
   &&& {
-    color: ${({ theme }): string => theme.palette['blue-600']};
+    color: ${({ theme }) => theme.palette['blue-600']};
     .ds-icon {
       margin-right: 4px;
 
       svg {
-        fill: ${({ theme }): string => theme.palette['blue-600']};
+        fill: ${({ theme }) => theme.palette['blue-600']};
       }
     }
   }
@@ -134,12 +131,12 @@ export const SearchWrapper = styled.div`
   flex: 1 1 auto;
 `;
 
-export const ShowButton = styled(Button)`
+export const ShowButton: StyledButton = styled(Button)`
   margin-right: 8px;
 
   span {
     font-weight: 400;
-    color: ${({ theme }): string => theme.palette['grey-700']};
+    color: ${({ theme }) => theme.palette['grey-700']};
   }
 
   .bold-label {
@@ -151,7 +148,7 @@ export const ShowButtonLabel = styled.span`
   font-weight: 400;
 `;
 
-export const ClearButton = styled(Button)`
+export const ClearButton: StyledButton = styled(Button)`
   margin-left: auto;
 
   &&& {
@@ -163,7 +160,7 @@ export const ClearButton = styled(Button)`
 
 export const ArrowIcon = styled(Icon)`
   svg {
-    fill: ${({ theme }): string => theme.palette['grey-600']};
+    fill: ${({ theme }) => theme.palette['grey-600']};
   }
 `;
 
@@ -173,7 +170,7 @@ export const NoResults = styled.div`
   align-items: center;
   justify-content: center;
   height: 144px;
-  color: ${({ theme }): string => theme.palette['grey-600']};
+  color: ${({ theme }) => theme.palette['grey-600']};
 `;
 
 export const NoResultIconWrapper = styled.div`
@@ -187,19 +184,19 @@ export const NoResultIconWrapper = styled.div`
 
   .ds-icon {
     svg {
-      fill: ${({ theme }): string => theme.palette['grey-600']};
+      fill: ${({ theme }) => theme.palette['grey-600']};
     }
   }
 `;
 
 export const Divider = styled(DividerBase)<{ footer?: boolean }>`
   && {
-    margin: ${(props): string => (props.footer ? '8px 0 12px' : '12px 0 8px')};
+    margin: ${(props) => (props.footer ? '8px 0 12px' : '12px 0 8px')};
   }
 `;
 
 export const WarningIcon = styled(Icon)`
   svg {
-    fill: ${({ theme }): string => theme.palette['yellow-500']};
+    fill: ${({ theme }) => theme.palette['yellow-500']};
   }
 `;

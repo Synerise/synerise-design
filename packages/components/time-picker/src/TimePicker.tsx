@@ -7,7 +7,7 @@ import { FormattedMessage, useIntl } from 'react-intl';
 import { useDataFormat } from '@synerise/ds-core';
 import Dropdown from '@synerise/ds-dropdown';
 import Icon, { ClockM, Close3S } from '@synerise/ds-icon';
-import Tooltip from '@synerise/ds-tooltip/dist/Tooltip';
+import Tooltip from '@synerise/ds-tooltip';
 
 import * as S from './TimePicker.styles';
 import Unit, { type UnitConfig } from './Unit';

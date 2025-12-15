@@ -2,7 +2,7 @@ node_modules/*
 **/node_modules/*
 **/dist/*
 .cache
-scripts/create-component
+scripts/create-component/*
 scripts/style
 scripts/utils
 *.config.js

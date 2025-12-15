@@ -37,194 +37,99 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 **Note:** Version bump only for package @synerise/ds-date-picker
 
-
-
-
-
 ## [1.2.17](https://github.com/Synerise/synerise-design/compare/@synerise/ds-date-picker@1.2.16...@synerise/ds-date-picker@1.2.17) (2025-10-22)
 
 **Note:** Version bump only for package @synerise/ds-date-picker
-
-
-
-
 
 ## [1.2.16](https://github.com/Synerise/synerise-design/compare/@synerise/ds-date-picker@1.2.15...@synerise/ds-date-picker@1.2.16) (2025-10-16)
 
 **Note:** Version bump only for package @synerise/ds-date-picker
 
-
-
-
-
 ## [1.2.15](https://github.com/Synerise/synerise-design/compare/@synerise/ds-date-picker@1.2.14...@synerise/ds-date-picker@1.2.15) (2025-10-10)
 
 **Note:** Version bump only for package @synerise/ds-date-picker
-
-
-
-
 
 ## [1.2.14](https://github.com/Synerise/synerise-design/compare/@synerise/ds-date-picker@1.2.13...@synerise/ds-date-picker@1.2.14) (2025-10-08)
 
 **Note:** Version bump only for package @synerise/ds-date-picker
 
-
-
-
-
 ## [1.2.13](https://github.com/Synerise/synerise-design/compare/@synerise/ds-date-picker@1.2.12...@synerise/ds-date-picker@1.2.13) (2025-10-03)
 
 **Note:** Version bump only for package @synerise/ds-date-picker
-
-
-
-
 
 ## [1.2.12](https://github.com/Synerise/synerise-design/compare/@synerise/ds-date-picker@1.2.11...@synerise/ds-date-picker@1.2.12) (2025-09-30)
 
 **Note:** Version bump only for package @synerise/ds-date-picker
 
-
-
-
-
 ## [1.2.11](https://github.com/Synerise/synerise-design/compare/@synerise/ds-date-picker@1.2.10...@synerise/ds-date-picker@1.2.11) (2025-09-30)
 
 **Note:** Version bump only for package @synerise/ds-date-picker
-
-
-
-
 
 ## [1.2.10](https://github.com/Synerise/synerise-design/compare/@synerise/ds-date-picker@1.2.9...@synerise/ds-date-picker@1.2.10) (2025-09-26)
 
 **Note:** Version bump only for package @synerise/ds-date-picker
 
-
-
-
-
 ## [1.2.9](https://github.com/Synerise/synerise-design/compare/@synerise/ds-date-picker@1.2.8...@synerise/ds-date-picker@1.2.9) (2025-09-25)
 
 **Note:** Version bump only for package @synerise/ds-date-picker
-
-
-
-
 
 ## [1.2.8](https://github.com/Synerise/synerise-design/compare/@synerise/ds-date-picker@1.2.7...@synerise/ds-date-picker@1.2.8) (2025-09-23)
 
 **Note:** Version bump only for package @synerise/ds-date-picker
 
-
-
-
-
 ## [1.2.7](https://github.com/Synerise/synerise-design/compare/@synerise/ds-date-picker@1.2.6...@synerise/ds-date-picker@1.2.7) (2025-09-19)
 
 **Note:** Version bump only for package @synerise/ds-date-picker
-
-
-
-
 
 ## [1.2.6](https://github.com/Synerise/synerise-design/compare/@synerise/ds-date-picker@1.2.5...@synerise/ds-date-picker@1.2.6) (2025-09-16)
 
 **Note:** Version bump only for package @synerise/ds-date-picker
 
-
-
-
-
 ## [1.2.5](https://github.com/Synerise/synerise-design/compare/@synerise/ds-date-picker@1.2.4...@synerise/ds-date-picker@1.2.5) (2025-08-28)
 
 **Note:** Version bump only for package @synerise/ds-date-picker
-
-
-
-
 
 ## [1.2.4](https://github.com/Synerise/synerise-design/compare/@synerise/ds-date-picker@1.2.3...@synerise/ds-date-picker@1.2.4) (2025-08-20)
 
 **Note:** Version bump only for package @synerise/ds-date-picker
 
-
-
-
-
 ## [1.2.3](https://github.com/Synerise/synerise-design/compare/@synerise/ds-date-picker@1.2.2...@synerise/ds-date-picker@1.2.3) (2025-08-14)
 
 **Note:** Version bump only for package @synerise/ds-date-picker
 
-
-
-
-
 ## [1.2.2](https://github.com/Synerise/synerise-design/compare/@synerise/ds-date-picker@1.2.1...@synerise/ds-date-picker@1.2.2) (2025-07-24)
-
 
 ### Bug Fixes
 
-* **date-picker:** center picker and quick picks ([06f9301](https://github.com/Synerise/synerise-design/commit/06f930140ea450c6b28f6fbe72792fb7295fcd35))
-
-
-
-
+- **date-picker:** center picker and quick picks ([06f9301](https://github.com/Synerise/synerise-design/commit/06f930140ea450c6b28f6fbe72792fb7295fcd35))
 
 ## [1.2.1](https://github.com/Synerise/synerise-design/compare/@synerise/ds-date-picker@1.2.0...@synerise/ds-date-picker@1.2.1) (2025-07-17)
 
 **Note:** Version bump only for package @synerise/ds-date-picker
 
-
-
-
-
 # [1.2.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-date-picker@1.1.12...@synerise/ds-date-picker@1.2.0) (2025-07-15)
-
 
 ### Features
 
-* **date-picker:** quick picks ([0df17cf](https://github.com/Synerise/synerise-design/commit/0df17cff8b8695cf005970b96c82fffd9b8c8b00))
-
-
-
-
+- **date-picker:** quick picks ([0df17cf](https://github.com/Synerise/synerise-design/commit/0df17cff8b8695cf005970b96c82fffd9b8c8b00))
 
 ## [1.1.12](https://github.com/Synerise/synerise-design/compare/@synerise/ds-date-picker@1.1.11...@synerise/ds-date-picker@1.1.12) (2025-07-08)
 
 **Note:** Version bump only for package @synerise/ds-date-picker
 
-
-
-
-
 ## [1.1.11](https://github.com/Synerise/synerise-design/compare/@synerise/ds-date-picker@1.1.10...@synerise/ds-date-picker@1.1.11) (2025-07-01)
-
 
 ### Bug Fixes
 
-* **date-picker:** new props for htmlAttributes ([ba28def](https://github.com/Synerise/synerise-design/commit/ba28def029388f4791b1f4525cda87e108c8f0a3))
-
-
-
-
+- **date-picker:** new props for htmlAttributes ([ba28def](https://github.com/Synerise/synerise-design/commit/ba28def029388f4791b1f4525cda87e108c8f0a3))
 
 ## [1.1.10](https://github.com/Synerise/synerise-design/compare/@synerise/ds-date-picker@1.1.9...@synerise/ds-date-picker@1.1.10) (2025-06-26)
 
 **Note:** Version bump only for package @synerise/ds-date-picker
 
-
-
-
-
 ## [1.1.9](https://github.com/Synerise/synerise-design/compare/@synerise/ds-date-picker@1.1.8...@synerise/ds-date-picker@1.1.9) (2025-06-24)
 
 **Note:** Version bump only for package @synerise/ds-date-picker
-
-
-
-
 
 ## [1.1.8](https://github.com/Synerise/synerise-design/compare/@synerise/ds-date-picker@1.1.7...@synerise/ds-date-picker@1.1.8) (2025-06-12)
 

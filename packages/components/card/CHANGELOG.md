@@ -23,143 +23,73 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 **Note:** Version bump only for package @synerise/ds-card
 
-
-
-
-
 ## [1.2.14](https://github.com/Synerise/synerise-design/compare/@synerise/ds-card@1.2.13...@synerise/ds-card@1.2.14) (2025-10-10)
 
 **Note:** Version bump only for package @synerise/ds-card
-
-
-
-
 
 ## [1.2.13](https://github.com/Synerise/synerise-design/compare/@synerise/ds-card@1.2.12...@synerise/ds-card@1.2.13) (2025-10-08)
 
 **Note:** Version bump only for package @synerise/ds-card
 
-
-
-
-
 ## [1.2.12](https://github.com/Synerise/synerise-design/compare/@synerise/ds-card@1.2.11...@synerise/ds-card@1.2.12) (2025-10-03)
-
 
 ### Bug Fixes
 
-* **card:** summary styles refactor ([faa301f](https://github.com/Synerise/synerise-design/commit/faa301f17de5475ae80bac13fac0158fb3d2eb03))
-
-
-
-
+- **card:** summary styles refactor ([faa301f](https://github.com/Synerise/synerise-design/commit/faa301f17de5475ae80bac13fac0158fb3d2eb03))
 
 ## [1.2.11](https://github.com/Synerise/synerise-design/compare/@synerise/ds-card@1.2.10...@synerise/ds-card@1.2.11) (2025-09-25)
 
 **Note:** Version bump only for package @synerise/ds-card
 
-
-
-
-
 ## [1.2.10](https://github.com/Synerise/synerise-design/compare/@synerise/ds-card@1.2.9...@synerise/ds-card@1.2.10) (2025-09-19)
 
 **Note:** Version bump only for package @synerise/ds-card
-
-
-
-
 
 ## [1.2.9](https://github.com/Synerise/synerise-design/compare/@synerise/ds-card@1.2.8...@synerise/ds-card@1.2.9) (2025-09-16)
 
 **Note:** Version bump only for package @synerise/ds-card
 
-
-
-
-
 ## [1.2.8](https://github.com/Synerise/synerise-design/compare/@synerise/ds-card@1.2.7...@synerise/ds-card@1.2.8) (2025-08-28)
 
 **Note:** Version bump only for package @synerise/ds-card
-
-
-
-
 
 ## [1.2.7](https://github.com/Synerise/synerise-design/compare/@synerise/ds-card@1.2.6...@synerise/ds-card@1.2.7) (2025-08-20)
 
 **Note:** Version bump only for package @synerise/ds-card
 
-
-
-
-
 ## [1.2.6](https://github.com/Synerise/synerise-design/compare/@synerise/ds-card@1.2.5...@synerise/ds-card@1.2.6) (2025-08-14)
 
 **Note:** Version bump only for package @synerise/ds-card
-
-
-
-
 
 ## [1.2.5](https://github.com/Synerise/synerise-design/compare/@synerise/ds-card@1.2.4...@synerise/ds-card@1.2.5) (2025-07-24)
 
 **Note:** Version bump only for package @synerise/ds-card
 
-
-
-
-
 ## [1.2.4](https://github.com/Synerise/synerise-design/compare/@synerise/ds-card@1.2.3...@synerise/ds-card@1.2.4) (2025-07-17)
 
 **Note:** Version bump only for package @synerise/ds-card
-
-
-
-
 
 ## [1.2.3](https://github.com/Synerise/synerise-design/compare/@synerise/ds-card@1.2.2...@synerise/ds-card@1.2.3) (2025-07-15)
 
 **Note:** Version bump only for package @synerise/ds-card
 
-
-
-
-
 ## [1.2.2](https://github.com/Synerise/synerise-design/compare/@synerise/ds-card@1.2.1...@synerise/ds-card@1.2.2) (2025-07-08)
 
 **Note:** Version bump only for package @synerise/ds-card
-
-
-
-
 
 ## [1.2.1](https://github.com/Synerise/synerise-design/compare/@synerise/ds-card@1.2.0...@synerise/ds-card@1.2.1) (2025-07-01)
 
 **Note:** Version bump only for package @synerise/ds-card
 
-
-
-
-
 # [1.2.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-card@1.1.10...@synerise/ds-card@1.2.0) (2025-06-26)
-
 
 ### Features
 
-* **card:** add summary value button ([68d3d19](https://github.com/Synerise/synerise-design/commit/68d3d195bd6e83e158d1130122f230a97c419a91))
-
-
-
-
+- **card:** add summary value button ([68d3d19](https://github.com/Synerise/synerise-design/commit/68d3d195bd6e83e158d1130122f230a97c419a91))
 
 ## [1.1.10](https://github.com/Synerise/synerise-design/compare/@synerise/ds-card@1.1.9...@synerise/ds-card@1.1.10) (2025-06-24)
 
 **Note:** Version bump only for package @synerise/ds-card
-
-
-
-
 
 ## [1.1.9](https://github.com/Synerise/synerise-design/compare/@synerise/ds-card@1.1.8...@synerise/ds-card@1.1.9) (2025-06-05)
 

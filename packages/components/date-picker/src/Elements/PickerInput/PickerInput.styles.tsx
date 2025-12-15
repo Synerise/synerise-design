@@ -1,7 +1,7 @@
 import styled, { css } from 'styled-components';
 
 import { type ThemeProps } from '@synerise/ds-core';
-import { Input as DSInput, type InputProps } from '@synerise/ds-input';
+import { Input as DSInput, type StyledInput } from '@synerise/ds-input';
 
 export const Prefixel = styled.div`
   border: 1px solid
@@ -23,7 +23,9 @@ const activeStyle = (props: ThemeProps) => css`
   background: ${props.theme.palette['blue-050']};
 `;
 
-export const Input = styled(DSInput)<InputProps & { active: boolean }>`
+export const Input: StyledInput<{ active: boolean }> = styled(DSInput)<{
+  active: boolean;
+}>`
   & {
     .ant-input {
       ${(props) => !props.autoResize && 'min-width: 150px'};

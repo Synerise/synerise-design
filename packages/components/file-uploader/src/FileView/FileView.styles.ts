@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 import { IconContainer } from '@synerise/ds-icon';
 import Popconfirm from '@synerise/ds-popconfirm';
-import Typography, { Label } from '@synerise/ds-typography';
+import { Label, Text } from '@synerise/ds-typography';
 
 export const PreviewImage = styled.div`
   ${IconContainer} {
@@ -65,7 +65,7 @@ export const FlexRow = styled.div`
   display: flex;
 `;
 
-export const SizeOrError = styled(Typography.Text)`
+export const SizeOrError = styled(Text)`
   && {
     color: ${(props) => props.theme.palette['grey-600']};
   }

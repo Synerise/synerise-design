@@ -127,7 +127,6 @@ const Tooltip = forwardRef<HTMLElement, TooltipProps>(
     const tooltipTrigger =
       ref && isValidElement(children)
         ? cloneElement(children, {
-            // @ts-expect-error unknown literal property
             mergedRef,
           })
         : children;

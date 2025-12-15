@@ -32,10 +32,10 @@ import Description, {DescriptionRow} from '@synerise/ds-description';
 
 ### Description
 
-| Property | Description                                                                                                                                                                                                               | Type                                                          | Default |
-| -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------- | ------- |
-| type     | Type of description: `table` - description will looks like vertical table, `inline` - value will aligns to label, `corner` -  label and value have space-between them                                                     | `table`/ `inline`/ `corner`                                   | `table` |
-| ratio    | Define size of column if type='table'                                                                                                                                                                                     | `50-50`/ `25-75`                                              | `50-50` |
+| Property | Description                                                                                                                                                          | Type                        | Default |
+| -------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------- | ------- |
+| type     | Type of description: `table` - description will looks like vertical table, `inline` - value will aligns to label, `corner` - label and value have space-between them | `table`/ `inline`/ `corner` | `table` |
+| ratio    | Define size of column if type='table'                                                                                                                                | `50-50`/ `25-75`            | `50-50` |
 
 ### DescriptionRow
 

@@ -34,220 +34,111 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 **Note:** Version bump only for package @synerise/ds-color-picker
 
-
-
-
-
 ## [1.2.33](https://github.com/Synerise/synerise-design/compare/@synerise/ds-color-picker@1.2.32...@synerise/ds-color-picker@1.2.33) (2025-10-27)
 
 **Note:** Version bump only for package @synerise/ds-color-picker
-
-
-
-
 
 ## [1.2.32](https://github.com/Synerise/synerise-design/compare/@synerise/ds-color-picker@1.2.31...@synerise/ds-color-picker@1.2.32) (2025-10-22)
 
 **Note:** Version bump only for package @synerise/ds-color-picker
 
-
-
-
-
 ## [1.2.31](https://github.com/Synerise/synerise-design/compare/@synerise/ds-color-picker@1.2.30...@synerise/ds-color-picker@1.2.31) (2025-10-16)
 
 **Note:** Version bump only for package @synerise/ds-color-picker
-
-
-
-
 
 ## [1.2.30](https://github.com/Synerise/synerise-design/compare/@synerise/ds-color-picker@1.2.29...@synerise/ds-color-picker@1.2.30) (2025-10-10)
 
 **Note:** Version bump only for package @synerise/ds-color-picker
 
-
-
-
-
 ## [1.2.29](https://github.com/Synerise/synerise-design/compare/@synerise/ds-color-picker@1.2.28...@synerise/ds-color-picker@1.2.29) (2025-10-08)
 
 **Note:** Version bump only for package @synerise/ds-color-picker
-
-
-
-
 
 ## [1.2.28](https://github.com/Synerise/synerise-design/compare/@synerise/ds-color-picker@1.2.27...@synerise/ds-color-picker@1.2.28) (2025-10-03)
 
 **Note:** Version bump only for package @synerise/ds-color-picker
 
-
-
-
-
 ## [1.2.27](https://github.com/Synerise/synerise-design/compare/@synerise/ds-color-picker@1.2.26...@synerise/ds-color-picker@1.2.27) (2025-09-30)
 
 **Note:** Version bump only for package @synerise/ds-color-picker
-
-
-
-
 
 ## [1.2.26](https://github.com/Synerise/synerise-design/compare/@synerise/ds-color-picker@1.2.25...@synerise/ds-color-picker@1.2.26) (2025-09-30)
 
 **Note:** Version bump only for package @synerise/ds-color-picker
 
-
-
-
-
 ## [1.2.25](https://github.com/Synerise/synerise-design/compare/@synerise/ds-color-picker@1.2.24...@synerise/ds-color-picker@1.2.25) (2025-09-26)
 
 **Note:** Version bump only for package @synerise/ds-color-picker
-
-
-
-
 
 ## [1.2.24](https://github.com/Synerise/synerise-design/compare/@synerise/ds-color-picker@1.2.23...@synerise/ds-color-picker@1.2.24) (2025-09-25)
 
 **Note:** Version bump only for package @synerise/ds-color-picker
 
-
-
-
-
 ## [1.2.23](https://github.com/Synerise/synerise-design/compare/@synerise/ds-color-picker@1.2.22...@synerise/ds-color-picker@1.2.23) (2025-09-24)
 
 **Note:** Version bump only for package @synerise/ds-color-picker
-
-
-
-
 
 ## [1.2.22](https://github.com/Synerise/synerise-design/compare/@synerise/ds-color-picker@1.2.21...@synerise/ds-color-picker@1.2.22) (2025-09-23)
 
 **Note:** Version bump only for package @synerise/ds-color-picker
 
-
-
-
-
 ## [1.2.21](https://github.com/Synerise/synerise-design/compare/@synerise/ds-color-picker@1.2.20...@synerise/ds-color-picker@1.2.21) (2025-09-19)
 
 **Note:** Version bump only for package @synerise/ds-color-picker
-
-
-
-
 
 ## [1.2.20](https://github.com/Synerise/synerise-design/compare/@synerise/ds-color-picker@1.2.19...@synerise/ds-color-picker@1.2.20) (2025-09-16)
 
 **Note:** Version bump only for package @synerise/ds-color-picker
 
-
-
-
-
 ## [1.2.19](https://github.com/Synerise/synerise-design/compare/@synerise/ds-color-picker@1.2.18...@synerise/ds-color-picker@1.2.19) (2025-09-02)
 
 **Note:** Version bump only for package @synerise/ds-color-picker
-
-
-
-
 
 ## [1.2.18](https://github.com/Synerise/synerise-design/compare/@synerise/ds-color-picker@1.2.17...@synerise/ds-color-picker@1.2.18) (2025-08-28)
 
 **Note:** Version bump only for package @synerise/ds-color-picker
 
-
-
-
-
 ## [1.2.17](https://github.com/Synerise/synerise-design/compare/@synerise/ds-color-picker@1.2.16...@synerise/ds-color-picker@1.2.17) (2025-08-20)
 
 **Note:** Version bump only for package @synerise/ds-color-picker
-
-
-
-
 
 ## [1.2.16](https://github.com/Synerise/synerise-design/compare/@synerise/ds-color-picker@1.2.15...@synerise/ds-color-picker@1.2.16) (2025-08-14)
 
 **Note:** Version bump only for package @synerise/ds-color-picker
 
-
-
-
-
 ## [1.2.15](https://github.com/Synerise/synerise-design/compare/@synerise/ds-color-picker@1.2.14...@synerise/ds-color-picker@1.2.15) (2025-07-24)
 
 **Note:** Version bump only for package @synerise/ds-color-picker
-
-
-
-
 
 ## [1.2.14](https://github.com/Synerise/synerise-design/compare/@synerise/ds-color-picker@1.2.13...@synerise/ds-color-picker@1.2.14) (2025-07-24)
 
 **Note:** Version bump only for package @synerise/ds-color-picker
 
-
-
-
-
 ## [1.2.13](https://github.com/Synerise/synerise-design/compare/@synerise/ds-color-picker@1.2.12...@synerise/ds-color-picker@1.2.13) (2025-07-17)
 
 **Note:** Version bump only for package @synerise/ds-color-picker
-
-
-
-
 
 ## [1.2.12](https://github.com/Synerise/synerise-design/compare/@synerise/ds-color-picker@1.2.11...@synerise/ds-color-picker@1.2.12) (2025-07-15)
 
 **Note:** Version bump only for package @synerise/ds-color-picker
 
-
-
-
-
 ## [1.2.11](https://github.com/Synerise/synerise-design/compare/@synerise/ds-color-picker@1.2.10...@synerise/ds-color-picker@1.2.11) (2025-07-08)
 
 **Note:** Version bump only for package @synerise/ds-color-picker
-
-
-
-
 
 ## [1.2.10](https://github.com/Synerise/synerise-design/compare/@synerise/ds-color-picker@1.2.9...@synerise/ds-color-picker@1.2.10) (2025-07-01)
 
 **Note:** Version bump only for package @synerise/ds-color-picker
 
-
-
-
-
 ## [1.2.9](https://github.com/Synerise/synerise-design/compare/@synerise/ds-color-picker@1.2.8...@synerise/ds-color-picker@1.2.9) (2025-06-26)
 
 **Note:** Version bump only for package @synerise/ds-color-picker
 
-
-
-
-
 ## [1.2.8](https://github.com/Synerise/synerise-design/compare/@synerise/ds-color-picker@1.2.7...@synerise/ds-color-picker@1.2.8) (2025-06-24)
-
 
 ### Bug Fixes
 
-* **color-picker:** prevent triggering onchange handler ([bc663d0](https://github.com/Synerise/synerise-design/commit/bc663d03c15cbbbc78641329ed66b0c46491b0fb))
-
-
-
-
+- **color-picker:** prevent triggering onchange handler ([bc663d0](https://github.com/Synerise/synerise-design/commit/bc663d03c15cbbbc78641329ed66b0c46491b0fb))
 
 ## [1.2.7](https://github.com/Synerise/synerise-design/compare/@synerise/ds-color-picker@1.2.6...@synerise/ds-color-picker@1.2.7) (2025-06-12)
 

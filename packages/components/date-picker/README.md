@@ -29,7 +29,7 @@ import DatePicker from '@synerise/ds-date-picker'
 ## API
 
 | Property        | Description                                                   | Type                         | Default    |
-|-----------------|---------------------------------------------------------------|------------------------------|------------|
+| --------------- | ------------------------------------------------------------- | ---------------------------- | ---------- |
 | autoFocus       | Boolean value to force focus of an input                      | boolean                      | `false`    |
 | showTime        | Boolean value to enable user to choose particular hour        | boolean                      | `false`    |
 | value           | Value of the picker                                           | Date                         | new Date() |
@@ -51,7 +51,7 @@ import DatePicker from '@synerise/ds-date-picker'
 ### QuickPick
 
 | Property | Description      | Type      | Default |
-|----------|------------------|-----------|---------|
+| -------- | ---------------- | --------- | ------- |
 | label    | Text for button  | ReactNode | -       |
 | value    | value for button | Date      | -       |
 

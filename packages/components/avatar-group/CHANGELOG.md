@@ -34,265 +34,133 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 **Note:** Version bump only for package @synerise/ds-avatar-group
 
-
-
-
-
 ## [1.0.50](https://github.com/Synerise/synerise-design/compare/@synerise/ds-avatar-group@1.0.49...@synerise/ds-avatar-group@1.0.50) (2025-10-27)
 
 **Note:** Version bump only for package @synerise/ds-avatar-group
-
-
-
-
 
 ## [1.0.49](https://github.com/Synerise/synerise-design/compare/@synerise/ds-avatar-group@1.0.48...@synerise/ds-avatar-group@1.0.49) (2025-10-22)
 
 **Note:** Version bump only for package @synerise/ds-avatar-group
 
-
-
-
-
 ## [1.0.48](https://github.com/Synerise/synerise-design/compare/@synerise/ds-avatar-group@1.0.47...@synerise/ds-avatar-group@1.0.48) (2025-10-16)
 
 **Note:** Version bump only for package @synerise/ds-avatar-group
-
-
-
-
 
 ## [1.0.47](https://github.com/Synerise/synerise-design/compare/@synerise/ds-avatar-group@1.0.46...@synerise/ds-avatar-group@1.0.47) (2025-10-10)
 
 **Note:** Version bump only for package @synerise/ds-avatar-group
 
-
-
-
-
 ## [1.0.46](https://github.com/Synerise/synerise-design/compare/@synerise/ds-avatar-group@1.0.45...@synerise/ds-avatar-group@1.0.46) (2025-10-08)
 
 **Note:** Version bump only for package @synerise/ds-avatar-group
-
-
-
-
 
 ## [1.0.45](https://github.com/Synerise/synerise-design/compare/@synerise/ds-avatar-group@1.0.44...@synerise/ds-avatar-group@1.0.45) (2025-10-03)
 
 **Note:** Version bump only for package @synerise/ds-avatar-group
 
-
-
-
-
 ## [1.0.44](https://github.com/Synerise/synerise-design/compare/@synerise/ds-avatar-group@1.0.43...@synerise/ds-avatar-group@1.0.44) (2025-10-01)
 
 **Note:** Version bump only for package @synerise/ds-avatar-group
-
-
-
-
 
 ## [1.0.43](https://github.com/Synerise/synerise-design/compare/@synerise/ds-avatar-group@1.0.42...@synerise/ds-avatar-group@1.0.43) (2025-09-30)
 
 **Note:** Version bump only for package @synerise/ds-avatar-group
 
-
-
-
-
 ## [1.0.42](https://github.com/Synerise/synerise-design/compare/@synerise/ds-avatar-group@1.0.41...@synerise/ds-avatar-group@1.0.42) (2025-09-30)
 
 **Note:** Version bump only for package @synerise/ds-avatar-group
-
-
-
-
 
 ## [1.0.41](https://github.com/Synerise/synerise-design/compare/@synerise/ds-avatar-group@1.0.40...@synerise/ds-avatar-group@1.0.41) (2025-09-26)
 
 **Note:** Version bump only for package @synerise/ds-avatar-group
 
-
-
-
-
 ## [1.0.40](https://github.com/Synerise/synerise-design/compare/@synerise/ds-avatar-group@1.0.39...@synerise/ds-avatar-group@1.0.40) (2025-09-25)
 
 **Note:** Version bump only for package @synerise/ds-avatar-group
-
-
-
-
 
 ## [1.0.39](https://github.com/Synerise/synerise-design/compare/@synerise/ds-avatar-group@1.0.38...@synerise/ds-avatar-group@1.0.39) (2025-09-24)
 
 **Note:** Version bump only for package @synerise/ds-avatar-group
 
-
-
-
-
 ## [1.0.38](https://github.com/Synerise/synerise-design/compare/@synerise/ds-avatar-group@1.0.37...@synerise/ds-avatar-group@1.0.38) (2025-09-23)
 
 **Note:** Version bump only for package @synerise/ds-avatar-group
-
-
-
-
 
 ## [1.0.37](https://github.com/Synerise/synerise-design/compare/@synerise/ds-avatar-group@1.0.36...@synerise/ds-avatar-group@1.0.37) (2025-09-19)
 
 **Note:** Version bump only for package @synerise/ds-avatar-group
 
-
-
-
-
 ## [1.0.36](https://github.com/Synerise/synerise-design/compare/@synerise/ds-avatar-group@1.0.35...@synerise/ds-avatar-group@1.0.36) (2025-09-16)
 
 **Note:** Version bump only for package @synerise/ds-avatar-group
-
-
-
-
 
 ## [1.0.35](https://github.com/Synerise/synerise-design/compare/@synerise/ds-avatar-group@1.0.34...@synerise/ds-avatar-group@1.0.35) (2025-09-05)
 
 **Note:** Version bump only for package @synerise/ds-avatar-group
 
-
-
-
-
 ## [1.0.34](https://github.com/Synerise/synerise-design/compare/@synerise/ds-avatar-group@1.0.33...@synerise/ds-avatar-group@1.0.34) (2025-09-05)
 
 **Note:** Version bump only for package @synerise/ds-avatar-group
-
-
-
-
 
 ## [1.0.33](https://github.com/Synerise/synerise-design/compare/@synerise/ds-avatar-group@1.0.32...@synerise/ds-avatar-group@1.0.33) (2025-09-02)
 
 **Note:** Version bump only for package @synerise/ds-avatar-group
 
-
-
-
-
 ## [1.0.32](https://github.com/Synerise/synerise-design/compare/@synerise/ds-avatar-group@1.0.31...@synerise/ds-avatar-group@1.0.32) (2025-08-28)
 
 **Note:** Version bump only for package @synerise/ds-avatar-group
-
-
-
-
 
 ## [1.0.31](https://github.com/Synerise/synerise-design/compare/@synerise/ds-avatar-group@1.0.30...@synerise/ds-avatar-group@1.0.31) (2025-08-21)
 
 **Note:** Version bump only for package @synerise/ds-avatar-group
 
-
-
-
-
 ## [1.0.30](https://github.com/Synerise/synerise-design/compare/@synerise/ds-avatar-group@1.0.29...@synerise/ds-avatar-group@1.0.30) (2025-08-20)
 
 **Note:** Version bump only for package @synerise/ds-avatar-group
-
-
-
-
 
 ## [1.0.29](https://github.com/Synerise/synerise-design/compare/@synerise/ds-avatar-group@1.0.28...@synerise/ds-avatar-group@1.0.29) (2025-08-14)
 
 **Note:** Version bump only for package @synerise/ds-avatar-group
 
-
-
-
-
 ## [1.0.28](https://github.com/Synerise/synerise-design/compare/@synerise/ds-avatar-group@1.0.27...@synerise/ds-avatar-group@1.0.28) (2025-07-25)
 
 **Note:** Version bump only for package @synerise/ds-avatar-group
-
-
-
-
 
 ## [1.0.27](https://github.com/Synerise/synerise-design/compare/@synerise/ds-avatar-group@1.0.26...@synerise/ds-avatar-group@1.0.27) (2025-07-24)
 
 **Note:** Version bump only for package @synerise/ds-avatar-group
 
-
-
-
-
 ## [1.0.26](https://github.com/Synerise/synerise-design/compare/@synerise/ds-avatar-group@1.0.25...@synerise/ds-avatar-group@1.0.26) (2025-07-24)
 
 **Note:** Version bump only for package @synerise/ds-avatar-group
-
-
-
-
 
 ## [1.0.25](https://github.com/Synerise/synerise-design/compare/@synerise/ds-avatar-group@1.0.24...@synerise/ds-avatar-group@1.0.25) (2025-07-17)
 
 **Note:** Version bump only for package @synerise/ds-avatar-group
 
-
-
-
-
 ## [1.0.24](https://github.com/Synerise/synerise-design/compare/@synerise/ds-avatar-group@1.0.23...@synerise/ds-avatar-group@1.0.24) (2025-07-15)
 
 **Note:** Version bump only for package @synerise/ds-avatar-group
-
-
-
-
 
 ## [1.0.23](https://github.com/Synerise/synerise-design/compare/@synerise/ds-avatar-group@1.0.22...@synerise/ds-avatar-group@1.0.23) (2025-07-08)
 
 **Note:** Version bump only for package @synerise/ds-avatar-group
 
-
-
-
-
 ## [1.0.22](https://github.com/Synerise/synerise-design/compare/@synerise/ds-avatar-group@1.0.21...@synerise/ds-avatar-group@1.0.22) (2025-07-04)
 
 **Note:** Version bump only for package @synerise/ds-avatar-group
-
-
-
-
 
 ## [1.0.21](https://github.com/Synerise/synerise-design/compare/@synerise/ds-avatar-group@1.0.20...@synerise/ds-avatar-group@1.0.21) (2025-07-01)
 
 **Note:** Version bump only for package @synerise/ds-avatar-group
 
-
-
-
-
 ## [1.0.20](https://github.com/Synerise/synerise-design/compare/@synerise/ds-avatar-group@1.0.19...@synerise/ds-avatar-group@1.0.20) (2025-06-26)
 
 **Note:** Version bump only for package @synerise/ds-avatar-group
 
-
-
-
-
 ## [1.0.19](https://github.com/Synerise/synerise-design/compare/@synerise/ds-avatar-group@1.0.18...@synerise/ds-avatar-group@1.0.19) (2025-06-24)
 
 **Note:** Version bump only for package @synerise/ds-avatar-group
-
-
-
-
 
 ## [1.0.18](https://github.com/Synerise/synerise-design/compare/@synerise/ds-avatar-group@1.0.17...@synerise/ds-avatar-group@1.0.18) (2025-06-12)
 

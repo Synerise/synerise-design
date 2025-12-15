@@ -58,7 +58,8 @@
         ],
         "sharedGlobals": [
             "{workspaceRoot}/package.json",
-            "{workspaceRoot}/yarn.lock",
+            "{workspaceRoot}/pnpm-lock.yaml",
+            "{workspaceRoot}/pnpm-workspace.yaml",
             "{workspaceRoot}/babel.config.js",
             "{workspaceRoot}/.gitignore"
         ]

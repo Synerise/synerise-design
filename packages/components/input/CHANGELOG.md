@@ -27,159 +27,85 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 ## [1.4.2](https://github.com/synerise/synerise-design/compare/@synerise/ds-input@1.4.1...@synerise/ds-input@1.4.2) (2025-10-31)
 
-
 ### Bug Fixes
 
-* **input:** new test for password-input ([88b85ee](https://github.com/synerise/synerise-design/commit/88b85eee94746656ed48726ef731339261008e2e))
-
-
-
-
+- **input:** new test for password-input ([88b85ee](https://github.com/synerise/synerise-design/commit/88b85eee94746656ed48726ef731339261008e2e))
 
 ## [1.4.1](https://github.com/synerise/synerise-design/compare/@synerise/ds-input@1.4.0...@synerise/ds-input@1.4.1) (2025-10-22)
 
 **Note:** Version bump only for package @synerise/ds-input
 
-
-
-
-
 # [1.4.0](https://github.com/synerise/synerise-design/compare/@synerise/ds-input@1.3.13...@synerise/ds-input@1.4.0) (2025-10-10)
-
 
 ### Features
 
-* **input:** add PasswordInput ([a9e9466](https://github.com/synerise/synerise-design/commit/a9e9466491246857a24807b1ac3a72f442de50d5))
-
-
-
-
+- **input:** add PasswordInput ([a9e9466](https://github.com/synerise/synerise-design/commit/a9e9466491246857a24807b1ac3a72f442de50d5))
 
 ## [1.3.13](https://github.com/synerise/synerise-design/compare/@synerise/ds-input@1.3.12...@synerise/ds-input@1.3.13) (2025-10-03)
 
-
 ### Bug Fixes
 
-* **input:** fixes styles to input-group ([7f6932b](https://github.com/synerise/synerise-design/commit/7f6932b0ad5ac8c6384b3804b8614aeff795d6a8))
-
-
-
-
+- **input:** fixes styles to input-group ([7f6932b](https://github.com/synerise/synerise-design/commit/7f6932b0ad5ac8c6384b3804b8614aeff795d6a8))
 
 ## [1.3.12](https://github.com/synerise/synerise-design/compare/@synerise/ds-input@1.3.11...@synerise/ds-input@1.3.12) (2025-09-25)
 
 **Note:** Version bump only for package @synerise/ds-input
 
-
-
-
-
 ## [1.3.11](https://github.com/synerise/synerise-design/compare/@synerise/ds-input@1.3.10...@synerise/ds-input@1.3.11) (2025-09-23)
 
 **Note:** Version bump only for package @synerise/ds-input
-
-
-
-
 
 ## [1.3.10](https://github.com/synerise/synerise-design/compare/@synerise/ds-input@1.3.9...@synerise/ds-input@1.3.10) (2025-09-19)
 
 **Note:** Version bump only for package @synerise/ds-input
 
-
-
-
-
 ## [1.3.9](https://github.com/synerise/synerise-design/compare/@synerise/ds-input@1.3.8...@synerise/ds-input@1.3.9) (2025-09-16)
 
 **Note:** Version bump only for package @synerise/ds-input
-
-
-
-
 
 ## [1.3.8](https://github.com/synerise/synerise-design/compare/@synerise/ds-input@1.3.7...@synerise/ds-input@1.3.8) (2025-08-28)
 
 **Note:** Version bump only for package @synerise/ds-input
 
-
-
-
-
 ## [1.3.7](https://github.com/synerise/synerise-design/compare/@synerise/ds-input@1.3.6...@synerise/ds-input@1.3.7) (2025-08-14)
 
 **Note:** Version bump only for package @synerise/ds-input
-
-
-
-
 
 ## [1.3.6](https://github.com/synerise/synerise-design/compare/@synerise/ds-input@1.3.5...@synerise/ds-input@1.3.6) (2025-07-24)
 
 **Note:** Version bump only for package @synerise/ds-input
 
-
-
-
-
 ## [1.3.5](https://github.com/synerise/synerise-design/compare/@synerise/ds-input@1.3.4...@synerise/ds-input@1.3.5) (2025-07-17)
 
 **Note:** Version bump only for package @synerise/ds-input
-
-
-
-
 
 ## [1.3.4](https://github.com/synerise/synerise-design/compare/@synerise/ds-input@1.3.3...@synerise/ds-input@1.3.4) (2025-07-15)
 
 **Note:** Version bump only for package @synerise/ds-input
 
-
-
-
-
 ## [1.3.3](https://github.com/synerise/synerise-design/compare/@synerise/ds-input@1.3.2...@synerise/ds-input@1.3.3) (2025-07-08)
-
 
 ### Bug Fixes
 
-* **input:** remove value by index ([9cb8d26](https://github.com/synerise/synerise-design/commit/9cb8d26c0ac7666e58ebdf342dfe0f373d020cab))
-
-
-
-
+- **input:** remove value by index ([9cb8d26](https://github.com/synerise/synerise-design/commit/9cb8d26c0ac7666e58ebdf342dfe0f373d020cab))
 
 ## [1.3.2](https://github.com/synerise/synerise-design/compare/@synerise/ds-input@1.3.1...@synerise/ds-input@1.3.2) (2025-07-01)
 
 **Note:** Version bump only for package @synerise/ds-input
 
-
-
-
-
 ## [1.3.1](https://github.com/synerise/synerise-design/compare/@synerise/ds-input@1.3.0...@synerise/ds-input@1.3.1) (2025-06-26)
 
 **Note:** Version bump only for package @synerise/ds-input
 
-
-
-
-
 # [1.3.0](https://github.com/synerise/synerise-design/compare/@synerise/ds-input@1.2.1...@synerise/ds-input@1.3.0) (2025-06-24)
-
 
 ### Bug Fixes
 
-* **input:** textarea props - omit unused ([f34c307](https://github.com/synerise/synerise-design/commit/f34c307c3e5fcad48dd6174473d57e3d7fbb64fb))
-
+- **input:** textarea props - omit unused ([f34c307](https://github.com/synerise/synerise-design/commit/f34c307c3e5fcad48dd6174473d57e3d7fbb64fb))
 
 ### Features
 
-* **factors:** array factor type ([195d328](https://github.com/synerise/synerise-design/commit/195d3286e98b5f07fc9c1e56001e6ae844b7a080))
-
-
-
-
+- **factors:** array factor type ([195d328](https://github.com/synerise/synerise-design/commit/195d3286e98b5f07fc9c1e56001e6ae844b7a080))
 
 ## [1.2.1](https://github.com/synerise/synerise-design/compare/@synerise/ds-input@1.2.0...@synerise/ds-input@1.2.1) (2025-06-12)
 

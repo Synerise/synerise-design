@@ -16,6 +16,7 @@ export {
   type ItemSize,
   type ItemType,
   type ItemData,
+  type StyledListItem,
   type ListItemEventHandler,
 } from './ListItem.types';
 export * from './ListItem.const';

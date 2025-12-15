@@ -1,8 +1,8 @@
 import styled from 'styled-components';
 
-import Button from '@synerise/ds-button';
+import Button, { type StyledButton } from '@synerise/ds-button';
 
-export const ShowPreviewButton = styled(Button)``;
+export const ShowPreviewButton: StyledButton = styled(Button)``;
 
 export const Subject = styled.div`
   display: flex;

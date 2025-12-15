@@ -27,162 +27,83 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 **Note:** Version bump only for package @synerise/ds-search
 
-
-
-
-
 ## [1.3.8](https://github.com/Synerise/synerise-design/compare/@synerise/ds-search@1.3.7...@synerise/ds-search@1.3.8) (2025-10-16)
 
 **Note:** Version bump only for package @synerise/ds-search
-
-
-
-
 
 ## [1.3.7](https://github.com/Synerise/synerise-design/compare/@synerise/ds-search@1.3.6...@synerise/ds-search@1.3.7) (2025-10-10)
 
 **Note:** Version bump only for package @synerise/ds-search
 
-
-
-
-
 ## [1.3.6](https://github.com/Synerise/synerise-design/compare/@synerise/ds-search@1.3.5...@synerise/ds-search@1.3.6) (2025-10-08)
 
 **Note:** Version bump only for package @synerise/ds-search
-
-
-
-
 
 ## [1.3.5](https://github.com/Synerise/synerise-design/compare/@synerise/ds-search@1.3.4...@synerise/ds-search@1.3.5) (2025-09-30)
 
 **Note:** Version bump only for package @synerise/ds-search
 
-
-
-
-
 ## [1.3.4](https://github.com/Synerise/synerise-design/compare/@synerise/ds-search@1.3.3...@synerise/ds-search@1.3.4) (2025-09-30)
 
 **Note:** Version bump only for package @synerise/ds-search
-
-
-
-
 
 ## [1.3.3](https://github.com/Synerise/synerise-design/compare/@synerise/ds-search@1.3.2...@synerise/ds-search@1.3.3) (2025-09-25)
 
 **Note:** Version bump only for package @synerise/ds-search
 
-
-
-
-
 ## [1.3.2](https://github.com/Synerise/synerise-design/compare/@synerise/ds-search@1.3.1...@synerise/ds-search@1.3.2) (2025-09-19)
 
 **Note:** Version bump only for package @synerise/ds-search
-
-
-
-
 
 ## [1.3.1](https://github.com/Synerise/synerise-design/compare/@synerise/ds-search@1.3.0...@synerise/ds-search@1.3.1) (2025-09-16)
 
 **Note:** Version bump only for package @synerise/ds-search
 
-
-
-
-
 # [1.3.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-search@1.2.8...@synerise/ds-search@1.3.0) (2025-08-28)
-
 
 ### Features
 
-* **search:** allow custom dropdown width ([0555d9d](https://github.com/Synerise/synerise-design/commit/0555d9d39abc49868a490e5b559184c720e4d8d3))
-
-
-
-
+- **search:** allow custom dropdown width ([0555d9d](https://github.com/Synerise/synerise-design/commit/0555d9d39abc49868a490e5b559184c720e4d8d3))
 
 ## [1.2.8](https://github.com/Synerise/synerise-design/compare/@synerise/ds-search@1.2.7...@synerise/ds-search@1.2.8) (2025-08-20)
 
 **Note:** Version bump only for package @synerise/ds-search
 
-
-
-
-
 ## [1.2.7](https://github.com/Synerise/synerise-design/compare/@synerise/ds-search@1.2.6...@synerise/ds-search@1.2.7) (2025-08-14)
 
 **Note:** Version bump only for package @synerise/ds-search
-
-
-
-
 
 ## [1.2.6](https://github.com/Synerise/synerise-design/compare/@synerise/ds-search@1.2.5...@synerise/ds-search@1.2.6) (2025-07-24)
 
 **Note:** Version bump only for package @synerise/ds-search
 
-
-
-
-
 ## [1.2.5](https://github.com/Synerise/synerise-design/compare/@synerise/ds-search@1.2.4...@synerise/ds-search@1.2.5) (2025-07-17)
 
 **Note:** Version bump only for package @synerise/ds-search
-
-
-
-
 
 ## [1.2.4](https://github.com/Synerise/synerise-design/compare/@synerise/ds-search@1.2.3...@synerise/ds-search@1.2.4) (2025-07-15)
 
 **Note:** Version bump only for package @synerise/ds-search
 
-
-
-
-
 ## [1.2.3](https://github.com/Synerise/synerise-design/compare/@synerise/ds-search@1.2.2...@synerise/ds-search@1.2.3) (2025-07-08)
 
 **Note:** Version bump only for package @synerise/ds-search
 
-
-
-
-
 ## [1.2.2](https://github.com/Synerise/synerise-design/compare/@synerise/ds-search@1.2.1...@synerise/ds-search@1.2.2) (2025-07-01)
-
 
 ### Bug Fixes
 
-* **search:** fix list virtualisation ([29ce3e2](https://github.com/Synerise/synerise-design/commit/29ce3e21adf61ece235d4eca87251df77ceaf6bb))
-
-
-
-
+- **search:** fix list virtualisation ([29ce3e2](https://github.com/Synerise/synerise-design/commit/29ce3e21adf61ece235d4eca87251df77ceaf6bb))
 
 ## [1.2.1](https://github.com/Synerise/synerise-design/compare/@synerise/ds-search@1.2.0...@synerise/ds-search@1.2.1) (2025-06-26)
 
 **Note:** Version bump only for package @synerise/ds-search
 
-
-
-
-
 # [1.2.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-search@1.1.8...@synerise/ds-search@1.2.0) (2025-06-24)
-
 
 ### Features
 
-* **factors:** array factor type ([195d328](https://github.com/Synerise/synerise-design/commit/195d3286e98b5f07fc9c1e56001e6ae844b7a080))
-
-
-
-
+- **factors:** array factor type ([195d328](https://github.com/Synerise/synerise-design/commit/195d3286e98b5f07fc9c1e56001e6ae844b7a080))
 
 ## [1.1.8](https://github.com/Synerise/synerise-design/compare/@synerise/ds-search@1.1.7...@synerise/ds-search@1.1.8) (2025-06-05)
 

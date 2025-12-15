@@ -14,6 +14,20 @@ type NestedFoldersProps<SectionType extends BaseSectionType | undefined> = {
     : undefined;
 };
 
+// Concrete return types (use BaseSectionType to keep the return shape assignable)
+type FolderWithTitles = BaseSectionTypeWithFolders<BaseSectionType> & {
+  titles?: ReactNode[];
+};
+
+export type UseFlattenFoldersResult = {
+  allFolders?: FolderWithTitles[] | undefined;
+  childFolders?: FolderWithTitles[] | undefined;
+  parentFolder?: BaseSectionTypeWithFolders<BaseSectionType> | undefined;
+  currentFolders?: FolderWithTitles[] | undefined;
+  currentSectionHasFolders: boolean;
+  currentPath?: ReactNode[] | undefined;
+};
+
 const mapParent = <SectionType extends BaseSectionType>(
   item: BaseSectionTypeWithFolders<SectionType>,
   parent?: BaseSectionTypeWithFolders<SectionType>,
@@ -43,7 +57,7 @@ export const useFlattenFolders = <
 >({
   currentSection,
   sections,
-}: NestedFoldersProps<SectionType>) => {
+}: NestedFoldersProps<SectionType>): UseFlattenFoldersResult => {
   const folderParentMap = useMemo(() => {
     return sections?.flatMap((section) =>
       section.folders ? section.folders.flatMap((f) => mapParent(f)) : [],

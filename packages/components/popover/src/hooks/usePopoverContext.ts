@@ -1,8 +1,8 @@
 import { useContext } from 'react';
 
-import { PopoverContext } from '../contexts';
+import { type ContextType, PopoverContext } from '../contexts';
 
-export const usePopoverContext = () => {
+export const usePopoverContext = (): Exclude<ContextType, null> => {
   const context = useContext(PopoverContext);
 
   if (context === null) {

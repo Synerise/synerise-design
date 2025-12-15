@@ -22,7 +22,7 @@ Based on [Ant Design Checkbox](https://ant.design/components/checkbox/)
 | hasError       | Determines if checkbox is in error state                              | boolean         | `false` |
 | indeterminate  | Indeterminate checked state of checkbox                               | boolean         | `false` |
 | onChange       | The callback function that is triggered when the state changes.       | (e:Event)=>void | -       |
-| withoutPadding | Reset padding of CheckboxWrapper                                      | boolean         |`false`  |
+| withoutPadding | Reset padding of CheckboxWrapper                                      | boolean         | `false` |
 | tristate       | Tristate mode                                                         | true            | -       |
 
 ## Checkbox Group

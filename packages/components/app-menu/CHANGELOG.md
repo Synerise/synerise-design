@@ -23,100 +23,51 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 **Note:** Version bump only for package @synerise/ds-app-menu
 
-
-
-
-
 ## [1.0.21](https://github.com/Synerise/synerise-design/compare/@synerise/ds-app-menu@1.0.20...@synerise/ds-app-menu@1.0.21) (2025-09-19)
 
 **Note:** Version bump only for package @synerise/ds-app-menu
-
-
-
-
 
 ## [1.0.20](https://github.com/Synerise/synerise-design/compare/@synerise/ds-app-menu@1.0.19...@synerise/ds-app-menu@1.0.20) (2025-09-16)
 
 **Note:** Version bump only for package @synerise/ds-app-menu
 
-
-
-
-
 ## [1.0.19](https://github.com/Synerise/synerise-design/compare/@synerise/ds-app-menu@1.0.18...@synerise/ds-app-menu@1.0.19) (2025-08-28)
 
 **Note:** Version bump only for package @synerise/ds-app-menu
-
-
-
-
 
 ## [1.0.18](https://github.com/Synerise/synerise-design/compare/@synerise/ds-app-menu@1.0.17...@synerise/ds-app-menu@1.0.18) (2025-08-14)
 
 **Note:** Version bump only for package @synerise/ds-app-menu
 
-
-
-
-
 ## [1.0.17](https://github.com/Synerise/synerise-design/compare/@synerise/ds-app-menu@1.0.16...@synerise/ds-app-menu@1.0.17) (2025-07-24)
 
 **Note:** Version bump only for package @synerise/ds-app-menu
-
-
-
-
 
 ## [1.0.16](https://github.com/Synerise/synerise-design/compare/@synerise/ds-app-menu@1.0.15...@synerise/ds-app-menu@1.0.16) (2025-07-17)
 
 **Note:** Version bump only for package @synerise/ds-app-menu
 
-
-
-
-
 ## [1.0.15](https://github.com/Synerise/synerise-design/compare/@synerise/ds-app-menu@1.0.14...@synerise/ds-app-menu@1.0.15) (2025-07-15)
 
 **Note:** Version bump only for package @synerise/ds-app-menu
-
-
-
-
 
 ## [1.0.14](https://github.com/Synerise/synerise-design/compare/@synerise/ds-app-menu@1.0.13...@synerise/ds-app-menu@1.0.14) (2025-07-08)
 
 **Note:** Version bump only for package @synerise/ds-app-menu
 
-
-
-
-
 ## [1.0.13](https://github.com/Synerise/synerise-design/compare/@synerise/ds-app-menu@1.0.12...@synerise/ds-app-menu@1.0.13) (2025-07-01)
-
 
 ### Bug Fixes
 
-* **app-menu:** fallback color for svg ([fcf4b76](https://github.com/Synerise/synerise-design/commit/fcf4b767d40f09da6bc4ae1630f93c949c468d05))
-
-
-
-
+- **app-menu:** fallback color for svg ([fcf4b76](https://github.com/Synerise/synerise-design/commit/fcf4b767d40f09da6bc4ae1630f93c949c468d05))
 
 ## [1.0.12](https://github.com/Synerise/synerise-design/compare/@synerise/ds-app-menu@1.0.11...@synerise/ds-app-menu@1.0.12) (2025-06-26)
 
 **Note:** Version bump only for package @synerise/ds-app-menu
 
-
-
-
-
 ## [1.0.11](https://github.com/Synerise/synerise-design/compare/@synerise/ds-app-menu@1.0.10...@synerise/ds-app-menu@1.0.11) (2025-06-24)
 
 **Note:** Version bump only for package @synerise/ds-app-menu
-
-
-
-
 
 ## [1.0.10](https://github.com/Synerise/synerise-design/compare/@synerise/ds-app-menu@1.0.9...@synerise/ds-app-menu@1.0.10) (2025-06-05)
 
