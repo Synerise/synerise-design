@@ -63,6 +63,7 @@ const Text = forwardRef<HTMLDivElement, BasicItemProps & NestedItemProps>(
       hoverTooltipProps,
       renderHoverTooltip,
       subMenu,
+      featured,
       ItemComponent,
 
       ...rest
@@ -220,6 +221,7 @@ const Text = forwardRef<HTMLDivElement, BasicItemProps & NestedItemProps>(
         noHover={noHover}
         hasHighlight={!!highlight}
         size={size}
+        featured={featured}
         style={renderHoverTooltip ? undefined : style}
         inTooltip={!!renderHoverTooltip}
         ref={mergedRef}

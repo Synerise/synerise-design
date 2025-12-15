@@ -171,7 +171,7 @@ const Rename = ({ onSelectEdit }) => {
   );
 };
 
-const StarWithTooltip = () => {
+export const StarWithTooltip = () => {
   const [checked, setChecked] = useState(false);
   const iconComponent = checked ? <StarFillM /> : <StarM />;
   const iconColor = checked

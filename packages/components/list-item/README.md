@@ -59,6 +59,8 @@ import ListItem from '@synerise/ds-list-item'
 | title                   | title attribute (a11y prop)                                                                       | `string`                                                           | -         |
 | tooltipProps            | Tooltip props for "copied" tooltip. See @synerise/ds-tooltip                                      | `TooltipProps`                                                     | -         |
 | type                    | Type of the list item                                                                             | `"default"` &#124; `"danger"` &#124; `"divider"` &#124; `"select"` | -         |
+| featured                | featured item will have a blue label and blue prefixel / suffixel icons                           | `boolean`                                                          | -         |
+
 
 ### AddonRenderer
 

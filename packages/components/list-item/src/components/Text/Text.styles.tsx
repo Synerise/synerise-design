@@ -32,6 +32,7 @@ type StyledListItemProps = {
   noHover?: boolean;
   inTooltip?: boolean;
   size?: ItemSize;
+  featured?: boolean;
 };
 
 export const SuffixWrapper = styled.div<{
@@ -127,6 +128,13 @@ const orderedStyle = css`
     content: none;
   }
 `;
+export const Content = styled.div`
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  min-width: 0;
+  order: 2;
+`;
 
 export const Wrapper = styled.div<StyledListItemProps>`
   display: flex;
@@ -135,6 +143,74 @@ export const Wrapper = styled.div<StyledListItemProps>`
     props.inTooltip &&
     css`
       height: 100%;
+    `}
+
+  ${({ featured, disabled, selected, theme }) =>
+    featured &&
+    css`
+      && {
+        ${PrefixWrapper} > .ds-icon > svg,
+      ${PrefixWrapper} ${IconContainer} > svg,
+      ${SuffixWrapper} > .ds-icon > svg,
+      ${SuffixWrapper} ${IconContainer} > svg,
+      ${ArrowRight} svg,
+      ${Content} {
+          fill: ${theme.palette['blue-600']};
+          color: ${theme.palette['blue-600']};
+        }
+      }
+
+      &:hover,
+      &:active,
+      &:focus-visible:not(:active) {
+        && {
+          ${PrefixWrapper} > .ds-icon > svg,
+        ${PrefixWrapper} ${IconContainer} > svg,
+        ${SuffixWrapper} > .ds-icon > svg,
+        ${SuffixWrapper} ${IconContainer} > svg,
+        ${ArrowRight} svg,
+        ${Content} {
+            fill: ${theme.palette['blue-700']};
+            color: ${theme.palette['blue-700']};
+          }
+
+          &:focus-visible:not(:active) ${Inner} {
+            box-shadow: inset 0 0 0 2px ${theme.palette['blue-700']};
+          }
+        }
+      }
+
+      ${disabled &&
+      css`
+        &:hover {
+          && {
+            ${PrefixWrapper} > .ds-icon > svg,
+          ${PrefixWrapper} ${IconContainer} > svg,
+          ${SuffixWrapper} > .ds-icon > svg,
+          ${SuffixWrapper} ${IconContainer} > svg,
+          ${Content} {
+              fill: ${theme.palette['blue-600']};
+              color: ${theme.palette['blue-600']};
+            }
+          }
+        }
+      `}
+
+      ${selected &&
+      css`
+        &:hover {
+          && {
+            ${PrefixWrapper} > .ds-icon > svg,
+          ${PrefixWrapper} ${IconContainer} > svg,
+          ${SuffixWrapper} > .ds-icon > svg,
+          ${SuffixWrapper} ${IconContainer} > svg,
+          ${Content} {
+              fill: ${theme.palette['blue-700']};
+              color: ${theme.palette['blue-700']};
+            }
+          }
+        }
+      `}
     `}
   ${(props) =>
     props.disabled
@@ -246,13 +322,6 @@ export const Wrapper = styled.div<StyledListItemProps>`
   }
 `;
 
-export const Content = styled.div<{ highlight: boolean }>`
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  min-width: 0;
-  order: 2;
-`;
 export const Divider = styled.div`
   flex-grow: 1;
 `;

@@ -50,6 +50,7 @@ type ItemLabelProps = WithHTMLAttributes<
     description?: ReactNode;
     content?: ReactNode;
     indentLevel?: number;
+    featured?: boolean;
   }
 >;
 
@@ -81,7 +82,7 @@ export const ItemLabel = forwardRef<HTMLDivElement, ItemLabelProps>(
       description,
       size,
       indentLevel,
-
+      featured,
       ...rest
     },
     ref,
@@ -111,6 +112,7 @@ export const ItemLabel = forwardRef<HTMLDivElement, ItemLabelProps>(
         inTooltip={inTooltip}
         ref={ref}
         indentLevel={indentLevel}
+        featured={featured}
         {...rest}
       >
         <S.Inner>
@@ -123,7 +125,7 @@ export const ItemLabel = forwardRef<HTMLDivElement, ItemLabelProps>(
               {prefixElement}
             </S.PrefixWrapper>
           )}
-          <S.Content className="ds-list-item-content" highlight={hasHighlight}>
+          <S.Content className="ds-list-item-content">
             {content}
             {description && size === 'large' && (
               <S.Description>{description}</S.Description>
