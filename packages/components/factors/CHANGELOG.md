@@ -3,46 +3,31 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-# [1.7.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-factors@1.6.2...@synerise/ds-factors@1.7.0) (2025-12-15)
+## [1.7.1](https://github.com/Synerise/synerise-design/compare/@synerise/ds-factors@1.7.0...@synerise/ds-factors@1.7.1) (2025-12-15)
 
+**Note:** Version bump only for package @synerise/ds-factors
+
+# [1.7.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-factors@1.6.2...@synerise/ds-factors@1.7.0) (2025-12-15)
 
 ### Features
 
-* **factors:** trim string values on apply ([846a871](https://github.com/Synerise/synerise-design/commit/846a871f8b458770fbf677bfc7013ef33ab86b4c))
-
-
-
-
+- **factors:** trim string values on apply ([846a871](https://github.com/Synerise/synerise-design/commit/846a871f8b458770fbf677bfc7013ef33ab86b4c))
 
 ## [1.6.2](https://github.com/Synerise/synerise-design/compare/@synerise/ds-factors@1.6.1...@synerise/ds-factors@1.6.2) (2025-11-28)
 
 **Note:** Version bump only for package @synerise/ds-factors
 
-
-
-
-
 ## [1.6.1](https://github.com/Synerise/synerise-design/compare/@synerise/ds-factors@1.6.0...@synerise/ds-factors@1.6.1) (2025-11-13)
-
 
 ### Bug Fixes
 
-* **date-picker:** dropdown state ([e16e4ce](https://github.com/Synerise/synerise-design/commit/e16e4ce8374c374512d0dc59a2361000ab89c8b9))
-
-
-
-
+- **date-picker:** dropdown state ([e16e4ce](https://github.com/Synerise/synerise-design/commit/e16e4ce8374c374512d0dc59a2361000ab89c8b9))
 
 # [1.6.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-factors@1.5.21...@synerise/ds-factors@1.6.0) (2025-11-06)
 
-
 ### Features
 
-* **dropdown:** dropdownMenu component ([f0ec827](https://github.com/Synerise/synerise-design/commit/f0ec82792cdcb021fa9a454912f6e7a892e53895))
-
-
-
-
+- **dropdown:** dropdownMenu component ([f0ec827](https://github.com/Synerise/synerise-design/commit/f0ec82792cdcb021fa9a454912f6e7a892e53895))
 
 ## [1.5.21](https://github.com/Synerise/synerise-design/compare/@synerise/ds-factors@1.5.20...@synerise/ds-factors@1.5.21) (2025-10-31)
 

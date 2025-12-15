@@ -3,27 +3,21 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-## [1.5.1](https://github.com/synerise/synerise-design/compare/@synerise/ds-input@1.5.0...@synerise/ds-input@1.5.1) (2025-11-28)
+## [1.5.2](https://github.com/synerise/synerise-design/compare/@synerise/ds-input@1.5.1...@synerise/ds-input@1.5.2) (2025-12-15)
 
+**Note:** Version bump only for package @synerise/ds-input
+
+## [1.5.1](https://github.com/synerise/synerise-design/compare/@synerise/ds-input@1.5.0...@synerise/ds-input@1.5.1) (2025-11-28)
 
 ### Bug Fixes
 
-* package.json - missing deps ([77c6563](https://github.com/synerise/synerise-design/commit/77c6563cded8c1f4aae754b91cfdd6f2ce5539c5))
-
-
-
-
+- package.json - missing deps ([77c6563](https://github.com/synerise/synerise-design/commit/77c6563cded8c1f4aae754b91cfdd6f2ce5539c5))
 
 # [1.5.0](https://github.com/synerise/synerise-design/compare/@synerise/ds-input@1.4.2...@synerise/ds-input@1.5.0) (2025-11-06)
 
-
 ### Features
 
-* **dropdown:** dropdownMenu component ([f0ec827](https://github.com/synerise/synerise-design/commit/f0ec82792cdcb021fa9a454912f6e7a892e53895))
-
-
-
-
+- **dropdown:** dropdownMenu component ([f0ec827](https://github.com/synerise/synerise-design/commit/f0ec82792cdcb021fa9a454912f6e7a892e53895))
 
 ## [1.4.2](https://github.com/synerise/synerise-design/compare/@synerise/ds-input@1.4.1...@synerise/ds-input@1.4.2) (2025-10-31)
 

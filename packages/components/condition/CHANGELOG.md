@@ -3,40 +3,27 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-## [1.5.3](https://github.com/Synerise/synerise-design/compare/@synerise/ds-condition@1.5.2...@synerise/ds-condition@1.5.3) (2025-12-15)
+## [1.5.4](https://github.com/Synerise/synerise-design/compare/@synerise/ds-condition@1.5.3...@synerise/ds-condition@1.5.4) (2025-12-15)
 
 **Note:** Version bump only for package @synerise/ds-condition
 
+## [1.5.3](https://github.com/Synerise/synerise-design/compare/@synerise/ds-condition@1.5.2...@synerise/ds-condition@1.5.3) (2025-12-15)
 
-
-
+**Note:** Version bump only for package @synerise/ds-condition
 
 ## [1.5.2](https://github.com/Synerise/synerise-design/compare/@synerise/ds-condition@1.5.1...@synerise/ds-condition@1.5.2) (2025-11-28)
 
 **Note:** Version bump only for package @synerise/ds-condition
 
-
-
-
-
 ## [1.5.1](https://github.com/Synerise/synerise-design/compare/@synerise/ds-condition@1.5.0...@synerise/ds-condition@1.5.1) (2025-11-13)
 
 **Note:** Version bump only for package @synerise/ds-condition
 
-
-
-
-
 # [1.5.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-condition@1.4.27...@synerise/ds-condition@1.5.0) (2025-11-06)
-
 
 ### Features
 
-* **dropdown:** dropdownMenu component ([f0ec827](https://github.com/Synerise/synerise-design/commit/f0ec82792cdcb021fa9a454912f6e7a892e53895))
-
-
-
-
+- **dropdown:** dropdownMenu component ([f0ec827](https://github.com/Synerise/synerise-design/commit/f0ec82792cdcb021fa9a454912f6e7a892e53895))
 
 ## [1.4.27](https://github.com/Synerise/synerise-design/compare/@synerise/ds-condition@1.4.26...@synerise/ds-condition@1.4.27) (2025-10-31)
 

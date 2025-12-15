@@ -3,32 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-# [1.1.0](https://github.com/synerise/synerise-design/compare/@synerise/ds-layout@1.0.23...@synerise/ds-layout@1.1.0) (2025-12-01)
+## [1.1.1](https://github.com/synerise/synerise-design/compare/@synerise/ds-layout@1.1.0...@synerise/ds-layout@1.1.1) (2025-12-15)
 
+**Note:** Version bump only for package @synerise/ds-layout
+
+# [1.1.0](https://github.com/synerise/synerise-design/compare/@synerise/ds-layout@1.0.23...@synerise/ds-layout@1.1.0) (2025-12-01)
 
 ### Features
 
-* **layout:** layout sidebars without scroll ([15e7c32](https://github.com/synerise/synerise-design/commit/15e7c32d871a65729d89ed0f6f5ab031d0bb90a3))
-
-
-
-
+- **layout:** layout sidebars without scroll ([15e7c32](https://github.com/synerise/synerise-design/commit/15e7c32d871a65729d89ed0f6f5ab031d0bb90a3))
 
 ## [1.0.23](https://github.com/synerise/synerise-design/compare/@synerise/ds-layout@1.0.22...@synerise/ds-layout@1.0.23) (2025-11-28)
 
 **Note:** Version bump only for package @synerise/ds-layout
 
-
-
-
-
 ## [1.0.22](https://github.com/synerise/synerise-design/compare/@synerise/ds-layout@1.0.21...@synerise/ds-layout@1.0.22) (2025-11-06)
 
 **Note:** Version bump only for package @synerise/ds-layout
-
-
-
-
 
 ## [1.0.21](https://github.com/synerise/synerise-design/compare/@synerise/ds-layout@1.0.20...@synerise/ds-layout@1.0.21) (2025-10-31)
 

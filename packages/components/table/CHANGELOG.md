@@ -3,37 +3,27 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-## [1.7.2](https://github.com/synerise/synerise-design/compare/@synerise/ds-table@1.7.1...@synerise/ds-table@1.7.2) (2025-11-28)
+## [1.7.3](https://github.com/synerise/synerise-design/compare/@synerise/ds-table@1.7.2...@synerise/ds-table@1.7.3) (2025-12-15)
 
 **Note:** Version bump only for package @synerise/ds-table
 
+## [1.7.2](https://github.com/synerise/synerise-design/compare/@synerise/ds-table@1.7.1...@synerise/ds-table@1.7.2) (2025-11-28)
 
-
-
+**Note:** Version bump only for package @synerise/ds-table
 
 ## [1.7.1](https://github.com/synerise/synerise-design/compare/@synerise/ds-table@1.7.0...@synerise/ds-table@1.7.1) (2025-11-13)
 
 **Note:** Version bump only for package @synerise/ds-table
 
-
-
-
-
 # [1.7.0](https://github.com/synerise/synerise-design/compare/@synerise/ds-table@1.6.11...@synerise/ds-table@1.7.0) (2025-11-06)
-
 
 ### Bug Fixes
 
-* **table:** fix test ([88a3fb4](https://github.com/synerise/synerise-design/commit/88a3fb42a43fce996410ab34efab1cdb735b852a))
-
+- **table:** fix test ([88a3fb4](https://github.com/synerise/synerise-design/commit/88a3fb42a43fce996410ab34efab1cdb735b852a))
 
 ### Features
 
-* **dropdown:** dropdownMenu component ([f0ec827](https://github.com/synerise/synerise-design/commit/f0ec82792cdcb021fa9a454912f6e7a892e53895))
-
-
-
-
+- **dropdown:** dropdownMenu component ([f0ec827](https://github.com/synerise/synerise-design/commit/f0ec82792cdcb021fa9a454912f6e7a892e53895))
 
 ## [1.6.11](https://github.com/synerise/synerise-design/compare/@synerise/ds-table@1.6.10...@synerise/ds-table@1.6.11) (2025-10-31)
 

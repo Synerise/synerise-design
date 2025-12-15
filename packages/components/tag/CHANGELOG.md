@@ -3,24 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.4.2](https://github.com/Synerise/synerise-design/compare/@synerise/ds-tag@1.4.1...@synerise/ds-tag@1.4.2) (2025-12-15)
+
+**Note:** Version bump only for package @synerise/ds-tag
+
 ## [1.4.1](https://github.com/Synerise/synerise-design/compare/@synerise/ds-tag@1.4.0...@synerise/ds-tag@1.4.1) (2025-11-28)
 
 **Note:** Version bump only for package @synerise/ds-tag
 
-
-
-
-
 # [1.4.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-tag@1.3.3...@synerise/ds-tag@1.4.0) (2025-11-06)
-
 
 ### Features
 
-* **dropdown:** dropdownMenu component ([f0ec827](https://github.com/Synerise/synerise-design/commit/f0ec82792cdcb021fa9a454912f6e7a892e53895))
-
-
-
-
+- **dropdown:** dropdownMenu component ([f0ec827](https://github.com/Synerise/synerise-design/commit/f0ec82792cdcb021fa9a454912f6e7a892e53895))
 
 ## [1.3.3](https://github.com/Synerise/synerise-design/compare/@synerise/ds-tag@1.3.2...@synerise/ds-tag@1.3.3) (2025-10-16)
 

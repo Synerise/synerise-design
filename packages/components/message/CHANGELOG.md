@@ -3,6 +3,10 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.0.5](https://github.com/Synerise/synerise-design/compare/@synerise/ds-message@1.0.4...@synerise/ds-message@1.0.5) (2025-12-15)
+
+**Note:** Version bump only for package @synerise/ds-message
+
 ## [1.0.4](https://github.com/Synerise/synerise-design/compare/@synerise/ds-message@1.0.3...@synerise/ds-message@1.0.4) (2025-09-16)
 
 **Note:** Version bump only for package @synerise/ds-message
