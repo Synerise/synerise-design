@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.7.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-factors@1.6.2...@synerise/ds-factors@1.7.0) (2025-12-15)
+
+
+### Features
+
+* **factors:** trim string values on apply ([846a871](https://github.com/Synerise/synerise-design/commit/846a871f8b458770fbf677bfc7013ef33ab86b4c))
+
+
+
+
+
 ## [1.6.2](https://github.com/Synerise/synerise-design/compare/@synerise/ds-factors@1.6.1...@synerise/ds-factors@1.6.2) (2025-11-28)
 
 **Note:** Version bump only for package @synerise/ds-factors
