@@ -9,7 +9,6 @@ variables:
   APP_NAME_OVERRIDE: ds-docs
   NPM_REGISTRY: https://nexus.snrinternal.com/repository/npm-release/
 
-
 .install_pnpm: &install_pnpm
   - npm install -g pnpm@latest-10
   - pnpm config set store-dir .pnpm-store
