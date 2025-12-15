@@ -6,4 +6,5 @@ export type {
   FormFieldLabelProps,
   ContentAboveProps,
   ContentBelowProps,
+  BaseLabelProps,
 } from './FormField.types';

@@ -72,6 +72,7 @@
     "@synerise/ds-editable-items-list": "workspace:^",
     "@synerise/ds-emoji-picker": "workspace:^",
     "@synerise/ds-empty-states": "workspace:^",
+    "@synerise/ds-estimation": "workspace:^",
     "@synerise/ds-factors": "workspace:^",
     "@synerise/ds-field-set": "workspace:^",
     "@synerise/ds-file-uploader": "workspace:^",

@@ -30,6 +30,17 @@ export default {
 type Story = StoryObj<typeof ProgressBar>;
 
 export const Default: Story = {
+  parameters: {
+    docs: {
+      source: {
+        code: `<ProgressBar
+  percent={21}
+  width="300px"
+  inline={false}
+/>`,
+      },
+    },
+  },
   args: {
     percent: 21,
     width: '300px',
@@ -39,6 +50,19 @@ export const Default: Story = {
 
 export const withLabelAndDescription: Story = {
   ...Default,
+  parameters: {
+    docs: {
+      source: {
+        code: `<ProgressBar
+  percent={21}
+  width="300px"
+  inline={false}
+  description="Description"
+  label="ProgressBar Label"
+/>`,
+      },
+    },
+  },
   args: {
     ...Default.args,
     description: 'Description',
@@ -48,6 +72,19 @@ export const withLabelAndDescription: Story = {
 
 export const InlineCustomLabel: Story = {
   ...Default,
+  parameters: {
+    docs: {
+      source: {
+        code: `<ProgressBar
+  percent={(4 / 6) * 100}
+  width="300px"
+  inline={true}
+  description="Description"
+  label="4/6"
+/>`,
+      },
+    },
+  },
   args: {
     ...Default.args,
     inline: true,
@@ -59,6 +96,18 @@ export const InlineCustomLabel: Story = {
 
 export const withSteps: Story = {
   ...Default,
+  parameters: {
+    docs: {
+      source: {
+        code: `<ProgressBar
+  percent={21}
+  width="300px"
+  inline={false}
+  steps={6}
+/>`,
+      },
+    },
+  },
   args: {
     ...Default.args,
     steps: 6,
@@ -66,6 +115,18 @@ export const withSteps: Story = {
 };
 export const thinProgressBar: Story = {
   ...Default,
+  parameters: {
+    docs: {
+      source: {
+        code: `<ProgressBar
+  percent={21}
+  width="300px"
+  inline={false}
+  thin={true}
+/>`,
+      },
+    },
+  },
   args: {
     ...Default.args,
     thin: true,

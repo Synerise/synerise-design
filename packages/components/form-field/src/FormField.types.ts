@@ -7,7 +7,7 @@ export type ContentAboveProps = BaseLabelProps & {
   rightSide?: ReactNode;
 };
 
-type BaseLabelProps = {
+export type BaseLabelProps = {
   label?: ReactNode;
   tooltip?: ReactNode;
   tooltipConfig?: TooltipProps;

@@ -1660,6 +1660,9 @@ importers:
       '@synerise/ds-empty-states':
         specifier: workspace:^
         version: link:../empty-states
+      '@synerise/ds-estimation':
+        specifier: workspace:^
+        version: link:../estimation
       '@synerise/ds-factors':
         specifier: workspace:^
         version: link:../factors
@@ -2053,6 +2056,42 @@ importers:
       react:
         specifier: ^18
         version: 18.3.1
+      styled-components:
+        specifier: ^5.3.3
+        version: 5.3.11(@babel/core@7.28.5)(react-dom@18.3.1(react@18.3.1))(react-is@18.3.1)(react@18.3.1)
+
+  packages/components/estimation:
+    dependencies:
+      '@synerise/ds-core':
+        specifier: '*'
+        version: link:../core
+      '@synerise/ds-divider':
+        specifier: workspace:^
+        version: link:../divider
+      '@synerise/ds-form-field':
+        specifier: workspace:^
+        version: link:../form-field
+      '@synerise/ds-inline-alert':
+        specifier: workspace:^
+        version: link:../inline-alert
+      '@synerise/ds-progress-bar':
+        specifier: workspace:^
+        version: link:../progress-bar
+      '@synerise/ds-skeleton':
+        specifier: workspace:^
+        version: link:../skeleton
+      '@synerise/ds-typography':
+        specifier: workspace:^
+        version: link:../typography
+      '@synerise/ds-utils':
+        specifier: workspace:^
+        version: link:../utils
+      react:
+        specifier: ^18
+        version: 18.3.1
+      react-intl:
+        specifier: '>=3.12.0 <= 6.8'
+        version: 6.8.9(react@18.3.1)(typescript@5.9.3)
       styled-components:
         specifier: ^5.3.3
         version: 5.3.11(@babel/core@7.28.5)(react-dom@18.3.1(react@18.3.1))(react-is@18.3.1)(react@18.3.1)
