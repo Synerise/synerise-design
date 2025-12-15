@@ -13,7 +13,7 @@ variables:
 .install_pnpm: &install_pnpm
   - npm install -g pnpm@latest-10
   - pnpm config set store-dir .pnpm-store
-  - export NPM_TOKEN="$(echo -n $SNR_NPM_REGISTRY_USERNAME:$SNR_NPM_REGISTRY_PASSWORD | base64)"
+  - export SNR_NPM_TOKEN="$(echo -n $SNR_NPM_REGISTRY_USERNAME:$SNR_NPM_REGISTRY_PASSWORD | base64)"
   - cp .npmrc.dist .npmrc
 
 default:
@@ -56,8 +56,8 @@ install:
     - pnpm config set unsafe-perm true
     - cp .npmrc.dist .npmrc
     - echo "" >> .npmrc
-    - export NPM_TOKEN="$(echo -n $SNR_NPM_REGISTRY_USERNAME:$SNR_NPM_REGISTRY_PASSWORD | base64)"
-    - echo "//nexus.snrinternal.com/repository/npm-release/:_auth = $NPM_TOKEN" >> .npmrc
+    - export SNR_NPM_TOKEN="$(echo -n $SNR_NPM_REGISTRY_USERNAME:$SNR_NPM_REGISTRY_PASSWORD | base64)"
+    - echo "//nexus.snrinternal.com/repository/npm-release/:_auth = $SNR_NPM_TOKEN" >> .npmrc
     - echo "email = $NPM_EMAIL" >> .npmrc
     - echo "always-auth = true" >> .npmrc
   script:
