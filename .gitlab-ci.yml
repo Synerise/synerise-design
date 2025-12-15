@@ -16,6 +16,7 @@ variables:
   - export SNR_NPM_TOKEN="$(echo -n $SNR_NPM_REGISTRY_USERNAME:$SNR_NPM_REGISTRY_PASSWORD | base64)"
   - cp .npmrc.dist .npmrc
 
+
 default:
   cache:
     - key:
