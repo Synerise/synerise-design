@@ -46,7 +46,7 @@ async function main() {
       message: 'Dependencies',
       choices: [...suggestedDependencies, ...suggestedExternalDependencies].map(name => ({ name })),
       filter: keys => {
-        const depMap = keys.reduce((acc, name) => ({ ...acc, [name]: '*' }), {});
+        const depMap = keys.reduce((acc, name) => ({ ...acc, [name]: 'workspace:^' }), {});
         return JSON.stringify(depMap);
       },
     },
