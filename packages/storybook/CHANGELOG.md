@@ -3,6 +3,16 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.28.0](https://github.com/Synerise/synerise-design/compare/storybook@1.27.2...storybook@1.28.0) (2025-12-16)
+
+### Bug Fixes
+
+- **list-item:** new prop featured ([6a1f387](https://github.com/Synerise/synerise-design/commit/6a1f387a0be65a21b7e16c94068e0e560ba9127a))
+
+### Features
+
+- **estimation:** new component ([e5cfacf](https://github.com/Synerise/synerise-design/commit/e5cfacf5362656114e9ce83fcf0631118ff88993))
+
 ## [1.27.2](https://github.com/Synerise/synerise-design/compare/storybook@1.27.1...storybook@1.27.2) (2025-12-15)
 
 **Note:** Version bump only for package storybook
