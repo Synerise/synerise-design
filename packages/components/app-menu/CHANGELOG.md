@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.1.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-app-menu@1.0.25...@synerise/ds-app-menu@1.1.0) (2025-12-18)
+
+### Features
+
+- **app-menu:** hooks to access menu / submenu contexts ([5ac99d2](https://github.com/Synerise/synerise-design/commit/5ac99d216719490f2a465a8802eabb92c81c4002))
+
 ## [1.0.25](https://github.com/Synerise/synerise-design/compare/@synerise/ds-app-menu@1.0.24...@synerise/ds-app-menu@1.0.25) (2025-12-15)
 
 **Note:** Version bump only for package @synerise/ds-app-menu
