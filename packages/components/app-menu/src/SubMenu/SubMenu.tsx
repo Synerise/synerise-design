@@ -1,20 +1,16 @@
 import React from 'react';
 
+import { useSubMenu } from '../hooks/useSubMenu';
 import Item from './Item/Item';
 import * as S from './SubMenu.styles';
 import { type SubComponents, type SubMenuProps } from './SubMenu.types';
-import SubMenuContext from './SubMenuContext/SubMenuContext';
 
 const SubMenu: React.FC<SubMenuProps> & SubComponents = ({
   children,
   className,
   style,
 }) => {
-  const subMenuContext = React.useContext(SubMenuContext);
-
-  if (!subMenuContext) {
-    throw new Error('Cannot use SubMenu outside SubMenuContext');
-  }
+  const subMenuContext = useSubMenu();
 
   return (
     <S.MenuGroupWrapper
