@@ -23,11 +23,17 @@ export const PopoverTrigger = forwardRef<
   const context = usePopoverContext();
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const childrenRef = (children as any).ref;
-  const ref = useMergeRefs([context.refs.setReference, propRef, childrenRef]);
+  const renderAsChild = asChild && isValidElement(children);
+  const refsArray = [
+    propRef,
+    childrenRef,
+    !renderAsChild && context.refs.setReference,
+  ];
+  const ref = useMergeRefs(refsArray.filter(Boolean));
   // `asChild` allows the user to pass any element as the anchor
   // if the child is a component it needs to forward the ref to a html element
   // so that the Popover can position itself correctly.
-  if (asChild && isValidElement(children)) {
+  if (renderAsChild) {
     const referenceProps = context.getReferenceProps({
       ref,
       'data-popover-trigger': true,
@@ -37,9 +43,20 @@ export const PopoverTrigger = forwardRef<
       'data-state': context.open ? 'open' : 'closed',
     });
 
-    return cloneElement(children, {
-      ...referenceProps,
-    });
+    return (
+      <>
+        <S.TriggerAnchor
+          aria-hidden="true"
+          hidden
+          ref={(node) => {
+            context.refs.setReference(node?.nextElementSibling || null);
+          }}
+        ></S.TriggerAnchor>
+        {cloneElement(children, {
+          ...referenceProps,
+        })}
+      </>
+    );
   }
 
   return (

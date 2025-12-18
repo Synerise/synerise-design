@@ -1,4 +1,11 @@
-import { type Middleware, flip, offset, shift } from '@floating-ui/react';
+import {
+  type ArrowOptions,
+  type Middleware,
+  arrow,
+  flip,
+  offset,
+  shift,
+} from '@floating-ui/react';
 
 import {
   type FlipConfig,
@@ -10,12 +17,14 @@ type GetMiddleware = {
   offsetConfig: OffsetConfig;
   flipConfig: FlipConfig;
   shiftConfig: ShiftConfig;
+  arrowConfig?: ArrowOptions;
 };
 
 export const getMiddleware = ({
   offsetConfig,
   flipConfig,
   shiftConfig,
+  arrowConfig,
 }: GetMiddleware) => {
   const middleware: Middleware[] = [];
 
@@ -23,6 +32,7 @@ export const getMiddleware = ({
     offsetConfig || {};
   const { enabled: flipEnabled = true, ...flipOptions } = flipConfig || {};
   const { enabled: shiftEnabled = true, ...shiftOptions } = shiftConfig || {};
+
   if (offsetEnabled) {
     middleware.push(offset(offsetOptions));
   }
@@ -32,5 +42,9 @@ export const getMiddleware = ({
   if (shiftEnabled) {
     middleware.push(shift(shiftOptions));
   }
+  if (arrowConfig?.element) {
+    middleware.push(arrow(arrowConfig));
+  }
+
   return middleware;
 };

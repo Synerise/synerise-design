@@ -1,7 +1,8 @@
 import React from 'react';
 
 import { renderWithProvider } from '@synerise/ds-core';
-import { cleanup, fireEvent, screen, within } from '@testing-library/react';
+import { cleanup, fireEvent, screen, within, waitFor } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 
 import ItemsRoll from '../ItemsRoll';
 import { ACTIONS, ITEM_TEXT, propsFactory } from './utils';
@@ -244,27 +245,25 @@ describe('ItemsRoll', () => {
     const onSearchClear = jest.fn();
     const onClearAll = jest.fn();
     const onChangeSelection = jest.fn();
+    const YES_LABEL = 'YES_LABEL'
 
     const props = propsFactory({
       onSearch,
       onSearchClear,
       onClearAll,
       onChangeSelection,
+      texts: {
+        popconfirmYesLabel: YES_LABEL
+      }
     });
 
     renderWithProvider(<ItemsRoll {...props} useFooter />);
 
-    const onClearAllButton = (await screen.findByText(
-      'Clear all',
-    )) as HTMLElement;
+    await userEvent.click(await screen.findByText('Clear all'));
+    
+    await userEvent.click(await screen.findByText(YES_LABEL));
 
-    fireEvent.click(onClearAllButton);
-    const confirmBtn = document.querySelector(
-      '.ant-popover .ant-btn-primary',
-    ) as HTMLButtonElement;
-    fireEvent.click(confirmBtn);
-
-    expect(onClearAll).toHaveBeenCalledTimes(1);
+    await waitFor(() => expect(onClearAll).toHaveBeenCalledTimes(1));
   });
 
   it('fire onChangeSelection', async () => {

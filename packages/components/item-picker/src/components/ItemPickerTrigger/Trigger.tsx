@@ -49,7 +49,7 @@ const Trigger = forwardRef<HTMLDivElement, ItemPickerTriggerProps>(
       ...texts,
     });
     const handleClear = useCallback(
-      (event: MouseEvent<HTMLDivElement>): void => {
+      (event: MouseEvent<HTMLElement>): void => {
         event.stopPropagation();
         closeDropdown();
         onClear && onClear();
@@ -78,7 +78,12 @@ const Trigger = forwardRef<HTMLDivElement, ItemPickerTriggerProps>(
               okButtonProps={{ onClick: handleClear }}
               okText={allTexts.yes}
               cancelText={allTexts.no}
-              icon={<Icon component={<WarningFillM />} color="#ffc300" />}
+              icon={
+                <Icon
+                  component={<WarningFillM />}
+                  color={theme.palette['yellow-600']}
+                />
+              }
             >
               {tooltip}
             </Popconfirm>

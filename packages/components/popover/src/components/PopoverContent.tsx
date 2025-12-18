@@ -15,6 +15,7 @@ import {
 import { useTheme } from '@synerise/ds-core';
 
 import { usePopoverContext } from '../hooks/usePopoverContext';
+import { GlobalStyles } from './PopoverContent.styles';
 
 export const PopoverContent = forwardRef<
   HTMLDivElement,
@@ -71,6 +72,7 @@ export const PopoverContent = forwardRef<
 
   return (
     <FloatingPortal root={getPopupContainer ? popupContainerRef : undefined}>
+      <GlobalStyles />
       <FloatingFocusManager
         initialFocus={-1}
         context={floatingContext}

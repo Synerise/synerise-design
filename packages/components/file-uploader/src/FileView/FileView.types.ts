@@ -4,7 +4,7 @@ import { type ExtendedFile, type FileViewTexts } from '../FileUploader.types';
 
 export type FileViewProps = {
   data: ExtendedFile;
-  texts: FileViewTexts;
+  texts?: FileViewTexts;
   removable?: boolean;
   onRemove?: () => void;
   retry?: boolean | React.ReactNode;

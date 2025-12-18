@@ -1,14 +1,20 @@
 import { Carousel } from 'antd';
-import AntdPopconfirm from 'antd/lib/popconfirm';
-import React, { useEffect, useMemo, useRef, useState } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 
-import '@synerise/ds-core/dist/js/style';
-import { useOnClickOutside } from '@synerise/ds-utils';
+import { useTheme } from '@synerise/ds-core';
+import {
+  Popover,
+  PopoverArrow,
+  PopoverContent,
+  PopoverTrigger,
+  getPlacement,
+} from '@synerise/ds-popover';
 
 import ConfirmMessage from './ConfirmMessage/ConfirmMessage';
+import { POPOVER_OFFSET_CONFIG } from './Popconfirm.const';
 import * as S from './Popconfirm.styles';
 import { type PopconfirmType } from './Popconfirm.types';
-import './style/index.less';
+import { getTransitionConfig } from './utils/getTransitionConfig';
 
 const Popconfirm: PopconfirmType = ({
   icon,
@@ -31,8 +37,18 @@ const Popconfirm: PopconfirmType = ({
   buttonsAlign,
   disabled,
   staticVisible,
-  ...antdProps
+  children,
+  open,
+  onOpenChange,
+  trigger = 'click',
+  asChild = true,
+  placement = 'top',
+  overlayClassName,
+  overlayStyle,
+  zIndex,
+  ...rest
 }) => {
+  const theme = useTheme();
   const renderImageCarousel = useMemo(() => {
     return (
       images?.length && (
@@ -48,100 +64,141 @@ const Popconfirm: PopconfirmType = ({
       )
     );
   }, [images, imagesAutoplay, imagesAutoplaySpeed]);
-  const popupRef = useRef<HTMLDivElement>(null);
-  const [visible, setVisible] = useState<boolean | undefined>(undefined);
-  useOnClickOutside(popupRef, () => {
-    if (staticVisible && visible === undefined) {
-      return setVisible(true);
-    }
-    if (staticVisible && visible === true) {
-      return setVisible(true);
-    }
-    return setVisible(false);
-  });
+
+  const [isOpen, setIsOpen] = useState<boolean | undefined>(undefined);
+
+  const floatingPlacement = getPlacement(placement);
 
   useEffect(() => {
-    if (!visible && antdProps.visible) {
-      setVisible(antdProps.visible);
+    if (!isOpen && open) {
+      setIsOpen(open);
     }
-  }, [visible, antdProps.visible]);
+  }, [isOpen, open]);
+
+  const isTriggeredByClick = Array.isArray(trigger)
+    ? trigger.includes('click')
+    : trigger === 'click';
+
+  const handleOpenChange = (newState: boolean) => {
+    setIsOpen(newState);
+    onOpenChange?.(newState);
+  };
+
+  const handleTriggerClick = () => {
+    isTriggeredByClick && setIsOpen(!isOpen);
+  };
 
   return disabled ? (
-    <>{antdProps.children}</>
+    <>{children}</>
   ) : (
-    <AntdPopconfirm
-      {...antdProps}
-      disabled={disabled}
-      visible={visible}
-      onVisibleChange={(isVisible: boolean): void => {
-        if (!staticVisible && isVisible !== visible) {
-          setVisible(isVisible);
-        }
-        if (staticVisible && visible === false) {
-          setVisible(isVisible);
-        }
+    <Popover
+      placement={floatingPlacement}
+      trigger={trigger}
+      modal={false}
+      open={isOpen}
+      onOpenChange={handleOpenChange}
+      autoUpdate={true}
+      dismissConfig={{
+        enabled: !staticVisible,
       }}
-      title={
-        <S.PopconfirmContent ref={popupRef} buttonsAlign={buttonsAlign}>
-          <S.PopconfirmWrapper>
-            <S.PopconfirmContentWrapper>
-              <S.PopconfirmHeaderWrapper>
-                {icon && <S.PopconfirmIcon>{icon}</S.PopconfirmIcon>}
-                <S.PopconfirmTitle>
-                  <>{title}</>
-                </S.PopconfirmTitle>
-              </S.PopconfirmHeaderWrapper>
-              <S.PopconfirmTextWrapper>
-                {description && (
-                  <S.PopconfirmDescription titlePadding={!titlePadding}>
-                    {description}
-                  </S.PopconfirmDescription>
-                )}
-                {withLink && <S.LinkWrapper>{withLink}</S.LinkWrapper>}
-              </S.PopconfirmTextWrapper>
-            </S.PopconfirmContentWrapper>
-            {closeIcon && (
-              <S.PopconfirmCloseIcon
-                onClick={(): void => setVisible(false)}
-                titlePadding={titlePadding}
-              >
-                {closeIcon}
-              </S.PopconfirmCloseIcon>
+      arrowConfig={{ padding: 20 }}
+      zIndex={zIndex ?? parseInt(theme.variables['zindex-popconfirm'])}
+      offsetConfig={POPOVER_OFFSET_CONFIG}
+      getTransitionConfig={getTransitionConfig}
+      testId="popconfirm"
+      {...rest}
+    >
+      <PopoverTrigger asChild={asChild} onClick={handleTriggerClick}>
+        {children}
+      </PopoverTrigger>
+
+      <PopoverContent>
+        <S.PopconfirmContainer
+          className={overlayClassName}
+          style={overlayStyle}
+        >
+          <S.PopconfirmContent buttonsAlign={buttonsAlign}>
+            <S.PopconfirmWrapper>
+              <S.PopconfirmContentWrapper>
+                <S.PopconfirmHeaderWrapper>
+                  {icon && <S.PopconfirmIcon>{icon}</S.PopconfirmIcon>}
+                  <S.PopconfirmTitle>
+                    <>{title}</>
+                  </S.PopconfirmTitle>
+                </S.PopconfirmHeaderWrapper>
+                <S.PopconfirmTextWrapper>
+                  {description && (
+                    <S.PopconfirmDescription titlePadding={!titlePadding}>
+                      {description}
+                    </S.PopconfirmDescription>
+                  )}
+                  {withLink && <S.LinkWrapper>{withLink}</S.LinkWrapper>}
+                </S.PopconfirmTextWrapper>
+              </S.PopconfirmContentWrapper>
+              {closeIcon && (
+                <S.PopconfirmCloseIcon
+                  onClick={() => setIsOpen(false)}
+                  titlePadding={titlePadding}
+                >
+                  {closeIcon}
+                </S.PopconfirmCloseIcon>
+              )}
+            </S.PopconfirmWrapper>
+            {renderImageCarousel}
+            {!hideButtons && (
+              <S.PopconfirmButtonWrapper>
+                <S.PopconfirmButton
+                  type="secondary"
+                  {...cancelButtonProps}
+                  onClick={(event) => {
+                    onCancel && onCancel(event);
+                    setIsOpen(false);
+                    cancelButtonProps?.onClick &&
+                      cancelButtonProps.onClick(event);
+                  }}
+                >
+                  {cancelText}
+                </S.PopconfirmButton>
+                <S.PopconfirmButton
+                  type={okType}
+                  {...okButtonProps}
+                  onClick={(event) => {
+                    onConfirm && onConfirm(event);
+                    setIsOpen(false);
+                    okButtonProps?.onClick && okButtonProps.onClick(event);
+                  }}
+                >
+                  {okText}
+                </S.PopconfirmButton>
+              </S.PopconfirmButtonWrapper>
             )}
-          </S.PopconfirmWrapper>
-          {renderImageCarousel}
-          {!hideButtons && (
-            <S.PopconfirmButtonWrapper>
-              <S.PopconfirmButton
-                type="secondary"
-                {...cancelButtonProps}
-                onClick={(e): void => {
-                  onCancel && onCancel(e);
-                  setVisible(false);
-                  cancelButtonProps?.onClick && cancelButtonProps.onClick(e);
-                }}
-              >
-                {cancelText}
-              </S.PopconfirmButton>
-              <S.PopconfirmButton
-                type={okType}
-                {...okButtonProps}
-                onClick={(e): void => {
-                  onConfirm && onConfirm(e);
-                  setVisible(false);
-                  okButtonProps?.onClick && okButtonProps.onClick(e);
-                }}
-              >
-                {okText}
-              </S.PopconfirmButton>
-            </S.PopconfirmButtonWrapper>
-          )}
-        </S.PopconfirmContent>
-      }
-    />
+          </S.PopconfirmContent>
+        </S.PopconfirmContainer>
+        <PopoverArrow>
+          <S.PopconfirmArrowWrapper>
+            <S.PopconfirmArrow
+              width="15"
+              height="7"
+              viewBox="0 0 15 7"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M7.49919 7L2.15928e-05 5.96025e-07L15 1.90737e-06L7.49919 7Z"
+                fill="currentColor"
+              />
+            </S.PopconfirmArrow>
+          </S.PopconfirmArrowWrapper>
+        </PopoverArrow>
+      </PopoverContent>
+    </Popover>
   );
 };
-
+/**
+ * @deprecated - use named import instead
+ *
+ * import { ConfirmMessage } from @synerise/ds-popconfirm
+ */
 Popconfirm.ConfirmMessage = ConfirmMessage;
 
 export default Popconfirm;

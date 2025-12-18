@@ -186,8 +186,6 @@ const FileView = ({
           okType="primary"
           title={finalTexts.removeConfirmTitle}
           placement="top"
-          mouseEnterDelay={250}
-          mouseLeaveDelay={250}
           trigger="click"
         >
           <S.RemoveButtonWrapper

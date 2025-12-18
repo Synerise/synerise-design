@@ -37,7 +37,12 @@
   "dependencies": {
     "@synerise/ds-button": "workspace:^",
     "@synerise/ds-icon": "workspace:^",
-    "@synerise/ds-utils": "workspace:^"
+    "@synerise/ds-utils": "workspace:^",
+    "@synerise/ds-popover": "workspace:^"
+  },
+  "devDependencies": {
+    "@floating-ui/react": "^0.27.16",
+    "@testing-library/user-event": "^14"
   },
   "peerDependencies": {
     "@synerise/ds-core": "*",

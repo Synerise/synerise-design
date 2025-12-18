@@ -2,12 +2,22 @@ import styled, { type StyledComponent } from 'styled-components';
 
 import Button, { type ButtonProps } from '@synerise/ds-button';
 
+export const PopconfirmContainer = styled.div`
+  box-shadow: ${(props) => props.theme.variables['box-shadow-2']};
+  max-width: 288px;
+  padding: 16px;
+  position: relative;
+  z-index: 1;
+  border-radius: 3px;
+  background-color: ${(props) => props.theme.palette.white};
+`;
+
 export const PopconfirmContent = styled.div<{
   buttonsAlign?: 'left' | 'right';
 }>`
   display: flex;
   flex-direction: column;
-  align-items: ${({ buttonsAlign }): string =>
+  align-items: ${({ buttonsAlign }) =>
     buttonsAlign === 'left' ? 'flex-start' : 'flex-end'};
   justify-content: flex-start;
   margin: 0px;
@@ -38,9 +48,8 @@ export const PopconfirmContent = styled.div<{
         justify-content: center;
         button {
           box-sizing: content-box;
-          background-color: ${(props): string =>
-            props.theme.palette['grey-600']};
-          border: 2px solid ${(props): string => props.theme.palette.white};
+          background-color: ${(props) => props.theme.palette['grey-600']};
+          border: 2px solid ${(props) => props.theme.palette.white};
           height: 4px;
           width: 4px;
           border-radius: 50%;
@@ -49,10 +58,8 @@ export const PopconfirmContent = styled.div<{
       }
       li.slick-active {
         button {
-          border: 2px solid
-            ${(props): string => props.theme.palette['green-600']};
-          background-color: ${(props): string =>
-            `${props.theme.palette.white}`};
+          border: 2px solid ${(props) => props.theme.palette['green-600']};
+          background-color: ${(props) => `${props.theme.palette.white}`};
         }
       }
     }
@@ -62,7 +69,7 @@ export const PopconfirmContent = styled.div<{
 export const PopconfirmTitle = styled.div`
   font-size: 14px;
   line-height: 1.43;
-  color: ${(props): string => props.theme.palette['grey-800']};
+  color: ${(props) => props.theme.palette['grey-800']};
   font-weight: 500;
   padding-top: 2px;
   text-overflow: ellipsis;
@@ -100,25 +107,61 @@ export const PopconfirmDescription = styled.div<{ titlePadding?: boolean }>`
   font-size: 13px;
   line-height: 1.38;
   font-weight: 400;
-  margin-top: ${(props): string => (props.titlePadding ? '6px' : 'none')};
-  color: ${(props): string => props.theme.palette['grey-800']};
+  margin-top: ${(props) => (props.titlePadding ? '6px' : 'none')};
+  color: ${(props) => props.theme.palette['grey-800']};
 `;
 
 export const PopconfirmIcon = styled.div`
   margin-right: 8px;
 `;
 export const PopconfirmCloseIcon = styled.div<{ titlePadding?: boolean }>`
-  margin-left: ${(props): string => (props.titlePadding ? '8px' : '6px')};
-  svg {
-    fill: ${(props): string => props.theme.palette['grey-600']};
-    cursor: pointer;
-  }
+  margin-left: ${(props) => (props.titlePadding ? '8px' : '6px')};
+  color: ${(props) => props.theme.palette['grey-600']};
+  cursor: pointer;
+  border-radius: 3px;
 `;
 export const PopconfirmWrapper = styled.div`
   display: flex;
   flex-direction: row;
   width: 100%;
   justify-content: space-between;
+`;
+
+export const PopconfirmArrow = styled.svg`
+  position: absolute;
+  transform: translate(-50%, 0);
+`;
+
+export const PopconfirmArrowWrapper = styled.div`
+  width: 0;
+  height: 0;
+  position: absolute;
+  z-index: 2;
+  color: ${(props) => props.theme.palette['white']};
+
+  &.ds-popover-arrow-bottom,
+  &.ds-popover-arrow-bottom-end,
+  &.ds-popover-arrow-bottom-start {
+    top: 0;
+    transform: rotate(180deg);
+  }
+  &.ds-popover-arrow-top,
+  &.ds-popover-arrow-top-end,
+  &.ds-popover-arrow-top-start {
+    bottom: 0;
+  }
+  &.ds-popover-arrow-left,
+  &.ds-popover-arrow-left-end,
+  &.ds-popover-arrow-left-start {
+    right: 0;
+    transform: rotate(-90deg);
+  }
+  &.ds-popover-arrow-right,
+  &.ds-popover-arrow-right-end,
+  &.ds-popover-arrow-right-start {
+    left: 0;
+    transform: rotate(90deg);
+  }
 `;
 
 export const PopconfirmContentWrapper = styled.div`
@@ -153,7 +196,7 @@ export const LinkWrapper = styled.span`
   font-size: 13px;
   line-height: 1.5;
   font-weight: 400;
-  color: ${(props): string => props.theme.palette['grey-700']};
+  color: ${(props) => props.theme.palette['grey-700']};
   text-decoration: underline;
   cursor: pointer;
   max-width: 200px;
