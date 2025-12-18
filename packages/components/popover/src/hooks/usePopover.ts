@@ -1,4 +1,4 @@
-import { useMemo, useState } from 'react';
+import { useMemo, useRef, useState } from 'react';
 
 import {
   type FloatingElement,
@@ -35,6 +35,7 @@ export const usePopover = ({
   offsetConfig = {},
   flipConfig = {},
   shiftConfig = {},
+  arrowConfig = {},
   testId = 'noTestId',
   componentId,
   returnFocus,
@@ -47,6 +48,7 @@ export const usePopover = ({
   const [descriptionId, setDescriptionId] = useState<string | undefined>();
   const open = controlledOpen ?? uncontrolledOpen;
   const setOpen = setControlledOpen ?? setUncontrolledOpen;
+  const arrowRef = useRef<HTMLElement>(null);
 
   const triggerArray = Array.isArray(trigger) ? trigger : [trigger];
 
@@ -71,6 +73,7 @@ export const usePopover = ({
       return cleanup;
     };
   }, [autoUpdateWhileMounted]);
+
   const data = useFloating({
     placement,
     open,
@@ -88,7 +91,12 @@ export const usePopover = ({
       }
     },
     whileElementsMounted,
-    middleware: getMiddleware({ offsetConfig, flipConfig, shiftConfig }),
+    middleware: getMiddleware({
+      offsetConfig,
+      flipConfig,
+      shiftConfig,
+      arrowConfig: { ...arrowConfig, element: arrowRef.current },
+    }),
   });
 
   const context = data.context;
@@ -138,6 +146,7 @@ export const usePopover = ({
       zIndex,
       returnFocus,
       componentId,
+      arrowRef,
     }),
     [
       getPopupContainer,

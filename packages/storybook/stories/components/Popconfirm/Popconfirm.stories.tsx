@@ -6,10 +6,12 @@ import { Meta, StoryObj } from '@storybook/react-webpack5';
 import Button from '@synerise/ds-button';
 import Icon, { CloseM, WarningFillM } from '@synerise/ds-icon';
 import Popconfirm, { PopconfirmProps } from '@synerise/ds-popconfirm';
+import { PLACEMENT_MAP } from '@synerise/ds-popover';
 
 import {
   BOOLEAN_CONTROL,
   centeredPaddedWrapper,
+  controlFromOptionsArray,
   fixedWrapper300,
 } from '../../utils';
 
@@ -24,7 +26,9 @@ export default {
     return <Popconfirm {...args} />;
   },
   argTypes: {
+    placement: controlFromOptionsArray('select', Object.keys(PLACEMENT_MAP)),
     disabled: BOOLEAN_CONTROL,
+    open: BOOLEAN_CONTROL,
     onCancel: {
       action: 'onCancel',
     },
@@ -40,6 +44,7 @@ export default {
     title: 'Are you sure to delete this item and move to the next category',
     onCancel: fn(),
     onConfirm: fn(),
+    onOpenChange: fn(),
     closeIcon: <Icon component={<CloseM />} />,
     placement: 'top',
     mouseEnterDelay: 0,
@@ -55,15 +60,16 @@ export const withDescription: Story = {
     description: 'This is popconfirm modal example with simple body text here',
   },
 };
-export const withStaticVisible: Story = {
+export const persitentlyOpen: Story = {
   args: {
+    open: true,
     staticVisible: true,
   },
 };
 
 export const Open: Story = {
   args: {
-    visible: true,
+    open: true,
     description: 'This is popconfirm modal example with simple body text here',
     imagesAutoplay: !isChromatic(),
     imagesAutoplaySpeed: 1000,

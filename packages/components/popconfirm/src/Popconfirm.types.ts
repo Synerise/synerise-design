@@ -1,5 +1,10 @@
-import { type PopconfirmProps as AntdPopconfirmProps } from 'antd/lib/popconfirm';
-import { type MouseEvent as ReactMouseEvent, type ReactNode } from 'react';
+import { type CSSProperties, type MouseEvent, type ReactNode } from 'react';
+
+import { type ButtonProps } from '@synerise/ds-button';
+import {
+  type LegacyPopconfirmPlacement,
+  type PopoverOptions,
+} from '@synerise/ds-popover';
 
 import { type ConfirmMessageProps } from './ConfirmMessage/ConfirmMessage.types';
 
@@ -8,21 +13,55 @@ export type PopconfirmTexts = Pick<
   'okText' | 'description' | 'title' | 'cancelText'
 >;
 
-export type PopconfirmProps = Omit<AntdPopconfirmProps, 'okType'> & {
+export type PopconfirmProps = {
   description?: ReactNode;
+  title?: ReactNode;
+
+  overlayStyle?: CSSProperties;
+  overlayClassName?: string;
+
+  onConfirm?: (event?: MouseEvent<HTMLElement>) => void;
+  onCancel?: (event?: MouseEvent<HTMLElement>) => void;
+
+  cancelButtonProps?: ButtonProps;
+  cancelText?: ReactNode;
+
+  okButtonProps?: ButtonProps;
+  okText?: ReactNode;
+  okType?: ButtonProps['type'];
+
   images?: string[];
   imagesAutoplay?: boolean;
   imagesAutoplaySpeed?: number;
-  onClick?: (event: ReactMouseEvent<HTMLElement, MouseEvent>) => void;
+
   withLink?: ReactNode;
   closeIcon?: ReactNode;
   titlePadding?: boolean;
   hideButtons?: ReactNode;
   buttonsAlign?: 'left' | 'right';
-  okType?: AntdPopconfirmProps['okType'] | string;
+  disabled?: boolean;
+
   children?: ReactNode;
   staticVisible?: boolean;
-};
+  asChild?: boolean;
+  placement?: LegacyPopconfirmPlacement;
+  /**
+   * defaults to theme.variables['zindex-popconfirm'],
+   */
+  zIndex?: number;
+  icon?: ReactNode;
+} & Partial<
+  Pick<
+    PopoverOptions,
+    | 'open'
+    | 'onOpenChange'
+    | 'trigger'
+    | 'getPopupContainer'
+    | 'offsetConfig'
+    | 'flipConfig'
+    | 'shiftConfig'
+  >
+>;
 
 export type PopconfirmType = {
   (props: PopconfirmProps): JSX.Element;

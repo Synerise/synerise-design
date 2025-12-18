@@ -34,13 +34,15 @@
   ],
   "types": "dist/index.d.ts",
   "dependencies": {
-    "@floating-ui/react": "^0.27.16"
+    "@floating-ui/react": "^0.27.16",
+    "classnames": "^2.5.1"
   },
   "devDependencies": {
     "@testing-library/user-event": "^14"
   },
   "peerDependencies": {
     "@synerise/ds-core": "*",
-    "react": ">=16.9.0 <= 18.3.1"
+    "react": ">=16.9.0 <= 18.3.1",
+    "styled-components": "^5.3.3"
   }
 }

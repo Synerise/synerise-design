@@ -2983,6 +2983,10 @@ importers:
       styled-components:
         specifier: ^5.3.3
         version: 5.3.11(@babel/core@7.28.5)(react-dom@18.3.1(react@18.3.1))(react-is@18.3.1)(react@18.3.1)
+    devDependencies:
+      '@testing-library/user-event':
+        specifier: ^14
+        version: 14.6.1(@testing-library/dom@9.3.4)
 
   packages/components/layout:
     dependencies:
@@ -3466,6 +3470,9 @@ importers:
       '@synerise/ds-icon':
         specifier: workspace:^
         version: link:../icon
+      '@synerise/ds-popover':
+        specifier: workspace:^
+        version: link:../popover
       '@synerise/ds-utils':
         specifier: workspace:^
         version: link:../utils
@@ -3478,6 +3485,13 @@ importers:
       styled-components:
         specifier: ^5.3.3
         version: 5.3.11(@babel/core@7.28.5)(react-dom@18.3.1(react@18.3.1))(react-is@18.3.1)(react@18.3.1)
+    devDependencies:
+      '@floating-ui/react':
+        specifier: ^0.27.16
+        version: 0.27.16(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@testing-library/user-event':
+        specifier: ^14
+        version: 14.6.1(@testing-library/dom@9.3.4)
 
   packages/components/popover:
     dependencies:
@@ -3487,9 +3501,15 @@ importers:
       '@synerise/ds-core':
         specifier: '*'
         version: link:../core
+      classnames:
+        specifier: ^2.5.1
+        version: 2.5.1
       react:
         specifier: ^18
         version: 18.3.1
+      styled-components:
+        specifier: ^5.3.3
+        version: 5.3.11(@babel/core@7.28.5)(react-dom@18.3.1(react@18.3.1))(react-is@18.3.1)(react@18.3.1)
     devDependencies:
       '@testing-library/user-event':
         specifier: ^14

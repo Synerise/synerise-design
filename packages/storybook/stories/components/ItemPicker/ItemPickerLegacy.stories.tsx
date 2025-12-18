@@ -1,15 +1,18 @@
 import React from 'react';
-import { Meta, StoryObj } from '@storybook/react-webpack5';
 import { useArgs } from 'storybook/preview-api';
 
+import { Meta, StoryObj } from '@storybook/react-webpack5';
 import ItemPicker from '@synerise/ds-item-picker';
 import type { ItemPickerProps } from '@synerise/ds-item-picker';
 import type { ListItemProps } from '@synerise/ds-list-item';
 
-import { FLAT_DATA_SOURCE, ICONS } from './ItemPickerLegacy.data';
-
-import { centeredPaddedWrapper, controlFromOptionsArray, fixedWrapper300 } from '../../utils';
+import {
+  centeredPaddedWrapper,
+  controlFromOptionsArray,
+  fixedWrapper300,
+} from '../../utils';
 import { CompleteExample } from '../InformationCard/InformationCard.stories';
+import { FLAT_DATA_SOURCE, ICONS } from './ItemPickerLegacy.data';
 
 type Story = StoryObj<ItemPickerProps>;
 
@@ -18,7 +21,7 @@ export default {
   title: 'Components/Pickers/ItemPicker/LegacyItemPicker',
   tags: ['autodocs', 'deprecated'],
   parameters: {
-    layout: 'fullscreen'
+    layout: 'fullscreen',
   },
   decorators: [fixedWrapper300, centeredPaddedWrapper],
   render: (args) => {
@@ -31,7 +34,14 @@ export default {
       updateArgs({ selectedItem: undefined });
       args.onClear?.();
     };
-    return <ItemPicker {...args} selectedItem={selectedItem} onChange={handleChange} onClear={handleClear} />;
+    return (
+      <ItemPicker
+        {...args}
+        selectedItem={selectedItem}
+        onChange={handleChange}
+        onClear={handleClear}
+      />
+    );
   },
   argTypes: {
     placeholderIcon: {
@@ -55,9 +65,9 @@ export const WithPlaceholder: Story = {
 export const SelectedItem: Story = {
   args: {
     selectedItem: FLAT_DATA_SOURCE[3],
+    withClearConfirmation: true,
   },
 };
-
 
 export const WithoutSearchBar: Story = {
   args: {
@@ -71,7 +81,7 @@ export const WithInfocard: Story = {
     informationCardTooltipProps: {
       informationCardProps: {
         title: '',
-        ...CompleteExample.args
+        ...CompleteExample.args,
       },
       triggerProps: {
         popupPlacement: 'top',
@@ -83,9 +93,9 @@ export const WithInfocard: Story = {
 export const LabelDescriptionAndErrorMessage: Story = {
   args: {
     ...Default.args,
-    description: "Field description",
-    errorMessage: "Error message",
-    tooltip: "tooltip text",
-    label: "Label"
-  }
+    description: 'Field description',
+    errorMessage: 'Error message',
+    tooltip: 'tooltip text',
+    label: 'Label',
+  },
 };

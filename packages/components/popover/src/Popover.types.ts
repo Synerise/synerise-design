@@ -2,10 +2,12 @@ import {
   type CSSProperties,
   type Dispatch,
   type ReactNode,
+  type RefObject,
   type SetStateAction,
 } from 'react';
 
 import {
+  type ArrowOptions,
   type AutoUpdateOptions,
   type FlipOptions,
   type OffsetOptions,
@@ -49,6 +51,7 @@ export type PopoverOptions = {
   offsetConfig?: OffsetConfig;
   flipConfig?: FlipConfig;
   shiftConfig?: ShiftConfig;
+  arrowConfig?: Omit<ArrowOptions, 'element'>;
   dismissConfig?: UseDismissProps;
   listNavigationConfig?: UseListNavigationProps;
   trigger?: PopoverTriggerType | PopoverTriggerType[];
@@ -89,4 +92,27 @@ export type UsePopoverReturn = Omit<UseFloatingReturn, 'open'> &
     zIndex?: number;
     returnFocus?: boolean;
     componentId?: string;
+    arrowRef: RefObject<HTMLElement>;
   };
+export type LegacyDropdownPlacement = Exclude<
+  LegacyPlacement,
+  'right' | 'left' | 'leftTop' | 'leftBottom' | 'rightTop' | 'rightBottom'
+>;
+
+export type LegacyPopconfirmPlacement = LegacyPlacement;
+
+export type LegacyPlacement =
+  | 'topLeft'
+  | 'top'
+  | 'topCenter'
+  | 'topRight'
+  | 'bottomLeft'
+  | 'bottom'
+  | 'bottomCenter'
+  | 'bottomRight'
+  | 'right'
+  | 'left'
+  | 'leftTop'
+  | 'leftBottom'
+  | 'rightTop'
+  | 'rightBottom';

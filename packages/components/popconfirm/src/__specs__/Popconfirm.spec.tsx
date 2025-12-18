@@ -2,6 +2,7 @@ import React from 'react';
 
 import { renderWithProvider } from '@synerise/ds-core';
 import { fireEvent, screen, waitFor } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 
 import Popconfirm from '../Popconfirm';
 
@@ -17,19 +18,21 @@ const IMAGES = [
 ];
 
 describe('Popconfirm', () => {
-  it('should render', () => {
+  it('should render', async () => {
     renderWithProvider(
-      <Popconfirm title={TITLE}>
+      <Popconfirm title={TITLE} okText={OK} cancelText={CANCEL}>
         <button>{TEXT}</button>
       </Popconfirm>,
     );
 
-    fireEvent.click(screen.getAllByText(TEXT)[0]);
+    await userEvent.click(screen.getByText(TEXT));
 
-    expect(screen.getAllByText(TEXT)[0]).toBeInTheDocument();
-    expect(screen.getAllByText(TITLE)[0]).toBeInTheDocument();
-    expect(screen.getAllByText(OK)[0]).toBeInTheDocument();
-    expect(screen.getAllByText(CANCEL)[0]).toBeInTheDocument();
+    await waitFor(() => {
+      expect(screen.getByText(TEXT)).toBeInTheDocument();
+      expect(screen.getByText(TITLE)).toBeInTheDocument();
+      expect(screen.getByText(OK)).toBeInTheDocument();
+      expect(screen.getByText(CANCEL)).toBeInTheDocument();
+    })
   });
 
   it('should call onCancel when cancel clicked', () => {
@@ -40,8 +43,8 @@ describe('Popconfirm', () => {
       </Popconfirm>,
     );
 
-    fireEvent.click(screen.getAllByText(TEXT)[0]);
-    fireEvent.click(screen.getAllByText(CANCEL)[0]);
+    fireEvent.click(screen.getByText(TEXT));
+    fireEvent.click(screen.getByText(CANCEL));
 
     expect(onCancel).toHaveBeenCalled();
     expect(onCancel).toHaveBeenCalledTimes(1);
@@ -55,8 +58,8 @@ describe('Popconfirm', () => {
       </Popconfirm>,
     );
 
-    fireEvent.click(screen.getAllByText(TEXT)[0]);
-    fireEvent.click(screen.getAllByText(OK)[0]);
+    fireEvent.click(screen.getByText(TEXT));
+    fireEvent.click(screen.getByText(OK));
 
     expect(onConfirm).toHaveBeenCalled();
     expect(onConfirm).toHaveBeenCalledTimes(1);
@@ -74,16 +77,16 @@ describe('Popconfirm', () => {
     expect(document.querySelector('button')).toBeInTheDocument();
   });
 
-  it('should trigger popconfirm on focus', async () => {
+  it('should trigger popconfirm on hover', async () => {
     renderWithProvider(
-      <Popconfirm title={TITLE} trigger="focus">
+      <Popconfirm title={TITLE} trigger="hover" okText={OK} cancelText={CANCEL}>
         <button>{TEXT}</button>
       </Popconfirm>,
     );
     const trigger = screen.getByText(TEXT);
     expect(trigger).toBeInTheDocument();
 
-    fireEvent.focus(trigger);
+    await userEvent.hover(trigger);
 
     await waitFor(
       () => {
