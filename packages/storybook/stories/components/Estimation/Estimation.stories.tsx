@@ -12,7 +12,7 @@ import { Bold } from './Estimation.styles';
 export default {
   component: Estimation,
   title: 'Components/Estimation',
-  tags: ['autodocs'],
+  tags: ['autodocs', 'new'],
   parameters: {
     layout: 'padded',
   },
