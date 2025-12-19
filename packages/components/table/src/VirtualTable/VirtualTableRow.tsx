@@ -141,6 +141,7 @@ function VirtualTableRow<T extends object>({
     <>
       {infiniteLoader('TOP')}
       <S.RowWrapper
+        data-row-index={index}
         className={classNames('virtual-table-row', {
           'ds-expanded-row': rowData[EXPANDED_ROW_PROPERTY as keyof T],
         })}
@@ -158,6 +159,11 @@ function VirtualTableRow<T extends object>({
             (selection || rowStar) && columnIndex === 1;
           const firstWithoutSelectionAndStar =
             columnIndex === 0 && !selection && !rowStar;
+
+          const columnTitle =
+            typeof column.title === 'string'
+              ? column.title
+              : column.dataIndex || column.key;
 
           return (
             <S.ColWrapper
@@ -191,6 +197,8 @@ function VirtualTableRow<T extends object>({
                 column.className,
               )}
               key={`row-${index}-column-${column.dataIndex || column.key}`}
+              data-column-dataIndex={column.dataIndex || column.key}
+              data-column-title={columnTitle}
               minWidth={calculateToPixelsIfDefined(column?.minWidth)}
               width={column.width}
               maxWidth={calculateToPixelsIfDefined(column?.maxWidth)}
