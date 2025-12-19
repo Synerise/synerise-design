@@ -1,0 +1,9 @@
+{
+    "name": "@synerise/addon-code-panel",
+    "version": "1.0.0",
+    "main": "./register.tsx",
+    "storybook": {
+        "displayName": "Code Panel",
+        "icon": "https://storybook.js.org/images/addon-default.svg"
+    }
+}

@@ -22,7 +22,7 @@ import {
 
 export default {
   component: Confirmation,
-  title: 'Components/Confirmation',
+  title: 'Components/Confirmation/Confirmation',
   parameters: {
     layout: 'padded',
   },
