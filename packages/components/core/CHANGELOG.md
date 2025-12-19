@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.9.0](https://github.com/synerise/synerise-design/compare/@synerise/ds-core@1.8.2...@synerise/ds-core@1.9.0) (2025-12-19)
+
+### Features
+
+- **popconfirm:** migrate to popover ([f14f74e](https://github.com/synerise/synerise-design/commit/f14f74e1f9879ddd8264dc2614723a298b656d2f))
+
 ## [1.8.2](https://github.com/synerise/synerise-design/compare/@synerise/ds-core@1.8.1...@synerise/ds-core@1.8.2) (2025-12-15)
 
 **Note:** Version bump only for package @synerise/ds-core

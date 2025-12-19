@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.1.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-popconfirm@1.0.31...@synerise/ds-popconfirm@1.1.0) (2025-12-19)
+
+### Features
+
+- **popconfirm:** migrate to popover ([f14f74e](https://github.com/Synerise/synerise-design/commit/f14f74e1f9879ddd8264dc2614723a298b656d2f))
+
 ## [1.0.31](https://github.com/Synerise/synerise-design/compare/@synerise/ds-popconfirm@1.0.30...@synerise/ds-popconfirm@1.0.31) (2025-12-15)
 
 **Note:** Version bump only for package @synerise/ds-popconfirm

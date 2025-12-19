@@ -1,6 +1,6 @@
 {
   "name": "@synerise/ds-popconfirm",
-  "version": "1.0.31",
+  "version": "1.1.0",
   "description": "Popconfirm UI Component for the Synerise Design System",
   "license": "ISC",
   "repository": "Synerise/synerise-design",
@@ -37,8 +37,8 @@
   "dependencies": {
     "@synerise/ds-button": "workspace:^",
     "@synerise/ds-icon": "workspace:^",
-    "@synerise/ds-utils": "workspace:^",
-    "@synerise/ds-popover": "workspace:^"
+    "@synerise/ds-popover": "workspace:^",
+    "@synerise/ds-utils": "workspace:^"
   },
   "devDependencies": {
     "@floating-ui/react": "^0.27.16",
