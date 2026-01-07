@@ -70,6 +70,7 @@ export const ActionsAll: StoryObj<StoryPropsOverlay> = {
   ...FlatItems,
   parameters: {
     testGoal: 'snapshot listing actions in default view',
+    expectedResults: 3,
   },
   play: playActionsAllStory,
 };
@@ -82,6 +83,7 @@ export const ActionsInSection: StoryObj<StoryPropsOverlay> = {
   },
   parameters: {
     testGoal: 'snapshot listing actions in section view',
+    expectedResults: 3,
   },
   play: playActionsSectionStory,
 };
@@ -93,6 +95,7 @@ export const ActionsInFolder: StoryObj<StoryPropsOverlay> = {
   },
   parameters: {
     testGoal: 'snapshot listing actions in folder view',
+    expectedResults: 3,
   },
   play: playActionsFolderStory,
 };
