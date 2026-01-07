@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.30.0](https://github.com/Synerise/synerise-design/compare/storybook@1.29.0...storybook@1.30.0) (2026-01-07)
+
+### Bug Fixes
+
+- **item-picker:** fixes config of item-picker ([cda7589](https://github.com/Synerise/synerise-design/commit/cda75890f186cbb48f5b3e511942f36338cc5f24))
+- **table:** fixes to stories ([bebbec4](https://github.com/Synerise/synerise-design/commit/bebbec4ffcef0196d4967015376105861b3305e7))
+
+### Features
+
+- **metric-card:** new component ([5fe50a7](https://github.com/Synerise/synerise-design/commit/5fe50a7b87592990d6e4be1e04599fce350a91fd))
+
 # [1.29.0](https://github.com/Synerise/synerise-design/compare/storybook@1.28.1...storybook@1.29.0) (2025-12-19)
 
 ### Features

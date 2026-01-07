@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.10.0](https://github.com/Synerise/synerise-design/compare/@synerise/design-system@1.9.2...@synerise/design-system@1.10.0) (2026-01-07)
+
+### Features
+
+- **metric-card:** new component ([5fe50a7](https://github.com/Synerise/synerise-design/commit/5fe50a7b87592990d6e4be1e04599fce350a91fd))
+
 ## [1.9.2](https://github.com/Synerise/synerise-design/compare/@synerise/design-system@1.9.1...@synerise/design-system@1.9.2) (2025-12-19)
 
 **Note:** Version bump only for package @synerise/design-system

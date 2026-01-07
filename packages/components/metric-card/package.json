@@ -1,6 +1,6 @@
 {
   "name": "@synerise/ds-metric-card",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "MetricCard UI Component for the Synerise Design System",
   "license": "ISC",
   "repository": "Synerise/synerise-design",
@@ -35,12 +35,12 @@
   ],
   "types": "dist/index.d.ts",
   "dependencies": {
+    "@synerise/ds-copy-icon": "workspace:^",
     "@synerise/ds-icon": "workspace:^",
-    "@synerise/ds-tooltip": "workspace:^",
-    "@synerise/ds-typography": "workspace:^",
-    "@synerise/ds-skeleton": "workspace:^",
     "@synerise/ds-inline-alert": "workspace:^",
-    "@synerise/ds-copy-icon": "workspace:^"
+    "@synerise/ds-skeleton": "workspace:^",
+    "@synerise/ds-tooltip": "workspace:^",
+    "@synerise/ds-typography": "workspace:^"
   },
   "devDependencies": {
     "@synerise/ds-utils": "workspace:^"

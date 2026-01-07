@@ -1,6 +1,6 @@
 {
   "name": "@synerise/ds-factors",
-  "version": "1.7.4",
+  "version": "1.7.5",
   "description": "Factors UI Component for the Synerise Design System",
   "license": "ISC",
   "repository": "Synerise/synerise-design",
@@ -56,9 +56,9 @@
     "@synerise/ds-modal": "workspace:^",
     "@synerise/ds-result": "workspace:^",
     "@synerise/ds-scrollbar": "workspace:^",
-    "@synerise/ds-short-cuts": "workspace:^",
     "@synerise/ds-search": "workspace:^",
     "@synerise/ds-select": "workspace:^",
+    "@synerise/ds-short-cuts": "workspace:^",
     "@synerise/ds-skeleton": "workspace:^",
     "@synerise/ds-tabs": "workspace:^",
     "@synerise/ds-tag": "workspace:^",

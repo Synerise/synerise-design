@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.9.1](https://github.com/synerise/synerise-design/compare/@synerise/ds-core@1.9.0...@synerise/ds-core@1.9.1) (2026-01-07)
+
+### Bug Fixes
+
+- **core:** tz flag via prop should take precedence ([07d1ab0](https://github.com/synerise/synerise-design/commit/07d1ab0dbec9c2116b937bf8894d36a83880cf64))
+
 # [1.9.0](https://github.com/synerise/synerise-design/compare/@synerise/ds-core@1.8.2...@synerise/ds-core@1.9.0) (2025-12-19)
 
 ### Features
