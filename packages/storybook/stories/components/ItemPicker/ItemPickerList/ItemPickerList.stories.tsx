@@ -11,11 +11,12 @@ import {
   fixedWrapper588,
 } from '../../../utils';
 import {
-  ACTIONS,
+  ACTIONS_WITH_NO_SEARCH_IN,
   FLAT_DATA_SOURCE,
   ITEMS_IN_SECTIONS,
   ITEMS_IN_SECTIONS_NESTED,
   ITEMS_IN_SECTIONS_SHORT,
+  ITEMS_IN_SEGMENTATIONS,
   RECENT,
   SECTIONS,
   SECTIONS_WITH_FOLDERS,
@@ -75,7 +76,7 @@ export default {
     onSectionChange: fn(),
     items: FLAT_DATA_SOURCE.slice(0, 50),
     recents: RECENT,
-    actions: ACTIONS,
+    actions: ACTIONS_WITH_NO_SEARCH_IN,
     searchBarProps: {
       clearTooltip: 'Clear',
     },
@@ -85,7 +86,7 @@ export default {
 export const FlatItems: StoryObj<StoryPropsOverlay> = {};
 export const FlatItemsRelativeHeight: StoryObj<StoryPropsOverlay> = {
   args: {
-    items: FLAT_DATA_SOURCE.slice(0, 5),
+    items: ITEMS_IN_SEGMENTATIONS.slice(0, 5),
     recents: undefined,
     actions: undefined,
     containerHeight: 'fitContent',
@@ -98,11 +99,10 @@ export const Sections: StoryObj<StoryPropsOverlay> = {
     sections: SECTIONS,
     items: ITEMS_IN_SECTIONS,
     recents: RECENT,
-    actions: ACTIONS,
+    actions: ACTIONS_WITH_NO_SEARCH_IN,
   },
 };
 export const SectionsCustomLimit: StoryObj<StoryPropsOverlay> = {
-  ...FlatItems,
   args: {
     sections: SECTIONS,
     items: {
@@ -110,7 +110,7 @@ export const SectionsCustomLimit: StoryObj<StoryPropsOverlay> = {
       items: ITEMS_IN_SECTIONS,
     },
     recents: RECENT,
-    actions: ACTIONS,
+    actions: ACTIONS_WITH_NO_SEARCH_IN,
   },
 };
 export const SectionsAndFolders: StoryObj<StoryPropsOverlay> = {
@@ -118,7 +118,7 @@ export const SectionsAndFolders: StoryObj<StoryPropsOverlay> = {
     sections: SECTIONS_WITH_FOLDERS,
     items: ITEMS_IN_SECTIONS,
     recents: RECENT,
-    actions: ACTIONS,
+    actions: ACTIONS_WITH_NO_SEARCH_IN,
   },
 };
 export const WithPickerTrigger: StoryObj<StoryPropsOverlay> = {
@@ -183,7 +183,7 @@ export const WithPickerTrigger: StoryObj<StoryPropsOverlay> = {
     sections: SECTIONS_WITH_FOLDERS,
     items: ITEMS_IN_SECTIONS,
     recents: RECENT,
-    actions: ACTIONS,
+    actions: ACTIONS_WITH_NO_SEARCH_IN,
   },
 };
 export const SectionsAndFoldersRelativeHeight: StoryObj<StoryPropsOverlay> = {
@@ -191,7 +191,7 @@ export const SectionsAndFoldersRelativeHeight: StoryObj<StoryPropsOverlay> = {
     sections: SECTIONS_WITH_FOLDERS,
     items: ITEMS_IN_SECTIONS_SHORT,
     recents: undefined,
-    actions: ACTIONS,
+    actions: ACTIONS_WITH_NO_SEARCH_IN,
     containerHeight: 'fitContent',
   },
 };

@@ -251,6 +251,9 @@ export const ITEMS_IN_SECTIONS: ItemType[] = [
   ...SEGMENTATIONS.slice(0, 13),
   ...FUNNELS.slice(0, 22),
 ];
+export const ITEMS_IN_SEGMENTATIONS: ItemType[] = [
+  ...SEGMENTATIONS.slice(0, 50),
+];
 export const ITEMS_IN_SECTIONS_NESTED: ItemType[] = [
   ...SEGMENTATIONS.slice(0, 12),
   ...FUNNELS.slice(0, 22),
@@ -327,6 +330,74 @@ export const ACTIONS: Action[] = [
     text: 'Search in folders (second)',
     sectionId: 'FUNNELS',
     renderSearchInValueText: (item) => `Search in ${item.text}`,
+  },
+  {
+    actionType: 'searchBy',
+    id: 'search-by-parameter',
+    sectionId: 'SEGMENTATIONS',
+    text: 'Search by parameter',
+    prefixel: <Icon component={<SearchM />} />,
+    searchParams: [
+      {
+        paramListLabel: 'Profile',
+        paramKeyLabel: 'Profile:',
+        paramKey: 'profile',
+        icon: <UserM />,
+      },
+    ],
+  },
+  {
+    actionType: 'searchBy',
+    id: 'search-by-parameter',
+    text: 'Search by parameter',
+    sectionId: 'FUNNELS',
+    prefixel: <Icon component={<SearchM />} />,
+    searchParams: [
+      {
+        paramListLabel: 'Profile',
+        paramKeyLabel: 'Profile:',
+        paramKey: 'profile',
+        icon: <UserM />,
+      },
+    ],
+  },
+];
+
+export const ACTIONS_WITH_NO_SEARCH_IN: Action[] = [
+  {
+    text: `Add funnel`,
+    actionType: 'custom',
+    id: '1',
+    sectionId: 'FUNNELS',
+    prefixel: <Icon component={<AddM />} />,
+    onClick: action('Action clicked'),
+  },
+  {
+    text: `Create page`,
+    actionType: 'custom',
+    id: '1',
+    prefixel: <Icon component={<AddM />} />,
+    onClick: action('Action clicked'),
+  },
+  {
+    actionType: 'searchBy',
+    id: 'search-by-parameter',
+    text: 'Search by parameter',
+    prefixel: <Icon component={<SearchM />} />,
+    searchParams: [
+      {
+        paramListLabel: 'Name',
+        paramKeyLabel: 'Name:',
+        paramKey: 'name',
+        icon: <UserM />,
+      },
+      {
+        paramListLabel: 'Author',
+        paramKeyLabel: 'Author:',
+        paramKey: 'author',
+        icon: <UserM />,
+      },
+    ],
   },
   {
     actionType: 'searchBy',

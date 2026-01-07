@@ -84,7 +84,9 @@ export const playActionsAllStory = async ({ canvasElement, step, context }) => {
     delay: 100,
   });
   await waitFor(() => {
-    expect(canvas.getAllByRole('menuitem')).toHaveLength(4);
+    expect(canvas.getAllByRole('menuitem')).toHaveLength(
+      context.parameters.expectedResults,
+    );
     expect(canvas.getByText('Actions')).toBeInTheDocument();
     expect(canvas.getByText('Refresh').closest('button')).toBeDisabled();
   });
@@ -119,7 +121,9 @@ export const playActionsSectionStory = async ({
     expect(
       canvas.queryByTestId('dropdown-back-action-label'),
     ).not.toBeInTheDocument();
-    expect(canvas.getAllByRole('menuitem')).toHaveLength(4);
+    expect(canvas.getAllByRole('menuitem')).toHaveLength(
+      context.parameters.expectedResults,
+    );
     expect(canvas.getByText('Actions')).toBeInTheDocument();
     expect(canvas.getByText('Refresh').closest('button')).toBeDisabled();
   });
@@ -151,7 +155,9 @@ export const playActionsFolderStory = async ({
     expect(
       canvas.queryByTestId('dropdown-back-action-label'),
     ).not.toBeInTheDocument();
-    expect(canvas.getAllByRole('menuitem')).toHaveLength(4);
+    expect(canvas.getAllByRole('menuitem')).toHaveLength(
+      context.parameters.expectedResults,
+    );
     expect(canvas.getByText('Actions')).toBeInTheDocument();
     expect(canvas.getByText('Refresh').closest('button')).toBeDisabled();
   });
