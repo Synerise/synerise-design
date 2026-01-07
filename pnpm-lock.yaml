@@ -1756,6 +1756,9 @@ importers:
       '@synerise/ds-message':
         specifier: workspace:^
         version: link:../message
+      '@synerise/ds-metric-card':
+        specifier: workspace:^
+        version: link:../metric-card
       '@synerise/ds-modal':
         specifier: workspace:^
         version: link:../modal
@@ -3280,6 +3283,43 @@ importers:
       react:
         specifier: ^18
         version: 18.3.1
+
+  packages/components/metric-card:
+    dependencies:
+      '@synerise/ds-copy-icon':
+        specifier: workspace:^
+        version: link:../copy-icon
+      '@synerise/ds-core':
+        specifier: '*'
+        version: link:../core
+      '@synerise/ds-icon':
+        specifier: workspace:^
+        version: link:../icon
+      '@synerise/ds-inline-alert':
+        specifier: workspace:^
+        version: link:../inline-alert
+      '@synerise/ds-skeleton':
+        specifier: workspace:^
+        version: link:../skeleton
+      '@synerise/ds-tooltip':
+        specifier: workspace:^
+        version: link:../tooltip
+      '@synerise/ds-typography':
+        specifier: workspace:^
+        version: link:../typography
+      react:
+        specifier: ^18
+        version: 18.3.1
+      react-intl:
+        specifier: '>=3.12.0 <= 6.8'
+        version: 6.8.9(react@18.3.1)(typescript@5.9.3)
+      styled-components:
+        specifier: ^5.3.3
+        version: 5.3.11(@babel/core@7.28.5)(react-dom@18.3.1(react@18.3.1))(react-is@18.3.1)(react@18.3.1)
+    devDependencies:
+      '@synerise/ds-utils':
+        specifier: workspace:^
+        version: link:../utils
 
   packages/components/modal:
     dependencies:

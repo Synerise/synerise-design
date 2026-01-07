@@ -1,0 +1,54 @@
+{
+  "name": "@synerise/ds-metric-card",
+  "version": "1.0.0",
+  "description": "MetricCard UI Component for the Synerise Design System",
+  "license": "ISC",
+  "repository": "Synerise/synerise-design",
+  "main": "dist/index.js",
+  "files": [
+    "/dist",
+    "CHANGELOG.md",
+    "README.md",
+    "package.json",
+    "LICENSE.md"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "scripts": {
+    "build": "npm run build:js && npm run build:css && npm run defs",
+    "build:css": "node ../../../scripts/style/less.js",
+    "build:js": "babel --delete-dir-on-start --root-mode upward src --out-dir dist --extensions '.js,.ts,.tsx'",
+    "build:watch": "npm run build:js -- --watch",
+    "defs": "tsc --declaration --outDir dist/ --emitDeclarationOnly",
+    "prepublish": "npm run build",
+    "types": "tsc --noEmit",
+    "pack:ci": "npm pack --pack-destination ../../storybook/storybook-static/static",
+    "test": "jest",
+    "test:watch": "npm run test -- --watchAll",
+    "check:circular-dependencies": "madge --circular --extensions ts,tsx,js,jsx --ts-config tsconfig.json src/ --exclude '/dist/'",
+    "upgrade:ds": "ncu -f \"@synerise/ds-*\" -u"
+  },
+  "sideEffects": [
+    "dist/style/*",
+    "*.less"
+  ],
+  "types": "dist/index.d.ts",
+  "dependencies": {
+    "@synerise/ds-icon": "workspace:^",
+    "@synerise/ds-tooltip": "workspace:^",
+    "@synerise/ds-typography": "workspace:^",
+    "@synerise/ds-skeleton": "workspace:^",
+    "@synerise/ds-inline-alert": "workspace:^",
+    "@synerise/ds-copy-icon": "workspace:^"
+  },
+  "devDependencies": {
+    "@synerise/ds-utils": "workspace:^"
+  },
+  "peerDependencies": {
+    "@synerise/ds-core": "*",
+    "react": ">=16.9.0 <= 18.3.1",
+    "react-intl": ">=3.12.0 <= 6.8",
+    "styled-components": "^5.3.3"
+  }
+}
