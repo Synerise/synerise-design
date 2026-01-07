@@ -5099,6 +5099,7 @@ export const RESPONSIVE_COLUMNS = [
       const tagIndex = faker.number.int({ min: 0, max: TAGS.length - 1 });
       return (
         <TableCell.TagsGroupCell
+          className="chromatic-ignore"
           tagsProps={{
             addable: true,
             removable: true,
