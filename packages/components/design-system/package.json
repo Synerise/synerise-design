@@ -104,6 +104,7 @@
     "@synerise/ds-mapping": "workspace:^",
     "@synerise/ds-menu": "workspace:^",
     "@synerise/ds-message": "workspace:^",
+    "@synerise/ds-metric-card": "workspace:^",
     "@synerise/ds-modal": "workspace:^",
     "@synerise/ds-navbar": "workspace:^",
     "@synerise/ds-operators": "workspace:^",
