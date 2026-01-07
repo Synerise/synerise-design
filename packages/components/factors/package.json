@@ -56,6 +56,7 @@
     "@synerise/ds-modal": "workspace:^",
     "@synerise/ds-result": "workspace:^",
     "@synerise/ds-scrollbar": "workspace:^",
+    "@synerise/ds-short-cuts": "workspace:^",
     "@synerise/ds-search": "workspace:^",
     "@synerise/ds-select": "workspace:^",
     "@synerise/ds-skeleton": "workspace:^",

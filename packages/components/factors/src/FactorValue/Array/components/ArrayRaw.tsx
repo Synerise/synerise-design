@@ -1,4 +1,3 @@
-import type { TextAreaRef } from 'antd/lib/input/TextArea';
 import React, {
   type ChangeEvent,
   useEffect,
@@ -7,7 +6,10 @@ import React, {
   useState,
 } from 'react';
 
+import { useDelimiterEscape } from '@synerise/ds-utils';
+
 import { type ArrayValueElement } from '../../../Factors.types';
+import { BACKTICK, COMMA } from '../Array.const';
 import * as S from '../Array.styles';
 import { type ArrayRawProps } from '../Array.types';
 import {
@@ -25,15 +27,24 @@ export const ArrayRaw = <ItemType extends 'string' | 'number'>({
   limit,
   onError,
 }: ArrayRawProps<ItemType>) => {
-  const ref = useRef<TextAreaRef>(null);
+  const { isValidEscapedString, joinWithEscape, splitWithEscape } =
+    useDelimiterEscape({
+      openTag: BACKTICK,
+      closeTag: BACKTICK,
+      delimiter: COMMA,
+    });
+  const ref = useRef<HTMLTextAreaElement>(null);
   const plainValues = useMemo(() => {
-    return value.map((item) => item.value).join(',');
-  }, [value]);
+    const items = value.map((item) => item.value);
+    return itemType === 'string'
+      ? joinWithEscape(items as string[])
+      : items.join(',');
+  }, [itemType, joinWithEscape, value]);
 
   const [textareaValue, setTextareaValue] = useState(plainValues || '');
 
   useEffect(() => {
-    if (document.activeElement !== ref.current?.resizableTextArea?.textArea) {
+    if (document.activeElement !== ref.current) {
       setTextareaValue(plainValues || '');
     }
   }, [plainValues]);
@@ -47,8 +58,14 @@ export const ArrayRaw = <ItemType extends 'string' | 'number'>({
       onValueChange([]);
       return;
     }
-
-    const items = stringifiedValue?.split(',') || [];
+    if (itemType === 'string' && !isValidEscapedString(stringifiedValue)) {
+      onError(texts.array.stringUnclosedBacktickError);
+      return;
+    }
+    const items =
+      (itemType === 'string'
+        ? splitWithEscape(stringifiedValue)
+        : stringifiedValue?.split(',')) || [];
     const sanitisedItems = items.map(sanitiseValues);
     const lastItemIsDelimiter =
       sanitisedItems.at(sanitisedItems.length - 1) === '';

@@ -148,7 +148,7 @@ export type FactorsTexts = {
     searchPlaceholder: string;
     searchClearTooltip: ReactNode;
     limitPrefix: ReactNode;
-    collectorPlaceholder: string;
+    collectorPlaceholder: ReactNode;
     collectorAdd: ReactNode;
     collectorCancel: ReactNode;
     creatorButtonLabel: ReactNode;
@@ -156,6 +156,7 @@ export type FactorsTexts = {
     clearButtonLabel: ReactNode;
     deleteItemTooltip: ReactNode;
     numericValidationError: ReactNode;
+    stringUnclosedBacktickError: ReactNode;
     limitReached: ReactNode;
     limitExceeded: ReactNode;
     copiedTooltip: ReactNode;

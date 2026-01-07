@@ -126,6 +126,7 @@ export const Input = styled(BorderLessInput)<{
 
 export const SearchWrapper = styled.div`
   flex: 1 0 auto;
+  position: relative;
 `;
 
 export const CollectorValue = styled(Value)<{ hasError?: boolean }>`
@@ -165,6 +166,19 @@ export const DropdownContent = styled.div<{ visible?: boolean }>`
   left: 0;
   box-shadow: 0 16px 32px 0 rgba(35, 41, 54, 0.12);
   z-index: 99;
+`;
+
+export const Placeholder = styled.div`
+  position: absolute;
+  ppointer-events: none;
+  top: 0;
+  bottom: 0;
+  left: 12px;
+  right: 0;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  color: ${(props) => props.theme.palette['grey-500']};
 `;
 
 export const DropdownAddButton: StyledButton = styled(Button)`

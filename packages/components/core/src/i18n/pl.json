@@ -93,7 +93,7 @@
         "CREATOR": "Kreator",
         "RAW_BUTTON_LABEL": "Wartości",
         "SEARCH_PLACEHOLDER": "Szukaj",
-        "COLLECTOR_PLACEHOLDER": "Wpisz wartość lub wklej wiele oddzielonych `,`",
+        "COLLECTOR_PLACEHOLDER": "Rozdziel wartości za pomocą {delimiterShortCut} lub wpisz {escapeShortCut}, aby dodać wartość zawierającą przecinek",
         "COLLECTOR_ADD": "Dodaj",
         "COLLECTOR_CANCEL": "Anuluj",
         "SEARCH_CLEAR_TOOLTIP": "Wyczyść",

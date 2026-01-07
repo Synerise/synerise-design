@@ -17,7 +17,8 @@ const SUGGESTIONS = [
   { text: 'Other' },
 ];
 const SELECTED = [{ text: 'Suggestion 1' }, { text: 'Other' }];
-const PLACEHOLDER = 'Select...';
+const TEST_ID = 'ds-collector-input';
+
 afterEach(() => {
   jest.clearAllMocks();
 });
@@ -40,13 +41,12 @@ describe('Collector', () => {
         texts={{
           add: 'Add',
           cancel: 'Cancel',
-          placeholder: PLACEHOLDER,
           toSelect: 'to select',
           toNavigate: 'to navigate',
         }}
       />,
     );
-    userEvent.click(screen.getByPlaceholderText(PLACEHOLDER));
+    userEvent.click(screen.getByTestId(TEST_ID));
     await waitFor(
       () => {
         SUGGESTIONS.map((s) =>
@@ -73,7 +73,6 @@ describe('Collector', () => {
         texts={{
           add: 'Add',
           cancel: 'Cancel',
-          placeholder: PLACEHOLDER,
           toSelect: 'to select',
           toNavigate: 'to navigate',
         }}
@@ -94,7 +93,6 @@ describe('Collector', () => {
         texts={{
           add: 'Add',
           cancel: 'Cancel',
-          placeholder: PLACEHOLDER,
           toSelect: 'to select',
           toNavigate: 'to navigate',
         }}
@@ -118,13 +116,12 @@ describe('Collector', () => {
         texts={{
           add: 'Add',
           cancel: 'Cancel',
-          placeholder: PLACEHOLDER,
           toSelect: 'to select',
           toNavigate: 'to navigate',
         }}
       />,
     );
-    const input = screen.getByPlaceholderText(PLACEHOLDER) as HTMLInputElement;
+    const input = screen.getByTestId(TEST_ID) as HTMLInputElement;
     input.focus();
     fireEvent.input(input, { target: { value: newValue1 } });
     fireEvent.keyPress(input, { key: 'Enter', keyCode: 13 });
@@ -160,13 +157,12 @@ describe('Collector', () => {
         texts={{
           add: 'Add',
           cancel: 'Cancel',
-          placeholder: PLACEHOLDER,
           toSelect: 'to select',
           toNavigate: 'to navigate',
         }}
       />,
     );
-    const input = screen.getByPlaceholderText(PLACEHOLDER) as HTMLInputElement;
+    const input = screen.getByTestId(TEST_ID) as HTMLInputElement;
     const pasteEvent = createEvent.paste(input, {
       clipboardData: {
         getData: () => pastedValue,
@@ -197,13 +193,12 @@ describe('Collector', () => {
         texts={{
           add: 'Add',
           cancel: 'Cancel',
-          placeholder: PLACEHOLDER,
           toSelect: 'to select',
           toNavigate: 'to navigate',
         }}
       />,
     );
-    const input = screen.getByPlaceholderText(PLACEHOLDER);
+    const input = screen.getByTestId(TEST_ID);
     const pasteEvent = createEvent.paste(input, {
       clipboardData: {
         getData: () => pastedValue,
@@ -228,7 +223,6 @@ describe('Collector', () => {
         texts={{
           add: 'Add',
           cancel: 'Cancel',
-          placeholder: PLACEHOLDER,
           toSelect: 'to select',
           toNavigate: 'to navigate',
         }}
@@ -253,7 +247,6 @@ describe('Collector', () => {
         texts={{
           add: 'Add',
           cancel: 'Cancel',
-          placeholder: PLACEHOLDER,
           toSelect: 'to select',
           toNavigate: 'to navigate',
         }}

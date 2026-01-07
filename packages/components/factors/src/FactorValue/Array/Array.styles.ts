@@ -3,10 +3,12 @@ import styled from 'styled-components';
 import Button from '@synerise/ds-button';
 import EmptyStateBase from '@synerise/ds-empty-states';
 import Icon from '@synerise/ds-icon';
-import { RawTextArea } from '@synerise/ds-input';
 import ModalBase from '@synerise/ds-modal';
 
-export const TextArea = styled(RawTextArea)``;
+export const TextArea = styled.textarea`
+  width: 100%;
+  padding: 8px 12px;
+`;
 
 export const Modal = styled(ModalBase)<{ viewportHeight: number }>`
   && {
@@ -16,7 +18,7 @@ export const Modal = styled(ModalBase)<{ viewportHeight: number }>`
     }
   }
   ${TextArea} {
-    height: calc(${(props) => props.viewportHeight}vh - 211px);
+    height: calc(${(props) => props.viewportHeight}vh - 215px);
     min-height: auto;
     resize: none;
     font-family: 'IBM Plex Mono Regular', monospace;

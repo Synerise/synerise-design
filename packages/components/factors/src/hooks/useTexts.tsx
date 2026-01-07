@@ -1,8 +1,9 @@
 import { merge } from 'lodash';
-import { useMemo } from 'react';
+import React, { useMemo } from 'react';
 import { useIntl } from 'react-intl';
 
 import { utils as dateRangePickerUtils } from '@synerise/ds-date-range-picker';
+import ShortCuts from '@synerise/ds-short-cuts';
 import { type DeepPartial } from '@synerise/ds-utils';
 
 import type { FactorsTexts } from '../Factors.types';
@@ -146,11 +147,27 @@ export const useTexts = (
               id: 'DS.FACTORS.ARRAY.SEARCH_PLACEHOLDER',
               defaultMessage: 'Search',
             }),
-            collectorPlaceholder: intl.formatMessage({
-              id: 'DS.FACTORS.ARRAY.COLLECTOR_PLACEHOLDER',
-              defaultMessage:
-                'Type value or paste multiple values separated by `,`',
-            }),
+
+            collectorPlaceholder: intl.formatMessage(
+              {
+                id: 'DS.FACTORS.ARRAY.COLLECTOR_PLACEHOLDER',
+
+                defaultMessage:
+                  'Separate values by {delimiterShortCut} or type {escapeShortCut} to add string containing comma',
+              },
+              {
+                escapeShortCut: (
+                  <ShortCuts color="light" size="L">
+                    ```
+                  </ShortCuts>
+                ),
+                delimiterShortCut: (
+                  <ShortCuts color="light" size="L">
+                    ,
+                  </ShortCuts>
+                ),
+              },
+            ),
             collectorAdd: intl.formatMessage({
               id: 'DS.FACTORS.ARRAY.COLLECTOR_ADD',
               defaultMessage: 'Add',
@@ -192,6 +209,11 @@ export const useTexts = (
             numericValidationError: intl.formatMessage({
               id: 'DS.FACTORS.ARRAY.NUMERIC_VALIDATION_ERROR',
               defaultMessage: 'Some of the values are not a number',
+            }),
+            stringUnclosedBacktickError: intl.formatMessage({
+              id: 'DS.FACTORS.ARRAY.UNCLOSED_BACKTICK_ERROR',
+              defaultMessage:
+                "There's an unclosed backtick sequence in the string",
             }),
             limitReached: intl.formatMessage({
               id: 'DS.FACTORS.ARRAY.LIMIT_REACHED',
