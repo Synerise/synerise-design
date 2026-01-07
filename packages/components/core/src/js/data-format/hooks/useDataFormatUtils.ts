@@ -169,8 +169,11 @@ export const useDataFormatUtils = (): {
       timeFormatIntl: IntlShape,
       options?: DateToFormatOptions,
     ): string => {
+      const valueInContextTimeZone =
+        options?.applyTimeZoneOffset ?? applyTimeZoneOffset;
+
       const valueInTimezone =
-        globalTimeZone && applyTimeZoneOffset
+        globalTimeZone && valueInContextTimeZone
           ? getLocalDateInTimeZone(value.toISOString(), globalTimeZone)
           : value;
 
