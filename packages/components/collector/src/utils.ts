@@ -20,6 +20,10 @@ export const scrollWithHorizontalArrow = (
   }
 };
 
+export const filterOutEmptyStrings = (items: string[]) => {
+  return items.filter((val) => Boolean(val.trim()));
+};
+
 export const filterOutNullishArrayItems = <T>(
   array: (T | null | '' | undefined)[],
 ) => {

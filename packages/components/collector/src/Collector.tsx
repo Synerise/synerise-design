@@ -14,7 +14,11 @@ import React, {
 } from 'react';
 import { FormattedMessage } from 'react-intl';
 
-import { focusWithArrowKeys, useOnClickOutside } from '@synerise/ds-utils';
+import {
+  focusWithArrowKeys,
+  useDelimiterEscape,
+  useOnClickOutside,
+} from '@synerise/ds-utils';
 
 import * as S from './Collector.styles';
 import { type CollectorProps, type CollectorValue } from './Collector.types';
@@ -24,6 +28,7 @@ import OptionsDropdown from './Elements/OptionsDropdown/OptionsDropdown';
 import Values from './Elements/Values/Values';
 import { useTranslations } from './hooks/useTranslations';
 import {
+  filterOutEmptyStrings,
   filterOutNullishArrayItems,
   filterValueSuggestions,
   isOverflown,
@@ -33,6 +38,8 @@ import {
 const DROPDOWN_PADDING = 2 * 8;
 const COLLECTOR_CLASSNAME = 'ds-collector';
 const DEFAULT_VALUES_SEPARATOR = ';';
+const DEFAULT_VALUES_ESCAPE_OPEN_TAG = '```';
+const DEFAULT_VALUES_ESCAPE_CLOSE_TAG = '```';
 
 const Collector = ({
   allowCustomValue,
@@ -72,7 +79,14 @@ const Collector = ({
   listHeader,
   hideDropdownOnClickOutside = true,
   valuesSeparator = DEFAULT_VALUES_SEPARATOR,
+  valuesEscapeOpenTag = DEFAULT_VALUES_ESCAPE_OPEN_TAG,
+  valuesEscapeCloseTag = DEFAULT_VALUES_ESCAPE_CLOSE_TAG,
 }: CollectorProps) => {
+  const { isValidEscapedString, splitWithEscape } = useDelimiterEscape({
+    openTag: valuesEscapeOpenTag,
+    closeTag: valuesEscapeCloseTag,
+    delimiter: valuesSeparator,
+  });
   const texts = useTranslations(defaultTexts);
   const inputRef = useRef<HTMLInputElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
@@ -223,12 +237,13 @@ const Collector = ({
   const handlePaste = (event: ClipboardEvent<HTMLInputElement>) => {
     if (allowMultipleValues && onItemAdd) {
       const pastedText = event.clipboardData.getData('text');
-      if (pastedText.includes(valuesSeparator)) {
-        const pastedItems = allowMultipleValues
-          ? pastedText.split(valuesSeparator)
-          : [pastedText];
+      if (
+        pastedText.includes(valuesSeparator) &&
+        isValidEscapedString(pastedText)
+      ) {
+        const pastedItems = splitWithEscape(pastedText);
         const newValues = filterOutNullishArrayItems(
-          pastedItems.map(createItem),
+          filterOutEmptyStrings(pastedItems).map(createItem),
         );
 
         if (newValues.length) {
@@ -242,7 +257,11 @@ const Collector = ({
     if (!value.trim()) {
       return;
     }
-    const newValue = createItem(value);
+    const trimmedValue = value.startsWith(valuesEscapeOpenTag)
+      ? value.slice(valuesEscapeOpenTag.length)
+      : value;
+
+    const newValue = createItem(trimmedValue);
     if (!newValue) {
       setValue('');
       return;
@@ -272,18 +291,46 @@ const Collector = ({
 
   const handleKeyPress = (event: KeyboardEvent<HTMLInputElement>) => {
     if (event.key === 'Enter') {
+      event.preventDefault();
       if (value) {
         addItem();
       } else if (selectedValues.length) {
         onConfirmCallback();
       }
-      return;
     }
-    if (allowCustomValue && event.key === valuesSeparator) {
-      event.preventDefault();
-      if (value.trim()) {
-        addItem();
+  };
+
+  const handleKeyUp = (event: KeyboardEvent<HTMLInputElement>) => {
+    const currentValue = (event.target as HTMLInputElement).value;
+
+    const isEscaped = currentValue.startsWith(valuesEscapeOpenTag);
+    const isClosedEscape =
+      currentValue.endsWith(valuesEscapeCloseTag) &&
+      isEscaped &&
+      currentValue.length >
+        valuesEscapeOpenTag.length + valuesEscapeCloseTag.length;
+
+    const tempItems = splitWithEscape(currentValue);
+
+    const containsSeparator = currentValue.includes(valuesSeparator);
+    if (
+      isClosedEscape ||
+      (containsSeparator && !isEscaped) ||
+      tempItems.length > 1
+    ) {
+      const isValid = isClosedEscape
+        ? isValidEscapedString(currentValue)
+        : currentValue.endsWith(valuesSeparator);
+      const finalItems = isValid ? tempItems.slice() : tempItems.slice(0, -1);
+      const finalQuery = isValid ? '' : tempItems.at(-1) || '';
+      const newValues = filterOutNullishArrayItems(
+        filterOutEmptyStrings(finalItems).map(createItem),
+      );
+
+      if (newValues.length) {
+        onMultipleItemsSelect && onMultipleItemsSelect(newValues);
       }
+      setValue(finalQuery);
     }
   };
 
@@ -407,21 +454,20 @@ const Collector = ({
         displayLookupKey={displayLookupKey}
       />
       <S.SearchWrapper>
+        {!selectedValues?.length && !value && (
+          <S.Placeholder>{texts?.placeholder}</S.Placeholder>
+        )}
         <S.Input
           onPaste={handlePaste}
           onKeyPress={handleKeyPress}
           onKeyDown={handleKeyDown}
+          onKeyUp={handleKeyUp}
           ref={inputRef}
           value={value}
           onInput={handleInput}
           disabled={disabled}
           transparent={!!disableSearch}
           hidden={!!disableSearch && !!selectedValues.length}
-          placeholder={
-            selectedValues && selectedValues.length
-              ? undefined
-              : texts?.placeholder
-          }
           hasValues={!!selectedValues?.length}
           data-testid="ds-collector-input"
         />

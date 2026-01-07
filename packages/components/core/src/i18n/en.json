@@ -81,7 +81,7 @@
         "CREATOR": "Creator",
         "RAW_BUTTON_LABEL": "Raw",
         "SEARCH_PLACEHOLDER": "Search",
-        "COLLECTOR_PLACEHOLDER": "Type value or paste multiple values separated by `,`",
+        "COLLECTOR_PLACEHOLDER": "Separate values by {delimiterShortCut} or type {escapeShortCut} to add string containing comma",
         "COLLECTOR_ADD": "Add",
         "COLLECTOR_CANCEL": "Cancel",
         "SEARCH_CLEAR_TOOLTIP": "Clear",

@@ -77,7 +77,7 @@
         "CREATOR": "Criador",
         "RAW_BUTTON_LABEL": "Bruto",
         "SEARCH_PLACEHOLDER": "Pesquisar",
-        "COLLECTOR_PLACEHOLDER": "Digite um valor ou cole múltiplos valores separados por `,`",
+        "COLLECTOR_PLACEHOLDER": "Separe valores por {delimiterShortCut} ou digite {escapeShortCut} para adicionar uma string contendo vírgula",
         "COLLECTOR_ADD": "Adicionar",
         "COLLECTOR_CANCEL": "Cancelar",
         "SEARCH_CLEAR_TOOLTIP": "Limpar",

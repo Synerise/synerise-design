@@ -26,6 +26,7 @@ export * from './omitKeys/omitKeys';
 export * from './useTraceUpdate';
 export * from './getPopupContainer';
 export * from './useLatestRef';
+export * from './useDelimiterEscape/useDelimiterEscape';
 
 export const NOOP = (): void => {};
 

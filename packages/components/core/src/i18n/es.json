@@ -77,7 +77,7 @@
         "CREATOR": "Creador",
         "RAW_BUTTON_LABEL": "Crudo",
         "SEARCH_PLACEHOLDER": "Buscar",
-        "COLLECTOR_PLACEHOLDER": "Escribe valor o pega varios separados por `,`",
+        "COLLECTOR_PLACEHOLDER": "Separa valores por {delimiterShortCut} o escribe {escapeShortCut} para añadir una cadena con coma",
         "COLLECTOR_ADD": "Añadir",
         "COLLECTOR_CANCEL": "Cancelar",
         "SEARCH_CLEAR_TOOLTIP": "Borrar",

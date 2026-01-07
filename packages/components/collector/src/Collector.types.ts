@@ -41,6 +41,8 @@ export type CollectorProps = {
   allowPaste?: boolean;
   showCount?: boolean;
   valuesSeparator?: CollectorValuesSeparator;
+  valuesEscapeOpenTag?: string;
+  valuesEscapeCloseTag?: string;
   listHeader?: ReactNode;
   hideDropdownOnClickOutside?: boolean;
 };
@@ -48,7 +50,7 @@ export type CollectorValuesSeparator = ';' | ',' | '|';
 export type CollectorTexts = {
   add: ReactNode;
   cancel: ReactNode;
-  placeholder: string;
+  placeholder: ReactNode;
   toNavigate: ReactNode;
   toSelect: ReactNode;
 };

@@ -58,4 +58,11 @@ export const Wrapper = styled.div<{
       : props.theme.palette['grey-600']};
   padding: ${(props): string => getPadding(props)};
   font-size: 11px;
+  box-shadow: 0px 1px 8px 0px
+    rgba(
+      35,
+      41,
+      54,
+      ${(props): string => (props.color === 'dark' ? '0.5' : '0.08')}
+    );
 `;

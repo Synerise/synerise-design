@@ -2173,6 +2173,9 @@ importers:
       '@synerise/ds-select':
         specifier: workspace:^
         version: link:../select
+      '@synerise/ds-short-cuts':
+        specifier: workspace:^
+        version: link:../short-cuts
       '@synerise/ds-skeleton':
         specifier: workspace:^
         version: link:../skeleton

@@ -23,7 +23,7 @@ export const OpenDropdown: Story = {
   ...WithCounter,
   play: async ({ canvasElement, args }) => {
     const canvas = within(canvasElement);
-    userEvent.click(canvas.getByPlaceholderText(TEXTS.placeholder));
+    await userEvent.click(canvas.getByTestId('ds-collector-input'));
     const dropdown = await canvas.findByTestId('ds-collector-dropdown');
     await waitFor(() => expect(dropdown).toBeVisible());
   },
@@ -33,7 +33,7 @@ export const SelectWithKeyboard: Story = {
   ...WithCounter,
   play: async ({ canvasElement, args }) => {
     const canvas = within(canvasElement);
-    userEvent.click(canvas.getByPlaceholderText(TEXTS.placeholder));
+    await userEvent.click(canvas.getByTestId('ds-collector-input'));
     const dropdown = await canvas.findByTestId('ds-collector-dropdown');
     await waitFor(() => expect(dropdown).toBeVisible());
     await userEvent.keyboard('{ArrowDown}{ArrowDown}{Enter}', { delay: 200 });

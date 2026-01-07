@@ -107,8 +107,8 @@ export const ArrayModal = <ItemType extends 'string' | 'number'>({
     [],
   );
 
-  const mainModalContent = useMemo(() => {
-    return currentMode === 'creator' ? (
+  const mainModalContent =
+    currentMode === 'creator' ? (
       <ArrayCreator
         texts={texts}
         readOnly={readOnly}
@@ -130,17 +130,6 @@ export const ArrayModal = <ItemType extends 'string' | 'number'>({
         value={arrayValue}
       />
     );
-  }, [
-    currentMode,
-    texts,
-    readOnly,
-    itemType,
-    arrayValue,
-    limit,
-    searchQuery,
-    handleValueChange,
-    collectorSuggestions,
-  ]);
 
   return (
     <S.Modal

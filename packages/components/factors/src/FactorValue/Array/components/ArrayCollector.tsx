@@ -3,6 +3,7 @@ import { v4 as uuid } from 'uuid';
 
 import Collector, { type CollectorValue } from '@synerise/ds-collector';
 
+import { COMMA } from '../Array.const';
 import * as S from '../Array.styles';
 import { type ArrayCollectorProps } from '../Array.types';
 import {
@@ -91,7 +92,7 @@ export const ArrayCollector = <ItemType extends 'string' | 'number'>({
   return (
     <S.CollectorWrapper>
       <Collector
-        valuesSeparator=","
+        valuesSeparator={COMMA}
         error={error}
         errorText={errorMessage}
         onConfirm={addEnabled ? handleConfirm : undefined}

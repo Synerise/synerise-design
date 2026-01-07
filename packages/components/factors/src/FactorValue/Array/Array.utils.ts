@@ -24,6 +24,7 @@ export const arrayWithUUID = <ItemType extends 'string' | 'number'>(
 export const sanitiseValues = (element: string) => {
   return element.trim();
 };
+
 export const isNumberAsString = (value: string): boolean => {
   return sanitiseValues(value) === `${parseFloat(sanitiseValues(value))}`;
 };
