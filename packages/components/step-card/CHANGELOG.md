@@ -3,6 +3,10 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.2.25](https://github.com/Synerise/synerise-design/compare/@synerise/ds-step-card@1.2.24...@synerise/ds-step-card@1.2.25) (2026-01-12)
+
+**Note:** Version bump only for package @synerise/ds-step-card
+
 ## [1.2.24](https://github.com/Synerise/synerise-design/compare/@synerise/ds-step-card@1.2.23...@synerise/ds-step-card@1.2.24) (2026-01-07)
 
 **Note:** Version bump only for package @synerise/ds-step-card
