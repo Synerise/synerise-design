@@ -34,7 +34,8 @@
   ],
   "types": "dist/index.d.ts",
   "dependencies": {
-    "latinize": "^0.5.0"
+    "latinize": "^0.5.0",
+    "uuid": "^8.3.2"
   },
   "peerDependencies": {
     "@synerise/ds-core": "^1",
