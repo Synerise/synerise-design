@@ -6,14 +6,14 @@ const path = require('path');
 const tpl = require('./template.js');
 const { generateObjectLiteral } = require('./generateObjectLiteral.js');
 
-const LIB_DIR = 'src/icons';
+const M_LIB_DIR = 'src/icons/M';
 const ADDITIONAL_LIB_DIR = 'src/icons/additional';
 const L_LIB_DIR = 'src/icons/L';
 const XL_LIB_DIR = 'src/icons/XL';
 const COLOR_LIB_DIR = 'src/icons/colorIcons';
 
 
-const INDEX_DIST_FILE = `${LIB_DIR}/index.ts`;
+const M_DIST_FILE = `${M_LIB_DIR}/index.ts`;
 const ADDITIONAL_INDEX_DIST_FILE = `${ADDITIONAL_LIB_DIR}/index.ts`;
 const L_INDEX_DIST_FILE = `${L_LIB_DIR}/index.ts`;
 const XL_INDEX_DIST_FILE = `${XL_LIB_DIR}/index.ts`;
@@ -21,8 +21,8 @@ const COLOR_INDEX_DIST_FILE = `${COLOR_LIB_DIR}/index.ts`;
 
 
 
-const LIB_DIRS = [LIB_DIR, ADDITIONAL_LIB_DIR, L_LIB_DIR, XL_LIB_DIR, COLOR_LIB_DIR];
-const DIST_FILES = [INDEX_DIST_FILE, ADDITIONAL_INDEX_DIST_FILE, L_INDEX_DIST_FILE, XL_INDEX_DIST_FILE, COLOR_INDEX_DIST_FILE];
+const LIB_DIRS = [M_LIB_DIR, ADDITIONAL_LIB_DIR, L_LIB_DIR, XL_LIB_DIR, COLOR_LIB_DIR];
+const DIST_FILES = [M_DIST_FILE, ADDITIONAL_INDEX_DIST_FILE, L_INDEX_DIST_FILE, XL_INDEX_DIST_FILE, COLOR_INDEX_DIST_FILE];
 
 const titlecase = input => input[0].toLocaleUpperCase() + input.slice(1);
 
@@ -53,10 +53,10 @@ const kebabCaseFilename = filePath => {
 };
 
 const buildIconsSet = (path, libDir, indexDistFile, options = {}) => {
-  const iconComponentNames = [];
+  
   const { iconSet = '' } = options;
   glob(path, {}).then(function(files) {
-    return Promise.all(files.map(file => {  
+    Promise.all(files.map(file => {  
         const componentName = pascalCaseFilename(file);
         const componentClassName = kebabCaseFilename(file);
         return new Promise((resolve, reject) => {
@@ -119,9 +119,8 @@ const buildIconsSet = (path, libDir, indexDistFile, options = {}) => {
               },
               { componentName }
             ).then(jsCode => {
-              iconComponentNames.unshift(componentName);
               fs.writeFile(`${libDir}/${componentName}.tsx`, jsCode, function(err) {
-                fs.appendFileSync(indexDistFile, `import { default as ${componentName} } from './${componentName}';\nexport { default as ${componentName} } from './${componentName}';\n`);
+                fs.appendFileSync(indexDistFile, `export { default as ${componentName} } from './${componentName}';\n`);
                 if (err) {
                   return console.log(err);
                 }
@@ -132,11 +131,13 @@ const buildIconsSet = (path, libDir, indexDistFile, options = {}) => {
         })
       
       }))
-  }).then(() => {
-    const mapping = generateObjectLiteral(iconComponentNames);
-    fs.appendFileSync(indexDistFile, `\n\n export const ${iconSet}IconMapping = ${mapping} \n\n`);
+      console.log(`Generated ${files.length} icon components for icon set ${iconSet}`)
   });
 };
+
+if (!fs.existsSync('src/icons')) {
+  fs.mkdirSync('src/icons');
+}
 
 LIB_DIRS.forEach(DIR => {
   if (!fs.existsSync(DIR)) {
@@ -146,11 +147,11 @@ LIB_DIRS.forEach(DIR => {
 
 DIST_FILES.forEach(FILE => {
   fs.writeFile(FILE, '', err => {
-    console.log(err);
+    err && console.log(err);
   });
 });
 
-buildIconsSet('src/svg/M/*.svg', LIB_DIR, INDEX_DIST_FILE, { iconSet: 'medium'});
+buildIconsSet('src/svg/M/*.svg', M_LIB_DIR, M_DIST_FILE, { iconSet: 'medium'});
 buildIconsSet('src/svg/additional/*.svg', ADDITIONAL_LIB_DIR, ADDITIONAL_INDEX_DIST_FILE, { iconSet: 'additional'});
 buildIconsSet('src/svg/L/*.svg', L_LIB_DIR, L_INDEX_DIST_FILE, { iconSet: 'large'});
 buildIconsSet('src/svg/XL/*.svg', XL_LIB_DIR, XL_INDEX_DIST_FILE, { iconSet: 'xlarge'});
