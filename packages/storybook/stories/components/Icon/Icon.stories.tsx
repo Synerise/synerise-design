@@ -1,14 +1,13 @@
 import React from 'react';
 
 import { Meta, StoryObj } from '@storybook/react-webpack5';
-import Icon, {
-  additionalIconMapping,
-  colorIconMapping,
-  largeIconMapping,
-  mediumIconMapping,
-  xlargeIconMapping,
-} from '@synerise/ds-icon';
+import Icon from '@synerise/ds-icon';
 import type { BaseIconProps } from '@synerise/ds-icon';
+import * as large from '@synerise/ds-icon/dist/icons/L';
+import * as medium from '@synerise/ds-icon/dist/icons/M';
+import * as xLarge from '@synerise/ds-icon/dist/icons/XL';
+import * as additional from '@synerise/ds-icon/dist/icons/additional';
+import * as color from '@synerise/ds-icon/dist/icons/colorIcons';
 
 import {
   CLASSNAME_ARG_CONTROL,
@@ -17,11 +16,12 @@ import {
 } from '../../utils';
 import { IconWrapper, IconsWrapper } from './Icon.stories.styles';
 
-const iconNames = Object.keys(mediumIconMapping);
+const iconNames = Object.keys(medium);
 const iconOptions = iconNames.reduce(
   (icons, current) => ({ ...icons, [current]: current }),
   {},
 );
+
 type IconStoryProps = Omit<BaseIconProps, 'component'> & { component: string };
 
 export default {
@@ -29,8 +29,7 @@ export default {
   tags: ['autodocs'],
   component: Icon,
   render: ({ component, color, size, stroke }) => {
-    const IconComponent = mediumIconMapping[component];
-    console.log(IconComponent);
+    const IconComponent = medium[component];
     return (
       <IconWrapper noBorder>
         <Icon
@@ -65,7 +64,7 @@ export default {
 export const SingleIcon: StoryObj<typeof Icon> = {};
 
 export const ListIcon: StoryObj<typeof Icon> = {
-  render: (args) => renderIcons(mediumIconMapping, args.color, 24),
+  render: (args) => renderIcons(medium, args.color, 24),
   args: {
     color: '',
   },
@@ -75,19 +74,19 @@ export const ListIcon: StoryObj<typeof Icon> = {
 };
 
 export const AdditionalIcon: StoryObj<typeof Icon> = {
-  render: (args) => renderIcons(additionalIconMapping, args.color, 48),
+  render: (args) => renderIcons(additional, args.color, 48),
 };
 
 export const AdditionalL: StoryObj<typeof Icon> = {
-  render: (args) => renderIcons(largeIconMapping, args.color, 48),
+  render: (args) => renderIcons(large, args.color, 48),
 };
 
 export const AdditionalXL: StoryObj<typeof Icon> = {
-  render: (args) => renderIcons(xlargeIconMapping, args.color, 96),
+  render: (args) => renderIcons(xLarge, args.color, 96),
 };
 
 export const AdditionalColor: StoryObj<typeof Icon> = {
-  render: () => renderIcons(colorIconMapping, '', 48),
+  render: () => renderIcons(color, '', 48),
 };
 
 const renderIcons = (

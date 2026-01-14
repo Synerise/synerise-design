@@ -1,7 +1,7 @@
 import React from 'react';
 
 import type { Meta, StoryObj } from '@storybook/react-webpack5';
-import { DynamicIcon } from '@synerise/ds-icon';
+import { DynamicIcon, type DynamicIconProps } from '@synerise/ds-icon';
 
 import {
   CLASSNAME_ARG_CONTROL,
@@ -20,12 +20,19 @@ export default {
     name: STRING_CONTROL,
     color: { control: 'color' },
   },
-} as Meta<typeof DynamicIcon>;
+} satisfies Meta<DynamicIconProps>;
 
-type Story = StoryObj<typeof DynamicIcon>;
+type Story = StoryObj<DynamicIconProps>;
 
 export const Default: Story = {
   args: {
     name: 'CopyClipboardM',
+  },
+};
+
+export const Fallback: Story = {
+  args: {
+    name: 'NonExistentIcon',
+    fallback: 'fallback content',
   },
 };

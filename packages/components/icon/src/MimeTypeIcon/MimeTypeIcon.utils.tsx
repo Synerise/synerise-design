@@ -9,7 +9,7 @@ import {
   FileTypePlainM,
   FileTypeTableM,
   FileTypeTextM,
-} from '../icons';
+} from '../icons/M';
 
 export const mapMimeTypeToIcon = (mimeType: string) => {
   switch (mimeType) {

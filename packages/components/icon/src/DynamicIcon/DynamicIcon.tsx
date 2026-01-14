@@ -1,26 +1,35 @@
-import React from 'react';
+import React, { type ReactNode, useMemo } from 'react';
 
 import Icon from '../Icon';
 import type { IconProps } from '../Icon.types';
-import { largeIconMapping } from '../icons/L/index';
-import { xlargeIconMapping } from '../icons/XL/index';
-import { additionalIconMapping } from '../icons/additional/index';
-import { colorIconMapping } from '../icons/colorIcons/index';
-import { mediumIconMapping } from '../icons/index';
+import { iconManifest } from './iconManifest';
 
-const mergedMapping = {
-  ...mediumIconMapping,
-  ...largeIconMapping,
-  ...xlargeIconMapping,
-  ...colorIconMapping,
-  ...additionalIconMapping,
+export type DynamicIconProps = Omit<IconProps, 'component'> & {
+  name: DynamicIconName;
+  fallback?: ReactNode;
+};
+export type DynamicIconName = keyof typeof iconManifest;
+
+export const DynamicIcon = ({
+  name,
+  fallback = null,
+  ...props
+}: DynamicIconProps & {}) => {
+  const IconComponent = useMemo(() => {
+    const iconModule = iconManifest[name];
+    if (!iconModule) {
+      return null;
+    }
+
+    const component = iconModule[name];
+    return component && typeof component === 'function' ? component : null;
+  }, [name]);
+
+  if (!IconComponent) {
+    return fallback;
+  }
+
+  return <Icon {...props} component={<IconComponent />} />;
 };
 
-type DynamicIconProps = Omit<IconProps, 'component'> & {
-  name: keyof typeof mergedMapping;
-};
-
-export const DynamicIcon = ({ name, ...rest }: DynamicIconProps) => {
-  const Component = mergedMapping[name as keyof typeof mergedMapping];
-  return <Icon component={Component ? <Component /> : null} {...rest} />;
-};
+export default DynamicIcon;

@@ -3,7 +3,7 @@ import React from 'react';
 import { renderWithProvider } from '@synerise/ds-core';
 import { screen } from '@testing-library/react';
 
-import { VarTypeStringM } from '../icons';
+import { VarTypeStringM } from '../icons/M';
 import Icon from '../index';
 
 describe('Icon', () => {
