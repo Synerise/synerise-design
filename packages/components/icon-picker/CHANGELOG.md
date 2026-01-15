@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.6.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-icon-picker@1.5.5...@synerise/ds-icon-picker@1.6.0) (2026-01-15)
+
+### Features
+
+- **icon:** dynamic icon refactor ([8cd3483](https://github.com/Synerise/synerise-design/commit/8cd348316e3fe106a61dc4b077dbc851bc8a993b))
+
 ## [1.5.5](https://github.com/Synerise/synerise-design/compare/@synerise/ds-icon-picker@1.5.4...@synerise/ds-icon-picker@1.5.5) (2026-01-12)
 
 **Note:** Version bump only for package @synerise/ds-icon-picker

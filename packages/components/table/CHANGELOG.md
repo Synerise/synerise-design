@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.8.0](https://github.com/synerise/synerise-design/compare/@synerise/ds-table@1.7.8...@synerise/ds-table@1.8.0) (2026-01-15)
+
+### Features
+
+- **table:** allow tooltip on rows / cells / selection checkbox ([a86a1b8](https://github.com/synerise/synerise-design/commit/a86a1b8fb520fbfe89049c29e375fe8818cb029e))
+
 ## [1.7.8](https://github.com/synerise/synerise-design/compare/@synerise/ds-table@1.7.7...@synerise/ds-table@1.7.8) (2026-01-12)
 
 **Note:** Version bump only for package @synerise/ds-table

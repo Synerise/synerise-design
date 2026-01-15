@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.31.0](https://github.com/Synerise/synerise-design/compare/storybook@1.30.1...storybook@1.31.0) (2026-01-15)
+
+### Features
+
+- **icon:** dynamic icon refactor ([8cd3483](https://github.com/Synerise/synerise-design/commit/8cd348316e3fe106a61dc4b077dbc851bc8a993b))
+- **table:** allow tooltip on rows / cells / selection checkbox ([a86a1b8](https://github.com/Synerise/synerise-design/commit/a86a1b8fb520fbfe89049c29e375fe8818cb029e))
+
 ## [1.30.1](https://github.com/Synerise/synerise-design/compare/storybook@1.30.0...storybook@1.30.1) (2026-01-12)
 
 **Note:** Version bump only for package storybook
