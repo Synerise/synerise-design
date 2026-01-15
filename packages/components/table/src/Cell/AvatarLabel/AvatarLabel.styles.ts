@@ -5,13 +5,17 @@ import styled, {
 
 import { Text } from '@synerise/ds-typography';
 
-export const AvatarLabel = styled.div<{ onClick?: () => void }>`
+export const AvatarLabel = styled.div<{
+  onClick?: () => void;
+  isDisabled?: boolean;
+}>`
   display: inline-flex;
   min-width: 0;
   align-items: center;
   justify-content: flex-start;
   max-width: 100%;
-  ${(props): string => (props.onClick !== undefined ? 'cursor: pointer' : '')};
+  ${(props) => props.isDisabled && 'opacity: 0.4'};
+  ${(props) => (props.onClick !== undefined ? 'cursor: pointer' : '')};
 `;
 
 export const Avatar = styled.div<{ clickable: boolean }>`

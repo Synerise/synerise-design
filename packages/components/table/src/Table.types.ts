@@ -10,6 +10,7 @@ import type {
 } from 'constants/Table.constants';
 import type { Key, ReactNode, Ref } from 'react';
 
+import { type TooltipProps } from '@synerise/ds-tooltip';
 import type { LiteralStringUnion } from '@synerise/ds-utils';
 
 import type { GroupType } from './GroupTable/GroupTable.types';
@@ -74,6 +75,7 @@ export type RowSelection<T> = Omit<TableRowSelection<T>, 'selections'> & {
     disabled?: boolean;
     unavailable?: boolean;
   };
+  getSelectionTooltipProps?: (record: T) => TooltipProps | false;
 };
 
 export type Filter = {
@@ -132,6 +134,7 @@ export type DSColumnType<T> = Omit<ColumnType<T>, 'fixed'> & {
   fixed?: 'left' | 'right';
   sortRender?: SortRender<T>;
   childRender?: (value: unknown, row: T, index: number) => ReactNode;
+  getCellTooltipProps?: (row: T) => TooltipProps | false;
 };
 
 export type ScrollProxyType = {
@@ -204,6 +207,7 @@ export type DSTableProps<T extends any & GroupType<T>> = AntTableProps<T> & {
   dataSourceTotalCount?: number;
   isCounterLoading?: boolean;
   renderCustomCounter?: CustomCounterFn;
+  getRowTooltipProps?: (row: T) => TooltipProps | false;
   skeletonProps?: {
     maxHeight?: number;
     headerHeight?: number;

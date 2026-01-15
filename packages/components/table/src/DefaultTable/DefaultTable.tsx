@@ -4,6 +4,7 @@ import React, { useCallback, useEffect, useMemo } from 'react';
 import { FormattedMessage } from 'react-intl';
 
 import Result from '@synerise/ds-result';
+import Tooltip from '@synerise/ds-tooltip';
 import { usePrevious } from '@synerise/ds-utils';
 
 import { columnWithSortButtons } from '../ColumnSortMenu/columnWithSortButtons';
@@ -21,6 +22,7 @@ import {
 import { useRowKey } from '../hooks/useRowKey';
 import { useRowStar } from '../hooks/useRowStar/useRowStar';
 import { getChildrenColumnName, isRecordSelectable } from '../utils';
+import { columnWithCellTooltip } from '../utils/columnWithCellTooltip';
 
 function DefaultTable<T extends object & RowType<T>>(props: DSTableProps<T>) {
   const {
@@ -35,6 +37,7 @@ function DefaultTable<T extends object & RowType<T>>(props: DSTableProps<T>) {
     columns,
     onSort,
     emptyDataComponent,
+    getRowTooltipProps,
   } = props;
   const previousColumns = usePrevious(columns);
   const sortStateApi = useSortState(columnsToSortState(columns), onSort);
@@ -69,30 +72,40 @@ function DefaultTable<T extends object & RowType<T>>(props: DSTableProps<T>) {
     }
   }, [columns, previousColumns, sortStateApi]);
 
-  // @ts-expect-error Parameter 'row' implicitly has an 'any' type.ts(7006)
-  const RenderRow = useCallback((row) => {
-    const { children, ...rowProps } = row;
-    const classNameWithLevel = row.className
-      .split(' ')
-      .find((name: string) => name.includes('row-level'));
-    let level;
-    if (classNameWithLevel) {
-      level = classNameWithLevel.split('-').pop();
-    }
-    return (
-      <tr
-        {...rowProps}
-        className={`${row.className} ds-table-row ${level ? `ds-table-row-level-${level}` : ''}`}
-      >
-        {children}
-      </tr>
-    );
-  }, []);
+  const RenderRow = useCallback(
+    // @ts-expect-error Parameter 'row' implicitly has an 'any' type.ts(7006)
+    (row) => {
+      const { children, ...rowProps } = row;
+      const classNameWithLevel = row.className
+        .split(' ')
+        .find((name: string) => name.includes('row-level'));
+      let level;
+      if (classNameWithLevel) {
+        level = classNameWithLevel.split('-').pop();
+      }
+      const tooltipProps = getRowTooltipProps?.(row);
+      const rowContent = (
+        <tr
+          {...rowProps}
+          className={`${row.className} ds-table-row ${level ? `ds-table-row-level-${level}` : ''}`}
+        >
+          {children}
+        </tr>
+      );
+      return tooltipProps ? (
+        <Tooltip {...tooltipProps}>{rowContent}</Tooltip>
+      ) : (
+        rowContent
+      );
+    },
+    [getRowTooltipProps],
+  );
 
   const prependedColumns = compact<DSColumnType<T>>([!!rowStar && starColumn]);
-  const decoratedColumns = columns?.map((column) =>
-    columnWithSortButtons(sortStateApi, onSort)(column),
-  );
+  const decoratedColumns = columns?.map((column) => {
+    const columnsWithCellTooltips = columnWithCellTooltip(column);
+    return columnWithSortButtons(sortStateApi, onSort)(columnsWithCellTooltips);
+  });
   const decoratedComponents =
     components &&
     Object.entries(components)

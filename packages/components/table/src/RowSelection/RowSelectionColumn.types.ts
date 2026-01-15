@@ -13,6 +13,7 @@ export type RowSelectionProps<T> = {
   record: T;
   tableLocale: DSTableProps<T>['locale'];
   onChange: RowSelection<T>['onChange'];
+  getSelectionTooltipProps?: RowSelection<T>['getSelectionTooltipProps'];
   checkRowSelectionStatus?: RowSelection<T>['checkRowSelectionStatus'];
   childrenColumnName: keyof T;
 };

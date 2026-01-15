@@ -9,10 +9,11 @@ const StatusLabelCell = ({
   status,
   label,
   customColor,
+  disabled,
   ...htmlAttributes
 }: StatusLabelProps) => {
   return (
-    <S.StatusLabel {...htmlAttributes}>
+    <S.StatusLabel isDisabled={disabled} {...htmlAttributes}>
       <Badge customColor={customColor} status={status} />
       <S.Label>{label}</S.Label>
     </S.StatusLabel>

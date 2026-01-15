@@ -9,6 +9,7 @@ export type StatusLabelProps = WithHTMLAttributes<
     status?: Status;
     label: ReactNode;
     customColor?: Color;
+    disabled?: boolean;
   }
 >;
 

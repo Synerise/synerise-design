@@ -1,7 +1,6 @@
 import React, { type ReactText, useCallback, useMemo } from 'react';
 
 import Button from '@synerise/ds-button';
-import Tooltip from '@synerise/ds-tooltip';
 
 import { type RowType } from '../Table.types';
 import { useRowKey } from '../hooks/useRowKey';
@@ -20,6 +19,7 @@ export function RowSelectionColumn<T extends object & RowType<T>>({
   onChange,
   checkRowSelectionStatus,
   childrenColumnName,
+  getSelectionTooltipProps,
 }: RowSelectionProps<T>) {
   const { getRowKey } = useRowKey(rowKey);
   const recordKey = getRowKey(record);
@@ -150,21 +150,26 @@ export function RowSelectionColumn<T extends object & RowType<T>>({
     (!isChecked &&
       Boolean(limit !== undefined && limit <= selectedRowKeys.length)) ||
     disabled;
+
+  const recordTooltip = getSelectionTooltipProps?.(record);
+
   return recordKey !== undefined && !unavailable ? (
-    <Tooltip title={tableLocale?.selectRowTooltip} mouseLeaveDelay={0}>
-      <Button.Checkbox
-        key={`checkbox-${recordKey}`}
-        data-testid="ds-table-selection-button"
-        checked={isGlobalAllSelected || isChecked}
-        disabled={disabledProp}
-        indeterminate={isIndeterminate}
-        onClick={(event) => {
-          event.stopPropagation();
-        }}
-        onChange={(isCheckedNext) =>
-          !isGlobalAllSelected && handleSelectionChange(isCheckedNext, record)
-        }
-      />
-    </Tooltip>
+    <Button.Checkbox
+      key={`checkbox-${recordKey}`}
+      data-testid="ds-table-selection-button"
+      checked={isGlobalAllSelected || isChecked}
+      disabled={disabledProp}
+      indeterminate={isIndeterminate}
+      tooltipProps={{
+        title: tableLocale?.selectRowTooltip,
+        ...recordTooltip,
+      }}
+      onClick={(event) => {
+        event.stopPropagation();
+      }}
+      onChange={(isCheckedNext) =>
+        !isGlobalAllSelected && handleSelectionChange(isCheckedNext, record)
+      }
+    />
   ) : null;
 }
