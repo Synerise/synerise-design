@@ -17,6 +17,7 @@ export type AvatarLabelProps = WithHTMLAttributes<
     maxWidth?: number;
     avatarSize?: string | 'large';
     loader?: ReactElement;
+    disabled?: boolean;
   }
 >;
 

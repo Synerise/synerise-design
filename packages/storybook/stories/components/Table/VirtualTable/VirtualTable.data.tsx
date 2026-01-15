@@ -5026,6 +5026,9 @@ export const COLUMNS: Partial<ColumnType>[] = [
     sortRender: 'string',
     minWidth: 600,
     maxWidth: 900,
+    getCellTooltipProps: (record: RowType) => ({
+      title: 'user name cell tooltip',
+    }),
   },
   {
     title: 'Address',
@@ -5042,6 +5045,7 @@ export const COLUMNS: Partial<ColumnType>[] = [
     sorter: (a, b) => a.city.localeCompare(b.city),
     sortRender: 'string',
     minWidth: 250,
+    getCellTooltipProps: (record: RowType) => ({ title: 'city cell tooltip' }),
   },
   {
     title: 'Number',

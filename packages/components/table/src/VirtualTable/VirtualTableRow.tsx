@@ -8,6 +8,8 @@ import React, {
 } from 'react';
 import { areEqual } from 'react-window';
 
+import Tooltip, { type TooltipProps } from '@synerise/ds-tooltip';
+
 import InfiniteLoaderItem from '../InfiniteScroll/InfiniteLoaderItem';
 import type {
   InfiniteScrollProps,
@@ -35,6 +37,7 @@ export interface VirtualTableRowProps<T> {
     selection?: RowSelection<T>;
     rowStar?: RowStar<T>;
     onRowClick?: (row: T) => void;
+    getRowTooltipProps?: (row: T) => TooltipProps | false;
     defaultTableProps?: DSTableProps<T>;
   };
   index: number;
@@ -60,6 +63,7 @@ function VirtualTableRow<T extends object>({
     onRowClick,
     selection,
     rowStar,
+    getRowTooltipProps,
     dataSource,
     cellHeight,
     infiniteScroll,
@@ -137,77 +141,96 @@ function VirtualTableRow<T extends object>({
     ? `${Number(style.top) + INFINITE_LOADED_ITEM_HEIGHT}px`
     : style.top;
 
+  const rowProps = defaultTableProps?.onRow?.(rowData) || {};
+  const rowContent = (
+    <S.RowWrapper
+      data-row-index={index}
+      className={classNames('virtual-table-row', {
+        'ds-expanded-row': rowData[EXPANDED_ROW_PROPERTY as keyof T],
+      })}
+      {...rowProps}
+      style={{ ...style, ...rowProps?.style, top }}
+      onClick={(event): void => {
+        event.stopPropagation();
+        onRowClick && onRowClick(rowData);
+      }}
+      onRowClickAvailable={onRowClick !== undefined}
+    >
+      {mergedColumns.map((column, columnIndex) => {
+        const firstWithSelectionAndStar =
+          selection && rowStar && columnIndex === 2;
+        const firstWithSelectionOrStar =
+          (selection || rowStar) && columnIndex === 1;
+        const firstWithoutSelectionAndStar =
+          columnIndex === 0 && !selection && !rowStar;
+
+        const columnTitle =
+          typeof column.title === 'string'
+            ? column.title
+            : column.dataIndex || column.key;
+
+        const cellTooltip = column.getCellTooltipProps?.(rowData);
+
+        const cellContent = (
+          <S.ColWrapper
+            left={column.fixed === 'left' ? column.left : undefined}
+            right={column.fixed === 'right' ? column.right : undefined}
+            className={classNames(
+              'virtual-table-cell',
+              {
+                'virtual-table-cell-last':
+                  columnIndex === mergedColumns.length - 1,
+                'ant-table-selection-column': columnIndex === 0 && selection,
+                'ant-table-cell-fix-right': column.fixed === 'right',
+                'ant-table-cell-fix-left': column.fixed === 'left',
+                'ant-table-cell-fix-right-first':
+                  column.fixed === 'right' && column.fixedFirst,
+                'ant-table-cell-fix-left-first':
+                  column.fixed === 'left' && column.fixedFirst,
+                'ds-expanded-row-first':
+                  rowData[EXPANDED_ROW_PROPERTY as keyof T] &&
+                  columnIndex === 0,
+                'ds-expanded-row-data':
+                  rowData[EXPANDED_ROW_PROPERTY as keyof T] &&
+                  (firstWithoutSelectionAndStar ||
+                    firstWithSelectionOrStar ||
+                    firstWithSelectionAndStar),
+              },
+              isColumnSortingActive<T>(
+                defaultTableProps?.columns || [],
+                column,
+              ) && 'ant-table-column-sort',
+              column.className,
+            )}
+            key={`row-${index}-column-${column.dataIndex || column.key}`}
+            data-column-dataIndex={column.dataIndex || column.key}
+            data-column-title={columnTitle}
+            minWidth={calculateToPixelsIfDefined(column?.minWidth)}
+            width={column.width}
+            maxWidth={calculateToPixelsIfDefined(column?.maxWidth)}
+          >
+            <>{renderColumn(column, rowData, columnIndex)}</>
+          </S.ColWrapper>
+        );
+        return cellTooltip ? (
+          <Tooltip {...cellTooltip}>{cellContent}</Tooltip>
+        ) : (
+          cellContent
+        );
+      })}
+    </S.RowWrapper>
+  );
+
+  const rowTooltipProps = getRowTooltipProps?.(rowData);
+
   return (
     <>
       {infiniteLoader('TOP')}
-      <S.RowWrapper
-        data-row-index={index}
-        className={classNames('virtual-table-row', {
-          'ds-expanded-row': rowData[EXPANDED_ROW_PROPERTY as keyof T],
-        })}
-        style={{ ...style, top }}
-        onClick={(event): void => {
-          event.stopPropagation();
-          onRowClick && onRowClick(rowData);
-        }}
-        onRowClickAvailable={onRowClick !== undefined}
-      >
-        {mergedColumns.map((column, columnIndex) => {
-          const firstWithSelectionAndStar =
-            selection && rowStar && columnIndex === 2;
-          const firstWithSelectionOrStar =
-            (selection || rowStar) && columnIndex === 1;
-          const firstWithoutSelectionAndStar =
-            columnIndex === 0 && !selection && !rowStar;
-
-          const columnTitle =
-            typeof column.title === 'string'
-              ? column.title
-              : column.dataIndex || column.key;
-
-          return (
-            <S.ColWrapper
-              left={column.fixed === 'left' ? column.left : undefined}
-              right={column.fixed === 'right' ? column.right : undefined}
-              className={classNames(
-                'virtual-table-cell',
-                {
-                  'virtual-table-cell-last':
-                    columnIndex === mergedColumns.length - 1,
-                  'ant-table-selection-column': columnIndex === 0 && selection,
-                  'ant-table-cell-fix-right': column.fixed === 'right',
-                  'ant-table-cell-fix-left': column.fixed === 'left',
-                  'ant-table-cell-fix-right-first':
-                    column.fixed === 'right' && column.fixedFirst,
-                  'ant-table-cell-fix-left-first':
-                    column.fixed === 'left' && column.fixedFirst,
-                  'ds-expanded-row-first':
-                    rowData[EXPANDED_ROW_PROPERTY as keyof T] &&
-                    columnIndex === 0,
-                  'ds-expanded-row-data':
-                    rowData[EXPANDED_ROW_PROPERTY as keyof T] &&
-                    (firstWithoutSelectionAndStar ||
-                      firstWithSelectionOrStar ||
-                      firstWithSelectionAndStar),
-                },
-                isColumnSortingActive<T>(
-                  defaultTableProps?.columns || [],
-                  column,
-                ) && 'ant-table-column-sort',
-                column.className,
-              )}
-              key={`row-${index}-column-${column.dataIndex || column.key}`}
-              data-column-dataIndex={column.dataIndex || column.key}
-              data-column-title={columnTitle}
-              minWidth={calculateToPixelsIfDefined(column?.minWidth)}
-              width={column.width}
-              maxWidth={calculateToPixelsIfDefined(column?.maxWidth)}
-            >
-              <>{renderColumn(column, rowData, columnIndex)}</>
-            </S.ColWrapper>
-          );
-        })}
-      </S.RowWrapper>
+      {rowTooltipProps ? (
+        <Tooltip {...rowTooltipProps}>{rowContent}</Tooltip>
+      ) : (
+        rowContent
+      )}
       {infiniteLoader('BOTTOM')}
     </>
   );

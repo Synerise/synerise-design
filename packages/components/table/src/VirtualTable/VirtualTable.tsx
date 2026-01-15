@@ -79,6 +79,7 @@ const VirtualTable = <
     locale,
     loading,
     sticky,
+    getRowTooltipProps,
     onListRefChange,
     onItemsRendered,
     onScrollToRecordIndex,
@@ -267,6 +268,7 @@ const VirtualTable = <
           selectedRecords={selectedRecords}
           isGlobalAllSelected={selection?.globalSelection?.isSelected}
           tableLocale={locale}
+          getSelectionTooltipProps={selection?.getSelectionTooltipProps}
           checkRowSelectionStatus={checkRowSelectionStatus}
           childrenColumnName={childrenColumnName}
         />
@@ -420,12 +422,21 @@ const VirtualTable = <
       selection,
       rowStar,
       onRowClick,
+      getRowTooltipProps,
       dataSource: data,
       infiniteScroll,
       cellHeight,
       defaultTableProps,
     }),
-    [mergedColumns, selection, rowStar, onRowClick, infiniteScroll, cellHeight],
+    [
+      mergedColumns,
+      getRowTooltipProps,
+      selection,
+      rowStar,
+      onRowClick,
+      infiniteScroll,
+      cellHeight,
+    ],
   );
 
   const offsetScroll = sticky && sticky !== true ? sticky.offsetScroll : 0;

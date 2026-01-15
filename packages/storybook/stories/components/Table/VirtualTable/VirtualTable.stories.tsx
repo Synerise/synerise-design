@@ -96,6 +96,15 @@ const defaultRender: Meta<VirtualTableType>['render'] = (args) => {
         dataSource={dataSource}
         selection={selectionProp}
         rowStar={rowStarProp}
+        getRowTooltip={(rowData: (typeof DATA_SOURCE)[number]) => {
+          return rowData.unavailable || rowData.disabled
+            ? {
+                placement: 'topLeft',
+                align: { offset: [15, 0] },
+                title: 'This item cannot be selected',
+              }
+            : false;
+        }}
         searchComponent={
           <SearchInput
             placeholder="Search"

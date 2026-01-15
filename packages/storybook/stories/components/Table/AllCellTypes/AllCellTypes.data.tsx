@@ -6,6 +6,7 @@ import Button from '@synerise/ds-button';
 import Checkbox from '@synerise/ds-checkbox';
 import { theme } from '@synerise/ds-core';
 import Icon, {
+  AngleDownS,
   InfoFillS,
   LockM,
   MailM,
@@ -2183,6 +2184,7 @@ export const COLUMNS_WITH_TRIGGERS: ColumnType[] = [
         Show age
       </Button>
     ),
+    getCellTooltipProps: (item) => ({ title: 'age' }),
   },
   {
     title: 'Multiple buttons',
@@ -2214,6 +2216,9 @@ export const COLUMNS_WITH_TRIGGERS: ColumnType[] = [
         onChange={action('onChange')}
       />
     ),
+    getCellTooltipProps: (item) => {
+      return { title: item.name };
+    },
   },
   {
     title: 'Copyable',
@@ -2245,6 +2250,7 @@ export const COLUMNS_WITH_TRIGGERS: ColumnType[] = [
       <TableCell.ActionCell>
         <Button onClick={action('click')} type="secondary" mode="split">
           Edit rule
+          <Icon component={<AngleDownS />} />
         </Button>
       </TableCell.ActionCell>
     ),
