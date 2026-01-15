@@ -24,9 +24,8 @@ export type EstimationBaseProps = BaseLabelProps & {
   isLoading?: boolean | SkeletonConfig;
   /**
    * top right corner value / values. provide preformatted content here
-   * provide any value to render skeleton in place of the total in loading mode
    */
-  total?: number;
+  total?: ReactNode;
   /**
    * renders an inline alert in footer with this message
    */
