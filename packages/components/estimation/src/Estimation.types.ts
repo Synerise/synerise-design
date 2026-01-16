@@ -59,3 +59,7 @@ export type EstimationTexts = {
   calculated: ReactNode;
   loading: ReactNode;
 };
+
+export type EstimationCalculatedDateProps = {
+  label: ReactNode;
+} & Pick<EstimationBaseProps, 'calculatedDate'>;

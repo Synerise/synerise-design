@@ -8,7 +8,7 @@ import {
   RELATIVE_TO,
   RELATIVE_TO_WITHOUT_SUFFIX,
 } from '../constants';
-import { useDataFormat } from '../hooks';
+import { useDataFormat, useRelativeDateTimeUpdate } from '../hooks';
 import { type DateToFormatOptions } from '../types';
 
 export type FormattedRelativeDateTimeProps = {
@@ -22,6 +22,7 @@ export const FormattedRelativeDateTimeTo = ({
   withoutSuffix,
   options,
 }: FormattedRelativeDateTimeProps): JSX.Element => {
+  useRelativeDateTimeUpdate(value);
   const { formatValue } = useDataFormat();
 
   return (
@@ -39,6 +40,7 @@ export const FormattedRelativeDateTimeFrom = ({
   withoutSuffix,
   options,
 }: FormattedRelativeDateTimeProps): JSX.Element => {
+  useRelativeDateTimeUpdate(value);
   const { formatValue } = useDataFormat();
 
   return (

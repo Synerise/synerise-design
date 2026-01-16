@@ -1,11 +1,11 @@
 import React from 'react';
 
-import { FormattedRelativeDateTimeTo } from '@synerise/ds-core';
 import { FormFieldLabel } from '@synerise/ds-form-field';
 import InlineAlert from '@synerise/ds-inline-alert';
 
 import * as S from './Estimation.styles';
 import type { EstimationProps } from './Estimation.types';
+import { EstimationCalculatedDate } from './components/EstimationCalculated';
 import { EstimationProgressBar } from './components/EstimationProgressBar';
 import { EstimationProgressBarSkeleton } from './components/EstimationProgressBarSkeleton';
 import { useDefaultTexts } from './hooks/useDefaultTexts';
@@ -26,24 +26,15 @@ const Estimation = ({
 }: EstimationProps) => {
   const texts = useDefaultTexts(customTexts);
 
-  const estimationDate =
-    calculatedDate instanceof Date ? (
-      <FormattedRelativeDateTimeTo value={calculatedDate} />
-    ) : (
-      calculatedDate
-    );
-
   const footerLeftSide = errorMessage ? (
     <InlineAlert type="alert" message={errorMessage} />
   ) : isLoading ? (
     texts.loading
   ) : (
-    <>
-      {texts.calculated}{' '}
-      <S.EstimationCalculatedDate level={6}>
-        {estimationDate}
-      </S.EstimationCalculatedDate>
-    </>
+    <EstimationCalculatedDate
+      label={texts.calculated}
+      calculatedDate={calculatedDate}
+    />
   );
 
   const loadingParts = typeof isLoading === 'object' ? isLoading : undefined;
