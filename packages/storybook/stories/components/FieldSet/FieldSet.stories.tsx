@@ -1,24 +1,30 @@
 import React from 'react';
-import { Meta, StoryObj } from '@storybook/react-webpack5';
 import { action } from 'storybook/actions';
 
-import FieldSet from '@synerise/ds-field-set';
-import { ExpanderWrapper } from '@synerise/ds-field-set/dist/FieldSet.styles';
+import { Meta, StoryObj } from '@storybook/react-webpack5';
 import Button from '@synerise/ds-button';
 import Checkbox from '@synerise/ds-checkbox';
-import { RawSwitch } from '@synerise/ds-switch';
-import Radio from '@synerise/ds-radio';
+import FieldSet from '@synerise/ds-field-set';
+import { ExpanderWrapper } from '@synerise/ds-field-set/dist/FieldSet.styles';
 import { Input } from '@synerise/ds-input';
+import Radio from '@synerise/ds-radio';
 import Select from '@synerise/ds-select';
+import { RawSwitch } from '@synerise/ds-switch';
 
-import { BOOLEAN_CONTROL, centeredPaddedWrapper, reactNodeAsSelect, STRING_CONTROL } from '../../utils';
+import {
+  BOOLEAN_CONTROL,
+  STRING_CONTROL,
+  centeredPaddedWrapper,
+  controlFromOptionsArray,
+  reactNodeAsSelect,
+} from '../../utils';
 
 export default {
   component: FieldSet,
   title: 'Components/FieldSet',
   tags: ['autodocs'],
   decorators: [centeredPaddedWrapper],
-  render: args => {
+  render: (args) => {
     return <FieldSet {...args} />;
   },
   argTypes: {
@@ -27,6 +33,7 @@ export default {
     divider: BOOLEAN_CONTROL,
     expandable: BOOLEAN_CONTROL,
     defaultExpanded: BOOLEAN_CONTROL,
+    triggerType: controlFromOptionsArray('select', ['expander', 'switch']),
     prefix: {
       ...reactNodeAsSelect(['expander', 'switch'], {
         expander: (
@@ -40,7 +47,9 @@ export default {
     component: {
       ...reactNodeAsSelect(['checkbox', 'radioButton', 'input', 'select'], {
         checkbox: (
-          <Checkbox.Group onChange={values => console.log('Checked values', values)}>
+          <Checkbox.Group
+            onChange={(values) => console.log('Checked values', values)}
+          >
             <Checkbox description="Deliver your campaign" value="A">
               Batch delivery
             </Checkbox>
@@ -68,8 +77,16 @@ export default {
         ),
         input: (
           <div style={{ width: '700px' }}>
-            <Input placeholder="Placeholder" label="Label" description="Description" />
-            <Input placeholder="Placeholder" label="Label" description="Description" />
+            <Input
+              placeholder="Placeholder"
+              label="Label"
+              description="Description"
+            />
+            <Input
+              placeholder="Placeholder"
+              label="Label"
+              description="Description"
+            />
           </div>
         ),
         select: (
@@ -111,7 +128,7 @@ export const withDescription: Story = {
   },
 };
 
-export const withExpander: Story = {
+export const withPrefix: Story = {
   ...withDescription,
   args: {
     title: 'Advanced option',
@@ -121,7 +138,6 @@ export const withExpander: Story = {
     divider: true,
   },
 };
-
 
 export const Expandable: Story = {
   tags: ['new'],
@@ -134,13 +150,14 @@ export const Expandable: Story = {
     divider: true,
   },
 };
-
-export const withSwitch: Story = {
+export const Switchable: Story = {
+  tags: ['new'],
   ...withDescription,
   args: {
     title: 'Advanced option',
     description: 'This section is for advanced users only',
-    prefix: 'switch',
+    expandable: true,
+    triggerType: 'switch',
     component: 'checkbox',
     divider: true,
   },

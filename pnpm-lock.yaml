@@ -2229,6 +2229,9 @@ importers:
       '@synerise/ds-divider':
         specifier: workspace:^
         version: link:../divider
+      '@synerise/ds-switch':
+        specifier: workspace:^
+        version: link:../switch
       '@synerise/ds-utils':
         specifier: workspace:^
         version: link:../utils

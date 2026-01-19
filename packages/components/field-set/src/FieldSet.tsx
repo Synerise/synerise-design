@@ -8,6 +8,7 @@ import React, {
 } from 'react';
 
 import Button from '@synerise/ds-button';
+import { RawSwitch } from '@synerise/ds-switch';
 import { useResizeObserver } from '@synerise/ds-utils';
 
 import * as S from './FieldSet.styles';
@@ -24,6 +25,7 @@ const FieldSet = ({
   divider = true,
   expandable,
   defaultExpanded,
+  triggerType = 'expander',
   ...htmlAttributes
 }: FieldSetProps) => {
   const [expanded, setExpanded] = useState(!!defaultExpanded);
@@ -46,20 +48,28 @@ const FieldSet = ({
   }, [defaultExpanded]);
 
   const headerPrefix = useMemo(() => {
-    if (expandable) {
+    if (expandable && (!triggerType || triggerType === 'expander')) {
       return (
-        <S.ButtonWrapper>
-          <S.ExpanderWrapper>
-            <Button.Expander
-              expanded={expanded}
-              onClick={() => setExpanded(!expanded)}
-            />
-          </S.ExpanderWrapper>
-        </S.ButtonWrapper>
+        <S.PrefixWrapper>
+          <Button.Expander
+            expanded={expanded}
+            onClick={() => setExpanded(!expanded)}
+          />
+        </S.PrefixWrapper>
       );
     }
-    return prefix && <S.ButtonWrapper>{prefix}</S.ButtonWrapper>;
-  }, [expandable, prefix, expanded]);
+    if (expandable && triggerType === 'switch') {
+      return (
+        <S.PrefixWrapper>
+          <RawSwitch
+            checked={expanded}
+            onClick={() => setExpanded(!expanded)}
+          />
+        </S.PrefixWrapper>
+      );
+    }
+    return prefix && <S.PrefixWrapper>{prefix}</S.PrefixWrapper>;
+  }, [expandable, prefix, expanded, triggerType]);
 
   const handleTitleClick = useCallback(
     (event: MouseEvent<HTMLDivElement>) => {

@@ -37,7 +37,8 @@
   "dependencies": {
     "@synerise/ds-button": "workspace:^",
     "@synerise/ds-divider": "workspace:^",
-    "@synerise/ds-utils": "workspace:^"
+    "@synerise/ds-utils": "workspace:^",
+    "@synerise/ds-switch": "workspace:^"
   },
   "peerDependencies": {
     "@synerise/ds-core": "*",
