@@ -103,7 +103,6 @@
     "@synerise/ds-manageable-list": "workspace:^",
     "@synerise/ds-mapping": "workspace:^",
     "@synerise/ds-menu": "workspace:^",
-    "@synerise/ds-message": "workspace:^",
     "@synerise/ds-metric-card": "workspace:^",
     "@synerise/ds-modal": "workspace:^",
     "@synerise/ds-navbar": "workspace:^",
