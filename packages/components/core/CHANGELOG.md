@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.10.0](https://github.com/synerise/synerise-design/compare/@synerise/ds-core@1.9.1...@synerise/ds-core@1.10.0) (2026-01-19)
+
+### Features
+
+- **core:** refresh relative date ([23d74a6](https://github.com/synerise/synerise-design/commit/23d74a6855e082a6895d8799b61fa8b78fb27ae1))
+
 ## [1.9.1](https://github.com/synerise/synerise-design/compare/@synerise/ds-core@1.9.0...@synerise/ds-core@1.9.1) (2026-01-07)
 
 ### Bug Fixes
