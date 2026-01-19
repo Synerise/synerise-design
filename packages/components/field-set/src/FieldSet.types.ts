@@ -2,6 +2,8 @@ import { type MouseEvent as ReactMouseEvent, type ReactNode } from 'react';
 
 import { type WithHTMLAttributes } from '@synerise/ds-utils';
 
+export type TriggerType = 'expander' | 'switch';
+
 export type FieldSetProps = WithHTMLAttributes<
   HTMLDivElement,
   {
@@ -14,6 +16,7 @@ export type FieldSetProps = WithHTMLAttributes<
     className?: string;
     divider?: boolean;
     expandable?: boolean;
+    triggerType?: TriggerType;
     defaultExpanded?: boolean;
   }
 >;

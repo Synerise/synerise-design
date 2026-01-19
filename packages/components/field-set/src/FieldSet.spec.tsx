@@ -58,6 +58,33 @@ describe('Field-Set', () => {
       ),
     );
   });
+  it('should render switch when expandable and typeTrigger is switch', async () => {
+    const TEST_CONTENT = 'TEST_CONTENT';
+    renderWithProvider(
+      <FieldSet
+        expandable
+        triggerType='switch'
+        title={TITLE}
+        description={DESCRIPTION}
+        component={TEST_CONTENT}
+      />,
+    );
+    const toggle = screen.getByRole('switch');
+
+    expect(toggle).toBeInTheDocument();
+    expect(screen.getByTestId('field-set-collapsible')).toHaveAttribute(
+      'aria-hidden',
+      'true',
+    );
+
+    userEvent.click(toggle);
+    await waitFor(() =>
+      expect(screen.getByTestId('field-set-collapsible')).toHaveAttribute(
+        'aria-hidden',
+        'false',
+      ),
+    );
+  });
 
   it('should render expanded by default', async () => {
     const TEST_CONTENT = 'TEST_CONTENT';

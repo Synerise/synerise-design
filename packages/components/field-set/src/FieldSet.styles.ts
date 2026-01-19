@@ -27,7 +27,7 @@ export const HeaderWrapper = styled.div<{ topAlign?: boolean }>`
   gap: 16px;
   align-items: ${(props) => (props.topAlign ? 'flex-start' : 'center')};
 `;
-export const ButtonWrapper = styled.div`
+export const PrefixWrapper = styled.div`
   display: flex;
 `;
 export const ActionButton = styled.div`
