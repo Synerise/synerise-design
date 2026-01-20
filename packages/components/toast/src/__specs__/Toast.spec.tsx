@@ -37,7 +37,7 @@ const TEST_DATA: {
   },
   {
     type: 'informative',
-    color: theme.palette['grey-050'],
+    color: theme.palette['grey-600'],
     icon: 'info-fill-m',
     show: Toast.info,
   },
@@ -54,7 +54,7 @@ describe('Toast', () => {
 
     expect(screen.getByText(MESSAGE)).toBeInTheDocument();
     expect(screen.getByTestId(TOAST_TEST_ID)).toHaveStyle({
-      backgroundColor: color,
+      borderTop: `2px solid ${color}`,
     });
     expect(
       screen.getByTestId(TOAST_TEST_ID).querySelector(`.${icon}`),
@@ -83,7 +83,7 @@ describe('Toast', () => {
       await waitFor(() => {
         expect(screen.getByText(MESSAGE)).toBeInTheDocument();
         expect(screen.getByTestId(TOAST_TEST_ID)).toHaveStyle({
-          backgroundColor: color,
+          borderTop: `2px solid ${color}`,
         });
         expect(
           screen.getByTestId(TOAST_TEST_ID).querySelector(`.${icon}`),
@@ -111,7 +111,7 @@ describe('Toast', () => {
       await waitFor(() => {
         expect(screen.getByText(MESSAGE)).toBeInTheDocument();
         expect(screen.getByTestId(TOAST_TEST_ID)).toHaveStyle({
-          backgroundColor: color,
+          borderTop: `2px solid ${color}`,
         });
         expect(
           screen.getByTestId(TOAST_TEST_ID).querySelector(`.${icon}`),

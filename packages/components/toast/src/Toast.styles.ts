@@ -3,24 +3,8 @@ import styled, { type Keyframes, keyframes } from 'styled-components';
 
 import { type ThemeProps } from '@synerise/ds-core';
 import { UnorderedList } from '@synerise/ds-unordered-list/dist/Unordered-list.styles';
-import { hexToRgba } from '@synerise/ds-utils';
 
 import { type ToastType } from './Toast.types';
-
-const getDescriptionColorForType = ({
-  toastType,
-  theme,
-}: ThemeProps & { toastType: ToastType }): string => {
-  switch (toastType) {
-    case 'informative':
-      return theme.palette['grey-600'];
-    case 'negative':
-    case 'success':
-    case 'warning':
-    default:
-      return theme.palette.white;
-  }
-};
 
 const getIconColorForType = ({
   toastType,
@@ -30,10 +14,12 @@ const getIconColorForType = ({
     case 'informative':
       return theme.palette['grey-600'];
     case 'negative':
-    case 'success':
+      return theme.palette['red-500'];
     case 'warning':
+      return theme.palette['yellow-600'];
+    case 'success':
     default:
-      return theme.palette.white;
+      return theme.palette['green-600'];
   }
 };
 
@@ -43,7 +29,7 @@ const getBackgroundColorForType = ({
 }: ThemeProps & { toastType: ToastType }): string => {
   switch (toastType) {
     case 'informative':
-      return theme.palette['grey-050'];
+      return theme.palette['grey-600'];
     case 'negative':
       return theme.palette['red-500'];
     case 'warning':
@@ -183,7 +169,7 @@ export const OrderWrapper = styled.div`
   }
 `;
 export const Wrapper = styled.div`
-  color: ${(props) => props.theme.palette['grey-050']};
+  color: ${(props) => props.theme.palette['grey-600']};
 `;
 
 export const AnimationContainer = styled.div<{ show?: boolean }>`
@@ -237,34 +223,33 @@ export const Container = styled.div<{
   max-width: 500px;
   align-items: flex-start;
   justify-content: center;
-  background-color: ${getBackgroundColorForType};
+  border-top: solid 2px ${getBackgroundColorForType};
+  background-color: ${(props) => props.theme.palette.white};
   border-radius: 4px;
-  box-shadow: ${(props) =>
-    props.color
-      ? `0px 16px 32px 5px ${hexToRgba(props.theme.palette['grey-900'], 0.2)}`
-      : 'none'};
+  box-shadow: 0 16px 32px 0 rgba(35, 41, 54, 0.12);
 
   ${IconExpanderWrapper},
   ${IconOrderWrapper},
   ${IconCloseWrapper} {
     svg {
-      fill: ${getDescriptionColorForType};
+      fill: ${(props) => props.theme.palette['grey-600']};
     }
   }
   ${OrderWrapper},
   ${AlertMessage},
+  ${ListWrapper},
   ${NumberWrapper}:hover,
   ${AlertDescription} {
-    color: ${getDescriptionColorForType};
+    color: ${(props) => props.theme.palette['grey-600']};
   }
   ${OrderWrapper}:hover {
     ${NumberWrapper} {
       background-image: linear-gradient(
         to right,
-        ${getDescriptionColorForType} 20%,
+        ${(props) => props.theme.palette['grey-600']}; 20%,
         rgba(255, 255, 255, 0) 10%
       );
-      color: ${getDescriptionColorForType};
+      color: ${(props) => props.theme.palette['grey-600']};
     }
   }
   ${IconWrapper} {
