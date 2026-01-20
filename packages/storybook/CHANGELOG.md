@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.32.0](https://github.com/Synerise/synerise-design/compare/storybook@1.31.1...storybook@1.32.0) (2026-01-20)
+
+### Bug Fixes
+
+- **field-set:** new prefix for field-set with switch ([a18a0df](https://github.com/Synerise/synerise-design/commit/a18a0df04cba27c77ef25c17a957c378267b9229))
+
+### Features
+
+- **information-card:** migrate to popover ([de900e4](https://github.com/Synerise/synerise-design/commit/de900e4bc1c32a4bbbf175401374619e691023f2))
+- **toast:** new styles of toast ([c3f3316](https://github.com/Synerise/synerise-design/commit/c3f331605f9e03c841ff40af0b7efcdd0251a90f))
+
 ## [1.31.1](https://github.com/Synerise/synerise-design/compare/storybook@1.31.0...storybook@1.31.1) (2026-01-19)
 
 **Note:** Version bump only for package storybook

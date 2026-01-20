@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.8.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-factors@1.7.7...@synerise/ds-factors@1.8.0) (2026-01-20)
+
+### Features
+
+- **information-card:** migrate to popover ([de900e4](https://github.com/Synerise/synerise-design/commit/de900e4bc1c32a4bbbf175401374619e691023f2))
+
 ## [1.7.7](https://github.com/Synerise/synerise-design/compare/@synerise/ds-factors@1.7.6...@synerise/ds-factors@1.7.7) (2026-01-15)
 
 **Note:** Version bump only for package @synerise/ds-factors

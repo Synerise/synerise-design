@@ -1,6 +1,6 @@
 {
   "name": "@synerise/ds-condition",
-  "version": "1.5.10",
+  "version": "1.6.0",
   "description": "Condition UI Component for the Synerise Design System",
   "license": "ISC",
   "repository": "Synerise/synerise-design",
@@ -51,8 +51,8 @@
     "lodash": "^4.17.19"
   },
   "devDependencies": {
-    "@types/lodash": "^4.17.20",
-    "@testing-library/user-event": "^14"
+    "@testing-library/user-event": "^14",
+    "@types/lodash": "^4.17.20"
   },
   "peerDependencies": {
     "@synerise/ds-core": "*",
