@@ -1,16 +1,20 @@
 import React from 'react';
-import { Meta, StoryObj } from '@storybook/react-webpack5';
-import Toast, { ToastProps } from '@synerise/ds-toast';
 
+import { Meta, StoryObj } from '@storybook/react-webpack5';
 import Button from '@synerise/ds-button';
-import { FirstButtonWrapper, Wrapper } from '@synerise/ds-toast/dist/Toast.styles';
+import Toast, { ToastProps } from '@synerise/ds-toast';
+import {
+  FirstButtonWrapper,
+  Wrapper,
+} from '@synerise/ds-toast/dist/Toast.styles';
 import UnorderedList from '@synerise/ds-unordered-list';
+
 import {
   BOOLEAN_CONTROL,
+  REACT_NODE_AS_STRING,
   controlFromOptionsArray,
   fixedWrapper400,
   gappedColumnDecorator,
-  REACT_NODE_AS_STRING,
 } from '../../utils';
 import { ButtonShowingToast, data } from './Toast.data';
 
@@ -19,13 +23,18 @@ export default {
   tags: ['autodocs'],
   component: Toast,
   decorators: [gappedColumnDecorator, fixedWrapper400],
-  render: args => {
+  render: (args) => {
     return <Toast {...args} />;
   },
   argTypes: {
     message: REACT_NODE_AS_STRING,
     description: REACT_NODE_AS_STRING,
-    type: controlFromOptionsArray('select', ['success', 'warning', 'negative', 'informative']),
+    type: controlFromOptionsArray('select', [
+      'success',
+      'warning',
+      'negative',
+      'informative',
+    ]),
     withClose: BOOLEAN_CONTROL,
     expander: BOOLEAN_CONTROL,
     expanded: BOOLEAN_CONTROL,
@@ -50,10 +59,10 @@ export const Default: Story = {
 };
 const TYPES = ['success', 'warning', 'negative', 'informative'] as const;
 export const AllTypes: Story = {
-  render: args => {
+  render: (args) => {
     return (
       <>
-        {TYPES.map(type => (
+        {TYPES.map((type) => (
           <Toast {...args} message={`Toast type: ${type}`} type={type} />
         ))}
       </>
@@ -85,14 +94,13 @@ export const WithButton: Story = {
     expanded: true,
     button: (
       <FirstButtonWrapper>
-        <Button type="tertiary-white" mode="label">
+        <Button type="secondary" mode="label">
           Button
         </Button>
       </FirstButtonWrapper>
     ),
   },
 };
-
 
 export const ShowToast: Story = {
   ...Default,
