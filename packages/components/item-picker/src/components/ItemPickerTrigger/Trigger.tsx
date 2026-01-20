@@ -8,6 +8,7 @@ import React, {
 import Button from '@synerise/ds-button';
 import { theme } from '@synerise/ds-core';
 import Icon, { AngleDownS, Close3S, WarningFillM } from '@synerise/ds-icon';
+import { InformationCardTooltip } from '@synerise/ds-information-card';
 import Popconfirm from '@synerise/ds-popconfirm';
 import Tooltip from '@synerise/ds-tooltip';
 
@@ -172,7 +173,7 @@ const Trigger = forwardRef<HTMLDivElement, ItemPickerTriggerProps>(
           onClick={handleOpen}
           selected={Boolean(selected)}
           clearable={Boolean(onClear && renderClear)}
-          ref={ref}
+          ref={!informationCardTooltipProps ? ref : undefined}
         >
           <S.Trigger size={size}>
             {selected ? (
@@ -208,10 +209,12 @@ const Trigger = forwardRef<HTMLDivElement, ItemPickerTriggerProps>(
         disabled,
         error,
         handleOpen,
+        informationCardTooltipProps,
         onClear,
         opened,
         placeholder,
         placeholderIcon,
+        ref,
         renderAngleIcon,
         renderChangeButton,
         renderClear,
@@ -221,9 +224,11 @@ const Trigger = forwardRef<HTMLDivElement, ItemPickerTriggerProps>(
     );
 
     return informationCardTooltipProps ? (
-      <S.TriggerTooltip {...informationCardTooltipProps}>
-        {renderedTrigger}
-      </S.TriggerTooltip>
+      <span>
+        <InformationCardTooltip ref={ref} {...informationCardTooltipProps}>
+          {renderedTrigger}
+        </InformationCardTooltip>
+      </span>
     ) : (
       renderedTrigger
     );

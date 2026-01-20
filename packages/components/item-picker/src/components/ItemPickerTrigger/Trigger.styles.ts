@@ -1,7 +1,6 @@
 import styled, { css } from 'styled-components';
 
 import { type ThemeProps } from '@synerise/ds-core';
-import { InformationCardTooltip } from '@synerise/ds-information-card';
 
 import { type ItemPickerSize } from '../ItemPickerLegacy/ItemPickerLegacy.types';
 
@@ -235,8 +234,4 @@ export const ValueText = styled.span`
   text-overflow: ellipsis;
   overflow: hidden;
   white-space: nowrap;
-`;
-
-export const TriggerTooltip = styled(InformationCardTooltip)`
-  width: 100%;
 `;

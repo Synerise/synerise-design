@@ -1,4 +1,10 @@
-import { type CSSProperties, type MouseEvent, type ReactNode } from 'react';
+import {
+  type CSSProperties,
+  type ForwardRefExoticComponent,
+  type MouseEvent,
+  type ReactNode,
+  type RefAttributes,
+} from 'react';
 
 import { type ButtonProps } from '@synerise/ds-button';
 import {
@@ -63,7 +69,8 @@ export type PopconfirmProps = {
   >
 >;
 
-export type PopconfirmType = {
-  (props: PopconfirmProps): JSX.Element;
+export type PopconfirmType = ForwardRefExoticComponent<
+  PopconfirmProps & RefAttributes<HTMLElement>
+> & {
   ConfirmMessage: (props: ConfirmMessageProps) => JSX.Element;
 };

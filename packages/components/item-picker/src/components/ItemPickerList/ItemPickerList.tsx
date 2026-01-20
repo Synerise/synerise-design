@@ -17,7 +17,7 @@ import { v4 as uuid } from 'uuid';
 import { useTheme } from '@synerise/ds-core';
 import Dropdown from '@synerise/ds-dropdown';
 import Icon, { ArrowLeftM } from '@synerise/ds-icon';
-import { itemSizes } from '@synerise/ds-list-item';
+import { ListContextProvider, itemSizes } from '@synerise/ds-list-item';
 import { Text } from '@synerise/ds-typography';
 import {
   focusWithArrowKeys,
@@ -350,19 +350,23 @@ const ItemPickerListInner = <
             {...scrollbarProps}
           >
             <S.ScrollContent>
-              <S.StyledList
-                width="100%"
-                data-listheight={listHeight}
-                height={listHeight}
-                maxHeight={listHeight}
-                itemCount={mergedItemsList.length}
-                itemSize={getItemSize}
-                itemData={itemData}
-                style={LIST_STYLE}
-                ref={listRef}
-              >
-                {(props) => ItemPickerListRow(props as ItemPickerListRowProps)}
-              </S.StyledList>
+              <ListContextProvider>
+                <S.StyledList
+                  width="100%"
+                  data-listheight={listHeight}
+                  height={listHeight}
+                  maxHeight={listHeight}
+                  itemCount={mergedItemsList.length}
+                  itemSize={getItemSize}
+                  itemData={itemData}
+                  style={LIST_STYLE}
+                  ref={listRef}
+                >
+                  {(props) =>
+                    ItemPickerListRow(props as ItemPickerListRowProps)
+                  }
+                </S.StyledList>
+              </ListContextProvider>
             </S.ScrollContent>
           </S.StyledScrollbar>
         )}

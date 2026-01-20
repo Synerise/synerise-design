@@ -3,8 +3,9 @@ import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import Button from '@synerise/ds-button';
 import Dropdown from '@synerise/ds-dropdown';
 import Icon, { Add3M, AngleDownS } from '@synerise/ds-icon';
-import InformationCard from '@synerise/ds-information-card';
-import Menu, { type MenuItemProps } from '@synerise/ds-menu';
+import InformationCard, {
+  InformationCardTooltip,
+} from '@synerise/ds-information-card';
 import { getClosest, getPopupContainer } from '@synerise/ds-utils';
 
 import { ErrorWrapper, ItemWrapper } from './ContextSelector.styles';
@@ -53,7 +54,7 @@ const ContextSelector = ({
   errorText,
   isError,
   readOnly = false,
-  getMenuEntryProps,
+  popoverDelay,
   dropdownDimensionsConfig,
 }: ContextProps) => {
   const allTexts = useTexts(texts);
@@ -131,11 +132,35 @@ const ContextSelector = ({
     setDropdownVisible(true);
   }, [onOpen]);
 
+  const selectedItemInfoCard = useMemo(() => {
+    return (
+      selectedItem &&
+      (selectedItem.renderHoverTooltip?.() || (
+        <InformationCard
+          icon={selectedItem.icon}
+          subtitle={selectedItem.subtitle}
+          title={selectedItem.name}
+          renderAdditionalDescription={selectedItem.renderAdditionalDescription}
+          descriptionConfig={
+            selectedItem.description
+              ? {
+                  value: selectedItem.description as string,
+                  disabled: true,
+                  label: undefined,
+                }
+              : undefined
+          }
+          {...selectedItem.informationCardProps}
+        />
+      ))
+    );
+  }, [selectedItem]);
+
   const triggerButton = useMemo(() => {
     const { buttonLabel } = allTexts;
     const hasError = Boolean(errorText) || isError;
 
-    return addMode && !selectedItem ? (
+    const addModeButton = (
       <Button
         error={hasError}
         disabled={disabled}
@@ -147,76 +172,59 @@ const ContextSelector = ({
         <Icon component={<Add3M />} />
         {buttonLabel}
       </Button>
-    ) : (
-      <Menu
-        asDropdownMenu
-        showTextTooltip
-        asInfoCardContainer
-        dataSource={[
-          {
-            text: (
-              <Button
-                error={hasError}
-                disabled={disabled}
-                type="custom-color"
-                color={triggerColor}
-                mode={triggerMode}
-                onClick={!readOnly ? handleClick : undefined}
-                readOnly={readOnly}
-              >
-                {selectedItem ? <Icon component={selectedItem.icon} /> : null}
-                <ItemWrapper>
-                  {selectedItem ? selectedItem.name : buttonLabel}
-                </ItemWrapper>
-                {!readOnly && <Icon component={<AngleDownS />} />}
-              </Button>
-            ),
-            hoverTooltipProps: {
-              popupPlacement: 'top',
-              getPopupContainer: getPopupContainerOverride || getPopupContainer,
-            } as MenuItemProps['hoverTooltipProps'],
-            renderHoverTooltip: selectedItem
-              ? selectedItem.renderHoverTooltip ||
-                ((): JSX.Element => (
-                  <InformationCard
-                    icon={selectedItem.icon}
-                    subtitle={selectedItem.subtitle}
-                    title={selectedItem.name}
-                    renderAdditionalDescription={
-                      selectedItem.renderAdditionalDescription
-                    }
-                    descriptionConfig={
-                      selectedItem.description
-                        ? {
-                            value: selectedItem.description as string,
-                            disabled: true,
-                            label: undefined,
-                          }
-                        : undefined
-                    }
-                    {...selectedItem.informationCardProps}
-                  />
-                ))
-              : undefined,
-            // eslint-disable-next-line @typescript-eslint/no-explicit-any
-            ...getMenuEntryProps?.(selectedItem as any),
-          },
-        ]}
-      />
     );
+
+    const standardButton = selectedItem ? (
+      <InformationCardTooltip
+        content={selectedItemInfoCard}
+        popoverProps={{
+          placement: 'top',
+          getPopupContainer: getPopupContainerOverride || getPopupContainer,
+        }}
+      >
+        <Button
+          error={hasError}
+          disabled={disabled}
+          type="custom-color"
+          color={triggerColor}
+          mode={triggerMode}
+          onClick={!readOnly ? handleClick : undefined}
+          readOnly={readOnly}
+        >
+          <Icon component={selectedItem.icon} />
+          <ItemWrapper>{selectedItem.name}</ItemWrapper>
+          {!readOnly && <Icon component={<AngleDownS />} />}
+        </Button>
+      </InformationCardTooltip>
+    ) : (
+      <Button
+        error={hasError}
+        disabled={disabled}
+        type="custom-color"
+        color={triggerColor}
+        mode={triggerMode}
+        onClick={!readOnly ? handleClick : undefined}
+        readOnly={readOnly}
+      >
+        <ItemWrapper>{buttonLabel}</ItemWrapper>
+        {!readOnly && <Icon component={<AngleDownS />} />}
+      </Button>
+    );
+
+    return addMode && !selectedItem ? addModeButton : standardButton;
   }, [
     allTexts,
     errorText,
     isError,
-    addMode,
-    selectedItem,
     disabled,
     readOnly,
     handleClick,
+    selectedItem,
+    selectedItemInfoCard,
+    getPopupContainerOverride,
     triggerColor,
     triggerMode,
-    getPopupContainerOverride,
-    getMenuEntryProps,
+    addMode,
   ]);
 
   const onDropdownVisibilityChange = useCallback(
@@ -280,6 +288,7 @@ const ContextSelector = ({
               hasMoreItems={hasMoreItems}
               onFetchData={onFetchData}
               outerHeight={outerHeight}
+              popoverDelay={popoverDelay}
             />
           }
         >

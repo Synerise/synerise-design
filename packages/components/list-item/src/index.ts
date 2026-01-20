@@ -8,6 +8,8 @@ export {
 
 export { useListContext } from './components/ListContext/ListContext';
 
+export { ListContextProvider } from './components/ListContext/ListContextProvider';
+
 export {
   itemSizes,
   itemTypes,

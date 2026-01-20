@@ -114,6 +114,28 @@ export const Default: Story = {
     },
   },
 };
+
+export const TriggerWithInformationCard: Story = {
+  decorators: [fixedWrapper300, centeredPaddedWrapper],
+  args: {
+    showItemsSectionLabel: false,
+    triggerProps: {
+      informationCardTooltipProps: {
+        informationCardProps: {
+          title: 'Test',
+        },
+      },
+    },
+  },
+  parameters: {
+    docs: {
+      source: {
+        code: `<ItemPicker isNewVersion items={FLAT_DATA_SOURCE} showItemsSectionLabel={false} />`,
+      },
+    },
+  },
+};
+
 export const RelativeHeight: Story = {
   parameters: { layout: 'padded' },
   decorators: [sideBySide, fixedWrapper800],

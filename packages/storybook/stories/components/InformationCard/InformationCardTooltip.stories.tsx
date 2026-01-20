@@ -1,13 +1,13 @@
 import React from 'react';
-import { Meta, StoryObj } from '@storybook/react-webpack5';
-import { userEvent, waitFor, within, expect } from 'storybook/test';
+import { expect, userEvent, waitFor, within } from 'storybook/test';
 
+import { Meta, StoryObj } from '@storybook/react-webpack5';
+import Button from '@synerise/ds-button';
 import { InformationCardTooltip } from '@synerise/ds-information-card';
 import type { InformationCardTooltipProps } from '@synerise/ds-information-card';
 
-import { CompleteExample } from './InformationCard.stories';
-import Button from '@synerise/ds-button';
 import { centeredPaddedWrapper } from '../../utils';
+import { CompleteExample } from './InformationCard.stories';
 
 export default {
   title: 'Components/InformationCard',
@@ -32,8 +32,8 @@ export const DefaultStory: Story = {
 export const InformationCardTooltipTopPlacement: Story = {
   args: {
     children: <Button type="primary">Button with infocard</Button>,
-    triggerProps: {
-      popupPlacement: 'top',
+    popoverProps: {
+      placement: 'top',
     },
   },
 };

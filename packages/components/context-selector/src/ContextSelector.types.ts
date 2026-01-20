@@ -1,10 +1,12 @@
 import type { CSSProperties, ReactNode, ReactText } from 'react';
 
 import type { DropdownSharedProps } from '@synerise/ds-dropdown';
-import type { FactorsProps } from '@synerise/ds-factors';
 import type { InformationCardProps } from '@synerise/ds-information-card';
 import type { ItemSize, ListItemProps } from '@synerise/ds-list-item';
-import { type PopoverTriggerType } from '@synerise/ds-popover';
+import {
+  type DelayConfig,
+  type PopoverTriggerType,
+} from '@synerise/ds-popover';
 import type { HandledEventsType } from '@synerise/ds-utils';
 
 export type ContextTexts = {
@@ -22,7 +24,7 @@ export type ContextTexts = {
 
 export type ContextItem = Pick<
   ListItemProps,
-  'renderHoverTooltip' | 'hoverTooltipProps' | 'disabled'
+  'renderHoverTooltip' | 'popoverProps' | 'disabled'
 > & {
   id: ReactText | null;
   name: string;
@@ -96,15 +98,18 @@ export type ContextProps = {
   >;
   errorText?: ReactNode;
   isError?: boolean;
-  getMenuEntryProps?: FactorsProps['getMenuEntryProps'];
   dropdownDimensionsConfig?: {
     defaultHeight?: number;
     lowerHeight?: number;
     threshold?: number;
   };
+  popoverDelay?: DelayConfig;
 };
 
-export type ContextDropdownProps = Pick<ContextProps, 'onDeactivate'> & {
+export type ContextDropdownProps = Pick<
+  ContextProps,
+  'onDeactivate' | 'popoverDelay'
+> & {
   setDropdownVisible: (show: boolean) => void;
   setSelected: (val: ContextItem | ContextGroup) => void;
   groups: ContextGroup[];

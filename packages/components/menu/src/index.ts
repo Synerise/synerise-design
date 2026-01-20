@@ -8,7 +8,6 @@ import * as MainMenuStyles from './Menu.styles';
 
 export { default } from './Menu';
 export * from './Menu.types';
-export * from './utils';
 
 export const MenuStyles = {
   MenuStyles: MainMenuStyles,

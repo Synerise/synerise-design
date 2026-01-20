@@ -9,6 +9,7 @@ import {
 import {
   type ArrowOptions,
   type AutoUpdateOptions,
+  type Delay,
   type FlipOptions,
   type OffsetOptions,
   type OpenChangeReason,
@@ -16,6 +17,7 @@ import {
   type ShiftOptions,
   type UseDismissProps,
   type UseFloatingReturn,
+  type UseHoverProps,
   type UseInteractionsReturn,
   type UseListNavigationProps,
   type UseTransitionStylesProps,
@@ -34,6 +36,8 @@ export type OffsetConfig = SharedMiddlewareConfig &
   Exclude<OffsetOptions, number>;
 export type FlipConfig = SharedMiddlewareConfig & FlipOptions;
 export type ShiftConfig = SharedMiddlewareConfig & ShiftOptions;
+export type HoverConfig = Omit<UseHoverProps, 'enabled'>;
+export type DelayConfig = Delay;
 
 export type PopoverOptions = {
   initialOpen?: boolean;
@@ -51,6 +55,7 @@ export type PopoverOptions = {
   offsetConfig?: OffsetConfig;
   flipConfig?: FlipConfig;
   shiftConfig?: ShiftConfig;
+  hoverConfig?: HoverConfig;
   arrowConfig?: Omit<ArrowOptions, 'element'>;
   dismissConfig?: UseDismissProps;
   listNavigationConfig?: UseListNavigationProps;
@@ -94,6 +99,7 @@ export type UsePopoverReturn = Omit<UseFloatingReturn, 'open'> &
     componentId?: string;
     arrowRef: RefObject<HTMLElement>;
   };
+
 export type LegacyDropdownPlacement = Exclude<
   LegacyPlacement,
   'right' | 'left' | 'leftTop' | 'leftBottom' | 'rightTop' | 'rightBottom'

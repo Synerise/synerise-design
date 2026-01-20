@@ -282,9 +282,6 @@ describe('Menu item', () => {
           type={undefined}
           onMouseEnter={() => undefined}
           onMouseLeave={() => undefined}
-          hoverTooltipProps={{
-            mouseEnterDelay: 0,
-          }}
           renderHoverTooltip={() => (
             <div data-testid="hover-tooltip">tooltip content</div>
           )}
@@ -296,7 +293,7 @@ describe('Menu item', () => {
     const element = screen.getByText('Menu item');
     const tooltip = screen.queryByTestId('hover-tooltip');
     expect(tooltip).not.toBeInTheDocument();
-    fireEvent.mouseOver(element);
+    await userEvent.hover(element);
 
     expect(await screen.findByTestId('hover-tooltip')).toHaveTextContent(
       'tooltip content',
@@ -310,9 +307,6 @@ describe('Menu item', () => {
           disabled={true}
           onMouseEnter={() => undefined}
           onMouseLeave={() => undefined}
-          hoverTooltipProps={{
-            mouseEnterDelay: 0,
-          }}
           renderHoverTooltip={() => (
             <div data-testid="hover-tooltip">tooltip content</div>
           )}
@@ -324,7 +318,7 @@ describe('Menu item', () => {
     const element = screen.getByText('Menu item');
     const tooltip = screen.queryByTestId('hover-tooltip');
     expect(tooltip).not.toBeInTheDocument();
-    fireEvent.mouseOver(element);
+    await userEvent.hover(element);
 
     expect(await screen.findByTestId('hover-tooltip')).toHaveTextContent(
       'tooltip content',

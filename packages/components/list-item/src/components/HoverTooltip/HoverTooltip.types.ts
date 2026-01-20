@@ -5,6 +5,6 @@ import type { BasicItemProps } from '../../ListItem.types';
 export type HoverTooltipProps = {
   children: ReactNode;
   style?: CSSProperties;
-  hoverTooltipProps?: BasicItemProps['hoverTooltipProps'];
+  popoverProps?: BasicItemProps['popoverProps'];
   renderHoverTooltip?: () => JSX.Element;
 };

@@ -6,6 +6,7 @@ import {
   type ReferenceElement,
   autoUpdate,
   useClick,
+  useDelayGroup,
   useDismiss,
   useFloating,
   useHover,
@@ -36,6 +37,7 @@ export const usePopover = ({
   flipConfig = {},
   shiftConfig = {},
   arrowConfig = {},
+  hoverConfig = {},
   testId = 'noTestId',
   componentId,
   returnFocus,
@@ -110,12 +112,15 @@ export const usePopover = ({
   const click = useClick(context, {
     enabled: isClickEnabled && controlledOpen === undefined,
   });
+  const { delay } = useDelayGroup(context);
+
   const hover = useHover(context, {
     enabled: isHoverEnabled,
-    delay: {
+    delay: delay || {
       open: HOVER_OPEN_DELAY,
       close: HOVER_CLOSE_DELAY,
     },
+    ...hoverConfig,
   });
 
   const dismiss = useDismiss(context, dismissConfig);

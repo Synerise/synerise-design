@@ -26,7 +26,6 @@ const FactorValue = ({
   inputProps,
   allowClear,
   readOnly = false,
-  getMenuEntryProps,
   relativeDateProps,
   arrayProps,
   factorValueExtraProps,
@@ -66,7 +65,6 @@ const FactorValue = ({
         error={error}
         allowClear={allowClear}
         readOnly={readOnly}
-        getMenuEntryProps={getMenuEntryProps}
         inputProps={inputProps}
         factorValueExtraProps={factorValueExtraProps}
         {...relativeDateProps}
@@ -97,7 +95,6 @@ const FactorValue = ({
     error,
     allowClear,
     readOnly,
-    getMenuEntryProps,
     relativeDateProps,
     factorValueExtraProps,
     uncontrolledComponent,

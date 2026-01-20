@@ -70,7 +70,12 @@ export const SelectItemFromCategory: Story = {
         ).toBeInTheDocument();
       }, TIMEOUT_OPTIONS);
 
-      await userEvent.click(canvas.getAllByRole('menuitem')[3]);
+      const item = canvas
+        .getAllByRole('menuitem')
+        .find((element) => element.getAttribute('name') === 'Schema 1');
+      expect(item).toBeInTheDocument();
+
+      await userEvent.click(item as HTMLElement);
 
       await waitFor(() =>
         expect(args.onSelectItem).toHaveBeenCalledWith(CONTEXT_ITEMS[9]),

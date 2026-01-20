@@ -3,6 +3,7 @@ import React from 'react';
 import { NotificationsM, VarTypeStringM } from '@synerise/ds-icon';
 import { renderWithProvider } from '@synerise/ds-core';
 import { fireEvent, screen, waitFor } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 
 import Condition from '../Condition';
 import {
@@ -689,7 +690,7 @@ describe('Condition component', () => {
         ],
       }),
     );
-    fireEvent.mouseOver(screen.getByText('TEST_SELECTED_ITEM'));
+    await userEvent.hover(screen.getByText('TEST_SELECTED_ITEM'));
     expect(
       await screen.findByText('TEST_SELECTED_ITEM_SUBTITLE'),
     ).toBeInTheDocument();

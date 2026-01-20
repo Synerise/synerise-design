@@ -1,13 +1,10 @@
 import classNames from 'classnames';
 import copy from 'copy-to-clipboard';
 import { type MenuInfo } from 'rc-menu/lib/interface';
-import Trigger from 'rc-trigger';
 import 'rc-trigger/assets/index.less';
 import React, {
   type CSSProperties,
-  type FC,
   type PropsWithChildren,
-  type ReactElement,
   type ReactNode,
   useCallback,
   useMemo,
@@ -16,13 +13,25 @@ import React, {
 
 import { useDropdown, useTheme } from '@synerise/ds-core';
 import Icon, { AngleRightS, CheckS } from '@synerise/ds-icon';
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+  getPlacement,
+} from '@synerise/ds-popover';
 import { escapeRegEx } from '@synerise/ds-utils';
 
 import { VisibilityTrigger } from '../../../Menu.types';
 import { useTemporaryLabel } from '../../../hooks/useTemporaryLabel';
-import { triggerPlacements } from '../../../utils';
 import { getCopyConfig } from '../../../utils/getCopyConfig';
 import { DynamicLabel } from './DynamicLabel';
+import {
+  FLIP_CONFIG,
+  HOVER_CONFIG,
+  OFFSET_CONFIG,
+  SHIFT_CONFIG,
+  TRANSITION_DURATION,
+} from './Text.const';
 import * as S from './Text.styles';
 import { type AddonRenderer, type BasicItemProps } from './Text.types';
 
@@ -34,13 +43,13 @@ const renderAddon = (
 };
 
 export type HoverTooltipProps = PropsWithChildren<{
-  hoverTooltipProps?: BasicItemProps['hoverTooltipProps'];
+  popoverProps?: BasicItemProps['popoverProps'];
   renderHoverTooltip?: () => JSX.Element;
   style?: CSSProperties;
 }>;
 
 function WithHoverTooltip({
-  hoverTooltipProps,
+  popoverProps,
   renderHoverTooltip,
   children,
   style,
@@ -55,28 +64,42 @@ function WithHoverTooltip({
       },
     [],
   );
-  // onKeyDown is used to disallow propagating key events to tooltip's container element
+  const popoverPlacement = getPlacement(popoverProps?.placement || 'right');
   return (
-    <div onKeyDown={cancelBubblingEvent} onClick={cancelBubblingEvent}>
-      <Trigger
-        builtinPlacements={triggerPlacements}
-        defaultPopupVisible={hoverTooltipProps?.defaultPopupVisible ?? false}
-        action={hoverTooltipProps?.action || ['click', 'hover']}
-        popupPlacement={hoverTooltipProps?.popupPlacement || 'right'}
-        popup={renderHoverTooltip && renderHoverTooltip()}
-        popupClassName="ignore-click-outside ds-hide-arrow"
-        mouseEnterDelay={0.2}
-        popupStyle={{ zIndex }}
+    // onKeyDown is used to disallow propagating key events to tooltip's container element
+    <S.PropagationStopper
+      onKeyDown={cancelBubblingEvent}
+      onClick={cancelBubblingEvent}
+    >
+      <Popover
+        trigger="hover"
+        modal={false}
+        componentId="information-card"
+        testId="information-card"
+        shiftConfig={SHIFT_CONFIG}
+        offsetConfig={OFFSET_CONFIG}
+        flipConfig={FLIP_CONFIG}
+        hoverConfig={HOVER_CONFIG}
+        autoUpdate={{
+          layoutShift: true,
+        }}
+        transitionDuration={TRANSITION_DURATION}
         zIndex={zIndex}
-        {...hoverTooltipProps}
+        {...popoverProps}
+        placement={popoverPlacement}
       >
-        <div style={style}>{children as ReactElement}</div>
-      </Trigger>
-    </div>
+        <PopoverContent>
+          {renderHoverTooltip && renderHoverTooltip()}
+        </PopoverContent>
+        <PopoverTrigger asChild>
+          <div style={style}>{children}</div>
+        </PopoverTrigger>
+      </Popover>
+    </S.PropagationStopper>
   );
 }
 
-const Text: FC<BasicItemProps> = ({
+const Text = ({
   parent,
   disabled,
   prefixel,
@@ -98,11 +121,11 @@ const Text: FC<BasicItemProps> = ({
   ordered,
   onClick,
   checked,
-  hoverTooltipProps,
+  popoverProps,
   renderHoverTooltip,
   size = 'default',
   ...rest
-}) => {
+}: BasicItemProps) => {
   const theme = useTheme();
   const dropdownContext = useDropdown();
   const [hovered, setHovered] = useState(false);
@@ -265,7 +288,7 @@ const Text: FC<BasicItemProps> = ({
   if (renderHoverTooltip) {
     return (
       <WithHoverTooltip
-        hoverTooltipProps={hoverTooltipProps}
+        popoverProps={popoverProps}
         renderHoverTooltip={renderHoverTooltip}
         style={mergedStyle}
       >

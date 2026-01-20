@@ -14,7 +14,7 @@ export type InheritedFromListItem = Pick<
   | 'suffixVisibilityTrigger'
   | 'highlight'
   | 'renderHoverTooltip'
-  | 'hoverTooltipProps'
+  | 'popoverProps'
   | 'timeToHideTooltip'
 >;
 

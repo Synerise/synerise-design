@@ -1,13 +1,24 @@
-import React, { useCallback, useRef, useState } from 'react';
-import { fn } from 'storybook/test';
+import React, {
+  ReactElement,
+  ReactNode,
+  useCallback,
+  useRef,
+  useState,
+} from 'react';
+import { expect, fn, userEvent, waitFor, within } from 'storybook/test';
 
 import { Meta, StoryObj } from '@storybook/react-webpack5';
 import Button from '@synerise/ds-button';
 import Dropdown from '@synerise/ds-dropdown';
 import type { InformationCardProps } from '@synerise/ds-information-card';
 import InformationCard from '@synerise/ds-information-card';
+import ListItem, { ListItemProps, ListWrapper } from '@synerise/ds-list-item';
 import Menu, { MenuItemProps } from '@synerise/ds-menu';
-import { focusWithArrowKeys, useOnClickOutside } from '@synerise/ds-utils';
+import {
+  focusWithArrowKeys,
+  getPopupContainer,
+  useOnClickOutside,
+} from '@synerise/ds-utils';
 
 import InformationCardMeta, {
   CompleteExample,
@@ -19,13 +30,13 @@ export default {
   tags: ['visualtests'],
 } as Meta<InformationCardProps>;
 
-const renderMenuWithCard = (renderHoverTooltip, title) => {
+const renderMenuWithCard = (
+  renderHoverTooltip: () => ReactElement,
+  title: ReactNode,
+) => {
   const data: MenuItemProps[] = [
     {
       text: title,
-      hoverTooltipProps: {
-        defaultPopupVisible: true,
-      },
       renderHoverTooltip: renderHoverTooltip,
     },
 
@@ -61,6 +72,13 @@ export const WithMenu: StoryObj<InformationCardProps> = {
   args: {
     ...CompleteExample.args,
   },
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement.parentElement!);
+    await userEvent.hover(canvas.getAllByText('Menu item')[0]);
+    await waitFor(() =>
+      expect(canvas.getByTestId('information-card')).toBeVisible(),
+    );
+  },
 };
 
 export const WithDropdown: StoryObj<InformationCardProps> = {
@@ -70,19 +88,7 @@ export const WithDropdown: StoryObj<InformationCardProps> = {
     useOnClickOutside(ref, () => {
       setDropdownVisible(false);
     });
-    const popoverProps = useCallback(
-      (visible) => ({
-        defaultPopupVisible: dropdownVisible && (visible ?? true),
-      }),
-      [dropdownVisible],
-    );
-    const buildMenuEntry = (visible): Partial<MenuItemProps> => ({
-      text: 'Menu item',
-      hoverTooltipProps: popoverProps(visible),
-      renderHoverTooltip: () => (
-        <InformationCard {...args} descriptionConfig={{ onChange: fn() }} />
-      ),
-    });
+
     return (
       <Dropdown
         overlayStyle={{ borderRadius: '3px' }}
@@ -92,17 +98,28 @@ export const WithDropdown: StoryObj<InformationCardProps> = {
         popoverProps={{ testId: 'infocard-story' }}
         overlay={
           <Dropdown.Wrapper
+            data-popup-container
             onKeyDown={(e) => focusWithArrowKeys(e, 'ds-menu-item', () => {})}
             ref={ref}
           >
-            <Menu
-              dataSource={Array.from(Array(3)).map((_e, i) =>
-                buildMenuEntry(i === 0),
-              )}
-              asDropdownMenu={true}
-              style={{ width: '100%' }}
-              showTextTooltip={true}
-            />
+            <ListWrapper>
+              {Array.from(Array(3)).map((_e, i) => (
+                <ListItem
+                  renderHoverTooltip={() => (
+                    <InformationCard
+                      {...args}
+                      descriptionConfig={{ onChange: fn() }}
+                    />
+                  )}
+                  popoverProps={{
+                    initialOpen: true,
+                    getPopupContainer: getPopupContainer,
+                  }}
+                >
+                  Menu item
+                </ListItem>
+              ))}
+            </ListWrapper>
           </Dropdown.Wrapper>
         }
       >
@@ -113,6 +130,15 @@ export const WithDropdown: StoryObj<InformationCardProps> = {
           Dropdown
         </Button>
       </Dropdown>
+    );
+  },
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement.parentElement!);
+
+    await canvas.findByTestId('popover-infocard-story-content');
+    await userEvent.hover(canvas.getAllByText('Menu item')[0]);
+    await waitFor(() =>
+      expect(canvas.getByTestId('information-card')).toBeVisible(),
     );
   },
   args: {
