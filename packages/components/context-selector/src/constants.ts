@@ -1,9 +1,9 @@
-import { ItemSize } from '@synerise/ds-menu';
+import { itemSizes } from '@synerise/ds-list-item';
 
 export const NO_GROUP_NAME = 'NO_GROUP_NAME';
 export const ITEM_SIZE = {
-  [ItemSize.LARGE]: 50,
-  [ItemSize.DEFAULT]: 32,
+  [itemSizes.LARGE]: 50,
+  [itemSizes.DEFAULT]: 32,
   title: 32,
 };
 export const DROPDOWN_HEIGHT = 420;

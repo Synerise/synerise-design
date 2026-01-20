@@ -1,7 +1,7 @@
 import React, { useMemo } from 'react';
 
 import Icon, { InformationNoSearchResultL } from '@synerise/ds-icon';
-import { GroupItem } from '@synerise/ds-list-item';
+import { GroupItem, ListContextProvider } from '@synerise/ds-list-item';
 
 import * as S from '../ItemsRoll.styles';
 import { type ItemRollElement } from '../ItemsRoll.types';
@@ -88,7 +88,9 @@ const List = ({
       {noResultsLabel}
     </S.NoResults>
   ) : (
-    <S.ListWrapper>{finalItems}</S.ListWrapper>
+    <ListContextProvider>
+      <S.ListWrapper>{finalItems}</S.ListWrapper>
+    </ListContextProvider>
   );
 };
 

@@ -38,12 +38,15 @@
     "@synerise/ds-button": "workspace:^",
     "@synerise/ds-divider": "workspace:^",
     "@synerise/ds-icon": "workspace:^",
+    "@synerise/ds-popover": "workspace:^",
     "@synerise/ds-tooltip": "workspace:^",
     "@synerise/ds-utils": "workspace:^",
     "classnames": "^2.5.1",
     "rc-menu": "~9.6.3",
-    "rc-trigger": "^5.3.4",
     "uuid": "^8.3.2"
+  },
+  "devDependencies": {
+    "@testing-library/user-event": "^14"
   },
   "peerDependencies": {
     "@synerise/ds-core": "*",

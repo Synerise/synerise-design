@@ -12,6 +12,7 @@ import {
   type ListChildComponentProps,
 } from 'react-window';
 
+import { ListContextProvider } from '@synerise/ds-list-item';
 import Menu, { type MenuItemProps } from '@synerise/ds-menu';
 
 import { type SearchItemListProps } from './SearchItems.types';
@@ -115,7 +116,11 @@ SearchItemListProps<any>) => {
     </List>
   );
 
-  return renderInMenu ? <Menu tabIndex={-1}>{list}</Menu> : <>{list}</>;
+  return renderInMenu ? (
+    <Menu tabIndex={-1}>{list}</Menu>
+  ) : (
+    <ListContextProvider>{list}</ListContextProvider>
+  );
 };
 
 export default SearchItems;

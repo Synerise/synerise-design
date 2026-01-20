@@ -43,7 +43,6 @@
     "@synerise/ds-icon": "workspace:^",
     "@synerise/ds-information-card": "workspace:^",
     "@synerise/ds-list-item": "workspace:^",
-    "@synerise/ds-menu": "workspace:^",
     "@synerise/ds-popover": "workspace:^",
     "@synerise/ds-result": "workspace:^",
     "@synerise/ds-scrollbar": "workspace:^",

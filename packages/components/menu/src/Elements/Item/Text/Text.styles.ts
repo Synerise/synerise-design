@@ -389,3 +389,7 @@ export const DynamicLabelWrapper = styled.div<{ showAlternative?: boolean }>`
           }
         `}
 `;
+
+export const PropagationStopper = styled.div`
+  display: contents;
+`;

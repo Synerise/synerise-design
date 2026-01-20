@@ -2,8 +2,9 @@ import React, { useCallback, useEffect, useMemo, useState } from 'react';
 
 import Dropdown from '@synerise/ds-dropdown';
 import Icon, { AngleDownS } from '@synerise/ds-icon';
-import InformationCard from '@synerise/ds-information-card';
-import Menu, { type MenuItemProps } from '@synerise/ds-menu';
+import InformationCard, {
+  InformationCardTooltip,
+} from '@synerise/ds-information-card';
 import { getPopupContainer } from '@synerise/ds-utils';
 
 import {
@@ -33,7 +34,6 @@ const ParameterInput = ({
   readOnly = false,
   error,
   loading,
-  getMenuEntryProps,
 }: FactorValueComponentProps) => {
   const {
     buttonIcon,
@@ -94,10 +94,6 @@ const ParameterInput = ({
     (newValue: boolean) => {
       newValue && onActivate && onActivate();
       setDropdownVisible(newValue);
-      // if (!newValue) {
-      //   // onDeactivate && onDeactivate();
-      //   setDropdownVisible(false);
-      // }
     },
     [onActivate],
   );
@@ -125,42 +121,42 @@ const ParameterInput = ({
     </ParameterButton>
   );
 
-  const trigger = (
-    <Menu
-      asDropdownMenu
-      showTextTooltip
-      asInfoCardContainer
-      dataSource={[
-        {
-          text: triggerButton,
-          hoverTooltipProps: {
-            popupPlacement: 'top',
-            getPopupContainer: getPopupContainerOverride || getPopupContainer,
-          } as MenuItemProps['hoverTooltipProps'],
-          renderHoverTooltip: isSelected
-            ? parameter?.renderHoverTooltip ||
-              (() => (
-                <InformationCard
-                  icon={parameterIcon}
-                  subtitle={parameter.id?.toString()}
-                  title={parameterName as string}
-                  descriptionConfig={
-                    parameter.description
-                      ? {
-                          value: parameter.description as string,
-                          disabled: true,
-                          label: undefined,
-                        }
-                      : undefined
-                  }
-                  {...parameter.informationCardProps}
-                />
-              ))
-            : undefined,
-          ...getMenuEntryProps?.(parameter),
-        },
-      ]}
-    />
+  const selectedItemInfoCard = useMemo(() => {
+    return (
+      isSelected &&
+      parameter &&
+      (parameter.renderHoverTooltip?.() || (
+        <InformationCard
+          icon={parameterIcon}
+          subtitle={parameter.id?.toString()}
+          title={parameterName as string}
+          descriptionConfig={
+            parameter.description
+              ? {
+                  value: parameter.description as string,
+                  disabled: true,
+                  label: undefined,
+                }
+              : undefined
+          }
+          {...parameter.informationCardProps}
+        />
+      ))
+    );
+  }, [parameter, isSelected, parameterIcon, parameterName]);
+
+  const trigger = selectedItemInfoCard ? (
+    <InformationCardTooltip
+      content={selectedItemInfoCard}
+      popoverProps={{
+        placement: 'top',
+        getPopupContainer: getPopupContainerOverride || getPopupContainer,
+      }}
+    >
+      {triggerButton}
+    </InformationCardTooltip>
+  ) : (
+    triggerButton
   );
 
   useEffect(() => {

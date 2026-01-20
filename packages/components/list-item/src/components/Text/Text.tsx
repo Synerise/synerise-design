@@ -60,7 +60,7 @@ const Text = forwardRef<HTMLDivElement, BasicItemProps & NestedItemProps>(
 
       style,
 
-      hoverTooltipProps,
+      popoverProps,
       renderHoverTooltip,
       subMenu,
       featured,
@@ -248,7 +248,7 @@ const Text = forwardRef<HTMLDivElement, BasicItemProps & NestedItemProps>(
     if (renderHoverTooltip) {
       return (
         <HoverTooltip
-          hoverTooltipProps={hoverTooltipProps}
+          popoverProps={popoverProps}
           renderHoverTooltip={renderHoverTooltip}
           style={style}
         >

@@ -1,7 +1,11 @@
 import { type MenuProps } from 'antd/lib/menu';
-import type { TriggerProps } from 'rc-trigger';
-import type { Component, LegacyRef, ReactElement, ReactNode } from 'react';
+import type { ReactElement, ReactNode } from 'react';
 
+import {
+  type DelayConfig,
+  type LegacyPlacement,
+  type PopoverOptions,
+} from '@synerise/ds-popover';
 import { type TooltipProps } from '@synerise/ds-tooltip';
 
 export type MenuTexts = {
@@ -15,6 +19,7 @@ export type AntdMenuProps = Omit<MenuProps, 'dataSource' | 'footer'> & {
   asDropdownMenu?: boolean;
   showTextTooltip?: boolean;
   asInfoCardContainer?: boolean;
+  popoverDelay?: DelayConfig;
   maxToShowItems?: number;
   texts?: Partial<MenuTexts>;
 };
@@ -90,10 +95,6 @@ export enum ItemSize {
   LARGE = 'large',
 }
 
-export type TriggerHandle = Component<TriggerProps> & {
-  getPopupDomNode: () => HTMLElement;
-};
-
 export type MenuItemProps = Omit<MenuProps, 'dataSource' | 'footer'> & {
   key?: string | number;
   text?: ReactNode;
@@ -135,6 +136,15 @@ export type MenuItemProps = Omit<MenuProps, 'dataSource' | 'footer'> & {
   menuItemKey?: string | number;
   checked?: boolean;
   size?: 'default' | 'large';
-  hoverTooltipProps?: TriggerProps & { ref?: LegacyRef<TriggerHandle> };
+  popoverProps?: Pick<
+    PopoverOptions,
+    | 'getPopupContainer'
+    | 'offsetConfig'
+    | 'flipConfig'
+    | 'shiftConfig'
+    | 'initialOpen'
+  > & {
+    placement?: LegacyPlacement;
+  };
   renderHoverTooltip?: () => JSX.Element;
 };

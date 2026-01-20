@@ -1,4 +1,3 @@
-import 'rc-trigger/assets/index.less';
 import React, { forwardRef, useEffect, useRef, useState } from 'react';
 
 import Card from '@synerise/ds-card';

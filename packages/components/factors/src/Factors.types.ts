@@ -10,7 +10,6 @@ import type {
 import type { InformationCardProps } from '@synerise/ds-information-card';
 import type { AutoResizeProp, InputProps } from '@synerise/ds-input';
 import type { ListItemProps } from '@synerise/ds-list-item';
-import type { MenuItemProps } from '@synerise/ds-menu';
 import type { DeepPartial, LiteralStringUnion } from '@synerise/ds-utils';
 
 export const ALL_FACTOR_TYPES = [
@@ -41,7 +40,7 @@ export type DynamicKeyValueType = { key: ReactText; value: ReactText };
 export type FormulaValueType = { name: string; value: string };
 export type ParameterValueType = Pick<
   ListItemProps,
-  'renderHoverTooltip' | 'hoverTooltipProps' | 'disabled'
+  'renderHoverTooltip' | 'popoverProps' | 'disabled'
 > & {
   type: string;
   icon: ReactNode;
@@ -275,7 +274,6 @@ export type FactorsProps = {
     >
   >;
   readOnly?: boolean;
-  getMenuEntryProps?: (arg?: ParameterValueType) => MenuItemProps;
   uncontrolledComponent?: boolean;
 };
 
@@ -320,7 +318,6 @@ export type FactorValueProps = Pick<
   | 'readOnly'
   | 'relativeDateProps'
   | 'arrayProps'
-  | 'getMenuEntryProps'
   | 'factorValueExtraProps'
   | 'uncontrolledComponent'
 > & {
@@ -345,7 +342,6 @@ export type FactorValueComponentProps = Pick<
   | 'autoResize'
   | 'readOnly'
   | 'arrayProps'
-  | 'getMenuEntryProps'
   | 'factorValueExtraProps'
   | 'uncontrolledComponent'
 > & {

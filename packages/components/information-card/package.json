@@ -36,6 +36,7 @@
   ],
   "types": "dist/index.d.ts",
   "dependencies": {
+    "@floating-ui/react": "^0.27.16",
     "@synerise/ds-alert": "workspace:^",
     "@synerise/ds-avatar": "workspace:^",
     "@synerise/ds-badge": "workspace:^",
@@ -47,14 +48,14 @@
     "@synerise/ds-dropdown": "workspace:^",
     "@synerise/ds-icon": "workspace:^",
     "@synerise/ds-menu": "workspace:^",
+    "@synerise/ds-popover": "workspace:^",
     "@synerise/ds-scrollbar": "workspace:^",
     "@synerise/ds-skeleton": "workspace:^",
     "@synerise/ds-status": "workspace:^",
     "@synerise/ds-subtle-form": "workspace:^",
     "@synerise/ds-tooltip": "workspace:^",
     "@synerise/ds-typography": "workspace:^",
-    "@synerise/ds-utils": "workspace:^",
-    "rc-trigger": "^5.3.4"
+    "@synerise/ds-utils": "workspace:^"
   },
   "peerDependencies": {
     "@synerise/ds-core": "*",

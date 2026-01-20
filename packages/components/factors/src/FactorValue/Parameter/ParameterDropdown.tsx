@@ -13,7 +13,7 @@ import { useTheme } from '@synerise/ds-core';
 import Divider from '@synerise/ds-divider';
 import Dropdown from '@synerise/ds-dropdown';
 import Icon, { ArrowRightCircleM, SearchM } from '@synerise/ds-icon';
-import { itemSizes } from '@synerise/ds-list-item';
+import { ListContextProvider, itemSizes } from '@synerise/ds-list-item';
 import Result from '@synerise/ds-result';
 import Scrollbar from '@synerise/ds-scrollbar';
 import Tabs from '@synerise/ds-tabs';
@@ -437,33 +437,35 @@ const ParameterDropdown = ({
               maxHeight={dropdownContentHeight}
               ref={scrollBarRef}
             >
-              <S.StyledList
-                width="100%"
-                height={300}
-                itemCount={currentItems.length}
-                itemSize={getItemSize}
-                style={LIST_STYLE}
-                ref={listRef}
-              >
-                {({ index, style }) => {
-                  const listItem = currentItems[index];
-                  if (listItem && isDivider(listItem)) {
-                    return (
-                      <div style={style}>
-                        <Divider marginTop={8} marginBottom={8} />
-                      </div>
+              <ListContextProvider>
+                <S.StyledList
+                  width="100%"
+                  height={300}
+                  itemCount={currentItems.length}
+                  itemSize={getItemSize}
+                  style={LIST_STYLE}
+                  ref={listRef}
+                >
+                  {({ index, style }) => {
+                    const listItem = currentItems[index];
+                    if (listItem && isDivider(listItem)) {
+                      return (
+                        <div style={style}>
+                          <Divider marginTop={8} marginBottom={8} />
+                        </div>
+                      );
+                    }
+                    return isListTitle(listItem) ? (
+                      <S.Title style={style}>{listItem.title}</S.Title>
+                    ) : (
+                      <ParameterDropdownItem
+                        style={style}
+                        {...(listItem as DropdownItem<typeof listItem.item>)}
+                      />
                     );
-                  }
-                  return isListTitle(listItem) ? (
-                    <S.Title style={style}>{listItem.title}</S.Title>
-                  ) : (
-                    <ParameterDropdownItem
-                      style={style}
-                      {...(listItem as DropdownItem<typeof listItem.item>)}
-                    />
-                  );
-                }}
-              </S.StyledList>
+                  }}
+                </S.StyledList>
+              </ListContextProvider>
             </Scrollbar>
           ) : (
             getNoResultContainer

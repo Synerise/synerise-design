@@ -49,6 +49,7 @@ export const PopoverTrigger = forwardRef<
           aria-hidden="true"
           hidden
           ref={(node) => {
+            // TODO - skip any TriggerAnchors .....
             context.refs.setReference(node?.nextElementSibling || null);
           }}
         ></S.TriggerAnchor>

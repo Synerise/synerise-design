@@ -1,13 +1,25 @@
-import Trigger from 'rc-trigger';
 import React, { useCallback } from 'react';
 
 import { useTheme } from '@synerise/ds-core';
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+  getPlacement,
+} from '@synerise/ds-popover';
 
-import { TRIGGER_PLACEMENTS } from '../../utils';
+import {
+  FLIP_CONFIG,
+  HOVER_CONFIG,
+  OFFSET_CONFIG,
+  SHIFT_CONFIG,
+  TRANSITION_DURATION,
+} from './HoverTooltip.const';
+import { PropagationStopper } from './HoverTooltip.styles';
 import { type HoverTooltipProps } from './HoverTooltip.types';
 
 const HoverTooltip = ({
-  hoverTooltipProps,
+  popoverProps,
   renderHoverTooltip,
   children,
   style,
@@ -19,24 +31,35 @@ const HoverTooltip = ({
     () => (event: Event) => event.stopPropagation(),
     [],
   );
-  // onKeyDown is used to disallow propagating key events to tooltip's container element
+  const popoverPlacement = getPlacement(popoverProps?.placement || 'right');
   return (
-    <div onKeyDown={cancelBubblingEvent} onClick={cancelBubblingEvent}>
-      <Trigger
-        builtinPlacements={TRIGGER_PLACEMENTS}
-        defaultPopupVisible={hoverTooltipProps?.defaultPopupVisible ?? false}
-        action={hoverTooltipProps?.action || ['click', 'hover']}
-        popupPlacement={hoverTooltipProps?.popupPlacement || 'right'}
-        popup={renderHoverTooltip && renderHoverTooltip()}
-        popupClassName="ignore-click-outside ds-hide-arrow"
-        mouseEnterDelay={0.2}
-        popupStyle={{ zIndex }}
+    // onKeyDown is used to disallow propagating key events to tooltip's container element
+    <PropagationStopper
+      onKeyDown={cancelBubblingEvent}
+      onClick={cancelBubblingEvent}
+    >
+      <Popover
+        trigger="hover"
+        modal={false}
+        componentId="information-card"
+        testId="information-card"
+        shiftConfig={SHIFT_CONFIG}
+        offsetConfig={OFFSET_CONFIG}
+        flipConfig={FLIP_CONFIG}
+        hoverConfig={HOVER_CONFIG}
+        transitionDuration={TRANSITION_DURATION}
         zIndex={zIndex}
-        {...hoverTooltipProps}
+        {...popoverProps}
+        placement={popoverPlacement}
       >
-        <div style={{ position: 'relative', ...style }}>{children}</div>
-      </Trigger>
-    </div>
+        <PopoverContent>
+          {renderHoverTooltip && renderHoverTooltip()}
+        </PopoverContent>
+        <PopoverTrigger asChild>
+          <div style={{ position: 'relative', ...style }}>{children}</div>
+        </PopoverTrigger>
+      </Popover>
+    </PropagationStopper>
   );
 };
 export default HoverTooltip;

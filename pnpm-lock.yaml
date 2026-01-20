@@ -1126,6 +1126,9 @@ importers:
         specifier: ^5.3.3
         version: 5.3.11(@babel/core@7.28.5)(react-dom@18.3.1(react@18.3.1))(react-is@18.3.1)(react@18.3.1)
     devDependencies:
+      '@testing-library/user-event':
+        specifier: ^14
+        version: 14.6.1(@testing-library/dom@9.3.4)
       '@types/lodash':
         specifier: ^4.17.20
         version: 4.17.20
@@ -1195,9 +1198,6 @@ importers:
       '@synerise/ds-list-item':
         specifier: workspace:^
         version: link:../list-item
-      '@synerise/ds-menu':
-        specifier: workspace:^
-        version: link:../menu
       '@synerise/ds-popover':
         specifier: workspace:^
         version: link:../popover
@@ -2153,9 +2153,6 @@ importers:
       '@synerise/ds-list-item':
         specifier: workspace:^
         version: link:../list-item
-      '@synerise/ds-menu':
-        specifier: workspace:^
-        version: link:../menu
       '@synerise/ds-modal':
         specifier: workspace:^
         version: link:../modal
@@ -2601,6 +2598,9 @@ importers:
 
   packages/components/information-card:
     dependencies:
+      '@floating-ui/react':
+        specifier: ^0.27.16
+        version: 0.27.16(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@synerise/ds-alert':
         specifier: workspace:^
         version: link:../alert
@@ -2637,6 +2637,9 @@ importers:
       '@synerise/ds-menu':
         specifier: workspace:^
         version: link:../menu
+      '@synerise/ds-popover':
+        specifier: workspace:^
+        version: link:../popover
       '@synerise/ds-scrollbar':
         specifier: workspace:^
         version: link:../scrollbar
@@ -2658,9 +2661,6 @@ importers:
       '@synerise/ds-utils':
         specifier: workspace:^
         version: link:../utils
-      rc-trigger:
-        specifier: ^5.3.4
-        version: 5.3.4(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       react:
         specifier: ^18
         version: 18.3.1
@@ -3056,24 +3056,21 @@ importers:
       '@synerise/ds-icon':
         specifier: workspace:^
         version: link:../icon
+      '@synerise/ds-popover':
+        specifier: workspace:^
+        version: link:../popover
       '@synerise/ds-tooltip':
         specifier: workspace:^
         version: link:../tooltip
       '@synerise/ds-utils':
         specifier: workspace:^
         version: link:../utils
-      antd:
-        specifier: 4.24.16
-        version: 4.24.16(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       classnames:
         specifier: ^2.5.1
         version: 2.5.1
       copy-to-clipboard:
         specifier: ^3.3.1
         version: 3.3.3
-      rc-trigger:
-        specifier: ^5.3.4
-        version: 5.3.4(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       react:
         specifier: ^18
         version: 18.3.1
@@ -3245,6 +3242,9 @@ importers:
       '@synerise/ds-icon':
         specifier: workspace:^
         version: link:../icon
+      '@synerise/ds-popover':
+        specifier: workspace:^
+        version: link:../popover
       '@synerise/ds-tooltip':
         specifier: workspace:^
         version: link:../tooltip
@@ -3263,9 +3263,6 @@ importers:
       rc-menu:
         specifier: ~9.6.3
         version: 9.6.4(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      rc-trigger:
-        specifier: ^5.3.4
-        version: 5.3.4(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       react:
         specifier: ^18
         version: 18.3.1
@@ -3275,6 +3272,10 @@ importers:
       uuid:
         specifier: ^8.3.2
         version: 8.3.2
+    devDependencies:
+      '@testing-library/user-event':
+        specifier: ^14
+        version: 14.6.1(@testing-library/dom@9.3.4)
 
   packages/components/metric-card:
     dependencies:
@@ -3644,6 +3645,9 @@ importers:
       '@synerise/ds-icon':
         specifier: workspace:^
         version: link:../icon
+      '@synerise/ds-list-item':
+        specifier: workspace:^
+        version: link:../list-item
       '@synerise/ds-menu':
         specifier: workspace:^
         version: link:../menu
@@ -4727,6 +4731,9 @@ importers:
       '@synerise/ds-empty-states':
         specifier: workspace:^
         version: link:../components/empty-states
+      '@synerise/ds-estimation':
+        specifier: workspace:^
+        version: link:../components/estimation
       '@synerise/ds-factors':
         specifier: workspace:^
         version: link:../components/factors
@@ -4817,6 +4824,9 @@ importers:
       '@synerise/ds-menu':
         specifier: workspace:^
         version: link:../components/menu
+      '@synerise/ds-metric-card':
+        specifier: workspace:^
+        version: link:../components/metric-card
       '@synerise/ds-modal':
         specifier: workspace:^
         version: link:../components/modal
@@ -4841,6 +4851,9 @@ importers:
       '@synerise/ds-popconfirm':
         specifier: workspace:^
         version: link:../components/popconfirm
+      '@synerise/ds-popover':
+        specifier: workspace:^
+        version: link:../components/popover
       '@synerise/ds-progress-bar':
         specifier: workspace:^
         version: link:../components/progress-bar

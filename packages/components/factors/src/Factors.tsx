@@ -127,7 +127,6 @@ const Factors = ({
   arrayProps,
   readOnly,
   factorValueExtraProps,
-  getMenuEntryProps,
   uncontrolledComponent = false,
 }: FactorsProps) => {
   const allTexts = useTexts(texts);
@@ -208,7 +207,6 @@ const Factors = ({
         error={error}
         allowClear={allowClear}
         readOnly={readOnly}
-        getMenuEntryProps={getMenuEntryProps}
         factorValueExtraProps={factorValueExtraProps}
         uncontrolledComponent={uncontrolledComponent}
       />

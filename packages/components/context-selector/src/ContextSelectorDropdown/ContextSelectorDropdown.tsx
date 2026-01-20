@@ -15,7 +15,7 @@ import { theme } from '@synerise/ds-core';
 import Divider from '@synerise/ds-divider';
 import Dropdown from '@synerise/ds-dropdown';
 import Icon, { ArrowRightCircleM, SearchM } from '@synerise/ds-icon';
-import { itemSizes } from '@synerise/ds-list-item';
+import { ListContextProvider, itemSizes } from '@synerise/ds-list-item';
 import Result from '@synerise/ds-result';
 import Scrollbar from '@synerise/ds-scrollbar';
 import Tabs from '@synerise/ds-tabs';
@@ -75,6 +75,7 @@ const ContextSelectorDropdown = ({
   onFetchData,
   hasMoreItems,
   outerHeight = DROPDOWN_HEIGHT,
+  popoverDelay,
   maxSearchResultsInGroup = 4,
 }: ContextDropdownProps) => {
   const listStyle: CSSProperties = { overflowX: 'unset', overflowY: 'unset' };
@@ -117,21 +118,6 @@ const ContextSelectorDropdown = ({
     },
     [onSetGroup, setActiveGroup, resetList],
   );
-
-  // useOnClickOutside(
-  //   overlayRef,
-  //   (event) => {
-  //     if (getClosest(event.target as HTMLElement, '.ds-info-card') === null) {
-  //       onClickOutside && onClickOutside();
-  //       setDropdownVisible(false);
-  //       console.log('useonclickoutside context selector');
-  //       onDeactivate?.();
-  //  TODO:
-  //       resetList();
-  //     }
-  //   },
-  //   onClickOutsideEvents,
-  // );
 
   const clearSearch = useCallback(() => {
     setSearchQuery('');
@@ -476,32 +462,34 @@ const ContextSelectorDropdown = ({
               onScroll={handleScroll}
               ref={scrollBarRef}
             >
-              <VariableSizeList
-                className="ds-context-selector-list"
-                key={`list-${activeGroup}-${activeTab}`}
-                width="100%"
-                height={300}
-                itemCount={activeItems.length}
-                itemSize={getItemSize}
-                style={listStyle}
-                ref={listRef}
-              >
-                {({ index, style }) => {
-                  const item = activeItems[index];
-                  if (item && isDivider(item)) {
-                    return (
-                      <div style={style}>
-                        <Divider marginTop={8} marginBottom={8} />
-                      </div>
+              <ListContextProvider popoverDelay={popoverDelay}>
+                <VariableSizeList
+                  className="ds-context-selector-list"
+                  key={`list-${activeGroup}-${activeTab}`}
+                  width="100%"
+                  height={300}
+                  itemCount={activeItems.length}
+                  itemSize={getItemSize}
+                  style={listStyle}
+                  ref={listRef}
+                >
+                  {({ index, style }) => {
+                    const item = activeItems[index];
+                    if (item && isDivider(item)) {
+                      return (
+                        <div style={style}>
+                          <Divider marginTop={8} marginBottom={8} />
+                        </div>
+                      );
+                    }
+                    return item && isListTitle(item) ? (
+                      <S.Title style={style}>{item.title}</S.Title>
+                    ) : (
+                      <ContextSelectorDropdownItem style={style} {...item} />
                     );
-                  }
-                  return item && isListTitle(item) ? (
-                    <S.Title style={style}>{item.title}</S.Title>
-                  ) : (
-                    <ContextSelectorDropdownItem style={style} {...item} />
-                  );
-                }}
-              </VariableSizeList>
+                  }}
+                </VariableSizeList>
+              </ListContextProvider>
             </Scrollbar>
           ) : (
             getNoResultContainer

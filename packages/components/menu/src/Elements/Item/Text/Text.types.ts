@@ -25,7 +25,7 @@ export type BasicItemProps = {
   key?: string | number;
   checked?: boolean;
   size?: 'default' | 'large';
-  hoverTooltipProps?: MenuItemProps['hoverTooltipProps'];
+  popoverProps?: MenuItemProps['popoverProps'];
   renderHoverTooltip?: MenuItemProps['renderHoverTooltip'];
 } & Pick<
   MenuItemProps,

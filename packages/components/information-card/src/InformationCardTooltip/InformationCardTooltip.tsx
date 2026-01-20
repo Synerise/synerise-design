@@ -1,65 +1,74 @@
-import Trigger from 'rc-trigger';
-import React, { useCallback, useMemo } from 'react';
+import React, { forwardRef, useCallback } from 'react';
 
 import { useTheme } from '@synerise/ds-core';
+import { Popover, PopoverContent, PopoverTrigger } from '@synerise/ds-popover';
 
 import InformationCard from '../InformationCard';
-import { TRIGGER_PLACEMENTS } from './InformationCard.constants';
+import {
+  FLIP_CONFIG,
+  HOVER_CONFIG,
+  OFFSET_CONFIG,
+  SHIFT_CONFIG,
+} from './InformationCard.constants';
 import * as S from './InformationCardTooltip.styles';
 import { type InformationCardTooltipProps } from './InformationCardTooltip.types';
 
-export const InformationCardTooltip = ({
-  triggerProps,
-  children,
-  style,
-  informationCardProps,
-  ...rest
-}: InformationCardTooltipProps) => {
-  const dsTheme = useTheme();
-  const zIndex = parseInt(dsTheme.variables['zindex-tooltip'], 10);
-
-  const renderedInfocard = useMemo(
-    () => <InformationCard {...informationCardProps} />,
-    [informationCardProps],
-  );
-
-  const cancelBubblingEvent = useCallback(
-    () => (event: Event) => event.stopPropagation(),
-    [],
-  );
-  const { popupAlign } = triggerProps || {};
-  const triggerPopupAlign = {
-    overflow: {
-      adjustX: true,
-      adjustY: true,
-      ...popupAlign?.overflow,
+export const InformationCardTooltip = forwardRef<
+  HTMLDivElement,
+  InformationCardTooltipProps
+>(
+  (
+    {
+      popoverProps,
+      asChild,
+      children,
+      style,
+      content,
+      informationCardProps,
+      ...rest
     },
-    ...popupAlign,
-  };
+    ref,
+  ) => {
+    const theme = useTheme();
+    const zIndex = parseInt(theme.variables['zindex-tooltip'], 10);
 
-  return (
-    <S.InformationCardTooltipWrapper
-      {...rest}
-      onKeyDown={cancelBubblingEvent}
-      onClick={cancelBubblingEvent}
-    >
-      <Trigger
-        builtinPlacements={TRIGGER_PLACEMENTS}
-        defaultPopupVisible={triggerProps?.defaultPopupVisible ?? false}
-        action={triggerProps?.action || ['click', 'hover']}
-        popupPlacement={triggerProps?.popupPlacement || 'right'}
-        popup={renderedInfocard}
-        popupClassName="ignore-click-outside ds-hide-arrow"
-        mouseEnterDelay={0.2}
-        popupStyle={{ zIndex }}
+    const cancelBubblingEvent = useCallback(
+      () => (event: Event) => event.stopPropagation(),
+      [],
+    );
+
+    return (
+      <Popover
+        trigger="hover"
+        modal={false}
+        componentId="information-card"
+        testId="information-card"
+        shiftConfig={SHIFT_CONFIG}
+        offsetConfig={OFFSET_CONFIG}
+        flipConfig={FLIP_CONFIG}
+        hoverConfig={HOVER_CONFIG}
+        placement="right"
         zIndex={zIndex}
-        popupAlign={triggerPopupAlign}
-        {...triggerProps}
+        {...popoverProps}
       >
-        <S.InformationCardTooltipTrigger>
+        <PopoverContent>
+          <S.InformationCardTooltipWrapper
+            {...rest}
+            onKeyDown={cancelBubblingEvent}
+            onClick={cancelBubblingEvent}
+          >
+            {informationCardProps ? (
+              <InformationCard {...informationCardProps} />
+            ) : (
+              content
+            )}
+          </S.InformationCardTooltipWrapper>
+        </PopoverContent>
+
+        <PopoverTrigger asChild={asChild} ref={ref}>
           {children}
-        </S.InformationCardTooltipTrigger>
-      </Trigger>
-    </S.InformationCardTooltipWrapper>
-  );
-};
+        </PopoverTrigger>
+      </Popover>
+    );
+  },
+);

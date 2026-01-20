@@ -38,6 +38,7 @@
     "@synerise/ds-button": "workspace:^",
     "@synerise/ds-icon": "workspace:^",
     "@synerise/ds-menu": "workspace:^",
+    "@synerise/ds-list-item": "workspace:^",
     "@synerise/ds-scrollbar": "workspace:^",
     "@synerise/ds-tooltip": "workspace:^",
     "@synerise/ds-utils": "workspace:^",

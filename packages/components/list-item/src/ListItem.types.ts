@@ -1,17 +1,18 @@
-import type { TriggerProps } from 'rc-trigger';
 import type {
-  Component,
   ComponentType,
   ForwardRefExoticComponent,
   Key,
   KeyboardEvent,
-  LegacyRef,
   MouseEvent,
   ReactNode,
   RefAttributes,
 } from 'react';
 import { type StyledComponent } from 'styled-components';
 
+import {
+  type LegacyPlacement,
+  type PopoverOptions,
+} from '@synerise/ds-popover';
 import type { TooltipProps } from '@synerise/ds-tooltip';
 import type { WithHTMLAttributes } from '@synerise/ds-utils';
 
@@ -43,9 +44,6 @@ export type ListItemEventHandler<EventType> = (
   item: ItemData<EventType>,
 ) => void;
 
-export type TriggerHandle = Component<TriggerProps> & {
-  getPopupDomNode: () => HTMLElement;
-};
 /**
  * @deprecated
  * provide Copyable type instead
@@ -89,20 +87,15 @@ export type BaseListItemProps = ListItemDividerProps & {
   disabled?: boolean;
 
   highlight?: string;
-  hoverTooltipProps?: Pick<
-    TriggerProps,
-    | 'onPopupVisibleChange'
-    | 'onPopupClick'
-    | 'mouseEnterDelay'
-    | 'mouseLeaveDelay'
-    | 'defaultPopupVisible'
-    | 'action'
-    | 'afterPopupVisibleChange'
-    | 'popupPlacement'
+  popoverProps?: Pick<
+    PopoverOptions,
     | 'getPopupContainer'
-    | 'forceRender'
+    | 'offsetConfig'
+    | 'flipConfig'
+    | 'shiftConfig'
+    | 'initialOpen'
   > & {
-    ref?: LegacyRef<TriggerHandle>;
+    placement?: LegacyPlacement;
   };
   key?: Key;
   itemKey?: Key;

@@ -4,6 +4,7 @@ import { FormattedMessage } from 'react-intl';
 import Button from '@synerise/ds-button';
 import '@synerise/ds-core/dist/js/style';
 import Icon, { ArrowDownCircleM, ArrowUpCircleM } from '@synerise/ds-icon';
+import { FloatingDelayGroup } from '@synerise/ds-popover';
 import Tooltip from '@synerise/ds-tooltip';
 
 import Breadcrumb from './Elements/Breadcrumb/Breadcrumb';
@@ -44,6 +45,7 @@ export class Menu extends Component<
       showTextTooltip,
       texts,
       maxToShowItems,
+      popoverDelay = { open: 100, close: 400 },
       ...rest
     } = this.props;
     const { allItemsVisible } = this.state;
@@ -93,80 +95,82 @@ export class Menu extends Component<
 
     return (
       <>
-        <S.AntdMenu
-          ordered={ordered}
-          mode="inline"
-          inlineIndent={ordered ? 20 : 18}
-          {...rest}
-          selectable={selectable === undefined ? false : selectable}
-        >
-          {isDataSource
-            ? visibleItems?.map((item: MenuItemProps, index: number) =>
-                item.subMenu ? (
-                  <SubMenuItem
-                    parent={item.parent}
-                    prefixel={item.prefixel}
-                    suffixel={item.suffixel}
-                    disabled={item.disabled}
-                    text={
-                      showTextTooltip ? (
-                        <Tooltip title={item.text}>{item.text}</Tooltip>
-                      ) : (
-                        item.text
-                      )
-                    }
-                    description={item.description}
-                    subMenu={item.subMenu}
-                    ordered={
-                      item.ordered === undefined ? ordered : item.ordered
-                    }
-                    copyable={item.copyable}
-                    copyHint={item.copyHint}
-                    copyValue={item.copyValue}
-                    suffixVisibilityTrigger={item.suffixVisibilityTrigger}
-                    prefixVisibilityTrigger={item.prefixVisibilityTrigger}
-                    key={item.key || `${item.text}${index}`}
-                    menuItemKey={item.key || `${item.text}${index}`}
-                    {...rest}
-                    {...item}
-                    ItemComponent={MenuItem}
-                  />
-                ) : (
-                  <MenuItem
-                    className="ds-menu-item"
-                    parent={item.parent}
-                    prefixel={item.prefixel}
-                    suffixel={item.suffixel}
-                    disabled={item.disabled}
-                    text={
-                      showTextTooltip ? (
-                        <Tooltip title={item.text}>{item.text}</Tooltip>
-                      ) : (
-                        item.text
-                      )
-                    }
-                    description={item.description}
-                    subMenu={item.subMenu}
-                    ordered={
-                      item.ordered === undefined ? ordered : item.ordered
-                    }
-                    copyable={item.copyable}
-                    copyHint={item.copyHint}
-                    copyValue={item.copyValue}
-                    highlight={item.highlight}
-                    suffixVisibilityTrigger={item.suffixVisibilityTrigger}
-                    prefixVisibilityTrigger={item.prefixVisibilityTrigger}
-                    indentLevel={item.indentLevel || 0}
-                    type={item.type}
-                    key={item.key || `${item.text}${index}`}
-                    menuItemKey={item.key || `${item.text}${index}`}
-                    {...rest}
-                    {...item}
-                  />
-                ),
-              )
-            : visibleChildren}
-        </S.AntdMenu>
+        <FloatingDelayGroup delay={popoverDelay}>
+          <S.AntdMenu
+            ordered={ordered}
+            mode="inline"
+            inlineIndent={ordered ? 20 : 18}
+            {...rest}
+            selectable={selectable === undefined ? false : selectable}
+          >
+            {isDataSource
+              ? visibleItems?.map((item: MenuItemProps, index: number) =>
+                  item.subMenu ? (
+                    <SubMenuItem
+                      parent={item.parent}
+                      prefixel={item.prefixel}
+                      suffixel={item.suffixel}
+                      disabled={item.disabled}
+                      text={
+                        showTextTooltip ? (
+                          <Tooltip title={item.text}>{item.text}</Tooltip>
+                        ) : (
+                          item.text
+                        )
+                      }
+                      description={item.description}
+                      subMenu={item.subMenu}
+                      ordered={
+                        item.ordered === undefined ? ordered : item.ordered
+                      }
+                      copyable={item.copyable}
+                      copyHint={item.copyHint}
+                      copyValue={item.copyValue}
+                      suffixVisibilityTrigger={item.suffixVisibilityTrigger}
+                      prefixVisibilityTrigger={item.prefixVisibilityTrigger}
+                      key={item.key || `${item.text}${index}`}
+                      menuItemKey={item.key || `${item.text}${index}`}
+                      {...rest}
+                      {...item}
+                      ItemComponent={MenuItem}
+                    />
+                  ) : (
+                    <MenuItem
+                      className="ds-menu-item"
+                      parent={item.parent}
+                      prefixel={item.prefixel}
+                      suffixel={item.suffixel}
+                      disabled={item.disabled}
+                      text={
+                        showTextTooltip ? (
+                          <Tooltip title={item.text}>{item.text}</Tooltip>
+                        ) : (
+                          item.text
+                        )
+                      }
+                      description={item.description}
+                      subMenu={item.subMenu}
+                      ordered={
+                        item.ordered === undefined ? ordered : item.ordered
+                      }
+                      copyable={item.copyable}
+                      copyHint={item.copyHint}
+                      copyValue={item.copyValue}
+                      highlight={item.highlight}
+                      suffixVisibilityTrigger={item.suffixVisibilityTrigger}
+                      prefixVisibilityTrigger={item.prefixVisibilityTrigger}
+                      indentLevel={item.indentLevel || 0}
+                      type={item.type}
+                      key={item.key || `${item.text}${index}`}
+                      menuItemKey={item.key || `${item.text}${index}`}
+                      {...rest}
+                      {...item}
+                    />
+                  ),
+                )
+              : visibleChildren}
+          </S.AntdMenu>
+        </FloatingDelayGroup>
         {toggleButton}
       </>
     );
