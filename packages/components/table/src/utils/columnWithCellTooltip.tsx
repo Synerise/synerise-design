@@ -9,6 +9,9 @@ import { getValueFromPath } from './getValueFromPath';
 export const columnWithCellTooltip = <T extends object>(
   column: DSColumnType<T>,
 ): DSColumnType<T> => {
+  if (!column.getCellTooltipProps) {
+    return column;
+  }
   const renderColumn = (value: unknown, rowData: T, columnIndex: number) => {
     const cellTooltip = column.getCellTooltipProps?.(rowData);
     if (rowData[EXPANDED_ROW_PROPERTY as keyof T] && column.childRender) {
