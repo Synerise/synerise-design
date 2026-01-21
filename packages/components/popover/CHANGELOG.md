@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.3.1](https://github.com/Synerise/synerise-design/compare/@synerise/ds-popover@1.3.0...@synerise/ds-popover@1.3.1) (2026-01-21)
+
+### Bug Fixes
+
+- release patch ([4c43595](https://github.com/Synerise/synerise-design/commit/4c43595d0fff3d547189a4e80c40d5872381d17b))
+
 # [1.3.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-popover@1.2.0...@synerise/ds-popover@1.3.0) (2026-01-20)
 
 ### Features
