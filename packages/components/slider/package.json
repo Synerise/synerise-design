@@ -1,6 +1,6 @@
 {
   "name": "@synerise/ds-slider",
-  "version": "1.0.31",
+  "version": "1.1.0",
   "description": "Slider UI Component for the Synerise Design System",
   "license": "ISC",
   "repository": "Synerise/synerise-design",
@@ -35,10 +35,10 @@
   ],
   "types": "dist/index.d.ts",
   "dependencies": {
-    "@tanstack/react-ranger": "^0.0.5",
-    "@synerise/ds-tooltip": "workspace:^",
     "@synerise/ds-form-field": "workspace:^",
-    "@synerise/ds-typography": "workspace:^"
+    "@synerise/ds-tooltip": "workspace:^",
+    "@synerise/ds-typography": "workspace:^",
+    "@tanstack/react-ranger": "^0.0.5"
   },
   "devDependencies": {
     "@testing-library/user-event": "^14",

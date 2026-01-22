@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.1.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-slider@1.0.31...@synerise/ds-slider@1.1.0) (2026-01-22)
+
+### Features
+
+- **slider:** migrated from antd to tanstack ranger lib ([0c287c1](https://github.com/Synerise/synerise-design/commit/0c287c135d91180a143221bc273821828ad7efdc))
+
 ## [1.0.31](https://github.com/Synerise/synerise-design/compare/@synerise/ds-slider@1.0.30...@synerise/ds-slider@1.0.31) (2026-01-15)
 
 **Note:** Version bump only for package @synerise/ds-slider

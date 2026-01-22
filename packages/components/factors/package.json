@@ -1,6 +1,6 @@
 {
   "name": "@synerise/ds-factors",
-  "version": "1.8.1",
+  "version": "1.9.0",
   "description": "Factors UI Component for the Synerise Design System",
   "license": "ISC",
   "repository": "Synerise/synerise-design",
@@ -73,10 +73,10 @@
   "peerDependencies": {
     "@synerise/ds-core": "*",
     "antd": "4.24.16",
-    "vitest": "4",
     "copy-to-clipboard": "^3.3.1",
     "react": ">=16.9.0 <= 18.3.1",
     "react-intl": ">=3.12.0 <= 6.8",
-    "styled-components": "^5.3.3"
+    "styled-components": "^5.3.3",
+    "vitest": "4"
   }
 }

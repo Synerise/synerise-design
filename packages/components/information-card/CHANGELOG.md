@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.5.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-information-card@1.4.1...@synerise/ds-information-card@1.5.0) (2026-01-22)
+
+### Features
+
+- **slider:** migrated from antd to tanstack ranger lib ([0c287c1](https://github.com/Synerise/synerise-design/commit/0c287c135d91180a143221bc273821828ad7efdc))
+
 ## [1.4.1](https://github.com/Synerise/synerise-design/compare/@synerise/ds-information-card@1.4.0...@synerise/ds-information-card@1.4.1) (2026-01-21)
 
 **Note:** Version bump only for package @synerise/ds-information-card
