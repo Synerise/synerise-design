@@ -1,239 +1,199 @@
-import Slider, {
-  type SliderRangeProps,
-  type SliderSingleProps,
-} from 'antd/lib/slider';
-import { type ComponentType } from 'react';
 import styled, { css } from 'styled-components';
 
-import { type ThemeProps } from '@synerise/ds-core';
-
-import {
-  type ColorMapProps,
-  type SliderProps as DsSliderProps,
-} from './Slider.types';
-
-type SliderProps = SliderSingleProps | SliderRangeProps;
-
-const INDEX_MAP = {
-  '0': 'green-600',
-  '1': 'cyan-600',
-  '2': 'yellow-600',
-  '3': 'orange-600',
-  '4': 'mars-600',
-  '5': 'pink-600',
-  '6': 'purple-600',
-  '7': 'red-600',
-  '8': 'violet-600',
-  '9': 'fern-600',
-};
-
-export const Description = styled.div<{ range?: boolean }>`
-  bottom: 70px;
-  color: ${(props) => props.theme.palette['grey-500']};
-  font-weight: 400;
+export const SliderSection = styled.div<{
+  $left: number;
+  $width: number;
+  $color: string;
+}>`
+  left: ${(props) => props.$left}%;
+  width: ${(props) => props.$width}%;
   position: absolute;
-  opacity: ${(props) => (props.range ? '0' : '1')};
+  height: 100%;
+  background: ${(props) => props.$color};
 `;
 
-export const LabelWrapper = styled.div`
-  margin-left: -2px;
-  padding-bottom: 0px;
+export const SliderLine = styled.div<{
+  thick?: boolean;
+  lineColor?: string;
+}>`
+  height: ${(props) => `${props.thick ? '6' : '3'}px`};
+  background: ${(props) => props.theme.palette[props.lineColor || 'grey-200']};
+  position: absolute;
+  top: 50%;
+  width: 100%;
+  transform: translateY(-50%);
+  z-index: 10;
+  border-radius: ${(props) => `${props.thick ? '6' : '3'}px`};
+  ${SliderSection} {
+    border-radius: ${(props) => `${props.thick ? '6' : '3'}px`};
+  }
 `;
-export const DescriptionWrapper = styled.div`
-  display: flex;
-  direction: column;
-  align-items: center;
-  justify-content: center;
+
+export const SliderMarks = styled.div`
+  position: relative;
+  height: 18px;
+  margin-top: -5px;
+  &:empty {
+    display: none;
+  }
+`;
+
+export const SliderMark = styled.div<{
+  $left: number;
+  isNear: boolean;
+}>`
+  position: absolute;
+  bottom: 0;
+  left: ${(props) => props.$left}%;
+  transform: translateX(
+    ${(props) => (props.$left < 1 ? '0' : props.$left > 99 ? '-100' : '-50')}%
+  );
+  z-index: 10;
+  ${(props) => props.isNear && `visibility: hidden;`}
+
+  width: max-content;
+  max-width: 100px;
+  overflow-wrap: break-word;
+`;
+
+export const EventTrap = styled.div`
+  display: contents:
+`;
+
+export const SliderHandleWrapper = styled.div<{
+  $left: number;
+  isActive?: boolean;
+  $disabled?: boolean;
+  $blocked?: boolean;
+}>`
+  position: absolute;
+  top: 50%;
+  left: ${(props) => props.$left}%;
+  z-index: 20;
+`;
+
+export const SliderHandleValue = styled.div<{
+  isActive?: boolean;
+}>`
+  position: absolute;
+  top: 16px;
+  pointer-events: none;
+  transform: translateX(-50%);
+  padding: 3px 8px;
+  border-radius: 3px;
+
+  width: max-content;
+  max-width: 100px;
+  overflow-wrap: break-word;
+
+  ${(props) =>
+    props.isActive
+      ? css`
+          box-shadow: ${props.theme.variables['box-shadow-2']};
+          background-color: rgba(56, 67, 80, 0.9);
+          color: ${props.theme.palette['white']};
+        `
+      : css`
+          color: ${props.theme.palette['grey-800']};
+        `}
+`;
+
+export const SliderHandle = styled.button<{
+  isActive?: boolean;
+  $disabled?: boolean;
+  $blocked?: boolean;
+}>`
+  border: 3px solid ${(props) => props.theme.palette.white};
+  background: ${(props) => props.theme.palette['grey-400']};
+  position: absolute;
+  transform: translate(-50%, -50%);
+  width: 20px;
+  height: 20px;
+  outline: none;
+  border-radius: 100%;
+  z-index: 20;
+  cursor: pointer;
+  transition-property: background, box-shadow;
+  transition-duration: 0.3s;
+
+  ${(props) =>
+    props.isActive &&
+    css`
+      &,
+      &:hover {
+        background: ${props.theme.palette['blue-600']};
+        cursor: grabbing;
+      }
+      box-shadow: 0 0 0 3px rgba(35, 138, 254, 0.25);
+    `};
+  ${(props) =>
+    (props.$disabled || props.$blocked) &&
+    css`
+      &,
+      &:hover {
+        background: ${props.theme.palette['grey-300']};
+      }
+      box-shadow: none;
+    `};
+`;
+
+export const SliderBar = styled.div<{
+  $type: 'allocation' | 'default' | 'range';
+}>`
   position: relative;
   user-select: none;
-  pointer-events: none;
-  bottom: 0;
-  right: 0;
+  height: 20px;
+  ${(props) =>
+    props.$type === 'allocation' &&
+    css`
+      margin-top: 48px;
+    `}
 `;
 
-export const applyTooltipStyles = (
-  props: ThemeProps & DsSliderProps & SliderStyles,
-) => css`
-  .ant-tooltip-inner {
-    font-size: 13px;
-    padding: 3px 7px;
-    user-select: none;
-    white-space: nowrap;
-  }
-  ${props.disabled &&
-  `.ant-tooltip-inner {
-        color: ${props.theme.palette['grey-400']};
-      }
-  &&&.ant-slider {
-    .ant-slider-dot {
-       background-color: ${props.theme.palette['grey-200']};
-    }
-  }
- `}
-
-  &&&.ant-slider-disabled {
-    .ant-slider-dot-active {
-      background-color: ${props.theme.palette['grey-400']};
-    }
-    .ant-slider-rail {
-      background-color: ${props.theme.palette['grey-200']};
-    }
-  }
-  .ant-slider-handle:hover,
-  .ant-slider-handle:focus {
-    ${!props.disabled &&
-    `
-    .ant-tooltip-content {
-      background-color: ${props.theme.palette['grey-900']};
-      border-radius: 3px;
-    }
-    ${Description} {
-      color: ${!props.disabled && props.theme.palette['grey-600']};
-    }
-    .ant-tooltip-inner {
-      color: ${props.theme.palette['grey-050']};
-    }
+export const SliderWrapper = styled.div<{
+  $disabled?: boolean;
+  withoutMarks?: boolean;
+}>`
+  display: flex;
+  flex: 1 0 auto;
+  flex-direction: column;
+  gap: 16px;
+  ${(props) =>
+    props.withoutMarks &&
+    css`
+      padding-bottom: 29px;
     `}
-  }
-  ${!props.disabled &&
-  props.range &&
-  `
-    .ant-slider-handle:focus {
-      ${Description} {
-         opacity: 1
-      }
-    }
-    `}
-  .ant-slider-handle:hover:not(:focus) {
-    background-color: ${!props.disabled && props.theme.palette['grey-500']};
-  }
-  .ant-slider-handle:not(:focus) {
-    .ant-tooltip-content:hover {
-      background-color: transparent !important;
-      border-radius: 3px;
-    }
-    .ant-tooltip-inner:hover {
-      color: ${!props.disabled && props.theme.palette['grey-600']} !important;
-    }
-  }
-
-  .ant-slider-dot[style*='left: 100%;'],
-  .ant-slider-dot:first-of-type {
-    visibility: ${props.hideMinAndMaxMarks ? 'hidden' : 'visible'};
-  }
-  .ant-slider-mark-text:last-of-type {
-    padding-right: 30px;
-  }
-  .ant-slider-mark-text:last-of-type {
-    ${props.reachedEnd && `opacity: 0`}
-  }
-  .ant-slider-mark-text:first-of-type {
-    ${props.reachedStart && `opacity: 0`}
-  }
-  .ant-slider-handle-dragging {
-    border-color: ${props.theme.palette['grey-050']} !important;
-    box-shadow: 0 0 0 3px rgba(35, 138, 254, 0.25) !important;
-  }
-`;
-export const createTracksStyles = (
-  props: ThemeProps,
-  colorsMap: ColorMapProps,
-) => {
-  const styles = Object.values(colorsMap).map(
-    (color: string, index: number) => `
-      .ant-slider-segment-${index},
-      .ant-slider-segment-letter-${index},
-      .ant-slider-track-${index + 1},
-      .ant-slider-track-${index + 11} {
-        background-color: ${props.theme.palette[color]};
-      }
-      .ant-slider-dot-active${index + 1},
-      .ant-slider-dot-active${index + 11} {
-        background-color: ${props.theme.palette[color]};
-      }
-  `,
-  );
-  const style = styles.join('');
-  return css`
-    .ant-slider-track {
-      background-color: ${props.theme.palette[colorsMap[0]]};
-    }
-    .ant-slider-dot-active {
-      background-color: ${props.theme.palette[colorsMap[0]]};
-    }
-    &.ant-slider-inverted {
-      .ant-slider-dot {
-        background-color: ${props.theme.palette[colorsMap[0]]};
-        &.ant-slider-dot-active {
+  ${(props) =>
+    !props.$disabled &&
+    css`
+      ${SliderLine} {
+        cursor: pointer;
+        &:hover {
           background-color: ${props.theme.palette['grey-300']};
         }
       }
-      .ant-slider-rail {
-        background-color: ${props.theme.palette[colorsMap[0]]};
-      }
-      .ant-slider-track {
-        background-color: ${props.theme.palette['grey-200']};
-      }
-      &&&.ant-slider-disabled {
-        .ant-slider-rail {
-          background-color: ${props.theme.palette['grey-400']};
-        }
-        .ant-slider-dot {
-          background-color: ${props.theme.palette['grey-050']} !important;
-          border-color: ${props.theme.palette['grey-400']} !important;
-        }
-        .ant-slider-track {
-          background-color: ${props.theme.palette['grey-200']} !important;
-        }
-        .ant-slider-dot-active {
-          border-color: ${props.theme.palette['grey-200']} !important;
-        }
-      }
-    }
-    ${style}
-  `;
-};
-type SliderStyles = {
-  reachedEnd?: boolean;
-  reachedStart?: boolean;
-};
+    `}
+`;
+export const SliderDot = styled.div<{
+  $left: number;
+  $color?: string;
+}>`
+  position: absolute;
+  bottom: 0;
+  width: 10px;
+  height: 10px;
+  background: ${(props) => props.theme.palette[props.$color || 'grey-200']};
+  border-radius: 50%;
+  border: 3px solid ${(props) => props.theme.palette.white};
+  left: ${(props) => props.$left}%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  z-index: 10;
+`;
 
-export const AntdSlider = styled(
-  Slider as ComponentType<Omit<SliderProps, 'value'>>,
-)<DsSliderProps & SliderStyles>`
-  ${(props) =>
-    props.useColorPalette
-      ? createTracksStyles(
-          props,
-          props.tracksColorMap ? props.tracksColorMap : INDEX_MAP,
-        )
-      : css``}
-  .ant-slider-track {
-    height: ${(props) => (props.thickness ? `${props.thickness}px` : `3px`)};
-  }
-  &.ant-slider:hover {
-    ${(props) =>
-      props.useColorPalette
-        ? createTracksStyles(
-            props,
-            props.tracksColorMap ? props.tracksColorMap : INDEX_MAP,
-          )
-        : css``};
-  }
-  .ant-slider-rail {
-    height: ${(props) => (props.thickness ? `${props.thickness}px` : `3px`)};
-  }
-  ${(props) => applyTooltipStyles(props)}
-  .ant-slider-handle {
-    z-index: 99;
-    margin-top: ${(props) =>
-      props.thickness && props.thickness > 5 ? '-7px' : '-8px'};
-  }
-  .ant-slider-dot {
-    margin-top: ${(props) =>
-      props.thickness && props.thickness > 5 ? '0px' : '-1px'};
-  }
-  &&&.ant-slider {
-    margin-top: ${(props) => (props.description ? '38px' : '24px')};
-  }
+export const SliderLabel = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
 `;

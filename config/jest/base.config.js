@@ -1,7 +1,7 @@
 const path = require('path');
 const { defaults } = require('jest-config');
 
-const esModules = ['@synerise'].join('|');
+const esModules = ['@synerise','@tanstack/react-ranger'].join('|');
 
 module.exports = {
   coverageDirectory: '<rootDir>/coverage',
@@ -21,6 +21,6 @@ module.exports = {
   },
   moduleFileExtensions: [...defaults.moduleFileExtensions, 'ts', 'tsx'],
   extensionsToTreatAsEsm: ['.ts', '.tsx'],
-  transformIgnorePatterns: [`<rootDir>/node_modules/(?!${esModules})`],
+  transformIgnorePatterns: [`node_modules/(?!${esModules})`],
   testEnvironment: "jest-environment-jsdom",
 };

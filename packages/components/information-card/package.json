@@ -55,7 +55,8 @@
     "@synerise/ds-subtle-form": "workspace:^",
     "@synerise/ds-tooltip": "workspace:^",
     "@synerise/ds-typography": "workspace:^",
-    "@synerise/ds-utils": "workspace:^"
+    "@synerise/ds-utils": "workspace:^",
+    "uuid": "^8.3.2"
   },
   "peerDependencies": {
     "@synerise/ds-core": "*",

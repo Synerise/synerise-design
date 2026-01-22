@@ -133,9 +133,6 @@ const RangeForm = ({
         step={SLIDER_STEP}
         inverted={isInvertedRange}
         value={[sliderStart, sliderEnd]}
-        included
-        getTooltipPopupContainer={(container) => container}
-        tooltipVisible
         onAfterChange={handleSliderAfterChange}
         onChange={handleSliderChange}
         tipFormatter={tipFormatter}

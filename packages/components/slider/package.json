@@ -23,8 +23,8 @@
     "defs": "tsc --declaration --outDir dist/ --emitDeclarationOnly",
     "pack:ci": "pnpm pack --pack-destination ../../storybook/storybook-static/static",
     "prepublish": "npm run build",
-    "test": "jest",
-    "test:watch": "npm run test -- --watchAll",
+    "test": "vitest",
+    "test:watch": "npm run test -- --watch",
     "types": "tsc --noEmit",
     "check:circular-dependencies": "madge --circular --extensions ts,tsx,js,jsx --ts-config tsconfig.json src/ --exclude '/dist/'",
     "upgrade:ds": "ncu -f \"@synerise/ds-*\" -u"
@@ -35,12 +35,17 @@
   ],
   "types": "dist/index.d.ts",
   "dependencies": {
+    "@tanstack/react-ranger": "^0.0.5",
     "@synerise/ds-tooltip": "workspace:^",
+    "@synerise/ds-form-field": "workspace:^",
     "@synerise/ds-typography": "workspace:^"
+  },
+  "devDependencies": {
+    "@testing-library/user-event": "^14",
+    "vitest": "4"
   },
   "peerDependencies": {
     "@synerise/ds-core": "*",
-    "antd": "4.24.16",
     "react": ">=16.9.0 <= 18.3.1",
     "react-intl": ">=3.12.0 <= 6.8",
     "styled-components": "^5.3.3"

@@ -1,5 +1,11 @@
 import { debounce } from 'lodash';
-import React, { type ReactNode, useEffect, useRef, useState } from 'react';
+import React, {
+  type CSSProperties,
+  type ReactNode,
+  useEffect,
+  useRef,
+  useState,
+} from 'react';
 
 import Tooltip, { type TooltipProps } from '@synerise/ds-tooltip';
 
@@ -10,6 +16,7 @@ export type EllipsisProps = {
   tooltipProps?: TooltipProps;
   children?: ReactNode;
   className?: string;
+  style?: CSSProperties;
 };
 
 export const Ellipsis = ({
@@ -17,6 +24,7 @@ export const Ellipsis = ({
   children,
   className,
   tooltipProps,
+  style,
 }: EllipsisProps) => {
   const textComponentRef = useRef<HTMLDivElement | null>(null);
   const [truncated, setTruncated] = useState(false);
@@ -54,7 +62,7 @@ export const Ellipsis = ({
       title={truncated ? tooltip : undefined}
       {...(truncated ? tooltipProps : {})}
     >
-      <EllipsisText className={className} ref={textComponentRef}>
+      <EllipsisText style={style} className={className} ref={textComponentRef}>
         {children}
       </EllipsisText>
     </Tooltip>

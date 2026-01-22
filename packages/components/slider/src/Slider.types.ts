@@ -1,21 +1,12 @@
-import type { SliderRangeProps, SliderSingleProps } from 'antd/lib/slider';
 import type { ReactNode } from 'react';
 
 import type { TooltipProps } from '@synerise/ds-tooltip';
 
-import { type AllocationConfig } from './Allocation/Allocation.types';
+type AllocationType = 'allocation';
+export type SliderType = AllocationType | 'default';
 
-type AntSliderProps = SliderSingleProps | SliderRangeProps;
-
-export type AntdSliderProps = Omit<AntSliderProps, 'value'>;
-
-export enum SliderTypes {
-  ALLOCATION = 'allocation',
-  DEFAULT = 'default',
-}
-export declare type ColorMapProps = {
-  [key: string]: string;
-};
+export type ColorMap = Record<number, string>;
+export type ColorsOrder = string[];
 
 export type HandlerConfig = Record<
   number,
@@ -25,19 +16,114 @@ export type HandlerConfig = Record<
   }
 >;
 
-export type SliderProps = AntdSliderProps & {
-  type?: 'allocation' | 'default';
-  allocationConfig?: AllocationConfig;
-  label?: ReactNode;
-  value?: number | number[];
-  inverted?: boolean;
-  useColorPalette?: boolean;
-  autoFocus?: boolean;
-  tracksColorMap?: ColorMapProps;
-  thickness?: number;
-  description?: ReactNode;
-  children?: ReactNode;
-  hideMinAndMaxMarks?: boolean;
-  disabled?: boolean;
+export type MarkObj = {
+  style?: React.CSSProperties;
+  label?: React.ReactNode;
+};
+
+export type SliderMarks = Record<string | number, React.ReactNode | MarkObj>;
+
+export type DefaultValue = number;
+export type RangeValue = number[];
+
+export type RangeSliderProps = BaseSliderProps &
+  SharedSliderProps & {
+    value?: RangeValue;
+    onChange?: (value: RangeValue) => void;
+    onAfterChange?: (value: RangeValue) => void;
+    range: true;
+  };
+export type DefaultSliderProps = BaseSliderProps &
+  SharedSliderProps & {
+    value?: DefaultValue;
+    onChange?: (value: DefaultValue) => void;
+    onAfterChange?: (value: DefaultValue) => void;
+  };
+
+export type AllocationSliderProps = SharedSliderProps & {
+  type: AllocationType;
+  allocationConfig: AllocationConfig;
   handlers?: HandlerConfig;
 };
+
+export type BaseSliderProps = {
+  /**
+   * inverts coloring of the slider
+   * Applies only when value is number or [number, number]
+   */
+  inverted?: boolean;
+  /**
+   * renders from right to left
+   */
+  reverse?: boolean;
+  /**
+   * slider scale marks
+   */
+  marks?: SliderMarks;
+  min?: number;
+  max?: number;
+
+  /**
+   * handle value formatter
+   */
+  tipFormatter?: ((value?: number) => ReactNode) | false;
+};
+
+export type SharedSliderProps = {
+  label?: ReactNode;
+
+  autoFocus?: boolean;
+  tracksColorMap?: ColorMap;
+
+  thick?: boolean;
+
+  description?: ReactNode;
+
+  disabled?: boolean;
+  step?: number;
+
+  /**
+   * renders dots for allowed handle positions (values)
+   * not recommended for low `step` prop values
+   */
+  dots?: boolean;
+};
+
+export type SliderProps =
+  | DefaultSliderProps
+  | RangeSliderProps
+  | AllocationSliderProps;
+
+export type AllocationConfig = {
+  controlGroupEnabled?: boolean;
+  controlGroupLabel?: ReactNode;
+  controlGroupTooltip?: ReactNode;
+  variants?: AllocationVariant[];
+  onAllocationChange?: (variants?: AllocationVariant[]) => void;
+};
+
+export type AllocationVariant = {
+  name: ReactNode;
+  percentage: number;
+  tabId: number;
+  tabLetter: ReactNode;
+  minPercentage?: number;
+};
+
+export type AllocationMark = {
+  value: string;
+  view: number;
+};
+
+export type DefinedCssRuleParameters = {
+  indexes: number[];
+  classConstPart: string;
+  cssRule: string;
+};
+
+export type SliderMarksProps = {
+  marks: SliderMarks;
+  handlesWithValue?: boolean;
+};
+
+export type MarkArea = { left: number; width: number };

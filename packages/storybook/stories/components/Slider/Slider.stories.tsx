@@ -1,144 +1,117 @@
-import React, { useEffect, useState } from 'react';
-import { Meta, StoryObj } from '@storybook/react-webpack5';
-import { useArgs } from 'storybook/preview-api';
+import React, { useState } from 'react';
+import { fn } from 'storybook/test';
 
-import Slider, { AllocationVariant, SliderProps } from '@synerise/ds-slider';
+import { Meta, StoryObj } from '@storybook/react-webpack5';
+import Slider, { type DefaultSliderProps } from '@synerise/ds-slider';
 
 import {
   BOOLEAN_CONTROL,
+  CLASSNAME_ARG_CONTROL,
   NUMBER_CONTROL,
   REACT_NODE_AS_STRING,
   fixedWrapper400,
-  CLASSNAME_ARG_CONTROL,
-  PREFIXCLS_ARG_CONTROL,
-  controlFromOptionsArray,
 } from '../../utils';
-import { CUSTOM_COLORS, TRACKS_COLOR_MAP, VARIANTS } from './Slider.data';
+import { TRACKS_COLOR_MAP } from './Slider.data';
 
-type StoryProps = SliderProps & {
-  customColor: string;
-  numberOfRanges: number;
-};
 export default {
   component: Slider,
-  title: 'Components/Slider',
+  title: 'Components/Slider/DefaultSlider',
   tags: ['autodocs'],
   decorators: [fixedWrapper400],
-  argTypes: {
-    className: CLASSNAME_ARG_CONTROL,
-    hideMinAndMaxMarks: BOOLEAN_CONTROL,
-    autoFocus: BOOLEAN_CONTROL,
-    disabled: BOOLEAN_CONTROL,
-    dots: BOOLEAN_CONTROL,
-    inverted: BOOLEAN_CONTROL,
-    reverse: BOOLEAN_CONTROL,
-    included: BOOLEAN_CONTROL,
-    useColorPalette: BOOLEAN_CONTROL,
-    range: BOOLEAN_CONTROL,
-    value: NUMBER_CONTROL,
-    max: NUMBER_CONTROL,
-    numberOfRanges: NUMBER_CONTROL,
-    step: NUMBER_CONTROL,
-    min: NUMBER_CONTROL,
-    thickness: NUMBER_CONTROL,
-    description: REACT_NODE_AS_STRING,
-    label: REACT_NODE_AS_STRING,
-    prefixCls: PREFIXCLS_ARG_CONTROL,
-    customColor: {
-      ...controlFromOptionsArray('select', Object.keys(CUSTOM_COLORS)),
-      mapping: CUSTOM_COLORS,
-    },
-  },
-  render: ({ customColor, numberOfRanges, ...args }) => {
-    const [value, setValue] = useState<number | number[] | undefined>(args.value);
-    const [variants, setVariants] = useState<AllocationVariant[] | undefined>(VARIANTS);
+
+  render: ({ onChange, ...args }) => {
+    const [value, setValue] = useState<number | undefined>(args.value);
+
     const handleChange = (newValue: number) => {
       setValue(newValue);
+      onChange?.(newValue);
     };
 
-    useEffect(() => {
-      if (numberOfRanges) {
-        const ranges = Array.from(Array(numberOfRanges + 1)).map((e, i) => {
-          return (100 / numberOfRanges) * i;
-        });
-        setValue(ranges);
-      }
-    }, [numberOfRanges]);
+    return <Slider {...args} value={value} onChange={handleChange} />;
+  },
+  argTypes: {
+    className: CLASSNAME_ARG_CONTROL,
 
-    const allocationConfig =
-      args.type === 'allocation'
-        ? {
-          variants,
-          onAllocationChange: setVariants,
-          controlGroupEnabled: false,
-          controlGroupLabel: 'CG',
-          controlGroupTooltip: 'Control group',
-        }
-        : undefined;
+    disabled: BOOLEAN_CONTROL,
+    reverse: BOOLEAN_CONTROL,
+    dots: BOOLEAN_CONTROL,
+    inverted: BOOLEAN_CONTROL,
+    range: BOOLEAN_CONTROL,
+    thick: BOOLEAN_CONTROL,
 
-    const tracksColorMap = typeof value === 'number' ? { 0: customColor } : TRACKS_COLOR_MAP;
+    value: NUMBER_CONTROL,
+    max: NUMBER_CONTROL,
+    step: NUMBER_CONTROL,
+    min: NUMBER_CONTROL,
 
-    return (
-      <Slider
-        {...args}
-        value={value}
-        allocationConfig={allocationConfig}
-        onChange={handleChange}
-        hideMinAndMaxMarks={true}
-        tracksColorMap={tracksColorMap}
-      />
-    );
+    description: REACT_NODE_AS_STRING,
+    label: REACT_NODE_AS_STRING,
   },
   args: {
+    onChange: fn(),
+    onAfterChange: fn(),
     description: 'Description',
     label: 'Label',
     min: 0,
     max: 100,
-    step: 10,
-    useColorPalette: true,
-    hideMinAndMaxMarks: true,
-    tipFormatter: (value: number) => <div className="Tip">{value}%</div>,
+    step: 1,
     marks: {
       '0': 0,
       '100': 100,
     },
   },
-} as Meta<StoryProps>;
+} as Meta<DefaultSliderProps>;
 
-type Story = StoryObj<StoryProps>;
-
-export const Default: Story = {
-  parameters: {
-    controls: {
-      exclude: ['numberOfRanges', 'range', 'vertical'],
-    },
-  },
+export const Default: StoryObj<DefaultSliderProps> = {
   args: {
     value: 50,
   },
 };
-export const RangeSlider: Story = {
-  parameters: {
-    controls: {
-      exclude: ['customColor', 'vertical'],
-    },
-  },
-  argTypes: {
-    range: { control: false },
-  },
+
+export const PlainSlider: StoryObj<DefaultSliderProps> = {
   args: {
-    numberOfRanges: 4,
-    range: true,
-    tracksColorMap: TRACKS_COLOR_MAP,
+    ...Default.args,
+    label: undefined,
+    description: undefined,
   },
 };
-export const AllocationSlider: Story = {
-  parameters: {
-    controls: {
-      exclude: ['customColor', 'vertical'],
+
+export const WithDots: StoryObj<DefaultSliderProps> = {
+  args: {
+    ...Default.args,
+    step: 10,
+    dots: true,
+  },
+};
+
+export const Disabled: StoryObj<DefaultSliderProps> = {
+  args: {
+    ...WithDots.args,
+    disabled: true,
+  },
+};
+
+export const WithMarks: StoryObj<DefaultSliderProps> = {
+  args: {
+    value: 50,
+    marks: {
+      '0': 0,
+      '50': 50,
+      '100': 100,
     },
   },
+};
+
+export const WithoutMarks: StoryObj<DefaultSliderProps> = {
   args: {
-    type: 'allocation',
+    value: 50,
+    marks: undefined,
+  },
+};
+
+export const CustomColor: StoryObj<DefaultSliderProps> = {
+  args: {
+    value: 50,
+    tracksColorMap: TRACKS_COLOR_MAP,
   },
 };

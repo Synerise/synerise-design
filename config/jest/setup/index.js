@@ -23,6 +23,18 @@ Object.defineProperty(window, 'matchMedia', {
   }))
 });
 
+jest.mock('@tanstack/react-ranger', () => ({
+  useRanger: jest.fn(() => ({
+    getSteps: jest.fn(() => ({})),
+    getTicks: jest.fn(() => ({})),
+    handles: jest.fn(() => ({})),
+    roundToStep: jest.fn(() => ({})),
+    getPercentageForValue: jest.fn(() => 50),
+    getValueForClientX: jest.fn(() => 50),
+    sortedValues: [50]
+  })),
+}));
+
 
 const originalError = console.error
 beforeAll(() => {
