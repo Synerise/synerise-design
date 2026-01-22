@@ -1,6 +1,7 @@
 {
   "include": [
-    "packages/*/src"
+    "packages/*/src",
+    "global.d.ts"
   ],
   "compilerOptions": {
     "jsx": "preserve",

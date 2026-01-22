@@ -72,22 +72,24 @@ export const MONTHLY_SCHEDULE_TEST_DATA = [
       expectedTimepickerCount: 3,
       expectedErrorCount: 1
     }
-  ]
+]
+  
+export const WEEKLY_SCHEDULE_VALUE = {
+    '1234': {
+        0: { ...DAY_VALUE_RANGE },
+        2: { ...DAY_VALUE_RANGE }
+    },
+    '5678': {
+        0: { ...DAY_VALUE_HOUR },
+        3: { ...DAY_VALUE_HOUR },
+        4: { ...DAY_VALUE_HOUR }
+    }
+}
   
   export const WEEKLY_SCHEDULE_TEST_DATA = [
     {
         case: 0,
-        value: {
-            '1234': {
-                0: { ...DAY_VALUE_RANGE },
-                2: { ...DAY_VALUE_RANGE }
-            },
-            '5678': {
-                0: { ...DAY_VALUE_HOUR },
-                3: { ...DAY_VALUE_HOUR },
-                4: { ...DAY_VALUE_HOUR }
-            }
-        },
+        value: WEEKLY_SCHEDULE_VALUE,
         errors: {
             '1234': {
                 0: [ERROR_MESSAGE, ERROR_MESSAGE],
@@ -132,7 +134,7 @@ export const MONTHLY_SCHEDULE_TEST_DATA = [
         expectedErrorCount: 1
     }
   ];
-
+  export const DAILY_FILTER_VALUE = [{...DAY_VALUE_RANGE}]
   export const DAILY_SCHEDULE_TEST_DATA = [
     {
       case: 'A',
@@ -143,7 +145,7 @@ export const MONTHLY_SCHEDULE_TEST_DATA = [
     },
     {
       case: 'B',
-      value: [{...DAY_VALUE_RANGE}],
+      value: DAILY_FILTER_VALUE,
       errors: [[undefined, ERROR_MESSAGE]],
       expectedTimepickerCount: 2,
       expectedErrorCount: 1

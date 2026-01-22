@@ -38,7 +38,7 @@ const VALUE = ['item1', 'item2'];
 
 describe('Factors array component', () => {
     beforeEach(() => {
-        Element.prototype.scrollTo = jest.fn();
+        Element.prototype.scrollTo = vi.fn();
     });
 
     test('Should render with value', () => {
@@ -105,7 +105,7 @@ describe('Factors array component', () => {
 
     test.skip('should add multiple items', async () => {
         const LIMIT = 10
-        const onChangeValue = jest.fn();
+        const onChangeValue = vi.fn();
         const NEW_ITEMS = ['item3', 'item4', 'item5', 'item6', 'item7'];
         renderWithProvider(RENDER_FACTORS({ value: VALUE, onChangeValue, arrayProps: { limit: LIMIT } }));
 

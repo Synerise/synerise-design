@@ -1,4 +1,3 @@
-import '@testing-library/jest-dom';
 import { denormalizeValue, isValidValue, normalizeValue } from './utils';
 import { type FilterValue } from './RangeFilter.types';
 

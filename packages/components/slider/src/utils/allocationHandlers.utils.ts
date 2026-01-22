@@ -1,5 +1,4 @@
-import type { AllocationVariant } from '../Allocation/Allocation.types';
-import type { HandlerConfig } from '../Slider.types';
+import { type AllocationVariant, type HandlerConfig } from '../Slider.types';
 
 export const calculateHandlersPercentagePosition = (
   variants?: AllocationVariant[],

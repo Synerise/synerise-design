@@ -1,7 +1,6 @@
 import classNames from 'classnames';
 import copy from 'copy-to-clipboard';
 import { type MenuInfo } from 'rc-menu/lib/interface';
-import 'rc-trigger/assets/index.less';
 import React, {
   type CSSProperties,
   type PropsWithChildren,

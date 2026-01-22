@@ -41,7 +41,7 @@ const RENDER_FACTORS = (props = {}) => (
 
 describe('Factors component', () => {
   beforeEach(() => {
-    Element.prototype.scrollTo = jest.fn();
+    Element.prototype.scrollTo = vi.fn();
   });
 
   test('Should render', () => {
@@ -122,7 +122,7 @@ describe('Factors component', () => {
   });
 
   test('Should change selected factor type', () => {
-    const selectFactorType = jest.fn();
+    const selectFactorType = vi.fn();
     const { container } = renderWithProvider(
       RENDER_FACTORS({ setSelectedFactorType: selectFactorType }),
     );
@@ -139,8 +139,8 @@ describe('Factors component', () => {
 
   // moved to chromatic test
   test.skip('should call onActivate / onDeactivate Parameter factor', async () => {
-    const handleDeactivate = jest.fn();
-    const handleActivate = jest.fn();
+    const handleDeactivate = vi.fn();
+    const handleActivate = vi.fn();
     renderWithProvider(
       RENDER_FACTORS({
         selectedFactorType: 'parameter',
@@ -159,8 +159,8 @@ describe('Factors component', () => {
 
   // moved to chromatic test
   test.skip('should call onActivate / onDeactivate Relative date factor', async () => {
-    const handleActivate = jest.fn();
-    const handleDeactivate = jest.fn();
+    const handleActivate = vi.fn();
+    const handleDeactivate = vi.fn();
     renderWithProvider(
       RENDER_FACTORS({
         selectedFactorType: 'relativeDate',
@@ -183,8 +183,8 @@ describe('Factors component', () => {
 
   // moved to chromatic test
   test.skip('should call onActivate / onDeactivate Text factor', async () => {
-    const handleActivate = jest.fn();
-    const handleDeactivate = jest.fn();
+    const handleActivate = vi.fn();
+    const handleDeactivate = vi.fn();
     renderWithProvider(
       RENDER_FACTORS({
         selectedFactorType: 'text',

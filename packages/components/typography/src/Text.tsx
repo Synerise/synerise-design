@@ -1,4 +1,4 @@
-import React, { type ReactNode } from 'react';
+import React, { type CSSProperties, type ReactNode } from 'react';
 
 import '@synerise/ds-core/dist/js/style';
 
@@ -13,6 +13,7 @@ type TextProps = {
   ellipsis?: EllipsisProps;
   children?: ReactNode;
   className?: string;
+  style?: CSSProperties;
 };
 
 const MapSizeToComponent = {
@@ -26,6 +27,7 @@ export const Text = ({
   className,
   children,
   ellipsis,
+  style,
 }: TextProps) => {
   const Component = MapSizeToComponent[size];
   const textClassNames = `ds-text ${!ellipsis && className}`;
@@ -34,7 +36,7 @@ export const Text = ({
     return content;
   }
   return (
-    <Ellipsis className={className} {...ellipsis}>
+    <Ellipsis className={className} style={style} {...ellipsis}>
       {content}
     </Ellipsis>
   );
