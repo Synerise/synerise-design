@@ -4,6 +4,7 @@ import { fireEvent, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import Autocomplete from '../index';
 
+
 const { Option } = Autocomplete;
 const FIRST_OPTION = 'First option';
 const LABEL = 'label';
@@ -39,7 +40,7 @@ describe('Autocomplete', () => {
   });
 
   it('should open dropdown on input click', () => {
-    const onDropdownVisibleChange = jest.fn();
+    const onDropdownVisibleChange = vi.fn();
     renderWithProvider(
       <Autocomplete onDropdownVisibleChange={onDropdownVisibleChange} value="first" label={LABEL} description={DESC} errorText={ERROR}>
         <Option value="first">{FIRST_OPTION}</Option>
@@ -51,7 +52,7 @@ describe('Autocomplete', () => {
   });
 
   it('should render readonly', () => {
-    const onDropdownVisibleChange = jest.fn();
+    const onDropdownVisibleChange = vi.fn();
     renderWithProvider(
       <Autocomplete onDropdownVisibleChange={onDropdownVisibleChange} readOnly value="first" label={LABEL} description={DESC} errorText={ERROR}>
         <Option value="first">{FIRST_OPTION}</Option>
@@ -65,7 +66,7 @@ describe('Autocomplete', () => {
 
   it('call on Change', () => {
     const options = ['red', 'green', 'blue'];
-    const onChange = jest.fn();
+    const onChange = vi.fn();
     
     renderWithProvider(
       <Autocomplete value="red" onChange={onChange}>
