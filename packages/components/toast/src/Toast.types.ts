@@ -14,11 +14,12 @@ export type ToastProps = WithHTMLAttributes<
     customIcon?: ReactElement;
     expander?: boolean;
     expandedContent?: ReactNode;
-    withClose?: ReactNode;
+    withClose?: boolean;
     button?: ReactNode;
     expanded?: boolean;
     onExpand?: (isExpanded: boolean) => void;
     onCloseClick?: () => void;
+    toastId?: string;
   }
 >;
 
