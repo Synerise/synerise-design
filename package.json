@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "private": true,
   "engines": {
-    "node": "^22",
+    "node": "^24",
     "pnpm": "^10"
   },
   "repository": {
@@ -87,7 +87,7 @@
     "@types/resize-observer-browser": "^0.1.7",
     "@types/styled-components": "5.1.27",
     "@types/uuid": "^8.0.0",
-    "@welldone-software/why-did-you-render": "^6.0.3",
+    "@welldone-software/why-did-you-render": "^10.0.1",
     "babel-jest": "27",
     "babel-loader": "^8.3.0",
     "babel-plugin-styled-components": "^2.1.4",
@@ -97,7 +97,6 @@
     "eslint": "^9.22.0",
     "eslint-import-resolver-node": "^0.3.9",
     "eslint-import-resolver-typescript": "^4.4.4",
-    "format-package": "5.2.0",
     "fs-extra": "^11.3.2",
     "glob": "^11.0.2",
     "husky": "^9.1.7",
