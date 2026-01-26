@@ -38,7 +38,8 @@
     "@synerise/ds-icon": "workspace:^",
     "@synerise/ds-unordered-list": "workspace:^",
     "@synerise/ds-utils": "workspace:^",
-    "react-hot-toast": "^2.5.2"
+    "react-hot-toast": "^2.5.2",
+    "uuid": "^8.3.2"
   },
   "peerDependencies": {
     "@synerise/ds-core": "*",

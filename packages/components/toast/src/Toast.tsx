@@ -1,5 +1,6 @@
 import React, { useCallback, useMemo } from 'react';
 import toast from 'react-hot-toast';
+import { v4 as uuid } from 'uuid';
 
 import Icon, { AngleDownS, CloseM } from '@synerise/ds-icon';
 
@@ -11,6 +12,7 @@ import {
   type ToastType,
 } from './Toast.types';
 import { ICONS } from './constants';
+import { removeToast } from './utils';
 
 export const Toast = ({
   type,
@@ -24,6 +26,7 @@ export const Toast = ({
   onExpand,
   onCloseClick,
   button,
+  toastId,
   ...htmlAttributes
 }: ToastProps) => {
   const hasToastContent = button || description || expandedContent;
@@ -58,6 +61,13 @@ export const Toast = ({
     onExpand && onExpand(!expanded);
   }, [onExpand, expanded]);
 
+  const handleCloseClick = () => {
+    onCloseClick?.();
+    if (toastId) {
+      removeToast(toastId);
+    }
+  };
+
   return (
     <S.Container toastType={type} data-toastType={type} {...htmlAttributes}>
       <S.IconWrapper>
@@ -80,7 +90,7 @@ export const Toast = ({
             </S.IconExpanderWrapper>
           )}
           {withClose && (
-            <S.IconCloseWrapper onClick={onCloseClick}>
+            <S.IconCloseWrapper onClick={handleCloseClick}>
               <Icon component={<CloseM />} />
             </S.IconCloseWrapper>
           )}
@@ -97,7 +107,11 @@ export const showToast = (
   props: ShowToastProps,
   options?: ToastCustomisationOptions,
 ) => {
-  return toast.custom(<Toast {...props} type={type} />, options);
+  const toastId = props.toastId || `toast-${uuid()}`;
+  return toast.custom(<Toast {...props} toastId={toastId} type={type} />, {
+    ...options,
+    id: toastId,
+  });
 };
 
 Toast.success = (
