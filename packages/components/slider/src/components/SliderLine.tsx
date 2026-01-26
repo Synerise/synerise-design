@@ -39,7 +39,12 @@ export const SliderLine = ({
     colorMap,
   });
   return (
-    <S.SliderBar $type={type} data-testid="ds-slider-bar" onClick={onLineClick}>
+    <S.SliderBar
+      data-inverted={inverted ? 'true' : 'false'}
+      $type={type}
+      data-testid="ds-slider-bar"
+      onClick={onLineClick}
+    >
       <S.SliderLine
         data-testid="ds-slider-line"
         lineColor={lineColor}
