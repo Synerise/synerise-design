@@ -14,7 +14,7 @@ describe('AppMenu', () => {
     const CAMPAIGNS_ITEM_1 = 'email';
     const CAMPAIGNS_ITEM_2 = 'facebook';
 
-    Element.prototype.getBoundingClientRect = jest.fn(
+    Element.prototype.getBoundingClientRect = vi.fn(
       () => ({
         width: 120,
         height: 1000,
@@ -24,7 +24,7 @@ describe('AppMenu', () => {
         y: 0,
         bottom: 0,
         right: 0,
-        toJSON: jest.fn(),
+        toJSON: vi.fn(),
       })
     );
 

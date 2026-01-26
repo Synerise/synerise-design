@@ -4,8 +4,9 @@ import { fireEvent, screen } from '@testing-library/react';
 
 import NavigableItems from '../../NavigableItems/NavigableItems';
 
+
 describe('NavigableItems', () => {
-  const onHideMenu = jest.fn();
+  const onHideMenu = vi.fn();
 
   const Component = (
     <NavigableItems onHideMenu={onHideMenu}>
@@ -18,7 +19,7 @@ describe('NavigableItems', () => {
   );
 
   it('should render navigable items and allow to navigate through them', async () => {
-    Element.prototype.getBoundingClientRect = jest.fn(
+    Element.prototype.getBoundingClientRect = vi.fn(
       () => ({
         width: 120,
         height: 256,
@@ -28,7 +29,7 @@ describe('NavigableItems', () => {
         y: 0,
         bottom: 0,
         right: 0,
-        toJSON: jest.fn(),
+        toJSON: vi.fn(),
       })
     );
 
@@ -59,7 +60,7 @@ describe('NavigableItems', () => {
   });
 
   it('should skip nav buttons when container has enough space', () => {
-    Element.prototype.getBoundingClientRect = jest.fn(
+    Element.prototype.getBoundingClientRect = vi.fn(
       () => ({
         width: 120,
         height: 1000,
@@ -69,7 +70,7 @@ describe('NavigableItems', () => {
         y: 0,
         bottom: 0,
         right: 0,
-        toJSON: jest.fn(),
+        toJSON: vi.fn(),
       })
     );
 
