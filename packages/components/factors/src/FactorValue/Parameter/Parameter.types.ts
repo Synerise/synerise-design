@@ -14,7 +14,8 @@ export type DropdownItem<ItemType extends ParameterItem | ParameterGroup> = {
 };
 
 export type DropdownItemProps<ItemType extends ParameterItem | ParameterGroup> =
-  ParameterDropdownTitleProps | DropdownItem<ItemType>;
+  | ParameterDropdownTitleProps
+  | DropdownItem<ItemType>;
 
 export type ParameterDropdownTitleProps = {
   title?: string;
