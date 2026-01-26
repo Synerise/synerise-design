@@ -16,16 +16,16 @@
     "access": "public"
   },
   "scripts": {
-    "build": "npm run build:js && npm run build:css && npm run defs",
+    "build": "pnpm run build:js && pnpm run build:css && pnpm run defs",
     "build:css": "node ../../../scripts/style/less.js",
     "build:js": "babel --delete-dir-on-start --root-mode upward src --out-dir dist --extensions '.js,.ts,.tsx'",
-    "build:watch": "npm run build:js -- --watch",
+    "build:watch": "pnpm run build:js -- --watch",
     "defs": "tsc --declaration --outDir dist/ --emitDeclarationOnly",
-    "prepublish": "npm run build",
+    "prepublish": "pnpm run build",
     "types": "tsc --noEmit",
     "pack:ci": "pnpm pack --pack-destination ../../storybook/storybook-static/static",
     "test": "jest",
-    "test:watch": "npm run test -- --watchAll",
+    "test:watch": "pnpm run test -- --watchAll",
     "check:circular-dependencies": "madge --circular --extensions ts,tsx,js,jsx --ts-config tsconfig.json src/ --exclude '/dist/'",
     "upgrade:ds": "ncu -f \"@synerise/ds-*\" -u"
   },
@@ -34,7 +34,10 @@
     "*.less"
   ],
   "types": "dist/index.d.ts",
-  "dependencies": {{dependencies}},
+  "dependencies": {
+    {dependencies
+    }
+  },
   "peerDependencies": {
     "@synerise/ds-core": "*",
     "react": ">=16.9.0 <= 18.3.1"
