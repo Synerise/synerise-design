@@ -2,6 +2,11 @@ import styled from 'styled-components';
 
 import { IconContainer } from '@synerise/ds-icon';
 
+export const CopyableValue = styled.div`
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+`;
 export const Copyable = styled.div`
   display: flex;
   align-items: center;
