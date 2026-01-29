@@ -24,7 +24,7 @@ const CopyableCell = ({
 
   return (
     <S.Copyable {...htmlAttributes}>
-      <span>{value}</span>
+      <S.CopyableValue>{value}</S.CopyableValue>
       <CopyIcon
         copyValue={value}
         placement="left"
