@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.1.5](https://github.com/Synerise/synerise-design/compare/@synerise/ds-app-menu@1.1.4...@synerise/ds-app-menu@1.1.5) (2026-01-29)
+
+### Bug Fixes
+
+- **app-menu:** change jest to vitest ([69c11c7](https://github.com/Synerise/synerise-design/commit/69c11c7806c5d94713d61c4f8aa63e85f3559ec1))
+
 ## [1.1.4](https://github.com/Synerise/synerise-design/compare/@synerise/ds-app-menu@1.1.3...@synerise/ds-app-menu@1.1.4) (2026-01-22)
 
 **Note:** Version bump only for package @synerise/ds-app-menu

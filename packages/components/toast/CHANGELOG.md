@@ -3,6 +3,16 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.4.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-toast@1.3.1...@synerise/ds-toast@1.4.0) (2026-01-29)
+
+### Bug Fixes
+
+- **toast:** wire up dismiss ([094da31](https://github.com/Synerise/synerise-design/commit/094da318d43f99fb8dd64262efce6ee1c95b46a1))
+
+### Features
+
+- **toast:** adds onDismiss prop ([613bc09](https://github.com/Synerise/synerise-design/commit/613bc099cdb2639df3cc0c93d59bff275f5b897c))
+
 ## [1.3.1](https://github.com/Synerise/synerise-design/compare/@synerise/ds-toast@1.3.0...@synerise/ds-toast@1.3.1) (2026-01-22)
 
 **Note:** Version bump only for package @synerise/ds-toast

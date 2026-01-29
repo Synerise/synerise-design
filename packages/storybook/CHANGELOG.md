@@ -3,6 +3,16 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.34.0](https://github.com/Synerise/synerise-design/compare/storybook@1.33.0...storybook@1.34.0) (2026-01-29)
+
+### Bug Fixes
+
+- **storybook:** fix font styles path ([d3aab0f](https://github.com/Synerise/synerise-design/commit/d3aab0f5dbbf6d8fa9496c710f70870f1c4cb048))
+
+### Features
+
+- **toast:** adds onDismiss prop ([613bc09](https://github.com/Synerise/synerise-design/commit/613bc099cdb2639df3cc0c93d59bff275f5b897c))
+
 # [1.33.0](https://github.com/Synerise/synerise-design/compare/storybook@1.32.1...storybook@1.33.0) (2026-01-22)
 
 ### Features

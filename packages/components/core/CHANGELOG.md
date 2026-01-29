@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.10.1](https://github.com/synerise/synerise-design/compare/@synerise/ds-core@1.10.0...@synerise/ds-core@1.10.1) (2026-01-29)
+
+### Bug Fixes
+
+- **toast:** wire up dismiss ([094da31](https://github.com/synerise/synerise-design/commit/094da318d43f99fb8dd64262efce6ee1c95b46a1))
+
 # [1.10.0](https://github.com/synerise/synerise-design/compare/@synerise/ds-core@1.9.1...@synerise/ds-core@1.10.0) (2026-01-19)
 
 ### Features

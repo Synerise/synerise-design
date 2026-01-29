@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.0.36](https://github.com/Synerise/synerise-design/compare/@synerise/ds-action-area@1.0.35...@synerise/ds-action-area@1.0.36) (2026-01-29)
+
+### Bug Fixes
+
+- **action-area:** change jest to vitest ([b7053fe](https://github.com/Synerise/synerise-design/commit/b7053fe96a69442b3f253e6a183452e8ad6c4c4b))
+
 ## [1.0.35](https://github.com/Synerise/synerise-design/compare/@synerise/ds-action-area@1.0.34...@synerise/ds-action-area@1.0.35) (2026-01-22)
 
 **Note:** Version bump only for package @synerise/ds-action-area

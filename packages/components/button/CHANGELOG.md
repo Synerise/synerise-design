@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.5.6](https://github.com/synerise/synerise-design/compare/@synerise/ds-button@1.5.5...@synerise/ds-button@1.5.6) (2026-01-29)
+
+### Bug Fixes
+
+- **button:** change styles ([1e74acb](https://github.com/synerise/synerise-design/commit/1e74acbc7a4e2bd8e8ca7a27d7e3f70dfbf02657))
+
 ## [1.5.5](https://github.com/synerise/synerise-design/compare/@synerise/ds-button@1.5.4...@synerise/ds-button@1.5.5) (2026-01-15)
 
 **Note:** Version bump only for package @synerise/ds-button

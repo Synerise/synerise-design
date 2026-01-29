@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.1.13](https://github.com/Synerise/synerise-design/compare/@synerise/ds-avatar-group@1.1.12...@synerise/ds-avatar-group@1.1.13) (2026-01-29)
+
+### Bug Fixes
+
+- **avatar-group:** change jest to vitest ([b3f6b35](https://github.com/Synerise/synerise-design/commit/b3f6b358f115542951c0f48a0f1a93a3eea8ffaf))
+
 ## [1.1.12](https://github.com/Synerise/synerise-design/compare/@synerise/ds-avatar-group@1.1.11...@synerise/ds-avatar-group@1.1.12) (2026-01-22)
 
 **Note:** Version bump only for package @synerise/ds-avatar-group

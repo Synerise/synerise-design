@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.2.23](https://github.com/Synerise/synerise-design/compare/@synerise/ds-autocomplete@1.2.22...@synerise/ds-autocomplete@1.2.23) (2026-01-29)
+
+### Bug Fixes
+
+- **autocomplete:** change jest to vitest ([3cd43d9](https://github.com/Synerise/synerise-design/commit/3cd43d9a041d5297b39fba695b8e1d461488d9d7))
+
 ## [1.2.22](https://github.com/Synerise/synerise-design/compare/@synerise/ds-autocomplete@1.2.21...@synerise/ds-autocomplete@1.2.22) (2026-01-22)
 
 **Note:** Version bump only for package @synerise/ds-autocomplete

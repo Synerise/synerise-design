@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.8.4](https://github.com/synerise/synerise-design/compare/@synerise/ds-table@1.8.3...@synerise/ds-table@1.8.4) (2026-01-29)
+
+### Bug Fixes
+
+- **table:** overflow ellipsis ([9d2ad3c](https://github.com/synerise/synerise-design/commit/9d2ad3cd163aa77415eeb187538b7ba6099acc50))
+
 ## [1.8.3](https://github.com/synerise/synerise-design/compare/@synerise/ds-table@1.8.2...@synerise/ds-table@1.8.3) (2026-01-22)
 
 **Note:** Version bump only for package @synerise/ds-table
