@@ -18,7 +18,14 @@ export type ToastProps = WithHTMLAttributes<
     button?: ReactNode;
     expanded?: boolean;
     onExpand?: (isExpanded: boolean) => void;
+    /**
+     * fired when user manually dismisses the toast by clicking the X button
+     */
     onCloseClick?: () => void;
+    /**
+     * fired when toast is dismissed (both manually or after timeout)
+     */
+    onDismiss?: () => void;
     toastId?: string;
   }
 >;

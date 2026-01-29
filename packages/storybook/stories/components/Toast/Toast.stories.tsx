@@ -1,4 +1,5 @@
 import React from 'react';
+import { fn } from 'storybook/test';
 
 import { Meta, StoryObj } from '@storybook/react-webpack5';
 import Button from '@synerise/ds-button';
@@ -55,6 +56,8 @@ export const Default: Story = {
     type: 'success',
     description: 'No response from server, try again later',
     withClose: false,
+    onDismiss: fn(),
+    onCloseClick: fn(),
   },
 };
 const TYPES = ['success', 'warning', 'negative', 'informative'] as const;
