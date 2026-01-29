@@ -41,6 +41,7 @@ import Button from '@synerise/ds-button';
 | expanded        | toggles rendering expanded content                    | boolean                                            | -       |
 | withClose       | renders X icon to manually dismiss toast              | boolean                                            | -       |
 | onCloseClick    | triggered on click of close icon                      | () => void                                         | -       |
+| onDismiss       | triggered when toast is dismissed                     | () => void                                         | -       |
 | button          | button element to render below message content        | ReactNode                                          | -       |
 
 ## Static methods

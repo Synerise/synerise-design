@@ -1,4 +1,4 @@
-import React, { useCallback, useMemo } from 'react';
+import React, { useCallback, useEffect, useMemo } from 'react';
 import toast from 'react-hot-toast';
 import { v4 as uuid } from 'uuid';
 
@@ -25,6 +25,7 @@ export const Toast = ({
   expanded,
   onExpand,
   onCloseClick,
+  onDismiss,
   button,
   toastId,
   ...htmlAttributes
@@ -67,6 +68,12 @@ export const Toast = ({
       removeToast(toastId);
     }
   };
+
+  useEffect(() => {
+    return () => {
+      onDismiss?.();
+    };
+  }, []);
 
   return (
     <S.Container toastType={type} data-toastType={type} {...htmlAttributes}>
