@@ -86,7 +86,7 @@ const CheckboxButton = (props: CheckboxButtonProps): React.ReactElement => {
       role="checkbox"
       style={{ transition: 'none' }}
       tabIndex={0}
-      type="ghost"
+      type="ghost-primary"
       onClick={handleButtonClick}
       {...restProps}
     >
