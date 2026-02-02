@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { fn } from 'storybook/test';
 
 import { Meta, StoryObj } from '@storybook/react-webpack5';
 import { ObjectAvatar } from '@synerise/ds-avatar';
@@ -7,7 +8,7 @@ import Icon, { MailM, UserM } from '@synerise/ds-icon';
 import Modal from '@synerise/ds-modal';
 import Stepper from '@synerise/ds-stepper';
 
-import { Placeholder } from '../../constants';
+import { Placeholder, PropNamePill } from '../../constants';
 import {
   BOOLEAN_CONTROL,
   CLASSNAME_ARG_CONTROL,
@@ -18,7 +19,7 @@ import {
   reactNodeAsSelect,
 } from '../../utils';
 import { STEPPER_STEPS, StepData } from '../Stepper/Stepper.data';
-import { color, headerWithPrefix, sizes } from './Modal.data';
+import { SIZES, TAB_PROPS, headerWithPrefix } from './Modal.data';
 import * as S from './styles';
 
 export default {
@@ -58,11 +59,10 @@ export default {
     okType: REACT_NODE_AS_STRING,
     zIndex: NUMBER_CONTROL,
     bodyBackground: {
-      ...controlFromOptionsArray('select', color),
+      ...controlFromOptionsArray('select', ['white', 'grey']),
     },
     closable: BOOLEAN_CONTROL,
     confirmLoading: BOOLEAN_CONTROL,
-    withTabs: BOOLEAN_CONTROL,
     onOk: {
       action: 'onOk',
     },
@@ -77,8 +77,12 @@ export default {
     removeFooter: BOOLEAN_CONTROL,
     maxViewportHeight: NUMBER_CONTROL,
     size: {
-      ...controlFromOptionsArray('select', sizes),
+      ...controlFromOptionsArray('select', SIZES),
     },
+  },
+  args: {
+    onOk: fn(),
+    onCancel: fn(),
   },
 } as Meta<typeof Modal>;
 
@@ -98,10 +102,29 @@ export const withHeader: Story = {
   args: {
     visible: true,
     title: 'title',
-    description: 'Description',
     footer: null,
     size: 'small',
     children: <div style={{ height: 362 }}></div>,
+  },
+};
+
+export const withTabs: Story = {
+  args: {
+    visible: true,
+    headerTabProps: TAB_PROPS,
+    title: (
+      <>
+        title <PropNamePill>title</PropNamePill>
+      </>
+    ),
+    headerBottomBar: (
+      <>
+        header bottom bar content <PropNamePill>headerBottomBar</PropNamePill>
+      </>
+    ),
+    footer: null,
+    size: 'small',
+    children: <Placeholder $height={400} />,
   },
 };
 
@@ -109,7 +132,6 @@ export const Fullscreen: Story = {
   args: {
     visible: true,
     title: 'title',
-    description: 'Description',
     size: 'fullScreen',
     children: <Placeholder $height={1400} />,
   },
@@ -119,9 +141,6 @@ export const withFooter: Story = {
   args: {
     visible: true,
     title: 'title',
-    description: 'Description',
-    onOk: 'Apply',
-    onCancel: 'Cancel',
     size: 'small',
     children: 'Modal content...',
   },
@@ -131,7 +150,6 @@ export const withScroll: Story = {
   args: {
     visible: true,
     title: 'title',
-    description: 'Description',
     footer: null,
     size: 'small',
     children: <Placeholder $height={600} />,
@@ -163,9 +181,6 @@ export const ModalWithStepper: Story = {
   args: {
     visible: true,
     title: 'title',
-    description: 'Description',
-    onOk: 'Apply',
-    onCancel: 'Cancel',
     size: 'medium',
   },
 };

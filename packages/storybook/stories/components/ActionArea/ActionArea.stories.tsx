@@ -19,7 +19,12 @@ export default {
   tags: ['autodocs'],
   decorators: [centeredPaddedWrapper],
   render: (args) => <ActionArea {...args} />,
-
+  parameters: {
+    design: {
+      type: 'figma',
+      url: 'https://www.figma.com/design/fsSZONXpVvtrDsCgtu01Jb/Synerise-Design-System?node-id=1302-19040',
+    },
+  },
   argTypes: {
     label: REACT_NODE_AS_STRING,
     description: REACT_NODE_AS_STRING,

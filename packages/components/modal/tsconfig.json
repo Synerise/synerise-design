@@ -1,6 +1,11 @@
 {
-  "include": ["src"],
-  "exclude": ["src/__specs__/**/*.ts", "src/__specs__/**/*.tsx"],
+  "include": [
+    "src"
+  ],
+  "exclude": [
+    "src/**/*.spec.ts",
+    "src/**/*.spec.tsx"
+  ],
   "extends": "../../../config/typescript/tsconfig.base.json",
   "compilerOptions": {
     "outDir": "dist",

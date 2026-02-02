@@ -23,8 +23,8 @@
     "defs": "tsc --declaration --outDir dist/ --emitDeclarationOnly",
     "pack:ci": "pnpm pack --pack-destination ../../storybook/storybook-static/static",
     "prepublish": "pnpm run build",
-    "test": "jest",
-    "test:watch": "pnpm run test -- --watchAll",
+    "test": "vitest",
+    "test:watch": "pnpm run test -- --watch",
     "types": "tsc --noEmit",
     "check:circular-dependencies": "madge --circular --extensions ts,tsx,js,jsx --ts-config tsconfig.json src/ --exclude '/dist/'",
     "upgrade:ds": "ncu -f \"@synerise/ds-*\" -u"
@@ -38,8 +38,12 @@
     "@synerise/ds-button": "workspace:^",
     "@synerise/ds-icon": "workspace:^",
     "@synerise/ds-scrollbar": "workspace:^",
+    "@synerise/ds-tabs": "workspace:^",
     "@synerise/ds-typography": "workspace:^",
     "classnames": "^2.5.1"
+  },
+  "devDependencies": {
+    "vitest": "4"
   },
   "peerDependencies": {
     "@synerise/ds-core": "*",

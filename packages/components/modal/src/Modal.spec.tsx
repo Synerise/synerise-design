@@ -10,7 +10,7 @@ describe('Modal', () => {
   const descriptionMock = 'Test Description';
 
   beforeEach(() => {
-    jest.clearAllMocks();
+    vi.clearAllMocks();
   });
 
   it('should not render modal if there is no visible prop or visible is false', () => {
@@ -48,7 +48,7 @@ describe('Modal', () => {
   });
 
   it('should render headerActions when provided', () => {
-    const headerActions = <button onClick={jest.fn()}>Test Action</button>;
+    const headerActions = <button onClick={vi.fn()}>Test Action</button>;
 
     renderWithProvider(
       <Modal title={titleMock} headerActions={headerActions} visible />,

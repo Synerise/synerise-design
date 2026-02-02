@@ -2,6 +2,7 @@ import { type ModalProps as AntdModalProps } from 'antd/lib/modal';
 import type { CSSProperties, ComponentType, ReactNode } from 'react';
 
 import { type ButtonProps } from '@synerise/ds-button';
+import { type TabsProps } from '@synerise/ds-tabs';
 
 /*
  * @deprecated use `ModalProps`
@@ -9,9 +10,13 @@ import { type ButtonProps } from '@synerise/ds-button';
 export type Props = ModalProps;
 
 export type ModalProps = {
+  /**
+   * @deprecated - this prop will be removed soon
+   */
   description?: ReactNode;
   headerBottomBar?: ReactNode;
   headerActions?: ReactNode;
+  headerTabProps?: TabsProps;
   size?:
     | 'small'
     | 'medium'

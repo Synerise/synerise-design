@@ -51,7 +51,6 @@ export const ModalFooterLeftSide = styled.div`
 `;
 
 export const ModalSubHeader = styled.div`
-  padding: 12px 24px;
   display: flex;
   justify-content: space-between;
 `;
