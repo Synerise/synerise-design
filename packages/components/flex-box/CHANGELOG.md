@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.1.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-flex-box@1.0.5...@synerise/ds-flex-box@1.1.0) (2026-02-02)
+
+### Features
+
+- **panel:** new component ([a9d4ff8](https://github.com/Synerise/synerise-design/commit/a9d4ff8f766e2a7b6b6fe34068d7231584eb3056))
+
 ## [1.0.5](https://github.com/Synerise/synerise-design/compare/@synerise/ds-flex-box@1.0.4...@synerise/ds-flex-box@1.0.5) (2026-01-29)
 
 **Note:** Version bump only for package @synerise/ds-flex-box

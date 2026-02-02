@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.3.0](https://github.com/synerise/synerise-design/compare/@synerise/ds-modal@1.2.24...@synerise/ds-modal@1.3.0) (2026-02-02)
+
+### Features
+
+- **modal:** add tabs to modal header ([afca822](https://github.com/synerise/synerise-design/commit/afca822e930e06505161938d5a0ef16a7eec5271))
+
 ## [1.2.24](https://github.com/synerise/synerise-design/compare/@synerise/ds-modal@1.2.23...@synerise/ds-modal@1.2.24) (2026-01-29)
 
 **Note:** Version bump only for package @synerise/ds-modal

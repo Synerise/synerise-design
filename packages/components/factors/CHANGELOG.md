@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.10.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-factors@1.9.1...@synerise/ds-factors@1.10.0) (2026-02-02)
+
+### Features
+
+- **modal:** add tabs to modal header ([afca822](https://github.com/Synerise/synerise-design/commit/afca822e930e06505161938d5a0ef16a7eec5271))
+
 ## [1.9.1](https://github.com/Synerise/synerise-design/compare/@synerise/ds-factors@1.9.0...@synerise/ds-factors@1.9.1) (2026-01-29)
 
 **Note:** Version bump only for package @synerise/ds-factors

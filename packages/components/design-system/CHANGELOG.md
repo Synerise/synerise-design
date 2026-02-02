@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.11.0](https://github.com/Synerise/synerise-design/compare/@synerise/design-system@1.10.7...@synerise/design-system@1.11.0) (2026-02-02)
+
+### Features
+
+- **panel:** new component ([a9d4ff8](https://github.com/Synerise/synerise-design/commit/a9d4ff8f766e2a7b6b6fe34068d7231584eb3056))
+
 ## [1.10.7](https://github.com/Synerise/synerise-design/compare/@synerise/design-system@1.10.6...@synerise/design-system@1.10.7) (2026-01-29)
 
 **Note:** Version bump only for package @synerise/design-system

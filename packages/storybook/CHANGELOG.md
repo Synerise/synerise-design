@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.35.0](https://github.com/Synerise/synerise-design/compare/storybook@1.34.0...storybook@1.35.0) (2026-02-02)
+
+### Features
+
+- **modal:** add tabs to modal header ([afca822](https://github.com/Synerise/synerise-design/commit/afca822e930e06505161938d5a0ef16a7eec5271))
+- **panel:** new component ([a9d4ff8](https://github.com/Synerise/synerise-design/commit/a9d4ff8f766e2a7b6b6fe34068d7231584eb3056))
+
 # [1.34.0](https://github.com/Synerise/synerise-design/compare/storybook@1.33.0...storybook@1.34.0) (2026-01-29)
 
 ### Bug Fixes
