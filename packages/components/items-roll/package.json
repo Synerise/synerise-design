@@ -41,6 +41,7 @@
     "@synerise/ds-icon": "workspace:^",
     "@synerise/ds-list-item": "workspace:^",
     "@synerise/ds-menu": "workspace:^",
+    "@synerise/ds-panel": "workspace:^",
     "@synerise/ds-popconfirm": "workspace:^",
     "@synerise/ds-search": "workspace:^",
     "@synerise/ds-tooltip": "workspace:^",

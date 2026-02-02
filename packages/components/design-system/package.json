@@ -110,6 +110,7 @@
     "@synerise/ds-ordered-list": "workspace:^",
     "@synerise/ds-page-header": "workspace:^",
     "@synerise/ds-pagination": "workspace:^",
+    "@synerise/ds-panel": "workspace:^",
     "@synerise/ds-panels-resizer": "workspace:^",
     "@synerise/ds-popconfirm": "workspace:^",
     "@synerise/ds-popover": "workspace:^",

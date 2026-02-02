@@ -1,0 +1,40 @@
+import {
+  NUMBER_CONTROL,
+  REACT_NODE_AS_STRING,
+  REACT_NODE_NO_CONTROL,
+} from '../../utils';
+
+export const controls = {
+  radius: NUMBER_CONTROL,
+  children: REACT_NODE_NO_CONTROL,
+
+  p: NUMBER_CONTROL,
+  pb: NUMBER_CONTROL,
+  pt: NUMBER_CONTROL,
+  pl: NUMBER_CONTROL,
+  pr: NUMBER_CONTROL,
+  px: NUMBER_CONTROL,
+  py: NUMBER_CONTROL,
+  padding: NUMBER_CONTROL,
+  paddingTop: NUMBER_CONTROL,
+  paddingBottom: NUMBER_CONTROL,
+  paddingLeft: NUMBER_CONTROL,
+  paddingRight: NUMBER_CONTROL,
+  paddingX: NUMBER_CONTROL,
+  paddingY: NUMBER_CONTROL,
+
+  m: NUMBER_CONTROL,
+  mb: NUMBER_CONTROL,
+  mt: NUMBER_CONTROL,
+  ml: NUMBER_CONTROL,
+  mr: NUMBER_CONTROL,
+  mx: NUMBER_CONTROL,
+  my: NUMBER_CONTROL,
+  margin: NUMBER_CONTROL,
+  marginTop: NUMBER_CONTROL,
+  marginBottom: NUMBER_CONTROL,
+  marginLeft: NUMBER_CONTROL,
+  marginRight: NUMBER_CONTROL,
+  marginX: NUMBER_CONTROL,
+  marginY: NUMBER_CONTROL,
+};

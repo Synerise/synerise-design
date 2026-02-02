@@ -1,17 +1,12 @@
 import styled, { css } from 'styled-components';
 
+import Panel from '@synerise/ds-panel';
 import {
   AdditionalData,
   RadioWrapper,
 } from '@synerise/ds-radio/dist/Radio.styles';
 import Scrollbar from '@synerise/ds-scrollbar';
 import { Title as TypographyTitle } from '@synerise/ds-typography';
-
-const roundedWrapperCSS = css`
-  border: solid ${(props) => props.theme.palette['grey-200']} 1px;
-  border-radius: 8px;
-  padding: 8px;
-`;
 
 const sectionTitleCSS = css`
   margin-bottom: 8px;
@@ -65,16 +60,13 @@ export const ConfirmationExtraTitle = styled(TypographyTitle)`
   ${sectionTitleCSS}
 `;
 
-export const BatchItemsList = styled(Scrollbar)`
-  ${roundedWrapperCSS}
-`;
+export const BatchItemsList = styled(Scrollbar)``;
 
-export const AdditionalInfo = styled.div`
-  ${roundedWrapperCSS}
+export const AdditionalInfo = styled(Panel)`
   padding: 8px 18px;
 `;
 
-export const DecisionOptions = styled.div`
+export const DecisionOptions = styled(Panel)`
   ${RadioWrapper} {
     padding: 7px 0;
     margin-bottom: 0;
@@ -82,7 +74,6 @@ export const DecisionOptions = styled.div`
   ${AdditionalData}:empty {
     display: none;
   }
-  ${roundedWrapperCSS}
   padding: 8px 18px;
 `;
 

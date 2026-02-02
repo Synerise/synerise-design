@@ -4,12 +4,6 @@ import Button, { type StyledButton } from '@synerise/ds-button';
 import DividerBase from '@synerise/ds-divider';
 import Icon from '@synerise/ds-icon';
 
-export const Wrapper = styled.div`
-  padding: 12px;
-  border: 1px solid ${({ theme }) => theme.palette['grey-200']};
-  border-radius: 3px;
-`;
-
 export const ContainerSpaceBetween = styled.div`
   display: flex;
   align-items: center;
