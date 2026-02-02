@@ -17,3 +17,11 @@ export const Placeholder = styled.div<{
     ),
     var(--bg);
 `;
+
+export const PropNamePill = styled.span`
+  background: ${(props) => props.theme.palette['grey-100']};
+  padding: 3px 7px;
+  border-radius: 3px;
+  font-family: monospace;
+  color: ${(props) => props.theme.palette['grey-700']};
+`;

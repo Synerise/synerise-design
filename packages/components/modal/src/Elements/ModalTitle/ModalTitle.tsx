@@ -2,6 +2,7 @@ import React from 'react';
 
 import Button from '@synerise/ds-button';
 import Icon, { CloseM } from '@synerise/ds-icon';
+import Tabs from '@synerise/ds-tabs';
 
 import { type ModalProps } from '../../Modal.types';
 import * as S from './ModalTitle.styles';
@@ -9,6 +10,7 @@ import * as S from './ModalTitle.styles';
 type ModalTitleProps = Pick<
   ModalProps,
   | 'headerActions'
+  | 'headerTabProps'
   | 'onCancel'
   | 'titleContainerStyle'
   | 'blank'
@@ -24,6 +26,7 @@ export const ModalTitle = ({
   onCancel,
   title,
   description,
+  headerTabProps,
   headerBottomBar,
 }: ModalTitleProps) => {
   return (
@@ -39,8 +42,11 @@ export const ModalTitle = ({
           <Icon component={<CloseM />} />
         </Button>
       )}
-      {(title || description) && (
-        <S.ModalTitleWrapper withDescription={!!description}>
+      {(title || description || headerTabProps) && (
+        <S.ModalTitleWrapper
+          withDescription={!!description}
+          withTabs={!!headerTabProps}
+        >
           {title && (
             <S.TitleContainer
               style={titleContainerStyle}
@@ -65,6 +71,11 @@ export const ModalTitle = ({
           )}
 
           {description && <S.Description>{description}</S.Description>}
+          {headerTabProps && (
+            <S.TabsWrapper>
+              <Tabs {...headerTabProps} />
+            </S.TabsWrapper>
+          )}
         </S.ModalTitleWrapper>
       )}
       {headerBottomBar && <S.BottomBar>{headerBottomBar}</S.BottomBar>}

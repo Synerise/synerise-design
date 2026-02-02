@@ -1,18 +1,26 @@
 import React from 'react';
 
 import { renderWithProvider } from '@synerise/ds-core';
-import { render, screen } from '@testing-library/react';
+import { fireEvent, render, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 
 import { ModalTitle } from './ModalTitle';
 
 describe('ModalTitle', () => {
-  const onCancelMock = jest.fn();
+  const onCancelMock = vi.fn();
+  const handleTabClick = vi.fn();
   const title = 'Test Title';
   const description = 'Test Description';
+  const tabLabel = 'tab 1';
+  const tabProps = {
+    tabs: [{label: 'tab 0'},{ label: tabLabel }],
+    activeTab: 0,
+    block: true, // test block tabs - skips width calculations in tabs
+    handleTabClick
+  }
 
   beforeEach(() => {
-    jest.clearAllMocks();
+    vi.clearAllMocks();
   });
 
   it('should render title and description when props are provided', () => {
@@ -23,6 +31,14 @@ describe('ModalTitle', () => {
 
     expect(titleElement).toBeInTheDocument();
     expect(descriptionElement).toBeInTheDocument();
+  });
+
+  it('should render tabs when headerTabProps are provided', async () => {
+    renderWithProvider(<ModalTitle title={title} headerTabProps={tabProps} />);
+
+    fireEvent.click(screen.getByText(tabLabel))
+
+    await waitFor(() => expect(handleTabClick).toHaveBeenCalledTimes(1));
   });
 
   it('should render close button when blank is true and onCancel is provided', () => {
@@ -51,7 +67,7 @@ describe('ModalTitle', () => {
   });
 
   it('should render headerActions when provided', () => {
-    const headerActions = <button onClick={jest.fn()}>Test Action</button>;
+    const headerActions = <button onClick={vi.fn()}>Test Action</button>;
 
     renderWithProvider(
       <ModalTitle title={title} headerActions={headerActions} />,

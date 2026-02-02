@@ -2,6 +2,16 @@ import styled from 'styled-components';
 
 import Typography from '@synerise/ds-typography';
 
+const getBottomPadding = (withTabs: boolean, withDescription: boolean) => {
+  if (withTabs) {
+    return 0;
+  }
+  if (withDescription) {
+    return 12;
+  }
+  return 20;
+};
+
 export const TitleContainer = styled.div`
   display: flex;
   align-items: center;
@@ -43,11 +53,17 @@ export const ActionButtons = styled.div`
 `;
 
 export const BottomBar = styled.div`
+  padding: 12px 24px;
   border-bottom: 1px solid ${(props) => props.theme.palette['grey-100']};
 `;
-export const ModalTitleWrapper = styled.div<{ withDescription?: boolean }>`
-  padding: ${(props) =>
-    props.withDescription ? '20px 24px 12px' : '20px 24px'};
+
+export const ModalTitleWrapper = styled.div<{
+  withDescription?: boolean;
+  withTabs?: boolean;
+}>`
+  padding: 20px 24px;
+  padding-bottom: ${(props) =>
+    getBottomPadding(!!props.withTabs, !!props.withDescription)}px;
   font-size: 18px;
   line-height: 32px;
   border-bottom: 1px solid ${(props) => props.theme.palette['grey-100']};
@@ -70,4 +86,8 @@ export const Description = styled.div`
   background-repeat: repeat-x;
   background-size: 4px 1px;
   background-position: top;
+`;
+
+export const TabsWrapper = styled.div`
+  padding-bottom: 1px;
 `;

@@ -1,13 +1,13 @@
 import React, { ReactNode } from 'react';
+import { fn } from 'storybook/test';
 
 import Button from '@synerise/ds-button';
 import { ModalFooter } from '@synerise/ds-modal';
-import Tabs from '@synerise/ds-tabs';
+import { TabsProps } from '@synerise/ds-tabs';
 
 import * as S from './styles';
 
-
-export const sizes = [
+export const SIZES = [
   'small',
   'medium',
   'large',
@@ -16,12 +16,7 @@ export const sizes = [
   'fullScreen',
 ];
 
-export const color = [
-  'white',
-  'grey',
-];
-
-const tabs = [
+export const TABS = [
   {
     label: 'Tab first',
   },
@@ -32,6 +27,12 @@ const tabs = [
     label: 'Tab third',
   },
 ];
+export const TAB_PROPS: TabsProps = {
+  tabs: TABS,
+  activeTab: 0,
+  handleTabClick: fn(),
+  underscore: true,
+};
 
 export const headerWithPrefix = (text: string, prefix: ReactNode) => {
   return (
@@ -44,7 +45,11 @@ export const headerWithPrefix = (text: string, prefix: ReactNode) => {
   );
 };
 
-export const footer = (settingButton: string, cancelText: string, applyButton: string) => {
+export const footer = (
+  settingButton: string,
+  cancelText: string,
+  applyButton: string,
+) => {
   const props = {
     okText: applyButton,
     cancelText: cancelText,
@@ -56,20 +61,4 @@ export const footer = (settingButton: string, cancelText: string, applyButton: s
   };
 
   return <ModalFooter {...props} />;
-};
-
-export const headerWithTabs = (text: string) => {
-  return (
-    <S.HeaderWrapper>
-      {text}
-      <S.HeaderPlaceholder />
-      <S.TabsContainer>
-        <Tabs
-          underscore
-          tabs={tabs}
-          configuration={{ label: 'Manage tabs' }}
-        />
-      </S.TabsContainer>
-    </S.HeaderWrapper>
-  );
 };

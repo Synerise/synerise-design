@@ -7,6 +7,7 @@ import './__mocks__/intersectionObserverMock';
 import './__mocks__/mutationObserverMock';
 import './__mocks__/domRectMock';
 import './__mocks__/webkitCSSMatrixMock';
+import './__mocks__/getComputedStyle';
 
 Object.defineProperty(window, 'matchMedia', {
   writable: true,

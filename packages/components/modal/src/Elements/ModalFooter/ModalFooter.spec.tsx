@@ -8,8 +8,8 @@ import userEvent from '@testing-library/user-event';
 import { ModalFooter } from './ModalFooter';
 
 describe('ModalFooter', () => {
-  const onOkMock = jest.fn();
-  const onCancelMock = jest.fn();
+  const onOkMock = vi.fn();
+  const onCancelMock = vi.fn();
 
   const CustomButtonMock = ({ children, onClick, disabled }: ButtonProps) => (
     <Button onClick={onClick} disabled={disabled}>
@@ -18,7 +18,7 @@ describe('ModalFooter', () => {
   );
 
   beforeEach(() => {
-    jest.clearAllMocks();
+    vi.clearAllMocks();
   });
 
   it('renders default cancel and apply buttons', () => {
