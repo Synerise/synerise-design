@@ -1,6 +1,7 @@
 import styled, { css } from 'styled-components';
 
 import Divider from '@synerise/ds-divider';
+import Panel from '@synerise/ds-panel';
 import DSSkeleton from '@synerise/ds-skeleton';
 import { Title } from '@synerise/ds-typography';
 
@@ -29,10 +30,7 @@ export const EstimationWrapper = styled.div<{ isLoading?: boolean }>`
 export const Bold = styled.span`
   font-weight: 500;
 `;
-export const EstimationContent = styled.div`
-  border-radius: 8px;
-  border: solid 1px ${(props) => props.theme.palette['grey-200']};
-  padding: 16px 16px 12px;
+export const EstimationContent = styled(Panel)`
   display: flex;
   flex-direction: column;
   gap: 4px;

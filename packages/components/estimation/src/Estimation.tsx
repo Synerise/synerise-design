@@ -58,7 +58,7 @@ const Estimation = ({
           tooltipConfig={tooltipConfig}
         />
       )}
-      <S.EstimationContent>
+      <S.EstimationContent p={16} pb={12}>
         <S.EstimationHead>
           <S.EstimationLeftSide>
             {isLoading ? (

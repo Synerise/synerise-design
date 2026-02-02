@@ -1,7 +1,7 @@
 {
-  "name": "@synerise/ds-estimation",
-  "version": "1.2.2",
-  "description": "Estimation UI Component for the Synerise Design System",
+  "name": "@synerise/ds-panel",
+  "version": "1.0.0",
+  "description": "Panel UI Component for the Synerise Design System",
   "license": "ISC",
   "repository": "Synerise/synerise-design",
   "main": "dist/index.js",
@@ -16,16 +16,16 @@
     "access": "public"
   },
   "scripts": {
-    "build": "pnpm run build:js && pnpm run build:css && pnpm run defs",
+    "build": "npm run build:js && npm run build:css && npm run defs",
     "build:css": "node ../../../scripts/style/less.js",
     "build:js": "babel --delete-dir-on-start --root-mode upward src --out-dir dist --extensions '.js,.ts,.tsx'",
-    "build:watch": "pnpm run build:js -- --watch",
+    "build:watch": "npm run build:js -- --watch",
     "defs": "tsc --declaration --outDir dist/ --emitDeclarationOnly",
-    "prepublish": "pnpm run build",
+    "prepublish": "npm run build",
     "types": "tsc --noEmit",
     "pack:ci": "pnpm pack --pack-destination ../../storybook/storybook-static/static",
     "test": "jest",
-    "test:watch": "pnpm run test -- --watchAll",
+    "test:watch": "npm run test -- --watchAll",
     "check:circular-dependencies": "madge --circular --extensions ts,tsx,js,jsx --ts-config tsconfig.json src/ --exclude '/dist/'",
     "upgrade:ds": "ncu -f \"@synerise/ds-*\" -u"
   },
@@ -35,19 +35,10 @@
   ],
   "types": "dist/index.d.ts",
   "dependencies": {
-    "@synerise/ds-divider": "workspace:^",
-    "@synerise/ds-form-field": "workspace:^",
-    "@synerise/ds-inline-alert": "workspace:^",
-    "@synerise/ds-panel": "workspace:^",
-    "@synerise/ds-progress-bar": "workspace:^",
-    "@synerise/ds-skeleton": "workspace:^",
-    "@synerise/ds-typography": "workspace:^",
-    "@synerise/ds-utils": "workspace:^"
+    "@synerise/ds-flex-box": "workspace:^"
   },
   "peerDependencies": {
     "@synerise/ds-core": "*",
-    "react": ">=16.9.0 <= 18.3.1",
-    "react-intl": ">=3.12.0 <= 6.8",
-    "styled-components": "^5.3.3"
+    "react": ">=16.9.0 <= 18.3.1"
   }
 }

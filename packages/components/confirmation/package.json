@@ -39,6 +39,7 @@
     "@synerise/ds-icon": "workspace:^",
     "@synerise/ds-list-item": "workspace:^",
     "@synerise/ds-modal": "workspace:^",
+    "@synerise/ds-panel": "workspace:^",
     "@synerise/ds-radio": "workspace:^",
     "@synerise/ds-scrollbar": "workspace:^",
     "@synerise/ds-typography": "workspace:^",

@@ -92,6 +92,7 @@
     "babel-loader": "^8.3.0",
     "babel-plugin-styled-components": "^2.1.4",
     "babel-plugin-transform-rename-import": "^2.3.0",
+    "chalk": "^5.6.2",
     "copy-template-dir": "1.4.0",
     "css-loader": "^7.1.2",
     "eslint": "^9.22.0",

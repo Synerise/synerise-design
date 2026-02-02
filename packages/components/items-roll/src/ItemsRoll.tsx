@@ -1,6 +1,8 @@
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import { useIntl } from 'react-intl';
 
+import Panel from '@synerise/ds-panel';
+
 import * as S from './ItemsRoll.styles';
 import { type ItemsRollProps } from './ItemsRoll.types';
 import { Footer, Header, List } from './ItemsRollComponents';
@@ -101,10 +103,12 @@ export const ItemsRoll = ({
   );
 
   return (
-    <S.Wrapper
+    <Panel
       style={style || {}}
       className={className || ''}
       data-testid="ds-items-roll"
+      radius={3}
+      p={12}
     >
       <Header
         actions={actions}
@@ -144,7 +148,7 @@ export const ItemsRoll = ({
           visibleItemsCount={visibleItems.length}
         />
       )}
-    </S.Wrapper>
+    </Panel>
   );
 };
 export default ItemsRoll;

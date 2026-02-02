@@ -1,0 +1,21 @@
+import React, { forwardRef } from 'react';
+
+import { DEFAULT_PADDING, DEFAULT_RADIUS } from './Panel.const';
+import * as S from './Panel.styles';
+import type { PanelProps } from './Panel.types';
+
+const Panel = forwardRef<HTMLDivElement, PanelProps>(
+  ({ children, ...props }, ref) => {
+    return (
+      <S.PanelWrapper
+        ref={ref}
+        p={DEFAULT_PADDING}
+        radius={DEFAULT_RADIUS}
+        {...props}
+      >
+        {children}
+      </S.PanelWrapper>
+    );
+  },
+);
+export default Panel;
