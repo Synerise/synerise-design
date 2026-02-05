@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.6.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-date-range-picker@1.5.2...@synerise/ds-date-range-picker@1.6.0) (2026-02-05)
+
+### Features
+
+- **tooltip:** migrate to popover ([53ecd29](https://github.com/Synerise/synerise-design/commit/53ecd293fa31bdcfd921c6c5fd91db9c2c643eda))
+
 ## [1.5.2](https://github.com/Synerise/synerise-design/compare/@synerise/ds-date-range-picker@1.5.1...@synerise/ds-date-range-picker@1.5.2) (2026-02-02)
 
 **Note:** Version bump only for package @synerise/ds-date-range-picker

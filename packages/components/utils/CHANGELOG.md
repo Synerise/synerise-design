@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.6.0](https://github.com/synerise/synerise-design/compare/@synerise/ds-utils@1.5.4...@synerise/ds-utils@1.6.0) (2026-02-05)
+
+### Features
+
+- **tooltip:** migrate to popover ([53ecd29](https://github.com/synerise/synerise-design/commit/53ecd293fa31bdcfd921c6c5fd91db9c2c643eda))
+
 ## [1.5.4](https://github.com/synerise/synerise-design/compare/@synerise/ds-utils@1.5.3...@synerise/ds-utils@1.5.4) (2026-01-29)
 
 **Note:** Version bump only for package @synerise/ds-utils

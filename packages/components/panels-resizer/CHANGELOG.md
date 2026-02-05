@@ -3,6 +3,10 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.0.29](https://github.com/Synerise/synerise-design/compare/@synerise/ds-panels-resizer@1.0.28...@synerise/ds-panels-resizer@1.0.29) (2026-02-05)
+
+**Note:** Version bump only for package @synerise/ds-panels-resizer
+
 ## [1.0.28](https://github.com/Synerise/synerise-design/compare/@synerise/ds-panels-resizer@1.0.27...@synerise/ds-panels-resizer@1.0.28) (2026-02-02)
 
 **Note:** Version bump only for package @synerise/ds-panels-resizer

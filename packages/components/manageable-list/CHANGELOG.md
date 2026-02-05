@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.7.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-manageable-list@1.6.13...@synerise/ds-manageable-list@1.7.0) (2026-02-05)
+
+### Features
+
+- **tooltip:** migrate to popover ([53ecd29](https://github.com/Synerise/synerise-design/commit/53ecd293fa31bdcfd921c6c5fd91db9c2c643eda))
+
 ## [1.6.13](https://github.com/Synerise/synerise-design/compare/@synerise/ds-manageable-list@1.6.12...@synerise/ds-manageable-list@1.6.13) (2026-02-02)
 
 **Note:** Version bump only for package @synerise/ds-manageable-list

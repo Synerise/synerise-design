@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.2.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-description@1.1.21...@synerise/ds-description@1.2.0) (2026-02-05)
+
+### Features
+
+- **tooltip:** migrate to popover ([53ecd29](https://github.com/Synerise/synerise-design/commit/53ecd293fa31bdcfd921c6c5fd91db9c2c643eda))
+
 ## [1.1.21](https://github.com/Synerise/synerise-design/compare/@synerise/ds-description@1.1.20...@synerise/ds-description@1.1.21) (2026-02-02)
 
 **Note:** Version bump only for package @synerise/ds-description

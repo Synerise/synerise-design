@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.4.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-estimation@1.3.0...@synerise/ds-estimation@1.4.0) (2026-02-05)
+
+### Features
+
+- **tooltip:** migrate to popover ([53ecd29](https://github.com/Synerise/synerise-design/commit/53ecd293fa31bdcfd921c6c5fd91db9c2c643eda))
+
 # [1.3.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-estimation@1.2.2...@synerise/ds-estimation@1.3.0) (2026-02-02)
 
 ### Features
