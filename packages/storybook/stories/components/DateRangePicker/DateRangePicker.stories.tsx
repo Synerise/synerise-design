@@ -1,17 +1,26 @@
 import React, { useState } from 'react';
 import { injectIntl } from 'react-intl';
-import { Meta, StoryObj } from '@storybook/react-webpack5';
 import { fn } from 'storybook/test';
 import styled from 'styled-components';
 
-import DateRangePicker, { CONST, RawDateRangePicker, utils } from '@synerise/ds-date-range-picker';
-import type { DateRangePickerProps } from '@synerise/ds-date-range-picker';
+import { Meta, StoryObj } from '@storybook/react-webpack5';
 import Button from '@synerise/ds-button';
+import DateRangePicker, {
+  CONST,
+  RawDateRangePicker,
+  utils,
+} from '@synerise/ds-date-range-picker';
+import type { DateRangePickerProps } from '@synerise/ds-date-range-picker';
 import Tooltip from '@synerise/ds-tooltip';
 
-import { datePickerArgTypes, filterArgTypes, generalArgTypes, relativeArgTypes } from './argTypes';
-import { ABSOLUTE_RANGE, RANGE_WITH_START_DATE, TEXTS } from './constants';
 import { centeredPaddedWrapper } from '../../utils';
+import {
+  datePickerArgTypes,
+  filterArgTypes,
+  generalArgTypes,
+  relativeArgTypes,
+} from './argTypes';
+import { ABSOLUTE_RANGE, RANGE_WITH_START_DATE, TEXTS } from './constants';
 
 export default {
   title: 'Components/Pickers/DateRangePicker',
@@ -24,7 +33,14 @@ export default {
   render: ({ relativeModes, ...args }) => {
     const relativeFuture = relativeModes?.includes('FUTURE');
     const relativePast = relativeModes?.includes('PAST');
-    return <DateRangePicker {...args} relativeModes={relativeModes} relativeFuture={relativeFuture} relativePast={relativePast} />;
+    return (
+      <DateRangePicker
+        {...args}
+        relativeModes={relativeModes}
+        relativeFuture={relativeFuture}
+        relativePast={relativePast}
+      />
+    );
   },
   argTypes: {
     ...generalArgTypes,
@@ -42,7 +58,7 @@ export default {
     onFilterSave: fn(),
     onValueChange: fn(),
     onVisibleChange: fn(),
-  }
+  },
 } as Meta<DateRangePickerProps>;
 
 type Story = StoryObj<DateRangePickerProps>;
@@ -58,10 +74,10 @@ export const Default: Story = {
 
 export const WithoutPopover: Story = {
   parameters: {
-    date: new Date("March 10, 2021 10:00:00"),
+    date: new Date('March 10, 2021 10:00:00'),
     layout: 'centered',
   },
-  render: args => {
+  render: (args) => {
     const Picker = injectIntl(RawDateRangePicker);
     return <Picker texts={TEXTS} {...args} />;
   },
@@ -138,7 +154,7 @@ export const CustomTrigger: Story = {
   parameters: {
     layout: 'centered',
   },
-  render: args => {
+  render: (args) => {
     const [tooltipVisible, setTooltipVisible] = useState(false);
     const [dateRangeVisible, setDateRangeVisible] = useState(false);
 
@@ -148,8 +164,8 @@ export const CustomTrigger: Story = {
         popoverTrigger={
           <Tooltip
             trigger={['hover']}
-            onVisibleChange={setTooltipVisible}
-            visible={!dateRangeVisible && tooltipVisible}
+            onOpenChange={setTooltipVisible}
+            open={!dateRangeVisible && tooltipVisible}
             placement={'bottom'}
             description="Date range picker with custom trigger button and tooltip with description"
             type="largeSimple"
@@ -192,7 +208,7 @@ export const RelativeRangePresets: Story = {
             locale: date?.toLocaleString(),
           },
           null,
-          2
+          2,
         );
       } catch (e) {
         return e;
@@ -218,14 +234,20 @@ export const RelativeRangePresets: Story = {
                   <td title={JSON.stringify(e, null, 2)}>{e.key}</td>
                   <td className="opacity"></td>
                   <td>
-                    <div title={dateStr(dateRange?.from as Date)}>{dateRange?.from?.toLocaleString()}</div>
+                    <div title={dateStr(dateRange?.from as Date)}>
+                      {dateRange?.from?.toLocaleString()}
+                    </div>
                   </td>
                   <td>
-                    <div title={dateStr(dateRange?.to as Date)}>{dateRange?.to?.toLocaleString()}</div>
+                    <div title={dateStr(dateRange?.to as Date)}>
+                      {dateRange?.to?.toLocaleString()}
+                    </div>
                   </td>
                   <td className="opacity">
                     <div title={dateStr(dateRange?.to as Date)}>
-                      {utils.END_OF['MONTHS'](dateRange?.to as Date)?.toLocaleString()}
+                      {utils.END_OF['MONTHS'](
+                        dateRange?.to as Date,
+                      )?.toLocaleString()}
                     </div>
                   </td>
                 </tr>

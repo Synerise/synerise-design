@@ -48,6 +48,7 @@
     "@synerise/ds-input-number": "workspace:^",
     "@synerise/ds-list-item": "workspace:^",
     "@synerise/ds-manageable-list": "workspace:^",
+    "@synerise/ds-popover": "workspace:^",
     "@synerise/ds-scrollbar": "workspace:^",
     "@synerise/ds-select": "workspace:^",
     "@synerise/ds-slider": "workspace:^",
@@ -64,13 +65,12 @@
     "uuid": "^8.3.2"
   },
   "devDependencies": {
-    "@testing-library/user-event": "14",
+    "@testing-library/user-event": "^14",
     "@types/lodash": "^4.17.20",
     "vitest": "4"
   },
   "peerDependencies": {
     "@synerise/ds-core": "*",
-    "antd": "4.24.16",
     "react": ">=16.9.0 <= 18.3.1",
     "react-intl": ">=3.12.0 <= 6.8",
     "styled-components": "^5.3.3"

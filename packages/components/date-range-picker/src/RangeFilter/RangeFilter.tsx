@@ -1,8 +1,3 @@
-import {
-  type Translations,
-  type TranslationsPlaceholders,
-} from 'DateRangePicker.types';
-
 import { cloneDeep } from 'lodash';
 import React from 'react';
 import { injectIntl } from 'react-intl';
@@ -11,6 +6,10 @@ import { v4 as uuid } from 'uuid';
 import Button from '@synerise/ds-button';
 import ButtonGroup from '@synerise/ds-button-group';
 
+import {
+  type Translations,
+  type TranslationsPlaceholders,
+} from '../DateRangePicker.types';
 import { getDefaultTexts } from '../utils';
 import * as S from './RangeFilter.styles';
 import {

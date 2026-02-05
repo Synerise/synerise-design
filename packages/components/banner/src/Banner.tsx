@@ -10,6 +10,7 @@ import * as S from './Banner.styles';
 import type { BannerProps } from './Banner.types';
 import { BannerCounter, BannerHeader, BannerSlide } from './components';
 import { useCarousel, useTexts } from './hooks';
+import './style/index.less';
 
 const Banner = ({
   slides,

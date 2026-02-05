@@ -1,5 +1,6 @@
+import { screen, waitFor } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 import React from 'react';
-import { fireEvent, screen, waitFor } from '@testing-library/react';
 
 import { renderWithProvider } from '@synerise/ds-core';
 
@@ -11,27 +12,27 @@ describe('Tooltip', () => {
   const TEST_ID = 'inner-element';
 
   it('should render', async () => {
-   renderWithProvider(<Tooltip visible title={TOOLTIP_TITLE} />);
+   renderWithProvider(<Tooltip open title={TOOLTIP_TITLE}>test</Tooltip>);
 
     await waitFor(() => {
       expect(screen.getByText(TOOLTIP_TITLE)).toBeTruthy();
     });
   });
 
-  it('should appear on mouseOver', () => {
+  it('should appear on mouseOver', async () => {
     renderWithProvider(
-      <Tooltip title={TOOLTIP_TITLE} mouseEnterDelay={0} mouseLeaveDelay={0}>
+      <Tooltip title={TOOLTIP_TITLE}>
         <span data-testid={TEST_ID}>Tooltip will show on mouse enter.</span>
       </Tooltip>,
     );
 
     const INNER_SPAN = screen.getByTestId(TEST_ID);
-    fireEvent.mouseOver(INNER_SPAN);
-
-    expect(screen.getByText(TOOLTIP_TITLE)).toBeTruthy();
+    await userEvent.hover(INNER_SPAN);
+    
+    await waitFor(() => expect(screen.getByText(TOOLTIP_TITLE)).toBeTruthy());
   });
 
-  it('should appear on click', () => {
+  it('should appear on click', async () => {
     renderWithProvider(
       <Tooltip title={TOOLTIP_TITLE} trigger="click">
         <span data-testid={TEST_ID}>Tooltip will show on mouse enter.</span>
@@ -39,31 +40,29 @@ describe('Tooltip', () => {
     );
 
     const INNER_SPAN = screen.getByTestId(TEST_ID);
-    fireEvent.click(INNER_SPAN);
+    await userEvent.click(INNER_SPAN);
 
-    expect(screen.getByText(TOOLTIP_TITLE)).toBeTruthy();
+    await waitFor(() => expect(screen.getByText(TOOLTIP_TITLE)).toBeTruthy());
   });
 
-  it('should trigger onVisibleChange', () => {
-    const onVisibleChange = jest.fn();
+  it('should trigger onOpenChange', async () => {
+    const onOpenChange = jest.fn();
     renderWithProvider(
-      <Tooltip title={TOOLTIP_TITLE} onVisibleChange={onVisibleChange} mouseEnterDelay={0} mouseLeaveDelay={0}>
+      <Tooltip title={TOOLTIP_TITLE} onOpenChange={onOpenChange}>
         <span data-testid={TEST_ID}>Tooltip will show on mouse enter.</span>
       </Tooltip>,
     );
 
     const INNER_SPAN = screen.getByTestId(TEST_ID);
-    fireEvent.mouseOver(INNER_SPAN);
+    await userEvent.hover(INNER_SPAN);
 
-    expect(onVisibleChange).toHaveBeenCalled();
+    await waitFor(() => expect(onOpenChange).toHaveBeenCalled());
   });
 
-  it('should render custom tooltip body', () => {
+  it('should render custom tooltip body', async () => {
     const customTooltipTitlte = 'CUSTOM TOOLTIP TITLE';
     renderWithProvider(
       <Tooltip
-        mouseEnterDelay={0}
-        mouseLeaveDelay={0}
         render={(): React.ReactNode => (
           <span id="CUSTOM_TOOLTIP_COMPONENT">{customTooltipTitlte}</span>
         )}
@@ -72,8 +71,8 @@ describe('Tooltip', () => {
       </Tooltip>,
     );
 
-    fireEvent.mouseOver(screen.getByTestId(TEST_ID));
+    await userEvent.hover(screen.getByTestId(TEST_ID));
 
-    expect(document.getElementById('CUSTOM_TOOLTIP_COMPONENT')).toBeTruthy();
+    await waitFor(() => expect(document.getElementById('CUSTOM_TOOLTIP_COMPONENT')).toBeTruthy());
   });
 });

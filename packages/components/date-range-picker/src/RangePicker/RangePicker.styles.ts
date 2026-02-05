@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-import Button, { type ButtonProps } from '@synerise/ds-button';
+import Button, { type StyledButton } from '@synerise/ds-button';
 
 export const Sides = styled.div`
   display: grid;
@@ -44,6 +44,6 @@ export const FooterSeparator = styled.div`
   display: flex;
   flex: 1;
 `;
-export const DateTimeModeSwitch = styled(Button)<ButtonProps>`
+export const DateTimeModeSwitch: StyledButton = styled(Button)`
   margin: 4px 0;
 `;

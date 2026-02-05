@@ -26,7 +26,7 @@ const StarCell = ({
 
   return (
     <S.StarCell {...htmlAttributes}>
-      <Tooltip align={{ offset: [0, 8] }} title={starTooltip}>
+      <Tooltip title={starTooltip}>
         <S.StarredIcon active={active} component={icon} onClick={onClick} />
       </Tooltip>
       {children}

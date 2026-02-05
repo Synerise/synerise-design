@@ -11,3 +11,4 @@ export type {
   ManageableListItemProps,
 } from './ManageableList.types';
 export type { AddItemProps } from './AddItem/AddItem.types';
+export type { StyledContentItem } from './Item/ContentItem/ContentItem.types';

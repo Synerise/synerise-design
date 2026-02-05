@@ -1,8 +1,8 @@
-import { type PopoverProps } from 'antd/lib/popover';
 import { type ReactNode } from 'react';
 import { type IntlShape } from 'react-intl';
 
 import { type DateToFormatOptions } from '@synerise/ds-core';
+import { type LegacyPlacement, type PopoverProps } from '@synerise/ds-popover';
 
 import { type Props as FooterProps } from './Footer/Footer.types';
 import { type FilterDefinition } from './RangeFilter/RangeFilter.types';
@@ -20,29 +20,6 @@ import {
   type RelativeUnits,
 } from './date.types';
 
-export type CustomColorArrow =
-  | 'blue'
-  | 'grey'
-  | 'red'
-  | 'green'
-  | 'yellow'
-  | 'pink'
-  | 'mars'
-  | 'orange'
-  | 'fern'
-  | 'cyan'
-  | 'purple'
-  | 'violet';
-export type AdditionalMapper = {
-  topLeft: CustomColorArrow;
-  topRight: CustomColorArrow;
-  bottomLeft: CustomColorArrow;
-  bottomRight: CustomColorArrow;
-  leftTop: CustomColorArrow;
-  leftBottom: CustomColorArrow;
-  rightTop: CustomColorArrow;
-  rightBottom: CustomColorArrow;
-};
 export type DateRangePickerProps = {
   /**
    * @deprecated use `valueFormatOptions` instead
@@ -68,8 +45,9 @@ export type DateRangePickerProps = {
   onApply: (value: Partial<DateFilter> | undefined) => void;
   onVisibleChange?: (visible: boolean) => void;
   onFilterSave?: (filters: SavedFilter[]) => void;
-  popoverProps?: Partial<PopoverProps>;
+  popoverProps?: Partial<Omit<PopoverProps, 'placement'>>;
   popoverTrigger?: ReactNode;
+  placement?: LegacyPlacement;
   ranges?: DateRangePreset[];
   rangeUnits?: Array<RelativeUnits>;
   relativeFuture?: boolean;
@@ -89,7 +67,6 @@ export type DateRangePickerProps = {
    * transforms value, by default omits ALL_TIME props
    */
   valueTransformer?: (value: DateRange) => DateRange;
-  arrowColor?: AdditionalMapper;
   disableAbsoluteTimepickerInRelative?: boolean;
   rangePickerInputProps?: Omit<
     RangePickerInputProps,

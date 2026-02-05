@@ -32,7 +32,6 @@ const Item = ({ children, subMenu, id, name, className }: ItemProps) => {
   return (
     <S.ItemWrapper className={className}>
       <Tooltip
-        style={{ marginLeft: '5px' }}
         placement="right"
         title={isActive && menuContext.isOpened ? '' : name}
       >

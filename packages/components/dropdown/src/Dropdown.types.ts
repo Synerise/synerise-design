@@ -2,6 +2,7 @@ import { type CSSProperties, type HTMLAttributes, type ReactNode } from 'react';
 
 import { type OpenChangeReason } from '@floating-ui/react';
 import {
+  type LegacyDropdownPlacement,
   type PopoverOptions,
   type PopoverTriggerType,
 } from '@synerise/ds-popover';
@@ -23,15 +24,7 @@ export type DropdownProps = Omit<
  * bottom and bottomCenter are the same - legacy types
  * top and topCenter are the same - legacy types
  */
-export type DropdownPlacement =
-  | 'topLeft'
-  | 'top'
-  | 'topCenter'
-  | 'topRight'
-  | 'bottomLeft'
-  | 'bottom'
-  | 'bottomCenter'
-  | 'bottomRight';
+export type DropdownPlacement = LegacyDropdownPlacement;
 
 export type DropdownSize =
   | 'small'

@@ -124,8 +124,8 @@ const CompletedWithin = ({
       type="largeSimple"
       description={tooltip}
       trigger={['hover']}
-      onVisibleChange={setTooltipOpen}
-      visible={!settingsOpen && tooltipOpen}
+      onOpenChange={setTooltipOpen}
+      open={!settingsOpen && tooltipOpen}
     >
       <S.TriggerButton
         data-testid="completed-within-trigger"

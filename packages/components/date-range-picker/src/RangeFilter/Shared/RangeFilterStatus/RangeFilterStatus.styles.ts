@@ -1,10 +1,11 @@
 import styled from 'styled-components';
 
-import Button from '@synerise/ds-button';
+import { Creator } from '@synerise/ds-button';
 import { ButtonLabel } from '@synerise/ds-button/dist/Button.styles';
+import { type StyledContentItem } from '@synerise/ds-manageable-list';
 import DSContentItem from '@synerise/ds-manageable-list/dist/Item/ContentItem/ContentItem';
 
-export const ContentItem = styled(DSContentItem)`
+export const ContentItem: StyledContentItem = styled(DSContentItem)`
   margin-bottom: 0;
 `;
 
@@ -25,7 +26,7 @@ export const SuffixText = styled.span`
   font-weight: 500;
   margin-right: 16px;
 `;
-export const CreatorButton = styled(Button.Creator)`
+export const CreatorButton = styled(Creator)`
   ${ButtonLabel} {
     justify-content: flex-start;
   }

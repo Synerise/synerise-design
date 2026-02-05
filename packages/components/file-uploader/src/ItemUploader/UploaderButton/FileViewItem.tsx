@@ -42,7 +42,7 @@ const FileViewItem = ({
 
   return (
     <S.FileViewContainer>
-      <Tooltip overlayStyle={{ maxWidth: '350px' }} title={file.name}>
+      <Tooltip title={file.name}>
         <S.FileView
           progress={hasProgress}
           disabled={disabled}

@@ -46,6 +46,7 @@
     "@synerise/ds-condition": "workspace:^",
     "@synerise/ds-confirmation": "workspace:^",
     "@synerise/ds-context-selector": "workspace:^",
+    "@synerise/ds-copy-icon": "workspace:^",
     "@synerise/ds-core": "workspace:^",
     "@synerise/ds-cruds": "workspace:^",
     "@synerise/ds-data-format": "workspace:^",

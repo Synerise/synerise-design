@@ -50,10 +50,8 @@ const DateRangeInput = ({
       relativeFuture={false}
       relativeModes={['PAST']}
       showRelativePicker
-      popoverProps={{
-        placement: 'bottomLeft',
-        onVisibleChange: handleVisibleChange,
-      }}
+      placement="bottomLeft"
+      onVisibleChange={handleVisibleChange}
       showNowButton={false}
       filterRangeDisplayMode="slider"
       filterValueSelectionModes={['Range']}

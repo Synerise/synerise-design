@@ -60,17 +60,14 @@ const FileViewAvatar = ({
             pressed={pressed}
             data-testid="file-view-avatar-remove"
           >
-            <Tooltip
-              align={{ offset: [0, 8] }}
-              title={finalTexts.removeTooltip}
-            >
+            <Tooltip title={finalTexts.removeTooltip}>
               <Icon component={<Close3M />} size={24} />
             </Tooltip>
           </S.RemoveWrapper>
         )}
       </S.AvatarContainer>
       <S.FileViewContainer>
-        <Tooltip overlayStyle={{ maxWidth: '350px' }} title={file.name}>
+        <Tooltip title={file.name}>
           <S.FileView
             progress={hasProgress}
             disabled={disabled}

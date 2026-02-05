@@ -1,9 +1,8 @@
 import React from 'react';
-
-import type { PopoverProps } from 'antd/lib/popover';
 import { renderWithProvider, sleep } from '@synerise/ds-core';
-import { waitFor, within, screen, act, fireEvent } from '@testing-library/react';
+import { waitFor, within, screen, fireEvent } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
+
 import {
   getDefaultCustomRange,
 } from './RelativeRangePicker/utils';
@@ -444,30 +443,6 @@ describe('DateRangePicker', () => {
     await userEvent.click(findDayCell(14));
     await waitFor(() => expect(valueWrapper.textContent).toBe('2.10.2018 – 14.10.2018'));
   });
-  it('should display custom color for arrow popup', async () => {
-    const popoverRef = React.createRef<Partial<PopoverProps> & { getPopupDomNode: () => HTMLElement }>();
-    renderWithProvider(
-      <DateRangePicker
-        onApply={() => { }}
-        showTime
-        relativeFuture
-        forceAbsolute
-        showRelativePicker
-        texts={texts}
-        popoverProps={{ placement: 'topLeft', mouseEnterDelay: 0, ref: popoverRef } as Partial<PopoverProps>}
-        // @ts-ignore
-        arrowColor={{ topLeft: 'grey' }}
-        forceAdjacentMonths={false}
-        relativeModes={RELATIVE_MODES as RelativeMode[]}
-      />
-    );
-    const element = screen.getByText(texts.startDatePlaceholder);
-    await userEvent.click(element);
-    await waitFor(() => expect(popoverRef.current).not.toBeNull());
-    const popoverWrapper = popoverRef.current!.getPopupDomNode() as HTMLElement;
-    const arrowElement = popoverWrapper.querySelector('.ant-popover-content > .ant-popover-arrow');
-    expect(arrowElement).toHaveStyle(`background-color: ${(props): string => props.theme.palette['grey-050']}`);
-  });
   it.todo('date-fns format function wrapper skips execution for invalid date');
   it.todo('handleRangeChange does not propagate invalid date range');
   it.todo('getSideState is able to parse Invalid Date (for months)');
@@ -824,10 +799,8 @@ describe('DateRangePicker', () => {
     if (!clearIcon) {
       fail('No "clear" icon in dom')
     }
-    
     fireEvent.click(clearIcon);
     
-
     expect(inputs[0]).toHaveValue(DEFAULT_RANGE_START.substring(0, 8));
 
     fireEvent.click(inputs[1]);
@@ -1118,6 +1091,7 @@ describe('DateRangePicker', () => {
     const onApply = vi.fn();
     const getLastCallParams = () => onApply.mock.calls[onApply.mock.calls.length - 1][0];
     const expectedLength = ABSOLUTE_VALUE_WITH_MONTHLY_FILTER.filter.rules.length;
+    
     renderWithProvider(
       <RawDateRangePicker
         onApply={onApply}

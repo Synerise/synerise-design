@@ -1,5 +1,5 @@
 import Avatar from 'antd/lib/avatar';
-import React from 'react';
+import React, { forwardRef } from 'react';
 import styled, { css } from 'styled-components';
 
 import { type ThemeProps } from '@synerise/ds-core';
@@ -22,14 +22,14 @@ export const TooltipGroup = styled.div`
 `;
 
 const applyBgColors = (
-  props: ThemeProps & { backgroundColor: string; backgroundColorHue: string },
+  props: ThemeProps & { backgroundColor?: string; backgroundColorHue?: string },
 ) => css`
   background: ${props.theme.palette[
     `${props.backgroundColor}-${props.backgroundColorHue ? props.backgroundColorHue : '400'}`
   ]};
 `;
 
-const applyDisabledStyles = (props: { disabled: boolean }) =>
+const applyDisabledStyles = (props: { disabled?: boolean }) =>
   props.disabled &&
   css`
     opacity: 0.4;
@@ -70,16 +70,32 @@ const applyFontSize = (props: AvatarProps) => {
   `;
 };
 
-export default styled(
-  ({
-    backgroundColorHue,
-    backgroundColor,
-    onClick,
-    hasStatus,
-    hasTooltip,
-    ...rest
-  }) => <Avatar onClick={onClick} {...rest} />,
-)`
+type ExtraAvatarProps = {
+  hasTooltip?: boolean;
+};
+
+export const AntdAvatar = styled(
+  forwardRef<HTMLButtonElement, AvatarProps & ExtraAvatarProps>(
+    (
+      {
+        backgroundColorHue,
+        backgroundColor,
+
+        hasStatus,
+        hasTooltip,
+        size,
+        ...rest
+      },
+      ref,
+    ) => (
+      <Avatar
+        ref={ref}
+        size={size === 'medium' || size === 'extraLarge' ? 'default' : size}
+        {...rest}
+      />
+    ),
+  ),
+)<ExtraAvatarProps>`
   && {
     ${(props) => applyBgColors(props)};
     ${(props) => applyDisabledStyles(props)};
@@ -151,14 +167,14 @@ export default styled(
           `
         : false}
 
-    & + .ant-badge-dot {
+    & ~ .ant-badge-dot {
       display: none;
     }
 
     ${(props) =>
       props.hasStatus &&
       css`
-        & + .ant-badge-dot {
+        & ~ .ant-badge-dot {
           display: flex;
           border: 2px solid ${props.theme.palette.white};
           box-sizing: border-box;
@@ -179,14 +195,6 @@ export default styled(
         .ant-avatar-string {
           line-height: 40px;
         }
-
-        ${props.icon &&
-        css`
-          &.ant-avatar-icon {
-            ${macro.xlAvatarIcon};
-            ${macro.flexCentered}
-          }
-        `};
       `};
 
     ${(props) =>
@@ -200,14 +208,6 @@ export default styled(
           line-height: 84px;
           font-size: 18px;
         }
-
-        ${props.icon &&
-        css`
-          &.ant-avatar-icon {
-            ${macro.xlAvatarIcon};
-            ${macro.flexCentered}
-          }
-        `};
       `};
 
     ${(props) =>
@@ -222,14 +222,6 @@ export default styled(
           line-height: 120px;
           ${macro.xlAvatar};
         }
-
-        ${props.icon &&
-        css`
-          &.ant-avatar-icon {
-            ${macro.xlAvatarIcon};
-            ${macro.flexCentered}
-          }
-        `};
       `};
   }
 `;

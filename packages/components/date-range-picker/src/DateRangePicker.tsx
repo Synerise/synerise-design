@@ -1,165 +1,167 @@
-import { Popover } from 'antd';
 import { isEqual } from 'lodash';
 import React, {
+  forwardRef,
   useCallback,
   useEffect,
   useMemo,
-  useRef,
   useState,
 } from 'react';
 import { useIntl } from 'react-intl';
 
+import { Popover, PopoverContent, getPlacement } from '@synerise/ds-popover';
+
 import * as S from './DateRangePicker.styles';
 import { type DateRangePickerProps } from './DateRangePicker.types';
 import RangePickerInput from './RangePickerInput/RangePickerInput';
-import RawDateRangePicker from './RawDateRangePicker';
+import { RawDateRangePicker } from './RawDateRangePicker';
+import {
+  POPOVER_FLIP_CONFIG,
+  POPOVER_OFFSET_CONFIG,
+  POPOVER_SHIFT_CONFIG,
+} from './constants';
 import { type DateFilter, type DateRange } from './date.types';
-import './style/index.less';
 import { getDefaultTexts } from './utils';
 
-const DateRangePicker = (props: DateRangePickerProps) => {
-  const {
-    value,
-    defaultValue,
-    onApply,
-    showTime,
-    texts,
-    popoverTrigger,
-    forceAdjacentMonths,
-    disableDefaultTexts,
-    arrowColor,
-    valueFormatOptions,
-    onVisibleChange,
-    popoverProps = {},
-    rangePickerInputProps = {},
-    renderPopoverTrigger = () => undefined,
-    readOnly = false,
-    disabled,
-    getPopupContainer,
-  } = props;
-  const intl = useIntl();
-  const selectedRange = value || defaultValue;
-  const [popupVisible, setPopupVisible] = useState(false);
-  const [selectedDate, setSelectedDate] = useState(selectedRange);
-  const [inputActive, setInputActive] = useState(false);
-  const [isTopAligned, setIsTopAligned] = useState(true);
-  const wrapperRef = useRef<HTMLDivElement>(null);
+const DateRangePicker = forwardRef<HTMLDivElement, DateRangePickerProps>(
+  (props, forwardedRef) => {
+    const {
+      value,
+      defaultValue,
+      onApply,
+      showTime,
+      texts,
+      popoverTrigger,
+      forceAdjacentMonths,
+      disableDefaultTexts,
+      placement = 'top',
+      valueFormatOptions,
+      onVisibleChange,
+      popoverProps = {},
+      rangePickerInputProps = {},
+      renderPopoverTrigger = () => undefined,
+      readOnly = false,
+      disabled,
+      getPopupContainer,
+    } = props;
+    const intl = useIntl();
+    const selectedRange = value || defaultValue;
+    const [popupVisible, setPopupVisible] = useState(false);
+    const [selectedDate, setSelectedDate] = useState(selectedRange);
+    const [inputActive, setInputActive] = useState(false);
 
-  const allTexts = useMemo(
-    () => getDefaultTexts(intl, disableDefaultTexts, texts),
-    [texts, disableDefaultTexts, intl],
-  );
-
-  useEffect(() => {
-    if (!isEqual(selectedRange, selectedDate)) {
-      setSelectedDate(selectedRange);
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [selectedRange]);
-
-  const checkContentAlignement = useCallback(() => {
-    if (wrapperRef.current) {
-      const popoverDomElement = wrapperRef.current.querySelector(
-        '.ds-date-range-popover',
-      );
-
-      if (popoverDomElement) {
-        const classNames = Array.from(popoverDomElement.classList);
-        const placementClassName = classNames.find((className) =>
-          className.startsWith('ant-popover-placement-'),
-        );
-        const placement =
-          placementClassName &&
-          placementClassName.split('-').pop()?.toLocaleLowerCase();
-        const topAligned = placement?.indexOf('bottom') === -1;
-        setIsTopAligned(topAligned);
-      }
-    }
-  }, []);
-
-  useEffect(() => {
-    checkContentAlignement();
-  }, [checkContentAlignement]);
-
-  const onApplyCallback = useCallback(
-    (range: Partial<DateFilter> | undefined) => {
-      const finalDateRange =
-        range === undefined && defaultValue !== undefined
-          ? defaultValue
-          : range;
-      onApply && onApply(finalDateRange);
-      setSelectedDate(finalDateRange as DateRange);
-      setPopupVisible(false);
-      setInputActive(false);
-    },
-    [defaultValue, onApply],
-  );
-
-  const conditionalVisibilityProps = {
-    ...(popupVisible === false && { visible: false }),
-  };
-
-  const handleRangePickerInputClick = readOnly
-    ? undefined
-    : () => setPopupVisible(true);
-  const hasCustomTrigger = !!popoverTrigger;
-  const triggerElement = popoverTrigger ||
-    renderPopoverTrigger({ setPopupVisible }) || (
-      <RangePickerInput
-        onClick={handleRangePickerInputClick}
-        value={selectedDate}
-        showTime={showTime}
-        texts={allTexts}
-        valueFormatOptions={valueFormatOptions}
-        onChange={onApplyCallback}
-        active={inputActive}
-        {...rangePickerInputProps}
-        readOnly={readOnly}
-        disabled={disabled}
-      />
+    const floatingPlacement = getPlacement(placement);
+    const allTexts = useMemo(
+      () => getDefaultTexts(intl, disableDefaultTexts, texts),
+      [texts, disableDefaultTexts, intl],
     );
 
-  if (readOnly || disabled) {
-    return <>{triggerElement}</>;
-  }
+    useEffect(() => {
+      if (!isEqual(selectedRange, selectedDate)) {
+        setSelectedDate(selectedRange);
+      }
+      // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [selectedRange]);
 
-  return (
-    <S.PickerWrapper ref={wrapperRef} arrowColor={arrowColor}>
-      <Popover
-        content={
-          <RawDateRangePicker
-            {...props}
-            showTime={showTime}
-            onApply={onApplyCallback}
-            value={selectedDate}
-            texts={allTexts}
-            forceAdjacentMonths={forceAdjacentMonths}
-            alignContentToTop={isTopAligned}
-          />
+    const onApplyCallback = useCallback(
+      (range: Partial<DateFilter> | undefined) => {
+        const finalDateRange =
+          range === undefined && defaultValue !== undefined
+            ? defaultValue
+            : range;
+        onApply && onApply(finalDateRange);
+        setSelectedDate(finalDateRange as DateRange);
+        setPopupVisible(false);
+        setInputActive(false);
+      },
+      [defaultValue, onApply],
+    );
+
+    const conditionalVisibilityProps = {
+      ...(popupVisible !== undefined && { open: popupVisible }),
+    };
+
+    const togglePopup = useCallback(() => {
+      setPopupVisible(!popupVisible);
+      onVisibleChange && onVisibleChange(!popupVisible);
+    }, [popupVisible, onVisibleChange]);
+
+    const triggerElement = popoverTrigger ||
+      renderPopoverTrigger({ setPopupVisible }) || (
+        <RangePickerInput
+          onClick={readOnly ? undefined : togglePopup}
+          value={selectedDate}
+          showTime={showTime}
+          texts={allTexts}
+          valueFormatOptions={valueFormatOptions}
+          onChange={onApplyCallback}
+          active={inputActive}
+          {...rangePickerInputProps}
+          readOnly={readOnly}
+          disabled={disabled}
+        />
+      );
+    const hasCustomTrigger = Boolean(popoverTrigger || renderPopoverTrigger);
+    const handleTriggerClick = hasCustomTrigger
+      ? () => {
+          if (hasCustomTrigger) {
+            togglePopup();
+          }
         }
+      : undefined;
+
+    if (readOnly || disabled) {
+      return (
+        <S.PickerWrapper ref={forwardedRef}>{triggerElement}</S.PickerWrapper>
+      );
+    }
+
+    return (
+      <Popover
         getPopupContainer={
-          getPopupContainer !== undefined
-            ? (node) => getPopupContainer(node)
-            : (node): HTMLElement =>
-                node.parentElement !== null ? node.parentElement : document.body
+          getPopupContainer ||
+          ((node): HTMLElement =>
+            node.parentElement !== null ? node.parentElement : document.body)
         }
         trigger="click"
-        overlayStyle={{ maxWidth: '700px', fontWeight: 'unset' }}
-        overlayClassName="ds-date-range-popover"
-        onVisibleChange={(visibility: boolean) => {
-          visibility && checkContentAlignement();
-          visibility && hasCustomTrigger && setPopupVisible(true);
-          setInputActive(visibility);
-          onVisibleChange && onVisibleChange(visibility);
+        onOpenChange={(openState: boolean) => {
+          setPopupVisible(openState);
+          setInputActive(openState);
+          onVisibleChange && onVisibleChange(openState);
         }}
-        {...popoverProps}
+        placement={floatingPlacement}
+        testId="date-range-picker"
+        componentId="date-range-picker"
+        returnFocus={false}
+        offsetConfig={POPOVER_OFFSET_CONFIG}
+        flipConfig={POPOVER_FLIP_CONFIG}
+        shiftConfig={POPOVER_SHIFT_CONFIG}
+        autoUpdate={true}
         {...conditionalVisibilityProps}
+        {...popoverProps}
       >
-        {triggerElement}
+        <PopoverContent>
+          <S.DateRangePickerOverlay
+            className="ds-date-range-popover"
+            data-testid="ds-date-range-picker-overlay"
+          >
+            <RawDateRangePicker
+              {...props}
+              showTime={showTime}
+              onApply={onApplyCallback}
+              value={selectedDate}
+              texts={allTexts}
+              forceAdjacentMonths={forceAdjacentMonths}
+            />
+          </S.DateRangePickerOverlay>
+        </PopoverContent>
+        <S.PickerTrigger asChild={false}>
+          <S.PickerWrapper ref={forwardedRef} onClick={handleTriggerClick}>
+            {triggerElement}
+          </S.PickerWrapper>
+        </S.PickerTrigger>
       </Popover>
-    </S.PickerWrapper>
-  );
-};
+    );
+  },
+);
 
 export default DateRangePicker;
-export { RawDateRangePicker };

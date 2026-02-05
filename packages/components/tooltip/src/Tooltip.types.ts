@@ -1,9 +1,27 @@
-import { type TooltipPropsWithTitle } from 'antd/lib/tooltip';
-import { type ReactNode } from 'react';
+import { type CSSProperties, type ReactNode } from 'react';
+
+import {
+  type LegacyTooltipPlacement,
+  type PopoverOptions,
+  type PopoverTriggerType,
+} from '@synerise/ds-popover';
+
+export type TooltipContentProps = Pick<
+  TooltipProps,
+  | 'title'
+  | 'description'
+  | 'image'
+  | 'icon'
+  | 'shortCuts'
+  | 'button'
+  | 'status'
+  | 'overlayStyle'
+> &
+  Required<Pick<TooltipProps, 'type'>>;
 
 export type TooltipTypes = 'default' | 'largeSimple' | 'largeScrollable';
 
-export type TooltipExtendedProps = {
+export type TooltipProps = {
   type?: TooltipTypes;
   icon?: ReactNode;
   status?: ReactNode;
@@ -14,10 +32,16 @@ export type TooltipExtendedProps = {
   timeToHideAfterClick?: number;
   offset?: 'default' | 'small';
   button?: ReactNode;
+  children?: ReactNode;
   render?: () => ReactNode;
   disabled?: boolean;
-};
-export default TooltipExtendedProps;
+  placement?: LegacyTooltipPlacement;
+  trigger?: PopoverTriggerType | PopoverTriggerType[];
+  zIndex?: number;
+  overlayStyle?: CSSProperties;
+  popoverProps?: Omit<PopoverOptions, 'zIndex' | 'getPopupContainer'>;
+  getPopupContainer?: PopoverOptions['getPopupContainer'];
 
-export type TooltipProps = Omit<TooltipPropsWithTitle, 'title'> &
-  TooltipExtendedProps;
+  open?: boolean;
+  onOpenChange?: (newOpen: boolean) => void;
+};

@@ -29,13 +29,13 @@ const Copy = ({
     [texts, formatMessage],
   );
 
-  const [tooltipVisible, setTooltipVisible] = useState<boolean>(false);
+  const [tooltipOpen, setTooltipOpen] = useState<boolean>(false);
   const [tooltipTitle, setTooltipTitle] = useState(textsObj.copyTooltip);
 
   const handleCopy = useCallback(() => {
     if (copyValue && copy(copyValue)) {
       setTooltipTitle(textsObj.copiedTooltip);
-      setTooltipVisible(true);
+      setTooltipOpen(true);
     }
   }, [copyValue, setTooltipTitle, textsObj.copiedTooltip]);
 
@@ -43,23 +43,23 @@ const Copy = ({
     (event: MouseEvent<HTMLDivElement>) => {
       event.stopPropagation();
       setTooltipTitle(textsObj.copyTooltip);
-      setTooltipVisible(true);
+      setTooltipOpen(true);
       onMouseEnter && onMouseEnter(event);
     },
-    [setTooltipVisible, textsObj, onMouseEnter],
+    [setTooltipOpen, textsObj, onMouseEnter],
   );
 
   const handleMouseLeave = useCallback(
     (event: MouseEvent<HTMLDivElement>) => {
       event.stopPropagation();
-      setTooltipVisible(false);
+      setTooltipOpen(false);
       onMouseLeave && onMouseLeave(event);
     },
-    [setTooltipVisible, onMouseLeave],
+    [setTooltipOpen, onMouseLeave],
   );
 
   return (
-    <Tooltip title={tooltipTitle} visible={tooltipVisible}>
+    <Tooltip title={tooltipTitle} open={tooltipOpen}>
       <S.Copyable
         className={`ds-description-copy ${className}`}
         onClick={handleCopy}

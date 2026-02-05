@@ -15,5 +15,9 @@ export function getClosest(
 }
 
 export function getPopupContainer(trigger: HTMLElement | null): HTMLElement {
-  return getClosest(trigger, '[data-popup-container]') || document.body;
+  return (
+    (trigger instanceof HTMLElement &&
+      getClosest(trigger, '[data-popup-container]')) ||
+    document.body
+  );
 }

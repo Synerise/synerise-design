@@ -16,6 +16,7 @@ const CopyIcon = ({
   icon,
   placement,
   onCopy,
+  onClick,
   ...rest
 }: CopyIconProps) => {
   const { formatMessage } = useIntl();
@@ -49,11 +50,9 @@ const CopyIcon = ({
 
         onCopy && onCopy();
       }
-      if (rest?.onClick) {
-        rest.onClick(event);
-      }
+      onClick?.(event);
     },
-    [copyValue, textsObj.copiedTooltip, onCopy, rest],
+    [copyValue, onClick, textsObj.copiedTooltip, textsObj.copyTooltip, onCopy],
   );
 
   const handleMouseEnter = useCallback(
@@ -82,8 +81,8 @@ const CopyIcon = ({
         data-testid="ds-copy-icon"
         onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave}
-        {...rest}
         onClick={handleCopy}
+        {...rest}
       >
         {icon || <Icon component={<CopyClipboardM />} size={24} />}
       </S.CopyIcon>
