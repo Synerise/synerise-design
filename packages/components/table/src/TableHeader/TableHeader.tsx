@@ -140,7 +140,6 @@ const TableHeader = <T extends object>({
                     description: <>{title}</>,
                     type: 'largeSimple',
                     offset: 'small',
-                    autoAdjustOverflow: true,
                   },
                 }}
               >

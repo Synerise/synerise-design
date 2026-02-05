@@ -7,8 +7,6 @@ import { InputGroupItem } from '@synerise/ds-input/dist/InputGroup.styles';
 import { type Props as InputGroupProps } from '@synerise/ds-input/dist/InputGroup.types';
 import ListItem, { type StyledListItem } from '@synerise/ds-list-item';
 
-// import 'antd/lib/input/style/index.css' // this style might be in imported scopes as we use input; not needed here, but worth to mention this
-
 export const Container = styled.div``;
 
 export const Header = styled.div`

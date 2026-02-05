@@ -149,8 +149,8 @@ const SearchInput = ({
               </S.Filter>
             )}
           </S.LeftSide>
-          <S.SearchInner hasValue={!!value} alwaysHighlight={alwaysHighlight}>
-            <Tooltip {...searchTooltipProps}>
+          <Tooltip {...searchTooltipProps}>
+            <S.SearchInner hasValue={!!value} alwaysHighlight={alwaysHighlight}>
               <Input
                 placeholder={placeholder}
                 ref={inputRef}
@@ -164,8 +164,8 @@ const SearchInput = ({
                 disabled={disableInput}
                 {...inputProps}
               />
-            </Tooltip>
-          </S.SearchInner>
+            </S.SearchInner>
+          </Tooltip>
         </S.SearchInputContent>
       )}
       <SearchButton

@@ -3,7 +3,7 @@ import React, { type ReactElement, cloneElement } from 'react';
 import '@synerise/ds-core/dist/js/style';
 import Tooltip from '@synerise/ds-tooltip';
 
-import AntdAvatar from './Avatar.styles';
+import * as S from './Avatar.styles';
 import { type AvatarProps } from './Avatar.types';
 import './style/index.less';
 import { getTooltipProps, isIconComponent } from './utils';
@@ -24,7 +24,7 @@ const Avatar = ({
   hasStatus = false,
   iconComponent,
   iconScale = true,
-  tooltip = {},
+  tooltip = false,
   size = DEFAULT_SIZE,
   src,
   ...antdProps
@@ -52,16 +52,11 @@ const Avatar = ({
     !!Object.values(tooltipProps).reduce((prev, next) => next || prev);
 
   return (
-    <Tooltip
-      type={type}
-      mouseLeaveDelay={0}
-      mouseEnterDelay={0}
-      {...tooltipProps}
-    >
-      <AntdAvatar
+    <Tooltip type={type} {...tooltipProps}>
+      <S.AntdAvatar
         className="ds-avatar"
         hasStatus={hasStatus}
-        hasTooltip={hasTooltip}
+        hasTooltip={!!hasTooltip}
         backgroundColor={backgroundColor}
         backgroundColorHue={backgroundColorHue}
         disabled={disabled}
@@ -70,7 +65,7 @@ const Avatar = ({
         {...antdProps}
       >
         {iconElement || children}
-      </AntdAvatar>
+      </S.AntdAvatar>
     </Tooltip>
   );
 };

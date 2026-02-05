@@ -8,13 +8,13 @@ import Tooltip from '@synerise/ds-tooltip';
 import { type CopyButtonProps } from '../Array.types';
 
 export const CopyButton = ({ copyValue, texts }: CopyButtonProps) => {
-  const [tooltipVisible, setTooltipVisible] = useState(false);
+  const [tooltipOpen, setTooltipOpen] = useState(false);
   const [tooltipTitle, setTooltipTitle] = useState(texts.array.copyTooltip);
 
   const handleCopy = useCallback(() => {
     if (copyValue && copy(copyValue)) {
       setTooltipTitle(texts.array.copiedTooltip);
-      setTooltipVisible(true);
+      setTooltipOpen(true);
     }
   }, [copyValue, setTooltipTitle, texts.array.copiedTooltip]);
 
@@ -22,20 +22,20 @@ export const CopyButton = ({ copyValue, texts }: CopyButtonProps) => {
     (event: MouseEvent<HTMLDivElement>) => {
       event.stopPropagation();
       setTooltipTitle(texts.array.copyTooltip);
-      setTooltipVisible(true);
+      setTooltipOpen(true);
     },
-    [setTooltipVisible, texts.array],
+    [setTooltipOpen, texts.array],
   );
 
   const handleMouseLeave = useCallback(
     (event: MouseEvent<HTMLDivElement>) => {
       event.stopPropagation();
-      setTooltipVisible(false);
+      setTooltipOpen(false);
     },
-    [setTooltipVisible],
+    [setTooltipOpen],
   );
   return (
-    <Tooltip title={tooltipTitle} visible={tooltipVisible}>
+    <Tooltip title={tooltipTitle} open={tooltipOpen}>
       <Button
         onClick={handleCopy}
         type="ghost"

@@ -13,14 +13,14 @@ const CopyableCell = ({
   tooltipTimeout = DEFAULT_TIMEOUT,
   ...htmlAttributes
 }: CopyableCellProps) => {
-  const [tooltipVisible, setTooltipVisible] = useState(false);
+  const [tooltipOpen, setTooltipOpen] = useState(false);
 
   useEffect(() => {
     const timer = setTimeout(() => {
-      setTooltipVisible(false);
+      setTooltipOpen(false);
     }, tooltipTimeout);
     return (): void => clearTimeout(timer);
-  }, [tooltipVisible, setTooltipVisible, tooltipTimeout]);
+  }, [tooltipOpen, setTooltipOpen, tooltipTimeout]);
 
   return (
     <S.Copyable {...htmlAttributes}>

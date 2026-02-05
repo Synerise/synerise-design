@@ -1,4 +1,10 @@
-import { type HTMLAttributes, type ReactNode, type ReactText } from 'react';
+import {
+  type ComponentType,
+  type HTMLAttributes,
+  type ReactNode,
+  type ReactText,
+} from 'react';
+import { type StyledComponent } from 'styled-components';
 
 import type { WithHTMLAttributes } from '@synerise/ds-utils';
 
@@ -45,3 +51,6 @@ export type ContentItemProps = WithHTMLAttributes<
   HTMLDivElement,
   BaseContentItemProps
 >;
+
+export type StyledContentItem<CustomProps extends object = object> =
+  StyledComponent<ComponentType<ContentItemProps>, object, CustomProps, never>;

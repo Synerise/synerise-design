@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { renderWithProvider } from '@synerise/ds-core';
-import { fireEvent, screen } from '@testing-library/react';
+import { fireEvent, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 
 import { Input } from './index';
@@ -139,7 +139,7 @@ describe('Input', () => {
       '[??] proper styles (;) in autosize obj parser (there was a bug in styled components with css`` macro)',
     );
 
-    it('input does not loose focus after input event (when in e.g. autosize mode) - all rendering helpers renderInputComponent get cached (memoized)', () => {
+    it('input does not loose focus after input event (when in e.g. autosize mode) - all rendering helpers renderInputComponent get cached (memoized)', async () => {
       const onBlur = jest.fn();
       const onInput = jest.fn();
       renderWithProvider(
@@ -156,7 +156,7 @@ describe('Input', () => {
         PLACEHOLDER,
       ) as HTMLInputElement;
       expect(input).toBeInTheDocument();
-      userEvent.type(input, INPUT_VALUE);
+      await userEvent.type(input, INPUT_VALUE);
 
       expect(onBlur).not.toBeCalled();
       expect(onInput).toBeCalled();
@@ -228,8 +228,8 @@ describe('Input', () => {
       const trigger = screen.getByTestId('ds-input-icon-expand');
       expect(trigger).toBeInTheDocument();
 
-      fireEvent.mouseOver(trigger);
-      expect(await screen.findByText(TOOLTIP)).toBeInTheDocument();
+      await userEvent.hover(trigger);
+      await waitFor(async() => expect(await screen.findByText(TOOLTIP)).toBeInTheDocument());
     });
   });
   // autosize doesn't support masked input yet

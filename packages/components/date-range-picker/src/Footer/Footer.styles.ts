@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-import Button from '@synerise/ds-button';
+import Button, { type StyledButton } from '@synerise/ds-button';
 
 export const Container = styled.div`
   display: flex;
@@ -18,7 +18,7 @@ export const Actions = styled.div`
     margin-right: 8px;
   }
 `;
-export const Range = styled(Button)`
+export const Range: StyledButton = styled(Button)`
   && {
     margin: 4px 0;
     &:not(:last-child) {
@@ -33,11 +33,11 @@ export const ActionsPlaceholder = styled.div`
 export const ChosenRange = styled.div`
   font-weight: 500;
   line-height: 24px;
-  color: ${(props): string => props.theme.palette['grey-800']};
+  color: ${(props) => props.theme.palette['grey-800']};
 
   .ds-icon svg {
     margin-top: -2px;
-    fill: ${(props): string => props.theme.palette['grey-400']};
+    fill: ${(props) => props.theme.palette['grey-400']};
   }
 `;
 /**

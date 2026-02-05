@@ -31,7 +31,7 @@ export type ColorHue =
   | '050';
 export type Size = 'small' | 'medium' | 'large' | 'extraLarge' | undefined;
 
-export type TooltipObject = TooltipProps & {
+export type TooltipObject = Omit<TooltipProps, 'children'> & {
   // Backwards compatibility:
   name?: ReactNode;
   email?: ReactNode;

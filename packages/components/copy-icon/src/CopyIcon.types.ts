@@ -1,5 +1,6 @@
 import { type ReactNode } from 'react';
 
+import { type TooltipProps } from '@synerise/ds-tooltip';
 import { type WithHTMLAttributes } from '@synerise/ds-utils';
 
 export type CopyTooltipTexts = {
@@ -7,27 +8,13 @@ export type CopyTooltipTexts = {
   copiedTooltip: ReactNode;
 };
 
-export type TooltipPlacement =
-  | 'top'
-  | 'left'
-  | 'right'
-  | 'bottom'
-  | 'topLeft'
-  | 'topRight'
-  | 'bottomLeft'
-  | 'bottomRight'
-  | 'leftTop'
-  | 'leftBottom'
-  | 'rightTop'
-  | 'rightBottom';
-
 export type CopyIconProps = WithHTMLAttributes<
   HTMLDivElement,
   {
     copyValue: string;
     texts?: Partial<CopyTooltipTexts>;
     icon?: ReactNode;
-    placement?: TooltipPlacement;
+    placement?: TooltipProps['placement'];
     onCopy?: () => void;
   }
 >;

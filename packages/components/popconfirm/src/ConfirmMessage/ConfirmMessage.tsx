@@ -1,5 +1,6 @@
-import AntdTooltip from 'antd/lib/tooltip';
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
+
+import Tooltip from '@synerise/ds-tooltip';
 
 import * as S from './ConfirmMessage.style';
 import { type ConfirmMessageProps } from './ConfirmMessage.types';
@@ -12,19 +13,19 @@ export const ConfirmMessage = ({
   displayDuration = 5000,
   icon,
 }: ConfirmMessageProps) => {
-  const [visible, setVisible] = useState<boolean>(false);
+  const [open, setOpen] = useState<boolean>(false);
 
   useEffect((): (() => void) => {
     const timeout = setTimeout(() => {
-      setVisible(false);
+      setOpen(false);
     }, displayDuration);
     return (): void => {
       clearTimeout(timeout);
     };
-  }, [visible, displayDuration]);
+  }, [open, displayDuration]);
 
   const showMessage = (): void => {
-    setVisible(true);
+    setOpen(true);
   };
 
   const handleClick = useCallback(() => {
@@ -42,16 +43,14 @@ export const ConfirmMessage = ({
 
   return (
     <S.Message onClick={handleClick} data-testid="confirm-message">
-      <AntdTooltip
-        overlayStyle={{ maxWidth: '300px' }}
-        autoAdjustOverflow={false}
-        title={content}
-        align={{ offset: [0, 0] }}
-        visible={visible}
+      <Tooltip
+        trigger="click"
+        render={() => content}
+        open={open}
         placement={placement}
       >
         {children}
-      </AntdTooltip>
+      </Tooltip>
     </S.Message>
   );
 };

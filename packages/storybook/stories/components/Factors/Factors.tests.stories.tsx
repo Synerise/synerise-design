@@ -525,9 +525,7 @@ export const DateRangePickerOpen: StoryObj<FactorsProps> = {
   play: async ({ canvasElement, args }) => {
     const canvas = within(canvasElement.parentElement!);
     await userEvent.click(await canvas.findByText('Start date'));
-    await waitFor(() =>
-      expect(canvas.getByRole('tooltip')).toBeInTheDocument(),
-    );
+    await waitFor(() => expect(canvas.getByRole('dialog')).toBeInTheDocument());
   },
 };
 

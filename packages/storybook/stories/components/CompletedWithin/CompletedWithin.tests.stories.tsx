@@ -23,18 +23,17 @@ export const PopupOpen: Story = {
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement.parentElement!);
     await canvas.findByText(PLACEHOLDER);
-    // await sleep(1000);
 
     await userEvent.click(canvas.getByRole('button'));
-    // await sleep(1000);
 
     await waitFor(() => expect(canvas.getByRole('spinbutton')).toBeVisible());
-    // await sleep(1000);
+
     await waitFor(() =>
       expect(canvas.getByRole('spinbutton')).not.toHaveStyle({
         pointerEvents: 'none',
       }),
     );
+    await userEvent.unhover(canvas.getByText(PLACEHOLDER));
   },
 };
 export const SelectNumber: Story = {
@@ -45,12 +44,9 @@ export const SelectNumber: Story = {
   play: async ({ canvasElement, args }) => {
     const canvas = within(canvasElement.parentElement!);
     await canvas.findByText(PLACEHOLDER);
-    // await sleep(1000);
 
     await userEvent.click(canvas.getByRole('button'));
-    // await sleep(1000);
     await waitFor(() => expect(canvas.getByRole('spinbutton')).toBeVisible());
-    // await sleep(1000);
     await waitFor(() =>
       expect(canvas.getByRole('spinbutton')).not.toHaveStyle({
         pointerEvents: 'none',
@@ -58,7 +54,6 @@ export const SelectNumber: Story = {
     );
     await userEvent.type(canvas.getByRole('spinbutton'), '4');
     await userEvent.click(canvas.getByRole('combobox'));
-    // await sleep(1000);
     await waitFor(() =>
       expect(canvas.getByText('Days')).not.toHaveStyle({
         pointerEvents: 'none',

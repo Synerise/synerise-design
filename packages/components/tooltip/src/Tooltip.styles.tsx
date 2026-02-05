@@ -100,7 +100,22 @@ export const TooltipImage = styled.div<{ extraMargin: boolean }>`
   }
 `;
 
-export const TooltipComponent = styled.div<{ tooltipType: TooltipTypes }>`
+export const TooltipWrapper = styled.div`
+  box-shadow: ${(props) => props.theme.variables['box-shadow-2']};
+`;
+
+export const TooltipComponent = styled(TooltipWrapper)<{
+  tooltipType: TooltipTypes;
+}>`
+  font-size: 11px;
+  font-weight: 500;
+  min-height: 24px;
+  text-align: center;
+
+  max-width: ${(props) =>
+    props.tooltipType === 'largeScrollable' ? '400px' : '250px'};
+  width: max-content;
+
   background-color: rgba(56, 67, 80, 0.9);
   min-height: 24px;
   width: 100%;

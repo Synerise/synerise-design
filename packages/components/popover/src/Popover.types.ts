@@ -75,6 +75,8 @@ export type PopoverOptions = {
   }) => Partial<UseTransitionStylesProps>;
 };
 
+export type LegacyTooltipPlacement = LegacyPlacement;
+
 type OpenChangeFn = (
   open: boolean,
   event?: Event,

@@ -16,7 +16,7 @@ import AddonCollapse from './AddonCollapse/AddonCollapse';
 import {
   Addon,
   Container,
-  PopupWrapper,
+  DateRangePickerWrapper,
   Separator,
 } from './DateRangePicker.styles';
 import type {
@@ -37,11 +37,12 @@ import RelativeRangePicker from './RelativeRangePicker/RelativeRangePicker';
 import {
   ABSOLUTE,
   ABSOLUTE_PRESETS,
+  ALL_TIME,
+  CUSTOM_RANGE_KEY,
   MODES,
   RELATIVE,
   RELATIVE_PRESETS,
 } from './constants';
-import * as CONST from './constants';
 import type { DateFilter, DateRange, RelativeDateRange } from './date.types';
 import relativeToAbsolute from './dateUtils/relativeToAbsolute';
 import { getDefaultTexts, normalizeRange, toIsoString } from './utils';
@@ -51,10 +52,8 @@ const isRelative = (dateRange: DateRange): dateRange is RelativeDateRange => {
     Object.keys(dateRange).includes('key') && dateRange.key === undefined;
   return (
     (dateRange.key &&
-      (CONST.RELATIVE_PRESETS.map((preset) => preset.key).includes(
-        dateRange.key,
-      ) ||
-        dateRange.key === CONST.CUSTOM_RANGE_KEY)) ||
+      (RELATIVE_PRESETS.map((preset) => preset.key).includes(dateRange.key) ||
+        dateRange.key === CUSTOM_RANGE_KEY)) ||
     isLegacyCustom
   );
 };
@@ -94,9 +93,6 @@ export function defaultValueTransformer(value: DateRange): DateRange {
   }
   return value;
 }
-type RawDateRangePickerProps = DateRangePickerProps & {
-  alignContentToTop?: boolean;
-};
 
 export const RawDateRangePicker = ({
   showRelativePicker = true,
@@ -116,7 +112,6 @@ export const RawDateRangePicker = ({
   filterValueSelectionModes,
   filterRangeDisplayMode,
   showNowButton = true,
-  alignContentToTop,
   relativeFuture,
   relativePast = true,
   ranges = [...RELATIVE_PRESETS, ...ABSOLUTE_PRESETS],
@@ -130,7 +125,7 @@ export const RawDateRangePicker = ({
   onApply,
   texts,
   value,
-}: RawDateRangePickerProps) => {
+}: Omit<DateRangePickerProps, 'placement'>) => {
   const [localValue, setLocalValue] = useState(normalizeRange(value));
   const [mode, setMode] = useState(MODES.DATE);
   const [visibleAddonKey, setVisibleAddonKey] = useState<string | undefined>(
@@ -167,7 +162,7 @@ export const RawDateRangePicker = ({
         }
       }
       if (
-        (newValue.type === 'RELATIVE' || newValue.key === CONST.ALL_TIME) &&
+        (newValue.type === 'RELATIVE' || newValue.key === ALL_TIME) &&
         mode === MODES.TIME
       ) {
         setMode(MODES.DATE);
@@ -220,7 +215,7 @@ export const RawDateRangePicker = ({
         });
       return;
     }
-    if (localValue.key === CONST.ALL_TIME) {
+    if (localValue.key === ALL_TIME) {
       onApply && onApply(omitBy(localValue, isUndefined));
       return;
     }
@@ -376,7 +371,7 @@ export const RawDateRangePicker = ({
       (isValidAbsolute ||
         isValidRelative ||
         isValidSince ||
-        key === CONST.ALL_TIME) &&
+        key === ALL_TIME) &&
       validator.valid;
     const canSwitchToTimePicker =
       isValid &&
@@ -429,14 +424,9 @@ export const RawDateRangePicker = ({
     );
   }
   return (
-    <PopupWrapper
-      data-testid="date-range-picker-container"
-      alignContentToTop={alignContentToTop}
-      hasFilter={showFilter}
-      hasRelativePicker={showRelativePicker}
-    >
+    <DateRangePickerWrapper data-testid="date-range-picker-container">
       {content}
-    </PopupWrapper>
+    </DateRangePickerWrapper>
   );
 };
 

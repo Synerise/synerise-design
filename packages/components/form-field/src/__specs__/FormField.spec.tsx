@@ -1,7 +1,8 @@
 import React from 'react';
 
 import { renderWithProvider } from '@synerise/ds-core';
-import { fireEvent, screen, waitFor } from '@testing-library/react';
+import { screen, waitFor } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 
 import FormField from '../FormField';
 
@@ -43,7 +44,7 @@ describe('FormField component', () => {
         {CHILDREN}
       </FormField>,
     );
-    fireEvent.mouseOver(screen.getByTestId('label-tooltip-trigger'));
+    await userEvent.hover(screen.getByTestId('label-tooltip-trigger'));
     await waitFor(() =>
       expect(screen.getByText(TOOLTIP_TEXT)).toBeInTheDocument(),
     );

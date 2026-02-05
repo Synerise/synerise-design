@@ -1,5 +1,7 @@
 import { type ReactNode, type RefObject } from 'react';
 
+import { type WithHTMLAttributes } from '@synerise/ds-utils';
+
 export type FileViewTexts = {
   size?: ReactNode;
   cancelText?: ReactNode;
@@ -33,24 +35,27 @@ type FileUploaderTexts = FileViewTexts & {
   buttonDescription?: ReactNode;
 };
 
-export type FileUploaderProps = {
-  className?: string;
-  mode: 'single' | 'multi-medium' | 'multi-large';
-  filesAmount?: number;
-  description?: string;
-  disabled?: boolean;
-  removable?: boolean;
-  tooltip?: string;
-  removeTooltip?: ReactNode;
-  label?: string;
-  error?: string;
-  texts?: FileUploaderTexts;
-  files: ExtendedFile[];
-  accept?: string[];
-  onRemove?: (file: FileWithContent, index: number) => void;
-  onUpload?: (files: FileWithContent[]) => void;
-  retry?: boolean;
-};
+export type FileUploaderProps = WithHTMLAttributes<
+  HTMLDivElement,
+  {
+    className?: string;
+    mode: 'single' | 'multi-medium' | 'multi-large';
+    filesAmount?: number;
+    description?: string;
+    disabled?: boolean;
+    removable?: boolean;
+    tooltip?: string;
+    removeTooltip?: ReactNode;
+    label?: string;
+    error?: string;
+    texts?: FileUploaderTexts;
+    files: ExtendedFile[];
+    accept?: string[];
+    onRemove?: (file: FileWithContent, index: number) => void;
+    onUpload?: (files: FileWithContent[]) => void;
+    retry?: boolean;
+  }
+>;
 
 export type ItemUploaderProps = Omit<FileUploaderProps, 'mode'> & {
   mode: 'single' | 'multi';

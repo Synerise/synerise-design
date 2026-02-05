@@ -85,7 +85,7 @@ const Day = ({
         <Tooltip
           trigger={['hover']}
           title={texts.clear || 'Clear'}
-          onVisibleChange={handleTooltipVisibleChange}
+          onOpenChange={handleTooltipVisibleChange}
           getPopupContainer={getPopupContainer}
         >
           <S.IconWrapper readonly={readOnly} active={hovered}>

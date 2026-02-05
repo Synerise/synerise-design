@@ -1,21 +1,21 @@
 import React, { ReactNode } from 'react';
 import { fn } from 'storybook/test';
 
-import { IconProps } from '@synerise/ds-icon';
-import TooltipExtendedProps from '@synerise/ds-tooltip/dist/Tooltip.types';
 import { theme } from '@synerise/ds-core';
-import { TableCell, DSColumnType } from '@synerise/ds-table';
+import { IconProps } from '@synerise/ds-icon';
+import { DSColumnType, TableCell } from '@synerise/ds-table';
+import { type TooltipProps } from '@synerise/ds-tooltip';
 
-import { AdditionalColumnData } from './Table.types';
 import {
   BOOLEAN_CONTROL,
-  STYLE_ARG_CONTROL,
-  REACT_NODE_AS_STRING,
   CLASSNAME_ARG_CONTROL,
-  STRING_CONTROL,
   NUMBER_CONTROL,
+  REACT_NODE_AS_STRING,
+  STRING_CONTROL,
+  STYLE_ARG_CONTROL,
   controlFromOptionsArray,
 } from '../../utils';
+import { AdditionalColumnData } from './Table.types';
 
 export type Column = {
   title: ReactNode;
@@ -25,11 +25,13 @@ export type Column = {
   sorter: Function;
   render: Function;
   icon: IconProps;
-  tooltip: TooltipExtendedProps;
+  tooltip: TooltipProps;
   iconTooltip: IconProps;
 };
 
-export const chromaticCellRender = (record: ReactNode) => <div className="chromatic-ignore">{record}</div>;
+export const chromaticCellRender = (record: ReactNode) => (
+  <div className="chromatic-ignore">{record}</div>
+);
 
 const renderAlertTooltip = (title: ReactNode, description: ReactNode) => {
   return (
@@ -53,16 +55,18 @@ const renderAlertTooltip = (title: ReactNode, description: ReactNode) => {
       >
         <span>{title}</span>
       </div>
-      <div style={{ width: '100%', display: 'flex', alignItems: 'center' }}>{description}</div>
+      <div style={{ width: '100%', display: 'flex', alignItems: 'center' }}>
+        {description}
+      </div>
     </div>
   );
 };
 
 export const renderWithIconInHeaders = <RowType extends any>(
   columns: (DSColumnType<RowType> & AdditionalColumnData)[],
-  renderIcons?: boolean
+  renderIcons?: boolean,
 ): DSColumnType<RowType>[] => {
-  return columns.map(col => ({
+  return columns.map((col) => ({
     ...col,
     title: renderIcons ? (
       <TableCell.IconTooltipCell
@@ -92,7 +96,7 @@ export const TableMeta = {
   parameters: {
     chromatic: {
       diffThreshold: 0.25,
-      delay: 400
+      delay: 400,
     },
     layout: 'padded',
   },
@@ -110,7 +114,7 @@ export const TableMeta = {
     },
     randomiseSelectionColumn: {
       ...STORY_ARG_TYPE,
-      ...BOOLEAN_CONTROL
+      ...BOOLEAN_CONTROL,
     },
     columnsData: {
       ...STORY_ARG_TYPE,
@@ -168,6 +172,6 @@ export const TableMeta = {
     title: 'Table title',
     cellSize: 'default',
     showHeaderButton: false,
-    rowKey: row => row.key,
+    rowKey: (row) => row.key,
   },
 };

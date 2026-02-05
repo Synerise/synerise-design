@@ -112,7 +112,6 @@ export const InputWrapper = styled.div<InputWrapperProps>`
 
 export const ValueWrapper = styled.div<{
   disabled?: boolean;
-  shrink?: boolean;
 }>`
   display: grid;
   height: 24px;
@@ -131,25 +130,28 @@ export const ValueWrapper = styled.div<{
   right: 8px;
   overflow: hidden;
   grid-template-columns: calc(100%) 0px;
-  ${(props) =>
-    !!props.shrink &&
-    `
-     ${ValueText} {
-       max-width: calc(100% - 16px);
-       overflow: hidden;
-white-space: nowrap;
-text-overflow: ellipsis;
-      }
-      ${IconWrapper} {
-        display:block;
-      }
-`}
-  transition: background-color 0.1s ease-in-out, color 0.1s ease-in-out;
+  transition:
+    background-color 0.1s ease-in-out,
+    color 0.1s ease-in-out;
+
   &:hover {
+    ${(props) =>
+      !props.disabled &&
+      css`
+        ${ValueText} {
+          max-width: calc(100% - 16px);
+          overflow: hidden;
+          white-space: nowrap;
+          text-overflow: ellipsis;
+        }
+        ${IconWrapper} {
+          display: block;
+        }
+        ${contentShrinkStyle()}
+      `}
     background-color: ${(props) => props.theme.palette['grey-200']};
     color: ${(props) => !props.disabled && props.theme.palette['grey-800']};
     cursor: pointer;
-    ${(props) => !!props.shrink && !props.disabled && contentShrinkStyle()}
   }
   ${(props) => !!props.disabled && disabledStyled(props)}
 `;

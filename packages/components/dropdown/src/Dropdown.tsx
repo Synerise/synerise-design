@@ -49,6 +49,7 @@ export const Dropdown: ComponentType<DropdownProps> & SubComponents = ({
     open,
     onOpenChange,
   });
+
   const [activeIndex, setActiveIndex] = useState<number | null>(null);
 
   const renderedOverlay = useMemo(() => {

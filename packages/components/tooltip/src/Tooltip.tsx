@@ -1,23 +1,23 @@
-import AntdTooltip from 'antd/lib/tooltip';
-import React, {
-  type MouseEvent,
-  cloneElement,
-  forwardRef,
-  isValidElement,
-  useEffect,
-  useMemo,
-  useRef,
-  useState,
-} from 'react';
+import React, { forwardRef, useEffect, useMemo, useRef, useState } from 'react';
 
-import { useMergeRefs } from '@floating-ui/react';
-import '@synerise/ds-core/dist/js/style';
-import Scrollbar from '@synerise/ds-scrollbar';
-import { getPopupContainer } from '@synerise/ds-utils';
+import { useTheme } from '@synerise/ds-core';
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+  getPlacement,
+} from '@synerise/ds-popover';
+import { getPopupContainer as defaultGetPopupContainer } from '@synerise/ds-utils';
 
+import {
+  POPOVER_FLIP_CONFIG,
+  POPOVER_SHIFT_CONFIG,
+  POPOVER_TRANSITION_DURATION,
+} from './Tooltip.const';
 import * as S from './Tooltip.styles';
 import type { TooltipProps } from './Tooltip.types';
-import './style/index.less';
+import { getOffsetConfig, getTransitionConfig } from './Tooltip.utils';
+import { TooltipContent } from './TooltipContent';
 
 const Tooltip = forwardRef<HTMLElement, TooltipProps>(
   (
@@ -35,65 +35,26 @@ const Tooltip = forwardRef<HTMLElement, TooltipProps>(
       render,
       image,
       disabled,
-      ...props
+      placement = 'top',
+      trigger = 'hover',
+      open,
+      zIndex,
+      onOpenChange,
+      popoverProps,
+      getPopupContainer,
+      overlayStyle,
     },
     ref,
   ) => {
-    const [isVisible, setIsVisible] = useState(false);
+    const [isOpen, setIsOpen] = useState(open || false);
     const timeoutClickRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+    const theme = useTheme();
 
-    const captureClick = (event: MouseEvent<HTMLDivElement>) => {
-      event.stopPropagation();
-    };
-    const shouldRenderDescription = type !== 'default' && description;
+    const floatingPlacement = getPlacement(placement);
 
-    const tooltipComponent = (
-      <S.TooltipComponent onClick={captureClick} tooltipType={type}>
-        <S.TooltipContent>
-          {status && <S.TooltipStatus>{status}</S.TooltipStatus>}
-          {title && (
-            <S.TooltipTitle tooltipType={type}>
-              {icon}
-              <S.TooltipTitleWrapper>{title}</S.TooltipTitleWrapper>
-              {shortCuts && (
-                <S.TooltipHint>
-                  {Array.isArray(shortCuts) ? (
-                    shortCuts.map((hint, index) => (
-                      <S.TooltipKey key={`key-${index}`}>{hint}</S.TooltipKey>
-                    ))
-                  ) : (
-                    <S.TooltipKey>{shortCuts}</S.TooltipKey>
-                  )}
-                </S.TooltipHint>
-              )}
-            </S.TooltipTitle>
-          )}
-          {image && (
-            <S.TooltipImage extraMargin={!!shouldRenderDescription}>
-              {image}
-            </S.TooltipImage>
-          )}
-          {shouldRenderDescription && (
-            <S.TooltipDescription tooltipType={type}>
-              {type === 'largeScrollable' ? (
-                <Scrollbar absolute maxHeight={90} style={{ paddingRight: 16 }}>
-                  <>{shouldRenderDescription}</>
-                </Scrollbar>
-              ) : (
-                shouldRenderDescription
-              )}
-            </S.TooltipDescription>
-          )}
-        </S.TooltipContent>
-        {button && <S.TooltipButton>{button}</S.TooltipButton>}
-      </S.TooltipComponent>
+    const tooltipContentExists = Boolean(
+      description || title || icon || typeof render === 'function',
     );
-
-    const overlayClassName = useMemo(() => {
-      return `ds-tooltip-offset-${offset} ds-tooltip-type-${type}`;
-    }, [offset, type]);
-
-    const tooltipContentExists = Boolean(description || title || icon);
 
     useEffect(() => {
       return () => {
@@ -101,65 +62,98 @@ const Tooltip = forwardRef<HTMLElement, TooltipProps>(
       };
     }, []);
 
+    useEffect(() => {
+      setIsOpen(!!open);
+    }, [open]);
+
     const handleOnClickHideDelay = (visible: boolean) => {
       if (!visible) {
         timeoutClickRef.current && clearTimeout(timeoutClickRef.current);
-        setIsVisible(false);
+        setIsOpen(false);
+        onOpenChange?.(false);
       } else {
-        setIsVisible(true);
+        setIsOpen(true);
         timeoutClickRef.current = setTimeout(() => {
-          setIsVisible(false);
+          onOpenChange?.(false);
+          setIsOpen(false);
         }, timeToHideAfterClick);
       }
     };
 
-    const handleHideAfterClick = props.trigger === 'click' &&
-      timeToHideAfterClick && {
-        visible: isVisible,
-        onVisibleChange: (visible: boolean) => {
-          handleOnClickHideDelay(visible);
-        },
-      };
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    const childrenRef = (children as any)?.ref;
-    const mergedRef = useMergeRefs([ref, childrenRef]);
+    const handleOpenChange = (newOpen: boolean) => {
+      if (trigger === 'click' && timeToHideAfterClick) {
+        handleOnClickHideDelay(newOpen);
+      } else {
+        setIsOpen(newOpen);
+        onOpenChange?.(newOpen);
+      }
+    };
 
-    const tooltipTrigger =
-      ref && isValidElement(children)
-        ? cloneElement(children, {
-            mergedRef,
-          })
-        : children;
-
-    if (render !== undefined) {
-      return (
-        <AntdTooltip
-          overlayClassName={overlayClassName}
-          autoAdjustOverflow={false}
-          title={render()}
-          align={{ offset: [0, 0] }}
-          overlayStyle={{ maxWidth: 'unset' }}
-          getPopupContainer={getPopupContainer}
-          {...handleHideAfterClick}
-          {...props}
-        >
-          {tooltipTrigger}
-        </AntdTooltip>
+    const tooltipContent = useMemo(() => {
+      return render ? (
+        <S.TooltipWrapper style={overlayStyle}>{render()}</S.TooltipWrapper>
+      ) : (
+        <TooltipContent
+          title={title}
+          description={description}
+          icon={icon}
+          button={button}
+          shortCuts={shortCuts}
+          type={type}
+          image={image}
+          status={status}
+          overlayStyle={overlayStyle}
+        />
       );
+    }, [
+      button,
+      description,
+      icon,
+      image,
+      render,
+      shortCuts,
+      status,
+      overlayStyle,
+      title,
+      type,
+    ]);
+
+    const isTriggeredByClick = Array.isArray(trigger)
+      ? trigger.includes('click')
+      : trigger === 'click';
+
+    const handleTriggerClick = () => {
+      isTriggeredByClick && handleOpenChange(!isOpen);
+    };
+
+    if (!tooltipContentExists || disabled) {
+      return children;
     }
-    return tooltipContentExists && !disabled ? (
-      <AntdTooltip
-        overlayClassName={overlayClassName}
-        title={tooltipComponent}
-        align={{ offset: [0, 0] }}
-        getPopupContainer={getPopupContainer}
-        {...handleHideAfterClick}
-        {...props}
-      >
-        {tooltipTrigger}
-      </AntdTooltip>
-    ) : (
-      <>{tooltipTrigger}</>
+    return (
+      <>
+        <Popover
+          placement={floatingPlacement}
+          trigger={trigger}
+          modal={false}
+          onOpenChange={handleOpenChange}
+          open={isOpen}
+          autoUpdate={true}
+          offsetConfig={getOffsetConfig(offset)}
+          transitionDuration={POPOVER_TRANSITION_DURATION}
+          flipConfig={POPOVER_FLIP_CONFIG}
+          shiftConfig={POPOVER_SHIFT_CONFIG}
+          getTransitionConfig={getTransitionConfig}
+          getPopupContainer={getPopupContainer || defaultGetPopupContainer}
+          testId="tooltip"
+          zIndex={zIndex || parseInt(theme.variables['zindex-tooltip'])}
+          {...popoverProps}
+        >
+          <PopoverTrigger ref={ref} asChild onClick={handleTriggerClick}>
+            {children}
+          </PopoverTrigger>
+          <PopoverContent>{tooltipContent}</PopoverContent>
+        </Popover>
+      </>
     );
   },
 );

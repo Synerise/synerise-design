@@ -49,6 +49,7 @@ const FileUploader = forwardRef<FileUploaderRef, FileUploaderProps>(
       files = [],
       retry,
       texts,
+      ...rest
     },
     ref,
   ) => {
@@ -139,7 +140,7 @@ const FileUploader = forwardRef<FileUploaderRef, FileUploaderProps>(
         ? [error].concat('To many files uploaded')
         : [error];
     return (
-      <S.Container className={`ds-file-uploader ${className || ''}`}>
+      <S.Container className={`ds-file-uploader ${className || ''}`} {...rest}>
         {label && (
           <S.Label>
             <span>{label}</span>

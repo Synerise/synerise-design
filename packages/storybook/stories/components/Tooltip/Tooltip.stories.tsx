@@ -7,8 +7,11 @@ import type { Meta, StoryObj } from '@storybook/react-webpack5';
 import { UserAvatar } from '@synerise/ds-avatar';
 import Button from '@synerise/ds-button';
 import { theme } from '@synerise/ds-core';
+import FileUploader from '@synerise/ds-file-uploader';
 import Icon, { InfoFillS, InfoM, SegmentM } from '@synerise/ds-icon';
+import { KeyboardEnterM } from '@synerise/ds-icon';
 import InformationCard from '@synerise/ds-information-card';
+import ShortCuts from '@synerise/ds-short-cuts';
 import Tag, { TagShape } from '@synerise/ds-tag';
 import Tooltip, { TooltipProps } from '@synerise/ds-tooltip';
 
@@ -22,6 +25,7 @@ import {
   STYLE_ARG_CONTROL,
   centeredPaddedWrapper,
   controlFromOptionsArray,
+  fixedWrapper400,
 } from '../../utils';
 import { TOOLTIP_TITLE } from './Tooltip.data';
 
@@ -85,9 +89,6 @@ export default {
     if (args.type === 'largeSimple') {
       propToFind = args.description;
     }
-    if (args.type === 'tutorial') {
-      propToFind = args.tutorials![0].title;
-    }
     if (!args.render) {
       await waitFor(async () =>
         expect(
@@ -101,6 +102,11 @@ export default {
 type Story = StoryObj<StoryProps>;
 
 export const Simple: Story = {};
+export const WithShortcuts: Story = {
+  args: {
+    shortCuts: [<KeyboardEnterM height={18} />, '⌘'],
+  },
+};
 
 export const LargeType: Story = {
   args: {
@@ -151,6 +157,15 @@ export const TagWithTooltip: Story = {
         asPill
         data-testid="tooltip-trigger"
       />
+    </Tooltip>
+  ),
+};
+
+export const FileUploaderWithTooltip: Story = {
+  decorators: [fixedWrapper400],
+  render: ({ title }) => (
+    <Tooltip title={title}>
+      <FileUploader data-testid="tooltip-trigger" mode="single" files={[]} />
     </Tooltip>
   ),
 };

@@ -1,6 +1,11 @@
 import React from 'react';
 
 import { ArrowLeftM, ArrowRightM, SinceArrowRightM } from '@synerise/ds-icon';
+import {
+  type FlipConfig,
+  type OffsetConfig,
+  type ShiftConfig,
+} from '@synerise/ds-popover';
 
 import {
   type AbsoluteDateRangePreset,
@@ -269,4 +274,16 @@ const RIGHT = 'right' as const;
 export const COLUMNS = {
   LEFT,
   RIGHT,
+};
+
+export const POPOVER_OFFSET_CONFIG: OffsetConfig = {
+  mainAxis: 8,
+};
+export const POPOVER_FLIP_CONFIG: FlipConfig = {
+  crossAxis: true,
+  mainAxis: true,
+};
+export const POPOVER_SHIFT_CONFIG: ShiftConfig = {
+  crossAxis: true,
+  mainAxis: true,
 };

@@ -14,9 +14,5 @@ export type ConfirmMessageProps = {
     | 'topLeft'
     | 'topRight'
     | 'bottomLeft'
-    | 'bottomRight'
-    | 'leftTop'
-    | 'leftBottom'
-    | 'rightTop'
-    | 'rightBottom';
+    | 'bottomRight';
 };

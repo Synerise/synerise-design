@@ -2,7 +2,12 @@ import React, { useRef } from 'react';
 
 import { FloatingList } from '@floating-ui/react';
 import { DropdownContextProvider } from '@synerise/ds-core';
-import { Popover, PopoverContent, PopoverTrigger } from '@synerise/ds-popover';
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+  getPlacement,
+} from '@synerise/ds-popover';
 
 import {
   POPOVER_FLIP_CONFIG,
@@ -10,7 +15,7 @@ import {
   POPOVER_SHIFT_CONFIG,
   POPOVER_TRANSITION_DURATION,
 } from '../../Dropdown.const';
-import { getPlacement, getTransitionConfig } from '../../utils';
+import { getTransitionConfig } from '../../utils';
 import { DropdownOverlay } from '../DropdownOverlay/DropdownOverlay';
 import { type DropdownPopoverProps } from './DropdownPopover.types';
 
