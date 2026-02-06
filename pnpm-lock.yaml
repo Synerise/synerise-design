@@ -669,6 +669,9 @@ importers:
       uuid:
         specifier: ^8.3.2
         version: 8.3.2
+      vitest:
+        specifier: '4'
+        version: 4.0.17(@types/node@24.10.0)(jiti@2.6.1)(jsdom@16.7.0)(less@3.11.1)(sass@1.93.3)(terser@5.44.0)(yaml@2.8.1)
 
   packages/components/card-select:
     dependencies:
