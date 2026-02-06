@@ -35,7 +35,7 @@ describe('<Button.Checkbox />', () => {
   });
 
   it('should exec onChange callback with next state value', () => {
-    const fakeOnChange = jest.fn();
+    const fakeOnChange = vi.fn();
     renderWithProvider(<Button.Checkbox onChange={fakeOnChange} />);
 
     const checkboxElem = screen.getByRole('checkbox');

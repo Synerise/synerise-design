@@ -10,7 +10,7 @@ const LABEL_TEXT = 'Add something';
 const TEST_ID = 'button-creator';
 
 describe('Creator', () => {
-  const onClick = jest.fn();
+  const onClick = vi.fn();
   it('should render', () => {
     renderWithProvider(
       <Button.Creator data-testid={TEST_ID} onClick={onClick}></Button.Creator>,
