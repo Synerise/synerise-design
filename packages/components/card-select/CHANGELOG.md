@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.1.33](https://github.com/Synerise/synerise-design/compare/@synerise/ds-card-select@1.1.32...@synerise/ds-card-select@1.1.33) (2026-02-06)
+
+### Bug Fixes
+
+- **card-select:** update to vitest ([c93b2e7](https://github.com/Synerise/synerise-design/commit/c93b2e73eb9cdcd6ebb4e800f509b2220b368325))
+
 ## [1.1.32](https://github.com/Synerise/synerise-design/compare/@synerise/ds-card-select@1.1.31...@synerise/ds-card-select@1.1.32) (2026-02-05)
 
 **Note:** Version bump only for package @synerise/ds-card-select

@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.1.34](https://github.com/Synerise/synerise-design/compare/@synerise/ds-button-group@1.1.33...@synerise/ds-button-group@1.1.34) (2026-02-06)
+
+### Bug Fixes
+
+- **button-group:** update to vitest ([8020a4e](https://github.com/Synerise/synerise-design/commit/8020a4ed976fa0fcb675892ca469b20c6df2c577))
+
 ## [1.1.33](https://github.com/Synerise/synerise-design/compare/@synerise/ds-button-group@1.1.32...@synerise/ds-button-group@1.1.33) (2026-02-05)
 
 **Note:** Version bump only for package @synerise/ds-button-group

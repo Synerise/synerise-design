@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.1.9](https://github.com/Synerise/synerise-design/compare/@synerise/ds-broadcast-bar@1.1.8...@synerise/ds-broadcast-bar@1.1.9) (2026-02-06)
+
+### Bug Fixes
+
+- **broadcast-bar:** update to vitest ([c8fe2a3](https://github.com/Synerise/synerise-design/commit/c8fe2a37dc98ca719c2db06a7843cebc2cb98de0))
+
 ## [1.1.8](https://github.com/Synerise/synerise-design/compare/@synerise/ds-broadcast-bar@1.1.7...@synerise/ds-broadcast-bar@1.1.8) (2026-02-05)
 
 **Note:** Version bump only for package @synerise/ds-broadcast-bar

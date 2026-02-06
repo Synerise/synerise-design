@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.0.35](https://github.com/Synerise/synerise-design/compare/@synerise/ds-badge@1.0.34...@synerise/ds-badge@1.0.35) (2026-02-06)
+
+### Bug Fixes
+
+- **badge:** update to vitest ([5fa6dcd](https://github.com/Synerise/synerise-design/commit/5fa6dcdf407c7793d3bcb42b8d799f3b9ff4496b))
+
 ## [1.0.34](https://github.com/Synerise/synerise-design/compare/@synerise/ds-badge@1.0.33...@synerise/ds-badge@1.0.34) (2026-02-05)
 
 **Note:** Version bump only for package @synerise/ds-badge

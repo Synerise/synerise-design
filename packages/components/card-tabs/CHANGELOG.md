@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.5.15](https://github.com/Synerise/synerise-design/compare/@synerise/ds-card-tabs@1.5.14...@synerise/ds-card-tabs@1.5.15) (2026-02-06)
+
+### Bug Fixes
+
+- **card-tabs:** update to vitest ([fcba0b9](https://github.com/Synerise/synerise-design/commit/fcba0b99db7449d727512952dd6fc9ba338d518a))
+
 ## [1.5.14](https://github.com/Synerise/synerise-design/compare/@synerise/ds-card-tabs@1.5.13...@synerise/ds-card-tabs@1.5.14) (2026-02-05)
 
 **Note:** Version bump only for package @synerise/ds-card-tabs

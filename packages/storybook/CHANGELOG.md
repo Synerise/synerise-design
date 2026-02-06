@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.36.1](https://github.com/Synerise/synerise-design/compare/storybook@1.36.0...storybook@1.36.1) (2026-02-06)
+
+### Bug Fixes
+
+- **input-number:** new option for input-number to autosize ([fc78c71](https://github.com/Synerise/synerise-design/commit/fc78c719e369b383204e8c986ec5c9d513e17c4a))
+
 # [1.36.0](https://github.com/Synerise/synerise-design/compare/storybook@1.35.0...storybook@1.36.0) (2026-02-05)
 
 ### Features

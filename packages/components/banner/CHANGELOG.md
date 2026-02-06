@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.2.1](https://github.com/Synerise/synerise-design/compare/@synerise/ds-banner@1.2.0...@synerise/ds-banner@1.2.1) (2026-02-06)
+
+### Bug Fixes
+
+- **banner:** update to vitest ([79824fd](https://github.com/Synerise/synerise-design/commit/79824fd611d37ee60c6ab35c60002a00577dd5ac))
+
 # [1.2.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-banner@1.1.36...@synerise/ds-banner@1.2.0) (2026-02-05)
 
 ### Features

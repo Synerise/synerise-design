@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.11.1](https://github.com/Synerise/synerise-design/compare/@synerise/ds-factors@1.11.0...@synerise/ds-factors@1.11.1) (2026-02-06)
+
+### Bug Fixes
+
+- **input-number:** new option for input-number to autosize ([fc78c71](https://github.com/Synerise/synerise-design/commit/fc78c719e369b383204e8c986ec5c9d513e17c4a))
+
 # [1.11.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-factors@1.10.0...@synerise/ds-factors@1.11.0) (2026-02-05)
 
 ### Features

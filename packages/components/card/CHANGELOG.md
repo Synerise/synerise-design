@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.2.26](https://github.com/Synerise/synerise-design/compare/@synerise/ds-card@1.2.25...@synerise/ds-card@1.2.26) (2026-02-06)
+
+### Bug Fixes
+
+- **card:** update to vitest ([622da64](https://github.com/Synerise/synerise-design/commit/622da6484c9dbf6eb7ce3052a8015be43c926632))
+
 ## [1.2.25](https://github.com/Synerise/synerise-design/compare/@synerise/ds-card@1.2.24...@synerise/ds-card@1.2.25) (2026-02-05)
 
 **Note:** Version bump only for package @synerise/ds-card
