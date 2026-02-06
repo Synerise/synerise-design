@@ -7,7 +7,7 @@ import { fireEvent } from '@testing-library/react';
 import ButtonGroup from '../';
 
 describe('ButtonGroup', () => {
-  const onClick = jest.fn();
+  const onClick = vi.fn();
   it('should render', function () {
     // ARRANGE
     const { getByText } = renderWithProvider(
