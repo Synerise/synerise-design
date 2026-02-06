@@ -1,5 +1,5 @@
 import dayjs from 'dayjs';
-import { range } from 'lodash';
+import range from 'lodash.range';
 import React, {
   type FC,
   type KeyboardEvent,

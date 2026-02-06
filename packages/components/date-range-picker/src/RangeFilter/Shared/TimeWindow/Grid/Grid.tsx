@@ -1,4 +1,5 @@
-import { range, rangeRight } from 'lodash';
+import range from 'lodash.range';
+import rangeRight from 'lodash.rangeright';
 import React from 'react';
 
 import { type Action, Header } from '../Header/Header';

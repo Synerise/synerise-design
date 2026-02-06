@@ -43,10 +43,10 @@
     "@synerise/ds-typography": "workspace:^",
     "@synerise/ds-utils": "workspace:^",
     "classnames": "^2.5.1",
-    "lodash": "^4.17.21"
+    "lodash.debounce": "^4.0.8"
   },
   "devDependencies": {
-    "@types/lodash": "^4.17.20"
+    "@types/lodash.debounce": "^4.0.9"
   },
   "peerDependencies": {
     "@synerise/ds-core": "*",

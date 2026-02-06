@@ -1,5 +1,5 @@
 import classnames from 'classnames';
-import { compact } from 'lodash';
+import compact from 'lodash.compact';
 import ResizeObserver from 'rc-resize-observer';
 import React, {
   type CSSProperties,

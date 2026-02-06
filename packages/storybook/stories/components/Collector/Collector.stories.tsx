@@ -1,14 +1,23 @@
+import isEqual from 'lodash.isequal';
 import React, { useState } from 'react';
-import { isEqual } from 'lodash';
-import { Meta, StoryObj } from '@storybook/react-webpack5';
 import { fn } from 'storybook/test';
 
+import { Meta, StoryObj } from '@storybook/react-webpack5';
 import Button from '@synerise/ds-button';
-import Collector, { CollectorProps, CollectorValue } from '@synerise/ds-collector';
+import Collector, {
+  CollectorProps,
+  CollectorValue,
+} from '@synerise/ds-collector';
 import Icon, { SnippetM } from '@synerise/ds-icon';
 
-import { BOOLEAN_CONTROL, CLASSNAME_ARG_CONTROL, fixedWrapper588, REACT_NODE_AS_STRING, STRING_CONTROL } from '../../utils';
-import { SUGGESTIONS_SAME_LABEL, SUGGESTIONS, TEXTS } from './Collector.const';
+import {
+  BOOLEAN_CONTROL,
+  CLASSNAME_ARG_CONTROL,
+  REACT_NODE_AS_STRING,
+  STRING_CONTROL,
+  fixedWrapper588,
+} from '../../utils';
+import { SUGGESTIONS, SUGGESTIONS_SAME_LABEL, TEXTS } from './Collector.const';
 import { HeaderWrapper } from './Collestor.styles';
 
 export default {
@@ -20,22 +29,24 @@ export default {
   },
   decorators: [fixedWrapper588],
   render: ({ suggestions, ...args }) => {
-    const [selected, setSelected] = useState<CollectorValue[]>(args.selected || []);
+    const [selected, setSelected] = useState<CollectorValue[]>(
+      args.selected || [],
+    );
     const handleItemSelect = (item: CollectorValue) => {
-      if (!selected.find(i => isEqual(i, item))) {
+      if (!selected.find((i) => isEqual(i, item))) {
         setSelected([...selected, item]);
       }
       args.onItemSelect?.(item);
     };
     const handleMultipleItemsSelect = (items: CollectorValue[]) => {
-      const itemsToAdd = items.filter(item => {
-        return !selected.find(i => isEqual(i, item));
+      const itemsToAdd = items.filter((item) => {
+        return !selected.find((i) => isEqual(i, item));
       });
       setSelected([...selected, ...itemsToAdd]);
       args.onMultipleItemsSelect?.(items);
     };
     const handleItemDeselect = (item: CollectorValue) => {
-      setSelected(selected.filter(i => !isEqual(i, item)));
+      setSelected(selected.filter((i) => !isEqual(i, item)));
       args.onItemDeselect?.(item);
     };
     const handleCancel = () => {
@@ -52,7 +63,9 @@ export default {
         text: value,
       };
     };
-    const filteredSuggestions = suggestions.filter(suggestion => !selected.includes(suggestion))
+    const filteredSuggestions = suggestions.filter(
+      (suggestion) => !selected.includes(suggestion),
+    );
     return (
       <Collector
         {...args}
@@ -99,7 +112,7 @@ export default {
     onMultipleItemsSelect: fn(),
     onSearchValueChange: fn(),
     allowMultipleValues: true,
-    suggestions: SUGGESTIONS
+    suggestions: SUGGESTIONS,
   },
 } as Meta<CollectorProps>;
 
@@ -138,21 +151,19 @@ export const DuplicateLabels: Story = {
   args: {
     ...WithLabelAndDescription.args,
     allowCustomValue: true,
-    suggestions: SUGGESTIONS_SAME_LABEL
+    suggestions: SUGGESTIONS_SAME_LABEL,
   },
 };
 export const AllowPaste: Story = {
   args: {
     ...WithLabelAndDescription.args,
-    description:
-      'Paste values separated by a semicolon ;',
+    description: 'Paste values separated by a semicolon ;',
     allowMultipleValues: true,
     allowPaste: true,
     valuesSeparator: ';',
     allowCustomValue: true,
   },
 };
-
 
 export const DropdownCustomisation: Story = {
   args: {
@@ -176,11 +187,14 @@ export const VariableHeight: Story = {
   },
 };
 
-
 export const WithButtonPanelPrefix: Story = {
   args: {
     ...WithLabelAndDescription.args,
     selected: SUGGESTIONS.slice(1, 12),
-    buttonPanelPrefix: <Button type='ghost' mode='single-icon'><Icon component={<SnippetM />} /></Button>
+    buttonPanelPrefix: (
+      <Button type="ghost" mode="single-icon">
+        <Icon component={<SnippetM />} />
+      </Button>
+    ),
   },
 };

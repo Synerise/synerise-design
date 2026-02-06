@@ -1,4 +1,4 @@
-import { cloneDeep } from 'lodash';
+import cloneDeep from 'lodash.clonedeep';
 import React from 'react';
 import { injectIntl } from 'react-intl';
 import { v4 as uuid } from 'uuid';

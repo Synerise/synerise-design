@@ -1,5 +1,6 @@
 import Table from 'antd/lib/table';
-import { compact, isEqual } from 'lodash';
+import compact from 'lodash.compact';
+import isEqual from 'lodash.isequal';
 import React, { useCallback, useEffect, useMemo } from 'react';
 import { FormattedMessage } from 'react-intl';
 

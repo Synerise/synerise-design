@@ -38,8 +38,7 @@
     "@ofsajd/react-perfect-scrollbar": "1.0.0",
     "@synerise/ds-icon": "workspace:^",
     "@synerise/ds-utils": "workspace:^",
-    "classnames": "^2.3.2",
-    "lodash": "^4.7.21"
+    "classnames": "^2.3.2"
   },
   "peerDependencies": {
     "@synerise/ds-core": "*",

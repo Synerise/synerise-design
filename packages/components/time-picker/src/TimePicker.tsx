@@ -1,6 +1,6 @@
 import dayjs from 'dayjs';
 import customParseFormatPlugin from 'dayjs/plugin/customParseFormat';
-import { range } from 'lodash';
+import range from 'lodash.range';
 import React, { Fragment, useCallback, useMemo, useState } from 'react';
 import { FormattedMessage, useIntl } from 'react-intl';
 

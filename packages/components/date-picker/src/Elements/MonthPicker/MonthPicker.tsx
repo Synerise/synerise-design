@@ -1,4 +1,4 @@
-import { range } from 'lodash';
+import range from 'lodash.range';
 import React from 'react';
 import { type WrappedComponentProps, injectIntl } from 'react-intl';
 

@@ -63,12 +63,12 @@
     "@synerise/ds-tag": "workspace:^",
     "@synerise/ds-tooltip": "workspace:^",
     "@synerise/ds-utils": "workspace:^",
-    "lodash": "^4.17.21",
+    "lodash.merge": "^4.6.2",
     "react-window": "^1.8.11",
     "uuid": "^8.3.2"
   },
   "devDependencies": {
-    "@types/lodash": "^4.17.20"
+    "@types/lodash.merge": "^4.6.9"
   },
   "peerDependencies": {
     "@synerise/ds-core": "*",

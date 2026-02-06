@@ -1158,9 +1158,9 @@ importers:
       '@synerise/ds-utils':
         specifier: workspace:^
         version: link:../utils
-      lodash:
-        specifier: ^4.17.19
-        version: 4.17.21
+      lodash.debounce:
+        specifier: ^4.0.8
+        version: 4.0.8
       react:
         specifier: ^18
         version: 18.3.1
@@ -1174,9 +1174,9 @@ importers:
       '@testing-library/user-event':
         specifier: ^14
         version: 14.6.1(@testing-library/dom@9.3.4)
-      '@types/lodash':
-        specifier: ^4.17.20
-        version: 4.17.20
+      '@types/lodash.debounce':
+        specifier: ^4.0.9
+        version: 4.0.9
 
   packages/components/confirmation:
     dependencies:
@@ -1428,9 +1428,9 @@ importers:
       date-fns:
         specifier: 2.16.1
         version: 2.16.1
-      lodash:
-        specifier: ^4.17.21
-        version: 4.17.21
+      lodash.range:
+        specifier: ^3.2.0
+        version: 3.2.0
       react:
         specifier: ^18
         version: 18.3.1
@@ -1447,9 +1447,9 @@ importers:
         specifier: ^8.3.2
         version: 8.3.2
     devDependencies:
-      '@types/lodash':
-        specifier: ^4.17.20
-        version: 4.17.20
+      '@types/lodash.range':
+        specifier: ^3.2.9
+        version: 3.2.9
 
   packages/components/date-range-picker:
     dependencies:
@@ -1528,9 +1528,39 @@ importers:
       dayjs:
         specifier: ^1.8.35
         version: 1.11.19
-      lodash:
-        specifier: ^4.17.21
-        version: 4.17.21
+      lodash.clonedeep:
+        specifier: ^4.5.0
+        version: 4.5.0
+      lodash.flatten:
+        specifier: ^4.4.0
+        version: 4.4.0
+      lodash.groupby:
+        specifier: ^4.6.0
+        version: 4.6.0
+      lodash.isequal:
+        specifier: ^4.5.0
+        version: 4.5.0
+      lodash.isundefined:
+        specifier: ^3.0.1
+        version: 3.0.1
+      lodash.omit:
+        specifier: ^4.5.0
+        version: 4.5.0
+      lodash.omitby:
+        specifier: ^4.6.0
+        version: 4.6.0
+      lodash.range:
+        specifier: ^3.2.0
+        version: 3.2.0
+      lodash.rangeright:
+        specifier: ^4.2.0
+        version: 4.2.0
+      lodash.reverse:
+        specifier: ^4.0.1
+        version: 4.0.1
+      lodash.values:
+        specifier: ^4.3.0
+        version: 4.3.0
       ramda:
         specifier: ^0.27.0
         version: 0.27.0
@@ -1553,9 +1583,39 @@ importers:
       '@testing-library/user-event':
         specifier: ^14
         version: 14.6.1(@testing-library/dom@9.3.4)
-      '@types/lodash':
-        specifier: ^4.17.20
-        version: 4.17.20
+      '@types/lodash.clonedeep':
+        specifier: ^4.5.9
+        version: 4.5.9
+      '@types/lodash.flatten':
+        specifier: ^4.4.9
+        version: 4.4.9
+      '@types/lodash.groupby':
+        specifier: ^4.6.9
+        version: 4.6.9
+      '@types/lodash.isequal':
+        specifier: ^4.5.8
+        version: 4.5.8
+      '@types/lodash.isundefined':
+        specifier: ^3.0.9
+        version: 3.0.9
+      '@types/lodash.omit':
+        specifier: ^4.5.9
+        version: 4.5.9
+      '@types/lodash.omitby':
+        specifier: ^4.6.9
+        version: 4.6.9
+      '@types/lodash.range':
+        specifier: ^3.2.9
+        version: 3.2.9
+      '@types/lodash.rangeright':
+        specifier: ^4.2.0
+        version: 4.2.9
+      '@types/lodash.reverse':
+        specifier: ^4.0.9
+        version: 4.0.9
+      '@types/lodash.values':
+        specifier: ^4.3.9
+        version: 4.3.9
       vitest:
         specifier: '4'
         version: 4.0.17(@types/node@24.10.0)(jiti@2.6.1)(jsdom@16.7.0)(less@3.11.1)(sass@1.93.3)(terser@5.44.0)(yaml@2.8.1)
@@ -2255,9 +2315,9 @@ importers:
       copy-to-clipboard:
         specifier: ^3.3.1
         version: 3.3.3
-      lodash:
-        specifier: ^4.17.21
-        version: 4.17.21
+      lodash.merge:
+        specifier: ^4.6.2
+        version: 4.6.2
       react:
         specifier: ^18
         version: 18.3.1
@@ -2277,9 +2337,9 @@ importers:
         specifier: '4'
         version: 4.0.17(@types/node@24.10.0)(jiti@2.6.1)(jsdom@16.7.0)(less@3.11.1)(sass@1.93.3)(terser@5.44.0)(yaml@2.8.1)
     devDependencies:
-      '@types/lodash':
-        specifier: ^4.17.20
-        version: 4.17.20
+      '@types/lodash.merge':
+        specifier: ^4.6.9
+        version: 4.6.9
 
   packages/components/field-set:
     dependencies:
@@ -3008,9 +3068,9 @@ importers:
       '@synerise/ds-utils':
         specifier: workspace:^
         version: link:../utils
-      lodash:
-        specifier: ^4.17.21
-        version: 4.17.21
+      lodash.debounce:
+        specifier: ^4.0.8
+        version: 4.0.8
       react:
         specifier: ^18
         version: 18.3.1
@@ -3027,9 +3087,9 @@ importers:
         specifier: ^8.3.2
         version: 8.3.2
     devDependencies:
-      '@types/lodash':
-        specifier: ^4.17.20
-        version: 4.17.20
+      '@types/lodash.debounce':
+        specifier: ^4.0.9
+        version: 4.0.9
 
   packages/components/items-roll:
     dependencies:
@@ -3732,9 +3792,6 @@ importers:
       classnames:
         specifier: ^2.3.2
         version: 2.5.1
-      lodash:
-        specifier: ^4.7.21
-        version: 4.17.21
       react:
         specifier: ^18
         version: 18.3.1
@@ -4330,9 +4387,24 @@ importers:
       copy-to-clipboard:
         specifier: ^3.3.1
         version: 3.3.3
-      lodash:
-        specifier: ^4.17.21
-        version: 4.17.21
+      lodash.compact:
+        specifier: ^3.0.1
+        version: 3.0.1
+      lodash.flow:
+        specifier: ^3.5.0
+        version: 3.5.0
+      lodash.groupby:
+        specifier: ^4.6.0
+        version: 4.6.0
+      lodash.isequal:
+        specifier: ^4.5.0
+        version: 4.5.0
+      lodash.merge:
+        specifier: ^4.6.2
+        version: 4.6.2
+      lodash.partial:
+        specifier: ^4.2.1
+        version: 4.2.1
       ramda:
         specifier: 0.27.0
         version: 0.27.0
@@ -4361,9 +4433,24 @@ importers:
         specifier: ^8.3.2
         version: 8.3.2
     devDependencies:
-      '@types/lodash':
-        specifier: ^4.17.20
-        version: 4.17.20
+      '@types/lodash.compact':
+        specifier: ^3.0.9
+        version: 3.0.9
+      '@types/lodash.flow':
+        specifier: ^3.5.9
+        version: 3.5.9
+      '@types/lodash.groupby':
+        specifier: ^4.6.9
+        version: 4.6.9
+      '@types/lodash.isequal':
+        specifier: ^4.5.8
+        version: 4.5.8
+      '@types/lodash.merge':
+        specifier: ^4.6.9
+        version: 4.6.9
+      '@types/lodash.partial':
+        specifier: ^4.2.9
+        version: 4.2.9
       '@types/node':
         specifier: ^22
         version: 22.19.0
@@ -4400,9 +4487,9 @@ importers:
       classnames:
         specifier: ^2.5.1
         version: 2.5.1
-      lodash:
-        specifier: ^4.17.21
-        version: 4.17.21
+      lodash.debounce:
+        specifier: ^4.0.8
+        version: 4.0.8
       react:
         specifier: ^18
         version: 18.3.1
@@ -4410,9 +4497,9 @@ importers:
         specifier: ^5.3.3
         version: 5.3.11(@babel/core@7.28.5)(react-dom@18.3.1(react@18.3.1))(react-is@18.3.1)(react@18.3.1)
     devDependencies:
-      '@types/lodash':
-        specifier: ^4.17.20
-        version: 4.17.20
+      '@types/lodash.debounce':
+        specifier: ^4.0.9
+        version: 4.0.9
 
   packages/components/tag:
     dependencies:
@@ -4516,9 +4603,9 @@ importers:
       debounce:
         specifier: ^1.2.0
         version: 1.2.1
-      lodash:
-        specifier: ^4.17.21
-        version: 4.17.21
+      lodash.range:
+        specifier: ^3.2.0
+        version: 3.2.0
       react:
         specifier: ^18
         version: 18.3.1
@@ -4529,9 +4616,9 @@ importers:
         specifier: ^5.3.3
         version: 5.3.11(@babel/core@7.28.5)(react-dom@18.3.1(react@18.3.1))(react-is@18.3.1)(react@18.3.1)
     devDependencies:
-      '@types/lodash':
-        specifier: ^4.17.20
-        version: 4.17.20
+      '@types/lodash.range':
+        specifier: ^3.2.9
+        version: 3.2.9
 
   packages/components/toast:
     dependencies:
@@ -4656,9 +4743,9 @@ importers:
       classnames:
         specifier: ^2.5.1
         version: 2.5.1
-      lodash:
-        specifier: ^4.17.21
-        version: 4.17.21
+      lodash.debounce:
+        specifier: ^4.0.8
+        version: 4.0.8
       react:
         specifier: ^18
         version: 18.3.1
@@ -4666,9 +4753,9 @@ importers:
         specifier: ^5.3.3
         version: 5.3.11(@babel/core@7.28.5)(react-dom@18.3.1(react@18.3.1))(react-is@18.3.1)(react@18.3.1)
     devDependencies:
-      '@types/lodash':
-        specifier: ^4.17.20
-        version: 4.17.20
+      '@types/lodash.debounce':
+        specifier: ^4.0.9
+        version: 4.0.9
 
   packages/components/unordered-list:
     dependencies:
@@ -5090,6 +5177,12 @@ importers:
       antd:
         specifier: 4.24.16
         version: 4.24.16(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      lodash.debounce:
+        specifier: ^4.0.8
+        version: 4.0.8
+      lodash.isequal:
+        specifier: ^4.5.0
+        version: 4.5.0
       react:
         specifier: ^18
         version: 18.3.1
@@ -5124,6 +5217,12 @@ importers:
       '@storybook/react-webpack5':
         specifier: 10.1.10
         version: 10.1.10(@swc/core@1.14.0)(esbuild@0.27.2)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(storybook@10.1.10(@testing-library/dom@9.3.4)(prettier@3.6.2)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(typescript@4.9.5)(vite@7.3.1(@types/node@24.10.0)(jiti@2.6.1)(less@3.11.1)(sass@1.93.3)(terser@5.44.0)(yaml@2.8.1))
+      '@types/lodash.debounce':
+        specifier: ^4.0.9
+        version: 4.0.9
+      '@types/lodash.isequal':
+        specifier: ^4.5.8
+        version: 4.5.8
       '@use-it/interval':
         specifier: ^1.0.0
         version: 1.0.0(react@18.3.1)
@@ -7889,8 +7988,53 @@ packages:
   '@types/json5@0.0.29':
     resolution: {integrity: sha512-dRLjCWHYg4oaA77cxO64oO+7JwCwnIzkZPdrrC71jQmQtlhM556pwKo5bUzqvZndkVbeFLIIi+9TC40JNF5hNQ==}
 
+  '@types/lodash.clonedeep@4.5.9':
+    resolution: {integrity: sha512-19429mWC+FyaAhOLzsS8kZUsI+/GmBAQ0HFiCPsKGU+7pBXOQWhyrY6xNNDwUSX8SMZMJvuFVMF9O5dQOlQK9Q==}
+
+  '@types/lodash.compact@3.0.9':
+    resolution: {integrity: sha512-b4uMY3aQri4SnRm4ptQXxE11CCqv//k7DQBSpDepLnoJ7lcunUnIxfvA5uOVidiKEKF8JkSCT9EyjFVszBjgqg==}
+
+  '@types/lodash.debounce@4.0.9':
+    resolution: {integrity: sha512-Ma5JcgTREwpLRwMM+XwBR7DaWe96nC38uCBDFKZWbNKD+osjVzdpnUSwBcqCptrp16sSOLBAUb50Car5I0TCsQ==}
+
+  '@types/lodash.flatten@4.4.9':
+    resolution: {integrity: sha512-JCW9xofpn9oJfFSccpBRF8IrB5guqmcKZIa7J9DnZqLd9wgGYbewaYnjbNw3Fb+St8BHVsnGmmS0A3j99LII3Q==}
+
+  '@types/lodash.flow@3.5.9':
+    resolution: {integrity: sha512-EVTpwfNw787Q3Fx2XS4keclQTxGCEgsrK/GZSFx0ZwC5rgEWsYGuhm2XTeqp/aaiwxVwmBnClLbUn5amzjW7jA==}
+
+  '@types/lodash.groupby@4.6.9':
+    resolution: {integrity: sha512-z2xtCX2ko7GrqORnnYea4+ksT7jZNAvaOcLd6mP9M7J09RHvJs06W8BGdQQAX8ARef09VQLdeRilSOcfHlDQJQ==}
+
   '@types/lodash.isequal@4.5.8':
     resolution: {integrity: sha512-uput6pg4E/tj2LGxCZo9+y27JNyB2OZuuI/T5F+ylVDYuqICLG2/ktjxx0v6GvVntAf8TvEzeQLcV0ffRirXuA==}
+
+  '@types/lodash.isundefined@3.0.9':
+    resolution: {integrity: sha512-nF+msH20xJzIJyZMBfArDnYxibF/Kt80y9naFYULzZ2yc4eBDAyxVDaf8DXyDWefHDh9CAaUoFp6XhMn38a26g==}
+
+  '@types/lodash.merge@4.6.9':
+    resolution: {integrity: sha512-23sHDPmzd59kUgWyKGiOMO2Qb9YtqRO/x4IhkgNUiPQ1+5MUVqi6bCZeq9nBJ17msjIMbEIO5u+XW4Kz6aGUhQ==}
+
+  '@types/lodash.omit@4.5.9':
+    resolution: {integrity: sha512-zuAVFLUPJMOzsw6yawshsYGgq2hWUHtsZgeXHZmSFhaQQFC6EQ021uDKHkSjOpNhSvtNSU9165/o3o/Q51GpTw==}
+
+  '@types/lodash.omitby@4.6.9':
+    resolution: {integrity: sha512-QPHwcQeWP/bQVwKV1+goohDgBtSZlHgM2KA/+QhjMYV2/7RTHF72KxLPzybvu8mO7O46NdugTH/yPs3/Jcavxw==}
+
+  '@types/lodash.partial@4.2.9':
+    resolution: {integrity: sha512-zD5MRGShNSkgdnDsnD/k3OpNHqRYN3hQxGDFvJdw4+f6uWE8PRdGV9i6NBi6gzGixClHRCsKeW8LGeRsRPm3gA==}
+
+  '@types/lodash.range@3.2.9':
+    resolution: {integrity: sha512-JNStPShiaR3ROKIAgtzChBhouPBCJxMI/Fj7Xa1cG51A2EMRyosvtL4fiGXOFiQddaxjZmNVYkZGsDRt8fFKPg==}
+
+  '@types/lodash.rangeright@4.2.9':
+    resolution: {integrity: sha512-Edt1OBS6pnMKSZQ3Oj4jclSThY+csrQbyesu0Ikx2R2KkIyMzaQhGxoNUKaZY7IGhMtapoagE+fpanLq1PnvXA==}
+
+  '@types/lodash.reverse@4.0.9':
+    resolution: {integrity: sha512-OQnpryO4vFOd03iD67j76EJ5SFOLDL68c6RSW1VLTnP4ngzAcJARxYoKCUKgnzvObPRdqY1I95Y2L62h4DNkTA==}
+
+  '@types/lodash.values@4.3.9':
+    resolution: {integrity: sha512-IJ20OEfqNwm3k8ENwoM3q0yOs4UMpgtD4GqxB4lwBHToGthHWqhyh5DdSgQjioocz0QK2SSBkJfCq95ZTV8BTw==}
 
   '@types/lodash@4.17.20':
     resolution: {integrity: sha512-H3MHACvFUEiujabxhaI/ImO6gUrd8oOurg7LQtS7mbwIXA/cUqWrvBsaeJ23aZEPk1TAYkurjfMbSELfoCXlGA==}
@@ -11581,8 +11725,20 @@ packages:
   lodash.clonedeep@4.5.0:
     resolution: {integrity: sha512-H5ZhCF25riFd9uB5UCkVKo61m3S/xZk1x4wA6yp/L3RFP6Z/eHH1ymQcGLo7J3GMPfm0V/7m1tryHuGVxpqEBQ==}
 
+  lodash.compact@3.0.1:
+    resolution: {integrity: sha512-2ozeiPi+5eBXW1CLtzjk8XQFhQOEMwwfxblqeq6EGyTxZJ1bPATqilY0e6g2SLQpP4KuMeuioBhEnWz5Pr7ICQ==}
+
   lodash.debounce@4.0.8:
     resolution: {integrity: sha512-FT1yDzDYEoYWhnSGnpE/4Kj1fLZkDFyqRb7fNt6FdYOSxlUWAtp42Eh6Wb0rGIv/m9Bgo7x4GhQbm5Ys4SG5ow==}
+
+  lodash.flatten@4.4.0:
+    resolution: {integrity: sha512-C5N2Z3DgnnKr0LOpv/hKCgKdb7ZZwafIrsesve6lmzvZIRZRGaZ/l6Q8+2W7NaT+ZwO3fFlSCzCzrDCFdJfZ4g==}
+
+  lodash.flow@3.5.0:
+    resolution: {integrity: sha512-ff3BX/tSioo+XojX4MOsOMhJw0nZoUEF011LX8g8d3gvjVbxd89cCio4BCXronjxcTUIJUoqKEUA+n4CqvvRPw==}
+
+  lodash.groupby@4.6.0:
+    resolution: {integrity: sha512-5dcWxm23+VAoz+awKmBaiBvzox8+RqMgFhi7UvX9DHZr2HdxHXM/Wrf8cfKpsW37RNrvtPn6hSwNqurSILbmJw==}
 
   lodash.isequal@4.5.0:
     resolution: {integrity: sha512-pDo3lu8Jhfjqls6GkMgpahsF9kCyayhgykjyLMNFTKWrpVdAQtYyB4muAMWozBB4ig/dtWAmsMxLEI8wuz+DYQ==}
@@ -11594,6 +11750,9 @@ packages:
   lodash.isplainobject@4.0.6:
     resolution: {integrity: sha512-oSXzaWypCMHkPC3NvBEaPHf0KsA5mvPrOPgQWDsbg8n7orZ290M0BmC/jgRZ4vcJ6DTAhjrsSYgdsW/F+MFOBA==}
 
+  lodash.isundefined@3.0.1:
+    resolution: {integrity: sha512-MXB1is3s899/cD8jheYYE2V9qTHwKvt+npCwpD+1Sxm3Q3cECXCiYHjeHWXNwr6Q0SOBPrYUDxendrO6goVTEA==}
+
   lodash.kebabcase@4.1.1:
     resolution: {integrity: sha512-N8XRTIMMqqDgSy4VLKPnJ/+hpGZN+PHQiJnSenYqPaVV/NCqEogTnAdZLQiGKhxX+JCs8waWq2t1XHWKOmlY8g==}
 
@@ -11602,6 +11761,25 @@ packages:
 
   lodash.mergewith@4.6.2:
     resolution: {integrity: sha512-GK3g5RPZWTRSeLSpgP8Xhra+pnjBC56q9FZYe1d5RN3TJ35dbkGy3YqBSMbyCrlbi+CM9Z3Jk5yTL7RCsqboyQ==}
+
+  lodash.omit@4.5.0:
+    resolution: {integrity: sha512-XeqSp49hNGmlkj2EJlfrQFIzQ6lXdNro9sddtQzcJY8QaoC2GO0DT7xaIokHeyM+mIT0mPMlPvkYzg2xCuHdZg==}
+    deprecated: This package is deprecated. Use destructuring assignment syntax instead.
+
+  lodash.omitby@4.6.0:
+    resolution: {integrity: sha512-5OrRcIVR75M288p4nbI2WLAf3ndw2GD9fyNv3Bc15+WCxJDdZ4lYndSxGd7hnG6PVjiJTeJE2dHEGhIuKGicIQ==}
+
+  lodash.partial@4.2.1:
+    resolution: {integrity: sha512-qsiGr0kiA31O7chhmKSUiEGtxXnYtwmaJF00TPAUW79C5PCfaVeLTUN3sLT+rEPcqZooPtiFcGhnphQzFhkqmg==}
+
+  lodash.range@3.2.0:
+    resolution: {integrity: sha512-Fgkb7SinmuzqgIhNhAElo0BL/R1rHCnhwSZf78omqSwvWqD0kD2ssOAutQonDKH/ldS8BxA72ORYI09qAY9CYg==}
+
+  lodash.rangeright@4.2.0:
+    resolution: {integrity: sha512-OIYWJS2TUPczZQxN3u4+DHY5mkfk8/iOerjYtH2LQ3gQ/48IaWHQazh7clUXT0Owb24az8bIA7zM2d6WjbX6UA==}
+
+  lodash.reverse@4.0.1:
+    resolution: {integrity: sha512-9IomqU/gjPNlw1k4B7+nGi9q2rZv5JKhSTeCi+AMoPn0FV9/57DScjscY5spEN9TgLcU+ePKUceMEHWqyVkrsQ==}
 
   lodash.snakecase@4.1.1:
     resolution: {integrity: sha512-QZ1d4xoBHYUeuouhEq3lk3Uq7ldgyFXGBhg04+oRLnIz8o9T65Eh+8YdroUwn846zchkA9yDsDl5CVVaV2nqYw==}
@@ -11617,6 +11795,9 @@ packages:
 
   lodash.upperfirst@4.3.1:
     resolution: {integrity: sha512-sReKOYJIJf74dhJONhU4e0/shzi1trVbSWDOhKYE5XV2O+H7Sb2Dihwuc7xWxVl+DgFPyTqIN3zMfT9cq5iWDg==}
+
+  lodash.values@4.3.0:
+    resolution: {integrity: sha512-r0RwvdCv8id9TUblb/O7rYPwVy6lerCbcawrfdo9iC/1t1wsNMJknO79WNBgwkH0hIeJ08jmvvESbFpNb4jH0Q==}
 
   lodash@4.17.21:
     resolution: {integrity: sha512-v2kDEe57lecTulaDIuNTPy3Ry4gLGJ6Z1O3vE1krgXZNrsQ+LFTGHVxVjcXPs17LhbZVGedAJv8XZ1tvj5FvSg==}
@@ -18004,7 +18185,67 @@ snapshots:
 
   '@types/json5@0.0.29': {}
 
+  '@types/lodash.clonedeep@4.5.9':
+    dependencies:
+      '@types/lodash': 4.17.20
+
+  '@types/lodash.compact@3.0.9':
+    dependencies:
+      '@types/lodash': 4.17.20
+
+  '@types/lodash.debounce@4.0.9':
+    dependencies:
+      '@types/lodash': 4.17.20
+
+  '@types/lodash.flatten@4.4.9':
+    dependencies:
+      '@types/lodash': 4.17.20
+
+  '@types/lodash.flow@3.5.9':
+    dependencies:
+      '@types/lodash': 4.17.20
+
+  '@types/lodash.groupby@4.6.9':
+    dependencies:
+      '@types/lodash': 4.17.20
+
   '@types/lodash.isequal@4.5.8':
+    dependencies:
+      '@types/lodash': 4.17.20
+
+  '@types/lodash.isundefined@3.0.9':
+    dependencies:
+      '@types/lodash': 4.17.20
+
+  '@types/lodash.merge@4.6.9':
+    dependencies:
+      '@types/lodash': 4.17.20
+
+  '@types/lodash.omit@4.5.9':
+    dependencies:
+      '@types/lodash': 4.17.20
+
+  '@types/lodash.omitby@4.6.9':
+    dependencies:
+      '@types/lodash': 4.17.20
+
+  '@types/lodash.partial@4.2.9':
+    dependencies:
+      '@types/lodash': 4.17.20
+
+  '@types/lodash.range@3.2.9':
+    dependencies:
+      '@types/lodash': 4.17.20
+
+  '@types/lodash.rangeright@4.2.9':
+    dependencies:
+      '@types/lodash': 4.17.20
+
+  '@types/lodash.reverse@4.0.9':
+    dependencies:
+      '@types/lodash': 4.17.20
+
+  '@types/lodash.values@4.3.9':
     dependencies:
       '@types/lodash': 4.17.20
 
@@ -22623,7 +22864,15 @@ snapshots:
 
   lodash.clonedeep@4.5.0: {}
 
+  lodash.compact@3.0.1: {}
+
   lodash.debounce@4.0.8: {}
+
+  lodash.flatten@4.4.0: {}
+
+  lodash.flow@3.5.0: {}
+
+  lodash.groupby@4.6.0: {}
 
   lodash.isequal@4.5.0: {}
 
@@ -22631,11 +22880,25 @@ snapshots:
 
   lodash.isplainobject@4.0.6: {}
 
+  lodash.isundefined@3.0.1: {}
+
   lodash.kebabcase@4.1.1: {}
 
   lodash.merge@4.6.2: {}
 
   lodash.mergewith@4.6.2: {}
+
+  lodash.omit@4.5.0: {}
+
+  lodash.omitby@4.6.0: {}
+
+  lodash.partial@4.2.1: {}
+
+  lodash.range@3.2.0: {}
+
+  lodash.rangeright@4.2.0: {}
+
+  lodash.reverse@4.0.1: {}
 
   lodash.snakecase@4.1.1: {}
 
@@ -22646,6 +22909,8 @@ snapshots:
   lodash.uniq@4.5.0: {}
 
   lodash.upperfirst@4.3.1: {}
+
+  lodash.values@4.3.0: {}
 
   lodash@4.17.21: {}
 

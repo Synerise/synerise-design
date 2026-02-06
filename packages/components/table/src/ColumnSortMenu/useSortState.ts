@@ -1,4 +1,5 @@
-import { groupBy, merge } from 'lodash';
+import groupBy from 'lodash.groupby';
+import merge from 'lodash.merge';
 import React from 'react';
 
 import {

@@ -1,4 +1,4 @@
-import { range } from 'lodash';
+import range from 'lodash.range';
 import React from 'react';
 
 import { legacyParse } from '@date-fns/upgrade/v2';

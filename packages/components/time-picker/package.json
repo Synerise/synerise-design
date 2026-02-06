@@ -44,10 +44,10 @@
     "@synerise/ds-typography": "workspace:^",
     "dayjs": "^1.8.19",
     "debounce": "^1.2.0",
-    "lodash": "^4.17.21"
+    "lodash.range": "^3.2.0"
   },
   "devDependencies": {
-    "@types/lodash": "^4.17.20"
+    "@types/lodash.range": "^3.2.9"
   },
   "peerDependencies": {
     "@synerise/ds-core": "*",

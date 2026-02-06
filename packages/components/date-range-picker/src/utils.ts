@@ -1,7 +1,7 @@
 import { getTimezoneOffset } from 'date-fns-tz';
 import fnsMax from 'date-fns/max';
 import fnsMin from 'date-fns/min';
-import { omit } from 'lodash';
+import omit from 'lodash.omit';
 import { type IntlShape } from 'react-intl';
 
 import { type Texts } from './DateRangePicker.types';
