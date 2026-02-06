@@ -16,7 +16,7 @@ describe('Card Tabs', () => {
     tag: String.fromCharCode(65 + i).toUpperCase(),
   }));
   beforeEach(() => {
-    Element.prototype.scrollTo = jest.fn();
+    Element.prototype.scrollTo = vi.fn();
   });
 
   it('should render CardTabs container', () => {
@@ -38,14 +38,14 @@ describe('Card Tabs', () => {
   });
 
   it('should render with add button', () => {
-    const onAddTab = jest.fn();
+    const onAddTab = vi.fn();
     renderWithProvider(<CardTabs onAddTab={onAddTab} />);
 
     expect(screen.getByTestId('card-tabs-add-button')).toBeTruthy();
   });
 
   it('should call onAddTab function', () => {
-    const onAddTab = jest.fn();
+    const onAddTab = vi.fn();
     renderWithProvider(<CardTabs onAddTab={onAddTab} maxTabsCount={5} />);
     const addButton = screen
       .getByTestId('card-tabs-add-button')
@@ -59,7 +59,7 @@ describe('Card Tabs', () => {
   });
 
   it('should render disabled add button', () => {
-    const onAddTab = jest.fn();
+    const onAddTab = vi.fn();
     renderWithProvider(
       <CardTabs onAddTab={onAddTab} maxTabsCount={3}>
         {ITEMS.map((item, index) => (
@@ -74,7 +74,7 @@ describe('Card Tabs', () => {
   });
 
   it('should call onSelect function', () => {
-    const onSelect = jest.fn();
+    const onSelect = vi.fn();
     renderWithProvider(
       <CardTabs maxTabsCount={3}>
         {ITEMS.map((item, index) => (
@@ -175,7 +175,7 @@ describe('Card Tabs', () => {
   });
 
   it('should render sortable tabs', () => {
-    const onChangeOrder = jest.fn();
+    const onChangeOrder = vi.fn();
     renderWithProvider(
       <CardTabs maxTabsCount={3} onChangeOrder={onChangeOrder}>
         {ITEMS.map((item, index) => (
@@ -193,7 +193,7 @@ describe('Card Tabs', () => {
   });
 
   it('should call removeTab function', () => {
-    const onRemove = jest.fn();
+    const onRemove = vi.fn();
     const { container } = renderWithProvider(
       <CardTabs maxTabsCount={3}>
         {ITEMS.map((item, index) => (
@@ -216,7 +216,7 @@ describe('Card Tabs', () => {
   });
 
   it('should call onDuplicate function', () => {
-    const onDuplicate = jest.fn();
+    const onDuplicate = vi.fn();
     const { container } = renderWithProvider(
       <CardTabs maxTabsCount={3}>
         {ITEMS.map((item, index) => (
@@ -239,7 +239,7 @@ describe('Card Tabs', () => {
   });
 
   it('should call onChangeName function', async () => {
-    const onChangeName = jest.fn();
+    const onChangeName = vi.fn();
     const { container } = renderWithProvider(
       <CardTabs maxTabsCount={3}>
         {ITEMS.map((item, index) => (
@@ -324,8 +324,8 @@ describe('Card Tabs', () => {
   });
 
   it('should render dropdown menu as suffix', () => {
-    const onDuplicate = jest.fn();
-    const onChangeName = jest.fn();
+    const onDuplicate = vi.fn();
+    const onChangeName = vi.fn();
     renderWithProvider(
       <CardTabs maxTabsCount={3}>
         {ITEMS.map((item, index) => (
@@ -345,7 +345,7 @@ describe('Card Tabs', () => {
   });
 
   it('should enter edit mode on label doubleclick', async () => {
-    const onChangeName = jest.fn();
+    const onChangeName = vi.fn();
     renderWithProvider(
       <CardTabs maxTabsCount={3}>
         {ITEMS.map((item, index) => (
