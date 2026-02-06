@@ -48,11 +48,11 @@
     "@synerise/ds-tooltip": "workspace:^",
     "@synerise/ds-typography": "workspace:^",
     "@synerise/ds-utils": "workspace:^",
-    "lodash": "^4.17.19"
+    "lodash.debounce": "^4.0.8"
   },
   "devDependencies": {
     "@testing-library/user-event": "^14",
-    "@types/lodash": "^4.17.20"
+    "@types/lodash.debounce": "^4.0.9"
   },
   "peerDependencies": {
     "@synerise/ds-core": "*",

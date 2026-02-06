@@ -1,4 +1,4 @@
-import { range } from 'lodash';
+import range from 'lodash.range';
 import { v4 as uuid } from 'uuid';
 
 import { fnsAddDays, fnsFormat } from '../fns';

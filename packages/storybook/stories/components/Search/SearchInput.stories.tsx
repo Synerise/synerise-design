@@ -1,7 +1,7 @@
+import debounce from 'lodash.debounce';
 import React, { useState } from 'react';
-import { Meta, StoryObj } from '@storybook/react-webpack5';
-import { debounce } from 'lodash';
 
+import { Meta, StoryObj } from '@storybook/react-webpack5';
 import { SearchInput, SearchInputProps } from '@synerise/ds-search';
 
 import { fixedWrapper300 } from '../../utils';
@@ -14,7 +14,7 @@ export default {
   title: 'Components/Search/SearchInput',
   tags: ['autodocs'],
   decorators: [fixedWrapper300],
-  render: args => {
+  render: (args) => {
     const [value, setValue] = useState('');
     const handleClear = () => {
       setValue('');
@@ -53,12 +53,15 @@ export const Expanded: Story = {
   },
 };
 export const WithDebounce: Story = {
-  render: args => {
+  render: (args) => {
     const [debouncedValue, setDebouncedValue] = useState('');
 
     return (
       <div style={{ width: '300px' }}>
-        <DebouncedInput debouncedOnChange={debounce(setDebouncedValue, 500)} {...args} />
+        <DebouncedInput
+          debouncedOnChange={debounce(setDebouncedValue, 500)}
+          {...args}
+        />
         <div style={{ margin: '10px 0' }}>
           {' '}
           <div style={{ marginRight: '4px', fontWeight: 500 }}>Debounced:</div>

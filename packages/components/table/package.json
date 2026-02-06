@@ -64,7 +64,12 @@
     "@synerise/ds-utils": "workspace:^",
     "@types/react-window": "^1.8.8",
     "classnames": "^2.5.1",
-    "lodash": "^4.17.21",
+    "lodash.compact": "^3.0.1",
+    "lodash.flow": "^3.5.0",
+    "lodash.groupby": "^4.6.0",
+    "lodash.isequal": "^4.5.0",
+    "lodash.merge": "^4.6.2",
+    "lodash.partial": "^4.2.1",
     "ramda": "0.27.0",
     "rc-resize-observer": "^1.2.0",
     "rc-table": "~7.26.0",
@@ -73,7 +78,12 @@
     "uuid": "^8.3.2"
   },
   "devDependencies": {
-    "@types/lodash": "^4.17.20",
+    "@types/lodash.compact": "^3.0.9",
+    "@types/lodash.flow": "^3.5.9",
+    "@types/lodash.groupby": "^4.6.9",
+    "@types/lodash.isequal": "^4.5.8",
+    "@types/lodash.merge": "^4.6.9",
+    "@types/lodash.partial": "^4.2.9",
     "@types/node": "^22"
   },
   "peerDependencies": {

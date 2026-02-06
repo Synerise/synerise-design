@@ -1,4 +1,4 @@
-import { isEqual } from 'lodash';
+import isEqual from 'lodash.isequal';
 import find from 'ramda/src/find';
 import React, { useCallback, useRef, useState } from 'react';
 

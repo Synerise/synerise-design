@@ -1,4 +1,6 @@
-import { groupBy, omit, range } from 'lodash';
+import groupBy from 'lodash.groupby';
+import omit from 'lodash.omit';
+import range from 'lodash.range';
 
 import {
   type DenormalizedFilter,

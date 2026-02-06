@@ -162,11 +162,7 @@ const RENDER_CONDITIONS = (props?: Partial<ConditionProps>) => {
 
 describe('Condition component', () => {
   beforeAll(() => {
-    jest.mock('lodash', () => {
-      const module = jest.requireActual('lodash');
-      module.debounce = jest.fn((fn) => fn);
-      return module;
-    });
+    jest.mock('lodash.debounce', () => jest.fn((fn) => fn));
   });
   test('Should render', () => {
     const { container } = renderWithProvider(RENDER_CONDITIONS());

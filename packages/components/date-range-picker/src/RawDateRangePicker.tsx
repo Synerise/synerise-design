@@ -1,6 +1,7 @@
 import fnsIsValid from 'date-fns/isValid';
 import fnsStartOfSecond from 'date-fns/startOfSecond';
-import { isUndefined, omitBy } from 'lodash';
+import isUndefined from 'lodash.isundefined';
+import omitBy from 'lodash.omitby';
 import React, {
   type ReactNode,
   useCallback,

@@ -1,4 +1,4 @@
-import { merge } from 'lodash';
+import merge from 'lodash.merge';
 import React, { useMemo } from 'react';
 import { useIntl } from 'react-intl';
 

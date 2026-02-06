@@ -1,5 +1,5 @@
 import Table from 'antd/lib/table';
-import { flow } from 'lodash';
+import flow from 'lodash.flow';
 import React from 'react';
 
 import { columnWithSortButtons } from '../ColumnSortMenu/columnWithSortButtons';

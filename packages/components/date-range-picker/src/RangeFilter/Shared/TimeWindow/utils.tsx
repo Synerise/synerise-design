@@ -1,6 +1,9 @@
 // @ts-ignore
 import dayjs from 'dayjs';
-import { flatten, groupBy, reverse, values } from 'lodash';
+import flatten from 'lodash.flatten';
+import groupBy from 'lodash.groupby';
+import reverse from 'lodash.reverse';
+import values from 'lodash.values';
 
 import {
   DEFAULT_RANGE_END,
