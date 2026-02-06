@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import Dropdown from '@synerise/ds-dropdown';
 import Icon from '@synerise/ds-icon';
 import { Input, type StyledInput } from '@synerise/ds-input';
-import { InputNumberWrapper } from '@synerise/ds-input-number/dist/InputNumber.styles';
+import { InputNumberContainer } from '@synerise/ds-input-number/dist/InputNumber.styles';
 
 export const RelativeDateDropdownWrapper = styled(Dropdown.Wrapper)`
   padding: 24px;
@@ -12,7 +12,7 @@ export const RelativeDateDropdownWrapper = styled(Dropdown.Wrapper)`
   width: 100%;
   gap: 8px;
   min-width: 420px;
-  ${InputNumberWrapper} {
+  ${InputNumberContainer} {
     width: 70px;
   }
   & > * {
