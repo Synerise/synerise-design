@@ -25,7 +25,7 @@ describe('CardSelect', () => {
 
   it('should onChange be called', function () {
     // ARRANGE
-    const onChange = jest.fn();
+    const onChange = vi.fn();
 
     const { container } = renderWithProvider(
       <CardSelect
@@ -48,7 +48,7 @@ describe('CardSelect', () => {
 
   it('should onChange be called if disabled', function () {
     // ARRANGE
-    const onChange = jest.fn();
+    const onChange = vi.fn();
 
     const { container } = renderWithProvider(
       <CardSelect
@@ -71,8 +71,8 @@ describe('CardSelect', () => {
 
   it('should onClick be called', function () {
     // ARRANGE
-    const onChange = jest.fn();
-    const onClick = jest.fn();
+    const onChange = vi.fn();
+    const onClick = vi.fn();
 
     const { container } = renderWithProvider(
       <CardSelect
