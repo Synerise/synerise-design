@@ -6,7 +6,7 @@ import { fireEvent, screen } from '@testing-library/react';
 import Button from '../index';
 
 describe('Button', () => {
-  const onClick = jest.fn();
+  const onClick = vi.fn();
   it('should render', function () {
     renderWithProvider(<Button onClick={onClick}>Click ME!</Button>);
 

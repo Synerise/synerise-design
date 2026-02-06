@@ -7,7 +7,7 @@ import { ExpanderSize } from '../Expander/Expander.types';
 import Button from '../index';
 
 describe('Expander', () => {
-  const onClick = jest.fn();
+  const onClick = vi.fn();
   it('should render', () => {
     // ARRANGE
     const { container } = renderWithProvider(

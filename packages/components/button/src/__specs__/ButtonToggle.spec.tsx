@@ -6,7 +6,7 @@ import { fireEvent, screen } from '@testing-library/react';
 import { ButtonToggle } from '../index';
 
 describe('ButtonToggle', () => {
-  const onClick = jest.fn();
+  const onClick = vi.fn();
   it('should render', function () {
     renderWithProvider(
       <ButtonToggle onClick={onClick}>Click ME!</ButtonToggle>,
