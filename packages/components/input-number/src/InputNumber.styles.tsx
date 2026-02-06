@@ -5,12 +5,35 @@ import React, { forwardRef } from 'react';
 import styled from 'styled-components';
 
 import { type ThemeProps } from '@synerise/ds-core';
+import { type AutoResizeProp } from '@synerise/ds-input';
+import { autoresizeConfObjToCss } from '@synerise/ds-input/dist/Input.styles';
 
-export const InputNumberContainer = styled.div`
+export const InputNumberContainer = styled.div<{ autoResize?: AutoResizeProp }>`
   display: flex;
   flex-direction: column;
   align-items: stretch;
   justify-content: flex-start;
+
+  &&& .ant-input-number-input {
+    padding: ${(props) => (props.autoResize ? '0' : '6px 11px')};
+  }
+`;
+
+export const InputNumberAutosize = styled.div<{ autoResize?: AutoResizeProp }>`
+  &&& .ant-input-number {
+    width: ${(props) => (props.autoResize ? '100%' : '200px')};
+    ${(props) => autoresizeConfObjToCss({ ...props, boxSizing: 'border-box' })};
+    grid-area: 1 / 1;
+  }
+
+  input {
+    text-indent: 4px;
+  }
+  input.ant-input-number-input {
+    letter-spacing: normal;
+    font-feature-settings: 'tnum' 0;
+    font-variant-numeric: proportional-nums;
+  }
 `;
 
 const NumberOnlyBaseAntInputNumber = forwardRef<
@@ -32,6 +55,11 @@ export const AntdInputNumber = styled(NumberOnlyBaseAntInputNumber)`
       border: 0;
     `};
   }
+
+  .ant-input-number-group-addon {
+    background-color: ${(props: ThemeProps) => props.theme.palette['grey-050']};
+    padding: 0 12px;
+  }
 `;
 
 export const Prefixel = styled.div`
@@ -46,36 +74,4 @@ export const Suffixel = styled.div`
   border-left-width: 0;
 `;
 
-export const InputNumberWrapper = styled.div<{
-  prefixel: boolean;
-  suffixel: boolean;
-}>`
-  display: flex;
-  align-items: center;
-
-  ${Prefixel}, ${Suffixel} {
-    background: ${(props: ThemeProps) => props.theme.palette['grey-050']};
-    display: flex;
-    align-items: center;
-    align-self: stretch;
-    padding: 0 12px;
-  }
-
-  ${(props) =>
-    props.prefixel &&
-    `
-    ${AntdInputNumber} {
-      border-top-left-radius: 0;
-      border-bottom-left-radius: 0;
-    }
-  `}
-
-  ${(props) =>
-    props.suffixel &&
-    `
-    ${AntdInputNumber} {
-      border-top-right-radius: 0;
-      border-bottom-right-radius: 0;
-    }
-  `}
-`;
+export const InputNumberWrapper = styled.div``;

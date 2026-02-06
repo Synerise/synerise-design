@@ -1,15 +1,17 @@
-import { Meta, StoryObj } from '@storybook/react-webpack5';
 import { fn } from 'storybook/test';
+
+import { Meta, StoryObj } from '@storybook/react-webpack5';
 import InputNumber, { InputNumberProps } from '@synerise/ds-input-number';
+
 import {
   BOOLEAN_CONTROL,
   CLASSNAME_ARG_CONTROL,
-  fixedWrapper300,
   NUMBER_CONTROL,
   PREFIXCLS_ARG_CONTROL,
   REACT_NODE_AS_STRING,
   STRING_CONTROL,
   STYLE_ARG_CONTROL,
+  fixedWrapper300,
 } from '../../utils';
 
 type Story = StoryObj<InputNumberProps>;
@@ -20,8 +22,8 @@ export default {
   decorators: [fixedWrapper300],
   parameters: {
     controls: {
-      exclude: ['precision', 'decimalSeparator', 'upHandler',]
-    }
+      exclude: ['precision', 'decimalSeparator', 'upHandler'],
+    },
   },
   argTypes: {
     className: CLASSNAME_ARG_CONTROL,
@@ -34,6 +36,15 @@ export default {
     tabIndex: NUMBER_CONTROL,
     disabled: BOOLEAN_CONTROL,
     raw: BOOLEAN_CONTROL,
+    autoResize: {
+      control: 'select',
+      options: ['false', 'min & max width', 'stretch to fit'],
+      mapping: {
+        false: false,
+        'min & max width': { minWidth: '100px', maxWidth: '300px' },
+        'stretch to fit': { minWidth: '100px', stretchToFit: true },
+      },
+    },
     readOnly: BOOLEAN_CONTROL,
     stringMode: BOOLEAN_CONTROL,
     error: BOOLEAN_CONTROL,
@@ -69,6 +80,15 @@ export const WithLabelAndDescription: Story = {
   args: {
     label: 'Label',
     description: 'Description',
+  },
+};
+
+export const WithAutoSize: Story = {
+  args: {
+    autoResize: {
+      minWidth: '50px',
+      maxWidth: '170px',
+    },
   },
 };
 
