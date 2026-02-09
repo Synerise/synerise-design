@@ -1,52 +1,41 @@
-import React from 'react';
+import type { IconName } from '../useIconComponent';
 
-import {
-  FileActionM,
-  FileArchiveM,
-  FileCodeM,
-  FileM,
-  FileTypeImageM,
-  FileTypePlainM,
-  FileTypeTableM,
-  FileTypeTextM,
-} from '../icons/M';
-
-export const mapMimeTypeToIcon = (mimeType: string) => {
+export const mapMimeTypeToIconName = (mimeType: string): IconName => {
   switch (mimeType) {
     case 'text/csv':
-      return <FileTypeTableM />;
+      return 'FileTypeTableM';
     case 'application/msword':
     case 'application/vnd.openxmlformats-officedocument.wordprocessingml.document':
-      return <FileTypeTextM />;
+      return 'FileTypeTextM';
     case 'text/html':
-      return <FileCodeM />;
+      return 'FileCodeM';
     case 'audio/mp3':
     case 'audio/mpeg3':
-      return <FileActionM />;
+      return 'FileActionM';
     case 'application/pdf':
-      return <FileTypeImageM />;
+      return 'FileTypeImageM';
     case 'application/mspowerpoint':
     case 'application/vnd.ms-powerpoint':
     case 'application/vnd.openxmlformats-officedocument.presentationml.presentation':
-      return <FileTypePlainM />;
+      return 'FileTypePlainM';
     case 'image/svg':
-      return <FileTypeImageM />;
+      return 'FileTypeImageM';
     case 'text/plain':
-      return <FileTypeTextM />;
+      return 'FileTypeTextM';
     case 'video/avi':
     case 'video/quicktime':
     case 'video/mpeg':
-      return <FileActionM />;
+      return 'FileActionM';
     case 'application/excel':
     case 'application/vnd.ms-excel':
     case 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet':
-      return <FileTypeTableM />;
+      return 'FileTypeTableM';
     case 'application/zip':
     case 'multipart/x-zip':
     case 'application/x-compressed':
     case 'application/x-zip-compressed':
-      return <FileArchiveM />;
+      return 'FileArchiveM';
     default:
-      return <FileM />;
+      return 'FileM';
   }
 };
