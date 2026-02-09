@@ -29,6 +29,7 @@ const Confirmation = <ItemType extends ListItemProps>({
   additionalInfo,
   secondaryButtonProps,
   mainButtonProps,
+  customFooterComponent,
   ...modalProps
 }: ConfirmationProps<ItemType>) => {
   const [mode, setMode] = useState<DisplayMode>('default');
@@ -94,6 +95,9 @@ const Confirmation = <ItemType extends ListItemProps>({
               {allTexts.relatedObjectsButtonLabel}
             </Button>
           </S.FooterLeft>
+        )}
+        {customFooterComponent && (
+          <S.FooterLeft>{customFooterComponent}</S.FooterLeft>
         )}
         {(onOk || onCancel) && (
           <S.FooterRight>
