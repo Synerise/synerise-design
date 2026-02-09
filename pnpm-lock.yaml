@@ -3400,6 +3400,361 @@ importers:
         specifier: workspace:^
         version: link:../utils
 
+  packages/components/mocks:
+    dependencies:
+      '@synerise/ds-action-area':
+        specifier: workspace:^
+        version: link:../action-area
+      '@synerise/ds-alert':
+        specifier: workspace:^
+        version: link:../alert
+      '@synerise/ds-app-menu':
+        specifier: workspace:^
+        version: link:../app-menu
+      '@synerise/ds-autocomplete':
+        specifier: workspace:^
+        version: link:../autocomplete
+      '@synerise/ds-avatar':
+        specifier: workspace:^
+        version: link:../avatar
+      '@synerise/ds-avatar-group':
+        specifier: workspace:^
+        version: link:../avatar-group
+      '@synerise/ds-badge':
+        specifier: workspace:^
+        version: link:../badge
+      '@synerise/ds-banner':
+        specifier: workspace:^
+        version: link:../banner
+      '@synerise/ds-block':
+        specifier: workspace:^
+        version: link:../block
+      '@synerise/ds-broadcast-bar':
+        specifier: workspace:^
+        version: link:../broadcast-bar
+      '@synerise/ds-button':
+        specifier: workspace:^
+        version: link:../button
+      '@synerise/ds-button-group':
+        specifier: workspace:^
+        version: link:../button-group
+      '@synerise/ds-card':
+        specifier: workspace:^
+        version: link:../card
+      '@synerise/ds-card-select':
+        specifier: workspace:^
+        version: link:../card-select
+      '@synerise/ds-card-tabs':
+        specifier: workspace:^
+        version: link:../card-tabs
+      '@synerise/ds-cascader':
+        specifier: workspace:^
+        version: link:../cascader
+      '@synerise/ds-checkbox':
+        specifier: workspace:^
+        version: link:../checkbox
+      '@synerise/ds-checkbox-tristate':
+        specifier: workspace:^
+        version: link:../checkbox-tristate
+      '@synerise/ds-code-area':
+        specifier: workspace:^
+        version: link:../code-area
+      '@synerise/ds-code-snippet':
+        specifier: workspace:^
+        version: link:../code-snippet
+      '@synerise/ds-collector':
+        specifier: workspace:^
+        version: link:../collector
+      '@synerise/ds-color-picker':
+        specifier: workspace:^
+        version: link:../color-picker
+      '@synerise/ds-column-manager':
+        specifier: workspace:^
+        version: link:../column-manager
+      '@synerise/ds-completed-within':
+        specifier: workspace:^
+        version: link:../completed-within
+      '@synerise/ds-condition':
+        specifier: workspace:^
+        version: link:../condition
+      '@synerise/ds-confirmation':
+        specifier: workspace:^
+        version: link:../confirmation
+      '@synerise/ds-context-selector':
+        specifier: workspace:^
+        version: link:../context-selector
+      '@synerise/ds-copy-icon':
+        specifier: workspace:^
+        version: link:../copy-icon
+      '@synerise/ds-core':
+        specifier: workspace:^
+        version: link:../core
+      '@synerise/ds-cruds':
+        specifier: workspace:^
+        version: link:../cruds
+      '@synerise/ds-data-format':
+        specifier: workspace:^
+        version: link:../data-format
+      '@synerise/ds-date-picker':
+        specifier: workspace:^
+        version: link:../date-picker
+      '@synerise/ds-date-range-picker':
+        specifier: workspace:^
+        version: link:../date-range-picker
+      '@synerise/ds-description':
+        specifier: workspace:^
+        version: link:../description
+      '@synerise/ds-divider':
+        specifier: workspace:^
+        version: link:../divider
+      '@synerise/ds-drawer':
+        specifier: workspace:^
+        version: link:../drawer
+      '@synerise/ds-dropdown':
+        specifier: workspace:^
+        version: link:../dropdown
+      '@synerise/ds-editable-items-list':
+        specifier: workspace:^
+        version: link:../editable-items-list
+      '@synerise/ds-emoji-picker':
+        specifier: workspace:^
+        version: link:../emoji-picker
+      '@synerise/ds-empty-states':
+        specifier: workspace:^
+        version: link:../empty-states
+      '@synerise/ds-estimation':
+        specifier: workspace:^
+        version: link:../estimation
+      '@synerise/ds-factors':
+        specifier: workspace:^
+        version: link:../factors
+      '@synerise/ds-field-set':
+        specifier: workspace:^
+        version: link:../field-set
+      '@synerise/ds-file-uploader':
+        specifier: workspace:^
+        version: link:../file-uploader
+      '@synerise/ds-filter':
+        specifier: workspace:^
+        version: link:../filter
+      '@synerise/ds-flag':
+        specifier: workspace:^
+        version: link:../flag
+      '@synerise/ds-flex-box':
+        specifier: workspace:^
+        version: link:../flex-box
+      '@synerise/ds-footer':
+        specifier: workspace:^
+        version: link:../footer
+      '@synerise/ds-form':
+        specifier: workspace:^
+        version: link:../form
+      '@synerise/ds-form-field':
+        specifier: workspace:^
+        version: link:../form-field
+      '@synerise/ds-format-picker':
+        specifier: workspace:^
+        version: link:../format-picker
+      '@synerise/ds-grid':
+        specifier: workspace:^
+        version: link:../grid
+      '@synerise/ds-icon':
+        specifier: workspace:^
+        version: link:../icon
+      '@synerise/ds-icon-picker':
+        specifier: workspace:^
+        version: link:../icon-picker
+      '@synerise/ds-information-card':
+        specifier: workspace:^
+        version: link:../information-card
+      '@synerise/ds-inline-alert':
+        specifier: workspace:^
+        version: link:../inline-alert
+      '@synerise/ds-inline-edit':
+        specifier: workspace:^
+        version: link:../inline-edit
+      '@synerise/ds-input':
+        specifier: workspace:^
+        version: link:../input
+      '@synerise/ds-input-number':
+        specifier: workspace:^
+        version: link:../input-number
+      '@synerise/ds-insight':
+        specifier: workspace:^
+        version: link:../insight
+      '@synerise/ds-item-filter':
+        specifier: workspace:^
+        version: link:../item-filter
+      '@synerise/ds-item-picker':
+        specifier: workspace:^
+        version: link:../item-picker
+      '@synerise/ds-items-roll':
+        specifier: workspace:^
+        version: link:../items-roll
+      '@synerise/ds-layout':
+        specifier: workspace:^
+        version: link:../layout
+      '@synerise/ds-list':
+        specifier: workspace:^
+        version: link:../list
+      '@synerise/ds-list-item':
+        specifier: workspace:^
+        version: link:../list-item
+      '@synerise/ds-loader':
+        specifier: workspace:^
+        version: link:../loader
+      '@synerise/ds-logic':
+        specifier: workspace:^
+        version: link:../logic
+      '@synerise/ds-manageable-list':
+        specifier: workspace:^
+        version: link:../manageable-list
+      '@synerise/ds-mapping':
+        specifier: workspace:^
+        version: link:../mapping
+      '@synerise/ds-menu':
+        specifier: workspace:^
+        version: link:../menu
+      '@synerise/ds-metric-card':
+        specifier: workspace:^
+        version: link:../metric-card
+      '@synerise/ds-modal':
+        specifier: workspace:^
+        version: link:../modal
+      '@synerise/ds-navbar':
+        specifier: workspace:^
+        version: link:../navbar
+      '@synerise/ds-operators':
+        specifier: workspace:^
+        version: link:../operators
+      '@synerise/ds-ordered-list':
+        specifier: workspace:^
+        version: link:../ordered-list
+      '@synerise/ds-page-header':
+        specifier: workspace:^
+        version: link:../page-header
+      '@synerise/ds-pagination':
+        specifier: workspace:^
+        version: link:../pagination
+      '@synerise/ds-panel':
+        specifier: workspace:^
+        version: link:../panel
+      '@synerise/ds-panels-resizer':
+        specifier: workspace:^
+        version: link:../panels-resizer
+      '@synerise/ds-popconfirm':
+        specifier: workspace:^
+        version: link:../popconfirm
+      '@synerise/ds-popover':
+        specifier: workspace:^
+        version: link:../popover
+      '@synerise/ds-progress-bar':
+        specifier: workspace:^
+        version: link:../progress-bar
+      '@synerise/ds-radio':
+        specifier: workspace:^
+        version: link:../radio
+      '@synerise/ds-result':
+        specifier: workspace:^
+        version: link:../result
+      '@synerise/ds-scrollbar':
+        specifier: workspace:^
+        version: link:../scrollbar
+      '@synerise/ds-search':
+        specifier: workspace:^
+        version: link:../search
+      '@synerise/ds-search-bar':
+        specifier: workspace:^
+        version: link:../search-bar
+      '@synerise/ds-section-message':
+        specifier: workspace:^
+        version: link:../section-message
+      '@synerise/ds-select':
+        specifier: workspace:^
+        version: link:../select
+      '@synerise/ds-short-cuts':
+        specifier: workspace:^
+        version: link:../short-cuts
+      '@synerise/ds-sidebar':
+        specifier: workspace:^
+        version: link:../sidebar
+      '@synerise/ds-sidebar-object':
+        specifier: workspace:^
+        version: link:../sidebar-object
+      '@synerise/ds-skeleton':
+        specifier: workspace:^
+        version: link:../skeleton
+      '@synerise/ds-slider':
+        specifier: workspace:^
+        version: link:../slider
+      '@synerise/ds-sortable':
+        specifier: workspace:^
+        version: link:../sortable
+      '@synerise/ds-status':
+        specifier: workspace:^
+        version: link:../status
+      '@synerise/ds-step-card':
+        specifier: workspace:^
+        version: link:../step-card
+      '@synerise/ds-stepper':
+        specifier: workspace:^
+        version: link:../stepper
+      '@synerise/ds-subject':
+        specifier: workspace:^
+        version: link:../subject
+      '@synerise/ds-subtle-form':
+        specifier: workspace:^
+        version: link:../subtle-form
+      '@synerise/ds-switch':
+        specifier: workspace:^
+        version: link:../switch
+      '@synerise/ds-table':
+        specifier: workspace:^
+        version: link:../table
+      '@synerise/ds-tabs':
+        specifier: workspace:^
+        version: link:../tabs
+      '@synerise/ds-tag':
+        specifier: workspace:^
+        version: link:../tag
+      '@synerise/ds-tags':
+        specifier: workspace:^
+        version: link:../tags
+      '@synerise/ds-time-picker':
+        specifier: workspace:^
+        version: link:../time-picker
+      '@synerise/ds-toast':
+        specifier: workspace:^
+        version: link:../toast
+      '@synerise/ds-toolbar':
+        specifier: workspace:^
+        version: link:../toolbar
+      '@synerise/ds-tooltip':
+        specifier: workspace:^
+        version: link:../tooltip
+      '@synerise/ds-tray':
+        specifier: workspace:^
+        version: link:../tray
+      '@synerise/ds-typography':
+        specifier: workspace:^
+        version: link:../typography
+      '@synerise/ds-unordered-list':
+        specifier: workspace:^
+        version: link:../unordered-list
+      '@synerise/ds-utils':
+        specifier: workspace:^
+        version: link:../utils
+      '@synerise/ds-wizard':
+        specifier: workspace:^
+        version: link:../wizard
+      react:
+        specifier: ^18
+        version: 18.3.1
+    devDependencies:
+      vitest:
+        specifier: ^4.0.0
+        version: 4.0.17(@types/node@24.10.0)(jiti@2.6.1)(jsdom@16.7.0)(less@3.11.1)(sass@1.93.3)(terser@5.44.0)(yaml@2.8.1)
+
   packages/components/modal:
     dependencies:
       '@synerise/ds-button':

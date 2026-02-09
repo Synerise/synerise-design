@@ -1,35 +1,37 @@
-import React, { type ReactNode, useMemo } from 'react';
+import React, { type ReactNode } from 'react';
 
 import Icon from '../Icon';
 import type { IconProps } from '../Icon.types';
-import { iconManifest } from './iconManifest';
+import { type IconName, useIconComponent } from '../useIconComponent';
 
-export type DynamicIconProps = Omit<IconProps, 'component'> & {
-  name: DynamicIconName;
+export type DynamicIconProps = Omit<IconProps, 'component' | 'iconName'> & {
+  name: IconName;
   fallback?: ReactNode;
 };
-export type DynamicIconName = keyof typeof iconManifest;
 
+/**
+ * @deprecated Use `<Icon iconName="IconName" />` instead of `<DynamicIcon name="IconName" />`.
+ * The Icon component now supports dynamic icon loading via the `iconName` prop.
+ * @example
+ * // Before (deprecated):
+ * <DynamicIcon name="InfoM" />
+ *
+ * // After (recommended):
+ * <Icon iconName="InfoM" />
+ */
 export const DynamicIcon = ({
   name,
   fallback = null,
   ...props
-}: DynamicIconProps & {}) => {
-  const IconComponent = useMemo(() => {
-    const iconModule = iconManifest[name];
-    if (!iconModule) {
-      return null;
-    }
-
-    const component = iconModule[name];
-    return component && typeof component === 'function' ? component : null;
-  }, [name]);
+}: DynamicIconProps) => {
+  const IconComponent = useIconComponent(name);
 
   if (!IconComponent) {
     return fallback;
   }
 
-  return <Icon {...props} component={<IconComponent />} />;
+  return <Icon {...props} iconName={name} />;
 };
 
 export default DynamicIcon;
+export type { IconName as DynamicIconName };
