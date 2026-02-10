@@ -1,6 +1,6 @@
 {
   "name": "@synerise/ds-mocks",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "Mocks UI Component for the Synerise Design System",
   "license": "ISC",
   "repository": "Synerise/synerise-design",
@@ -32,12 +32,10 @@
     "*.less"
   ],
   "types": "dist/index.d.ts",
-  "dependencies": {},
   "devDependencies": {
     "vitest": "^4.0.0"
   },
   "peerDependencies": {
-    "react": ">=16.9.0 <= 18.3.1",
     "@synerise/ds-action-area": "workspace:^",
     "@synerise/ds-alert": "workspace:^",
     "@synerise/ds-app-menu": "workspace:^",
@@ -152,6 +150,7 @@
     "@synerise/ds-typography": "workspace:^",
     "@synerise/ds-unordered-list": "workspace:^",
     "@synerise/ds-utils": "workspace:^",
-    "@synerise/ds-wizard": "workspace:^"
+    "@synerise/ds-wizard": "workspace:^",
+    "react": ">=16.9.0 <= 18.3.1"
   }
 }

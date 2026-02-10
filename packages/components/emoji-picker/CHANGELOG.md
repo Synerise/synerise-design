@@ -3,6 +3,10 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.3.16](https://github.com/Synerise/synerise-design/compare/@synerise/ds-emoji-picker@1.3.15...@synerise/ds-emoji-picker@1.3.16) (2026-02-10)
+
+**Note:** Version bump only for package @synerise/ds-emoji-picker
+
 ## [1.3.15](https://github.com/Synerise/synerise-design/compare/@synerise/ds-emoji-picker@1.3.14...@synerise/ds-emoji-picker@1.3.15) (2026-02-06)
 
 **Note:** Version bump only for package @synerise/ds-emoji-picker
