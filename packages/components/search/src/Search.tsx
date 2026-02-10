@@ -316,11 +316,11 @@ export function Search<
   );
   const shouldRenderSuggestions = Boolean(
     suggestions &&
-      suggestionsDisplayProps &&
-      parameterValue &&
-      !isResultChosen &&
-      filteredSuggestions &&
-      hasSomeElement(filteredSuggestions),
+    suggestionsDisplayProps &&
+    parameterValue &&
+    !isResultChosen &&
+    filteredSuggestions &&
+    hasSomeElement(filteredSuggestions),
   );
 
   const renderInputWrapper = (): ReactNode => {

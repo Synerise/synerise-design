@@ -14,7 +14,8 @@ import { type RangeActions as RangeActionsMethods } from '../../Shared/TimeWindo
 import * as S from './DailyFilter.styles';
 
 export interface Props
-  extends WrappedComponentProps,
+  extends
+    WrappedComponentProps,
     Partial<RangeActionsMethods>,
     WithTranslations,
     WithDisabledProp {

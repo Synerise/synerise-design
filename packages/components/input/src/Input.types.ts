@@ -25,9 +25,8 @@ export type AutoResizeProp =
 export type Props = BaseProps<HTMLInputElement | HTMLTextAreaElement>;
 
 export type BaseProps<
-  RefElementType extends
-    | HTMLTextAreaElement
-    | HTMLInputElement = HTMLInputElement,
+  RefElementType extends HTMLTextAreaElement | HTMLInputElement =
+    HTMLInputElement,
 > = {
   error?: boolean;
   className?: string;

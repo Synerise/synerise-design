@@ -221,9 +221,9 @@ export const validators: { [key: string]: (values: any) => boolean } = {
   [TYPES.MONTHLY]: (values: FilterValue<MonthlyFilterDefinition>) =>
     Boolean(
       values?.definition &&
-        !!Object.keys(values.definition) &&
-        // @ts-expect-error requires type refactor
-        Object.keys(values.definition[0].definition).length > 0,
+      !!Object.keys(values.definition) &&
+      // @ts-expect-error requires type refactor
+      Object.keys(values.definition[0].definition).length > 0,
     ),
 };
 

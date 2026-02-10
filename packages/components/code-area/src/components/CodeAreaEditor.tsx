@@ -124,8 +124,8 @@ export const CodeAreaEditor = forwardRef<HTMLDivElement, CodeAreaEditorProps>(
 
     const isBottomBarShowing = Boolean(
       isSyntaxSelectVisible ||
-        (allowFullscreen && !isFullscreen) ||
-        renderFooterContent,
+      (allowFullscreen && !isFullscreen) ||
+      renderFooterContent,
     );
     const requiredSpace = isFullscreen
       ? calculateRequiredSpace(isBottomBarShowing, contentBelowHeight)
