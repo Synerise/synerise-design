@@ -3,6 +3,10 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.1.11](https://github.com/Synerise/synerise-design/compare/@synerise/ds-broadcast-bar@1.1.10...@synerise/ds-broadcast-bar@1.1.11) (2026-02-10)
+
+**Note:** Version bump only for package @synerise/ds-broadcast-bar
+
 ## [1.1.10](https://github.com/Synerise/synerise-design/compare/@synerise/ds-broadcast-bar@1.1.9...@synerise/ds-broadcast-bar@1.1.10) (2026-02-10)
 
 **Note:** Version bump only for package @synerise/ds-broadcast-bar

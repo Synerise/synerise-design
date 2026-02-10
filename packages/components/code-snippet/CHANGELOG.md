@@ -3,6 +3,10 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.1.31](https://github.com/Synerise/synerise-design/compare/@synerise/ds-code-snippet@1.1.30...@synerise/ds-code-snippet@1.1.31) (2026-02-10)
+
+**Note:** Version bump only for package @synerise/ds-code-snippet
+
 ## [1.1.30](https://github.com/Synerise/synerise-design/compare/@synerise/ds-code-snippet@1.1.29...@synerise/ds-code-snippet@1.1.30) (2026-02-10)
 
 **Note:** Version bump only for package @synerise/ds-code-snippet
