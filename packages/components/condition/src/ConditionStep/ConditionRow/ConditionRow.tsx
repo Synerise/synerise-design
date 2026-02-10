@@ -85,12 +85,12 @@ export const ConditionRow = ({
     (!conditionParameter ||
       (conditionParameter?.value &&
         (conditionParameter?.value as ParameterValueType).name !== '')) &&
-      conditionOperator,
+    conditionOperator,
   );
   const renderConditionFactorWrapper = Boolean(
     conditionFactor !== undefined &&
-      conditionOperator?.value &&
-      conditionFactor?.availableFactorTypes !== null,
+    conditionOperator?.value &&
+    conditionFactor?.availableFactorTypes !== null,
   );
 
   let lastConditionWrapper = '';
@@ -131,9 +131,9 @@ export const ConditionRow = ({
             ? Boolean(index + 1 === conditionsNumber)
             : Boolean(
                 addCondition &&
-                  index + 1 === conditionsNumber &&
-                  maxConditionLength !== undefined &&
-                  conditionsNumber === maxConditionLength,
+                index + 1 === conditionsNumber &&
+                maxConditionLength !== undefined &&
+                conditionsNumber === maxConditionLength,
               )
         }
         readOnly={readOnly}

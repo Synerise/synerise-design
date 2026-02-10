@@ -1,4 +1,4 @@
-image: docker.nexus.snrinternal.com/synerise/base-build-images:nodejs22
+image: docker.nexus.snrinternal.com/synerise/base-build-images:nodejs24
 
 variables:
   APP: ds-docs

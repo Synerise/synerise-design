@@ -1,4 +1,4 @@
-FROM docker.nexus.snrinternal.com/synerise/base-images:nodejs22
+FROM docker.nexus.snrinternal.com/synerise/base-images:nodejs24
 
 LABEL maintainer="SYNERISE"
 
