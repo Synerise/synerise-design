@@ -66,6 +66,12 @@ const Tooltip = forwardRef<HTMLElement, TooltipProps>(
       setIsOpen(!!open);
     }, [open]);
 
+    useEffect(() => {
+      if (!tooltipContentExists) {
+        setIsOpen(false);
+      }
+    }, [tooltipContentExists]);
+
     const handleOnClickHideDelay = (visible: boolean) => {
       if (!visible) {
         timeoutClickRef.current && clearTimeout(timeoutClickRef.current);
