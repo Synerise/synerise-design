@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.4.4](https://github.com/synerise/synerise-design/compare/@synerise/ds-tooltip@1.4.3...@synerise/ds-tooltip@1.4.4) (2026-02-11)
+
+### Bug Fixes
+
+- **tooltip:** hide tooltip if content becomes null ([72830ca](https://github.com/synerise/synerise-design/commit/72830ca9962dff6bdd7f5ce7d029b4a4a6987080))
+
 ## [1.4.3](https://github.com/synerise/synerise-design/compare/@synerise/ds-tooltip@1.4.2...@synerise/ds-tooltip@1.4.3) (2026-02-10)
 
 **Note:** Version bump only for package @synerise/ds-tooltip

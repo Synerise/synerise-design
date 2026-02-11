@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.13.1](https://github.com/Synerise/synerise-design/compare/@synerise/ds-icon@1.13.0...@synerise/ds-icon@1.13.1) (2026-02-11)
+
+### Bug Fixes
+
+- **icon:** new settings hub icon ([a39ad7c](https://github.com/Synerise/synerise-design/commit/a39ad7ccc445191962fd875ee07b2d98b56dacdc))
+
 # [1.13.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-icon@1.12.0...@synerise/ds-icon@1.13.0) (2026-02-10)
 
 ### Features
