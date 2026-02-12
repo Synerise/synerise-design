@@ -1,6 +1,5 @@
 import { dirname, join } from 'path';
 import deeperSortSetup from 'storybook-deeper-sort';
-import { addons } from 'storybook/manager-api';
 import { fileURLToPath } from 'url';
 
 import type { StorybookConfig } from '@storybook/react-webpack5';
