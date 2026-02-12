@@ -34,6 +34,7 @@
             ],
             "inputs": [
                 "default",
+                "{projectRoot}/src/svg",
                 "{projectRoot}/build/svgr.js",
                 "{projectRoot}/build/template.js"
             ]
