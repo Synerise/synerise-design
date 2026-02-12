@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.14.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-icon@1.13.1...@synerise/ds-icon@1.14.0) (2026-02-12)
+
+### Features
+
+- **icon:** new app menu icons ([1198e96](https://github.com/Synerise/synerise-design/commit/1198e969e9de0a6d0c0861114efcabcbc8de6343))
+
 ## [1.13.1](https://github.com/Synerise/synerise-design/compare/@synerise/ds-icon@1.13.0...@synerise/ds-icon@1.13.1) (2026-02-11)
 
 ### Bug Fixes
