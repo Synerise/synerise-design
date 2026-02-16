@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="240" height="240" viewBox="0 0 240 240">
+  <defs>
+    <linearGradient id="t8g1" x1="-.33" y1="240" x2="239.67" y2="0" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#3d8dbb"/>
+      <stop offset="1" stop-color="#4a8bbf"/>
+    </linearGradient>
+  </defs>
+  <rect fill="url(#t8g1)" x="-.33" width="240" height="240"/>
+  <rect fill="#60a0c2" x="117.85" y="40.62" width="32" height="139.25"/>
+  <path fill="#5a7abe" d="M218.2,99.07c0,17.32-14.04,31.37-31.37,31.37s-31.37-14.04-31.37-31.37"/>
+  <path fill="none" stroke="#0e1011" stroke-miterlimit="10" stroke-width="10" d="M43.15,57.02h54.06"/>
+  <path fill="none" stroke="#0e1011" stroke-miterlimit="10" stroke-width="10" d="M43.15,75.95h54.06"/>
+  <circle fill="#0e1011" cx="75.35" cy="99.07" r="11.17"/>
+  <path fill="none" stroke="#0e1011" stroke-miterlimit="10" stroke-width="10" d="M154.63,57.02h54.06"/>
+  <path fill="none" stroke="#0e1011" stroke-miterlimit="10" stroke-width="10" d="M154.63,75.95h54.06"/>
+  <circle fill="#0e1011" cx="186.83" cy="99.07" r="11.17"/>
+  <path fill="none" stroke="#0e1011" stroke-miterlimit="10" stroke-width="10" d="M81.63,180.18h88.86"/>
+  <path fill="none" stroke="#0e1011" stroke-miterlimit="10" stroke-width="10" d="M115.55,54.64v107.48"/>
+</svg>

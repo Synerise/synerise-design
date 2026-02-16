@@ -1,0 +1,4963 @@
+{
+    "name":"Home",
+    "eobuwie": {
+        "path": [
+            "eobuwie"
+        ],
+        "id": "7af042ea-5b6e-434f-8aa1-6f8301dc6a9e",
+        "name": "eobuwie",
+        "damskie": {
+            "path": [
+                "eobuwie",
+                "damskie"
+            ],
+            "id": "ed0dee7d-e84a-4c00-b6ff-4a775cd48050",
+            "name": "damskie",
+            "klapki i sandały": {
+                "path": [
+                    "eobuwie",
+                    "damskie",
+                    "klapki i sandały"
+                ],
+                "id": "bef9be94-4731-45d4-aeb3-4cb1a2f8375a",
+                "name": "klapki i sandały",
+                "klapki": {
+                    "path": [
+                        "eobuwie",
+                        "damskie",
+                        "klapki i sandały",
+                        "klapki"
+                    ],
+                    "id": "8387ed29-758e-4acd-b69f-a1f85ab91d2c",
+                    "name": "klapki",
+                    "klapki eleganckie": {
+                        "path": [
+                            "eobuwie",
+                            "damskie",
+                            "klapki i sandały",
+                            "klapki",
+                            "klapki eleganckie"
+                        ],
+                        "id": "9fe49a3c-fb6d-4444-ae1a-928f94c789c8",
+                        "name": "klapki eleganckie"
+                    },
+                    "klapki codzienne": {
+                        "path": [
+                            "eobuwie",
+                            "damskie",
+                            "klapki i sandały",
+                            "klapki",
+                            "klapki codzienne"
+                        ],
+                        "id": "a82bbd0c-c693-4e2a-83b8-0ab373283d94",
+                        "name": "klapki codzienne"
+                    },
+                    "komfort": {
+                        "path": [
+                            "eobuwie",
+                            "damskie",
+                            "klapki i sandały",
+                            "klapki",
+                            "komfort"
+                        ],
+                        "id": "1221e4a3-3197-4501-b666-11d8826652d5",
+                        "name": "komfort"
+                    }
+                },
+                "sandały": {
+                    "path": [
+                        "eobuwie",
+                        "damskie",
+                        "klapki i sandały",
+                        "sandały"
+                    ],
+                    "id": "a158940a-48be-4728-a5c3-5e02ab3de9c9",
+                    "name": "sandały",
+                    "komfort": {
+                        "path": [
+                            "eobuwie",
+                            "damskie",
+                            "klapki i sandały",
+                            "sandały",
+                            "komfort"
+                        ],
+                        "id": "ba35c9dd-b9bd-4fbf-a27e-1dc3fca32514",
+                        "name": "komfort"
+                    },
+                    "sandały eleganckie": {
+                        "path": [
+                            "eobuwie",
+                            "damskie",
+                            "klapki i sandały",
+                            "sandały",
+                            "sandały eleganckie"
+                        ],
+                        "id": "6c4ad11d-90a5-46b7-8fbf-ce38cfe7f4cd",
+                        "name": "sandały eleganckie"
+                    },
+                    "sandały sport / plaża": {
+                        "path": [
+                            "eobuwie",
+                            "damskie",
+                            "klapki i sandały",
+                            "sandały",
+                            "sandały sport / plaża"
+                        ],
+                        "id": "45f34498-631b-40b2-aaa5-7aaa28411cb5",
+                        "name": "sandały sport / plaża"
+                    },
+                    "sandały codzienne": {
+                        "path": [
+                            "eobuwie",
+                            "damskie",
+                            "klapki i sandały",
+                            "sandały",
+                            "sandały codzienne"
+                        ],
+                        "id": "2bbd197d-4d41-48d1-8423-351ca060d2cc",
+                        "name": "sandały codzienne"
+                    }
+                },
+                "japonki": {
+                    "path": [
+                        "eobuwie",
+                        "damskie",
+                        "klapki i sandały",
+                        "japonki"
+                    ],
+                    "id": "0c808f18-51a6-4a2d-bbc4-4e59ee2fc644",
+                    "name": "japonki"
+                },
+                "kapcie": {
+                    "path": [
+                        "eobuwie",
+                        "damskie",
+                        "klapki i sandały",
+                        "kapcie"
+                    ],
+                    "id": "a8547326-343a-464f-808a-b1ed41c706d6",
+                    "name": "kapcie"
+                },
+                "espadryle": {
+                    "path": [
+                        "eobuwie",
+                        "damskie",
+                        "klapki i sandały",
+                        "espadryle"
+                    ],
+                    "id": "5e4f8fd8-9912-47f0-bd8c-2e56e791e69c",
+                    "name": "espadryle"
+                },
+                "koturny": {
+                    "path": [
+                        "eobuwie",
+                        "damskie",
+                        "klapki i sandały",
+                        "koturny"
+                    ],
+                    "id": "424135ea-05d6-4961-94fd-695660090e26",
+                    "name": "koturny"
+                }
+            },
+            "półbuty": {
+                "path": [
+                    "eobuwie",
+                    "damskie",
+                    "półbuty"
+                ],
+                "id": "a8561224-5377-45a4-b57f-be0e338f7816",
+                "name": "półbuty",
+                "trekkingi": {
+                    "path": [
+                        "eobuwie",
+                        "damskie",
+                        "półbuty",
+                        "trekkingi"
+                    ],
+                    "id": "4f7b494d-c4a8-427c-9fa6-cb03af6039ea",
+                    "name": "trekkingi"
+                },
+                "baleriny": {
+                    "path": [
+                        "eobuwie",
+                        "damskie",
+                        "półbuty",
+                        "baleriny"
+                    ],
+                    "id": "d8db72f2-0991-4668-b1a1-050a12978364",
+                    "name": "baleriny"
+                },
+                "płaskie": {
+                    "path": [
+                        "eobuwie",
+                        "damskie",
+                        "półbuty",
+                        "płaskie"
+                    ],
+                    "id": "de04e5e5-d09a-444c-b90d-2353f5dfb949",
+                    "name": "płaskie"
+                },
+                "espadryle": {
+                    "path": [
+                        "eobuwie",
+                        "damskie",
+                        "półbuty",
+                        "espadryle"
+                    ],
+                    "id": "c82839b3-3141-4e41-8bd8-28c073fa47d3",
+                    "name": "espadryle"
+                },
+                "sneakersy": {
+                    "path": [
+                        "eobuwie",
+                        "damskie",
+                        "półbuty",
+                        "sneakersy"
+                    ],
+                    "id": "1aaaf858-7275-471f-90c2-37e226de193e",
+                    "name": "sneakersy"
+                },
+                "trampki": {
+                    "path": [
+                        "eobuwie",
+                        "damskie",
+                        "półbuty",
+                        "trampki"
+                    ],
+                    "id": "74b3747a-6876-4119-b0df-d9c34d603e0f",
+                    "name": "trampki"
+                },
+                "na koturnie": {
+                    "path": [
+                        "eobuwie",
+                        "damskie",
+                        "półbuty",
+                        "na koturnie"
+                    ],
+                    "id": "2057b577-4751-4a3d-8064-2b0764dfc757",
+                    "name": "na koturnie"
+                },
+                "na obcasie": {
+                    "path": [
+                        "eobuwie",
+                        "damskie",
+                        "półbuty",
+                        "na obcasie"
+                    ],
+                    "id": "a7341e62-4600-4125-a9b3-f4f96fb0915c",
+                    "name": "na obcasie"
+                },
+                "mokasyny": {
+                    "path": [
+                        "eobuwie",
+                        "damskie",
+                        "półbuty",
+                        "mokasyny"
+                    ],
+                    "id": "5e868d63-9f72-48d1-ba74-b160b2325f5d",
+                    "name": "mokasyny"
+                },
+                "codzienne": {
+                    "path": [
+                        "eobuwie",
+                        "damskie",
+                        "półbuty",
+                        "codzienne"
+                    ],
+                    "id": "e9a9499c-a00f-413d-95e0-529aa6ffb3b2",
+                    "name": "codzienne"
+                },
+                "lordsy": {
+                    "path": [
+                        "eobuwie",
+                        "damskie",
+                        "półbuty",
+                        "lordsy"
+                    ],
+                    "id": "d866263e-d784-4ccf-afd2-2072d40b55d3",
+                    "name": "lordsy"
+                },
+                "eleganckie": {
+                    "path": [
+                        "eobuwie",
+                        "damskie",
+                        "półbuty",
+                        "eleganckie"
+                    ],
+                    "id": "ba332d77-e90a-4d0a-b49a-68cec6481d3b",
+                    "name": "eleganckie"
+                },
+                "szpilki": {
+                    "path": [
+                        "eobuwie",
+                        "damskie",
+                        "półbuty",
+                        "szpilki"
+                    ],
+                    "id": "9880e225-b0dc-467c-adc9-a654e16371a6",
+                    "name": "szpilki"
+                },
+                "czółenka": {
+                    "path": [
+                        "eobuwie",
+                        "damskie",
+                        "półbuty",
+                        "czółenka"
+                    ],
+                    "id": "ce85b7d1-56c9-452b-90fd-877eff9d42e8",
+                    "name": "czółenka"
+                }
+            },
+            "kozaki i inne": {
+                "path": [
+                    "eobuwie",
+                    "damskie",
+                    "kozaki i inne"
+                ],
+                "id": "9bb261d7-3c52-4f7b-a61b-da18223635ae",
+                "name": "kozaki i inne",
+                "botki": {
+                    "path": [
+                        "eobuwie",
+                        "damskie",
+                        "kozaki i inne",
+                        "botki"
+                    ],
+                    "id": "a19c22bd-0e47-48d0-b787-77a9e664ec89",
+                    "name": "botki"
+                },
+                "muszkieterki": {
+                    "path": [
+                        "eobuwie",
+                        "damskie",
+                        "kozaki i inne",
+                        "muszkieterki"
+                    ],
+                    "id": "0cc2978a-2a17-42d4-a746-a95b55fbc4f3",
+                    "name": "muszkieterki"
+                },
+                "trapery": {
+                    "path": [
+                        "eobuwie",
+                        "damskie",
+                        "kozaki i inne",
+                        "trapery"
+                    ],
+                    "id": "cdac0d3c-76ae-40c8-bbea-bf8bef236a20",
+                    "name": "trapery"
+                },
+                "kowbojki": {
+                    "path": [
+                        "eobuwie",
+                        "damskie",
+                        "kozaki i inne",
+                        "kowbojki"
+                    ],
+                    "id": "a62565b1-18ff-4495-bdd5-86619f9ddd32",
+                    "name": "kowbojki"
+                },
+                "śniegowce": {
+                    "path": [
+                        "eobuwie",
+                        "damskie",
+                        "kozaki i inne",
+                        "śniegowce"
+                    ],
+                    "id": "dcfabcc2-6fb6-4678-b126-79a81df97c7f",
+                    "name": "śniegowce"
+                },
+                "glany": {
+                    "path": [
+                        "eobuwie",
+                        "damskie",
+                        "kozaki i inne",
+                        "glany"
+                    ],
+                    "id": "ae41f1ba-6410-44b8-b47d-79fb0c8a49d3",
+                    "name": "glany"
+                },
+                "trekkingi": {
+                    "path": [
+                        "eobuwie",
+                        "damskie",
+                        "kozaki i inne",
+                        "trekkingi"
+                    ],
+                    "id": "cdef1c26-d1e9-47b4-ab29-b69209068d6f",
+                    "name": "trekkingi"
+                },
+                "kalosze": {
+                    "path": [
+                        "eobuwie",
+                        "damskie",
+                        "kozaki i inne",
+                        "kalosze"
+                    ],
+                    "id": "30b710d1-fc31-40a8-a903-92955f18139c",
+                    "name": "kalosze"
+                },
+                "kozaki": {
+                    "path": [
+                        "eobuwie",
+                        "damskie",
+                        "kozaki i inne",
+                        "kozaki"
+                    ],
+                    "id": "147ddb41-25ca-4ffc-a88e-bea0f8a71cd0",
+                    "name": "kozaki"
+                },
+                "sztyblety": {
+                    "path": [
+                        "eobuwie",
+                        "damskie",
+                        "kozaki i inne",
+                        "sztyblety"
+                    ],
+                    "id": "cfac79b0-1434-4bb3-b878-10ba24e0c45d",
+                    "name": "sztyblety"
+                },
+                "emu": {
+                    "path": [
+                        "eobuwie",
+                        "damskie",
+                        "kozaki i inne",
+                        "emu"
+                    ],
+                    "id": "924305a2-889e-4805-803e-c91643952c54",
+                    "name": "emu"
+                }
+            },
+            "sportowe": {
+                "path": [
+                    "eobuwie",
+                    "damskie",
+                    "sportowe"
+                ],
+                "id": "b1c6bfc4-f28f-47b3-9963-a0554322f0e1",
+                "name": "sportowe",
+                "lifestyle": {
+                    "path": [
+                        "eobuwie",
+                        "damskie",
+                        "sportowe",
+                        "lifestyle"
+                    ],
+                    "id": "26a5aba4-b394-44dc-8c53-d7fd2f1ffbbd",
+                    "name": "lifestyle"
+                },
+                "bieganie": {
+                    "path": [
+                        "eobuwie",
+                        "damskie",
+                        "sportowe",
+                        "bieganie"
+                    ],
+                    "id": "fa5a09a4-8396-4980-806b-851428916d60",
+                    "name": "bieganie",
+                    "asfaltowe": {
+                        "path": [
+                            "eobuwie",
+                            "damskie",
+                            "sportowe",
+                            "bieganie",
+                            "asfaltowe"
+                        ],
+                        "id": "8cecc0de-0236-4eb3-83fa-8044f2f17cf1",
+                        "name": "asfaltowe"
+                    }
+                }
+            }
+        },
+        "akcesoria": {
+            "path": [
+                "eobuwie",
+                "akcesoria"
+            ],
+            "id": "6fb1f749-5513-488e-972e-d0eabb1249a0",
+            "name": "akcesoria",
+            "galanteria": {
+                "path": [
+                    "eobuwie",
+                    "akcesoria",
+                    "galanteria"
+                ],
+                "id": "03771750-51e7-42a6-82fc-0455c047eb27",
+                "name": "galanteria",
+                "torby młodzieżowe": {
+                    "path": [
+                        "eobuwie",
+                        "akcesoria",
+                        "galanteria",
+                        "torby młodzieżowe"
+                    ],
+                    "id": "6b9ff50d-e08d-4579-b3e5-a37026b44d9a",
+                    "name": "torby młodzieżowe",
+                    "męskie": {
+                        "path": [
+                            "eobuwie",
+                            "akcesoria",
+                            "galanteria",
+                            "torby młodzieżowe",
+                            "męskie"
+                        ],
+                        "id": "9c435c83-5aa1-4302-ae33-bc55e14a667e",
+                        "name": "męskie"
+                    },
+                    "damskie": {
+                        "path": [
+                            "eobuwie",
+                            "akcesoria",
+                            "galanteria",
+                            "torby młodzieżowe",
+                            "damskie"
+                        ],
+                        "id": "e04f7f42-08e8-45cf-baa1-00be70c347d0",
+                        "name": "damskie"
+                    }
+                },
+                "paski": {
+                    "path": [
+                        "eobuwie",
+                        "akcesoria",
+                        "galanteria",
+                        "paski"
+                    ],
+                    "id": "4ffc32ac-df7f-4657-970a-9826f54e4201",
+                    "name": "paski",
+                    "paski damskie": {
+                        "path": [
+                            "eobuwie",
+                            "akcesoria",
+                            "galanteria",
+                            "paski",
+                            "paski damskie"
+                        ],
+                        "id": "3671b86e-e166-4783-8bc3-af8769033c48",
+                        "name": "paski damskie"
+                    },
+                    "paski męskie": {
+                        "path": [
+                            "eobuwie",
+                            "akcesoria",
+                            "galanteria",
+                            "paski",
+                            "paski męskie"
+                        ],
+                        "id": "1b12501d-2ee9-4f25-ab2d-50c6be822778",
+                        "name": "paski męskie"
+                    }
+                },
+                "rękawiczki": {
+                    "path": [
+                        "eobuwie",
+                        "akcesoria",
+                        "galanteria",
+                        "rękawiczki"
+                    ],
+                    "id": "8659a238-6d8d-468f-ad46-6725c2aed04e",
+                    "name": "rękawiczki",
+                    "rękawiczki damskie": {
+                        "path": [
+                            "eobuwie",
+                            "akcesoria",
+                            "galanteria",
+                            "rękawiczki",
+                            "rękawiczki damskie"
+                        ],
+                        "id": "8a6992d9-8750-48cf-9602-663d563f9216",
+                        "name": "rękawiczki damskie",
+                        "rękawiczki z dzianiny": {
+                            "path": [
+                                "eobuwie",
+                                "akcesoria",
+                                "galanteria",
+                                "rękawiczki",
+                                "rękawiczki damskie",
+                                "rękawiczki z dzianiny"
+                            ],
+                            "id": "46f5d9d2-eac1-48c2-b916-abcc6aa90a63",
+                            "name": "rękawiczki z dzianiny"
+                        },
+                        "rękawiczki skórzane": {
+                            "path": [
+                                "eobuwie",
+                                "akcesoria",
+                                "galanteria",
+                                "rękawiczki",
+                                "rękawiczki damskie",
+                                "rękawiczki skórzane"
+                            ],
+                            "id": "0064ab8e-980b-49cd-afb2-26837fe5f342",
+                            "name": "rękawiczki skórzane"
+                        }
+                    },
+                    "rękawiczki męskie": {
+                        "path": [
+                            "eobuwie",
+                            "akcesoria",
+                            "galanteria",
+                            "rękawiczki",
+                            "rękawiczki męskie"
+                        ],
+                        "id": "2c2f0606-c788-4931-b9ed-ee3e72d089f8",
+                        "name": "rękawiczki męskie"
+                    },
+                    "rękawiczki dziecięce": {
+                        "path": [
+                            "eobuwie",
+                            "akcesoria",
+                            "galanteria",
+                            "rękawiczki",
+                            "rękawiczki dziecięce"
+                        ],
+                        "id": "7bde5657-4be3-46d5-86d4-98acb914466b",
+                        "name": "rękawiczki dziecięce"
+                    }
+                },
+                "portfele": {
+                    "path": [
+                        "eobuwie",
+                        "akcesoria",
+                        "galanteria",
+                        "portfele"
+                    ],
+                    "id": "679eb78b-85de-443f-b891-fe7cf810fe66",
+                    "name": "portfele",
+                    "portfele damskie": {
+                        "path": [
+                            "eobuwie",
+                            "akcesoria",
+                            "galanteria",
+                            "portfele",
+                            "portfele damskie"
+                        ],
+                        "id": "26c8368e-32b0-46f1-877e-dfa66541a4a4",
+                        "name": "portfele damskie"
+                    },
+                    "portfele męskie": {
+                        "path": [
+                            "eobuwie",
+                            "akcesoria",
+                            "galanteria",
+                            "portfele",
+                            "portfele męskie"
+                        ],
+                        "id": "54dafadb-220a-4ffc-9c33-86dbd8c91b2c",
+                        "name": "portfele męskie"
+                    }
+                },
+                "etui": {
+                    "path": [
+                        "eobuwie",
+                        "akcesoria",
+                        "galanteria",
+                        "etui"
+                    ],
+                    "id": "fed522da-861f-465d-8ecc-bf49023f7902",
+                    "name": "etui",
+                    "etui na telefon": {
+                        "path": [
+                            "eobuwie",
+                            "akcesoria",
+                            "galanteria",
+                            "etui",
+                            "etui na telefon"
+                        ],
+                        "id": "7794aa4c-80c6-4f66-9386-5517332e3979",
+                        "name": "etui na telefon"
+                    },
+                    "etui na karty kredytowe": {
+                        "path": [
+                            "eobuwie",
+                            "akcesoria",
+                            "galanteria",
+                            "etui",
+                            "etui na karty kredytowe"
+                        ],
+                        "id": "f6f84532-88d6-4232-b30f-8feee897a198",
+                        "name": "etui na karty kredytowe"
+                    }
+                },
+                "torby i plecaki na laptopy": {
+                    "path": [
+                        "eobuwie",
+                        "akcesoria",
+                        "galanteria",
+                        "torby i plecaki na laptopy"
+                    ],
+                    "id": "3b75ed5a-4258-40cc-bf99-eaf28386c64e",
+                    "name": "torby i plecaki na laptopy"
+                }
+            },
+            "galanteria skórzana": {
+                "path": [
+                    "eobuwie",
+                    "akcesoria",
+                    "galanteria skórzana"
+                ],
+                "id": "58163cdf-c410-40af-a483-9b7b65c6751d",
+                "name": "galanteria skórzana",
+                "portfele": {
+                    "path": [
+                        "eobuwie",
+                        "akcesoria",
+                        "galanteria skórzana",
+                        "portfele"
+                    ],
+                    "id": "7cda61dc-2f77-44ee-b886-b55de56e143f",
+                    "name": "portfele",
+                    "portfele damskie": {
+                        "path": [
+                            "eobuwie",
+                            "akcesoria",
+                            "galanteria skórzana",
+                            "portfele",
+                            "portfele damskie"
+                        ],
+                        "id": "7284239d-42ce-4138-be6e-32fad0a83ba2",
+                        "name": "portfele damskie"
+                    },
+                    "portfele męskie": {
+                        "path": [
+                            "eobuwie",
+                            "akcesoria",
+                            "galanteria skórzana",
+                            "portfele",
+                            "portfele męskie"
+                        ],
+                        "id": "1f9e0ae8-4a4f-4065-b326-21ad7d9793a6",
+                        "name": "portfele męskie"
+                    }
+                },
+                "paski": {
+                    "path": [
+                        "eobuwie",
+                        "akcesoria",
+                        "galanteria skórzana",
+                        "paski"
+                    ],
+                    "id": "28cdf923-4d42-4289-8fd6-4a0f6c82918c",
+                    "name": "paski",
+                    "paski damskie": {
+                        "path": [
+                            "eobuwie",
+                            "akcesoria",
+                            "galanteria skórzana",
+                            "paski",
+                            "paski damskie"
+                        ],
+                        "id": "798c7409-2fa9-4bb0-aadd-956996e4df89",
+                        "name": "paski damskie"
+                    },
+                    "paski męskie": {
+                        "path": [
+                            "eobuwie",
+                            "akcesoria",
+                            "galanteria skórzana",
+                            "paski",
+                            "paski męskie"
+                        ],
+                        "id": "b15a1f1e-ac5e-4bd4-b94b-4ffe4f1b9740",
+                        "name": "paski męskie"
+                    }
+                },
+                "torby młodzieżowe": {
+                    "path": [
+                        "eobuwie",
+                        "akcesoria",
+                        "galanteria skórzana",
+                        "torby młodzieżowe"
+                    ],
+                    "id": "7408f080-3b1d-4afe-8a27-f2fb6eede374",
+                    "name": "torby młodzieżowe",
+                    "męskie": {
+                        "path": [
+                            "eobuwie",
+                            "akcesoria",
+                            "galanteria skórzana",
+                            "torby młodzieżowe",
+                            "męskie"
+                        ],
+                        "id": "d56f8030-13cf-4443-92a9-a661109da965",
+                        "name": "męskie"
+                    }
+                },
+                "torby i plecaki na laptopy": {
+                    "path": [
+                        "eobuwie",
+                        "akcesoria",
+                        "galanteria skórzana",
+                        "torby i plecaki na laptopy"
+                    ],
+                    "id": "a09bb0cd-45ca-4cb5-a22b-bcb26ff9f3cc",
+                    "name": "torby i plecaki na laptopy"
+                }
+            },
+            "tekstylia": {
+                "path": [
+                    "eobuwie",
+                    "akcesoria",
+                    "tekstylia"
+                ],
+                "id": "42667fb9-bf80-4aad-90c7-5449c191a206",
+                "name": "tekstylia",
+                "skarpetki": {
+                    "path": [
+                        "eobuwie",
+                        "akcesoria",
+                        "tekstylia",
+                        "skarpetki"
+                    ],
+                    "id": "729ff5dc-bb2e-45fb-af08-794c7336dfe3",
+                    "name": "skarpetki",
+                    "dziecięce": {
+                        "path": [
+                            "eobuwie",
+                            "akcesoria",
+                            "tekstylia",
+                            "skarpetki",
+                            "dziecięce"
+                        ],
+                        "id": "58fda436-de39-447b-81f0-f632cd92c06a",
+                        "name": "dziecięce",
+                        "niskie": {
+                            "path": [
+                                "eobuwie",
+                                "akcesoria",
+                                "tekstylia",
+                                "skarpetki",
+                                "dziecięce",
+                                "niskie"
+                            ],
+                            "id": "bafa46ea-8a8b-43f5-9292-fc7bb24e726b",
+                            "name": "niskie"
+                        },
+                        "wysokie": {
+                            "path": [
+                                "eobuwie",
+                                "akcesoria",
+                                "tekstylia",
+                                "skarpetki",
+                                "dziecięce",
+                                "wysokie"
+                            ],
+                            "id": "210479f3-9200-4aa1-8170-78fdd499df6f",
+                            "name": "wysokie"
+                        }
+                    },
+                    "damskie": {
+                        "path": [
+                            "eobuwie",
+                            "akcesoria",
+                            "tekstylia",
+                            "skarpetki",
+                            "damskie"
+                        ],
+                        "id": "d8c9110d-c617-4b97-b3e4-90c17d7967a9",
+                        "name": "damskie",
+                        "niskie": {
+                            "path": [
+                                "eobuwie",
+                                "akcesoria",
+                                "tekstylia",
+                                "skarpetki",
+                                "damskie",
+                                "niskie"
+                            ],
+                            "id": "c2951b9c-67d8-4e20-b616-a23f37d1cf7d",
+                            "name": "niskie"
+                        },
+                        "wysokie": {
+                            "path": [
+                                "eobuwie",
+                                "akcesoria",
+                                "tekstylia",
+                                "skarpetki",
+                                "damskie",
+                                "wysokie"
+                            ],
+                            "id": "e5aabe09-ef0e-444d-889e-3be2b942dfa6",
+                            "name": "wysokie"
+                        },
+                        "stopki": {
+                            "path": [
+                                "eobuwie",
+                                "akcesoria",
+                                "tekstylia",
+                                "skarpetki",
+                                "damskie",
+                                "stopki"
+                            ],
+                            "id": "23f48fe2-48ce-43c2-a826-605d6eee255c",
+                            "name": "stopki"
+                        }
+                    },
+                    "męskie": {
+                        "path": [
+                            "eobuwie",
+                            "akcesoria",
+                            "tekstylia",
+                            "skarpetki",
+                            "męskie"
+                        ],
+                        "id": "0e3d6d2b-3b97-4ee3-954d-16edacb7bdd4",
+                        "name": "męskie",
+                        "wysokie": {
+                            "path": [
+                                "eobuwie",
+                                "akcesoria",
+                                "tekstylia",
+                                "skarpetki",
+                                "męskie",
+                                "wysokie"
+                            ],
+                            "id": "6bfbad49-6456-46e1-8309-520f5d0597ff",
+                            "name": "wysokie"
+                        },
+                        "stopki": {
+                            "path": [
+                                "eobuwie",
+                                "akcesoria",
+                                "tekstylia",
+                                "skarpetki",
+                                "męskie",
+                                "stopki"
+                            ],
+                            "id": "db6d7407-75ef-4967-bdd2-00a489cc05a8",
+                            "name": "stopki"
+                        },
+                        "niskie": {
+                            "path": [
+                                "eobuwie",
+                                "akcesoria",
+                                "tekstylia",
+                                "skarpetki",
+                                "męskie",
+                                "niskie"
+                            ],
+                            "id": "6542ab9f-a855-435f-bcca-34e5439567c7",
+                            "name": "niskie"
+                        }
+                    }
+                },
+                "czapki": {
+                    "path": [
+                        "eobuwie",
+                        "akcesoria",
+                        "tekstylia",
+                        "czapki"
+                    ],
+                    "id": "1d497da4-5711-4e5c-a1b2-cc749671fd45",
+                    "name": "czapki",
+                    "dziecięce": {
+                        "path": [
+                            "eobuwie",
+                            "akcesoria",
+                            "tekstylia",
+                            "czapki",
+                            "dziecięce"
+                        ],
+                        "id": "feef5d4d-aa1e-4676-b054-da373dbad5a2",
+                        "name": "dziecięce",
+                        "kapelusze": {
+                            "path": [
+                                "eobuwie",
+                                "akcesoria",
+                                "tekstylia",
+                                "czapki",
+                                "dziecięce",
+                                "kapelusze"
+                            ],
+                            "id": "199a224d-ff5e-4b79-a13a-3b4fa025457d",
+                            "name": "kapelusze"
+                        },
+                        "czapki zimowe": {
+                            "path": [
+                                "eobuwie",
+                                "akcesoria",
+                                "tekstylia",
+                                "czapki",
+                                "dziecięce",
+                                "czapki zimowe"
+                            ],
+                            "id": "e034d50a-ebd6-41be-bfca-1f061632ea37",
+                            "name": "czapki zimowe"
+                        },
+                        "czapki z daszkiem": {
+                            "path": [
+                                "eobuwie",
+                                "akcesoria",
+                                "tekstylia",
+                                "czapki",
+                                "dziecięce",
+                                "czapki z daszkiem"
+                            ],
+                            "id": "c598f1ce-b334-47c4-a536-34c8582b563e",
+                            "name": "czapki z daszkiem"
+                        }
+                    },
+                    "męskie": {
+                        "path": [
+                            "eobuwie",
+                            "akcesoria",
+                            "tekstylia",
+                            "czapki",
+                            "męskie"
+                        ],
+                        "id": "85cbda2e-b772-4772-ab18-4d74721f651b",
+                        "name": "męskie",
+                        "czapki zimowe": {
+                            "path": [
+                                "eobuwie",
+                                "akcesoria",
+                                "tekstylia",
+                                "czapki",
+                                "męskie",
+                                "czapki zimowe"
+                            ],
+                            "id": "11dde6fd-bc71-4346-97d4-85f7ef0e9ec4",
+                            "name": "czapki zimowe"
+                        },
+                        "czapki z daszkiem": {
+                            "path": [
+                                "eobuwie",
+                                "akcesoria",
+                                "tekstylia",
+                                "czapki",
+                                "męskie",
+                                "czapki z daszkiem"
+                            ],
+                            "id": "0f2ca064-525d-4cbb-9df9-edbbb1d5f197",
+                            "name": "czapki z daszkiem"
+                        },
+                        "kapelusze": {
+                            "path": [
+                                "eobuwie",
+                                "akcesoria",
+                                "tekstylia",
+                                "czapki",
+                                "męskie",
+                                "kapelusze"
+                            ],
+                            "id": "b5f22c8a-237f-4d5e-bdc3-43c386ed775f",
+                            "name": "kapelusze"
+                        }
+                    },
+                    "damskie": {
+                        "path": [
+                            "eobuwie",
+                            "akcesoria",
+                            "tekstylia",
+                            "czapki",
+                            "damskie"
+                        ],
+                        "id": "c4bd2fb9-130f-4edb-b8e8-8aee85b5e835",
+                        "name": "damskie",
+                        "czapki zimowe": {
+                            "path": [
+                                "eobuwie",
+                                "akcesoria",
+                                "tekstylia",
+                                "czapki",
+                                "damskie",
+                                "czapki zimowe"
+                            ],
+                            "id": "85a10ed1-9884-497b-812a-fcc6de5f3750",
+                            "name": "czapki zimowe"
+                        },
+                        "kapelusze": {
+                            "path": [
+                                "eobuwie",
+                                "akcesoria",
+                                "tekstylia",
+                                "czapki",
+                                "damskie",
+                                "kapelusze"
+                            ],
+                            "id": "fd562553-994c-4dd7-8a60-4dda9eab1342",
+                            "name": "kapelusze"
+                        },
+                        "nauszniki i opaski": {
+                            "path": [
+                                "eobuwie",
+                                "akcesoria",
+                                "tekstylia",
+                                "czapki",
+                                "damskie",
+                                "nauszniki i opaski"
+                            ],
+                            "id": "8ce6d87e-26d4-4730-b7b0-9f5eb849ed34",
+                            "name": "nauszniki i opaski"
+                        },
+                        "czapki z daszkiem": {
+                            "path": [
+                                "eobuwie",
+                                "akcesoria",
+                                "tekstylia",
+                                "czapki",
+                                "damskie",
+                                "czapki z daszkiem"
+                            ],
+                            "id": "deb8c859-c801-4ba7-82a7-ca4f4143bb38",
+                            "name": "czapki z daszkiem"
+                        }
+                    }
+                },
+                "odzież": {
+                    "path": [
+                        "eobuwie",
+                        "akcesoria",
+                        "tekstylia",
+                        "odzież"
+                    ],
+                    "id": "dcf8b31d-ff4c-472c-b54e-ebf1b00f329e",
+                    "name": "odzież"
+                },
+                "szale": {
+                    "path": [
+                        "eobuwie",
+                        "akcesoria",
+                        "tekstylia",
+                        "szale"
+                    ],
+                    "id": "cf38b46f-7542-4fad-8278-056b1f106f58",
+                    "name": "szale"
+                }
+            },
+            "okulary przeciwsłoneczne": {
+                "path": [
+                    "eobuwie",
+                    "akcesoria",
+                    "okulary przeciwsłoneczne"
+                ],
+                "id": "62582cdd-43d7-43b4-829b-562434d0e555",
+                "name": "okulary przeciwsłoneczne",
+                "męskie": {
+                    "path": [
+                        "eobuwie",
+                        "akcesoria",
+                        "okulary przeciwsłoneczne",
+                        "męskie"
+                    ],
+                    "id": "e610a74e-df90-410b-8269-429f1a964cee",
+                    "name": "męskie"
+                },
+                "damskie": {
+                    "path": [
+                        "eobuwie",
+                        "akcesoria",
+                        "okulary przeciwsłoneczne",
+                        "damskie"
+                    ],
+                    "id": "74a1d4f1-b27a-4608-8f83-058a10e50984",
+                    "name": "damskie"
+                }
+            },
+            "akcesoria obuwnicze": {
+                "path": [
+                    "eobuwie",
+                    "akcesoria",
+                    "akcesoria obuwnicze"
+                ],
+                "id": "8b9f2939-37c4-4089-a7b7-d9a5e2b181d0",
+                "name": "akcesoria obuwnicze",
+                "pasty i impregnaty": {
+                    "path": [
+                        "eobuwie",
+                        "akcesoria",
+                        "akcesoria obuwnicze",
+                        "pasty i impregnaty"
+                    ],
+                    "id": "caa80b2c-182e-4670-9201-661e9c0a3c04",
+                    "name": "pasty i impregnaty",
+                    "impregnaty": {
+                        "path": [
+                            "eobuwie",
+                            "akcesoria",
+                            "akcesoria obuwnicze",
+                            "pasty i impregnaty",
+                            "impregnaty"
+                        ],
+                        "id": "21c57d92-c473-42e1-b760-78b161562cc6",
+                        "name": "impregnaty"
+                    }
+                },
+                "wkładki i inne": {
+                    "path": [
+                        "eobuwie",
+                        "akcesoria",
+                        "akcesoria obuwnicze",
+                        "wkładki i inne"
+                    ],
+                    "id": "e7e90e00-b3e2-4991-b0ca-82f0b7729098",
+                    "name": "wkładki i inne",
+                    "wkładki": {
+                        "path": [
+                            "eobuwie",
+                            "akcesoria",
+                            "akcesoria obuwnicze",
+                            "wkładki i inne",
+                            "wkładki"
+                        ],
+                        "id": "cfbaf586-28f8-401e-9fb8-5587c46f6d94",
+                        "name": "wkładki"
+                    }
+                }
+            },
+            "zegarki": {
+                "path": [
+                    "eobuwie",
+                    "akcesoria",
+                    "zegarki"
+                ],
+                "id": "e0e8d568-dc7b-41dc-be4f-f6d9e1df6f7b",
+                "name": "zegarki",
+                "dziecięce": {
+                    "path": [
+                        "eobuwie",
+                        "akcesoria",
+                        "zegarki",
+                        "dziecięce"
+                    ],
+                    "id": "1d336fea-2251-43bf-b091-4eebd8dc09f9",
+                    "name": "dziecięce"
+                },
+                "męskie": {
+                    "path": [
+                        "eobuwie",
+                        "akcesoria",
+                        "zegarki",
+                        "męskie"
+                    ],
+                    "id": "d601bffb-f9ac-48e6-b61a-538095fd4f4e",
+                    "name": "męskie"
+                },
+                "damskie": {
+                    "path": [
+                        "eobuwie",
+                        "akcesoria",
+                        "zegarki",
+                        "damskie"
+                    ],
+                    "id": "ca0bbac6-f61e-459b-bcef-ef8155c5d340",
+                    "name": "damskie"
+                }
+            },
+            "torby i plecaki sportowe": {
+                "path": [
+                    "eobuwie",
+                    "akcesoria",
+                    "torby i plecaki sportowe"
+                ],
+                "id": "53ae6268-cda9-40f6-9c61-2014e37dd14b",
+                "name": "torby i plecaki sportowe"
+            },
+            "parasolki": {
+                "path": [
+                    "eobuwie",
+                    "akcesoria",
+                    "parasolki"
+                ],
+                "id": "88485e42-4963-4cfd-a975-3e56b2da897d",
+                "name": "parasolki"
+            },
+            "smartwatche": {
+                "path": [
+                    "eobuwie",
+                    "akcesoria",
+                    "smartwatche"
+                ],
+                "id": "fcb39b40-891c-4bdb-af90-bfa8a81f5b8e",
+                "name": "smartwatche",
+                "męskie": {
+                    "path": [
+                        "eobuwie",
+                        "akcesoria",
+                        "smartwatche",
+                        "męskie"
+                    ],
+                    "id": "bc3696bc-fbce-4ffb-a80a-5729ac6db14e",
+                    "name": "męskie"
+                },
+                "damskie": {
+                    "path": [
+                        "eobuwie",
+                        "akcesoria",
+                        "smartwatche",
+                        "damskie"
+                    ],
+                    "id": "a7a6eb65-6175-42e3-a2a9-bb1ead4d8e6c",
+                    "name": "damskie"
+                }
+            },
+            "kosmetyczki i kuferki": {
+                "path": [
+                    "eobuwie",
+                    "akcesoria",
+                    "kosmetyczki i kuferki"
+                ],
+                "id": "c8ea8a3f-3e66-4dbe-9fd5-31202932f9b1",
+                "name": "kosmetyczki i kuferki",
+                "twarde": {
+                    "path": [
+                        "eobuwie",
+                        "akcesoria",
+                        "kosmetyczki i kuferki",
+                        "twarde"
+                    ],
+                    "id": "d86cba2a-cc2f-4781-b9a9-6e95510ff05e",
+                    "name": "twarde"
+                },
+                "materiałowe": {
+                    "path": [
+                        "eobuwie",
+                        "akcesoria",
+                        "kosmetyczki i kuferki",
+                        "materiałowe"
+                    ],
+                    "id": "5862f633-df48-4570-88d3-90b3cec6cc83",
+                    "name": "materiałowe"
+                },
+                "skórzane": {
+                    "path": [
+                        "eobuwie",
+                        "akcesoria",
+                        "kosmetyczki i kuferki",
+                        "skórzane"
+                    ],
+                    "id": "db2a993f-5d33-498f-b791-c9d5240c39f2",
+                    "name": "skórzane"
+                }
+            },
+            "biżuteria i ozdoby": {
+                "path": [
+                    "eobuwie",
+                    "akcesoria",
+                    "biżuteria i ozdoby"
+                ],
+                "id": "f79d63ff-6036-4a44-a310-008522687942",
+                "name": "biżuteria i ozdoby",
+                "kolczyki": {
+                    "path": [
+                        "eobuwie",
+                        "akcesoria",
+                        "biżuteria i ozdoby",
+                        "kolczyki"
+                    ],
+                    "id": "62fbb58b-4e9b-4bd0-81e8-36d74361345c",
+                    "name": "kolczyki"
+                },
+                "bransoletki": {
+                    "path": [
+                        "eobuwie",
+                        "akcesoria",
+                        "biżuteria i ozdoby",
+                        "bransoletki"
+                    ],
+                    "id": "5a94bf11-db5b-4071-a04b-2f81e0a29454",
+                    "name": "bransoletki"
+                },
+                "naszyjniki": {
+                    "path": [
+                        "eobuwie",
+                        "akcesoria",
+                        "biżuteria i ozdoby",
+                        "naszyjniki"
+                    ],
+                    "id": "f87f0571-6531-4fdf-bca1-f78831d92fc9",
+                    "name": "naszyjniki"
+                }
+            },
+            "walizki": {
+                "path": [
+                    "eobuwie",
+                    "akcesoria",
+                    "walizki"
+                ],
+                "id": "792b5f05-9591-46aa-ae03-32f5b54fbb0c",
+                "name": "walizki"
+            },
+            "piórniki": {
+                "path": [
+                    "eobuwie",
+                    "akcesoria",
+                    "piórniki"
+                ],
+                "id": "429e9793-744b-4846-bf46-19c00ee1506a",
+                "name": "piórniki"
+            },
+            "zestawy": {
+                "path": [
+                    "eobuwie",
+                    "akcesoria",
+                    "zestawy"
+                ],
+                "id": "acb5014b-3cba-4887-a1fc-6292722b2144",
+                "name": "zestawy"
+            },
+            "breloki": {
+                "path": [
+                    "eobuwie",
+                    "akcesoria",
+                    "breloki"
+                ],
+                "id": "ecf03073-fb1b-4a49-8f08-060a53bde26f",
+                "name": "breloki"
+            },
+            "akcesoria do włosów": {
+                "path": [
+                    "eobuwie",
+                    "akcesoria",
+                    "akcesoria do włosów"
+                ],
+                "id": "75164aaa-668d-4e4a-a02f-f67d81d231c9",
+                "name": "akcesoria do włosów"
+            },
+            "podróżne": {
+                "path": [
+                    "eobuwie",
+                    "akcesoria",
+                    "podróżne"
+                ],
+                "id": "66b44156-9f3d-4f63-8e20-c8e0b3700ea8",
+                "name": "podróżne"
+            },
+            "kaski": {
+                "path": [
+                    "eobuwie",
+                    "akcesoria",
+                    "kaski"
+                ],
+                "id": "fd66ff36-a214-4fa8-9656-09321b352134",
+                "name": "kaski",
+                "narciarskie": {
+                    "path": [
+                        "eobuwie",
+                        "akcesoria",
+                        "kaski",
+                        "narciarskie"
+                    ],
+                    "id": "c90b524a-1cda-4e80-a94f-0e2f03275fcf",
+                    "name": "narciarskie"
+                }
+            }
+        },
+        "męskie": {
+            "path": [
+                "eobuwie",
+                "męskie"
+            ],
+            "id": "4e9a5249-a4b3-41ff-93ed-0958f1a7e9ee",
+            "name": "męskie",
+            "kozaki i inne": {
+                "path": [
+                    "eobuwie",
+                    "męskie",
+                    "kozaki i inne"
+                ],
+                "id": "ab9ec77c-0d3d-40d3-9389-6b6c7fbaa957",
+                "name": "kozaki i inne",
+                "kozaki": {
+                    "path": [
+                        "eobuwie",
+                        "męskie",
+                        "kozaki i inne",
+                        "kozaki"
+                    ],
+                    "id": "148fb532-edf8-49b9-b876-d0775e8bf51b",
+                    "name": "kozaki"
+                },
+                "codzienne": {
+                    "path": [
+                        "eobuwie",
+                        "męskie",
+                        "kozaki i inne",
+                        "codzienne"
+                    ],
+                    "id": "f46e8340-6643-4b44-a9d0-0c9f49cd2712",
+                    "name": "codzienne"
+                },
+                "trekkingi i trapery": {
+                    "path": [
+                        "eobuwie",
+                        "męskie",
+                        "kozaki i inne",
+                        "trekkingi i trapery"
+                    ],
+                    "id": "e5275412-6c2b-4771-9f64-ecbfa38cddf4",
+                    "name": "trekkingi i trapery"
+                },
+                "sztyblety": {
+                    "path": [
+                        "eobuwie",
+                        "męskie",
+                        "kozaki i inne",
+                        "sztyblety"
+                    ],
+                    "id": "20467f86-a112-40c4-8d2a-24ff7463040a",
+                    "name": "sztyblety"
+                },
+                "trzewiki": {
+                    "path": [
+                        "eobuwie",
+                        "męskie",
+                        "kozaki i inne",
+                        "trzewiki"
+                    ],
+                    "id": "79c8bd80-df99-4b12-a3a6-43a3ebfe0221",
+                    "name": "trzewiki"
+                },
+                "śniegowce": {
+                    "path": [
+                        "eobuwie",
+                        "męskie",
+                        "kozaki i inne",
+                        "śniegowce"
+                    ],
+                    "id": "3db336fd-b3ad-451a-bef5-adad5b23ef6b",
+                    "name": "śniegowce"
+                }
+            },
+            "sportowe": {
+                "path": [
+                    "eobuwie",
+                    "męskie",
+                    "sportowe"
+                ],
+                "id": "60cbb806-5a40-4d94-a3a5-e6b30f443842",
+                "name": "sportowe",
+                "bieganie": {
+                    "path": [
+                        "eobuwie",
+                        "męskie",
+                        "sportowe",
+                        "bieganie"
+                    ],
+                    "id": "3c59c08a-b87a-4cfc-8caa-918722bccc55",
+                    "name": "bieganie",
+                    "asfaltowe": {
+                        "path": [
+                            "eobuwie",
+                            "męskie",
+                            "sportowe",
+                            "bieganie",
+                            "asfaltowe"
+                        ],
+                        "id": "55ea2d8c-8ec9-43a6-8a51-c5f50ceff0d1",
+                        "name": "asfaltowe"
+                    }
+                },
+                "halówki": {
+                    "path": [
+                        "eobuwie",
+                        "męskie",
+                        "sportowe",
+                        "halówki"
+                    ],
+                    "id": "7868e45c-721e-4142-bc7e-fbaeefb2e920",
+                    "name": "halówki"
+                },
+                "tenis": {
+                    "path": [
+                        "eobuwie",
+                        "męskie",
+                        "sportowe",
+                        "tenis"
+                    ],
+                    "id": "3b57694c-e992-4d6a-ad48-1be283cd7886",
+                    "name": "tenis"
+                }
+            },
+            "klapki i sandały": {
+                "path": [
+                    "eobuwie",
+                    "męskie",
+                    "klapki i sandały"
+                ],
+                "id": "fca13bbd-c74b-4e47-9e53-7d4f2bab7d80",
+                "name": "klapki i sandały",
+                "japonki": {
+                    "path": [
+                        "eobuwie",
+                        "męskie",
+                        "klapki i sandały",
+                        "japonki"
+                    ],
+                    "id": "b65fa3b9-e0ec-4932-826e-71cfe495066c",
+                    "name": "japonki"
+                },
+                "kapcie": {
+                    "path": [
+                        "eobuwie",
+                        "męskie",
+                        "klapki i sandały",
+                        "kapcie"
+                    ],
+                    "id": "69e6465f-284a-48de-b905-0e1bfb755b52",
+                    "name": "kapcie"
+                },
+                "klapki": {
+                    "path": [
+                        "eobuwie",
+                        "męskie",
+                        "klapki i sandały",
+                        "klapki"
+                    ],
+                    "id": "32cf02b9-22a1-459b-b5c0-50e07a7f28b8",
+                    "name": "klapki"
+                },
+                "sandały": {
+                    "path": [
+                        "eobuwie",
+                        "męskie",
+                        "klapki i sandały",
+                        "sandały"
+                    ],
+                    "id": "a3f15ca2-5b28-4e24-9e43-d0376bb0eac2",
+                    "name": "sandały"
+                }
+            },
+            "półbuty": {
+                "path": [
+                    "eobuwie",
+                    "męskie",
+                    "półbuty"
+                ],
+                "id": "3c25657e-956c-46ad-83f1-5af2cb9ff381",
+                "name": "półbuty",
+                "trampki": {
+                    "path": [
+                        "eobuwie",
+                        "męskie",
+                        "półbuty",
+                        "trampki"
+                    ],
+                    "id": "2e0270e8-a67a-407f-a397-30936c434154",
+                    "name": "trampki"
+                },
+                "codzienne": {
+                    "path": [
+                        "eobuwie",
+                        "męskie",
+                        "półbuty",
+                        "codzienne"
+                    ],
+                    "id": "4cbeee37-8d21-4dfd-9b4d-8ddeed8449cd",
+                    "name": "codzienne"
+                },
+                "buty trekkingowe i trapery": {
+                    "path": [
+                        "eobuwie",
+                        "męskie",
+                        "półbuty",
+                        "buty trekkingowe i trapery"
+                    ],
+                    "id": "a0f41e1f-76d0-4870-a8ce-143152c2edcb",
+                    "name": "buty trekkingowe i trapery"
+                },
+                "wizytowe": {
+                    "path": [
+                        "eobuwie",
+                        "męskie",
+                        "półbuty",
+                        "wizytowe"
+                    ],
+                    "id": "58a13d6f-5c9b-4b3b-9c90-3f63f6957db2",
+                    "name": "wizytowe"
+                },
+                "sneakersy": {
+                    "path": [
+                        "eobuwie",
+                        "męskie",
+                        "półbuty",
+                        "sneakersy"
+                    ],
+                    "id": "257eeb62-9706-40aa-9b85-b635d4dbe42e",
+                    "name": "sneakersy"
+                },
+                "mokasyny": {
+                    "path": [
+                        "eobuwie",
+                        "męskie",
+                        "półbuty",
+                        "mokasyny"
+                    ],
+                    "id": "5c83f2a7-e7c2-41ea-aa4b-32083f160840",
+                    "name": "mokasyny"
+                }
+            }
+        },
+        "sport": {
+            "path": [
+                "eobuwie",
+                "sport"
+            ],
+            "id": "aecfe354-246d-466b-9e26-d8fe855ab49a",
+            "name": "sport",
+            "dziecięce": {
+                "path": [
+                    "eobuwie",
+                    "sport",
+                    "dziecięce"
+                ],
+                "id": "768704a2-ae86-4a6f-bfe2-1782b5458149",
+                "name": "dziecięce",
+                "bieganie": {
+                    "path": [
+                        "eobuwie",
+                        "sport",
+                        "dziecięce",
+                        "bieganie"
+                    ],
+                    "id": "9541bb0e-bbf6-42bc-9322-1151dfac437e",
+                    "name": "bieganie",
+                    "buty do biegania": {
+                        "path": [
+                            "eobuwie",
+                            "sport",
+                            "dziecięce",
+                            "bieganie",
+                            "buty do biegania"
+                        ],
+                        "id": "8b9f0e3a-343e-40ef-adb2-2dcb44d8b717",
+                        "name": "buty do biegania",
+                        "buty asfaltowe": {
+                            "path": [
+                                "eobuwie",
+                                "sport",
+                                "dziecięce",
+                                "bieganie",
+                                "buty do biegania",
+                                "buty asfaltowe"
+                            ],
+                            "id": "484e82a5-05e5-4a0b-8e29-c99fc0f9e18a",
+                            "name": "buty asfaltowe"
+                        }
+                    }
+                },
+                "sporty halowe": {
+                    "path": [
+                        "eobuwie",
+                        "sport",
+                        "dziecięce",
+                        "sporty halowe"
+                    ],
+                    "id": "40ac5c41-aca7-463e-aa15-588a6ffbb014",
+                    "name": "sporty halowe",
+                    "buty na halę": {
+                        "path": [
+                            "eobuwie",
+                            "sport",
+                            "dziecięce",
+                            "sporty halowe",
+                            "buty na halę"
+                        ],
+                        "id": "e22616a1-96d5-4fec-a09f-5320eea8675a",
+                        "name": "buty na halę"
+                    }
+                },
+                "turystyka i trekking": {
+                    "path": [
+                        "eobuwie",
+                        "sport",
+                        "dziecięce",
+                        "turystyka i trekking"
+                    ],
+                    "id": "6257d287-4074-4272-9db0-36ec0a9f2d15",
+                    "name": "turystyka i trekking",
+                    "buty trekkingowe i turystyczne": {
+                        "path": [
+                            "eobuwie",
+                            "sport",
+                            "dziecięce",
+                            "turystyka i trekking",
+                            "buty trekkingowe i turystyczne"
+                        ],
+                        "id": "c6630996-dbf8-44db-8623-4db8fe8ab611",
+                        "name": "buty trekkingowe i turystyczne",
+                        "niskie buty trekkingowe": {
+                            "path": [
+                                "eobuwie",
+                                "sport",
+                                "dziecięce",
+                                "turystyka i trekking",
+                                "buty trekkingowe i turystyczne",
+                                "niskie buty trekkingowe"
+                            ],
+                            "id": "9acc295d-37e5-44f7-a1f3-768339009442",
+                            "name": "niskie buty trekkingowe"
+                        },
+                        "sandały trekkingowe": {
+                            "path": [
+                                "eobuwie",
+                                "sport",
+                                "dziecięce",
+                                "turystyka i trekking",
+                                "buty trekkingowe i turystyczne",
+                                "sandały trekkingowe"
+                            ],
+                            "id": "26d2e007-5994-4b4b-9a47-66a8aa3a7fad",
+                            "name": "sandały trekkingowe"
+                        }
+                    }
+                },
+                "sporty rakietowe": {
+                    "path": [
+                        "eobuwie",
+                        "sport",
+                        "dziecięce",
+                        "sporty rakietowe"
+                    ],
+                    "id": "9d945b3c-a33c-4706-89e2-07dd61c7cfea",
+                    "name": "sporty rakietowe",
+                    "buty do tenisa i squasha": {
+                        "path": [
+                            "eobuwie",
+                            "sport",
+                            "dziecięce",
+                            "sporty rakietowe",
+                            "buty do tenisa i squasha"
+                        ],
+                        "id": "c95a8b26-e63d-4780-919f-516e2ff377e4",
+                        "name": "buty do tenisa i squasha"
+                    }
+                },
+                "piłka nożna": {
+                    "path": [
+                        "eobuwie",
+                        "sport",
+                        "dziecięce",
+                        "piłka nożna"
+                    ],
+                    "id": "288b067e-3fb0-43f1-82b8-36b09c688db7",
+                    "name": "piłka nożna",
+                    "buty do piłki nożnej": {
+                        "path": [
+                            "eobuwie",
+                            "sport",
+                            "dziecięce",
+                            "piłka nożna",
+                            "buty do piłki nożnej"
+                        ],
+                        "id": "b4844939-7970-4296-ad2f-67609ff24d33",
+                        "name": "buty do piłki nożnej"
+                    }
+                },
+                "sporty zimowe": {
+                    "path": [
+                        "eobuwie",
+                        "sport",
+                        "dziecięce",
+                        "sporty zimowe"
+                    ],
+                    "id": "030bf28d-54be-40c3-bbf0-36bf82f7a7e0",
+                    "name": "sporty zimowe",
+                    "akcesoria do sportów zimowych": {
+                        "path": [
+                            "eobuwie",
+                            "sport",
+                            "dziecięce",
+                            "sporty zimowe",
+                            "akcesoria do sportów zimowych"
+                        ],
+                        "id": "7eefa33d-0a34-4c50-b3f3-2d7b100783ae",
+                        "name": "akcesoria do sportów zimowych"
+                    }
+                },
+                "lifestyle": {
+                    "path": [
+                        "eobuwie",
+                        "sport",
+                        "dziecięce",
+                        "lifestyle"
+                    ],
+                    "id": "871b2d55-c38b-42c8-8b6f-9f59fe17afc4",
+                    "name": "lifestyle"
+                },
+                "trening": {
+                    "path": [
+                        "eobuwie",
+                        "sport",
+                        "dziecięce",
+                        "trening"
+                    ],
+                    "id": "bee38a0d-fe31-45f0-ad08-3f111086cd6f",
+                    "name": "trening"
+                },
+                "pływanie": {
+                    "path": [
+                        "eobuwie",
+                        "sport",
+                        "dziecięce",
+                        "pływanie"
+                    ],
+                    "id": "878ae7c4-e805-4f72-b033-345879fa1a09",
+                    "name": "pływanie"
+                }
+            },
+            "męskie": {
+                "path": [
+                    "eobuwie",
+                    "sport",
+                    "męskie"
+                ],
+                "id": "4458928d-1790-41b9-bc47-9a8797cd1e49",
+                "name": "męskie",
+                "outdoor": {
+                    "path": [
+                        "eobuwie",
+                        "sport",
+                        "męskie",
+                        "outdoor"
+                    ],
+                    "id": "314c9247-66c8-44e6-b9f6-3c32fdec11d8",
+                    "name": "outdoor",
+                    "niskie": {
+                        "path": [
+                            "eobuwie",
+                            "sport",
+                            "męskie",
+                            "outdoor",
+                            "niskie"
+                        ],
+                        "id": "d9cef0a5-e6f6-46fb-b1a5-6f18d54df142",
+                        "name": "niskie"
+                    },
+                    "wysokie": {
+                        "path": [
+                            "eobuwie",
+                            "sport",
+                            "męskie",
+                            "outdoor",
+                            "wysokie"
+                        ],
+                        "id": "9a96f8fe-40e1-4ee0-b6be-0e7280016928",
+                        "name": "wysokie"
+                    }
+                },
+                "sporty rakietowe": {
+                    "path": [
+                        "eobuwie",
+                        "sport",
+                        "męskie",
+                        "sporty rakietowe"
+                    ],
+                    "id": "7d2ee36c-369d-4fc5-95d5-a06d044838b1",
+                    "name": "sporty rakietowe",
+                    "buty do tenisa i squasha": {
+                        "path": [
+                            "eobuwie",
+                            "sport",
+                            "męskie",
+                            "sporty rakietowe",
+                            "buty do tenisa i squasha"
+                        ],
+                        "id": "d570eff8-6567-4d73-86b5-7a7f0860a98c",
+                        "name": "buty do tenisa i squasha"
+                    }
+                },
+                "trening fitness": {
+                    "path": [
+                        "eobuwie",
+                        "sport",
+                        "męskie",
+                        "trening fitness"
+                    ],
+                    "id": "3e737de4-bdf3-4f37-a0f2-6a63ada6064b",
+                    "name": "trening fitness"
+                },
+                "turystyka i trekking": {
+                    "path": [
+                        "eobuwie",
+                        "sport",
+                        "męskie",
+                        "turystyka i trekking"
+                    ],
+                    "id": "a59f6591-b172-42c7-8d54-bcbaeeef972b",
+                    "name": "turystyka i trekking",
+                    "buty trekkingowe i turystyczne": {
+                        "path": [
+                            "eobuwie",
+                            "sport",
+                            "męskie",
+                            "turystyka i trekking",
+                            "buty trekkingowe i turystyczne"
+                        ],
+                        "id": "2ae75c7b-9863-4e68-b8a7-184e7737050c",
+                        "name": "buty trekkingowe i turystyczne",
+                        "city trekking": {
+                            "path": [
+                                "eobuwie",
+                                "sport",
+                                "męskie",
+                                "turystyka i trekking",
+                                "buty trekkingowe i turystyczne",
+                                "city trekking"
+                            ],
+                            "id": "ef8b2b3f-71a8-4e5c-be89-0eb95288a3ef",
+                            "name": "city trekking"
+                        },
+                        "niskie buty trekkingowe": {
+                            "path": [
+                                "eobuwie",
+                                "sport",
+                                "męskie",
+                                "turystyka i trekking",
+                                "buty trekkingowe i turystyczne",
+                                "niskie buty trekkingowe"
+                            ],
+                            "id": "800953b5-df3e-4db8-9267-44b5ee628a52",
+                            "name": "niskie buty trekkingowe"
+                        },
+                        "wysokie buty trekkingowe": {
+                            "path": [
+                                "eobuwie",
+                                "sport",
+                                "męskie",
+                                "turystyka i trekking",
+                                "buty trekkingowe i turystyczne",
+                                "wysokie buty trekkingowe"
+                            ],
+                            "id": "aa0fe96b-5811-4c97-a7b6-cdd2d050f141",
+                            "name": "wysokie buty trekkingowe"
+                        },
+                        "sandały trekkingowe": {
+                            "path": [
+                                "eobuwie",
+                                "sport",
+                                "męskie",
+                                "turystyka i trekking",
+                                "buty trekkingowe i turystyczne",
+                                "sandały trekkingowe"
+                            ],
+                            "id": "26cdd86f-7bc3-45af-a0fc-59096d85d943",
+                            "name": "sandały trekkingowe"
+                        }
+                    }
+                },
+                "sporty wodne": {
+                    "path": [
+                        "eobuwie",
+                        "sport",
+                        "męskie",
+                        "sporty wodne"
+                    ],
+                    "id": "76d4d877-3aaa-4d48-ba99-a1b6626357e0",
+                    "name": "sporty wodne",
+                    "buty do wody, klapki i kalosze": {
+                        "path": [
+                            "eobuwie",
+                            "sport",
+                            "męskie",
+                            "sporty wodne",
+                            "buty do wody, klapki i kalosze"
+                        ],
+                        "id": "db31321a-ddb5-495a-95a3-0c6ea9199946",
+                        "name": "buty do wody, klapki i kalosze",
+                        "klapki": {
+                            "path": [
+                                "eobuwie",
+                                "sport",
+                                "męskie",
+                                "sporty wodne",
+                                "buty do wody, klapki i kalosze",
+                                "klapki"
+                            ],
+                            "id": "46e1fb26-f4a3-4edf-9e4f-c8891f9a94d1",
+                            "name": "klapki"
+                        }
+                    }
+                },
+                "piłka nożna": {
+                    "path": [
+                        "eobuwie",
+                        "sport",
+                        "męskie",
+                        "piłka nożna"
+                    ],
+                    "id": "81606803-da59-4719-a07b-382cbaffbeef",
+                    "name": "piłka nożna",
+                    "buty do piłki nożnej": {
+                        "path": [
+                            "eobuwie",
+                            "sport",
+                            "męskie",
+                            "piłka nożna",
+                            "buty do piłki nożnej"
+                        ],
+                        "id": "ae260858-e67f-4834-96b7-905c11ab809b",
+                        "name": "buty do piłki nożnej",
+                        "halówki": {
+                            "path": [
+                                "eobuwie",
+                                "sport",
+                                "męskie",
+                                "piłka nożna",
+                                "buty do piłki nożnej",
+                                "halówki"
+                            ],
+                            "id": "8634d46e-eca4-45a6-9f91-605bc638c3cb",
+                            "name": "halówki"
+                        },
+                        "korki i lanki": {
+                            "path": [
+                                "eobuwie",
+                                "sport",
+                                "męskie",
+                                "piłka nożna",
+                                "buty do piłki nożnej",
+                                "korki i lanki"
+                            ],
+                            "id": "aadd9cab-45e8-4170-8731-1d55e32d6d3d",
+                            "name": "korki i lanki"
+                        },
+                        "turfy": {
+                            "path": [
+                                "eobuwie",
+                                "sport",
+                                "męskie",
+                                "piłka nożna",
+                                "buty do piłki nożnej",
+                                "turfy"
+                            ],
+                            "id": "f3c74c05-cce3-4de4-bfdb-720665e10b0f",
+                            "name": "turfy"
+                        }
+                    }
+                },
+                "sporty halowe": {
+                    "path": [
+                        "eobuwie",
+                        "sport",
+                        "męskie",
+                        "sporty halowe"
+                    ],
+                    "id": "538ce149-20bf-4580-8b80-0b41a2ad6d8a",
+                    "name": "sporty halowe",
+                    "buty na halę": {
+                        "path": [
+                            "eobuwie",
+                            "sport",
+                            "męskie",
+                            "sporty halowe",
+                            "buty na halę"
+                        ],
+                        "id": "617f9f2e-a5b1-4557-b2c9-02eaf802fdd6",
+                        "name": "buty na halę"
+                    }
+                },
+                "bieganie": {
+                    "path": [
+                        "eobuwie",
+                        "sport",
+                        "męskie",
+                        "bieganie"
+                    ],
+                    "id": "b7e2208b-12e2-4274-bc1a-3602a80e69ba",
+                    "name": "bieganie",
+                    "buty do biegania": {
+                        "path": [
+                            "eobuwie",
+                            "sport",
+                            "męskie",
+                            "bieganie",
+                            "buty do biegania"
+                        ],
+                        "id": "de0823bd-3730-4b68-8773-20ff258cbca0",
+                        "name": "buty do biegania",
+                        "buty asfaltowe": {
+                            "path": [
+                                "eobuwie",
+                                "sport",
+                                "męskie",
+                                "bieganie",
+                                "buty do biegania",
+                                "buty asfaltowe"
+                            ],
+                            "id": "12116457-bd2b-4dd9-a4a7-bcc8c478523a",
+                            "name": "buty asfaltowe"
+                        },
+                        "buty trailowe": {
+                            "path": [
+                                "eobuwie",
+                                "sport",
+                                "męskie",
+                                "bieganie",
+                                "buty do biegania",
+                                "buty trailowe"
+                            ],
+                            "id": "bb4ffcd7-d3dc-4257-a2b5-365e0bdefab3",
+                            "name": "buty trailowe"
+                        }
+                    },
+                    "akcesoria do biegania": {
+                        "path": [
+                            "eobuwie",
+                            "sport",
+                            "męskie",
+                            "bieganie",
+                            "akcesoria do biegania"
+                        ],
+                        "id": "23d64559-611d-4112-957e-61d91d919f2c",
+                        "name": "akcesoria do biegania"
+                    },
+                    "terenowe": {
+                        "path": [
+                            "eobuwie",
+                            "sport",
+                            "męskie",
+                            "bieganie",
+                            "terenowe"
+                        ],
+                        "id": "27b8a6f6-43b5-4042-bb69-66b452dad1ed",
+                        "name": "terenowe"
+                    }
+                },
+                "kolarstwo": {
+                    "path": [
+                        "eobuwie",
+                        "sport",
+                        "męskie",
+                        "kolarstwo"
+                    ],
+                    "id": "d6863b8d-1746-42d6-b7ea-d3484b0f8d13",
+                    "name": "kolarstwo",
+                    "akcesoria rowerowe": {
+                        "path": [
+                            "eobuwie",
+                            "sport",
+                            "męskie",
+                            "kolarstwo",
+                            "akcesoria rowerowe"
+                        ],
+                        "id": "c19b6613-5172-43de-a695-bb9a318ea74d",
+                        "name": "akcesoria rowerowe"
+                    }
+                },
+                "siłownia": {
+                    "path": [
+                        "eobuwie",
+                        "sport",
+                        "męskie",
+                        "siłownia"
+                    ],
+                    "id": "893e33f5-dd19-4ff7-9e3c-341d3376f7ed",
+                    "name": "siłownia",
+                    "buty na siłownię": {
+                        "path": [
+                            "eobuwie",
+                            "sport",
+                            "męskie",
+                            "siłownia",
+                            "buty na siłownię"
+                        ],
+                        "id": "776d5f18-956b-4a47-9200-ec756242e7d0",
+                        "name": "buty na siłownię"
+                    },
+                    "akcesoria na siłownię": {
+                        "path": [
+                            "eobuwie",
+                            "sport",
+                            "męskie",
+                            "siłownia",
+                            "akcesoria na siłownię"
+                        ],
+                        "id": "c70efd51-7280-44f9-ad99-38d0494220f5",
+                        "name": "akcesoria na siłownię",
+                        "torby treningowe": {
+                            "path": [
+                                "eobuwie",
+                                "sport",
+                                "męskie",
+                                "siłownia",
+                                "akcesoria na siłownię",
+                                "torby treningowe"
+                            ],
+                            "id": "7d262fe1-741a-420b-b33b-7385bb071d97",
+                            "name": "torby treningowe"
+                        }
+                    }
+                },
+                "pływanie": {
+                    "path": [
+                        "eobuwie",
+                        "sport",
+                        "męskie",
+                        "pływanie"
+                    ],
+                    "id": "b201ac79-b9c8-46db-b06f-6736530f9c89",
+                    "name": "pływanie",
+                    "klapki/japonki basenowe": {
+                        "path": [
+                            "eobuwie",
+                            "sport",
+                            "męskie",
+                            "pływanie",
+                            "klapki/japonki basenowe"
+                        ],
+                        "id": "3e29f1aa-2518-41ad-88e4-abcbececa6f6",
+                        "name": "klapki/japonki basenowe"
+                    }
+                }
+            },
+            "damskie": {
+                "path": [
+                    "eobuwie",
+                    "sport",
+                    "damskie"
+                ],
+                "id": "1fa9d5c8-55da-44d8-b77d-05090d3d127f",
+                "name": "damskie",
+                "bieganie": {
+                    "path": [
+                        "eobuwie",
+                        "sport",
+                        "damskie",
+                        "bieganie"
+                    ],
+                    "id": "4ce0bcb6-1791-4b8c-b65b-6b5df0091b59",
+                    "name": "bieganie",
+                    "akcesoria do biegania": {
+                        "path": [
+                            "eobuwie",
+                            "sport",
+                            "damskie",
+                            "bieganie",
+                            "akcesoria do biegania"
+                        ],
+                        "id": "b76f324d-938a-48b8-a48d-843b110dd256",
+                        "name": "akcesoria do biegania"
+                    },
+                    "terenowe": {
+                        "path": [
+                            "eobuwie",
+                            "sport",
+                            "damskie",
+                            "bieganie",
+                            "terenowe"
+                        ],
+                        "id": "f83f5418-12b5-43a6-ab65-e47fbcd43546",
+                        "name": "terenowe"
+                    },
+                    "buty do biegania": {
+                        "path": [
+                            "eobuwie",
+                            "sport",
+                            "damskie",
+                            "bieganie",
+                            "buty do biegania"
+                        ],
+                        "id": "d6bae999-f8b0-479a-9ba4-10e6c1b92444",
+                        "name": "buty do biegania",
+                        "buty trailowe": {
+                            "path": [
+                                "eobuwie",
+                                "sport",
+                                "damskie",
+                                "bieganie",
+                                "buty do biegania",
+                                "buty trailowe"
+                            ],
+                            "id": "2ce490b4-d501-4ed9-a3db-19ceb8621143",
+                            "name": "buty trailowe"
+                        },
+                        "buty asfaltowe": {
+                            "path": [
+                                "eobuwie",
+                                "sport",
+                                "damskie",
+                                "bieganie",
+                                "buty do biegania",
+                                "buty asfaltowe"
+                            ],
+                            "id": "cf5b3cbe-67d1-4a50-9304-4657774a0179",
+                            "name": "buty asfaltowe"
+                        }
+                    }
+                },
+                "pływanie": {
+                    "path": [
+                        "eobuwie",
+                        "sport",
+                        "damskie",
+                        "pływanie"
+                    ],
+                    "id": "3214d800-31c6-4f29-9052-88c5f39a5dc5",
+                    "name": "pływanie",
+                    "klapki/japonki basenowe": {
+                        "path": [
+                            "eobuwie",
+                            "sport",
+                            "damskie",
+                            "pływanie",
+                            "klapki/japonki basenowe"
+                        ],
+                        "id": "727d3df6-f1f1-453d-8c29-b188d3f9f993",
+                        "name": "klapki/japonki basenowe"
+                    }
+                },
+                "sporty zimowe": {
+                    "path": [
+                        "eobuwie",
+                        "sport",
+                        "damskie",
+                        "sporty zimowe"
+                    ],
+                    "id": "480a6727-d699-4930-9459-8f5f60600911",
+                    "name": "sporty zimowe",
+                    "akcesoria do sportów zimowych": {
+                        "path": [
+                            "eobuwie",
+                            "sport",
+                            "damskie",
+                            "sporty zimowe",
+                            "akcesoria do sportów zimowych"
+                        ],
+                        "id": "2b5d3a1d-ae95-44f2-be30-52043a182134",
+                        "name": "akcesoria do sportów zimowych"
+                    }
+                },
+                "trening/fitness": {
+                    "path": [
+                        "eobuwie",
+                        "sport",
+                        "damskie",
+                        "trening/fitness"
+                    ],
+                    "id": "4ddeccd1-565c-4a20-9433-470a799e16d4",
+                    "name": "trening/fitness"
+                },
+                "siłownia i fitness": {
+                    "path": [
+                        "eobuwie",
+                        "sport",
+                        "damskie",
+                        "siłownia i fitness"
+                    ],
+                    "id": "744de52d-d412-4d80-ad03-34a85d6f2b07",
+                    "name": "siłownia i fitness",
+                    "buty na siłownię i fitness": {
+                        "path": [
+                            "eobuwie",
+                            "sport",
+                            "damskie",
+                            "siłownia i fitness",
+                            "buty na siłownię i fitness"
+                        ],
+                        "id": "bb44c936-abdf-4d9b-9911-2ee2e0723e39",
+                        "name": "buty na siłownię i fitness"
+                    }
+                },
+                "sporty rakietowe": {
+                    "path": [
+                        "eobuwie",
+                        "sport",
+                        "damskie",
+                        "sporty rakietowe"
+                    ],
+                    "id": "d61734bc-34ae-43e5-ad63-1d0f5cd81425",
+                    "name": "sporty rakietowe",
+                    "buty do tenisa i squasha": {
+                        "path": [
+                            "eobuwie",
+                            "sport",
+                            "damskie",
+                            "sporty rakietowe",
+                            "buty do tenisa i squasha"
+                        ],
+                        "id": "b7547df3-9252-422f-b420-342a0a95a141",
+                        "name": "buty do tenisa i squasha"
+                    }
+                },
+                "turystyka i trekking": {
+                    "path": [
+                        "eobuwie",
+                        "sport",
+                        "damskie",
+                        "turystyka i trekking"
+                    ],
+                    "id": "27455f69-3262-485f-8fa7-6f73ccb010a5",
+                    "name": "turystyka i trekking",
+                    "buty trekkingowe i turystyczne": {
+                        "path": [
+                            "eobuwie",
+                            "sport",
+                            "damskie",
+                            "turystyka i trekking",
+                            "buty trekkingowe i turystyczne"
+                        ],
+                        "id": "dd5a85cd-319c-45d8-a622-8c7c81e8fd81",
+                        "name": "buty trekkingowe i turystyczne",
+                        "sandały trekkingowe": {
+                            "path": [
+                                "eobuwie",
+                                "sport",
+                                "damskie",
+                                "turystyka i trekking",
+                                "buty trekkingowe i turystyczne",
+                                "sandały trekkingowe"
+                            ],
+                            "id": "1fd07aa4-e875-48b9-b17e-5293a69b879f",
+                            "name": "sandały trekkingowe"
+                        },
+                        "city trekking": {
+                            "path": [
+                                "eobuwie",
+                                "sport",
+                                "damskie",
+                                "turystyka i trekking",
+                                "buty trekkingowe i turystyczne",
+                                "city trekking"
+                            ],
+                            "id": "03cbbaec-0ccc-4af0-815d-538073f87f79",
+                            "name": "city trekking"
+                        },
+                        "niskie buty trekkingowe": {
+                            "path": [
+                                "eobuwie",
+                                "sport",
+                                "damskie",
+                                "turystyka i trekking",
+                                "buty trekkingowe i turystyczne",
+                                "niskie buty trekkingowe"
+                            ],
+                            "id": "54040c2a-d9f1-4793-b7dd-e64939779dc5",
+                            "name": "niskie buty trekkingowe"
+                        },
+                        "wysokie buty trekkingowe": {
+                            "path": [
+                                "eobuwie",
+                                "sport",
+                                "damskie",
+                                "turystyka i trekking",
+                                "buty trekkingowe i turystyczne",
+                                "wysokie buty trekkingowe"
+                            ],
+                            "id": "2a689f0f-3ffb-4f23-9620-cbccdd08c25c",
+                            "name": "wysokie buty trekkingowe"
+                        }
+                    }
+                },
+                "sporty wodne": {
+                    "path": [
+                        "eobuwie",
+                        "sport",
+                        "damskie",
+                        "sporty wodne"
+                    ],
+                    "id": "90e49488-f082-4c6b-be8d-edfe60551530",
+                    "name": "sporty wodne",
+                    "buty do wody, klapki i kalosze": {
+                        "path": [
+                            "eobuwie",
+                            "sport",
+                            "damskie",
+                            "sporty wodne",
+                            "buty do wody, klapki i kalosze"
+                        ],
+                        "id": "d9dbdc17-7b0f-47bf-af7f-c47e6e24a534",
+                        "name": "buty do wody, klapki i kalosze",
+                        "japonki": {
+                            "path": [
+                                "eobuwie",
+                                "sport",
+                                "damskie",
+                                "sporty wodne",
+                                "buty do wody, klapki i kalosze",
+                                "japonki"
+                            ],
+                            "id": "25a624d3-f7ce-4a12-b2a8-eb9dd3c61307",
+                            "name": "japonki"
+                        },
+                        "klapki": {
+                            "path": [
+                                "eobuwie",
+                                "sport",
+                                "damskie",
+                                "sporty wodne",
+                                "buty do wody, klapki i kalosze",
+                                "klapki"
+                            ],
+                            "id": "20a46e52-c8a6-4f64-b5e1-0dfde282aa21",
+                            "name": "klapki"
+                        }
+                    }
+                },
+                "outdoor": {
+                    "path": [
+                        "eobuwie",
+                        "sport",
+                        "damskie",
+                        "outdoor"
+                    ],
+                    "id": "1d3b3eb5-db88-484d-8153-fad656eba59d",
+                    "name": "outdoor",
+                    "sandały": {
+                        "path": [
+                            "eobuwie",
+                            "sport",
+                            "damskie",
+                            "outdoor",
+                            "sandały"
+                        ],
+                        "id": "28bc0722-a588-4851-b95c-5ac7f3b7f9d8",
+                        "name": "sandały"
+                    }
+                },
+                "lifestyle": {
+                    "path": [
+                        "eobuwie",
+                        "sport",
+                        "damskie",
+                        "lifestyle"
+                    ],
+                    "id": "91e82935-fa5f-4b88-a749-8233140e8f07",
+                    "name": "lifestyle"
+                }
+            },
+            "akcesoria": {
+                "path": [
+                    "eobuwie",
+                    "sport",
+                    "akcesoria"
+                ],
+                "id": "3a368aa0-685c-4367-83af-2a9b65f4945b",
+                "name": "akcesoria",
+                "czapki": {
+                    "path": [
+                        "eobuwie",
+                        "sport",
+                        "akcesoria",
+                        "czapki"
+                    ],
+                    "id": "7a3ddd25-09be-4031-b1cf-2b886cb9df3b",
+                    "name": "czapki"
+                },
+                "skarpetki": {
+                    "path": [
+                        "eobuwie",
+                        "sport",
+                        "akcesoria",
+                        "skarpetki"
+                    ],
+                    "id": "d6ad3c7e-7a90-45b7-b120-ac7bb53df0c7",
+                    "name": "skarpetki"
+                },
+                "torby, plecaki, saszetki": {
+                    "path": [
+                        "eobuwie",
+                        "sport",
+                        "akcesoria",
+                        "torby, plecaki, saszetki"
+                    ],
+                    "id": "8d2ed1e9-aee9-4553-9081-995ce3f05d3b",
+                    "name": "torby, plecaki, saszetki"
+                }
+            }
+        },
+        "dziecięce": {
+            "path": [
+                "eobuwie",
+                "dziecięce"
+            ],
+            "id": "9030d6af-771e-40df-be01-52dd370ee526",
+            "name": "dziecięce",
+            "chłopiec": {
+                "path": [
+                    "eobuwie",
+                    "dziecięce",
+                    "chłopiec"
+                ],
+                "id": "9cc54b2b-9263-4a18-a346-827eb0a8f519",
+                "name": "chłopiec",
+                "kalosze": {
+                    "path": [
+                        "eobuwie",
+                        "dziecięce",
+                        "chłopiec",
+                        "kalosze"
+                    ],
+                    "id": "eb0ecec1-40eb-4b86-9af9-7a26d55f59aa",
+                    "name": "kalosze"
+                },
+                "półbuty": {
+                    "path": [
+                        "eobuwie",
+                        "dziecięce",
+                        "chłopiec",
+                        "półbuty"
+                    ],
+                    "id": "deec5896-eb33-4f2e-b93d-2c087143355b",
+                    "name": "półbuty",
+                    "sznurowane": {
+                        "path": [
+                            "eobuwie",
+                            "dziecięce",
+                            "chłopiec",
+                            "półbuty",
+                            "sznurowane"
+                        ],
+                        "id": "33b06351-c5de-4bf4-8f88-a93ea4dd832e",
+                        "name": "sznurowane"
+                    },
+                    "wsuwane": {
+                        "path": [
+                            "eobuwie",
+                            "dziecięce",
+                            "chłopiec",
+                            "półbuty",
+                            "wsuwane"
+                        ],
+                        "id": "099c86ed-17fc-4a8d-888e-811ea5a656b0",
+                        "name": "wsuwane"
+                    },
+                    "na rzepy": {
+                        "path": [
+                            "eobuwie",
+                            "dziecięce",
+                            "chłopiec",
+                            "półbuty",
+                            "na rzepy"
+                        ],
+                        "id": "bfb0216c-6f8c-4d86-9849-51ec07554e8d",
+                        "name": "na rzepy"
+                    },
+                    "na suwak": {
+                        "path": [
+                            "eobuwie",
+                            "dziecięce",
+                            "chłopiec",
+                            "półbuty",
+                            "na suwak"
+                        ],
+                        "id": "e61dd6ac-ba4e-476b-8a27-f1f40f748888",
+                        "name": "na suwak"
+                    }
+                },
+                "klapki i sandały": {
+                    "path": [
+                        "eobuwie",
+                        "dziecięce",
+                        "chłopiec",
+                        "klapki i sandały"
+                    ],
+                    "id": "4a48a2e0-cb1b-4fd7-a00d-4b6a3b8a4391",
+                    "name": "klapki i sandały",
+                    "japonki": {
+                        "path": [
+                            "eobuwie",
+                            "dziecięce",
+                            "chłopiec",
+                            "klapki i sandały",
+                            "japonki"
+                        ],
+                        "id": "a03dba57-de19-4811-89ee-e4dc2732000a",
+                        "name": "japonki"
+                    },
+                    "sandały": {
+                        "path": [
+                            "eobuwie",
+                            "dziecięce",
+                            "chłopiec",
+                            "klapki i sandały",
+                            "sandały"
+                        ],
+                        "id": "b189bcd0-edf4-44fc-a117-1578502645c7",
+                        "name": "sandały"
+                    },
+                    "klapki": {
+                        "path": [
+                            "eobuwie",
+                            "dziecięce",
+                            "chłopiec",
+                            "klapki i sandały",
+                            "klapki"
+                        ],
+                        "id": "67da202a-0711-4e6c-9203-a5346acf6a88",
+                        "name": "klapki"
+                    },
+                    "kapcie": {
+                        "path": [
+                            "eobuwie",
+                            "dziecięce",
+                            "chłopiec",
+                            "klapki i sandały",
+                            "kapcie"
+                        ],
+                        "id": "af0abfbb-e623-4def-8bc0-df07f61a9a7a",
+                        "name": "kapcie"
+                    }
+                },
+                "kozaki i inne": {
+                    "path": [
+                        "eobuwie",
+                        "dziecięce",
+                        "chłopiec",
+                        "kozaki i inne"
+                    ],
+                    "id": "437e6547-717e-49fa-8268-f9e28037422c",
+                    "name": "kozaki i inne",
+                    "kozaczki": {
+                        "path": [
+                            "eobuwie",
+                            "dziecięce",
+                            "chłopiec",
+                            "kozaki i inne",
+                            "kozaczki"
+                        ],
+                        "id": "d89f556c-14ae-4b90-8a40-dafe5a4ae0e6",
+                        "name": "kozaczki"
+                    },
+                    "kalosze": {
+                        "path": [
+                            "eobuwie",
+                            "dziecięce",
+                            "chłopiec",
+                            "kozaki i inne",
+                            "kalosze"
+                        ],
+                        "id": "8cf54e75-7289-4247-b6cb-509aac8cc239",
+                        "name": "kalosze"
+                    },
+                    "trapery i śniegowce": {
+                        "path": [
+                            "eobuwie",
+                            "dziecięce",
+                            "chłopiec",
+                            "kozaki i inne",
+                            "trapery i śniegowce"
+                        ],
+                        "id": "b68ac297-8fa5-4190-bb76-3ef960699cb1",
+                        "name": "trapery i śniegowce"
+                    },
+                    "trzewiki": {
+                        "path": [
+                            "eobuwie",
+                            "dziecięce",
+                            "chłopiec",
+                            "kozaki i inne",
+                            "trzewiki"
+                        ],
+                        "id": "03b7d946-b353-488f-8638-66d8afef1931",
+                        "name": "trzewiki"
+                    }
+                }
+            },
+            "dziewczynka": {
+                "path": [
+                    "eobuwie",
+                    "dziecięce",
+                    "dziewczynka"
+                ],
+                "id": "e3b3b8ec-5099-4d91-9ab3-fcfb3a28ad40",
+                "name": "dziewczynka",
+                "klapki i sandały": {
+                    "path": [
+                        "eobuwie",
+                        "dziecięce",
+                        "dziewczynka",
+                        "klapki i sandały"
+                    ],
+                    "id": "36d8d562-7403-474d-b430-b8660538f186",
+                    "name": "klapki i sandały",
+                    "klapki": {
+                        "path": [
+                            "eobuwie",
+                            "dziecięce",
+                            "dziewczynka",
+                            "klapki i sandały",
+                            "klapki"
+                        ],
+                        "id": "887a78e2-192d-424f-8fab-2b3f2a1336a7",
+                        "name": "klapki"
+                    },
+                    "kapcie": {
+                        "path": [
+                            "eobuwie",
+                            "dziecięce",
+                            "dziewczynka",
+                            "klapki i sandały",
+                            "kapcie"
+                        ],
+                        "id": "6b9bd955-81e0-4037-a9d3-5314f6935e4c",
+                        "name": "kapcie"
+                    },
+                    "japonki": {
+                        "path": [
+                            "eobuwie",
+                            "dziecięce",
+                            "dziewczynka",
+                            "klapki i sandały",
+                            "japonki"
+                        ],
+                        "id": "b3051fcb-2022-482e-8075-1fa19fd5b315",
+                        "name": "japonki"
+                    },
+                    "sandały": {
+                        "path": [
+                            "eobuwie",
+                            "dziecięce",
+                            "dziewczynka",
+                            "klapki i sandały",
+                            "sandały"
+                        ],
+                        "id": "7aae0a3b-322c-4c91-b472-7036f0c64256",
+                        "name": "sandały"
+                    }
+                },
+                "półbuty": {
+                    "path": [
+                        "eobuwie",
+                        "dziecięce",
+                        "dziewczynka",
+                        "półbuty"
+                    ],
+                    "id": "4918b0e8-0a5f-42c7-b3d5-a0a46c382a29",
+                    "name": "półbuty",
+                    "na rzepy": {
+                        "path": [
+                            "eobuwie",
+                            "dziecięce",
+                            "dziewczynka",
+                            "półbuty",
+                            "na rzepy"
+                        ],
+                        "id": "f923ba9d-5870-43ab-b44b-e0ef78cd9f89",
+                        "name": "na rzepy"
+                    },
+                    "sznurowane": {
+                        "path": [
+                            "eobuwie",
+                            "dziecięce",
+                            "dziewczynka",
+                            "półbuty",
+                            "sznurowane"
+                        ],
+                        "id": "8fb00bd0-9e96-4d68-8248-f22fe25b2965",
+                        "name": "sznurowane"
+                    },
+                    "wsuwane": {
+                        "path": [
+                            "eobuwie",
+                            "dziecięce",
+                            "dziewczynka",
+                            "półbuty",
+                            "wsuwane"
+                        ],
+                        "id": "9ee85a33-a56e-4623-b591-d27b375894ac",
+                        "name": "wsuwane"
+                    },
+                    "baleriny": {
+                        "path": [
+                            "eobuwie",
+                            "dziecięce",
+                            "dziewczynka",
+                            "półbuty",
+                            "baleriny"
+                        ],
+                        "id": "3b7987d6-d9c8-417e-a9e8-a7d2bb192fd1",
+                        "name": "baleriny"
+                    }
+                },
+                "kozaki i inne": {
+                    "path": [
+                        "eobuwie",
+                        "dziecięce",
+                        "dziewczynka",
+                        "kozaki i inne"
+                    ],
+                    "id": "86dd48b6-4a51-4cbb-9c18-c256a1db45a3",
+                    "name": "kozaki i inne",
+                    "trzewiki": {
+                        "path": [
+                            "eobuwie",
+                            "dziecięce",
+                            "dziewczynka",
+                            "kozaki i inne",
+                            "trzewiki"
+                        ],
+                        "id": "e989ff9d-1198-482b-b4d7-46935c3d0dfa",
+                        "name": "trzewiki"
+                    },
+                    "kalosze": {
+                        "path": [
+                            "eobuwie",
+                            "dziecięce",
+                            "dziewczynka",
+                            "kozaki i inne",
+                            "kalosze"
+                        ],
+                        "id": "28e8ac31-7f2d-4c3a-a076-50dfdf563ba6",
+                        "name": "kalosze"
+                    },
+                    "trapery i śniegowce": {
+                        "path": [
+                            "eobuwie",
+                            "dziecięce",
+                            "dziewczynka",
+                            "kozaki i inne",
+                            "trapery i śniegowce"
+                        ],
+                        "id": "35dcff17-2cc0-423a-9f29-0d03c889beaf",
+                        "name": "trapery i śniegowce"
+                    },
+                    "kozaczki": {
+                        "path": [
+                            "eobuwie",
+                            "dziecięce",
+                            "dziewczynka",
+                            "kozaki i inne",
+                            "kozaczki"
+                        ],
+                        "id": "1b4893f6-0add-40dc-a770-1c0290e1699c",
+                        "name": "kozaczki"
+                    }
+                }
+            }
+        },
+        "unisex": {
+            "path": [
+                "eobuwie",
+                "unisex"
+            ],
+            "id": "16a2ba3c-9766-44ab-b9ad-3bbc503a4800",
+            "name": "unisex"
+        },
+        "torebki": {
+            "path": [
+                "eobuwie",
+                "torebki"
+            ],
+            "id": "e276bcd5-457c-4a60-9d3d-e8f9cd411556",
+            "name": "torebki",
+            "wieczorowe": {
+                "path": [
+                    "eobuwie",
+                    "torebki",
+                    "wieczorowe"
+                ],
+                "id": "3c5670ed-6455-4187-9994-b1809a9fae21",
+                "name": "wieczorowe"
+            },
+            "shopperki": {
+                "path": [
+                    "eobuwie",
+                    "torebki",
+                    "shopperki"
+                ],
+                "id": "49481eec-2422-4efa-b647-0f9a7b34b7e1",
+                "name": "shopperki"
+            },
+            "torby plażowe": {
+                "path": [
+                    "eobuwie",
+                    "torebki",
+                    "torby plażowe"
+                ],
+                "id": "8089e59a-3c31-49a5-91d5-4e3a0cbb2541",
+                "name": "torby plażowe"
+            },
+            "plecaki": {
+                "path": [
+                    "eobuwie",
+                    "torebki",
+                    "plecaki"
+                ],
+                "id": "688ec294-e69c-4172-90d3-f6a53d40304e",
+                "name": "plecaki"
+            },
+            "listonoszki": {
+                "path": [
+                    "eobuwie",
+                    "torebki",
+                    "listonoszki"
+                ],
+                "id": "e458b9c2-8e5b-4e50-bb01-00a9fded77a1",
+                "name": "listonoszki"
+            },
+            "kopertówki": {
+                "path": [
+                    "eobuwie",
+                    "torebki",
+                    "kopertówki"
+                ],
+                "id": "968c243a-9dd9-4111-a8b0-8c43d115f659",
+                "name": "kopertówki"
+            },
+            "worki": {
+                "path": [
+                    "eobuwie",
+                    "torebki",
+                    "worki"
+                ],
+                "id": "171fa633-c8e2-4913-af1b-d08c6d5f3c43",
+                "name": "worki"
+            },
+            "nerki": {
+                "path": [
+                    "eobuwie",
+                    "torebki",
+                    "nerki"
+                ],
+                "id": "a0095e42-b7dc-4a24-adaf-6b4eb9f6bc6b",
+                "name": "nerki"
+            },
+            "klasyczne": {
+                "path": [
+                    "eobuwie",
+                    "torebki",
+                    "klasyczne"
+                ],
+                "id": "d2539dc1-5486-4170-874d-0ec2befd20dc",
+                "name": "klasyczne"
+            },
+            "ślubne": {
+                "path": [
+                    "eobuwie",
+                    "torebki",
+                    "ślubne"
+                ],
+                "id": "79c2e6bf-b9de-44da-8734-3e56759ddfc9",
+                "name": "ślubne"
+            }
+        }
+    },
+    "damskie": {
+        "path": [
+            "damskie"
+        ],
+        "id": "948c86b5-18d3-4440-9a63-fe2b487105a2",
+        "name": "damskie",
+        "klapki i sandały": {
+            "path": [
+                "damskie",
+                "klapki i sandały"
+            ],
+            "id": "99353959-21ff-4d09-8e9e-86bcf56195a9",
+            "name": "klapki i sandały",
+            "kapcie": {
+                "path": [
+                    "damskie",
+                    "klapki i sandały",
+                    "kapcie"
+                ],
+                "id": "d74e2dd7-c698-4ca3-b437-d70230a0ab52",
+                "name": "kapcie"
+            },
+            "japonki": {
+                "path": [
+                    "damskie",
+                    "klapki i sandały",
+                    "japonki"
+                ],
+                "id": "12f7d5f0-b4b9-49cf-a318-ffbe12927d78",
+                "name": "japonki"
+            },
+            "klapki": {
+                "path": [
+                    "damskie",
+                    "klapki i sandały",
+                    "klapki"
+                ],
+                "id": "ada8b6f1-a894-488a-b3ba-253f28e84165",
+                "name": "klapki",
+                "klapki codzienne": {
+                    "path": [
+                        "damskie",
+                        "klapki i sandały",
+                        "klapki",
+                        "klapki codzienne"
+                    ],
+                    "id": "b4068a35-bf93-4398-813b-b3d81b22070d",
+                    "name": "klapki codzienne"
+                },
+                "klapki eleganckie": {
+                    "path": [
+                        "damskie",
+                        "klapki i sandały",
+                        "klapki",
+                        "klapki eleganckie"
+                    ],
+                    "id": "f2591aab-2c21-4e96-9883-0ec5bc772311",
+                    "name": "klapki eleganckie"
+                }
+            },
+            "sandały": {
+                "path": [
+                    "damskie",
+                    "klapki i sandały",
+                    "sandały"
+                ],
+                "id": "c89f8c06-f36d-4e67-b6d0-c86543c61194",
+                "name": "sandały",
+                "sandały codzienne": {
+                    "path": [
+                        "damskie",
+                        "klapki i sandały",
+                        "sandały",
+                        "sandały codzienne"
+                    ],
+                    "id": "d2a0c0da-5c0a-4392-b891-39f802e098ba",
+                    "name": "sandały codzienne"
+                },
+                "komfort": {
+                    "path": [
+                        "damskie",
+                        "klapki i sandały",
+                        "sandały",
+                        "komfort"
+                    ],
+                    "id": "082aa77d-bf6a-4022-8836-60000b889c94",
+                    "name": "komfort"
+                },
+                "sandały eleganckie": {
+                    "path": [
+                        "damskie",
+                        "klapki i sandały",
+                        "sandały",
+                        "sandały eleganckie"
+                    ],
+                    "id": "9c596f4d-5e44-486f-a259-a9716b464501",
+                    "name": "sandały eleganckie"
+                }
+            }
+        },
+        "półbuty": {
+            "path": [
+                "damskie",
+                "półbuty"
+            ],
+            "id": "4f721e80-3ccd-4031-b7b1-f831ead91bb6",
+            "name": "półbuty",
+            "eleganckie": {
+                "path": [
+                    "damskie",
+                    "półbuty",
+                    "eleganckie"
+                ],
+                "id": "f811c144-0b92-447e-a7e2-c387c01fc94a",
+                "name": "eleganckie"
+            },
+            "płaskie": {
+                "path": [
+                    "damskie",
+                    "półbuty",
+                    "płaskie"
+                ],
+                "id": "c10835cc-6f14-4e08-a668-822e937175e9",
+                "name": "płaskie"
+            },
+            "szpilki": {
+                "path": [
+                    "damskie",
+                    "półbuty",
+                    "szpilki"
+                ],
+                "id": "11278fd1-ebfb-4c4f-a733-6b45912feed9",
+                "name": "szpilki"
+            },
+            "codzienne": {
+                "path": [
+                    "damskie",
+                    "półbuty",
+                    "codzienne"
+                ],
+                "id": "e6706a52-8b47-4e60-ac1c-9b25dcbee957",
+                "name": "codzienne"
+            },
+            "na koturnie": {
+                "path": [
+                    "damskie",
+                    "półbuty",
+                    "na koturnie"
+                ],
+                "id": "389f1847-40b2-4a6b-b5e6-de9b081682be",
+                "name": "na koturnie"
+            },
+            "sneakersy": {
+                "path": [
+                    "damskie",
+                    "półbuty",
+                    "sneakersy"
+                ],
+                "id": "bedf3242-fec8-4d4f-8256-ae0a5f6305c5",
+                "name": "sneakersy"
+            },
+            "baleriny": {
+                "path": [
+                    "damskie",
+                    "półbuty",
+                    "baleriny"
+                ],
+                "id": "01ffaf77-ce04-4679-a4ad-eb53b8c8991c",
+                "name": "baleriny"
+            },
+            "na obcasie": {
+                "path": [
+                    "damskie",
+                    "półbuty",
+                    "na obcasie"
+                ],
+                "id": "ea3a23f8-f99d-44d5-8826-e6318c527d5c",
+                "name": "na obcasie"
+            },
+            "trampki": {
+                "path": [
+                    "damskie",
+                    "półbuty",
+                    "trampki"
+                ],
+                "id": "c8ab2ff3-e507-439a-b902-7400784e71a6",
+                "name": "trampki"
+            }
+        },
+        "sportowe": {
+            "path": [
+                "damskie",
+                "sportowe"
+            ],
+            "id": "0293010f-a34d-4014-a53c-af06e5abf3e4",
+            "name": "sportowe",
+            "lifestyle": {
+                "path": [
+                    "damskie",
+                    "sportowe",
+                    "lifestyle"
+                ],
+                "id": "9d86b80e-aec4-4e22-9681-8c5328bdf3b9",
+                "name": "lifestyle"
+            },
+            "fitness": {
+                "path": [
+                    "damskie",
+                    "sportowe",
+                    "fitness"
+                ],
+                "id": "3daa9f89-c059-4f23-a876-494cea84756e",
+                "name": "fitness"
+            },
+            "bieganie": {
+                "path": [
+                    "damskie",
+                    "sportowe",
+                    "bieganie"
+                ],
+                "id": "1bb6e588-a88e-413e-a85c-d50e8b8b8f85",
+                "name": "bieganie",
+                "asfaltowe": {
+                    "path": [
+                        "damskie",
+                        "sportowe",
+                        "bieganie",
+                        "asfaltowe"
+                    ],
+                    "id": "fd03d049-16a6-4d24-8a8a-61f7bb5ce203",
+                    "name": "asfaltowe"
+                },
+                "terenowe": {
+                    "path": [
+                        "damskie",
+                        "sportowe",
+                        "bieganie",
+                        "terenowe"
+                    ],
+                    "id": "e242f8ad-7405-4fc2-8e8f-3d6e926ba2f1",
+                    "name": "terenowe"
+                }
+            }
+        },
+        "kozaki i inne": {
+            "path": [
+                "damskie",
+                "kozaki i inne"
+            ],
+            "id": "063d0756-a078-4304-9501-662422e74434",
+            "name": "kozaki i inne",
+            "śniegowce": {
+                "path": [
+                    "damskie",
+                    "kozaki i inne",
+                    "śniegowce"
+                ],
+                "id": "c082af21-b269-4226-8bc2-51f0aef7f773",
+                "name": "śniegowce"
+            },
+            "trapery": {
+                "path": [
+                    "damskie",
+                    "kozaki i inne",
+                    "trapery"
+                ],
+                "id": "da4049c5-e43a-46c9-b57a-e763e20ff2e3",
+                "name": "trapery"
+            },
+            "kalosze": {
+                "path": [
+                    "damskie",
+                    "kozaki i inne",
+                    "kalosze"
+                ],
+                "id": "528d417a-a19b-4b7c-ab41-e274181e7a46",
+                "name": "kalosze"
+            },
+            "botki": {
+                "path": [
+                    "damskie",
+                    "kozaki i inne",
+                    "botki"
+                ],
+                "id": "38e39aec-4f9c-40b5-bc40-f46bdd4110bc",
+                "name": "botki"
+            },
+            "muszkieterki": {
+                "path": [
+                    "damskie",
+                    "kozaki i inne",
+                    "muszkieterki"
+                ],
+                "id": "1e30d5b4-3a64-4722-89e5-72d553f1de2b",
+                "name": "muszkieterki"
+            },
+            "sztyblety": {
+                "path": [
+                    "damskie",
+                    "kozaki i inne",
+                    "sztyblety"
+                ],
+                "id": "aec1c221-503d-4f75-aeaf-96adabfdc8de",
+                "name": "sztyblety"
+            },
+            "kozaki": {
+                "path": [
+                    "damskie",
+                    "kozaki i inne",
+                    "kozaki"
+                ],
+                "id": "b00c4c16-e8f8-482c-afe2-ab37fd7cf5f4",
+                "name": "kozaki"
+            }
+        }
+    },
+    "akcesoria": {
+        "path": [
+            "akcesoria"
+        ],
+        "id": "1fa4d6ee-73dc-4e77-b69a-7a84a03540de",
+        "name": "akcesoria",
+        "tekstylia": {
+            "path": [
+                "akcesoria",
+                "tekstylia"
+            ],
+            "id": "88f3eb44-264e-429d-9670-5b57164bc5c8",
+            "name": "tekstylia",
+            "czapki": {
+                "path": [
+                    "akcesoria",
+                    "tekstylia",
+                    "czapki"
+                ],
+                "id": "4e7115a5-a8da-4615-b567-48373c9bf392",
+                "name": "czapki",
+                "damskie": {
+                    "path": [
+                        "akcesoria",
+                        "tekstylia",
+                        "czapki",
+                        "damskie"
+                    ],
+                    "id": "2e6bc0d6-3fac-459a-85e4-e4bf382d05f6",
+                    "name": "damskie",
+                    "czapki zimowe": {
+                        "path": [
+                            "akcesoria",
+                            "tekstylia",
+                            "czapki",
+                            "damskie",
+                            "czapki zimowe"
+                        ],
+                        "id": "efe9968b-898e-4eab-b1ab-d763ebdcafa5",
+                        "name": "czapki zimowe"
+                    },
+                    "kapelusze": {
+                        "path": [
+                            "akcesoria",
+                            "tekstylia",
+                            "czapki",
+                            "damskie",
+                            "kapelusze"
+                        ],
+                        "id": "a4e5501e-9053-4088-ad6f-3a020058191f",
+                        "name": "kapelusze"
+                    },
+                    "czapki z daszkiem": {
+                        "path": [
+                            "akcesoria",
+                            "tekstylia",
+                            "czapki",
+                            "damskie",
+                            "czapki z daszkiem"
+                        ],
+                        "id": "7f08a5ce-0bb0-4fd8-a1ab-b6f73e66c8fb",
+                        "name": "czapki z daszkiem"
+                    },
+                    "nauszniki i opaski": {
+                        "path": [
+                            "akcesoria",
+                            "tekstylia",
+                            "czapki",
+                            "damskie",
+                            "nauszniki i opaski"
+                        ],
+                        "id": "3cc3003b-784d-485d-a089-58aa963a2517",
+                        "name": "nauszniki i opaski"
+                    }
+                },
+                "dziecięce": {
+                    "path": [
+                        "akcesoria",
+                        "tekstylia",
+                        "czapki",
+                        "dziecięce"
+                    ],
+                    "id": "fbac9906-aa87-46b1-8fa3-4d8109538767",
+                    "name": "dziecięce",
+                    "czapki zimowe": {
+                        "path": [
+                            "akcesoria",
+                            "tekstylia",
+                            "czapki",
+                            "dziecięce",
+                            "czapki zimowe"
+                        ],
+                        "id": "c1e4a421-d983-469c-ae82-25e55710e7d5",
+                        "name": "czapki zimowe"
+                    },
+                    "czapki z daszkiem": {
+                        "path": [
+                            "akcesoria",
+                            "tekstylia",
+                            "czapki",
+                            "dziecięce",
+                            "czapki z daszkiem"
+                        ],
+                        "id": "fc00f1c7-9a21-4770-8397-3648012c9e7c",
+                        "name": "czapki z daszkiem"
+                    }
+                },
+                "męskie": {
+                    "path": [
+                        "akcesoria",
+                        "tekstylia",
+                        "czapki",
+                        "męskie"
+                    ],
+                    "id": "9d10d707-edaf-489f-a836-bc3afeef4e40",
+                    "name": "męskie",
+                    "kapelusze": {
+                        "path": [
+                            "akcesoria",
+                            "tekstylia",
+                            "czapki",
+                            "męskie",
+                            "kapelusze"
+                        ],
+                        "id": "389abf30-1844-43c2-8e14-f7e0b36ce129",
+                        "name": "kapelusze"
+                    },
+                    "czapki z daszkiem": {
+                        "path": [
+                            "akcesoria",
+                            "tekstylia",
+                            "czapki",
+                            "męskie",
+                            "czapki z daszkiem"
+                        ],
+                        "id": "d59bc1e7-c12d-4023-8efd-7d7b86dda1cf",
+                        "name": "czapki z daszkiem"
+                    },
+                    "czapki zimowe": {
+                        "path": [
+                            "akcesoria",
+                            "tekstylia",
+                            "czapki",
+                            "męskie",
+                            "czapki zimowe"
+                        ],
+                        "id": "b7a8a871-0402-4877-87e6-02f8d5e890e5",
+                        "name": "czapki zimowe"
+                    }
+                }
+            },
+            "skarpetki": {
+                "path": [
+                    "akcesoria",
+                    "tekstylia",
+                    "skarpetki"
+                ],
+                "id": "28d1b5cf-bf53-42ad-9b95-98d137f51f0d",
+                "name": "skarpetki",
+                "dziecięce": {
+                    "path": [
+                        "akcesoria",
+                        "tekstylia",
+                        "skarpetki",
+                        "dziecięce"
+                    ],
+                    "id": "de5d0f1d-fa4b-4f90-baaf-81cf6e04eb3c",
+                    "name": "dziecięce",
+                    "wysokie": {
+                        "path": [
+                            "akcesoria",
+                            "tekstylia",
+                            "skarpetki",
+                            "dziecięce",
+                            "wysokie"
+                        ],
+                        "id": "ad2ba4cf-ed36-4952-a9c9-6247f1832704",
+                        "name": "wysokie"
+                    }
+                },
+                "damskie": {
+                    "path": [
+                        "akcesoria",
+                        "tekstylia",
+                        "skarpetki",
+                        "damskie"
+                    ],
+                    "id": "592af907-2d49-4766-a5ea-c119541a920b",
+                    "name": "damskie",
+                    "wysokie": {
+                        "path": [
+                            "akcesoria",
+                            "tekstylia",
+                            "skarpetki",
+                            "damskie",
+                            "wysokie"
+                        ],
+                        "id": "56af38e8-2d02-4a6f-b73b-970a4d63c2ee",
+                        "name": "wysokie"
+                    },
+                    "niskie": {
+                        "path": [
+                            "akcesoria",
+                            "tekstylia",
+                            "skarpetki",
+                            "damskie",
+                            "niskie"
+                        ],
+                        "id": "56347c15-22ea-47df-aa16-dd1b04fbbf3f",
+                        "name": "niskie"
+                    },
+                    "stopki": {
+                        "path": [
+                            "akcesoria",
+                            "tekstylia",
+                            "skarpetki",
+                            "damskie",
+                            "stopki"
+                        ],
+                        "id": "ce7ce8ea-26c0-443c-b224-ad8df5b492fd",
+                        "name": "stopki"
+                    }
+                },
+                "męskie": {
+                    "path": [
+                        "akcesoria",
+                        "tekstylia",
+                        "skarpetki",
+                        "męskie"
+                    ],
+                    "id": "6964bff8-f213-4e80-8d8e-f4b441545d40",
+                    "name": "męskie",
+                    "wysokie": {
+                        "path": [
+                            "akcesoria",
+                            "tekstylia",
+                            "skarpetki",
+                            "męskie",
+                            "wysokie"
+                        ],
+                        "id": "a8a7ce37-313c-41df-945a-eb8220931f0f",
+                        "name": "wysokie"
+                    },
+                    "niskie": {
+                        "path": [
+                            "akcesoria",
+                            "tekstylia",
+                            "skarpetki",
+                            "męskie",
+                            "niskie"
+                        ],
+                        "id": "3bc2917f-55f3-43cb-a642-3826e399518e",
+                        "name": "niskie"
+                    }
+                }
+            },
+            "szale": {
+                "path": [
+                    "akcesoria",
+                    "tekstylia",
+                    "szale"
+                ],
+                "id": "581fa7e1-66cb-4475-bd00-db2f49e82f2d",
+                "name": "szale"
+            }
+        },
+        "galanteria skórzana": {
+            "path": [
+                "akcesoria",
+                "galanteria skórzana"
+            ],
+            "id": "4b8b1621-5bef-47d1-9641-1b5f25e6334e",
+            "name": "galanteria skórzana",
+            "torby młodzieżowe": {
+                "path": [
+                    "akcesoria",
+                    "galanteria skórzana",
+                    "torby młodzieżowe"
+                ],
+                "id": "ba7ad968-6ce1-4fba-8b72-f4e1740d4fe0",
+                "name": "torby młodzieżowe",
+                "damskie": {
+                    "path": [
+                        "akcesoria",
+                        "galanteria skórzana",
+                        "torby młodzieżowe",
+                        "damskie"
+                    ],
+                    "id": "9cf4c8fd-0fe4-4fbd-92bc-29652a4ff308",
+                    "name": "damskie"
+                },
+                "męskie": {
+                    "path": [
+                        "akcesoria",
+                        "galanteria skórzana",
+                        "torby młodzieżowe",
+                        "męskie"
+                    ],
+                    "id": "909d2f80-5325-441e-8056-407e1bd64039",
+                    "name": "męskie"
+                }
+            },
+            "etui": {
+                "path": [
+                    "akcesoria",
+                    "galanteria skórzana",
+                    "etui"
+                ],
+                "id": "acd8ad0d-1d06-422e-ae14-179eed622ef1",
+                "name": "etui",
+                "etui na telefon": {
+                    "path": [
+                        "akcesoria",
+                        "galanteria skórzana",
+                        "etui",
+                        "etui na telefon"
+                    ],
+                    "id": "7bae13cc-9e88-4db0-9e48-2cd7342b3824",
+                    "name": "etui na telefon"
+                },
+                "etui na karty kredytowe": {
+                    "path": [
+                        "akcesoria",
+                        "galanteria skórzana",
+                        "etui",
+                        "etui na karty kredytowe"
+                    ],
+                    "id": "6253762b-e1d2-489d-a09c-bed968216165",
+                    "name": "etui na karty kredytowe"
+                }
+            },
+            "portfele": {
+                "path": [
+                    "akcesoria",
+                    "galanteria skórzana",
+                    "portfele"
+                ],
+                "id": "174bc6f5-52d2-40c2-ac55-312867be080f",
+                "name": "portfele",
+                "portfele męskie": {
+                    "path": [
+                        "akcesoria",
+                        "galanteria skórzana",
+                        "portfele",
+                        "portfele męskie"
+                    ],
+                    "id": "a9f2f1bc-a385-4390-8945-db15f1702574",
+                    "name": "portfele męskie"
+                },
+                "portfele damskie": {
+                    "path": [
+                        "akcesoria",
+                        "galanteria skórzana",
+                        "portfele",
+                        "portfele damskie"
+                    ],
+                    "id": "1b707132-95bd-4fea-a261-f717cb0503f2",
+                    "name": "portfele damskie"
+                }
+            },
+            "rękawiczki": {
+                "path": [
+                    "akcesoria",
+                    "galanteria skórzana",
+                    "rękawiczki"
+                ],
+                "id": "2d5c02b4-143c-4824-a6eb-33475845d6af",
+                "name": "rękawiczki",
+                "rękawiczki damskie": {
+                    "path": [
+                        "akcesoria",
+                        "galanteria skórzana",
+                        "rękawiczki",
+                        "rękawiczki damskie"
+                    ],
+                    "id": "c90b5f2a-f3cf-4b09-94d4-5cda30fc2e3d",
+                    "name": "rękawiczki damskie",
+                    "rękawiczki z dzianiny": {
+                        "path": [
+                            "akcesoria",
+                            "galanteria skórzana",
+                            "rękawiczki",
+                            "rękawiczki damskie",
+                            "rękawiczki z dzianiny"
+                        ],
+                        "id": "f076aa13-8f3c-4b8d-8fb1-2fae43c28e29",
+                        "name": "rękawiczki z dzianiny"
+                    },
+                    "rękawiczki skórzane": {
+                        "path": [
+                            "akcesoria",
+                            "galanteria skórzana",
+                            "rękawiczki",
+                            "rękawiczki damskie",
+                            "rękawiczki skórzane"
+                        ],
+                        "id": "6bfb9a03-430a-4b80-87a3-ab5b739086c6",
+                        "name": "rękawiczki skórzane"
+                    }
+                },
+                "rękawiczki męskie": {
+                    "path": [
+                        "akcesoria",
+                        "galanteria skórzana",
+                        "rękawiczki",
+                        "rękawiczki męskie"
+                    ],
+                    "id": "732b0df9-af6f-4b39-ac3b-5feb369789ba",
+                    "name": "rękawiczki męskie"
+                },
+                "rękawiczki dziecięce": {
+                    "path": [
+                        "akcesoria",
+                        "galanteria skórzana",
+                        "rękawiczki",
+                        "rękawiczki dziecięce"
+                    ],
+                    "id": "aeb1b065-0aca-4121-8fa7-caa1a5de2506",
+                    "name": "rękawiczki dziecięce"
+                }
+            },
+            "torby i plecaki na laptopy": {
+                "path": [
+                    "akcesoria",
+                    "galanteria skórzana",
+                    "torby i plecaki na laptopy"
+                ],
+                "id": "ea669666-9019-42b5-b486-b8cc60dd345e",
+                "name": "torby i plecaki na laptopy"
+            },
+            "paski": {
+                "path": [
+                    "akcesoria",
+                    "galanteria skórzana",
+                    "paski"
+                ],
+                "id": "b52b717c-4cce-4d35-908c-24556b9838cf",
+                "name": "paski",
+                "paski męskie": {
+                    "path": [
+                        "akcesoria",
+                        "galanteria skórzana",
+                        "paski",
+                        "paski męskie"
+                    ],
+                    "id": "ef05d0e2-d99b-4754-823f-8f36093d8711",
+                    "name": "paski męskie"
+                },
+                "paski damskie": {
+                    "path": [
+                        "akcesoria",
+                        "galanteria skórzana",
+                        "paski",
+                        "paski damskie"
+                    ],
+                    "id": "18969632-3ecd-48b7-9aa3-5743a32c72ad",
+                    "name": "paski damskie"
+                }
+            }
+        },
+        "akcesoria obuwnicze": {
+            "path": [
+                "akcesoria",
+                "akcesoria obuwnicze"
+            ],
+            "id": "21d406cc-513c-4300-bd86-b9451925f308",
+            "name": "akcesoria obuwnicze",
+            "pasty i impregnaty": {
+                "path": [
+                    "akcesoria",
+                    "akcesoria obuwnicze",
+                    "pasty i impregnaty"
+                ],
+                "id": "32ee12c3-01bf-4905-9392-9bc90b67f12f",
+                "name": "pasty i impregnaty",
+                "impregnaty": {
+                    "path": [
+                        "akcesoria",
+                        "akcesoria obuwnicze",
+                        "pasty i impregnaty",
+                        "impregnaty"
+                    ],
+                    "id": "9607ed34-ed34-4d7e-89ec-79a5b94c8a47",
+                    "name": "impregnaty"
+                },
+                "pasty do skór licowych": {
+                    "path": [
+                        "akcesoria",
+                        "akcesoria obuwnicze",
+                        "pasty i impregnaty",
+                        "pasty do skór licowych"
+                    ],
+                    "id": "9af877aa-abb1-4cde-9a05-eb9c16dddb8c",
+                    "name": "pasty do skór licowych"
+                }
+            },
+            "wkładki i inne": {
+                "path": [
+                    "akcesoria",
+                    "akcesoria obuwnicze",
+                    "wkładki i inne"
+                ],
+                "id": "48f70033-aef3-445c-a056-3c75d041a471",
+                "name": "wkładki i inne",
+                "wkładki": {
+                    "path": [
+                        "akcesoria",
+                        "akcesoria obuwnicze",
+                        "wkładki i inne",
+                        "wkładki"
+                    ],
+                    "id": "c22f4bdd-56e7-4d45-9463-b68a5eec72c0",
+                    "name": "wkładki"
+                }
+            }
+        },
+        "biżuteria i ozdoby": {
+            "path": [
+                "akcesoria",
+                "biżuteria i ozdoby"
+            ],
+            "id": "db451c71-f744-42ae-b40a-f973cda315a8",
+            "name": "biżuteria i ozdoby",
+            "kolczyki": {
+                "path": [
+                    "akcesoria",
+                    "biżuteria i ozdoby",
+                    "kolczyki"
+                ],
+                "id": "f367cbb6-a325-4d3a-8b15-ac69b1c83b7d",
+                "name": "kolczyki"
+            },
+            "naszyjniki": {
+                "path": [
+                    "akcesoria",
+                    "biżuteria i ozdoby",
+                    "naszyjniki"
+                ],
+                "id": "4fa7bf78-49bb-4207-93ee-c89d16b12a3d",
+                "name": "naszyjniki"
+            },
+            "bransoletki": {
+                "path": [
+                    "akcesoria",
+                    "biżuteria i ozdoby",
+                    "bransoletki"
+                ],
+                "id": "aae5f5c5-febd-482b-aa97-e20c20ecca72",
+                "name": "bransoletki"
+            }
+        },
+        "parasolki": {
+            "path": [
+                "akcesoria",
+                "parasolki"
+            ],
+            "id": "c2cd1e45-5d46-4b4a-bbea-42bef8cc57bd",
+            "name": "parasolki"
+        },
+        "torby i plecaki sportowe": {
+            "path": [
+                "akcesoria",
+                "torby i plecaki sportowe"
+            ],
+            "id": "a150e4aa-b135-4e75-abc6-cb34c50d7681",
+            "name": "torby i plecaki sportowe"
+        },
+        "breloki": {
+            "path": [
+                "akcesoria",
+                "breloki"
+            ],
+            "id": "d00597a9-fa96-4fa6-bab6-da188812c71e",
+            "name": "breloki"
+        },
+        "walizki": {
+            "path": [
+                "akcesoria",
+                "walizki"
+            ],
+            "id": "579281a5-198d-491f-8eff-518c3eb77ed5",
+            "name": "walizki"
+        },
+        "zegarki": {
+            "path": [
+                "akcesoria",
+                "zegarki"
+            ],
+            "id": "a291c34f-16a6-4346-8d09-02c8353af1de",
+            "name": "zegarki",
+            "męskie": {
+                "path": [
+                    "akcesoria",
+                    "zegarki",
+                    "męskie"
+                ],
+                "id": "51027522-9c41-45b0-bd57-5261336833ff",
+                "name": "męskie"
+            },
+            "damskie": {
+                "path": [
+                    "akcesoria",
+                    "zegarki",
+                    "damskie"
+                ],
+                "id": "b2d51acf-6a0f-443d-a4dc-f34977ceeb75",
+                "name": "damskie"
+            }
+        },
+        "kaski": {
+            "path": [
+                "akcesoria",
+                "kaski"
+            ],
+            "id": "03e2038b-dbc4-4a1b-ae7d-e64da495503a",
+            "name": "kaski",
+            "narciarskie": {
+                "path": [
+                    "akcesoria",
+                    "kaski",
+                    "narciarskie"
+                ],
+                "id": "206a54d1-d3e8-459e-b14b-fc016c23e5a0",
+                "name": "narciarskie"
+            }
+        },
+        "akcesoria do włosów": {
+            "path": [
+                "akcesoria",
+                "akcesoria do włosów"
+            ],
+            "id": "ab6f9879-049d-403a-9175-b0b16579bd5b",
+            "name": "akcesoria do włosów"
+        },
+        "okulary przeciwsłoneczne": {
+            "path": [
+                "akcesoria",
+                "okulary przeciwsłoneczne"
+            ],
+            "id": "e5b27c90-d886-425f-8830-5b81d64cdedc",
+            "name": "okulary przeciwsłoneczne",
+            "damskie": {
+                "path": [
+                    "akcesoria",
+                    "okulary przeciwsłoneczne",
+                    "damskie"
+                ],
+                "id": "a9fb40e7-dd1c-4120-bbb7-3965d4968c36",
+                "name": "damskie"
+            },
+            "męskie": {
+                "path": [
+                    "akcesoria",
+                    "okulary przeciwsłoneczne",
+                    "męskie"
+                ],
+                "id": "326d91dd-9463-42fc-a428-aa79e35aecc3",
+                "name": "męskie"
+            }
+        },
+        "smartwatche": {
+            "path": [
+                "akcesoria",
+                "smartwatche"
+            ],
+            "id": "44912621-a044-4e7a-9e9d-baa8946fe912",
+            "name": "smartwatche",
+            "damskie": {
+                "path": [
+                    "akcesoria",
+                    "smartwatche",
+                    "damskie"
+                ],
+                "id": "1c9bc18a-e698-4777-ab80-c889031daaa3",
+                "name": "damskie"
+            }
+        },
+        "kosmetyczki i kuferki": {
+            "path": [
+                "akcesoria",
+                "kosmetyczki i kuferki"
+            ],
+            "id": "980ec774-0183-443b-a37e-c2e704a23de1",
+            "name": "kosmetyczki i kuferki",
+            "skórzane": {
+                "path": [
+                    "akcesoria",
+                    "kosmetyczki i kuferki",
+                    "skórzane"
+                ],
+                "id": "74817b60-be6e-45ec-befd-290848f9d53a",
+                "name": "skórzane"
+            },
+            "materiałowe": {
+                "path": [
+                    "akcesoria",
+                    "kosmetyczki i kuferki",
+                    "materiałowe"
+                ],
+                "id": "2e69ee33-e893-4ed8-b5c8-fa74f446946b",
+                "name": "materiałowe"
+            }
+        },
+        "podróżne": {
+            "path": [
+                "akcesoria",
+                "podróżne"
+            ],
+            "id": "eb9ca882-3372-4f7b-b5e9-58f4ad79f3e0",
+            "name": "podróżne"
+        }
+    },
+    "męskie": {
+        "path": [
+            "męskie"
+        ],
+        "id": "78a47160-3c7d-43b6-8249-2f84b3969a9b",
+        "name": "męskie",
+        "półbuty": {
+            "path": [
+                "męskie",
+                "półbuty"
+            ],
+            "id": "f2af4630-ccf6-44ce-aa3b-5ef88d18b247",
+            "name": "półbuty",
+            "sneakersy": {
+                "path": [
+                    "męskie",
+                    "półbuty",
+                    "sneakersy"
+                ],
+                "id": "6babae65-36da-4320-b4b5-588c835464d6",
+                "name": "sneakersy"
+            },
+            "wizytowe": {
+                "path": [
+                    "męskie",
+                    "półbuty",
+                    "wizytowe"
+                ],
+                "id": "4f1e55d0-7027-43e2-865d-f85fcf6b76eb",
+                "name": "wizytowe"
+            },
+            "codzienne": {
+                "path": [
+                    "męskie",
+                    "półbuty",
+                    "codzienne"
+                ],
+                "id": "26a26ad2-9082-4bf0-b98c-9a4e8a3c61e7",
+                "name": "codzienne"
+            },
+            "trampki": {
+                "path": [
+                    "męskie",
+                    "półbuty",
+                    "trampki"
+                ],
+                "id": "1d840474-76cd-461e-8363-df217c110e7e",
+                "name": "trampki"
+            }
+        },
+        "klapki i sandały": {
+            "path": [
+                "męskie",
+                "klapki i sandały"
+            ],
+            "id": "fec08103-7308-4c4c-8108-7c900bd69540",
+            "name": "klapki i sandały",
+            "kapcie": {
+                "path": [
+                    "męskie",
+                    "klapki i sandały",
+                    "kapcie"
+                ],
+                "id": "94d179d2-baa2-4feb-8fc4-2e9348461546",
+                "name": "kapcie"
+            },
+            "japonki": {
+                "path": [
+                    "męskie",
+                    "klapki i sandały",
+                    "japonki"
+                ],
+                "id": "3628d6a2-3dab-4fab-84a9-6a4ca7840436",
+                "name": "japonki"
+            },
+            "sandały": {
+                "path": [
+                    "męskie",
+                    "klapki i sandały",
+                    "sandały"
+                ],
+                "id": "e7450021-c379-43fe-9379-083b5397c780",
+                "name": "sandały"
+            },
+            "klapki": {
+                "path": [
+                    "męskie",
+                    "klapki i sandały",
+                    "klapki"
+                ],
+                "id": "802312a9-bc00-4206-b15f-3329fd527fcf",
+                "name": "klapki"
+            }
+        },
+        "sportowe": {
+            "path": [
+                "męskie",
+                "sportowe"
+            ],
+            "id": "5c783233-5cbe-40dd-883d-b4d11d05466e",
+            "name": "sportowe",
+            "bieganie": {
+                "path": [
+                    "męskie",
+                    "sportowe",
+                    "bieganie"
+                ],
+                "id": "230c5031-98a2-476a-8bb7-2d5e666e3137",
+                "name": "bieganie",
+                "asfaltowe": {
+                    "path": [
+                        "męskie",
+                        "sportowe",
+                        "bieganie",
+                        "asfaltowe"
+                    ],
+                    "id": "babd55a3-e343-423b-bd96-f5ebd2756292",
+                    "name": "asfaltowe"
+                },
+                "terenowe": {
+                    "path": [
+                        "męskie",
+                        "sportowe",
+                        "bieganie",
+                        "terenowe"
+                    ],
+                    "id": "c62463dc-a039-461d-af14-44888ee32325",
+                    "name": "terenowe"
+                }
+            },
+            "tenis": {
+                "path": [
+                    "męskie",
+                    "sportowe",
+                    "tenis"
+                ],
+                "id": "a52c94f5-ee85-4e73-98ca-4a47b799cbf9",
+                "name": "tenis"
+            },
+            "fitness": {
+                "path": [
+                    "męskie",
+                    "sportowe",
+                    "fitness"
+                ],
+                "id": "a67ee8dc-af3a-4b2c-978a-e05b86754e6f",
+                "name": "fitness"
+            },
+            "lifestyle": {
+                "path": [
+                    "męskie",
+                    "sportowe",
+                    "lifestyle"
+                ],
+                "id": "43449199-39ca-4116-982c-e1b98995a5ff",
+                "name": "lifestyle"
+            }
+        },
+        "kozaki i inne": {
+            "path": [
+                "męskie",
+                "kozaki i inne"
+            ],
+            "id": "84cc285a-df21-40cd-b1f6-c0940a84543d",
+            "name": "kozaki i inne",
+            "trzewiki": {
+                "path": [
+                    "męskie",
+                    "kozaki i inne",
+                    "trzewiki"
+                ],
+                "id": "7b4fe4aa-7f80-4136-8c55-1a51248dd7ea",
+                "name": "trzewiki"
+            },
+            "codzienne": {
+                "path": [
+                    "męskie",
+                    "kozaki i inne",
+                    "codzienne"
+                ],
+                "id": "a6b91bec-6d36-4694-921c-ff8732659413",
+                "name": "codzienne"
+            },
+            "trekkingi i trapery": {
+                "path": [
+                    "męskie",
+                    "kozaki i inne",
+                    "trekkingi i trapery"
+                ],
+                "id": "1629f9de-b246-4ff9-a858-354643348f9b",
+                "name": "trekkingi i trapery"
+            }
+        }
+    },
+    "sport": {
+        "path": [
+            "sport"
+        ],
+        "id": "4afadf17-1a9a-4c51-8f8e-5bfe7f8f0a32",
+        "name": "sport",
+        "męskie": {
+            "path": [
+                "sport",
+                "męskie"
+            ],
+            "id": "7d42c019-1d26-4824-8a86-1ff812afcad5",
+            "name": "męskie",
+            "pływanie": {
+                "path": [
+                    "sport",
+                    "męskie",
+                    "pływanie"
+                ],
+                "id": "457e8d3d-095d-4c70-85b9-52754c42d33c",
+                "name": "pływanie",
+                "klapki/japonki basenowe": {
+                    "path": [
+                        "sport",
+                        "męskie",
+                        "pływanie",
+                        "klapki/japonki basenowe"
+                    ],
+                    "id": "29440e79-06bf-4c7a-a83a-5dc37fdf3d96",
+                    "name": "klapki/japonki basenowe"
+                }
+            },
+            "outdoor": {
+                "path": [
+                    "sport",
+                    "męskie",
+                    "outdoor"
+                ],
+                "id": "d4dee77a-69c8-4865-bf50-4c652a67d0e4",
+                "name": "outdoor",
+                "niskie": {
+                    "path": [
+                        "sport",
+                        "męskie",
+                        "outdoor",
+                        "niskie"
+                    ],
+                    "id": "9973caee-e97b-4fb0-bc94-17fc0b122630",
+                    "name": "niskie"
+                },
+                "sandały": {
+                    "path": [
+                        "sport",
+                        "męskie",
+                        "outdoor",
+                        "sandały"
+                    ],
+                    "id": "fcc6bfef-8483-410c-b29a-51708a398e99",
+                    "name": "sandały"
+                },
+                "wysokie": {
+                    "path": [
+                        "sport",
+                        "męskie",
+                        "outdoor",
+                        "wysokie"
+                    ],
+                    "id": "4765649b-36af-40ef-a3eb-a8c4fe25149c",
+                    "name": "wysokie"
+                }
+            },
+            "bieganie": {
+                "path": [
+                    "sport",
+                    "męskie",
+                    "bieganie"
+                ],
+                "id": "13f96335-2070-4e4d-bd53-670598e1050e",
+                "name": "bieganie",
+                "terenowe": {
+                    "path": [
+                        "sport",
+                        "męskie",
+                        "bieganie",
+                        "terenowe"
+                    ],
+                    "id": "605dfbf2-9ffb-498a-9a39-22b33d470d04",
+                    "name": "terenowe"
+                },
+                "asfaltowe": {
+                    "path": [
+                        "sport",
+                        "męskie",
+                        "bieganie",
+                        "asfaltowe"
+                    ],
+                    "id": "c8ad84fa-c76c-4e89-a1b1-5070562f34df",
+                    "name": "asfaltowe"
+                }
+            },
+            "skate": {
+                "path": [
+                    "sport",
+                    "męskie",
+                    "skate"
+                ],
+                "id": "c7557646-5216-42f6-b66d-ef25f2002bff",
+                "name": "skate"
+            },
+            "piłka nożna": {
+                "path": [
+                    "sport",
+                    "męskie",
+                    "piłka nożna"
+                ],
+                "id": "ce455776-2b8c-4560-9bff-b20f97984c1f",
+                "name": "piłka nożna"
+            },
+            "lifestyle": {
+                "path": [
+                    "sport",
+                    "męskie",
+                    "lifestyle"
+                ],
+                "id": "75973e8f-2e16-44bb-8429-37ae5d36df30",
+                "name": "lifestyle"
+            }
+        },
+        "damskie": {
+            "path": [
+                "sport",
+                "damskie"
+            ],
+            "id": "773305f2-20b1-4e49-94d4-865f4364501e",
+            "name": "damskie",
+            "lifestyle": {
+                "path": [
+                    "sport",
+                    "damskie",
+                    "lifestyle"
+                ],
+                "id": "ebae0b1c-bad0-4cd5-aa2e-f230117ddd75",
+                "name": "lifestyle"
+            },
+            "bieganie": {
+                "path": [
+                    "sport",
+                    "damskie",
+                    "bieganie"
+                ],
+                "id": "ea3a920e-5a81-4b14-9061-68bb99e411b5",
+                "name": "bieganie",
+                "asfaltowe": {
+                    "path": [
+                        "sport",
+                        "damskie",
+                        "bieganie",
+                        "asfaltowe"
+                    ],
+                    "id": "76eb8b53-67d7-446f-bbd9-dd3db47ff035",
+                    "name": "asfaltowe"
+                }
+            },
+            "skate": {
+                "path": [
+                    "sport",
+                    "damskie",
+                    "skate"
+                ],
+                "id": "05e55e28-aa3b-4b65-aac4-52ee7ead0a08",
+                "name": "skate"
+            },
+            "outdoor": {
+                "path": [
+                    "sport",
+                    "damskie",
+                    "outdoor"
+                ],
+                "id": "51bd00d6-eb64-43cd-9990-ff6225968d58",
+                "name": "outdoor",
+                "niskie": {
+                    "path": [
+                        "sport",
+                        "damskie",
+                        "outdoor",
+                        "niskie"
+                    ],
+                    "id": "ed47138c-46b8-4a77-be3a-828dea802634",
+                    "name": "niskie"
+                },
+                "wysokie": {
+                    "path": [
+                        "sport",
+                        "damskie",
+                        "outdoor",
+                        "wysokie"
+                    ],
+                    "id": "a494e0f8-3bab-4895-aaec-5f20e54c0fa2",
+                    "name": "wysokie"
+                }
+            },
+            "pływanie": {
+                "path": [
+                    "sport",
+                    "damskie",
+                    "pływanie"
+                ],
+                "id": "96d78136-b603-4a16-a895-da35f16276f3",
+                "name": "pływanie",
+                "klapki/japonki basenowe": {
+                    "path": [
+                        "sport",
+                        "damskie",
+                        "pływanie",
+                        "klapki/japonki basenowe"
+                    ],
+                    "id": "822652ad-d768-4f7d-8543-33f29f034de6",
+                    "name": "klapki/japonki basenowe"
+                }
+            }
+        },
+        "dziecięce": {
+            "path": [
+                "sport",
+                "dziecięce"
+            ],
+            "id": "0025f4e4-aa4f-4023-88a3-f94e326beb67",
+            "name": "dziecięce"
+        },
+        "akcesoria": {
+            "path": [
+                "sport",
+                "akcesoria"
+            ],
+            "id": "54c986e5-aa07-46dc-95d3-008348c32753",
+            "name": "akcesoria",
+            "torby, plecaki, saszetki": {
+                "path": [
+                    "sport",
+                    "akcesoria",
+                    "torby, plecaki, saszetki"
+                ],
+                "id": "ec10c943-001b-48df-a5d4-16fdb9fe7b0e",
+                "name": "torby, plecaki, saszetki"
+            }
+        }
+    },
+    "dziecięce": {
+        "path": [
+            "dziecięce"
+        ],
+        "id": "c0e9a953-b768-458a-bee1-5fa1ca6a727a",
+        "name": "dziecięce",
+        "chłopiec": {
+            "path": [
+                "dziecięce",
+                "chłopiec"
+            ],
+            "id": "f13fc41e-f29d-4906-aa60-31468662897d",
+            "name": "chłopiec",
+            "klapki i sandały": {
+                "path": [
+                    "dziecięce",
+                    "chłopiec",
+                    "klapki i sandały"
+                ],
+                "id": "5266ac4e-c98a-460d-a276-f9bcebea8886",
+                "name": "klapki i sandały",
+                "japonki": {
+                    "path": [
+                        "dziecięce",
+                        "chłopiec",
+                        "klapki i sandały",
+                        "japonki"
+                    ],
+                    "id": "284cee6d-faef-463b-9ddb-597e7ec90b32",
+                    "name": "japonki"
+                },
+                "klapki": {
+                    "path": [
+                        "dziecięce",
+                        "chłopiec",
+                        "klapki i sandały",
+                        "klapki"
+                    ],
+                    "id": "e8990aac-c98d-479a-854c-c5e6af73c962",
+                    "name": "klapki"
+                },
+                "sandały": {
+                    "path": [
+                        "dziecięce",
+                        "chłopiec",
+                        "klapki i sandały",
+                        "sandały"
+                    ],
+                    "id": "29060541-2bef-4be2-85b9-3a4e2f55b02c",
+                    "name": "sandały"
+                },
+                "kapcie": {
+                    "path": [
+                        "dziecięce",
+                        "chłopiec",
+                        "klapki i sandały",
+                        "kapcie"
+                    ],
+                    "id": "c62ba7a4-07a4-46a9-83d8-f48ed197de50",
+                    "name": "kapcie"
+                }
+            },
+            "kozaki i inne": {
+                "path": [
+                    "dziecięce",
+                    "chłopiec",
+                    "kozaki i inne"
+                ],
+                "id": "d281a99a-c3f6-41bb-a97a-3a9e7b7c614e",
+                "name": "kozaki i inne",
+                "trzewiki": {
+                    "path": [
+                        "dziecięce",
+                        "chłopiec",
+                        "kozaki i inne",
+                        "trzewiki"
+                    ],
+                    "id": "245ee3e7-4fff-421c-a5fd-2bc51cb7fcd1",
+                    "name": "trzewiki"
+                },
+                "kozaczki": {
+                    "path": [
+                        "dziecięce",
+                        "chłopiec",
+                        "kozaki i inne",
+                        "kozaczki"
+                    ],
+                    "id": "9495a390-a2dc-4870-943f-1e14cdce1ac6",
+                    "name": "kozaczki"
+                },
+                "kalosze": {
+                    "path": [
+                        "dziecięce",
+                        "chłopiec",
+                        "kozaki i inne",
+                        "kalosze"
+                    ],
+                    "id": "c5f70560-58dc-4684-bb26-b5c5167c1cac",
+                    "name": "kalosze"
+                },
+                "trapery i śniegowce": {
+                    "path": [
+                        "dziecięce",
+                        "chłopiec",
+                        "kozaki i inne",
+                        "trapery i śniegowce"
+                    ],
+                    "id": "f08fa660-b794-4b87-9efd-710b518d8171",
+                    "name": "trapery i śniegowce"
+                }
+            },
+            "półbuty": {
+                "path": [
+                    "dziecięce",
+                    "chłopiec",
+                    "półbuty"
+                ],
+                "id": "f6b76779-e791-4da6-80b9-61eb34dbba3e",
+                "name": "półbuty",
+                "wsuwane": {
+                    "path": [
+                        "dziecięce",
+                        "chłopiec",
+                        "półbuty",
+                        "wsuwane"
+                    ],
+                    "id": "c1a75ea1-7fcb-44dc-8951-2d5f57e4e68d",
+                    "name": "wsuwane"
+                },
+                "na rzepy": {
+                    "path": [
+                        "dziecięce",
+                        "chłopiec",
+                        "półbuty",
+                        "na rzepy"
+                    ],
+                    "id": "dcf47cf4-f70e-44a9-b402-cae939a69227",
+                    "name": "na rzepy"
+                },
+                "sznurowane": {
+                    "path": [
+                        "dziecięce",
+                        "chłopiec",
+                        "półbuty",
+                        "sznurowane"
+                    ],
+                    "id": "a5aa647c-0c65-4689-8265-5f7a8119cf27",
+                    "name": "sznurowane"
+                }
+            }
+        },
+        "dziewczynka": {
+            "path": [
+                "dziecięce",
+                "dziewczynka"
+            ],
+            "id": "01dbe5d5-b3fa-4524-b958-08d216da96a2",
+            "name": "dziewczynka",
+            "półbuty": {
+                "path": [
+                    "dziecięce",
+                    "dziewczynka",
+                    "półbuty"
+                ],
+                "id": "d05cd0ad-4dd6-4e21-a150-353a5147ada6",
+                "name": "półbuty",
+                "sznurowane": {
+                    "path": [
+                        "dziecięce",
+                        "dziewczynka",
+                        "półbuty",
+                        "sznurowane"
+                    ],
+                    "id": "52b3ceb9-a05f-47b2-826e-b857de39b0b7",
+                    "name": "sznurowane"
+                },
+                "na rzepy": {
+                    "path": [
+                        "dziecięce",
+                        "dziewczynka",
+                        "półbuty",
+                        "na rzepy"
+                    ],
+                    "id": "66c4d701-b3d9-4c22-a20e-d1ff75b47884",
+                    "name": "na rzepy"
+                },
+                "wsuwane": {
+                    "path": [
+                        "dziecięce",
+                        "dziewczynka",
+                        "półbuty",
+                        "wsuwane"
+                    ],
+                    "id": "a7a29894-4a73-4550-b289-8a25cf129c2e",
+                    "name": "wsuwane"
+                }
+            },
+            "kozaki i inne": {
+                "path": [
+                    "dziecięce",
+                    "dziewczynka",
+                    "kozaki i inne"
+                ],
+                "id": "2b2ecb20-3966-4608-9622-5ecea6cab7e2",
+                "name": "kozaki i inne",
+                "kozaczki": {
+                    "path": [
+                        "dziecięce",
+                        "dziewczynka",
+                        "kozaki i inne",
+                        "kozaczki"
+                    ],
+                    "id": "11f8d744-39b8-4a83-af66-e654dc6b4884",
+                    "name": "kozaczki"
+                },
+                "kalosze": {
+                    "path": [
+                        "dziecięce",
+                        "dziewczynka",
+                        "kozaki i inne",
+                        "kalosze"
+                    ],
+                    "id": "dfcf83b9-c4c4-43c6-9c68-035f99ea8bdc",
+                    "name": "kalosze"
+                },
+                "trapery i śniegowce": {
+                    "path": [
+                        "dziecięce",
+                        "dziewczynka",
+                        "kozaki i inne",
+                        "trapery i śniegowce"
+                    ],
+                    "id": "3186487d-a0a1-4554-b809-243e77c81736",
+                    "name": "trapery i śniegowce"
+                },
+                "trzewiki": {
+                    "path": [
+                        "dziecięce",
+                        "dziewczynka",
+                        "kozaki i inne",
+                        "trzewiki"
+                    ],
+                    "id": "fc5ed0b6-ab5d-4fa0-a54d-161d6a0fa307",
+                    "name": "trzewiki"
+                }
+            },
+            "klapki i sandały": {
+                "path": [
+                    "dziecięce",
+                    "dziewczynka",
+                    "klapki i sandały"
+                ],
+                "id": "e85adb0f-fbfe-4e4b-a3d8-86e4a07aee50",
+                "name": "klapki i sandały",
+                "klapki": {
+                    "path": [
+                        "dziecięce",
+                        "dziewczynka",
+                        "klapki i sandały",
+                        "klapki"
+                    ],
+                    "id": "c3a8e32b-2224-4004-86e7-41dbb97b2351",
+                    "name": "klapki"
+                },
+                "japonki": {
+                    "path": [
+                        "dziecięce",
+                        "dziewczynka",
+                        "klapki i sandały",
+                        "japonki"
+                    ],
+                    "id": "081fac51-6534-4a13-a204-64ce2fa9d533",
+                    "name": "japonki"
+                },
+                "kapcie": {
+                    "path": [
+                        "dziecięce",
+                        "dziewczynka",
+                        "klapki i sandały",
+                        "kapcie"
+                    ],
+                    "id": "6063c6e8-d03f-447d-9fb6-f0fe68c6d5bd",
+                    "name": "kapcie"
+                },
+                "sandały": {
+                    "path": [
+                        "dziecięce",
+                        "dziewczynka",
+                        "klapki i sandały",
+                        "sandały"
+                    ],
+                    "id": "78a7bbfb-0e52-46f0-8b58-b4fcc83256a6",
+                    "name": "sandały"
+                }
+            }
+        }
+    },
+    "torebki": {
+        "path": [
+            "torebki"
+        ],
+        "id": "9b621fbf-6153-4e44-bc71-bd60c8170e1b",
+        "name": "torebki",
+        "nerki": {
+            "path": [
+                "torebki",
+                "nerki"
+            ],
+            "id": "abfd0c8f-c789-42ef-95d0-225992458ea8",
+            "name": "nerki"
+        },
+        "wieczorowe": {
+            "path": [
+                "torebki",
+                "wieczorowe"
+            ],
+            "id": "b3f6f911-9045-49be-b5cd-9a9d9ce10a16",
+            "name": "wieczorowe"
+        },
+        "listonoszki": {
+            "path": [
+                "torebki",
+                "listonoszki"
+            ],
+            "id": "1cba2cab-dd9e-44ab-96be-34e4a9695bac",
+            "name": "listonoszki"
+        },
+        "worki": {
+            "path": [
+                "torebki",
+                "worki"
+            ],
+            "id": "0ef371d7-f549-473d-886b-f32334887879",
+            "name": "worki"
+        },
+        "shopperki": {
+            "path": [
+                "torebki",
+                "shopperki"
+            ],
+            "id": "c544354b-980b-4259-ac1c-1a818a7e7a19",
+            "name": "shopperki"
+        },
+        "torby plażowe": {
+            "path": [
+                "torebki",
+                "torby plażowe"
+            ],
+            "id": "dbdb5285-bf01-469a-9094-4583c2a3dfe7",
+            "name": "torby plażowe"
+        },
+        "plecaki": {
+            "path": [
+                "torebki",
+                "plecaki"
+            ],
+            "id": "78565f81-d4e2-4cf9-9f52-cf9a69ab9385",
+            "name": "plecaki"
+        },
+        "klasyczne": {
+            "path": [
+                "torebki",
+                "klasyczne"
+            ],
+            "id": "f87d0379-0270-4f7e-9e98-9c4d61714e6f",
+            "name": "klasyczne"
+        }
+    }
+    
+}

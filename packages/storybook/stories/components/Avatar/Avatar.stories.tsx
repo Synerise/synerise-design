@@ -107,10 +107,18 @@ export const Default: StoryObj<AvatarStoryType> = {
 };
 
 export const UserAvatar: StoryObj<UserAvatarProps> = {
-  render: (args) => <UserAvatarComponent {...args} />,
+  render: ({ user, ...args }) => (
+    <UserAvatarComponent {...args} user={{ ...user }} />
+  ),
   args: {
     ...commonArgs,
     text: 'JJ',
+    user: {
+      firstName: 'Silvia',
+      lastName: 'Jobs',
+      email: 'silvia.jobs@gmail.com',
+      avatarId: '1234',
+    },
   },
 };
 

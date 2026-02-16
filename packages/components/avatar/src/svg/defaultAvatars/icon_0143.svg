@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="240" height="240" viewBox="0 0 240 240">
+  <defs>
+    <linearGradient id="t1g1" x1="319.21" y1="40.79" x2="79.21" y2="40.79" gradientTransform="translate(79.21 319.21) rotate(-90)" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#ebdaff"/>
+      <stop offset="1" stop-color="#bcaeff"/>
+    </linearGradient>
+    <linearGradient id="t1g2" x1="46.04" y1="88.47" x2="93.44" y2="88.47" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#f987ed"/>
+      <stop offset="1" stop-color="#fff5ff"/>
+    </linearGradient>
+  </defs>
+  <rect fill="url(#t1g1)" width="240" height="240"/>
+  <rect fill="#fff5ff" x="136.88" y="50.91" width="69.11" height="69.11"/>
+  <circle fill="#427212" cx="168.72" cy="92.75" r="8.71"/>
+  <rect fill="#689ded" x="110.19" y="64.77" width="26.69" height="92.24"/>
+  <circle fill="url(#t1g2)" cx="69.74" cy="88.47" r="23.7"/>
+  <circle fill="#427212" cx="72.29" cy="92.75" r="8.71"/>
+  <path fill="none" stroke="#427212" stroke-miterlimit="10" stroke-width="10" d="M84.32,185.29c32.87,15.7,55.2,6.95,79.18-17.31"/>
+  <path fill="none" stroke="#427212" stroke-miterlimit="10" stroke-width="10" d="M99.48,54.91l-58.31-8.27"/>
+</svg>

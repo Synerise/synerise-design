@@ -16,7 +16,8 @@
     "access": "public"
   },
   "scripts": {
-    "build": "pnpm run build:js && pnpm run build:css && pnpm run defs",
+    "build": "pnpm run build:svgr && pnpm run build:js && pnpm run build:css && pnpm run defs",
+    "build:svgr": "node ./build/svgr.js",
     "build:css": "node ../../../scripts/style/less.js",
     "build:js": "babel --delete-dir-on-start --root-mode upward src --out-dir dist --extensions '.js,.ts,.tsx'",
     "build:watch": "pnpm run build:js -- --watch",
@@ -41,6 +42,13 @@
     "@synerise/ds-tooltip": "workspace:^",
     "@synerise/ds-typography": "workspace:^",
     "@synerise/ds-utils": "workspace:^"
+  },
+  "devDependencies": {
+    "@svgr/core": "^8.1.0",
+    "@svgr/plugin-jsx": "^8.1.0",
+    "@svgr/plugin-svgo": "^8.1.0",
+    "glob": "^11.0.2",
+    "string-hash": "^1.1.3"
   },
   "peerDependencies": {
     "@synerise/ds-core": "*",

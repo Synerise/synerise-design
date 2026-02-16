@@ -6,7 +6,13 @@ import Icon, { UserM, UserS } from '@synerise/ds-icon';
 
 import Avatar from '../Avatar';
 import { type UserAvatarProps } from '../Avatar.types';
-import { addIconColor, getColorByText, getUserText } from '../utils';
+import DefaultAvatarIcon, { TOTAL_DEFAULT_AVATARS } from '../DefaultAvatarIcon';
+import {
+  addIconColor,
+  getColorByText,
+  getDefaultAvatarIndex,
+  getUserText,
+} from '../utils';
 
 export const DEFAULT_COLOR = 'grey';
 export const DEFAULT_COLOR_HUE = '500';
@@ -26,8 +32,23 @@ const UserAvatar: React.FC<UserAvatarProps> = ({
   ...restProps
 }) => {
   const theme = useTheme();
-  const { firstName = '', lastName = '', email = '', avatar } = user || {};
-  const avatarText = getUserText(user, src, text);
+  const {
+    firstName = '',
+    lastName = '',
+    email = '',
+    avatar,
+    avatarId,
+  } = user || {};
+
+  const hasPhoto = !!(avatar || src);
+  const hasNameInitials = !!(firstName || lastName) || !!text;
+  const useDefaultSvg =
+    avatarId !== undefined &&
+    !hasNameInitials &&
+    !hasPhoto &&
+    TOTAL_DEFAULT_AVATARS > 0;
+  const avatarText = useDefaultSvg ? null : getUserText(user, src, text);
+
   const defaultTooltip = {
     title: `${firstName || ''} ${lastName || ''}`.trim(),
     description: email || '',
@@ -41,32 +62,42 @@ const UserAvatar: React.FC<UserAvatarProps> = ({
   const iconColor = theme.palette[`${DEFAULT_COLOR}-${DEFAULT_COLOR_HUE}`];
   const iconElement = addIconColor(iconComponent, iconColor);
 
-  const icon = !avatarText
-    ? iconElement || (
-        <Icon
-          component={size === 'small' ? <UserS /> : <UserM />}
-          color={theme.palette['grey-500']}
-        />
-      )
-    : null;
+  let icon: React.ReactNode = null;
+  if (useDefaultSvg) {
+    const avatarIndex = getDefaultAvatarIndex(avatarId, TOTAL_DEFAULT_AVATARS);
+    icon = <DefaultAvatarIcon index={avatarIndex} />;
+  } else if (!avatarText) {
+    icon = iconElement || (
+      <Icon
+        component={size === 'small' ? <UserS /> : <UserM />}
+        color={theme.palette['grey-500']}
+      />
+    );
+  }
 
   const [avatarBackgroundColor, avatarBackgroundHue] = getColorByText(
     avatarText,
-    backgroundColor,
+    useDefaultSvg ? undefined : backgroundColor,
   );
 
   const avatarRender = (
     <Avatar
       iconComponent={icon}
+      iconScale={!useDefaultSvg}
       shape="circle"
       hasStatus={disabled === true ? false : !!badgeStatus}
-      backgroundColor={avatarBackgroundColor}
-      backgroundColorHue={avatarBackgroundHue}
+      backgroundColor={useDefaultSvg ? undefined : avatarBackgroundColor}
+      backgroundColorHue={useDefaultSvg ? undefined : avatarBackgroundHue}
       size={size}
       src={avatar || src}
       tooltip={avatarTooltip}
       disabled={disabled}
-      style={badgeStatus ? {} : style}
+      style={{
+        ...(badgeStatus ? {} : style),
+        ...(useDefaultSvg
+          ? { background: 'transparent', overflow: 'hidden' }
+          : {}),
+      }}
       {...restProps}
     >
       {children || avatarText}
