@@ -3,6 +3,16 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.37.0](https://github.com/Synerise/synerise-design/compare/storybook@1.36.6...storybook@1.37.0) (2026-02-16)
+
+### Bug Fixes
+
+- **storybook:** updated logo ([717db20](https://github.com/Synerise/synerise-design/commit/717db20463b2931fbf7cf674fb46dc4dae2286ac))
+
+### Features
+
+- **avatar:** add deterministic default SVG avatars based on avatarId ([cbba546](https://github.com/Synerise/synerise-design/commit/cbba54646bfea3ba020a5ea3a9b47a5f08078f1e))
+
 ## [1.36.6](https://github.com/Synerise/synerise-design/compare/storybook@1.36.5...storybook@1.36.6) (2026-02-12)
 
 **Note:** Version bump only for package storybook
