@@ -31,21 +31,21 @@
   },
   "resolutions": {
     "@jest/fake-timers": "^27",
-    "@types/react": "^18",
-    "@types/react-dom": "^18",
+    "@types/react": "18.3.17",
+    "@types/react-dom": "18.3.5",
     "babel-jest": "^27",
     "jest": "^27",
     "prettier": "^3.5.3",
     "rc-trigger": "^5.3.4",
     "rc-util": "^5.43.0",
-    "react": "^18",
-    "react-dom": "^18"
+    "react": "18.3.1",
+    "react-dom": "18.3.1"
   },
   "dependencies": {
     "antd": "4.24.16",
     "copy-to-clipboard": "^3.3.1",
-    "react": "^18.3.1",
-    "react-dom": "^18.3.1",
+    "react": "18.3.1",
+    "react-dom": "18.3.1",
     "react-perfect-scrollbar": "^1.5.8"
   },
   "devDependencies": {
@@ -79,8 +79,8 @@
     "@types/highlightjs": "^9.12.6",
     "@types/jest": "27",
     "@types/ramda": "^0.28.23",
-    "@types/react": "^18",
-    "@types/react-dom": "^18",
+    "@types/react": "18.3.17",
+    "@types/react-dom": "18.3.5",
     "@types/react-highlight-words": "^0.16.4",
     "@types/react-onclickoutside": "^6.7.4",
     "@types/react-window": "^1.8.8",
