@@ -30,11 +30,13 @@
             "cache": true,
             "dependsOn": [],
             "outputs": [
+                "{projectRoot}/src/defaultAvatars",
                 "{projectRoot}/src/icons"
             ],
             "inputs": [
                 "default",
                 "{projectRoot}/src/svg",
+                "{projectRoot}/src/svg/defaultAvatars",
                 "{projectRoot}/build/svgr.js",
                 "{projectRoot}/build/template.js"
             ]

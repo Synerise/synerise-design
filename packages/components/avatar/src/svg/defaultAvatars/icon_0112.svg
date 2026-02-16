@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="240" height="240" viewBox="0 0 240 240">
+  <defs>
+    <linearGradient id="t3g1" x1="-392.62" y1="633" x2="-392.38" y2="633" gradientTransform="translate(648311 -401801) rotate(-90) scale(1024 -1024)" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#d1e04a"/>
+      <stop offset="1" stop-color="#d1bb00"/>
+    </linearGradient>
+    <linearGradient id="t3g2" x1="120" y1="113.37" x2="120" y2="238.56" gradientTransform="translate(0 240) scale(1 -1)" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#d1e0c5"/>
+      <stop offset="1" stop-color="#d1bc0c"/>
+    </linearGradient>
+  </defs>
+  <rect fill="url(#t3g1)" width="239.77" height="239.85"/>
+  <rect fill="url(#t3g2)" y="1.44" width="240" height="125.19" opacity="0.4"/>
+  <path fill="#d1e0c5" opacity="0.59" d="M178.21,67h0c-18.1,0-32.92,14.73-32.92,32.73v20.55c0,18,14.81,32.73,32.92,32.73h0c18.1,0,32.92-14.73,32.92-32.73v-20.55c0-18-14.81-32.73-32.92-32.73Z"/>
+  <ellipse fill="#000000" cx="180.15" cy="91.39" rx="8.82" ry="8.77"/>
+  <path fill="none" stroke="#000000" stroke-miterlimit="10" stroke-width="10" d="M97.58,65.44l-58.31-8.27"/>
+  <path fill="none" stroke="#000000" stroke-miterlimit="10" stroke-width="10" d="M207.13,50.46l-60.62,5.7"/>
+  <path fill="none" stroke="#000000" stroke-miterlimit="10" stroke-width="10" d="M92.03,155.13h41.87l-17.89-87.67"/>
+  <path fill="none" stroke="#000000" stroke-miterlimit="10" stroke-width="10" d="M83.48,194.24s20.02,8.89,39.74,5.22,33.62-17.88,33.62-17.88"/>
+  <ellipse fill="#000000" cx="60.69" cy="91.39" rx="8.82" ry="8.77"/>
+</svg>

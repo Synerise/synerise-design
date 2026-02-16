@@ -49,6 +49,7 @@ storybook-static
 .npmrc
 .DS_Store
 .idea
+.claude
 .docz
 styleguide/
 **/yarn-error.log

@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="240" height="240" viewBox="0 0 240 240">
+  <rect fill="#ff0093" width="86.89" height="239.85"/>
+  <rect fill="#ff00bc" x="86.89" width="152.88" height="239.85"/>
+  <path fill="none" stroke="#000000" stroke-miterlimit="10" stroke-width="11" d="M118.64,48.26v104.53h21.48"/>
+  <polyline fill="#000000" points="46.65 69.7 79.18 69.7 79.18 57.99 46.65 57.99"/>
+  <circle fill="#000000" cx="59.34" cy="86.66" r="8.29"/>
+  <ellipse fill="#ff1ce6" cx="55.64" cy="135.15" rx="15.22" ry="15.22"/>
+  <path fill="#fffcff" d="M83.05,57.93c-3.43-10.55-13.34-18.18-25.03-18.18s-21.6,7.63-25.03,18.18h50.05Z"/>
+  <polyline fill="#000000" points="194.51 57.99 161.98 57.99 161.98 69.7 194.51 69.7"/>
+  <path fill="none" stroke="#000000" stroke-miterlimit="10" stroke-width="11" d="M146.77,187.58h-53.77"/>
+  <circle fill="#000000" cx="181.81" cy="86.66" r="8.29"/>
+  <ellipse fill="#ff1ce6" cx="185.52" cy="135.15" rx="15.22" ry="15.22"/>
+  <path fill="#fffcff" d="M158.11,57.93c3.43-10.55,13.34-18.18,25.03-18.18s21.6,7.63,25.03,18.18h-50.05Z"/>
+</svg>

@@ -89,6 +89,18 @@ export function getColorByText(
   return [color as Color, hue as ColorHue];
 }
 
+export function getDefaultAvatarIndex(
+  userId: string | number,
+  totalAvatars: number,
+): number {
+  const str = String(userId);
+  let hash = 0;
+  for (let i = 0; i < str.length; i++) {
+    hash = ((hash << 5) - hash + str.charCodeAt(i)) | 0;
+  }
+  return ((hash % totalAvatars) + totalAvatars) % totalAvatars;
+}
+
 export function getTooltipProps(
   tooltip: AvatarProps['tooltip'],
 ): TooltipObject {

@@ -99,10 +99,11 @@ build_packages:
     - pnpm install --frozen-lockfile --offline
     - pnpm build
   artifacts:
-    paths: 
+    paths:
       - packages/components/*/dist
       - packages/components/flag/src/icons
       - packages/components/icon/src/icons
+      - packages/components/avatar/src/defaultAvatars
     expire_in: 1h
     # when: on_success
 

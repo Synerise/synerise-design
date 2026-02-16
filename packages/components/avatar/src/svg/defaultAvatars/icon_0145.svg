@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="240" height="240" viewBox="0 0 240 240">
+  <defs>
+    <linearGradient id="t4g1" x1="179.86" y1="240" x2="179.86" y2="0" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#00e64f"/>
+      <stop offset=".5" stop-color="#23e647"/>
+      <stop offset="1" stop-color="#07d2c3"/>
+    </linearGradient>
+    <linearGradient id="t4g2" x1="-30.29" y1="30" x2="149.71" y2="210" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#0081c3"/>
+      <stop offset="1" stop-color="#00c158"/>
+    </linearGradient>
+  </defs>
+  <rect fill="url(#t4g1)" x="119.71" width="120.29" height="240"/>
+  <rect fill="url(#t4g2)" x="-.29" y="0" width="120" height="240"/>
+  <path fill="none" stroke="#000000" stroke-miterlimit="10" stroke-width="10" d="M82.28,66.74c0,12.77-10.36,23.13-23.13,23.13-10.29,0-19.01-6.72-22.01-16.01"/>
+  <path fill="none" stroke="#000000" stroke-miterlimit="10" stroke-width="10" d="M195.14,64.71c0,12.77-10.36,23.13-23.13,23.13-10.29,0-19.01-6.72-22.01-16.01"/>
+  <polygon fill="#0d246b" points="120 55.35 94.32 173.21 150 173.21 120 55.35"/>
+  <circle fill="#000000" cx="106.75" cy="16.35" r="5.27"/>
+  <circle fill="#000000" cx="130.89" cy="16.35" r="5.27"/>
+  <circle fill="#000000" cx="155.03" cy="16.47" r="5.27"/>
+  <circle fill="#000000" cx="182.15" cy="16.35" r="5.27"/>
+  <circle fill="#000000" cx="203.3" cy="17.94" r="5.27"/>
+  <circle fill="#000000" cx="109.6" cy="36.94" r="5.27"/>
+  <circle fill="#000000" cx="136.15" cy="36.94" r="5.27"/>
+  <circle fill="#000000" cx="162.71" cy="33.46" r="5.27"/>
+  <path fill="none" stroke="#c6e6c3" stroke-miterlimit="10" stroke-width="10" d="M163.29,182.53c-8.98,10.63-22.41,17.38-37.41,17.38-5.34,0-10.48-.86-15.3-2.44"/>
+</svg>

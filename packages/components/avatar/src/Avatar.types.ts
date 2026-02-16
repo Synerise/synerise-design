@@ -104,6 +104,7 @@ export type UserAvatar = {
   lastName?: string | null;
   email?: string | null;
   avatar?: string | null;
+  avatarId?: string | number;
 };
 
 export type UserAvatarProps = DefinedAvatarProps & {
