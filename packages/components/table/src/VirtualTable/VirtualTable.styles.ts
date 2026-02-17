@@ -1,7 +1,5 @@
 import styled, { css } from 'styled-components';
 
-import Scrollbar from '@synerise/ds-scrollbar';
-
 type ColWrapperProps = {
   width?: number | null;
   minWidth?: number | null;
@@ -56,15 +54,16 @@ export const VirtualListWrapper = styled.div<{
 
   overscroll-behavior-x: contain;
 `;
-
-export const StickyScrollbar = styled(Scrollbar)<{
-  offset: number;
+export const StickyScrollbarWrapper = styled.div<{
+  scrollOffset: number;
   isStuck: boolean;
 }>`
   position: sticky;
-  bottom: 0;
+  top: calc(100% - ${(props) => numberToPixels(24 + props.scrollOffset)});
   z-index: ${(props) => (props.isStuck ? 2 : 0)};
-  transform: translate(5px, ${(props) => numberToPixels(props.offset)});
+  transform: translate(5px, ${(props) => numberToPixels(props.scrollOffset)});
+  height: 10px;
+  margin-top: -10px;
 `;
 
 export const StickyScrollbarContent = styled.div<{ scrollWidth: number }>`
