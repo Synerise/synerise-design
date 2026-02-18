@@ -19,6 +19,7 @@ import React, {
 import { useIntl } from 'react-intl';
 import { FixedSizeList as List, type ListOnScrollProps } from 'react-window';
 
+import Scrollbar from '@synerise/ds-scrollbar';
 import { useElementInView } from '@synerise/ds-utils';
 
 import BackToTopButton from '../InfiniteScroll/BackToTopButton';
@@ -740,6 +741,23 @@ const VirtualTable = <
       ref={containerRef}
       isHeaderVisible={isHeaderVisible}
     >
+      {isSticky && dataSource.length ? (
+        <S.StickyScrollbarWrapper
+          isStuck={isStuck}
+          scrollOffset={offsetScroll || 0}
+        >
+          <Scrollbar
+            absolute
+            onScroll={handleStickyScrollbarScroll}
+            ref={horizontalScrollRef}
+          >
+            <S.StickyScrollbarContent
+              ref={elementRef}
+              scrollWidth={scrollWidth}
+            />
+          </Scrollbar>
+        </S.StickyScrollbarWrapper>
+      ) : null}
       <ResizeObserver
         onResize={({ offsetWidth }) => {
           setTableWidth(offsetWidth);
@@ -764,20 +782,6 @@ const VirtualTable = <
           {tableLocale.infiniteScrollBackToTop}
         </BackToTopButton>
       )}
-      {isSticky && dataSource.length ? (
-        <S.StickyScrollbar
-          isStuck={isStuck}
-          offset={offsetScroll || 0}
-          ref={horizontalScrollRef}
-          onScroll={handleStickyScrollbarScroll}
-          absolute
-        >
-          <S.StickyScrollbarContent
-            ref={elementRef}
-            scrollWidth={scrollWidth}
-          />
-        </S.StickyScrollbar>
-      ) : null}
     </S.VirtualTableWrapper>
   );
 };
