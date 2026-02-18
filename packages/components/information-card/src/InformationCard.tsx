@@ -2,6 +2,11 @@ import React, { forwardRef, useEffect, useRef, useState } from 'react';
 
 import Card from '@synerise/ds-card';
 import { SegmentM } from '@synerise/ds-icon';
+import {
+  FloatingDelayGroup,
+  HOVER_CLOSE_DELAY,
+  HOVER_OPEN_DELAY,
+} from '@synerise/ds-popover';
 import { useResizeObserver } from '@synerise/ds-utils';
 
 import * as S from './InformationCard.styles';
@@ -83,86 +88,96 @@ const InformationCard = forwardRef<HTMLDivElement, InformationCardProps>(
         renderAdditionalDescription)
     );
     return (
-      <S.InfoCardWrapper
-        data-testid="information-card"
-        data-popup-container
-        ref={ref}
-        aria-label="information card"
-        className={`ds-info-card ${className}`}
-        asTooltip={asTooltip}
-        isActionsMenuVisible={isActionsMenuVisible}
-        hasActionsMenu={!!actionsMenu}
-        hasFooter={!!(renderFooter || hasFooter)}
-        {...props}
+      <FloatingDelayGroup
+        delay={{ open: HOVER_OPEN_DELAY, close: HOVER_CLOSE_DELAY }}
       >
-        <S.InfoCardSlidesWrapper>
-          <S.InfoCardSlide ref={mainSlideRef}>
-            <Card
-              background="white"
-              renderBadge={() => {
-                return (
-                  renderBadge !== null && (
-                    <div style={{ marginRight: '16px' }}>
-                      {renderBadge?.() ??
-                        buildIconBadge({
-                          iconElement,
-                          iconColor,
-                          avatarTooltipText,
-                        })}
-                    </div>
-                  )
-                );
-              }}
-              title={typeof title === 'string' ? copyableSlot(title) : title}
-              description={
-                typeof subtitle === 'string' ? copyableSlot(subtitle) : subtitle
-              }
-              headerSideChildren={undefined}
-              compactHeader={false}
-              withoutPadding
-              lively={false}
-              withHeader
-            >
-              {(!!descriptionConfig || notice) && (
-                <InformationCardDescription
-                  extraInformation={notice}
-                  descriptionConfig={descriptionConfig}
-                />
-              )}
-              {renderAdditionalDescription && renderAdditionalDescription()}
-              {propertyListItems && (
-                <InformationCardPropertyList items={propertyListItems} />
-              )}
-              {showBottomDivider && <S.BottomDivider dashed marginBottom={8} />}
-              {summaryItems && <InformationCardSummary items={summaryItems} />}
-              {(renderFooter && renderFooter()) ||
-                (hasFooter && (
-                  <InformationCardFooter
-                    text={footerText}
-                    actionButton={actionButton}
-                    actionButtonCallback={actionButtonCallback}
-                    actionButtonTooltipText={actionButtonTooltipText}
-                    actionsMenuButtonLabel={actionsMenu?.buttonLabel}
-                    actionsMenuButtonOnClick={
-                      actionsMenu
-                        ? () => setIsActionsMenuVisible(true)
-                        : undefined
-                    }
+        <S.InfoCardWrapper
+          data-testid="information-card"
+          data-popup-container
+          ref={ref}
+          aria-label="information card"
+          className={`ds-info-card ${className}`}
+          asTooltip={asTooltip}
+          isActionsMenuVisible={isActionsMenuVisible}
+          hasActionsMenu={!!actionsMenu}
+          hasFooter={!!(renderFooter || hasFooter)}
+          {...props}
+        >
+          <S.InfoCardSlidesWrapper>
+            <S.InfoCardSlide ref={mainSlideRef}>
+              <Card
+                background="white"
+                renderBadge={() => {
+                  return (
+                    renderBadge !== null && (
+                      <div style={{ marginRight: '16px' }}>
+                        {renderBadge?.() ??
+                          buildIconBadge({
+                            iconElement,
+                            iconColor,
+                            avatarTooltipText,
+                          })}
+                      </div>
+                    )
+                  );
+                }}
+                title={typeof title === 'string' ? copyableSlot(title) : title}
+                description={
+                  typeof subtitle === 'string'
+                    ? copyableSlot(subtitle)
+                    : subtitle
+                }
+                headerSideChildren={undefined}
+                compactHeader={false}
+                withoutPadding
+                lively={false}
+                withHeader
+              >
+                {(!!descriptionConfig || notice) && (
+                  <InformationCardDescription
+                    extraInformation={notice}
+                    descriptionConfig={descriptionConfig}
                   />
-                ))}
-            </Card>
-          </S.InfoCardSlide>
-          {actionsMenu && (
-            <S.InfoCardSlide height={height}>
-              <InformationCardActions
-                {...actionsMenu}
-                maxHeight={height}
-                onHeaderClick={() => setIsActionsMenuVisible(false)}
-              />
+                )}
+                {renderAdditionalDescription && renderAdditionalDescription()}
+                {propertyListItems && (
+                  <InformationCardPropertyList items={propertyListItems} />
+                )}
+                {showBottomDivider && (
+                  <S.BottomDivider dashed marginBottom={8} />
+                )}
+                {summaryItems && (
+                  <InformationCardSummary items={summaryItems} />
+                )}
+                {(renderFooter && renderFooter()) ||
+                  (hasFooter && (
+                    <InformationCardFooter
+                      text={footerText}
+                      actionButton={actionButton}
+                      actionButtonCallback={actionButtonCallback}
+                      actionButtonTooltipText={actionButtonTooltipText}
+                      actionsMenuButtonLabel={actionsMenu?.buttonLabel}
+                      actionsMenuButtonOnClick={
+                        actionsMenu
+                          ? () => setIsActionsMenuVisible(true)
+                          : undefined
+                      }
+                    />
+                  ))}
+              </Card>
             </S.InfoCardSlide>
-          )}
-        </S.InfoCardSlidesWrapper>
-      </S.InfoCardWrapper>
+            {actionsMenu && (
+              <S.InfoCardSlide height={height}>
+                <InformationCardActions
+                  {...actionsMenu}
+                  maxHeight={height}
+                  onHeaderClick={() => setIsActionsMenuVisible(false)}
+                />
+              </S.InfoCardSlide>
+            )}
+          </S.InfoCardSlidesWrapper>
+        </S.InfoCardWrapper>
+      </FloatingDelayGroup>
     );
   },
 );

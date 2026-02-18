@@ -9,6 +9,7 @@ import {
   useDelayGroup,
   useDismiss,
   useFloating,
+  useFloatingNodeId,
   useHover,
   useInteractions,
   useListNavigation,
@@ -52,6 +53,8 @@ export const usePopover = ({
   const setOpen = setControlledOpen ?? setUncontrolledOpen;
   const arrowRef = useRef<HTMLElement>(null);
 
+  const nodeId = useFloatingNodeId();
+
   const triggerArray = Array.isArray(trigger) ? trigger : [trigger];
 
   const whileElementsMounted = useMemo(() => {
@@ -77,6 +80,7 @@ export const usePopover = ({
   }, [autoUpdateWhileMounted]);
 
   const data = useFloating({
+    nodeId,
     placement,
     open,
     onOpenChange: (
@@ -112,11 +116,14 @@ export const usePopover = ({
   const click = useClick(context, {
     enabled: isClickEnabled && controlledOpen === undefined,
   });
-  const { delay } = useDelayGroup(context);
+  const { delay: groupDelay } = useDelayGroup(context);
 
   const hover = useHover(context, {
     enabled: isHoverEnabled,
-    delay: delay || {
+    // All hover popovers use their local FloatingDelayGroup delay
+    // Nested components should wrap content in their own FloatingDelayGroup for isolation
+    // Falls back to default delays if no FloatingDelayGroup is present
+    delay: groupDelay || {
       open: HOVER_OPEN_DELAY,
       close: HOVER_CLOSE_DELAY,
     },
