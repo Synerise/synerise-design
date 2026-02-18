@@ -8,6 +8,22 @@ import * as color from '../icons/colorIcons';
 
 type IconComponent = ComponentType<SVGProps<SVGSVGElement>>;
 type IconModule = Record<string, IconComponent>;
+
+// Extract icon names from all modules as literal types
+type MediumIconNames = keyof typeof medium;
+type LargeIconNames = keyof typeof large;
+type XLargeIconNames = keyof typeof xlarge;
+type AdditionalIconNames = keyof typeof additional;
+type ColorIconNames = keyof typeof color;
+
+// Combine all icon names into a single union type
+export type AllIconNames =
+  | MediumIconNames
+  | LargeIconNames
+  | XLargeIconNames
+  | AdditionalIconNames
+  | ColorIconNames;
+
 type IconEntry = {
   module: IconModule;
 };

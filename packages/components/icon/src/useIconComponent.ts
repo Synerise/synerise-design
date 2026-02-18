@@ -1,8 +1,8 @@
 import { type ComponentType, type SVGProps, useMemo } from 'react';
 
-import { iconManifest } from './DynamicIcon/iconManifest';
+import { type AllIconNames, iconManifest } from './DynamicIcon/iconManifest';
 
-export type IconName = keyof typeof iconManifest;
+export type IconName = AllIconNames;
 
 type IconComponent = ComponentType<SVGProps<SVGSVGElement>>;
 
