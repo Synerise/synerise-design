@@ -49,6 +49,7 @@ export type CodeAreaCommonProps<
   tooltipProps?: TooltipProps;
   style?: CSSProperties;
   zIndex?: string | number;
+  noBorder?: boolean;
   /**
    * Height of the editor wrapper
    */

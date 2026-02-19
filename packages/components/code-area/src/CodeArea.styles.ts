@@ -34,12 +34,18 @@ export const CodeAreaContent = styled.div`
   flex-direction: column;
 `;
 
-export const EditorWrapper = styled.div<{ hasError: boolean }>`
-  border: solid 1px
-    ${(props) =>
-      props.hasError
-        ? props.theme.palette['red-600']
-        : props.theme.palette['grey-200']};
+export const EditorWrapper = styled.div<{
+  hasError: boolean;
+  noBorder?: boolean;
+}>`
+  border: ${(props) =>
+    props.noBorder
+      ? 'none'
+      : `solid 1px ${
+          props.hasError
+            ? props.theme.palette['red-600']
+            : props.theme.palette['grey-200']
+        }`};
   border-radius: 3px;
   display: flex;
   flex-direction: column;
@@ -50,7 +56,9 @@ export const EditorWrapper = styled.div<{ hasError: boolean }>`
     props.hasError &&
     css`
       background: ${props.theme.palette['red-050']};
-      box-shadow: inset 0 0 0 1px ${props.theme.palette['red-600']};
+      box-shadow: ${props.noBorder
+        ? 'none'
+        : `inset 0 0 0 1px ${props.theme.palette['red-600']}`};
     `};
   canvas {
     opacity: 0;
@@ -143,10 +151,29 @@ export const ContentAbove = styled(FlexRow)`
 
 export const SyntaxTitle = styled(Text)``;
 
-export const BottomBar = styled(FlexRow)`
-  border-top: solid 1px ${(props) => props.theme.palette['grey-200']};
+export const BottomBar = styled(FlexRow)<{
+  noBorder?: boolean;
+  hasError?: boolean;
+}>`
   padding: 8px;
   flex: 0 0 auto;
+  background: ${({ theme }) => theme.palette['white']};
+  border-top: solid 1px ${({ theme }) => theme.palette['grey-200']};
+
+  ${({ hasError, noBorder, theme }) =>
+    hasError &&
+    css`
+      background: ${theme.palette['red-050']};
+      ${noBorder
+        ? css`
+            border: none;
+            border-top: solid 1px ${theme.palette['grey-200']};
+          `
+        : css`
+            border: solid 1px ${theme.palette['red-600']};
+            border-top-color: ${theme.palette['grey-200']};
+          `}
+    `}
 `;
 
 export const LeftSide = styled.div``;

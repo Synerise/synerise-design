@@ -56,6 +56,7 @@ export const CodeAreaEditorRaw = ({
   placeholder,
   value,
   defaultValue,
+  noBorder,
   ...props
 }: CodeAreaEditorRawProps) => {
   const monacoRef = useRef<Monaco | null>(null);
@@ -205,7 +206,7 @@ export const CodeAreaEditorRaw = ({
 
   return (
     <>
-      <S.EditorWrapper hasError={Boolean(errorText)}>
+      <S.EditorWrapper noBorder={noBorder} hasError={Boolean(errorText)}>
         <S.EditorInnerWrapper ref={wrapperRef}>
           <Editor
             {...props}
@@ -234,6 +235,8 @@ export const CodeAreaEditorRaw = ({
             allowFullscreen={allowFullscreen && !isFullscreen}
             toggleFullscreen={toggleFullscreen}
             customFooterContent={customFooterContent}
+            noBorder={noBorder}
+            hasError={Boolean(errorText)}
           />
         )}
       </S.EditorWrapper>

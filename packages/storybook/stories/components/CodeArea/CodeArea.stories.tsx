@@ -9,6 +9,7 @@ import CodeArea, {
   CodeAreaSyntax,
 } from '@synerise/ds-code-area';
 import Icon, { Add3M } from '@synerise/ds-icon';
+import Modal from '@synerise/ds-modal';
 import Switch from '@synerise/ds-switch';
 
 import {
@@ -67,10 +68,12 @@ export default {
     placeholder: REACT_NODE_AS_STRING,
     tooltip: REACT_NODE_AS_STRING,
     readOnly: BOOLEAN_CONTROL,
+    noBorder: BOOLEAN_CONTROL,
   },
   args: {
     value: '',
     allowFullscreen: true,
+    noBorder: false,
     defaultValue: '// Enter code',
     placeholder: 'Placeholder content',
     label: 'Label',
@@ -94,6 +97,34 @@ export const Populated: Story = {
   args: {
     currentSyntax: 'json',
     value: SAMPLE_DATA,
+  },
+};
+export const WithNoBorder: Story = {
+  args: {
+    noBorder: true,
+  },
+};
+export const ModalWithCodeArea: Story = {
+  render: (args) => {
+    return (
+      <Modal
+        bodyStyle={{ padding: 0, margin: 0 }}
+        size="medium"
+        visible
+        title="Modal with code-area"
+      >
+        <div style={{ marginBottom: '-12px' }}>
+          <CodeArea {...args} />
+        </div>
+      </Modal>
+    );
+  },
+  args: {
+    noBorder: true,
+    syntaxOptions: [AVAILABLE_SYNTAXES[0]],
+    texts: { fullscreen: 'Fullscreen' },
+    label: '',
+    description: '',
   },
 };
 

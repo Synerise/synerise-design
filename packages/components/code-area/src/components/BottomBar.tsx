@@ -12,6 +12,8 @@ type BottomBarProps = {
   syntaxSelect?: ReactNode;
   customFooterContent?: ReactNode;
   toggleFullscreen?: () => void;
+  noBorder?: boolean;
+  hasError?: boolean;
 };
 export const BottomBar = ({
   texts,
@@ -19,6 +21,8 @@ export const BottomBar = ({
   customFooterContent,
   allowFullscreen,
   toggleFullscreen,
+  noBorder,
+  hasError,
 }: BottomBarProps) => {
   const fullscreenButton = allowFullscreen && (
     <Button
@@ -31,7 +35,11 @@ export const BottomBar = ({
     </Button>
   );
   return (
-    <S.BottomBar data-testid="code-area-bottombar">
+    <S.BottomBar
+      noBorder={noBorder}
+      hasError={hasError}
+      data-testid="code-area-bottombar"
+    >
       {syntaxSelect && (
         <S.SyntaxSelect data-testid="code-area-syntaxoptions">
           {syntaxSelect}
