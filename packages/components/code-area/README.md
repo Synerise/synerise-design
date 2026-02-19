@@ -65,6 +65,7 @@ const syntaxOptions = [
 | texts                       | customise displayed texts                                      | `CodeAreaTexts`                                         | -       |
 | getPopupContainer           | customise where fullscreen layer is rendered into              | getPopupContainer (@synerise/ds-utils)                  | -       |
 | placeholder                 | placeholder content                                            | `ReactNode`                                             | -       |
+| noBorder                    | remove border from wrapper                                     | `boolean`                                               | -       |
 
 ### CodeAreaTexts
 

@@ -36,6 +36,7 @@ export const CodeAreaEditor = forwardRef<HTMLDivElement, CodeAreaEditorProps>(
       label,
       tooltipProps,
       height,
+      noBorder,
       ...props
     },
     forwardedRef,
@@ -168,6 +169,7 @@ export const CodeAreaEditor = forwardRef<HTMLDivElement, CodeAreaEditorProps>(
             isBottomBarShowing={isBottomBarShowing}
             isSyntaxSelectVisible={isSyntaxSelectVisible}
             isValid={isValid}
+            noBorder={noBorder}
           />
           <ContentBelow
             ref={contentBelowRef}
