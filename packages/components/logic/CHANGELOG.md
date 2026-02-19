@@ -3,6 +3,10 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.1.28](https://github.com/Synerise/synerise-design/compare/@synerise/ds-logic@1.1.27...@synerise/ds-logic@1.1.28) (2026-02-19)
+
+**Note:** Version bump only for package @synerise/ds-logic
+
 ## [1.1.27](https://github.com/Synerise/synerise-design/compare/@synerise/ds-logic@1.1.26...@synerise/ds-logic@1.1.27) (2026-02-12)
 
 **Note:** Version bump only for package @synerise/ds-logic

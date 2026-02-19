@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.9.7](https://github.com/synerise/synerise-design/compare/@synerise/ds-table@1.9.6...@synerise/ds-table@1.9.7) (2026-02-19)
+
+### Bug Fixes
+
+- **table:** virtual horizontal scrollbar ([e240e20](https://github.com/synerise/synerise-design/commit/e240e20e8f05a3a488b3fdc1737a466c16838490))
+
 ## [1.9.6](https://github.com/synerise/synerise-design/compare/@synerise/ds-table@1.9.5...@synerise/ds-table@1.9.6) (2026-02-16)
 
 **Note:** Version bump only for package @synerise/ds-table

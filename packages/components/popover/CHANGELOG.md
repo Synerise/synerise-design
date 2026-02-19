@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.5.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-popover@1.4.0...@synerise/ds-popover@1.5.0) (2026-02-19)
+
+### Features
+
+- **popover:** add FloatingTree support for nested hover popovers ([7945c27](https://github.com/Synerise/synerise-design/commit/7945c2711e3fad903b7c3d4458952fc22f3fb4b3))
+
 # [1.4.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-popover@1.3.2...@synerise/ds-popover@1.4.0) (2026-02-05)
 
 ### Features

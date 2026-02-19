@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.14.1](https://github.com/Synerise/synerise-design/compare/@synerise/ds-icon@1.14.0...@synerise/ds-icon@1.14.1) (2026-02-19)
+
+### Bug Fixes
+
+- **icon:** iconName type changed to literal string union ([0d73571](https://github.com/Synerise/synerise-design/commit/0d735719bf44bed1c0ed6844a2d3eb069a40aab5))
+
 # [1.14.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-icon@1.13.1...@synerise/ds-icon@1.14.0) (2026-02-12)
 
 ### Features

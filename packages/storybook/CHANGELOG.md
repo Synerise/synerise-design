@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.38.0](https://github.com/Synerise/synerise-design/compare/storybook@1.37.0...storybook@1.38.0) (2026-02-19)
+
+### Features
+
+- **popover:** add FloatingTree support for nested hover popovers ([7945c27](https://github.com/Synerise/synerise-design/commit/7945c2711e3fad903b7c3d4458952fc22f3fb4b3))
+
 # [1.37.0](https://github.com/Synerise/synerise-design/compare/storybook@1.36.6...storybook@1.37.0) (2026-02-16)
 
 ### Bug Fixes
