@@ -34,6 +34,7 @@ stages:
   - prepare
   - test
   - build
+  - ai-review
   - deploy
   - k8s-deploy-stg
   - k8s-deploy-prod
@@ -43,6 +44,9 @@ include:
   - project: 'Core/gitlab_templates'
     ref: master
     file: '/ai_deploy_kapitan.yml'
+  - project: 'core/gitlab_templates'
+    ref: master
+    file: '/pipeline/ai-review.yml'
 
 
 install:
