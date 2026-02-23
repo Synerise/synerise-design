@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.5.1](https://github.com/Synerise/synerise-design/compare/@synerise/ds-popover@1.5.0...@synerise/ds-popover@1.5.1) (2026-02-23)
+
+### Bug Fixes
+
+- **date-range-picker:** limitshift for large popover content ([42135c1](https://github.com/Synerise/synerise-design/commit/42135c1f715a3ba0c8c72bb797e4039d047d77c3))
+
 # [1.5.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-popover@1.4.0...@synerise/ds-popover@1.5.0) (2026-02-19)
 
 ### Features

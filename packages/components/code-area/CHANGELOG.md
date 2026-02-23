@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.3.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-code-area@1.2.32...@synerise/ds-code-area@1.3.0) (2026-02-23)
+
+### Features
+
+- **code-area:** new prop noBorder ([9fea1bd](https://github.com/Synerise/synerise-design/commit/9fea1bd84b20599662411f89c5250c0ba37b51a4))
+
 ## [1.2.32](https://github.com/Synerise/synerise-design/compare/@synerise/ds-code-area@1.2.31...@synerise/ds-code-area@1.2.32) (2026-02-19)
 
 **Note:** Version bump only for package @synerise/ds-code-area

@@ -3,6 +3,16 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.39.0](https://github.com/Synerise/synerise-design/compare/storybook@1.38.0...storybook@1.39.0) (2026-02-23)
+
+### Bug Fixes
+
+- **date-range-picker:** limitshift for large popover content ([42135c1](https://github.com/Synerise/synerise-design/commit/42135c1f715a3ba0c8c72bb797e4039d047d77c3))
+
+### Features
+
+- **code-area:** new prop noBorder ([9fea1bd](https://github.com/Synerise/synerise-design/commit/9fea1bd84b20599662411f89c5250c0ba37b51a4))
+
 # [1.38.0](https://github.com/Synerise/synerise-design/compare/storybook@1.37.0...storybook@1.38.0) (2026-02-19)
 
 ### Features
