@@ -5,6 +5,7 @@ import {
   type FlipConfig,
   type OffsetConfig,
   type ShiftConfig,
+  limitShift,
 } from '@synerise/ds-popover';
 
 import {
@@ -285,5 +286,6 @@ export const POPOVER_FLIP_CONFIG: FlipConfig = {
 };
 export const POPOVER_SHIFT_CONFIG: ShiftConfig = {
   crossAxis: true,
-  mainAxis: true,
+  mainAxis: false,
+  limiter: limitShift(),
 };

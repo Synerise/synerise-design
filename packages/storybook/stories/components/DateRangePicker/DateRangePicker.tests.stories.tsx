@@ -1,12 +1,16 @@
 import React from 'react';
-import { Meta, StoryObj } from '@storybook/react-webpack5';
-import { within, userEvent, expect, fn, waitFor } from 'storybook/test';
+import { expect, fn, userEvent, waitFor, within } from 'storybook/test';
 
+import { Meta, StoryObj } from '@storybook/react-webpack5';
 import DateRangePicker from '@synerise/ds-date-range-picker';
 import type { DateRangePickerProps } from '@synerise/ds-date-range-picker';
 
-import { DEFAULT_CUSTOM_RANGE, LIFETIME_VALUE, TEXTS as texts } from './constants';
 import { Default } from './DateRangePicker.stories';
+import {
+  DEFAULT_CUSTOM_RANGE,
+  LIFETIME_VALUE,
+  TEXTS as texts,
+} from './constants';
 
 export default {
   title: 'Components/Pickers/DateRangePicker/Tests',
@@ -14,10 +18,9 @@ export default {
   tags: ['visualtests'],
   parameters: {
     layout: 'padded',
-    date: new Date("March 10, 2021 10:00:00"),
+    date: new Date('March 10, 2021 10:00:00'),
   },
   render: (args) => <DateRangePicker {...args} />,
-
 } as Meta<DateRangePickerProps>;
 
 type Story = StoryObj<DateRangePickerProps>;
@@ -27,7 +30,7 @@ const explicitActionArgs = {
   onFilterSave: fn(),
   onValueChange: fn(),
   onVisibleChange: fn(),
-}
+};
 
 export const TestSelectingLifetimePreset: Story = {
   ...Default,
@@ -36,23 +39,25 @@ export const TestSelectingLifetimePreset: Story = {
     showRelativePicker: true,
     relativePast: true,
     texts,
-    relativeModes: ['PAST']
+    relativeModes: ['PAST'],
   },
   play: async ({ args, canvasElement, step }) => {
-    const canvas = within(canvasElement);
+    const canvas = within(canvasElement.parentElement!);
 
     await step('Open picker popover', async () => {
       const input = await canvas.findByText(texts.startDate);
       await userEvent.click(input);
-    })
+    });
 
     await step('Select relative preset', async () => {
       const lifetimePreset = canvas.getByText(texts.lifetime);
       await waitFor(() => userEvent.click(lifetimePreset));
-    })
+    });
 
-    await waitFor(() => expect(args.onValueChange).toHaveBeenCalledWith(LIFETIME_VALUE));
-  }
+    await waitFor(() =>
+      expect(args.onValueChange).toHaveBeenCalledWith(LIFETIME_VALUE),
+    );
+  },
 };
 
 export const TestSelectingCustomRange: Story = {
@@ -63,28 +68,27 @@ export const TestSelectingCustomRange: Story = {
     relativePast: true,
     texts,
     showCustomRange: true,
-    relativeModes: ['PAST']
+    relativeModes: ['PAST'],
   },
   play: async ({ args, canvasElement, step }) => {
-    const canvas = within(canvasElement);
+    const canvas = within(canvasElement.parentElement!);
 
     await step('Open picker popover', async () => {
       const input = await canvas.findByText(texts.startDate);
       await userEvent.click(input);
-    })
+    });
     await waitFor(() => expect(args.onVisibleChange).toHaveBeenCalled());
 
     await step('Select relative preset', async () => {
       const customRange = canvas.getByText(texts.custom);
       await waitFor(() => userEvent.click(customRange));
-    })
+    });
 
-    await waitFor(() => expect(args.onValueChange).toHaveBeenCalledWith(DEFAULT_CUSTOM_RANGE));
-
-  }
+    await waitFor(() =>
+      expect(args.onValueChange).toHaveBeenCalledWith(DEFAULT_CUSTOM_RANGE),
+    );
+  },
 };
-
-
 
 export const TestSelectingMoreRangesDropdown: Story = {
   ...Default,
@@ -94,22 +98,22 @@ export const TestSelectingMoreRangesDropdown: Story = {
     relativePast: true,
     texts,
     showCustomRange: true,
-    relativeModes: ['PAST']
+    relativeModes: ['PAST'],
   },
   play: async ({ args, canvasElement, step }) => {
-    const canvas = within(canvasElement);
+    const canvas = within(canvasElement.parentElement!);
 
     await step('Open picker popover', async () => {
       const input = await canvas.findByText(texts.startDate);
       await userEvent.click(input);
-    })
+    });
     await waitFor(() => expect(args.onVisibleChange).toHaveBeenCalled());
 
     await step('Select relative preset', async () => {
       const rangesDropdown = canvas.getByTestId('relative-ranges-dropdown');
       await waitFor(() => userEvent.click(rangesDropdown));
-    })
-  }
+    });
+  },
 };
 
 export const TestToggleRelativeSection: Story = {
@@ -118,30 +122,30 @@ export const TestToggleRelativeSection: Story = {
     ...explicitActionArgs,
     texts,
     showRelativePicker: true,
-    relativeModes: ['PAST']
+    relativeModes: ['PAST'],
   },
   play: async ({ args, canvasElement, step }) => {
-    const canvas = within(canvasElement);
+    const canvas = within(canvasElement.parentElement!);
 
     await step('Open picker popover', async () => {
       const input = await canvas.findByText(texts.startDate);
       await userEvent.click(input);
-    })
+    });
     await waitFor(() => expect(args.onVisibleChange).toHaveBeenCalled());
 
     await step('Select relative preset', async () => {
       const selectedRange = canvas.getByText(texts.lastWeek);
       await waitFor(() => userEvent.click(selectedRange));
-    })
+    });
 
     await step('Toggle relative preset', async () => {
       const rangesDropdown = canvas.getByText(texts.relativeDateRange);
       await waitFor(() => userEvent.click(rangesDropdown));
-    })
+    });
 
     const selectedRangeLabel = canvas.getByText(texts.lastWeek);
-    expect(selectedRangeLabel).toBeInTheDocument()
-  }
+    expect(selectedRangeLabel).toBeInTheDocument();
+  },
 };
 
 export const TestSelectTime: Story = {
@@ -152,38 +156,46 @@ export const TestSelectTime: Story = {
     showRelativePicker: true,
     relativeModes: ['PAST'],
     showTime: true,
-    disableAbsoluteTimepickerInRelative: true
+    disableAbsoluteTimepickerInRelative: true,
   },
   play: async ({ args, canvasElement, step }) => {
-    const canvas = within(canvasElement);
+    const canvas = within(canvasElement.parentElement!);
 
     await step('Open picker popover', async () => {
       const input = await canvas.findByText(texts.startDate);
       await userEvent.click(input);
-    })
+    });
 
     await waitFor(() => expect(args.onVisibleChange).toHaveBeenCalled());
 
     expect(canvas.getByTestId('date-range-picker-select-time')).toBeDisabled();
 
     await step('Select absolute range', async () => {
-      await waitFor(() => expect(canvas.getAllByRole('gridcell')[0]).not.toHaveStyle({ pointerEvents: 'none' }))
+      await waitFor(() =>
+        expect(canvas.getAllByRole('gridcell')[0]).not.toHaveStyle({
+          pointerEvents: 'none',
+        }),
+      );
       const days = canvas.getAllByRole('gridcell');
       await waitFor(() => {
         userEvent.click(days[10]);
       });
       await waitFor(() => {
-        userEvent.click(days[20])
+        userEvent.click(days[20]);
       });
     });
 
-    await waitFor(() => expect(canvas.getByTestId('date-range-picker-select-time')).not.toBeDisabled());
+    await waitFor(() =>
+      expect(
+        canvas.getByTestId('date-range-picker-select-time'),
+      ).not.toBeDisabled(),
+    );
 
     await step('Select relative preset', async () => {
       const selectedRange = canvas.getByText(texts.lastWeek);
       await waitFor(() => userEvent.click(selectedRange));
-    })
+    });
 
     expect(canvas.getByTestId('date-range-picker-select-time')).toBeDisabled();
-  }
+  },
 };
