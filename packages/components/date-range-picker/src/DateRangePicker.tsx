@@ -117,11 +117,7 @@ const DateRangePicker = forwardRef<HTMLDivElement, DateRangePickerProps>(
 
     return (
       <Popover
-        getPopupContainer={
-          getPopupContainer ||
-          ((node): HTMLElement =>
-            node.parentElement !== null ? node.parentElement : document.body)
-        }
+        getPopupContainer={getPopupContainer || (() => document.body)}
         trigger="click"
         onOpenChange={(openState: boolean) => {
           setPopupVisible(openState);
