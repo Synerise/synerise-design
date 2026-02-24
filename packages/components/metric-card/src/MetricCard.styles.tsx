@@ -2,6 +2,7 @@ import styled, { css } from 'styled-components';
 
 import Copy from '@synerise/ds-copy-icon';
 import InlineAlert from '@synerise/ds-inline-alert';
+import Panel from '@synerise/ds-panel';
 import Skeleton from '@synerise/ds-skeleton';
 import { Text } from '@synerise/ds-typography';
 
@@ -13,20 +14,11 @@ export const WrapperNumber = styled.div`
   display: none;
 `;
 
-export const MetricContainer = styled.div<{ greyBackground?: boolean }>`
+export const MetricContainer = styled(Panel)`
   display: flex;
   flex-direction: column;
-  background-color: ${(props) => props.theme.palette.white};
-  padding: 8px 8px 14px 24px;
   gap: 2px;
   width: 100%;
-  border-radius: 5px;
-  ${(props) =>
-    props.greyBackground
-      ? `
-         box-shadow: 0 4px 12px 0 rgba(35, 41, 54, 0.04);`
-      : `
-         box-shadow: 0 0 0 1px ${props.theme.palette['grey-200']}`};
 `;
 export const CopyIcon = styled(Copy)`
   margin-left: 8px;
