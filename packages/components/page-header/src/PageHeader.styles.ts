@@ -3,6 +3,8 @@ import styled from 'styled-components';
 export const MainContainer = styled.div<{ isolated?: boolean }>`
   background-color: #fff;
   position: relative;
+  border-bottom: 1px solid ${(props): string => props.theme.palette['grey-200']};
+  box-shadow: ${(props) => props.theme.variables['box-shadow-1']};
 
   &::before {
     content: '';

@@ -5,7 +5,6 @@ import styled, {
 
 import { mediaQuery } from '@synerise/ds-core';
 import Icon from '@synerise/ds-icon';
-import { hexToRgba } from '@synerise/ds-utils';
 
 const DEFAULT_TOP_OFFSET = 55;
 
@@ -31,9 +30,6 @@ export const LayoutHeader = styled.div`
     width: 100%;
   }
   z-index: 1;
-  box-shadow: 0 2px 6px
-    ${(props): string => hexToRgba(props.theme.palette['grey-400'], 0.12)};
-  border-bottom: 1px solid ${(props): string => props.theme.palette['grey-200']};
 `;
 
 export const LayoutSubheader = styled.div`
