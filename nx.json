@@ -7,7 +7,8 @@
             ],
             "outputs": [
                 "{projectRoot}/dist",
-                "{projectRoot}/src/icons"
+                "{projectRoot}/src/icons",
+                "{projectRoot}/src/defaultAvatars"
             ],
             "inputs": [
                 "production",
