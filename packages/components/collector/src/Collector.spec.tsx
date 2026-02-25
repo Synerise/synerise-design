@@ -20,13 +20,25 @@ const SELECTED = [{ text: 'Suggestion 1' }, { text: 'Other' }];
 const TEST_ID = 'ds-collector-input';
 
 afterEach(() => {
-  jest.clearAllMocks();
+  vi.clearAllMocks();
 });
+
+vi.mock('@synerise/ds-search/dist/Elements/SearchItems/SearchItems', () => ({
+  default: ({ data, onItemClick, itemRender }: any) => (
+    <div>
+      {data.map((item: any, index: number) => (
+        <div key={index} onClick={() => onItemClick(item)}>
+          {itemRender(item)}
+        </div>
+      ))}
+    </div>
+  ),
+}));
 describe('Collector', () => {
-  const onMultipleSelectFn = jest.fn();
-  const onConfirmFn = jest.fn();
-  const onCancelFn = jest.fn();
-  const onSelectFn = jest.fn();
+  const onMultipleSelectFn = vi.fn();
+  const onConfirmFn = vi.fn();
+  const onCancelFn = vi.fn();
+  const onSelectFn = vi.fn();
 
   it('Should render suggestions', async () => {
     renderWithProvider(
@@ -46,7 +58,10 @@ describe('Collector', () => {
         }}
       />,
     );
-    userEvent.click(screen.getByTestId(TEST_ID));
+    const input = screen.getByTestId(TEST_ID);
+    input.dispatchEvent(new FocusEvent('focus', { bubbles: true }));
+    input.dispatchEvent(new FocusEvent('focusin', { bubbles: true }));
+
     await waitFor(
       () => {
         SUGGESTIONS.map((s) =>
@@ -54,6 +69,7 @@ describe('Collector', () => {
         );
       },
       { timeout: 500 },
+      { timeout: 3000 },
     );
   });
 

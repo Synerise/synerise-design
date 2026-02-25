@@ -1,6 +1,6 @@
 {
   "name": "@synerise/ds-collector",
-  "version": "1.4.23",
+  "version": "1.4.22",
   "description": "Collector UI Component for the Synerise Design System",
   "license": "ISC",
   "repository": "Synerise/synerise-design",
@@ -23,8 +23,8 @@
     "defs": "tsc --declaration --outDir dist/ --emitDeclarationOnly",
     "pack:ci": "pnpm pack --pack-destination ../../storybook/storybook-static/static",
     "prepublish": "pnpm run build",
-    "test": "jest",
-    "test:watch": "pnpm run test -- --watchAll",
+    "test": "vitest",
+    "test:watch": "pnpm run test -- --watch",
     "types": "tsc --noEmit",
     "check:circular-dependencies": "madge --circular --extensions ts,tsx,js,jsx --ts-config tsconfig.json src/ --exclude '/dist/'",
     "upgrade:ds": "ncu -f \"@synerise/ds-*\" -u"
@@ -54,6 +54,7 @@
     "styled-components": "^5.3.3"
   },
   "devDependencies": {
-    "@types/lodash.isequal": "^4.5.8"
+    "@types/lodash.isequal": "^4.5.8",
+    "vitest": "4"
   }
 }
