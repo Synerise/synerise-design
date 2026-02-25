@@ -926,6 +926,10 @@ importers:
       styled-components:
         specifier: ^5.3.3
         version: 5.3.11(@babel/core@7.28.6)(react-dom@18.3.1(react@18.3.1))(react-is@18.3.1)(react@18.3.1)
+    devDependencies:
+      vitest:
+        specifier: '4'
+        version: 4.0.17(@types/node@22.19.7)(jiti@2.6.1)(jsdom@16.7.0)(less@3.11.1)(sass@1.97.3)(terser@5.46.0)(yaml@2.8.2)
 
   packages/components/collector:
     dependencies:
