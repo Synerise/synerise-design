@@ -5,6 +5,33 @@ import { fireEvent, screen, waitFor } from '@testing-library/react';
 
 import ColumnManager from '../ColumnManager';
 
+vi.mock('@synerise/ds-utils', async () => {
+  const actual = await vi.importActual('@synerise/ds-utils');
+  return {
+    ...actual,
+    useResizeObserver: (ref: any, callback: any) => {
+      React.useEffect(() => {
+        callback({ height: 500, width: 300 });
+      }, [callback]);
+    },
+  };
+});
+
+vi.mock('@synerise/ds-scrollbar', () => ({
+  __esModule: true,
+  default: ({ children }: { children: React.ReactNode }) => <div>{children}</div>,
+}));
+
+vi.mock('react-window', () => ({
+  FixedSizeList: ({ children, itemCount, itemData }: any) => (
+    <div>
+      {itemData.map((item: any, index: number) =>
+        children({ index, style: {}, data: itemData })
+      )}
+    </div>
+  ),
+}));
+
 const TEXTS = {
   title: 'Manage columns',
   searchPlaceholder: 'Search',
@@ -86,7 +113,7 @@ describe('ColumnManager', () => {
   });
 
   it('should close himself when close or cancel button has been clicked', () => {
-    const hide = jest.fn();
+    const hide = vi.fn();
     renderWithProvider(COLUMN_MANAGER(true, hide, () => {}));
 
     fireEvent.click(screen.getByTestId('ds-column-manager-close'));
@@ -96,8 +123,8 @@ describe('ColumnManager', () => {
   });
 
   it('should call onApply function with current columns configuration', () => {
-    const hide = jest.fn();
-    const apply = jest.fn();
+    const hide = vi.fn();
+    const apply = vi.fn();
     renderWithProvider(COLUMN_MANAGER(true, hide, apply));
 
     fireEvent.click(screen.getByTestId('ds-column-manager-apply'));
@@ -106,14 +133,14 @@ describe('ColumnManager', () => {
   });
 
   it('should show columns which contains `city` in name', async () => {
-    const hide = jest.fn();
-    const apply = jest.fn();
+    const hide = vi.fn();
+    const apply = vi.fn();
 
     renderWithProvider(COLUMN_MANAGER(true, hide, apply));
 
-    fireEvent.change(screen.getByPlaceholderText('Search'), {
-      target: { value: 'City' },
-    });
+    const input = screen.getByPlaceholderText('Search');
+    fireEvent.change(input, { target: { value: 'City' } });
+
     await waitFor(() => {
       const filteredColumns = screen.queryAllByTestId('ds-column-manager-item');
       expect(filteredColumns.length).toBe(1);
@@ -121,8 +148,8 @@ describe('ColumnManager', () => {
   });
 
   it('should show no results message', async () => {
-    const hide = jest.fn();
-    const apply = jest.fn();
+    const hide = vi.fn();
+    const apply = vi.fn();
 
     renderWithProvider(COLUMN_MANAGER(true, hide, apply));
 

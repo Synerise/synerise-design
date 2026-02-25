@@ -1090,6 +1090,9 @@ importers:
       '@synerise/ds-input':
         specifier: workspace:^
         version: link:../input
+      vitest:
+        specifier: '4'
+        version: 4.0.17(@types/node@22.19.7)(jiti@2.6.1)(jsdom@16.7.0)(less@3.11.1)(sass@1.97.3)(terser@5.46.0)(yaml@2.8.2)
 
   packages/components/completed-within:
     dependencies:
