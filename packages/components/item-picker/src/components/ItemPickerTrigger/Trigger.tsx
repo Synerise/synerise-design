@@ -7,7 +7,12 @@ import React, {
 
 import Button from '@synerise/ds-button';
 import { theme } from '@synerise/ds-core';
-import Icon, { AngleDownS, Close3S, WarningFillM } from '@synerise/ds-icon';
+import Icon, {
+  AngleDownS,
+  Close3S,
+  EditM,
+  WarningFillM,
+} from '@synerise/ds-icon';
 import { InformationCardTooltip } from '@synerise/ds-information-card';
 import Popconfirm from '@synerise/ds-popconfirm';
 import Tooltip from '@synerise/ds-tooltip';
@@ -147,6 +152,8 @@ const Trigger = forwardRef<HTMLDivElement, ItemPickerTriggerProps>(
             <Button
               disabled={disabled}
               type="ghost-primary"
+              mode="icon-label"
+              icon={<Icon component={<EditM />} />}
               onClick={handleChangeButtonClick}
             >
               {allTexts.changeButtonLabel}
