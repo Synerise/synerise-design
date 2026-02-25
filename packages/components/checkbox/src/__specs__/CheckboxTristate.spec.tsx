@@ -12,7 +12,7 @@ const SELECTOR_TRUE = '.ant-checkbox-checked:not(.ant-checkbox-indeterminate)';
 const SELECTOR_INDETERMINATE = '.ant-checkbox.ant-checkbox-indeterminate';
 
 let mockChecked: boolean | undefined = undefined;
-const mockOnChange = jest.fn((event: CheckboxTristateChangeEvent) => {
+const mockOnChange = vi.fn((event: CheckboxTristateChangeEvent) => {
   mockChecked = event.target.checked;
 });
 

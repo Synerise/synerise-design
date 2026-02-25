@@ -7,7 +7,7 @@ import Checkbox from '../index';
 
 describe('Checkbox', () => {
   const CHECKBOX_LABEL = 'Checkbox Label';
-  const onChange = jest.fn();
+  const onChange = vi.fn();
 
   it('should render', () => {
     // ARRANGE
@@ -87,7 +87,7 @@ describe('Checkbox', () => {
       const CHECKBOX_VALUE_A = 'CHECKBOX_VALUE_A';
       const CHECKBOX_LABEL_B = 'CHECKBOX_LABEL_B';
       const CHECKBOX_VALUE_B = 'CHECKBOX_VALUE_B';
-      const groupOnChange = jest.fn();
+      const groupOnChange = vi.fn();
 
       const { getByLabelText } = renderWithProvider(
         <Checkbox.Group onChange={groupOnChange}>
