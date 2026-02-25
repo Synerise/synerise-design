@@ -17,7 +17,7 @@ const PLACEHOLDER = 'Placeholder';
 
 describe('Completed within component', () => {
   it('Should render without value', () => {
-    const handleSetValue = jest.fn();
+    const handleSetValue = vi.fn();
     const { container } = renderWithProvider(
       <CompletedWithin
         text={TEXT}
@@ -30,7 +30,7 @@ describe('Completed within component', () => {
   });
 
   it('Should render with placeholder', () => {
-    const handleSetValue = jest.fn();
+    const handleSetValue = vi.fn();
     const { container } = renderWithProvider(
       <CompletedWithin
         text={TEXT}
@@ -45,7 +45,7 @@ describe('Completed within component', () => {
   });
 
   it('Should render with selected value', () => {
-    const handleSetValue = jest.fn();
+    const handleSetValue = vi.fn();
     const { container } = renderWithProvider(
       <CompletedWithin
         text={TEXT}
@@ -59,7 +59,7 @@ describe('Completed within component', () => {
   });
 
   it('Should render readonly with selected value', () => {
-    const handleSetValue = jest.fn();
+    const handleSetValue = vi.fn();
     const { container } = renderWithProvider(
       <CompletedWithin
         readOnly
@@ -74,7 +74,7 @@ describe('Completed within component', () => {
   });
 
   it('Should render call handleSetValue with empty values', () => {
-    const handleSetValue = jest.fn();
+    const handleSetValue = vi.fn();
     const { container } = renderWithProvider(
       <CompletedWithin
         text={TEXT}
