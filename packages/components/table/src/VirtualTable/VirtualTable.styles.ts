@@ -59,11 +59,11 @@ export const StickyScrollbarWrapper = styled.div<{
   isStuck: boolean;
 }>`
   position: sticky;
-  top: calc(100% - ${(props) => numberToPixels(24 + props.scrollOffset)});
+  bottom: 10px;
   z-index: ${(props) => (props.isStuck ? 2 : 0)};
   transform: translate(5px, ${(props) => numberToPixels(props.scrollOffset)});
   height: 10px;
-  margin-top: -10px;
+  margin-bottom: -10px;
 `;
 
 export const StickyScrollbarContent = styled.div<{ scrollWidth: number }>`
