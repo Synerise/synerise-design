@@ -19,7 +19,7 @@ describe('ColorPicker', () => {
   beforeEach(() => {
     props = {
       value: '#ffffff',
-      onChange: jest.fn(),
+      onChange: vi.fn(),
     };
   });
 
