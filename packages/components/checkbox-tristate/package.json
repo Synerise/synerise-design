@@ -41,6 +41,9 @@
   "dependencies": {
     "@synerise/ds-checkbox": "workspace:^"
   },
+  "devDependencies": {
+    "vitest": "4"
+  },
   "peerDependencies": {
     "@synerise/ds-core": "*",
     "antd": "4.24.16",
