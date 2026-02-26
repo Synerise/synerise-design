@@ -3483,6 +3483,9 @@ importers:
       '@synerise/ds-inline-alert':
         specifier: workspace:^
         version: link:../inline-alert
+      '@synerise/ds-panel':
+        specifier: workspace:^
+        version: link:../panel
       '@synerise/ds-skeleton':
         specifier: workspace:^
         version: link:../skeleton

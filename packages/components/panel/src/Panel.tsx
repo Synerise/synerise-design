@@ -5,14 +5,9 @@ import * as S from './Panel.styles';
 import type { PanelProps } from './Panel.types';
 
 const Panel = forwardRef<HTMLDivElement, PanelProps>(
-  ({ children, ...props }, ref) => {
+  ({ children, radius = DEFAULT_RADIUS, ...props }, ref) => {
     return (
-      <S.PanelWrapper
-        ref={ref}
-        p={DEFAULT_PADDING}
-        radius={DEFAULT_RADIUS}
-        {...props}
-      >
+      <S.PanelWrapper ref={ref} p={DEFAULT_PADDING} $radius={radius} {...props}>
         {children}
       </S.PanelWrapper>
     );

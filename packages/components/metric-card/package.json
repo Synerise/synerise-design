@@ -38,6 +38,7 @@
     "@synerise/ds-copy-icon": "workspace:^",
     "@synerise/ds-icon": "workspace:^",
     "@synerise/ds-inline-alert": "workspace:^",
+    "@synerise/ds-panel": "workspace:^",
     "@synerise/ds-skeleton": "workspace:^",
     "@synerise/ds-tooltip": "workspace:^",
     "@synerise/ds-typography": "workspace:^"

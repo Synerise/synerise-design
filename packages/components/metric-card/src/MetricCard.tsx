@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useMemo, useState } from 'react';
 
 import Icon, { InfoFillS } from '@synerise/ds-icon';
 import Tooltip from '@synerise/ds-tooltip';
@@ -23,15 +23,36 @@ const MetricCard = ({
 }: MetricCardProps) => {
   const hasValue = Boolean(hoverValue) || Boolean(displayValue);
   const tooltipVisible = Boolean(tooltip || tooltipConfig);
-  const [hover, setHover] = React.useState(false);
+  const [hover, setHover] = useState(false);
 
-  const showSkeleton = isLoading && !hasValue && !errorMessage;
-
-  const showError = errorMessage && !hasValue && !isLoading;
-  const showContent = !showSkeleton && !showError;
+  const content = useMemo(() => {
+    if (isLoading) {
+      return (
+        <S.MetricSkeleton
+          size="S"
+          width="M"
+          height={32}
+          numberOfSkeletons={1}
+        />
+      );
+    }
+    return errorMessage ? (
+      <S.MetricInlineAlert type="alert" message={errorMessage} />
+    ) : (
+      <S.MetricValue ellipsis={{ tooltip: hoverValue || displayValue }}>
+        <S.WrapperFormattedNumber>{displayValue}</S.WrapperFormattedNumber>
+        <S.WrapperNumber>{hoverValue || displayValue}</S.WrapperNumber>
+      </S.MetricValue>
+    );
+  }, [displayValue, errorMessage, hoverValue, isLoading]);
 
   return (
-    <S.MetricContainer greyBackground={greyBackground} {...htmlAttributes}>
+    <S.MetricContainer
+      p="8px 8px 14px 24px"
+      radius={3}
+      greyBackground={greyBackground}
+      {...htmlAttributes}
+    >
       <S.MetricHeaderBar>
         <S.TitleWrapper header={Boolean(headerRightSide)}>
           <Text ellipsis={{ tooltip: title }}>{title}</Text>
@@ -59,25 +80,7 @@ const MetricCard = ({
         onMouseLeave={() => setHover(false)}
         copyable={hasValue}
       >
-        {showSkeleton && (
-          <S.MetricSkeleton
-            size="S"
-            width="M"
-            height={32}
-            numberOfSkeletons={1}
-          />
-        )}
-
-        {showError && (
-          <S.MetricInlineAlert type="alert" message={errorMessage} />
-        )}
-        {showContent && (
-          <S.MetricValue ellipsis={{ tooltip: hoverValue || displayValue }}>
-            <S.WrapperFormattedNumber>{displayValue}</S.WrapperFormattedNumber>
-            <S.WrapperNumber>{hoverValue || displayValue}</S.WrapperNumber>
-          </S.MetricValue>
-        )}
-
+        {content}
         {typeof copyValue === 'string' && hover && (
           <S.WrapperCopyIcon>
             <S.CopyIcon copyValue={copyValue} texts={texts} />
