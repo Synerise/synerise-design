@@ -30,13 +30,13 @@ const RadioComponent = ({
           children
         )}
       </S.AntRadio>
-      <S.AdditionalData>
-        {description && (
+      {description && (
+        <S.AdditionalData>
           <S.Description disabled={antdRadioButtonProps.disabled}>
             {description}
           </S.Description>
-        )}
-      </S.AdditionalData>
+        </S.AdditionalData>
+      )}
     </S.RadioWrapper>
   );
 };

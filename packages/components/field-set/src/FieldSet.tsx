@@ -7,7 +7,7 @@ import React, {
   useState,
 } from 'react';
 
-import Button from '@synerise/ds-button';
+import { Expander } from '@synerise/ds-button';
 import { RawSwitch } from '@synerise/ds-switch';
 import { useResizeObserver } from '@synerise/ds-utils';
 
@@ -22,6 +22,7 @@ const FieldSet = ({
   component,
   button,
   onTitleClick,
+  onExpandChange,
   divider = true,
   expandable,
   defaultExpanded,
@@ -30,60 +31,63 @@ const FieldSet = ({
 }: FieldSetProps) => {
   const [expanded, setExpanded] = useState(!!defaultExpanded);
   const [maxHeight, setMaxHeight] = useState<number>();
+  const [shouldAnimate, setShouldAnimate] = useState(false);
 
-  const containerRef = useRef<HTMLDivElement | null>(null);
   const measureMaxHeightRef = useRef<HTMLDivElement | null>(null);
 
-  useResizeObserver(measureMaxHeightRef, (dimensions: DOMRect) =>
-    setMaxHeight(dimensions.height),
-  );
-
-  useEffect(() => {
-    containerRef.current?.scrollHeight &&
-      setMaxHeight(containerRef.current?.scrollHeight);
-  }, [component, button]);
+  useResizeObserver(measureMaxHeightRef, (dimensions: DOMRect) => {
+    setMaxHeight(dimensions.height);
+  });
 
   useEffect(() => {
     defaultExpanded !== undefined && setExpanded(defaultExpanded);
   }, [defaultExpanded]);
 
+  const handleTransitionEnd = useCallback(() => {
+    setShouldAnimate(false);
+  }, []);
+
+  const handleExpandedClick = useCallback(() => {
+    if (!expandable) {
+      return;
+    }
+    setShouldAnimate(true);
+    const newExpanded = !expanded;
+    setExpanded(newExpanded);
+    onExpandChange?.(newExpanded);
+  }, [expandable, onExpandChange, expanded]);
+
   const headerPrefix = useMemo(() => {
     if (expandable && (!triggerType || triggerType === 'expander')) {
       return (
         <S.PrefixWrapper>
-          <Button.Expander
-            expanded={expanded}
-            onClick={() => setExpanded(!expanded)}
-          />
+          <Expander expanded={expanded} onClick={handleExpandedClick} />
         </S.PrefixWrapper>
       );
     }
     if (expandable && triggerType === 'switch') {
       return (
         <S.PrefixWrapper>
-          <RawSwitch
-            checked={expanded}
-            onClick={() => setExpanded(!expanded)}
-          />
+          <RawSwitch checked={expanded} onClick={handleExpandedClick} />
         </S.PrefixWrapper>
       );
     }
     return prefix && <S.PrefixWrapper>{prefix}</S.PrefixWrapper>;
-  }, [expandable, prefix, expanded, triggerType]);
+  }, [expandable, prefix, expanded, triggerType, handleExpandedClick]);
 
   const handleTitleClick = useCallback(
     (event: MouseEvent<HTMLDivElement>) => {
-      expandable && setExpanded(!expanded);
+      handleExpandedClick();
       onTitleClick && onTitleClick(event);
     },
-    [onTitleClick, expandable, expanded],
+    [handleExpandedClick, onTitleClick],
   );
 
   const hasTitleAndDescription = Boolean(title && description);
 
   return (
     <S.ContainerWrapper
-      className={`ds-field-set ${className}`}
+      className={`ds-field-set ${className ?? ''}`}
       {...htmlAttributes}
     >
       <S.HeaderWrapper topAlign={Boolean(hasTitleAndDescription)}>
@@ -105,11 +109,12 @@ const FieldSet = ({
       {(component || button) && (
         <S.CollapsibleContent
           data-testid="field-set-collapsible"
-          ref={containerRef}
           expandable={expandable}
           expanded={expandable && expanded}
           aria-hidden={expandable && !expanded}
           maxHeight={maxHeight}
+          shouldAnimate={shouldAnimate}
+          onTransitionEnd={handleTransitionEnd}
         >
           <S.CollapsibleContentInner ref={measureMaxHeightRef}>
             {component && <S.ComponentWrapper>{component}</S.ComponentWrapper>}

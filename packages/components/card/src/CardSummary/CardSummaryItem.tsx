@@ -11,12 +11,13 @@ import { type CardSummaryItemProps } from './CardSummary.types';
 export const CardSummaryItem = ({
   label,
   value,
-  summaryRowObjects,
+  summaryObjects,
+  summaryObjectsDirection = 'row',
   valueButton,
   ...rest
 }: CardSummaryItemProps) => {
   const [isOpen, setIsOpen] = useState(false);
-  const withObjects = !!summaryRowObjects?.length;
+  const withObjects = !!summaryObjects?.length;
   const handleClick = () => {
     setIsOpen(!isOpen);
   };
@@ -53,9 +54,12 @@ export const CardSummaryItem = ({
           duration={ANIMATION_DURATION}
           height={isOpen ? 'auto' : 0}
         >
-          <S.CardSummaryItemObjects>
-            {summaryRowObjects?.map((object) => (
-              <S.CardSummaryItemObject key={object.key || uuid()}>
+          <S.CardSummaryItemObjects direction={summaryObjectsDirection}>
+            {summaryObjects?.map((object) => (
+              <S.CardSummaryItemObject
+                direction={summaryObjectsDirection}
+                key={object.key || uuid()}
+              >
                 {object}
               </S.CardSummaryItemObject>
             ))}

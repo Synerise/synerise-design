@@ -115,9 +115,10 @@ Renders a summary in a bulletted list form. Can be assigned to Card.staticConten
 
 #### CardSummaryItemProps
 
-| Property          | Description                                                                    | Type                   | Default |
-| ----------------- | ------------------------------------------------------------------------------ | ---------------------- | ------- |
-| key               | Unique key                                                                     | `React.Key`            | -       |
-| label             | Optional label to display                                                      | `React.ReactNode`      | -       |
-| value             | Mandatory value to display                                                     | `React.ReactNode`      | -       |
-| summaryRowObjects | Optional array of react elements, renders 4 in a row in a toggleable container | `React.ReactElement[]` | -       |
+| Property                | Description                                                         | Type                   | Default |
+| ----------------------- | ------------------------------------------------------------------- | ---------------------- | ------- |
+| key                     | Unique key                                                          | `React.Key`            | -       |
+| label                   | Optional label to display                                           | `React.ReactNode`      | -       |
+| value                   | Mandatory value to display                                          | `React.ReactNode`      | -       |
+| summaryObjects          | Optional array of react elements, renders in a toggleable container | `React.ReactElement[]` | -       |
+| summaryObjectsDirection | Direction of summary objects layout                                 | `'row'` / `'column'`   | -       |

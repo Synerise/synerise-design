@@ -3,10 +3,8 @@ import styled from 'styled-components';
 import Button, { type StyledButton } from '@synerise/ds-button';
 
 export const RowWrapper = styled.div`
-  @media (min-width: 1280px) {
-    display: flex;
-    align-items: start;
-  }
+  display: flex;
+  align-items: start;
   padding: 8px 0px 8px 0px;
 `;
 export const AutoCompleteWrapper = styled.div`
