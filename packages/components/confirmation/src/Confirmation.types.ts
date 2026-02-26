@@ -79,6 +79,10 @@ export type ConfirmationProps<ItemType extends ListItemProps> = SharedProps & {
    * Additional info displayed below description in a rounded frame
    */
   additionalInfo?: ReactNode;
+  /**
+   * Additional custom footer component like custom actions
+   */
+  customFooterComponent?: ReactNode;
 };
 
 export type PromptProps = SharedProps & {
