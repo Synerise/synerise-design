@@ -18,5 +18,6 @@ export type FieldSetProps = WithHTMLAttributes<
     expandable?: boolean;
     triggerType?: TriggerType;
     defaultExpanded?: boolean;
+    onExpandChange?: (expanded: boolean) => void;
   }
 >;

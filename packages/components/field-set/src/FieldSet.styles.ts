@@ -23,7 +23,6 @@ export const ContainerWrapper = styled.div`
 `;
 export const HeaderWrapper = styled.div<{ topAlign?: boolean }>`
   display: flex;
-  align-items: center;
   gap: 16px;
   align-items: ${(props) => (props.topAlign ? 'flex-start' : 'center')};
 `;
@@ -32,11 +31,13 @@ export const PrefixWrapper = styled.div`
 `;
 export const ActionButton = styled.div`
   display: flex;
-  padding; 8px;
+  padding: 8px;
 `;
+
 export const ExpanderWrapper = styled.div`
   display: flex;
 `;
+
 export const FieldSetTitle = styled.div`
   display: flex;
   flex-direction: column;
@@ -57,12 +58,13 @@ export const CollapsibleContent = styled.div<{
   expandable?: boolean;
   expanded?: boolean;
   maxHeight?: number;
+  shouldAnimate?: boolean;
 }>`
   position: relative;
   ${(props) =>
     props.expandable &&
     css`
-      transition: max-height 0.7s ease-in-out;
+      ${props.shouldAnimate && 'transition: max-height 0.7s ease-in-out;'}
       overflow: hidden;
       ${props.expanded
         ? `

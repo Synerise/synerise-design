@@ -2,6 +2,8 @@ import type { Key, ReactElement, ReactNode } from 'react';
 
 import type { WithHTMLAttributes } from '@synerise/ds-utils';
 
+export type SummaryObjectsDirection = 'row' | 'column';
+
 export type CardSummaryItemProps = WithHTMLAttributes<
   HTMLDivElement,
   {
@@ -9,7 +11,8 @@ export type CardSummaryItemProps = WithHTMLAttributes<
     label?: ReactNode;
     value: ReactNode;
     valueButton?: ReactNode;
-    summaryRowObjects?: ReactElement[];
+    summaryObjects?: ReactElement[];
+    summaryObjectsDirection?: SummaryObjectsDirection;
   }
 >;
 

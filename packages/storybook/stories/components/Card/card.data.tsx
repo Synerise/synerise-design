@@ -110,7 +110,7 @@ export const CARD_SUMMARY_ITEMS = [
     key: '1',
     label: 'Total audience',
     value: '1234',
-    summaryRowObjects: [
+    summaryObjects: [
       objectAvatar(),
       objectAvatar(<AiSearchGreyM />, 'Short filename'),
       objectAvatar(<AnalyticsGreyM />),
@@ -131,7 +131,7 @@ export const CARD_SUMMARY_ITEMS = [
     key: '3',
     label: 'Selected segments',
     value: '5',
-    summaryRowObjects: [
+    summaryObjects: [
       objectWithTag('A', theme.palette['blue-600']),
       objectWithTag('B', theme.palette['mars-600']),
       objectWithTag('C', theme.palette['fern-600']),
@@ -143,7 +143,7 @@ export const CARD_SUMMARY_ITEMS = [
     key: '4',
     label: 'Users',
     value: '2',
-    summaryRowObjects: [
+    summaryObjects: [
       objectUserAvatar('Tom', 'Hilding'),
       objectUserAvatar('Martha', 'Thompson'),
     ],
@@ -156,9 +156,19 @@ export const CARD_SUMMARY_ITEMS = [
         <Icon component={<ShowM />} /> Show configuration
       </Button>
     ),
-    summaryRowObjects: [
+    summaryObjects: [
       objectUserAvatar('Tom', 'Hilding'),
       objectUserAvatar('Martha', 'Thompson'),
+    ],
+  },
+  {
+    key: '6',
+    label: 'Column elements',
+    value: 'value',
+    summaryObjectsDirection: 'column',
+    summaryObjects: [
+      objectUserAvatar('James', 'Smith'),
+      objectUserAvatar('Joe', 'Doe'),
     ],
   },
 ];
