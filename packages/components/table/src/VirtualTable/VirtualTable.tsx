@@ -741,23 +741,6 @@ const VirtualTable = <
       ref={containerRef}
       isHeaderVisible={isHeaderVisible}
     >
-      {isSticky && dataSource.length ? (
-        <S.StickyScrollbarWrapper
-          isStuck={isStuck}
-          scrollOffset={offsetScroll || 0}
-        >
-          <Scrollbar
-            absolute
-            onScroll={handleStickyScrollbarScroll}
-            ref={horizontalScrollRef}
-          >
-            <S.StickyScrollbarContent
-              ref={elementRef}
-              scrollWidth={scrollWidth}
-            />
-          </Scrollbar>
-        </S.StickyScrollbarWrapper>
-      ) : null}
       <ResizeObserver
         onResize={({ offsetWidth }) => {
           setTableWidth(offsetWidth);
@@ -782,6 +765,23 @@ const VirtualTable = <
           {tableLocale.infiniteScrollBackToTop}
         </BackToTopButton>
       )}
+      {isSticky && dataSource.length ? (
+        <S.StickyScrollbarWrapper
+          isStuck={isStuck}
+          scrollOffset={offsetScroll || 0}
+        >
+          <Scrollbar
+            absolute
+            onScroll={handleStickyScrollbarScroll}
+            ref={horizontalScrollRef}
+          >
+            <S.StickyScrollbarContent
+              ref={elementRef}
+              scrollWidth={scrollWidth}
+            />
+          </Scrollbar>
+        </S.StickyScrollbarWrapper>
+      ) : null}
     </S.VirtualTableWrapper>
   );
 };
