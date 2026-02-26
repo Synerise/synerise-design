@@ -11,7 +11,9 @@ import * as S from './PanelResizer.styles';
 import { Resizer } from './Resizer';
 import {
   type InitialVectorOptions,
+  calculateLeftPanelHeight,
   calculateLeftPanelWidth,
+  calculateRightPanelHeight,
   calculateRightPanelWidth,
   getInitialVector,
 } from './utils';
@@ -21,6 +23,7 @@ type PanelsResizerProps = {
   rightPanel: ReactNode;
   initial?: InitialVectorOptions;
   scrollable?: boolean;
+  isHorizontal?: boolean;
 };
 
 export const PanelsResizer = ({
@@ -28,6 +31,7 @@ export const PanelsResizer = ({
   rightPanel,
   initial,
   scrollable,
+  isHorizontal = false,
 }: PanelsResizerProps) => {
   const containerRef = useRef<HTMLDivElement>(null);
   const [isResizing, setIsResizing] = useState(false);
@@ -36,7 +40,9 @@ export const PanelsResizer = ({
 
   useEffect(() => {
     if (containerRef.current) {
-      const containerWidth = containerRef.current.offsetWidth;
+      const containerWidth = isHorizontal
+        ? containerRef.current.offsetHeight
+        : containerRef.current.offsetWidth;
       const initialVector = getInitialVector(initial, containerWidth);
       setVector(initialVector);
     }
@@ -48,12 +54,13 @@ export const PanelsResizer = ({
       if (!isResizing) {
         return;
       }
+      const eventClientX = isHorizontal ? event.clientY : event.clientX;
 
-      const deltaX = event.clientX - startClientXRef.current;
+      const deltaX = eventClientX - startClientXRef.current;
       setVector((prevVector) =>
         prevVector !== null ? prevVector + deltaX : deltaX,
       );
-      startClientXRef.current = event.clientX;
+      startClientXRef.current = eventClientX;
     },
     [isResizing],
   );
@@ -70,7 +77,7 @@ export const PanelsResizer = ({
     (event: MouseEvent<HTMLDivElement>) => {
       event.preventDefault();
       setIsResizing(true);
-      startClientXRef.current = event.clientX;
+      startClientXRef.current = isHorizontal ? event.clientY : event.clientX;
     },
     [],
   );
@@ -82,22 +89,30 @@ export const PanelsResizer = ({
       onMouseUp={handleMouseUpOrLeave}
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseUpOrLeave}
+      isHorizontal={isHorizontal}
     >
       <div
         data-testid="left-panel-wrapper"
         style={{
-          width: calculateLeftPanelWidth(vector),
+          ...(isHorizontal
+            ? { height: calculateLeftPanelHeight(vector) }
+            : { width: calculateLeftPanelWidth(vector) }),
           pointerEvents: isResizing ? 'none' : 'auto',
           ...(scrollable ? { overflow: 'auto' } : {}),
         }}
       >
         {leftPanel}
       </div>
-      <Resizer onMouseDown={handleMouseDownOnResizer} />
+      <Resizer
+        onMouseDown={handleMouseDownOnResizer}
+        isHorizontal={isHorizontal}
+      />
       <div
         data-testid="right-panel-wrapper"
         style={{
-          width: calculateRightPanelWidth(vector),
+          ...(isHorizontal
+            ? { height: calculateRightPanelHeight(vector) }
+            : { width: calculateRightPanelWidth(vector) }),
           pointerEvents: isResizing ? 'none' : 'auto',
           zIndex: 4,
           ...(scrollable ? { overflow: 'auto' } : {}),

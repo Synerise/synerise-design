@@ -6,16 +6,24 @@ import { Handler, HandlerIcon } from './Resizer.styles';
 
 type ResizerProps = {
   onMouseDown: (event: MouseEvent<HTMLDivElement>) => void;
+  isHorizontal?: boolean;
 };
 
 const HANDLER_WIDTH = 16;
 
-export const Resizer = ({ onMouseDown }: ResizerProps) => (
+export const Resizer = ({
+  onMouseDown,
+  isHorizontal = false,
+}: ResizerProps) => (
   <Handler
     data-testid="resizer-handler"
     onMouseDown={onMouseDown}
-    width={HANDLER_WIDTH}
+    isHorizontal={isHorizontal}
   >
-    <HandlerIcon component={<DragHandleM />} size={HANDLER_WIDTH} />
+    <HandlerIcon
+      component={<DragHandleM />}
+      size={HANDLER_WIDTH}
+      isHorizontal={isHorizontal}
+    />
   </Handler>
 );

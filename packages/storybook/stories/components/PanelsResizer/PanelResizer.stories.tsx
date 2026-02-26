@@ -1,6 +1,6 @@
 import React from 'react';
-import { Meta, StoryObj } from '@storybook/react-webpack5';
 
+import { Meta, StoryObj } from '@storybook/react-webpack5';
 import { PanelsResizer } from '@synerise/ds-panels-resizer';
 
 const LeftContent = () => (
@@ -52,7 +52,11 @@ export const Default: Story = {
   },
   render: ({ scrollable }) => (
     <div style={{ height: '600px', width: '800px' }}>
-      <PanelsResizer leftPanel={<LeftContent />} rightPanel={<RightContent />} scrollable={scrollable} />
+      <PanelsResizer
+        leftPanel={<LeftContent />}
+        rightPanel={<RightContent />}
+        scrollable={scrollable}
+      />
     </div>
   ),
 };
@@ -69,6 +73,24 @@ export const LeftPanelInitialWidth: Story = {
         leftPanel={<LeftContent />}
         rightPanel={<RightContent />}
         scrollable={scrollable}
+      />
+    </div>
+  ),
+};
+
+export const HorizontalPanels: Story = {
+  args: {
+    isHorizontal: true,
+    scrollable: false,
+  },
+  render: ({ scrollable, initial, isHorizontal }) => (
+    <div style={{ height: '600px', width: '800px' }}>
+      <PanelsResizer
+        initial={initial}
+        leftPanel={<LeftContent />}
+        rightPanel={<RightContent />}
+        scrollable={scrollable}
+        isHorizontal={isHorizontal}
       />
     </div>
   ),
@@ -97,7 +119,11 @@ export const ScrollablePanels: Story = {
   },
   render: ({ scrollable }) => (
     <div style={{ height: '300px', width: '800px' }}>
-      <PanelsResizer leftPanel={<LongContent />} rightPanel={<LongContent />} scrollable={scrollable} />
+      <PanelsResizer
+        leftPanel={<LongContent />}
+        rightPanel={<LongContent />}
+        scrollable={scrollable}
+      />
     </div>
   ),
 };
