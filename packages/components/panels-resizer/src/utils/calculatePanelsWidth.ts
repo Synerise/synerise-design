@@ -31,3 +31,13 @@ export const calculateLeftPanelWidth = (vector: number): string => {
 export const calculateRightPanelWidth = (vector: number): string => {
   return `calc(${HALF_WIDTH} - ${vector}px)`;
 };
+
+const HALF_HEIGHT = '50vh';
+
+export const calculateLeftPanelHeight = (vector: number): string => {
+  return `calc(${HALF_HEIGHT} + ${vector}px)`;
+};
+
+export const calculateRightPanelHeight = (vector: number): string => {
+  return `calc(${HALF_HEIGHT} - ${vector}px)`;
+};
