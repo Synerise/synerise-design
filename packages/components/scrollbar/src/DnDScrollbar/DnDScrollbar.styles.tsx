@@ -1,12 +1,5 @@
 import styled, { keyframes } from 'styled-components';
 
-export const ScrollbarContainer = styled.div`
-  display: flex;
-  height: 100%;
-  overflow: hidden;
-  position: relative;
-`;
-
 export const ScrollbarContent = styled.div`
   -ms-overflow-style: none;
   overflow: auto;
@@ -73,6 +66,8 @@ export const ScrollbarTrackWrapper = styled.div<{ largeSize?: boolean }>`
   right: ${(props) => (props.largeSize ? '3px' : '0')};
   bottom: 0;
   user-select: none;
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out;
 
   ${ThumbVertical} {
     width: ${(props) => (props.largeSize ? '16px' : '3px')};
@@ -144,5 +139,17 @@ export const Loader = styled.div<{ loading?: boolean }>`
   svg {
     color: ${(props): string => props.theme.palette['blue-600']};
     fill: ${(props): string => props.theme.palette['blue-600']};
+  }
+`;
+
+export const ScrollbarContainer = styled.div`
+  display: flex;
+  height: 100%;
+  overflow: hidden;
+  position: relative;
+  &:hover {
+    ${ScrollbarTrackWrapper} {
+      opacity: 1;
+    }
   }
 `;

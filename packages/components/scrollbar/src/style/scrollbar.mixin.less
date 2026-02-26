@@ -3,7 +3,7 @@
 }
 
 .ps__rail-x.ps__rail-x {
-  opacity: 1;
+  opacity: 0;
   height: 11px;
   top: unset !important;
   bottom: 0;
@@ -12,6 +12,7 @@
   transform: translateX(-4px);
   overflow: hidden;
   margin-right: 12px;
+  transition: opacity 0.3s ease-in-out;
 }
 
 .ps {
@@ -19,7 +20,7 @@
 }
 
 .ps__rail-y.ps__rail-y {
-  opacity: 1;
+  opacity: 0;
   width: 11px;
   left: unset !important;
   right: 0;
@@ -28,6 +29,7 @@
   transform: translateY(4px);
   overflow: hidden;
   margin-bottom: 12px;
+  transition: opacity 0.3s ease-in-out;
 }
 
 .ps:hover .ps__rail-x,
@@ -76,7 +78,6 @@
 .large-size {
   .ps__rail-x.ps__rail-x,
   .ps__rail-y.ps__rail-y {
-    opacity: 1;
     width: 26px;
     height: 26px;
     position: absolute;
