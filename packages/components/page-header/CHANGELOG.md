@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.0.61](https://github.com/synerise/synerise-design/compare/@synerise/ds-page-header@1.0.60...@synerise/ds-page-header@1.0.61) (2026-02-26)
+
+### Bug Fixes
+
+- **page-header:** add box-shadow and border-bottom ([10823ff](https://github.com/synerise/synerise-design/commit/10823ffea9bf1af305783d092c451a77f4a82569))
+
 ## [1.0.60](https://github.com/synerise/synerise-design/compare/@synerise/ds-page-header@1.0.59...@synerise/ds-page-header@1.0.60) (2026-02-23)
 
 **Note:** Version bump only for package @synerise/ds-page-header

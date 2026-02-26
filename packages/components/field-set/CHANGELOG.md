@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.2.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-field-set@1.1.20...@synerise/ds-field-set@1.2.0) (2026-02-26)
+
+### Features
+
+- **field-set:** add onExpandClick prop ([d5689bc](https://github.com/Synerise/synerise-design/commit/d5689bce6295d3037092d75921a4a3ba4430250e))
+
 ## [1.1.20](https://github.com/Synerise/synerise-design/compare/@synerise/ds-field-set@1.1.19...@synerise/ds-field-set@1.1.20) (2026-02-23)
 
 **Note:** Version bump only for package @synerise/ds-field-set

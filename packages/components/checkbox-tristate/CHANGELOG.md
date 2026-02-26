@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.1.28](https://github.com/Synerise/synerise-design/compare/@synerise/ds-checkbox-tristate@1.1.27...@synerise/ds-checkbox-tristate@1.1.28) (2026-02-26)
+
+### Bug Fixes
+
+- **checkbox:** change jest to vitest ([ed043ea](https://github.com/Synerise/synerise-design/commit/ed043ea0ea322cc107a131ab0f8ae7a06199b3fc))
+
 ## [1.1.27](https://github.com/Synerise/synerise-design/compare/@synerise/ds-checkbox-tristate@1.1.26...@synerise/ds-checkbox-tristate@1.1.27) (2026-02-23)
 
 **Note:** Version bump only for package @synerise/ds-checkbox-tristate

@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.2.9](https://github.com/Synerise/synerise-design/compare/@synerise/ds-confirmation@1.2.8...@synerise/ds-confirmation@1.2.9) (2026-02-26)
+
+### Bug Fixes
+
+- **confirmation:** custom footer component for confirmation ([9b441d5](https://github.com/Synerise/synerise-design/commit/9b441d532eb492d789023fe6a181cd996114dabb))
+
 ## [1.2.8](https://github.com/Synerise/synerise-design/compare/@synerise/ds-confirmation@1.2.7...@synerise/ds-confirmation@1.2.8) (2026-02-23)
 
 **Note:** Version bump only for package @synerise/ds-confirmation

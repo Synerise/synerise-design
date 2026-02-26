@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.2.1](https://github.com/Synerise/synerise-design/compare/@synerise/ds-panel@1.2.0...@synerise/ds-panel@1.2.1) (2026-02-26)
+
+### Bug Fixes
+
+- **metric-card:** updated logic for content display ([546cdf6](https://github.com/Synerise/synerise-design/commit/546cdf6abf4d16d37960171f0ee8b3a85772ba9a))
+
 # [1.2.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-panel@1.1.0...@synerise/ds-panel@1.2.0) (2026-02-05)
 
 ### Features

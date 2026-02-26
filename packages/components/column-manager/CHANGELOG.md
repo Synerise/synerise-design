@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.2.45](https://github.com/Synerise/synerise-design/compare/@synerise/ds-column-manager@1.2.44...@synerise/ds-column-manager@1.2.45) (2026-02-26)
+
+### Bug Fixes
+
+- **column-manager:** change jest to vitest ([f02c022](https://github.com/Synerise/synerise-design/commit/f02c022e91f8bc3e778389578b05eee28a3badeb))
+
 ## [1.2.44](https://github.com/Synerise/synerise-design/compare/@synerise/ds-column-manager@1.2.43...@synerise/ds-column-manager@1.2.44) (2026-02-23)
 
 **Note:** Version bump only for package @synerise/ds-column-manager

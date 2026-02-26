@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.2.8](https://github.com/Synerise/synerise-design/compare/@synerise/ds-metric-card@1.2.7...@synerise/ds-metric-card@1.2.8) (2026-02-26)
+
+### Bug Fixes
+
+- **metric-card:** updated logic for content display ([546cdf6](https://github.com/Synerise/synerise-design/commit/546cdf6abf4d16d37960171f0ee8b3a85772ba9a))
+
 ## [1.2.7](https://github.com/Synerise/synerise-design/compare/@synerise/ds-metric-card@1.2.6...@synerise/ds-metric-card@1.2.7) (2026-02-23)
 
 **Note:** Version bump only for package @synerise/ds-metric-card

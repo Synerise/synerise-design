@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.1.36](https://github.com/Synerise/synerise-design/compare/@synerise/ds-code-snippet@1.1.35...@synerise/ds-code-snippet@1.1.36) (2026-02-26)
+
+### Bug Fixes
+
+- **code-snippet:** change jest to vitest ([4a12e9c](https://github.com/Synerise/synerise-design/commit/4a12e9cbf0880d9fa5c02ba0acfa6a8b91f6dee5))
+
 ## [1.1.35](https://github.com/Synerise/synerise-design/compare/@synerise/ds-code-snippet@1.1.34...@synerise/ds-code-snippet@1.1.35) (2026-02-23)
 
 **Note:** Version bump only for package @synerise/ds-code-snippet

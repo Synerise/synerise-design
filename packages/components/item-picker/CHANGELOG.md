@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.16.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-item-picker@1.15.13...@synerise/ds-item-picker@1.16.0) (2026-02-26)
+
+### Features
+
+- **item-picker:** add icon to button ([9461dcd](https://github.com/Synerise/synerise-design/commit/9461dcd04a65ed51ff8fffd9849109f6ef14e9f4))
+
 ## [1.15.13](https://github.com/Synerise/synerise-design/compare/@synerise/ds-item-picker@1.15.12...@synerise/ds-item-picker@1.15.13) (2026-02-23)
 
 **Note:** Version bump only for package @synerise/ds-item-picker

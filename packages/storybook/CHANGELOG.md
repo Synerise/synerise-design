@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.40.0](https://github.com/Synerise/synerise-design/compare/storybook@1.39.0...storybook@1.40.0) (2026-02-26)
+
+### Features
+
+- **field-set:** add onExpandClick prop ([d5689bc](https://github.com/Synerise/synerise-design/commit/d5689bce6295d3037092d75921a4a3ba4430250e))
+
 # [1.39.0](https://github.com/Synerise/synerise-design/compare/storybook@1.38.0...storybook@1.39.0) (2026-02-23)
 
 ### Bug Fixes

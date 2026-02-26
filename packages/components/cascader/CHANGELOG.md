@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.1.24](https://github.com/Synerise/synerise-design/compare/@synerise/ds-cascader@1.1.23...@synerise/ds-cascader@1.1.24) (2026-02-26)
+
+### Bug Fixes
+
+- **cascader:** change jest to vitest ([ccca770](https://github.com/Synerise/synerise-design/commit/ccca7705b3f6457e4c21e753a27bd7c1c7111f8a))
+
 ## [1.1.23](https://github.com/Synerise/synerise-design/compare/@synerise/ds-cascader@1.1.22...@synerise/ds-cascader@1.1.23) (2026-02-23)
 
 **Note:** Version bump only for package @synerise/ds-cascader

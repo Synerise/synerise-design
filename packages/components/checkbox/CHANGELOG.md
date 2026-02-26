@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.2.18](https://github.com/synerise/synerise-design/compare/@synerise/ds-checkbox@1.2.17...@synerise/ds-checkbox@1.2.18) (2026-02-26)
+
+### Bug Fixes
+
+- **checkbox:** change jest to vitest ([ed043ea](https://github.com/synerise/synerise-design/commit/ed043ea0ea322cc107a131ab0f8ae7a06199b3fc))
+
 ## [1.2.17](https://github.com/synerise/synerise-design/compare/@synerise/ds-checkbox@1.2.16...@synerise/ds-checkbox@1.2.17) (2026-02-23)
 
 **Note:** Version bump only for package @synerise/ds-checkbox

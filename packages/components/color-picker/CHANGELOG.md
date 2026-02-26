@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.3.24](https://github.com/Synerise/synerise-design/compare/@synerise/ds-color-picker@1.3.23...@synerise/ds-color-picker@1.3.24) (2026-02-26)
+
+### Bug Fixes
+
+- **color-picker:** change jest to vitest ([d9fc28f](https://github.com/Synerise/synerise-design/commit/d9fc28f7428eb6938e31095c539c863e08dc6ef3))
+
 ## [1.3.23](https://github.com/Synerise/synerise-design/compare/@synerise/ds-color-picker@1.3.22...@synerise/ds-color-picker@1.3.23) (2026-02-23)
 
 **Note:** Version bump only for package @synerise/ds-color-picker

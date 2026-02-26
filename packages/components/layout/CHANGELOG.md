@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.1.14](https://github.com/synerise/synerise-design/compare/@synerise/ds-layout@1.1.13...@synerise/ds-layout@1.1.14) (2026-02-26)
+
+### Bug Fixes
+
+- **page-header:** add box-shadow and border-bottom ([10823ff](https://github.com/synerise/synerise-design/commit/10823ffea9bf1af305783d092c451a77f4a82569))
+
 ## [1.1.13](https://github.com/synerise/synerise-design/compare/@synerise/ds-layout@1.1.12...@synerise/ds-layout@1.1.13) (2026-02-19)
 
 **Note:** Version bump only for package @synerise/ds-layout
