@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.40.1](https://github.com/Synerise/synerise-design/compare/storybook@1.40.0...storybook@1.40.1) (2026-02-26)
+
+### Bug Fixes
+
+- **panels-resizer:** horizontal panels resizer ([f7628d2](https://github.com/Synerise/synerise-design/commit/f7628d2d3640479dd8bf7ab625a8b87fed5f0ef0))
+
 # [1.40.0](https://github.com/Synerise/synerise-design/compare/storybook@1.39.0...storybook@1.40.0) (2026-02-26)
 
 ### Features
