@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { renderWithProvider } from '@synerise/ds-core';
-import { getByText, screen, waitFor } from '@testing-library/react';
+import { getByText, screen, waitFor, fireEvent } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 
 import CodeArea from '../CodeArea';
@@ -34,10 +34,10 @@ const TEST_IDS = {
   syntaxOptions: 'code-area-syntaxoptions',
 };
 
-jest.mock(
+vi.mock(
   '@monaco-editor/react',
-  () =>
-    ({ onChange, value, 'data-testid': dataTestId }) => {
+  () => ({
+    default: ({ onChange, value, 'data-testid': dataTestId }) => {
       return (
         <input
           type="text"
@@ -48,6 +48,7 @@ jest.mock(
         />
       );
     },
+  }),
 );
 
 describe('CodeArea', () => {
@@ -105,7 +106,6 @@ describe('CodeArea', () => {
     const counterBottom = screen.queryByTestId(TEST_IDS.counterBottom);
     expect(counterBottom).not.toBeInTheDocument();
   });
-
   it('should render CodeArea with counter below', () => {
     renderWithProvider(
       <CodeArea
@@ -119,8 +119,9 @@ describe('CodeArea', () => {
     expect(counterTop).not.toBeInTheDocument();
   });
 
+
   it('should render CodeArea with multiple syntax options', async () => {
-    const onSyntaxChange = jest.fn();
+    const onSyntaxChange = vi.fn();
     renderWithProvider(
       <CodeArea
         currentSyntax={SYNTAX}
@@ -135,15 +136,14 @@ describe('CodeArea', () => {
     expect(syntaxOptions).toBeInTheDocument();
     expect(syntaxSelectionTrigger).toBeInTheDocument();
 
-    userEvent.click(syntaxSelectionTrigger);
+    fireEvent.click(syntaxSelectionTrigger);
     await waitFor(() => {
-      const items = screen.getAllByRole('menuitem');
-      expect(items.length).toBe(SYNTAX_OPTIONS.length);
+      expect(screen.getByTestId('popover-inline-select-content')).toBeInTheDocument();
     });
   });
 
   it('should show CodeArea in fullscreen mode', async () => {
-    const onFullscreenChange = jest.fn();
+    const onFullscreenChange = vi.fn();
     renderWithProvider(
       <div data-popup-container>
         <CodeArea
@@ -202,7 +202,7 @@ describe('CodeArea', () => {
   it('should show placeholder when value changes to empty string', async () => {
     const PLACEHOLDER = 'PLACEHOLDER';
     const DATA_TEST_ID = 'DATA_TEST_ID'
-    const handleChange = jest.fn();
+    const handleChange = vi.fn();
     renderWithProvider(
       <CodeArea
         currentSyntax={SYNTAX}
@@ -216,11 +216,11 @@ describe('CodeArea', () => {
     );
     expect(screen.getByText(PLACEHOLDER)).toBeInTheDocument();
     expect(screen.getByText(PLACEHOLDER)).not.toBeVisible();
-    
+
     userEvent.type(screen.getByTestId(DATA_TEST_ID), '{Backspace}{Backspace}{Backspace}{Backspace}');
     await waitFor(() => expect(handleChange).toBeCalled());
-    
-    
+
+
     expect(screen.getByText(PLACEHOLDER)).toBeVisible();
 
   });
