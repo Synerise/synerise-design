@@ -5,6 +5,7 @@ import { renderWithProvider } from '@synerise/ds-core';
 import { fireEvent, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 
+
 import Condition from '../Condition';
 import {
   type ConditionProps,
@@ -20,6 +21,15 @@ import {
   PARAMETER_ITEMS,
   SUBJECT_ITEMS,
 } from './data/index.data';
+
+vi.mock('lodash.debounce', () => ({
+  default: (fn: Function) => {
+    const debounced = (...args: any[]) => fn(...args);
+    debounced.cancel = () => {};
+    debounced.flush = () => {};
+    return debounced;
+  },
+}));
 
 const DEFAULT_CONDITION_ROW: {
   [P in keyof StepConditions]: Partial<StepConditions[P]>;
@@ -161,9 +171,6 @@ const RENDER_CONDITIONS = (props?: Partial<ConditionProps>) => {
 };
 
 describe('Condition component', () => {
-  beforeAll(() => {
-    jest.mock('lodash.debounce', () => jest.fn((fn) => fn));
-  });
   test('Should render', () => {
     const { container } = renderWithProvider(RENDER_CONDITIONS());
 
@@ -172,7 +179,7 @@ describe('Condition component', () => {
   test('Should update step name', async () => {
     const NEW_STEP_NAME = 'First step';
     const STEP_ID = DEFAULT_STATE.steps[0].id;
-    const onUpdateStepName = jest.fn();
+    const onUpdateStepName = vi.fn();
     const { container } = renderWithProvider(
       RENDER_CONDITIONS({ onUpdateStepName }),
     );
@@ -202,7 +209,7 @@ describe('Condition component', () => {
   });
 
   test('Should call addCondition callback', () => {
-    const addCondition = jest.fn();
+    const addCondition = vi.fn();
     renderWithProvider(RENDER_CONDITIONS({ addCondition }));
 
     const addConditionButton = screen.getByText(
@@ -215,7 +222,7 @@ describe('Condition component', () => {
   });
 
   test('Should call removeCondition callback', () => {
-    const removeCondition = jest.fn();
+    const removeCondition = vi.fn();
     const { getAllByTestId } = renderWithProvider(
       RENDER_CONDITIONS({ removeCondition, steps: getSteps(1, 2) }),
     );
@@ -227,7 +234,7 @@ describe('Condition component', () => {
   });
 
   test('Should render add step button and call addStep callback', () => {
-    const addStep = jest.fn();
+    const addStep = vi.fn();
     renderWithProvider(RENDER_CONDITIONS({ addStep }));
 
     fireEvent.click(screen.getByText(DEFAULT_TEXTS.addStep));
@@ -241,7 +248,7 @@ describe('Condition component', () => {
   });
 
   test('Should render with drag handle icon', () => {
-    const onChangeOrder = jest.fn();
+    const onChangeOrder = vi.fn();
     const { container } = renderWithProvider(
       RENDER_CONDITIONS({ steps: getSteps(2, 1), onChangeOrder }),
     );
@@ -260,7 +267,7 @@ describe('Condition component', () => {
   });
 
   test('Should call remove step callback', () => {
-    const removeStep = jest.fn();
+    const removeStep = vi.fn();
     const { container } = renderWithProvider(RENDER_CONDITIONS({ removeStep }));
     const removeIcon = container.querySelector('.ds-cruds .delete');
 
@@ -270,7 +277,7 @@ describe('Condition component', () => {
   });
 
   test('Should call duplicate step callback', () => {
-    const duplicateStep = jest.fn();
+    const duplicateStep = vi.fn();
     const { container } = renderWithProvider(
       RENDER_CONDITIONS({ duplicateStep }),
     );
@@ -651,7 +658,6 @@ describe('Condition component', () => {
 
     expect(screen.getByText('CUSTOM ADD STEP BUTTON')).toBeTruthy();
   });
-
   it('should render tooltip on selectedItem mouseOver', async () => {
     renderWithProvider(
       RENDER_CONDITIONS({
