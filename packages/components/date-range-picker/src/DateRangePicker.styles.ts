@@ -31,7 +31,9 @@ export const Addon = styled.div<{ last?: boolean }>`
 
 export const PickerWrapper = styled.div``;
 export const PickerTrigger = styled(PopoverTrigger)`
-  display: block;
+  && {
+    display: block;
+  }
 `;
 
 export const OverlayContainer = styled.div<{ visible?: boolean }>`
