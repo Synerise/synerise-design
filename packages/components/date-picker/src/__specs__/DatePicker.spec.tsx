@@ -12,13 +12,13 @@ const NAVBAR_ITEM_SELECTOR = '.ds-date-picker-nav  > div > button';
 
 describe('RawDatePicker', () => {
   beforeEach(() => {
-    Element.prototype.scrollTo = jest.fn();
+    Element.prototype.scrollTo = vi.fn();
   });
   it('should render', () => {
     const element = renderWithProvider(
       <RawDatePicker
         showTime={true}
-        onApply={jest.fn()}
+        onApply={vi.fn()}
         texts={{
           apply: 'Apply',
           now: 'Now',
@@ -28,11 +28,11 @@ describe('RawDatePicker', () => {
     expect(element).toBeTruthy();
   });
   it('should validate all days visible after render', async () => {
-    const validator = jest.fn();
+    const validator = vi.fn();
     renderWithProvider(
       <RawDatePicker
         showTime={true}
-        onApply={jest.fn()}
+        onApply={vi.fn()}
         texts={{
           apply: 'Apply',
           now: 'Now',
@@ -47,7 +47,7 @@ describe('RawDatePicker', () => {
     renderWithProvider(
       <RawDatePicker
         showTime={true}
-        onApply={jest.fn()}
+        onApply={vi.fn()}
         texts={{
           apply: 'Apply',
           now: 'Now',
@@ -64,7 +64,7 @@ describe('RawDatePicker', () => {
     renderWithProvider(
       <RawDatePicker
         showTime={true}
-        onApply={jest.fn()}
+        onApply={vi.fn()}
         texts={{
           apply: 'Apply',
           now: 'Now',
@@ -81,7 +81,7 @@ describe('RawDatePicker', () => {
     renderWithProvider(
       <RawDatePicker
         showTime={true}
-        onApply={jest.fn()}
+        onApply={vi.fn()}
         texts={{
           apply: 'Apply',
           now: 'Now',
@@ -99,7 +99,7 @@ describe('RawDatePicker', () => {
     const { container } = renderWithProvider(
       <RawDatePicker
         showTime={true}
-        onApply={jest.fn()}
+        onApply={vi.fn()}
         texts={{
           apply: 'Apply',
           now: 'Now',
@@ -115,7 +115,7 @@ describe('RawDatePicker', () => {
     const { container } = renderWithProvider(
       <RawDatePicker
         showTime={true}
-        onApply={jest.fn()}
+        onApply={vi.fn()}
         texts={{
           apply: 'Apply',
           now: 'Now',
@@ -132,7 +132,7 @@ describe('RawDatePicker', () => {
   it('should show previous month on left arrow click', async () => {
     const { container } = renderWithProvider(
       <RawDatePicker
-        onApply={jest.fn()}
+        onApply={vi.fn()}
         showTime={true}
         texts={{
           apply: 'Apply',
@@ -150,7 +150,7 @@ describe('RawDatePicker', () => {
   it('should show next month on right arrow click', async () => {
     const { container } = renderWithProvider(
       <RawDatePicker
-        onApply={jest.fn()}
+        onApply={vi.fn()}
         showTime={true}
         texts={{
           apply: 'Apply',
@@ -168,7 +168,7 @@ describe('RawDatePicker', () => {
   it('should show next year on right arrow click', async () => {
     const { container } = renderWithProvider(
       <RawDatePicker
-        onApply={jest.fn()}
+        onApply={vi.fn()}
         showTime={true}
         texts={{
           apply: 'Apply',
@@ -189,7 +189,7 @@ describe('RawDatePicker', () => {
 
     renderWithProvider(
       <DatePicker
-        onApply={jest.fn()}
+        onApply={vi.fn()}
         showTime={true}
         texts={{
           apply: 'Apply',
@@ -206,7 +206,7 @@ describe('RawDatePicker', () => {
   it('should render with default formatValueOptions', () => {
     renderWithProvider(
       <DatePicker
-        onApply={jest.fn()}
+        onApply={vi.fn()}
         showTime={true}
         texts={{
           apply: 'Apply',
@@ -221,7 +221,7 @@ describe('RawDatePicker', () => {
   it('should render with custom formatValueOptions', () => {
     renderWithProvider(
       <DatePicker
-        onApply={jest.fn()}
+        onApply={vi.fn()}
         showTime={true}
         texts={{
           apply: 'Apply',
@@ -238,7 +238,7 @@ describe('RawDatePicker', () => {
   it('should render correct with US notation', () => {
     renderWithProvider(
       <DatePicker
-        onApply={jest.fn()}
+        onApply={vi.fn()}
         showTime={true}
         texts={{
           apply: 'Apply',
@@ -257,7 +257,7 @@ describe('RawDatePicker', () => {
   it('should render month picker using locale', async () => {
     renderWithProvider(
       <RawDatePicker
-        onApply={jest.fn()}
+        onApply={vi.fn()}
         showTime={true}
         texts={{
           apply: 'Apply',
@@ -275,7 +275,7 @@ describe('RawDatePicker', () => {
   it('should render day picker using locale', async () => {
     renderWithProvider(
       <RawDatePicker
-        onApply={jest.fn()}
+        onApply={vi.fn()}
         showTime={true}
         texts={{
           apply: 'Apply',
@@ -308,7 +308,7 @@ describe('RawDatePicker', () => {
     };
     const { container } = renderWithProvider(
       <RawDatePicker
-        onApply={jest.fn()}
+        onApply={vi.fn()}
         showTime={true}
         texts={{
           apply: 'Apply',
@@ -332,7 +332,7 @@ describe('RawDatePicker', () => {
       label: 'QUICK_PICK_1',
       value: new Date(2010,0,10)
     }
-    const onValueChange = jest.fn()
+    const onValueChange = vi.fn()
     renderWithProvider(
       <RawDatePicker
         showTime={true}
@@ -341,7 +341,7 @@ describe('RawDatePicker', () => {
           now: 'Now',
         }}
         onValueChange={onValueChange}
-        onApply={jest.fn()}
+        onApply={vi.fn()}
         quickPicks={[QUICK_PICK]}
       />,
     );
