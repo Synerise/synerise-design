@@ -118,6 +118,11 @@ export const VirtualTableWrapper = styled.div<{
   ${(props) =>
     props.isSticky
       ? css`
+          &:hover {
+            .ps__rail-x.ps__rail-x {
+              opacity: 1;
+            }
+          }
           .ant-table-title {
             position: sticky;
             top: ${props.titleBarTop - props.titleBarHeight}px;
