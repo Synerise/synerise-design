@@ -19,12 +19,12 @@ const ICON = {
 describe('Cruds', () => {
   it('Should render with multiple icons', () => {
     // ARRANGE
-    const handleAdd = jest.fn();
-    const handleDelete = jest.fn();
-    const handleDuplicate = jest.fn();
-    const handleEdit = jest.fn();
-    const handleMove = jest.fn();
-    const handleRemove = jest.fn();
+    const handleAdd = vi.fn();
+    const handleDelete = vi.fn();
+    const handleDuplicate = vi.fn();
+    const handleEdit = vi.fn();
+    const handleMove = vi.fn();
+    const handleRemove = vi.fn();
 
     const { container } = renderWithProvider(
       <Cruds
@@ -54,12 +54,12 @@ describe('Cruds', () => {
 
   it('Should handle actions', () => {
     // ARRANGE
-    const handleAdd = jest.fn();
-    const handleDelete = jest.fn();
-    const handleDuplicate = jest.fn();
-    const handleEdit = jest.fn();
-    const handleMove = jest.fn();
-    const handleRemove = jest.fn();
+    const handleAdd = vi.fn();
+    const handleDelete = vi.fn();
+    const handleDuplicate = vi.fn();
+    const handleEdit = vi.fn();
+    const handleMove = vi.fn();
+    const handleRemove = vi.fn();
 
     const { container } = renderWithProvider(
       <Cruds
@@ -106,7 +106,7 @@ describe('Cruds', () => {
 
   it('Should render customAction', () => {
     // ARRANGE
-    const handleClick = jest.fn();
+    const handleClick = vi.fn();
 
     const { container } = renderWithProvider(
       <Cruds.CustomAction
