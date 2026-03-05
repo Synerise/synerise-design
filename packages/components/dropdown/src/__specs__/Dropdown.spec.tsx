@@ -63,7 +63,7 @@ describe('Dropdown', () => {
 
   describe('Dropdown.SearchInput', () => {
     it('should handle input', () => {
-      const onSearchChange = jest.fn();
+      const onSearchChange = vi.fn();
       const PLACEHOLDER = 'Placeholder';
       const TEST_INPUT = 'Test input';
       const { getByPlaceholderText } = renderWithProvider(
@@ -84,7 +84,7 @@ describe('Dropdown', () => {
 
   describe('Dropdown.BottomAction', () => {
     it('should handle action', () => {
-      const onClickAction = jest.fn();
+      const onClickAction = vi.fn();
       const ACTION_TEXT = 'Action';
       const { getByText } = renderWithProvider(
         <Dropdown.BottomAction onClickAction={onClickAction}>
