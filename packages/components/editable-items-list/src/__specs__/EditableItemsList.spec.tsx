@@ -7,8 +7,8 @@ import EditableItemsList from '../EditableItemsList';
 
 describe('EditableItemsList', () => {
   const addButtonLabel = 'Add another';
-  const onDeleteMock = jest.fn();
-  const onAddMock = jest.fn();
+  const onDeleteMock = vi.fn();
+  const onAddMock = vi.fn();
   const renderRowElement = (index, item) => (
     <div data-testid={`row-${item.id}`}>Row {index + 1}</div>
   );
@@ -40,7 +40,7 @@ describe('EditableItemsList', () => {
         maxRowLength={10}
         addButtonLabel={addButtonLabel}
         onDelete={onDeleteMock}
-        onAdd={jest.fn()}
+        onAdd={vi.fn()}
       />,
     );
 
