@@ -1,21 +1,28 @@
-import React, { useState } from 'react';
-import type { StoryObj, Meta } from '@storybook/react-webpack5';
+import React, { useRef, useState } from 'react';
 
-import Layout, { Page, LayoutProps } from '@synerise/ds-layout';
-import PageHeader from '@synerise/ds-page-header';
-import Grid from '@synerise/ds-grid';
-import Tabs from '@synerise/ds-tabs';
+import { faker } from '@faker-js/faker';
+import type { Meta, StoryObj } from '@storybook/react-webpack5';
 import Card from '@synerise/ds-card';
+import Grid from '@synerise/ds-grid';
+import Layout, { LayoutProps, Page } from '@synerise/ds-layout';
+import PageHeader from '@synerise/ds-page-header';
+import { SearchInput } from '@synerise/ds-search';
 import Table from '@synerise/ds-table';
+import Tabs from '@synerise/ds-tabs';
+import { useStickyScroll } from '@synerise/ds-utils';
 
+import { Placeholder } from '../../constants';
+import {
+  BOOLEAN_CONTROL,
+  CLASSNAME_ARG_CONTROL,
+  NUMBER_CONTROL,
+  centeredPaddedWrapper,
+} from '../../utils';
+import { fakeData } from './Layout.data';
 import LayoutAppMenu from './components/AppMenu';
-import LayoutNavbar from './components/Navbar';
 import LayoutFooter from './components/Footer';
 import * as S from './components/Layout.styles';
-
-import { BOOLEAN_CONTROL, centeredPaddedWrapper, CLASSNAME_ARG_CONTROL, NUMBER_CONTROL } from '../../utils';
-import { fakeData } from './Layout.data';
-import { SearchInput } from '@synerise/ds-search';
+import LayoutNavbar from './components/Navbar';
 
 export default {
   title: 'Components/Layout',
@@ -31,7 +38,7 @@ export default {
     nativeScroll: BOOLEAN_CONTROL,
     renderLeftSidebarControls: BOOLEAN_CONTROL,
     renderRightSidebarControls: BOOLEAN_CONTROL,
-    viewportTopOffset: NUMBER_CONTROL
+    viewportTopOffset: NUMBER_CONTROL,
   },
   args: {},
 } as Meta<LayoutProps>;
@@ -39,7 +46,7 @@ export default {
 type Story = StoryObj<LayoutProps>;
 
 export const BothSidebars: Story = {
-  render: args => {
+  render: (args) => {
     const [leftOpened, setLeftOpened] = useState(false);
     const [rightOpened, setRightOpened] = useState(false);
     const [searchQuery, setSearchQuery] = useState('');
@@ -47,7 +54,7 @@ export const BothSidebars: Story = {
     return (
       <Page appMenu={<LayoutAppMenu />} navBar={<LayoutNavbar />}>
         <Layout
-          header={<PageHeader title={'Page name'} onGoBack={() => { }} />}
+          header={<PageHeader title={'Page name'} onGoBack={() => {}} />}
           left={{
             content: <S.Placeholder></S.Placeholder>,
             opened: leftOpened,
@@ -66,7 +73,7 @@ export const BothSidebars: Story = {
                 <Table
                   title="Table with sorting"
                   dataSource={fakeData}
-                  className='chromatic-ignore'
+                  className="chromatic-ignore"
                   columns={[
                     {
                       key: 'name',
@@ -94,7 +101,8 @@ export const BothSidebars: Story = {
                       title: 'Transaction value',
                       dataIndex: 'transactionValue',
                       sorter: {
-                        compare: (a, b) => a.transactionValue - b.transactionValue,
+                        compare: (a, b) =>
+                          a.transactionValue - b.transactionValue,
                         multiple: 3,
                       },
                       sortRender: 'default',
@@ -104,7 +112,8 @@ export const BothSidebars: Story = {
                       title: 'Transaction type',
                       dataIndex: 'transactionType',
                       sorter: {
-                        compare: (a, b) => a.transactionType.localeCompare(b.transactionType),
+                        compare: (a, b) =>
+                          a.transactionType.localeCompare(b.transactionType),
                         multiple: 4,
                       },
                       sortRender: 'string',
@@ -134,7 +143,7 @@ export const BothSidebars: Story = {
 };
 
 export const BothSidebarWithSubHeader: Story = {
-  render: args => {
+  render: (args) => {
     const [leftOpened, setLeftOpened] = useState(false);
     const [rightOpened, setRightOpened] = useState(false);
 
@@ -169,7 +178,7 @@ export const BothSidebarWithSubHeader: Story = {
 };
 
 export const BothSidebarWithoutHeader: Story = {
-  render: args => {
+  render: (args) => {
     const [leftOpened, setLeftOpened] = useState(false);
     const [rightOpened, setRightOpened] = useState(false);
 
@@ -203,10 +212,13 @@ export const BothSidebarWithoutHeader: Story = {
 };
 
 export const FullWidthWithCard: Story = {
-  render: args => {
+  render: (args) => {
     return (
       <Page appMenu={<LayoutAppMenu />} navBar={<LayoutNavbar />}>
-        <Layout header={<PageHeader title={'Page name'} onGoBack={() => { }} />} {...args}>
+        <Layout
+          header={<PageHeader title={'Page name'} onGoBack={() => {}} />}
+          {...args}
+        >
           <Grid>
             <Grid.Item xxl={24} xl={16} lg={12} md={8} sm={8} xs={4}>
               <Card>
@@ -227,10 +239,13 @@ export const FullWidthWithCard: Story = {
 };
 
 export const WithGrid: Story = {
-  render: args => {
+  render: (args) => {
     return (
       <Page appMenu={<LayoutAppMenu />} navBar={<LayoutNavbar />}>
-        <Layout header={<PageHeader title={'Page name'} onGoBack={() => { }} />} {...args}>
+        <Layout
+          header={<PageHeader title={'Page name'} onGoBack={() => {}} />}
+          {...args}
+        >
           <Grid>
             <Grid.Item xxl={6} xl={4} lg={3} md={4} sm={4} xs={2}>
               <Card>
@@ -291,13 +306,13 @@ export const WithGrid: Story = {
 };
 
 export const LeftSidebar: Story = {
-  render: args => {
+  render: (args) => {
     const [leftOpened, setLeftOpened] = useState(true);
 
     return (
       <Page appMenu={<LayoutAppMenu />} navBar={<LayoutNavbar />}>
         <Layout
-          header={<PageHeader title={'Page name'} onGoBack={() => { }} />}
+          header={<PageHeader title={'Page name'} onGoBack={() => {}} />}
           left={{
             content: <S.Placeholder></S.Placeholder>,
             opened: leftOpened,
@@ -319,12 +334,12 @@ export const LeftSidebar: Story = {
 };
 
 export const RightSidebar: Story = {
-  render: args => {
+  render: (args) => {
     const [rightOpened, setRightOpened] = useState(false);
     return (
       <Page appMenu={<LayoutAppMenu />} navBar={<LayoutNavbar />}>
         <Layout
-          header={<PageHeader title={'Page name'} onGoBack={() => { }} />}
+          header={<PageHeader title={'Page name'} onGoBack={() => {}} />}
           right={{
             content: <S.Placeholder></S.Placeholder>,
             opened: rightOpened,
@@ -345,10 +360,13 @@ export const RightSidebar: Story = {
   },
 };
 export const WithoutMenuAndNavigation: Story = {
-  render: args => {
+  render: (args) => {
     return (
       <Page>
-        <Layout header={<PageHeader title={'Page name'} onClose={() => { }} />} {...args}>
+        <Layout
+          header={<PageHeader title={'Page name'} onClose={() => {}} />}
+          {...args}
+        >
           <Grid>
             <Grid.Item xxl={24} xl={16} lg={12} md={8} sm={8} xs={4}>
               test
@@ -376,21 +394,31 @@ const tabs = [
 ];
 
 export const WithContentWrapper: Story = {
-  render: args => {
+  render: (args) => {
     return (
       <Page appMenu={<LayoutAppMenu />} navBar={<LayoutNavbar />}>
         <Layout
           header={
             <PageHeader
               title={'Page name'}
-              onGoBack={() => { }}
-              tabs={<Tabs tabs={tabs} activeTab={1} handleTabClick={console.log} />}
+              onGoBack={() => {}}
+              tabs={
+                <Tabs tabs={tabs} activeTab={1} handleTabClick={console.log} />
+              }
             />
           }
           {...args}
         >
           <Grid style={{ paddingTop: 122 }}>
-            <Grid.Item xxl={16} xl={12} lg={12} md={8} sm={8} xs={4} contentWrapper>
+            <Grid.Item
+              xxl={16}
+              xl={12}
+              lg={12}
+              md={8}
+              sm={8}
+              xs={4}
+              contentWrapper
+            >
               <Card>
                 <S.Placeholder height={80} />
               </Card>
@@ -408,11 +436,14 @@ export const WithContentWrapper: Story = {
   },
 };
 
-const FullWidth: Story = {
-  render: args => {
+export const FullWidth: Story = {
+  render: (args) => {
     return (
       <Page appMenu={<LayoutAppMenu />} navBar={<LayoutNavbar />}>
-        <Layout header={<PageHeader title={'Page name'} onGoBack={() => { }} />} {...args}>
+        <Layout
+          header={<PageHeader title={'Page name'} onGoBack={() => {}} />}
+          {...args}
+        >
           <Grid>
             <Grid.Item xxl={24} xl={16} lg={12} md={8} sm={8} xs={4}>
               <Card>
@@ -421,6 +452,61 @@ const FullWidth: Story = {
             </Grid.Item>
           </Grid>
           <LayoutFooter />
+        </Layout>
+      </Page>
+    );
+  },
+};
+
+export const StickyScrollSidebar: StoryObj<
+  LayoutProps & { paragraphs?: number }
+> = {
+  tags: ['internal'],
+  argTypes: {
+    paragraphs: NUMBER_CONTROL,
+  },
+  parameters: {
+    controls: {
+      include: ['paragraphs'],
+    },
+  },
+  render: ({ paragraphs = 20, ...args }) => {
+    const scrollContainerRef = useRef<HTMLDivElement>(null);
+    const stickyRef = useStickyScroll({ scrollContainerRef });
+
+    return (
+      <Page appMenu={<LayoutAppMenu />} navBar={<LayoutNavbar />}>
+        <Layout
+          header={
+            <PageHeader title={'Sticky Scroll Demo'} onGoBack={() => {}} />
+          }
+          {...args}
+          nativeScroll
+          nativeScrollRef={scrollContainerRef}
+        >
+          <div style={{ display: 'flex', gap: 16, marginBottom: 16 }}>
+            <Placeholder $height={120} />
+            <Placeholder $height={120} />
+            <Placeholder $height={120} />
+            <Placeholder $height={120} />
+          </div>
+          <div style={{ display: 'flex', gap: 16 }}>
+            {/* Left column — simulates a virtual list with many items */}
+            <div style={{ flex: '1 1 50%' }}>
+              {Array.from({ length: 100 }, (_, i) => (
+                <Card key={i} style={{ marginBottom: 8 }}>
+                  <div style={{ padding: 16 }}>Row {i + 1}</div>
+                </Card>
+              ))}
+            </div>
+
+            {/* Right column — sticky scroll behavior */}
+            <div style={{ flex: '1 1 50%' }}>
+              <div ref={stickyRef} className="chromatic-ignore">
+                <Card>{faker.lorem.paragraphs(paragraphs)}</Card>
+              </div>
+            </div>
+          </div>
         </Layout>
       </Page>
     );
