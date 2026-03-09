@@ -4499,6 +4499,9 @@ importers:
       '@synerise/ds-typography':
         specifier: workspace:^
         version: link:../typography
+      '@synerise/ds-utils':
+        specifier: workspace:^
+        version: link:../utils
       '@tanstack/react-ranger':
         specifier: ^0.0.5
         version: 0.0.5(react@18.3.1)
