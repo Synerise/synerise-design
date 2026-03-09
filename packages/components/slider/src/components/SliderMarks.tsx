@@ -1,6 +1,7 @@
 import React, { useCallback, useEffect, useRef, useState } from 'react';
 
 import { Text } from '@synerise/ds-typography';
+import { useResizeObserver } from '@synerise/ds-utils';
 
 import * as S from '../Slider.styles';
 import { type MarkArea, type SliderMarksProps } from '../Slider.types';
@@ -18,18 +19,16 @@ export const SliderMarks = ({
   const [markAreas, setMarkAreas] = useState<Record<string, MarkArea>>({});
   const markRefs = useRef<Record<string, HTMLDivElement>>({});
 
+  const sliderElementRef = useRef<HTMLElement>();
   const marksData = Object.entries(marks);
   const handles = rangerInstance.handles().map((handle) => handle.value);
 
-  useEffect(() => {
-    const element = rangerInstance.options.getRangerElement();
+  const updateMeasurements = useCallback(() => {
+    const element = sliderElementRef.current;
     if (element?.clientWidth) {
       setSliderWidth(element.clientWidth);
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
 
-  useEffect(() => {
     const areas: Record<string, MarkArea> = {};
     Object.keys(markRefs.current).forEach((index: string) => {
       const markElement = markRefs.current[index];
@@ -40,6 +39,16 @@ export const SliderMarks = ({
     });
     setMarkAreas(areas);
   }, []);
+
+  useEffect(() => {
+    const element = rangerInstance.options.getRangerElement();
+    if (element) {
+      sliderElementRef.current = element;
+    }
+    updateMeasurements();
+  }, [rangerInstance, updateMeasurements]);
+
+  useResizeObserver(sliderElementRef, updateMeasurements);
 
   const isNearHandle = useCallback(
     (index: number) => {
