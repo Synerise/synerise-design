@@ -1,4 +1,24 @@
-export const FixedSizeList = ({ children }) => children;
-export const VariableSizeList = ({ children }) => children;
+import React from 'react';
+
+export const FixedSizeList = ({ children, itemCount, itemData }) =>
+  React.createElement(
+    'div',
+    null,
+    itemData
+      ? itemData.map((item, index) => children({ index, style: {}, data: itemData }))
+      : Array.from({ length: itemCount || 0 }).map((_, index) =>
+        children({ index, style: {}, data: itemData })
+      )
+  );
+
+export const VariableSizeList = ({ children, itemCount, itemData }) =>
+  React.createElement(
+    'div',
+    null,
+    Array.from({ length: itemCount || 0 }).map((_, index) =>
+      children({ index, style: {}, data: itemData })
+    )
+  );
+
 export const FixedSizeGrid = ({ children }) => children;
 export const VariableSizeGrid = ({ children }) => children;
