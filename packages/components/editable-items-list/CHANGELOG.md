@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.1.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-editable-items-list@1.0.44...@synerise/ds-editable-items-list@1.1.0) (2026-03-09)
+
+### Features
+
+- **editable-items-list:** change to vitest ([817a3f7](https://github.com/Synerise/synerise-design/commit/817a3f7c804da3d66a2ced1e84c01fff767759b1))
+
 ## [1.0.44](https://github.com/Synerise/synerise-design/compare/@synerise/ds-editable-items-list@1.0.43...@synerise/ds-editable-items-list@1.0.44) (2026-02-23)
 
 **Note:** Version bump only for package @synerise/ds-editable-items-list

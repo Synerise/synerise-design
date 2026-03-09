@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.1.11](https://github.com/Synerise/synerise-design/compare/@synerise/ds-slider@1.1.10...@synerise/ds-slider@1.1.11) (2026-03-09)
+
+### Bug Fixes
+
+- **slider:** recalc slider dimensions on resize ([5ea3bc5](https://github.com/Synerise/synerise-design/commit/5ea3bc5a2aea2bb3f93f3779f639b83db99bf412))
+
 ## [1.1.10](https://github.com/Synerise/synerise-design/compare/@synerise/ds-slider@1.1.9...@synerise/ds-slider@1.1.10) (2026-02-23)
 
 **Note:** Version bump only for package @synerise/ds-slider

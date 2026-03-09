@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.6.15](https://github.com/Synerise/synerise-design/compare/@synerise/ds-condition@1.6.14...@synerise/ds-condition@1.6.15) (2026-03-09)
+
+### Bug Fixes
+
+- **condition:** change jest to vitest ([4b59376](https://github.com/Synerise/synerise-design/commit/4b593763b668a2609510ff67c59594be3599ba6a))
+
 ## [1.6.14](https://github.com/Synerise/synerise-design/compare/@synerise/ds-condition@1.6.13...@synerise/ds-condition@1.6.14) (2026-02-26)
 
 **Note:** Version bump only for package @synerise/ds-condition

@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.3.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-description@1.2.7...@synerise/ds-description@1.3.0) (2026-03-09)
+
+### Features
+
+- **description:** change to vitest ([a7f3696](https://github.com/Synerise/synerise-design/commit/a7f3696c31fe283d8a2544d5a35b541cc0d40f8a))
+
 ## [1.2.7](https://github.com/Synerise/synerise-design/compare/@synerise/ds-description@1.2.6...@synerise/ds-description@1.2.7) (2026-02-23)
 
 **Note:** Version bump only for package @synerise/ds-description

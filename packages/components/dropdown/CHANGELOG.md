@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.3.0](https://github.com/synerise/synerise-design/compare/@synerise/ds-dropdown@1.2.7...@synerise/ds-dropdown@1.3.0) (2026-03-09)
+
+### Features
+
+- **dropdown:** change to vitest ([2212c33](https://github.com/synerise/synerise-design/commit/2212c3325ebf63bf4d08bf3979d9cc1aead89edb))
+
 ## [1.2.7](https://github.com/synerise/synerise-design/compare/@synerise/ds-dropdown@1.2.6...@synerise/ds-dropdown@1.2.7) (2026-02-23)
 
 **Note:** Version bump only for package @synerise/ds-dropdown

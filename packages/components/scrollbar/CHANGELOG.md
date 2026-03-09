@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.2.15](https://github.com/Synerise/synerise-design/compare/@synerise/ds-scrollbar@1.2.14...@synerise/ds-scrollbar@1.2.15) (2026-03-09)
+
+### Bug Fixes
+
+- **scrollbar:** keep scroll thumb hidden until hovered ([246d4dd](https://github.com/Synerise/synerise-design/commit/246d4ddd977cc4e2b94367234805660d9ae676b6))
+
 ## [1.2.14](https://github.com/Synerise/synerise-design/compare/@synerise/ds-scrollbar@1.2.13...@synerise/ds-scrollbar@1.2.14) (2026-02-19)
 
 **Note:** Version bump only for package @synerise/ds-scrollbar

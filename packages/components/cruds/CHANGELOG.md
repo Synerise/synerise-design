@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.1.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-cruds@1.0.37...@synerise/ds-cruds@1.1.0) (2026-03-09)
+
+### Features
+
+- **cruds:** change to vitest ([3fdde33](https://github.com/Synerise/synerise-design/commit/3fdde333d032f8740c4aba666ca45e8e82dc8b2b))
+
 ## [1.0.37](https://github.com/Synerise/synerise-design/compare/@synerise/ds-cruds@1.0.36...@synerise/ds-cruds@1.0.37) (2026-02-23)
 
 **Note:** Version bump only for package @synerise/ds-cruds

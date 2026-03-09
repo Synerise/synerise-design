@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.4.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-date-picker@1.3.21...@synerise/ds-date-picker@1.4.0) (2026-03-09)
+
+### Features
+
+- **date-picker:** change to vitest ([96ccf56](https://github.com/Synerise/synerise-design/commit/96ccf56c17f559421fb2c128d5573da3d6211361))
+
 ## [1.3.21](https://github.com/Synerise/synerise-design/compare/@synerise/ds-date-picker@1.3.20...@synerise/ds-date-picker@1.3.21) (2026-02-23)
 
 **Note:** Version bump only for package @synerise/ds-date-picker

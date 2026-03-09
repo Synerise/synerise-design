@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.3.1](https://github.com/Synerise/synerise-design/compare/@synerise/ds-code-area@1.3.0...@synerise/ds-code-area@1.3.1) (2026-03-09)
+
+### Bug Fixes
+
+- **code-area:** change jest to vitest ([bcd8fa1](https://github.com/Synerise/synerise-design/commit/bcd8fa1f4d8e2b27655cb55fab8c0516a1f1a2e9))
+
 # [1.3.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-code-area@1.2.32...@synerise/ds-code-area@1.3.0) (2026-02-23)
 
 ### Features
