@@ -9,5 +9,6 @@ export * from './Table';
 export * from './Tabs';
 export * from './Dropdown';
 export * from './Form';
+export * from './Scrollbar';
 
 export * as jest from './jest';

@@ -3,7 +3,7 @@ import React from 'react';
 import { ApiM } from '@synerise/ds-icon';
 import { renderWithProvider } from '@synerise/ds-core';
 import { fireEvent, screen, waitFor } from '@testing-library/react';
-import userEvent from '@testing-library/user-event';
+
 
 import ContextSelector from '../ContextSelector';
 import { type ContextProps } from '../ContextSelector.types';
@@ -12,6 +12,7 @@ import {
   CONTEXT_ITEMS,
   CONTEXT_TEXTS,
 } from './data/index.data';
+
 
 const DEFAULT_PROPS: ContextProps = {
   texts: CONTEXT_TEXTS,
@@ -26,7 +27,7 @@ const RENDER_CONTEXT_SELECTOR = (props?: Partial<ContextProps>) => (
 
 describe('Context selector component', () => {
   beforeEach(() => {
-    Element.prototype.scrollTo = jest.fn();
+    Element.prototype.scrollTo = vi.fn();
   });
 
   test('Should render', () => {
@@ -53,7 +54,7 @@ describe('Context selector component', () => {
 
   // moved to chromatic test
   test.skip('should call onActivate', async () => {
-    const handleActivate = jest.fn();
+    const handleActivate = vi.fn();
     renderWithProvider(RENDER_CONTEXT_SELECTOR({ onActivate: handleActivate }));
 
     fireEvent.click(screen.getByText(CONTEXT_TEXTS.buttonLabel));
@@ -63,8 +64,8 @@ describe('Context selector component', () => {
 
   // moved to chromatic test
   test.skip('should call onDeactivate', async () => {
-    const handleDeactivate = jest.fn();
-    const handleActivate = jest.fn();
+    const handleDeactivate = vi.fn();
+    const handleActivate = vi.fn();
     renderWithProvider(
       RENDER_CONTEXT_SELECTOR({
         onActivate: handleActivate,
@@ -98,20 +99,23 @@ describe('Context selector component', () => {
       }),
     );
 
-    userEvent.click(screen.getByText(CONTEXT_TEXTS.buttonLabel));
+    fireEvent.click(screen.getByText(CONTEXT_TEXTS.buttonLabel));
 
     await waitFor(() =>
       expect(
         screen.getByPlaceholderText(CONTEXT_TEXTS.searchPlaceholder),
       ).toBeInTheDocument(),
     );
+
     const searchInput = screen.getByPlaceholderText(
       CONTEXT_TEXTS.searchPlaceholder,
     );
-    await userEvent.type(searchInput, 'subtitle 2');
+    fireEvent.change(searchInput, { target: { value: 'subtitle 2' } });
 
-    expect(screen.queryByText('Name 2')).toBeInTheDocument();
-    expect(screen.queryByText('Name 1')).not.toBeInTheDocument();
+    await waitFor(() => {
+      expect(screen.queryByText('Name 2')).toBeInTheDocument();
+      expect(screen.queryByText('Name 1')).not.toBeInTheDocument();
+    });
   });
 
   test('Should hide search field if hideSearchField is true', () => {
