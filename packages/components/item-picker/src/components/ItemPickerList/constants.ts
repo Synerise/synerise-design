@@ -32,6 +32,17 @@ export const ITEMS_PER_SECTION_IN_SEARCH = 4;
 
 export const TITLE_PATH_SEPARATOR = ' - ';
 
+let counter = 0;
+const keyMap = new WeakMap<object, string>();
+
 export const GET_ITEM_KEY = <ItemType extends BaseItemType>(item: ItemType) => {
-  return item?.id || JSON.stringify(item);
+  if (item?.id) {
+    return item.id;
+  }
+  let key = keyMap.get(item);
+  if (!key) {
+    key = `__item_${counter++}`;
+    keyMap.set(item, key);
+  }
+  return key;
 };
