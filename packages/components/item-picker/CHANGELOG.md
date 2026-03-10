@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.16.2](https://github.com/Synerise/synerise-design/compare/@synerise/ds-item-picker@1.16.1...@synerise/ds-item-picker@1.16.2) (2026-03-10)
+
+### Bug Fixes
+
+- **item-picker:** better getItemKey fallback ([7b0df79](https://github.com/Synerise/synerise-design/commit/7b0df7984bc4938263b9f4da52083fc85e4afd87))
+
 ## [1.16.1](https://github.com/Synerise/synerise-design/compare/@synerise/ds-item-picker@1.16.0...@synerise/ds-item-picker@1.16.1) (2026-03-09)
 
 **Note:** Version bump only for package @synerise/ds-item-picker

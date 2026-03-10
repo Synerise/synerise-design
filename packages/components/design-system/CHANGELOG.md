@@ -3,6 +3,10 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.11.14](https://github.com/Synerise/synerise-design/compare/@synerise/design-system@1.11.13...@synerise/design-system@1.11.14) (2026-03-10)
+
+**Note:** Version bump only for package @synerise/design-system
+
 ## [1.11.13](https://github.com/Synerise/synerise-design/compare/@synerise/design-system@1.11.12...@synerise/design-system@1.11.13) (2026-03-09)
 
 **Note:** Version bump only for package @synerise/design-system
