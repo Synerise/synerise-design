@@ -49,7 +49,6 @@ storybook-static
 .npmrc
 .DS_Store
 .idea
-.claude
 .docz
 styleguide/
 **/yarn-error.log
@@ -62,3 +61,18 @@ bundle.crt
 
 .nx/
 .pnpm-store
+
+# Claude Code local state
+.claude/settings.local.json
+.claude/cache/
+.claude/logs/
+.claude/tmp/
+
+# Secrets
+*.pem
+*.key
+credentials.json
+service-account.json
+
+# OS
+Thumbs.db

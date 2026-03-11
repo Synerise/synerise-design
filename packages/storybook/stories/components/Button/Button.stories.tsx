@@ -1,21 +1,26 @@
 import React from 'react';
-import type { Meta, StoryObj } from '@storybook/react-webpack5';
 
-import Icon, { Add2S, AngleDownS, CheckS } from '@synerise/ds-icon';
+import type { Meta, StoryObj } from '@storybook/react-webpack5';
 import Button from '@synerise/ds-button';
 import type { ButtonProps } from '@synerise/ds-button';
+import { theme } from '@synerise/ds-core';
+import Icon, { Add2S, AngleDownS, CheckS } from '@synerise/ds-icon';
 
 import {
-  buttonDecorator,
   BOOLEAN_CONTROL,
   CLASSNAME_ARG_CONTROL,
   PREFIXCLS_ARG_CONTROL,
-  reactNodeAsSelect,
+  buttonDecorator,
   controlFromOptionsArray,
+  reactNodeAsSelect,
 } from '../../utils';
-
-import { BUTTON_CUSTOM_COLORS, BUTTON_TYPES, Matrix, MatrixCell, MatrixColumn } from './Button.constants';
-import { theme } from '@synerise/ds-core';
+import {
+  BUTTON_CUSTOM_COLORS,
+  BUTTON_TYPES,
+  Matrix,
+  MatrixCell,
+  MatrixColumn,
+} from './Button.constants';
 import { getModeLeft, getModeRight, getModeSplit } from './Button.data';
 
 type Story = StoryObj<ButtonProps>;
@@ -29,7 +34,14 @@ const meta: Meta<ButtonProps> = {
   parameters: {
     layout: 'fullscreen',
     controls: {
-      exclude: ['href', 'target', 'htmlType', 'groupVariant', 'justifyContent', 'shape'],
+      exclude: [
+        'href',
+        'target',
+        'htmlType',
+        'groupVariant',
+        'justifyContent',
+        'shape',
+      ],
     },
   },
   argTypes: {
@@ -83,7 +95,13 @@ const meta: Meta<ButtonProps> = {
       ...controlFromOptionsArray('select', BUTTON_TYPES),
     },
     mode: {
-      ...controlFromOptionsArray('select', ['single-icon', 'split', 'two-icons', 'label-icon', 'icon-label']),
+      ...controlFromOptionsArray('select', [
+        'single-icon',
+        'split',
+        'two-icons',
+        'label-icon',
+        'icon-label',
+      ]),
     },
     color: {
       ...controlFromOptionsArray('select', BUTTON_CUSTOM_COLORS),
@@ -106,6 +124,11 @@ export default meta;
 
 export const Simple: Story = {
   parameters: {
+    docs: {
+      source: {
+        code: `<Button type="primary">Label</Button>`,
+      },
+    },
     controls: {
       exclude: [...meta?.parameters?.controls.exclude, 'icon', 'iconColor'],
     },
@@ -118,6 +141,16 @@ export const Simple: Story = {
 
 export const IconSolo: Story = {
   ...Simple,
+  parameters: {
+    ...Simple.parameters,
+    docs: {
+      source: {
+        code: `<Button type="primary" mode="single-icon">
+  <Icon component={<AngleDownS />} />
+</Button>`,
+      },
+    },
+  },
   args: {
     type: 'primary',
     mode: 'single-icon',
@@ -127,6 +160,17 @@ export const IconSolo: Story = {
 
 export const IconLeft: Story = {
   ...IconSolo,
+  parameters: {
+    ...IconSolo.parameters,
+    docs: {
+      source: {
+        code: `<Button mode="icon-label">
+  <Icon component={<AngleDownS />} />
+  Label
+</Button>`,
+      },
+    },
+  },
   args: {
     children: (
       <>
@@ -140,6 +184,17 @@ export const IconLeft: Story = {
 
 export const IconRight: Story = {
   ...IconLeft,
+  parameters: {
+    ...IconLeft.parameters,
+    docs: {
+      source: {
+        code: `<Button mode="label-icon">
+  Label
+  <Icon component={<AngleDownS />} />
+</Button>`,
+      },
+    },
+  },
   render: ({ icon, children, ...args }) => (
     <Button {...args}>
       {children}
@@ -155,6 +210,18 @@ export const IconRight: Story = {
 
 export const TwoIcons: Story = {
   ...IconLeft,
+  parameters: {
+    ...IconLeft.parameters,
+    docs: {
+      source: {
+        code: `<Button mode="two-icons">
+  <Icon component={<AngleDownS />} />
+  Label
+  <Icon component={<AngleDownS />} />
+</Button>`,
+      },
+    },
+  },
   render: ({ icon, children, ...args }) => (
     <Button {...args}>
       {icon}
@@ -170,11 +237,23 @@ export const TwoIcons: Story = {
 };
 export const ButtonModes: Story = {
   ...IconLeft,
+  parameters: {
+    ...IconLeft.parameters,
+    docs: {
+      source: {
+        code: `<Button mode="two-icons">
+  <Icon component={<AngleDownS />} />
+  Label
+  <Icon component={<AngleDownS />} />
+</Button>`,
+      },
+    },
+  },
   render: ({ icon, children, mode, ...args }) => (
     <Button mode={mode} {...args}>
-      {getModeLeft(mode,icon)}
-      {getModeSplit(mode,children)}
-      {getModeRight(mode,icon)}
+      {getModeLeft(mode, icon)}
+      {getModeSplit(mode, children)}
+      {getModeRight(mode, icon)}
     </Button>
   ),
   args: {
@@ -185,6 +264,16 @@ export const ButtonModes: Story = {
 };
 
 export const SplitRight: Story = {
+  parameters: {
+    docs: {
+      source: {
+        code: `<Button mode="split">
+  Label
+  <Icon component={<AngleDownS />} />
+</Button>`,
+      },
+    },
+  },
   args: {
     children: (
       <>
@@ -197,6 +286,17 @@ export const SplitRight: Story = {
 
 export const CustomLabel: Story = {
   parameters: {
+    docs: {
+      source: {
+        code: `<Button type="primary">
+  <span style={{ fontWeight: 400 }}>
+    <span style={{ display: 'inline' }}>Show</span>{' '}
+    <strong style={{ display: 'inline', fontWeight: 500 }}>10</strong>{' '}
+    <span style={{ display: 'inline' }}>more</span>
+  </span>
+</Button>`,
+      },
+    },
     controls: {
       exclude: [...meta?.parameters?.controls.exclude, 'icon', 'iconColor'],
     },
@@ -219,86 +319,138 @@ export const CustomLabel: Story = {
 };
 
 export const DisabledTooltip: Story = {
+  parameters: {
+    docs: {
+      source: {
+        code: `<Button
+  disabled
+  tooltipProps={{ title: "This element is disabled" }}
+  type="primary"
+>
+  Label
+</Button>`,
+      },
+    },
+  },
   args: {
     children: 'Label',
     disabled: true,
     tooltipProps: {
-      title: "This element is disabled"
+      title: 'This element is disabled',
     },
     type: 'primary',
   },
 };
 
-const MODES = [{
-  mode: 'icon-label',
-  title: 'icon-label',
-  children: <><Icon component={<AngleDownS />} /> Label</>
-},
-{
-  mode: '',
-  title: 'default',
-  children: <> Label</>
-},
-{
-  mode: 'label-icon',
-  title: 'label-icon',
-  children: <>Label <Icon component={<AngleDownS />} /> </>
-},
-{
-  mode: 'single-icon',
-  title: 'single-icon',
-  children: <Icon component={<AngleDownS />} />
-},
-{
-  mode: 'split',
-  title: 'split',
-  children: <>Label <Icon component={<AngleDownS />} /> </>
-},
-{
-  mode: 'two-icons',
-  title: 'two-icons',
-  children: <><Icon component={<Add2S />} /> Label <Icon component={<AngleDownS />} /> </>
-},
-{
-  mode: 'icon-label',
-  title: 'disabled',
-  children: <><Icon component={<AngleDownS />} /> Label</>,
-  disabled: true,
-},
-{
-  mode: 'icon-label',
-  title: 'readOnly',
-  children: <><Icon component={<AngleDownS />} /> Label</>,
-  readOnly: true,
-}
+const MODES = [
+  {
+    mode: 'icon-label',
+    title: 'icon-label',
+    children: (
+      <>
+        <Icon component={<AngleDownS />} /> Label
+      </>
+    ),
+  },
+  {
+    mode: '',
+    title: 'default',
+    children: <> Label</>,
+  },
+  {
+    mode: 'label-icon',
+    title: 'label-icon',
+    children: (
+      <>
+        Label <Icon component={<AngleDownS />} />{' '}
+      </>
+    ),
+  },
+  {
+    mode: 'single-icon',
+    title: 'single-icon',
+    children: <Icon component={<AngleDownS />} />,
+  },
+  {
+    mode: 'split',
+    title: 'split',
+    children: (
+      <>
+        Label <Icon component={<AngleDownS />} />{' '}
+      </>
+    ),
+  },
+  {
+    mode: 'two-icons',
+    title: 'two-icons',
+    children: (
+      <>
+        <Icon component={<Add2S />} /> Label{' '}
+        <Icon component={<AngleDownS />} />{' '}
+      </>
+    ),
+  },
+  {
+    mode: 'icon-label',
+    title: 'disabled',
+    children: (
+      <>
+        <Icon component={<AngleDownS />} /> Label
+      </>
+    ),
+    disabled: true,
+  },
+  {
+    mode: 'icon-label',
+    title: 'readOnly',
+    children: (
+      <>
+        <Icon component={<AngleDownS />} /> Label
+      </>
+    ),
+    readOnly: true,
+  },
 ];
 
-
 export const ButtonMatrix: Story = {
-  render: args => {
-    return <Matrix>
-      <MatrixColumn> <MatrixCell />{BUTTON_TYPES.map(type => <MatrixCell type={type}>{type}</MatrixCell>)}</MatrixColumn>
-      {MODES.map(({ mode, title, children, ...rest }) => {
-        return (
-          <MatrixColumn>
-            <MatrixCell>{title}</MatrixCell>
-            {BUTTON_TYPES.map(type => <MatrixCell type={type}><Button mode={mode} type={type} {...rest}>{children}</Button></MatrixCell>)}
-          </MatrixColumn>
-        )
-      })}</Matrix>
+  render: (args) => {
+    return (
+      <Matrix>
+        <MatrixColumn>
+          {' '}
+          <MatrixCell />
+          {BUTTON_TYPES.map((type) => (
+            <MatrixCell type={type}>{type}</MatrixCell>
+          ))}
+        </MatrixColumn>
+        {MODES.map(({ mode, title, children, ...rest }) => {
+          return (
+            <MatrixColumn>
+              <MatrixCell>{title}</MatrixCell>
+              {BUTTON_TYPES.map((type) => (
+                <MatrixCell type={type}>
+                  <Button mode={mode} type={type} {...rest}>
+                    {children}
+                  </Button>
+                </MatrixCell>
+              ))}
+            </MatrixColumn>
+          );
+        })}
+      </Matrix>
+    );
   },
-
 };
 
 export const ButtonMatrixHover: Story = {
   parameters: {
     pseudo: { hover: true },
   },
-  ...ButtonMatrix
+  ...ButtonMatrix,
 };
 export const ButtonMatrixFocus: Story = {
   parameters: {
     pseudo: { focus: true },
   },
-  ...ButtonMatrix
+  ...ButtonMatrix,
 };

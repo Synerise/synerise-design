@@ -1,0 +1,11 @@
+{
+  "mcpServers": {
+    "figma": {
+      "type": "http",
+      "url": "https://api.figma.com/mcp",
+      "headers": {
+        "Authorization": "Bearer ${FIGMA_MCP_TOKEN}"
+      }
+    }
+  }
+}
