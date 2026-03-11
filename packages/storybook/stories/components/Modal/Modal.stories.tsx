@@ -5,6 +5,7 @@ import { Meta, StoryObj } from '@storybook/react-webpack5';
 import { ObjectAvatar } from '@synerise/ds-avatar';
 import { theme } from '@synerise/ds-core';
 import Icon, { MailM, UserM } from '@synerise/ds-icon';
+import Layout, { LayoutProps } from '@synerise/ds-layout';
 import Modal from '@synerise/ds-modal';
 import Stepper from '@synerise/ds-stepper';
 
@@ -26,13 +27,13 @@ export default {
   title: 'Components/Modal',
   component: Modal,
   render: (args, storyContext) => {
-    const visible = storyContext.viewMode === 'docs' ? false : args.visible;
-    return <Modal {...args} visible={visible} />;
+    const open = storyContext.viewMode === 'docs' ? false : args.open;
+    return <Modal {...args} open={open} />;
   },
   decorators: [centeredPaddedWrapper],
   argTypes: {
     wrapClassName: CLASSNAME_ARG_CONTROL,
-    visible: BOOLEAN_CONTROL,
+    open: BOOLEAN_CONTROL,
     title: {
       ...reactNodeAsSelect(['blank', 'title', 'withAvatar', 'iconAndLabel'], {
         blank: '',
@@ -73,6 +74,7 @@ export default {
     showHeaderAction: BOOLEAN_CONTROL,
     headerActions: REACT_NODE_AS_STRING,
     renderCustomFooter: BOOLEAN_CONTROL,
+    disableScrollbar: BOOLEAN_CONTROL,
     footer: REACT_NODE_AS_STRING,
     removeFooter: BOOLEAN_CONTROL,
     maxViewportHeight: NUMBER_CONTROL,
@@ -90,7 +92,7 @@ type Story = StoryObj<typeof Modal>;
 
 export const Blank: Story = {
   args: {
-    visible: true,
+    open: true,
     blank: true,
     footer: null,
     size: 'small',
@@ -100,7 +102,7 @@ export const Blank: Story = {
 
 export const withHeader: Story = {
   args: {
-    visible: true,
+    open: true,
     title: 'title',
     footer: null,
     size: 'small',
@@ -110,7 +112,7 @@ export const withHeader: Story = {
 
 export const withTabs: Story = {
   args: {
-    visible: true,
+    open: true,
     headerTabProps: TAB_PROPS,
     title: (
       <>
@@ -130,7 +132,7 @@ export const withTabs: Story = {
 
 export const Fullscreen: Story = {
   args: {
-    visible: true,
+    open: true,
     title: 'title',
     size: 'fullScreen',
     children: <Placeholder $height={1400} />,
@@ -139,7 +141,7 @@ export const Fullscreen: Story = {
 
 export const withFooter: Story = {
   args: {
-    visible: true,
+    open: true,
     title: 'title',
     size: 'small',
     children: 'Modal content...',
@@ -148,12 +150,46 @@ export const withFooter: Story = {
 
 export const withScroll: Story = {
   args: {
-    visible: true,
+    open: true,
     title: 'title',
     footer: null,
     size: 'small',
     children: <Placeholder $height={600} />,
     maxViewportHeight: 70,
+  },
+};
+
+export const withLayout: StoryObj<LayoutProps & { sidebarHeight: number }> = {
+  render: ({ sidebarHeight, ...args }, storyContext) => {
+    const open = storyContext.viewMode === 'docs' ? false : args.open;
+    return (
+      <Modal {...args} open={open}>
+        <Layout
+          styles={{
+            rightInner: { padding: '24px' },
+          }}
+          right={{
+            content: <Placeholder $height={sidebarHeight} />,
+            opened: true,
+            onChange: () => {},
+          }}
+        >
+          <Placeholder $height={1400} />
+        </Layout>
+      </Modal>
+    );
+  },
+  args: {
+    open: true,
+    title: 'title',
+    footer: null,
+    size: 'large',
+
+    bodyStyle: { padding: 0 },
+    disableScrollbar: true,
+    maxViewportHeight: 70,
+    sidebarHeight: 400,
+    bodyBackground: 'grey',
   },
 };
 
@@ -179,7 +215,7 @@ export const ModalWithStepper: Story = {
     );
   },
   args: {
-    visible: true,
+    open: true,
     title: 'title',
     size: 'medium',
   },

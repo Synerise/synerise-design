@@ -1,6 +1,6 @@
 import { Modal as AntModal } from 'antd';
 import classnames from 'classnames';
-import React, { useRef } from 'react';
+import React from 'react';
 
 import '@synerise/ds-core/dist/js/style';
 
@@ -36,6 +36,7 @@ export const Modal = (props: ModalProps) => {
     blank,
     titleContainerStyle,
     maxViewportHeight,
+    disableScrollbar,
     children,
     ...antModalProps
   } = props;
@@ -47,7 +48,6 @@ export const Modal = (props: ModalProps) => {
     { 'with-description': Boolean(description) },
   );
 
-  const mainSlideRef = useRef<HTMLDivElement>(null);
   const DEFAULT_VIEWPORT_HEIGHT = 80;
 
   const maxHeight = () => {
@@ -81,8 +81,8 @@ export const Modal = (props: ModalProps) => {
           : null
       }
     >
-      {maxHeight() ? (
-        <S.ModalWrapper ref={mainSlideRef}>
+      {maxHeight() && !disableScrollbar ? (
+        <S.ModalWrapper>
           <S.Scrollbar absolute>{children}</S.Scrollbar>
         </S.ModalWrapper>
       ) : (

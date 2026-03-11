@@ -20,6 +20,8 @@ export const LayoutContent = styled.div`
   overflow: hidden;
   width: 100%;
   height: 100%;
+  display: flex;
+  flex-direction: column;
   ${mediaQuery.to.small`overflow-x: auto;`};
 `;
 
@@ -41,7 +43,7 @@ export const LayoutSubheader = styled.div`
 `;
 
 export const LayoutBody = styled.div<{ allowOverflow?: boolean }>`
-  flex: 1;
+  flex: 1 1 auto;
   display: flex;
   flex-direction: row;
   min-height: 0;
@@ -244,7 +246,6 @@ type LayoutSidebarWrapperProps = {
 export const LayoutSidebarWrapper = styled.div<LayoutSidebarWrapperProps>`
   position: relative;
   overflow: visible;
-  height: 100%;
 
   left: ${(props): string => (props.right ? 'auto' : '0')};
   right: ${(props): string => (props.right ? '0' : 'auto')};
