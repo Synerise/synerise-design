@@ -1,0 +1,26 @@
+{
+    "extraKnownMarketplaces": {
+        "synerise-tools": {
+            "source": {
+                "source": "url",
+                "url": "https://gitlab.synerise.com/devtools/claude-plugins.git"
+            }
+        }
+    },
+    "enabledPlugins": {
+        "synerise-claude-mesh@synerise-tools": true
+    },
+    "permissions": {
+        "allow": [
+            "Read",
+            "Glob",
+            "Grep",
+            "Agent"
+        ],
+        "deny": []
+    },
+    "env": {
+        "SYNERISE_STANDARDS_VERSION": "1.1.0",
+        "SYNERISE_TEAM": "ds"
+    }
+}

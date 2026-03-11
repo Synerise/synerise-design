@@ -35,12 +35,26 @@ export default meta;
 
 export const Creator: StoryObj<CreatorProps> = {
   render: (args) => <Button.Creator {...args} />,
+  parameters: {
+    docs: {
+      source: {
+        code: `<Creator />`,
+      },
+    },
+  },
 };
 
 export const CreatorWithLabel: StoryObj<CreatorProps> = {
   ...Creator,
   args: {
     label: 'Label',
+  },
+  parameters: {
+    docs: {
+      source: {
+        code: `<Creator label="Label" />`,
+      },
+    },
   },
 };
 
@@ -50,5 +64,16 @@ export const CreatorBlock: StoryObj<CreatorProps> = {
     label: 'Label',
     block: true,
     labelAlign: 'center',
+  },
+  parameters: {
+    docs: {
+      source: {
+        code: `<Creator
+  label="Label"
+  block
+  labelAlign="center"
+/>`,
+      },
+    },
   },
 };
