@@ -5,6 +5,7 @@ export type Category = {
   id: ReactText;
   name: string;
   path: string[];
+  children?: Category[];
 };
 export type CascaderProps = {
   categorySuffix: ReactNode;

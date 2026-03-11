@@ -1,13 +1,14 @@
 import { ReactNode } from 'react';
 import { expect, fn, userEvent, waitFor, within } from 'storybook/test';
 
+
 import { Meta, StoryObj } from '@storybook/react-vite';
-import type { CascaderProps } from '@synerise/ds-cascader';
+import type { CascaderProps, Category } from '@synerise/ds-cascader';
 
 import { sleep } from '../../utils';
 import CascaderMeta from './Cascader.stories';
 import * as mock from './data/mock.json';
-import { isKeyCategory, limitCategories } from './data/utils';
+import { limitCategories } from './data/utils';
 
 const root = mock.default;
 
@@ -40,35 +41,26 @@ export const SearchResults: Story = {
   },
 };
 
-const filterCategoryData = (category) => {
-  const categoryEntries = Object.entries(category).filter(([key]) =>
-    isKeyCategory(category, key),
-  );
-  return Object.fromEntries(categoryEntries);
-};
-
 export const ShowHeaderBreadcrumb: Story = {
   play: async ({ canvasElement, args }) => {
     const canvas = within(canvasElement);
 
-    const selectFromCategory = async (level) => {
-      const nextLevelNames = Object.keys(level);
-      const nextLevelLabel = nextLevelNames[0];
-      const nextLevel = filterCategoryData(level[nextLevelLabel]);
-      const nextLevelEntries = Object.entries(nextLevel);
+    const selectFromCategory = async (category: Category) => {
+      const firstChild = category.children![0];
+      const childrenOfFirst = firstChild.children ?? [];
 
-      await userEvent.click(canvas.getByText(nextLevelLabel));
+      await userEvent.click(canvas.getByText(firstChild.name));
       await waitFor(() => {
-        expect(canvas.getByText(nextLevelLabel)).toBeInTheDocument();
-        nextLevelEntries.forEach(([name]) => {
-          expect(canvas.getByText(name)).toBeInTheDocument();
+        expect(canvas.getByText(firstChild.name)).toBeInTheDocument();
+        childrenOfFirst.forEach((child) => {
+          expect(canvas.getByText(child.name)).toBeInTheDocument();
         });
         expect(
           canvas.getAllByText(args.categorySuffix as string).length,
-        ).toEqual(nextLevelEntries.length);
+        ).toEqual(childrenOfFirst.length);
       });
 
-      return nextLevel;
+      return firstChild;
     };
     await sleep(100);
     const rootLevel = limitCategories(root, args.categoryLimit);
@@ -84,28 +76,24 @@ export const ListCategory: Story = {
 
     const rootCategory = limitCategories(root, args.categoryLimit);
 
-    const categoryNames = Object.keys(rootCategory);
-    const categoryData = rootCategory[categoryNames[2]];
-
-    const subCategoryData = Object.entries(categoryData).filter(([key]) =>
-      isKeyCategory(categoryData, key),
-    );
+    const targetChild = rootCategory.children![2];
+    const subCategories = targetChild.children ?? [];
 
     await sleep(100);
-    await userEvent.click(canvas.getByText(categoryNames[2]));
+    await userEvent.click(canvas.getByText(targetChild.name));
 
     await waitFor(() => {
-      expect(canvas.getByText(categoryNames[2])).toBeInTheDocument();
-      subCategoryData.forEach(([name]) => {
-        expect(canvas.getByText(name)).toBeInTheDocument();
+      expect(canvas.getByText(targetChild.name)).toBeInTheDocument();
+      subCategories.forEach((child) => {
+        expect(canvas.getByText(child.name)).toBeInTheDocument();
       });
       expect(canvas.getAllByText(args.categorySuffix as string).length).toEqual(
-        subCategoryData.length,
+        subCategories.length,
       );
     });
 
-    const [_name1, selectedSubCategory1] = subCategoryData[3];
-    const [_name2, selectedSubCategory2] = subCategoryData[1];
+    const selectedSubCategory1 = subCategories[3];
+    const selectedSubCategory2 = subCategories[1];
 
     await userEvent.click(
       canvas.getAllByText(args.categorySuffix as string)[3],

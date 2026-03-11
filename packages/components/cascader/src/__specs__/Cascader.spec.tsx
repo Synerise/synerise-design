@@ -5,27 +5,32 @@ import { renderWithProvider } from '@synerise/ds-core';
 import Cascader from '../Cascader';
 import { type Category } from '../Cascader.types';
 
-const mock = {
+const mock: Category = {
   id: 0,
   name: 'Home',
   path: ['Home'],
-  phone: {
-    path: ['Home', 'Phone'],
-    id: 1,
-    name: 'Phone',
-    Cables: {
-      path: ['Home', 'Phone', 'Cables'],
-      name: 'Cables',
-      id: 11,
+  children: [
+    {
+      id: 1,
+      name: 'Phone',
+      path: ['Home', 'Phone'],
+      children: [
+        {
+          id: 11,
+          name: 'Cables',
+          path: ['Home', 'Phone', 'Cables'],
+        },
+      ],
     },
-  },
+  ],
 };
+
 describe('Cascader', () => {
   it('Should render nested categories', () => {
     const { getByText } = renderWithProvider(
       <Cascader
         categorySuffix={<div>select</div>}
-        rootCategory={mock as Category}
+        rootCategory={mock}
         selectedCategoriesIds={[]}
       />,
     );
