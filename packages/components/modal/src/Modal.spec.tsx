@@ -79,6 +79,30 @@ describe('Modal', () => {
     expect(defaultFooter).not.toBeInTheDocument();
   });
 
+  it('should not wrap children in scrollbar when maxViewportHeight is set and disableScrollbar is true', () => {
+    const { container } = renderWithProvider(
+      <Modal visible maxViewportHeight={80} disableScrollbar>
+        <div data-testid="modal-content">Content</div>
+      </Modal>,
+    );
+
+    const scrollbar = screen.queryByTestId('virtual-scrollbar');
+    expect(scrollbar).not.toBeInTheDocument();
+    expect(screen.getByTestId('modal-content')).toBeInTheDocument();
+  });
+
+  it('should wrap children in scrollbar when maxViewportHeight is set', () => {
+    const { container } = renderWithProvider(
+      <Modal visible maxViewportHeight={80}>
+        <div data-testid="modal-content">Content</div>
+      </Modal>,
+    );
+
+    const scrollbar = screen.getByTestId('virtual-scrollbar');
+    expect(scrollbar).toBeInTheDocument();
+    expect(screen.getByTestId('modal-content')).toBeInTheDocument();
+  });
+
   it('should show custom footer if its in props', () => {
     renderWithProvider(<Modal footer={<div>Custom Footer</div>} visible />);
 
