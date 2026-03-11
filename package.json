@@ -27,6 +27,8 @@
     "tgz-package-json": "node ./scripts/tgz/index.cjs",
     "types": "lerna run types --stream  --concurrency 5",
     "check:circular-dependencies": "lerna run check:circular-dependencies",
+    "figma:connect": "figma connect",
+    "figma:publish": "figma connect publish",
     "prepare": "husky"
   },
   "resolutions": {
@@ -57,6 +59,7 @@
     "@commitlint/cli": "^20",
     "@commitlint/config-conventional": "^20",
     "@commitlint/config-pnpm-scopes": "^20",
+    "@figma/code-connect": "^1.4.1",
     "@formatjs/intl-pluralrules": "5.3.1",
     "@formatjs/intl-relativetimeformat": "11.4.1",
     "@fortawesome/fontawesome-svg-core": "^6",
