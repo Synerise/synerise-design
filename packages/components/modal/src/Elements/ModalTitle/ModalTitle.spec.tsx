@@ -94,7 +94,7 @@ describe('ModalTitle', () => {
 
     const titleContainer = screen.getByTestId('modal-title');
 
-    expect(titleContainer).toHaveStyle(customStyle);
+    expect(titleContainer.style.backgroundColor).toBe('red');
   });
 
   it('should not render description when description prop is not provided', () => {
