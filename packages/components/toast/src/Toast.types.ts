@@ -17,6 +17,7 @@ export type ToastProps = WithHTMLAttributes<
     withClose?: boolean;
     button?: ReactNode;
     expanded?: boolean;
+    show?: boolean;
     onExpand?: (isExpanded: boolean) => void;
     /**
      * fired when user manually dismisses the toast by clicking the X button
@@ -35,4 +36,4 @@ export type ToastCustomisationOptions = Pick<
   'duration' | 'position' | 'id' | 'removeDelay' | 'className' | 'style'
 >;
 
-export type ShowToastProps = Omit<ToastProps, 'type'>;
+export type ShowToastProps = Omit<ToastProps, 'type' | 'show'>;

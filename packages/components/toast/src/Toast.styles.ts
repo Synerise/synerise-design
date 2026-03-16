@@ -51,26 +51,32 @@ const getWidth = (hasClose?: boolean, hasExpander?: boolean) => {
 };
 
 const openingAnimation = (): Keyframes => keyframes`
-
   0% {
-     height: 0%;
-     opacity: 0;
+    opacity: 0;
+    transform: translateY(60px);
   }
   100% {
-     height: 100%;
-     opacity: 1;
+    opacity: 1;
+    transform: translateY(0);
   }
 `;
+
 export const closingAnimation = (): Keyframes => keyframes`
-0% {
-  height: 100%;
-  opacity: 1;
-}
-100% {
-  height: 0%;
-  opacity: 0;
-}
-  `;
+  0% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-8px) scale(0.98);
+  }
+`;
+
+export const AnimationContainer = styled.div<{ $show?: boolean }>`
+  animation: ${(props): Keyframes =>
+      props.$show ? openingAnimation() : closingAnimation()}
+    0.6s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+`;
 
 export const AlertContent = styled.div<{ hasBottomMargin?: boolean }>`
   display: flex;
@@ -170,12 +176,6 @@ export const OrderWrapper = styled.div`
 `;
 export const Wrapper = styled.div`
   color: ${(props) => props.theme.palette['grey-600']};
-`;
-
-export const AnimationContainer = styled.div<{ show?: boolean }>`
-  animation: ${(props): Keyframes =>
-      props.show ? openingAnimation() : closingAnimation()}
-    0.5s ease-in-out 0s 1;
 `;
 
 export const WrapperSectionMessage = styled.div`

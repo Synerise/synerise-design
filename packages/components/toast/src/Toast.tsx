@@ -12,7 +12,6 @@ import {
   type ToastType,
 } from './Toast.types';
 import { ICONS } from './constants';
-import { removeToast } from './utils';
 
 export const Toast = ({
   type,
@@ -28,6 +27,7 @@ export const Toast = ({
   onDismiss,
   button,
   toastId,
+  show = true,
   ...htmlAttributes
 }: ToastProps) => {
   const hasToastContent = button || description || expandedContent;
@@ -65,7 +65,7 @@ export const Toast = ({
   const handleCloseClick = () => {
     onCloseClick?.();
     if (toastId) {
-      removeToast(toastId);
+      toast.dismiss(toastId);
     }
   };
 
@@ -76,36 +76,41 @@ export const Toast = ({
   }, []);
 
   return (
-    <S.Container toastType={type} data-toastType={type} {...htmlAttributes}>
-      <S.IconWrapper>
-        {customIcon || <Icon component={iconComponentForType} />}
-      </S.IconWrapper>
+    <S.AnimationContainer $show={show}>
+      <S.Container toastType={type} data-toastType={type} {...htmlAttributes}>
+        <S.IconWrapper>
+          {customIcon || <Icon component={iconComponentForType} />}
+        </S.IconWrapper>
 
-      <S.WrapperSectionMessage>
-        <S.AlertMessage
-          noToastContent={!hasToastContent}
-          hasClose={!!withClose}
-          hasExpander={!!expander}
-        >
-          {message}
-        </S.AlertMessage>
+        <S.WrapperSectionMessage>
+          <S.AlertMessage
+            noToastContent={!hasToastContent}
+            hasClose={!!withClose}
+            hasExpander={!!expander}
+          >
+            {message}
+          </S.AlertMessage>
 
-        <S.ButtonWrapper>
-          {expander && (
-            <S.IconExpanderWrapper onClick={expandContent} expanded={expanded}>
-              <Icon component={<AngleDownS />} size={24} />
-            </S.IconExpanderWrapper>
-          )}
-          {withClose && (
-            <S.IconCloseWrapper onClick={handleCloseClick}>
-              <Icon component={<CloseM />} />
-            </S.IconCloseWrapper>
-          )}
-        </S.ButtonWrapper>
+          <S.ButtonWrapper>
+            {expander && (
+              <S.IconExpanderWrapper
+                onClick={expandContent}
+                expanded={expanded}
+              >
+                <Icon component={<AngleDownS />} size={24} />
+              </S.IconExpanderWrapper>
+            )}
+            {withClose && (
+              <S.IconCloseWrapper onClick={handleCloseClick}>
+                <Icon component={<CloseM />} />
+              </S.IconCloseWrapper>
+            )}
+          </S.ButtonWrapper>
 
-        {toastContent}
-      </S.WrapperSectionMessage>
-    </S.Container>
+          {toastContent}
+        </S.WrapperSectionMessage>
+      </S.Container>
+    </S.AnimationContainer>
   );
 };
 
@@ -115,10 +120,13 @@ export const showToast = (
   options?: ToastCustomisationOptions,
 ) => {
   const toastId = props.toastId || `toast-${uuid()}`;
-  return toast.custom(<Toast {...props} toastId={toastId} type={type} />, {
-    ...options,
-    id: toastId,
-  });
+  return toast.custom(
+    (t) => <Toast {...props} toastId={toastId} type={type} show={t.visible} />,
+    {
+      ...options,
+      id: toastId,
+    },
+  );
 };
 
 Toast.success = (
