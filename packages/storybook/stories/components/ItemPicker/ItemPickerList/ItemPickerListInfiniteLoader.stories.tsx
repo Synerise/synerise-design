@@ -13,6 +13,7 @@ import {
 import {
   ACTIONS,
   ITEM_LOADER_CONFIG,
+  ITEM_LOADER_CONFIG_EMPTY,
   ITEM_LOADER_CONFIG_ERRORS,
   RECENT,
   SECTIONS,
@@ -115,5 +116,13 @@ export const RequestErrors: StoryObj<StoryPropsOverlay> = {
   args: {
     items: ITEM_LOADER_CONFIG_ERRORS,
     sections: SECTIONS_WITH_FOLDERS,
+  },
+};
+
+export const EmptyState: StoryObj<StoryPropsOverlay> = {
+  args: {
+    items: ITEM_LOADER_CONFIG_EMPTY,
+    recents: undefined,
+    actions: undefined,
   },
 };

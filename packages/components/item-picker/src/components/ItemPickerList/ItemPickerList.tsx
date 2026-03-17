@@ -77,6 +77,10 @@ const ItemPickerListInner = <
     includeSearchBar = true,
     onLoadedData,
     isDropdown,
+    emptyListIcon,
+    noResultsIcon,
+    emptyStateComponent,
+    noResultsComponent,
     ...htmlAttributes
   }: ItemPickerListProps<ItemType, SectionType>,
   forwardedRef: ItemPickerListRef,
@@ -337,6 +341,11 @@ const ItemPickerListInner = <
             texts={allTexts}
             isActionSection={isActionSection}
             currentSection={currentSection}
+            searchQuery={searchQuery}
+            emptyListIcon={emptyListIcon}
+            noResultsIcon={noResultsIcon}
+            emptyStateComponent={emptyStateComponent}
+            noResultsComponent={noResultsComponent}
           />
         ) : (
           <S.StyledScrollbar

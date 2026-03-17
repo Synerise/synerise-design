@@ -1,5 +1,5 @@
 import { type ItemSelectHandler } from 'components/ItemPickerList/ItemPickerList.types';
-import type { ReactNode, Ref } from 'react';
+import type { ReactElement, ReactNode, Ref } from 'react';
 
 import type { DropdownSharedProps } from '@synerise/ds-dropdown';
 import type { FormFieldCommonProps } from '@synerise/ds-form-field';
@@ -117,6 +117,8 @@ export type ItemPickerProps<
     | 'showItemsSectionLabel'
     | 'noResultsIcon'
     | 'emptyListIcon'
+    | 'emptyStateComponent'
+    | 'noResultsComponent'
     | 'selectedItem'
     | 'getItemHeight'
     | 'scrollbarProps'
@@ -141,8 +143,10 @@ export type ItemPickerListProps<
     texts?: Partial<ItemPickerListTexts>;
     containerHeight?: ContainerHeightType;
     showItemsSectionLabel?: boolean;
-    noResultsIcon?: ReactNode;
-    emptyListIcon?: ReactNode;
+    noResultsIcon?: ReactElement;
+    emptyListIcon?: ReactElement;
+    emptyStateComponent?: ReactNode;
+    noResultsComponent?: ReactNode;
     onItemSelect: ItemSelectHandler<ItemType, SectionType>;
     onSectionChange?: SectionType extends BaseSectionType
       ? (section?: BaseSectionTypeWithFolders<SectionType>) => void

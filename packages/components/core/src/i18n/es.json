@@ -161,7 +161,8 @@
       "CLEAR-SEARCH-TOOLTIP": "Borrar",
       "BACK-TOOLTIP": "Atrás",
       "SEARCH-EVERYWHERE": "Buscar en todas las carpetas",
-      "SEARCH-PLACEHOLDER": "Busca un objeto o escribe {shortCutKey} para mostrar acciones"
+      "SEARCH-PLACEHOLDER": "Busca un objeto o escribe {shortCutKey} para mostrar acciones",
+      "EMPTY-STATE": "Sin ítems"
     },
     "ITEM-PICKER": {
       "CLEAR-CONFIRM": "¿Seguro que quieres eliminar esta selección?",
