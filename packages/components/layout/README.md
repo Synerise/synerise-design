@@ -36,23 +36,23 @@ import Layout from '@synerise/ds-layout'
 | -------------------------- | ------------------------------------------------------------------- | ------------------------- | ------- |
 | header                     | Set top header content page                                         | React.ReactNode           |         |
 | subheader                  | Set subheader content page                                          | React.ReactNode           |         |
-| left                       | Configuration of left sidebar                                       | SidebarProps              |         |
-| right                      | Configuration of right sidebar                                      | SidebarProps              |         |
+| left                       | Configuration of left sidebar (includes opened, onChange, width)    | SidebarProps              |         |
+| right                      | Configuration of right sidebar (includes opened, onChange, width)   | SidebarProps              |         |
 | children                   | The layout elements passed to the parent                            | React.ReactNode           |         |
 | className                  | Layout's className                                                  | string                    |         |
 | styles                     | Custom layout styles                                                | LayoutStyles              |         |
-| leftOpened                 | Whether left sidebar is opened                                      | boolean                   | false   |
-| rightOpened                | Whether right sidebar is opened                                     | boolean                   | false   |
-| leftOpenedWidth            | Width of opened left sidebar                                        | number                    | 320     |
-| rightOpenedWidth           | Width of opened right sidebar                                       | number                    | 320     |
 | renderLeftSidebarControls  | Left sidebar visibility. Accepts function returning `ReactNode`.    | boolean or function       | false   |
 | renderRightSidebarControls | Right sidebar visibility. Accepts function returning `ReactNode`.   | boolean or function       | false   |
 | leftSidebarWithDnd         | Set withDnd in left sidebar scrollbar                               | boolean                   | false   |
 | mainSidebarWithDnd         | Set withDnd in main sidebar scrollbar                               | boolean                   | false   |
 | rightSidebarWithDnd        | Set withDnd in right sidebar scrollbar                              | boolean                   | false   |
-| nativeScroll               | Set main column to use native browser scroll                        | boolean                   | false   |
+| leftSidebarWithScrollbar   | Wrap left sidebar content in ds-scrollbar                           | boolean                   | true    |
+| rightSidebarWithScrollbar  | Wrap right sidebar content in ds-scrollbar                          | boolean                   | true    |
+| sidebarAnimationDisabled   | Disable CSS transition on sidebar width                             | boolean                   |         |
+| nativeScroll               | Set main column to use native browser scroll                        | boolean                   |         |
 | nativeScrollRef            | ref to pass to scrollable element                                   | Ref&lt;HTMLDivElement&gt; | -       |
-| fillViewport               | sets layout to absolute with calc(100vh - viewportTopOffset) height | boolean                   | false   |
+| fullPage                   | Remove 24 px padding from main content inner wrapper                | boolean                   | false   |
+| fillViewport               | sets layout to absolute with calc(100vh - viewportTopOffset) height | boolean                   |         |
 | viewportTopOffset          | top viewport offset (if fillViewport is true)                       | number                    | 55      |
 
 ### SidebarProps

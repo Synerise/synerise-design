@@ -92,11 +92,10 @@ import ContextSelector from '@synerise/ds-context-selector'
 | defaultDropdownVisibility | default visibility of dropdown                                  | boolean                                                                                  | false            |
 | opened                    | Whether if dropdown should opens from outside of component      | boolean                                                                                  | false            |
 | texts                     | Translations object                                             | ContextTexts                                                                             | -                |
-| selectedItem              | Selected item                                                   | ContextItem \ undefined                                                                  | undefined        |
-| addMode                   | If true trigger doesn't change style when value is set          | ContextItem \ undefined                                                                  | undefined        |
+| selectedItem              | Selected item                                                   | ContextItem \ undefined                                                                                  | undefined        |
+| addMode                   | If true trigger doesn't change style when value is set          | boolean                                                                                  | undefined        |
 | customTriggerComponent    | Add custom trigger                                              | React.ReactNode                                                                          | undefined        |
 | trigger                   | Add custom trigger to modal                                     | 'click' \ 'hover'                                                         | 'click           |
-| getMenuEntryProps         | Configure tooltip (information-card by default)                 | (arg: ParameterValueType) => MenuItemProps \ undefined                                   | undefined        |
 | dropdownWrapperStyles     | Apply custom styles to dropdown wrapper                         | CSSProperties \ undefined                                                                | -                |
 | onClickOutsideEvents      | Overwrite default events for document listener                  | HandledEventsType[] \ undefined                                                          | -                |
 | onClickOutside            | Callback called when user click outside dropdown                | () => void \ undefined                                                                   | -                |

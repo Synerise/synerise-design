@@ -28,9 +28,10 @@ import ShortCuts from '@synerise/ds-short-cuts'
 
 ## API
 
-| Property | Description | Type | Default |
-| size | sizes of short cut | `S` , `L` | `L` |
-| children | content to display | ReactNode | - |
-| color | type of colors | string | - |
-| icon | icon to display | ReactNode | - |
-| autoWidth | auto width for more text | boolean | `false` |
+| Property  | Description                                                | Type                   | Default |
+| --------- | ---------------------------------------------------------- | ---------------------- | ------- |
+| size      | Size of the shortcut badge                                 | `'S'` \| `'L'`        | `L`     |
+| color     | Color variant                                              | `'light'` \| `'dark'` | -       |
+| children  | Text label to display (mutually exclusive with `icon`)     | ReactNode              | -       |
+| icon      | Icon to display (mutually exclusive with `children`)       | ReactNode              | -       |
+| autoWidth | When true, width is `auto`; when false, width equals height | boolean               | `false` |

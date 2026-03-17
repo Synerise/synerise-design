@@ -34,7 +34,7 @@ import Button from '@synerise/ds-button';
 | type            | message type                                          | 'success' / 'negative' / 'warning' / 'informative' | -       |
 | message         | message main content                                  | ReactNode                                          | -       |
 | description     | message description                                   | ReactNode                                          | -       |
-| customIcon      | overwrite default icon (default icon depends on type) | ReactNode                                          | -       |
+| customIcon      | overwrite default icon (default icon depends on type) | ReactElement                                       | -       |
 | expander        | render with expander icon                             | boolean                                            | -       |
 | onExpand        | triggered on click of expander icon                   | (expanded: boolean) => void                        | -       |
 | expandedContent | content rendered if exapanded prop is true            | ReactNode                                          | -       |
@@ -74,4 +74,4 @@ Removes a specific or all displayed toasts with an exit animation.
 
 #### showToast(type, toastProps, toastOptions?)
 
-enders a Toast of specified `type`, using toastProps and then displays it using the Toaster with toastOptoins. returns a toastID that can be later used to remove / dismiss that toast manually.
+Renders a Toast of specified `type`, using toastProps and then displays it using the Toaster with toastOptions. Returns a toastId that can be later used to remove / dismiss that toast manually.

@@ -28,14 +28,16 @@ import FieldSet from '@synerise/ds-field-set'
 
 ## API
 
-| Property     | Description               | Type                     | Default         |
-| ------------ | ------------------------- | ------------------------ | --------------- |
-| component    | prop to set component     | React.ReactNode          | -               |
-| title        | text of title             | string                   | -               |
-| onTitleClick | onclick handler for title | () => void               | -               |
-| description  | text of the description   | string                   | -               |
-| prefix       | prop to set prefix item   | React.ReactNode          | -               |
-| button       | prop to set button        | React.ReactNode          | -               |
-| expandable   | prop to expand field-set  | boolean                  | -               |
-| typeTrigger  | Trigger type prefix       | `expander` / `switch`    | `expander`      |
-| divider      | props to set divider      | boolean                  | -               |
+| Property        | Description                                            | Type                                       | Default      |
+| --------------- | ------------------------------------------------------ | ------------------------------------------ | ------------ |
+| title           | Header title                                           | `ReactNode`                                | -            |
+| description     | Subtitle rendered below title                          | `ReactNode`                                | -            |
+| component       | Main content inside the collapsible area               | `ReactNode`                                | -            |
+| button          | Action node at the bottom of the collapsible area      | `ReactNode`                                | -            |
+| prefix          | Custom prefix in the header (ignored when `expandable`)| `ReactNode`                                | -            |
+| onTitleClick    | Click handler for the title element                    | `(ev: MouseEvent<HTMLElement>) => void`    | -            |
+| divider         | Show a full-width divider between header and content   | `boolean`                                  | `true`       |
+| expandable      | Enable expand/collapse of component and button         | `boolean`                                  | -            |
+| triggerType     | Trigger shown when `expandable` is true                | `'expander' \| 'switch'`                   | `'expander'` |
+| defaultExpanded | Initial expanded state; re-syncs if prop changes       | `boolean`                                  | -            |
+| onExpandChange  | Callback fired after expand/collapse toggle            | `(expanded: boolean) => void`              | -            |

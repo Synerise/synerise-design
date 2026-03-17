@@ -55,7 +55,7 @@ const syntaxOptions = [
 | allowFullscreen             | renders fullscreen mode button                                 | `boolean`                                               | -       |
 | readOnly                    | renders readOnly mode                                          | `boolean`                                               | -       |
 | tooltip                     | tooltip text displayed next to label                           | `ReactNode`                                             | -       |
-| tooltipProps                | tooltip properties (see @synerise/ds-tooltip)                  | `TooltipExtendedProps & TooltipProps`                   | -       |
+| tooltipProps                | tooltip properties (see @synerise/ds-tooltip)                  | `TooltipProps`                                          | -       |
 | style                       | custom style added to outermost div                            | `CSSProperties`                                         | -       |
 | className                   | class name to add to outermost div                             | `string`                                                | -       |
 | renderFooterContent         | renders custom content in footer bar                           | `(CodeAreaStateProps) => ReactNode`                     | -       |
@@ -66,6 +66,8 @@ const syntaxOptions = [
 | getPopupContainer           | customise where fullscreen layer is rendered into              | getPopupContainer (@synerise/ds-utils)                  | -       |
 | placeholder                 | placeholder content                                            | `ReactNode`                                             | -       |
 | noBorder                    | remove border from wrapper                                     | `boolean`                                               | -       |
+| height                      | height of the editor wrapper                                   | `string \| number`                                      | `295px` |
+| zIndex                      | z-index of the fullscreen overlay                              | `string \| number`                                      | `zindex-modal` token |
 
 ### CodeAreaTexts
 

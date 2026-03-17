@@ -122,15 +122,15 @@ yarn add @synerise/ds-avatar
 ```jsx static
 import Avatar from '@synerise/ds-avatar';
 
-<Avatar shape={'circle'} backgroundColor={'grey'} size={20} />;
+<Avatar shape={'circle'} backgroundColor={'grey'} size="medium" />;
 ```
 
 ## API
 
 | Property           | Description                                                                                        | Type                                                                                                 | Default  |
 | ------------------ | -------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------- | -------- |
-| backgroundColor    | Background color of the avatar                                                                     | `green` / `grey` / `yellow` / `blue` / `pink`/ `mars`/ `orange`/ `fern`/ `cyan`/ `purple` / `violet` | `orange` |
-| backgroundColorHue | Background color hue of the avatar                                                                 | `900` / `800` / `700` / `600` / `500` / `400` / `300` / `200` / `100` / `050`                        | `400`    |
+| backgroundColor    | Background color of the avatar                                                                     | `red` / `green` / `grey` / `yellow` / `blue` / `pink`/ `mars`/ `orange`/ `fern`/ `cyan`/ `purple` / `violet` | -        |
+| backgroundColorHue | Background color hue of the avatar                                                                 | `900` / `800` / `700` / `600` / `500` / `400` / `300` / `200` / `100` / `050`                        | `500`    |
 | disabled           | Determines if avatar is disabled                                                                   | boolean                                                                                              | `false`  |
 | hasStatus          | Aligns a badge with the avatar                                                                     | boolean                                                                                              | `false`  |
 | iconComponent      | Provides a custom component as a child. If both are provided, the prop icon has a greater priority | React.ReactNode                                                                                      | -        |
@@ -138,7 +138,7 @@ import Avatar from '@synerise/ds-avatar';
 | shape              | Shape of the avatar                                                                                | `circle` / `square`                                                                                  | `circle` |
 | size               | Size of the avatar                                                                                 | `small` / `medium` / `large` / `extraLarge`                                                          | `medium` |
 | src                | Image source path                                                                                  | string                                                                                               | -        |
-| tooltip            | Tooltip text displayed on hover                                                                    | { name: string, email: string }                                                                      | -        |
+| tooltip            | Tooltip text displayed on hover                                                                    | `TooltipObject` / `boolean`                                                                                   | -        |
 
 ## UserAvatar
 
@@ -159,7 +159,7 @@ import { UserAvatar } from '@synerise/ds-avatar';
 
 | Property        | Description                                    | Type                                                                                                          | Default  |
 | --------------- | ---------------------------------------------- | ------------------------------------------------------------------------------------------------------------- | -------- |
-| user            | User information                               | { firstName: string, lastName: string, email: string, avatar: string }                                        | -        |
+| user            | User information                               | { firstName?: string, lastName?: string, email?: string, avatar?: string, avatarId?: string / number } | -        |
 | backgroundColor | Background color of the avatar                 | `auto` / `green` / `grey` / `yellow` / `blue` / `pink`/ `mars`/ `orange`/ `fern`/ `cyan`/ `purple` / `violet` | `auto`   |
 | badgeStatus     | Badge status                                   | `active` / `error` / `warning`                                                                                | -        |
 | disabled        | Determines if avatar is disabled               | boolean                                                                                                       | `false`  |
@@ -183,13 +183,13 @@ import { ObjectAvatar } from '@synerise/ds-avatar';
 }} />
 ```
 
-|                 | Property                                       | Description                                                                                                   | Type     | Default |
-| --------------- | ---------------------------------------------- | ------------------------------------------------------------------------------------------------------------- | -------- | ------- |
-| object          | Object information                             | { name: string, description: string, status: string, avatar: string }                                         | -        |         |
-| color           | Background color of the avatar                 | `green` / `grey` / `yellow` / `blue` / `pink`/ `mars`/ `orange`/ `fern`/ `cyan`/ `purple` / `violet`          | `grey`   |         |
-| backgroundColor | Background color of the avatar                 | `auto` / `green` / `grey` / `yellow` / `blue` / `pink`/ `mars`/ `orange`/ `fern`/ `cyan`/ `purple` / `violet` | `auto`   |         |
-| badgeStatus     | Badge status                                   | `active` / `error` / `warning`                                                                                | -        |         |
-| disabled        | Determines if avatar is disabled               | boolean                                                                                                       | `false`  |         |
-| iconComponent   | Replace default user icon                      | React.ReactNode                                                                                               | -        |         |
-| size            | Size of the avatar                             | `small` / `medium` / `large` / `extraLarge`                                                                   | `medium` |         |
-| tooltip         | Change default tooltip text displayed on hover | { title: string, description: string, status: string } / `false`                                              | -        |         |
+| Property        | Description                                    | Type                                                                                                          | Default  |
+| --------------- | ---------------------------------------------- | ------------------------------------------------------------------------------------------------------------- | -------- |
+| object          | Object information                             | { name?: string, description?: string, status?: string, avatar?: string }                                     | -        |
+| color           | Color for the fallback icon                    | `green` / `grey` / `yellow` / `blue` / `pink`/ `mars`/ `orange`/ `fern`/ `cyan`/ `purple` / `violet`         | `grey`   |
+| backgroundColor | Background color of the avatar                 | `auto` / `green` / `grey` / `yellow` / `blue` / `pink`/ `mars`/ `orange`/ `fern`/ `cyan`/ `purple` / `violet` | -        |
+| badgeStatus     | Badge status                                   | `active` / `error` / `warning`                                                                                | -        |
+| disabled        | Determines if avatar is disabled               | boolean                                                                                                       | -        |
+| iconComponent   | Replace default mail icon                      | React.ReactNode                                                                                               | -        |
+| size            | Size of the avatar                             | `small` / `medium` / `large` / `extraLarge`                                                                   | -        |
+| tooltip         | Change default tooltip text displayed on hover | `TooltipObject` / `false`                                                                                     | -        |

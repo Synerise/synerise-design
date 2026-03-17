@@ -3,6 +3,8 @@ id: checkbox-tristate
 title: CheckboxTristate
 ---
 
+> **DEPRECATED.** Use `<Checkbox tristate />` from `@synerise/ds-checkbox` instead. This package is a thin compatibility shim and will be removed in a future release.
+
 CheckboxTristate UI Component - Expands Checkbox to third undefined state.
 
 ## Installation
@@ -38,9 +40,9 @@ import CheckboxTristate, { CheckboxTristateChangeEvent } from '@synerise/ds-chec
 | autoFocus      | Get focus when component mounted                                      | boolean                               | `false`   |
 | checked        | Specifies whether the checkbox is selected or indeterminate           | boolean                               | undefined | `undefined` |
 | defaultChecked | Specifies the initial state: whether or not the checkbox is selected. | boolean                               | `false`   |
-| description    | Checkbox description                                                  | string                                | -         |
+| description    | Checkbox description                                                  | ReactNode                             | -         |
 | disabled       | Disable checkbox                                                      | boolean                               | `false`   |
-| errorText      | Error message, if provided sets error state on checkbox               | string                                | -         |
+| errorText      | Error message, if provided sets error state on checkbox               | ReactNode                             | -         |
 | hasError       | Determines if checkbox is in error state                              | boolean                               | `false`   |
 | onChange       | The callback function that is triggered when the state changes.       | (e:CheckboxTristateChangeEvent)=>void | -         |
 | withoutPadding | Reset padding of CheckboxWrapper                                      | boolean                               | `false`   |

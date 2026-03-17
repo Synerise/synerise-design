@@ -53,7 +53,7 @@ import Banner from '@synerise/ds-banner'
 | Property    | Description                       | Type                       | Default |
 | ----------- | --------------------------------- | -------------------------- | ------- |
 | titlePrefix | icon / avatar prefix of the title | ReactNode                  | -       |
-| titleStatus | Title status tag                  | StatusProps, see ds-status | -       |
+| titleStatus | Title status tag                  | Pick<TagProps, 'textColor' \| 'color' \| 'name'> | -       |
 | title       | Slide title                       | ReactNode                  | -       |
 | buttons     | Slide buttons                     | ReactNode                  | -       |
 | description | Slide description text            | ReactNode                  | -       |
@@ -70,7 +70,7 @@ import Banner from '@synerise/ds-banner'
 | -------- | ---------------------- | --------- | ------- |
 | title    | Top bar title text     | ReactNode | -       |
 | icon     | Top bar icon prefix    | ReactNode | -       |
-| expanded | default exapnded state | boolean   | true    |
+| isExpanded | initial expanded state | boolean   | true    |
 
 ### BannerTexts
 

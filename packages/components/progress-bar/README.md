@@ -15,14 +15,15 @@ Progress-Bar UI Component
 
 | Property    | Description                                  | Type    | Default |
 | ----------- | -------------------------------------------- | ------- | ------- |
-| steps       | Number of steps in progress bar              | number  | -       |
-| description | Text of description under progress bar       | string  | -       |
-| percent     | Value of progress bar, also visible in label | number  | -       |
-| thin        | Displays a thinner line                      | boolean | `false` |
-| label       | Optional label above progress bar            | string  | -       |
-| customColor | Bar color                                    | string  | -       |
-| width       | CSS width property of progress-bar           | string  | -       |
-| inline      | set percent value next to progress bar       | boolean | `false` |
+| steps           | Number of steps in progress bar                              | number        | `1`      |
+| description     | Text of description under progress bar                       | ReactNode     | -        |
+| percent         | Value of progress bar, also visible in label                 | number        | `50`     |
+| thin            | Displays a thinner line                                      | boolean       | `false`  |
+| label           | Optional label above progress bar                            | ReactNode     | -        |
+| customColor     | Bar color                                                    | string        | `''`     |
+| width           | CSS width of each segment tile                               | string        | `'100%'` |
+| inline          | set percent value next to progress bar                       | boolean       | `false`  |
+| containerStyles | Container inline styles (**@deprecated** — use `style` prop) | CSSProperties | -        |
 
 ### ProgressTiles
 

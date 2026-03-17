@@ -28,7 +28,7 @@ import ItemFilter from '@synerise/ds-item-filter'
     duplicateItem={(props) => {}}
     selectedItemId="0001"
     categories={CATEGORIES}
-    items={ITEMS}
+    fetchData={(category) => {}}
 />
 
 ```
@@ -45,15 +45,17 @@ import ItemFilter from '@synerise/ds-item-filter'
 | -------------- | ------------------------------------------------------------------------------- | ---------------------------------------- | --------- |
 | visible        | Whether the ItemFilter is visible or not.                                       | boolean                                  | `false`   |
 | hide           | Specify a callback that will be called when a user clicks mask or close button. | () => void                               | -         |
-| removeItem     | Specify a callback that will be called when a user removes list item            | (`{ id: string }`) =>void                | -         |
-| editItem       | Specify a callback that will be called when a user change name of list item     | (`{ id: string, name: string }`) => void | -         |
-| duplicateItem  | Specify a callback that will be called when a user duplicates list item         | (`{ id: string }`) => void               | -         |
-| selectItem     | Specify a callback that will be called when a user select list item             | (`{ id: string }`) => void               | -         |
+| removeItem     | Specify a callback that will be called when a user removes list item            | (`{ id: ReactText }`) => void                | -         |
+| editItem       | Specify a callback that will be called when a user change name of list item     | (`{ id: ReactText, name: string }`) => void | -         |
+| duplicateItem  | Specify a callback that will be called when a user duplicates list item         | (`{ id: ReactText }`) => void               | -         |
+| selectItem     | Specify a callback that will be called when a user select list item             | (`{ id: ReactText }`) => void               | -         |
 | categories     | Array of categories                                                             | Category[]                               | []        |
-| selectedItemId | Id of selected item                                                             | string                                   | undefined |
+| selectedItemId | Id of selected item                                                             | `string \| undefined`                    | undefined |
 | texts          | Object contains texts for buttons, title, confirms etc.                         | Texts                                    | -         |
-| maxToShowItems | Shows x first items, rest are hidden under `show more` button                   | number                                   | 200       |
-| search         | Whether the search input is availabla                                           | number                                   | 200       |
+| maxToShowItems | Accepted in type but not implemented — has no effect                            | `number`                                 | -         |
+| search         | Optional search config; renders a SearchBar when provided                       | `{ onChange: (value: string) => void; onClear: () => void; value: string }` | -    |
+| fetchData      | Callback invoked by infinite-scroll when more items are needed                  | `(category: Category) => void`           | -         |
+| loading        | Whether the list is in a loading state                                          | `boolean`                                | -         |
 
 #### Search
 
@@ -75,23 +77,24 @@ import ItemFilter from '@synerise/ds-item-filter'
 
 | Property      | Description                             | Type    | Default |
 | ------------- | --------------------------------------- | ------- | ------- |
-| id            | Id of item                              | string  | -       |
-| canUpdate?    | Whether the item can be edited          | boolean | `false` |
-| canDelete?    | Whether the item can be deleted         | boolean | `false` |
-| canDuplicate? | Whether the item can be duplicated      | boolean | `false` |
-| name          | Name of item                            | string  | -       |
-| description?  | Description of item                     | string  | -       |
-| user          | Object contains informations about user | User    | -       |
-| created       | Item creation timestamp                 | string  | -       |
+| id            | Id of item                              | `string \| number` (`ReactText`) | -       |
+| canUpdate?    | Whether the item can be edited          | `boolean`                        | -       |
+| canDelete?    | Whether the item can be deleted         | `boolean`                        | -       |
+| canDuplicate? | Whether the item can be duplicated      | `boolean`                        | -       |
+| name          | Name of item                            | `string`                         | -       |
+| description?  | Description of item                     | `string`                         | -       |
+| user?         | Object contains information about user  | `User`                           | -       |
+| created?      | Item creation timestamp                 | `string`                         | -       |
+| categories    | Category labels the item belongs to     | `string[]`                       | -       |
 
 #### User
 
 | Property   | Description | Type   | Default |
 | ---------- | ----------- | ------ | ------- |
-| avatar_url | Link avatar | string | -       |
-| firstname  | First name  | string | -       |
-| lastname   | Last name   | string | -       |
-| email      | Email       | string | -       |
+| avatar_url? | Link to avatar image | `string` | -       |
+| firstname?  | First name           | `string` | -       |
+| lastname?   | Last name            | `string` | -       |
+| email?      | Email address        | `string` | -       |
 
 #### Texts
 

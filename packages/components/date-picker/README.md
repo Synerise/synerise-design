@@ -18,7 +18,7 @@ yarn add @synerise/ds-date-picker
 ```
 import DatePicker from '@synerise/ds-date-picker'
 
-<DatePicker />
+<DatePicker onApply={(date) => console.log(date)} />
 
 ```
 
@@ -57,9 +57,10 @@ import DatePicker from '@synerise/ds-date-picker'
 
 ### Texts
 
-| Property   | Description                  | Type   | Default       |
-| ---------- | ---------------------------- | ------ | ------------- |
-| apply      | Text for apply button        | string | "Apply"       |
-| selectTime | Text for select time button  | string | "Select time" |
-| selectDate | Text for select date button  | string | "Select date" |
-| now        | Text for select "now" button | string | "Now"         |
+| Property         | Description                              | Type      | Default       |
+| ---------------- | ---------------------------------------- | --------- | ------------- |
+| apply            | Text for apply button                    | ReactNode | "Apply"       |
+| now              | Text for "Now" button in footer          | ReactNode | "Now"         |
+| inputPlaceholder | Placeholder text for the input           | string    | -             |
+| clearTooltip     | Tooltip on the clear button              | ReactNode | "Clear"       |
+| quickPicks       | Label above the quick picks column       | ReactNode | "Quick picks" |

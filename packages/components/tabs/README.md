@@ -30,29 +30,30 @@ import Tabs from '@synerise/ds-tabs'
 
 ### Tabs
 
-| Property       | Description                                | Type                    | Default |
-| -------------- | ------------------------------------------ | ----------------------- | ------- |
-| activeTab      | Active tab index                           | number                  | -       |
-| configuration  | Shows additional position in tabs dropdown | Configuration           | -       |
-| handleTabClick | Callback fired when user clicks on the tab | (index: number) => void | -       |
-| tabs           | Array of tabs                              | Tab[]                   | []      |
-| underscore     | Underscore active item                     | boolean                 | `true`  |
+| Property       | Description                                                   | Type                    | Default |
+| -------------- | ------------------------------------------------------------- | ----------------------- | ------- |
+| activeTab      | Active tab index                                              | number                  | -       |
+| block          | Stretch tabs to fill the container width (disables overflow)  | boolean                 | -       |
+| configuration  | Appends a configurable action item to the overflow dropdown   | TabsConfiguration       | -       |
+| handleTabClick | Callback fired when user clicks on the tab                    | (index: number) => void | -       |
+| tabs           | Array of tabs                                                 | TabItem[]               | -       |
+| underscore     | Show active-indicator line below the active tab               | boolean                 | `true`  |
 
-### Tab
+### Tab (TabItem)
 
-| Property     | Description                    | Type         | Default |
-| ------------ | ------------------------------ | ------------ | ------- |
-| disabled     | Flag of disabled tabs          | boolean      | `false` |
-| icon         | tab icon                       | Icon         | -       |
-| label        | Label of tab                   | ReactNode    | -       |
-| tooltip      | Tab tooltip text               | ReactNode    | -       |
-| tooltipProps | Tooltip props (see ds-tooltip) | TooltipProps | -       |
-| underscore   | Underscore active item         | boolean      | `true`  |
+| Property     | Description                                              | Type         | Default |
+| ------------ | -------------------------------------------------------- | ------------ | ------- |
+| disabled     | Disables pointer events and reduces opacity              | boolean      | -       |
+| icon         | Icon rendered before the label (sized 24 px)             | ReactNode    | -       |
+| label        | Label of tab                                             | ReactNode    | -       |
+| suffixel     | Element rendered after the label (supports Badge nodes)  | ReactNode    | -       |
+| tooltip      | Tab tooltip content                                      | ReactNode    | -       |
+| tooltipProps | Additional props forwarded to ds-tooltip                 | TooltipProps | -       |
 
-#### Configuration
+#### TabsConfiguration
 
-| Property | Description                                                 | Type    | Default |
-| -------- | ----------------------------------------------------------- | ------- | ------- |
-| action   | Callback fired when user clicks on the configuration button | Icon    | -       |
-| disabled | Flag of disabled configuration button                       | boolean | -       |
-| label    | Label of configuration button                               | string  | -       |
+| Property | Description                                                   | Type        | Default |
+| -------- | ------------------------------------------------------------- | ----------- | ------- |
+| action   | Callback fired when user clicks on the configuration button   | () => void  | -       |
+| disabled | Disables the dropdown trigger when no tabs are hidden         | boolean     | -       |
+| label    | Label of configuration button                                 | string      | -       |

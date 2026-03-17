@@ -10,6 +10,8 @@ Panel UI Component
 npm i @synerise/ds-panel
 or
 yarn add @synerise/ds-panel
+or
+pnpm add @synerise/ds-panel
 ```
 
 ## Usage
@@ -28,12 +30,13 @@ import Panel from '@synerise/ds-panel'
 
 ### PanelProps
 
-| Property   | Description                               | Type                        | Default |   |
-|------------|-------------------------------------------|-----------------------------|---------|---|
-| `radius`   | Border radius of the panel in pixels      | `number`                    | `8`     |   |
-| `p`        | Padding applied to the panel              | `string \ number`           | `8`     |   |
-| `children` | Panel content                             | `React.ReactNode`           | -       |   |
-| `ref`      | Forward ref to the underlying DOM element | `React.Ref<HTMLDivElement>` | -       |   |
+| Property          | Description                                                                                      | Type                        | Default |   |
+|-------------------|--------------------------------------------------------------------------------------------------|-----------------------------|---------|---|
+| `radius`          | Border radius of the panel in pixels                                                             | `number`                    | `8`     |   |
+| `greyBackground`  | When `true`, renders with a drop shadow instead of a border                                      | `boolean`                   | -       |   |
+| `p`               | Padding applied to the panel                                                                     | `string \| number`          | `8`     |   |
+| `children`        | Panel content                                                                                    | `React.ReactNode`           | -       |   |
+| `ref`             | Forward ref to the underlying DOM element                                                        | `React.Ref<HTMLDivElement>` | -       |   |
 
 
 **Note:** Panel also accepts all standard `BoxProps` from `@rebass/grid`, including:

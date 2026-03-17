@@ -22,7 +22,7 @@ ManageableList UI Component
     onChangeOrder=(action('onChangeOrder'))
     items={[]}
     loading={false}
-    listType={ListType.default}
+    type={ListType.DEFAULT}
 />
 ```
 
@@ -34,7 +34,8 @@ ManageableList UI Component
 
 | Property                 | Description                                                                                          | Type                                                                                                | Default   |
 | ------------------------ | ---------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------- | --------- |
-| maxToShowItems           | Shows x first items, rest are hidden under `show more` button                                        | number                                                                                              | 5         |
+| visibleItemsLimit        | Show N first items; rest are hidden under `show more` button                                         | number                                                                                              | -         |
+| maxToShowItems           | **@deprecated** — use `visibleItemsLimit` instead                                                    | number                                                                                              | -         |
 | onItemAdd                | Callback triggered when user hits `enter` key in the new item input field.                           | ({ name: string }) => void                                                                          | -         |
 | onItemRemove             | Callback triggered when user clicks on the remove item button.                                       | ({ id: string }) => void                                                                            | -         |
 | onItemEdit               | Callback triggered then user hits `enter` key in the edit item name input field.                     | ({ id: string; name: string }) => void                                                              | -         |
@@ -43,7 +44,7 @@ ManageableList UI Component
 | changeOrderByButtons     | Allows to change order of items by dedicated buttons in item suffix, requires onChangeOrder property | boolean                                                                                             | -         |
 | items                    | Array of list items                                                                                  | Item[]                                                                                              | -         |
 | loading                  | Loading state                                                                                        | boolean                                                                                             | -         |
-| type                     | Type of list                                                                                         | `default` / `content` / `filter`                                                                    | `default` |
+| type                     | Type of list                                                                                         | `default` / `blank` / `content` / `content-large` / `filter`                                        | `default` |
 | addButtonDisabled        | Disable add item button                                                                              | boolean                                                                                             | `false`   |
 | changeOrderDisabled      | Disable change of order                                                                              | boolean                                                                                             | `false`   |
 | greyBackground           | Change background color of list and list items                                                       | boolean                                                                                             | `false`   |
@@ -51,7 +52,7 @@ ManageableList UI Component
 | searchQuery              | Search query used to highlight list item name                                                        | string                                                                                              | -         |
 | additionalActions        | Additional actions for single list item                                                              | AdditionalAction[]                                                                                  | -         |
 | renderCustomToggleButton | Customise the show more / show less button                                                           | (props: {onClick: () => void; total: number, limit: number, allItemsVisible: boolean}) => ReactNode | -         |
-| styles                   | Additional styles for ManageableList wrapper                                                         | React.CSSProperties                                                                                 | -         |
+| style                    | Additional styles for ManageableList wrapper                                                         | React.CSSProperties                                                                                 | -         |
 | expandedIds (deprecated) | Array of item ids that should be rendered open                                                       | React.Key[]                                                                                         | -         |
 
 ### Texts
@@ -63,11 +64,11 @@ ManageableList UI Component
 | showLessLabel           | Label of show less items button               | string / React.ReactNode | -       |
 | more                    | Translation of 'more'                         | string / React.ReactNode | -       |
 | less                    | Translation of 'less'                         | string / React.ReactNode | -       |
-| activateItem            | Activate item confirm title                   | string / React.ReactNode | -       |
+| activateItemTitle       | Activate item confirm title                   | string / React.ReactNode | -       |
 | activate                | Label of confirm activation button            | string / React.ReactNode | -       |
 | cancel                  | Label of cancel button                        | string / React.ReactNode | -       |
 | deleteConfirmationTitle | Title of delete item confirmation popup       | string / React.ReactNode | -       |
-| deleteConfirmationTitle | Description of delete item confirmation popup | string / React.ReactNode | -       |
+| deleteConfirmationDescription | Description of delete item confirmation popup | string / React.ReactNode | -       |
 | deleteConfirmationYes   | Label of delete confirmation button           | string / React.ReactNode | -       |
 | deleteConfirmationNo    | Label of delete cancellation button           | string / React.ReactNode | -       |
 | itemActionRename        | Label of rename item action                   | string / React.ReactNode | -       |

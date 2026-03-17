@@ -22,7 +22,6 @@ import Result from '@synerise/ds-result'
   type="success"
   title="Chicken has been successfully cooked"
   description="Would you like to cook any other chickens?"
-  onClose={() => console.log('close button was clicked')}
   buttons={(
     <>
       <Button type="secondary">
@@ -36,7 +35,6 @@ import Result from '@synerise/ds-result'
   panel={(
     <span>Some content, for example a picture of cooked chicken</span>
   )}
-  closable
 />
 
 ```
@@ -50,11 +48,9 @@ import Result from '@synerise/ds-result'
 | Property        | Description                                                              | Type                                                                 | Default |
 | --------------- | ------------------------------------------------------------------------ | -------------------------------------------------------------------- | ------- |
 | type            | type of result                                                           | `info` / `warning` / `error` / `success` / `progress` / `no-results` | -       |
-| closable        | whether or not to show X button to close                                 | boolean                                                              | -       |
 | title           | title text                                                               | string / React.ReactNode                                             | -       |
 | description     | description text                                                         | string / React.ReactNode                                             | -       |
-| onClose         | event called when clicked on close button                                | () => void                                                           | -       |
 | buttons         | render buttons                                                           | React.ReactNode                                                      | -       |
 | panel           | render custom panel                                                      | React.ReactNode                                                      | -       |
 | customIcon      | render custom icon in place of type icon                                 | React.ReactElement                                                   | -       |
-| noSearchResults | use only in search results (renders with smaller space between elements) | boolean                                                              | -       |
+| noSearchResults | **Deprecated** — use `type="no-results"` instead                         | boolean                                                              | -       |

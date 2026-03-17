@@ -53,16 +53,17 @@ yarn add @synerise/ds-card-select
 | size                       | The size of the card                                                                       | `small` / `medium`          | `medium` |
 | raised                     | Defines border style                                                                       | boolean                     | -        |
 | icon                       | Defines the icon                                                                           | ReactNode                   | -        |
-| iconSize                   | Overwrites the predefined (82px for `medium` size, 48px for `small` size) size of the icon | number                      | -        |
+| iconSize                   | Overwrites the predefined (96px for `medium` size, 48px for `small` size) size of the icon | number                      | -        |
 | title                      | Defines the title of the card                                                              | `ReactNode`                 | -        |
 | description                | Defines the description of the card (not available for `small` size)                       | `ReactNode`                 | -        |
 | value                      | Defines if the card is selected by a user                                                  | boolean                     | `false`  |
 | tickVisible                | Defines the display of the checkbox                                                        | boolean                     | `true`   |
-| disabled                   | Defines if the card is disabled (`onChange` still fires)                                   | boolean                     | -        |
+| disabled                   | Defines if the card is disabled (pointer-events disabled, `onChange` will not fire)        | boolean                     | -        |
 | customTickVisible          | Defines if the checkbox is custom                                                          | boolean                     | -        |
 | customTickVisibleComponent | Custom checkbox component                                                                  | ReactNode                   | -        |
 | stretchToFit               | Aligns the height of each card                                                             | boolean                     | -        |
-| theme                      | Palette of colors                                                                          | string                      | -        |
+| theme                      | **@deprecated** — injected by styled-components `withTheme`, do not pass manually         | object                      | -        |
+| error                      | Shows a red outline on the card                                                            | boolean                     | -        |
 | elementsPosition           | Defines the position of the elements on the card                                           | `left` / `right` / `center` | `center` |
 
 | tagProps | Defines a ribbon-style tag | `TagProps` | - |
@@ -82,7 +83,7 @@ Omit<TagProps, 'shape' | 'removable' | 'asPill' | 'onRemove' | 'image' | 'texts'
 | Property  | Description                                                                                   | Type                                     | Default                                 |
 | --------- | --------------------------------------------------------------------------------------------- | ---------------------------------------- | --------------------------------------- |
 | className | The name of the container                                                                     | string                                   | -                                       |
-| columns   | Defines the number of columns. Defaults to 2, set to null to render all items in a single row | number / null                            | -                                       |
+| columns   | Defines the number of columns. Set to null to render all items in a single row               | number / null                            | `2`                                     |
 | children  | Deprecated. Use items prop instead                                                            | ReactNode                                | -                                       |
 | items     | Array of CardSelect props to render CardSelect child elements                                 | CardSelectProps & { key: string / numer} | -                                       |
 | width     | Defines the size of the gap between items. Deprecated, use size prop                          | `small` / `large`                        | 16px for `small`, 24px for `large` size |

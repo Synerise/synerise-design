@@ -37,3 +37,4 @@ import FormField from '@synerise/ds-form-field'
 | rightSide     | Content rendered to the right side of the label | ReactNode    | -       |
 | description   | Element description                             | ReactNode    | -       |
 | errorText     | Error message                                   | ReactNode    | -       |
+| children      | The form control to wrap (input, select, etc.)  | ReactNode    | -       |

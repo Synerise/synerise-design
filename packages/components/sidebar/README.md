@@ -30,26 +30,30 @@ import Sidebar from '@synerise/ds-sidebar'
 
 #### Sidebar
 
-| Property          | Description                                 | Type                                  | Default |
-| ----------------- | ------------------------------------------- | ------------------------------------- | ------- |
-| children          | Place for Panel element                     | React.ReactNode                       | -       |
-| order             | Place for optional Array with render order  | string[]                              | -       |
-| onChangeOrder     | Called on drag and drop fired               | (order: string / string[])=>void      | -       |
-| defaultActiveKey  | Place for optional default active panel     | string[]                              | -       |
-| getPopupContainer | Determines where to render the drag overlay | (elem: HTMLDivElement) => HTMLElement | -       |
+| Property          | Description                                                                              | Type                                  | Default |
+| ----------------- | ---------------------------------------------------------------------------------------- | ------------------------------------- | ------- |
+| children          | Place for Panel element                                                                  | React.ReactNode                       | -       |
+| order             | Panel IDs in display order; enables sortable mode when combined with `onChangeOrder`     | string[]                              | -       |
+| onChangeOrder     | Called on drag and drop fired; must be set alongside `order` to enable drag mode         | (order: string \| string[]) => void   | -       |
+| defaultActiveKey  | Initially open panel IDs                                                                 | string[]                              | -       |
+| activeKey         | Controlled open panels                                                                   | string \| string[]                    | -       |
+| onChange          | Called when panels open/close                                                            | (keys: string \| string[]) => void    | -       |
+| getPopupContainer | Determines where to render the drag overlay                                              | (elem: HTMLDivElement) => HTMLElement | -       |
+| className         | Added to the Ant Collapse                                                                | string                                | -       |
 
 #### Panel
 
-| Property | Description       | Type                     | Default |
-| -------- | ----------------- | ------------------------ | ------- |
-| header   | Panel header name | React.ReactNode / string | -       |
-| children | Panel content     | React.ReactNode / string | -       |
-| id       | Panel unique id   | string                   | -       |
+| Property    | Description                                          | Type                     | Default |
+| ----------- | ---------------------------------------------------- | ------------------------ | ------- |
+| id          | Panel unique id (required)                           | string                   | -       |
+| header      | Panel header name                                    | React.ReactNode / string | -       |
+| children    | Panel content                                        | React.ReactNode / string | -       |
+| forceRender | Render body even when collapsed                      | boolean                  | -       |
 
-#### SidebarButton
+#### SidebarWithButton
 
-| Property    | Description                   | Type                   | Default |
-| ----------- | ----------------------------- | ---------------------- | ------- |
-| buttonLabel | prop to show text of button   | string                 | -       |
-| title       | prop to show title            | string                 | -       |
-| dataSource  | data of all items in dropdown | string / MenuItemProps | -       |
+| Property    | Description                   | Type           | Default |
+| ----------- | ----------------------------- | -------------- | ------- |
+| dataSource  | data of all items in dropdown | MenuItemProps[] | -       |
+| buttonLabel | prop to show text of button   | string         | -       |
+| title       | prop to show title            | string         | -       |

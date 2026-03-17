@@ -73,7 +73,7 @@ import Badge from '@synerise/ds-badge'
 | ------------------ | ------------------------------------------------------------------ | ---------------------------------------------------------------------------------------------------- | ------- |
 | backgroundColor    | Customize the badge color                                          | Color                                                                                                | -       |
 | backgroundColorHue | Customize brightness of color                                      | `900` / `800` / `700` / `600` / `500` / `400` / `300` / `200` / `100` / `050`                        | -       |
-| customColor        | Customize the badge dot color                                      | `red`                                                                                                | -       |
+| customColor        | Customize the badge dot color                                      | `BadgeColor` or `DefaultColor` (e.g. `'blue-600'`)                                                   | -       |
 | count              | Number to show in the badge counter                                | ReactNode                                                                                            |         |
 | dot                | Display a red dot instead of a counter                             | boolean                                                                                              | `false` |
 | flag               | Show the badge as a flag                                           | boolean                                                                                              | `false` |
@@ -84,7 +84,7 @@ import Badge from '@synerise/ds-badge'
 | showZero           | Show the badge when the counter is zero                            | boolean                                                                                              | `false` |
 | status             | Set badge as a status dot                                          | `active` / `inactive` / `blocked` / `processing` / `warning`                                         | -       |
 | text               | If `status` is set, `text` sets the display text of the status dot | string                                                                                               | ''      |
-| textColor          | Customize text color in badge                                      | `green` / `grey` / `yellow` / `blue` / `pink`/ `mars`/ `orange`/ `fern`/ `cyan`/ `purple` / `violet` | -       |
+| textColor          | Customize text color in badge                                      | `red` / `green` / `grey` / `yellow` / `blue` / `pink`/ `mars`/ `orange`/ `fern`/ `cyan`/ `purple` / `violet` / `white` / `transparent` | -       |
 | textColorHue       | Customize brightness of color                                      | `900` / `800` / `700` / `600` / `500` / `400` / `300` / `200` / `100` / `050`                        | -       |
 | title              | Text shown when a cursor is hovered over the badge                 | string                                                                                               | count   |
 

@@ -34,8 +34,8 @@ import CompletedWithin from '@synerise/ds-completed-within'
 | Property    | Description                                                                  | Type                         | Default                              |
 | ----------- | ---------------------------------------------------------------------------- | ---------------------------- | ------------------------------------ |
 | text        | Custom labels and tooltips                                                   | CompletedWithinTexts         | -                                    |
-| value       | Selected value                                                               | PeriodValue                  | { value: undefined, period: 'YEARS'} |
-| maxValue    | Max value                                                                    | PeriodValue[value]           | Number.MAX_SAFE_INTEGER              |
+| value       | Selected value                                                               | PeriodValue                  | -                                    |
+| maxValue    | Max value; value is clamped to this on dropdown close                        | number                       | -                                    |
 | onSetValue  | Function called when user has closed the settings with set value, and period | (value: PeriodValue) => void | -                                    |
 | periods     | Custom list of periods                                                       | CustomPeriod[]               | -                                    |
 | placeholder | Trigger button label                                                         | string                       | -                                    |
@@ -63,4 +63,4 @@ import CompletedWithin from '@synerise/ds-completed-within'
 | Property | Description            | Type     | Default |
 | -------- | ---------------------- | -------- | ------- |
 | value    | Key of custom period   | `string` | -       |
-| label    | Label of custom period | `string` | -       |
+| label    | Label of custom period | `ReactNode` | -       |

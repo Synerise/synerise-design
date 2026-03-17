@@ -54,7 +54,7 @@ const rootCategory = {
 | Property               | Description                                                     | Type                                        | Default |
 | ---------------------- | --------------------------------------------------------------- | ------------------------------------------- | ------- |
 | categorySuffix         | Suffix element displayed when hovering on category              | string / React.ReactNode                    | -       |
-| maxHeight              | Max height of the content in pixels (In order to enable scroll) | number /string                              | -       |
+| maxHeight              | Max height of the content in pixels (In order to enable scroll) | number                                      | -       |
 | contentStyles          | Additional styles applied to the content                        | React.CSSProperties                         | -       |
 | onCategorySelect       | Callback executed when category is selected                     | (item: Category, selected: boolean) => void | -       |
 | rootCategory           | Root (default) category displayed in dropdown                   | Category                                    | -       |
@@ -67,5 +67,5 @@ const rootCategory = {
 | Property | Description                                                                     | Type            | Default |
 | -------- | ------------------------------------------------------------------------------- | --------------- | ------- |
 | id       | Unique id of category                                                           | React.ReactText | -       |
-| name     | Name of the category                                                            | number          | -       |
+| name     | Name of the category                                                            | string          | -       |
 | path     | Path of the category. Each element of an array represents one level of nesting. | string[]        | -       |

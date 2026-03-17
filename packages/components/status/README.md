@@ -30,7 +30,7 @@ import Status from '@synerise/ds-status'
 
 | Property  | Description                              | Type                                                                           | Default              |
 | --------- | ---------------------------------------- | ------------------------------------------------------------------------------ | -------------------- |
-| type      | type of status                           | `primary` / `success` / `warning` / `danger` / `info` / `disabled` / `default` | `primary` / `custom` |
+| type      | type of status                           | `primary` / `success` / `warning` / `danger` / `info` / `disabled` / `default` / `custom` | `primary` |
 | label     | text inside the status                   | string                                                                         | -                    |
 | className | wrapper class name                       | string                                                                         | -                    |
 | onClick   | onClick event                            | () => void                                                                     | -                    |

@@ -31,15 +31,20 @@ import AvatarGroup from '@synerise/ds-avatar-group'
 | Property             | Description                                                     | Type                             | Default  |
 | -------------------- | --------------------------------------------------------------- | -------------------------------- | -------- |
 | numberOfVisibleUsers | Number of visible avatars                                       | number                           | 3        |
-| hasStatus            | Aligns `badge` with the avatars                                 | boolean                          | `false`  |
-| size                 | The size of the avatars                                         | string: `large` `small` `medium` | `medium` |
-| avatars              | Array of avatars                                                | Avatar[]                         | -        |
-| moreInfoTooltip      | Text on tooltip with information about number of hidden avatars | string                           | -        |
+| hasStatus            | Aligns `badge` with the avatars                                 | boolean                          | -        |
+| size                 | The size of the avatars                                         | `small` / `medium` / `large`     | `medium` |
+| dataSource           | Array of avatar records                                         | DataSource[]                     | -        |
+| moreInfoTooltip      | Suffix text for the +N overflow tooltip                         | string                           | -        |
+| groupModal           | If provided, +N counter opens a modal with the full member list | GroupModalSettings               | -        |
 
-### Avatar
+### DataSource
 
-| Property    | Description                      | Type                                         | Default   |
-| ----------- | -------------------------------- | -------------------------------------------- | --------- |
-| initials    | Initials of user                 | string                                       | -         |
-| status      | Status of user                   | 'active', 'inactive', 'blocked' of undefined | undefined |
-| avatarProps | Props from `ds-avatar` component | object                                       | -         |
+| Property    | Description                          | Type                                     | Default |
+| ----------- | ------------------------------------ | ---------------------------------------- | ------- |
+| id          | Unique identifier                    | string / number                          | -       |
+| initials    | Initials displayed in the avatar     | string                                   | -       |
+| firstname   | First name (shown in modal)          | string                                   | -       |
+| lastname    | Last name (shown in modal)           | string                                   | -       |
+| email       | Email (shown in modal)               | string                                   | -       |
+| status      | Badge status                         | `'active'` / `'inactive'` / `'blocked'` | -       |
+| avatarProps | Props spread onto the Avatar element | AvatarProps (from `@synerise/ds-avatar`) | -       |

@@ -29,9 +29,9 @@ import Divider from '@synerise/ds-divider';
 | marginBottom | Value for bottom margin          | number                    | 0          |
 | labelAbove   | Label to display above divider   | ReactNode                 |            |
 | labelBelow   | Label to display below divider   | ReactNode                 |            |
-| className    | ClassName of container           | string                    | -          |
-| dashed       | Whether line is dashed           | boolean                   | `false`    |
-| orientation  | Position of title inside divider | enum: left right center   | center     |
-| style        | Style object of container        | React.CSSProperties       | -          |
-| type         | Direction type of divider        | enum: horizontal vertical | horizontal |
-| hiddenLine   | Posibility to show only headers  | boolean                   | `false`    |
+| className     | ClassName of container                            | string                    | -          |
+| dashed        | Whether line is dashed                            | boolean                   | `false`    |
+| style         | Style object of container                         | React.CSSProperties       | -          |
+| type          | Direction type of divider                         | enum: horizontal vertical | horizontal |
+| hiddenLine    | Show only labels, hide the line                   | boolean                   | `false`    |
+| withSideMargin | Add 12px left/right margin to horizontal dividers | boolean                   | -          |

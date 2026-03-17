@@ -18,7 +18,7 @@ yarn add @synerise/ds-broadcast-bar
 ```
 import BroadcastBar from '@synerise/ds-broadcast-bar'
 
-<BroadcastBar />
+<BroadcastBar type="warning" description="Message" />
 
 ```
 
@@ -30,8 +30,8 @@ import BroadcastBar from '@synerise/ds-broadcast-bar'
 
 | Property     | Description                                                             | Type              | Default   |
 | ------------ | ----------------------------------------------------------------------- | ----------------- | --------- |
-| type         | Type of Broadcast-bar styles, options: `success`, `warning`, `negative` | `string`          | `warning` |
-| onCloseClick | callback fired when close icon clicked                                  | `void`            | -         |
+| type         | Type of Broadcast-bar styles, options: `success`, `warning`, `negative` | `'success' \| 'warning' \| 'negative'` | -         |
+| onCloseClick | callback fired when close icon clicked                                  | `() => void`      | -         |
 | withClose    | prop to set closeIcon                                                   | `boolean`         | -         |
 | button       | prop to set button                                                      | `React.ReactNode` | -         |
 | customIcon   | prop to set icon                                                        | `React.ReactNode` | -         |

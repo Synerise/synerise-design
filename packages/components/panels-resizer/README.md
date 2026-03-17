@@ -3,9 +3,9 @@ id: panels-resizer
 title: PanelResizer
 ---
 
-The `PanelsResizer` component allows you to create a layout with resizable left and right panels, separated by a draggable resizer.
+The `PanelsResizer` component allows you to create a layout with two resizable panels separated by a draggable resizer. Panels can be arranged side-by-side (default) or stacked top-and-bottom via the `isHorizontal` prop.
 
-Users can adjust the width of the panels by dragging the resizer, providing a flexible and customizable interface.
+Users can adjust the size of the panels by dragging the resizer, providing a flexible and customizable interface.
 
 ## Installation
 
@@ -37,9 +37,10 @@ const App = () => (
 
 ## API
 
-| Property   | Description                                                                        | Type                                            | Default |
-| ---------- | ---------------------------------------------------------------------------------- | ----------------------------------------------- | ------- |
-| leftPanel  | The content to display in the left panel.                                          | React.ReactNode                                 | ---     |
-| rightPanel | The content to display in the right panel.                                         | React.ReactNode                                 | ---     |
-| initial    | Initial widths of the panels. Can specify leftPanel or rightPanel width in pixels. | { leftPanel: number } \| { rightPanel: number } | ---     |
-| scrollable | Whether the panels should be scrollable when their content overflows.              | boolean                                         | false   |
+| Property     | Description                                                                                                      | Type                                            | Default |
+| ------------ | ---------------------------------------------------------------------------------------------------------------- | ----------------------------------------------- | ------- |
+| leftPanel    | The content to display in the left (or top, when `isHorizontal`) panel.                                          | React.ReactNode                                 | ---     |
+| rightPanel   | The content to display in the right (or bottom, when `isHorizontal`) panel.                                      | React.ReactNode                                 | ---     |
+| initial      | Initial size of one panel in pixels. Converted to an offset from 50% at mount time.                             | { leftPanel: number } \| { rightPanel: number } | ---     |
+| scrollable   | Whether the panels should be scrollable when their content overflows.                                            | boolean                                         | ---     |
+| isHorizontal | When `true`, panels are stacked top-and-bottom with a horizontal divider instead of the default side-by-side layout. | boolean                                         | false   |

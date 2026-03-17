@@ -27,7 +27,6 @@ import FileUploader from '@synerise/ds-file-uploader'
     buttonLabel: 'Upload a new file',
     buttonDescription: 'or drag one here',
     size: 'Size:',
-    uploading: 'Uploading...',
   }}
   onUpload={files => processFiles(files)}
 />
@@ -43,18 +42,19 @@ import FileUploader from '@synerise/ds-file-uploader'
 | Property    | Description                                                                      | Type                                      | Default  |
 | ----------- | -------------------------------------------------------------------------------- | ----------------------------------------- | -------- |
 | mode        | uploader operation mode                                                          | `single` / `multi-medium` / `multi-large` | `single` |
-| mode        | uploader maximum files number                                                    | number                                    | -        |
+| filesAmount | uploader maximum files number                                                    | number                                    | -        |
 | description | description shown with uploader                                                  | string                                    | -        |
 | disabled    | whether the uploader should be disabled                                          | boolean                                   | -        |
-| removable   | whether or not files should be removable                                         | boolean                                   | -        |
+| removable   | whether or not files should be removable                                         | boolean                                   | `true`   |
 | label       | label shown on top of the uploader                                               | string                                    | -        |
-| infoTooltip | display a tooltip near the label (label value is required for tooltip to appear) | string                                    | -        |
+| tooltip     | display a tooltip near the label (label value is required for tooltip to appear) | string                                    | -        |
 | error       | display general error                                                            | string                                    | -        |
+| retry       | when true and a file has an error, shows a retry button that re-opens the dialog | boolean                                   | -        |
 | texts       | texts to display                                                                 | FileUploaderTexts                         | -        |
-| files       | uploaded files                                                                   | ExtendedFile[]                            | -        |
+| files       | uploaded files                                                                   | ExtendedFile[]                            | `[]`     |
 | accept      | accepted mime types to upload                                                    | string[]                                  | -        |
-| onRemove    | event fired when a file is removed                                               | (file: File, index: number) => void       | -        |
-| onUpload    | event fired when a file is removed                                               | (files: File[]) => void                   | -        |
+| onRemove    | event fired when a file is removed                                               | (file: FileWithContent, index: number) => void | -   |
+| onUpload    | event fired when files are selected or dropped                                   | (files: FileWithContent[]) => void        | -        |
 
 ## ExtendedFile
 
@@ -74,9 +74,16 @@ import FileUploader from '@synerise/ds-file-uploader'
 
 ## FileUploaderTexts
 
-| Property          | Description                           | Type                     | Default |
-| ----------------- | ------------------------------------- | ------------------------ | ------- |
-| buttonLabel       | upload button label                   | string / React.ReactNode | -       |
-| buttonDescription | upload button description             | string / React.ReactNode | -       |
-| size              | file size label                       | string / React.ReactNode | -       |
-| uploading         | text to display when uploading a file | string / React.ReactNode | -       |
+| Property          | Description                                              | Type                     | Default |
+| ----------------- | -------------------------------------------------------- | ------------------------ | ------- |
+| buttonLabel       | upload button label (compact drop zone)                  | string / React.ReactNode | -       |
+| buttonLabelLarge  | upload label (multi-large mode, no files uploaded yet)   | string / React.ReactNode | -       |
+| buttonDescription | upload button description (multi-large mode)             | string / React.ReactNode | -       |
+| size              | file size label prefix                                   | string / React.ReactNode | -       |
+| removeTooltip     | tooltip text on the remove icon                          | string / React.ReactNode | -       |
+| cancelText        | popconfirm cancel button label                           | string / React.ReactNode | -       |
+| okText            | popconfirm confirm button label                          | string / React.ReactNode | -       |
+| removeConfirmTitle| popconfirm title                                         | string / React.ReactNode | -       |
+| fileWeight        | label for file weight during upload                      | string / React.ReactNode | -       |
+| retryLabel        | label on the retry button                                | string / React.ReactNode | -       |
+| percent           | current upload percentage (passed to ProgressBar)        | number                   | -       |

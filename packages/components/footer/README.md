@@ -11,6 +11,8 @@ Footer UI Component
 npm i @synerise/ds-footer
 or
 yarn add @synerise/ds-footer
+or
+pnpm add @synerise/ds-footer
 ```
 
 ## Usage

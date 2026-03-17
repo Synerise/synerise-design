@@ -100,35 +100,48 @@ import Factors from '@synerise/ds-factors'
 
 ## API
 
-| Property                  | Description                                                                               | Type                                               | Default   |
-| ------------------------- | ----------------------------------------------------------------------------------------- | -------------------------------------------------- | --------- |
-| autocompleteText          | Array of available autocomplete suggestions (only if textType is equal to `autocomplete`) | {options: string[]}                                | -         |
-| availableFactorTypes      | Array of available factor types                                                           | FactorType[]                                       | -         |
-| defaultFactorType         | Default factor type                                                                       | FactorType                                         | -         |
-| formulaEditor             | Formula editor render in modal when factory type is equal to `formula`                    | React.ReactNode                                    | -         |
-| getPopupContainerOverride | Popup container function for child tooltips and dropdowns                                 | (trigger: HTMLElement \ null) => HTMLElement;      | -         |
-| onActivate                | Callback called when user opens dropdown                                                  | (fieldType: string) => void                        | -         |
-| onChangeValue             | Callback called when user change value                                                    | (value: FactorValueType) => void                   | -         |
-| onDeactivate              | Callback called when user closes dropdown                                                 | () => void                                         | -         |
-| opened                    | Whether if dropdown should opens from outside of component                                | boolean                                            | false     |
-| parameters                | Options for parameters list                                                               | ParameterOptions                                   | -         |
-| selectedFactorType        | Selected factor type                                                                      | FactorType                                         | -         |
-| setSelectedFactorType     | Callback called when user selects factor type                                             | (factor: FactorType) => void                       | -         |
-| texts                     | Translations object                                                                       | FactorsTexts                                       | -         |
-| textType                  | Variant of text type input (`autocomplete` \ `expansible` \ `default` )                   | string                                             | `default` |
-| unavailableFactorTypes    | Array of excluded factor types                                                            | FactorType[]                                       | -         |
-| value                     | Value                                                                                     | FactorValueType                                    | -         |
-| withoutTypeSelector       | Whether if hide factor type selector                                                      | boolean                                            | -         |
-| inputProps                | text input additional props (for text factor type)                                        | InputProps                                         | -         |
-| arrayProps                | options for array factor type                                                             | { itemType?: 'string' / 'number', limit?: number } | -         |
+| Property                  | Description                                                                               | Type                                                                             | Default   |
+| ------------------------- | ----------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | --------- |
+| selectedFactorType        | Selected factor type                                                                      | FactorType                                                                       | -         |
+| onChangeValue             | Callback called when user changes value                                                   | (value: FactorValueType) => void                                                 | -         |
+| value                     | Value                                                                                     | FactorValueType                                                                  | -         |
+| defaultFactorType         | Default factor type (fallback when selectedFactorType is unrecognised)                    | FactorType                                                                       | `'text'`  |
+| setSelectedFactorType     | Callback called when user selects factor type                                             | (factor: FactorType) => void                                                     | -         |
+| textType                  | Variant of text type input                                                                | `'autocomplete'` / `'expansible'` / `'default'`                                  | `default` |
+| allowClear                | Shows clear button on inputs that support it                                              | boolean                                                                          | true      |
+| withoutTypeSelector       | Whether to hide factor type selector                                                      | boolean                                                                          | false     |
+| uncontrolledComponent     | Sub-components manage their own open/close state                                          | boolean                                                                          | false     |
+| error                     | Shows error styling on the input                                                          | boolean                                                                          | -         |
+| errorText                 | Error message text                                                                        | ReactNode                                                                        | -         |
+| unavailableFactorTypes    | Array of excluded factor types                                                            | FactorType[]                                                                     | -         |
+| availableFactorTypes      | Array of available factor types (allowlist)                                               | FactorType[]                                                                     | -         |
+| customFactorValueComponents | Override component, name, or icon for any built-in factor type                          | Partial<FactorTypeMapping>                                                       | -         |
+| factorValueExtraProps     | Pass extra icon/tooltip props to text or dynamicKey inputs                                | Partial<ExtraPropsMapping>                                                       | -         |
+| autocompleteText          | Autocomplete suggestions (only when textType is `autocomplete`)                           | { options: string[] }                                                            | -         |
+| formulaEditor             | Content rendered inside the formula editor modal                                          | React.ReactNode                                                                  | -         |
+| getPopupContainerOverride | Popup container function for child tooltips and dropdowns                                 | (trigger: HTMLElement / null) => HTMLElement                                     | -         |
+| onActivate                | Callback called when user opens dropdown                                                  | () => void                                                                       | -         |
+| onDeactivate              | Callback called when user closes dropdown                                                 | () => void                                                                       | -         |
+| opened                    | Externally controls whether the dropdown/modal is open                                    | boolean                                                                          | -         |
+| loading                   | Shows loading state in the input                                                          | boolean                                                                          | -         |
+| preventAutoloadData       | Prevents auto-fetching data in parameter input                                            | boolean                                                                          | -         |
+| parameters                | Options for parameters list                                                               | ParameterOptions                                                                 | -         |
+| onParamsClick             | Called when the parameter button is clicked                                               | () => void                                                                       | -         |
+| arrayProps                | Options for array factor type                                                             | { itemType?: 'string' / 'number'; limit?: number; collectorSuggestions?: CollectorValue[] } | - |
+| relativeDateProps         | Customise relative date display and available units                                       | { triggerValueFormatter?: (value) => string; availableUnits?: RelativeDateUnit[] } | -       |
+| autoResize                | Auto-resize behaviour for text inputs                                                     | AutoResizeProp                                                                   | -         |
+| inputProps                | Extra props forwarded to text inputs                                                      | Partial<InputProps>                                                              | -         |
+| readOnly                  | Disables all interaction                                                                  | boolean                                                                          | -         |
+| factorKey                 | Unique key for the factor instance; used to reset state on remount                        | ReactText                                                                        | -         |
+| texts                     | Translations object (deep partial — any subset can be overridden)                         | DeepPartial<FactorsTexts>                                                        | -         |
 
 ### FactorType
 
-All available factor types: `text`, `number`, `parameter`, `contextParameter`, `dynamicKey`, `formula`, `array`, `date`, `relativeDate`,
+All available factor types: `text`, `number`, `parameter`, `contextParameter`, `dynamicKey`, `formula`, `array`, `date`, `relativeDate`, `dateRange`
 
 ### FactorValueType
 
-Type of value depends on current factor type and can contain values: `string` \ `number` \ `Array<string | numer>` \ `Date` \ `undefined` \ `DynamicKeyValueType` \ `FormulaValueType` \ `ParameterValueType`;
+Type of value depends on current factor type and can contain values: `string` / `number` / `Array<string | number>` / `Date` / `undefined` / `DynamicKeyValueType` / `FormulaValueType` / `ParameterValueType` / `Partial<DateFilter>`
 
 ### DynamicKeyValueType
 
@@ -140,15 +153,18 @@ Type of value depends on current factor type and can contain values: `string` \ 
 
 ### ParameterValueType
 
-`{ type: string; icon: string; name: string; id: React.ReactText; }`
+`{ type: string; icon: ReactNode; name: string; id: React.ReactText; groupId?: React.ReactText; description?: string; value?: React.ReactText | null }`
 
 ### ParameterOptions
 
 | Property                | Description                                                | Type                     | Default |
 | ----------------------- | ---------------------------------------------------------- | ------------------------ | ------- |
 | buttonIcon              | Icon in button                                             | React.ReactNode          | -       |
-| buttonLabel             | Label of button                                            | string \ React.ReactNode | -       |
-| groups                  | Array of parameter groups                                  | ParameterGroup[]         | -       |
+| buttonLabel             | Label of button                                            | string / React.ReactNode | -       |
 | items                   | Array of parameters                                        | ParameterItem[]          | -       |
+| groups                  | Array of parameter groups                                  | ParameterGroup[]         | -       |
+| recentItems             | Items shown at top as recently used                        | ParameterItem[]          | -       |
 | selectedButtonColored   | Whether to use green custom color if parameter is selected | boolean                  | -       |
-| maxSearchResultsInGroup | How many search results should be shown per group          | number                   | 4       |
+| renderEmptyGroups       | Show group headers even if group has no items              | boolean                  | -       |
+| dropdownDimensionsConfig | Override dropdown height at different viewport sizes      | { defaultHeight?, lowerHeight?, threshold? } | - |
+| showAllGroup            | **Deprecated**                                             | boolean                  | -       |

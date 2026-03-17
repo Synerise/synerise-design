@@ -8,14 +8,12 @@ Search UI Component
 ## Installation
 
 ```
-npm i @synerise/ds-search
-or
-yarn add @synerise/ds-search
+pnpm add @synerise/ds-search
 ```
 
 ## Usage
 
-```
+```tsx
 import Search from '@synerise/ds-search';
 
 const parameters = [
@@ -116,6 +114,7 @@ return (
 | searchWidth             | Width of the search input when expanded                                                | number                                                                   | -       |
 | dropdownWidth           | Width of the suggestions dropdown. Will match search input if undefined                | number                                                                   | -       |
 | alwaysExpanded          | Enable expanded input on Search component with dropdown                                | boolean / undefined                                                      | -       |
+| searchTooltipProps      | Props forwarded to the Tooltip wrapping the search input                               | TooltipProps                                                             | -       |
 
 ### DataSetProps
 
@@ -126,27 +125,29 @@ return (
 | rowHeight   | Height of item in the list                                                      | number                        | -       |
 | title       | Title of the item list                                                          | string                        | -       |
 | tooltip     | Tooltip of the item list, displayed when hovering on the icon next to the title | string                        | -       |
-| visibleRows | Number of rows visible in the list                                              | string                        | -       |
+| visibleRows | Number of rows visible in the list                                              | number                        | -       |
 
 ## Search usage
 
-```
-import { SearchInput } from '@synerise/ds-search/dist/Elements';
+```tsx
+import { SearchInput } from '@synerise/ds-search';
 
-    const [value, setValue] = React.useState<string>('');
-      <SearchInput
-        clearTooltip="Clear"
-        placeholder="Search"
-        onValueChange={value => {
-          console.log(value);
-          setValue(value);
-        }}
-        value={value}
-        onClear={() => {
-          console.log('Cleared!');
-        }}
-        closeOnClickOutside={true}
-      />
+const [value, setValue] = React.useState<string>('');
+return (
+  <SearchInput
+    clearTooltip="Clear"
+    placeholder="Search"
+    onChange={value => {
+      console.log(value);
+      setValue(value);
+    }}
+    value={value}
+    onClear={() => {
+      console.log('Cleared!');
+    }}
+    closeOnClickOutside={true}
+  />
+);
 ```
 
 ### SearchInput
@@ -155,40 +156,44 @@ import { SearchInput } from '@synerise/ds-search/dist/Elements';
 | ------------------- | ------------------------------------------------------------------------- | ------------------------------------------------------------------------ | ------- |
 | alwaysHighlight     | When set, the input always has blue border when expanded                  | boolean                                                                  | `false` |
 | alwaysExpanded      | Boolean value to force expanded state of the input                        | boolean                                                                  | `false` |
-| clearTooltip        | Clear button tooltip text                                                 | string                                                                   | -       |
+| clearTooltip        | Clear button tooltip text                                                 | ReactNode                                                                | -       |
 | closeOnClickOutside | Boolean value to prevent / force toggling the input when clicking outside | boolean                                                                  | `false` |
-| filterLabel         | Label displayed on the left-hand side of the input caret                  | object                                                                   | -       |
-| focusTrigger        | Boolean value for triggering focus on the input                           | boolean                                                                  | -       |
+| disabled            | Disables the entire component including the search button                 | boolean                                                                  | -       |
+| disableInput        | Disables only the text input; search button remains active                | boolean                                                                  | -       |
+| filterLabel         | Label displayed on the left-hand side of the input caret                  | `{ icon?: ReactNode; [key: string]: any }` or null                       | -       |
+| focusTrigger        | Toggle this boolean to imperatively focus the input                       | boolean                                                                  | -       |
 | inputProps          | Props object passed to the input element of the component                 | [InputProps](https://design.synerise.com/docs/components/input/#input-1) | -       |
-| onValueChange       | Callback when input changes                                               | function                                                                 | -       |
+| moveCursorToEnd     | Moves caret to end of value when toggled                                  | boolean                                                                  | -       |
+| onChange            | Callback when input changes                                               | `(value: string) => void`                                                | -       |
 | onButtonClick       | Callback executed when clicking search button                             | function                                                                 | -       |
 | onClear             | Callback after clicking clear button                                      | function                                                                 | -       |
 | onClick             | Callback executed when clicking inside an input                           | function                                                                 | -       |
 | onKeyDown           | Callback executed when pressing a keyboard key.                           | function                                                                 | -       |
 | onToggle            | Callback executed when expanding / narrowing the input wrapper            | function                                                                 | -       |
 | placeholder         | Input placeholder                                                         | string                                                                   | -       |
-| toggleTrigger       | Boolean value for triggering expanding / narrowing the input              | boolean                                                                  | -       |
+| searchTooltipProps  | Props forwarded to the Tooltip wrapping the input                         | Partial<TooltipProps>                                                    | `{}`    |
+| toggleTrigger       | Toggle this boolean to imperatively expand / collapse the input           | boolean                                                                  | -       |
 | value               | The input content value                                                   | string                                                                   | -       |
 
 ### SearchInput usage
 
-```
-import { SearchInput } from '@synerise/ds-search/dist/Elements';
+```tsx
+import { SearchInput } from '@synerise/ds-search';
 
 const [value, setValue] = React.useState<string>('');
 return (
-      <SearchInput
-        clearTooltip="Clear"
-        placeholder="Search"
-        onValueChange={value => {
-          console.log(value);
-          setValue(value);
-        }}
-        value={value}
-        onClear={() => {
-          console.log('Cleared!');
-        }}
-        closeOnClickOutside={true}
-      />
-)
+  <SearchInput
+    clearTooltip="Clear"
+    placeholder="Search"
+    onChange={value => {
+      console.log(value);
+      setValue(value);
+    }}
+    value={value}
+    onClear={() => {
+      console.log('Cleared!');
+    }}
+    closeOnClickOutside={true}
+  />
+);
 ```

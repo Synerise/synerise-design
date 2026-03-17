@@ -11,6 +11,8 @@ DateRangePicker UI Component
 npm i @synerise/ds-date-range-picker
 or
 yarn add @synerise/ds-date-range-picker
+or
+pnpm add @synerise/ds-date-range-picker
 ```
 
 ## Usage
@@ -47,9 +49,9 @@ const value = {
 | disabledDefaultTexts      | Disables the default texts translations provided by `react-intl`                 | boolean                    | `false`                                                       |
 | forceAbsolute             | Force the outcome to be converted to an absolute date                            | boolean                    | `false`                                                       |
 | format                    | Format of the value displayed in the footer                                      | string                     | "MMM D, YYYY"                                                 |
-| onApply                   | Callback executed after applying changes                                         | (date:Date)=>void          | -                                                             |
-| ranges                    | An array containing custom ranges which may be used as a short-hand              | DateRange[]                | []                                                            |
-| popoverProps              | Object representing props applied to the Antd Popover component                  | AntdPopoverProps           | {}                                                            |
+| onApply                   | Callback executed after applying changes                                         | (value: Partial<DateFilter> \| undefined) => void | -                                              |
+| ranges                    | An array containing custom ranges which may be used as a short-hand              | DateRangePreset[]          | []                                                            |
+| popoverProps              | Object representing props applied to the ds-popover component                    | Partial<PopoverProps>      | {}                                                            |
 | rangeUnits                | Units available in relative range picker                                         | RelativeUnits[]            | ['SECONDS','MINUTES','HOURS','DAYS','WEEKS','MONTHS','YEARS'] |
 | readOnly                  | Makes picker readonly                                                            | boolean                    | `false`                                                       |
 | disabled                  | Makes picker disabled                                                            | boolean                    | `false`                                                       |
@@ -59,10 +61,13 @@ const value = {
 | showNowButton             | Include "now" button to select current time (last minue)                         | boolean                    | `true`                                                        |
 | showFilter                | Enable range filtering                                                           | boolean                    | `false`                                                       |
 | showCustomRange           | Enable custom range form in relative range picker                                | boolean                    | `true`                                                        |
-| validate                  | Function to specify if particular date ranges are correct                        | (date:Date)=>boolean       | -                                                             |
+| validate                  | Function to specify if particular date ranges are correct                        | (value: DateRange) => { valid: boolean; message?: string } | -                                  |
 | value                     | Value of the picker                                                              | DateRange                  |                                                               |
 | defaultValue              | Default value of the picker (when value is undefined and when user clears input) | DateRange                  |                                                               |
-| startAlwaysOnTheLeft      | Enable not to move month from left side to right side                            | boolean                    | `false`                                                       |
+| showRelativePicker        | Show collapsible relative range picker addon                                     | boolean                    | `false`                                                       |
+| relativeModes             | Explicitly set available relative modes                                          | RelativeMode[]             | -                                                             |
+| valueFormatOptions        | Format options for the displayed value                                           | DateToFormatOptions        | -                                                             |
+| onValueChange             | Callback executed on every value change (before Apply)                           | (value: Partial<DateFilter> \| undefined) => void | -                                              |
 | onVisibleChange           | Callback executed when popover with dateRangePicker changes its visibility       | (visible: boolean) => void | -                                                             |
 | filterValueSelectionModes | Allowed modes to display in filter                                               | DateLimitMode[]            | ["Range", "Hour"]                                             |
 | getPopupContainer         | Function used to set the container of the date range picker.                     | Function(triggerNode)      | `() => document.body`                                         |
@@ -149,7 +154,7 @@ const value = {
 | selectDateFilter      | ReactNode | -------- |
 | datesFilter           | ReactNode | -------- |
 | cancel                | ReactNode | -------- |
-| everyDay              | ReactNode | -------- |
+| everyDay              | string    | -------- |
 | nthDayOfMonth         | ReactNode | -------- |
 | daysOf                | ReactNode | -------- |
 | countedFrom           | ReactNode | -------- |
@@ -171,6 +176,7 @@ const value = {
 | beginning             | ReactNode | -------- |
 | ending                | ReactNode | -------- |
 | maximumRanges         | ReactNode | -------- |
+| clickToSelect         | ReactNode | -------- |
 
 ### Undocumented props
 

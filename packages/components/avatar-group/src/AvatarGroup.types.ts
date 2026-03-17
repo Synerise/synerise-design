@@ -26,10 +26,10 @@ export type GroupModalSettings = {
 };
 
 export type AvatarGroupProps = {
-  numberOfVisibleUsers: number;
+  numberOfVisibleUsers?: number;
   hasStatus?: boolean;
   size?: Size;
   dataSource: DataSource[];
-  moreInfoTooltip: string;
+  moreInfoTooltip?: string;
   groupModal?: GroupModalSettings;
 };

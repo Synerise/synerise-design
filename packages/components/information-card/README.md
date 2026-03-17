@@ -29,8 +29,8 @@ import { InformationCardTooltip } from '@synerise/ds-information-card';
     iconColor: 'mars',
     avatarTooltipText: 'Tooltip Text',
   }}
-  triggerProps={{
-    popupPlacement: 'top',
+  popoverProps={{
+    placement: 'top',
   }}
 >
   <button>Element to attach infocard to</button>
@@ -40,9 +40,9 @@ import { InformationCardTooltip } from '@synerise/ds-information-card';
 Generally, components require being capable of rendering this and usually an additional effort is required to get them to support rendering.
 See text's menu item element `packages/components/menu/src/Elements/Item/Text/Text.tsx`.
 
-Note that `title` and `subtitle` are required props. For just a single line of text consider using @synerise/ds-tooltip.
+Note that `title` is a required prop; `subtitle` is optional. For just a single line of text consider using @synerise/ds-tooltip.
 
-### Usage with dropdown and other components relying on `rc-trigger` `getPopupContainer`
+### Usage with dropdown and other components
 
 Some components render elements via portal, in such a case if tthey are listening for global events like click (for e.g. closing the dropdown) - developer using this component is responsible for proper handling of such a clicks. One of ways is making use of `overlayInnerClass` popover's class property to later.
 By default class is `ignore-click-outside` (so looking for `domElement.closest('.ignore-click-outside')` to determine whether handler should be skipped should be fine).
@@ -71,8 +71,8 @@ By default class is `ignore-click-outside` (so looking for `domElement.closest('
 | renderAdditionalDescription | Render prop for displaying additional content above footer                                                                                                                           | `() => ReactNode`                                   | -       |
 | renderBadge                 | Custom render prop for displaying. If set to `null` - badge won't be shown.                                                                                                          | `Function` &#124; `null`                            | -       |
 | renderFooter                | render prop for rendering the bottom part of (by default section with a small text and an optional action button on the right)                                                       | `() => JSX.Element`                                 | -       |
-| subtitle                    | Second line. Required prop. Can be copied.                                                                                                                                           | `string`                                            | -       |
-| title                       | Title of the information-card. Can be copied.                                                                                                                                        | `string`                                            | -       |
+| subtitle                    | Second line. Optional. String values are copyable on click.                                                                                                                          | `ReactNode`                                         | -       |
+| title                       | Title of the information-card. Required. String values are copyable on click.                                                                                                        | `ReactNode`                                         | -       |
 | actionsMenu                 | Config for displaying "quick actions" - a button in footer that reveals a menu with links                                                                                            | `ActionsMenuProps`                                  | -       |
 | propertyListItems           | an array of object properties to list, can also include dividers                                                                                                                     | `InformationCardPropertyListItem[]`                 | -       |
 | summaryItems                | An array of (label + icon + optional tooltip) summary items to display below properties                                                                                              | `InformationCardSummaryItem[]`                      | -       |
@@ -116,5 +116,7 @@ Displays InformationCard as a tooltip with `children` node as trigger
 | Property             | Description                             | Type                                                               | Default |
 | -------------------- | --------------------------------------- | ------------------------------------------------------------------ | ------- |
 | informationCardProps | Props for rendering the InformationCard | `InformationCardProps`                                             | -       |
-| triggerProps         | Trigger props. See rc-trigger           | `Partial<TriggerProps> & { ref?: React.LegacyRef<TriggerHandle> }` | -       |
+| popoverProps         | Floating-ui popover options (see @synerise/ds-popover)  | `Partial<PopoverOptions>`                                          | -       |
+| content              | Custom content (alternative to informationCardProps)    | `ReactNode`                                                        | -       |
+| asChild              | Forward trigger props to first child (Radix-style)      | `boolean`                                                          | -       |
 | children             | trigger element                         | `ReactNode`                                                        | -       |

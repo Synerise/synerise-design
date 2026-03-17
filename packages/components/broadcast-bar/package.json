@@ -34,8 +34,7 @@
   ],
   "types": "dist/index.d.ts",
   "dependencies": {
-    "@synerise/ds-icon": "workspace:^",
-    "animate.css": "^4.1.1"
+    "@synerise/ds-icon": "workspace:^"
   },
   "peerDependencies": {
     "@synerise/ds-core": "*",

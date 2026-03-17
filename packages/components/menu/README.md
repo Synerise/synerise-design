@@ -53,7 +53,7 @@ const items = [
 
 | Property        | Description                                                                  | Type            | Default |
 | --------------- | ---------------------------------------------------------------------------- | --------------- | ------- |
-| asDropdownwMenu | Add additional styles for dropdown menu                                      | boolean         | `false` |
+| asDropdownMenu  | Add additional styles for dropdown menu                                      | boolean         | `false` |
 | dataSource      | Array of items to display in menu                                            | MenuItemProps[] | -       |
 | ordered         | Determines if items should be displayed with index prefix (starting from 01) | boolean         | `false` |
 | maxToShowItems  | limits the number of items rendered. remaining are shown after button click  | number          | -       |
@@ -64,10 +64,10 @@ const items = [
 | Property                | Description                                                    | Type                                                    | Default   |
 | ----------------------- | -------------------------------------------------------------- | ------------------------------------------------------- | --------- |
 | children                | Children of the item                                           | React.ReactNode                                         |           |
-| copyable                | Boolean to enable option of copying the value to the clipboard | boolean                                                 | `false`   |
-| copyHint                | Text displayed on hovering copyable item                       | string                                                  |           |
-| copyValue               | Value to be copied to clipboard when copyable item is clicked  | string                                                  |           |
-| copyTooltip             | Tooltip to be displayed when copyable item is clicked          | string / React.ReactNode                                |           |
+| copyable                | Enables copy-to-clipboard; pass `Copyable` object for full control | `boolean` (deprecated) \| `Copyable`            | -         |
+| copyValue               | **@deprecated** — use `copyable: Copyable` instead             | string                                                  |           |
+| copyHint                | **@deprecated** — no longer shown                              | string                                                  |           |
+| copyTooltip             | **@deprecated** — no longer shown                              | string \| React.ReactNode                               |           |
 | disabled                | Disable an item element                                        | boolean                                                 | `false`   |
 | description             | Additional description displayed inside the item               | string / React.ReactNode                                |           |
 | highlight               | Text to be highlighted inside the item                         | string                                                  |           |

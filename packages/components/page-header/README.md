@@ -21,7 +21,7 @@ This component could be used as header of page with main title and navigation
 | children           | The content of the component             | React.ReactNode                                                         | -       |
 | description        | Description of header                    | React.ReactNode / string                                                | -       |
 | goBackIcon         | Custom icon for "go back" button         | React.ReactNode                                                         | -       |
-| isolated           | Add horizontal line to separate content  | boolean                                                                 | `false` |
+| isolated           | Adds a grey overlay on the bottom border to visually isolate header content | boolean                                                                 | -       |
 | inlineEdit         | Object with InlineEdit component options | Object                                                                  | -       |
 | more               | Place for more detail button             | React.ReactNode                                                         | -       |
 | onGoBack           | Callback to previous state               | () => void                                                              | -       |

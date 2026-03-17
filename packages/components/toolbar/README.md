@@ -8,15 +8,13 @@ Toolbar UI Component
 ## Installation
 
 ```
-npm i @synerise/ds-toolbar
-or
-yarn add @synerise/ds-toolbar
+pnpm add @synerise/ds-toolbar
 ```
 
 ## Usage
 
-```
-import Toolbar from '@synerise/ds-toolbar'
+```tsx
+import Toolbar, { ToolbarGroup, ToolbarButton, ToolbarLabel, ToolbarDivider } from '@synerise/ds-toolbar';
 
 <Toolbar>
   <ToolbarGroup>
@@ -28,7 +26,6 @@ import Toolbar from '@synerise/ds-toolbar'
     </ToolbarButton>
   </ToolbarGroup>
 </Toolbar>
-
 ```
 
 ## Demo
@@ -48,7 +45,7 @@ import Toolbar from '@synerise/ds-toolbar'
 | Property  | Description                                       | Type      | Default |
 | --------- | ------------------------------------------------- | --------- | ------- |
 | children  | contents of the toolbar                           | ReactNode | -       |
-| isCompact | compact ToolbarGroup has 0px gap between elements | boolean   | -       |
+| isCompact | compact ToolbarGroup has 0px gap between elements | boolean   | false   |
 
 ### ToolbarButton
 
@@ -59,3 +56,13 @@ see ds-button for more props
 | type         | type of button | 'ghost-primary' / 'ghost' / 'custom-color-ghost' | -       |
 | tooltipProps | Tooltip config | TooltipProps see ds-tooltip                      | -       |
 | badgeProps   | Badge config   | BadgeProps see ds-badge                          | -       |
+
+### ToolbarLabel
+
+| Property | Description                        | Type      | Default |
+| -------- | ---------------------------------- | --------- | ------- |
+| children | label text rendered inside a group | ReactNode | -       |
+
+### ToolbarDivider
+
+A vertical 1px separator for use inside a `ToolbarGroup`. Accepts standard `HTMLDivElement` attributes. No additional props.
