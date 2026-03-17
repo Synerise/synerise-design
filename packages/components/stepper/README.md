@@ -41,9 +41,12 @@ import Stepper from '@synerise/ds-stepper'
 
 ### Stepper
 
-| Property    | Description                        | Type                      | Default      |
-| ----------- | ---------------------------------- | ------------------------- | ------------ |
-| orientation | Defines direction of Stepper steps | `horizontal` \ `vertical` | `horizontal` |
+| Property    | Description                        | Type                              | Default      |
+| ----------- | ---------------------------------- | --------------------------------- | ------------ |
+| orientation | Defines direction of Stepper steps | `'horizontal'` \| `'vertical'`   | `horizontal` |
+| size        | Step size variant                  | `'default'` \| `'small'`         | `default`    |
+| style       | Inline styles on the root wrapper  | `React.CSSProperties`             | -            |
+| children    | `Stepper.Step` children            | `React.ReactNode`                 | -            |
 
 ### Stepper.Step
 
@@ -53,7 +56,8 @@ import Stepper from '@synerise/ds-stepper'
 | done       | Whether step was completed                | `boolean`                    | `false` |
 | label      | Label of step                             | `string` \ `React.ReactNode` | -       |
 | onClick    | Function called when user clicks on step  | `() => void`                 | -       |
-| stepNumber | Step number                               | `number`                     | -       |
+| stepNumber | Step number displayed in the circle       | `number`                     | -       |
+| children   | Content shown when step is active         | `React.ReactNode`            | -       |
 | tooltip    | Shows icon with tooltip if step is active | `string` \ `React.ReactNode` | -       |
 | validated  | Whether step has some errors              | `boolean`                    | `false` |
 | warning    | Whether step has warning status           | `boolean`                    | -       |

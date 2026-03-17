@@ -65,9 +65,11 @@ import { AngleDownS } from '@synerise/ds-icon';
 | mode           | Defines the mode of the button content. It affects content inside the button | `single-icon` / `split` / `two-icons` /`label-icon` / `icon-label`                                                                        | -           |
 | onClick        | Callback executed after clicking the button                                  | (event: React.MouseEvent) => void                                                                                                         | -           |
 | type           | Defines the type of the button.                                              | `primary` / `secondary`/ `tertiary`/ `tertiary-white` / `ghost-primary` / `ghost` / `ghost-white` / `custom-color` / `custom-color-ghost` | `secondary` |
-| iconColor      | Defines color of `icon` in button.                                           | `green` / `grey` / `yellow` / `blue` / `pink`/ `mars`/ `orange`/ `fern`/ `cyan`/ `purple` / `violet`                                      | `grey`      |
+| iconColor      | Defines color of `icon` in button.                                           | `green` / `grey` / `yellow` / `blue` / `pink`/ `mars`/ `orange`/ `fern`/ `cyan`/ `purple` / `violet`                                      | -           |
 | error          | Defines if the button has error button styles .                              | boolean                                                                                                                                   | `false`     |
+| readOnly       | Disables ripple and freezes hover/focus styles (cursor: default).            | boolean                                                                                                                                   | -           |
 | tagProps       | Renders a status tag next to button label                                    | TagProps see ds-tag                                                                                                                       | -           |
+| tooltipProps   | Wraps the button label in a tooltip.                                         | TooltipProps see ds-tooltip                                                                                                               | -           |
 
 ## ButtonToggle
 
@@ -104,7 +106,7 @@ Special type of Button, with two states: default and activated (selected). Inher
 | disabled | Defines if the button is disabled.          | boolean                           | `false` |
 | expanded | The current state of the button.            | boolean                           | `false` |
 | onClick  | Callback executed after clicking the button | (event: React.MouseEvent) => void | -       |
-| size     | Defines the size of the button.             | `S` / `M`                         | `M`     |
+| size     | Defines the size of the button.             | `S` / `M`                         | `S`     |
 
 ## Button.Checkbox
 
@@ -134,3 +136,4 @@ It inherits all `Button`'s props excluding.
 | Property | Description                                              | Type      | Default     |
 | -------- | -------------------------------------------------------- | --------- | ----------- |
 | active   | (optional) Sets checkbox state for controlled component. | `boolean` | `undefined` |
+| hasError | (optional) Changes appearance for wrong validation.      | `boolean` | `undefined` |

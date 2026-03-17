@@ -3,6 +3,8 @@ id: block
 title: Block
 ---
 
+> **DEPRECATED.** This component will receive no further updates and will be removed from a future DS version. Do not use in new code.
+
 Block UI Component
 
 ## Installation
@@ -33,3 +35,4 @@ import Block from '@synerise/ds-block'
 | children   | Header name                            | React.ReactNode / string | -       |
 | isDragging | Return `true`if Block is being dragged | boolean                  | -       |
 | icon       | Block icon component                   | React.ReactNode          | -       |
+| className  | Extra CSS class on the wrapper element | string                   | -       |

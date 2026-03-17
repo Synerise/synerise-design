@@ -16,7 +16,7 @@ The Modal component provides a flexible and customizable way to display modal di
 Install the Modal component using npm:
 
 ```bash
-npm install @synerise/ds-core
+npm install @synerise/ds-modal
 ```
 
 ## Deprecated Features
@@ -31,25 +31,24 @@ Some features of the Modal component have been deprecated. Please refer to the [
 
 | Property            | Description                                                                                                | Type                                                                   | Default                                         |
 | ------------------- | ---------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------- | ----------------------------------------------- |
-| description         | The modal dialog's description                                                                             | ReactNode                                                              | -                                               |
+| description         | **(Deprecated)** The modal dialog's description                                                            | ReactNode                                                              | -                                               |
 | headerBottomBar     | Bottom bar rendered below title and description                                                            | ReactNode                                                              | -                                               |
 | headerActions       | Append additional content to header actions space                                                          | React.ReactNode                                                        | -                                               |
+| headerTabProps      | Props forwarded to the Tabs component rendered in the header                                               | TabsProps                                                              | -                                               |
 | size                | The modal size                                                                                             | `small` / `medium` / `large` / `extraLarge`/ `fullSize`/ `fullScreen`. | -                                               |
 | bodyBackground      | Set color for body of modal                                                                                | `white` / `grey`                                                       | `white`                                         |
 | blank               | Modal with header which contains only close button                                                         | Boolean                                                                | `false`                                         |
 | titleContainerStyle | The modal title's container styles object                                                                  | React.CSSProperties / undefined                                        | -                                               |
-| settingButtonText   | Text of the setting button                                                                                 | string                                                                 | `Setting`                                       |
-| texts               | Labels to render                                                                                           | `{ okButton: string; cancelButton: string }`                           | `{ okButton: 'Apply', cancelButton: 'Cancel' }` |
-| children            | Children element to render                                                                                 | `{ okButton: string; cancelButton: string }`                           | -                                               |
-| visible             | Whether the modal dialog is visible or not                                                                 | boolean                                                                | `false`                                         |
+| texts               | Labels to render                                                                                           | `{ okButton?: ReactNode; cancelButton?: ReactNode }`                   | `{ okButton: 'Apply', cancelButton: 'Cancel' }` |
+| children            | Children element to render                                                                                 | ReactNode                                                              | -                                               |
+| open                | Whether the modal dialog is visible or not                                                                 | boolean                                                                | `false`                                         |
 | confirmLoading      | Whether to apply loading visual effect for OK button or not                                                | boolean                                                                | `false`                                         |
 | title               | The modal dialog's title                                                                                   | string / ReactNode                                                     | -                                               |
-| closable            | Whether a close (x) button is visible on top right of the modal dialog or not                              | boolean                                                                | `true`                                          |
 | onOk                | Specify a function that will be called when a user clicks the OK button                                    | function(e)                                                            | -                                               |
 | onCancel            | Specify a function that will be called when a user clicks mask, close button on top right or Cancel button | function(e)                                                            | -                                               |
 | afterClose          | Specify a function that will be called when modal is closed completely.                                    | function                                                               | -                                               |
 | centered            | Centered Modal                                                                                             | Boolean                                                                | `false`                                         |
-| width               | Width of the modal dialog                                                                                  | string / number                                                        | 520                                             |
+| width               | Width of the modal dialog (overridden by `size` when set)                                                  | string / number                                                        | 520                                             |
 | footer              | Footer content, set as `footer={null}` when you don't need default buttons                                 | ReactNode                                                              | OK and Cancel buttons                           |
 | okText              | Text of the OK button                                                                                      | string / ReactNode                                                     | `OK`                                            |
 | okType              | Button `type` of the OK button                                                                             | string                                                                 | `primary`                                       |
@@ -67,17 +66,20 @@ Some features of the Modal component have been deprecated. Please refer to the [
 | mask                | Whether show mask or not.                                                                                  | Boolean                                                                | `true`                                          |
 | closeIcon           | custom close icon                                                                                          | ReactNode                                                              | -                                               |
 | maskStyle           | Style for modal's mask element.                                                                            | object                                                                 | {}                                              |
-| maxHeightViewport   | height of modal with with scrollbar                                                                        | true / number                                                          | 80                                              |
+| maxViewportHeight   | Caps modal height and wraps body in a scrollbar. `true` = 80vh, number = custom vh                        | true / number                                                          | -                                               |
+| disableScrollbar    | Disables automatic scrollbar wrapping applied by `maxViewportHeight`                                       | boolean                                                                | -                                               |
 
 and it is extended by props for ModalFooterBuilder:
 
-| Property     | Description                                                  | Type      | Default | Version |
-| ------------ | ------------------------------------------------------------ | --------- | ------- | ------- |
-| prefix       | Element in footer, before Cancel Button                      | ReactNode | -       |
-| infix        | Element in footer between Cancel Button nad before Ok Button | ReactNode | -       |
-| suffix       | Element in footer, after Ok Button                           | ReactNode | -       |
-| okButton     | Custom OK button in footer                                   | ReactNode | -       |
-| cancelButton | Custom Cancel button in footer                               | ReactNode | -       |
+| Property            | Description                                                  | Type                         | Default  | Version |
+| ------------------- | ------------------------------------------------------------ | ---------------------------- | -------- | ------- |
+| prefix              | Element in footer, before Cancel Button                      | ReactNode                    | -        |         |
+| infix               | Element in footer between Cancel Button and before Ok Button | ReactNode                    | -        |         |
+| suffix              | Element in footer, after Ok Button                           | ReactNode                    | -        |         |
+| okButton            | Custom OK button in footer                                   | ReactNode                    | -        |         |
+| cancelButton        | Custom Cancel button in footer                               | ReactNode                    | -        |         |
+| CustomFooterButton  | Button component used to render ok/cancel buttons            | `ComponentType<ButtonProps>` | `Button` |         |
+| DSButton            | **(Deprecated)** use `CustomFooterButton`                    | `ComponentType<ButtonProps>` | `Button` |         |
 
 ## ModalTitle
 
@@ -85,11 +87,13 @@ and it is extended by props for ModalFooterBuilder:
 type ModalTitleProps = Pick<
   ModalProps,
   | 'headerActions'
+  | 'headerTabProps'
   | 'onCancel'
   | 'titleContainerStyle'
   | 'blank'
   | 'description'
   | 'title'
+  | 'headerBottomBar'
 >;
 ```
 

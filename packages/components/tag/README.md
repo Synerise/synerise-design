@@ -11,6 +11,8 @@ Tag UI Component
 npm i @synerise/ds-tag
 or
 yarn add @synerise/ds-tag
+or
+pnpm add @synerise/ds-tag
 ```
 
 ## Usage
@@ -38,10 +40,15 @@ import Tag from '@synerise/ds-tag'
 | onClick      | onClick event on tag body                       | () => void                        | -                      |
 | onRemove     | callback when tag is removed                    | (tagKey: string / number) => void | -                      |
 | removable    | show remove button                              | boolean                           | -                      |
-| shape        | shape of the tag                                | TagShape                          | TagShape.DEFAULT_ROUND |
+| shape        | shape of the tag                                | TagShape                          | TagShape.DEFAULT_SQUARE |
 | textColor    | color of tag name label                         | string                            | -                      |
+| image        | src of image shown before content (DEFAULT_ROUND/SQUARE only) | string             | -                      |
+| prefixel     | leading slot content                            | ReactNode                         | -                      |
+| suffixel     | trailing slot content (hidden on remove hover)  | ReactNode                         | -                      |
+| texts        | i18n overrides for internal labels              | Partial&lt;TagTexts&gt;           | -                      |
+| asPill       | disable hover brightness effect                 | boolean                           | -                      |
 | dashed       | make border dashed                              | boolean                           | -                      |
-| tooltipProps | tooltip to show over entire tag. see ds-tooltip | TooltipProps                      |                        |
+| tooltipProps | tooltip to show over entire tag. see ds-tooltip | TooltipProps                      | -                      |
 
 ## TagShape Enum
 

@@ -28,13 +28,16 @@ import EmptyStates from '@synerise/ds-empty-states'
 
 ## API
 
-| Property      | Description                        | Type                                    | Default |
-| ------------- | ---------------------------------- | --------------------------------------- | ------- |
-| size          | Changing size on Icon              | 'Xl' / 'L'                              | M       |
-| label         | text of empty states               | string / React.ReactNode                | -       |
-| labelPosition | Defines the position of text       | right / bottom                          | right   |
-| text          | text of Header                     | string / React.ReactNode                | -       |
-| type          | type of icon                       | `Add` / `NoResults` / `SearchNoResults` | -       |
-| button        | render button                      | string / React.ReactNode                | -       |
-| fontSize      | set size of Header                 | string / React.ReactNode                | -       |
-| mode          | prop to set empty states in center | absolute / undefined                    | -       |
+| Property      | Description                                               | Type                                    | Default  |
+| ------------- | --------------------------------------------------------- | --------------------------------------- | -------- |
+| size          | Icon size                                                 | `small` / `medium`                      | `small`  |
+| label         | Secondary label text                                      | string / React.ReactNode                | -        |
+| labelPosition | **@deprecated** — has no effect on rendering              | `right` / `bottom`                      | -        |
+| text          | Header / primary text                                     | string / React.ReactNode                | -        |
+| button        | Action button rendered below label                        | React.ReactNode                         | -        |
+| fontSize      | Header font size (`small` = 14px, `medium` = 18px)        | `small` / `medium`                      | `small`  |
+| customIcon    | Icon element rendered via `@synerise/ds-icon`             | React.ReactElement                      | -        |
+| iconPosition  | Position of icon relative to content                      | `top` / `left` / `right`               | `top`    |
+| textAlign     | Text alignment of the content area                        | `left` / `center` / `right` / `justify` | `center` |
+| mode          | `absolute` positions wrapper at top:50% left:50%          | `absolute`                              | -        |
+| className     | Additional CSS class (merged with `ds-empty-states`)      | string                                  | -        |

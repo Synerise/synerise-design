@@ -33,8 +33,10 @@ import Loader from '@synerise/ds-loader'
 | size             | Changing size on Loader      | 'S' / 'M' / 'L'          | M       |
 | label            | text of loader               | string / React.ReactNode | -       |
 | labelPosition    | Defines the position of text | right / bottom           | right   |
-| color            | Changing color of Loader     | string                   | `blue`  |
-| percent          | percent number of loader     | number / React.ReactNode | -       |
-| percentFormatter | prop to keep in order        | React.ReactNode          | -       |
+| color            | Changing color of Loader     | 'grey' / 'blue' / 'red' / 'green' / 'yellow' / 'pink' / 'mars' / 'orange' / 'fern' / 'cyan' / 'purple' / 'violet' / string | `grey`  |
+| text             | Bold header text above label | React.ReactNode          | -       |
+| fontSize         | Font size of text header     | 'small' / 'medium'       | -       |
+| percent          | Value passed to percentFormatter | React.ReactNode      | -       |
+| percentFormatter | Renders formatted percent beside label | (percent?: React.ReactNode) => React.ReactNode | -       |
 | mode             | prop to set loader in center | absolute / undefined     | -       |
 | className        | css class name               | string                   | -       |

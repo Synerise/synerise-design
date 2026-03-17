@@ -47,9 +47,9 @@ import IconPicker from '@synerise/ds-icon-picker'
 | noResultMsg  | Node displayed when no items matches searched query | ReactNode                                       | -       |
 | onSelect     | Action on icon select                               | OnSelectType                                    | -       |
 | placeholder  | Input placeholder                                   | string                                          | -       |
-| trigger      | Trigger type                                        | `['click', 'hover']`             | []      |
-| onClear      | Action on icon delete                               | OnSelectType                                    | -       |
-| selectedIcon | Icon Node                                           | ReactElement                                    | -       |
-| clearTooltip | tooltip text                                        | string                                          | -       |
+| trigger      | Trigger type, e.g. `['click']`                      | PopoverTriggerType[]                            | -       |
+| onClear      | Action on icon delete                               | () => void                                      | -       |
+| selectedIcon | Icon Node                                           | ReactNode                                       | -       |
+| clearTooltip | tooltip text                                        | ReactNode                                       | -       |
 
 OnSelectType depends on the icon list source. For `design-system` or plain items provided as `DataSource[]` it is `(item: ReactNode) => void;`. For `font-awesome` it is `(item: [IconPrefix, IconName]) => void;`. See FontAwesome docs on how to use the IconPrefix and IconName to display an icon.

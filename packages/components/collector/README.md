@@ -50,7 +50,7 @@ import Collector from '@synerise/ds-collector'
 | dropdownContent                  | Custom content of the dropdown displayed when component is focused     | React.ReactNode                               | `false` |
 | dropdownItemHeight               | Enable setting size in dropdown items                                  | 'large'                                       | ---     |
 | enableCustomFilteringSuggestions | Disable filtering suggestions inside component                         | boolean                                       | false   |
-| errorText                        | error message, if provided input will be set in error state            | string                                        | ---     |
+| errorText                        | error message, if provided input will be set in error state            | ReactNode                                     | ---     |
 | error                            | If provided an input will be set in error state, without error message | boolean                                       | ---     |
 | fixedHeight                      | If provided, an input will preserve the constant height value          | boolean                                       | `false` |
 | label                            | Label rendered above the input                                         | string / React.ReactNode                      | ---     |
@@ -65,15 +65,17 @@ import Collector from '@synerise/ds-collector'
 | onSearchValueChange              | Callback executed when user changes the value of the input             | (value: string) => void                       | ---     |
 | renderItem                       | Custom function for rendering a custom item inside dropdown            | (value: CollectorValue) => JSX.Element        | ---     |
 | showNavigationHints              | Renders navigation hint panel at the bottom of the dropdown            | boolean                                       | `false` |
-| searchValue                      | Value of the input                                                     | string                                        | []      |
-| selected                         | Array of items which are already selected                              | CollectorValue[]                              | []      |
-| suggestions                      | Array of items which are displayed when showing suggestions dropdown   | CollectorValue[]                              | []      |
-| texts                            | Texts object for the component                                         | CollectorTexts                                | {}      |
+| searchValue                      | Value of the input                                                     | string                                        | -       |
+| selected                         | Array of items which are already selected                              | CollectorValue[]                              | -       |
+| suggestions                      | Array of items which are displayed when showing suggestions dropdown   | CollectorValue[]                              | -       |
+| texts                            | Texts object for the component                                         | Partial<CollectorTexts>                       | -       |
 | scrollbarProps                   | Object with scrollbar configturaion                                    | ScrollbarAdditionalProps                      | -       |
-| allowPaste                       | Object with scrollbar configturaion                                    | boolean                                       | -       |
+| allowPaste                       | Enables paste-splitting when pasting delimited values                  | boolean                                       | -       |
 | showCount                        | Display item counter above collector                                   | boolean                                       | -       |
-| valuesSeparator                  | Multi-value paste delimiter (separator)                                | CollectorValuesSeparator `;`, `/` or `,`      | `;`     |
+| valuesSeparator                  | Multi-value paste delimiter (separator)                                | CollectorValuesSeparator `;`, `|` or `,`      | `;`     |
 | listHeader                       | Custom header displayed at the top of the dropdown list                | React.ReactNode                               | -       |
+| valuesEscapeOpenTag              | Opening escape tag to prevent separator-splitting in paste/type        | string                                        | ` ``` ` |
+| valuesEscapeCloseTag             | Closing escape tag                                                     | string                                        | ` ``` ` |
 | hideDropdownOnClickOutside       | Specify whether dropdown should be closed on click outside             | boolean                                       | `true`  |
 
 `CollectorValue = {[key:string]: any}`

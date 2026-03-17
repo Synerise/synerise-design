@@ -35,15 +35,18 @@ import CodeSnippet from '@synerise/ds-code-snippet'
 | type                | Defines the type of the codesnippet                        | CodeSnippetType     | INLINE                               |
 | className           | Class name for main CodeSnippet's container                | string              | -                                    |
 | children            | CodeSnippet's content                                      | string              | ""                                   |
-| tooltipHint         | Defines the text                                           | string              | 'Copy'                               |
-| labelBeforeExpanded | Defines the text of button before expand                   | string              | 'Show more'                          |
-| labelAfterExpanded  | Defines the text of button after expand                    | string              | 'Show less'                          |
-| tooltipTitleHover   | Tooltip title on hover                                     | string              | 'Copy'                               |
-| tooltipTitleClick   | Tooltip title on click                                     | string              | 'Copied!'                            |
-| fontSize            | Defines the size for single block                          | FontSize            | 'small'                              |
-| colorSyntax         | Specify when use color syntax                              | boolean             | false                                |
-| languages           | Array of langugages defined for color syntax               | LanguageHighlight[] | ['javascript', 'typescript', 'json'] |
-| rows                | Specify the number of visible lines before expand          | number              | 6                                    |
-| wrap                | Specify whether content is wrap or not                     | boolean             | false                                |
-| onExpand            | An extra function to invoke on button click expand content | () => void          | -                                    |
-| onCopy              | An extra function to invoke on copy button event           | () => void          | -                                    |
+| tooltipTitleHover        | Tooltip title on hover (before copy)                       | string              | 'Copy'                               |
+| tooltipTitleClick        | Tooltip title after copy                                   | string              | 'Copied!'                            |
+| labelBeforeExpanded      | Text of expand button before expanding                     | string              | 'Show more'                          |
+| labelAfterExpanded       | Text of expand button after expanding                      | string              | 'Show less'                          |
+| fontSize                 | Font size (FontSize.SMALL=12, FontSize.MEDIUM=14)          | FontSize            | FontSize.SMALL                       |
+| colorSyntax              | Enable syntax highlighting (multi-line only)               | boolean             | false                                |
+| languages                | Languages for syntax highlighting (multi-line only)        | LanguageHighlight[] | ['javascript', 'typescript', 'json'] |
+| rows                     | Visible lines before expand button appears (multi-line)    | number              | 6                                    |
+| expanded                 | Initial expanded state (multi-line only)                   | boolean             | false                                |
+| wrap                     | Enable word wrap (multi-line only)                         | boolean             | false                                |
+| hideExpandButton         | Hide the expand/collapse button (multi-line only)          | boolean             | false                                |
+| hideCopyButton           | Hide the copy icon (multi-line only)                       | boolean             | false                                |
+| customTriggerComponent   | Custom node to replace the copy icon                       | ReactNode           | -                                    |
+| onExpand                 | Extra callback on expand/collapse click                    | () => void          | -                                    |
+| onCopy                   | Extra callback on copy                                     | () => void          | -                                    |

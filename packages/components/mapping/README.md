@@ -39,6 +39,7 @@ import Mapping from '@synerise/ds-mapping'
 | leftComponent     | Component to be rendered in the left column              | ({item: T extends BaseItemType, index: number}) => ReactNode | -       |
 | rightComponent    | Component to be rendered in the right column             | ({item: T extends BaseItemType, index: number}) => ReactNode | -       |
 | centerComponent   | Component to be rendered in the center column (optional) | ({item: T extends BaseItemType, index: number}) => ReactNode | -       |
+| texts             | Override batch-selection toggle button labels            | `Partial<MappingTexts>`                                      | -       |
 
 ### BaseItemType
 

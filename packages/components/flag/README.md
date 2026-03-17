@@ -15,11 +15,10 @@ yarn add @synerise/ds-flag
 
 ## Usage
 
-```
-import Flag from '@synerise/ds-flag'
+```tsx
+import Flag from '@synerise/ds-flag';
 
-<DSFlag country="PL" size="24" />
-
+<Flag country="PL" size={24} />
 ```
 
 ## Demo
@@ -28,7 +27,7 @@ import Flag from '@synerise/ds-flag'
 
 ## API
 
-| Property | Description                                             | Type   | Default |
-| -------- | ------------------------------------------------------- | ------ | ------- |
-| country  | The country code (ISO 3166-1 alfa-2) for the image path | string | -       |
-| size     | The size of the image                                   | number | -       |
+| Property | Description                                                                 | Type                    | Default |
+| -------- | --------------------------------------------------------------------------- | ----------------------- | ------- |
+| country  | The country code (ISO 3166-1 alpha-2) for the flag; case-insensitive        | `CountryCode \| string` | -       |
+| size     | Height of the flag in px; width is derived from the 15:21 aspect ratio      | `number`                | `24`    |

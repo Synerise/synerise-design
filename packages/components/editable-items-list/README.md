@@ -30,13 +30,13 @@ import EditableItemsList from '@synerise/ds-editable-items-list'
 
 | Property         | Description                                                                                                        | Type                                     | Default |
 | ---------------- | ------------------------------------------------------------------------------------------------------------------ | ---------------------------------------- | ------- |
-| renderRowElement | Function to render each row. Invoked with item index and item object.                                              | (index: number, item: T) => ReactElement | -       |
-| items            | Array of items to be rendered, each should have a unique id.                                                       | T[]                                      | -       |
+| renderRowElement | Function to render each row. Invoked with item index and item object.                                              | (index: number, item: T) => ReactElement \| null | -  |
+| items            | Array of items to be rendered, each should have a unique id.                                                       | T[]                                      | `[]`    |
 | addButtonLabel   | Text or custom component for the "Add" button.                                                                     | string \| ReactNode                      | -       |
-| addButtonIcon    | Custom icon for the "Add" button.                                                                                  | ReactElement                             | -       |
+| addButtonIcon    | Custom icon for the "Add" button.                                                                                  | ReactNode                                | -       |
 | addButtonProps   | Additional props for the "Add" button. It can override default style.                                              | Partial&lt;ButtonProps&gt;               | -       |
-| onAdd            | Callback function called when the "Add" button is clicked.                                                         | () => void                               | -       |
-| minRowLength     | The minimum number of rows to display.                                                                             | number                                   | 1       |
+| onAdd            | Callback function called when the "Add" button is clicked.                                                         | MouseEventHandler&lt;HTMLElement&gt;     | -       |
+| minRowLength     | The minimum number of rows to display. Delete button hidden while at or below this count.                          | number                                   | 1       |
 | maxRowLength     | The maximum number of rows allowed.                                                                                | number                                   | -       |
 | deleteTooltip    | Tooltip text for the delete button.                                                                                | string                                   | -       |
 | onDelete         | Callback function called when a row's delete button is clicked. It receives the ID and index of the row to delete. | (id: string, index: number) => void      | -       |

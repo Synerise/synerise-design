@@ -5,6 +5,8 @@ title: Alert
 
 Alert UI Component
 
+> **⚠ DEPRECATED.** Use `@synerise/ds-toast`, `@synerise/ds-broadcast-bar`, `@synerise/ds-inline-alert`, or `@synerise/ds-section-message` instead.
+
 ## Installation
 
 ```
@@ -53,7 +55,7 @@ import Alert from '@synerise/ds-alert';
 
 | Property | Description                                                 | Type                         | Default   |
 | -------- | ----------------------------------------------------------- | ---------------------------- | --------- |
-| type     | Type of InlineAlert, options: `success`, `alert`, `warning` | `string`                     | `warning` |
+| type     | Type of InlineAlert, options: `success`, `alert`, `warning`, `info` | `string`               | `warning` |
 | message  | Message of alert                                            | `string` \ `React.ReactNode` | -         |
 
 ### Alert.SectionMessage

@@ -16,7 +16,7 @@ List UI Component
 | Property   | Description                                                                                                       | Type                         | Default              |
 | ---------- | ----------------------------------------------------------------------------------------------------------------- | ---------------------------- | -------------------- |
 | bordered   | Toggles rendering of the border around the list                                                                   | boolean                      | `false`              |
-| dataSource | DataSource array of arrays for list                                                                               | any[][]                      | -                    |
+| dataSource | DataSource array or array of arrays for list                                                                      | `T[] \| T[][]`               | -                    |
 | dashed     | Define type of divider line                                                                                       | boolean                      | `true`               |
 | grid       | The grid type of list. You can set grid to something like {gutter: 16, column: 4}                                 | object                       | -                    |
 | header     | List header renderer                                                                                              | string                       | -                    |
@@ -31,16 +31,16 @@ List UI Component
 | rowKey     | Item's unique key, could be a string or function that returns a string                                            | string / (record) = > string | key                  |
 | radio      | Whether or not list should be wrapper with radio group                                                            | boolean                      | -                    |
 
-### List.TextItem
+### List.Item
 
 | Property | Description                                               | Type                  | Default                      |
 | -------- | --------------------------------------------------------- | --------------------- | ---------------------------- | --- |
 | disabled | If element is disabled                                    | boolean               | -                            |
-| icon     | Item will be prefixed with this element                   | React.ReactNode       | -                            |
+| icon     | Item will be prefixed with this element                   | JSX.Element           | -                            |
 | danger   | If element should be marked as danger action (ie. delete) | boolean               | -                            |
 | actions  | Actions for item, will be rendered at the end of the row  | React.ReactNode       | -                            |
 | onSelect | Callback for selecting item                               | (e?: React.MouseEvent | React.KeyboardEvent) => void | -   |
-| size     | Size of item in list                                      | `small` / `medium`    | `medium`                     |
+| size     | Size of item in list                                      | `small` / `medium`    | `small`                      |
 
 ### List.Divider
 

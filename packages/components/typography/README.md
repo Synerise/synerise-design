@@ -28,22 +28,32 @@ export const Color = styled.div`
 `;
 ```
 
-##### Ant Design components usage
+##### DS Typography components usage
 
 ```jsx harmony
-import {Title, Text, Paragraph} from '@synerise/ds-typography';
+import { Title, Text, Paragraph, Description, ErrorText, Label } from '@synerise/ds-typography';
 
+// Title supports levels 1–7 (level 7 renders as <h6>)
 <Title level={1}>This is h1 element</Title>;
 <Title level={2}>This is h2 element</Title>;
 <Title level={3}>This is h3 element</Title>;
 <Title level={4}>This is h4 element</Title>;
 <Title level={5}>This is h5 element</Title>;
 <Title level={6}>This is h6 element</Title>;
-<Title level={7}>This is h6 element</Title>;
+<Title level={7}>This is h6 element (10px, DS h100 scale)</Title>;
+<Title level={4} withoutMargin>Title without bottom margin</Title>;
+<Title level={3} ellipsis={{ tooltip: 'Full title text' }}>Truncating title</Title>;
 <Text size="medium">This is span element with standard font-size</Text>
 <Text size="small">This is span element with smaller font-size</Text>
 <Text size="xsmall">This is span element with smallest font-size</Text>
+<Text size="medium" ellipsis={{ tooltip: 'Full content' }}>Truncating text</Text>
 <Paragraph size="medium">This is span element with standard font-size</Paragraph>
 <Paragraph size="small">This is span element with smaller font-size</Paragraph>
 <Paragraph size="xsmall">This is span element with smallest font-size</Paragraph>
+
+// Form helpers
+<Label htmlFor="field">Field label</Label>
+<Description>Secondary description</Description>
+<Description disabled>Disabled description</Description>
+<ErrorText>Validation error message</ErrorText>
 ```

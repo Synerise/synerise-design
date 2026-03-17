@@ -33,28 +33,36 @@ import Popconfirm from '@synerise/ds-popconfirm';
 
 ## API
 
-| Property            | Description                            | Type                         | Default                              |
-| ------------------- | -------------------------------------- | ---------------------------- | ------------------------------------ |
-| cancelText          | Text of the Cancel button              | string                       | `Cancel`                             |
-| okText              | Text of the Confirm button             | string                       | `OK`                                 |
-| okType              | Button type of the Confirm button      | string                       | `primary`                            |
-| title               | Title of the confirmation box          | string / React.ReactNode     | -                                    |
-| description         | Description of the confirmation box    | string / React.ReactNode     | -                                    |
-| images              | Urls of images displayed as a carousel | string[]                     | `[]`                                 |
-| imagesAutoplay      | Whether to autoplay images             | boolean                      | `false`                              |
-| imagesAutoplaySpeed | Speed of autoplay [ms]                 | number                       | `5000`                               |
-| onCancel            | Callback of cancel                     | (e: Event) => void           | -                                    |
-| onConfirm           | Callback of confirmation               | (e: Event) => void           | -                                    |
-| icon                | Customize icon of confirmation         | React.ReactNode              | `<Icon type="exclamation-circle" />` |
-| disabled            | Whether component is disabled          | boolean                      | `false`                              |
-| withLink            | Text with highlited text               | React.ReactNode              | -                                    |
-| closeIcon           | Icon to close popconfirm               | React.ReactNode              | -                                    |
-| hideButtons         | prop to hide buttons                   | React.ReactNode              | -                                    |
-| titlePadding        | prop to set padding                    | boolean                      | `false`                              |
-| buttonsAlign        | Sets footer buttons align              | 'right' / 'left' / undefined | `'right'`                            |
-| staticVisible       | stay open even after click outside     | boolean                      | `false`                              |
+| Property            | Description                            | Type                                                                                                                          | Default   |
+| ------------------- | -------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------- | --------- |
+| cancelText          | Text of the Cancel button              | React.ReactNode                                                                                                               | -         |
+| okText              | Text of the Confirm button             | React.ReactNode                                                                                                               | -         |
+| okType              | Button type of the Confirm button      | ButtonProps['type']                                                                                                           | `primary` |
+| title               | Title of the confirmation box          | React.ReactNode                                                                                                               | -         |
+| description         | Description of the confirmation box    | React.ReactNode                                                                                                               | -         |
+| images              | Urls of images displayed as a carousel | string[]                                                                                                                      | -         |
+| imagesAutoplay      | Whether to autoplay images             | boolean                                                                                                                       | -         |
+| imagesAutoplaySpeed | Speed of autoplay [ms]                 | number                                                                                                                        | `5000`    |
+| onCancel            | Callback of cancel                     | (event?: MouseEvent\<HTMLElement\>) => void                                                                                   | -         |
+| onConfirm           | Callback of confirmation               | (event?: MouseEvent\<HTMLElement\>) => void                                                                                   | -         |
+| icon                | Icon displayed left of the title       | React.ReactNode                                                                                                               | -         |
+| disabled            | When true renders only children with no popover | boolean                                                                                                              | -         |
+| withLink            | Link node rendered below description   | React.ReactNode                                                                                                               | -         |
+| closeIcon           | Icon rendered as a close button        | React.ReactNode                                                                                                               | -         |
+| hideButtons         | Truthy value hides the button row      | React.ReactNode                                                                                                               | -         |
+| titlePadding        | Adjusts close icon margin and description spacing | boolean                                                                                                          | -         |
+| buttonsAlign        | Sets footer buttons align              | 'right' / 'left'                                                                                                              | -         |
+| staticVisible       | Stay open even after click outside     | boolean                                                                                                                       | -         |
+| placement           | Popover placement                      | 'top' / 'topLeft' / 'topCenter' / 'topRight' / 'bottom' / 'bottomLeft' / 'bottomCenter' / 'bottomRight' / 'left' / 'leftTop' / 'leftBottom' / 'right' / 'rightTop' / 'rightBottom' | `top` |
+| trigger             | Open trigger                           | 'click' / 'hover' / array                                                                                                     | `click`   |
+| open                | Controlled open state                  | boolean                                                                                                                       | -         |
+| onOpenChange        | Callback when open state changes       | (open: boolean) => void                                                                                                       | -         |
+| asChild             | Merge trigger props onto child element | boolean                                                                                                                       | `true`    |
+| zIndex              | Z-index override                       | number                                                                                                                        | `theme.variables['zindex-popconfirm']` |
+| overlayClassName    | Class applied to popconfirm container  | string                                                                                                                        | -         |
+| overlayStyle        | Inline styles for popconfirm container | CSSProperties                                                                                                                 | -         |
 
-# Popcofirm.ConfirmMessage
+# Popconfirm.ConfirmMessage
 
 ## Usage
 
@@ -88,5 +96,5 @@ import Popconfirm from '@synerise/ds-popconfirm';
 | title           | text confirm message                                                                                                                                                  | string                                   | -         |
 | icon            | icon component                                                                                                                                                        | React.ReactNode                          | -         |
 | displayDuration | confirm message display time in ms                                                                                                                                    | number                                   | 5000      |
-| placement       | position of confirm message `left`, `top`, `right`, `bottom`, `topLeft`, `topRight`, `bottomLeft`, `bottomRight`, `leftTop`, `leftBottom,`, `rightTop`, `rightBottom` | string                                   | `topLeft` |
+| placement       | Position of confirm message                                                                                                                                           | 'top' / 'left' / 'right' / 'bottom' / 'topLeft' / 'topRight' / 'bottomLeft' / 'bottomRight' | `topLeft` |
 | onClick         | method which returns a showConfirmMessage callback                                                                                                                    | (showConfirmMessage: () => void) => void | -         |

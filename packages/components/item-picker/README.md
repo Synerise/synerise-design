@@ -35,7 +35,6 @@ import ItemPicker from '@synerise/ds-item-picker'
   errorMessage={''}
   size={'small'}
   changeButtonLabel={'Change'}
-  onChangeButtonClick={() => {}}
 />
 
 ```
@@ -55,7 +54,7 @@ import ItemPicker from '@synerise/ds-item-picker'
 | dropdownBottomAction?       | Dropdown bottom action                                   | React.ReactNode                                                                                 | -                                        |
 | closeOnBottomAction?        | Close dropdown when bottom action has been clicked       | boolean                                                                                         | false                                    |
 | placeholder                 | Placeholder text                                         | string, React.ReactNode                                                                         | -                                        |
-| clear                       | Clear button tooltip                                     | string, React.ReactNode                                                                         | 'Remove'                                 |
+| clear                       | Clear button tooltip                                     | string, React.ReactNode                                                                         | 'Clear'                                  |
 | searchPlaceholder           | Placeholder of SearchBar in dropdown                     | string                                                                                          | 'Search'                                 |
 | onClear                     | Callback executed when clear icon is clicked             | () => void                                                                                      | -                                        |
 | onChange                    | Callback executed when item from dropdown is clicked     | (item: [MenuItemProps](https://design.synerise.com/docs/components/menu#menuitemprops)) => void | -                                        |
@@ -72,7 +71,7 @@ import ItemPicker from '@synerise/ds-item-picker'
 | disabled?                   | Whether the component is disabled                        | boolean                                                                                         | -                                        |
 | changeButtonLabel?          | Label of change button, available only when size='large' | string, React.ReactNode                                                                         | 'Change'                                 |
 | withClearConfirmation       | Shows Popconfirm on the clear icon click                 | boolean                                                                                         | -                                        |
-| clearConfirmTitle           | Title of Popconfirm                                      | string                                                                                          | 'Are you sure to remove this selection?' |
+| clearConfirmTitle           | Title of Popconfirm                                      | string                                                                                          | 'Please confirm'                         |
 | yesText                     | Label of confirm button                                  | string                                                                                          | 'Yes'                                    |
 | noText                      | Label of cancel button                                   | string                                                                                          | 'No'                                     |
 | noResults                   | No search results info                                   | string                                                                                          | 'No results'                             |

@@ -28,12 +28,13 @@ import Navbar from '@synerise/ds-navbar'
 
 ## API
 
-| Property          | Description                                 | Type                     | Default |
-| ----------------- | ------------------------------------------- | ------------------------ | ------- |
-| actions           | Place for icon actions                      | React.ReactNode          | -       |
-| additionalNodes   | Additional nodes rendered in the navbar     | React.ReactNode          | -       |
-| className         | Class added to the component                | string                   | -       |
-| color             | Color code                                  | string                   | -       |
-| description       | Description of navbar                       | string                   | -       |
-| logo              | Src to image or React.Node element          | React.ReactNode / string | -       |
-| alertNotification | React.Node element for IconAlert and Button | React.ReactNode          | -       |
+| Property          | Description                                 | Type            | Default |
+| ----------------- | ------------------------------------------- | --------------- | ------- |
+| description       | Module name / page title (required)         | ReactNode       | -       |
+| logo              | String → renders `<img src>`; otherwise rendered as-is (required) | ReactNode | -       |
+| actions           | Place for icon actions                      | ReactNode       | -       |
+| additionalNodes   | Extra sections before the actions area; each separated by a divider | ReactNode[] | -       |
+| alertNotification | React.Node element for IconAlert and Button | ReactNode       | -       |
+| children          | Rendered inside the actions wrapper after `actions` | ReactNode | -       |
+| className         | Class added to the component                | string          | -       |
+| color             | Background colour (hex or palette value)    | string          | -       |

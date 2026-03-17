@@ -72,9 +72,9 @@ yarn add @synerise/ds-card
 
 | Property                         | Description                                                                                                           | Type                                                                         | Default |
 | -------------------------------- | --------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------- | ------- |
-| background                       | Background of Card container                                                                                          | `white` / `white-shadow` / `grey` / `grey-shadow` / `outline`                | `white` |
+| background                       | Background of Card container                                                                                          | `white` / `white-shadow` / `grey` / `grey-shadow` / `outline`                | `white-shadow` |
 | children                         | Defines if the button casts a shadow when the cursor is hovered over                                                  | React.ReactNode                                                              | -       |
-| renderBadge                      | Custom slot content for badge icon                                                                                    | React.ReactNode?                                                             | -       |
+| renderBadge                      | Custom slot content for badge icon                                                                                    | `() => React.ReactNode`                                                      | -       |
 | className                        | Defines the class name of the container                                                                               | string                                                                       | -       |
 | compactHeader                    | Set as `true`, displays the description next to the header. Set as `false`, displays the description below the header | boolean                                                                      | -       |
 | description                      | Defines the content of the card description (in the header)                                                           | React.ReactNode                                                              | string  |
@@ -89,8 +89,7 @@ yarn add @synerise/ds-card
 | lively                           | Defines if the container casts a shadow when the cursor is hovered over                                               | boolean                                                                      | -       |
 | raised                           | Defines if the container casts a shadow on the background                                                             | boolean                                                                      | -       |
 | style                            | Defines the CSS of the container                                                                                      | React.CSSProperties                                                          | -       |
-| size                             | Defines the width of the container (the container width is set to 100% when this property is not passed).             | `small` (472px) / `medium` (588px) / `large` (966px) / `extraLarge` (1232px) | -       |
-| title                            | Defines the title of the card (in the header)                                                                         | string                                                                       | -       |
+| title                            | Defines the title of the card (in the header)                                                                         | React.ReactNode                                                              | -       |
 | titleTag                         | an optional status tag next to title                                                                                  | ReactElement                                                                 | -       |
 | withHeader                       | Defines if the header is shown                                                                                        | boolean                                                                      | -       |
 | withoutPadding                   | Reset padding of ContentContainer                                                                                     | boolean                                                                      | `false` |
@@ -101,8 +100,8 @@ yarn add @synerise/ds-card
 
 | Property | Description                         | Type                                        | Default   |
 | -------- | ----------------------------------- | ------------------------------------------- | --------- |
-| Icon     | Icon rendered in badge              | React.ReactNode                             | -         |
-| Status   | Defines the color of badge and icon | `success` / `error` / `warning` / `default` | `default` |
+| icon     | Icon rendered in badge              | React.ReactNode                                          | -         |
+| status   | Defines the color of badge and icon | `success` / `checked` / `error` / `warning` / `default` | `default` |
 
 #### CardSummary
 
@@ -120,5 +119,6 @@ Renders a summary in a bulletted list form. Can be assigned to Card.staticConten
 | key                     | Unique key                                                          | `React.Key`            | -       |
 | label                   | Optional label to display                                           | `React.ReactNode`      | -       |
 | value                   | Mandatory value to display                                          | `React.ReactNode`      | -       |
+| valueButton             | Optional action button placed to the right of the value             | `React.ReactNode`      | -       |
 | summaryObjects          | Optional array of react elements, renders in a toggleable container | `React.ReactElement[]` | -       |
-| summaryObjectsDirection | Direction of summary objects layout                                 | `'row'` / `'column'`   | -       |
+| summaryObjectsDirection | Direction of summary objects layout                                 | `'row'` / `'column'`   | `'row'` |

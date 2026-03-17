@@ -54,8 +54,11 @@ import ButtonGroup from '@synerise/ds-button-group'
 | --------------- | -------------------------------------------------------- | --------------------------- | -------- |
 | title           | The title of the group                                   | string                      | -        |
 | description     | The description of the group                             | string                      | -        |
-| size            | Defines the size of the button.                          | `small`/ `middle` / `large` | `middle` |
+| size            | Defines the size of the button.                          | `small`/ `middle` / `large` | -        |
 | buttonsPosition | Defines the horizontal position of buttons.              | `left` / `center` / `right` | `center` |
 | fullWidth       | Set buttons width to fill all available space            | boolean                     | `false`  |
 | children        | Buttons used in the group                                | React.ReactNode             | -        |
 | splitMode       | Enables split mode - adds borders to single-icon buttons | boolean                     | `false`  |
+| compact         | Zero gap between buttons with square corners (true) or 8px gap with rounded corners (false) | boolean | `true`   |
+| error           | In splitMode, switches divider borders to red and adjusts hover shadows | boolean | -        |
+| disabled        | Passed to the container; suppresses hover effects in splitMode via CSS selectors | boolean | -        |

@@ -13,7 +13,7 @@ or
 yarn add @synerise/ds-logic
 ```
 
-## Usage of Login
+## Usage of Logic
 
 ```
 import Logic from '@synerise/ds-logic'
@@ -39,9 +39,10 @@ import Logic from '@synerise/ds-logic'
 
 | Property | Description                                | Type                    | Default                                                      |
 | -------- | ------------------------------------------ | ----------------------- | ------------------------------------------------------------ |
-| value    | Value of logic component                   | string                  | -                                                            |
-| onChange | Function called when user change the value | (value: string) => void | -                                                            |
-| options  | Custom list of options                     | LogicOperator[]         | `[{value: 'AND', label: 'And'}, {value: 'OR', label: 'Or'}]` |
+| value    | Value of logic component                   | `LogicOperatorValue` (`'AND' \| 'OR' \| string`) | -                                               |
+| onChange | Function called when user change the value | `(value: LogicOperatorValue) => void` | -                                                   |
+| options  | Custom list of options                     | `LogicOperator[]`       | i18n-resolved `AND` / `OR` labels (`DS.LOGIC.AND`, `DS.LOGIC.OR`) |
+| readOnly | Disables click interaction and hover styles | `boolean`              | `false`                                                      |
 
 ### LogicOperator
 
@@ -54,10 +55,11 @@ import Logic from '@synerise/ds-logic'
 
 | Property | Description                                                                             | Type                        | Default |
 | -------- | --------------------------------------------------------------------------------------- | --------------------------- | ------- |
-| matching | Value of Matching component                                                             | boolean                     | false   |
+| matching | Value of Matching component                                                             | boolean                     | `true`  |
 | sentence | Custom sentence require `#MATCHING_TOGGLE#`, which will be replaced by Toggle component | string                      | -       |
 | onChange | Function called when user click on Toggle component                                     | (matching: boolean) => void | -       |
-| texts    | Custom labels of Matching, Not matching                                                 | MatchingTexts               | -       |
+| texts    | Custom labels of Matching, Not matching                                                 | `Partial<MatchingTexts>`    | -       |
+| readOnly | Disables click interaction and hover styles                                             | `boolean`                   | `false` |
 
 ### MatchingTexts
 

@@ -13,6 +13,8 @@ Based on [Ant Design Select](https://ant.design/components/select/)
 npm i @synerise/ds-select
 or
 yarn add @synerise/ds-select
+or
+pnpm add @synerise/ds-select
 ```
 
 ## Usage
@@ -59,20 +61,20 @@ const { Option, OptGroup } = Select;
 | defaultActiveFirstOption | Whether active first option by default                                                            | boolean                                                                           | `true`                                       |
 | defaultOpen              | Initial open state of dropdown                                                                    | boolean                                                                           | -                                            |
 | defaultValue             | Initial selected option.                                                                          | `string` / `string[]` / `number` / `number[]` / `LabeledValue` / `LabeledValue[]` | -                                            |
-| description              | input description                                                                                 | string                                                                            | -                                            |
+| description              | input description                                                                                 | ReactNode                                                                         | -                                            |
 | disabled                 | Whether disabled select                                                                           | boolean                                                                           | `false`                                      |
 | dropdownClassName        | className of dropdown menu                                                                        | string                                                                            | -                                            |
 | dropdownMatchSelectWidth | Whether dropdown's width is same with select.                                                     | boolean                                                                           | `true`                                       |
 | dropdownMenuStyle        | additional style applied to dropdown menu                                                         | React.CSSProperties                                                               | -                                            |
 | dropdownRender           | Customize dropdown content                                                                        | (menuNode: React.ReactNode, props) => React.ReactNode                             | -                                            |
 | dropdownStyle            | style of dropdown menu                                                                            | React.CSSProperties                                                               | -                                            |
-| errorText                | error message, if provided input will be set in error state                                       | string                                                                            | -                                            |
+| errorText                | error message, if provided input will be set in error state                                       | ReactNode                                                                         | -                                            |
 | error                    | if provided input will be set in error state, without error message                               | boolean                                                                           | -                                            |
 | filterOption             | If true, filter options by input, if function, filter options against it.                         | boolean / (inputValue: string / number / LabeledValue, option: Option) => void    | `true`                                       |
 | firstActiveValue         | Value of action option by default                                                                 | string or string[]                                                                | -                                            |
 | grey                     | Turn on grey background of the component                                                          | boolean                                                                           | false                                        |
 | getPopupContainer        | Parent Node which the selector should be rendered to. Default to body                             | (triggerNode: React.ReactNode) => void                                            | () => document.body                          |
-| label                    | input label                                                                                       | string                                                                            | -                                            |
+| label                    | input label                                                                                       | ReactNode                                                                         | -                                            |
 | labelInValue             | whether to embed label in value                                                                   | boolean                                                                           | `false`                                      |
 | loading                  | indicate loading state                                                                            | Boolean                                                                           | `false`                                      |
 | maxTagCount              | Max tag count to show                                                                             | number                                                                            | -                                            |
@@ -105,13 +107,19 @@ const { Option, OptGroup } = Select;
 | tooltip                  | Tooltip content                                                                                   | React.ReactNode                                                                   | -                                            |
 | tooltipConfig            | Config of tooltip                                                                                 | [TooltipProps](https://design.synerise.com/docs/components/tooltip#api)           | -                                            |
 | value                    | Current selected option.                                                                          | `string` / `string[]` / `number` / `number[]` / `LabeledValue` / `LabeledValue[]` | -                                            |
-| raw                      | Simple select without label, description and margins                                              | boolean                                                                           | `false`                                      |
+| asFormElement            | Forces 16px bottom margin even when `errorText` and `description` are absent                     | boolean                                                                           | -                                            |
+| clearTooltip             | Tooltip text shown on hover of the clear (×) button                                               | string                                                                            | -                                            |
+| prefixel                 | Addon node attached to the left of the selector                                                   | React.ReactNode                                                                   | -                                            |
+| raw                      | Skips the FormField wrapper; renders only the selector div                                        | boolean                                                                           | -                                            |
+| readOnly                 | Disables selection while using readable styling (white bg, default cursor, grey-600 text)         | boolean                                                                           | -                                            |
+| selectorStyle            | Additional CSS applied to the inner `.ant-select-selector` element                                | CSSObject                                                                         | -                                            |
+| suffixel                 | Addon node attached to the right of the selector                                                  | React.ReactNode                                                                   | -                                            |
 
 ### Option props
 
 | Property  | Description                                                                                                                      | Type   | Default |
 | --------- | -------------------------------------------------------------------------------------------------------------------------------- | ------ | ------- |
-| disabled  | Disable this option boolean`false`                                                                                               |        |         |
+| disabled  | Disable this option                                                                                                              | boolean | `false` |
 | key       | Same usage as value. If React request you to set this property, you can set it to value of option, and then omit value property. | string |         |
 | title     | title of Select after select this Option                                                                                         | string | -       |
 | value     | default to filter with this property string                                                                                      | number | -       |

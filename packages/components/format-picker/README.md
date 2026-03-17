@@ -37,31 +37,36 @@ import FormatPicker from '@synerise/ds-format-picker'
 
 ## API
 
-| Property               | Description                    | Type                               | Default |
-| ---------------------- | ------------------------------ | ---------------------------------- | ------- |
-| format                 | Format configuration           | FormattingValue                    | -       |
-| value                  | Example value                  | number                             | -       |
-| onDataFormatChange     | Data format change handler     | (format) => void}                  | -       |
-| onCurrencyChange       | Currency change handler        | (currency: CurrencyType) => void   | -       |
-| onUseSeparatorChange   | Use separator change handler   | (useSeparator: boolean) => void}   | -       |
-| onCompactNumbersChange | Compact numbers change handler | (compactNumbers: boolean) => void} | -       |
-| onFixedLengthChange    | Fixed length change handler    | (fixedLength) => void              | -       |
-| onSetDefault           | Set default value of format    | () => void                         | -       |
-| text                   | Set of custom labels           | Texts                              | -       |
-| buttonType             | type of button                 | string                             | -       |
+| Property               | Description                                            | Type                                        | Default         |
+| ---------------------- | ------------------------------------------------------ | ------------------------------------------- | --------------- |
+| format                 | Current format configuration                           | `FormattingValue`                           | -               |
+| value                  | Example number shown in the trigger button label       | `number`                                    | -               |
+| onDataFormatChange     | Called when user selects a data format                 | `(format: FormattingDataFormat) => void`    | -               |
+| onCurrencyChange       | Called when a currency is selected                     | `(currency: CurrencyType) => void`          | -               |
+| onUseSeparatorChange   | Called when the 1000-separator checkbox changes        | `(useSeparator: boolean) => void`           | -               |
+| onCompactNumbersChange | Called when the compact numbers checkbox changes       | `(compactNumbers: boolean) => void`         | -               |
+| onFixedLengthChange    | Called when decimal places are incremented/decremented | `(fixedLength: number) => void`             | -               |
+| onSetDefault           | If provided, renders a "Set default" footer button     | `() => void`                                | -               |
+| onFormattedValueChange | Called whenever the formatted display value changes    | `(formattedValue: string) => void`          | -               |
+| text                   | Override any subset of UI labels                       | `Partial<FormatPickerTexts>`                | -               |
+| currenciesConfig       | Custom currency list for the cash dropdown             | `CurrencyConfig[]`                          | USD/EUR/PLN/JPY |
+| buttonType             | DS button type for the trigger button                  | `string`                                    | `'tertiary'`    |
+| disabled               | Disables the trigger and all panel controls            | `boolean`                                   | -               |
+| maxFixedLength         | Upper bound for decimal places                         | `number`                                    | -               |
 
 ### Texts
 
 | Property       | Description                       | Type                     | Default              |
 | -------------- | --------------------------------- | ------------------------ | -------------------- |
-| header         | Header of format settings         | string \ React.ReactNode | `Number format`      |
-| format         | Format label                      | string \ React.ReactNode | `Format`             |
-| numeric        | Numeric type of format tooltip    | string \ React.ReactNode | `Numeric`            |
-| cash           | Cash type of format tooltip       | string \ React.ReactNode | `Cash`               |
-| percentage     | Percentage type of format tooltip | string \ React.ReactNode | `Percentage`         |
-| setDefault     | Set default format button label   | string \ React.ReactNode | `Set default`        |
-| useSeparator   | Use 1000 separator checkbox label | string \ React.ReactNode | `Use 1000 separator` |
-| compactNumbers | Compact number checkbox label     | string \ React.ReactNode | `Compact humbers`    |
+| header         | Header of format settings         | `string \| ReactNode` | `Number format`      |
+| format         | Format label                      | `string \| ReactNode` | `Format`             |
+| numeric        | Numeric type of format tooltip    | `string \| ReactNode` | `Numeric`            |
+| cash           | Cash type of format tooltip       | `string \| ReactNode` | `Cash`               |
+| percentage     | Percentage type of format tooltip | `string \| ReactNode` | `Percentage`         |
+| setDefault     | Set default format button label   | `string \| ReactNode` | `Set default`        |
+| useSeparator   | Use 1000 separator checkbox label | `string \| ReactNode` | `Use 1000 separator` |
+| compactNumbers         | Compact numbers checkbox label                         | `string \| ReactNode`    | `Use compact numbers`  |
+| currencyMenuItemPrefix | Prefix shown before the example value in currency rows | `string`                 | `'e.g.'`               |
 
 ### FormattingValue
 
@@ -75,7 +80,7 @@ import FormatPicker from '@synerise/ds-format-picker'
 
 ### CurrencyType
 
-Available values: `USD` | `EUR` | `PLN` | `JPY`
+`string` — any currency code string. The default `currenciesConfig` includes `USD`, `EUR`, `PLN`, `JPY`, but the type is not restricted to those values.
 
 ### FormattingDataFormat
 

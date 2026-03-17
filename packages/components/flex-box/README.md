@@ -11,6 +11,8 @@ FlexBox UI Component
 npm i @synerise/ds-flex-box
 or
 yarn add @synerise/ds-flex-box
+or
+pnpm add @synerise/ds-flex-box
 ```
 
 ## Usage

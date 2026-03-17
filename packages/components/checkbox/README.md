@@ -16,7 +16,7 @@ Based on [Ant Design Checkbox](https://ant.design/components/checkbox/)
 | autoFocus      | Get focus when component mounted                                      | boolean         | `false` |
 | checked        | Specifies whether the checkbox is selected.                           | boolean         | `false` |
 | defaultChecked | Specifies the initial state: whether or not the checkbox is selected. | boolean         | `false` |
-| description    | Checkbox description                                                  | string          | -       |
+| description    | Checkbox description                                                  | ReactNode       | -       |
 | disabled       | Disable checkbox                                                      | boolean         | `false` |
 | errorText      | Error message, if provided sets error state on checkbox               | string          | -       |
 | hasError       | Determines if checkbox is in error state                              | boolean         | `false` |

@@ -61,16 +61,17 @@ import Icon, { DashboardColorM, DashboardGreyM, SettingsColorM, AnalyticsColorM 
 | activeItem | ID of active menu item            | string               | -       |
 | footer     | Footer of menu                    | React.ReactNode      | -       |
 | children   | Menu items                        | React.ReactNodeArray | -       |
-| top        | Distance from top of window in px | number               | -       |
+| top        | Distance from top of window in px | number               | 0       |
 
 ### AppMenu.Item
 
 | Property | Description                 | Type            | Default |
 | -------- | --------------------------- | --------------- | ------- |
-| subMenu  | Submenu component           | React.ReactNode | -       |
-| name     | Name visible in toolti      | string          | -       |
-| id       | ID of submenu               | string          | -       |
-| children | Menu item children ie. icon | React.ReactNode | -       |
+| subMenu   | Submenu component            | React.ReactNode | -       |
+| name      | Name visible in tooltip      | string          | -       |
+| id        | ID of menu item              | string          | -       |
+| children  | Menu item children ie. icon  | React.ReactNode | -       |
+| className | Custom CSS class             | string          | -       |
 
 ### AppMenu.Item.Icon
 
@@ -81,9 +82,11 @@ import Icon, { DashboardColorM, DashboardGreyM, SettingsColorM, AnalyticsColorM 
 
 ### AppMenu.SubMenu
 
-| Property | Description      | Type                 | Default |
-| -------- | ---------------- | -------------------- | ------- |
-| children | Submenu elements | React.ReactNodeArray | -       |
+| Property  | Description      | Type            | Default |
+| --------- | ---------------- | --------------- | ------- |
+| children  | Submenu elements | React.ReactNode | -       |
+| className | Custom CSS class | string          | -       |
+| style     | Inline styles    | CSSProperties   | -       |
 
 ### AppMenu.SubMenu.Title
 

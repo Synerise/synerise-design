@@ -33,11 +33,11 @@ import ColumnManager from '@synerise/ds-column-manager'
 | Property  | Description                                                                             | Type                                             | Default |
 | --------- | --------------------------------------------------------------------------------------- | ------------------------------------------------ | ------- |
 | hide      | Specify a callback that will be called when a user clicks mask, close or cancel button. | Function                                         | -       |
-| visible   | Whether the ColumnManager is visible or not.                                            | boolean                                          | `false` |
+| visible   | Whether the ColumnManager is visible or not.                                            | boolean                                          | -       |
 | draggable | Set to false to disable column reordering                                               | boolean                                          | `true`  |
 | onApply   | Specify a callback that will be called when a user clicks on `Apply` button             | (columns: <ColumnType extends Column>[]) => void | -       |
-| columns   | Current columns configuration                                                           | <ColumnType extends Column>[]                    | []      |
-| texts     | Object contains texts for buttons, title, confirms etc.                                 | ColumnManagerTexts                               | -       |
+| columns   | Current columns configuration                                                           | <ColumnType extends Column>[]                    | -       |
+| texts     | Object contains texts for buttons, title, confirms etc.                                 | `Partial<ColumnManagerTexts>`                    | -       |
 
 #### Column
 
@@ -54,11 +54,11 @@ import ColumnManager from '@synerise/ds-column-manager'
 | Property           | Description                   | Type      | Default          |
 | ------------------ | ----------------------------- | --------- | ---------------- |
 | title              | Manage columns title          | ReactNode | 'Manage columns' |
-| searchPlaceholder  | Search input placeholder      | string    | 'Search'         |
+| searchPlaceholder  | Search input placeholder      | string    | 'Search columns' |
 | searchClearTooltip | Clear label                   | ReactNode | 'Clear'          |
 | noResults          | No search results placeholder | ReactNode | 'No results'     |
 | cancel             | Cancel button label           | ReactNode | 'Cancel'         |
 | apply              | Apply button label            | ReactNode | 'Apply'          |
 | clear              | Clear label                   | ReactNode | 'Clear'          |
-| switchOn           | Switch on tooltip             | ReactNode | 'Switch on'      |
-| switchOff          | Switch off tooltip            | ReactNode | 'Switch off'     |
+| switchOn           | Switch on tooltip             | ReactNode | 'Hide column'    |
+| switchOff          | Switch off tooltip            | ReactNode | 'Show column'    |

@@ -63,19 +63,25 @@ import Wizard from '@synerise/ds-wizard'
 
 ## API
 
-| Property        | Description                                             | Type                     | Default |
-| --------------- | ------------------------------------------------------- | ------------------------ | ------- |
-| stepper         | Stepper component                                       | React.ReactNode          | -       |
-| footer          | Content of footer                                       | React.ReactNode          | -       |
-| title           | Title of wizard                                         | React.ReactNode \ string | -       |
-| headerAction    | Additional button in header                             | React.ReactNode          | -       |
-| onClose         | Function called when user clicks on close wizard button | () => void               | -       |
-| visible         | Whether wizard is visible                               | boolean                  | false   |
-| contentWidth    | Width of content ex: `500px`                            | string                   | `100%`  |
-| onPrevStep      | Function called when user clicks on prev step button    | () => void               | -       |
-| onNextStep      | Function called when user clicks on next step button    | () => void               | -       |
-| stepButtonProps | Custom props for prev/next buttons                      | WizardStepButtons        | -       |
-| texts           | Translations object for wizard                          | WizardTexts              | -       |
+| Property           | Description                                             | Type                     | Default |
+| ------------------ | ------------------------------------------------------- | ------------------------ | ------- |
+| stepper            | Stepper component                                       | React.ReactNode          | -       |
+| footer             | **Deprecated.** Left-side footer content (use `footerLeft`) | React.ReactNode      | -       |
+| footerLeft         | Left side of the footer bar                             | React.ReactNode          | -       |
+| footerAction       | Right side of the footer bar                            | React.ReactNode          | -       |
+| title              | Title of wizard (ignored when `headerInlineEdit` is set) | React.ReactNode         | -       |
+| headerAction       | Additional button in header                             | React.ReactNode          | -       |
+| onClose            | Function called when user clicks on close wizard button | () => void               | -       |
+| visible            | Whether wizard is visible                               | boolean                  | false   |
+| contentWidth       | Width of content ex: `500px`                            | string                   | `100%`  |
+| onPrevStep         | Function called when user clicks on prev step button    | () => void               | -       |
+| onNextStep         | Function called when user clicks on next step button    | () => void               | -       |
+| stepButtonProps    | Custom props for prev/next buttons                      | WizardStepButtons        | -       |
+| texts              | Translations object for wizard                          | WizardTexts              | -       |
+| navigationInFooter | Move prev/next buttons to the footer instead of below content | boolean            | -       |
+| headerInlineEdit   | Enable inline title editing in the header               | PageHeaderProps['inlineEdit'] | -  |
+| headerAvatar       | Avatar shown alongside inline edit in the header        | PageHeaderProps['avatar'] | -      |
+| className          | CSS class added to the wizard wrapper                   | string                   | -       |
 
 ### WizardTexts
 
@@ -89,4 +95,4 @@ import Wizard from '@synerise/ds-wizard'
 | Property        | Description          | Type                                  | Default |
 | --------------- | -------------------- | ------------------------------------- | ------- |
 | prevButtonProps | Props of prev button | Partial<Omit<ButtonProps, 'onClick'>> | -       |
-| nextButtonLabel | Props of next button | Partial<Omit<ButtonProps, 'onClick'>> | -       |
+| nextButtonProps | Props of next button | Partial<Omit<ButtonProps, 'onClick'>> | -       |

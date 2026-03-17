@@ -11,6 +11,8 @@ ItemsRoll UI Component
 npm i @synerise/ds-items-roll
 or
 yarn add @synerise/ds-items-roll
+or
+pnpm add @synerise/ds-items-roll
 ```
 
 ## Usage
@@ -41,8 +43,8 @@ import ItemsRoll from '@synerise/ds-items-roll';
 | className                    | Additional class for ItemsRoll wrapper                                                                            | string                                                  | -       |
 | customSidebarActions         | Allow put developer sidebar actions that are not defined                                                          | React.ReactNode                                         | -       |
 | groups                       | Array of strings where each one corresponds to a group prop in ItemRollElement                                    | string[]                                                | -       |
-| hideSearch                   | Hide search component in itemsroll                                                                                | booleam                                                 | -       |
-| isDisabled                   | prevents rendering 'remove' / 'clear all' buttons                                                                 | booleam                                                 | -       |
+| hideSearch                   | Hide search component in itemsroll                                                                                | boolean                                                 | -       |
+| isDisabled                   | prevents rendering 'remove' / 'clear all' buttons                                                                 | boolean                                                 | -       |
 | items                        | ItemRollElement array for list                                                                                    | ItemRollElement[]                                       | -       |
 | maxToShowItems               | Amount of initial ItemsRollElement to render. Note that if number is greater than 20, list will becoma scrollable | number                                                  | 10      |
 | onClearAll                   | Callback function that is fired when click on clearAll button                                                     | () => void                                              | -       |
@@ -58,9 +60,9 @@ import ItemsRoll from '@synerise/ds-items-roll';
 | renderCount                  | Custom items count renderer                                                                                       | (count: number) => ReactNode                            | -       |
 | texts                        | Object contains texts for buttons, title etc.                                                                     | Texts                                                   | -       |
 | useFooter                    | Whether the footer is visibile                                                                                    | boolean                                                 | -       |
-| useVirtualizedList           | Whether to use react-virtualized for list                                                                         | boolean                                                 | `false` |
-| virtualizedRowHeight         | Height of virtualizedlist row                                                                                     | number                                                  | 32px    |
-| virtualizedRowWidth          | Width of virtualized list                                                                                         | number                                                  | -       |
+| useVirtualizedList           | **@deprecated** Virtualized list was removed; prop is accepted but ignored                                        | boolean                                                 | -       |
+| virtualizedRowHeight         | **@deprecated** Ignored                                                                                           | number                                                  | -       |
+| virtualizedRowWidth          | **@deprecated** Ignored                                                                                           | number                                                  | -       |
 
 #### ItemRollElement
 
@@ -69,7 +71,7 @@ import ItemsRoll from '@synerise/ds-items-roll';
 | group    | Define affiliation to a specific group in groups Array passed as props to ItemsRoll | string | -       |
 | id       | Unique identifier for element. Used as a key in map                                 | string | -       |
 
-Rest of the `ItemRollElement` props is inherited from [MenuItemProps](https://design.synerise.com/docs/components/menu#menuitemprops)
+Rest of the `ItemRollElement` props is inherited from `ListItemProps` (default) or `MenuItemProps` — the generic `BaseType` parameter controls which base type is used.
 
 #### Texts
 
@@ -84,3 +86,6 @@ Rest of the `ItemRollElement` props is inherited from [MenuItemProps](https://de
 | searchClearTooltipLabel | Input clear tooltip label     | string / React.ReactNode | 'clear'            |
 | showLabel               | Show more first part label    | string / React.ReactNode | 'Show'             |
 | showLessLabel           | Show less button label        | string / React.ReactNode | 'Show less'        |
+| popconfirmTitleLabel    | Clear-all confirmation title  | string / React.ReactNode | 'Are you sure?'    |
+| popconfirmYesLabel      | Clear-all confirm button      | string / React.ReactNode | 'Yes'              |
+| popconfirmNoLabel       | Clear-all cancel button       | string / React.ReactNode | 'No'               |

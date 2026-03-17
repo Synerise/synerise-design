@@ -1,9 +1,9 @@
-# CLAUDE.md — React Frontend (Synerise)
+# CLAUDE.md — Synerise Design System
 
-## Project Standards
-- React 18+ with TypeScript, monorepo (Lerna/Yarn Workspaces or Turborepo)
-- Micro-frontend SPA pattern — independent apps with own Redux stores
-- Ant Design as base UI library, styled-components for custom styling
+## Project Overview
+- Component library / design system — publishes `@synerise/ds-*` packages to npm
+- React 18.3 + TypeScript 5.8, monorepo via **pnpm workspaces + Lerna** (`"npmClient": "pnpm"`)
+- Ant Design 4.x as base UI library, styled-components for custom styling
 - Functional components with hooks for all new code
 
 ## Code Quality
@@ -12,34 +12,24 @@
 - Named exports preferred, PascalCase components, camelCase utilities
 - TypeScript `strict: true`, no `any` — use `unknown` + type guards
 
-## Components & State
-- Redux Toolkit (`createSlice`) for new code, Redux Saga for side effects
-- RSAA middleware for API calls (REQUEST/SUCCESS/FAILURE lifecycle)
-- Keep local state in `useState`/`useReducer`, lift to Redux only when shared
+## Components
 - styled-components with design system tokens — no hardcoded values
+- Keep local state in `useState`/`useReducer`
+- No Redux — this is a UI component library, not an app
 
 ## Testing
-- Vitest (preferred) or Jest with jsdom, React Testing Library
+- **Vitest** (primary, most packages) or Jest (older packages still being migrated)
+- jsdom environment, React Testing Library
 - Co-located tests: `*.test.tsx` next to source
-- MSW for API mocking in integration tests
 - 80% minimum coverage on business logic and shared components
 
-## API & Auth
-- Cookie-based auth with XSRF-TOKEN, CASL permission system
-- `PermissionRoute` for route access, `Can` for UI-level permissions
-- OpenAPI-generated clients for newer services
-- Environment-based endpoint resolution (`REACT_APP_API_*`)
-
-## Security
-- No secrets in code — use environment variables
-- Validate all user inputs, sanitize rendered content (XSS prevention)
-- CSRF protection via XSRF-TOKEN cookie
-
 ## Build & Deploy
-- Webpack via react-app-rewired, environment-specific `.env` files
+- Component packages built with **Babel CLI** (`babel --root-mode upward src --out-dir dist`)
+- Storybook uses **webpack 5** via `@storybook/react-webpack5`
+- Package manager: **pnpm ^10** (`engines` enforced)
 - **NEVER push directly to `master`** — always use a feature branch + merge request
-- Branches: `<type>/JiraTaskId` (e.g. `feature/REKO-1885`, `fix/ADMIN-4321`)
-- Commits: `<type>(JiraTaskId): <description>` — JiraTaskId required when linked to Jira task
+- Branches: `<type>/<short-description>` (e.g. `feature/ai-icon`, `fix/toast-animation`)
+- Commits: `<type>: <description>`
 - Types: `feat`, `fix`, `refactor`, `test`, `docs`, `chore`, `perf`, `ci`, `build`, `style`, `revert`
 - Squash on merge to master — Semantic Release auto-versions from squash message
 - Version bumps: `fix`/`perf`/`revert`/etc = PATCH, `feat` = MINOR, `BREAKING CHANGE:` footer = MAJOR
@@ -47,4 +37,8 @@
 - CI: lint -> build -> test -> security -> integration -> deploy
 
 ## Team: DS
-<!-- Add 3-8 bullet points summarizing key team rules -->
+
+## Available Components
+All packages live under `packages/components/<name>` and are published as `@synerise/ds-<name>`.
+
+`action-area` · `alert` · `app-menu` · `autocomplete` · `avatar` · `avatar-group` · `badge` · `banner` · `block` · `broadcast-bar` · `button` · `button-group` · `card` · `card-select` · `card-tabs` · `cascader` · `checkbox` · `checkbox-tristate` · `code-area` · `code-snippet` · `collector` · `color-picker` · `column-manager` · `completed-within` · `condition` · `confirmation` · `context-selector` · `copy-icon` · `core` · `cruds` · `data-format` · `date-picker` · `date-range-picker` · `description` · `design-system` · `divider` · `drawer` · `dropdown` · `editable-items-list` · `emoji-picker` · `empty-states` · `estimation` · `factors` · `field-set` · `file-uploader` · `filter` · `flag` · `flex-box` · `footer` · `form` · `form-field` · `format-picker` · `grid` · `icon` · `icon-picker` · `information-card` · `inline-alert` · `inline-edit` · `input` · `input-number` · `insight` · `item-filter` · `item-picker` · `items-roll` · `layout` · `list` · `list-item` · `loader` · `logic` · `manageable-list` · `mapping` · `menu` · `metric-card` · `mocks` · `modal` · `navbar` · `operators` · `ordered-list` · `page-header` · `pagination` · `panel` · `panels-resizer` · `popconfirm` · `popover` · `progress-bar` · `radio` · `result` · `scrollbar` · `search` · `search-bar` · `section-message` · `select` · `short-cuts` · `sidebar` · `sidebar-object` · `skeleton` · `slider` · `sortable` · `status` · `step-card` · `stepper` · `subject` · `subtle-form` · `switch` · `table` · `table-new` · `tabs` · `tag` · `tags` · `time-picker` · `toast` · `toolbar` · `tooltip` · `tray` · `typography` · `unordered-list` · `utils` · `wizard`

@@ -32,9 +32,9 @@ import Insight from '@synerise/ds-insight'
 | --------------- | ------------------------------------------------------------------- | ------------------------------ | ------- |
 | avatar          | avatar component                                                    | ReactNode                      | -       |
 | subTitle        | text under title of Insight                                         | ReactNode                      | -       |
-| title           | title of Insight                                                    | ReactNode                      | -       |
+| title           | title of Insight (**required**)                                     | ReactNode                      | -       |
 | headerRightSide | component on right side of Insight                                  | ReactNode                      | -       |
 | footer          | render components in footer                                         | ReactNode                      | -       |
-| onClick         | The callback function that is triggered when click on outer wrapper | function                       | -       |
+| onClick         | The callback function that is triggered when click on outer wrapper | `() => void`                   | -       |
 | content         | render components inside Insight                                    | ReactNode / InlineAlertProps[] | -       |
 | className       | Insight className                                                   | string                         | -       |

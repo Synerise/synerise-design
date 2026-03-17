@@ -24,10 +24,14 @@ Tags UI Component
 | style            | Tag Group container styles                                                                                              | React.CSSProperties                                     | -             |
 | selected         | Selected tags                                                                                                           | (Tag & {informationCardProps?: InformationCardProps})[] | []            |
 | tagShape         | Shape of tags                                                                                                           | TagShape                                                | -             |
-| texts            | necessary texts to render tags group                                                                                    | TagsTexts                                               | {}            |
+| texts            | necessary texts to render tags group                                                                                    | Partial\<TagTexts\>                                     | -             |
 | dropdownFooter   | Allows adding custom content to the footer of the dropdown                                                              | ReactNode                                               | -             |
 | maxVisibleTags   | Defines the max number of selected tags that are visible by default. Additional selected tags will appear in a dropdown | number                                                  | -             |
-| addButtonType    | Defines the type of button used to add more tags. 'icon-label' by default                                               | 'icon-label'                                            | 'single-icon' | 'icon-label' |
+| addButtonType    | Defines the type of button used to add more tags. Defaults to `'icon-label'` when `texts.addButtonLabel` is set, otherwise `'single-icon'` | `'single-icon' \| 'icon-label'` | - |
+| overlayPlacement | Placement of the add-tags dropdown                                                                                      | `'topLeft' \| 'topCenter' \| 'topRight' \| 'bottomLeft' \| 'bottomCenter' \| 'bottomRight'` | - |
+| overlayStyle     | Inline style override for the add-tags dropdown overlay                                                                 | React.CSSProperties                                     | - |
+| maxHeight        | Max height (px) of the add-tags dropdown scrollable area                                                                | number                                                  | - |
+| asPill           | Render all tags as pills                                                                                                | boolean                                                 | - |
 
 ## ActionTaken
 
@@ -36,7 +40,7 @@ Tags UI Component
 | tag      | Affected tag                                                   | Tag              |
 | type     | Type of action taken that caused onSelectedChange to be called | 'ADD' / 'REMOVE' |
 
-## TagsTexts
+## TagTexts
 
 | Property             | Description                                                   | Type               | Default      |
 | -------------------- | ------------------------------------------------------------- | ------------------ | ------------ |
@@ -46,6 +50,5 @@ Tags UI Component
 | searchPlaceholder    | Search input placeholder for add tag dropdown                 | string             |              |
 | manageLinkLabel      | Label for manage link for add tag dropdown                    | string / ReactNode |              |
 | createTagButtonLabel | Label for create tag button for add tag dropdown              | string / ReactNode |              |
-| noResultsLabel       | Label displayed when filtering tags returns an empty array    | string / ReactNode | `No results` |
+| noResultsLabel       | Label displayed when filtering tags returns an empty array    | string / ReactNode | `No tags found` |
 | dropdownNoTags       | Text for a label displayed when no tags are found to be added | string / ReactNode |              |
-| title                | Text for a tags group                                         | ReactNode          |              |

@@ -33,7 +33,7 @@ import Confirmation from '@synerise/ds-confirmation'
 | icon                 | icon to display above title                                                                                                                     | Preferably Xl size icon from ds-icons ReactNode    | -       |
 | title                | confirmation title                                                                                                                              | ReactNode                                          | -       |
 | description          | confirmation details                                                                                                                            | ReactNode                                          | -       |
-| texts                | custom translations                                                                                                                             | ReactNode                                          | -       |
+| texts                | custom translations                                                                                                                             | `Partial<ConfirmationTexts>`                       | -       |
 | type                 | action type - this defines the button (and icon if negative) color                                                                              | `success` / `warning` / `negative` / `informative` | -       |
 | mainButtonProps      | additional button customisation props                                                                                                           | subset of ButtonProps see ds-button                | -       |
 | secondaryButtonProps | additional button customisation props                                                                                                           | subset of ButtonProps see ds-button                | -       |
@@ -41,6 +41,7 @@ import Confirmation from '@synerise/ds-confirmation'
 | batchActionItems     | renders a list of items that are affected                                                                                                       | ListItemProps[]                                    | -       |
 | decisionOptions      | renders a group of radio buttons to choose from                                                                                                 | RadioProps[]                                       | -       |
 | additionalInfo       | extra description to render within a bordered frame                                                                                             | ReactNode                                          | -       |
+| customFooterComponent| additional custom footer component like custom actions                                                                                          | ReactNode                                          | -       |
 
 ### Prompt
 
@@ -48,7 +49,7 @@ import Confirmation from '@synerise/ds-confirmation'
 | -------------------- | ------------------------------------------- | -------------------------------------------------- | ------- |
 | title                | prompt title                                | ReactNode                                          | -       |
 | content              | prompt content                              | ReactNode                                          | -       |
-| texts                | custom translations                         | ReactNode                                          | -       |
+| texts                | custom translations                         | `Partial<ConfirmationTexts>`                       | -       |
 | type                 | action type - this defines the button color | `success` / `warning` / `negative` / `informative` | -       |
 | mainButtonProps      | additional button customisation props       | subset of ButtonProps see ds-button                | -       |
 | secondaryButtonProps | additional button customisation props       | subset of ButtonProps see ds-button                | -       |
@@ -60,6 +61,6 @@ import Confirmation from '@synerise/ds-confirmation'
 | mainButtonLabel           |             | ReactNode | `Ok`                      |
 | secondaryButtonLabel      |             | ReactNode | `Cancel`                  |
 | relatedObjectsButtonLabel |             | ReactNode | `Show related objects`    |
-| relatedObjectsTitle       |             | ReactNode | `Objects to delete`       |
-| batchActionItemsTitle     |             | ReactNode | `What do you want to do?` |
-| decisionTitle             |             | ReactNode | `Related objects`         |
+| relatedObjectsTitle       |             | ReactNode | `Related objects`         |
+| batchActionItemsTitle     |             | ReactNode | `Objects to delete`       |
+| decisionTitle             |             | ReactNode | `What do you want to do?` |

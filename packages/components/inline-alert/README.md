@@ -28,12 +28,13 @@ import InlineAlert from '@synerise/ds-inline-alert'
 
 ## API
 
-| Property     | Description                                                          | Type              | Default   |
-| ------------ | -------------------------------------------------------------------- | ----------------- | --------- |
-| type         | Type of Alert styles, options: `success`, `info`, `warning`, `error` | `string`          | `warning` |
-| message      | Message of Inline Alert                                              | `React.ReactNode` | -         |
-| disabled     | prop to set disabled icon                                            | `boolean`         | -         |
-| withEmphasis | prop to show bolder text                                             | `React.ReactNode` | -         |
-| withLink     | prop to show highlited text                                          | `React.ReactNode` | -         |
-| hoverButton  | prop to set hover state button                                       | `boolean`         | -         |
-| customIcon   | prop to set custom icon                                              | `React.ReactNode` | -         |
+| Property     | Description                                                              | Type                                           | Default     |
+| ------------ | ------------------------------------------------------------------------ | ---------------------------------------------- | ----------- |
+| type         | Visual style variant                                                     | `'success' \| 'alert' \| 'warning' \| 'info'` | `'warning'` |
+| message      | Message of Inline Alert                                                  | `ReactNode`                                    | -           |
+| disabled     | Disables interaction and reduces opacity to 0.4                          | `boolean`                                      | -           |
+| withEmphasis | Bold text appended to message (ignored when `withLink` is also set)      | `ReactNode`                                    | -           |
+| withLink     | Underlined text appended to message (takes priority over `withEmphasis`) | `ReactNode`                                    | -           |
+| hoverButton  | Adds pointer cursor and darker hover colour                              | `boolean`                                      | -           |
+| customIcon   | Replaces the default type icon                                           | `ReactNode`                                    | -           |
+| iconAlert    | **Deprecated** — has no effect                                           | `boolean`                                      | -           |

@@ -33,5 +33,5 @@ import EmojiPicker from '@synerise/ds-emoji-picker'
 | children      | the element that triggers showing the picker                                             | ReactElement              | -       |
 | onSelect      | triggered when an emoji has been selected                                                | (emoji: Emoji) => void    | -       |
 | closeOnSelect | determines whether dropdown should hide when an emoji has been selected. true by default | boolean                   | true    |
-| dropdownProps | Dropdown customisation props see ds-dropdown                                             | Partial<DropdownProps>    | -       |
+| dropdownProps | Dropdown customisation props (see ds-dropdown). `size`, `overlay`, and `open` are controlled internally and cannot be overridden. | Partial<DropdownSharedProps> | -       |
 | texts         | customise texts / labels                                                                 | Partial<EmojiPickerTexts> | -       |

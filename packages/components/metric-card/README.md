@@ -26,8 +26,8 @@ import MetricCard from '@synerise/ds-metric-card'
 
 ## API
 
- Property          | Description                                            | Type                     | Default |
-| ---------------- | ------------------------------------------------------ | ------------------------ | ------- |
+| Property          | Description                                            | Type                     | Default |
+| ----------------- | ------------------------------------------------------ | ------------------------ | ------- |
 | title            | title of metric                                        | ReactNode                | -       |
 | headerRightSide  | custom component to render                             | ReactNode                | -       |
 | hoverValue       | Value of the metric on hover                           | ReactNode                | -       |
@@ -38,4 +38,4 @@ import MetricCard from '@synerise/ds-metric-card'
 | isLoading        | render skeleton                                        | boolean                  | -       |
 | errorMessage     | render inlineAlert with error text                     | ReactNode                | -       |
 | copyValue        | Value to copy after click on icon                      | string                   | -       |
-| texts            | Copy icon texts                                        | CopyTooltipTexts         | -       |
+| texts            | Copy icon texts                                        | CopyTexts                | -       |

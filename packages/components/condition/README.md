@@ -11,6 +11,8 @@ Condition UI Component
 npm i @synerise/ds-condition
 or
 yarn add @synerise/ds-condition
+or
+pnpm add @synerise/ds-condition
 ```
 
 ## Usage
@@ -109,8 +111,8 @@ import Condition from '@synerise/ds-condition'
 | removeCondition           | Callback called when user clicks on remove row of condtions   | (stepId: React.ReactText, conditionRowId: React.ReactText) => void                                | -                     |
 | steps                     | Array contains all steps of condition                         | ConditionStep[]                                                                                   | -                     |
 | texts                     | Translations object                                           | Texts                                                                                             | -                     |
-| updateStepName            | Callback called when user change the name of step             | (stepId: React.ReactText, value: string) => void                                                  | -                     |
-| addStep                   | Callback called when user clicks on add step button           | () => void                                                                                        | -                     |
+| onUpdateStepName          | Callback called when user change the name of step             | (stepId: React.ReactText, value: string) => void                                                  | -                     |
+| addStep                   | Callback called when user clicks on add step button           | () => ReactText \| void                                                                           | -                     |
 | duplicateStep             | Callback called when user clicks on duplicate step button     | (stepId: React.ReactText) => void                                                                 | -                     |
 | removeStep                | Callback called when user clicks on remove step button        | (stepId: React.ReactText) => void                                                                 | -                     |
 | onChangeOrder             | Callback called when user change order of steps               | (order: ConditionStep[]) => void                                                                  | -                     |
@@ -126,8 +128,21 @@ import Condition from '@synerise/ds-condition'
 | onUpdateStepName          | Callback called when user change the name of step condition   | (stepId: React.ReactText, value: string) => void                                                  | -                     |
 | onDeactivate              | Callback called when user blur on of the condition inputs     | (stepId: React.ReactText, conditionId: string) => void                                            | -                     |
 | getPopupContainerOverride | Popup container function for child tooltips and dropdowns     | (trigger: HTMLElement                                                                             | null) => HTMLElement; | -   |
-| defaultOpenedComponent    | Component which should be opened after render                 | 'subject' \ 'operator' \ 'factor' \ 'parameter' \ 'context'                                       | -                     |
+| autoOpenedComponent       | Component which should be opened after render                 | 'subject' \| 'operator' \| 'factor' \| 'parameter' \| 'context'                                  | -                     |
 | inputProps                | group of props from ds-factors types                          | InputProps                                                                                        | -                     |
+| readOnly                  | Disables all editing and hides add/remove/duplicate controls  | boolean                                                                                           | false                 |
+| singleStepCondition       | Hides step CRUD and drag handle                               | boolean                                                                                           | -                     |
+| showActionAttribute       | Renders action-attribute selector after subject/context       | boolean                                                                                           | -                     |
+| showEmptyConditionPlaceholder | Shows placeholder when no subject/context chosen          | boolean                                                                                           | false                 |
+| showSuffix                | Renders suffix text ("and") between condition rows            | boolean                                                                                           | -                     |
+| hoverDisabled             | Disables hover highlight on steps                             | boolean                                                                                           | -                     |
+| renderAddStep             | Replaces the default add step button with custom content      | () => ReactNode                                                                                   | -                     |
+| contextSelectorComponent  | Replaces default context selector                             | ComponentType\<CustomContextSelectorProps\>                                                       | -                     |
+| parameterSelectorComponent | Replaces default parameter value component                   | ComponentType\<FactorValueComponentProps\>                                                        | -                     |
+| factorParameterSelectorComponent | Replaces default factor parameter selector             | ComponentType\<FactorValueComponentProps\>                                                        | -                     |
+| actionAttributeParameterSelectorComponent | Replaces default action-attribute parameter selector | ComponentType\<FactorValueComponentProps\>                                              | -                     |
+| onChangeActionAttribute   | Callback when action attribute value changes                  | (stepId: React.ReactText, value: FactorValueType \| undefined) => void                            | -                     |
+| factorValueExtraProps     | Extra props forwarded to all factor value components          | FactorsProps['factorValueExtraProps']                                                             | -                     |
 
 ### ConditionStep
 
@@ -138,7 +153,8 @@ import Condition from '@synerise/ds-condition'
 | stepName                  | The name of step                                          | string                                                    | -                     |
 | subject                   | Subject options                                           | [SubjectProps](/docs/components/subject)                  | -                     |
 | context                   | ContextSelector options                                   | [ContextSelectorProps](/docs/components/context-selector) | -                     |
-| getPopupContainerOverride | Popup container function for child tooltips and dropdowns | (trigger: HTMLElement                                     | null) => HTMLElement; | -   |
+| actionAttribute           | Action-attribute selector options                         | Omit\<FactorsProps, 'onChangeValue' \| 'selectedFactorType' \| 'defaultFactorType'\> | - |
+| addConditionErrorText     | Error displayed below the "Add condition" button          | ReactNode                                                 | -                     |
 
 ### StepConditions
 
@@ -170,3 +186,7 @@ See [Condition.spec.tsx](./src/__specs__/Condition.spec.tsx) for code examples
 | moveTooltip               | Tooltip on move step button             | string | -       |
 | removeTooltip             | Tooltip on remove step button           | string | -       |
 | dropLabel                 | Label on drop zone                      | string | -       |
+| addFirstConditionRowButton | Label for the first "Add condition" button | string | -    |
+| conditionSuffix           | Text between condition rows ("and")     | string | -       |
+| stepNamePrefix            | Prefix before step index ("Step")       | string | -       |
+| emptyConditionLabel       | Placeholder label before event selected | string | -       |

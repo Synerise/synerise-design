@@ -14,9 +14,9 @@ yarn add @synerise/ds-copy-icon
 
 ## Usage
 ```
-import CopyButton from '@synerise/ds-copy-icon'
+import CopyIcon from '@synerise/ds-copy-icon'
 
-<CopyIcon />
+<CopyIcon copyValue="text-to-copy" />
 
 ```
 
@@ -26,9 +26,9 @@ import CopyButton from '@synerise/ds-copy-icon'
 
 ## API
 
- Property   | Description                                            | Type                     | Default |
+| Property   | Description                                            | Type                     | Default |
 | --------- | ------------------------------------------------------ | ------------------------ | ------- |
-| texts     | Group of texts before copy and after                   | CopyTooltipTexts         | -       |
+| texts     | Group of texts before copy and after                   | Partial<CopyTooltipTexts>| -       |
 | icon      | custom icon to render                                  | ReactNode                | -       |
 | copyValue | Value to copy after click on icon                      | string                   | -       |
 | placement | prop to set tooltip where need to be                   | TooltipPlacement         | -       |

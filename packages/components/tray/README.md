@@ -78,19 +78,19 @@ const Demo = () => {
 ## API
 
 Tray component props
-| Property | Description | Type | Required | |
-|-------------------------------|----------------------------------------------------|-----------------------------|----------|-----|
-| `id` | Identifier used to bind the tray to provider state | `string                     | number` | yes |
-| any other HTML div attributes | `className`, `style`, `data-*`, etc. | `HTMLDivElement` attributes | no | |
+| Property | Description | Type | Required |
+|-------------------------------|----------------------------------------------------|-----------------------------|----------|
+| `id` | Identifier used to bind the tray to provider state | `string` | yes |
+| any other HTML div attributes | `className`, `style`, `data-*`, etc. | `HTMLDivElement` attributes | no |
 
 Tray data (passed to `open(id, data)`) — [`TrayData`](packages/components/tray/src/components/TrayProvider.tsx)
-| Property | Description | Type | |
-|-------------------|------------------------------------------------|--------------|------------------|
-| `content` | Main content to render inside the tray | `ReactNode` | |
-| `title` | Header title (node) | `ReactNode` | |
-| `headerRightSide` | Node rendered in header to the right of title | `ReactNode` | |
-| `footer` | Footer node rendered at bottom of tray | `ReactNode` | |
-| `onClose` | Callback invoked when tray close action occurs | `(id: string | number) => void` |
+| Property | Description | Type | Required |
+|-------------------|------------------------------------------------|---------------------------------|----------|
+| `content` | Main content to render inside the tray | `ReactNode` | yes |
+| `title` | Header title (node) | `ReactNode` | yes |
+| `headerRightSide` | Node rendered in header to the right of title | `ReactNode` | no |
+| `footer` | Footer node rendered at bottom of tray | `ReactNode` | no |
+| `onClose` | Callback invoked when tray close action occurs | `(id: string) => void` | no |
 
 Notes
 

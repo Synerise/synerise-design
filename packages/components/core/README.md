@@ -25,7 +25,8 @@ Bunch of components to bootstrap application.
 | messages         | Object with translations                                                 | object           |             |
 | defaultMessages  | Object with fallback translations                                        | object           |             |
 | dataFormatConfig | Object with data (dates/numbers) notations                               | DataFormatConfig | EU notation |
-| includeToaster   | Opt out of rendering a Toaster component for rendering toasts (messages) | boolean          | true        |
+| toasterProps     | Pass TOASTER_DEFAULTS or custom config to enable toast container; false disables the Toaster element | false or Partial<ToasterProps> | false |
+| onErrorIntl      | react-intl error handler for missing translation keys                    | (error) => void   |             |
 
 # Data formatting
 

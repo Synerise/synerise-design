@@ -80,16 +80,18 @@ import Operators from '@synerise/ds-operators'
 
 | Property                  | Description                                                | Type                                                       | Default   |
 | ------------------------- | ---------------------------------------------------------- | ---------------------------------------------------------- | --------- |
-| error                     | error validation                                           | boolean                                                    | -         |
-| getPopupContainerOverride | Popup container function for child tooltips and dropdowns  | (trigger: HTMLElement \ null) => HTMLElement;              | -         |
-| groups                    | Groups of operators                                        | OperatorsGroup[]                                           | []        |
-| items                     | Array of operators                                         | OperatorsItem[]                                            | []        |
-| onActivate                | Callback called when user opens dropdown                   | (fieldType: string) => void                                | -         |
-| onChange                  | Callback called when user selects operator                 | (item: OperatorsItem \ OperatorsGroup \ undefined) => void | -         |
-| onDeactivate              | Callback called when user closes dropdown                  | () => void                                                 | -         |
-| opened                    | Whether if dropdown should opens from outside of component | boolean                                                    | false     |
-| texts                     | Translations object                                        | OperatorTexts                                              | -         |
-| value                     | Selected operator                                          | OperatorsItem \ undefined                                  | undefined |
+| errorText                 | Puts the trigger button in error state                     | ReactNode                                     | -         |
+| getPopupContainerOverride | Popup container function for child tooltips and dropdowns  | (trigger: HTMLElement \| null) => HTMLElement | -         |
+| groups                    | Groups of operators                                        | OperatorsGroup[]                              | -         |
+| items                     | Array of operators                                         | OperatorsItem[]                               | -         |
+| onActivate                | Callback called when user opens dropdown                   | () => void                                    | -         |
+| onChange                  | Callback called when user selects operator                 | (item: OperatorsItem \| undefined) => void    | -         |
+| onDeactivate              | Callback called when user closes dropdown                  | () => void                                    | -         |
+| opened                    | Whether if dropdown should opens from outside of component | boolean                                       | false     |
+| readOnly                  | Disables the dropdown; shows selected value without arrow  | boolean                                       | false     |
+| texts                     | Translations object                                        | Partial\<OperatorTexts\>                      | -         |
+| value                     | Selected operator                                          | OperatorsItem \| undefined                    | undefined |
+| dropdownDimensionsConfig  | Override responsive height thresholds                      | `{ defaultHeight?, lowerHeight?, threshold? }`| -         |
 
 ### OperatorsGroup
 
