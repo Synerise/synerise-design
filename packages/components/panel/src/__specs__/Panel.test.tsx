@@ -25,7 +25,7 @@ describe('Panel Component', () => {
       </Panel>,
     );
 
-    const panelWrapper = container.firstChild;
+    const panelWrapper = container.firstChild?.lastChild;
     expect(panelWrapper).toHaveStyle(`padding: ${DEFAULT_PADDING}px`);
   });
 
@@ -36,7 +36,7 @@ describe('Panel Component', () => {
       </Panel>,
     );
 
-    const panelWrapper = container.firstChild;
+    const panelWrapper = container.firstChild?.lastChild;
     expect(panelWrapper).toHaveStyle(`border-radius: ${DEFAULT_RADIUS}px`);
   });
 
@@ -48,7 +48,7 @@ describe('Panel Component', () => {
       </Panel>,
     );
 
-    const panelWrapper = container.firstChild;
+    const panelWrapper = container.firstChild?.lastChild;
     expect(panelWrapper).toHaveStyle(`border-radius: ${customRadius}px`);
   });
 
@@ -60,7 +60,7 @@ describe('Panel Component', () => {
       </Panel>,
     );
 
-    const panelWrapper = container.firstChild;
+    const panelWrapper = container.firstChild?.lastChild;
     expect(panelWrapper).toHaveStyle(`padding: ${customPadding}px`);
   });
 
@@ -101,7 +101,7 @@ describe('Panel Component', () => {
   });
 
   it('should render with custom data attributes', () => {
-    const { container } = renderWithProvider(
+    renderWithProvider(
       <Panel data-testid="custom-panel">
         <div>Content</div>
       </Panel>,
@@ -117,7 +117,7 @@ describe('Panel Component', () => {
       </Panel>,
     );
 
-    const panelWrapper = container.firstChild;
+    const panelWrapper = container.firstChild?.lastChild;
     expect(panelWrapper).toHaveStyle('border-radius: 12px');
     expect(panelWrapper).toHaveStyle('padding: 12px');
     expect(panelWrapper).toHaveStyle('display: flex');
@@ -131,7 +131,7 @@ describe('Panel Component', () => {
       </Panel>,
     );
 
-    const panelWrapper = container.firstChild;
+    const panelWrapper = container.firstChild?.lastChild;
     expect(panelWrapper?.nodeName).toBe('DIV');
   });
 
@@ -142,7 +142,7 @@ describe('Panel Component', () => {
       </Panel>,
     );
 
-    const panelWrapper = container.firstChild;
+    const panelWrapper = container.firstChild?.lastChild;
     expect(panelWrapper).toHaveStyle('width: 100%');
     expect(panelWrapper).toHaveStyle('height: auto');
   });

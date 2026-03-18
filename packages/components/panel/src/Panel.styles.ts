@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 
 import { Box } from '@synerise/ds-flex-box';
+import { FormFieldLabel } from '@synerise/ds-form-field';
 
 export const PanelWrapper = styled(Box)<{
   $radius: number;
@@ -15,4 +16,8 @@ export const PanelWrapper = styled(Box)<{
          border: solid 1px ${props.theme.palette['grey-200']};`}
 
   border-radius: ${(props) => props.$radius}px;
+`;
+
+export const Label = styled(FormFieldLabel)`
+  margin-bottom: 8px;
 `;
