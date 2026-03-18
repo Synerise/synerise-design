@@ -58,6 +58,7 @@ export const Container = styled.div<{
   width: 100%;
   align-items: center;
   justify-content: center;
+  position: relative;
   background-color: ${(props) =>
     props.customColor
       ? props.theme.palette[`${props.customColor}-050`]
@@ -67,12 +68,21 @@ export const Container = styled.div<{
       props.customColor
         ? props.theme.palette[`${props.customColor}-200`]
         : getColorBorder(props.type!, props.theme)};
-  border-top: 2px solid
-    ${(props) =>
+  border-radius: 3px;
+
+  &::after {
+    content: '';
+    position: absolute;
+    top: -1px;
+    left: -1px;
+    right: -1px;
+    height: 2px;
+    border-radius: 3px 3px 0 0;
+    background-color: ${(props) =>
       props.customColor
         ? props.theme.palette[`${props.customColor}-600`]
         : getColorIconAndBorderTop(props.type!, props.theme)};
-  border-radius: 2px;
+  }
 `;
 export const WrapperSectionMessage = styled.div`
   display: flex;
