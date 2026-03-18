@@ -13,6 +13,7 @@ type TextsAsReactNode =
   | 'actionsSectionLabel'
   | 'resultsSectionLabel'
   | 'noActions'
+  | 'emptyStateLabel'
   | 'itemsSectionLabel'
   | 'infiniteScrollLoadingMore'
   | 'infiniteScrollLoadingError'

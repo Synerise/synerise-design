@@ -56,6 +56,10 @@ export const useDefaultTexts = (
         id: 'DS.ITEM-PICKER-DROPDOWN.NO-ITEMS',
         defaultMessage: 'No items',
       }),
+      emptyStateLabel: intl.formatMessage({
+        id: 'DS.ITEM-PICKER-DROPDOWN.EMPTY-STATE',
+        defaultMessage: 'No items',
+      }),
       noResults: intl.formatMessage({
         id: 'DS.ITEM-PICKER-DROPDOWN.NO-SEARCH-RESULTS',
         defaultMessage: 'No results found',

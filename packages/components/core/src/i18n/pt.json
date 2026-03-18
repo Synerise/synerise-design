@@ -161,7 +161,8 @@
       "CLEAR-SEARCH-TOOLTIP": "Limpar",
       "BACK-TOOLTIP": "Voltar",
       "SEARCH-EVERYWHERE": "Buscar em todas as pastas",
-      "SEARCH-PLACEHOLDER": "Busque um objeto ou digite {shortCutKey} para exibir ações"
+      "SEARCH-PLACEHOLDER": "Busque um objeto ou digite {shortCutKey} para exibir ações",
+      "EMPTY-STATE": "Sem itens"
     },
     "ITEM-PICKER": {
       "CLEAR-CONFIRM": "Você tem certeza de que quer remover esta seleção?",

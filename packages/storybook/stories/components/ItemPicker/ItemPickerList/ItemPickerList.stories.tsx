@@ -210,3 +210,11 @@ export const NoActions: StoryObj<StoryPropsOverlay> = {
     sections: SECTIONS,
   },
 };
+
+export const EmptyState: StoryObj<StoryPropsOverlay> = {
+  args: {
+    items: [],
+    recents: undefined,
+    actions: undefined,
+  },
+};

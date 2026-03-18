@@ -149,7 +149,8 @@
       "CLEAR-SEARCH-TOOLTIP": "Wyczyść",
       "BACK-TOOLTIP": "Wstecz",
       "SEARCH-EVERYWHERE": "Przeszukaj wszystkie foldery",
-      "SEARCH-PLACEHOLDER": "Wyszukaj obiekt lub wpisz {shortCutKey} aby wylistować akcje"
+      "SEARCH-PLACEHOLDER": "Wyszukaj obiekt lub wpisz {shortCutKey} aby wylistować akcje",
+      "EMPTY-STATE": "Brak obiektów"
     },
     "ITEM-PICKER": {
       "CLEAR-CONFIRM": "Czy na pewno chcesz usunąć to zaznaczenie?",

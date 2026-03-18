@@ -536,6 +536,12 @@ export const ITEM_LOADER_CONFIG_ERRORS: ItemLoaderConfig<ItemType> = {
   loadItems: loadItemsWithError,
 };
 
+export const ITEM_LOADER_CONFIG_EMPTY: ItemLoaderConfig<ItemType> = {
+  limitPerPage: 50,
+  limitPerSection: 4,
+  loadItems: async () => ({ items: [], total: 0 }),
+};
+
 const ClickToCopy = ({ value }: { value: string }) => {
   const handleClick = (e: MouseEvent<HTMLDivElement>) => {
     e.stopPropagation();
