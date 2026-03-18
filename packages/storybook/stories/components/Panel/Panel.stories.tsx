@@ -34,3 +34,15 @@ export const PanelWithListItem: StoryObj<PanelProps> = {
     ),
   },
 };
+export const PanelWithLabel: StoryObj<PanelProps> = {
+  args: {
+    label: 'Label',
+    tooltip: 'Tooltip description',
+    id: 'panel-with-label',
+    children: (
+      <ListItem suffixel={<Icon component={<ExternalLinkM />} />}>
+        Process name
+      </ListItem>
+    ),
+  },
+};

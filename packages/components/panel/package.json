@@ -35,7 +35,8 @@
   ],
   "types": "dist/index.d.ts",
   "dependencies": {
-    "@synerise/ds-flex-box": "workspace:^"
+    "@synerise/ds-flex-box": "workspace:^",
+    "@synerise/ds-form-field": "workspace:^"
   },
   "peerDependencies": {
     "@synerise/ds-core": "*",
