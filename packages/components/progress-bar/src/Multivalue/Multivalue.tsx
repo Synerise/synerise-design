@@ -1,5 +1,7 @@
 import React, { useMemo } from 'react';
 
+import Tooltip from '@synerise/ds-tooltip';
+
 import * as S from './MultiValue.styles';
 import { type MultivalueProps } from './Multivalue.types';
 
@@ -30,11 +32,13 @@ const Multivalue = ({
   return (
     <S.Container stackedBars={stackedBars} {...htmlAttributes}>
       {finalValues.map((val, index) => (
-        <S.Multivalue
-          key={`${val.color}-${val.percent}-${index}`}
-          color={val.color}
-          percent={normalizePercent(val.percent)}
-        />
+        <Tooltip title={val.tooltip} {...val?.tooltipProps}>
+          <S.Multivalue
+            key={`${val.color}-${val.percent}-${index}`}
+            color={val.color}
+            percent={normalizePercent(val.percent)}
+          />
+        </Tooltip>
       ))}
     </S.Container>
   );

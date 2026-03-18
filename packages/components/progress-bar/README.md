@@ -43,7 +43,9 @@ Progress-Bar UI Component
 
 ### ProgressValue
 
-| Property | Description                      | Type   | Default |
-| -------- | -------------------------------- | ------ | ------- |
-| percent  | Value to display (length of bar) | number | -       |
-| color    | Bar color                        | string | -       |
+| Property     | Description                              | Type         | Default     |
+| ------------ | ---------------------------------------- | ------------ | ----------- |
+| percent      | Value to display (length of bar)         | number       | -           |
+| color        | Bar color                                | string       | -           |
+| tooltip      | Tooltip content shown on hover           | ReactNode    | `undefined` |
+| tooltipProps | Additional props passed to the Tooltip   | TooltipProps | `undefined` |

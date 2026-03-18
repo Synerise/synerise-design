@@ -4170,6 +4170,9 @@ importers:
       '@synerise/ds-form-field':
         specifier: workspace:^
         version: link:../form-field
+      '@synerise/ds-tooltip':
+        specifier: workspace:^
+        version: link:../tooltip
       '@synerise/ds-utils':
         specifier: workspace:^
         version: link:../utils

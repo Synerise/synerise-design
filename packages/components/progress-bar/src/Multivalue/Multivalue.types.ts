@@ -1,3 +1,6 @@
+import { type ReactNode } from 'react';
+
+import { type TooltipProps } from '@synerise/ds-tooltip';
 import { type WithHTMLAttributes } from '@synerise/ds-utils';
 
 export type MultivalueProps = WithHTMLAttributes<
@@ -11,4 +14,6 @@ export type MultivalueProps = WithHTMLAttributes<
 export type ProgressValue = {
   percent: number;
   color: string;
+  tooltip?: ReactNode;
+  tooltipProps?: TooltipProps;
 };

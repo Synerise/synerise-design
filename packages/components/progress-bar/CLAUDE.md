@@ -48,7 +48,7 @@ Overlapping (stacked) or side-by-side multi-value bar.
 
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
-| `values` | `ProgressValue[]` | — | **Required.** Each entry has `{ percent: number; color: string }`. Percent clamped to 0–100. |
+| `values` | `ProgressValue[]` | — | **Required.** Each entry has `{ percent: number; color: string; tooltip?: ReactNode; tooltipProps?: TooltipProps }`. Percent clamped to 0–100. Each bar is wrapped in a `Tooltip` from `@synerise/ds-tooltip`. |
 | `stackedBars` | `boolean` | `true` | When `true`, bars are layered on top of each other (sorted descending by percent, largest first). When `false`, bars are placed side-by-side with 2px gaps. |
 
 All standard `HTMLDivElement` attributes accepted.
@@ -72,7 +72,7 @@ All standard `HTMLDivElement` attributes accepted.
 |------|-------------|
 | `ProgressProps` | Props for `ProgressBar` |
 | `MultivalueProps` | Props for `Multivalue` |
-| `ProgressValue` | `{ percent: number; color: string }` |
+| `ProgressValue` | `{ percent: number; color: string; tooltip?: ReactNode; tooltipProps?: TooltipProps }` |
 | `ProgressTilesProps` | Props for `ProgressTiles` |
 
 ## Usage patterns
@@ -97,6 +97,14 @@ import ProgressBar, { Multivalue, ProgressTiles } from '@synerise/ds-progress-ba
   values={[
     { percent: 80, color: '#blue' },
     { percent: 50, color: '#red' },
+  ]}
+/>
+
+// Multi-value with tooltips
+<Multivalue
+  values={[
+    { percent: 80, color: '#blue', tooltip: '80%' },
+    { percent: 50, color: '#red', tooltip: '50%' },
   ]}
 />
 
@@ -131,6 +139,7 @@ All styles in `*.styles.ts` files. Use `theme.palette` tokens for backgrounds; `
 
 - `uuid` (`v4`) — generates stable tile keys in `ProgressBar`; new IDs created on every `steps` change
 - `@synerise/ds-form-field` — `FormFieldLabel` re-used for the label element in both `ProgressBar` and `ProgressTiles`
+- `@synerise/ds-tooltip` — wraps each `Multivalue` bar segment for optional tooltips
 - `@synerise/ds-utils` — `WithHTMLAttributes` utility type
 
 ## Implementation notes
