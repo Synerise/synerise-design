@@ -63,7 +63,12 @@ const ItemPickerNewInner = <
     closeDropdown();
   };
 
-  useEffect(() => setSelected(selectedItem), [selectedItem]);
+  useEffect(() => {
+    setSelected(selectedItem);
+    if (selectedItem) {
+      setVisible(false);
+    }
+  }, [selectedItem]);
 
   const trigger = useMemo(() => {
     return renderTrigger ? (
