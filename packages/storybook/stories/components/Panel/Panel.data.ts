@@ -1,10 +1,11 @@
 import {
+  BOOLEAN_CONTROL,
   NUMBER_CONTROL,
-  REACT_NODE_AS_STRING,
   REACT_NODE_NO_CONTROL,
 } from '../../utils';
 
 export const controls = {
+  greyBackground: BOOLEAN_CONTROL,
   radius: NUMBER_CONTROL,
   children: REACT_NODE_NO_CONTROL,
 

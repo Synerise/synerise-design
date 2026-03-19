@@ -1,9 +1,8 @@
 import { type BoxProps } from '@synerise/ds-flex-box';
-import { type FormFieldLabelProps } from '@synerise/ds-form-field';
+import { type BaseLabelProps } from '@synerise/ds-form-field';
 
-export type PanelProps = BoxProps &
-  Pick<FormFieldLabelProps, 'label' | 'tooltip' | 'tooltipConfig'> & {
+export type PanelProps = Omit<BoxProps, 'label'> &
+  BaseLabelProps & {
     radius?: number;
     greyBackground?: boolean;
-    id?: string;
   };

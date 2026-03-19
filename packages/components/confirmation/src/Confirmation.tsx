@@ -5,6 +5,7 @@ import { useTheme } from '@synerise/ds-core';
 import Icon, { ArrowLeftM, ShowM } from '@synerise/ds-icon';
 import type { ListItemProps } from '@synerise/ds-list-item';
 import Modal from '@synerise/ds-modal';
+import Panel from '@synerise/ds-panel';
 import { Paragraph } from '@synerise/ds-typography';
 
 import { BUTTON_COLOR_MAPPING } from './Confirmation.const';
@@ -48,9 +49,7 @@ const Confirmation = <ItemType extends ListItemProps>({
             <S.Title level={3}>{title}</S.Title>
             <Paragraph size="small">{description}</Paragraph>
           </S.ConfirmationModalContentMain>
-          {additionalInfo && (
-            <S.AdditionalInfo>{additionalInfo}</S.AdditionalInfo>
-          )}
+          {additionalInfo && <Panel p="8px 18px">{additionalInfo}</Panel>}
           {batchActionItems?.length && (
             <BatchItemsList
               items={batchActionItems}

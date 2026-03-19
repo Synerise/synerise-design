@@ -8,10 +8,6 @@ import {
 import Scrollbar from '@synerise/ds-scrollbar';
 import { Title as TypographyTitle } from '@synerise/ds-typography';
 
-const sectionTitleCSS = css`
-  margin-bottom: 8px;
-`;
-
 const modalContentCSS = css`
   padding: 36px 48px 48px;
 `;
@@ -56,15 +52,7 @@ export const Footer = styled.div`
 
 export const ConfirmationExtra = styled.div``;
 
-export const ConfirmationExtraTitle = styled(TypographyTitle)`
-  ${sectionTitleCSS}
-`;
-
 export const BatchItemsList = styled(Scrollbar)``;
-
-export const AdditionalInfo = styled(Panel)`
-  padding: 8px 18px;
-`;
 
 export const DecisionOptions = styled(Panel)`
   ${RadioWrapper} {
@@ -74,7 +62,6 @@ export const DecisionOptions = styled(Panel)`
   ${AdditionalData}:empty {
     display: none;
   }
-  padding: 8px 18px;
 `;
 
 export const ModalBackTitle = styled.div`

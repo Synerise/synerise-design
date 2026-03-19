@@ -8,8 +8,7 @@ import type { DecisionSectionProps } from '../Confirmation.types';
 export const DecisionSection = ({ options, title }: DecisionSectionProps) => {
   return (
     <S.ConfirmationExtra>
-      <S.ConfirmationExtraTitle level={6}>{title}</S.ConfirmationExtraTitle>
-      <S.DecisionOptions>
+      <S.DecisionOptions p="8px 18px" label={title}>
         <Radio.Group>
           {options.map((option) => (
             <Radio key={option.id} {...option} />

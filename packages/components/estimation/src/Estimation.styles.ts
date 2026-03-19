@@ -1,7 +1,6 @@
 import styled, { css } from 'styled-components';
 
 import Divider from '@synerise/ds-divider';
-import Panel from '@synerise/ds-panel';
 import DSSkeleton from '@synerise/ds-skeleton';
 import { Title } from '@synerise/ds-typography';
 
@@ -22,19 +21,16 @@ export const EstimationDivider = styled(Divider)`
 export const EstimationTitle = styled(Title)`
   margin: 0;
 `;
-export const EstimationWrapper = styled.div<{ isLoading?: boolean }>`
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-`;
+export const EstimationWrapper = styled.div``;
 export const Bold = styled.span`
   font-weight: 500;
 `;
-export const EstimationContent = styled(Panel)`
+export const EstimationInner = styled.div`
   display: flex;
   flex-direction: column;
   gap: 4px;
 `;
+
 export const EstimationHead = styled.div`
   ${splitStyles}
 `;
