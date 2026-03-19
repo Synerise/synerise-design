@@ -1,6 +1,9 @@
 import React from 'react';
 
-import ListItem, { type ListItemProps } from '@synerise/ds-list-item';
+import ListItem, {
+  ListContextProvider,
+  type ListItemProps,
+} from '@synerise/ds-list-item';
 import Panel from '@synerise/ds-panel';
 
 import { ITEM_SIZE, MAX_ITEMS } from '../Confirmation.const';
@@ -13,13 +16,14 @@ export const BatchItemsList = <ItemType extends ListItemProps>({
 }: BatchItemsListProps<ItemType>) => {
   return (
     <S.ConfirmationExtra>
-      <S.ConfirmationExtraTitle level={6}>{title}</S.ConfirmationExtraTitle>
-      <Panel>
-        <S.BatchItemsList maxHeight={ITEM_SIZE * MAX_ITEMS} absolute>
-          {items.map((item) => (
-            <ListItem key={item.id} {...item} />
-          ))}
-        </S.BatchItemsList>
+      <Panel label={title}>
+        <ListContextProvider>
+          <S.BatchItemsList maxHeight={ITEM_SIZE * MAX_ITEMS} absolute>
+            {items.map((item) => (
+              <ListItem key={item.id} {...item} />
+            ))}
+          </S.BatchItemsList>
+        </ListContextProvider>
       </Panel>
     </S.ConfirmationExtra>
   );
