@@ -34,6 +34,7 @@ const config: StorybookConfig = {
   },
   tags: {
     visualtests: { defaultFilterSelection: 'exclude' },
+    internal: { defaultFilterSelection: 'exclude' },
   },
   docs: {
     defaultName: 'Overview',

@@ -20,6 +20,7 @@ export { default as useElementInView } from './useElementInView/useElementInView
 export { default as useOverscrollBlock } from './useOverscrollBlock/useOverscrollBlock';
 export { default as useResizeToFit } from './useResizeToFit/useResizeToFit';
 export * from './useScrollContain/useScrollContain';
+export * from './useStickyScroll/useStickyScroll';
 export * from './useSearchResults';
 export * from './useKeyboardShortcuts/useKeyboardShortcuts';
 export * from './omitKeys/omitKeys';
