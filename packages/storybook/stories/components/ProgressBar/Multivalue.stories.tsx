@@ -62,6 +62,54 @@ export const MultivalueBar: StoryObj<MultivalueProps> = {
     },
   },
 };
+export const MultiValueWithTooltips: StoryObj<MultivalueProps> = {
+  parameters: {
+    docs: {
+      source: {
+        code: `<Multivalue 
+  stackedBars={false}
+  values={[
+    {
+      percent: 10,
+      color: COLORS.mars,
+      tooltip: "10%",
+    },
+    {
+      percent: 15,
+      color: COLORS.yellow,
+      tooltip: "15%",
+    },
+    {
+      percent: 40,
+      color: COLORS.cyan,
+      tooltip: "40%",
+    },
+  ]}
+/>`,
+      },
+    },
+  },
+  args: {
+    stackedBars: false,
+    values: [
+      {
+        percent: 10,
+        color: COLORS.mars,
+        tooltip: '10%',
+      },
+      {
+        percent: 15,
+        color: COLORS.yellow,
+        tooltip: '15%',
+      },
+      {
+        percent: 40,
+        color: COLORS.cyan,
+        tooltip: '40%',
+      },
+    ],
+  },
+};
 export const MultivalueBarNotStacked: StoryObj<MultivalueProps> = {
   parameters: {
     docs: {

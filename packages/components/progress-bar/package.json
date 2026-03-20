@@ -36,6 +36,7 @@
   "types": "dist/index.d.ts",
   "dependencies": {
     "@synerise/ds-form-field": "workspace:^",
+    "@synerise/ds-tooltip": "workspace:^",
     "@synerise/ds-utils": "workspace:^"
   },
   "peerDependencies": {
