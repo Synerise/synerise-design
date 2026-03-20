@@ -3,6 +3,10 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.2.1](https://github.com/Synerise/synerise-design/compare/@synerise/ds-copy-icon@1.2.0...@synerise/ds-copy-icon@1.2.1) (2026-03-20)
+
+**Note:** Version bump only for package @synerise/ds-copy-icon
+
 # [1.2.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-copy-icon@1.1.7...@synerise/ds-copy-icon@1.2.0) (2026-03-09)
 
 ### Features

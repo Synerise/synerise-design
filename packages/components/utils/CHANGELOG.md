@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.7.0](https://github.com/synerise/synerise-design/compare/@synerise/ds-utils@1.6.0...@synerise/ds-utils@1.7.0) (2026-03-20)
+
+### Features
+
+- **utils:** sticky sidebar util ([68714d7](https://github.com/synerise/synerise-design/commit/68714d7414839dc15c560ade6f5c0cece3edd1d5))
+
 # [1.6.0](https://github.com/synerise/synerise-design/compare/@synerise/ds-utils@1.5.4...@synerise/ds-utils@1.6.0) (2026-02-05)
 
 ### Features

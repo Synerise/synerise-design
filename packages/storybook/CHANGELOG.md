@@ -3,6 +3,20 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.41.0](https://github.com/Synerise/synerise-design/compare/storybook@1.40.3...storybook@1.41.0) (2026-03-20)
+
+### Bug Fixes
+
+- panel regressions ([c88aad5](https://github.com/Synerise/synerise-design/commit/c88aad5c4584a172c41c50dd8d64e5f86784de65))
+- **panel:** add lebel above ([0c9606b](https://github.com/Synerise/synerise-design/commit/0c9606bb99acb5848b7434b5b3d689fcf70f82ae))
+
+### Features
+
+- **item-picker:** empty state default and custom ([a3b9af1](https://github.com/Synerise/synerise-design/commit/a3b9af1c0fc1e4a626da266199c456ef0aad67b1))
+- **modal:** disableScrollbar prop ([d6a80ec](https://github.com/Synerise/synerise-design/commit/d6a80ec2a5394703974d2b369f25a13fc4e5eeb0))
+- **progress-bar:** tooltips in multivalue progress bar ([e37f829](https://github.com/Synerise/synerise-design/commit/e37f829fee9c194abf2312349b563e4a55f78cad))
+- **utils:** sticky sidebar util ([68714d7](https://github.com/Synerise/synerise-design/commit/68714d7414839dc15c560ade6f5c0cece3edd1d5))
+
 ## [1.40.3](https://github.com/Synerise/synerise-design/compare/storybook@1.40.2...storybook@1.40.3) (2026-03-10)
 
 **Note:** Version bump only for package storybook

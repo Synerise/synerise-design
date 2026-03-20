@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.11.0](https://github.com/synerise/synerise-design/compare/@synerise/ds-core@1.10.2...@synerise/ds-core@1.11.0) (2026-03-20)
+
+### Features
+
+- **item-picker:** empty state default and custom ([a3b9af1](https://github.com/synerise/synerise-design/commit/a3b9af1c0fc1e4a626da266199c456ef0aad67b1))
+
 ## [1.10.2](https://github.com/synerise/synerise-design/compare/@synerise/ds-core@1.10.1...@synerise/ds-core@1.10.2) (2026-02-11)
 
 ### Bug Fixes

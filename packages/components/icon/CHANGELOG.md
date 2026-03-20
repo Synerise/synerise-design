@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.15.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-icon@1.14.1...@synerise/ds-icon@1.15.0) (2026-03-20)
+
+### Features
+
+- **icon:** add ai icon ([18fb755](https://github.com/Synerise/synerise-design/commit/18fb755bbda81baf438abfac141c3c9f5512c29e))
+
 ## [1.14.1](https://github.com/Synerise/synerise-design/compare/@synerise/ds-icon@1.14.0...@synerise/ds-icon@1.14.1) (2026-02-19)
 
 ### Bug Fixes

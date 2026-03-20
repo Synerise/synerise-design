@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.2.2](https://github.com/Synerise/synerise-design/compare/@synerise/ds-panel@1.2.1...@synerise/ds-panel@1.2.2) (2026-03-20)
+
+### Bug Fixes
+
+- panel regressions ([c88aad5](https://github.com/Synerise/synerise-design/commit/c88aad5c4584a172c41c50dd8d64e5f86784de65))
+- **panel:** add lebel above ([0c9606b](https://github.com/Synerise/synerise-design/commit/0c9606bb99acb5848b7434b5b3d689fcf70f82ae))
+
 ## [1.2.1](https://github.com/Synerise/synerise-design/compare/@synerise/ds-panel@1.2.0...@synerise/ds-panel@1.2.1) (2026-02-26)
 
 ### Bug Fixes

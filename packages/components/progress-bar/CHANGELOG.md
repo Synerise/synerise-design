@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.2.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-progress-bar@1.1.40...@synerise/ds-progress-bar@1.2.0) (2026-03-20)
+
+### Features
+
+- **progress-bar:** tooltips in multivalue progress bar ([e37f829](https://github.com/Synerise/synerise-design/commit/e37f829fee9c194abf2312349b563e4a55f78cad))
+
 ## [1.1.40](https://github.com/Synerise/synerise-design/compare/@synerise/ds-progress-bar@1.1.39...@synerise/ds-progress-bar@1.1.40) (2026-03-09)
 
 **Note:** Version bump only for package @synerise/ds-progress-bar

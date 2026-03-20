@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.4.11](https://github.com/Synerise/synerise-design/compare/@synerise/ds-toast@1.4.10...@synerise/ds-toast@1.4.11) (2026-03-20)
+
+### Bug Fixes
+
+- **toast:** add animations to toast ([5167350](https://github.com/Synerise/synerise-design/commit/5167350a1f15ad06f8fa4cb20ca97e6aa1269b64))
+
 ## [1.4.10](https://github.com/Synerise/synerise-design/compare/@synerise/ds-toast@1.4.9...@synerise/ds-toast@1.4.10) (2026-03-09)
 
 **Note:** Version bump only for package @synerise/ds-toast

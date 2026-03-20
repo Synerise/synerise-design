@@ -3,6 +3,16 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.17.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-item-picker@1.16.2...@synerise/ds-item-picker@1.17.0) (2026-03-20)
+
+### Bug Fixes
+
+- **item-picker:** close dropdown when selectedItem is set via prop ([5c491ce](https://github.com/Synerise/synerise-design/commit/5c491ce56e8d0e75c37b745d3a6987ffa1903044))
+
+### Features
+
+- **item-picker:** empty state default and custom ([a3b9af1](https://github.com/Synerise/synerise-design/commit/a3b9af1c0fc1e4a626da266199c456ef0aad67b1))
+
 ## [1.16.2](https://github.com/Synerise/synerise-design/compare/@synerise/ds-item-picker@1.16.1...@synerise/ds-item-picker@1.16.2) (2026-03-10)
 
 ### Bug Fixes

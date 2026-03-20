@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.2.0](https://github.com/synerise/synerise-design/compare/@synerise/ds-layout@1.1.15...@synerise/ds-layout@1.2.0) (2026-03-20)
+
+### Features
+
+- **modal:** disableScrollbar prop ([d6a80ec](https://github.com/synerise/synerise-design/commit/d6a80ec2a5394703974d2b369f25a13fc4e5eeb0))
+
 ## [1.1.15](https://github.com/synerise/synerise-design/compare/@synerise/ds-layout@1.1.14...@synerise/ds-layout@1.1.15) (2026-03-09)
 
 **Note:** Version bump only for package @synerise/ds-layout
