@@ -1,19 +1,18 @@
 import React from 'react';
 
-import type { StoryObj, Meta } from '@storybook/react-webpack5';
-
+import type { Meta, StoryObj } from '@storybook/react-vite';
 import { InputMultivalue, InputMultivalueProps } from '@synerise/ds-input';
-
 
 import {
   BOOLEAN_CONTROL,
-  CLASSNAME_ARG_CONTROL, fixedWrapper300, NUMBER_CONTROL,
+  CLASSNAME_ARG_CONTROL,
+  NUMBER_CONTROL,
   REACT_NODE_AS_STRING,
+  fixedWrapper300,
 } from '../../utils';
 
-
 export default {
-  title: "Components/InputElements/InputMultivalue",
+  title: 'Components/InputElements/InputMultivalue',
   tags: ['autodocs'],
   component: InputMultivalue,
   decorators: [fixedWrapper300],
@@ -34,7 +33,15 @@ type Story = StoryObj<typeof InputMultivalue>;
 export const Default: Story = {
   render: (args: InputMultivalueProps) => {
     const values = ['Option A', 'Option B', 'Option C'];
-    return <InputMultivalue {...args} values={values} onChange={(values) => {JSON.stringify({type: 'onChange', values})}} />;
+    return (
+      <InputMultivalue
+        {...args}
+        values={values}
+        onChange={(values) => {
+          JSON.stringify({ type: 'onChange', values });
+        }}
+      />
+    );
   },
   args: {
     label: 'Label',

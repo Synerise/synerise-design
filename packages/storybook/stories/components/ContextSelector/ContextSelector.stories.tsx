@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
-import { Meta, StoryObj } from '@storybook/react-webpack5';
 import { fn } from 'storybook/test';
 
-import ContextSelector, { ContextProps, ContextItem } from '@synerise/ds-context-selector';
+import { Meta, StoryObj } from '@storybook/react-vite';
+import ContextSelector, {
+  ContextItem,
+  ContextProps,
+} from '@synerise/ds-context-selector';
 
-import { CONTEXT_GROUPS, CONTEXT_ITEMS, CONTEXT_TEXTS } from './data/context.data';
 import {
   CONTEXT_CLIENT_GROUPS,
   CONTEXT_CLIENT_ITEMS,
@@ -12,6 +14,11 @@ import {
   CONTEXT_DEFAULT_ITEMS,
   FLAT_LIST_ITEMS,
 } from './data/client.data';
+import {
+  CONTEXT_GROUPS,
+  CONTEXT_ITEMS,
+  CONTEXT_TEXTS,
+} from './data/context.data';
 
 export default {
   title: 'Components/Filter/ContextSelector',
@@ -20,13 +27,15 @@ export default {
   parameters: {
     layout: 'centered',
   },
-  render: args => {
-    const [value, setValue] = useState<ContextItem | undefined>(args.selectedItem);
+  render: (args) => {
+    const [value, setValue] = useState<ContextItem | undefined>(
+      args.selectedItem,
+    );
     return (
       <ContextSelector
         {...args}
         selectedItem={value}
-        onSelectItem={value => {
+        onSelectItem={(value) => {
           args.onSelectItem && args.onSelectItem(value);
           setValue(value as ContextItem);
         }}
@@ -44,11 +53,11 @@ export default {
       action: 'onSelectItem',
     },
     items: {
-      control: false
+      control: false,
     },
     groups: {
-      control: false
-    }
+      control: false,
+    },
   },
   args: {
     onActivate: fn(),
@@ -61,7 +70,6 @@ export default {
     onSetGroup: fn(),
     texts: CONTEXT_TEXTS,
     onClickOutsideEvents: undefined,
-
   },
 } as Meta<ContextProps>;
 

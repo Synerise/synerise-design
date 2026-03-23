@@ -1,10 +1,17 @@
-import { Meta, StoryObj } from '@storybook/react-webpack5';
-import { within, waitFor, userEvent, fn, expect, fireEvent } from 'storybook/test';
+import {
+  expect,
+  fireEvent,
+  fn,
+  userEvent,
+  waitFor,
+  within,
+} from 'storybook/test';
 
+import { Meta, StoryObj } from '@storybook/react-vite';
 import type { InputProps } from '@synerise/ds-input';
 import { InputNumberProps } from '@synerise/ds-input-number';
-import { fixedWrapper200, sleep } from '../../utils';
 
+import { fixedWrapper200, sleep } from '../../utils';
 import StoriesMeta from './InputNumber.stories';
 
 export default {
@@ -27,5 +34,5 @@ export const InputNumberFocus: StoryObj<InputNumberProps> = {
 export const InputNumberHover: StoryObj<InputNumberProps> = {
   parameters: {
     pseudo: { hover: true },
-  }
+  },
 };

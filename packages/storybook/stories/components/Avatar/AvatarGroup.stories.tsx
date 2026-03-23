@@ -1,14 +1,14 @@
 import React from 'react';
-import { Meta } from '@storybook/react-webpack5';
+
+import { Meta } from '@storybook/react-vite';
 import AvatarGroup from '@synerise/ds-avatar-group';
-import Menu from '@synerise/ds-menu';
-import Icon, {
-  LockM,
-  UserRemoveM,
-} from '@synerise/ds-icon';
-import {  sizes as groupSizes } from '../Avatar/constants';
-import { groupAvatars } from './mockData';
 import { theme } from '@synerise/ds-core';
+import Icon, { LockM, UserRemoveM } from '@synerise/ds-icon';
+import Menu from '@synerise/ds-menu';
+
+import { sizes as groupSizes } from '../Avatar/constants';
+import { groupAvatars } from './mockData';
+
 export default {
   title: 'Components/Avatar/Avatar group',
   component: AvatarGroup,
@@ -52,14 +52,19 @@ const Template: (args) => JSX.Element = (args) => (
       {...args}
       groupModal={{
         ...args.groupModal,
-        renderRowMenu: user => {
+        renderRowMenu: (user) => {
           return (
             <Menu style={{ padding: '8px' }}>
               <Menu.Item
                 onClick={() => {
                   console.info(`Show user permissions ${user.id}`);
                 }}
-                prefixel={<Icon component={<LockM />} color={theme.palette['grey-600']} />}
+                prefixel={
+                  <Icon
+                    component={<LockM />}
+                    color={theme.palette['grey-600']}
+                  />
+                }
               >
                 User permission
               </Menu.Item>

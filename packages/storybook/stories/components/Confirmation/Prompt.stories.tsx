@@ -1,6 +1,7 @@
 import React from 'react';
+import { fn } from 'storybook/test';
 
-import { Meta, StoryObj } from '@storybook/react-webpack5';
+import { Meta, StoryObj } from '@storybook/react-vite';
 import { Prompt, PromptProps } from '@synerise/ds-confirmation';
 import { Input } from '@synerise/ds-input';
 
@@ -25,6 +26,8 @@ export default {
       mainButtonLabel: 'Next',
       secondaryButtonLabel: 'Cancel',
     },
+    onCancel: fn(),
+    onOk: fn(),
   },
   argTypes: {
     title: REACT_NODE_AS_STRING,

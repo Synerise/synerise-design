@@ -1,6 +1,6 @@
 import { expect, userEvent, waitFor, within } from 'storybook/test';
 
-import { Meta, StoryObj } from '@storybook/react-webpack5';
+import { Meta, StoryObj } from '@storybook/react-vite';
 import type { CardTabProps, CardTabsProps } from '@synerise/ds-card-tabs';
 
 import { sleep } from '../../utils';

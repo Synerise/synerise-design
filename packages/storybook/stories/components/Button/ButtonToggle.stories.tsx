@@ -2,7 +2,7 @@ import React, { MouseEvent } from 'react';
 import { useArgs } from 'storybook/preview-api';
 import { fn } from 'storybook/test';
 
-import type { Meta, StoryObj } from '@storybook/react-webpack5';
+import type { Meta, StoryObj } from '@storybook/react-vite';
 import { ButtonToggle } from '@synerise/ds-button';
 import type { ButtonToggleProps } from '@synerise/ds-button';
 import { theme } from '@synerise/ds-core';

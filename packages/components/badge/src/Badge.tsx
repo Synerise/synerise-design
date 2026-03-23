@@ -1,7 +1,5 @@
 import React from 'react';
 
-import '@synerise/ds-core/dist/js/style';
-
 import StyledBadge from './Badge.styles';
 import { type BadgeProps } from './Badge.types';
 import './style/index.less';

@@ -1,7 +1,7 @@
 import React from 'react';
 import { action } from 'storybook/actions';
 
-import { Meta, StoryObj } from '@storybook/react-webpack5';
+import { Meta, StoryObj } from '@storybook/react-vite';
 import Button from '@synerise/ds-button';
 import Checkbox from '@synerise/ds-checkbox';
 import FieldSet from '@synerise/ds-field-set';

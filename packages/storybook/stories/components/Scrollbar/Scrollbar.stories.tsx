@@ -1,7 +1,7 @@
 import React, { UIEvent, useState } from 'react';
 import { FixedSizeList } from 'react-window';
 
-import { Meta, StoryObj } from '@storybook/react-webpack5';
+import { Meta, StoryObj } from '@storybook/react-vite';
 import List from '@synerise/ds-list';
 import Scrollbar, { ScrollbarProps } from '@synerise/ds-scrollbar';
 import Sortable from '@synerise/ds-sortable';

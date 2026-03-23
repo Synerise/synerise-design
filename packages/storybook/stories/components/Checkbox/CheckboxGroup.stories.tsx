@@ -1,6 +1,6 @@
 import React from 'react';
-import { Meta, StoryObj } from '@storybook/react-webpack5';
 
+import { Meta, StoryObj } from '@storybook/react-vite';
 import Checkbox from '@synerise/ds-checkbox';
 
 import { Default } from './Checkbox.stories';
@@ -16,29 +16,23 @@ export default {
       control: false,
       table: {
         type: {
-          summary: '(checkedValues[]) => void'
-        }
-      }
-    }
+          summary: '(checkedValues[]) => void',
+        },
+      },
+    },
   },
-  subcomponents: { Checkbox }
+  subcomponents: { Checkbox },
 } as Meta<CheckboxGroupProps>;
 
 export const Group: StoryObj<CheckboxGroupProps> = {
   render: (args) => (
     <Checkbox.Group {...args}>
-      <Checkbox
-        {...Default.args}
-        value="A"
-      >
+      <Checkbox {...Default.args} value="A">
         Label A
       </Checkbox>
-      <Checkbox
-        {...Default.args}
-        value="B"
-      >
+      <Checkbox {...Default.args} value="B">
         Label B
       </Checkbox>
     </Checkbox.Group>
   ),
-}
+};

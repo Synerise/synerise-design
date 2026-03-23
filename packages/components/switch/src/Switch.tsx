@@ -2,8 +2,6 @@ import AntdSwitch from 'antd/lib/switch';
 import classnames from 'classnames';
 import React, { forwardRef, useId, useRef } from 'react';
 
-import '@synerise/ds-core/dist/js/style';
-
 import * as S from './Switch.styles';
 import { type Props } from './Switch.types';
 import './style/index.less';

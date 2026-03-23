@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { fn } from 'storybook/test';
 
-import { Meta, StoryObj } from '@storybook/react-webpack5';
+import { Meta, StoryObj } from '@storybook/react-vite';
 import Dropdown from '@synerise/ds-dropdown';
 import { ItemPickerList, ItemPickerTrigger } from '@synerise/ds-item-picker';
 

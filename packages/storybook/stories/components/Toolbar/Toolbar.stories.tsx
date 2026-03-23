@@ -1,26 +1,32 @@
 import React from 'react';
-import { Meta, StoryObj } from '@storybook/react-webpack5';
 
+import { Meta, StoryObj } from '@storybook/react-vite';
 import type { BadgeProps } from '@synerise/ds-badge';
-import type { TooltipProps } from '@synerise/ds-tooltip';
-import Toolbar, { ToolbarButton, ToolbarDivider, ToolbarLabel, ToolbarGroup, ToolbarProps } from '@synerise/ds-toolbar';
+import { theme } from '@synerise/ds-core';
 import Icon, {
-  StepBackM,
-  StepForwardM,
   AddM,
-  RemoveM,
+  Calendar2M,
+  ClickM,
+  ClockM,
+  EditM,
   FullScreenM,
   LocationM,
-  ClockM,
-  WarningM,
-  ClickM,
+  RemoveM,
   Settings2M,
-  Calendar2M,
-  EditM,
+  StepBackM,
+  StepForwardM,
+  WarningM,
 } from '@synerise/ds-icon';
+import Toolbar, {
+  ToolbarButton,
+  ToolbarDivider,
+  ToolbarGroup,
+  ToolbarLabel,
+  ToolbarProps,
+} from '@synerise/ds-toolbar';
+import type { TooltipProps } from '@synerise/ds-tooltip';
 
 import { fixedWrapper800 } from '../../utils';
-import { theme } from '@synerise/ds-core';
 
 export default {
   component: Toolbar,
@@ -90,7 +96,12 @@ export const Default: StoryObj<ToolbarProps> = {
         <ToolbarGroup>
           <ToolbarButton
             mode="icon-label"
-            badgeProps={{ ...BADGE_PROPS, count: '2', backgroundColor: 'yellow', backgroundColorHue: '600' }}
+            badgeProps={{
+              ...BADGE_PROPS,
+              count: '2',
+              backgroundColor: 'yellow',
+              backgroundColorHue: '600',
+            }}
           >
             <Icon component={<ClickM />} />
             Insights
@@ -113,7 +124,11 @@ export const SchedulerToolbar: StoryObj<ToolbarProps> = {
     return (
       <Toolbar>
         <ToolbarGroup>
-          <ToolbarButton type="ghost" mode="icon-label" tagProps={{ name: 'ON', color: theme.palette['green-600'] }}>
+          <ToolbarButton
+            type="ghost"
+            mode="icon-label"
+            tagProps={{ name: 'ON', color: theme.palette['green-600'] }}
+          >
             <Icon component={<Calendar2M />} />
             Scheduler
           </ToolbarButton>
@@ -124,7 +139,11 @@ export const SchedulerToolbar: StoryObj<ToolbarProps> = {
         </ToolbarGroup>
 
         <ToolbarGroup>
-          <ToolbarButton type="ghost" mode="icon-label" tagProps={{ name: '10', color: theme.palette['yellow-600'] }}>
+          <ToolbarButton
+            type="ghost"
+            mode="icon-label"
+            tagProps={{ name: '10', color: theme.palette['yellow-600'] }}
+          >
             <Icon component={<ClickM />} />
             Insights
           </ToolbarButton>

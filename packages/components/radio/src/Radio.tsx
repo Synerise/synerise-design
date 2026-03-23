@@ -1,8 +1,6 @@
 import AntdRadio from 'antd/lib/radio';
 import React from 'react';
 
-import '@synerise/ds-core/dist/js/style';
-
 import * as S from './Radio.styles';
 import { type RadioGroupProps, type RadioProps } from './Radio.types';
 import './style/index.less';

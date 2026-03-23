@@ -2,7 +2,7 @@ import React from 'react';
 import { useArgs } from 'storybook/preview-api';
 import { within } from 'storybook/test';
 
-import { Meta, StoryObj } from '@storybook/react-webpack5';
+import { Meta, StoryObj } from '@storybook/react-vite';
 import TimePicker, { TimePickerProps } from '@synerise/ds-time-picker';
 
 import {

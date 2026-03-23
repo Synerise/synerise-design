@@ -1,11 +1,11 @@
-import { Meta, StoryObj } from '@storybook/react-webpack5';
-import { waitFor, userEvent, within, expect } from 'storybook/test';
+import { expect, userEvent, waitFor, within } from 'storybook/test';
 
+import { Meta, StoryObj } from '@storybook/react-vite';
 import InlineSelect from '@synerise/ds-inline-edit';
 import type { InlineSelectProps } from '@synerise/ds-inline-edit';
 
-import InlineSelectMeta from './InlineSelect.stories';
 import { DATA_SOURCE } from './InlineSelect.data';
+import InlineSelectMeta from './InlineSelect.stories';
 
 export default {
   title: 'Components/InlineEdit/Tests',
@@ -30,8 +30,8 @@ export const InlineSelectOpened: Story = {
 export const InlineSelectSelected: Story = {
   parameters: {
     test: {
-      dangerouslyIgnoreUnhandledErrors: true
-    }
+      dangerouslyIgnoreUnhandledErrors: true,
+    },
   },
   play: async ({ args, canvasElement }) => {
     const canvas = within(canvasElement.parentElement!);
@@ -39,11 +39,15 @@ export const InlineSelectSelected: Story = {
     await userEvent.click(canvas.getByText(args.placeholder!));
     await waitFor(() => {
       expect(canvas.getAllByRole('menuitem')).toHaveLength(DATA_SOURCE.length);
-      expect(canvas.getByText(DATA_SOURCE[1].text as string)).not.toHaveStyle({ pointerEvents: 'none' });
+      expect(canvas.getByText(DATA_SOURCE[1].text as string)).not.toHaveStyle({
+        pointerEvents: 'none',
+      });
     });
 
     await userEvent.click(canvas.getByText(DATA_SOURCE[1].text as string));
-    await waitFor(() => expect(canvas.queryAllByRole('menuitem')).toHaveLength(0));
+    await waitFor(() =>
+      expect(canvas.queryAllByRole('menuitem')).toHaveLength(0),
+    );
     await waitFor(() => expect(DATA_SOURCE[1].onClick).toHaveBeenCalled());
     await waitFor(() => expect(args.onValueChange!).toHaveBeenCalled());
   },

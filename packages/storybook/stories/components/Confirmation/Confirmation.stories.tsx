@@ -1,6 +1,7 @@
 import React from 'react';
+import { fn } from 'storybook/test';
 
-import { Meta, StoryObj } from '@storybook/react-webpack5';
+import { Meta, StoryObj } from '@storybook/react-vite';
 import Confirmation, { ConfirmationProps } from '@synerise/ds-confirmation';
 import Description, { DescriptionRow } from '@synerise/ds-description';
 import { ErrorXl, LaunchXl, PauseXl, PlayXl } from '@synerise/ds-icon';
@@ -36,6 +37,8 @@ export default {
       mainButtonLabel: 'Yes, activate',
       secondaryButtonLabel: 'No, cancel',
     },
+    onOk: fn(),
+    onCancel: fn(),
   },
   argTypes: {
     description: REACT_NODE_AS_STRING,

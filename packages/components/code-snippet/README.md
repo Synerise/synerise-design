@@ -24,6 +24,29 @@ import CodeSnippet from '@synerise/ds-code-snippet'
 
 ```
 
+## Syntax highlighting
+
+The following languages are bundled and work out of the box with any bundler: `javascript`, `typescript`, `json`, `css`, `html`, `xml`.
+
+Other languages from the `LanguageHighlight` type are loaded on demand via dynamic `import()`. This works automatically with webpack. **Vite** users need to add an alias so the dynamic import can resolve `highlight.js` from the filesystem:
+
+```ts
+// vite.config.ts
+import { resolve } from 'path';
+import { defineConfig } from 'vite';
+
+export default defineConfig({
+  resolve: {
+    alias: {
+      'highlight.js': resolve(
+        __dirname,
+        'node_modules/highlight.js',
+      ),
+    },
+  },
+});
+```
+
 ## Demo
 
 <iframe src="/storybook-static/iframe.html?id=components-code-snippet--default"></iframe>

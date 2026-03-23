@@ -2,7 +2,6 @@ import AntPagination, { type PaginationProps } from 'antd/lib/pagination';
 import React, { useCallback } from 'react';
 
 import Button from '@synerise/ds-button';
-import '@synerise/ds-core/dist/js/style';
 import Icon, {
   AngleLeftS,
   AngleRightS,

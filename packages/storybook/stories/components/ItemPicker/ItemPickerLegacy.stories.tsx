@@ -1,7 +1,7 @@
 import React from 'react';
 import { useArgs } from 'storybook/preview-api';
 
-import { Meta, StoryObj } from '@storybook/react-webpack5';
+import { Meta, StoryObj } from '@storybook/react-vite';
 import ItemPicker from '@synerise/ds-item-picker';
 import type { ItemPickerProps } from '@synerise/ds-item-picker';
 import type { ListItemProps } from '@synerise/ds-list-item';

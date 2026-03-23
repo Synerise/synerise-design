@@ -1,16 +1,14 @@
-import * as he from 'he';
-import type { StoryObj, Meta } from '@storybook/react-webpack5';
-
+import type { Meta, StoryObj } from '@storybook/react-vite';
 import CodeSnippet, { CodeSnippetType } from '@synerise/ds-code-snippet';
 import { FontSize } from '@synerise/ds-code-snippet/dist/CodeSnippet.types';
 
 import {
   BOOLEAN_CONTROL,
   CLASSNAME_ARG_CONTROL,
-  controlFromOptionsArray,
-  fixedWrapper200,
   NUMBER_CONTROL,
   REACT_NODE_AS_STRING,
+  controlFromOptionsArray,
+  fixedWrapper200,
 } from '../../utils';
 
 const fontSizeOptions = {
@@ -72,7 +70,7 @@ export const SingleLine: Story = {
 
 export const MultiLine: Story = {
   args: {
-    children: he.decode(exampleContent),
+    children: exampleContent,
     type: CodeSnippetType.MULTI_LINE,
     colorSyntax: true,
     rows: 6,
@@ -86,7 +84,7 @@ export const MultiLine: Story = {
 
 export const MultiLineWithHiddenExpandAndCopyButton: Story = {
   args: {
-    children: he.decode(exampleContent),
+    children: exampleContent,
     type: CodeSnippetType.MULTI_LINE,
     colorSyntax: true,
     rows: 6,
@@ -97,7 +95,7 @@ export const MultiLineWithHiddenExpandAndCopyButton: Story = {
 
 export const MultiLineExpanded: Story = {
   args: {
-    children: he.decode(exampleContent),
+    children: exampleContent,
     type: CodeSnippetType.MULTI_LINE,
     colorSyntax: true,
     rows: 6,

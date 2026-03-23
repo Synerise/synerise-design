@@ -1,16 +1,19 @@
 import React, { ReactNode } from 'react';
-import { Meta, StoryObj } from '@storybook/react-webpack5';
 
+import { Meta, StoryObj } from '@storybook/react-vite';
 import Cascader from '@synerise/ds-cascader';
 import type { CascaderProps } from '@synerise/ds-cascader';
 
-import { limitCategories } from './data/utils';
 import { fixedWrapper300 } from '../../utils';
 import * as mock from './data/mock.json';
+import { limitCategories } from './data/utils';
 
 const root = mock.default;
 
-type CascaderStoryProps = CascaderProps & { children: ReactNode; categoryLimit: number };
+type CascaderStoryProps = CascaderProps & {
+  children: ReactNode;
+  categoryLimit: number;
+};
 
 export default {
   title: 'Components/Cascader',
@@ -20,7 +23,7 @@ export default {
     layout: 'centered',
   },
   decorators: [fixedWrapper300],
-  render: args => {
+  render: (args) => {
     const rootCategory = limitCategories(root, args.categoryLimit);
     return <Cascader {...args} rootCategory={rootCategory} />;
   },

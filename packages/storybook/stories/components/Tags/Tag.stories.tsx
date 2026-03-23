@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { Meta, StoryObj } from '@storybook/react-webpack5';
+import { Meta, StoryObj } from '@storybook/react-vite';
 import Badge from '@synerise/ds-badge';
 import { theme } from '@synerise/ds-core';
 import Icon, { Add3M } from '@synerise/ds-icon';

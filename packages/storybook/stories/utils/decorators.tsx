@@ -1,31 +1,54 @@
 import React from 'react';
-import type { Decorator } from '@storybook/react-webpack5';
+
+import type { Decorator } from '@storybook/react-vite';
 import Card from '@synerise/ds-card';
 import { theme } from '@synerise/ds-core';
 
-export const fixedWrapper200: Decorator = Story => <div style={{ width: '200px' }}>{Story()}</div>;
-
-export const fixedWrapper300: Decorator = Story => <div style={{ width: '300px' }}>{Story()}</div>;
-
-export const fixedWrapper400: Decorator = Story => <div style={{ width: '400px' }}>{Story()}</div>;
-
-export const fixedWrapper588: Decorator = Story => <div style={{ width: '588px' }}>{Story()}</div>;
-
-export const fixedWrapper800: Decorator = Story => <div style={{ width: '800px' }}>{Story()}</div>;
-
-export const fixedWrapper1000: Decorator = Story => <div style={{ width: '1000px' }}>{Story()}</div>;
-
-export const fixedWrapper1200: Decorator = Story => <div style={{ width: '1200px' }}>{Story()}</div>;
-
-export const fixedHeightWrapper: Decorator = Story => <div style={{ position: 'relative', width: '588px', height: '600px' }}>{Story()}</div>;
-
-export const flexColumnWrapper: Decorator = Story => (
-  <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>{Story()}</div>
+export const fixedWrapper200: Decorator = (Story) => (
+  <div style={{ width: '200px' }}>{Story()}</div>
 );
 
-export const responsiveTableWrapper: Decorator = Story => <div style={{ padding: 20, width: '100vw', minWidth: '100%' }}>{Story()}</div>;
+export const fixedWrapper300: Decorator = (Story) => (
+  <div style={{ width: '300px' }}>{Story()}</div>
+);
 
-export const footerWrapper: Decorator = Story => (
+export const fixedWrapper400: Decorator = (Story) => (
+  <div style={{ width: '400px' }}>{Story()}</div>
+);
+
+export const fixedWrapper588: Decorator = (Story) => (
+  <div style={{ width: '588px' }}>{Story()}</div>
+);
+
+export const fixedWrapper800: Decorator = (Story) => (
+  <div style={{ width: '800px' }}>{Story()}</div>
+);
+
+export const fixedWrapper1000: Decorator = (Story) => (
+  <div style={{ width: '1000px' }}>{Story()}</div>
+);
+
+export const fixedWrapper1200: Decorator = (Story) => (
+  <div style={{ width: '1200px' }}>{Story()}</div>
+);
+
+export const fixedHeightWrapper: Decorator = (Story) => (
+  <div style={{ position: 'relative', width: '588px', height: '600px' }}>
+    {Story()}
+  </div>
+);
+
+export const flexColumnWrapper: Decorator = (Story) => (
+  <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
+    {Story()}
+  </div>
+);
+
+export const responsiveTableWrapper: Decorator = (Story) => (
+  <div style={{ padding: 20, width: '100vw', minWidth: '100%' }}>{Story()}</div>
+);
+
+export const footerWrapper: Decorator = (Story) => (
   <div
     style={{
       width: '100%',
@@ -45,7 +68,7 @@ export const footerWrapper: Decorator = Story => (
   </div>
 );
 
-export const headerWrapper: Decorator = Story => (
+export const headerWrapper: Decorator = (Story) => (
   <div
     style={{
       width: '100%',
@@ -69,16 +92,35 @@ export const centeredPaddedWrapper: Decorator = (Story, storyContext) => {
   const height = storyContext.viewMode === 'story' ? '100vh' : '100px';
   const width = storyContext.viewMode === 'story' ? '100vw' : '100%';
   return (
-    <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', width, height }}>{Story()}</div>
+    <div
+      style={{
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        width,
+        height,
+      }}
+    >
+      {Story()}
+    </div>
   );
 };
-
 
 export const overflowTestWrapper: Decorator = (Story, storyContext) => {
   const height = storyContext.viewMode === 'story' ? '100vh' : '100px';
   const width = storyContext.viewMode === 'story' ? '100vw' : '100%';
   return (
-    <div style={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'flex-end', width, height }}>{Story()}</div>
+    <div
+      style={{
+        display: 'flex',
+        alignItems: 'flex-start',
+        justifyContent: 'flex-end',
+        width,
+        height,
+      }}
+    >
+      {Story()}
+    </div>
   );
 };
 
@@ -86,12 +128,22 @@ export const cardSelectWrapper: Decorator = (Story, storyContext) => {
   const height = storyContext.viewMode === 'story' ? '100vh' : '200px';
   const width = storyContext.viewMode === 'story' ? '100vw' : '100%';
   return (
-    <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', width, height }}>{Story()}</div>
+    <div
+      style={{
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        width,
+        height,
+      }}
+    >
+      {Story()}
+    </div>
   );
 };
 
 export const variableHeightDecorator: Decorator = (Story, storyContext) => {
-  const wrapperHeight = storyContext.args.variableHeight as string || '800px';
+  const wrapperHeight = (storyContext.args.variableHeight as string) || '800px';
 
   return (
     <div
@@ -132,7 +184,9 @@ export const buttonDecorator: Decorator = (Story, storyContext) => {
 };
 
 export const greyBackgroundDecorator: Decorator = (Story, storyContext) => {
-  const backgroundColor = Boolean(storyContext.args.greyBackground) ? theme.palette['grey-300'] : 'transparent';
+  const backgroundColor = Boolean(storyContext.args.greyBackground)
+    ? theme.palette['grey-300']
+    : 'transparent';
   const height = storyContext.viewMode === 'story' ? '100vh' : '250px';
   const width = storyContext.viewMode === 'story' ? '100vw' : '100%';
   return (
@@ -156,7 +210,7 @@ export const cardDecorator: Decorator = (Story, storyContext) => {
   return <Card {...decoratorProps}>{Story()}</Card>;
 };
 
-export const gappedColumnDecorator: Decorator = Story => {
+export const gappedColumnDecorator: Decorator = (Story) => {
   return (
     <div
       style={{
@@ -172,7 +226,7 @@ export const gappedColumnDecorator: Decorator = Story => {
   );
 };
 
-export const sideBySide: Decorator = Story => {
+export const sideBySide: Decorator = (Story) => {
   return (
     <div
       style={{

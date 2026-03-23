@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { Meta, StoryObj } from '@storybook/react-webpack5';
+import { Meta, StoryObj } from '@storybook/react-vite';
 import Tray, { type TrayProps } from '@synerise/ds-tray';
 
 import { TrayStory, type TrayStoryType } from './Tray.data';

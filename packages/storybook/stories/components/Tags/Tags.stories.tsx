@@ -2,7 +2,7 @@ import React from 'react';
 import { useArgs } from 'storybook/preview-api';
 import { v4 as uuid } from 'uuid';
 
-import { Meta, StoryObj } from '@storybook/react-webpack5';
+import { Meta, StoryObj } from '@storybook/react-vite';
 import Button from '@synerise/ds-button';
 import { theme } from '@synerise/ds-core';
 import Icon, { ExternalLinkM } from '@synerise/ds-icon';

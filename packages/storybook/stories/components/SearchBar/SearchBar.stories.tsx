@@ -1,13 +1,17 @@
 import React from 'react';
-import { Meta, StoryObj } from '@storybook/react-webpack5';
 import { useArgs } from 'storybook/preview-api';
 
-import SearchBar, { SearchBarProps } from '@synerise/ds-search-bar';
-import Icon, { SearchM } from '@synerise/ds-icon';
-
+import { Meta, StoryObj } from '@storybook/react-vite';
 import { theme } from '@synerise/ds-core';
+import Icon, { SearchM } from '@synerise/ds-icon';
+import SearchBar, { SearchBarProps } from '@synerise/ds-search-bar';
 
-import { BOOLEAN_CONTROL, fixedWrapper300, REACT_NODE_AS_STRING, STRING_CONTROL } from '../../utils';
+import {
+  BOOLEAN_CONTROL,
+  REACT_NODE_AS_STRING,
+  STRING_CONTROL,
+  fixedWrapper300,
+} from '../../utils';
 
 type Story = StoryObj<SearchBarProps>;
 
@@ -16,7 +20,7 @@ export default {
   title: 'Components/Search/SearchBar',
   tags: ['autodocs'],
   decorators: [fixedWrapper300],
-  render: args => {
+  render: (args) => {
     const [{ value }, updateArgs] = useArgs();
     const handleClearInput = () => {
       updateArgs({ value: '' });
@@ -24,7 +28,14 @@ export default {
     const handleSearchChange = (newValue: string) => {
       updateArgs({ value: newValue });
     };
-    return <SearchBar {...args} value={value} onClearInput={handleClearInput} onSearchChange={handleSearchChange} />;
+    return (
+      <SearchBar
+        {...args}
+        value={value}
+        onClearInput={handleClearInput}
+        onSearchChange={handleSearchChange}
+      />
+    );
   },
   argTypes: {
     disabled: BOOLEAN_CONTROL,
@@ -35,7 +46,9 @@ export default {
     clearTooltip: REACT_NODE_AS_STRING,
   },
   args: {
-    iconLeft: <Icon component={<SearchM />} color={theme.palette['grey-600']} />,
+    iconLeft: (
+      <Icon component={<SearchM />} color={theme.palette['grey-600']} />
+    ),
     placeholder: 'Placeholder',
     clearTooltip: 'Clear',
   },
@@ -44,11 +57,11 @@ export default {
 export const Default: Story = {};
 export const Autofocus: Story = {
   args: {
-    autofocus: true
-  }
+    autofocus: true,
+  },
 };
 export const Populated: Story = {
   args: {
-    value: 'Search query'
-  }
+    value: 'Search query',
+  },
 };

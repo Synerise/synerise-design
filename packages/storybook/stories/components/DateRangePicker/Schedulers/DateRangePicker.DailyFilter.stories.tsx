@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
-import { Meta, StoryObj } from '@storybook/react-webpack5';
 import { action } from 'storybook/actions';
 
-
+import { Meta, StoryObj } from '@storybook/react-vite';
 import { DailyDateFilter } from '@synerise/ds-date-range-picker';
 import { DailySchedule } from '@synerise/ds-date-range-picker/dist/RangeFilter/Filters/new/Daily/Daily.types';
 
@@ -17,9 +16,8 @@ export default {
   decorators: [fixedWrapper588],
   render: (args) => <DailyDateFilter {...args} />,
   argTypes: {
-    ...schedulerCommonArgTypes
+    ...schedulerCommonArgTypes,
   },
-
 } as Meta<typeof DailyDateFilter>;
 
 type Story = StoryObj<typeof DailyDateFilter>;
@@ -28,17 +26,22 @@ export const DailyFilter: Story = {
   render: (args) => {
     const [value, setValue] = useState<DailySchedule[]>([]);
 
-    console.log(args.valueSelectionMode)
+    console.log(args.valueSelectionMode);
 
-    return <DailyDateFilter
-      {...args}
-      texts={TEXTS}
-      value={value}
-      onChange={(newValue) => { action('onChange')(newValue); setValue(newValue); }}
-    />
+    return (
+      <DailyDateFilter
+        {...args}
+        texts={TEXTS}
+        value={value}
+        onChange={(newValue) => {
+          action('onChange')(newValue);
+          setValue(newValue);
+        }}
+      />
+    );
   },
   args: {
     valueSelectionMode: ['Hour', 'Range'],
-    maxEntries: 4
+    maxEntries: 4,
   },
 };

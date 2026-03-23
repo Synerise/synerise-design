@@ -1,11 +1,11 @@
 import React from 'react';
-import { Meta, StoryObj } from '@storybook/react-webpack5';
 
+import { Meta, StoryObj } from '@storybook/react-vite';
 import { CardGroup } from '@synerise/ds-card';
 import type { CardGroupProps } from '@synerise/ds-card';
 
-import { CardWithState } from './card.data';
 import CardMeta from './Card.stories';
+import { CardWithState } from './card.data';
 
 type Story = StoryObj<CardGroupProps>;
 
@@ -16,7 +16,7 @@ export default {
   parameters: {
     layout: 'padded',
   },
-  render: args => {
+  render: (args) => {
     return (
       <CardGroup {...args}>
         <CardWithState {...CardMeta.args} />
@@ -33,5 +33,5 @@ export default {
 } as Meta<CardGroupProps>;
 
 export const Group: Story = {
-    name: 'Card Group'
+  name: 'Card Group',
 };

@@ -1,18 +1,18 @@
 import React from 'react';
 import { fn } from 'storybook/test';
-import { Meta, StoryObj } from '@storybook/react-webpack5';
 
-import Table, { DSTableProps } from '@synerise/ds-table';
+import { Meta, StoryObj } from '@storybook/react-vite';
 import Button from '@synerise/ds-button';
-import Icon, { AddL, AddM } from '@synerise/ds-icon';
 import EmptyStates, { EmptyStatesSize } from '@synerise/ds-empty-states';
+import Icon, { AddL, AddM } from '@synerise/ds-icon';
+import Table, { DSTableProps } from '@synerise/ds-table';
 
-import { renderWithIconInHeaders, TableMeta } from './Table.utils';
 import { COLUMNS_WITH_AVATARS } from './AllCellTypes/AllCellTypes.data';
+import { TableMeta, renderWithIconInHeaders } from './Table.utils';
 
 const EMPTY_DATA_SOURCE: Array<{ id: string; title: string }> = [];
 
-type RowType = typeof EMPTY_DATA_SOURCE[number];
+type RowType = (typeof EMPTY_DATA_SOURCE)[number];
 type Story = StoryObj<StoryType>;
 type StoryType = DSTableProps<RowType> & {
   showIconsInHeader: boolean;
@@ -28,11 +28,14 @@ export default {
     ...TableMeta.parameters,
     controls: {
       exclude: ['randomiseSelectionColumn'],
-    }
+    },
   },
   title: 'Components/Table/EmptyTable',
   render: ({ showIconsInHeader, showHeaderButton, columnsData, ...args }) => {
-    const columns = columnsData !== undefined ? renderWithIconInHeaders<RowType>(columnsData, showIconsInHeader) : undefined;
+    const columns =
+      columnsData !== undefined
+        ? renderWithIconInHeaders<RowType>(columnsData, showIconsInHeader)
+        : undefined;
     const headerButton = showHeaderButton && (
       <Button type="ghost" mode="icon-label" onClick={fn()}>
         <Icon component={<AddM />} />
@@ -42,7 +45,7 @@ export default {
     return <Table {...args} columns={columns} headerButton={headerButton} />;
   },
   argTypes: {
-    ...TableMeta.argTypes
+    ...TableMeta.argTypes,
   },
   args: {
     ...TableMeta.args,
@@ -84,6 +87,6 @@ export const Skeleton: Story = {
 export const SkeletonUnknownColumns: Story = {
   args: {
     loading: true,
-    columnsData: undefined
+    columnsData: undefined,
   },
 };

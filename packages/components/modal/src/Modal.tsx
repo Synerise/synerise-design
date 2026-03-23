@@ -2,8 +2,6 @@ import { Modal as AntModal } from 'antd';
 import classnames from 'classnames';
 import React from 'react';
 
-import '@synerise/ds-core/dist/js/style';
-
 import { ModalFooter, type ModalFooterProps } from './Elements/ModalFooter';
 import { ModalTitle } from './Elements/ModalTitle';
 import * as S from './Modal.styles';

@@ -1,15 +1,24 @@
 import React, { ChangeEvent, ReactNode, useState } from 'react';
-import { Meta, StoryObj } from '@storybook/react-webpack5';
 import { useArgs } from 'storybook/preview-api';
 
+import { Meta, StoryObj } from '@storybook/react-vite';
+import Icon, { FileM, SearchM } from '@synerise/ds-icon';
 import { Input } from '@synerise/ds-input';
 import type { InputProps } from '@synerise/ds-input';
-import Icon, { FileM, SearchM } from '@synerise/ds-icon';
 
-import { addonType, renderAddonComponent } from './Input.utils';
+import {
+  BOOLEAN_CONTROL,
+  CLASSNAME_ARG_CONTROL,
+  NUMBER_CONTROL,
+  PREFIXCLS_ARG_CONTROL,
+  REACT_NODE_AS_STRING,
+  STRING_CONTROL,
+  centeredPaddedWrapper,
+  controlFromOptionsArray,
+  fixedWrapper300,
+} from '../../utils';
 import { Modal } from './Input.styles';
-
-import { BOOLEAN_CONTROL, centeredPaddedWrapper, CLASSNAME_ARG_CONTROL, controlFromOptionsArray, fixedWrapper300, NUMBER_CONTROL, PREFIXCLS_ARG_CONTROL, REACT_NODE_AS_STRING, STRING_CONTROL } from '../../utils';
+import { addonType, renderAddonComponent } from './Input.utils';
 
 const defaultRender = (args: InputProps) => {
   const [{ value }, updateArgs] = useArgs();
@@ -28,8 +37,17 @@ export default {
   parameters: {
     layout: 'centered',
     controls: {
-      exclude: ['suffix', 'addonAfter', 'addonBefore', 'prefix', 'autoComplete', 'htmlSize', 'status', 'showCount']
-    }
+      exclude: [
+        'suffix',
+        'addonAfter',
+        'addonBefore',
+        'prefix',
+        'autoComplete',
+        'htmlSize',
+        'status',
+        'showCount',
+      ],
+    },
   },
   decorators: [fixedWrapper300, centeredPaddedWrapper],
   render: defaultRender,
@@ -60,12 +78,12 @@ export default {
       control: 'select',
       options: ['false', 'min & max width', 'stretch to fit'],
       mapping: {
-        'false': false,
+        false: false,
         'min & max width': { minWidth: '150px', maxWidth: '300px' },
-        'stretch to fit': { minWidth: '150px', stretchToFit: true }
-      }
-    }
-  }
+        'stretch to fit': { minWidth: '150px', stretchToFit: true },
+      },
+    },
+  },
 } as Meta<InputProps>;
 
 type Story = StoryObj<InputProps>;
@@ -112,12 +130,12 @@ export const WithCounter: Story = {
   },
 };
 
-
 export const WithCustomCounter: Story = {
   args: {
     ...WithLabelAndDescription.args,
     value: 'Sample text',
-    renderCustomCounter: (count?: number) => count !== undefined && <>{count} characters billed as 1 SMS</>,
+    renderCustomCounter: (count?: number) =>
+      count !== undefined && <>{count} characters billed as 1 SMS</>,
   },
 };
 
@@ -187,7 +205,9 @@ export const AutoresizeInModal: Story = {
       >
         {RenderedInput}
       </Modal>
-    ) : <></>;
+    ) : (
+      <></>
+    );
   },
   args: {
     ...WithLabelAndDescription.args,
@@ -199,9 +219,14 @@ export const AutoresizeInModal: Story = {
 };
 
 export const WithPrefixAndSuffix: StoryObj<
-  InputProps & { prefixType?: string; prefixLabel?: string; suffixType?: string; suffixLabel?: string }
+  InputProps & {
+    prefixType?: string;
+    prefixLabel?: string;
+    suffixType?: string;
+    suffixLabel?: string;
+  }
 > = {
-  render: args => {
+  render: (args) => {
     const { prefixLabel, prefixType, suffixType, suffixLabel, ...rest } = args;
 
     return defaultRender({

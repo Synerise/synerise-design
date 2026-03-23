@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { action } from 'storybook/actions';
 import { fn } from 'storybook/test';
 
-import type { Meta, StoryObj } from '@storybook/react-webpack5';
+import type { Meta, StoryObj } from '@storybook/react-vite';
 import Button from '@synerise/ds-button';
 import { theme } from '@synerise/ds-core';
 import Icon, {

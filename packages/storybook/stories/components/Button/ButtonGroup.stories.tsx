@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-import type { Meta, StoryObj } from '@storybook/react-webpack5';
+import type { Meta, StoryObj } from '@storybook/react-vite';
 import Button from '@synerise/ds-button';
 import ButtonGroup, { ButtonDivider } from '@synerise/ds-button-group';
 import { theme } from '@synerise/ds-core';

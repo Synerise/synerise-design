@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { Meta, StoryObj } from '@storybook/react-webpack5';
+import { Meta, StoryObj } from '@storybook/react-vite';
 import { PanelsResizer } from '@synerise/ds-panels-resizer';
 
 const LeftContent = () => (

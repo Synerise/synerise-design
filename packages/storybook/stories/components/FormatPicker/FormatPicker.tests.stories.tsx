@@ -1,6 +1,6 @@
 import { expect, fn, userEvent, waitFor, within } from 'storybook/test';
 
-import { Meta, StoryObj } from '@storybook/react-webpack5';
+import { Meta, StoryObj } from '@storybook/react-vite';
 import type { FormatPickerProps } from '@synerise/ds-format-picker';
 
 import FormatPickerMeta from './FormatPicker.stories';

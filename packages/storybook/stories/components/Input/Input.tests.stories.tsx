@@ -1,8 +1,7 @@
-import { Meta, StoryObj } from '@storybook/react-webpack5';
-
+import { Meta, StoryObj } from '@storybook/react-vite';
 import type { InputProps } from '@synerise/ds-input';
-import { fixedWrapper200 } from '../../utils';
 
+import { fixedWrapper200 } from '../../utils';
 import InputMeta from './Input.stories';
 
 export default {

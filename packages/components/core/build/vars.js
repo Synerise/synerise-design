@@ -28,7 +28,7 @@ for (const name in configVars) {
 
 Promise.all([prepare(configVars), prepare(colorsVars)]).then(([config, colors]) => {
   const fileContent = generateFileContent({ config, colors });
-  const finalPath = path.resolve(__dirname, '../dist/js/DSProvider/ThemeProvider', 'variables.js');
+  const finalPath = path.resolve(__dirname, '../src/js/DSProvider/ThemeProvider', 'variables.ts');
 
   fs.writeFile(finalPath, fileContent, err => {
     if (err) console.log(err);

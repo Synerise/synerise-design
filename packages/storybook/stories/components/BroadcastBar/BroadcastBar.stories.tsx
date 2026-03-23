@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { Meta, StoryObj } from '@storybook/react-webpack5';
+import { Meta, StoryObj } from '@storybook/react-vite';
 import BroadcastBar from '@synerise/ds-broadcast-bar';
 import Button from '@synerise/ds-button';
 

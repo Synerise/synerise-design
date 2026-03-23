@@ -1,7 +1,9 @@
 import React from 'react';
-import { Meta, StoryObj } from '@storybook/react-webpack5';
+
+import { Meta, StoryObj } from '@storybook/react-vite';
 import DSFlag, { countryCodes } from '@synerise/ds-flag';
-import { FlagWrapper, FlagItem } from './Flag.stories.styles';
+
+import { FlagItem, FlagWrapper } from './Flag.stories.styles';
 
 export default {
   title: 'Components/Flag',
@@ -13,16 +15,16 @@ export default {
       options: countryCodes,
       table: {
         type: {
-          summary: 'CountryCode'
-        }
-      }
+          summary: 'CountryCode',
+        },
+      },
     },
     size: {
       control: 'number',
       table: {
         type: {
-          summary: 'number'
-        } 
+          summary: 'number',
+        },
       },
       defaultValue: 20,
     },
@@ -43,9 +45,9 @@ export const Default = {
 
 export const AllFlags = {
   ...StoryTemplate,
-  render: (args: { size: number; }) => (
+  render: (args: { size: number }) => (
     <FlagWrapper>
-      {countryCodes.map(code => (
+      {countryCodes.map((code) => (
         <FlagItem key={code}>
           <DSFlag country={code} size={args.size} />
           <span>{code}</span>

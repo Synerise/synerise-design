@@ -1,15 +1,14 @@
 import React from 'react';
-import { Meta, StoryObj } from '@storybook/react-webpack5';
-
-import Cruds from '@synerise/ds-cruds';
 import { fn } from 'storybook/test';
+
+import { Meta, StoryObj } from '@storybook/react-vite';
+import Cruds from '@synerise/ds-cruds';
 
 import {
   BOOLEAN_CONTROL,
-  centeredPaddedWrapper,
   STRING_CONTROL,
+  centeredPaddedWrapper,
 } from '../../utils';
-
 
 export default {
   component: Cruds,
@@ -36,11 +35,10 @@ export default {
     moveTooltip: STRING_CONTROL,
     onRemove: BOOLEAN_CONTROL,
     removeTooltip: STRING_CONTROL,
-  }
+  },
 } as Meta<typeof Cruds>;
 
 type Story = StoryObj<typeof Cruds>;
-
 
 export const Default: Story = {
   args: {
@@ -54,8 +52,8 @@ export const Default: Story = {
     moveDownTooltip: 'Down',
     moveUpTooltip: 'Up',
     action: fn(),
-  }
-}
+  },
+};
 export const SingleCrud: Story = {
   args: {
     removeTooltip: 'Remove',
@@ -79,10 +77,3 @@ export const SingleCrud: Story = {
     onDuplicate: false,
   },
 };
-
-
-
-
-
-
-

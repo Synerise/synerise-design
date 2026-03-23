@@ -1,16 +1,20 @@
 import React from 'react';
-import { Meta, StoryObj } from '@storybook/react-webpack5';
-
-import FormField, { FormFieldProps } from '@synerise/ds-form-field';
-import { fixedWrapper400, REACT_NODE_AS_STRING, REACT_NODE_NO_CONTROL } from '../../utils';
 import styled from 'styled-components';
 
+import { Meta, StoryObj } from '@storybook/react-vite';
+import FormField, { FormFieldProps } from '@synerise/ds-form-field';
+
+import {
+  REACT_NODE_AS_STRING,
+  REACT_NODE_NO_CONTROL,
+  fixedWrapper400,
+} from '../../utils';
 
 const ChildrenWrapper = styled.div`
   opacity: 0.5;
-  background: ${props => props.theme.palette['grey-200']};
+  background: ${(props) => props.theme.palette['grey-200']};
   line-height: 30px;
-`
+`;
 
 export default {
   component: FormField,
@@ -20,7 +24,7 @@ export default {
     layout: 'centered',
   },
   args: {
-    children: <ChildrenWrapper>{'{render children here}'}</ChildrenWrapper>
+    children: <ChildrenWrapper>{'{render children here}'}</ChildrenWrapper>,
   },
   argsTypes: {
     tooltipConfig: { control: false },
@@ -29,18 +33,18 @@ export default {
     tooltip: REACT_NODE_AS_STRING,
     rightSide: REACT_NODE_AS_STRING,
     label: REACT_NODE_AS_STRING,
-    errorText: REACT_NODE_AS_STRING
+    errorText: REACT_NODE_AS_STRING,
   },
   decorators: [fixedWrapper400],
 } as Meta<FormFieldProps>;
 
-export const Default: StoryObj<FormFieldProps> = {}
+export const Default: StoryObj<FormFieldProps> = {};
 export const WithLabelAndDescription: StoryObj<FormFieldProps> = {
   args: {
     label: 'Label',
     description: 'Description',
     tooltip: 'Label tooltip text',
-  }
+  },
 };
 
 export const CompleteExample: StoryObj<FormFieldProps> = {
@@ -50,6 +54,6 @@ export const CompleteExample: StoryObj<FormFieldProps> = {
     description: 'Description',
     errorText: 'Error message',
     tooltip: 'Label tooltip text',
-    rightSide: 'counter / link / anything'
-  }
+    rightSide: 'counter / link / anything',
+  },
 };

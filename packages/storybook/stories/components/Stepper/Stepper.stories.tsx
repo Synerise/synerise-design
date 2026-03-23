@@ -1,15 +1,14 @@
 import React, { useState } from 'react';
 
-import type { StoryObj, Meta } from '@storybook/react-webpack5';
-
+import type { Meta, StoryObj } from '@storybook/react-vite';
 import Stepper from '@synerise/ds-stepper';
 
 import {
-  centeredPaddedWrapper,
   CLASSNAME_ARG_CONTROL,
   STYLE_ARG_CONTROL,
+  centeredPaddedWrapper,
 } from '../../utils';
-import { StepData, STEPPER_STEPS } from './Stepper.data';
+import { STEPPER_STEPS, StepData } from './Stepper.data';
 
 type StoryProps = typeof Stepper & {
   steps: Array<StepData>;
@@ -28,7 +27,7 @@ export default {
   },
   render: ({ steps, activeIndex, ...args }) => {
     const [activeStep, setActiveStep] = useState(activeIndex);
-    const handleStepClick = index => setActiveStep(index);
+    const handleStepClick = (index) => setActiveStep(index);
     return (
       <Stepper {...args}>
         {steps.map((step: StepData, index: number) => (
@@ -60,6 +59,10 @@ export const AllDone: Story = {
 export const WithWarningAndValidation: Story = {
   args: {
     activeIndex: 3,
-    steps: STEPPER_STEPS.map((step, index) => ({ ...step, warning: index === 2, validated: index === 3 })),
+    steps: STEPPER_STEPS.map((step, index) => ({
+      ...step,
+      warning: index === 2,
+      validated: index === 3,
+    })),
   },
 };

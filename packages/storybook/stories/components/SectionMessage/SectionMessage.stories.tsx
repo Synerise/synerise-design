@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { action } from 'storybook/actions';
 
-import { Meta, StoryObj } from '@storybook/react-webpack5';
+import { Meta, StoryObj } from '@storybook/react-vite';
 import Button from '@synerise/ds-button';
 import Card, { CardBadge } from '@synerise/ds-card';
 import Icon, { CheckS, DuplicateS, UserAddM } from '@synerise/ds-icon';

@@ -1,22 +1,33 @@
 import React, { ReactNode } from 'react';
 
-import type { StoryObj, Meta } from '@storybook/react-webpack5';
-
+import type { Meta, StoryObj } from '@storybook/react-vite';
 import { InputGroup } from '@synerise/ds-input';
 import { Props } from '@synerise/ds-input/dist/InputGroup.types';
 
-import { inputGroupSelectType, inputGroupType, inputGroupOptions } from './InputGroup.data';
 import {
   BOOLEAN_CONTROL,
-  controlFromOptionsArray, REACT_NODE_AS_STRING,
+  REACT_NODE_AS_STRING,
+  controlFromOptionsArray,
 } from '../../utils';
+import {
+  inputGroupOptions,
+  inputGroupSelectType,
+  inputGroupType,
+} from './InputGroup.data';
 
 export default {
-  title: "Components/InputElements/InputGroup",
+  title: 'Components/InputElements/InputGroup',
   tags: ['autodocs'],
-  component: ({ leftComponent, rightComponent, ...args }) => <InputGroup {...args}>{leftComponent}{rightComponent}</InputGroup>,
+  component: ({ leftComponent, rightComponent, ...args }) => (
+    <InputGroup {...args}>
+      {leftComponent}
+      {rightComponent}
+    </InputGroup>
+  ),
   argTypes: {
-    size: {...controlFromOptionsArray('select', ['large', 'small', 'default'])},
+    size: {
+      ...controlFromOptionsArray('select', ['large', 'small', 'default']),
+    },
     label: REACT_NODE_AS_STRING,
     resetMargin: BOOLEAN_CONTROL,
     compact: BOOLEAN_CONTROL,
@@ -32,18 +43,20 @@ export default {
       mapping: inputGroupSelectType,
     },
   },
-} as Meta<Props & {leftComponent: ReactNode, rightComponent: ReactNode}>;
+} as Meta<Props & { leftComponent: ReactNode; rightComponent: ReactNode }>;
 
-type Story = StoryObj<Props & {leftComponent: ReactNode, rightComponent: ReactNode}>;
+type Story = StoryObj<
+  Props & { leftComponent: ReactNode; rightComponent: ReactNode }
+>;
 
 export const Default: Story = {
   render: ({ leftComponent, rightComponent, ...args }) => {
     return (
-      <InputGroup {...args} >
+      <InputGroup {...args}>
         {leftComponent}
         {rightComponent}
       </InputGroup>
-    )
+    );
   },
   args: {
     size: 'default',
@@ -57,17 +70,17 @@ export const Default: Story = {
 };
 
 export const AllVariants: Story = {
-  render: args => {
+  render: (args) => {
     return (
       <>
         {inputGroupType.map(({ leftComponent, rightComponent }) => (
-          <InputGroup {...args} >
+          <InputGroup {...args}>
             {leftComponent}
             {rightComponent}
           </InputGroup>
         ))}
       </>
-    )
+    );
   },
   argTypes: {
     leftComponent: {
@@ -82,7 +95,6 @@ export const AllVariants: Story = {
     label: 'label',
     resetMargin: false,
     compact: true,
-    tooltip: 'tooltip'
+    tooltip: 'tooltip',
   },
 };
-

@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { Meta, StoryObj } from '@storybook/react-webpack5';
+import { Meta, StoryObj } from '@storybook/react-vite';
 import { Multivalue } from '@synerise/ds-progress-bar';
 
 import { BOOLEAN_CONTROL, fixedWrapper300 } from '../../utils';

@@ -1,13 +1,15 @@
 import React, { ReactNode } from 'react';
 
-import type { StoryObj, Meta } from '@storybook/react-webpack5';
-
-import EmptyStates, { EmptyStatesProps, EmptyStatesSize } from '@synerise/ds-empty-states';
+import type { Meta, StoryObj } from '@storybook/react-vite';
+import EmptyStates, {
+  EmptyStatesProps,
+  EmptyStatesSize,
+} from '@synerise/ds-empty-states';
 
 import {
-  centeredPaddedWrapper,
   CLASSNAME_ARG_CONTROL,
   REACT_NODE_AS_STRING,
+  centeredPaddedWrapper,
   controlFromOptionsArray,
   reactNodeAsSelect,
 } from '../../utils';
@@ -26,13 +28,24 @@ export default {
       ...controlFromOptionsArray('inline-radio', ['top', 'left', 'right']),
     },
     textAlign: {
-      ...controlFromOptionsArray('inline-radio', ['center', 'left', 'right', 'justify']),
+      ...controlFromOptionsArray('inline-radio', [
+        'center',
+        'left',
+        'right',
+        'justify',
+      ]),
     },
     fontSize: {
-      ...controlFromOptionsArray('inline-radio', Object.values(EmptyStatesSize)),
+      ...controlFromOptionsArray(
+        'inline-radio',
+        Object.values(EmptyStatesSize),
+      ),
     },
     size: {
-      ...controlFromOptionsArray('inline-radio', Object.values(EmptyStatesSize)),
+      ...controlFromOptionsArray(
+        'inline-radio',
+        Object.values(EmptyStatesSize),
+      ),
     },
     customIcon: {
       ...controlFromOptionsArray('select', Object.keys(ICONS)),
@@ -46,7 +59,8 @@ export default {
 
 export const Default: StoryObj<EmptyStatesProps> = {
   args: {
-    label: 'Currently you have no Segmentations saved. Get started with a new one to analyze your database.',
+    label:
+      'Currently you have no Segmentations saved. Get started with a new one to analyze your database.',
     text: 'Create new segmentation',
     labelPosition: 'bottom',
     fontSize: EmptyStatesSize.MEDIUM,

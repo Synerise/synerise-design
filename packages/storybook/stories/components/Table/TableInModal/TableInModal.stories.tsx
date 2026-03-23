@@ -2,7 +2,7 @@ import React, { Key, isValidElement, useMemo, useState } from 'react';
 import { action } from 'storybook/actions';
 import { fn } from 'storybook/test';
 
-import { Meta, StoryObj } from '@storybook/react-webpack5';
+import { Meta, StoryObj } from '@storybook/react-vite';
 import Button from '@synerise/ds-button';
 import Icon, { AddM } from '@synerise/ds-icon';
 import Modal from '@synerise/ds-modal';

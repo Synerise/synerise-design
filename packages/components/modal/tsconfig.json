@@ -10,7 +10,6 @@
   "compilerOptions": {
     "outDir": "dist",
     "rootDir": "src",
-    "baseUrl": "src",
     "jsx": "preserve"
   },
   "references": []

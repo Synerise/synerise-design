@@ -1,12 +1,16 @@
 import React, { useState } from 'react';
-import { Meta, StoryObj } from '@storybook/react-webpack5';
-import { within, userEvent, expect, fn, waitFor } from 'storybook/test';
+import { expect, fn, userEvent, waitFor, within } from 'storybook/test';
 
+import { Meta, StoryObj } from '@storybook/react-vite';
 import DatePicker from '@synerise/ds-date-picker';
-
-import { BOOLEAN_CONTROL, fixedWrapper200, REACT_NODE_AS_STRING } from '../../utils';
-import { baseArgs, texts } from './constants';
 import { getPopupContainer } from '@synerise/ds-utils';
+
+import {
+  BOOLEAN_CONTROL,
+  REACT_NODE_AS_STRING,
+  fixedWrapper200,
+} from '../../utils';
+import { baseArgs, texts } from './constants';
 
 export default {
   component: DatePicker,
@@ -16,13 +20,13 @@ export default {
     date: new Date('March 10, 2021 10:00:00'),
   },
   decorators: [fixedWrapper200],
-  render: args => {
+  render: (args) => {
     const [value, setValue] = useState<Date | undefined>(args.value);
     return (
       <div data-popup-container>
         <DatePicker
           {...args}
-          onApply={newValue => {
+          onApply={(newValue) => {
             args.onApply?.(newValue);
             setValue(newValue);
           }}
@@ -76,18 +80,26 @@ export const RenderYearPicker: Story = {
     await waitFor(() => {
       expect(args.onDropdownVisibleChange).toHaveBeenCalled();
     });
-    await waitFor(() => expect(canvas.getByText('2024')).not.toHaveStyle({ pointerEvents: 'none' }));
+    await waitFor(() =>
+      expect(canvas.getByText('2024')).not.toHaveStyle({
+        pointerEvents: 'none',
+      }),
+    );
     await userEvent.click(canvas.getByText('2024'));
   },
 };
 
 export const RenderDecadePicker: Story = {
-  play: async playParams => {
+  play: async (playParams) => {
     const { args, canvasElement, step } = playParams;
     const canvas = within(canvasElement);
     await RenderYearPicker.play?.(playParams);
 
-    await waitFor(() => expect(canvas.getByText('2020-2029')).not.toHaveStyle({ pointerEvents: 'none' }));
+    await waitFor(() =>
+      expect(canvas.getByText('2020-2029')).not.toHaveStyle({
+        pointerEvents: 'none',
+      }),
+    );
     await userEvent.click(canvas.getByText('2020-2029'));
   },
 };
@@ -103,7 +115,11 @@ export const RenderMonthPicker: Story = {
     await waitFor(() => {
       expect(args.onDropdownVisibleChange).toHaveBeenCalled();
     });
-    await waitFor(() => expect(canvas.getByText('Mar')).not.toHaveStyle({ pointerEvents: 'none' }));
+    await waitFor(() =>
+      expect(canvas.getByText('Mar')).not.toHaveStyle({
+        pointerEvents: 'none',
+      }),
+    );
     await userEvent.click(canvas.getByText('Mar'));
   },
 };
@@ -124,14 +140,28 @@ export const SelectDateAndApply: Story = {
     });
     expect(canvas.getByTestId('date-picker-apply')).toBeDisabled();
 
-    await waitFor(() => expect(canvas.getByText('18')).not.toHaveStyle({ pointerEvents: 'none' }));
-    await userEvent.click(canvas.getByTestId('datapicker-nav-title-monthpicker-link'));
+    await waitFor(() =>
+      expect(canvas.getByText('18')).not.toHaveStyle({ pointerEvents: 'none' }),
+    );
+    await userEvent.click(
+      canvas.getByTestId('datapicker-nav-title-monthpicker-link'),
+    );
 
-    await waitFor(() => expect(canvas.getByText('Jun')).not.toHaveStyle({ pointerEvents: 'none' }));
+    await waitFor(() =>
+      expect(canvas.getByText('Jun')).not.toHaveStyle({
+        pointerEvents: 'none',
+      }),
+    );
     await userEvent.click(canvas.getByText('Jun'));
 
-    await userEvent.click(canvas.getByTestId('datapicker-nav-title-yearpicker-link'));
-    await waitFor(() => expect(canvas.getByText('2024')).not.toHaveStyle({ pointerEvents: 'none' }));
+    await userEvent.click(
+      canvas.getByTestId('datapicker-nav-title-yearpicker-link'),
+    );
+    await waitFor(() =>
+      expect(canvas.getByText('2024')).not.toHaveStyle({
+        pointerEvents: 'none',
+      }),
+    );
     await userEvent.click(canvas.getByText('2022'));
 
     await userEvent.click(canvas.getByText('18'));

@@ -1,14 +1,13 @@
-import { Meta, StoryObj } from '@storybook/react-webpack5';
+import { expect, fn, userEvent, waitFor, within } from 'storybook/test';
 
-import { within, userEvent, expect, fn, waitFor } from 'storybook/test';
-
+import { Meta, StoryObj } from '@storybook/react-vite';
 import { VirtualTableProps } from '@synerise/ds-table';
 
-import StoriesMeta from './VirtualTable.stories';
-import { DATA_SOURCE } from './VirtualTable.data';
 import { centeredPaddedWrapper, sleep } from '../../../utils';
+import { DATA_SOURCE } from './VirtualTable.data';
+import StoriesMeta from './VirtualTable.stories';
 
-type RowType = typeof DATA_SOURCE[number];
+type RowType = (typeof DATA_SOURCE)[number];
 type VirtualTableType = VirtualTableProps<RowType>;
 type Story = StoryObj<VirtualTableType>;
 
@@ -39,7 +38,6 @@ export const ShowSortOptions: Story = {
   },
 };
 
-
 export const SortByColumn: Story = {
   args: {
     onSort: fn(),
@@ -56,10 +54,14 @@ export const SortByColumn: Story = {
     await userEvent.click(within(th).getByTestId('table-string-sorter-button'));
     await canvas.findByText('Sort z-a');
     await sleep(500);
-    await userEvent.click(await canvas.findByText('Sort z-a'))
+    await userEvent.click(await canvas.findByText('Sort z-a'));
     await waitFor(async () => {
-      expect((await canvas.findByText('User name')).closest('.ant-table-column-sort')).toBeInTheDocument()
-    })
+      expect(
+        (await canvas.findByText('User name')).closest(
+          '.ant-table-column-sort',
+        ),
+      ).toBeInTheDocument();
+    });
     expect(args.onSort).toHaveBeenCalled();
   },
 };

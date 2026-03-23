@@ -1,8 +1,12 @@
 import React, { useState } from 'react';
-import { Meta, StoryObj } from '@storybook/react-webpack5';
 
-import CardTabs, { CardTab, prefixType, CardTabsStyles } from '@synerise/ds-card-tabs';
-import type { CardTabsPropsBase, CardTabProps } from '@synerise/ds-card-tabs';
+import { Meta, StoryObj } from '@storybook/react-vite';
+import CardTabs, {
+  CardTab,
+  CardTabsStyles,
+  prefixType,
+} from '@synerise/ds-card-tabs';
+import type { CardTabProps, CardTabsPropsBase } from '@synerise/ds-card-tabs';
 import { theme } from '@synerise/ds-core';
 import Icon, {
   AppleFillM,
@@ -16,13 +20,13 @@ import Icon, {
 
 import {
   BOOLEAN_CONTROL,
-  greyBackgroundDecorator,
   CLASSNAME_ARG_CONTROL,
+  NUMBER_CONTROL,
+  STRING_CONTROL,
   controlFromOptionsArray,
   fixedWrapper588,
-  NUMBER_CONTROL,
+  greyBackgroundDecorator,
   reactNodeAsSelect,
-  STRING_CONTROL,
 } from '../../utils';
 import { CARD_TABS_ITEMS, createItemData } from './CardTabs.data';
 
@@ -30,10 +34,12 @@ const {
   CardTab: { CardDot },
 } = CardTabsStyles;
 type PrefixType = {
-  prefix: 'DOT' | 'HANDLE' | 'ICON' | 'TAG'
-}
-type MetaType = Omit<CardTabsPropsBase<string>, 'children'> & Omit<CardTabProps<string>, 'prefix'> & { dataSource: CardTabProps<string>[] } & PrefixType;
-
+  prefix: 'DOT' | 'HANDLE' | 'ICON' | 'TAG';
+};
+type MetaType = Omit<CardTabsPropsBase<string>, 'children'> &
+  Omit<CardTabProps<string>, 'prefix'> & {
+    dataSource: CardTabProps<string>[];
+  } & PrefixType;
 
 const meta: Meta<MetaType> = {
   title: 'Components/CardTabs',
@@ -42,7 +48,13 @@ const meta: Meta<MetaType> = {
     const [order, setOrder] = useState<CardTabProps<string>[]>(dataSource);
     const [activeTab, setActiveTab] = useState(dataSource[0].id);
 
-    const { onChangeOrder, onAddTab, maxTabsCount, addTabLabel, ...cardTabItemArgs } = args;
+    const {
+      onChangeOrder,
+      onAddTab,
+      maxTabsCount,
+      addTabLabel,
+      ...cardTabItemArgs
+    } = args;
     const handleChangeOrder = (newOrder: CardTabProps<string>[]) => {
       setOrder(newOrder);
       onChangeOrder?.(newOrder);
@@ -57,24 +69,24 @@ const meta: Meta<MetaType> = {
       cardTabItemArgs.onSelectTab?.(id);
     };
     const handleRemove = (id: string) => {
-      setOrder(order.filter(item => item.id !== id));
+      setOrder(order.filter((item) => item.id !== id));
       cardTabItemArgs.onRemoveTab?.(id);
     };
 
     const handleDuplicate = (id: string) => {
       const { name, ...newItem } = createItemData(order.length);
-      const duplicatedItem = order.find(item => item.id === id);
+      const duplicatedItem = order.find((item) => item.id === id);
 
       setOrder([...order, { name, ...duplicatedItem, ...newItem }]);
       cardTabItemArgs.onDuplicateTab?.(id);
     };
     const handleChangeName = (id: string, name: string) => {
-      const newOrder = order.map(item => {
+      const newOrder = order.map((item) => {
         return item.id === id
           ? {
-            ...item,
-            name: name,
-          }
+              ...item,
+              name: name,
+            }
           : item;
       });
       setOrder(newOrder);
@@ -88,7 +100,7 @@ const meta: Meta<MetaType> = {
         maxTabsCount={maxTabsCount}
         addTabLabel={addTabLabel}
       >
-        {order.map(item => (
+        {order.map((item) => (
           <CardTab
             {...item}
             {...cardTabItemArgs}
@@ -150,13 +162,27 @@ const meta: Meta<MetaType> = {
       table: {
         category: 'Card Tab Props',
       },
-      ...controlFromOptionsArray('inline-radio', ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H']),
+      ...controlFromOptionsArray('inline-radio', [
+        'A',
+        'B',
+        'C',
+        'D',
+        'E',
+        'F',
+        'G',
+        'H',
+      ]),
     },
     prefix: {
       table: {
         category: 'Card Tab Props',
       },
-      ...controlFromOptionsArray('inline-radio', ['DOT', 'ICON', 'TAG', 'HANDLE']),
+      ...controlFromOptionsArray('inline-radio', [
+        'DOT',
+        'ICON',
+        'TAG',
+        'HANDLE',
+      ]),
     },
     suffix: {
       ...reactNodeAsSelect(['icon', 'cruds', 'menu'], {
@@ -199,13 +225,35 @@ const meta: Meta<MetaType> = {
       },
     },
     prefixIcon: {
-      ...reactNodeAsSelect(['AppleFillM', 'Close3M', 'ErrorFillM', 'FacebookFillM', 'HelpFillM'], {
-        AppleFillM: <Icon component={<AppleFillM />} color={theme.palette['fern-600']} />,
-        Close3M: <Icon component={<Close3M />} color={theme.palette['grey-400']} />,
-        ErrorFillM: <Icon component={<ErrorFillM />} color={theme.palette['red-600']} />,
-        HelpFillM: <Icon component={<HelpFillM />} color={theme.palette['orange-600']} />,
-        FacebookFillM: <Icon component={<FacebookFillM />} color={theme.palette['blue-600']} />,
-      }),
+      ...reactNodeAsSelect(
+        ['AppleFillM', 'Close3M', 'ErrorFillM', 'FacebookFillM', 'HelpFillM'],
+        {
+          AppleFillM: (
+            <Icon
+              component={<AppleFillM />}
+              color={theme.palette['fern-600']}
+            />
+          ),
+          Close3M: (
+            <Icon component={<Close3M />} color={theme.palette['grey-400']} />
+          ),
+          ErrorFillM: (
+            <Icon component={<ErrorFillM />} color={theme.palette['red-600']} />
+          ),
+          HelpFillM: (
+            <Icon
+              component={<HelpFillM />}
+              color={theme.palette['orange-600']}
+            />
+          ),
+          FacebookFillM: (
+            <Icon
+              component={<FacebookFillM />}
+              color={theme.palette['blue-600']}
+            />
+          ),
+        },
+      ),
       table: {
         category: 'Card Tab Props',
       },
@@ -244,7 +292,9 @@ const meta: Meta<MetaType> = {
 };
 export default meta;
 
-type Story = StoryObj<CardTabsPropsBase<string> & Omit<CardTabProps<string>, 'prefix'> & PrefixType>;
+type Story = StoryObj<
+  CardTabsPropsBase<string> & Omit<CardTabProps<string>, 'prefix'> & PrefixType
+>;
 
 export const Default: Story = {};
 export const InvalidTabs: Story = {
@@ -284,11 +334,10 @@ export const HandlePrefix: Story = {
 export const WithCrudsOnHover: Story = {
   parameters: {
     pseudo: {
-      hover: true
-    }
+      hover: true,
+    },
   },
   args: {
-
     actionsAsDropdown: false,
   },
 };

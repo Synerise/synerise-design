@@ -17,11 +17,11 @@
     "access": "public"
   },
   "scripts": {
-    "build": "rm -rf dist && pnpm run build:svgr && pnpm run build:js && pnpm run defs",
+    "build": "vite build",
+    "build:watch": "vite build --watch",
     "build:js": "babel --delete-dir-on-start --root-mode upward src --out-dir dist --extensions '.js,.ts,.tsx'",
     "defs": "tsc --declaration --outDir dist/ --emitDeclarationOnly",
     "build:svgr": "node ./build/svgr.js",
-    "build:watch": "pnpm run build:js -- --watch",
     "pack:ci": "pnpm pack --pack-destination ../../storybook/storybook-static/static",
     "prepublish": "pnpm run build",
     "test": "jest",

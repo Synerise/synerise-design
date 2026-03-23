@@ -1,17 +1,20 @@
 import React from 'react';
 import { fn } from 'storybook/test';
-import { Meta, StoryObj } from '@storybook/react-webpack5';
 
-import Table, { DSTableProps } from '@synerise/ds-table';
+import { Meta, StoryObj } from '@storybook/react-vite';
 import Button from '@synerise/ds-button';
 import Icon, { AddM } from '@synerise/ds-icon';
+import Table, { DSTableProps } from '@synerise/ds-table';
 
-import { renderWithIconInHeaders, TableMeta } from '../Table.utils';
-import { COLUMNS, COLUMNS_WITH_FIXED_ACTION, DATA_SOURCE } from './FixedColumns.data';
 import { fixedWrapper1000 } from '../../../utils';
+import { TableMeta, renderWithIconInHeaders } from '../Table.utils';
+import {
+  COLUMNS,
+  COLUMNS_WITH_FIXED_ACTION,
+  DATA_SOURCE,
+} from './FixedColumns.data';
 
-
-type RowType = typeof DATA_SOURCE[number];
+type RowType = (typeof DATA_SOURCE)[number];
 type Story = StoryObj<StoryType>;
 type StoryType = DSTableProps<RowType> & {
   showIconsInHeader: boolean;
@@ -30,7 +33,10 @@ export default {
   title: 'Components/Table/FixedColumns',
   decorators: [fixedWrapper1000],
   render: ({ showIconsInHeader, showHeaderButton, columnsData, ...args }) => {
-    const columns = renderWithIconInHeaders<RowType>(columnsData, showIconsInHeader);
+    const columns = renderWithIconInHeaders<RowType>(
+      columnsData,
+      showIconsInHeader,
+    );
     const headerButton = showHeaderButton && (
       <Button type="ghost" mode="icon-label" onClick={fn()}>
         <Icon component={<AddM />} />
@@ -52,11 +58,11 @@ export default {
 export const FixedColumns: Story = {
   args: {
     columnsData: COLUMNS,
-  }
-}
+  },
+};
 
 export const FixedActionColumn: Story = {
   args: {
     columnsData: COLUMNS_WITH_FIXED_ACTION,
-  }
-}
+  },
+};

@@ -1,21 +1,21 @@
 import React, { useState } from 'react';
-import type { StoryObj, Meta } from '@storybook/react-webpack5';
 import { action } from 'storybook/actions';
 
-import List, { ListPropsType, TextProps } from '@synerise/ds-list';
+import type { Meta, StoryObj } from '@storybook/react-vite';
 import Checkbox from '@synerise/ds-checkbox';
+import Icon, { FileM } from '@synerise/ds-icon';
+import List, { ListPropsType, TextProps } from '@synerise/ds-list';
 import Radio from '@synerise/ds-radio';
 import Switch from '@synerise/ds-switch';
-import Icon, { FileM } from '@synerise/ds-icon';
 
 import {
   BOOLEAN_CONTROL,
-  fixedWrapper588,
   CLASSNAME_ARG_CONTROL,
-  REACT_NODE_AS_STRING,
-  STYLE_ARG_CONTROL,
-  STRING_CONTROL,
   PREFIXCLS_ARG_CONTROL,
+  REACT_NODE_AS_STRING,
+  STRING_CONTROL,
+  STYLE_ARG_CONTROL,
+  fixedWrapper588,
 } from '../../utils';
 import { actions, dataCheckboxes, dataMultiple, dataSingle } from './List.data';
 
@@ -94,7 +94,7 @@ export const withCheckboxes: CheckboxStory = {
 };
 
 export const Mixed: Story = {
-  render: args => (
+  render: (args) => (
     <>
       <List
         dataSource={dataCheckboxes}
@@ -138,27 +138,33 @@ export const EithRadios: CheckboxStory = {
   },
 };
 export const WithSwitches: Story = {
-  render: args => {
+  render: (args) => {
     const [state, setState] = useState([
       [
         { label: 'Option A', checked: false },
         { label: 'Option B', checked: true },
         { label: 'Option C', checked: false },
-        { label: 'Option D', checked: false, errorText: 'This option in recommended' },
+        {
+          label: 'Option D',
+          checked: false,
+          errorText: 'This option in recommended',
+        },
       ],
     ]);
 
     const handleChange = (label: string) => {
       setState(
-        state.map(innerArray => {
-          return innerArray.map(item => {
+        state.map((innerArray) => {
+          return innerArray.map((item) => {
             const newCheckedValue = !item.checked;
 
             if (item.label === 'Option D' && item.label === label) {
               return {
                 ...item,
                 checked: newCheckedValue,
-                ...(newCheckedValue ? { errorText: '' } : { errorText: 'This option in recommended' }),
+                ...(newCheckedValue
+                  ? { errorText: '' }
+                  : { errorText: 'This option in recommended' }),
               };
             }
 
@@ -167,14 +173,18 @@ export const WithSwitches: Story = {
             }
             return item;
           });
-        })
+        }),
       );
     };
 
     return (
       <List
         dataSource={state}
-        renderItem={(item: { label: string; errorText?: string; checked: boolean }) => {
+        renderItem={(item: {
+          label: string;
+          errorText?: string;
+          checked: boolean;
+        }) => {
           return (
             <List.ItemWrapper>
               <Switch

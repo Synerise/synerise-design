@@ -1,13 +1,16 @@
 import React, { useState } from 'react';
-import { Meta, StoryObj } from '@storybook/react-webpack5';
 
+import { Meta, StoryObj } from '@storybook/react-vite';
+import { AggregateM, NotificationsM, WebhookM } from '@synerise/ds-icon';
 import Subject from '@synerise/ds-subject';
-import type { SubjectProps, ContextItem, ContextGroup } from '@synerise/ds-subject';
-
-import { SUBJECT_ITEMS, SUBJECT_TEXTS } from './data/index.data';
+import type {
+  ContextGroup,
+  ContextItem,
+  SubjectProps,
+} from '@synerise/ds-subject';
 
 import { controlFromOptionsArray } from '../../utils';
-import { AggregateM, NotificationsM, WebhookM } from '@synerise/ds-icon';
+import { SUBJECT_ITEMS, SUBJECT_TEXTS } from './data/index.data';
 
 export default {
   title: 'Components/Filter/Subject',
@@ -16,13 +19,15 @@ export default {
   parameters: {
     layout: 'centered',
   },
-  render: args => {
-    const [value, setValue] = useState<ContextItem | ContextGroup>(args.selectedItem);
+  render: (args) => {
+    const [value, setValue] = useState<ContextItem | ContextGroup>(
+      args.selectedItem,
+    );
     return (
       <Subject
         {...args}
         selectedItem={value}
-        onSelectItem={value => {
+        onSelectItem={(value) => {
           args.onSelectItem && args.onSelectItem(value);
           setValue(value);
         }}
@@ -46,7 +51,11 @@ export default {
       action: 'onShowPreview',
     },
     type: {
-      ...controlFromOptionsArray('inline-radio', ['event', 'parameter', 'context']),
+      ...controlFromOptionsArray('inline-radio', [
+        'event',
+        'parameter',
+        'context',
+      ]),
     },
   },
   args: {
@@ -56,7 +65,9 @@ export default {
     type: 'event',
     placeholder: 'Choose event',
     iconPlaceholder: <NotificationsM />,
-    getPopupContainerOverride: (node: HTMLElement | null) => { return node && node.parentElement || document.body }
+    getPopupContainerOverride: (node: HTMLElement | null) => {
+      return (node && node.parentElement) || document.body;
+    },
   },
 } as Meta<SubjectProps>;
 
@@ -68,7 +79,7 @@ export const ParameterType: Story = {
   args: {
     type: 'parameter',
     placeholder: 'Choose parameter',
-    iconPlaceholder: <WebhookM />
+    iconPlaceholder: <WebhookM />,
   },
 };
 
@@ -76,6 +87,6 @@ export const ContextType: Story = {
   args: {
     type: 'context',
     placeholder: 'Choose context',
-    iconPlaceholder: <AggregateM />
+    iconPlaceholder: <AggregateM />,
   },
 };

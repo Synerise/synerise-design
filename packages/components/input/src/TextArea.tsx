@@ -7,7 +7,6 @@ import React, {
 } from 'react';
 import { v4 as uuid } from 'uuid';
 
-import '@synerise/ds-core/dist/js/style';
 import FormField from '@synerise/ds-form-field';
 
 import * as S from './Input.styles';

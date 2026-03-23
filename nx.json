@@ -13,7 +13,8 @@
             "inputs": [
                 "production",
                 "^production",
-                "{workspaceRoot}/scripts/style/less.js",
+                "{workspaceRoot}/vite.config.base.ts",
+                "{workspaceRoot}/scripts/vite/**",
                 "{workspaceRoot}/config/typescript/**"
             ]
         },
@@ -25,21 +26,6 @@
             "inputs": [
                 "default",
                 "{workspaceRoot}/config/jest/**"
-            ]
-        },
-        "build:svgr": {
-            "cache": true,
-            "dependsOn": [],
-            "outputs": [
-                "{projectRoot}/src/defaultAvatars",
-                "{projectRoot}/src/icons"
-            ],
-            "inputs": [
-                "default",
-                "{projectRoot}/src/svg",
-                "{projectRoot}/src/svg/defaultAvatars",
-                "{projectRoot}/build/svgr.js",
-                "{projectRoot}/build/template.js"
             ]
         },
         "lint": {
@@ -64,7 +50,7 @@
             "{workspaceRoot}/package.json",
             "{workspaceRoot}/pnpm-lock.yaml",
             "{workspaceRoot}/pnpm-workspace.yaml",
-            "{workspaceRoot}/babel.config.js",
+            "{workspaceRoot}/vite.config.base.ts",
             "{workspaceRoot}/.gitignore"
         ]
     }

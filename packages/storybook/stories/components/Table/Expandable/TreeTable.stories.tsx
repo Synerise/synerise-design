@@ -1,18 +1,18 @@
 import React from 'react';
 import { fn } from 'storybook/test';
-import { Meta, StoryObj } from '@storybook/react-webpack5';
 
-import { TreeTable } from '@synerise/ds-table';
-import { DSTableProps } from '@synerise/ds-table';
+import { Meta, StoryObj } from '@storybook/react-vite';
 import Button from '@synerise/ds-button';
 import Icon, { AddM } from '@synerise/ds-icon';
+import { TreeTable } from '@synerise/ds-table';
+import { DSTableProps } from '@synerise/ds-table';
 
-import { renderWithIconInHeaders, TableMeta } from '../Table.utils';
+import { fixedWrapper1000 } from '../../../utils';
+import { TableMeta, renderWithIconInHeaders } from '../Table.utils';
 import { DATA_SOURCE } from './TreeTable.data';
 import { useTreeTableData } from './useTreeTableData';
-import { fixedWrapper1000 } from '../../../utils';
 
-type RowType = typeof DATA_SOURCE[number];
+type RowType = (typeof DATA_SOURCE)[number];
 type StoryType = DSTableProps<RowType> & {
   showIconsInHeader: boolean;
   showHeaderButton: boolean;
@@ -24,15 +24,18 @@ export default {
   parameters: {
     ...TableMeta.parameters,
     controls: {
-      exclude: ['randomiseSelectionColumn']
-    }
+      exclude: ['randomiseSelectionColumn'],
+    },
   },
   title: 'Components/Table/ExpandableRows',
   decorators: [fixedWrapper1000],
   render: ({ showIconsInHeader, showHeaderButton, ...args }) => {
     const { columnsData, handleExpandRow, dataSource } = useTreeTableData();
 
-    const columns = renderWithIconInHeaders<RowType>(columnsData, showIconsInHeader);
+    const columns = renderWithIconInHeaders<RowType>(
+      columnsData,
+      showIconsInHeader,
+    );
     const headerButton = showHeaderButton && (
       <Button type="ghost" mode="icon-label" onClick={fn()}>
         <Icon component={<AddM />} />
@@ -45,7 +48,7 @@ export default {
         dataSource={dataSource}
         columns={columns}
         headerButton={headerButton}
-        onRow={record => ({
+        onRow={(record) => ({
           onClick: () => handleExpandRow(record.key),
         })}
       />

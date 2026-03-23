@@ -1,8 +1,9 @@
 import React from 'react';
 import { fn } from 'storybook/test';
-import { Meta, StoryObj } from '@storybook/react-webpack5';
 
+import { Meta, StoryObj } from '@storybook/react-vite';
 import { ObjectAvatar } from '@synerise/ds-avatar';
+import Button from '@synerise/ds-button';
 import Icon, {
   AddM,
   EditM,
@@ -13,17 +14,26 @@ import Icon, {
   VarTypeNumberM,
   VarTypeStringM,
 } from '@synerise/ds-icon';
-import Table, { VirtualTable, VirtualTableProps, DSColumnType, TableCell, ItemsMenu } from '@synerise/ds-table';
-import Button from '@synerise/ds-button';
 import ModalProxy from '@synerise/ds-modal';
+import Table, {
+  DSColumnType,
+  ItemsMenu,
+  TableCell,
+  VirtualTable,
+  VirtualTableProps,
+} from '@synerise/ds-table';
 
+import { fixedWrapper1000 } from '../../../utils';
 import { AdditionalColumnData } from '../Table.types';
-import { chromaticCellRender, renderWithIconInHeaders, TableMeta } from '../Table.utils';
+import {
+  TableMeta,
+  chromaticCellRender,
+  renderWithIconInHeaders,
+} from '../Table.utils';
 import { DATA_SOURCE } from './Expandable.data';
 import { useExpandableData } from './useExpandableData';
-import { fixedWrapper1000 } from '../../../utils';
 
-type RowType = typeof DATA_SOURCE[number];
+type RowType = (typeof DATA_SOURCE)[number];
 type Story = StoryObj<StoryType>;
 type StoryType = VirtualTableProps<RowType> & {
   showIconsInHeader: boolean;
@@ -40,8 +50,15 @@ export default {
   },
   title: 'Components/Table/ExpandableRows',
   decorators: [fixedWrapper1000],
-  render: ({ showIconsInHeader, showHeaderButton, randomiseSelectionColumn, independentSelectionExpandedRows, ...args }) => {
-    const { selectedRows, expandedRows, handleExpandRow, handleSelectRow } = useExpandableData();
+  render: ({
+    showIconsInHeader,
+    showHeaderButton,
+    randomiseSelectionColumn,
+    independentSelectionExpandedRows,
+    ...args
+  }) => {
+    const { selectedRows, expandedRows, handleExpandRow, handleSelectRow } =
+      useExpandableData();
     const columnsData: (DSColumnType<RowType> & AdditionalColumnData)[] = [
       {
         title: 'Name',
@@ -50,16 +67,21 @@ export default {
         className: 'chromatic-ignore',
         icon: { component: <VarTypeStringM /> },
         iconTooltip: { component: <InfoFillS /> },
-        render: name => {
+        render: (name) => {
           return (
             <TableCell.AvatarLabelCell
               avatarAction={fn()}
-              avatar={<ObjectAvatar size="medium" iconComponent={<Icon component={<MailM />} color="red" />} />}
+              avatar={
+                <ObjectAvatar
+                  size="medium"
+                  iconComponent={<Icon component={<MailM />} color="red" />}
+                />
+              }
               title={name}
             />
           );
         },
-        childRender: name => {
+        childRender: (name) => {
           return <TableCell.StatusLabelCell status={'active'} label={name} />;
         },
       },
@@ -83,7 +105,7 @@ export default {
               <TableCell.ActionCell key={record.key}>
                 <Button.Expander
                   expanded={expandedRows.indexOf(record.key) >= 0}
-                  onClick={event => {
+                  onClick={(event) => {
                     event.stopPropagation();
                     handleExpandRow(record.key);
                   }}
@@ -95,8 +117,14 @@ export default {
       },
     ];
 
-    const randomStatus = _record => ({ disabled: _record.disabled, unavailable: _record.unavailable });
-    const columns = renderWithIconInHeaders<RowType>(columnsData, showIconsInHeader);
+    const randomStatus = (_record) => ({
+      disabled: _record.disabled,
+      unavailable: _record.unavailable,
+    });
+    const columns = renderWithIconInHeaders<RowType>(
+      columnsData,
+      showIconsInHeader,
+    );
     const headerButton = showHeaderButton && (
       <Button type="ghost" mode="icon-label" onClick={fn()}>
         <Icon component={<AddM />} />
@@ -104,7 +132,12 @@ export default {
       </Button>
     );
     return (
-      <ModalProxy visible size="medium" title="VirtualTable with expandable rows" bodyStyle={{ padding: 0 }}>
+      <ModalProxy
+        visible
+        size="medium"
+        title="VirtualTable with expandable rows"
+        bodyStyle={{ padding: 0 }}
+      >
         <VirtualTable
           {...args}
           columns={columns}
@@ -112,14 +145,21 @@ export default {
             expandIconColumnIndex: -1,
             expandedRowKeys: expandedRows,
           }}
-          onRow={record => ({
+          onRow={(record) => ({
             onClick: () => handleExpandRow(String(record.key)),
           })}
           selection={{
             onChange: handleSelectRow,
             selectedRowKeys: selectedRows,
-            checkRowSelectionStatus: randomiseSelectionColumn ? randomStatus : undefined,
-            selections: [Table.SELECTION_ALL, undefined, null, Table.SELECTION_INVERT],
+            checkRowSelectionStatus: randomiseSelectionColumn
+              ? randomStatus
+              : undefined,
+            selections: [
+              Table.SELECTION_ALL,
+              undefined,
+              null,
+              Table.SELECTION_INVERT,
+            ],
             independentSelectionExpandedRows,
           }}
           headerButton={headerButton}

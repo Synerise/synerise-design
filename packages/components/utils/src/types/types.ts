@@ -16,9 +16,8 @@ export type DataAttributes = Record<`data-${string}`, string>;
 export type WithHTMLAttributes<
   ElementType extends HTMLElement,
   BaseType,
-> = BaseType &
-  Omit<HTMLAttributes<ElementType>, keyof BaseType> &
-  DataAttributes;
+  ExtendType = HTMLAttributes<ElementType>,
+> = BaseType & Omit<ExtendType, keyof BaseType> & DataAttributes;
 
 export type DeepPartial<T> = T extends object
   ? {

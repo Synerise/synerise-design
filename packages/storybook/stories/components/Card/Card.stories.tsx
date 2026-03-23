@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-import { Meta, StoryObj } from '@storybook/react-webpack5';
+import { Meta, StoryObj } from '@storybook/react-vite';
 import Card, { CardBadge, CardGroup, CardSummary } from '@synerise/ds-card';
 import type { CardProps } from '@synerise/ds-card';
 import { CheckS } from '@synerise/ds-icon';

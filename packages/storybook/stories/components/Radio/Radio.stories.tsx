@@ -1,10 +1,11 @@
-import React from 'react';
-import { Meta, StoryObj } from '@storybook/react-webpack5';
-import Radio, { RadioProps, RadioGroupProps } from '@synerise/ds-radio';
-import { Label } from '@synerise/ds-input'
-import { fixedWrapper300 } from '../../utils';
 import { RadioChangeEvent } from 'antd/lib/radio';
+import React from 'react';
 
+import { Meta, StoryObj } from '@storybook/react-vite';
+import { Label } from '@synerise/ds-input';
+import Radio, { RadioGroupProps, RadioProps } from '@synerise/ds-radio';
+
+import { fixedWrapper300 } from '../../utils';
 
 type StoryProps = RadioGroupProps & RadioProps;
 
@@ -19,8 +20,8 @@ export default {
     };
     return (
       <Radio.Group onChange={handleChange} defaultValue={defaultValue}>
-        <Radio {...args} value="A"/>
-        <Radio {...args} value="B"/>
+        <Radio {...args} value="A" />
+        <Radio {...args} value="B" />
       </Radio.Group>
     );
   },
@@ -35,7 +36,14 @@ export default {
 export const Default: StoryObj<StoryProps> = {};
 
 export const RadioButtons: StoryObj<StoryProps> = {
-  render: ({ fullWidth, big, defaultValue, buttonStyle, onChange, ...radioArgs }) => {
+  render: ({
+    fullWidth,
+    big,
+    defaultValue,
+    buttonStyle,
+    onChange,
+    ...radioArgs
+  }) => {
     const handleChange = (event: RadioChangeEvent) => {
       onChange?.(event);
     };
@@ -78,10 +86,10 @@ export const RadioWithLabelAndTooltip: StoryObj<StoryProps> = {
     return (
       <Radio.Group onChange={handleChange} defaultValue={defaultValue}>
         <Radio {...args} value="A">
-          <Label tooltip='Label A' label='Label A'/>
+          <Label tooltip="Label A" label="Label A" />
         </Radio>
         <Radio {...args} value="B">
-          <Label tooltip='Label B' label='Label B'/>
+          <Label tooltip="Label B" label="Label B" />
         </Radio>
       </Radio.Group>
     );
@@ -111,6 +119,6 @@ export const RadioWithChildren: StoryObj<StoryProps> = {
   args: {
     description: 'Description',
     label: undefined,
-    children: 'Label'
+    children: 'Label',
   },
 };

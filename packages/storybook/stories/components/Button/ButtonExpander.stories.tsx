@@ -1,7 +1,7 @@
 import React from 'react';
 import { useArgs } from 'storybook/preview-api';
 
-import type { Meta, StoryObj } from '@storybook/react-webpack5';
+import type { Meta, StoryObj } from '@storybook/react-vite';
 import { Expander as ExpanderButton } from '@synerise/ds-button';
 import type { ExpanderProps } from '@synerise/ds-button';
 

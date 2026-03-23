@@ -1,15 +1,14 @@
 import React from 'react';
 
-import type { StoryObj, Meta } from '@storybook/react-webpack5';
-
-import ShortCuts from '@synerise/ds-short-cuts';
+import type { Meta, StoryObj } from '@storybook/react-vite';
 import { ArrowUpM } from '@synerise/ds-icon';
+import ShortCuts from '@synerise/ds-short-cuts';
 
 import {
-  centeredPaddedWrapper,
-  REACT_NODE_AS_STRING,
-  controlFromOptionsArray,
   BOOLEAN_CONTROL,
+  REACT_NODE_AS_STRING,
+  centeredPaddedWrapper,
+  controlFromOptionsArray,
 } from '../../utils';
 
 const COLOR_OPTIONS = {
@@ -17,18 +16,17 @@ const COLOR_OPTIONS = {
   Light: 'light',
 };
 
-
 export default {
-  title: "Components/ShortCuts",
+  title: 'Components/ShortCuts',
   tags: ['autodocs'],
   component: ShortCuts,
   decorators: [centeredPaddedWrapper],
   argTypes: {
-    size: {...controlFromOptionsArray('select', ['L', 'S'])},
+    size: { ...controlFromOptionsArray('select', ['L', 'S']) },
     icon: REACT_NODE_AS_STRING,
     color: {
       ...controlFromOptionsArray('select', Object.keys(COLOR_OPTIONS)),
-      mapping: COLOR_OPTIONS
+      mapping: COLOR_OPTIONS,
     },
     children: REACT_NODE_AS_STRING,
     autoWidth: BOOLEAN_CONTROL,
@@ -50,6 +48,6 @@ export const ShortCutWithIcon: Story = {
   ...Default,
   args: {
     ...Default.args,
-    icon: <ArrowUpM/>,
+    icon: <ArrowUpM />,
   },
 };

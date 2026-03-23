@@ -1,7 +1,7 @@
 const path = require('path');
 const { defaults } = require('jest-config');
 
-const esModules = ['@synerise','@tanstack/react-ranger'].join('|');
+const esModules = ['@synerise','@tanstack/react-ranger','@dnd-kit'].join('|');
 
 module.exports = {
   coverageDirectory: '<rootDir>/coverage',
@@ -12,7 +12,8 @@ module.exports = {
     '\\.(jpg|jpeg|png|gif|eot|otf|webp|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$':
       '<rootDir>/config/jest/__mocks__/fileMock.js',
     '\\.svg$': '<rootDir>/config/jest/__mocks__/svgrMock.js',
-    '^rc-virtual-list$': '<rootDir>/config/jest/__mocks__/rc-virtual-list.js'
+    '^rc-virtual-list$': '<rootDir>/config/jest/__mocks__/rc-virtual-list.js',
+    '^styled-components$': '<rootDir>/node_modules/styled-components',
   },
   rootDir: path.resolve(__dirname, '..', '..'),
   setupFilesAfterEnv: ['<rootDir>/config/jest/setup/index.js'],
@@ -21,6 +22,9 @@ module.exports = {
   },
   moduleFileExtensions: [...defaults.moduleFileExtensions, 'ts', 'tsx'],
   extensionsToTreatAsEsm: ['.ts', '.tsx'],
-  transformIgnorePatterns: [`node_modules/(?!${esModules})`],
+  transformIgnorePatterns: [
+    `node_modules/(?!\\.pnpm|${esModules})`,
+    `\\.pnpm/.+/node_modules/(?!${esModules})`,
+  ],
   testEnvironment: "jest-environment-jsdom",
 };

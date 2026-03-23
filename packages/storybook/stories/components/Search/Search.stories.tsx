@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-import { Meta, StoryObj } from '@storybook/react-webpack5';
+import { Meta, StoryObj } from '@storybook/react-vite';
 import { theme } from '@synerise/ds-core';
 import Divider from '@synerise/ds-divider';
 import Icon from '@synerise/ds-icon';

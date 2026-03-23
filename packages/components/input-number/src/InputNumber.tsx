@@ -8,7 +8,6 @@ import React, {
 import { v4 as uuid } from 'uuid';
 
 import { useDataFormat } from '@synerise/ds-core';
-import '@synerise/ds-core/dist/js/style';
 import FormField from '@synerise/ds-form-field';
 import { AutosizeWrapper } from '@synerise/ds-input';
 import { useResizeObserver } from '@synerise/ds-utils';

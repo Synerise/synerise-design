@@ -1,20 +1,18 @@
 import React from 'react';
-import { Meta, StoryObj } from '@storybook/react-webpack5';
+import { fn } from 'storybook/test';
 
+import { Meta, StoryObj } from '@storybook/react-vite';
 import Banner, { BannerProps } from '@synerise/ds-banner';
-import Icon, { ArrowRightCircleM, ProductLastSeenColor, ShopingBagColor } from '@synerise/ds-icon';
-import { avatar12 } from '../../constants';
-
+import Icon, { ProductLastSeenColor } from '@synerise/ds-icon';
 
 import {
   BOOLEAN_CONTROL,
+  NUMBER_CONTROL,
   controlFromOptionsArray,
   fixedWrapper1200,
   flexColumnWrapper,
-  NUMBER_CONTROL,
 } from '../../utils';
 import { SLIDES } from './Banner.data';
-import Button from '@synerise/ds-button';
 
 export default {
   component: Banner,
@@ -28,7 +26,15 @@ export default {
     autoPlay: BOOLEAN_CONTROL,
     autoPlaySpeed: NUMBER_CONTROL,
     texts: { control: false },
-    transitionEffect: controlFromOptionsArray('inline-radio', ['fade', 'scrollx']),
+    transitionEffect: controlFromOptionsArray('inline-radio', [
+      'fade',
+      'scrollx',
+    ]),
+  },
+  args: {
+    onClose: fn(),
+    onBeforeChange: fn(),
+    onAfterChange: fn(),
   },
 } as Meta<BannerProps>;
 
@@ -53,7 +59,7 @@ export const AllLayouts: StoryObj<BannerProps> = {
   render: ({ slides, expandable, ...args }) => {
     return (
       <>
-        {slides?.map(slide => (
+        {slides?.map((slide) => (
           <Banner
             {...args}
             expandable={{

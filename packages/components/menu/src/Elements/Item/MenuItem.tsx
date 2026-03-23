@@ -1,7 +1,5 @@
 import React from 'react';
 
-import '@synerise/ds-core/dist/js/style';
-
 import {
   ItemType,
   type MenuDividerProps,

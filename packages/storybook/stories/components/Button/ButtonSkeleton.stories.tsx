@@ -1,7 +1,8 @@
 import React from 'react';
-import type { Meta, StoryObj } from '@storybook/react-webpack5';
 
+import type { Meta, StoryObj } from '@storybook/react-vite';
 import Skeleton from '@synerise/ds-skeleton';
+
 import { controlFromOptionsArray, fixedWrapper200 } from '../../utils';
 
 const meta: Meta<typeof Skeleton> = {
@@ -11,24 +12,21 @@ const meta: Meta<typeof Skeleton> = {
   decorators: [fixedWrapper200],
   argTypes: {
     width: {
-      ...controlFromOptionsArray('select', ['S','M','L'])
+      ...controlFromOptionsArray('select', ['S', 'M', 'L']),
     },
     size: {
-      ...controlFromOptionsArray('select', ['S','M','L'])
-    }
+      ...controlFromOptionsArray('select', ['S', 'M', 'L']),
+    },
   },
 };
 
 export default meta;
 
 export const ButtonSkeleton: StoryObj<typeof Skeleton> = {
-  render: (args) => (
-    <Skeleton numberOfSkeletons={1} width='M' size='L'/>
-  ),
+  render: (args) => <Skeleton numberOfSkeletons={1} width="M" size="L" />,
   parameters: {
     controls: {
-      include: []
-    }
+      include: [],
+    },
   },
-  
-}
+};

@@ -1,7 +1,7 @@
 import React from 'react';
 import { fn } from 'storybook/test';
 
-import { Meta, StoryObj } from '@storybook/react-webpack5';
+import { Meta, StoryObj } from '@storybook/react-vite';
 import Avatar from '@synerise/ds-avatar';
 import Button from '@synerise/ds-button';
 import { theme } from '@synerise/ds-core';
