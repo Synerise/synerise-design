@@ -1,16 +1,16 @@
 import React from 'react';
-import { Meta, StoryObj } from '@storybook/react-webpack5';
 import { fn } from 'storybook/test';
 
+import { Meta, StoryObj } from '@storybook/react-vite';
 import { InlineSelect } from '@synerise/ds-inline-edit';
 import type { InlineSelectProps } from '@synerise/ds-inline-edit';
 
 import {
   BOOLEAN_CONTROL,
-  centeredPaddedWrapper,
   CLASSNAME_ARG_CONTROL,
   STRING_CONTROL,
   STYLE_ARG_CONTROL,
+  centeredPaddedWrapper,
 } from '../../utils';
 import { DATA_SOURCE } from './InlineSelect.data';
 
@@ -22,7 +22,7 @@ export default {
     layout: 'fullscreen',
   },
   decorators: [centeredPaddedWrapper],
-  render: args => {
+  render: (args) => {
     return <InlineSelect {...args} />;
   },
   argTypes: {

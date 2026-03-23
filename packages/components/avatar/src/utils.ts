@@ -1,4 +1,9 @@
-import { type ReactElement, type ReactNode, cloneElement } from 'react';
+import {
+  type ReactElement,
+  type ReactNode,
+  cloneElement,
+  isValidElement,
+} from 'react';
 
 import Icon from '@synerise/ds-icon';
 import selectColorByLetter, {
@@ -39,9 +44,18 @@ export function getUserText(
 }
 
 export function isIconComponent(component: ReactNode | undefined): boolean {
-  return component
-    ? (component as unknown as Function).name === Icon.name
-    : false;
+  return isValidElement(component) && component.type === Icon;
+}
+
+export function isSmallIconVariant(iconElement: ReactElement): boolean {
+  const comp = iconElement.props.component;
+  if (!isValidElement(comp) || typeof comp.type !== 'function') {
+    return false;
+  }
+  const svgFn = comp.type as (props: Record<string, unknown>) => ReactElement;
+  const rendered = svgFn(comp.props as Record<string, unknown>);
+  const testId = (rendered?.props as Record<string, unknown>)?.['data-testid'];
+  return typeof testId === 'string' && testId.endsWith('-s');
 }
 
 export function getObjectName(

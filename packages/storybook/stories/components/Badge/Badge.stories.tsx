@@ -1,6 +1,6 @@
 import React, { CSSProperties } from 'react';
 
-import { Meta, StoryObj } from '@storybook/react-webpack5';
+import { Meta, StoryObj } from '@storybook/react-vite';
 import Avatar from '@synerise/ds-avatar';
 import type { AvatarProps } from '@synerise/ds-avatar';
 import Badge from '@synerise/ds-badge';

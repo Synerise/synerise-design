@@ -1,13 +1,16 @@
 import React from 'react';
-import { Meta, StoryObj } from '@storybook/react-webpack5';
-import { within, userEvent, expect, fn, waitFor } from 'storybook/test';
+import { expect, fn, userEvent, waitFor, within } from 'storybook/test';
 
-
-import Popconfirm, { ConfirmMessageProps } from '@synerise/ds-popconfirm';
+import { Meta, StoryObj } from '@storybook/react-vite';
 import Button from '@synerise/ds-button';
 import Icon, { WarningFillM } from '@synerise/ds-icon';
+import Popconfirm, { ConfirmMessageProps } from '@synerise/ds-popconfirm';
 
-import { BOOLEAN_CONTROL, fixedWrapper300, centeredPaddedWrapper } from '../../utils';
+import {
+  BOOLEAN_CONTROL,
+  centeredPaddedWrapper,
+  fixedWrapper300,
+} from '../../utils';
 
 type Story = StoryObj<ConfirmMessageProps>;
 
@@ -16,7 +19,7 @@ export default {
   title: 'Components/Popconfirm',
   tags: ['autodocs'],
   decorators: [fixedWrapper300, centeredPaddedWrapper],
-  render: args => {
+  render: (args) => {
     return <Popconfirm.ConfirmMessage {...args} />;
   },
   argTypes: {
@@ -31,7 +34,7 @@ export default {
     displayDuration: 5000,
     placement: 'topLeft',
     icon: <Icon component={<WarningFillM />} color={'#ffc300'} />,
-    onClick: showMessage => {
+    onClick: (showMessage) => {
       showMessage();
     },
   },
@@ -42,6 +45,8 @@ export const ConfirmMessageOpen: Story = {
   play: async ({ args, canvasElement }) => {
     const canvas = within(canvasElement.parentElement!);
     userEvent.click(canvas.getByRole('button'));
-    await waitFor(() => expect(canvas.getByText(args.title)).toBeInTheDocument());
-  }
+    await waitFor(() =>
+      expect(canvas.getByText(args.title)).toBeInTheDocument(),
+    );
+  },
 };

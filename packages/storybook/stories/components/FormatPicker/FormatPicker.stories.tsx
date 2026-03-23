@@ -1,14 +1,17 @@
 import React from 'react';
-import { Meta, StoryObj } from '@storybook/react-webpack5';
 import { useArgs } from 'storybook/preview-api';
 import { fn } from 'storybook/test';
 
+import { Meta, StoryObj } from '@storybook/react-vite';
 import FormatPicker from '@synerise/ds-format-picker';
 import type { FormatPickerProps } from '@synerise/ds-format-picker';
 import { NOOP } from '@synerise/ds-utils';
 
-import { centeredPaddedWrapper, controlFromOptionsArray, fixedWrapper200 } from '../../utils';
-
+import {
+  centeredPaddedWrapper,
+  controlFromOptionsArray,
+  fixedWrapper200,
+} from '../../utils';
 import { BUTTON_TYPES } from '../Button/Button.constants';
 
 const DEFAULT_FORMAT: FormatPickerProps['format'] = {
@@ -43,7 +46,7 @@ export default {
     onSetDefault: fn(),
     onUseSeparatorChange: fn(),
   },
-  render: args => {
+  render: (args) => {
     const [{ format }, updateArgs] = useArgs();
     const handleDataFormatChange = (dataFormat: string) => {
       updateArgs({ format: { ...format, dataFormat } });
@@ -87,9 +90,16 @@ export const Default: Story = {};
 
 export const AllTypes: Story = {
   decorators: [fixedWrapper200],
-  render: args => {
+  render: (args) => {
     return (
-      <div style={{ display: 'flex', flexDirection: 'column', gap: 8, alignItems: 'center' }}>
+      <div
+        style={{
+          display: 'flex',
+          flexDirection: 'column',
+          gap: 8,
+          alignItems: 'center',
+        }}
+      >
         <FormatPicker
           {...args}
           format={{ ...DEFAULT_FORMAT, dataFormat: 'numeric' }}
@@ -127,4 +137,3 @@ export const AllTypes: Story = {
     );
   },
 };
-

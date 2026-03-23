@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { Meta, StoryObj } from '@storybook/react-webpack5';
+import { Meta, StoryObj } from '@storybook/react-vite';
 import Icon, { ExternalLinkM } from '@synerise/ds-icon';
 import ListItem from '@synerise/ds-list-item';
 import Panel, { PanelProps } from '@synerise/ds-panel';

@@ -1,14 +1,20 @@
-import React, { useState } from 'react';
 import random from 'lodash/random';
-import { Meta, StoryObj } from '@storybook/react-webpack5';
-import FileUploader, { FileUploaderProps, ExtendedFile, FileWithContent } from '@synerise/ds-file-uploader';
+import React, { useState } from 'react';
+
+import { Meta, StoryObj } from '@storybook/react-vite';
+import FileUploader, {
+  ExtendedFile,
+  FileUploaderProps,
+  FileWithContent,
+} from '@synerise/ds-file-uploader';
+
 import {
   BOOLEAN_CONTROL,
   CLASSNAME_ARG_CONTROL,
-  fixedWrapper300,
   NUMBER_CONTROL,
   REACT_NODE_AS_STRING,
   STRING_CONTROL,
+  fixedWrapper300,
 } from '../../utils';
 
 type StoryProps = FileUploaderProps & {
@@ -17,8 +23,15 @@ type StoryProps = FileUploaderProps & {
 };
 type Story = StoryObj<StoryProps>;
 
-const getFiles = (files: ExtendedFile[], options?: { error?: string; disabled?: boolean }) => {
-  return files.map(file => ({ ...file, error: options?.error || undefined, disabled: options?.disabled || undefined }));
+const getFiles = (
+  files: ExtendedFile[],
+  options?: { error?: string; disabled?: boolean },
+) => {
+  return files.map((file) => ({
+    ...file,
+    error: options?.error || undefined,
+    disabled: options?.disabled || undefined,
+  }));
 };
 export default {
   component: FileUploader,
@@ -27,7 +40,7 @@ export default {
   decorators: [fixedWrapper300],
   render: ({ disabledFiles, uploadError, ...args }) => {
     const [files, setFiles] = useState<Array<ExtendedFile>>([]);
-    const clearProgress = newFiles => {
+    const clearProgress = (newFiles) => {
       setTimeout(() => {
         setFiles([...files, ...newFiles.map((file, index) => ({ file }))]);
       }, 4000);
@@ -36,17 +49,32 @@ export default {
       setFiles([]);
       const uploadedFiles: ExtendedFile[] = [
         ...files,
-        ...newFiles.map((file, index) => ({ file, error: args.error, progress: random(0, 100) } as ExtendedFile)),
+        ...newFiles.map(
+          (file, index) =>
+            ({
+              file,
+              error: args.error,
+              progress: random(0, 100),
+            }) as ExtendedFile,
+        ),
       ];
       setFiles(uploadedFiles);
       clearProgress(newFiles);
     };
-    const onRemove = (_file: FileWithContent, fileIndex: number) => setFiles(files.filter((_file, index) => index !== fileIndex));
+    const onRemove = (_file: FileWithContent, fileIndex: number) =>
+      setFiles(files.filter((_file, index) => index !== fileIndex));
     const fileOptions = {
       disabled: disabledFiles,
       error: uploadError ? 'Error notification' : undefined,
     };
-    return <FileUploader {...args} files={getFiles(files, fileOptions)} onRemove={onRemove} onUpload={onUpload} />;
+    return (
+      <FileUploader
+        {...args}
+        files={getFiles(files, fileOptions)}
+        onRemove={onRemove}
+        onUpload={onUpload}
+      />
+    );
   },
   argTypes: {
     accept: STRING_CONTROL,
@@ -83,7 +111,7 @@ export const LabelAndDescription: Story = {
   args: {
     label: 'Label',
     description: 'Description',
-    tooltip: 'Tooltip text'
+    tooltip: 'Tooltip text',
   },
 };
 export const WithError: Story = {

@@ -16,10 +16,10 @@
     "access": "public"
   },
   "scripts": {
-    "build": "pnpm run build:js && pnpm run build:css && pnpm run defs",
+    "build": "vite build",
     "build:css": "node ../../../scripts/style/less.js",
     "build:js": "babel --delete-dir-on-start --root-mode upward src --out-dir dist --extensions '.js,.ts,.tsx'",
-    "build:watch": "pnpm run build:js -- --watch",
+    "build:watch": "vite build --watch",
     "defs": "tsc --declaration --outDir dist/ --emitDeclarationOnly",
     "pack:ci": "pnpm pack --pack-destination ../../storybook/storybook-static/static",
     "prepublish": "pnpm run build",
@@ -37,7 +37,8 @@
   "dependencies": {
     "@synerise/ds-form-field": "workspace:^",
     "@synerise/ds-tooltip": "workspace:^",
-    "@synerise/ds-utils": "workspace:^"
+    "@synerise/ds-utils": "workspace:^",
+    "uuid": "^8.3.2"
   },
   "peerDependencies": {
     "@synerise/ds-core": "*",

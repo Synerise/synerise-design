@@ -1,10 +1,14 @@
 import React from 'react';
-import { Meta, StoryObj } from '@storybook/react-webpack5';
 import { useArgs } from 'storybook/preview-api';
 
+import { Meta, StoryObj } from '@storybook/react-vite';
 import Logic from '@synerise/ds-logic';
 
-import { BOOLEAN_CONTROL, centeredPaddedWrapper, STRING_CONTROL } from '../../utils';
+import {
+  BOOLEAN_CONTROL,
+  STRING_CONTROL,
+  centeredPaddedWrapper,
+} from '../../utils';
 
 export default {
   component: Logic.Matching,
@@ -21,7 +25,7 @@ export default {
 } as Meta<typeof Logic.Matching>;
 
 export const Matching: StoryObj<typeof Logic.Matching> = {
-  render: args => {
+  render: (args) => {
     const [{ matching }, updateArgs] = useArgs();
     function onChange(matching: boolean) {
       args.onChange && args.onChange(matching);

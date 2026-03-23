@@ -1,16 +1,16 @@
 import React, { ChangeEvent, useCallback, useMemo, useState } from 'react';
-import { Meta, StoryObj } from '@storybook/react-webpack5';
 import { fn } from 'storybook/test';
 
+import { Meta, StoryObj } from '@storybook/react-vite';
 import InlineEdit from '@synerise/ds-inline-edit';
 import type { InlineEditProps } from '@synerise/ds-inline-edit';
 
 import {
   BOOLEAN_CONTROL,
   CLASSNAME_ARG_CONTROL,
-  fixedWrapper300,
   STRING_CONTROL,
   STYLE_ARG_CONTROL,
+  fixedWrapper300,
 } from '../../utils';
 
 const InlineEditMeta = {
@@ -53,7 +53,7 @@ const InlineEditMeta = {
     },
   },
 } as Meta<InlineEditProps>;
-export default InlineEditMeta
+export default InlineEditMeta;
 
 type Story = StoryObj<InlineEditProps>;
 
@@ -61,13 +61,12 @@ export const Default: Story = {
   name: 'InlineEdit',
 };
 
-
 export const Populated: Story = {
   args: {
     input: {
       ...InlineEditMeta.args?.input,
       value: 'Test value',
       onChange: fn(),
-    }
-  }
+    },
+  },
 };

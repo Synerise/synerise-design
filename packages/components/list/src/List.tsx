@@ -3,7 +3,6 @@ import { type RadioGroupProps } from 'antd/lib/radio';
 import React, { type ReactNode } from 'react';
 import { v4 as uuid } from 'uuid';
 
-import '@synerise/ds-core/dist/js/style';
 import Radio from '@synerise/ds-radio';
 
 import { ItemWrapper, ListDivider, TextItem } from './Elements';

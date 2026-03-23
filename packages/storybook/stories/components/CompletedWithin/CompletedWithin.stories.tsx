@@ -1,27 +1,28 @@
 import React, { useState } from 'react';
 
-import type { StoryObj, Meta } from '@storybook/react-webpack5';
-
+import type { Meta, StoryObj } from '@storybook/react-vite';
 import CompletedWithin from '@synerise/ds-completed-within';
 import { CompletedWithinProps } from '@synerise/ds-completed-within';
 
 import {
-  centeredPaddedWrapper,
+  BOOLEAN_CONTROL,
+  NUMBER_CONTROL,
   REACT_NODE_AS_STRING,
-  NUMBER_CONTROL, BOOLEAN_CONTROL,
+  centeredPaddedWrapper,
 } from '../../utils';
 
-
 export default {
-  title: "Components/Filter/CompletedWithin",
+  title: 'Components/Filter/CompletedWithin',
   tags: ['autodocs'],
   render: (args) => {
-    const [value, setValue] = useState<CompletedWithinProps['value']>(args.value);
+    const [value, setValue] = useState<CompletedWithinProps['value']>(
+      args.value,
+    );
     return (
       <CompletedWithin
         {...args}
         value={value}
-        onSetValue={value => {
+        onSetValue={(value) => {
           args.onSetValue && args.onSetValue(value);
           setValue(value);
         }}
@@ -37,7 +38,7 @@ export default {
     tooltip: REACT_NODE_AS_STRING,
   },
   args: {
-    value: {value: undefined, period: undefined},
+    value: { value: undefined, period: undefined },
     text: {
       header: 'Completed within',
       completedLabel: 'Completed within',
@@ -46,12 +47,11 @@ export default {
     },
     maxValue: 100,
     placeholder: 'Completed within',
-    tooltip: 'Filter by time elapsed between completing the first and last step in the funnel.',
+    tooltip:
+      'Filter by time elapsed between completing the first and last step in the funnel.',
   },
 } as Meta<CompletedWithinProps>;
 
 type Story = StoryObj<CompletedWithinProps>;
 
-export const Default: Story = {
-  
-};
+export const Default: Story = {};

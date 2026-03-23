@@ -1,19 +1,28 @@
 import React, { useState } from 'react';
-import { Meta, StoryObj } from '@storybook/react-webpack5';
 import { fn } from 'storybook/test';
 
-import SidebarObject from '@synerise/ds-sidebar-object';
-import { ButtonWrapper } from '@synerise/ds-sidebar-object/dist/Elements/Header/Header.style';
-import { ButtonVariant, HeaderType } from '@synerise/ds-sidebar-object/dist/Elements/Header/Header.types';
-import Icon, { MailM } from '@synerise/ds-icon';
+import { Meta, StoryObj } from '@storybook/react-vite';
+import { ObjectAvatar } from '@synerise/ds-avatar';
+import Button from '@synerise/ds-button';
 import { theme } from '@synerise/ds-core';
 import Drawer from '@synerise/ds-drawer';
-import Button from '@synerise/ds-button';
-import { ObjectAvatar } from '@synerise/ds-avatar';
+import Icon, { MailM } from '@synerise/ds-icon';
+import SidebarObject from '@synerise/ds-sidebar-object';
+import { ButtonWrapper } from '@synerise/ds-sidebar-object/dist/Elements/Header/Header.style';
+import {
+  ButtonVariant,
+  HeaderType,
+} from '@synerise/ds-sidebar-object/dist/Elements/Header/Header.types';
 
-import { ALL_TAGS, BackIcon, StarPrefix, TABS, TEXTS } from './SidebarObject.data';
-import { useSidebarObjectOverview } from './hooks/useSidebarObjectOverview';
 import { controlFromOptionsArray, fixedWrapper300 } from '../../utils';
+import {
+  ALL_TAGS,
+  BackIcon,
+  StarPrefix,
+  TABS,
+  TEXTS,
+} from './SidebarObject.data';
+import { useSidebarObjectOverview } from './hooks/useSidebarObjectOverview';
 
 type StoryProps = typeof SidebarObject;
 
@@ -22,7 +31,7 @@ export default {
   title: 'Components/SidebarObject',
   decorators: [fixedWrapper300],
 
-  render: args => {
+  render: (args) => {
     const [drawerVisible, setDrawerVisible] = useState(true);
     const [name, setName] = useState('Winter campaign');
     const [activeTab, setActiveTab] = useState(0);
@@ -36,7 +45,12 @@ export default {
         <Button onClick={() => setDrawerVisible(!drawerVisible)} type="primary">
           Show Sidebar Object
         </Button>
-        <Drawer visible={drawerVisible} placement="right" width={676} onClose={() => setDrawerVisible(false)}>
+        <Drawer
+          visible={drawerVisible}
+          placement="right"
+          width={676}
+          onClose={() => setDrawerVisible(false)}
+        >
           <SidebarObject
             {...args}
             onCloseClick={handleCloseClick}
@@ -50,13 +64,19 @@ export default {
     );
   },
   argTypes: {
-    headerType: controlFromOptionsArray('inline-radio', ['readonly', 'editable']),
-    typeButtons: controlFromOptionsArray('inline-radio', ['twoButtons', 'withNavigation']),
+    headerType: controlFromOptionsArray('inline-radio', [
+      'readonly',
+      'editable',
+    ]),
+    typeButtons: controlFromOptionsArray('inline-radio', [
+      'twoButtons',
+      'withNavigation',
+    ]),
     headerPreffix: {
       ...controlFromOptionsArray('inline-radio', ['backIcon', 'starPrefix']),
       mapping: {
         backIcon: <BackIcon onBackClickHandler={fn()} />,
-        starPrefix: <StarPrefix />
+        starPrefix: <StarPrefix />,
       },
     },
   },
@@ -72,7 +92,9 @@ export default {
     avatar: (
       <ObjectAvatar
         color={'pink'}
-        iconComponent={<Icon color={theme.palette['pink-600']} component={<MailM />} />}
+        iconComponent={
+          <Icon color={theme.palette['pink-600']} component={<MailM />} />
+        }
         badgeStatus={'inactive'}
       />
     ),
@@ -106,9 +128,9 @@ export const Campaign: StoryObj<StoryProps> = {
   args: {
     headerType: HeaderType.READONLY,
     headerPreffix: <BackIcon onBackClickHandler={fn()} />,
-    typeButtons: ButtonVariant.WITH_NAVIGATION
+    typeButtons: ButtonVariant.WITH_NAVIGATION,
   },
-  render: args => {
+  render: (args) => {
     const [drawerVisible, setDrawerVisible] = useState(true);
     const [name, setName] = useState('Winter campaign');
     const [activeTab, setActiveTab] = useState(0);
@@ -124,7 +146,12 @@ export const Campaign: StoryObj<StoryProps> = {
         <Button onClick={() => setDrawerVisible(!drawerVisible)} type="primary">
           Show Sidebar Object
         </Button>
-        <Drawer visible={drawerVisible} placement="right" width={676} onClose={() => setDrawerVisible(false)}>
+        <Drawer
+          visible={drawerVisible}
+          placement="right"
+          width={676}
+          onClose={() => setDrawerVisible(false)}
+        >
           <SidebarObject
             {...args}
             headerTabs={headerTabs}
@@ -137,6 +164,5 @@ export const Campaign: StoryObj<StoryProps> = {
         </Drawer>
       </div>
     );
-  }
-
+  },
 };

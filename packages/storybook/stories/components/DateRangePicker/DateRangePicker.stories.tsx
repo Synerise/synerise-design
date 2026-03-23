@@ -3,7 +3,7 @@ import { injectIntl } from 'react-intl';
 import { fn } from 'storybook/test';
 import styled from 'styled-components';
 
-import { Meta, StoryObj } from '@storybook/react-webpack5';
+import { Meta, StoryObj } from '@storybook/react-vite';
 import Button from '@synerise/ds-button';
 import DateRangePicker, {
   CONST,

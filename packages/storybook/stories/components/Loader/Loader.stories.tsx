@@ -1,20 +1,18 @@
 import React from 'react';
 
-import type { StoryObj, Meta } from '@storybook/react-webpack5';
-
+import type { Meta, StoryObj } from '@storybook/react-vite';
 import Loader from '@synerise/ds-loader';
-import { fontSizes, iconSizes, COLOR_OPTIONS, formatter } from './Loader.data';
 
 import {
-  centeredPaddedWrapper,
   CLASSNAME_ARG_CONTROL,
   REACT_NODE_AS_STRING,
+  centeredPaddedWrapper,
   controlFromOptionsArray,
 } from '../../utils';
-
+import { COLOR_OPTIONS, fontSizes, formatter, iconSizes } from './Loader.data';
 
 export default {
-  title: "Components/Loader",
+  title: 'Components/Loader',
   tags: ['autodocs'],
   component: Loader,
   decorators: [centeredPaddedWrapper],
@@ -24,19 +22,19 @@ export default {
     text: REACT_NODE_AS_STRING,
     size: {
       ...controlFromOptionsArray('select', Object.keys(iconSizes)),
-      mapping: iconSizes
+      mapping: iconSizes,
     },
     fontSize: {
       ...controlFromOptionsArray('select', Object.keys(fontSizes)),
-      mapping: fontSizes
+      mapping: fontSizes,
     },
     labelPosition: {
-      ...controlFromOptionsArray('select', ['right', 'bottom'])
+      ...controlFromOptionsArray('select', ['right', 'bottom']),
     },
     color: COLOR_OPTIONS,
     percentFormatter: {
-      control: false
-    }
+      control: false,
+    },
   },
 } as Meta<typeof Loader>;
 
@@ -48,7 +46,7 @@ export const Default: Story = {
     size: 'L',
     fontSize: 'small',
     labelPosition: 'right',
-    color: 'grey'
+    color: 'grey',
   },
 };
 

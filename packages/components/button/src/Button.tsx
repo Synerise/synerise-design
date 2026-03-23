@@ -7,7 +7,6 @@ import React, {
   useState,
 } from 'react';
 
-import '@synerise/ds-core/dist/js/style';
 import Icon, { SpinnerM } from '@synerise/ds-icon';
 import { TagShape } from '@synerise/ds-tag';
 import Tooltip from '@synerise/ds-tooltip';

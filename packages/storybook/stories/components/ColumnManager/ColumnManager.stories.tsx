@@ -1,13 +1,13 @@
 import React from 'react';
-import { Meta, StoryObj } from '@storybook/react-webpack5';
-
-import ColumnManager, { ColumnManagerProps } from '@synerise/ds-column-manager';
-import Button from '@synerise/ds-button';
 import { fn } from 'storybook/test';
 
+import { Meta, StoryObj } from '@storybook/react-vite';
+import Button from '@synerise/ds-button';
+import ColumnManager, { ColumnManagerProps } from '@synerise/ds-column-manager';
+
 import { fixedWrapper300 } from '../../utils';
-import { useColumnManager } from './useColumnManager';
 import { StoryColumn } from './ColumnManager.data';
+import { useColumnManager } from './useColumnManager';
 
 export default {
   component: ColumnManager,
@@ -19,17 +19,21 @@ export default {
       setColumnManagerVisible,
       columnManagerVisible,
       columns,
-      setColumns
+      setColumns,
     } = useColumnManager(args.visible);
 
     const handleApply = (updatedColumns) => {
       onApply(updatedColumns);
       setColumns(updatedColumns);
       setColumnManagerVisible(false);
-    }
+    };
     return (
       <>
-        <Button type="primary" mode="simple" onClick={() => setColumnManagerVisible(true)}>
+        <Button
+          type="primary"
+          mode="simple"
+          onClick={() => setColumnManagerVisible(true)}
+        >
           Show column manager
         </Button>
         <ColumnManager
@@ -44,7 +48,7 @@ export default {
   },
   argTypes: {},
   args: {
-    onApply: fn()
+    onApply: fn(),
   },
 } as Meta<ColumnManagerProps<StoryColumn>>;
 
@@ -53,6 +57,6 @@ type Story = StoryObj<ColumnManagerProps<StoryColumn>>;
 export const Default: Story = {};
 export const Open: Story = {
   args: {
-    visible: true
-  }
+    visible: true,
+  },
 };

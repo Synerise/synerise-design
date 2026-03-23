@@ -1,7 +1,5 @@
 import React from 'react';
 
-import '@synerise/ds-core/dist/js/style';
-
 import * as S from './Checkbox.styles';
 import { type CheckboxProps } from './Checkbox.types';
 import { CheckboxBase, CheckboxTristate } from './components';

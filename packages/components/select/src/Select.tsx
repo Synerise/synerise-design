@@ -2,7 +2,6 @@ import AntdSelect from 'antd/lib/select';
 import classNames from 'classnames';
 import React, { forwardRef } from 'react';
 
-import '@synerise/ds-core/dist/js/style';
 import FormField from '@synerise/ds-form-field';
 import Icon, { Close3M, CloseS } from '@synerise/ds-icon';
 import Tooltip from '@synerise/ds-tooltip';

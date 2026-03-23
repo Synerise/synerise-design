@@ -1,11 +1,11 @@
 import React from 'react';
-import { Meta, StoryObj } from '@storybook/react-webpack5';
 
+import { Meta, StoryObj } from '@storybook/react-vite';
 import { OrderedListSkeleton } from '@synerise/ds-skeleton';
 import UnorderedList, { UnorderedListProps } from '@synerise/ds-unordered-list';
 
-import { FORMATTERS, LIST_DATA } from './UnorderedList.data';
 import { controlFromOptionsArray, fixedWrapper300 } from '../../utils';
+import { FORMATTERS, LIST_DATA } from './UnorderedList.data';
 
 export default {
   component: UnorderedList,

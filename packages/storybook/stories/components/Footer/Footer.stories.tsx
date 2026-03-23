@@ -1,19 +1,14 @@
 import React from 'react';
 
-import type { StoryObj, Meta } from '@storybook/react-webpack5';
-
-import Footer from '@synerise/ds-footer';
+import type { Meta, StoryObj } from '@storybook/react-vite';
 import Button from '@synerise/ds-button';
+import Footer from '@synerise/ds-footer';
 import Icon, { AcademyM, ChatM, LifebuoyM } from '@synerise/ds-icon';
 
-import {
-  CLASSNAME_ARG_CONTROL,
-  footerWrapper,
-} from '../../utils';
-
+import { CLASSNAME_ARG_CONTROL, footerWrapper } from '../../utils';
 
 export default {
-  title: "Components/Footer",
+  title: 'Components/Footer',
   tags: ['autodocs'],
   component: Footer,
   decorators: [footerWrapper],

@@ -1,37 +1,37 @@
 import React, { useMemo } from 'react';
-import { fn } from 'storybook/test';
-import { Meta, StoryObj } from '@storybook/react-webpack5';
 import { action } from 'storybook/actions';
-import Table, { DSTableProps } from '@synerise/ds-table';
-import Button from '@synerise/ds-button';
-import Icon, { AddM, FilterM, Grid2M } from '@synerise/ds-icon';
-import { CardProps } from '@synerise/ds-card';
+import { fn } from 'storybook/test';
 
-import Search from '@synerise/ds-search';
-import Menu from '@synerise/ds-menu';
-import Divider from '@synerise/ds-divider';
+import { Meta, StoryObj } from '@storybook/react-vite';
+import Button from '@synerise/ds-button';
+import { CardProps } from '@synerise/ds-card';
 import ColumnManager from '@synerise/ds-column-manager';
+import Divider from '@synerise/ds-divider';
+import Icon, { AddM, FilterM, Grid2M } from '@synerise/ds-icon';
+import ItemFilter from '@synerise/ds-item-filter';
+import Menu from '@synerise/ds-menu';
 import Modal from '@synerise/ds-modal';
 import Result from '@synerise/ds-result';
-import ItemFilter from '@synerise/ds-item-filter';
+import Search from '@synerise/ds-search';
+import Table, { DSTableProps } from '@synerise/ds-table';
 
-import { renderWithIconInHeaders, TableMeta } from '../Table.utils';
+import { cardDecorator } from '../../../utils';
+import { TableMeta, renderWithIconInHeaders } from '../Table.utils';
 import {
+  CATEGORIES,
+  COLUMNS,
   COLUMN_MANAGER_TEXTS,
+  CategoriesType,
   DATA_SOURCE,
   PARAMETERS,
-  ViewsType,
-  CategoriesType,
-  CATEGORIES,
   VIEWS,
-  COLUMNS,
+  ViewsType,
 } from './WithFiltersAndSearch.data';
 import { useFiltersAndSearch } from './useFiltersAndSearch';
 import { getColumnsWithActions } from './utils';
-import { cardDecorator } from '../../../utils';
 
 type AnyObject = Record<string, any>;
-type RowType = typeof DATA_SOURCE[number];
+type RowType = (typeof DATA_SOURCE)[number];
 export type SuggestionType = { text: string; filter: string };
 type Story = StoryObj<StoryType>;
 type StoryType = DSTableProps<RowType> & {
@@ -61,7 +61,14 @@ export default {
     },
   },
   title: 'Components/Table/WithFiltersAndSearch',
-  render: ({ showIconsInHeader, multipleSortOrder, sortRenderType, showHeaderButton, dataSource = [], ...args }) => {
+  render: ({
+    showIconsInHeader,
+    multipleSortOrder,
+    sortRenderType,
+    showHeaderButton,
+    dataSource = [],
+    ...args
+  }) => {
     const {
       columns,
 
@@ -94,11 +101,14 @@ export default {
       setItemFilterVisible(!itemFilterVisible);
     };
 
-    const finalColumns = renderWithIconInHeaders<RowType>(getColumnsWithActions(columns), showIconsInHeader);
+    const finalColumns = renderWithIconInHeaders<RowType>(
+      getColumnsWithActions(columns),
+      showIconsInHeader,
+    );
 
     const filteredDataSource = useMemo(() => {
       if (searchFilterValue && searchValue) {
-        return dataSource.filter(record => {
+        return dataSource.filter((record) => {
           const value = {
             name: record.name,
             age: record.age,
@@ -110,12 +120,14 @@ export default {
       }
       return !searchValue
         ? dataSource
-        : dataSource.filter(record => {
-          return record.name.toLowerCase().includes(searchValue.toLowerCase());
-        });
+        : dataSource.filter((record) => {
+            return record.name
+              .toLowerCase()
+              .includes(searchValue.toLowerCase());
+          });
     }, [searchFilterValue, searchValue, dataSource]);
 
-    const recent = dataSource.map(record => ({
+    const recent = dataSource.map((record) => ({
       text: record.name,
       filter: 'name',
     }));
@@ -123,7 +135,7 @@ export default {
     const getSuggestions = (value: string): SuggestionType[] => {
       if (value) {
         const paramName = value.toLowerCase();
-        const allSuggestions = dataSource.map(record => {
+        const allSuggestions = dataSource.map((record) => {
           const value = {
             name: record.name,
             age: record.age,
@@ -138,9 +150,9 @@ export default {
         });
         return allSuggestions
           ? allSuggestions.reduce((unique, item) => {
-            const exist = unique.find(record => record.text === item.text);
-            return exist ? unique : [...unique, item];
-          }, [] as SuggestionType[])
+              const exist = unique.find((record) => record.text === item.text);
+              return exist ? unique : [...unique, item];
+            }, [] as SuggestionType[])
           : [];
       }
       return [];
@@ -154,18 +166,18 @@ export default {
     );
     const getSelectedView = () => {
       let allItems: ViewsType['items'] = [];
-      savedViews.forEach(cat => {
+      savedViews.forEach((cat) => {
         allItems = [...allItems, ...cat.items];
       });
-      return allItems.find(filter => filter.id === selectedViewId);
+      return allItems.find((filter) => filter.id === selectedViewId);
     };
 
     const getSelectedFilter = () => {
       let allItems: CategoriesType['items'] = [];
-      categories.forEach(cat => {
+      categories.forEach((cat) => {
         allItems = [...allItems, ...cat.items];
       });
-      return allItems.find(filter => filter.id === selectedFilterId);
+      return allItems.find((filter) => filter.id === selectedFilterId);
     };
 
     return (
@@ -179,7 +191,12 @@ export default {
             {
               key: 'filter',
               icon: <FilterM />,
-              tooltips: { default: 'Filter', clear: 'Clear filter', define: 'Define filter', list: 'Saved filters' },
+              tooltips: {
+                default: 'Filter',
+                clear: 'Clear filter',
+                define: 'Define filter',
+                list: 'Saved filters',
+              },
               openedLabel: 'Define',
               showList: () => setItemFilterVisible(true),
               show: () => setModalVisible(true),
@@ -197,11 +214,11 @@ export default {
                 setSearchFilterValue('');
                 setSearchValue('');
               }}
-              onParameterValueChange={value => {
+              onParameterValueChange={(value) => {
                 setSearchFilterValue(value);
                 setSearchSuggestions(getSuggestions(value));
               }}
-              onValueChange={value => setSearchValue(value)}
+              onValueChange={(value) => setSearchValue(value)}
               parameters={PARAMETERS.slice(0, 5)}
               parametersDisplayProps={{
                 tooltip: 'Parameters',
@@ -223,7 +240,9 @@ export default {
                 tooltip: 'Recent',
                 title: 'Recent',
                 rowHeight: 32,
-                itemRender: (item: AnyObject) => <Menu.Item>{item && item.text}</Menu.Item>,
+                itemRender: (item: AnyObject) => (
+                  <Menu.Item>{item && item.text}</Menu.Item>
+                ),
               }}
               divider={
                 <div style={{ padding: '12px', paddingBottom: '0px' }}>
@@ -236,7 +255,9 @@ export default {
                 tooltip: 'Suggestions',
                 title: 'Suggestions',
                 rowHeight: 32,
-                itemRender: (item: AnyObject) => <Menu.Item>{item && item.text}</Menu.Item>,
+                itemRender: (item: AnyObject) => (
+                  <Menu.Item>{item && item.text}</Menu.Item>
+                ),
               }}
               textLookupConfig={{
                 parameters: 'text',
@@ -250,12 +271,12 @@ export default {
           }
         />
         <ItemFilter
-          fetchData={() => { }}
+          fetchData={() => {}}
           visible={itemFilterVisible}
           hide={toggleItemFilterVisible}
-          removeItem={props => removeItem(props)}
-          editItem={props => editItem(props)}
-          selectItem={props => handleSetSelectedFilter(props)}
+          removeItem={(props) => removeItem(props)}
+          editItem={(props) => editItem(props)}
+          selectItem={(props) => handleSetSelectedFilter(props)}
           duplicateItem={action('duplicate item')}
           selectedItemId={selectedFilterId as string}
           categories={categories}

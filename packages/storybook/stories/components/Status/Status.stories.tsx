@@ -1,16 +1,16 @@
 import React from 'react';
 
-import type { StoryObj, Meta } from '@storybook/react-webpack5';
-
+import type { Meta, StoryObj } from '@storybook/react-vite';
+import { theme } from '@synerise/ds-core';
 import Status from '@synerise/ds-status';
 
 import {
-  centeredPaddedWrapper,
+  BOOLEAN_CONTROL,
   CLASSNAME_ARG_CONTROL,
   REACT_NODE_AS_STRING,
-  controlFromOptionsArray, BOOLEAN_CONTROL,
+  centeredPaddedWrapper,
+  controlFromOptionsArray,
 } from '../../utils';
-import { theme }from '@synerise/ds-core';
 
 const COLOR_OPTIONS = {
   blue: theme.palette['blue-600'],
@@ -27,19 +27,29 @@ const COLOR_OPTIONS = {
   violet: theme.palette['violet-600'],
 };
 
-
 export default {
-  title: "Components/Status",
+  title: 'Components/Status',
   tags: ['autodocs'],
   component: Status,
   decorators: [centeredPaddedWrapper],
   argTypes: {
     className: CLASSNAME_ARG_CONTROL,
     label: REACT_NODE_AS_STRING,
-    type: {...controlFromOptionsArray('select', ['default', 'primary', 'success', 'warning', 'danger', 'info', 'disabled', 'custom'])},
+    type: {
+      ...controlFromOptionsArray('select', [
+        'default',
+        'primary',
+        'success',
+        'warning',
+        'danger',
+        'info',
+        'disabled',
+        'custom',
+      ]),
+    },
     color: {
       ...controlFromOptionsArray('select', Object.keys(COLOR_OPTIONS)),
-      mapping: COLOR_OPTIONS
+      mapping: COLOR_OPTIONS,
     },
     dashed: BOOLEAN_CONTROL,
   },
@@ -54,5 +64,3 @@ export const Default: Story = {
     dashed: false,
   },
 };
-
-

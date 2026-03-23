@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-import { Meta, StoryObj } from '@storybook/react-webpack5';
+import { Meta, StoryObj } from '@storybook/react-vite';
 import Block from '@synerise/ds-block';
 import { theme } from '@synerise/ds-core';
 import Icon, { EditM } from '@synerise/ds-icon';

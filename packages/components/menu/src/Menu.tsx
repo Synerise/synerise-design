@@ -2,7 +2,6 @@ import React, { Children, Component, type ReactNode } from 'react';
 import { FormattedMessage } from 'react-intl';
 
 import Button from '@synerise/ds-button';
-import '@synerise/ds-core/dist/js/style';
 import Icon, { ArrowDownCircleM, ArrowUpCircleM } from '@synerise/ds-icon';
 import { FloatingDelayGroup } from '@synerise/ds-popover';
 import Tooltip from '@synerise/ds-tooltip';

@@ -1,10 +1,14 @@
 import React from 'react';
-import { Meta, StoryObj } from '@storybook/react-webpack5';
 import { useArgs } from 'storybook/preview-api';
 
+import { Meta, StoryObj } from '@storybook/react-vite';
 import Logic from '@synerise/ds-logic';
 
-import { BOOLEAN_CONTROL, centeredPaddedWrapper, controlFromOptionsArray } from '../../utils';
+import {
+  BOOLEAN_CONTROL,
+  centeredPaddedWrapper,
+  controlFromOptionsArray,
+} from '../../utils';
 
 export default {
   component: Logic,
@@ -14,16 +18,16 @@ export default {
   argTypes: {
     readOnly: BOOLEAN_CONTROL,
     options: {
-      control: false
+      control: false,
     },
-    value: controlFromOptionsArray('inline-radio', ['AND', 'OR'])
+    value: controlFromOptionsArray('inline-radio', ['AND', 'OR']),
   },
 } as Meta<typeof Logic>;
 
 type Story = StoryObj<typeof Logic>;
 
 export const Default: Story = {
-  render: args => {
+  render: (args) => {
     const [{ value }, updateArgs] = useArgs();
     function onChange(value: string) {
       args.onChange && args.onChange(value);
@@ -37,7 +41,7 @@ export const Default: Story = {
 };
 
 export const CustomOptions: Story = {
-  render: args => {
+  render: (args) => {
     const [{ value }, updateArgs] = useArgs();
     function onChange(value: string) {
       args.onChange && args.onChange(value);
@@ -46,7 +50,7 @@ export const CustomOptions: Story = {
     return <Logic {...args} value={value} onChange={onChange} />;
   },
   argTypes: {
-    value: controlFromOptionsArray('inline-radio', ['INCLUDES', 'EXCLUDES'])
+    value: controlFromOptionsArray('inline-radio', ['INCLUDES', 'EXCLUDES']),
   },
   args: {
     options: [

@@ -1,7 +1,7 @@
 import { ReactNode } from 'react';
 import { expect, userEvent, waitFor, within } from 'storybook/test';
 
-import { Meta, StoryObj } from '@storybook/react-webpack5';
+import { Meta, StoryObj } from '@storybook/react-vite';
 import type { DropdownProps } from '@synerise/ds-dropdown';
 
 import { centeredPaddedWrapper } from '../../utils';

@@ -1,12 +1,11 @@
 import React, { type ReactElement, cloneElement } from 'react';
 
-import '@synerise/ds-core/dist/js/style';
 import Tooltip from '@synerise/ds-tooltip';
 
 import * as S from './Avatar.styles';
 import { type AvatarProps } from './Avatar.types';
 import './style/index.less';
-import { getTooltipProps, isIconComponent } from './utils';
+import { getTooltipProps, isIconComponent, isSmallIconVariant } from './utils';
 
 export const DEFAULT_SIZE = 'medium';
 export const ICON_SIZES = {
@@ -34,7 +33,7 @@ const Avatar = ({
 
   // Enforce icon to be scaled
   if (isIconComponent(iconComponent) && iconScale) {
-    if (iconElement.props.component?.type?.name?.match(/S$/)) {
+    if (isSmallIconVariant(iconElement)) {
       sizes.small = 24;
     }
 

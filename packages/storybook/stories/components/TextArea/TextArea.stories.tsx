@@ -1,19 +1,19 @@
 import React, { ChangeEvent } from 'react';
-import { Meta, StoryObj } from '@storybook/react-webpack5';
 import { useArgs } from 'storybook/preview-api';
 
-import { TextArea, TextareaProps } from '@synerise/ds-input';
+import { Meta, StoryObj } from '@storybook/react-vite';
 import Icon, { Add2M, FileM } from '@synerise/ds-icon';
+import { TextArea, TextareaProps } from '@synerise/ds-input';
 
 import {
   BOOLEAN_CONTROL,
   CLASSNAME_ARG_CONTROL,
-  fixedWrapper300,
   NUMBER_CONTROL,
   PREFIXCLS_ARG_CONTROL,
   REACT_NODE_AS_STRING,
   STRING_CONTROL,
   STYLE_ARG_CONTROL,
+  fixedWrapper300,
 } from '../../utils';
 
 type Story = StoryObj<TextareaProps>;
@@ -22,7 +22,7 @@ export default {
   title: 'Components/InputElements/TextArea',
   tags: ['autodocs'],
   decorators: [fixedWrapper300],
-  render: args => {
+  render: (args) => {
     const [{ value }, updateArgs] = useArgs();
     const handleChange = (event: ChangeEvent<HTMLTextAreaElement>) => {
       updateArgs({ value: event.target.value });
@@ -32,8 +32,8 @@ export default {
   },
   parameters: {
     controls: {
-      exclude: ['bordered', 'autoResize', 'expandable', 'expandableTooltip',]
-    }
+      exclude: ['bordered', 'autoResize', 'expandable', 'expandableTooltip'],
+    },
   },
   argTypes: {
     className: CLASSNAME_ARG_CONTROL,
@@ -57,7 +57,7 @@ export const WithLabelAndDescription: Story = {
   args: {
     label: 'Label',
     description: 'Description',
-    value: 'Sample text'
+    value: 'Sample text',
   },
 };
 
@@ -65,7 +65,7 @@ export const WithError: Story = {
   args: {
     ...WithLabelAndDescription.args,
     error: true,
-    errorText: 'Error Message'
+    errorText: 'Error Message',
   },
 };
 
@@ -99,7 +99,8 @@ export const WithCounter: Story = {
 export const WithCustomCounter: Story = {
   args: {
     ...WithLabelAndDescription.args,
-    renderCustomCounter: (count?: number) => count !== undefined && <>{count} characters billed as 1 SMS</>,
+    renderCustomCounter: (count?: number) =>
+      count !== undefined && <>{count} characters billed as 1 SMS</>,
   },
 };
 

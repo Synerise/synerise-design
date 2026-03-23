@@ -1,15 +1,15 @@
 import React from 'react';
 import { fn } from 'storybook/test';
-import { Meta, StoryObj } from '@storybook/react-webpack5';
 
-import Table, { DSTableProps } from '@synerise/ds-table';
+import { Meta, StoryObj } from '@storybook/react-vite';
 import Button from '@synerise/ds-button';
 import Icon, { AddM } from '@synerise/ds-icon';
+import Table, { DSTableProps } from '@synerise/ds-table';
 
-import { renderWithIconInHeaders, TableMeta } from '../Table.utils';
-import { DATA_SOURCE, COLUMNS } from './SortableColumns.data';
+import { TableMeta, renderWithIconInHeaders } from '../Table.utils';
+import { COLUMNS, DATA_SOURCE } from './SortableColumns.data';
 
-type RowType = typeof DATA_SOURCE[number];
+type RowType = (typeof DATA_SOURCE)[number];
 type Story = StoryObj<StoryType>;
 type StoryType = DSTableProps<RowType> & {
   showIconsInHeader: boolean;
@@ -34,12 +34,22 @@ export default {
   parameters: {
     ...TableMeta.parameters,
     controls: {
-      exclude: ['randomiseSelectionColumn']
-    }
+      exclude: ['randomiseSelectionColumn'],
+    },
   },
   title: 'Components/Table/SortableTable',
-  render: ({ showIconsInHeader, multipleSortOrder, sortRenderType, showHeaderButton, columnsData, ...args }) => {
-    const columns = renderWithIconInHeaders<RowType>(columnsData, showIconsInHeader).map(col => ({
+  render: ({
+    showIconsInHeader,
+    multipleSortOrder,
+    sortRenderType,
+    showHeaderButton,
+    columnsData,
+    ...args
+  }) => {
+    const columns = renderWithIconInHeaders<RowType>(
+      columnsData,
+      showIconsInHeader,
+    ).map((col) => ({
       ...col,
       sorter: {
         ...(col.sorter as object),

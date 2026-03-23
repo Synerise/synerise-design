@@ -1,7 +1,13 @@
-import React, { useState } from 'react';
 import random from 'lodash/random';
-import { Meta, StoryObj } from '@storybook/react-webpack5';
-import { ItemUploader, ItemUploaderProps, FileWithContent, ExtendedFile } from '@synerise/ds-file-uploader';
+import React, { useState } from 'react';
+
+import { Meta, StoryObj } from '@storybook/react-vite';
+import {
+  ExtendedFile,
+  FileWithContent,
+  ItemUploader,
+  ItemUploaderProps,
+} from '@synerise/ds-file-uploader';
 
 import FileUploaderMeta from './FileUploader.stories';
 
@@ -11,8 +17,15 @@ type StoryProps = ItemUploaderProps & {
 };
 type Story = StoryObj<StoryProps>;
 
-const getFiles = (files: ExtendedFile[], options?: { error?: string; disabled?: boolean }) => {
-  return files.map(file => ({ ...file, error: options?.error || undefined, disabled: options?.disabled || undefined }));
+const getFiles = (
+  files: ExtendedFile[],
+  options?: { error?: string; disabled?: boolean },
+) => {
+  return files.map((file) => ({
+    ...file,
+    error: options?.error || undefined,
+    disabled: options?.disabled || undefined,
+  }));
 };
 export default {
   ...FileUploaderMeta,
@@ -20,7 +33,7 @@ export default {
   component: ItemUploader,
   render: ({ disabledFiles, uploadError, ...args }) => {
     const [files, setFiles] = useState<Array<ExtendedFile>>([]);
-    const clearProgress = newFiles => {
+    const clearProgress = (newFiles) => {
       setTimeout(() => {
         setFiles([...files, ...newFiles.map((file, index) => ({ file }))]);
       }, 4000);
@@ -29,17 +42,32 @@ export default {
       setFiles([]);
       const uploadedFiles: ExtendedFile[] = [
         ...files,
-        ...newFiles.map((file, index) => ({ file, error: args.error, progress: random(0, 100) } as ExtendedFile)),
+        ...newFiles.map(
+          (file, index) =>
+            ({
+              file,
+              error: args.error,
+              progress: random(0, 100),
+            }) as ExtendedFile,
+        ),
       ];
       setFiles(uploadedFiles);
       clearProgress(newFiles);
     };
-    const onRemove = (_file: FileWithContent, fileIndex: number) => setFiles(files.filter((_file, index) => index !== fileIndex));
+    const onRemove = (_file: FileWithContent, fileIndex: number) =>
+      setFiles(files.filter((_file, index) => index !== fileIndex));
     const fileOptions = {
       disabled: disabledFiles,
       error: uploadError ? 'Error notification' : undefined,
     };
-    return <ItemUploader {...args} files={getFiles(files, fileOptions)} onRemove={onRemove} onUpload={onUpload} />;
+    return (
+      <ItemUploader
+        {...args}
+        files={getFiles(files, fileOptions)}
+        onRemove={onRemove}
+        onUpload={onUpload}
+      />
+    );
   },
 } as Meta<StoryProps>;
 

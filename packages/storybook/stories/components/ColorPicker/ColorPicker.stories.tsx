@@ -1,26 +1,26 @@
 import React from 'react';
-import { Meta, StoryObj } from '@storybook/react-webpack5';
 import { useArgs } from 'storybook/preview-api';
 import { fn } from 'storybook/test';
 
+import { Meta, StoryObj } from '@storybook/react-vite';
 import ColorPicker from '@synerise/ds-color-picker';
 
-import { size } from '../ColorPicker/ColorPicker.data';
 import {
   BOOLEAN_CONTROL,
-  centeredPaddedWrapper,
   COLOR_CONTROL,
   NUMBER_CONTROL,
   REACT_NODE_AS_STRING,
   STRING_CONTROL,
+  centeredPaddedWrapper,
 } from '../../utils';
+import { size } from '../ColorPicker/ColorPicker.data';
 
 export default {
   title: 'Components/Pickers/ColorPicker',
   tags: ['autodocs'],
   component: ColorPicker,
   decorators: [centeredPaddedWrapper],
-  render: args => {
+  render: (args) => {
     const [{ value, colors }, updateArgs] = useArgs();
     const handleChange = (newColor: string) => {
       updateArgs({ value: newColor });
@@ -33,7 +33,13 @@ export default {
     };
 
     return (
-      <ColorPicker {...args} value={value} colors={colors} onSaveColors={handleSaveColors} onChange={handleChange} />
+      <ColorPicker
+        {...args}
+        value={value}
+        colors={colors}
+        onSaveColors={handleSaveColors}
+        onChange={handleChange}
+      />
     );
   },
   argTypes: {
@@ -49,12 +55,12 @@ export default {
     placeholder: STRING_CONTROL,
     size: size,
     value: COLOR_CONTROL,
-    colors: { control: false }
+    colors: { control: false },
   },
   args: {
     onSaveColors: fn(),
     onChange: fn(),
-  }
+  },
 } as Meta<typeof ColorPicker>;
 
 type Story = StoryObj<typeof ColorPicker>;
@@ -73,15 +79,14 @@ export const Default: Story = {
 export const Disabled: Story = {
   args: {
     ...Default.args,
-    disabled: true
+    disabled: true,
   },
 };
-
 
 export const WithError: Story = {
   args: {
     ...Default.args,
-    errorText: 'An error message'
+    errorText: 'An error message',
   },
 };
 

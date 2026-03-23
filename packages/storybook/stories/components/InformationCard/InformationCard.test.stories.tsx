@@ -1,7 +1,7 @@
 import React, { ReactElement, ReactNode, useRef, useState } from 'react';
 import { expect, fn, userEvent, waitFor, within } from 'storybook/test';
 
-import { Meta, StoryObj } from '@storybook/react-webpack5';
+import { Meta, StoryObj } from '@storybook/react-vite';
 import Button from '@synerise/ds-button';
 import Dropdown from '@synerise/ds-dropdown';
 import type { InformationCardProps } from '@synerise/ds-information-card';

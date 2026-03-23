@@ -4,7 +4,6 @@
   "extends": "../../../config/typescript/tsconfig.base.json",
   "compilerOptions": {
     "rootDir": "src",
-    "baseUrl": "src",
     "jsx": "react",
     "sourceMap": false,
     "declaration": true

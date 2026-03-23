@@ -1,42 +1,60 @@
 import React from 'react';
-import { Meta, StoryObj } from '@storybook/react-webpack5';
 import { useArgs } from 'storybook/preview-api';
 
-import Icon, { ClockS, AbTestXl, CalendarXl, LaunchXl, AdOnDemandL } from '@synerise/ds-icon';
+import { Meta, StoryObj } from '@storybook/react-vite';
 import CardSelect from '@synerise/ds-card-select';
 import type { CardSelectProps } from '@synerise/ds-card-select';
-
 import { theme } from '@synerise/ds-core';
+import Icon, {
+  AbTestXl,
+  AdOnDemandL,
+  CalendarXl,
+  ClockS,
+  LaunchXl,
+} from '@synerise/ds-icon';
+
 import {
-  cardSelectWrapper,
-  reactNodeAsSelect,
-  NUMBER_CONTROL,
   BOOLEAN_CONTROL,
-  REACT_NODE_AS_STRING,
-  controlFromOptionsArray,
   CLASSNAME_ARG_CONTROL,
+  NUMBER_CONTROL,
+  REACT_NODE_AS_STRING,
+  cardSelectWrapper,
+  controlFromOptionsArray,
+  reactNodeAsSelect,
 } from '../../utils';
 
-type CardSelectStoryProps = CardSelectProps & { showTag?: boolean; showTagTooltip?: boolean };
+type CardSelectStoryProps = CardSelectProps & {
+  showTag?: boolean;
+  showTagTooltip?: boolean;
+};
 
 type Story = StoryObj<CardSelectStoryProps>;
 
 const tagProps = {
   name: 'Coming soon',
   color: theme.palette['yellow-600'],
-  prefixel: <Icon size={20} className="icon1" color={theme.palette.white} component={<ClockS />} />,
+  prefixel: (
+    <Icon
+      size={20}
+      className="icon1"
+      color={theme.palette.white}
+      component={<ClockS />}
+    />
+  ),
 };
 
 const tagTooltipProps = { title: 'Coming in Q3' };
 
-const infoTooltipProps = { title: 'Displayed only by calling a dedicated SDK method' };
+const infoTooltipProps = {
+  title: 'Displayed only by calling a dedicated SDK method',
+};
 
 export default {
   component: CardSelect,
   title: 'Components/CardSelect',
   tags: ['autodocs'],
   decorators: [cardSelectWrapper],
-  render: args => {
+  render: (args) => {
     const [{ value }, updateArgs] = useArgs();
     const handleChange = (newValue: boolean) => {
       updateArgs({
@@ -78,7 +96,11 @@ export default {
     }),
     iconSize: NUMBER_CONTROL,
     tickSize: NUMBER_CONTROL,
-    elementsPosition: controlFromOptionsArray('select', ['left', 'center', 'right']),
+    elementsPosition: controlFromOptionsArray('select', [
+      'left',
+      'center',
+      'right',
+    ]),
   },
 } as Meta<CardSelectStoryProps>;
 
@@ -114,7 +136,8 @@ export const WithTag: Story = {
   },
   args: {
     title: 'Semantic search',
-    description: 'Method interprets user queries contextually for more meaningful results',
+    description:
+      'Method interprets user queries contextually for more meaningful results',
     tagProps,
   },
 };
@@ -127,7 +150,8 @@ export const WithTooltipOnTag: Story = {
   },
   args: {
     title: 'Semantic search',
-    description: 'Method interprets user queries contextually for more meaningful results',
+    description:
+      'Method interprets user queries contextually for more meaningful results',
     tagProps,
     tagTooltipProps,
   },
@@ -141,7 +165,8 @@ export const WithShadow: Story = {
   },
   args: {
     title: 'Semantic search',
-    description: 'Method interprets user queries contextually for more meaningful results',
+    description:
+      'Method interprets user queries contextually for more meaningful results',
     tagProps,
     icon: <AbTestXl />,
     raised: true,
@@ -182,7 +207,8 @@ export const Disabled: Story = {
     icon: <AbTestXl />,
     disabled: true,
     title: 'Semantic search',
-    description: 'Method interprets user queries contextually for more meaningful results',
+    description:
+      'Method interprets user queries contextually for more meaningful results',
     tagProps,
     tagTooltipProps,
   },
@@ -194,7 +220,8 @@ export const SmallSizeDisabled: Story = {
     icon: <AbTestXl />,
     disabled: true,
     title: 'Semantic search',
-    description: 'Method interprets user queries contextually for more meaningful results',
+    description:
+      'Method interprets user queries contextually for more meaningful results',
     tagProps,
     tagTooltipProps,
   },

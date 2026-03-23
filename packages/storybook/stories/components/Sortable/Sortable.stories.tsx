@@ -1,12 +1,11 @@
 import React from 'react';
-import { Meta, StoryObj } from '@storybook/react-webpack5';
 import { fn } from 'storybook/test';
 
-import Sortable, { SortableProps } from '@synerise/ds-sortable';
+import { Meta, StoryObj } from '@storybook/react-vite';
 import Icon, { DragHandleM } from '@synerise/ds-icon';
+import Sortable, { SortableProps } from '@synerise/ds-sortable';
 
 import { fixedWrapper200 } from '../../utils';
-
 import { SortableItem, SortableItemWithHandle } from './SortableItem';
 
 export default {
@@ -58,11 +57,11 @@ type Story = StoryObj<SortableProps>;
 export const ListItems: Story = {
   args: {
     ItemComponent: SortableItem,
-  }
+  },
 };
 
 export const ListItemWithHandle: Story = {
   args: {
     ItemComponent: SortableItemWithHandle,
-  }
+  },
 };

@@ -1,16 +1,23 @@
 import React, { ReactNode } from 'react';
-import { Meta, StoryObj } from '@storybook/react-webpack5';
-import { useArgs } from 'storybook/preview-api';
 import { action } from 'storybook/actions';
-import { within, expect, waitFor, userEvent, fn } from 'storybook/test';
+import { useArgs } from 'storybook/preview-api';
+import { expect, fn, userEvent, waitFor, within } from 'storybook/test';
 
-import { BooleanM, CalendarM, HashM, ListM, SearchM, TextM } from '@synerise/ds-icon';
-import Tabs from '@synerise/ds-tabs';
-import type { TabsProps, TabsConfiguration } from '@synerise/ds-tabs';
-
-import { theme } from '@synerise/ds-core';
-import { fixedWrapper588, BOOLEAN_CONTROL, fixedWrapper300 } from '../../utils';
+import { Meta, StoryObj } from '@storybook/react-vite';
 import Badge from '@synerise/ds-badge';
+import { theme } from '@synerise/ds-core';
+import {
+  BooleanM,
+  CalendarM,
+  HashM,
+  ListM,
+  SearchM,
+  TextM,
+} from '@synerise/ds-icon';
+import Tabs from '@synerise/ds-tabs';
+import type { TabsConfiguration, TabsProps } from '@synerise/ds-tabs';
+
+import { BOOLEAN_CONTROL, fixedWrapper300, fixedWrapper588 } from '../../utils';
 
 type Story = StoryObj<TabsProps>;
 
@@ -71,8 +78,13 @@ const counterBadge = (
   />
 );
 
-const getTabsFromLabels = (labels: string[], icon?: ReactNode, disabled?: boolean, suffixel?: ReactNode) => {
-  return labels.map(label => ({
+const getTabsFromLabels = (
+  labels: string[],
+  icon?: ReactNode,
+  disabled?: boolean,
+  suffixel?: ReactNode,
+) => {
+  return labels.map((label) => ({
     label,
     icon,
     disabled,
@@ -85,7 +97,7 @@ export default {
   title: 'Components/Tabs',
   tags: ['autodocs'],
   decorators: [fixedWrapper588],
-  render: args => {
+  render: (args) => {
     const [{ activeTab }, updateArgs] = useArgs();
     const handleTabClick = (tabIndex: number) => {
       updateArgs({
@@ -94,7 +106,9 @@ export default {
       args.handleTabClick?.(tabIndex);
     };
 
-    return <Tabs {...args} activeTab={activeTab} handleTabClick={handleTabClick} />;
+    return (
+      <Tabs {...args} activeTab={activeTab} handleTabClick={handleTabClick} />
+    );
   },
   args: {
     tabs: getTabsFromLabels(defaultLabels),
@@ -148,7 +162,9 @@ export const WithHiddenTabs: Story = {
   },
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
-    await waitFor(async () => expect(await canvas.findAllByRole('button')).toHaveLength(3));
+    await waitFor(async () =>
+      expect(await canvas.findAllByRole('button')).toHaveLength(3),
+    );
   },
 };
 
@@ -166,10 +182,16 @@ export const WithIconsAndTooltip: Story = {
   },
   play: async ({ canvasElement, args }) => {
     const canvas = within(canvasElement);
-    await waitFor(async () => expect(await canvas.findAllByTestId('ds-tabs-tab-icon')).toHaveLength(args.tabs.length));
+    await waitFor(async () =>
+      expect(await canvas.findAllByTestId('ds-tabs-tab-icon')).toHaveLength(
+        args.tabs.length,
+      ),
+    );
     const buttons = await canvas.findAllByTestId('ds-tabs-tab-icon');
     userEvent.hover(buttons[0]);
-    await waitFor(async () => expect(await canvas.findByText(args.tabs[0].tooltip)).toBeVisible());
+    await waitFor(async () =>
+      expect(await canvas.findByText(args.tabs[0].tooltip)).toBeVisible(),
+    );
   },
 };
 export const WithIconsAndLabels: Story = {

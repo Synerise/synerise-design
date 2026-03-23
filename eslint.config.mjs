@@ -25,6 +25,7 @@ export default defineConfig([
       '**/icon/src/icons/',
       '**/avatar/build/',
       '**/avatar/src/defaultAvatars/',
+      '**/core/src/js/DSProvider/ThemeProvider/variables.ts',
       'packages/storybook/',
       ...testFiles,
     ],

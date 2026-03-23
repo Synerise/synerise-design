@@ -2,7 +2,7 @@ import React from 'react';
 import { useArgs } from 'storybook/preview-api';
 import { fn } from 'storybook/test';
 
-import { Meta, StoryObj } from '@storybook/react-webpack5';
+import { Meta, StoryObj } from '@storybook/react-vite';
 import Checkbox, { CheckboxTristateProps } from '@synerise/ds-checkbox';
 
 import {

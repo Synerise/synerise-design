@@ -1,6 +1,6 @@
 const componentStoryTemplate = (componentName, packageName) => {
   return `import React from 'react';
-import { Meta, StoryObj } from '@storybook/react-webpack5';
+import { Meta, StoryObj } from '@storybook/react-vite';
 
 import ${componentName}, { ${componentName}Props } from '${packageName}';
 
@@ -12,7 +12,7 @@ export default {
     layout: 'padded',
   },
   args: { },
-  argsTypes: { },
+  argTypes: { },
 } as Meta<${componentName}Props>;
 
 export const Default: StoryObj<${componentName}Props> = {};\n`;

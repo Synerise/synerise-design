@@ -1,9 +1,16 @@
-import { Meta, StoryObj } from '@storybook/react-webpack5';
+import {
+  expect,
+  fireEvent,
+  fn,
+  userEvent,
+  waitFor,
+  within,
+} from 'storybook/test';
 
-import { within, waitFor, userEvent, fn, expect, fireEvent } from 'storybook/test';
+import { Meta, StoryObj } from '@storybook/react-vite';
 import type { ItemPickerProps } from '@synerise/ds-item-picker';
-import { FLAT_DATA_SOURCE } from './ItemPickerLegacy.data';
 
+import { FLAT_DATA_SOURCE } from './ItemPickerLegacy.data';
 import ItemPickerMeta, { Default } from './ItemPickerLegacy.stories';
 
 export default {
@@ -15,22 +22,30 @@ export default {
     onChange: fn(),
     onClear: fn(),
     onFocus: fn(),
-    onBlur: fn()
-  }
+    onBlur: fn(),
+  },
 } as Meta<ItemPickerProps>;
 
 type Story = StoryObj<ItemPickerProps>;
 
 const runOpenDropdown = async (canvas, args) => {
   await userEvent.click(canvas.getByText(args.placeholder as string));
-  await waitFor(() => expect(canvas.getByTestId('ds-item-picker-dropdown')).toBeInTheDocument());
-  await waitFor(() => expect(canvas.getByTestId('ds-item-picker-dropdown')).toBeVisible());
+  await waitFor(() =>
+    expect(canvas.getByTestId('ds-item-picker-dropdown')).toBeInTheDocument(),
+  );
+  await waitFor(() =>
+    expect(canvas.getByTestId('ds-item-picker-dropdown')).toBeVisible(),
+  );
   await canvas.findByPlaceholderText(args.searchPlaceholder!);
   const dropdown = within(canvas.getByTestId('ds-item-picker-dropdown'));
-  await waitFor(() => expect(dropdown.getAllByRole('menuitem')).toHaveLength(FLAT_DATA_SOURCE.length));
+  await waitFor(() =>
+    expect(dropdown.getAllByRole('menuitem')).toHaveLength(
+      FLAT_DATA_SOURCE.length,
+    ),
+  );
 
   return {
-    dropdown
+    dropdown,
   };
 };
 
@@ -41,7 +56,7 @@ export const DropdownOpen: Story = {
   },
   play: async ({ canvasElement, args }) => {
     const canvas = within(canvasElement.parentElement!);
-    await runOpenDropdown(canvas, args)
+    await runOpenDropdown(canvas, args);
   },
 };
 
@@ -49,11 +64,17 @@ export const SelectItem: Story = {
   ...DropdownOpen,
   play: async ({ canvasElement, args }) => {
     const canvas = within(canvasElement.parentElement!);
-    const { dropdown } = await runOpenDropdown(canvas, args)
+    const { dropdown } = await runOpenDropdown(canvas, args);
     const itemIndex = 2;
-    await waitFor(() => expect(dropdown.getAllByRole('menuitem')[itemIndex]).not.toHaveStyle({ pointerEvents: 'none' }));
+    await waitFor(() =>
+      expect(dropdown.getAllByRole('menuitem')[itemIndex]).not.toHaveStyle({
+        pointerEvents: 'none',
+      }),
+    );
     await userEvent.click(dropdown.getAllByRole('menuitem')[itemIndex]);
-    await waitFor(() => expect(canvas.getByTestId('ds-item-picker-dropdown')).not.toBeVisible());
+    await waitFor(() =>
+      expect(canvas.getByTestId('ds-item-picker-dropdown')).not.toBeVisible(),
+    );
     expect(args.onChange).toHaveBeenCalled();
   },
 };
@@ -62,14 +83,15 @@ export const ClearSelectedItem: Story = {
   ...DropdownOpen,
   args: {
     ...DropdownOpen.args,
-    selectedItem: FLAT_DATA_SOURCE[2]
+    selectedItem: FLAT_DATA_SOURCE[2],
   },
   play: async ({ canvasElement, args }) => {
     const canvas = within(canvasElement.parentElement!);
     await fireEvent.click(canvas.getByTestId('clear-icon'));
 
-    await waitFor(() => expect(canvas.getByText(args.placeholder as string)).toBeInTheDocument());
+    await waitFor(() =>
+      expect(canvas.getByText(args.placeholder as string)).toBeInTheDocument(),
+    );
     expect(args.onClear).toHaveBeenCalled();
   },
 };
-

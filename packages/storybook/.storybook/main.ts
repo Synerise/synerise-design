@@ -1,8 +1,13 @@
-import { dirname, join } from 'path';
+// @ts-expect-error no type declarations
+import NpmImportPlugin from 'less-plugin-npm-import';
+import { dirname, join, resolve } from 'path';
 import deeperSortSetup from 'storybook-deeper-sort';
 import { fileURLToPath } from 'url';
+import type { Plugin } from 'vite';
 
-import type { StorybookConfig } from '@storybook/react-webpack5';
+import type { StorybookConfig } from '@storybook/react-vite';
+
+const __dirname = dirname(fileURLToPath(import.meta.url));
 
 deeperSortSetup(['Introduction', 'Tokens', 'Components', ['*', 'Tests']], {
   docsFirst: false,
@@ -15,6 +20,69 @@ function getAbsolutePath(value: string): string {
   }
   return dirname(fileURLToPath(resolved));
 }
+
+/**
+ * Vite plugin that replaces the old webpack transform-rename-import babel plugin.
+ * Rewrites @synerise/ds-<name> and @synerise/ds-<name>/dist/... imports
+ * to packages/components/<name>/src/... for all packages except core, icon, avatar.
+ */
+function dsSourceRedirectPlugin(): Plugin {
+  const EXCLUDED = /^(core|icon|avatar)$/;
+  const DS_PATTERN = /^@synerise\/ds-([a-z0-9-]+)(\/dist)?(\/.*)?$/;
+  const componentsDir = resolve(__dirname, '../../../packages/components');
+
+  return {
+    name: 'ds-source-redirect',
+    enforce: 'pre',
+    async resolveId(source, importer) {
+      const match = DS_PATTERN.exec(source);
+      if (!match) return null;
+      const [, pkgName, , rest = ''] = match;
+      if (EXCLUDED.test(pkgName)) return null;
+      // Resolve from the component's own directory so its dependencies are found
+      const pkgDir = resolve(componentsDir, pkgName);
+      const resolved = await this.resolve(
+        resolve(pkgDir, 'src' + rest),
+        importer,
+        { skipSelf: true },
+      );
+      return resolved;
+    },
+  };
+}
+
+/**
+ * Vite plugin that resolves bare imports from component sources
+ * by checking each component's own node_modules (pnpm strict mode).
+ */
+function componentDepsPlugin(): Plugin {
+  const componentsDir = resolve(__dirname, '../../../packages/components');
+
+  return {
+    name: 'component-deps-resolver',
+    enforce: 'pre',
+    async resolveId(source, importer) {
+      if (!importer || source.startsWith('.') || source.startsWith('/')) {
+        return null;
+      }
+      if (!importer.includes('/packages/components/')) return null;
+
+      const match = importer.match(/\/packages\/components\/([^/]+)\//);
+      if (!match) return null;
+
+      try {
+        return await this.resolve(
+          source,
+          resolve(componentsDir, match[1], 'package.json'),
+          { skipSelf: true },
+        );
+      } catch {
+        return null;
+      }
+    },
+  };
+}
+
 const config: StorybookConfig = {
   stories: [
     '../stories/**/*.mdx',
@@ -22,14 +90,13 @@ const config: StorybookConfig = {
   ],
   addons: [
     getAbsolutePath('storybook-addon-tag-badges'),
-    getAbsolutePath('@storybook/addon-webpack5-compiler-swc'),
     getAbsolutePath('@storybook/addon-docs'),
     getAbsolutePath('@chromatic-com/storybook'),
     getAbsolutePath('storybook-addon-pseudo-states'),
     getAbsolutePath('@storybook/addon-designs'),
   ],
   framework: {
-    name: getAbsolutePath('@storybook/react-webpack5'),
+    name: getAbsolutePath('@storybook/react-vite'),
     options: {},
   },
   tags: {
@@ -53,73 +120,35 @@ const config: StorybookConfig = {
     check: false,
   },
   staticDirs: ['../public'],
-  async webpackFinal(config) {
-    config.module = {
-      ...(config.module || {}),
-      rules: [
-        ...(config.module?.rules?.filter(
-          (f) => f?.test?.toString() !== '/\\.mdx$/',
-        ) || []),
-        {
-          test: /\.(png|jpe?g|gif)$/i,
-          type: 'asset/resource',
+  async viteFinal(config) {
+    const { mergeConfig } = await import('vite');
+    const monorepoRoot = resolve(__dirname, '../../..');
+    return mergeConfig(config, {
+      plugins: [dsSourceRedirectPlugin(), componentDepsPlugin()],
+      server: {
+        fs: {
+          allow: [monorepoRoot],
         },
-        {
-          test: /\.mdx$/,
-          use: ['@mdx-js/loader'],
+      },
+      resolve: {
+        dedupe: ['styled-components', 'react', 'react-dom'],
+        alias: {
+          '@use-it/interval': '@use-it/interval/dist/interval.esm.js',
+          'highlight.js': resolve(
+            __dirname,
+            '../../../packages/components/code-snippet/node_modules/highlight.js',
+          ),
         },
-        {
-          test: /\.tsx?$/,
-          use: [
-            {
-              loader: 'babel-loader',
-              options: {
-                presets: ['babel-preset-react-app'],
-                plugins: [
-                  [
-                    'transform-rename-import',
-                    {
-                      replacements: [
-                        {
-                          original:
-                            '@synerise/ds-((?!core|icon$|icon/|avatar$|avatar/)[a-z0-9-]+)(/dist)?(.*)',
-                          replacement: '@synerise/ds-$1/src$3',
-                        },
-                      ],
-                    },
-                  ],
-                ],
-              },
-            },
-          ],
+      },
+      css: {
+        preprocessorOptions: {
+          less: {
+            javascriptEnabled: true,
+            plugins: [new NpmImportPlugin({ prefix: '~' })],
+          },
         },
-        {
-          test: /\.less$/,
-          use: [
-            {
-              loader: 'style-loader',
-            },
-            {
-              loader: 'css-loader',
-            },
-            {
-              loader: 'less-loader',
-              options: {
-                lessOptions: {
-                  javascriptEnabled: true,
-                },
-              },
-            },
-          ],
-        },
-      ],
-    };
-
-    config.resolve = {
-      ...(config.resolve || {}),
-      extensions: [...(config.resolve?.extensions || []), '.ts', '.tsx'],
-    };
-    return config;
+      },
+    });
   },
 };
 export default config;

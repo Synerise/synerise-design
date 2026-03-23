@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { Meta, StoryObj } from '@storybook/react-webpack5';
+import { Meta, StoryObj } from '@storybook/react-vite';
 import Loader from '@synerise/ds-loader';
 import Result from '@synerise/ds-result';
 import Scrollbar from '@synerise/ds-scrollbar';

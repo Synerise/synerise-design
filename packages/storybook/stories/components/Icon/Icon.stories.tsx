@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { Meta, StoryObj } from '@storybook/react-webpack5';
+import { Meta, StoryObj } from '@storybook/react-vite';
 import Icon from '@synerise/ds-icon';
 import type { BaseIconProps } from '@synerise/ds-icon';
 import * as large from '@synerise/ds-icon/dist/icons/L';

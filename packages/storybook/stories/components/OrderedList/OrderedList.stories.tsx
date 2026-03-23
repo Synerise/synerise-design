@@ -1,9 +1,15 @@
 import React from 'react';
-import { Meta, StoryObj } from '@storybook/react-webpack5';
-import { OrderedListSkeleton } from '@synerise/ds-skeleton';
+
+import { Meta, StoryObj } from '@storybook/react-vite';
 import OrderedList, { OrderedListProps } from '@synerise/ds-ordered-list';
+import { OrderedListSkeleton } from '@synerise/ds-skeleton';
+
 import { controlFromOptionsArray, fixedWrapper300 } from '../../utils';
-import { FORMATTERS, LIST_ITEMS, LIST_ITEMS_SINGLE_LEVEL } from './OrderedList.data';
+import {
+  FORMATTERS,
+  LIST_ITEMS,
+  LIST_ITEMS_SINGLE_LEVEL,
+} from './OrderedList.data';
 
 export default {
   component: OrderedList,

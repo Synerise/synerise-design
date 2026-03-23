@@ -1,6 +1,6 @@
 import React, { forwardRef, useState } from 'react';
 
-import { Meta, StoryObj } from '@storybook/react-webpack5';
+import { Meta, StoryObj } from '@storybook/react-vite';
 import Button, { Creator } from '@synerise/ds-button';
 import ButtonGroup from '@synerise/ds-button-group';
 import Checkbox from '@synerise/ds-checkbox';

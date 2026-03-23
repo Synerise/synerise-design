@@ -1,6 +1,6 @@
 import { expect, fn, userEvent, waitFor, within } from 'storybook/test';
 
-import { Meta, StoryObj } from '@storybook/react-webpack5';
+import { Meta, StoryObj } from '@storybook/react-vite';
 import type { ContextProps } from '@synerise/ds-context-selector';
 import { theme } from '@synerise/ds-core';
 

@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { Meta, StoryObj } from '@storybook/react-webpack5';
+import { Meta, StoryObj } from '@storybook/react-vite';
 import Button from '@synerise/ds-button';
 import { FormattedNumber } from '@synerise/ds-core';
 import Icon, { ArrowRightCircleM, OptionHorizontalM } from '@synerise/ds-icon';

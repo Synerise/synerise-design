@@ -1,7 +1,7 @@
 import React from 'react';
 import { action } from 'storybook/actions';
 
-import { Meta, StoryObj } from '@storybook/react-webpack5';
+import { Meta, StoryObj } from '@storybook/react-vite';
 import Avatar, { UserAvatar } from '@synerise/ds-avatar';
 import Badge from '@synerise/ds-badge';
 import Button from '@synerise/ds-button';

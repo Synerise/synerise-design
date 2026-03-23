@@ -4,7 +4,7 @@ import { FixedSizeList } from 'react-window';
 import { action } from 'storybook/actions';
 import { fn } from 'storybook/test';
 
-import { Meta, StoryObj } from '@storybook/react-webpack5';
+import { Meta, StoryObj } from '@storybook/react-vite';
 import Button from '@synerise/ds-button';
 import Icon, { AddM, EditM, FileDownloadM, TrashM } from '@synerise/ds-icon';
 import { SearchInput } from '@synerise/ds-search';

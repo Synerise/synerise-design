@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { fn } from 'storybook/test';
 
-import { Meta, StoryObj } from '@storybook/react-webpack5';
+import { Meta, StoryObj } from '@storybook/react-vite';
 import Slider, { type DefaultSliderProps } from '@synerise/ds-slider';
 
 import {

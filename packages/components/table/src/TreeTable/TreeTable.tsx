@@ -4,7 +4,6 @@ import { v4 as uuid } from 'uuid';
 
 import Button from '@synerise/ds-button';
 import { theme } from '@synerise/ds-core';
-import '@synerise/ds-core/dist/js/style';
 import Icon, { ChildRowLeftDownM } from '@synerise/ds-icon';
 
 import DSTable from '../Table';

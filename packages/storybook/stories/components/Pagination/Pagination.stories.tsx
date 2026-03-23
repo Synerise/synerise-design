@@ -1,18 +1,16 @@
 import React from 'react';
 
-import type { StoryObj, Meta } from '@storybook/react-webpack5';
-
+import type { Meta, StoryObj } from '@storybook/react-vite';
 import Pagination from '@synerise/ds-pagination';
 
 import {
-  centeredPaddedWrapper,
   CLASSNAME_ARG_CONTROL,
   NUMBER_CONTROL,
+  centeredPaddedWrapper,
 } from '../../utils';
 
-
 export default {
-  title: "Components/Pagination",
+  title: 'Components/Pagination',
   tags: ['autodocs'],
   component: Pagination,
   decorators: [centeredPaddedWrapper],

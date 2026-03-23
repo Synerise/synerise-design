@@ -1,6 +1,11 @@
-import { Meta, StoryObj } from '@storybook/react-webpack5';
+import { Meta, StoryObj } from '@storybook/react-vite';
 import { Paragraph as ParagraphComponent } from '@synerise/ds-typography';
-import { CLASSNAME_ARG_CONTROL, fixedWrapper300, STRING_CONTROL } from '../../utils';
+
+import {
+  CLASSNAME_ARG_CONTROL,
+  STRING_CONTROL,
+  fixedWrapper300,
+} from '../../utils';
 
 export default {
   component: ParagraphComponent,

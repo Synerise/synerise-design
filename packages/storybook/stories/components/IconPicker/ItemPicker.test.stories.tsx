@@ -1,6 +1,6 @@
 import { expect, fn, userEvent, waitFor, within } from 'storybook/test';
 
-import { Meta, StoryObj } from '@storybook/react-webpack5';
+import { Meta, StoryObj } from '@storybook/react-vite';
 import type { DataSource, IconPickerProps } from '@synerise/ds-icon-picker';
 
 import IconPickerMeta from './IconPicker.stories';

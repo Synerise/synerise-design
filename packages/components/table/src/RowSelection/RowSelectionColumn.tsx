@@ -69,14 +69,15 @@ export function RowSelectionColumn<T extends object & RowType<T>>({
   ]);
 
   const isChecked: boolean = useMemo(() => {
-    if (Array.isArray(rowChildren) && !independentSelectionExpandedRows) {
-      return isChecked || allChildrenSelected;
-    }
-    return (
+    const isRecordChecked =
       recordKey !== undefined &&
       selectedRowKeys &&
-      selectedRowKeys.indexOf(recordKey) >= 0
-    );
+      selectedRowKeys.indexOf(recordKey) >= 0;
+
+    if (Array.isArray(rowChildren) && !independentSelectionExpandedRows) {
+      return isRecordChecked || allChildrenSelected;
+    }
+    return isRecordChecked;
   }, [
     allChildrenSelected,
     independentSelectionExpandedRows,

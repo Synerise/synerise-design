@@ -2,8 +2,6 @@ import classNames from 'classnames';
 import React from 'react';
 import { v4 as uuid } from 'uuid';
 
-import '@synerise/ds-core/dist/js/style';
-
 import * as S from '../../Menu.styles';
 import {
   type MenuItemProps,

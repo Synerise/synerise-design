@@ -1,15 +1,14 @@
 import React from 'react';
 
-import type { StoryObj, Meta } from '@storybook/react-webpack5';
-
+import type { Meta, StoryObj } from '@storybook/react-vite';
 import { MimeTypeIcon } from '@synerise/ds-icon';
 
 import {
-  centeredPaddedWrapper,
   CLASSNAME_ARG_CONTROL,
-  gappedColumnDecorator,
   NUMBER_CONTROL,
   STRING_CONTROL,
+  centeredPaddedWrapper,
+  gappedColumnDecorator,
 } from '../../utils';
 import { TYPES } from './MimeTypeIcon.data';
 
@@ -17,7 +16,7 @@ export default {
   title: 'Components/Icon/MimeTypeIcon',
   component: MimeTypeIcon,
   decorators: [centeredPaddedWrapper],
-  render: args => {
+  render: (args) => {
     return <MimeTypeIcon {...args} />;
   },
   argTypes: {
@@ -38,13 +37,15 @@ export const Default: Story = {
 
 export const AllTypes: Story = {
   decorators: [gappedColumnDecorator],
-  render: args => {
+  render: (args) => {
     return (
       <>
-        {TYPES.map(type => (
-          <div style={{width: '200px'}}><MimeTypeIcon {...args} type={type} /> - {type}</div>
+        {TYPES.map((type) => (
+          <div style={{ width: '200px' }}>
+            <MimeTypeIcon {...args} type={type} /> - {type}
+          </div>
         ))}
       </>
     );
-  }
+  },
 };

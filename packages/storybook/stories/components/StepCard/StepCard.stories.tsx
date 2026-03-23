@@ -1,16 +1,18 @@
 import React from 'react';
-import { Meta, StoryObj } from '@storybook/react-webpack5';
 import { useArgs, useMemo, useState } from 'storybook/preview-api';
 
-import StepCard, { StepCardProps } from '@synerise/ds-step-card';
-
-import Tag, { TagShape } from '@synerise/ds-tag';
-import { theme } from '@synerise/ds-core';
-import Tooltip from '@synerise/ds-tooltip';
+import { Meta, StoryObj } from '@storybook/react-vite';
 import Button from '@synerise/ds-button';
-import Icon, { CalendarM } from '@synerise/ds-icon';
-import DateRangePicker, { DateRange, fnsFormat } from '@synerise/ds-date-range-picker';
 import CompletedWithin, { PeriodValue } from '@synerise/ds-completed-within';
+import { theme } from '@synerise/ds-core';
+import DateRangePicker, {
+  DateRange,
+  fnsFormat,
+} from '@synerise/ds-date-range-picker';
+import Icon, { CalendarM } from '@synerise/ds-icon';
+import StepCard, { StepCardProps } from '@synerise/ds-step-card';
+import Tag, { TagShape } from '@synerise/ds-tag';
+import Tooltip from '@synerise/ds-tooltip';
 
 import {
   BOOLEAN_CONTROL,
@@ -18,8 +20,8 @@ import {
   PREFIXCLS_ARG_CONTROL,
   fixedWrapper800,
 } from '../../utils';
-import { ConditionExample } from '../Filter/ConditionExample';
 import { DEFAULT_STEP } from '../Condition/Condition.data';
+import { ConditionExample } from '../Filter/ConditionExample';
 import { STEP_CARD_TEXTS } from './StepCard.data';
 
 type StoryProps = StepCardProps & {
@@ -52,11 +54,14 @@ export default {
       args.onChangeName?.(newName);
     };
 
-    const [completedWithinValue, setCompletedWithinValue] = useState<PeriodValue>({
-      value: undefined,
-      period: undefined,
-    });
-    const [rangeValue, setRangeValue] = useState<DateRange | undefined>(undefined);
+    const [completedWithinValue, setCompletedWithinValue] =
+      useState<PeriodValue>({
+        value: undefined,
+        period: undefined,
+      });
+    const [rangeValue, setRangeValue] = useState<DateRange | undefined>(
+      undefined,
+    );
     const [steps, setSteps] = useState([DEFAULT_STEP()]);
 
     const dateRangePickerTrigger = useMemo(() => {
@@ -113,7 +118,11 @@ export default {
             )
           }
         >
-          <ConditionExample steps={steps} onChange={setSteps} readOnly={args.readOnly} />
+          <ConditionExample
+            steps={steps}
+            onChange={setSteps}
+            readOnly={args.readOnly}
+          />
         </StepCard>
       </div>
     );
@@ -124,7 +133,14 @@ export default {
     matching: true,
     showTagInHeader: true,
     texts: STEP_CARD_TEXTS,
-    headerRightSide: <Tag shape={TagShape.SINGLE_CHARACTER_ROUND} name="A" color={theme.palette['grey-200']} asPill />,
+    headerRightSide: (
+      <Tag
+        shape={TagShape.SINGLE_CHARACTER_ROUND}
+        name="A"
+        color={theme.palette['grey-200']}
+        asPill
+      />
+    ),
   },
 } as Meta<StoryProps>;
 
@@ -150,8 +166,8 @@ export const Default: Story = {
   }
 >
   <ConditionExample steps={steps} onChange={setSteps} readOnly={args.readOnly} />
-</StepCard>`
-      }
-    }
-  }
+</StepCard>`,
+      },
+    },
+  },
 };

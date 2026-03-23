@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
-import { Meta, StoryObj } from '@storybook/react-webpack5';
 
+import { Meta, StoryObj } from '@storybook/react-vite';
 import CardSelect, { CardSelectGroup } from '@synerise/ds-card-select';
 import type { CardSelectGroupProps } from '@synerise/ds-card-select';
 
-import CardSelectMeta, { WithIcon } from './CardSelect.stories';
-import { generateItems } from './CardSelect.data';
 import { CLASSNAME_ARG_CONTROL, controlFromOptionsArray } from '../../utils';
+import { generateItems } from './CardSelect.data';
+import CardSelectMeta, { WithIcon } from './CardSelect.stories';
 
 const cardProps = {
   ...CardSelectMeta.args,
@@ -21,7 +21,7 @@ export default {
   parameters: {
     layout: 'centered',
   },
-  render: args => {
+  render: (args) => {
     const [selected, setSelected] = useState<number | undefined>();
     const handleChange = (selectedIndex: number) => {
       setSelected(selectedIndex);
@@ -50,7 +50,7 @@ export default {
         ...cardProps,
         stretchToFit: true,
       },
-      true
+      true,
     ),
   },
 } as Meta<CardSelectGroupProps>;

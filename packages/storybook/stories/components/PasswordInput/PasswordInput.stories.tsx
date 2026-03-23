@@ -1,7 +1,7 @@
 import React, { ChangeEvent } from 'react';
 import { useArgs } from 'storybook/preview-api';
 
-import { Meta, StoryObj } from '@storybook/react-webpack5';
+import { Meta, StoryObj } from '@storybook/react-vite';
 import { PasswordInput } from '@synerise/ds-input';
 import type { InputProps } from '@synerise/ds-input';
 

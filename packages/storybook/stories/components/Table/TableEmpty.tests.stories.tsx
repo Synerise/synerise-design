@@ -1,7 +1,7 @@
 import React from 'react';
 import { expect, screen, waitFor } from 'storybook/test';
 
-import { Meta, StoryObj } from '@storybook/react-webpack5';
+import { Meta, StoryObj } from '@storybook/react-vite';
 import { DSTableProps } from '@synerise/ds-table';
 
 import { centeredPaddedWrapper, sleep } from '../../utils';

@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { expect, fn, userEvent, within } from 'storybook/test';
 import type { Emoji } from 'unicode-emoji-utils';
 
-import type { Meta, StoryObj } from '@storybook/react-webpack5';
+import type { Meta, StoryObj } from '@storybook/react-vite';
 import Button from '@synerise/ds-button';
 import { theme } from '@synerise/ds-core';
 import EmojiPicker, { EmojiPickerProps } from '@synerise/ds-emoji-picker';

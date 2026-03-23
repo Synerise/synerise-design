@@ -2,7 +2,7 @@ import isChromatic from 'chromatic/isChromatic';
 import React from 'react';
 import { fn } from 'storybook/test';
 
-import { Meta, StoryObj } from '@storybook/react-webpack5';
+import { Meta, StoryObj } from '@storybook/react-vite';
 import Button from '@synerise/ds-button';
 import Icon, { CloseM, WarningFillM } from '@synerise/ds-icon';
 import Popconfirm, { PopconfirmProps } from '@synerise/ds-popconfirm';
