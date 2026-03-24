@@ -1,6 +1,6 @@
 {
   "name": "storybook",
-  "version": "1.41.0",
+  "version": "1.41.1",
   "private": true,
   "repository": {
     "type": "git",
@@ -19,6 +19,11 @@
     "typescript": "4.9.5"
   },
   "dependencies": {
+    "@fortawesome/fontawesome-svg-core": "^6.0.0",
+    "@fortawesome/free-brands-svg-icons": "^6.0.0",
+    "@fortawesome/free-regular-svg-icons": "^6.0.0",
+    "@fortawesome/free-solid-svg-icons": "^6.0.0",
+    "@fortawesome/react-fontawesome": "^0.2.0",
     "@synerise/ds-action-area": "workspace:^",
     "@synerise/ds-alert": "workspace:^",
     "@synerise/ds-app-menu": "workspace:^",
@@ -133,11 +138,6 @@
     "@synerise/ds-unordered-list": "workspace:^",
     "@synerise/ds-utils": "workspace:^",
     "@synerise/ds-wizard": "workspace:^",
-    "@fortawesome/fontawesome-svg-core": "^6.0.0",
-    "@fortawesome/free-brands-svg-icons": "^6.0.0",
-    "@fortawesome/free-regular-svg-icons": "^6.0.0",
-    "@fortawesome/free-solid-svg-icons": "^6.0.0",
-    "@fortawesome/react-fontawesome": "^0.2.0",
     "dayjs": "^1.11.0",
     "lodash": "^4.17.21",
     "lodash.debounce": "^4.0.8",
