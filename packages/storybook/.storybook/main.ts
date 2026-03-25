@@ -1,4 +1,3 @@
-// @ts-expect-error no type declarations
 import NpmImportPlugin from 'less-plugin-npm-import';
 import { dirname, join, resolve } from 'path';
 import deeperSortSetup from 'storybook-deeper-sort';
@@ -94,6 +93,8 @@ const config: StorybookConfig = {
     getAbsolutePath('@chromatic-com/storybook'),
     getAbsolutePath('storybook-addon-pseudo-states'),
     getAbsolutePath('@storybook/addon-designs'),
+    getAbsolutePath('@storybook/addon-mcp'),
+    getAbsolutePath('@storybook/addon-vitest'),
   ],
   framework: {
     name: getAbsolutePath('@storybook/react-vite'),
