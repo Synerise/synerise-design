@@ -4,6 +4,7 @@ import React, {
   type SyntheticEvent,
   useCallback,
   useEffect,
+  useLayoutEffect,
   useMemo,
   useRef,
   useState,
@@ -57,14 +58,22 @@ export const Cascader = ({
   const previousCategory = enteredCategories[enteredCategories.length - 2];
   const isSearching = !!paths && searchQuery.length > 0;
 
-  const categoriesMaxHeight = maxHeight
-    ? Math.floor(
-        (maxHeight - Number(categoriesContainer?.current?.offsetTop)) /
-          CATEGORY_ITEM_HEIGHT,
-      ) *
+  const [categoriesMaxHeight, setCategoriesMaxHeight] = useState<
+    number | undefined
+  >(undefined);
+
+  useLayoutEffect(() => {
+    if (!maxHeight) {
+      setCategoriesMaxHeight(undefined);
+      return;
+    }
+    const offsetTop = categoriesContainer.current?.offsetTop ?? 0;
+    const calculated =
+      Math.floor((maxHeight - offsetTop) / CATEGORY_ITEM_HEIGHT) *
         CATEGORY_ITEM_HEIGHT +
-      VERTICAL_PADDING_OFFSET
-    : undefined;
+      VERTICAL_PADDING_OFFSET;
+    setCategoriesMaxHeight((prev) => (prev === calculated ? prev : calculated));
+  });
   const calculateVisibleRows = useMemo(() => {
     return Math.floor(
       (height - VERTICAL_PADDING_OFFSET) / BREADCRUMB_ITEM_HEIGHT,
@@ -218,7 +227,7 @@ export const Cascader = ({
         )}
         <Navigation
           backActionVisible={backActionVisible}
-          breadcrumbVisible={!searchQuery && !!activeCategory.path}
+          breadcrumbVisible={!searchQuery && activeCategory.path.length > 0}
           onPathClick={onPathClick}
           onHomeIconClick={onHomeIconClick}
           previousCategory={previousCategory}

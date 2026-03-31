@@ -6,6 +6,7 @@ export const InputWrapper = styled.div`
   box-shadow: 0 16px 32px 0 rgba(35, 41, 54, 0.05);
 `;
 export const SearchResults = styled.div<{ visible?: boolean }>`
+  position: relative;
   display: ${(props) => (!props.visible ? 'none' : 'block')};
   width: 100%;
   background: ${(props) => props.theme.palette.white};
