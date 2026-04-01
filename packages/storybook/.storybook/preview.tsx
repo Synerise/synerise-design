@@ -16,6 +16,8 @@ import {
   TOASTER_DEFAULTS,
   theme,
 } from '@synerise/ds-core';
+import { cssText as darkCssText } from '@synerise/ds-tokens/dark';
+import { cssText as lightCssText } from '@synerise/ds-tokens/light';
 import { TrayProvider } from '@synerise/ds-tray';
 
 configure({ asyncUtilTimeout: 3000 });
@@ -55,10 +57,40 @@ const preview: Preview = {
         ],
       },
     },
+    dsTheme: {
+      description: 'Design token theme',
+      defaultValue: 'light',
+      toolbar: {
+        title: 'Theme',
+        icon: 'mirror',
+        items: [
+          { value: 'light', title: 'Light' },
+          { value: 'dark', title: 'Dark' },
+        ],
+      },
+    },
   },
   decorators: [
     mockDateDecorator,
     (Story, storyContext) => {
+      const selectedTheme = storyContext.globals.dsTheme || 'light';
+      const themeCss = selectedTheme === 'dark' ? darkCssText : lightCssText;
+
+      // Inject theme CSS vars into the preview iframe
+      React.useEffect(() => {
+        const doc = document;
+        let styleEl = doc.getElementById(
+          'ds-token-theme',
+        ) as HTMLStyleElement | null;
+        if (!styleEl) {
+          styleEl = doc.createElement('style');
+          styleEl.id = 'ds-token-theme';
+          doc.head.appendChild(styleEl);
+        }
+        styleEl.textContent = `:root { ${themeCss} }`;
+        doc.documentElement.setAttribute('data-ds-theme', selectedTheme);
+      }, [selectedTheme, themeCss]);
+
       const DSProviderProps = {
         dataFormatConfig: {
           startWeekDayNotation: storyContext.globals.dataFormat,

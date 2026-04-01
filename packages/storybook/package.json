@@ -135,6 +135,7 @@
     "@synerise/ds-toast": "workspace:^",
     "@synerise/ds-toolbar": "workspace:^",
     "@synerise/ds-tooltip": "workspace:^",
+    "@synerise/ds-tokens": "workspace:^",
     "@synerise/ds-tray": "workspace:^",
     "@synerise/ds-typography": "workspace:^",
     "@synerise/ds-unordered-list": "workspace:^",

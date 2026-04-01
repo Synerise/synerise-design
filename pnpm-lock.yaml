@@ -5992,6 +5992,9 @@ importers:
       '@synerise/ds-toast':
         specifier: workspace:^
         version: link:../components/toast
+      '@synerise/ds-tokens':
+        specifier: workspace:^
+        version: link:../tokens
       '@synerise/ds-toolbar':
         specifier: workspace:^
         version: link:../components/toolbar
