@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.41.2](https://github.com/Synerise/synerise-design/compare/storybook@1.41.1...storybook@1.41.2) (2026-04-01)
+
+### Bug Fixes
+
+- **cascader:** simplified nested types ([c6e42a7](https://github.com/Synerise/synerise-design/commit/c6e42a7d22375cddaeb4d5cb13f9f528ede83fe1))
+- **subtle-form:** enable control component from outside ([7a7f585](https://github.com/Synerise/synerise-design/commit/7a7f5854a4c0dc128f4f16f4b076e42aa7bcd6ae))
+
 ## [1.41.1](https://github.com/Synerise/synerise-design/compare/storybook@1.41.0...storybook@1.41.1) (2026-03-24)
 
 **Note:** Version bump only for package storybook

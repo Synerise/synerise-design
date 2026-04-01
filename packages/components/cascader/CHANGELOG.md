@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.1.28](https://github.com/Synerise/synerise-design/compare/@synerise/ds-cascader@1.1.27...@synerise/ds-cascader@1.1.28) (2026-04-01)
+
+### Bug Fixes
+
+- **cascader:** simplified nested types ([c6e42a7](https://github.com/Synerise/synerise-design/commit/c6e42a7d22375cddaeb4d5cb13f9f528ede83fe1))
+
 ## [1.1.27](https://github.com/Synerise/synerise-design/compare/@synerise/ds-cascader@1.1.26...@synerise/ds-cascader@1.1.27) (2026-03-24)
 
 **Note:** Version bump only for package @synerise/ds-cascader

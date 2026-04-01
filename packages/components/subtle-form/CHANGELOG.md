@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.1.60](https://github.com/Synerise/synerise-design/compare/@synerise/ds-subtle-form@1.1.59...@synerise/ds-subtle-form@1.1.60) (2026-04-01)
+
+### Bug Fixes
+
+- **subtle-form:** enable control component from outside ([7a7f585](https://github.com/Synerise/synerise-design/commit/7a7f5854a4c0dc128f4f16f4b076e42aa7bcd6ae))
+
 ## [1.1.59](https://github.com/Synerise/synerise-design/compare/@synerise/ds-subtle-form@1.1.58...@synerise/ds-subtle-form@1.1.59) (2026-03-24)
 
 **Note:** Version bump only for package @synerise/ds-subtle-form
