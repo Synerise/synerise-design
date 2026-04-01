@@ -7,7 +7,7 @@ import React, {
 } from 'react';
 
 import { useTheme } from '@synerise/ds-core';
-import DatePicker from '@synerise/ds-date-picker';
+import { DatePicker } from '@synerise/ds-date-picker';
 import format from '@synerise/ds-date-picker/dist/format';
 import Icon, { CalendarM } from '@synerise/ds-icon';
 import Tooltip from '@synerise/ds-tooltip';
@@ -19,7 +19,7 @@ import { getFormattingString, replaceLettersWithUnderscore } from './utils';
 
 const SubtleDatePicker = ({
   value,
-  suffix,
+  suffix = true,
   suffixTooltip,
   format: dateFormat,
   label,
@@ -77,7 +77,7 @@ const SubtleDatePicker = ({
   return (
     <S.Subtle className="ds-subtle-form">
       <S.SubtleFormField
-        active={active || hasError}
+        $active={active || hasError}
         label={label}
         tooltip={labelTooltip}
       >
@@ -115,10 +115,10 @@ const SubtleDatePicker = ({
             />
           ) : (
             <S.Inactive
-              disabled={disabled}
+              $disabled={disabled}
               onClick={!disabled ? handleActivate : undefined}
-              blurred={blurred}
-              mask={!value}
+              $blurred={blurred}
+              $mask={!value}
             >
               <S.MainContent hasMargin>
                 {getDisplayText()}
@@ -129,15 +129,13 @@ const SubtleDatePicker = ({
                 )}
               </S.MainContent>
 
-              {!active && (
+              {!active && suffix && (
                 <S.Suffix select>
                   <Tooltip title={suffixTooltip}>
-                    {suffix ?? (
-                      <Icon
-                        component={<CalendarM />}
-                        color={theme.palette['grey-600']}
-                      />
-                    )}
+                    <Icon
+                      component={<CalendarM />}
+                      color={theme.palette['grey-600']}
+                    />
                   </Tooltip>
                 </S.Suffix>
               )}

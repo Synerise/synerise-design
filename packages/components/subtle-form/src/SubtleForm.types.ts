@@ -6,7 +6,7 @@ export type SubtleFieldProps = {
   active?: boolean;
   disabled?: boolean;
   labelTooltip?: FormFieldCommonProps['tooltip'];
-  suffix?: ReactNode;
+  suffix?: boolean;
   suffixTooltip?: ReactNode;
   activeElement?: () => ReactElement;
   inactiveElement?: () => ReactElement;

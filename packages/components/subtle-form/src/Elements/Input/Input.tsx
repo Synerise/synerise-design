@@ -12,7 +12,6 @@ import { Input } from '@synerise/ds-input';
 import Tooltip from '@synerise/ds-tooltip';
 
 import * as S from '../../SubtleForm.styles';
-import { focusPadding } from '../../SubtleForm.styles';
 import { type SubtleInputProps } from './Input.types';
 
 const SubtleInput = ({
@@ -23,7 +22,7 @@ const SubtleInput = ({
   label,
   labelTooltip,
   suffixTooltip,
-  suffix,
+  suffix = true,
   error,
   errorText,
   inputProps,
@@ -53,7 +52,7 @@ const SubtleInput = ({
   }, []);
   return (
     <S.Subtle className="ds-subtle-form">
-      <S.SubtleFormField active={active} label={label} tooltip={labelTooltip}>
+      <S.SubtleFormField $active={active} label={label} tooltip={labelTooltip}>
         <S.Container
           ref={containerRef}
           className="ds-subtle-input"
@@ -69,7 +68,7 @@ const SubtleInput = ({
               }}
               onBlur={!disabled ? handleDeactivate : undefined}
               value={value}
-              style={{ margin: 0, padding: focusPadding }}
+              style={{ margin: 0, paddingRight: suffix ? '28px' : '12px' }}
               placeholder={placeholder}
               error={error}
               errorText={errorText}
@@ -79,22 +78,22 @@ const SubtleInput = ({
           ) : (
             <S.Inactive
               onClick={!disabled ? handleActivate : undefined}
-              blurred={blurred}
-              disabled={disabled}
+              $blurred={blurred}
+              $disabled={disabled}
             >
               <S.MainContent>
                 {value && !!value.trim() ? value : placeholder}
               </S.MainContent>
-              <S.Suffix>
-                <Tooltip title={suffixTooltip}>
-                  {suffix ?? (
+              {suffix && (
+                <S.Suffix>
+                  <Tooltip title={suffixTooltip}>
                     <Icon
                       component={<EditS />}
                       color={theme.palette['grey-600']}
                     />
-                  )}
-                </Tooltip>
-              </S.Suffix>
+                  </Tooltip>
+                </S.Suffix>
+              )}
             </S.Inactive>
           )}
         </S.Container>
