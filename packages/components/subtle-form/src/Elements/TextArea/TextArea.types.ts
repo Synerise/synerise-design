@@ -1,4 +1,4 @@
-import { type TextAreaProps } from '@synerise/ds-input/dist/Textarea/Textarea.types';
+import { type RawTextAreaProps } from '@synerise/ds-input/dist/Textarea/Textarea.types';
 
 import { type SubtleFieldProps } from '../../SubtleForm.types';
 
@@ -10,7 +10,8 @@ export type SubtleTextAreaProps = {
   placeholder?: string;
   autoSize?: TextareaAutosize;
   error?: boolean;
-  textAreaProps?: TextAreaProps;
+  onActivate?: () => void;
+  textAreaProps?: RawTextAreaProps;
 } & SubtleFieldProps;
 
 export type TextareaAutosize = {

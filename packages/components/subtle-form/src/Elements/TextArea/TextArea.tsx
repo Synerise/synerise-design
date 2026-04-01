@@ -14,7 +14,7 @@ import { TextArea } from '@synerise/ds-input';
 import Tooltip from '@synerise/ds-tooltip';
 
 import * as S from '../../SubtleForm.styles';
-import { focusPadding } from '../../SubtleForm.styles';
+import { getFocusPadding } from '../../SubtleForm.styles';
 import { type SubtleTextAreaProps } from './TextArea.types';
 
 const FONT = 'Graphik LCG Web';
@@ -37,9 +37,11 @@ const SubtleTextArea = ({
   error,
   errorText,
   textAreaProps,
+  active: activeProp,
+  onActivate,
   ...rest
 }: SubtleTextAreaProps) => {
-  const [active, setActive] = useState(false);
+  const [active, setActive] = useState(activeProp ?? false);
   const [blurred, setBlurred] = useState<boolean>(false);
   const containerRef = useRef<HTMLDivElement>(null);
   const [visibleRows, setVisibleRows] = useState(minRows);
@@ -79,24 +81,44 @@ const SubtleTextArea = ({
     }
   }, [minRows, maxRows, value, calculateTextHeight]);
 
+  useEffect(() => {
+    if (activeProp !== undefined) {
+      setActive(activeProp);
+    }
+  }, [activeProp]);
+
   const handleDeactivate = useCallback(
     (event: FocusEvent<HTMLTextAreaElement>) => {
       if (textAreaProps) {
         const { onBlur } = textAreaProps;
         onBlur && onBlur(event);
       }
+      if (activeProp === false) {
+        return;
+      }
       setActive(false);
       setBlurred(true);
     },
-    [textAreaProps],
+    [textAreaProps, activeProp],
   );
   const handleActivate = useCallback(() => {
     setActive(true);
     setBlurred(false);
-  }, []);
+    onActivate?.();
+  }, [onActivate]);
+
+  const handleFocus = useCallback(
+    (event: FocusEvent<HTMLTextAreaElement>) => {
+      if (textAreaProps) {
+        const { onFocus } = textAreaProps;
+        onFocus && onFocus(event);
+      }
+    },
+    [textAreaProps],
+  );
   return (
-    <S.Subtle className="ds-subtle-form">
-      <S.SubtleFormField active={active} label={label} tooltip={labelTooltip}>
+    <S.Subtle className="ds-subtle-form" hasError={error}>
+      <S.SubtleFormField $active={active} label={label} tooltip={labelTooltip}>
         <S.Container
           ref={containerRef}
           className="ds-subtle-textarea"
@@ -114,9 +136,16 @@ const SubtleTextArea = ({
                   : undefined
               }
               onBlur={!disabled ? handleDeactivate : undefined}
+              onFocus={!disabled ? handleFocus : undefined}
               value={value}
               rows={visibleRows + 1}
-              style={{ margin: 0, padding: focusPadding }}
+              style={{
+                margin: 0,
+                padding: getFocusPadding({
+                  hasSuffix: suffix,
+                  state: 'focused',
+                }),
+              }}
               placeholder={placeholder}
               error={error}
               errorText={errorText}
@@ -126,29 +155,30 @@ const SubtleTextArea = ({
             />
           ) : (
             <S.Inactive
-              rows={visibleRows}
+              $rows={visibleRows}
               onClick={!disabled ? handleActivate : undefined}
-              blurred={blurred}
-              disabled={disabled}
+              $blurred={blurred}
+              $disabled={disabled}
+              isSuffixVisible={suffix}
             >
               <S.MainContent breakWord>
                 <S.ValueArea
                   disabled={disabled}
                   value={value && !!value.trim() ? value : placeholder}
                   onBlur={!disabled ? handleDeactivate : undefined}
-                  grey={!value && !!placeholder}
+                  isPlaceholder={!value && !!placeholder}
                 />
               </S.MainContent>
-              <S.Suffix>
-                <Tooltip title={suffixTooltip}>
-                  {suffix ?? (
+              {suffix && (
+                <S.Suffix>
+                  <Tooltip title={suffixTooltip}>
                     <Icon
                       component={<EditS />}
                       color={theme.palette['grey-600']}
                     />
-                  )}
-                </Tooltip>
-              </S.Suffix>
+                  </Tooltip>
+                </S.Suffix>
+              )}
             </S.Inactive>
           )}
         </S.Container>

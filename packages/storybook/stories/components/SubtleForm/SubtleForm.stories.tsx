@@ -22,6 +22,7 @@ export default {
   decorators: [fixedWrapper300],
   argTypes: {
     className: CLASSNAME_ARG_CONTROL,
+    suffix: BOOLEAN_CONTROL,
     error: BOOLEAN_CONTROL,
     errorText: REACT_NODE_AS_STRING,
     disabled: BOOLEAN_CONTROL,

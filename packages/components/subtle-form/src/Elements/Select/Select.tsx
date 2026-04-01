@@ -12,7 +12,7 @@ import { type SubtleSelectProps } from './Select.types';
 const SubtleSelect = ({
   disabled,
   value,
-  suffix,
+  suffix = true,
   suffixTooltip,
   label,
   children,
@@ -37,8 +37,8 @@ const SubtleSelect = ({
   }, []);
   const theme = useTheme();
   return (
-    <S.Subtle className="ds-subtle-form" disabled={disabled}>
-      <S.SubtleFormField active={active} label={label} tooltip={labelTooltip}>
+    <S.Subtle className="ds-subtle-form" $disabled={disabled}>
+      <S.SubtleFormField $active={active} label={label} tooltip={labelTooltip}>
         <SelectContainer
           ref={containerRef}
           className="ds-subtle-select"
@@ -64,21 +64,19 @@ const SubtleSelect = ({
             <S.Inactive
               className="inactive-content"
               onClick={!disabled ? handleActivate : undefined}
-              blurred={blurred}
-              disabled={disabled}
+              $blurred={blurred}
+              $disabled={disabled}
             >
               <S.MainContent className="main-content" hasMargin>
                 <>{value && !!String(value).trim() ? value : placeholder}</>
               </S.MainContent>
-              {!active && !disabled && (
+              {!active && !disabled && suffix && (
                 <S.Suffix select>
                   <Tooltip title={suffixTooltip}>
-                    {suffix ?? (
-                      <Icon
-                        component={<AngleDownS />}
-                        color={theme.palette['grey-600']}
-                      />
-                    )}
+                    <Icon
+                      component={<AngleDownS />}
+                      color={theme.palette['grey-600']}
+                    />
                   </Tooltip>
                 </S.Suffix>
               )}

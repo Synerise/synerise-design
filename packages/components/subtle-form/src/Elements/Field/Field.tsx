@@ -11,7 +11,7 @@ import { MaskedDatePlaceholder } from '../DatePicker/DatePicker.styles';
 
 const SubtleField = ({
   disabled,
-  suffix,
+  suffix = true,
   suffixTooltip,
   label,
   labelTooltip,
@@ -46,8 +46,12 @@ const SubtleField = ({
     handleDeactivate();
   });
   return (
-    <S.Subtle className="ds-subtle-form" disabled={disabled}>
-      <S.SubtleFormField active={isActive} label={label} tooltip={labelTooltip}>
+    <S.Subtle className="ds-subtle-form" $disabled={disabled}>
+      <S.SubtleFormField
+        $active={isActive}
+        label={label}
+        tooltip={labelTooltip}
+      >
         <S.Container
           ref={containerRef}
           className="ds-subtle-field"
@@ -61,9 +65,9 @@ const SubtleField = ({
               onFocus={!disabled ? handleActivate : undefined}
               onClick={!disabled ? handleActivate : undefined}
               onBlur={handleDeactivate}
-              blurred={blurred}
-              disabled={disabled}
-              mask={maskVisible}
+              $blurred={blurred}
+              $disabled={disabled}
+              $mask={maskVisible}
             >
               <S.MainContent hasMargin>
                 {inactiveElement && inactiveElement()}
@@ -71,15 +75,13 @@ const SubtleField = ({
                   <MaskedDatePlaceholder>{mask}</MaskedDatePlaceholder>
                 )}
               </S.MainContent>
-              {!active && !disabled && (
+              {!active && !disabled && suffix && (
                 <S.Suffix select>
                   <Tooltip title={suffixTooltip}>
-                    {suffix ?? (
-                      <Icon
-                        component={<EditS />}
-                        color={theme.palette['grey-600']}
-                      />
-                    )}
+                    <Icon
+                      component={<EditS />}
+                      color={theme.palette['grey-600']}
+                    />
                   </Tooltip>
                 </S.Suffix>
               )}

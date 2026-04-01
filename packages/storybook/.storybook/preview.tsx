@@ -86,6 +86,7 @@ const preview: Preview = {
       options: {
         dark: { name: 'Dark', value: theme.palette['grey-700'] },
         grey: { name: 'Grey', value: theme.palette['grey-300'] },
+        yellow: { name: 'Yellow', value: theme.palette['yellow-100'] },
         light: { name: 'Light', value: '#ffffff' },
       },
     },

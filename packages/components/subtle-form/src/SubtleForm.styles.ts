@@ -1,34 +1,38 @@
-import styled, {
-  type FlattenSimpleInterpolation,
-  css,
-  keyframes,
-} from 'styled-components';
+import styled, { css, keyframes } from 'styled-components';
 
-import type { ThemeProps } from '@synerise/ds-core';
 import FormField from '@synerise/ds-form-field';
+import { TextareaWrapper } from '@synerise/ds-input/dist/Textarea/Textarea.styles';
+import { hexToRgba } from '@synerise/ds-utils';
 
 import { MaskedDatePlaceholder } from './Elements/DatePicker/DatePicker.styles';
 
-const disableBlinkingCursor = (
-  props: ThemeProps & { grey: boolean },
-): FlattenSimpleInterpolation => css`
-  color: transparent;
-  text-shadow: 0 1px
-    ${props.grey
-      ? props.theme.palette['grey-500']
-      : props.theme.palette['grey-600']};
-`;
+const VERTICAL_PADDING = '8px';
+const VERTICAL_PADDING_TEXTAREA = '6px';
 
-export const blurPadding = `7px 40px 7px 0px`;
-export const focusPadding = `7px 28px 7px 12px`;
-export const blurAnimation = keyframes`
-  0% {
-        padding:${focusPadding};
-  }
-  100% {
-        padding:${blurPadding};
-  }
-`;
+type PaddingProps = { hasSuffix?: boolean; state?: 'hovered' | 'focused' };
+
+export const getFocusPadding = ({
+  hasSuffix = true,
+  state = 'hovered',
+}: PaddingProps) => {
+  const verticalPadding =
+    state === 'focused' ? VERTICAL_PADDING_TEXTAREA : VERTICAL_PADDING;
+  return `${verticalPadding} ${hasSuffix ? '28px' : '8px'} ${verticalPadding}  ${state === 'focused' ? '8px' : '7px'}`;
+};
+export const getBlurPadding = ({ hasSuffix = true }: PaddingProps) => {
+  return hasSuffix ? `8px 16px 8px 0` : `8px 40px 8px 0`;
+};
+
+const getBlurAnimation = (props: PaddingProps) => {
+  return keyframes`
+    0% {
+          padding: ${getFocusPadding(props)};
+    }
+    100% {
+          padding: ${getBlurPadding(props)}
+    }
+  `;
+};
 
 export const MainContent = styled.div<{
   hasMargin?: boolean;
@@ -73,20 +77,22 @@ export const Suffix = styled.div<{ select?: boolean }>`
 `;
 
 export const Inactive = styled.div<{
-  rows?: number;
-  blurred: boolean;
-  mask?: boolean;
-  disabled?: boolean;
+  $rows?: number;
+  $blurred: boolean;
+  $mask?: boolean;
+  $disabled?: boolean;
+  isSuffixVisible?: boolean;
+  isTextareaComponent?: boolean;
 }>`
   position: relative;
   width: 100%;
   height: 32px;
   display: flex;
-  ${(props) => !!props.rows && `height: ${props.rows * 17 + 17}px;`}
+  ${(props) => !!props.$rows && `height: ${props.$rows * 17 + 17}px;`}
   align-items: flex-start;
-  background: ${(props) => props.theme.palette.white};
-  padding: ${blurPadding};
-  opacity: ${(props) => (props.disabled ? `0.5` : `1`)};
+  background: transparent;
+  padding: ${(props) => getBlurPadding({ hasSuffix: props.isSuffixVisible })};
+  opacity: ${(props) => (props.$disabled ? `0.5` : `1`)};
   border-radius: 3px;
   transition:
     padding 0.1s ease-in,
@@ -94,8 +100,8 @@ export const Inactive = styled.div<{
   transition-delay: 0.2s;
 
   && {
-    ${(props): false | FlattenSimpleInterpolation =>
-      !!props.disabled &&
+    ${(props) =>
+      !!props.$disabled &&
       css`
         animation: none;
         textarea {
@@ -104,23 +110,24 @@ export const Inactive = styled.div<{
       `}
   }
 
-  ${(props): false | FlattenSimpleInterpolation =>
-    props.blurred &&
-    !props.disabled &&
+  ${(props) =>
+    props.$blurred &&
+    !props.$disabled &&
     css`
-      animation: ${blurAnimation} 0.1s ease-in;
+      animation: ${getBlurAnimation({ hasSuffix: props.isSuffixVisible })} 0.1s
+        ease-in;
     `}
-  ${(props): false | FlattenSimpleInterpolation =>
-    !props.disabled &&
+  ${(props) =>
+    !props.$disabled &&
     css`
       &:hover {
-        padding: ${focusPadding};
-        background: ${props.theme.palette['grey-050']};
+        padding: ${getFocusPadding({ hasSuffix: props.isSuffixVisible })};
+        background: ${hexToRgba(props.theme.palette['grey-300'], 0.4)};
         ${MainContent} {
-          ${props.mask && `color: transparent;`}
+          ${props.$mask && `color: transparent;`}
           ${MaskedDatePlaceholder} {
             left: 12px;
-            ${props.mask && `color: ${props.theme.palette['grey-600']};`}
+            ${props.$mask && `color: ${props.theme.palette['grey-600']};`}
           }
         }
         ${Suffix} {
@@ -130,12 +137,18 @@ export const Inactive = styled.div<{
     `}
 `;
 
-export const ValueArea = styled.textarea<{ grey: boolean }>`
+export const ValueArea = styled.textarea<{ isPlaceholder: boolean }>`
   && {
     font-variant-numeric: normal;
     word-wrap: break-word;
     overflow-wrap: break-word;
-    ${(props): FlattenSimpleInterpolation => disableBlinkingCursor(props)}
+    color: transparent;
+    text-shadow: 0 1px
+      ${(props) =>
+        props.isPlaceholder
+          ? props.theme.palette['grey-500']
+          : props.theme.palette['grey-600']};
+
     width: 100%;
     height: 100%;
     background: transparent;
@@ -165,7 +178,7 @@ export const Container = styled.div<{ active?: boolean; disabled?: boolean }>`
   }
   position: relative;
   width: 100%;
-  ${(props): false | FlattenSimpleInterpolation =>
+  ${(props) =>
     !!props.active &&
     css`
       margin: -1px 0 0 -1px;
@@ -183,7 +196,7 @@ export const Container = styled.div<{ active?: boolean; disabled?: boolean }>`
   && .ant-input-number-input::placeholder {
     padding-bottom: 8px;
   }
-  ${(props): FlattenSimpleInterpolation | false =>
+  ${(props) =>
     !!props.disabled &&
     css`
       && {
@@ -192,16 +205,23 @@ export const Container = styled.div<{ active?: boolean; disabled?: boolean }>`
     `}
 `;
 
-export const Subtle = styled.div<{ disabled?: boolean }>`
-  ${(props): FlattenSimpleInterpolation | false =>
-    !!props.disabled &&
+export const Subtle = styled.div<{ $disabled?: boolean; hasError?: boolean }>`
+  ${(props) =>
+    !!props.$disabled &&
     css`
       && {
         cursor: not-allowed;
       }
     `}
+
+  ${TextareaWrapper} {
+    ${(props) =>
+      props.hasError
+        ? `background-color: ${hexToRgba(props.theme.palette['red-100'], 0.4)};`
+        : `background-color: ${hexToRgba(props.theme.palette['blue-100'], 0.4)};`}
+  }
 `;
 
-export const SubtleFormField = styled(FormField)<{ active: boolean }>`
-  gap: ${(props) => (props.active ? `10px` : `8px`)};
+export const SubtleFormField = styled(FormField)<{ $active: boolean }>`
+  gap: ${(props) => (props.$active ? `9px` : `8px`)};
 `;
