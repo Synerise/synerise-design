@@ -22,6 +22,7 @@
     "build:js": "babel --delete-dir-on-start --root-mode upward src --out-dir dist --extensions '.js,.ts,.tsx'",
     "defs": "tsc --declaration --outDir dist/ --emitDeclarationOnly",
     "build:svgr": "node ./build/svgr.js",
+    "build:figma": "node ./build/figma-code-connect.js",
     "pack:ci": "pnpm pack --pack-destination ../../storybook/storybook-static/static",
     "prepublish": "pnpm run build",
     "test": "jest",
