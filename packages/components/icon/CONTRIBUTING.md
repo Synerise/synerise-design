@@ -21,3 +21,17 @@ Read more: https://gomakethings.com/currentcolor-and-svgs/
 Some svg objects have a fill-rule="evenodd" specified - svgr processing of those icons can sometimes result in shapes without transparent holes, where they were in the source svg.
 
 In that case the source svg needs to be simplified (i.e. using the figma Fill Rule Editor plugin https://www.figma.com/community/plugin/771155994770327940/fill-rule-editor)
+
+## Figma Code Connect
+
+Icon mappings for Figma Code Connect are auto-generated from the Figma file. To regenerate after icons are added or renamed in Figma:
+
+```bash
+FIGMA_TOKEN=<your-token> pnpm build:figma
+```
+
+This fetches all icon components from the Synerise Design System Figma file and generates `src/Icon.figma.tsx` with a Code Connect mapping for each icon. After regenerating, publish to Figma from the repo root:
+
+```bash
+pnpm figma:publish --token <your-token>
+```

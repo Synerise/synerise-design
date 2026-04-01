@@ -61,8 +61,8 @@ importers:
         specifier: ^20
         version: 20.1.0
       '@figma/code-connect':
-        specifier: ^1.4.1
-        version: 1.4.1
+        specifier: ^1.4.2
+        version: 1.4.2
       '@formatjs/intl-pluralrules':
         specifier: 5.3.1
         version: 5.3.1
@@ -6834,8 +6834,8 @@ packages:
     resolution: {integrity: sha512-OEl393iCOoo/z8bMezRlJu+GlRGlsKbUAN7jKB6LhnKoqKve5DXRpalbItIIcwnCjs1k/FOPjFzcA6Qn+H+YbA==}
     engines: {node: '>=18.0.0', npm: '>=9.0.0'}
 
-  '@figma/code-connect@1.4.1':
-    resolution: {integrity: sha512-IwKN4W72B7R7d2EL2bCJ6UxgH/iDLhu+SHUVc5zDBhWDSG91nWIsa7XGejWwiya4+3a0teacgrGjgivgwCmi9Q==}
+  '@figma/code-connect@1.4.2':
+    resolution: {integrity: sha512-5DobQUw5xd96d52v4vwrb/YvOQkXY6puVHBZlOP+1ATB4t+FUwH8UHWEBcYYdhVpZGnDWe2EtkP8I3hVVrHJKg==}
     engines: {node: '>=18'}
     hasBin: true
 
@@ -16460,7 +16460,7 @@ snapshots:
 
   '@faker-js/faker@9.9.0': {}
 
-  '@figma/code-connect@1.4.1':
+  '@figma/code-connect@1.4.2':
     dependencies:
       boxen: 5.1.1
       chalk: 4.1.2
