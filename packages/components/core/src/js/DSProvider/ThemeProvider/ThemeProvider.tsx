@@ -1,6 +1,7 @@
 import React, { type ReactNode } from 'react';
 import { ThemeProvider as ThemeProviderBase } from 'styled-components';
 
+import { GlobalTokenStyles } from './GlobalTokenStyles';
 import dsTheme, { type ThemePropsVars } from './theme';
 
 export type ThemeProviderProps = {
@@ -16,7 +17,8 @@ const ThemeProvider = ({ theme = dsTheme, children }: ThemeProviderProps) => {
         ...theme,
       }}
     >
-      <>{children}</>
+      <GlobalTokenStyles />
+      {children}
     </ThemeProviderBase>
   );
 };

@@ -1,0 +1,4612 @@
+{
+  "buttons": {
+    "variant": {
+      "primary": {
+        "bg": {
+          "default": {
+            "$type": "color",
+            "$value": "{color.background.brand.solid}",
+            "$description": "Primary button background color for default state"
+          },
+          "hover": {
+            "$type": "color",
+            "$value": "{color.background.brand.solidHover}",
+            "$description": "Primary button background color for hover state"
+          },
+          "focus": {
+            "$type": "color",
+            "$value": "{color.background.brand.solid}",
+            "$description": "Primary button background color for focus state"
+          },
+          "active": {
+            "$type": "color",
+            "$value": "{color.background.brand.solidActive}",
+            "$description": "Primary button background color for active/selected state (same as default for solid variant)"
+          },
+          "disabled": {
+            "$extensions": {
+              "studio.tokens": {
+                "modify": {
+                  "type": "alpha",
+                  "value": "0.4",
+                  "space": "srgb"
+                }
+              }
+            },
+            "$type": "color",
+            "$value": "{color.background.brand.solid}",
+            "$description": "Primary button background color for disabled state (same as default, opacity applied separately)"
+          }
+        },
+        "text": {
+          "default": {
+            "$type": "color",
+            "$value": "{color.text.onSolid.brand}",
+            "$description": "Primary button text color for default state"
+          },
+          "hover": {
+            "$type": "color",
+            "$value": "{color.text.onSolid.brand}",
+            "$description": "Primary button text color for hover state"
+          },
+          "focus": {
+            "$type": "color",
+            "$value": "{color.text.onSolid.brand}",
+            "$description": "Primary button text color for focus state"
+          },
+          "active": {
+            "$type": "color",
+            "$value": "{color.text.onSolid.brand}",
+            "$description": "Primary button text color for active/selected state (same as default for solid variant)"
+          },
+          "disabled": {
+            "$extensions": {
+              "studio.tokens": {
+                "modify": {
+                  "type": "alpha",
+                  "value": "0.4",
+                  "space": "srgb"
+                }
+              }
+            },
+            "$type": "color",
+            "$value": "{color.text.onSolid.brand}",
+            "$description": "Primary button text color for disabled state (same as default, opacity applied separately)"
+          }
+        },
+        "icon": {
+          "default": {
+            "$type": "color",
+            "$value": "{color.text.onSolid.brand}",
+            "$description": "Primary button icon color for default state"
+          },
+          "hover": {
+            "$type": "color",
+            "$value": "{color.text.onSolid.brand}",
+            "$description": "Primary button icon color for hover state"
+          },
+          "focus": {
+            "$type": "color",
+            "$value": "{color.text.onSolid.brand}",
+            "$description": "Primary button icon color for focus state"
+          },
+          "active": {
+            "$type": "color",
+            "$value": "{color.text.onSolid.brand}",
+            "$description": "Primary button icon color for active/selected state (same as default for solid variant)"
+          },
+          "disabled": {
+            "$extensions": {
+              "studio.tokens": {
+                "modify": {
+                  "type": "alpha",
+                  "value": "0.4",
+                  "space": "srgb"
+                }
+              }
+            },
+            "$type": "color",
+            "$value": "{color.text.onSolid.brand}",
+            "$description": "Primary button icon color for disabled state (same as default, opacity applied separately)"
+          }
+        },
+        "border": {
+          "default": {
+            "$type": "color",
+            "$value": "{color.transparent}",
+            "$description": "Primary button border color for default state (transparent)"
+          },
+          "hover": {
+            "$type": "color",
+            "$value": "{color.transparent}",
+            "$description": "Primary button border color for hover state (transparent)"
+          },
+          "focus": {
+            "$type": "color",
+            "$value": "{color.focus.base.strong}",
+            "$description": "Primary button border color for focus state (blue-700, 2px width)"
+          },
+          "active": {
+            "$type": "color",
+            "$value": "{color.transparent}",
+            "$description": "Primary button border color for active/selected state (transparent for solid variant)"
+          },
+          "disabled": {
+            "$extensions": {
+              "studio.tokens": {
+                "modify": {
+                  "type": "alpha",
+                  "value": "0.4",
+                  "space": "srgb"
+                }
+              }
+            },
+            "$type": "color",
+            "$value": "{color.transparent}",
+            "$description": "Primary button border color for disabled state (transparent)"
+          }
+        }
+      },
+      "primary-danger": {
+        "bg": {
+          "default": {
+            "$type": "color",
+            "$value": "{color.background.danger.solid}",
+            "$description": "Primary danger button background color for default state"
+          },
+          "hover": {
+            "$type": "color",
+            "$value": "{color.background.danger.solidHover}",
+            "$description": "Primary danger button background color for hover state"
+          },
+          "focus": {
+            "$type": "color",
+            "$value": "{color.background.danger.solid}",
+            "$description": "Primary danger button background color for focus state"
+          },
+          "active": {
+            "$type": "color",
+            "$value": "{color.background.danger.solidActive}",
+            "$description": "Primary danger button background color for active/selected state"
+          },
+          "disabled": {
+            "$type": "color",
+            "$value": "{color.background.danger.solid}",
+            "$description": "Primary danger button background color for disabled state (same as default, opacity applied separately)"
+          }
+        },
+        "text": {
+          "default": {
+            "$type": "color",
+            "$value": "{color.text.onSolid.danger}",
+            "$description": "Primary danger button text color for default state"
+          },
+          "hover": {
+            "$type": "color",
+            "$value": "{color.text.onSolid.danger}",
+            "$description": "Primary danger button text color for hover state"
+          },
+          "focus": {
+            "$type": "color",
+            "$value": "{color.text.onSolid.danger}",
+            "$description": "Primary danger button text color for focus state"
+          },
+          "active": {
+            "$type": "color",
+            "$value": "{color.text.onSolid.danger}",
+            "$description": "Primary danger button text color for active/selected state"
+          },
+          "disabled": {
+            "$type": "color",
+            "$value": "{color.text.onSolid.danger}",
+            "$description": "Primary danger button text color for disabled state (same as default, opacity applied separately)"
+          }
+        },
+        "icon": {
+          "default": {
+            "$type": "color",
+            "$value": "{color.text.onSolid.danger}",
+            "$description": "Primary danger button icon color for default state"
+          },
+          "hover": {
+            "$type": "color",
+            "$value": "{color.text.onSolid.danger}",
+            "$description": "Primary danger button icon color for hover state"
+          },
+          "focus": {
+            "$type": "color",
+            "$value": "{color.text.onSolid.danger}",
+            "$description": "Primary danger button icon color for focus state"
+          },
+          "active": {
+            "$type": "color",
+            "$value": "{color.text.onSolid.danger}",
+            "$description": "Primary danger button icon color for active/selected state"
+          },
+          "disabled": {
+            "$type": "color",
+            "$value": "{color.text.onSolid.danger}",
+            "$description": "Primary danger button icon color for disabled state (same as default, opacity applied separately)"
+          }
+        },
+        "border": {
+          "default": {
+            "$type": "color",
+            "$value": "{color.transparent}",
+            "$description": "Primary danger button border color for default state (transparent)"
+          },
+          "hover": {
+            "$type": "color",
+            "$value": "{color.transparent}",
+            "$description": "Primary danger button border color for hover state (transparent)"
+          },
+          "focus": {
+            "$type": "color",
+            "$value": "{color.border.danger.default}",
+            "$description": "Primary danger button border color for focus state (red-600, 2px width)"
+          },
+          "active": {
+            "$type": "color",
+            "$value": "{color.transparent}",
+            "$description": "Primary danger button border color for active/selected state (transparent for solid variant)"
+          },
+          "disabled": {
+            "$type": "color",
+            "$value": "{color.transparent}",
+            "$description": "Primary danger button border color for disabled state (transparent)"
+          }
+        }
+      },
+      "primary-success": {
+        "bg": {
+          "default": {
+            "$type": "color",
+            "$value": "{color.background.success.solid}",
+            "$description": "Primary success button background color for default state"
+          },
+          "hover": {
+            "$type": "color",
+            "$value": "{color.background.success.solidHover}",
+            "$description": "Primary success button background color for hover state"
+          },
+          "focus": {
+            "$type": "color",
+            "$value": "{color.background.success.solid}",
+            "$description": "Primary success button background color for focus state"
+          },
+          "active": {
+            "$type": "color",
+            "$value": "{color.background.success.solidActive}",
+            "$description": "Primary success button background color for active/selected state"
+          },
+          "disabled": {
+            "$type": "color",
+            "$value": "{color.background.success.solid}",
+            "$description": "Primary success button background color for disabled state (same as default, opacity applied separately)"
+          }
+        },
+        "text": {
+          "default": {
+            "$type": "color",
+            "$value": "{color.text.onSolid.success}",
+            "$description": "Primary success button text color for default state"
+          },
+          "hover": {
+            "$type": "color",
+            "$value": "{color.text.onSolid.success}",
+            "$description": "Primary success button text color for hover state"
+          },
+          "focus": {
+            "$type": "color",
+            "$value": "{color.text.onSolid.success}",
+            "$description": "Primary success button text color for focus state"
+          },
+          "active": {
+            "$type": "color",
+            "$value": "{color.text.onSolid.success}",
+            "$description": "Primary success button text color for active/selected state"
+          },
+          "disabled": {
+            "$type": "color",
+            "$value": "{color.text.onSolid.success}",
+            "$description": "Primary success button text color for disabled state (same as default, opacity applied separately)"
+          }
+        },
+        "icon": {
+          "default": {
+            "$type": "color",
+            "$value": "{color.text.onSolid.success}",
+            "$description": "Primary success button icon color for default state"
+          },
+          "hover": {
+            "$type": "color",
+            "$value": "{color.text.onSolid.success}",
+            "$description": "Primary success button icon color for hover state"
+          },
+          "focus": {
+            "$type": "color",
+            "$value": "{color.text.onSolid.success}",
+            "$description": "Primary success button icon color for focus state"
+          },
+          "active": {
+            "$type": "color",
+            "$value": "{color.text.onSolid.success}",
+            "$description": "Primary success button icon color for active/selected state"
+          },
+          "disabled": {
+            "$type": "color",
+            "$value": "{color.text.onSolid.success}",
+            "$description": "Primary success button icon color for disabled state (same as default, opacity applied separately)"
+          }
+        },
+        "border": {
+          "default": {
+            "$type": "color",
+            "$value": "{color.transparent}",
+            "$description": "Primary success button border color for default state (transparent)"
+          },
+          "hover": {
+            "$type": "color",
+            "$value": "{color.transparent}",
+            "$description": "Primary success button border color for hover state (transparent)"
+          },
+          "focus": {
+            "$type": "color",
+            "$value": "{color.border.success.default}",
+            "$description": "Primary success button border color for focus state (green-600, 2px width)"
+          },
+          "active": {
+            "$type": "color",
+            "$value": "{color.transparent}",
+            "$description": "Primary success button border color for active/selected state (transparent for solid variant)"
+          },
+          "disabled": {
+            "$type": "color",
+            "$value": "{color.transparent}",
+            "$description": "Primary success button border color for disabled state (transparent)"
+          }
+        }
+      },
+      "secondary": {
+        "bg": {
+          "default": {
+            "$type": "color",
+            "$value": "{color.background.base.muted}",
+            "$description": "Secondary button background color for default state"
+          },
+          "hover": {
+            "$type": "color",
+            "$value": "{color.background.brand.subtle}",
+            "$description": "Secondary button background color for hover state"
+          },
+          "focus": {
+            "$type": "color",
+            "$value": "{color.background.base.muted}",
+            "$description": "Secondary button background color for focus state"
+          },
+          "active": {
+            "$type": "color",
+            "$value": "{color.background.brand.solid}",
+            "$description": "Secondary button background color for active/selected state (blue background for toggle)"
+          },
+          "disabled": {
+            "$type": "color",
+            "$value": "{color.background.base.muted}",
+            "$description": "Secondary button background color for disabled state (same as default, opacity applied separately)"
+          }
+        },
+        "text": {
+          "default": {
+            "$type": "color",
+            "$value": "{color.text.base.muted}",
+            "$description": "Secondary button text color for default state"
+          },
+          "hover": {
+            "$type": "color",
+            "$value": "{color.text.brand.default}",
+            "$description": "Secondary button text color for hover state"
+          },
+          "focus": {
+            "$type": "color",
+            "$value": "{color.text.base.muted}",
+            "$description": "Secondary button text color for focus state"
+          },
+          "active": {
+            "$type": "color",
+            "$value": "{color.text.onSolid.brand}",
+            "$description": "Secondary button text color for active/selected state (white text for toggle)"
+          },
+          "disabled": {
+            "$type": "color",
+            "$value": "{color.text.base.muted}",
+            "$description": "Secondary button text color for disabled state (same as default, opacity applied separately)"
+          }
+        },
+        "icon": {
+          "default": {
+            "$type": "color",
+            "$value": "{color.text.base.muted}",
+            "$description": "Secondary button icon color for default state"
+          },
+          "hover": {
+            "$type": "color",
+            "$value": "{color.text.brand.default}",
+            "$description": "Secondary button icon color for hover state"
+          },
+          "focus": {
+            "$type": "color",
+            "$value": "{color.text.base.muted}",
+            "$description": "Secondary button icon color for focus state"
+          },
+          "active": {
+            "$type": "color",
+            "$value": "{color.text.onSolid.brand}",
+            "$description": "Secondary button icon color for active/selected state (white icon for toggle)"
+          },
+          "disabled": {
+            "$type": "color",
+            "$value": "{color.text.base.muted}",
+            "$description": "Secondary button icon color for disabled state (same as default, opacity applied separately)"
+          }
+        },
+        "border": {
+          "default": {
+            "$type": "color",
+            "$value": "{color.border.base.strong}",
+            "$description": "Secondary button border color for default state"
+          },
+          "hover": {
+            "$type": "color",
+            "$value": "{color.border.brand.strong}",
+            "$description": "Secondary button border color for hover state"
+          },
+          "focus": {
+            "$type": "color",
+            "$value": "{outline.color.focus.secondary}",
+            "$description": "Secondary button border color for focus state (blue-600, 2px width)"
+          },
+          "active": {
+            "$type": "color",
+            "$value": "{color.transparent}",
+            "$description": "Secondary button border color for active/selected state (transparent for toggle)"
+          },
+          "disabled": {
+            "$type": "color",
+            "$value": "{color.border.base.default}",
+            "$description": "Secondary button border color for disabled state (same as default, opacity applied separately)"
+          }
+        }
+      },
+      "tertiary": {
+        "bg": {
+          "default": {
+            "$type": "color",
+            "$value": "{color.background.base.strong}26",
+            "$description": "Tertiary button background color for default state (subtle background)"
+          },
+          "hover": {
+            "$type": "color",
+            "$value": "{color.background.base.mutedHover}",
+            "$description": "Tertiary button background color for hover state"
+          },
+          "focus": {
+            "$type": "color",
+            "$value": "{color.background.base.strong}26",
+            "$description": "Tertiary button background color for focus state"
+          },
+          "disabled": {
+            "$type": "color",
+            "$value": "{color.background.base.strong}26",
+            "$description": "Tertiary button background color for disabled state (same as default, opacity applied separately)"
+          },
+          "active": {
+            "$type": "color",
+            "$value": "{color.background.brand.subtle}",
+            "$description": "Tertiary button background color for active/selected state (light blue background for toggle)"
+          }
+        },
+        "text": {
+          "default": {
+            "$type": "color",
+            "$value": "{color.text.base.muted}",
+            "$description": "Tertiary button text/icon color for default state"
+          },
+          "hover": {
+            "$type": "color",
+            "$value": "{color.text.brand.default}",
+            "$description": "Tertiary button text/icon color for hover state"
+          },
+          "focus": {
+            "$type": "color",
+            "$value": "{color.text.base.muted}",
+            "$description": "Tertiary button text/icon color for focus state"
+          },
+          "active": {
+            "$type": "color",
+            "$value": "{color.background.brand.solid}",
+            "$description": "Tertiary button text/icon color for active/selected state (blue text for toggle)"
+          },
+          "disabled": {
+            "$type": "color",
+            "$value": "{color.text.base.muted}",
+            "$description": "Tertiary button text/icon color for disabled state (same as default, opacity applied separately)"
+          }
+        },
+        "icon": {
+          "default": {
+            "$type": "color",
+            "$value": "{color.text.base.muted}",
+            "$description": "Tertiary button icon color for default state"
+          },
+          "hover": {
+            "$type": "color",
+            "$value": "{color.text.brand.default}",
+            "$description": "Tertiary button icon color for hover state"
+          },
+          "focus": {
+            "$type": "color",
+            "$value": "{color.text.base.muted}",
+            "$description": "Tertiary button icon color for focus state"
+          },
+          "active": {
+            "$type": "color",
+            "$value": "{color.background.brand.solid}",
+            "$description": "Tertiary button icon color for active/selected state (blue icon for toggle)"
+          },
+          "disabled": {
+            "$type": "color",
+            "$value": "{color.text.base.muted}",
+            "$description": "Tertiary button icon color for disabled state (same as default, opacity applied separately)"
+          }
+        },
+        "border": {
+          "default": {
+            "$type": "color",
+            "$value": "{color.border.base.none}"
+          },
+          "hover": {
+            "$type": "color",
+            "$value": "{color.border.base.default}"
+          },
+          "focus": {
+            "$type": "color",
+            "$value": "{outline.color.focus.secondary}"
+          },
+          "disabled": {
+            "$type": "color",
+            "$value": "{color.border.base.none}"
+          }
+        }
+      },
+      "ghost-primary": {
+        "bg": {
+          "default": {
+            "$type": "color",
+            "$value": "{color.transparent}",
+            "$description": "Ghost primary button background color for default state (transparent)"
+          },
+          "hover": {
+            "$type": "color",
+            "$value": "{color.background.base.mutedHover}",
+            "$description": "Ghost primary button background color for hover state"
+          },
+          "focus": {
+            "$type": "color",
+            "$value": "{color.transparent}",
+            "$description": "Ghost primary button background color for focus state (transparent)"
+          },
+          "active": {
+            "$type": "color",
+            "$value": "{color.background.brand.subtle}",
+            "$description": "Ghost primary button background color for active/selected state (light blue background for toggle)"
+          },
+          "disabled": {
+            "$type": "color",
+            "$value": "{color.transparent}",
+            "$description": "Ghost primary button background color for disabled state (transparent, opacity applied separately)"
+          }
+        },
+        "text": {
+          "default": {
+            "$type": "color",
+            "$value": "{color.background.brand.solid}",
+            "$description": "Ghost primary button text color for default state"
+          },
+          "hover": {
+            "$type": "color",
+            "$value": "{color.text.brand.default}",
+            "$description": "Ghost primary button text color for hover state"
+          },
+          "focus": {
+            "$type": "color",
+            "$value": "{color.text.base.muted}",
+            "$description": "Ghost primary button text color for focus state"
+          },
+          "active": {
+            "$type": "color",
+            "$value": "{color.background.brand.solid}",
+            "$description": "Ghost primary button text color for active/selected state (blue text for toggle)"
+          },
+          "disabled": {
+            "$type": "color",
+            "$value": "{color.text.base.muted}",
+            "$description": "Ghost primary button text color for disabled state (same as default, opacity applied separately)"
+          }
+        },
+        "icon": {
+          "default": {
+            "$type": "color",
+            "$value": "{color.icon.brand.default}",
+            "$description": "Ghost primary button icon color for default state"
+          },
+          "hover": {
+            "$type": "color",
+            "$value": "{color.text.brand.default}",
+            "$description": "Ghost primary button icon color for hover state"
+          },
+          "focus": {
+            "$type": "color",
+            "$value": "{color.text.base.muted}",
+            "$description": "Ghost primary button icon color for focus state"
+          },
+          "active": {
+            "$type": "color",
+            "$value": "{color.background.brand.solid}",
+            "$description": "Ghost primary button icon color for active/selected state (blue icon for toggle)"
+          },
+          "disabled": {
+            "$type": "color",
+            "$value": "{color.text.base.muted}",
+            "$description": "Ghost primary button icon color for disabled state (same as default, opacity applied separately)"
+          }
+        },
+        "border": {
+          "default": {
+            "$type": "color",
+            "$value": "{color.border.base.none}"
+          },
+          "hover": {
+            "$type": "color",
+            "$value": "{color.border.base.none}"
+          },
+          "focus": {
+            "$type": "color",
+            "$value": "{outline.color.focus.secondary}"
+          },
+          "disabled": {
+            "$type": "color",
+            "$value": "{color.border.base.none}"
+          }
+        }
+      },
+      "ghost-primary-danger": {
+        "bg": {
+          "default": {
+            "$type": "color",
+            "$value": "{color.transparent}",
+            "$description": "Ghost primary danger button background color for default state (transparent)"
+          },
+          "hover": {
+            "$type": "color",
+            "$value": "{color.background.base.mutedHover}",
+            "$description": "Ghost primary danger button background color for hover state"
+          },
+          "focus": {
+            "$type": "color",
+            "$value": "{color.transparent}",
+            "$description": "Ghost primary danger button background color for focus state (transparent)"
+          },
+          "active": {
+            "$type": "color",
+            "$value": "{color.background.danger.subtle}",
+            "$description": "Ghost primary danger button background color for active/selected state (light red background for toggle)"
+          },
+          "disabled": {
+            "$type": "color",
+            "$value": "{color.transparent}",
+            "$description": "Ghost primary danger button background color for disabled state (transparent, opacity applied separately)"
+          }
+        },
+        "text": {
+          "default": {
+            "$type": "color",
+            "$value": "{color.text.danger.default}",
+            "$description": "Ghost primary danger button text color for default state"
+          },
+          "hover": {
+            "$type": "color",
+            "$value": "{color.background.danger.solid}",
+            "$description": "Ghost primary danger button text color for hover state"
+          },
+          "focus": {
+            "$type": "color",
+            "$value": "{color.text.danger.default}",
+            "$description": "Ghost primary danger button text color for focus state"
+          },
+          "active": {
+            "$type": "color",
+            "$value": "{color.text.danger.default}",
+            "$description": "Ghost primary danger button text color for active/selected state"
+          },
+          "disabled": {
+            "$type": "color",
+            "$value": "{color.text.danger.default}",
+            "$description": "Ghost primary danger button text color for disabled state (same as default, opacity applied separately)"
+          }
+        },
+        "icon": {
+          "default": {
+            "$type": "color",
+            "$value": "{color.text.danger.default}",
+            "$description": "Ghost primary danger button icon color for default state"
+          },
+          "hover": {
+            "$type": "color",
+            "$value": "{color.background.danger.solid}",
+            "$description": "Ghost primary danger button icon color for hover state"
+          },
+          "focus": {
+            "$type": "color",
+            "$value": "{color.text.danger.default}",
+            "$description": "Ghost primary danger button icon color for focus state"
+          },
+          "active": {
+            "$type": "color",
+            "$value": "{color.text.danger.default}",
+            "$description": "Ghost primary danger button icon color for active/selected state"
+          },
+          "disabled": {
+            "$type": "color",
+            "$value": "{color.text.danger.default}",
+            "$description": "Ghost primary danger button icon color for disabled state (same as default, opacity applied separately)"
+          }
+        },
+        "border": {
+          "default": {
+            "$type": "color",
+            "$value": "{color.border.base.none}"
+          },
+          "hover": {
+            "$type": "color",
+            "$value": "{color.border.base.none}"
+          },
+          "focus": {
+            "$type": "color",
+            "$value": "{color.text.danger.default}",
+            "$description": "Ghost primary danger button border color for focus state (red-600, 2px width)"
+          },
+          "disabled": {
+            "$type": "color",
+            "$value": "{color.border.base.none}"
+          }
+        }
+      },
+      "ghost-primary-success": {
+        "bg": {
+          "default": {
+            "$type": "color",
+            "$value": "{color.transparent}",
+            "$description": "Ghost primary success button background color for default state (transparent)"
+          },
+          "hover": {
+            "$type": "color",
+            "$value": "{color.background.base.mutedHover}",
+            "$description": "Ghost primary success button background color for hover state"
+          },
+          "focus": {
+            "$type": "color",
+            "$value": "{color.transparent}",
+            "$description": "Ghost primary success button background color for focus state (transparent)"
+          },
+          "active": {
+            "$type": "color",
+            "$value": "{color.background.success.subtle}",
+            "$description": "Ghost primary success button background color for active/selected state (light green background for toggle)"
+          },
+          "disabled": {
+            "$type": "color",
+            "$value": "{color.transparent}",
+            "$description": "Ghost primary success button background color for disabled state (transparent, opacity applied separately)"
+          }
+        },
+        "text": {
+          "default": {
+            "$type": "color",
+            "$value": "{color.text.success.default}",
+            "$description": "Ghost primary success button text color for default state"
+          },
+          "hover": {
+            "$type": "color",
+            "$value": "{color.background.success.solid}",
+            "$description": "Ghost primary success button text color for hover state"
+          },
+          "focus": {
+            "$type": "color",
+            "$value": "{color.text.success.default}",
+            "$description": "Ghost primary success button text color for focus state"
+          },
+          "active": {
+            "$type": "color",
+            "$value": "{color.text.success.default}",
+            "$description": "Ghost primary success button text color for active/selected state"
+          },
+          "disabled": {
+            "$type": "color",
+            "$value": "{color.text.success.default}",
+            "$description": "Ghost primary success button text color for disabled state (same as default, opacity applied separately)"
+          }
+        },
+        "icon": {
+          "default": {
+            "$type": "color",
+            "$value": "{color.text.success.default}",
+            "$description": "Ghost primary success button icon color for default state"
+          },
+          "hover": {
+            "$type": "color",
+            "$value": "{color.background.success.solid}",
+            "$description": "Ghost primary success button icon color for hover state"
+          },
+          "focus": {
+            "$type": "color",
+            "$value": "{color.text.success.default}",
+            "$description": "Ghost primary success button icon color for focus state"
+          },
+          "active": {
+            "$type": "color",
+            "$value": "{color.text.success.default}",
+            "$description": "Ghost primary success button icon color for active/selected state"
+          },
+          "disabled": {
+            "$type": "color",
+            "$value": "{color.text.success.default}",
+            "$description": "Ghost primary success button icon color for disabled state (same as default, opacity applied separately)"
+          }
+        },
+        "border": {
+          "default": {
+            "$type": "color",
+            "$value": "{color.border.base.none}"
+          },
+          "hover": {
+            "$type": "color",
+            "$value": "{color.border.base.none}"
+          },
+          "focus": {
+            "$type": "color",
+            "$value": "{color.text.success.default}",
+            "$description": "Ghost primary success button border color for focus state (green-600, 2px width)"
+          },
+          "disabled": {
+            "$type": "color",
+            "$value": "{color.border.base.none}"
+          }
+        }
+      },
+      "ghost-secondary": {
+        "bg": {
+          "default": {
+            "$type": "color",
+            "$value": "{color.transparent}"
+          },
+          "hover": {
+            "$type": "color",
+            "$value": "{color.background.base.mutedHover}"
+          },
+          "focus": {
+            "$type": "color",
+            "$value": "{color.transparent}"
+          },
+          "disabled": {
+            "$type": "color",
+            "$value": "{color.transparent}"
+          }
+        },
+        "text": {
+          "default": {
+            "$type": "color",
+            "$value": "{color.text.base.muted}"
+          },
+          "hover": {
+            "$type": "color",
+            "$value": "{color.text.base.default}"
+          },
+          "focus": {
+            "$type": "color",
+            "$value": "{color.text.base.default}"
+          },
+          "disabled": {
+            "$type": "color",
+            "$value": "{color.text.base.default}"
+          }
+        },
+        "border": {
+          "default": {
+            "$type": "color",
+            "$value": "{color.transparent}"
+          },
+          "hover": {
+            "$type": "color",
+            "$value": "{color.transparent}"
+          },
+          "focus": {
+            "$type": "color",
+            "$value": "{outline.color.focus.secondary}"
+          },
+          "disabled": {
+            "$type": "color",
+            "$value": "{color.transparent}"
+          }
+        },
+        "icon": {
+          "default": {
+            "$type": "color",
+            "$value": "{color.text.base.muted}"
+          },
+          "hover": {
+            "$type": "color",
+            "$value": "{color.text.base.default}"
+          },
+          "focus": {
+            "$type": "color",
+            "$value": "{color.text.base.default}"
+          },
+          "disabled": {
+            "$type": "color",
+            "$value": "{color.text.base.default}"
+          }
+        }
+      },
+      "ghost-secondary-white": {
+        "bg": {
+          "default": {
+            "$type": "color",
+            "$value": "{color.transparent}"
+          },
+          "hover": {
+            "$type": "color",
+            "$value": "{color.background.base.mutedHover}"
+          },
+          "focus": {
+            "$type": "color",
+            "$value": "{color.transparent}"
+          },
+          "disabled": {
+            "$type": "color",
+            "$value": "{color.transparent}"
+          }
+        },
+        "text": {
+          "default": {
+            "$type": "color",
+            "$value": "{color.mono.00}"
+          },
+          "hover": {
+            "$type": "color",
+            "$value": "{color.mono.00}"
+          },
+          "focus": {
+            "$type": "color",
+            "$value": "{color.mono.00}"
+          },
+          "disabled": {
+            "$type": "color",
+            "$value": "{color.mono.00}"
+          }
+        },
+        "icon": {
+          "default": {
+            "$type": "color",
+            "$value": "{color.mono.00}"
+          },
+          "hover": {
+            "$type": "color",
+            "$value": "{color.mono.00}"
+          },
+          "focus": {
+            "$type": "color",
+            "$value": "{color.mono.00}"
+          },
+          "disabled": {
+            "$type": "color",
+            "$value": "{color.mono.00}"
+          }
+        },
+        "border": {
+          "default": {
+            "$type": "color",
+            "$value": "{color.border.base.none}"
+          },
+          "hover": {
+            "$type": "color",
+            "$value": "{color.border.base.none}"
+          },
+          "focus": {
+            "$type": "color",
+            "$value": "{outline.color.focus.secondary}"
+          },
+          "disabled": {
+            "$type": "color",
+            "$value": "{color.border.base.none}"
+          }
+        }
+      },
+      "tertiary-white": {
+        "bg": {
+          "default": {
+            "$type": "color",
+            "$value": "{color.background.neutral.solid}"
+          },
+          "hover": {
+            "$type": "color",
+            "$value": "{color.background.neutral.solidHover}"
+          },
+          "focus": {
+            "$type": "color",
+            "$value": "{color.background.neutral.solid}"
+          },
+          "disabled": {
+            "$type": "color",
+            "$value": "{color.background.neutral.solid}26"
+          }
+        },
+        "text": {
+          "default": {
+            "$type": "color",
+            "$value": "{color.mono.00}"
+          },
+          "hover": {
+            "$type": "color",
+            "$value": "{color.mono.00}"
+          },
+          "focus": {
+            "$type": "color",
+            "$value": "{color.mono.00}"
+          },
+          "disabled": {
+            "$type": "color",
+            "$value": "{color.mono.00}"
+          }
+        },
+        "icon": {
+          "default": {
+            "$type": "color",
+            "$value": "{color.mono.00}"
+          },
+          "hover": {
+            "$type": "color",
+            "$value": "{color.mono.00}"
+          },
+          "focus": {
+            "$type": "color",
+            "$value": "{color.mono.00}"
+          },
+          "disabled": {
+            "$type": "color",
+            "$value": "{color.mono.00}"
+          }
+        },
+        "border": {
+          "default": {
+            "$type": "color",
+            "$value": "{color.border.base.none}"
+          },
+          "hover": {
+            "$type": "color",
+            "$value": "{color.border.base.default}"
+          },
+          "focus": {
+            "$type": "color",
+            "$value": "{outline.color.focus.secondary}"
+          },
+          "disabled": {
+            "$type": "color",
+            "$value": "{color.border.base.none}"
+          }
+        }
+      },
+      "custom-color": {
+        "bg": {
+          "default": {
+            "$type": "color",
+            "$value": "{color.background.custom.solid}",
+            "$description": "Primary success button background color for default state"
+          },
+          "hover": {
+            "$type": "color",
+            "$value": "{color.background.custom.solidHover}",
+            "$description": "Primary success button background color for hover state"
+          },
+          "focus": {
+            "$type": "color",
+            "$value": "{color.background.custom.solid}",
+            "$description": "Primary success button background color for focus state"
+          },
+          "active": {
+            "$type": "color",
+            "$value": "{color.background.custom.solidActive}",
+            "$description": "Primary success button background color for active/selected state"
+          },
+          "disabled": {
+            "$extensions": {
+              "studio.tokens": {
+                "modify": {
+                  "type": "alpha",
+                  "value": "0.4",
+                  "space": "srgb"
+                }
+              },
+              "com.figma.scopes": [
+                "ALL_FILLS",
+                "FRAME_FILL"
+              ]
+            },
+            "$type": "color",
+            "$value": "{color.background.custom.solid}",
+            "$description": "Primary success button background color for disabled state (same as default, opacity applied separately)"
+          }
+        },
+        "text": {
+          "default": {
+            "$type": "color",
+            "$value": "{color.text.onSolid.success}",
+            "$description": "Primary success button text color for default state"
+          },
+          "hover": {
+            "$type": "color",
+            "$value": "{color.text.onSolid.success}",
+            "$description": "Primary success button text color for hover state"
+          },
+          "focus": {
+            "$type": "color",
+            "$value": "{color.text.onSolid.success}",
+            "$description": "Primary success button text color for focus state"
+          },
+          "active": {
+            "$type": "color",
+            "$value": "{color.text.onSolid.success}",
+            "$description": "Primary success button text color for active/selected state"
+          },
+          "disabled": {
+            "$type": "color",
+            "$value": "{color.text.onSolid.success}",
+            "$description": "Primary success button text color for disabled state (same as default, opacity applied separately)"
+          }
+        },
+        "icon": {
+          "default": {
+            "$type": "color",
+            "$value": "{color.text.onSolid.success}",
+            "$description": "Primary success button icon color for default state"
+          },
+          "hover": {
+            "$type": "color",
+            "$value": "{color.text.onSolid.success}",
+            "$description": "Primary success button icon color for hover state"
+          },
+          "focus": {
+            "$type": "color",
+            "$value": "{color.text.onSolid.success}",
+            "$description": "Primary success button icon color for focus state"
+          },
+          "active": {
+            "$type": "color",
+            "$value": "{color.text.onSolid.success}",
+            "$description": "Primary success button icon color for active/selected state"
+          },
+          "disabled": {
+            "$type": "color",
+            "$value": "{color.text.onSolid.success}",
+            "$description": "Primary success button icon color for disabled state (same as default, opacity applied separately)"
+          }
+        },
+        "border": {
+          "default": {
+            "$type": "color",
+            "$value": "{color.transparent}",
+            "$description": "Primary success button border color for default state (transparent)"
+          },
+          "hover": {
+            "$type": "color",
+            "$value": "{color.transparent}",
+            "$description": "Primary success button border color for hover state (transparent)"
+          },
+          "focus": {
+            "$type": "color",
+            "$value": "{color.custom-color.solid}",
+            "$description": "Primary success button border color for focus state (green-600, 2px width)"
+          },
+          "active": {
+            "$type": "color",
+            "$value": "{color.transparent}",
+            "$description": "Primary success button border color for active/selected state (transparent for solid variant)"
+          },
+          "disabled": {
+            "$type": "color",
+            "$value": "{color.transparent}",
+            "$description": "Primary success button border color for disabled state (transparent)"
+          }
+        }
+      },
+      "ghost-custom-color": {
+        "bg": {
+          "default": {
+            "$type": "color",
+            "$value": "{color.transparent}",
+            "$description": "Ghost primary button background color for default state (transparent)"
+          },
+          "hover": {
+            "$type": "color",
+            "$value": "{color.background.base.mutedHover}",
+            "$description": "Ghost primary button background color for hover state"
+          },
+          "focus": {
+            "$type": "color",
+            "$value": "{color.transparent}",
+            "$description": "Ghost primary button background color for focus state (transparent)"
+          },
+          "active": {
+            "$type": "color",
+            "$value": "{color.background.brand.subtle}",
+            "$description": "Ghost primary button background color for active/selected state (light blue background for toggle)"
+          },
+          "disabled": {
+            "$type": "color",
+            "$value": "{color.transparent}",
+            "$description": "Ghost primary button background color for disabled state (transparent, opacity applied separately)"
+          }
+        },
+        "text": {
+          "default": {
+            "$type": "color",
+            "$value": "{color.custom-color.solid}",
+            "$description": "Ghost primary button text color for default state"
+          },
+          "hover": {
+            "$type": "color",
+            "$value": "{color.text.brand.default}",
+            "$description": "Ghost primary button text color for hover state"
+          },
+          "focus": {
+            "$type": "color",
+            "$value": "{color.text.base.muted}",
+            "$description": "Ghost primary button text color for focus state"
+          },
+          "active": {
+            "$type": "color",
+            "$value": "{color.background.brand.solid}",
+            "$description": "Ghost primary button text color for active/selected state (blue text for toggle)"
+          },
+          "disabled": {
+            "$type": "color",
+            "$value": "{color.text.base.muted}",
+            "$description": "Ghost primary button text color for disabled state (same as default, opacity applied separately)"
+          }
+        },
+        "icon": {
+          "default": {
+            "$type": "color",
+            "$value": "{color.text.base.muted}",
+            "$description": "Ghost primary button icon color for default state"
+          },
+          "hover": {
+            "$type": "color",
+            "$value": "{color.text.brand.default}",
+            "$description": "Ghost primary button icon color for hover state"
+          },
+          "focus": {
+            "$type": "color",
+            "$value": "{color.text.base.muted}",
+            "$description": "Ghost primary button icon color for focus state"
+          },
+          "active": {
+            "$type": "color",
+            "$value": "{color.background.brand.solid}",
+            "$description": "Ghost primary button icon color for active/selected state (blue icon for toggle)"
+          },
+          "disabled": {
+            "$type": "color",
+            "$value": "{color.text.base.muted}",
+            "$description": "Ghost primary button icon color for disabled state (same as default, opacity applied separately)"
+          }
+        },
+        "border": {
+          "default": {
+            "$type": "color",
+            "$value": "{color.border.base.none}"
+          },
+          "hover": {
+            "$type": "color",
+            "$value": "{color.border.base.none}"
+          },
+          "focus": {
+            "$type": "color",
+            "$value": "{outline.color.focus.secondary}"
+          },
+          "disabled": {
+            "$type": "color",
+            "$value": "{color.border.base.none}"
+          }
+        }
+      }
+    },
+    "size": {
+      "height": {
+        "normal": {
+          "$type": "dimension",
+          "$value": "{size.control.normal}",
+          "$description": "Button height for normal size (32px)"
+        },
+        "large": {
+          "$type": "dimension",
+          "$value": "{size.control.large}",
+          "$description": "Button height for large size (48px)"
+        }
+      }
+    },
+    "content": {
+      "gap": {
+        "default": {
+          "$type": "dimension",
+          "$value": "{spacing.gap.xs}",
+          "$description": "Default gap between button content elements (8px)"
+        },
+        "two-icons": {
+          "$type": "dimension",
+          "$value": "{spacing.gap.xxs}",
+          "$description": "Gap between elements in two-icons button variant (4px)"
+        }
+      },
+      "padding": {
+        "normal": {
+          "x": {
+            "$type": "dimension",
+            "$value": "{spacing.padding.xs}",
+            "$description": "Horizontal padding for normal size buttons (12px)"
+          },
+          "y": {
+            "$type": "dimension",
+            "$value": "{spacing.padding.xs}-1px",
+            "$description": "Vertical padding for normal size buttons (7px)"
+          }
+        },
+        "large": {
+          "x": {
+            "$type": "dimension",
+            "$value": "{spacing.padding.md}",
+            "$description": "Horizontal padding for large size buttons (16px)"
+          },
+          "y": {
+            "$type": "dimension",
+            "$value": "{spacing.padding.sm}",
+            "$description": "Vertical padding for large size buttons (14px)"
+          }
+        },
+        "icon-solo": {
+          "normal": {
+            "$type": "dimension",
+            "$value": "{spacing.padding.xxs}",
+            "$description": "Padding for normal size icon-only buttons (4px all sides)"
+          },
+          "large": {
+            "$type": "dimension",
+            "$value": "{spacing.padding.xs}",
+            "$description": "Padding for large size icon-only buttons (12px all sides)"
+          }
+        },
+        "two-icons": {
+          "x": {
+            "$type": "dimension",
+            "$value": "{spacing.gap.xs}",
+            "$description": "Horizontal padding for two-icons button variant (8px)"
+          },
+          "y": {
+            "$type": "dimension",
+            "$value": "{spacing.padding.xxs}",
+            "$description": "Vertical padding for two-icons button variant (4px)"
+          }
+        }
+      }
+    },
+    "border": {
+      "width": {
+        "$type": "dimension",
+        "$value": "{border.default}",
+        "$description": "Default border width for buttons (1px)"
+      },
+      "radius": {
+        "$type": "dimension",
+        "$value": "{border.radius.default}",
+        "$description": "Border radius for buttons (3px)"
+      }
+    },
+    "focus": {
+      "ring": {
+        "width": {
+          "$type": "dimension",
+          "$value": "{outline.width.focus}",
+          "$description": "Focus ring width for buttons (2px)"
+        }
+      }
+    },
+    "disabled": {
+      "opacity": {
+        "$type": "number",
+        "$value": "{opacity.disabled}",
+        "$description": "Opacity applied to disabled interactive components (buttons, expanders, etc.) - 0.4 = 40%"
+      }
+    }
+  },
+  "button-expander": {
+    "variant": {
+      "default": {
+        "bg": {
+          "default": {
+            "$type": "color",
+            "$value": "{color.background.base.subtle}",
+            "$description": "Button expander background color for default state"
+          },
+          "hover": {
+            "$type": "color",
+            "$value": "{color.background.base.subtle}",
+            "$description": "Button expander background color for hover state (same as default)"
+          },
+          "active": {
+            "$type": "color",
+            "$value": "{color.background.base.subtle}",
+            "$description": "Button expander background color for active state (same as default)"
+          },
+          "disabled": {
+            "$type": "color",
+            "$value": "{color.background.base.subtle}",
+            "$description": "Button expander background color for disabled state (same as default, opacity applied separately)"
+          }
+        },
+        "border": {
+          "default": {
+            "$type": "color",
+            "$value": "{color.border.base.strong}",
+            "$description": "Button expander border color for default state"
+          },
+          "hover": {
+            "$type": "color",
+            "$value": "{color.border.base.strongHover}",
+            "$description": "Button expander border color for hover state (darker border)"
+          },
+          "active": {
+            "$type": "color",
+            "$value": "{color.border.base.strong}",
+            "$description": "Button expander border color for active state (same as default)"
+          },
+          "disabled": {
+            "$type": "color",
+            "$value": "{color.border.base.strong}",
+            "$description": "Button expander border color for disabled state (same as default, opacity applied separately)"
+          }
+        },
+        "icon": {
+          "default": {
+            "$type": "color",
+            "$value": "{color.text.base.muted}",
+            "$description": "Button expander icon color for default state (down arrow)"
+          },
+          "hover": {
+            "$type": "color",
+            "$value": "{color.text.base.muted}",
+            "$description": "Button expander icon color for hover state (same as default)"
+          },
+          "active": {
+            "$type": "color",
+            "$value": "{color.text.base.muted}",
+            "$description": "Button expander icon color for active state (up arrow, same color)"
+          },
+          "disabled": {
+            "$type": "color",
+            "$value": "{color.text.base.muted}",
+            "$description": "Button expander icon color for disabled state (same as default, opacity applied separately)"
+          }
+        }
+      }
+    },
+    "size": {
+      "normal": {
+        "height": {
+          "$type": "dimension",
+          "$value": "{size.control.normal}",
+          "$description": "Button expander height for normal size (32px)"
+        },
+        "padding": {
+          "$type": "dimension",
+          "$value": "0px",
+          "$description": "Button expander padding for normal size (no padding) - using 0px as no semantic token for zero padding"
+        }
+      },
+      "large": {
+        "height": {
+          "$type": "dimension",
+          "$value": "{size.control.large}",
+          "$description": "Button expander height for large size (48px)"
+        },
+        "padding": {
+          "$type": "dimension",
+          "$value": "{spacing.padding.xxs}",
+          "$description": "Button expander padding for large size (4px all sides)"
+        }
+      }
+    },
+    "border": {
+      "width": {
+        "$type": "dimension",
+        "$value": "{border.default}",
+        "$description": "Button expander border width"
+      },
+      "radius": {
+        "$type": "dimension",
+        "$value": "{border.radius.full}",
+        "$description": "Button expander border radius (fully rounded)"
+      }
+    },
+    "icon": {
+      "size": {
+        "$type": "dimension",
+        "$value": "{size.icon.lg}",
+        "$description": "Button expander icon size (24px)"
+      }
+    }
+  },
+  "form": {
+    "label": {
+      "text": {
+        "color": {
+          "$type": "color",
+          "$value": "{color.text.base.default}",
+          "$description": "Label text color for form components"
+        },
+        "typography": {
+          "$type": "typography",
+          "$value": "{typography.text.small}",
+          "$description": "Label text typography (small)"
+        }
+      }
+    },
+    "description": {
+      "text": {
+        "color": {
+          "$type": "color",
+          "$value": "{color.text.base.subtle}",
+          "$description": "Description text color for form components"
+        },
+        "typography": {
+          "$type": "typography",
+          "$value": "{typography.text.small}",
+          "$description": "Description text typography (small)"
+        }
+      }
+    },
+    "error": {
+      "text": {
+        "color": {
+          "$type": "color",
+          "$value": "{color.text.danger.default}",
+          "$description": "Error text color for form components"
+        },
+        "typography": {
+          "$type": "typography",
+          "$value": "{typography.text.small}",
+          "$description": "Error text typography (small)"
+        }
+      }
+    },
+    "field": {
+      "bg": {
+        "default": {
+          "$type": "color",
+          "$value": "{color.background.base.default}",
+          "$description": "Form field background color for default state"
+        },
+        "hover": {
+          "$type": "color",
+          "$value": "{color.background.base.default}",
+          "$description": "Form field background color for hover state (same as default)"
+        },
+        "focus": {
+          "$type": "color",
+          "$value": "{color.background.brand.subtle}",
+          "$description": "Form field background color for focus state (light blue)"
+        },
+        "filled": {
+          "$type": "color",
+          "$value": "{color.background.base.default}",
+          "$description": "Form field background color for filled state (same as default)"
+        },
+        "disabled": {
+          "$type": "color",
+          "$value": "{color.background.base.muted}",
+          "$description": "Form field background color for disabled state (light grey)"
+        },
+        "validated": {
+          "$type": "color",
+          "$value": "{color.background.danger.subtle}",
+          "$description": "Form field background color for validated/error state (light red)"
+        }
+      },
+      "border": {
+        "default": {
+          "$type": "color",
+          "$value": "{color.border.base.strong}",
+          "$description": "Form field border color for default state"
+        },
+        "hover": {
+          "$type": "color",
+          "$value": "{color.border.base.strongHover}",
+          "$description": "Form field border color for hover state (darker grey)"
+        },
+        "focus": {
+          "$type": "color",
+          "$value": "{color.border.brand.default}",
+          "$description": "Form field border color for focus state (blue)"
+        },
+        "filled": {
+          "$type": "color",
+          "$value": "{color.border.base.strong}",
+          "$description": "Form field border color for filled state"
+        },
+        "disabled": {
+          "$type": "color",
+          "$value": "{color.border.base.strong}",
+          "$description": "Form field border color for disabled state"
+        },
+        "validated": {
+          "$type": "color",
+          "$value": "{color.border.danger.default}",
+          "$description": "Form field border color for validated/error state (red)"
+        }
+      },
+      "text": {
+        "placeholder": {
+          "$type": "color",
+          "$value": "{color.text.neutral.default}",
+          "$description": "Form field placeholder text color"
+        },
+        "value": {
+          "$type": "color",
+          "$value": "{color.text.base.subtle}",
+          "$description": "Form field value text color (darker grey)"
+        },
+        "disabled": {
+          "$type": "color",
+          "$value": "{color.text.base.disabled}",
+          "$description": "Form field text color for disabled state"
+        }
+      },
+      "affix": {
+        "bg": {
+          "$type": "color",
+          "$value": "{color.background.base.subtle}",
+          "$description": "Prefix/suffix background color (light grey)"
+        },
+        "border": {
+          "$type": "color",
+          "$value": "{color.border.base.strong}",
+          "$description": "Prefix/suffix border color"
+        },
+        "text": {
+          "$type": "color",
+          "$value": "{color.text.neutral.default}",
+          "$description": "Prefix/suffix text color"
+        },
+        "icon": {
+          "$type": "color",
+          "$value": "{color.icon.base.default}",
+          "$description": "Prefix/suffix icon color"
+        }
+      },
+      "borderRadius": {
+        "$type": "dimension",
+        "$value": "{border.radius.default}",
+        "$description": "Form field border radius (3px)"
+      },
+      "borderWidth": {
+        "default": {
+          "$type": "dimension",
+          "$value": "{border.default}",
+          "$description": "Form field border width for default state (1px)"
+        },
+        "focus": {
+          "$type": "dimension",
+          "$value": "{border.default}",
+          "$description": "Form field border width for focus state (2px)"
+        },
+        "validated": {
+          "$type": "dimension",
+          "$value": "{border.default}",
+          "$description": "Form field border width for validated/error state (2px)"
+        }
+      },
+      "padding": {
+        "input": {
+          "normal": {
+            "y": {
+              "$type": "dimension",
+              "$value": "{spacing.padding.xs}",
+              "$description": "Input field vertical padding for normal size (7px)"
+            },
+            "x": {
+              "left": {
+                "$type": "dimension",
+                "$value": "{spacing.padding.sm}",
+                "$description": "Input field left padding (12px)"
+              },
+              "right": {
+                "$type": "dimension",
+                "$value": "{spacing.padding.xs}",
+                "$description": "Input field right padding (8px)"
+              }
+            }
+          },
+          "large": {
+            "y": {
+              "$type": "dimension",
+              "$value": "{spacing.padding.sm}",
+              "$description": "Input field vertical padding for large size (15px)"
+            },
+            "x": {
+              "left": {
+                "$type": "dimension",
+                "$value": "{spacing.padding.sm}",
+                "$description": "Input field left padding (12px)"
+              },
+              "right": {
+                "$type": "dimension",
+                "$value": "{spacing.padding.xs}",
+                "$description": "Input field right padding (8px)"
+              }
+            }
+          }
+        },
+        "select": {
+          "normal": {
+            "y": {
+              "$type": "dimension",
+              "$value": "{spacing.padding.xxs}",
+              "$description": "Select field vertical padding for normal size (4px)"
+            },
+            "x": {
+              "left": {
+                "$type": "dimension",
+                "$value": "{spacing.padding.sm}",
+                "$description": "Select field left padding (12px)"
+              },
+              "right": {
+                "$type": "dimension",
+                "$value": "{spacing.padding.xs}",
+                "$description": "Select field right padding (8px)"
+              }
+            }
+          }
+        },
+        "textarea": {
+          "normal": {
+            "y": {
+              "$type": "dimension",
+              "$value": "{spacing.padding.xs}",
+              "$description": "Textarea field vertical padding for normal size (8px)"
+            },
+            "x": {
+              "left": {
+                "$type": "dimension",
+                "$value": "{spacing.padding.sm}",
+                "$description": "Textarea field left padding (12px)"
+              },
+              "right": {
+                "$type": "dimension",
+                "$value": "{spacing.padding.sm}",
+                "$description": "Textarea field right padding (12px)"
+              }
+            }
+          }
+        }
+      }
+    },
+    "colorSwatch": {
+      "size": {
+        "$type": "dimension",
+        "$value": "16px",
+        "$description": "Color picker swatch size (16px)"
+      }
+    },
+    "icon": {
+      "size": {
+        "$type": "dimension",
+        "$value": "{size.icon.lg}",
+        "$description": "Form icon size (24px)"
+      },
+      "color": {
+        "default": {
+          "$type": "color",
+          "$value": "{color.icon.base.muted}",
+          "$description": "Form icon color for default state"
+        },
+        "hover": {
+          "$type": "color",
+          "$value": "{color.icon.base.muted}",
+          "$description": "Form icon color for hover state (same as default)"
+        },
+        "focus": {
+          "$type": "color",
+          "$value": "{color.icon.base.muted}",
+          "$description": "Form icon color for focus state (same as default)"
+        },
+        "disabled": {
+          "$type": "color",
+          "$value": "{color.icon.base.muted}",
+          "$description": "Form icon color for disabled state (same as default, opacity applied separately)"
+        }
+      }
+    },
+    "gap": {
+      "default": {
+        "$type": "dimension",
+        "$value": "{spacing.gap.xs}",
+        "$description": "Gap between form elements (8px)"
+      }
+    },
+    "checkbox": {
+      "size": {
+        "$type": "dimension",
+        "$value": "16px",
+        "$description": "Checkbox size (16px)"
+      },
+      "border": {
+        "radius": {
+          "$type": "dimension",
+          "$value": "{border.radius.default}",
+          "$description": "Checkbox border radius (3px)"
+        },
+        "width": {
+          "default": {
+            "$type": "dimension",
+            "$value": "{border.default}",
+            "$description": "Checkbox border width for default state (1px)"
+          },
+          "focused": {
+            "$type": "dimension",
+            "$value": "{border.big}",
+            "$description": "Checkbox border width for focused state (2px)"
+          }
+        },
+        "color": {
+          "default": {
+            "$type": "color",
+            "$value": "{color.border.base.strong}",
+            "$description": "Checkbox border color for default state"
+          },
+          "focused": {
+            "$type": "color",
+            "$value": "{color.background.brand.solid}",
+            "$description": "Checkbox border color for focused state"
+          },
+          "hover": {
+            "$type": "color",
+            "$value": "{color.background.brand.solid}",
+            "$description": "Checkbox border color for hover state (blue.600)"
+          },
+          "blocked": {
+            "$type": "color",
+            "$value": "{color.background.brand.solid}",
+            "$description": "Checkbox border color for blocked state (blue.600)"
+          },
+          "error": {
+            "$type": "color",
+            "$value": "{color.text.danger.default}",
+            "$description": "Checkbox border color for error state"
+          }
+        }
+      },
+      "bg": {
+        "default": {
+          "$type": "color",
+          "$value": "{color.background.base.default}",
+          "$description": "Checkbox background color for default state"
+        },
+        "selected": {
+          "$type": "color",
+          "$value": "{color.background.brand.solid}",
+          "$description": "Checkbox background color for selected state"
+        },
+        "blocked": {
+          "$type": "color",
+          "$value": "{color.background.brand.solid}",
+          "$description": "Checkbox background color for blocked state"
+        }
+      },
+      "content": {
+        "gap": {
+          "$type": "dimension",
+          "$value": "{spacing.gap.md}",
+          "$description": "Gap between checkbox and content (16px)"
+        },
+        "padding": {
+          "default": {
+            "$type": "dimension",
+            "$value": "7px",
+            "$description": "Vertical padding for checkbox with content (7px)"
+          },
+          "solo": {
+            "$type": "dimension",
+            "$value": "4px",
+            "$description": "Padding for solo checkbox (4px all sides)"
+          }
+        }
+      },
+      "text": {
+        "label": {
+          "default": {
+            "$type": "color",
+            "$value": "{color.text.base.subtle}",
+            "$description": "Checkbox label text color for default state (grey.700)"
+          },
+          "hover": {
+            "$type": "color",
+            "$value": "{color.text.base.default}",
+            "$description": "Checkbox label text color for hover state (grey.800)"
+          },
+          "selected": {
+            "$type": "color",
+            "$value": "{color.text.base.default}",
+            "$description": "Checkbox label text color for selected state (grey.800)"
+          },
+          "disabled": {
+            "$type": "color",
+            "$value": "{color.text.base.subtle}",
+            "$description": "Checkbox label text color for disabled state (grey.700, opacity applied separately)"
+          }
+        },
+        "description": {
+          "$type": "color",
+          "$value": "{color.text.base.subtle}",
+          "$description": "Checkbox description text color"
+        },
+        "error": {
+          "$type": "color",
+          "$value": "{color.text.danger.default}",
+          "$description": "Checkbox error text color"
+        }
+      },
+      "disabled": {
+        "opacity": {
+          "$type": "number",
+          "$value": "{opacity.disabled}",
+          "$description": "Checkbox opacity for disabled state (0.4 = 40%)"
+        }
+      }
+    },
+    "radio": {
+      "size": {
+        "$type": "dimension",
+        "$value": "16px",
+        "$description": "Radio button size (16px)"
+      },
+      "border": {
+        "radius": {
+          "$type": "dimension",
+          "$value": "50%",
+          "$description": "Radio button border radius (circular)"
+        },
+        "width": {
+          "default": {
+            "$type": "dimension",
+            "$value": "{border.default}",
+            "$description": "Radio button border width for default state (1px)"
+          },
+          "focused": {
+            "$type": "dimension",
+            "$value": "{border.big}",
+            "$description": "Radio button border width for focused state (2px)"
+          }
+        },
+        "color": {
+          "default": {
+            "$type": "color",
+            "$value": "{color.border.base.strong}",
+            "$description": "Radio button border color for default state (grey.300)"
+          },
+          "hover": {
+            "$type": "color",
+            "$value": "{color.background.brand.solid}",
+            "$description": "Radio button border color for hover state (blue.600)"
+          },
+          "selected": {
+            "$type": "color",
+            "$value": "{color.background.brand.solid}",
+            "$description": "Radio button border color for selected state (blue.600)"
+          }
+        }
+      },
+      "bg": {
+        "default": {
+          "$type": "color",
+          "$value": "{color.background.base.default}",
+          "$description": "Radio button background color for default state (white)"
+        },
+        "selected": {
+          "$type": "color",
+          "$value": "{color.background.brand.solid}",
+          "$description": "Radio button background color for selected state (blue.600)"
+        },
+        "selectedDisabled": {
+          "$type": "color",
+          "$value": "{color.border.base.strongHover}",
+          "$description": "Radio button background color for selected+disabled state (grey.400)"
+        }
+      },
+      "dot": {
+        "color": {
+          "$type": "color",
+          "$value": "{color.background.base.default}",
+          "$description": "Inner dot color for selected radio button (white)"
+        }
+      },
+      "content": {
+        "gap": {
+          "$type": "dimension",
+          "$value": "{spacing.gap.md}",
+          "$description": "Gap between radio button and content (16px)"
+        },
+        "padding": {
+          "default": {
+            "$type": "dimension",
+            "$value": "7px",
+            "$description": "Vertical padding for radio button with label/description (7px)"
+          },
+          "solo": {
+            "$type": "dimension",
+            "$value": "4px",
+            "$description": "Padding for solo radio button (4px all sides)"
+          }
+        }
+      },
+      "text": {
+        "label": {
+          "default": {
+            "$type": "color",
+            "$value": "{color.text.base.subtle}",
+            "$description": "Radio button label text color for default state (grey.700)"
+          },
+          "hover": {
+            "$type": "color",
+            "$value": "{color.text.base.default}",
+            "$description": "Radio button label text color for hover state (grey.800)"
+          },
+          "selected": {
+            "$type": "color",
+            "$value": "{color.text.base.subtle}",
+            "$description": "Radio button label text color for selected state (grey.700)"
+          },
+          "disabled": {
+            "$type": "color",
+            "$value": "{color.text.base.subtle}",
+            "$description": "Radio button label text color for disabled state (grey.700, opacity applied separately)"
+          }
+        },
+        "description": {
+          "$type": "color",
+          "$value": "{color.text.base.subtle}",
+          "$description": "Radio button description text color (grey.700)"
+        }
+      },
+      "disabled": {
+        "opacity": {
+          "$type": "number",
+          "$value": "{opacity.disabled}",
+          "$description": "Radio button opacity for disabled state (0.4 = 40%)"
+        }
+      }
+    },
+    "switch": {
+      "size": {
+        "width": {
+          "$type": "dimension",
+          "$value": "{size.control.small} + {space.12}",
+          "$description": "Switch width (16px + 12px = 28px)"
+        },
+        "height": {
+          "$type": "dimension",
+          "$value": "{size.control.small}",
+          "$description": "Switch height (16px)"
+        },
+        "handle": {
+          "$type": "dimension",
+          "$value": "{space.12}",
+          "$description": "Switch handle size (12px)"
+        }
+      },
+      "border": {
+        "radius": {
+          "$type": "dimension",
+          "$value": "{border.radius.big}",
+          "$description": "Switch border radius (8px)"
+        }
+      },
+      "bg": {
+        "default": {
+          "$type": "color",
+          "$value": "{color.background.base.strong}",
+          "$description": "Switch background color for default state"
+        },
+        "hover": {
+          "$type": "color",
+          "$value": "{color.background.base.strongHover}",
+          "$description": "Switch background color for hover state"
+        },
+        "selected": {
+          "$type": "color",
+          "$value": "{color.background.success.solid}",
+          "$description": "Switch background color for selected state"
+        },
+        "selectedHover": {
+          "$type": "color",
+          "$value": "{color.background.success.solidHover}",
+          "$description": "Switch background color for selected hover state"
+        },
+        "error": {
+          "$type": "color",
+          "$value": "{color.background.danger.solid}",
+          "$description": "Switch background color for error state"
+        }
+      },
+      "handle": {
+        "bg": {
+          "$type": "color",
+          "$value": "{color.background.base.default}",
+          "$description": "Switch handle background color"
+        },
+        "position": {
+          "default": {
+            "$type": "dimension",
+            "$value": "2px",
+            "$description": "Switch handle position for default state (2px from left) - raw value exception"
+          },
+          "selected": {
+            "$type": "dimension",
+            "$value": "14px",
+            "$description": "Switch handle position for selected state (14px from left) - raw value exception"
+          }
+        }
+      },
+      "content": {
+        "gap": {
+          "$type": "dimension",
+          "$value": "{spacing.gap.md}",
+          "$description": "Gap between switch and content (16px)"
+        },
+        "padding": {
+          "$type": "dimension",
+          "$value": "{spacing.padding.xxs}",
+          "$description": "Vertical padding for switch with content (4px)"
+        }
+      },
+      "text": {
+        "label": {
+          "$type": "color",
+          "$value": "{color.text.base.default}",
+          "$description": "Switch label text color"
+        },
+        "description": {
+          "$type": "color",
+          "$value": "{color.text.base.subtle}",
+          "$description": "Switch description text color"
+        },
+        "error": {
+          "$type": "color",
+          "$value": "{color.text.danger.default}",
+          "$description": "Switch error text color"
+        }
+      },
+      "disabled": {
+        "opacity": {
+          "$type": "number",
+          "$value": "{opacity.disabled}",
+          "$description": "Switch opacity for disabled state (0.4 = 40%)"
+        }
+      }
+    }
+  },
+  "divider": {
+    "line": {
+      "height": {
+        "$type": "dimension",
+        "$value": "{space.16}",
+        "$description": "Divider line height (16px)"
+      },
+      "color": {
+        "solid": {
+          "$type": "color",
+          "$value": "{color.border.base.default}",
+          "$description": "Solid divider line color"
+        },
+        "dashed": {
+          "$type": "color",
+          "$value": "{color.border.base.strong}",
+          "$description": "Dashed divider line color"
+        }
+      }
+    },
+    "header": {
+      "padding": {
+        "horizontal": {
+          "$type": "dimension",
+          "$value": "{spacing.padding.sm}",
+          "$description": "Divider header horizontal padding (12px)"
+        },
+        "vertical": {
+          "$type": "dimension",
+          "$value": "{spacing.padding.xs}",
+          "$description": "Divider header vertical padding (8px)"
+        }
+      },
+      "gap": {
+        "$type": "dimension",
+        "$value": "{spacing.gap.xs}",
+        "$description": "Gap between divider elements (8px)"
+      },
+      "text": {
+        "color": {
+          "$type": "color",
+          "$value": "{color.text.neutral.default}",
+          "$description": "Divider header text color"
+        },
+        "typography": {
+          "$type": "typography",
+          "$value": "{typography.title.level7}",
+          "$description": "Divider header text typography (level 7)"
+        }
+      }
+    }
+  },
+  "broadcast-bar": {
+    "variant": {
+      "success": {
+        "bg": {
+          "$type": "color",
+          "$value": "{color.background.success.solid}",
+          "$description": "Broadcast bar background color for success variant"
+        },
+        "text": {
+          "$type": "color",
+          "$value": "{color.text.onSolid.success}",
+          "$description": "Broadcast bar text color for success variant"
+        },
+        "icon": {
+          "$type": "color",
+          "$value": "{color.icon.onSolid.success}",
+          "$description": "Broadcast bar icon color for success variant"
+        }
+      },
+      "warning": {
+        "bg": {
+          "$type": "color",
+          "$value": "{color.background.warning.solid}",
+          "$description": "Broadcast bar background color for warning variant"
+        },
+        "text": {
+          "$type": "color",
+          "$value": "{color.text.onSolid.warning}",
+          "$description": "Broadcast bar text color for warning variant"
+        },
+        "icon": {
+          "$type": "color",
+          "$value": "{color.icon.onSolid.warning}",
+          "$description": "Broadcast bar icon color for warning variant"
+        }
+      },
+      "error": {
+        "bg": {
+          "$type": "color",
+          "$value": "{color.background.danger.solid}",
+          "$description": "Broadcast bar background color for error variant"
+        },
+        "text": {
+          "$type": "color",
+          "$value": "{color.text.onSolid.danger}",
+          "$description": "Broadcast bar text color for error variant"
+        },
+        "icon": {
+          "$type": "color",
+          "$value": "{color.icon.onSolid.danger}",
+          "$description": "Broadcast bar icon color for error variant"
+        }
+      }
+    },
+    "content": {
+      "padding": {
+        "x": {
+          "left": {
+            "$type": "dimension",
+            "$value": "{space.56}",
+            "$description": "Broadcast bar left padding (56px)"
+          },
+          "right": {
+            "$type": "dimension",
+            "$value": "{space.16}",
+            "$description": "Broadcast bar right padding (16px)"
+          }
+        },
+        "y": {
+          "$type": "dimension",
+          "$value": "0px",
+          "$description": "Broadcast bar vertical padding (0px)"
+        }
+      },
+      "gap": {
+        "$type": "dimension",
+        "$value": "{spacing.gap.sm}",
+        "$description": "Gap between broadcast bar elements (16px)"
+      }
+    },
+    "text": {
+      "typography": {
+        "$type": "typography",
+        "$value": "{typography.text.small}",
+        "$description": "Broadcast bar text typography (small)"
+      }
+    },
+    "icon": {
+      "size": {
+        "main": {
+          "$type": "dimension",
+          "$value": "{size.icon.lg}",
+          "$description": "Broadcast bar main icon size (24px)"
+        },
+        "close": {
+          "$type": "dimension",
+          "$value": "{size.icon.sm}",
+          "$description": "Broadcast bar close icon size (12px)"
+        }
+      }
+    }
+  },
+  "toast": {
+    "variant": {
+      "success": {
+        "bg": {
+          "$type": "color",
+          "$value": "{color.background.base.default}",
+          "$description": "Toast background color for success variant"
+        },
+        "border": {
+          "$type": "color",
+          "$value": "{color.border.success.default}",
+          "$description": "Toast background color for success variant"
+        },
+        "text": {
+          "label": {
+            "$type": "color",
+            "$value": "{color.text.base.default}",
+            "$description": "Toast label text color for success variant"
+          },
+          "description": {
+            "$type": "color",
+            "$value": "{color.text.base.subtle}",
+            "$description": "Toast description text color for success variant"
+          }
+        },
+        "icon": {
+          "$type": "color",
+          "$value": "{color.icon.success.default}",
+          "$description": "Toast icon color for success variant"
+        }
+      },
+      "warning": {
+        "bg": {
+          "$type": "color",
+          "$value": "{color.background.base.default}",
+          "$description": "Toast background color for warning variant"
+        },
+        "border": {
+          "$type": "color",
+          "$value": "{color.border.warning.default}",
+          "$description": "Toast background color for warning variant"
+        },
+        "text": {
+          "label": {
+            "$type": "color",
+            "$value": "{color.text.base.default}",
+            "$description": "Toast label text color for warning variant"
+          },
+          "description": {
+            "$type": "color",
+            "$value": "{color.text.base.muted}",
+            "$description": "Toast description text color for warning variant"
+          }
+        },
+        "icon": {
+          "$type": "color",
+          "$value": "{color.icon.warning.default}",
+          "$description": "Toast icon color for warning variant"
+        }
+      },
+      "error": {
+        "bg": {
+          "$type": "color",
+          "$value": "{color.background.base.default}",
+          "$description": "Toast background color for error variant"
+        },
+        "border": {
+          "$type": "color",
+          "$value": "{color.border.danger.default}",
+          "$description": "Toast background color for error variant"
+        },
+        "text": {
+          "label": {
+            "$type": "color",
+            "$value": "{color.text.base.default}",
+            "$description": "Toast label text color for error variant"
+          },
+          "description": {
+            "$type": "color",
+            "$value": "{color.text.base.muted}",
+            "$description": "Toast description text color for error variant"
+          }
+        },
+        "icon": {
+          "$type": "color",
+          "$value": "{color.icon.danger.default}",
+          "$description": "Toast icon color for error variant"
+        }
+      },
+      "informative": {
+        "bg": {
+          "$type": "color",
+          "$value": "{color.background.base.default}",
+          "$description": "Toast background color for informative variant"
+        },
+        "border": {
+          "$type": "color",
+          "$value": "{color.border.neutral.default}",
+          "$description": "Toast background color for informative variant"
+        },
+        "text": {
+          "label": {
+            "$type": "color",
+            "$value": "{color.text.base.default}",
+            "$description": "Toast label text color for informative variant"
+          },
+          "description": {
+            "$type": "color",
+            "$value": "{color.text.base.muted}",
+            "$description": "Toast description text color for informative variant"
+          }
+        },
+        "icon": {
+          "$type": "color",
+          "$value": "{color.icon.base.default}",
+          "$description": "Toast icon color for informative variant"
+        }
+      }
+    },
+    "content": {
+      "padding": {
+        "x": {
+          "$type": "dimension",
+          "$value": "{spacing.padding.sm}",
+          "$description": "Toast horizontal padding (16px)"
+        },
+        "y": {
+          "$type": "dimension",
+          "$value": "{spacing.padding.xs}",
+          "$description": "Toast vertical padding (12px)"
+        }
+      },
+      "gap": {
+        "elements": {
+          "$type": "dimension",
+          "$value": "{spacing.gap.xxs}",
+          "$description": "Gap between toast elements (8px)"
+        },
+        "text": {
+          "$type": "dimension",
+          "$value": "{spacing.gap.sm}",
+          "$description": "Gap between label and description (16px)"
+        }
+      }
+    },
+    "text": {
+      "label": {
+        "typography": {
+          "$type": "typography",
+          "$value": "{typography.text.medium}",
+          "$description": "Toast label text typography (medium)"
+        }
+      },
+      "description": {
+        "typography": {
+          "$type": "typography",
+          "$value": "{typography.text.small}",
+          "$description": "Toast description text typography (small)"
+        }
+      }
+    },
+    "icon": {
+      "size": {
+        "$type": "dimension",
+        "$value": "{size.icon.lg}",
+        "$description": "Toast icon size (24px)"
+      }
+    },
+    "borderRadius": {
+      "$type": "dimension",
+      "$value": "{border.radius.default}",
+      "$description": "Toast border radius (3px)"
+    },
+    "shadow": {
+      "$type": "shadow",
+      "$value": "{shadow.level.2}",
+      "$description": "Toast shadow"
+    }
+  },
+  "section-message": {
+    "variant": {
+      "success": {
+        "bg": {
+          "$type": "color",
+          "$value": "{color.background.success.subtle}",
+          "$description": "Section message background color for success variant"
+        },
+        "border": {
+          "$type": "color",
+          "$value": "{color.border.success.strong}",
+          "$description": "Section message border color for success variant"
+        },
+        "borderTop": {
+          "$type": "color",
+          "$value": "{color.border.success.default}",
+          "$description": "Section message top border color for success variant"
+        },
+        "text": {
+          "header": {
+            "$type": "color",
+            "$value": "{color.text.base.default}",
+            "$description": "Section message header text color for success variant"
+          },
+          "description": {
+            "$type": "color",
+            "$value": "{color.text.base.muted}",
+            "$description": "Section message description text color for success variant"
+          }
+        },
+        "icon": {
+          "$type": "color",
+          "$value": "{color.icon.success.default}",
+          "$description": "Section message icon color for success variant"
+        }
+      },
+      "warning": {
+        "bg": {
+          "$type": "color",
+          "$value": "{color.background.warning.subtle}",
+          "$description": "Section message background color for warning variant"
+        },
+        "border": {
+          "$type": "color",
+          "$value": "{color.border.warning.strong}",
+          "$description": "Section message border color for warning variant"
+        },
+        "borderTop": {
+          "$type": "color",
+          "$value": "{color.border.warning.default}",
+          "$description": "Section message top border color for warning variant"
+        },
+        "text": {
+          "header": {
+            "$type": "color",
+            "$value": "{color.text.base.default}",
+            "$description": "Section message header text color for warning variant"
+          },
+          "description": {
+            "$type": "color",
+            "$value": "{color.text.base.muted}",
+            "$description": "Section message description text color for warning variant"
+          }
+        },
+        "icon": {
+          "$type": "color",
+          "$value": "{color.icon.warning.default}",
+          "$description": "Section message icon color for warning variant"
+        }
+      },
+      "error": {
+        "bg": {
+          "$type": "color",
+          "$value": "{color.background.danger.subtle}",
+          "$description": "Section message background color for error variant"
+        },
+        "border": {
+          "$type": "color",
+          "$value": "{color.border.danger.strong}",
+          "$description": "Section message border color for error variant"
+        },
+        "borderTop": {
+          "$type": "color",
+          "$value": "{color.border.danger.default}",
+          "$description": "Section message top border color for error variant"
+        },
+        "text": {
+          "header": {
+            "$type": "color",
+            "$value": "{color.text.base.default}",
+            "$description": "Section message header text color for error variant"
+          },
+          "description": {
+            "$type": "color",
+            "$value": "{color.text.base.muted}",
+            "$description": "Section message description text color for error variant"
+          }
+        },
+        "icon": {
+          "$type": "color",
+          "$value": "{color.icon.danger.default}",
+          "$description": "Section message icon color for error variant"
+        }
+      },
+      "informative": {
+        "bg": {
+          "$type": "color",
+          "$value": "{color.background.base.subtle}",
+          "$description": "Section message background color for informative variant"
+        },
+        "border": {
+          "$type": "color",
+          "$value": "{color.border.base.default}",
+          "$description": "Section message border color for informative variant"
+        },
+        "borderTop": {
+          "$type": "color",
+          "$value": "{color.border.neutral.default}",
+          "$description": "Section message top border color for informative variant"
+        },
+        "text": {
+          "header": {
+            "$type": "color",
+            "$value": "{color.text.base.default}",
+            "$description": "Section message header text color for informative variant"
+          },
+          "description": {
+            "$type": "color",
+            "$value": "{color.text.base.muted}",
+            "$description": "Section message description text color for informative variant"
+          }
+        },
+        "icon": {
+          "$type": "color",
+          "$value": "{color.icon.base.default}",
+          "$description": "Section message icon color for informative variant"
+        }
+      }
+    },
+    "content": {
+      "padding": {
+        "x": {
+          "$type": "dimension",
+          "$value": "{spacing.padding.sm}",
+          "$description": "Section message horizontal padding (16px)"
+        },
+        "y": {
+          "$type": "dimension",
+          "$value": "{spacing.padding.xs}",
+          "$description": "Section message vertical padding (12px)"
+        }
+      },
+      "gap": {
+        "elements": {
+          "$type": "dimension",
+          "$value": "{spacing.gap.xxs}",
+          "$description": "Gap between section message elements (8px)"
+        },
+        "text": {
+          "$type": "dimension",
+          "$value": "{spacing.gap.sm}",
+          "$description": "Gap between header and description (16px)"
+        }
+      }
+    },
+    "text": {
+      "header": {
+        "typography": {
+          "$type": "typography",
+          "$value": "{typography.text.small}",
+          "$description": "Section message header text typography (small)"
+        }
+      },
+      "description": {
+        "typography": {
+          "$type": "typography",
+          "$value": "{typography.text.small}",
+          "$description": "Section message description text typography (small)"
+        }
+      }
+    },
+    "icon": {
+      "size": {
+        "$type": "dimension",
+        "$value": "{size.icon.lg}",
+        "$description": "Section message icon size (24px)"
+      }
+    },
+    "border": {
+      "radius": {
+        "$type": "dimension",
+        "$value": "{border.radius.default}",
+        "$description": "Section message border radius (3px)"
+      },
+      "width": {
+        "default": {
+          "$type": "dimension",
+          "$value": "{border.default}",
+          "$description": "Section message border width (1px)"
+        },
+        "top": {
+          "$type": "dimension",
+          "$value": "{border.big}",
+          "$description": "Section message top border width (2px)"
+        }
+      }
+    }
+  },
+  "card": {
+    "bg": {
+      "default": {
+        "$type": "color",
+        "$value": "{color.background.base.default}",
+        "$description": "Card background color for default state"
+      },
+      "hover": {
+        "$type": "color",
+        "$value": "{color.mono.00}",
+        "$description": "Card background color for hover state (same as default)"
+      },
+      "active": {
+        "$type": "color",
+        "$value": "{color.mono.00}",
+        "$description": "Card background color for active state (same as default)"
+      },
+      "disabled": {
+        "$type": "color",
+        "$value": "{color.mono.00}",
+        "$description": "Card background color for disabled state (same as default, opacity applied separately)"
+      }
+    },
+    "border": {
+      "radius": {
+        "$type": "dimension",
+        "$value": "{border.radius.default}",
+        "$description": "Card border radius (3px)"
+      },
+      "width": {
+        "$type": "dimension",
+        "$value": "0px",
+        "$description": "Card border width (no border)"
+      }
+    },
+    "shadow": {
+      "default": {
+        "$type": "shadow",
+        "$value": "{shadow.level.1}",
+        "$description": "Card shadow for default state (level 1)"
+      },
+      "hover": {
+        "$type": "shadow",
+        "$value": "{shadow.level.2}",
+        "$description": "Card shadow for hover state (level 2)"
+      },
+      "active": {
+        "$type": "shadow",
+        "$value": "{shadow.level.2}",
+        "$description": "Card shadow for active state (level 2)"
+      }
+    },
+    "content": {
+      "padding": {
+        "$type": "dimension",
+        "$value": "{spacing.padding.lg}",
+        "$description": "Card content padding (24px)"
+      }
+    },
+    "header": {
+      "padding": {
+        "$type": "dimension",
+        "$value": "{spacing.padding.lg}",
+        "$description": "Card header padding (24px)"
+      }
+    },
+    "disabled": {
+      "opacity": {
+        "$type": "number",
+        "$value": "{opacity.disabled}",
+        "$description": "Card opacity for disabled state (0.4 = 40%)"
+      }
+    }
+  },
+  "avatar": {
+    "size": {
+      "small": {
+        "$type": "dimension",
+        "$value": "{space.24}",
+        "$description": "Small avatar size (24px)"
+      },
+      "medium": {
+        "$type": "dimension",
+        "$value": "{space.40}",
+        "$description": "Medium avatar size (40px)"
+      },
+      "large": {
+        "$type": "dimension",
+        "$value": "{space.84}",
+        "$description": "Large avatar size (84px)"
+      },
+      "xlarge": {
+        "$type": "dimension",
+        "$value": "{space.120}",
+        "$description": "Extra large avatar size (120px)"
+      }
+    },
+    "borderRadius": {
+      "$type": "dimension",
+      "$value": "{border.radius.full}",
+      "$description": "Avatar border radius (circular)"
+    },
+    "borderWidth": {
+      "$type": "dimension",
+      "$value": "{border.default}",
+      "$description": "Avatar border width (1px)"
+    },
+    "bg": {
+      "default": {
+        "$type": "color",
+        "$value": "{color.background.base.muted}",
+        "$description": "Avatar background color for default state"
+      },
+      "hover": {
+        "$type": "color",
+        "$value": "{color.background.base.mutedHover}",
+        "$description": "Avatar background color for hover state"
+      },
+      "disabled": {
+        "$type": "color",
+        "$value": "{color.background.base.muted}",
+        "$description": "Avatar background color for disabled state"
+      }
+    },
+    "text": {
+      "default": {
+        "$type": "color",
+        "$value": "{color.text.base.muted}",
+        "$description": "Avatar text color for default state"
+      },
+      "hover": {
+        "$type": "color",
+        "$value": "{color.text.base.muted}",
+        "$description": "Avatar text color for hover state"
+      },
+      "disabled": {
+        "$type": "color",
+        "$value": "{color.text.disabled.default}",
+        "$description": "Avatar text color for disabled state"
+      }
+    },
+    "border": {
+      "color": {
+        "default": {
+          "$type": "color",
+          "$value": "{color.border.base.default}",
+          "$description": "Avatar border color for default state"
+        },
+        "hover": {
+          "$type": "color",
+          "$value": "{color.background.brand.solid}",
+          "$description": "Avatar border color for hover state"
+        },
+        "disabled": {
+          "$type": "color",
+          "$value": "{color.border.base.disabled}",
+          "$description": "Avatar border color for disabled state"
+        }
+      }
+    },
+    "disabled": {
+      "opacity": {
+        "$type": "number",
+        "$value": "{opacity.disabled}",
+        "$description": "Avatar opacity for disabled state (0.4 = 40%)"
+      }
+    }
+  },
+  "status-pill": {
+    "size": {
+      "height": {
+        "$type": "dimension",
+        "$value": "{space.16}",
+        "$description": "Status pill height (16px)"
+      },
+      "padding": {
+        "horizontal": {
+          "$type": "dimension",
+          "$value": "{space.8}",
+          "$description": "Status pill horizontal padding (8px)"
+        },
+        "vertical": {
+          "$type": "dimension",
+          "$value": "{space.1}",
+          "$description": "Status pill vertical padding (1px)"
+        }
+      }
+    },
+    "borderRadius": {
+      "$type": "dimension",
+      "$value": "{border.radius.full}",
+      "$description": "Status pill border radius (fully rounded)"
+    },
+    "borderWidth": {
+      "$type": "dimension",
+      "$value": "{border.default}",
+      "$description": "Status pill border width (1px)"
+    },
+    "typography": {
+      "$type": "typography",
+      "$value": "{typography.title.level7}",
+      "$description": "Status pill text typography (level 7)"
+    },
+    "variant": {
+      "neutral": {
+        "text": {
+          "$type": "color",
+          "$value": "{color.text.neutral.default}",
+          "$description": "Neutral status pill text color"
+        },
+        "border": {
+          "solid": {
+            "$type": "color",
+            "$value": "{color.border.neutral.subtle}",
+            "$description": "Neutral status pill solid border color"
+          },
+          "dashed": {
+            "$type": "color",
+            "$value": "{color.border.neutral.subtle}",
+            "$description": "Neutral status pill dashed border color"
+          }
+        }
+      },
+      "success": {
+        "text": {
+          "$type": "color",
+          "$value": "{color.text.success.default}",
+          "$description": "Success status pill text color"
+        },
+        "border": {
+          "solid": {
+            "$type": "color",
+            "$value": "{color.border.success.default}",
+            "$description": "Success status pill solid border color"
+          },
+          "dashed": {
+            "$type": "color",
+            "$value": "{color.border.success.default}",
+            "$description": "Success status pill dashed border color"
+          }
+        }
+      },
+      "warning": {
+        "text": {
+          "$type": "color",
+          "$value": "{color.text.warning.default}",
+          "$description": "Warning status pill text color"
+        },
+        "border": {
+          "solid": {
+            "$type": "color",
+            "$value": "{color.border.warning.default}",
+            "$description": "Warning status pill solid border color"
+          },
+          "dashed": {
+            "$type": "color",
+            "$value": "{color.border.warning.default}",
+            "$description": "Warning status pill dashed border color"
+          }
+        }
+      },
+      "error": {
+        "text": {
+          "$type": "color",
+          "$value": "{color.text.danger.default}",
+          "$description": "Error status pill text color"
+        },
+        "border": {
+          "solid": {
+            "$type": "color",
+            "$value": "{color.border.danger.default}",
+            "$description": "Error status pill solid border color"
+          },
+          "dashed": {
+            "$type": "color",
+            "$value": "{color.border.danger.default}",
+            "$description": "Error status pill dashed border color"
+          }
+        }
+      },
+      "info": {
+        "text": {
+          "$type": "color",
+          "$value": "{color.text.brand.default}",
+          "$description": "Info status pill text color"
+        },
+        "border": {
+          "solid": {
+            "$type": "color",
+            "$value": "{color.border.brand.default}",
+            "$description": "Info status pill solid border color"
+          },
+          "dashed": {
+            "$type": "color",
+            "$value": "{color.border.brand.default}",
+            "$description": "Info status pill dashed border color"
+          }
+        }
+      }
+    }
+  },
+  "page-header": {
+    "container": {
+      "bg": {
+        "$type": "color",
+        "$value": "{color.background.base.default}",
+        "$description": "Page header background color"
+      },
+      "shadow": {
+        "$type": "shadow",
+        "$value": "{shadow.level.1}",
+        "$description": "Page header shadow (subtle elevation)"
+      }
+    },
+    "header": {
+      "padding": {
+        "horizontal": {
+          "$type": "dimension",
+          "$value": "{spacing.padding.lg}",
+          "$description": "Page header horizontal padding (24px)"
+        },
+        "vertical": {
+          "$type": "dimension",
+          "$value": "{spacing.padding.md}",
+          "$description": "Page header vertical padding (16px)"
+        }
+      },
+      "gap": {
+        "$type": "dimension",
+        "$value": "{spacing.gap.lg}",
+        "$description": "Gap between header elements (24px)"
+      }
+    },
+    "navigation": {
+      "back": {
+        "icon": {
+          "size": {
+            "$type": "dimension",
+            "$value": "{size.icon.lg}",
+            "$description": "Back button icon size (24px)"
+          }
+        },
+        "separator": {
+          "width": {
+            "$type": "dimension",
+            "$value": "{space.1}",
+            "$description": "Navigation separator width (1px)"
+          },
+          "height": {
+            "$type": "dimension",
+            "$value": "{space.40}",
+            "$description": "Navigation separator height (40px)"
+          },
+          "color": {
+            "$type": "color",
+            "$value": "{color.border.base.strong}",
+            "$description": "Navigation separator color"
+          }
+        }
+      },
+      "label": {
+        "typography": {
+          "$type": "typography",
+          "$value": "{typography.title.level2}",
+          "$description": "Page header label typography (level 2)"
+        },
+        "color": {
+          "$type": "color",
+          "$value": "{color.text.base.default}",
+          "$description": "Page header label text color"
+        },
+        "help": {
+          "icon": {
+            "size": {
+              "$type": "dimension",
+              "$value": "{size.icon.lg}",
+              "$description": "Help icon size (24px)"
+            }
+          }
+        }
+      },
+      "avatar": {
+        "size": {
+          "$type": "dimension",
+          "$value": "{space.40}",
+          "$description": "Object avatar size (40px)"
+        },
+        "bg": {
+          "$type": "color",
+          "$value": "{color.background.base.muted}",
+          "$description": "Object avatar background color"
+        },
+        "borderRadius": {
+          "$type": "dimension",
+          "$value": "8px",
+          "$description": "Object avatar border radius (8px)"
+        }
+      }
+    },
+    "actions": {
+      "gap": {
+        "$type": "dimension",
+        "$value": "{spacing.gap.sm}",
+        "$description": "Gap between action buttons (16px)"
+      }
+    },
+    "tabs": {
+      "container": {
+        "padding": {
+          "horizontal": {
+            "$type": "dimension",
+            "$value": "{spacing.padding.lg}",
+            "$description": "Tabs container horizontal padding (24px)"
+          },
+          "vertical": {
+            "$type": "dimension",
+            "$value": "{space.1}",
+            "$description": "Tabs container vertical padding (1px)"
+          }
+        },
+        "border": {
+          "width": {
+            "$type": "dimension",
+            "$value": "{border.default}",
+            "$description": "Tabs container border width (1px)"
+          },
+          "color": {
+            "$type": "color",
+            "$value": "{color.border.base.default}",
+            "$description": "Tabs container border color"
+          }
+        }
+      },
+      "item": {
+        "padding": {
+          "horizontal": {
+            "$type": "dimension",
+            "$value": "0px",
+            "$description": "Tab item horizontal padding (0px)"
+          },
+          "vertical": {
+            "$type": "dimension",
+            "$value": "{space.2}",
+            "$description": "Tab item vertical padding (2px)"
+          },
+          "bottom": {
+            "$type": "dimension",
+            "$value": "{space.12}",
+            "$description": "Tab item bottom padding (12px)"
+          }
+        },
+        "gap": {
+          "$type": "dimension",
+          "$value": "{spacing.gap.lg}",
+          "$description": "Gap between tab items (24px)"
+        },
+        "typography": {
+          "$type": "typography",
+          "$value": "{typography.title.level5}",
+          "$description": "Tab item typography (level 5)"
+        },
+        "colors": {
+          "active": {
+            "text": {
+              "$type": "color",
+              "$value": "{color.background.brand.solid}",
+              "$description": "Active tab text color"
+            },
+            "border": {
+              "$type": "color",
+              "$value": "{color.background.brand.solid}",
+              "$description": "Active tab border color"
+            }
+          },
+          "inactive": {
+            "text": {
+              "$type": "color",
+              "$value": "{color.text.base.muted}",
+              "$description": "Inactive tab text color"
+            },
+            "text-hover": {
+              "$type": "color",
+              "$value": "{color.text.base.default}",
+              "$description": "Inactive tab text color"
+            }
+          }
+        }
+      }
+    }
+  },
+  "navbar": {
+    "container": {
+      "bg": {
+        "$type": "color",
+        "$value": "{color.background.neutral.solid}",
+        "$description": "Navbar background color (dark grey)"
+      },
+      "padding": {
+        "horizontal": {
+          "$type": "dimension",
+          "$value": "{spacing.padding.lg}",
+          "$description": "Navbar horizontal padding (24px)"
+        },
+        "vertical": {
+          "$type": "dimension",
+          "$value": "{spacing.padding.md}",
+          "$description": "Navbar vertical padding (12px)"
+        }
+      }
+    },
+    "left": {
+      "gap": {
+        "$type": "dimension",
+        "$value": "{spacing.gap.sm}",
+        "$description": "Gap between left side elements (12px)"
+      },
+      "logo": {
+        "height": {
+          "$type": "dimension",
+          "$value": "{space.14}",
+          "$description": "Logo height (14px)"
+        }
+      },
+      "separator": {
+        "width": {
+          "$type": "dimension",
+          "$value": "{space.1}",
+          "$description": "Separator width (1px)"
+        },
+        "height": {
+          "$type": "dimension",
+          "$value": "{space.24}",
+          "$description": "Separator height (24px)"
+        },
+        "color": {
+          "$type": "color",
+          "$value": "{color.text.onSolid.default}",
+          "$description": "Separator color (white)"
+        },
+        "opacity": {
+          "$type": "number",
+          "$value": "{opacity.muted}",
+          "$description": "Separator opacity (30%)"
+        }
+      },
+      "moduleName": {
+        "typography": {
+          "$type": "typography",
+          "$value": "{typography.title.level5}",
+          "$description": "Module name typography (level 5)"
+        },
+        "color": {
+          "$type": "color",
+          "$value": "{color.text.onSolid.default}",
+          "$description": "Module name text color (white)"
+        }
+      }
+    },
+    "right": {
+      "gap": {
+        "$type": "dimension",
+        "$value": "{spacing.gap.sm}",
+        "$description": "Gap between right side elements (12px)"
+      },
+      "actions": {
+        "gap": {
+          "$type": "dimension",
+          "$value": "{spacing.gap.sm}",
+          "$description": "Gap between action buttons (12px)"
+        },
+        "button": {
+          "padding": {
+            "$type": "dimension",
+            "$value": "{spacing.padding.xxs}",
+            "$description": "Action button padding (4px)"
+          },
+          "borderRadius": {
+            "$type": "dimension",
+            "$value": "{border.radius.default}",
+            "$description": "Action button border radius (3px)"
+          },
+          "icon": {
+            "size": {
+              "$type": "dimension",
+              "$value": "{size.icon.lg}",
+              "$description": "Action button icon size (24px)"
+            }
+          }
+        }
+      },
+      "separator": {
+        "width": {
+          "$type": "dimension",
+          "$value": "{space.1}",
+          "$description": "Separator width (1px)"
+        },
+        "height": {
+          "$type": "dimension",
+          "$value": "{space.24}",
+          "$description": "Separator height (24px)"
+        },
+        "color": {
+          "$type": "color",
+          "$value": "{color.text.onSolid.default}",
+          "$description": "Separator color (white)"
+        },
+        "opacity": {
+          "$type": "number",
+          "$value": "{opacity.muted}",
+          "$description": "Separator opacity (30%)"
+        }
+      },
+      "userButton": {
+        "padding": {
+          "horizontal": {
+            "left": {
+              "$type": "dimension",
+              "$value": "{spacing.padding.sm}",
+              "$description": "User button left padding (12px)"
+            },
+            "right": {
+              "$type": "dimension",
+              "$value": "{space.8}",
+              "$description": "User button right padding (8px)"
+            }
+          },
+          "vertical": {
+            "$type": "dimension",
+            "$value": "{space.4}",
+            "$description": "User button vertical padding (4px)"
+          }
+        },
+        "borderRadius": {
+          "$type": "dimension",
+          "$value": "{border.radius.default}",
+          "$description": "User button border radius (3px)"
+        },
+        "gap": {
+          "$type": "dimension",
+          "$value": "{spacing.gap.xxs}",
+          "$description": "Gap between text and icon (4px)"
+        },
+        "text": {
+          "typography": {
+            "$type": "typography",
+            "$value": "{typography.title.level6}",
+            "$description": "User button text typography (level 6)"
+          },
+          "color": {
+            "$type": "color",
+            "$value": "{color.text.onSolid.default}",
+            "$description": "User button text color (white)"
+          }
+        },
+        "icon": {
+          "size": {
+            "$type": "dimension",
+            "$value": "{size.icon.lg}",
+            "$description": "User button icon size (24px)"
+          }
+        }
+      },
+      "avatar": {
+        "size": {
+          "$type": "dimension",
+          "$value": "{size.icon.lg}",
+          "$description": "Avatar size (24px)"
+        },
+        "borderRadius": {
+          "$type": "dimension",
+          "$value": "{border.radius.full}",
+          "$description": "Avatar border radius (circular)"
+        }
+      }
+    }
+  },
+  "modal": {
+    "container": {
+      "bg": {
+        "$type": "color",
+        "$value": "{color.background.base.default}",
+        "$description": "Modal background color"
+      },
+      "shadow": {
+        "$type": "shadow",
+        "$value": "{shadow.level.2}",
+        "$description": "Modal shadow (medium elevation)"
+      },
+      "borderRadius": {
+        "$type": "dimension",
+        "$value": "{border.radius.default}",
+        "$description": "Modal border radius (3px)"
+      }
+    },
+    "sizes": {
+      "small": {
+        "width": {
+          "$type": "dimension",
+          "$value": "520px",
+          "$description": "Small modal width (520px)"
+        }
+      },
+      "medium": {
+        "width": {
+          "$type": "dimension",
+          "$value": "792px",
+          "$description": "Medium modal width (792px)"
+        }
+      },
+      "large": {
+        "width": {
+          "$type": "dimension",
+          "$value": "1044px",
+          "$description": "Large modal width (1044px)"
+        }
+      },
+      "extraLarge": {
+        "width": {
+          "$type": "dimension",
+          "$value": "1280px",
+          "$description": "Extra large modal width (1280px)"
+        }
+      }
+    },
+    "header": {
+      "bg": {
+        "$type": "color",
+        "$value": "{color.background.base.default}",
+        "$description": "Modal header background color"
+      },
+      "padding": {
+        "horizontal": {
+          "$type": "dimension",
+          "$value": "{spacing.padding.lg}",
+          "$description": "Modal header horizontal padding (24px)"
+        },
+        "vertical": {
+          "$type": "dimension",
+          "$value": "{spacing.padding.md}",
+          "$description": "Modal header vertical padding (16px)"
+        }
+      },
+      "gap": {
+        "$type": "dimension",
+        "$value": "{spacing.gap.sm}",
+        "$description": "Gap between header elements (12px)"
+      },
+      "border": {
+        "width": {
+          "$type": "dimension",
+          "$value": "{border.default}",
+          "$description": "Modal header border width (1px)"
+        },
+        "color": {
+          "$type": "color",
+          "$value": "{color.border.base.subtle}",
+          "$description": "Modal header border color (grey.100)"
+        }
+      },
+      "title": {
+        "typography": {
+          "$type": "typography",
+          "$value": "{typography.title.level3}",
+          "$description": "Modal title typography (level 3)"
+        },
+        "color": {
+          "$type": "color",
+          "$value": "{color.text.base.default}",
+          "$description": "Modal title text color"
+        }
+      },
+      "actions": {
+        "gap": {
+          "$type": "dimension",
+          "$value": "{spacing.gap.sm}",
+          "$description": "Gap between action buttons (12px)"
+        },
+        "button": {
+          "padding": {
+            "$type": "dimension",
+            "$value": "{spacing.padding.xxs}",
+            "$description": "Action button padding (4px)"
+          },
+          "borderRadius": {
+            "$type": "dimension",
+            "$value": "{border.radius.default}",
+            "$description": "Action button border radius (3px)"
+          },
+          "icon": {
+            "size": {
+              "$type": "dimension",
+              "$value": "{size.icon.lg}",
+              "$description": "Action button icon size (24px)"
+            }
+          }
+        }
+      },
+      "separator": {
+        "height": {
+          "$type": "dimension",
+          "$value": "{space.1}",
+          "$description": "Header separator height (1px)"
+        },
+        "color": {
+          "$type": "color",
+          "$value": "{color.border.base.subtle}",
+          "$description": "Header separator color (grey.100)"
+        }
+      }
+    },
+    "content": {
+      "bg": {
+        "$type": "color",
+        "$value": "{color.background.base.default}",
+        "$description": "Modal content background color"
+      },
+      "minHeight": {
+        "$type": "dimension",
+        "$value": "247px",
+        "$description": "Modal content minimum height (247px)"
+      }
+    },
+    "footer": {
+      "bg": {
+        "$type": "color",
+        "$value": "{color.background.base.subtle}",
+        "$description": "Modal footer background color (grey.50)"
+      },
+      "padding": {
+        "$type": "dimension",
+        "$value": "{spacing.padding.lg}",
+        "$description": "Modal footer padding (24px)"
+      },
+      "gap": {
+        "$type": "dimension",
+        "$value": "{spacing.gap.sm}",
+        "$description": "Gap between footer elements (12px)"
+      },
+      "border": {
+        "width": {
+          "$type": "dimension",
+          "$value": "{border.default}",
+          "$description": "Modal footer border width (1px)"
+        },
+        "color": {
+          "$type": "color",
+          "$value": "{color.border.base.subtle}",
+          "$description": "Modal footer border color (grey.100)"
+        }
+      },
+      "actions": {
+        "gap": {
+          "$type": "dimension",
+          "$value": "{spacing.gap.sm}",
+          "$description": "Gap between footer action buttons (12px)"
+        }
+      }
+    },
+    "mask": {
+      "color": {
+        "$type": "color",
+        "$value": "{color.background.neutral.solid}"
+      }
+    }
+  },
+  "list-item": {
+    "container": {
+      "padding": {
+        "horizontal": {
+          "$type": "dimension",
+          "$value": "{spacing.padding.xs}",
+          "$description": "List item horizontal padding (8px)"
+        },
+        "vertical": {
+          "$type": "dimension",
+          "$value": "{spacing.padding.xxs}",
+          "$description": "List item vertical padding (4px)"
+        }
+      },
+      "gap": {
+        "$type": "dimension",
+        "$value": "{spacing.gap.sm}",
+        "$description": "Gap between list item elements (12px)"
+      },
+      "borderRadius": {
+        "$type": "dimension",
+        "$value": "{border.radius.default}",
+        "$description": "List item border radius (3px)"
+      },
+      "height": {
+        "standard": {
+          "$type": "dimension",
+          "$value": "{space.32}",
+          "$description": "Standard list item height (32px)"
+        },
+        "withAvatar": {
+          "$type": "dimension",
+          "$value": "{space.44}",
+          "$description": "List item height with small avatar (44px)"
+        },
+        "withAvatarLarge": {
+          "$type": "dimension",
+          "$value": "{space.56}",
+          "$description": "List item height with medium avatar (56px)"
+        },
+        "withDescription": {
+          "$type": "dimension",
+          "$value": "{space.52}",
+          "$description": "List item height with description (52px)"
+        }
+      }
+    },
+    "content": {
+      "text": {
+        "typography": {
+          "$type": "typography",
+          "$value": "{typography.title.level6}",
+          "$description": "List item text typography (level 6)"
+        }
+      },
+      "description": {
+        "typography": {
+          "$type": "typography",
+          "$value": "{typography.text.small}",
+          "$description": "List item description typography (small)"
+        }
+      }
+    },
+    "role": {
+      "normal": {
+        "bg": {
+          "default": {
+            "$type": "color",
+            "$value": "transparent",
+            "$description": "Default list item background (transparent)"
+          },
+          "hover": {
+            "$type": "color",
+            "$value": "{color.background.base.subtle}",
+            "$description": "Hover list item background (grey.50)"
+          },
+          "focused": {
+            "$type": "color",
+            "$value": "{color.background.brand.subtle}",
+            "$description": "Focused list item background (blue.50)"
+          },
+          "active": {
+            "$type": "color",
+            "$value": "{color.background.brand.subtle}",
+            "$description": "Active list item background (blue.50)"
+          },
+          "disabled": {
+            "$type": "color",
+            "$value": "transparent",
+            "$description": "Default list item background (transparent)"
+          }
+        },
+        "text": {
+          "default": {
+            "$type": "color",
+            "$value": "{color.text.base.subtle}",
+            "$description": "List item text color (grey.700)"
+          },
+          "hover": {
+            "$type": "color",
+            "$value": "{color.text.brand.default}",
+            "$description": "Hover list item text color (blue.600)"
+          },
+          "active": {
+            "$type": "color",
+            "$value": "{color.text.brand.default}",
+            "$description": "Active list item text color (blue.600)"
+          },
+          "focused": {
+            "$type": "color",
+            "$value": "{color.text.base.subtle}",
+            "$description": "Focused list item text color (blue.600)"
+          },
+          "disabled": {
+            "$type": "color",
+            "$value": "{color.text.base.subtle}",
+            "$description": "List item text color (grey.700)"
+          }
+        },
+        "icon": {
+          "default": {
+            "$type": "color",
+            "$value": "{color.icon.base.default}",
+            "$description": "List item text color (grey.700)"
+          },
+          "hover": {
+            "$type": "color",
+            "$value": "{color.icon.brand.default}",
+            "$description": "Hover list item text color (blue.600)"
+          },
+          "focused": {
+            "$type": "color",
+            "$value": "{color.icon.base.default}",
+            "$description": "List item text color (grey.700)"
+          },
+          "active": {
+            "$type": "color",
+            "$value": "{color.icon.brand.default}",
+            "$description": "Hover list item text color (blue.600)"
+          },
+          "disabled": {
+            "$type": "color",
+            "$value": "{color.icon.base.default}",
+            "$description": "List item text color (grey.700)"
+          }
+        },
+        "description": {
+          "default": {
+            "$type": "color",
+            "$value": "{color.text.base.subtle}",
+            "$description": "List item description color (grey.700)"
+          },
+          "hover": {
+            "$type": "color",
+            "$value": "{color.text.base.subtle}",
+            "$description": "List item description color (grey.700)"
+          },
+          "focused": {
+            "$type": "color",
+            "$value": "{color.text.base.subtle}",
+            "$description": "List item description color (grey.700)"
+          },
+          "active": {
+            "$type": "color",
+            "$value": "{color.text.base.subtle}",
+            "$description": "List item description color (grey.700)"
+          },
+          "disabled": {
+            "$type": "color",
+            "$value": "{color.text.base.subtle}",
+            "$description": "List item description color (grey.700)"
+          }
+        }
+      },
+      "delete": {
+        "bg": {
+          "default": {
+            "$type": "color",
+            "$value": "transparent",
+            "$description": "Default list item background (transparent)"
+          },
+          "hover": {
+            "$type": "color",
+            "$value": "{color.background.danger.subtle}",
+            "$description": "Hover list item background (grey.50)"
+          },
+          "focused": {
+            "$type": "color",
+            "$value": "{color.background.danger.subtle}",
+            "$description": "Focused list item background (blue.50)"
+          },
+          "active": {
+            "$type": "color",
+            "$value": "{color.background.danger.subtle}",
+            "$description": "Active list item background (blue.50)"
+          },
+          "disabled": {
+            "$type": "color",
+            "$value": "transparent",
+            "$description": "Default list item background (transparent)"
+          }
+        },
+        "text": {
+          "default": {
+            "$type": "color",
+            "$value": "{color.text.danger.default}",
+            "$description": "List item text color (grey.700)"
+          },
+          "hover": {
+            "$type": "color",
+            "$value": "{color.text.danger.default}",
+            "$description": "Hover list item text color (blue.600)"
+          },
+          "active": {
+            "$type": "color",
+            "$value": "{color.text.danger.default}",
+            "$description": "Active list item text color (blue.600)"
+          },
+          "focused": {
+            "$type": "color",
+            "$value": "{color.text.danger.default}",
+            "$description": "Focused list item text color (blue.600)"
+          },
+          "disabled": {
+            "$type": "color",
+            "$value": "{color.text.danger.default}",
+            "$description": "List item text color (grey.700)"
+          }
+        },
+        "icon": {
+          "default": {
+            "$type": "color",
+            "$value": "{color.text.danger.default}",
+            "$description": "List item text color (grey.700)"
+          },
+          "hover": {
+            "$type": "color",
+            "$value": "{color.text.danger.default}",
+            "$description": "Hover list item text color (blue.600)"
+          },
+          "focused": {
+            "$type": "color",
+            "$value": "{color.text.danger.default}",
+            "$description": "List item text color (grey.700)"
+          },
+          "active": {
+            "$type": "color",
+            "$value": "{color.text.danger.default}",
+            "$description": "Hover list item text color (blue.600)"
+          },
+          "disabled": {
+            "$type": "color",
+            "$value": "{color.text.danger.default}",
+            "$description": "List item text color (grey.700)"
+          }
+        },
+        "border": {
+          "default": {
+            "$type": "color",
+            "$value": "{color.transparent}",
+            "$description": "Primary button border color for default state (transparent)"
+          },
+          "hover": {
+            "$type": "color",
+            "$value": "{color.transparent}",
+            "$description": "Primary button border color for hover state (transparent)"
+          },
+          "focus": {
+            "$type": "color",
+            "$value": "{outline.color.focus.primary}",
+            "$description": "Primary button border color for focus state (blue-700, 2px width)"
+          },
+          "active": {
+            "$type": "color",
+            "$value": "{color.transparent}",
+            "$description": "Primary button border color for active/selected state (transparent for solid variant)"
+          },
+          "disabled": {
+            "$type": "color",
+            "$value": "{color.transparent}",
+            "$description": "Primary button border color for disabled state (transparent)"
+          }
+        }
+      }
+    },
+    "icon": {
+      "size": {
+        "$type": "dimension",
+        "$value": "{size.icon.lg}",
+        "$description": "List item icon size (24px)"
+      },
+      "color": {
+        "$type": "color",
+        "$value": "{color.icon.base.muted}",
+        "$description": "List item icon color (grey.700)"
+      }
+    },
+    "avatar": {
+      "small": {
+        "$type": "dimension",
+        "$value": "{avatar.size.small}",
+        "$description": "Small avatar size for list item (24px)"
+      },
+      "medium": {
+        "$type": "dimension",
+        "$value": "{avatar.size.medium}",
+        "$description": "Medium avatar size for list item (40px)"
+      }
+    },
+    "states": {
+      "hover": {
+        "icon": {
+          "$type": "color",
+          "$value": "{color.background.brand.solid}",
+          "$description": "Hover list item text color (blue.600)"
+        }
+      },
+      "disabled": {
+        "opacity": {
+          "$type": "number",
+          "$value": "{opacity.disabled}",
+          "$description": "Disabled list item opacity (0.4 = 40%)"
+        }
+      }
+    },
+    "subcomponents": {
+      "checkbox": {
+        "$type": "reference",
+        "$value": "{form.checkbox}",
+        "$description": "Reference to checkbox subcomponent"
+      },
+      "switch": {
+        "$type": "reference",
+        "$value": "{form.switch}",
+        "$description": "Reference to switch subcomponent"
+      },
+      "select": {
+        "$type": "reference",
+        "$value": "{form.select}",
+        "$description": "Reference to select subcomponent"
+      }
+    }
+  },
+  "app-menu": {
+    "container": {
+      "bg": {
+        "$type": "color",
+        "$value": "{color.background.base.default}",
+        "$description": "App menu background color"
+      },
+      "shadow": {
+        "$type": "shadow",
+        "$value": "{shadow.level.1}",
+        "$description": "App menu shadow (subtle elevation)"
+      },
+      "border": {
+        "width": {
+          "$type": "dimension",
+          "$value": "{space.1}",
+          "$description": "App menu border width (1px)"
+        },
+        "color": {
+          "$type": "color",
+          "$value": "{color.border.base.default}",
+          "$description": "App menu border color (grey.200)"
+        }
+      }
+    },
+    "collapsed": {
+      "padding": {
+        "horizontal": {
+          "$type": "dimension",
+          "$value": "{spacing.padding.sm}",
+          "$description": "Collapsed menu horizontal padding (12px)"
+        },
+        "vertical": {
+          "$type": "dimension",
+          "$value": "{spacing.padding.md}",
+          "$description": "Collapsed menu vertical padding (24px)"
+        }
+      },
+      "gap": {
+        "$type": "dimension",
+        "$value": "{spacing.gap.lg}",
+        "$description": "Gap between collapsed menu elements (24px)"
+      }
+    },
+    "expanded": {
+      "width": {
+        "$type": "dimension",
+        "$value": "{space.128} * 2 + {space.6}",
+        "$description": "Expanded menu width (262px = 128px * 2 + 6px)"
+      },
+      "padding": {
+        "$type": "dimension",
+        "$value": "{spacing.padding.xs}",
+        "$description": "Expanded menu padding (8px)"
+      }
+    },
+    "icons": {
+      "size": {
+        "$type": "dimension",
+        "$value": "{space.40}",
+        "$description": "Menu icon size (40px)"
+      },
+      "borderRadius": {
+        "$type": "dimension",
+        "$value": "{border.radius.full}",
+        "$description": "Menu icon border radius (circular)"
+      }
+    },
+    "separator": {
+      "height": {
+        "$type": "dimension",
+        "$value": "{space.1}",
+        "$description": "Separator height (1px)"
+      },
+      "color": {
+        "$type": "color",
+        "$value": "{color.border.base.default}",
+        "$description": "Separator color (grey.400)"
+      }
+    },
+    "header": {
+      "padding": {
+        "horizontal": {
+          "$type": "dimension",
+          "$value": "{spacing.padding.xs}",
+          "$description": "Header horizontal padding (8px)"
+        },
+        "vertical": {
+          "$type": "dimension",
+          "$value": "{space.26}",
+          "$description": "Header vertical padding (26px)"
+        }
+      },
+      "typography": {
+        "$type": "typography",
+        "$value": "{typography.title.level1}",
+        "$description": "Header typography (level 1)"
+      },
+      "color": {
+        "$type": "color",
+        "$value": "{color.text.base.default}",
+        "$description": "Header text color (grey.600)"
+      }
+    },
+    "content": {
+      "listItem": {
+        "$type": "reference",
+        "$value": "{list-item}",
+        "$description": "Reference to list item subcomponent"
+      }
+    },
+    "icon": {
+      "defsult": {
+        "$type": "color",
+        "$value": "{color.icon.base.default}"
+      },
+      "bg": {
+        "hover": {
+          "$type": "color",
+          "$value": "{color.background.base.subtle}"
+        }
+      }
+    }
+  },
+  "page": {
+    "bg": {
+      "$type": "color",
+      "$value": "{color.background.base.muted}"
+    }
+  },
+  "popcornfirm": {
+    "container": {
+      "bg": {
+        "$type": "color",
+        "$value": "{color.background.base.default}"
+      }
+    },
+    "header": {
+      "text": {
+        "$type": "color",
+        "$value": "{color.text.base.default}"
+      },
+      "icon": {
+        "$type": "color",
+        "$value": "{color.icon.base.default}"
+      }
+    },
+    "content": {
+      "description": {
+        "$type": "color",
+        "$value": "{color.text.base.subtle}"
+      }
+    }
+  },
+  "stepper": {
+    "step": {
+      "circle": {
+        "border": {
+          "default": {
+            "$type": "color",
+            "$value": "{color.border.base.default}"
+          },
+          "hover": {
+            "$type": "color",
+            "$value": "{color.border.base.strong}"
+          },
+          "active": {
+            "$type": "color",
+            "$value": "{color.border.brand.default}"
+          },
+          "done": {
+            "$type": "color",
+            "$value": "{color.border.brand.default}"
+          },
+          "validation": {
+            "$type": "color",
+            "$value": "{color.border.danger.default}"
+          }
+        },
+        "content": {
+          "default": {
+            "$type": "color",
+            "$value": "{color.text.base.muted}"
+          },
+          "hover": {
+            "$type": "color",
+            "$value": "{color.text.base.subtle}"
+          },
+          "active": {
+            "$type": "color",
+            "$value": "{color.text.onSolid.default}"
+          },
+          "done": {
+            "$type": "color",
+            "$value": "{color.text.onSolid.default}"
+          },
+          "validation": {
+            "$type": "color",
+            "$value": "{color.text.onSolid.default}"
+          }
+        }
+      },
+      "separator": {
+        "default": {
+          "$type": "color",
+          "$value": "{color.border.base.default}"
+        }
+      },
+      "label": {
+        "default": {
+          "$type": "color",
+          "$value": "{color.text.base.subtle}"
+        },
+        "hover": {
+          "$type": "color",
+          "$value": "{color.text.base.default}"
+        },
+        "active": {
+          "$type": "color",
+          "$value": "{color.text.base.default}"
+        },
+        "done": {
+          "$type": "color",
+          "$value": "{color.text.base.default}"
+        },
+        "validation": {
+          "$type": "color",
+          "$value": "{color.background.danger.solid}"
+        }
+      }
+    }
+  },
+  "ai-chat": {
+    "container": {
+      "bg": {
+        "$type": "color",
+        "$value": "{color.ai.primary.solid}",
+        "$description": "Modal background color"
+      }
+    },
+    "header": {
+      "bg": {
+        "$type": "color",
+        "$value": "{color.background.base.default}",
+        "$description": "Modal header background color"
+      },
+      "border": {
+        "color": {
+          "$type": "color",
+          "$value": "{color.border.base.subtle}",
+          "$description": "Modal header border color (grey.100)"
+        }
+      },
+      "title": {
+        "color": {
+          "$type": "color",
+          "$value": "{color.text.base.default}",
+          "$description": "Modal title text color"
+        }
+      },
+      "separator": {
+        "color": {
+          "$type": "color",
+          "$value": "{color.border.base.subtle}",
+          "$description": "Header separator color (grey.100)"
+        }
+      }
+    },
+    "content": {
+      "bg": {
+        "$type": "color",
+        "$value": "{color.background.base.default}",
+        "$description": "Modal content background color"
+      }
+    },
+    "footer": {
+      "bg": {
+        "$type": "color",
+        "$value": "{color.background.base.subtle}",
+        "$description": "Modal footer background color (grey.50)"
+      },
+      "border": {
+        "color": {
+          "$type": "color",
+          "$value": "{color.border.base.subtle}",
+          "$description": "Modal footer border color (grey.100)"
+        }
+      }
+    },
+    "mask": {
+      "color": {
+        "$type": "color",
+        "$value": "{color.background.neutral.solid}"
+      }
+    }
+  },
+  "inline-select": {
+    "text": {
+      "default": {
+        "$type": "color",
+        "$value": "{color.text.brand.default}",
+        "$description": "Default state text (blue.600)"
+      },
+      "hover": {
+        "$type": "color",
+        "$value": "{color.blue.500}",
+        "$description": "Hover state text (blue.500)"
+      },
+      "selected": {
+        "$type": "color",
+        "$value": "{color.text.brand.hover}",
+        "$description": "Selected state text (blue.700)"
+      },
+      "error": {
+        "$type": "color",
+        "$value": "{color.text.danger.default}",
+        "$description": "Error state text (red.600)"
+      },
+      "disabled": {
+        "$type": "color",
+        "$value": "{color.text.base.disabled}",
+        "$description": "Disabled state text (grey.400)"
+      }
+    },
+    "icon": {
+      "default": {
+        "$type": "color",
+        "$value": "{color.icon.brand.default}",
+        "$description": "Default state icon (blue.600)"
+      },
+      "hover": {
+        "$type": "color",
+        "$value": "{color.blue.500}",
+        "$description": "Hover state icon (blue.500)"
+      },
+      "selected": {
+        "$type": "color",
+        "$value": "{color.blue.700}",
+        "$description": "Selected state icon (blue.700)"
+      },
+      "error": {
+        "$type": "color",
+        "$value": "{color.icon.neutral.default}",
+        "$description": "Error state icon (red.600)"
+      },
+      "disabled": {
+        "$type": "color",
+        "$value": "{color.icon.base.disabled}",
+        "$description": "Disabled state icon (grey.400)"
+      }
+    }
+  },
+  "inline-edit": {
+    "text": {
+      "default": {
+        "$type": "color",
+        "$value": "{color.text.base.default}",
+        "$description": "Inline edit text color - default state"
+      },
+      "error": {
+        "$type": "color",
+        "$value": "{color.text.danger.default}",
+        "$description": "Inline edit text color - error state"
+      }
+    },
+    "icon-btn": {
+      "bg": {
+        "default": {
+          "$type": "color",
+          "$value": "{color.background.base.muted}",
+          "$description": "Edit icon button background - default"
+        },
+        "hover": {
+          "$type": "color",
+          "$value": "{color.background.base.mutedHover}",
+          "$description": "Edit icon button background - hover"
+        }
+      },
+      "icon": {
+        "default": {
+          "$type": "color",
+          "$value": "{color.icon.base.default}",
+          "$description": "Edit icon (pencil) color"
+        }
+      }
+    }
+  },
+  "inline-alert": {
+    "icon": {
+      "informative": {
+        "$type": "color",
+        "$value": "{color.icon.base.default}",
+        "$description": "Inline alert icon color for informative variant"
+      },
+      "success": {
+        "$type": "color",
+        "$value": "{color.icon.success.default}",
+        "$description": "Inline alert icon color for success variant"
+      },
+      "warning": {
+        "$type": "color",
+        "$value": "{color.icon.warning.default}",
+        "$description": "Inline alert icon color for warning variant"
+      },
+      "error": {
+        "$type": "color",
+        "$value": "{color.icon.danger.default}",
+        "$description": "Inline alert icon color for error variant"
+      }
+    },
+    "text": {
+      "default": {
+        "$type": "color",
+        "$value": "{color.text.base.muted}",
+        "$description": "Inline alert text color"
+      }
+    }
+  },
+  "description-line": {
+    "label": {
+      "text": {
+        "$type": "color",
+        "$value": "{color.text.base.muted}",
+        "$description": "Description line label text color (grey.600)"
+      }
+    },
+    "content": {
+      "text": {
+        "$type": "color",
+        "$value": "{color.text.base.default}",
+        "$description": "Description line content/value text color (grey.800)"
+      }
+    }
+  },
+  "pagination": {
+    "item": {
+      "size": {
+        "$type": "dimension",
+        "$value": "{size.control.normal}",
+        "$description": "Pagination item size (32px circular button)"
+      },
+      "border": {
+        "radius": {
+          "$type": "dimension",
+          "$value": "{border.radius.full}",
+          "$description": "Pagination item border radius (fully rounded circle)"
+        }
+      },
+      "bg": {
+        "default": {
+          "$type": "color",
+          "$value": "{color.background.base.default}",
+          "$description": "Pagination item background - default state"
+        },
+        "hover": {
+          "$type": "color",
+          "$value": "{color.background.brand.subtle}",
+          "$description": "Pagination item background - hover state (blue.50)"
+        },
+        "active": {
+          "$type": "color",
+          "$value": "{color.background.neutral.solid}",
+          "$description": "Pagination item background - active/current page (grey.700 dark circle)"
+        },
+        "disabled": {
+          "$type": "color",
+          "$value": "{color.background.base.default}",
+          "$description": "Pagination item background - disabled state"
+        }
+      },
+      "text": {
+        "color": {
+          "default": {
+            "$type": "color",
+            "$value": "{color.text.base.muted}",
+            "$description": "Pagination item text color - default state (grey.600)"
+          },
+          "hover": {
+            "$type": "color",
+            "$value": "{color.text.base.default}",
+            "$description": "Pagination item text color - hover state (grey.800)"
+          },
+          "active": {
+            "$type": "color",
+            "$value": "{color.text.onSolid.neutral}",
+            "$description": "Pagination item text color - active/current page state (white on dark)"
+          },
+          "disabled": {
+            "$type": "color",
+            "$value": "{color.text.base.muted}",
+            "$description": "Pagination item text color - disabled state (grey.600, opacity applied separately)"
+          }
+        },
+        "typography": {
+          "$type": "typography",
+          "$value": "{typography.text.small}",
+          "$description": "Pagination item text typography (small 13px)"
+        }
+      },
+      "disabled": {
+        "opacity": {
+          "$type": "number",
+          "$value": "{opacity.disabled}",
+          "$description": "Pagination item opacity for disabled state"
+        }
+      }
+    },
+    "nav": {
+      "bg": {
+        "default": {
+          "$type": "color",
+          "$value": "{color.background.base.default}",
+          "$description": "Pagination nav arrow button background - default state"
+        },
+        "hover": {
+          "$type": "color",
+          "$value": "{color.background.base.subtle}",
+          "$description": "Pagination nav arrow button background - hover state (grey.50)"
+        },
+        "disabled": {
+          "$type": "color",
+          "$value": "{color.background.base.default}",
+          "$description": "Pagination nav arrow button background - disabled state"
+        }
+      },
+      "icon": {
+        "default": {
+          "$type": "color",
+          "$value": "{color.icon.base.default}",
+          "$description": "Pagination nav arrow icon color - default state (grey.600)"
+        },
+        "hover": {
+          "$type": "color",
+          "$value": "{color.icon.base.subtle}",
+          "$description": "Pagination nav arrow icon color - hover state (grey.500)"
+        },
+        "disabled": {
+          "$type": "color",
+          "$value": "{color.icon.base.disabled}",
+          "$description": "Pagination nav arrow icon color - disabled state (grey.400)"
+        }
+      },
+      "disabled": {
+        "opacity": {
+          "$type": "number",
+          "$value": "{opacity.disabled}",
+          "$description": "Pagination nav opacity for disabled state"
+        }
+      }
+    },
+    "more": {
+      "border": {
+        "color": {
+          "$type": "color",
+          "$value": "{color.border.brand.default}",
+          "$description": "Pagination more indicator border color (blue.600, dashed)"
+        },
+        "width": {
+          "$type": "dimension",
+          "$value": "{border.default}",
+          "$description": "Pagination more indicator border width (1px)"
+        },
+        "radius": {
+          "$type": "dimension",
+          "$value": "{border.radius.default}",
+          "$description": "Pagination more indicator border radius (3px)"
+        }
+      },
+      "icon": {
+        "$type": "color",
+        "$value": "{color.icon.base.default}",
+        "$description": "Pagination more indicator icon color (grey.600)"
+      }
+    },
+    "gap": {
+      "$type": "dimension",
+      "$value": "{spacing.gap.xxs}",
+      "$description": "Gap between pagination items (4px)"
+    }
+  },
+  "progressbar": {
+    "header": {
+      "label": {
+        "color": {
+          "$type": "color",
+          "$value": "{color.text.base.default}",
+          "$description": "Progressbar header label text color"
+        }
+      },
+      "value": {
+        "color": {
+          "$type": "color",
+          "$value": "{color.text.base.default}",
+          "$description": "Progressbar header value text color"
+        }
+      }
+    },
+    "description": {
+      "color": {
+        "$type": "color",
+        "$value": "{form.description.text.color}",
+        "$description": "Progressbar description text color (reuses form description token)"
+      }
+    },
+    "bar": {
+      "bg": {
+        "track": {
+          "$type": "color",
+          "$value": "{color.background.base.mutedHover}",
+          "$description": "Progressbar track background color (unfilled portion)"
+        }
+      },
+      "borderRadius": {
+        "$type": "dimension",
+        "$value": "3px",
+        "$description": "Border radius for progressbar bar segments"
+      },
+      "height": {
+        "default": {
+          "$type": "dimension",
+          "$value": "6px",
+          "$description": "Default progressbar bar height"
+        },
+        "small": {
+          "$type": "dimension",
+          "$value": "3px",
+          "$description": "Small progressbar bar height"
+        }
+      },
+      "gap": {
+        "$type": "dimension",
+        "$value": "2px",
+        "$description": "Gap between progressbar tile segments"
+      },
+      "paddingY": {
+        "$type": "dimension",
+        "$value": "{spacing.gap.xs}",
+        "$description": "Vertical padding around progressbar bar (8px)"
+      }
+    },
+    "inline": {
+      "gap": {
+        "$type": "dimension",
+        "$value": "{spacing.gap.xs}",
+        "$description": "Gap between inline progressbar bar and value text (8px)"
+      }
+    }
+  }
+}

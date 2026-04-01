@@ -1,5 +1,6 @@
 packages:
   - packages/components/*
+  - packages/tokens
   - packages/storybook
 
 onlyBuiltDependencies:
@@ -8,6 +9,7 @@ onlyBuiltDependencies:
   - esbuild
   - husky
   - nx
+  - style-dictionary
 
 linkWorkspacePackages: "deep"
 preferWorkspacePackages: true

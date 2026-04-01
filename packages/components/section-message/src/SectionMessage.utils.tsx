@@ -7,75 +7,79 @@ export const isSectionType = (type: string): type is SectionType => {
   return (SECTION_TYPES as readonly string[]).includes(type);
 };
 
+const TYPE_TO_TOKEN_VARIANT: Partial<Record<SectionType, string>> = {
+  positive: 'success',
+  negative: 'error',
+  notice: 'warning',
+  neutral: 'informative',
+};
+
+const PALETTE_FALLBACK: Partial<Record<SectionType, string>> = {
+  supply: 'violet',
+  service: 'purple',
+  entity: 'cyan',
+};
+
 export const getColorBackground = (
   type: SectionType,
   theme: ThemePropsVars,
 ): string => {
-  if (type === 'positive') {
-    return theme.palette['green-050'];
+  const variant = TYPE_TO_TOKEN_VARIANT[type];
+  if (variant) {
+    return `var(--ds-section-message-variant-${variant}-bg)`;
   }
-  if (type === 'negative') {
-    return theme.palette['red-050'];
-  }
-  if (type === 'notice') {
-    return theme.palette['yellow-050'];
-  }
-  if (type === 'service') {
-    return theme.palette['purple-050'];
-  }
-  if (type === 'supply') {
-    return theme.palette['violet-050'];
-  }
-  if (type === 'entity') {
-    return theme.palette['cyan-050'];
-  }
-  return theme.palette[`grey-050`];
+  const color = PALETTE_FALLBACK[type] ?? 'grey';
+  return theme.palette[`${color}-050`];
 };
+
 export const getColorIconAndBorderTop = (
   type: SectionType,
   theme: ThemePropsVars,
 ): string => {
-  if (type === 'positive') {
-    return theme.palette['green-600'];
+  const variant = TYPE_TO_TOKEN_VARIANT[type];
+  if (variant) {
+    return `var(--ds-section-message-variant-${variant}-icon)`;
   }
-  if (type === 'negative') {
-    return theme.palette['red-600'];
-  }
-  if (type === 'notice') {
-    return theme.palette['yellow-600'];
-  }
-  if (type === 'service') {
-    return theme.palette['purple-600'];
-  }
-  if (type === 'supply') {
-    return theme.palette['violet-600'];
-  }
-  if (type === 'entity') {
-    return theme.palette['cyan-600'];
-  }
-  return theme.palette[`grey-600`];
+  const color = PALETTE_FALLBACK[type] ?? 'grey';
+  return theme.palette[`${color}-600`];
 };
+
 export const getColorBorder = (
   type: SectionType,
   theme: ThemePropsVars,
 ): string => {
-  if (type === 'positive') {
-    return theme.palette['green-200'];
+  const variant = TYPE_TO_TOKEN_VARIANT[type];
+  if (variant) {
+    return `var(--ds-section-message-variant-${variant}-border)`;
   }
-  if (type === 'negative') {
-    return theme.palette['red-200'];
+  const color = PALETTE_FALLBACK[type] ?? 'grey';
+  return theme.palette[`${color}-200`];
+};
+
+export const getColorBorderTop = (
+  type: SectionType,
+  theme: ThemePropsVars,
+): string => {
+  const variant = TYPE_TO_TOKEN_VARIANT[type];
+  if (variant) {
+    return `var(--ds-section-message-variant-${variant}-borderTop)`;
   }
-  if (type === 'notice') {
-    return theme.palette['yellow-200'];
+  const color = PALETTE_FALLBACK[type] ?? 'grey';
+  return theme.palette[`${color}-600`];
+};
+
+export const getColorTextHeader = (type: SectionType): string => {
+  const variant = TYPE_TO_TOKEN_VARIANT[type];
+  if (variant) {
+    return `var(--ds-section-message-variant-${variant}-text-header)`;
   }
-  if (type === 'service') {
-    return theme.palette['purple-200'];
+  return 'inherit';
+};
+
+export const getColorTextDescription = (type: SectionType): string => {
+  const variant = TYPE_TO_TOKEN_VARIANT[type];
+  if (variant) {
+    return `var(--ds-section-message-variant-${variant}-text-description)`;
   }
-  if (type === 'supply') {
-    return theme.palette['violet-200'];
-  }
-  if (type === 'entity') {
-    return theme.palette['cyan-200'];
-  }
-  return theme.palette[`grey-200`];
+  return 'inherit';
 };

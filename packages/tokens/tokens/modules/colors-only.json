@@ -1,0 +1,142 @@
+{
+  "section-message": {
+    "variant": {
+      "success": {
+        "bg": {
+          "$type": "color",
+          "$value": "{color.background.success.subtle}",
+          "$description": "Section message background color for success variant"
+        },
+        "border": {
+          "$type": "color",
+          "$value": "{color.border.success.strong}",
+          "$description": "Section message border color for success variant"
+        },
+        "borderTop": {
+          "$type": "color",
+          "$value": "{color.border.success.default}",
+          "$description": "Section message top border color for success variant"
+        },
+        "text": {
+          "header": {
+            "$type": "color",
+            "$value": "{color.text.base.default}",
+            "$description": "Section message header text color for success variant"
+          },
+          "description": {
+            "$type": "color",
+            "$value": "{color.text.base.muted}",
+            "$description": "Section message description text color for success variant"
+          }
+        },
+        "icon": {
+          "$type": "color",
+          "$value": "{color.icon.success.default}",
+          "$description": "Section message icon color for success variant"
+        }
+      },
+      "warning": {
+        "bg": {
+          "$type": "color",
+          "$value": "{color.background.warning.subtle}",
+          "$description": "Section message background color for warning variant"
+        },
+        "border": {
+          "$type": "color",
+          "$value": "{color.border.warning.strong}",
+          "$description": "Section message border color for warning variant"
+        },
+        "borderTop": {
+          "$type": "color",
+          "$value": "{color.border.warning.default}",
+          "$description": "Section message top border color for warning variant"
+        },
+        "text": {
+          "header": {
+            "$type": "color",
+            "$value": "{color.text.base.default}",
+            "$description": "Section message header text color for warning variant"
+          },
+          "description": {
+            "$type": "color",
+            "$value": "{color.text.base.muted}",
+            "$description": "Section message description text color for warning variant"
+          }
+        },
+        "icon": {
+          "$type": "color",
+          "$value": "{color.icon.warning.default}",
+          "$description": "Section message icon color for warning variant"
+        }
+      },
+      "error": {
+        "bg": {
+          "$type": "color",
+          "$value": "{color.background.danger.subtle}",
+          "$description": "Section message background color for error variant"
+        },
+        "border": {
+          "$type": "color",
+          "$value": "{color.border.danger.strong}",
+          "$description": "Section message border color for error variant"
+        },
+        "borderTop": {
+          "$type": "color",
+          "$value": "{color.border.danger.default}",
+          "$description": "Section message top border color for error variant"
+        },
+        "text": {
+          "header": {
+            "$type": "color",
+            "$value": "{color.text.base.default}",
+            "$description": "Section message header text color for error variant"
+          },
+          "description": {
+            "$type": "color",
+            "$value": "{color.text.base.muted}",
+            "$description": "Section message description text color for error variant"
+          }
+        },
+        "icon": {
+          "$type": "color",
+          "$value": "{color.icon.danger.default}",
+          "$description": "Section message icon color for error variant"
+        }
+      },
+      "informative": {
+        "bg": {
+          "$type": "color",
+          "$value": "{color.background.base.subtle}",
+          "$description": "Section message background color for informative variant"
+        },
+        "border": {
+          "$type": "color",
+          "$value": "{color.border.base.default}",
+          "$description": "Section message border color for informative variant"
+        },
+        "borderTop": {
+          "$type": "color",
+          "$value": "{color.border.neutral.default}",
+          "$description": "Section message top border color for informative variant"
+        },
+        "text": {
+          "header": {
+            "$type": "color",
+            "$value": "{color.text.base.default}",
+            "$description": "Section message header text color for informative variant"
+          },
+          "description": {
+            "$type": "color",
+            "$value": "{color.text.base.muted}",
+            "$description": "Section message description text color for informative variant"
+          }
+        },
+        "icon": {
+          "$type": "color",
+          "$value": "{color.icon.base.default}",
+          "$description": "Section message icon color for informative variant"
+        }
+      }
+    }
+  }
+}

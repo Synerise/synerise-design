@@ -5,7 +5,10 @@ import { type CustomColorType, type SectionType } from './SectionMessage.types';
 import {
   getColorBackground,
   getColorBorder,
+  getColorBorderTop,
   getColorIconAndBorderTop,
+  getColorTextDescription,
+  getColorTextHeader,
 } from './SectionMessage.utils';
 
 export const AlertContent = styled.div<{ withLink?: ReactNode }>`
@@ -81,7 +84,7 @@ export const Container = styled.div<{
     background-color: ${(props) =>
       props.customColor
         ? props.theme.palette[`${props.customColor}-600`]
-        : getColorIconAndBorderTop(props.type!, props.theme)};
+        : getColorBorderTop(props.type!, props.theme)};
   }
 `;
 export const WrapperSectionMessage = styled.div`
@@ -91,17 +94,20 @@ export const WrapperSectionMessage = styled.div`
   justify-content: space-between;
 `;
 
-export const AlertMessage = styled.span`
+export const AlertMessage = styled.span<{ type?: SectionType }>`
   font-size: 13px;
   line-height: 1.39;
   font-weight: 500;
   overflow-wrap: break-word;
   min-width: 0;
   width: 100%;
-  color: ${(props) => props.theme.palette['grey-700']};
+  color: ${(props) =>
+    props.type
+      ? getColorTextHeader(props.type)
+      : props.theme.palette['grey-700']};
 `;
 
-export const AlertDescription = styled.span`
+export const AlertDescription = styled.span<{ type?: SectionType }>`
   overflow-wrap: break-word;
   min-width: 0;
   font-size: 13px;
@@ -109,7 +115,10 @@ export const AlertDescription = styled.span`
   font-weight: normal;
   padding-right: 3px;
   margin-top: 2px;
-  color: ${(props) => props.theme.palette['grey-700']};
+  color: ${(props) =>
+    props.type
+      ? getColorTextDescription(props.type)
+      : props.theme.palette['grey-700']};
 `;
 export const EmphasisWrapper = styled.span`
   display: flex;

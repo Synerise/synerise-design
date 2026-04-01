@@ -29,10 +29,10 @@ const SectionMessage = ({
   const renderMessage = useMemo(() => {
     return (
       <S.AlertContent withLink={withLink}>
-        {message && <S.AlertMessage>{message}</S.AlertMessage>}
+        {message && <S.AlertMessage type={type}>{message}</S.AlertMessage>}
         <S.Text>
           {description && (
-            <S.AlertDescription>{description}</S.AlertDescription>
+            <S.AlertDescription type={type}>{description}</S.AlertDescription>
           )}
           {withLink && <S.LinkWrapper>{withLink}</S.LinkWrapper>}
           {withEmphasis && !withLink && (

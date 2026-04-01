@@ -1,0 +1,602 @@
+{
+  "color": {
+    "background": {
+      "base": {
+        "default": {
+          "$type": "color",
+          "$value": "{color.mono.00}",
+          "$description": "Default background - white"
+        },
+        "defaultHover": {
+          "$type": "color",
+          "$value": "{color.grey.50}",
+          "$description": "Hover state for default background"
+        },
+        "subtle": {
+          "$type": "color",
+          "$value": "{color.grey.50}",
+          "$description": "Subtle background - light grey"
+        },
+        "subtleHover": {
+          "$type": "color",
+          "$value": "{color.grey.100}",
+          "$description": "Hover state for subtle background"
+        },
+        "muted": {
+          "$type": "color",
+          "$value": "{color.grey.100}",
+          "$description": "Muted background - medium grey"
+        },
+        "mutedHover": {
+          "$type": "color",
+          "$value": "{color.grey.200}",
+          "$description": "Hover state for muted background"
+        },
+        "strong": {
+          "$type": "color",
+          "$value": "{color.grey.400}",
+          "$description": "Strong background - dark grey"
+        },
+        "strongHover": {
+          "$type": "color",
+          "$value": "{color.grey.500}",
+          "$description": "Hover state for strong background"
+        },
+        "disabled": {
+          "$type": "color",
+          "$value": "{color.grey.100}",
+          "$description": "Disabled background"
+        }
+      },
+      "brand": {
+        "subtle": {
+          "$type": "color",
+          "$value": "{color.blue.50}",
+          "$description": "Subtle brand background"
+        },
+        "subtleHover": {
+          "$type": "color",
+          "$value": "{color.blue.100}",
+          "$description": "Hover state for subtle brand"
+        },
+        "solid": {
+          "$type": "color",
+          "$value": "{color.blue.600}",
+          "$description": "Solid brand background"
+        },
+        "solidHover": {
+          "$type": "color",
+          "$value": "{color.blue.500}",
+          "$description": "Hover state for solid brand"
+        },
+        "solidActive": {
+          "$type": "color",
+          "$value": "{color.blue.700}",
+          "$description": "Active state for solid brand"
+        }
+      },
+      "success": {
+        "subtle": {
+          "$type": "color",
+          "$value": "{color.green.50}",
+          "$description": "Subtle success background"
+        },
+        "subtleHover": {
+          "$type": "color",
+          "$value": "{color.green.100}",
+          "$description": "Hover state for subtle success"
+        },
+        "solid": {
+          "$type": "color",
+          "$value": "{color.green.600}",
+          "$description": "Solid success background"
+        },
+        "solidHover": {
+          "$type": "color",
+          "$value": "{color.green.500}",
+          "$description": "Hover state for solid success"
+        },
+        "solidActive": {
+          "$type": "color",
+          "$value": "{color.green.700}",
+          "$description": "Active state for solid success"
+        }
+      },
+      "warning": {
+        "subtle": {
+          "$type": "color",
+          "$value": "{color.yellow.50}",
+          "$description": "Subtle warning background"
+        },
+        "subtleHover": {
+          "$type": "color",
+          "$value": "{color.yellow.100}",
+          "$description": "Hover state for subtle warning"
+        },
+        "solid": {
+          "$type": "color",
+          "$value": "{color.yellow.500}",
+          "$description": "Solid warning background"
+        },
+        "solidHover": {
+          "$type": "color",
+          "$value": "{color.yellow.600}",
+          "$description": "Hover state for solid warning"
+        },
+        "solidActive": {
+          "$type": "color",
+          "$value": "{color.yellow.500}",
+          "$description": "Active state for solid warning"
+        }
+      },
+      "danger": {
+        "subtle": {
+          "$type": "color",
+          "$value": "{color.red.50}",
+          "$description": "Subtle danger background"
+        },
+        "subtleHover": {
+          "$type": "color",
+          "$value": "{color.red.100}",
+          "$description": "Hover state for subtle danger"
+        },
+        "solid": {
+          "$type": "color",
+          "$value": "{color.red.600}",
+          "$description": "Solid danger background"
+        },
+        "solidHover": {
+          "$type": "color",
+          "$value": "{color.red.700}",
+          "$description": "Hover state for solid danger"
+        },
+        "solidActive": {
+          "$type": "color",
+          "$value": "{color.red.600}",
+          "$description": "Active state for solid danger"
+        }
+      },
+      "neutral": {
+        "subtle": {
+          "$type": "color",
+          "$value": "{color.grey.50}",
+          "$description": "Subtle neutral background"
+        },
+        "subtleHover": {
+          "$type": "color",
+          "$value": "{color.grey.200}",
+          "$description": "Hover state for subtle neutral"
+        },
+        "solid": {
+          "$type": "color",
+          "$value": "{color.grey.700}",
+          "$description": "Solid neutral background"
+        },
+        "solidHover": {
+          "$type": "color",
+          "$value": "{color.grey.600}",
+          "$description": "Hover state for solid neutral"
+        },
+        "solidActive": {
+          "$type": "color",
+          "$value": "{color.grey.700}",
+          "$description": "Active state for solid neutral"
+        }
+      },
+      "overlay": {
+        "default": {
+          "$type": "color",
+          "$value": "rgba(35,41,54,0.5)",
+          "$description": "Overlay background for modals/dropdowns"
+        }
+      },
+      "custom": {
+        "subtle": {
+          "$type": "color",
+          "$value": "{color.custom.50}"
+        },
+        "subtleHover": {
+          "$type": "color",
+          "$value": "{color.custom.100}"
+        },
+        "solid": {
+          "$type": "color",
+          "$value": "{color.custom.600}"
+        },
+        "solidHover": {
+          "$type": "color",
+          "$value": "{color.custom.500}"
+        },
+        "solidActive": {
+          "$type": "color",
+          "$value": "{color.custom.700}"
+        }
+      }
+    },
+    "text": {
+      "base": {
+        "default": {
+          "$type": "color",
+          "$value": "{color.grey.800}",
+          "$description": "Default text color"
+        },
+        "subtle": {
+          "$type": "color",
+          "$value": "{color.grey.700}",
+          "$description": "Subtle text - less emphasis"
+        },
+        "muted": {
+          "$type": "color",
+          "$value": "{color.grey.600}",
+          "$description": "Muted text - least emphasis"
+        },
+        "disabled": {
+          "$type": "color",
+          "$value": "{color.grey.400}",
+          "$description": "Disabled text color"
+        }
+      },
+      "brand": {
+        "default": {
+          "$type": "color",
+          "$value": "{color.blue.600}",
+          "$description": "Brand text color"
+        },
+        "hover": {
+          "$type": "color",
+          "$value": "{color.blue.700}",
+          "$description": "Hover state for brand text"
+        }
+      },
+      "success": {
+        "default": {
+          "$type": "color",
+          "$value": "{color.green.700}",
+          "$description": "Success text color"
+        }
+      },
+      "warning": {
+        "default": {
+          "$type": "color",
+          "$value": "{color.yellow.700}",
+          "$description": "Warning text color"
+        }
+      },
+      "danger": {
+        "default": {
+          "$type": "color",
+          "$value": "{color.red.600}",
+          "$description": "Danger/error text color"
+        }
+      },
+      "neutral": {
+        "default": {
+          "$type": "color",
+          "$value": "{color.grey.500}",
+          "$description": "Neutral text color"
+        }
+      },
+      "onSolid": {
+        "default": {
+          "$type": "color",
+          "$value": "{color.mono.00}",
+          "$description": "Text on solid backgrounds - default white"
+        },
+        "subtle": {
+          "$type": "color",
+          "$value": "{color.grey.200}",
+          "$description": "Subtle text on solid backgrounds"
+        },
+        "brand": {
+          "$type": "color",
+          "$value": "{color.mono.00}",
+          "$description": "Text on solid brand background"
+        },
+        "success": {
+          "$type": "color",
+          "$value": "{color.mono.00}",
+          "$description": "Text on solid success background"
+        },
+        "warning": {
+          "$type": "color",
+          "$value": "{color.grey.800}",
+          "$description": "Text on solid warning background - dark for contrast"
+        },
+        "danger": {
+          "$type": "color",
+          "$value": "{color.mono.00}",
+          "$description": "Text on solid danger background"
+        },
+        "neutral": {
+          "$type": "color",
+          "$value": "{color.mono.00}",
+          "$description": "Text on solid neutral background"
+        },
+        "custom": {
+          "$type": "color",
+          "$value": "{color.mono.00}",
+          "$description": "Text on solid neutral background"
+        }
+      },
+      "custom": {
+        "default": {
+          "$type": "color",
+          "$value": "{color.custom.600}",
+          "$description": "Neutral text color"
+        }
+      }
+    },
+    "icon": {
+      "base": {
+        "default": {
+          "$type": "color",
+          "$value": "{color.grey.600}",
+          "$description": "Default icon color"
+        },
+        "subtle": {
+          "$type": "color",
+          "$value": "{color.grey.500}",
+          "$description": "Subtle icon color"
+        },
+        "muted": {
+          "$type": "color",
+          "$value": "{color.grey.400}",
+          "$description": "Muted icon color"
+        },
+        "disabled": {
+          "$type": "color",
+          "$value": "{color.grey.400}",
+          "$description": "Disabled icon color"
+        }
+      },
+      "brand": {
+        "default": {
+          "$type": "color",
+          "$value": "{color.blue.600}",
+          "$description": "Brand icon color"
+        }
+      },
+      "success": {
+        "default": {
+          "$type": "color",
+          "$value": "{color.green.600}",
+          "$description": "Success icon color"
+        }
+      },
+      "warning": {
+        "default": {
+          "$type": "color",
+          "$value": "{color.yellow.600}",
+          "$description": "Warning icon color"
+        }
+      },
+      "danger": {
+        "default": {
+          "$type": "color",
+          "$value": "{color.red.600}",
+          "$description": "Danger icon color"
+        }
+      },
+      "neutral": {
+        "default": {
+          "$type": "color",
+          "$value": "{color.grey.500}",
+          "$description": "Neutral icon color"
+        }
+      },
+      "onSolid": {
+        "default": {
+          "$type": "color",
+          "$value": "{color.mono.00}",
+          "$description": "Icon on solid backgrounds - default white"
+        },
+        "brand": {
+          "$type": "color",
+          "$value": "{color.mono.00}",
+          "$description": "Icon on solid brand background"
+        },
+        "success": {
+          "$type": "color",
+          "$value": "{color.mono.00}",
+          "$description": "Icon on solid success background"
+        },
+        "warning": {
+          "$type": "color",
+          "$value": "{color.grey.800}",
+          "$description": "Icon on solid warning background - dark for contrast"
+        },
+        "danger": {
+          "$type": "color",
+          "$value": "{color.mono.00}",
+          "$description": "Icon on solid danger background"
+        },
+        "neutral": {
+          "$type": "color",
+          "$value": "{color.mono.00}",
+          "$description": "Icon on solid neutral background"
+        }
+      },
+      "custom": {
+        "default": {
+          "$type": "color",
+          "$value": "{color.custom.600}",
+          "$description": "Neutral icon color"
+        }
+      }
+    },
+    "border": {
+      "base": {
+        "none": {
+          "$type": "color",
+          "$value": "{color.transparent}",
+          "$description": "No border - transparent"
+        },
+        "default": {
+          "$type": "color",
+          "$value": "{color.grey.200}",
+          "$description": "Default border color"
+        },
+        "subtle": {
+          "$type": "color",
+          "$value": "{color.grey.100}",
+          "$description": "Subtle border - lighter"
+        },
+        "strong": {
+          "$type": "color",
+          "$value": "{color.grey.300}",
+          "$description": "Strong border - darker"
+        },
+        "strongHover": {
+          "$type": "color",
+          "$value": "{color.grey.400}",
+          "$description": "Hover state for strong border"
+        },
+        "disabled": {
+          "$type": "color",
+          "$value": "{color.grey.200}",
+          "$description": "Disabled border color"
+        }
+      },
+      "brand": {
+        "default": {
+          "$type": "color",
+          "$value": "{color.blue.600}",
+          "$description": "Brand border color"
+        },
+        "subtle": {
+          "$type": "color",
+          "$value": "{color.blue.200}",
+          "$description": "Subtle brand border"
+        },
+        "strong": {
+          "$type": "color",
+          "$value": "{color.blue.300}",
+          "$description": "Strong brand border"
+        }
+      },
+      "success": {
+        "default": {
+          "$type": "color",
+          "$value": "{color.green.600}",
+          "$description": "Success border color"
+        },
+        "subtle": {
+          "$type": "color",
+          "$value": "{color.green.100}",
+          "$description": "Subtle success border"
+        },
+        "strong": {
+          "$type": "color",
+          "$value": "{color.green.200}",
+          "$description": "Strong success border"
+        }
+      },
+      "warning": {
+        "default": {
+          "$type": "color",
+          "$value": "{color.yellow.600}",
+          "$description": "Warning border color"
+        },
+        "subtle": {
+          "$type": "color",
+          "$value": "{color.yellow.100}",
+          "$description": "Subtle warning border"
+        },
+        "strong": {
+          "$type": "color",
+          "$value": "{color.yellow.300}",
+          "$description": "Strong warning border"
+        }
+      },
+      "danger": {
+        "default": {
+          "$type": "color",
+          "$value": "{color.red.600}",
+          "$description": "Danger border color"
+        },
+        "subtle": {
+          "$type": "color",
+          "$value": "{color.red.100}",
+          "$description": "Subtle danger border"
+        },
+        "strong": {
+          "$type": "color",
+          "$value": "{color.red.200}",
+          "$description": "Strong danger border"
+        }
+      },
+      "neutral": {
+        "default": {
+          "$type": "color",
+          "$value": "{color.grey.700}",
+          "$description": "Neutral border color"
+        },
+        "subtle": {
+          "$type": "color",
+          "$value": "{color.grey.500}",
+          "$description": "Subtle neutral border"
+        },
+        "strong": {
+          "$type": "color",
+          "$value": "{color.grey.800}",
+          "$description": "Strong neutral border"
+        }
+      },
+      "custom": {
+        "default": {
+          "$type": "color",
+          "$value": "{color.custom.600}",
+          "$description": "Danger border color"
+        },
+        "subtle": {
+          "$type": "color",
+          "$value": "{color.custom.100}",
+          "$description": "Subtle danger border"
+        },
+        "strong": {
+          "$type": "color",
+          "$value": "{color.custom.200}",
+          "$description": "Strong danger border"
+        }
+      }
+    },
+    "custom-color": {
+      "solid": {
+        "$type": "color",
+        "$value": "{color.blue.600}",
+        "$description": "Custom color base (fallback)"
+      },
+      "hover": {
+        "$type": "color",
+        "$value": "{color.blue.700}",
+        "$description": "Custom color hover (fallback)"
+      },
+      "active": {
+        "$type": "color",
+        "$value": "{color.blue.800}",
+        "$description": "Custom color active (fallback)"
+      }
+    },
+    "ai": {
+      "primary": {
+        "solid": {
+          "$type": "color",
+          "$value": "{color.cyan.600}",
+          "$description": "AI primary surface"
+        }
+      }
+    },
+    "focus": {
+      "base": {
+        "default": {
+          "$type": "color",
+          "$value": "{color.blue.600}"
+        },
+        "strong": {
+          "$type": "color",
+          "$value": "{color.blue.700}"
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "tokenSetOrder": [
+    "primitives/core",
+    "semantic/custom-color/blue",
+    "semantic/custom-color/grey",
+    "semantic/custom-color/red",
+    "semantic/custom-color/green",
+    "semantic/custom-color/yellow",
+    "semantic/custom-color/pink",
+    "semantic/custom-color/mars",
+    "semantic/custom-color/orange",
+    "semantic/custom-color/fern",
+    "semantic/custom-color/cyan",
+    "semantic/custom-color/purple",
+    "semantic/custom-color/violet",
+    "semantic/Light",
+    "semantic/Dark",
+    "surface/base",
+    "modules/base"
+  ]
+}

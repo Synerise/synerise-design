@@ -1,0 +1,432 @@
+{
+  "surface": {
+    "base": {
+      "default": {
+        "bg": {
+          "$type": "color",
+          "$value": "{color.background.base.default}",
+          "$description": "Default base surface background — white"
+        },
+        "border": {
+          "color": {
+            "$type": "color",
+            "$value": "{color.border.base.none}",
+            "$description": "Default base surface border — none (transparent)"
+          }
+        },
+        "shadow": {
+          "$type": "boxShadow",
+          "$value": "none",
+          "$description": "Base elevation has no shadow"
+        }
+      },
+      "subtle": {
+        "bg": {
+          "$type": "color",
+          "$value": "{color.background.base.subtle}",
+          "$description": "Subtle base surface background — light grey"
+        },
+        "border": {
+          "color": {
+            "$type": "color",
+            "$value": "{color.border.base.none}",
+            "$description": "Subtle base surface border — none"
+          }
+        },
+        "shadow": {
+          "$type": "boxShadow",
+          "$value": "none",
+          "$description": "Base elevation has no shadow"
+        }
+      },
+      "outline": {
+        "bg": {
+          "$type": "color",
+          "$value": "{color.background.base.default}",
+          "$description": "Outline base surface background — white with visible border"
+        },
+        "border": {
+          "color": {
+            "$type": "color",
+            "$value": "{color.border.base.default}",
+            "$description": "Outline base surface border — default grey"
+          }
+        },
+        "shadow": {
+          "$type": "boxShadow",
+          "$value": "none",
+          "$description": "Base elevation has no shadow"
+        }
+      },
+      "success": {
+        "bg": {
+          "$type": "color",
+          "$value": "{color.background.success.subtle}",
+          "$description": "Success base surface background — subtle green"
+        },
+        "border": {
+          "color": {
+            "$type": "color",
+            "$value": "{color.border.success.default}",
+            "$description": "Success base surface border"
+          }
+        },
+        "shadow": {
+          "$type": "boxShadow",
+          "$value": "none",
+          "$description": "Base elevation has no shadow"
+        }
+      },
+      "warning": {
+        "bg": {
+          "$type": "color",
+          "$value": "{color.background.warning.subtle}",
+          "$description": "Warning base surface background — subtle yellow"
+        },
+        "border": {
+          "color": {
+            "$type": "color",
+            "$value": "{color.border.warning.default}",
+            "$description": "Warning base surface border"
+          }
+        },
+        "shadow": {
+          "$type": "boxShadow",
+          "$value": "none",
+          "$description": "Base elevation has no shadow"
+        }
+      },
+      "danger": {
+        "bg": {
+          "$type": "color",
+          "$value": "{color.background.danger.subtle}",
+          "$description": "Danger base surface background — subtle red"
+        },
+        "border": {
+          "color": {
+            "$type": "color",
+            "$value": "{color.border.danger.default}",
+            "$description": "Danger base surface border"
+          }
+        },
+        "shadow": {
+          "$type": "boxShadow",
+          "$value": "none",
+          "$description": "Base elevation has no shadow"
+        }
+      },
+      "info": {
+        "bg": {
+          "$type": "color",
+          "$value": "{color.background.brand.subtle}",
+          "$description": "Info base surface background — subtle blue"
+        },
+        "border": {
+          "color": {
+            "$type": "color",
+            "$value": "{color.border.brand.default}",
+            "$description": "Info base surface border — brand blue"
+          }
+        },
+        "shadow": {
+          "$type": "boxShadow",
+          "$value": "none",
+          "$description": "Base elevation has no shadow"
+        }
+      }
+    },
+    "raised": {
+      "default": {
+        "bg": {
+          "$type": "color",
+          "$value": "{color.background.base.default}",
+          "$description": "Default raised surface background — white with shadow"
+        },
+        "border": {
+          "color": {
+            "$type": "color",
+            "$value": "{color.border.base.none}",
+            "$description": "Default raised surface border — none"
+          }
+        },
+        "shadow": {
+          "$type": "boxShadow",
+          "$value": "{Shadows.Shadow 1}",
+          "$description": "Raised elevation shadow — level 1"
+        }
+      },
+      "subtle": {
+        "bg": {
+          "$type": "color",
+          "$value": "{color.background.base.subtle}",
+          "$description": "Subtle raised surface background — light grey with shadow"
+        },
+        "border": {
+          "color": {
+            "$type": "color",
+            "$value": "{color.border.base.none}",
+            "$description": "Subtle raised surface border — none"
+          }
+        },
+        "shadow": {
+          "$type": "boxShadow",
+          "$value": "{Shadows.Shadow 1}",
+          "$description": "Raised elevation shadow — level 1"
+        }
+      },
+      "outline": {
+        "bg": {
+          "$type": "color",
+          "$value": "{color.background.base.default}",
+          "$description": "Outline raised surface background — white with border and shadow"
+        },
+        "border": {
+          "color": {
+            "$type": "color",
+            "$value": "{color.border.base.default}",
+            "$description": "Outline raised surface border — default grey"
+          }
+        },
+        "shadow": {
+          "$type": "boxShadow",
+          "$value": "{Shadows.Shadow 1}",
+          "$description": "Raised elevation shadow — level 1"
+        }
+      },
+      "success": {
+        "bg": {
+          "$type": "color",
+          "$value": "{color.background.success.subtle}",
+          "$description": "Success raised surface background — subtle green with shadow"
+        },
+        "border": {
+          "color": {
+            "$type": "color",
+            "$value": "{color.border.success.default}",
+            "$description": "Success raised surface border"
+          }
+        },
+        "shadow": {
+          "$type": "boxShadow",
+          "$value": "{Shadows.Shadow 1}",
+          "$description": "Raised elevation shadow — level 1"
+        }
+      },
+      "warning": {
+        "bg": {
+          "$type": "color",
+          "$value": "{color.background.warning.subtle}",
+          "$description": "Warning raised surface background — subtle yellow with shadow"
+        },
+        "border": {
+          "color": {
+            "$type": "color",
+            "$value": "{color.border.warning.default}",
+            "$description": "Warning raised surface border"
+          }
+        },
+        "shadow": {
+          "$type": "boxShadow",
+          "$value": "{Shadows.Shadow 1}",
+          "$description": "Raised elevation shadow — level 1"
+        }
+      },
+      "danger": {
+        "bg": {
+          "$type": "color",
+          "$value": "{color.background.danger.subtle}",
+          "$description": "Danger raised surface background — subtle red with shadow"
+        },
+        "border": {
+          "color": {
+            "$type": "color",
+            "$value": "{color.border.danger.default}",
+            "$description": "Danger raised surface border"
+          }
+        },
+        "shadow": {
+          "$type": "boxShadow",
+          "$value": "{Shadows.Shadow 1}",
+          "$description": "Raised elevation shadow — level 1"
+        }
+      },
+      "info": {
+        "bg": {
+          "$type": "color",
+          "$value": "{color.background.brand.subtle}",
+          "$description": "Info raised surface background — subtle blue with shadow"
+        },
+        "border": {
+          "color": {
+            "$type": "color",
+            "$value": "{color.border.brand.default}",
+            "$description": "Info raised surface border — brand blue"
+          }
+        },
+        "shadow": {
+          "$type": "boxShadow",
+          "$value": "{Shadows.Shadow 1{",
+          "$description": "Raised elevation shadow — level 1"
+        }
+      }
+    },
+    "sunken": {
+      "default": {
+        "bg": {
+          "$type": "color",
+          "$value": "{color.background.base.muted}",
+          "$description": "Sunken surface background — recessed inner area, subtle grey"
+        },
+        "border": {
+          "color": {
+            "$type": "color",
+            "$value": "{color.border.base.subtle}",
+            "$description": "Sunken surface border — subtle inner boundary"
+          }
+        },
+        "shadow": {
+          "$type": "boxShadow",
+          "$value": "none",
+          "$description": "Sunken elevation has no shadow — sits below content"
+        }
+      }
+    },
+    "floating": {
+      "default": {
+        "bg": {
+          "$type": "color",
+          "$value": "{color.background.base.default}",
+          "$description": "Default floating surface background — white, for dropdowns and menus"
+        },
+        "border": {
+          "color": {
+            "$type": "color",
+            "$value": "{color.border.base.default}",
+            "$description": "Default floating surface border — grey outline"
+          }
+        },
+        "shadow": {
+          "$type": "boxShadow",
+          "$value": "{Shadows.Shadow 2}",
+          "$description": "Floating elevation shadow — level 2"
+        }
+      },
+      "subtle": {
+        "bg": {
+          "$type": "color",
+          "$value": "{color.background.base.subtle}",
+          "$description": "Subtle floating surface background — light grey"
+        },
+        "border": {
+          "color": {
+            "$type": "color",
+            "$value": "{color.border.base.default}",
+            "$description": "Subtle floating surface border"
+          }
+        },
+        "shadow": {
+          "$type": "boxShadow",
+          "$value": "{Shadows.Shadow 2}",
+          "$description": "Floating elevation shadow — level 2"
+        }
+      },
+      "success": {
+        "bg": {
+          "$type": "color",
+          "$value": "{color.background.success.subtle}",
+          "$description": "Success floating surface — subtle green bg (e.g. success toast)"
+        },
+        "border": {
+          "color": {
+            "$type": "color",
+            "$value": "{color.border.success.default}",
+            "$description": "Success floating surface border"
+          }
+        },
+        "shadow": {
+          "$type": "boxShadow",
+          "$value": "{Shadows.Shadow 2}",
+          "$description": "Floating elevation shadow — level 2"
+        }
+      },
+      "warning": {
+        "bg": {
+          "$type": "color",
+          "$value": "{color.background.base.default}",
+          "$description": "Warning floating surface — white bg, role carried by border (consistent with toast pattern)"
+        },
+        "border": {
+          "color": {
+            "$type": "color",
+            "$value": "{color.border.warning.default}",
+            "$description": "Warning floating surface border"
+          }
+        },
+        "shadow": {
+          "$type": "boxShadow",
+          "$value": "{Shadows.Shadow 2}",
+          "$description": "Floating elevation shadow — level 2"
+        }
+      },
+      "danger": {
+        "bg": {
+          "$type": "color",
+          "$value": "{color.background.base.default}",
+          "$description": "Danger floating surface — white bg, role carried by border (consistent with toast pattern)"
+        },
+        "border": {
+          "color": {
+            "$type": "color",
+            "$value": "{color.border.danger.default}",
+            "$description": "Danger floating surface border"
+          }
+        },
+        "shadow": {
+          "$type": "boxShadow",
+          "$value": "{Shadows.Shadow 2}",
+          "$description": "Floating elevation shadow — level 2"
+        }
+      },
+      "info": {
+        "bg": {
+          "$type": "color",
+          "$value": "{color.background.base.default}",
+          "$description": "Info floating surface — white bg, role carried by border (consistent with toast pattern)"
+        },
+        "border": {
+          "color": {
+            "$type": "color",
+            "$value": "{color.border.brand.default}",
+            "$description": "Info floating surface border — brand blue"
+          }
+        },
+        "shadow": {
+          "$type": "boxShadow",
+          "$value": "{Shadows.Shadow 2}",
+          "$description": "Floating elevation shadow — level 2"
+        }
+      }
+    },
+    "overlay": {
+      "default": {
+        "bg": {
+          "$type": "color",
+          "$value": "{color.background.base.default}",
+          "$description": "Overlay surface background — white, for modals and drawers"
+        },
+        "border": {
+          "color": {
+            "$type": "color",
+            "$value": "{color.border.base.none}",
+            "$description": "Overlay surface border — none, shadow defines boundary"
+          }
+        },
+        "shadow": {
+          "$type": "boxShadow",
+          "$value": "{Shadows.Shadow 2}",
+          "$description": "Overlay elevation shadow — level 2 (strongest)"
+        }
+      }
+    }
+  }
+}

@@ -43,6 +43,7 @@
     "vars": "node ./build/vars.js"
   },
   "dependencies": {
+    "@synerise/ds-tokens": "workspace:*",
     "date-fns-tz": "^1.1.4",
     "dayjs": "^1.8.36",
     "deepmerge": "^4.2.2",
