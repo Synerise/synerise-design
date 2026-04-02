@@ -33,7 +33,7 @@ const SubtleTextArea = ({
   label,
   labelTooltip,
   suffixTooltip,
-  suffix,
+  suffix = true,
   error,
   errorText,
   textAreaProps,
