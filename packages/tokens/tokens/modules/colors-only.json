@@ -138,5 +138,125 @@
         }
       }
     }
+  },
+  "toast": {
+    "variant": {
+      "success": {
+        "bg": {
+          "$type": "color",
+          "$value": "{color.background.base.default}",
+          "$description": "Toast background color for success variant"
+        },
+        "border": {
+          "$type": "color",
+          "$value": "{color.border.success.default}",
+          "$description": "Toast border color for success variant"
+        },
+        "text": {
+          "label": {
+            "$type": "color",
+            "$value": "{color.text.base.default}",
+            "$description": "Toast label text color for success variant"
+          },
+          "description": {
+            "$type": "color",
+            "$value": "{color.text.base.subtle}",
+            "$description": "Toast description text color for success variant"
+          }
+        },
+        "icon": {
+          "$type": "color",
+          "$value": "{color.icon.success.default}",
+          "$description": "Toast icon color for success variant"
+        }
+      },
+      "warning": {
+        "bg": {
+          "$type": "color",
+          "$value": "{color.background.base.default}",
+          "$description": "Toast background color for warning variant"
+        },
+        "border": {
+          "$type": "color",
+          "$value": "{color.border.warning.default}",
+          "$description": "Toast border color for warning variant"
+        },
+        "text": {
+          "label": {
+            "$type": "color",
+            "$value": "{color.text.base.default}",
+            "$description": "Toast label text color for warning variant"
+          },
+          "description": {
+            "$type": "color",
+            "$value": "{color.text.base.muted}",
+            "$description": "Toast description text color for warning variant"
+          }
+        },
+        "icon": {
+          "$type": "color",
+          "$value": "{color.icon.warning.default}",
+          "$description": "Toast icon color for warning variant"
+        }
+      },
+      "error": {
+        "bg": {
+          "$type": "color",
+          "$value": "{color.background.base.default}",
+          "$description": "Toast background color for error variant"
+        },
+        "border": {
+          "$type": "color",
+          "$value": "{color.border.danger.default}",
+          "$description": "Toast border color for error variant"
+        },
+        "text": {
+          "label": {
+            "$type": "color",
+            "$value": "{color.text.base.default}",
+            "$description": "Toast label text color for error variant"
+          },
+          "description": {
+            "$type": "color",
+            "$value": "{color.text.base.muted}",
+            "$description": "Toast description text color for error variant"
+          }
+        },
+        "icon": {
+          "$type": "color",
+          "$value": "{color.icon.danger.default}",
+          "$description": "Toast icon color for error variant"
+        }
+      },
+      "informative": {
+        "bg": {
+          "$type": "color",
+          "$value": "{color.background.base.default}",
+          "$description": "Toast background color for informative variant"
+        },
+        "border": {
+          "$type": "color",
+          "$value": "{color.border.neutral.default}",
+          "$description": "Toast border color for informative variant"
+        },
+        "text": {
+          "label": {
+            "$type": "color",
+            "$value": "{color.text.base.default}",
+            "$description": "Toast label text color for informative variant"
+          },
+          "description": {
+            "$type": "color",
+            "$value": "{color.text.base.muted}",
+            "$description": "Toast description text color for informative variant"
+          }
+        },
+        "icon": {
+          "$type": "color",
+          "$value": "{color.icon.base.default}",
+          "$description": "Toast icon color for informative variant"
+        }
+      }
+    }
   }
 }
