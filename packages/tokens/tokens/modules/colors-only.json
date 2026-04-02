@@ -258,5 +258,75 @@
         }
       }
     }
+  },
+  "card-select": {
+    "bg": {
+      "default": {
+        "$type": "color",
+        "$value": "{color.background.base.default}",
+        "$description": "Card select default background color"
+      },
+      "disabled": {
+        "$type": "color",
+        "$value": "{color.background.base.subtle}",
+        "$description": "Card select disabled radio background color"
+      }
+    },
+    "border": {
+      "default": {
+        "$type": "color",
+        "$value": "{color.border.base.strong}",
+        "$description": "Card select default border color"
+      },
+      "hover": {
+        "$type": "color",
+        "$value": "{color.border.base.strongHover}",
+        "$description": "Card select hover border color"
+      },
+      "selected": {
+        "$type": "color",
+        "$value": "{color.border.brand.default}",
+        "$description": "Card select selected/focus border color"
+      },
+      "focus": {
+        "$type": "color",
+        "$value": "{color.border.brand.default}",
+        "$description": "Card select focus border color"
+      },
+      "error": {
+        "$type": "color",
+        "$value": "{color.border.danger.default}",
+        "$description": "Card select error border color"
+      },
+      "disabled": {
+        "$type": "color",
+        "$value": "{color.border.base.disabled}",
+        "$description": "Card select disabled border color"
+      }
+    },
+    "text": {
+      "title": {
+        "$type": "color",
+        "$value": "{color.text.base.default}",
+        "$description": "Card select title text color"
+      }
+    },
+    "icon": {
+      "selected": {
+        "$type": "color",
+        "$value": "{color.icon.success.default}",
+        "$description": "Card select tick icon color when selected"
+      },
+      "unselected": {
+        "$type": "color",
+        "$value": "{color.icon.base.muted}",
+        "$description": "Card select tick icon color when unselected"
+      },
+      "info": {
+        "$type": "color",
+        "$value": "{color.icon.base.muted}",
+        "$description": "Card select info tooltip icon color"
+      }
+    }
   }
 }
