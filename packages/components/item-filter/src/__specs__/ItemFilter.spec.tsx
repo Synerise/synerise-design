@@ -272,7 +272,7 @@ const ITEM_FILTER = (
 describe('Drawer component', () => {
   it('should render selected item on first position', () => {
     // ARRANGE
-    const hideFn = jest.fn();
+    const hideFn = vi.fn();
     const { queryAllByTestId } = renderWithProvider(
       ITEM_FILTER(true, hideFn, '0008'),
     );
@@ -294,7 +294,7 @@ describe('Drawer component', () => {
 
   it('should hide after close button has been clicked', () => {
     // ARRANGE
-    const hideFn = jest.fn();
+    const hideFn = vi.fn();
     const { getByTestId } = renderWithProvider(ITEM_FILTER(true, hideFn));
     const closeButton = getByTestId('ds-item-filter-close-button');
 

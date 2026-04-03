@@ -8,7 +8,7 @@ import userEvent from '@testing-library/user-event';
 import PageHeader from '../index';
 
 describe('PageHeader', () => {
-  const onClick = jest.fn();
+  const onClick = vi.fn();
   const TITLE = 'TEST TITLE';
   const RIGHT_SIDE = 'RIGHT_SIDE';
   const DESCRIPTION = 'DESCRIPTION';
@@ -163,7 +163,7 @@ describe('PageHeader', () => {
 
   it('should fire handleTooltipClick', () => {
     // ARRANGE
-    const handleTooltipClick = jest.fn();
+    const handleTooltipClick = vi.fn();
     const { container } = renderWithProvider(
       <PageHeader
         title={TITLE}

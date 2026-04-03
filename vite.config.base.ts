@@ -194,7 +194,9 @@ export const createViteConfig = (
           ],
         },
       }),
-      // TypeScript declaration files
+      // Custom plugins first (e.g. pre-build scripts that generate source files)
+      ...plugins,
+      // TypeScript declaration files (must run after pre-build plugins)
       dts({
         insertTypesEntry: false, // Don't modify package.json
         copyDtsFiles: true,
@@ -209,7 +211,11 @@ export const createViteConfig = (
           '**/*.figma.tsx',
           '**/stories/**',
           '**/__tests__/**',
+          '**/__specs__/**',
+          '**/__spec__/**',
           '**/__mocks__/**',
+          '**/jest.ts',
+          '**/jest.tsx',
         ],
         compilerOptions: {
           declarationMap: false,
@@ -217,8 +223,6 @@ export const createViteConfig = (
           paths: {},
         },
       }),
-      // Add custom plugins from options
-      ...plugins,
     ],
     css: {
       preprocessorOptions: {

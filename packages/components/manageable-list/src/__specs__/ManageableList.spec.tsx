@@ -195,7 +195,7 @@ describe('ManageableList', () => {
   });
 
   it('should fire onItemSelect method on item click', () => {
-    const onItemSelect = jest.fn();
+    const onItemSelect = vi.fn();
     renderWithProvider(
       <ManageableList
         items={ITEMS}
@@ -218,7 +218,7 @@ describe('ManageableList', () => {
   });
 
   it('should fire remove item', () => {
-    const onItemRemove = jest.fn();
+    const onItemRemove = vi.fn();
     renderWithProvider(
       <ManageableList
         items={ITEMS}
@@ -242,7 +242,7 @@ describe('ManageableList', () => {
   });
 
   it('should fire onItemAdd', () => {
-    const onItemAdd = jest.fn();
+    const onItemAdd = vi.fn();
     renderWithProvider(
       <ManageableList
         items={DEFAULT_ITEMS}

@@ -40,9 +40,9 @@ beforeAll(() => {
         );
       }, 100);
     }
-    observe = jest.fn();
-    unobserve = jest.fn();
-    disconnect = jest.fn();
+    observe = vi.fn();
+    unobserve = vi.fn();
+    disconnect = vi.fn();
   };
 });
 
@@ -64,7 +64,7 @@ describe('Tabs component', () => {
   });
 
   it('should render dropdown', () => {
-    const handleConfigurationAction = jest.fn();
+    const handleConfigurationAction = vi.fn();
     const content = (
       <Tabs
         tabs={[]}
@@ -82,7 +82,7 @@ describe('Tabs component', () => {
   });
 
   it('should render configuration action button ', () => {
-    const handleConfigurationAction = jest.fn();
+    const handleConfigurationAction = vi.fn();
     const LABEL = 'Button label';
     const content = (
       <Tabs

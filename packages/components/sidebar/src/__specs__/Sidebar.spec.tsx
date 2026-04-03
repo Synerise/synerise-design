@@ -75,7 +75,7 @@ describe('Sidebar', () => {
   });
 
   it('should render order in draggable mode', () => {
-    const onChangeOrder = jest.fn()
+    const onChangeOrder = vi.fn()
     const { container } = renderWithProvider(
       <Sidebar onChangeOrder={onChangeOrder} order={[ID_3, ID_2, ID_1]}>
         <Sidebar.Panel header={HEADER_1} id={ID_1}>
@@ -131,7 +131,7 @@ describe('Sidebar', () => {
   });
 
   it('should change cursor to "grabbing" in drag and drop mode', () => {
-    const onChangeOrder = jest.fn()
+    const onChangeOrder = vi.fn()
     renderWithProvider(
       <Sidebar onChangeOrder={onChangeOrder} order={[ID_1]}>
         <Sidebar.Panel header={HEADER_1} id={ID_1}>

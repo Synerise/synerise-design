@@ -1,7 +1,7 @@
 // import { type UseTransitionStylesProps } from '@floating-ui/react';
-import { type TooltipProps } from 'Tooltip.types';
-
 import { type OffsetConfig } from '@synerise/ds-popover';
+
+import { type TooltipProps } from './Tooltip.types';
 
 export const getTransitionConfig = () => {
   return {

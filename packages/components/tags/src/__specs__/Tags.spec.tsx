@@ -14,8 +14,8 @@ describe('Tags', () => {
   const SEARCH_PLACEHOLDER = 'Search...';
   const MANAGE_LINK_LABEL = 'Manage Link Label';
 
-  const onSelectedChange = jest.fn();
-  const onCreate = jest.fn();
+  const onSelectedChange = vi.fn();
+  const onCreate = vi.fn();
 
   const tagOne = {
     id: 0,

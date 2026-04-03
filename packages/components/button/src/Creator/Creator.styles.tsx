@@ -1,5 +1,3 @@
-import { type ButtonProps } from 'Button.types';
-
 import React, { forwardRef } from 'react';
 import styled, { css } from 'styled-components';
 
@@ -9,6 +7,7 @@ import { hexToRgba } from '@synerise/ds-utils';
 
 import Button from '../Button';
 import { ButtonFocus, RippleEffect } from '../Button.styles';
+import { type ButtonProps } from '../Button.types';
 import { CreatorStatus } from './Creator.types';
 
 export const CreatorLabel = styled.span`

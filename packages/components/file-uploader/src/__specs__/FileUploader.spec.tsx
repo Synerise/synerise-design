@@ -78,7 +78,7 @@ describe('FileUploader', () => {
 
   it('should not fire onUpload when disabled', () => {
     // ARRANGE
-    const onUpload = jest.fn();
+    const onUpload = vi.fn();
 
     const { getByTestId } = renderWithProvider(
       <FileUploader

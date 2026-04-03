@@ -53,7 +53,7 @@ describe('Subject component', () => {
   });
 
   test('Should render with showPreview button', () => {
-    const onShowPreview = jest.fn();
+    const onShowPreview = vi.fn();
     const { container } = renderWithProvider(RENDER_SUBJECT({ onShowPreview }));
     const buttons = container.querySelectorAll('.ds-button');
 
@@ -61,7 +61,7 @@ describe('Subject component', () => {
   });
 
   test('Should call showPreview callback', () => {
-    const onShowPreview = jest.fn();
+    const onShowPreview = vi.fn();
     const { container } = renderWithProvider(RENDER_SUBJECT({ onShowPreview }));
     const buttons = container.querySelectorAll('.ds-button');
 
@@ -71,7 +71,7 @@ describe('Subject component', () => {
   });
 
   test('Should call showPreview callback', () => {
-    const onShowPreview = jest.fn();
+    const onShowPreview = vi.fn();
     const { container } = renderWithProvider(RENDER_SUBJECT({ onShowPreview }));
     const buttons = container.querySelectorAll('.ds-button');
 
@@ -156,7 +156,7 @@ describe('Subject component', () => {
   });
   // moved to chromatic tests
   test.skip('should call onActivate', () => {
-    const handleActivate = jest.fn();
+    const handleActivate = vi.fn();
     renderWithProvider(RENDER_SUBJECT({ onActivate: handleActivate }));
 
     userEvent.click(screen.getByText('Choose event'));
@@ -165,8 +165,8 @@ describe('Subject component', () => {
   });
   // moved to chromatic tests
   test.skip('should call onDeactivate', async () => {
-    const handleDeactivate = jest.fn();
-    const handleActivate = jest.fn();
+    const handleDeactivate = vi.fn();
+    const handleActivate = vi.fn();
     const CLICK_OUTSIDE = 'CLICK_OUTSIDE';
     renderWithProvider(
       <>

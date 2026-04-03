@@ -70,8 +70,8 @@ const SHARED_PROPS = {
 
 describe('ItemPicker component', () => {
   it('should render with placeholder', async () => {
-    const handleClear = jest.fn();
-    const handleChange = jest.fn();
+    const handleClear = vi.fn();
+    const handleChange = vi.fn();
 
     renderWithProvider(
       <ItemPicker
@@ -85,8 +85,8 @@ describe('ItemPicker component', () => {
   });
 
   it('should render with placeholderIcon', async () => {
-    const handleClear = jest.fn();
-    const handleChange = jest.fn();
+    const handleClear = vi.fn();
+    const handleChange = vi.fn();
 
     renderWithProvider(
       <ItemPicker
@@ -102,8 +102,8 @@ describe('ItemPicker component', () => {
   });
 
   it('should render with label', async () => {
-    const handleClear = jest.fn();
-    const handleChange = jest.fn();
+    const handleClear = vi.fn();
+    const handleChange = vi.fn();
 
     renderWithProvider(
       <ItemPicker
@@ -118,8 +118,8 @@ describe('ItemPicker component', () => {
   });
 
   it('should render with description', async () => {
-    const handleClear = jest.fn();
-    const handleChange = jest.fn();
+    const handleClear = vi.fn();
+    const handleChange = vi.fn();
 
     renderWithProvider(
       <ItemPicker
@@ -134,8 +134,8 @@ describe('ItemPicker component', () => {
   });
 
   it('should render with AngleDown icon', async () => {
-    const handleClear = jest.fn();
-    const handleChange = jest.fn();
+    const handleClear = vi.fn();
+    const handleChange = vi.fn();
 
     renderWithProvider(
       <ItemPicker
@@ -150,8 +150,8 @@ describe('ItemPicker component', () => {
   });
 
   it('should render without AngleDown icon', async () => {
-    const handleClear = jest.fn();
-    const handleChange = jest.fn();
+    const handleClear = vi.fn();
+    const handleChange = vi.fn();
 
     renderWithProvider(
       <ItemPicker
@@ -167,8 +167,8 @@ describe('ItemPicker component', () => {
   });
 
   it('should render with error', async () => {
-    const handleClear = jest.fn();
-    const handleChange = jest.fn();
+    const handleClear = vi.fn();
+    const handleChange = vi.fn();
 
     renderWithProvider(
       <ItemPicker
@@ -185,8 +185,8 @@ describe('ItemPicker component', () => {
   });
 
   it('should render as disabled', async () => {
-    const handleClear = jest.fn();
-    const handleChange = jest.fn();
+    const handleClear = vi.fn();
+    const handleChange = vi.fn();
 
     const { container } = renderWithProvider(
       <ItemPicker
@@ -202,8 +202,8 @@ describe('ItemPicker component', () => {
   });
 
   it('should render with selected item', async () => {
-    const handleClear = jest.fn();
-    const handleChange = jest.fn();
+    const handleClear = vi.fn();
+    const handleChange = vi.fn();
 
     renderWithProvider(
       <ItemPicker
@@ -219,8 +219,8 @@ describe('ItemPicker component', () => {
   });
 
   it('should render selected item with prefixel', async () => {
-    const handleClear = jest.fn();
-    const handleChange = jest.fn();
+    const handleClear = vi.fn();
+    const handleChange = vi.fn();
 
     renderWithProvider(
       <ItemPicker
@@ -236,8 +236,8 @@ describe('ItemPicker component', () => {
   });
 
   it('should render selected item without prefixel', async () => {
-    const handleClear = jest.fn();
-    const handleChange = jest.fn();
+    const handleClear = vi.fn();
+    const handleChange = vi.fn();
 
     renderWithProvider(
       <ItemPicker
@@ -253,8 +253,8 @@ describe('ItemPicker component', () => {
   });
 
   it('should render with clear icon', async () => {
-    const handleClear = jest.fn();
-    const handleChange = jest.fn();
+    const handleClear = vi.fn();
+    const handleChange = vi.fn();
 
     renderWithProvider(
       <ItemPicker
@@ -270,7 +270,7 @@ describe('ItemPicker component', () => {
   });
 
   it('should render without clear icon', async () => {
-    const handleChange = jest.fn();
+    const handleChange = vi.fn();
 
     renderWithProvider(
       <ItemPicker
@@ -285,8 +285,8 @@ describe('ItemPicker component', () => {
   });
 
   it('should render without custom change button', async () => {
-    const handleClear = jest.fn();
-    const handleChange = jest.fn();
+    const handleClear = vi.fn();
+    const handleChange = vi.fn();
 
     renderWithProvider(
       <ItemPicker
@@ -305,8 +305,8 @@ describe('ItemPicker component', () => {
   });
 
   it('should render with custom change button', async () => {
-    const handleClear = jest.fn();
-    const handleChange = jest.fn();
+    const handleClear = vi.fn();
+    const handleChange = vi.fn();
 
     renderWithProvider(
       <ItemPicker
@@ -324,8 +324,8 @@ describe('ItemPicker component', () => {
   });
 
   it('should render with bottom action', async () => {
-    const handleClear = jest.fn();
-    const handleChange = jest.fn();
+    const handleClear = vi.fn();
+    const handleChange = vi.fn();
 
     renderWithProvider(
       <ItemPicker
@@ -345,8 +345,8 @@ describe('ItemPicker component', () => {
     expect(screen.getByText(BOTTOM_ACTION_LABEL)).toBeTruthy();
   });
   it('should render without search bar', async () => {
-    const handleClear = jest.fn();
-    const handleChange = jest.fn();
+    const handleClear = vi.fn();
+    const handleChange = vi.fn();
     const { getByText } = renderWithProvider(
       <ItemPicker
         {...SHARED_PROPS}
@@ -360,8 +360,8 @@ describe('ItemPicker component', () => {
   });
 
   it('should render with search bar', async () => {
-    const handleClear = jest.fn();
-    const handleChange = jest.fn();
+    const handleClear = vi.fn();
+    const handleChange = vi.fn();
     const { getByText } = renderWithProvider(
       <ItemPicker
         {...SHARED_PROPS}

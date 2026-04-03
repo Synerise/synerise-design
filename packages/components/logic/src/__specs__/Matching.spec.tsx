@@ -8,7 +8,7 @@ import Logic from '../Logic';
 
 describe('Matching component', () => {
   it('Should render matching toggle with custom sentence', () => {
-    const onChange = jest.fn();
+    const onChange = vi.fn();
     
     renderWithProvider(
       <Logic.Matching
@@ -29,7 +29,7 @@ describe('Matching component', () => {
   });
 
   it('Should render matching toggle in matching state', () => {
-    const onChange = jest.fn();
+    const onChange = vi.fn();
     const { getByText } = renderWithProvider(
       <Logic.Matching
         matching={true}
@@ -41,7 +41,7 @@ describe('Matching component', () => {
     expect(getByText('matching')).toBeTruthy();
   });
   it('Should render matching toggle in not matching state', () => {
-    const onChange = jest.fn();
+    const onChange = vi.fn();
     const { getByText } = renderWithProvider(
       <Logic.Matching
         matching={false}
@@ -53,7 +53,7 @@ describe('Matching component', () => {
     expect(getByText('not matching')).toBeTruthy();
   });
   it('Should call onChange callback', () => {
-    const onChange = jest.fn();
+    const onChange = vi.fn();
     const { getByText } = renderWithProvider(
       <Logic.Matching
         matching={false}

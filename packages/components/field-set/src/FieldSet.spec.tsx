@@ -20,7 +20,7 @@ describe('Field-Set', () => {
     expect(screen.getByText(TITLE)).toBeTruthy();
   });
   it('title should be clickable', function () {
-    const onClick = jest.fn();
+    const onClick = vi.fn();
     renderWithProvider(
       <FieldSet
         onTitleClick={onClick}

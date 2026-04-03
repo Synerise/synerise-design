@@ -7,11 +7,11 @@ import { TextArea } from '../index';
 
 describe('TextArea', () => {
   const PLACEHOLDER = 'placeholder';
-  const onChange = jest.fn();
+  const onChange = vi.fn();
   const INPUT_VALUE = 'input value';
 
   afterEach(() => {
-    jest.clearAllMocks();
+    vi.clearAllMocks();
   });
 
   it('should render', () => {

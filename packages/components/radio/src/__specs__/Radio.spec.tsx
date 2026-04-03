@@ -30,7 +30,7 @@ describe('Radio', () => {
   describe('Radio.Group', () => {
     it('should trigger onChange', () => {
       // ARRANGE
-      const onChange = jest.fn();
+      const onChange = vi.fn();
       const RADIO_LABEL_A = 'Radio label A';
       const RADIO_VALUE_A = 'Radio value A';
       const RADIO_LABEL_B = 'Radio label B';

@@ -36,7 +36,7 @@ describe('Popconfirm', () => {
   });
 
   it('should call onCancel when cancel clicked', () => {
-    const onCancel = jest.fn();
+    const onCancel = vi.fn();
     renderWithProvider(
       <Popconfirm title={TITLE} cancelText={CANCEL} onCancel={onCancel}>
         <button>{TEXT}</button>
@@ -51,7 +51,7 @@ describe('Popconfirm', () => {
   });
 
   it('should call onOk when OK clicked', () => {
-    const onConfirm = jest.fn();
+    const onConfirm = vi.fn();
     renderWithProvider(
       <Popconfirm title={TITLE} okText={OK} onConfirm={onConfirm}>
         <button>{TEXT}</button>

@@ -106,7 +106,7 @@ describe('ManageableList with content items', () => {
   });
 
   it('should call onItemAdd', () => {
-    const onItemAdd = jest.fn();
+    const onItemAdd = vi.fn();
     renderWithProvider(
       <ManageableList
         items={CONTENT_ITEMS}
@@ -156,7 +156,7 @@ describe('ManageableList with content items', () => {
   });
 
   it('should fire onExpand ', () => {
-    const onExpand = jest.fn();
+    const onExpand = vi.fn();
     const clickedIndex = 1;
     const clickedItem = CONTENT_ITEMS[clickedIndex];
     renderWithProvider(
@@ -180,7 +180,7 @@ describe('ManageableList with content items', () => {
   });
 
   it('should fire onItemSelect ', () => {
-    const onItemSelect = jest.fn();
+    const onItemSelect = vi.fn();
     const clickedIndex = 1;
     const clickedItem = CONTENT_ITEMS[clickedIndex];
     renderWithProvider(
@@ -253,8 +253,8 @@ describe('ManageableList with content items', () => {
   });
 
   it('should render with action icons', () => {
-    const onItemDuplicate = jest.fn();
-    const onItemRemove = jest.fn();
+    const onItemDuplicate = vi.fn();
+    const onItemRemove = vi.fn();
     renderWithProvider(
       <ManageableList
         items={CONTENT_ITEMS}
@@ -288,9 +288,9 @@ describe('ManageableList with content items', () => {
   });
 
   it('should render with change position buttons', () => {
-    const onItemDuplicate = jest.fn();
-    const onItemRemove = jest.fn();
-    const onChangeOrder = jest.fn();
+    const onItemDuplicate = vi.fn();
+    const onItemRemove = vi.fn();
+    const onChangeOrder = vi.fn();
     renderWithProvider(
       <ManageableList
         items={CONTENT_ITEMS}
@@ -318,9 +318,9 @@ describe('ManageableList with content items', () => {
   });
 
   it('should change order of list on click on moveToTopButton', () => {
-    const onItemDuplicate = jest.fn();
-    const onItemRemove = jest.fn();
-    const onChangeOrder = jest.fn();
+    const onItemDuplicate = vi.fn();
+    const onItemRemove = vi.fn();
+    const onChangeOrder = vi.fn();
     renderWithProvider(
       <ManageableList
         items={CONTENT_ITEMS}
@@ -359,9 +359,9 @@ describe('ManageableList with content items', () => {
     ]);
   });
   it('should change order of list on click on moveToTopButton', () => {
-    const onItemDuplicate = jest.fn();
-    const onItemRemove = jest.fn();
-    const onChangeOrder = jest.fn();
+    const onItemDuplicate = vi.fn();
+    const onItemRemove = vi.fn();
+    const onChangeOrder = vi.fn();
     renderWithProvider(
       <ManageableList
         items={CONTENT_ITEMS}

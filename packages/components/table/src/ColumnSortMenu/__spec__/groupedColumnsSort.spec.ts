@@ -9,11 +9,11 @@ type FakeColumnsType = Array<DSColumnType<GroupType<any>>>;
 const fakeColumns: FakeColumnsType = [
   {
     key: 'columnAsc',
-    sorter: jest.fn(),
+    sorter: vi.fn(),
   },
   {
     key: 'columnDsc',
-    sorter: jest.fn(),
+    sorter: vi.fn(),
   },
   {
     key: 'columnNull',
@@ -53,9 +53,9 @@ const fakeSortStateInactive: SortStateAPI['columnsSortState'] = {
 
 const setupStateApi = (sortState: SortStateAPI['columnsSortState']): SortStateAPI => ({
   columnsSortState: sortState,
-  getColumnSortOrder: jest.fn().mockImplementation((key: string) => sortState[key].sortOrder),
-  setColumnSortOrder: jest.fn(),
-  updateColumnsData: jest.fn(),
+  getColumnSortOrder: vi.fn().mockImplementation((key: string) => sortState[key].sortOrder),
+  setColumnSortOrder: vi.fn(),
+  updateColumnsData: vi.fn(),
 });
 
 describe('getColumnsWithActiveSorting', () => {
@@ -85,7 +85,7 @@ describe('getColumnsWithActiveSorting', () => {
 
 describe('sortRows', () => {
   it('should exec sorting using provided compare function when sort order is ascend', () => {
-    const fakeCompareFn = jest.fn().mockImplementation(() => 0);
+    const fakeCompareFn = vi.fn().mockImplementation(() => 0);
     const inputRows = [1, 2, 3, 4];
 
     const actual = sortRows('ascend', fakeCompareFn, inputRows);
@@ -96,7 +96,7 @@ describe('sortRows', () => {
   });
 
   it('should not exec sorting using provided compare function when sort order is null', () => {
-    const fakeCompareFn = jest.fn().mockImplementation(() => 0);
+    const fakeCompareFn = vi.fn().mockImplementation(() => 0);
     const inputRows = [1, 2, 3, 4];
 
     const actual = sortRows(null, fakeCompareFn, inputRows);
@@ -106,7 +106,7 @@ describe('sortRows', () => {
   });
 
   it('should exec sorting using provided compare function when sort order is descend', () => {
-    const fakeCompareFn = jest.fn().mockImplementation(() => 0);
+    const fakeCompareFn = vi.fn().mockImplementation(() => 0);
     const inputRows = [1, 2, 3, 4];
 
     const actual = sortRows('descend', fakeCompareFn, inputRows);
@@ -128,7 +128,7 @@ describe('sortDataSourceRows', () => {
     const fakeSortingColumns: FakeColumnsType = [
       {
         key: 'columnAsc',
-        sorter: jest.fn().mockImplementation((a, b) => a - b), // sort ascending
+        sorter: vi.fn().mockImplementation((a, b) => a - b), // sort ascending
       },
       {
         key: 'columnNull',

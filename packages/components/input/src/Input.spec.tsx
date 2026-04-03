@@ -7,13 +7,13 @@ import userEvent from '@testing-library/user-event';
 import { Input } from './index';
 
 describe('Input', () => {
-  const onChange = jest.fn();
+  const onChange = vi.fn();
   const PLACEHOLDER = 'placeholder';
   const INPUT_VALUE = 'input value';
   const TOOLTIP = 'tooltip text';
 
   afterEach(() => {
-    jest.clearAllMocks();
+    vi.clearAllMocks();
   });
 
   describe('Basic Input', () => {
@@ -140,8 +140,8 @@ describe('Input', () => {
     );
 
     it('input does not loose focus after input event (when in e.g. autosize mode) - all rendering helpers renderInputComponent get cached (memoized)', async () => {
-      const onBlur = jest.fn();
-      const onInput = jest.fn();
+      const onBlur = vi.fn();
+      const onInput = vi.fn();
       renderWithProvider(
         <Input
           autoResize={{ maxWidth: '200px', minWidth: '100px' }}
@@ -201,12 +201,8 @@ describe('Input', () => {
 
   describe('Expandable input', () => {
     beforeEach(() => {
-      jest
-        .spyOn(HTMLInputElement.prototype, 'scrollWidth', 'get')
-        .mockReturnValue(200);
-      jest
-        .spyOn(HTMLInputElement.prototype, 'clientWidth', 'get')
-        .mockReturnValue(100);
+      vi.spyOn(HTMLInputElement.prototype, 'scrollWidth', 'get').mockReturnValue(200);
+      vi.spyOn(HTMLInputElement.prototype, 'clientWidth', 'get').mockReturnValue(100);
     });
 
     it('should render expand icon and texarea', () => {

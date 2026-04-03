@@ -4,8 +4,8 @@ import { renderWithProvider } from '@synerise/ds-core';
 import { doubleClickListener } from '../../index';
 
 describe('doubleClickListener', () => {
-  const singleClickFn = jest.fn();
-  const doubleClickFn = jest.fn();
+  const singleClickFn = vi.fn();
+  const doubleClickFn = vi.fn();
   const DELAY = 250;
   const TEXT = 'Some text that doesnt matter here';
   const waitFor = (delay: number) => new Promise(r => setTimeout(r, delay));

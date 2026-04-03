@@ -102,6 +102,7 @@ build_packages:
   script:
     - pnpm install --frozen-lockfile --offline
     - pnpm build
+    - pnpm types
   artifacts:
     paths:
       - packages/components/*/dist

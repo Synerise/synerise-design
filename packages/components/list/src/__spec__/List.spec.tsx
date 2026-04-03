@@ -63,7 +63,7 @@ describe('List', () => {
 
   it('should render and handle actions', () => {
     // ARRANGE
-    const onActionClick = jest.fn();
+    const onActionClick = vi.fn();
     const data = [['Option A']];
 
     const { getByText } = renderWithProvider(

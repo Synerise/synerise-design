@@ -7,7 +7,7 @@ import userEvent from '@testing-library/user-event';
 import { InputMultivalue } from '../index';
 
 describe('Input', () => {
-  const onChange = jest.fn();
+  const onChange = vi.fn();
 
   describe('Input multivalue', () => {
     it('should trigger onChange', async () => {

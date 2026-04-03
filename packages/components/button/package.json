@@ -18,9 +18,6 @@
   "scripts": {
     "build": "vite build",
     "build:watch": "vite build --watch",
-    "build:css": "node ../../../scripts/style/less.js",
-    "build:js": "babel --delete-dir-on-start --root-mode upward src --out-dir dist --extensions '.js,.ts,.tsx'",
-    "defs": "tsc --declaration --outDir dist/ --emitDeclarationOnly",
     "pack:ci": "pnpm pack --pack-destination ../../storybook/storybook-static/static",
     "prepublish": "pnpm run build",
     "test": "vitest run",

@@ -4,6 +4,15 @@ import { fireEvent, screen, waitFor } from "@testing-library/react";
 import Button from "@synerise/ds-button";
 import Icon, { Add3M } from "@synerise/ds-icon";
 
+vi.mock('@synerise/ds-icon/dist/icons/M', () => {
+  const Stub = (name: string) => {
+    const Component = (props: React.SVGProps<SVGSVGElement>) => <svg data-testid={`ds-icon-${name}`} {...props} />;
+    Component.displayName = name;
+    return Component;
+  };
+  return { AddM: Stub('add-m'), EditM: Stub('edit-m'), SearchM: Stub('search-m') };
+});
+
 import IconPicker from "../IconPicker";
 
 const data =
@@ -35,7 +44,7 @@ describe('Dropdown', () => {
   });
 
   it('should select action', () => {
-    const onSelectAction = jest.fn();
+    const onSelectAction = vi.fn();
     const BUTTON_TEXT = 'button text';
     renderWithProvider(
       <IconPicker
@@ -55,7 +64,7 @@ describe('Dropdown', () => {
   });
 
   it('should load DS icons as source', () => {
-    const onSelectAction = jest.fn();
+    const onSelectAction = vi.fn();
     const BUTTON_TEXT = 'button text';
     renderWithProvider(
       <IconPicker
@@ -73,7 +82,7 @@ describe('Dropdown', () => {
   })
 
   it('should load FontAwesome icons as source', async () => {
-    const onSelectAction = jest.fn();
+    const onSelectAction = vi.fn();
     const BUTTON_TEXT = 'button text';
     renderWithProvider(
       <IconPicker

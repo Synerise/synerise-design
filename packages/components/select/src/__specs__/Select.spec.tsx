@@ -45,7 +45,7 @@ describe('Select', () => {
   });
 
   it('handle clicking multiple mode', async () => {
-    const onChange = jest.fn();
+    const onChange = vi.fn();
     const children: JSX.Element[] = [];
     for (let i = 10; i < 36; i++) {
       children.push(
@@ -98,7 +98,7 @@ describe('Select', () => {
     expect(screen.getByText(DESC)).toBeTruthy();
   });
 
-  it.only('should be empty', async () => {
+  it('should be empty', async () => {
     renderWithProvider(<Select open />);
 
     const noDataElem = await screen.findByText('No data');

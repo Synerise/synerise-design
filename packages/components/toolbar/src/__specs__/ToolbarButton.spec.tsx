@@ -6,7 +6,7 @@ import { fireEvent, screen } from '@testing-library/react';
 import { ToolbarButton } from '../index';
 
 const CONTENT = 'CONTENT';
-const onClick = jest.fn();
+const onClick = vi.fn();
 
 describe('ToolbarButton', () => {
   it('should render', function () {

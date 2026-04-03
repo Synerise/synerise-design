@@ -59,9 +59,9 @@ const recentDisplayProps = {
 const dropdownMaxHeight = 400;
 describe('Search with dropdown', () => {
   it('should render', () => {
-    const onChange = jest.fn();
-    const onParameterValueChange = jest.fn();
-    const onClear = jest.fn();
+    const onChange = vi.fn();
+    const onParameterValueChange = vi.fn();
+    const onClear = vi.fn();
 
     renderWithProvider(
       <Search
@@ -88,9 +88,9 @@ describe('Search with dropdown', () => {
   });
 
   it('should change value', () => {
-    const onChange = jest.fn();
-    const onParameterValueChange = jest.fn();
-    const onClear = jest.fn();
+    const onChange = vi.fn();
+    const onParameterValueChange = vi.fn();
+    const onClear = vi.fn();
 
     renderWithProvider(
       <Search
@@ -121,9 +121,9 @@ describe('Search with dropdown', () => {
   });
 
   it('should set filter', async () => {
-    const onChange = jest.fn();
-    const onParameterValueChange = jest.fn();
-    const onClear = jest.fn();
+    const onChange = vi.fn();
+    const onParameterValueChange = vi.fn();
+    const onClear = vi.fn();
 
     renderWithProvider(
       <Search
@@ -165,9 +165,9 @@ describe('Search with dropdown', () => {
   });
 
   it('should render input with value', async () => {
-    const onChange = jest.fn();
-    const onParameterValueChange = jest.fn();
-    const onClear = jest.fn();
+    const onChange = vi.fn();
+    const onParameterValueChange = vi.fn();
+    const onClear = vi.fn();
 
     renderWithProvider(
       <Search
@@ -197,9 +197,9 @@ describe('Search with dropdown', () => {
   });
 
   it('should render suggestions with title', async () => {
-    const onChange = jest.fn();
-    const onParameterValueChange = jest.fn();
-    const onClear = jest.fn();
+    const onChange = vi.fn();
+    const onParameterValueChange = vi.fn();
+    const onClear = vi.fn();
 
     renderWithProvider(
       <div>
@@ -232,9 +232,9 @@ describe('Search with dropdown', () => {
   });
 
   it('should render parameters with title', async () => {
-    const onChange = jest.fn();
-    const onParameterValueChange = jest.fn();
-    const onClear = jest.fn();
+    const onChange = vi.fn();
+    const onParameterValueChange = vi.fn();
+    const onClear = vi.fn();
 
     renderWithProvider(
       <div>
@@ -269,9 +269,9 @@ describe('Search with dropdown', () => {
   });
 
   it('should render recent with title', async () => {
-    const onChange = jest.fn();
-    const onParameterValueChange = jest.fn();
-    const onClear = jest.fn();
+    const onChange = vi.fn();
+    const onParameterValueChange = vi.fn();
+    const onClear = vi.fn();
 
     renderWithProvider(
       <div>
@@ -305,9 +305,9 @@ describe('Search with dropdown', () => {
   });
 
   it('should call onClear when click on clear btn', async () => {
-    const onChange = jest.fn();
-    const onParameterValueChange = jest.fn();
-    const onClear = jest.fn();
+    const onChange = vi.fn();
+    const onParameterValueChange = vi.fn();
+    const onClear = vi.fn();
 
     renderWithProvider(
       <Search

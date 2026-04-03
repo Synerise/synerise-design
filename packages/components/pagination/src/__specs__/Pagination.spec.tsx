@@ -6,7 +6,7 @@ import { fireEvent } from '@testing-library/react';
 import Pagination from '../index';
 
 describe('Pagination', () => {
-  const onChange = jest.fn();
+  const onChange = vi.fn();
   it('should set active prop', async function () {
     const { getByText, container } = renderWithProvider(
       <Pagination onChange={onChange} defaultCurrent={1} total={50} />,

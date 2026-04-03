@@ -17,10 +17,7 @@
   },
   "scripts": {
     "build": "vite build",
-    "build:css": "node ../../../scripts/style/less.js",
-    "build:js": "babel --delete-dir-on-start --root-mode upward src --out-dir dist --extensions '.js,.ts,.tsx'",
     "build:watch": "vite build --watch",
-    "defs": "tsc --declaration --outDir dist/ --emitDeclarationOnly",
     "prepublish": "pnpm run build",
     "types": "tsc --noEmit",
     "check:circular-dependencies": "madge --circular --extensions ts,tsx,js,jsx --ts-config tsconfig.json src/ --exclude '/dist/'",

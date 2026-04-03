@@ -49,7 +49,7 @@ describe('Stepper component', () => {
 
   it('Should render call onClick callback', () => {
     // ARRANGE
-    const onClick = jest.fn();
+    const onClick = vi.fn();
     const { getByText } = renderWithProvider(
       <Stepper orientation="vertical">
         <Stepper.Step label="First step" stepNumber={1} onClick={onClick}>
@@ -67,7 +67,7 @@ describe('Stepper component', () => {
 
   it('Should render active step with tooltip icon', () => {
     // ARRANGE
-    const onClick = jest.fn();
+    const onClick = vi.fn();
     const { container } = renderWithProvider(
       <Stepper orientation="vertical">
         <Stepper.Step

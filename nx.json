@@ -28,6 +28,17 @@
                 "{workspaceRoot}/config/jest/**"
             ]
         },
+        "types": {
+            "cache": true,
+            "dependsOn": [
+                "^build"
+            ],
+            "inputs": [
+                "production",
+                "^production",
+                "{workspaceRoot}/config/typescript/**"
+            ]
+        },
         "lint": {
             "cache": true,
             "dependsOn": [],

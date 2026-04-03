@@ -115,7 +115,7 @@ describe('Table', () => {
   });
 
   it('should render pagination with size changer and quick jumper', () => {
-    const handleChange = jest.fn();
+    const handleChange = vi.fn();
     const { container } = renderWithProvider(
       <Table
         dataSource={props.dataSource}
@@ -139,7 +139,7 @@ describe('Table', () => {
   });
 
   it('should call handleChange', () => {
-    const handleChange = jest.fn();
+    const handleChange = vi.fn();
     const { container } = renderWithProvider(
       <Table
         dataSource={props.dataSource}
@@ -160,11 +160,11 @@ describe('Table', () => {
   });
 
   it('should call onRow handlers', () => {
-    const onClick = jest.fn();
-    const onDoubleClick = jest.fn();
-    const onContextMenu = jest.fn();
-    const onMouseEnter = jest.fn();
-    const onMouseLeave = jest.fn();
+    const onClick = vi.fn();
+    const onDoubleClick = vi.fn();
+    const onContextMenu = vi.fn();
+    const onMouseEnter = vi.fn();
+    const onMouseLeave = vi.fn();
     const { container } = renderWithProvider(
       <Table
         dataSource={props.dataSource}
@@ -203,9 +203,9 @@ describe('Table', () => {
   });
 
   it('should render filters', () => {
-    const handleShowList = jest.fn();
-    const handleShowFilter = jest.fn();
-    const handleClear = jest.fn();
+    const handleShowList = vi.fn();
+    const handleShowFilter = vi.fn();
+    const handleClear = vi.fn();
     renderWithProvider(
       <Table
         dataSource={props.dataSource}
@@ -233,9 +233,9 @@ describe('Table', () => {
   });
 
   it('should render filter with selected item', () => {
-    const handleShowList = jest.fn();
-    const handleShowFilter = jest.fn();
-    const handleClear = jest.fn();
+    const handleShowList = vi.fn();
+    const handleShowFilter = vi.fn();
+    const handleClear = vi.fn();
     renderWithProvider(
       <Table
         dataSource={props.dataSource}
@@ -302,7 +302,7 @@ describe('Table', () => {
   describe('Table selection', () => {
 
     it('Should render with unchecked and disabled row selection checkbox', () => {
-      const handleChangeSelection = jest.fn();
+      const handleChangeSelection = vi.fn();
       renderWithProvider(
         <Table
         dataSource={[]}
@@ -322,8 +322,8 @@ describe('Table', () => {
     });
     
     it('Should render with "select all" selection item', async () => {
-      const handleChangeSelection = jest.fn();
-      const handleChangeGlobalSelection = jest.fn();
+      const handleChangeSelection = vi.fn();
+      const handleChangeGlobalSelection = vi.fn();
       const SELECT_GLOBAL_ALL = 'SELECT_GLOBAL_ALL'
       const UNSELECT_GLOBAL_ALL = 'UNSELECT_GLOBAL_ALL'
       renderWithProvider(
@@ -354,8 +354,8 @@ describe('Table', () => {
 
 
     it('Should toggle "all global" on batch checkbox click', async () => {
-      const handleChangeSelection = jest.fn();
-      const handleChangeGlobalSelection = jest.fn();
+      const handleChangeSelection = vi.fn();
+      const handleChangeGlobalSelection = vi.fn();
       renderWithProvider(
         <Table
         dataSource={props.dataSource}
@@ -377,7 +377,7 @@ describe('Table', () => {
     
 
     it('Should toggle "all visible" on batch checkbox click', async () => {
-      const handleChangeSelection = jest.fn();
+      const handleChangeSelection = vi.fn();
       renderWithProvider(
         <Table
         dataSource={props.dataSource}
@@ -398,7 +398,7 @@ describe('Table', () => {
     });
     
     it('Should render with selection checkboxes only for specific items', () => {
-      const handleChangeSelection = jest.fn();
+      const handleChangeSelection = vi.fn();
       const allowSelectionForKeys = ['2', '4'];
       renderWithProvider(
         <Table
@@ -445,7 +445,7 @@ describe('Table', () => {
     });
 
     it('should call onChange callback with updated starred keys after click', () => {
-      const onChangeSpy = jest.fn();
+      const onChangeSpy = vi.fn();
       renderWithProvider(
         <Table
           {...props}
