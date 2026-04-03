@@ -23,16 +23,24 @@ StyleDictionary.registerFilter({
   filter: (token) => token.$type === 'color' || token.type === 'color',
 });
 
+// Shared base token sets that all themes need for reference resolution
+const baseSources = [
+  'tokens/primitives/core.json',
+  'tokens/semantic/custom-color/blue.json',
+  'tokens/semantic/dimensions.json',
+  'tokens/semantic/spacing.json',
+];
+
 const themes = {
   light: {
-    source: ['tokens/primitives/core.json', 'tokens/semantic/custom-color/blue.json'],
-    include: ['tokens/primitives/core.json', 'tokens/semantic/custom-color/blue.json'],
+    source: baseSources,
+    include: baseSources,
     tokens: ['tokens/semantic/Light.json', 'tokens/modules/colors-only.json'],
     selector: ':root',
   },
   dark: {
-    source: ['tokens/primitives/core.json', 'tokens/semantic/custom-color/blue.json'],
-    include: ['tokens/primitives/core.json', 'tokens/semantic/custom-color/blue.json'],
+    source: baseSources,
+    include: baseSources,
     tokens: ['tokens/semantic/Dark.json', 'tokens/modules/colors-only.json'],
     selector: '[data-ds-theme="dark"]',
   },

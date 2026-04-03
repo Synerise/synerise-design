@@ -1,0 +1,114 @@
+{
+  "size": {
+    "xs": {
+      "$type": "dimension",
+      "$value": "{space.6}",
+      "$description": "24px — Badge, status pill, small indicator"
+    },
+    "sm": {
+      "$type": "dimension",
+      "$value": "{space.8}",
+      "$description": "32px — Compact control, nav item, small input"
+    },
+    "md": {
+      "$type": "dimension",
+      "$value": "{space.10}",
+      "$description": "40px — Standard control, button, input"
+    },
+    "lg": {
+      "$type": "dimension",
+      "$value": "{space.12}",
+      "$description": "48px — Large control, dropdown footer, card tab"
+    },
+    "xl": {
+      "$type": "dimension",
+      "$value": "{space.12} + {space.2}",
+      "$description": "56px — Navbar, large list item (off-grid: 48+8)"
+    },
+    "2xl": {
+      "$type": "dimension",
+      "$value": "{space.16}",
+      "$description": "64px — App menu zone, large structural"
+    },
+    "3xl": {
+      "$type": "dimension",
+      "$value": "{space.20}",
+      "$description": "80px — Page header area"
+    },
+    "4xl": {
+      "$type": "dimension",
+      "$value": "{space.32}",
+      "$description": "128px — XLarge panel, avatar xlarge"
+    },
+    "icon": {
+      "sm": {
+        "$type": "dimension",
+        "$value": "{space.4}",
+        "$description": "16px — Small icon (breadcrumb, helper text)"
+      },
+      "md": {
+        "$type": "dimension",
+        "$value": "{space.5}",
+        "$description": "20px — Medium icon"
+      },
+      "lg": {
+        "$type": "dimension",
+        "$value": "{space.6}",
+        "$description": "24px — Standard icon (most UI contexts)"
+      }
+    }
+  },
+  "border": {
+    "width": {
+      "default": {
+        "$type": "dimension",
+        "$value": "{border.width.1}",
+        "$description": "1px — Standard border (inputs, cards, dividers)"
+      },
+      "focus": {
+        "$type": "dimension",
+        "$value": "{border.width.2}",
+        "$description": "2px — Focus ring, emphasis border"
+      }
+    },
+    "radius": {
+      "xs": {
+        "$type": "dimension",
+        "$value": "{radius.xs}",
+        "$description": "4px — Tight radius (small tags, compact chips)"
+      },
+      "sm": {
+        "$type": "dimension",
+        "$value": "{radius.sm}",
+        "$description": "8px — Default component radius (inputs, buttons, cards)"
+      },
+      "md": {
+        "$type": "dimension",
+        "$value": "{radius.md}",
+        "$description": "12px — Medium radius"
+      },
+      "lg": {
+        "$type": "dimension",
+        "$value": "{radius.lg}",
+        "$description": "16px — Large radius (switch track, large cards)"
+      },
+      "full": {
+        "$type": "dimension",
+        "$value": "{radius.full}",
+        "$description": "9999px — Pill shape (avatars, status-pills, pagination dots)"
+      }
+    }
+  },
+  "opacity": {
+    "disabled": {
+      "$type": "opacity",
+      "$value": 0.4,
+      "$description": "Opacity for disabled state (40%)"
+    },
+    "muted": {
+      "$type": "opacity",
+      "$value": 0.2,
+      "$description": "Opacity for muted/subtle elements, e.g. separators (20%)"
+    }
+  }
+}

@@ -136,196 +136,108 @@
           "$value": "{color.icon.base.default}",
           "$description": "Section message icon color for informative variant"
         }
-      }
-    }
-  },
-  "toast": {
-    "variant": {
-      "success": {
-        "bg": {
-          "$type": "color",
-          "$value": "{color.background.base.default}",
-          "$description": "Toast background color for success variant"
-        },
-        "border": {
-          "$type": "color",
-          "$value": "{color.border.success.default}",
-          "$description": "Toast border color for success variant"
-        },
-        "text": {
-          "label": {
-            "$type": "color",
-            "$value": "{color.text.base.default}",
-            "$description": "Toast label text color for success variant"
-          },
-          "description": {
-            "$type": "color",
-            "$value": "{color.text.base.subtle}",
-            "$description": "Toast description text color for success variant"
-          }
-        },
-        "icon": {
-          "$type": "color",
-          "$value": "{color.icon.success.default}",
-          "$description": "Toast icon color for success variant"
-        }
       },
-      "warning": {
+      "supply": {
         "bg": {
           "$type": "color",
-          "$value": "{color.background.base.default}",
-          "$description": "Toast background color for warning variant"
+          "$value": "{color.background.supply.subtle}",
+          "$description": "Section message background for supply variant"
         },
         "border": {
           "$type": "color",
-          "$value": "{color.border.warning.default}",
-          "$description": "Toast border color for warning variant"
+          "$value": "{color.border.supply.strong}",
+          "$description": "Section message border color for supply variant"
+        },
+        "borderTop": {
+          "$type": "color",
+          "$value": "{color.border.supply.default}",
+          "$description": "Section message top accent border for supply variant"
         },
         "text": {
-          "label": {
+          "header": {
             "$type": "color",
             "$value": "{color.text.base.default}",
-            "$description": "Toast label text color for warning variant"
+            "$description": "Section message header text for supply variant"
           },
           "description": {
             "$type": "color",
             "$value": "{color.text.base.muted}",
-            "$description": "Toast description text color for warning variant"
+            "$description": "Section message description text for supply variant"
           }
         },
         "icon": {
           "$type": "color",
-          "$value": "{color.icon.warning.default}",
-          "$description": "Toast icon color for warning variant"
+          "$value": "{color.icon.supply.default}",
+          "$description": "Section message icon color for supply variant"
         }
       },
-      "error": {
+      "service": {
         "bg": {
           "$type": "color",
-          "$value": "{color.background.base.default}",
-          "$description": "Toast background color for error variant"
+          "$value": "{color.background.service.subtle}",
+          "$description": "Section message background for service variant"
         },
         "border": {
           "$type": "color",
-          "$value": "{color.border.danger.default}",
-          "$description": "Toast border color for error variant"
+          "$value": "{color.border.service.strong}",
+          "$description": "Section message border color for service variant"
+        },
+        "borderTop": {
+          "$type": "color",
+          "$value": "{color.border.service.default}",
+          "$description": "Section message top accent border for service variant"
         },
         "text": {
-          "label": {
+          "header": {
             "$type": "color",
             "$value": "{color.text.base.default}",
-            "$description": "Toast label text color for error variant"
+            "$description": "Section message header text for service variant"
           },
           "description": {
             "$type": "color",
             "$value": "{color.text.base.muted}",
-            "$description": "Toast description text color for error variant"
+            "$description": "Section message description text for service variant"
           }
         },
         "icon": {
           "$type": "color",
-          "$value": "{color.icon.danger.default}",
-          "$description": "Toast icon color for error variant"
+          "$value": "{color.icon.service.default}",
+          "$description": "Section message icon color for service variant"
         }
       },
-      "informative": {
+      "entity": {
         "bg": {
           "$type": "color",
-          "$value": "{color.background.base.default}",
-          "$description": "Toast background color for informative variant"
+          "$value": "{color.background.entity.subtle}",
+          "$description": "Section message background for entity variant"
         },
         "border": {
           "$type": "color",
-          "$value": "{color.border.neutral.default}",
-          "$description": "Toast border color for informative variant"
+          "$value": "{color.border.entity.strong}",
+          "$description": "Section message border color for entity variant"
+        },
+        "borderTop": {
+          "$type": "color",
+          "$value": "{color.border.entity.default}",
+          "$description": "Section message top accent border for entity variant"
         },
         "text": {
-          "label": {
+          "header": {
             "$type": "color",
             "$value": "{color.text.base.default}",
-            "$description": "Toast label text color for informative variant"
+            "$description": "Section message header text for entity variant"
           },
           "description": {
             "$type": "color",
             "$value": "{color.text.base.muted}",
-            "$description": "Toast description text color for informative variant"
+            "$description": "Section message description text for entity variant"
           }
         },
         "icon": {
           "$type": "color",
-          "$value": "{color.icon.base.default}",
-          "$description": "Toast icon color for informative variant"
+          "$value": "{color.icon.entity.default}",
+          "$description": "Section message icon color for entity variant"
         }
-      }
-    }
-  },
-  "card-select": {
-    "bg": {
-      "default": {
-        "$type": "color",
-        "$value": "{color.background.base.default}",
-        "$description": "Card select default background color"
-      },
-      "disabled": {
-        "$type": "color",
-        "$value": "{color.background.base.subtle}",
-        "$description": "Card select disabled radio background color"
-      }
-    },
-    "border": {
-      "default": {
-        "$type": "color",
-        "$value": "{color.border.base.strong}",
-        "$description": "Card select default border color"
-      },
-      "hover": {
-        "$type": "color",
-        "$value": "{color.border.base.strongHover}",
-        "$description": "Card select hover border color"
-      },
-      "selected": {
-        "$type": "color",
-        "$value": "{color.border.brand.default}",
-        "$description": "Card select selected/focus border color"
-      },
-      "focus": {
-        "$type": "color",
-        "$value": "{color.border.brand.default}",
-        "$description": "Card select focus border color"
-      },
-      "error": {
-        "$type": "color",
-        "$value": "{color.border.danger.default}",
-        "$description": "Card select error border color"
-      },
-      "disabled": {
-        "$type": "color",
-        "$value": "{color.border.base.disabled}",
-        "$description": "Card select disabled border color"
-      }
-    },
-    "text": {
-      "title": {
-        "$type": "color",
-        "$value": "{color.text.base.default}",
-        "$description": "Card select title text color"
-      }
-    },
-    "icon": {
-      "selected": {
-        "$type": "color",
-        "$value": "{color.icon.success.default}",
-        "$description": "Card select tick icon color when selected"
-      },
-      "unselected": {
-        "$type": "color",
-        "$value": "{color.icon.base.muted}",
-        "$description": "Card select tick icon color when unselected"
-      },
-      "info": {
-        "$type": "color",
-        "$value": "{color.icon.base.muted}",
-        "$description": "Card select info tooltip icon color"
       }
     }
   }

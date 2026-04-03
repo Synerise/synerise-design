@@ -1096,91 +1096,78 @@
   "space": {
     "1": {
       "$type": "dimension",
-      "$value": "1px"
+      "$value": "{space.unit} * 1",
+      "$description": "1 × 4px = 4px"
     },
     "2": {
       "$type": "dimension",
-      "$value": "2px"
+      "$value": "{space.unit} * 2",
+      "$description": "2 × 4px = 8px"
+    },
+    "3": {
+      "$type": "dimension",
+      "$value": "{space.unit} * 3",
+      "$description": "3 × 4px = 12px"
     },
     "4": {
       "$type": "dimension",
-      "$value": "4px"
+      "$value": "{space.unit} * 4",
+      "$description": "4 × 4px = 16px"
+    },
+    "5": {
+      "$type": "dimension",
+      "$value": "{space.unit} * 5",
+      "$description": "5 × 4px = 20px"
     },
     "6": {
       "$type": "dimension",
-      "$value": "6px"
+      "$value": "{space.unit} * 6",
+      "$description": "6 × 4px = 24px"
     },
     "8": {
       "$type": "dimension",
-      "$value": "8px"
+      "$value": "{space.unit} * 8",
+      "$description": "8 × 4px = 32px"
     },
     "10": {
       "$type": "dimension",
-      "$value": "10px"
+      "$value": "{space.unit} * 10",
+      "$description": "10 × 4px = 40px"
     },
     "12": {
       "$type": "dimension",
-      "$value": "12px"
-    },
-    "14": {
-      "$type": "dimension",
-      "$value": "14px"
+      "$value": "{space.unit} * 12",
+      "$description": "12 × 4px = 48px"
     },
     "16": {
       "$type": "dimension",
-      "$value": "16px"
+      "$value": "{space.unit} * 16",
+      "$description": "16 × 4px = 64px"
     },
     "20": {
       "$type": "dimension",
-      "$value": "20px"
-    },
-    "24": {
-      "$type": "dimension",
-      "$value": "24px"
-    },
-    "26": {
-      "$type": "dimension",
-      "$value": "26px"
+      "$value": "{space.unit} * 20",
+      "$description": "20 × 4px = 80px"
     },
     "32": {
       "$type": "dimension",
-      "$value": "32px"
+      "$value": "{space.unit} * 32",
+      "$description": "32 × 4px = 128px"
     },
-    "40": {
+    "unit": {
       "$type": "dimension",
-      "$value": "40px"
+      "$value": "4px",
+      "$description": "Base spacing unit — wszystkie tokeny space są wielokrotnością tej wartości"
     },
-    "44": {
+    "025": {
       "$type": "dimension",
-      "$value": "44px"
+      "$value": "1px",
+      "$description": "Hairline — separatory, obramowania. Nie spacing."
     },
-    "48": {
+    "05": {
       "$type": "dimension",
-      "$value": "48px"
-    },
-    "52": {
-      "$type": "dimension",
-      "$value": "52px"
-    },
-    "56": {
-      "$type": "dimension",
-      "$value": "56px"
-    },
-    "64": {
-      "$type": "dimension",
-      "$value": "64px"
-    },
-    "84": {
-      "$type": "dimension",
-      "$value": "84px"
-    },
-    "120": {
-      "$type": "dimension",
-      "$value": "120px"
-    },
-    "128": {
-      "$type": "dimension",
-      "$value": "128px"
+      "$value": "2px",
+      "$description": "Micro offset — focus ring. Nie spacing."
     }
   },
   "fontFamily": {
@@ -1281,26 +1268,10 @@
       "$value": "0.05px"
     }
   },
-  "size": {
-    "control": {
-      "sm": {
-        "$type": "dimension",
-        "$value": "32px"
-      },
-      "md": {
-        "$type": "dimension",
-        "$value": "40px"
-      },
-      "lg": {
-        "$type": "dimension",
-        "$value": "48px"
-      }
-    }
-  },
   "radius": {
     "xs": {
       "$type": "dimension",
-      "$value": "4px"
+      "$value": "3px"
     },
     "sm": {
       "$type": "dimension",
@@ -1313,6 +1284,11 @@
     "lg": {
       "$type": "dimension",
       "$value": "16px"
+    },
+    "full": {
+      "$type": "dimension",
+      "$value": "9999px",
+      "$description": "Pill / fully rounded — avatars, status-pills, pagination dots"
     }
   },
   "border": {
@@ -1348,10 +1324,10 @@
       "$value": {
         "color": "#2329361a",
         "type": "dropShadow",
-        "x": 0,
-        "y": 16,
-        "blur": 32,
-        "spread": 0
+        "x": "0",
+        "y": "16",
+        "blur": "32",
+        "spread": "0"
       }
     },
     "Shadow 3": {
@@ -1359,10 +1335,10 @@
       "$value": {
         "color": "#2329361c",
         "type": "dropShadow",
-        "x": 0,
-        "y": 60,
-        "blur": 80,
-        "spread": 0
+        "x": "0",
+        "y": "60",
+        "blur": "80",
+        "spread": "0"
       }
     },
     "Shadow 4": {
@@ -1370,10 +1346,10 @@
       "$value": {
         "color": "#23293633",
         "type": "dropShadow",
-        "x": 0,
-        "y": 60,
-        "blur": 80,
-        "spread": 0
+        "x": "0",
+        "y": "60",
+        "blur": "80",
+        "spread": "0"
       }
     }
   }

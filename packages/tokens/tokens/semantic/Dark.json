@@ -188,6 +188,139 @@
           "$type": "color",
           "$value": "rgba(35,41,54,0.5)",
           "$description": "Overlay background for modals/dropdowns"
+        },
+        "solid": {
+          "$extensions": {
+            "studio.tokens": {
+              "modify": {
+                "type": "alpha",
+                "value": "0.90",
+                "space": "srgb"
+              }
+            }
+          },
+          "$type": "color",
+          "$value": "{color-dark.grey.800}",
+          "$description": "Tło tooltipu (dark mode) — color-dark.grey.800 @ 90%. [TYMCZASOWE — do wycofania po tokenizacji modules]"
+        }
+      },
+      "translucent": {
+        "none": {
+          "$type": "color",
+          "$value": "{color-dark.transparent}",
+          "$description": "Przezroczyste tło (brak wypełnienia). [TYMCZASOWE — do wycofania po tokenizacji modules]"
+        },
+        "subtle": {
+          "$extensions": {
+            "studio.tokens": {
+              "modify": {
+                "type": "alpha",
+                "value": "0.10",
+                "space": "srgb"
+              }
+            }
+          },
+          "$type": "color",
+          "$value": "{color-dark.grey.700}",
+          "$description": "Subtelne półprzezroczyste tło (dark) — jasny kolor 10% krycia. [TYMCZASOWE — do wycofania po tokenizacji modules]"
+        },
+        "subtleHover": {
+          "$extensions": {
+            "studio.tokens": {
+              "modify": {
+                "type": "alpha",
+                "value": "0.15",
+                "space": "srgb"
+              }
+            }
+          },
+          "$type": "color",
+          "$value": "{color-dark.grey.700}",
+          "$description": "Subtelne półprzezroczyste tło (dark) — hover — 15% krycia. [TYMCZASOWE — do wycofania po tokenizacji modules]"
+        },
+        "subtleActive": {
+          "$extensions": {
+            "studio.tokens": {
+              "modify": {
+                "type": "alpha",
+                "value": "0.25",
+                "space": "srgb"
+              }
+            }
+          },
+          "$type": "color",
+          "$value": "{color-dark.grey.700}",
+          "$description": "Subtelne półprzezroczyste tło (dark) — active — 25% krycia. [TYMCZASOWE — do wycofania po tokenizacji modules]"
+        },
+        "muted": {
+          "$extensions": {
+            "studio.tokens": {
+              "modify": {
+                "type": "alpha",
+                "value": "0.10",
+                "space": "srgb"
+              }
+            }
+          },
+          "$type": "color",
+          "$value": "{color-dark.grey.600}",
+          "$description": "Stonowane półprzezroczyste tło (dark) — 10% krycia. [TYMCZASOWE — do wycofania po tokenizacji modules]"
+        },
+        "mutedHover": {
+          "$extensions": {
+            "studio.tokens": {
+              "modify": {
+                "type": "alpha",
+                "value": "0.15",
+                "space": "srgb"
+              }
+            }
+          },
+          "$type": "color",
+          "$value": "{color-dark.grey.700}",
+          "$description": "Stonowane półprzezroczyste tło (dark) — hover — 15% krycia. [TYMCZASOWE — do wycofania po tokenizacji modules]"
+        },
+        "mutedActive": {
+          "$extensions": {
+            "studio.tokens": {
+              "modify": {
+                "type": "alpha",
+                "value": "0.25",
+                "space": "srgb"
+              }
+            }
+          },
+          "$type": "color",
+          "$value": "{color-dark.grey.700}",
+          "$description": "Stonowane półprzezroczyste tło (dark) — active — 25% krycia. [TYMCZASOWE — do wycofania po tokenizacji modules]"
+        },
+        "strong": {
+          "$extensions": {
+            "studio.tokens": {
+              "modify": {
+                "type": "alpha",
+                "value": "0.35",
+                "space": "srgb"
+              }
+            }
+          },
+          "$type": "color",
+          "$value": "{color-dark.grey.700}",
+          "$description": "Mocne półprzezroczyste tło (dark) — 35% krycia. [TYMCZASOWE — do wycofania po tokenizacji modules]"
+        },
+        "strongHover": {
+          "$extensions": {
+            "studio.tokens": {
+              "modify": {
+                "type": "alpha",
+                "value": "0.25",
+                "space": "srgb"
+              }
+            }
+          },
+          "$type": "color",
+          "$value": "{color-dark.grey.800}",
+          "$description": "Mocne półprzezroczyste tło (dark) — hover — 25% krycia. [TYMCZASOWE — do wycofania po tokenizacji modules]"
         }
       },
       "custom": {
@@ -210,6 +343,87 @@
         "solidActive": {
           "$type": "color",
           "$value": "{color-dark.custom.700}"
+        }
+      },
+      "entity": {
+        "subtle": {
+          "$type": "color",
+          "$value": "{color-dark.cyan.50}",
+          "$description": "Subtelne tło Supply — dark mode"
+        },
+        "subtleHover": {
+          "$type": "color",
+          "$value": "{color-dark.cyan.100}",
+          "$description": "Subtelne tło Supply — hover dark"
+        },
+        "solid": {
+          "$type": "color",
+          "$value": "{color-dark.cyan.600}",
+          "$description": "Solidne tło Supply — dark mode"
+        },
+        "solidHover": {
+          "$type": "color",
+          "$value": "{color-dark.cyan.500}",
+          "$description": "Solidne tło Supply — hover dark"
+        },
+        "solidActive": {
+          "$type": "color",
+          "$value": "{color-dark.cyan.700}",
+          "$description": "Solidne tło Supply — active dark"
+        }
+      },
+      "service": {
+        "subtle": {
+          "$type": "color",
+          "$value": "{color-dark.purple.50}",
+          "$description": "Subtelne tło Service — dark mode"
+        },
+        "subtleHover": {
+          "$type": "color",
+          "$value": "{color-dark.purple.100}",
+          "$description": "Subtelne tło Service — hover dark"
+        },
+        "solid": {
+          "$type": "color",
+          "$value": "{color-dark.purple.600}",
+          "$description": "Solidne tło Service — dark mode"
+        },
+        "solidHover": {
+          "$type": "color",
+          "$value": "{color-dark.purple.500}",
+          "$description": "Solidne tło Service — hover dark"
+        },
+        "solidActive": {
+          "$type": "color",
+          "$value": "{color-dark.purple.700}",
+          "$description": "Solidne tło Service — active dark"
+        }
+      },
+      "supply": {
+        "subtle": {
+          "$type": "color",
+          "$value": "{color-dark.violet.50}",
+          "$description": "Subtelne tło Entity — dark mode"
+        },
+        "subtleHover": {
+          "$type": "color",
+          "$value": "{color-dark.violet.100}",
+          "$description": "Subtelne tło Entity — hover dark"
+        },
+        "solid": {
+          "$type": "color",
+          "$value": "{color-dark.violet.600}",
+          "$description": "Solidne tło Entity — dark mode"
+        },
+        "solidHover": {
+          "$type": "color",
+          "$value": "{color-dark.violet.500}",
+          "$description": "Solidne tło Entity — hover dark"
+        },
+        "solidActive": {
+          "$type": "color",
+          "$value": "{color-dark.violet.700}",
+          "$description": "Solidne tło Entity — active dark"
         }
       }
     },
@@ -324,6 +538,27 @@
           "$value": "{color-dark.custom.600}",
           "$description": "Neutral text color"
         }
+      },
+      "entity": {
+        "default": {
+          "$type": "color",
+          "$value": "{color-dark.cyan.700}",
+          "$description": "Kolor tekstu Supply — dark mode"
+        }
+      },
+      "service": {
+        "default": {
+          "$type": "color",
+          "$value": "{color-dark.purple.700}",
+          "$description": "Kolor tekstu Service — dark mode"
+        }
+      },
+      "supply": {
+        "default": {
+          "$type": "color",
+          "$value": "{color-dark.violet.700}",
+          "$description": "Kolor tekstu Entity — dark mode"
+        }
       }
     },
     "icon": {
@@ -421,6 +656,27 @@
           "$type": "color",
           "$value": "{color-dark.custom.600}",
           "$description": "Neutral icon color"
+        }
+      },
+      "entity": {
+        "default": {
+          "$type": "color",
+          "$value": "{color-dark.cyan.600}",
+          "$description": "Ikona Supply — dark mode"
+        }
+      },
+      "service": {
+        "default": {
+          "$type": "color",
+          "$value": "{color-dark.purple.600}",
+          "$description": "Ikona Service — dark mode"
+        }
+      },
+      "supply": {
+        "default": {
+          "$type": "color",
+          "$value": "{color-dark.violet.600}",
+          "$description": "Ikona Entity — dark mode"
         }
       }
     },
@@ -557,6 +813,57 @@
           "$type": "color",
           "$value": "{color-dark.custom.200}",
           "$description": "Strong danger border"
+        }
+      },
+      "entity": {
+        "default": {
+          "$type": "color",
+          "$value": "{color-dark.cyan.600}",
+          "$description": "Obramowanie Supply — dark mode"
+        },
+        "subtle": {
+          "$type": "color",
+          "$value": "{color-dark.cyan.100}",
+          "$description": "Subtelne obramowanie Supply — dark"
+        },
+        "strong": {
+          "$type": "color",
+          "$value": "{color-dark.cyan.200}",
+          "$description": "Mocne obramowanie Supply — dark"
+        }
+      },
+      "service": {
+        "default": {
+          "$type": "color",
+          "$value": "{color-dark.purple.600}",
+          "$description": "Obramowanie Service — dark mode"
+        },
+        "subtle": {
+          "$type": "color",
+          "$value": "{color-dark.purple.100}",
+          "$description": "Subtelne obramowanie Service — dark"
+        },
+        "strong": {
+          "$type": "color",
+          "$value": "{color-dark.purple.200}",
+          "$description": "Mocne obramowanie Service — dark"
+        }
+      },
+      "supply": {
+        "default": {
+          "$type": "color",
+          "$value": "{color-dark.violet.600}",
+          "$description": "Obramowanie Entity — dark mode"
+        },
+        "subtle": {
+          "$type": "color",
+          "$value": "{color-dark.violet.100}",
+          "$description": "Subtelne obramowanie Entity — dark"
+        },
+        "strong": {
+          "$type": "color",
+          "$value": "{color-dark.violet.200}",
+          "$description": "Mocne obramowanie Entity — dark"
         }
       }
     },

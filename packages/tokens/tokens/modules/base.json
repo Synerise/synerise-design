@@ -480,29 +480,74 @@
       "tertiary": {
         "bg": {
           "default": {
+            "$extensions": {
+              "studio.tokens": {
+                "modify": {
+                  "type": "alpha",
+                  "value": "0.15",
+                  "space": "srgb"
+                }
+              }
+            },
             "$type": "color",
-            "$value": "{color.background.base.strong}26",
-            "$description": "Tertiary button background color for default state (subtle background)"
+            "$value": "{color.background.base.strong}",
+            "$description": "Tertiary bg default — grey.400 @15%"
           },
           "hover": {
+            "$extensions": {
+              "studio.tokens": {
+                "modify": {
+                  "type": "alpha",
+                  "value": "0.25",
+                  "space": "srgb"
+                }
+              }
+            },
             "$type": "color",
-            "$value": "{color.background.base.mutedHover}",
-            "$description": "Tertiary button background color for hover state"
+            "$value": "{color.background.base.strong}",
+            "$description": "Tertiary bg hover — grey.400 @25%"
           },
           "focus": {
+            "$extensions": {
+              "studio.tokens": {
+                "modify": {
+                  "type": "alpha",
+                  "value": "0.15",
+                  "space": "srgb"
+                }
+              }
+            },
             "$type": "color",
-            "$value": "{color.background.base.strong}26",
-            "$description": "Tertiary button background color for focus state"
-          },
-          "disabled": {
-            "$type": "color",
-            "$value": "{color.background.base.strong}26",
-            "$description": "Tertiary button background color for disabled state (same as default, opacity applied separately)"
+            "$value": "{color.background.base.strong}",
+            "$description": "Tertiary bg focus — grey.400 @15%"
           },
           "active": {
+            "$extensions": {
+              "studio.tokens": {
+                "modify": {
+                  "type": "alpha",
+                  "value": "0.35",
+                  "space": "srgb"
+                }
+              }
+            },
             "$type": "color",
-            "$value": "{color.background.brand.subtle}",
-            "$description": "Tertiary button background color for active/selected state (light blue background for toggle)"
+            "$value": "{color.background.base.strong}",
+            "$description": "Tertiary bg active — grey.400 @35%"
+          },
+          "disabled": {
+            "$extensions": {
+              "studio.tokens": {
+                "modify": {
+                  "type": "alpha",
+                  "value": "0.15",
+                  "space": "srgb"
+                }
+              }
+            },
+            "$type": "color",
+            "$value": "{color.background.base.strong}",
+            "$description": "Tertiary bg disabled — grey.400 @15%"
           }
         },
         "text": {
@@ -583,27 +628,45 @@
           "default": {
             "$type": "color",
             "$value": "{color.transparent}",
-            "$description": "Ghost primary button background color for default state (transparent)"
+            "$description": "Ghost-primary bg default — transparent"
           },
           "hover": {
+            "$extensions": {
+              "studio.tokens": {
+                "modify": {
+                  "type": "alpha",
+                  "value": "0.25",
+                  "space": "srgb"
+                }
+              }
+            },
             "$type": "color",
-            "$value": "{color.background.base.mutedHover}",
-            "$description": "Ghost primary button background color for hover state"
+            "$value": "{color.background.base.strong}",
+            "$description": "Ghost-primary bg hover — grey.400 @25%"
           },
           "focus": {
             "$type": "color",
             "$value": "{color.transparent}",
-            "$description": "Ghost primary button background color for focus state (transparent)"
+            "$description": "Ghost-primary bg focus — transparent"
           },
           "active": {
+            "$extensions": {
+              "studio.tokens": {
+                "modify": {
+                  "type": "alpha",
+                  "value": "0.35",
+                  "space": "srgb"
+                }
+              }
+            },
             "$type": "color",
-            "$value": "{color.background.brand.subtle}",
-            "$description": "Ghost primary button background color for active/selected state (light blue background for toggle)"
+            "$value": "{color.background.base.strong}",
+            "$description": "Ghost-primary bg active — grey.400 @35%"
           },
           "disabled": {
             "$type": "color",
             "$value": "{color.transparent}",
-            "$description": "Ghost primary button background color for disabled state (transparent, opacity applied separately)"
+            "$description": "Ghost-primary bg disabled — transparent"
           }
         },
         "text": {
@@ -887,19 +950,46 @@
         "bg": {
           "default": {
             "$type": "color",
-            "$value": "{color.transparent}"
+            "$value": "{color.transparent}",
+            "$description": "Ghost-secondary bg default — transparent"
           },
           "hover": {
+            "$extensions": {
+              "studio.tokens": {
+                "modify": {
+                  "type": "alpha",
+                  "value": "0.25",
+                  "space": "srgb"
+                }
+              }
+            },
             "$type": "color",
-            "$value": "{color.background.base.mutedHover}"
+            "$value": "{color.background.base.strong}",
+            "$description": "Ghost-secondary bg hover — grey.400 @25%"
           },
           "focus": {
             "$type": "color",
-            "$value": "{color.transparent}"
+            "$value": "{color.transparent}",
+            "$description": "Ghost-secondary bg focus — transparent"
+          },
+          "active": {
+            "$extensions": {
+              "studio.tokens": {
+                "modify": {
+                  "type": "alpha",
+                  "value": "0.35",
+                  "space": "srgb"
+                }
+              }
+            },
+            "$type": "color",
+            "$value": "{color.background.base.strong}",
+            "$description": "Ghost-secondary bg active — grey.400 @35%"
           },
           "disabled": {
             "$type": "color",
-            "$value": "{color.transparent}"
+            "$value": "{color.transparent}",
+            "$description": "Ghost-secondary bg disabled — transparent"
           }
         },
         "text": {
@@ -961,19 +1051,46 @@
         "bg": {
           "default": {
             "$type": "color",
-            "$value": "{color.transparent}"
+            "$value": "{color.transparent}",
+            "$description": "Ghost-secondary-white bg default — transparent"
           },
           "hover": {
+            "$extensions": {
+              "studio.tokens": {
+                "modify": {
+                  "type": "alpha",
+                  "value": "0.25",
+                  "space": "srgb"
+                }
+              }
+            },
             "$type": "color",
-            "$value": "{color.background.base.mutedHover}"
+            "$value": "{color.background.base.strongHover}",
+            "$description": "Ghost-secondary-white bg hover — grey.500 @25%"
           },
           "focus": {
             "$type": "color",
-            "$value": "{color.transparent}"
+            "$value": "{color.transparent}",
+            "$description": "Ghost-secondary-white bg focus — transparent"
+          },
+          "active": {
+            "$extensions": {
+              "studio.tokens": {
+                "modify": {
+                  "type": "alpha",
+                  "value": "0.10",
+                  "space": "srgb"
+                }
+              }
+            },
+            "$type": "color",
+            "$value": "{color.background.base.strongHover}",
+            "$description": "Ghost-secondary-white bg active — grey.500 @10%"
           },
           "disabled": {
             "$type": "color",
-            "$value": "{color.transparent}"
+            "$value": "{color.transparent}",
+            "$description": "Ghost-secondary-white bg disabled — transparent"
           }
         },
         "text": {
@@ -1034,20 +1151,74 @@
       "tertiary-white": {
         "bg": {
           "default": {
+            "$extensions": {
+              "studio.tokens": {
+                "modify": {
+                  "type": "alpha",
+                  "value": "0.15",
+                  "space": "srgb"
+                }
+              }
+            },
             "$type": "color",
-            "$value": "{color.background.neutral.solid}"
+            "$value": "{color.border.base.strong}",
+            "$description": "Tertiary-white bg default — grey.300 @15%"
           },
           "hover": {
+            "$extensions": {
+              "studio.tokens": {
+                "modify": {
+                  "type": "alpha",
+                  "value": "0.25",
+                  "space": "srgb"
+                }
+              }
+            },
             "$type": "color",
-            "$value": "{color.background.neutral.solidHover}"
+            "$value": "{color.border.base.strong}",
+            "$description": "Tertiary-white bg hover — grey.300 @25%"
           },
           "focus": {
+            "$extensions": {
+              "studio.tokens": {
+                "modify": {
+                  "type": "alpha",
+                  "value": "0.15",
+                  "space": "srgb"
+                }
+              }
+            },
             "$type": "color",
-            "$value": "{color.background.neutral.solid}"
+            "$value": "{color.border.base.strong}",
+            "$description": "Tertiary-white bg focus — grey.300 @15%"
+          },
+          "active": {
+            "$extensions": {
+              "studio.tokens": {
+                "modify": {
+                  "type": "alpha",
+                  "value": "0.10",
+                  "space": "srgb"
+                }
+              }
+            },
+            "$type": "color",
+            "$value": "{color.border.base.strong}",
+            "$description": "Tertiary-white bg active — grey.300 @10%"
           },
           "disabled": {
+            "$extensions": {
+              "studio.tokens": {
+                "modify": {
+                  "type": "alpha",
+                  "value": "0.15",
+                  "space": "srgb"
+                }
+              }
+            },
             "$type": "color",
-            "$value": "{color.background.neutral.solid}26"
+            "$value": "{color.border.base.strong}",
+            "$description": "Tertiary-white bg disabled — grey.300 @15%"
           }
         },
         "text": {
@@ -1149,82 +1320,82 @@
         "text": {
           "default": {
             "$type": "color",
-            "$value": "{color.text.onSolid.success}",
-            "$description": "Primary success button text color for default state"
+            "$value": "{color.text.onSolid.custom}",
+            "$description": "Custom-color button text default"
           },
           "hover": {
             "$type": "color",
-            "$value": "{color.text.onSolid.success}",
-            "$description": "Primary success button text color for hover state"
+            "$value": "{color.text.onSolid.custom}",
+            "$description": "Custom-color button text hover"
           },
           "focus": {
             "$type": "color",
-            "$value": "{color.text.onSolid.success}",
-            "$description": "Primary success button text color for focus state"
+            "$value": "{color.text.onSolid.custom}",
+            "$description": "Custom-color button text focus"
           },
           "active": {
             "$type": "color",
-            "$value": "{color.text.onSolid.success}",
-            "$description": "Primary success button text color for active/selected state"
+            "$value": "{color.text.onSolid.custom}",
+            "$description": "Custom-color button text active"
           },
           "disabled": {
             "$type": "color",
-            "$value": "{color.text.onSolid.success}",
-            "$description": "Primary success button text color for disabled state (same as default, opacity applied separately)"
+            "$value": "{color.text.onSolid.custom}",
+            "$description": "Custom-color button text disabled"
           }
         },
         "icon": {
           "default": {
             "$type": "color",
-            "$value": "{color.text.onSolid.success}",
-            "$description": "Primary success button icon color for default state"
+            "$value": "{color.text.onSolid.custom}",
+            "$description": "Custom-color button icon default"
           },
           "hover": {
             "$type": "color",
-            "$value": "{color.text.onSolid.success}",
-            "$description": "Primary success button icon color for hover state"
+            "$value": "{color.text.onSolid.custom}",
+            "$description": "Custom-color button icon hover"
           },
           "focus": {
             "$type": "color",
-            "$value": "{color.text.onSolid.success}",
-            "$description": "Primary success button icon color for focus state"
+            "$value": "{color.text.onSolid.custom}",
+            "$description": "Custom-color button icon focus"
           },
           "active": {
             "$type": "color",
-            "$value": "{color.text.onSolid.success}",
-            "$description": "Primary success button icon color for active/selected state"
+            "$value": "{color.text.onSolid.custom}",
+            "$description": "Custom-color button icon active"
           },
           "disabled": {
             "$type": "color",
-            "$value": "{color.text.onSolid.success}",
-            "$description": "Primary success button icon color for disabled state (same as default, opacity applied separately)"
+            "$value": "{color.text.onSolid.custom}",
+            "$description": "Custom-color button icon disabled"
           }
         },
         "border": {
           "default": {
             "$type": "color",
             "$value": "{color.transparent}",
-            "$description": "Primary success button border color for default state (transparent)"
+            "$description": "Custom-color button border default — transparent"
           },
           "hover": {
             "$type": "color",
             "$value": "{color.transparent}",
-            "$description": "Primary success button border color for hover state (transparent)"
+            "$description": "Custom-color button border hover — transparent"
           },
           "focus": {
             "$type": "color",
-            "$value": "{color.custom-color.solid}",
-            "$description": "Primary success button border color for focus state (green-600, 2px width)"
+            "$value": "{color.border.custom.default}",
+            "$description": "Custom-color button border focus"
           },
           "active": {
             "$type": "color",
             "$value": "{color.transparent}",
-            "$description": "Primary success button border color for active/selected state (transparent for solid variant)"
+            "$description": "Custom-color button border active — transparent"
           },
           "disabled": {
             "$type": "color",
             "$value": "{color.transparent}",
-            "$description": "Primary success button border color for disabled state (transparent)"
+            "$description": "Custom-color button border disabled — transparent"
           }
         }
       },
@@ -1233,99 +1404,126 @@
           "default": {
             "$type": "color",
             "$value": "{color.transparent}",
-            "$description": "Ghost primary button background color for default state (transparent)"
+            "$description": "Ghost-custom-color bg default — transparent"
           },
           "hover": {
+            "$extensions": {
+              "studio.tokens": {
+                "modify": {
+                  "type": "alpha",
+                  "value": "0.25",
+                  "space": "srgb"
+                }
+              }
+            },
             "$type": "color",
-            "$value": "{color.background.base.mutedHover}",
-            "$description": "Ghost primary button background color for hover state"
+            "$value": "{color.background.base.strong}",
+            "$description": "Ghost-custom-color bg hover — grey.400 @25%"
           },
           "focus": {
             "$type": "color",
             "$value": "{color.transparent}",
-            "$description": "Ghost primary button background color for focus state (transparent)"
+            "$description": "Ghost-custom-color bg focus — transparent"
           },
           "active": {
+            "$extensions": {
+              "studio.tokens": {
+                "modify": {
+                  "type": "alpha",
+                  "value": "0.35",
+                  "space": "srgb"
+                }
+              }
+            },
             "$type": "color",
-            "$value": "{color.background.brand.subtle}",
-            "$description": "Ghost primary button background color for active/selected state (light blue background for toggle)"
+            "$value": "{color.background.base.strong}",
+            "$description": "Ghost-custom-color bg active — grey.400 @35%"
           },
           "disabled": {
             "$type": "color",
             "$value": "{color.transparent}",
-            "$description": "Ghost primary button background color for disabled state (transparent, opacity applied separately)"
+            "$description": "Ghost-custom-color bg disabled — transparent"
           }
         },
         "text": {
           "default": {
             "$type": "color",
-            "$value": "{color.custom-color.solid}",
-            "$description": "Ghost primary button text color for default state"
+            "$value": "{color.text.custom.default}",
+            "$description": "Ghost-custom-color text default"
           },
           "hover": {
             "$type": "color",
-            "$value": "{color.text.brand.default}",
-            "$description": "Ghost primary button text color for hover state"
+            "$value": "{color.text.custom.default}",
+            "$description": "Ghost-custom-color text hover"
           },
           "focus": {
             "$type": "color",
             "$value": "{color.text.base.muted}",
-            "$description": "Ghost primary button text color for focus state"
+            "$description": "Ghost-custom-color text focus"
           },
           "active": {
             "$type": "color",
-            "$value": "{color.background.brand.solid}",
-            "$description": "Ghost primary button text color for active/selected state (blue text for toggle)"
+            "$value": "{color.text.custom.default}",
+            "$description": "Ghost-custom-color text active"
           },
           "disabled": {
             "$type": "color",
             "$value": "{color.text.base.muted}",
-            "$description": "Ghost primary button text color for disabled state (same as default, opacity applied separately)"
+            "$description": "Ghost-custom-color text disabled"
           }
         },
         "icon": {
           "default": {
             "$type": "color",
-            "$value": "{color.text.base.muted}",
-            "$description": "Ghost primary button icon color for default state"
+            "$value": "{color.icon.custom.default}",
+            "$description": "Ghost-custom-color icon default"
           },
           "hover": {
             "$type": "color",
-            "$value": "{color.text.brand.default}",
-            "$description": "Ghost primary button icon color for hover state"
+            "$value": "{color.icon.custom.default}",
+            "$description": "Ghost-custom-color icon hover"
           },
           "focus": {
             "$type": "color",
             "$value": "{color.text.base.muted}",
-            "$description": "Ghost primary button icon color for focus state"
+            "$description": "Ghost-custom-color icon focus"
           },
           "active": {
             "$type": "color",
-            "$value": "{color.background.brand.solid}",
-            "$description": "Ghost primary button icon color for active/selected state (blue icon for toggle)"
+            "$value": "{color.icon.custom.default}",
+            "$description": "Ghost-custom-color icon active"
           },
           "disabled": {
             "$type": "color",
             "$value": "{color.text.base.muted}",
-            "$description": "Ghost primary button icon color for disabled state (same as default, opacity applied separately)"
+            "$description": "Ghost-custom-color icon disabled"
           }
         },
         "border": {
           "default": {
             "$type": "color",
-            "$value": "{color.border.base.none}"
+            "$value": "{color.border.base.none}",
+            "$description": "Ghost-custom-color border default"
           },
           "hover": {
             "$type": "color",
-            "$value": "{color.border.base.none}"
+            "$value": "{color.border.base.none}",
+            "$description": "Ghost-custom-color border hover"
           },
           "focus": {
             "$type": "color",
-            "$value": "{outline.color.focus.secondary}"
+            "$value": "{outline.color.focus.secondary}",
+            "$description": "Ghost-custom-color border focus"
+          },
+          "active": {
+            "$type": "color",
+            "$value": "{color.border.base.none}",
+            "$description": "Ghost-custom-color border active"
           },
           "disabled": {
             "$type": "color",
-            "$value": "{color.border.base.none}"
+            "$value": "{color.border.base.none}",
+            "$description": "Ghost-custom-color border disabled"
           }
         }
       }
@@ -1334,12 +1532,12 @@
       "height": {
         "normal": {
           "$type": "dimension",
-          "$value": "{size.control.normal}",
+          "$value": "{size.md}",
           "$description": "Button height for normal size (32px)"
         },
         "large": {
           "$type": "dimension",
-          "$value": "{size.control.large}",
+          "$value": "{size.lg}",
           "$description": "Button height for large size (48px)"
         }
       }
@@ -1348,12 +1546,12 @@
       "gap": {
         "default": {
           "$type": "dimension",
-          "$value": "{spacing.gap.xs}",
+          "$value": "{inline.sm}",
           "$description": "Default gap between button content elements (8px)"
         },
         "two-icons": {
           "$type": "dimension",
-          "$value": "{spacing.gap.xxs}",
+          "$value": "{inline.xs}",
           "$description": "Gap between elements in two-icons button variant (4px)"
         }
       },
@@ -1361,48 +1559,48 @@
         "normal": {
           "x": {
             "$type": "dimension",
-            "$value": "{spacing.padding.xs}",
+            "$value": "{inset.md}",
             "$description": "Horizontal padding for normal size buttons (12px)"
           },
           "y": {
             "$type": "dimension",
-            "$value": "{spacing.padding.xs}-1px",
-            "$description": "Vertical padding for normal size buttons (7px)"
+            "$value": "{inset.sm} - 1px",
+            "$description": "Vertical padding for normal size buttons (7px — TODO: verify visual diff → docelowo {inset.sm})"
           }
         },
         "large": {
           "x": {
             "$type": "dimension",
-            "$value": "{spacing.padding.md}",
+            "$value": "{inset.lg}",
             "$description": "Horizontal padding for large size buttons (16px)"
           },
           "y": {
             "$type": "dimension",
-            "$value": "{spacing.padding.sm}",
-            "$description": "Vertical padding for large size buttons (14px)"
+            "$value": "{inset.lg} - 2px",
+            "$description": "Vertical padding for large size buttons (14px — TODO: verify visual diff → docelowo {inset.lg})"
           }
         },
         "icon-solo": {
           "normal": {
             "$type": "dimension",
-            "$value": "{spacing.padding.xxs}",
+            "$value": "{inset.xs}",
             "$description": "Padding for normal size icon-only buttons (4px all sides)"
           },
           "large": {
             "$type": "dimension",
-            "$value": "{spacing.padding.xs}",
+            "$value": "{inset.md}",
             "$description": "Padding for large size icon-only buttons (12px all sides)"
           }
         },
         "two-icons": {
           "x": {
             "$type": "dimension",
-            "$value": "{spacing.gap.xs}",
+            "$value": "{inset.sm}",
             "$description": "Horizontal padding for two-icons button variant (8px)"
           },
           "y": {
             "$type": "dimension",
-            "$value": "{spacing.padding.xxs}",
+            "$value": "{inset.xs}",
             "$description": "Vertical padding for two-icons button variant (4px)"
           }
         }
@@ -1411,12 +1609,12 @@
     "border": {
       "width": {
         "$type": "dimension",
-        "$value": "{border.default}",
+        "$value": "{border.width.default}",
         "$description": "Default border width for buttons (1px)"
       },
       "radius": {
         "$type": "dimension",
-        "$value": "{border.radius.default}",
+        "$value": "{border.radius.sm}",
         "$description": "Border radius for buttons (3px)"
       }
     },
@@ -1431,7 +1629,7 @@
     },
     "disabled": {
       "opacity": {
-        "$type": "number",
+        "$type": "opacity",
         "$value": "{opacity.disabled}",
         "$description": "Opacity applied to disabled interactive components (buttons, expanders, etc.) - 0.4 = 40%"
       }
@@ -1512,7 +1710,7 @@
       "normal": {
         "height": {
           "$type": "dimension",
-          "$value": "{size.control.normal}",
+          "$value": "{size.md}",
           "$description": "Button expander height for normal size (32px)"
         },
         "padding": {
@@ -1524,12 +1722,12 @@
       "large": {
         "height": {
           "$type": "dimension",
-          "$value": "{size.control.large}",
+          "$value": "{size.lg}",
           "$description": "Button expander height for large size (48px)"
         },
         "padding": {
           "$type": "dimension",
-          "$value": "{spacing.padding.xxs}",
+          "$value": "{inset.xs}",
           "$description": "Button expander padding for large size (4px all sides)"
         }
       }
@@ -1537,7 +1735,7 @@
     "border": {
       "width": {
         "$type": "dimension",
-        "$value": "{border.default}",
+        "$value": "{border.width.default}",
         "$description": "Button expander border width"
       },
       "radius": {
@@ -1703,23 +1901,23 @@
       },
       "borderRadius": {
         "$type": "dimension",
-        "$value": "{border.radius.default}",
+        "$value": "{border.radius.xs}",
         "$description": "Form field border radius (3px)"
       },
       "borderWidth": {
         "default": {
           "$type": "dimension",
-          "$value": "{border.default}",
+          "$value": "{border.width.default}",
           "$description": "Form field border width for default state (1px)"
         },
         "focus": {
           "$type": "dimension",
-          "$value": "{border.default}",
+          "$value": "{border.width.focus}",
           "$description": "Form field border width for focus state (2px)"
         },
         "validated": {
           "$type": "dimension",
-          "$value": "{border.default}",
+          "$value": "{border.width.default}",
           "$description": "Form field border width for validated/error state (2px)"
         }
       },
@@ -1728,18 +1926,18 @@
           "normal": {
             "y": {
               "$type": "dimension",
-              "$value": "{spacing.padding.xs}",
-              "$description": "Input field vertical padding for normal size (7px)"
+              "$value": "{inset.sm} - 1px",
+              "$description": "Input field vertical padding for normal size (7px — TODO: verify visual diff → docelowo {inset.sm})"
             },
             "x": {
               "left": {
                 "$type": "dimension",
-                "$value": "{spacing.padding.sm}",
+                "$value": "{inset.md}",
                 "$description": "Input field left padding (12px)"
               },
               "right": {
                 "$type": "dimension",
-                "$value": "{spacing.padding.xs}",
+                "$value": "{inset.sm}",
                 "$description": "Input field right padding (8px)"
               }
             }
@@ -1747,18 +1945,18 @@
           "large": {
             "y": {
               "$type": "dimension",
-              "$value": "{spacing.padding.sm}",
-              "$description": "Input field vertical padding for large size (15px)"
+              "$value": "{inset.md} + 3px",
+              "$description": "Input field vertical padding for large size (15px — TODO: verify visual diff → docelowo {inset.md})"
             },
             "x": {
               "left": {
                 "$type": "dimension",
-                "$value": "{spacing.padding.sm}",
+                "$value": "{inset.md}",
                 "$description": "Input field left padding (12px)"
               },
               "right": {
                 "$type": "dimension",
-                "$value": "{spacing.padding.xs}",
+                "$value": "{inset.sm}",
                 "$description": "Input field right padding (8px)"
               }
             }
@@ -1768,18 +1966,18 @@
           "normal": {
             "y": {
               "$type": "dimension",
-              "$value": "{spacing.padding.xxs}",
+              "$value": "{inset.xs}",
               "$description": "Select field vertical padding for normal size (4px)"
             },
             "x": {
               "left": {
                 "$type": "dimension",
-                "$value": "{spacing.padding.sm}",
+                "$value": "{inset.md}",
                 "$description": "Select field left padding (12px)"
               },
               "right": {
                 "$type": "dimension",
-                "$value": "{spacing.padding.xs}",
+                "$value": "{inset.sm}",
                 "$description": "Select field right padding (8px)"
               }
             }
@@ -1789,18 +1987,18 @@
           "normal": {
             "y": {
               "$type": "dimension",
-              "$value": "{spacing.padding.xs}",
+              "$value": "{inset.sm}",
               "$description": "Textarea field vertical padding for normal size (8px)"
             },
             "x": {
               "left": {
                 "$type": "dimension",
-                "$value": "{spacing.padding.sm}",
+                "$value": "{inset.md}",
                 "$description": "Textarea field left padding (12px)"
               },
               "right": {
                 "$type": "dimension",
-                "$value": "{spacing.padding.sm}",
+                "$value": "{inset.md}",
                 "$description": "Textarea field right padding (12px)"
               }
             }
@@ -1847,7 +2045,7 @@
     "gap": {
       "default": {
         "$type": "dimension",
-        "$value": "{spacing.gap.xs}",
+        "$value": "{stack.sm}",
         "$description": "Gap between form elements (8px)"
       }
     },
@@ -1860,18 +2058,18 @@
       "border": {
         "radius": {
           "$type": "dimension",
-          "$value": "{border.radius.default}",
+          "$value": "{border.radius.sm}",
           "$description": "Checkbox border radius (3px)"
         },
         "width": {
           "default": {
             "$type": "dimension",
-            "$value": "{border.default}",
+            "$value": "{border.width.default}",
             "$description": "Checkbox border width for default state (1px)"
           },
           "focused": {
             "$type": "dimension",
-            "$value": "{border.big}",
+            "$value": "{border.width.focus}",
             "$description": "Checkbox border width for focused state (2px)"
           }
         },
@@ -1923,7 +2121,7 @@
       "content": {
         "gap": {
           "$type": "dimension",
-          "$value": "{spacing.gap.md}",
+          "$value": "{inline.lg}",
           "$description": "Gap between checkbox and content (16px)"
         },
         "padding": {
@@ -1975,7 +2173,7 @@
       },
       "disabled": {
         "opacity": {
-          "$type": "number",
+          "$type": "opacity",
           "$value": "{opacity.disabled}",
           "$description": "Checkbox opacity for disabled state (0.4 = 40%)"
         }
@@ -1996,12 +2194,12 @@
         "width": {
           "default": {
             "$type": "dimension",
-            "$value": "{border.default}",
+            "$value": "{border.width.default}",
             "$description": "Radio button border width for default state (1px)"
           },
           "focused": {
             "$type": "dimension",
-            "$value": "{border.big}",
+            "$value": "{border.width.focus}",
             "$description": "Radio button border width for focused state (2px)"
           }
         },
@@ -2050,7 +2248,7 @@
       "content": {
         "gap": {
           "$type": "dimension",
-          "$value": "{spacing.gap.md}",
+          "$value": "{inline.lg}",
           "$description": "Gap between radio button and content (16px)"
         },
         "padding": {
@@ -2097,7 +2295,7 @@
       },
       "disabled": {
         "opacity": {
-          "$type": "number",
+          "$type": "opacity",
           "$value": "{opacity.disabled}",
           "$description": "Radio button opacity for disabled state (0.4 = 40%)"
         }
@@ -2107,24 +2305,24 @@
       "size": {
         "width": {
           "$type": "dimension",
-          "$value": "{size.control.small} + {space.12}",
+          "$value": "{size.xs} + {space.3}",
           "$description": "Switch width (16px + 12px = 28px)"
         },
         "height": {
           "$type": "dimension",
-          "$value": "{size.control.small}",
+          "$value": "{size.xs}",
           "$description": "Switch height (16px)"
         },
         "handle": {
           "$type": "dimension",
-          "$value": "{space.12}",
+          "$value": "{space.3}",
           "$description": "Switch handle size (12px)"
         }
       },
       "border": {
         "radius": {
           "$type": "dimension",
-          "$value": "{border.radius.big}",
+          "$value": "{border.radius.lg}",
           "$description": "Switch border radius (8px)"
         }
       },
@@ -2177,12 +2375,12 @@
       "content": {
         "gap": {
           "$type": "dimension",
-          "$value": "{spacing.gap.md}",
+          "$value": "{inline.lg}",
           "$description": "Gap between switch and content (16px)"
         },
         "padding": {
           "$type": "dimension",
-          "$value": "{spacing.padding.xxs}",
+          "$value": "{inset.xs}",
           "$description": "Vertical padding for switch with content (4px)"
         }
       },
@@ -2205,7 +2403,7 @@
       },
       "disabled": {
         "opacity": {
-          "$type": "number",
+          "$type": "opacity",
           "$value": "{opacity.disabled}",
           "$description": "Switch opacity for disabled state (0.4 = 40%)"
         }
@@ -2216,7 +2414,7 @@
     "line": {
       "height": {
         "$type": "dimension",
-        "$value": "{space.16}",
+        "$value": "{inset.xs}",
         "$description": "Divider line height (16px)"
       },
       "color": {
@@ -2236,18 +2434,18 @@
       "padding": {
         "horizontal": {
           "$type": "dimension",
-          "$value": "{spacing.padding.sm}",
+          "$value": "{inset.md}",
           "$description": "Divider header horizontal padding (12px)"
         },
         "vertical": {
           "$type": "dimension",
-          "$value": "{spacing.padding.xs}",
+          "$value": "{inset.sm}",
           "$description": "Divider header vertical padding (8px)"
         }
       },
       "gap": {
         "$type": "dimension",
-        "$value": "{spacing.gap.xs}",
+        "$value": "{inline.sm}",
         "$description": "Gap between divider elements (8px)"
       },
       "text": {
@@ -2323,12 +2521,12 @@
         "x": {
           "left": {
             "$type": "dimension",
-            "$value": "{space.56}",
-            "$description": "Broadcast bar left padding (56px)"
+            "$value": "{size.xs}",
+            "$description": "Broadcast bar left padding (64px)"
           },
           "right": {
             "$type": "dimension",
-            "$value": "{space.16}",
+            "$value": "{inset.lg}",
             "$description": "Broadcast bar right padding (16px)"
           }
         },
@@ -2340,7 +2538,7 @@
       },
       "gap": {
         "$type": "dimension",
-        "$value": "{spacing.gap.sm}",
+        "$value": "{inline.lg}",
         "$description": "Gap between broadcast bar elements (16px)"
       }
     },
@@ -2489,24 +2687,24 @@
       "padding": {
         "x": {
           "$type": "dimension",
-          "$value": "{spacing.padding.sm}",
+          "$value": "{inset.lg}",
           "$description": "Toast horizontal padding (16px)"
         },
         "y": {
           "$type": "dimension",
-          "$value": "{spacing.padding.xs}",
+          "$value": "{inset.md}",
           "$description": "Toast vertical padding (12px)"
         }
       },
       "gap": {
         "elements": {
           "$type": "dimension",
-          "$value": "{spacing.gap.xxs}",
-          "$description": "Gap between toast elements (8px)"
+          "$value": "{stack.xs}",
+          "$description": "Gap between toast elements (4px)"
         },
         "text": {
           "$type": "dimension",
-          "$value": "{spacing.gap.sm}",
+          "$value": "{stack.lg}",
           "$description": "Gap between label and description (16px)"
         }
       }
@@ -2536,7 +2734,7 @@
     },
     "borderRadius": {
       "$type": "dimension",
-      "$value": "{border.radius.default}",
+      "$value": "{border.radius.sm}",
       "$description": "Toast border radius (3px)"
     },
     "shadow": {
@@ -2682,30 +2880,132 @@
           "$value": "{color.icon.base.default}",
           "$description": "Section message icon color for informative variant"
         }
+      },
+      "supply": {
+        "bg": {
+          "$type": "color",
+          "$value": "{color.background.supply.subtle}",
+          "$description": "Section message background for supply variant"
+        },
+        "border": {
+          "$type": "color",
+          "$value": "{color.border.supply.strong}",
+          "$description": "Section message border color for supply variant"
+        },
+        "borderTop": {
+          "$type": "color",
+          "$value": "{color.border.supply.default}",
+          "$description": "Section message top accent border for supply variant"
+        },
+        "text": {
+          "header": {
+            "$type": "color",
+            "$value": "{color.text.base.default}",
+            "$description": "Section message header text for supply variant"
+          },
+          "description": {
+            "$type": "color",
+            "$value": "{color.text.base.muted}",
+            "$description": "Section message description text for supply variant"
+          }
+        },
+        "icon": {
+          "$type": "color",
+          "$value": "{color.icon.supply.default}",
+          "$description": "Section message icon color for supply variant"
+        }
+      },
+      "service": {
+        "bg": {
+          "$type": "color",
+          "$value": "{color.background.service.subtle}",
+          "$description": "Section message background for service variant"
+        },
+        "border": {
+          "$type": "color",
+          "$value": "{color.border.service.strong}",
+          "$description": "Section message border color for service variant"
+        },
+        "borderTop": {
+          "$type": "color",
+          "$value": "{color.border.service.default}",
+          "$description": "Section message top accent border for service variant"
+        },
+        "text": {
+          "header": {
+            "$type": "color",
+            "$value": "{color.text.base.default}",
+            "$description": "Section message header text for service variant"
+          },
+          "description": {
+            "$type": "color",
+            "$value": "{color.text.base.muted}",
+            "$description": "Section message description text for service variant"
+          }
+        },
+        "icon": {
+          "$type": "color",
+          "$value": "{color.icon.service.default}",
+          "$description": "Section message icon color for service variant"
+        }
+      },
+      "entity": {
+        "bg": {
+          "$type": "color",
+          "$value": "{color.background.entity.subtle}",
+          "$description": "Section message background for entity variant"
+        },
+        "border": {
+          "$type": "color",
+          "$value": "{color.border.entity.strong}",
+          "$description": "Section message border color for entity variant"
+        },
+        "borderTop": {
+          "$type": "color",
+          "$value": "{color.border.entity.default}",
+          "$description": "Section message top accent border for entity variant"
+        },
+        "text": {
+          "header": {
+            "$type": "color",
+            "$value": "{color.text.base.default}",
+            "$description": "Section message header text for entity variant"
+          },
+          "description": {
+            "$type": "color",
+            "$value": "{color.text.base.muted}",
+            "$description": "Section message description text for entity variant"
+          }
+        },
+        "icon": {
+          "$type": "color",
+          "$value": "{color.icon.entity.default}",
+          "$description": "Section message icon color for entity variant"
+        }
       }
     },
     "content": {
       "padding": {
         "x": {
           "$type": "dimension",
-          "$value": "{spacing.padding.sm}",
+          "$value": "{inset.lg}",
           "$description": "Section message horizontal padding (16px)"
         },
         "y": {
           "$type": "dimension",
-          "$value": "{spacing.padding.xs}",
+          "$value": "{inset.md}",
           "$description": "Section message vertical padding (12px)"
         }
       },
       "gap": {
         "elements": {
           "$type": "dimension",
-          "$value": "{spacing.gap.xxs}",
-          "$description": "Gap between section message elements (8px)"
+          "$value": "{stack.xs}",
+          "$description": "Gap between section message elements (4px)"
         },
         "text": {
           "$type": "dimension",
-          "$value": "{spacing.gap.sm}",
+          "$value": "{stack.lg}",
           "$description": "Gap between header and description (16px)"
         }
       }
@@ -2736,18 +3036,18 @@
     "border": {
       "radius": {
         "$type": "dimension",
-        "$value": "{border.radius.default}",
+        "$value": "{border.radius.sm}",
         "$description": "Section message border radius (3px)"
       },
       "width": {
         "default": {
           "$type": "dimension",
-          "$value": "{border.default}",
+          "$value": "{border.width.default}",
           "$description": "Section message border width (1px)"
         },
         "top": {
           "$type": "dimension",
-          "$value": "{border.big}",
+          "$value": "{border.width.focus}",
           "$description": "Section message top border width (2px)"
         }
       }
@@ -2779,7 +3079,7 @@
     "border": {
       "radius": {
         "$type": "dimension",
-        "$value": "{border.radius.default}",
+        "$value": "{border.radius.sm}",
         "$description": "Card border radius (3px)"
       },
       "width": {
@@ -2808,92 +3108,22 @@
     "content": {
       "padding": {
         "$type": "dimension",
-        "$value": "{spacing.padding.lg}",
+        "$value": "{inset.xl}",
         "$description": "Card content padding (24px)"
       }
     },
     "header": {
       "padding": {
         "$type": "dimension",
-        "$value": "{spacing.padding.lg}",
+        "$value": "{inset.xl}",
         "$description": "Card header padding (24px)"
       }
     },
     "disabled": {
       "opacity": {
-        "$type": "number",
+        "$type": "opacity",
         "$value": "{opacity.disabled}",
         "$description": "Card opacity for disabled state (0.4 = 40%)"
-      }
-    }
-  },
-  "card-select": {
-    "bg": {
-      "default": {
-        "$type": "color",
-        "$value": "{color.background.base.default}",
-        "$description": "Card select default background color"
-      },
-      "disabled": {
-        "$type": "color",
-        "$value": "{color.background.base.subtle}",
-        "$description": "Card select disabled radio background color"
-      }
-    },
-    "border": {
-      "default": {
-        "$type": "color",
-        "$value": "{color.border.base.strong}",
-        "$description": "Card select default border color"
-      },
-      "hover": {
-        "$type": "color",
-        "$value": "{color.border.base.strongHover}",
-        "$description": "Card select hover border color"
-      },
-      "selected": {
-        "$type": "color",
-        "$value": "{color.border.brand.default}",
-        "$description": "Card select selected/focus border color"
-      },
-      "focus": {
-        "$type": "color",
-        "$value": "{color.border.brand.default}",
-        "$description": "Card select focus border color"
-      },
-      "error": {
-        "$type": "color",
-        "$value": "{color.border.danger.default}",
-        "$description": "Card select error border color"
-      },
-      "disabled": {
-        "$type": "color",
-        "$value": "{color.border.base.disabled}",
-        "$description": "Card select disabled border color"
-      }
-    },
-    "text": {
-      "title": {
-        "$type": "color",
-        "$value": "{color.text.base.default}",
-        "$description": "Card select title text color"
-      }
-    },
-    "icon": {
-      "selected": {
-        "$type": "color",
-        "$value": "{color.icon.success.default}",
-        "$description": "Card select tick icon color when selected"
-      },
-      "unselected": {
-        "$type": "color",
-        "$value": "{color.icon.base.muted}",
-        "$description": "Card select tick icon color when unselected"
-      },
-      "info": {
-        "$type": "color",
-        "$value": "{color.icon.base.muted}",
-        "$description": "Card select info tooltip icon color"
       }
     }
   },
@@ -2901,23 +3131,23 @@
     "size": {
       "small": {
         "$type": "dimension",
-        "$value": "{space.24}",
+        "$value": "{size.xs}",
         "$description": "Small avatar size (24px)"
       },
       "medium": {
         "$type": "dimension",
-        "$value": "{space.40}",
+        "$value": "{size.md}",
         "$description": "Medium avatar size (40px)"
       },
       "large": {
         "$type": "dimension",
-        "$value": "{space.84}",
+        "$value": "{size.3xl}",
         "$description": "Large avatar size (84px)"
       },
       "xlarge": {
         "$type": "dimension",
-        "$value": "{space.120}",
-        "$description": "Extra large avatar size (120px)"
+        "$value": "{size.4xl}",
+        "$description": "Extra large avatar size (128px)"
       }
     },
     "borderRadius": {
@@ -2927,7 +3157,7 @@
     },
     "borderWidth": {
       "$type": "dimension",
-      "$value": "{border.default}",
+      "$value": "{border.width.default}",
       "$description": "Avatar border width (1px)"
     },
     "bg": {
@@ -2985,7 +3215,7 @@
     },
     "disabled": {
       "opacity": {
-        "$type": "number",
+        "$type": "opacity",
         "$value": "{opacity.disabled}",
         "$description": "Avatar opacity for disabled state (0.4 = 40%)"
       }
@@ -2995,18 +3225,18 @@
     "size": {
       "height": {
         "$type": "dimension",
-        "$value": "{space.16}",
+        "$value": "{size.xs}",
         "$description": "Status pill height (16px)"
       },
       "padding": {
         "horizontal": {
           "$type": "dimension",
-          "$value": "{space.8}",
+          "$value": "{inset.sm}",
           "$description": "Status pill horizontal padding (8px)"
         },
         "vertical": {
           "$type": "dimension",
-          "$value": "{space.1}",
+          "$value": "{space.025}",
           "$description": "Status pill vertical padding (1px)"
         }
       }
@@ -3018,7 +3248,7 @@
     },
     "borderWidth": {
       "$type": "dimension",
-      "$value": "{border.default}",
+      "$value": "{border.width.default}",
       "$description": "Status pill border width (1px)"
     },
     "typography": {
@@ -3141,18 +3371,18 @@
       "padding": {
         "horizontal": {
           "$type": "dimension",
-          "$value": "{spacing.padding.lg}",
+          "$value": "{inset.xl}",
           "$description": "Page header horizontal padding (24px)"
         },
         "vertical": {
           "$type": "dimension",
-          "$value": "{spacing.padding.md}",
-          "$description": "Page header vertical padding (16px)"
+          "$value": "{inset.xl} - 4",
+          "$description": "Page header vertical padding (20px). TODO: visual diff → docelowo {inset.xl}"
         }
       },
       "gap": {
         "$type": "dimension",
-        "$value": "{spacing.gap.lg}",
+        "$value": "{inline.xl}",
         "$description": "Gap between header elements (24px)"
       }
     },
@@ -3168,12 +3398,12 @@
         "separator": {
           "width": {
             "$type": "dimension",
-            "$value": "{space.1}",
+            "$value": "{border.width.default}",
             "$description": "Navigation separator width (1px)"
           },
           "height": {
             "$type": "dimension",
-            "$value": "{space.40}",
+            "$value": "{size.md}",
             "$description": "Navigation separator height (40px)"
           },
           "color": {
@@ -3181,6 +3411,11 @@
             "$value": "{color.border.base.strong}",
             "$description": "Navigation separator color"
           }
+        },
+        "gap": {
+          "$type": "dimension",
+          "$value": "{inline.xl}",
+          "$description": "Gap between back icon, separator and label area (24px)"
         }
       },
       "label": {
@@ -3202,30 +3437,25 @@
               "$description": "Help icon size (24px)"
             }
           }
+        },
+        "gap": {
+          "$type": "dimension",
+          "$value": "{inline.sm}",
+          "$description": "Gap between title and help icon in Page variant (8px)"
         }
       },
-      "avatar": {
-        "size": {
+      "object": {
+        "gap": {
           "$type": "dimension",
-          "$value": "{space.40}",
-          "$description": "Object avatar size (40px)"
-        },
-        "bg": {
-          "$type": "color",
-          "$value": "{color.background.base.muted}",
-          "$description": "Object avatar background color"
-        },
-        "borderRadius": {
-          "$type": "dimension",
-          "$value": "8px",
-          "$description": "Object avatar border radius (8px)"
+          "$value": "{inline.lg}",
+          "$description": "Gap between avatar and label area in Object variant (16px)"
         }
       }
     },
     "actions": {
       "gap": {
         "$type": "dimension",
-        "$value": "{spacing.gap.sm}",
+        "$value": "{inline.lg}",
         "$description": "Gap between action buttons (16px)"
       }
     },
@@ -3234,19 +3464,19 @@
         "padding": {
           "horizontal": {
             "$type": "dimension",
-            "$value": "{spacing.padding.lg}",
+            "$value": "{inset.xl}",
             "$description": "Tabs container horizontal padding (24px)"
           },
           "vertical": {
             "$type": "dimension",
             "$value": "{space.1}",
-            "$description": "Tabs container vertical padding (1px)"
+            "$description": "Tabs container vertical padding (4px)"
           }
         },
         "border": {
           "width": {
             "$type": "dimension",
-            "$value": "{border.default}",
+            "$value": "{border.width.default}",
             "$description": "Tabs container border width (1px)"
           },
           "color": {
@@ -3255,59 +3485,73 @@
             "$description": "Tabs container border color"
           }
         }
-      },
-      "item": {
-        "padding": {
-          "horizontal": {
-            "$type": "dimension",
-            "$value": "0px",
-            "$description": "Tab item horizontal padding (0px)"
-          },
-          "vertical": {
-            "$type": "dimension",
-            "$value": "{space.2}",
-            "$description": "Tab item vertical padding (2px)"
-          },
-          "bottom": {
-            "$type": "dimension",
-            "$value": "{space.12}",
-            "$description": "Tab item bottom padding (12px)"
-          }
-        },
-        "gap": {
+      }
+    }
+  },
+  "tabs": {
+    "container": {
+      "gap": {
+        "$type": "dimension",
+        "$value": "{inline.xl}",
+        "$description": "Gap between tab items (24px)"
+      }
+    },
+    "item": {
+      "padding": {
+        "top": {
           "$type": "dimension",
-          "$value": "{spacing.gap.lg}",
-          "$description": "Gap between tab items (24px)"
+          "$value": "{space.05}",
+          "$description": "Tab item top padding (2px)"
         },
-        "typography": {
-          "$type": "typography",
-          "$value": "{typography.title.level5}",
-          "$description": "Tab item typography (level 5)"
+        "bottom": {
+          "$type": "dimension",
+          "$value": "{inset.md}",
+          "$description": "Tab item bottom padding for Text variants (12px)"
         },
-        "colors": {
-          "active": {
-            "text": {
-              "$type": "color",
-              "$value": "{color.background.brand.solid}",
-              "$description": "Active tab text color"
-            },
-            "border": {
-              "$type": "color",
-              "$value": "{color.background.brand.solid}",
-              "$description": "Active tab border color"
-            }
+        "bottomIcon": {
+          "$type": "dimension",
+          "$value": "{inset.md} - 2",
+          "$description": "Tab item bottom padding for Icon/Icon+Text variants (10px). TODO: visual diff → docelowo {inset.sm} or {inset.md}"
+        }
+      },
+      "gap": {
+        "$type": "dimension",
+        "$value": "{inline.xs}",
+        "$description": "Gap between icon and text within a tab item (4px)"
+      },
+      "typography": {
+        "$type": "typography",
+        "$value": "{typography.title.level5}",
+        "$description": "Tab item typography (level 5)"
+      },
+      "text": {
+        "active": {
+          "$type": "color",
+          "$value": "{color.text.brand.default}",
+          "$description": "Active tab text color"
+        },
+        "default": {
+          "$type": "color",
+          "$value": "{color.text.base.muted}",
+          "$description": "Default (inactive) tab text color"
+        },
+        "hover": {
+          "$type": "color",
+          "$value": "{color.text.base.default}",
+          "$description": "Hovered (inactive) tab text color"
+        }
+      },
+      "border": {
+        "active": {
+          "color": {
+            "$type": "color",
+            "$value": "{color.border.brand.default}",
+            "$description": "Active tab underline color"
           },
-          "inactive": {
-            "text": {
-              "$type": "color",
-              "$value": "{color.text.base.muted}",
-              "$description": "Inactive tab text color"
-            },
-            "text-hover": {
-              "$type": "color",
-              "$value": "{color.text.base.default}",
-              "$description": "Inactive tab text color"
-            }
+          "width": {
+            "$type": "dimension",
+            "$value": "{border.width.focus}",
+            "$description": "Active tab underline width (2px)"
           }
         }
       }
@@ -3323,12 +3567,12 @@
       "padding": {
         "horizontal": {
           "$type": "dimension",
-          "$value": "{spacing.padding.lg}",
+          "$value": "{inset.xl}",
           "$description": "Navbar horizontal padding (24px)"
         },
         "vertical": {
           "$type": "dimension",
-          "$value": "{spacing.padding.md}",
+          "$value": "{inset.md}",
           "$description": "Navbar vertical padding (12px)"
         }
       }
@@ -3336,25 +3580,25 @@
     "left": {
       "gap": {
         "$type": "dimension",
-        "$value": "{spacing.gap.sm}",
+        "$value": "{inline.md}",
         "$description": "Gap between left side elements (12px)"
       },
       "logo": {
         "height": {
           "$type": "dimension",
-          "$value": "{space.14}",
+          "$value": "{space.3}",
           "$description": "Logo height (14px)"
         }
       },
       "separator": {
         "width": {
           "$type": "dimension",
-          "$value": "{space.1}",
+          "$value": "{border.width.default}",
           "$description": "Separator width (1px)"
         },
         "height": {
           "$type": "dimension",
-          "$value": "{space.24}",
+          "$value": "{size.xs}",
           "$description": "Separator height (24px)"
         },
         "color": {
@@ -3363,7 +3607,7 @@
           "$description": "Separator color (white)"
         },
         "opacity": {
-          "$type": "number",
+          "$type": "opacity",
           "$value": "{opacity.muted}",
           "$description": "Separator opacity (30%)"
         }
@@ -3384,24 +3628,24 @@
     "right": {
       "gap": {
         "$type": "dimension",
-        "$value": "{spacing.gap.sm}",
+        "$value": "{inline.md}",
         "$description": "Gap between right side elements (12px)"
       },
       "actions": {
         "gap": {
           "$type": "dimension",
-          "$value": "{spacing.gap.sm}",
+          "$value": "{inline.md}",
           "$description": "Gap between action buttons (12px)"
         },
         "button": {
           "padding": {
             "$type": "dimension",
-            "$value": "{spacing.padding.xxs}",
+            "$value": "{inset.xs}",
             "$description": "Action button padding (4px)"
           },
           "borderRadius": {
             "$type": "dimension",
-            "$value": "{border.radius.default}",
+            "$value": "{border.radius.sm}",
             "$description": "Action button border radius (3px)"
           },
           "icon": {
@@ -3416,12 +3660,12 @@
       "separator": {
         "width": {
           "$type": "dimension",
-          "$value": "{space.1}",
+          "$value": "{border.width.default}",
           "$description": "Separator width (1px)"
         },
         "height": {
           "$type": "dimension",
-          "$value": "{space.24}",
+          "$value": "{size.xs}",
           "$description": "Separator height (24px)"
         },
         "color": {
@@ -3430,7 +3674,7 @@
           "$description": "Separator color (white)"
         },
         "opacity": {
-          "$type": "number",
+          "$type": "opacity",
           "$value": "{opacity.muted}",
           "$description": "Separator opacity (30%)"
         }
@@ -3440,29 +3684,29 @@
           "horizontal": {
             "left": {
               "$type": "dimension",
-              "$value": "{spacing.padding.sm}",
-              "$description": "User button left padding (12px)"
+              "$value": "{inset.sm}",
+              "$description": "User button left padding (8px)"
             },
             "right": {
               "$type": "dimension",
-              "$value": "{space.8}",
+              "$value": "{inset.sm}",
               "$description": "User button right padding (8px)"
             }
           },
           "vertical": {
             "$type": "dimension",
-            "$value": "{space.4}",
+            "$value": "{inset.xs}",
             "$description": "User button vertical padding (4px)"
           }
         },
         "borderRadius": {
           "$type": "dimension",
-          "$value": "{border.radius.default}",
+          "$value": "{border.radius.sm}",
           "$description": "User button border radius (3px)"
         },
         "gap": {
           "$type": "dimension",
-          "$value": "{spacing.gap.xxs}",
+          "$value": "{inline.xs}",
           "$description": "Gap between text and icon (4px)"
         },
         "text": {
@@ -3513,7 +3757,7 @@
       },
       "borderRadius": {
         "$type": "dimension",
-        "$value": "{border.radius.default}",
+        "$value": "{border.radius.sm}",
         "$description": "Modal border radius (3px)"
       }
     },
@@ -3556,24 +3800,24 @@
       "padding": {
         "horizontal": {
           "$type": "dimension",
-          "$value": "{spacing.padding.lg}",
+          "$value": "{inset.xl}",
           "$description": "Modal header horizontal padding (24px)"
         },
         "vertical": {
           "$type": "dimension",
-          "$value": "{spacing.padding.md}",
-          "$description": "Modal header vertical padding (16px)"
+          "$value": "{space.5}",
+          "$description": "Modal header vertical padding (20px)"
         }
       },
       "gap": {
         "$type": "dimension",
-        "$value": "{spacing.gap.sm}",
+        "$value": "{inline.md}",
         "$description": "Gap between header elements (12px)"
       },
       "border": {
         "width": {
           "$type": "dimension",
-          "$value": "{border.default}",
+          "$value": "{border.width.default}",
           "$description": "Modal header border width (1px)"
         },
         "color": {
@@ -3597,18 +3841,18 @@
       "actions": {
         "gap": {
           "$type": "dimension",
-          "$value": "{spacing.gap.sm}",
+          "$value": "{inline.md}",
           "$description": "Gap between action buttons (12px)"
         },
         "button": {
           "padding": {
             "$type": "dimension",
-            "$value": "{spacing.padding.xxs}",
+            "$value": "{inset.xs}",
             "$description": "Action button padding (4px)"
           },
           "borderRadius": {
             "$type": "dimension",
-            "$value": "{border.radius.default}",
+            "$value": "{border.radius.sm}",
             "$description": "Action button border radius (3px)"
           },
           "icon": {
@@ -3623,7 +3867,7 @@
       "separator": {
         "height": {
           "$type": "dimension",
-          "$value": "{space.1}",
+          "$value": "{border.width.default}",
           "$description": "Header separator height (1px)"
         },
         "color": {
@@ -3653,18 +3897,18 @@
       },
       "padding": {
         "$type": "dimension",
-        "$value": "{spacing.padding.lg}",
+        "$value": "{inset.xl}",
         "$description": "Modal footer padding (24px)"
       },
       "gap": {
         "$type": "dimension",
-        "$value": "{spacing.gap.sm}",
+        "$value": "{inline.md}",
         "$description": "Gap between footer elements (12px)"
       },
       "border": {
         "width": {
           "$type": "dimension",
-          "$value": "{border.default}",
+          "$value": "{border.width.default}",
           "$description": "Modal footer border width (1px)"
         },
         "color": {
@@ -3676,7 +3920,7 @@
       "actions": {
         "gap": {
           "$type": "dimension",
-          "$value": "{spacing.gap.sm}",
+          "$value": "{inline.md}",
           "$description": "Gap between footer action buttons (12px)"
         }
       }
@@ -3693,45 +3937,45 @@
       "padding": {
         "horizontal": {
           "$type": "dimension",
-          "$value": "{spacing.padding.xs}",
-          "$description": "List item horizontal padding (8px)"
+          "$value": "{inset.md}",
+          "$description": "List item horizontal padding (12px)"
         },
         "vertical": {
           "$type": "dimension",
-          "$value": "{spacing.padding.xxs}",
+          "$value": "{inset.xs}",
           "$description": "List item vertical padding (4px)"
         }
       },
       "gap": {
         "$type": "dimension",
-        "$value": "{spacing.gap.sm}",
+        "$value": "{inline.md}",
         "$description": "Gap between list item elements (12px)"
       },
       "borderRadius": {
         "$type": "dimension",
-        "$value": "{border.radius.default}",
+        "$value": "{border.radius.sm}",
         "$description": "List item border radius (3px)"
       },
       "height": {
         "standard": {
           "$type": "dimension",
-          "$value": "{space.32}",
+          "$value": "{size.sm}",
           "$description": "Standard list item height (32px)"
         },
         "withAvatar": {
           "$type": "dimension",
-          "$value": "{space.44}",
+          "$value": "{size.md}",
           "$description": "List item height with small avatar (44px)"
         },
         "withAvatarLarge": {
           "$type": "dimension",
-          "$value": "{space.56}",
+          "$value": "{size.lg}",
           "$description": "List item height with medium avatar (56px)"
         },
         "withDescription": {
           "$type": "dimension",
-          "$value": "{space.52}",
-          "$description": "List item height with description (52px)"
+          "$value": "{space.12}",
+          "$description": "List item height with description (48px)"
         }
       }
     },
@@ -4007,7 +4251,7 @@
       },
       "disabled": {
         "opacity": {
-          "$type": "number",
+          "$type": "opacity",
           "$value": "{opacity.disabled}",
           "$description": "Disabled list item opacity (0.4 = 40%)"
         }
@@ -4046,7 +4290,7 @@
       "border": {
         "width": {
           "$type": "dimension",
-          "$value": "{space.1}",
+          "$value": "{border.width.default}",
           "$description": "App menu border width (1px)"
         },
         "color": {
@@ -4060,37 +4304,37 @@
       "padding": {
         "horizontal": {
           "$type": "dimension",
-          "$value": "{spacing.padding.sm}",
+          "$value": "{inset.md}",
           "$description": "Collapsed menu horizontal padding (12px)"
         },
         "vertical": {
           "$type": "dimension",
-          "$value": "{spacing.padding.md}",
+          "$value": "{inset.xl}",
           "$description": "Collapsed menu vertical padding (24px)"
         }
       },
       "gap": {
         "$type": "dimension",
-        "$value": "{spacing.gap.lg}",
+        "$value": "{stack.xl}",
         "$description": "Gap between collapsed menu elements (24px)"
       }
     },
     "expanded": {
       "width": {
         "$type": "dimension",
-        "$value": "{space.128} * 2 + {space.6}",
+        "$value": "{size.4xl}",
         "$description": "Expanded menu width (262px = 128px * 2 + 6px)"
       },
       "padding": {
         "$type": "dimension",
-        "$value": "{spacing.padding.xs}",
+        "$value": "{inset.sm}",
         "$description": "Expanded menu padding (8px)"
       }
     },
     "icons": {
       "size": {
         "$type": "dimension",
-        "$value": "{space.40}",
+        "$value": "{size.md}",
         "$description": "Menu icon size (40px)"
       },
       "borderRadius": {
@@ -4102,7 +4346,7 @@
     "separator": {
       "height": {
         "$type": "dimension",
-        "$value": "{space.1}",
+        "$value": "{border.width.default}",
         "$description": "Separator height (1px)"
       },
       "color": {
@@ -4115,12 +4359,12 @@
       "padding": {
         "horizontal": {
           "$type": "dimension",
-          "$value": "{spacing.padding.xs}",
+          "$value": "{inset.sm}",
           "$description": "Header horizontal padding (8px)"
         },
         "vertical": {
           "$type": "dimension",
-          "$value": "{space.26}",
+          "$value": "{inset.xl}",
           "$description": "Header vertical padding (26px)"
         }
       },
@@ -4186,6 +4430,11 @@
     }
   },
   "stepper": {
+    "padding": {
+      "$type": "dimension",
+      "$value": "{inset.lg}",
+      "$description": "Stepper container padding (16px)"
+    },
     "step": {
       "circle": {
         "border": {
@@ -4469,7 +4718,7 @@
     "item": {
       "size": {
         "$type": "dimension",
-        "$value": "{size.control.normal}",
+        "$value": "{size.md}",
         "$description": "Pagination item size (32px circular button)"
       },
       "border": {
@@ -4532,7 +4781,7 @@
       },
       "disabled": {
         "opacity": {
-          "$type": "number",
+          "$type": "opacity",
           "$value": "{opacity.disabled}",
           "$description": "Pagination item opacity for disabled state"
         }
@@ -4575,7 +4824,7 @@
       },
       "disabled": {
         "opacity": {
-          "$type": "number",
+          "$type": "opacity",
           "$value": "{opacity.disabled}",
           "$description": "Pagination nav opacity for disabled state"
         }
@@ -4590,12 +4839,12 @@
         },
         "width": {
           "$type": "dimension",
-          "$value": "{border.default}",
+          "$value": "{border.width.default}",
           "$description": "Pagination more indicator border width (1px)"
         },
         "radius": {
           "$type": "dimension",
-          "$value": "{border.radius.default}",
+          "$value": "{border.radius.sm}",
           "$description": "Pagination more indicator border radius (3px)"
         }
       },
@@ -4607,11 +4856,21 @@
     },
     "gap": {
       "$type": "dimension",
-      "$value": "{spacing.gap.xxs}",
+      "$value": "{inline.xs}",
       "$description": "Gap between pagination items (4px)"
+    },
+    "padding": {
+      "$type": "dimension",
+      "$value": "{inset.md}",
+      "$description": "Pagination item padding (12px)"
     }
   },
   "progressbar": {
+    "height": {
+      "$type": "dimension",
+      "$value": "{size.xs}",
+      "$description": "Progressbar component height (24px)"
+    },
     "header": {
       "label": {
         "color": {
@@ -4667,15 +4926,240 @@
       },
       "paddingY": {
         "$type": "dimension",
-        "$value": "{spacing.gap.xs}",
+        "$value": "{inset.sm}",
         "$description": "Vertical padding around progressbar bar (8px)"
       }
     },
     "inline": {
       "gap": {
         "$type": "dimension",
-        "$value": "{spacing.gap.xs}",
+        "$value": "{inline.sm}",
         "$description": "Gap between inline progressbar bar and value text (8px)"
+      }
+    }
+  },
+  "card-select": {
+    "bg": {
+      "default": {
+        "$type": "color",
+        "$value": "{color.background.base.default}",
+        "$description": "Card Select background — white in all states"
+      }
+    },
+    "border": {
+      "radius": {
+        "$type": "dimension",
+        "$value": "{border.radius.xs}",
+        "$description": "Card Select border radius (3px)"
+      },
+      "width": {
+        "default": {
+          "$type": "dimension",
+          "$value": "{border.width.default}",
+          "$description": "Card Select border width — default and hover (1px)"
+        },
+        "active": {
+          "$type": "dimension",
+          "$value": "{border.width.focus}",
+          "$description": "Card Select border width — focused and selected (2px)"
+        }
+      },
+      "color": {
+        "default": {
+          "$type": "color",
+          "$value": "{color.border.base.default}",
+          "$description": "Card Select border — default state (grey-200)"
+        },
+        "hover": {
+          "$type": "color",
+          "$value": "{color.border.base.strong}",
+          "$description": "Card Select border — hover state (grey-300)"
+        },
+        "focused": {
+          "$type": "color",
+          "$value": "{color.border.brand.default}",
+          "$description": "Card Select border — focused state (blue-600)"
+        },
+        "selected": {
+          "$type": "color",
+          "$value": "{color.border.brand.default}",
+          "$description": "Card Select border — selected state (blue-600)"
+        },
+        "disabled": {
+          "$type": "color",
+          "$value": "{color.border.base.default}",
+          "$description": "Card Select border — disabled state (grey-200, same as default)"
+        }
+      }
+    },
+    "shadow": {
+      "default": {
+        "$type": "boxShadow",
+        "$value": "{Shadows.Shadow 1}",
+        "$description": "Card Select shadow — default state (rised variant)"
+      },
+      "hover": {
+        "$type": "boxShadow",
+        "$value": "{Shadows.Shadow 2}",
+        "$description": "Card Select shadow — hover and selected state (rised variant)"
+      }
+    },
+    "header": {
+      "color": {
+        "$type": "color",
+        "$value": "{color.text.base.default}",
+        "$description": "Card Select header text color (grey-800)"
+      }
+    },
+    "description": {
+      "color": {
+        "$type": "color",
+        "$value": "{color.text.base.muted}",
+        "$description": "Card Select description text color (grey-600)"
+      }
+    },
+    "check": {
+      "border": {
+        "color": {
+          "default": {
+            "$type": "color",
+            "$value": "{color.border.base.default}",
+            "$description": "Check indicator border — unselected state (grey-200)"
+          },
+          "hover": {
+            "$type": "color",
+            "$value": "{color.border.base.strong}",
+            "$description": "Check indicator border — hover state (grey-300)"
+          },
+          "focused": {
+            "$type": "color",
+            "$value": "{color.border.brand.default}",
+            "$description": "Check indicator border — focused state (blue-600)"
+          }
+        }
+      },
+      "bg": {
+        "selected": {
+          "$type": "color",
+          "$value": "{color.background.success.solid}",
+          "$description": "Check indicator background — selected state (green)"
+        }
+      },
+      "icon": {
+        "selected": {
+          "$type": "color",
+          "$value": "{color.icon.onSolid.success}",
+          "$description": "Check indicator icon — selected state (white on green)"
+        }
+      }
+    },
+    "tag": {
+      "bg": {
+        "$type": "color",
+        "$value": "{color.background.warning.solidHover}",
+        "$description": "Coming Soon tag background (yellow)"
+      },
+      "text": {
+        "$type": "color",
+        "$value": "{color.text.onSolid.warning}",
+        "$description": "Coming Soon tag text color (dark on yellow)"
+      }
+    },
+    "size": {
+      "normal": {
+        "padding": {
+          "$type": "dimension",
+          "$value": "{inset.xl}",
+          "$description": "Card Select padding — normal size (24px)"
+        }
+      },
+      "small": {
+        "padding": {
+          "$type": "dimension",
+          "$value": "{inset.lg}",
+          "$description": "Card Select padding — small size (16px)"
+        }
+      }
+    },
+    "disabled": {
+      "opacity": {
+        "$type": "opacity",
+        "$value": "{opacity.disabled}",
+        "$description": "Card Select opacity for disabled state (40%)"
+      }
+    }
+  },
+  "time-picker": {
+    "overlay": {
+      "bg": {
+        "$type": "color",
+        "$value": "{color.background.base.default}",
+        "$description": "Time Picker overlay background (white)"
+      },
+      "shadow": {
+        "$type": "boxShadow",
+        "$value": "{Shadows.Shadow 2}",
+        "$description": "Time Picker overlay drop shadow"
+      },
+      "separator": {
+        "bg": {
+          "$type": "color",
+          "$value": "{color.background.base.muted}",
+          "$description": "Separator between columns (1px, grey-100)"
+        }
+      },
+      "ampm": {
+        "border": {
+          "$type": "color",
+          "$value": "{color.border.base.default}",
+          "$description": "Right border on AM/PM column (grey-200)"
+        }
+      }
+    },
+    "item": {
+      "height": {
+        "$type": "dimension",
+        "$value": "{size.sm}",
+        "$description": "Time item row height (32px)"
+      },
+      "padding": {
+        "$type": "dimension",
+        "$value": "{inset.sm}",
+        "$description": "Time item padding (8px)"
+      },
+      "bg": {
+        "default": {
+          "$type": "color",
+          "$value": "{color.transparent}",
+          "$description": "Time item background — default state (transparent)"
+        },
+        "hover": {
+          "$type": "color",
+          "$value": "{color.background.base.subtle}",
+          "$description": "Time item background — hover state (grey-50)"
+        },
+        "selected": {
+          "$type": "color",
+          "$value": "{color.background.brand.solid}",
+          "$description": "Time item background — selected state (blue-600)"
+        }
+      },
+      "text": {
+        "default": {
+          "$type": "color",
+          "$value": "{color.text.base.muted}",
+          "$description": "Time item text — default state (grey-600)"
+        },
+        "hover": {
+          "$type": "color",
+          "$value": "{color.text.brand.default}",
+          "$description": "Time item text — hover state (blue-600)"
+        },
+        "selected": {
+          "$type": "color",
+          "$value": "{color.text.onSolid.default}",
+          "$description": "Time item text — selected state (white)"
+        }
       }
     }
   }

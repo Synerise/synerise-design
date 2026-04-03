@@ -30,7 +30,7 @@ export const Text = styled.div`
   width: 100%;
 `;
 export const IconWrapper = styled.div<{
-  type?: SectionType;
+  type: SectionType;
   customColorIcon?: CustomColorType;
 }>`
   margin: 10px 12px;
@@ -38,7 +38,7 @@ export const IconWrapper = styled.div<{
   color: ${(props) =>
     props.customColorIcon
       ? props.theme.palette[`${props.customColorIcon}-600`]
-      : getColorIconAndBorderTop(props.type!, props.theme)};
+      : getColorIconAndBorderTop(props.type)};
 `;
 export const IconCloseWrapper = styled.div`
   margin: 3px 5px 2px;
@@ -55,7 +55,7 @@ export const SuffixWrapper = styled.div`
 `;
 
 export const Container = styled.div<{
-  type?: SectionType;
+  type: SectionType;
   customColor?: CustomColorType;
 }>`
   width: 100%;
@@ -65,12 +65,12 @@ export const Container = styled.div<{
   background-color: ${(props) =>
     props.customColor
       ? props.theme.palette[`${props.customColor}-050`]
-      : getColorBackground(props.type!, props.theme)};
+      : getColorBackground(props.type)};
   border: 1px solid
     ${(props) =>
       props.customColor
         ? props.theme.palette[`${props.customColor}-200`]
-        : getColorBorder(props.type!, props.theme)};
+        : getColorBorder(props.type)};
   border-radius: 3px;
 
   &::after {
@@ -84,7 +84,7 @@ export const Container = styled.div<{
     background-color: ${(props) =>
       props.customColor
         ? props.theme.palette[`${props.customColor}-600`]
-        : getColorBorderTop(props.type!, props.theme)};
+        : getColorBorderTop(props.type)};
   }
 `;
 export const WrapperSectionMessage = styled.div`
@@ -94,20 +94,17 @@ export const WrapperSectionMessage = styled.div`
   justify-content: space-between;
 `;
 
-export const AlertMessage = styled.span<{ type?: SectionType }>`
+export const AlertMessage = styled.span<{ type: SectionType }>`
   font-size: 13px;
   line-height: 1.39;
   font-weight: 500;
   overflow-wrap: break-word;
   min-width: 0;
   width: 100%;
-  color: ${(props) =>
-    props.type
-      ? getColorTextHeader(props.type)
-      : props.theme.palette['grey-700']};
+  color: ${(props) => getColorTextHeader(props.type)};
 `;
 
-export const AlertDescription = styled.span<{ type?: SectionType }>`
+export const AlertDescription = styled.span<{ type: SectionType }>`
   overflow-wrap: break-word;
   min-width: 0;
   font-size: 13px;
@@ -115,10 +112,7 @@ export const AlertDescription = styled.span<{ type?: SectionType }>`
   font-weight: normal;
   padding-right: 3px;
   margin-top: 2px;
-  color: ${(props) =>
-    props.type
-      ? getColorTextDescription(props.type)
-      : props.theme.palette['grey-700']};
+  color: ${(props) => getColorTextDescription(props.type)};
 `;
 export const EmphasisWrapper = styled.span`
   display: flex;
