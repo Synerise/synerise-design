@@ -23,7 +23,7 @@ const Multivalue = ({
   const finalValues = useMemo(
     () =>
       stackedBars
-        ? values.sort((a, b) => {
+        ? [...values].sort((a, b) => {
             return b.percent - a.percent;
           })
         : values,
@@ -37,6 +37,10 @@ const Multivalue = ({
             key={`${val.color}-${val.percent}-${index}`}
             color={val.color}
             percent={normalizePercent(val.percent)}
+            onClick={val.onClick}
+            $isFirst={index === 0}
+            $isLast={index === finalValues.length - 1}
+            $stacked={stackedBars}
           />
         </Tooltip>
       ))}

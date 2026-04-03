@@ -13,7 +13,6 @@ type ProgressTilesProps = typeof ProgressTiles;
 export default {
   component: ProgressTiles,
   title: 'Components/ProgressBar',
-  tags: ['autodocs'],
   decorators: [fixedWrapper300],
   argTypes: {
     values: { control: false },

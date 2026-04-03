@@ -1,4 +1,5 @@
 import React from 'react';
+import { fn } from 'storybook/test';
 
 import { Meta, StoryObj } from '@storybook/react-vite';
 import { Multivalue } from '@synerise/ds-progress-bar';
@@ -11,7 +12,6 @@ type MultivalueProps = typeof Multivalue;
 export default {
   component: Multivalue,
   title: 'Components/ProgressBar',
-  tags: ['autodocs'],
   decorators: [fixedWrapper300],
   render: (args) => {
     return <Multivalue {...args} />;
@@ -66,23 +66,26 @@ export const MultiValueWithTooltips: StoryObj<MultivalueProps> = {
   parameters: {
     docs: {
       source: {
-        code: `<Multivalue 
+        code: `<Multivalue
   stackedBars={false}
   values={[
     {
       percent: 10,
       color: COLORS.mars,
       tooltip: "10%",
+      onClick: handleClick,
     },
     {
       percent: 15,
       color: COLORS.yellow,
       tooltip: "15%",
+      onClick: handleClick,
     },
     {
       percent: 40,
       color: COLORS.cyan,
       tooltip: "40%",
+      onClick: handleClick,
     },
   ]}
 />`,
@@ -96,16 +99,19 @@ export const MultiValueWithTooltips: StoryObj<MultivalueProps> = {
         percent: 10,
         color: COLORS.mars,
         tooltip: '10%',
+        onClick: fn(),
       },
       {
         percent: 15,
         color: COLORS.yellow,
         tooltip: '15%',
+        onClick: fn(),
       },
       {
         percent: 40,
         color: COLORS.cyan,
         tooltip: '40%',
+        onClick: fn(),
       },
     ],
   },

@@ -13,7 +13,6 @@ import {
 export default {
   component: ProgressBar,
   title: 'Components/ProgressBar',
-  tags: ['autodocs'],
   decorators: [fixedWrapper300],
   argTypes: {
     description: STRING_CONTROL,
