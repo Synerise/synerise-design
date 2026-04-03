@@ -214,7 +214,7 @@ export const Subtle = styled.div<{ $disabled?: boolean; hasError?: boolean }>`
       }
     `}
 
-  ${TextareaWrapper} {
+  ${TextareaWrapper}:focus-within {
     ${(props) =>
       props.hasError
         ? `background-color: ${hexToRgba(props.theme.palette['red-100'], 0.4)};`
