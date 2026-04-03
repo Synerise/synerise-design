@@ -19,7 +19,7 @@ describe('Alert component', () => {
 
     const description = "Success description";
     const showMoreLabel = "Show more";
-    const onShowMore = jest.fn();
+    const onShowMore = vi.fn();
     const { getByText } = renderWithProvider(<SectionMessage type='positive' description={description}
                                                              showMoreLabel={showMoreLabel} onShowMore={onShowMore}/>);
 

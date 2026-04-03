@@ -6,6 +6,20 @@ import { renderWithProvider } from '@synerise/ds-core';
 import { fireEvent, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 
+vi.mock('unicode-emoji-utils', () => ({
+  getEmojisByGroup: () =>
+    new Map([
+      [
+        'smileys-emotion',
+        [
+          { emoji: '😀', description: 'grinning face', group: 'smileys-emotion', keywords: ['grin', 'happy'], version: '1.0' },
+          { emoji: '😁', description: 'beaming face', group: 'smileys-emotion', keywords: ['grin', 'smile'], version: '1.0' },
+          { emoji: '😂', description: 'face with tears of joy', group: 'smileys-emotion', keywords: ['laugh', 'joy'], version: '1.0' },
+        ],
+      ],
+    ]),
+}));
+
 import { EmojiPicker } from '../EmojiPicker';
 
 describe('EmojiPicker', () => {
@@ -25,7 +39,7 @@ describe('EmojiPicker', () => {
   });
 
   it('should trigger onSelect', async () => {
-    const onSelect = jest.fn();
+    const onSelect = vi.fn();
 
     renderWithProvider(
       <EmojiPicker onSelect={onSelect}>{TRIGGER}</EmojiPicker>,

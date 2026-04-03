@@ -1,9 +1,12 @@
 import { vi } from 'vitest';
 
-window.IntersectionObserver =
-  window.IntersectionObserver ||
-  vi.fn().mockImplementation(() => ({
-    disconnect: vi.fn(),
-    observe: vi.fn(),
-    unobserve: vi.fn(),
-  }));
+class IntersectionObserverMock {
+  constructor() {
+    this.disconnect = vi.fn();
+    this.observe = vi.fn();
+    this.unobserve = vi.fn();
+    this.takeRecords = vi.fn().mockReturnValue([]);
+  }
+}
+
+window.IntersectionObserver = window.IntersectionObserver || IntersectionObserverMock;

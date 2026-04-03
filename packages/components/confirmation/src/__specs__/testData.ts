@@ -15,8 +15,8 @@ export const PROPS = {
   secondaryButtonProps: {
     'data-testid': 'cancel-button',
   },
-  onOk: jest.fn(),
-  onCancel: jest.fn(),
+  onOk: vi.fn(),
+  onCancel: vi.fn(),
   texts: {
     relatedObjectsButtonLabel: RELATED_OBJECTS_LABEL,
   },

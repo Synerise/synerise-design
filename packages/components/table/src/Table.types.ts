@@ -4,16 +4,16 @@ import type {
   TableLocale,
   TableRowSelection,
 } from 'antd/lib/table/interface';
-import type {
-  SELECTION_ALL,
-  SELECTION_INVERT,
-} from 'constants/Table.constants';
 import type { Key, ReactNode, Ref } from 'react';
 
 import { type TooltipProps } from '@synerise/ds-tooltip';
 import type { LiteralStringUnion } from '@synerise/ds-utils';
 
 import type { GroupType } from './GroupTable/GroupTable.types';
+import type {
+  SELECTION_ALL,
+  SELECTION_INVERT,
+} from './constants/Table.constants';
 
 export type RowStar<T> = {
   className?: string;

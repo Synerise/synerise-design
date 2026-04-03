@@ -51,17 +51,17 @@ const DATA_SOURCE = [...new Array(50)].map((i, k) => ({
 
 describe('ItemPickerList', () => {
   beforeEach(() => {
-    Element.prototype.scrollTo = jest.fn();
+    Element.prototype.scrollTo = vi.fn();
   });
   it('should render flat list', async () => {
-    const onItemSelect = jest.fn();
+    const onItemSelect = vi.fn();
     renderWithProvider(
       <ItemPickerList onItemSelect={onItemSelect} items={FLAT_DATA_SOURCE} />,
     );
     expect(screen.getByText('Item 2')).toBeInTheDocument();
   });
   it('should render recents', async () => {
-    const onItemSelect = jest.fn();
+    const onItemSelect = vi.fn();
     renderWithProvider(
       <ItemPickerList
         onItemSelect={onItemSelect}
@@ -72,7 +72,7 @@ describe('ItemPickerList', () => {
     expect(screen.getByText('Item 2')).toBeInTheDocument();
   });
   it('should render actions', async () => {
-    const onItemSelect = jest.fn();
+    const onItemSelect = vi.fn();
     renderWithProvider(
       <ItemPickerList
         onItemSelect={onItemSelect}
@@ -83,7 +83,7 @@ describe('ItemPickerList', () => {
     expect(screen.getByText('Action 2')).toBeInTheDocument();
   });
   it('should fire onItemSelect', async () => {
-    const onItemSelect = jest.fn();
+    const onItemSelect = vi.fn();
     renderWithProvider(
       <ItemPickerList onItemSelect={onItemSelect} items={FLAT_DATA_SOURCE} />,
     );
@@ -91,7 +91,7 @@ describe('ItemPickerList', () => {
     expect(onItemSelect).toHaveBeenCalled();
   });
   it('should render items in sections', async () => {
-    const onItemSelect = jest.fn();
+    const onItemSelect = vi.fn();
     renderWithProvider(
       <ItemPickerList
         onItemSelect={onItemSelect}
@@ -103,7 +103,7 @@ describe('ItemPickerList', () => {
     expect(screen.getByText('section B')).toBeInTheDocument();
   });
   it('should render folders in sections', async () => {
-    const onItemSelect = jest.fn();
+    const onItemSelect = vi.fn();
     renderWithProvider(
       <ItemPickerList
         onItemSelect={onItemSelect}
@@ -116,7 +116,7 @@ describe('ItemPickerList', () => {
     expect(screen.getByText('folder B')).toBeInTheDocument();
   });
   it('should render items from folder', async () => {
-    const onItemSelect = jest.fn();
+    const onItemSelect = vi.fn();
     renderWithProvider(
       <ItemPickerList
         onItemSelect={onItemSelect}
@@ -130,7 +130,7 @@ describe('ItemPickerList', () => {
   });
   
   it('should render basic search if no actions', async () => {
-    const onItemSelect = jest.fn();
+    const onItemSelect = vi.fn();
     renderWithProvider(
       <ItemPickerList
         texts={{ basicSearchPlaceholder: 'SEARCH BASIC' }}
@@ -145,7 +145,7 @@ describe('ItemPickerList', () => {
   it('should render search results from all folders', async () => {
     const SEARCH_QUERY = 'Item 2';
 
-    const onItemSelect = jest.fn();
+    const onItemSelect = vi.fn();
     renderWithProvider(
       <ItemPickerList
         texts={{ searchPlaceholder: 'SEARCH' }}

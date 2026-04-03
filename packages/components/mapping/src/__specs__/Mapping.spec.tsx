@@ -32,7 +32,7 @@ const LEFT_COMPONENT = ({ item }) => <>{item.nameLeft}</>;
 const RIGHT_COMPONENT = ({ item }) => <>{item.nameRight}</>;
 const CENTER_COMPONENT = () => <>{DIVIDER}</>;
 const SELECTION = {
-  onSelectionChange: jest.fn(),
+  onSelectionChange: vi.fn(),
   actionButtons: <>{BUTTONS}</>,
 };
 const ENABLE_BATCH = 'ENABLE_BATCH';

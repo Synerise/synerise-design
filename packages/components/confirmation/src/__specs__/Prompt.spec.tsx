@@ -30,7 +30,7 @@ describe('Prompt component', () => {
   );
 
   it('Should trigger onOk on main button click', async () => {
-    const onOk = jest.fn();
+    const onOk = vi.fn();
     renderWithProvider(<Prompt {...PROPS} type="negative" open onOk={onOk} />);
 
     expect(
@@ -41,7 +41,7 @@ describe('Prompt component', () => {
   });
 
   it('Should trigger onCancel on secondary button click', async () => {
-    const onCancel = jest.fn();
+    const onCancel = vi.fn();
     renderWithProvider(
       <Prompt {...PROPS} type="negative" open onCancel={onCancel} />,
     );

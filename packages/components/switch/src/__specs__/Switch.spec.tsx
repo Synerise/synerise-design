@@ -41,7 +41,7 @@ describe('Switch', () => {
   });
 
   it('should handle state change', () => {
-    const onChange = jest.fn();
+    const onChange = vi.fn();
     renderWithProvider(
       <Switch label={LABEL_TEXT} onChange={e => onChange(e)} data-testid={BUTTON_TESTID} />
     );

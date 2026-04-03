@@ -51,8 +51,8 @@ describe('SidebarObject', () => {
         inputObject={{ Status: 'active', id: '123' }}
         headerTabs={TABS}
         typeButtons={ButtonVariant.WITH_NAVIGATION}
-        onEdit={jest.fn()}
-        onDuplicate={jest.fn()}
+        onEdit={vi.fn()}
+        onDuplicate={vi.fn()}
       />,
     );
     expect(

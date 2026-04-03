@@ -9,9 +9,9 @@ import InlineEdit from '../';
 const PLACEHOLDER = 'Placeholder';
 const INPUT_VALUE = 'input value';
 const INPUT_VALUE_CHANGED = 'input value changed';
-const onChange = jest.fn();
-const onEnterPress = jest.fn();
-const onBlur = jest.fn();
+const onChange = vi.fn();
+const onEnterPress = vi.fn();
+const onBlur = vi.fn();
 
 const setup = ({
   disabled = false,
@@ -64,7 +64,7 @@ describe('InlineEdit', () => {
     await waitFor(() => expect(onChange).toHaveBeenCalled());
   });
   beforeEach(() => {
-    Element.prototype.scrollTo = jest.fn();
+    Element.prototype.scrollTo = vi.fn();
   });
 
   const names = [

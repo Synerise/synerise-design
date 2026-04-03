@@ -198,7 +198,7 @@ describe('InputNumber', () => {
     // ARRANGE
     const TEST_ID = 'test-id';
     const changedValue = 123.45;
-    const onChange = jest.fn();
+    const onChange = vi.fn();
     const { getByTestId } = renderWithProvider(
       <InputNumber
         data-testid={TEST_ID}
@@ -217,7 +217,7 @@ describe('InputNumber', () => {
     const TEST_ID = 'test-id';
     const changedValue = '1234567.891a';
     const expectedValue = 1234567.891;
-    const onChange = jest.fn();
+    const onChange = vi.fn();
     const { getByTestId } = renderWithProvider(
       <InputNumber
         data-testid={TEST_ID}

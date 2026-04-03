@@ -31,13 +31,13 @@ const DEFAULT_EXPRESSION = {
 
 describe('Filter component', () => {
   it('Should render with matching', () => {
-    const onChangeLogic = jest.fn();
-    const onChangeOrder = jest.fn();
-    const onChangeStepMatching = jest.fn();
-    const onDuplicateStep = jest.fn();
-    const onDeleteStep = jest.fn();
-    const onChangeStepName = jest.fn();
-    const handleChangeMatching = jest.fn();
+    const onChangeLogic = vi.fn();
+    const onChangeOrder = vi.fn();
+    const onChangeStepMatching = vi.fn();
+    const onDuplicateStep = vi.fn();
+    const onDeleteStep = vi.fn();
+    const onChangeStepName = vi.fn();
+    const handleChangeMatching = vi.fn();
     const { getByText } = renderWithProvider(
       <Filter
         expressions={[]}
@@ -58,14 +58,14 @@ describe('Filter component', () => {
     expect(getByText('Matching')).toBeTruthy();
   });
   it('Should render with add button', () => {
-    const onChangeLogic = jest.fn();
-    const onChangeOrder = jest.fn();
-    const onChangeStepMatching = jest.fn();
-    const onDuplicateStep = jest.fn();
-    const onDeleteStep = jest.fn();
-    const onChangeStepName = jest.fn();
-    const onChangeMatching = jest.fn();
-    const onAdd = jest.fn();
+    const onChangeLogic = vi.fn();
+    const onChangeOrder = vi.fn();
+    const onChangeStepMatching = vi.fn();
+    const onDuplicateStep = vi.fn();
+    const onDeleteStep = vi.fn();
+    const onChangeStepName = vi.fn();
+    const onChangeMatching = vi.fn();
+    const onAdd = vi.fn();
     const { getByText } = renderWithProvider(
       <Filter
         expressions={[]}
@@ -92,13 +92,13 @@ describe('Filter component', () => {
   });
 
   it('Should render with expression with footer and content', () => {
-    const onChangeLogic = jest.fn();
-    const onChangeOrder = jest.fn();
-    const onChangeStepMatching = jest.fn();
-    const onDuplicateStep = jest.fn();
-    const onDeleteStep = jest.fn();
-    const onChangeStepName = jest.fn();
-    const handleChangeMatching = jest.fn();
+    const onChangeLogic = vi.fn();
+    const onChangeOrder = vi.fn();
+    const onChangeStepMatching = vi.fn();
+    const onDuplicateStep = vi.fn();
+    const onDeleteStep = vi.fn();
+    const onChangeStepName = vi.fn();
+    const handleChangeMatching = vi.fn();
     const { getByText } = renderWithProvider(
       <Filter
         expressions={[DEFAULT_EXPRESSION]}
@@ -123,13 +123,13 @@ describe('Filter component', () => {
   });
 
   it('Should render with expression with right side slot', () => {
-    const onChangeLogic = jest.fn();
-    const onChangeOrder = jest.fn();
-    const onChangeStepMatching = jest.fn();
-    const onDuplicateStep = jest.fn();
-    const onDeleteStep = jest.fn();
-    const onChangeStepName = jest.fn();
-    const handleChangeMatching = jest.fn();
+    const onChangeLogic = vi.fn();
+    const onChangeOrder = vi.fn();
+    const onChangeStepMatching = vi.fn();
+    const onDuplicateStep = vi.fn();
+    const onDeleteStep = vi.fn();
+    const onChangeStepName = vi.fn();
+    const handleChangeMatching = vi.fn();
     renderWithProvider(
       <Filter
         expressions={[DEFAULT_EXPRESSION]}

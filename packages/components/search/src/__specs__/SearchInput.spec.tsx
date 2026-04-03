@@ -11,11 +11,11 @@ describe('SearchInput component', () => {
   const INPUT_VALUE = 'input value';
 
   it('should render', () => {
-    const onChange = jest.fn();
-    const onClear = jest.fn();
-    const onKeyDown = jest.fn();
-    const onClick = jest.fn();
-    const onToggle = jest.fn();
+    const onChange = vi.fn();
+    const onClear = vi.fn();
+    const onKeyDown = vi.fn();
+    const onClick = vi.fn();
+    const onToggle = vi.fn();
 
     renderWithProvider(
       <SearchInput
@@ -34,11 +34,11 @@ describe('SearchInput component', () => {
   });
 
   it('should set value', () => {
-    const onChange = jest.fn();
-    const onClear = jest.fn();
-    const onKeyDown = jest.fn();
-    const onClick = jest.fn();
-    const onToggle = jest.fn();
+    const onChange = vi.fn();
+    const onClear = vi.fn();
+    const onKeyDown = vi.fn();
+    const onClick = vi.fn();
+    const onToggle = vi.fn();
 
     renderWithProvider(
       <SearchInput
@@ -64,11 +64,11 @@ describe('SearchInput component', () => {
   });
 
   it('should have onToggle callback', async () => {
-    const onChange = jest.fn();
-    const onClear = jest.fn();
-    const onKeyDown = jest.fn();
-    const onClick = jest.fn();
-    const onToggle = jest.fn();
+    const onChange = vi.fn();
+    const onClear = vi.fn();
+    const onKeyDown = vi.fn();
+    const onClick = vi.fn();
+    const onToggle = vi.fn();
 
     renderWithProvider(
       <SearchInput
@@ -95,11 +95,11 @@ describe('SearchInput component', () => {
   });
 
   it('should have onClick callback', () => {
-    const onChange = jest.fn();
-    const onClear = jest.fn();
-    const onKeyDown = jest.fn();
-    const onClick = jest.fn();
-    const onToggle = jest.fn();
+    const onChange = vi.fn();
+    const onClear = vi.fn();
+    const onKeyDown = vi.fn();
+    const onClick = vi.fn();
+    const onToggle = vi.fn();
 
     renderWithProvider(
       <SearchInput
@@ -122,11 +122,11 @@ describe('SearchInput component', () => {
   });
 
   it('should have onClear callback', () => {
-    const onChange = jest.fn();
-    const onClear = jest.fn();
-    const onKeyDown = jest.fn();
-    const onClick = jest.fn();
-    const onToggle = jest.fn();
+    const onChange = vi.fn();
+    const onClear = vi.fn();
+    const onKeyDown = vi.fn();
+    const onClick = vi.fn();
+    const onToggle = vi.fn();
 
     renderWithProvider(
       <SearchInput
@@ -152,11 +152,11 @@ describe('SearchInput component', () => {
   });
 
   it('should close when clicked outside', () => {
-    const onChange = jest.fn();
-    const onClear = jest.fn();
-    const onKeyDown = jest.fn();
-    const onClick = jest.fn();
-    const onToggle = jest.fn();
+    const onChange = vi.fn();
+    const onClear = vi.fn();
+    const onKeyDown = vi.fn();
+    const onClick = vi.fn();
+    const onToggle = vi.fn();
 
     renderWithProvider(
       <div>

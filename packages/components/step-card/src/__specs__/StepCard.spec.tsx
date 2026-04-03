@@ -20,10 +20,10 @@ const STEP_CARD_NAME = 'funnel';
 
 describe('StepCard', () => {
   it('Should render as matching with footer, name and content', () => {
-    const handleChangeMatching = jest.fn();
-    const handleChangeName = jest.fn();
-    const handleDuplicate = jest.fn();
-    const handleDelete = jest.fn();
+    const handleChangeMatching = vi.fn();
+    const handleChangeName = vi.fn();
+    const handleDuplicate = vi.fn();
+    const handleDelete = vi.fn();
     renderWithProvider(
       <StepCard
         matching={true}
@@ -44,10 +44,10 @@ describe('StepCard', () => {
     expect(screen.getByText(CONTENT)).toBeInTheDocument();
   });
   it('Should render with header right side slot', () => {
-    const handleChangeMatching = jest.fn();
-    const handleChangeName = jest.fn();
-    const handleDuplicate = jest.fn();
-    const handleDelete = jest.fn();
+    const handleChangeMatching = vi.fn();
+    const handleChangeName = vi.fn();
+    const handleDuplicate = vi.fn();
+    const handleDelete = vi.fn();
     renderWithProvider(
       <StepCard
         matching={true}
@@ -65,10 +65,10 @@ describe('StepCard', () => {
     expect(screen.getAllByText(HEADER_RIGHT_SIDE_CONTENT)).toHaveLength(2);
   });
   it('Should call duplicate callback', () => {
-    const handleChangeMatching = jest.fn();
-    const handleChangeName = jest.fn();
-    const handleDuplicate = jest.fn();
-    const handleDelete = jest.fn();
+    const handleChangeMatching = vi.fn();
+    const handleChangeName = vi.fn();
+    const handleDuplicate = vi.fn();
+    const handleDelete = vi.fn();
     const { container } = renderWithProvider(
       <StepCard
         matching={true}
@@ -90,10 +90,10 @@ describe('StepCard', () => {
   });
 
   it('Should call delete callback', () => {
-    const handleChangeMatching = jest.fn();
-    const handleChangeName = jest.fn();
-    const handleDuplicate = jest.fn();
-    const handleDelete = jest.fn();
+    const handleChangeMatching = vi.fn();
+    const handleChangeName = vi.fn();
+    const handleDuplicate = vi.fn();
+    const handleDelete = vi.fn();
     const { container } = renderWithProvider(
       <StepCard
         matching={true}
@@ -114,11 +114,11 @@ describe('StepCard', () => {
     expect(handleDelete).toBeCalled();
   });
   it('Should render move arrow cruds', async () => {
-    const handleChangeMatching = jest.fn();
-    const handleChangeName = jest.fn();
-    const handleDuplicate = jest.fn();
-    const handleDelete = jest.fn();
-    const handleMove = jest.fn();
+    const handleChangeMatching = vi.fn();
+    const handleChangeName = vi.fn();
+    const handleDuplicate = vi.fn();
+    const handleDelete = vi.fn();
+    const handleMove = vi.fn();
     const { container } = renderWithProvider(
       <StepCard
         matching={true}
@@ -145,11 +145,11 @@ describe('StepCard', () => {
 
   });
   it('Should call move callback', async () => {
-    const handleChangeMatching = jest.fn();
-    const handleChangeName = jest.fn();
-    const handleDuplicate = jest.fn();
-    const handleDelete = jest.fn();
-    const handleMove = jest.fn();
+    const handleChangeMatching = vi.fn();
+    const handleChangeName = vi.fn();
+    const handleDuplicate = vi.fn();
+    const handleDelete = vi.fn();
+    const handleMove = vi.fn();
     const { container } = renderWithProvider(
       <StepCard
         matching={true}
@@ -179,11 +179,11 @@ describe('StepCard', () => {
 
 
   it('Should not call move callback if moveup is clicked on first expression', async () => {
-    const handleChangeMatching = jest.fn();
-    const handleChangeName = jest.fn();
-    const handleDuplicate = jest.fn();
-    const handleDelete = jest.fn();
-    const handleMove = jest.fn();
+    const handleChangeMatching = vi.fn();
+    const handleChangeName = vi.fn();
+    const handleDuplicate = vi.fn();
+    const handleDelete = vi.fn();
+    const handleMove = vi.fn();
     const { container } = renderWithProvider(
       <StepCard
         matching={true}
@@ -213,11 +213,11 @@ describe('StepCard', () => {
 
 
   it('Should not call move callback if movedown is clicked on last expression', async () => {
-    const handleChangeMatching = jest.fn();
-    const handleChangeName = jest.fn();
-    const handleDuplicate = jest.fn();
-    const handleDelete = jest.fn();
-    const handleMove = jest.fn();
+    const handleChangeMatching = vi.fn();
+    const handleChangeName = vi.fn();
+    const handleDuplicate = vi.fn();
+    const handleDelete = vi.fn();
+    const handleMove = vi.fn();
     const { container } = renderWithProvider(
       <StepCard
         matching={true}
@@ -246,10 +246,10 @@ describe('StepCard', () => {
   });
 
   it('Should call changeMatching callback', () => {
-    const handleChangeMatching = jest.fn();
-    const handleChangeName = jest.fn();
-    const handleDuplicate = jest.fn();
-    const handleDelete = jest.fn();
+    const handleChangeMatching = vi.fn();
+    const handleChangeName = vi.fn();
+    const handleDuplicate = vi.fn();
+    const handleDelete = vi.fn();
     renderWithProvider(
       <StepCard
         matching={true}

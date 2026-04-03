@@ -20,7 +20,7 @@ describe('Status', () => {
 
   it('should onClick fire', () => {
     // ARRANGE
-    const onClick = jest.fn();
+    const onClick = vi.fn();
     const { getByText } = renderWithProvider(
       <Status
         type="primary"

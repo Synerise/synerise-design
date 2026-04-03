@@ -5,13 +5,13 @@ import { renderWithProvider } from '@synerise/ds-core';
 import focusWithArrowKeys from '../focusWithArrowKeys';
 
 describe('focusWithArrowKeys', () => {
-  const fallback = jest.fn();
-  const onFirstElementFocus = jest.fn();
-  const onSecondElementFocus = jest.fn();
-  const onFirstElementBlur = jest.fn();
-  const onSecondElementBlur = jest.fn();
-  const onFirstElementClick = jest.fn();
-  const onSecondElementClick = jest.fn();
+  const fallback = vi.fn();
+  const onFirstElementFocus = vi.fn();
+  const onSecondElementFocus = vi.fn();
+  const onFirstElementBlur = vi.fn();
+  const onSecondElementBlur = vi.fn();
+  const onFirstElementClick = vi.fn();
+  const onSecondElementClick = vi.fn();
   const wrapperWithSimpleChildren = (
     <div data-testid='wrapper' onKeyDown={event => focusWithArrowKeys(event, 'focusable', fallback)}>
       <button

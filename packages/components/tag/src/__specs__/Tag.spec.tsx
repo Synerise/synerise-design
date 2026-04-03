@@ -10,8 +10,8 @@ describe('Tag', () => {
   const TAG_TESTID = 'tag';
   const REMOVE_BUTTON_TESTID = 'remove-btn';
 
-  const onClick = jest.fn();
-  const onRemove = jest.fn();
+  const onClick = vi.fn();
+  const onRemove = vi.fn();
 
   it('should render', () => {
     renderWithProvider(<Tag shape={TagShape.DEFAULT_ROUND} name={TAGNAME} />);

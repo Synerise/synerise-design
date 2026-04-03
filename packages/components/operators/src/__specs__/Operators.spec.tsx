@@ -76,7 +76,7 @@ describe('Operators component', () => {
 
   // moved to chromatic test
   test.skip('should call onActivate', async () => {
-    const handleActivate = jest.fn();
+    const handleActivate = vi.fn();
     renderWithProvider(RENDER_OPERATORS({ onActivate: handleActivate }));
 
     userEvent.click(screen.getByText(OPERATORS_TEXTS.buttonLabel));
@@ -86,8 +86,8 @@ describe('Operators component', () => {
 
   // moved to chromatic test
   test.skip('should call onDeactivate', async () => {
-    const handleDeactivate = jest.fn();
-    const handleActivate = jest.fn();
+    const handleDeactivate = vi.fn();
+    const handleActivate = vi.fn();
     const OTHER_ELEMENT = 'OTHER_ELEMENT';
     renderWithProvider(
       <>

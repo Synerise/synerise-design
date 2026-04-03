@@ -8,7 +8,7 @@ import SearchBar from './../SearchBar';
 describe('SearchBar', () => {
   const PLACEHOLDER = 'placeholder';
   const INPUT_VALUE = 'input value';
-  const onChange = jest.fn();
+  const onChange = vi.fn();
 
   it('should render', () => {
     const { getByPlaceholderText } = renderWithProvider(

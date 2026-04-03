@@ -31,7 +31,7 @@ describe('Subtle Textarea', () => {
     expect(screen.queryByText(LABEL)).not.toBeInTheDocument();
   });
   it('should call onChange', async () => {
-    const onChange = jest.fn();
+    const onChange = vi.fn();
     const oldValue = 'VALUE';
     const newValue = 'HELLO';
     const { getByDisplayValue, container } = renderWithProvider(

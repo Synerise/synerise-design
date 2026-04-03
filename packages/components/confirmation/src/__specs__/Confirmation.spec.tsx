@@ -89,7 +89,7 @@ describe('Confirmation component', () => {
   });
 
   it('Should trigger onOk on main button click', async () => {
-    const onOk = jest.fn();
+    const onOk = vi.fn();
     renderWithProvider(
       <Confirmation {...PROPS} type="negative" open onOk={onOk} />,
     );
@@ -102,7 +102,7 @@ describe('Confirmation component', () => {
   });
 
   it('Should trigger onCancel on secondary button click', async () => {
-    const onCancel = jest.fn();
+    const onCancel = vi.fn();
     renderWithProvider(
       <Confirmation {...PROPS} type="negative" open onCancel={onCancel} />,
     );

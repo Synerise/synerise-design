@@ -15,7 +15,7 @@ describe('Section message component', () => {
   it('should render with showMoreLabel', () => {
     const description = "Success description";
     const showMoreLabel = "Show more";
-    const onShowMore = jest.fn();
+    const onShowMore = vi.fn();
     renderWithProvider(<SectionMessage type='positive' description={description} showMoreLabel={showMoreLabel} onShowMore={onShowMore}/>);
 
     expect(screen.getByText(description)).toBeTruthy();

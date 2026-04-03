@@ -12,7 +12,7 @@ describe('ListItem', () => {
   });
 
   it('should handle click events', () => {
-    const handleClick = jest.fn();
+    const handleClick = vi.fn();
     renderWithProvider(
       <ListItem onClick={handleClick}>Clickable Item</ListItem>,
     );

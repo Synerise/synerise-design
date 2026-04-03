@@ -46,7 +46,7 @@ describe('Tooltip', () => {
   });
 
   it('should trigger onOpenChange', async () => {
-    const onOpenChange = jest.fn();
+    const onOpenChange = vi.fn();
     renderWithProvider(
       <Tooltip title={TOOLTIP_TITLE} onOpenChange={onOpenChange}>
         <span data-testid={TEST_ID}>Tooltip will show on mouse enter.</span>

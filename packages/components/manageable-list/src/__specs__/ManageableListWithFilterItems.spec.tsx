@@ -47,10 +47,10 @@ const texts = {
 
 describe('ManageableList with filter items', () => {
   it('should render with 2 items', () => {
-    const remove = jest.fn();
-    const edit = jest.fn();
-    const select = jest.fn();
-    const duplicate = jest.fn();
+    const remove = vi.fn();
+    const edit = vi.fn();
+    const select = vi.fn();
+    const duplicate = vi.fn();
     renderWithProvider(
       <ManageableList
         maxToShowItems={5}
@@ -73,10 +73,10 @@ describe('ManageableList with filter items', () => {
   });
 
   it('should render empty list', () => {
-    const remove = jest.fn();
-    const edit = jest.fn();
-    const select = jest.fn();
-    const duplicate = jest.fn();
+    const remove = vi.fn();
+    const edit = vi.fn();
+    const select = vi.fn();
+    const duplicate = vi.fn();
     renderWithProvider(
       <ManageableList
         maxToShowItems={5}
@@ -99,10 +99,10 @@ describe('ManageableList with filter items', () => {
   });
 
   it('should render with selected item', () => {
-    const remove = jest.fn();
-    const edit = jest.fn();
-    const select = jest.fn();
-    const duplicate = jest.fn();
+    const remove = vi.fn();
+    const edit = vi.fn();
+    const select = vi.fn();
+    const duplicate = vi.fn();
     renderWithProvider(
       <ManageableList
         maxToShowItems={5}
@@ -125,10 +125,10 @@ describe('ManageableList with filter items', () => {
   });
 
   it('should render with item with description icon', () => {
-    const remove = jest.fn();
-    const edit = jest.fn();
-    const select = jest.fn();
-    const duplicate = jest.fn();
+    const remove = vi.fn();
+    const edit = vi.fn();
+    const select = vi.fn();
+    const duplicate = vi.fn();
     renderWithProvider(
       <ManageableList
         maxToShowItems={5}

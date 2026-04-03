@@ -8,7 +8,7 @@ import { PasswordInput } from './PasswordInput';
 const TEST_ID = 'password-input';
 
 describe('PasswordInput', () => {
-  const onClick = jest.fn();
+  const onClick = vi.fn();
   it('should render value', () => {
     renderWithProvider(
       <PasswordInput data-testid={TEST_ID}/>,

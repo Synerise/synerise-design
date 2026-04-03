@@ -62,7 +62,7 @@ describe('Information card', () => {
   });
   it.skip('FIXME: default description should be editable', () => {
     const userInput = 'example description provided by the user';
-    const onChange = jest.fn((value) => value);
+    const onChange = vi.fn((value) => value);
     const { container } = renderWithProvider(
       <InformationCard
         title={sampleTitle}

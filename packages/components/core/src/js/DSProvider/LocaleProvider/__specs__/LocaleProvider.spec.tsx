@@ -34,7 +34,7 @@ describe('LocaleProvider', () => {
   });
 
   it('should render key name if translation is missing', function() {
-    const mockedError = jest.fn();
+    const mockedError = vi.fn();
     
     render(
       <LocaleProvider locale="es" messages={messages} onErrorIntl={mockedError}>

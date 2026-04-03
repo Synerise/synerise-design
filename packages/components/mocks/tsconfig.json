@@ -1,8 +1,15 @@
 {
-  "include": ["src", "../../../global.d.ts"],
+  "include": [
+    "src",
+    "../../../global.d.ts"
+  ],
   "exclude": [
-    "src/__specs__/**/*.ts",
-    "src/__specs__/**/*.tsx"
+    "src/**/__specs__/**",
+    "src/**/__spec__/**",
+    "src/**/*.spec.ts",
+    "src/**/*.spec.tsx",
+    "src/**/jest.ts",
+    "src/**/jest.tsx"
   ],
   "extends": "../../../config/typescript/tsconfig.base.json",
   "compilerOptions": {

@@ -149,9 +149,9 @@ describe('VirtualTable', () => {
   });
 
   it('should render filters', () => {
-    const handleShowList = jest.fn();
-    const handleShowFilter = jest.fn();
-    const handleClear = jest.fn();
+    const handleShowList = vi.fn();
+    const handleShowFilter = vi.fn();
+    const handleClear = vi.fn();
     renderWithProvider(
       <VirtualTable
         {...sharedProps}
@@ -234,7 +234,7 @@ describe('VirtualTable', () => {
     });
 
     it('should call onChange callback with updated starred keys after click', () => {
-      const onChangeSpy = jest.fn();
+      const onChangeSpy = vi.fn();
       renderWithProvider(
         <VirtualTable
           {...sharedProps}
@@ -261,7 +261,7 @@ describe('VirtualTable', () => {
 
   describe('row selection', () => {
     it('should render with correct initial rows selected', () => {
-      const handleChangeSelection = jest.fn();
+      const handleChangeSelection = vi.fn();
       renderWithProvider(
         <VirtualTable
           {...sharedProps}
@@ -288,7 +288,7 @@ describe('VirtualTable', () => {
     });
 
     it('should render with correct rows with checkbox rendered', () => {
-      const handleChangeSelection = jest.fn();
+      const handleChangeSelection = vi.fn();
       const allowSelectionForKeys = ['2', '4'];
       renderWithProvider(
         <VirtualTable
@@ -310,7 +310,7 @@ describe('VirtualTable', () => {
     });
 
     it('should render with correct rows with checkbox disabled', () => {
-      const handleChangeSelection = jest.fn();
+      const handleChangeSelection = vi.fn();
       const disabledSelectionForKeys = ['2', '4'];
       renderWithProvider(
         <VirtualTable
@@ -335,7 +335,7 @@ describe('VirtualTable', () => {
     });
 
     it('Should render with unchecked and disabled row selection checkbox', () => {
-      const handleChangeSelection = jest.fn();
+      const handleChangeSelection = vi.fn();
       renderWithProvider(
         <VirtualTable
           {...sharedProps}
@@ -355,7 +355,7 @@ describe('VirtualTable', () => {
     });
 
     it('should call onChange selection callback with updated selection keys after click (selectAll)', () => {
-      const handleChangeSelection = jest.fn();
+      const handleChangeSelection = vi.fn();
       const allKeys = props.dataSource.map((item) => item.key);
       renderWithProvider(
         <VirtualTable
@@ -377,7 +377,7 @@ describe('VirtualTable', () => {
     });
 
     it('should call onChange selection callback with updated selection keys (unselectAll)', () => {
-      const handleChangeSelection = jest.fn();
+      const handleChangeSelection = vi.fn();
       const allKeys = props.dataSource.map((item) => item.key);
       renderWithProvider(
         <VirtualTable
@@ -399,7 +399,7 @@ describe('VirtualTable', () => {
     });
 
     it('should call onChange selection callback with updated selection keys when filtered subset is passed', () => {
-      const handleChangeSelection = jest.fn();
+      const handleChangeSelection = vi.fn();
       const { dataSource, columns } = props;
       const dataSourceSubset = dataSource.slice(0, 2);
       const expectedKeys = ['4', ...dataSourceSubset.map((item) => item.key)];
@@ -432,7 +432,7 @@ describe('VirtualTable', () => {
     });
 
     it('should call onChange selection callback with updated selection keys when filtered subset is NOT passed', () => {
-      const handleChangeSelection = jest.fn();
+      const handleChangeSelection = vi.fn();
       const { dataSource, columns } = props;
       const dataSourceSubset = dataSource.slice(0, 2);
       const expectedKeys = dataSourceSubset.map((item) => item.key);

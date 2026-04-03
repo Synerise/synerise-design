@@ -10,13 +10,13 @@ const CUSTOM_OPTIONS = [
 
 describe('Logic component', () => {
   it('Should render', () => {
-    const onChange = jest.fn();
+    const onChange = vi.fn();
     const { getByText } = renderWithProvider(<Logic onChange={onChange} value={'AND'} options={CUSTOM_OPTIONS} />);
 
     expect(getByText('AND')).toBeTruthy();
   });
   it('Should change value', () => {
-    const onChange = jest.fn();
+    const onChange = vi.fn();
     const { container } = renderWithProvider(<Logic onChange={onChange} value={'AND'} options={CUSTOM_OPTIONS} />);
     const trigger = container.querySelector('.ds-logic');
 

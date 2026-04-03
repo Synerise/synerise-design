@@ -33,8 +33,8 @@ describe('FormatPicker', () => {
     expect(screen.getByText('Format 0')).toBeTruthy();
   });
   test('change currency type and set default',async () => {
-    const onChange = jest.fn();
-    const onSetDefault = jest.fn();
+    const onChange = vi.fn();
+    const onSetDefault = vi.fn();
 
     renderWithProvider(
       <FormatPicker

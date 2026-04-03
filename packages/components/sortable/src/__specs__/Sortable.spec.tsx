@@ -26,7 +26,7 @@ const ItemComponent = (props: ItemProps) => {
 
 describe('Sortable', () => {
   it('should render', () => {
-    const handleChange = jest.fn();
+    const handleChange = vi.fn();
     renderWithProvider(<Sortable onOrderChange={handleChange} items={ITEMS} ItemComponent={ItemComponent} />);
 
     expect(screen.getAllByTestId('sortable-item')).toHaveLength(ITEMS.length);

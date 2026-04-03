@@ -30,7 +30,7 @@ describe('Alert component', () => {
     const msg = "Success!";
     const description = "Success description";
     const showMoreLabel = "Show more";
-    const onShowMore = jest.fn();
+    const onShowMore = vi.fn();
     const { getByText } = renderWithProvider(<Alert message={msg} description={description} showMoreLabel={showMoreLabel} onShowMore={onShowMore} type="success"/>);
 
     // ASSERT
@@ -44,7 +44,7 @@ describe('Alert component', () => {
     const msg = "Success!";
     const description = "Success description";
     const showMoreLabel = "Show more";
-    const onShowMore = jest.fn();
+    const onShowMore = vi.fn();
     const { getByText } = renderWithProvider(<Alert message={msg} description={description} showMoreLabel={showMoreLabel} onShowMore={onShowMore} type="success"/>);
 
     // ACT

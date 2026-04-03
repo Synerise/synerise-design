@@ -16,13 +16,13 @@ afterEach(() => {
 
 describe('ItemsRoll', () => {
   it('renders with default', async () => {
-    const onSearch = jest.fn();
-    const onSearchClear = jest.fn();
-    const onClearAll = jest.fn();
-    const onChangeSelection = jest.fn();
+    const onSearch = vi.fn();
+    const onSearchClear = vi.fn();
+    const onClearAll = vi.fn();
+    const onChangeSelection = vi.fn();
 
-    const onItemClick = jest.fn();
-    const onItemRemove = jest.fn();
+    const onItemClick = vi.fn();
+    const onItemRemove = vi.fn();
 
     const props = propsFactory({
       actions: ACTIONS,
@@ -89,9 +89,9 @@ describe('ItemsRoll', () => {
   });
 
   it('renders without change selection when onChangeSelection is NOT provided', () => {
-    const onSearch = jest.fn();
-    const onSearchClear = jest.fn();
-    const onClearAll = jest.fn();
+    const onSearch = vi.fn();
+    const onSearchClear = vi.fn();
+    const onClearAll = vi.fn();
 
     const props = propsFactory({
       onSearch,
@@ -105,9 +105,9 @@ describe('ItemsRoll', () => {
   });
 
   it('renders without actions menu', () => {
-    const onSearch = jest.fn();
-    const onSearchClear = jest.fn();
-    const onClearAll = jest.fn();
+    const onSearch = vi.fn();
+    const onSearchClear = vi.fn();
+    const onClearAll = vi.fn();
 
     const props = propsFactory({
       onSearch,
@@ -123,9 +123,9 @@ describe('ItemsRoll', () => {
   });
 
   it('renders without footer', () => {
-    const onSearch = jest.fn();
-    const onSearchClear = jest.fn();
-    const onClearAll = jest.fn();
+    const onSearch = vi.fn();
+    const onSearchClear = vi.fn();
+    const onClearAll = vi.fn();
 
     const props = propsFactory({
       onSearch,
@@ -139,10 +139,10 @@ describe('ItemsRoll', () => {
   });
 
   it('renders with custom texts', async () => {
-    const onSearch = jest.fn();
-    const onSearchClear = jest.fn();
-    const onClearAll = jest.fn();
-    const onChangeSelection = jest.fn();
+    const onSearch = vi.fn();
+    const onSearchClear = vi.fn();
+    const onClearAll = vi.fn();
+    const onChangeSelection = vi.fn();
 
     const props = propsFactory({
       onSearch,
@@ -162,10 +162,10 @@ describe('ItemsRoll', () => {
   });
 
   it('renders with grouped list', async () => {
-    const onSearch = jest.fn();
-    const onSearchClear = jest.fn();
-    const onClearAll = jest.fn();
-    const onChangeSelection = jest.fn();
+    const onSearch = vi.fn();
+    const onSearchClear = vi.fn();
+    const onClearAll = vi.fn();
+    const onChangeSelection = vi.fn();
     const groups = ['Params', 'Attributes'];
 
     const props = propsFactory(
@@ -187,10 +187,10 @@ describe('ItemsRoll', () => {
   });
 
   it('fire onSearch', () => {
-    const onSearch = jest.fn();
-    const onSearchClear = jest.fn();
-    const onClearAll = jest.fn();
-    const onChangeSelection = jest.fn();
+    const onSearch = vi.fn();
+    const onSearchClear = vi.fn();
+    const onClearAll = vi.fn();
+    const onChangeSelection = vi.fn();
 
     const props = propsFactory({
       actions: ACTIONS,
@@ -214,10 +214,10 @@ describe('ItemsRoll', () => {
   });
 
   it('render Input with Value', () => {
-    const onSearch = jest.fn();
-    const onSearchClear = jest.fn();
-    const onClearAll = jest.fn();
-    const onChangeSelection = jest.fn();
+    const onSearch = vi.fn();
+    const onSearchClear = vi.fn();
+    const onClearAll = vi.fn();
+    const onChangeSelection = vi.fn();
 
     const props = propsFactory(
       {
@@ -241,10 +241,10 @@ describe('ItemsRoll', () => {
   });
 
   it('fire onClearAll', async () => {
-    const onSearch = jest.fn();
-    const onSearchClear = jest.fn();
-    const onClearAll = jest.fn();
-    const onChangeSelection = jest.fn();
+    const onSearch = vi.fn();
+    const onSearchClear = vi.fn();
+    const onClearAll = vi.fn();
+    const onChangeSelection = vi.fn();
     const YES_LABEL = 'YES_LABEL'
 
     const props = propsFactory({
@@ -267,10 +267,10 @@ describe('ItemsRoll', () => {
   });
 
   it('fire onChangeSelection', async () => {
-    const onSearch = jest.fn();
-    const onSearchClear = jest.fn();
-    const onClearAll = jest.fn();
-    const onChangeSelection = jest.fn();
+    const onSearch = vi.fn();
+    const onSearchClear = vi.fn();
+    const onClearAll = vi.fn();
+    const onChangeSelection = vi.fn();
 
     const props = propsFactory({
       onSearch,
@@ -291,10 +291,10 @@ describe('ItemsRoll', () => {
   });
 
   it('renders with No results', async () => {
-    const onSearch = jest.fn();
-    const onSearchClear = jest.fn();
-    const onClearAll = jest.fn();
-    const onChangeSelection = jest.fn();
+    const onSearch = vi.fn();
+    const onSearchClear = vi.fn();
+    const onClearAll = vi.fn();
+    const onChangeSelection = vi.fn();
 
     const props = propsFactory({
       onSearch,
@@ -309,10 +309,10 @@ describe('ItemsRoll', () => {
   });
 
   it('renders with provided show more / less button', async () => {
-    const onSearch = jest.fn();
-    const onSearchClear = jest.fn();
-    const onClearAll = jest.fn();
-    const onChangeSelection = jest.fn();
+    const onSearch = vi.fn();
+    const onSearchClear = vi.fn();
+    const onClearAll = vi.fn();
+    const onChangeSelection = vi.fn();
 
     const MAX_ITEMS_TO_SHOW = 22;
     const SHOW_MORE_STEP = 33;
@@ -335,10 +335,10 @@ describe('ItemsRoll', () => {
   });
 
   it('renders with calculated show more button', async () => {
-    const onSearch = jest.fn();
-    const onSearchClear = jest.fn();
-    const onClearAll = jest.fn();
-    const onChangeSelection = jest.fn();
+    const onSearch = vi.fn();
+    const onSearchClear = vi.fn();
+    const onClearAll = vi.fn();
+    const onChangeSelection = vi.fn();
 
     const SHOW_MORE_STEP = 200;
 
@@ -359,11 +359,11 @@ describe('ItemsRoll', () => {
 
   it('renders withChangeSelectionDropdown', async () => {
     const CHANGE_SELECTION_BTN = 'Change selection';
-    const onOpenChange = jest.fn();
-    const onSearch = jest.fn();
-    const onSearchClear = jest.fn();
-    const onClearAll = jest.fn();
-    const onChangeSelection = jest.fn();
+    const onOpenChange = vi.fn();
+    const onSearch = vi.fn();
+    const onSearchClear = vi.fn();
+    const onClearAll = vi.fn();
+    const onChangeSelection = vi.fn();
     const changeSelectionDropdownProps = {
       overlay: <div>Overlay content</div>,
       trigger: ['click' as const],
@@ -390,10 +390,10 @@ describe('ItemsRoll', () => {
   });
 
   it('renders with custom counter', async () => {
-    const onSearch = jest.fn();
-    const onSearchClear = jest.fn();
-    const onClearAll = jest.fn();
-    const onChangeSelection = jest.fn();
+    const onSearch = vi.fn();
+    const onSearchClear = vi.fn();
+    const onClearAll = vi.fn();
+    const onChangeSelection = vi.fn();
     const CUSTOM_COUNTER = 'custom counter';
     const renderCount = (count: number) => <>{`${CUSTOM_COUNTER}-${count}`}</>;
 
@@ -411,10 +411,10 @@ describe('ItemsRoll', () => {
     ).toBeInTheDocument();
   });
   it('does not render clear / remove buttons if isDisabled prop is true', async () => {
-    const onSearch = jest.fn();
-    const onSearchClear = jest.fn();
-    const onClearAll = jest.fn();
-    const onChangeSelection = jest.fn();
+    const onSearch = vi.fn();
+    const onSearchClear = vi.fn();
+    const onClearAll = vi.fn();
+    const onChangeSelection = vi.fn();
 
     const props = propsFactory({
       onSearch,

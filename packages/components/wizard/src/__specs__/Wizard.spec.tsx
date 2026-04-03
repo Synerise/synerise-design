@@ -16,7 +16,7 @@ const CONTENT = 'Content';
 
 describe('Wizard component', () => {
   it('should render with title', () => {
-    const handleClose = jest.fn();
+    const handleClose = vi.fn();
     renderWithProvider(
       <Wizard title={TITLE} visible={true} onClose={handleClose} />,
     );
@@ -25,7 +25,7 @@ describe('Wizard component', () => {
   });
 
   it('should render footer', () => {
-    const handleClose = jest.fn();
+    const handleClose = vi.fn();
     renderWithProvider(
       <Wizard
         title={TITLE}
@@ -39,7 +39,7 @@ describe('Wizard component', () => {
   });
 
   it('should render header action', () => {
-    const handleClose = jest.fn();
+    const handleClose = vi.fn();
     renderWithProvider(
       <Wizard
         title={TITLE}
@@ -53,7 +53,7 @@ describe('Wizard component', () => {
   });
 
   it('should render stepper', () => {
-    const handleClose = jest.fn();
+    const handleClose = vi.fn();
     renderWithProvider(
       <Wizard
         title={TITLE}
@@ -67,7 +67,7 @@ describe('Wizard component', () => {
   });
 
   it('should render content', () => {
-    const handleClose = jest.fn();
+    const handleClose = vi.fn();
     renderWithProvider(
       <Wizard title={TITLE} visible={true} onClose={handleClose}>
         {CONTENT}
@@ -78,7 +78,7 @@ describe('Wizard component', () => {
   });
 
   it('should not render prev and next step buttons', () => {
-    const handleClose = jest.fn();
+    const handleClose = vi.fn();
     renderWithProvider(
       <Wizard
         title={TITLE}
@@ -93,9 +93,9 @@ describe('Wizard component', () => {
   });
 
   it('should render prev step button with custom props', async () => {
-    const handleClose = jest.fn();
-    const handleNextStep = jest.fn();
-    const handlePrevStep = jest.fn();
+    const handleClose = vi.fn();
+    const handleNextStep = vi.fn();
+    const handlePrevStep = vi.fn();
     renderWithProvider(
       <Wizard
         title={TITLE}
@@ -121,9 +121,9 @@ describe('Wizard component', () => {
   });
 
   it('should render next step button with custom props', async () => {
-    const handleClose = jest.fn();
-    const handleNextStep = jest.fn();
-    const handlePrevStep = jest.fn();
+    const handleClose = vi.fn();
+    const handleNextStep = vi.fn();
+    const handlePrevStep = vi.fn();
     renderWithProvider(
       <Wizard
         title={TITLE}
@@ -149,7 +149,7 @@ describe('Wizard component', () => {
   });
 
   it('should call handleClose callback', () => {
-    const handleClose = jest.fn();
+    const handleClose = vi.fn();
     renderWithProvider(
       <Wizard title={TITLE} visible={true} onClose={handleClose} />,
     );
@@ -160,9 +160,9 @@ describe('Wizard component', () => {
   });
 
   it('should call handlePrevStep and handleNextStep callback', () => {
-    const handleClose = jest.fn();
-    const handleNextStep = jest.fn();
-    const handlePrevStep = jest.fn();
+    const handleClose = vi.fn();
+    const handleNextStep = vi.fn();
+    const handlePrevStep = vi.fn();
     renderWithProvider(
       <Wizard
         title={TITLE}

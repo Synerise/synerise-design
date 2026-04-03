@@ -7,7 +7,7 @@ import { Resizer } from '../Resizer';
 
 describe('Resizer Component', () => {
   it('should call onMouseDown when the handler is clicked', () => {
-    const onMouseDown = jest.fn();
+    const onMouseDown = vi.fn();
     renderWithProvider(<Resizer onMouseDown={onMouseDown} />);
 
     fireEvent.mouseDown(screen.getByTestId('resizer-handler'));

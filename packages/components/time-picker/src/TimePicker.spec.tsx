@@ -18,7 +18,7 @@ describe('TimePicker', () => {
   const OVERLAY_CONTAINER_TESTID = 'tp-overlay-container';
 
   beforeEach(() => {
-    Element.prototype.scrollTo = jest.fn();
+    Element.prototype.scrollTo = vi.fn();
   });
 
   it('should render without any props', () => {
@@ -180,7 +180,7 @@ describe('TimePicker', () => {
   it.todo('should display clear button for partially selected time');
   it.todo('should have default value of undefined');
   it('in 12 hour mode meridiem indicator should not change when minutes change', async () => {
-    const handleChange = jest.fn();
+    const handleChange = vi.fn();
     const getLastCallParams = () =>
       handleChange.mock.calls[handleChange.mock.calls.length - 1];
     const date = dayjs('12-04-2020 00:00:00', 'DD-MM-YYYY HH:mm:ss').toDate();
