@@ -41,6 +41,7 @@ export const Toast = ({
         <S.AlertDescription
           expandedContent={!!expandedContent}
           button={!!button}
+          toastType={type}
         >
           {description}
         </S.AlertDescription>
@@ -87,6 +88,7 @@ export const Toast = ({
             noToastContent={!hasToastContent}
             hasClose={!!withClose}
             hasExpander={!!expander}
+            toastType={type}
           >
             {message}
           </S.AlertMessage>
