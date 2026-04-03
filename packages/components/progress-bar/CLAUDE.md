@@ -48,7 +48,7 @@ Overlapping (stacked) or side-by-side multi-value bar.
 
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
-| `values` | `ProgressValue[]` | — | **Required.** Each entry has `{ percent: number; color: string; tooltip?: ReactNode; tooltipProps?: TooltipProps }`. Percent clamped to 0–100. Each bar is wrapped in a `Tooltip` from `@synerise/ds-tooltip`. |
+| `values` | `ProgressValue[]` | — | **Required.** Each entry has `{ percent: number; color: string; onClick?: (event: MouseEvent) => void; tooltip?: ReactNode; tooltipProps?: TooltipProps }`. Percent clamped to 0–100. Each bar is wrapped in a `Tooltip` from `@synerise/ds-tooltip`. |
 | `stackedBars` | `boolean` | `true` | When `true`, bars are layered on top of each other (sorted descending by percent, largest first). When `false`, bars are placed side-by-side with 2px gaps. |
 
 All standard `HTMLDivElement` attributes accepted.
@@ -72,7 +72,7 @@ All standard `HTMLDivElement` attributes accepted.
 |------|-------------|
 | `ProgressProps` | Props for `ProgressBar` |
 | `MultivalueProps` | Props for `Multivalue` |
-| `ProgressValue` | `{ percent: number; color: string; tooltip?: ReactNode; tooltipProps?: TooltipProps }` |
+| `ProgressValue` | `{ percent: number; color: string; onClick?: (event: MouseEvent) => void; tooltip?: ReactNode; tooltipProps?: TooltipProps }` |
 | `ProgressTilesProps` | Props for `ProgressTiles` |
 
 ## Usage patterns
@@ -148,7 +148,7 @@ All styles in `*.styles.ts` files. Use `theme.palette` tokens for backgrounds; `
 - **`inline` mode suppresses `description`** — when `inline` is `true`, the label content is shown to the right of the bar (or `${percent}%` if no label), and `description` is never rendered even if provided.
 - **Label vs percent in non-inline mode** — both `label` and `${percent}%` are always shown in the `LabelWrapper` when `label` is truthy and `!inline`. There is no way to show only the percent without a label in this mode.
 - **`containerStyles` deprecated** — use the standard `style` prop instead. `containerStyles` is still accepted but JSDoc-marked `@deprecated`.
-- **`Multivalue` stacked sorting mutates the `values` array** — `values.sort(...)` is called inside `useMemo` without a prior `.slice()`. If the array is passed as a literal this is harmless, but passing a state array will silently mutate it.
+- **`Multivalue` stacked sorting** — values are spread (`[...values]`) before sorting to avoid mutating the original array.
 - **`getTilesConfig` in `ProgressTiles` is wrapped in `useCallback` but called directly** — `useCallback` provides no benefit here since the function is invoked immediately in render, not passed as a callback.
 - **Spec uses non-existent `showLabel` prop** — `ProgressBar.spec.tsx` passes `showLabel={false}` which is not in `ProgressProps`; it is silently ignored via `...rest` spread.
 - **No tests for `Multivalue` or `ProgressTiles`**.

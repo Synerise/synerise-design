@@ -1,0 +1,174 @@
+import { Meta, Canvas } from '@storybook/addon-docs/blocks';
+import ProgressBar from '@synerise/ds-progress-bar';
+import ProgressBarMeta, { Default, withLabelAndDescription, InlineCustomLabel, withSteps, thinProgressBar } from './ProgressBar.stories';
+import { MultivalueBar, MultiValueWithTooltips, MultivalueBarNotStacked } from './Multivalue.stories';
+import { WithProgressTiles } from './ProgressTiles.stories';
+
+<Meta component={ProgressBar} of={ProgressBarMeta} />
+
+# ProgressBar
+
+Three progress bar variants for visualising completion, distribution, and segmented data: a single-value segmented bar (`ProgressBar`), a multi-value stacked or side-by-side bar (`Multivalue`), and a colour-coded tile bar (`ProgressTiles`).
+
+## Table of contents
+
+- [Quick overview](#quick-overview)
+- [Basic example](#basic-example)
+- [With label and description](#with-label-and-description)
+- [Inline mode](#inline-mode)
+- [Segmented steps](#segmented-steps)
+- [Thin variant](#thin-variant)
+- [Multivalue — stacked](#multivalue--stacked)
+- [Multivalue — side by side with tooltips](#multivalue--side-by-side-with-tooltips)
+- [ProgressTiles](#progresstiles)
+- [API reference](#api-reference)
+  - [ProgressBar](#progressbar-1)
+  - [Multivalue](#multivalue)
+  - [ProgressValue](#progressvalue)
+  - [ProgressTiles](#progresstiles-1)
+  - [Exported types](#exported-types)
+- [Notes & tips](#notes--tips)
+
+## Quick overview
+
+- Import `ProgressBar` (default), `Multivalue`, or `ProgressTiles` from `@synerise/ds-progress-bar`
+- `ProgressBar` displays a single percentage, optionally split into `steps` segments
+- `Multivalue` renders multiple colour-coded bars — stacked (overlapping) by default, or side-by-side with `stackedBars={false}`
+- `ProgressTiles` renders fixed-width colour tiles with proportional fill
+- All variants accept standard `HTMLDivElement` attributes via `WithHTMLAttributes`
+
+## Basic example
+
+<Canvas of={Default} sourceState="shown" />
+
+## With label and description
+
+Use `label` to show text above the bar and `description` for helper text below. In non-inline mode, the current `percent` is shown alongside the label automatically.
+
+<Canvas of={withLabelAndDescription} sourceState="shown" />
+
+## Inline mode
+
+Set `inline` to render the label (or percent value) to the right of the bar. Note: `description` is suppressed in inline mode.
+
+<Canvas of={InlineCustomLabel} />
+
+## Segmented steps
+
+Split the bar into discrete segments with the `steps` prop. Each segment fills proportionally based on the `percent` value.
+
+<Canvas of={withSteps} />
+
+## Thin variant
+
+Use `thin` for a 4px height bar instead of the default 6px.
+
+<Canvas of={thinProgressBar} />
+
+## Multivalue — stacked
+
+By default, `Multivalue` layers bars on top of each other, sorted largest-first. Each bar is wrapped in a `Tooltip`.
+
+<Canvas of={MultivalueBar} sourceState="shown" />
+
+## Multivalue — side by side with tooltips
+
+Set `stackedBars={false}` to place bars next to each other with 2px gaps. Each value can have an optional `tooltip` and `onClick` handler.
+
+<Canvas of={MultiValueWithTooltips} />
+
+## ProgressTiles
+
+Fixed-width colour tiles with proportional fill. The number of tiles is determined by the `colors` array length.
+
+<Canvas of={WithProgressTiles} sourceState="shown" />
+
+## API reference
+
+### `ProgressBar`
+
+Single-value progress bar, optionally segmented.
+
+<table>
+  <thead>
+    <tr><th>Prop</th><th>Type</th><th>Default</th><th>Description</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>percent</td><td>number</td><td>50</td><td>Fill percentage (0–100)</td></tr>
+    <tr><td>steps</td><td>number</td><td>1</td><td>Number of segments to split the bar into</td></tr>
+    <tr><td>width</td><td>string</td><td>'100%'</td><td>CSS width of each segment tile</td></tr>
+    <tr><td>customColor</td><td>string</td><td>''</td><td>Bar fill colour (falls back to green-500 token)</td></tr>
+    <tr><td>thin</td><td>boolean</td><td>false</td><td>4px height instead of 6px</td></tr>
+    <tr><td>inline</td><td>boolean</td><td>false</td><td>Renders label/percent to the right of the bar, suppresses description</td></tr>
+    <tr><td>label</td><td>ReactNode</td><td>—</td><td>Text above the bar (or beside it in inline mode)</td></tr>
+    <tr><td>description</td><td>ReactNode</td><td>—</td><td>Text below the bar (hidden in inline mode)</td></tr>
+    <tr><td>containerStyles</td><td>CSSProperties</td><td>—</td><td><strong>@deprecated</strong> — use style prop instead</td></tr>
+  </tbody>
+</table>
+
+### `Multivalue`
+
+Multi-value stacked or side-by-side bar.
+
+<table>
+  <thead>
+    <tr><th>Prop</th><th>Type</th><th>Default</th><th>Description</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>values</td><td>{'ProgressValue[]'}</td><td>—</td><td><strong>Required.</strong> Array of bar definitions</td></tr>
+    <tr><td>stackedBars</td><td>boolean</td><td>true</td><td>true = overlapping bars (largest first), false = side-by-side with gaps</td></tr>
+  </tbody>
+</table>
+
+### `ProgressValue`
+
+Shape of each entry in the `values` array.
+
+<table>
+  <thead>
+    <tr><th>Prop</th><th>Type</th><th>Default</th><th>Description</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>percent</td><td>number</td><td>—</td><td><strong>Required.</strong> Fill percentage (0–100)</td></tr>
+    <tr><td>color</td><td>string</td><td>—</td><td><strong>Required.</strong> CSS colour string</td></tr>
+    <tr><td>onClick</td><td>{'(event: MouseEvent) => void'}</td><td>—</td><td>Click handler for the bar segment</td></tr>
+    <tr><td>tooltip</td><td>ReactNode</td><td>—</td><td>Content shown in a Tooltip on hover</td></tr>
+    <tr><td>tooltipProps</td><td>TooltipProps</td><td>—</td><td>Additional props passed to the Tooltip wrapper</td></tr>
+  </tbody>
+</table>
+
+### `ProgressTiles`
+
+Fixed-width colour tiles with proportional fill.
+
+<table>
+  <thead>
+    <tr><th>Prop</th><th>Type</th><th>Default</th><th>Description</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>tileWidth</td><td>string</td><td>—</td><td><strong>Required.</strong> CSS width of each tile (e.g. '24px')</td></tr>
+    <tr><td>colors</td><td>{'string[]'}</td><td>—</td><td><strong>Required.</strong> Array of CSS colour strings; determines number of tiles</td></tr>
+    <tr><td>percent</td><td>number</td><td>—</td><td><strong>Required.</strong> Fill percentage (0–100)</td></tr>
+    <tr><td>label</td><td>ReactNode</td><td>—</td><td>Optional label above the tiles</td></tr>
+  </tbody>
+</table>
+
+### Exported types
+
+<table>
+  <thead>
+    <tr><th>Type</th><th>Description</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>ProgressProps</td><td>Props for ProgressBar</td></tr>
+    <tr><td>MultivalueProps</td><td>Props for Multivalue</td></tr>
+    <tr><td>ProgressValue</td><td>{'Shape of each bar in Multivalue.values'}</td></tr>
+    <tr><td>ProgressTilesProps</td><td>Props for ProgressTiles</td></tr>
+  </tbody>
+</table>
+
+## Notes & tips
+
+- **`inline` suppresses `description`** — even if you pass a `description` prop, it won't render when `inline` is `true`.
+- **Percent is clamped** — `Multivalue` clamps each bar's percent to 0–100 via `normalizePercent`.
+- **Segment fill algorithm** — both `ProgressBar` and `ProgressTiles` share the same fill logic: `tileWidthRatio = 100 / steps`, then each tile is filled proportionally.
