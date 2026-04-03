@@ -14,13 +14,16 @@ register(StyleDictionary);
 StyleDictionary.registerTransform({
   name: 'name/ds-kebab',
   type: 'name',
-  transform: (token) => `ds-${token.path.join('-')}`,
+  transform: (token) =>
+    `ds-${token.path.map((s) => s.replace(/\s+/g, '-').toLowerCase()).join('-')}`,
 });
 
-// Filter: only color tokens
+// 'boxShadow' is the Token Studio type; 'shadow' is what sd-transforms normalizes it to
+const INCLUDED_TYPES = new Set(['color', 'boxShadow', 'shadow', 'opacity']);
+
 StyleDictionary.registerFilter({
-  name: 'isColor',
-  filter: (token) => token.$type === 'color' || token.type === 'color',
+  name: 'includedTypes',
+  filter: (token) => INCLUDED_TYPES.has(token.$type) || INCLUDED_TYPES.has(token.type),
 });
 
 // Shared base token sets that all themes need for reference resolution
@@ -62,7 +65,7 @@ for (const [themeName, cfg] of Object.entries(themes)) {
           {
             destination: `${themeName}.css`,
             format: 'css/variables',
-            filter: 'isColor',
+            filter: 'includedTypes',
             options: {
               selector: cfg.selector,
               outputReferences: true,

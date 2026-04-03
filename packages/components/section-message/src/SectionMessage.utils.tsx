@@ -25,7 +25,7 @@ export const getColorBorder = (type: SectionType): string =>
   `var(--ds-section-message-variant-${TYPE_TO_TOKEN_VARIANT[type]}-border)`;
 
 export const getColorBorderTop = (type: SectionType): string =>
-  `var(--ds-section-message-variant-${TYPE_TO_TOKEN_VARIANT[type]}-borderTop)`;
+  `var(--ds-section-message-variant-${TYPE_TO_TOKEN_VARIANT[type]}-bordertop)`;
 
 export const getColorTextHeader = (type: SectionType): string =>
   `var(--ds-section-message-variant-${TYPE_TO_TOKEN_VARIANT[type]}-text-header)`;
