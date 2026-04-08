@@ -229,4 +229,7 @@ const DSTable = <T extends object>(props: DSTableProps<T>) => {
 DSTable.SELECTION_ALL = SELECTION_ALL;
 DSTable.SELECTION_INVERT = SELECTION_INVERT;
 
-export default DSTable;
+export default DSTable as typeof DSTable & {
+  readonly SELECTION_ALL: typeof SELECTION_ALL;
+  readonly SELECTION_INVERT: typeof SELECTION_INVERT;
+};
