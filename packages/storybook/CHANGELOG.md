@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.42.0](https://github.com/Synerise/synerise-design/compare/storybook@1.41.3...storybook@1.42.0) (2026-04-10)
+
+### Features
+
+- **progress-bar:** add onClick to Multivalue bars, fix border-radius with Tooltip wrappers ([9cf9f86](https://github.com/Synerise/synerise-design/commit/9cf9f86597bbf04a8ba8a42703fc6fc65065ccd1))
+- **table-new:** initial commit ([a524cb9](https://github.com/Synerise/synerise-design/commit/a524cb9cfa464921edb9531ccf002dcc25a3b105))
+
 ## [1.41.3](https://github.com/Synerise/synerise-design/compare/storybook@1.41.2...storybook@1.41.3) (2026-04-03)
 
 **Note:** Version bump only for package storybook

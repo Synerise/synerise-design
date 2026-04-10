@@ -3,6 +3,16 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.10.0](https://github.com/synerise/synerise-design/compare/@synerise/ds-table@1.9.14...@synerise/ds-table@1.10.0) (2026-04-10)
+
+### Bug Fixes
+
+- **table:** types regression ([61762f1](https://github.com/synerise/synerise-design/commit/61762f1c6c2451200730249e6edeb2b7fa75e1e4))
+
+### Features
+
+- **table-new:** initial commit ([a524cb9](https://github.com/synerise/synerise-design/commit/a524cb9cfa464921edb9531ccf002dcc25a3b105))
+
 ## [1.9.14](https://github.com/synerise/synerise-design/compare/@synerise/ds-table@1.9.13...@synerise/ds-table@1.9.14) (2026-04-03)
 
 **Note:** Version bump only for package @synerise/ds-table

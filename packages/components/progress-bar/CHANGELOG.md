@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.3.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-progress-bar@1.2.2...@synerise/ds-progress-bar@1.3.0) (2026-04-10)
+
+### Features
+
+- **progress-bar:** add onClick to Multivalue bars, fix border-radius with Tooltip wrappers ([9cf9f86](https://github.com/Synerise/synerise-design/commit/9cf9f86597bbf04a8ba8a42703fc6fc65065ccd1))
+
 ## [1.2.2](https://github.com/Synerise/synerise-design/compare/@synerise/ds-progress-bar@1.2.1...@synerise/ds-progress-bar@1.2.2) (2026-04-01)
 
 **Note:** Version bump only for package @synerise/ds-progress-bar
