@@ -16,7 +16,6 @@ const useResizeObserver = (
       const runHandler = () => {
         const { contentRect } = entries[0];
         setDimensions(contentRect);
-        resizeHandler && resizeHandler(contentRect);
       };
       if ('requestAnimationFrame' in window) {
         window.requestAnimationFrame(runHandler);
@@ -34,6 +33,10 @@ const useResizeObserver = (
   const disconnect = useCallback(() => {
     resizeObserver.disconnect();
   }, [resizeObserver]);
+
+  useEffect(() => {
+    resizeHandler && resizeHandler(dimensions);
+  }, [dimensions, resizeHandler]);
 
   useEffect(() => {
     if (elementRef.current) {

@@ -203,7 +203,7 @@ const AutosizeInput = forwardRef<AutosizeInputRefType, AutosizeInputProps>(
           {usedValue}
         </div>
         {children}
-        {placeholder ? (
+        {placeholder && (
           <div
             ref={placeholderSizerRef}
             style={sizerStyle}
@@ -211,7 +211,7 @@ const AutosizeInput = forwardRef<AutosizeInputRefType, AutosizeInputProps>(
           >
             {placeholder}
           </div>
-        ) : null}
+        )}
       </div>
     );
   },

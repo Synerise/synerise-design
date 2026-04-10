@@ -1,0 +1,75 @@
+{
+  "name": "@synerise/ds-table-new",
+  "version": "0.0.1",
+  "description": "TableNew UI Component for the Synerise Design System",
+  "license": "ISC",
+  "repository": "Synerise/synerise-design",
+  "main": "dist/index.js",
+  "files": [
+    "/dist",
+    "CHANGELOG.md",
+    "README.md",
+    "package.json",
+    "LICENSE.md"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "scripts": {
+    "build": "vite build",
+    "build:watch": "vite build --watch",
+    "defs": "tsc --declaration --outDir dist/ --emitDeclarationOnly",
+    "prepublish": "pnpm run build",
+    "types": "tsc --noEmit",
+    "pack:ci": "pnpm pack --pack-destination ../../storybook/storybook-static/static",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "check:circular-dependencies": "madge --circular --extensions ts,tsx,js,jsx --ts-config tsconfig.json src/ --exclude '/dist/'",
+    "upgrade:ds": "ncu -f \"@synerise/ds-*\" -u"
+  },
+  "sideEffects": [
+    "dist/style/*",
+    "*.less"
+  ],
+  "types": "dist/index.d.ts",
+  "dependencies": {
+    "@synerise/ds-badge": "workspace:^",
+    "@synerise/ds-button": "workspace:^",
+    "@synerise/ds-icon": "workspace:^",
+    "@synerise/ds-copy-icon": "workspace:^",
+    "@synerise/ds-result": "workspace:^",
+    "@synerise/ds-tooltip": "workspace:^",
+    "@synerise/ds-skeleton": "workspace:^",
+    "@synerise/ds-scrollbar": "workspace:^",
+    "@synerise/ds-dropdown": "workspace:^",
+    "@synerise/ds-pagination": "workspace:^",
+    "@synerise/ds-utils": "workspace:^",
+    "@synerise/ds-tag": "workspace:^",
+    "@synerise/ds-flag": "workspace:^",
+    "@synerise/ds-input": "workspace:^",
+    "@synerise/ds-input-number": "workspace:^",
+    "@synerise/ds-tags": "workspace:^",
+    "@synerise/ds-table": "workspace:^",
+    "@synerise/ds-search": "workspace:^",
+    "@synerise/ds-modal": "workspace:^",
+    "@synerise/ds-loader": "workspace:^",
+    "@synerise/ds-checkbox": "workspace:^",
+    "@synerise/ds-inline-alert": "workspace:^",
+    "@synerise/ds-typography": "workspace:^",
+    "@floating-ui/react": "^0.27.16",
+    "@tanstack/react-table": "^8.21.3",
+    "@tanstack/react-virtual": "^3.13.12",
+    "unit-to-px": "^1.0.5",
+    "uuid": "^10.0.0"
+  },
+  "devDependencies": {
+    "vitest": "4"
+  },
+  "peerDependencies": {
+    "@synerise/ds-core": "*",
+    "antd": "^4.24.16",
+    "react": ">=16.9.0 <= 18.3.1",
+    "react-intl": ">= 3.12.0 <= 6.8",
+    "styled-components": "^5.3.3"
+  }
+}

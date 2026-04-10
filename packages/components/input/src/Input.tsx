@@ -222,6 +222,7 @@ export const Input = forwardRef<HTMLDivElement, InputProps>(
         onAutosize={onAutosize}
         value={antdInputProps.value}
         autoResize={!!autoResize}
+        placeholder={antdInputProps.placeholder}
       >
         <S.AntdInput
           autoResize={autoResize}

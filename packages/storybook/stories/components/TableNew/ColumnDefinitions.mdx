@@ -1,0 +1,251 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+
+<Meta title="Components/TableNew/Column Definitions" />
+
+# Column Definitions
+
+Columns in `Table` and `VirtualTable` are defined using TanStack's `ColumnDef` type, extended with custom `meta` fields for design system features.
+
+- **`accessorKey`** — property path on the row data to extract as the cell value.
+- **`header`** — column header text or render function.
+- **`cell`** — cell render function. Receives `CellContext` with `getValue()`, `row`, `column`, and `table`.
+- **`size`** — column width in pixels.
+- **`meta`** — design system extensions (sorting UI, pinning, tooltips, etc). See below.
+
+For migrating from the old table, use `legacyColumnConfigAdapter` to convert legacy column configs.
+
+## TanStack column definition
+
+```tsx
+import { type ColumnDef } from '@synerise/ds-table-new';
+
+const columns: ColumnDef<MyData, unknown>[] = [
+  {
+    accessorKey: 'name',
+    header: 'User name',
+    cell: (info) => <strong>{info.getValue()}</strong>,
+  },
+];
+```
+
+## Meta fields
+
+Custom fields on `meta` that extend TanStack's `ColumnMeta`:
+
+### Sizing
+
+- **`minWidth`** `number | string` — minimum column width. Column cannot shrink below this.
+- **`maxWidth`** `number | string` — maximum column width. Column cannot grow beyond this.
+- **`width`** `number | string` — fixed column width.
+
+### Pinning
+
+- **`fixed`** `'left' | 'right'` — pins the column to the left or right edge during horizontal scroll.
+
+### Styling
+
+- **`style`** `CSSProperties` — custom CSS applied to the column cells.
+
+### Sorting
+
+- **`sortRender`** `'string' | 'default'` — controls sort button style. `'string'` renders A-Z/Z-A buttons, `'default'` renders ascending/descending arrows.
+- **`sortOrder`** `'ascend' | 'descend' | null` — pre-sets the column's initial sort state.
+- **`enableMultiSort`** `boolean` — allows this column to participate in multi-column sorting.
+- **`renderCustomSortButton`** `(headerContext: HeaderContext) => ReactNode` — replaces the default sort button with a custom renderer.
+
+### Expanded rows
+
+- **`childCell`** `ColumnDefTemplate` — alternative cell renderer used for expanded/child rows instead of the regular `cell`.
+
+### Loading
+
+- **`skeletonCell`** `() => ReactNode` — renders a loading skeleton placeholder when `isLoading` is true.
+
+### Tooltips
+
+- **`getCellTooltipProps`** `(row: TData) => TooltipProps | false` — wraps the cell content in a Tooltip. Return `false` to skip.
+
+### Legacy compatibility
+
+- **`dataIndex`** `string` — maps to a data attribute on the cell element.
+- **`title`** `string` — maps to a data attribute on the cell element.
+
+## Sorting
+
+Sorting is configured on the TanStack column definition level, not on `meta`:
+
+```tsx
+{
+  accessorKey: 'name',
+  header: 'Name',
+  // Simple comparator
+  sortingFn: (rowA, rowB) =>
+    rowA.original.name.localeCompare(rowB.original.name),
+  // Sort UI style
+  meta: { sortRender: 'string' },
+}
+```
+
+To enable multi-column sorting, set `enableMultiSort: true` on the column def and `meta.enableMultiSort: true`:
+
+```tsx
+{
+  accessorKey: 'name',
+  header: 'Name',
+  enableMultiSort: true,
+  sortingFn: (rowA, rowB) =>
+    rowA.original.name.localeCompare(rowB.original.name),
+  meta: {
+    sortRender: 'string',
+    enableMultiSort: true,
+  },
+}
+```
+
+Set `enableSorting: false` to make a column non-sortable.
+
+## Fixed (pinned) columns
+
+Pin a column to the left or right edge so it stays visible during horizontal scroll:
+
+```tsx
+{
+  accessorKey: 'name',
+  header: 'Name',
+  enablePinning: true,
+  meta: { fixed: 'left' },
+}
+```
+
+## Custom cell rendering
+
+Use the `cell` property to render custom content. The `TableCell` namespace provides pre-built cell components:
+
+```tsx
+import { TableCell } from '@synerise/ds-table-new';
+
+{
+  accessorKey: 'name',
+  header: 'Name',
+  cell: (info) => (
+    <TableCell.IconLabelCell
+      label={info.getValue()}
+      icon={{ component: <UserM /> }}
+    />
+  ),
+}
+```
+
+### Available cell components
+
+- **`ActionCell`** — flex container for action buttons
+- **`AvatarLabelCell`** — avatar with title and optional labels
+- **`CopyableCell`** — value with copy-to-clipboard
+- **`EditableCell`** — inline text editing
+- **`FlagLabelCell`** — country flag with label
+- **`IconLabelCell`** — icon with label
+- **`IconTooltipCell`** — icon with label and tooltip icon
+- **`InputNumberCell`** — numeric input
+- **`LabelsWithShowMore`** — shows N labels, rest in a modal
+- **`StarCell`** — star/favorite toggle
+- **`StatusLabelCell`** — status badge with label
+- **`TagIconCell`** — tag with icon
+- **`TagsGroupCell`** — group of tags
+
+## Expanded rows with `childCell`
+
+When using `expandable`, define `childCell` in meta to render a different cell for child rows:
+
+```tsx
+{
+  accessorKey: 'name',
+  header: 'Name',
+  cell: (info) => <TableCell.IconLabelCell label={info.getValue()} />,
+  meta: {
+    childCell: (info) => (
+      <TableCell.IconLabelCell
+        label={`Sub-item: ${info.getValue()}`}
+      />
+    ),
+  },
+}
+```
+
+## Legacy column adapter
+
+Use `legacyColumnConfigAdapter` to convert old table column configs:
+
+```tsx
+import { legacyColumnConfigAdapter } from '@synerise/ds-table-new';
+
+const columns = legacyColumnConfigAdapter([
+  {
+    title: 'Name',
+    dataIndex: 'name',
+    key: 'name',
+    minWidth: 200,
+    sorter: (a, b) => a.name.localeCompare(b.name),
+    sortRender: 'string',
+    render: (name, record) => (
+      <TableCell.IconLabelCell label={name} disabled={record.inactive} />
+    ),
+  },
+]);
+```
+
+The adapter maps legacy fields as follows:
+
+- `dataIndex` to `accessorKey`
+- `title` to `header`
+- `render` to `cell`
+- `sorter` to `sortingFn` / `enableSorting` / `enableMultiSort`
+- `width` to `meta.width`
+- `minWidth` to `meta.minWidth` 
+- `maxWidth` to `meta.maxWidth` 
+- `sortRender` (string) to `meta.sortRender`
+- `sortRender` (function) to `meta.renderCustomSortButton`
+- `fixed` to `meta.fixed` + `enablePinning`
+- `childRender` to `meta.childCell`
+
+## Full example
+
+```tsx
+import { type ColumnDef, TableCell } from '@synerise/ds-table-new';
+
+const columns: ColumnDef<MyData, unknown>[] = [
+  {
+    accessorKey: 'name',
+    header: 'Name',
+    size: 250,
+    sortingFn: (rowA, rowB) =>
+      rowA.original.name.localeCompare(rowB.original.name),
+    cell: (info) => (
+      <TableCell.IconLabelCell label={info.getValue() as string} />
+    ),
+    meta: {
+      sortRender: 'string',
+      fixed: 'left',
+      getCellTooltipProps: (row) =>
+        row.inactive ? { title: 'Inactive user' } : false,
+      childCell: (info) => (
+        <TableCell.IconLabelCell
+          label={`Child: ${info.getValue()}`}
+        />
+      ),
+    },
+    enablePinning: true,
+  },
+  {
+    accessorKey: 'status',
+    header: 'Status',
+    size: 120,
+    enableSorting: false,
+    cell: (info) => (
+      <TableCell.StatusLabelCell
+        status={info.getValue() as string}
+        label={info.getValue() as string}
+      />
+    ),
+  },
+];
+```

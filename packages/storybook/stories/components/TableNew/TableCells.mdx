@@ -1,0 +1,179 @@
+import { Meta, ArgTypes, Controls, Canvas } from '@storybook/addon-docs/blocks';
+
+import * as ActionCellStories from './Cells/ActionCell.stories';
+import * as AvatarLabelCellStories from './Cells/AvatarLabelCell.stories';
+import * as CopyableCellStories from './Cells/CopyableCell.stories';
+import * as EditableCellStories from './Cells/EditableCell.stories';
+import * as FlagLabelCellStories from './Cells/FlagLabelCell.stories';
+import * as IconLabelCellStories from './Cells/IconLabelCell.stories';
+import * as IconTooltipCellStories from './Cells/IconTooltipCell.stories';
+import * as InputNumberCellStories from './Cells/InputNumberCell.stories';
+import * as LabelsWithShowMoreStories from './Cells/LabelsWithShowMore.stories';
+import * as StarCellStories from './Cells/StarCell.stories';
+import * as StatusLabelCellStories from './Cells/StatusLabelCell.stories';
+import * as TagIconCellStories from './Cells/TagIconCell.stories';
+import * as TagsGroupCellStories from './Cells/TagsGroupCell.stories';
+
+<Meta title="Components/TableNew/Table Cells" />
+
+# Table Cells
+
+`@synerise/ds-table-new` exports pre-built cell components for rendering common content patterns inside table columns. Import each cell directly by name.
+
+- [ActionCell](#actioncell) — flex container for action buttons
+- [AvatarLabelCell](#avatarlabelcell) — avatar with title and labels
+- [CopyableCell](#copyablecell) — text with copy-to-clipboard
+- [EditableCell](#editablecell) — inline editable text
+- [FlagLabelCell](#flaglabelcell) — country flag with label
+- [IconLabelCell](#iconlabelcell) — icon with text label
+- [IconTooltipCell](#icontooltipcell) — icon, label, and tooltip
+- [InputNumberCell](#inputnumbercell) — numeric input
+- [LabelsWithShowMore](#labelswithshowmore) — labels with "+N more" modal
+- [StarCell](#starcell) — star/favorite toggle
+- [StatusLabelCell](#statuslabelcell) — status badge with label
+- [TagIconCell](#tagiconcell) — tag with icon
+- [TagsGroupCell](#tagsgroupcell) — group of tags
+
+```tsx
+import { IconLabelCell, type ColumnDef } from '@synerise/ds-table-new';
+
+const columns: ColumnDef<MyData, unknown>[] = [
+  {
+    accessorKey: 'name',
+    header: 'Name',
+    cell: (info) => (
+      <IconLabelCell label={info.getValue() as string} />
+    ),
+  },
+];
+```
+
+---
+
+## ActionCell
+
+Flex container for action buttons (edit, delete, view, etc.).
+
+<ArgTypes of={ActionCellStories} />
+
+<Canvas of={ActionCellStories.Default} sourceState="shown" />
+
+---
+
+## AvatarLabelCell
+
+Displays a user avatar with title text, optional metadata labels, icon, and loading state.
+
+<ArgTypes of={AvatarLabelCellStories} />
+
+<Canvas of={AvatarLabelCellStories.Default} sourceState="shown" />
+
+---
+
+## CopyableCell
+
+Displays a text value with a copy-to-clipboard button that appears on hover.
+
+<ArgTypes of={CopyableCellStories} />
+
+<Canvas of={CopyableCellStories.Default} sourceState="shown" />
+
+---
+
+## EditableCell
+
+Inline-editable text field — toggles between display and edit mode on click.
+
+<ArgTypes of={EditableCellStories} />
+
+<Canvas of={EditableCellStories.Default} sourceState="shown" />
+
+---
+
+## FlagLabelCell
+
+Displays a country flag icon with a text label.
+
+<ArgTypes of={FlagLabelCellStories} />
+
+<Canvas of={FlagLabelCellStories.Default} sourceState="shown" />
+
+---
+
+## IconLabelCell
+
+Icon with an optional text label — the most common cell type for simple data display.
+
+<ArgTypes of={IconLabelCellStories} />
+
+<Canvas of={IconLabelCellStories.Default} sourceState="shown" />
+
+---
+
+## IconTooltipCell
+
+Icon with label and an additional tooltip-triggering icon.
+
+<ArgTypes of={IconTooltipCellStories} />
+
+<Canvas of={IconTooltipCellStories.Default} sourceState="shown" />
+
+---
+
+## InputNumberCell
+
+Numeric input field for editable number values.
+
+<ArgTypes of={InputNumberCellStories} />
+
+<Canvas of={InputNumberCellStories.Default} sourceState="shown" />
+
+---
+
+## LabelsWithShowMore
+
+Renders a fixed number of visible labels, with a "+N more" trigger that opens a searchable modal for the full list.
+
+<ArgTypes of={LabelsWithShowMoreStories} />
+
+<Canvas of={LabelsWithShowMoreStories.Default} sourceState="shown" />
+
+---
+
+## StarCell
+
+Toggleable star/favorite icon with content.
+
+<ArgTypes of={StarCellStories} />
+
+<Canvas of={StarCellStories.Default} sourceState="shown" />
+
+---
+
+## StatusLabelCell
+
+Status badge (colored dot) with a text label.
+
+<ArgTypes of={StatusLabelCellStories} />
+
+<Canvas of={StatusLabelCellStories.Default} sourceState="shown" />
+
+---
+
+## TagIconCell
+
+Simple wrapper that arranges tag/icon children in a flex row.
+
+<ArgTypes of={TagIconCellStories} />
+
+<Canvas of={TagIconCellStories.Default} sourceState="shown" />
+
+---
+
+## TagsGroupCell
+
+Displays a group of tags with loading, error, and empty states.
+
+<ArgTypes of={TagsGroupCellStories} />
+
+<Canvas of={TagsGroupCellStories.Default} sourceState="shown" />

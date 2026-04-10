@@ -1,9 +1,7 @@
 import React, { useRef, useState } from 'react';
 
 import { faker } from '@faker-js/faker';
-import type { Meta, StoryObj } from '@storybook/react-webpack5';
-
-
+import type { Meta, StoryObj } from '@storybook/react-vite';
 import Card from '@synerise/ds-card';
 import Grid from '@synerise/ds-grid';
 import Layout, { LayoutProps, Page } from '@synerise/ds-layout';

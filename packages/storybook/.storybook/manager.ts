@@ -53,6 +53,6 @@ addons.setConfig({
         mdx: true,
       },
     },
-    ...defaultConfig,
+    ...defaultConfig.filter((config) => config.tags !== 'new'),
   ] satisfies TagBadgeParameters,
 });
