@@ -1,0 +1,180 @@
+import { Meta, Canvas } from '@storybook/addon-docs/blocks';
+import {
+  WithSelection,
+  WithLimitedSelection,
+  WithGlobalSelection,
+} from './NonVirtual/Table.stories';
+
+<Meta title="Components/TableNew/Selection" />
+
+# Selection
+
+Row selection is enabled by passing `selectionConfig` to `Table` or `VirtualTable`. When provided, a checkbox column is automatically prepended to the table.
+
+- **`onChange`** — required callback fired with selected row keys and row data.
+- **`selections`** — dropdown menu items for batch actions (select all, invert, custom).
+- **`limit`** — maximum number of selectable rows.
+- **`globalSelectionOnChange` / `globalSelected`** — cross-page "select all" for paginated or infinite-scroll tables.
+- **`checkRowSelectionStatus`** — disable or hide selection for specific rows.
+- **`getSelectionTooltipProps`** — per-row tooltip on the checkbox (see [Tooltips](?path=/docs/components-tablenew-tooltips--docs)).
+- **`hideSelectAll`** — hides the "Select All" checkbox in the header.
+- **`selectedRowKeys`** — controlled selection state (prop on Table, not on selectionConfig).
+
+## Basic selection
+
+Pass `selectionConfig` with an `onChange` handler and `selections` to enable batch actions in the header dropdown.
+
+```tsx
+import { SELECTION_ALL, SELECTION_INVERT, Table } from '@synerise/ds-table-new';
+
+<Table
+  data={data}
+  columns={columns}
+  selectionConfig={{
+    onChange: (selectedRowKeys, selectedRows) => {
+      console.log(selectedRowKeys, selectedRows);
+    },
+    selections: [SELECTION_ALL, SELECTION_INVERT],
+  }}
+/>
+```
+
+`SELECTION_ALL` renders "Select All" / "Unselect All" options. `SELECTION_INVERT` renders an "Invert selection" option. Both are exported constants from `@synerise/ds-table-new`.
+
+<Canvas of={WithSelection} sourceState="shown" />
+
+## Selection limit
+
+Set `limit` to cap the number of selectable rows. When the limit is reached, unselected row checkboxes become disabled and "Select All" / "Invert" options are hidden from the dropdown.
+
+A warning message appears in the table header when the limit is reached.
+
+```tsx
+<Table
+  data={data}
+  columns={columns}
+  selectionConfig={{
+    limit: 5,
+    onChange: (selectedRowKeys, selectedRows) => {
+      console.log(selectedRowKeys, selectedRows);
+    },
+    selections: [SELECTION_ALL, SELECTION_INVERT],
+  }}
+/>
+```
+
+<Canvas of={WithLimitedSelection} sourceState="shown" />
+
+## Global selection
+
+For paginated or infinite-scroll tables, global selection allows selecting all items across all pages — including rows that haven't been loaded yet.
+
+Enable it by providing `globalSelectionOnChange` and `globalSelected` on `selectionConfig`. When active, all row checkboxes are forced checked and disabled. The header dropdown shows "Select all globally" / "Unselect all globally" options.
+
+Since global selection means "all items, even unloaded ones", the `onChange` callback does **not** receive individual row keys. Use the `globalSelected` flag to determine the state in your batch action handlers.
+
+```tsx
+const [globalAllSelected, setGlobalAllSelected] = useState(false);
+
+<Table
+  data={data}
+  columns={columns}
+  selectionConfig={{
+    globalSelected: globalAllSelected,
+    globalSelectionOnChange: (newState) => {
+      setGlobalAllSelected(newState);
+    },
+    onChange: (selectedRowKeys, selectedRows) => {
+      console.log(selectedRowKeys, selectedRows);
+    },
+    selections: [],
+  }}
+/>
+```
+
+<Canvas of={WithGlobalSelection} sourceState="shown" />
+
+## Disabling selection for specific rows
+
+Use `checkRowSelectionStatus` to conditionally disable or hide the checkbox for individual rows.
+
+The function receives the row data and returns an object with optional `disabled` and `unavailable` flags:
+
+- **`disabled: true`** — checkbox is rendered but grayed out and non-interactive.
+- **`unavailable: true`** — row is excluded from selection entirely.
+
+Both flags also prevent the row from being selected via "Select All".
+
+```tsx
+<Table
+  data={data}
+  columns={columns}
+  selectionConfig={{
+    onChange: handleChange,
+    selections: [SELECTION_ALL, SELECTION_INVERT],
+    checkRowSelectionStatus: (row) => ({
+      disabled: row.status === 'archived',
+      unavailable: row.role === 'system',
+    }),
+  }}
+/>
+```
+
+## Custom selection menu items
+
+In addition to `SELECTION_ALL` and `SELECTION_INVERT`, you can add custom items to the selection dropdown:
+
+```tsx
+<Table
+  data={data}
+  columns={columns}
+  selectionConfig={{
+    onChange: handleChange,
+    selections: [
+      SELECTION_ALL,
+      SELECTION_INVERT,
+      {
+        key: 'select-active',
+        label: 'Select active',
+        onClick: () => {
+          const activeKeys = data
+            .filter((row) => row.active)
+            .map((row) => row.key);
+          setSelectedKeys(activeKeys);
+        },
+      },
+    ],
+  }}
+/>
+```
+
+## Controlled selection with `selectedRowKeys`
+
+Pass `selectedRowKeys` as a prop on `Table` (not inside `selectionConfig`) to control selection state externally. The table syncs its internal state to match.
+
+```tsx
+const [selectedKeys, setSelectedKeys] = useState<string[]>([]);
+
+<Table
+  data={data}
+  columns={columns}
+  selectedRowKeys={selectedKeys}
+  selectionConfig={{
+    onChange: (keys) => setSelectedKeys(keys),
+    selections: [SELECTION_ALL, SELECTION_INVERT],
+  }}
+/>
+```
+
+## SelectionConfig reference
+
+- **`onChange`** `(selectedRowKeys: string[], selectedRows: TData[]) => void` — **required**. Fired when selection changes.
+- **`selections`** `SelectionItem[]` — menu items in the header dropdown. Use `SELECTION_ALL`, `SELECTION_INVERT`, or custom `{ key, label, onClick }` objects.
+- **`limit`** `number` — max selectable rows. Disables batch selection options when set.
+- **`globalSelectionOnChange`** `(selected: boolean) => void` — enables global selection mode. Callback fired when toggled.
+- **`globalSelected`** `boolean` — current global selection state.
+- **`checkRowSelectionStatus`** `(record: TData) => { disabled?: boolean; unavailable?: boolean }` — per-row selection status.
+- **`getSelectionTooltipProps`** `(record: TData) => TooltipProps | false` — per-row tooltip on the checkbox.
+- **`hideSelectAll`** `boolean` — hides the batch select-all checkbox in the header.
+- **`independentSelectionExpandedRows`** `boolean` — when true, expanded row selection is independent from parent.
+- **`fixed`** `boolean` — reserved for pinning the selection column.

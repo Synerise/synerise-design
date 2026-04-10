@@ -27,10 +27,23 @@ export default defineConfig([
       '**/avatar/src/defaultAvatars/',
       '**/core/src/js/DSProvider/ThemeProvider/variables.ts',
       'packages/storybook/',
+      '*.d.ts',
       ...testFiles,
     ],
   },
   {
+    settings: {
+      'import/resolver': {
+        node: {
+          extensions: ['.js', '.jsx', '.ts', '.tsx', '.d.ts'],
+          conditionNames: ['import', 'module', 'default'],
+        },
+        typescript: {
+          alwaysTryTypes: true,
+          project: ['tsconfig.json', 'packages/*/tsconfig.json'],
+        },
+      },
+    },
     rules: {
       '@typescript-eslint/ban-ts-comment': 'warn',
       '@typescript-eslint/no-unsafe-function-type': 'warn',

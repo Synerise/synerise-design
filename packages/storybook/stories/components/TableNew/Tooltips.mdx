@@ -1,0 +1,87 @@
+import { Meta, Canvas } from '@storybook/addon-docs/blocks';
+import { WithTooltips as NonVirtualWithTooltips } from './NonVirtual/Table.stories';
+import { WithTooltips as VirtualWithTooltips } from './Virtual/VirtualTable.stories';
+
+<Meta title="Components/TableNew/Tooltips" />
+
+# Table Tooltips
+
+Both `Table` and `VirtualTable` support three tooltip props that let you conditionally show tooltips on rows, cells, and selection checkboxes.
+
+Each prop is a function that receives the row data and returns either `TooltipProps` (from `@synerise/ds-tooltip`) to show a tooltip, or `false` to skip it.
+
+- **`getRowTooltipProps`** — defined on Table/VirtualTable props. Wraps the entire row in a Tooltip.
+- **`getCellTooltipProps`** — defined on column `meta`. Wraps individual cell content in a Tooltip.
+- **`getSelectionTooltipProps`** — defined on `selectionConfig`. Merges with the default selection checkbox tooltip.
+
+## Row tooltip — `getRowTooltipProps`
+
+Wraps the entire row in a `Tooltip`. Passed directly to `Table` or `VirtualTable`.
+
+```tsx
+<Table
+  data={data}
+  columns={columns}
+  getRowTooltipProps={(row) =>
+    row.disabled ? { title: `${row.name} is disabled` } : false
+  }
+/>
+```
+
+**Signature:** `(row: TData) => TooltipProps | false`
+
+## Cell tooltip — `getCellTooltipProps`
+
+Wraps an individual cell's content in a `Tooltip`. Defined per-column in the column definition's `meta`.
+
+```tsx
+const columns: ColumnDef<MyData, unknown>[] = [
+  {
+    accessorKey: 'name',
+    header: 'Name',
+    meta: {
+      getCellTooltipProps: (row) =>
+        row.unavailable ? { title: `${row.name} is unavailable` } : false,
+    },
+  },
+  {
+    accessorKey: 'address',
+    header: 'Address',
+    meta: {
+      // tooltip on every cell in this column
+      getCellTooltipProps: () => ({ title: 'Address info' }),
+    },
+  },
+];
+```
+
+**Signature:** `(row: TData) => TooltipProps | false`
+
+## Selection tooltip — `getSelectionTooltipProps`
+
+Customizes the tooltip on a row's selection checkbox. Defined inside `selectionConfig`.
+The returned props are merged with the default `selectRowTooltip` text, so you can override or extend it per row.
+
+```tsx
+<Table
+  data={data}
+  columns={columns}
+  selectionConfig={{
+    onChange: handleSelectionChange,
+    getSelectionTooltipProps: (row) =>
+      row.unavailable
+        ? { title: `Cannot select ${row.name} — unavailable` }
+        : false,
+  }}
+/>
+```
+
+**Signature:** `(record: TData) => TooltipProps | false`
+
+## Live example — Non-virtual Table
+
+<Canvas of={NonVirtualWithTooltips} sourceState="shown" />
+
+## Live example — Virtual Table
+
+<Canvas of={VirtualWithTooltips} sourceState="shown" />
