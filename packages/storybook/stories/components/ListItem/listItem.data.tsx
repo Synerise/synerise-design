@@ -52,6 +52,8 @@ export const suffixType = {
   none: 'none',
 } as const;
 
+export const hoverSuffixType = suffixType;
+
 export const prefixType = {
   singleIcon: 'singleIcon',
   twoIcons: 'twoIcons',

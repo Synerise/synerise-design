@@ -42,6 +42,7 @@ export const SuffixWrapper = styled.div<{
   display: flex;
   order: 10;
   justify-content: flex-end;
+  transition: opacity ${TRANSITION_FN};
   ${(props) => (props.visible ? visibleElementStyle() : hiddenElementStyle())};
 `;
 
@@ -234,6 +235,7 @@ export const Wrapper = styled.div<StyledListItemProps>`
             fill: ${props.theme.palette['grey-600']};
           }
           &:hover {
+ 
             ${Inner} {
               background: ${props.theme.palette['grey-050']};
               ${
@@ -265,7 +267,7 @@ export const Wrapper = styled.div<StyledListItemProps>`
               box-shadow: inset 0 0 0 2px ${props.theme.palette['blue-600']};
             }
           }
-
+ 
           &:focus-visible:active,
           &:active {
             ${Inner} {
@@ -286,7 +288,7 @@ export const Wrapper = styled.div<StyledListItemProps>`
           }
         }
     `}
-
+ 
   ${Inner} {
     ${(props) =>
       props.ordered &&
@@ -299,7 +301,7 @@ export const Wrapper = styled.div<StyledListItemProps>`
         }
       `}
     ${baseStyles}
-
+ 
     ${ArrowRight} {
       transition: all ${TRANSITION_FN};
       opacity: ${(props) => (props.disabled ? '1' : '0')};

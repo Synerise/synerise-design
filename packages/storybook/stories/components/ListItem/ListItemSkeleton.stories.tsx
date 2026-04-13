@@ -13,7 +13,7 @@ import {
 export default {
   component: Skeleton,
   title: 'Components/ListItem',
-  tags: ['autodocs'],
+  tags: [],
   decorators: [fixedWrapper200],
   render: (args) => <Skeleton {...args} />,
   parameters: {

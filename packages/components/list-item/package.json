@@ -38,14 +38,16 @@
     "@synerise/ds-popover": "workspace:^",
     "@synerise/ds-tooltip": "workspace:^",
     "@synerise/ds-utils": "workspace:^",
-    "classnames": "^2.5.1",
-    "uuid": "^8.3.2"
+    "classnames": "^2.5.1"
   },
   "peerDependencies": {
     "@synerise/ds-core": "*",
     "copy-to-clipboard": "^3.3.1",
     "react": ">=16.9.0 <= 18.3.1",
-    "styled-components": "^5.3.3",
-    "vitest": "4"
+    "styled-components": "^5.3.3"
+  },
+  "devDependencies": {
+    "@testing-library/react": "^14.0.0",
+    "vitest": "^4.0.0"
   }
 }
