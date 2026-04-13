@@ -1,0 +1,24 @@
+import React from 'react';
+
+import type { PanelProps } from '@synerise/ds-panel';
+
+export type MockPanelProps = PanelProps & {
+  'data-testid'?: string;
+};
+
+export const panelMockFactory = () => ({
+  default: vi.fn(
+    ({ children, className, 'data-testid': dataTestId }: MockPanelProps) => (
+      <div
+        className={`ds-panel ${className || ''}`}
+        data-testid={dataTestId || 'ds-panel'}
+      >
+        {children}
+      </div>
+    ),
+  ),
+});
+
+export const panelMinimalMockFactory = () => ({
+  default: vi.fn(() => null),
+});
