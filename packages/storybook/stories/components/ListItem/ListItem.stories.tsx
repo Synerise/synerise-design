@@ -8,7 +8,10 @@ import Badge from '@synerise/ds-badge';
 import { theme } from '@synerise/ds-core';
 import DSFlag from '@synerise/ds-flag';
 import Icon, { CopyClipboardM, TrashM } from '@synerise/ds-icon';
-import ListItem, { ListItemProps } from '@synerise/ds-list-item';
+import ListItem, {
+  HoverableSuffix,
+  ListItemProps,
+} from '@synerise/ds-list-item';
 import { RawSwitch } from '@synerise/ds-switch';
 import Tag, { TagShape } from '@synerise/ds-tag';
 
@@ -25,6 +28,7 @@ import {
 import {
   LIST_ITEMS,
   StarWithTooltip,
+  hoverSuffixType,
   prefixArgTypes,
   prefixType,
   renderPrefix,
@@ -40,14 +44,42 @@ const renderListItem = (args: ListItemProps) => {
 const renderWithPrefixAndSuffix = ({
   suffixType,
   prefixType,
+  hoverSuffixType,
   ...args
-}: ListItemProps & { prefixType?: string; suffixType?: string }) => {
+}: ListItemProps & {
+  prefixType?: string;
+  suffixType?: string;
+  hoverSuffixType?: string;
+}) => {
   const [isChecked, setChecked] = useState(false);
 
-  const suffixel = args.suffixel || (suffixType && renderSuffix(suffixType));
+  const suffixContent =
+    suffixType && suffixType !== 'none' ? renderSuffix(suffixType) : undefined;
+  const hoverSuffixContent =
+    hoverSuffixType && hoverSuffixType !== 'none'
+      ? renderSuffix(hoverSuffixType)
+      : undefined;
   const prefixel =
     args.prefixel ||
     (prefixType && renderPrefix(prefixType, isChecked, setChecked));
+
+  let suffixel: ListItemProps['suffixel'];
+  if (suffixContent && hoverSuffixContent) {
+    suffixel = (hovered: boolean) => (
+      <HoverableSuffix
+        hovered={hovered}
+        defaultContent={suffixContent}
+        hoverContent={hoverSuffixContent}
+      />
+    );
+  } else if (hoverSuffixContent) {
+    suffixel = (hovered: boolean) => (
+      <HoverableSuffix hovered={hovered} hoverContent={hoverSuffixContent} />
+    );
+  } else {
+    suffixel = suffixContent;
+  }
+
   return renderListItem({
     ...args,
     suffixel,
@@ -62,7 +94,7 @@ const renderWithPrefixAndSuffix = ({
 export default {
   component: ListItem,
   title: 'Components/ListItem',
-  tags: ['autodocs'],
+  tags: [],
   render: renderListItem,
   decorators: [fixedWrapper200],
   argTypes: {
@@ -154,12 +186,32 @@ export default {
 } as Meta<ListItemProps>;
 
 export const LabelOnly: Story = {
+  parameters: {
+    docs: {
+      source: {
+        code: `<ListItem>List Item</ListItem>`,
+      },
+    },
+  },
   args: {
     key: 'list-item-key-1',
     title: 'List Item Title',
   },
 };
 export const withFeatured: Story = {
+  parameters: {
+    docs: {
+      source: {
+        code: `<ListItem
+  featured
+  prefixel={<Icon component={<CopyClipboardM />} />}
+  suffixel={<StarWithTooltip />}
+>
+  List Item
+</ListItem>`,
+      },
+    },
+  },
   args: {
     featured: true,
     prefixel: <Icon component={<CopyClipboardM />} />,
@@ -178,6 +230,13 @@ export const WithoutHover: Story = {
 };
 
 export const WithHighlight: Story = {
+  parameters: {
+    docs: {
+      source: {
+        code: `<ListItem highlight="High">WithHighlight</ListItem>`,
+      },
+    },
+  },
   args: {
     highlight: 'High',
     children: 'WithHighlight',
@@ -185,12 +244,26 @@ export const WithHighlight: Story = {
 };
 
 export const Disabled: Story = {
+  parameters: {
+    docs: {
+      source: {
+        code: `<ListItem disabled>List Item</ListItem>`,
+      },
+    },
+  },
   args: {
     disabled: true,
   },
 };
 
 export const WithParent: Story = {
+  parameters: {
+    docs: {
+      source: {
+        code: `<ListItem parent>List Item</ListItem>`,
+      },
+    },
+  },
   args: {
     parent: true,
   },
@@ -214,6 +287,22 @@ export const WithOrderedList: Story = {
 };
 
 export const WithSelection: Story = {
+  parameters: {
+    docs: {
+      source: {
+        code: `const [checked, setChecked] = useState(false);
+
+<ListItem
+  type={checked ? undefined : 'select'}
+  checked={checked}
+  suffixel={<div>{checked ? '' : 'select'}</div>}
+  onClick={() => setChecked(!checked)}
+>
+  List Item
+</ListItem>`,
+      },
+    },
+  },
   render: (args) => {
     const [{ checked }, updateArgs] = useArgs();
 
@@ -239,6 +328,18 @@ export const WithSelection: Story = {
 
 export const WithCopyable: Story = {
   render: renderListItem,
+  parameters: {
+    docs: {
+      source: {
+        code: `<ListItem
+  copyable={{ copyValue: 'Copy test value', copiedLabel: 'Copied' }}
+  prefixel={<Icon component={<CopyClipboardM />} />}
+>
+  List Item
+</ListItem>`,
+      },
+    },
+  },
   args: {
     prefixel: (
       <Icon color={theme.palette['grey-700']} component={<CopyClipboardM />} />
@@ -252,6 +353,13 @@ export const WithCopyable: Story = {
 
 export const Divider: Story = {
   render: renderListItem,
+  parameters: {
+    docs: {
+      source: {
+        code: `<ListItem type="divider" />`,
+      },
+    },
+  },
   args: {
     type: 'divider',
   },
@@ -297,6 +405,15 @@ export const WithTag: StoryObj<ListItemProps & { tagShape?: TagShape }> = {
 };
 
 export const WithDeletePrefix: Story = {
+  parameters: {
+    docs: {
+      source: {
+        code: `<ListItem type="danger" prefixel={<Icon component={<TrashM />} />}>
+  List Item
+</ListItem>`,
+      },
+    },
+  },
   args: {
     type: 'danger',
     prefixel: <Icon component={<TrashM />} />,
@@ -304,12 +421,28 @@ export const WithDeletePrefix: Story = {
 };
 
 export const WithFlagPrefix: Story = {
+  parameters: {
+    docs: {
+      source: {
+        code: `<ListItem prefixel={<DSFlag country="de" />}>List Item</ListItem>`,
+      },
+    },
+  },
   args: {
     prefixel: <DSFlag country="de" />,
   },
 };
 
 export const WithHoverTooltip: Story = {
+  parameters: {
+    docs: {
+      source: {
+        code: `<ListItem renderHoverTooltip={() => <div>Tooltip content</div>}>
+  List Item
+</ListItem>`,
+      },
+    },
+  },
   args: {
     renderHoverTooltip: () => (
       <S.StyledTooltip>Tooltip content</S.StyledTooltip>
@@ -444,6 +577,18 @@ export const PrefixAndSuffixOnHover: StoryObj<
         'suffixVisibilityTrigger',
       ],
     },
+    docs: {
+      source: {
+        code: `<ListItem
+  prefixel={<Avatar size="small" shape="circle" />}
+  prefixVisibilityTrigger="hover"
+  suffixel={<Icon component={<WarningFillM />} />}
+  suffixVisibilityTrigger="hover"
+>
+  List Item
+</ListItem>`,
+      },
+    },
   },
   argTypes: prefixArgTypes,
   args: {
@@ -455,21 +600,52 @@ export const PrefixAndSuffixOnHover: StoryObj<
   },
 };
 
-export const AllSuffixes: StoryObj<ListItemProps & { suffixType?: string }> = {
+export const AllSuffixes: StoryObj<
+  ListItemProps & { suffixType?: string; hoverSuffixType?: string }
+> = {
   render: renderWithPrefixAndSuffix,
   parameters: {
     controls: {
-      include: ['suffixType', 'suffixVisibilityTrigger', 'disabled'],
+      include: [
+        'suffixType',
+        'suffixVisibilityTrigger',
+        'hoverSuffixType',
+        'disabled',
+      ],
+    },
+    docs: {
+      source: {
+        code: `import ListItem, { HoverableSuffix } from '@synerise/ds-list-item';
+
+<ListItem
+  suffixel={(hovered) => (
+    <HoverableSuffix
+      hovered={hovered}
+      defaultContent={<Icon component={<WarningFillM />} />}
+      hoverContent={<>
+        <Button type="ghost" mode="single-icon"><Icon component={<EditM />} /></Button>
+        <Button type="ghost" mode="single-icon"><Icon component={<TrashM />} /></Button>
+      </>}
+    />
+  )}
+>
+  List Item
+</ListItem>`,
+      },
     },
   },
   argTypes: {
     suffixType: controlFromOptionsArray('select', Object.values(suffixType)),
+    hoverSuffixType: controlFromOptionsArray(
+      'select',
+      Object.values(hoverSuffixType),
+    ),
   },
   args: {
-    suffixType: 'rename,delete',
+    suffixType: 'warning',
+    hoverSuffixType: 'rename,delete',
   },
 };
-
 export const AllPrefixes: StoryObj<ListItemProps & { prefixType?: string }> = {
   render: renderWithPrefixAndSuffix,
   parameters: {

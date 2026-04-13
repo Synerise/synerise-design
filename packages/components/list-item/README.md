@@ -95,3 +95,86 @@ prop passed to onClick and onItemHover handlers
 | key      | item key                    | string                       |
 | item     | clicked / hovered item data | Partial<BasicItemProps>      |
 | domEvent | Event triggered             | `MouseEvent<HTMLDivElement>` |
+
+### HoverableSuffix
+
+A wrapper component that swaps suffix content based on hover state. Use it inside `suffixel` with the `AddonRenderer` pattern to show different content at rest vs on hover.
+
+| Property       | Description                                 | Type        | Default   |
+| -------------- | ------------------------------------------- | ----------- | --------- |
+| hovered        | Whether the parent list item is hovered     | `boolean`   | -         |
+| hoverContent   | Content displayed when hovered              | `ReactNode` | -         |
+| defaultContent | Content displayed at rest (optional)        | `ReactNode` | -         |
+
+```tsx
+import ListItem, { HoverableSuffix } from '@synerise/ds-list-item';
+
+<ListItem
+  suffixel={(hovered) => (
+    <HoverableSuffix
+      hovered={hovered}
+      defaultContent={<Icon component={<WarningFillM />} />}
+      hoverContent={<Button>Delete</Button>}
+    />
+  )}
+>
+  Item with hoverable suffix
+</ListItem>
+```
+
+### ListWrapper
+
+Container that provides shared `ListContext` (including a shared `onClick` handler) to all descendant `ListItem` components.
+
+| Property | Description                          | Type                 | Default |
+| -------- | ------------------------------------ | -------------------- | ------- |
+| onClick  | Shared click handler for all items   | `ListItemEventHandler` | -     |
+| children | ListItem nodes                       | `ReactNode`          | -       |
+
+```tsx
+import ListItem, { ListWrapper } from '@synerise/ds-list-item';
+
+<ListWrapper onClick={(itemData) => console.log(itemData)}>
+  <ListItem itemKey="a">Option A</ListItem>
+  <ListItem itemKey="b">Option B</ListItem>
+</ListWrapper>
+```
+
+### GroupItem
+
+Groups a title with a list of items.
+
+| Property | Description         | Type              | Default |
+| -------- | ------------------- | ----------------- | ------- |
+| title    | Section label       | `ReactNode`       | -       |
+| items    | Array of list items | `ListItemProps[]`  | -       |
+| children | Additional content  | `ReactNode`       | -       |
+
+```tsx
+import ListItem, { GroupItem } from '@synerise/ds-list-item';
+
+<GroupItem title="Section A" items={[
+  { children: 'Item 1', itemKey: '1' },
+  { children: 'Item 2', itemKey: '2' },
+]} />
+```
+
+### ListContextProvider
+
+Low-level provider for `ListContext`. Use when building custom list containers that need shared click handling or custom popover delay.
+
+| Property     | Description                           | Type                 | Default                        |
+| ------------ | ------------------------------------- | -------------------- | ------------------------------ |
+| onClick      | Shared click handler                  | `ListItemEventHandler` | -                            |
+| popoverDelay | Hover tooltip open/close delay config | `DelayConfig`        | `{ open: 100, close: 400 }`   |
+| children     | Content                               | `ReactNode`          | -                              |
+
+### useListContext
+
+Hook to read `ListContext` values. Returns `undefined` when used outside a provider.
+
+```tsx
+import { useListContext } from '@synerise/ds-list-item';
+
+const context = useListContext();
+```

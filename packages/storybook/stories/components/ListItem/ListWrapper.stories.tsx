@@ -49,7 +49,23 @@ export default {
   },
 } as Meta<ListWrapperProps>;
 
-export const Default: Story = {};
+export const Default: Story = {
+  parameters: {
+    docs: {
+      source: {
+        code: `import ListItem, { ListWrapper } from '@synerise/ds-list-item';
+
+<ListWrapper onClick={(itemData) => console.log(itemData.key)}>
+  <ListItem itemKey="a">Option A</ListItem>
+  <ListItem itemKey="b" checked>Option B</ListItem>
+  <ListItem type="divider" />
+  <ListItem type="header">Section</ListItem>
+  <ListItem itemKey="c">Option C</ListItem>
+</ListWrapper>`,
+      },
+    },
+  },
+};
 
 const StyledList = styled(VariableSizeList)`
   overflow-x: unset;

@@ -1,5 +1,7 @@
 export { default } from './ListItem';
 export { HoverTooltip, GroupItem } from './components';
+export { HoverableSuffix } from './components/HoverableSuffix/HoverableSuffix';
+export { type HoverableSuffixProps } from './components/HoverableSuffix/HoverableSuffix.types';
 
 export {
   ListWrapper,

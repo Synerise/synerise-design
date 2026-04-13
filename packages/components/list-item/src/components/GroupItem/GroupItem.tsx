@@ -13,7 +13,9 @@ export const GroupItem = ({ title, items, children }: GroupItemProps) => {
   return (
     <>
       <S.Title>{title}</S.Title>
-      {items?.map(ListItem)}
+      {items?.map((item, index) => (
+        <ListItem key={item.itemKey ?? item.key ?? index} {...item} />
+      ))}
       {children}
     </>
   );

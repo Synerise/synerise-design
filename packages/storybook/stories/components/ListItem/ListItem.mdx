@@ -1,0 +1,371 @@
+import { Meta, Canvas } from '@storybook/addon-docs/blocks';
+import ListItem from '@synerise/ds-list-item';
+import ListItemMeta, {
+  LabelOnly,
+  withFeatured,
+  Disabled,
+  WithHighlight,
+  WithParent,
+  WithOrderedList,
+  WithSelection,
+  WithCopyable,
+  Divider,
+  WithStar,
+  WithDeletePrefix,
+  WithFlagPrefix,
+  WithHoverTooltip,
+  WithSwitchPrefix,
+  PrefixAndSuffixOnHover,
+  AllSuffixes,
+  WithSmallAvatarPrefix,
+} from './ListItem.stories';
+import { Default as ListWrapperDefault } from './ListWrapper.stories';
+
+<Meta component={ListItem} of={ListItemMeta} />
+
+# ListItem
+
+A polymorphic list row component that renders one of five visual variants — default, danger, select, divider, or header — and supports prefixes, suffixes, sub-menus, copy-to-clipboard, hover tooltips, and keyboard navigation.
+
+## Table of contents
+
+- [Quick overview](#quick-overview)
+- [Basic usage](#basic-usage)
+- [Hoverable suffix with HoverableSuffix](#hoverable-suffix-with-hoverablesuffix)
+- [AddonRenderer pattern](#addonrenderer-pattern)
+- [Prefix and suffix visibility triggers](#prefix-and-suffix-visibility-triggers)
+- [Copy-to-clipboard](#copy-to-clipboard)
+- [Hover tooltip](#hover-tooltip)
+- [Type variants](#type-variants)
+- [ListWrapper with shared click handler](#listwrapper-with-shared-click-handler)
+- [Size variants and description](#size-variants-and-description)
+- [Featured, ordered, and parent](#featured-ordered-and-parent)
+- [Text highlighting](#text-highlighting)
+- [API reference](#api-reference)
+  - [ListItem](#listitem-1)
+  - [HoverableSuffix](#hoverablesuffix)
+  - [ListWrapper](#listwrapper)
+  - [GroupItem](#groupitem)
+  - [ListContextProvider](#listcontextprovider)
+  - [Copyable](#copyable)
+  - [Exported types](#exported-types)
+- [Notes and tips](#notes-and-tips)
+
+## Quick overview
+
+- Default import: `ListItem` — the main list row component
+- Named exports: `HoverableSuffix`, `ListWrapper`, `ListContextProvider`, `useListContext`, `GroupItem`, `HoverTooltip`
+- Five `type` variants: `'default'` (interactive row), `'danger'` (red destructive), `'select'` (selection row), `'divider'` (visual separator), `'header'` (section title)
+- Two sizes: `'default'` (32px) and `'large'` (50px) — `description` only renders at large size
+- `suffixel` and `prefixel` accept either `ReactNode` or an `AddonRenderer` function `(hovered: boolean) => ReactNode`
+- Use `HoverableSuffix` to swap suffix content on hover (e.g. show a warning icon at rest, edit/delete actions on hover)
+- Integrates with `@floating-ui/react` for keyboard navigation in dropdowns
+
+## Basic usage
+
+The simplest list item renders text content with click handling.
+
+<Canvas of={LabelOnly} sourceState="shown" />
+
+## Hoverable suffix with HoverableSuffix
+
+`HoverableSuffix` lets you show different content at rest vs on hover. This is the recommended pattern for list items that show a status indicator by default but reveal action buttons when the user hovers.
+
+Pass it inside `suffixel` using the `AddonRenderer` pattern — the `hovered` boolean is provided automatically by `ListItem`.
+
+```tsx
+import ListItem, { HoverableSuffix } from '@synerise/ds-list-item';
+import Icon, { WarningFillM, EditM, TrashM } from '@synerise/ds-icon';
+
+<ListItem
+  suffixel={(hovered) => (
+    <HoverableSuffix
+      hovered={hovered}
+      defaultContent={<Icon component={<WarningFillM />} />}
+      hoverContent={<>
+        <Button type="ghost" mode="single-icon">
+          <Icon component={<EditM />} />
+        </Button>
+        <Button type="ghost" mode="single-icon">
+          <Icon component={<TrashM />} />
+        </Button>
+      </>}
+    />
+  )}
+>
+  Item with hoverable actions
+</ListItem>
+```
+
+When only `hoverContent` is provided (no `defaultContent`), the suffix is hidden at rest and fades in on hover — useful for actions that should only appear contextually.
+
+<Canvas of={AllSuffixes} />
+
+## AddonRenderer pattern
+
+Both `prefixel` and `suffixel` accept a function `(hovered: boolean) => ReactNode` instead of plain JSX. This lets you change the prefix or suffix appearance based on hover state without needing `HoverableSuffix`.
+
+```tsx
+<ListItem
+  prefixel={(hovered) => (
+    <Icon
+      component={<StarM />}
+      color={hovered ? theme.palette['yellow-600'] : theme.palette['grey-400']}
+    />
+  )}
+>
+  Star changes colour on hover
+</ListItem>
+```
+
+<Canvas of={WithStar} />
+
+## Prefix and suffix visibility triggers
+
+Set `suffixVisibilityTrigger="hover"` or `prefixVisibilityTrigger="hover"` to hide the entire prefix/suffix slot until the item is hovered. The content fades in with an opacity transition.
+
+This is different from `HoverableSuffix` — the visibility trigger controls whether the **entire slot** is visible, while `HoverableSuffix` swaps **what content** is shown within the slot.
+
+<Canvas of={PrefixAndSuffixOnHover} sourceState="shown" />
+
+## Copy-to-clipboard
+
+Pass the `copyable` prop as an object to enable click-to-copy. On mousedown or Enter, the item copies the value and briefly shows the `copiedLabel` before reverting. The `onClick` handler fires after a configurable delay.
+
+```tsx
+<ListItem
+  copyable={{
+    copyValue: 'text-to-copy',
+    copiedLabel: 'Copied!',
+    timeToReset: 1500,        // ms before label reverts (default: 1000)
+    delayClickEvent: 700,     // ms before onClick fires (default: 700)
+  }}
+>
+  Click to copy
+</ListItem>
+```
+
+<Canvas of={WithCopyable} sourceState="shown" />
+
+## Hover tooltip
+
+Use `renderHoverTooltip` to display a popover card when the item is hovered. The popover is positioned via `@synerise/ds-popover` and can be customised with `popoverProps` (placement, offset, flip).
+
+```tsx
+<ListItem
+  renderHoverTooltip={() => <Card>Details about this item</Card>}
+  popoverProps={{ placement: 'right' }}
+>
+  Hover for details
+</ListItem>
+```
+
+<Canvas of={WithHoverTooltip} sourceState="shown" />
+
+## Type variants
+
+### Danger
+
+Red-styled row for destructive actions.
+
+<Canvas of={WithDeletePrefix} />
+
+### Divider
+
+A visual separator between list sections. Renders a dashed divider with side margins.
+
+<Canvas of={Divider} />
+
+### Select
+
+Use `type="select"` with `checked` for selection rows. When `checked` is true, a green check icon appears in the suffix slot and the row gets a selected appearance.
+
+<Canvas of={WithSelection} sourceState="shown" />
+
+## ListWrapper with shared click handler
+
+`ListWrapper` provides a shared `onClick` handler to all descendant `ListItem` components via React context. This avoids passing `onClick` to each item individually.
+
+```tsx
+import ListItem, { ListWrapper } from '@synerise/ds-list-item';
+
+<ListWrapper onClick={(itemData) => console.log(itemData.key)}>
+  <ListItem itemKey="a">Option A</ListItem>
+  <ListItem itemKey="b">Option B</ListItem>
+  <ListItem type="divider" />
+  <ListItem itemKey="c" type="danger">Delete</ListItem>
+</ListWrapper>
+```
+
+For custom list containers that also need popover delay configuration, use `ListContextProvider` directly.
+
+<Canvas of={ListWrapperDefault} sourceState="shown" />
+
+## Size variants and description
+
+Set `size="large"` to increase row height from 32px to 50px. The `description` prop only renders at large size — it is silently ignored at default size.
+
+<Canvas of={WithSmallAvatarPrefix} sourceState="shown" />
+
+## Featured, ordered, and parent
+
+- `featured` — applies blue tint to label, prefix icons, and suffix icons
+- `ordered` — renders ordinal numbers (01, 02, ...) before each item; use inside a `ListWrapper` for correct counter scope
+- `parent` — shows a right-facing arrow icon, indicating the item has children or navigates deeper
+
+<Canvas of={withFeatured} />
+
+<Canvas of={WithOrderedList} />
+
+## Text highlighting
+
+Use `highlight` to bold-highlight a substring within string children. Useful for search results.
+
+<Canvas of={WithHighlight} sourceState="shown" />
+
+## API reference
+
+### `ListItem`
+
+<table>
+  <thead>
+    <tr><th>Prop</th><th>Type</th><th>Default</th><th>Description</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>children</td><td>ReactNode</td><td>—</td><td>Label content</td></tr>
+    <tr><td>text</td><td>ReactNode</td><td>—</td><td>{'Label alternative to children (text wins if both provided)'}</td></tr>
+    <tr><td>type</td><td>{"'default' | 'danger' | 'divider' | 'select' | 'header'"}</td><td>'default'</td><td>Visual variant</td></tr>
+    <tr><td>size</td><td>{"'default' | 'large'"}</td><td>'default'</td><td>Row height: 32px or 50px</td></tr>
+    <tr><td>checked</td><td>boolean</td><td>—</td><td>Shows green check icon in suffix; adds selected class</td></tr>
+    <tr><td>selected</td><td>boolean</td><td>—</td><td>Additional selected visual state</td></tr>
+    <tr><td>disabled</td><td>boolean</td><td>—</td><td>{'Prevents click/key events; sets tabIndex=-1'}</td></tr>
+    <tr><td>featured</td><td>boolean</td><td>—</td><td>Blue tint for label, prefix, and suffix icons</td></tr>
+    <tr><td>noHover</td><td>boolean</td><td>—</td><td>Disables hover background colour</td></tr>
+    <tr><td>ordered</td><td>boolean</td><td>—</td><td>Renders ordinal counter before content</td></tr>
+    <tr><td>parent</td><td>boolean</td><td>—</td><td>Shows right-facing arrow icon</td></tr>
+    <tr><td>prefixel</td><td>{'ReactNode | AddonRenderer'}</td><td>—</td><td>Left slot content</td></tr>
+    <tr><td>prefixVisibilityTrigger</td><td>{"'hover' | 'default'"}</td><td>—</td><td>When 'hover', prefix only visible on hover</td></tr>
+    <tr><td>suffixel</td><td>{'ReactNode | AddonRenderer'}</td><td>—</td><td>Right slot content</td></tr>
+    <tr><td>suffixVisibilityTrigger</td><td>{"'hover' | 'default'"}</td><td>—</td><td>When 'hover', suffix only visible on hover</td></tr>
+    <tr><td>description</td><td>ReactNode</td><td>—</td><td>Second line; only rendered at size='large'</td></tr>
+    <tr><td>highlight</td><td>string</td><td>—</td><td>Substring to bold-highlight in string children</td></tr>
+    <tr><td>copyable</td><td>{'boolean | Copyable'}</td><td>—</td><td>Enables copy-to-clipboard on click/Enter</td></tr>
+    <tr><td>renderHoverTooltip</td><td>{'() => JSX.Element'}</td><td>—</td><td>Popover rendered on hover</td></tr>
+    <tr><td>popoverProps</td><td>{'{ placement?, getPopupContainer?, offsetConfig?, flipConfig?, shiftConfig?, initialOpen? }'}</td><td>—</td><td>Passed to HoverTooltip popover</td></tr>
+    <tr><td>subMenu</td><td>{'ListItemProps[]'}</td><td>—</td><td>Inline collapsible sub-list; toggled on click</td></tr>
+    <tr><td>indentLevel</td><td>number</td><td>—</td><td>{'Left indent depth; each level adds 20px'}</td></tr>
+    <tr><td>onClick</td><td>{'ListItemEventHandler'}</td><td>—</td><td>{'Receives { key, item, domEvent }'}</td></tr>
+    <tr><td>onItemHover</td><td>{'ListItemEventHandler<MouseEvent>'}</td><td>—</td><td>Fires on mouseOver</td></tr>
+    <tr><td>itemKey</td><td>{'string | number'}</td><td>—</td><td>Stable key used in ItemData; falls back to UUID</td></tr>
+    <tr><td>copyValue</td><td>string</td><td>—</td><td><strong>Deprecated.</strong> Use copyable object instead.</td></tr>
+    <tr><td>copyHint</td><td>ReactNode</td><td>—</td><td><strong>Deprecated.</strong> No longer rendered.</td></tr>
+    <tr><td>copyTooltip</td><td>ReactNode</td><td>—</td><td><strong>Deprecated.</strong> No longer rendered.</td></tr>
+    <tr><td>timeToHideTooltip</td><td>number</td><td>—</td><td><strong>Deprecated.</strong> No longer rendered.</td></tr>
+    <tr><td>tooltipProps</td><td>TooltipProps</td><td>—</td><td><strong>Deprecated.</strong> No longer rendered.</td></tr>
+  </tbody>
+</table>
+
+### `HoverableSuffix`
+
+Swaps suffix content based on hover state. Use inside `suffixel` with the AddonRenderer pattern.
+
+<table>
+  <thead>
+    <tr><th>Prop</th><th>Type</th><th>Default</th><th>Description</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>hovered</td><td>boolean</td><td>—</td><td>Whether the parent item is hovered (passed from AddonRenderer)</td></tr>
+    <tr><td>hoverContent</td><td>ReactNode</td><td>—</td><td>Content shown when hovered</td></tr>
+    <tr><td>defaultContent</td><td>ReactNode</td><td>—</td><td>Content shown at rest; omit for hover-only display</td></tr>
+  </tbody>
+</table>
+
+### `ListWrapper`
+
+Container that provides shared context to all descendant ListItem components.
+
+<table>
+  <thead>
+    <tr><th>Prop</th><th>Type</th><th>Default</th><th>Description</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>onClick</td><td>ListItemEventHandler</td><td>—</td><td>Shared click handler for all descendant items</td></tr>
+    <tr><td>children</td><td>ReactNode</td><td>—</td><td>ListItem nodes</td></tr>
+  </tbody>
+</table>
+
+### `GroupItem`
+
+Groups a title with a list of items.
+
+<table>
+  <thead>
+    <tr><th>Prop</th><th>Type</th><th>Default</th><th>Description</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>title</td><td>ReactNode</td><td>—</td><td>Section label (required)</td></tr>
+    <tr><td>items</td><td>{'ListItemProps[]'}</td><td>—</td><td>Rendered as ListItem array</td></tr>
+    <tr><td>children</td><td>ReactNode</td><td>—</td><td>Additional content below items</td></tr>
+  </tbody>
+</table>
+
+### `ListContextProvider`
+
+Low-level provider for building custom list containers. Use when you need both shared click handling and custom popover delay.
+
+<table>
+  <thead>
+    <tr><th>Prop</th><th>Type</th><th>Default</th><th>Description</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>onClick</td><td>ListItemEventHandler</td><td>—</td><td>Shared click handler</td></tr>
+    <tr><td>popoverDelay</td><td>DelayConfig</td><td>{'{ open: 100, close: 400 }'}</td><td>HoverTooltip open/close delay</td></tr>
+    <tr><td>children</td><td>ReactNode</td><td>—</td><td>Content</td></tr>
+  </tbody>
+</table>
+
+### `Copyable`
+
+Object form of the `copyable` prop.
+
+<table>
+  <thead>
+    <tr><th>Property</th><th>Type</th><th>Default</th><th>Description</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>copyValue</td><td>string</td><td>—</td><td>Value copied to clipboard (required)</td></tr>
+    <tr><td>copiedLabel</td><td>ReactNode</td><td>—</td><td>Label shown temporarily after copy</td></tr>
+    <tr><td>timeToReset</td><td>number</td><td>1000</td><td>Milliseconds before label reverts</td></tr>
+    <tr><td>delayClickEvent</td><td>{'number | false'}</td><td>700</td><td>{'Milliseconds to delay onClick after copy; false to disable'}</td></tr>
+  </tbody>
+</table>
+
+### Exported types
+
+<table>
+  <thead>
+    <tr><th>Type</th><th>Description</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>ListItemProps</td><td>Full props type for ListItem</td></tr>
+    <tr><td>HoverableSuffixProps</td><td>Props for HoverableSuffix component</td></tr>
+    <tr><td>ListWrapperProps</td><td>Props for ListWrapper</td></tr>
+    <tr><td>BasicItemProps</td><td>ListItemProps without type, text, level, higher</td></tr>
+    <tr><td>ItemSize</td><td>{"'default' | 'large'"}</td></tr>
+    <tr><td>ItemType</td><td>{"'default' | 'danger' | 'divider' | 'select' | 'header'"}</td></tr>
+    <tr><td>ItemData</td><td>{'Payload passed to onClick / onItemHover: { key, item, domEvent }'}</td></tr>
+    <tr><td>StyledListItem</td><td>Utility type for creating styled extensions of ListItem</td></tr>
+    <tr><td>ListItemEventHandler</td><td>{'(item: ItemData) => void'}</td></tr>
+    <tr><td>AddonRenderer</td><td>{'(hovered: boolean) => ReactNode — function form for prefixel/suffixel'}</td></tr>
+  </tbody>
+</table>
+
+## Notes and tips
+
+- **`description` is silently ignored at default size.** Only renders when `size="large"`. No warning is shown.
+- **`suffixVisibilityTrigger` and `HoverableSuffix` are complementary.** The trigger controls whether the entire suffix slot is visible; `HoverableSuffix` controls what content is shown within the slot. Using `suffixVisibilityTrigger="hover"` with `HoverableSuffix` that has `defaultContent` means the default content is also hidden until hover.
+- **`text` prop wins over `children`.** If both are provided, `text` is rendered.
+- **`subMenu` items are always in the DOM** — they use `max-height: 0` with `overflow: hidden` for the collapse animation, not conditional rendering.
+- **`copyable` as boolean is legacy.** Always prefer the object form `copyable: { copyValue: '...' }` for new code.
+- **`itemKey` vs `key`** — use `itemKey` for the stable identifier that appears in `onClick` callbacks. React's `key` should be used only for list rendering.
+- **Keyboard navigation** requires a `ListContextProvider` ancestor. ListItem registers with `@floating-ui/react` via `useListItem()` for arrow-key navigation in dropdowns.
