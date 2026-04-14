@@ -1,4 +1,4 @@
-import React, { memo } from 'react';
+import React from 'react';
 
 import Tooltip from '@synerise/ds-tooltip';
 import { flexRender } from '@tanstack/react-table';
@@ -8,7 +8,7 @@ import { isSorted } from '../../../utils/sort';
 import { TableCell } from '../TableCell/TableCell';
 import * as S from './TableRow.styles';
 
-const TableRowInner = <TData extends object>({
+export const TableRow = <TData extends object>({
   row,
   onRowClick,
   getRowTooltipProps,
@@ -75,5 +75,3 @@ const TableRowInner = <TData extends object>({
     rowContent
   );
 };
-
-export const TableRow = memo(TableRowInner) as typeof TableRowInner;
