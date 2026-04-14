@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.2.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-mocks@0.1.16...@synerise/ds-mocks@0.2.0) (2026-04-14)
+
+### Features
+
+- **mocks:** add vitest and jest mocks for all 99 DS components ([792e6ed](https://github.com/Synerise/synerise-design/commit/792e6ed1c778cc3f7a231c379650d8e7dbaa6662))
+
 ## [0.1.16](https://github.com/Synerise/synerise-design/compare/@synerise/ds-mocks@0.1.15...@synerise/ds-mocks@0.1.16) (2026-04-10)
 
 **Note:** Version bump only for package @synerise/ds-mocks

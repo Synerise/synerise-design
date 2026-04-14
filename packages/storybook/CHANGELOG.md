@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.42.1](https://github.com/Synerise/synerise-design/compare/storybook@1.42.0...storybook@1.42.1) (2026-04-14)
+
+### Bug Fixes
+
+- **list-item:** new feature second suffix on hover only ([a9cac69](https://github.com/Synerise/synerise-design/commit/a9cac69e748f6e3912c9e4249b4ee324a50cfb90))
+
 # [1.42.0](https://github.com/Synerise/synerise-design/compare/storybook@1.41.3...storybook@1.42.0) (2026-04-10)
 
 ### Features

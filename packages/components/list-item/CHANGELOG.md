@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.4.13](https://github.com/Synerise/synerise-design/compare/@synerise/ds-list-item@1.4.12...@synerise/ds-list-item@1.4.13) (2026-04-14)
+
+### Bug Fixes
+
+- **list-item:** new feature second suffix on hover only ([a9cac69](https://github.com/Synerise/synerise-design/commit/a9cac69e748f6e3912c9e4249b4ee324a50cfb90))
+
 ## [1.4.12](https://github.com/Synerise/synerise-design/compare/@synerise/ds-list-item@1.4.11...@synerise/ds-list-item@1.4.12) (2026-04-10)
 
 **Note:** Version bump only for package @synerise/ds-list-item
