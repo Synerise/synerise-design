@@ -120,7 +120,7 @@ export const legacyColumnConfigAdapter = <DataType, DataValue>(
             info.getValue(),
             info.row.original,
             info.column.getIndex(),
-          ) || info.getValue()
+          ) ?? info.getValue()
         );
       },
 
@@ -134,6 +134,9 @@ export const legacyColumnConfigAdapter = <DataType, DataValue>(
           typeof column.sortRender === 'string' ? column.sortRender : undefined,
         renderCustomSortButton: customSortRender,
         multipleSortingOrder: multiSortOrder,
+        getCellTooltipProps: column.getCellTooltipProps,
+        dataIndex: column.dataIndex as string | undefined,
+        title: typeof column.title === 'string' ? column.title : undefined,
         childCell: (info: CellContext<DataType, DataValue>) => {
           if (column.childRender) {
             const rowData = {
@@ -152,7 +155,7 @@ export const legacyColumnConfigAdapter = <DataType, DataValue>(
               info.getValue(),
               info.row.original,
               info.column.getIndex(),
-            ) || info.getValue()
+            ) ?? info.getValue()
           );
         },
       },
