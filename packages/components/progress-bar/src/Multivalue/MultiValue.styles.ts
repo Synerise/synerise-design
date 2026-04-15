@@ -1,3 +1,4 @@
+import { type MouseEvent } from 'react';
 import styled, { css } from 'styled-components';
 
 export const Multivalue = styled.div<{
@@ -6,6 +7,7 @@ export const Multivalue = styled.div<{
   $isFirst?: boolean;
   $isLast?: boolean;
   $stacked?: boolean;
+  onClick?: (event: MouseEvent) => void;
 }>`
   background: ${(props) => props.color};
   width: ${(props) => props.percent}%;
