@@ -19,7 +19,12 @@ const ShowLessButton = ({
   showDefaultItemsAmount,
   showLessLabel,
 }: ShowLessButtonProps) => (
-  <S.ShowButton type="ghost" mode="icon-label" onClick={showDefaultItemsAmount}>
+  <S.ShowButton
+    type="ghost"
+    mode="icon-label"
+    onClick={showDefaultItemsAmount}
+    data-testid="ds-items-roll-show-less"
+  >
     <S.ArrowIcon component={<ArrowUpCircleM />} size={20} />
     <span className="bold-label">{showLessLabel}</span>
   </S.ShowButton>
@@ -31,7 +36,12 @@ const ShowMoreButton = ({
   showAdditionalItems,
   getShowMoreNumber,
 }: ShowMoreButtonProps) => (
-  <S.ShowButton type="ghost" mode="icon-label" onClick={showAdditionalItems}>
+  <S.ShowButton
+    type="ghost"
+    mode="icon-label"
+    onClick={showAdditionalItems}
+    data-testid="ds-items-roll-show-more"
+  >
     <S.ArrowIcon component={<ArrowDownCircleM />} size={20} />
     <S.ShowButtonLabel>
       {showLabel}
@@ -62,9 +72,18 @@ const Footer = ({
     [itemsCount, showMoreStep, visibleItemsCount],
   );
 
+  const showButtons = useMemo(
+    () => itemsCount > maxToShowItems,
+    [itemsCount, maxToShowItems],
+  );
+  const showClearButton = useMemo(
+    () => onClearAll && !searchMode,
+    [onClearAll, searchMode],
+  );
+
   const showDivider = useMemo(() => {
-    return !searchMode || (searchMode && itemsCount > maxToShowItems);
-  }, [searchMode, maxToShowItems, itemsCount]);
+    return showButtons || showClearButton;
+  }, [showButtons, showClearButton]);
 
   const buttonsConfiguration = useMemo(() => {
     if (visibleItemsCount === itemsCount) {
@@ -114,27 +133,29 @@ const Footer = ({
   return visibleItemsCount !== 0 ? (
     <>
       {showDivider && <S.Divider dashed footer />}
-      <S.ContainerSpaceBetween data-testid="items-roll-footer">
-        {itemsCount > maxToShowItems && buttonsConfiguration}
-        {onClearAll && !searchMode && (
-          <Popconfirm
-            onConfirm={onClearAll}
-            icon={<S.WarningIcon component={<WarningFillM />} />}
-            cancelText={allTexts.popconfirmNoLabel}
-            okText={allTexts.popconfirmYesLabel}
-            title={allTexts.popconfirmTitleLabel}
-          >
-            <S.ClearButton
-              type="custom-color-ghost"
-              color="red"
-              mode="icon-label"
+      {(showButtons || showClearButton) && (
+        <S.ContainerSpaceBetween data-testid="items-roll-footer">
+          {showButtons && buttonsConfiguration}
+          {showClearButton && (
+            <Popconfirm
+              onConfirm={onClearAll}
+              icon={<S.WarningIcon component={<WarningFillM />} />}
+              cancelText={allTexts.popconfirmNoLabel}
+              okText={allTexts.popconfirmYesLabel}
+              title={allTexts.popconfirmTitleLabel}
             >
-              <Icon component={<CloseS />} size={22} />
-              {allTexts.clearAllLabel}
-            </S.ClearButton>
-          </Popconfirm>
-        )}
-      </S.ContainerSpaceBetween>
+              <S.ClearButton
+                type="custom-color-ghost"
+                color="red"
+                mode="icon-label"
+              >
+                <Icon component={<CloseS />} size={22} />
+                {allTexts.clearAllLabel}
+              </S.ClearButton>
+            </Popconfirm>
+          )}
+        </S.ContainerSpaceBetween>
+      )}
     </>
   ) : null;
 };

@@ -127,7 +127,6 @@ export const ItemsRoll = ({
       <S.Divider dashed />
       <List
         groups={groups}
-        items={items}
         onItemClick={onItemClick}
         onItemRemove={!isDisabled ? onItemRemove : undefined}
         noResultsLabel={allTexts.noResultsLabel}

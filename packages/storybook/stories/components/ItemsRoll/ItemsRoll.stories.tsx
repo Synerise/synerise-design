@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { action } from 'storybook/actions';
+import { fn } from 'storybook/test';
 
 import { Meta, StoryObj } from '@storybook/react-vite';
 import Button from '@synerise/ds-button';
@@ -23,7 +24,6 @@ import {
   GROUPED_ITEMS,
   ICONS,
   ITEMS_100,
-  ITEMS_1000,
   ITEMS_LARGE,
   SEARCH_PLACEHOLDER,
 } from './ItemsRoll.data';
@@ -36,7 +36,7 @@ type Story = StoryObj<StoryType>;
 export default {
   component: ItemsRoll,
   title: 'Components/ItemsRoll',
-  tags: ['autodocs'],
+  tags: [],
   parameters: {
     layout: 'fullscreen',
   },
@@ -118,7 +118,6 @@ export default {
     maxToShowItems: NUMBER_CONTROL,
     showMoreStep: NUMBER_CONTROL,
     useFooter: BOOLEAN_CONTROL,
-    useVirtualizedList: BOOLEAN_CONTROL,
     hideSearch: BOOLEAN_CONTROL,
     isDisabled: BOOLEAN_CONTROL,
     searchPlaceholder: STRING_CONTROL,
@@ -129,6 +128,10 @@ export default {
     items: {
       control: false,
     },
+    useVirtualizedList: { table: { disable: true } },
+    virtualizedRowHeight: { table: { disable: true } },
+    virtualizedRowWidth: { table: { disable: true } },
+    intl: { table: { disable: true } },
     changeSelectionIcon: {
       ...controlFromOptionsArray('select', Object.keys(ICONS)),
       mapping: ICONS,
@@ -141,40 +144,91 @@ export default {
     maxToShowItems: 10,
     showMoreStep: 10,
     useFooter: true,
-    useVirtualizedList: false,
     hideSearch: false,
     withChangeSelectionDropdown: false,
+    onChangeSelection: fn(),
     renderCount: (count: number) => <>Items: {count} / 500</>,
   },
 } as Meta<StoryType>;
 
-export const Default: Story = {};
+export const Default: Story = {
+  parameters: {
+    docs: {
+      source: {
+        code: `<ItemsRoll
+  items={items}
+  actions={actions}
+  maxToShowItems={10}
+  showMoreStep={10}
+  useFooter
+  searchPlaceholder="Search..."
+  onSearch={handleSearch}
+  onSearchClear={handleSearchClear}
+  onChangeSelection={handleChangeSelection}
+  onClearAll={handleClearAll}
+  onItemRemove={handleItemRemove}
+  renderCount={(count) => <>Items: {count} / 500</>}
+/>`,
+      },
+    },
+  },
+};
 
 export const Simple: Story = {
+  parameters: {
+    docs: {
+      source: {
+        code: `<ItemsRoll
+  items={items}
+  hideSearch
+/>`,
+      },
+    },
+  },
   args: {
-    onChangeSelection: false,
     renderCount: () => <></>,
-    actions: null,
+    onChangeSelection: undefined,
+    actions: undefined,
     hideSearch: true,
     useFooter: false,
   },
 };
 
 export const LargeItems: Story = {
+  parameters: {
+    docs: {
+      source: {
+        code: `<ItemsRoll
+  items={largeItems}
+  hideSearch
+/>`,
+      },
+    },
+  },
   args: {
     items: ITEMS_LARGE,
-    onChangeSelection: false,
+    onChangeSelection: undefined,
     renderCount: () => <></>,
-    actions: null,
+    actions: undefined,
     hideSearch: true,
     useFooter: false,
   },
 };
 
 export const Empty: Story = {
+  parameters: {
+    docs: {
+      source: {
+        code: `<ItemsRoll
+  items={[]}
+  texts={{ noResultsLabel: 'No items added' }}
+/>`,
+      },
+    },
+  },
   args: {
     items: [],
-    onChangeSelection: false,
+    onChangeSelection: undefined,
     texts: {
       noResultsLabel: 'No items added',
     },
@@ -182,6 +236,24 @@ export const Empty: Story = {
 };
 
 export const Grouped: Story = {
+  parameters: {
+    docs: {
+      source: {
+        code: `<ItemsRoll
+  items={groupedItems}
+  groups={['Parameter', 'Aggregate', 'Expression']}
+  useFooter
+  maxToShowItems={10}
+  showMoreStep={10}
+  onSearch={handleSearch}
+  onSearchClear={handleSearchClear}
+  onChangeSelection={handleChangeSelection}
+  onClearAll={handleClearAll}
+  onItemRemove={handleItemRemove}
+/>`,
+      },
+    },
+  },
   args: {
     items: GROUPED_ITEMS.items,
     groups: GROUPED_ITEMS.groups,
@@ -189,12 +261,44 @@ export const Grouped: Story = {
 };
 
 export const ChangeSelectionDropdown: Story = {
+  parameters: {
+    docs: {
+      source: {
+        code: `<ItemsRoll
+  items={items}
+  useFooter
+  onChangeSelection={handleChangeSelection}
+  changeSelectionDropdownProps={{
+    overlay: <DropdownMenu />,
+    trigger: ['click'],
+    visible,
+    onVisibleChange: setVisible,
+  }}
+/>`,
+      },
+    },
+  },
   args: {
     withChangeSelectionDropdown: true,
   },
 };
 
 export const CustomSidebarActions: Story = {
+  parameters: {
+    docs: {
+      source: {
+        code: `<ItemsRoll
+  items={items}
+  useFooter
+  customSidebarActions={
+    <Button mode="icon-label" type="ghost" icon={<Icon component={<SaveM />} />}>
+      Save list
+    </Button>
+  }
+/>`,
+      },
+    },
+  },
   args: {
     customSidebarActions: (
       <div style={{ display: 'flex', marginRight: '8px' }}>

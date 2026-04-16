@@ -2,7 +2,7 @@ import React, { useMemo } from 'react';
 
 import Dropdown from '@synerise/ds-dropdown';
 import Icon, { EditM } from '@synerise/ds-icon';
-import { SearchInput } from '@synerise/ds-search/dist/Elements';
+import { SearchInput } from '@synerise/ds-search';
 import { NOOP } from '@synerise/ds-utils';
 
 import Extras from '../Extras';
