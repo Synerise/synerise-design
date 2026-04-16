@@ -72,6 +72,12 @@ wc -l packages/components/<package-name>/README.md 2>/dev/null || echo "MISSING"
 
 # List all import statements in source files (to cross-reference against package.json)
 grep -rh "^import" packages/components/<package-name>/src/ --include="*.ts" --include="*.tsx" | grep "from '" | sed "s/.*from '\\([^']*\\)'.*/\\1/" | grep -v '^\.' | sort -u
+
+# Check for MDX overview
+ls packages/storybook/stories/components/<PascalName>/Overview.mdx 2>/dev/null || echo "MISSING"
+
+# List argTypes from stories
+grep -A 1 "argTypes:" packages/storybook/stories/components/<PascalName>/<PascalName>.stories.tsx | head -30
 ```
 
 ### Step 3 — Analyse each dimension
@@ -163,6 +169,32 @@ Read `packages/components/<package-name>/README.md` and evaluate:
 - Are prop **types and defaults** accurate — i.e. do they still match the current source? Flag stale docs as Important.
 - Is the install command correct (right package name, right package manager hint)?
 
+#### 3.11 MDX Overview Page
+Check for `packages/storybook/stories/components/<PascalName>/Overview.mdx`:
+- Does the file exist? If not, flag as **Important** — all components should have an overview page for Storybook docs.
+- If it exists, verify it covers these sections:
+  - **Component description** — what the component is and when to use it
+  - **Key features** — summary of the component's main capabilities
+  - **Usage guidance** — guidelines on how and when to use the component (do's / don'ts, common patterns)
+  - **Import example** — code snippet showing how to import the component
+  - **Key props** — documentation of the most important props with descriptions
+- Flag as **Minor** if the overview exists but is missing one or more of the above sections.
+
+#### 3.12 ArgTypes Coverage
+Read the TypeScript props type from `<Name>.types.ts` (the main `<Name>Props` type) and the `argTypes` object from the stories file. Compare every prop in the TypeScript type against the argTypes:
+
+- **Deprecated props** should have `{ table: { disable: true } }` in argTypes to hide them from the controls panel. Flag as **Important** if deprecated props have active controls.
+- **Boolean props** should have `BOOLEAN_CONTROL` or equivalent (e.g. `{ control: 'boolean' }`). Flag as **Minor** if missing.
+- **Number props** should have `NUMBER_CONTROL` or equivalent (e.g. `{ control: 'number' }`). Flag as **Minor** if missing.
+- **String props** should have `STRING_CONTROL` or equivalent (e.g. `{ control: 'text' }`). Flag as **Minor** if missing.
+- **Callback props** (functions like `onClose`, `onChange`) are acceptable without controls — they are managed by the story render function. They should not have misleading controls (e.g. a text input for a function). Flag as **Minor** if a callback has a misleading control type.
+- **Complex object/array props** are acceptable with `{ control: false }` or no argType entry at all. Flag as **Info** for complex types that reasonably can't have controls.
+
+Summary of severity:
+- **Important** — deprecated props are not hidden in argTypes (still appear in controls panel)
+- **Minor** — controllable props (boolean, number, string) are missing argTypes entries
+- **Info** — complex types without controls (informational, no action required)
+
 ### Step 4 — Classify findings by severity
 
 Assign each finding one of these four levels:
@@ -170,8 +202,8 @@ Assign each finding one of these four levels:
 | Severity | Meaning |
 |---|---|
 | **Critical** | Blocks production quality: no tests, no stories, `@ts-nocheck`, `console.log` in prod code, README missing entirely, runtime import with no matching declared dependency |
-| **Important** | Significant quality gap: missing interactive tests, uncovered key use cases, unresolved suppressions without justification, large disorganised files, unused `dependencies`, `react`/`styled-components` in `dependencies` instead of `peerDependencies`, README exists but is missing major props / imperative APIs / usage examples, or contains stale information that contradicts the current source |
-| **Minor** | Code smell or style issue: unused prop, commented-out code, a missing Code tab snippet, a `ts-expect-error` with comment, overly broad version ranges, minor README gaps (a missing default value, a missing sub-component section) |
+| **Important** | Significant quality gap: missing interactive tests, uncovered key use cases, unresolved suppressions without justification, large disorganised files, unused `dependencies`, `react`/`styled-components` in `dependencies` instead of `peerDependencies`, README exists but is missing major props / imperative APIs / usage examples, or contains stale information that contradicts the current source, missing MDX overview page, deprecated props not hidden in argTypes |
+| **Minor** | Code smell or style issue: unused prop, commented-out code, a missing Code tab snippet, a `ts-expect-error` with comment, overly broad version ranges, minor README gaps (a missing default value, a missing sub-component section), MDX overview missing sections, controllable props missing argTypes |
 | **Info** | Observation with no required action: suggestion for improvement, note about complexity |
 
 ### Step 5 — Produce the report
@@ -196,6 +228,8 @@ Format the report as follows:
 | Code Organisation | 🔴 / 🟡 / 🟢 | e.g. "Main file 520 lines, logic not split" |
 | Dependencies | 🔴 / 🟡 / 🟢 | e.g. "1 missing dep, 2 unused, react in dependencies" |
 | README | 🔴 / 🟡 / 🟢 | e.g. "Missing, stale props, no usage example" |
+| MDX Overview | 🔴 / 🟡 / 🟢 | e.g. "Missing overview page" or "Exists but missing import example" |
+| ArgTypes | 🔴 / 🟡 / 🟢 | e.g. "2 deprecated props visible in controls, 3 booleans missing argTypes" |
 
 🔴 = Critical issue present · 🟡 = Important or Minor issues · 🟢 = No issues
 

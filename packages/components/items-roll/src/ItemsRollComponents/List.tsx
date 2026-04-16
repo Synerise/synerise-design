@@ -8,7 +8,7 @@ import { type ItemRollElement } from '../ItemsRoll.types';
 import { type ListProps } from './List.types';
 import ItemElement from './ListItem';
 
-export const itemsInGroup = (
+const itemsInGroup = (
   group: string,
   items: ItemRollElement[],
 ): ItemRollElement[] => items.filter((item) => item.group === group);

@@ -12,11 +12,23 @@ import Icon, {
   FileTypeTableM,
   ParamsBadgeM,
 } from '@synerise/ds-icon';
-import { ListItemProps } from '@synerise/ds-list-item';
+import InformationCard from '@synerise/ds-information-card';
 import Tooltip from '@synerise/ds-tooltip';
 
 export const SEARCH_PLACEHOLDER = 'Search...';
 export const TEXT = 'Example item';
+
+const infocard = (title: string, type: string) => () => (
+  <InformationCard
+    title={title}
+    subtitle={type}
+    propertyListItems={[
+      { label: 'Created', value: '2026-03-15' },
+      { label: 'Author', value: 'John Doe' },
+      { label: 'Used in', value: '12 automations' },
+    ]}
+  />
+);
 
 export const hundredItems = Array.from(Array(100).keys());
 export const thousandItems = Array.from(Array(1000).keys());
@@ -24,20 +36,25 @@ export const thousandItems = Array.from(Array(1000).keys());
 export const ITEMS_100 = hundredItems.map((key) => ({
   id: uuid(),
   text: `${TEXT}-${key}`,
+  renderHoverTooltip: infocard(`${TEXT}-${key}`, 'Item'),
 }));
 
-export const ITEMS_LARGE: ListItemProps[] = hundredItems.map((key) => ({
+const LARGE = 'large' as const;
+
+export const ITEMS_LARGE = hundredItems.map((key) => ({
   id: uuid(),
-  size: 'large',
+  size: LARGE,
   prefixel: (
     <ObjectAvatar iconComponent={<Icon component={<ExpressionM />} />} />
   ),
   text: `${TEXT}-${key}`,
+  renderHoverTooltip: infocard(`${TEXT}-${key}`, 'Large item'),
 }));
 
 export const ITEMS_1000 = thousandItems.map((key) => ({
   id: uuid(),
   text: `${TEXT}-${key}`,
+  renderHoverTooltip: infocard(`${TEXT}-${key}`, 'Item'),
 }));
 
 const tenParams = Array.from(Array(13).keys()).map((key) => ({
@@ -55,6 +72,7 @@ const tenParams = Array.from(Array(13).keys()).map((key) => ({
       </div>
     </Tooltip>
   ),
+  renderHoverTooltip: infocard(`Parameter-${key}`, 'Parameter'),
 }));
 
 const tenAggregates = Array.from(Array(25).keys()).map((key) => ({
@@ -72,6 +90,7 @@ const tenAggregates = Array.from(Array(25).keys()).map((key) => ({
       </div>
     </Tooltip>
   ),
+  renderHoverTooltip: infocard(`Aggregate-${key}`, 'Aggregate'),
 }));
 
 const tenExpressions = Array.from(Array(6).keys()).map((key) => ({
@@ -89,6 +108,7 @@ const tenExpressions = Array.from(Array(6).keys()).map((key) => ({
       </div>
     </Tooltip>
   ),
+  renderHoverTooltip: infocard(`Expression-${key}`, 'Expression'),
 }));
 
 export const GROUPED_ITEMS = {

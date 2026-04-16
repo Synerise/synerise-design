@@ -1,0 +1,202 @@
+import { Meta, Canvas } from '@storybook/addon-docs/blocks';
+import ItemsRoll from '@synerise/ds-items-roll';
+import ItemsRollMeta, { Default, Simple, LargeItems, Empty, Grouped, ChangeSelectionDropdown, CustomSidebarActions } from './ItemsRoll.stories';
+
+<Meta component={ItemsRoll} of={ItemsRollMeta} />
+
+# ItemsRoll
+
+A panel component that displays a paginated, searchable list of items with optional grouping. ItemsRoll provides a header toolbar (item count, search, change-selection button, custom actions), hover-reveal remove icons on each item, and a footer with show more/less pagination and a clear-all confirmation dialog. The entire component is wrapped in a `@synerise/ds-panel`.
+
+## Table of contents
+
+- [Quick overview](#quick-overview)
+- [When to use](#when-to-use)
+- [Basic example](#basic-example)
+- [Simple list](#simple-list)
+- [Large items](#large-items)
+- [Empty state](#empty-state)
+- [Grouped items](#grouped-items)
+- [Change selection dropdown](#change-selection-dropdown)
+- [Custom sidebar actions](#custom-sidebar-actions)
+- [API reference](#api-reference)
+  - [ItemsRoll](#itemsroll-1)
+  - [ItemRollElement](#itemrollelement)
+  - [Texts keys](#texts-keys)
+  - [Exported types](#exported-types)
+- [Notes & tips](#notes--tips)
+
+## Quick overview
+
+- Import `ItemsRoll` (default export) from `@synerise/ds-items-roll`
+- Pass an array of `ItemRollElement` objects via the `items` prop -- each item requires a unique `id` and optionally a `group` string
+- Enable the footer (show more/less + clear all) with `useFooter`
+- Enable grouped rendering by providing a `groups` array of strings that correspond to each item's `group` field
+- Search is built in -- supply `onSearch`, `onSearchClear`, and `searchValue` for controlled search, or set `hideSearch` to hide it
+- `isDisabled` hides the remove icon and clear-all button entirely rather than rendering them as disabled
+- All user-facing labels are customisable via the `texts` prop or automatically translated via `react-intl` (`DS.ITEMS-ROLL.*` namespace)
+
+```tsx
+import ItemsRoll from '@synerise/ds-items-roll';
+import type { ItemRollElement, ItemsRollProps } from '@synerise/ds-items-roll';
+```
+
+## When to use
+
+**Use ItemsRoll when:**
+- You need to display a user-curated list of selected items (e.g. segments, tags, filters) with the ability to search, paginate, remove, and clear
+- Items may belong to logical groups that should be visually separated
+- The list can grow large and needs show-more/show-less pagination
+
+**Do not use ItemsRoll when:**
+- You need a simple flat list without a toolbar or footer -- use `@synerise/ds-list` instead
+- You need a data table with sorting, filtering, and column configuration -- use `@synerise/ds-table` or `@synerise/ds-table-new`
+- You need a picker/selection dialog -- ItemsRoll displays already-selected items, not a selection UI
+
+## Basic example
+
+The default configuration shows all features: header with item count, search, change-selection button, three-dot actions menu, footer with pagination and clear-all, and hover-reveal remove icons.
+
+<Canvas of={Default} sourceState="shown" story={{ height: '300px' }} />
+
+## Simple list
+
+A minimal configuration without search, actions, change-selection, or footer. Useful when the list is short and read-only.
+
+<Canvas of={Simple} sourceState="shown" story={{ height: '300px' }} />
+
+## Large items
+
+Items with longer content (descriptions, icons, suffixes) render correctly. Each item row uses `@synerise/ds-list-item` internally.
+
+<Canvas of={LargeItems} story={{ height: '300px' }} />
+
+## Empty state
+
+When the `items` array is empty, a "no results" message is displayed. Customise this label via `texts.noResultsLabel`.
+
+<Canvas of={Empty} sourceState="shown" story={{ height: '300px' }} />
+
+## Grouped items
+
+Pass a `groups` array to enable grouped rendering. Items are grouped by their `group` field, and each group gets a visual header and divider. Items whose `group` does not match any entry in the `groups` array are silently hidden.
+
+<Canvas of={Grouped} sourceState="shown" story={{ height: '300px' }} />
+
+## Change selection dropdown
+
+Wrap the change-selection button in a dropdown by providing `changeSelectionDropdownProps`. This is useful when "change selection" should open a menu of options rather than navigating away.
+
+<Canvas of={ChangeSelectionDropdown} sourceState="shown" story={{ height: '300px' }} />
+
+## Custom sidebar actions
+
+Add extra controls to the header toolbar (between the search and the three-dot menu) via `customSidebarActions`.
+
+<Canvas of={CustomSidebarActions} sourceState="shown" story={{ height: '300px' }} />
+
+## API reference
+
+### `ItemsRoll`
+
+<table>
+  <thead>
+    <tr><th>Prop</th><th>Type</th><th>Default</th><th>Description</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>items</td><td>{'ItemRollElement[]'}</td><td>--</td><td><strong>Required.</strong> Array of items to display</td></tr>
+    <tr><td>maxToShowItems</td><td>number</td><td>10</td><td>Number of items visible initially; controls pagination reset</td></tr>
+    <tr><td>showMoreStep</td><td>number</td><td>10</td><td>How many additional items to load per "show more" click</td></tr>
+    <tr><td>useFooter</td><td>boolean</td><td>undefined</td><td>Show footer with show-more/less pagination and clear-all button</td></tr>
+    <tr><td>isDisabled</td><td>boolean</td><td>undefined</td><td>Hides remove icon on items and the clear-all button entirely</td></tr>
+    <tr><td>groups</td><td>{'ItemsRollGroup[]'}</td><td>undefined</td><td>Enables grouped rendering; each string maps to an item's group field</td></tr>
+    <tr><td>actions</td><td>{'ItemRollElement<ActionItemType>[]'}</td><td>undefined</td><td>Items for the three-dot dropdown menu in the header</td></tr>
+    <tr><td>changeSelectionIcon</td><td>{'(props: SVGProps<SVGSVGElement>) => JSX.Element'}</td><td>EditM</td><td>Icon displayed on the change-selection button</td></tr>
+    <tr><td>changeSelectionDropdownProps</td><td>{"Omit<DropdownProps, 'children'>"}</td><td>undefined</td><td>Wraps the change-selection button in a Dropdown with these props</td></tr>
+    <tr><td>customSidebarActions</td><td>ReactNode</td><td>undefined</td><td>Extra controls in the header, between search and three-dot menu</td></tr>
+    <tr><td>hideSearch</td><td>boolean</td><td>undefined</td><td>Hide the search input from the header</td></tr>
+    <tr><td>onSearch</td><td>{'(value: string) => void'}</td><td>undefined</td><td>Called when the search input value changes</td></tr>
+    <tr><td>onSearchClear</td><td>{'() => void'}</td><td>undefined</td><td>Called when the search input is cleared</td></tr>
+    <tr><td>searchValue</td><td>string</td><td>undefined</td><td>Controlled value for the search input</td></tr>
+    <tr><td>searchPlaceholder</td><td>string</td><td>undefined</td><td>Placeholder text for the search input</td></tr>
+    <tr><td>onClearAll</td><td>{'() => void'}</td><td>undefined</td><td>Called after user confirms the clear-all popconfirm; hidden when isDisabled</td></tr>
+    <tr><td>onChangeSelection</td><td>{'() => void'}</td><td>undefined</td><td>Click handler for the change-selection button; omitting hides the button</td></tr>
+    <tr><td>onItemClick</td><td>{'(id: string, group?: string) => void'}</td><td>undefined</td><td>Called when a list item row is clicked</td></tr>
+    <tr><td>onItemRemove</td><td>{'(id: string, group?: string) => void'}</td><td>undefined</td><td>Called when the hover-reveal remove icon is clicked; hidden when isDisabled</td></tr>
+    <tr><td>renderCount</td><td>{'(count: number) => ReactNode'}</td><td>undefined</td><td>Custom renderer for the item count in the header</td></tr>
+    <tr><td>texts</td><td>{'{ [k in Texts]?: ReactNode }'}</td><td>undefined</td><td>Partial overrides for i18n strings; merges with react-intl defaults</td></tr>
+    <tr><td>className</td><td>string</td><td>undefined</td><td>CSS class on the outer panel wrapper</td></tr>
+    <tr><td>style</td><td>CSSProperties</td><td>undefined</td><td>Inline style on the outer panel wrapper</td></tr>
+    <tr><td>intl</td><td>IntlShape</td><td>--</td><td><strong>Deprecated.</strong> Component uses useIntl() internally; this prop is ignored</td></tr>
+    <tr><td>useVirtualizedList</td><td>boolean</td><td>--</td><td><strong>Deprecated.</strong> Virtualised list was removed; prop is accepted but ignored</td></tr>
+    <tr><td>virtualizedRowHeight</td><td>number</td><td>--</td><td><strong>Deprecated.</strong> Ignored</td></tr>
+    <tr><td>virtualizedRowWidth</td><td>number</td><td>--</td><td><strong>Deprecated.</strong> Ignored</td></tr>
+  </tbody>
+</table>
+
+### `ItemRollElement`
+
+Each item in the `items` array. Extends `ListItemProps` (from `@synerise/ds-list-item`) with two additional fields.
+
+<table>
+  <thead>
+    <tr><th>Field</th><th>Type</th><th>Description</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>id</td><td>string</td><td><strong>Required.</strong> Unique identifier used as React key and callback argument</td></tr>
+    <tr><td>group</td><td>string</td><td>Optional group name; ties the item to a group defined in the groups prop</td></tr>
+    <tr><td>...rest</td><td>ListItemProps</td><td>All props from ListItemProps (text, icon, description, suffixel, etc.)</td></tr>
+  </tbody>
+</table>
+
+```ts
+type ItemRollElement<BaseType extends ListItemProps | MenuItemProps = ListItemProps> =
+  BaseType & { id: string; group?: string };
+```
+
+### Texts keys
+
+All labels default to translated strings via `react-intl` message IDs under the `DS.ITEMS-ROLL.*` namespace. Override any key via the `texts` prop.
+
+<table>
+  <thead>
+    <tr><th>Key</th><th>Description</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>changeSelectionLabel</td><td>Label for the change-selection button</td></tr>
+    <tr><td>clearAllLabel</td><td>Label for the clear-all button in the footer</td></tr>
+    <tr><td>itemsLabel</td><td>Label shown before the item count in the header</td></tr>
+    <tr><td>moreLabel</td><td>Label suffix for the "show more" button (e.g. "more")</td></tr>
+    <tr><td>noResultsLabel</td><td>Message shown when the item list is empty</td></tr>
+    <tr><td>popconfirmNoLabel</td><td>Cancel button text in the clear-all confirmation</td></tr>
+    <tr><td>popconfirmTitleLabel</td><td>Title text of the clear-all confirmation popover</td></tr>
+    <tr><td>popconfirmYesLabel</td><td>Confirm button text in the clear-all confirmation</td></tr>
+    <tr><td>removeTooltipLabel</td><td>Tooltip shown on hover over the remove icon</td></tr>
+    <tr><td>searchClearTooltipLabel</td><td>Tooltip on the search input clear button</td></tr>
+    <tr><td>showLabel</td><td>Label prefix for the "show more" button (e.g. "Show")</td></tr>
+    <tr><td>showLessLabel</td><td>Label for the "show less" button</td></tr>
+  </tbody>
+</table>
+
+### Exported types
+
+<table>
+  <thead>
+    <tr><th>Type</th><th>Description</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>ItemsRollProps</td><td>Full props type for the ItemsRoll component</td></tr>
+    <tr><td>ItemRollElement</td><td>{'Single item shape: ListItemProps & { id: string; group?: string }'}</td></tr>
+    <tr><td>ItemsRollGroup</td><td>Alias for string; represents a group name</td></tr>
+  </tbody>
+</table>
+
+## Notes & tips
+
+- **Groups filter items.** When `groups` is provided, only items whose `group` field matches a value in the array are rendered. Items without a matching group are silently hidden -- they do not appear in an "ungrouped" section.
+- **`isDisabled` hides, not disables.** Setting `isDisabled` passes `undefined` for `onItemRemove` and `onClearAll` to child components, which fully hides those controls rather than rendering them in a disabled visual state.
+- **Footer requires items.** The footer only renders when `useFooter` is `true` AND at least one item is visible. An empty list with `useFooter` will not show a footer.
+- **Pagination resets on prop change.** The internal `visibleItemsAmount` state resets to `maxToShowItems` whenever that prop changes, so parent components can control the visible count externally.
+- **Search is controlled.** The component does not filter items internally. The parent must handle `onSearch` and pass a filtered `items` array along with the `searchValue`.
+- **Clear-all uses Popconfirm.** The clear-all button always shows a confirmation dialog before calling `onClearAll`. The confirmation labels are customisable via `texts`.
+- **`renderCount` replaces the default count.** When provided, `renderCount` completely replaces the default "Items: N" label, so you can show ratios like "Items: 5 / 500".

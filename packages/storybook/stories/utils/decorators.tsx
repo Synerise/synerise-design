@@ -89,7 +89,7 @@ export const headerWrapper: Decorator = (Story) => (
 );
 
 export const centeredPaddedWrapper: Decorator = (Story, storyContext) => {
-  const height = storyContext.viewMode === 'story' ? '100vh' : '100px';
+  const height = storyContext.viewMode === 'story' ? '100vh' : 'auto';
   const width = storyContext.viewMode === 'story' ? '100vw' : '100%';
   return (
     <div
