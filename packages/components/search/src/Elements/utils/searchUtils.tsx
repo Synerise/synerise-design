@@ -41,11 +41,13 @@ export const getParametersScrollTop = ({
   scrollTop,
   rowHeight,
   recent,
+  hasRecentTitle,
 }: {
   scrollTop: number;
   rowHeight: number;
   recent: AnyObject[];
+  hasRecentTitle?: boolean;
 }): number =>
   scrollTop -
-  LIST_HEADER_HEIGHT -
+  (hasSomeElement(recent) && hasRecentTitle ? LIST_HEADER_HEIGHT : 0) -
   (hasSomeElement(recent) ? recent.length * rowHeight : 0);

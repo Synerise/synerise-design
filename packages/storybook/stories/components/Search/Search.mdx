@@ -1,0 +1,199 @@
+import { Meta, Canvas } from '@storybook/addon-docs/blocks';
+import { WithDropdown, WithItemsWithAvatars } from './Search.stories';
+import { Default, Expanded, WithDebounce } from './SearchInput.stories';
+
+<Meta title="Components/Search" />
+
+# Search
+
+`@synerise/ds-search` exports two related components: **`Search`** (the full picker — collapsible input plus a virtualised dropdown with recent items, filterable parameters/facets, and contextual suggestions) and **`SearchInput`** (the standalone collapsible input, used on its own when no dropdown is needed).
+
+## Quick overview
+
+- Default export `Search` is a fully controlled, generic component (`Search<Recent, Parameter, Suggestion>`). The parent must own `value` and `parameterValue` and respond to `onValueChange` / `onParameterValueChange` / `onClear`.
+- The dropdown shows three optional sections: **recent**, **parameters**, **suggestions**. Each section is configured through a separate `*DisplayProps` object (`title`, `tooltip`, `rowHeight`, `itemRender`, `visibleRows`, `listProps`).
+- When `parameterValue` becomes non-empty, the dropdown switches to **suggestions mode** — recent and parameters are hidden until the parameter is cleared.
+- Lists are virtualised with `react-window`; provide `rowHeight` for every section. Cap visible rows with `visibleRows` to enable internal scrolling.
+- `SearchInput` is the collapsible input on its own. Toggle behaviour: collapses to an icon when clicked outside (`closeOnClickOutside`), or stays expanded (`alwaysExpanded`). Use `focusTrigger` / `toggleTrigger` boolean flip-flops to focus or toggle imperatively.
+- Outside-click collapse is gesture-aware: the outside-click handler still fires on `mousedown`, but the collapse animation is deferred to the matching `mouseup`/`touchend`. Adjacent layout-shifting content stays stable for the duration of the user's click.
+
+```tsx
+import Search from '@synerise/ds-search';
+import { SearchInput, SearchItems, SearchHeader, SearchButton } from '@synerise/ds-search';
+import type { SearchProps, SearchLookupConfig, SearchInputProps } from '@synerise/ds-search';
+```
+
+## Basic example — full Search
+
+Recent items, parameters, and the divider in one picker. Clicking a parameter activates suggestions mode.
+
+<Canvas of={WithDropdown} sourceState="shown" />
+
+## Items with avatars
+
+Any `itemRender` is allowed per section. Increase `rowHeight` to accommodate richer rows.
+
+<Canvas of={WithItemsWithAvatars} />
+
+## SearchInput — standalone
+
+Collapsible input without a dropdown. Closes on outside click; the collapse animation is deferred to `mouseup`/`touchend` so adjacent click targets stay stable.
+
+<Canvas of={Default} sourceState="shown" />
+
+## SearchInput — always expanded
+
+Disable the toggle behaviour entirely with `alwaysExpanded`.
+
+<Canvas of={Expanded} />
+
+## SearchInput — debounced consumer
+
+The component is fully controlled and fires `onChange` on every keystroke. To debounce downstream effects (e.g. API calls), wrap the consumer in a debounced handler — the input itself stays responsive.
+
+<Canvas of={WithDebounce} />
+
+## API reference
+
+### `Search<T, U, S>`
+
+Generic over recent (`T`), parameter (`U`), and suggestion (`S`) item shapes.
+
+<table>
+  <thead>
+    <tr><th>Prop</th><th>Type</th><th>Default</th><th>Description</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>value</td><td>string</td><td>—</td><td><strong>Required.</strong> Controlled input value</td></tr>
+    <tr><td>onValueChange</td><td>{'(value: string) => void'}</td><td>—</td><td>Called on every input change and when an item is selected</td></tr>
+    <tr><td>parameterValue</td><td>string</td><td>—</td><td>Currently active parameter value; non-empty switches dropdown to suggestions mode</td></tr>
+    <tr><td>onParameterValueChange</td><td>{'(value: string, parameter: U | null) => void'}</td><td>—</td><td>Called when a parameter is selected or cleared via Backspace</td></tr>
+    <tr><td>onClear</td><td>{'() => void'}</td><td>—</td><td>Called when the clear (×) button is clicked; caller must reset value and parameterValue</td></tr>
+    <tr><td>recent</td><td>{'T[]'}</td><td>—</td><td>Recent-search items</td></tr>
+    <tr><td>parameters</td><td>{'U[]'}</td><td>—</td><td>Parameter (filter/facet) items</td></tr>
+    <tr><td>suggestions</td><td>{'S[] | null'}</td><td>null</td><td>Suggestion items shown in suggestions mode</td></tr>
+    <tr><td>recentDisplayProps</td><td>DataSetProps</td><td>—</td><td>Render config for the recent section</td></tr>
+    <tr><td>parametersDisplayProps</td><td>DataSetProps</td><td>—</td><td>Render config for the parameters section</td></tr>
+    <tr><td>suggestionsDisplayProps</td><td>{'DataSetProps | null'}</td><td>—</td><td>Required for suggestions to display</td></tr>
+    <tr><td>textLookupConfig</td><td>{'SearchLookupConfig<T, U, S>'}</td><td>—</td><td>Per-section keys used for text matching and display</td></tr>
+    <tr><td>filterLookupKey</td><td>string</td><td>—</td><td>When set, clicking the matching parameter populates the input with that key's value and fires onParameterValueChange with the filterLookupKey value</td></tr>
+    <tr><td>placeholder</td><td>string</td><td>—</td><td>Input placeholder text</td></tr>
+    <tr><td>clearTooltip</td><td>string</td><td>—</td><td>Tooltip on the clear button</td></tr>
+    <tr><td>divider</td><td>ReactNode</td><td>—</td><td>Node rendered between recent and parameters sections</td></tr>
+    <tr><td>dropdownMaxHeight</td><td>number</td><td>—</td><td>Max height (px) of the dropdown content area</td></tr>
+    <tr><td>searchWidth</td><td>number</td><td>—</td><td>Width (px) of the expanded input</td></tr>
+    <tr><td>dropdownWidth</td><td>number</td><td>—</td><td>Width (px) of the dropdown; defaults to match input width</td></tr>
+    <tr><td>width</td><td>number</td><td>—</td><td><strong>Deprecated.</strong> Use searchWidth</td></tr>
+    <tr><td>alwaysExpanded</td><td>boolean</td><td>—</td><td>Keeps the input expanded; disables the toggle</td></tr>
+    <tr><td>disableInput</td><td>boolean</td><td>—</td><td>Disables the text input while keeping the toggle button clickable</td></tr>
+    <tr><td>hideLabel</td><td>boolean</td><td>—</td><td>Clears the active filter label from the input when true</td></tr>
+    <tr><td>inputProps</td><td>{'Partial<InputProps>'}</td><td>—</td><td>Forwarded to the underlying antd Input</td></tr>
+    <tr><td>searchTooltipProps</td><td>TooltipProps</td><td>—</td><td>Props forwarded to the Tooltip wrapping the input</td></tr>
+    <tr><td>style</td><td>CSSProperties</td><td>—</td><td>Inline style on the outermost wrapper</td></tr>
+  </tbody>
+</table>
+
+### `SearchInput`
+
+Standalone collapsible input. Can be used independently of `Search`.
+
+<table>
+  <thead>
+    <tr><th>Prop</th><th>Type</th><th>Default</th><th>Description</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>value</td><td>string</td><td>—</td><td><strong>Required.</strong> Controlled value</td></tr>
+    <tr><td>onChange</td><td>{'(value: string) => void'}</td><td>—</td><td><strong>Required.</strong> Called on input change</td></tr>
+    <tr><td>onClear</td><td>{'() => void'}</td><td>—</td><td><strong>Required.</strong> Called when the clear button is clicked</td></tr>
+    <tr><td>placeholder</td><td>string</td><td>—</td><td>Input placeholder</td></tr>
+    <tr><td>clearTooltip</td><td>ReactNode</td><td>—</td><td>Tooltip on the clear button</td></tr>
+    <tr><td>closeOnClickOutside</td><td>boolean</td><td>—</td><td>Collapses the input on outside click. Fires on mousedown; the collapse animation is deferred to mouseup/touchend so adjacent click targets stay stable</td></tr>
+    <tr><td>alwaysExpanded</td><td>boolean</td><td>—</td><td>Keeps the input permanently open</td></tr>
+    <tr><td>alwaysHighlight</td><td>boolean</td><td>—</td><td>Keeps the input shown with the open/highlight border</td></tr>
+    <tr><td>disabled</td><td>boolean</td><td>—</td><td>Disables the entire component including the button</td></tr>
+    <tr><td>disableInput</td><td>boolean</td><td>—</td><td>Disables only the text input; button remains active</td></tr>
+    <tr><td>filterLabel</td><td>{'{ icon?: ReactNode; [key: string]: any } | null'}</td><td>—</td><td>Object whose key matches textLookupKey/filterLookupKey; rendered as a chip prefix inside the input</td></tr>
+    <tr><td>filterLookupKey</td><td>string</td><td>—</td><td>Key on filterLabel to display as chip text; falls back to textLookupKey</td></tr>
+    <tr><td>textLookupKey</td><td>string</td><td>—</td><td>Key on filterLabel used when filterLookupKey is absent</td></tr>
+    <tr><td>focusTrigger</td><td>boolean</td><td>—</td><td>Toggle this boolean to imperatively focus the input</td></tr>
+    <tr><td>toggleTrigger</td><td>boolean</td><td>—</td><td>Toggle this boolean to imperatively expand/collapse the input</td></tr>
+    <tr><td>moveCursorToEnd</td><td>boolean</td><td>—</td><td>Moves caret to end of value when toggled</td></tr>
+    <tr><td>onClick</td><td>{'() => void'}</td><td>—</td><td>Called when the input area is clicked</td></tr>
+    <tr><td>onButtonClick</td><td>{'() => void'}</td><td>—</td><td>Called when the search-icon button is clicked</td></tr>
+    <tr><td>onToggle</td><td>{'(isOpen: boolean) => void'}</td><td>—</td><td>Called when expanded state changes (fires on mouseup for outside-click collapse)</td></tr>
+    <tr><td>onKeyDown</td><td>{'(e: KeyboardEvent<HTMLInputElement>) => void'}</td><td>—</td><td>Key-down handler on the input</td></tr>
+    <tr><td>inputProps</td><td>{'Partial<InputProps>'}</td><td>—</td><td>Forwarded to antd Input</td></tr>
+    <tr><td>searchTooltipProps</td><td>{'Partial<TooltipProps>'}</td><td>{'{}'}</td><td>Tooltip wrapping the input</td></tr>
+  </tbody>
+</table>
+
+### `DataSetProps`
+
+Per-section render configuration used by `recentDisplayProps`, `parametersDisplayProps`, and `suggestionsDisplayProps`.
+
+<table>
+  <thead>
+    <tr><th>Prop</th><th>Type</th><th>Default</th><th>Description</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>itemRender</td><td>{'(item: any) => JSX.Element'}</td><td>—</td><td>Renders a single row</td></tr>
+    <tr><td>rowHeight</td><td>number</td><td>—</td><td>Height of each row in px (used by react-window)</td></tr>
+    <tr><td>title</td><td>string</td><td>—</td><td>Section header text. When omitted, no header is rendered</td></tr>
+    <tr><td>tooltip</td><td>string</td><td>—</td><td>Tooltip on the info icon next to the title</td></tr>
+    <tr><td>visibleRows</td><td>number</td><td>—</td><td>Caps visible rows; the list scrolls beyond this</td></tr>
+    <tr><td>listProps</td><td>{'Partial<ListProps>'}</td><td>—</td><td>Extra props passed to the FixedSizeList</td></tr>
+  </tbody>
+</table>
+
+### `SearchLookupConfig<T, U, S>`
+
+Maps each dataset to the key used for text matching and display.
+
+```ts
+type SearchLookupConfig<T, U, S> = {
+  parameters: keyof U;
+  recent: keyof T;
+  suggestions: keyof S;
+};
+```
+
+### Sub-components
+
+Exported alongside `Search` for advanced composition. Most callers don't need these directly.
+
+<table>
+  <thead>
+    <tr><th>Export</th><th>Description</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>SearchInput</td><td>Standalone collapsible input (documented above)</td></tr>
+    <tr><td>SearchHeader</td><td>Section header row with optional info-icon tooltip — props: headerText (required), tooltip</td></tr>
+    <tr><td>SearchItems / SearchItemList</td><td>react-window FixedSizeList renderer; both names are the same default export</td></tr>
+    <tr><td>SearchButton</td><td>Ghost icon button used internally by SearchInput</td></tr>
+    <tr><td>renderSearchList</td><td>Convenience wrapper that returns &lt;SearchItems&gt; with optional children</td></tr>
+  </tbody>
+</table>
+
+### Exported types
+
+<table>
+  <thead>
+    <tr><th>Type</th><th>Description</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>SearchProps</td><td>Full props type for Search (generic)</td></tr>
+    <tr><td>SearchLookupConfig</td><td>Per-dataset text-lookup keys (generic)</td></tr>
+    <tr><td>SearchInputProps</td><td>Props type for SearchInput</td></tr>
+  </tbody>
+</table>
+
+## Notes & tips
+
+- **Fully controlled.** `Search` does not own `value` or `parameterValue`. Selecting an item fires the change callback — the caller must apply the new value back via props.
+- **Suggestions mode.** When `parameterValue` is non-empty, only `suggestions` are rendered; `recent` and `parameters` are hidden until the parameter is cleared.
+- **`filterLookupKey` shortcut.** If a clicked parameter has a truthy value at `filterLookupKey`, the parameter is treated as a direct result: the input is populated with the parameter's text, `isResultChosen` flips to `true`, and `onParameterValueChange` fires with the `filterLookupKey` value.
+- **Arrow-key navigation.** `focusWithArrowKeys` from `@synerise/ds-utils` moves focus across `.ds-search-item` elements. ArrowUp at the top returns focus to the input.
+- **`focusTrigger` / `toggleTrigger` are flip-flops.** They are observed via `usePrevious` — the component reacts to a *change* in value, not the value itself. Toggle the boolean each time you want to trigger the action.
+- **Virtualisation requires `rowHeight`.** Every section's display props must specify `rowHeight`. Use `visibleRows` to cap the section height when the list grows.
+- **Outside-click collapse is gesture-aware.** Both `SearchInput` and `Search` keep the default `useOnClickOutside` events (`mousedown`/`touchstart`) but defer the collapse animation to the matching `mouseup`/`touchend` via a document-level one-shot listener. This avoids layout shift between mousedown and mouseup while still working in host apps that cancel or stop-propagation on `click` events.
+- **`renderInMenu` on `SearchItems` is `@deprecated`.** Default-exported lists wrapped in `ds-menu` are being phased out — set `renderInMenu={false}` and avoid `Menu.Item` inside `itemRender`, use `ListItem` from `ds-list-item` package instead.

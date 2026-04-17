@@ -88,7 +88,7 @@ return (
 
 ## Demo
 
-<iframe src="/storybook-static/iframe.html?id=components-search--default"></iframe>
+<iframe src="/storybook-static/iframe.html?id=components-search-search--with-dropdown"></iframe>
 
 ## API
 
@@ -157,7 +157,7 @@ return (
 | alwaysHighlight     | When set, the input always has blue border when expanded                  | boolean                                                                  | `false` |
 | alwaysExpanded      | Boolean value to force expanded state of the input                        | boolean                                                                  | `false` |
 | clearTooltip        | Clear button tooltip text                                                 | ReactNode                                                                | -       |
-| closeOnClickOutside | Boolean value to prevent / force toggling the input when clicking outside | boolean                                                                  | `false` |
+| closeOnClickOutside | Collapses the input when clicking outside. The decision fires on `mousedown`/`touchstart`, but the collapse animation is deferred to the matching `mouseup`/`touchend` so clicks on adjacent layout-shifting content stay reliable | boolean                                                                  | `false` |
 | disabled            | Disables the entire component including the search button                 | boolean                                                                  | -       |
 | disableInput        | Disables only the text input; search button remains active                | boolean                                                                  | -       |
 | filterLabel         | Label displayed on the left-hand side of the input caret                  | `{ icon?: ReactNode; [key: string]: any }` or null                       | -       |

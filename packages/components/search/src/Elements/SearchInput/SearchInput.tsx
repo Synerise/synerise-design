@@ -66,11 +66,38 @@ const SearchInput = ({
     }
   });
 
-  useOnClickOutside(wrapperRef, () => {
-    if (closeOnClickOutside && !alwaysExpanded) {
-      setIsInputOpen(false);
-      onToggle && onToggle(false);
+  // `useOnClickOutside` fires on `mousedown`/`touchstart`. Starting the collapse
+  // animation there shifts adjacent layout between mousedown and mouseup, which
+  // can swallow clicks on neighbouring content (mouseup lands on a different
+  // element → no click event). Decide to close on mousedown, but defer the
+  // actual state change that triggers the CSS transition to the matching
+  // mouseup/touchend so the user's gesture completes against stable layout.
+  const pendingCloseCleanupRef = useRef<(() => void) | null>(null);
+
+  useEffect(
+    () => () => {
+      pendingCloseCleanupRef.current?.();
+    },
+    [],
+  );
+
+  useOnClickOutside(wrapperRef, (event) => {
+    if (!closeOnClickOutside || alwaysExpanded) {
+      return;
     }
+
+    pendingCloseCleanupRef.current?.();
+
+    const endEventName = event.type === 'touchstart' ? 'touchend' : 'mouseup';
+    const close = (): void => {
+      pendingCloseCleanupRef.current = null;
+      setIsInputOpen(false);
+      onToggle?.(false);
+    };
+
+    document.addEventListener(endEventName, close, { once: true });
+    pendingCloseCleanupRef.current = (): void =>
+      document.removeEventListener(endEventName, close);
   });
 
   const focusInput = () => {

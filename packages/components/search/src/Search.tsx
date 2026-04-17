@@ -196,13 +196,35 @@ export function Search<
 
   const [isOpen, setIsOpen] = useState(false);
 
-  useOnClickOutside(wrapperRef, () => {
-    if (isOpen && !value && !label && !alwaysExpanded) {
-      setToggleInputTrigger((prev) => !prev);
-    }
-    setIsOpen(false);
-    setIsListVisible(false);
-    setScrollbarScrollTop(0);
+  // Defer the close/collapse work to mouseup/touchend so the input's width
+  // animation does not shift adjacent layout between mousedown and mouseup
+  // (which would swallow clicks on neighbouring content).
+  const pendingCloseCleanupRef = useRef<(() => void) | null>(null);
+
+  useEffect(
+    () => () => {
+      pendingCloseCleanupRef.current?.();
+    },
+    [],
+  );
+
+  useOnClickOutside(wrapperRef, (event) => {
+    pendingCloseCleanupRef.current?.();
+
+    const endEventName = event.type === 'touchstart' ? 'touchend' : 'mouseup';
+    const close = (): void => {
+      pendingCloseCleanupRef.current = null;
+      if (isOpen && !value && !label && !alwaysExpanded) {
+        setToggleInputTrigger((prev) => !prev);
+      }
+      setIsOpen(false);
+      setIsListVisible(false);
+      setScrollbarScrollTop(0);
+    };
+
+    document.addEventListener(endEventName, close, { once: true });
+    pendingCloseCleanupRef.current = (): void =>
+      document.removeEventListener(endEventName, close);
   });
 
   const handleClearValue = () => {
@@ -426,6 +448,7 @@ export function Search<
                       scrollTop: scrollbarScrollTop,
                       recent: filteredRecent,
                       rowHeight: recentDisplayProps.rowHeight,
+                      hasRecentTitle: !!recentDisplayProps.title,
                     }),
                     ...(parametersDisplayProps.listProps || {}),
                   }}

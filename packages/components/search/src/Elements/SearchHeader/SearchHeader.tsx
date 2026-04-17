@@ -1,7 +1,7 @@
 import React from 'react';
 
 import Icon, { InfoFillS } from '@synerise/ds-icon';
-import Tooltip from '@synerise/ds-tooltip/dist/Tooltip';
+import Tooltip from '@synerise/ds-tooltip';
 
 import * as S from '../../Search.styles';
 import { type SearchHeaderProps } from './SearchHeader.types';
