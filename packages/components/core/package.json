@@ -39,7 +39,7 @@
     "deepmerge": "^4.2.2",
     "flat": "^5.0.2",
     "moment": "^2.30.1",
-    "react-hot-toast": "^2.5.2"
+    "react-hot-toast": "^2.6.0"
   },
   "peerDependencies": {
     "antd": "4.24.16",
