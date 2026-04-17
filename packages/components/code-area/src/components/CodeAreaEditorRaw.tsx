@@ -93,6 +93,9 @@ export const CodeAreaEditorRaw = ({
     (monacoInstance: Monaco) => {
       monacoRef.current = monacoInstance;
 
+      // Ensure base theme CSS is injected (needed for locally-bundled Monaco)
+      monacoInstance.editor.setTheme('vs');
+
       monacoInstance.editor.defineTheme(DS_MONACO_THEME_NAME, DS_MONACO_THEME);
       monacoInstance.editor.setTheme(DS_MONACO_THEME_NAME);
       monacoInstance.editor.onDidChangeMarkers(() => {

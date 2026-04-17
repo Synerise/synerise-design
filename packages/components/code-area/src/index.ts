@@ -7,3 +7,5 @@ export type {
 } from './CodeArea.types';
 
 export * from './CodeArea.styles';
+
+export * from './constants';
