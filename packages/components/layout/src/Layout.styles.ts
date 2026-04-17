@@ -274,6 +274,7 @@ export const LayoutSidebarWrapper = styled.div<LayoutSidebarWrapperProps>`
     css`
       ${mediaQuery.to.medium`
       position: absolute;
+      height: 100%;
       width: ${props.openedWidth}px;
       transform: ${props.right ? `translateX(${props.openedWidth}px)` : `translateX(-${props.openedWidth}px)`};
 
