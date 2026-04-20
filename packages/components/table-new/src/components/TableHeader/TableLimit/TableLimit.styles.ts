@@ -34,7 +34,3 @@ export const Alert = styled.div`
     background: ${(props): string => props.theme.palette['grey-200']};
   }
 `;
-
-export const ItemsMenu = styled.div`
-  padding-left: 24px;
-`;

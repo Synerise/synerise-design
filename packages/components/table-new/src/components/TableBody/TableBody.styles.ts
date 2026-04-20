@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
 import { commonRowStyles } from '../../Table.styles';
 import { Td } from './TableCell/TableCell.styles';
@@ -12,6 +12,16 @@ export const Tr = styled.tr`
   }
 `;
 
-export const TBody = styled.tbody`
+export const TBody = styled.tbody<{
+  $maxHeight?: number;
+  withBodyScroll?: boolean;
+}>`
   position: relative;
+  ${(props) =>
+    props.withBodyScroll &&
+    css`
+      display: block;
+      max-height: ${props.$maxHeight ?? 800}px;
+      overflow-y: scroll;
+    `}
 `;

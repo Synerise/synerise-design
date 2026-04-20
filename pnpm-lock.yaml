@@ -5145,9 +5145,6 @@ importers:
       '@synerise/ds-skeleton':
         specifier: workspace:^
         version: link:../skeleton
-      '@synerise/ds-table':
-        specifier: workspace:^
-        version: link:../table
       '@synerise/ds-tag':
         specifier: workspace:^
         version: link:../tag

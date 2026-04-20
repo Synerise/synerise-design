@@ -17,6 +17,7 @@ type TableCellProps = WithHTMLAttributes<
     leftOffset?: number;
     cellKey?: string;
     headerIndex?: number;
+    align?: 'left' | 'center' | 'right';
   }
 >;
 export const TableCell = memo(
@@ -31,11 +32,13 @@ export const TableCell = memo(
     rightOffset,
     leftOffset,
     cellKey,
+    align,
     ...rest
   }: TableCellProps) => (
     <S.Td
       $height={height}
       $width={width}
+      $align={align}
       isSorted={isSorted}
       role="cell"
       colSpan={colSpan}

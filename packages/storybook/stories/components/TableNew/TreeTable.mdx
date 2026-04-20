@@ -1,0 +1,195 @@
+import { Meta, Canvas } from '@storybook/addon-docs/blocks';
+import {
+  Default,
+  AllExpanded,
+  SingleColumn,
+  ControlledExpand,
+  HiddenExpandIcon,
+  WithSearch,
+} from './Tree/TreeTable.stories';
+
+<Meta title="Components/TableNew/TreeTable" />
+
+# TreeTable
+
+Renders hierarchical data with visual indentation, colored vertical lines, and expand/collapse controls. Built on top of `Table` using TanStack's expanding row model -- not a separate table implementation.
+
+## Quick overview
+
+- Data must have a `children` property (configurable via `childrenColumnName`)
+- Indentation: 42px per level, 8-color cycling vertical lines (yellow, green, cyan, violet, orange, purple, blue, grey)
+- Parent rows show an expand/collapse button; leaf rows show a connector icon
+- Supports uncontrolled (internal state) and controlled (`expandedRowKeys`) expand modes
+- All `Table` props are supported (search, selection, pagination, sorting, etc.)
+
+## Basic example
+
+Click the expand buttons to reveal child rows. Indentation and colored lines are rendered automatically based on row depth.
+
+```tsx
+import { TreeTable } from '@synerise/ds-table-new';
+
+const data = [
+  {
+    key: 'analytics',
+    name: 'Analytics',
+    children: [
+      { key: 'dashboards', name: 'Dashboards' },
+      { key: 'funnels', name: 'Funnels' },
+    ],
+  },
+];
+
+const columns = [
+  { header: 'Name', accessorKey: 'name', id: 'name' },
+];
+
+<TreeTable data={data} columns={columns} rowKey="key" />
+```
+
+<Canvas of={Default} sourceState="shown" />
+
+## All rows expanded
+
+Pass `defaultExpandAllRows` to start with every row expanded. The tree will compute all row keys from the data and expand them on mount.
+
+```tsx
+<TreeTable
+  data={data}
+  columns={columns}
+  rowKey="key"
+  defaultExpandAllRows
+/>
+```
+
+<Canvas of={AllExpanded} />
+
+## Single column with no header
+
+Common pattern for simple hierarchical lists (e.g., category pickers, dependency trees). Hide the column header and title bar for a clean tree view.
+
+<Canvas of={SingleColumn} />
+
+## Controlled expand state
+
+Manage `expandedRowKeys` externally for full control over which rows are expanded. Use `onExpandRow` to react to expand/collapse events.
+
+```tsx
+const [expandedKeys, setExpandedKeys] = useState(['analytics']);
+
+const handleExpandRow = (key, expanded) => {
+  setExpandedKeys(prev =>
+    expanded ? [...prev, key] : prev.filter(k => k !== key)
+  );
+};
+
+<TreeTable
+  data={data}
+  columns={columns}
+  rowKey="key"
+  expandedRowKeys={expandedKeys}
+  onExpandRow={handleExpandRow}
+/>
+```
+
+<Canvas of={ControlledExpand} />
+
+## Hidden expand icon (row-click expand)
+
+Set `expandIconColumnIndex={-1}` to hide the expand button. Combine with `onRowClick` to expand rows on click instead.
+
+<Canvas of={HiddenExpandIcon} />
+
+## With built-in search
+
+TreeTable supports all Table props including `matchesSearchQuery`. When combined with `defaultExpandAllRows`, the user can search through the full hierarchy.
+
+<Canvas of={WithSearch} />
+
+## Props reference
+
+TreeTable accepts all `Table` props plus the following tree-specific props:
+
+<table>
+  <thead>
+    <tr>
+      <th>Prop</th>
+      <th>Type</th>
+      <th>Default</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>childrenColumnName</code></td>
+      <td><code>keyof TData</code></td>
+      <td><code>'children'</code></td>
+      <td>Property name on row data containing child rows.</td>
+    </tr>
+    <tr>
+      <td><code>defaultExpandAllRows</code></td>
+      <td><code>boolean</code></td>
+      <td><code>false</code></td>
+      <td>Start with all rows expanded.</td>
+    </tr>
+    <tr>
+      <td><code>expandedRowKeys</code></td>
+      <td><code>string[]</code></td>
+      <td>-</td>
+      <td>Controlled expanded row keys. When provided, expand state is managed externally.</td>
+    </tr>
+    <tr>
+      <td><code>onExpandRow</code></td>
+      <td><code>(key: string, expanded: boolean) =&gt; void</code></td>
+      <td>-</td>
+      <td>Called when a row's expand state changes.</td>
+    </tr>
+    <tr>
+      <td><code>expandIconColumnIndex</code></td>
+      <td><code>number</code></td>
+      <td><code>0</code></td>
+      <td>Column index for the expand icon. Set to <code>-1</code> to hide it entirely.</td>
+    </tr>
+  </tbody>
+</table>
+
+## Indentation system
+
+Each indent level is 42px wide with a 2px colored vertical line on the left. Colors cycle through 8 values:
+
+<table>
+  <thead>
+    <tr>
+      <th>Level</th>
+      <th>Color</th>
+      <th>Active hue</th>
+      <th>Inactive hue</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr><td>0</td><td>yellow</td><td>600</td><td>200</td></tr>
+    <tr><td>1</td><td>green</td><td>600</td><td>200</td></tr>
+    <tr><td>2</td><td>cyan</td><td>500</td><td>200</td></tr>
+    <tr><td>3</td><td>violet</td><td>600</td><td>200</td></tr>
+    <tr><td>4</td><td>orange</td><td>600</td><td>200</td></tr>
+    <tr><td>5</td><td>purple</td><td>600</td><td>200</td></tr>
+    <tr><td>6</td><td>blue</td><td>600</td><td>200</td></tr>
+    <tr><td>7</td><td>grey</td><td>600</td><td>200</td></tr>
+  </tbody>
+</table>
+
+The "active" bar is the deepest indent level (closest to the row content). All other bars use the inactive hue. Colors cycle back to yellow after grey for trees deeper than 8 levels.
+
+## Data structure
+
+Row data must include a `children` property (or the property specified by `childrenColumnName`) containing an array of child rows with the same shape:
+
+```typescript
+type TreeRow = {
+  key: string;
+  name: string;
+  children?: TreeRow[];
+};
+```
+
+The tree depth is determined automatically by TanStack React Table's expanding row model. There is no hardcoded depth limit.

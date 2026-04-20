@@ -1,0 +1,255 @@
+import { Meta, Canvas } from '@storybook/addon-docs/blocks';
+import {
+  WithBuiltInSearch,
+  WithBuiltInSearchAndSelection,
+  WithCustomSearch,
+} from './NonVirtual/Table.stories';
+
+<Meta title="Components/TableNew/Search" />
+
+# Search
+
+TableNew supports three search modes, each suited to a different level of control. All modes render the search UI in the table header bar.
+
+- **Built-in search** — Table manages query state internally, renders a `SearchInput` from `@synerise/ds-search`, and filters data for display. Selection operates on the full unfiltered dataset.
+- **Custom search with internal filtering** — Consumer manages query state and provides a custom `searchComponent`. Table still filters data internally via `filterData`. Selection operates on the full unfiltered dataset.
+- **External search (legacy)** — Consumer manages everything: query state, data filtering, and search UI. Table receives pre-filtered `data` and renders `searchComponent` in the header slot. Selection operates only on the filtered data that was passed in.
+
+## Built-in search
+
+The simplest approach. Pass `matchesSearchQuery` as a pure predicate function. The table renders a `SearchInput` automatically, manages the query string state internally, and filters `data` for display.
+
+Use `searchProps` to override defaults on the rendered `SearchInput` (placeholder, clearTooltip, etc.).
+
+`matchesSearchQuery` should be a **pure function** (or a stable reference via `useCallback`) to avoid unnecessary re-renders. The table memoizes the filtered result based on the function reference and query string.
+
+```tsx
+import { Table } from '@synerise/ds-table-new';
+
+<Table
+  data={data}
+  columns={columns}
+  title="Users"
+  matchesSearchQuery={(query, row) =>
+    row.name.toLowerCase().includes(query.toLowerCase())
+  }
+  searchProps={{
+    placeholder: 'Search by name...',
+    clearTooltip: 'Clear search',
+  }}
+/>
+```
+
+<Canvas of={WithBuiltInSearch} sourceState="shown" />
+
+## Built-in search with selection preservation
+
+When using `matchesSearchQuery` or `filterData` together with `selectionConfig`, the table filters data for display but keeps the full `data` array as the selection source. This means selected rows remain selected even when they are hidden by a search query.
+
+For example, if you select 3 rows and then search for a term that hides 2 of them, all 3 rows stay selected. Clearing the search reveals the full selection intact.
+
+```tsx
+import { SELECTION_ALL, SELECTION_INVERT, Table } from '@synerise/ds-table-new';
+
+<Table
+  data={data}
+  columns={columns}
+  title="Users"
+  matchesSearchQuery={(query, row) =>
+    row.name.toLowerCase().includes(query.toLowerCase())
+  }
+  searchProps={{
+    placeholder: 'Search by name...',
+    clearTooltip: 'Clear search',
+  }}
+  selectionConfig={{
+    onChange: (selectedRowKeys, selectedRows) => {
+      console.log('Selection changed:', selectedRowKeys, selectedRows);
+    },
+    selections: [SELECTION_ALL, SELECTION_INVERT],
+  }}
+/>
+```
+
+<Canvas of={WithBuiltInSearchAndSelection} sourceState="shown" />
+
+## Custom search component with internal filtering
+
+When you need a custom search UI but still want the table to handle filtering internally, use `filterData` together with `searchComponent`.
+
+- **`filterData`** is a closure-based predicate. The consumer manages the query string in local state and closes over it.
+- **`searchComponent`** is a `ReactNode` rendered in the header slot, replacing the built-in `SearchInput`.
+
+Selection still operates on the full `data` array, preserving selected items that are filtered out.
+
+```tsx
+import { Table } from '@synerise/ds-table-new';
+import { SearchInput } from '@synerise/ds-search';
+
+const [query, setQuery] = useState('');
+
+const filterData = useCallback(
+  (row) => {
+    if (!query) return true;
+    const lowerQuery = query.toLowerCase();
+    return (
+      row.name.toLowerCase().includes(lowerQuery) ||
+      row.city.toLowerCase().includes(lowerQuery)
+    );
+  },
+  [query],
+);
+
+<Table
+  data={data}
+  columns={columns}
+  title="Users"
+  filterData={filterData}
+  searchComponent={
+    <SearchInput
+      value={query}
+      onChange={setQuery}
+      onClear={() => setQuery('')}
+      placeholder="Search name or city..."
+      clearTooltip="Clear search"
+      closeOnClickOutside
+    />
+  }
+/>
+```
+
+<Canvas of={WithCustomSearch} sourceState="shown" />
+
+## External search (legacy)
+
+The legacy pattern where the consumer manages everything externally. The consumer filters the `data` array before passing it to the table. The table does no internal filtering.
+
+**Important:** With this approach, selection operates only on the filtered `data` that was passed in. Selected rows that are filtered out will be lost from the selection state. Prefer `matchesSearchQuery` or `filterData` for new code if selection preservation matters.
+
+```tsx
+import { Table } from '@synerise/ds-table-new';
+import { SearchInput } from '@synerise/ds-search';
+
+const [query, setQuery] = useState('');
+
+const filteredData = useMemo(() => {
+  if (!query) return data;
+  const lowerQuery = query.toLowerCase();
+  return data.filter(
+    (row) =>
+      row.name.toLowerCase().includes(lowerQuery) ||
+      row.city.toLowerCase().includes(lowerQuery),
+  );
+}, [query, data]);
+
+<Table
+  data={filteredData}
+  columns={columns}
+  title="Users"
+  searchComponent={
+    <SearchInput
+      value={query}
+      onChange={setQuery}
+      onClear={() => setQuery('')}
+      placeholder="Search name or city..."
+      clearTooltip="Clear search"
+      closeOnClickOutside
+    />
+  }
+/>
+```
+
+## When to use which mode
+
+{/* Note: MDX does not render markdown tables correctly. Use HTML tables or description lists instead. */}
+
+<table>
+  <thead>
+    <tr>
+      <th>Mode</th>
+      <th>Use when</th>
+      <th>Selection preservation</th>
+      <th>State management</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>Built-in</strong> (<code>matchesSearchQuery</code>)</td>
+      <td>Simple text search, single-field or multi-field match</td>
+      <td>Yes</td>
+      <td>Table manages query</td>
+    </tr>
+    <tr>
+      <td><strong>Custom</strong> (<code>filterData</code> + <code>searchComponent</code>)</td>
+      <td>Non-standard search UI, faceted search, external debounce</td>
+      <td>Yes</td>
+      <td>Consumer manages query</td>
+    </tr>
+    <tr>
+      <td><strong>External</strong> (pre-filtered <code>data</code> + <code>searchComponent</code>)</td>
+      <td>Legacy code, server-side search, or when selection preservation is not needed</td>
+      <td>No</td>
+      <td>Consumer manages everything</td>
+    </tr>
+  </tbody>
+</table>
+
+## Search props reference
+
+<table>
+  <thead>
+    <tr>
+      <th>Property</th>
+      <th>Type</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>matchesSearchQuery</code></td>
+      <td><code>(query: string, row: TData) =&gt; boolean</code></td>
+      <td>Pure predicate for built-in search. Table manages query state and renders SearchInput. Takes precedence over <code>filterData</code>.</td>
+    </tr>
+    <tr>
+      <td><code>searchProps</code></td>
+      <td><code>Partial&lt;SearchInputProps&gt;</code></td>
+      <td>Override defaults on the built-in SearchInput (placeholder, clearTooltip, etc.). Ignored when <code>searchComponent</code> is provided.</td>
+    </tr>
+    <tr>
+      <td><code>onSearchQueryChange</code></td>
+      <td><code>(query: string) =&gt; void</code></td>
+      <td>Callback fired when the internal query changes. Only fires with built-in search. Useful for URL sync or analytics.</td>
+    </tr>
+    <tr>
+      <td><code>filterData</code></td>
+      <td><code>(row: TData) =&gt; boolean</code></td>
+      <td>Closure-based filter for custom search. Consumer manages query state. Ignored when <code>matchesSearchQuery</code> is provided.</td>
+    </tr>
+    <tr>
+      <td><code>searchComponent</code></td>
+      <td><code>ReactNode</code></td>
+      <td>Custom search UI rendered in the header. When provided, replaces the built-in SearchInput rendering.</td>
+    </tr>
+  </tbody>
+</table>
+
+## Notes on `matchesSearchQuery`
+
+`matchesSearchQuery` should be a **pure function** -- it receives the query string and a row, and returns a boolean. It should not depend on external mutable state beyond its arguments.
+
+If defined inline in JSX, wrap it with `useCallback` to avoid re-creating the function on every render, which would invalidate the memoized filtered data:
+
+```tsx
+const matchesSearchQuery = useCallback(
+  (query: string, row: RowType) =>
+    row.name.toLowerCase().includes(query.toLowerCase()),
+  [],
+);
+
+<Table
+  data={data}
+  columns={columns}
+  matchesSearchQuery={matchesSearchQuery}
+/>
+```
+

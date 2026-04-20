@@ -86,7 +86,11 @@ import { VirtualTable } from '@synerise/ds-table-new';
 | `className` | CSS class for styled-components composition | `string` | - |
 | `showHeader` | Show or hide the table header bar | `boolean` | - |
 | `itemsMenu` | Rendered next to title when rows are selected (batch actions) | `ReactNode` | - |
-| `searchComponent` | Search input rendered on the right side of the header | `ReactNode` | - |
+| `matchesSearchQuery` | Pure predicate for built-in search — table manages query state and renders SearchInput | `(query: string, row: TData) => boolean` | - |
+| `searchProps` | Override SearchInput defaults when using built-in search (placeholder, clearTooltip, etc.) | `Partial<SearchInputProps>` | - |
+| `onSearchQueryChange` | Callback fired when internal search query changes (built-in search only) | `(query: string) => void` | - |
+| `filterData` | Closure-based filter for custom search — table filters internally, consumer manages query state | `(row: TData) => boolean` | - |
+| `searchComponent` | Custom search UI rendered in the header — replaces built-in SearchInput when provided | `ReactNode` | - |
 | `filterComponent` | Filter controls rendered on the right side of the header | `ReactNode` | - |
 | `headerButton` | Button rendered in the header | `ReactNode` | - |
 | `cardStyles` | Render table with rounded corners and shadow | `boolean` | - |
@@ -135,6 +139,58 @@ import { VirtualTable } from '@synerise/ds-table-new';
 | `globalSelected` | Current global selection state | `boolean` | - |
 | `checkRowSelectionStatus` | Per-row disabled/unavailable check | `(record: TData) => { disabled?; unavailable? }` | - |
 | `independentSelectionExpandedRows` | Treat expanded child rows as independent selections | `boolean` | - |
+
+### Search
+
+TableNew supports three search modes:
+
+**Built-in search** — table manages query state, renders SearchInput, and filters data internally:
+
+```tsx
+import { Table } from '@synerise/ds-table-new';
+
+<Table
+  data={data}
+  columns={columns}
+  matchesSearchQuery={(query, row) =>
+    row.name.toLowerCase().includes(query.toLowerCase())
+  }
+  searchProps={{
+    placeholder: 'Search by name...',
+    clearTooltip: 'Clear search',
+  }}
+  onSearchQueryChange={(query) => console.log('query:', query)}
+/>
+```
+
+**Custom search with internal filtering** — consumer manages query state, table filters via `filterData`:
+
+```tsx
+import { Table } from '@synerise/ds-table-new';
+import { SearchInput } from '@synerise/ds-search';
+
+const [query, setQuery] = useState('');
+
+<Table
+  data={data}
+  columns={columns}
+  filterData={(row) =>
+    !query || row.name.toLowerCase().includes(query.toLowerCase())
+  }
+  searchComponent={
+    <SearchInput
+      value={query}
+      onChange={setQuery}
+      onClear={() => setQuery('')}
+      placeholder="Search..."
+      clearTooltip="Clear"
+      closeOnClickOutside
+    />
+  }
+/>
+```
+
+When using `matchesSearchQuery` or `filterData` with selection, the table preserves selected items that are filtered out of the display. Selection always operates on the full `data` array.
 
 ### InfiniteScrollProps
 

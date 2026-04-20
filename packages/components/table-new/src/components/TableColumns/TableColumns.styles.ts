@@ -14,11 +14,12 @@ export const Th = styled.th<{
   isPinned?: 'left' | 'right' | false;
   rightOffset?: number;
   leftOffset?: number;
+  $align?: 'left' | 'center' | 'right';
 }>`
   ${commonCellStyles};
   ${commonPinnedStyles};
   height: 64px;
-  text-align: left;
+  text-align: ${(props) => props.$align ?? 'left'};
   background-color: ${(props) => props.theme.palette['white']};
   border-bottom: solid 1px ${(props) => props.theme.palette['grey-300']};
   color: ${(props) => props.theme.palette['grey-700']};
@@ -69,10 +70,19 @@ export const Tr = styled.tr`
   ${commonRowStyles}
 `;
 
-export const HeaderWrapper = styled.div`
+const justifyMap = {
+  left: 'flex-start',
+  center: 'center',
+  right: 'flex-end',
+} as const;
+
+export const HeaderWrapper = styled.div<{
+  $align?: 'left' | 'center' | 'right';
+}>`
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: ${(props) =>
+    props.$align ? justifyMap[props.$align] : 'space-between'};
   font-weight: 500;
 `;
 

@@ -42,6 +42,10 @@ Custom fields on `meta` that extend TanStack's `ColumnMeta`:
 
 - **`fixed`** `'left' | 'right'` — pins the column to the left or right edge during horizontal scroll.
 
+### Alignment
+
+- **`align`** `'left' | 'center' | 'right'` — horizontal alignment for the column header and all cells in this column. Defaults to `'left'`. Affects both `text-align` on the `<th>`/`<td>` and `justify-content` on the inner flex wrapper.
+
 ### Styling
 
 - **`style`** `CSSProperties` — custom CSS applied to the column cells.
@@ -205,6 +209,7 @@ The adapter maps legacy fields as follows:
 - `sortRender` (string) to `meta.sortRender`
 - `sortRender` (function) to `meta.renderCustomSortButton`
 - `fixed` to `meta.fixed` + `enablePinning`
+- `align` to `meta.align`
 - `childRender` to `meta.childCell`
 
 ## Full example
@@ -246,6 +251,7 @@ const columns: ColumnDef<MyData, unknown>[] = [
         label={info.getValue() as string}
       />
     ),
+    meta: { align: 'center' },
   },
 ];
 ```

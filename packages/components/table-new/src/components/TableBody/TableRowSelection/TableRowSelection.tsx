@@ -22,10 +22,11 @@ export const TableRowSelection = <TData extends object>({
 
   const isSelected = row.getIsSelected();
 
+  const totalSelectedCount = Object.keys(table.getState().rowSelection).length;
   const isDisabled =
     !row.getCanSelect() ||
     isGlobalAllSelected ||
-    (limit && table.getSelectedRowModel().rows.length >= limit && !isSelected);
+    (limit && totalSelectedCount >= limit && !isSelected);
 
   const toggleSelection = row.getToggleSelectedHandler();
   const handleChange = (newValue: boolean) => {

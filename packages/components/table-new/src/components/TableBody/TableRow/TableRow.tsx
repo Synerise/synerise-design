@@ -16,6 +16,7 @@ export const TableRow = <TData extends object>({
   const rowContent = (
     <S.Tr
       key={row.id}
+      data-key={row.id}
       data-row-depth={row.depth}
       data-row-index={row.index}
       data-index={row.index}
@@ -49,6 +50,7 @@ export const TableRow = <TData extends object>({
             isPinned={cell.column.getIsPinned()}
             rightOffset={cell.column.getAfter('right')}
             leftOffset={cell.column.getStart('left')}
+            align={cell.column.columnDef.meta?.align}
             style={cell.column.columnDef.meta?.style}
             data-cell-id={cellId}
             data-column-dataindex={cell.column.columnDef.meta?.dataIndex}

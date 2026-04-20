@@ -244,7 +244,12 @@
       "UNSELECT_ALL": "Deseleccionar visibles",
       "SELECT_GLOBAL_ALL": "Seleccionar todo",
       "UNSELECT_GLOBAL_ALL": "Deseleccionar todo",
-      "SELECT_INVERT": "Invertir selección"
+      "SELECT_INVERT": "Invertir selección",
+      "ITEMS": "Registros",
+      "SELECT_ALL_BUTTON_TOOLTIP": "Seleccionar todo",
+      "SELECTION_LIMIT": "Has alcanzado el límite máximo",
+      "SELECTIONS_MENU_TOOLTIP": "Opciones de selección masiva",
+      "NO_DATA": "Sin datos"
     },
     "ICON-PICKER": {
       "NO-RESULTS": "Sin resultados"

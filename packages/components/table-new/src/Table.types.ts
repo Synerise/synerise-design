@@ -7,6 +7,7 @@ import {
   type RefObject,
 } from 'react';
 
+import type { SearchInputProps } from '@synerise/ds-search';
 import type { TooltipProps } from '@synerise/ds-tooltip';
 import {
   type Column,
@@ -17,12 +18,23 @@ import {
 } from '@tanstack/react-table';
 import { type VirtualItem, type Virtualizer } from '@tanstack/react-virtual';
 
+export type HighlightOptions = {
+  /** Duration in milliseconds. Default: 600 */
+  duration?: number;
+};
+
+export type TableRef = {
+  /** Temporarily highlight a row by key. Highlight fades out after duration. */
+  highlightRow: (rowKey: string, options?: HighlightOptions) => void;
+};
+
 /**
  * Standard paginated table component props
  */
 export type TableProps<TData, TValue> = SharedTableProps<TData, TValue> &
   PaginatedProps & {
     texts?: Partial<TableTexts>;
+    tableRef?: RefObject<TableRef>;
   };
 
 /**
@@ -32,6 +44,53 @@ export type VirtualTableProps<TData, TValue> = SharedTableProps<TData, TValue> &
   VirtualProps & {};
 
 export type DSColumnMeta<TData extends RowData, TValue> = ColumnMeta<
+  TData,
+  TValue
+>;
+
+/**
+ * Legacy column type matching @synerise/ds-table's VirtualColumnType.
+ * Used by legacyColumnConfigAdapter to convert old column configs to TanStack ColumnDef.
+ * For new code, prefer ColumnDef from @tanstack/react-table directly.
+ */
+export type LegacyColumnType<T> = {
+  dataIndex?: string | string[];
+  key?: string | number;
+  title?: ReactNode | ((props: Record<string, unknown>) => ReactNode);
+  render?: (value: unknown, record: T, index: number) => ReactNode;
+  childRender?: (value: unknown, row: T, index: number) => ReactNode;
+  sorter?:
+    | boolean
+    | ((a: T, b: T) => number)
+    | { compare?: (a: T, b: T) => number; multiple?: number | false };
+  sortOrder?: 'ascend' | 'descend' | null;
+  sortRender?:
+    | 'default'
+    | 'string'
+    | ((sortStateApi: SortStateAPI, column: LegacyColumnType<T>) => ReactNode);
+  width?: number | string;
+  minWidth?: number | string;
+  maxWidth?: number | string;
+  fixed?: 'left' | 'right';
+  align?: 'left' | 'center' | 'right';
+  id?: string | number;
+  fixedFirst?: boolean;
+  left?: number;
+  right?: number;
+  ellipsis?: boolean;
+  className?: string;
+  getCellTooltipProps?: (row: T) => TooltipProps | false;
+};
+
+/**
+ * @deprecated Compatibility alias. Use LegacyColumnType with legacyColumnConfigAdapter, or ColumnDef for new code.
+ */
+export type DSColumnType<TData> = LegacyColumnType<TData>;
+
+/**
+ * @deprecated Compatibility alias. Use TableProps or VirtualTableProps for new code.
+ */
+export type DSTableProps<TData, TValue = unknown> = SharedTableProps<
   TData,
   TValue
 >;
@@ -85,15 +144,102 @@ export type SharedTableProps<TData, TValue> = {
    */
   disableColumnNamesLineBreak?: boolean;
   /**
-   * renders on the right side of table header
-   * can be used for filtering data based on query
-   * data filtering is to be set up in the implementation / server-side
+   * Enables built-in search. Table manages query state internally, renders SearchInput,
+   * and filters `data` for rendering while keeping full data for selection.
+   * Takes precedence over `filterData` if both provided.
+   *
+   * Should be a stable reference (defined outside component or wrapped in useCallback)
+   * since it receives the query as a parameter and doesn't need to close over state.
+   *
+   * @example
+   * ```tsx
+   * const matchesSearchQuery = (query: string, row: User) =>
+   *   row.name.toLowerCase().includes(query.toLowerCase());
+   *
+   * <Table data={users} matchesSearchQuery={matchesSearchQuery} />
+   * ```
+   */
+  matchesSearchQuery?: (query: string, row: TData) => boolean;
+  /**
+   * Override SearchInput props when using built-in search (matchesSearchQuery).
+   * Ignored when searchComponent is provided.
+   *
+   * @example
+   * ```tsx
+   * <Table
+   *   data={data}
+   *   columns={columns}
+   *   matchesSearchQuery={matchFn}
+   *   searchProps={{
+   *     placeholder: 'Search by name...',
+   *     clearTooltip: 'Clear search',
+   *   }}
+   * />
+   * ```
+   */
+  searchProps?: Partial<SearchInputProps>;
+  /**
+   * Called when the internal search query changes. Useful for URL sync or analytics.
+   * Only fires when using built-in search (matchesSearchQuery).
+   *
+   * @example
+   * ```tsx
+   * <Table
+   *   data={data}
+   *   columns={columns}
+   *   matchesSearchQuery={matchFn}
+   *   onSearchQueryChange={(query) => {
+   *     updateUrlParam('search', query);
+   *   }}
+   * />
+   * ```
+   */
+  onSearchQueryChange?: (query: string) => void;
+  /**
+   * Filters `data` internally for rendering while keeping full data for selection.
+   * For use with `searchComponent` where the consumer manages query state.
+   * Ignored when `matchesSearchQuery` is provided.
+   *
+   * @example
+   * ```tsx
+   * const [query, setQuery] = useState('');
+   *
+   * <Table
+   *   data={users}
+   *   filterData={query ? (row) => row.name.includes(query) : undefined}
+   *   searchComponent={<CustomSearch value={query} onChange={setQuery} />}
+   * />
+   * ```
+   */
+  filterData?: (row: TData) => boolean;
+  /**
+   * Custom search component rendered in the table header.
+   * When provided, takes precedence over built-in SearchInput rendering.
+   *
+   * Can be used with `filterData` for internal filtering, or alone for
+   * external/legacy filtering where the consumer pre-filters `data`.
+   *
+   * @example
+   * ```tsx
+   * <Table
+   *   data={data}
+   *   columns={columns}
+   *   searchComponent={
+   *     <SearchInput
+   *       value={query}
+   *       onChange={setQuery}
+   *       onClear={() => setQuery('')}
+   *       placeholder="Search..."
+   *       clearTooltip="Clear"
+   *       closeOnClickOutside
+   *     />
+   *   }
+   * />
+   * ```
    */
   searchComponent?: ReactNode;
   /**
-   * renders on the right side of table header
-   * can be used for rendering custom filter buttons
-   * data filtering is to be set up in the implementation / server-side
+   * Custom filter component rendered in the table header.
    */
   filterComponent?: ReactNode;
   rowKey?: RowKey<TData>;
@@ -165,6 +311,10 @@ export type BaseTableProps<TData, TValue> = Omit<
   texts: TableTexts;
   columnSizing: Record<string, number>;
   isColumnSizingReady: boolean;
+  searchQuery?: string;
+  setSearchQuery?: (query: string) => void;
+  handleSearchClear?: () => void;
+  hasBuiltInSearch?: boolean;
 } & VirtualProps &
   PaginatedProps;
 
@@ -199,6 +349,8 @@ export type VirtualTableRef = {
       Virtualizer<HTMLDivElement, Element>['scrollToIndex']
     >[1],
   ) => void;
+  /** Temporarily highlight a row by key. Highlight fades out after duration. */
+  highlightRow: (rowKey: string, options?: HighlightOptions) => void;
 };
 
 type VirtualProps = {
@@ -216,6 +368,16 @@ type VirtualProps = {
   scrollElementRef?: MutableRefObject<HTMLDivElement | null>;
 
   onScrollToRecordIndex?: (recordIndex: number, callback?: () => void) => void;
+  /**
+   * render a sticky back-to-top button once the top of the table is scrolled out of view.
+   * Available with or without `infiniteScroll`.
+   */
+  showBackToTopButton?: boolean;
+  /**
+   * Called when the back-to-top button is clicked.
+   * Defaults to scrolling the virtual table to the top when omitted.
+   */
+  onBackToTop?: () => void;
 };
 
 export type OnItemsRenderedProps = {
@@ -249,14 +411,12 @@ export type InfiniteScrollState = {
 
 export type InfiniteScrollProps = InfiniteScrollState & {
   maxScroll?: number;
-  showBackToTopButton?: boolean;
   nextPage?: InfiniteScrollState;
   prevPage?: InfiniteScrollState;
   render?: (state: InfiniteScrollState) => ReactElement;
   onRetryButtonClick?: (position: LoaderItemPosition | undefined) => void;
   onScrollEndReach?: () => void;
   onScrollTopReach?: () => void;
-  onBackToTop?: () => void;
 };
 
 export type LoaderItemProps = {
@@ -334,7 +494,9 @@ export type RowKey<TData> = ((row: TData) => string) | keyof TData;
 export type TableTexts = TableHeaderTexts &
   TableBodyTexts &
   TableColumnSorterTexts &
-  TableRowSelectionTexts & {};
+  TableRowSelectionTexts & {
+    infiniteScrollBackToTop: ReactNode;
+  };
 
 export type TableColumnSorterTexts = {
   columnSortAscend: ReactNode;
@@ -390,6 +552,9 @@ export type TableBodyProps<TData, TValue> = Pick<
   | 'getRowTooltipProps'
 > & {
   texts: TableBodyTexts;
+  withBodyScroll?: boolean;
+  tableBodyScrollRef?: React.MutableRefObject<HTMLElement | null>;
+  maxHeight?: number;
 };
 
 export type TableEmptyBodyProps<TData, TValue> = Pick<
@@ -422,6 +587,11 @@ export type TableHeaderProps<TData, TValue> = Pick<
   | 'dataSourceTotalCount'
   | 'hideTitlePart'
   | 'isLoading'
+  | 'searchQuery'
+  | 'setSearchQuery'
+  | 'handleSearchClear'
+  | 'hasBuiltInSearch'
+  | 'searchProps'
 > & {
   selectedRows?: number;
 

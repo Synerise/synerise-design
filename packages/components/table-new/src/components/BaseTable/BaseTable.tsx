@@ -49,6 +49,11 @@ export const BaseTable = <TData extends object, TValue>({
   tableBodyScrollRef,
   onRowClick,
   getRowTooltipProps,
+  searchQuery,
+  setSearchQuery,
+  handleSearchClear,
+  hasBuiltInSearch,
+  searchProps,
 }: BaseTableProps<TData, TValue> & TableInternalProps) => {
   const horizontalScrollRefs = useRef<Array<HTMLDivElement>>([]);
   const tableBodyWrapperRef = useRef<HTMLDivElement | null>(null);
@@ -58,7 +63,7 @@ export const BaseTable = <TData extends object, TValue>({
   const { table, rowVirtualizer } = useTableContext();
   const stickyContext = useStickyContext();
   const stickyContextRef = useRef(stickyContext);
-  const useUnifiedScroll = !stickyContext && !withBodyScroll;
+  const useUnifiedScroll = !stickyContext;
 
   useEffect(() => {
     stickyContextRef.current = stickyContext;
@@ -151,6 +156,9 @@ export const BaseTable = <TData extends object, TValue>({
           />
         ) : (
           <TableBody
+            withBodyScroll={withBodyScroll}
+            tableBodyScrollRef={tableBodyScrollRef}
+            maxHeight={maxHeight}
             cellHeight={cellHeight}
             infiniteScroll={infiniteScroll}
             emptyDataComponent={emptyDataComponent}
@@ -196,6 +204,11 @@ export const BaseTable = <TData extends object, TValue>({
             filterComponent={filterComponent}
             headerButton={headerButton}
             dataSourceTotalCount={dataSourceTotalCount}
+            searchQuery={searchQuery}
+            setSearchQuery={setSearchQuery}
+            handleSearchClear={handleSearchClear}
+            hasBuiltInSearch={hasBuiltInSearch}
+            searchProps={searchProps}
           />
         )}
         {useUnifiedScroll ? (
@@ -232,7 +245,7 @@ export const BaseTable = <TData extends object, TValue>({
         )}
         {hasPagination && <TablePagination {...paginationProps} />}
       </S.TableContainer>
-      {!isEmpty && (
+      {!isEmpty && !!stickyContext && (
         <TableHorizontalScrollBar
           contentRef={(element: HTMLDivElement) => addNode(element)}
         />

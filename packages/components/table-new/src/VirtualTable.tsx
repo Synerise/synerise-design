@@ -16,6 +16,7 @@ import {
   INFINITE_SCROLL_PADDING_START,
 } from './Table.const';
 import { type StickyData, type VirtualTableProps } from './Table.types';
+import { BackToTopButton } from './components/BackToTopButton/BackToTopButton';
 import { BaseTable } from './components/BaseTable/BaseTable';
 import { SelectionContext } from './contexts/SelectionContext';
 import { StickyContext } from './contexts/StickyContext';
@@ -23,6 +24,7 @@ import { TableContext } from './contexts/TableContext';
 import { useDefaultTexts } from './hooks/useDefaultTexts';
 import { useInfiniteScroll } from './hooks/useInfiniteScroll';
 import { useTable } from './hooks/useTable';
+import { useTableHighlight } from './hooks/useTableHighlight';
 import { getDefaultSkeletonColumns } from './utils/getDefaultSkeletonColumns';
 import { getInfiniteScrollPadding } from './utils/getInfiniteScrollPadding';
 import { getIsRevealed } from './utils/getIsRevealed';
@@ -46,6 +48,12 @@ export const VirtualTable = <TData extends object, TValue>({
   isLoading,
   onScrollToRecordIndex,
   maxHeight,
+  matchesSearchQuery,
+  filterData,
+  onSearchQueryChange,
+  searchProps,
+  showBackToTopButton,
+  onBackToTop,
   ...props
 }: VirtualTableProps<TData, TValue>) => {
   const [stickyData, setStickyData] =
@@ -81,7 +89,16 @@ export const VirtualTable = <TData extends object, TValue>({
   const finalColumns =
     !processedColumns.length && isLoading ? skeletonColumns : processedColumns;
 
-  const { table, columnSizing, isColumnSizingReady } = useTable({
+  const {
+    table,
+    columnSizing,
+    isColumnSizingReady,
+    searchQuery,
+    setSearchQuery,
+    handleSearchClear,
+    hasBuiltInSearch,
+    totalDataCount,
+  } = useTable({
     data,
     expandable,
     columns: finalColumns,
@@ -90,6 +107,9 @@ export const VirtualTable = <TData extends object, TValue>({
     rowKey,
     selectionConfig,
     selectedRowKeys,
+    matchesSearchQuery,
+    filterData,
+    onSearchQueryChange,
     onSort,
     pagination: false,
   });
@@ -214,8 +234,11 @@ export const VirtualTable = <TData extends object, TValue>({
   }, [rowVirtualizer, infiniteScroll?.prevPage?.hasMore]);
   //endregion
 
+  const { highlightRow } = useTableHighlight(tableOuterRef);
+
   useImperativeHandle(tableRef, () => ({
     getDimensions,
+    highlightRow,
     scrollTo: rowVirtualizer.scrollToOffset,
     scrollToIndex: (
       topLevelIndex: number,
@@ -278,6 +301,14 @@ export const VirtualTable = <TData extends object, TValue>({
     [table, rowVirtualizer, getScrollContainer],
   );
 
+  const handleBackToTop = useCallback(() => {
+    if (onBackToTop) {
+      onBackToTop();
+      return;
+    }
+    rowVirtualizer.scrollToOffset(0);
+  }, [onBackToTop, rowVirtualizer]);
+
   return (
     <TableContext.Provider value={tableContextValue}>
       <StickyContext.Provider value={stickyValue}>
@@ -294,8 +325,28 @@ export const VirtualTable = <TData extends object, TValue>({
             hasPagination={false}
             infiniteScroll={infiniteScroll}
             isLoading={isLoading}
+            searchQuery={searchQuery}
+            setSearchQuery={setSearchQuery}
+            handleSearchClear={handleSearchClear}
+            hasBuiltInSearch={hasBuiltInSearch}
+            searchProps={searchProps}
+            dataSourceTotalCount={totalDataCount}
             {...props}
           />
+          {showBackToTopButton && (
+            <BackToTopButton
+              label={texts.infiniteScrollBackToTop}
+              onClick={handleBackToTop}
+              scrollContainerRef={scrollableContainerRef}
+              hasData={!tableIsEmpty && columns.length > 0}
+              threshold={
+                (stickyData.titleBarHeight || 0) +
+                (Number.isFinite(stickyData.containerPaddingTop)
+                  ? stickyData.containerPaddingTop
+                  : 0)
+              }
+            />
+          )}
         </SelectionContext.Provider>
       </StickyContext.Provider>
     </TableContext.Provider>

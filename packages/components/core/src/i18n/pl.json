@@ -49,7 +49,17 @@
         "NO_MORE_DATA": "Nie ma więcej elementów do załadowania",
         "LOADING": "Ładowanie pozycji z listy",
         "BACK_TO_TOP": "Powrót do góry"
-      }
+      },
+      "ITEMS": "Rekordy",
+      "SELECT_ALL": "Zaznacz widoczne",
+      "SELECT_ALL_BUTTON_TOOLTIP": "Zaznacz wszystko",
+      "SELECT_GLOBAL_ALL": "Zaznacz wszystko",
+      "SELECT_INVERT": "Odwróć zaznaczenie",
+      "SELECTION_LIMIT": "Osiągnięto maksymalny limit",
+      "SELECTIONS_MENU_TOOLTIP": "Opcje zaznaczania masowego",
+      "UNSELECT_ALL": "Odznacz widoczne",
+      "UNSELECT_GLOBAL_ALL": "Odznacz wszystko",
+      "NO_DATA": "Brak danych"
     },
     "OPERATORS": {
       "BUTTON_LABEL": "Wybierz",

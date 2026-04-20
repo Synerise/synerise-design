@@ -5,7 +5,6 @@ import {
   type DropdownMenuListItemProps,
 } from '@synerise/ds-dropdown';
 import Icon, { OptionVerticalM } from '@synerise/ds-icon';
-import Tooltip from '@synerise/ds-tooltip';
 
 import { SELECTION_ALL, SELECTION_INVERT } from '../../../Table.const';
 import {
@@ -32,11 +31,18 @@ export const TableHeaderSelection = <TData extends object>({
   const hasGlobalSelection = globalSelectionOnChange !== undefined;
   const isGlobalAllSelected = hasGlobalSelection && globalSelected;
 
-  const isAllSelected = table.getIsAllRowsSelected();
-  const isAnySelected = table.getIsSomeRowsSelected();
+  const totalSelectedCount = Object.keys(table.getState().rowSelection).length;
+  const visibleRowCount = table.getRowModel().rows.length;
+  const visibleSelectedCount = table.getFilteredSelectedRowModel().rows.length;
 
-  const allRecordsCount = table.getRowModel().rows.length;
-  const selectedRecordsCount = table.getFilteredSelectedRowModel().rows.length;
+  // Checkbox reflects visible selection state
+  const isAllVisibleSelected =
+    visibleRowCount > 0 && visibleSelectedCount === visibleRowCount;
+  // Indeterminate when some (but not all) visible items are selected
+  const isAnySelected = visibleSelectedCount > 0 && !isAllVisibleSelected;
+
+  const allRecordsCount = visibleRowCount;
+  const selectedRecordsCount = totalSelectedCount;
   const selectableRecordsCount = table
     .getRowModel()
     .rows.filter((row) => row.getCanSelect()).length;
@@ -53,10 +59,10 @@ export const TableHeaderSelection = <TData extends object>({
         ? texts.unselectGlobalAll
         : texts.selectGlobalAll;
     }
-    return isAllSelected ? texts.unselectAll : texts.selectAllTooltip;
+    return isAllVisibleSelected ? texts.unselectAll : texts.selectAllTooltip;
   }, [
     hasGlobalSelection,
-    isAllSelected,
+    isAllVisibleSelected,
     isGlobalAllSelected,
     texts.selectAllTooltip,
     texts.selectGlobalAll,
@@ -64,12 +70,28 @@ export const TableHeaderSelection = <TData extends object>({
     texts.unselectGlobalAll,
   ]);
 
+  // Select all visible rows (additive — does not deselect filtered-out items)
   const selectAll = useCallback(() => {
-    table.toggleAllRowsSelected(true);
+    table.setRowSelection((prev) => {
+      const next = { ...prev };
+      table.getRowModel().rows.forEach((row) => {
+        if (row.getCanSelect()) {
+          next[row.id] = true;
+        }
+      });
+      return next;
+    });
   }, [table]);
 
+  // Unselect only visible rows (does not deselect filtered-out items)
   const unselectAll = useCallback(() => {
-    table.toggleAllRowsSelected(false);
+    table.setRowSelection((prev) => {
+      const next = { ...prev };
+      table.getRowModel().rows.forEach((row) => {
+        delete next[row.id];
+      });
+      return next;
+    });
   }, [table]);
 
   const selectGlobalAll = useCallback(() => {
@@ -118,7 +140,7 @@ export const TableHeaderSelection = <TData extends object>({
           switch (selectionMenuElement) {
             case SELECTION_ALL: {
               const items: DropdownMenuListItemProps[] = [];
-              if (!isAllSelected && !hasSelectionLimit) {
+              if (!isAllVisibleSelected && !hasSelectionLimit) {
                 items.push({
                   onClick: selectAll,
                   text: texts.selectAll,
@@ -156,7 +178,7 @@ export const TableHeaderSelection = <TData extends object>({
     texts.selectInvert,
     selectGlobalAll,
     selectionConfig?.selections,
-    isAllSelected,
+    isAllVisibleSelected,
     hasSelectionLimit,
     isAnySelected,
     selectAll,
@@ -165,40 +187,37 @@ export const TableHeaderSelection = <TData extends object>({
   ]);
 
   const handleBatchSelectionChange = useCallback(() => {
-    const isSelected = hasGlobalSelection
-      ? isGlobalAllSelected
-      : table.getIsAllRowsSelected();
-
     if (hasGlobalSelection) {
-      isSelected ? unselectGlobalAll() : selectGlobalAll();
+      isGlobalAllSelected ? unselectGlobalAll() : selectGlobalAll();
     } else {
-      table.toggleAllRowsSelected(!isSelected);
+      isAllVisibleSelected ? unselectAll() : selectAll();
     }
   }, [
     hasGlobalSelection,
+    isAllVisibleSelected,
     isGlobalAllSelected,
+    selectAll,
     selectGlobalAll,
-    table,
+    unselectAll,
     unselectGlobalAll,
   ]);
 
   return selectionConfig ? (
     <S.Selection data-popup-container>
       {!hasSelectionLimit && (
-        <Tooltip title={selectionTooltipTitle}>
-          <S.SelectionCheckbox
-            isOrphan={!selectionConfig.selections}
-            disabled={disabledBulkSelection}
-            data-testid="ds-table-batch-selection-button"
-            checked={
-              hasGlobalSelection
-                ? isGlobalAllSelected
-                : table.getIsAllRowsSelected()
-            }
-            indeterminate={table.getIsSomeRowsSelected()}
-            onChange={handleBatchSelectionChange}
-          />
-        </Tooltip>
+        <S.SelectionCheckbox
+          isOrphan={!selectionConfig.selections}
+          disabled={disabledBulkSelection}
+          data-testid="ds-table-batch-selection-button"
+          tooltipProps={{
+            title: selectionTooltipTitle,
+          }}
+          checked={
+            hasGlobalSelection ? isGlobalAllSelected : isAllVisibleSelected
+          }
+          indeterminate={isAnySelected}
+          onChange={handleBatchSelectionChange}
+        />
       )}
       {selectionConfig.selections && (
         <DropdownMenu

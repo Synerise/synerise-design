@@ -1,10 +1,10 @@
 import React from 'react';
 
 import { renderWithProvider } from '@synerise/ds-core';
-import { fireEvent, screen } from '@testing-library/react';
+import { fireEvent, screen, within } from '@testing-library/react';
 
 import { Table } from '../Table';
-import { COLUMNS, DATA, EXPANDABLE_DATA, SORTABLE_COLUMNS } from './data';
+import { COLUMNS, DATA, type DataType, EXPANDABLE_DATA, SORTABLE_COLUMNS } from './data';
 
 describe('Table', () => {
   it('should render correctly', () => {
@@ -222,6 +222,167 @@ describe('Table', () => {
       const collapsedRowCount = screen.getAllByRole('row').length;
       // Without expandable config, child rows should not appear
       expect(collapsedRowCount).toBeLessThanOrEqual(expandedRowCount);
+    });
+  });
+
+  describe('built-in search', () => {
+    const matchesSearchQuery = (query: string, row: DataType) =>
+      row.name.toLowerCase().includes(query.toLowerCase());
+
+    it('renders SearchInput when matchesSearchQuery is provided', () => {
+      renderWithProvider(
+        <Table
+          data={DATA}
+          columns={COLUMNS}
+          matchesSearchQuery={matchesSearchQuery}
+        />,
+      );
+
+      const searchWrapper = screen.getByTestId('ds-table-search-wrapper');
+      expect(searchWrapper).toBeInTheDocument();
+    });
+
+    it('does not render SearchInput when searchComponent is provided instead', () => {
+      renderWithProvider(
+        <Table
+          data={DATA}
+          columns={COLUMNS}
+          searchComponent={<div data-testid="custom-search">Custom</div>}
+        />,
+      );
+
+      const customSearch = screen.getByTestId('custom-search');
+      expect(customSearch).toBeInTheDocument();
+    });
+
+    it('filters rows when typing in built-in search', () => {
+      renderWithProvider(
+        <Table
+          data={DATA}
+          columns={COLUMNS}
+          matchesSearchQuery={matchesSearchQuery}
+        />,
+      );
+
+      // All rows visible initially (DATA has 6 items: 1 Mike + 5 Johns)
+      expect(screen.getAllByRole('row')).toHaveLength(DATA.length + 1);
+
+      const searchInput = screen.getByRole('textbox');
+      fireEvent.change(searchInput, { target: { value: 'Mike' } });
+
+      // Only Mike should be visible + header
+      expect(screen.getAllByRole('row')).toHaveLength(2);
+      expect(screen.getByText('Mike')).toBeInTheDocument();
+    });
+
+    it('restores all rows when search is cleared', () => {
+      renderWithProvider(
+        <Table
+          data={DATA}
+          columns={COLUMNS}
+          matchesSearchQuery={matchesSearchQuery}
+        />,
+      );
+
+      const searchInput = screen.getByRole('textbox');
+      fireEvent.change(searchInput, { target: { value: 'Mike' } });
+      expect(screen.getAllByRole('row')).toHaveLength(2);
+
+      fireEvent.change(searchInput, { target: { value: '' } });
+      expect(screen.getAllByRole('row')).toHaveLength(DATA.length + 1);
+    });
+
+    it('passes searchProps to SearchInput', () => {
+      renderWithProvider(
+        <Table
+          data={DATA}
+          columns={COLUMNS}
+          matchesSearchQuery={matchesSearchQuery}
+          searchProps={{ placeholder: 'Search users...' }}
+        />,
+      );
+
+      expect(screen.getByPlaceholderText('Search users...')).toBeInTheDocument();
+    });
+
+    it('calls onSearchQueryChange when query changes', () => {
+      const onSearchQueryChange = vi.fn();
+      renderWithProvider(
+        <Table
+          data={DATA}
+          columns={COLUMNS}
+          matchesSearchQuery={matchesSearchQuery}
+          onSearchQueryChange={onSearchQueryChange}
+        />,
+      );
+
+      const searchInput = screen.getByRole('textbox');
+      fireEvent.change(searchInput, { target: { value: 'test' } });
+
+      expect(onSearchQueryChange).toHaveBeenCalledWith('test');
+    });
+  });
+
+  describe('search with selection preservation', () => {
+    const matchesSearchQuery = (query: string, row: DataType) =>
+      row.name.toLowerCase().includes(query.toLowerCase());
+
+    it('preserves selection when rows are filtered out by search', () => {
+      const onChange = vi.fn();
+      renderWithProvider(
+        <Table
+          data={DATA}
+          columns={COLUMNS}
+          matchesSearchQuery={matchesSearchQuery}
+          selectionConfig={{ onChange }}
+          selectedRowKeys={['1', '2']}
+        />,
+      );
+
+      // Search for Mike (key=1), hiding John (key=2)
+      const searchInput = screen.getByRole('textbox');
+      fireEvent.change(searchInput, { target: { value: 'Mike' } });
+
+      // Only 1 data row visible + header
+      expect(screen.getAllByRole('row')).toHaveLength(2);
+
+      // Click the visible row's checkbox to deselect it
+      const checkboxes = screen.getAllByRole('checkbox');
+      // checkboxes[0] = select-all, checkboxes[1] = Mike's row
+      fireEvent.click(checkboxes[1]);
+
+      // onChange should be called — key '2' should still be in the selection
+      // (it was selected before search, and search should not remove it)
+      expect(onChange).toHaveBeenCalled();
+    });
+  });
+
+  describe('filterData', () => {
+    it('filters rows using filterData predicate', () => {
+      renderWithProvider(
+        <Table
+          data={DATA}
+          columns={COLUMNS}
+          filterData={(row) => row.name === 'Mike'}
+          searchComponent={<div data-testid="custom-search">Search</div>}
+        />,
+      );
+
+      // Only Mike visible + header
+      expect(screen.getAllByRole('row')).toHaveLength(2);
+      expect(screen.getByText('Mike')).toBeInTheDocument();
+    });
+
+    it('shows all rows when filterData is undefined', () => {
+      renderWithProvider(
+        <Table
+          data={DATA}
+          columns={COLUMNS}
+          filterData={undefined}
+        />,
+      );
+
+      expect(screen.getAllByRole('row')).toHaveLength(DATA.length + 1);
     });
   });
 });

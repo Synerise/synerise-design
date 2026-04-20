@@ -1,0 +1,207 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+
+<Meta title="Components/TableNew/Table Ref (Imperative API)" />
+
+# Table Ref (Imperative API)
+
+Both `Table` and `VirtualTable` expose imperative methods via a React ref. This allows you to programmatically control the table without managing state.
+
+## Table
+
+`Table` exposes a `TableRef` with a single method:
+
+```tsx
+import { useRef } from 'react';
+import { Table, type TableRef } from '@synerise/ds-table-new';
+
+const tableRef = useRef<TableRef>(null);
+
+<Table data={data} columns={columns} tableRef={tableRef} rowKey="id" />
+```
+
+<table>
+  <thead>
+    <tr>
+      <th>Method</th>
+      <th>Signature</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>highlightRow</code></td>
+      <td><code>(rowKey: string, options?: HighlightOptions) =&gt; void</code></td>
+      <td>Temporarily highlight a row by its key. The highlight holds at full intensity then fades out. See <a href="?path=/docs/components-tablenew-row-highlight--docs">Row Highlight</a> for details.</td>
+    </tr>
+  </tbody>
+</table>
+
+## VirtualTable
+
+`VirtualTable` exposes a `VirtualTableRef` with scroll control, layout dimensions, and row highlighting:
+
+```tsx
+import { useRef } from 'react';
+import { VirtualTable, type VirtualTableRef } from '@synerise/ds-table-new';
+
+const tableRef = useRef<VirtualTableRef>(null);
+
+<VirtualTable data={data} columns={columns} tableRef={tableRef} />
+```
+
+<table>
+  <thead>
+    <tr>
+      <th>Method</th>
+      <th>Signature</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>scrollToTop</code></td>
+      <td><code>() =&gt; void</code></td>
+      <td>Scroll the table to the very top (offset 0).</td>
+    </tr>
+    <tr>
+      <td><code>scrollTo</code></td>
+      <td><code>(top: number) =&gt; void</code></td>
+      <td>Scroll to an absolute pixel offset from the top of the virtualized list.</td>
+    </tr>
+    <tr>
+      <td><code>scrollToIndex</code></td>
+      <td><code>(index: number, options?) =&gt; void</code></td>
+      <td>Scroll to a <strong>top-level row</strong> by its index. Automatically resolves expanded sub-rows to the correct virtualizer offset. Options are passed through to TanStack Virtual's <code>scrollToIndex</code> (<code>align</code>, <code>behavior</code>).</td>
+    </tr>
+    <tr>
+      <td><code>getDimensions</code></td>
+      <td><code>() =&gt; TableDimensions</code></td>
+      <td>Returns the current layout dimensions (see table below). Useful for calculating scroll offsets in sticky-header configurations.</td>
+    </tr>
+    <tr>
+      <td><code>highlightRow</code></td>
+      <td><code>(rowKey: string, options?: HighlightOptions) =&gt; void</code></td>
+      <td>Temporarily highlight a row by its key. See <a href="?path=/docs/components-tablenew-row-highlight--docs">Row Highlight</a> for details.</td>
+    </tr>
+  </tbody>
+</table>
+
+### scrollToIndex options
+
+The `options` parameter accepts the same shape as TanStack Virtual's `scrollToIndex`:
+
+<table>
+  <thead>
+    <tr>
+      <th>Option</th>
+      <th>Type</th>
+      <th>Default</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>align</code></td>
+      <td><code>'start' | 'center' | 'end' | 'auto'</code></td>
+      <td><code>'auto'</code></td>
+      <td>Where to position the target row within the visible area.</td>
+    </tr>
+    <tr>
+      <td><code>behavior</code></td>
+      <td><code>'auto' | 'smooth'</code></td>
+      <td><code>'auto'</code></td>
+      <td>Scroll behavior. <code>'smooth'</code> animates the scroll.</td>
+    </tr>
+  </tbody>
+</table>
+
+### TableDimensions
+
+Returned by `getDimensions()`:
+
+<table>
+  <thead>
+    <tr>
+      <th>Property</th>
+      <th>Type</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>titleHeight</code></td>
+      <td><code>number</code></td>
+      <td>Height of the title bar (px). 0 if <code>hideTitleBar</code> is set.</td>
+    </tr>
+    <tr>
+      <td><code>headerHeight</code></td>
+      <td><code>number</code></td>
+      <td>Height of the column headers row (px).</td>
+    </tr>
+    <tr>
+      <td><code>parentTopOffset</code></td>
+      <td><code>number</code></td>
+      <td>Top padding of the scroll container (px). Relevant when using <code>stickyHeader</code> with an external scroll element.</td>
+    </tr>
+  </tbody>
+</table>
+
+### HighlightOptions
+
+<table>
+  <thead>
+    <tr>
+      <th>Option</th>
+      <th>Type</th>
+      <th>Default</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>duration</code></td>
+      <td><code>number</code></td>
+      <td><code>2000</code></td>
+      <td>Duration of the highlight in milliseconds. Holds at full intensity for 70% of the duration, then fades out over the remaining 30%.</td>
+    </tr>
+  </tbody>
+</table>
+
+## Common patterns
+
+### Scroll to a row and highlight it
+
+For `VirtualTable`, the row DOM element only exists while within the virtualization window. Scroll first, then highlight after the row renders:
+
+```tsx
+const goToRow = (id: string, index: number) => {
+  tableRef.current?.scrollToIndex(index, { align: 'start' });
+  requestAnimationFrame(() => {
+    tableRef.current?.highlightRow(id);
+  });
+};
+```
+
+### Restore scroll position
+
+Save and restore the scroll offset when navigating away and back:
+
+```tsx
+// Save
+const offset = scrollContainerRef.current?.scrollTop ?? 0;
+
+// Restore
+tableRef.current?.scrollTo(offset);
+```
+
+### Calculate sticky header offset
+
+Use `getDimensions` when you need to account for the table's internal chrome in offset calculations:
+
+```tsx
+const { titleHeight, headerHeight } = tableRef.current?.getDimensions() ?? {
+  titleHeight: 0,
+  headerHeight: 0,
+};
+const totalHeaderOffset = titleHeight + headerHeight;
+```

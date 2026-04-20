@@ -5,6 +5,7 @@ import InlineAlert from '@synerise/ds-inline-alert';
 
 import { TableSkeleton } from '../../../Table.styles';
 import { useTableContext } from '../../../contexts/TableContext';
+import { ItemsMenu } from '../../ItemsMenu/ItemsMenu';
 import * as S from './TableLimit.styles';
 import { type TableLimitProps } from './TableLimit.types';
 
@@ -19,7 +20,7 @@ export function TableLimit<TData extends object>({
   const { table } = useTableContext<TData>();
   const { limit } = selection;
 
-  const selectedRows = table.getSelectedRowModel().rows.length;
+  const selectedRows = Object.keys(table.getState().rowSelection).length;
 
   const total = table.getRowCount();
 
@@ -74,7 +75,7 @@ export function TableLimit<TData extends object>({
     <S.TableLimit>
       {selected}
       {limitReachedInfo}
-      {selectedRows > 0 && <S.ItemsMenu>{itemsMenu}</S.ItemsMenu>}
+      {selectedRows > 0 && <ItemsMenu withLeftPadding>{itemsMenu}</ItemsMenu>}
     </S.TableLimit>
   );
 }
