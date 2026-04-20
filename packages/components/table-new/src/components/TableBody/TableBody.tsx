@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React from 'react';
 
 import { DEFAULT_CELL_HEIGHT } from '../../Table.const';
 import { type TableBodyProps } from '../../Table.types';
@@ -13,22 +13,54 @@ export const TableBody = <TData extends object, TValue>({
   infiniteScroll,
   onRowClick,
   getRowTooltipProps,
+
+  withBodyScroll,
+  tableBodyScrollRef,
+  maxHeight,
   emptyDataComponent,
   texts,
 }: TableBodyProps<TData, TValue>) => {
   const { table, rowVirtualizer } = useTableContext<TData>();
 
-  const tbodyRef = useRef<HTMLTableSectionElement | null>(null);
-
   const virtualItems = rowVirtualizer ? rowVirtualizer.getVirtualItems() : [];
 
-  const allRows = table.getRowModel().flatRows;
+  const flatRows = table.getRowModel().flatRows;
+
+  // For non-virtual tables, filter out sub-rows whose parents are not expanded.
+  // Virtual tables handle this via the virtualizer count which is set in VirtualTable.tsx.
+  const expandedState = table.getState().expanded;
+  const isExpandedMap =
+    typeof expandedState === 'object' ? expandedState : null;
+  const nonVirtualRows =
+    !rowVirtualizer && isExpandedMap && flatRows.some((row) => row.depth > 0)
+      ? flatRows.filter((row) => {
+          if (row.depth === 0) {
+            return true;
+          }
+          let current = row.getParentRow();
+          while (current) {
+            if (!isExpandedMap[current.id]) {
+              return false;
+            }
+            current = current.getParentRow();
+          }
+          return true;
+        })
+      : flatRows;
+
+  const allRows = rowVirtualizer ? flatRows : nonVirtualRows;
 
   return allRows.length ? (
     <S.TBody
       data-testid="ds-table-body"
-      ref={tbodyRef}
+      ref={(node) => {
+        if (tableBodyScrollRef) {
+          tableBodyScrollRef.current = node;
+        }
+      }}
       key="virtual-table-body"
+      $maxHeight={maxHeight}
+      withBodyScroll={withBodyScroll}
       role="rowgroup"
       data-popup-container
       style={
@@ -56,6 +88,7 @@ export const TableBody = <TData extends object, TValue>({
                 rowIndex={virtual.index}
                 infiniteScroll={infiniteScroll}
                 isLast={virtual.index === allRows.length - 1}
+                isSelected={row.getIsSelected()}
                 isExpanded={row.getIsExpanded()}
                 isParentExpanded={row.getIsAllParentsExpanded()}
               />

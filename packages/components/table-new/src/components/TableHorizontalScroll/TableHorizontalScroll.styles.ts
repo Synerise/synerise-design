@@ -46,9 +46,4 @@ export const HorizontalScrollContainer = styled.div<{
   }
 `;
 
-export const ScrollbarWrapper = styled.div`
-  // position: sticky;
-  // top: calc(100% - 20px);
-  // height: 20px;
-  // background: red;
-`;
+export const ScrollbarWrapper = styled.div``;

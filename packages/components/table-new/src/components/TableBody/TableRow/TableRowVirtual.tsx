@@ -87,12 +87,11 @@ const TableRowVirtualInner = <TData extends object>({
       return tableRow.getVisibleCells().map((cell, columnIndex) => {
         const colId = cell.column.id;
         const isColumnSorted = isSorted(cell.column);
-        const cellContent = flexRender(
-          isChild
-            ? cell.column.columnDef.meta?.childCell
-            : cell.column.columnDef.cell,
-          cell.getContext(),
-        );
+        const cellRenderer = isChild
+          ? (cell.column.columnDef.meta?.childCell ??
+            cell.column.columnDef.cell)
+          : cell.column.columnDef.cell;
+        const cellContent = flexRender(cellRenderer, cell.getContext());
         const cellTooltipProps =
           cell.column.columnDef.meta?.getCellTooltipProps?.(tableRow.original);
 
@@ -107,6 +106,7 @@ const TableRowVirtualInner = <TData extends object>({
             isPinned={cell.column.getIsPinned()}
             rightOffset={cell.column.getAfter('right')}
             leftOffset={cell.column.getStart('left')}
+            align={cell.column.columnDef.meta?.align}
             style={cell.column.columnDef.meta?.style}
             data-column-dataindex={cell.column.columnDef.meta?.dataIndex}
             data-column-title={cell.column.columnDef.meta?.title}

@@ -52,9 +52,3 @@ export const TableSkeleton = styled(DSSkeleton)<{ skeletonWidth?: string }>`
   padding: 0;
   ${(props) => props.skeletonWidth && `width: ${props.skeletonWidth};`}
 `;
-
-export const StyledTable = styled.table`
-  width: 100%;
-  border-spacing: 0;
-  border-collapse: separate; /* required for sticky cells to keep their backgrounds */
-`;

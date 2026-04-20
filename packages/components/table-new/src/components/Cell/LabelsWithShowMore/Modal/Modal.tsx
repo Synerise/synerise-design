@@ -1,7 +1,6 @@
-import React, { useMemo, useState } from 'react';
+import React, { useCallback, useMemo } from 'react';
 
 import Modal from '@synerise/ds-modal';
-import SearchInput from '@synerise/ds-search/dist/Elements/SearchInput/SearchInput';
 import { type ColumnDef } from '@tanstack/react-table';
 
 import { VirtualTable } from '../../../../VirtualTable';
@@ -16,8 +15,6 @@ const DetailsModal = ({
   labelKey,
   loading,
 }: ModalProps<DataSourceType>) => {
-  const [searchQuery, setSearchQuery] = useState('');
-
   const columns = useMemo(
     (): ColumnDef<DataSourceType, string>[] => [
       {
@@ -29,17 +26,16 @@ const DetailsModal = ({
     [renderItem, labelKey],
   );
 
-  const filteredItems = useMemo(() => {
-    return searchQuery !== ''
-      ? items.filter((item) => {
-          const value = item[labelKey];
-          return (
-            typeof value === 'string' &&
-            value.toLowerCase().includes(searchQuery.toLowerCase())
-          );
-        })
-      : items;
-  }, [items, labelKey, searchQuery]);
+  const matchesSearchQuery = useCallback(
+    (query: string, row: DataSourceType) => {
+      const value = row[labelKey];
+      return (
+        typeof value === 'string' &&
+        value.toLowerCase().includes(query.toLowerCase())
+      );
+    },
+    [labelKey],
+  );
 
   return (
     <Modal
@@ -54,26 +50,17 @@ const DetailsModal = ({
       <VirtualTable<DataSourceType, string>
         maxHeight={500}
         cellHeight={64}
-        data={filteredItems}
-        title={`${filteredItems.length} ${texts.records}`}
+        data={items}
+        title={`${items.length} ${texts.records}`}
         columns={columns}
         isLoading={loading}
         hideTitleBar
         rowKey="key"
-        searchComponent={
-          <SearchInput
-            clearTooltip={texts.searchClear}
-            placeholder={texts.searchPlaceholder}
-            onChange={(value: string): void => {
-              setSearchQuery(value);
-            }}
-            value={searchQuery}
-            onClear={(): void => {
-              setSearchQuery('');
-            }}
-            closeOnClickOutside
-          />
-        }
+        matchesSearchQuery={matchesSearchQuery}
+        searchProps={{
+          clearTooltip: texts.searchClear,
+          placeholder: texts.searchPlaceholder,
+        }}
         hideColumnNames
       />
     </Modal>

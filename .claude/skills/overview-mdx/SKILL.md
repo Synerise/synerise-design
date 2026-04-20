@@ -107,23 +107,65 @@ import <PascalName>Meta from './<PascalName>.stories';
 
 <Brief description.>
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `propName` | `type` | `default` | What it does |
+{/* MDX does not render markdown tables correctly — always use HTML tables */}
+<table>
+  <thead>
+    <tr>
+      <th>Prop</th>
+      <th>Type</th>
+      <th>Default</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>propName</code></td>
+      <td><code>type</code></td>
+      <td><code>default</code></td>
+      <td>What it does</td>
+    </tr>
+  </tbody>
+</table>
 
-<!-- Add tables for sub-components if they have their own props -->
+{/* Add tables for sub-components if they have their own props */}
 
 ### `<SubComponentName>` _(if applicable)_
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| ... | ... | ... | ... |
+<table>
+  <thead>
+    <tr>
+      <th>Prop</th>
+      <th>Type</th>
+      <th>Default</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+  </tbody>
+</table>
 
 ### Exported types _(if applicable)_
 
-| Type | Description |
-|------|-------------|
-| `TypeName` | What it represents |
+<table>
+  <thead>
+    <tr>
+      <th>Type</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>TypeName</code></td>
+      <td>What it represents</td>
+    </tr>
+  </tbody>
+</table>
 
 ## Notes & tips
 
@@ -142,6 +184,7 @@ import <PascalName>Meta from './<PascalName>.stories';
 5. **Use the component's npm package name** in import examples: `import Component from '@synerise/ds-<package-name>'`.
 6. **Do not duplicate story content.** The `Canvas` component renders the story inline — describe *why* a pattern matters, not *what* the code does line-by-line.
 7. **Preserve accurate existing content** when updating. Only change sections that are outdated or incomplete.
+8. **Never use markdown tables in MDX.** Markdown pipe-delimited tables do not render correctly in Storybook's MDX parser. Always use HTML `<table>` elements instead.
 
 ### Step 5 — Remove `autodocs` tags from story files
 

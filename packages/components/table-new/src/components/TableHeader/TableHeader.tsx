@@ -1,6 +1,7 @@
 import React, { useEffect, useMemo, useRef } from 'react';
 
 import { useDataFormat } from '@synerise/ds-core';
+import { SearchInput } from '@synerise/ds-search';
 
 import { BOTTOM_BORDER_WIDTH } from '../../Table.const';
 import { TableSkeleton } from '../../Table.styles';
@@ -8,6 +9,7 @@ import { type TableHeaderProps } from '../../Table.types';
 import { useSelectionContext } from '../../contexts/SelectionContext';
 import { useStickyContext } from '../../contexts/StickyContext';
 import { useTableContext } from '../../contexts/TableContext';
+import { ItemsMenu } from '../ItemsMenu/ItemsMenu';
 import { TableCounter } from './TableCounter/TableCounter';
 import * as S from './TableHeader.styles';
 import { TableHeaderSelection } from './TableHeaderSelection/TableHeaderSelection';
@@ -27,6 +29,11 @@ export const TableHeader = <TData extends object, TValue>({
   hideTitlePart,
   dataSourceTotalCount,
   isLoading,
+  searchQuery,
+  setSearchQuery,
+  handleSearchClear,
+  hasBuiltInSearch,
+  searchProps,
 }: TableHeaderProps<TData, TValue>) => {
   const { formatValue } = useDataFormat();
   const { table, rowVirtualizer } = useTableContext<TData>();
@@ -53,8 +60,10 @@ export const TableHeader = <TData extends object, TValue>({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  const selectedItemsCount = table.getSelectedRowModel().rows.length;
-  const tableTotal = dataSourceTotalCount ?? table.getRowCount();
+  // Use rowSelection state directly to include items selected but currently filtered out
+  const selectedItemsCount = Object.keys(table.getState().rowSelection).length;
+  const visibleRowCount = table.getRowCount();
+  const tableTotal = dataSourceTotalCount ?? visibleRowCount;
   const displayedSelectedItems = isGlobalSelected
     ? tableTotal
     : selectedItemsCount;
@@ -101,7 +110,7 @@ export const TableHeader = <TData extends object, TValue>({
             />
           </S.TitleContainer>
         )}
-        {itemsMenu}
+        {itemsMenu && <ItemsMenu>{itemsMenu}</ItemsMenu>}
       </S.Left>
     ) : (
       <S.Left data-testid="ds-table-title">
@@ -162,6 +171,9 @@ export const TableHeader = <TData extends object, TValue>({
     hideTitlePart,
     renderCustomCounter,
     tableTotal,
+    visibleRowCount,
+    dataSourceTotalCount,
+    displayedSelectedItems,
   ]);
 
   return (
@@ -193,11 +205,23 @@ export const TableHeader = <TData extends object, TValue>({
             {filterComponent}
           </S.RightSideWrapper>
         )}
-        {searchComponent && (
+        {searchComponent ? (
           <S.RightSideWrapper data-testid="ds-table-search-wrapper">
             {searchComponent}
           </S.RightSideWrapper>
-        )}
+        ) : hasBuiltInSearch && setSearchQuery && handleSearchClear ? (
+          <S.RightSideWrapper data-testid="ds-table-search-wrapper">
+            <SearchInput
+              placeholder={searchProps?.placeholder ?? ''}
+              clearTooltip={searchProps?.clearTooltip ?? ''}
+              onChange={setSearchQuery}
+              value={searchQuery ?? ''}
+              onClear={handleSearchClear}
+              closeOnClickOutside
+              {...searchProps}
+            />
+          </S.RightSideWrapper>
+        ) : null}
       </S.Right>
     </S.Header>
   );

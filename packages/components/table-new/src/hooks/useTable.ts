@@ -33,6 +33,7 @@ import { getChildrenColumnName } from '../utils/getChildrenColumnName';
 import { getPaginationConfig } from '../utils/getPaginationConfig';
 import { useColumnSizing } from './useColumnSizing';
 import { useRowKey } from './useRowKey';
+import { useTableSearch } from './useTableSearch';
 
 type UseTableProps<TData, TValue> = Pick<
   VirtualTableProps<TData, TValue>,
@@ -48,6 +49,9 @@ type UseTableProps<TData, TValue> = Pick<
     | 'onSort'
     | 'expandable'
     | 'selectedRowKeys'
+    | 'matchesSearchQuery'
+    | 'filterData'
+    | 'onSearchQueryChange'
   > & {
     wrapperRef: MutableRefObject<HTMLDivElement | null>;
     requireColumnSizing?: boolean;
@@ -63,6 +67,9 @@ export const useTable = <TData, TValue>({
   onSort,
   expandable,
   selectedRowKeys,
+  matchesSearchQuery,
+  filterData,
+  onSearchQueryChange,
   requireColumnSizing = true,
 }: UseTableProps<TData, TValue>) => {
   const [rowSelection, setRowSelection] = useState<RowSelectionState>({}); // manage your own row selection state
@@ -81,11 +88,24 @@ export const useTable = <TData, TValue>({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [selectedRowKeys]);
 
-  // Keep a ref to latest data without causing dependency updates
+  // Keep a ref to full (unfiltered) data for selection onChange
   const dataRef = useRef(data);
   useLayoutEffect(() => {
     dataRef.current = data;
   }, [data]);
+
+  const {
+    displayData,
+    searchQuery,
+    setSearchQuery,
+    handleClear: handleSearchClear,
+    hasBuiltInSearch,
+  } = useTableSearch({
+    data,
+    matchesSearchQuery,
+    filterData,
+    onSearchQueryChange,
+  });
 
   const { getRowKey } = useRowKey(rowKey);
 
@@ -223,7 +243,7 @@ export const useTable = <TData, TValue>({
 
   const table = useReactTable({
     getRowId: memoizedGetRowKey,
-    data,
+    data: displayData,
     columns,
     getSubRows: childrenColumnName ? getSubRows : undefined,
     getCoreRowModel: getCoreRowModel(),
@@ -269,5 +289,10 @@ export const useTable = <TData, TValue>({
     hasPagination,
     columnSizing,
     isColumnSizingReady,
+    searchQuery,
+    setSearchQuery,
+    handleSearchClear,
+    hasBuiltInSearch,
+    totalDataCount: data.length,
   };
 };

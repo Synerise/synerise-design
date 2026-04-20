@@ -2,13 +2,22 @@ import styled from 'styled-components';
 
 import { commonCellStyles, commonPinnedStyles } from '../../../Table.styles';
 
-export const CellWrapper = styled.div`
+const justifyMap = {
+  left: 'flex-start',
+  center: 'center',
+  right: 'flex-end',
+} as const;
+
+export const CellWrapper = styled.div<{
+  $align?: 'left' | 'center' | 'right';
+}>`
   overflow: hidden;
 `;
 
 export const Td = styled.td<{
   $height?: number;
   $width?: number;
+  $align?: 'left' | 'center' | 'right';
   isSorted?: boolean;
   headerIndex?: number;
   isPinned?: 'left' | 'right' | false;
@@ -17,7 +26,8 @@ export const Td = styled.td<{
 }>`
   ${commonCellStyles}
   ${commonPinnedStyles}
-  
+  text-align: ${(props) => props.$align ?? 'left'};
+
   &&&& {
     ${(props) =>
       props.isSorted && `background-color: ${props.theme.palette['blue-050']}`};
@@ -29,7 +39,7 @@ export const Td = styled.td<{
 
   ${(props) =>
     props.$height
-      ? `  
+      ? `
     padding: 0 24px;
     height: ${props.$height}px`
       : `
@@ -39,6 +49,8 @@ export const Td = styled.td<{
   ${CellWrapper} {
     display: flex;
     align-items: center;
+    justify-content: ${(props) =>
+      props.$align ? justifyMap[props.$align] : 'flex-start'};
     width: 100%;
   }
 `;

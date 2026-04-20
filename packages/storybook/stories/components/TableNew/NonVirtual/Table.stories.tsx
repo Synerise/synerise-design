@@ -1,7 +1,15 @@
-import React, { useCallback, useMemo, useState } from 'react';
+import React, { useCallback, useMemo, useRef, useState } from 'react';
 
 import { Meta, StoryObj } from '@storybook/react-vite';
-import { SELECTION_ALL, SELECTION_INVERT, Table } from '@synerise/ds-table-new';
+import Button from '@synerise/ds-button';
+import { Box, Flex } from '@synerise/ds-flex-box';
+import { SearchInput } from '@synerise/ds-search';
+import {
+  SELECTION_ALL,
+  SELECTION_INVERT,
+  Table,
+  type TableRef,
+} from '@synerise/ds-table-new';
 
 import { BOOLEAN_CONTROL, REACT_NODE_AS_STRING } from '../../../utils';
 import {
@@ -213,6 +221,150 @@ export const WithTooltips: StoryObj<typeof Table> = {
         row.unavailable
           ? { title: `Cannot select ${row.name} — unavailable` }
           : false,
+    },
+  },
+};
+
+export const WithBuiltInSearch: StoryObj<typeof Table> = {
+  args: {
+    data: DATA_SOURCE,
+    columns: RESPONSIVE_COLUMNS,
+    title: 'Users',
+    matchesSearchQuery: (query, row) =>
+      row.name.toLowerCase().includes(query.toLowerCase()) ||
+      row.city.toLowerCase().includes(query.toLowerCase()),
+    searchProps: {
+      placeholder: 'Search by name or city...',
+      clearTooltip: 'Clear search',
+    },
+  },
+};
+
+export const WithBuiltInSearchAndSelection: StoryObj<typeof Table> = {
+  args: {
+    ...WithBuiltInSearch.args,
+    selectionConfig: {
+      onChange: (...rest) => {
+        console.log('sel', rest);
+      },
+      selections: [SELECTION_ALL, SELECTION_INVERT],
+    },
+  },
+};
+
+export const WithCustomSearch: StoryObj<typeof Table> = {
+  render: (args) => {
+    const [query, setQuery] = useState('');
+    return (
+      <Table
+        {...args}
+        filterData={
+          query
+            ? (row) => row.name.toLowerCase().includes(query.toLowerCase())
+            : undefined
+        }
+        searchComponent={
+          <SearchInput
+            placeholder="Custom search..."
+            clearTooltip="Clear"
+            onChange={setQuery}
+            value={query}
+            onClear={() => setQuery('')}
+            closeOnClickOutside
+          />
+        }
+      />
+    );
+  },
+  args: {
+    data: DATA_SOURCE,
+    columns: RESPONSIVE_COLUMNS,
+    title: 'Custom search',
+    selectionConfig: {
+      onChange: (...rest) => {
+        console.log('sel', rest);
+      },
+      selections: [SELECTION_ALL, SELECTION_INVERT],
+    },
+  },
+};
+
+export const WithRowHighlight: StoryObj<typeof Table> = {
+  render: (args) => {
+    const tableRef = useRef<TableRef>(null);
+
+    return (
+      <Flex flexDirection="column">
+        <Box mb={16}>
+          <Flex>
+            <Box mr={8}>
+              <Button onClick={() => tableRef.current?.highlightRow('1')}>
+                Highlight row 1
+              </Button>
+            </Box>
+            <Box mr={8}>
+              <Button onClick={() => tableRef.current?.highlightRow('3')}>
+                Highlight row 3
+              </Button>
+            </Box>
+            <Box mr={8}>
+              <Button
+                onClick={() => {
+                  tableRef.current?.highlightRow('1');
+                  tableRef.current?.highlightRow('2');
+                  tableRef.current?.highlightRow('3');
+                }}
+              >
+                Highlight 1, 2, 3
+              </Button>
+            </Box>
+            <Box mr={8}>
+              <Button
+                onClick={() =>
+                  tableRef.current?.highlightRow('5', { duration: 2000 })
+                }
+              >
+                Highlight row 5 (2s)
+              </Button>
+            </Box>
+          </Flex>
+        </Box>
+        <Table {...args} tableRef={tableRef} />
+      </Flex>
+    );
+  },
+  args: {
+    data: DATA_SOURCE,
+    columns: RESPONSIVE_COLUMNS,
+    title: 'Row highlight',
+    rowKey: 'key',
+  },
+  parameters: {
+    docs: {
+      source: {
+        code: `const MyList = () => {
+  const tableRef = useRef<TableRef>(null);
+
+  return (
+    <>
+      <Button onClick={() => tableRef.current?.highlightRow('1')}>
+        Highlight row 1
+      </Button>
+      <Button onClick={() => {
+        tableRef.current?.highlightRow('1');
+        tableRef.current?.highlightRow('2');
+        tableRef.current?.highlightRow('3');
+      }}>
+        Highlight multiple
+      </Button>
+      <Button onClick={() => tableRef.current?.highlightRow('5', { duration: 2000 })}>
+        Highlight with custom duration
+      </Button>
+      <Table data={data} columns={columns} tableRef={tableRef} rowKey="key" />
+    </>
+  );
+};`,
+      },
     },
   },
 };

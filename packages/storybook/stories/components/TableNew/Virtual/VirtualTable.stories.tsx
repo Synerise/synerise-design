@@ -1,10 +1,8 @@
 import React from 'react';
-import { action } from 'storybook/actions';
 import { fn } from 'storybook/test';
 
 import { Meta, StoryObj } from '@storybook/react-vite';
 import { Expander } from '@synerise/ds-button';
-// import { InfoFillS, VarTypeNumberM, VarTypeStringM } from '@synerise/ds-icon';
 import {
   SELECTION_ALL,
   SELECTION_INVERT,
@@ -19,11 +17,7 @@ import {
   NUMBER_CONTROL,
   REACT_NODE_AS_STRING,
 } from '../../../utils';
-import {
-  COLUMNS_ALL,
-  COLUMNS_MULTIPLE_SORT,
-  RESPONSIVE_COLUMNS,
-} from '../data/columns';
+import { COLUMNS_ALL, RESPONSIVE_COLUMNS } from '../data/columns';
 import { type DataSourceItem, TOOLTIP_COLUMNS } from '../data/columns.tooltips';
 import { DATA_SOURCE, DATA_SOURCE_FULL } from '../data/tableData';
 import { EXPANDABLE_DATA_SOURCE } from '../data/tableData.expandable';
@@ -41,6 +35,7 @@ export default {
 
   args: {
     onItemsRendered: fn(),
+    onBackToTop: undefined,
   },
   argTypes: {
     columns: { control: false },
@@ -50,6 +45,7 @@ export default {
 
     className: CLASSNAME_ARG_CONTROL,
 
+    showBackToTopButton: BOOLEAN_CONTROL,
     headerWithBorderTop: BOOLEAN_CONTROL,
     hideColumnNames: BOOLEAN_CONTROL,
     hideTitleBar: BOOLEAN_CONTROL,
@@ -104,6 +100,7 @@ export const InfiniteScroll: StoryObj<VirtualTableProps> = {
     return <ListLayout {...args} />;
   },
   args: {
+    showBackToTopButton: true,
     selectionConfig: {
       onChange: (...rest) => {
         console.log('sel', rest);
@@ -127,10 +124,9 @@ export const InfiniteScroll: StoryObj<VirtualTableProps> = {
         hasError: false,
         hasMore: true,
       },
-      onScrollEndReach: action('onScrollEndReach'),
-      onScrollTopReach: action('onScrollTopReach'),
-      onBackToTop: action('onBackToTop'),
-      onRetryButtonClick: action('onRetryButtonClick'),
+      onScrollEndReach: fn(),
+      onScrollTopReach: fn(),
+      onRetryButtonClick: fn(),
     },
     columns: COLUMNS_ALL,
   },
@@ -145,43 +141,37 @@ export const ExpandableRows: StoryObj<VirtualTableProps> = {
         accessorKey: 'name',
         id: 'name',
         header: 'Name',
-        size: 500,
+        minSize: 400,
         cell: (info) => chromaticCellRender(info.getValue()),
       },
       {
         accessorKey: 'age',
         id: 'age',
         header: 'Age',
+        size: 100,
         cell: (info) => chromaticCellRender(info.getValue()),
       },
       {
-        accessorKey: 'children',
-        id: 'children',
+        id: 'expander',
         header: '',
         size: 72,
         cell: (info) => {
-          const children = info.getValue();
           const record = info.row.original;
-          if (children !== undefined) {
+          const hasChildren = record.children?.length > 0;
+          if (hasChildren) {
             return (
-              <TableCell.ActionCell
-                className="chromatic-ignore"
-                key={record.key}
-              >
+              <TableCell.ActionCell>
                 <Expander
                   expanded={expandedRows.indexOf(record.key) >= 0}
-                  onClick={() => {
-                    console.log('toggle', record.key);
-                    handleExpandRow(record.key);
-                  }}
+                  onClick={() => handleExpandRow(record.key)}
                 />
               </TableCell.ActionCell>
             );
           }
+          return null;
         },
       },
     ];
-    console.log('expandedRows', expandedRows);
 
     return (
       <ListLayout
@@ -218,6 +208,27 @@ export const WithTooltips: StoryObj<
         row.unavailable
           ? { title: `Cannot select ${row.name} — unavailable` }
           : false,
+    },
+  },
+};
+
+export const WithBuiltInSearch: StoryObj<VirtualTableProps> = {
+  args: {
+    data: DATA_SOURCE,
+    columns: RESPONSIVE_COLUMNS,
+    title: 'Users',
+    matchesSearchQuery: (query, row) =>
+      row.name.toLowerCase().includes(query.toLowerCase()) ||
+      row.city.toLowerCase().includes(query.toLowerCase()),
+    searchProps: {
+      placeholder: 'Search by name or city...',
+      clearTooltip: 'Clear search',
+    },
+    selectionConfig: {
+      onChange: (...rest) => {
+        console.log('sel', rest);
+      },
+      selections: [SELECTION_ALL, SELECTION_INVERT],
     },
   },
 };

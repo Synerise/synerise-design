@@ -45,8 +45,9 @@ describe('VirtualTable', () => {
   it('should render skeleton columns when loading with no columns', () => {
     renderWithProvider(<VirtualTable data={[]} columns={[]} isLoading />);
 
+    // Without stickyHeader, columns and body render in a single unified table
     const tables = screen.getAllByRole('table');
-    expect(tables).toHaveLength(2)
+    expect(tables).toHaveLength(1)
   });
 
   it('should render with stickyHeader', () => {
@@ -182,6 +183,99 @@ describe('VirtualTable', () => {
       );
 
       expect(screen.getByTestId('ds-table-container')).toBeInTheDocument();
+    });
+  });
+
+  describe('back to top button', () => {
+    const simulateScroll = (scrollTop: number) => {
+      const container = screen.getByTestId('ds-table-container');
+      Object.defineProperty(container, 'scrollTop', {
+        configurable: true,
+        value: scrollTop,
+      });
+      fireEvent.scroll(container);
+    };
+
+    it('should not render the button when showBackToTopButton is falsy', () => {
+      renderWithProvider(<VirtualTable data={DATA} columns={COLUMNS} stickyHeader />);
+
+      expect(
+        screen.queryByRole('button', { name: /back to top/i }),
+      ).not.toBeInTheDocument();
+    });
+
+    it('should not render the button before the user scrolls', () => {
+      renderWithProvider(
+        <VirtualTable
+          data={DATA}
+          columns={COLUMNS}
+          stickyHeader
+          showBackToTopButton
+          onBackToTop={vi.fn()}
+        />,
+      );
+
+      expect(
+        screen.queryByRole('button', { name: /back to top/i }),
+      ).not.toBeInTheDocument();
+    });
+
+    it('should render the button once scrolled past the threshold', () => {
+      renderWithProvider(
+        <VirtualTable
+          data={DATA}
+          columns={COLUMNS}
+          stickyHeader
+          showBackToTopButton
+          onBackToTop={vi.fn()}
+        />,
+      );
+
+      simulateScroll(2000);
+
+      expect(
+        screen.getByRole('button', { name: /back to top/i }),
+      ).toBeInTheDocument();
+    });
+
+    it('should render the button without an infiniteScroll config', () => {
+      renderWithProvider(
+        <VirtualTable data={DATA} columns={COLUMNS} stickyHeader showBackToTopButton />,
+      );
+
+      simulateScroll(2000);
+
+      expect(
+        screen.getByRole('button', { name: /back to top/i }),
+      ).toBeInTheDocument();
+    });
+
+    it('should call onBackToTop when clicked', () => {
+      const onBackToTop = vi.fn();
+      renderWithProvider(
+        <VirtualTable
+          data={DATA}
+          columns={COLUMNS}
+          stickyHeader
+          showBackToTopButton
+          onBackToTop={onBackToTop}
+        />,
+      );
+
+      simulateScroll(2000);
+      fireEvent.click(screen.getByRole('button', { name: /back to top/i }));
+      expect(onBackToTop).toHaveBeenCalledTimes(1);
+    });
+
+    it('should fall back to internal scrollToTop when onBackToTop is omitted', () => {
+      renderWithProvider(
+        <VirtualTable data={DATA} columns={COLUMNS} stickyHeader showBackToTopButton />,
+      );
+
+      simulateScroll(2000);
+      expect(() =>
+        fireEvent.click(screen.getByRole('button', { name: /back to top/i })),
+      ).not.toThrow();
     });
   });
 });

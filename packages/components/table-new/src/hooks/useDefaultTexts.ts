@@ -10,20 +10,24 @@ export const useDefaultTexts = (
   return useMemo(
     () => ({
       infiniteScrollLoading: intl.formatMessage({
-        id: 'DS.TABLE.INFINITE-SCROLL-LOADING',
+        id: 'DS.TABLE.INFINITE_SCROLL.LOADING',
         defaultMessage: 'Loading',
       }),
       infiniteScrollError: intl.formatMessage({
-        id: 'DS.TABLE.INFINITE-SCROLL-ERROR',
+        id: 'DS.TABLE.INFINITE_SCROLL.ERROR',
         defaultMessage: 'An error occurred',
       }),
       infiniteScrollRetry: intl.formatMessage({
-        id: 'DS.TABLE.INFINITE-SCROLL-RETRY',
+        id: 'DS.TABLE.INFINITE_SCROLL.RETRY',
         defaultMessage: 'Retry',
       }),
       infiniteScrollNoMoreData: intl.formatMessage({
-        id: 'DS.TABLE.INFINITE-SCROLL-NO-MORE-DATA',
+        id: 'DS.TABLE.INFINITE_SCROLL.NO_MORE_DATA',
         defaultMessage: 'There are no more items to load',
+      }),
+      infiniteScrollBackToTop: intl.formatMessage({
+        id: 'DS.TABLE.INFINITE_SCROLL.BACK_TO_TOP',
+        defaultMessage: 'Back to top',
       }),
       columnSortClear: intl.formatMessage({
         id: 'DS.TABLE.COLUMN.SORT_CLEAR',
@@ -54,43 +58,43 @@ export const useDefaultTexts = (
         defaultMessage: 'selected',
       }),
       selectAll: intl.formatMessage({
-        id: 'DS.TABLE.SELECT-ALL',
+        id: 'DS.TABLE.SELECT_ALL',
         defaultMessage: 'Select visible',
       }),
       selectAllTooltip: intl.formatMessage({
-        id: 'DS.TABLE.SELECT-ALL-TOOLTIP',
+        id: 'DS.TABLE.SELECT_ALL_BUTTON_TOOLTIP',
         defaultMessage: 'Select all',
       }),
       selectGlobalAll: intl.formatMessage({
-        id: 'DS.TABLE.SELECT-GLOBAL-ALL',
+        id: 'DS.TABLE.SELECT_GLOBAL_ALL',
         defaultMessage: 'Select all',
       }),
       selectInvert: intl.formatMessage({
-        id: 'DS.TABLE.SELECT-INVERT',
-        defaultMessage: 'Inverse selection',
+        id: 'DS.TABLE.SELECT_INVERT',
+        defaultMessage: 'Invert selection',
       }),
       selectionLimitWarning: intl.formatMessage({
-        id: 'DS.TABLE.SELECTION-LIMIT',
+        id: 'DS.TABLE.SELECTION_LIMIT',
         defaultMessage: 'You have reached max limit',
       }),
       selectionOptionsTooltip: intl.formatMessage({
-        id: 'DS.TABLE.SELECTIONS-MENU-TOOLTIP',
+        id: 'DS.TABLE.SELECTIONS_MENU_TOOLTIP',
         defaultMessage: 'Batch selection options',
       }),
       unselectAll: intl.formatMessage({
-        id: 'DS.TABLE.UNSELECT-ALL',
+        id: 'DS.TABLE.UNSELECT_ALL',
         defaultMessage: 'Unselect visible',
       }),
       unselectGlobalAll: intl.formatMessage({
-        id: 'DS.TABLE.UNSELECT-GLOBAL-ALL',
+        id: 'DS.TABLE.UNSELECT_GLOBAL_ALL',
         defaultMessage: 'Unselect all',
       }),
       emptyText: intl.formatMessage({
-        id: 'DS.TABLE.NO-DATA',
+        id: 'DS.TABLE.NO_DATA',
         defaultMessage: 'No data',
       }),
       selectRowTooltip: intl.formatMessage({
-        id: 'DS.TABLE.SELECT-ROW',
+        id: 'DS.TABLE.SELECT_ROW_TOOLTIP',
         defaultMessage: 'Select',
       }),
       ...defaultTexts,

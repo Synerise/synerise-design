@@ -1,10 +1,3 @@
-import { type CompareFn } from 'antd/lib/table/interface';
-
-import { type VirtualColumnType as LegacyColumnType } from '@synerise/ds-table';
-import {
-  type ColumnSortOrder,
-  type ColumnsSortState,
-} from '@synerise/ds-table/dist/Table.types';
 import {
   type CellContext,
   type ColumnDef,
@@ -14,6 +7,7 @@ import {
 } from '@tanstack/react-table';
 
 import { EXPANDED_ROW_PROPERTY } from '../Table.const';
+import { type ColumnsSortState, type LegacyColumnType } from '../Table.types';
 import { calculatePixels } from './calculatePixels';
 
 const getSortStateApiAdapter = <A, B>(headerContext: HeaderContext<A, B>) => {
@@ -27,7 +21,6 @@ const getSortStateApiAdapter = <A, B>(headerContext: HeaderContext<A, B>) => {
   });
   return {
     columnsSortState: legacyColumnSortState,
-    // get sort order for column by key
     getColumnSortOrder: (key: string) => {
       switch (headerContext.table.getColumn(key)?.getIsSorted()) {
         case 'asc':
@@ -38,7 +31,7 @@ const getSortStateApiAdapter = <A, B>(headerContext: HeaderContext<A, B>) => {
           return null;
       }
     },
-    setColumnSortOrder: (key: string, sort: ColumnSortOrder) => {
+    setColumnSortOrder: (key: string, sort: 'descend' | 'ascend' | null) => {
       const allowMultiple =
         headerContext.table.getColumn(key)?.columnDef.meta?.enableMultiSort;
       headerContext.table
@@ -67,16 +60,17 @@ const getSortingConfig = <DataType>(
       sortingFn: DEFAULT_SORT_FN,
     };
   }
-  let sortFn: CompareFn<DataType> | undefined;
+  let sortFn: ((a: DataType, b: DataType) => number) | undefined;
   let enableMultiSort: boolean | undefined;
   let multiSortOrder: number | undefined;
   if (typeof sorter === 'function') {
     sortFn = sorter;
   }
-  if ('compare' in sorter && sorter.compare) {
+  if (typeof sorter === 'object' && 'compare' in sorter && sorter.compare) {
     sortFn = sorter.compare;
     enableMultiSort = !!sorter.multiple;
-    multiSortOrder = sorter.multiple;
+    multiSortOrder =
+      typeof sorter.multiple === 'number' ? sorter.multiple : undefined;
   }
   return {
     sortingFn: sortFn
@@ -129,9 +123,12 @@ export const legacyColumnConfigAdapter = <DataType, DataValue>(
         maxWidth: column.maxWidth,
         width: column.width,
         fixed: column.fixed,
+        align: column.align,
         sortOrder: column.sortOrder,
         sortRender:
-          typeof column.sortRender === 'string' ? column.sortRender : undefined,
+          typeof column.sortRender === 'string'
+            ? (column.sortRender as 'string' | 'default')
+            : undefined,
         renderCustomSortButton: customSortRender,
         multipleSortingOrder: multiSortOrder,
         getCellTooltipProps: column.getCellTooltipProps,

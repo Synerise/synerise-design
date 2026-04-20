@@ -8,7 +8,6 @@ import React, {
 } from 'react';
 
 import { useMergeRefs } from '@floating-ui/react';
-import Scrollbar from '@synerise/ds-scrollbar';
 import { type WithHTMLAttributes, useResizeObserver } from '@synerise/ds-utils';
 
 import * as S from './TableHorizontalScroll.styles';
@@ -67,10 +66,6 @@ export const TableHorizontalScroll = forwardRef<
         </S.HorizontalScrollWrapper>
         <S.RightShadow offset={stickyRight} />
       </S.HorizontalScrollContainer>
-
-      <S.ScrollbarWrapper>
-        <Scrollbar></Scrollbar>
-      </S.ScrollbarWrapper>
     </>
   );
 });

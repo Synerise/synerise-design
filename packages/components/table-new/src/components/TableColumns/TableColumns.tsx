@@ -25,6 +25,7 @@ export const TableColumns = <TData extends object>({
               const isSticky = header.column.getIsPinned();
               const hasSorter = header.column.getCanSort();
               const isColumnSorted = isSorted(header.column);
+              const align = header.column.columnDef.meta?.align;
               return (
                 <S.Th
                   headerIndex={columnIndex}
@@ -36,10 +37,11 @@ export const TableColumns = <TData extends object>({
                   leftOffset={header.column.getAfter('right')}
                   isSorted={isColumnSorted}
                   hasSorter={hasSorter}
+                  $align={align}
                   data-sticky={isSticky ? 'true' : undefined}
                   role="columnheader"
                 >
-                  <S.HeaderWrapper>
+                  <S.HeaderWrapper $align={align}>
                     <S.Label
                       disableColumnNamesLineBreak={disableColumnNamesLineBreak}
                     >

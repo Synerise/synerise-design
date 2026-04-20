@@ -10,6 +10,7 @@ declare module '@tanstack/react-table' {
     maxWidth?: number | string;
     width?: number | string;
     fixed?: 'left' | 'right';
+    align?: 'left' | 'center' | 'right';
     style?: CSSProperties<HTMLTableHeaderCellElement>;
     sortRender?: 'string' | 'default';
     sortOrder?: 'ascend' | 'descend' | null;

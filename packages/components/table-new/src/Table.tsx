@@ -1,4 +1,4 @@
-import React, { useMemo, useRef } from 'react';
+import React, { useImperativeHandle, useMemo, useRef } from 'react';
 
 import type { TableProps } from './Table.types';
 import { BaseTable } from './components/BaseTable/BaseTable';
@@ -6,6 +6,7 @@ import { SelectionContext } from './contexts/SelectionContext';
 import { TableContext } from './contexts/TableContext';
 import { useDefaultTexts } from './hooks/useDefaultTexts';
 import { useTable } from './hooks/useTable';
+import { useTableHighlight } from './hooks/useTableHighlight';
 import { getDefaultSkeletonColumns } from './utils/getDefaultSkeletonColumns';
 import { processColumns } from './utils/processColumns';
 
@@ -17,6 +18,14 @@ export const Table = <TData extends object, TValue>({
   isLoading,
   selectedRowKeys,
   pagination,
+  matchesSearchQuery,
+  filterData,
+  onSearchQueryChange,
+  searchProps,
+  expandable,
+  rowKey,
+  onSort,
+  tableRef,
   ...props
 }: TableProps<TData, TValue>) => {
   const texts = useDefaultTexts(defaultTexts);
@@ -44,15 +53,32 @@ export const Table = <TData extends object, TValue>({
     hasPagination,
     columnSizing,
     isColumnSizingReady,
+    searchQuery,
+    setSearchQuery,
+    handleSearchClear,
+    hasBuiltInSearch,
+    totalDataCount,
   } = useTable({
     data,
     columns: finalColumns,
     pagination,
     selectionConfig,
     selectedRowKeys,
+    matchesSearchQuery,
+    filterData,
+    onSearchQueryChange,
+    expandable,
+    rowKey,
+    onSort,
     wrapperRef,
     requireColumnSizing: false,
   });
+
+  const { highlightRow } = useTableHighlight(wrapperRef);
+
+  useImperativeHandle(tableRef, () => ({
+    highlightRow,
+  }));
 
   const tableContextValue = useMemo(
     () => ({ table, getScrollContainer: () => null }),
@@ -71,6 +97,12 @@ export const Table = <TData extends object, TValue>({
           selectedRowKeys={selectedRowKeys}
           columnSizing={columnSizing}
           isColumnSizingReady={isColumnSizingReady}
+          searchQuery={searchQuery}
+          setSearchQuery={setSearchQuery}
+          handleSearchClear={handleSearchClear}
+          hasBuiltInSearch={hasBuiltInSearch}
+          searchProps={searchProps}
+          dataSourceTotalCount={totalDataCount}
           {...props}
         />
       </SelectionContext.Provider>

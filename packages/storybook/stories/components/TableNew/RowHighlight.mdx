@@ -1,0 +1,139 @@
+import { Meta, Canvas } from '@storybook/addon-docs/blocks';
+import { WithRowHighlight } from './NonVirtual/Table.stories';
+
+<Meta title="Components/TableNew/Row Highlight" />
+
+# Row Highlight
+
+Temporarily highlight a row to draw attention to it -- for example, when returning from a detail page to a list view. The highlight holds for a configurable duration then fades out.
+
+## Quick overview
+
+- Imperative API via `tableRef` -- no state management needed
+- Zero React re-renders -- pure CSS animation triggered by DOM class manipulation
+- Multiple rows can be highlighted simultaneously
+- Re-highlighting the same row restarts the animation
+- Duration configurable per call (default 2000ms)
+- Available on both `Table` (via `tableRef`) and `VirtualTable` (added to existing `tableRef`)
+
+## Example
+
+Click the buttons to highlight individual rows, multiple rows simultaneously, or a row with a custom duration.
+
+<Canvas of={WithRowHighlight} sourceState="shown" />
+
+## Usage with Table
+
+```tsx
+import { useRef } from 'react';
+import { Table, type TableRef } from '@synerise/ds-table-new';
+
+const MyList = () => {
+  const tableRef = useRef<TableRef>(null);
+
+  useEffect(() => {
+    // Highlight the row the user just returned from
+    if (returnedFromId) {
+      tableRef.current?.highlightRow(returnedFromId);
+    }
+  }, [returnedFromId]);
+
+  return <Table data={data} columns={columns} tableRef={tableRef} rowKey="id" />;
+};
+```
+
+## Usage with VirtualTable
+
+`highlightRow` is added to the existing `VirtualTableRef` alongside `scrollToTop`, `scrollTo`, and `scrollToIndex`:
+
+```tsx
+import { useRef } from 'react';
+import { VirtualTable, type VirtualTableRef } from '@synerise/ds-table-new';
+
+const MyList = () => {
+  const tableRef = useRef<VirtualTableRef>(null);
+
+  const handleReturnFromDetail = (id: string) => {
+    // Scroll to the row first, then highlight it
+    const index = data.findIndex((row) => row.id === id);
+    tableRef.current?.scrollToIndex(index);
+    // Small delay to let virtualization render the row
+    requestAnimationFrame(() => {
+      tableRef.current?.highlightRow(id);
+    });
+  };
+
+  return <VirtualTable data={data} columns={columns} tableRef={tableRef} />;
+};
+```
+
+## API
+
+```ts
+highlightRow(rowKey: string, options?: HighlightOptions): void
+```
+
+<table>
+  <thead>
+    <tr>
+      <th>Parameter</th>
+      <th>Type</th>
+      <th>Default</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>rowKey</code></td>
+      <td><code>string</code></td>
+      <td>-</td>
+      <td>The key of the row to highlight. Must match the value returned by the <code>rowKey</code> prop.</td>
+    </tr>
+    <tr>
+      <td><code>options.duration</code></td>
+      <td><code>number</code></td>
+      <td><code>2000</code></td>
+      <td>Duration of the highlight in milliseconds. The highlight holds at full intensity for 70% of the duration, then fades out over the remaining 30%.</td>
+    </tr>
+  </tbody>
+</table>
+
+## How it works
+
+The implementation bypasses React entirely for maximum performance:
+
+1. `highlightRow` finds the `<tr>` element via `querySelector('[data-key="..."]')`
+2. Removes any existing `ds-table-row-highlight` CSS class (to allow re-triggering)
+3. Forces a DOM reflow so the browser sees the class removal
+4. Adds the `ds-table-row-highlight` class with a CSS custom property for duration
+5. A CSS `@keyframes` animation runs on the row's `<td>` elements:
+   - 0-70%: holds the highlight color (`--ds-highlight-color`, default `#e6f4ff`)
+   - 70-100%: fades to transparent
+6. On `animationend`, the class is automatically removed
+
+This approach means:
+- No React state changes, no re-renders of the table or rows
+- The CSS animation is GPU-composited
+- Each row's animation is independent -- multiple highlights don't interfere
+- Re-highlighting restarts cleanly via the reflow trick
+
+## Customizing the highlight color
+
+The highlight color can be overridden via the `--ds-highlight-color` CSS custom property on any ancestor element:
+
+```tsx
+<div style={{ '--ds-highlight-color': '#fff3cd' } as React.CSSProperties}>
+  <Table data={data} columns={columns} tableRef={tableRef} />
+</div>
+```
+
+## VirtualTable considerations
+
+For `VirtualTable`, the row DOM element only exists while the row is within the virtualization window. If you call `highlightRow` for a row that isn't currently rendered, nothing happens. Use `scrollToIndex` first to ensure the row is visible, then highlight it in the next animation frame:
+
+```tsx
+tableRef.current?.scrollToIndex(targetIndex);
+requestAnimationFrame(() => {
+  tableRef.current?.highlightRow(targetKey);
+});
+```

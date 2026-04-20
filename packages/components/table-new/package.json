@@ -51,7 +51,6 @@
     "@synerise/ds-scrollbar": "workspace:^",
     "@synerise/ds-search": "workspace:^",
     "@synerise/ds-skeleton": "workspace:^",
-    "@synerise/ds-table": "workspace:^",
     "@synerise/ds-tag": "workspace:^",
     "@synerise/ds-tags": "workspace:^",
     "@synerise/ds-tooltip": "workspace:^",
