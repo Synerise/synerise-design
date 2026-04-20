@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.5.16](https://github.com/Synerise/synerise-design/compare/@synerise/ds-items-roll@1.5.15...@synerise/ds-items-roll@1.5.16) (2026-04-20)
+
+### Bug Fixes
+
+- **items-roll:** skip rendering divider if footer is empty ([f828790](https://github.com/Synerise/synerise-design/commit/f828790e8d79a5a1675fb1c0dc71fe049f66cef3))
+
 ## [1.5.15](https://github.com/Synerise/synerise-design/compare/@synerise/ds-items-roll@1.5.14...@synerise/ds-items-roll@1.5.15) (2026-04-14)
 
 **Note:** Version bump only for package @synerise/ds-items-roll

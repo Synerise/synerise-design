@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.3.7](https://github.com/Synerise/synerise-design/compare/@synerise/ds-code-area@1.3.6...@synerise/ds-code-area@1.3.7) (2026-04-20)
+
+### Bug Fixes
+
+- **code-area:** inject vs theme before setting ds theme ([faad2ad](https://github.com/Synerise/synerise-design/commit/faad2ad4a9670a4a87203a9354c6cee495de4754))
+
 ## [1.3.6](https://github.com/Synerise/synerise-design/compare/@synerise/ds-code-area@1.3.5...@synerise/ds-code-area@1.3.6) (2026-04-14)
 
 **Note:** Version bump only for package @synerise/ds-code-area
