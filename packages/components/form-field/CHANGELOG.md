@@ -3,6 +3,10 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.3.13](https://github.com/Synerise/synerise-design/compare/@synerise/ds-form-field@1.3.12...@synerise/ds-form-field@1.3.13) (2026-04-21)
+
+**Note:** Version bump only for package @synerise/ds-form-field
+
 ## [1.3.12](https://github.com/Synerise/synerise-design/compare/@synerise/ds-form-field@1.3.11...@synerise/ds-form-field@1.3.12) (2026-04-10)
 
 **Note:** Version bump only for package @synerise/ds-form-field
