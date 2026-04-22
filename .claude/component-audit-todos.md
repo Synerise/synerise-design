@@ -465,10 +465,7 @@ No gaps found.
 
 ## search
 
-- [ ] **Deep import** — `SearchHeader.tsx` imports `Tooltip` from `@synerise/ds-tooltip/dist/Tooltip` — fragile dist-level path
-- [ ] **Deprecation** — `renderInMenu` on `SearchItemListProps` is `@deprecated` but no removal schedule is documented
-- [ ] **Bug** — `getParametersScrollTop` assumes fixed `LIST_HEADER_HEIGHT = 42` regardless of whether the recent section has a title — off-by-one scrolling when title is absent
-- [ ] **Migration** — Uses Jest (`jest.config.js`), not yet migrated to Vitest
+- [ ] **Deprecation** — `renderInMenu` on `SearchItemListProps` is `@deprecated` but no removal schedule is documented (existing JSDoc gates removal on consumer adoption — needs an explicit version target)
 
 ---
 

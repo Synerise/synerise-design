@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { renderWithProvider } from '@synerise/ds-core';
-import { screen, waitFor } from '@testing-library/react';
+import { fireEvent, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 
 import { SearchInput } from '../Elements';
@@ -179,5 +179,36 @@ describe('SearchInput component', () => {
     userEvent.click(screen.getByText('outside'));
 
     expect(onToggle).toBeCalledWith(false);
+  });
+
+  it('should defer collapse until mouseup so adjacent click targets stay stable', () => {
+    const onToggle = vi.fn();
+
+    renderWithProvider(
+      <div>
+        <button>outside</button>
+        <SearchInput
+          clearTooltip={'clear'}
+          placeholder={PLACEHOLDER}
+          value=""
+          onChange={vi.fn()}
+          onClear={vi.fn()}
+          onKeyDown={vi.fn()}
+          onClick={vi.fn()}
+          onToggle={onToggle}
+          closeOnClickOutside
+        />
+      </div>,
+    );
+
+    userEvent.click(screen.getByTestId('btn') as HTMLElement);
+    onToggle.mockClear();
+
+    const outside = screen.getByText('outside');
+    fireEvent.mouseDown(outside);
+    expect(onToggle).not.toHaveBeenCalled();
+
+    fireEvent.mouseUp(outside);
+    expect(onToggle).toHaveBeenCalledWith(false);
   });
 });
