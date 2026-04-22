@@ -1,5 +1,7 @@
 import styled, { keyframes } from 'styled-components';
 
+import { type OverscrollBehavior } from './Scrollbar.types';
+
 const spinnerAnimation = keyframes`
     from {
         transform: rotateZ(0deg);
@@ -38,7 +40,14 @@ export const LoaderWrapper = styled.div`
   background-color: rgba(255, 255, 255, 0.6);
 `;
 
-export const ScrollbarContainer = styled.div`
+export const ScrollbarContainer = styled.div<{
+  overscrollBehavior: OverscrollBehavior;
+}>`
   position: relative;
   height: 100%;
+
+  .ps {
+    overscroll-behavior: ${(props): OverscrollBehavior =>
+      props.overscrollBehavior};
+  }
 `;

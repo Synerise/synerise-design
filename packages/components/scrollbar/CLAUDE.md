@@ -46,6 +46,7 @@ The unified entry point. Renders `DnDScrollbar` when `withDnd={true}`, otherwise
 | `maxHeight` | `string \| number` | — | CSS `max-height` on the scroll content element |
 | `onScroll` | `(event: UIEvent) => void` | — | Fired on scroll |
 | `onYReachEnd` | `() => void` | — | Called independently of `fetchData` whenever the Y end is reached |
+| `overscrollBehavior` | `'auto' \| 'contain' \| 'none'` | `'contain'` | Sets CSS `overscroll-behavior` on the scroll container. Honored by both variants: virtual applies it to the inner `.ps` element, DnD applies it to its own `ScrollbarContainer` |
 | `style` | `CSSProperties` | — | Inline styles for the inner wrapper div |
 | `withDnd` | `boolean` | `false` | Use `DnDScrollbar` (custom thumb, drag support) instead of `VirtualScrollbar` |
 
@@ -62,6 +63,7 @@ Extends `ScrollbarProps` with one additional prop:
 - `ScrollbarAdditionalProps` — all props except `children`
 - `ScrollbarProps` — `ScrollbarAdditionalProps & { children?: ReactNode }`
 - `VirtualScrollbarProps` — `ScrollbarProps & { scrollbarOptions?: ... }`
+- `OverscrollBehavior` — `'auto' | 'contain' | 'none'`, value of the `overscrollBehavior` prop
 
 ## Usage patterns
 
@@ -92,13 +94,18 @@ import Scrollbar from '@synerise/ds-scrollbar';
 <Scrollbar largeSize maxHeight={400}>
   {content}
 </Scrollbar>
+
+// Allow scroll chaining to parent (default is 'contain')
+<Scrollbar maxHeight={400} overscrollBehavior="auto">
+  {content}
+</Scrollbar>
 ```
 
 ## Styling
 
 Two layers of styling:
 
-1. **styled-components** — `ScrollbarContainer` (relative, `height: 100%`) wraps both mode variants. `LoaderWrapper` (absolute fill, `rgba(255,255,255,0.6)`) and a spinning `Loader` are rendered on top when `loading` is true.
+1. **styled-components** — `ScrollbarContainer` (relative, `height: 100%`) wraps both mode variants. It owns the `.ps { overscroll-behavior: <overscrollBehavior>; }` rule, which is picked up by the virtual variant (perfect-scrollbar's `.ps` element). The DnD variant ships its own `ScrollbarContainer` that applies `overscroll-behavior` directly on itself. The prop defaults to `'contain'`, matching the behavior previously hard-coded in `scrollbar.mixin.less`. `LoaderWrapper` (absolute fill, `rgba(255,255,255,0.6)`) and a spinning `Loader` are rendered on top when `loading` is true.
 2. **Less overrides** (`style/scrollbar.mixin.less`) — patches PerfectScrollbar's `.ps__rail-*` and `.ps__thumb-*` classes. The `.large-size` class (applied via `classnames` in `VirtualScrollbar`) activates the wide blue thumb variant.
 
 **Token usage:**
@@ -121,6 +128,7 @@ The track in `DnDScrollbar` is hidden (`opacity: 0`) and revealed on parent hove
 - `VirtualScrollbar` registers `transitionend`/`animationend` listeners on `document.body` (no cleanup deps array — runs after every render) to retrigger PerfectScrollbar geometry recalculation when the scrollbar becomes visible after a CSS animation.
 - `DnDScrollbar` implements its own thumb-drag via `mousemove`/`mouseup`/`mouseleave` listeners on `document` and a `ResizeObserver` on the wrapper. Minimum thumb height is `48 px`; if `scrollHeight === clientHeight` (no overflow), `thumbHeight` is set to `0` (thumb hidden).
 - `DnDScrollbar` does not accept `scrollbarOptions` — the prop is silently ignored because it is part of `VirtualScrollbarProps` only.
+- `overscrollBehavior` is forwarded from the top-level `Scrollbar` down to whichever inner component is active. Virtual picks it up via the outer wrapper's `.ps` nested rule; DnD applies it on its own `ScrollbarContainer` directly.
 - `confineScroll` behaviour differs between modes: `VirtualScrollbar` calls `event.preventDefault()` on `wheel` (blocks scroll propagation); `DnDScrollbar` calls `event.stopPropagation()` only.
 - The `forwardRef` type is `HTMLElement` (broad); callers may need to cast to `HTMLDivElement` for precise access.
 - The test runner is **Jest** (not Vitest) — `package.json` uses `"test": "jest"` and `jest.config.js` is present.

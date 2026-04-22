@@ -43,3 +43,4 @@ import Scrollbar from '@synerise/ds-scrollbar'
 | onScroll      | Callback fired on scroll events                                                  | (event: UIEvent) => void | -       |
 | onYReachEnd   | Callback fired independently when scroll reaches the Y end                       | () => void               | -       |
 | confineScroll | Will prevent wheel event from propagating (scrolling outer scope) if set to true | boolean                  | false   |
+| overscrollBehavior | CSS `overscroll-behavior` applied to the scroll container — honored by both the virtual and `withDnd` variants | `'auto' \| 'contain' \| 'none'` | `'contain'` |

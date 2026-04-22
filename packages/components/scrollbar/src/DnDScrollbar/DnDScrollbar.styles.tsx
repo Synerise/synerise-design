@@ -1,5 +1,7 @@
 import styled, { keyframes } from 'styled-components';
 
+import { type OverscrollBehavior } from '../Scrollbar.types';
+
 export const ScrollbarContent = styled.div`
   -ms-overflow-style: none;
   overflow: auto;
@@ -142,11 +144,15 @@ export const Loader = styled.div<{ loading?: boolean }>`
   }
 `;
 
-export const ScrollbarContainer = styled.div`
+export const ScrollbarContainer = styled.div<{
+  overscrollBehavior: OverscrollBehavior;
+}>`
   display: flex;
   height: 100%;
   overflow: hidden;
   position: relative;
+  overscroll-behavior: ${(props): OverscrollBehavior =>
+    props.overscrollBehavior};
   &:hover {
     ${ScrollbarTrackWrapper} {
       opacity: 1;
