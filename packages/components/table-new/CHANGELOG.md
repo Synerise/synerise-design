@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.0.4](https://github.com/Synerise/synerise-design/compare/@synerise/ds-table-new@1.0.3...@synerise/ds-table-new@1.0.4) (2026-04-22)
+
+### Bug Fixes
+
+- **table-new:** row selection status & row props/styles ([d730118](https://github.com/Synerise/synerise-design/commit/d730118303bfe0679ae08a249d5984735e2f55c9))
+
 ## [1.0.3](https://github.com/Synerise/synerise-design/compare/@synerise/ds-table-new@1.0.2...@synerise/ds-table-new@1.0.3) (2026-04-21)
 
 **Note:** Version bump only for package @synerise/ds-table-new
