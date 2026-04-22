@@ -3,6 +3,10 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.42.5](https://github.com/Synerise/synerise-design/compare/storybook@1.42.4...storybook@1.42.5) (2026-04-22)
+
+**Note:** Version bump only for package storybook
+
 ## [1.42.4](https://github.com/Synerise/synerise-design/compare/storybook@1.42.3...storybook@1.42.4) (2026-04-22)
 
 ### Bug Fixes

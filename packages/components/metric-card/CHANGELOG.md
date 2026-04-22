@@ -3,6 +3,10 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.2.15](https://github.com/Synerise/synerise-design/compare/@synerise/ds-metric-card@1.2.14...@synerise/ds-metric-card@1.2.15) (2026-04-22)
+
+**Note:** Version bump only for package @synerise/ds-metric-card
+
 ## [1.2.14](https://github.com/Synerise/synerise-design/compare/@synerise/ds-metric-card@1.2.13...@synerise/ds-metric-card@1.2.14) (2026-04-21)
 
 **Note:** Version bump only for package @synerise/ds-metric-card

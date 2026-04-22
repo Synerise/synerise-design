@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.3.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-scrollbar@1.2.20...@synerise/ds-scrollbar@1.3.0) (2026-04-22)
+
+### Features
+
+- **scrollbar:** add overscrollBehavior prop ([d699d9a](https://github.com/Synerise/synerise-design/commit/d699d9a7d79210c45098d5728ff24785ce060875))
+
 ## [1.2.20](https://github.com/Synerise/synerise-design/compare/@synerise/ds-scrollbar@1.2.19...@synerise/ds-scrollbar@1.2.20) (2026-04-21)
 
 **Note:** Version bump only for package @synerise/ds-scrollbar
