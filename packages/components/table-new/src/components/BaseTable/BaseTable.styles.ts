@@ -66,6 +66,7 @@ export const TableSkeleton = styled(DSSkeleton)<{ skeletonWidth?: string }>`
 
 export const StyledTable = styled.table`
   width: var(--table-size);
+  min-width: 100%;
   border-spacing: 0;
   border-collapse: separate; /* required for sticky cells to keep their backgrounds */
 

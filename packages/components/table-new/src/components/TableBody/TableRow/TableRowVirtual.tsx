@@ -20,6 +20,7 @@ const TableRowVirtualInner = <TData extends object>({
   row,
   isLast,
   onRowClick,
+  getRowProps,
   getRowTooltipProps,
   isExpanded: _isExpanded,
   isParentExpanded,
@@ -127,6 +128,24 @@ const TableRowVirtualInner = <TData extends object>({
 
   const rowTooltipProps = getRowTooltipProps?.(row.original);
 
+  const customRowProps = getRowProps?.(row.original) ?? {};
+  const {
+    onClick: customOnClick,
+    style: customStyle,
+    ...restCustomRowProps
+  } = customRowProps;
+
+  const mergedOnClick =
+    onRowClick || customOnClick
+      ? (event: React.MouseEvent<HTMLTableRowElement>): void => {
+          customOnClick?.(event);
+          if (onRowClick && !event.isDefaultPrevented()) {
+            event.stopPropagation();
+            onRowClick(row.original, event);
+          }
+        }
+      : undefined;
+
   const virtualRowContent = (
     <S.VirtualRow
       key={row.id}
@@ -136,8 +155,10 @@ const TableRowVirtualInner = <TData extends object>({
       data-row-index={virtual.index}
       data-index={virtual.index}
       {...(isChild ? { 'data-row-expanded': isChildExpanded } : {})}
+      {...restCustomRowProps}
       ref={rowVirtualizer?.measureElement}
       style={{
+        ...customStyle,
         position: 'absolute',
         top: `${top}px`,
         height: `${isVisible ? virtual.size : 0}px`,
@@ -146,14 +167,7 @@ const TableRowVirtualInner = <TData extends object>({
       }}
       isVisible={isVisible}
       isChild={isChild}
-      onClick={
-        onRowClick
-          ? (event): void => {
-              event.stopPropagation();
-              onRowClick && onRowClick(row.original, event);
-            }
-          : undefined
-      }
+      onClick={mergedOnClick}
     >
       {renderRow(row)}
     </S.VirtualRow>

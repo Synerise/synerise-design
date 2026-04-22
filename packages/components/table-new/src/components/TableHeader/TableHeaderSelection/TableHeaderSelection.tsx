@@ -35,17 +35,19 @@ export const TableHeaderSelection = <TData extends object>({
   const visibleRowCount = table.getRowModel().rows.length;
   const visibleSelectedCount = table.getFilteredSelectedRowModel().rows.length;
 
-  // Checkbox reflects visible selection state
-  const isAllVisibleSelected =
-    visibleRowCount > 0 && visibleSelectedCount === visibleRowCount;
-  // Indeterminate when some (but not all) visible items are selected
-  const isAnySelected = visibleSelectedCount > 0 && !isAllVisibleSelected;
-
   const allRecordsCount = visibleRowCount;
   const selectedRecordsCount = totalSelectedCount;
   const selectableRecordsCount = table
     .getRowModel()
     .rows.filter((row) => row.getCanSelect()).length;
+
+  // Checkbox reflects visible selection state — ignore rows that can't be selected
+  // (disabled/unavailable via checkRowSelectionStatus) so "all selected" is reachable.
+  const isAllVisibleSelected =
+    selectableRecordsCount > 0 &&
+    visibleSelectedCount === selectableRecordsCount;
+  // Indeterminate when some (but not all) selectable items are selected
+  const isAnySelected = visibleSelectedCount > 0 && !isAllVisibleSelected;
 
   const disabledBulkSelection = Boolean(
     allRecordsCount === 0 ||

@@ -204,7 +204,8 @@ export const useTable = <TData, TValue>({
   const { columnSizing, isColumnSizingReady } = useColumnSizing({
     columnWidths,
     wrapperRef,
-    enabled: requireColumnSizing || hasAnyColumnWidth,
+    enabled:
+      columnWidths.length > 0 && (requireColumnSizing || hasAnyColumnWidth),
   });
 
   const { rightPinnedColumns, leftPinnedColumns } = useMemo(() => {

@@ -11,8 +11,23 @@ import * as S from './TableRow.styles';
 export const TableRow = <TData extends object>({
   row,
   onRowClick,
+  getRowProps,
   getRowTooltipProps,
 }: TableRowProps<TData>) => {
+  const customRowProps = getRowProps?.(row.original) ?? {};
+  const { onClick: customOnClick, ...restCustomRowProps } = customRowProps;
+
+  const mergedOnClick =
+    onRowClick || customOnClick
+      ? (event: React.MouseEvent<HTMLTableRowElement>): void => {
+          customOnClick?.(event);
+          if (onRowClick && !event.isDefaultPrevented()) {
+            event.stopPropagation();
+            onRowClick(row.original, event);
+          }
+        }
+      : undefined;
+
   const rowContent = (
     <S.Tr
       key={row.id}
@@ -21,14 +36,8 @@ export const TableRow = <TData extends object>({
       data-row-index={row.index}
       data-index={row.index}
       role="row"
-      onClick={
-        onRowClick
-          ? (event): void => {
-              event.stopPropagation();
-              onRowClick && onRowClick(row.original, event);
-            }
-          : undefined
-      }
+      {...restCustomRowProps}
+      onClick={mergedOnClick}
     >
       {row.getVisibleCells().map((cell, columnIndex) => {
         const cellId = `cell-${cell.column.id}-${cell.row.id}`;

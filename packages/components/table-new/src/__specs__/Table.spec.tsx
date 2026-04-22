@@ -385,4 +385,110 @@ describe('Table', () => {
       expect(screen.getAllByRole('row')).toHaveLength(DATA.length + 1);
     });
   });
+
+  describe('checkRowSelectionStatus.unavailable', () => {
+    it('hides checkbox for rows marked unavailable but keeps it for others', () => {
+      renderWithProvider(
+        <Table
+          data={DATA}
+          columns={COLUMNS}
+          selectionConfig={{
+            onChange: vi.fn(),
+            checkRowSelectionStatus: (record) =>
+              record.key === '1' ? { unavailable: true } : {},
+          }}
+          selectedRowKeys={[]}
+        />,
+      );
+
+      const rowCheckboxes = screen.getAllByTestId('ds-table-selection-button');
+      // One per non-unavailable data row (5 of 6)
+      expect(rowCheckboxes).toHaveLength(DATA.length - 1);
+    });
+
+    it('still disables (without hiding) when only disabled:true is returned', () => {
+      renderWithProvider(
+        <Table
+          data={DATA}
+          columns={COLUMNS}
+          selectionConfig={{
+            onChange: vi.fn(),
+            checkRowSelectionStatus: (record) =>
+              record.key === '1' ? { disabled: true } : {},
+          }}
+          selectedRowKeys={[]}
+        />,
+      );
+
+      const rowCheckboxes = screen.getAllByTestId('ds-table-selection-button');
+      expect(rowCheckboxes).toHaveLength(DATA.length);
+      // The first data row's checkbox renders (role=checkbox) and is disabled.
+      expect(rowCheckboxes[0]).toBeDisabled();
+    });
+  });
+
+  describe('getRowProps', () => {
+    it('applies style, className and data-* attributes to the <tr>', () => {
+      renderWithProvider(
+        <Table
+          data={DATA}
+          columns={COLUMNS}
+          getRowProps={(record) => ({
+            style: record.key === '1' ? { opacity: 0.5 } : undefined,
+            className: record.key === '1' ? 'is-dimmed' : undefined,
+            'data-row-state': record.key === '1' ? 'dimmed' : 'active',
+          } as React.HTMLAttributes<HTMLTableRowElement>)}
+        />,
+      );
+
+      const dimmedRow = document.querySelector('[data-row-state="dimmed"]');
+      expect(dimmedRow).toBeInTheDocument();
+      expect(dimmedRow).toHaveStyle({ opacity: '0.5' });
+      expect(dimmedRow).toHaveClass('is-dimmed');
+
+      const activeRows = document.querySelectorAll('[data-row-state="active"]');
+      expect(activeRows.length).toBe(DATA.length - 1);
+    });
+
+    it('fires getRowProps.onClick and onRowClick in order when both provided', () => {
+      const rowPropsClick = vi.fn();
+      const onRowClick = vi.fn();
+      renderWithProvider(
+        <Table
+          data={DATA}
+          columns={COLUMNS}
+          getRowProps={() => ({ onClick: rowPropsClick })}
+          onRowClick={onRowClick}
+        />,
+      );
+
+      const firstDataRow = screen.getAllByRole('row')[1];
+      fireEvent.click(firstDataRow);
+
+      expect(rowPropsClick).toHaveBeenCalledTimes(1);
+      expect(onRowClick).toHaveBeenCalledTimes(1);
+      expect(rowPropsClick.mock.invocationCallOrder[0]).toBeLessThan(
+        onRowClick.mock.invocationCallOrder[0],
+      );
+    });
+
+    it('suppresses onRowClick when getRowProps.onClick calls preventDefault', () => {
+      const onRowClick = vi.fn();
+      renderWithProvider(
+        <Table
+          data={DATA}
+          columns={COLUMNS}
+          getRowProps={() => ({
+            onClick: (event) => event.preventDefault(),
+          })}
+          onRowClick={onRowClick}
+        />,
+      );
+
+      const firstDataRow = screen.getAllByRole('row')[1];
+      fireEvent.click(firstDataRow);
+
+      expect(onRowClick).not.toHaveBeenCalled();
+    });
+  });
 });

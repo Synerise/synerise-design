@@ -48,6 +48,7 @@ export const BaseTable = <TData extends object, TValue>({
   maxHeight,
   tableBodyScrollRef,
   onRowClick,
+  getRowProps,
   getRowTooltipProps,
   searchQuery,
   setSearchQuery,
@@ -124,6 +125,7 @@ export const BaseTable = <TData extends object, TValue>({
             emptyDataComponent={emptyDataComponent}
             texts={texts}
             onRowClick={onRowClick}
+            getRowProps={getRowProps}
             getRowTooltipProps={getRowTooltipProps}
             key="table-body"
           />
@@ -164,6 +166,7 @@ export const BaseTable = <TData extends object, TValue>({
             emptyDataComponent={emptyDataComponent}
             texts={texts}
             onRowClick={onRowClick}
+            getRowProps={getRowProps}
             getRowTooltipProps={getRowTooltipProps}
             key="table-body"
           />
