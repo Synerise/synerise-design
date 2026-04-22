@@ -2,6 +2,7 @@ import { type CSSProperties, type ReactNode, type UIEvent } from 'react';
 
 import { type ScrollBarProps } from '@ofsajd/react-perfect-scrollbar';
 
+export type OverscrollBehavior = 'contain' | 'auto' | 'none';
 export type ScrollbarAdditionalProps = {
   absolute?: boolean;
   classes?: string;
@@ -16,6 +17,7 @@ export type ScrollbarAdditionalProps = {
   onYReachEnd?: () => void;
   withDnd?: boolean;
   confineScroll?: boolean;
+  overscrollBehavior?: OverscrollBehavior;
 };
 
 export type ScrollbarProps = ScrollbarAdditionalProps & {

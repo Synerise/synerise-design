@@ -23,6 +23,7 @@ export const DnDScrollbar = ({
   fetchData,
   hasMore,
   confineScroll,
+  overscrollBehavior = 'contain',
   ...props
 }: ScrollbarProps) => {
   const contentRef = useRef<HTMLDivElement>(null);
@@ -202,7 +203,10 @@ export const DnDScrollbar = ({
   }, [handleThumbMousemove, handleThumbMouseup]);
 
   return (
-    <S.ScrollbarContainer data-testid="dnd-scrollbar">
+    <S.ScrollbarContainer
+      overscrollBehavior={overscrollBehavior}
+      data-testid="dnd-scrollbar"
+    >
       <S.ScrollbarContent
         ref={contentRef}
         {...props}

@@ -16,15 +16,31 @@ const Scrollbar = forwardRef<
   ScrollbarProps | VirtualScrollbarProps
 >(
   (
-    { children, className, loading, withDnd, fetchData, ...props },
+    {
+      children,
+      className,
+      loading,
+      withDnd,
+      fetchData,
+      overscrollBehavior = 'contain',
+      ...props
+    },
     forwardedRef,
   ) => {
     const theme = useTheme();
     const Component = withDnd ? DnDScrollbar : VirtualScrollbar;
 
     return (
-      <S.ScrollbarContainer className={className}>
-        <Component {...props} fetchData={fetchData} ref={forwardedRef}>
+      <S.ScrollbarContainer
+        overscrollBehavior={overscrollBehavior}
+        className={className}
+      >
+        <Component
+          {...props}
+          overscrollBehavior={overscrollBehavior}
+          fetchData={fetchData}
+          ref={forwardedRef}
+        >
           {children}
         </Component>
         {loading && (
