@@ -10,11 +10,18 @@ import * as S from './TableEmptyBody.styles';
 export const TableEmptyBody = <TData, TValue>({
   emptyDataComponent,
   texts,
+  tableBodyScrollRef,
 }: TableEmptyBodyProps<TData, TValue>) => {
   const { table } = useTableContext();
   const colSpan = table.getAllLeafColumns().length;
   return (
-    <S.TBody>
+    <S.TBody
+      ref={(node) => {
+        if (tableBodyScrollRef) {
+          tableBodyScrollRef.current = node;
+        }
+      }}
+    >
       <S.Tr>
         <S.Td colSpan={colSpan}>
           <S.TableEmptyBodyWrapper>

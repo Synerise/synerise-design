@@ -1,5 +1,6 @@
 import type { PaginationProps } from 'antd/lib/pagination';
 import {
+  type HTMLAttributes,
   type MouseEvent,
   type MutableRefObject,
   type ReactElement,
@@ -112,6 +113,16 @@ export type SharedTableProps<TData, TValue> = {
   expandable?: Expandable<TData>;
 
   onRowClick?: (row: TData, event: MouseEvent<HTMLTableRowElement>) => void;
+
+  /**
+   * Returns arbitrary HTML attributes (style, className, data-*, event handlers, etc.)
+   * to apply to a row's <tr> element. Use this for per-row styling or custom events
+   * beyond simple click handling.
+   *
+   * If the returned attributes include `onClick`, it fires BEFORE `onRowClick`. Call
+   * `event.preventDefault()` inside `getRowProps`'s onClick to suppress `onRowClick`.
+   */
+  getRowProps?: (row: TData) => HTMLAttributes<HTMLTableRowElement>;
 
   /**
    * Returns tooltip props for a given row, or false to disable tooltip.
@@ -549,6 +560,7 @@ export type TableBodyProps<TData, TValue> = Pick<
   | 'cellHeight'
   | 'emptyDataComponent'
   | 'onRowClick'
+  | 'getRowProps'
   | 'getRowTooltipProps'
 > & {
   texts: TableBodyTexts;
@@ -559,7 +571,7 @@ export type TableBodyProps<TData, TValue> = Pick<
 
 export type TableEmptyBodyProps<TData, TValue> = Pick<
   TableBodyProps<TData, TValue>,
-  'emptyDataComponent'
+  'emptyDataComponent' | 'tableBodyScrollRef'
 > & {
   texts: TableEmptyBodyTexts;
 };
@@ -667,7 +679,10 @@ export type TableRowProps<TData> = {
   isSelected?: boolean;
   isExpanded?: boolean;
   isParentExpanded?: boolean;
-} & Pick<SharedTableProps<TData, unknown>, 'onRowClick' | 'getRowTooltipProps'>;
+} & Pick<
+  SharedTableProps<TData, unknown>,
+  'onRowClick' | 'getRowProps' | 'getRowTooltipProps'
+>;
 
 export type TableRowVirtualProps<TData> = TableRowProps<TData> & {
   cellHeight: number;

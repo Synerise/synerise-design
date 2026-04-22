@@ -17,6 +17,12 @@ export const TableRowSelection = <TData extends object>({
   const selection = useSelectionContext<TData>();
   const { globalSelectionOnChange, globalSelected, limit } = selection || {};
 
+  const { unavailable } =
+    selection?.checkRowSelectionStatus?.(row.original) ?? {};
+  if (unavailable) {
+    return null;
+  }
+
   const isGlobalAllSelected =
     globalSelectionOnChange !== undefined && globalSelected;
 

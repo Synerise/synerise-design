@@ -331,6 +331,7 @@ export const VirtualTable = <TData extends object, TValue>({
             hasBuiltInSearch={hasBuiltInSearch}
             searchProps={searchProps}
             dataSourceTotalCount={totalDataCount}
+            cellHeight={cellHeight}
             {...props}
           />
           {showBackToTopButton && (

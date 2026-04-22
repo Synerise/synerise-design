@@ -12,6 +12,7 @@ export const TableBody = <TData extends object, TValue>({
   cellHeight = DEFAULT_CELL_HEIGHT,
   infiniteScroll,
   onRowClick,
+  getRowProps,
   getRowTooltipProps,
 
   withBodyScroll,
@@ -84,6 +85,7 @@ export const TableBody = <TData extends object, TValue>({
                 key={row.id}
                 texts={texts}
                 onRowClick={onRowClick}
+                getRowProps={getRowProps}
                 getRowTooltipProps={getRowTooltipProps}
                 rowIndex={virtual.index}
                 infiniteScroll={infiniteScroll}
@@ -98,6 +100,7 @@ export const TableBody = <TData extends object, TValue>({
           allRows.map((row) => (
             <TableRow
               onRowClick={onRowClick}
+              getRowProps={getRowProps}
               getRowTooltipProps={getRowTooltipProps}
               key={row.id}
               row={row}
@@ -108,6 +111,10 @@ export const TableBody = <TData extends object, TValue>({
           ))}
     </S.TBody>
   ) : (
-    <TableEmptyBody emptyDataComponent={emptyDataComponent} texts={texts} />
+    <TableEmptyBody
+      emptyDataComponent={emptyDataComponent}
+      texts={texts}
+      tableBodyScrollRef={tableBodyScrollRef}
+    />
   );
 };
