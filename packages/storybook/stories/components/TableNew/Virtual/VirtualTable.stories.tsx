@@ -10,6 +10,7 @@ import {
   VirtualTable,
   type VirtualTableProps,
 } from '@synerise/ds-table-new';
+import { type ColumnDef } from '@tanstack/react-table';
 
 import {
   BOOLEAN_CONTROL,
@@ -209,6 +210,52 @@ export const WithTooltips: StoryObj<
           ? { title: `Cannot select ${row.name} — unavailable` }
           : false,
     },
+  },
+};
+
+type FixedColumnsRow = (typeof DATA_SOURCE_FULL)[number];
+
+const FIXED_COLUMNS: ColumnDef<FixedColumnsRow, unknown>[] = [
+  {
+    accessorKey: 'name',
+    id: 'name',
+    header: 'Name',
+    size: 220,
+    meta: { fixed: 'left' },
+  },
+  { accessorKey: 'city', id: 'city', header: 'City', size: 220 },
+  { accessorKey: 'address', id: 'address', header: 'Address', size: 320 },
+  {
+    accessorKey: 'transactionType',
+    id: 'transactionType',
+    header: 'Type',
+    size: 200,
+  },
+  { accessorKey: 'number', id: 'number', header: 'Amount', size: 200 },
+  {
+    accessorKey: 'disabled',
+    id: 'disabled',
+    header: 'Disabled',
+    size: 160,
+    cell: (info) => (info.getValue() ? 'Yes' : 'No'),
+  },
+  {
+    accessorKey: 'unavailable',
+    id: 'unavailable',
+    header: 'Status',
+    size: 160,
+    cell: (info) => (info.getValue() ? 'Unavailable' : 'Available'),
+    meta: { fixed: 'right' },
+  },
+];
+
+export const FixedColumnsNoStickyHeader: StoryObj<VirtualTableProps> = {
+  args: {
+    data: DATA_SOURCE_FULL,
+    columns: FIXED_COLUMNS,
+    hideTitleBar: true,
+    cellHeight: 56,
+    maxHeight: 400,
   },
 };
 

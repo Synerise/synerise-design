@@ -564,14 +564,11 @@ export type TableBodyProps<TData, TValue> = Pick<
   | 'getRowTooltipProps'
 > & {
   texts: TableBodyTexts;
-  withBodyScroll?: boolean;
-  tableBodyScrollRef?: React.MutableRefObject<HTMLElement | null>;
-  maxHeight?: number;
 };
 
 export type TableEmptyBodyProps<TData, TValue> = Pick<
   TableBodyProps<TData, TValue>,
-  'emptyDataComponent' | 'tableBodyScrollRef'
+  'emptyDataComponent'
 > & {
   texts: TableEmptyBodyTexts;
 };

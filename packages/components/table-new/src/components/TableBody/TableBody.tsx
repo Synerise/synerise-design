@@ -14,10 +14,6 @@ export const TableBody = <TData extends object, TValue>({
   onRowClick,
   getRowProps,
   getRowTooltipProps,
-
-  withBodyScroll,
-  tableBodyScrollRef,
-  maxHeight,
   emptyDataComponent,
   texts,
 }: TableBodyProps<TData, TValue>) => {
@@ -54,14 +50,7 @@ export const TableBody = <TData extends object, TValue>({
   return allRows.length ? (
     <S.TBody
       data-testid="ds-table-body"
-      ref={(node) => {
-        if (tableBodyScrollRef) {
-          tableBodyScrollRef.current = node;
-        }
-      }}
       key="virtual-table-body"
-      $maxHeight={maxHeight}
-      withBodyScroll={withBodyScroll}
       role="rowgroup"
       data-popup-container
       style={
@@ -111,10 +100,6 @@ export const TableBody = <TData extends object, TValue>({
           ))}
     </S.TBody>
   ) : (
-    <TableEmptyBody
-      emptyDataComponent={emptyDataComponent}
-      texts={texts}
-      tableBodyScrollRef={tableBodyScrollRef}
-    />
+    <TableEmptyBody emptyDataComponent={emptyDataComponent} texts={texts} />
   );
 };
