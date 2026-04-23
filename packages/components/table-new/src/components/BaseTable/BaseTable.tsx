@@ -158,9 +158,6 @@ export const BaseTable = <TData extends object, TValue>({
           />
         ) : (
           <TableBody
-            withBodyScroll={withBodyScroll}
-            tableBodyScrollRef={tableBodyScrollRef}
-            maxHeight={maxHeight}
             cellHeight={cellHeight}
             infiniteScroll={infiniteScroll}
             emptyDataComponent={emptyDataComponent}
@@ -215,7 +212,16 @@ export const BaseTable = <TData extends object, TValue>({
           />
         )}
         {useUnifiedScroll ? (
-          unifiedTableContent
+          withBodyScroll ? (
+            <S.TableBodyScrollWrapper
+              ref={tableBodyScrollRef}
+              $maxHeight={maxHeight}
+            >
+              {unifiedTableContent}
+            </S.TableBodyScrollWrapper>
+          ) : (
+            unifiedTableContent
+          )
         ) : (
           <>
             {!hideColumnNames && (!isEmpty || isLoading) && (

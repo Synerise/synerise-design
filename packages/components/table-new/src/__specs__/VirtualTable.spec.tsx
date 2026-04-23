@@ -58,6 +58,38 @@ describe('VirtualTable', () => {
     expect(screen.getByText('Name')).toBeInTheDocument();
   });
 
+  describe('fixed columns without stickyHeader', () => {
+    const FIXED_COLUMNS = [
+      { header: 'Name', accessorKey: 'name', id: 'name', meta: { fixed: 'left' } },
+      { header: 'Age', accessorKey: 'age', id: 'age' },
+      { header: 'Address', accessorKey: 'address', id: 'address', meta: { fixed: 'right' } },
+    ] as typeof COLUMNS;
+
+    it('does not apply display:block / overflow to tbody (would break sticky cells)', () => {
+      renderWithProvider(
+        <VirtualTable data={DATA} columns={FIXED_COLUMNS} maxHeight={200} />,
+      );
+
+      const tbody = screen.getByTestId('ds-table-body');
+      expect(tbody.style.display).not.toBe('block');
+      expect(tbody.style.overflowY).not.toBe('scroll');
+    });
+
+    it('moves vertical scroll to a wrapper div so sticky cells can pin', () => {
+      renderWithProvider(
+        <VirtualTable data={DATA} columns={FIXED_COLUMNS} maxHeight={200} />,
+      );
+
+      const tbody = screen.getByTestId('ds-table-body');
+      const scrollWrapper = tbody.closest('div[style*="overflow"]') as HTMLElement | null
+        ?? Array.from(document.querySelectorAll('div')).find(
+          (el) => getComputedStyle(el).overflowY === 'scroll',
+        );
+
+      expect(scrollWrapper).toBeTruthy();
+    });
+  });
+
   describe('sorting', () => {
     it('should render sort buttons for sortable columns', () => {
       renderWithProvider(
