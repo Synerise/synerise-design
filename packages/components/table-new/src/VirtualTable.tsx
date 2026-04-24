@@ -86,8 +86,17 @@ export const VirtualTable = <TData extends object, TValue>({
     [],
   );
 
-  const finalColumns =
-    !processedColumns.length && isLoading ? skeletonColumns : processedColumns;
+  // Sub in skeleton columns whenever real columns aren't ready yet AND there is something to
+  // render for — either an in-flight data load OR data that already arrived ahead of the
+  // column config. The latter case prevents the VirtualTable from emitting rows with zero cells
+  // (empty <tr> with no <td>) when the data fetch wins the race against the columns fetch.
+  const useSkeletonColumns =
+    !processedColumns.length && (isLoading || data.length > 0);
+  const finalColumns = useSkeletonColumns ? skeletonColumns : processedColumns;
+
+  // Drive the skeleton body path for the race case too — skeleton column defs have no cell
+  // renderer, so real rows cannot be rendered through them.
+  const effectiveIsLoading = isLoading || useSkeletonColumns;
 
   const {
     table,
@@ -324,7 +333,7 @@ export const VirtualTable = <TData extends object, TValue>({
             maxHeight={maxHeight}
             hasPagination={false}
             infiniteScroll={infiniteScroll}
-            isLoading={isLoading}
+            isLoading={effectiveIsLoading}
             searchQuery={searchQuery}
             setSearchQuery={setSearchQuery}
             handleSearchClear={handleSearchClear}
