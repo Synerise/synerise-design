@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.42.6](https://github.com/Synerise/synerise-design/compare/storybook@1.42.5...storybook@1.42.6) (2026-04-24)
+
+### Bug Fixes
+
+- **table-new:** support pinned columns when stickyHeader is off ([1d027dd](https://github.com/Synerise/synerise-design/commit/1d027dd6c2177b75ce5739bf9df04bf25583e82c))
+
 ## [1.42.5](https://github.com/Synerise/synerise-design/compare/storybook@1.42.4...storybook@1.42.5) (2026-04-22)
 
 **Note:** Version bump only for package storybook

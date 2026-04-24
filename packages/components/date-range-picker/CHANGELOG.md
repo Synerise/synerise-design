@@ -3,6 +3,10 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.6.19](https://github.com/Synerise/synerise-design/compare/@synerise/ds-date-range-picker@1.6.18...@synerise/ds-date-range-picker@1.6.19) (2026-04-24)
+
+**Note:** Version bump only for package @synerise/ds-date-range-picker
+
 ## [1.6.18](https://github.com/Synerise/synerise-design/compare/@synerise/ds-date-range-picker@1.6.17...@synerise/ds-date-range-picker@1.6.18) (2026-04-22)
 
 **Note:** Version bump only for package @synerise/ds-date-range-picker

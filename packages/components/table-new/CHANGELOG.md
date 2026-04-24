@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.0.6](https://github.com/Synerise/synerise-design/compare/@synerise/ds-table-new@1.0.5...@synerise/ds-table-new@1.0.6) (2026-04-24)
+
+### Bug Fixes
+
+- **table-new:** fixes lack of text overflow on cell wrapper child dom node ([81abddf](https://github.com/Synerise/synerise-design/commit/81abddfdc4355b588e9f5345e66cf663102460f3))
+- **table-new:** render skeleton when columns race behind data ([6fbde3c](https://github.com/Synerise/synerise-design/commit/6fbde3c4450aa79e1249c25b5f1de00648304edc))
+- **table-new:** support pinned columns when stickyHeader is off ([1d027dd](https://github.com/Synerise/synerise-design/commit/1d027dd6c2177b75ce5739bf9df04bf25583e82c))
+
 ## [1.0.5](https://github.com/Synerise/synerise-design/compare/@synerise/ds-table-new@1.0.4...@synerise/ds-table-new@1.0.5) (2026-04-22)
 
 **Note:** Version bump only for package @synerise/ds-table-new
