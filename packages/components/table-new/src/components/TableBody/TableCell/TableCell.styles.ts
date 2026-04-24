@@ -52,5 +52,9 @@ export const Td = styled.td<{
     justify-content: ${(props) =>
       props.$align ? justifyMap[props.$align] : 'flex-start'};
     width: 100%;
+
+    & > * {
+      min-width: 0;
+    }
   }
 `;
