@@ -44,8 +44,16 @@ export const Table = <TData extends object, TValue>({
     [],
   );
 
-  const finalColumns =
-    !processedColumns.length && isLoading ? skeletonColumns : processedColumns;
+  // Sub in skeleton columns whenever real columns aren't ready yet AND there is something to
+  // render for — either an in-flight data load OR data that already arrived ahead of the
+  // column config. Prevents rows with zero cells when the data fetch wins the race.
+  const useSkeletonColumns =
+    !processedColumns.length && (isLoading || data.length > 0);
+  const finalColumns = useSkeletonColumns ? skeletonColumns : processedColumns;
+
+  // Drive the skeleton body path for the race case too — skeleton column defs have no cell
+  // renderer, so real rows cannot be rendered through them.
+  const effectiveIsLoading = isLoading || useSkeletonColumns;
 
   const {
     table,
@@ -90,7 +98,7 @@ export const Table = <TData extends object, TValue>({
       <SelectionContext.Provider value={selectionConfig}>
         <BaseTable
           texts={texts}
-          isLoading={isLoading}
+          isLoading={effectiveIsLoading}
           hasPagination={hasPagination}
           paginationProps={paginationProps}
           tableOuterRef={wrapperRef}
