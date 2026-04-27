@@ -296,6 +296,11 @@ export type SharedTableProps<TData, TValue> = {
    * custom "Empty data" component
    */
   emptyDataComponent?: ReactNode;
+  /**
+   * Optional summary content rendered inside a <tfoot> at the bottom of the table.
+   * Should be a <tr> (or fragment of <tr>s) with <td>/<th> cells matching the column layout.
+   */
+  summary?: ReactNode;
 };
 
 export type GlobalSelectionProps = {

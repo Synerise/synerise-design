@@ -113,6 +113,16 @@ export const useTable = <TData, TValue>({
     (row: TData, index: number) => getRowKey(row, index),
     [getRowKey],
   );
+  const columnKeyById = useMemo(() => {
+    const map = new Map<string, string>();
+    columns.forEach((column) => {
+      if (column.id) {
+        map.set(column.id, column.meta?.columnKey ?? column.id);
+      }
+    });
+    return map;
+  }, [columns]);
+
   const handleSortingChange = useCallback(
     (updaterOrValue: Updater<SortingState>) => {
       setSorting((oldSorting) => {
@@ -127,7 +137,8 @@ export const useTable = <TData, TValue>({
             const sortState: ColumnsSortState = {};
 
             newSorting.forEach((column, index) => {
-              sortState[column.id] = {
+              const key = columnKeyById.get(column.id) ?? column.id;
+              sortState[key] = {
                 sortOrder: column.desc ? 'descend' : 'ascend',
                 multiple: index,
               };
@@ -135,7 +146,8 @@ export const useTable = <TData, TValue>({
 
             onSort(
               {
-                columnKey: singleColumnSort.id,
+                columnKey:
+                  columnKeyById.get(singleColumnSort.id) ?? singleColumnSort.id,
                 order: singleColumnSort.desc ? 'descend' : 'ascend',
               },
               sortState,
@@ -148,7 +160,7 @@ export const useTable = <TData, TValue>({
         return newSorting;
       });
     },
-    [onSort],
+    [onSort, columnKeyById],
   );
 
   const handleSelectionChange = useCallback(

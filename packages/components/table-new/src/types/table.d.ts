@@ -21,6 +21,12 @@ declare module '@tanstack/react-table' {
     skeletonCell?: () => ReactNode;
     dataIndex?: string;
     title?: string;
+    /**
+     * External-facing column key reported back to consumers (e.g. via onSort).
+     * Set by `legacyColumnConfigAdapter` so that internally-disambiguated column
+     * ids (e.g. `${key}-${index}` for duplicate-key columns) don't leak out.
+     */
+    columnKey?: string;
     enableMultiSort?: boolean;
     /**
      * Returns tooltip props for cells in this column, or false to disable tooltip.

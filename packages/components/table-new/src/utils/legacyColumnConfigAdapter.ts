@@ -134,6 +134,13 @@ export const legacyColumnConfigAdapter = <DataType, DataValue>(
         getCellTooltipProps: column.getCellTooltipProps,
         dataIndex: column.dataIndex as string | undefined,
         title: typeof column.title === 'string' ? column.title : undefined,
+        columnKey: `${
+          column.id ??
+          column.key ??
+          (Array.isArray(column.dataIndex)
+            ? column.dataIndex.join('.')
+            : column.dataIndex)
+        }`,
         childCell: (info: CellContext<DataType, DataValue>) => {
           if (column.childRender) {
             const rowData = {
@@ -160,7 +167,7 @@ export const legacyColumnConfigAdapter = <DataType, DataValue>(
       ...sortingConfig,
       size: calculatePixels(column.width),
       ...column,
-      id: `${column.id || column.key || `${column.dataIndex}-${index}`}`,
+      id: `${column.id || `${column.key ?? column.dataIndex}-${index}`}`,
     };
   });
 };
