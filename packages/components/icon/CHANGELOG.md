@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.17.1](https://github.com/Synerise/synerise-design/compare/@synerise/ds-icon@1.17.0...@synerise/ds-icon@1.17.1) (2026-04-28)
+
+### Bug Fixes
+
+- **icon:** remove duplicate SVG path in ListM icon ([cd3e1ff](https://github.com/Synerise/synerise-design/commit/cd3e1ffffe9ee7f0dbbc8bb8ba8106a7d079a70b))
+
 # [1.17.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-icon@1.16.0...@synerise/ds-icon@1.17.0) (2026-04-24)
 
 ### Features

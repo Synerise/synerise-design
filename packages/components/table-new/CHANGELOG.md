@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.1.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-table-new@1.0.6...@synerise/ds-table-new@1.1.0) (2026-04-28)
+
+### Features
+
+- **table-new:** summary and id generation ([8564b73](https://github.com/Synerise/synerise-design/commit/8564b73e532b190c9c62674b6ce2725418a2c619))
+
 ## [1.0.6](https://github.com/Synerise/synerise-design/compare/@synerise/ds-table-new@1.0.5...@synerise/ds-table-new@1.0.6) (2026-04-24)
 
 ### Bug Fixes

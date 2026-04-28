@@ -3,6 +3,10 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.2.8](https://github.com/synerise/synerise-design/compare/@synerise/ds-layout@1.2.7...@synerise/ds-layout@1.2.8) (2026-04-28)
+
+**Note:** Version bump only for package @synerise/ds-layout
+
 ## [1.2.7](https://github.com/synerise/synerise-design/compare/@synerise/ds-layout@1.2.6...@synerise/ds-layout@1.2.7) (2026-04-24)
 
 **Note:** Version bump only for package @synerise/ds-layout
