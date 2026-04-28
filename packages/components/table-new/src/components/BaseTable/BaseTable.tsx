@@ -55,6 +55,7 @@ export const BaseTable = <TData extends object, TValue>({
   handleSearchClear,
   hasBuiltInSearch,
   searchProps,
+  summary,
 }: BaseTableProps<TData, TValue> & TableInternalProps) => {
   const horizontalScrollRefs = useRef<Array<HTMLDivElement>>([]);
   const tableBodyWrapperRef = useRef<HTMLDivElement | null>(null);
@@ -130,6 +131,7 @@ export const BaseTable = <TData extends object, TValue>({
             key="table-body"
           />
         )}
+        {!isLoading && summary && <S.Tfoot>{summary}</S.Tfoot>}
       </S.StyledTable>
     </TableHorizontalScroll>
   );
@@ -168,6 +170,7 @@ export const BaseTable = <TData extends object, TValue>({
             key="table-body"
           />
         )}
+        {!isLoading && summary && <S.Tfoot>{summary}</S.Tfoot>}
       </S.StyledTable>
     </TableHorizontalScroll>
   );

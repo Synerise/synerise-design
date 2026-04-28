@@ -64,10 +64,13 @@ export const TableSkeleton = styled(DSSkeleton)<{ skeletonWidth?: string }>`
   ${(props) => props.skeletonWidth && `width: ${props.skeletonWidth};`}
 `;
 
+export const Tfoot = styled.tfoot``;
+
 export const StyledTable = styled.table`
   width: var(--table-size);
   min-width: 100%;
   border-spacing: 0;
+  table-layout: fixed;
   border-collapse: separate; /* required for sticky cells to keep their backgrounds */
 
   @keyframes ds-table-row-highlight {
