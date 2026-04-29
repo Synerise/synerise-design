@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.17.2](https://github.com/Synerise/synerise-design/compare/@synerise/ds-icon@1.17.1...@synerise/ds-icon@1.17.2) (2026-04-29)
+
+### Bug Fixes
+
+- **icon:** stop exposing internal icon name as tooltip ([520c8ca](https://github.com/Synerise/synerise-design/commit/520c8ca5c958a75ac3e6f7860c1c38f9d6c7d840))
+
 ## [1.17.1](https://github.com/Synerise/synerise-design/compare/@synerise/ds-icon@1.17.0...@synerise/ds-icon@1.17.1) (2026-04-28)
 
 ### Bug Fixes

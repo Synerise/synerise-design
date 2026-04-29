@@ -3,6 +3,10 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.1.21](https://github.com/Synerise/synerise-design/compare/@synerise/ds-inline-alert@1.1.20...@synerise/ds-inline-alert@1.1.21) (2026-04-29)
+
+**Note:** Version bump only for package @synerise/ds-inline-alert
+
 ## [1.1.20](https://github.com/Synerise/synerise-design/compare/@synerise/ds-inline-alert@1.1.19...@synerise/ds-inline-alert@1.1.20) (2026-04-28)
 
 **Note:** Version bump only for package @synerise/ds-inline-alert

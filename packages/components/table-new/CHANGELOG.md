@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.1.1](https://github.com/Synerise/synerise-design/compare/@synerise/ds-table-new@1.1.0...@synerise/ds-table-new@1.1.1) (2026-04-29)
+
+### Bug Fixes
+
+- **table-new:** prevent premature column width calculation ([66bf51b](https://github.com/Synerise/synerise-design/commit/66bf51b62df73cff602eadeda4342520f7a7a1d1))
+
 # [1.1.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-table-new@1.0.6...@synerise/ds-table-new@1.1.0) (2026-04-28)
 
 ### Features

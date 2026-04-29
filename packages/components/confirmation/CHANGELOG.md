@@ -3,6 +3,10 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.2.20](https://github.com/Synerise/synerise-design/compare/@synerise/ds-confirmation@1.2.19...@synerise/ds-confirmation@1.2.20) (2026-04-29)
+
+**Note:** Version bump only for package @synerise/ds-confirmation
+
 ## [1.2.19](https://github.com/Synerise/synerise-design/compare/@synerise/ds-confirmation@1.2.18...@synerise/ds-confirmation@1.2.19) (2026-04-28)
 
 **Note:** Version bump only for package @synerise/ds-confirmation
