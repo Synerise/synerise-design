@@ -1,4 +1,7 @@
-import { calculateWidths } from '../useColumnSizing';
+import { type MutableRefObject } from 'react';
+import { renderHook } from '@testing-library/react';
+
+import { calculateWidths, useColumnSizing } from '../useColumnSizing';
 
 describe('calculateWidths', () => {
   it('should return fixed widths when all columns have width', () => {
@@ -68,5 +71,32 @@ describe('calculateWidths', () => {
   it('should handle empty columns', () => {
     const result = calculateWidths([], 1000);
     expect(result).toEqual([]);
+  });
+});
+
+describe('useColumnSizing', () => {
+  const makeWrapperRef = (clientWidth: number) => {
+    const el = document.createElement('div');
+    Object.defineProperty(el, 'clientWidth', { configurable: true, value: clientWidth });
+    return { current: el } as MutableRefObject<HTMLDivElement | null>;
+  };
+
+  it('keeps isColumnSizingReady false when wrapper has zero clientWidth', () => {
+    const wrapperRef = makeWrapperRef(0);
+    const columnWidths = [{ id: 'col-0' }, { id: 'col-1' }];
+    const { result } = renderHook(() =>
+      useColumnSizing({ wrapperRef, columnWidths }),
+    );
+    expect(result.current.isColumnSizingReady).toBe(false);
+    expect(result.current.columnSizing).toEqual({});
+  });
+
+  it('marks ready immediately when disabled regardless of wrapper width', () => {
+    const wrapperRef = makeWrapperRef(0);
+    const columnWidths = [{ id: 'col-0' }];
+    const { result } = renderHook(() =>
+      useColumnSizing({ wrapperRef, columnWidths, enabled: false }),
+    );
+    expect(result.current.isColumnSizingReady).toBe(true);
   });
 });

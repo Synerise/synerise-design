@@ -70,7 +70,10 @@ export const useColumnSizing = ({
       return;
     }
     if (wrapperRef.current) {
-      calc(getContentWidth(wrapperRef.current));
+      const width = getContentWidth(wrapperRef.current);
+      if (width > 0) {
+        calc(width);
+      }
     }
   }, [enabled, calc, getContentWidth, wrapperRef]);
 
