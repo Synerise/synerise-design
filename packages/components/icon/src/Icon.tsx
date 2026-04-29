@@ -13,7 +13,7 @@ const Icon = forwardRef<HTMLDivElement, IconProps>(
     return (
       <S.IconContainer
         className={`ds-icon ${className || ''}`}
-        title={name || iconName}
+        title={name}
         ref={ref}
         {...rest}
       >
