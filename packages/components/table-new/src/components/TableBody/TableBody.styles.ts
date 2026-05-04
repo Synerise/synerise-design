@@ -14,4 +14,5 @@ export const Tr = styled.tr`
 
 export const TBody = styled.tbody`
   position: relative;
+  display: block;
 `;

@@ -7,9 +7,11 @@ export const useScrollSync = (refs: MutableRefObject<HTMLElement[]>) => {
       return;
     }
     const scrollHandler = (event: Event) => {
+      const source = event.target as HTMLElement;
+      const { scrollLeft } = source;
       nodes.forEach((elem) => {
-        if (elem !== event.currentTarget) {
-          elem.scrollLeft = (event.currentTarget as HTMLElement)?.scrollLeft;
+        if (elem !== source && elem.scrollLeft !== scrollLeft) {
+          elem.scrollLeft = scrollLeft;
         }
       });
     };
