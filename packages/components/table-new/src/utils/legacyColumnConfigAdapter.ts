@@ -101,8 +101,26 @@ export const legacyColumnConfigAdapter = <DataType, DataValue>(
     const { multiSortOrder, ...sortingConfig } = getSortingConfig(
       column.sorter,
     );
+    const accessorConfig = Array.isArray(column.dataIndex)
+      ? {
+          id: column.dataIndex.join('.'),
+          accessorFn: (row: DataType) =>
+            (column.dataIndex as string[]).reduce<unknown>(
+              (acc, k) => (acc as Record<string, unknown> | undefined)?.[k],
+              row,
+            ) as DataValue,
+        }
+      : typeof column.dataIndex === 'string' && column.dataIndex.includes('.')
+        ? {
+            id: column.dataIndex,
+            accessorFn: (row: DataType) =>
+              (row as Record<string, unknown>)[
+                column.dataIndex as string
+              ] as DataValue,
+          }
+        : { accessorKey: `${column.dataIndex}` };
     return {
-      accessorKey: `${column.dataIndex}`,
+      ...accessorConfig,
       header: () => {
         return typeof column.title === 'function'
           ? column.title({})
