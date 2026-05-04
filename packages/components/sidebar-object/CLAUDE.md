@@ -6,26 +6,26 @@
 
 ```
 src/
-  SidebarObject.tsx             — main component; assembles Header + Scrollbar + tabs content + footer
-  SidebarObject.types.ts        — SidebarObjectProps, FolderItem
-  SidebarObject.style.ts        — FooterContainer, SidebarObjectWrapper, ContentContainer
-  Elements/
-    Header/
-      Header.tsx                — title (readonly/editable), action buttons, dropdown menu
-      Header.types.ts           — HeaderProps, HeaderTexts, HeaderType enum, ButtonVariant enum
-      Header.style.ts           — DrawerHeaderBar, StyledInlineEdit, ButtonWrapper, etc.
-    Content/
-      Content.tsx               — Drawer.DrawerBody with folder selection, tags, description
-      Content.types.ts          — ContentProps (uses deep import for SubtleTextAreaProps)
-      Content.style.ts          — ContentWrapper, TagsWrapper, InlineEditWrapper
-    Overview/
-      Overview.tsx              — folder dropdown + Content + ObjectSummary composition
-      Overview.types.tsx        — OverviewObjectProps, OverviewTexts
-    ObjectSummary/
-      ObjectSummary.tsx         — renders inputObject as Description key-value rows
-      ObjectSummary.types.ts    — ObjectSummaryProps
-  __specs__/SidebarObject.spec.tsx
-  index.ts                      — default export only
+ SidebarObject.tsx — main component; assembles Header + Scrollbar + tabs content + footer
+ SidebarObject.types.ts — SidebarObjectProps, FolderItem
+ SidebarObject.style.ts — FooterContainer, SidebarObjectWrapper, ContentContainer
+ Elements/
+ Header/
+ Header.tsx — title (readonly/editable), action buttons, dropdown menu
+ Header.types.ts — HeaderProps, HeaderTexts, HeaderType enum, ButtonVariant enum
+ Header.style.ts — DrawerHeaderBar, StyledInlineEdit, ButtonWrapper, etc.
+ Content/
+ Content.tsx — Drawer.DrawerBody with folder selection, tags, description
+ Content.types.ts — ContentProps (uses deep import for SubtleTextAreaProps)
+ Content.style.ts — ContentWrapper, TagsWrapper, InlineEditWrapper
+ Overview/
+ Overview.tsx — folder dropdown + Content + ObjectSummary composition
+ Overview.types.tsx — OverviewObjectProps, OverviewTexts
+ ObjectSummary/
+ ObjectSummary.tsx — renders inputObject as Description key-value rows
+ ObjectSummary.types.ts — ObjectSummaryProps
+ __specs__/SidebarObject.spec.tsx
+ index.ts — default export only
 ```
 
 ## Public exports
@@ -84,17 +84,17 @@ import SidebarObject from '@synerise/ds-sidebar-object';
 import { ButtonVariant } from '@synerise/ds-sidebar-object/dist/Elements/Header/Header.types'; // deep import
 
 <SidebarObject
-  name="My Object"
-  headerType="editable"
-  typeButtons="withNavigation"
-  headerTabs={[
-    { label: 'Overview', content: <OverviewContent /> },
-    { label: 'Settings', content: <SettingsContent /> },
-  ]}
-  inputObject={{ id: '123', Status: 'active' }}
-  texts={{ editIcon: 'Edit', deleteIcon: 'Delete' }}
-  onEdit={(obj) => console.log(obj)}
-  onCloseClick={() => setOpen(false)}
+ name="My Object"
+ headerType="editable"
+ typeButtons="withNavigation"
+ headerTabs={[
+ { label: 'Overview', content: <OverviewContent /> },
+ { label: 'Settings', content: <SettingsContent /> },
+ ]}
+ inputObject={{ id: '123', Status: 'active' }}
+ texts={{ editIcon: 'Edit', deleteIcon: 'Delete' }}
+ onEdit={(obj) => console.log(obj)}
+ onCloseClick={() => setOpen(false)}
 />
 ```
 
@@ -119,4 +119,4 @@ Styles in `SidebarObject.style.ts`. Uses `theme.palette` tokens for footer backg
 - **`// TODO: fix handler type`** with `any` cast in `Content.tsx` for `SubtleForm.TextArea onChange` handler.
 - **Options dropdown visibility**: the dropdown menu only renders if at least one of `onEdit`, `onDuplicate`, `onMove`, `onDelete`, `onId` is provided.
 - **`onScrollbar` in README** is wrong — the actual prop is `withScrollbar: boolean`.
-- **Uses Jest** (`jest.config.js`) — not yet migrated to Vitest.
+- **Uses Vitest** for testing.

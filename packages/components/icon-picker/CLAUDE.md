@@ -6,32 +6,32 @@
 
 ```
 src/
-  IconPicker.tsx              — root component; trigger rendering, search filter, dropdown
-  IconPicker.types.ts         — all types including generics; exported from index
-  IconPicker.styles.tsx       — styled-components for overlay, list, items
-  IconPicker.const.ts         — ITEMS_PER_ROW (6), ELEMENT_HEIGHT (32px)
-  index.ts                    — default export + type exports
-  components/
-    Overlay/
-      Overlay.tsx             — search input (Dropdown.SearchInput) + List
-      Overlay.types.ts        — OverlayType (internal)
-    List/
-      List.tsx                — virtualised list with Scrollbar and empty state
-      ListItem/
-        ListItem.tsx          — single icon cell with tooltip + button
-        ListItem.types.ts     — ListItemProps (internal)
-    RowItem.tsx               — react-window row renderer (memo + areEqual)
-  hooks/
-    useIconSourceLoader.tsx   — loads icons based on source type; async for FA
-    useGroupItems.ts          — flattens grouped data into virtual list rows
-  utils/
-    createItemData.ts         — memoized factory for react-window itemData
-    loadFontAwesome.ts        — dynamic import() of all FA icon packs
-    matchesSearchQuery.ts     — keyword matching for search filter
-    prepareItems.ts           — normalises DataSource[] to FilterElement[]
-    typeguards.utils.ts       — isFASourceType, isDSSourceType, isData, isCategories
-  __specs__/
-    IconPicker.spec.tsx       — render, selection, DS/FA source tests (Jest)
+ IconPicker.tsx — root component; trigger rendering, search filter, dropdown
+ IconPicker.types.ts — all types including generics; exported from index
+ IconPicker.styles.tsx — styled-components for overlay, list, items
+ IconPicker.const.ts — ITEMS_PER_ROW (6), ELEMENT_HEIGHT (32px)
+ index.ts — default export + type exports
+ components/
+ Overlay/
+ Overlay.tsx — search input (Dropdown.SearchInput) + List
+ Overlay.types.ts — OverlayType (internal)
+ List/
+ List.tsx — virtualised list with Scrollbar and empty state
+ ListItem/
+ ListItem.tsx — single icon cell with tooltip + button
+ ListItem.types.ts — ListItemProps (internal)
+ RowItem.tsx — react-window row renderer (memo + areEqual)
+ hooks/
+ useIconSourceLoader.tsx — loads icons based on source type; async for FA
+ useGroupItems.ts — flattens grouped data into virtual list rows
+ utils/
+ createItemData.ts — memoized factory for react-window itemData
+ loadFontAwesome.ts — dynamic import() of all FA icon packs
+ matchesSearchQuery.ts — keyword matching for search filter
+ prepareItems.ts — normalises DataSource[] to FilterElement[]
+ typeguards.utils.ts — isFASourceType, isDSSourceType, isData, isCategories
+ __specs__/
+ IconPicker.spec.tsx — render, selection, DS/FA source tests (Vitest)
 ```
 
 ## Public exports
@@ -74,49 +74,49 @@ import type { DSSource, FASource, FAValue, DataSource } from '@synerise/ds-icon-
 // DS Icons — onSelect receives ReactNode
 const [icon, setIcon] = useState<ReactNode>(null);
 <IconPicker<DSSource>
-  data="design-system"
-  onSelect={setIcon}
-  selectedIcon={icon}
-  onClear={() => setIcon(null)}
-  trigger={['click']}
-  placeholder="Search"
-  clearTooltip="Remove"
+ data="design-system"
+ onSelect={setIcon}
+ selectedIcon={icon}
+ onClear={() => setIcon(null)}
+ trigger={['click']}
+ placeholder="Search"
+ clearTooltip="Remove"
 />
 
 // Font Awesome — onSelect receives [IconPrefix, IconName]
 const [fa, setFa] = useState<FAValue | null>(null);
 <IconPicker<FASource>
-  data="font-awesome"
-  onSelect={setFa}
-  selectedIcon={fa ? <FontAwesomeIcon icon={fa} /> : null}
-  onClear={() => setFa(null)}
-  trigger={['click']}
-  placeholder="Search"
+ data="font-awesome"
+ onSelect={setFa}
+ selectedIcon={fa ? <FontAwesomeIcon icon={fa} /> : null}
+ onClear={() => setFa(null)}
+ trigger={['click']}
+ placeholder="Search"
 />
 
 // Custom DataSource[]
 const myIcons: DataSource[] = [
-  {
-    category: 'Emoji',
-    items: [
-      { item: '😀', value: 'grinning', keywords: 'grinning smile happy' },
-    ],
-  },
+ {
+ category: 'Emoji',
+ items: [
+ { item: '😀', value: 'grinning', keywords: 'grinning smile happy' },
+ ],
+ },
 ];
 <IconPicker
-  data={myIcons}
-  onSelect={(value) => console.log(value)}
-  trigger={['click']}
-  placeholder="Search"
+ data={myIcons}
+ onSelect={(value) => console.log(value)}
+ trigger={['click']}
+ placeholder="Search"
 />
 
 // Custom trigger button
 <IconPicker
-  data="design-system"
-  button={<Button type="primary">Select icon</Button>}
-  onSelect={setIcon}
-  trigger={['click']}
-  placeholder="Search"
+ data="design-system"
+ button={<Button type="primary">Select icon</Button>}
+ onSelect={setIcon}
+ trigger={['click']}
+ placeholder="Search"
 />
 ```
 
@@ -151,5 +151,5 @@ Flattens `FilterElement[]` into `GroupedFilterElement[]` for react-window. Each 
 - **`selectedIcon` toggles the trigger entirely** — when truthy, the default trigger button is replaced with `ButtonGroup` (selected icon + clear button). The `button` prop is ignored in this state.
 - **`ListItem` has a fragile Avatar check** — `(element.item as any).type.name === 'Avatar'` detects Avatar items by component name. Minification or renaming will break this.
 - **Deep import for DS icons** — `import * as medium from '@synerise/ds-icon/dist/icons/M'` is a fragile path that may break if `@synerise/ds-icon` restructures its dist output.
-- **Uses Jest** (not Vitest) — `package.json` has `"test": "jest"`. Spec also uses `jest.fn()`. Not yet migrated.
+- **Uses Vitest** — `package.json` has `"test": "jest"`. Spec also uses `vi.fn()`. Not yet migrated.
 - **`react-intl` is required** — `IntlProvider` must be present for the default `noResultMsg`. Tests use `renderWithProvider` from `@synerise/ds-core`.

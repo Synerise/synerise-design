@@ -1,7 +1,7 @@
 import React from 'react';
 
 import Icon from '@synerise/ds-icon';
-import Tooltip from '@synerise/ds-tooltip/dist/Tooltip';
+import Tooltip from '@synerise/ds-tooltip';
 
 import * as S from './Cruds.styles';
 import { type SingleActionProps } from './SingleAction.types';

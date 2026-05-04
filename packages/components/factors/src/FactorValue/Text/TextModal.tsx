@@ -1,6 +1,6 @@
 import React from 'react';
 
-import Textarea from '@synerise/ds-input/dist/Textarea/Textarea';
+import { DSRawTextArea as Textarea } from '@synerise/ds-input';
 import ModalProxy from '@synerise/ds-modal';
 
 import { type TextModalProps } from '../../Factors.types';

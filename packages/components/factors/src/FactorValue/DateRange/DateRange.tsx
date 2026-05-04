@@ -1,11 +1,10 @@
 import React, { useCallback } from 'react';
 import { useIntl } from 'react-intl';
 
-import DateRangePicker from '@synerise/ds-date-range-picker';
-import {
+import DateRangePicker, {
   type DateFilter,
   type DateRange,
-} from '@synerise/ds-date-range-picker/dist/date.types';
+} from '@synerise/ds-date-range-picker';
 import { getPopupContainer } from '@synerise/ds-utils';
 
 import { type FactorValueComponentProps } from '../../Factors.types';

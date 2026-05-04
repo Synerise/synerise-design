@@ -6,25 +6,25 @@
 
 ```
 src/
-  SubtleForm.tsx                          — namespace component (returns null); attaches sub-components as static properties
-  SubtleForm.types.ts                     — SubtleFieldProps (shared base type)
-  SubtleForm.styles.ts                    — shared styled components: Inactive, MainContent, Suffix, Container, Subtle, SubtleFormField, ValueArea; animation keyframes
-  index.ts                                — default export only (no type re-exports)
-  Elements/
-    TextArea/TextArea.tsx                 — textarea with dynamic row height calculation
-    TextArea/TextArea.types.ts            — SubtleTextAreaProps, TextareaAutosize
-    Input/Input.tsx                       — single-line text input
-    Input/Input.types.ts                  — SubtleInputProps
-    Select/Select.tsx                     — Ant Design select dropdown
-    Select/Select.types.ts                — SubtleSelectProps
-    Select/Select.styles.ts               — SelectContainer (handles active margin offset)
-    DatePicker/DatePicker.tsx             — date picker with formatted value display and mask placeholder
-    DatePicker/DatePicker.types.ts        — SubtleDatePickerProps
-    DatePicker/DatePicker.styles.ts       — SelectContainer, MaskedDatePlaceholder
-    DatePicker/utils.ts                   — getFormattingString, replaceLettersWithUnderscore
-    Field/Field.tsx                       — generic field: renders activeElement() / inactiveElement(); uses useOnClickOutside
-  __specs__/
-    TextArea.spec.tsx                     — Jest tests (TextArea only)
+ SubtleForm.tsx — namespace component (returns null); attaches sub-components as static properties
+ SubtleForm.types.ts — SubtleFieldProps (shared base type)
+ SubtleForm.styles.ts — shared styled components: Inactive, MainContent, Suffix, Container, Subtle, SubtleFormField, ValueArea; animation keyframes
+ index.ts — default export only (no type re-exports)
+ Elements/
+ TextArea/TextArea.tsx — textarea with dynamic row height calculation
+ TextArea/TextArea.types.ts — SubtleTextAreaProps, TextareaAutosize
+ Input/Input.tsx — single-line text input
+ Input/Input.types.ts — SubtleInputProps
+ Select/Select.tsx — Ant Design select dropdown
+ Select/Select.types.ts — SubtleSelectProps
+ Select/Select.styles.ts — SelectContainer (handles active margin offset)
+ DatePicker/DatePicker.tsx — date picker with formatted value display and mask placeholder
+ DatePicker/DatePicker.types.ts — SubtleDatePickerProps
+ DatePicker/DatePicker.styles.ts — SelectContainer, MaskedDatePlaceholder
+ DatePicker/utils.ts — getFormattingString, replaceLettersWithUnderscore
+ Field/Field.tsx — generic field: renders activeElement() / inactiveElement(); uses useOnClickOutside
+ __specs__/
+ TextArea.spec.tsx — Vitest tests (TextArea only)
 ```
 
 ## Public exports
@@ -120,30 +120,30 @@ import SubtleForm from '@synerise/ds-subtle-form';
 // TextArea
 const [value, setValue] = React.useState('');
 <SubtleForm.TextArea
-  value={value}
-  onChange={setValue}
-  placeholder="Description"
-  label="Label"
-  labelTooltip="Tooltip"
-  suffixTooltip="Edit"
-  minRows={3}
+ value={value}
+ onChange={setValue}
+ placeholder="Description"
+ label="Label"
+ labelTooltip="Tooltip"
+ suffixTooltip="Edit"
+ minRows={3}
 />
 
 // Input
 <SubtleForm.Input
-  value={name}
-  onChange={setName}
-  placeholder="Name"
-  label="Name"
-  inputProps={{}}
+ value={name}
+ onChange={setName}
+ placeholder="Name"
+ label="Name"
+ inputProps={{}}
 />
 
 // Custom Field
 <SubtleForm.Field
-  active={active}
-  activeElement={() => <InputNumber value={val} onBlur={() => setActive(false)} />}
-  inactiveElement={() => <>{val ?? 'placeholder'}</>}
-  label="Number"
+ active={active}
+ activeElement={() => <InputNumber value={val} onBlur={() => setActive(false)} />}
+ inactiveElement={() => <>{val ?? 'placeholder'}</>}
+ label="Number"
 />
 ```
 
@@ -169,4 +169,4 @@ const [value, setValue] = React.useState('');
 - **`activeProp` on DatePicker is unused in logic** — the prop is declared but not wired into the state machine (only `error` triggers the forced active path).
 - **Deep import in Storybook** — stories import `@synerise/ds-subtle-form/dist/Elements/DatePicker/utils` directly. This is a fragile deep path not covered by public exports.
 - **Only TextArea has tests** — Input, Select, DatePicker, and Field have no spec files.
-- **Test runner is Jest** (not Vitest).
+- **Uses Vitest**.

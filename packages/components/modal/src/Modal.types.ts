@@ -1,4 +1,4 @@
-import { type ModalProps as AntdModalProps } from 'antd/lib/modal';
+import { type ModalProps as AntdModalProps } from 'antd';
 import type { CSSProperties, ComponentType, ReactNode } from 'react';
 
 import { type ButtonProps } from '@synerise/ds-button';

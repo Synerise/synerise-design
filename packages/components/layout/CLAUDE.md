@@ -6,18 +6,18 @@
 
 ```
 src/
-  Layout.tsx          — main layout component (header + sidebars + main content)
-  Layout.types.ts     — exported types: LayoutProps, SidebarProps, ColumnProps
-  Layout.styles.ts    — all styled-components (LayoutContainer, LayoutSidebar, SidebarButton, etc.)
-  index.ts            — public exports
-  Page/
-    Page.tsx          — top-level page shell (navbar + app menu + layout slot)
-    Page.styles.tsx   — styled-components for Page
-  Sidebar/
-    Sidebar.tsx       — internal sidebar component (not exported)
-  __specs__/
-    Layout.spec.tsx   — Jest tests
-  modules.d.ts        — *.less module declaration
+ Layout.tsx — main layout component (header + sidebars + main content)
+ Layout.types.ts — exported types: LayoutProps, SidebarProps, ColumnProps
+ Layout.styles.ts — all styled-components (LayoutContainer, LayoutSidebar, SidebarButton, etc.)
+ index.ts — public exports
+ Page/
+ Page.tsx — top-level page shell (navbar + app menu + layout slot)
+ Page.styles.tsx — styled-components for Page
+ Sidebar/
+ Sidebar.tsx — internal sidebar component (not exported)
+ __specs__/
+ Layout.spec.tsx — Vitest tests
+ modules.d.ts — *.less module declaration
 ```
 
 ## Public exports
@@ -82,22 +82,22 @@ const [leftOpen, setLeftOpen] = useState(false);
 const [rightOpen, setRightOpen] = useState(false);
 
 <Page navBar={<Navbar />} appMenu={<AppMenu />}>
-  <Layout
-    header={<PageHeader title="My Page" />}
-    left={{ content: <LeftPanel />, opened: leftOpen, onChange: setLeftOpen }}
-    right={{ content: <RightPanel />, opened: rightOpen, onChange: setRightOpen }}
-    renderLeftSidebarControls
-    renderRightSidebarControls
-  >
-    <Content />
-  </Layout>
+ <Layout
+ header={<PageHeader title="My Page" />}
+ left={{ content: <LeftPanel />, opened: leftOpen, onChange: setLeftOpen }}
+ right={{ content: <RightPanel />, opened: rightOpen, onChange: setRightOpen }}
+ renderLeftSidebarControls
+ renderRightSidebarControls
+ >
+ <Content />
+ </Layout>
 </Page>
 
 // Full-page mode (no padding, native scroll)
 <Page>
-  <Layout fullPage nativeScroll header={<Header />}>
-    <LargeContent />
-  </Layout>
+ <Layout fullPage nativeScroll header={<Header />}>
+ <LargeContent />
+ </Layout>
 </Page>
 ```
 

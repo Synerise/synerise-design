@@ -1,4 +1,4 @@
-import type { ColumnsType } from 'antd/lib/table';
+import type { TableColumnsType as ColumnsType } from 'antd';
 
 export type GroupByType = 'value' | 'ranges' | 'interval' | string | undefined;
 

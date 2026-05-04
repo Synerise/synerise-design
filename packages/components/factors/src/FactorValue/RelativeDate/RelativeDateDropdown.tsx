@@ -3,7 +3,7 @@ import React, { useEffect, useMemo, useState } from 'react';
 import Button from '@synerise/ds-button';
 import { InputGroup } from '@synerise/ds-input';
 import InputNumber from '@synerise/ds-input-number';
-import Select from '@synerise/ds-select/dist/Select';
+import Select from '@synerise/ds-select';
 
 import {
   type RelativeDateFactorTexts,

@@ -6,16 +6,16 @@
 
 ```
 src/
-  Select.tsx          — main component (forwardRef, compound with .Option and .OptGroup)
-  Select.types.ts     — Props type (extends Antd SelectProps + FormFieldCommonProps)
-  Select.styles.ts    — styled-components: SelectContainer, AntdSelect, SelectWrapper, PrefixWrapper, SuffixWrapper
-  index.ts            — default export, SelectProps type, SelectStyles namespace
-  modules.d.ts        — imports @testing-library/jest-dom
-  style/
-    index.less        — imports antd select LESS + ds-core variables + select.mixin.less
-    select.mixin.less — DS overrides for all antd select class variants (dropdown, items, states)
-  __specs__/
-    Select.spec.tsx   — Jest + React Testing Library tests
+ Select.tsx — main component (forwardRef, compound with .Option and .OptGroup)
+ Select.types.ts — Props type (extends Antd SelectProps + FormFieldCommonProps)
+ Select.styles.ts — styled-components: SelectContainer, AntdSelect, SelectWrapper, PrefixWrapper, SuffixWrapper
+ index.ts — default export, SelectProps type, SelectStyles namespace
+ modules.d.ts — imports @testing-library/jest-dom
+ style/
+ index.less — imports antd select LESS + ds-core variables + select.mixin.less
+ select.mixin.less — DS overrides for all antd select class variants (dropdown, items, states)
+ __specs__/
+ Select.spec.tsx — Vitest + React Testing Library tests
 ```
 
 ## Public exports
@@ -69,16 +69,16 @@ const { Option, OptGroup } = Select;
 
 // Basic with FormField label / description
 <Select label="Platform" description="Choose your platform" defaultValue="insta">
-  <OptGroup label="Social">
-    <Option value="insta">Instagram</Option>
-    <Option value="fb">Facebook</Option>
-  </OptGroup>
+ <OptGroup label="Social">
+ <Option value="insta">Instagram</Option>
+ <Option value="fb">Facebook</Option>
+ </OptGroup>
 </Select>
 
 // Multiple mode
 <Select mode="multiple" placeholder="Select tags" allowClear>
-  <Option value="a">Alpha</Option>
-  <Option value="b">Beta</Option>
+ <Option value="a">Alpha</Option>
+ <Option value="b">Beta</Option>
 </Select>
 
 // Error state with message
@@ -91,7 +91,7 @@ const { Option, OptGroup } = Select;
 <Select readOnly value="locked-value" />
 
 // Grey background variant
-<Select grey placeholder="Search..." showSearch />
+<Select grey placeholder="Search.." showSearch />
 
 // Raw (no FormField wrapper, ref goes to SelectWrapper)
 <Select raw ref={myRef} placeholder="Compact" />
@@ -110,10 +110,10 @@ Two-layer styling approach:
 1. **LESS** (`style/index.less` + `style/select.mixin.less`) — overrides all Antd `.ant-select-*` class rules: dropdown shadows, item hover colors, selected-item checkmark (base64 SVG), arrow icon (base64 SVG), tag/multiple chip styles, focus ring (`blue-600` inset shadow, `blue-050` bg), disabled state.
 
 2. **styled-components** (`Select.styles.ts`) — handles DS-specific structural and state variants:
-   - `SelectContainer` — `flex-direction: column`; adds `16px` bottom margin when `hasBottomMargin` is true.
-   - `SelectWrapper` — `display: flex` row; applies `grey-050` background via `grey` prop (only when not in error state).
-   - `AntdSelect` — extends Antd Select; handles `large` size height/line-height overrides, `withPrefixel`/`withSuffixel` border-radius removal, error border/shadow/background (`red-600`/`red-050`), and `readOnly` vs `disabled` visual differentiation.
-   - `PrefixWrapper` / `SuffixWrapper` — `grey-050` background, `grey-300` inset box-shadow, rounded outer corners only; negative margin/padding creates flush border join with selector.
+ - `SelectContainer` — `flex-direction: column`; adds `16px` bottom margin when `hasBottomMargin` is true.
+ - `SelectWrapper` — `display: flex` row; applies `grey-050` background via `grey` prop (only when not in error state).
+ - `AntdSelect` — extends Antd Select; handles `large` size height/line-height overrides, `withPrefixel`/`withSuffixel` border-radius removal, error border/shadow/background (`red-600`/`red-050`), and `readOnly` vs `disabled` visual differentiation.
+ - `PrefixWrapper` / `SuffixWrapper` — `grey-050` background, `grey-300` inset box-shadow, rounded outer corners only; negative margin/padding creates flush border join with selector.
 
 The dropdown offset is hard-coded to `[0, 8]` px via `dropdownAlign` (STOR-588).
 
@@ -137,4 +137,4 @@ The search icon in the selector is replaced with an inline SVG data-URL using th
 - **`clearIcon` is always overridden** — even if `clearIcon` is passed via `antdProps`, it is re-set internally. Any consumer-provided `clearIcon` will be ignored.
 - **`removeIcon` is always overridden** — same as `clearIcon`; custom `removeIcon` from consumer props is ignored.
 - **Compound component typing** — `SelectWithComponents` is typed as `SelectCompoundComponent = typeof Select & { Option, OptGroup }` using `Object.assign`, so `.Option` and `.OptGroup` are fully typed.
-- **Uses Jest** (not Vitest) — `package.json` has `"test": "jest"`.
+- **Uses Vitest** — `package.json` has `"test": "jest"`.

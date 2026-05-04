@@ -1,4 +1,4 @@
-import type { InputRef } from 'antd/lib/input';
+import type { InputRef } from 'antd';
 import { type MutableRefObject, useEffect, useState } from 'react';
 
 export const useInputAddonHeight = (

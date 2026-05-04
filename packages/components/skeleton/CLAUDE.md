@@ -6,27 +6,27 @@
 
 ```
 src/
-  Skeleton.tsx                    — default text skeleton; configurable count, size, width
-  Skeleton.types.ts               — SkeletonProps + SkeletonSize/WidthSize/StartOffsetSize enums
-  Skeleton.styles.ts              — shared BackgroundGradient + bar/wrapper styled-components
-  CheckboxSkeleton/               — skeleton with a real Checkbox + skeleton bars beside it
-    CheckboxSkeleton.tsx
-    CheckboxSkeleton.types.ts     — CheckboxSkeletonProps + SkeletonSize enum
-    CheckboxSkeleton.styles.ts
-  DropdownSkeleton/               — skeleton for dropdown list items
-    DropdownSkeleton.tsx
-    DropdownSkeleton.types.ts     — DropdownSkeletonProps + SkeletonSize enum
-    DropdownSkeleton.styles.ts
-  OrderedListSkeleton/            — skeleton for ordered list rows (reuses CheckboxSkeletonProps)
-    OrderedListSkeleton.tsx
-    OrderedListSkeleton.styles.ts
-  SkeletonAvatar/                 — circular or square avatar skeleton
-    SkeletonAvatar.tsx
-    SkeletonAvatar.types.ts       — SkeletonAvatarProps + SkeletonSize/LeftSize enums
-    SkeletonAvatar.styles.ts
-  __specs__/
-    Skeleton.spec.tsx             — Jest tests
-  index.ts                        — public exports
+ Skeleton.tsx — default text skeleton; configurable count, size, width
+ Skeleton.types.ts — SkeletonProps + SkeletonSize/WidthSize/StartOffsetSize enums
+ Skeleton.styles.ts — shared BackgroundGradient + bar/wrapper styled-components
+ CheckboxSkeleton/ — skeleton with a real Checkbox + skeleton bars beside it
+ CheckboxSkeleton.tsx
+ CheckboxSkeleton.types.ts — CheckboxSkeletonProps + SkeletonSize enum
+ CheckboxSkeleton.styles.ts
+ DropdownSkeleton/ — skeleton for dropdown list items
+ DropdownSkeleton.tsx
+ DropdownSkeleton.types.ts — DropdownSkeletonProps + SkeletonSize enum
+ DropdownSkeleton.styles.ts
+ OrderedListSkeleton/ — skeleton for ordered list rows (reuses CheckboxSkeletonProps)
+ OrderedListSkeleton.tsx
+ OrderedListSkeleton.styles.ts
+ SkeletonAvatar/ — circular or square avatar skeleton
+ SkeletonAvatar.tsx
+ SkeletonAvatar.types.ts — SkeletonAvatarProps + SkeletonSize/LeftSize enums
+ SkeletonAvatar.styles.ts
+ __specs__/
+ Skeleton.spec.tsx — Vitest tests
+ index.ts — public exports
 ```
 
 ## Public exports
@@ -117,4 +117,4 @@ All components share `BackgroundGradient` from `Skeleton.styles.ts` — a grey-t
 - **`Skeleton` has no `shape` or `inline` props** — these appear in the README but do not exist in `SkeletonProps`; they belong to `SkeletonAvatar`.
 - **`OrderedListSkeleton` exports no dedicated type** — it uses `CheckboxSkeletonProps` directly. If consumers need to type `OrderedListSkeleton` props they must import `CheckboxSkeletonProps`.
 - **SkeletonSize enums are local** per sub-package — each `CheckboxSkeleton.types.ts`, `DropdownSkeleton.types.ts`, and `SkeletonAvatar.types.ts` defines its own `SkeletonSize` enum with different values. They are not re-exported from `index.ts`.
-- **Uses Jest** (`jest.config.js`) — not yet migrated to Vitest.
+- **Uses Vitest** for testing.

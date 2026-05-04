@@ -6,20 +6,20 @@
 
 ```
 src/
-  InlineEdit.tsx                     — main text-input component
-  InlineEdit.types.ts                — InlineEditProps, InputProps
-  InlineEdit.styles.ts               — styled-components for InlineEdit
-  index.ts                           — public exports
-  InlineSelect/
-    InlineSelect.tsx                 — select-trigger component
-    InlineSelect.types.ts            — InlineSelectProps
-    InlineSelect.style.ts            — styled-components for InlineSelect
-    SelectDropdown/
-      SelectDropdown.tsx             — virtualised dropdown menu (internal)
-      SelectDropdown.types.ts        — SelectDropdownProps
-      SelectDropdown.style.ts        — dropdown styled-components
-  __specs__/
-    InlineEdit.spec.tsx              — Jest tests
+ InlineEdit.tsx — main text-input component
+ InlineEdit.types.ts — InlineEditProps, InputProps
+ InlineEdit.styles.ts — styled-components for InlineEdit
+ index.ts — public exports
+ InlineSelect/
+ InlineSelect.tsx — select-trigger component
+ InlineSelect.types.ts — InlineSelectProps
+ InlineSelect.style.ts — styled-components for InlineSelect
+ SelectDropdown/
+ SelectDropdown.tsx — virtualised dropdown menu (internal)
+ SelectDropdown.types.ts — SelectDropdownProps
+ SelectDropdown.style.ts — dropdown styled-components
+ __specs__/
+ InlineEdit.spec.tsx — Vitest tests
 ```
 
 ## Public exports
@@ -98,26 +98,26 @@ import InlineEdit, { InlineSelect } from '@synerise/ds-inline-edit';
 
 // InlineEdit
 <InlineEdit
-  input={{
-    name: 'title',
-    value: title,
-    placeholder: 'Enter title',
-    onChange: (e) => setTitle(e.target.value),
-    onEnterPress: () => handleSave(),
-  }}
-  size="normal"
-  tooltipTitle="Edit"
+ input={{
+ name: 'title',
+ value: title,
+ placeholder: 'Enter title',
+ onChange: (e) => setTitle(e.target.value),
+ onEnterPress: () => handleSave(),
+ }}
+ size="normal"
+ tooltipTitle="Edit"
 />
 
 // InlineSelect
 <InlineSelect
-  dataSource={[
-    { text: 'Option A' },
-    { text: 'Option B' },
-  ]}
-  input={{ value: selectedText }}
-  onValueChange={(item) => setSelected(item.text as string)}
-  placeholder="Select..."
+ dataSource={[
+ { text: 'Option A' },
+ { text: 'Option B' },
+ ]}
+ input={{ value: selectedText }}
+ onValueChange={(item) => setSelected(item.text as string)}
+ placeholder="Select.."
 />
 ```
 
@@ -156,4 +156,4 @@ import InlineEdit, { InlineSelect } from '@synerise/ds-inline-edit';
 - **`InlineSelect` `size` is narrower**: Only `'normal' | 'small'` — no `'large'` (unlike `InlineEdit` which supports `'large'`).
 - **`tooltipTitle` in `InlineSelect`**: Declared in `InlineSelectProps` but never rendered — passing it has no effect.
 - **`SelectDropdown`** is internal (not exported). Its `Props` alias is marked `@deprecated` in `SelectDropdown.types.ts` but the file is not in the public exports.
-- **Tests use Jest** (`jest.config.js`) — not yet migrated to Vitest.
+- **Uses Vitest** for testing.

@@ -6,26 +6,26 @@
 
 ```
 src/
-  Popover.tsx                          — root component; FloatingTree nesting logic + context provider
-  Popover.types.ts                     — all exported types and interfaces
-  Popover.const.ts                     — HOVER_OPEN_DELAY, HOVER_CLOSE_DELAY, PLACEMENT_MAP
-  index.ts                             — public exports
-  components/
-    PopoverTrigger.tsx / .styles.ts    — trigger wrapper (forwardRef, asChild support)
-    PopoverContent.tsx / .styles.ts    — portaled floating panel (forwardRef, focus manager, transitions)
-    PopoverArrow.tsx                   — arrow element positioning helper
-    PopoverClose.tsx                   — close button helper (forwardRef)
-  hooks/
-    usePopover.ts                      — main floating-ui orchestration hook
-    usePopoverContext.ts               — context consumer with null-guard
-    useListNavigationConfig.ts         — keyboard list navigation config helper
-  contexts/
-    PopoverContext.tsx                 — React context holding UsePopoverReturn
-  utils/
-    getMiddleware.ts                   — builds floating-ui middleware array (offset, flip, shift, arrow)
-    getDefaultTransitionConfig.ts      — default opacity fade transition config
-    getPlacement.ts                    — converts LegacyPlacement → floating-ui Placement
-  __specs__/Popover.spec.tsx           — 3 tests: render, click-open, hover-open
+ Popover.tsx — root component; FloatingTree nesting logic + context provider
+ Popover.types.ts — all exported types and interfaces
+ Popover.const.ts — HOVER_OPEN_DELAY, HOVER_CLOSE_DELAY, PLACEMENT_MAP
+ index.ts — public exports
+ components/
+ PopoverTrigger.tsx / .styles.ts — trigger wrapper (forwardRef, asChild support)
+ PopoverContent.tsx / .styles.ts — portaled floating panel (forwardRef, focus manager, transitions)
+ PopoverArrow.tsx — arrow element positioning helper
+ PopoverClose.tsx — close button helper (forwardRef)
+ hooks/
+ usePopover.ts — main floating-ui orchestration hook
+ usePopoverContext.ts — context consumer with null-guard
+ useListNavigationConfig.ts — keyboard list navigation config helper
+ contexts/
+ PopoverContext.tsx — React context holding UsePopoverReturn
+ utils/
+ getMiddleware.ts — builds floating-ui middleware array (offset, flip, shift, arrow)
+ getDefaultTransitionConfig.ts — default opacity fade transition config
+ getPlacement.ts — converts LegacyPlacement → floating-ui Placement
+ __specs__/Popover.spec.tsx — 3 tests: render, click-open, hover-open
 ```
 
 ## Public exports
@@ -124,38 +124,38 @@ Renders a `<button>` that calls `setOpen(false)` on click. Accepts all `ButtonHT
 
 ```tsx
 import Popover, {
-  PopoverTrigger,
-  PopoverContent,
-  PopoverArrow,
-  PopoverClose,
-  FloatingDelayGroup,
+ PopoverTrigger,
+ PopoverContent,
+ PopoverArrow,
+ PopoverClose,
+ FloatingDelayGroup,
 } from '@synerise/ds-popover';
 
 // Click-triggered (default)
 <Popover testId="my-popover" placement="bottom-start">
-  <PopoverTrigger>
-    <button>Open</button>
-  </PopoverTrigger>
-  <PopoverContent className="my-panel">
-    Content here
-    <PopoverClose>✕</PopoverClose>
-  </PopoverContent>
+ <PopoverTrigger>
+ <button>Open</button>
+ </PopoverTrigger>
+ <PopoverContent className="my-panel">
+ Content here
+ <PopoverClose>✕</PopoverClose>
+ </PopoverContent>
 </Popover>
 
 // Hover-triggered with delay group (multiple popovers share delay)
 <FloatingDelayGroup delay={{ open: 100, close: 400 }}>
-  <Popover trigger="hover">
-    <PopoverTrigger asChild>
-      <MyButton />
-    </PopoverTrigger>
-    <PopoverContent>Tooltip content</PopoverContent>
-  </Popover>
+ <Popover trigger="hover">
+ <PopoverTrigger asChild>
+ <MyButton />
+ </PopoverTrigger>
+ <PopoverContent>Tooltip content</PopoverContent>
+ </Popover>
 </FloatingDelayGroup>
 
 // Controlled
 <Popover open={isOpen} onOpenChange={setIsOpen}>
-  <PopoverTrigger>...</PopoverTrigger>
-  <PopoverContent>...</PopoverContent>
+ <PopoverTrigger>..</PopoverTrigger>
+ <PopoverContent>..</PopoverContent>
 </Popover>
 ```
 

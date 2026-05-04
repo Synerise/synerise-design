@@ -14,4 +14,7 @@ export type {
   ObjectAvatarProps,
   TooltipObject,
   Size as AvatarSize,
+  Color as AvatarColor,
+  Size,
+  Color,
 } from './Avatar.types';

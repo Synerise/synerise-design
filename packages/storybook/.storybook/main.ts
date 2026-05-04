@@ -23,10 +23,9 @@ function getAbsolutePath(value: string): string {
 /**
  * Vite plugin that replaces the old webpack transform-rename-import babel plugin.
  * Rewrites @synerise/ds-<name> and @synerise/ds-<name>/dist/... imports
- * to packages/components/<name>/src/... for all packages except core, icon, avatar.
+ * to packages/components/<name>/src/... for all packages.
  */
 function dsSourceRedirectPlugin(): Plugin {
-  const EXCLUDED = /^(core|icon|avatar)$/;
   const DS_PATTERN = /^@synerise\/ds-([a-z0-9-]+)(\/dist)?(\/.*)?$/;
   const componentsDir = resolve(__dirname, '../../../packages/components');
 
@@ -37,11 +36,11 @@ function dsSourceRedirectPlugin(): Plugin {
       const match = DS_PATTERN.exec(source);
       if (!match) return null;
       const [, pkgName, , rest = ''] = match;
-      if (EXCLUDED.test(pkgName)) return null;
       // Resolve from the component's own directory so its dependencies are found
       const pkgDir = resolve(componentsDir, pkgName);
+      const srcEntry = pkgName === 'core' ? 'src/js' : 'src';
       const resolved = await this.resolve(
-        resolve(pkgDir, 'src' + rest),
+        resolve(pkgDir, srcEntry + rest),
         importer,
         { skipSelf: true },
       );

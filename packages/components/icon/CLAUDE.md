@@ -6,29 +6,29 @@
 
 ```
 src/
-  Icon.tsx                      — main component (forwardRef)
-  Icon.types.ts                 — IconProps, BaseIconProps, StyledIcon, IconName
-  Icon.styles.ts                — IconContainer styled-component + exported constants
-  index.ts                      — public exports
-  useIconComponent.ts           — hook + util to resolve icon name → component
-  icons/
-    M/                          — medium (24px) icons, auto-generated
-    L/                          — large (48px) icons, auto-generated
-    XL/                         — extra-large icons, auto-generated
-    colorIcons/                 — multi-colour icons, auto-generated
-    additional/                 — additional icons, auto-generated
-  DynamicIcon/
-    DynamicIcon.tsx             — @deprecated wrapper (use <Icon iconName> instead)
-    iconManifest.ts             — builds name→module map from all icon sets
-  MimeTypeIcon/
-    MimeTypeIcon.tsx            — maps MIME type string → icon
-    MimeTypeIcon.types.ts       — MimeTypeIconsProps
-    MimeTypeIcon.utils.tsx      — mapMimeTypeToIconName switch
-  build/
-    svgr.js                     — build script: SVG files → React components
-    template.js                 — SVGR JSX template
-  __specs__/
-    Icon.spec.tsx               — Jest tests
+ Icon.tsx — main component (forwardRef)
+ Icon.types.ts — IconProps, BaseIconProps, StyledIcon, IconName
+ Icon.styles.ts — IconContainer styled-component + exported constants
+ index.ts — public exports
+ useIconComponent.ts — hook + util to resolve icon name → component
+ icons/
+ M/ — medium (24px) icons, auto-generated
+ L/ — large (48px) icons, auto-generated
+ XL/ — extra-large icons, auto-generated
+ colorIcons/ — multi-colour icons, auto-generated
+ additional/ — additional icons, auto-generated
+ DynamicIcon/
+ DynamicIcon.tsx — @deprecated wrapper (use <Icon iconName> instead)
+ iconManifest.ts — builds name→module map from all icon sets
+ MimeTypeIcon/
+ MimeTypeIcon.tsx — maps MIME type string → icon
+ MimeTypeIcon.types.ts — MimeTypeIconsProps
+ MimeTypeIcon.utils.tsx — mapMimeTypeToIconName switch
+ build/
+ svgr.js — build script: SVG files → React components
+ template.js — SVGR JSX template
+ __specs__/
+ Icon.spec.tsx — Vitest tests
 ```
 
 ## Public exports
@@ -62,7 +62,7 @@ Supported MIME types → icon name mapping (see `MimeTypeIcon.utils.tsx` for ful
 
 ### `DynamicIcon` ⚠️ deprecated
 
-Use `<Icon iconName="..." />` instead. Props: `name: IconName`, `fallback?: ReactNode`, + all `IconProps` except `component`/`iconName`. Renders `null` (or `fallback`) if the icon name is not found in the manifest.
+Use `<Icon iconName=".." />` instead. Props: `name: IconName`, `fallback?: ReactNode`, + all `IconProps` except `component`/`iconName`. Renders `null` (or `fallback`) if the icon name is not found in the manifest.
 
 ### `useIconComponent(name?: string)`
 
@@ -133,7 +133,7 @@ const ref = useRef<HTMLDivElement>(null);
 // As styled-component target
 import { IconContainer } from '@synerise/ds-icon';
 const MyButton = styled.button`
-  &:hover ${IconContainer} { color: blue; }
+ &:hover ${IconContainer} { color: blue; }
 `;
 ```
 
@@ -162,5 +162,5 @@ const MyButton = styled.button`
 - **`DynamicIcon` is deprecated:** Its behaviour (render `null` on unknown name) differs slightly from `<Icon iconName>` (which silently renders nothing but doesn't accept a `fallback`). Prefer `<Icon iconName>` for all new code.
 - **`component` prop is @deprecated** but still functional. The JSDoc deprecation is on `BaseIconProps`; it will not cause TypeScript warnings unless explicitly configured.
 - **Duplicate XL icons:** `index.ts` contains a comment: "Some of this icons are duplicated in XL folder, consider removing it before uploading new version."
-- **Tests use Jest** (`jest.config.js`) — not yet migrated to Vitest.
+- **Uses Vitest** for testing.
 - **SVG IDs are hashed:** SVGR build prefixes all SVG element IDs with `svg-{hash(filePath)}` to prevent global ID collisions when multiple icons are on the same page.

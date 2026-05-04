@@ -1,6 +1,4 @@
-import BaseAntInputNumber, {
-  type InputNumberProps,
-} from 'antd/lib/input-number';
+import { InputNumber as BaseAntInputNumber, type InputNumberProps } from 'antd';
 import React, { forwardRef } from 'react';
 import styled from 'styled-components';
 

@@ -1,4 +1,4 @@
-import AntConfigProvider from 'antd/lib/config-provider';
+import { ConfigProvider as AntConfigProvider } from 'antd';
 import * as merge from 'deepmerge';
 import { flatten } from 'flat';
 import React from 'react';

@@ -1,4 +1,4 @@
-import BaseAntCheckbox, { type CheckboxProps } from 'antd/lib/checkbox';
+import { Checkbox as BaseAntCheckbox, type CheckboxProps } from 'antd';
 import styled, { css } from 'styled-components';
 
 const checkSvgWithCustomColor = (color: string) => {

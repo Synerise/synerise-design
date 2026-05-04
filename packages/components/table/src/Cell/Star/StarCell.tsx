@@ -3,7 +3,7 @@ import { withTheme } from 'styled-components';
 
 import { useTheme } from '@synerise/ds-core';
 import Icon, { StarFillM, StarM } from '@synerise/ds-icon';
-import Tooltip from '@synerise/ds-tooltip/dist/Tooltip';
+import Tooltip from '@synerise/ds-tooltip';
 
 import * as S from './StarCell.styles';
 import { type StarCellProps } from './StarCell.types';

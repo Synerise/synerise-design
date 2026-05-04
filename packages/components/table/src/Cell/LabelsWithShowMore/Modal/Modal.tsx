@@ -1,7 +1,7 @@
 import React, { useMemo, useState } from 'react';
 
 import Modal from '@synerise/ds-modal';
-import SearchInput from '@synerise/ds-search/dist/Elements/SearchInput/SearchInput';
+import { SearchInput } from '@synerise/ds-search';
 
 import VirtualTable from '../../../VirtualTable/VirtualTable';
 import { type DataSourceType, type ModalProps } from './Modal.types';

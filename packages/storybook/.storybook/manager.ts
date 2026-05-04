@@ -5,8 +5,7 @@ import {
 import { addons } from 'storybook/manager-api';
 import { create } from 'storybook/theming/create';
 
-import { theme } from '@synerise/ds-core';
-
+import { theme } from '../../../packages/components/core/src/js/DSProvider/ThemeProvider/theme';
 // @ts-ignore
 import image from '../public/logo_syne.svg';
 

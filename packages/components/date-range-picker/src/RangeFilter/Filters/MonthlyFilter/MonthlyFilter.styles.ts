@@ -1,7 +1,6 @@
 import styled from 'styled-components';
 
-import InlineSelect from '@synerise/ds-inline-edit/dist/InlineSelect/InlineSelect';
-import { type InlineSelectProps } from '@synerise/ds-inline-edit/dist/InlineSelect/InlineSelect.types';
+import { InlineSelect, type InlineSelectProps } from '@synerise/ds-inline-edit';
 
 export const MonthlyFilterWrapper = styled.div`
   padding-top: 24px;

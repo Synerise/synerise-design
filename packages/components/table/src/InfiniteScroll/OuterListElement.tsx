@@ -8,8 +8,7 @@ import React, {
   useState,
 } from 'react';
 
-import Scrollbar from '@synerise/ds-scrollbar';
-import { type ScrollbarProps } from '@synerise/ds-scrollbar/dist/Scrollbar.types';
+import Scrollbar, { type ScrollbarProps } from '@synerise/ds-scrollbar';
 
 const OuterListElement = (
   containerRef: MutableRefObject<HTMLDivElement | null | undefined>,

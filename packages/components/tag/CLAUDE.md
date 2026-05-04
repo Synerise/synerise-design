@@ -6,14 +6,14 @@
 
 ```
 src/
-  Tag.tsx           — main component, forwardRef, renders tag with optional remove button and tooltip
-  Tag.types.ts      — TagProps type, TagTexts type, TagShape enum
-  Tag.styles.ts     — all styled-components; exports getColorText helper
-  index.ts          — public re-exports
-  hooks/
-    useDefaultTexts.tsx — merges caller-supplied texts with react-intl defaults
-  __specs__/
-    Tag.spec.tsx    — Jest unit tests
+ Tag.tsx — main component, forwardRef, renders tag with optional remove button and tooltip
+ Tag.types.ts — TagProps type, TagTexts type, TagShape enum
+ Tag.styles.ts — all styled-components; exports getColorText helper
+ index.ts — public re-exports
+ hooks/
+ useDefaultTexts.tsx — merges caller-supplied texts with react-intl defaults
+ __specs__/
+ Tag.spec.tsx — Vitest unit tests
 ```
 
 ## Public exports
@@ -46,7 +46,7 @@ export { useDefaultTexts } from './hooks/useDefaultTexts';
 | `tooltipProps` | `TooltipProps` | — | Wraps the entire rendered tag in `<Tooltip>` when provided |
 | `className` | `string` | — | Appended to the `ds-tag` className on the root element |
 | `ref` | `React.Ref<HTMLDivElement>` | — | Forwarded to the root `<div>` |
-| `...htmlAttributes` | `HTMLDivElement` attrs | — | All remaining HTML div attributes are spread onto the root element |
+| `..htmlAttributes` | `HTMLDivElement` attrs | — | All remaining HTML div attributes are spread onto the root element |
 
 ### `TagShape` enum
 
@@ -93,12 +93,12 @@ import Tag, { TagShape } from '@synerise/ds-tag';
 
 // Removable — requires id for onRemove to fire
 <Tag
-  id="tag-1"
-  name="Removable"
-  shape={TagShape.DEFAULT_ROUND}
-  color="#5A32FB"
-  removable
-  onRemove={(id) => console.log('remove', id)}
+ id="tag-1"
+ name="Removable"
+ shape={TagShape.DEFAULT_ROUND}
+ color="#5A32FB"
+ removable
+ onRemove={(id) => console.log('remove', id)}
 />
 
 // Status
@@ -106,9 +106,9 @@ import Tag, { TagShape } from '@synerise/ds-tag';
 
 // With tooltip over the whole tag
 <Tag
-  name="Hovered"
-  shape={TagShape.DEFAULT_ROUND}
-  tooltipProps={{ title: 'More info' }}
+ name="Hovered"
+ shape={TagShape.DEFAULT_ROUND}
+ tooltipProps={{ title: 'More info' }}
 />
 
 // Pill (no hover brightness effect)
@@ -116,10 +116,10 @@ import Tag, { TagShape } from '@synerise/ds-tag';
 
 // Prefix / suffix (ReactNode)
 <Tag
-  name="With icon"
-  shape={TagShape.DEFAULT_ROUND}
-  color="#5A32FB"
-  prefixel={<Icon component={<Add3M />} size={20} />}
+ name="With icon"
+ shape={TagShape.DEFAULT_ROUND}
+ color="#5A32FB"
+ prefixel={<Icon component={<Add3M />} size={20} />}
 />
 ```
 

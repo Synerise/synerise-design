@@ -1,4 +1,4 @@
-import Alert from 'antd/lib/alert';
+import { Alert } from 'antd';
 import React from 'react';
 import styled, {
   type FlattenInterpolation,

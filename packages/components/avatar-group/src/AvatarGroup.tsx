@@ -2,7 +2,7 @@ import React from 'react';
 
 import Avatar from '@synerise/ds-avatar';
 import Badge from '@synerise/ds-badge';
-import Tooltip from '@synerise/ds-tooltip/dist/Tooltip';
+import Tooltip from '@synerise/ds-tooltip';
 
 import * as S from './AvatarGroup.styles';
 import { type AvatarGroupProps } from './AvatarGroup.types';

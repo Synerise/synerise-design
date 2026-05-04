@@ -6,7 +6,7 @@
 
 ```
 src/
-  index.ts   — re-exports Flex, Box, BoxProps, FlexProps from @rebass/grid
+ index.ts — re-exports Flex, Box, BoxProps, FlexProps from @rebass/grid
 ```
 
 No custom source — the entire package is a pass-through to `@rebass/grid ^6`.
@@ -42,8 +42,8 @@ Key `styled-system` prop categories (from `@rebass/grid`):
 import { Flex, Box } from '@synerise/ds-flex-box';
 
 <Flex alignItems="center" justifyContent="space-between" p={2}>
-  <Box width={1 / 2}>Left</Box>
-  <Box width={1 / 2}>Right</Box>
+ <Box width={1 / 2}>Left</Box>
+ <Box width={1 / 2}>Right</Box>
 </Flex>
 ```
 

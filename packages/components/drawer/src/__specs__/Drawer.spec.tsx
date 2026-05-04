@@ -1,4 +1,4 @@
-import Typography from 'antd/lib/typography';
+import { Typography } from 'antd';
 import React from 'react';
 
 import { renderWithProvider } from '@synerise/ds-core';

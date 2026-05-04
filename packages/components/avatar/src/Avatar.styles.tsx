@@ -1,4 +1,4 @@
-import Avatar from 'antd/lib/avatar';
+import { Avatar } from 'antd';
 import React, { forwardRef } from 'react';
 import styled, { css } from 'styled-components';
 

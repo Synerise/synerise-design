@@ -2,11 +2,11 @@ import type { ComponentType, ReactNode, ReactText } from 'react';
 
 import type { AutocompleteProps } from '@synerise/ds-autocomplete';
 import type { CollectorValue } from '@synerise/ds-collector';
-import type { Texts as DateRangeTexts } from '@synerise/ds-date-range-picker/dist/DateRangePicker.types';
 import type {
   DateFilter,
+  DateRangePickerTexts as DateRangeTexts,
   RelativeUnits,
-} from '@synerise/ds-date-range-picker/dist/date.types';
+} from '@synerise/ds-date-range-picker';
 import type { InformationCardProps } from '@synerise/ds-information-card';
 import type { AutoResizeProp, InputProps } from '@synerise/ds-input';
 import type { ListItemProps } from '@synerise/ds-list-item';

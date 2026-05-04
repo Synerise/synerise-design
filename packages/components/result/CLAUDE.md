@@ -6,12 +6,12 @@
 
 ```
 src/
-  Result.tsx          — main component; contains mapTypeToStatus icon/colour mapping
-  Result.types.ts     — ResultProps
-  Result.styles.ts    — styled-components
-  index.ts            — public exports
-  __specs__/
-    Result.spec.tsx   — Jest tests
+ Result.tsx — main component; contains mapTypeToStatus icon/colour mapping
+ Result.types.ts — ResultProps
+ Result.styles.ts — styled-components
+ index.ts — public exports
+ __specs__/
+ Result.spec.tsx — Vitest tests
 ```
 
 ## Public exports
@@ -54,17 +54,17 @@ import Result from '@synerise/ds-result';
 
 // Full
 <Result
-  type="error"
-  title="Something went wrong"
-  description="Please try again later."
-  customIcon={<MyIcon />}
-  panel={<img src="..." />}
-  buttons={
-    <>
-      <Button type="secondary">Cancel</Button>
-      <Button type="primary">Retry</Button>
-    </>
-  }
+ type="error"
+ title="Something went wrong"
+ description="Please try again later."
+ customIcon={<MyIcon />}
+ panel={<img src=".." />}
+ buttons={
+ <>
+ <Button type="secondary">Cancel</Button>
+ <Button type="primary">Retry</Button>
+ </>
+ }
 />
 ```
 
@@ -83,5 +83,5 @@ Styles live in `Result.styles.ts`. Uses `@synerise/ds-core` theme tokens for col
 - **`closable` and `onClose` are not implemented**: the README API table and usage example document both, but neither prop exists in `ResultProps` or is used in `Result.tsx` — they are silently dropped.
 - **Icon size bug**: `size={mapTypeToStatus['no-results'] ? 48 : 24}` — the value `mapTypeToStatus['no-results']` is always a truthy object, so **all** icons render at size 48, not just `no-results`. The intended expression is `type === 'no-results' ? 48 : 24`.
 - **`noSearchResults` is `@deprecated`**: use `type="no-results"` instead. The prop is accepted but has no effect on rendering (it was presumably the predecessor of the `no-results` type).
-- **Uses Jest** (`jest.config.js`) — not yet migrated to Vitest.
+- **Uses Vitest** for testing.
 - Root element always has class `ds-result` plus any passed `className`.

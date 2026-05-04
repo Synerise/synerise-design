@@ -6,19 +6,19 @@
 
 ```
 src/
-  Form.tsx                          — class component namespace (only purpose: holds Form.FieldSet)
-  index.ts                          — public exports
-  Elements/
-    FieldSet/
-      FieldSet.tsx                  — @deprecated labelled section with heading + optional divider
-      FieldSet.types.ts             — FieldSetProps
-      FieldSet.styles.ts            — TopWrapper, Heading, Description (NOTE: Description = 'div', not styled)
-      __specs__/FieldSet.spec.tsx   — Jest tests (heading/description render, divider)
-  EditableList/
-    EditableList.tsx                — editable key-value row list (Autocomplete + Input per row)
-    EditableList.types.ts           — EditListProps, EditableParam, AddButtonConfigProps
-    EditableList.styles.tsx         — row/wrapper styled components
-    __spec__/EditableList.spec.ts   — all tests are it.todo() — no real tests
+ Form.tsx — class component namespace (only purpose: holds Form.FieldSet)
+ index.ts — public exports
+ Elements/
+ FieldSet/
+ FieldSet.tsx — @deprecated labelled section with heading + optional divider
+ FieldSet.types.ts — FieldSetProps
+ FieldSet.styles.ts — TopWrapper, Heading, Description (NOTE: Description = 'div', not styled)
+ __specs__/FieldSet.spec.tsx — Vitest tests (heading/description render, divider)
+ EditableList/
+ EditableList.tsx — editable key-value row list (Autocomplete + Input per row)
+ EditableList.types.ts — EditListProps, EditableParam, AddButtonConfigProps
+ EditableList.styles.tsx — row/wrapper styled components
+ __spec__/EditableList.spec.ts — all tests are it.todo() — no real tests
 ```
 
 ## Public exports
@@ -77,19 +77,19 @@ import Form, { EditableList } from '@synerise/ds-form';
 
 // Form.FieldSet (deprecated)
 <Form.FieldSet heading="Section" description="Details" withLine>
-  <MyFormFields />
+ <MyFormFields />
 </Form.FieldSet>
 
 // EditableList (deprecated)
 const [rows, setRows] = useState([{ name: '', value: '' }]);
 
 <EditableList
-  value={rows}
-  onChange={setRows}
-  leftColumnName="Key"
-  rightColumnName="Value"
-  addButtonConfig={{ textAddButton: 'Add row' }}
-  renderActions
+ value={rows}
+ onChange={setRows}
+ leftColumnName="Key"
+ rightColumnName="Value"
+ addButtonConfig={{ textAddButton: 'Add row' }}
+ renderActions
 />
 ```
 
@@ -112,4 +112,4 @@ const [rows, setRows] = useState([{ name: '', value: '' }]);
 - **`EditableList` is uncontrolled by default** — it maintains its own internal `params` state synced from `value` via `useEffect`. Changes propagate out via `onChange` but the component does not re-render from `value` alone unless the reference changes.
 - **`renderActions={true}` vs function** — when `true`, uses `Cruds` delete button which calls `onClickDelete` if provided, otherwise removes the row from internal state. When a function, it receives `(param, idx, params, { onClickDelete })` and must return a `JSX.Element`.
 - **No real tests** — `EditableList.__spec__/EditableList.spec.ts` contains only `it.todo()` entries.
-- **Test runner is Jest** (not Vitest).
+- **Uses Vitest**.

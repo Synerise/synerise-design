@@ -1,6 +1,6 @@
 import { type ReactNode } from 'react';
 
-import { type SubtleTextAreaProps } from '@synerise/ds-subtle-form/dist/Elements/TextArea/TextArea.types';
+import { type SubtleTextAreaProps } from '@synerise/ds-subtle-form';
 
 import { type FolderItem } from '../../SidebarObject.types';
 import { type HeaderTexts } from '../Header/Header.types';

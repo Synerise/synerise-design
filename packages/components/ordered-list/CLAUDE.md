@@ -4,22 +4,22 @@
 ## Package structure
 ```
 src/
-  Ordered-list.tsx       — root component; renders <ol> with optional header label, maps data to Item
-  Ordered-list.types.ts  — OrderedListItem, OrderedListProps, ListProps (deprecated alias)
-  Ordered-list.styles.ts — styled <ol> (OrderedList) and header wrapper (ContentAbove)
-  index.ts               — public exports
-  Elements/
-    Item/
-      Item.tsx           — memoized list item; renders index, prefixel, label, suffixel, and recursive NestedList
-      Item.styles.ts     — ItemWrapper (<li>), IndexFormatterWrapper (<span>)
-  __specs__/
-    Ordered-list.spec.tsx — Jest tests (nested items, indexFormatter, prefix/suffix)
+ Ordered-list.tsx — root component; renders <ol> with optional header label, maps data to Item
+ Ordered-list.types.ts — OrderedListItem, OrderedListProps, ListProps (deprecated alias)
+ Ordered-list.styles.ts — styled <ol> (OrderedList) and header wrapper (ContentAbove)
+ index.ts — public exports
+ Elements/
+ Item/
+ Item.tsx — memoized list item; renders index, prefixel, label, suffixel, and recursive NestedList
+ Item.styles.ts — ItemWrapper (<li>), IndexFormatterWrapper (<span>)
+ __specs__/
+ Ordered-list.spec.tsx — Vitest tests (nested items, indexFormatter, prefix/suffix)
 ```
 
 ## Public exports
 ```ts
-export { default } from './Ordered-list';          // default export: OrderedList component
-export type { OrderedListItem, OrderedListProps };  // named type exports
+export { default } from './Ordered-list'; // default export: OrderedList component
+export type { OrderedListItem, OrderedListProps }; // named type exports
 ```
 
 `ListProps` is exported from the types file but **not** re-exported from `index.ts`. It is marked `@deprecated` — use `OrderedListProps` instead.
@@ -51,23 +51,23 @@ import OrderedList from '@synerise/ds-ordered-list';
 import type { OrderedListItem } from '@synerise/ds-ordered-list';
 
 const items: OrderedListItem[] = [
-  { id: '1', index: 0, label: 'First item' },
-  { id: '2', index: 1, label: 'Second item' },
-  {
-    id: '3',
-    index: 2,
-    label: 'Parent item',
-    subMenu: [
-      { id: '4', index: 0, label: 'Child item' },
-    ],
-  },
+ { id: '1', index: 0, label: 'First item' },
+ { id: '2', index: 1, label: 'Second item' },
+ {
+ id: '3',
+ index: 2,
+ label: 'Parent item',
+ subMenu: [
+ { id: '4', index: 0, label: 'Child item' },
+ ],
+ },
 ];
 
 // Basic usage with a decimal formatter
 <OrderedList
-  data={items}
-  text="List Header"
-  indexFormatter={(i) => `${i + 1}. `}
+ data={items}
+ text="List Header"
+ indexFormatter={(i) => `${i + 1}. `}
 />
 
 // Without index display

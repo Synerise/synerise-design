@@ -6,13 +6,13 @@
 
 ```
 src/
-  Loader.tsx        — single functional component, default export
-  Loader.types.ts   — LoaderProps type, LoaderSize enum, FontSize enum
-  Loader.styles.ts  — styled-components: LoaderWrapper, Wrapper, Loader, TextWrapper, HeaderWrapper, PercentWrapper
-  index.ts          — re-exports default from Loader.tsx
-  modules.d.ts      — module declaration shim
-  __specs__/
-    Loader.spec.tsx — minimal render tests (Jest)
+ Loader.tsx — single functional component, default export
+ Loader.types.ts — LoaderProps type, LoaderSize enum, FontSize enum
+ Loader.styles.ts — styled-components: LoaderWrapper, Wrapper, Loader, TextWrapper, HeaderWrapper, PercentWrapper
+ index.ts — re-exports default from Loader.tsx
+ modules.d.ts — module declaration shim
+ __specs__/
+ Loader.spec.tsx — minimal render tests (Vitest)
 ```
 
 ## Public exports
@@ -46,24 +46,24 @@ import Loader from '@synerise/ds-loader';
 <Loader />
 
 // With label and size
-<Loader size="L" label="Loading..." labelPosition="bottom" color="blue" />
+<Loader size="L" label="Loading.." labelPosition="bottom" color="blue" />
 
 // With header text and label
 <Loader
-  size="L"
-  text="You will be redirected to Synerise"
-  label="Please wait a second to proceed."
-  fontSize="small"
-  labelPosition="bottom"
-  color="grey"
+ size="L"
+ text="You will be redirected to Synerise"
+ label="Please wait a second to proceed."
+ fontSize="small"
+ labelPosition="bottom"
+ color="grey"
 />
 
 // With percent formatter
 <Loader
-  size="L"
-  label="Loading..."
-  percent={42}
-  percentFormatter={(p) => <span>{p}%</span>}
+ size="L"
+ label="Loading.."
+ percent={42}
+ percentFormatter={(p) => <span>{p}%</span>}
 />
 
 // Centered overlay (requires positioned parent)

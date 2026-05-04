@@ -9,7 +9,7 @@ import Divider from '@synerise/ds-divider';
 import Icon, { Add3M } from '@synerise/ds-icon';
 import ListItem from '@synerise/ds-list-item';
 import Scrollbar from '@synerise/ds-scrollbar';
-import SearchItems from '@synerise/ds-search/dist/Elements/SearchItems/SearchItems';
+import { SearchItems } from '@synerise/ds-search';
 
 import * as S from '../../Collector.styles';
 import { type CollectorValue } from '../../Collector.types';

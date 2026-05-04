@@ -1,4 +1,4 @@
-import type { InputProps } from 'antd/lib/input';
+import type { InputProps } from 'antd';
 import type { ReactNode } from 'react';
 
 import type { AutocompleteProps } from '@synerise/ds-autocomplete';

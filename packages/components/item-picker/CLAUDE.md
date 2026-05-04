@@ -6,61 +6,61 @@
 
 ```
 src/
-  ItemPicker.tsx                  — default export; router that dispatches to ItemPickerNew or ItemPickerLegacy based on `isNewVersion` prop
-  ItemPicker.styles.ts            — minimal wrapper styled-component
-  index.ts                        — public exports
-  hooks/
-    useDefaultTexts.tsx           — resolves all i18n text defaults via react-intl
-  modules.d.ts                    — ambient module declarations
-  components/
-    ItemPickerNew/
-      ItemPickerNew.tsx           — current picker: FormField + Dropdown + Trigger + ItemPickerList
-      ItemPickerNew.types.ts      — ItemPickerProps (new), ItemPickerListProps, ItemLoaderConfig, etc.
-      types/
-        actions.types.ts          — Action union type (redirect | custom | searchBy | searchIn)
-        baseItemSectionType.types.ts — BaseItemType, BaseSectionType, BaseSectionTypeWithFolders
-        itemPickerListTexts.types.ts — ItemPickerListTexts (all 23 text keys)
-    ItemPickerList/
-      ItemPickerList.tsx          — virtualised list (react-window VariableSizeList), search, sections, keyboard nav
-      ItemPickerList.types.ts     — ItemPickerListAPI, ItemSelectHandler, ItemPickerListRef
-      ItemPickerList.styles.ts
-      constants.ts                — ITEM_SIZE, ITEMS_PER_PAGE (150), ITEMS_PER_SECTION (4), DEFAULT_HEIGHT (420)
-      types/renderMode.ts         — RENDER_MODES enum
-      hooks/
-        useItemsInSections.tsx    — core state machine: section/folder navigation, async loading, infinite scroll, search
-        useItemsInSections.utils.tsx
-        useFlattenFolders.ts      — resolves nested folder structure
-        useListHeight.ts          — calculates outer/list/offset heights from containerHeight config
-      utils/
-        actionItemsUtils.tsx      — builds action rows in the list
-        createTitleFromTitlePath.ts
-        findSectionById.ts        — exported utility
-        getContextAwareActions.ts
-        getSearchByActionItems.tsx
-        isNavKey.ts
-        resolveSectionId.ts
-        typeguards.utils.ts
-      components/
-        EmptyListMessage.tsx      — empty state with optional "search all folders" CTA
-        ErrorItem.tsx / ErrorMessage.tsx — error state
-        InfiniteLoaderItem.tsx    — loading-more / all-loaded / error-more row
-        ItemPickerListFooter.tsx  — optional refresh button footer
-        ItemPickerListRow.tsx     — react-window row renderer
-        ItemPickerListSkeleton.tsx — initial loading skeleton
-        ListSearchInput.tsx       — search bar with searchBy param chip
-        LoadingItem.tsx / NoMoreItem.tsx
-    ItemPickerLegacy/
-      ItemPickerLegacy.tsx        — @deprecated; uses ItemPickerDropdown + Trigger
-      ItemPickerLegacy.types.ts   — ItemPickerProps (legacy)
-      ItemPicker.spec.tsx         — Jest tests
-    ItemPickerDropdown/
-      ItemPickerDropdown.tsx      — @deprecated internal dropdown for legacy picker
-      ItemPickerDropdown.types.ts
-      ItemPickerDropdown.style.ts
-    ItemPickerTrigger/
-      Trigger.tsx                 — shared trigger button (selected value / placeholder, clear icon, change button)
-      Trigger.types.ts            — ItemPickerTriggerProps
-      Trigger.styles.ts
+ ItemPicker.tsx — default export; router that dispatches to ItemPickerNew or ItemPickerLegacy based on `isNewVersion` prop
+ ItemPicker.styles.ts — minimal wrapper styled-component
+ index.ts — public exports
+ hooks/
+ useDefaultTexts.tsx — resolves all i18n text defaults via react-intl
+ modules.d.ts — ambient module declarations
+ components/
+ ItemPickerNew/
+ ItemPickerNew.tsx — current picker: FormField + Dropdown + Trigger + ItemPickerList
+ ItemPickerNew.types.ts — ItemPickerProps (new), ItemPickerListProps, ItemLoaderConfig, etc.
+ types/
+ actions.types.ts — Action union type (redirect | custom | searchBy | searchIn)
+ baseItemSectionType.types.ts — BaseItemType, BaseSectionType, BaseSectionTypeWithFolders
+ itemPickerListTexts.types.ts — ItemPickerListTexts (all 23 text keys)
+ ItemPickerList/
+ ItemPickerList.tsx — virtualised list (react-window VariableSizeList), search, sections, keyboard nav
+ ItemPickerList.types.ts — ItemPickerListAPI, ItemSelectHandler, ItemPickerListRef
+ ItemPickerList.styles.ts
+ constants.ts — ITEM_SIZE, ITEMS_PER_PAGE (150), ITEMS_PER_SECTION (4), DEFAULT_HEIGHT (420)
+ types/renderMode.ts — RENDER_MODES enum
+ hooks/
+ useItemsInSections.tsx — core state machine: section/folder navigation, async loading, infinite scroll, search
+ useItemsInSections.utils.tsx
+ useFlattenFolders.ts — resolves nested folder structure
+ useListHeight.ts — calculates outer/list/offset heights from containerHeight config
+ utils/
+ actionItemsUtils.tsx — builds action rows in the list
+ createTitleFromTitlePath.ts
+ findSectionById.ts — exported utility
+ getContextAwareActions.ts
+ getSearchByActionItems.tsx
+ isNavKey.ts
+ resolveSectionId.ts
+ typeguards.utils.ts
+ components/
+ EmptyListMessage.tsx — empty state with optional "search all folders" CTA
+ ErrorItem.tsx / ErrorMessage.tsx — error state
+ InfiniteLoaderItem.tsx — loading-more / all-loaded / error-more row
+ ItemPickerListFooter.tsx — optional refresh button footer
+ ItemPickerListRow.tsx — react-window row renderer
+ ItemPickerListSkeleton.tsx — initial loading skeleton
+ ListSearchInput.tsx — search bar with searchBy param chip
+ LoadingItem.tsx / NoMoreItem.tsx
+ ItemPickerLegacy/
+ ItemPickerLegacy.tsx — @deprecated; uses ItemPickerDropdown + Trigger
+ ItemPickerLegacy.types.ts — ItemPickerProps (legacy)
+ ItemPicker.spec.tsx — Vitest tests
+ ItemPickerDropdown/
+ ItemPickerDropdown.tsx — @deprecated internal dropdown for legacy picker
+ ItemPickerDropdown.types.ts
+ ItemPickerDropdown.style.ts
+ ItemPickerTrigger/
+ Trigger.tsx — shared trigger button (selected value / placeholder, clear icon, change button)
+ Trigger.types.ts — ItemPickerTriggerProps
+ Trigger.styles.ts
 ```
 
 ## Public exports
@@ -71,7 +71,7 @@ A polymorphic `forwardRef` component. Renders `ItemPickerNew` when `isNewVersion
 
 ```ts
 type ItemPickerType = <ItemType extends BaseItemType, SectionType extends BaseSectionType>(
-  p: ItemPickerProps | (ItemPickerPropsNew<ItemType, SectionType> & { ref?: ItemPickerListRef })
+ p: ItemPickerProps | (ItemPickerPropsNew<ItemType, SectionType> & { ref?: ItemPickerListRef })
 ) => JSX.Element;
 ```
 
@@ -215,12 +215,12 @@ import ItemPicker from '@synerise/ds-item-picker';
 const [selected, setSelected] = useState<MyItem | undefined>();
 
 <ItemPicker
-  isNewVersion
-  placeholder="Select an item"
-  items={myItems}
-  selectedItem={selected}
-  onChange={setSelected}
-  onClear={() => setSelected(undefined)}
+ isNewVersion
+ placeholder="Select an item"
+ items={myItems}
+ selectedItem={selected}
+ onChange={setSelected}
+ onClear={() => setSelected(undefined)}
 />
 ```
 
@@ -230,11 +230,11 @@ const [selected, setSelected] = useState<MyItem | undefined>();
 import ItemPicker, { type ItemLoaderConfig } from '@synerise/ds-item-picker';
 
 const loaderConfig: ItemLoaderConfig<MyItem> = {
-  limitPerPage: 50,
-  loadItems: async ({ page, limit, searchQuery, sectionId, abortController }) => {
-    const data = await fetchItems({ page, limit, searchQuery, sectionId });
-    return { items: data.results, total: data.total };
-  },
+ limitPerPage: 50,
+ loadItems: async ({ page, limit, searchQuery, sectionId, abortController }) => {
+ const data = await fetchItems({ page, limit, searchQuery, sectionId });
+ return { items: data.results, total: data.total };
+ },
 };
 
 <ItemPicker isNewVersion items={loaderConfig} placeholder="Pick…" onChange={handleChange} />
@@ -244,14 +244,14 @@ const loaderConfig: ItemLoaderConfig<MyItem> = {
 
 ```tsx
 <ItemPicker
-  isNewVersion
-  items={loaderConfig}
-  sections={[
-    { id: 'seg', text: 'Segmentations', folders: [{ id: 'f1', text: 'Folder A' }] },
-  ]}
-  onSectionChange={(section) => console.log('navigated to', section)}
-  onChange={handleChange}
-  placeholder="Pick segmentation"
+ isNewVersion
+ items={loaderConfig}
+ sections={[
+ { id: 'seg', text: 'Segmentations', folders: [{ id: 'f1', text: 'Folder A' }] },
+ ]}
+ onSectionChange={(section) => console.log('navigated to', section)}
+ onChange={handleChange}
+ placeholder="Pick segmentation"
 />
 ```
 
@@ -314,9 +314,9 @@ import { ItemPickerList } from '@synerise/ds-item-picker';
 - **Search action trigger**: typing `/` into the search bar activates the global actions list (`listActions = searchQuery === '/'`).
 - **Infinite scroll**: only active for `ItemLoaderConfig` items in `LIST_ITEMS` render mode. Pages are tracked via `pageToLoad.current`; deduplication relies on the caller returning accurate `total`.
 - **Section/folder rendering modes** (`renderMode.ts`):
-  - `LIST_ITEMS` — flat list
-  - `LIST_ITEMS_IN_SECTIONS` — items grouped under section headers
-  - `LIST_FOLDERS_IN_SECTIONS` — folder tiles (no items loaded yet)
+ - `LIST_ITEMS` — flat list
+ - `LIST_ITEMS_IN_SECTIONS` — items grouped under section headers
+ - `LIST_FOLDERS_IN_SECTIONS` — folder tiles (no items loaded yet)
 - **`ItemPickerLegacy` is marked `@deprecated`** in source with a JSDoc comment on the component itself.
 - **`errorMessage` prop** on `ItemPickerNew` is marked `@deprecated`; prefer `errorText` (from `FormFieldCommonProps`).
 - **Several `ItemPickerTriggerProps` fields are `@deprecated`**: `clear`, `changeButtonLabel`, `clearConfirmTitle`, `yesText`, `noText` — move to `texts` object.

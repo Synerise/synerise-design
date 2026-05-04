@@ -1,4 +1,4 @@
-import { type InputProps } from 'antd/lib/input';
+import { type InputProps } from 'antd';
 import type React from 'react';
 import { type ListProps } from 'react-window';
 

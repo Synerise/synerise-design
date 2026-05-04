@@ -6,14 +6,14 @@
 
 ```
 src/
-  Stepper.tsx          — main component; clones children to inject size/orientation; renders StepDividers between horizontal steps
-  Stepper.types.ts     — StepperProps, StepperOrientation, StepperSize, ORIENTATIONS constant
-  Stepper.styles.ts    — StepperWrapper, StepDivider
-  index.ts             — public exports (Stepper default + StepperProps type)
-  Step/
-    Step.tsx           — step item; handles active/done/warning/validated states, AnimateHeight, tooltip icon
-    Step.types.ts      — StepProps
-    Step.styles.ts     — Step, StepWrapper, StepPrefix, StepNumber, StepName, StepLabel, StepContent
+ Stepper.tsx — main component; clones children to inject size/orientation; renders StepDividers between horizontal steps
+ Stepper.types.ts — StepperProps, StepperOrientation, StepperSize, ORIENTATIONS constant
+ Stepper.styles.ts — StepperWrapper, StepDivider
+ index.ts — public exports (Stepper default + StepperProps type)
+ Step/
+ Step.tsx — step item; handles active/done/warning/validated states, AnimateHeight, tooltip icon
+ Step.types.ts — StepProps
+ Step.styles.ts — Step, StepWrapper, StepPrefix, StepNumber, StepName, StepLabel, StepContent
 ```
 
 ## Public exports
@@ -59,18 +59,18 @@ import Stepper from '@synerise/ds-stepper';
 
 // Horizontal (default)
 <Stepper>
-  <Stepper.Step stepNumber={1} label="Details" done />
-  <Stepper.Step stepNumber={2} label="Settings" active>
-    <p>Step content here</p>
-  </Stepper.Step>
-  <Stepper.Step stepNumber={3} label="Review" />
+ <Stepper.Step stepNumber={1} label="Details" done />
+ <Stepper.Step stepNumber={2} label="Settings" active>
+ <p>Step content here</p>
+ </Stepper.Step>
+ <Stepper.Step stepNumber={3} label="Review" />
 </Stepper>
 
 // Vertical with click handlers
 <Stepper orientation="vertical">
-  <Stepper.Step stepNumber={1} label="Step A" active={step === 0} done={step > 0} onClick={() => setStep(0)}>
-    ...
-  </Stepper.Step>
+ <Stepper.Step stepNumber={1} label="Step A" active={step === 0} done={step > 0} onClick={() => setStep(0)}>
+ ..
+ </Stepper.Step>
 </Stepper>
 ```
 
@@ -93,4 +93,4 @@ import Stepper from '@synerise/ds-stepper';
 - **`wasActive` state** — `Step` tracks whether it was recently active to control `transition-delay` direction (expand vs collapse).
 - **Active step label uses `::before` pseudo-element** — the bold active label is implemented via `data-label` attribute + CSS `content: attr(data-label)` on `::before`, making the actual `<span>` invisible. This prevents layout shifts when the font-weight changes.
 - **`StepProps` not exported** — `StepProps` is not in `index.ts`; consumers cannot type-check `Stepper.Step` props without a deep import.
-- **Test runner is Jest** (not Vitest).
+- **Uses Vitest**.

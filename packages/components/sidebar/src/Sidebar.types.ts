@@ -1,4 +1,4 @@
-import { type CollapseProps } from 'antd/lib/collapse';
+import { type CollapseProps } from 'antd';
 import type { HTMLAttributes, ReactElement, ReactNode } from 'react';
 
 export type SidebarProps = CollapseProps & {

@@ -6,12 +6,12 @@
 
 ```
 src/
-  Status.tsx          — main component; forwardRef wrapper around Tag
-  Status.types.ts     — StatusProps, StatusType
-  Status.styles.ts    — StatusTag styled Tag with type-to-colour mapping
-  index.ts            — public exports
-  __specs__/
-    Status.spec.tsx   — Jest tests
+ Status.tsx — main component; forwardRef wrapper around Tag
+ Status.types.ts — StatusProps, StatusType
+ Status.styles.ts — StatusTag styled Tag with type-to-colour mapping
+ index.ts — public exports
+ __specs__/
+ Status.spec.tsx — Vitest tests
 ```
 
 ## Public exports
@@ -28,20 +28,20 @@ src/
 | `dashed` | `boolean` | — | Renders a dashed border instead of solid |
 | `onClick` | `() => void` | — | Click handler |
 
-`StatusProps` extends `WithHTMLAttributes<HTMLDivElement, ...>` — all standard HTML div attributes are forwarded to the root element.
+`StatusProps` extends `WithHTMLAttributes<HTMLDivElement, ..>` — all standard HTML div attributes are forwarded to the root element.
 
 ### `StatusType`
 
 ```ts
 type StatusType =
-  | 'primary'    // blue-600
-  | 'success'    // green-700
-  | 'warning'    // yellow-700
-  | 'danger'     // red-600
-  | 'info'       // blue-600 (same as primary)
-  | 'disabled'   // grey-500
-  | 'default'    // grey-500
-  | 'custom';    // uses color prop
+ | 'primary' // blue-600
+ | 'success' // green-700
+ | 'warning' // yellow-700
+ | 'danger' // red-600
+ | 'info' // blue-600 (same as primary)
+ | 'disabled' // grey-500
+ | 'default' // grey-500
+ | 'custom'; // uses color prop
 ```
 
 ### `StatusProps`
@@ -72,4 +72,4 @@ import Status from '@synerise/ds-status';
 - **`info` and `primary` both map to `blue-600`** — they are functionally identical in the current colour mapping.
 - **`disabled` and `default` both map to `grey-500`** — functionally identical.
 - **`custom` type**: pass `color` prop for the badge colour; without it the badge renders unstyled (no colour CSS applied).
-- **Uses Jest** (`jest.config.js`) — not yet migrated to Vitest.
+- **Uses Vitest** for testing.

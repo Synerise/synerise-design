@@ -6,25 +6,25 @@
 
 ```
 src/
-  Logic.tsx            — default export; cycles through operators on click
-  Logic.types.ts       — LogicProps, LogicOperator, LogicOperatorValue, LogicSubComponents
-  Logic.style.ts       — styled wrapper with dashed underline and hover colour
-  Matching/
-    Matching.tsx        — inline toggle for matching/not-matching state, supports sentence interpolation
-    Matching.types.ts   — MatchingProps, MatchingTexts
-    Matching.styles.ts  — MatchingWrapper + Toggle styled components
-  Placeholder/
-    Placeholder.tsx     — static display-only placeholder with a ClickM icon
-    Placeholder.types.ts — PlaceholderType { text?: string }
-    Placeholder.styles.ts — PlaceholderContainer styled component
-  index.ts             — public barrel
-  modules.d.ts         — ambient module declarations
+ Logic.tsx — default export; cycles through operators on click
+ Logic.types.ts — LogicProps, LogicOperator, LogicOperatorValue, LogicSubComponents
+ Logic.style.ts — styled wrapper with dashed underline and hover colour
+ Matching/
+ Matching.tsx — inline toggle for matching/not-matching state, supports sentence interpolation
+ Matching.types.ts — MatchingProps, MatchingTexts
+ Matching.styles.ts — MatchingWrapper + Toggle styled components
+ Placeholder/
+ Placeholder.tsx — static display-only placeholder with a ClickM icon
+ Placeholder.types.ts — PlaceholderType { text?: string }
+ Placeholder.styles.ts — PlaceholderContainer styled component
+ index.ts — public barrel
+ modules.d.ts — ambient module declarations
 ```
 
 ## Public exports
 
 ```ts
-export { default }         // Logic (default)
+export { default } // Logic (default)
 export { Matching }
 export { Placeholder }
 export type { LogicOperator, LogicOperatorValue, LogicProps }
@@ -64,7 +64,7 @@ Renders a sentence with an inline clickable toggle that flips between `matching`
 | `sentence` | `string` | — | Optional sentence containing `#MATCHING_TOGGLE#`; the placeholder is replaced with the toggle span inline |
 | `texts` | `Partial<MatchingTexts>` | — | Override default i18n labels |
 | `readOnly` | `boolean` | `false` | Disables click and hover styles |
-| ...htmlAttributes | `React.HTMLAttributes<HTMLDivElement>` | — | Spread onto the wrapper `<div>` |
+| ..htmlAttributes | `React.HTMLAttributes<HTMLDivElement>` | — | Spread onto the wrapper `<div>` |
 
 When `sentence` is omitted the component renders only the toggle span.
 
@@ -96,16 +96,16 @@ import Logic from '@synerise/ds-logic';
 
 // Custom operators
 <Logic
-  value="INCLUDES"
-  options={[{ value: 'INCLUDES', label: 'Includes' }, { value: 'EXCLUDES', label: 'Excludes' }]}
-  onChange={(v) => setValue(v)}
+ value="INCLUDES"
+ options={[{ value: 'INCLUDES', label: 'Includes' }, { value: 'EXCLUDES', label: 'Excludes' }]}
+ onChange={(v) => setValue(v)}
 />
 
 // Matching toggle inside a sentence
 <Logic.Matching
-  matching={isMatching}
-  onChange={(v) => setMatching(v)}
-  sentence="Find all items #MATCHING_TOGGLE# this condition."
+ matching={isMatching}
+ onChange={(v) => setMatching(v)}
+ sentence="Find all items #MATCHING_TOGGLE# this condition."
 />
 
 // Matching toggle standalone

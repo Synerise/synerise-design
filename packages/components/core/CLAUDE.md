@@ -6,54 +6,54 @@
 
 ```
 src/js/
-  index.ts                              — public exports
-  DSProvider/
-    DSProvider.tsx                      — composite root provider
-    LocaleProvider/                     — react-intl IntlProvider wrapper
-      LocaleProvider.tsx
-      LocaleProvider.types.ts           — LocaleProviderProps, IntlMessages, NestedMessages
-      antLocales.ts                     — Ant Design locale mappings (locale string → antd locale object)
-    ThemeProvider/
-      ThemeProvider.tsx                 — styled-components ThemeProvider wrapper
-      theme.ts                          — theme object, useTheme, defaultColorsOrder, themeVariables
-      breakpoints.ts                    — breakpoint definitions (xsmall → xxlarge)
-      variables.ts                      — CSS variables and colour palette values
-  data-format/
-    providers/DataFormatConfigProvider.tsx  — context provider for notation config
-    components/                         — FormattedDate, FormattedDateTime, FormattedNumber, FormattedTime, FormattedRelativeDateTimeFrom/To
-    hooks/
-      useDataFormat.ts                  — main hook: formatValue, formatMultipleValues, getConstants, delimiters
-      useDataFormatConfig.ts            — reads DataFormatConfigContext
-      useDataFormatIntls.ts             — reads DataFormatIntlsContext
-      useDataFormatUtils.ts             — locale/notation utilities
-      useRelativeDateTimeUpdate.ts      — interval-based updater for relative timestamps
-      useSingleIntl.ts                  — creates a standalone IntlShape from a locale string
-    contexts/
-      DataFormatConfigContext.tsx       — holds DataFormatConfig
-      DataFormatIntlsContext.ts         — holds three IntlShape instances (number/date/time)
-    hocs/withDataFormat.tsx             — HOC for class components (injects UseDataFormatProps)
-    types/                              — DataFormatConfig, DataFormatNotationType, etc.
-    constants/                          — DEFAULT_DATA_FORMAT_CONFIG, DATE_CONSTANTS_TARGET_FORMATS
-  toaster/
-    Toaster.tsx                         — thin wrapper around react-hot-toast <Toaster>
-    contexts/ToasterContext.ts          — ToastContextType { options, setOptions }
-    providers/ToasterProvider.tsx       — manages ToasterProps state
-    hooks/useToaster.ts                 — reads ToasterContext
-    constants.ts                        — TOASTER_DEFAULTS
-  DropdownContext/
-    DropdownContext.tsx                 — DropdownContextProps { isOpen, activeIndex, setIsOpen, hideOnItemClick }
-    DropdownContextProvider.tsx         — thin Provider wrapper
-    useDropdown.ts                      — reads DropdownContext
-  mediaQuery/
-    mediaQuery.ts                       — MEDIA_FROM, MEDIA_TO, MEDIA_ONLY tagged-template helpers
-  testing/
-    renderWithProvider/renderWithProvider.tsx  — RTL render() wrapped in DSProvider
-    sleep.ts                            — Promise-based sleep utility
-  style.ts                              — Less import entry point
+ index.ts — public exports
+ DSProvider/
+ DSProvider.tsx — composite root provider
+ LocaleProvider/ — react-intl IntlProvider wrapper
+ LocaleProvider.tsx
+ LocaleProvider.types.ts — LocaleProviderProps, IntlMessages, NestedMessages
+ antLocales.ts — Ant Design locale mappings (locale string → antd locale object)
+ ThemeProvider/
+ ThemeProvider.tsx — styled-components ThemeProvider wrapper
+ theme.ts — theme object, useTheme, defaultColorsOrder, themeVariables
+ breakpoints.ts — breakpoint definitions (xsmall → xxlarge)
+ variables.ts — CSS variables and colour palette values
+ data-format/
+ providers/DataFormatConfigProvider.tsx — context provider for notation config
+ components/ — FormattedDate, FormattedDateTime, FormattedNumber, FormattedTime, FormattedRelativeDateTimeFrom/To
+ hooks/
+ useDataFormat.ts — main hook: formatValue, formatMultipleValues, getConstants, delimiters
+ useDataFormatConfig.ts — reads DataFormatConfigContext
+ useDataFormatIntls.ts — reads DataFormatIntlsContext
+ useDataFormatUtils.ts — locale/notation utilities
+ useRelativeDateTimeUpdate.ts — interval-based updater for relative timestamps
+ useSingleIntl.ts — creates a standalone IntlShape from a locale string
+ contexts/
+ DataFormatConfigContext.tsx — holds DataFormatConfig
+ DataFormatIntlsContext.ts — holds three IntlShape instances (number/date/time)
+ hocs/withDataFormat.tsx — HOC for class components (injects UseDataFormatProps)
+ types/ — DataFormatConfig, DataFormatNotationType, etc.
+ constants/ — DEFAULT_DATA_FORMAT_CONFIG, DATE_CONSTANTS_TARGET_FORMATS
+ toaster/
+ Toaster.tsx — thin wrapper around react-hot-toast <Toaster>
+ contexts/ToasterContext.ts — ToastContextType { options, setOptions }
+ providers/ToasterProvider.tsx — manages ToasterProps state
+ hooks/useToaster.ts — reads ToasterContext
+ constants.ts — TOASTER_DEFAULTS
+ DropdownContext/
+ DropdownContext.tsx — DropdownContextProps { isOpen, activeIndex, setIsOpen, hideOnItemClick }
+ DropdownContextProvider.tsx — thin Provider wrapper
+ useDropdown.ts — reads DropdownContext
+ mediaQuery/
+ mediaQuery.ts — MEDIA_FROM, MEDIA_TO, MEDIA_ONLY tagged-template helpers
+ testing/
+ renderWithProvider/renderWithProvider.tsx — RTL render() wrapped in DSProvider
+ sleep.ts — Promise-based sleep utility
+ style.ts — Less import entry point
 src/i18n/
-  en.json, es.json, pl.json, pt.json   — bundled translation strings
+ en.json, es.json, pl.json, pt.json — bundled translation strings
 src/style/
-  core.less, colors.less, variables.less  — global styles and CSS custom properties
+ core.less, colors.less, variables.less — global styles and CSS custom properties
 ```
 
 ## Public exports
@@ -82,12 +82,12 @@ Root provider. Must wrap the entire application. Composes `LocaleProvider` → `
 The default `ThemePropsVars` object. Passed automatically via `DSProvider`; also importable for use outside styled-components (e.g. inline styles, tests).
 
 ```ts
-theme.palette['blue-600']        // '#0064D6'
-theme.variables['--ds-color-...'] // CSS variable value
-theme.space                       // [0, 8, 12, 16, 24, 32, 48, 64]
-theme.breakpoints                 // ['768px', '960px', '1280px']
-theme.colorsOrder                 // array of 21 colour hex values in display order
-theme.variable('--ds-name')       // looks up variables by CSS var name
+theme.palette['blue-600'] // '#0064D6'
+theme.variables['--ds-color-..'] // CSS variable value
+theme.space // [0, 8, 12, 16, 24, 32, 48, 64]
+theme.breakpoints // ['768px', '960px', '1280px']
+theme.colorsOrder // array of 21 colour hex values in display order
+theme.variable('--ds-name') // looks up variables by CSS var name
 ```
 
 ### `useTheme`
@@ -112,7 +112,7 @@ TypeScript helper types for styled-components. Use `ThemeProps` or `WithTheme` i
 
 ```ts
 const Box = styled.div<ThemeProps>`
-  color: ${({ theme }) => theme.palette['blue-600']};
+ color: ${({ theme }) => theme.palette['blue-600']};
 `;
 ```
 
@@ -130,8 +130,8 @@ Breakpoints: `xsmall` (≤320px), `small` (321–768px), `medium` (769–960px),
 
 ```ts
 const Sidebar = styled.div`
-  width: 300px;
-  ${mediaQuery.to.medium`width: 100%;`}
+ width: 300px;
+ ${mediaQuery.to.medium`width: 100%;`}
 `;
 ```
 
@@ -245,9 +245,9 @@ RTL `render()` wrapped in `DSProvider` with sensible test defaults. Use in compo
 ## Implementation notes
 
 - **`toasterProps` must be explicitly set** to enable the `<Toaster>` DOM element inside `DSProvider`; passing `false` (the default) skips rendering `<Toaster>` while still mounting `ToasterProvider`.
-- **`ThemeProvider` merges with defaults**: `{ ...dsTheme, ...theme }` — partial overrides are safe; you cannot remove keys from the theme object.
+- **`ThemeProvider` merges with defaults**: `{ ..dsTheme, ..theme }` — partial overrides are safe; you cannot remove keys from the theme object.
 - **`breakpoints.xxlarge.max = 0`** — intentionally 0; `MEDIA_FROM.xxlarge` produces an unbounded min-width query.
 - **Nested i18n messages** are flattened by `LocaleProvider.utils.ts` before passing to `IntlProvider`; keys use dot-notation after flattening.
 - **`useDataFormat` uses `eslint-disable @typescript-eslint/no-explicit-any`** in `formatValue` and `formatMultipleValues` to handle the overload dispatch pattern.
 - **Data format contexts are split**: `DataFormatConfigContext` holds the raw config; `DataFormatIntlsContext` holds three `IntlShape` instances (number/date/time) derived from that config. Splitting them avoids re-creating all intl instances when only one notation changes.
-- **Uses Jest** (`jest.config.js`) — not yet migrated to Vitest.
+- **Uses Vitest** for testing.

@@ -1,4 +1,4 @@
-import { type DrawerProps as AntdDrawerProps } from 'antd/lib/drawer';
+import { type DrawerProps as AntdDrawerProps } from 'antd';
 import { type PropsWithChildren } from 'react';
 
 export interface DrawerProps extends PropsWithChildren<

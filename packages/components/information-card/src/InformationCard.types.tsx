@@ -1,8 +1,8 @@
 import type { ReactNode } from 'react';
 
-import { type Color, type Size } from '@synerise/ds-avatar/dist/Avatar.types';
+import { type Color, type Size } from '@synerise/ds-avatar';
 import { type IconProps } from '@synerise/ds-icon';
-import { type SubtleTextAreaProps } from '@synerise/ds-subtle-form/dist/Elements/TextArea/TextArea.types';
+import { type SubtleTextAreaProps } from '@synerise/ds-subtle-form';
 import type { WithHTMLAttributes } from '@synerise/ds-utils';
 
 import { type InformationCardActionsProps } from './InformationCardActions/InformationCardActions.types';

@@ -1,5 +1,7 @@
-import type { AutoCompleteProps as OriginalProps } from 'antd/lib/auto-complete';
-import type { RefSelectProps } from 'antd/lib/select';
+import {
+  type AutoCompleteProps as OriginalProps,
+  type RefSelectProps,
+} from 'antd';
 import type { MutableRefObject, ReactNode } from 'react';
 
 import type { FormFieldCommonProps } from '@synerise/ds-form-field';

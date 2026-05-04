@@ -4,12 +4,12 @@
 ## Package structure
 ```
 src/
-  Pagination.tsx    — main component, wraps AntPagination with custom itemRender
-  index.ts          — re-exports default Pagination
-  modules.d.ts      — imports @testing-library/jest-dom for jest augmentation
-  style/
-    index.less      — imports antd pagination/select styles, ds-core vars, ds-select mixin, then pagination.less
-    pagination.less — DS-specific overrides: spacing, icon swap on jump buttons, item styling, size-changer width
+ Pagination.tsx — main component, wraps AntPagination with custom itemRender
+ index.ts — re-exports default Pagination
+ modules.d.ts — imports @testing-library/jest-dom for jest augmentation
+ style/
+ index.less — imports antd pagination/select styles, ds-core vars, ds-select mixin, then pagination.less
+ pagination.less — DS-specific overrides: spacing, icon swap on jump buttons, item styling, size-changer width
 ```
 
 ## Public exports
@@ -43,11 +43,11 @@ import '@synerise/ds-pagination/dist/style/index.css';
 
 // With size changer and quick jumper
 <Pagination
-  current={page}
-  total={5000}
-  showSizeChanger
-  showQuickJumper
-  onChange={(page, pageSize) => handleChange(page, pageSize)}
+ current={page}
+ total={5000}
+ showSizeChanger
+ showQuickJumper
+ onChange={(page, pageSize) => handleChange(page, pageSize)}
 />
 ```
 
@@ -69,5 +69,5 @@ import '@synerise/ds-pagination/dist/style/index.css';
 ## Implementation notes
 - `itemRender` is memoized with `useCallback(fn, [])` — it never changes identity after mount.
 - The `locale` prop is partially overridden: `{ page: '' }` is the base, and any consumer-provided `locale` is spread on top, so consumers can still override other locale strings.
-- Uses Jest (not Vitest) — `jest.config.js` present, test file uses `jest.fn()`.
+- Uses Jest (not Vitest) — `jest.config.js` present, test file uses `vi.fn()`.
 - The `@synerise/ds-select` package is listed as a dependency solely for its Less mixin import in styles; it adds no runtime JS dependency.

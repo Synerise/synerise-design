@@ -6,31 +6,31 @@
 
 ```
 src/
-  ManageableList.tsx                    — main component; renders item list + add button + drag wrapper
-  ManageableList.types.ts               — ManageableListProps, ItemProps, Texts, ListType, ExpansionBehaviour, AdditionalAction
-  ManageableList.styles.ts              — ManageableListContainer, ShowMoreButton
-  index.ts                              — public exports
-  Item/
-    Item.tsx                            — router: delegates to SimpleItem / ContentItem / FilterItem / BlankItem
-    DraggableItem.tsx                   — wraps Item in @synerise/ds-sortable DraggableItem
-    SimpleItem/                         — DEFAULT list type: name + optional icon/tag + actions
-    ContentItem/                        — CONTENT / CONTENT_LARGE type: expandable header + body
-    ContentItem/ContentItemHeader.tsx   — header with expand toggle, drag handle, meta, actions
-    FilterItem/                         — FILTER type: checkbox select + dropdown menu
-    BlankItem/                          — BLANK type: custom render function; full layout control
-    ItemName/                           — name display with search-query highlighting
-    ItemNameLarge/                      — name + unique key + tags (content-large only)
-    ItemMeta/                           — creation date + user avatar
-    ItemActions/                        — edit / duplicate / delete icon buttons with tooltips
-  AddItem/                              — add button for CONTENT / CONTENT_LARGE types (Creator button)
-  AddBlankItem/                         — add button for BLANK type (divider + button)
-  AddItemWithName/                      — inline name-input add for DEFAULT type
-  hooks/
-    useTexts.tsx                        — i18n defaults via react-intl
-  __specs__/
-    ManageableList.spec.tsx             — default list type tests
-    ManageableListWithContentItems.spec.tsx
-    ManageableListWithFilterItems.spec.tsx
+ ManageableList.tsx — main component; renders item list + add button + drag wrapper
+ ManageableList.types.ts — ManageableListProps, ItemProps, Texts, ListType, ExpansionBehaviour, AdditionalAction
+ ManageableList.styles.ts — ManageableListContainer, ShowMoreButton
+ index.ts — public exports
+ Item/
+ Item.tsx — router: delegates to SimpleItem / ContentItem / FilterItem / BlankItem
+ DraggableItem.tsx — wraps Item in @synerise/ds-sortable DraggableItem
+ SimpleItem/ — DEFAULT list type: name + optional icon/tag + actions
+ ContentItem/ — CONTENT / CONTENT_LARGE type: expandable header + body
+ ContentItem/ContentItemHeader.tsx — header with expand toggle, drag handle, meta, actions
+ FilterItem/ — FILTER type: checkbox select + dropdown menu
+ BlankItem/ — BLANK type: custom render function; full layout control
+ ItemName/ — name display with search-query highlighting
+ ItemNameLarge/ — name + unique key + tags (content-large only)
+ ItemMeta/ — creation date + user avatar
+ ItemActions/ — edit / duplicate / delete icon buttons with tooltips
+ AddItem/ — add button for CONTENT / CONTENT_LARGE types (Creator button)
+ AddBlankItem/ — add button for BLANK type (divider + button)
+ AddItemWithName/ — inline name-input add for DEFAULT type
+ hooks/
+ useTexts.tsx — i18n defaults via react-intl
+ __specs__/
+ ManageableList.spec.tsx — default list type tests
+ ManageableListWithContentItems.spec.tsx
+ ManageableListWithFilterItems.spec.tsx
 ```
 
 ## Public exports
@@ -134,24 +134,24 @@ import { ListType } from '@synerise/ds-manageable-list';
 
 // Default list (with inline add)
 <ManageableList
-  type={ListType.DEFAULT}
-  items={items}
-  loading={false}
-  visibleItemsLimit={5}
-  onItemAdd={({ name }) => addItem(name)}
-  onItemRemove={({ id }) => removeItem(id)}
-  onItemEdit={({ id, name }) => editItem(id, name)}
-  onItemSelect={({ id }) => selectItem(id)}
-  onChangeOrder={(newOrder) => setItems(newOrder)}
-  selectedItemId={activeId}
+ type={ListType.DEFAULT}
+ items={items}
+ loading={false}
+ visibleItemsLimit={5}
+ onItemAdd={({ name }) => addItem(name)}
+ onItemRemove={({ id }) => removeItem(id)}
+ onItemEdit={({ id, name }) => editItem(id, name)}
+ onItemSelect={({ id }) => selectItem(id)}
+ onChangeOrder={(newOrder) => setItems(newOrder)}
+ selectedItemId={activeId}
 />
 
 // Content list (expandable)
 <ManageableList
-  type={ListType.CONTENT}
-  items={contentItems}
-  loading={false}
-  onExpand={(id, isExpanded) => handleExpand(id, isExpanded)}
+ type={ListType.CONTENT}
+ items={contentItems}
+ loading={false}
+ onExpand={(id, isExpanded) => handleExpand(id, isExpanded)}
 />
 ```
 
@@ -179,4 +179,4 @@ Merges `react-intl` `FormattedMessage` defaults with `texts` prop overrides. Ret
 - **`ExactlyOne` constraint** — passing both `maxToShowItems` and `visibleItemsLimit` causes a TypeScript error. Only one should be used.
 - **`Item.types.ts` re-exports `Props`** — `Props` is re-exported as `@deprecated` alias for `ManageableListItemProps`; do not use.
 - **README inaccuracies** — README documents `listType` (should be `type`), `styles` (should be `style`), `activateItem` text key (should be `activateItemTitle`); many `ItemProps` fields and `visibleItemsLimit` are missing; `maxToShowItems` is documented without the deprecation warning.
-- **Test runner is Jest** (not Vitest).
+- **Uses Vitest**.

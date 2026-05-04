@@ -1,4 +1,4 @@
-import Modal from 'antd/lib/modal';
+import { Modal } from 'antd';
 import styled, { css } from 'styled-components';
 
 import ScrollbarBase from '@synerise/ds-scrollbar';

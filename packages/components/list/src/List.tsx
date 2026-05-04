@@ -1,5 +1,4 @@
-import AntdList from 'antd/lib/list';
-import { type RadioGroupProps } from 'antd/lib/radio';
+import { List as AntdList, type RadioGroupProps } from 'antd';
 import React, { type ReactNode } from 'react';
 import { v4 as uuid } from 'uuid';
 

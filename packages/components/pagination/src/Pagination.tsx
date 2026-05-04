@@ -1,4 +1,4 @@
-import AntPagination, { type PaginationProps } from 'antd/lib/pagination';
+import { Pagination as AntPagination, type PaginationProps } from 'antd';
 import React, { useCallback } from 'react';
 
 import Button from '@synerise/ds-button';

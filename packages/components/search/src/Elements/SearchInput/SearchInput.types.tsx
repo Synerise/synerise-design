@@ -1,4 +1,4 @@
-import type { InputProps } from 'antd/lib/input';
+import type { InputProps } from 'antd';
 import type { KeyboardEvent, ReactNode } from 'react';
 
 import type { TooltipProps } from '@synerise/ds-tooltip';

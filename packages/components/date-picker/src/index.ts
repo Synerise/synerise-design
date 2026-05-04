@@ -7,3 +7,8 @@ export { default as DayPicker } from './Elements/DayPicker/DayPicker';
 export { default as TimePicker } from './Elements/TimePicker/TimePicker';
 
 export type { DatePickerProps } from './DatePicker.types';
+
+export { default as datePickerFormat } from './format';
+export { default as localeUtils } from './localeUtils';
+export * from './fns';
+export { getDefaultTexts } from './utils/getDefaultTexts';

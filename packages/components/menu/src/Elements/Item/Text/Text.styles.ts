@@ -1,4 +1,4 @@
-import MenuItem from 'antd/lib/menu/MenuItem';
+import { Menu } from 'antd';
 import type React from 'react';
 import styled, {
   type FlattenSimpleInterpolation,
@@ -93,7 +93,7 @@ const applySizeStyles = (props: WrapperProps): FlattenSimpleInterpolation => {
   }
   return css``;
 };
-export const Wrapper = styled(MenuItem)<WrapperProps>`
+export const Wrapper = styled(Menu.Item)<WrapperProps>`
   &&& {
     ${(props): string | false =>
       !props.description &&
@@ -130,6 +130,7 @@ export const Wrapper = styled(MenuItem)<WrapperProps>`
       display: flex;
       flex-grow: 1;
       max-width: 100%;
+      overflow: visible;
     }
 
     &.ant-menu-item-only-child,

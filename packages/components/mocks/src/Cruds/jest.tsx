@@ -1,6 +1,6 @@
 import React from 'react';
 
-import type { CrudsProps } from '@synerise/ds-cruds/dist/Cruds.types';
+import type { CrudsProps } from '@synerise/ds-cruds';
 
 export type MockCrudsProps = CrudsProps & {
   'data-testid'?: string;

@@ -1,4 +1,4 @@
-import Table from 'antd/lib/table';
+import { Table } from 'antd';
 import compact from 'lodash.compact';
 import isEqual from 'lodash.isequal';
 import React, { useCallback, useEffect, useMemo } from 'react';

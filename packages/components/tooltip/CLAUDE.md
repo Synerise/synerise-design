@@ -6,16 +6,16 @@
 
 ```
 src/
-  Tooltip.tsx         — default export; main component (forwardRef wrapper around ds-popover)
-  Tooltip.types.ts    — TooltipProps, TooltipContentProps, TooltipTypes
-  Tooltip.const.ts    — flip/shift/transition constants passed to ds-popover
-  Tooltip.utils.ts    — getOffsetConfig (mainAxis px per offset value), getTransitionConfig (opacity fade)
-  Tooltip.styles.tsx  — all styled-components (TooltipComponent, TooltipContent, TooltipTitle, etc.)
-  TooltipContent.tsx  — internal component that renders structured tooltip body
-  index.ts            — re-exports default + all types
-  modules.d.ts        — module declaration shim
-  __specs__/
-    Tooltip.spec.tsx  — Jest / Testing Library tests
+ Tooltip.tsx — default export; main component (forwardRef wrapper around ds-popover)
+ Tooltip.types.ts — TooltipProps, TooltipContentProps, TooltipTypes
+ Tooltip.const.ts — flip/shift/transition constants passed to ds-popover
+ Tooltip.utils.ts — getOffsetConfig (mainAxis px per offset value), getTransitionConfig (opacity fade)
+ Tooltip.styles.tsx — all styled-components (TooltipComponent, TooltipContent, TooltipTitle, etc.)
+ TooltipContent.tsx — internal component that renders structured tooltip body
+ index.ts — re-exports default + all types
+ modules.d.ts — module declaration shim
+ __specs__/
+ Tooltip.spec.tsx — Vitest / Testing Library tests
 ```
 
 ## Public exports
@@ -60,37 +60,37 @@ import type { TooltipProps } from '@synerise/ds-tooltip';
 
 // Simple tooltip
 <Tooltip title="Save changes">
-  <button>Save</button>
+ <button>Save</button>
 </Tooltip>
 
 // Large type with description + footer button
 <Tooltip
-  type="largeSimple"
-  title="Feature name"
-  description="A longer explanation of what this feature does."
-  button={<Button type="ghost-white">Learn more</Button>}
+ type="largeSimple"
+ title="Feature name"
+ description="A longer explanation of what this feature does."
+ button={<Button type="ghost-white">Learn more</Button>}
 >
-  <Icon component={<InfoM />} />
+ <Icon component={<InfoM />} />
 </Tooltip>
 
 // Keyboard shortcut hint
 <Tooltip title="Submit" shortCuts={[<KeyboardEnterM height={18} />, '⌘']}>
-  <button>Submit</button>
+ <button>Submit</button>
 </Tooltip>
 
 // Scrollable description (long text)
 <Tooltip type="largeScrollable" title="Details" description={longText}>
-  <span>Hover me</span>
+ <span>Hover me</span>
 </Tooltip>
 
 // Custom render — bypasses all structured props
 <Tooltip render={() => <InformationCard asTooltip title="Title" />}>
-  <span>Hover me</span>
+ <span>Hover me</span>
 </Tooltip>
 
 // Click trigger with auto-hide after 2 s
 <Tooltip title="Copied!" trigger="click" timeToHideAfterClick={2000}>
-  <button>Copy</button>
+ <button>Copy</button>
 </Tooltip>
 ```
 

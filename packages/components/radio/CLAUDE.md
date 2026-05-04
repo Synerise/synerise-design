@@ -6,14 +6,14 @@
 
 ```
 src/
-  Radio.tsx          — main component + Group + Button composition
-  Radio.types.ts     — RadioProps, RadioGroupProps, deprecated Props alias
-  Radio.styles.tsx   — styled-components
-  index.ts           — public exports
-  style/
-    index.less       — Less styles (imported at runtime)
-  __specs__/
-    Radio.spec.tsx   — Jest tests
+ Radio.tsx — main component + Group + Button composition
+ Radio.types.ts — RadioProps, RadioGroupProps, deprecated Props alias
+ Radio.styles.tsx — styled-components
+ index.ts — public exports
+ style/
+ index.less — Less styles (imported at runtime)
+ __specs__/
+ Radio.spec.tsx — Vitest tests
 ```
 
 ## Public exports
@@ -63,14 +63,14 @@ import Radio from '@synerise/ds-radio';
 
 // Basic radio with label and description
 <Radio.Group value={selected} onChange={(e) => setSelected(e.target.value)}>
-  <Radio value="a" label="Option A" description="Some extra context" />
-  <Radio value="b" label="Option B" />
+ <Radio value="a" label="Option A" description="Some extra context" />
+ <Radio value="b" label="Option B" />
 </Radio.Group>
 
 // Full-width button group
 <Radio.Group value={tab} onChange={(e) => setTab(e.target.value)} fullWidth big>
-  <Radio.Button value="list">List</Radio.Button>
-  <Radio.Button value="grid">Grid</Radio.Button>
+ <Radio.Button value="list">List</Radio.Button>
+ <Radio.Button value="grid">Grid</Radio.Button>
 </Radio.Group>
 
 // Shorthand options
@@ -99,4 +99,4 @@ Less overrides in `src/style/index.less` (imported at runtime).
 - **`label` vs `children`**: `label` takes precedence — if `label` is set, `children` is ignored entirely. `children` is marked `@deprecated` in the type file.
 - **`Radio.Button` is unmodified**: `Radio.Button = AntdRadio.Button` with no custom styling or props.
 - **`AdditionalData` styled-component** is marked `@deprecated` in its source comment but is still the live wrapper div for `Description` — the comment is misleading.
-- **Tests use Jest** (`jest.config.js`) — not yet migrated to Vitest.
+- **Uses Vitest** for testing.

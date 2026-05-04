@@ -1,7 +1,6 @@
 import React, { type ReactNode, useState } from 'react';
 
-import SubtleForm from '@synerise/ds-subtle-form';
-import { type SubtleTextAreaProps } from '@synerise/ds-subtle-form/dist/Elements/TextArea/TextArea.types';
+import SubtleForm, { type SubtleTextAreaProps } from '@synerise/ds-subtle-form';
 
 import * as S from '../InformationCard.styles';
 

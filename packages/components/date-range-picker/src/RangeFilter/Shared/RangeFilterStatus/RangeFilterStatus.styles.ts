@@ -2,8 +2,10 @@ import styled from 'styled-components';
 
 import { Creator } from '@synerise/ds-button';
 import { ButtonLabel } from '@synerise/ds-button/dist/Button.styles';
-import { type StyledContentItem } from '@synerise/ds-manageable-list';
-import DSContentItem from '@synerise/ds-manageable-list/dist/Item/ContentItem/ContentItem';
+import {
+  ContentItem as DSContentItem,
+  type StyledContentItem,
+} from '@synerise/ds-manageable-list';
 
 export const ContentItem: StyledContentItem = styled(DSContentItem)`
   margin-bottom: 0;

@@ -6,23 +6,23 @@
 
 ```
 src/
-  Menu.tsx                           — class component; mounts AntdMenu, handles dataSource / children / pagination
-  Menu.types.ts                      — AntdMenuProps, MenuItemProps, SubMenuProps, MenuTexts, Copyable, ItemType, ItemSize, VisibilityTrigger enums
-  Menu.styles.ts                     — AntdMenu styled wrapper with ordered/asDropdownMenu/asInfoCardContainer variants
-  index.ts                           — public exports + MenuStyles namespace
-  Elements/
-    Item/MenuItem.tsx                — primary item renderer; routes to Text/Select/Danger sub-variants
-    Item/Text/                       — default item type
-    Item/Select/                     — checkbox-style item type
-    Item/Danger/                     — destructive item type (red text)
-    Item/SubmenuText/                — item used inside sub-menus
-    SubMenu/SubMenu.tsx              — expandable sub-menu with collapsible children
-    Breadcrumb/Breadcrumb.tsx        — breadcrumb trail component
-    Header/Header.tsx                — non-interactive section heading
-    Divider/Divider.tsx              — visual separator
-  style/index.less                   — Ant Design menu overrides
-  __specs__/
-    Menu.spec.tsx                    — Jest tests
+ Menu.tsx — class component; mounts AntdMenu, handles dataSource / children / pagination
+ Menu.types.ts — AntdMenuProps, MenuItemProps, SubMenuProps, MenuTexts, Copyable, ItemType, ItemSize, VisibilityTrigger enums
+ Menu.styles.ts — AntdMenu styled wrapper with ordered/asDropdownMenu/asInfoCardContainer variants
+ index.ts — public exports + MenuStyles namespace
+ Elements/
+ Item/MenuItem.tsx — primary item renderer; routes to Text/Select/Danger sub-variants
+ Item/Text/ — default item type
+ Item/Select/ — checkbox-style item type
+ Item/Danger/ — destructive item type (red text)
+ Item/SubmenuText/ — item used inside sub-menus
+ SubMenu/SubMenu.tsx — expandable sub-menu with collapsible children
+ Breadcrumb/Breadcrumb.tsx — breadcrumb trail component
+ Header/Header.tsx — non-interactive section heading
+ Divider/Divider.tsx — visual separator
+ style/index.less — Ant Design menu overrides
+ __specs__/
+ Menu.spec.tsx — Vitest tests
 ```
 
 ## Public exports
@@ -96,7 +96,7 @@ Ant Design ItemGroup (via `S.AntdMenu.ItemGroup`).
 Namespace object containing all internal styled-component exports for consumers who need to override styles:
 
 ```ts
-MenuStyles.MenuStyles   // main menu wrapper styles
+MenuStyles.MenuStyles // main menu wrapper styles
 MenuStyles.Breadcrumb
 MenuStyles.Header
 MenuStyles.ItemDanger
@@ -124,16 +124,16 @@ import type { MenuItemProps } from '@synerise/ds-menu';
 
 // children mode (compound)
 <Menu>
-  <Menu.Header>Section</Menu.Header>
-  <Menu.Item text="Item 1" prefixel={<Icon component={<EditM />} />} />
-  <Menu.Divider />
-  <Menu.Item text="Danger" type="danger" />
+ <Menu.Header>Section</Menu.Header>
+ <Menu.Item text="Item 1" prefixel={<Icon component={<EditM />} />} />
+ <Menu.Divider />
+ <Menu.Item text="Danger" type="danger" />
 </Menu>
 
 // Copy with new API
 <Menu.Item
-  text="Copy me"
-  copyable={{ copyValue: 'clipboard text', copiedLabel: 'Copied!' }}
+ text="Copy me"
+ copyable={{ copyValue: 'clipboard text', copiedLabel: 'Copied!' }}
 />
 ```
 
@@ -157,4 +157,4 @@ import type { MenuItemProps } from '@synerise/ds-menu';
 - **`maxToShowItems` with `children`** — when using `children` mode (not `dataSource`), pagination slices `Children.toArray(children)` by index, so any non-item children (e.g. `Menu.Header`) count against the limit.
 - **Deprecated copy props** — `copyValue`, `copyHint`, `copyTooltip`, `timeToHideTooltip`, `tooltipProps` on `MenuItemProps` are all `@deprecated`; use `copyable: Copyable` instead.
 - **`asDropdownwMenu` typo in README** — the README documents `asDropdownwMenu` (extra `w`) but the actual prop name is `asDropdownMenu`.
-- **Test runner is Jest** (not Vitest).
+- **Uses Vitest**.

@@ -6,15 +6,15 @@
 
 ```
 src/
-  FormatPicker.tsx              — main component; trigger button + Dropdown shell
-  FomartPicker.types.ts         — all types (NOTE: filename typo: Fomart vs Format)
-  index.ts                      — public exports
-  FormatSettings/
-    FormatSettings.tsx          — dropdown overlay: format buttons, currency picker, checkboxes, footer
-    FormatSettings.types.ts     — FormatSettingsProps (internal)
-    FormatSettings.styles.ts    — all styled components for the settings panel
-  __specs__/
-    FormatPicker.spec.tsx       — Jest tests (render + open + currency change)
+ FormatPicker.tsx — main component; trigger button + Dropdown shell
+ FomartPicker.types.ts — all types (NOTE: filename typo: Fomart vs Format)
+ index.ts — public exports
+ FormatSettings/
+ FormatSettings.tsx — dropdown overlay: format buttons, currency picker, checkboxes, footer
+ FormatSettings.types.ts — FormatSettingsProps (internal)
+ FormatSettings.styles.ts — all styled components for the settings panel
+ __specs__/
+ FormatPicker.spec.tsx — Vitest tests (render + open + currency change)
 ```
 
 ## Public exports
@@ -81,22 +81,22 @@ import FormatPicker from '@synerise/ds-format-picker';
 import type { FormattingValue } from '@synerise/ds-format-picker';
 
 const [format, setFormat] = useState<FormattingValue>({
-  dataFormat: 'numeric',
-  currency: 'USD',
-  useSeparator: false,
-  compactNumbers: false,
-  fixedLength: 2,
+ dataFormat: 'numeric',
+ currency: 'USD',
+ useSeparator: false,
+ compactNumbers: false,
+ fixedLength: 2,
 });
 
 <FormatPicker
-  format={format}
-  value={19000.7}
-  onDataFormatChange={(dataFormat) => setFormat((f) => ({ ...f, dataFormat }))}
-  onCurrencyChange={(currency) => setFormat((f) => ({ ...f, currency }))}
-  onUseSeparatorChange={(useSeparator) => setFormat((f) => ({ ...f, useSeparator }))}
-  onCompactNumbersChange={(compactNumbers) => setFormat((f) => ({ ...f, compactNumbers }))}
-  onFixedLengthChange={(fixedLength) => setFormat((f) => ({ ...f, fixedLength }))}
-  onSetDefault={() => setFormat(defaultFormat)}
+ format={format}
+ value={19000.7}
+ onDataFormatChange={(dataFormat) => setFormat((f) => ({ ..f, dataFormat }))}
+ onCurrencyChange={(currency) => setFormat((f) => ({ ..f, currency }))}
+ onUseSeparatorChange={(useSeparator) => setFormat((f) => ({ ..f, useSeparator }))}
+ onCompactNumbersChange={(compactNumbers) => setFormat((f) => ({ ..f, compactNumbers }))}
+ onFixedLengthChange={(fixedLength) => setFormat((f) => ({ ..f, fixedLength }))}
+ onSetDefault={() => setFormat(defaultFormat)}
 />
 ```
 
@@ -124,4 +124,4 @@ const [format, setFormat] = useState<FormattingValue>({
 - **`currenciesConfig` default** is `DEFAULT_CURRENCIES_CONFIG` defined in `FormatSettings.tsx`: USD, EUR, PLN, JPY. Not exported.
 - **`CurrencyType` is typed as `string`** (not a union of specific codes). The README's `USD | EUR | PLN | JPY` is only the default config list, not a type constraint.
 - **Filename typo** — the types file is `FomartPicker.types.ts` (missing `t`). The import in `index.ts` matches the typo, so it works, but it should be fixed.
-- **Test runner is Jest** (not Vitest).
+- **Uses Vitest**.

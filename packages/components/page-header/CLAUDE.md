@@ -4,29 +4,29 @@
 ## Package structure
 ```
 src/
-  PageHeader.tsx          — root component, composes all sub-components
-  PageHeader.types.ts     — PageHeaderProps type definition
-  PageHeader.styles.ts    — MainContainer, PageHeaderContainer, and other styled primitives; re-exports sub-component styles for backwards compatibility
-  PageHeaderBack/
-    PageHeaderBack.tsx    — ghost button with ArrowLeftM icon (or custom goBackIcon)
-    PageHeaderBack.styles.ts
-    index.ts
-  PageHeaderClamp/
-    PageHeaderClamp.tsx   — title area with ellipsis clamping and optional Tooltip + icon
-    PageHeaderClamp.styles.ts
-    index.ts
-  PageHeaderInlineEdit/
-    PageHeaderInlineEdit.tsx  — wraps @synerise/ds-inline-edit with the inlineEdit config object
-    PageHeaderInlineEdit.styles.ts
-    index.ts
-  PageHeaderRightSide/
-    PageHeaderRightSide.tsx   — flex right slot for rightSide content + optional close (CloseM) button
-    PageHeaderRightSide.styles.ts
-    index.ts
-  __specs__/
-    PageHeader.spec.tsx   — Jest/React Testing Library unit tests
-  modules.d.ts            — module declaration shim
-  index.ts                — public exports
+ PageHeader.tsx — root component, composes all sub-components
+ PageHeader.types.ts — PageHeaderProps type definition
+ PageHeader.styles.ts — MainContainer, PageHeaderContainer, and other styled primitives; re-exports sub-component styles for backwards compatibility
+ PageHeaderBack/
+ PageHeaderBack.tsx — ghost button with ArrowLeftM icon (or custom goBackIcon)
+ PageHeaderBack.styles.ts
+ index.ts
+ PageHeaderClamp/
+ PageHeaderClamp.tsx — title area with ellipsis clamping and optional Tooltip + icon
+ PageHeaderClamp.styles.ts
+ index.ts
+ PageHeaderInlineEdit/
+ PageHeaderInlineEdit.tsx — wraps @synerise/ds-inline-edit with the inlineEdit config object
+ PageHeaderInlineEdit.styles.ts
+ index.ts
+ PageHeaderRightSide/
+ PageHeaderRightSide.tsx — flex right slot for rightSide content + optional close (CloseM) button
+ PageHeaderRightSide.styles.ts
+ index.ts
+ __specs__/
+ PageHeader.spec.tsx — Vitest / React Testing Library unit tests
+ modules.d.ts — module declaration shim
+ index.ts — public exports
 ```
 
 ## Public exports
@@ -81,36 +81,36 @@ import PageHeader from '@synerise/ds-page-header';
 
 // With back and close navigation
 <PageHeader
-  title="My Page"
-  onGoBack={() => history.back()}
-  onClose={() => setOpen(false)}
+ title="My Page"
+ onGoBack={() => history.back()}
+ onClose={() => setOpen(false)}
 />
 
 // With inline editable title
 <PageHeader
-  avatar={<ObjectAvatar ... />}
-  inlineEdit={{
-    value: name,
-    size: 'normal',
-    handleOnChange: (e) => setName(e.target.value),
-    placeholder: 'Enter name',
-  }}
-  rightSide={<Button type="primary">Save</Button>}
+ avatar={<ObjectAvatar .. />}
+ inlineEdit={{
+ value: name,
+ size: 'normal',
+ handleOnChange: (e) => setName(e.target.value),
+ placeholder: 'Enter name',
+ }}
+ rightSide={<Button type="primary">Save</Button>}
 />
 
 // With tooltip on title
 <PageHeader
-  title="My Page"
-  tooltip={{ trigger: 'hover', title: 'Help text' }}
-  tooltipIcon={<HelpM />}
-  handleTooltipClick={() => {}}
+ title="My Page"
+ tooltip={{ trigger: 'hover', title: 'Help text' }}
+ tooltipIcon={<HelpM />}
+ handleTooltipClick={() => {}}
 />
 
 // With tabs and bottom bar
 <PageHeader
-  title="My Page"
-  tabs={<Tabs tabs={tabs} activeTab={0} handleTabClick={() => {}} />}
-  bar={<Button type="tertiary">Action</Button>}
+ title="My Page"
+ tabs={<Tabs tabs={tabs} activeTab={0} handleTabClick={() => {}} />}
+ bar={<Button type="tertiary">Action</Button>}
 />
 ```
 

@@ -1,4 +1,4 @@
-import Collapse from 'antd/lib/collapse';
+import { Collapse } from 'antd';
 import styled, { css } from 'styled-components';
 
 const { Panel } = Collapse;

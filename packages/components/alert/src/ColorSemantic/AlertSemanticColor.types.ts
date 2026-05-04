@@ -1,4 +1,4 @@
-import { type AlertProps } from 'antd/lib/alert';
+import { type AlertProps } from 'antd';
 
 export type AlertType =
   | 'positive'

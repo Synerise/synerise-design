@@ -6,37 +6,37 @@
 
 ```
 src/
-  Input.tsx                   — main enhanced input (forwardRef to outer div)
-  Input.types.ts              — BaseProps, InputProps, AutoResizeProp, StyledInput
-  Input.styles.tsx            — all styled-components; also exports as InputStyles namespace
-  TextArea.tsx                — enhanced textarea (FormField wrapper)
-  TextArea.types.ts           — TextareaProps
-  Textarea/
-    Textarea.tsx              — DSRawTextArea styled component (inner implementation)
-    Textarea.types.ts         — RawTextAreaProps (TextAreaProps is @deprecated alias)
-    Textarea.styles.ts        — textarea styled-components
-  InputGroup.tsx              — group wrapper for multiple inputs
-  InputGroup.types.ts         — Props (extends Ant GroupProps)
-  InputMultivalue/
-    InputMultivalue.tsx       — tag-style multi-value input; Enter to add values
-    InputMultivalue.types.ts  — InputMultivalueProps
-    Elements/Value.tsx        — individual tag chip with remove button
-  PasswordInput.tsx           — wraps Input with show/hide toggle (uses icon1 slot)
-  PasswordInput.types.tsx     — PasswordInputProps, PasswordInputTexts
-  AutosizeInput/
-    AutosizeInput.tsx         — standalone auto-resizing <input> (not Ant Design based)
-    AutosizeInput.types.ts    — AutosizeInputProps, AutosizeWrapperProps, AutosizeInputRefType
-    utils/calculateInputWidth.ts
-  components/
-    AutosizeWrapper.tsx       — conditionally wraps input with autosize behaviour
-    ElementIcons.tsx          — renders icon1/icon2 with Tooltip wrappers and expand icon
-    ExpandableWrapper.tsx     — expandable textarea overlay shown when input text overflows
-  hooks/
-    useCounterLimit.tsx       — generates the counter display ReactNode (rightSide slot)
-    useElementFocus.ts        — returns focus handler for icon click
-    useInputAddonHeight.ts    — measures input height for matching addon/prefixel height
-  utils/getCharCount.ts       — counts characters from controlled value
-  index.ts                    — public exports
+ Input.tsx — main enhanced input (forwardRef to outer div)
+ Input.types.ts — BaseProps, InputProps, AutoResizeProp, StyledInput
+ Input.styles.tsx — all styled-components; also exports as InputStyles namespace
+ TextArea.tsx — enhanced textarea (FormField wrapper)
+ TextArea.types.ts — TextareaProps
+ Textarea/
+ Textarea.tsx — DSRawTextArea styled component (inner implementation)
+ Textarea.types.ts — RawTextAreaProps (TextAreaProps is @deprecated alias)
+ Textarea.styles.ts — textarea styled-components
+ InputGroup.tsx — group wrapper for multiple inputs
+ InputGroup.types.ts — Props (extends Ant GroupProps)
+ InputMultivalue/
+ InputMultivalue.tsx — tag-style multi-value input; Enter to add values
+ InputMultivalue.types.ts — InputMultivalueProps
+ Elements/Value.tsx — individual tag chip with remove button
+ PasswordInput.tsx — wraps Input with show/hide toggle (uses icon1 slot)
+ PasswordInput.types.tsx — PasswordInputProps, PasswordInputTexts
+ AutosizeInput/
+ AutosizeInput.tsx — standalone auto-resizing <input> (not Ant Design based)
+ AutosizeInput.types.ts — AutosizeInputProps, AutosizeWrapperProps, AutosizeInputRefType
+ utils/calculateInputWidth.ts
+ components/
+ AutosizeWrapper.tsx — conditionally wraps input with autosize behaviour
+ ElementIcons.tsx — renders icon1/icon2 with Tooltip wrappers and expand icon
+ ExpandableWrapper.tsx — expandable textarea overlay shown when input text overflows
+ hooks/
+ useCounterLimit.tsx — generates the counter display ReactNode (rightSide slot)
+ useElementFocus.ts — returns focus handler for icon click
+ useInputAddonHeight.ts — measures input height for matching addon/prefixel height
+ utils/getCharCount.ts — counts characters from controlled value
+ index.ts — public exports
 ```
 
 ## Public exports
@@ -79,8 +79,8 @@ All standard Ant Design `InputProps` are also accepted and forwarded (e.g. `valu
 
 ```ts
 type AutoResizeProp =
-  | boolean
-  | { minWidth: string; maxWidth?: string; stretchToFit?: boolean };
+ | boolean
+ | { minWidth: string; maxWidth?: string; stretchToFit?: boolean };
 ```
 
 `stretchToFit: true` makes the input fill its containing element. **Important**: the flex parent must have `min-width: 0; flex-grow: 1` applied to work correctly.
@@ -91,7 +91,7 @@ Bare Ant Design `Input` that adds the DS `error` CSS class. No `FormField` wrapp
 
 ```tsx
 export const RawInput = (props: InputProps) => (
-  <S.AntdInput className={props.error ? 'error' : ''} {...props} />
+ <S.AntdInput className={props.error ? 'error' : ''} {..props} />
 );
 ```
 
@@ -177,13 +177,13 @@ Props (`AutosizeInputProps`): Extends `InputHTMLAttributes<HTMLInputElement>` (o
 
 ```ts
 {
-  inputRef: MutableRefObject<HTMLInputElement | null>;
-  sizerRef: RefObject<HTMLDivElement>;
-  wrapperRef: RefObject<HTMLDivElement>;
-  inputWrapperRef: RefObject<HTMLElement>;
-  placeholderSizerRef: RefObject<HTMLDivElement>;
-  copyInputStyles: () => void;
-  updateInputWidth: () => void;
+ inputRef: MutableRefObject<HTMLInputElement | null>;
+ sizerRef: RefObject<HTMLDivElement>;
+ wrapperRef: RefObject<HTMLDivElement>;
+ inputWrapperRef: RefObject<HTMLElement>;
+ placeholderSizerRef: RefObject<HTMLDivElement>;
+ copyInputStyles: () => void;
+ updateInputWidth: () => void;
 }
 ```
 
@@ -224,46 +224,46 @@ import { Input, TextArea, InputGroup, InputMultivalue, PasswordInput } from '@sy
 
 // Basic input with label and counter
 <Input
-  label="Email"
-  value={value}
-  onChange={e => setValue(e.target.value)}
-  counterLimit={100}
-  errorText={error}
+ label="Email"
+ value={value}
+ onChange={e => setValue(e.target.value)}
+ counterLimit={100}
+ errorText={error}
 />
 
 // Password input
 <PasswordInput
-  label="Password"
-  value={password}
-  onChange={e => setPassword(e.target.value)}
+ label="Password"
+ value={password}
+ onChange={e => setPassword(e.target.value)}
 />
 
 // Multi-value tags
 <InputMultivalue
-  label="Tags"
-  values={tags}
-  onChange={setTags}
+ label="Tags"
+ values={tags}
+ onChange={setTags}
 />
 
 // Auto-resizing input
 <Input
-  value={value}
-  onChange={e => setValue(e.target.value)}
-  autoResize={{ minWidth: '80px', maxWidth: '400px' }}
+ value={value}
+ onChange={e => setValue(e.target.value)}
+ autoResize={{ minWidth: '80px', maxWidth: '400px' }}
 />
 
 // Input with left/right addon blocks
 <Input
-  value={value}
-  onChange={e => setValue(e.target.value)}
-  prefixel={<span>https://</span>}
-  suffixel={<span>.com</span>}
+ value={value}
+ onChange={e => setValue(e.target.value)}
+ prefixel={<span>https://</span>}
+ suffixel={<span>.com</span>}
 />
 
 // Group of inputs
 <InputGroup label="Address" errors={errors} compact>
-  <Input placeholder="Street" />
-  <Input placeholder="City" />
+ <Input placeholder="Street" />
+ <Input placeholder="City" />
 </InputGroup>
 ```
 
@@ -302,6 +302,6 @@ Styles live in `Input.styles.tsx` using `@synerise/ds-core` theme tokens. Error 
 - **`autoResize` and `expandable` together**: `overflown` is computed from `AutosizeInput`'s reported width vs. `minWidth`, enabling the expand icon to appear correctly.
 - **`InputMultivalue` is semi-controlled**: `selectedValues` initialises from `values` on mount only. To reset the values externally, pass a new `key` prop.
 - **`@ts-expect-error`** in `ExpandableWrapper.tsx` for setting `.value` on `TextAreaRef` — the Ant Design type does not expose `.value` directly.
-- **Uses Jest** (`jest.config.js`) — not yet migrated to Vitest.
+- **Uses Vitest** for testing.
 - **`Label` re-export is `@deprecated`**: import `FormFieldLabel` from `@synerise/ds-form-field` directly.
 - **`DSRawTextArea`** (`RawTextArea as DSRawTextArea` in `index.ts`) is a second raw textarea export from the inner `Textarea/Textarea.tsx`; it is distinct from `RawTextArea` which comes from `Input.styles.tsx`.

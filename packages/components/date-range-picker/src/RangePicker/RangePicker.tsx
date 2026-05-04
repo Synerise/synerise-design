@@ -15,19 +15,23 @@ import {
   getDefaultDataTimeOptions,
   withDataFormat,
 } from '@synerise/ds-core';
-import DayPicker from '@synerise/ds-date-picker/dist/Elements/DayPicker/DayPicker';
+/* eslint-disable import/named -- re-exports via barrel; import/named can't resolve them */
+import {
+  DayPicker,
+  MonthPicker,
+  TimePicker,
+  YearPicker,
+  fnsDifferenceInYears,
+  datePickerFormat as fnsFormat,
+  localeUtils,
+} from '@synerise/ds-date-picker';
+/* eslint-enable import/named */
 import {
   DayBackground,
   DayForeground,
   DayText,
   DayTooltip,
 } from '@synerise/ds-date-picker/dist/Elements/DayPicker/DayPicker.styles';
-import MonthPicker from '@synerise/ds-date-picker/dist/Elements/MonthPicker/MonthPicker';
-import TimePicker from '@synerise/ds-date-picker/dist/Elements/TimePicker/TimePicker';
-import YearPicker from '@synerise/ds-date-picker/dist/Elements/YearPicker/YearPicker';
-import { fnsDifferenceInYears } from '@synerise/ds-date-picker/dist/fns';
-import fnsFormat from '@synerise/ds-date-picker/dist/format';
-import localeUtils from '@synerise/ds-date-picker/dist/localeUtils';
 import Icon, { CalendarM, ClockM } from '@synerise/ds-icon';
 
 import { Range } from '../RelativeRangePicker/RelativeRangePicker.styles';

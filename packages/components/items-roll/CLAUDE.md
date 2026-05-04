@@ -6,17 +6,17 @@
 
 ```
 src/
-  ItemsRoll.tsx                     — main component (named + default export)
-  ItemsRoll.types.ts                — ItemsRollProps, ItemRollElement, ItemsRollGroup, Texts
-  ItemsRoll.styles.ts               — all card/list styled-components
-  index.ts                          — public exports
-  Extras/                           — three-dot actions dropdown (internal)
-  ItemsRollComponents/
-    Header.tsx / Header.types.ts    — toolbar: count, search, change-selection button, extras
-    Footer.tsx / Footer.types.ts    — show-more/show-less/clear-all controls
-    List.tsx / List.types.ts        — flat or grouped item list
-    ListItem.tsx / ListItem.types.ts / ListItem.styles.ts — single item row
-    ItemRemoveIcon.tsx / *.types.ts / *.styles.ts — hover-reveal remove icon
+ ItemsRoll.tsx — main component (named + default export)
+ ItemsRoll.types.ts — ItemsRollProps, ItemRollElement, ItemsRollGroup, Texts
+ ItemsRoll.styles.ts — all card/list styled-components
+ index.ts — public exports
+ Extras/ — three-dot actions dropdown (internal)
+ ItemsRollComponents/
+ Header.tsx / Header.types.ts — toolbar: count, search, change-selection button, extras
+ Footer.tsx / Footer.types.ts — show-more/show-less/clear-all controls
+ List.tsx / List.types.ts — flat or grouped item list
+ ListItem.tsx / ListItem.types.ts / ListItem.styles.ts — single item row
+ ItemRemoveIcon.tsx / *.types.ts / *.styles.ts — hover-reveal remove icon
 ```
 
 ## Public exports
@@ -63,7 +63,7 @@ Rendered inside `@synerise/ds-panel` with `radius={3} p={12}`.
 
 ```ts
 type ItemRollElement<BaseType extends ListItemProps | MenuItemProps = ListItemProps> =
-  BaseType & { id: string; group?: string };
+ BaseType & { id: string; group?: string };
 ```
 
 `id` is required and used as the React `key` and callback argument. `group` ties the item to a group defined in the `groups` prop.
@@ -81,22 +81,22 @@ import ItemsRoll from '@synerise/ds-items-roll';
 
 // Minimal — flat list with search
 <ItemsRoll
-  items={[{ id: '1', name: 'Segment A' }, { id: '2', name: 'Segment B' }]}
-  onSearch={setSearch}
-  onSearchClear={() => setSearch('')}
-  searchValue={search}
-  useFooter
+ items={[{ id: '1', name: 'Segment A' }, { id: '2', name: 'Segment B' }]}
+ onSearch={setSearch}
+ onSearchClear={() => setSearch('')}
+ searchValue={search}
+ useFooter
 />
 
 // Grouped list with remove support
 <ItemsRoll
-  items={items}
-  groups={['Group A', 'Group B']}
-  onItemRemove={(id, group) => removeItem(id, group)}
-  onChangeSelection={openPicker}
-  useFooter
-  maxToShowItems={5}
-  showMoreStep={5}
+ items={items}
+ groups={['Group A', 'Group B']}
+ onItemRemove={(id, group) => removeItem(id, group)}
+ onChangeSelection={openPicker}
+ useFooter
+ maxToShowItems={5}
+ showMoreStep={5}
 />
 ```
 

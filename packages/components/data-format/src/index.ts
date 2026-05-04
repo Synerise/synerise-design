@@ -19,7 +19,7 @@ export {
 } from '@synerise/ds-core';
 
 /** @deprecated import from @synerise/ds-core instead */
-export * from '@synerise/ds-core/dist/js/data-format/constants';
+export * from '@synerise/ds-core/dist/js/data-format/constants/index.js';
 
 /** @deprecated import from @synerise/ds-core instead */
 // eslint-disable-next-line no-duplicate-imports

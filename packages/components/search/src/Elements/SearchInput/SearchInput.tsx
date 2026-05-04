@@ -1,4 +1,4 @@
-import Input, { type InputRef } from 'antd/lib/input';
+import { Input, type InputRef } from 'antd';
 import React, {
   type ChangeEvent,
   useEffect,

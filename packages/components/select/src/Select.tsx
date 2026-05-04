@@ -1,4 +1,4 @@
-import AntdSelect from 'antd/lib/select';
+import { Select as AntdSelect } from 'antd';
 import classNames from 'classnames';
 import React, { forwardRef } from 'react';
 

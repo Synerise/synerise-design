@@ -6,103 +6,103 @@
 
 ```
 src/
-  Table.tsx                    — main DSTable component (default export); switches between GroupTable and DefaultTable
-  Table.types.ts               — all public types (DSTableProps, DSColumnType, RowSelection, RowStar, Filter, Locale, …)
-  Table.styles.ts              — styled-components for wrapper and header
-  DefaultTable/
-    DefaultTable.tsx           — wraps antd Table; injects sort buttons, row-star column, row-selection column, row tooltips
-  GroupTable/
-    GroupTable.tsx             — antd Table rendered with a custom body that groups rows under collapsible headers
-    GroupTable.types.ts        — GroupType, GroupByType, GROUP_BY constant
-    GroupTableBody/            — renders one expanded/collapsed group with its rows
-    GroupTableHeader/          — renders a group's header row
-  TreeTable/
-    TreeTable.tsx              — DSTable wrapper that renders tree-indented rows; hardcoded indent 42 px
-  VirtualTable/
-    VirtualTable.tsx           — react-window FixedSizeList body injected via antd components.body; supports infinite scroll & sticky header
-    VirtualTable.types.ts      — VirtualTableProps, VirtualTableRef, VirtualColumnType; Props alias is @deprecated
-    VirtualTableRow.tsx        — renders one virtual row
-    constants.ts               — HEADER_ROW_HEIGHT=64, EXPANDED_ROW_PROPERTY, LOAD_DATA_OFFSET=800
-  TableHeader/
-    TableHeader.tsx            — title bar: count, select-all checkbox, items menu, filters, search, custom button
-    TableHeader.types.ts
-    TableLimit/                — shows "X / limit" counter when selection.limit is set
-    TableSelection.tsx         — select-all / invert checkbox area
-  Cell/
-    index.ts                   — re-exports all cell components as TableCell namespace
-    Action/ActionCell          — flex container for action buttons; gapSize, contentAlign
-    AvatarLabel/AvatarLabel    — avatar + title + optional labels row
-    Copyable/CopyableCell      — value with copy-to-clipboard
-    Editable/EditableCell      — inline text-input cell
-    FlagLabel/FlagLabelCell    — country flag + label
-    IconLabel/IconLabel        — icon + label
-    IconTooltipCell/           — icon + label + tooltip icon
-    InputNumber/InputNumberCell — wraps ds-input-number
-    LabelsWithShowMore/        — shows N labels inline, rest in a modal
-    Star/StarCell              — star toggle cell (standalone; not same as rowStar column)
-    StatusLabel/StatusLabel    — ds-badge status dot + label
-    TagIcon/TagIcon            — tag + icon cell
-    TagsGroup/TagsGroup        — wraps ds-tags with loading/error states
-  ColumnSortMenu/
-    useSortState.ts            — useReducer managing multi-column sort state; exposes SortStateAPI
-    columnWithSortButtons.tsx  — column decorator that injects sort buttons into column header
-    groupedColumnsSort.ts      — sort logic for GroupTable rows
-    SortRenderer.tsx           — renders 'default' | 'string' sort UI
-    TitleWithSort.tsx
-  FilterTrigger/
-    FilterTrigger.tsx          — icon-based filter trigger rendered in the title bar right side
-  InfiniteScroll/
-    InfiniteLoaderItem.tsx     — shows loading/error/no-more-data row at the bottom (or top) of VirtualTable
-    InfiniteLoaderItem.types.ts — InfiniteScrollProps type
-    BackToTopButton.tsx        — exported directly; floats over virtual list
-    OuterListElement.tsx       — outer wrapper for react-window List
-    constants.ts               — infiniteLoaderItemHeight
-    utils.ts
-  RowSelection/
-    RowSelectionColumn.tsx     — single-row checkbox rendered via antd rowSelection.renderCell
-  hooks/
-    useBulkSelection/          — counts selectable/selected records including children
-    useRowKey/                 — normalises rowKey string | function
-    useRowStar/                — manages starred keys, builds star column definition
-  constants/
-    Table.constants.ts         — SELECTION_ALL, SELECTION_INVERT, ITEM_RENDER_TYPE
-    TableSkeleton.constants.tsx — skeleton column/row config for loading state
-  utils/
-    index.ts                   — re-exports all utils
-    calculateColumnWidths.ts   — distributes table width across columns for VirtualTable
-    columnWithCellTooltip.tsx  — wraps cell render in ds-tooltip when getCellTooltipProps is set
-    getChildrenColumnName.ts
-    getRecordSelectionStatus.ts
-    getSkeletonProps.tsx       — builds skeleton columns/dataSource when loading=true
-    getValueFromPath.ts
-    isGrouped.ts
-    isRecordSelectable.ts
-    locale.ts                  — getDefaultLocale, useTableLocale, TableLocaleContext
-  style/
-    index.less                 — entry point; imports table.less
-    table.less                 — antd overrides and DS-specific CSS
-  modules.d.ts
+ Table.tsx — main DSTable component (default export); switches between GroupTable and DefaultTable
+ Table.types.ts — all public types (DSTableProps, DSColumnType, RowSelection, RowStar, Filter, Locale, …)
+ Table.styles.ts — styled-components for wrapper and header
+ DefaultTable/
+ DefaultTable.tsx — wraps antd Table; injects sort buttons, row-star column, row-selection column, row tooltips
+ GroupTable/
+ GroupTable.tsx — antd Table rendered with a custom body that groups rows under collapsible headers
+ GroupTable.types.ts — GroupType, GroupByType, GROUP_BY constant
+ GroupTableBody/ — renders one expanded/collapsed group with its rows
+ GroupTableHeader/ — renders a group's header row
+ TreeTable/
+ TreeTable.tsx — DSTable wrapper that renders tree-indented rows; hardcoded indent 42 px
+ VirtualTable/
+ VirtualTable.tsx — react-window FixedSizeList body injected via antd components.body; supports infinite scroll & sticky header
+ VirtualTable.types.ts — VirtualTableProps, VirtualTableRef, VirtualColumnType; Props alias is @deprecated
+ VirtualTableRow.tsx — renders one virtual row
+ constants.ts — HEADER_ROW_HEIGHT=64, EXPANDED_ROW_PROPERTY, LOAD_DATA_OFFSET=800
+ TableHeader/
+ TableHeader.tsx — title bar: count, select-all checkbox, items menu, filters, search, custom button
+ TableHeader.types.ts
+ TableLimit/ — shows "X / limit" counter when selection.limit is set
+ TableSelection.tsx — select-all / invert checkbox area
+ Cell/
+ index.ts — re-exports all cell components as TableCell namespace
+ Action/ActionCell — flex container for action buttons; gapSize, contentAlign
+ AvatarLabel/AvatarLabel — avatar + title + optional labels row
+ Copyable/CopyableCell — value with copy-to-clipboard
+ Editable/EditableCell — inline text-input cell
+ FlagLabel/FlagLabelCell — country flag + label
+ IconLabel/IconLabel — icon + label
+ IconTooltipCell/ — icon + label + tooltip icon
+ InputNumber/InputNumberCell — wraps ds-input-number
+ LabelsWithShowMore/ — shows N labels inline, rest in a modal
+ Star/StarCell — star toggle cell (standalone; not same as rowStar column)
+ StatusLabel/StatusLabel — ds-badge status dot + label
+ TagIcon/TagIcon — tag + icon cell
+ TagsGroup/TagsGroup — wraps ds-tags with loading/error states
+ ColumnSortMenu/
+ useSortState.ts — useReducer managing multi-column sort state; exposes SortStateAPI
+ columnWithSortButtons.tsx — column decorator that injects sort buttons into column header
+ groupedColumnsSort.ts — sort logic for GroupTable rows
+ SortRenderer.tsx — renders 'default' | 'string' sort UI
+ TitleWithSort.tsx
+ FilterTrigger/
+ FilterTrigger.tsx — icon-based filter trigger rendered in the title bar right side
+ InfiniteScroll/
+ InfiniteLoaderItem.tsx — shows loading/error/no-more-data row at the bottom (or top) of VirtualTable
+ InfiniteLoaderItem.types.ts — InfiniteScrollProps type
+ BackToTopButton.tsx — exported directly; floats over virtual list
+ OuterListElement.tsx — outer wrapper for react-window List
+ constants.ts — infiniteLoaderItemHeight
+ utils.ts
+ RowSelection/
+ RowSelectionColumn.tsx — single-row checkbox rendered via antd rowSelection.renderCell
+ hooks/
+ useBulkSelection/ — counts selectable/selected records including children
+ useRowKey/ — normalises rowKey string | function
+ useRowStar/ — manages starred keys, builds star column definition
+ constants/
+ Table.constants.ts — SELECTION_ALL, SELECTION_INVERT, ITEM_RENDER_TYPE
+ TableSkeleton.constants.tsx — skeleton column/row config for loading state
+ utils/
+ index.ts — re-exports all utils
+ calculateColumnWidths.ts — distributes table width across columns for VirtualTable
+ columnWithCellTooltip.tsx — wraps cell render in ds-tooltip when getCellTooltipProps is set
+ getChildrenColumnName.ts
+ getRecordSelectionStatus.ts
+ getSkeletonProps.tsx — builds skeleton columns/dataSource when loading=true
+ getValueFromPath.ts
+ isGrouped.ts
+ isRecordSelectable.ts
+ locale.ts — getDefaultLocale, useTableLocale, TableLocaleContext
+ style/
+ index.less — entry point; imports table.less
+ table.less — antd overrides and DS-specific CSS
+ modules.d.ts
 ```
 
 ## Public exports
 
 ```ts
 // from src/index.ts
-export default DSTable                    // main component
-export { GroupedTable }                   // alias GroupTable
+export default DSTable // main component
+export { GroupedTable } // alias GroupTable
 export { VirtualTable }
 export { TreeTable }
-export { TableCell }                      // namespace of all cell components
-export { ItemsMenu }                      // styled container for bulk-action menu
-export { BackToTopButton }               // for use with VirtualTable infinite scroll
-export { GROUP_BY }                      // { value, ranges, interval, disabled }
+export { TableCell } // namespace of all cell components
+export { ItemsMenu } // styled container for bulk-action menu
+export { BackToTopButton } // for use with VirtualTable infinite scroll
+export { GROUP_BY } // { value, ranges, interval, disabled }
 
 // Types
 export type {
-  VirtualTableProps, VirtualTableRef, VirtualColumnType,
-  RowSelection, RowType, SingleColumnSort, OnSortFn,
-  Locale, DSColumnType, DSTableProps,
-  ScrollProxyType, Selection, SelectionItem, CustomizeScrollBodyInfo,
+ VirtualTableProps, VirtualTableRef, VirtualColumnType,
+ RowSelection, RowType, SingleColumnSort, OnSortFn,
+ Locale, DSColumnType, DSTableProps,
+ ScrollProxyType, Selection, SelectionItem, CustomizeScrollBodyInfo,
 }
 ```
 
@@ -266,37 +266,37 @@ import type { DSTableProps, DSColumnType, RowSelection } from '@synerise/ds-tabl
 
 // Basic table
 const columns: DSColumnType<Row>[] = [
-  {
-    key: 'name',
-    dataIndex: 'name',
-    title: 'Name',
-    sorter: true,
-    sortRender: 'string', // renders A-Z / Z-A buttons
-    render: (value, row) => <TableCell.AvatarLabelCell avatar={<Avatar />} title={value} />,
-  },
+ {
+ key: 'name',
+ dataIndex: 'name',
+ title: 'Name',
+ sorter: true,
+ sortRender: 'string', // renders A-Z / Z-A buttons
+ render: (value, row) => <TableCell.AvatarLabelCell avatar={<Avatar />} title={value} />,
+ },
 ];
 
 <Table<Row>
-  title="Users"
-  columns={columns}
-  dataSource={rows}
-  rowKey="id"
-  selection={selection}
-  locale={{ pagination: { items: 'users' } }}
+ title="Users"
+ columns={columns}
+ dataSource={rows}
+ rowKey="id"
+ selection={selection}
+ locale={{ pagination: { items: 'users' } }}
 />
 
 // Virtual table with infinite scroll
 <VirtualTable<Row>
-  ref={tableRef}
-  columns={columns}
-  dataSource={rows}
-  scroll={{ y: 600 }}
-  cellHeight={52}
-  initialWidth={800}
-  infiniteScroll={{
-    hasMore: true, isLoading: false, hasError: false,
-    onScrollEndReach: fetchNextPage,
-  }}
+ ref={tableRef}
+ columns={columns}
+ dataSource={rows}
+ scroll={{ y: 600 }}
+ cellHeight={52}
+ initialWidth={800}
+ infiniteScroll={{
+ hasMore: true, isLoading: false, hasError: false,
+ onScrollEndReach: fetchNextPage,
+ }}
 />
 
 // Tree table
@@ -304,9 +304,9 @@ const columns: DSColumnType<Row>[] = [
 
 // Grouped table
 <Table<GroupType<Row>>
-  grouped
-  columns={columns}
-  dataSource={[{ column: 'status', key: 'active', value: 'Active', rows: [...], groupType: 'value' }]}
+ grouped
+ columns={columns}
+ dataSource={[{ column: 'status', key: 'active', value: 'Active', rows: [..], groupType: 'value' }]}
 />
 ```
 

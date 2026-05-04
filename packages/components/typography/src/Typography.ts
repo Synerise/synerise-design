@@ -1,1 +1,1 @@
-export { default } from 'antd/lib/typography';
+export { Typography as default } from 'antd';

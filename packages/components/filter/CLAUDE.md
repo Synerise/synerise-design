@@ -6,19 +6,19 @@
 
 ```
 src/
-  Filter.tsx                            — main component
-  Filter.types.ts                       — FilterProps and all data-model types
-  Filter.styles.ts                      — styled-components
-  index.ts                              — public exports
-  utils.ts                              — isStepType() type guard
-  components/
-    ExpressionItem/
-      index.ts                          — re-exports ExpressionItem, DraggableExpressionItem, ExpressionItemProps
-      ExpressionItem.tsx                — renders a single StepCard + optional Logic between items
-      ExpressionItem.types.ts           — ExpressionItemProps, SortableItemProps
-      DraggableExpressionItem.tsx       — wraps ExpressionItem with useDndMonitor for drag support
-  __specs__/
-    Filter.spec.tsx                     — Jest tests (not Vitest)
+ Filter.tsx — main component
+ Filter.types.ts — FilterProps and all data-model types
+ Filter.styles.ts — styled-components
+ index.ts — public exports
+ utils.ts — isStepType() type guard
+ components/
+ ExpressionItem/
+ index.ts — re-exports ExpressionItem, DraggableExpressionItem, ExpressionItemProps
+ ExpressionItem.tsx — renders a single StepCard + optional Logic between items
+ ExpressionItem.types.ts — ExpressionItemProps, SortableItemProps
+ DraggableExpressionItem.tsx — wraps ExpressionItem with useDndMonitor for drag support
+ __specs__/
+ Filter.spec.tsx — Vitest tests
 ```
 
 ## Public exports
@@ -85,19 +85,19 @@ import type { Expression } from '@synerise/ds-filter';
 const [expressions, setExpressions] = useState<Expression[]>([]);
 
 <Filter
-  expressions={expressions}
-  matching={{ matching: true, onChange: (v) => setMatching(v) }}
-  onChangeOrder={setExpressions}
-  onDeleteStep={(id) => setExpressions(prev => prev.filter(e => e.id !== id))}
-  onDuplicateStep={(id) => { /* clone and append */ }}
-  onChangeStepName={(id, name) => { /* update */ }}
-  onChangeLogic={(id, logic) => { /* update */ }}
-  maxConditionsLimit={5}
-  addFilterComponent={({ isLimitExceeded }) => (
-    <Button disabled={isLimitExceeded} onClick={handleAdd}>Add filter</Button>
-  )}
-  renderStepContent={(expression) => <MyConditionEditor expression={expression} />}
-  renderStepFooter={(expression) => <MyFooter expression={expression} />}
+ expressions={expressions}
+ matching={{ matching: true, onChange: (v) => setMatching(v) }}
+ onChangeOrder={setExpressions}
+ onDeleteStep={(id) => setExpressions(prev => prev.filter(e => e.id !== id))}
+ onDuplicateStep={(id) => { /* clone and append */ }}
+ onChangeStepName={(id, name) => { /* update */ }}
+ onChangeLogic={(id, logic) => { /* update */ }}
+ maxConditionsLimit={5}
+ addFilterComponent={({ isLimitExceeded }) => (
+ <Button disabled={isLimitExceeded} onClick={handleAdd}>Add filter</Button>
+ )}
+ renderStepContent={(expression) => <MyConditionEditor expression={expression} />}
+ renderStepFooter={(expression) => <MyFooter expression={expression} />}
 />
 ```
 
@@ -122,5 +122,5 @@ Styles in `Filter.styles.ts` use `@synerise/ds-core` theme palette tokens. `plac
 - **`texts.overwritten.filterTitle`**: When set, replaces the entire matching + conditions-limit header row with a plain text title.
 - **`logic` is on StepType, not separate**: The LOGIC operator before a step is embedded as `step.logic` — it is not a standalone sibling item in the `expressions` array. The `ExpressionItem` renders it conditionally (not shown for the last item or during drag).
 - **`// @ts-expect-error` in ExpressionItem.tsx**: Type mismatches between `StepCardProps` and `LogicProps` are suppressed — this is a known issue.
-- **Tests use Jest** (not Vitest): `jest.config.js` present — not yet migrated.
+- **Uses Vitest**: `jest.config.js` present — not yet migrated.
 - **`react-intl` is a peer dependency** — component throws at runtime without an `IntlProvider` ancestor.

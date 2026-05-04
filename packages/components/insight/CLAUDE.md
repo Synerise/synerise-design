@@ -6,12 +6,12 @@
 
 ```
 src/
-  Insight.tsx          — main component; auto-converts InlineAlertProps[] content
-  Insight.types.ts     — InsightProps interface (extends WithHTMLAttributes<HTMLDivElement>)
-  Insight.styles.tsx   — styled-components; hasHover variant
-  index.ts             — default export + InsightProps type export
-  __specs__/
-    Insight.spec.tsx   — render tests (Jest)
+ Insight.tsx — main component; auto-converts InlineAlertProps[] content
+ Insight.types.ts — InsightProps interface (extends WithHTMLAttributes<HTMLDivElement>)
+ Insight.styles.tsx — styled-components; hasHover variant
+ index.ts — default export + InsightProps type export
+ __specs__/
+ Insight.spec.tsx — render tests (Vitest)
 ```
 
 ## Public exports
@@ -29,7 +29,7 @@ src/
 | `onClick` | `() => void` | `undefined` | Makes the entire card hoverable (`grey-050` background on hover). Only applied when truthy. |
 | `className` | `string` | `undefined` | Extra class names appended to `ds-insight <className>`. |
 
-All standard `HTMLDivElement` attributes are also accepted and spread onto the root element via `WithHTMLAttributes<HTMLDivElement, ...>`.
+All standard `HTMLDivElement` attributes are also accepted and spread onto the root element via `WithHTMLAttributes<HTMLDivElement, ..>`.
 
 ### `InsightProps`
 
@@ -45,21 +45,21 @@ import Insight from '@synerise/ds-insight';
 
 // With avatar, subtitle, header action
 <Insight
-  title="Get File SFTP"
-  subTitle="Custom mode name"
-  avatar={<Avatar size="medium" shape="square" iconComponent={<Icon component={<NotificationsM />} />} />}
-  headerRightSide={<Button type="ghost" mode="icon-label"><Icon component={<EditM />} />Edit</Button>}
-  content={<div>Any content here</div>}
-  footer={<Button>More</Button>}
+ title="Get File SFTP"
+ subTitle="Custom mode name"
+ avatar={<Avatar size="medium" shape="square" iconComponent={<Icon component={<NotificationsM />} />} />}
+ headerRightSide={<Button type="ghost" mode="icon-label"><Icon component={<EditM />} />Edit</Button>}
+ content={<div>Any content here</div>}
+ footer={<Button>More</Button>}
 />
 
 // InlineAlert shorthand — pass InlineAlertProps[] directly
 <Insight
-  title="Get File SFTP"
-  content={[
-    { message: 'Template ready to update', type: 'warning' },
-    { message: 'Info message', type: 'info' },
-  ]}
+ title="Get File SFTP"
+ content={[
+ { message: 'Template ready to update', type: 'warning' },
+ { message: 'Info message', type: 'info' },
+ ]}
 />
 
 // Clickable card (hover effect)
@@ -81,8 +81,8 @@ Styles live in `Insight.styles.tsx`. Uses `theme.palette` tokens for all colours
 
 ## Implementation notes
 
-- **`content` dual-mode**: `isInlineAlertPropsArray` checks at runtime whether `content` is an array of objects with `message` and `type` fields (and no React elements). If so, renders `<InlineAlert key={index} {...props} />` for each. Otherwise falls through to raw ReactNode rendering. The check uses `!React.isValidElement(item)` so a ReactNode array will NOT trigger InlineAlert mode.
+- **`content` dual-mode**: `isInlineAlertPropsArray` checks at runtime whether `content` is an array of objects with `message` and `type` fields (and no React elements). If so, renders `<InlineAlert key={index} {..props} />` for each. Otherwise falls through to raw ReactNode rendering. The check uses `!React.isValidElement(item)` so a ReactNode array will NOT trigger InlineAlert mode.
 - **`title` renders as `<label>`**, not a heading element — assistive technology may not announce it as a heading.
 - **`className` handling** — appended as `` `ds-insight ${className || ''}` ``; extra trailing space is harmless but present when `className` is omitted.
 - **No internal state** — fully controlled/stateless; all content is passed as props.
-- **Uses Jest** (not Vitest) — `package.json` has `"test": "jest"`.
+- **Uses Vitest** — `package.json` has `"test": "jest"`.

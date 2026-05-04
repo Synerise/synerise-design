@@ -6,21 +6,21 @@
 
 ```
 src/
-  Mapping.tsx                                       — main component (generic)
-  Mapping.types.ts                                  — MappingProps, BaseItemType, BatchSelectionType, MappingTexts, etc.
-  Mapping.styles.ts                                 — all styled components
-  index.ts                                          — public exports
-  components/
-    BatchSelectionHeader/BatchSelectionHeader.tsx   — header bar with tristate checkbox, counter, action buttons, toggle button
-    RowSelection/RowSelection.tsx                   — per-row checkbox
-    TitleRow/TitleRow.tsx                           — column title row with optional info tooltips
-  hooks/
-    useBatchSelection.ts                            — checkbox state machine (none / some / all)
-    useTexts.ts                                     — i18n defaults via react-intl
-  utils/
-    counter.tsx                                     — default counter renderer
-  __specs__/
-    Mapping.spec.tsx                                — Jest tests
+ Mapping.tsx — main component (generic)
+ Mapping.types.ts — MappingProps, BaseItemType, BatchSelectionType, MappingTexts, etc.
+ Mapping.styles.ts — all styled components
+ index.ts — public exports
+ components/
+ BatchSelectionHeader/BatchSelectionHeader.tsx — header bar with tristate checkbox, counter, action buttons, toggle button
+ RowSelection/RowSelection.tsx — per-row checkbox
+ TitleRow/TitleRow.tsx — column title row with optional info tooltips
+ hooks/
+ useBatchSelection.ts — checkbox state machine (none / some / all)
+ useTexts.ts — i18n defaults via react-intl
+ utils/
+ counter.tsx — default counter renderer
+ __specs__/
+ Mapping.spec.tsx — Vitest tests
 ```
 
 ## Public exports
@@ -78,12 +78,12 @@ import type { BaseItemType } from '@synerise/ds-mapping';
 type RowItem = BaseItemType & { paramName: string; mappedName: string };
 
 <Mapping<RowItem>
-  dataSource={rows}
-  leftComponent={({ item }) => <Input value={item.paramName} readOnly />}
-  rightComponent={({ item }) => <Input value={item.mappedName} />}
-  centerComponent={() => <Icon component={<ArrowRightM />} />}
-  leftTitle="Source parameter"
-  rightTitle="Target parameter"
+ dataSource={rows}
+ leftComponent={({ item }) => <Input value={item.paramName} readOnly />}
+ rightComponent={({ item }) => <Input value={item.mappedName} />}
+ centerComponent={() => <Icon component={<ArrowRightM />} />}
+ leftTitle="Source parameter"
+ rightTitle="Target parameter"
 />
 ```
 
@@ -114,4 +114,4 @@ Merges `react-intl` defaults with `texts` prop override. Returns a complete `Map
 - **Selection is local state** — `selectedItemIds` lives inside `Mapping`; `onSelectionChange` is fired via `useEffect` on every change. The parent does not control selection.
 - **Action buttons visibility** — shown only when `enabled && checkboxState !== false` (i.e. at least one item is checked).
 - **`texts` prop is missing from the README** — `MappingTexts` and the `texts` prop are not documented.
-- **Test runner is Jest** (not Vitest).
+- **Uses Vitest**.

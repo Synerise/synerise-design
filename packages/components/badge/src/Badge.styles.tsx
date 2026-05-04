@@ -1,4 +1,4 @@
-import Badge from 'antd/lib/badge';
+import { Badge } from 'antd';
 import React from 'react';
 import styled, {
   type FlattenSimpleInterpolation,

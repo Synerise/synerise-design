@@ -1,4 +1,4 @@
-import Button from 'antd/lib/button';
+import { Button } from 'antd';
 import React from 'react';
 
 import * as S from './ButtonGroup.styles';

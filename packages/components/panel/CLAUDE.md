@@ -6,20 +6,20 @@
 
 ```
 src/
-  Panel.tsx        — component implementation (forwardRef, outer div + optional Label + PanelWrapper)
-  Panel.types.ts   — PanelProps type definition (Omit<BoxProps, 'label'> & BaseLabelProps + panel-specific props)
-  Panel.const.ts   — DEFAULT_RADIUS (8) and DEFAULT_PADDING (8) constants
-  Panel.styles.ts  — PanelWrapper styled-component (extends Box), Label styled-component (extends FormFieldLabel)
-  index.ts         — public exports: default Panel, PanelProps
-  modules.d.ts     — SVG/asset module declarations
-  __specs__/
-    Panel.test.tsx — Jest tests
+ Panel.tsx — component implementation (forwardRef, outer div + optional Label + PanelWrapper)
+ Panel.types.ts — PanelProps type definition (Omit<BoxProps, 'label'> & BaseLabelProps + panel-specific props)
+ Panel.const.ts — DEFAULT_RADIUS (8) and DEFAULT_PADDING (8) constants
+ Panel.styles.ts — PanelWrapper styled-component (extends Box), Label styled-component (extends FormFieldLabel)
+ index.ts — public exports: default Panel, PanelProps
+ modules.d.ts — SVG/asset module declarations
+ __specs__/
+ Panel.test.tsx — Vitest tests
 ```
 
 ## Public exports
 
 ```ts
-export { default } from './Panel';        // Panel component
+export { default } from './Panel'; // Panel component
 export type { PanelProps } from './Panel.types';
 ```
 
@@ -47,22 +47,22 @@ import Panel from '@synerise/ds-panel';
 
 // Default — white background, 1px grey-200 border, 8px radius, 8px padding
 <Panel>
-  <ListItem>Item</ListItem>
+ <ListItem>Item</ListItem>
 </Panel>
 
 // With label and tooltip
 <Panel label="Section Title" tooltip="More info about this section">
-  <ListItem>Item</ListItem>
+ <ListItem>Item</ListItem>
 </Panel>
 
 // Grey background variant (shadow instead of border)
 <Panel greyBackground>
-  <ListItem>Item</ListItem>
+ <ListItem>Item</ListItem>
 </Panel>
 
 // Custom radius and padding
 <Panel radius={16} p={24}>
-  Content
+ Content
 </Panel>
 
 // Ref forwarding

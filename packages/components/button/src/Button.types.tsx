@@ -1,4 +1,4 @@
-import type { ButtonProps as AntdButtonProps } from 'antd/lib/button';
+import type { ButtonProps as AntdButtonProps } from 'antd';
 import type { JustifyContentProperty } from 'csstype';
 import type {
   ForwardRefExoticComponent,

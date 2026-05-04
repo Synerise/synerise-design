@@ -19,6 +19,7 @@ export { default as BroadcastBar } from './BroadcastBar/BroadcastBar';
 export { default as IconAlert } from './IconAlert/IconAlert';
 
 export { default as InlineAlert } from './InlineAlert/InlineAlert';
+export type { InlineAlertType } from './InlineAlert/InlineAlert.types';
 
 export { default as AlertInfo } from './AlertInfo/AlertInfo';
 export type { AlertSize } from './AlertInfo/AlertInfo.types';

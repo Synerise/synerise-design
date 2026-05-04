@@ -1,4 +1,4 @@
-import { type AvatarProps as AntAvatarProps } from 'antd/lib/avatar';
+import { type AvatarProps as AntAvatarProps } from 'antd';
 import type { MouseEvent as ReactMouseEvent, ReactNode } from 'react';
 
 import type { BadgeStatus } from '@synerise/ds-badge';

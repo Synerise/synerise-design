@@ -6,20 +6,20 @@
 
 ```
 src/
-  Tray.tsx                   — main component; reads state from context, renders null when closed
-  Tray.types.ts              — TrayProps interface
-  Tray.styles.ts             — all styled-components (wrapper, header, footer, scrollbar, title)
-  Tray.const.ts              — fixed dimensions (WRAPPER_HEIGHT, HEADER_HEIGHT, FOOTER_HEIGHT)
-  index.ts                   — public exports
-  components/
-    TrayProvider.tsx         — context provider + TrayData / TrayState types
-  contexts/
-    TrayContext.ts           — TrayContext + TrayContextType
-  hooks/
-    useTray.ts               — public hook: { open, close }
-    useTrayContext.ts        — internal hook; throws if used outside TrayProvider
-  __specs__/
-    Tray.spec.tsx            — Jest tests (show, hide, multi-tray isolation)
+ Tray.tsx — main component; reads state from context, renders null when closed
+ Tray.types.ts — TrayProps interface
+ Tray.styles.ts — all styled-components (wrapper, header, footer, scrollbar, title)
+ Tray.const.ts — fixed dimensions (WRAPPER_HEIGHT, HEADER_HEIGHT, FOOTER_HEIGHT)
+ index.ts — public exports
+ components/
+ TrayProvider.tsx — context provider + TrayData / TrayState types
+ contexts/
+ TrayContext.ts — TrayContext + TrayContextType
+ hooks/
+ useTray.ts — public hook: { open, close }
+ useTrayContext.ts — internal hook; throws if used outside TrayProvider
+ __specs__/
+ Tray.spec.tsx — Vitest tests (show, hide, multi-tray isolation)
 ```
 
 ## Public exports
@@ -76,30 +76,30 @@ import Tray, { TrayProvider, useTray } from '@synerise/ds-tray';
 
 // 1. Wrap once with provider and mount Tray instances
 const App = () => (
-  <TrayProvider>
-    <Tray id="details" />
-    <PageContent />
-  </TrayProvider>
+ <TrayProvider>
+ <Tray id="details" />
+ <PageContent />
+ </TrayProvider>
 );
 
 // 2. Open/close from anywhere inside the provider
 const PageContent = () => {
-  const { open, close } = useTray();
+ const { open, close } = useTray();
 
-  return (
-    <button
-      onClick={() =>
-        open('details', {
-          title: 'Details',
-          content: <div>Body content</div>,
-          footer: <button onClick={() => close('details')}>Close</button>,
-          onClose: (id) => console.log('closed', id),
-        })
-      }
-    >
-      Open details
-    </button>
-  );
+ return (
+ <button
+ onClick={() =>
+ open('details', {
+ title: 'Details',
+ content: <div>Body content</div>,
+ footer: <button onClick={() => close('details')}>Close</button>,
+ onClose: (id) => console.log('closed', id),
+ })
+ }
+ >
+ Open details
+ </button>
+ );
 };
 ```
 
@@ -109,8 +109,8 @@ import styled from 'styled-components';
 import Tray from '@synerise/ds-tray';
 
 const TopLeftTray = styled(Tray)`
-  top: 20px;
-  left: 50px;
+ top: 20px;
+ left: 50px;
 `;
 
 <TopLeftTray id="sidebar" />
@@ -154,4 +154,4 @@ Reads `TrayContext` and throws `'useTrayContext must be used within a TrayProvid
 - **`TrayData` is not exported from `index.ts`** — consumers who need to type the data object must import it directly from the internal path `@synerise/ds-tray/dist/components/TrayProvider` or use `Parameters<ReturnType<typeof useTray>['open']>[1]`.
 - **`content` and `title` are required** in `TrayData` — omitting them will cause a TypeScript error but no runtime guard.
 - **Closing sets `isOpen: false`** but keeps the `data` object in state. Re-opening with the same id and new data replaces the previous data.
-- **Test runner is Jest** (not Vitest) — `"test": "jest"` in package.json, uses `jest.config.js`.
+- **Uses Vitest** — `"test": "jest"` in package.json, uses `jest.config.js`.

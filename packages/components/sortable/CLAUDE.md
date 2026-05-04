@@ -6,14 +6,14 @@
 
 ```
 src/
-  Sortable.tsx          — managed sortable list (state + DragOverlay)
-  SortableContainer.tsx — DndContext + SortableContext wrapper (sensors, axis, strategy)
-  SortableItem.tsx      — individual draggable item with grab/drag visual states
-  Sortable.types.ts     — all types (BaseItem, SortableProps, SortableContainerProps, etc.)
-  Sortable.styles.ts    — styled-components for drag placeholder and grab states
-  index.ts              — public exports (components + @dnd-kit re-exports)
-  __specs__/
-    Sortable.spec.tsx   — Jest test
+ Sortable.tsx — managed sortable list (state + DragOverlay)
+ SortableContainer.tsx — DndContext + SortableContext wrapper (sensors, axis, strategy)
+ SortableItem.tsx — individual draggable item with grab/drag visual states
+ Sortable.types.ts — all types (BaseItem, SortableProps, SortableContainerProps, etc.)
+ Sortable.styles.ts — styled-components for drag placeholder and grab states
+ index.ts — public exports (components + @dnd-kit re-exports)
+ __specs__/
+ Sortable.spec.tsx — Vitest test
 ```
 
 ## Public exports
@@ -71,17 +71,17 @@ import type { BaseItem, WithIndex, DragHandlePropType } from '@synerise/ds-sorta
 type Item = BaseItem & { label: string };
 
 const ItemComponent = ({ label, dragHandleProps }: WithIndex<Item>) => (
-  <div>
-    <span {...dragHandleProps}>⠿</span>
-    {label}
-  </div>
+ <div>
+ <span {..dragHandleProps}>⠿</span>
+ {label}
+ </div>
 );
 
 <Sortable
-  items={items}
-  ItemComponent={ItemComponent}
-  axis="y"
-  onOrderChange={setItems}
+ items={items}
+ ItemComponent={ItemComponent}
+ axis="y"
+ onOrderChange={setItems}
 />
 ```
 
@@ -90,7 +90,7 @@ const ItemComponent = ({ label, dragHandleProps }: WithIndex<Item>) => (
 import { SortableContainer, useSortable, CSS } from '@synerise/ds-sortable';
 
 <SortableContainer items={items} axis="y" onOrderChange={setItems}>
-  {items.map((item, index) => <MyItem key={item.id} {...item} index={index} />)}
+ {items.map((item, index) => <MyItem key={item.id} {..item} index={index} />)}
 </SortableContainer>
 ```
 
@@ -111,5 +111,5 @@ Drag placeholder (the item's original slot while dragging): blue dashed border +
 - **Semi-controlled order**: `Sortable` and `SortableContainer` both maintain internal `order` state synced from `items` via `useEffect([items])`. External `items` changes after mount will update the internal order.
 - **`index === -1` in DragOverlay**: `ItemComponent` is rendered in the overlay with `index={-1}`; components can use this to detect the overlay state.
 - **Keyboard support**: `KeyboardSensor` with `sortableKeyboardCoordinates` is wired up automatically in `SortableContainer`.
-- **Uses Jest** (`jest.config.js`) — not yet migrated to Vitest.
+- **Uses Vitest** for testing.
 - **README API table is empty** — no props are documented.

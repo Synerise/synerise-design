@@ -1,4 +1,4 @@
-import type { PaginationProps } from 'antd/lib/pagination';
+import type { PaginationProps } from 'antd';
 import {
   type HTMLAttributes,
   type MouseEvent,

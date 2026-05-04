@@ -24,6 +24,8 @@ export type {
   DateRangePreset,
   RelativeDateRangePreset,
   AbsoluteDateRangePreset,
+  DateFilter,
+  RelativeUnits,
 } from './date.types';
 export type {
   DateRangePickerProps,

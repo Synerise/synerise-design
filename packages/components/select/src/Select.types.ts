@@ -1,4 +1,5 @@
-import type { SelectProps, SelectValue } from 'antd/lib/select';
+import type { SelectProps } from 'antd';
+import type { SelectValue } from 'antd/lib/select';
 import type { ReactNode, ReactText } from 'react';
 import type { CSSObject } from 'styled-components';
 
