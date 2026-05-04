@@ -1,10 +1,10 @@
-import AntdRadio from 'antd/lib/radio';
+import { Radio as AntdRadio } from 'antd';
 import React from 'react';
 import styled, { type SimpleInterpolation, css } from 'styled-components';
 
 import { type ThemeProps } from '@synerise/ds-core';
 import { FormFieldLabel } from '@synerise/ds-form-field';
-import { macro } from '@synerise/ds-typography/';
+import { macro } from '@synerise/ds-typography';
 
 export const RadioWrapper = styled.div`
   & {

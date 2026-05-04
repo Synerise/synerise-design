@@ -6,12 +6,12 @@
 
 ```
 src/
-  MetricCard.tsx          — main component
-  MetricCard.types.ts     — MetricCardProps, CopyTexts
-  MetricCard.styles.tsx   — all styled components
-  index.ts                — public exports
-  __specs__/
-    MetricCard.spec.tsx   — Jest tests (title, hover reveal, inlineAlert, copyIcon)
+ MetricCard.tsx — main component
+ MetricCard.types.ts — MetricCardProps, CopyTexts
+ MetricCard.styles.tsx — all styled components
+ index.ts — public exports
+ __specs__/
+ MetricCard.spec.tsx — Vitest tests (title, hover reveal, inlineAlert, copyIcon)
 ```
 
 ## Public exports
@@ -46,12 +46,12 @@ Full props type re-export.
 import MetricCard from '@synerise/ds-metric-card';
 
 <MetricCard
-  title="Revenue"
-  displayValue={<FormattedNumber options={compactOptions} value={12345} />}
-  hoverValue={<FormattedNumber value={12345} />}
-  copyValue="12345"
-  texts={{ copyTooltip: 'Copy', copiedTooltip: 'Copied!' }}
-  headerRightSide={<Button type="ghost" mode="single-icon">…</Button>}
+ title="Revenue"
+ displayValue={<FormattedNumber options={compactOptions} value={12345} />}
+ hoverValue={<FormattedNumber value={12345} />}
+ copyValue="12345"
+ texts={{ copyTooltip: 'Copy', copiedTooltip: 'Copied!' }}
+ headerRightSide={<Button type="ghost" mode="single-icon">…</Button>}
 />
 ```
 
@@ -76,4 +76,4 @@ Hover behaviour is pure CSS class toggle: `MetricContent.hovered` class shows `W
 - **`isLoading` and `errorMessage` are mutually exclusive** — `isLoading` takes priority; the `useMemo` returns the skeleton first, then the inline alert, then the value nodes.
 - **`hoverValue` fallback** — if only `displayValue` is provided and no `hoverValue`, `WrapperNumber` still renders `displayValue` on hover.
 - **Copy icon visibility** — the icon is only mounted when `hover && typeof copyValue === 'string'`; it is not shown at all when `copyValue` is absent.
-- **Test runner is Jest** (not Vitest).
+- **Uses Vitest**.

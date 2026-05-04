@@ -1,4 +1,4 @@
-import { type RawTextAreaProps } from '@synerise/ds-input/dist/Textarea/Textarea.types';
+import { type RawTextAreaProps } from '@synerise/ds-input';
 
 import { type SubtleFieldProps } from '../../SubtleForm.types';
 

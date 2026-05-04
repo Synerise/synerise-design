@@ -6,13 +6,13 @@
 
 ```
 src/
-  InlineAlert.tsx           — main component
-  InlineAlert.types.ts      — InlineAlertProps, InlineAlertType
-  InlineAlert.styles.tsx    — styled wrapper + message/emphasis/link subcomponents
-  InlineAlert.const.tsx     — ICONS map (type → icon element)
-  index.ts                  — public exports (default + all types)
-  __specs__/
-    InlineAlert.spec.tsx    — Jest tests (message render, withLink render)
+ InlineAlert.tsx — main component
+ InlineAlert.types.ts — InlineAlertProps, InlineAlertType
+ InlineAlert.styles.tsx — styled wrapper + message/emphasis/link subcomponents
+ InlineAlert.const.tsx — ICONS map (type → icon element)
+ index.ts — public exports (default + all types)
+ __specs__/
+ InlineAlert.spec.tsx — Vitest tests (message render, withLink render)
 ```
 
 ## Public exports
@@ -63,7 +63,7 @@ import InlineAlert from '@synerise/ds-inline-alert';
 <InlineAlert type="info" message="Note" customIcon={<MyIcon />} />
 
 // Disabled
-<InlineAlert type="info" message="Loading..." disabled />
+<InlineAlert type="info" message="Loading.." disabled />
 ```
 
 ## Styling
@@ -93,4 +93,4 @@ The root element is a `<span>` (`display: flex`), not a `<div>`, so it can be us
 - **`withLink` takes priority over `withEmphasis`** — they are rendered in a mutually exclusive `if/else` branch; passing both will silently suppress `withEmphasis`.
 - **`alert` and `warning` use the same icon** (`WarningFillM`) — only the colour differs.
 - **`iconAlert` is deprecated** and does nothing in the current code; the prop is accepted (no TS error) but never read in the render path.
-- **Test runner is Jest** (not Vitest).
+- **Uses Vitest**.

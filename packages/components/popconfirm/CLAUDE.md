@@ -6,20 +6,20 @@
 
 ```
 src/
-  Popconfirm.tsx              — main component (forwardRef, wraps @synerise/ds-popover)
-  Popconfirm.types.ts         — PopconfirmProps, PopconfirmType, PopconfirmTexts
-  Popconfirm.styles.tsx       — all styled-components for Popconfirm
-  Popconfirm.const.ts         — POPOVER_OFFSET_CONFIG (mainAxis: 16)
-  ConfirmMessage/
-    ConfirmMessage.tsx        — standalone tooltip-based confirm message component
-    ConfirmMessage.types.ts   — ConfirmMessageProps
-    ConfirmMessage.style.ts   — styled-components for ConfirmMessage
-  utils/
-    getTransitionConfig.ts    — scaleY transition config for @floating-ui/react
-  style/
-    index.less                — Ant Design Carousel overrides
-  index.ts                    — public exports
-  modules.d.ts                — *.less module declaration
+ Popconfirm.tsx — main component (forwardRef, wraps @synerise/ds-popover)
+ Popconfirm.types.ts — PopconfirmProps, PopconfirmType, PopconfirmTexts
+ Popconfirm.styles.tsx — all styled-components for Popconfirm
+ Popconfirm.const.ts — POPOVER_OFFSET_CONFIG (mainAxis: 16)
+ ConfirmMessage/
+ ConfirmMessage.tsx — standalone tooltip-based confirm message component
+ ConfirmMessage.types.ts — ConfirmMessageProps
+ ConfirmMessage.style.ts — styled-components for ConfirmMessage
+ utils/
+ getTransitionConfig.ts — scaleY transition config for @floating-ui/react
+ style/
+ index.less — Ant Design Carousel overrides
+ index.ts — public exports
+ modules.d.ts — *.less module declaration
 ```
 
 ## Public exports
@@ -96,34 +96,34 @@ import Popconfirm from '@synerise/ds-popconfirm';
 
 // Basic
 <Popconfirm
-  title="Are you sure?"
-  okText="Yes"
-  cancelText="No"
-  onConfirm={() => doSomething()}
-  onCancel={() => {}}
+ title="Are you sure?"
+ okText="Yes"
+ cancelText="No"
+ onConfirm={() => doSomething()}
+ onCancel={() => {}}
 >
-  <button>Delete</button>
+ <button>Delete</button>
 </Popconfirm>
 
 // With description and image carousel
 <Popconfirm
-  title="Are you sure?"
-  description="This action cannot be undone."
-  images={['https://example.com/img.jpg']}
-  imagesAutoplay
+ title="Are you sure?"
+ description="This action cannot be undone."
+ images={['https://example.com/img.jpg']}
+ imagesAutoplay
 >
-  <button>Delete</button>
+ <button>Delete</button>
 </Popconfirm>
 
 // ConfirmMessage (named import preferred)
 import { ConfirmMessage } from '@synerise/ds-popconfirm';
 
 <ConfirmMessage
-  title="Copied!"
-  icon={<Icon component={<WarningFillM />} />}
-  onClick={(showMessage) => { copyToClipboard(); showMessage(); }}
+ title="Copied!"
+ icon={<Icon component={<WarningFillM />} />}
+ onClick={(showMessage) => { copyToClipboard(); showMessage(); }}
 >
-  <button>Copy</button>
+ <button>Copy</button>
 </ConfirmMessage>
 ```
 

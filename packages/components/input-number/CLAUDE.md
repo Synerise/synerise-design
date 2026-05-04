@@ -6,19 +6,19 @@
 
 ```
 src/
-  InputNumber.tsx                — main component
-  InputNumber.types.ts           — InputNumberProps, deprecated Props alias
-  InputNumber.styles.tsx         — styled-components (InputNumberContainer, AntdInputNumber, etc.)
-  index.ts                       — public exports
-  constants/
-    inputNumber.constants.ts     — MAXIMUM_FRACTION_DIGITS (20), MAXIMUM_NUMBER_DIGITS (15), NUMBER_DELIMITER ('.')
-  utils/
-    inputNumber.utils.ts         — formatNumber, parseFormattedNumber helpers
-  style/
-    index.less                   — Less styles imported at runtime
-  __specs__/
-    InputNumber.spec.tsx         — Jest tests (component)
-    inputNumber.utils.spec.tsx   — Jest tests (utils)
+ InputNumber.tsx — main component
+ InputNumber.types.ts — InputNumberProps, deprecated Props alias
+ InputNumber.styles.tsx — styled-components (InputNumberContainer, AntdInputNumber, etc.)
+ index.ts — public exports
+ constants/
+ inputNumber.constants.ts — MAXIMUM_FRACTION_DIGITS (20), MAXIMUM_NUMBER_DIGITS (15), NUMBER_DELIMITER ('.')
+ utils/
+ inputNumber.utils.ts — formatNumber, parseFormattedNumber helpers
+ style/
+ index.less — Less styles imported at runtime
+ __specs__/
+ InputNumber.spec.tsx — Vitest tests (component)
+ inputNumber.utils.spec.tsx — Vitest tests (utils)
 ```
 
 ## Public exports
@@ -64,29 +64,29 @@ import InputNumber from '@synerise/ds-input-number';
 
 // Basic with form field
 <InputNumber
-  label="Quantity"
-  description="Enter a number between 1 and 100"
-  min={1}
-  max={100}
-  defaultValue={10}
-  onChange={(value) => console.log(value)}
+ label="Quantity"
+ description="Enter a number between 1 and 100"
+ min={1}
+ max={100}
+ defaultValue={10}
+ onChange={(value) => console.log(value)}
 />
 
 // Error state
 <InputNumber
-  label="Price"
-  error
-  errorText="Must be a positive number"
-  value={price}
-  onChange={setPrice}
+ label="Price"
+ error
+ errorText="Must be a positive number"
+ value={price}
+ onChange={setPrice}
 />
 
 // With prefix/suffix
 <InputNumber
-  prefixel="$"
-  suffixel="USD"
-  min={0}
-  step={0.01}
+ prefixel="$"
+ suffixel="USD"
+ min={0}
+ step={0.01}
 />
 
 // Raw (no form field wrapper)
@@ -94,15 +94,15 @@ import InputNumber from '@synerise/ds-input-number';
 
 // Autosize
 <InputNumber
-  autoResize={{ minWidth: '60px', maxWidth: '200px', stretchToFit: true }}
-  value={val}
-  onChange={setVal}
+ autoResize={{ minWidth: '60px', maxWidth: '200px', stretchToFit: true }}
+ value={val}
+ onChange={setVal}
 />
 
 // Custom decimal precision
 <InputNumber
-  valueFormatOptions={{ maximumFractionDigits: 2 }}
-  defaultValue={1234.5678}
+ valueFormatOptions={{ maximumFractionDigits: 2 }}
+ defaultValue={1234.5678}
 />
 ```
 
@@ -136,4 +136,4 @@ Additional Less styles in `src/style/index.less` (imported at runtime).
 - **`raw` mode**: When `raw={true}`, the `FormField` wrapper is skipped entirely — `label`, `description`, `errorText`, `tooltip`, `tooltipConfig` have no effect.
 - **`autoResize` + `stretchToFit`**: Uses `useResizeObserver` on a wrapper ref. When the parent container resizes, `max-width` is dynamically set on the inner Ant Design input element. An extra `45px` (`AUTOSIZE_EXTRA_WIDTH`) is added to accommodate the up/down step buttons.
 - **Maximum digits**: `parseFormattedNumber` truncates to `MAXIMUM_NUMBER_DIGITS = 15` characters to avoid floating-point precision issues near `Number.MAX_SAFE_INTEGER`.
-- **Tests use Jest** (`jest.config.js`) — not yet migrated to Vitest.
+- **Uses Vitest** for testing.

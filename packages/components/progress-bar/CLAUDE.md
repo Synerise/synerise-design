@@ -6,20 +6,20 @@
 
 ```
 src/
-  ProgressBar.tsx              — default export; segmented single-value bar
-  ProgressBar.types.ts         — ProgressProps
-  ProgressBar.styles.ts        — styled-components (note: .ts)
-  index.ts                     — default + named exports + type exports
-  Multivalue/
-    Multivalue.tsx             — multi-value bar (stacked or side-by-side)
-    Multivalue.types.ts        — MultivalueProps, ProgressValue
-    MultiValue.styles.ts       — styles (note: filename casing inconsistency)
-  ProgressTiles/
-    ProgressTiles.tsx          — colour-per-tile bar
-    ProgressTiles.types.ts     — ProgressTilesProps
-    ProgressTiles.styles.ts    — styles
-  __specs__/
-    ProgressBar.spec.tsx       — render tests for ProgressBar only (Jest)
+ ProgressBar.tsx — default export; segmented single-value bar
+ ProgressBar.types.ts — ProgressProps
+ ProgressBar.styles.ts — styled-components (note: .ts)
+ index.ts — default + named exports + type exports
+ Multivalue/
+ Multivalue.tsx — multi-value bar (stacked or side-by-side)
+ Multivalue.types.ts — MultivalueProps, ProgressValue
+ MultiValue.styles.ts — styles (note: filename casing inconsistency)
+ ProgressTiles/
+ ProgressTiles.tsx — colour-per-tile bar
+ ProgressTiles.types.ts — ProgressTilesProps
+ ProgressTiles.styles.ts — styles
+ __specs__/
+ ProgressBar.spec.tsx — render tests for ProgressBar only (Vitest)
 ```
 
 ## Public exports
@@ -40,7 +40,7 @@ A single-value progress bar, optionally split into `steps` segments.
 | `description` | `ReactNode` | `undefined` | Text below the bar. Hidden in inline mode. |
 | `containerStyles` | `CSSProperties` | `undefined` | **@deprecated** — use `style` prop instead. |
 
-All standard `HTMLDivElement` attributes accepted via `WithHTMLAttributes<HTMLDivElement, ...>`.
+All standard `HTMLDivElement` attributes accepted via `WithHTMLAttributes<HTMLDivElement, ..>`.
 
 ### `Multivalue`
 
@@ -94,35 +94,35 @@ import ProgressBar, { Multivalue, ProgressTiles } from '@synerise/ds-progress-ba
 
 // Multi-value stacked (default)
 <Multivalue
-  values={[
-    { percent: 80, color: '#blue' },
-    { percent: 50, color: '#red' },
-  ]}
+ values={[
+ { percent: 80, color: '#blue' },
+ { percent: 50, color: '#red' },
+ ]}
 />
 
 // Multi-value with tooltips
 <Multivalue
-  values={[
-    { percent: 80, color: '#blue', tooltip: '80%' },
-    { percent: 50, color: '#red', tooltip: '50%' },
-  ]}
+ values={[
+ { percent: 80, color: '#blue', tooltip: '80%' },
+ { percent: 50, color: '#red', tooltip: '50%' },
+ ]}
 />
 
 // Multi-value side by side
 <Multivalue
-  values={[
-    { percent: 30, color: '#blue' },
-    { percent: 20, color: '#red' },
-  ]}
-  stackedBars={false}
+ values={[
+ { percent: 30, color: '#blue' },
+ { percent: 20, color: '#red' },
+ ]}
+ stackedBars={false}
 />
 
 // Colour tiles
 <ProgressTiles
-  colors={['#4CAF50', '#FF9800', '#F44336']}
-  percent={55}
-  tileWidth="24px"
-  label="Risk level"
+ colors={['#4CAF50', '#FF9800', '#F44336']}
+ percent={55}
+ tileWidth="24px"
+ label="Risk level"
 />
 ```
 
@@ -148,8 +148,8 @@ All styles in `*.styles.ts` files. Use `theme.palette` tokens for backgrounds; `
 - **`inline` mode suppresses `description`** — when `inline` is `true`, the label content is shown to the right of the bar (or `${percent}%` if no label), and `description` is never rendered even if provided.
 - **Label vs percent in non-inline mode** — both `label` and `${percent}%` are always shown in the `LabelWrapper` when `label` is truthy and `!inline`. There is no way to show only the percent without a label in this mode.
 - **`containerStyles` deprecated** — use the standard `style` prop instead. `containerStyles` is still accepted but JSDoc-marked `@deprecated`.
-- **`Multivalue` stacked sorting** — values are spread (`[...values]`) before sorting to avoid mutating the original array.
+- **`Multivalue` stacked sorting** — values are spread (`[..values]`) before sorting to avoid mutating the original array.
 - **`getTilesConfig` in `ProgressTiles` is wrapped in `useCallback` but called directly** — `useCallback` provides no benefit here since the function is invoked immediately in render, not passed as a callback.
-- **Spec uses non-existent `showLabel` prop** — `ProgressBar.spec.tsx` passes `showLabel={false}` which is not in `ProgressProps`; it is silently ignored via `...rest` spread.
+- **Spec uses non-existent `showLabel` prop** — `ProgressBar.spec.tsx` passes `showLabel={false}` which is not in `ProgressProps`; it is silently ignored via `..rest` spread.
 - **No tests for `Multivalue` or `ProgressTiles`**.
-- **Uses Jest** (not Vitest) — `package.json` has `"test": "jest"`.
+- **Uses Vitest** — `package.json` has `"test": "jest"`.

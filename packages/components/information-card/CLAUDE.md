@@ -6,17 +6,17 @@
 
 ```
 src/
-  InformationCard.tsx                           — main component (forwardRef)
-  InformationCard.types.tsx                     — InformationCardProps, BadgeData
-  InformationCard.styles.tsx                    — INFOCARD_WIDTH, all card styled-components
-  InformationCard.utils.tsx                     — buildInitialsBadge, buildIconBadge, buildExtraInfo
-  index.ts                                      — public exports
-  InformationCardActions/                       — slide-in quick-actions menu panel
-  InformationCardDescription/                   — editable or static description area
-  InformationCardFooter/                        — footer text + action button
-  InformationCardPropertyList/                  — label/value property rows + dividers
-  InformationCardSummary/                       — icon + label summary items row
-  InformationCardTooltip/                       — hover popover wrapper (forwardRef)
+ InformationCard.tsx — main component (forwardRef)
+ InformationCard.types.tsx — InformationCardProps, BadgeData
+ InformationCard.styles.tsx — INFOCARD_WIDTH, all card styled-components
+ InformationCard.utils.tsx — buildInitialsBadge, buildIconBadge, buildExtraInfo
+ index.ts — public exports
+ InformationCardActions/ — slide-in quick-actions menu panel
+ InformationCardDescription/ — editable or static description area
+ InformationCardFooter/ — footer text + action button
+ InformationCardPropertyList/ — label/value property rows + dividers
+ InformationCardSummary/ — icon + label summary items row
+ InformationCardTooltip/ — hover popover wrapper (forwardRef)
 ```
 
 ## Public exports
@@ -93,34 +93,34 @@ Standalone property list component. Props: `items?: InformationCardPropertyItem[
 
 ```tsx
 import InformationCard, {
-  InformationCardTooltip,
-  buildIconBadge,
-  buildInitialsBadge,
+ InformationCardTooltip,
+ buildIconBadge,
+ buildInitialsBadge,
 } from '@synerise/ds-information-card';
 
 // As a standalone card
 <InformationCard
-  title="Customer segment"
-  subtitle="ID: 12345"
-  icon={<SegmentM />}
-  iconColor="mars"
-  renderBadge={() => buildIconBadge({ iconElement: <SegmentM />, iconColor: 'mars' })}
-  propertyListItems={[
-    { label: 'Created', value: '2024-01-01' },
-    { type: 'divider' },
-    { label: 'Members', value: '1,200' },
-  ]}
+ title="Customer segment"
+ subtitle="ID: 12345"
+ icon={<SegmentM />}
+ iconColor="mars"
+ renderBadge={() => buildIconBadge({ iconElement: <SegmentM />, iconColor: 'mars' })}
+ propertyListItems={[
+ { label: 'Created', value: '2024-01-01' },
+ { type: 'divider' },
+ { label: 'Members', value: '1,200' },
+ ]}
 />
 
 // As a tooltip on hover
 <InformationCardTooltip
-  informationCardProps={{
-    title: 'Customer segment',
-    subtitle: 'ID: 12345',
-  }}
-  popoverProps={{ placement: 'top' }}
+ informationCardProps={{
+ title: 'Customer segment',
+ subtitle: 'ID: 12345',
+ }}
+ popoverProps={{ placement: 'top' }}
 >
-  <button>Hover me</button>
+ <button>Hover me</button>
 </InformationCardTooltip>
 ```
 

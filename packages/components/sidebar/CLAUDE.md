@@ -6,27 +6,27 @@
 
 ```
 src/
-  Sidebar.tsx                 — main component; conditional sortable/non-sortable modes
-  Sidebar.types.ts            — SidebarProps, PanelProps, SidebarContextType, Order
-  Sidebar.styles.ts           — AntdCollapse, AntdPanel, SidebarHandle, DragOverlay, etc.
-  Sidebar.context.tsx         — SidebarContext { isSortable }
-  Panel/
-    Panel.tsx                 — compound child; renders DraggablePanel or PanelContent
-  DraggablePanel/
-    DraggablePanel.tsx        — useSortable wrapper around PanelContent
-  DragOverlayPanel/
-    DragOverlayPanel.tsx      — visual copy of panel rendered during drag
-  PanelContent/
-    PanelContent.tsx          — Ant Design Panel wrapper with optional drag handle
-  SidebarWithButton/
-    SidebarWithButton.tsx     — sidebar variant with title + dropdown button
-    SidebarWithButton.types.ts
-    SidebarWithButton.styles.ts
-  utils/
-    prefixKeys.ts             — adds `.$` prefix to collapse keys in sortable mode
-  style/index.less            — Ant Design collapse less import
-  __specs__/Sidebar.spec.tsx  — Jest tests
-  index.ts                    — public exports
+ Sidebar.tsx — main component; conditional sortable/non-sortable modes
+ Sidebar.types.ts — SidebarProps, PanelProps, SidebarContextType, Order
+ Sidebar.styles.ts — AntdCollapse, AntdPanel, SidebarHandle, DragOverlay, etc.
+ Sidebar.context.tsx — SidebarContext { isSortable }
+ Panel/
+ Panel.tsx — compound child; renders DraggablePanel or PanelContent
+ DraggablePanel/
+ DraggablePanel.tsx — useSortable wrapper around PanelContent
+ DragOverlayPanel/
+ DragOverlayPanel.tsx — visual copy of panel rendered during drag
+ PanelContent/
+ PanelContent.tsx — Ant Design Panel wrapper with optional drag handle
+ SidebarWithButton/
+ SidebarWithButton.tsx — sidebar variant with title + dropdown button
+ SidebarWithButton.types.ts
+ SidebarWithButton.styles.ts
+ utils/
+ prefixKeys.ts — adds `.$` prefix to collapse keys in sortable mode
+ style/index.less — Ant Design collapse less import
+ __specs__/Sidebar.spec.tsx — Vitest tests
+ index.ts — public exports
 ```
 
 ## Public exports
@@ -79,18 +79,18 @@ import Sidebar from '@synerise/ds-sidebar';
 
 // Non-sortable
 <Sidebar defaultActiveKey={['overview']}>
-  <Sidebar.Panel id="overview" header="Overview">content</Sidebar.Panel>
-  <Sidebar.Panel id="settings" header="Settings">content</Sidebar.Panel>
+ <Sidebar.Panel id="overview" header="Overview">content</Sidebar.Panel>
+ <Sidebar.Panel id="settings" header="Settings">content</Sidebar.Panel>
 </Sidebar>
 
 // Sortable (drag-and-drop)
 <Sidebar
-  order={panelOrder}
-  onChangeOrder={setPanelOrder}
-  defaultActiveKey={['overview']}
+ order={panelOrder}
+ onChangeOrder={setPanelOrder}
+ defaultActiveKey={['overview']}
 >
-  <Sidebar.Panel id="overview" header="Overview">content</Sidebar.Panel>
-  <Sidebar.Panel id="settings" header="Settings">content</Sidebar.Panel>
+ <Sidebar.Panel id="overview" header="Overview">content</Sidebar.Panel>
+ <Sidebar.Panel id="settings" header="Settings">content</Sidebar.Panel>
 </Sidebar>
 ```
 
@@ -114,4 +114,4 @@ import Sidebar from '@synerise/ds-sidebar';
 - **Collapse key prefixing**: in sortable mode, panel IDs are prefixed with `.$` when passed to Ant's `activeKey`/`defaultActiveKey` (via `prefixKeys`). The `handleOnChange` callback strips the prefix back off. This prevents key collisions between React element keys and collapse panel keys.
 - **`DragOverlayPanel`** is rendered either inside `getPopupContainer` target (via `createPortal`) or inline if no container is provided.
 - **`onChangeOrder` must be truthy** to enable sorting — passing an empty array as `order` without `onChangeOrder` does not enable drag mode.
-- **Uses Jest** (`jest.config.js`) — not yet migrated to Vitest.
+- **Uses Vitest** for testing.

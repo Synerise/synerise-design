@@ -1,4 +1,4 @@
-import Input from 'antd/lib/input';
+import { Input } from 'antd';
 import React, { Children } from 'react';
 
 import FormField from '@synerise/ds-form-field';

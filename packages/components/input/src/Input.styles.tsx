@@ -1,9 +1,6 @@
+import { Input as BaseAntInput, type InputProps, type InputRef } from 'antd';
 import { type SizeType } from 'antd/es/config-provider/SizeContext';
-import BaseAntInput, { type InputProps, type InputRef } from 'antd/lib/input';
-import TextArea, {
-  type TextAreaProps,
-  type TextAreaRef,
-} from 'antd/lib/input/TextArea';
+import type { TextAreaProps, TextAreaRef } from 'antd/lib/input/TextArea';
 import React, { forwardRef } from 'react';
 import styled, {
   type FlattenSimpleInterpolation,
@@ -14,6 +11,8 @@ import { type ThemeProps } from '@synerise/ds-core';
 
 import type { AutoResizeProp } from './Input.types';
 import { TextareaWrapper } from './Textarea/Textarea.styles';
+
+const { TextArea } = BaseAntInput;
 
 const errorInputStyle = (props: ThemeProps) => `
   &&&, && .ant-input {

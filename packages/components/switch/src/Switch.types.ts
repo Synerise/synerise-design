@@ -1,4 +1,4 @@
-import { type SwitchProps as AntdSwitchProps } from 'antd/lib/switch';
+import { type SwitchProps as AntdSwitchProps } from 'antd';
 import { type ReactNode } from 'react';
 
 import { type TooltipProps as DsTooltipProps } from '@synerise/ds-tooltip';

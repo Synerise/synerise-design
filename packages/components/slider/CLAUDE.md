@@ -6,32 +6,32 @@
 
 ```
 src/
-  Slider.tsx              — dispatcher; picks DefaultSlider / RangeSlider / AllocationSlider
-  Slider.types.ts         — all types (SliderProps union, AllocationConfig, etc.)
-  Slider.styles.ts        — shared styled-components
-  Slider.spec.tsx         — Vitest tests
-  context/
-    SliderContext.tsx     — SliderContext providing rangerInstance + rangerHandles
-  components/
-    DefaultSlider.tsx     — single-value slider
-    RangeSlider.tsx       — dual-thumb range slider
-    AllocationSlider.tsx  — allocation/percentage slider
-    SliderLine.tsx        — track line
-    SliderAbove.tsx       — label + description above the slider
-    SliderHandles.tsx     — thumb handles with tooltips
-    SliderDots.tsx        — step dots
-    SliderMarks.tsx       — mark labels
-    SliderSections.tsx    — coloured track sections
-    AllocationMarks.tsx   — allocation variant marks
-  hooks/
-    useColorMap.ts        — derives track colour from tracksColorMap
-    useInvertedColors.ts  — computes inverted colour state
-  utils/
-    Slider.utils.ts
-    Slider.interpolators.ts
-    allocation.utils.tsx
-    allocationHandlers.utils.ts
-  index.ts                — public exports (re-exports all from Slider.types)
+ Slider.tsx — dispatcher; picks DefaultSlider / RangeSlider / AllocationSlider
+ Slider.types.ts — all types (SliderProps union, AllocationConfig, etc.)
+ Slider.styles.ts — shared styled-components
+ Slider.spec.tsx — Vitest tests
+ context/
+ SliderContext.tsx — SliderContext providing rangerInstance + rangerHandles
+ components/
+ DefaultSlider.tsx — single-value slider
+ RangeSlider.tsx — dual-thumb range slider
+ AllocationSlider.tsx — allocation/percentage slider
+ SliderLine.tsx — track line
+ SliderAbove.tsx — label + description above the slider
+ SliderHandles.tsx — thumb handles with tooltips
+ SliderDots.tsx — step dots
+ SliderMarks.tsx — mark labels
+ SliderSections.tsx — coloured track sections
+ AllocationMarks.tsx — allocation variant marks
+ hooks/
+ useColorMap.ts — derives track colour from tracksColorMap
+ useInvertedColors.ts — computes inverted colour state
+ utils/
+ Slider.utils.ts
+ Slider.interpolators.ts
+ allocation.utils.tsx
+ allocationHandlers.utils.ts
+ index.ts — public exports (re-exports all from Slider.types)
 ```
 
 ## Public exports
@@ -123,14 +123,14 @@ import Slider from '@synerise/ds-slider';
 
 // Allocation slider
 <Slider
-  type="allocation"
-  allocationConfig={{
-    variants: [
-      { name: 'A', percentage: 50, tabId: 1, tabLetter: 'A' },
-      { name: 'B', percentage: 50, tabId: 2, tabLetter: 'B' },
-    ],
-    onAllocationChange: setVariants,
-  }}
+ type="allocation"
+ allocationConfig={{
+ variants: [
+ { name: 'A', percentage: 50, tabId: 1, tabLetter: 'A' },
+ { name: 'B', percentage: 50, tabId: 2, tabLetter: 'B' },
+ ],
+ onAllocationChange: setVariants,
+ }}
 />
 ```
 

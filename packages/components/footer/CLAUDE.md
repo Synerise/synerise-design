@@ -6,10 +6,10 @@
 
 ```
 src/
-  Footer.tsx        — component + FooterProps type
-  Footer.styles.ts  — single styled-component (footer element)
-  index.ts          — default export
-  Footer.spec.tsx   — Jest tests
+ Footer.tsx — component + FooterProps type
+ Footer.styles.ts — single styled-component (footer element)
+ index.ts — default export
+ Footer.spec.tsx — Vitest tests
 ```
 
 ## Public exports
@@ -31,8 +31,8 @@ import Footer from '@synerise/ds-footer';
 import Button from '@synerise/ds-button';
 
 <Footer>
-  <Button type="primary">Save</Button>
-  <Button>Cancel</Button>
+ <Button type="primary">Save</Button>
+ <Button>Cancel</Button>
 </Footer>
 ```
 

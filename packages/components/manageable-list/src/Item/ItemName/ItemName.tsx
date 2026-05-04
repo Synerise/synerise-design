@@ -7,7 +7,7 @@ import React, {
 } from 'react';
 
 import { InfoFillS } from '@synerise/ds-icon';
-import InlineEdit from '@synerise/ds-inline-edit/dist/InlineEdit';
+import InlineEdit from '@synerise/ds-inline-edit';
 import Tooltip from '@synerise/ds-tooltip';
 import { escapeRegEx } from '@synerise/ds-utils';
 

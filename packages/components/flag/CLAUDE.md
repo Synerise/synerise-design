@@ -6,20 +6,20 @@
 
 ```
 src/
-  Flag.tsx            — main component; normalises code, looks up icon, renders FlagContainer
-  Flag.types.ts       — CountryCode union (250+ codes) + FlagProps
-  Flag.styles.tsx     — FlagContainer styled div (size/aspect-ratio logic)
-  Flag.const.ts       — FLAG_SIZE_RATIO (15/21) and DEFAULT_SIZE (24)
-  Flag.utils.ts       — countryCodes: CountryCode[] array (runtime list of all codes)
-  index.ts            — public exports
-  icons/
-    index.ts          — auto-generated: re-exports all SVG components by country code
-    <CC>.tsx          — auto-generated SVG component per country (e.g. PL.tsx, US.tsx)
-  __specs__/
-    Flag.spec.tsx     — Jest: single render test (class ds-flag-PL present)
+ Flag.tsx — main component; normalises code, looks up icon, renders FlagContainer
+ Flag.types.ts — CountryCode union (250+ codes) + FlagProps
+ Flag.styles.tsx — FlagContainer styled div (size/aspect-ratio logic)
+ Flag.const.ts — FLAG_SIZE_RATIO (15/21) and DEFAULT_SIZE (24)
+ Flag.utils.ts — countryCodes: CountryCode[] array (runtime list of all codes)
+ index.ts — public exports
+ icons/
+ index.ts — auto-generated: re-exports all SVG components by country code
+ <CC>.tsx — auto-generated SVG component per country (e.g. PL.tsx, US.tsx)
+ __specs__/
+ Flag.spec.tsx — Vitest: single render test (class ds-flag-PL present)
 build/
-  svgr.js             — build script: transforms src/svg/*.svg → src/icons/*.tsx + icons/index.ts
-  template.js         — SVGR component template used by svgr.js
+ svgr.js — build script: transforms src/svg/*.svg → src/icons/*.tsx + icons/index.ts
+ template.js — SVGR component template used by svgr.js
 ```
 
 ## Public exports
@@ -53,7 +53,7 @@ import Flag, { countryCodes } from '@synerise/ds-flag';
 <Flag country="US" size={32} />
 
 // Case-insensitive, hyphenated sub-national codes supported
-<Flag country="gb-eng" />  // → looks up icon "GBENG"
+<Flag country="gb-eng" /> // → looks up icon "GBENG"
 
 // Populate a select with all available codes
 countryCodes.map((code) => <option key={code}>{code}</option>)
@@ -78,4 +78,4 @@ countryCodes.map((code) => <option key={code}>{code}</option>)
 - **`data-testid`** — each generated icon component has `data-testid="ds-flag-{CC}"` on the `<svg>` element.
 - **CSS class names** — the `FlagContainer` div always receives `ds-flag` and `ds-flag-{CC}` (uppercased) classes, e.g. `ds-flag ds-flag-PL`.
 - **`CountryCode` union includes sub-national codes**: `GB-ENG`, `GB-NIR`, `GB-SCT`, `GB-WLS`, `GB-ZET`, `US-CA`.
-- **Test runner is Jest** (not Vitest) — `"test": "jest"` in package.json.
+- **Uses Vitest** — `"test": "jest"` in package.json.

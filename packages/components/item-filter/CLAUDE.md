@@ -10,13 +10,13 @@ Both the component and its types carry `@deprecated` JSDoc tags. No new features
 
 ```
 src/
-  ItemFilter.tsx          — main component (default export); wraps Drawer + Tabs + react-window List
-  ItemFilter.types.ts     — ItemFilterProps, Category, Item (exported)
-  ItemFIlter.styles.ts    — styled-components: FiltersList, ItemFilterHeader  (note typo in filename)
-  index.ts                — re-exports default + all named types
-  modules.d.ts            — @testing-library/jest-dom augmentation (test setup only)
-  __specs__/
-    ItemFilter.spec.tsx   — Jest tests (uses renderWithProvider from @synerise/ds-core)
+ ItemFilter.tsx — main component (default export); wraps Drawer + Tabs + react-window List
+ ItemFilter.types.ts — ItemFilterProps, Category, Item (exported)
+ ItemFIlter.styles.ts — styled-components: FiltersList, ItemFilterHeader (note typo in filename)
+ index.ts — re-exports default + all named types
+ modules.d.ts — @testing-library/jest-dom augmentation (test setup only)
+ __specs__/
+ ItemFilter.spec.tsx — Vitest tests (uses renderWithProvider from @synerise/ds-core)
 ```
 
 ## Public exports
@@ -81,35 +81,35 @@ import ItemFilter from '@synerise/ds-item-filter';
 import type { Category } from '@synerise/ds-item-filter';
 
 const categories: Category[] = [
-  {
-    label: 'All filters',
-    hasMore: true,
-    items: [
-      {
-        id: '001',
-        name: 'My Filter',
-        canUpdate: true,
-        canDelete: true,
-        canDuplicate: true,
-        categories: ['All filters'],
-        user: { firstname: 'Jan', lastname: 'Nowak' },
-        created: '2024-01-01',
-      },
-    ],
-  },
+ {
+ label: 'All filters',
+ hasMore: true,
+ items: [
+ {
+ id: '001',
+ name: 'My Filter',
+ canUpdate: true,
+ canDelete: true,
+ canDuplicate: true,
+ categories: ['All filters'],
+ user: { firstname: 'Jan', lastname: 'Nowak' },
+ created: '2024-01-01',
+ },
+ ],
+ },
 ];
 
 <ItemFilter
-  visible={isOpen}
-  hide={() => setIsOpen(false)}
-  categories={categories}
-  selectedItemId={selectedId}
-  fetchData={(category) => loadMore(category)}
-  selectItem={({ id }) => setSelectedId(String(id))}
-  removeItem={({ id }) => deleteFilter(id)}
-  editItem={({ id, name }) => renameFilter(id, name)}
-  duplicateItem={({ id }) => duplicateFilter(id)}
-  search={{ value: query, onChange: setQuery, onClear: () => setQuery('') }}
+ visible={isOpen}
+ hide={() => setIsOpen(false)}
+ categories={categories}
+ selectedItemId={selectedId}
+ fetchData={(category) => loadMore(category)}
+ selectItem={({ id }) => setSelectedId(String(id))}
+ removeItem={({ id }) => deleteFilter(id)}
+ editItem={({ id, name }) => renameFilter(id, name)}
+ duplicateItem={({ id }) => duplicateFilter(id)}
+ search={{ value: query, onChange: setQuery, onClear: () => setQuery('') }}
 />
 ```
 

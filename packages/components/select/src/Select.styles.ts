@@ -1,4 +1,4 @@
-import Select from 'antd/lib/select';
+import { Select } from 'antd';
 import type React from 'react';
 import styled, {
   type FlattenSimpleInterpolation,

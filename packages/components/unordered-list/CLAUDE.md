@@ -6,15 +6,15 @@
 
 ```
 src/
-  Unordered-list.tsx        — main component; renders label + <ul> + items recursively
-  Unordered-list.types.ts   — UnorderedListItem, UnorderedListProps, deprecated ListProps
-  Unordered-list.styles.ts  — UnorderedList (ul), Label, ContentAbove styled components
-  index.ts                  — public exports
-  Elements/
-    Item/Item.tsx           — single <li>; renders indexFormatter, prefixel, label, suffixel, and nested NestedList
-    Item/Item.styles.ts     — ItemWrapper (li), IndexFormatterWrapper
-  __specs__/
-    Ordered-list.spec.tsx   — Jest tests (note: spec file is misnamed "Ordered-list")
+ Unordered-list.tsx — main component; renders label + <ul> + items recursively
+ Unordered-list.types.ts — UnorderedListItem, UnorderedListProps, deprecated ListProps
+ Unordered-list.styles.ts — UnorderedList (ul), Label, ContentAbove styled components
+ index.ts — public exports
+ Elements/
+ Item/Item.tsx — single <li>; renders indexFormatter, prefixel, label, suffixel, and nested NestedList
+ Item/Item.styles.ts — ItemWrapper (li), IndexFormatterWrapper
+ __specs__/
+ Ordered-list.spec.tsx — Vitest tests (note: spec file is misnamed "Ordered-list")
 ```
 
 ## Public exports
@@ -56,15 +56,15 @@ import UnorderedList from '@synerise/ds-unordered-list';
 import type { UnorderedListItem } from '@synerise/ds-unordered-list';
 
 <UnorderedList
-  text="Section heading"
-  indexFormatter={(i) => ` ${i + 1}. `}
-  data={[
-    { id: '0', index: 0, label: 'Item A' },
-    {
-      id: '1', index: 1, label: 'Item B',
-      subMenu: [{ id: '2', index: 0, label: 'Child B1' }],
-    },
-  ]}
+ text="Section heading"
+ indexFormatter={(i) => ` ${i + 1}. `}
+ data={[
+ { id: '0', index: 0, label: 'Item A' },
+ {
+ id: '1', index: 1, label: 'Item B',
+ subMenu: [{ id: '2', index: 0, label: 'Child B1' }],
+ },
+ ]}
 />
 ```
 
@@ -80,6 +80,6 @@ import type { UnorderedListItem } from '@synerise/ds-unordered-list';
 ## Implementation notes
 
 - **Circular dependency avoidance** — `Item` does not import `UnorderedList` directly. Instead, the parent passes `NestedList={UnorderedList}` as a prop to `Item`, breaking the circular reference.
-- **`index` field on `UnorderedListItem` is overridden** — the parent maps over `data` and passes `index={i}` (the array index) to `Item`, discarding the `index` field from the item object: `data.map(({ index, ...item }, i) => <Item index={i} ...item />)`. The `index` field on the item itself is effectively unused.
+- **`index` field on `UnorderedListItem` is overridden** — the parent maps over `data` and passes `index={i}` (the array index) to `Item`, discarding the `index` field from the item object: `data.map(({ index, ..item }, i) => <Item index={i} ..item />)`. The `index` field on the item itself is effectively unused.
 - **Spec file is misnamed** — `__specs__/Ordered-list.spec.tsx` tests `UnorderedList` but is named "Ordered-list".
-- **Test runner is Jest** (not Vitest).
+- **Uses Vitest**.

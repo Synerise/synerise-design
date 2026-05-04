@@ -4,21 +4,21 @@
 ## Package structure
 ```
 src/
-  PanelsResizer.tsx      — main component, manages resize state and mouse event logic
-  PanelResizer.styles.tsx — styled PanelsResizerContainer (flex row/column)
-  index.ts               — public entry point, exports PanelsResizer
-  Resizer/
-    Resizer.tsx          — drag handle UI using DragHandleM icon from @synerise/ds-icon
-    Resizer.styles.tsx   — Handler and HandlerIcon styled components
-    index.ts             — re-exports Resizer
-  utils/
-    calculatePanelsWidth.ts — InitialVectorOptions type, getInitialVector, width/height calc helpers
-    index.ts             — re-exports calculatePanelsWidth
-  modules.d.ts           — module declarations
-  __specs__/
-    PanelsResizer.test.tsx
-    Resizer.test.tsx
-    calculatePanelsWidth.test.tsx
+ PanelsResizer.tsx — main component, manages resize state and mouse event logic
+ PanelResizer.styles.tsx — styled PanelsResizerContainer (flex row/column)
+ index.ts — public entry point, exports PanelsResizer
+ Resizer/
+ Resizer.tsx — drag handle UI using DragHandleM icon from @synerise/ds-icon
+ Resizer.styles.tsx — Handler and HandlerIcon styled components
+ index.ts — re-exports Resizer
+ utils/
+ calculatePanelsWidth.ts — InitialVectorOptions type, getInitialVector, width/height calc helpers
+ index.ts — re-exports calculatePanelsWidth
+ modules.d.ts — module declarations
+ __specs__/
+ PanelsResizer.test.tsx
+ Resizer.test.tsx
+ calculatePanelsWidth.test.tsx
 ```
 
 ## Public exports
@@ -39,31 +39,31 @@ import { PanelsResizer } from '@synerise/ds-panels-resizer';
 
 // Vertical split (default)
 <div style={{ width: '100%', height: '680px' }}>
-  <PanelsResizer
-    leftPanel={<LeftContent />}
-    rightPanel={<RightContent />}
-  />
+ <PanelsResizer
+ leftPanel={<LeftContent />}
+ rightPanel={<RightContent />}
+ />
 </div>
 
 // Start with left panel at 300 px
 <PanelsResizer
-  leftPanel={<LeftContent />}
-  rightPanel={<RightContent />}
-  initial={{ leftPanel: 300 }}
+ leftPanel={<LeftContent />}
+ rightPanel={<RightContent />}
+ initial={{ leftPanel: 300 }}
 />
 
 // Horizontal split (top/bottom)
 <PanelsResizer
-  leftPanel={<TopContent />}
-  rightPanel={<BottomContent />}
-  isHorizontal
+ leftPanel={<TopContent />}
+ rightPanel={<BottomContent />}
+ isHorizontal
 />
 
 // Scrollable panels
 <PanelsResizer
-  leftPanel={<LongContent />}
-  rightPanel={<LongContent />}
-  scrollable
+ leftPanel={<LongContent />}
+ rightPanel={<LongContent />}
+ scrollable
 />
 ```
 

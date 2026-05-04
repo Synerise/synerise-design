@@ -6,12 +6,12 @@
 
 ```
 src/
-  Navbar.tsx          — main component + Navbar.Divider static property
-  Navbar.types.ts     — NavbarProps
-  Navbar.styles.ts    — all styled components
-  index.ts            — default export only
-  __specs__/
-    Navbar.spec.tsx   — Jest tests (logo/children/description/actions/alertNotification render)
+ Navbar.tsx — main component + Navbar.Divider static property
+ Navbar.types.ts — NavbarProps
+ Navbar.styles.ts — all styled components
+ index.ts — default export only
+ __specs__/
+ Navbar.spec.tsx — Vitest tests (logo/children/description/actions/alertNotification render)
 ```
 
 ## Public exports
@@ -41,12 +41,12 @@ Static styled component `S.NavbarDivider` — a 1 px × 24 px white bar at 30 % 
 import Navbar from '@synerise/ds-navbar';
 
 <Navbar
-  description="Module name"
-  logo="https://example.com/logo.png"
-  color="#1d4ed8"
-  alertNotification={<>...</>}
-  additionalNodes={[<ButtonGroup />, <HelpButton />]}
-  actions={<UserAvatar />}
+ description="Module name"
+ logo="https://example.com/logo.png"
+ color="#1d4ed8"
+ alertNotification={<>..</>}
+ additionalNodes={[<ButtonGroup />, <HelpButton />]}
+ actions={<UserAvatar />}
 />
 ```
 
@@ -65,4 +65,4 @@ Styles live in `Navbar.styles.ts`. The navbar is a `56px` tall flex row with `pa
 - **`NavbarProps` is not exported from `index.ts`** — consumers must use `React.ComponentProps<typeof Navbar>` or a local type alias.
 - **`logo` string check** — if `typeof logo === 'string'`, renders `<img src={logo} alt="" />`; otherwise renders the node as-is.
 - **`additionalNodes` key warning** — each node is wrapped in `<>…</>` without a `key`, causing React key warnings when `additionalNodes` has more than one element.
-- **Test runner is Jest** (not Vitest).
+- **Uses Vitest**.

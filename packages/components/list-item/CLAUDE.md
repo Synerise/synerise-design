@@ -4,30 +4,30 @@
 ## Package structure
 ```
 src/
-  ListItem.tsx          — main component; type-switch dispatcher
-  ListItem.types.ts     — all public types, itemTypes/itemSizes consts
-  ListItem.const.ts     — LIST_ITEM_SIZE_MAPPING (default=32px, large=50px)
-  ListItem.styles.ts    — (empty placeholder)
-  components/
-    Danger/Danger.tsx           — renders DangerItem styled variant
-    Divider/Divider.tsx         — renders ds-divider with side margin + dashed
-    Header/Header.tsx           — section header row with optional tooltip icon
-    Select/Select.tsx           — select-style row (uuid key bug present)
-    Text/Text.tsx               — default variant; all interactive logic lives here
-    Text/ItemLabel.tsx          — rendered <div role="menuitem"> with prefix/suffix/check slots
-    Text/DynamicLabel.tsx       — swaps normal label for copiedLabel via CSS transition
-    Text/utils.ts               — renderAddon, removeHandlerProps, getCopyConfig
-    Text/ItemLabel.const.ts     — INDENT_WIDTH = 20 (px per indentLevel)
-    HoverTooltip/HoverTooltip.tsx      — wraps item in @synerise/ds-popover on hover
-    HoverTooltip/HoverTooltip.const.ts — offset 8px, open 100ms / close 400ms delays
-    GroupItem/GroupItem.tsx     — renders a title + array of ListItems or children
-    SubMenu/SubMenu.tsx         — collapsible inline sub-list, indented by level
-    ListContext/ListContext.tsx          — React context + useListContext hook
-    ListContext/ListContextProvider.tsx — provider wrapping FloatingDelayGroup
-    ListWrapper/ListWrapper.tsx         — styled container that installs ListContextProvider
-  hooks/
-    useTemporaryLabel.ts        — shows copiedLabel for a configurable duration
-  modules.d.ts  — declares *.less module
+ ListItem.tsx — main component; type-switch dispatcher
+ ListItem.types.ts — all public types, itemTypes/itemSizes consts
+ ListItem.const.ts — LIST_ITEM_SIZE_MAPPING (default=32px, large=50px)
+ ListItem.styles.ts — (empty placeholder)
+ components/
+ Danger/Danger.tsx — renders DangerItem styled variant
+ Divider/Divider.tsx — renders ds-divider with side margin + dashed
+ Header/Header.tsx — section header row with optional tooltip icon
+ Select/Select.tsx — select-style row (uuid key bug present)
+ Text/Text.tsx — default variant; all interactive logic lives here
+ Text/ItemLabel.tsx — rendered <div role="menuitem"> with prefix/suffix/check slots
+ Text/DynamicLabel.tsx — swaps normal label for copiedLabel via CSS transition
+ Text/utils.ts — renderAddon, removeHandlerProps, getCopyConfig
+ Text/ItemLabel.const.ts — INDENT_WIDTH = 20 (px per indentLevel)
+ HoverTooltip/HoverTooltip.tsx — wraps item in @synerise/ds-popover on hover
+ HoverTooltip/HoverTooltip.const.ts — offset 8px, open 100ms / close 400ms delays
+ GroupItem/GroupItem.tsx — renders a title + array of ListItems or children
+ SubMenu/SubMenu.tsx — collapsible inline sub-list, indented by level
+ ListContext/ListContext.tsx — React context + useListContext hook
+ ListContext/ListContextProvider.tsx — provider wrapping FloatingDelayGroup
+ ListWrapper/ListWrapper.tsx — styled container that installs ListContextProvider
+ hooks/
+ useTemporaryLabel.ts — shows copiedLabel for a configurable duration
+ modules.d.ts — declares *.less module
 ```
 
 ## Public exports
@@ -76,10 +76,10 @@ src/
 ### `Copyable` type
 ```ts
 type Copyable = {
-  copyValue: string;
-  copiedLabel?: ReactNode;  // label shown after copy (replaces content temporarily)
-  timeToReset?: number;     // ms to show copiedLabel (default 1000)
-  delayClickEvent?: number | false; // ms to delay onClick after copy (default 700); false to disable
+ copyValue: string;
+ copiedLabel?: ReactNode; // label shown after copy (replaces content temporarily)
+ timeToReset?: number; // ms to show copiedLabel (default 1000)
+ delayClickEvent?: number | false; // ms to delay onClick after copy (default 700); false to disable
 };
 ```
 
@@ -131,20 +131,20 @@ import ListItem, { ListWrapper, ListContextProvider, useListContext } from '@syn
 
 // With shared click handler (preferred for lists)
 <ListWrapper onClick={(itemData) => console.log(itemData)}>
-  <ListItem itemKey="a">Option A</ListItem>
-  <ListItem itemKey="b" type="danger">Delete</ListItem>
-  <ListItem type="divider" />
-  <ListItem type="header">Section</ListItem>
+ <ListItem itemKey="a">Option A</ListItem>
+ <ListItem itemKey="b" type="danger">Delete</ListItem>
+ <ListItem type="divider" />
+ <ListItem type="header">Section</ListItem>
 </ListWrapper>
 
 // Copy-to-clipboard
 <ListItem copyable={{ copyValue: 'value', copiedLabel: 'Copied!', timeToReset: 1500 }}>
-  Copy me
+ Copy me
 </ListItem>
 
 // Hover tooltip (renders a Popover card on hover)
 <ListItem renderHoverTooltip={() => <div>Details</div>} popoverProps={{ placement: 'right' }}>
-  Hover me
+ Hover me
 </ListItem>
 
 // Sub-menu (inline, collapsible)
@@ -152,16 +152,16 @@ import ListItem, { ListWrapper, ListContextProvider, useListContext } from '@syn
 
 // Prefix/suffix with hover visibility
 <ListItem
-  prefixel={<Icon component={<StarM />} />}
-  prefixVisibilityTrigger="hover"
-  suffixel={(hovered) => hovered ? <Button>Delete</Button> : null}
+ prefixel={<Icon component={<StarM />} />}
+ prefixVisibilityTrigger="hover"
+ suffixel={(hovered) => hovered ? <Button>Delete</Button> : null}
 >
-  Row
+ Row
 </ListItem>
 
 // Large size with description
 <ListItem size="large" description="Secondary text">
-  Primary label
+ Primary label
 </ListItem>
 ```
 
@@ -172,9 +172,9 @@ import ListItem, { ListWrapper, ListContextProvider, useListContext } from '@syn
 - **`description` only renders at `size="large"`** — setting `description` on a default-size item silently does nothing.
 - **`checked` in `Text` type** — renders a `CheckS` icon in the suffix slot. In `select` type, the styled component handles its own checked appearance independently via `S.SelectItem`.
 - **`Select.tsx` bug** — `uuid()` is called as the `key` prop on every render, generating a new key on each re-render, causing unnecessary unmount/remount cycles. (TODO comment present in source.)
-- **`copyable` boolean legacy** — when `copyable` is a plain `boolean`, it requires `copyValue` (deprecated string prop) to be set separately. Use the object form `copyable: { copyValue: '...' }` instead.
+- **`copyable` boolean legacy** — when `copyable` is a plain `boolean`, it requires `copyValue` (deprecated string prop) to be set separately. Use the object form `copyable: { copyValue: '..' }` instead.
 - **`useTemporaryLabel` missing cleanup** — the `useEffect` in `useTemporaryLabel` runs on every render (no dependency array), creating a new `setTimeout` on each render. This is a bug: it resets the timer unnecessarily when other state changes.
 - **`GroupItem` uses `items?.map(ListItem)`** — passes `ListItemProps` objects directly as React elements via `.map(Component)`. This relies on all `ListItemProps` being valid props AND each item object having a `key` property (which is typed as optional). Missing `key` will produce React warnings.
 - **`indentLevel`** — each sub-menu level adds 20px indent (`INDENT_WIDTH`). The `SubMenu` component automatically increments `indentLevel` by 1.
 - **`popoverDelay` is not forwarded** through `ListWrapper` — `ListWrapper` only forwards `onClick`; callers needing custom delay must use `ListContextProvider` directly.
-- **Test runner is Jest** (not Vitest) — `jest.config.js` present; only 2 smoke tests exist, well below 80% coverage requirement.
+- **Uses Vitest** — `jest.config.js` present; only 2 smoke tests exist, well below 80% coverage requirement.

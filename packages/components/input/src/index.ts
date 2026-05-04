@@ -9,6 +9,7 @@ export { TextArea, RawTextArea } from './TextArea';
 export { RawTextArea as DSRawTextArea } from './Textarea/Textarea';
 
 export type { TextareaProps } from './TextArea.types';
+export type { RawTextAreaProps } from './Textarea/Textarea.types';
 
 export type { InputMultivalueProps } from './InputMultivalue/InputMultivalue.types';
 

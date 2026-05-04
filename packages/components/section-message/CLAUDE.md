@@ -6,15 +6,15 @@
 
 ```
 src/
-  SectionMessage.tsx          — main component
-  SectionMessage.types.ts     — prop types and union types
-  SectionMessage.const.tsx    — ICONS map and DEFAULT_ICON
-  SectionMessage.styles.tsx   — styled-components
-  SectionMessage.utils.tsx    — color helpers and isSectionType guard
-  index.ts                    — public exports
-  modules.d.ts                — jest-dom augmentation
-  __specs__/
-    SectionMessage.spec.tsx   — Jest tests
+ SectionMessage.tsx — main component
+ SectionMessage.types.ts — prop types and union types
+ SectionMessage.const.tsx — ICONS map and DEFAULT_ICON
+ SectionMessage.styles.tsx — styled-components
+ SectionMessage.utils.tsx — color helpers and isSectionType guard
+ index.ts — public exports
+ modules.d.ts — jest-dom augmentation
+ __specs__/
+ SectionMessage.spec.tsx — Vitest tests
 ```
 
 ## Public exports
@@ -54,8 +54,8 @@ All standard `HTMLDivElement` attributes are forwarded to the root `<div>` via `
 type SectionType = 'positive' | 'notice' | 'negative' | 'neutral' | 'supply' | 'service' | 'entity';
 
 type CustomColorType =
-  | 'blue' | 'grey' | 'red' | 'green' | 'yellow'
-  | 'pink' | 'mars' | 'orange' | 'fern' | 'cyan' | 'purple' | 'violet';
+ | 'blue' | 'grey' | 'red' | 'green' | 'yellow'
+ | 'pink' | 'mars' | 'orange' | 'fern' | 'cyan' | 'purple' | 'violet';
 
 /** @deprecated */
 type ColorType = 'grey' | 'red' | 'green' | 'yellow' | 'violet' | 'purple' | 'cyan';
@@ -77,11 +77,11 @@ import SectionMessage from '@synerise/ds-section-message';
 
 // Show more + suffix actions
 <SectionMessage
-  type="positive"
-  message="Import complete"
-  showMoreLabel="See details"
-  onShowMore={handleDetails}
-  suffixel={<Button>Undo</Button>}
+ type="positive"
+ message="Import complete"
+ showMoreLabel="See details"
+ onShowMore={handleDetails}
+ suffixel={<Button>Undo</Button>}
 />
 ```
 
@@ -113,11 +113,11 @@ Several styled components (`NumberWrapper`, `OrderWrapper`, `IconOrderWrapper`, 
 
 ## Implementation notes
 
-- `customIcon` takes a `ReactElement` and is rendered directly as a child of `IconWrapper`, bypassing the `<Icon component={...}>` wrapper. `icon` (type `ReactNode`) is passed as the `component` prop to `<Icon>`.
+- `customIcon` takes a `ReactElement` and is rendered directly as a child of `IconWrapper`, bypassing the `<Icon component={..}>` wrapper. `icon` (type `ReactNode`) is passed as the `component` prop to `<Icon>`.
 - `withClose` controls visibility of the close button but the close action fires `onClose` — both props must be set together for the button to work.
 - `showMoreLabel` is only rendered when `onShowMore` is also provided (both must be truthy).
 - `unorderedList` is suppressed when `moreButtons` is truthy.
 - `withEmphasis` is suppressed when `withLink` is truthy.
 - The `data-testid` on the root element is `ds-section-message-${type}`.
 - `isSectionType` is a type-guard used internally to validate the `type` prop before indexing `ICONS`.
-- The package uses **Jest** (not Vitest) — `"test": "jest"` in `package.json`.
+- The package uses **Jest** (not Vitest) for testing.

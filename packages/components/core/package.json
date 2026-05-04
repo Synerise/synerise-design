@@ -5,6 +5,15 @@
   "license": "ISC",
   "repository": "synerise/synerise-design",
   "main": "dist/js/index.js",
+  "exports": {
+    ".": {
+      "types": "./dist/js/index.d.ts",
+      "import": "./dist/js/index.js",
+      "default": "./dist/js/index.js"
+    },
+    "./dist/*.js": "./dist/*.js",
+    "./dist/*": "./dist/*.js"
+  },
   "types": "dist/js/index.d.ts",
   "files": [
     "/dist",

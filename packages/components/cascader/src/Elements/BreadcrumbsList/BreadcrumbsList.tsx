@@ -2,7 +2,7 @@ import React from 'react';
 
 import { theme } from '@synerise/ds-core';
 import Icon, { CheckS } from '@synerise/ds-icon';
-import { renderSearchList } from '@synerise/ds-search/dist/Elements/SearchItems/SearchItems';
+import { renderSearchList } from '@synerise/ds-search';
 
 import { type Path } from '../../Cascader.types';
 import Breadcrumb from '../Breadcrumb/Breadcrumb';

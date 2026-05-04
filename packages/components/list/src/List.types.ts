@@ -1,5 +1,4 @@
-import { type ListProps } from 'antd/lib/list';
-import { type RadioGroupProps } from 'antd/lib/radio';
+import { type ListProps, type RadioGroupProps } from 'antd';
 
 export type ListPropsType<T> = Omit<ListProps<T>, 'dataSource' | 'footer'> & {
   dataSource: T[] | T[][];

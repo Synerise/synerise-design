@@ -1,4 +1,4 @@
-import Drawer from 'antd/lib/drawer';
+import { Drawer } from 'antd';
 import React from 'react';
 import styled from 'styled-components';
 

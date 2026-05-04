@@ -11,6 +11,38 @@ import { stubLessImportsPlugin } from './scripts/vite/stub-less-plugin';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 
+/**
+ * Vite plugin that redirects @synerise/ds-<name>/dist/... imports
+ * to packages/components/<name>/src/... during tests.
+ * This allows deep /dist/ style imports to resolve from source
+ * where the tsconfig paths mapping would otherwise fail.
+ */
+function dsTestSourceRedirectPlugin(): Plugin {
+  const DS_DIST_PATTERN = /^@synerise\/ds-([a-z0-9-]+)\/dist(\/.*)?$/;
+  const componentsDir = resolve(__dirname, 'packages/components');
+
+  return {
+    name: 'ds-test-source-redirect',
+    enforce: 'pre',
+    apply: (_config, env) => env.mode === 'test' || !!process.env.VITEST,
+    async resolveId(source, importer) {
+      const match = DS_DIST_PATTERN.exec(source);
+      if (!match) {
+        return null;
+      }
+      const [, pkgName, rest = ''] = match;
+      const pkgDir = resolve(componentsDir, pkgName);
+      const srcEntry = pkgName === 'core' ? 'src/js' : 'src';
+      const resolved = await this.resolve(
+        resolve(pkgDir, srcEntry + rest),
+        importer,
+        { skipSelf: true },
+      );
+      return resolved;
+    },
+  };
+}
+
 export interface ViteConfigOptions {
   /** Additional plugins to include */
   plugins?: Plugin[];
@@ -174,6 +206,8 @@ export const createViteConfig = (
 
   return defineConfig({
     plugins: [
+      // Redirect @synerise/ds-*/dist/* → src/* during tests
+      dsTestSourceRedirectPlugin(),
       // Mark bare imports as external before Vite resolves them to absolute paths
       externalizeDepPlugin(),
       // Stub LESS imports (we compile them separately)

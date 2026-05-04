@@ -2,8 +2,8 @@
 import React from 'react';
 import { useIntl } from 'react-intl';
 
-import DatePicker from '@synerise/ds-date-picker/dist/DatePicker';
-import { getDefaultTexts } from '@synerise/ds-date-picker/dist/utils/getDefaultTexts';
+// eslint-disable-next-line import/named -- re-exports via barrel; import/named can't resolve them
+import { DatePicker, getDefaultTexts } from '@synerise/ds-date-picker';
 
 import { CUSTOM_RANGE_KEY, DURATION_MODIFIERS } from '../../../constants';
 import {

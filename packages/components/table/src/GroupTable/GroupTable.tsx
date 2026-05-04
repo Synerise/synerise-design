@@ -1,4 +1,4 @@
-import Table from 'antd/lib/table';
+import { Table } from 'antd';
 import flow from 'lodash.flow';
 import React from 'react';
 

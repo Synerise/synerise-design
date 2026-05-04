@@ -1,4 +1,4 @@
-import { type BadgeProps as AntBadgeProps } from 'antd/lib/badge';
+import { type BadgeProps as AntBadgeProps } from 'antd';
 
 import { type DefaultColor } from '@synerise/ds-core';
 

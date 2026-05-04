@@ -1,4 +1,4 @@
-import type { ColumnType, TableProps } from 'antd/lib/table';
+import type { TableColumnType as ColumnType, TableProps } from 'antd';
 import type {
   ColumnTitleProps,
   TableLocale,

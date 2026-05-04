@@ -4,22 +4,22 @@
 ## Package structure
 ```
 src/
-  TimePicker.tsx         — main component; builds unit config, handles AM/PM toggling, renders Dropdown + Input
-  TimePicker.styles.tsx  — styled-components for container, input wrapper, overlay, unit columns, cells
-  Unit.tsx               — scrollable column for a single time unit (hour, minute, or second)
-  index.ts               — public exports (default + constants + types)
-  modules.d.ts           — ambient module declarations
-  types/
-    TimePicker.types.ts  — TimePickerProps, TimePickerDisabledUnits, ClockModes
-  constants/
-    timePicker.constants.ts       — HOUR, MINUTE, SECOND, CLOCK_MODES, AM, PM, HOUR_12,
-                                    DISABLE_CLOCK_MODE_HOUR, MAP_12_AM_TO_24_HOUR,
-                                    MAP_12_PM_TO_24_HOUR, MAP_24_HOUR_TO_12
-    timePicker.spec.constants.ts  — test-only constants
-  utils/
-    timePicker.utils.ts   — handleTimeChange: builds a new Date from a unit change or clock-mode toggle
-    clockMode.utils.ts    — getClockModeFromDate, getOppositeClockMode
-    unit.utils.ts         — getUnitSelectedNumber: converts 24-hour value to 12-hour display value
+ TimePicker.tsx — main component; builds unit config, handles AM/PM toggling, renders Dropdown + Input
+ TimePicker.styles.tsx — styled-components for container, input wrapper, overlay, unit columns, cells
+ Unit.tsx — scrollable column for a single time unit (hour, minute, or second)
+ index.ts — public exports (default + constants + types)
+ modules.d.ts — ambient module declarations
+ types/
+ TimePicker.types.ts — TimePickerProps, TimePickerDisabledUnits, ClockModes
+ constants/
+ timePicker.constants.ts — HOUR, MINUTE, SECOND, CLOCK_MODES, AM, PM, HOUR_12,
+ DISABLE_CLOCK_MODE_HOUR, MAP_12_AM_TO_24_HOUR,
+ MAP_12_PM_TO_24_HOUR, MAP_24_HOUR_TO_12
+ timePicker.spec.constants.ts — test-only constants
+ utils/
+ timePicker.utils.ts — handleTimeChange: builds a new Date from a unit change or clock-mode toggle
+ clockMode.utils.ts — getClockModeFromDate, getOppositeClockMode
+ unit.utils.ts — getUnitSelectedNumber: converts 24-hour value to 12-hour display value
 ```
 
 ## Public exports
@@ -87,15 +87,15 @@ const [time, setTime] = React.useState<Date | undefined>(undefined);
 
 // Disable specific hours (24-hour values)
 <TimePicker
-  value={time}
-  onChange={(date) => setTime(date)}
-  disabledHours={[0, 1, 2, 3, 4, 5, 6]}
+ value={time}
+ onChange={(date) => setTime(date)}
+ disabledHours={[0, 1, 2, 3, 4, 5, 6]}
 />
 
 // Pass -1 in disabledHours to block the entire AM or PM toggle
 // (DISABLE_CLOCK_MODE_HOUR = -1 disables PM; 12 + -1 disables AM)
 import { DISABLE_CLOCK_MODE_HOUR } from '@synerise/ds-time-picker';
-<TimePicker disabledHours={[DISABLE_CLOCK_MODE_HOUR]} ... />
+<TimePicker disabledHours={[DISABLE_CLOCK_MODE_HOUR]} .. />
 ```
 
 ## Styling
@@ -112,7 +112,7 @@ All visual elements use styled-components tokens (no hardcoded colours). Key sty
 | Package | Role |
 |---------|------|
 | `dayjs` + `dayjs/plugin/customParseFormat` | Date manipulation and display formatting |
-| `lodash.range` | Generates `[0..23]` / `[0..59]` option arrays |
+| `lodash.range` | Generates `[0.23]` / `[0.59]` option arrays |
 | `@synerise/ds-dropdown` | Dropdown wrapper |
 | `@synerise/ds-input` | Trigger input field |
 | `@synerise/ds-icon` | Clock and close icons (`ClockM`, `Close3S`) |

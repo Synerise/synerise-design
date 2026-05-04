@@ -6,22 +6,22 @@
 
 ```
 src/
-  SearchBar.tsx           — main component (forwardRef to HTMLDivElement)
-  SearchBar.types.ts      — SearchBarProps, StyledSearchBar types
-  SearchBar.styles.tsx    — all styled-components (SearchBarWrapper, SearchBar, etc.)
-  SearchBar.constants.ts  — pixel layout constants
-  ValuePrefix.tsx         — internal sub-component for the prefix label
-  index.ts                — public exports
-  modules.d.ts            — @testing-library/jest-dom ambient import
-  __specs__/
-    SearchBar.spec.tsx    — Jest tests
+ SearchBar.tsx — main component (forwardRef to HTMLDivElement)
+ SearchBar.types.ts — SearchBarProps, StyledSearchBar types
+ SearchBar.styles.tsx — all styled-components (SearchBarWrapper, SearchBar, etc.)
+ SearchBar.constants.ts — pixel layout constants
+ ValuePrefix.tsx — internal sub-component for the prefix label
+ index.ts — public exports
+ modules.d.ts — @testing-library/jest-dom ambient import
+ __specs__/
+ SearchBar.spec.tsx — Vitest tests
 ```
 
 ## Public exports
 
 ```ts
-export default SearchBar;                         // default export
-export type { SearchBarProps, StyledSearchBar };  // named type exports
+export default SearchBar; // default export
+export type { SearchBarProps, StyledSearchBar }; // named type exports
 ```
 
 ### `SearchBar`
@@ -54,10 +54,10 @@ Full prop type — `WithHTMLAttributes<HTMLDivElement, …>` so all standard div
 Utility type for extending `SearchBar` with additional styled-component props:
 ```ts
 type StyledSearchBar<CustomProps extends object = object> = StyledComponent<
-  ForwardRefExoticComponent<SearchBarProps & RefAttributes<HTMLDivElement>>,
-  object,
-  CustomProps,
-  never
+ ForwardRefExoticComponent<SearchBarProps & RefAttributes<HTMLDivElement>>,
+ object,
+ CustomProps,
+ never
 >;
 ```
 
@@ -71,20 +71,20 @@ import { SearchM } from '@synerise/ds-icon';
 const [query, setQuery] = React.useState('');
 
 <SearchBar
-  value={query}
-  placeholder="Search"
-  onSearchChange={setQuery}
+ value={query}
+ placeholder="Search"
+ onSearchChange={setQuery}
 />
 
 // With left icon, clear button, and prefix
 <SearchBar
-  value={query}
-  placeholder="Search"
-  onSearchChange={setQuery}
-  onClearInput={() => setQuery('')}
-  iconLeft={<SearchM />}
-  valuePrefix="Name:"
-  autofocus
+ value={query}
+ placeholder="Search"
+ onSearchChange={setQuery}
+ onClearInput={() => setQuery('')}
+ iconLeft={<SearchM />}
+ valuePrefix="Name:"
+ autofocus
 />
 ```
 

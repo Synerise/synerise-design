@@ -58,6 +58,23 @@ export default defineConfig([
       ],
       'no-duplicate-imports': 'warn',
       'import/no-duplicates': 'warn',
+      'no-restricted-imports': [
+        'warn',
+        {
+          patterns: [
+            {
+              group: ['@synerise/ds-*/dist/*'],
+              message:
+                'Import from the package root instead of deep /dist/ paths. Deep /dist/ imports break test resolution via tsconfig paths.',
+            },
+            {
+              group: ['antd/lib/*', 'antd/es/*'],
+              message:
+                "Import from 'antd' at the package root instead of deep antd/lib or antd/es paths. Directory imports break Node ESM resolution and the paths are removed in antd 5.",
+            },
+          ],
+        },
+      ],
     },
   },
 ]);

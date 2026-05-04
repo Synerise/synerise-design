@@ -6,18 +6,18 @@
 
 ```
 src/
-  Estimation.tsx                        — main component
-  Estimation.types.ts                   — EstimationProps and supporting types
-  Estimation.styles.ts                  — styled-components (shared with sub-components)
-  Estimation.spec.tsx                   — Jest tests (not Vitest)
-  index.ts                              — public exports
-  components/
-    EstimationCalculated.tsx            — renders label + relative/custom date
-    EstimationProgressBar.tsx           — Multivalue bar with colour-dot legend
-    EstimationProgressBar.styles.ts     — styles for progress bar and legend
-    EstimationProgressBarSkeleton.tsx   — skeleton placeholder for progress bar
-  hooks/
-    useDefaultTexts.tsx                 — merges i18n defaults with user overrides
+ Estimation.tsx — main component
+ Estimation.types.ts — EstimationProps and supporting types
+ Estimation.styles.ts — styled-components (shared with sub-components)
+ Estimation.spec.tsx — Vitest tests
+ index.ts — public exports
+ components/
+ EstimationCalculated.tsx — renders label + relative/custom date
+ EstimationProgressBar.tsx — Multivalue bar with colour-dot legend
+ EstimationProgressBar.styles.ts — styles for progress bar and legend
+ EstimationProgressBarSkeleton.tsx — skeleton placeholder for progress bar
+ hooks/
+ useDefaultTexts.tsx — merges i18n defaults with user overrides
 ```
 
 ## Public exports
@@ -56,15 +56,15 @@ import Estimation from '@synerise/ds-estimation';
 
 // Full example
 <Estimation
-  label="Estimated reach"
-  value="1,234"
-  total={<>of <strong>5,000</strong></>}
-  calculatedDate={new Date()}
-  progressBarValues={[
-    { percent: 30, color: '#f00', label: 'Active' },
-    { percent: 70, color: '#00f', label: 'Inactive' },
-  ]}
-  footerButtons={<Button>Refresh</Button>}
+ label="Estimated reach"
+ value="1,234"
+ total={<>of <strong>5,000</strong></>}
+ calculatedDate={new Date()}
+ progressBarValues={[
+ { percent: 30, color: '#f00', label: 'Active' },
+ { percent: 70, color: '#00f', label: 'Inactive' },
+ ]}
+ footerButtons={<Button>Refresh</Button>}
 />
 
 // Loading — skeleton for everything
@@ -72,10 +72,10 @@ import Estimation from '@synerise/ds-estimation';
 
 // Loading — skeleton only for total and progress bar
 <Estimation
-  value="1,234"
-  total={5000}
-  isLoading={{ total: true, progressBar: true }}
-  progressBarValues={[...]}
+ value="1,234"
+ total={5000}
+ isLoading={{ total: true, progressBar: true }}
+ progressBarValues={[..]}
 />
 
 // Error state
@@ -91,7 +91,7 @@ All styles are in `Estimation.styles.ts`. The card body uses `Panel` from `@syne
 ### `useDefaultTexts`
 
 Merges user-provided `texts` with react-intl defaults:
-- `loading` → `<FormattedMessage id="DS.ESTIMATION.LOADING" defaultMessage="Loading..." />`
+- `loading` → `<FormattedMessage id="DS.ESTIMATION.LOADING" defaultMessage="Loading.." />`
 - `calculated` → `<FormattedMessage id="DS.ESTIMATION.CALCULATED" defaultMessage="Calculated:" />`
 
 Returns a complete `EstimationTexts` object. Requires an `IntlProvider` in the tree.
@@ -113,5 +113,5 @@ Returns a complete `EstimationTexts` object. Requires an `IntlProvider` in the t
 - **Footer is conditional**: The footer (divider + footer row) only renders when `footerButtons` is provided OR at least one of `isLoading`, `errorMessage`, or `calculatedDate` is truthy.
 - **`calculatedDate` type discrimination**: `calculatedDate instanceof Date` check determines whether to wrap with `FormattedRelativeDateTimeTo`. Any non-Date `ReactNode` is rendered verbatim.
 - **`EstimationProgressValue` and `EstimationTexts` types are not exported** from `index.ts` — consumers must import them from the deep path or declare locally.
-- **Tests use Jest** (not Vitest): The package has a `"test": "jest"` script — not yet migrated to Vitest.
+- **Uses Vitest** for testing.
 - **`react-intl` is a peer dependency** — component will throw at runtime without an `IntlProvider` ancestor.

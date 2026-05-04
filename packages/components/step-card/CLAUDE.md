@@ -6,14 +6,14 @@
 
 ```
 src/
-  StepCard.tsx          — main component; forwardRef; REORDER_THROTTLE=1000ms exported
-  StepCard.types.ts     — StepCardProps, StepCardTexts
-  StepCard.styles.ts    — all styled-components (Container, Header, Body, Footer, etc.)
-  hooks/
-    useDefaultTexts.ts  — merges user texts with react-intl defaults
-  __specs__/
-    StepCard.spec.tsx   — Jest tests
-  index.ts              — public exports
+ StepCard.tsx — main component; forwardRef; REORDER_THROTTLE=1000ms exported
+ StepCard.types.ts — StepCardProps, StepCardTexts
+ StepCard.styles.ts — all styled-components (Container, Header, Body, Footer, etc.)
+ hooks/
+ useDefaultTexts.ts — merges user texts with react-intl defaults
+ __specs__/
+ StepCard.spec.tsx — Vitest tests
+ index.ts — public exports
 ```
 
 ## Public exports
@@ -79,18 +79,18 @@ Full props type, re-exported as a named type.
 import StepCard from '@synerise/ds-step-card';
 
 <StepCard
-  matching={true}
-  onChangeMatching={setMatching}
-  name="Step 1"
-  onMove={(index, offset) => reorder(index, offset)}
-  expressionIndex={0}
-  expressionCount={3}
-  onDuplicate={() => duplicate()}
-  onDelete={() => remove()}
-  texts={{ matching: 'Matching', notMatching: 'Not matching' }}
-  footer={<Button>Add condition</Button>}
+ matching={true}
+ onChangeMatching={setMatching}
+ name="Step 1"
+ onMove={(index, offset) => reorder(index, offset)}
+ expressionIndex={0}
+ expressionCount={3}
+ onDuplicate={() => duplicate()}
+ onDelete={() => remove()}
+ texts={{ matching: 'Matching', notMatching: 'Not matching' }}
+ footer={<Button>Add condition</Button>}
 >
-  <ConditionContent />
+ <ConditionContent />
 </StepCard>
 ```
 
@@ -123,4 +123,4 @@ Styles in `StepCard.styles.ts`. Key states:
 - **`name` prop is accepted but not rendered** in the current header — it was presumably planned for a name input but `onChangeName` is absent from the current types.
 - **`react-intl` is a peer dependency** — component throws at runtime without an `IntlProvider` ancestor.
 - **README prop table has multiple errors**: `matching` type shown as `MatchingProps` (should be `boolean`), `readonly` (should be `readOnly`); many props missing entirely.
-- **Uses Jest** (`jest.config.js`) — not yet migrated to Vitest.
+- **Uses Vitest** for testing.

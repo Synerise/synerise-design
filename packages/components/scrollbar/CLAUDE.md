@@ -6,24 +6,24 @@
 
 ```
 src/
-  Scrollbar.tsx               — main component (forwardRef, delegates to DnDScrollbar or VirtualScrollbar)
-  Scrollbar.types.ts          — ScrollbarAdditionalProps, ScrollbarProps, VirtualScrollbarProps
-  Scrollbar.styles.tsx        — ScrollbarContainer, LoaderWrapper, Loader
-  DnDScrollbar/
-    DnDScrollbar.tsx          — custom scrollbar with mouse-drag thumb support
-    DnDScrollbar.styles.tsx   — styled components for DnD variant
-    index.ts
-  VirtualScrollbar/
-    VirtualScrollbar.tsx      — PerfectScrollbar wrapper with resize/animation awareness
-    VirtualScrollbar.styles.tsx
-    index.ts
-  __specs__/
-    Scrollbar.spec.tsx        — Jest/RTL tests
-  style/
-    index.less                — imports ds-core variables, perfect-scrollbar CSS, mixin
-    scrollbar.mixin.less      — overrides for .ps__rail-* and .ps__thumb-*, large-size variant
-  modules.d.ts                — imports @testing-library/jest-dom
-  index.ts                    — public exports
+ Scrollbar.tsx — main component (forwardRef, delegates to DnDScrollbar or VirtualScrollbar)
+ Scrollbar.types.ts — ScrollbarAdditionalProps, ScrollbarProps, VirtualScrollbarProps
+ Scrollbar.styles.tsx — ScrollbarContainer, LoaderWrapper, Loader
+ DnDScrollbar/
+ DnDScrollbar.tsx — custom scrollbar with mouse-drag thumb support
+ DnDScrollbar.styles.tsx — styled components for DnD variant
+ index.ts
+ VirtualScrollbar/
+ VirtualScrollbar.tsx — PerfectScrollbar wrapper with resize/animation awareness
+ VirtualScrollbar.styles.tsx
+ index.ts
+ __specs__/
+ Scrollbar.spec.tsx — Vitest/RTL tests
+ style/
+ index.less — imports ds-core variables, perfect-scrollbar CSS, mixin
+ scrollbar.mixin.less — overrides for .ps__rail-* and .ps__thumb-*, large-size variant
+ modules.d.ts — imports @testing-library/jest-dom
+ index.ts — public exports
 ```
 
 ## Public exports
@@ -72,27 +72,27 @@ import Scrollbar from '@synerise/ds-scrollbar';
 
 // Default virtual scrollbar
 <Scrollbar maxHeight={400}>
-  {content}
+ {content}
 </Scrollbar>
 
 // With infinite scroll
 <Scrollbar
-  maxHeight={400}
-  hasMore={hasMore}
-  loading={isLoading}
-  fetchData={loadNextPage}
+ maxHeight={400}
+ hasMore={hasMore}
+ loading={isLoading}
+ fetchData={loadNextPage}
 >
-  {items}
+ {items}
 </Scrollbar>
 
 // Drag-and-drop custom scrollbar
 <Scrollbar withDnd maxHeight={400}>
-  {content}
+ {content}
 </Scrollbar>
 
 // Large variant (accessible-style thumb)
 <Scrollbar largeSize maxHeight={400}>
-  {content}
+ {content}
 </Scrollbar>
 
 // Allow scroll chaining to parent (default is 'contain')

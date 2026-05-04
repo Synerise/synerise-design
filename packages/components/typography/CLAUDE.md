@@ -6,17 +6,17 @@
 
 ```
 src/
-  Title.tsx           — DS Title component (h1–h7 levels, ellipsis support)
-  Title.types.ts      — Title Props interface
-  Text.tsx            — DS Text component (medium/small/xsmall spans) + Ellipsis
-  Paragraph.tsx       — DS Paragraph component (medium/small/xsmall spans)
-  Ellipsis.tsx        — Overflow-detection wrapper that shows a tooltip when truncated
-  CommonElements.ts   — All styled-component primitives (H1–H7, Text variants, Description, ErrorText, Label, EllipsisText)
-  Typography.ts       — Re-exports antd/lib/typography as default
-  index.ts            — Public exports
-  style/
-    macro-utils.ts    — CSS snippet exports for use in consumer styled-components
-    index.less        — LESS overrides
+ Title.tsx — DS Title component (h1–h7 levels, ellipsis support)
+ Title.types.ts — Title Props interface
+ Text.tsx — DS Text component (medium/small/xsmall spans) + Ellipsis
+ Paragraph.tsx — DS Paragraph component (medium/small/xsmall spans)
+ Ellipsis.tsx — Overflow-detection wrapper that shows a tooltip when truncated
+ CommonElements.ts — All styled-component primitives (H1–H7, Text variants, Description, ErrorText, Label, EllipsisText)
+ Typography.ts — Re-exports antd/lib/typography as default
+ index.ts — Public exports
+ style/
+ macro-utils.ts — CSS snippet exports for use in consumer styled-components
+ index.less — LESS overrides
 ```
 
 ## Public exports
@@ -35,7 +35,7 @@ DS-customised heading. Renders `<h1>`–`<h6>` elements (level 7 renders as `<h6
 | `withoutMargin` | `boolean` | `undefined` | Removes `margin-bottom` from the heading element. |
 | `ellipsis` | `EllipsisProps` | `undefined` | When provided, wraps the title in an `Ellipsis` component. Replaces antd's native ellipsis. |
 | `className` | `string` | `undefined` | Merged with `'ds-title'`. |
-| `...antdProps` | `TitleProps` | — | All remaining antd TitleProps pass through (e.g. `style`, `id`). |
+| `..antdProps` | `TitleProps` | — | All remaining antd TitleProps pass through (e.g. `style`, `id`). |
 
 Type scale mapping:
 
@@ -134,7 +134,7 @@ import Typography, { Title, Text, Paragraph, Description, ErrorText, Label, macr
 
 // DS Text with ellipsis
 <Text size="medium" ellipsis={{ tooltip: 'Full content' }} style={{ maxWidth: 200 }}>
-  Long inline text
+ Long inline text
 </Text>
 
 // DS Paragraph
@@ -154,7 +154,7 @@ import styled from 'styled-components';
 import { macro } from '@synerise/ds-typography';
 
 const MyHeading = styled.div`
-  ${macro.h400};
+ ${macro.h400};
 `;
 ```
 
@@ -178,4 +178,4 @@ All styled primitives live in `CommonElements.ts`. Typography tokens come from `
 - **Default export is antd, not DS** — `import Typography from '@synerise/ds-typography'` gives you antd's Typography. The DS `Title`/`Text`/`Paragraph` are named exports only.
 - **`Ellipsis` uses `ResizeObserver`** — observes both the text element and `document.body` to detect layout changes. Cleans up observer and debounce on unmount.
 - **`Paragraph` vs `Text`** — both render styled spans with the same CSS macros (medium/small/xsmall). `Paragraph` has no `className`, `style`, or `ellipsis` support; `Text` does.
-- **Uses Jest** (not Vitest) — `package.json` has `"test": "jest"` and a `jest.config.js`. Has not been migrated to Vitest yet.
+- **Uses Vitest** — `package.json` has `"test": "jest"` and a `jest.config.js`. Has not been migrated to Vitest yet.

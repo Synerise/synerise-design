@@ -1,12 +1,11 @@
 import React, { type PropsWithChildren } from 'react';
 
-import Alert from '@synerise/ds-alert';
-import { type InlineAlertType } from '@synerise/ds-alert/dist/InlineAlert/InlineAlert.types';
-import Avatar, { ObjectAvatar } from '@synerise/ds-avatar';
-import {
+import Alert, { type InlineAlertType } from '@synerise/ds-alert';
+import Avatar, {
   type Color,
+  ObjectAvatar,
   type ObjectAvatarProps,
-} from '@synerise/ds-avatar/dist/Avatar.types';
+} from '@synerise/ds-avatar';
 import Badge from '@synerise/ds-badge';
 import Icon from '@synerise/ds-icon';
 

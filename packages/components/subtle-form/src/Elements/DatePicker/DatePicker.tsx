@@ -7,8 +7,12 @@ import React, {
 } from 'react';
 
 import { useTheme } from '@synerise/ds-core';
-import { DatePicker } from '@synerise/ds-date-picker';
-import format from '@synerise/ds-date-picker/dist/format';
+/* eslint-disable import/named -- datePickerFormat is a re-export; import/named can't resolve it */
+import {
+  DatePicker,
+  datePickerFormat as format,
+} from '@synerise/ds-date-picker';
+/* eslint-enable import/named */
 import Icon, { CalendarM } from '@synerise/ds-icon';
 import Tooltip from '@synerise/ds-tooltip';
 

@@ -1,4 +1,4 @@
-import { type CountryCode } from '@synerise/ds-flag/dist/Flag.types';
+import { type CountryCode } from '@synerise/ds-flag';
 import { type WithHTMLAttributes } from '@synerise/ds-utils';
 
 export type FlagLabelProps = WithHTMLAttributes<

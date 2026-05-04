@@ -6,23 +6,23 @@
 
 ```
 src/
-  Tabs.tsx        — main container; measures widths, splits tabs into visible/hidden lists, renders overflow dropdown
-  Tabs.types.ts   — TabsProps, TabItem, Configuration (re-exported as TabsConfiguration), TabWithRef
-  Tabs.styles.ts  — TabsContainer, HiddenTabs (off-screen width-measurement clone), ShowHiddenTabsTrigger, DropdownMenu
-  Tab/
-    Tab.tsx        — individual tab button; wraps content in Tooltip when tooltip prop is present
-    Tab.types.ts   — TabProps (extends TabItem + internal props)
-    Tab.styles.ts  — TabContainer, TabLabel, TabContent, BlockContentWrapper, SuffixWrapper, DefaultSuffixWrapper
-  index.ts         — public exports (see below)
-  __specs__/
-    Tabs.spec.tsx  — Jest / React Testing Library unit tests
-  modules.d.ts     — ambient type declarations for static asset imports
+ Tabs.tsx — main container; measures widths, splits tabs into visible/hidden lists, renders overflow dropdown
+ Tabs.types.ts — TabsProps, TabItem, Configuration (re-exported as TabsConfiguration), TabWithRef
+ Tabs.styles.ts — TabsContainer, HiddenTabs (off-screen width-measurement clone), ShowHiddenTabsTrigger, DropdownMenu
+ Tab/
+ Tab.tsx — individual tab button; wraps content in Tooltip when tooltip prop is present
+ Tab.types.ts — TabProps (extends TabItem + internal props)
+ Tab.styles.ts — TabContainer, TabLabel, TabContent, BlockContentWrapper, SuffixWrapper, DefaultSuffixWrapper
+ index.ts — public exports (see below)
+ __specs__/
+ Tabs.spec.tsx — Vitest / React Testing Library unit tests
+ modules.d.ts — ambient type declarations for static asset imports
 ```
 
 ## Public exports
 
 ```ts
-export { default } from './Tabs';           // default: Tabs component
+export { default } from './Tabs'; // default: Tabs component
 export type { TabItem, TabsConfiguration, TabsProps } from './Tabs.types';
 ```
 
@@ -67,15 +67,15 @@ import Tabs, { type TabsProps, type TabItem, type TabsConfiguration } from '@syn
 const [activeTab, setActiveTab] = React.useState(0);
 
 const tabs: TabItem[] = [
-  { label: 'Overview' },
-  { label: 'Settings', icon: <SettingsM /> },
-  { label: 'Disabled', disabled: true },
+ { label: 'Overview' },
+ { label: 'Settings', icon: <SettingsM /> },
+ { label: 'Disabled', disabled: true },
 ];
 
 <Tabs
-  tabs={tabs}
-  activeTab={activeTab}
-  handleTabClick={setActiveTab}
+ tabs={tabs}
+ activeTab={activeTab}
+ handleTabClick={setActiveTab}
 />
 ```
 
@@ -83,8 +83,8 @@ const tabs: TabItem[] = [
 
 ```tsx
 const iconTabs: TabItem[] = [
-  { icon: <CalendarM />, tooltip: 'Date' },
-  { icon: <TextM />,     tooltip: 'Text' },
+ { icon: <CalendarM />, tooltip: 'Date' },
+ { icon: <TextM />, tooltip: 'Text' },
 ];
 
 <Tabs tabs={iconTabs} activeTab={active} handleTabClick={setActive} block />
@@ -94,8 +94,8 @@ const iconTabs: TabItem[] = [
 
 ```tsx
 const config: TabsConfiguration = {
-  label: 'Manage tabs',
-  action: () => openTabManager(),
+ label: 'Manage tabs',
+ action: () => openTabManager(),
 };
 
 <Tabs tabs={tabs} activeTab={active} handleTabClick={setActive} configuration={config} />

@@ -1,4 +1,4 @@
-import type { PaginationProps } from 'antd/lib/pagination';
+import type { PaginationProps } from 'antd';
 import React from 'react';
 
 export type MockPaginationProps = PaginationProps & {

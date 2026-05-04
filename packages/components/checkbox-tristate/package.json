@@ -9,6 +9,15 @@
     "name": "Dariusz Arciszewski"
   },
   "main": "dist/index.js",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "default": "./dist/index.js"
+    },
+    "./dist/*.js": "./dist/*.js",
+    "./dist/*": "./dist/*.js"
+  },
   "files": [
     "/dist",
     "CHANGELOG.md",

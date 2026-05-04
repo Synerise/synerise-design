@@ -6,9 +6,7 @@ import {
 } from 'react';
 
 import Icon from '@synerise/ds-icon';
-import selectColorByLetter, {
-  type ColorObject,
-} from '@synerise/ds-utils/dist/selectColorByLetter/selectColorByLetter';
+import { type ColorObject, selectColorByLetter } from '@synerise/ds-utils';
 
 import {
   type AvatarProps,

@@ -1,4 +1,4 @@
-import AntdSwitch from 'antd/lib/switch';
+import { Switch as AntdSwitch } from 'antd';
 import classnames from 'classnames';
 import React, { forwardRef, useId, useRef } from 'react';
 

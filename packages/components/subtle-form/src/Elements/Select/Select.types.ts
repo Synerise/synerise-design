@@ -1,4 +1,4 @@
-import { type Props as DsSelectProps } from '@synerise/ds-select/dist/Select.types';
+import { type SelectProps as DsSelectProps } from '@synerise/ds-select';
 
 import { type SubtleFieldProps } from '../../SubtleForm.types';
 

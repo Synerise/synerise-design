@@ -6,23 +6,23 @@
 
 ```
 src/
-  EmojiPicker.tsx           — root component; manages open/focus state, renders ds-dropdown
-  EmojiPicker.types.ts      — EmojiPickerProps, EmojiPickerTexts
-  EmojiPicker.styles.ts     — minimal: just the Overlay wrapper div
-  EmojiPicker.const.ts      — ITEMS_PER_ROW (6), ITEM_SIZE (32px)
-  index.ts                  — public exports
-  EmojiOverlay/
-    EmojiOverlay.tsx        — search input (Dropdown.SearchInput) + EmojiList
-    EmojiOverlay.types.ts   — EmojiOverlayType (internal)
-  EmojiList/
-    EmojiList.tsx           — virtualised list with Scrollbar wrapper
-    EmojiList.types.ts      — all internal list types
-    EmojiList.styles.tsx    — styled-components for list items, buttons, titles
-    EmojiList.utils.tsx     — createItemData (memoized), getEmojisByGroup wrapper
-    EmojiListItem.tsx       — memo'd row renderer for react-window
-  hooks/
-    useEmojiTranslations.tsx — merges custom texts with react-intl defaults
-    useMultipleItemsPerRow.ts — flattens category groups into virtual list rows
+ EmojiPicker.tsx — root component; manages open/focus state, renders ds-dropdown
+ EmojiPicker.types.ts — EmojiPickerProps, EmojiPickerTexts
+ EmojiPicker.styles.ts — minimal: just the Overlay wrapper div
+ EmojiPicker.const.ts — ITEMS_PER_ROW (6), ITEM_SIZE (32px)
+ index.ts — public exports
+ EmojiOverlay/
+ EmojiOverlay.tsx — search input (Dropdown.SearchInput) + EmojiList
+ EmojiOverlay.types.ts — EmojiOverlayType (internal)
+ EmojiList/
+ EmojiList.tsx — virtualised list with Scrollbar wrapper
+ EmojiList.types.ts — all internal list types
+ EmojiList.styles.tsx — styled-components for list items, buttons, titles
+ EmojiList.utils.tsx — createItemData (memoized), getEmojisByGroup wrapper
+ EmojiListItem.tsx — memo'd row renderer for react-window
+ hooks/
+ useEmojiTranslations.tsx — merges custom texts with react-intl defaults
+ useMultipleItemsPerRow.ts — flattens category groups into virtual list rows
 ```
 
 ## Public exports
@@ -67,27 +67,27 @@ import type { Emoji } from 'unicode-emoji-utils';
 
 // Minimal — any element as trigger
 <EmojiPicker onSelect={(emoji: Emoji) => console.log(emoji.emoji)}>
-  <Button>Pick emoji</Button>
+ <Button>Pick emoji</Button>
 </EmojiPicker>
 
 // With custom texts and keep-open-on-select
 <EmojiPicker
-  onSelect={handleSelect}
-  closeOnSelect={false}
-  texts={{ placeholder: 'Search emoji...', empty: 'Nothing found' }}
+ onSelect={handleSelect}
+ closeOnSelect={false}
+ texts={{ placeholder: 'Search emoji..', empty: 'Nothing found' }}
 >
-  <Icon component={<EmoticonsM />} />
+ <Icon component={<EmoticonsM />} />
 </EmojiPicker>
 
 // Append emoji to an input field
 const [value, setValue] = useState('');
 <Input
-  value={value}
-  icon1={
-    <EmojiPicker closeOnSelect={false} onSelect={(e) => setValue(v => v + e.emoji)}>
-      <Icon component={<EmoticonsM />} />
-    </EmojiPicker>
-  }
+ value={value}
+ icon1={
+ <EmojiPicker closeOnSelect={false} onSelect={(e) => setValue(v => v + e.emoji)}>
+ <Icon component={<EmoticonsM />} />
+ </EmojiPicker>
+ }
 />
 ```
 
@@ -95,15 +95,15 @@ const [value, setValue] = useState('');
 
 ```
 EmojiPicker (manages isOpen + focus)
-  └── ds-dropdown (open, placement="bottomRight", asChild)
-        overlay:
-          S.Overlay (stopPropagation on click)
-            └── EmojiOverlay
-                  ├── Dropdown.SearchInput (autofocus when opened)
-                  └── EmojiList
-                        └── ds-scrollbar (maxHeight=330)
-                              └── VirtualList (react-window FixedSizeList)
-                                    └── EmojiListItem (memo + areEqual)
+ └── ds-dropdown (open, placement="bottomRight", asChild)
+ overlay:
+ S.Overlay (stopPropagation on click)
+ └── EmojiOverlay
+ ├── Dropdown.SearchInput (autofocus when opened)
+ └── EmojiList
+ └── ds-scrollbar (maxHeight=330)
+ └── VirtualList (react-window FixedSizeList)
+ └── EmojiListItem (memo + areEqual)
 ```
 
 ## Custom hooks
@@ -134,4 +134,4 @@ Takes `EmojiCategory[]` and `itemsPerRow` (6), returns a flat `EmojiVirtualListI
 - **`dropdownProps` typo** — the omit list includes `'onOpenChage'` (missing `n`). The actual Dropdown prop is `onOpenChange`. This means `onOpenChange` is not actually omitted from the type, though it is overridden internally.
 - **All `FormattedMessage` category IDs are identical** (`DS.ICON-PICKER.SMILEYS`) — i18n overrides via message IDs will affect all categories at once. Use the `texts` prop to override categories individually.
 - **Scrollbar scroll sync** — `Scrollbar` fires a `onScroll` event handler that manually calls `listRef.current.scrollTo(scrollTop)` because the virtual list's own scroll is disabled (`overflow: unset`) so that `ds-scrollbar`'s custom scrollbar renders correctly.
-- **Uses Jest** (not Vitest) — `package.json` uses `"test": "jest"`. Not yet migrated.
+- **Uses Vitest** for testing.

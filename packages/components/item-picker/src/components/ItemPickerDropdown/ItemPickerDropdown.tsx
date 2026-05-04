@@ -9,8 +9,8 @@ import React, {
 import Icon, { SearchM } from '@synerise/ds-icon';
 import type { ListItemProps } from '@synerise/ds-list-item';
 import Result from '@synerise/ds-result';
+import { SearchItems } from '@synerise/ds-search';
 import SearchBar from '@synerise/ds-search-bar';
-import { SearchItems } from '@synerise/ds-search/dist/Elements';
 import { useKeyboardShortcuts } from '@synerise/ds-utils';
 
 import * as S from './ItemPickerDropdown.style';

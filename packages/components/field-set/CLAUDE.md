@@ -6,11 +6,11 @@
 
 ```
 src/
-  FieldSet.tsx          — main component
-  FieldSet.types.ts     — FieldSetProps, TriggerType
-  FieldSet.styles.ts    — all styled-components
-  index.ts              — public exports (default only)
-  FieldSet.spec.tsx     — Jest tests
+ FieldSet.tsx — main component
+ FieldSet.types.ts — FieldSetProps, TriggerType
+ FieldSet.styles.ts — all styled-components
+ index.ts — public exports (default only)
+ FieldSet.spec.tsx — Vitest tests
 ```
 
 ## Public exports
@@ -48,28 +48,28 @@ import FieldSet from '@synerise/ds-field-set';
 
 // Collapsible with expander trigger (default)
 <FieldSet
-  title="Advanced option"
-  expandable
-  defaultExpanded
-  component={<MyFormFields />}
-  onExpandChange={(isExpanded) => console.log(isExpanded)}
+ title="Advanced option"
+ expandable
+ defaultExpanded
+ component={<MyFormFields />}
+ onExpandChange={(isExpanded) => console.log(isExpanded)}
 />
 
 // Collapsible with switch trigger
 <FieldSet
-  title="Enable feature"
-  expandable
-  triggerType="switch"
-  component={<FeatureOptions />}
+ title="Enable feature"
+ expandable
+ triggerType="switch"
+ component={<FeatureOptions />}
 />
 
 // Static with custom prefix and action button
 <FieldSet
-  title="Section"
-  prefix={<MyIcon />}
-  component={<Content />}
-  button={<Button>Add item</Button>}
-  divider={false}
+ title="Section"
+ prefix={<MyIcon />}
+ component={<Content />}
+ button={<Button>Add item</Button>}
+ divider={false}
 />
 ```
 
@@ -97,5 +97,5 @@ All styles are in `FieldSet.styles.ts`. Notable patterns:
 - **`prefix` is replaced when `expandable`** — passing both `prefix` and `expandable` will silently discard `prefix`.
 - **CSS class** — root element always has `ds-field-set` plus any `className` passed via props.
 - **Collapsible visibility** — `aria-hidden` is set to `"true"` when collapsed and `"false"` when expanded; `data-testid="field-set-collapsible"` is on the `CollapsibleContent` div.
-- **Test runner is Jest** (not Vitest) — `"test": "jest"` in `package.json`.
+- **Uses Vitest** for testing.
 - **Storybook deep-imports** `ExpanderWrapper` from `@synerise/ds-field-set/dist/FieldSet.styles` — this is a fragile internal import and should not be replicated in consumer code.

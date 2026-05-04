@@ -6,17 +6,17 @@
 
 ```
 src/
-  FormField.tsx              — root component; composes ContentAboveElement + children + ContentBelowElement
-  FormField.types.ts         — all types; exported from index
-  FormField.styles.ts        — styled-components (note: .ts not .tsx)
-  index.ts                   — default export + named component + type exports
-  components/
-    FormFieldLabel.tsx       — <label> with optional tooltip icon (InfoFillS)
-    ContentAboveElement.tsx  — label + rightSide row; renders nothing when both are absent
-    ContentBelowElement.tsx  — errorText + description column; renders null when both absent
-    index.ts                 — re-exports the three sub-components
-  __specs__/
-    FormField.spec.tsx       — render + interaction tests (Jest)
+ FormField.tsx — root component; composes ContentAboveElement + children + ContentBelowElement
+ FormField.types.ts — all types; exported from index
+ FormField.styles.ts — styled-components (note: .ts not .tsx)
+ index.ts — default export + named component + type exports
+ components/
+ FormFieldLabel.tsx — <label> with optional tooltip icon (InfoFillS)
+ ContentAboveElement.tsx — label + rightSide row; renders nothing when both are absent
+ ContentBelowElement.tsx — errorText + description column; renders null when both absent
+ index.ts — re-exports the three sub-components
+ __specs__/
+ FormField.spec.tsx — render + interaction tests (Vitest)
 ```
 
 ## Public exports
@@ -34,7 +34,7 @@ src/
 | `errorText` | `ReactNode` | `undefined` | Error message below the field. Shown above `description` when both are present. |
 | `children` | `ReactNode` | `undefined` | The actual form control (input, select, etc.). |
 
-All standard `HTMLDivElement` attributes are accepted and spread onto the root wrapper via `WithHTMLAttributes<HTMLDivElement, ...>`.
+All standard `HTMLDivElement` attributes are accepted and spread onto the root wrapper via `WithHTMLAttributes<HTMLDivElement, ..>`.
 
 ### `FormFieldLabel`
 
@@ -48,7 +48,7 @@ Standalone `<label>` component with optional tooltip icon. Can be used independe
 | `tooltipConfig` | `TooltipProps` | `undefined` | Extra Tooltip props (merges with defaults: `placement="top"`, `trigger="hover"`). |
 | `id` | `string` | `undefined` | Passed to `htmlFor` on the `<label>`. |
 
-Accepts all `HTMLLabelElement` attributes via `WithHTMLAttributes<HTMLLabelElement, ...>`.
+Accepts all `HTMLLabelElement` attributes via `WithHTMLAttributes<HTMLLabelElement, ..>`.
 
 Renders nothing if neither `label` nor `children` is provided.
 
@@ -86,23 +86,23 @@ import FormField from '@synerise/ds-form-field';
 
 // Minimal — just wraps a child input
 <FormField label="Email">
-  <Input />
+ <Input />
 </FormField>
 
 // Full usage
 <FormField
-  label="Email"
-  tooltip="We'll use this for account recovery"
-  rightSide="Optional"
-  description="Use your work email"
-  errorText="Invalid email format"
+ label="Email"
+ tooltip="We'll use this for account recovery"
+ rightSide="Optional"
+ description="Use your work email"
+ errorText="Invalid email format"
 >
-  <Input status="error" />
+ <Input status="error" />
 </FormField>
 
 // Custom id (links label to input)
 <FormField label="Username" id="username-input">
-  <input id="username-input" />
+ <input id="username-input" />
 </FormField>
 
 // Standalone label with tooltip
@@ -135,5 +135,5 @@ Styles live in `FormField.styles.ts` (note: `.ts`, not `.tsx`). Uses `@synerise/
 - **`label` vs `children` in `FormFieldLabel`** — `label` takes priority: the component renders `{label || children}`. Both are provided as tooltip content via `ellipsis={{ tooltip: label || children }}`.
 - **`ContentAboveElement` renders `<S.RightSide>` unconditionally** — when `rightSide` is `undefined` the `RightSide` div is still in the DOM (empty). This is harmless but adds an empty element.
 - **`errorText` renders before `description`** — in `ContentBelowElement`, error always appears above the description.
-- **`tooltipConfig` spread** — props are applied as `{title: tooltip, placement: "top", trigger: "hover", ...tooltipConfig}`, so `tooltipConfig` can override defaults including `title`.
-- **Uses Jest** (not Vitest) — `package.json` has `"test": "jest"`.
+- **`tooltipConfig` spread** — props are applied as `{title: tooltip, placement: "top", trigger: "hover", ..tooltipConfig}`, so `tooltipConfig` can override defaults including `title`.
+- **Uses Vitest** — `package.json` has `"test": "jest"`.

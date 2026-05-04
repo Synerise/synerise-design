@@ -6,12 +6,12 @@
 
 ```
 src/
-  ShortCuts.tsx        — main component
-  ShortCuts.types.ts   — ShortCutsProps (ExactlyOne<icon, children> + WithHTMLAttributes)
-  ShortCuts.style.ts   — Wrapper styled component with size/color/autoWidth logic
-  index.ts             — default export only
-  __specs__/
-    ShortCuts.spec.tsx — Jest tests (2 cases: text render, icon render)
+ ShortCuts.tsx — main component
+ ShortCuts.types.ts — ShortCutsProps (ExactlyOne<icon, children> + WithHTMLAttributes)
+ ShortCuts.style.ts — Wrapper styled component with size/color/autoWidth logic
+ index.ts — default export only
+ __specs__/
+ ShortCuts.spec.tsx — Vitest tests (2 cases: text render, icon render)
 ```
 
 ## Public exports
@@ -64,4 +64,4 @@ import { ArrowUpM } from '@synerise/ds-icon';
 - **`icon` branch ignores `children`** — when `icon` is provided, `children` is never rendered even if passed (the `ExactlyOne` type prevents this in TypeScript but not at runtime).
 - **`color` has no default value in props** — `color` is optional with no default; when omitted, the styled component's conditional `props.color === 'dark'` evaluates to `false`, rendering the light variant appearance.
 - **`ShortCutsProps` not exported** — `index.ts` only exports the default component; the type is not publicly accessible without a deep import.
-- **Test runner is Jest** (not Vitest).
+- **Uses Vitest**.

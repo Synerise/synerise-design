@@ -1,4 +1,4 @@
-import { type InputProps as AntdInputProps } from 'antd/lib/input';
+import { type InputProps as AntdInputProps } from 'antd';
 
 import { type TextareaProps } from '../TextArea.types';
 

@@ -6,19 +6,19 @@
 
 ```
 src/
-  Operators.tsx                               — main component; trigger button + Dropdown
-  Operator.types.ts                           — OperatorsProps, OperatorsItem, OperatorsGroup, OperatorsDropdownProps, OperatorTexts
-  Operators.style.ts                          — styled components
-  index.ts                                    — public exports
-  OperatorsDropdown/
-    OperatorsDropdown.tsx                     — dropdown overlay: tabs (one per group), search, scrollable item list
-    OperatorsDropdownGroupName.tsx            — group heading row
-    OperatorsDropdownItem.tsx                 — individual operator row
-  utils/
-    groupByGroupName.ts                       — groups items by their groupName field
-  constants.ts                                — DROPDOWN_HEIGHT, SEARCH_HEIGHT, TABS_HEIGHT, etc.
-  __specs__/
-    Operators.spec.tsx                        — Jest tests
+ Operators.tsx — main component; trigger button + Dropdown
+ Operator.types.ts — OperatorsProps, OperatorsItem, OperatorsGroup, OperatorsDropdownProps, OperatorTexts
+ Operators.style.ts — styled components
+ index.ts — public exports
+ OperatorsDropdown/
+ OperatorsDropdown.tsx — dropdown overlay: tabs (one per group), search, scrollable item list
+ OperatorsDropdownGroupName.tsx — group heading row
+ OperatorsDropdownItem.tsx — individual operator row
+ utils/
+ groupByGroupName.ts — groups items by their groupName field
+ constants.ts — DROPDOWN_HEIGHT, SEARCH_HEIGHT, TABS_HEIGHT, etc.
+ __specs__/
+ Operators.spec.tsx — Vitest tests
 ```
 
 ## Public exports
@@ -85,11 +85,11 @@ import Operators from '@synerise/ds-operators';
 import type { OperatorsItem, OperatorsGroup } from '@synerise/ds-operators';
 
 <Operators
-  groups={groups}
-  items={items}
-  value={selectedOperator}
-  onChange={(item) => setSelectedOperator(item)}
-  texts={{ buttonLabel: 'Choose operator' }}
+ groups={groups}
+ items={items}
+ value={selectedOperator}
+ onChange={(item) => setSelectedOperator(item)}
+ texts={{ buttonLabel: 'Choose operator' }}
 />
 ```
 
@@ -113,4 +113,4 @@ import type { OperatorsItem, OperatorsGroup } from '@synerise/ds-operators';
 - **`error` vs `errorText`** — README documents an `error: boolean` prop that does not exist; the real prop is `errorText: ReactNode` which puts the button in error state.
 - **Undocumented props** — `readOnly`, `errorText`, `dropdownDimensionsConfig` are all missing from the README.
 - **Responsive height** — viewport height is checked on mount and resize; `defaultHeight=420` is used when `window.innerHeight >= 900`, `lowerHeight=350` otherwise.
-- **Test runner is Jest** (not Vitest).
+- **Uses Vitest**.

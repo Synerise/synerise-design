@@ -6,14 +6,14 @@
 
 ```
 src/
-  Switch.tsx         — main component (Switch + RawSwitch exports)
-  Switch.types.ts    — Props type definition
-  Switch.styles.ts   — styled-components layout and text styles
-  Switch.figma.tsx   — Figma Code Connect mappings
-  index.ts           — public exports
-  style/
-    index.less        — Less entry that imports Ant Design switch styles
-    switch.mixin.less — custom switch style overrides
+ Switch.tsx — main component (Switch + RawSwitch exports)
+ Switch.types.ts — Props type definition
+ Switch.styles.ts — styled-components layout and text styles
+ Switch.figma.tsx — Figma Code Connect mappings
+ index.ts — public exports
+ style/
+ index.less — Less entry that imports Ant Design switch styles
+ switch.mixin.less — custom switch style overrides
 ```
 
 ## Public exports
@@ -58,17 +58,17 @@ import type { SwitchProps } from '@synerise/ds-switch';
 
 // With description and error
 <Switch
-  label="Enable notifications"
-  description="You will receive email alerts"
-  errorText="This field is required"
-  checked={checked}
-  onChange={(checked) => setChecked(checked)}
+ label="Enable notifications"
+ description="You will receive email alerts"
+ errorText="This field is required"
+ checked={checked}
+ onChange={(checked) => setChecked(checked)}
 />
 
 // With tooltip
 <Switch
-  label="Advanced mode"
-  tooltip="Unlocks additional configuration options"
+ label="Advanced mode"
+ tooltip="Unlocks additional configuration options"
 />
 
 // Inside a form — adds standard 16px bottom margin

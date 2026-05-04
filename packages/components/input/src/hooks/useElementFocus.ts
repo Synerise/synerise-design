@@ -1,4 +1,4 @@
-import type { InputRef } from 'antd/lib/input';
+import type { InputRef } from 'antd';
 import { type MutableRefObject } from 'react';
 
 export const useElementFocus = (

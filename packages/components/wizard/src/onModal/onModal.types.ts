@@ -1,4 +1,4 @@
-import { type ModalProps } from '@synerise/ds-modal/dist/Modal.types';
+import { type ModalProps } from '@synerise/ds-modal';
 
 import { type WizardProps } from '../Wizard.types';
 

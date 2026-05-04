@@ -6,12 +6,12 @@
 
 ```
 src/
-  EmptyStates.tsx        — main component
-  EmptyStates.types.ts   — EmptyStatesProps, EmptyStatesSize enum, IconSize/FontSize constants
-  EmptyStates.styles.tsx — styled-components
-  index.ts               — public exports
-  __specs__/
-    EmptyStates.spec.tsx — Jest tests
+ EmptyStates.tsx — main component
+ EmptyStates.types.ts — EmptyStatesProps, EmptyStatesSize enum, IconSize/FontSize constants
+ EmptyStates.styles.tsx — styled-components
+ index.ts — public exports
+ __specs__/
+ EmptyStates.spec.tsx — Vitest tests
 ```
 
 ## Public exports
@@ -36,8 +36,8 @@ src/
 
 ```ts
 enum EmptyStatesSize {
-  SMALL = 'small',
-  MEDIUM = 'medium',
+ SMALL = 'small',
+ MEDIUM = 'medium',
 }
 ```
 
@@ -68,19 +68,19 @@ import { NoResultsM } from '@synerise/ds-icon';
 
 // With icon, label and button
 <EmptyStates
-  size={EmptyStatesSize.MEDIUM}
-  customIcon={<NoResultsM />}
-  text="No results"
-  label="Try adjusting your search filters."
-  button={<Button>Clear filters</Button>}
+ size={EmptyStatesSize.MEDIUM}
+ customIcon={<NoResultsM />}
+ text="No results"
+ label="Try adjusting your search filters."
+ button={<Button>Clear filters</Button>}
 />
 
 // Side-by-side layout
 <EmptyStates
-  iconPosition="left"
-  customIcon={<NoResultsM />}
-  text="Nothing here yet"
-  textAlign="left"
+ iconPosition="left"
+ customIcon={<NoResultsM />}
+ text="Nothing here yet"
+ textAlign="left"
 />
 ```
 

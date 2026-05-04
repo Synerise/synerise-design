@@ -1,4 +1,4 @@
-import type { InputRef } from 'antd/lib/input';
+import type { InputRef } from 'antd';
 import type { TextAreaRef } from 'antd/lib/input/TextArea';
 import React, {
   type ChangeEvent,

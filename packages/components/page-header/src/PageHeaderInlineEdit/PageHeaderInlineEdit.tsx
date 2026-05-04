@@ -1,6 +1,6 @@
 import React from 'react';
 
-import InlineEdit from '@synerise/ds-inline-edit/';
+import InlineEdit from '@synerise/ds-inline-edit';
 
 import type { PageHeaderProps } from '../PageHeader.types';
 import * as S from './PageHeaderInlineEdit.styles';

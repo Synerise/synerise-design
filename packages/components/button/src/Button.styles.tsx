@@ -1,4 +1,4 @@
-import Button, { type ButtonProps as AntdButtonProps } from 'antd/lib/button';
+import { type ButtonProps as AntdButtonProps, Button } from 'antd';
 import React, { forwardRef } from 'react';
 import styled, { css, keyframes } from 'styled-components';
 

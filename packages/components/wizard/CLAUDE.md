@@ -6,15 +6,15 @@
 
 ```
 src/
-  Wizard.tsx            — main full-page component; attaches Wizard.OnModal
-  Wizard.types.ts       — WizardProps interface
-  Wizard.styles.ts      — all styled-components (shared between Wizard and OnModal)
-  index.ts              — public exports
-  onModal/
-    onModal.tsx         — modal-based wizard variant
-    onModal.types.ts    — OnModalProps (extends WizardProps)
-  __specs__/
-    Wizard.spec.tsx     — Jest tests (not Vitest — package still uses jest.config.js)
+ Wizard.tsx — main full-page component; attaches Wizard.OnModal
+ Wizard.types.ts — WizardProps interface
+ Wizard.styles.ts — all styled-components (shared between Wizard and OnModal)
+ index.ts — public exports
+ onModal/
+ onModal.tsx — modal-based wizard variant
+ onModal.types.ts — OnModalProps (extends WizardProps)
+ __specs__/
+ Wizard.spec.tsx — Vitest tests
 ```
 
 ## Public exports
@@ -69,41 +69,41 @@ import Wizard from '@synerise/ds-wizard';
 
 // Full-page wizard
 <Wizard
-  visible={isVisible}
-  title="Setup"
-  onClose={handleClose}
-  onPrevStep={step > 0 ? handlePrev : undefined}
-  onNextStep={step < 3 ? handleNext : undefined}
-  stepper={<Stepper>...</Stepper>}
-  contentWidth="588px"
+ visible={isVisible}
+ title="Setup"
+ onClose={handleClose}
+ onPrevStep={step > 0 ? handlePrev : undefined}
+ onNextStep={step < 3 ? handleNext : undefined}
+ stepper={<Stepper>..</Stepper>}
+ contentWidth="588px"
 >
-  <StepContent />
+ <StepContent />
 </Wizard>
 
 // With footer navigation
 <Wizard
-  visible={isVisible}
-  title="Setup"
-  onClose={handleClose}
-  navigationInFooter
-  footerLeft={<Button>Help</Button>}
-  footerAction={<Button>Skip</Button>}
-  onPrevStep={handlePrev}
-  onNextStep={handleNext}
+ visible={isVisible}
+ title="Setup"
+ onClose={handleClose}
+ navigationInFooter
+ footerLeft={<Button>Help</Button>}
+ footerAction={<Button>Skip</Button>}
+ onPrevStep={handlePrev}
+ onNextStep={handleNext}
 >
-  <StepContent />
+ <StepContent />
 </Wizard>
 
 // Modal variant
 <Wizard.OnModal
-  visible={isVisible}
-  title="Setup"
-  onClose={handleClose}
-  onPrevStep={handlePrev}
-  onNextStep={handleNext}
-  modalProps={{ size: 'medium' }}
+ visible={isVisible}
+ title="Setup"
+ onClose={handleClose}
+ onPrevStep={handlePrev}
+ onNextStep={handleNext}
+ modalProps={{ size: 'medium' }}
 >
-  <StepContent />
+ <StepContent />
 </Wizard.OnModal>
 ```
 
@@ -132,5 +132,5 @@ All styles are in `Wizard.styles.ts` and shared between `Wizard` and `WizardOnMo
 - **`headerInlineEdit` replaces `title`**: When `headerInlineEdit` is set, the `title` prop is silently ignored. The `headerAvatar` prop is only rendered when `headerInlineEdit` is also set.
 - **`footer` is deprecated**: Use `footerLeft` for left-side footer content. Both work simultaneously but `footer` maps to the same `FooterLeftSide` slot.
 - **`WizardOnModal` accesses non-standard `modalProps` keys**: The `prefix`, `infix`, and `suffix` keys on `modalProps` are extra fields used by `WizardOnModal`'s own footer layout — they are not standard `ModalProps` fields.
-- **Tests use Jest** (not Vitest): The package has `jest.config.js` and a `"test": "jest"` script — it has not been migrated to Vitest yet.
+- **Uses Vitest**: The package has `jest.config.js` and a `"test": "jest"` script — it has not been migrated to Vitest yet.
 - **`react-intl` is a peer dependency** (≥3.12.0 ≤6.8) — the component will throw at runtime without an IntlProvider in the tree.

@@ -1,5 +1,4 @@
-import AntdAutoComplete from 'antd/lib/auto-complete';
-import type { RefSelectProps } from 'antd/lib/select';
+import { AutoComplete as AntdAutoComplete, type RefSelectProps } from 'antd';
 import React, { type FC, useCallback, useEffect, useMemo, useRef } from 'react';
 
 import FormField from '@synerise/ds-form-field';

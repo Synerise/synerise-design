@@ -6,38 +6,38 @@
 
 ```
 src/
-  FileUploader.tsx              — main drop-zone uploader (forwardRef)
-  FileUploader.types.ts         — all shared types: props, ExtendedFile, FileUploaderRef, texts
-  FileUploader.styles.ts        — styled-components for FileUploader
-  index.ts                      — public exports + FileUploaderStyles aggregate
+ FileUploader.tsx — main drop-zone uploader (forwardRef)
+ FileUploader.types.ts — all shared types: props, ExtendedFile, FileUploaderRef, texts
+ FileUploader.styles.ts — styled-components for FileUploader
+ index.ts — public exports + FileUploaderStyles aggregate
 
-  FileView/
-    FileView.tsx                — file row with progress/error/remove (used by FileUploader)
-    FileView.types.ts           — FileViewProps
-    FileView.styles.ts
-    FileView.const.tsx          — ICON_MAP, isPreviewableMimeType
+ FileView/
+ FileView.tsx — file row with progress/error/remove (used by FileUploader)
+ FileView.types.ts — FileViewProps
+ FileView.styles.ts
+ FileView.const.tsx — ICON_MAP, isPreviewableMimeType
 
-  AvatarUploader/
-    AvatarUploader.tsx          — avatar-preview uploader (forwardRef)
-    AvatarUploader.styles.ts
-    FileViewAvatar/
-      FileViewAvatar.tsx        — avatar + file row used by AvatarUploader
-      FileViewAvatar.types.ts   — FileViewAvatarProps, FileViewAvatarTexts, PreviewableMimeType
-      FileViewAvatar.styles.ts
-      FileViewAvatar.const.tsx  — ICON_MAP
-      FileViewAvatar.util.ts    — isPreviewableMimeType
+ AvatarUploader/
+ AvatarUploader.tsx — avatar-preview uploader (forwardRef)
+ AvatarUploader.styles.ts
+ FileViewAvatar/
+ FileViewAvatar.tsx — avatar + file row used by AvatarUploader
+ FileViewAvatar.types.ts — FileViewAvatarProps, FileViewAvatarTexts, PreviewableMimeType
+ FileViewAvatar.styles.ts
+ FileViewAvatar.const.tsx — ICON_MAP
+ FileViewAvatar.util.ts — isPreviewableMimeType
 
-  ItemUploader/
-    ItemUploader.tsx            — compact button-row uploader (forwardRef)
-    ItemUploader.types.ts       — re-exports ItemUploaderProps from FileUploader.types
-    ItemUploader.styles.ts
-    UploaderButton/
-      FileViewItem.tsx          — compact file row used by ItemUploader
-      FileViewItem.styles.ts
-      FileViewItem.const.tsx    — ICON_MAP, isPreviewableMimeType
+ ItemUploader/
+ ItemUploader.tsx — compact button-row uploader (forwardRef)
+ ItemUploader.types.ts — re-exports ItemUploaderProps from FileUploader.types
+ ItemUploader.styles.ts
+ UploaderButton/
+ FileViewItem.tsx — compact file row used by ItemUploader
+ FileViewItem.styles.ts
+ FileViewItem.const.tsx — ICON_MAP, isPreviewableMimeType
 
-  __specs__/
-    FileUploader.spec.tsx       — Jest tests
+ __specs__/
+ FileUploader.spec.tsx — Vitest tests
 ```
 
 ## Public exports
@@ -87,10 +87,10 @@ Call `ref.current.open()` to programmatically open the file picker.
 Aggregated style object exported for consumers who need to extend or override styled-components:
 ```ts
 {
-  FileUploader: FileUploaderStyles,
-  FileView: FileViewStyles,
-  ItemUploader: ItemUploaderStyles,
-  AvatarUploader: AvatarUploaderStyles,
+ FileUploader: FileUploaderStyles,
+ FileView: FileViewStyles,
+ ItemUploader: ItemUploaderStyles,
+ AvatarUploader: AvatarUploaderStyles,
 }
 ```
 
@@ -98,7 +98,7 @@ Aggregated style object exported for consumers who need to extend or override st
 
 | Type | Description |
 |------|-------------|
-| `FileUploaderProps` | Main props interface (extends `WithHTMLAttributes<HTMLDivElement, ...>`) |
+| `FileUploaderProps` | Main props interface (extends `WithHTMLAttributes<HTMLDivElement, ..>`) |
 | `ItemUploaderProps` | Same as `FileUploaderProps` with narrower `mode` |
 | `ExtendedFile` | `{ file: FileWithContent; error?: string; disabled?: boolean; progress?: number; success?: boolean }` |
 | `FileWithContent` | `File & { content?: FileContent }` |
@@ -133,36 +133,36 @@ const uploaderRef = useRef(null);
 
 // Standard drop-zone
 <FileUploader
-  mode="multi-medium"
-  files={files}
-  accept={['image/png', 'image/jpeg']}
-  filesAmount={5}
-  onUpload={(newFiles: FileWithContent[]) =>
-    setFiles(prev => [...prev, ...newFiles.map(f => ({ file: f }))])
-  }
-  onRemove={(_, index) => setFiles(prev => prev.filter((_, i) => i !== index))}
-  label="Attachments"
-  tooltip="Max 5 files"
+ mode="multi-medium"
+ files={files}
+ accept={['image/png', 'image/jpeg']}
+ filesAmount={5}
+ onUpload={(newFiles: FileWithContent[]) =>
+ setFiles(prev => [..prev, ..newFiles.map(f => ({ file: f }))])
+ }
+ onRemove={(_, index) => setFiles(prev => prev.filter((_, i) => i !== index))}
+ label="Attachments"
+ tooltip="Max 5 files"
 />
 
 // Avatar variant
 <AvatarUploader
-  mode="single"
-  files={files}
-  onUpload={...}
-  onRemove={...}
+ mode="single"
+ files={files}
+ onUpload={..}
+ onRemove={..}
 />
 
 // Compact button variant
 <ItemUploader
-  mode="multi"
-  files={files}
-  onUpload={...}
-  onRemove={...}
+ mode="multi"
+ files={files}
+ onUpload={..}
+ onRemove={..}
 />
 
 // Programmatic open
-<FileUploader ref={uploaderRef} ... />
+<FileUploader ref={uploaderRef} .. />
 <button onClick={() => uploaderRef.current?.open()}>Browse</button>
 ```
 
@@ -189,4 +189,4 @@ Styles in `FileUploader.styles.ts` (and per-variant siblings). Uses `props.theme
 - **`retry` in `FileView`:** When `retry=true` and a file row has `error`, the retry button spreads `getRootProps()` (from `useDropzone`) to open the file picker — it first calls `onRemove` to clear the errored entry, then re-opens the dialog.
 - **`texts.percent`** is typed `number` (not `ReactNode`) because it's passed directly to `ProgressBar`'s `percent` prop.
 - **`FileViewAvatarTexts`** is not exported from `index.ts` — accessible only as a deep import.
-- **Tests use Jest** (`jest.config.js`) — not yet migrated to Vitest.
+- **Uses Vitest** for testing.

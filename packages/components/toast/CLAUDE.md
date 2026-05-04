@@ -4,17 +4,17 @@
 ## Package structure
 ```
 src/
-  Toast.tsx          — Toast component and showToast imperative function; attaches static methods
-  Toast.types.ts     — ToastType, ToastProps, ShowToastProps, ToastCustomisationOptions
-  Toast.styles.ts    — All styled-components (Container, AnimationContainer, AlertMessage, etc.)
-  constants.tsx      — ICONS map: ToastType → ds-icon ReactNode
-  index.ts           — Public re-exports
-  utils/
-    dismissToast.ts  — Re-exports toast.dismiss from react-hot-toast (animated exit)
-    removeToast.ts   — Re-exports toast.remove from react-hot-toast (instant removal)
-    index.ts         — Re-exports both utils
-  __specs__/
-    Toast.spec.tsx   — Jest tests (renderWithProvider + TOASTER_DEFAULTS from ds-core)
+ Toast.tsx — Toast component and showToast imperative function; attaches static methods
+ Toast.types.ts — ToastType, ToastProps, ShowToastProps, ToastCustomisationOptions
+ Toast.styles.ts — All styled-components (Container, AnimationContainer, AlertMessage, etc.)
+ constants.tsx — ICONS map: ToastType → ds-icon ReactNode
+ index.ts — Public re-exports
+ utils/
+ dismissToast.ts — Re-exports toast.dismiss from react-hot-toast (animated exit)
+ removeToast.ts — Re-exports toast.remove from react-hot-toast (instant removal)
+ index.ts — Re-exports both utils
+ __specs__/
+ Toast.spec.tsx — Vitest tests (renderWithProvider + TOASTER_DEFAULTS from ds-core)
 ```
 
 ## Public exports
@@ -45,7 +45,7 @@ All of the following are exported from the package root (`index.ts`):
 | `toastId` | `string` | — | ID used when calling `toast.dismiss` from the close button |
 | `show` | `boolean` | `true` | Drives enter/exit animation (`AnimationContainer`); set by react-hot-toast internally |
 
-Extends `WithHTMLAttributes<HTMLDivElement, ...>` — all standard div props are passed to the inner `Container`.
+Extends `WithHTMLAttributes<HTMLDivElement, ..>` — all standard div props are passed to the inner `Container`.
 
 ### `showToast(type, props, options?)`
 | Param | Type | Description |
@@ -82,11 +82,11 @@ Toast.warning({ message: 'Slow connection' }, { duration: 5000, id: 'my-toast' }
 ```tsx
 import { showToast, dismissToast, removeToast } from '@synerise/ds-toast';
 
-const id = showToast('informative', { message: 'Loading...', withClose: true });
+const id = showToast('informative', { message: 'Loading..', withClose: true });
 
 // Later — animated dismiss or instant remove
-dismissToast(id);  // fade-out animation
-removeToast(id);   // instant removal
+dismissToast(id); // fade-out animation
+removeToast(id); // instant removal
 ```
 
 ### Controlled expandable toast
@@ -94,12 +94,12 @@ removeToast(id);   // instant removal
 import Toast from '@synerise/ds-toast';
 
 <Toast
-  type="warning"
-  message="3 records failed"
-  expander
-  expanded={isExpanded}
-  onExpand={setIsExpanded}
-  expandedContent={<ul>...</ul>}
+ type="warning"
+ message="3 records failed"
+ expander
+ expanded={isExpanded}
+ onExpand={setIsExpanded}
+ expandedContent={<ul>..</ul>}
 />
 ```
 
@@ -132,6 +132,6 @@ import Toast from '@synerise/ds-toast';
 - `onDismiss` is fired from a `useEffect` cleanup (component unmount), not from the close click handler. It therefore fires for both manual dismissal and timeout expiry.
 - `onCloseClick` fires first, then `toast.dismiss(toastId)` is called — both only if `toastId` is present.
 - `Toast.error` maps to type `'negative'` (not `'error'`). There is no `'error'` type in `ToastType`.
-- The Toaster must be mounted for imperative toasts to render. In tests this is done via `renderWithProvider(..., { toasterProps: TOASTER_DEFAULTS })` from `@synerise/ds-core`.
+- The Toaster must be mounted for imperative toasts to render. In tests this is done via `renderWithProvider(.., { toasterProps: TOASTER_DEFAULTS })` from `@synerise/ds-core`.
 - Tests use **Jest** (not Vitest) — see `jest.config.js`.
 - `FirstButtonWrapper` and `Wrapper` styled-components are exported from `dist/Toast.styles` (not from the package root) and used in Storybook stories for layout.

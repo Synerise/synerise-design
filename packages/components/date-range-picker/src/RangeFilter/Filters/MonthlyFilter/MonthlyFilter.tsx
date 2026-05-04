@@ -4,7 +4,7 @@ import { v4 as uuid } from 'uuid';
 
 import Button from '@synerise/ds-button';
 import { theme } from '@synerise/ds-core';
-import ContentItem from '@synerise/ds-manageable-list/dist/Item/ContentItem/ContentItem';
+import { ContentItem } from '@synerise/ds-manageable-list';
 import Tag, { TagShape } from '@synerise/ds-tag';
 
 import { getDefaultTexts } from '../../../utils';

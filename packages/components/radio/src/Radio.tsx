@@ -1,4 +1,4 @@
-import AntdRadio from 'antd/lib/radio';
+import { Radio as AntdRadio } from 'antd';
 import React from 'react';
 
 import * as S from './Radio.styles';

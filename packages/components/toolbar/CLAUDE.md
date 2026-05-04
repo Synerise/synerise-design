@@ -6,23 +6,23 @@
 
 ```
 src/
-  Toolbar.tsx          — root container (flex row, 8px gap)
-  Toolbar.types.ts     — all prop types for Toolbar, ToolbarGroup, ToolbarButton, ToolbarLabel, ToolbarDivider
-  Toolbar.styles.ts    — styled-components for all sub-components
-  components/
-    index.ts           — re-exports all sub-components
-    ToolbarButton/
-      ToolbarButton.tsx  — button with optional Badge and Tooltip wrapping
-    ToolbarDivider/
-      ToolbarDivider.tsx — vertical separator line
-    ToolbarGroup/
-      ToolbarGroup.tsx   — card-like group with white background and shadow
-    ToolbarLabel/
-      ToolbarLabel.tsx   — centred text label (e.g. zoom percentage)
-  __specs__/
-    Toolbar.spec.tsx
-    ToolbarButton.spec.tsx
-    ToolbarGroup.spec.tsx
+ Toolbar.tsx — root container (flex row, 8px gap)
+ Toolbar.types.ts — all prop types for Toolbar, ToolbarGroup, ToolbarButton, ToolbarLabel, ToolbarDivider
+ Toolbar.styles.ts — styled-components for all sub-components
+ components/
+ index.ts — re-exports all sub-components
+ ToolbarButton/
+ ToolbarButton.tsx — button with optional Badge and Tooltip wrapping
+ ToolbarDivider/
+ ToolbarDivider.tsx — vertical separator line
+ ToolbarGroup/
+ ToolbarGroup.tsx — card-like group with white background and shadow
+ ToolbarLabel/
+ ToolbarLabel.tsx — centred text label (e.g. zoom percentage)
+ __specs__/
+ Toolbar.spec.tsx
+ ToolbarButton.spec.tsx
+ ToolbarGroup.spec.tsx
 ```
 
 ## Public exports
@@ -41,7 +41,7 @@ src/
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
 | children | `ReactNode` | — | Content rendered inside the toolbar |
-| ...htmlAttributes | `HTMLAttributes<HTMLDivElement>` | — | Spread onto the root `<div>` |
+| ..htmlAttributes | `HTMLAttributes<HTMLDivElement>` | — | Spread onto the root `<div>` |
 
 ### `ToolbarGroup`
 
@@ -49,7 +49,7 @@ src/
 |------|------|---------|-------------|
 | children | `ReactNode` | — | Buttons, labels, and dividers inside this group |
 | isCompact | `boolean` | `false` | Removes the 4px gap between children when `true` |
-| ...htmlAttributes | `HTMLAttributes<HTMLDivElement>` | — | Spread onto the root `<div>` |
+| ..htmlAttributes | `HTMLAttributes<HTMLDivElement>` | — | Spread onto the root `<div>` |
 
 ### `ToolbarButton`
 
@@ -70,13 +70,13 @@ Extends `ButtonProps` from `@synerise/ds-button` with `type` overridden.
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
 | children | `ReactNode` | — | Label text (e.g. `"100%"`) |
-| ...htmlAttributes | `HTMLAttributes<HTMLDivElement>` | — | Spread onto the root `<div>` |
+| ..htmlAttributes | `HTMLAttributes<HTMLDivElement>` | — | Spread onto the root `<div>` |
 
 ### `ToolbarDivider`
 
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
-| ...htmlAttributes | `HTMLAttributes<HTMLDivElement>` | — | Spread onto the root `<div>` |
+| ..htmlAttributes | `HTMLAttributes<HTMLDivElement>` | — | Spread onto the root `<div>` |
 
 > Renders a 1px vertical line that extends 4px above and below its container to fill the `ToolbarGroup` padding.
 
@@ -88,41 +88,41 @@ import Icon, { StepBackM, StepForwardM, AddM, RemoveM } from '@synerise/ds-icon'
 
 // Basic toolbar with compact zoom group
 <Toolbar>
-  <ToolbarGroup>
-    <ToolbarButton mode="single-icon">
-      <Icon component={<StepBackM />} />
-    </ToolbarButton>
-    <ToolbarButton mode="single-icon">
-      <Icon component={<StepForwardM />} />
-    </ToolbarButton>
-  </ToolbarGroup>
+ <ToolbarGroup>
+ <ToolbarButton mode="single-icon">
+ <Icon component={<StepBackM />} />
+ </ToolbarButton>
+ <ToolbarButton mode="single-icon">
+ <Icon component={<StepForwardM />} />
+ </ToolbarButton>
+ </ToolbarGroup>
 
-  <ToolbarGroup isCompact>
-    <ToolbarButton mode="single-icon">
-      <Icon component={<AddM />} />
-    </ToolbarButton>
-    <ToolbarLabel>100%</ToolbarLabel>
-    <ToolbarButton mode="single-icon">
-      <Icon component={<RemoveM />} />
-    </ToolbarButton>
-  </ToolbarGroup>
+ <ToolbarGroup isCompact>
+ <ToolbarButton mode="single-icon">
+ <Icon component={<AddM />} />
+ </ToolbarButton>
+ <ToolbarLabel>100%</ToolbarLabel>
+ <ToolbarButton mode="single-icon">
+ <Icon component={<RemoveM />} />
+ </ToolbarButton>
+ </ToolbarGroup>
 </Toolbar>
 
 // Button with badge and tooltip
 <ToolbarButton
-  mode="icon-label"
-  badgeProps={{ count: '5', outlined: true }}
-  tooltipProps={{ title: 'Issues' }}
+ mode="icon-label"
+ badgeProps={{ count: '5', outlined: true }}
+ tooltipProps={{ title: 'Issues' }}
 >
-  <Icon component={<WarningM />} />
-  Issues
+ <Icon component={<WarningM />} />
+ Issues
 </ToolbarButton>
 
 // Divider inside a group (SchedulerToolbar pattern)
 <ToolbarGroup>
-  <ToolbarButton type="ghost" mode="icon-label">...</ToolbarButton>
-  <ToolbarDivider />
-  <ToolbarButton type="ghost" mode="single-icon">...</ToolbarButton>
+ <ToolbarButton type="ghost" mode="icon-label">..</ToolbarButton>
+ <ToolbarDivider />
+ <ToolbarButton type="ghost" mode="single-icon">..</ToolbarButton>
 </ToolbarGroup>
 ```
 

@@ -1,4 +1,4 @@
-import { type AlertProps } from 'antd/lib/alert';
+import { type AlertProps } from 'antd';
 import { type ReactElement, type ReactNode } from 'react';
 
 export type ToastType =

@@ -1,8 +1,7 @@
 import React from 'react';
 
 import Scrollbar from '@synerise/ds-scrollbar';
-import Tabs from '@synerise/ds-tabs';
-import { type TabItem } from '@synerise/ds-tabs/dist/Tabs.types';
+import Tabs, { type TabItem } from '@synerise/ds-tabs';
 
 import Header from './Elements/Header/Header';
 import { HeaderType } from './Elements/Header/Header.types';

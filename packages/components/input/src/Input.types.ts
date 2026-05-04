@@ -1,7 +1,5 @@
-import type {
-  InputProps as AntdInputProps,
-  TextAreaProps as AntdTextAreaProps,
-} from 'antd/lib/input';
+import type { InputProps as AntdInputProps } from 'antd';
+import type { TextAreaProps as AntdTextAreaProps } from 'antd/lib/input';
 import type {
   ForwardRefExoticComponent,
   MutableRefObject,

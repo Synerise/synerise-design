@@ -6,39 +6,39 @@
 
 ```
 src/
-  index.ts                          — all public exports
-  types/types.ts                    — shared TypeScript utility types
+ index.ts — all public exports
+ types/types.ts — shared TypeScript utility types
 
-  # Pure functions
-  hexToRgba/                        — hex colour string → rgba() string
-  toCamelCase/                      — kebab/snake_case → camelCase
-  escapeRegEx/ (regex/)             — escape special regex chars in a string
-  getInitials/                      — extract initials from first/last name (NOT exported from index.ts)
-  selectColorByLetter/              — map letter → ds-core palette colour
-  renderWithHighlight/              — wrap a substring match in a highlight <span>
-  doubleClickListener/              — factory for single/double click disambiguation
-  focusWithArrowKeys/               — keyboard arrow-key focus navigation helper
-  omitKeys/                         — remove named keys from a plain object
-  getPopupContainer/                — Ant Design getPopupContainer helper
+ # Pure functions
+ hexToRgba/ — hex colour string → rgba() string
+ toCamelCase/ — kebab/snake_case → camelCase
+ escapeRegEx/ (regex/) — escape special regex chars in a string
+ getInitials/ — extract initials from first/last name (NOT exported from index.ts)
+ selectColorByLetter/ — map letter → ds-core palette colour
+ renderWithHighlight/ — wrap a substring match in a highlight <span>
+ doubleClickListener/ — factory for single/double click disambiguation
+ focusWithArrowKeys/ — keyboard arrow-key focus navigation helper
+ omitKeys/ — remove named keys from a plain object
+ getPopupContainer/ — Ant Design getPopupContainer helper
 
-  # Hooks
-  useOnClickOutside/                — fire handler when clicking outside a ref
-  useResize/                        — track element offsetWidth/offsetHeight on window resize
-  useResizeObserver/                — track element DOMRect via ResizeObserver
-  useResizeToFit/                   — ResizeObserver with manual observe/disconnect control
-  useBreakpoint/                    — window width → named breakpoint + dimensions
-  useCombinedRefs/                  — merge multiple React refs into one
-  usePrevious/                      — return previous render's value
-  useIsMounted/                     — ref that is true while component is mounted
-  useElementInView/                 — IntersectionObserver: is element visible?
-  useOverscrollBlock/               — prevent horizontal overscroll on a container
-  useScrollContain/                 — block wheel event propagation out of a container
-  useStableId/                      — stable UUID for component lifetime (via uuid v4)
-  useLatestRef/                     — always-current ref to a changing value
-  useSearchResults/                 — filtered+sorted search results from grouped item lists
-  useKeyboardShortcuts/             — document-level keydown handler map
-  useDelimiterEscape/               — join/split/validate delimited strings with escape tags
-  useTraceUpdate/                   — dev-only: console.log changed props on each render
+ # Hooks
+ useOnClickOutside/ — fire handler when clicking outside a ref
+ useResize/ — track element offsetWidth/offsetHeight on window resize
+ useResizeObserver/ — track element DOMRect via ResizeObserver
+ useResizeToFit/ — ResizeObserver with manual observe/disconnect control
+ useBreakpoint/ — window width → named breakpoint + dimensions
+ useCombinedRefs/ — merge multiple React refs into one
+ usePrevious/ — return previous render's value
+ useIsMounted/ — ref that is true while component is mounted
+ useElementInView/ — IntersectionObserver: is element visible?
+ useOverscrollBlock/ — prevent horizontal overscroll on a container
+ useScrollContain/ — block wheel event propagation out of a container
+ useStableId/ — stable UUID for component lifetime (via uuid v4)
+ useLatestRef/ — always-current ref to a changing value
+ useSearchResults/ — filtered+sorted search results from grouped item lists
+ useKeyboardShortcuts/ — document-level keydown handler map
+ useDelimiterEscape/ — join/split/validate delimited strings with escape tags
+ useTraceUpdate/ — dev-only: console.log changed props on each render
 ```
 
 ---
@@ -54,7 +54,7 @@ Converts a 6-char hex colour (e.g. `'#ff0000'`) to `rgba(r, g, b, alpha)`. No va
 Converts kebab-case and snake_case strings to camelCase. Strips non-alphanumeric characters.
 
 #### `escapeRegEx(s: string): string`
-Escapes all regex special characters in a string for safe use in `new RegExp(...)`.
+Escapes all regex special characters in a string for safe use in `new RegExp(..)`.
 
 #### `selectColorByLetter(letter?: string, forAvatar?: boolean): Color`
 Maps a letter to a design-system palette colour. Uses `latinize` to normalise accented characters.
@@ -123,7 +123,7 @@ Breakpoint table:
 
 Also exports types: `Dimensions`, `BreakpointKey`, `Breakpoint`, `DimensionsWithBreakpoint`
 
-#### `useCombinedRefs<T>(...refs): MutableRefObject<T | null>`
+#### `useCombinedRefs<T>(..refs): MutableRefObject<T | null>`
 Merges multiple refs (callback refs or `RefObject`) into a single internal ref. Use to attach both a forwarded ref and a local ref to the same element.
 
 #### `usePrevious<T>(value: T): T | undefined`
@@ -148,19 +148,19 @@ Returns a UUID (`uuid` v4) that is stable for the lifetime of the component. Gen
 #### `useLatestRef<T>(value: T): MutableRefObject<T>`
 Stores `value` in a ref and syncs it in a `useEffect`. Use to read the latest value of a prop/state in a callback without adding it to `useCallback`'s dependency array.
 
-#### `useSearchResults<ItemType, GroupType, GroupedListItemType>(...): { searchResults, getActiveTabGroup, getGroupName }`
+#### `useSearchResults<ItemType, GroupType, GroupedListItemType>(..): { searchResults, getActiveTabGroup, getGroupName }`
 Filters and sorts a flat `items` array against a `searchQuery`, respecting `activeTab` and `activeGroup` constraints. Returns results grouped via the `groupByGroupName` callback.
 
 Signature:
 ```ts
 useSearchResults(
-  items: ItemType[],
-  groups: GroupType[],
-  activeTab: number,
-  groupByGroupName: (items: ItemType[], max?: number) => GroupedListItemType[],
-  activeGroup?: GroupType,
-  searchQuery?: string,
-  maxSearchResultsInGroup?: number,
+ items: ItemType[],
+ groups: GroupType[],
+ activeTab: number,
+ groupByGroupName: (items: ItemType[], max?: number) => GroupedListItemType[],
+ activeGroup?: GroupType,
+ searchQuery?: string,
+ maxSearchResultsInGroup?: number,
 )
 ```
 

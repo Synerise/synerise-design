@@ -6,28 +6,28 @@
 
 ```
 src/
-  Tags.tsx              — root component; renders selected tags, LimitedTags overflow, and AddTags button
-  Tags.types.ts         — TagsProps, ActionTaken, ExtendedTagProps type definitions
-  Tags.styles.ts        — styled-components: Container, TagsWrapper, SelectedTags, TagOverflow, Title, LimitedTag
-  index.ts              — public exports
-  modules.d.ts          — ambient module declarations
-  components/
-    AddTags/
-      AddTags.tsx        — dropdown trigger with search bar, create-new button, and selectable tag list
-      AddTags.styles.ts  — AddTagButton, CreateTagDropdownButton, Separator
-    LimitedTags/
-      LimitedTags.tsx    — "+N" pill that opens hidden selected tags on hover
-    TagsDropdown/
-      TagsDropdown.tsx   — shared dropdown wrapper around @synerise/ds-dropdown
-      TagsDropdown.styles.ts — Overlay, DropdownContainer (Scrollbar), DropdownTagsContainer, BottomAction
-  __specs__/
-    Tags.spec.tsx        — Jest + React Testing Library tests
+ Tags.tsx — root component; renders selected tags, LimitedTags overflow, and AddTags button
+ Tags.types.ts — TagsProps, ActionTaken, ExtendedTagProps type definitions
+ Tags.styles.ts — styled-components: Container, TagsWrapper, SelectedTags, TagOverflow, Title, LimitedTag
+ index.ts — public exports
+ modules.d.ts — ambient module declarations
+ components/
+ AddTags/
+ AddTags.tsx — dropdown trigger with search bar, create-new button, and selectable tag list
+ AddTags.styles.ts — AddTagButton, CreateTagDropdownButton, Separator
+ LimitedTags/
+ LimitedTags.tsx — "+N" pill that opens hidden selected tags on hover
+ TagsDropdown/
+ TagsDropdown.tsx — shared dropdown wrapper around @synerise/ds-dropdown
+ TagsDropdown.styles.ts — Overlay, DropdownContainer (Scrollbar), DropdownTagsContainer, BottomAction
+ __specs__/
+ Tags.spec.tsx — Vitest + React Testing Library tests
 ```
 
 ## Public exports
 
 ```ts
-export { default } from './Tags';                        // default: Tags component
+export { default } from './Tags'; // default: Tags component
 export * as TagsStyles from './Tags.styles';
 export type { TagsProps, ActionTaken, ExtendedTagProps } from './Tags.types';
 export { AddTags, type AddTagsProps } from './components/AddTags/AddTags';
@@ -80,8 +80,8 @@ export type { TagProps, TagTexts } from '@synerise/ds-tag';
 
 ```ts
 type ActionTaken = {
-  type: 'ADD' | 'REMOVE';
-  tag: TagProps;
+ type: 'ADD' | 'REMOVE';
+ tag: TagProps;
 };
 ```
 
@@ -106,23 +106,23 @@ import type { TagsProps } from '@synerise/ds-tags';
 
 // Full interactive
 <Tags
-  data={allTags}
-  selected={selectedTags}
-  addable
-  removable
-  creatable
-  texts={{
-    addButtonLabel: 'Add tag',
-    searchPlaceholder: 'Search...',
-    createTagButtonLabel: 'Create',
-    clearTooltip: 'Clear',
-    deleteTooltip: 'Delete',
-    noResultsLabel: 'No results',
-    dropdownNoTags: 'No tags found',
-  }}
-  onSelectedChange={(tags, action) => setSelectedTags(tags)}
-  onCreate={(name) => createTag(name)}
-  maxVisibleTags={5}
+ data={allTags}
+ selected={selectedTags}
+ addable
+ removable
+ creatable
+ texts={{
+ addButtonLabel: 'Add tag',
+ searchPlaceholder: 'Search..',
+ createTagButtonLabel: 'Create',
+ clearTooltip: 'Clear',
+ deleteTooltip: 'Delete',
+ noResultsLabel: 'No results',
+ dropdownNoTags: 'No tags found',
+ }}
+ onSelectedChange={(tags, action) => setSelectedTags(tags)}
+ onCreate={(name) => createTag(name)}
+ maxVisibleTags={5}
 />
 ```
 

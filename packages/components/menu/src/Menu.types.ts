@@ -1,4 +1,4 @@
-import { type MenuProps } from 'antd/lib/menu';
+import { type MenuProps } from 'antd';
 import type { ReactElement, ReactNode } from 'react';
 
 import {

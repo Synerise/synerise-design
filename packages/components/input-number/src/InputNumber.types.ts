@@ -1,4 +1,4 @@
-import type { InputNumberProps as AntdInputNumberProps } from 'antd/lib/input-number';
+import type { InputNumberProps as AntdInputNumberProps } from 'antd';
 import type { ReactNode } from 'react';
 
 import type { NumberToFormatOptions } from '@synerise/ds-core';

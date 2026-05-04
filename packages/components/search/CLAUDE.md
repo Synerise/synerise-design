@@ -6,54 +6,54 @@
 
 ```
 src/
-  Search.tsx                          — main component (generic over T, U, S)
-  Search.types.tsx                    — SearchProps, SearchLookupConfig, DataSetProps, AnyObject, SelectResultDataKeys
-  Search.styles.tsx                   — styled-components for wrapper, dropdown, input, filter label, clear button
-  const.ts                            — numeric constants (offsets, animation durations)
-  index.ts                            — public exports
-  modules.d.ts                        — .less module declaration
-  style/
-    index.less                        — component base styles
-    input.mixin.less                  — input mixin
-  Elements/
-    index.ts                          — re-exports sub-components
-    SearchInput/
-      SearchInput.tsx                 — collapsible input with filter label, clear button, search button
-      SearchInput.types.tsx           — SearchInputProps
-    SearchButton/
-      SearchButton.tsx                — ghost icon button (SearchM icon) that toggles the input
-      SearchButton.types.ts           — SearchButtonProps
-    SearchHeader/
-      SearchHeader.tsx                — section header row with optional info-icon tooltip
-      SearchHeader.types.ts           — SearchHeaderProps
-    SearchItems/
-      SearchItems.tsx                 — react-window FixedSizeList renderer, exported as SearchItems / SearchItemList
-      SearchItems.types.ts            — SearchItemListProps
-    SearchRenderer/
-      SearchRenderer.tsx              — composes SearchHeader + SearchItems; internal to Search, not re-exported
-      SearchRenderer.types.ts         — SearchRendererProps
-    utils/
-      searchUtils.tsx                 — getAllElementsFiltered, hasSomeElementFiltered, hasSomeElement, getParametersScrollTop
-  __specs__/
-    Search.spec.tsx
-    SearchInput.spec.tsx
+ Search.tsx — main component (generic over T, U, S)
+ Search.types.tsx — SearchProps, SearchLookupConfig, DataSetProps, AnyObject, SelectResultDataKeys
+ Search.styles.tsx — styled-components for wrapper, dropdown, input, filter label, clear button
+ const.ts — numeric constants (offsets, animation durations)
+ index.ts — public exports
+ modules.d.ts —less module declaration
+ style/
+ index.less — component base styles
+ input.mixin.less — input mixin
+ Elements/
+ index.ts — re-exports sub-components
+ SearchInput/
+ SearchInput.tsx — collapsible input with filter label, clear button, search button
+ SearchInput.types.tsx — SearchInputProps
+ SearchButton/
+ SearchButton.tsx — ghost icon button (SearchM icon) that toggles the input
+ SearchButton.types.ts — SearchButtonProps
+ SearchHeader/
+ SearchHeader.tsx — section header row with optional info-icon tooltip
+ SearchHeader.types.ts — SearchHeaderProps
+ SearchItems/
+ SearchItems.tsx — react-window FixedSizeList renderer, exported as SearchItems / SearchItemList
+ SearchItems.types.ts — SearchItemListProps
+ SearchRenderer/
+ SearchRenderer.tsx — composes SearchHeader + SearchItems; internal to Search, not re-exported
+ SearchRenderer.types.ts — SearchRendererProps
+ utils/
+ searchUtils.tsx — getAllElementsFiltered, hasSomeElementFiltered, hasSomeElement, getParametersScrollTop
+ __specs__/
+ Search.spec.tsx
+ SearchInput.spec.tsx
 ```
 
 ## Public exports
 
 ```ts
 // default
-export { default } from './Search';               // Search<T, U, S>
+export { default } from './Search'; // Search<T, U, S>
 
 // sub-components
-export { SearchInput }                            // from Elements
-export { SearchHeader }                           // from Elements
+export { SearchInput } // from Elements
+export { SearchHeader } // from Elements
 export { SearchItems, SearchItemList, renderSearchList } // from Elements (SearchItems and SearchItemList are the same default export)
-export { SearchButton }                           // from Elements
+export { SearchButton } // from Elements
 
 // types
-export type { SearchProps, SearchLookupConfig }   // from Search.types
-export type { SearchInputProps }                  // from Elements/SearchInput/SearchInput.types
+export type { SearchProps, SearchLookupConfig } // from Search.types
+export type { SearchInputProps } // from Elements/SearchInput/SearchInput.types
 ```
 
 ### `Search<T, U, S>`
@@ -93,9 +93,9 @@ Generic component. `T` = recent item shape, `U` = parameter item shape, `S` = su
 
 ```ts
 {
-  parameters: keyof U;
-  recent: keyof T;
-  suggestions: keyof S;
+ parameters: keyof U;
+ recent: keyof T;
+ suggestions: keyof S;
 }
 ```
 
@@ -166,7 +166,7 @@ Both names are the same default export from `SearchItems.tsx`.
 function renderSearchList<V>(props: SearchItemListProps<V>, children?: ReactNode): ReactElement
 ```
 
-Convenience wrapper that returns `<SearchItems {...props}>{children}</SearchItems>`.
+Convenience wrapper that returns `<SearchItems {..props}>{children}</SearchItems>`.
 
 ---
 
@@ -208,24 +208,24 @@ const [parameterValue, setParameterValue] = React.useState('');
 const [suggestions, setSuggestions] = React.useState([]);
 
 <Search
-  clearTooltip="Clear"
-  placeholder="Search"
-  dropdownMaxHeight={400}
-  value={value}
-  parameterValue={parameterValue}
-  parameters={[{ text: 'City', icon: <CityIcon /> }]}
-  recent={[{ text: 'Bangkok', filter: 'City' }]}
-  suggestions={suggestions}
-  textLookupConfig={{ parameters: 'text', recent: 'text', suggestions: 'text' }}
-  onValueChange={setValue}
-  onParameterValueChange={(val, param) => {
-    setParameterValue(val);
-    setSuggestions(fetchSuggestions(val));
-  }}
-  onClear={() => { setValue(''); setParameterValue(''); setSuggestions([]); }}
-  recentDisplayProps={{ title: 'Recent', rowHeight: 32, itemRender: (item) => <ListItem>{item.text}</ListItem> }}
-  parametersDisplayProps={{ title: 'Parameters', rowHeight: 32, itemRender: (item) => <ListItem>{item.text}</ListItem> }}
-  suggestionsDisplayProps={{ title: 'Suggestions', rowHeight: 32, itemRender: (item) => <ListItem>{item.text}</ListItem> }}
+ clearTooltip="Clear"
+ placeholder="Search"
+ dropdownMaxHeight={400}
+ value={value}
+ parameterValue={parameterValue}
+ parameters={[{ text: 'City', icon: <CityIcon /> }]}
+ recent={[{ text: 'Bangkok', filter: 'City' }]}
+ suggestions={suggestions}
+ textLookupConfig={{ parameters: 'text', recent: 'text', suggestions: 'text' }}
+ onValueChange={setValue}
+ onParameterValueChange={(val, param) => {
+ setParameterValue(val);
+ setSuggestions(fetchSuggestions(val));
+ }}
+ onClear={() => { setValue(''); setParameterValue(''); setSuggestions([]); }}
+ recentDisplayProps={{ title: 'Recent', rowHeight: 32, itemRender: (item) => <ListItem>{item.text}</ListItem> }}
+ parametersDisplayProps={{ title: 'Parameters', rowHeight: 32, itemRender: (item) => <ListItem>{item.text}</ListItem> }}
+ suggestionsDisplayProps={{ title: 'Suggestions', rowHeight: 32, itemRender: (item) => <ListItem>{item.text}</ListItem> }}
 />
 ```
 
@@ -235,12 +235,12 @@ Standalone input only:
 import { SearchInput } from '@synerise/ds-search';
 
 <SearchInput
-  value={value}
-  onChange={setValue}
-  onClear={() => setValue('')}
-  clearTooltip="Clear"
-  placeholder="Search"
-  closeOnClickOutside
+ value={value}
+ onChange={setValue}
+ onClear={() => setValue('')}
+ clearTooltip="Clear"
+ placeholder="Search"
+ closeOnClickOutside
 />
 ```
 

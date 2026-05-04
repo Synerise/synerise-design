@@ -6,31 +6,31 @@
 
 ```
 src/
-  Factors.tsx                     — main component; defines FACTOR_TYPE_MAPPING
-  Factors.types.ts                — all types (FactorsProps, FactorsTexts, value types, etc.)
-  index.ts                        — public exports
-  style/
-    Factors.style.ts              — Group wrapper styled component
-  hooks/
-    useTexts.tsx                  — merges user texts with react-intl defaults
-  FactorTypeSelector/
-    FactorTypeSelector.tsx        — dropdown to switch between factor types
-    FactorTypeSelector.styles.ts  — type selector button styles
-  FactorValue/
-    FactorValue.tsx               — dispatcher that renders the correct input component
-    FactorValue.style.ts          — input wrapper styles
-    Text/                         — text input (default, expansible-modal, autocomplete modes)
-    Number/                       — number input via @synerise/ds-input-number
-    Parameter/                    — parameter selector with grouped/search/virtualized list
-    DynamicKey/                   — two-field key-value input
-    Formula/                      — formula editor trigger + modal
-    Date/                         — date picker via @synerise/ds-date-picker
-    DateRange/                    — date range picker via @synerise/ds-date-range-picker
-    RelativeDate/                 — relative date selector (offset + unit + before/after)
-    Array/                        — array editor with creator, raw paste, and collector modes
-  __specs__/
-    Factors.spec.tsx              — Vitest tests
-    Factors.array.spec.tsx        — Vitest tests for array type
+ Factors.tsx — main component; defines FACTOR_TYPE_MAPPING
+ Factors.types.ts — all types (FactorsProps, FactorsTexts, value types, etc.)
+ index.ts — public exports
+ style/
+ Factors.style.ts — Group wrapper styled component
+ hooks/
+ useTexts.tsx — merges user texts with react-intl defaults
+ FactorTypeSelector/
+ FactorTypeSelector.tsx — dropdown to switch between factor types
+ FactorTypeSelector.styles.ts — type selector button styles
+ FactorValue/
+ FactorValue.tsx — dispatcher that renders the correct input component
+ FactorValue.style.ts — input wrapper styles
+ Text/ — text input (default, expansible-modal, autocomplete modes)
+ Number/ — number input via @synerise/ds-input-number
+ Parameter/ — parameter selector with grouped/search/virtualized list
+ DynamicKey/ — two-field key-value input
+ Formula/ — formula editor trigger + modal
+ Date/ — date picker via @synerise/ds-date-picker
+ DateRange/ — date range picker via @synerise/ds-date-range-picker
+ RelativeDate/ — relative date selector (offset + unit + before/after)
+ Array/ — array editor with creator, raw paste, and collector modes
+ __specs__/
+ Factors.spec.tsx — Vitest tests
+ Factors.array.spec.tsx — Vitest tests for array type
 ```
 
 ## Public exports
@@ -69,7 +69,7 @@ src/
 | `formulaEditor` | `ReactNode` | — | Content rendered inside the formula editor modal |
 | `texts` | `DeepPartial<FactorsTexts>` | — | Override any subset of i18n strings |
 | `factorKey` | `ReactText` | — | Unique key for the factor instance; used to reset state on remount |
-| `inputProps` | `Partial<Omit<InputProps, 'value' \| 'onChange' \| ...>>` | — | Extra props forwarded to text inputs |
+| `inputProps` | `Partial<Omit<InputProps, 'value' \| 'onChange' \| ..>>` | — | Extra props forwarded to text inputs |
 | `readOnly` | `boolean` | — | Disables all interaction |
 
 #### `parameters` shape
@@ -121,41 +121,41 @@ const [factorType, setFactorType] = useState<FactorType>('text');
 const [value, setValue] = useState<FactorValueType>('');
 
 <Factors
-  selectedFactorType={factorType}
-  setSelectedFactorType={setFactorType}
-  defaultFactorType="text"
-  value={value}
-  onChangeValue={setValue}
+ selectedFactorType={factorType}
+ setSelectedFactorType={setFactorType}
+ defaultFactorType="text"
+ value={value}
+ onChangeValue={setValue}
 />
 
 // Without type selector
 <Factors
-  selectedFactorType="number"
-  defaultFactorType="number"
-  withoutTypeSelector
-  value={42}
-  onChangeValue={setValue}
+ selectedFactorType="number"
+ defaultFactorType="number"
+ withoutTypeSelector
+ value={42}
+ onChangeValue={setValue}
 />
 
 // Array type with limit
 <Factors
-  selectedFactorType="array"
-  defaultFactorType="array"
-  value={['a', 'b']}
-  onChangeValue={setValue}
-  arrayProps={{ itemType: 'string', limit: 10 }}
+ selectedFactorType="array"
+ defaultFactorType="array"
+ value={['a', 'b']}
+ onChangeValue={setValue}
+ arrayProps={{ itemType: 'string', limit: 10 }}
 />
 
 // Custom factor component override
 import { factorTypes } from '@synerise/ds-factors';
 <Factors
-  selectedFactorType="text"
-  defaultFactorType="text"
-  value=""
-  onChangeValue={setValue}
-  customFactorValueComponents={{
-    text: { ...factorTypes.text, component: MyCustomTextInput },
-  }}
+ selectedFactorType="text"
+ defaultFactorType="text"
+ value=""
+ onChangeValue={setValue}
+ customFactorValueComponents={{
+ text: { ..factorTypes.text, component: MyCustomTextInput },
+ }}
 />
 ```
 
