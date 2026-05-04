@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.1.38](https://github.com/Synerise/synerise-design/compare/@synerise/ds-avatar-group@1.1.37...@synerise/ds-avatar-group@1.1.38) (2026-05-04)
+
+### Bug Fixes
+
+- add exports field to all component packages for correct ESM detection ([6eccfde](https://github.com/Synerise/synerise-design/commit/6eccfde8f2dd73c59860793231fbd7bcd61813b4))
+
 ## [1.1.37](https://github.com/Synerise/synerise-design/compare/@synerise/ds-avatar-group@1.1.36...@synerise/ds-avatar-group@1.1.37) (2026-04-29)
 
 **Note:** Version bump only for package @synerise/ds-avatar-group

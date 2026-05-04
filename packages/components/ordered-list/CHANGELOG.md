@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.1.48](https://github.com/Synerise/synerise-design/compare/@synerise/ds-ordered-list@1.1.47...@synerise/ds-ordered-list@1.1.48) (2026-05-04)
+
+### Bug Fixes
+
+- add exports field to all component packages for correct ESM detection ([6eccfde](https://github.com/Synerise/synerise-design/commit/6eccfde8f2dd73c59860793231fbd7bcd61813b4))
+
 ## [1.1.47](https://github.com/Synerise/synerise-design/compare/@synerise/ds-ordered-list@1.1.46...@synerise/ds-ordered-list@1.1.47) (2026-04-29)
 
 **Note:** Version bump only for package @synerise/ds-ordered-list

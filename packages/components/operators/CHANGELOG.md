@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.1.33](https://github.com/Synerise/synerise-design/compare/@synerise/ds-operators@1.1.32...@synerise/ds-operators@1.1.33) (2026-05-04)
+
+### Bug Fixes
+
+- add exports field to all component packages for correct ESM detection ([6eccfde](https://github.com/Synerise/synerise-design/commit/6eccfde8f2dd73c59860793231fbd7bcd61813b4))
+
 ## [1.1.32](https://github.com/Synerise/synerise-design/compare/@synerise/ds-operators@1.1.31...@synerise/ds-operators@1.1.32) (2026-04-29)
 
 **Note:** Version bump only for package @synerise/ds-operators

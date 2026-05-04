@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.1.2](https://github.com/Synerise/synerise-design/compare/@synerise/ds-table-new@1.1.1...@synerise/ds-table-new@1.1.2) (2026-05-04)
+
+### Bug Fixes
+
+- add exports field to all component packages for correct ESM detection ([6eccfde](https://github.com/Synerise/synerise-design/commit/6eccfde8f2dd73c59860793231fbd7bcd61813b4))
+- **table-new:** fix layout and horizontal scroll choppyness in safari ([754e032](https://github.com/Synerise/synerise-design/commit/754e032dbf0315684d19c8a7b4d867bd6409f523))
+- **table-new:** update legacyColumnConfigAdapter to handle dots in dataIndex ([6e8e7f4](https://github.com/Synerise/synerise-design/commit/6e8e7f43394e637ea3d5aca8b4ba9d4021408359))
+
 ## [1.1.1](https://github.com/Synerise/synerise-design/compare/@synerise/ds-table-new@1.1.0...@synerise/ds-table-new@1.1.1) (2026-04-29)
 
 ### Bug Fixes

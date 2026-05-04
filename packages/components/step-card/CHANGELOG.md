@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.2.48](https://github.com/Synerise/synerise-design/compare/@synerise/ds-step-card@1.2.47...@synerise/ds-step-card@1.2.48) (2026-05-04)
+
+### Bug Fixes
+
+- add exports field to all component packages for correct ESM detection ([6eccfde](https://github.com/Synerise/synerise-design/commit/6eccfde8f2dd73c59860793231fbd7bcd61813b4))
+
 ## [1.2.47](https://github.com/Synerise/synerise-design/compare/@synerise/ds-step-card@1.2.46...@synerise/ds-step-card@1.2.47) (2026-04-29)
 
 **Note:** Version bump only for package @synerise/ds-step-card

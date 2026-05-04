@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.0.11](https://github.com/Synerise/synerise-design/compare/@synerise/ds-flag@1.0.10...@synerise/ds-flag@1.0.11) (2026-05-04)
+
+### Bug Fixes
+
+- add exports field to all component packages for correct ESM detection ([6eccfde](https://github.com/Synerise/synerise-design/commit/6eccfde8f2dd73c59860793231fbd7bcd61813b4))
+
 ## [1.0.10](https://github.com/Synerise/synerise-design/compare/@synerise/ds-flag@1.0.9...@synerise/ds-flag@1.0.10) (2026-04-10)
 
 **Note:** Version bump only for package @synerise/ds-flag

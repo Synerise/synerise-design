@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.5.5](https://github.com/Synerise/synerise-design/compare/@synerise/ds-popover@1.5.4...@synerise/ds-popover@1.5.5) (2026-05-04)
+
+### Bug Fixes
+
+- add exports field to all component packages for correct ESM detection ([6eccfde](https://github.com/Synerise/synerise-design/commit/6eccfde8f2dd73c59860793231fbd7bcd61813b4))
+
 ## [1.5.4](https://github.com/Synerise/synerise-design/compare/@synerise/ds-popover@1.5.3...@synerise/ds-popover@1.5.4) (2026-04-10)
 
 **Note:** Version bump only for package @synerise/ds-popover

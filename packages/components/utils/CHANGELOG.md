@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.8.1](https://github.com/synerise/synerise-design/compare/@synerise/ds-utils@1.8.0...@synerise/ds-utils@1.8.1) (2026-05-04)
+
+### Bug Fixes
+
+- add exports field to all component packages for correct ESM detection ([6eccfde](https://github.com/synerise/synerise-design/commit/6eccfde8f2dd73c59860793231fbd7bcd61813b4))
+
 # [1.8.0](https://github.com/synerise/synerise-design/compare/@synerise/ds-utils@1.7.1...@synerise/ds-utils@1.8.0) (2026-04-10)
 
 ### Features
