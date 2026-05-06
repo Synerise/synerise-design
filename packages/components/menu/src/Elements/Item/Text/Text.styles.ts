@@ -126,7 +126,7 @@ export const Wrapper = styled(Menu.Item)<WrapperProps>`
       props.size && applySizeStyles(props)}
 
     > .-title-content,
-    > .ant-menu-title-content {
+    > .ant-menu-title-content.ant-menu-title-content {
       display: flex;
       flex-grow: 1;
       max-width: 100%;
