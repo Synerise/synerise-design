@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.4.22](https://github.com/Synerise/synerise-design/compare/@synerise/ds-menu@1.4.21...@synerise/ds-menu@1.4.22) (2026-05-06)
+
+### Bug Fixes
+
+- **menu:** style specificity increased ([2423ed3](https://github.com/Synerise/synerise-design/commit/2423ed3510a9e4db9b443a1b43f8c6c7eaa84907))
+
 ## [1.4.21](https://github.com/Synerise/synerise-design/compare/@synerise/ds-menu@1.4.20...@synerise/ds-menu@1.4.21) (2026-05-04)
 
 ### Bug Fixes
