@@ -19,7 +19,7 @@ export const CopyButton = ({ copyValue, texts }: CopyButtonProps) => {
   }, [copyValue, setTooltipTitle, texts.array.copiedTooltip]);
 
   const handleMouseEnter = useCallback(
-    (event: MouseEvent<HTMLDivElement>) => {
+    (event: MouseEvent<HTMLElement>) => {
       event.stopPropagation();
       setTooltipTitle(texts.array.copyTooltip);
       setTooltipOpen(true);
@@ -28,7 +28,7 @@ export const CopyButton = ({ copyValue, texts }: CopyButtonProps) => {
   );
 
   const handleMouseLeave = useCallback(
-    (event: MouseEvent<HTMLDivElement>) => {
+    (event: MouseEvent<HTMLElement>) => {
       event.stopPropagation();
       setTooltipOpen(false);
     },

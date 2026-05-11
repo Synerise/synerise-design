@@ -35,10 +35,7 @@
     "check:circular-dependencies": "madge --circular --extensions ts,tsx,js,jsx --ts-config tsconfig.json src/ --exclude '/dist/'",
     "upgrade:ds": "ncu -f \"@synerise/ds-*\" -u"
   },
-  "sideEffects": [
-    "dist/style/*",
-    "*.less"
-  ],
+  "sideEffects": false,
   "types": "dist/index.d.ts",
   "dependencies": {
     "@synerise/ds-icon": "workspace:^",
@@ -50,7 +47,6 @@
   },
   "peerDependencies": {
     "@synerise/ds-core": "*",
-    "antd": "4.24.16",
     "react": ">=16.9.0 <= 18.3.1",
     "styled-components": "^5.3.3",
     "vitest": "4"

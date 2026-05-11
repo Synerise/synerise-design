@@ -16,7 +16,7 @@ const Expander = ({
   return (
     <S.Expander
       onClick={onClick}
-      size={ExpanderSize[size]}
+      expanderSize={ExpanderSize[size]}
       className={classnames([className, 'ds-expander'])}
       expanded={expanded}
       disabled={disabled}

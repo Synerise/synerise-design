@@ -36,6 +36,9 @@ export const Modal = (props: ModalProps) => {
     maxViewportHeight,
     disableScrollbar,
     children,
+    okType,
+    okButtonProps,
+    cancelButtonProps,
     ...antModalProps
   } = props;
 

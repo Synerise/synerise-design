@@ -1,4 +1,3 @@
-import React from 'react';
 import styled, {
   type FlattenSimpleInterpolation,
   type Keyframes,
@@ -9,13 +8,12 @@ import styled, {
 import { type ThemeProps } from '@synerise/ds-core';
 import { IconContainer } from '@synerise/ds-icon';
 
-import Button from '../Button';
+import BaseButton from '../BaseButton';
 
 export type ExpanderProps = {
-  onClick: () => void;
-  size: number;
-  disabled: boolean;
-  expanded: boolean;
+  expanderSize?: number;
+  disabled?: boolean;
+  expanded?: boolean;
 };
 export const focusAnimation = ({ theme }: ThemeProps): Keyframes => keyframes`
   0% {
@@ -30,16 +28,23 @@ export const focusAnimation = ({ theme }: ThemeProps): Keyframes => keyframes`
 `;
 
 const SIZE_DEFAULT = 24;
-export const Expander = styled(({ children, expanded, size, ...rest }) => (
-  <Button mode="single-icon" {...rest}>
-    {children}
-  </Button>
-))`
-  &&& {
-    width: ${(props): string => props.size || SIZE_DEFAULT}px;
-    height: ${(props): string => props.size || SIZE_DEFAULT}px;
+export const Expander = styled(BaseButton).attrs({
+  type: 'ghost',
+})<ExpanderProps>`
+  && {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    width: ${(props): number => props.expanderSize || SIZE_DEFAULT}px;
+    height: ${(props): number => props.expanderSize || SIZE_DEFAULT}px;
     border-radius: 50%;
     background-color: ${(props): string => props.theme.palette['grey-050']};
+    box-shadow: inset 0 0 0 1px
+      ${(props): string =>
+        props.disabled
+          ? props.theme.palette['grey-200']
+          : props.theme.palette['grey-300']};
     ${IconContainer} {
       svg {
         opacity: ${(props: ExpanderProps): string =>
@@ -52,26 +57,15 @@ export const Expander = styled(({ children, expanded, size, ...rest }) => (
         );
       }
     }
-    .btn-focus {
-      box-shadow: inset 0 0 0 1px
-        ${(props): string =>
-          props.disabled
-            ? props.theme.palette['grey-200']
-            : props.theme.palette['grey-300']};
-    }
     ${(props: ExpanderProps & ThemeProps): FlattenSimpleInterpolation | false =>
       !props.disabled &&
       css`
         &:hover {
-          .btn-focus {
-            box-shadow: inset 0 0 0 1px ${props.theme.palette['grey-400']};
-          }
+          box-shadow: inset 0 0 0 1px ${props.theme.palette['grey-400']};
           background-color: ${props.theme.palette['grey-050']};
         }
-        &:focus:not(:active) {
-          .btn-focus {
-            animation: ${focusAnimation(props)} 1s ease-in-out 0s 1;
-          }
+        &:focus-visible:not(:active) {
+          animation: ${focusAnimation(props)} 1s ease-in-out 0s 1;
         }
       `}
   }

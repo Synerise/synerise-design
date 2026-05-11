@@ -15,7 +15,7 @@ import { version } from './package.json';
 
 Buttons allow users to take actions, and make choices, with a single tap. Buttons communicate actions that users can take. They are typically placed throughout your UI, in places such as dialogs, modal windows, forms, cards, and toolbars.
 
-Inspired by [Ant Design Button](https://ant.design/components/button/)
+Standalone button component for the Synerise Design System.
 
 ## When to use it
 

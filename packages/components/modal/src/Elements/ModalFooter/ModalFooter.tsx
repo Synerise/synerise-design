@@ -1,7 +1,6 @@
-import type { ButtonType } from 'antd/lib/button/button';
 import React from 'react';
 
-import Button from '@synerise/ds-button';
+import Button, { type ButtonProps } from '@synerise/ds-button';
 
 import { type ModalProps } from '../../Modal.types';
 import * as S from './ModalFooter.styles';
@@ -42,7 +41,8 @@ export const ModalFooter = ({
     },
   } = antModalProps;
 
-  const CustomButton = CustomFooterButton || DSButton;
+  const CustomButton = (CustomFooterButton ||
+    DSButton) as React.ComponentType<ButtonProps>;
 
   return (
     <S.FooterContainer data-testid="modal-footer">
@@ -50,8 +50,8 @@ export const ModalFooter = ({
       {antModalProps.cancelButton || (
         <CustomButton
           type="ghost"
-          onClick={onCancel}
           disabled={!onCancel}
+          onClick={onCancel}
           {...antModalProps.cancelButtonProps}
         >
           {antModalProps.cancelText || texts?.cancelButton}
@@ -60,9 +60,9 @@ export const ModalFooter = ({
       {infix}
       {antModalProps.okButton || (
         <CustomButton
-          type={(antModalProps.okType as ButtonType) || 'primary'}
-          onClick={onOk}
+          type={antModalProps.okType || 'primary'}
           disabled={!onOk}
+          onClick={onOk}
           {...antModalProps.okButtonProps}
         >
           {antModalProps.okText || texts?.okButton}

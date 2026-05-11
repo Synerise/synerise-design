@@ -1,7 +1,6 @@
 import React from 'react';
 
 import Button, { type ButtonProps } from '@synerise/ds-button';
-import { theme } from '@synerise/ds-core';
 import Icon, { RefreshM } from '@synerise/ds-icon';
 
 import { type ItemPickerListTexts } from '../../ItemPickerNew/types/itemPickerListTexts.types';
@@ -29,11 +28,7 @@ export const ItemPickerListFooter = ({
               onClick={onRefresh}
               {...refreshButtonProps}
             >
-              <Icon
-                component={<RefreshM />}
-                size={24}
-                color={theme.palette['grey-500']}
-              />
+              <Icon component={<RefreshM />} size={24} />
               {texts.refreshButtonLabel}
             </Button>
           </S.FooterWrapperRight>

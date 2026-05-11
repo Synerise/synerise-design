@@ -35,4 +35,12 @@ const meta: Meta<StarButtonProps> = {
 
 export default meta;
 
-export const Star: StoryObj<StarButtonProps> = {};
+export const Star: StoryObj<StarButtonProps> = {
+  parameters: {
+    docs: {
+      source: {
+        code: `<Star active={active} onClick={() => setActive(!active)} />`,
+      },
+    },
+  },
+};

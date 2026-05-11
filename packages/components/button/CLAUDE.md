@@ -1,210 +1,166 @@
 # Button (`@synerise/ds-button`)
 
-> Ant Design Button wrapper with a DS type/mode/colour system, ripple animation, loading spinner, and four specialised sub-variants (Toggle, Creator, Expander, Checkbox, Star).
+> Standalone button component with a DS type/mode/colour system, ripple animation, loading spinner, and specialised sub-variants (Toggle, Creator, Expander, Checkbox, Star).
 
 ## Package structure
 
 ```
 src/
-  Button.tsx            — main component (forwardRef)
-  Button.types.tsx      — ButtonProps, ButtonMode enum, ButtonType, StyledButton
-  Button.styles.tsx     — AntdButton styled wrapper + ripple/spinner helpers
-  index.tsx             — public exports; attaches deprecated static sub-components to default
-  ButtonToggle/         — two-state toggle button (activated / default)
-  Checkbox/             — checkbox-style icon button (controlled + uncontrolled)
-  Creator/              — "add item" dashed button with optional label (forwardRef)
-  Expander/             — chevron expand/collapse icon button
-  Star/                 — star favourite toggle icon button
-  style/
-    index.less          — global Ant Design button overrides
+  BaseButton.tsx          — lightweight forwardRef button, generates ant-btn-* class names
+  BaseButton.types.ts     — BaseButtonProps (extends ButtonHTMLAttributes)
+  BaseButton.styles.ts    — styled.button with base layout styles, shouldForwardProp filter
+  Button.tsx              — main DS component (forwardRef), adds ripple, spinner, focus ring
+  Button.types.tsx        — ButtonProps, ButtonMode, ButtonType, StyledButton
+  Button.styles.tsx       — StyledButton styled wrapper + variant colours + DS overrides
+  Button.variants.ts      — 15 colour variant definitions (primary, ghost, danger, etc.)
+  index.tsx               — public exports; attaches deprecated static sub-components
+  ButtonToggle/           — two-state toggle button (activated / default)
+  Checkbox/               — checkbox-style icon button (controlled + uncontrolled)
+  Creator/                — "add item" dashed button with optional label (uses BaseButton)
+  Expander/               — chevron expand/collapse icon button (uses BaseButton)
+  Star/                   — star favourite toggle icon button
 ```
+
+## Architecture
+
+Three-layer styled-components chain:
+
+1. **`BaseButton.styles.ts`** (`styled.button`) — base layout: height, font, border-radius, cursor, disabled, size classes. Single `&` specificity. Uses `shouldForwardProp` to filter DS-specific props from the native `<button>`.
+2. **`BaseButton.tsx`** — renders `<S.Button>`, generates CSS class names (`ant-btn ant-btn-{type}`), handles loading delay, wraps text children in `<span>`.
+3. **`Button.styles.tsx`** (`styled(BaseButton)`) — applies variant colours via `getVariantStyles()`, DS overrides (modes, error, custom-color, readOnly, ripple). Double `&&` specificity.
+
+Sub-components that don't need ripple/spinner (Expander, Creator) use `BaseButton` directly. Sub-components that need the full DS button (Star, Checkbox) use `Button`.
+
+### CSS class names
+
+Preserves `ant-btn ant-btn-{type}` class name convention for compatibility with external packages that target these selectors (`table`, `modal`, `color-picker`, etc.). These are DS-internal conventions — antd is no longer a dependency.
+
+### Icon colour inheritance
+
+Icons use `currentColor` for fill/stroke. Button styles only set `color` on the button element — no direct `svg { fill }` overrides. Icons inherit automatically.
+
+### Focus ring
+
+Uses `:focus-visible` (not `:focus`) so the focus ring only appears on keyboard navigation, not mouse clicks. The `ButtonFocus` div renders an inset `box-shadow` overlay.
 
 ## Public exports
 
 ### `Button` (default)
 
-`forwardRef<HTMLButtonElement, ButtonProps>`. All remaining Ant Design `ButtonProps` (except `type` and `ghost`) are forwarded.
+`forwardRef<HTMLButtonElement, ButtonProps>`. Extends `BaseButtonProps` (which extends `ButtonHTMLAttributes<HTMLButtonElement>`).
 
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
-| `type` | `ButtonType` | `'secondary'` | Visual style. See ButtonType values below. |
-| `mode` | `ButtonMode` | `undefined` | Icon/label layout. See ButtonMode values below. |
-| `color` | `string` | `'red'` | Colour token (without hue) for `custom-color` / `custom-color-ghost` types. E.g. `'blue'`, `'green'`. |
-| `iconColor` | `string` | `undefined` | Colour token for SVG icons on `secondary`, `tertiary`, `ghost` types (renders at `-600` hue). |
-| `groupVariant` | `'left-rounded' \| 'squared' \| 'right-rounded'` | `undefined` | Used when buttons are joined in a group to control which corners are rounded. |
-| `justifyContent` | `JustifyContentProperty` | `'center'` | CSS `justify-content` for the button's flex content. |
-| `loading` | `boolean \| { delay?: number }` | `false` | Shows a spinning overlay and hides all other content. |
-| `error` | `boolean` | `undefined` | Applies red error styling (background, border, text, icon). |
-| `readOnly` | `boolean` | `undefined` | Disables ripple animation and freezes hover/focus styles (cursor: default). |
-| `tagProps` | `TagProps` | `undefined` | Renders a `ds-tag` pill after the button label. Hidden in `single-icon` mode. |
-| `tooltipProps` | `TooltipProps` | `undefined` | Wraps the button label in a `ds-tooltip`. |
-| `onClick` | `(event: MouseEvent<HTMLElement>) => void` | `undefined` | Click handler. Also triggers ripple animation. |
+| `type` | `LiteralStringUnion<ButtonType>` | `'secondary'` | Visual style variant |
+| `mode` | `LiteralStringUnion<ButtonModes>` | `undefined` | Icon/label layout |
+| `color` | `string` | `'red'` | Colour token for `custom-color` / `custom-color-ghost` types |
+| `iconColor` | `string` | `undefined` | Colour token for icon colour on secondary/tertiary/ghost types |
+| `groupVariant` | `'left-rounded' \| 'squared' \| 'right-rounded'` | `undefined` | Corner rounding for button groups |
+| `justifyContent` | `JustifyContentProperty` | `'center'` | CSS justify-content |
+| `loading` | `boolean \| { delay?: number }` | `false` | Shows spinning overlay |
+| `error` | `boolean` | `undefined` | Red error styling |
+| `readOnly` | `boolean` | `undefined` | Disables ripple, freezes hover/focus styles |
+| `tagProps` | `TagProps` | `undefined` | Renders a pill tag after the label |
+| `tooltipProps` | `TooltipProps` | `undefined` | Wraps label in a tooltip |
+| `onClick` | `(event: MouseEvent<HTMLElement>) => void` | `undefined` | Click handler (also triggers ripple) |
 
 #### `ButtonType` values
 `'primary' | 'secondary' | 'tertiary' | 'tertiary-white' | 'ghost-primary' | 'ghost' | 'ghost-white' | 'custom-color' | 'custom-color-ghost'`
 
-#### `ButtonMode` enum values
-| Value | Constant |
-|-------|----------|
-| `'single-icon'` | `ButtonMode.SINGLE_ICON` — 32×32px icon-only; no min-width |
-| `'split'` | `ButtonMode.SPLIT` — label + right icon with a divider |
-| `'two-icons'` | `ButtonMode.TWO_ICONS` — left icon + label + right icon |
-| `'label-icon'` | `ButtonMode.LABEL_ICON` — label then icon |
-| `'icon-label'` | `ButtonMode.ICON_LABEL` — icon then label |
+Additional variant types handled by `Button.variants.ts`: `'danger' | 'success' | 'warning' | 'gray' | 'dark' | 'flat' | 'primary-on-blue'`
+
+#### `ButtonMode` values
+| Value | Description |
+|-------|-------------|
+| `'single-icon'` | 32×32px icon-only; no min-width |
+| `'split'` | label + right icon with a divider |
+| `'two-icons'` | left icon + label + right icon |
+| `'label-icon'` | label then icon |
+| `'icon-label'` | icon then label |
 
 ### `ButtonToggle`
 
-Two-state button. Maps `activated` + `type` to underlying Button `type` prop internally.
+Two-state button. Maps `activated` + `type` to underlying Button `type` internally.
 
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
-| `activated` | `boolean` | `undefined` | Whether the button is in the active/selected state. |
-| `type` | `'solid' \| 'ghost'` | `'solid'` | Style variant. `solid`: secondary↔primary swap; `ghost`: grey↔blue-050 swap. |
-
-Inherits all `ButtonProps` except `type`, `danger`, `ghost`, `color`.
+| `activated` | `boolean` | `undefined` | Active/selected state |
+| `type` | `'solid' \| 'ghost'` | `'solid'` | Style variant |
 
 ### `Creator`
 
-"Add item" button with a dashed border and a `+` icon. `forwardRef<HTMLButtonElement, CreatorProps>`.
+"Add item" button with dashed border and `+` icon. Uses `BaseButton` directly. `forwardRef<HTMLButtonElement, CreatorProps>`.
 
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
-| `label` | `ReactNode` | `undefined` | Optional text label next to the icon. |
-| `block` | `boolean` | `undefined` | Full-width layout. |
-| `labelAlign` | `'center' \| 'left'` | `'center'` | Label alignment when `block` is true. |
-| `status` | `CreatorStatus` | `undefined` | Colour variant: `CreatorStatus.Default`, `.Error`, `.Upload`. |
-| `disabled` | `boolean` | `undefined` | Disables the button. |
-| `onClick` | `(event: MouseEvent<HTMLElement>) => void` | `undefined` | Click handler. |
+| `label` | `ReactNode` | `undefined` | Optional text label |
+| `block` | `boolean` | `undefined` | Full-width layout |
+| `labelAlign` | `'center' \| 'left'` | `'center'` | Label alignment |
+| `status` | `CreatorStatus` | `undefined` | `Default`, `Error`, `Upload` |
 
 ### `Expander`
 
-Chevron (`AngleDownS`) button for expand/collapse affordances.
+Chevron button for expand/collapse. Uses `BaseButton` directly.
 
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
-| `expanded` | `boolean` | `undefined` | Rotates the chevron 180° when true. |
-| `size` | `'S' \| 'M'` | `'S'` | `S` = 24px, `M` = 32px (from `ExpanderSize` enum). |
-| `disabled` | `boolean` | `undefined` | Disables the button. |
-| `onClick` | `(event: MouseEvent<HTMLElement>) => void` | `undefined` | Click handler. |
+| `expanded` | `boolean` | `undefined` | Rotates chevron 180° |
+| `size` | `'S' \| 'M'` | `'S'` | S=24px, M=32px |
 
 ### `Checkbox` (exported as `CheckboxButton`)
 
-Icon-button that behaves like a checkbox (`role="checkbox"`, `aria-checked`). Supports both controlled and uncontrolled patterns.
+Checkbox icon-button. Uses `Button` (needs ripple/focus ring).
 
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
-| `checked` | `boolean` | `undefined` | Controlled checked state. |
-| `defaultChecked` | `boolean` | `false` | Initial uncontrolled state. |
-| `indeterminate` | `boolean` | `undefined` | Forces indeterminate state (`aria-checked="mixed"`). Clicking transitions to checked. |
-| `hasError` | `boolean` | `undefined` | Error colour styling. |
-| `onChange` | `(checked: boolean) => void` | `undefined` | Called with the next checked value after a click. |
+| `checked` | `boolean` | `undefined` | Controlled state |
+| `defaultChecked` | `boolean` | `false` | Uncontrolled initial state |
+| `indeterminate` | `boolean` | `undefined` | Indeterminate state |
+| `hasError` | `boolean` | `undefined` | Error styling |
+| `onChange` | `(checked: boolean) => void` | `undefined` | Change callback |
 
 ### `Star` (exported as `StarButton`)
 
-Star favourite toggle (`role="button"`, `aria-pressed`). Swaps between `StarM` and `StarFillM` icons.
+Star favourite toggle. Uses `Button`.
 
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
-| `active` | `boolean` | `undefined` | Whether the star is filled. |
-| `hasError` | `boolean` | `undefined` | Error colour styling on the icon. |
-| `type` | `string` | `'ghost'` | Underlying Button type. |
+| `active` | `boolean` | `undefined` | Filled star |
+| `hasError` | `boolean` | `undefined` | Error styling |
 
-### Types & enums
+### Types & constants
 
 | Export | Description |
 |--------|-------------|
 | `ButtonProps` | Main button props interface |
-| `StyledButton<T>` | Utility type for creating styled extensions of Button |
+| `StyledButton<T>` | Utility type for styled extensions |
 | `ButtonToggleProps` | Props for ButtonToggle |
 | `CreatorProps` | Props for Creator |
 | `CreatorStatus` | Enum: `Default`, `Error`, `Upload` |
 | `StarButtonProps` | Props for Star |
 | `CheckboxButtonProps` | Props for Checkbox |
 | `ExpanderProps` | Props for Expander |
-| `ExpanderSize` | Enum: `S = 24`, `M = 32` |
-| `ButtonStyles` | Object of all styled-component exports (`Button`, `Creator`, `Checkbox`, `Expander`, `Star`) for styled-extension use |
-
-## Usage patterns
-
-```tsx
-import Button, { ButtonToggle, Creator, Expander, Checkbox, Star } from '@synerise/ds-button';
-
-// Standard button
-<Button type="primary" onClick={handleClick}>Save</Button>
-
-// Icon + label
-<Button type="secondary" mode="icon-label">
-  <Icon component={<EditM />} />
-  Edit
-</Button>
-
-// Custom colour
-<Button type="custom-color" color="green">Confirm</Button>
-
-// Loading
-<Button type="primary" loading>Saving…</Button>
-
-// Toggle
-<ButtonToggle activated={isOn} onClick={() => setIsOn(v => !v)}>
-  Bold
-</ButtonToggle>
-
-// Creator
-<Creator label="Add item" onClick={handleAdd} />
-
-// Expander
-<Expander expanded={open} onClick={() => setOpen(v => !v)} />
-
-// Checkbox (uncontrolled)
-<Checkbox defaultChecked onChange={(checked) => console.log(checked)} />
-
-// Star (controlled)
-<Star active={starred} onClick={() => setStarred(v => !v)} />
-
-// Group variant
-<Button type="secondary" groupVariant="left-rounded">Left</Button>
-<Button type="secondary" groupVariant="squared">Mid</Button>
-<Button type="secondary" groupVariant="right-rounded">Right</Button>
-```
-
-## Deprecated
-
-The static sub-components on the default export (`Button.Creator`, `Button.Expander`, `Button.Star`, `Button.Checkbox`) are deprecated. Use named imports instead:
-
-```tsx
-// ❌ deprecated
-import Button from '@synerise/ds-button';
-<Button.Creator />
-
-// ✅ preferred
-import { Creator } from '@synerise/ds-button';
-<Creator />
-```
-
-## Styling
-
-`Button.styles.tsx` wraps Ant Design's `Button` with styled-components using `@synerise/ds-core` theme palette tokens. Notable internals:
-
-- `AntdButton` — the main styled wrapper; maps `type='custom-color-ghost'` to Ant Design `ghost-primary` internally via `@ts-expect-error`.
-- `RippleEffect` — `position: absolute` span that animates from click position, duration 500ms (`RIPPLE_ANIMATION_TIME`). Disabled when `readOnly`.
-- `ButtonFocus` — inset `box-shadow` overlay for focus ring (replaces browser default outline).
-- `Spinner` — absolute overlay with a rotating `SpinnerM` icon; all other children hidden via `opacity: 0` when `loading`.
+| `ExpanderSize` | Record: `{ S: 24, M: 32 }` |
+| `ButtonStyles` | Object of all styled-component exports for extension |
 
 ## Key dependencies
 
-- `antd/lib/button` — base component
-- `@synerise/ds-icon` — `SpinnerM`, `CloseM`, `AngleDownS`, `AddM`, `StarM`/`StarFillM`, `CheckboxSelectedFillM`/`CheckboxIndeterminateM`
-- `@synerise/ds-tag` — optional status tag rendered inside button label
+- `@synerise/ds-icon` — `SpinnerM`, `AngleDownS`, `AddM`, `StarM`/`StarFillM`, `CheckboxSelectedFillM`/`CheckboxIndeterminateM`
+- `@synerise/ds-tag` — optional status tag inside button label
 - `@synerise/ds-tooltip` — optional tooltip wrapping button label
-- `classnames` — used in Creator and Expander for className composition
-- `csstype` — provides `JustifyContentProperty` type for `justifyContent`
+- `classnames` — className composition in Creator and Expander
+- `csstype` — `JustifyContentProperty` type
 
 ## Implementation notes
 
-- **`LiteralStringUnion<T>`** — `type`, `mode`, `color`, `iconColor`, `groupVariant` all use this utility type from `ds-utils`. It equals `T | (string & {})`, giving autocomplete hints while still accepting arbitrary strings.
-- **Ripple origin** — the click handler computes `x/y` relative to the nearest `.ant-btn` ancestor (not the event target itself). If no `.ant-btn` is found, ripple and `onClick` do not fire.
-- **`readOnly` vs `disabled`** — `readOnly` keeps the button visually enabled but prevents interaction appearance changes and suppresses the ripple. `disabled` is the standard Ant Design prop that disables all interaction.
-- **`custom-color-ghost` internal mapping** — passed as `ghost-primary` to Ant Design. The styled-component then overrides colour/fill with the `customColor` token.
-- **`ButtonToggle` blurs after pointer-up** — `setTimeout(..., 200)` removes focus after release to avoid persistent focus ring on mouse use.
-- **`Checkbox` indeterminate click** — clicking an indeterminate checkbox always transitions to `checked=true` (not back to unchecked), regardless of the previous state.
-- **`ButtonMode` enum is NOT re-exported from index** — it is exported from `Button.types.tsx` but `index.tsx` only re-exports the type. Import it directly: `import { ButtonMode } from '@synerise/ds-button/dist/Button.types'` or use the string literals.
+- **No antd dependency** — standalone implementation. `BaseButton` generates `ant-btn-*` class names for backward compatibility with external packages.
+- **`LiteralStringUnion<T>`** — `type`, `mode`, `color`, `iconColor`, `groupVariant` use this utility from `ds-utils` (`T | (string & {})`), giving autocomplete while accepting arbitrary strings.
+- **Ripple origin** — click handler computes `x/y` relative to nearest `.ant-btn` ancestor.
+- **`readOnly` vs `disabled`** — `readOnly` keeps the button visually enabled but prevents interaction appearance changes. `disabled` is the standard HTML attribute.
+- **`custom-color-ghost`** — has its own variant entry in `Button.variants.ts` (maps to ghost-primary base styles). Hover preserves the custom color instead of switching to blue.
+- **`ButtonToggle` blurs after pointer-up** — `setTimeout(..., 200)` removes focus after mouse use.
+- **`Checkbox` indeterminate click** — always transitions to `checked=true`.
+
+## Deprecated
+
+Static sub-components on the default export (`Button.Creator`, `Button.Expander`, `Button.Star`, `Button.Checkbox`) are deprecated. Use named imports instead.

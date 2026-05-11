@@ -3,15 +3,15 @@ import React from 'react';
 import { renderWithProvider } from '@synerise/ds-core';
 import { fireEvent } from '@testing-library/react';
 
+import { Expander } from '../index';
 import { ExpanderSize } from '../Expander/Expander.types';
-import Button from '../index';
 
 describe('Expander', () => {
   const onClick = vi.fn();
   it('should render', () => {
     // ARRANGE
     const { container } = renderWithProvider(
-      <Button.Expander></Button.Expander>,
+      <Expander></Expander>,
     );
     // ACT
     const expander = container.querySelector('.ds-expander');
@@ -21,7 +21,7 @@ describe('Expander', () => {
   it('should render with small size', () => {
     // ARRANGE
     const { container } = renderWithProvider(
-      <Button.Expander size={'S'}></Button.Expander>,
+      <Expander size={'S'}></Expander>,
     );
     // ACT
     const expander = container.querySelector('.ds-expander');
@@ -31,7 +31,7 @@ describe('Expander', () => {
   it('should render with medium size', () => {
     // ARRANGE
     const { container } = renderWithProvider(
-      <Button.Expander size={'M'}></Button.Expander>,
+      <Expander size={'M'}></Expander>,
     );
     // ACT
     const expander = container.querySelector('.ds-expander');
@@ -41,7 +41,7 @@ describe('Expander', () => {
   it('should render disabled with lower opacity', () => {
     // ARRANGE
     const { container } = renderWithProvider(
-      <Button.Expander size={'M'} disabled={true}></Button.Expander>,
+      <Expander size={'M'} disabled={true}></Expander>,
     );
     // ACT
     const expander = container.querySelector('svg');
@@ -51,7 +51,7 @@ describe('Expander', () => {
   it('should handle onClick', () => {
     // ARRANGE
     const { container } = renderWithProvider(
-      <Button.Expander onClick={onClick}></Button.Expander>,
+      <Expander onClick={onClick}></Expander>,
     );
     // ACT
     const expander = container.querySelector('.ds-expander') as HTMLElement;

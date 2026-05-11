@@ -1,7 +1,7 @@
 import { type ModalProps as AntdModalProps } from 'antd';
 import type { CSSProperties, ComponentType, ReactNode } from 'react';
 
-import { type ButtonProps } from '@synerise/ds-button';
+import { type ButtonProps, type ButtonType } from '@synerise/ds-button';
 import { type TabsProps } from '@synerise/ds-tabs';
 
 /*
@@ -44,8 +44,11 @@ export type ModalProps = {
   maxViewportHeight?: true | number;
   /** When `true`, disables the automatic scrollbar wrapping applied by `maxViewportHeight` */
   disableScrollbar?: boolean;
-} & AntdModalProps &
-  ModalFooterBuilder;
+} & Omit<AntdModalProps, 'okType' | 'okButtonProps' | 'cancelButtonProps'> & {
+    okType?: ButtonType;
+    okButtonProps?: ButtonProps;
+    cancelButtonProps?: ButtonProps;
+  } & ModalFooterBuilder;
 
 /*
  * @deprecated use `ModalProps`

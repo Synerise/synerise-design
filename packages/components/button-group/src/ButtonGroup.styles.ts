@@ -163,6 +163,22 @@ export const Container = styled.div<{
         }
       }
     }
+    ${(props) =>
+      props.compact &&
+      css`
+        & > .ant-btn + .ant-btn {
+          margin-left: -1px;
+        }
+        & > button.ant-btn:first-of-type {
+          border-radius: 3px 0 0 3px;
+        }
+        & > button.ant-btn:last-of-type {
+          border-radius: 0 3px 3px 0;
+        }
+        & > button.ant-btn:first-of-type:last-of-type {
+          border-radius: 3px;
+        }
+      `}
   }
 `;
 

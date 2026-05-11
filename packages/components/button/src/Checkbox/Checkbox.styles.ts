@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { CheckboxDeafultM, CheckboxM } from '@synerise/ds-icon';
 
 export const IconWrapper = styled.span<{ active?: boolean; error?: boolean }>`
-  &&&& {
+  && {
     color: ${({ theme, active, error }) => {
       if (error) {
         return theme.palette['red-600'];

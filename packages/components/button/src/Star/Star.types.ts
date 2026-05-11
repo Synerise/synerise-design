@@ -1,4 +1,4 @@
-import { type Props as ButtonProps } from '../Button.types';
+import { type Props as ButtonProps, type ButtonType } from '../Button.types';
 
 type ButtonPropsOmitted = Omit<
   ButtonProps,
@@ -17,5 +17,5 @@ export type StarButtonProps = ButtonPropsOmitted & {
   active?: boolean;
   hasError?: boolean;
   className?: string;
-  type?: string;
+  type?: ButtonType;
 };

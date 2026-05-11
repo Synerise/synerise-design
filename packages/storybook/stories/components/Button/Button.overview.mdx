@@ -1,0 +1,164 @@
+import { Meta, Canvas } from '@storybook/addon-docs/blocks';
+import ButtonMeta, { Simple, IconSolo, IconLeft, IconRight, TwoIcons, SplitRight, DisabledTooltip, CustomLabel } from './Button.stories';
+
+<Meta title="Components/Button/Overview" />
+
+# Button
+
+Buttons allow users to take actions with a single tap. They communicate actions and are placed throughout the UI in dialogs, modals, forms, cards, and toolbars.
+
+---
+
+## Button types
+
+The `type` prop controls the visual style of the button. Each type serves a different purpose in the interface hierarchy.
+
+<table>
+  <thead>
+    <tr>
+      <th>Type</th>
+      <th>Purpose</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr><td><code>primary</code></td><td>Main action on the page — typically one per view</td></tr>
+    <tr><td><code>secondary</code></td><td>Default type — secondary actions that complement primary</td></tr>
+    <tr><td><code>tertiary</code></td><td>Subtle button with translucent background</td></tr>
+    <tr><td><code>ghost</code></td><td>Transparent — only text and icon visible</td></tr>
+    <tr><td><code>ghost-primary</code></td><td>Ghost with brand blue colour for primary-level actions in compact spaces</td></tr>
+    <tr><td><code>tertiary-white</code> / <code>ghost-white</code></td><td>For use on dark backgrounds</td></tr>
+    <tr><td><code>custom-color</code></td><td>Solid button with configurable colour via <code>color</code> prop</td></tr>
+    <tr><td><code>custom-color-ghost</code></td><td>Ghost variant of custom colour</td></tr>
+    <tr><td><code>danger</code></td><td>Destructive actions</td></tr>
+    <tr><td><code>success</code></td><td>Affirmative/success actions</td></tr>
+    <tr><td><code>warning</code></td><td>Caution actions</td></tr>
+  </tbody>
+</table>
+
+### Example
+
+<Canvas of={Simple} sourceState="shown" />
+
+```tsx
+// All type variants
+<Button type="primary">Save</Button>
+<Button type="secondary">Cancel</Button>
+<Button type="tertiary">Details</Button>
+<Button type="ghost">Edit</Button>
+<Button type="ghost-primary">View all</Button>
+<Button type="tertiary-white">Dark bg</Button>
+<Button type="ghost-white">Dark bg</Button>
+<Button type="custom-color" color="green">Confirm</Button>
+<Button type="custom-color-ghost" color="red">Delete</Button>
+<Button type="danger">Delete</Button>
+<Button type="success">Approve</Button>
+<Button type="warning">Caution</Button>
+```
+
+---
+
+## Button modes
+
+The `mode` prop controls the layout of icon and label content inside the button.
+
+<table>
+  <thead>
+    <tr>
+      <th>Mode</th>
+      <th>Layout</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr><td><em>(none)</em></td><td><code>Label</code></td><td>Text-only with standard padding</td></tr>
+    <tr><td><code>icon-label</code></td><td><code>[icon] Label</code></td><td>Icon before text — most common for action buttons</td></tr>
+    <tr><td><code>label-icon</code></td><td><code>Label [icon]</code></td><td>Text before icon — for dropdown triggers</td></tr>
+    <tr><td><code>single-icon</code></td><td><code>[icon]</code></td><td>Square icon-only (32x32px, 48x48px with size="large")</td></tr>
+    <tr><td><code>two-icons</code></td><td><code>[icon] Label [icon]</code></td><td>Icons on both sides</td></tr>
+    <tr><td><code>split</code></td><td><code>Label | [icon]</code></td><td>Label with separated icon, divided by a vertical line</td></tr>
+  </tbody>
+</table>
+
+### icon-label
+
+<Canvas of={IconLeft} sourceState="shown" />
+
+### label-icon
+
+<Canvas of={IconRight} sourceState="shown" />
+
+### single-icon
+
+<Canvas of={IconSolo} sourceState="shown" />
+
+### two-icons
+
+<Canvas of={TwoIcons} sourceState="shown" />
+
+### split
+
+<Canvas of={SplitRight} sourceState="shown" />
+
+---
+
+## Using the icon prop
+
+Icons can be passed via the `icon` prop instead of as children. The icon is placed automatically based on the `mode`:
+
+```tsx
+// icon-label — icon renders before text
+<Button mode="icon-label" icon={<Icon component={<AngleDownS />} />}>
+  Label
+</Button>
+
+// label-icon — icon renders after text
+<Button mode="label-icon" icon={<Icon component={<AngleDownS />} />}>
+  Label
+</Button>
+
+// single-icon — icon only
+<Button mode="single-icon" icon={<Icon component={<SearchM />} />} />
+```
+
+---
+
+## States
+
+### Disabled with tooltip
+
+<Canvas of={DisabledTooltip} sourceState="shown" />
+
+### Loading
+
+```tsx
+<Button type="primary" loading>Saving...</Button>
+```
+
+### Error
+
+```tsx
+<Button type="secondary" error>Error state</Button>
+```
+
+### Read-only
+
+Visually enabled but prevents interaction styling (no ripple, frozen hover/focus).
+
+```tsx
+<Button type="secondary" readOnly>Read only</Button>
+```
+
+---
+
+## Sizes
+
+```tsx
+<Button type="primary">Default (32px)</Button>
+<Button type="primary" size="large">Large (48px)</Button>
+```
+
+---
+
+## Custom label content
+
+<Canvas of={CustomLabel} sourceState="shown" />
