@@ -9,7 +9,6 @@ import Icon, { Add2S, AngleDownS, CheckS } from '@synerise/ds-icon';
 import {
   BOOLEAN_CONTROL,
   CLASSNAME_ARG_CONTROL,
-  PREFIXCLS_ARG_CONTROL,
   buttonDecorator,
   controlFromOptionsArray,
   reactNodeAsSelect,
@@ -33,22 +32,9 @@ const meta: Meta<ButtonProps> = {
   decorators: [buttonDecorator],
   parameters: {
     layout: 'fullscreen',
-    controls: {
-      exclude: [
-        'href',
-        'target',
-        'htmlType',
-        'groupVariant',
-        'justifyContent',
-        'shape',
-      ],
-    },
   },
   argTypes: {
-    activated: BOOLEAN_CONTROL,
     error: BOOLEAN_CONTROL,
-    ghost: BOOLEAN_CONTROL,
-    danger: BOOLEAN_CONTROL,
     readOnly: BOOLEAN_CONTROL,
     loading: BOOLEAN_CONTROL,
     disabled: BOOLEAN_CONTROL,
@@ -69,14 +55,9 @@ const meta: Meta<ButtonProps> = {
           name: '5/12 HRS',
           color: theme.palette['grey-400'],
         },
-        'tag 3': {
-          name: '5/12 HRS',
-          color: theme.palette['grey-400'],
-        },
       }),
     },
     className: CLASSNAME_ARG_CONTROL,
-    prefixCls: PREFIXCLS_ARG_CONTROL,
     size: {
       table: {
         defaultValue: {
@@ -85,12 +66,10 @@ const meta: Meta<ButtonProps> = {
       },
       ...controlFromOptionsArray('inline-radio', ['', 'large']),
     },
-
     block: {
       description: 'Display as a block element',
       ...BOOLEAN_CONTROL,
     },
-
     type: {
       ...controlFromOptionsArray('select', BUTTON_TYPES),
     },
@@ -104,6 +83,10 @@ const meta: Meta<ButtonProps> = {
       ]),
     },
     color: {
+      ...controlFromOptionsArray('select', BUTTON_CUSTOM_COLORS),
+      table: { category: 'Custom color button props' },
+    },
+    iconColor: {
       ...controlFromOptionsArray('select', BUTTON_CUSTOM_COLORS),
       table: { category: 'Custom color button props' },
     },
@@ -128,9 +111,6 @@ export const Simple: Story = {
       source: {
         code: `<Button type="primary">Label</Button>`,
       },
-    },
-    controls: {
-      exclude: [...meta?.parameters?.controls.exclude, 'icon', 'iconColor'],
     },
   },
   args: {
@@ -297,9 +277,6 @@ export const CustomLabel: Story = {
 </Button>`,
       },
     },
-    controls: {
-      exclude: [...meta?.parameters?.controls.exclude, 'icon', 'iconColor'],
-    },
   },
   argTypes: {
     children: {
@@ -429,7 +406,14 @@ export const ButtonMatrix: Story = {
               <MatrixCell>{title}</MatrixCell>
               {BUTTON_TYPES.map((type) => (
                 <MatrixCell type={type}>
-                  <Button mode={mode} type={type} {...rest}>
+                  <Button
+                    mode={mode}
+                    type={type}
+                    {...(type.startsWith('custom-color')
+                      ? { color: 'violet' }
+                      : {})}
+                    {...rest}
+                  >
                     {children}
                   </Button>
                 </MatrixCell>
@@ -450,7 +434,7 @@ export const ButtonMatrixHover: Story = {
 };
 export const ButtonMatrixFocus: Story = {
   parameters: {
-    pseudo: { focus: true },
+    pseudo: { focusVisible: true },
   },
   ...ButtonMatrix,
 };

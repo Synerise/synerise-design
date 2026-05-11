@@ -25,6 +25,11 @@ export default meta;
 export const ButtonSkeleton: StoryObj<typeof Skeleton> = {
   render: (args) => <Skeleton numberOfSkeletons={1} width="M" size="L" />,
   parameters: {
+    docs: {
+      source: {
+        code: `<Skeleton numberOfSkeletons={1} width="M" size="L" />`,
+      },
+    },
     controls: {
       include: [],
     },

@@ -3,17 +3,17 @@ import React from 'react';
 import { renderWithProvider } from '@synerise/ds-core';
 import { fireEvent, screen } from '@testing-library/react';
 
-import Button from '../index';
+import { Checkbox } from '../index';
 
-describe('<Button.Checkbox />', () => {
+describe('<Checkbox />', () => {
   it('should render unchecked if no props provided', () => {
-    renderWithProvider(<Button.Checkbox />);
+    renderWithProvider(<Checkbox />);
 
     expect(screen.getByRole('checkbox')).not.toBeChecked();
   });
 
   it('should toggle checked state on click', () => {
-    renderWithProvider(<Button.Checkbox />);
+    renderWithProvider(<Checkbox />);
 
     const checkboxElem = screen.getByRole('checkbox');
     expect(checkboxElem).not.toBeChecked();
@@ -26,7 +26,7 @@ describe('<Button.Checkbox />', () => {
   });
 
   it('should render with indeterminate prop', () => {
-    renderWithProvider(<Button.Checkbox indeterminate />);
+    renderWithProvider(<Checkbox indeterminate />);
 
     const checkboxElem = screen.getByRole('checkbox');
 
@@ -36,7 +36,7 @@ describe('<Button.Checkbox />', () => {
 
   it('should exec onChange callback with next state value', () => {
     const fakeOnChange = vi.fn();
-    renderWithProvider(<Button.Checkbox onChange={fakeOnChange} />);
+    renderWithProvider(<Checkbox onChange={fakeOnChange} />);
 
     const checkboxElem = screen.getByRole('checkbox');
 

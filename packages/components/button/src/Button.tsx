@@ -13,7 +13,6 @@ import Tooltip from '@synerise/ds-tooltip';
 
 import * as S from './Button.styles';
 import { ButtonMode, type ButtonProps } from './Button.types';
-import './style/index.less';
 
 const RIPPLE_ANIMATION_OFFSET = 50;
 
@@ -22,23 +21,25 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
     {
       type = 'secondary',
       mode,
-      justifyContent = 'center',
       groupVariant,
       loading = false,
       onClick,
       className,
       color = 'red',
       error,
+      icon,
       tagProps,
       children,
       tooltipProps,
-      ...antdProps
+      ...restProps
     },
     forwardedRef,
   ) => {
     const rippleRef = useRef<HTMLSpanElement>(null);
     const [rippleClassName, setRippleClassName] = useState('');
-    const [pressed, setPressed] = useState<boolean>(false);
+    const [pressed, setPressed] = useState(false);
+    const activeTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+
     useEffect(() => {
       let rippleAnimation: ReturnType<typeof setTimeout>;
       if (rippleClassName !== '') {
@@ -51,7 +52,15 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
       };
     }, [rippleClassName]);
 
-    const handleClick = (event: MouseEvent<HTMLElement>): void => {
+    const clearActiveTimer = (): void => {
+      if (activeTimerRef.current) {
+        clearTimeout(activeTimerRef.current);
+        activeTimerRef.current = null;
+      }
+      setPressed(false);
+    };
+
+    const handleMouseDown = (event: MouseEvent<HTMLElement>): void => {
       const button = event.currentTarget.closest('.ant-btn');
       if (button) {
         const buttonBoundingRect = button.getBoundingClientRect();
@@ -62,26 +71,38 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
           rippleRef.current.style.cssText = `top: ${y}px; left: ${x}px`;
         }
         setRippleClassName('animate');
-        onClick && onClick(event);
       }
+      clearActiveTimer();
+      activeTimerRef.current = setTimeout(() => {
+        setPressed(true);
+      }, S.ACTIVE_DELAY);
+    };
+
+    const handleClick = (event: MouseEvent<HTMLElement>): void => {
+      onClick && onClick(event);
     };
 
     const classNameString = useMemo((): string => {
       const modeStringifed = mode || '';
-      const readOnlyStringifed = antdProps.readOnly ? 'read-only' : '';
+      const readOnlyStringifed = restProps.readOnly ? 'read-only' : '';
       const classNameStringifed = className || '';
-      return `ds-button ${modeStringifed} ${classNameStringifed} ${readOnlyStringifed}`;
-    }, [mode, className, antdProps.readOnly]);
+      const pressedStringified = pressed ? 'pressed' : '';
+      return `ds-button ${modeStringifed} ${classNameStringifed} ${readOnlyStringifed} ${pressedStringified}`;
+    }, [mode, className, restProps.readOnly, pressed]);
+
+    const iconBefore = icon && mode !== ButtonMode.LABEL_ICON ? icon : null;
+    const iconAfter = icon && mode === ButtonMode.LABEL_ICON ? icon : null;
 
     const buttonLabel = useMemo(() => {
       const label = (
         <S.ButtonLabel
-          // ref={forwardedRef}
           withTooltip={!!tooltipProps}
           data-testid="ds-button-label"
           className="ds-button-label"
         >
+          {iconBefore}
           {children}
+          {iconAfter}
           {tagProps && mode !== ButtonMode.SINGLE_ICON && (
             <S.Tag {...tagProps} shape={TagShape.MEDIUM_ROUND} asPill />
           )}
@@ -92,30 +113,25 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
       ) : (
         label
       );
-    }, [children, tagProps, mode, tooltipProps]);
+    }, [children, tagProps, mode, tooltipProps, iconBefore, iconAfter]);
 
     return (
-      <S.AntdButton
+      <S.StyledButton
         ref={forwardedRef}
-        justifyContent={justifyContent}
         type={type || 'secondary'}
         mode={mode}
         error={error}
         groupVariant={groupVariant}
         loading={loading}
         onClick={handleClick}
-        onMouseDown={(): void => {
-          setPressed(true);
-        }}
-        onMouseUp={(): void => {
-          setPressed(false);
-        }}
-        pressed={pressed}
+        onMouseDown={handleMouseDown}
+        onMouseUp={clearActiveTimer}
+        onMouseLeave={clearActiveTimer}
         className={classNameString}
         customColor={color}
-        {...antdProps}
+        {...restProps}
       >
-        {!antdProps.readOnly && (
+        {!restProps.readOnly && (
           <S.RippleEffect
             ref={rippleRef}
             className={`btn-ripple ${rippleClassName}`}
@@ -128,7 +144,7 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
           </S.Spinner>
         )}
         <S.ButtonFocus className="btn-focus" />
-      </S.AntdButton>
+      </S.StyledButton>
     );
   },
 );

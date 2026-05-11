@@ -191,7 +191,7 @@ const FilterItemComponent = ({
           buttons={
             <>
               <Button
-                type="default"
+                type="secondary"
                 onClick={(): void => setConfirmDeleteVisible(false)}
               >
                 {texts.deleteConfirmationNo}

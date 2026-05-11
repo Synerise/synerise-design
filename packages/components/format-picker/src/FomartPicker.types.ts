@@ -1,5 +1,7 @@
 import type { ReactNode } from 'react';
 
+import type { ButtonType } from '@synerise/ds-button';
+
 export type CurrencyType = string;
 
 export type FormattingDataFormat = 'numeric' | 'percent' | 'cash';
@@ -47,7 +49,7 @@ export type FormatPickerProps = {
   onFormattedValueChange?: (formattedValue: string) => void;
   text?: Partial<FormatPickerTexts>;
   currenciesConfig?: CurrencyConfig[];
-  buttonType?: string;
+  buttonType?: ButtonType;
   disabled?: boolean;
   maxFixedLength?: number;
 };

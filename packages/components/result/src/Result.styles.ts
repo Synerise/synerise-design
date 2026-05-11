@@ -19,7 +19,7 @@ export const ButtonContainer = styled.div`
   text-align: center;
   width: 100%;
 
-  ${ButtonStyles.Button.AntdButton} {
+  ${ButtonStyles.Button.StyledButton} {
     margin: 0 4px;
 
     &:first-of-type {

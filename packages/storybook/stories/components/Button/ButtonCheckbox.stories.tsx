@@ -34,6 +34,13 @@ const meta: Meta<CheckboxButtonProps> = {
 export default meta;
 
 export const Checkbox: StoryObj<CheckboxButtonProps> = {
+  parameters: {
+    docs: {
+      source: {
+        code: `<Checkbox onChange={(checked) => console.log(checked)} />`,
+      },
+    },
+  },
   args: {
     onChange: (checked: boolean) => {
       action('onChange')(checked);
@@ -61,6 +68,26 @@ const createStateUpdateMap =
   };
 
 export const CheckboxControlled: StoryObj<CheckboxButtonProps> = {
+  parameters: {
+    docs: {
+      source: {
+        code: `<>
+  <Checkbox
+    checked={allChecked}
+    indeterminate={isIndeterminate}
+    onChange={onChangeBatch}
+  />
+  <hr />
+  {values.map((value, index) => (
+    <Checkbox
+      checked={value}
+      onChange={(isChecked) => onChangeSingle(isChecked, index)}
+    />
+  ))}
+</>`,
+      },
+    },
+  },
   render: (args) => {
     const [values, setValues] = useState<CheckboxValue[]>([
       { value: false },

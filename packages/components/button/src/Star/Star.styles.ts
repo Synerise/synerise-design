@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export const IconWrapper = styled.span<{ active?: boolean; error?: boolean }>`
-  &&&& svg {
+  && svg {
     fill: ${({ theme, active, error }): string => {
       if (error) {
         return theme.palette['red-600'];

@@ -1,6 +1,3 @@
-import { lessCompilePlugin } from '../../../scripts/vite/less-plugin';
 import { createViteConfig } from '../../../vite.config.base';
 
-export default createViteConfig('@synerise/ds-button', {
-  plugins: [lessCompilePlugin()],
-});
+export default createViteConfig('@synerise/ds-button');

@@ -1,10 +1,10 @@
 import React from 'react';
 
-import { theme , renderWithProvider } from '@synerise/ds-core';
+import { theme, renderWithProvider } from '@synerise/ds-core';
 import { fireEvent, screen, waitFor } from '@testing-library/react';
 
+import { Creator } from '../index';
 import { CreatorStatus } from '../Creator/Creator.types';
-import Button from '../index';
 
 const LABEL_TEXT = 'Add something';
 const TEST_ID = 'button-creator';
@@ -13,14 +13,14 @@ describe('Creator', () => {
   const onClick = vi.fn();
   it('should render', () => {
     renderWithProvider(
-      <Button.Creator data-testid={TEST_ID} onClick={onClick}></Button.Creator>,
+      <Creator data-testid={TEST_ID} onClick={onClick}></Creator>,
     );
 
     expect(screen.getByTestId(TEST_ID)).toBeInTheDocument();
   });
   it('should handle onClick', () => {
     renderWithProvider(
-      <Button.Creator data-testid={TEST_ID} onClick={onClick}></Button.Creator>,
+      <Creator data-testid={TEST_ID} onClick={onClick}></Creator>,
     );
 
     const creator = screen.getByTestId(TEST_ID);
@@ -30,11 +30,11 @@ describe('Creator', () => {
   });
   it('should render disabled with lower opacity', () => {
     renderWithProvider(
-      <Button.Creator
+      <Creator
         data-testid={TEST_ID}
         onClick={onClick}
         disabled={true}
-      ></Button.Creator>,
+      ></Creator>,
     );
 
     const creator = screen.getByTestId(TEST_ID);
@@ -42,11 +42,11 @@ describe('Creator', () => {
   });
   it('should render label text', () => {
     renderWithProvider(
-      <Button.Creator
+      <Creator
         data-testid={TEST_ID}
         onClick={onClick}
         label={LABEL_TEXT}
-      ></Button.Creator>,
+      ></Creator>,
     );
 
     const label = screen.getByText(LABEL_TEXT);
@@ -55,11 +55,11 @@ describe('Creator', () => {
   });
   it('should render red when validated', () => {
     renderWithProvider(
-      <Button.Creator
+      <Creator
         data-testid={TEST_ID}
         onClick={onClick}
         status={CreatorStatus.Error}
-      ></Button.Creator>,
+      ></Creator>,
     );
     const creator = screen.getByTestId(TEST_ID);
     expect(creator).toHaveStyle(
@@ -68,11 +68,11 @@ describe('Creator', () => {
   });
   it('should render blue when uploading', async () => {
     renderWithProvider(
-      <Button.Creator
+      <Creator
         data-testid={TEST_ID}
         onClick={onClick}
         status={CreatorStatus.Upload}
-      ></Button.Creator>,
+      ></Creator>,
     );
 
     const creator = screen.getByTestId(TEST_ID);

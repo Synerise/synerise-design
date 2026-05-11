@@ -26,17 +26,17 @@ export const ButtonToggle = styled(({ toggleType, activated, ...rest }) => {
         : css`
             ${!props.disabled &&
             css`
-        && {
-            background: ${props.theme.palette['blue-050']};
-            color: ${props.theme.palette['blue-600']};
-            svg { 
-              fill: currentColor;
-            }
-            ${ButtonFocus} {
-              box-shadow: none;
-            }
-          }
-        }`}
+              && {
+                background: ${props.theme.palette['blue-050']};
+                color: ${props.theme.palette['blue-600']};
+                svg {
+                  fill: currentColor;
+                }
+                ${ButtonFocus} {
+                  box-shadow: none;
+                }
+              }
+            `}
           `}
     `}
 `;

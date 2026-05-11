@@ -12,7 +12,6 @@ import Tooltip from '@synerise/ds-tooltip';
 import {
   BOOLEAN_CONTROL,
   CLASSNAME_ARG_CONTROL,
-  PREFIXCLS_ARG_CONTROL,
   buttonDecorator,
   controlFromOptionsArray,
   reactNodeAsSelect,
@@ -39,16 +38,6 @@ const meta: Meta<ButtonToggleProps> = {
   decorators: [buttonDecorator],
   parameters: {
     layout: 'fullscreen',
-    controls: {
-      exclude: [
-        'href',
-        'target',
-        'htmlType',
-        'groupVariant',
-        'justifyContent',
-        'shape',
-      ],
-    },
   },
   argTypes: {
     activated: BOOLEAN_CONTROL,
@@ -73,14 +62,9 @@ const meta: Meta<ButtonToggleProps> = {
           name: '5/12 HRS',
           color: theme.palette['grey-400'],
         },
-        'tag 3': {
-          name: '5/12 HRS',
-          color: theme.palette['grey-400'],
-        },
       }),
     },
     className: CLASSNAME_ARG_CONTROL,
-    prefixCls: PREFIXCLS_ARG_CONTROL,
     size: {
       table: {
         defaultValue: {
@@ -89,19 +73,12 @@ const meta: Meta<ButtonToggleProps> = {
       },
       ...controlFromOptionsArray('inline-radio', ['', 'large']),
     },
-
     block: {
       description: 'Display as a block element',
       ...BOOLEAN_CONTROL,
     },
-
     type: {
       ...controlFromOptionsArray('radio', ['solid', 'ghost']),
-    },
-    mode: {
-      table: {
-        disable: true,
-      },
     },
     children: {
       name: 'children',
@@ -130,7 +107,11 @@ export const Simple: Story = {
       },
     },
     controls: {
-      exclude: [...meta?.parameters?.controls.exclude, 'icon', 'iconColor'],
+      exclude: [
+        ...(meta?.parameters?.controls?.exclude ?? []),
+        'icon',
+        'iconColor',
+      ],
     },
   },
   args: {
@@ -285,7 +266,11 @@ export const CustomLabel: Story = {
       },
     },
     controls: {
-      exclude: [...meta?.parameters?.controls.exclude, 'icon', 'iconColor'],
+      exclude: [
+        ...(meta?.parameters?.controls?.exclude ?? []),
+        'icon',
+        'iconColor',
+      ],
     },
   },
   argTypes: {

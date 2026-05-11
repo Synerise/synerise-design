@@ -19,7 +19,7 @@ export type { StarButtonProps } from './Star/Star.types';
 export type { CheckboxButtonProps } from './Checkbox/Checkbox.types';
 export { ExpanderSize, type ExpanderProps } from './Expander/Expander.types';
 
-export type { ButtonProps, StyledButton } from './Button.types';
+export type { ButtonProps, ButtonType, StyledButton } from './Button.types';
 
 export const ButtonStyles = {
   Button: MainButtonStyles,
