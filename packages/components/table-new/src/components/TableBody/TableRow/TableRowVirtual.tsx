@@ -156,6 +156,11 @@ const TableRowVirtualInner = <TData extends object>({
       data-index={virtual.index}
       {...(isChild ? { 'data-row-expanded': isChildExpanded } : {})}
       {...restCustomRowProps}
+      className={
+        restCustomRowProps.className
+          ? `ds-table-row ${restCustomRowProps.className}`
+          : 'ds-table-row'
+      }
       ref={rowVirtualizer?.measureElement}
       style={{
         ...customStyle,

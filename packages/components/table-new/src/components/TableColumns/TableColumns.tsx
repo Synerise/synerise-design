@@ -17,9 +17,13 @@ export const TableColumns = <TData extends object>({
 
   return (
     <>
-      <S.THead role="rowgroup" data-testid="ds-table-columns">
+      <S.THead
+        className="ds-table-head"
+        role="rowgroup"
+        data-testid="ds-table-columns"
+      >
         {headerGroups.map((headerGroup) => (
-          <S.Tr key={headerGroup.id} role="row">
+          <S.Tr key={headerGroup.id} role="row" className="ds-table-row">
             {headerGroup.headers.map((header, columnIndex) => {
               const id = header.id;
               const isSticky = header.column.getIsPinned();
@@ -28,6 +32,7 @@ export const TableColumns = <TData extends object>({
               const align = header.column.columnDef.meta?.align;
               return (
                 <S.Th
+                  className="ds-table-header-cell"
                   headerIndex={columnIndex}
                   key={id}
                   colSpan={header.colSpan}

@@ -40,7 +40,11 @@ export const TableBodySkeleton = ({
   const skeletonRows = useMemo(() => {
     return Array.from({ length: rowCount }, (_, rowIndex) =>
       headerGroups.map((headerGroup) => (
-        <S.Tr key={`${headerGroup.id}-${rowIndex}`} role="row">
+        <S.Tr
+          key={`${headerGroup.id}-${rowIndex}`}
+          role="row"
+          className="ds-table-row"
+        >
           {headerGroup.headers.map((header, columnIndex) => {
             return (
               <TableCell
@@ -68,5 +72,9 @@ export const TableBodySkeleton = ({
     );
   }, [cellHeight, headerGroups, rowCount]);
 
-  return <S.TBody role="rowgroup">{skeletonRows}</S.TBody>;
+  return (
+    <S.TBody role="rowgroup" className="ds-table-body">
+      {skeletonRows}
+    </S.TBody>
+  );
 };

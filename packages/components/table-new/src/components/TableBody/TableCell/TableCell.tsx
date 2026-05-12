@@ -48,6 +48,9 @@ export const TableCell = memo(
       key={cellKey}
       headerIndex={headerIndex}
       {...rest}
+      className={
+        rest.className ? `ds-table-cell ${rest.className}` : 'ds-table-cell'
+      }
     >
       <S.CellWrapper>{children}</S.CellWrapper>
     </S.Td>
