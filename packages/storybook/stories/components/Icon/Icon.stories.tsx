@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useMemo, useState } from 'react';
 
 import { Meta, StoryObj } from '@storybook/react-vite';
 import Icon from '@synerise/ds-icon';
@@ -64,7 +64,7 @@ export default {
 export const SingleIcon: StoryObj<typeof Icon> = {};
 
 export const ListIcon: StoryObj<typeof Icon> = {
-  render: (args) => renderIcons(medium, args.color, 24),
+  render: (args) => <IconList icons={medium} color={args.color} size={24} />,
   args: {
     color: '',
   },
@@ -74,34 +74,67 @@ export const ListIcon: StoryObj<typeof Icon> = {
 };
 
 export const AdditionalIcon: StoryObj<typeof Icon> = {
-  render: (args) => renderIcons(additional, args.color, 48),
+  render: (args) => (
+    <IconList icons={additional} color={args.color} size={48} />
+  ),
 };
 
 export const AdditionalL: StoryObj<typeof Icon> = {
-  render: (args) => renderIcons(large, args.color, 48),
+  render: (args) => <IconList icons={large} color={args.color} size={48} />,
 };
 
 export const AdditionalXL: StoryObj<typeof Icon> = {
-  render: (args) => renderIcons(xLarge, args.color, 96),
+  render: (args) => <IconList icons={xLarge} color={args.color} size={96} />,
 };
 
 export const AdditionalColor: StoryObj<typeof Icon> = {
-  render: () => renderIcons(color, '', 48),
+  render: () => <IconList icons={color} color="" size={48} />,
 };
 
-const renderIcons = (
-  icons: Record<string, React.ComponentType>,
-  color = '',
-  size: number,
-  noBorder?: boolean,
-) => (
-  <IconsWrapper>
-    {Object.entries(icons).map(([key, IconComponent]) => (
-      <IconWrapper key={key} noBorder={noBorder}>
-        <Icon component={<IconComponent />} color={color} size={size} />
-        <br />
-        <p>{key}</p>
-      </IconWrapper>
-    ))}
-  </IconsWrapper>
-);
+const SEARCH_INPUT_STYLE: React.CSSProperties = {
+  width: '100%',
+  maxWidth: 320,
+  padding: '8px 12px',
+  marginBottom: 16,
+  border: '1px solid #e0e0e0',
+  borderRadius: 4,
+  fontSize: 14,
+  boxSizing: 'border-box',
+};
+
+const IconList: React.FC<{
+  icons: Record<string, React.ComponentType>;
+  color?: string;
+  size: number;
+  noBorder?: boolean;
+}> = ({ icons, color = '', size, noBorder }) => {
+  const [query, setQuery] = useState('');
+  const filteredEntries = useMemo(() => {
+    const normalized = query.trim().toLowerCase();
+    const entries = Object.entries(icons);
+    if (!normalized) return entries;
+    return entries.filter(([key]) => key.toLowerCase().includes(normalized));
+  }, [icons, query]);
+
+  return (
+    <div>
+      <input
+        type="search"
+        placeholder="Search icons by name..."
+        value={query}
+        onChange={(e) => setQuery(e.target.value)}
+        style={SEARCH_INPUT_STYLE}
+        aria-label="Search icons by name"
+      />
+      <IconsWrapper>
+        {filteredEntries.map(([key, IconComponent]) => (
+          <IconWrapper key={key} noBorder={noBorder}>
+            <Icon component={<IconComponent />} color={color} size={size} />
+            <br />
+            <p>{key}</p>
+          </IconWrapper>
+        ))}
+      </IconsWrapper>
+    </div>
+  );
+};
