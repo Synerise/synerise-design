@@ -3,6 +3,7 @@ export type {
   FilterElement,
   FilterItem,
   DataSource,
+  IconMetadata,
   IconPickerProps,
   SourceType,
   FASource,

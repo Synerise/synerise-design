@@ -15,6 +15,11 @@ export const prepareItems = (
         value: (item.value === undefined
           ? item.item
           : item.value) as ValueTypeForSource<DataSource[]>,
+        metadata: {
+          name: item.name,
+          keywords: item.keywords,
+          category: group.category,
+        },
       };
     }),
   }));

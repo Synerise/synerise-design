@@ -26,60 +26,49 @@ export const useIconSourceLoader = <Source extends SourceType>(
         const { fas, fab, far, icon, FontAwesomeIcon } =
           await loadFontAwesome();
 
+        const buildFAItems = (
+          category: string,
+          iconSet: Record<string, IconDefinition>,
+        ) => ({
+          category,
+          items: Object.values(iconSet).map((iconData: IconDefinition) => ({
+            keywords: iconData.iconName,
+            item: (
+              <FontAwesomeIcon icon={icon(iconData)} key={iconData.iconName} />
+            ),
+            value: [
+              iconData.prefix,
+              iconData.iconName,
+            ] as ValueTypeForSource<Source>,
+            metadata: {
+              name: iconData.iconName,
+              keywords: iconData.iconName,
+              category,
+              prefix: iconData.prefix,
+            },
+          })),
+        });
+
         setItems([
-          {
-            category: 'Solid',
-            items: Object.values(fas).map((iconData: IconDefinition) => ({
-              keywords: iconData.iconName,
-              item: (
-                <FontAwesomeIcon
-                  icon={icon(iconData)}
-                  key={iconData.iconName}
-                />
-              ),
-              value: [iconData.prefix, iconData.iconName],
-            })),
-          },
-          {
-            category: 'Brands',
-            items: Object.values(fab).map((iconData: IconDefinition) => ({
-              keywords: iconData.iconName,
-              item: (
-                <FontAwesomeIcon
-                  icon={icon(iconData)}
-                  key={iconData.iconName}
-                />
-              ),
-              value: [iconData.prefix, iconData.iconName],
-            })),
-          },
-          {
-            category: 'Regular',
-            items: Object.values(far).map((iconData: IconDefinition) => ({
-              keywords: iconData.iconName,
-              item: (
-                <FontAwesomeIcon
-                  icon={icon(iconData)}
-                  key={iconData.iconName}
-                />
-              ),
-              value: [iconData.prefix, iconData.iconName],
-            })),
-          },
+          buildFAItems('Solid', fas),
+          buildFAItems('Brands', fab),
+          buildFAItems('Regular', far),
         ]);
       };
 
       if (isDSSourceType(data)) {
+        const category = 'DS Icons';
         const iconItems = Object.entries(medium).map(([name, Component]) => ({
           keywords: name,
           item: <Icon component={<Component />} />,
           value: (
             <Icon component={<Component />} />
           ) as ValueTypeForSource<Source>,
+          metadata: { name, keywords: name, category },
         }));
         setItems([
           {
-            category: 'DS Icons',
+            category,
             items: iconItems,
           },
         ]);

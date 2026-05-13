@@ -60,7 +60,10 @@ describe('Dropdown', () => {
     const emoji = screen.getByTestId('icon-0');
     fireEvent.click(emoji);
 
-    expect(onSelectAction).toHaveBeenCalled();
+    expect(onSelectAction).toHaveBeenCalledWith(
+      '😀',
+      expect.objectContaining({ category: 'emoji' }),
+    );
   });
 
   it('should load DS icons as source', () => {
@@ -77,8 +80,34 @@ describe('Dropdown', () => {
     );
 
     fireEvent.click(screen.getByText(BUTTON_TEXT));
-    
+
     expect(screen.getByTestId('ds-icon-add-m')).toBeInTheDocument();
+  })
+
+  it('should pass metadata for DS icons on select', () => {
+    const onSelectAction = vi.fn();
+    const BUTTON_TEXT = 'button text';
+    renderWithProvider(
+      <IconPicker
+        button={<Button type="primary" mode='icon-label'><Icon component={<Add3M />} />{BUTTON_TEXT}</Button>}
+        data='design-system'
+        onSelect={onSelectAction}
+        trigger={["click"]}
+        placeholder={"search"}
+      />
+    );
+
+    fireEvent.click(screen.getByText(BUTTON_TEXT));
+    fireEvent.click(screen.getByTestId('icon-0'));
+
+    expect(onSelectAction).toHaveBeenCalledWith(
+      expect.anything(),
+      expect.objectContaining({
+        name: 'AddM',
+        keywords: 'AddM',
+        category: 'DS Icons',
+      }),
+    );
   })
 
   it('should load FontAwesome icons as source', async () => {

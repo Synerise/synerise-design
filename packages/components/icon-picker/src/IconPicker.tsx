@@ -9,6 +9,7 @@ import { useOnClickOutside } from '@synerise/ds-utils';
 
 import * as S from './IconPicker.styles';
 import {
+  type IconMetadata,
   type IconPickerProps,
   type SourceType,
   type ValueTypeForSource,
@@ -70,9 +71,12 @@ const IconPicker = <IconSource extends SourceType>({
     setFocus(newState);
   };
 
-  const handleSelect = (value: ValueTypeForSource<IconSource>) => {
+  const handleSelect = (
+    value: ValueTypeForSource<IconSource>,
+    metadata: IconMetadata,
+  ) => {
     toggleOpen(false);
-    onSelect(value);
+    onSelect(value, metadata);
   };
 
   return (
