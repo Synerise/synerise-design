@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.2.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-table-new@1.1.4...@synerise/ds-table-new@1.2.0) (2026-05-13)
+
+### Features
+
+- **table-new:** add classes to table dom ([5464544](https://github.com/Synerise/synerise-design/commit/5464544507462afa30d2d02c7f736873fa389782))
+
 ## [1.1.4](https://github.com/Synerise/synerise-design/compare/@synerise/ds-table-new@1.1.3...@synerise/ds-table-new@1.1.4) (2026-05-11)
 
 **Note:** Version bump only for package @synerise/ds-table-new

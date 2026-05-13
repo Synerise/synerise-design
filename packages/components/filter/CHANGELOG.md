@@ -3,6 +3,10 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.2.52](https://github.com/Synerise/synerise-design/compare/@synerise/ds-filter@1.2.51...@synerise/ds-filter@1.2.52) (2026-05-13)
+
+**Note:** Version bump only for package @synerise/ds-filter
+
 ## [1.2.51](https://github.com/Synerise/synerise-design/compare/@synerise/ds-filter@1.2.50...@synerise/ds-filter@1.2.51) (2026-05-11)
 
 **Note:** Version bump only for package @synerise/ds-filter

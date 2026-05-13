@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.7.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-icon-picker@1.6.26...@synerise/ds-icon-picker@1.7.0) (2026-05-13)
+
+### Features
+
+- **icon-picker:** pass icon metadata to onSelect ([5803275](https://github.com/Synerise/synerise-design/commit/5803275384fde95dc03bafd64a8596fab0d69ed7))
+
 ## [1.6.26](https://github.com/Synerise/synerise-design/compare/@synerise/ds-icon-picker@1.6.25...@synerise/ds-icon-picker@1.6.26) (2026-05-11)
 
 **Note:** Version bump only for package @synerise/ds-icon-picker

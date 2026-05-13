@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.18.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-icon@1.17.3...@synerise/ds-icon@1.18.0) (2026-05-13)
+
+### Features
+
+- **icon:** new icon (whatsapp) ([f67743f](https://github.com/Synerise/synerise-design/commit/f67743f0ffcc1345736644c29828e2381f09af96))
+
 ## [1.17.3](https://github.com/Synerise/synerise-design/compare/@synerise/ds-icon@1.17.2...@synerise/ds-icon@1.17.3) (2026-05-04)
 
 ### Bug Fixes

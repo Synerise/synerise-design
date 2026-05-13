@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.43.0](https://github.com/Synerise/synerise-design/compare/storybook@1.42.11...storybook@1.43.0) (2026-05-13)
+
+### Features
+
+- **icon-picker:** pass icon metadata to onSelect ([5803275](https://github.com/Synerise/synerise-design/commit/5803275384fde95dc03bafd64a8596fab0d69ed7))
+- **storybook:** add search field to icon list stories ([8593a5e](https://github.com/Synerise/synerise-design/commit/8593a5e07d073a58029b6d57d096dc400ec2f9a3))
+
 ## [1.42.11](https://github.com/Synerise/synerise-design/compare/storybook@1.42.10...storybook@1.42.11) (2026-05-11)
 
 **Note:** Version bump only for package storybook

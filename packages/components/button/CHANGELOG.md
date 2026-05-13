@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.5.28](https://github.com/synerise/synerise-design/compare/@synerise/ds-button@1.5.27...@synerise/ds-button@1.5.28) (2026-05-13)
+
+### Bug Fixes
+
+- **button:** custom color text color on hover issue ([f6056c1](https://github.com/synerise/synerise-design/commit/f6056c1b3c77f66911751580d57778dc7e55fddf))
+
 ## [1.5.27](https://github.com/synerise/synerise-design/compare/@synerise/ds-button@1.5.26...@synerise/ds-button@1.5.27) (2026-05-11)
 
 **Note:** Version bump only for package @synerise/ds-button
