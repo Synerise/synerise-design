@@ -11,6 +11,7 @@ import type {
   DataSource,
   FASource,
   FAValue,
+  IconMetadata,
   IconPickerProps,
   SourceType,
 } from '@synerise/ds-icon-picker';
@@ -41,9 +42,11 @@ export default {
   decorators: [centeredPaddedWrapper],
   render: (args) => {
     const [icon, setIcon] = useState<ReactNode | null>(null);
-    const handleSelect = (selectedIcon: ReactNode) => {
+    const [meta, setMeta] = useState<IconMetadata | null>(null);
+    const handleSelect = (selectedIcon: ReactNode, metadata: IconMetadata) => {
       setIcon(selectedIcon);
-      args.onSelect?.(selectedIcon);
+      setMeta(metadata);
+      args.onSelect?.(selectedIcon, metadata);
     };
 
     const renderSelected = () => {
@@ -60,9 +63,11 @@ export default {
           selectedIcon={renderSelected()}
           onClear={() => {
             setIcon(!icon);
+            setMeta(null);
           }}
           onSelect={handleSelect}
         />
+        {meta?.name && <small>Selected: {meta.name}</small>}
       </>
     );
   },
@@ -89,9 +94,11 @@ export const Default: Story = {};
 export const CustomTrigger: Story = {
   render: (args) => {
     const [icon, setIcon] = useState<ReactNode | null>(null);
-    const handleSelect = (selectedIcon: ReactNode) => {
+    const [meta, setMeta] = useState<IconMetadata | null>(null);
+    const handleSelect = (selectedIcon: ReactNode, metadata: IconMetadata) => {
       setIcon(selectedIcon);
-      args.onSelect?.(selectedIcon);
+      setMeta(metadata);
+      args.onSelect?.(selectedIcon, metadata);
     };
 
     const renderSelected = () => {
@@ -103,7 +110,12 @@ export const CustomTrigger: Story = {
 
     return (
       <>
-        {icon && <div>Selected: {renderSelected()}</div>}
+        {icon && (
+          <div>
+            Selected: {renderSelected()}
+            {meta?.name && <small> ({meta.name})</small>}
+          </div>
+        )}
         <IconPicker
           {...args}
           button={

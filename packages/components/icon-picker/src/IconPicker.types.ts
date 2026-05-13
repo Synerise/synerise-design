@@ -3,10 +3,18 @@ import type { CSSProperties, ReactElement, ReactNode } from 'react';
 import type { IconName, IconPrefix } from '@fortawesome/fontawesome-svg-core';
 import { type PopoverTriggerType } from '@synerise/ds-popover';
 
+export type IconMetadata = {
+  name?: string;
+  keywords?: string;
+  category?: ReactNode;
+  prefix?: IconPrefix;
+};
+
 export type FilterItem<ValueType extends FAValue | ReactNode> = {
   keywords?: string;
   value: ValueType;
   item: ReactNode;
+  metadata?: IconMetadata;
 };
 
 export type FilterElement<ValueType extends FAValue | ReactNode = ReactNode> =
@@ -15,7 +23,12 @@ export type FilterElement<ValueType extends FAValue | ReactNode = ReactNode> =
   };
 
 export type DataSource = Category & {
-  items: { item: ReactNode; value?: ReactNode; keywords?: string }[];
+  items: {
+    item: ReactNode;
+    value?: ReactNode;
+    keywords?: string;
+    name?: string;
+  }[];
 };
 
 export type Category = {
@@ -28,7 +41,8 @@ export type ValueTypeForSource<Source extends SourceType> =
   Source extends FASource ? FAValue : ReactNode;
 
 export type SelectItemHandler<Source extends SourceType> = (
-  prop: ValueTypeForSource<Source>,
+  value: ValueTypeForSource<Source>,
+  metadata: IconMetadata,
 ) => void;
 
 export type GroupedFilterElement<Source extends SourceType> =

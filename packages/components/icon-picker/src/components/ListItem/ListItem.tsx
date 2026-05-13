@@ -14,7 +14,7 @@ const ListItem = <Source extends SourceType>({
   itemsPerRow,
 }: ListItemProps<Source>) => {
   const selectIcon = () => {
-    onSelect(element.value);
+    onSelect(element.value, element.metadata ?? {});
   };
   return (
     <S.ListItem itemsPerRow={itemsPerRow}>
