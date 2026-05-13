@@ -41,9 +41,6 @@ const buttonHover = (color: string, background: string, border: string) => css`
   box-shadow: none;
   &:not(:disabled):not(:focus-visible):not(.pressed) {
     ${buttonColor(color, background, border)}
-    span {
-      color: ${color};
-    }
   }
 `;
 
