@@ -112,7 +112,7 @@ export const BaseTable = <TData extends object, TValue>({
         addNode(element);
       }}
     >
-      <S.StyledTable role="table">
+      <S.StyledTable role="table" className="ds-table">
         {isLoading ? (
           <TableBodySkeleton
             wrapperRef={tableBodyWrapperRef}
@@ -145,7 +145,7 @@ export const BaseTable = <TData extends object, TValue>({
         addNode(element);
       }}
     >
-      <S.StyledTable role="table">
+      <S.StyledTable role="table" className="ds-table">
         {!hideColumnNames && (!isEmpty || isLoading) && (
           <TableColumns
             texts={texts}
@@ -235,7 +235,7 @@ export const BaseTable = <TData extends object, TValue>({
                 isScrolled={rowVirtualizer?.scrollOffset}
                 ref={handleRef}
               >
-                <S.StyledTable role="table">
+                <S.StyledTable role="table" className="ds-table">
                   <TableColumns
                     texts={texts}
                     disableColumnNamesLineBreak={disableColumnNamesLineBreak}

@@ -37,6 +37,11 @@ export const TableRow = <TData extends object>({
       data-index={row.index}
       role="row"
       {...restCustomRowProps}
+      className={
+        restCustomRowProps.className
+          ? `ds-table-row ${restCustomRowProps.className}`
+          : 'ds-table-row'
+      }
       onClick={mergedOnClick}
     >
       {row.getVisibleCells().map((cell, columnIndex) => {

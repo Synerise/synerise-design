@@ -14,9 +14,9 @@ export const TableEmptyBody = <TData, TValue>({
   const { table } = useTableContext();
   const colSpan = table.getAllLeafColumns().length;
   return (
-    <S.TBody>
-      <S.Tr>
-        <S.Td colSpan={colSpan}>
+    <S.TBody className="ds-table-body">
+      <S.Tr className="ds-table-row">
+        <S.Td colSpan={colSpan} className="ds-table-cell">
           <S.TableEmptyBodyWrapper>
             {emptyDataComponent !== undefined ? (
               emptyDataComponent

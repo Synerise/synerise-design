@@ -49,7 +49,7 @@ export const InfiniteLoaderRow = ({
   return (
     <S.Tr style={style} role="row">
       <TableCell
-        style={{ zIndex: 11 }}
+        style={{ zIndex: 12 }}
         isPinned="left"
         leftOffset={0}
         width={400}

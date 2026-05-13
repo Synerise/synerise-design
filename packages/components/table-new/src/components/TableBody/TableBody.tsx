@@ -49,6 +49,7 @@ export const TableBody = <TData extends object, TValue>({
 
   return allRows.length ? (
     <S.TBody
+      className="ds-table-body"
       data-testid="ds-table-body"
       key="virtual-table-body"
       role="rowgroup"
