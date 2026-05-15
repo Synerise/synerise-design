@@ -4,6 +4,8 @@ import Tooltip from '@synerise/ds-tooltip';
 import { flexRender } from '@tanstack/react-table';
 
 import { type TableRowProps } from '../../../Table.types';
+import { useStickyContext } from '../../../contexts/StickyContext';
+import { getUnifiedColumnSizingStyle } from '../../../utils/getUnifiedColumnSizingStyle';
 import { isSorted } from '../../../utils/sort';
 import { TableCell } from '../TableCell/TableCell';
 import * as S from './TableRow.styles';
@@ -14,6 +16,11 @@ export const TableRow = <TData extends object>({
   getRowProps,
   getRowTooltipProps,
 }: TableRowProps<TData>) => {
+  // Unified-content mode (no sticky context) sizes columns via <colgroup> plus
+  // matching width/min/max on each <td>. Falling back to <colgroup> alone is
+  // not enough under table-layout: auto — content can still stretch a cell
+  // past the <col> hint, so we re-apply the same sizing style on the <td>.
+  const isUnifiedTableContent = !useStickyContext();
   const customRowProps = getRowProps?.(row.original) ?? {};
   const { onClick: customOnClick, ...restCustomRowProps } = customRowProps;
 
@@ -60,12 +67,19 @@ export const TableRow = <TData extends object>({
             key={cellId}
             headerIndex={columnIndex}
             cellKey={cellId}
-            width={cell.column.getSize()}
+            width={isUnifiedTableContent ? undefined : cell.column.getSize()}
             isPinned={cell.column.getIsPinned()}
             rightOffset={cell.column.getAfter('right')}
             leftOffset={cell.column.getStart('left')}
             align={cell.column.columnDef.meta?.align}
-            style={cell.column.columnDef.meta?.style}
+            style={
+              isUnifiedTableContent
+                ? {
+                    ...getUnifiedColumnSizingStyle(cell.column),
+                    ...cell.column.columnDef.meta?.style,
+                  }
+                : cell.column.columnDef.meta?.style
+            }
             data-cell-id={cellId}
             data-column-dataindex={cell.column.columnDef.meta?.dataIndex}
             data-column-title={cell.column.columnDef.meta?.title}

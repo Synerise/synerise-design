@@ -15,7 +15,6 @@ import {
   getDefaultDataTimeOptions,
   withDataFormat,
 } from '@synerise/ds-core';
-/* eslint-disable import/named -- re-exports via barrel; import/named can't resolve them */
 import {
   DayPicker,
   MonthPicker,
@@ -25,7 +24,6 @@ import {
   datePickerFormat as fnsFormat,
   localeUtils,
 } from '@synerise/ds-date-picker';
-/* eslint-enable import/named */
 import {
   DayBackground,
   DayForeground,

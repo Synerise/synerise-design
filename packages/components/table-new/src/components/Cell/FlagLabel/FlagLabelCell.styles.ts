@@ -6,5 +6,8 @@ export const FlagLabel = styled.div`
   justify-content: flex-start;
   span {
     margin-left: 8px;
+    min-width: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
 `;
