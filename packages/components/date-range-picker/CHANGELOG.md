@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.7.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-date-range-picker@1.6.25...@synerise/ds-date-range-picker@1.7.0) (2026-05-15)
+
+### Features
+
+- **table-new:** render column widths via <colgroup> in unified mode ([5f0fa79](https://github.com/Synerise/synerise-design/commit/5f0fa79a5ef1da6506a5ae3bd0c624c9b794866f))
+
 ## [1.6.25](https://github.com/Synerise/synerise-design/compare/@synerise/ds-date-range-picker@1.6.24...@synerise/ds-date-range-picker@1.6.25) (2026-05-13)
 
 **Note:** Version bump only for package @synerise/ds-date-range-picker

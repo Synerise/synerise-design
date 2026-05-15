@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.44.0](https://github.com/Synerise/synerise-design/compare/storybook@1.43.0...storybook@1.44.0) (2026-05-15)
+
+### Features
+
+- **table-new:** render column widths via <colgroup> in unified mode ([5f0fa79](https://github.com/Synerise/synerise-design/commit/5f0fa79a5ef1da6506a5ae3bd0c624c9b794866f))
+
 # [1.43.0](https://github.com/Synerise/synerise-design/compare/storybook@1.42.11...storybook@1.43.0) (2026-05-13)
 
 ### Features
