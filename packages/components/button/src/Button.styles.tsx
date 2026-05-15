@@ -500,24 +500,24 @@ export const StyledButton = styled(BaseButton)<StyledButtonProps>`
       props.error &&
       props.type === 'secondary' &&
       css`
-        &&.ant-btn {
+        &&&.ant-btn {
           color: ${props.theme.palette[`red-600`]};
           .btn-focus {
             box-shadow: none;
           }
 
-          &&:hover {
+          &&&:hover {
             background-color: ${props.theme.palette[`red-200`]};
             .btn-focus {
               box-shadow: none;
             }
           }
-          &&:focus-visible:not(.pressed) {
+          &&&:focus-visible:not(.pressed) {
             .btn-focus {
               box-shadow: inset 0 0 0 2px ${props.theme.palette['blue-600']};
             }
           }
-          &&.pressed {
+          &&&.pressed {
             background-color: ${props.theme.palette[`red-700`]};
             color: ${props.theme.palette.white};
           }
