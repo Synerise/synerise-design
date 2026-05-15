@@ -12,4 +12,7 @@ export const Label = styled.span`
   font-weight: 500;
   font-size: 13px;
   line-height: 1.38;
+  min-width: 0;
+  text-overflow: ellipsis;
+  overflow: hidden;
 `;

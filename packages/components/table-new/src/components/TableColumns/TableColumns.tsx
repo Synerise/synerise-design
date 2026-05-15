@@ -3,7 +3,9 @@ import React from 'react';
 import { flexRender } from '@tanstack/react-table';
 
 import { type TableColumnsProps } from '../../Table.types';
+import { useStickyContext } from '../../contexts/StickyContext';
 import { useTableContext } from '../../contexts/TableContext';
+import { getUnifiedColumnSizingStyle } from '../../utils/getUnifiedColumnSizingStyle';
 import { isSorted } from '../../utils/sort';
 import { TableColumnSorter } from './TableColumnSorter/TableColumnSorter';
 import * as S from './TableColumns.styles';
@@ -12,7 +14,11 @@ export const TableColumns = <TData extends object>({
   texts,
   disableColumnNamesLineBreak,
 }: TableColumnsProps) => {
-  const { table } = useTableContext<TData>();
+  const { table, rowVirtualizer } = useTableContext<TData>();
+  // Apply colgroup-style inline sizing on <th> only when actually in
+  // colgroup mode: non-sticky AND non-virtual. Virtual+unified still
+  // sizes via the useColumnSizing() CSS variables.
+  const useColgroupSizing = !useStickyContext() && !rowVirtualizer;
   const headerGroups = table.getHeaderGroups();
 
   return (
@@ -36,7 +42,14 @@ export const TableColumns = <TData extends object>({
                   headerIndex={columnIndex}
                   key={id}
                   colSpan={header.colSpan}
-                  style={header.column.columnDef.meta?.style}
+                  style={
+                    useColgroupSizing
+                      ? {
+                          ...getUnifiedColumnSizingStyle(header.column),
+                          ...header.column.columnDef.meta?.style,
+                        }
+                      : header.column.columnDef.meta?.style
+                  }
                   isPinned={header.column.getIsPinned()}
                   leftOffset={header.column.getStart('left')}
                   rightOffset={header.column.getAfter('right')}

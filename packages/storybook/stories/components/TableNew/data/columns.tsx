@@ -76,7 +76,7 @@ export const COLUMNS_WITH_ICONS: ColumnDef<RowType, unknown>[] = [
     accessorKey: 'country',
     id: 'country',
     header: 'Name with flag',
-    size: 240,
+    size: 210,
     enableSorting: true,
     enableMultiSort: true,
     sortingFn: (rowA: Row<RowType>, rowB: Row<RowType>) =>
@@ -181,6 +181,7 @@ export const COLUMNS_WITH_AVATARS: ColumnDef<RowType, unknown>[] = [
     cell: () => {
       return (
         <TableCell.AvatarLabelCell
+          ellipsis
           avatar={
             <Avatar
               backgroundColor="red"
@@ -203,6 +204,7 @@ export const COLUMNS_WITH_AVATARS: ColumnDef<RowType, unknown>[] = [
       const avatar = info.getValue() as RowType['avatar'];
       return (
         <TableCell.AvatarLabelCell
+          ellipsis
           avatarAction={action('Avatar Action')}
           avatar={
             <ObjectAvatar
@@ -225,6 +227,7 @@ export const COLUMNS_WITH_AVATARS: ColumnDef<RowType, unknown>[] = [
       const avatar = info.getValue() as RowType['avatar'];
       return (
         <TableCell.AvatarLabelCell
+          ellipsis
           avatar={
             <ObjectAvatar
               badgeStatus="active"
@@ -254,6 +257,7 @@ export const COLUMNS_WITH_AVATARS: ColumnDef<RowType, unknown>[] = [
       };
       return (
         <TableCell.AvatarLabelCell
+          ellipsis
           avatar={
             <ObjectAvatar
               badgeStatus="active"
@@ -295,6 +299,7 @@ export const COLUMNS_WITH_AVATARS: ColumnDef<RowType, unknown>[] = [
       const avatar = info.getValue() as RowType['avatar'];
       return (
         <TableCell.AvatarLabelCell
+          ellipsis
           avatar={
             <ObjectAvatar
               badgeStatus="active"

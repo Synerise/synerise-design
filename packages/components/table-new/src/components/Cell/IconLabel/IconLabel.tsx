@@ -13,7 +13,7 @@ const IconLabelCell = ({
 }: IconLabelProps) => (
   <S.IconLabelCell isDisabled={disabled} {...htmlAttributes}>
     {icon && <Icon {...icon} />}
-    {label && <span>{label}</span>}
+    {label && <S.Label>{label}</S.Label>}
   </S.IconLabelCell>
 );
 

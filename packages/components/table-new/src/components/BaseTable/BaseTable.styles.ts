@@ -66,33 +66,61 @@ export const TableSkeleton = styled(DSSkeleton)<{ skeletonWidth?: string }>`
 
 export const Tfoot = styled.tfoot``;
 
-export const StyledTable = styled.table`
+export const StyledTable = styled.table<{ $tableLayoutAuto?: boolean }>`
   width: var(--table-size);
   min-width: 100%;
   border-spacing: 0;
-  table-layout: fixed;
+  table-layout: ${(props) => (props.$tableLayoutAuto ? 'auto' : 'fixed')};
   border-collapse: separate; /* required for sticky cells to keep their backgrounds */
 
-  @keyframes ds-table-row-highlight {
-    0% {
-      background-color: transparent;
+  /*
+    In unified-content mode (colgroup-driven layout) revert the
+    row-as-mini-table trick from commonRowStyles. Each tr must render as a
+    real table-row so the parent table's colgroup widths apply across rows.
+    The double-ampersand boosts selector specificity over the row's own class.
+  */
+  ${(props) =>
+    props.$tableLayoutAuto &&
+    css`
+      && tr {
+        display: table-row;
+        width: auto;
+        table-layout: auto;
+      }
+      && thead {
+        display: table-header-group;
+      }
+      && tbody {
+        display: table-row-group;
+      }
+      && th,
+      && td {
+        display: table-cell;
+      }
+    `}
+
+  ${(props) => css`
+    @keyframes ds-table-row-highlight {
+      0% {
+        background-color: transparent;
+      }
+      5% {
+        background-color: var(
+          --ds-highlight-color,
+          ${props.theme.palette['blue-050']}
+        );
+      }
+      30% {
+        background-color: var(
+          --ds-highlight-color,
+          ${props.theme.palette['blue-050']}
+        );
+      }
+      100% {
+        background-color: transparent;
+      }
     }
-    5% {
-      background-color: var(
-        --ds-highlight-color,
-        ${(props) => props.theme.palette['blue-050']}
-      );
-    }
-    30% {
-      background-color: var(
-        --ds-highlight-color,
-        ${(props) => props.theme.palette['blue-050']}
-      );
-    }
-    100% {
-      background-color: transparent;
-    }
-  }
+  `}
 
   tr.ds-table-row-highlight td {
     transition: background 0.3s ease-in-out;

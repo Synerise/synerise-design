@@ -255,6 +255,16 @@ export const useTable = <TData, TValue>({
     : undefined;
 
   const table = useReactTable({
+    // Override TanStack's built-in sizing defaults (size: 150, minSize: 20,
+    // maxSize: Number.MAX_SAFE_INTEGER) so column.columnDef.size/minSize/maxSize
+    // stay undefined when the consumer did not set them. BaseTable's
+    // unified-mode <colgroup> uses these to detect user-set widths;
+    // column.getSize() still falls back to TanStack's internal defaults.
+    defaultColumn: {
+      size: undefined,
+      minSize: undefined,
+      maxSize: undefined,
+    },
     getRowId: memoizedGetRowKey,
     data: displayData,
     columns,

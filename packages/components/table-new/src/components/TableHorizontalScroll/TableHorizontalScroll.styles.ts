@@ -2,10 +2,12 @@ import styled from 'styled-components';
 
 import { hexToRgba } from '@synerise/ds-utils';
 
-export const HorizontalScrollWrapper = styled.div`
+export const HorizontalScrollWrapper = styled.div<{
+  nativeScrollbar?: boolean;
+}>`
   overflow-x: auto;
   overflow-y: hidden;
-  scrollbar-width: none;
+  ${(props) => !props.nativeScrollbar && 'scrollbar-width: none;'}
   overscroll-behavior-y: auto;
   overscroll-behavior-x: contain;
 `;

@@ -18,54 +18,64 @@ type TableHorizontalScrollProps = WithHTMLAttributes<
     children?: ReactNode;
     stickyLeft?: number;
     stickyRight?: number;
+    nativeScrollbar?: boolean;
   }
 >;
 export const TableHorizontalScroll = forwardRef<
   HTMLDivElement,
   TableHorizontalScrollProps
->(({ children, stickyLeft = 0, stickyRight = 0, ...rest }, ref) => {
-  const [isMaxLeft, setIsMaxLeft] = useState(true);
-  const [isMaxRight, setIsMaxRight] = useState(true);
-  const wrapperRef = useRef<HTMLDivElement>(null);
+>(
+  (
+    { children, stickyLeft = 0, stickyRight = 0, nativeScrollbar, ...rest },
+    ref,
+  ) => {
+    const [isMaxLeft, setIsMaxLeft] = useState(true);
+    const [isMaxRight, setIsMaxRight] = useState(true);
+    const wrapperRef = useRef<HTMLDivElement>(null);
 
-  const mergedRef = useMergeRefs([wrapperRef, ref]);
+    const mergedRef = useMergeRefs([wrapperRef, ref]);
 
-  const calculateOffsets = useCallback((element: Element) => {
-    if (element.scrollWidth === element.clientWidth) {
-      setIsMaxLeft(true);
-      setIsMaxRight(true);
-      return;
-    }
-    setIsMaxLeft(element.scrollLeft === 0);
-    setIsMaxRight(
-      element.scrollLeft + element.clientWidth >= element.scrollWidth,
+    const calculateOffsets = useCallback((element: Element) => {
+      if (element.scrollWidth === element.clientWidth) {
+        setIsMaxLeft(true);
+        setIsMaxRight(true);
+        return;
+      }
+      setIsMaxLeft(element.scrollLeft === 0);
+      setIsMaxRight(
+        element.scrollLeft + element.clientWidth >= element.scrollWidth,
+      );
+    }, []);
+    const handleScroll = useCallback(
+      (event: UIEvent) => {
+        calculateOffsets(event.currentTarget);
+      },
+      [calculateOffsets],
     );
-  }, []);
-  const handleScroll = useCallback(
-    (event: UIEvent) => {
-      calculateOffsets(event.currentTarget);
-    },
-    [calculateOffsets],
-  );
 
-  useResizeObserver(
-    wrapperRef,
-    () => wrapperRef.current && calculateOffsets(wrapperRef.current),
-  );
+    useResizeObserver(
+      wrapperRef,
+      () => wrapperRef.current && calculateOffsets(wrapperRef.current),
+    );
 
-  return (
-    <>
-      <S.HorizontalScrollContainer
-        showLeftShadow={!isMaxLeft}
-        showRightShadow={!isMaxRight}
-        {...rest}
-      >
-        <S.LeftShadow offset={stickyLeft} />
-        <S.HorizontalScrollWrapper ref={mergedRef} onScroll={handleScroll}>
-          {children}
-        </S.HorizontalScrollWrapper>
-        <S.RightShadow offset={stickyRight} />
-      </S.HorizontalScrollContainer>
-    </>
-  );
-});
+    return (
+      <>
+        <S.HorizontalScrollContainer
+          showLeftShadow={!isMaxLeft}
+          showRightShadow={!isMaxRight}
+          {...rest}
+        >
+          <S.LeftShadow offset={stickyLeft} />
+          <S.HorizontalScrollWrapper
+            nativeScrollbar={nativeScrollbar}
+            ref={mergedRef}
+            onScroll={handleScroll}
+          >
+            {children}
+          </S.HorizontalScrollWrapper>
+          <S.RightShadow offset={stickyRight} />
+        </S.HorizontalScrollContainer>
+      </>
+    );
+  },
+);

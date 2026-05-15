@@ -12,3 +12,9 @@ export const IconLabelCell = styled.span<{ isDisabled?: boolean }>`
     margin-right: 8px;
   }
 `;
+
+export const Label = styled.span`
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+`;
