@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.3.1](https://github.com/Synerise/synerise-design/compare/@synerise/ds-table-new@1.3.0...@synerise/ds-table-new@1.3.1) (2026-05-19)
+
+### Bug Fixes
+
+- **table-new:** reinstate optional indent without expander ([015517a](https://github.com/Synerise/synerise-design/commit/015517a00a7d9dd1a4b50e7dad20c7fb71ede2d8))
+
 # [1.3.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-table-new@1.2.0...@synerise/ds-table-new@1.3.0) (2026-05-15)
 
 ### Features
