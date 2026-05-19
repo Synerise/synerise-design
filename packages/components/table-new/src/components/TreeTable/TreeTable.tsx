@@ -37,6 +37,7 @@ export const TreeTable = <TData extends object, TValue>({
   expandedRowKeys: controlledExpandedKeys,
   onExpandRow,
   expandIconColumnIndex = 0,
+  hideExpandIcon = false,
   rowKey,
   ...props
 }: TreeTableProps<TData, TValue>) => {
@@ -133,29 +134,32 @@ export const TreeTable = <TData extends object, TValue>({
                 )(info)
               : info.getValue();
 
+          const rowPrefix =
+            isParent && !hideExpandIcon ? (
+              <Expander
+                expanded={isExpanded}
+                onClick={(e: React.MouseEvent) => {
+                  e.stopPropagation();
+                  toggleExpand(rowId);
+                }}
+              />
+            ) : depth > 0 ? (
+              <Icon
+                component={<ChildRowLeftDownM />}
+                color={theme.palette['grey-400']}
+              />
+            ) : null;
+
+          const finalDepth = hideExpandIcon && depth > 0 ? depth - 1 : depth;
+
           return (
-            <S.TreeCellWrapper $indentWidth={depth * INDENT_SIZE}>
-              {depth > 0 && (
+            <S.TreeCellWrapper $indentWidth={finalDepth * INDENT_SIZE}>
+              {depth > 0 && !hideExpandIcon && (
                 <S.IndentsContainer $depth={depth}>
                   {indents}
                 </S.IndentsContainer>
               )}
-              <S.ExpanderWrapper>
-                {isParent ? (
-                  <Expander
-                    expanded={isExpanded}
-                    onClick={(e: React.MouseEvent) => {
-                      e.stopPropagation();
-                      toggleExpand(rowId);
-                    }}
-                  />
-                ) : depth > 0 ? (
-                  <Icon
-                    component={<ChildRowLeftDownM />}
-                    color={theme.palette['grey-400']}
-                  />
-                ) : null}
-              </S.ExpanderWrapper>
+              {rowPrefix && <S.ExpanderWrapper>{rowPrefix}</S.ExpanderWrapper>}
               {originalCell as React.ReactNode}
             </S.TreeCellWrapper>
           );
@@ -169,6 +173,7 @@ export const TreeTable = <TData extends object, TValue>({
     hasChildren,
     expandedKeys,
     toggleExpand,
+    hideExpandIcon,
   ]);
 
   return (

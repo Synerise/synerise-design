@@ -23,8 +23,17 @@ export type TreeTableProps<TData, TValue> = Omit<
   onExpandRow?: (key: string, expanded: boolean) => void;
   /**
    * Index of the column where the expand icon is rendered.
-   * Set to -1 to hide the expand icon entirely.
+   * Set to -1 to hide the expand icon and skip indentation entirely.
    * @default 0
    */
   expandIconColumnIndex?: number;
+  /**
+   * Suppress the expander button on parent rows while still rendering
+   * indentation and the leaf glyph (ChildRowLeftDownM) on every indented row.
+   * Use when expand/collapse is not user-controllable but you still want
+   * visual hierarchy matching the legacy antd table.
+   * Ignored when `expandIconColumnIndex` is negative.
+   * @default false
+   */
+  hideExpandIcon?: boolean;
 };
