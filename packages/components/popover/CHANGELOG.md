@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.6.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-popover@1.5.5...@synerise/ds-popover@1.6.0) (2026-05-22)
+
+### Features
+
+- **modal:** migration from antd ([3588b65](https://github.com/Synerise/synerise-design/commit/3588b65fbe67838fed4ee5125090ad47d334e04b))
+
 ## [1.5.5](https://github.com/Synerise/synerise-design/compare/@synerise/ds-popover@1.5.4...@synerise/ds-popover@1.5.5) (2026-05-04)
 
 ### Bug Fixes

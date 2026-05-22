@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.9.0](https://github.com/synerise/synerise-design/compare/@synerise/ds-utils@1.8.1...@synerise/ds-utils@1.9.0) (2026-05-22)
+
+### Features
+
+- **modal:** migration from antd ([3588b65](https://github.com/synerise/synerise-design/commit/3588b65fbe67838fed4ee5125090ad47d334e04b))
+
 ## [1.8.1](https://github.com/synerise/synerise-design/compare/@synerise/ds-utils@1.8.0...@synerise/ds-utils@1.8.1) (2026-05-04)
 
 ### Bug Fixes

@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.4.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-scrollbar@1.3.5...@synerise/ds-scrollbar@1.4.0) (2026-05-22)
+
+### Features
+
+- **modal:** migration from antd ([3588b65](https://github.com/Synerise/synerise-design/commit/3588b65fbe67838fed4ee5125090ad47d334e04b))
+
 ## [1.3.5](https://github.com/Synerise/synerise-design/compare/@synerise/ds-scrollbar@1.3.4...@synerise/ds-scrollbar@1.3.5) (2026-05-13)
 
 **Note:** Version bump only for package @synerise/ds-scrollbar

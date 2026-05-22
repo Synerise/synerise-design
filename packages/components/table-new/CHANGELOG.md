@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.4.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-table-new@1.3.1...@synerise/ds-table-new@1.4.0) (2026-05-22)
+
+### Features
+
+- **modal:** migration from antd ([3588b65](https://github.com/Synerise/synerise-design/commit/3588b65fbe67838fed4ee5125090ad47d334e04b))
+
 ## [1.3.1](https://github.com/Synerise/synerise-design/compare/@synerise/ds-table-new@1.3.0...@synerise/ds-table-new@1.3.1) (2026-05-19)
 
 ### Bug Fixes

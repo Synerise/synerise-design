@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.8.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-manageable-list@1.7.26...@synerise/ds-manageable-list@1.8.0) (2026-05-22)
+
+### Features
+
+- **modal:** migration from antd ([3588b65](https://github.com/Synerise/synerise-design/commit/3588b65fbe67838fed4ee5125090ad47d334e04b))
+
 ## [1.7.26](https://github.com/Synerise/synerise-design/compare/@synerise/ds-manageable-list@1.7.25...@synerise/ds-manageable-list@1.7.26) (2026-05-15)
 
 **Note:** Version bump only for package @synerise/ds-manageable-list

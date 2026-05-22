@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.5.0](https://github.com/synerise/synerise-design/compare/@synerise/ds-modal@1.4.14...@synerise/ds-modal@1.5.0) (2026-05-22)
+
+### Features
+
+- **modal:** migration from antd ([3588b65](https://github.com/synerise/synerise-design/commit/3588b65fbe67838fed4ee5125090ad47d334e04b))
+
 ## [1.4.14](https://github.com/synerise/synerise-design/compare/@synerise/ds-modal@1.4.13...@synerise/ds-modal@1.4.14) (2026-05-15)
 
 **Note:** Version bump only for package @synerise/ds-modal

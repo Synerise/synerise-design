@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.45.0](https://github.com/Synerise/synerise-design/compare/storybook@1.44.1...storybook@1.45.0) (2026-05-22)
+
+### Features
+
+- **modal:** migration from antd ([3588b65](https://github.com/Synerise/synerise-design/commit/3588b65fbe67838fed4ee5125090ad47d334e04b))
+
 ## [1.44.1](https://github.com/Synerise/synerise-design/compare/storybook@1.44.0...storybook@1.44.1) (2026-05-19)
 
 **Note:** Version bump only for package storybook

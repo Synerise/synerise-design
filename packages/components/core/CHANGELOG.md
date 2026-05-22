@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.12.0](https://github.com/synerise/synerise-design/compare/@synerise/ds-core@1.11.4...@synerise/ds-core@1.12.0) (2026-05-22)
+
+### Features
+
+- **modal:** migration from antd ([3588b65](https://github.com/synerise/synerise-design/commit/3588b65fbe67838fed4ee5125090ad47d334e04b))
+
 ## [1.11.4](https://github.com/synerise/synerise-design/compare/@synerise/ds-core@1.11.3...@synerise/ds-core@1.11.4) (2026-05-04)
 
 ### Bug Fixes
