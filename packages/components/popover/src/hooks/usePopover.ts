@@ -116,7 +116,13 @@ export const usePopover = ({
   const click = useClick(context, {
     enabled: isClickEnabled && controlledOpen === undefined,
   });
-  const { delay: groupDelay } = useDelayGroup(context);
+  // Only participate in an ambient FloatingDelayGroup when this popover is
+  // hover-triggered. Otherwise a click-triggered popover (e.g. ds-dropdown)
+  // rendered inside a hover delay group (e.g. ds-list-item) gets force-closed
+  // whenever a sibling tooltip becomes the group's current floating element.
+  const { delay: groupDelay } = useDelayGroup(context, {
+    enabled: isHoverEnabled,
+  });
 
   const hover = useHover(context, {
     enabled: isHoverEnabled,
@@ -130,7 +136,13 @@ export const usePopover = ({
     ...hoverConfig,
   });
 
-  const dismiss = useDismiss(context, dismissConfig);
+  const dismiss = useDismiss(context, {
+    ...dismissConfig,
+    bubbles:
+      typeof dismissConfig.bubbles === 'object'
+        ? { outsidePress: false, ...dismissConfig.bubbles }
+        : (dismissConfig.bubbles ?? { outsidePress: false }),
+  });
   const role = useRole(context);
 
   const interactions = useInteractions([click, hover, dismiss, role, listNav]);

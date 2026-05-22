@@ -180,7 +180,7 @@ const FilterItemComponent = ({
       <ModalProxy
         blank
         onCancel={(): void => setConfirmDeleteVisible(false)}
-        visible={confirmDeleteVisible}
+        open={confirmDeleteVisible}
         size="small"
         footer={null}
       >

@@ -33,6 +33,8 @@ export * from './getPopupContainer';
 export * from './useLatestRef';
 export * from './useDelimiterEscape/useDelimiterEscape';
 
+export { useFocusTrap } from './useFocusTrap/useFocusTrap';
+
 export const NOOP = (): void => {};
 
 export type {

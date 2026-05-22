@@ -53,7 +53,7 @@ export const Prompt = ({
       onCancel={onCancel}
       size="small"
       footer={modalFooter}
-      bodyStyle={{ padding: 0 }}
+      bodyFullWidth
     >
       <S.PromptContent>{content}</S.PromptContent>
     </Modal>

@@ -12,7 +12,6 @@ export const mockModal = () => {
     default: jest.fn(
       ({
         open,
-        visible,
         title,
         children,
         onCancel,
@@ -23,8 +22,7 @@ export const mockModal = () => {
         texts,
         'data-testid': dataTestId,
       }: MockModalProps) => {
-        const isOpen = open ?? visible;
-        if (!isOpen) {
+        if (!open) {
           return null;
         }
 
@@ -74,9 +72,8 @@ export const mockModal = () => {
 export const mockModalMinimal = () => {
   jest.mock('@synerise/ds-modal', () => ({
     __esModule: true,
-    default: jest.fn(({ open, visible, children }: MockModalProps) => {
-      const isOpen = open ?? visible;
-      return isOpen ? <div data-testid="ds-modal">{children}</div> : null;
+    default: jest.fn(({ open, children }: MockModalProps) => {
+      return open ? <div data-testid="ds-modal">{children}</div> : null;
     }),
   }));
 };

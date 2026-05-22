@@ -183,52 +183,31 @@ export default {
 
       return result;
     };
-    const [localDataSource, setLocalDataSource] = useState<
-      readonly (RowType | GroupedDataItem)[]
-    >(() => {
-      switch (groupSettings?.settings?.type) {
-        case GROUP_BY.value: {
-          return groupByValue(groupSettings);
+    const [localDataSource] = useState<readonly (RowType | GroupedDataItem)[]>(
+      () => {
+        switch (groupSettings?.settings?.type) {
+          case GROUP_BY.value: {
+            return groupByValue(groupSettings);
+          }
+          case GROUP_BY.ranges: {
+            return groupByRanges(groupSettings);
+          }
+          case GROUP_BY.interval: {
+            return groupByInterval(groupSettings);
+          }
         }
-        case GROUP_BY.ranges: {
-          return groupByRanges(groupSettings);
-        }
-        case GROUP_BY.interval: {
-          return groupByInterval(groupSettings);
-        }
-      }
-      return DATA_SOURCE;
-    });
+        return DATA_SOURCE;
+      },
+    );
     const {
       columns,
-      // setColumns,
-      selectedViewId,
-      // setSavedViewsVisible,
-      // setColumnManagerVisible,
-      selectedFilterId,
-      itemFilterVisible,
-      setItemFilterVisible,
-      // modalVisible,
-      setModalVisible,
-      // columnManagerVisible,
-      // savedViewsVisible,
-      handleSetSelectedFilter,
-      // handleSetSelectedView,
-      categories,
       searchFilterValue,
       setSearchFilterValue,
       searchSuggestions,
       setSearchSuggestions,
       searchValue,
       setSearchValue,
-      // editItem,
-      // saveFilter,
-      savedViews,
-      // removeViewItem,
-      // removeItem,
-      // editViewItem,
     } = useFiltersAndSearch(CATEGORIES, VIEWS, COLUMNS);
-    // const [groupSettings, setGroupSettings] = useState(groupConfig);
 
     const getColumns = () => {
       return columns
@@ -351,11 +330,11 @@ export default {
         const paramName = value.split(' ').join('_').toLowerCase();
         const data = groupSettings
           ? dataSource.reduce((items, group) => {
-              if (group.rows) {
-                return [...items, ...group.rows];
-              }
-              return [...items];
-            }, [])
+            if (group.rows) {
+              return [...items, ...group.rows];
+            }
+            return [...items];
+          }, [])
           : dataSource;
 
         const allSuggestions = data.map((record) => {
@@ -378,8 +357,6 @@ export default {
       </Button>
     );
 
-    // console.log(finalColumns)
-    // console.log(filteredDataSource())
     return (
       <>
         <Table

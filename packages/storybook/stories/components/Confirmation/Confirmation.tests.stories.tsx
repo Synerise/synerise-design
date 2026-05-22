@@ -1,8 +1,8 @@
 import React from 'react';
-import { expect, fn, userEvent, waitFor, within } from 'storybook/test';
+import { userEvent, within } from 'storybook/test';
 
 import { Meta, StoryObj } from '@storybook/react-vite';
-import Confirmation, { ConfirmationProps } from '@synerise/ds-confirmation';
+import { ConfirmationProps } from '@synerise/ds-confirmation';
 import { ListItemProps } from '@synerise/ds-list-item';
 
 import ConfirmationMeta, { RelatedObjects } from './Confirmation.stories';

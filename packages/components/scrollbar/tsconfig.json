@@ -1,6 +1,7 @@
 {
   "include": [
-    "src"
+    "src",
+    "../../../global.d.ts"
   ],
   "exclude": [
     "src/**/__specs__/**",

@@ -45,7 +45,7 @@ const FormulaModal: React.FC<FormulaModalProps> = ({
       closable
       onOk={handleOk}
       onCancel={onCancel}
-      visible={visible}
+      open={visible}
       okText={texts.modalApply}
       cancelText={texts.modalCancel}
     >

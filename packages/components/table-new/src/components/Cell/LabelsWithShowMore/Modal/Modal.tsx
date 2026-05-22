@@ -7,7 +7,7 @@ import { VirtualTable } from '../../../../VirtualTable';
 import { type DataSourceType, type ModalProps } from './Modal.types';
 
 const DetailsModal = ({
-  visible,
+  isOpen,
   hide,
   items,
   texts,
@@ -40,11 +40,11 @@ const DetailsModal = ({
   return (
     <Modal
       size="small"
-      visible={visible}
+      open={isOpen}
       title={texts.modalTitle}
       closable
       onCancel={hide}
-      bodyStyle={{ padding: 0 }}
+      bodyFullWidth
       footer={null}
     >
       <VirtualTable<DataSourceType, string>

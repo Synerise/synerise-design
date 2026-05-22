@@ -38,6 +38,9 @@ export const Title = styled(TypographyTitle)`
 
 export const FooterRight = styled.div`
   flex: 1 1 auto;
+  display: flex;
+  gap: 8px;
+  justify-content: end;
 `;
 
 export const FooterLeft = styled.div`
@@ -47,6 +50,7 @@ export const FooterLeft = styled.div`
 
 export const Footer = styled.div`
   display: flex;
+  flex: 0 0 100%;
   justify-content: space-between;
 `;
 

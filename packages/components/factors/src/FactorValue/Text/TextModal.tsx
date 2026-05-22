@@ -35,7 +35,7 @@ const TextModal: React.FC<TextModalProps> = ({
       closable
       onOk={handleOk}
       onCancel={handleCancel}
-      visible={visible}
+      open={visible}
       okText={texts.modalApply}
       cancelText={texts.modalCancel}
     >

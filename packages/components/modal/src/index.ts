@@ -1,4 +1,5 @@
-export { default, buildModalFooter } from './Modal';
-export { ModalTitle, TitleContainer } from './Elements/ModalTitle';
+export { default, Modal } from './Modal';
+export { showModal } from './ShowModal';
+export { ModalTitle } from './Elements/ModalTitle';
 export { ModalFooter } from './Elements/ModalFooter';
-export type { Props, ModalProps } from './Modal.types';
+export * from './Modal.types';

@@ -18,6 +18,7 @@ List of utils:
 - useCombinedRefs,
 - useDelimiterEscape,
 - useElementInView,
+- useFocusTrap,
 - useIsMounted,
 - useKeyboardShortcuts,
 - useLatestRef,

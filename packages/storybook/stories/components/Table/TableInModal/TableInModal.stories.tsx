@@ -58,7 +58,7 @@ export default {
       '5',
     ]);
     const [starredRowKeys, setStarredRowKeys] = useState<string[]>([]);
-    const [modalVisible, setModalVisible] = useState(false);
+    const [modalOpen, setModalOpen] = useState(false);
 
     const filteredDataSource = useMemo(() => {
       return !searchValue
@@ -121,16 +121,16 @@ export default {
         ];
     return (
       <>
-        <Button type="primary" onClick={() => setModalVisible(true)}>
+        <Button type="primary" onClick={() => setModalOpen(true)}>
           Show table
         </Button>
         <Modal
           size="medium"
-          visible={modalVisible}
+          open={modalOpen}
           title={'Table'}
-          bodyStyle={{ padding: 0 }}
+          bodyFullWidth
           onCancel={() => {
-            setModalVisible(false);
+            setModalOpen(false);
             setSelectedRowKeys([]);
           }}
         >

@@ -149,9 +149,10 @@ const Confirmation = <ItemType extends ListItemProps>({
       {...modalProps}
       onCancel={onCancel}
       size="small"
+      centered
       blank={mode === 'default'}
       footer={modalFooter}
-      bodyStyle={{ padding: 0 }}
+      bodyFullWidth
       title={modalTitle}
     >
       {modalContent}

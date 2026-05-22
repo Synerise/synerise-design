@@ -5,6 +5,7 @@ import { Meta, StoryObj } from '@storybook/react-vite';
 import Icon, { FileM, SearchM } from '@synerise/ds-icon';
 import { Input } from '@synerise/ds-input';
 import type { InputProps } from '@synerise/ds-input';
+import Modal from '@synerise/ds-modal';
 
 import {
   BOOLEAN_CONTROL,
@@ -17,7 +18,6 @@ import {
   controlFromOptionsArray,
   fixedWrapper300,
 } from '../../utils';
-import { Modal } from './Input.styles';
 import { addonType, renderAddonComponent } from './Input.utils';
 
 const defaultRender = (args: InputProps) => {
@@ -197,7 +197,7 @@ export const AutoresizeInModal: Story = {
     return storyContext.viewMode === 'story' ? (
       <Modal
         size="small"
-        visible={true}
+        open={true}
         title={'Title'}
         bodyStyle={{ padding: '20px 100px' }}
         onCancel={() => setOpen(!open)}

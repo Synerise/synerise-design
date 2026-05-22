@@ -3,10 +3,11 @@ import { fn } from 'storybook/test';
 
 import { Meta, StoryObj } from '@storybook/react-vite';
 import { ObjectAvatar } from '@synerise/ds-avatar';
+import Button from '@synerise/ds-button';
 import { theme } from '@synerise/ds-core';
 import Icon, { MailM, UserM } from '@synerise/ds-icon';
 import Layout, { LayoutProps } from '@synerise/ds-layout';
-import Modal from '@synerise/ds-modal';
+import Modal, { showModal } from '@synerise/ds-modal';
 import Stepper from '@synerise/ds-stepper';
 
 import { Placeholder, PropNamePill } from '../../constants';
@@ -18,6 +19,7 @@ import {
   centeredPaddedWrapper,
   controlFromOptionsArray,
   reactNodeAsSelect,
+  sleep,
 } from '../../utils';
 import { STEPPER_STEPS, StepData } from '../Stepper/Stepper.data';
 import { SIZES, TAB_PROPS, headerWithPrefix } from './Modal.data';
@@ -70,6 +72,9 @@ export default {
     onCancel: {
       action: 'onCancel',
     },
+    afterClose: {
+      action: 'afterClose',
+    },
     settingButton: REACT_NODE_AS_STRING,
     showHeaderAction: BOOLEAN_CONTROL,
     headerActions: REACT_NODE_AS_STRING,
@@ -83,7 +88,9 @@ export default {
     },
   },
   args: {
+    open: true,
     onOk: fn(),
+    afterClose: fn(),
     onCancel: fn(),
   },
 } as Meta<typeof Modal>;
@@ -92,27 +99,38 @@ type Story = StoryObj<typeof Modal>;
 
 export const Blank: Story = {
   args: {
-    open: true,
     blank: true,
     footer: null,
     size: 'small',
     children: <div style={{ height: 362 }}></div>,
   },
+  parameters: {
+    docs: {
+      source: {
+        code: '<Modal blank footer={null} size="small" open>\n  <div style={{ height: 362 }} />\n</Modal>',
+      },
+    },
+  },
 };
 
 export const withHeader: Story = {
   args: {
-    open: true,
     title: 'title',
     footer: null,
     size: 'small',
     children: <div style={{ height: 362 }}></div>,
   },
+  parameters: {
+    docs: {
+      source: {
+        code: '<Modal title="title" footer={null} size="small" open>\n  <div style={{ height: 362 }} />\n</Modal>',
+      },
+    },
+  },
 };
 
 export const withTabs: Story = {
   args: {
-    open: true,
     headerTabProps: TAB_PROPS,
     title: (
       <>
@@ -128,34 +146,77 @@ export const withTabs: Story = {
     size: 'small',
     children: <Placeholder $height={400} />,
   },
+  parameters: {
+    docs: {
+      source: {
+        code: '<Modal\n  title="title"\n  headerTabProps={TAB_PROPS}\n  headerBottomBar={<div>bottom bar</div>}\n  footer={null}\n  size="small"\n  open\n>\n  {/* content */}\n</Modal>',
+      },
+    },
+  },
 };
 
 export const Fullscreen: Story = {
   args: {
-    open: true,
     title: 'title',
     size: 'fullScreen',
     children: <Placeholder $height={1400} />,
+  },
+  parameters: {
+    docs: {
+      source: {
+        code: '<Modal title="title" size="fullScreen" open>\n  {/* content */}\n</Modal>',
+      },
+    },
   },
 };
 
 export const withFooter: Story = {
   args: {
-    open: true,
     title: 'title',
     size: 'small',
     children: 'Modal content...',
+  },
+  parameters: {
+    docs: {
+      source: {
+        code: '<Modal\n  title="title"\n  size="small"\n  onOk={handleOk}\n  onCancel={handleCancel}\n  open\n>\n  Modal content...\n</Modal>',
+      },
+    },
+  },
+};
+
+export const withFooterPrefixAndSuffix: Story = {
+  args: {
+    title: 'title',
+    size: 'small',
+    children: 'Modal content...',
+    infix: <Button>infix</Button>,
+    prefix: <Button>prefix</Button>,
+    suffix: <Button>suffix</Button>,
+  },
+  parameters: {
+    docs: {
+      source: {
+        code: '<Modal\n  title="title"\n  size="small"\n  infix={<Button>infix</Button>}\n  prefix={<Button>prefix</Button>}\n  suffix={<Button>suffix</Button>}\n  onOk={handleOk}\n  onCancel={handleCancel}\n  open\n>\n  Modal content...\n</Modal>',
+      },
+    },
   },
 };
 
 export const withScroll: Story = {
   args: {
-    open: true,
     title: 'title',
     footer: null,
     size: 'small',
     children: <Placeholder $height={600} />,
     maxViewportHeight: 70,
+  },
+  parameters: {
+    docs: {
+      source: {
+        code: '<Modal\n  title="title"\n  footer={null}\n  size="small"\n  maxViewportHeight={70}\n  open\n>\n  {/* tall content */}\n</Modal>',
+      },
+    },
   },
 };
 
@@ -191,6 +252,13 @@ export const withLayout: StoryObj<LayoutProps & { sidebarHeight: number }> = {
     sidebarHeight: 400,
     bodyBackground: 'grey',
   },
+  parameters: {
+    docs: {
+      source: {
+        code: '<Modal\n  title="title"\n  footer={null}\n  size="large"\n  bodyStyle={{ padding: 0 }}\n  bodyBackground="grey"\n  disableScrollbar\n  maxViewportHeight={70}\n  open\n>\n  <Layout right={{ content: <Sidebar />, opened: true, onChange: () => {} }}>\n    {/* main content */}\n  </Layout>\n</Modal>',
+      },
+    },
+  },
 };
 
 export const ModalWithStepper: Story = {
@@ -215,8 +283,74 @@ export const ModalWithStepper: Story = {
     );
   },
   args: {
-    open: true,
     title: 'title',
     size: 'medium',
+  },
+  parameters: {
+    docs: {
+      source: {
+        code: '<Modal title="title" size="medium" onOk={handleOk} onCancel={handleCancel} open>\n  <Stepper style={{ width: \'100%\', justifyContent: \'center\' }}>\n    {steps.map((step, index) => (\n      <Stepper.Step {...step} active={index === activeStep} done={index < activeStep} />\n    ))}\n  </Stepper>\n</Modal>',
+      },
+    },
+  },
+};
+
+export const ShowModal: Story = {
+  render: (args) => {
+    const handleClick = () => {
+      const ref = showModal({
+        ...args,
+        onOk: () => {
+          ref.destroy();
+        },
+        onCancel: () => {
+          ref.destroy();
+        },
+      });
+    };
+    return <Button onClick={handleClick}>Show modal</Button>;
+  },
+  args: {
+    title: 'title',
+    size: 'small',
+  },
+  parameters: {
+    docs: {
+      source: {
+        code: "const ref = showModal({\n  title: 'title',\n  size: 'small',\n  onOk: () => ref.destroy(),\n  onCancel: () => ref.destroy(),\n});",
+      },
+    },
+  },
+};
+
+export const ShowModalPromise: Story = {
+  render: (args) => {
+    const onOk = async () => {
+      await sleep(1000);
+      return false;
+    };
+    const onCancel = async () => {
+      await sleep(1000);
+      return true;
+    };
+    const handleClick = () => {
+      const ref = showModal({
+        ...args,
+        onOk,
+        onCancel,
+      });
+    };
+    return <Button onClick={handleClick}>Show modal</Button>;
+  },
+  args: {
+    title: 'title',
+    size: 'small',
+  },
+  parameters: {
+    docs: {
+      source: {
+        code: "// onOk / onCancel can return a Promise — the modal stays open until it resolves\nconst ref = showModal({\n  title: 'title',\n  size: 'small',\n  onOk: async () => { await doWork(); },\n  onCancel: async () => { await doCleanup(); },\n});",
+      },
+    },
   },
 };

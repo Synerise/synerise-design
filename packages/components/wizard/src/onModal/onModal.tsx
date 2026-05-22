@@ -31,7 +31,7 @@ const WizardOnModal = ({
 
   return (
     <Modal
-      visible={visible}
+      open={visible}
       onCancel={onClose}
       title={title}
       {...modalProps}

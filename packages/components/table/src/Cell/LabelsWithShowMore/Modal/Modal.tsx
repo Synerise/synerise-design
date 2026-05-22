@@ -39,11 +39,11 @@ const DetailsModal = ({
   return (
     <Modal
       size="small"
-      visible={visible}
+      open={visible}
       title={texts.modalTitle}
       closable
       onCancel={hide}
-      bodyStyle={{ padding: 0 }}
+      bodyFullWidth
       footer={null}
     >
       <VirtualTable

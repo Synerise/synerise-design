@@ -5,9 +5,8 @@ import { fn } from 'storybook/test';
 import { Meta, StoryObj } from '@storybook/react-vite';
 import Button from '@synerise/ds-button';
 import { CardProps } from '@synerise/ds-card';
-import ColumnManager from '@synerise/ds-column-manager';
 import Divider from '@synerise/ds-divider';
-import Icon, { AddM, FilterM, Grid2M } from '@synerise/ds-icon';
+import Icon, { AddM, FilterM } from '@synerise/ds-icon';
 import ItemFilter from '@synerise/ds-item-filter';
 import Menu from '@synerise/ds-menu';
 import Modal from '@synerise/ds-modal';
@@ -20,7 +19,6 @@ import { TableMeta, renderWithIconInHeaders } from '../Table.utils';
 import {
   CATEGORIES,
   COLUMNS,
-  COLUMN_MANAGER_TEXTS,
   CategoriesType,
   DATA_SOURCE,
   PARAMETERS,
@@ -121,10 +119,10 @@ export default {
       return !searchValue
         ? dataSource
         : dataSource.filter((record) => {
-            return record.name
-              .toLowerCase()
-              .includes(searchValue.toLowerCase());
-          });
+          return record.name
+            .toLowerCase()
+            .includes(searchValue.toLowerCase());
+        });
     }, [searchFilterValue, searchValue, dataSource]);
 
     const recent = dataSource.map((record) => ({
@@ -150,9 +148,9 @@ export default {
         });
         return allSuggestions
           ? allSuggestions.reduce((unique, item) => {
-              const exist = unique.find((record) => record.text === item.text);
-              return exist ? unique : [...unique, item];
-            }, [] as SuggestionType[])
+            const exist = unique.find((record) => record.text === item.text);
+            return exist ? unique : [...unique, item];
+          }, [] as SuggestionType[])
           : [];
       }
       return [];
@@ -285,7 +283,7 @@ export default {
           blank
           closable
           onCancel={() => setModalVisible(false)}
-          visible={modalVisible}
+          open={modalVisible}
           size={'small'}
           footer={null}
         >

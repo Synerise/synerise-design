@@ -1,21 +1,7 @@
 import styled from 'styled-components';
-import { ModalProps } from 'antd/lib/modal';
 
-import DsModal, { TitleContainer } from '@synerise/ds-modal';
-import Tag from '@synerise/ds-tag';
 import { UserAvatar } from '@synerise/ds-avatar';
-
-export const Modal = styled(DsModal)<ModalProps & { withTabs?: boolean }>`
-  .ant-modal-header {
-    ${props => !!props.withTabs && `padding-bottom: 0px;`}
-  }
-  ${TitleContainer} {
-    ${props => !!props.withTabs && `align-items:flex-start`}
-  }
-`;
-
-
-
+import Tag from '@synerise/ds-tag';
 
 export const TagAddon = styled(Tag)`
   height: 32px;

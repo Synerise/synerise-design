@@ -110,7 +110,7 @@ export const ModalWithCodeArea: Story = {
       <Modal
         bodyStyle={{ padding: 0, margin: 0 }}
         size="medium"
-        visible
+        open
         title="Modal with code-area"
       >
         <div style={{ marginBottom: '-12px' }}>
