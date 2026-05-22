@@ -9,7 +9,9 @@
     "src/**/*.spec.ts",
     "src/**/*.spec.tsx",
     "src/**/jest.ts",
-    "src/**/jest.tsx"
+    "src/**/jest.tsx",
+    "src/**/*.figma.tsx",
+    "src/**/*.figma.ts"
   ],
   "extends": "../../../config/typescript/tsconfig.base.json",
   "compilerOptions": {

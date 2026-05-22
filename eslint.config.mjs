@@ -28,6 +28,8 @@ export default defineConfig([
       '**/core/src/js/DSProvider/ThemeProvider/variables.ts',
       'packages/storybook/',
       '*.d.ts',
+      '**/*.figma.tsx',
+      '**/*.figma.ts',
       ...testFiles,
     ],
   },

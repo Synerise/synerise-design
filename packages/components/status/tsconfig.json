@@ -6,7 +6,9 @@
     "src/**/__specs__/**",
     "src/**/__spec__/**",
     "src/**/*.spec.ts",
-    "src/**/*.spec.tsx"
+    "src/**/*.spec.tsx",
+    "src/**/*.figma.tsx",
+    "src/**/*.figma.ts"
   ],
   "extends": "../../../config/typescript/tsconfig.base.json",
   "compilerOptions": {
