@@ -4,6 +4,7 @@ import {
   DataFormatConfigProvider,
   type DataFormatConfigProviderProps,
 } from '../data-format';
+import PortalRenderer from '../portal/PortalRenderer';
 import '../style';
 import Toaster, {
   TOASTER_DEFAULTS,
@@ -46,6 +47,7 @@ const DSProvider = ({
         <DataFormatConfigProvider dataFormatConfig={dataFormatConfig}>
           <ToasterProvider toasterProps={toasterProps || TOASTER_DEFAULTS}>
             {children}
+            <PortalRenderer />
             {toasterProps !== false && <Toaster />}
           </ToasterProvider>
         </DataFormatConfigProvider>

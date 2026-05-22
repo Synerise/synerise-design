@@ -133,10 +133,10 @@ export default {
     );
     return (
       <ModalProxy
-        visible
+        open
         size="medium"
         title="VirtualTable with expandable rows"
-        bodyStyle={{ padding: 0 }}
+        bodyFullWidth
       >
         <VirtualTable
           {...args}

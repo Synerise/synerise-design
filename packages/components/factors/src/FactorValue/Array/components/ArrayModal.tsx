@@ -198,7 +198,7 @@ export const ArrayModal = <ItemType extends 'string' | 'number'>({
         okButton: texts.modalApply,
         cancelButton: texts.modalCancel,
       }}
-      bodyStyle={{ padding: 0 }}
+      bodyFullWidth
       footer={readOnly ? null : undefined}
       prefix={clearButton}
       viewportHeight={MODAL_VIEWPORT_HEIGHT}

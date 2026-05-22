@@ -1,4 +1,5 @@
 export { default } from './Confirmation';
+export { showConfirmation } from './ShowConfirmation';
 
 export type {
   ConfirmationProps,

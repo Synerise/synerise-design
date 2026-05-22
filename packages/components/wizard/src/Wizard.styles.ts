@@ -99,10 +99,12 @@ export const ModalWizardButtonsInfix = styled.div`
 export const ModalWizardButtonsSuffix = styled.div`
   align-self: flex-end;
   display: flex;
+  gap: 8px;
 `;
 export const ModalWizardButtonsPrefix = styled.div`
   align-self: flex-start;
   display: flex;
+  gap: 8px;
 `;
 
 export const FooterLeftSide = styled.div`

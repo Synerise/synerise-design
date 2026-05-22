@@ -1,13 +1,24 @@
-import { type ModalProps as AntdModalProps } from 'antd';
-import type { CSSProperties, ComponentType, ReactNode } from 'react';
+import type {
+  CSSProperties,
+  ComponentType,
+  MouseEvent,
+  ReactNode,
+} from 'react';
 
 import { type ButtonProps, type ButtonType } from '@synerise/ds-button';
 import { type TabsProps } from '@synerise/ds-tabs';
 
-/*
- * @deprecated use `ModalProps`
- */
-export type Props = ModalProps;
+export type ModalSize =
+  | 'small'
+  | 'medium'
+  | 'large'
+  | 'extraLarge'
+  | 'fullSize'
+  | 'fullScreen';
+
+type ModalButtonHandler =
+  | ((e: MouseEvent<HTMLElement>) => void)
+  | ((e: MouseEvent<HTMLElement>) => Promise<unknown>);
 
 export type ModalProps = {
   /**
@@ -18,21 +29,24 @@ export type ModalProps = {
   headerBottomBar?: ReactNode;
   /** Actions rendered in the top-right area of the header */
   headerActions?: ReactNode;
-  /** Props forwarded to the Tabs component rendered in the header */
+  title?: ReactNode;
   headerTabProps?: TabsProps;
-  /** Predefined modal width */
-  size?:
-    | 'small'
-    | 'medium'
-    | 'large'
-    | 'extraLarge'
-    | 'fullSize'
-    | 'fullScreen';
-  /** Background color of the modal body */
+  size?: ModalSize;
+
   bodyBackground?: 'white' | 'grey';
   /** Renders a minimal modal without header and footer chrome */
   blank?: boolean;
-  /** Custom styles applied to the title container */
+
+  disableScrollbar?: boolean;
+  bodyFullWidth?: boolean;
+
+  centered?: boolean;
+  closable?: boolean;
+  maskClosable?: boolean;
+
+  open?: boolean;
+  /** When true, unmounts children when the modal closes. When false (default), keeps children mounted but hidden. */
+  destroyOnClose?: boolean;
   titleContainerStyle?: CSSProperties;
   /** Localised button labels */
   texts?: {
@@ -42,26 +56,77 @@ export type ModalProps = {
   children?: ReactNode;
   /** Constrains modal height to a percentage of the viewport and wraps children in a scrollbar. Pass `true` for 80 vh or a number for a custom value. */
   maxViewportHeight?: true | number;
-  /** When `true`, disables the automatic scrollbar wrapping applied by `maxViewportHeight` */
-  disableScrollbar?: boolean;
-} & Omit<AntdModalProps, 'okType' | 'okButtonProps' | 'cancelButtonProps'> & {
-    okType?: ButtonType;
-    okButtonProps?: ButtonProps;
-    cancelButtonProps?: ButtonProps;
-  } & ModalFooterBuilder;
-
-/*
- * @deprecated use `ModalProps`
- */
-export type ModalFooterBuilder = {
+  getContainer?: () => HTMLElement;
   prefix?: ReactNode;
   infix?: ReactNode;
   suffix?: ReactNode;
   okButton?: ReactNode;
   cancelButton?: ReactNode;
-  /*
-   * @deprecated use `CustomFooterButton`
-   */
-  DSButton?: ComponentType<ButtonProps>;
   CustomFooterButton?: ComponentType<ButtonProps>;
+
+  afterClose?: () => void;
+  footer?: ReactNode;
+
+  onCancel?: ModalButtonHandler;
+  cancelText?: ReactNode;
+  cancelButtonProps?: ButtonProps;
+
+  onOk?: ModalButtonHandler;
+  okText?: ReactNode;
+  okButtonProps?: ButtonProps;
+  okType?: ButtonType;
+
+  bodyStyle?: CSSProperties;
+  zIndex?: number;
+
+  className?: string;
+  style?: CSSProperties;
+};
+
+export type ModalContentProps = Omit<
+  ModalProps,
+  'getContainer' | 'open' | 'destroyOnClose'
+> & {
+  closeModal: () => void;
+  hidden?: boolean;
+};
+
+export type ModalTitleProps = Pick<
+  ModalContentProps,
+  | 'headerActions'
+  | 'headerTabProps'
+  | 'onCancel'
+  | 'titleContainerStyle'
+  | 'blank'
+  | 'description'
+  | 'title'
+  | 'headerBottomBar'
+>;
+
+export type ModalFooterProps = Pick<
+  ModalContentProps,
+  | 'footer'
+  | 'prefix'
+  | 'infix'
+  | 'suffix'
+  | 'okButton'
+  | 'cancelButton'
+  | 'CustomFooterButton'
+  | 'texts'
+  | 'onOk'
+  | 'onCancel'
+  | 'cancelText'
+  | 'okText'
+  | 'cancelButtonProps'
+  | 'okType'
+  | 'okButtonProps'
+>;
+
+export type ModalHandle = {
+  destroy: () => void;
+};
+
+export type ModalRef = {
+  scrollToTop: () => void;
+  scrollToBottom: () => void;
 };

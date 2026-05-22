@@ -5,85 +5,155 @@ title: Modal
 
 # Modal UI Component
 
-The Modal component provides a flexible and customizable way to display modal dialogs in your React applications. It offers various options and configurations to control the appearance and behavior of the modal dialogs.
+The Modal component provides a flexible and customizable way to display modal dialogs in your React applications. It is a native React implementation (no Ant Design dependency) with portal-based rendering and full async handler support.
 
 ## Demo
 
-<iframe src="/storybook-static/iframe.html?id=components-modal--default"></iframe>
+<iframe src="/storybook-static/iframe.html?id=components-modal--with-footer"></iframe>
 
 ## Installation
-
-Install the Modal component using npm:
 
 ```bash
 npm install @synerise/ds-modal
 ```
 
-## Deprecated Features
+## Usage
 
-Some features of the Modal component have been deprecated. Please refer to the [API](#api) and [FOOTER](#modalfooter) section for more information on deprecated features.
+```tsx
+import Modal from '@synerise/ds-modal';
+
+<Modal
+  title="Confirm action"
+  open={isOpen}
+  onOk={handleOk}
+  onCancel={handleCancel}
+>
+  Modal body content
+</Modal>
+```
+
+### Imperative API
+
+Use `showModal` when you need to open a modal outside of the React component tree:
+
+```tsx
+import { showModal } from '@synerise/ds-modal';
+
+const ref = showModal({
+  title: 'Confirm',
+  onOk: () => ref.destroy(),
+  onCancel: () => ref.destroy(),
+});
+```
+
+`showModal` returns a `ModalHandle` with a single `destroy()` method that unmounts the modal.
+
+### Async handlers
+
+Both `onOk` and `onCancel` accept handlers that return a `Promise`. The modal stays open until the promise resolves:
+
+```tsx
+<Modal
+  onOk={async () => {
+    await saveData();
+  }}
+  onCancel={async () => {
+    await cleanup();
+  }}
+/>
+```
+
+### Scroll imperative handle
+
+Use a `ref` to imperatively scroll the modal body:
+
+```tsx
+import Modal from '@synerise/ds-modal';
+import type { ModalRef } from '@synerise/ds-modal';
+
+const ref = useRef<ModalRef>(null);
+
+<Modal ref={ref} open>
+  {/* content */}
+</Modal>
+
+ref.current?.scrollToTop();
+ref.current?.scrollToBottom();
+```
 
 ## API
 
-**(Deprecated)** type Props is deprecated - recommended is using ModalProps
+### ModalProps
 
-## ModalProps
+| Property            | Description                                                                                                       | Type                                                                              | Default   |
+| ------------------- | ----------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------- | --------- |
+| `open`              | Whether the modal is visible                                                                                      | `boolean`                                                                         | `false`   |
+| `title`             | Modal header title                                                                                                | `ReactNode`                                                                       | –         |
+| `description`       | Subtitle rendered below the title (**deprecated** — use `headerBottomBar` instead)                               | `ReactNode`                                                                       | –         |
+| `headerBottomBar`   | Content rendered below the title and description in the header                                                    | `ReactNode`                                                                       | –         |
+| `headerActions`     | Content rendered in the top-right area of the header                                                              | `ReactNode`                                                                       | –         |
+| `headerTabProps`    | Props forwarded to the `Tabs` component rendered inside the header                                                | `TabsProps`                                                                       | –         |
+| `size`              | Predefined width of the modal                                                                                     | `small` \| `medium` \| `large` \| `extraLarge` \| `fullSize` \| `fullScreen`     | –         |
+| `blank`             | Renders a minimal modal without any header/footer chrome; only a close button is shown when `onCancel` is set    | `boolean`                                                                         | `false`   |
+| `centered`          | Vertically centers the modal in the viewport                                                                      | `boolean`                                                                         | `false`   |
+| `closable`          | Whether the close (×) button is shown                                                                             | `boolean`                                                                         | `true`    |
+| `maskClosable`      | Whether clicking the backdrop closes the modal                                                                    | `boolean`                                                                         | `true`    |
+| `onOk`              | Called when the OK / Apply button is clicked; may return a `Promise` — modal stays open until it resolves        | `(e: MouseEvent) => void \| Promise<unknown>`                                     | –         |
+| `onCancel`          | Called when the close button, backdrop, or Cancel button is clicked; may return a `Promise`                      | `(e: MouseEvent) => void \| Promise<unknown>`                                     | –         |
+| `afterClose`        | Called after the modal has fully unmounted                                                                        | `() => void`                                                                      | –         |
+| `footer`            | Custom footer content. Set `footer={null}` to remove the footer entirely                                         | `ReactNode`                                                                       | OK + Cancel buttons |
+| `okText`            | Label for the OK button                                                                                           | `ReactNode`                                                                       | `Apply`   |
+| `cancelText`        | Label for the Cancel button                                                                                       | `ReactNode`                                                                       | `Cancel`  |
+| `okType`            | Button type for the OK button                                                                                     | `ButtonType`                                                                      | `primary` |
+| `okButtonProps`     | Extra props forwarded to the OK button                                                                            | `ButtonProps`                                                                     | –         |
+| `cancelButtonProps` | Extra props forwarded to the Cancel button                                                                        | `ButtonProps`                                                                     | –         |
+| `texts`             | Override both button labels at once                                                                               | `{ okButton?: ReactNode; cancelButton?: ReactNode }`                              | –         |
+| `bodyBackground`    | Background colour of the modal body                                                                               | `white` \| `grey`                                                                 | `white`   |
+| `bodyStyle`         | Inline styles applied to the modal body element                                                                   | `CSSProperties`                                                                   | –         |
+| `bodyFullWidth`     | Removes horizontal padding from the modal body                                                                    | `boolean`                                                                         | `false`   |
+| `maxViewportHeight` | Constrains the modal height to a percentage of the viewport and wraps children in a scrollbar. Pass `true` for 80 vh or a number for a custom value | `true \| number`                                              | –         |
+| `disableScrollbar`  | When `maxViewportHeight` is set, disables the built-in scrollbar wrapper                                          | `boolean`                                                                         | `false`   |
+| `titleContainerStyle` | Inline styles applied to the title container element                                                            | `CSSProperties`                                                                   | –         |
+| `getContainer`      | Returns the DOM node to mount the modal into                                                                      | `() => HTMLElement`                                                               | `document.body` |
+| `zIndex`            | `z-index` of the modal                                                                                            | `number`                                                                          | –         |
+| `className`         | CSS class applied to the modal root                                                                               | `string`                                                                          | –         |
+| `style`             | Inline styles applied to the modal root                                                                           | `CSSProperties`                                                                   | –         |
 
-| Property            | Description                                                                                                | Type                                                                   | Default                                         |
-| ------------------- | ---------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------- | ----------------------------------------------- |
-| description         | **(Deprecated)** The modal dialog's description                                                            | ReactNode                                                              | -                                               |
-| headerBottomBar     | Bottom bar rendered below title and description                                                            | ReactNode                                                              | -                                               |
-| headerActions       | Append additional content to header actions space                                                          | React.ReactNode                                                        | -                                               |
-| headerTabProps      | Props forwarded to the Tabs component rendered in the header                                               | TabsProps                                                              | -                                               |
-| size                | The modal size                                                                                             | `small` / `medium` / `large` / `extraLarge`/ `fullSize`/ `fullScreen`. | -                                               |
-| bodyBackground      | Set color for body of modal                                                                                | `white` / `grey`                                                       | `white`                                         |
-| blank               | Modal with header which contains only close button                                                         | Boolean                                                                | `false`                                         |
-| titleContainerStyle | The modal title's container styles object                                                                  | React.CSSProperties / undefined                                        | -                                               |
-| texts               | Labels to render                                                                                           | `{ okButton?: ReactNode; cancelButton?: ReactNode }`                   | `{ okButton: 'Apply', cancelButton: 'Cancel' }` |
-| children            | Children element to render                                                                                 | ReactNode                                                              | -                                               |
-| open                | Whether the modal dialog is visible or not                                                                 | boolean                                                                | `false`                                         |
-| confirmLoading      | Whether to apply loading visual effect for OK button or not                                                | boolean                                                                | `false`                                         |
-| title               | The modal dialog's title                                                                                   | string / ReactNode                                                     | -                                               |
-| onOk                | Specify a function that will be called when a user clicks the OK button                                    | function(e)                                                            | -                                               |
-| onCancel            | Specify a function that will be called when a user clicks mask, close button on top right or Cancel button | function(e)                                                            | -                                               |
-| afterClose          | Specify a function that will be called when modal is closed completely.                                    | function                                                               | -                                               |
-| centered            | Centered Modal                                                                                             | Boolean                                                                | `false`                                         |
-| width               | Width of the modal dialog (overridden by `size` when set)                                                  | string / number                                                        | 520                                             |
-| footer              | Footer content, set as `footer={null}` when you don't need default buttons                                 | ReactNode                                                              | OK and Cancel buttons                           |
-| okText              | Text of the OK button                                                                                      | string / ReactNode                                                     | `OK`                                            |
-| okType              | Button `type` of the OK button                                                                             | string                                                                 | `primary`                                       |
-| cancelText          | Text of the Cancel button                                                                                  | string / ReactNode                                                     | `Cancel`                                        |
-| maskClosable        | Whether to close the modal dialog when the mask (area outside the modal) is clicked                        | boolean                                                                | `true`                                          |
-| forceRender         | Force render Modal                                                                                         | boolean                                                                | `false`                                         |
-| okButtonProps       | The ok button props                                                                                        | [ButtonProps](/components/button)                                      | -                                               |
-| cancelButtonProps   | The cancel button props                                                                                    | [ButtonProps](/components/button)                                      | -                                               |
-| destroyOnClose      | Whether to unmount child components on onClose                                                             | boolean                                                                | `false`                                         |
-| style               | Style of floating layer, typically used at least for adjusting the position.                               | object                                                                 | -                                               |
-| wrapClassName       | The class name of the container of the modal dialog                                                        | string                                                                 | -                                               |
-| getContainer        | Return the mount node for Modal                                                                            | HTMLElement / () => HTMLElement / Selectors /`false`                   | document.body                                   |
-| zIndex              | The `z-index` of the Modal                                                                                 | Number                                                                 | 1000                                            |
-| bodyStyle           | Body style for modal body element. Such as height, padding etc.                                            | object                                                                 | {}                                              |
-| mask                | Whether show mask or not.                                                                                  | Boolean                                                                | `true`                                          |
-| closeIcon           | custom close icon                                                                                          | ReactNode                                                              | -                                               |
-| maskStyle           | Style for modal's mask element.                                                                            | object                                                                 | {}                                              |
-| maxViewportHeight   | Caps modal height and wraps body in a scrollbar. `true` = 80vh, number = custom vh                        | true / number                                                          | -                                               |
-| disableScrollbar    | Disables automatic scrollbar wrapping applied by `maxViewportHeight`                                       | boolean                                                                | -                                               |
+### Footer layout slots
 
-and it is extended by props for ModalFooterBuilder:
+These props allow fine-grained control of the default footer layout:
 
-| Property            | Description                                                  | Type                         | Default  | Version |
-| ------------------- | ------------------------------------------------------------ | ---------------------------- | -------- | ------- |
-| prefix              | Element in footer, before Cancel Button                      | ReactNode                    | -        |         |
-| infix               | Element in footer between Cancel Button and before Ok Button | ReactNode                    | -        |         |
-| suffix              | Element in footer, after Ok Button                           | ReactNode                    | -        |         |
-| okButton            | Custom OK button in footer                                   | ReactNode                    | -        |         |
-| cancelButton        | Custom Cancel button in footer                               | ReactNode                    | -        |         |
-| CustomFooterButton  | Button component used to render ok/cancel buttons            | `ComponentType<ButtonProps>` | `Button` |         |
-| DSButton            | **(Deprecated)** use `CustomFooterButton`                    | `ComponentType<ButtonProps>` | `Button` |         |
+| Property            | Description                                          | Type        |
+| ------------------- | ---------------------------------------------------- | ----------- |
+| `prefix`            | Content placed before the Cancel button              | `ReactNode` |
+| `infix`             | Content placed between Cancel and OK buttons         | `ReactNode` |
+| `suffix`            | Content placed after the OK button                   | `ReactNode` |
+| `okButton`          | Replaces the default OK button                       | `ReactNode` |
+| `cancelButton`      | Replaces the default Cancel button                   | `ReactNode` |
+| `CustomFooterButton`| Component type used instead of the default button    | `ComponentType<ButtonProps>` |
+
+### ModalRef
+
+Obtained via `useRef<ModalRef>()` passed to the `ref` prop.
+
+| Method           | Description                              |
+| ---------------- | ---------------------------------------- |
+| `scrollToTop()`  | Scrolls the modal body to the top        |
+| `scrollToBottom()` | Scrolls the modal body to the bottom   |
+
+### ModalHandle
+
+Returned by `showModal()`.
+
+| Property    | Description                        |
+| ----------- | ---------------------------------- |
+| `destroy()` | Unmounts the imperatively-opened modal |
 
 ## ModalTitle
 
-```bash
+Sub-component for the modal header. Props are a subset of `ModalProps`:
+
+```tsx
 type ModalTitleProps = Pick<
   ModalProps,
   | 'headerActions'
@@ -99,16 +169,18 @@ type ModalTitleProps = Pick<
 
 ## ModalFooter
 
-```bash
-export type ModalFooterProps = Pick<
+Sub-component for the modal footer. Props are a subset of `ModalProps`:
+
+```tsx
+type ModalFooterProps = Pick<
   ModalProps,
+  | 'footer'
   | 'prefix'
   | 'infix'
   | 'suffix'
   | 'okButton'
   | 'cancelButton'
   | 'CustomFooterButton'
-  | 'DSButton'
   | 'texts'
   | 'onOk'
   | 'onCancel'
@@ -120,4 +192,10 @@ export type ModalFooterProps = Pick<
 >;
 ```
 
-**(Deprecated)** method buildModalFooter - use ModalFooter Component instead
+## Deprecated
+
+The following prop is **deprecated** and will be removed in a future major version:
+
+| Prop | Replacement |
+| ---- | ----------- |
+| `description` | `headerBottomBar` |

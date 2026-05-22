@@ -1,102 +1,41 @@
-import { Modal as AntModal } from 'antd';
-import classnames from 'classnames';
-import React from 'react';
+import React, { forwardRef, useEffect, useState } from 'react';
+import { createPortal } from 'react-dom';
 
-import { ModalFooter, type ModalFooterProps } from './Elements/ModalFooter';
-import { ModalTitle } from './Elements/ModalTitle';
-import * as S from './Modal.styles';
-import type { ModalProps } from './Modal.types';
-import './style/index.less';
+import { ModalContent } from './Elements/ModalContent/ModalContent';
+import type { ModalProps, ModalRef } from './Modal.types';
 
-const mapSizeToWidth = {
-  small: 520,
-  medium: 792,
-  large: 1044,
-  extraLarge: 1280,
-  fullSize: '100%',
-  fullScreen: '100%',
-};
+export const Modal = forwardRef<ModalRef, ModalProps>(
+  (
+    { open, afterClose, getContainer, destroyOnClose = false, ...props },
+    ref,
+  ) => {
+    const [isOpen, setIsOpen] = useState(open);
+    const [hasBeenOpened, setHasBeenOpened] = useState(open);
 
-/** @deprecated */
-export const buildModalFooter = (props: ModalFooterProps) => (
-  <ModalFooter {...props} />
-);
-
-export const Modal = (props: ModalProps) => {
-  const {
-    texts,
-    bodyBackground = 'white',
-    headerActions,
-    title,
-    description,
-    headerBottomBar,
-    size,
-    blank,
-    titleContainerStyle,
-    maxViewportHeight,
-    disableScrollbar,
-    children,
-    okType,
-    okButtonProps,
-    cancelButtonProps,
-    ...antModalProps
-  } = props;
-
-  const className = classnames(
-    `bodybg-${bodyBackground}`,
-    antModalProps.className,
-    { 'modal-blank': Boolean(blank) },
-    { 'with-description': Boolean(description) },
-  );
-
-  const DEFAULT_VIEWPORT_HEIGHT = 80;
-
-  const maxHeight = () => {
-    if (maxViewportHeight !== undefined) {
-      if (typeof maxViewportHeight === 'number') {
-        return maxViewportHeight;
+    useEffect(() => {
+      setIsOpen(open);
+      if (open) {
+        setHasBeenOpened(true);
       }
-      return DEFAULT_VIEWPORT_HEIGHT;
+    }, [open]);
+
+    const shouldRender = destroyOnClose ? isOpen : isOpen || hasBeenOpened;
+
+    if (!shouldRender) {
+      return null;
     }
-    return undefined;
-  };
 
-  const isFullscreen = size === 'fullScreen';
-
-  return (
-    <S.AntdModal
-      {...antModalProps}
-      maxHeight={maxHeight()}
-      className={className}
-      isFullscreen={isFullscreen}
-      width={size && mapSizeToWidth[size]}
-      closable={false}
-      title={
-        (title || description || blank || headerBottomBar) && (
-          <ModalTitle {...props} />
-        )
-      }
-      footer={
-        antModalProps.footer !== null
-          ? antModalProps.footer || <ModalFooter {...props} />
-          : null
-      }
-    >
-      {maxHeight() && !disableScrollbar ? (
-        <S.ModalWrapper>
-          <S.Scrollbar absolute>{children}</S.Scrollbar>
-        </S.ModalWrapper>
-      ) : (
-        children
-      )}
-    </S.AntdModal>
-  );
-};
-
-Modal.info = AntModal.info;
-Modal.success = AntModal.success;
-Modal.error = AntModal.error;
-Modal.warning = AntModal.warning;
-Modal.confirm = AntModal.confirm;
+    return createPortal(
+      <ModalContent
+        {...props}
+        afterClose={afterClose}
+        ref={ref}
+        hidden={!isOpen}
+        closeModal={() => setIsOpen(false)}
+      />,
+      getContainer?.() || document.body,
+    );
+  },
+);
 
 export default Modal;

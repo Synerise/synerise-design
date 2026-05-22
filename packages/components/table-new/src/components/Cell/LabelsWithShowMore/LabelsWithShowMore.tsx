@@ -16,7 +16,7 @@ const LabelsWithShowMore = ({
   loading,
   ...htmlAttributes
 }: LabelsWithShowMoreProps<DataSourceType>) => {
-  const [modalVisible, setModalVisible] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const diff = useMemo(() => {
     return items.length - numberOfVisibleItems;
@@ -34,14 +34,14 @@ const LabelsWithShowMore = ({
       <S.Labels>{labels}</S.Labels>
       {diff > 0 && (
         <Tooltip title={`${texts.tooltip}`}>
-          <S.MoreInfo onClick={(): void => setModalVisible(true)}>
+          <S.MoreInfo onClick={(): void => setIsModalOpen(true)}>
             +{diff}
           </S.MoreInfo>
         </Tooltip>
       )}
       <DetailsModal
-        visible={modalVisible}
-        hide={(): void => setModalVisible(false)}
+        isOpen={isModalOpen}
+        hide={(): void => setIsModalOpen(false)}
         items={items}
         renderItem={renderItem}
         labelKey={labelKey}

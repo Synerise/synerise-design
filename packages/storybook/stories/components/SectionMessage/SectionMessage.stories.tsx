@@ -203,7 +203,7 @@ export const CardWithSectionMessage: Story = {
 export const ModalWithSectionMessage: Story = {
   render: (args) => {
     return (
-      <Modal size="medium" visible title="Modal header">
+      <Modal size="medium" open title="Modal header">
         <div style={{ width: '566px', margin: '0 70px' }}>
           <SectionMessage {...args} />
         </div>

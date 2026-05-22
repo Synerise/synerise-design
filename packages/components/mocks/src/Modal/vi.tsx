@@ -21,7 +21,6 @@ export const modalMockFactory = () => ({
   default: vi.fn(
     ({
       open,
-      visible,
       title,
       children,
       onCancel,
@@ -32,8 +31,7 @@ export const modalMockFactory = () => ({
       texts,
       'data-testid': dataTestId,
     }: MockModalProps) => {
-      const isOpen = open ?? visible;
-      if (!isOpen) {
+      if (!open) {
         return null;
       }
 
@@ -88,8 +86,7 @@ export const modalMockFactory = () => ({
  * ```
  */
 export const modalMinimalMockFactory = () => ({
-  default: vi.fn(({ open, visible, children }: MockModalProps) => {
-    const isOpen = open ?? visible;
-    return isOpen ? <div data-testid="ds-modal">{children}</div> : null;
+  default: vi.fn(({ open, children }: MockModalProps) => {
+    return open ? <div data-testid="ds-modal">{children}</div> : null;
   }),
 });

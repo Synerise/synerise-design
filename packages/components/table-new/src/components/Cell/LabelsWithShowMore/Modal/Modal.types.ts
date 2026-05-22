@@ -10,7 +10,7 @@ export type DataSourceType = Record<string, any> & {
 };
 
 export type ModalProps<T extends DataSourceType> = {
-  visible: boolean;
+  isOpen: boolean;
   items: T[];
   hide: () => void;
   renderItem: (label: string, item: T) => JSX.Element | React.Component;

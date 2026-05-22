@@ -1,0 +1,242 @@
+import { Meta, Canvas } from '@storybook/addon-docs/blocks';
+import ModalMeta, {
+  Blank,
+  withHeader,
+  withTabs,
+  Fullscreen,
+  withFooter,
+  withScroll,
+  withLayout,
+  ModalWithStepper,
+  ShowModal,
+  ShowModalPromise,
+} from './Modal.stories';
+
+<Meta of={ModalMeta} />
+
+# Modal
+
+A portal-based modal dialog with structured header (title, tabs, actions), a slot-based footer, async handler support, scrollable height capping, and an imperative API. Native React implementation — no Ant Design dependency.
+
+## Table of contents
+
+- [Quick overview](#quick-overview)
+- [Basic examples](#basic-examples)
+  - [Blank modal](#blank-modal)
+  - [With header](#with-header)
+  - [With tabs](#with-tabs)
+- [Footer](#footer)
+- [Fullscreen](#fullscreen)
+- [Scrollable (maxViewportHeight)](#scrollable-maxviewportheight)
+- [With Layout](#with-layout)
+- [With Stepper](#with-stepper)
+- [Imperative API — showModal](#imperative-api--showmodal)
+  - [Async handlers](#async-handlers)
+- [Sizes](#sizes)
+- [API reference](#api-reference)
+  - [ModalProps](#modalprops)
+  - [Footer layout slots](#footer-layout-slots)
+  - [ModalRef](#modalref)
+  - [ModalHandle](#modalhandle)
+  - [Exported types](#exported-types)
+- [Notes & tips](#notes--tips)
+
+## Quick overview
+
+- Import `Modal` (default) for declarative usage, or `showModal` for imperative usage outside the component tree
+- Six predefined sizes: `small` (520px), `medium` (792px), `large` (1044px), `extraLarge` (1280px), `fullSize` (100%), `fullScreen` (100% fixed)
+- `onOk` and `onCancel` both support `Promise`-returning handlers — modal stays open until the promise resolves
+- `maxViewportHeight` constrains modal height and wraps children in a scrollbar (sheet-style, anchored to bottom)
+- `footer={null}` removes the footer; `footer={<Custom />}` overrides it; omit for the default Cancel + Apply buttons
+- `ref` handle exposes `scrollToTop()` and `scrollToBottom()` for programmatic scroll control
+- Sub-components `ModalTitle`, `ModalFooter`, and `TitleContainer` are exported for advanced composition
+
+## Basic examples
+
+### Blank modal
+
+A minimal modal without header or footer chrome. The close button appears only when `onCancel` is provided.
+
+<Canvas of={Blank} sourceState="shown" />
+
+### With header
+
+Standard modal with a title in the header.
+
+<Canvas of={withHeader} sourceState="shown" />
+
+### With tabs
+
+Header with title, tab bar via `headerTabProps`, and a bottom bar slot via `headerBottomBar`.
+
+<Canvas of={withTabs} sourceState="shown" />
+
+## Footer
+
+The default footer renders Cancel and Apply buttons. Pass `footer={null}` to suppress it entirely, or provide a custom `footer` ReactNode. Fine-tune the default layout with `prefix`, `infix`, and `suffix` slots.
+
+<Canvas of={withFooter} sourceState="shown" />
+
+## Fullscreen
+
+`size="fullScreen"` makes the modal cover the entire viewport. The body scrolls internally.
+
+<Canvas of={Fullscreen} sourceState="shown" />
+
+## Scrollable (maxViewportHeight)
+
+`maxViewportHeight` constrains the modal to a viewport percentage and wraps children in a scrollbar. Pass `true` for 80vh or a number for a custom value. The modal anchors to the bottom of the viewport (sheet-style).
+
+<Canvas of={withScroll} sourceState="shown" />
+
+## With Layout
+
+Modal containing a `Layout` component with a sidebar. Combine `maxViewportHeight`, `disableScrollbar`, `bodyStyle`, and `bodyBackground` for complex internal layouts.
+
+<Canvas of={withLayout} sourceState="shown" />
+
+## With Stepper
+
+Modal with an internal `Stepper` for multi-step flows.
+
+<Canvas of={ModalWithStepper} sourceState="shown" />
+
+## Imperative API — showModal
+
+Use `showModal()` when you need to open a modal outside of the React component tree. It renders via the `PortalRenderer` in `DSProvider` and returns a `ModalHandle` with a `destroy()` method.
+
+<Canvas of={ShowModal} sourceState="shown" />
+
+### Async handlers
+
+Both `onOk` and `onCancel` accept handlers that return a `Promise`. The modal stays open until the promise resolves.
+
+<Canvas of={ShowModalPromise} sourceState="shown" />
+
+## Sizes
+
+<table>
+  <thead>
+    <tr><th>Size</th><th>Width</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>small</td><td>520px</td></tr>
+    <tr><td>medium</td><td>792px</td></tr>
+    <tr><td>large</td><td>1044px</td></tr>
+    <tr><td>extraLarge</td><td>1280px</td></tr>
+    <tr><td>fullSize</td><td>100%</td></tr>
+    <tr><td>fullScreen</td><td>100% (fixed, covers viewport)</td></tr>
+  </tbody>
+</table>
+
+## API reference
+
+### `ModalProps`
+
+<table>
+  <thead>
+    <tr><th>Prop</th><th>Type</th><th>Default</th><th>Description</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>open</td><td>boolean</td><td>false</td><td>Whether the modal is visible</td></tr>
+    <tr><td>title</td><td>ReactNode</td><td>—</td><td>Modal header title</td></tr>
+    <tr><td>size</td><td>ModalSize</td><td>—</td><td>Predefined width (see Sizes table above)</td></tr>
+    <tr><td>centered</td><td>boolean</td><td>false</td><td>Vertically centres the modal in the viewport</td></tr>
+    <tr><td>closable</td><td>boolean</td><td>true</td><td>Whether the close button is shown</td></tr>
+    <tr><td>maskClosable</td><td>boolean</td><td>true</td><td>Whether clicking the backdrop closes the modal</td></tr>
+    <tr><td>destroyOnClose</td><td>boolean</td><td>false</td><td>When true, unmounts children on close. When false, keeps them mounted but hidden</td></tr>
+    <tr><td>blank</td><td>boolean</td><td>false</td><td>Strips header/footer chrome; shows only a close button if onCancel is set</td></tr>
+    <tr><td>bodyBackground</td><td>{'\'white\' | \'grey\''}</td><td>'white'</td><td>Background colour of the modal body</td></tr>
+    <tr><td>bodyStyle</td><td>CSSProperties</td><td>—</td><td>Inline styles applied to the body element</td></tr>
+    <tr><td>bodyFullWidth</td><td>boolean</td><td>false</td><td>Removes horizontal padding from the body</td></tr>
+    <tr><td>maxViewportHeight</td><td>{'true | number'}</td><td>—</td><td>Caps height: true = 80vh, number = Nvh. Wraps children in scrollbar</td></tr>
+    <tr><td>disableScrollbar</td><td>boolean</td><td>false</td><td>Disables scrollbar wrapping from maxViewportHeight</td></tr>
+    <tr><td>headerActions</td><td>ReactNode</td><td>—</td><td>Content in the top-right header action area</td></tr>
+    <tr><td>headerBottomBar</td><td>ReactNode</td><td>—</td><td>Full-width bar below the header</td></tr>
+    <tr><td>headerTabProps</td><td>TabsProps</td><td>—</td><td>Renders a Tabs component in the header</td></tr>
+    <tr><td>titleContainerStyle</td><td>CSSProperties</td><td>—</td><td>Inline styles for the title container</td></tr>
+    <tr><td>description</td><td>ReactNode</td><td>—</td><td><strong>Deprecated.</strong> Sub-title with dashed separator — use headerBottomBar instead</td></tr>
+    <tr><td>onOk</td><td>{'(e) => void | Promise'}</td><td>—</td><td>OK button handler; Promise-returning handlers keep modal open until resolved</td></tr>
+    <tr><td>onCancel</td><td>{'(e) => void | Promise'}</td><td>—</td><td>Cancel/close handler; same async support</td></tr>
+    <tr><td>afterClose</td><td>{'() => void'}</td><td>—</td><td>Called after the modal unmounts</td></tr>
+    <tr><td>footer</td><td>{'ReactNode | null'}</td><td>auto-generated</td><td>null suppresses footer; custom ReactNode overrides; omit for default</td></tr>
+    <tr><td>texts</td><td>{'{ okButton?: ReactNode; cancelButton?: ReactNode }'}</td><td>{'{ okButton: \'Apply\', cancelButton: \'Cancel\' }'}</td><td>Default button labels</td></tr>
+    <tr><td>okText / cancelText</td><td>ReactNode</td><td>—</td><td>Button labels (override texts)</td></tr>
+    <tr><td>okType</td><td>ButtonType</td><td>'primary'</td><td>Button type for the OK button</td></tr>
+    <tr><td>okButtonProps / cancelButtonProps</td><td>ButtonProps</td><td>—</td><td>Extra props forwarded to buttons</td></tr>
+    <tr><td>getContainer</td><td>{'() => HTMLElement'}</td><td>document.body</td><td>Portal mount target</td></tr>
+    <tr><td>zIndex</td><td>number</td><td>theme token</td><td>z-index of the modal root</td></tr>
+    <tr><td>className</td><td>string</td><td>—</td><td>CSS class on the modal root</td></tr>
+    <tr><td>style</td><td>CSSProperties</td><td>—</td><td>Inline styles on the modal root</td></tr>
+  </tbody>
+</table>
+
+### Footer layout slots
+
+These props control the default footer layout when no custom `footer` is provided.
+
+<table>
+  <thead>
+    <tr><th>Prop</th><th>Type</th><th>Description</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>prefix</td><td>ReactNode</td><td>Content placed before the Cancel button</td></tr>
+    <tr><td>infix</td><td>ReactNode</td><td>Content placed between Cancel and OK buttons</td></tr>
+    <tr><td>suffix</td><td>ReactNode</td><td>Content placed after the OK button</td></tr>
+    <tr><td>okButton</td><td>ReactNode</td><td>Replaces the default OK button entirely</td></tr>
+    <tr><td>cancelButton</td><td>ReactNode</td><td>Replaces the default Cancel button entirely</td></tr>
+    <tr><td>CustomFooterButton</td><td>{'ComponentType<ButtonProps>'}</td><td>Button component used for ok/cancel when not replaced</td></tr>
+  </tbody>
+</table>
+
+### `ModalRef`
+
+Obtained via `useRef<ModalRef>()` passed to the `ref` prop.
+
+<table>
+  <thead>
+    <tr><th>Method</th><th>Description</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>scrollToTop()</td><td>Scrolls the modal body to the top</td></tr>
+    <tr><td>scrollToBottom()</td><td>Scrolls the modal body to the bottom</td></tr>
+  </tbody>
+</table>
+
+### `ModalHandle`
+
+Returned by `showModal()`.
+
+<table>
+  <thead>
+    <tr><th>Property</th><th>Description</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>destroy()</td><td>Unmounts the imperatively-opened modal</td></tr>
+  </tbody>
+</table>
+
+### Exported types
+
+<table>
+  <thead>
+    <tr><th>Type</th><th>Description</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>ModalProps</td><td>Full props type for Modal</td></tr>
+    <tr><td>ModalSize</td><td>{'\'small\' | \'medium\' | \'large\' | \'extraLarge\' | \'fullSize\' | \'fullScreen\''}</td></tr>
+    <tr><td>ModalContentProps</td><td>Props for the internal ModalContent renderer</td></tr>
+    <tr><td>ModalTitleProps</td><td>Props for the ModalTitle sub-component</td></tr>
+    <tr><td>ModalFooterProps</td><td>Props for the ModalFooter sub-component</td></tr>
+    <tr><td>ModalRef</td><td>Imperative handle for scroll control</td></tr>
+    <tr><td>ModalHandle</td><td>Handle returned by showModal()</td></tr>
+  </tbody>
+</table>
+
+## Notes & tips
+
+- **`destroyOnClose={false}` preserves children** — when the modal closes, children stay mounted (just hidden via `display: none` on the root element). This preserves form state, scroll position, and hook state across open/close cycles.
+- **Async `onCancel` closes automatically** — if `onCancel` returns a promise, the modal awaits it then calls `closeModal()`. Sync `onCancel` does not auto-close; the parent must set `open={false}`.
+- **`showModal` uses PortalRenderer** — it renders via `setPortalContent` from `ds-core`, so a `DSProvider` with `PortalRenderer` must exist in the tree.
+- **Close button placement differs in `blank` mode** — absolutely positioned top-right in blank mode; inside the header action buttons row in normal mode.
+- **`maxViewportHeight` anchors to bottom** — the modal gets `position: fixed; bottom: 0` (sheet-style), not centered.

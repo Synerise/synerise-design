@@ -21,24 +21,25 @@ src/
  omitKeys/ — remove named keys from a plain object
  getPopupContainer/ — Ant Design getPopupContainer helper
 
- # Hooks
- useOnClickOutside/ — fire handler when clicking outside a ref
- useResize/ — track element offsetWidth/offsetHeight on window resize
- useResizeObserver/ — track element DOMRect via ResizeObserver
- useResizeToFit/ — ResizeObserver with manual observe/disconnect control
- useBreakpoint/ — window width → named breakpoint + dimensions
- useCombinedRefs/ — merge multiple React refs into one
- usePrevious/ — return previous render's value
- useIsMounted/ — ref that is true while component is mounted
- useElementInView/ — IntersectionObserver: is element visible?
- useOverscrollBlock/ — prevent horizontal overscroll on a container
- useScrollContain/ — block wheel event propagation out of a container
- useStableId/ — stable UUID for component lifetime (via uuid v4)
- useLatestRef/ — always-current ref to a changing value
- useSearchResults/ — filtered+sorted search results from grouped item lists
- useKeyboardShortcuts/ — document-level keydown handler map
- useDelimiterEscape/ — join/split/validate delimited strings with escape tags
- useTraceUpdate/ — dev-only: console.log changed props on each render
+  # Hooks
+  useOnClickOutside/                — fire handler when clicking outside a ref
+  useResize/                        — track element offsetWidth/offsetHeight on window resize
+  useResizeObserver/                — track element DOMRect via ResizeObserver
+  useResizeToFit/                   — ResizeObserver with manual observe/disconnect control
+  useBreakpoint/                    — window width → named breakpoint + dimensions
+  useCombinedRefs/                  — merge multiple React refs into one
+  usePrevious/                      — return previous render's value
+  useIsMounted/                     — ref that is true while component is mounted
+  useElementInView/                 — IntersectionObserver: is element visible?
+  useOverscrollBlock/               — prevent horizontal overscroll on a container
+  useScrollContain/                 — block wheel event propagation out of a container
+  useStableId/                      — stable UUID for component lifetime (via uuid v4)
+  useLatestRef/                     — always-current ref to a changing value
+  useSearchResults/                 — filtered+sorted search results from grouped item lists
+  useKeyboardShortcuts/             — document-level keydown handler map
+  useDelimiterEscape/               — join/split/validate delimited strings with escape tags
+  useFocusTrap/                     — trap Tab/Shift+Tab focus within a container element
+  useTraceUpdate/                   — dev-only: console.log changed props on each render
 ```
 
 ---
@@ -175,6 +176,9 @@ Handles serialisation/deserialisation of string arrays where items may contain t
 - Returns a memoised object of three functions; re-memoises only when `delimiter`/`openTag`/`closeTag` change.
 
 Also exports interfaces: `DelimiterEscapeConfig`, `DelimiterEscapeUtils`
+
+#### `useFocusTrap(containerRef: RefObject<HTMLElement | null>, active: boolean): void`
+Traps keyboard focus within a container element. When `active` is `true`, saves the previously focused element, focuses the first focusable child (or the container itself), and intercepts Tab/Shift+Tab to cycle within the container. When `active` becomes `false`, removes the trap and restores focus to the previously focused element. Focusable elements are re-queried on each Tab press, so dynamic content is handled correctly.
 
 #### `useTraceUpdate(props: Record<string, unknown>): void`
 **Development debugging tool.** Logs changed props to `console.log` on each render. Do not use in production code.

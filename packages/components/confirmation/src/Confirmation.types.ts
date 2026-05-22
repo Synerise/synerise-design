@@ -6,6 +6,9 @@ import type { ModalProps } from '@synerise/ds-modal';
 import type { RadioProps } from '@synerise/ds-radio';
 import type { DataAttributes } from '@synerise/ds-utils';
 
+export type ConfirmationHandle = {
+  destroy: () => void;
+};
 export type ConfirmationType =
   | 'success'
   | 'warning'
@@ -47,7 +50,7 @@ export type DisplayMode = 'default' | 'related-objects';
 
 type SharedProps = Pick<
   ModalProps,
-  'open' | 'title' | 'zIndex' | 'onCancel' | 'onOk'
+  'open' | 'title' | 'zIndex' | 'onCancel' | 'onOk' | 'afterClose'
 > & {
   title: ReactNode;
 

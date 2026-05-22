@@ -79,11 +79,11 @@ const GroupModal = ({
   }, [renderRowMenu, showStatus]);
   return (
     <ModalProxy
-      bodyStyle={{ padding: 0 }}
+      bodyFullWidth
       size="small"
       title={title}
       closable
-      visible={visible}
+      open={visible}
       onCancel={hideModal}
       footer={
         <S.ModalFooter>

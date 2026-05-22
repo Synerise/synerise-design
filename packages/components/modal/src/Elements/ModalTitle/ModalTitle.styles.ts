@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 
-import Typography from '@synerise/ds-typography';
+import Button, { type StyledButton } from '@synerise/ds-button';
+import { Title as TypographyTitle } from '@synerise/ds-typography';
 
 const getBottomPadding = (withTabs: boolean, withDescription: boolean) => {
   if (withTabs) {
@@ -11,6 +12,16 @@ const getBottomPadding = (withTabs: boolean, withDescription: boolean) => {
   }
   return 20;
 };
+
+export const CloseButton: StyledButton = styled(Button)`
+  &&& {
+    position: absolute;
+    top: 20px;
+    right: 24px;
+    z-index: 1;
+    margin: 0;
+  }
+`;
 
 export const TitleContainer = styled.div`
   display: flex;
@@ -23,7 +34,7 @@ export const TitleContainer = styled.div`
   }
 `;
 
-export const Title = styled(Typography.Title)`
+export const Title = styled(TypographyTitle)`
   width: 100%;
   color: ${(props) => props.theme.palette['grey-800']};
   white-space: nowrap;
@@ -40,16 +51,7 @@ export const ActionButtons = styled.div`
   flex-direction: row;
   align-items: center;
 
-  .ant-btn {
-    margin: 0 4px;
-  }
-  .close-modal {
-    padding: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-right: 0;
-  }
+  gap: 8px;
 `;
 
 export const BottomBar = styled.div`
@@ -81,7 +83,7 @@ export const Description = styled.div`
   background-image: linear-gradient(
     to right,
     ${(props) => props.theme.palette['grey-300']} 33%,
-    rgba(255, 255, 255, 0) 0%
+    ${(props) => props.theme.palette['white']} 0%
   );
   background-repeat: repeat-x;
   background-size: 4px 1px;
