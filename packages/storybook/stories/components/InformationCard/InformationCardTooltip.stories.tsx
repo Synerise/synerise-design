@@ -12,7 +12,6 @@ import { CompleteExample } from './InformationCard.stories';
 export default {
   title: 'Components/InformationCard',
   component: InformationCardTooltip,
-  tags: ['autodocs'],
   parameters: {
     layout: 'fullscreen',
   },
@@ -27,6 +26,32 @@ type Story = StoryObj<InformationCardTooltipProps>;
 
 export const DefaultStory: Story = {
   name: 'InformationCardTooltip',
+  parameters: {
+    docs: {
+      source: {
+        code: `<InformationCardTooltip
+  informationCardProps={{
+    title: 'Title',
+    subtitle: 'Subtitle',
+    icon: <SegmentM color="mars" />,
+    iconColor: 'mars',
+    avatarTooltipText: 'Tooltip Text',
+    descriptionConfig: '...',
+    actionsMenu: {
+      items: ACTIONS_MENU_ITEMS,
+      buttonLabel: 'Quick links',
+      navigationLabel: 'Quick links',
+    },
+    propertyListItems: PROPERTIES_LIST,
+    summaryItems: SUMMARY_ITEMS,
+    actionButton: renderPreviewButton,
+  }}
+>
+  <Button type="primary">Button with infocard</Button>
+</InformationCardTooltip>`,
+      },
+    },
+  },
 };
 
 export const InformationCardTooltipTopPlacement: Story = {
@@ -34,6 +59,33 @@ export const InformationCardTooltipTopPlacement: Story = {
     children: <Button type="primary">Button with infocard</Button>,
     popoverProps: {
       placement: 'top',
+    },
+  },
+  parameters: {
+    docs: {
+      source: {
+        code: `<InformationCardTooltip
+  informationCardProps={{
+    title: 'Title',
+    subtitle: 'Subtitle',
+    icon: <SegmentM color="mars" />,
+    iconColor: 'mars',
+    avatarTooltipText: 'Tooltip Text',
+    descriptionConfig: '...',
+    actionsMenu: {
+      items: ACTIONS_MENU_ITEMS,
+      buttonLabel: 'Quick links',
+      navigationLabel: 'Quick links',
+    },
+    propertyListItems: PROPERTIES_LIST,
+    summaryItems: SUMMARY_ITEMS,
+    actionButton: renderPreviewButton,
+  }}
+  popoverProps={{ placement: 'top' }}
+>
+  <Button type="primary">Button with infocard</Button>
+</InformationCardTooltip>`,
+      },
     },
   },
 };

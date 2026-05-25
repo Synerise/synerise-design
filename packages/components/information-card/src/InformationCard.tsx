@@ -15,6 +15,7 @@ import { buildIconBadge } from './InformationCard.utils';
 import { InformationCardActions } from './InformationCardActions/InformationCardActions';
 import { InformationCardDescription } from './InformationCardDescription/InformationCardDescription';
 import { InformationCardFooter } from './InformationCardFooter/InformationCardFooter';
+import { InformationCardLoading } from './InformationCardLoading/InformationCardLoading';
 import { InformationCardPropertyList } from './InformationCardPropertyList/InformationCardPropertyList';
 import { InformationCardSummary } from './InformationCardSummary/InformationCardSummary';
 
@@ -42,6 +43,7 @@ const InformationCard = forwardRef<HTMLDivElement, InformationCardProps>(
       renderAdditionalDescription,
       propertyListItems,
       summaryItems,
+      isLoading,
       ...props
     },
     ref,
@@ -87,6 +89,31 @@ const InformationCard = forwardRef<HTMLDivElement, InformationCardProps>(
         notice ||
         renderAdditionalDescription)
     );
+
+    const hasAnyFooter = !!(renderFooter || hasFooter);
+
+    if (isLoading) {
+      return (
+        <S.InfoCardWrapper
+          data-testid="information-card"
+          data-popup-container
+          ref={ref}
+          aria-label="information card"
+          aria-busy
+          className={`ds-info-card ${className ?? ''}`}
+          asTooltip={asTooltip}
+          hasFooter={hasAnyFooter}
+          {...props}
+        >
+          <S.InfoCardSlidesWrapper>
+            <S.InfoCardSlide>
+              <InformationCardLoading hasFooter={hasAnyFooter} />
+            </S.InfoCardSlide>
+          </S.InfoCardSlidesWrapper>
+        </S.InfoCardWrapper>
+      );
+    }
+
     return (
       <FloatingDelayGroup
         delay={{ open: HOVER_OPEN_DELAY, close: HOVER_CLOSE_DELAY }}
@@ -100,7 +127,7 @@ const InformationCard = forwardRef<HTMLDivElement, InformationCardProps>(
           asTooltip={asTooltip}
           isActionsMenuVisible={isActionsMenuVisible}
           hasActionsMenu={!!actionsMenu}
-          hasFooter={!!(renderFooter || hasFooter)}
+          hasFooter={hasAnyFooter}
           {...props}
         >
           <S.InfoCardSlidesWrapper>

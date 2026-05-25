@@ -26,12 +26,14 @@ import {
 const InformationCardMeta = {
   title: 'Components/InformationCard',
   component: InformationCard,
-  tags: ['autodocs'],
   parameters: {
     layout: 'centered',
   },
   argTypes: {
     asTooltip: BOOLEAN_CONTROL,
+    isLoading: BOOLEAN_CONTROL,
+    title: STRING_CONTROL,
+    icon: REACT_NODE_AS_STRING,
     notice: REACT_NODE_AS_STRING,
     footerText: REACT_NODE_AS_STRING,
     className: CLASSNAME_ARG_CONTROL,
@@ -58,17 +60,74 @@ const InformationCardMeta = {
 
 type Story = StoryObj<InformationCardProps>;
 
-export const Default: Story = {};
+export const Default: Story = {
+  parameters: {
+    docs: {
+      source: {
+        code: `<InformationCard
+  title="Title"
+  subtitle="Subtitle"
+  icon={<SegmentM color="mars" />}
+  iconColor="mars"
+  avatarTooltipText="Tooltip Text"
+  descriptionConfig={{}}
+/>`,
+      },
+    },
+  },
+};
+
+export const Loading: Story = {
+  args: {
+    isLoading: true,
+  },
+  parameters: {
+    docs: {
+      source: {
+        code: `<InformationCard isLoading />`,
+      },
+    },
+  },
+};
 
 export const WithNotice: Story = {
   args: {
     notice: buildExtraInfo('Note: cannot be undone', 'warning'),
+  },
+  parameters: {
+    docs: {
+      source: {
+        code: `<InformationCard
+  title="Title"
+  subtitle="Subtitle"
+  icon={<SegmentM color="mars" />}
+  iconColor="mars"
+  avatarTooltipText="Tooltip Text"
+  descriptionConfig={{}}
+  notice={buildExtraInfo('Note: cannot be undone', 'warning')}
+/>`,
+      },
+    },
   },
 };
 
 export const WithoutDescription: Story = {
   args: {
     descriptionConfig: null,
+  },
+  parameters: {
+    docs: {
+      source: {
+        code: `<InformationCard
+  title="Title"
+  subtitle="Subtitle"
+  icon={<SegmentM color="mars" />}
+  iconColor="mars"
+  avatarTooltipText="Tooltip Text"
+  descriptionConfig={null}
+/>`,
+      },
+    },
   },
 };
 
@@ -77,11 +136,41 @@ export const Minimalistic: Story = {
     renderBadge: null,
     descriptionConfig: null,
   },
+  parameters: {
+    docs: {
+      source: {
+        code: `<InformationCard
+  title="Title"
+  subtitle="Subtitle"
+  icon={<SegmentM color="mars" />}
+  iconColor="mars"
+  avatarTooltipText="Tooltip Text"
+  descriptionConfig={null}
+  renderBadge={null}
+/>`,
+      },
+    },
+  },
 };
 
 export const CustomFooter: Story = {
   args: {
     renderFooter: () => <>Custom footer element</>,
+  },
+  parameters: {
+    docs: {
+      source: {
+        code: `<InformationCard
+  title="Title"
+  subtitle="Subtitle"
+  icon={<SegmentM color="mars" />}
+  iconColor="mars"
+  avatarTooltipText="Tooltip Text"
+  descriptionConfig={{}}
+  renderFooter={() => <>Custom footer element</>}
+/>`,
+      },
+    },
   },
 };
 
@@ -90,6 +179,22 @@ export const FooterText: Story = {
     footerText: 'Footer Text',
     actionButton: true,
   },
+  parameters: {
+    docs: {
+      source: {
+        code: `<InformationCard
+  title="Title"
+  subtitle="Subtitle"
+  icon={<SegmentM color="mars" />}
+  iconColor="mars"
+  avatarTooltipText="Tooltip Text"
+  descriptionConfig={{}}
+  footerText="Footer Text"
+  actionButton
+/>`,
+      },
+    },
+  },
 };
 
 export const ActionButton: Story = {
@@ -97,6 +202,23 @@ export const ActionButton: Story = {
     actionButton: true,
     actionButtonCallback: fn(),
     actionButtonTooltipText: 'Action Button Tooltip Text',
+  },
+  parameters: {
+    docs: {
+      source: {
+        code: `<InformationCard
+  title="Title"
+  subtitle="Subtitle"
+  icon={<SegmentM color="mars" />}
+  iconColor="mars"
+  avatarTooltipText="Tooltip Text"
+  descriptionConfig={{}}
+  actionButton
+  actionButtonCallback={() => {}}
+  actionButtonTooltipText="Action Button Tooltip Text"
+/>`,
+      },
+    },
   },
 };
 
@@ -112,6 +234,21 @@ export const CustomActionButton: Story = {
   },
   args: {
     actionButton: renderPreviewButton,
+  },
+  parameters: {
+    docs: {
+      source: {
+        code: `<InformationCard
+  title="Title"
+  subtitle="Subtitle"
+  icon={<SegmentM color="mars" />}
+  iconColor="mars"
+  avatarTooltipText="Tooltip Text"
+  descriptionConfig={{}}
+  actionButton={renderPreviewButton}
+/>`,
+      },
+    },
   },
 };
 
@@ -138,6 +275,28 @@ export const CompleteExample: Story = {
     summaryItems: SUMMARY_ITEMS,
     actionButton: renderPreviewButton,
   },
+  parameters: {
+    docs: {
+      source: {
+        code: `<InformationCard
+  title="Title"
+  subtitle="Subtitle"
+  icon={<SegmentM color="mars" />}
+  iconColor="mars"
+  avatarTooltipText="Tooltip Text"
+  descriptionConfig="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla et risus ut lacus pulvinar tristique ac quis mi. Nulla sem ex, finibus ac neque et, ultricies fermentum sapien."
+  actionsMenu={{
+    items: ACTIONS_MENU_ITEMS,
+    buttonLabel: 'Quick links',
+    navigationLabel: 'Quick links',
+  }}
+  propertyListItems={PROPERTIES_LIST}
+  summaryItems={SUMMARY_ITEMS}
+  actionButton={renderPreviewButton}
+/>`,
+      },
+    },
+  },
 };
 
 export const PropertyListOverflow: Story = {
@@ -145,6 +304,28 @@ export const PropertyListOverflow: Story = {
   args: {
     ...CompleteExample.args,
     propertyListItems: PROPERTIES_LIST_LONG,
+  },
+  parameters: {
+    docs: {
+      source: {
+        code: `<InformationCard
+  title="Title"
+  subtitle="Subtitle"
+  icon={<SegmentM color="mars" />}
+  iconColor="mars"
+  avatarTooltipText="Tooltip Text"
+  descriptionConfig="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla et risus ut lacus pulvinar tristique ac quis mi. Nulla sem ex, finibus ac neque et, ultricies fermentum sapien."
+  actionsMenu={{
+    items: ACTIONS_MENU_ITEMS,
+    buttonLabel: 'Quick links',
+    navigationLabel: 'Quick links',
+  }}
+  propertyListItems={PROPERTIES_LIST_LONG}
+  summaryItems={SUMMARY_ITEMS}
+  actionButton={renderPreviewButton}
+/>`,
+      },
+    },
   },
 };
 
