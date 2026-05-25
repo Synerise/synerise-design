@@ -106,15 +106,8 @@ export const ModalContent = forwardRef<ModalRef, ModalContentProps>(
       closeModal();
     };
 
-    const handleOk = async (event: MouseEvent<HTMLElement>) => {
-      if (!onOk) {
-        return;
-      }
-      const onOkResult = onOk(event);
-      if (onOkResult?.then !== undefined) {
-        await onOkResult;
-        closeModal();
-      }
+    const handleOk = (event: MouseEvent<HTMLElement>) => {
+      onOk?.(event);
     };
 
     const cancelClick = (event: MouseEvent<HTMLElement>) => {
