@@ -42,7 +42,7 @@ export type InformationCardProps = WithHTMLAttributes<
       'onHeaderClick' | 'maxHeight'
     >;
     /**
-     * adjusts the styles to be displayed as a tooltip
+     * adjusts the styles to be displayed inside a Tooltip component using renderTooltip prop (no outer shadow)
      */
     asTooltip?: boolean;
     /**
@@ -94,14 +94,22 @@ export type InformationCardProps = WithHTMLAttributes<
     subtitle?: ReactNode;
     /**
      * Title of the information-card. If you pass a string it will be copyable on click, with a copy icon visible on hover.
+     * Optional when `isLoading` is true.
      */
-    title: ReactNode;
+    title?: ReactNode;
     /**
-     * list of object parameters to display
+     * Renders a loading state with skeleton placeholders instead of the card contents.
      */
-    renderAdditionalDescription?: () => ReactNode;
+    isLoading?: boolean;
 
+    renderAdditionalDescription?: () => ReactNode;
+    /**
+     * list of object parameters to display (multiple rows with label + description)
+     */
     propertyListItems?: InformationCardPropertyListProps['items'];
+    /**
+     * list of object summary to display (single row with icon + label. for each item above footer)
+     */
     summaryItems?: InformationCardSummaryProps['items'];
   }
 >;

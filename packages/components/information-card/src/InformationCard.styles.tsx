@@ -224,6 +224,32 @@ export const InformationCardPropertyItemValue = styled.span`
   font-weight: 500;
 `;
 
+export const LoadingBody = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 16px;
+
+  ${Container} {
+    padding: 0;
+  }
+`;
+
+export const LoadingHeader = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 16px;
+`;
+
+export const LoadingTitle = styled.div`
+  flex: 1 0 0;
+  min-width: 0;
+`;
+
+export const LoadingFooter = styled(FooterWrapper)`
+  min-height: 48px;
+`;
+
 export const InformationCardSummaryWrapper = styled(Flex)`
   margin: 0 16px;
   padding-bottom: 8px;

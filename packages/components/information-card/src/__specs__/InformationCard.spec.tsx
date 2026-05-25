@@ -1,15 +1,7 @@
-import React from 'react';
+import type { ReactElement } from 'react';
 
-import Button from '@synerise/ds-button';
-import Dropdown from '@synerise/ds-dropdown';
 import { renderWithProvider } from '@synerise/ds-core';
-import Menu, { type MenuItemProps } from '@synerise/ds-menu';
-import {
-  NOOP,
-  focusWithArrowKeys,
-  useOnClickOutside,
-} from '@synerise/ds-utils';
-import { fireEvent, screen, waitFor } from '@testing-library/react';
+import { screen, waitFor, within } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 
 import InformationCard, { InformationCardTooltip } from '../index';
@@ -18,31 +10,11 @@ const sampleTitle = 'Tip title';
 const sampleSubtitle = 'some.key';
 const sampleDesc = 'sample description';
 
-function testComponentAdapter(
-  renderFunction,
-  options = { usingPortal: false },
-) {
-  const rendered = renderWithProvider(
-    renderFunction(),
-    options.usingPortal ? { container: document.body } : undefined,
-  );
-  const { container } = rendered;
+function testComponentAdapter(renderFunction: () => ReactElement) {
+  const rendered = renderWithProvider(renderFunction());
   return {
     ...rendered,
-    // https://github.com/ant-design/ant-design/blob/4.7.3/components/divider/index.tsx#L21-L29
-    divider: container.querySelector('.ant-divider-horizontal'),
-    infoCard: container.querySelector(
-      '.ant-popover-inner-content *[aria-label="information card"]',
-    ),
-    infoCardPopoverContainer: container
-      .querySelector(
-        '.ant-popover-inner-content *[aria-label="information card"]',
-      )
-      ?.closest('.ant-popover'),
-    dropdown: container.querySelector('.ant-dropdown'),
-    sleep(ms) {
-      return new Promise((resolve) => setTimeout(resolve, ms));
-    },
+    divider: screen.queryByRole('separator'),
   };
 }
 
@@ -59,25 +31,6 @@ describe('Information card', () => {
     expect(screen.getByText(sampleTitle)).toBeTruthy();
     expect(screen.getByText(sampleSubtitle)).toBeTruthy();
     expect(screen.getByText(sampleDesc)).toBeTruthy();
-  });
-  it.skip('FIXME: default description should be editable', () => {
-    const userInput = 'example description provided by the user';
-    const onChange = vi.fn((value) => value);
-    const { container } = renderWithProvider(
-      <InformationCard
-        title={sampleTitle}
-        subtitle={sampleSubtitle}
-        descriptionConfig={{ onChange }}
-      />,
-    );
-    const textarea = container.querySelector('textarea');
-    fireEvent.focus(textarea);
-
-    fireEvent.change(container.querySelector('textarea'), {
-      target: { value: userInput },
-    });
-    expect(onChange).toHaveBeenCalled();
-    expect(onChange).toHaveBeenCalledWith(userInput);
   });
   it('if children is set to null - do not display description section (also no divider, see `descriptionConfig`)', () => {
     const { container } = renderWithProvider(
@@ -105,30 +58,58 @@ describe('Information card', () => {
     const { divider } = testCase;
     expect(divider).toBeFalsy();
   });
-  it.skip('FIXME: click on popover does not close dropdown', async () => {
-    const { infoCard, infoCardPopoverContainer, dropdown, sleep } =
-      testComponentAdapter(() => <WithDropdown />, {
-        usingPortal: true,
-      });
-    expect(dropdown).not.toHaveClass('ant-dropdown-hidden');
-    expect(infoCardPopoverContainer).not.toHaveClass('ant-popover-hidden');
-    fireEvent.click(infoCard);
-    await sleep(100);
-    expect(dropdown).not.toHaveClass('ant-dropdown-hidden');
-    expect(infoCardPopoverContainer).not.toHaveClass('ant-popover-hidden');
+  it('renders actionButton even without footerText', () => {
+    renderWithProvider(
+      <InformationCard
+        title={sampleTitle}
+        subtitle={sampleSubtitle}
+        descriptionConfig={null}
+        actionButton
+        actionButtonTooltipText="Open"
+      />,
+    );
+
+    const footer = screen.getByTestId('information-card-footer');
+    expect(footer).toBeInTheDocument();
+    expect(within(footer).getByRole('button')).toBeInTheDocument();
   });
-  it.todo('click on the region to the top from arrow does not close dropdown');
-  it.todo(
-    'removing element containing information card should remove information-card (e.g. esc on modal)',
-  );
-  it.todo(
-    'closing container does not remove clickoutside listener for parent (FIXME)',
-  );
-  it.todo('InfoCardWrapper span toHaveStyle font-size: 14px');
-  it.todo('actionButton can be shown without footer text');
-  it.todo(
-    'margin between card header and (optional) notice/extra-info should be 8px',
-  );
+
+  describe('loading state', () => {
+    it('renders skeleton placeholders and sets aria-busy when isLoading', () => {
+      renderWithProvider(<InformationCard isLoading />);
+
+      const wrapper = screen.getByLabelText('information card');
+      expect(wrapper).toHaveAttribute('aria-busy');
+      expect(
+        screen.getByTestId('information-card-loading'),
+      ).toBeInTheDocument();
+    });
+
+    it('hides footer band when no footer props are present', () => {
+      renderWithProvider(<InformationCard isLoading />);
+
+      expect(
+        screen.queryByTestId('information-card-loading-footer'),
+      ).not.toBeInTheDocument();
+    });
+
+    it('renders footer band when a footer prop is provided', () => {
+      renderWithProvider(<InformationCard isLoading footerText="loading…" />);
+
+      expect(
+        screen.getByTestId('information-card-loading-footer'),
+      ).toBeInTheDocument();
+    });
+
+    it('ignores content props in loading mode', () => {
+      renderWithProvider(
+        <InformationCard isLoading title={sampleTitle} subtitle={sampleSubtitle} />,
+      );
+
+      expect(screen.queryByText(sampleTitle)).not.toBeInTheDocument();
+      expect(screen.queryByText(sampleSubtitle)).not.toBeInTheDocument();
+    });
+  });
 });
 
 describe('Information card tooltip', () => {
@@ -173,61 +154,3 @@ describe('Information card tooltip', () => {
   });
 });
 
-function WithDropdown(numberOfElements = 1) {
-  const [dropdownVisible, setDropdownVisible] = React.useState(true);
-  const ref = React.useRef<HTMLDivElement>(null);
-  useOnClickOutside(
-    ref,
-    () => {
-      setDropdownVisible(false);
-    },
-    undefined,
-    ['.ignore-click-outside'],
-  );
-  const popoverProps = React.useCallback(
-    (visible) => ({ defaultVisible: dropdownVisible && (visible ?? true) }),
-    [dropdownVisible],
-  );
-  const buildMenuEntry = (visible): Partial<MenuItemProps> => ({
-    text: 'Show',
-    hoverTooltipProps: popoverProps(visible),
-    renderHoverTooltip: () => (
-      <InformationCard
-        title="Show"
-        subtitle="someElement.key"
-        descriptionConfig={{ onChange: NOOP }}
-      />
-    ),
-  });
-  return (
-    <Dropdown
-      overlayStyle={{ borderRadius: '3px' }}
-      open={dropdownVisible}
-      placement="bottomLeft"
-      size={220}
-      asChild
-      overlay={
-        <Dropdown.Wrapper
-          onKeyDown={(e) => focusWithArrowKeys(e, 'ds-menu-item', () => {})}
-          ref={ref}
-        >
-          <Menu
-            dataSource={Array.from(Array(numberOfElements)).map((e, i) =>
-              buildMenuEntry(i === 0),
-            )}
-            asDropdownMenu={true}
-            style={{ width: '100%' }}
-            showTextTooltip={true}
-          />
-        </Dropdown.Wrapper>
-      }
-    >
-      <Button
-        onClick={() => setDropdownVisible(!dropdownVisible)}
-        type="primary"
-      >
-        Dropdown
-      </Button>
-    </Dropdown>
-  );
-}

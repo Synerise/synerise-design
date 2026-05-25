@@ -14,6 +14,7 @@ src/
  InformationCardActions/ — slide-in quick-actions menu panel
  InformationCardDescription/ — editable or static description area
  InformationCardFooter/ — footer text + action button
+ InformationCardLoading/ — skeleton placeholder layout used when `isLoading` is true
  InformationCardPropertyList/ — label/value property rows + dividers
  InformationCardSummary/ — icon + label summary items row
  InformationCardTooltip/ — hover popover wrapper (forwardRef)
@@ -27,7 +28,8 @@ src/
 
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
-| `title` | `ReactNode` | — | **Required.** Card title; string values get a copy-on-click button |
+| `title` | `ReactNode` | — | Card title; string values get a copy-on-click button. **Required** unless `isLoading` is `true`. |
+| `isLoading` | `boolean` | `false` | Renders a skeleton placeholder (avatar + 3 bars + empty footer band) instead of the card contents. When `true`, all content props are ignored and `title` is not required. |
 | `subtitle` | `ReactNode` | `undefined` | Second line; string values get a copy-on-click button |
 | `icon` | `ReactNode` | `undefined` | Avatar icon (raw SVG); use with `buildIconBadge` or `buildInitialsBadge` helpers |
 | `iconColor` | `string` | `undefined` | Color applied to `icon` element |
@@ -135,6 +137,8 @@ import InformationCard, {
 ## Implementation notes
 
 - The actions-menu panel **slides in over the main card content** (`InfoCardSlide`). Height is tracked via `useResizeObserver` so the slide container matches card height exactly — do not set a fixed height on the card wrapper.
+- The loading branch short-circuits **before** the `FloatingDelayGroup` wrapper: `InformationCardLoading` is rendered directly inside `InfoCardWrapper` so it inherits the 350px width, shadow, and `asTooltip` styling but skips the actions-menu slide machinery. Sets `aria-busy` for assistive tech.
+- `InformationCardLoading` reuses `Skeleton` and `SkeletonAvatar` from `@synerise/ds-skeleton`; the `LoadingBody` style neutralises the inner `Skeleton` `Container` padding via the `Container` import from `@synerise/ds-skeleton/dist/Skeleton.styles`.
 - `InformationCardTooltip` wraps the trigger in a `display: contents` div — this preserves parent layout but means the wrapper itself takes no space. Use `asChild` if you need the trigger to receive ref/event props directly.
 - `subtitle` and `title` accept `ReactNode` (not just `string`) — copy-on-click only activates when the value is a plain string.
 - `actionsMenu` omits `onHeaderClick` and `maxHeight` from `InformationCardActionsProps` — these are managed internally.

@@ -40,7 +40,15 @@ import { InformationCardTooltip } from '@synerise/ds-information-card';
 Generally, components require being capable of rendering this and usually an additional effort is required to get them to support rendering.
 See text's menu item element `packages/components/menu/src/Elements/Item/Text/Text.tsx`.
 
-Note that `title` is a required prop; `subtitle` is optional. For just a single line of text consider using @synerise/ds-tooltip.
+Note that `title` is required unless `isLoading` is `true`; `subtitle` is optional. For just a single line of text consider using @synerise/ds-tooltip.
+
+### Loading state
+
+Pass `isLoading` to render a skeleton placeholder while data is being fetched. In this mode `title` is not required.
+
+```js
+<InformationCard isLoading />
+```
 
 ### Usage with dropdown and other components
 
@@ -67,12 +75,13 @@ By default class is `ignore-click-outside` (so looking for `domElement.closest('
 | footerText                  | additional feedback info to the user, when set to null - footer is hidden                                                                                                            | `ReactNode` &#124; `null`                           | -       |
 | icon                        | icon (note this needs to be pure SVG icon, it relies on `buildBadgeIcon` helper)                                                                                                     | `ReactNode`                                         | -       |
 | iconColor                   | icon color to be applied to `icon` element                                                                                                                                           | `string`                                            | -       |
+| isLoading                   | renders a skeleton placeholder instead of the card contents. When `true`, `title` is not required.                                                                                   | `boolean`                                           | -       |
 | notice                      | additional information shown between subtitle and description section. Can be used for warnings, errors, destructive actions, notices. See `buildExtraInfo` and alert `level` there. | `ReactNode`                                         | -       |
 | renderAdditionalDescription | Render prop for displaying additional content above footer                                                                                                                           | `() => ReactNode`                                   | -       |
 | renderBadge                 | Custom render prop for displaying. If set to `null` - badge won't be shown.                                                                                                          | `Function` &#124; `null`                            | -       |
 | renderFooter                | render prop for rendering the bottom part of (by default section with a small text and an optional action button on the right)                                                       | `() => JSX.Element`                                 | -       |
 | subtitle                    | Second line. Optional. String values are copyable on click.                                                                                                                          | `ReactNode`                                         | -       |
-| title                       | Title of the information-card. Required. String values are copyable on click.                                                                                                        | `ReactNode`                                         | -       |
+| title                       | Title of the information-card. Required unless `isLoading` is `true`. String values are copyable on click.                                                                           | `ReactNode`                                         | -       |
 | actionsMenu                 | Config for displaying "quick actions" - a button in footer that reveals a menu with links                                                                                            | `ActionsMenuProps`                                  | -       |
 | propertyListItems           | an array of object properties to list, can also include dividers                                                                                                                     | `InformationCardPropertyListItem[]`                 | -       |
 | summaryItems                | An array of (label + icon + optional tooltip) summary items to display below properties                                                                                              | `InformationCardSummaryItem[]`                      | -       |

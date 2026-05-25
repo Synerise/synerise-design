@@ -1,0 +1,147 @@
+import { Meta, Canvas } from '@storybook/addon-docs/blocks';
+import InformationCard, { InformationCardTooltip } from '@synerise/ds-information-card';
+import InformationCardMeta, {
+  Default,
+  Loading,
+  WithNotice,
+  WithoutDescription,
+  Minimalistic,
+  CustomFooter,
+  FooterText,
+  ActionButton,
+  CompleteExample,
+  PropertyListOverflow,
+} from './InformationCard.stories';
+
+<Meta component={InformationCard} of={InformationCardMeta} />
+
+# InformationCard
+
+A 350px-wide detail card for displaying entity/object information — title, subtitle, icon badge, description, property list, summary row, footer, and an optional slide-in actions menu. Ships with `InformationCardTooltip` to render it on hover over any trigger element.
+
+## Implementation details
+
+- Component: `InformationCard` — `packages/components/information-card/src/InformationCard.tsx`
+  Fixed width of **350 px**. `forwardRef<HTMLDivElement, InformationCardProps>`.
+- Props type: `InformationCardProps` — `packages/components/information-card/src/InformationCard.types.tsx`
+- Tooltip wrapper: `InformationCardTooltip` — `packages/components/information-card/src/InformationCardTooltip/InformationCardTooltip.tsx`
+- Loading layout: `InformationCardLoading` — `packages/components/information-card/src/InformationCardLoading/InformationCardLoading.tsx`
+
+---
+
+## Basic usage
+
+<Canvas of={Default} />
+
+```tsx
+import InformationCard, { buildIconBadge } from '@synerise/ds-information-card';
+import { SegmentM } from '@synerise/ds-icon';
+
+<InformationCard
+  title="Customer segment"
+  subtitle="ID: 12345"
+  icon={<SegmentM />}
+  iconColor="mars"
+/>
+```
+
+---
+
+## Loading state
+
+Pass `isLoading` to render a skeleton placeholder while data is being fetched. The wrapper keeps the same 350px width and shadow so the layout does not jump when content arrives. In this mode `title` is not required and all content props are ignored.
+
+<Canvas of={Loading} />
+
+```tsx
+<InformationCard isLoading />
+```
+
+The loading layout uses `Skeleton` and `SkeletonAvatar` from `@synerise/ds-skeleton`. It renders an avatar skeleton plus three 16-px-tall bars and an empty footer band so the loading shape matches the resolved card.
+
+---
+
+## Tooltip variant
+
+Use `InformationCardTooltip` to show the card on hover over any trigger element.
+
+```tsx
+import { InformationCardTooltip } from '@synerise/ds-information-card';
+
+<InformationCardTooltip
+  informationCardProps={{
+    title: 'Customer segment',
+    subtitle: 'ID: 12345',
+  }}
+  popoverProps={{ placement: 'top' }}
+>
+  <button>Hover me</button>
+</InformationCardTooltip>
+```
+
+Default popover config: hover trigger, 100 ms open delay, 400 ms close delay, 8 px main-axis offset.
+
+---
+
+## Composition options
+
+The card supports several optional sections — each one becomes visible only when its corresponding prop is provided.
+
+<table>
+  <thead>
+    <tr>
+      <th>Section</th>
+      <th>Prop</th>
+      <th>Purpose</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr><td>Notice</td><td><code>notice</code></td><td>Warning/error/notice shown between subtitle and description — pair with <code>buildExtraInfo</code> for styled alerts</td></tr>
+    <tr><td>Description</td><td><code>descriptionConfig</code></td><td>Editable textarea or static string; pass <code>null</code> to hide</td></tr>
+    <tr><td>Property list</td><td><code>propertyListItems</code></td><td>Label/value rows; may include <code>{'{ type: \'divider\' }'}</code> entries</td></tr>
+    <tr><td>Summary row</td><td><code>summaryItems</code></td><td>Icon + label items with optional tooltip</td></tr>
+    <tr><td>Footer</td><td><code>footerText</code> / <code>actionButton</code> / <code>renderFooter</code></td><td>Default footer; <code>renderFooter</code> replaces it entirely</td></tr>
+    <tr><td>Actions menu</td><td><code>actionsMenu</code></td><td>Quick-actions slide-in panel triggered from the footer</td></tr>
+  </tbody>
+</table>
+
+### With notice
+
+<Canvas of={WithNotice} />
+
+### Without description
+
+<Canvas of={WithoutDescription} />
+
+### Minimalistic (no badge, no description)
+
+<Canvas of={Minimalistic} />
+
+### Custom footer
+
+<Canvas of={CustomFooter} />
+
+### Footer text + action button
+
+<Canvas of={FooterText} />
+
+### Action button only
+
+<Canvas of={ActionButton} />
+
+### Complete example
+
+<Canvas of={CompleteExample} />
+
+### Property list overflow
+
+<Canvas of={PropertyListOverflow} />
+
+---
+
+## Notes & tips
+
+- `title` is required unless `isLoading` is `true`. String values for `title` and `subtitle` become copyable on click; pass a `ReactNode` to opt out of the copy affordance.
+- `renderBadge={null}` explicitly hides the badge; omitting `renderBadge` uses the default icon rendering via `icon` + `buildIconBadge`.
+- The actions-menu panel slides in over the main card content. Height is tracked via `useResizeObserver` so the slide container matches card height — do not set a fixed height on the card wrapper.
+- `InformationCardTooltip` wraps the trigger in a `display: contents` div. Use `asChild` if you need the trigger to receive ref/event props directly.
