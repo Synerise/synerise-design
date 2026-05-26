@@ -3,6 +3,10 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.3.18](https://github.com/Synerise/synerise-design/compare/@synerise/ds-sortable@1.3.17...@synerise/ds-sortable@1.3.18) (2026-05-26)
+
+**Note:** Version bump only for package @synerise/ds-sortable
+
 ## [1.3.17](https://github.com/Synerise/synerise-design/compare/@synerise/ds-sortable@1.3.16...@synerise/ds-sortable@1.3.17) (2026-05-22)
 
 **Note:** Version bump only for package @synerise/ds-sortable

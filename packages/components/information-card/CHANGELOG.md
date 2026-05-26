@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.7.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-information-card@1.6.20...@synerise/ds-information-card@1.7.0) (2026-05-26)
+
+### Features
+
+- **information-card:** add loading state with skeletons ([0e1fd72](https://github.com/Synerise/synerise-design/commit/0e1fd720ed372df57086b8efac496303daed68b7))
+
 ## [1.6.20](https://github.com/Synerise/synerise-design/compare/@synerise/ds-information-card@1.6.19...@synerise/ds-information-card@1.6.20) (2026-05-22)
 
 **Note:** Version bump only for package @synerise/ds-information-card

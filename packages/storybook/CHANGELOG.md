@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.46.0](https://github.com/Synerise/synerise-design/compare/storybook@1.45.0...storybook@1.46.0) (2026-05-26)
+
+### Features
+
+- **information-card:** add loading state with skeletons ([0e1fd72](https://github.com/Synerise/synerise-design/commit/0e1fd720ed372df57086b8efac496303daed68b7))
+
 # [1.45.0](https://github.com/Synerise/synerise-design/compare/storybook@1.44.1...storybook@1.45.0) (2026-05-22)
 
 ### Features

@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.5.1](https://github.com/synerise/synerise-design/compare/@synerise/ds-modal@1.5.0...@synerise/ds-modal@1.5.1) (2026-05-26)
+
+### Bug Fixes
+
+- **modal:** imperative api leak ([baca840](https://github.com/synerise/synerise-design/commit/baca840aea23d21f7fd156668c2c3361158979a2))
+
 # [1.5.0](https://github.com/synerise/synerise-design/compare/@synerise/ds-modal@1.4.14...@synerise/ds-modal@1.5.0) (2026-05-22)
 
 ### Features
