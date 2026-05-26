@@ -216,8 +216,8 @@ export function Search<
       pendingCloseCleanupRef.current = null;
       if (isOpen && !value && !label && !alwaysExpanded) {
         setToggleInputTrigger((prev) => !prev);
+        setIsOpen(false);
       }
-      setIsOpen(false);
       setIsListVisible(false);
       setScrollbarScrollTop(0);
     };
