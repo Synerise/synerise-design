@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.5.27](https://github.com/Synerise/synerise-design/compare/@synerise/ds-search@1.5.26...@synerise/ds-search@1.5.27) (2026-05-27)
+
+### Bug Fixes
+
+- **search:** search with value closing on click outside ([1ddcab3](https://github.com/Synerise/synerise-design/commit/1ddcab3fcd2341d226b40b5d5afed5fcb58b53cd))
+
 ## [1.5.26](https://github.com/Synerise/synerise-design/compare/@synerise/ds-search@1.5.25...@synerise/ds-search@1.5.26) (2026-05-26)
 
 **Note:** Version bump only for package @synerise/ds-search
