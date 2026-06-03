@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { renderWithProvider } from '@synerise/ds-core';
-import { fireEvent, render, screen, waitFor } from '@testing-library/react';
+import { fireEvent, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 
 import { ModalTitle } from './ModalTitle';
@@ -59,7 +59,7 @@ describe('ModalTitle', () => {
   });
 
   it('should not render close button when blank is true but onCancel is not provided', () => {
-    render(<ModalTitle blank />);
+    renderWithProvider(<ModalTitle blank />);
 
     const closeButton = screen.queryByTestId('modal-close');
 

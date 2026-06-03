@@ -1,5 +1,8 @@
 {
   "DS": {
+    "MODAL": {
+      "CLOSE": "Fechar"
+    },
     "CODE-AREA": {
       "FULLSCREEN": "Tela cheia",
       "CLOSE-FULLSCREEN": "Fechar tela cheia",

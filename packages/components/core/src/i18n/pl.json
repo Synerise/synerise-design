@@ -1,5 +1,8 @@
 {
   "DS": {
+    "MODAL": {
+      "CLOSE": "Zamknij"
+    },
     "MENU": {
       "SHOW-LESS": "Pokaż mniej",
       "SHOW-MORE": "Pokaż więcej"

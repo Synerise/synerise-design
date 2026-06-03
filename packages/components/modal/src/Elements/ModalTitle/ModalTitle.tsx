@@ -1,4 +1,5 @@
 import React from 'react';
+import { useIntl } from 'react-intl';
 
 import Button from '@synerise/ds-button';
 import Icon, { CloseM } from '@synerise/ds-icon';
@@ -13,10 +14,17 @@ export const ModalTitle = ({
   titleContainerStyle,
   onCancel,
   title,
+  titleId,
   description,
+  descriptionId,
   headerTabProps,
   headerBottomBar,
+  closeButtonAriaLabel,
 }: ModalTitleProps) => {
+  const { formatMessage } = useIntl();
+  const closeLabel =
+    closeButtonAriaLabel ??
+    formatMessage({ id: 'DS.MODAL.CLOSE', defaultMessage: 'Close' });
   return (
     <>
       {blank && onCancel && (
@@ -25,6 +33,7 @@ export const ModalTitle = ({
           data-testid="modal-close"
           className="close-modal"
           type="ghost"
+          aria-label={closeLabel}
           onClick={onCancel}
         >
           <Icon component={<CloseM />} />
@@ -40,7 +49,9 @@ export const ModalTitle = ({
               style={titleContainerStyle}
               data-testid="modal-title"
             >
-              <S.Title level={3}>{title}</S.Title>
+              <S.Title level={3} id={titleId}>
+                {title}
+              </S.Title>
               <S.ActionButtons>
                 {headerActions}
                 {onCancel && (
@@ -49,6 +60,7 @@ export const ModalTitle = ({
                     data-testid="modal-close"
                     className="close-modal"
                     type="ghost"
+                    aria-label={closeLabel}
                     onClick={onCancel}
                   >
                     <Icon component={<CloseM />} />
@@ -58,7 +70,9 @@ export const ModalTitle = ({
             </S.TitleContainer>
           )}
 
-          {description && <S.Description>{description}</S.Description>}
+          {description && (
+            <S.Description id={descriptionId}>{description}</S.Description>
+          )}
           {headerTabProps && (
             <S.TabsWrapper>
               <Tabs {...headerTabProps} />

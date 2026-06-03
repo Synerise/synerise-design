@@ -118,6 +118,12 @@ ref.current?.scrollToBottom();
 | `zIndex`            | `z-index` of the modal                                                                                            | `number`                                                                          | –         |
 | `className`         | CSS class applied to the modal root                                                                               | `string`                                                                          | –         |
 | `style`             | Inline styles applied to the modal root                                                                           | `CSSProperties`                                                                   | –         |
+| `ariaLabel`         | Accessible name for the dialog. Used as a fallback when `title` is absent (e.g. `blank` modals) or is a non-text node | `string`                                                                       | –         |
+| `closeButtonAriaLabel` | Accessible name for the close button. Defaults to the localised `DS.MODAL.CLOSE` translation                  | `string`                                                                          | `Close`   |
+
+### Accessibility
+
+The dialog container carries `role="dialog"` and `aria-modal="true"`. When a `title` is provided it is linked via `aria-labelledby`; otherwise pass `ariaLabel` to give the dialog an accessible name. A `description`, when present, is linked via `aria-describedby`. The close button's accessible name defaults to the localised `DS.MODAL.CLOSE` translation (`"Close"`), overridable with `closeButtonAriaLabel`. Focus is trapped while the modal is open and restored to the previously focused element on close, and `Escape` closes the modal when `onCancel` is set and `closable` is not `false`.
 
 ### Footer layout slots
 

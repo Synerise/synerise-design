@@ -3,7 +3,7 @@ import React, {
   type MouseEvent,
   forwardRef,
   useCallback,
-  useEffect,
+  useId,
   useImperativeHandle,
   useMemo,
   useRef,
@@ -22,7 +22,6 @@ export const ModalContent = forwardRef<ModalRef, ModalContentProps>(
     {
       children,
       size = 'small',
-      afterClose,
       maxViewportHeight,
       headerActions,
       blank,
@@ -55,11 +54,15 @@ export const ModalContent = forwardRef<ModalRef, ModalContentProps>(
       maskClosable = true,
       centered,
       hidden,
+      ariaLabel,
+      closeButtonAriaLabel,
       ...rest
     },
     modalRef,
   ) => {
     const scrollRef = useRef<HTMLDivElement>(null);
+    const titleId = useId();
+    const descriptionId = useId();
     const DEFAULT_VIEWPORT_HEIGHT = 80;
 
     const isFullscreen = size === 'fullScreen';
@@ -72,13 +75,6 @@ export const ModalContent = forwardRef<ModalRef, ModalContentProps>(
       }
       return undefined;
     }, [maxViewportHeight]);
-
-    useEffect(() => {
-      return () => {
-        afterClose?.();
-      };
-      // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, []);
 
     const scrollToTop = useCallback(() => {
       scrollRef.current?.scrollTo(0, 0);
@@ -145,6 +141,10 @@ export const ModalContent = forwardRef<ModalRef, ModalContentProps>(
           <S.ModalContainer
             onClick={cancelClick}
             role="dialog"
+            aria-modal
+            aria-labelledby={title ? titleId : undefined}
+            aria-label={!title ? ariaLabel : undefined}
+            aria-describedby={description ? descriptionId : undefined}
             isFullscreen={isFullscreen}
             $width={size && SIZE_MAP[size]}
             maxHeight={maxHeight}
@@ -156,9 +156,12 @@ export const ModalContent = forwardRef<ModalRef, ModalContentProps>(
               titleContainerStyle={titleContainerStyle}
               onCancel={closable && onCancel ? handleCancel : undefined}
               title={title}
+              titleId={titleId}
               description={description}
+              descriptionId={descriptionId}
               headerTabProps={headerTabProps}
               headerBottomBar={headerBottomBar}
+              closeButtonAriaLabel={closeButtonAriaLabel}
             />
             <S.ModalBody
               greyBackground={bodyBackground === 'grey'}

@@ -214,6 +214,73 @@ describe('Modal', () => {
     expect(document.activeElement?.closest('[data-testid="ds-modal"]')).toBeTruthy();
   });
 
+  describe('afterClose semantics', () => {
+    it('fires on every open: true → false transition', async () => {
+      const afterClose = vi.fn();
+      const { rerender } = renderWithProvider(
+        <Modal open afterClose={afterClose} title="t" />,
+      );
+      expect(afterClose).not.toHaveBeenCalled();
+
+      rerender(<Modal open={false} afterClose={afterClose} title="t" />);
+      await waitFor(() => expect(afterClose).toHaveBeenCalledTimes(1));
+
+      rerender(<Modal open afterClose={afterClose} title="t" />);
+      rerender(<Modal open={false} afterClose={afterClose} title="t" />);
+      await waitFor(() => expect(afterClose).toHaveBeenCalledTimes(2));
+    });
+
+    it('does not fire on initial mount when open is false', () => {
+      const afterClose = vi.fn();
+      renderWithProvider(<Modal afterClose={afterClose} title="t" />);
+      expect(afterClose).not.toHaveBeenCalled();
+    });
+
+    it('does not fire on initial mount when open is true', () => {
+      const afterClose = vi.fn();
+      renderWithProvider(<Modal open afterClose={afterClose} title="t" />);
+      expect(afterClose).not.toHaveBeenCalled();
+    });
+
+    it('fires when the user closes via the cancel button', async () => {
+      const afterClose = vi.fn();
+      renderWithProvider(
+        <Modal open afterClose={afterClose} onCancel={vi.fn()} title="t" />,
+      );
+
+      fireEvent.click(screen.getByText('Cancel'));
+      await waitFor(() => expect(afterClose).toHaveBeenCalledTimes(1));
+    });
+
+    it('fires when the user closes via Escape', async () => {
+      const afterClose = vi.fn();
+      renderWithProvider(
+        <Modal open afterClose={afterClose} onCancel={vi.fn()} title="t" />,
+      );
+
+      fireEvent.keyDown(screen.getByTestId('ds-modal'), { key: 'Escape' });
+      await waitFor(() => expect(afterClose).toHaveBeenCalledTimes(1));
+    });
+
+    it('fires exactly once when destroyOnClose=true (no double-fire with unmount)', async () => {
+      const afterClose = vi.fn();
+      const { rerender } = renderWithProvider(
+        <Modal open destroyOnClose afterClose={afterClose} title="t" />,
+      );
+      rerender(<Modal open={false} destroyOnClose afterClose={afterClose} title="t" />);
+      await waitFor(() => expect(afterClose).toHaveBeenCalledTimes(1));
+    });
+
+    it('does not fire when the Modal is hard-unmounted while still open', () => {
+      const afterClose = vi.fn();
+      const { unmount } = renderWithProvider(
+        <Modal open afterClose={afterClose} title="t" />,
+      );
+      unmount();
+      expect(afterClose).not.toHaveBeenCalled();
+    });
+  });
+
   it('should restore focus to previously focused element when closed', async () => {
     const outsideButton = document.createElement('button');
     outsideButton.textContent = 'Outside';
@@ -236,5 +303,65 @@ describe('Modal', () => {
     });
 
     document.body.removeChild(outsideButton);
+  });
+
+  describe('accessibility attributes', () => {
+    it('should mark the dialog as a modal with aria-modal', () => {
+      renderWithProvider(<Modal title={titleMock} open />);
+
+      expect(screen.getByRole('dialog')).toHaveAttribute('aria-modal', 'true');
+    });
+
+    it('should label the dialog with its title via aria-labelledby', () => {
+      renderWithProvider(<Modal title={titleMock} open />);
+
+      // getByRole resolves the accessible name from aria-labelledby
+      expect(
+        screen.getByRole('dialog', { name: titleMock }),
+      ).toBeInTheDocument();
+    });
+
+    it('should fall back to ariaLabel when there is no title', () => {
+      renderWithProvider(<Modal ariaLabel="Settings dialog" open />);
+
+      expect(
+        screen.getByRole('dialog', { name: 'Settings dialog' }),
+      ).toBeInTheDocument();
+    });
+
+    it('should describe the dialog with its description via aria-describedby', () => {
+      renderWithProvider(
+        <Modal title={titleMock} description={descriptionMock} open />,
+      );
+
+      expect(screen.getByRole('dialog')).toHaveAccessibleDescription(
+        descriptionMock,
+      );
+    });
+
+    it('should give the close button a default accessible name', () => {
+      renderWithProvider(
+        <Modal title={titleMock} onCancel={vi.fn()} open />,
+      );
+
+      expect(
+        screen.getByRole('button', { name: 'Close' }),
+      ).toBeInTheDocument();
+    });
+
+    it('should let the close button label be overridden', () => {
+      renderWithProvider(
+        <Modal
+          title={titleMock}
+          onCancel={vi.fn()}
+          closeButtonAriaLabel="Dismiss"
+          open
+        />,
+      );
+
+      expect(
+        screen.getByRole('button', { name: 'Dismiss' }),
+      ).toBeInTheDocument();
+    });
   });
 });
