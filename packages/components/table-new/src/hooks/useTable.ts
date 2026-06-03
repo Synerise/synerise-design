@@ -250,6 +250,7 @@ export const useTable = <TData, TValue>({
     [childrenColumnName],
   );
 
+  const isExpansionControlled = !!expandable?.expandedRowKeys;
   const expandedKeys = expandable?.expandedRowKeys
     ? arrayToTrueMap(expandable?.expandedRowKeys)
     : undefined;
@@ -276,7 +277,11 @@ export const useTable = <TData, TValue>({
     getGroupedRowModel: getGroupedRowModel(),
 
     onRowSelectionChange: handleSelectionChange,
-    onExpandedChange: () => {},
+    // Swallow TanStack's expansion writes only when the consumer is the source
+    // of truth (controlled via `expandable.expandedRowKeys`). For uncontrolled
+    // use (e.g. `expandable.expandRowByClick` without `expandedRowKeys`) we
+    // omit this so `row.toggleExpanded()` can update the internal state.
+    ...(isExpansionControlled ? { onExpandedChange: () => {} } : {}),
     onSortingChange: handleSortingChange,
 
     enableRowSelection: (row) => {
@@ -285,7 +290,7 @@ export const useTable = <TData, TValue>({
       return !!selectionConfig && !unavailable && !disabled;
     },
 
-    manualExpanding: !!expandable?.expandedRowKeys,
+    manualExpanding: isExpansionControlled,
 
     initialState: {
       columnPinning: {
@@ -293,7 +298,7 @@ export const useTable = <TData, TValue>({
         left: leftPinnedColumns,
       },
       ...paginationInitialState,
-      expanded: expandedKeys,
+      ...(isExpansionControlled ? { expanded: expandedKeys } : {}),
     },
     state: {
       columnPinning: {
@@ -302,7 +307,9 @@ export const useTable = <TData, TValue>({
       },
       sorting,
       rowSelection,
-      expanded: expandedKeys,
+      // Only project expanded into TanStack state when controlled — otherwise
+      // TanStack keeps and manages its own internal state.
+      ...(isExpansionControlled ? { expanded: expandedKeys } : {}),
     },
   });
 

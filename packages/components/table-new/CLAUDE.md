@@ -4,10 +4,10 @@ Data table component built on [@tanstack/react-table](https://tanstack.com/table
 
 ## Main components
 
-- **`Table`** -- standard paginated table. Pagination defaults to `pageSize: 10`, configurable via `pagination` prop.
-- **`VirtualTable`** -- virtualized table for large datasets with infinite scroll support.
+- **`Table`** -- standard paginated table. Pagination defaults to `pageSize: 10`, configurable via `pagination` prop. Supports `stickyHeader` for page-driven scroll (header sticks to nearest scrollable ancestor; no internal scroll container).
+- **`VirtualTable`** -- virtualized table for large datasets with infinite scroll support. Supports `stickyHeader` with internal `maxHeight` scroll container or external `scrollElementRef`.
 
-Both share the same `SharedTableProps` type and most props are identical.
+Both share the same `SharedTableProps` type and most props are identical, including `stickyHeader`.
 
 ## Search
 
@@ -30,6 +30,21 @@ Enabled by passing `selectionConfig` to the table. Key types:
 - `SelectionConfig<TData>` -- onChange, limit, hideSelectAll, fixed, selections, globalSelection, checkRowSelectionStatus, getSelectionTooltipProps.
 - `SELECTION_ALL` / `SELECTION_INVERT` -- exported constants for the `selections` array.
 - `selectedRowKeys` -- controlled selection state (prop on Table, not inside selectionConfig).
+
+## Expandable rows
+
+Configured via the `expandable` prop on `Table` / `VirtualTable`. Mirrors the legacy `@synerise/ds-table` API:
+
+| Prop | Purpose |
+| --- | --- |
+| `childrenColumnName` | Property on a row containing child rows. Default `'children'`. |
+| `expandedRowKeys` | Controlled set of expanded row keys. Omit to use uncontrolled mode (TanStack manages state internally). |
+| `expandedRowRender(record, index, indent, expanded)` | Renders custom content as an extra `<tr>` directly below an expanded parent row. Cell spans every visible column. **`Table` only** — `VirtualTable` ignores this (variable-height rows not integrated with virtualizer). |
+| `expandRowByClick` | Clicking anywhere on a row toggles its expansion. Composes with `onRowClick` / `getRowProps` onClick — call `event.preventDefault()` from those handlers to suppress. |
+| `rowExpandable(record)` | Returns `false` to mark a row as non-expandable. Hides the `TreeTable` expander icon and suppresses `expandRowByClick` for that row. |
+| `onExpand(expanded, record)` | Notifies when a row's expansion changes via `expandRowByClick`. Required in controlled mode (`expandedRowKeys` set) so the consumer can update their source of truth. |
+
+`TreeTable` additionally accepts `rowExpandable` as a top-level prop (its expansion API is hoisted — see `TreeTable.types.ts`).
 
 ## Column definitions
 

@@ -75,6 +75,13 @@ export const Default: StoryObj<VirtualTableProps> = {
     data: DATA_SOURCE_FULL,
     columns: COLUMNS_ALL,
   },
+  parameters: {
+    docs: {
+      source: {
+        code: `<VirtualTable data={data} columns={columns} />`,
+      },
+    },
+  },
 };
 
 export const LoadingConfig: StoryObj<VirtualTableProps> = {
@@ -85,6 +92,15 @@ export const LoadingConfig: StoryObj<VirtualTableProps> = {
     data: [],
     isLoading: true,
   },
+  parameters: {
+    docs: {
+      source: {
+        code: `// Columns + data are both still loading — skeleton column defs are
+// substituted so the body has shape until both arrive.
+<VirtualTable data={[]} columns={[]} isLoading />`,
+      },
+    },
+  },
 };
 
 export const LoadingData: StoryObj<VirtualTableProps> = {
@@ -93,6 +109,15 @@ export const LoadingData: StoryObj<VirtualTableProps> = {
     ...Default.args,
     data: [],
     isLoading: true,
+  },
+  parameters: {
+    docs: {
+      source: {
+        code: `// Columns are known but data is still in-flight — skeleton rows are
+// rendered using the real column layout.
+<VirtualTable data={[]} columns={columns} isLoading />`,
+      },
+    },
   },
 };
 
@@ -130,6 +155,34 @@ export const InfiniteScroll: StoryObj<VirtualTableProps> = {
       onRetryButtonClick: fn(),
     },
     columns: COLUMNS_ALL,
+  },
+  parameters: {
+    docs: {
+      source: {
+        code: `<VirtualTable
+  data={data}
+  columns={columns}
+  stickyHeader
+  cardStyles
+  showBackToTopButton
+  selectionConfig={{
+    onChange: (selectedRowKeys, selectedRows) =>
+      console.log('sel', selectedRowKeys, selectedRows),
+    selections: [SELECTION_ALL, SELECTION_INVERT],
+  }}
+  infiniteScroll={{
+    hasError: false,
+    isLoading: true,
+    hasMore: false,
+    prevPage: { isLoading: false, hasError: false, hasMore: false },
+    nextPage: { isLoading: true, hasError: false, hasMore: true },
+    onScrollEndReach: () => loadNextPage(),
+    onScrollTopReach: () => loadPrevPage(),
+    onRetryButtonClick: () => retry(),
+  }}
+/>`,
+      },
+    },
   },
 };
 
@@ -189,6 +242,58 @@ export const ExpandableRows: StoryObj<VirtualTableProps> = {
     ...InfiniteScroll.args,
     data: EXPANDABLE_DATA_SOURCE,
   },
+  parameters: {
+    docs: {
+      source: {
+        code: `const MyList = () => {
+  const [expandedRows, setExpandedRows] = useState<string[]>([]);
+
+  const handleExpandRow = (key: string) =>
+    setExpandedRows((prev) =>
+      prev.includes(key) ? prev.filter((k) => k !== key) : [...prev, key],
+    );
+
+  const columns = [
+    { accessorKey: 'name', id: 'name', header: 'Name', minSize: 400 },
+    { accessorKey: 'age', id: 'age', header: 'Age', size: 100 },
+    {
+      id: 'expander',
+      header: '',
+      size: 72,
+      cell: (info) => {
+        const record = info.row.original;
+        const hasChildren = record.children?.length > 0;
+        if (!hasChildren) return null;
+        return (
+          <TableCell.ActionCell>
+            <Expander
+              expanded={expandedRows.indexOf(record.key) >= 0}
+              onClick={(event) => {
+                event.stopPropagation();
+                handleExpandRow(record.key);
+              }}
+            />
+          </TableCell.ActionCell>
+        );
+      },
+    },
+  ];
+
+  return (
+    <VirtualTable
+      data={data}
+      columns={columns}
+      rowKey={(row) => row.key}
+      expandable={{
+        expandedRowKeys: expandedRows,
+        childrenColumnName: 'children',
+      }}
+    />
+  );
+};`,
+      },
+    },
+  },
 };
 
 export const WithTooltips: StoryObj<
@@ -209,6 +314,29 @@ export const WithTooltips: StoryObj<
         row.unavailable
           ? { title: `Cannot select ${row.name} — unavailable` }
           : false,
+    },
+  },
+  parameters: {
+    docs: {
+      source: {
+        code: `<VirtualTable
+  data={data}
+  columns={columns}
+  title="Tooltips demo"
+  getRowTooltipProps={(row) =>
+    row.disabled ? { title: \`Row \${row.name} is disabled\` } : false
+  }
+  selectionConfig={{
+    onChange: (selectedRowKeys, selectedRows) =>
+      console.log('sel', selectedRowKeys, selectedRows),
+    selections: [SELECTION_ALL, SELECTION_INVERT],
+    getSelectionTooltipProps: (row) =>
+      row.unavailable
+        ? { title: \`Cannot select \${row.name} — unavailable\` }
+        : false,
+  }}
+/>`,
+      },
     },
   },
 };
@@ -257,6 +385,42 @@ export const FixedColumnsNoStickyHeader: StoryObj<VirtualTableProps> = {
     cellHeight: 56,
     maxHeight: 400,
   },
+  parameters: {
+    docs: {
+      source: {
+        code: `// Columns pinned via meta.fixed: 'left' / 'right' stay visible while the
+// body scrolls horizontally. \`stickyHeader\` is OFF, so the header stays
+// fixed too (no split-table layout).
+const columns = [
+  {
+    accessorKey: 'name', id: 'name', header: 'Name',
+    size: 220, meta: { fixed: 'left' },
+  },
+  { accessorKey: 'city', id: 'city', header: 'City', size: 220 },
+  { accessorKey: 'address', id: 'address', header: 'Address', size: 320 },
+  { accessorKey: 'transactionType', id: 'transactionType', header: 'Type', size: 200 },
+  { accessorKey: 'number', id: 'number', header: 'Amount', size: 200 },
+  {
+    accessorKey: 'disabled', id: 'disabled', header: 'Disabled',
+    size: 160, cell: (info) => (info.getValue() ? 'Yes' : 'No'),
+  },
+  {
+    accessorKey: 'unavailable', id: 'unavailable', header: 'Status',
+    size: 160, meta: { fixed: 'right' },
+    cell: (info) => (info.getValue() ? 'Unavailable' : 'Available'),
+  },
+];
+
+<VirtualTable
+  data={data}
+  columns={columns}
+  hideTitleBar
+  cellHeight={56}
+  maxHeight={400}
+/>`,
+      },
+    },
+  },
 };
 
 export const WithBuiltInSearch: StoryObj<VirtualTableProps> = {
@@ -276,6 +440,30 @@ export const WithBuiltInSearch: StoryObj<VirtualTableProps> = {
         console.log('sel', rest);
       },
       selections: [SELECTION_ALL, SELECTION_INVERT],
+    },
+  },
+  parameters: {
+    docs: {
+      source: {
+        code: `<VirtualTable
+  data={data}
+  columns={columns}
+  title="Users"
+  matchesSearchQuery={(query, row) =>
+    row.name.toLowerCase().includes(query.toLowerCase()) ||
+    row.city.toLowerCase().includes(query.toLowerCase())
+  }
+  searchProps={{
+    placeholder: 'Search by name or city...',
+    clearTooltip: 'Clear search',
+  }}
+  selectionConfig={{
+    onChange: (selectedRowKeys, selectedRows) =>
+      console.log('sel', selectedRowKeys, selectedRows),
+    selections: [SELECTION_ALL, SELECTION_INVERT],
+  }}
+/>`,
+      },
     },
   },
 };

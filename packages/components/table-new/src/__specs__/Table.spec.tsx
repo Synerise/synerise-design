@@ -64,6 +64,47 @@ describe('Table', () => {
     expect(screen.getAllByRole('row')).toHaveLength(3);
   });
 
+  describe('stickyHeader', () => {
+    it('should render with stickyHeader', () => {
+      renderWithProvider(<Table data={DATA} columns={COLUMNS} stickyHeader />);
+
+      expect(screen.getByText('Name')).toBeInTheDocument();
+      expect(screen.getAllByRole('row')).toHaveLength(DATA.length + 1);
+    });
+
+    it('should render columns and body in separate <table>s when stickyHeader is true', () => {
+      renderWithProvider(<Table data={DATA} columns={COLUMNS} stickyHeader />);
+
+      // Sticky path splits the table into two: one for column headers, one for body.
+      // The unified (non-sticky) path renders a single <table>.
+      const tables = screen.getAllByRole('table');
+      expect(tables).toHaveLength(2);
+    });
+
+    it('should render a single <table> by default (no stickyHeader)', () => {
+      renderWithProvider(<Table data={DATA} columns={COLUMNS} />);
+
+      const tables = screen.getAllByRole('table');
+      expect(tables).toHaveLength(1);
+    });
+
+    it('should still render pagination below the body when stickyHeader is true', () => {
+      renderWithProvider(
+        <Table
+          data={DATA}
+          columns={COLUMNS}
+          stickyHeader
+          pagination={{ pageSize: 2 }}
+        />,
+      );
+
+      // With pageSize 2 + sticky, the body table contains 2 data rows and the columns
+      // table contains the header row — pagination control should still be present.
+      expect(screen.getAllByRole('row')).toHaveLength(3);
+      expect(screen.getByRole('list')).toBeInTheDocument();
+    });
+  });
+
   describe('sorting', () => {
     it('should render sort buttons for sortable columns', () => {
       renderWithProvider(
@@ -222,6 +263,177 @@ describe('Table', () => {
       const collapsedRowCount = screen.getAllByRole('row').length;
       // Without expandable config, child rows should not appear
       expect(collapsedRowCount).toBeLessThanOrEqual(expandedRowCount);
+    });
+  });
+
+  describe('expandedRowRender', () => {
+    it('renders expanded content row below an expanded parent', () => {
+      renderWithProvider(
+        <Table
+          data={EXPANDABLE_DATA}
+          columns={COLUMNS}
+          expandable={{
+            expandedRowKeys: ['1'],
+            expandedRowRender: (record) => (
+              <div data-testid="expanded-detail">Detail: {record.name}</div>
+            ),
+          }}
+        />,
+      );
+
+      expect(screen.getByTestId('expanded-detail')).toHaveTextContent(
+        'Detail: Mike',
+      );
+    });
+
+    it('does not render expanded content for non-expanded rows', () => {
+      renderWithProvider(
+        <Table
+          data={EXPANDABLE_DATA}
+          columns={COLUMNS}
+          expandable={{
+            expandedRowRender: (record) => (
+              <div data-testid="expanded-detail">Detail: {record.name}</div>
+            ),
+          }}
+        />,
+      );
+
+      expect(screen.queryByTestId('expanded-detail')).not.toBeInTheDocument();
+    });
+
+    it('expanded content cell spans every visible column', () => {
+      renderWithProvider(
+        <Table
+          data={EXPANDABLE_DATA}
+          columns={COLUMNS}
+          expandable={{
+            expandedRowKeys: ['1'],
+            expandedRowRender: () => <div>detail</div>,
+          }}
+        />,
+      );
+
+      const expandedRow = document.querySelector(
+        '[data-row-expanded-content="true"]',
+      );
+      expect(expandedRow).not.toBeNull();
+      const cell = expandedRow?.querySelector('td');
+      // 3 columns in COLUMNS; no selection column in this test
+      expect(cell?.getAttribute('colspan')).toBe('3');
+    });
+
+    it('suppresses expanded content when rowExpandable returns false', () => {
+      renderWithProvider(
+        <Table
+          data={EXPANDABLE_DATA}
+          columns={COLUMNS}
+          expandable={{
+            expandedRowKeys: ['1'],
+            expandedRowRender: () => <div data-testid="detail">detail</div>,
+            rowExpandable: (record) => record.key !== '1',
+          }}
+        />,
+      );
+
+      expect(screen.queryByTestId('detail')).not.toBeInTheDocument();
+    });
+  });
+
+  describe('expandRowByClick', () => {
+    it('toggles row expansion when row is clicked (uncontrolled)', () => {
+      const onExpand = vi.fn();
+      renderWithProvider(
+        <Table
+          data={EXPANDABLE_DATA}
+          columns={COLUMNS}
+          expandable={{
+            expandRowByClick: true,
+            expandedRowRender: (record) => (
+              <div data-testid={`detail-${record.key}`}>{record.name}</div>
+            ),
+            onExpand,
+          }}
+        />,
+      );
+
+      // Initially collapsed — no expanded content
+      expect(screen.queryByTestId('detail-1')).not.toBeInTheDocument();
+
+      const rows = screen.getAllByRole('row');
+      // rows[0] is the header; rows[1] is Mike (first data row)
+      fireEvent.click(rows[1]);
+
+      expect(onExpand).toHaveBeenCalledWith(true, expect.objectContaining({ key: '1' }));
+      // After click, the expanded content for Mike should appear
+      expect(screen.getByTestId('detail-1')).toBeInTheDocument();
+    });
+
+    it('does not toggle expansion for rows where rowExpandable returns false', () => {
+      const onExpand = vi.fn();
+      renderWithProvider(
+        <Table
+          data={EXPANDABLE_DATA}
+          columns={COLUMNS}
+          expandable={{
+            expandRowByClick: true,
+            rowExpandable: (record) => record.key !== '1',
+            onExpand,
+          }}
+        />,
+      );
+
+      const rows = screen.getAllByRole('row');
+      // rows[0] is the header; rows[1] is Mike (first data row)
+      fireEvent.click(rows[1]);
+
+      expect(onExpand).not.toHaveBeenCalled();
+    });
+
+    it('fires onExpand and onRowClick together when both are configured', () => {
+      const onExpand = vi.fn();
+      const onRowClick = vi.fn();
+      renderWithProvider(
+        <Table
+          data={EXPANDABLE_DATA}
+          columns={COLUMNS}
+          onRowClick={onRowClick}
+          expandable={{
+            expandRowByClick: true,
+            onExpand,
+          }}
+        />,
+      );
+
+      const rows = screen.getAllByRole('row');
+      // rows[0] is the header; rows[1] is Mike (first data row)
+      fireEvent.click(rows[1]);
+
+      expect(onExpand).toHaveBeenCalledTimes(1);
+      expect(onRowClick).toHaveBeenCalledTimes(1);
+    });
+
+    it('respects event.preventDefault() from getRowProps onClick', () => {
+      const onExpand = vi.fn();
+      renderWithProvider(
+        <Table
+          data={EXPANDABLE_DATA}
+          columns={COLUMNS}
+          getRowProps={() => ({
+            onClick: (event) => event.preventDefault(),
+          })}
+          expandable={{
+            expandRowByClick: true,
+            onExpand,
+          }}
+        />,
+      );
+
+      const rows = screen.getAllByRole('row');
+      // rows[0] is the header; rows[1] is Mike (first data row)
+      fireEvent.click(rows[1]);
+
+      expect(onExpand).not.toHaveBeenCalled();
     });
   });
 

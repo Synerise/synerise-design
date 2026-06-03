@@ -28,7 +28,6 @@ export const TableEmptyBody = <TData, TValue>({
                   )
                 }
                 type="no-results"
-                noSearchResults
               />
             )}
           </S.TableEmptyBodyWrapper>

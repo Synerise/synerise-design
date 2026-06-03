@@ -55,6 +55,13 @@ export const Default: StoryObj<typeof Table> = {
     data: DATA_SOURCE_FULL,
     columns: COLUMNS_ALL,
   },
+  parameters: {
+    docs: {
+      source: {
+        code: `<Table data={data} columns={columns} />`,
+      },
+    },
+  },
 };
 
 export const WithSelection: StoryObj<typeof Table> = {
@@ -65,6 +72,21 @@ export const WithSelection: StoryObj<typeof Table> = {
         console.log('sel', rest);
       },
       selections: [SELECTION_ALL, SELECTION_INVERT],
+    },
+  },
+  parameters: {
+    docs: {
+      source: {
+        code: `<Table
+  data={data}
+  columns={columns}
+  selectionConfig={{
+    onChange: (selectedRowKeys, selectedRows) =>
+      console.log('sel', selectedRowKeys, selectedRows),
+    selections: [SELECTION_ALL, SELECTION_INVERT],
+  }}
+/>`,
+      },
     },
   },
 };
@@ -78,6 +100,22 @@ export const WithLimitedSelection: StoryObj<typeof Table> = {
         console.log('sel', rest);
       },
       selections: [SELECTION_ALL, SELECTION_INVERT],
+    },
+  },
+  parameters: {
+    docs: {
+      source: {
+        code: `<Table
+  data={data}
+  columns={columns}
+  selectionConfig={{
+    limit: 5,
+    onChange: (selectedRowKeys, selectedRows) =>
+      console.log('sel', selectedRowKeys, selectedRows),
+    selections: [SELECTION_ALL, SELECTION_INVERT],
+  }}
+/>`,
+      },
     },
   },
 };
@@ -114,6 +152,29 @@ export const WithGlobalSelection: StoryObj<typeof Table> = {
       selections: [],
     },
   },
+  parameters: {
+    docs: {
+      source: {
+        code: `const MyList = () => {
+  const [globalAllSelected, setGlobalAllSelected] = useState(false);
+
+  return (
+    <Table
+      data={data}
+      columns={columns}
+      selectionConfig={{
+        globalSelected: globalAllSelected,
+        globalSelectionOnChange: setGlobalAllSelected,
+        onChange: (selectedRowKeys, selectedRows) =>
+          console.log('sel', selectedRowKeys, selectedRows),
+        selections: [],
+      }}
+    />
+  );
+};`,
+      },
+    },
+  },
 };
 
 export const MultipleColumnSort: StoryObj<typeof Table> = {
@@ -125,6 +186,23 @@ export const MultipleColumnSort: StoryObj<typeof Table> = {
         console.log('sel', rest);
       },
       selections: [SELECTION_ALL, SELECTION_INVERT],
+    },
+  },
+  parameters: {
+    docs: {
+      source: {
+        code: `// Multi-column sort: column meta.enableMultiSort must be true.
+// Hold Shift while clicking sorters to add a secondary / tertiary sort.
+<Table
+  data={data}
+  columns={columns}
+  selectionConfig={{
+    onChange: (selectedRowKeys, selectedRows) =>
+      console.log('sel', selectedRowKeys, selectedRows),
+    selections: [SELECTION_ALL, SELECTION_INVERT],
+  }}
+/>`,
+      },
     },
   },
 };
@@ -140,6 +218,23 @@ export const ResponsiveColumns: StoryObj<typeof Table> = {
       selections: [SELECTION_ALL, SELECTION_INVERT],
     },
   },
+  parameters: {
+    docs: {
+      source: {
+        code: `// Columns are sized via meta.minWidth / meta.maxWidth, letting the table
+// distribute remaining space across columns as the viewport changes.
+<Table
+  data={data}
+  columns={columns}
+  selectionConfig={{
+    onChange: (selectedRowKeys, selectedRows) =>
+      console.log('sel', selectedRowKeys, selectedRows),
+    selections: [SELECTION_ALL, SELECTION_INVERT],
+  }}
+/>`,
+      },
+    },
+  },
 };
 
 export const Empty: StoryObj<typeof Table> = {
@@ -151,6 +246,21 @@ export const Empty: StoryObj<typeof Table> = {
         console.log('sel', rest);
       },
       selections: [SELECTION_ALL, SELECTION_INVERT],
+    },
+  },
+  parameters: {
+    docs: {
+      source: {
+        code: `<Table
+  data={[]}
+  columns={columns}
+  selectionConfig={{
+    onChange: (selectedRowKeys, selectedRows) =>
+      console.log('sel', selectedRowKeys, selectedRows),
+    selections: [SELECTION_ALL, SELECTION_INVERT],
+  }}
+/>`,
+      },
     },
   },
 };
@@ -165,6 +275,22 @@ export const EmptyCustom: StoryObj<typeof Table> = {
         console.log('sel', rest);
       },
       selections: [SELECTION_ALL, SELECTION_INVERT],
+    },
+  },
+  parameters: {
+    docs: {
+      source: {
+        code: `<Table
+  data={[]}
+  columns={columns}
+  emptyDataComponent={<p>Empty custom</p>}
+  selectionConfig={{
+    onChange: (selectedRowKeys, selectedRows) =>
+      console.log('sel', selectedRowKeys, selectedRows),
+    selections: [SELECTION_ALL, SELECTION_INVERT],
+  }}
+/>`,
+      },
     },
   },
 };
@@ -182,6 +308,25 @@ export const LoadingData: StoryObj<typeof Table> = {
       selections: [SELECTION_ALL, SELECTION_INVERT],
     },
   },
+  parameters: {
+    docs: {
+      source: {
+        code: `// data is empty but columns are known -> skeleton rows are rendered
+// using the real column layout while isLoading is true.
+<Table
+  data={[]}
+  isLoading
+  columns={columns}
+  emptyDataComponent={<p>Empty custom</p>}
+  selectionConfig={{
+    onChange: (selectedRowKeys, selectedRows) =>
+      console.log('sel', selectedRowKeys, selectedRows),
+    selections: [SELECTION_ALL, SELECTION_INVERT],
+  }}
+/>`,
+      },
+    },
+  },
 };
 export const LoadingConfig: StoryObj<typeof Table> = {
   args: {
@@ -196,12 +341,40 @@ export const LoadingConfig: StoryObj<typeof Table> = {
       selections: [SELECTION_ALL, SELECTION_INVERT],
     },
   },
+  parameters: {
+    docs: {
+      source: {
+        code: `// Both data and columns are still loading -> Table falls back to a
+// default skeleton-column layout so the body has shape while loading.
+<Table
+  data={[]}
+  columns={[]}
+  isLoading
+  emptyDataComponent={<p>Empty custom</p>}
+  selectionConfig={{
+    onChange: (selectedRowKeys, selectedRows) =>
+      console.log('sel', selectedRowKeys, selectedRows),
+    selections: [SELECTION_ALL, SELECTION_INVERT],
+  }}
+/>`,
+      },
+    },
+  },
 };
 
 export const RawTable: StoryObj<typeof Table> = {
   args: {
     data: DATA_SOURCE,
     columns: RAW_TABLE_COLUMNS,
+  },
+  parameters: {
+    docs: {
+      source: {
+        code: `// Minimal Table with raw, unstyled columns — no selection, no title bar
+// customizations. Useful as a baseline for column-config experiments.
+<Table data={data} columns={columns} />`,
+      },
+    },
   },
 };
 
@@ -223,6 +396,29 @@ export const WithTooltips: StoryObj<typeof Table> = {
           : false,
     },
   },
+  parameters: {
+    docs: {
+      source: {
+        code: `<Table
+  data={data}
+  columns={columns}
+  title="Tooltips demo"
+  getRowTooltipProps={(row) =>
+    row.disabled ? { title: \`Row \${row.name} is disabled\` } : false
+  }
+  selectionConfig={{
+    onChange: (selectedRowKeys, selectedRows) =>
+      console.log('sel', selectedRowKeys, selectedRows),
+    selections: [SELECTION_ALL, SELECTION_INVERT],
+    getSelectionTooltipProps: (row) =>
+      row.unavailable
+        ? { title: \`Cannot select \${row.name} — unavailable\` }
+        : false,
+  }}
+/>`,
+      },
+    },
+  },
 };
 
 export const WithBuiltInSearch: StoryObj<typeof Table> = {
@@ -238,6 +434,25 @@ export const WithBuiltInSearch: StoryObj<typeof Table> = {
       clearTooltip: 'Clear search',
     },
   },
+  parameters: {
+    docs: {
+      source: {
+        code: `<Table
+  data={data}
+  columns={columns}
+  title="Users"
+  matchesSearchQuery={(query, row) =>
+    row.name.toLowerCase().includes(query.toLowerCase()) ||
+    row.city.toLowerCase().includes(query.toLowerCase())
+  }
+  searchProps={{
+    placeholder: 'Search by name or city...',
+    clearTooltip: 'Clear search',
+  }}
+/>`,
+      },
+    },
+  },
 };
 
 export const WithBuiltInSearchAndSelection: StoryObj<typeof Table> = {
@@ -248,6 +463,32 @@ export const WithBuiltInSearchAndSelection: StoryObj<typeof Table> = {
         console.log('sel', rest);
       },
       selections: [SELECTION_ALL, SELECTION_INVERT],
+    },
+  },
+  parameters: {
+    docs: {
+      source: {
+        code: `// Selection operates on the full \`data\` array — rows that are hidden
+// by the search query stay selected and are restored when the query clears.
+<Table
+  data={data}
+  columns={columns}
+  title="Users"
+  matchesSearchQuery={(query, row) =>
+    row.name.toLowerCase().includes(query.toLowerCase()) ||
+    row.city.toLowerCase().includes(query.toLowerCase())
+  }
+  searchProps={{
+    placeholder: 'Search by name or city...',
+    clearTooltip: 'Clear search',
+  }}
+  selectionConfig={{
+    onChange: (selectedRowKeys, selectedRows) =>
+      console.log('sel', selectedRowKeys, selectedRows),
+    selections: [SELECTION_ALL, SELECTION_INVERT],
+  }}
+/>`,
+      },
     },
   },
 };
@@ -285,6 +526,43 @@ export const WithCustomSearch: StoryObj<typeof Table> = {
         console.log('sel', rest);
       },
       selections: [SELECTION_ALL, SELECTION_INVERT],
+    },
+  },
+  parameters: {
+    docs: {
+      source: {
+        code: `const MyList = () => {
+  const [query, setQuery] = useState('');
+
+  return (
+    <Table
+      data={data}
+      columns={columns}
+      title="Custom search"
+      filterData={
+        query
+          ? (row) => row.name.toLowerCase().includes(query.toLowerCase())
+          : undefined
+      }
+      searchComponent={
+        <SearchInput
+          placeholder="Custom search..."
+          clearTooltip="Clear"
+          onChange={setQuery}
+          value={query}
+          onClear={() => setQuery('')}
+          closeOnClickOutside
+        />
+      }
+      selectionConfig={{
+        onChange: (selectedRowKeys, selectedRows) =>
+          console.log('sel', selectedRowKeys, selectedRows),
+        selections: [SELECTION_ALL, SELECTION_INVERT],
+      }}
+    />
+  );
+};`,
+      },
     },
   },
 };
@@ -362,6 +640,162 @@ export const WithRowHighlight: StoryObj<typeof Table> = {
       </Button>
       <Table data={data} columns={columns} tableRef={tableRef} rowKey="key" />
     </>
+  );
+};`,
+      },
+    },
+  },
+};
+
+// ---------------------------------------------------------------------------
+// Expandable rows
+//
+// Two patterns live on plain Table (vs. tree-child rows which work on
+// VirtualTable + Table alike — see VirtualTable's `ExpandableRows` story
+// and the dedicated TreeTable component). These stories demonstrate
+// Table-only `expandedRowRender`:
+//   - Click anywhere on a row to reveal a custom ReactNode below it.
+//   - Gate which rows can expand with `rowExpandable`.
+// ---------------------------------------------------------------------------
+
+export const ExpandedRowRender: StoryObj<typeof Table> = {
+  render: (args) => {
+    const [expandedRowKeys, setExpandedRowKeys] = useState<string[]>([]);
+    return (
+      <Table
+        {...args}
+        expandable={{
+          expandRowByClick: true,
+          expandedRowKeys,
+          onExpand: (expanded, record) =>
+            setExpandedRowKeys((prev) =>
+              expanded
+                ? [...prev, String((record as { key: string }).key)]
+                : prev.filter(
+                    (k) => k !== String((record as { key: string }).key),
+                  ),
+            ),
+          expandedRowRender: (record) => (
+            <Box p={16}>
+              <Flex flexDirection="column">
+                <strong>{(record as { name: string }).name}</strong>
+                <span>City: {(record as { city: string }).city}</span>
+                <span>Address: {(record as { address: string }).address}</span>
+              </Flex>
+            </Box>
+          ),
+        }}
+      />
+    );
+  },
+  args: {
+    data: DATA_SOURCE,
+    columns: RESPONSIVE_COLUMNS,
+    rowKey: 'key',
+    title: 'Click any row to reveal details',
+  },
+  parameters: {
+    docs: {
+      source: {
+        code: `const MyList = () => {
+  const [expandedRowKeys, setExpandedRowKeys] = useState<string[]>([]);
+
+  return (
+    <Table
+      data={data}
+      columns={columns}
+      rowKey="key"
+      title="Click any row to reveal details"
+      expandable={{
+        expandRowByClick: true,
+        expandedRowKeys,
+        onExpand: (expanded, record) =>
+          setExpandedRowKeys((prev) =>
+            expanded ? [...prev, record.key] : prev.filter((k) => k !== record.key),
+          ),
+        expandedRowRender: (record) => (
+          <Box p={16}>
+            <Flex flexDirection="column">
+              <strong>{record.name}</strong>
+              <span>City: {record.city}</span>
+              <span>Address: {record.address}</span>
+            </Flex>
+          </Box>
+        ),
+      }}
+    />
+  );
+};`,
+      },
+    },
+  },
+};
+
+export const ExpandedRowRenderWithRowExpandable: StoryObj<typeof Table> = {
+  render: (args) => {
+    const [expandedRowKeys, setExpandedRowKeys] = useState<string[]>([]);
+    return (
+      <Table
+        {...args}
+        expandable={{
+          expandRowByClick: true,
+          // Rows flagged `disabled` cannot be expanded — the row click is a no-op
+          // and `expandedRowRender` is skipped for those records.
+          rowExpandable: (record) =>
+            !(record as { disabled?: boolean }).disabled,
+          expandedRowKeys,
+          onExpand: (expanded, record) =>
+            setExpandedRowKeys((prev) =>
+              expanded
+                ? [...prev, String((record as { key: string }).key)]
+                : prev.filter(
+                    (k) => k !== String((record as { key: string }).key),
+                  ),
+            ),
+          expandedRowRender: (record) => (
+            <Box p={16}>
+              Details for <strong>{(record as { name: string }).name}</strong>
+            </Box>
+          ),
+        }}
+      />
+    );
+  },
+  args: {
+    data: DATA_SOURCE,
+    columns: RESPONSIVE_COLUMNS,
+    rowKey: 'key',
+    title: 'Only non-disabled rows expand',
+  },
+  parameters: {
+    docs: {
+      source: {
+        code: `const MyList = () => {
+  const [expandedRowKeys, setExpandedRowKeys] = useState<string[]>([]);
+
+  return (
+    <Table
+      data={data}
+      columns={columns}
+      rowKey="key"
+      title="Only non-disabled rows expand"
+      expandable={{
+        expandRowByClick: true,
+        // Rows flagged \`disabled\` cannot be expanded —
+        // the row click is a no-op and expandedRowRender is skipped.
+        rowExpandable: (record) => !record.disabled,
+        expandedRowKeys,
+        onExpand: (expanded, record) =>
+          setExpandedRowKeys((prev) =>
+            expanded ? [...prev, record.key] : prev.filter((k) => k !== record.key),
+          ),
+        expandedRowRender: (record) => (
+          <Box p={16}>
+            Details for <strong>{record.name}</strong>
+          </Box>
+        ),
+      }}
+    />
   );
 };`,
       },

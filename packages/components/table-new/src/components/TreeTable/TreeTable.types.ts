@@ -36,4 +36,10 @@ export type TreeTableProps<TData, TValue> = Omit<
    * @default false
    */
   hideExpandIcon?: boolean;
+  /**
+   * Returns false to mark a row as non-expandable. Hides the expander button
+   * for that row while preserving indentation. Rows whose predicate returns
+   * undefined / true keep the expander UI as normal.
+   */
+  rowExpandable?: (record: TData) => boolean;
 };

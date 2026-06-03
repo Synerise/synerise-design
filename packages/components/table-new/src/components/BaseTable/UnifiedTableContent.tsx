@@ -24,6 +24,7 @@ export type UnifiedTableContentProps<TData, TValue> = Pick<
   | 'withBodyScroll'
   | 'maxHeight'
   | 'tableBodyScrollRef'
+  | 'expandable'
 > & {
   cellHeight: number;
   addNode: (node: HTMLDivElement | null) => void;
@@ -56,6 +57,7 @@ export const UnifiedTableContent = <TData extends object, TValue>({
   addNode,
   isEmpty,
   useColgroupLayout,
+  expandable,
 }: UnifiedTableContentProps<TData, TValue>) => {
   const { table } = useTableContext<TData>();
   const tableBodyWrapperRef = useRef<HTMLDivElement | null>(null);
@@ -106,6 +108,7 @@ export const UnifiedTableContent = <TData extends object, TValue>({
             onRowClick={onRowClick}
             getRowProps={getRowProps}
             getRowTooltipProps={getRowTooltipProps}
+            expandable={expandable}
             key="table-body"
           />
         )}

@@ -152,12 +152,39 @@ export const Default: StoryObj<TreeTableProps<TreeRow, unknown>> = {
     rowKey: 'key',
     title: 'Permissions',
   },
+  parameters: {
+    docs: {
+      source: {
+        code: `<TreeTable
+  data={data}
+  columns={columns}
+  rowKey="key"
+  title="Permissions"
+/>`,
+      },
+    },
+  },
 };
 
 export const AllExpanded: StoryObj<TreeTableProps<TreeRow, unknown>> = {
   args: {
     ...Default.args,
     defaultExpandAllRows: true,
+  },
+  parameters: {
+    docs: {
+      source: {
+        code: `// \`defaultExpandAllRows\` computes every row key from \`data\` and expands
+// them on mount. Subsequent changes to \`data\` re-run the expand.
+<TreeTable
+  data={data}
+  columns={columns}
+  rowKey="key"
+  title="Permissions"
+  defaultExpandAllRows
+/>`,
+      },
+    },
   },
 };
 
@@ -169,6 +196,22 @@ export const SingleColumn: StoryObj<TreeTableProps<TreeRow, unknown>> = {
     hideTitleBar: true,
     hideColumnNames: true,
     defaultExpandAllRows: true,
+  },
+  parameters: {
+    docs: {
+      source: {
+        code: `// Common pattern for category pickers / dependency trees — single column,
+// no title bar, no column header row. Just indented rows with an expander.
+<TreeTable
+  data={data}
+  columns={[{ header: 'Name', accessorKey: 'name', id: 'name' }]}
+  rowKey="key"
+  hideTitleBar
+  hideColumnNames
+  defaultExpandAllRows
+/>`,
+      },
+    },
   },
 };
 
@@ -195,6 +238,32 @@ export const ControlledExpand: StoryObj<TreeTableProps<TreeRow, unknown>> = {
     columns: COLUMNS,
     rowKey: 'key',
     title: 'Controlled expand',
+  },
+  parameters: {
+    docs: {
+      source: {
+        code: `const MyTree = () => {
+  const [expandedKeys, setExpandedKeys] = useState<string[]>(['analytics']);
+
+  const handleExpandRow = useCallback((key: string, expanded: boolean) => {
+    setExpandedKeys((prev) =>
+      expanded ? [...prev, key] : prev.filter((k) => k !== key),
+    );
+  }, []);
+
+  return (
+    <TreeTable
+      data={data}
+      columns={columns}
+      rowKey="key"
+      title="Controlled expand"
+      expandedRowKeys={expandedKeys}
+      onExpandRow={handleExpandRow}
+    />
+  );
+};`,
+      },
+    },
   },
 };
 
@@ -232,6 +301,43 @@ export const HiddenExpandIcon: StoryObj<TreeTableProps<TreeRow, unknown>> = {
     hideTitleBar: true,
     hideColumnNames: true,
   },
+  parameters: {
+    docs: {
+      source: {
+        code: `const MyTree = () => {
+  const [expandedKeys, setExpandedKeys] = useState<string[]>(
+    data.map((r) => r.key),
+  );
+
+  return (
+    <TreeTable
+      data={data}
+      columns={[{ header: 'Name', accessorKey: 'name', id: 'name' }]}
+      rowKey="key"
+      hideTitleBar
+      hideColumnNames
+      // -1 removes the expander column entirely; expansion is driven by
+      // onRowClick instead.
+      expandIconColumnIndex={-1}
+      expandedRowKeys={expandedKeys}
+      onExpandRow={(key, expanded) =>
+        setExpandedKeys((prev) =>
+          expanded ? [...prev, key] : prev.filter((k) => k !== key),
+        )
+      }
+      onRowClick={(row) =>
+        setExpandedKeys((prev) =>
+          prev.includes(row.key)
+            ? prev.filter((k) => k !== row.key)
+            : [...prev, row.key],
+        )
+      }
+    />
+  );
+};`,
+      },
+    },
+  },
 };
 
 export const WithSearch: StoryObj<TreeTableProps<TreeRow, unknown>> = {
@@ -246,6 +352,28 @@ export const WithSearch: StoryObj<TreeTableProps<TreeRow, unknown>> = {
     searchProps: {
       placeholder: 'Search permissions...',
       clearTooltip: 'Clear',
+    },
+  },
+  parameters: {
+    docs: {
+      source: {
+        code: `// TreeTable accepts all Table props, including matchesSearchQuery.
+// Combined with defaultExpandAllRows, users can search across the full tree.
+<TreeTable
+  data={data}
+  columns={columns}
+  rowKey="key"
+  title="Permissions"
+  defaultExpandAllRows
+  matchesSearchQuery={(query, row) =>
+    row.name.toLowerCase().includes(query.toLowerCase())
+  }
+  searchProps={{
+    placeholder: 'Search permissions...',
+    clearTooltip: 'Clear',
+  }}
+/>`,
+      },
     },
   },
 };

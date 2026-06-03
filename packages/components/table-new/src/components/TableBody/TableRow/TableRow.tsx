@@ -15,6 +15,7 @@ export const TableRow = <TData extends object>({
   onRowClick,
   getRowProps,
   getRowTooltipProps,
+  expandable,
 }: TableRowProps<TData>) => {
   // Unified-content mode (no sticky context) sizes columns via <colgroup> plus
   // matching width/min/max on each <td>. Falling back to <colgroup> alone is
@@ -24,10 +25,22 @@ export const TableRow = <TData extends object>({
   const customRowProps = getRowProps?.(row.original) ?? {};
   const { onClick: customOnClick, ...restCustomRowProps } = customRowProps;
 
+  const canExpand =
+    !expandable?.rowExpandable || expandable.rowExpandable(row.original);
+  const togglesOnRowClick = !!expandable?.expandRowByClick && canExpand;
+
   const mergedOnClick =
-    onRowClick || customOnClick
+    onRowClick || customOnClick || togglesOnRowClick
       ? (event: React.MouseEvent<HTMLTableRowElement>): void => {
           customOnClick?.(event);
+          if (togglesOnRowClick && !event.isDefaultPrevented()) {
+            const nextExpanded = !row.getIsExpanded();
+            // Update internal TanStack state for uncontrolled consumers;
+            // when `expandedRowKeys` is provided this is a no-op and the
+            // consumer wires `onExpand` back into their controlled state.
+            row.toggleExpanded();
+            expandable?.onExpand?.(nextExpanded, row.original);
+          }
           if (onRowClick && !event.isDefaultPrevented()) {
             event.stopPropagation();
             onRowClick(row.original, event);

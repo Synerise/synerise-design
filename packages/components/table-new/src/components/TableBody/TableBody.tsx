@@ -16,6 +16,7 @@ export const TableBody = <TData extends object, TValue>({
   getRowTooltipProps,
   emptyDataComponent,
   texts,
+  expandable,
 }: TableBodyProps<TData, TValue>) => {
   const { table, rowVirtualizer } = useTableContext<TData>();
 
@@ -64,7 +65,10 @@ export const TableBody = <TData extends object, TValue>({
       }
     >
       {rowVirtualizer && virtualItems.length
-        ? // Virtualized: place spacer and absolutely-positioned rows
+        ? // Virtualized: place spacer and absolutely-positioned rows.
+          // Note: `expandedRowRender` is not honored in virtual mode because
+          // variable-height expanded rows are not yet integrated with the
+          // virtualizer's size estimation.
           virtualItems.map((virtual) => {
             const row = allRows[virtual.index];
             return (
@@ -77,6 +81,7 @@ export const TableBody = <TData extends object, TValue>({
                 onRowClick={onRowClick}
                 getRowProps={getRowProps}
                 getRowTooltipProps={getRowTooltipProps}
+                expandable={expandable}
                 rowIndex={virtual.index}
                 infiniteScroll={infiniteScroll}
                 isLast={virtual.index === allRows.length - 1}
@@ -86,19 +91,50 @@ export const TableBody = <TData extends object, TValue>({
               />
             );
           })
-        : // Non-virtualized: render all rows in the normal flow
-          allRows.map((row) => (
-            <TableRow
-              onRowClick={onRowClick}
-              getRowProps={getRowProps}
-              getRowTooltipProps={getRowTooltipProps}
-              key={row.id}
-              row={row}
-              isSelected={row.getIsSelected()}
-              isExpanded={row.getIsExpanded()}
-              isParentExpanded={row.getIsAllParentsExpanded()}
-            />
-          ))}
+        : // Non-virtualized: render rows + optional expanded-content row after
+          // each expanded parent (mirrors antd's expandedRowRender behavior).
+          allRows.map((row) => {
+            const isExpanded = row.getIsExpanded();
+            const canExpand =
+              !expandable?.rowExpandable ||
+              expandable.rowExpandable(row.original);
+            const expandedContent =
+              expandable?.expandedRowRender && isExpanded && canExpand
+                ? expandable.expandedRowRender(
+                    row.original,
+                    row.index,
+                    row.depth,
+                    isExpanded,
+                  )
+                : null;
+            return (
+              <React.Fragment key={row.id}>
+                <TableRow
+                  onRowClick={onRowClick}
+                  getRowProps={getRowProps}
+                  getRowTooltipProps={getRowTooltipProps}
+                  expandable={expandable}
+                  row={row}
+                  isSelected={row.getIsSelected()}
+                  isExpanded={isExpanded}
+                  isParentExpanded={row.getIsAllParentsExpanded()}
+                />
+                {expandedContent !== null && (
+                  <S.ExpandedContentRow
+                    data-key={`${row.id}-expanded`}
+                    data-row-expanded-content="true"
+                    role="row"
+                  >
+                    <S.ExpandedContentCell
+                      colSpan={row.getVisibleCells().length}
+                    >
+                      {expandedContent}
+                    </S.ExpandedContentCell>
+                  </S.ExpandedContentRow>
+                )}
+              </React.Fragment>
+            );
+          })}
     </S.TBody>
   ) : (
     <TableEmptyBody emptyDataComponent={emptyDataComponent} texts={texts} />
