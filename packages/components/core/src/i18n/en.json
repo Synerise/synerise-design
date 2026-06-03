@@ -1,5 +1,8 @@
 {
   "DS": {
+    "MODAL": {
+      "CLOSE": "Close"
+    },
     "CODE-AREA": {
       "FULLSCREEN": "Fullscreen",
       "CLOSE-FULLSCREEN": "Close fullscreen",
@@ -159,7 +162,7 @@
       "LOADING-MORE": "Loading more items...",
       "LOADING-ERROR": "Loading error",
       "LOADED-ALL": "All items loaded",
-      "ERROR-TITLE": "Items can't be laoded",
+      "ERROR-TITLE": "Items can't be loaded",
       "ERROR-DESCRIPTION": "Try refreshing the list later",
       "SHOW-MORE": "Show more",
       "CLEAR-SEARCH-TOOLTIP": "Clear",

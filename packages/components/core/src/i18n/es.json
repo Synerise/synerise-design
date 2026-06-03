@@ -1,5 +1,8 @@
 {
   "DS": {
+    "MODAL": {
+      "CLOSE": "Cerrar"
+    },
     "CODE-AREA": {
       "FULLSCREEN": "Pantalla completa",
       "CLOSE-FULLSCREEN": "Cerrar pantalla completa",

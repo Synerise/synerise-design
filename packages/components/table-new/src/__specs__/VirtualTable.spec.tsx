@@ -219,6 +219,19 @@ describe('VirtualTable', () => {
   });
 
   describe('back to top button', () => {
+    // @tanstack/react-virtual arms a debounced `isScrollingResetDelay` (150ms)
+    // timer on every scroll, and its unmount cleanup does NOT clear it. With real
+    // timers the callback fires after jsdom teardown, hits `window` while it's
+    // gone, and throws an unhandled ReferenceError. Fake timers (advancing with
+    // real time so RTL still works) let us drop the pending timer on teardown.
+    beforeEach(() => {
+      vi.useFakeTimers({ shouldAdvanceTime: true });
+    });
+    afterEach(() => {
+      vi.clearAllTimers();
+      vi.useRealTimers();
+    });
+
     const simulateScroll = (scrollTop: number) => {
       const container = screen.getByTestId('ds-table-container');
       Object.defineProperty(container, 'scrollTop', {

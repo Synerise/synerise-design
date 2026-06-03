@@ -26,6 +26,10 @@ export const Scrollbar = styled(ScrollbarBase)`
   .scrollbar-container {
     min-height: 0;
   }
+  .ps__rail-y,
+  .ps__rail-x {
+    z-index: 99;
+  }
 `;
 
 export const ModalBody = styled.div<{
@@ -35,6 +39,16 @@ export const ModalBody = styled.div<{
   ${(props) => !props.bodyFullWidth && `padding: 24px;`}
   ${(props) =>
     props.greyBackground && `background: ${props.theme.palette['grey-050']};`}
+
+  ${(props) =>
+    !props.bodyFullWidth &&
+    css`
+      ${Scrollbar} {
+        .scrollbar-container {
+          padding-right: 24px;
+        }
+      }
+    `}
 `;
 export const ModalContainer = styled.div<{
   $width?: string | number;

@@ -1,4 +1,4 @@
-import React, { forwardRef, useEffect, useState } from 'react';
+import React, { forwardRef, useEffect, useRef, useState } from 'react';
 import { createPortal } from 'react-dom';
 
 import { ModalContent } from './Elements/ModalContent/ModalContent';
@@ -11,13 +11,28 @@ export const Modal = forwardRef<ModalRef, ModalProps>(
   ) => {
     const [isOpen, setIsOpen] = useState(open);
     const [hasBeenOpened, setHasBeenOpened] = useState(open);
+    // Tracks `open` across renders so afterClose fires only on true → false,
+    // matching antd. Initialised to match `open` so the initial render is a no-op.
+    const prevOpenRef = useRef(open);
 
     useEffect(() => {
       setIsOpen(open);
       if (open) {
         setHasBeenOpened(true);
+      } else if (prevOpenRef.current) {
+        afterClose?.();
       }
-    }, [open]);
+      prevOpenRef.current = open;
+    }, [open, afterClose]);
+
+    const closeModal = () => {
+      setIsOpen((prev) => {
+        if (prev) {
+          afterClose?.();
+        }
+        return false;
+      });
+    };
 
     const shouldRender = destroyOnClose ? isOpen : isOpen || hasBeenOpened;
 
@@ -28,10 +43,9 @@ export const Modal = forwardRef<ModalRef, ModalProps>(
     return createPortal(
       <ModalContent
         {...props}
-        afterClose={afterClose}
         ref={ref}
         hidden={!isOpen}
-        closeModal={() => setIsOpen(false)}
+        closeModal={closeModal}
       />,
       getContainer?.() || document.body,
     );

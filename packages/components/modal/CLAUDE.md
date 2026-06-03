@@ -57,7 +57,7 @@ src/
 | `description` | `ReactNode` | — | **Deprecated.** Sub-title with dashed separator |
 | `onOk` | `(e) => void \| Promise` | — | OK button handler; async supported — modal stays open until resolved |
 | `onCancel` | `(e) => void \| Promise` | — | Cancel/close handler; async supported |
-| `afterClose` | `() => void` | — | Called after modal unmounts |
+| `afterClose` | `() => void` | — | Called after each close (every `open: true → false` transition). Matches antd Modal semantics. Does not fire on initial mount or on hard unmount of an open modal. |
 | `footer` | `ReactNode \| null` | auto-generated | `null` suppresses footer; custom ReactNode overrides it |
 | `texts` | `{ okButton?; cancelButton? }` | `{ okButton: 'Apply', cancelButton: 'Cancel' }` | Default button labels |
 | `prefix` | `ReactNode` | — | Slot before cancel button |
@@ -70,6 +70,8 @@ src/
 | `okButtonProps` / `cancelButtonProps` | `ButtonProps` | — | Extra props for buttons |
 | `bodyStyle` | `CSSProperties` | — | Inline styles for body |
 | `bodyFullWidth` | `boolean` | — | Removes body padding |
+| `ariaLabel` | `string` | — | Accessible name for the dialog; fallback when `title` is absent or non-text |
+| `closeButtonAriaLabel` | `string` | `DS.MODAL.CLOSE` (`'Close'`) | Accessible name for the close button; defaults to the localised translation |
 | `getContainer` | `() => HTMLElement` | `document.body` | Portal mount target |
 | `zIndex` | `number` | theme `zindex-modal` | z-index of the modal root |
 
@@ -161,6 +163,7 @@ document.body (portal target)
 - **`fullScreen`** positions the modal `fixed` covering the viewport; body scrolls via `overflow: scroll`.
 - **`maxViewportHeight`** anchors the modal to the bottom of the viewport (sheet-style), not the centre.
 - **Async handlers:** Both `onOk` and `onCancel` can return `Promise`. `onCancel` awaits the promise then calls `closeModal()`. `onOk` resolves then calls `closeModal()` only if the handler was detected as promise-returning via `'then' in onOk`.
+- **Accessibility:** `ModalContainer` carries `role="dialog"` + `aria-modal`. `ModalContent` generates two ids with React's `useId()` — `titleId` and `descriptionId` — passed to `ModalTitle` which applies them to `S.Title` (the `<h3>`) and `S.Description`. The dialog references them via `aria-labelledby` (when `title` is set) and `aria-describedby` (when `description` is set); `aria-label` falls back to the `ariaLabel` prop when there is no title. Both close buttons (header and `blank`) get `aria-label` from `closeButtonAriaLabel`, falling back to the localised `DS.MODAL.CLOSE` message (`useIntl().formatMessage`, default `'Close'`); `react-intl` is a peer dependency. Focus trap/restore is handled by `useFocusTrap`; `Escape` closes via `handleKeyDown`.
 
 ## Key dependencies
 

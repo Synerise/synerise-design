@@ -91,7 +91,7 @@ The default footer renders Cancel and Apply buttons. Pass `footer={null}` to sup
 
 ## With Layout
 
-Modal containing a `Layout` component with a sidebar. Combine `maxViewportHeight`, `disableScrollbar`, `bodyStyle`, and `bodyBackground` for complex internal layouts.
+Modal containing a `Layout` component with a sidebar. Combine `maxViewportHeight`, `disableScrollbar`, `bodyFullWidth`, and `bodyBackground` for complex internal layouts — `bodyFullWidth` drops the default body padding so the layout can span edge to edge.
 
 <Canvas of={withLayout} sourceState="shown" />
 
@@ -148,17 +148,19 @@ Both `onOk` and `onCancel` accept handlers that return a `Promise`. The modal st
     <tr><td>blank</td><td>boolean</td><td>false</td><td>Strips header/footer chrome; shows only a close button if onCancel is set</td></tr>
     <tr><td>bodyBackground</td><td>{'\'white\' | \'grey\''}</td><td>'white'</td><td>Background colour of the modal body</td></tr>
     <tr><td>bodyStyle</td><td>CSSProperties</td><td>—</td><td>Inline styles applied to the body element</td></tr>
-    <tr><td>bodyFullWidth</td><td>boolean</td><td>false</td><td>Removes horizontal padding from the body</td></tr>
+    <tr><td>bodyFullWidth</td><td>boolean</td><td>false</td><td>Removes the body padding (the default 24px on all sides), letting content span the full width/height of the body</td></tr>
     <tr><td>maxViewportHeight</td><td>{'true | number'}</td><td>—</td><td>Caps height: true = 80vh, number = Nvh. Wraps children in scrollbar</td></tr>
     <tr><td>disableScrollbar</td><td>boolean</td><td>false</td><td>Disables scrollbar wrapping from maxViewportHeight</td></tr>
     <tr><td>headerActions</td><td>ReactNode</td><td>—</td><td>Content in the top-right header action area</td></tr>
     <tr><td>headerBottomBar</td><td>ReactNode</td><td>—</td><td>Full-width bar below the header</td></tr>
     <tr><td>headerTabProps</td><td>TabsProps</td><td>—</td><td>Renders a Tabs component in the header</td></tr>
     <tr><td>titleContainerStyle</td><td>CSSProperties</td><td>—</td><td>Inline styles for the title container</td></tr>
+    <tr><td>ariaLabel</td><td>string</td><td>—</td><td>Accessible name for the dialog. Fallback when title is absent (e.g. blank modals) or is a non-text node; title takes precedence via aria-labelledby</td></tr>
+    <tr><td>closeButtonAriaLabel</td><td>string</td><td>'Close'</td><td>Accessible name for the close button; defaults to the localised DS.MODAL.CLOSE translation</td></tr>
     <tr><td>description</td><td>ReactNode</td><td>—</td><td><strong>Deprecated.</strong> Sub-title with dashed separator — use headerBottomBar instead</td></tr>
     <tr><td>onOk</td><td>{'(e) => void | Promise'}</td><td>—</td><td>OK button handler; Promise-returning handlers keep modal open until resolved</td></tr>
     <tr><td>onCancel</td><td>{'(e) => void | Promise'}</td><td>—</td><td>Cancel/close handler; same async support</td></tr>
-    <tr><td>afterClose</td><td>{'() => void'}</td><td>—</td><td>Called after the modal unmounts</td></tr>
+    <tr><td>afterClose</td><td>{'() => void'}</td><td>—</td><td>Called after each close transition (every open: true → false), matching antd semantics. Does not fire on initial mount or when hard-unmounted while open</td></tr>
     <tr><td>footer</td><td>{'ReactNode | null'}</td><td>auto-generated</td><td>null suppresses footer; custom ReactNode overrides; omit for default</td></tr>
     <tr><td>texts</td><td>{'{ okButton?: ReactNode; cancelButton?: ReactNode }'}</td><td>{'{ okButton: \'Apply\', cancelButton: \'Cancel\' }'}</td><td>Default button labels</td></tr>
     <tr><td>okText / cancelText</td><td>ReactNode</td><td>—</td><td>Button labels (override texts)</td></tr>
@@ -240,3 +242,4 @@ Returned by `showModal()`.
 - **`showModal` uses PortalRenderer** — it renders via `setPortalContent` from `ds-core`, so a `DSProvider` with `PortalRenderer` must exist in the tree.
 - **Close button placement differs in `blank` mode** — absolutely positioned top-right in blank mode; inside the header action buttons row in normal mode.
 - **`maxViewportHeight` anchors to bottom** — the modal gets `position: fixed; bottom: 0` (sheet-style), not centered.
+- **Accessibility** — the dialog carries `role="dialog"` and `aria-modal`. A `title` is linked via `aria-labelledby`; for title-less/`blank` modals pass `ariaLabel` to give the dialog an accessible name. The close button's accessible name defaults to the localised `DS.MODAL.CLOSE` translation (`"Close"`; override with `closeButtonAriaLabel`). Focus is trapped while open and restored on close, and `Escape` closes the modal when `onCancel` is set and `closable` is not `false`.

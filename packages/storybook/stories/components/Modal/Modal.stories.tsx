@@ -77,6 +77,7 @@ export default {
     },
     settingButton: REACT_NODE_AS_STRING,
     showHeaderAction: BOOLEAN_CONTROL,
+    bodyFullWidth: BOOLEAN_CONTROL,
     headerActions: REACT_NODE_AS_STRING,
     renderCustomFooter: BOOLEAN_CONTROL,
     disableScrollbar: BOOLEAN_CONTROL,
@@ -246,7 +247,7 @@ export const withLayout: StoryObj<LayoutProps & { sidebarHeight: number }> = {
     footer: null,
     size: 'large',
 
-    bodyStyle: { padding: 0 },
+    bodyFullWidth: true,
     disableScrollbar: true,
     maxViewportHeight: 70,
     sidebarHeight: 400,
@@ -255,7 +256,7 @@ export const withLayout: StoryObj<LayoutProps & { sidebarHeight: number }> = {
   parameters: {
     docs: {
       source: {
-        code: '<Modal\n  title="title"\n  footer={null}\n  size="large"\n  bodyStyle={{ padding: 0 }}\n  bodyBackground="grey"\n  disableScrollbar\n  maxViewportHeight={70}\n  open\n>\n  <Layout right={{ content: <Sidebar />, opened: true, onChange: () => {} }}>\n    {/* main content */}\n  </Layout>\n</Modal>',
+        code: '<Modal\n  title="title"\n  footer={null}\n  size="large"\n  bodyFullWidth\n  bodyBackground="grey"\n  disableScrollbar\n  maxViewportHeight={70}\n  open\n>\n  <Layout right={{ content: <Sidebar />, opened: true, onChange: () => {} }}>\n    {/* main content */}\n  </Layout>\n</Modal>',
       },
     },
   },
