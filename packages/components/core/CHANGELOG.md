@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.12.2](https://github.com/synerise/synerise-design/compare/@synerise/ds-core@1.12.1...@synerise/ds-core@1.12.2) (2026-06-03)
+
+### Bug Fixes
+
+- **modal:** a11y and other tweaks ([cfbeb11](https://github.com/synerise/synerise-design/commit/cfbeb11c8e1a60d99885ec87e91783eb1800c8d9))
+
 ## [1.12.1](https://github.com/synerise/synerise-design/compare/@synerise/ds-core@1.12.0...@synerise/ds-core@1.12.1) (2026-05-26)
 
 **Note:** Version bump only for package @synerise/ds-core

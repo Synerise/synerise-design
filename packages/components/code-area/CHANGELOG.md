@@ -3,6 +3,10 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.3.22](https://github.com/Synerise/synerise-design/compare/@synerise/ds-code-area@1.3.21...@synerise/ds-code-area@1.3.22) (2026-06-03)
+
+**Note:** Version bump only for package @synerise/ds-code-area
+
 ## [1.3.21](https://github.com/Synerise/synerise-design/compare/@synerise/ds-code-area@1.3.20...@synerise/ds-code-area@1.3.21) (2026-05-27)
 
 **Note:** Version bump only for package @synerise/ds-code-area

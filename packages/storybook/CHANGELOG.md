@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.46.2](https://github.com/Synerise/synerise-design/compare/storybook@1.46.1...storybook@1.46.2) (2026-06-03)
+
+### Bug Fixes
+
+- **modal:** a11y and other tweaks ([cfbeb11](https://github.com/Synerise/synerise-design/commit/cfbeb11c8e1a60d99885ec87e91783eb1800c8d9))
+- **table-new:** expandalble row custom content and default table sticky header features ([4f8a670](https://github.com/Synerise/synerise-design/commit/4f8a6704e3dc2c00ee88549553af30af02fe5430))
+
 ## [1.46.1](https://github.com/Synerise/synerise-design/compare/storybook@1.46.0...storybook@1.46.1) (2026-05-27)
 
 **Note:** Version bump only for package storybook
