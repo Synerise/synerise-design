@@ -24,6 +24,7 @@ const TableRowVirtualInner = <TData extends object>({
   getRowTooltipProps,
   isExpanded: _isExpanded,
   isParentExpanded,
+  expandable,
 }: TableRowVirtualProps<TData>) => {
   const { rowVirtualizer } = useTableContext();
   const isFirst = rowIndex === 0;
@@ -135,10 +136,19 @@ const TableRowVirtualInner = <TData extends object>({
     ...restCustomRowProps
   } = customRowProps;
 
+  const canExpand =
+    !expandable?.rowExpandable || expandable.rowExpandable(row.original);
+  const togglesOnRowClick = !!expandable?.expandRowByClick && canExpand;
+
   const mergedOnClick =
-    onRowClick || customOnClick
+    onRowClick || customOnClick || togglesOnRowClick
       ? (event: React.MouseEvent<HTMLTableRowElement>): void => {
           customOnClick?.(event);
+          if (togglesOnRowClick && !event.isDefaultPrevented()) {
+            const nextExpanded = !row.getIsExpanded();
+            row.toggleExpanded();
+            expandable?.onExpand?.(nextExpanded, row.original);
+          }
           if (onRowClick && !event.isDefaultPrevented()) {
             event.stopPropagation();
             onRowClick(row.original, event);

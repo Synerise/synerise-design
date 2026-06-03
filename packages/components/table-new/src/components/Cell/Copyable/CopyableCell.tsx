@@ -11,6 +11,7 @@ const CopyableCell = ({
   value,
   confirmMessage,
   tooltipTimeout = DEFAULT_TIMEOUT,
+  placement = 'top',
   ...htmlAttributes
 }: CopyableCellProps) => {
   const [tooltipVisible, setTooltipVisible] = useState(false);
@@ -27,7 +28,7 @@ const CopyableCell = ({
       <S.CopyableValue>{value}</S.CopyableValue>
       <CopyIcon
         copyValue={value}
-        placement="left"
+        placement={placement}
         texts={{ copiedTooltip: confirmMessage }}
       />
     </S.Copyable>

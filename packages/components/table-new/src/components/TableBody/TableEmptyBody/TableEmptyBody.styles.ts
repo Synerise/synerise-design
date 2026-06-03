@@ -12,4 +12,5 @@ export const TableEmptyBodyWrapper = styled.div`
   min-height: 160px;
   display: flex;
   align-items: center;
+  justify-content: center;
 `;

@@ -24,6 +24,7 @@ export type StickyTableContentProps<TData, TValue> = Pick<
   | 'withBodyScroll'
   | 'maxHeight'
   | 'tableBodyScrollRef'
+  | 'expandable'
 > & {
   cellHeight: number;
   addNode: (node: HTMLDivElement | null) => void;
@@ -51,6 +52,7 @@ export const StickyTableContent = <TData extends object, TValue>({
   tableBodyScrollRef,
   addNode,
   isEmpty,
+  expandable,
 }: StickyTableContentProps<TData, TValue>) => {
   const { table, rowVirtualizer } = useTableContext<TData>();
   const stickyContext = useStickyContext();
@@ -110,6 +112,7 @@ export const StickyTableContent = <TData extends object, TValue>({
             onRowClick={onRowClick}
             getRowProps={getRowProps}
             getRowTooltipProps={getRowTooltipProps}
+            expandable={expandable}
             key="table-body"
           />
         )}

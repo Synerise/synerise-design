@@ -39,6 +39,8 @@ export const TreeTable = <TData extends object, TValue>({
   expandIconColumnIndex = 0,
   hideExpandIcon = false,
   rowKey,
+  style,
+  rowExpandable,
   ...props
 }: TreeTableProps<TData, TValue>) => {
   const childrenKey = (childrenColumnName ?? 'children') as keyof TData;
@@ -120,6 +122,7 @@ export const TreeTable = <TData extends object, TValue>({
           const rowId = getRowKey(rowData);
           const isParent = hasChildren(rowData);
           const isExpanded = expandedKeys.includes(rowId);
+          const canExpand = !rowExpandable || rowExpandable(rowData);
 
           const indents = Array.from({ length: depth }, (_, i) => (
             <S.IndentBar key={i} $level={i} $active={i + 1 === depth} />
@@ -135,7 +138,7 @@ export const TreeTable = <TData extends object, TValue>({
               : info.getValue();
 
           const rowPrefix =
-            isParent && !hideExpandIcon ? (
+            isParent && canExpand && !hideExpandIcon ? (
               <Expander
                 expanded={isExpanded}
                 onClick={(e: React.MouseEvent) => {
@@ -174,10 +177,11 @@ export const TreeTable = <TData extends object, TValue>({
     expandedKeys,
     toggleExpand,
     hideExpandIcon,
+    rowExpandable,
   ]);
 
   return (
-    <S.TreeTableRoot>
+    <S.TreeTableRoot style={style}>
       <Table<TData, TValue>
         data={data}
         columns={treeColumns}

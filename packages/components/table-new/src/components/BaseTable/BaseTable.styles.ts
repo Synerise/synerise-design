@@ -22,6 +22,10 @@ export const BaseTableWrapper = styled.div<{
   ${(props) => !props.$isColumnSizingReady && `opacity: 0;`}
   position: relative;
   z-index: 1;
+
+  .ant-pagination .ant-pagination-total-text strong {
+    font-weight: 500;
+  }
 `;
 
 export const TableContainer = styled.div<{

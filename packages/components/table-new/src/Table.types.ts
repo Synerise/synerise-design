@@ -1,5 +1,6 @@
 import type { PaginationProps } from 'antd';
 import {
+  type CSSProperties,
   type HTMLAttributes,
   type MouseEvent,
   type MutableRefObject,
@@ -99,6 +100,49 @@ export type DSTableProps<TData, TValue = unknown> = SharedTableProps<
 export type Expandable<TData> = {
   childrenColumnName?: keyof TData;
   expandedRowKeys?: string[];
+  /**
+   * Render custom content directly below an expanded parent row.
+   * Result is wrapped in an extra `<tr>` containing a single `<td>` that
+   * spans every visible column (including the selection column when enabled).
+   *
+   * Currently honored by `Table` (non-virtual). `VirtualTable` ignores this
+   * prop because variable-height expanded rows require dynamic virtualization
+   * sizing not yet implemented.
+   *
+   * Signature mirrors antd 4 / legacy `@synerise/ds-table`:
+   * `(record, index, indent, expanded) => ReactNode`.
+   */
+  expandedRowRender?: (
+    record: TData,
+    index: number,
+    indent: number,
+    expanded: boolean,
+  ) => ReactNode;
+  /**
+   * When true, clicking anywhere on a row toggles its expanded state.
+   * Composes with `onRowClick` and any `onClick` from `getRowProps` — call
+   * `event.preventDefault()` from those handlers to suppress the toggle.
+   *
+   * For uncontrolled use (no `expandedRowKeys`) the table updates internal
+   * expansion state itself. For controlled use, the toggle is delivered via
+   * `onExpand` and the consumer is responsible for updating `expandedRowKeys`.
+   *
+   * Suppressed for rows where `rowExpandable(record)` returns false.
+   */
+  expandRowByClick?: boolean;
+  /**
+   * Returns false to mark a row as non-expandable. Hides the expander UI in
+   * `TreeTable` and suppresses `expandRowByClick` for that row. Rows whose
+   * predicate returns undefined / true are considered expandable.
+   */
+  rowExpandable?: (record: TData) => boolean;
+  /**
+   * Fires when a row's expanded state changes via `expandRowByClick`.
+   * Receives the new expanded state and the row's record. In controlled mode
+   * (when `expandedRowKeys` is set) consumers must use this to update their
+   * source of truth.
+   */
+  onExpand?: (expanded: boolean, record: TData) => void;
 };
 
 /**
@@ -135,6 +179,8 @@ export type SharedTableProps<TData, TValue> = {
   cellHeight?: number;
   /** optional className for styled-components composition */
   className?: string;
+  /** inline styles applied to the outermost table wrapper element */
+  style?: CSSProperties;
 
   /**
    * renders in table header next to title and counter when there's any selected rows
@@ -263,6 +309,18 @@ export type SharedTableProps<TData, TValue> = {
    */
   cardStyles?: boolean;
   /**
+   * When true, the column header row uses `position: sticky` and stays pinned
+   * to the top of the nearest scrollable ancestor as the user scrolls.
+   *
+   * On `VirtualTable` this also switches the scroll element to the table's own
+   * container (or `scrollElementRef`) so the header sticks under the title bar.
+   *
+   * On `Table` (paginated) there is no internal scroll container — the header
+   * sticks to whatever ancestor scrolls in the consumer's layout (typically
+   * the page). The pagination footer flows below the body as normal.
+   */
+  stickyHeader?: boolean;
+  /**
    * set to true to prevent rendering column header row with column names
    */
   hideColumnNames?: boolean;
@@ -378,7 +436,6 @@ type VirtualProps = {
    * disables sorting - relies on data being provided pre-sorted
    */
   infiniteScroll?: InfiniteScrollProps;
-  stickyHeader?: boolean;
   onItemsRendered?: (props: OnItemsRenderedProps) => void;
 
   scrollElementRef?: MutableRefObject<HTMLDivElement | null>;
@@ -567,6 +624,7 @@ export type TableBodyProps<TData, TValue> = Pick<
   | 'onRowClick'
   | 'getRowProps'
   | 'getRowTooltipProps'
+  | 'expandable'
 > & {
   texts: TableBodyTexts;
 };
@@ -683,7 +741,7 @@ export type TableRowProps<TData> = {
   isParentExpanded?: boolean;
 } & Pick<
   SharedTableProps<TData, unknown>,
-  'onRowClick' | 'getRowProps' | 'getRowTooltipProps'
+  'onRowClick' | 'getRowProps' | 'getRowTooltipProps' | 'expandable'
 >;
 
 export type TableRowVirtualProps<TData> = TableRowProps<TData> & {

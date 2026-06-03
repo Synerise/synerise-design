@@ -1,8 +1,10 @@
-import React, { useImperativeHandle, useMemo, useRef } from 'react';
+import React, { useImperativeHandle, useMemo, useRef, useState } from 'react';
 
-import type { TableProps } from './Table.types';
+import { DEFAULT_STICKY_VALUE } from './Table.const';
+import { type StickyData, type TableProps } from './Table.types';
 import { BaseTable } from './components/BaseTable/BaseTable';
 import { SelectionContext } from './contexts/SelectionContext';
+import { StickyContext } from './contexts/StickyContext';
 import { TableContext } from './contexts/TableContext';
 import { useDefaultTexts } from './hooks/useDefaultTexts';
 import { useTable } from './hooks/useTable';
@@ -26,10 +28,13 @@ export const Table = <TData extends object, TValue>({
   rowKey,
   onSort,
   tableRef,
+  stickyHeader,
   ...props
 }: TableProps<TData, TValue>) => {
   const texts = useDefaultTexts(defaultTexts);
   const wrapperRef = useRef<HTMLDivElement | null>(null);
+  const [stickyData, setStickyData] =
+    useState<StickyData>(DEFAULT_STICKY_VALUE);
 
   const hasSelection = !!selectionConfig;
 
@@ -93,27 +98,35 @@ export const Table = <TData extends object, TValue>({
     [table],
   );
 
+  const stickyValue = useMemo(
+    () => (stickyHeader ? { stickyData, setStickyData } : null),
+    [stickyData, stickyHeader],
+  );
+
   return (
     <TableContext.Provider value={tableContextValue}>
-      <SelectionContext.Provider value={selectionConfig}>
-        <BaseTable
-          texts={texts}
-          isLoading={effectiveIsLoading}
-          hasPagination={hasPagination}
-          paginationProps={paginationProps}
-          tableOuterRef={wrapperRef}
-          selectedRowKeys={selectedRowKeys}
-          columnSizing={columnSizing}
-          isColumnSizingReady={isColumnSizingReady}
-          searchQuery={searchQuery}
-          setSearchQuery={setSearchQuery}
-          handleSearchClear={handleSearchClear}
-          hasBuiltInSearch={hasBuiltInSearch}
-          searchProps={searchProps}
-          dataSourceTotalCount={totalDataCount}
-          {...props}
-        />
-      </SelectionContext.Provider>
+      <StickyContext.Provider value={stickyValue}>
+        <SelectionContext.Provider value={selectionConfig}>
+          <BaseTable
+            texts={texts}
+            isLoading={effectiveIsLoading}
+            hasPagination={hasPagination}
+            paginationProps={paginationProps}
+            tableOuterRef={wrapperRef}
+            selectedRowKeys={selectedRowKeys}
+            columnSizing={columnSizing}
+            isColumnSizingReady={isColumnSizingReady}
+            searchQuery={searchQuery}
+            setSearchQuery={setSearchQuery}
+            handleSearchClear={handleSearchClear}
+            hasBuiltInSearch={hasBuiltInSearch}
+            searchProps={searchProps}
+            dataSourceTotalCount={totalDataCount}
+            expandable={expandable}
+            {...props}
+          />
+        </SelectionContext.Provider>
+      </StickyContext.Provider>
     </TableContext.Provider>
   );
 };

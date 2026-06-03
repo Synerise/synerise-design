@@ -1,0 +1,283 @@
+import { Meta, Canvas } from '@storybook/addon-docs/blocks';
+import {
+  ExpandedRowRender,
+  ExpandedRowRenderWithRowExpandable,
+} from './NonVirtual/Table.stories';
+import { ExpandableRows } from './Virtual/VirtualTable.stories';
+import { ControlledExpand } from './Tree/TreeTable.stories';
+
+<Meta title="Components/TableNew/Expandable rows" />
+
+# Expandable rows
+
+`@synerise/ds-table-new` has three distinct expandable patterns. They are not interchangeable — each fits a different data shape and UX intent.
+
+1. **Detail row below the parent** — flat rows that reveal arbitrary inline content (chart, form, summary). Configured via `expandable.expandedRowRender`. **`Table` only.**
+2. **Hierarchical child rows** — data already has a `children` array; expanded parents reveal their child rows in the same column layout. Configured via `expandable.childrenColumnName` + `expandedRowKeys`. **`Table` and `VirtualTable`.**
+3. **Tree view with built-in expander UI** — same hierarchical model as #2, but rendered with indent guides and a managed expand button. Use the dedicated **`TreeTable`** component.
+
+## Feature ↔ component matrix
+
+{/* MDX renders HTML tables; markdown tables don't render reliably here. */}
+
+<table>
+  <thead>
+    <tr>
+      <th>Feature</th>
+      <th><code>Table</code></th>
+      <th><code>VirtualTable</code></th>
+      <th><code>TreeTable</code></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>expandable.expandedRowRender</code> (detail row)</td>
+      <td>✅</td>
+      <td>❌ (fixed-height virtualization)</td>
+      <td>❌ (config stripped)</td>
+    </tr>
+    <tr>
+      <td><code>expandable.expandRowByClick</code></td>
+      <td>✅</td>
+      <td>✅</td>
+      <td>n/a — own expander UI</td>
+    </tr>
+    <tr>
+      <td><code>expandable.rowExpandable</code></td>
+      <td>✅</td>
+      <td>✅</td>
+      <td>✅</td>
+    </tr>
+    <tr>
+      <td><code>expandable.expandedRowKeys</code> (controlled)</td>
+      <td>✅</td>
+      <td>✅</td>
+      <td>✅ <em>(hoisted as a top-level prop)</em></td>
+    </tr>
+    <tr>
+      <td><code>expandable.onExpand</code></td>
+      <td>✅</td>
+      <td>✅</td>
+      <td>uses <code>onExpandRow(key, expanded)</code></td>
+    </tr>
+    <tr>
+      <td>Hierarchical child rows via <code>childrenColumnName</code></td>
+      <td>✅</td>
+      <td>✅</td>
+      <td>built-in (default <code>children</code>)</td>
+    </tr>
+    <tr>
+      <td>Built-in indent guides + expander button</td>
+      <td>❌</td>
+      <td>❌</td>
+      <td>✅</td>
+    </tr>
+    <tr>
+      <td>Uncontrolled expand state</td>
+      <td>✅ (omit <code>expandedRowKeys</code>)</td>
+      <td>✅ (omit <code>expandedRowKeys</code>)</td>
+      <td>✅ (omit hoisted <code>expandedRowKeys</code>)</td>
+    </tr>
+  </tbody>
+</table>
+
+`VirtualTable` doesn't support `expandedRowRender` for the same reason the legacy `@synerise/ds-table` doesn't: variable-height expanded content can't be measured against the virtualizer's fixed `cellHeight`. Use a plain `Table` if you need that.
+
+## Pattern 1 — Detail row below the parent (`Table` only)
+
+Reveals an arbitrary `ReactNode` directly under each expanded parent row. The new row is a single `<td colSpan>` spanning every visible column, so the rendered node owns its own layout.
+
+```tsx
+import { Table } from '@synerise/ds-table-new';
+
+<Table
+  data={data}
+  columns={columns}
+  rowKey="key"
+  expandable={{
+    expandRowByClick: true,
+    expandedRowRender: (record) => <UserDetails user={record} />,
+  }}
+/>
+```
+
+`expandRowByClick: true` makes clicking anywhere on the row toggle expansion. The toggle composes with `onRowClick` and any `getRowProps` `onClick` — call `event.preventDefault()` in those handlers to suppress it (e.g. to stop a row click on an action cell from also expanding the row).
+
+<Canvas of={ExpandedRowRender} sourceState="shown" />
+
+### Gating which rows can expand with `rowExpandable`
+
+`rowExpandable(record)` returns `false` to mark a row as non-expandable. The detail row will not render and `expandRowByClick` is a no-op for that record.
+
+```tsx
+<Table
+  data={data}
+  columns={columns}
+  rowKey="key"
+  expandable={{
+    expandRowByClick: true,
+    rowExpandable: (row) => !row.disabled,
+    expandedRowRender: (record) => <UserDetails user={record} />,
+  }}
+/>
+```
+
+<Canvas of={ExpandedRowRenderWithRowExpandable} sourceState="shown" />
+
+### Controlled vs uncontrolled
+
+Two modes:
+
+- **Uncontrolled** — omit `expandedRowKeys`. The table manages its own expand state internally; `onExpand` is still fired as a notification.
+- **Controlled** — provide `expandedRowKeys` and update it from `onExpand`. The table is now driven purely by your prop.
+
+```tsx
+const [expandedKeys, setExpandedKeys] = useState<string[]>([]);
+
+<Table
+  data={data}
+  columns={columns}
+  rowKey="key"
+  expandable={{
+    expandRowByClick: true,
+    expandedRowKeys: expandedKeys,
+    onExpand: (expanded, record) =>
+      setExpandedKeys((prev) =>
+        expanded ? [...prev, record.key] : prev.filter((k) => k !== record.key),
+      ),
+    expandedRowRender: (record) => <UserDetails user={record} />,
+  }}
+/>
+```
+
+### `expandRowByClick` + a `Button.Expander` in a column
+
+If you render an `Expander` button inside a cell **and** also set `expandRowByClick: true`, the button click bubbles to the row. Both paths fire toggle, cancelling each other (no-op). Fix: `event.stopPropagation()` in the button's `onClick`.
+
+```tsx
+<TableCell.ActionCell>
+  <Button.Expander
+    expanded={isExpanded}
+    onClick={(event) => {
+      event.stopPropagation();
+      toggleExpanded();
+    }}
+  />
+</TableCell.ActionCell>
+```
+
+## Pattern 2 — Hierarchical child rows (`Table` & `VirtualTable`)
+
+Use this when row data already has a `children` array of the same shape. Children render as actual rows (using the same column definitions) — there's no separate "detail row". Plain `Table`/`VirtualTable` do not auto-render an expander column; you place a `Button.Expander` in a column cell yourself.
+
+```tsx
+import { Expander } from '@synerise/ds-button';
+import { TableCell, VirtualTable } from '@synerise/ds-table-new';
+
+type Row = { key: string; name: string; children?: Row[] };
+
+const columns = [
+  { id: 'name', accessorKey: 'name', header: 'Name' },
+  {
+    id: 'expander',
+    header: '',
+    size: 72,
+    cell: ({ row }) =>
+      row.original.children?.length ? (
+        <TableCell.ActionCell>
+          <Expander
+            expanded={expandedKeys.includes(row.original.key)}
+            onClick={(e) => {
+              e.stopPropagation();
+              handleExpand(row.original.key);
+            }}
+          />
+        </TableCell.ActionCell>
+      ) : null,
+  },
+];
+
+<VirtualTable
+  data={rows}
+  columns={columns}
+  rowKey={(row) => row.key}
+  expandable={{
+    expandedRowKeys,
+    childrenColumnName: 'children',
+  }}
+/>
+```
+
+Child rows inherit cell renderers from the parent columns. To render a column differently for children only, set `meta.childCell` on the `ColumnDef` — `VirtualTable` will use it for non-zero-depth rows.
+
+<Canvas of={ExpandableRows} sourceState="shown" />
+
+`rowExpandable` works here too — when it returns `false`, click-to-expand is suppressed for that record (you'll also typically guard your `Button.Expander` rendering on the same predicate).
+
+## Pattern 3 — `TreeTable`
+
+`TreeTable` is built on the same expanding row model as Pattern 2, but renders the indent guides (42px per level, 8-color cycling vertical lines), the leaf connector glyph, and the `Expander` button automatically. Its expansion API is hoisted to the top level (`expandedRowKeys`, `onExpandRow`, `defaultExpandAllRows`, `hideExpandIcon`, `rowExpandable`) and `Omit<TableProps, 'expandable'>` — so the `expandable` config from Patterns 1–2 is **not** available on `TreeTable`.
+
+<Canvas of={ControlledExpand} sourceState="shown" />
+
+See the [TreeTable docs](?path=/docs/components-tablenew-treetable--docs) for the full API.
+
+## `expandable` props reference
+
+These all live under the `expandable` prop on `Table` / `VirtualTable`.
+
+<table>
+  <thead>
+    <tr>
+      <th>Prop</th>
+      <th>Type</th>
+      <th>Description</th>
+      <th>Supported on</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>childrenColumnName</code></td>
+      <td><code>keyof TData</code></td>
+      <td>Property on a row holding child rows. Default <code>'children'</code>.</td>
+      <td><code>Table</code>, <code>VirtualTable</code></td>
+    </tr>
+    <tr>
+      <td><code>expandedRowKeys</code></td>
+      <td><code>string[]</code></td>
+      <td>Controlled set of expanded row keys. Omit for uncontrolled (table manages state itself).</td>
+      <td><code>Table</code>, <code>VirtualTable</code></td>
+    </tr>
+    <tr>
+      <td><code>expandedRowRender</code></td>
+      <td><code>(record, index, indent, expanded) =&gt; ReactNode</code></td>
+      <td>Custom content rendered in an extra <code>&lt;tr&gt;</code> directly below an expanded parent row. Cell spans every visible column.</td>
+      <td><code>Table</code> only</td>
+    </tr>
+    <tr>
+      <td><code>expandRowByClick</code></td>
+      <td><code>boolean</code></td>
+      <td>Clicking anywhere on a row toggles its expanded state. Composes with <code>onRowClick</code> and <code>getRowProps</code> onClick; <code>event.preventDefault()</code> suppresses the toggle.</td>
+      <td><code>Table</code>, <code>VirtualTable</code></td>
+    </tr>
+    <tr>
+      <td><code>rowExpandable</code></td>
+      <td><code>(record) =&gt; boolean</code></td>
+      <td>Returns <code>false</code> to mark a row non-expandable: hides the <code>TreeTable</code> expander, suppresses <code>expandRowByClick</code>, and skips <code>expandedRowRender</code>.</td>
+      <td><code>Table</code>, <code>VirtualTable</code>, <code>TreeTable</code></td>
+    </tr>
+    <tr>
+      <td><code>onExpand</code></td>
+      <td><code>(expanded: boolean, record: TData) =&gt; void</code></td>
+      <td>Fires once per click when expansion changes via <code>expandRowByClick</code>. Required in controlled mode so the consumer can update <code>expandedRowKeys</code>.</td>
+      <td><code>Table</code>, <code>VirtualTable</code></td>
+    </tr>
+  </tbody>
+</table>
+
+## Choosing a pattern
+
+- Flat rows + arbitrary inline detail content → **Pattern 1** (`Table` + `expandedRowRender`).
+- Hierarchical data of the same row shape, large dataset → **Pattern 2** with `VirtualTable`.
+- Hierarchical data, small/medium dataset, want indent guides for free → **Pattern 3** (`TreeTable`).
+- Need both inline detail content AND virtualization → currently unsupported; either denormalize the detail data into a separate flat list or switch to a paginated `Table`.

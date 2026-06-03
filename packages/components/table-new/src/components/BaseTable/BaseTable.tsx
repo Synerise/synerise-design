@@ -16,6 +16,7 @@ export const BaseTable = <TData extends object, TValue>({
   infiniteScroll,
   cellHeight = DEFAULT_CELL_HEIGHT,
   className,
+  style,
   itemsMenu,
   texts,
   isCounterLoading,
@@ -94,6 +95,7 @@ export const BaseTable = <TData extends object, TValue>({
     tableBodyScrollRef,
     addNode,
     isEmpty,
+    expandable,
   };
 
   return (
@@ -102,6 +104,7 @@ export const BaseTable = <TData extends object, TValue>({
       columnSizing={useColgroupLayout ? {} : columnSizing}
       $isColumnSizingReady={isColumnSizingReady}
       $size={useColgroupLayout ? undefined : size}
+      style={style}
     >
       <S.TableContainer
         ref={tableOuterRef}
