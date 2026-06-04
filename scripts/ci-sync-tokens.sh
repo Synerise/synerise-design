@@ -123,7 +123,9 @@ git diff --cached --stat -- packages/tokens/tokens
 # ── 4. Build gate — never push a branch that can't build ────────────────────────
 if [[ -z "${SKIP_BUILD:-}" ]]; then
   log "Build gate: rebuilding @synerise/ds-tokens"
-  pnpm install --frozen-lockfile --filter "@synerise/ds-tokens..."
+  # --ignore-scripts: skip the root postinstall (generate:vars/icons needs less-vars-to-js
+  # and other workspace build deps the token build doesn't require).
+  pnpm install --frozen-lockfile --filter "@synerise/ds-tokens..." --ignore-scripts
   pnpm --filter "@synerise/ds-tokens" build
 else
   log "SKIP_BUILD set — skipping build gate"
