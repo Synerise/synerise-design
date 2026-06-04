@@ -40,13 +40,13 @@ stages:
   - k8s-deploy-prod
 
 include:
-  # On the token-sync trigger pipeline ($SYNC_TOKENS == "true") skip code-quality + AI-review
-  # so it runs only sync_tokens. The kapitan deploy template stays included unconditionally —
-  # k8s-prod-gitops extends its .autodeploy-template base, so gating it would make the config
-  # invalid. Its deploy jobs are manual / ref-gated and don't execute on the sync pipeline.
+  # On the token trigger pipelines (sync or preview) skip code-quality + AI-review so they run
+  # only sync_tokens / tokens_preview. The kapitan deploy template stays included unconditionally
+  # — k8s-prod-gitops extends its .autodeploy-template base, so gating it would make the config
+  # invalid. Its deploy jobs are manual / ref-gated and don't execute on these pipelines.
   - template: Code-Quality.gitlab-ci.yml
     rules:
-      - if: '$SYNC_TOKENS != "true"'
+      - if: '$SYNC_TOKENS != "true" && $PREVIEW_TOKENS != "true"'
   - project: 'Core/gitlab_templates'
     ref: master
     file: '/ai_deploy_kapitan.yml'
@@ -54,7 +54,7 @@ include:
     ref: master
     file: '/pipeline/ai-review.yml'
     rules:
-      - if: '$SYNC_TOKENS != "true"'
+      - if: '$SYNC_TOKENS != "true" && $PREVIEW_TOKENS != "true"'
 
 
 # Triggered by a token merge in Frontend/design-tokens (multi-project pipeline trigger).
@@ -70,6 +70,34 @@ sync_tokens:
     - !reference [.install_pnpm]
   script:
     - bash scripts/ci-sync-tokens.sh
+
+# Triggered (manually) from a design-tokens MR to preview in-progress token changes in
+# Chromatic before merging — mirrors the MR branch's tokens, builds Storybook, and publishes
+# a Chromatic build on an isolated token-preview/* branch. No MR, no branch push.
+tokens_preview:
+  stage: prepare
+  needs: []
+  variables:
+    KUBERNETES_CPU_REQUEST: 4
+    KUBERNETES_MEMORY_REQUEST: 16Gi
+    KUBERNETES_MEMORY_LIMIT: 22Gi
+  cache:
+    - key:
+        files:
+          - pnpm-lock.yaml
+      paths:
+        - .pnpm-store
+      policy: pull
+    - key: $CI_COMMIT_REF_SLUG
+      paths:
+        - .nx
+      policy: pull-push
+  rules:
+    - if: '$CI_PIPELINE_SOURCE == "pipeline" && $PREVIEW_TOKENS == "true"'
+  before_script:
+    - !reference [.install_pnpm]
+  script:
+    - bash scripts/ci-preview-tokens.sh
 
 install:
   stage: install
@@ -345,8 +373,8 @@ k8s-prod-gitops:
     refs:
       - master
     variables:
-      # Exclude the token-sync trigger pipeline (runs on master ref with SYNC_TOKENS set).
-      - $LIBRARY_PIPELINE == "NO" && $GITOPS == "true" && $SYNC_TOKENS != "true"
+      # Exclude the token trigger pipelines (run on master ref with SYNC_TOKENS/PREVIEW_TOKENS set).
+      - $LIBRARY_PIPELINE == "NO" && $GITOPS == "true" && $SYNC_TOKENS != "true" && $PREVIEW_TOKENS != "true"
   parallel:
     matrix:
       - ENV: g001-misc1

@@ -112,6 +112,13 @@ for (const rel of srcFiles) {
 console.log(`  mirrored ${srcFiles.length} file(s)`);
 NODE
 
+# MIRROR_ONLY: used by ci-preview-tokens.sh — mirror the tokens into the working tree and
+# stop (no diff-guard / build / push / MR). The mirrored files persist for the caller.
+if [[ -n "${MIRROR_ONLY:-}" ]]; then
+  log "MIRROR_ONLY set — tokens mirrored, skipping diff-guard/build/push."
+  exit 0
+fi
+
 # ── 3. Diff-guard — exit cleanly if nothing actually changed ────────────────────
 cd "$REPO_ROOT"
 git add packages/tokens/tokens
