@@ -40,13 +40,21 @@ stages:
   - k8s-deploy-prod
 
 include:
+  # Skip the heavy template jobs (code quality, AI review, k8s deploy) on the token-sync
+  # trigger pipeline ($SYNC_TOKENS == "true") so it runs only sync_tokens.
   - template: Code-Quality.gitlab-ci.yml
+    rules:
+      - if: '$SYNC_TOKENS != "true"'
   - project: 'Core/gitlab_templates'
     ref: master
     file: '/ai_deploy_kapitan.yml'
+    rules:
+      - if: '$SYNC_TOKENS != "true"'
   - project: 'core/gitlab_templates'
     ref: master
     file: '/pipeline/ai-review.yml'
+    rules:
+      - if: '$SYNC_TOKENS != "true"'
 
 
 # Triggered by a token merge in Frontend/design-tokens (multi-project pipeline trigger).

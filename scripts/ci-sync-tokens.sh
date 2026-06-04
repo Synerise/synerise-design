@@ -70,14 +70,45 @@ else
 fi
 
 [[ -d "$SRC" ]] || { echo "ERROR: source tokens/ not found at $SRC" >&2; exit 1; }
-command -v rsync >/dev/null || { echo "ERROR: rsync not found in PATH" >&2; exit 1; }
 
 # ── 2. Mirror tokens/ → packages/tokens/tokens/ (protecting repo-local files) ───
+# Done in Node (guaranteed in the build image) rather than rsync (not installed):
+# copy every source file, and delete DST files absent from SRC except the protected
+# repo-local phase-2 files.
 log "Mirroring tokens → ${DST}"
-EXCLUDES=()
-for f in "${PROTECTED[@]}"; do EXCLUDES+=(--exclude "$f"); done
-# --delete mirrors upstream removals; excluded files are never deleted by rsync.
-rsync -a --delete "${EXCLUDES[@]}" "${SRC}/" "${DST}/"
+MIRROR_SRC="$SRC" MIRROR_DST="$DST" MIRROR_PROTECTED="$(printf '%s\n' "${PROTECTED[@]}")" node <<'NODE'
+const fs = require('fs');
+const path = require('path');
+const SRC = process.env.MIRROR_SRC;
+const DST = process.env.MIRROR_DST;
+const protectedSet = new Set(process.env.MIRROR_PROTECTED.split('\n').filter(Boolean));
+
+const walk = (dir, base = '') => {
+  const out = [];
+  for (const entry of fs.readdirSync(dir, { withFileTypes: true })) {
+    const rel = base ? `${base}/${entry.name}` : entry.name;
+    if (entry.isDirectory()) out.push(...walk(path.join(dir, entry.name), rel));
+    else out.push(rel);
+  }
+  return out;
+};
+
+const srcFiles = fs.existsSync(SRC) ? walk(SRC) : [];
+const dstFiles = fs.existsSync(DST) ? walk(DST) : [];
+const srcSet = new Set(srcFiles);
+
+// Mirror upstream removals — but never delete the protected repo-local files.
+for (const rel of dstFiles) {
+  if (!srcSet.has(rel) && !protectedSet.has(rel)) fs.rmSync(path.join(DST, rel));
+}
+// Copy/overwrite every source file.
+for (const rel of srcFiles) {
+  const to = path.join(DST, rel);
+  fs.mkdirSync(path.dirname(to), { recursive: true });
+  fs.copyFileSync(path.join(SRC, rel), to);
+}
+console.log(`  mirrored ${srcFiles.length} file(s)`);
+NODE
 
 # ── 3. Diff-guard — exit cleanly if nothing actually changed ────────────────────
 cd "$REPO_ROOT"
@@ -127,30 +158,50 @@ git commit --quiet -m "$TITLE"
 git push -f -o ci.skip \
   "https://oauth2:${PUSH_TOKEN}@${TARGET_HOST}/${TARGET_PATH}.git" "HEAD:${SYNC_BRANCH}"
 
-# ── 6. Create or refresh the rolling MR ─────────────────────────────────────────
-api() { curl -sf --header "PRIVATE-TOKEN: ${PUSH_TOKEN}" "$@"; }
-# Extract the iid of an existing open MR for the rolling branch (parse with node, no jq).
-EXISTING_IID="$(
-  api "${CI_API_V4_URL}/projects/${CI_PROJECT_ID}/merge_requests?source_branch=${SYNC_BRANCH}&state=opened" \
-    | node -e 'let d="";process.stdin.on("data",c=>d+=c).on("end",()=>{const a=JSON.parse(d||"[]");process.stdout.write(a[0]?String(a[0].iid):"")})'
-)"
+# ── 6. Create or refresh the rolling MR (Node fetch — no curl/jq dependency) ─────
+log "Creating/refreshing rolling MR"
+MR_API="${CI_API_V4_URL}/projects/${CI_PROJECT_ID}/merge_requests" \
+MR_TOKEN="$PUSH_TOKEN" MR_BRANCH="$SYNC_BRANCH" \
+MR_TITLE="$TITLE" MR_DESC="$DESCRIPTION" MR_PROJECT_URL="$PROJECT_URL" node <<'NODE'
+const api = process.env.MR_API;
+const headers = { 'PRIVATE-TOKEN': process.env.MR_TOKEN, 'Content-Type': 'application/json' };
+const branch = process.env.MR_BRANCH;
+const body = { title: process.env.MR_TITLE, description: process.env.MR_DESC };
 
-if [[ -n "$EXISTING_IID" ]]; then
-  log "Refreshing existing MR !${EXISTING_IID}"
-  api -X PUT "${CI_API_V4_URL}/projects/${CI_PROJECT_ID}/merge_requests/${EXISTING_IID}" \
-    --data-urlencode "title=${TITLE}" \
-    --data-urlencode "description=${DESCRIPTION}" >/dev/null
-  echo "Updated: ${PROJECT_URL}/-/merge_requests/${EXISTING_IID}"
-else
-  log "Creating new rolling MR"
-  api -X POST "${CI_API_V4_URL}/projects/${CI_PROJECT_ID}/merge_requests" \
-    --data "source_branch=${SYNC_BRANCH}" \
-    --data "target_branch=master" \
-    --data-urlencode "title=${TITLE}" \
-    --data-urlencode "description=${DESCRIPTION}" \
-    --data "squash=true" \
-    --data "remove_source_branch=true" \
-    | node -e 'let d="";process.stdin.on("data",c=>d+=c).on("end",()=>{const m=JSON.parse(d);console.log("Created:",m.web_url||("!"+m.iid))})'
-fi
+const main = async () => {
+  const find = await fetch(
+    `${api}?source_branch=${encodeURIComponent(branch)}&state=opened`,
+    { headers },
+  );
+  if (!find.ok) throw new Error(`list MRs failed: ${find.status} ${await find.text()}`);
+  const open = await find.json();
+
+  if (open[0]) {
+    const res = await fetch(`${api}/${open[0].iid}`, {
+      method: 'PUT',
+      headers,
+      body: JSON.stringify(body),
+    });
+    if (!res.ok) throw new Error(`update MR failed: ${res.status} ${await res.text()}`);
+    console.log(`Updated: ${process.env.MR_PROJECT_URL}/-/merge_requests/${open[0].iid}`);
+  } else {
+    const res = await fetch(api, {
+      method: 'POST',
+      headers,
+      body: JSON.stringify({
+        ...body,
+        source_branch: branch,
+        target_branch: 'master',
+        squash: true,
+        remove_source_branch: true,
+      }),
+    });
+    if (!res.ok) throw new Error(`create MR failed: ${res.status} ${await res.text()}`);
+    const mr = await res.json();
+    console.log(`Created: ${mr.web_url || '!' + mr.iid}`);
+  }
+};
+main().catch((e) => { console.error(String(e)); process.exit(1); });
+NODE
 
 log "Token sync complete."
