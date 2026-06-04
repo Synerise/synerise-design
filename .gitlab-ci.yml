@@ -237,6 +237,9 @@ chromatic_publish:
     - pnpm install --frozen-lockfile --prefer-offline
     # - apt-get -qq update
     # - apt-get install -y jq
+    # Token-sync MR: token changes reach Storybook via the build (not a traced story import),
+    # so TurboSnap would snapshot nothing. Disable it for this branch only → full snapshot.
+    - if [ "$CI_MERGE_REQUEST_SOURCE_BRANCH_NAME" = "chore/design-tokens-sync" ] && [ -f packages/storybook/chromatic.config.json ]; then node -e 'const fs=require("fs"),p="packages/storybook/chromatic.config.json";const c=JSON.parse(fs.readFileSync(p,"utf8"));c.onlyChanged=false;fs.writeFileSync(p,JSON.stringify(c,null,2));' && echo "Token-sync MR: TurboSnap disabled (full snapshot)"; fi
     - test ! -e packages/storybook/storybook-static && (cd packages/storybook; pnpm build-storybook --quiet --stats-json)
     - npx lerna run pack:ci --since origin/master
     - test -d packages/storybook/storybook-static/static && (cd packages/storybook/storybook-static/static; ls > index.txt) || true
@@ -253,7 +256,26 @@ chromatic_publish:
       - packages/storybook/chromatic-diagnostics.json
   # environment:
     # name: review/$CI_COMMIT_REF_SLUG
-    # url: $CHROMATIC_SB_URL 
+    # url: $CHROMATIC_SB_URL
+  interruptible: true
+
+# Post the rolling token-sync MR's Chromatic build + published Storybook links to Teams.
+# Runs only on the sync MR; reads the diagnostics artifact chromatic_publish produces.
+notify_tokens_sync:
+  stage: test
+  needs:
+    - job: chromatic_publish
+      artifacts: true
+  rules:
+    - if: '$CI_PIPELINE_SOURCE == "merge_request_event" && $CI_MERGE_REQUEST_SOURCE_BRANCH_NAME == "chore/design-tokens-sync"'
+  script:
+    - |
+      bash scripts/notify-teams.sh \
+        --diagnostics packages/storybook/chromatic-diagnostics.json \
+        --title "🔄 Design tokens synced — Chromatic review ready" \
+        --status Accent \
+        --text "A token sync MR is ready. Review the Chromatic diff before merging to master." \
+        --button "Merge Request=${CI_PROJECT_URL}/-/merge_requests/${CI_MERGE_REQUEST_IID}"
   interruptible: true
 
 publish_packages:

@@ -30,6 +30,18 @@ pnpm install --frozen-lockfile
 pnpm build
 
 # ── 3. Build Storybook ───────────────────────────────────────────────────────────────
+# Disable TurboSnap for previews: a token change reaches Storybook through the build
+# (tokens JSON → cssText → core), not through a traced story import, so TurboSnap would
+# snapshot nothing. Full snapshot is required for the token diff to be visible.
+if [[ -f packages/storybook/chromatic.config.json ]]; then
+  log "Disabling TurboSnap (onlyChanged) for full preview snapshot"
+  node -e '
+    const fs = require("fs"), p = "packages/storybook/chromatic.config.json";
+    const c = JSON.parse(fs.readFileSync(p, "utf8"));
+    c.onlyChanged = false;
+    fs.writeFileSync(p, JSON.stringify(c, null, 2));
+  '
+fi
 log "Building Storybook"
 ( cd packages/storybook && pnpm build-storybook --quiet )
 
@@ -43,16 +55,13 @@ log "Publishing Chromatic preview (branch: ${PREVIEW_BRANCH})"
     --exit-zero-on-changes \
     --diagnostics-file )
 
-# ── 5. Surface the Chromatic build URL for the UX reviewer ───────────────────────────
-DIAG="packages/storybook/chromatic-diagnostics.json"
-if [[ -f "$DIAG" ]]; then
-  DIAG_FILE="$DIAG" node -e '
-    const fs = require("fs");
-    const d = JSON.parse(fs.readFileSync(process.env.DIAG_FILE, "utf8"));
-    const url = (d.build && d.build.webUrl) || d.url || d.buildUrl || d.storybookUrl;
-    console.log(url ? ("\n✓ Chromatic preview: " + url + "\n")
-                    : "Chromatic build complete (see the log above for the URL).");
-  ' || true
-fi
+# ── 5. Notify Teams with the Chromatic build + published Storybook links ─────────────
+log "Notifying Teams"
+bash "${REPO_ROOT}/scripts/notify-teams.sh" \
+  --diagnostics packages/storybook/chromatic-diagnostics.json \
+  --title "🎨 Token preview ready — ${TRIGGER_SOURCE_BRANCH:-adhoc}" \
+  --status Good \
+  --text "Chromatic preview of in-progress design-tokens changes (not yet merged)." \
+  --fact "Source=design-tokens / ${TRIGGER_SOURCE_BRANCH:-adhoc}" || true
 
 log "Token preview complete."
