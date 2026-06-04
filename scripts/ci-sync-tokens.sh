@@ -21,7 +21,7 @@
 #   PUSH_TOKEN              write + api token for project 1171   (required unless DRY_RUN)
 #   CI_PROJECT_ID           target project id                    (default: 1171)
 #   CI_API_V4_URL           GitLab API base                      (default: https://$GITLAB_HOST/api/v4)
-#   SYNC_BRANCH             rolling branch name                  (default: sync/design-tokens)
+#   SYNC_BRANCH             rolling branch name                  (default: chore/design-tokens-sync)
 #   DRY_RUN                 skip push + MR (mirror/build only)
 #   SKIP_BUILD             skip the build gate (local dry-run only)
 #
@@ -34,7 +34,9 @@ TRIGGER_SOURCE_BRANCH="${TRIGGER_SOURCE_BRANCH:-main}"
 TRIGGER_SOURCE_SHA="${TRIGGER_SOURCE_SHA:-}"
 CI_PROJECT_ID="${CI_PROJECT_ID:-1171}"
 CI_API_V4_URL="${CI_API_V4_URL:-https://${GITLAB_HOST}/api/v4}"
-SYNC_BRANCH="${SYNC_BRANCH:-sync/design-tokens}"
+# Must match the repo's branch-name policy: (feature|hotfix|bugfix|fix|chore|test|docs|
+# refactor|renovate|dev|master|beta|release)/*
+SYNC_BRANCH="${SYNC_BRANCH:-chore/design-tokens-sync}"
 
 REPO_ROOT="$(git rev-parse --show-toplevel)"
 DST="${REPO_ROOT}/packages/tokens/tokens"

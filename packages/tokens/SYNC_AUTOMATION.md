@@ -13,7 +13,7 @@ merge to main (tokens/** changed)
                                                         2. mirror tokens/ → packages/tokens/tokens/
                                                         3. diff-guard (exit if nothing changed)
                                                         4. build gate (pnpm --filter ds-tokens build)
-                                                        5. force-push rolling branch  sync/design-tokens
+                                                        5. force-push rolling branch  chore/design-tokens-sync
                                                         6. create/refresh the rolling MR (API)
                                                               ▼
                                                   MR pipeline ($CI_PIPELINE_SOURCE == "merge_request_event")
@@ -26,7 +26,7 @@ merge to main (tokens/** changed)
 
 Design decisions: canonical source branch is **`main`**; automation is **merge-triggered in CI**;
 the sync MR does **not** bump the package version (versioning stays with the existing
-`build: publish` release flow); **one rolling MR** (`sync/design-tokens`) is force-updated per change.
+`build: publish` release flow); **one rolling MR** (`chore/design-tokens-sync`) is force-updated per change.
 
 ---
 
@@ -39,8 +39,9 @@ the sync MR does **not** bump the package version (versioning stays with the exi
 | `.gitlab-ci.yml` → `sync_tokens` job | Runs `ci-sync-tokens.sh` only on the trigger pipeline (`$CI_PIPELINE_SOURCE == "pipeline" && $SYNC_TOKENS == "true"`). |
 | `packages/tokens/scripts/sync-tokens.sh` | Local `pnpm sync` — mirrors `design-tokens@main` over your SSH auth (no token), preserving the repo-local phase-2 files. |
 
-The mirror **protects** `semantic/dimensions.json` and `semantic/spacing.json` (phase-2 files
-that exist here but not upstream) from `rsync --delete`.
+The mirror (a small Node copy — no `rsync`/`curl`/`jq` dependency) **protects**
+`semantic/dimensions.json` and `semantic/spacing.json` (phase-2 files that exist here but not
+upstream) from deletion.
 
 ---
 
@@ -113,7 +114,7 @@ trigger_synerise_design:
   no branch, no MR.
 - **Build gate**: rebuilds `@synerise/ds-tokens` before pushing; the non-empty-output assertion
   fails the job if the CSS would be empty, so a broken branch is never opened.
-- **Rolling MR**: a single `sync/design-tokens` branch is force-pushed and its MR refreshed, so the
+- **Rolling MR**: a single `chore/design-tokens-sync` branch is force-pushed and its MR refreshed, so the
   reviewer always sees "current tokens vs master" in one Chromatic thread.
 - **No premature publish**: the sync commit/MR title is `chore(tokens): sync …`, never
   `build: publish`, so merging it does not trigger `publish_packages`. The next normal release
@@ -142,7 +143,7 @@ DRY_RUN=1 TOKENS_SRC_DIR=/path/to/design-tokens bash scripts/ci-sync-tokens.sh
 1. **No-op trigger** — push a docs-only commit to `design-tokens@main`; confirm
    `trigger_synerise_design` does **not** run (blocked by `changes: tokens/**`).
 2. **Real trigger** — change one color in `tokens/modules/base.json` on `main`; confirm the sync
-   pipeline clones at the SHA, mirrors, builds, force-pushes `sync/design-tokens`, and opens/refreshes
+   pipeline clones at the SHA, mirrors, builds, force-pushes `chore/design-tokens-sync`, and opens/refreshes
    the MR; then the MR's pipeline runs `build_packages` + `chromatic_publish` and Chromatic shows the
    expected diff.
 3. **Idempotency** — re-run the same merge; confirm the MR is refreshed (not duplicated) and the
