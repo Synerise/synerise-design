@@ -238,8 +238,12 @@ chromatic_publish:
     # - apt-get -qq update
     # - apt-get install -y jq
     # Token-sync MR: token changes reach Storybook via the build (not a traced story import),
-    # so TurboSnap would snapshot nothing. Disable it for this branch only → full snapshot.
-    - if [ "$CI_MERGE_REQUEST_SOURCE_BRANCH_NAME" = "chore/design-tokens-sync" ] && [ -f packages/storybook/chromatic.config.json ]; then node -e 'const fs=require("fs"),p="packages/storybook/chromatic.config.json";const c=JSON.parse(fs.readFileSync(p,"utf8"));c.onlyChanged=false;fs.writeFileSync(p,JSON.stringify(c,null,2));' && echo "Token-sync MR: TurboSnap disabled (full snapshot)"; fi
+    # so TurboSnap would snapshot nothing. Disable it for this branch only -> full snapshot.
+    - |
+      if [ "$CI_MERGE_REQUEST_SOURCE_BRANCH_NAME" = "chore/design-tokens-sync" ] && [ -f packages/storybook/chromatic.config.json ]; then
+        node -e 'const fs=require("fs"),p="packages/storybook/chromatic.config.json";const c=JSON.parse(fs.readFileSync(p,"utf8"));c.onlyChanged=false;fs.writeFileSync(p,JSON.stringify(c,null,2));'
+        echo "Token-sync MR - TurboSnap disabled (full snapshot)"
+      fi
     - test ! -e packages/storybook/storybook-static && (cd packages/storybook; pnpm build-storybook --quiet --stats-json)
     - npx lerna run pack:ci --since origin/master
     - test -d packages/storybook/storybook-static/static && (cd packages/storybook/storybook-static/static; ls > index.txt) || true
