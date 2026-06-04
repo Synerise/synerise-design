@@ -5,20 +5,21 @@
 ## Package structure
 
 ```
-tokens/                         — Token Studio JSON sources (synced from external repo)
+tokens/                         — Token Studio JSON sources (mirrored from the design-tokens repo)
   primitives/core.json          — raw color palettes, typography, spacing, radii, shadows
   semantic/Light.json           — light theme semantic mappings
   semantic/Dark.json            — dark theme semantic mappings
   semantic/custom-color/*.json  — 12 brand color theme files
-  modules/base.json             — component-level token definitions (full set)
-  modules/colors-only.json      — color-only subset extracted from base.json (used by build)
+  semantic/dimensions.json      — phase-2: size/border/opacity (repo-local; not yet upstream)
+  semantic/spacing.json         — phase-2: inset/stack/inline spacing (repo-local; not yet upstream)
+  modules/base.json             — component-level token definitions (full set; build derives the color subset)
   surface/base.json             — elevation/surface tokens
   $metadata.json                — token set ordering
   $themes.json                  — theme configuration with Figma references
 config/
   build-tokens.mjs              — Style Dictionary v4 build script
 scripts/
-  sync-tokens.sh                — fetches latest JSON from Token Studio GitHub repo
+  sync-tokens.sh                — mirrors latest JSON from the design-tokens GitLab repo
 src/
   index.ts                      — placeholder (real exports are generated in dist/)
 dist/
@@ -60,11 +61,21 @@ pnpm build                    # runs: node config/build-tokens.mjs
 4. Generates JS modules exporting CSS as string constants
 5. Currently filters to **color tokens only** — spacing, typography, etc. deferred
 
-### Token filtering
+### Token filtering (derived, not hand-maintained)
 
-`modules/base.json` contains all component tokens (776 total, many non-color types with unresolved references to spacing/border/opacity primitives). The build uses `modules/colors-only.json` — a color-only extract (section-message: 24 tokens) — to avoid reference errors.
+`modules/base.json` contains all component tokens (many non-color types, and some color/shadow
+tokens with references to primitives that don't exist yet — e.g. `outline.*`, `shadow.level.*`).
+`build-tokens.mjs` derives the buildable color/opacity/shadow subset **at build time**:
 
-When adding a new component's tokens, re-run the filter or extend `colors-only.json`.
+1. `filterByType` keeps only `color` / `boxShadow` / `shadow` / `opacity` leaves.
+2. `pruneUnresolvable` iteratively drops any leaf whose `{reference}` targets a path absent from the
+   loaded token sets, until the set is stable (handles cascades).
+
+This replaces the old hand-maintained `modules/colors-only.json` — adding a new component's tokens
+upstream needs **no** manual extraction. Tokens whose reference targets appear upstream later
+(e.g. once `outline.*` / `shadow.level.*` primitives are added) are picked up automatically. The
+build logs how many tokens were pruned, and asserts the output contains `--ds-color-` vars. See
+`SYNC_AUTOMATION.md` for the end-to-end sync flow.
 
 ## How tokens are consumed
 
@@ -73,13 +84,18 @@ When adding a new component's tokens, re-run the filter or extend `colors-only.j
 3. Injects all CSS vars on `:root` via `createGlobalStyle`
 4. Components use `var(--ds-section-message-variant-success-bg)` in styled-components
 
-## Syncing tokens from Token Studio
+## Syncing tokens
 
 ```bash
-pnpm sync                     # runs: bash scripts/sync-tokens.sh
+pnpm sync                     # runs: bash scripts/sync-tokens.sh [branch]  (default: main)
 ```
 
-Pulls latest JSON from https://github.com/piotrzarebski2/design-tokens/tree/main/tokens. After syncing, rebuild with `pnpm build`.
+Mirrors the latest JSON from the **design-tokens GitLab repo** (`Frontend/design-tokens@main`) into
+`tokens/`, preserving the repo-local phase-2 files (`semantic/dimensions.json`,
+`semantic/spacing.json`). After syncing, rebuild with `pnpm build`.
+
+In CI this is fully automated: a token merge in design-tokens triggers a sync that opens a
+Chromatic-reviewed MR here. See **`SYNC_AUTOMATION.md`** for the flow and one-time setup.
 
 ## Naming convention
 

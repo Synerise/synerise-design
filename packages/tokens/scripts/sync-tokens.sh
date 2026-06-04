@@ -1,25 +1,33 @@
 #!/usr/bin/env bash
-# Sync token JSON files from the Token Studio repository.
-# Usage: pnpm sync (from packages/tokens)
+# Sync token JSON files from the design-tokens GitLab repository into this package.
+# Usage: pnpm sync [branch]    (from packages/tokens; default branch: main)
+#
+# Mirrors Frontend/design-tokens@<branch> tokens/ into ./tokens, preserving the
+# phase-2 files maintained only in this repo (semantic/dimensions.json,
+# semantic/spacing.json). Uses your existing git (SSH) auth — no token needed.
+#
+# This is the local counterpart of scripts/ci-sync-tokens.sh (which additionally
+# opens the review MR in CI). After syncing, run `pnpm build` to regenerate CSS.
 
 set -euo pipefail
 
-REPO_RAW="https://raw.githubusercontent.com/piotrzarebski2/design-tokens/main/tokens"
-DIR="$(cd "$(dirname "$0")/.." && pwd)/tokens"
+BRANCH="${1:-main}"
+REPO="ssh://git@gitlab.synerise.com/Frontend/design-tokens.git"
+DST="$(cd "$(dirname "$0")/.." && pwd)/tokens"
 
-echo "Syncing tokens from $REPO_RAW → $DIR"
+command -v rsync >/dev/null || { echo "ERROR: rsync not found in PATH" >&2; exit 1; }
 
-curl -sL "$REPO_RAW/primitives/core.json"   -o "$DIR/primitives/core.json"
-curl -sL "$REPO_RAW/semantic/Light.json"     -o "$DIR/semantic/Light.json"
-curl -sL "$REPO_RAW/semantic/Dark.json"      -o "$DIR/semantic/Dark.json"
-curl -sL "$REPO_RAW/modules/base.json"       -o "$DIR/modules/base.json"
-curl -sL "$REPO_RAW/surface/base.json"       -o "$DIR/surface/base.json"
-curl -sL "$REPO_RAW/%24metadata.json"        -o "$DIR/\$metadata.json"
-curl -sL "$REPO_RAW/%24themes.json"          -o "$DIR/\$themes.json"
+TMP="$(mktemp -d)"
+trap 'rm -rf "$TMP"' EXIT
 
-for color in blue cyan fern green grey mars orange pink purple red violet yellow; do
-  curl -sL "$REPO_RAW/semantic/custom-color/${color}.json" \
-    -o "$DIR/semantic/custom-color/${color}.json"
-done
+echo "Cloning $REPO@$BRANCH …"
+git clone --depth 1 --branch "$BRANCH" "$REPO" "$TMP/dt" --quiet
 
-echo "Done — all token files updated."
+echo "Mirroring tokens → $DST (preserving local dimensions/spacing) …"
+# --delete mirrors upstream removals; excluded (repo-local) files are never deleted.
+rsync -a --delete \
+  --exclude semantic/dimensions.json \
+  --exclude semantic/spacing.json \
+  "$TMP/dt/tokens/" "$DST/"
+
+echo "Done — token files updated from $BRANCH. Run 'pnpm build' to regenerate CSS."

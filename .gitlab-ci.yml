@@ -49,6 +49,20 @@ include:
     file: '/pipeline/ai-review.yml'
 
 
+# Triggered by a token merge in Frontend/design-tokens (multi-project pipeline trigger).
+# Mirrors the latest tokens into @synerise/ds-tokens and opens/refreshes the rolling
+# sync MR, whose normal merge_request_event pipeline runs build + Chromatic for review.
+# Runs ONLY on the trigger pipeline, so it never interferes with MR/master pipelines.
+sync_tokens:
+  stage: prepare
+  needs: []
+  rules:
+    - if: '$CI_PIPELINE_SOURCE == "pipeline" && $SYNC_TOKENS == "true"'
+  before_script:
+    - !reference [.install_pnpm]
+  script:
+    - bash scripts/ci-sync-tokens.sh
+
 install:
   stage: install
   rules:
