@@ -40,16 +40,16 @@ stages:
   - k8s-deploy-prod
 
 include:
-  # Skip the heavy template jobs (code quality, AI review, k8s deploy) on the token-sync
-  # trigger pipeline ($SYNC_TOKENS == "true") so it runs only sync_tokens.
+  # On the token-sync trigger pipeline ($SYNC_TOKENS == "true") skip code-quality + AI-review
+  # so it runs only sync_tokens. The kapitan deploy template stays included unconditionally —
+  # k8s-prod-gitops extends its .autodeploy-template base, so gating it would make the config
+  # invalid. Its deploy jobs are manual / ref-gated and don't execute on the sync pipeline.
   - template: Code-Quality.gitlab-ci.yml
     rules:
       - if: '$SYNC_TOKENS != "true"'
   - project: 'Core/gitlab_templates'
     ref: master
     file: '/ai_deploy_kapitan.yml'
-    rules:
-      - if: '$SYNC_TOKENS != "true"'
   - project: 'core/gitlab_templates'
     ref: master
     file: '/pipeline/ai-review.yml'
@@ -345,7 +345,8 @@ k8s-prod-gitops:
     refs:
       - master
     variables:
-      - $LIBRARY_PIPELINE == "NO" && $GITOPS == "true"
+      # Exclude the token-sync trigger pipeline (runs on master ref with SYNC_TOKENS set).
+      - $LIBRARY_PIPELINE == "NO" && $GITOPS == "true" && $SYNC_TOKENS != "true"
   parallel:
     matrix:
       - ENV: g001-misc1
