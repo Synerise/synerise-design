@@ -33,10 +33,6 @@ const MAP_ELEMENTS_POSITION = {
   center: 'center',
 };
 
-const getVar =
-  (name: string) =>
-  (props: ThemeProps): string =>
-    props.theme.palette[name];
 const getTransformValues = (
   props: ThemeProps & {
     elementsPosition: CardSelectAlignType;
@@ -69,11 +65,11 @@ export const RadioShape = styled.div<{ size?: CardSelectSizeType }>`
   border-radius: 50%;
   border-width: ${RADIO_BORDER_WIDTH}px;
   border-style: solid;
-  border-color: ${getVar('grey-300')};
+  border-color: var(--ds-card-select-check-border-color-default);
   margin: 2px;
 
   &:hover {
-    border-color: ${getVar('grey-400')};
+    border-color: var(--ds-card-select-check-border-color-hover);
   }
 `;
 export const Title = styled.div<{
@@ -81,7 +77,7 @@ export const Title = styled.div<{
   size?: CardSelectSizeType;
 }>`
   text-align: center;
-  color: ${getVar('grey-800')};
+  color: var(--ds-card-select-header-color);
   font-weight: ${(props): string | number =>
     sizeCondition('400', '500', props)};
   width: 100%;
@@ -155,38 +151,44 @@ export const Container = styled.div<
   `}
 
   ${TRANSITION};
-  background-color: ${getVar('white')};
+  background-color: var(--ds-card-select-bg-default);
   border-radius: ${(props): string =>
     props.theme.variable('@border-radius-base')};
   ${is('error')`
      &&, &&:hover {
-     box-shadow:  0px 0px 0px 2px ${getVar('red-500')};
+     box-shadow:  0px 0px 0px 2px var(--ds-color-border-danger-default);
      }
   `}
   display: flex;
   flex: 1;
   justify-content: ${(props): string =>
     MAP_ELEMENTS_POSITION[props.elementsPosition]};
-  border-color: ${getVar('white')};
+  border-color: var(--ds-card-select-bg-default);
   position: relative;
   padding: ${(props): string => (props.size === 'small' ? '16px' : '24px')};
   cursor: pointer;
   &&:focus-within {
-    box-shadow: 0px 0px 0px 2px ${getVar('blue-600')};
+    box-shadow: 0px 0px 0px 2px var(--ds-card-select-border-color-focused);
   }
   ${isNot('pressed') &&
-  isNot('value')`box-shadow:  0px 0px 0px 1px ${getVar('grey-300')};`}
+  isNot(
+    'value',
+  )`box-shadow:  0px 0px 0px 1px var(--ds-card-select-border-color-default);`}
   ${is('value')`
-  box-shadow:  0px 0px 0px 2px ${getVar('blue-600')};
+  box-shadow:  0px 0px 0px 2px var(--ds-card-select-border-color-selected);
   `}
     ${is('value') &&
-  is('pressed')` box-shadow:  0px 0px 0px 2px ${getVar('blue-600')};`}
+  is(
+    'pressed',
+  )` box-shadow:  0px 0px 0px 2px var(--ds-card-select-border-color-selected);`}
     ${is('value') &&
   is('raised')`
-  box-shadow:  0px 0px 0px 2px ${getVar('blue-600')};
+  box-shadow:  0px 0px 0px 2px var(--ds-card-select-border-color-selected);
   `}
     ${is('value') &&
-  is('pressed')` box-shadow:  0px 0px 0px 2px ${getVar('blue-600')};`}
+  is(
+    'pressed',
+  )` box-shadow:  0px 0px 0px 2px var(--ds-card-select-border-color-selected);`}
 
   ${Title}, ${Description}, ${IconWrapper} {
     text-align: ${(props): string => props.elementsPosition};
@@ -200,47 +202,47 @@ export const Container = styled.div<
   }
 
   ${isNot('disabled')`
-    
+
 
     &:hover {
       ${RadioShape} {
-        border-color: ${getVar('grey-400')};
+        border-color: var(--ds-card-select-check-border-color-hover);
       }
     }
 
     ${isNot('raised')`
       ${isNot('value')`
-       box-shadow: 0px 0px 0px 1px ${getVar('grey-300')};
-        
+       box-shadow: 0px 0px 0px 1px var(--ds-card-select-border-color-default);
+
         &:hover, &:active {
-          box-shadow: 0px 0px 0px 1px ${getVar('grey-400')};
+          box-shadow: 0px 0px 0px 1px var(--ds-card-select-border-color-hover);
         }
       `};
     `};
-    
+
     ${is('raised')`
       ${isNot('value')`
-        box-shadow: ${(props: ThemeProps): string => props.theme.variable('@box-shadow-base') || 'none'};
-        
+        box-shadow: var(--ds-card-select-shadow-default);
+
         &:hover, &:active {
-          box-shadow: ${(props: ThemeProps): string => props.theme.variable('@box-shadow-active') || 'none'};
+          box-shadow: var(--ds-card-select-shadow-hover);
         }
       `}
-      
+
     `}
   `}
 
   ${is('disabled')`
-    opacity: 0.4;
+    opacity: var(--ds-card-select-disabled-opacity);
     pointer-events:none;
 
     ${isNot('raised')`
 
       ${isNot('value')`
-        box-shadow: 0px 0px 0px 1px ${getVar('grey-200')};
+        box-shadow: 0px 0px 0px 1px var(--ds-card-select-border-color-disabled);
       `}
     `}
-    
+
   `};
 `;
 
@@ -275,13 +277,13 @@ export const TickIcon = styled.div<{
         elementsPosition: CardSelectAlignType;
         size?: CardSelectSizeType;
       },
-    ): string => getTransformValues(props)}; 
+    ): string => getTransformValues(props)};
   `}
 
   ${is('disabled')`
     ${RadioShape} {
-      background-color: ${getVar('grey-050')};
-      border-color: ${getVar('grey-200')};
+      background-color: var(--ds-color-background-base-subtle);
+      border-color: var(--ds-card-select-check-border-color-default);
     }
   `}
 

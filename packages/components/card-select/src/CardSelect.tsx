@@ -1,7 +1,6 @@
 import React, { useRef, useState } from 'react';
 import { withTheme } from 'styled-components';
 
-import { useTheme } from '@synerise/ds-core';
 import Icon, { Check3M, InfoFillS } from '@synerise/ds-icon';
 import { TagShape } from '@synerise/ds-tag';
 import Tooltip from '@synerise/ds-tooltip';
@@ -40,7 +39,6 @@ const CardSelect = ({
   infoTooltipProps,
 }: CardSelectProps) => {
   const [isPressed, setIsPressed] = useState(false);
-  const theme = useTheme();
   const wrapperRef = useRef(null);
   const tickIconRef = useRef<HTMLDivElement>(null);
   const handleClick = () => {
@@ -115,11 +113,7 @@ const CardSelect = ({
               {value ? (
                 <Icon
                   size={realTickSize}
-                  color={
-                    value
-                      ? theme.palette['green-600']
-                      : theme.palette['grey-400']
-                  }
+                  color="var(--ds-card-select-check-bg-selected)"
                   component={<Check3M />}
                 />
               ) : (
@@ -131,7 +125,7 @@ const CardSelect = ({
             <Tooltip {...infoTooltipProps}>
               <Icon
                 component={<InfoFillS />}
-                color={theme.palette['grey-400']}
+                color="var(--ds-color-icon-base-muted)"
               />
             </Tooltip>
           )}
