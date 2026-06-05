@@ -3,27 +3,25 @@ import styled, {
   css,
 } from 'styled-components';
 
-import { type ThemeProps } from '@synerise/ds-core';
-
 export type InputWrapperProps = {
   error?: boolean;
   focus?: boolean;
   disabled?: boolean;
 };
 
-const errorInputStyle = (props: ThemeProps): string => `
+const errorInputStyle = (): string => `
   && {
-    border-color: ${props.theme.palette['red-600']};
-    box-shadow: inset 0 0 0 2px ${props.theme.palette['red-600']};
-    background: ${props.theme.palette['red-050']};
+    border-color: var(--ds-form-field-border-validated);
+    box-shadow: inset 0 0 0 2px var(--ds-form-field-border-validated);
+    background: var(--ds-form-field-bg-validated);
     border-radius: 4px;
   }
 `;
-const focusStyle = (props: ThemeProps): string => `
+const focusStyle = (): string => `
   && {
-    box-shadow: inset 0 0 0 2px ${props.theme.palette['blue-600']};
-    border-color: ${props.theme.palette['blue-600']};
-    background: ${props.theme.palette['blue-050']};
+    box-shadow: inset 0 0 0 2px var(--ds-form-field-border-focus);
+    border-color: var(--ds-form-field-border-focus);
+    background: var(--ds-form-field-bg-focus);
   }
 `;
 const contentShrinkStyle = (): FlattenSimpleInterpolation => css`
@@ -33,21 +31,21 @@ const contentShrinkStyle = (): FlattenSimpleInterpolation => css`
     white-space: nowrap;
   }
 `;
-const disabledStyled = (props: ThemeProps): FlattenSimpleInterpolation => css`
+const disabledStyled = (): FlattenSimpleInterpolation => css`
   &:hover,
   &,
   && > * {
     cursor: not-allowed;
   }
   opacity: 0.8;
-  color: ${props.theme.palette[`grey-600`]};
-  background: ${props.theme.palette['grey-050']};
+  color: var(--ds-color-text-base-muted);
+  background: var(--ds-color-background-base-subtle);
 `;
 
-const hoverStyle = (props: ThemeProps): FlattenSimpleInterpolation => css`
+const hoverStyle = (): FlattenSimpleInterpolation => css`
   &:hover {
-    border-color: ${props.theme.palette['grey-200']};
-    box-shadow: inset 0 0 0 1px ${props.theme.palette['grey-400']};
+    border-color: var(--ds-color-border-base-default);
+    box-shadow: inset 0 0 0 1px var(--ds-form-field-border-hover);
   }
 `;
 
@@ -57,19 +55,19 @@ export const ContentBelow = styled.div`
 `;
 
 export const ErrorText = styled.div`
-  color: ${(props) => props.theme.palette['red-600']};
+  color: var(--ds-color-text-danger-default);
   margin-bottom: 4px;
 `;
 
 export const Label = styled.label`
-  color: ${(props) => props.theme.palette['grey-800']};
+  color: var(--ds-color-text-base-default);
   font-weight: 500;
   display: block;
   white-space: nowrap;
 `;
 
 export const Description = styled.div`
-  color: ${(props) => props.theme.palette['grey-600']};
+  color: var(--ds-color-text-base-muted);
 `;
 
 export const ContentAbove = styled.div`
@@ -82,7 +80,7 @@ export const IconWrapper = styled.div`
   width: 24px;
   margin-left: -16px;
   display: none;
-  color: ${(props) => props.theme.palette['red-600']};
+  color: var(--ds-color-icon-danger-default);
 `;
 export const ValueText = styled.div<{ shrink?: boolean; disabled?: boolean }>`
   line-height: 22px;
@@ -94,9 +92,8 @@ export const ValueText = styled.div<{ shrink?: boolean; disabled?: boolean }>`
 `;
 
 export const InputWrapper = styled.div<InputWrapperProps>`
-  box-shadow: inset 0 0 0 1px
-    ${(props): string => props.theme.palette['grey-300']};
-  background-color: ${(props): string => props.theme.palette.white};
+  box-shadow: inset 0 0 0 1px var(--ds-form-field-border-default);
+  background-color: var(--ds-form-field-bg-default);
   width: 100%;
   border-radius: 3px;
   display: flex;
@@ -104,10 +101,10 @@ export const InputWrapper = styled.div<InputWrapperProps>`
   min-height: 32px;
   flex-wrap: wrap;
   transition: 0.3s all;
-  ${(props) => !props.disabled && hoverStyle(props)}
-  ${(props) => (props.focus && !props.disabled ? focusStyle(props) : '')}
-  ${(props) => (props.error ? errorInputStyle(props) : '')}
-  ${(props) => !!props.disabled && disabledStyled(props)}
+  ${(props) => !props.disabled && hoverStyle()}
+  ${(props) => (props.focus && !props.disabled ? focusStyle() : '')}
+  ${(props) => (props.error ? errorInputStyle() : '')}
+  ${(props) => !!props.disabled && disabledStyled()}
 `;
 
 export const ValueWrapper = styled.div<{
@@ -117,9 +114,9 @@ export const ValueWrapper = styled.div<{
   height: 24px;
   & {
     background-color: ${(props) =>
-      props.disabled
-        ? props.theme.palette['grey-200']
-        : props.theme.palette['grey-100']};
+    props.disabled
+      ? 'var(--ds-color-background-base-mutedhover)'
+      : 'var(--ds-color-background-base-muted)'};
   }
   border-radius: 3px;
   border: none;
@@ -136,8 +133,8 @@ export const ValueWrapper = styled.div<{
 
   &:hover {
     ${(props) =>
-      !props.disabled &&
-      css`
+    !props.disabled &&
+    css`
         ${ValueText} {
           max-width: calc(100% - 16px);
           overflow: hidden;
@@ -149,11 +146,11 @@ export const ValueWrapper = styled.div<{
         }
         ${contentShrinkStyle()}
       `}
-    background-color: ${(props) => props.theme.palette['grey-200']};
-    color: ${(props) => !props.disabled && props.theme.palette['grey-800']};
+    background-color: var(--ds-color-background-base-mutedhover);
+    color: ${(props) => !props.disabled && 'var(--ds-color-text-base-default)'};
     cursor: pointer;
   }
-  ${(props) => !!props.disabled && disabledStyled(props)}
+  ${(props) => !!props.disabled && disabledStyled()}
 `;
 export const BorderLessInput = styled.input<{ disabled?: boolean }>`
   box-shadow: none;
@@ -166,7 +163,7 @@ export const BorderLessInput = styled.input<{ disabled?: boolean }>`
     background-color: rgba(255, 255, 255, 0);
   }
   &::placeholder {
-    color: ${(props) => props.theme.palette['grey-500']};
+    color: var(--ds-form-field-text-placeholder);
   }
-  ${(props) => !!props.disabled && disabledStyled(props)}
+  ${(props) => !!props.disabled && disabledStyled()}
 `;

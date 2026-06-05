@@ -22,27 +22,27 @@ export const TextareaWrapper = styled.div<{
   ${(props): FlattenSimpleInterpolation => {
     if (props.isReadOnly) {
       return css`
-        border: 1px solid ${props.theme.palette['grey-300']};
-        background-color: ${props.theme.palette['grey-050']};
+        border: 1px solid var(--ds-form-field-border-default);
+        background-color: var(--ds-color-background-base-subtle);
       `;
     }
     if (props.isDisabled) {
       return css`
-        border: 1px solid #dbe0e3;
-        background-color: #f9fafb;
+        border: 1px solid var(--ds-form-field-border-disabled);
+        background-color: var(--ds-form-field-bg-disabled);
         cursor: not-allowed;
       `;
     }
     if (props.isFocused) {
       return css`
-        box-shadow: inset 0 0 0 1px ${props.theme.palette['blue-600']};
-        border: 1px solid ${props.theme.palette['blue-600']};
-        background-color: ${props.theme.palette['blue-050']};
+        box-shadow: inset 0 0 0 1px var(--ds-form-field-border-focus);
+        border: 1px solid var(--ds-form-field-border-focus);
+        background-color: var(--ds-form-field-bg-focus);
         &&& {
           textarea {
             &::-webkit-scrollbar-thumb {
               background-color: #e1e3e6;
-              border: 4px solid ${props.theme.palette['blue-050']} !important;
+              border: 4px solid var(--ds-form-field-bg-focus) !important;
             }
           }
         }
@@ -50,14 +50,14 @@ export const TextareaWrapper = styled.div<{
     }
     if (props.hasError) {
       return css`
-        background-color: ${props.theme.palette['red-050']};
-        box-shadow: inset 0 0 0 1px ${props.theme.palette['red-600']};
-        border: 1px solid ${props.theme.palette['red-600']};
+        background-color: var(--ds-form-field-bg-validated);
+        box-shadow: inset 0 0 0 1px var(--ds-form-field-border-validated);
+        border: 1px solid var(--ds-form-field-border-validated);
       `;
     }
     return css`
-      border: 1px solid #dbe0e3;
-      background-color: #fff;
+      border: 1px solid var(--ds-form-field-border-default);
+      background-color: var(--ds-form-field-bg-default);
     `;
   }}
 

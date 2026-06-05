@@ -8,16 +8,15 @@ import styled, {
   css,
 } from 'styled-components';
 
-import { type ThemeProps } from '@synerise/ds-core';
 
 import type { AutoResizeProp, InputSize } from './Input.types';
 import { TextareaWrapper } from './Textarea/Textarea.styles';
 
-const errorInputStyle = (props: ThemeProps) => `
+const errorInputStyle = () => `
   &&& {
-    border-color: ${props.theme.palette['red-600']};
-    box-shadow: inset 0 0 0 1px ${props.theme.palette['red-600']};
-    background: ${props.theme.palette['red-050']};
+    border-color: var(--ds-form-field-border-validated);
+    box-shadow: inset 0 0 0 1px var(--ds-form-field-border-validated);
+    background: var(--ds-form-field-bg-validated);
   }
 `;
 
@@ -70,8 +69,8 @@ export const InputWrapper = styled.div<{ iconCount?: number }>`
   position: relative;
   && input {
     padding-right: ${(props) => {
-      return `${getIconsWidth(props.iconCount || 0) + INPUT_PADDING}px`;
-    }};
+    return `${getIconsWidth(props.iconCount || 0) + INPUT_PADDING}px`;
+  }};
     &::placeholder {
       line-height: 1.29;
     }
@@ -87,10 +86,9 @@ export const OuterWrapper = styled.div<
   &.active {
     && {
       input {
-        box-shadow: inset 0 0 0 1px
-          ${(props) => props.theme.palette['blue-600']};
-        border-color: ${(props) => props.theme.palette['blue-600']};
-        background-color: ${(props) => props.theme.palette['blue-050']};
+        box-shadow: inset 0 0 0 1px var(--ds-form-field-border-focus);
+        border-color: var(--ds-form-field-border-focus);
+        background-color: var(--ds-form-field-bg-focus);
       }
     }
   }
@@ -116,13 +114,11 @@ export const IconsWrapper = styled.div<{ disabled?: boolean }>`
   top: 0;
   z-index: 2;
   height: 100%;
+  color: var(--ds-form-icon-color-default);
 
   .icon {
-    svg {
-      transition: 0.3s all;
-      fill: ${(props) => props.theme.palette['grey-600']};
-      opacity: ${(props) => (props.disabled ? '0.4' : '')};
-    }
+    transition: 0.3s all;
+    opacity: ${(props) => (props.disabled ? 'var(--ds-opacity-disabled)' : '')};
   }
 `;
 
@@ -146,10 +142,8 @@ export const IconsFlexContainer = styled.div<{ type: string }>`
 `;
 export const IconWrapper = styled.div`
   .icon:hover {
-    svg {
-      fill: ${(props) => props.theme.palette['blue-600']};
-      cursor: pointer;
-    }
+    color: var(--ds-color-icon-brand-default);
+    cursor: pointer;
   }
 `;
 
@@ -185,7 +179,7 @@ export const NativeInput = styled(
       ref,
     ) => <input autoComplete="off" {...props} ref={ref} />,
   ),
-)<NativeInputStyledProps & { readOnly?: boolean; disabled?: boolean }>`
+) <NativeInputStyledProps & { readOnly?: boolean; disabled?: boolean }>`
   box-sizing: ${(props) => (props.autoResize ? 'content-box' : 'border-box')};
   width: 100%;
   /* Pin a fixed height so the box is exactly 32px (default) / 48px (large) —
@@ -201,8 +195,8 @@ export const NativeInput = styled(
   ${(props) => props.$hasInnerPrefix && 'padding-left: 32px;'}
   color: ${(props) =>
     props.disabled
-      ? props.theme.palette['grey-400']
-      : props.theme.palette['grey-700']};
+      ? 'var(--ds-form-field-text-disabled)'
+      : 'var(--ds-form-field-text-value)'};
   background-color: ${(props) => props.theme.palette.white};
   border: ${INPUT_BORDER}px solid ${(props) => props.theme.palette['grey-300']};
   border-radius: 3px;
@@ -225,7 +219,7 @@ export const NativeInput = styled(
     'border-top-right-radius: 0; border-bottom-right-radius: 0;'}
 
   &::placeholder {
-    color: ${(props) => props.theme.palette['grey-500']};
+    color: var(--ds-form-field-text-placeholder);
     line-height: 1.29;
   }
 
@@ -242,19 +236,19 @@ export const NativeInput = styled(
     background-color: ${(props) => props.theme.palette['grey-050']};
   }
 
-  ${(props) => (props.error ? errorInputStyle(props) : '')};
+  ${(props) => (props.error ? errorInputStyle() : '')};
   ${(props) => autoresizeConfObjToCss({ autoResize: props.autoResize })};
   ${(props) =>
     props.readOnly &&
     `
       &&& {
         &:hover {
-          border-color: ${props.theme.palette['grey-300']};
+          border-color: var(--ds-form-field-border-default);
         }
         &:focus {
-          border-color: ${props.theme.palette['grey-300']};
+          border-color: var(--ds-form-field-border-default);
           box-shadow: none;
-          background: ${props.theme.palette.white};
+          background: var(--ds-form-field-bg-default);
         }
       }
     `}
@@ -330,7 +324,7 @@ export const RawTextArea = styled(
   >(({ error, ...props }, ref) => (
     <textarea autoComplete="off" {...props} ref={ref} />
   )),
-)<{ error?: boolean }>`
+) <{ error?: boolean }>`
   && {
     /* A bare textarea is display:inline-block and, without an explicit width,
        falls back to its cols intrinsic width (~20ch). antd's textarea.ant-input
@@ -339,20 +333,13 @@ export const RawTextArea = styled(
        height to fit). Fill the wrapper like NativeInput does. */
     box-sizing: border-box;
     width: 100%;
-    color: ${(props) => props.theme.palette['grey-700']};
+    color: var(--ds-form-field-text-value);
     /* native textarea doesn't inherit font-family — pull in the DS body font */
     font-family: inherit;
     font-size: 13px;
     /* Matches the previous antd textarea base padding (textarea.ant-input). */
     padding: 8px 12px;
-    ${(props) =>
-      props.error
-        ? `
-      box-shadow: inset 0 0 0 1px ${props.theme.palette['red-600']};
-      background: ${props.theme.palette['red-050']};
-      border-color: ${props.theme.palette['red-600']};
-    `
-        : ''}
+    ${(props) => (props.error ? errorInputStyle() : '')};
   }
 `;
 
@@ -372,17 +359,17 @@ export const ExpandableWrapper = styled.div<{ expanded: boolean }>`
     min-width: 282px;
 
     ${(props): FlattenSimpleInterpolation => {
-      if (props.expanded) {
-        return css`
+    if (props.expanded) {
+      return css`
           pointer-events: initial;
           display: block;
         `;
-      }
-      return css`
+    }
+    return css`
         pointer-events: none;
         display: none;
       `;
-    }}
+  }}
   }
 `;
 
@@ -391,12 +378,12 @@ export const ContentBelow = styled.div`
 `;
 
 export const ErrorText = styled.div`
-  color: ${(props) => props.theme.palette['red-600']};
+  color: var(--ds-color-text-danger-default);
   margin-bottom: 4px;
 `;
 
 export const Label = styled.label`
-  color: ${(props) => props.theme.palette['grey-800']};
+  color: var(--ds-color-text-base-default);
   font-weight: 500;
   display: block;
 `;
@@ -405,11 +392,11 @@ export const Counter = styled.div`
   font-weight: 500;
   flex: 1 0 auto;
   text-align: end;
-  color: ${(props) => props.theme.palette['grey-500']};
+  color: var(--ds-color-text-neutral-default);
 `;
 
 export const Description = styled.div`
-  color: ${(props) => props.theme.palette['grey-600']};
+  color: var(--ds-color-text-base-muted);
 `;
 
 export const ContentAbove = styled.div`
@@ -419,7 +406,7 @@ export const ContentAbove = styled.div`
   min-height: 18px;
 `;
 export const AddonWrapper = styled.div<{ height: number }>`
-  background: ${(props) => props.theme.palette['grey-050']};
+  background: var(--ds-form-field-affix-bg);
   display: flex;
   align-items: center;
   height: ${(props) => (props.height ? `${props.height}px` : '30px')};
