@@ -5,14 +5,12 @@ import styled, {
   css,
 } from 'styled-components';
 
-import { type ThemeProps } from '@synerise/ds-core';
-
 import { type Props } from './Select.types';
 
-const errorStyle = (props: ThemeProps) => `
-  border-color: ${props.theme.palette['red-600']};
-  box-shadow: inset 0 0 0 1px ${props.theme.palette['red-600']};
-  background: ${props.theme.palette['red-050']};
+const errorStyle = () => `
+  border-color: var(--ds-form-field-border-validated);
+  box-shadow: inset 0 0 0 1px var(--ds-form-field-border-validated);
+  background: var(--ds-form-field-bg-validated);
 `;
 
 const searchIconWithCustomColor = (color: string) => {
@@ -30,12 +28,12 @@ const withSuffixStyles = () => `
   border-bottom-right-radius:0;
 `;
 
-const addonStyles = (props: ThemeProps) => `
+const addonStyles = () => `
   display: flex;
   align-items: center;
-  background: ${props.theme.palette['grey-050']};
-  box-shadow: inset 0 0 0 1px ${props.theme.palette['grey-300']};
-  color: ${props.theme.palette['grey-500']};
+  background: var(--ds-form-field-affix-bg);
+  box-shadow: inset 0 0 0 1px var(--ds-form-field-affix-border);
+  color: var(--ds-form-field-affix-text);
   font-size:13px;
   line-height: 1.39;
  `;
@@ -135,10 +133,10 @@ export const AntdSelect = styled(
 
   &.error {
     .ant-select-selector.ant-select-selector {
-      ${(props) => errorStyle(props)}
+      ${() => errorStyle()}
     }
     .ant-select-clear {
-      background-color: ${(props) => props.theme.palette['red-050']};
+      background-color: var(--ds-form-field-bg-validated);
     }
   }
 
@@ -146,13 +144,13 @@ export const AntdSelect = styled(
     .ant-select-selector.ant-select-selector {
       color: ${(props) =>
         props.readOnly
-          ? props.theme.palette['grey-600']
-          : props.theme.palette['grey-400']};
+          ? 'var(--ds-color-text-base-muted)'
+          : 'var(--ds-form-field-text-disabled)'};
       cursor: ${(props) => (props.readOnly ? 'default' : 'not-allowed')};
       background-color: ${(props) =>
         props.readOnly
-          ? props.theme.palette.white
-          : props.theme.palette['grey-050']};
+          ? 'var(--ds-form-field-bg-default)'
+          : 'var(--ds-form-field-bg-disabled)'};
     }
     .ant-select-arrow {
       opacity: 0.5;
@@ -164,13 +162,13 @@ export const PrefixWrapper = styled.div`
   border-radius: 3px 0 0 3px;
   margin-right: -2px;
   padding-right: 1px;
-  ${(props) => addonStyles(props)};
+  ${() => addonStyles()};
 `;
 
 export const SuffixWrapper = styled.div`
   border-radius: 0 3px 3px 0;
   margin-left: -1px;
-  ${(props) => addonStyles(props)};
+  ${() => addonStyles()};
 `;
 
 export const SelectWrapper = styled.div<{ error?: boolean; grey?: boolean }>`
@@ -181,7 +179,7 @@ export const SelectWrapper = styled.div<{ error?: boolean; grey?: boolean }>`
     css`
       &&& {
         .ant-select-selector {
-          background-color: ${props.theme.palette['grey-050']};
+          background-color: var(--ds-color-background-base-subtle);
         }
       }
     `}
