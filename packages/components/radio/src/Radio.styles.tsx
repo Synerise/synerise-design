@@ -9,13 +9,15 @@ export const RadioWrapper = styled.div`
 `;
 
 export const Description = styled.div<{ disabled?: boolean }>`
-  color: ${(props) => props.theme.palette['grey-600']};
-  ${(props) => (props.disabled ? 'opacity: 0.4;' : '')}
+  color: var(--ds-form-radio-text-description);
+  ${(props): string =>
+    props.disabled ? `opacity: var(--ds-form-radio-disabled-opacity);` : ''}
   ${macro.small}
 `;
 
-export const Label = styled(FormFieldLabel)<{ disabled?: boolean }>`
-  ${(props) => (props.disabled ? 'opacity: 0.4;' : '')}
+export const Label = styled(FormFieldLabel) <{ disabled?: boolean }>`
+  ${(props) =>
+    props.disabled ? `opacity: var(--ds-form-radio-disabled-opacity);` : ''}
 `;
 
 export const AdditionalData = styled.div`
@@ -146,9 +148,9 @@ export const RadioLabel = styled.label<{
   ${RadioInput}:focus + ${RadioInner} {
     border-color: ${(props) => props.theme.palette['blue-600']};
     background-color: ${(props) =>
-      props.$checked
-        ? props.theme.palette.white
-        : props.theme.palette['blue-050']};
+    props.$checked
+      ? props.theme.palette.white
+      : props.theme.palette['blue-050']};
     border-width: 2px;
   }
 
