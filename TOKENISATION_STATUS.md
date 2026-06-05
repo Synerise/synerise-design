@@ -52,9 +52,9 @@ These components have dedicated token definitions in `modules/base.json`.
 | [section-message](#section-message) | `section-message` | :white_check_mark: | :heavy_minus_sign: | :heavy_minus_sign: | :x: | 2 | No | 7 variants, all tokenised |
 | [toast](#toast) | `toast` | :white_check_mark: | :white_check_mark: | :heavy_minus_sign: | :x: | 2 | No | 4 variants, shadow done |
 | [broadcast-bar](#broadcast-bar) | `broadcast-bar` | :white_check_mark: | :heavy_minus_sign: | :heavy_minus_sign: | :x: | 1 | No | 3 variants, all tokenised |
-| ai-chat | `app-menu` | :x: | :heavy_minus_sign: | :heavy_minus_sign: | :heavy_minus_sign: | TBD | No | 9 color tokens |
-| app-menu | `app-menu` | :x: | :x: | :x: | :x: | TBD | No | 6 color, 1 shadow, 14 opacity refs |
-| avatar | `avatar` | :x: | :heavy_minus_sign: | :x: | :x: | TBD | Yes (1) | 9 color, 1 opacity |
+| ai-chat | `app-menu` | :heavy_minus_sign: | :heavy_minus_sign: | :heavy_minus_sign: | :heavy_minus_sign: | — | No | no ai-chat markup yet — tokens unused |
+| [app-menu](#app-menu) | `app-menu` | :white_check_mark: | :white_check_mark: | :heavy_minus_sign: | :x: | 0 | No | shadow-1; all opacity is animation (deferred) |
+| [avatar](#avatar) | `avatar` | :white_check_mark: | :heavy_minus_sign: | :white_check_mark: | :x: | 0 | Yes (1) | static colors done; dynamic bg kept (user-driven) |
 | buttons | `button` | :x: | :x: | :x: | :x: | TBD | Yes (2) | 247 color, 15 dim, 1 opacity. Largest token set |
 | button-expander | `button` | :x: | :heavy_minus_sign: | :heavy_minus_sign: | :x: | TBD | — | Part of button package |
 | [card](#card) | `card` | :white_check_mark: | :construction: | :white_check_mark: | :x: | 0 | No | surface+shadow-1 done; active shadow + CardBadge dynamic deferred |
@@ -68,8 +68,8 @@ These components have dedicated token definitions in `modules/base.json`.
 | [list-item](#list-item) | `list-item` | :white_check_mark: | :heavy_minus_sign: | :white_check_mark: | :x: | 2 | No | 31 module + 7 semantic; many svg fills → inheritance |
 | [modal](#modal) | `modal` | :white_check_mark: | :white_check_mark: | :white_check_mark: | :x: | 1 | No | shadow-2; mask grey-800→grey-700 |
 | [navbar](#navbar) | `navbar` | :white_check_mark: | :heavy_minus_sign: | :white_check_mark: | :x: | 2 | No | :warning: default bg blue→grey |
-| page | `page-header` | :x: | :heavy_minus_sign: | :heavy_minus_sign: | :heavy_minus_sign: | TBD | No | 1 color token |
-| page-header | `page-header` | :x: | :x: | :heavy_minus_sign: | :x: | TBD | No | 4 color, 1 shadow |
+| page | `page-header` | :heavy_minus_sign: | :heavy_minus_sign: | :heavy_minus_sign: | :heavy_minus_sign: | — | No | `--ds-page-bg` unused (no full-page bg in code) |
+| [page-header](#page-header) | `page-header` | :white_check_mark: | :white_check_mark: | :heavy_minus_sign: | :x: | 0 | No | module + semantic; shadow-1 |
 | pagination | `pagination` | :x: | :heavy_minus_sign: | :x: | :x: | — | Yes (2) | ⛔ all styling in `.less` — code-side N/A, blocked on antd Less decision |
 | [popcornfirm](#popconfirm) | `popconfirm` | :white_check_mark: | :white_check_mark: | :heavy_minus_sign: | :heavy_minus_sign: | 1 | Yes (1) | shadow-2; carousel dots deferred |
 | [progressbar](#progress-bar) | `progress-bar` | :white_check_mark: | :heavy_minus_sign: | :heavy_minus_sign: | :x: | 0 | No | track + value tokenised; fill is customColor (no token) |
@@ -94,7 +94,7 @@ These components use `theme.palette` / hardcoded colors but do not yet have dedi
 | button-group | 6 | No | 4 | 0 | |
 | card-tabs | 68 | No | 2 | 4 | High palette count |
 | cascader | 34 | No | 5 | 10 | |
-| checkbox | 9 | Yes (2) | 4 | 1 | Token Studio has form.checkbox tokens |
+| [checkbox](#checkbox--radio) | 9 | Yes (2) | 4 | 1 | :construction: TS focus/indeterminate/hover borders → `--ds-form-checkbox-*`; check icons (data-URI SVG) + `.less` mixin deferred |
 | code-area | 18 | No | 1 | 1 | |
 | code-snippet | 20 | Yes (1) | 0 | 2 | |
 | collector | 12 | No | 1 | 2 | |
@@ -142,7 +142,7 @@ These components use `theme.palette` / hardcoded colors but do not yet have dedi
 | panel | 2 | No | 1 | 0 | |
 | panels-resizer | 4 | No | 0 | 0 | |
 | popover | 0 | No | 0 | 2 | |
-| radio | 1 | Yes (2) | 3 | 4 | Token Studio has form.radio tokens |
+| [radio](#checkbox--radio) | 1 | Yes (2) | 3 | 4 | :construction: description + disabled-opacity → `--ds-form-radio-*`; bulk styling in `.less` deferred |
 | result | 3 | No | 0 | 0 | |
 | scrollbar | 17 | Yes (2) | 0 | 17 | |
 | search | 13 | Yes (2) | 4 | 8 | |
@@ -726,3 +726,97 @@ text; check icon → `icon-success-default`; disabled opacity → `--ds-list-ite
 
 `--ds-list-item-role-delete-bg-active` resolves to red-50 (same as hover) — confirm with design whether the
 pressed delete state should stay darker (red-100 / `danger-subtlehover`).
+
+---
+
+### avatar
+
+**Package:** `packages/components/avatar/`
+**Layer:** module (`--ds-avatar-disabled-opacity`) + semantic (text-onsolid, background-base, icon-base-subtle)
+**Migrated in:** `chore/tokenisation` branch
+
+#### Colors — :white_check_mark: (static) · Opacity — :white_check_mark:
+
+Initials text on coloured bg → `text-onsolid-default`; badge-dot ring → `background-base-default`; fallback
+user-icon → `icon-base-subtle`; disabled opacity → `--ds-avatar-disabled-opacity`. No visual diffs.
+
+#### Deferred
+
+The saturated **background colour** (`applyBgColors`, computed `${color}-${hue}` key) and `ObjectAvatar`'s
+`${color}-600` are user-driven dynamic overrides — kept `theme.palette`. The avatar module `bg`/`text`
+tokens describe a *muted-grey default surface* (grey-100 bg / grey-600 text), not this coloured-bg+white-text
+path, so semantic `text-onsolid` was the correct choice. `.less` file (antd avatar) deferred. SVG icon
+component files (thousands of path hexes) are out of scope. Removed unused `DEFAULT_COLOR`/`DEFAULT_COLOR_HUE`
+locals (not exported, no consumers).
+
+---
+
+### page-header
+
+**Package:** `packages/components/page-header/`
+**Layer:** module (`--ds-page-header-*`, 3) + semantic (border/text/icon, 7) + `--ds-shadows-shadow-1`
+**Migrated in:** `chore/tokenisation` branch
+
+#### Colors — :white_check_mark: · Shadows — :white_check_mark:
+
+Container bg / back-separator / nav label → `--ds-page-header-*`; borders → `border-base-*`; description →
+`text-neutral-default`; icons → `icon-base-default`/`-subtle`; container shadow → `--ds-shadows-shadow-1`
+(provably equal). One `svg { fill }` rule (tooltip icon) converted to currentColor. **No visual diffs.**
+
+#### Deferred
+
+`page-header.container.shadow` module token exists in `base.json` but isn't emitted as a CSS var → used
+semantic `shadow-1` (identical). The `page` namespace (`--ds-page-bg`) has no matching usage in this package.
+
+---
+
+### app-menu
+
+**Package:** `packages/components/app-menu/`
+**Layer:** module (`--ds-app-menu-*`, 5) + semantic (border-base-subtle, text-brand, text-neutral) + `--ds-shadows-shadow-1`
+**Migrated in:** `chore/tokenisation` branch
+
+#### Colors — :white_check_mark: · Shadows — :white_check_mark:
+
+Container bg → `--ds-app-menu-container-bg`; icon colour → `--ds-app-menu-icon-defsult` (sic — upstream
+typo, used verbatim); hover bg → `--ds-app-menu-icon-bg-hover`; grey-200 dashed border →
+`--ds-app-menu-container-border-color`; grey-100 borders → semantic `border-base-subtle` (module border
+token resolves grey-200, a mismatch); submenu hover text → `text-brand-default`; menu shadow →
+`--ds-shadows-shadow-1`. **No visual diffs.**
+
+#### Deferred
+
+All ~14 `opacity` refs are visibility/transition/animation states (icon crossfade, sub-menu slide-in), not
+disabled/muted — none equal 0.4/0.2, none tokenisable. The `ai-chat` tokens have no consuming markup in the
+package yet (nothing to apply).
+
+> Upstream typo to fix in design-tokens: `--ds-app-menu-icon-defsult` → `…-default`.
+
+---
+
+### checkbox + radio
+
+**Packages:** `packages/components/checkbox/`, `packages/components/radio/`
+**Layer:** module (`--ds-form-checkbox-*` / `--ds-form-radio-*`)
+**Migrated in:** `chore/tokenisation` branch · **Status: :construction: partial**
+
+Both components keep the **bulk of their styling in `.less`** (`*.mixin.less`) and, for checkbox, in
+**data-URI SVG** check icons — neither can take CSS custom properties in Phase 1.
+
+#### checkbox — applied
+
+Focus border + focus ring, indeterminate inner bg/border, and hover-preview border → `--ds-form-checkbox-*`
+(all exact, no diffs). **Deferred:** the checked/indeterminate/hover check icons are `data:image/svg+xml`
+background-images with hex inlined into the URI — a `var()` cannot be encoded there, so they stay
+hardcoded; `blue-500` indeterminate-hover bg (no token); and the `checkbox.mixin.less` (per-state
+border/bg/label colours, error elevation shadow, disabled opacity).
+
+#### radio — applied
+
+Description text → `--ds-form-radio-text-description`; disabled opacity (label + description) →
+`--ds-form-radio-disabled-opacity`. **Visual diff:** description text grey-600 `#6a7580` → grey-700
+`#57616d` (darker, design-intended). **Deferred:** the radio dot/border/bg/hover/selected states live in
+`radio.mixin.less`.
+
+> Follow-up: checkbox/radio can only be fully tokenised once the antd `.less` theming decision lands; the
+> data-URI check icons need a different mechanism (e.g. a real `<Icon>` or `mask` driven by `currentColor`).
