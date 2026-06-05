@@ -16,31 +16,27 @@ type InPlaceEditableInputContainerProps = {
   pressed: boolean;
   dropdownOpened: boolean;
 };
-const applyColor = (
-  props: ThemeProps & InPlaceEditableInputContainerProps,
-): string => {
+const applyColor = (props: InPlaceEditableInputContainerProps): string => {
   if (props.error) {
-    return props.theme.palette['red-600'];
+    return 'var(--ds-inline-select-text-error)';
   }
-  return props.theme.palette['blue-600'];
+  return 'var(--ds-inline-select-text-default)';
 };
 
-const applyColorHover = (
-  props: ThemeProps & InPlaceEditableInputContainerProps,
-): string => {
+const applyColorHover = (props: InPlaceEditableInputContainerProps): string => {
   if (props.error) {
-    return props.theme.palette['red-600'];
+    return 'var(--ds-inline-select-text-error)';
   }
-  return props.theme.palette['blue-500'];
+  return 'var(--ds-inline-select-text-hover)';
 };
 
 const applyColorActive = (
-  props: ThemeProps & InPlaceEditableInputContainerProps,
+  props: InPlaceEditableInputContainerProps,
 ): string => {
   if (props.error) {
-    return props.theme.palette['red-600'];
+    return 'var(--ds-inline-select-text-error)';
   }
-  return props.theme.palette['blue-700'];
+  return 'var(--ds-inline-select-text-selected)';
 };
 
 const applyDotsOnError = (
@@ -75,7 +71,7 @@ export const IconWrapper = styled.div<
   line-height: inherit;
   cursor: pointer;
   &:hover {
-    background-color: ${(props): string => props.theme.palette.white};
+    background-color: var(--ds-color-background-base-default);
   }
   &&& {
     svg {
@@ -192,7 +188,9 @@ export const InPlaceEditableInputContainer = styled.div<InPlaceEditableInputCont
     text-shadow: 0 0 0 ${(props): string => applyColor(props)};
     ::placeholder {
       color: ${(props): string =>
-        props.theme.palette[props.error ? 'red-600' : 'grey-400']};
+        props.error
+          ? 'var(--ds-inline-select-text-error)'
+          : 'var(--ds-inline-select-text-disabled)'};
     }
   }
 `;

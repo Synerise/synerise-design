@@ -10,11 +10,11 @@ type InPlaceEditableInputContainerProps = {
   pressed?: boolean;
   scrolled?: boolean;
 };
-const applyColor = (props: ThemeProps & InPlaceEditableInputContainerProps) => {
+const applyColor = (props: InPlaceEditableInputContainerProps) => {
   if (props.error) {
-    return props.theme.palette['red-600'];
+    return 'var(--ds-inline-edit-text-error)';
   }
-  return props.theme.palette['grey-800'];
+  return 'var(--ds-inline-edit-text-default)';
 };
 
 const applyColorFocus = (
@@ -62,9 +62,9 @@ export const IconWrapper = styled.div<
 >`
   display: ${(props) => (props.disabled ? 'none' : 'flex')};
   border-radius: 24px;
-  color: ${(props) => props.theme.palette['grey-600']};
+  color: var(--ds-inline-edit-icon-btn-icon-default);
   background: ${(props) =>
-    props.customIcon ? undefined : props.theme.palette['grey-100']};
+    props.customIcon ? undefined : 'var(--ds-inline-edit-icon-btn-bg-default)'};
   margin: 0;
   font-size: 11px;
   justify-content: center;
@@ -75,7 +75,7 @@ export const IconWrapper = styled.div<
   line-height: inherit;
   cursor: pointer;
   &&&:hover {
-    background-color: ${(props) => props.theme.palette.white};
+    background-color: var(--ds-color-background-base-default);
   }
   div :active {
     border-radius: ${(props) => (props.customIcon ? '0px' : '24px')};
@@ -100,7 +100,7 @@ export const InPlaceEditableInputContainer = styled.div<InPlaceEditableInputCont
   }
   &:hover {
     input {
-      color: ${(props) => props.theme.palette['grey-800']};
+      color: var(--ds-inline-edit-text-default);
       background-image: linear-gradient(
         to right,
         ${(props) => applyDots(props)} 20%,
@@ -108,7 +108,7 @@ export const InPlaceEditableInputContainer = styled.div<InPlaceEditableInputCont
       );
     }
     ${IconWrapper} {
-      background-color: ${({ theme }) => theme.palette['grey-200']};
+      background-color: var(--ds-inline-edit-icon-btn-bg-hover);
     }
   }
 
@@ -156,7 +156,9 @@ export const InPlaceEditableInputContainer = styled.div<InPlaceEditableInputCont
     color: ${(props) => applyColor(props)};
     ::placeholder {
       color: ${(props) =>
-        props.theme.palette[props.error ? 'red-600' : 'grey-400']};
+        props.error
+          ? 'var(--ds-inline-edit-text-error)'
+          : 'var(--ds-color-text-base-disabled)'};
     }
   }
 `;
