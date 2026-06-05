@@ -11,27 +11,21 @@ export const ButtonToggle = styled(({ toggleType, activated, ...rest }) => {
     props.toggleType === 'ghost' &&
     css`
       &:hover:not(:disabled):not(:focus) {
-        color: ${props.theme.palette['grey-600']};
+        color: var(--ds-color-text-base-muted);
       }
 
       ${!props.activated
         ? css`
             &:hover:not(:disabled):not(:focus) {
-              color: ${props.theme.palette['grey-600']};
-              svg {
-                fill: currentColor;
-              }
+              color: var(--ds-color-text-base-muted);
             }
           `
         : css`
             ${!props.disabled &&
             css`
               && {
-                background: ${props.theme.palette['blue-050']};
-                color: ${props.theme.palette['blue-600']};
-                svg {
-                  fill: currentColor;
-                }
+                background: var(--ds-color-background-brand-subtle);
+                color: var(--ds-color-text-brand-default);
                 ${ButtonFocus} {
                   box-shadow: none;
                 }

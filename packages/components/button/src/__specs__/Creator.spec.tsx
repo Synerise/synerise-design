@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { theme, renderWithProvider } from '@synerise/ds-core';
+import { renderWithProvider } from '@synerise/ds-core';
 import { fireEvent, screen, waitFor } from '@testing-library/react';
 
 import { Creator } from '../index';
@@ -63,7 +63,7 @@ describe('Creator', () => {
     );
     const creator = screen.getByTestId(TEST_ID);
     expect(creator).toHaveStyle(
-      `border: 1px dashed ${theme.palette['red-600']}`,
+      `border: 1px dashed var(--ds-color-border-danger-default)`,
     );
   });
   it('should render blue when uploading', async () => {
@@ -78,7 +78,7 @@ describe('Creator', () => {
     const creator = screen.getByTestId(TEST_ID);
     await waitFor(() =>
       expect(creator).toHaveStyle(
-        `border: 1px dashed ${theme.palette['blue-300']}`,
+        `border: 1px dashed var(--ds-color-border-brand-strong)`,
       ),
     );
   });

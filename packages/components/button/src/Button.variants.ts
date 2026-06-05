@@ -49,26 +49,42 @@ const buttonHover = (color: string, background: string, border: string) => css`
 // ---------------------------------------------------------------------------
 
 const variantPrimary = (p: Palette) => css`
-  ${buttonColor(p.white, p['blue-600'], p['blue-600'])}
+  ${buttonColor(
+    'var(--ds-buttons-variant-primary-text-default)',
+    'var(--ds-buttons-variant-primary-bg-default)',
+    'var(--ds-buttons-variant-primary-bg-default)',
+  )}
 
   .btn-focus {
     box-shadow: inset 0 0 0 0px ${p['grey-300']};
   }
 
   &:hover {
-    ${buttonHover(p.white, p['blue-500'], p['blue-500'])}
+    ${buttonHover(
+      'var(--ds-buttons-variant-primary-text-hover)',
+      'var(--ds-buttons-variant-primary-bg-hover)',
+      'var(--ds-buttons-variant-primary-bg-hover)',
+    )}
   }
 
   &:focus-visible {
-    ${buttonColor(p.white, p['blue-600'], p['blue-700'])}
+    ${buttonColor(
+      'var(--ds-buttons-variant-primary-text-focus)',
+      'var(--ds-buttons-variant-primary-bg-focus)',
+      'var(--ds-buttons-variant-primary-border-focus)',
+    )}
     .btn-focus {
-      box-shadow: inset 0 0 0 2px ${p['blue-700']};
+      box-shadow: inset 0 0 0 2px var(--ds-buttons-variant-primary-border-focus);
     }
   }
 
   &.pressed,
   &.active {
-    ${buttonColor(p.white, p['blue-700'], p['blue-700'])}
+    ${buttonColor(
+      'var(--ds-buttons-variant-primary-text-active)',
+      'var(--ds-buttons-variant-primary-bg-active)',
+      'var(--ds-buttons-variant-primary-bg-active)',
+    )}
   }
 
   .btn-ripple {
@@ -357,7 +373,11 @@ const variantGhostWhite = (p: Palette) => css`
 `;
 
 const variantDanger = (p: Palette) => css`
-  ${buttonColor(p.white, p['red-600'], p['red-600'])}
+  ${buttonColor(
+    'var(--ds-buttons-variant-primary-danger-text-default)',
+    'var(--ds-buttons-variant-primary-danger-bg-default)',
+    'var(--ds-buttons-variant-primary-danger-bg-default)',
+  )}
 
   .btn-focus {
     box-shadow: inset 0 0 0 0 transparent;
@@ -369,7 +389,11 @@ const variantDanger = (p: Palette) => css`
   }
 
   &:focus-visible {
-    ${buttonColor(p.white, p['red-600'], p['red-600'])}
+    ${buttonColor(
+      'var(--ds-buttons-variant-primary-danger-text-focus)',
+      'var(--ds-buttons-variant-primary-danger-bg-focus)',
+      'var(--ds-buttons-variant-primary-danger-border-focus)',
+    )}
     .btn-focus {
       box-shadow: inset 0 0 0 2px ${p['blue-600']};
     }
@@ -392,18 +416,30 @@ const variantDanger = (p: Palette) => css`
 `;
 
 const variantSuccess = (p: Palette) => css`
-  ${buttonColor(p.white, p['green-600'], p['green-600'])}
+  ${buttonColor(
+    'var(--ds-buttons-variant-primary-success-text-default)',
+    'var(--ds-buttons-variant-primary-success-bg-default)',
+    'var(--ds-buttons-variant-primary-success-bg-default)',
+  )}
 
   .btn-focus {
     box-shadow: inset 0 0 0 0 transparent;
   }
 
   &:hover {
-    ${buttonHover(p.white, p['green-500'], p['green-500'])}
+    ${buttonHover(
+      'var(--ds-buttons-variant-primary-success-text-hover)',
+      'var(--ds-buttons-variant-primary-success-bg-hover)',
+      'var(--ds-buttons-variant-primary-success-bg-hover)',
+    )}
   }
 
   &:focus-visible {
-    ${buttonColor(p.white, p['green-600'], p['green-500'])}
+    ${buttonColor(
+      'var(--ds-buttons-variant-primary-success-text-focus)',
+      'var(--ds-buttons-variant-primary-success-bg-focus)',
+      'var(--ds-buttons-variant-primary-success-border-focus)',
+    )}
     .btn-focus {
       box-shadow: inset 0 0 0 2px ${p['blue-700']};
     }
@@ -411,7 +447,11 @@ const variantSuccess = (p: Palette) => css`
 
   &.pressed,
   &.active {
-    ${buttonColor(p.white, p['green-700'], p['green-700'])}
+    ${buttonColor(
+      'var(--ds-buttons-variant-primary-success-text-active)',
+      'var(--ds-buttons-variant-primary-success-bg-active)',
+      'var(--ds-buttons-variant-primary-success-bg-active)',
+    )}
   }
 
   .btn-ripple {
