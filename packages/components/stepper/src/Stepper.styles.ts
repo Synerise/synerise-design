@@ -48,6 +48,6 @@ export const StepDivider = styled.div`
     height: 1px;
     width: 100%;
     content: '';
-    background-color: ${(props): string => props.theme.palette['grey-400']};
+    background-color: var(--ds-stepper-step-separator-default);
   }
 `;

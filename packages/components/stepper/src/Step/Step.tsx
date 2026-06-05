@@ -59,7 +59,7 @@ const Step = ({
                 color={
                   warning
                     ? theme.palette['yellow-600']
-                    : theme.palette['green-600']
+                    : 'var(--ds-stepper-step-circle-border-done)'
                 }
               />
             ) : (

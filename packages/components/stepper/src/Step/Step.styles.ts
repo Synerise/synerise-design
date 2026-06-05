@@ -16,7 +16,7 @@ export const StepPrefix = styled.div<{ noMargin: boolean }>`
   border-radius: 50%;
   border-width: 1px;
   border-style: solid;
-  border-color: ${(props) => props.theme.palette['grey-400']};
+  border-color: var(--ds-stepper-step-circle-border-default);
   margin-right: ${(props) => (props.noMargin ? '0' : '8px')};
   text-align: center;
   transition:
@@ -34,7 +34,7 @@ export const StepNumber = styled.span`
   justify-content: center;
   align-items: center;
   transition: color 0.2s ease-in-out;
-  color: ${(props) => props.theme.palette['grey-400']};
+  color: var(--ds-stepper-step-circle-content-default);
 `;
 
 export const StepName = styled.span`
@@ -65,7 +65,7 @@ export const StepName = styled.span`
 
 export const StepLabel = styled.span`
   transition: color 0.2s ease-in-out;
-  color: ${(props) => props.theme.palette['grey-400']};
+  color: var(--ds-stepper-step-label-default);
   overflow: hidden;
   display: block;
   white-space: nowrap;
@@ -89,7 +89,7 @@ export const StepContent = styled.div`
   margin-left: 12px;
   outline: 0;
   && {
-    border-left: 1px solid ${(props) => props.theme.palette['grey-400']};
+    border-left: 1px solid var(--ds-stepper-step-separator-default);
   }
 `;
 
@@ -178,11 +178,11 @@ export const Step = styled.div<{
     if (props.validated) {
       return css`
         ${StepPrefix} {
-          border-color: ${props.theme.palette['red-600']};
+          border-color: var(--ds-stepper-step-circle-border-validation);
         }
         ${StepNumber}${StepNumber},
         ${StepLabel}${StepLabel} {
-          color: ${props.theme.palette['red-600']};
+          color: var(--ds-stepper-step-label-validation);
           font-weight: 400;
         }
       `;
@@ -202,11 +202,11 @@ export const Step = styled.div<{
     if (props.done) {
       return css`
         ${StepPrefix} {
-          border-color: ${props.theme.palette['green-600']};
+          border-color: var(--ds-stepper-step-circle-border-done);
         }
         ${StepNumber},
         ${StepLabel} {
-          color: ${props.theme.palette['green-600']};
+          color: var(--ds-stepper-step-label-done);
           font-weight: 400;
         }
       `;
@@ -214,16 +214,16 @@ export const Step = styled.div<{
     if (props.active) {
       return css`
         ${StepPrefix} {
-          border-color: ${props.theme.palette['grey-700']};
+          border-color: var(--ds-stepper-step-circle-border-active);
         }
         ${StepNumber} {
-          color: ${props.theme.palette['grey-700']};
+          color: var(--ds-stepper-step-label-active);
           font-weight: 500;
         }
         ${StepName} {
           &::before {
-            border-color: ${props.theme.palette['grey-700']};
-            color: ${props.theme.palette['grey-700']};
+            border-color: var(--ds-stepper-step-circle-border-active);
+            color: var(--ds-stepper-step-label-active);
             visibility: visible;
           }
           ${StepLabel} {
@@ -237,11 +237,14 @@ export const Step = styled.div<{
       css`
         &:hover {
           ${StepPrefix} {
-            border-color: ${props.theme.palette['grey-700']};
+            border-color: var(--ds-stepper-step-circle-border-hover);
           }
-          ${StepNumber},
+          ${StepNumber} {
+            color: var(--ds-stepper-step-circle-content-hover);
+            font-weight: 400;
+          }
           ${StepLabel} {
-            color: ${props.theme.palette['grey-700']};
+            color: var(--ds-stepper-step-label-hover);
             font-weight: 400;
           }
         }
