@@ -26,7 +26,7 @@ export const Container = styled.div`
 `;
 
 export const OverlayContainer = styled.div`
-  background-color: ${(props): string => props.theme.palette.white};
+  background-color: var(--ds-time-picker-overlay-bg);
   border-radius: 3px;
   display: flex;
   flex-direction: row;
@@ -50,7 +50,7 @@ export const UnitSeperator = styled.div`
   height: inherit;
   display: flex;
   flex-shrink: 0;
-  background-color: ${(props): string => props.theme.palette['grey-200']};
+  background-color: var(--ds-time-picker-overlay-separator-bg);
 `;
 
 export const CellText = styled(Label)`
@@ -58,7 +58,7 @@ export const CellText = styled(Label)`
     width: 22px;
     height: 18px;
     text-align: center;
-    color: ${(props): string => props.theme.palette['grey-600']};
+    color: var(--ds-time-picker-item-text-default);
     transition: color 0.3s;
   }
 `;
@@ -73,7 +73,7 @@ export const Cell = styled.button<{ active?: boolean }>`
   justify-content: center;
   transition: background-color 0.3s;
   cursor: pointer;
-  background-color: ${(props): string => props.theme.palette.white};
+  background-color: var(--ds-time-picker-item-bg-default);
 
   && {
     border: none;
@@ -81,33 +81,33 @@ export const Cell = styled.button<{ active?: boolean }>`
   }
 
   &:hover {
-    background-color: ${(props): string => props.theme.palette['grey-050']};
+    background-color: var(--ds-time-picker-item-bg-hover);
 
     ${CellText} {
-      color: ${(props): string => props.theme.palette['blue-600']};
+      color: var(--ds-time-picker-item-text-hover);
     }
   }
 
   &:disabled {
     && {
       cursor: not-allowed;
-      background-color: ${(props): string => props.theme.palette.white};
+      background-color: var(--ds-time-picker-item-bg-default);
 
       ${(props) =>
         props.active &&
         `
-          background-color: ${props.theme.palette['blue-600']};
-          opacity: 0.2;
+          background-color: var(--ds-time-picker-item-bg-selected);
+          opacity: var(--ds-opacity-muted);
           ${CellText}${CellText} {
             opacity: 1;
-            color: ${props.theme.palette.white};
+            color: var(--ds-time-picker-item-text-selected);
           }
       `}
     }
 
     ${CellText} {
       cursor: not-allowed;
-      opacity: 0.4;
+      opacity: var(--ds-opacity-disabled);
     }
   }
 
@@ -116,12 +116,12 @@ export const Cell = styled.button<{ active?: boolean }>`
     css`
       && {
         cursor: initial;
-        background-color: ${props.theme.palette['blue-600']};
+        background-color: var(--ds-time-picker-item-bg-selected);
       }
 
       ${CellText}${CellText} {
         cursor: initial;
-        color: ${props.theme.palette.white};
+        color: var(--ds-time-picker-item-text-selected);
       }
     `};
 `;
@@ -129,10 +129,7 @@ export const Cell = styled.button<{ active?: boolean }>`
 export const ClearIcon: StyledIcon = styled(Icon)`
   &&,
   &&:hover {
-    svg {
-      color: ${(props): string => props.theme.palette['red-600']};
-      fill: ${(props): string => props.theme.palette['red-600']};
-    }
+    color: var(--ds-color-icon-danger-default);
   }
 `;
 
@@ -142,8 +139,8 @@ export const TimePickerInput: StyledInput = styled(Input)`
     input {
       &:focus {
         box-shadow: none;
-        background-color: ${(props): string => props.theme.palette.white};
-        border-color: ${(props): string => props.theme.palette['grey-300']};
+        background-color: var(--ds-color-background-base-default);
+        border-color: var(--ds-color-border-base-strong);
       }
     }
   }
