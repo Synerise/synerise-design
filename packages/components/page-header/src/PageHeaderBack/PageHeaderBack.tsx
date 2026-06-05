@@ -1,7 +1,6 @@
 import React from 'react';
 
 import Button from '@synerise/ds-button';
-import { theme } from '@synerise/ds-core';
 import Icon, { ArrowLeftM } from '@synerise/ds-icon';
 
 import { type PageHeaderProps } from '../PageHeader.types';
@@ -16,7 +15,7 @@ export const PageHeaderBack = ({
   const backIcon = goBackIcon || (
     <Icon
       className="page-header__back"
-      color={theme.palette['grey-600']}
+      color="var(--ds-color-icon-base-default)"
       component={<ArrowLeftM />}
       size={24}
     />

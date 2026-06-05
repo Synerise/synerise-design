@@ -1,10 +1,10 @@
 import styled from 'styled-components';
 
 export const MainContainer = styled.div<{ isolated?: boolean }>`
-  background-color: #fff;
+  background-color: var(--ds-page-header-container-bg);
   position: relative;
-  border-bottom: 1px solid ${(props): string => props.theme.palette['grey-200']};
-  box-shadow: ${(props) => props.theme.variables['box-shadow-1']};
+  border-bottom: 1px solid var(--ds-color-border-base-default);
+  box-shadow: var(--ds-shadows-shadow-1);
 
   &::before {
     content: '';
@@ -14,7 +14,7 @@ export const MainContainer = styled.div<{ isolated?: boolean }>`
     height: 1px;
     ${(props): string =>
       props.isolated
-        ? `background-color: ${props.theme.palette['grey-100']}`
+        ? `background-color: var(--ds-color-border-base-subtle)`
         : ''};
     z-index: 0;
   }
@@ -33,7 +33,7 @@ export const PageHeaderDescription = styled.div`
   margin: 0 24px;
   font-size: 13px;
   line-height: 18px;
-  color: ${(props): string => props.theme.palette['grey-500']};
+  color: var(--ds-color-text-neutral-default);
 `;
 
 export const PageHeaderTabsWrapper = styled.div`
@@ -46,7 +46,7 @@ export const PageHeaderTabsWrapper = styled.div`
 
 export const PageHeaderBar = styled.div`
   padding: 12px 24px;
-  border-top: 1px solid ${(props): string => props.theme.palette['grey-100']};
+  border-top: 1px solid var(--ds-color-border-base-subtle);
   position: relative;
   top: -1px;
 `;
@@ -68,7 +68,7 @@ export const PageHeaderClose = styled.div`
       width: 1px;
       height: 40px;
       left: -25px;
-      background-color: ${(props): string => props.theme.palette['grey-300']};
+      background-color: var(--ds-page-header-navigation-back-separator-color);
     }
   }
 `;
