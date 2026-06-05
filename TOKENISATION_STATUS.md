@@ -55,13 +55,13 @@ These components have dedicated token definitions in `modules/base.json`.
 | ai-chat | `app-menu` | :heavy_minus_sign: | :heavy_minus_sign: | :heavy_minus_sign: | :heavy_minus_sign: | — | No | no ai-chat markup yet — tokens unused |
 | [app-menu](#app-menu) | `app-menu` | :white_check_mark: | :white_check_mark: | :heavy_minus_sign: | :x: | 0 | No | shadow-1; all opacity is animation (deferred) |
 | [avatar](#avatar) | `avatar` | :white_check_mark: | :heavy_minus_sign: | :white_check_mark: | :x: | 0 | Yes (1) | static colors done; dynamic bg kept (user-driven) |
-| buttons | `button` | :x: | :x: | :x: | :x: | TBD | Yes (2) | 247 color, 15 dim, 1 opacity. Largest token set |
-| button-expander | `button` | :x: | :heavy_minus_sign: | :heavy_minus_sign: | :x: | TBD | — | Part of button package |
+| [buttons](#button) | `button` | :construction: | :construction: | :x: | :x: | 1 | No | :warning: primary/success/creator/toggle done; **secondary/tertiary/ghost deferred** (token redesign + suspected danger swap) |
+| [button-expander](#button) | `button` | :white_check_mark: | :heavy_minus_sign: | :heavy_minus_sign: | :x: | 1 | — | bg/border/icon tokenised |
 | [card](#card) | `card` | :white_check_mark: | :construction: | :white_check_mark: | :x: | 0 | No | surface+shadow-1 done; active shadow + CardBadge dynamic deferred |
 | [card-select](#card-select) | `card-select` | :white_check_mark: | :white_check_mark: | :white_check_mark: | :x: | 4 | No | borders/shadow/opacity tokenised; check-token naming flagged for UX |
 | [description-line](#description) | `description` | :white_check_mark: | :heavy_minus_sign: | :heavy_minus_sign: | :heavy_minus_sign: | 0 | No | module + semantic; inactive star deferred |
 | [divider](#divider) | `divider` | :white_check_mark: | :heavy_minus_sign: | :heavy_minus_sign: | :x: | 2 | No | line + label tokenised |
-| form | `form` / `input` / `checkbox` / `radio` / `switch` / `select` | :x: | :heavy_minus_sign: | :x: | :x: | TBD | Yes (many) | 61 color, 3 opacity. Spans multiple packages |
+| [form](#form-group-form--input--select--switch) | `form` / `input` / `checkbox` / `radio` / `switch` / `select` | :construction: | :construction: | :construction: | :x: | 4 | Yes (many) | TS migrated across all 6 packages; per-state styling in `.less` + data-URI SVGs deferred |
 | [inline-alert](#inline-alert) | `inline-alert` | :white_check_mark: | :heavy_minus_sign: | :white_check_mark: | :heavy_minus_sign: | 0 | No | 4 variants + text; hover deferred (no token) |
 | [inline-edit](#inline-edit--inline-select) | `inline-edit` | :white_check_mark: | :heavy_minus_sign: | :heavy_minus_sign: | :heavy_minus_sign: | 0 | No | text/icon tokenised; gradient underlines deferred |
 | [inline-select](#inline-edit--inline-select) | `inline-edit` | :white_check_mark: | :heavy_minus_sign: | :heavy_minus_sign: | :heavy_minus_sign: | 0 | No | lives in inline-edit package |
@@ -124,7 +124,7 @@ These components use `theme.palette` / hardcoded colors but do not yet have dedi
 | format-picker | 8 | No | 0 | 0 | |
 | icon-picker | 8 | No | 0 | 0 | |
 | information-card | 3 | No | 2 | 2 | |
-| input | 49 | Yes (2) | 14 | 2 | Token Studio has form.input tokens |
+| [input](#form-group-form--input--select--switch) | 49 | Yes (2) | 14 | 2 | :white_check_mark: TS migrated → `--ds-form-field-*`/`--ds-form-icon-*` + semantic; `.less` deferred |
 | input-number | 5 | Yes (2) | 5 | 0 | |
 | insight | 4 | No | 0 | 0 | |
 | item-filter | 2 | No | 1 | 0 | |
@@ -147,7 +147,7 @@ These components use `theme.palette` / hardcoded colors but do not yet have dedi
 | scrollbar | 17 | Yes (2) | 0 | 17 | |
 | search | 13 | Yes (2) | 4 | 8 | |
 | search-bar | 12 | No | 1 | 0 | |
-| select | 13 | Yes (2) | 6 | 3 | Token Studio has form.select tokens |
+| [select](#form-group-form--input--select--switch) | 13 | Yes (2) | 6 | 3 | :construction: TS → `--ds-form-field-*` + semantic; search-icon data-URI + `.less` deferred |
 | short-cuts | 7 | No | 1 | 0 | |
 | sidebar | 14 | Yes (1) | 1 | 2 | |
 | sidebar-object | 9 | No | 0 | 0 | |
@@ -158,7 +158,7 @@ These components use `theme.palette` / hardcoded colors but do not yet have dedi
 | step-card | 5 | No | 1 | 13 | |
 | subject | 2 | No | 0 | 0 | |
 | subtle-form | 10 | No | 1 | 4 | |
-| switch | 2 | Yes (2) | 2 | 2 | Token Studio has form.switch tokens |
+| [switch](#form-group-form--input--select--switch) | 2 | Yes (2) | 2 | 2 | :construction: error/description text → `--ds-form-switch-*`; track/handle in `.less` deferred |
 | table | 65 | Yes (2) | 8 | 23 | Heavy palette + Less |
 | tag | 25 | No | 2 | 3 | |
 | tags | 7 | No | 0 | 0 | |
@@ -820,3 +820,78 @@ Description text → `--ds-form-radio-text-description`; disabled opacity (label
 
 > Follow-up: checkbox/radio can only be fully tokenised once the antd `.less` theming decision lands; the
 > data-URI check icons need a different mechanism (e.g. a real `<Icon>` or `mask` driven by `currentColor`).
+
+---
+
+### button
+
+**Package:** `packages/components/button/` (keys `buttons` + `button-expander`)
+**Layer:** module (`--ds-buttons-variant-*`, `--ds-button-expander-*`, 36) + semantic (14)
+**Migrated in:** `chore/tokenisation` branch · **Status: :construction: partial**
+
+#### Done
+
+`primary`, `primary-success`, `primary-danger` (default/hover/focus/active bg+text+border), the
+`button-expander` (bg/border/icon — svg fill → currentColor), `ButtonToggle` (ghost hover / activated
+bg+text), and `Creator` (border/bg/error/upload states) — all migrated, mostly exact. `Creator.spec`
+assertions updated to the new token output.
+
+#### Visual diffs
+
+| Property | Current | Token resolves to | Delta |
+|----------|---------|-------------------|-------|
+| Expander disabled border | grey-200 `#e9edee` | `…-border-disabled` grey-300 `#dbe0e3` | Slightly darker |
+
+#### Deferred — needs design-tokens attention (90 palette refs remain)
+
+- **secondary / tertiary / ghost variants** (`Button.variants.ts`): the module tokens are a **structural
+  redesign** — current code composites `rgba(grey-N, α)` via `rippleAlpha()`/`hexToRgbValues()`, while the
+  tokens are **solid** colours (secondary bg grey-050→grey-100, hover white→blue-050; tertiary text
+  grey-700→grey-600; ghost-secondary hover blue-600→grey-800, and **no `active` token**). Mapping would
+  break the ripple math and apply unverifiable changes. **Deferred.**
+- :warning: **Suspected token bug:** `primary-danger` `bg-hover` resolves to red-700 and `bg-active` to
+  red-600 — **swapped** vs the current (hover red-500, active red-700) and vs how other solid variants are
+  ordered. Kept `theme.palette`; flag for design-tokens.
+- Ripple `.btn-ripple` colours, computed-alpha disabled `rgba(...,0.4)` (token model uses solid +
+  separate `--ds-buttons-disabled-opacity`), expander focus keyframe, and all `Button.styles.tsx` dynamic
+  `${customColor}-600` / `${iconColor}-600` / per-type override blocks — kept (dynamic / redesign-coupled).
+- The button-package's internal `Checkbox.styles.ts` / `Star.styles.ts` state-driven `svg { fill }`
+  (inactive grey-300 / disabled grey-200 have no clean icon-layer token) — deferred.
+
+---
+
+### form group (form · input · select · switch)
+
+(checkbox + radio reported above.) Across the whole form family the **styled-component TS was migrated**
+to `--ds-form-field-*` / `--ds-form-icon-* `/ `--ds-form-switch-*` + semantic, but each package keeps a
+`*.mixin.less` that owns much of the per-state visual styling (and `select`/`checkbox` use data-URI SVG
+icons) — those are deferred pending the antd Less decision.
+
+#### input — :white_check_mark: TS complete
+
+31 module + 15 semantic + 1 opacity. Field surface/border/bg/focus/error/placeholder/value →
+`--ds-form-field-*`; action icons → `--ds-form-icon-color-default` + `icon-brand`; labels/counter/
+description/chips/remove-icon → semantic; disabled icon opacity → `--ds-opacity-disabled`. Converted
+`svg { fill }` rules to `color` inheritance.
+
+| Property | Current | Token resolves to | Delta |
+|----------|---------|-------------------|-------|
+| Action-icon default | grey-600 `#6a7580` | `--ds-form-icon-color-default` grey-400 `#b5bdc3` | Lighter |
+| Input disabled text | grey-500 `#949ea6` | `--ds-form-field-text-disabled` grey-400 `#b5bdc3` | Lighter |
+| Textarea disabled bg | grey-050 `#f9fafb` | `--ds-form-field-bg-disabled` grey-100 `#f3f5f6` | Darker |
+
+#### select — :construction:
+
+9 form-field + 3 semantic. Error/affix/disabled surfaces → `--ds-form-field-*`. **Diff:** disabled
+selector bg grey-050 → grey-100 (darker). **Deferred:** search-icon (data-URI SVG, can't take `var()`),
+`.ant-select-arrow { opacity: 0.5 }` (no 0.5 token), `.less`.
+
+#### switch — :construction:
+
+Error text → `--ds-form-switch-text-error` (exact); description text → `--ds-form-switch-text-description`
+(**diff:** grey-600 → grey-700, darker). Track/handle/bg styling lives in `switch.mixin.less` (deferred).
+
+#### form — :white_check_mark: (minimal)
+
+One value: the "Add row" action icon → `--ds-color-icon-brand-default` (semantic; the form module icon
+tokens are grey, wrong intent for a brand action icon — matches the ghost-primary button it sits in).
