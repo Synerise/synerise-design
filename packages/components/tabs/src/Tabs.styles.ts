@@ -23,7 +23,7 @@ export const TabsDropdownContainer = styled.div`
   flex-direction: column;
   align-items: flex-start;
   justify-content: flex-start;
-  background-color: ${({ theme }): string => theme.palette.white};
+  background-color: var(--ds-color-background-base-default);
   opacity: 1;
   padding: 8px;
 `;

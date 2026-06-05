@@ -8,7 +8,7 @@ export const TabLabel = styled.span`
   ${macro.h300}
   line-height: 20px;
   white-space: nowrap;
-  color: ${({ theme }): string => theme.palette['grey-700']};
+  color: var(--ds-tabs-item-text-default);
 `;
 export const BlockContentWrapper = styled.div<{ block?: boolean }>`
   ${(props): string =>
@@ -84,7 +84,8 @@ export const TabContainer = styled.button<{ block?: boolean }>`
   outline: 0;
   padding: 0;
   pointer-events: ${({ disabled }): string => (disabled ? 'none' : 'all')};
-  opacity: ${({ disabled }): string => (disabled ? '0.4' : '1')};
+  opacity: ${({ disabled }): string =>
+    disabled ? 'var(--ds-opacity-disabled)' : '1'};
   ${IconContainer} {
     margin-right: 4px;
   }
@@ -104,16 +105,15 @@ export const TabContainer = styled.button<{ block?: boolean }>`
 
   &:hover {
     ${TabLabel} {
-      color: ${({ theme }): string => theme.palette['grey-800']};
+      color: var(--ds-tabs-item-text-hover);
     }
     &:focus:active {
       ${TabLabel} {
-        color: ${({ theme }): string => theme.palette['blue-700']};
+        color: var(--ds-color-text-brand-hover);
       }
     }
     svg {
-      color: ${({ theme }): string => theme.palette['grey-800']};
-      fill: ${({ theme }): string => theme.palette['grey-800']};
+      color: var(--ds-tabs-item-text-hover);
     }
     &::after {
       height: 0;
@@ -121,8 +121,7 @@ export const TabContainer = styled.button<{ block?: boolean }>`
   }
 
   svg {
-    color: ${({ theme }): string => theme.palette['grey-600']};
-    fill: ${({ theme }): string => theme.palette['grey-600']};
+    color: var(--ds-color-icon-base-default);
   }
 
   &:focus {
@@ -131,15 +130,13 @@ export const TabContainer = styled.button<{ block?: boolean }>`
     }
     svg {
       color: ${({ theme }): string => theme.palette['blue-500']};
-      fill: ${({ theme }): string => theme.palette['blue-500']};
     }
     &:active {
       ${TabLabel} {
-        color: ${({ theme }): string => theme.palette['blue-600']};
+        color: var(--ds-tabs-item-text-active);
       }
       svg {
-        color: ${({ theme }): string => theme.palette['blue-600']};
-        fill: ${({ theme }): string => theme.palette['blue-600']};
+        color: var(--ds-tabs-item-text-active);
       }
     }
     &::after {
@@ -157,23 +154,22 @@ export const TabContainer = styled.button<{ block?: boolean }>`
   }
 
   ${TabLabel} {
-    color: ${({ theme }): string => theme.palette['grey-700']};
+    color: var(--ds-tabs-item-text-default);
   }
 
   &.active {
     svg {
-      color: ${({ theme }): string => theme.palette['blue-600']};
-      fill: ${({ theme }): string => theme.palette['blue-600']};
+      color: var(--ds-tabs-item-text-active);
     }
 
     ${TabLabel} {
-      color: ${({ theme }): string => theme.palette['blue-600']};
+      color: var(--ds-tabs-item-text-active);
     }
 
     && {
       &.underscore::after {
         height: 1px;
-        background-color: ${({ theme }): string => theme.palette['blue-600']};
+        background-color: var(--ds-tabs-item-border-active-color);
         background-image: none;
       }
     }
@@ -185,12 +181,11 @@ export const TabContainer = styled.button<{ block?: boolean }>`
 
   &.pressed {
     svg {
-      color: ${({ theme }): string => theme.palette['blue-700']};
-      fill: ${({ theme }): string => theme.palette['blue-700']};
+      color: var(--ds-color-text-brand-hover);
     }
 
     ${TabLabel} {
-      color: ${({ theme }): string => theme.palette['blue-700']};
+      color: var(--ds-color-text-brand-hover);
     }
     && {
       &::after {
