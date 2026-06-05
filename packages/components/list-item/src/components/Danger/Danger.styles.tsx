@@ -8,43 +8,38 @@ import { Inner, PrefixWrapper, Wrapper } from '../Text/Text.styles';
 export const DangerItem = styled(Text)`
   &&& {
     ${Inner} {
-      color: ${(props) => props.theme.palette['red-600']};
+      color: var(--ds-list-item-role-delete-text-default);
       ${Wrapper} {
-        color: ${(props) => props.theme.palette['red-600']};
+        color: var(--ds-list-item-role-delete-text-default);
       }
       ${PrefixWrapper} {
-        .ds-icon > svg {
-          ${(props) =>
-            `
-            fill: ${props.theme.palette['red-600']};
-            `}
-        }
+        color: var(--ds-list-item-role-delete-icon-default);
       }
       &:hover {
         ${(props) =>
           !props.disabled &&
           `
-            ${PrefixWrapper} > ${IconContainer} > svg {
-            fill: ${props.theme.palette['red-600']} !important;
+            ${PrefixWrapper} > ${IconContainer} {
+              color: var(--ds-list-item-role-delete-icon-hover);
             }
-            background: ${props.theme.palette['red-050']};
+            background: var(--ds-list-item-role-delete-bg-hover);
         `}
       }
       &:focus-visible {
         ${(props) =>
           !props.disabled &&
           `
-            ${PrefixWrapper} > ${IconContainer} > svg {
-              fill: ${props.theme.palette['red-600']} !important;
+            ${PrefixWrapper} > ${IconContainer} {
+              color: var(--ds-list-item-role-delete-icon-focused);
             }
-            background: ${props.theme.palette['red-050']} !important;
+            background: var(--ds-list-item-role-delete-bg-focused) !important;
         `}
       }
       &:focus-visible:active {
         ${(props) =>
           !props.disabled &&
           `
-            background: ${props.theme.palette['red-100']} !important;
+            background: var(--ds-list-item-role-delete-bg-active) !important;
         `}
       }
     }

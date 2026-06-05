@@ -98,9 +98,9 @@ const baseStyles = css<StyledListItemProps>`
     background-color 0.2s ease-out,
     color 0.2s ease-out;
   min-height: ${(props) => LIST_ITEM_SIZE_MAPPING[props.size || 'default']}px;
-  background: ${(props) => props.theme.palette.white};
+  background: var(--ds-color-background-base-default);
   border: none;
-  color: ${(props) => props.theme.palette['grey-700']};
+  color: var(--ds-list-item-role-normal-text-default);
   cursor: pointer;
   opacity: 1;
 `;
@@ -120,12 +120,10 @@ export const Inner = styled.div`
 `;
 
 const selectedStyle = css<StyledListItemProps>`
-  background: ${(props) => props.theme.palette['blue-050']};
-  color: ${(props) => props.theme.palette['blue-600']};
+  background: var(--ds-list-item-role-normal-bg-active);
+  color: var(--ds-list-item-role-normal-text-active);
   ${PrefixWrapper} {
-    svg {
-      fill: ${(props) => props.theme.palette['blue-600']};
-    }
+    color: var(--ds-list-item-role-normal-icon-active);
   }
 `;
 
@@ -158,18 +156,17 @@ export const Wrapper = styled.div<StyledListItemProps>`
       height: 100%;
     `}
 
-  ${({ featured, disabled, selected, theme }) =>
+  ${({ featured, disabled, selected }) =>
     featured &&
     css`
       && {
-        ${PrefixWrapper} > .ds-icon > svg,
-      ${PrefixWrapper} ${IconContainer} > svg,
-      ${SuffixWrapper} > .ds-icon > svg,
-      ${SuffixWrapper} ${IconContainer} > svg,
+        ${PrefixWrapper} > .ds-icon,
+      ${PrefixWrapper} ${IconContainer},
+      ${SuffixWrapper} > .ds-icon,
+      ${SuffixWrapper} ${IconContainer},
       ${ArrowRight} svg,
       ${Content} {
-          fill: ${theme.palette['blue-600']};
-          color: ${theme.palette['blue-600']};
+          color: var(--ds-list-item-role-normal-text-active);
         }
       }
 
@@ -177,18 +174,17 @@ export const Wrapper = styled.div<StyledListItemProps>`
       &:active,
       &:focus-visible:not(:active) {
         && {
-          ${PrefixWrapper} > .ds-icon > svg,
-        ${PrefixWrapper} ${IconContainer} > svg,
-        ${SuffixWrapper} > .ds-icon > svg,
-        ${SuffixWrapper} ${IconContainer} > svg,
+          ${PrefixWrapper} > .ds-icon,
+        ${PrefixWrapper} ${IconContainer},
+        ${SuffixWrapper} > .ds-icon,
+        ${SuffixWrapper} ${IconContainer},
         ${ArrowRight} svg,
         ${Content} {
-            fill: ${theme.palette['blue-700']};
-            color: ${theme.palette['blue-700']};
+            color: var(--ds-color-text-brand-hover);
           }
 
           &:focus-visible:not(:active) ${Inner} {
-            box-shadow: inset 0 0 0 2px ${theme.palette['blue-700']};
+            box-shadow: inset 0 0 0 2px var(--ds-color-focus-base-strong);
           }
         }
       }
@@ -197,13 +193,12 @@ export const Wrapper = styled.div<StyledListItemProps>`
       css`
         &:hover {
           && {
-            ${PrefixWrapper} > .ds-icon > svg,
-          ${PrefixWrapper} ${IconContainer} > svg,
-          ${SuffixWrapper} > .ds-icon > svg,
-          ${SuffixWrapper} ${IconContainer} > svg,
+            ${PrefixWrapper} > .ds-icon,
+          ${PrefixWrapper} ${IconContainer},
+          ${SuffixWrapper} > .ds-icon,
+          ${SuffixWrapper} ${IconContainer},
           ${Content} {
-              fill: ${theme.palette['blue-600']};
-              color: ${theme.palette['blue-600']};
+              color: var(--ds-list-item-role-normal-text-active);
             }
           }
         }
@@ -213,13 +208,12 @@ export const Wrapper = styled.div<StyledListItemProps>`
       css`
         &:hover {
           && {
-            ${PrefixWrapper} > .ds-icon > svg,
-          ${PrefixWrapper} ${IconContainer} > svg,
-          ${SuffixWrapper} > .ds-icon > svg,
-          ${SuffixWrapper} ${IconContainer} > svg,
+            ${PrefixWrapper} > .ds-icon,
+          ${PrefixWrapper} ${IconContainer},
+          ${SuffixWrapper} > .ds-icon,
+          ${SuffixWrapper} ${IconContainer},
           ${Content} {
-              fill: ${theme.palette['blue-700']};
-              color: ${theme.palette['blue-700']};
+              color: var(--ds-color-text-brand-hover);
             }
           }
         }
@@ -229,46 +223,44 @@ export const Wrapper = styled.div<StyledListItemProps>`
     props.disabled
       ? css`
           cursor: not-allowed;
-          opacity: 0.4;
-          svg {
-            fill: ${props.theme.palette['grey-600']};
+          opacity: var(--ds-list-item-states-disabled-opacity);
+          ${PrefixWrapper} > .ds-icon,
+          ${PrefixWrapper} ${IconContainer},
+          ${ArrowRight} {
+            color: var(--ds-list-item-role-normal-icon-default);
           }
           &:hover {
             ${ArrowRight} {
               opacity: 1;
-              svg {
-                fill: ${props.theme.palette['grey-600']};
-              }
+              color: var(--ds-list-item-role-normal-icon-default);
             }
           }
         `
       : css`
-		      ${PrefixWrapper} > .ds-icon > svg {
-            fill: ${props.theme.palette['grey-600']};
+		      ${PrefixWrapper} > .ds-icon {
+            color: var(--ds-list-item-role-normal-icon-default);
           }
           &:hover {
  
             ${Inner} {
-              background: ${props.theme.palette['grey-050']};
+              background: var(--ds-list-item-role-normal-bg-hover);
               ${
                 !props.noHover &&
                 css`
                   & {
                     color: ${props.noHover
-                      ? props.theme.palette['grey-700']
-                      : props.theme.palette['blue-600']};
+                      ? 'var(--ds-list-item-role-normal-text-default)'
+                      : 'var(--ds-list-item-role-normal-text-hover)'};
                   }
 
                   ${PrefixWrapper} {
-                    ${IconContainer} > svg {
-                      fill: ${props.theme.palette['blue-600']};
+                    ${IconContainer} {
+                      color: var(--ds-list-item-role-normal-icon-hover);
                     }
                   }
                   ${ArrowRight} {
                     opacity: 1;
-                    svg {
-                      fill: ${props.theme.palette['blue-600']};
-                    }
+                    color: var(--ds-list-item-role-normal-icon-hover);
                   }
                 `
               };
@@ -276,22 +268,22 @@ export const Wrapper = styled.div<StyledListItemProps>`
           }
           &:focus-visible:not(:active) {
             ${Inner} {
-              box-shadow: inset 0 0 0 2px ${props.theme.palette['blue-600']};
+              box-shadow: inset 0 0 0 2px var(--ds-color-focus-base-default);
             }
           }
  
           &:focus-visible:active,
           &:active {
             ${Inner} {
-              background: ${props.theme.palette['blue-050']};
+              background: var(--ds-list-item-role-normal-bg-active);
               ${
                 !props.noHover &&
                 css`
-                  color: ${props.theme.palette['blue-600']};
+                  color: var(--ds-list-item-role-normal-text-active);
 
                   ${PrefixWrapper} {
-                    ${IconContainer} > svg {
-                      fill: ${props.theme.palette['blue-600']};
+                    ${IconContainer} {
+                      color: var(--ds-list-item-role-normal-icon-active);
                     }
                   }
                 `
@@ -307,7 +299,7 @@ export const Wrapper = styled.div<StyledListItemProps>`
       css`
         &::before {
           font-weight: 400;
-          color: ${props.theme.palette['grey-500']};
+          color: var(--ds-color-text-neutral-default);
           counter-increment: ds-list-items 1;
           content: '0' counter(ds-list-items) '.  \\00A0';
         }
@@ -372,7 +364,7 @@ export const DynamicLabelWrapper = styled.div<{ showAlternative?: boolean }>`
 export const Description = styled.div`
   text-overflow: ellipsis;
   overflow: hidden;
-  color: ${(props) => props.theme.palette['grey-600']};
+  color: var(--ds-list-item-role-normal-description-default);
   font-weight: normal;
   line-height: 1.39;
   font-size: 13px;

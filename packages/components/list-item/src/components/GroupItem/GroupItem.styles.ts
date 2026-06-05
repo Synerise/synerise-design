@@ -5,6 +5,6 @@ export const Title = styled.div`
   line-height: 1.6;
   font-weight: 500;
   text-transform: uppercase;
-  color: ${(props): string => props.theme.palette['grey-500']};
+  color: var(--ds-color-text-neutral-default);
   padding: 8px 0;
 `;

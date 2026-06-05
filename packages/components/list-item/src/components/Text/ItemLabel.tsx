@@ -7,7 +7,6 @@ import React, {
   forwardRef,
 } from 'react';
 
-import { useTheme } from '@synerise/ds-core';
 import Icon, {
   AngleDownS,
   AngleRightS,
@@ -91,7 +90,6 @@ export const ItemLabel = forwardRef<HTMLDivElement, ItemLabelProps>(
     },
     ref,
   ) => {
-    const theme = useTheme();
     return (
       <S.Wrapper
         role="menuitem"
@@ -139,7 +137,7 @@ export const ItemLabel = forwardRef<HTMLDivElement, ItemLabelProps>(
             <S.ArrowRight>
               <Icon
                 component={<AngleRightS />}
-                color={theme.palette['grey-600']}
+                color="var(--ds-list-item-role-normal-icon-default)"
               />
             </S.ArrowRight>
           )}
@@ -152,7 +150,7 @@ export const ItemLabel = forwardRef<HTMLDivElement, ItemLabelProps>(
               {!!checked && (
                 <Icon
                   component={<CheckS />}
-                  color={theme.palette[`green-600`]}
+                  color="var(--ds-color-icon-success-default)"
                 />
               )}
               {hasSubMenu &&
