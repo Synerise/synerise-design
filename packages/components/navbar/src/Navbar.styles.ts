@@ -4,13 +4,13 @@ import { macro } from '@synerise/ds-typography';
 
 export const Navbar = styled.div<{ color?: string }>`
   background-color: ${(props): string =>
-    props.color ? props.color : props.theme.palette['blue-600']};
+    props.color ? props.color : 'var(--ds-navbar-container-bg)'};
   padding: 16px 24px;
   height: 56px;
   display: flex;
   flex: 0 0 100%;
   align-items: center;
-  color: #fff;
+  color: var(--ds-color-text-onsolid-default);
 
   img {
     max-width: 100px;
@@ -36,8 +36,8 @@ export const AdditionalNode = styled.div`
 export const NavbarDivider = styled.div`
   width: 1px;
   height: 24px;
-  background-color: #fff;
-  opacity: 0.3;
+  background-color: var(--ds-navbar-left-separator-color);
+  opacity: var(--ds-navbar-left-separator-opacity);
   margin: 0 12px;
 `;
 
@@ -67,10 +67,9 @@ export const NavbarAlertNotification = styled.div`
     margin-left: 12px;
   }
   .ds-inline-alert svg {
-    color: ${(props): string => props.theme.palette.white};
-    fill: ${(props): string => props.theme.palette.white};
+    color: var(--ds-color-text-onsolid-default);
   }
   .ds-inline-alert > span {
-    color: ${(props): string => props.theme.palette.white};
+    color: var(--ds-color-text-onsolid-default);
   }
 `;
