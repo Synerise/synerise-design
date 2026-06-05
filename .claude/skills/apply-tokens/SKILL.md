@@ -5,234 +5,196 @@ description: Apply design tokens (colors, shadows, opacity) to a specific compon
 
 ## Overview
 
-Migrate a component from hardcoded `theme.palette[...]` lookups, hex/rgba colors, box-shadow values, and opacity to CSS custom properties generated from the Token Studio design tokens in `packages/tokens/`.
+Migrate a component from hardcoded `theme.palette[...]` lookups, hex/rgba colors, box-shadow values,
+and opacity to CSS custom properties from `@synerise/ds-tokens` (`packages/tokens/`). **Phase 1 covers
+colors, shadows, and opacity only** — spacing/dimension tokens are not yet in the CSS build, so leave
+them alone.
 
-After migration, update `TOKENISATION_STATUS.md` at the repo root with the results.
+### Granularity rule (the one thing that matters)
+
+Tokens come in layers. Pick the **most specific layer that exists**, and never go below semantic:
+
+```
+component HAS module tokens?  → var(--ds-<component>-...)        (module / component layer)
+otherwise                     → var(--ds-color-* | --ds-shadows-shadow-N | --ds-opacity-*)   (semantic layer)
+NEVER                         → var(--ds-color-grey-700) etc.    (primitive layer — do not use directly)
+NEVER                         → author a new --ds-<component>-*   (module tokens are owned upstream)
+```
+
+**Module tokens are authored in the upstream design-tokens repo and arrive here via the token sync —
+this repo is consume-only.** Do **not** add tokens to `modules/base.json` / `modules/colors-only.json`
+and do **not** run the token build to invent new component tokens. If a component needs a module token
+that doesn't exist, fall back to the semantic layer and record the gap as a design-tokens follow-up.
+
+Module tokens are thin aliases over semantic anyway (e.g. `--ds-card-select-bg-default` →
+`var(--ds-color-background-base-default)`), so a semantic fallback is always a valid, on-system choice.
+
+> **Always verify the live token set at run time — it changes.** Tokens are synced from upstream, so a
+> component's token names, structure, and resolved values evolve between runs. Token names recorded in a
+> previous migration, in a per-component status file, or anywhere else in this skill are **examples, not
+> ground truth** — they may have been renamed, removed, or re-pointed. For every run, re-derive the set
+> from `packages/tokens/tokens/modules/base.json` and confirm the actual CSS vars **and their resolved
+> values** in `packages/tokens/dist/css/light.css` before mapping. (Real example: card-select's tokens
+> were renamed `border-*` → `border-color-*`, the `border-error` token was dropped, and `shadow-*` /
+> `check-*` tokens were added — all after the first status file was written.)
 
 ## Arguments
 
-The skill takes one argument: the component name (e.g., `toast`, `inline-alert`, `badge`). This corresponds to the package at `packages/components/<name>/`.
+The skill takes one argument: the component name (e.g., `card-select`, `broadcast-bar`, `badge`). This
+corresponds to the package at `packages/components/<name>/`.
 
 ## Workflow
 
-### Step 1 — Discover component tokens
+### Step 1 — Determine which layer this component uses
 
-Read `packages/tokens/tokens/modules/base.json` and find the top-level key that matches the component name.
+Read the **top-level keys** of `packages/tokens/tokens/modules/base.json`. That list IS the authoritative
+set of components that have module tokens (~28 today). Token Studio uses kebab-case names that may differ
+from the package name, e.g. `status-pill` (package `status`), `popcornfirm` (package `popconfirm`),
+`progressbar` (package `progress-bar`), `description-line` (package `description`), `ai-chat` + `app-menu`
+(package `app-menu`), `page` + `page-header` (package `page-header`), and `form` (spans
+`form`/`input`/`checkbox`/`radio`/`switch`/`select`).
 
-- Token Studio uses kebab-case names that may differ from the package name (e.g., `section-message`, `broadcast-bar`, `status-pill`, `inline-alert`, `popcornfirm`)
-- If no exact match is found, search for partial matches and report. The component may not have tokens defined yet.
-- Extract **all** tokens for that component, grouped by type:
-  - `$type: "color"` — color tokens
-  - `$type: "boxShadow"` or `$type: "shadow"` — shadow tokens (Token Studio uses `boxShadow`, sd-transforms normalises to `shadow`)
-  - `$type: "opacity"` — opacity tokens
-- List each token with its `$type` and `$value` (reference)
+- **Match found → module layer.** Extract all of that component's tokens grouped by `$type`
+  (`color`, `boxShadow`/`shadow`, `opacity`) and confirm each is emitted in `dist/css/light.css`
+  (`grep -- '--ds-<component>-' packages/tokens/dist/css/light.css`). These are the tokens you map onto.
+- **No match → semantic layer.** The component maps directly to semantic tokens. This is expected for
+  most components — it is not a blocker and requires no token authoring.
 
-**If the component has no tokens in modules/base.json**: check if the component's values map to existing **semantic** tokens (e.g., `--ds-color-background-success-subtle`, `--ds-shadows-shadow-2`, `--ds-opacity-disabled`). If so, the component can use semantic tokens directly. If not, report that tokens need to be defined in Token Studio first and stop.
+### Step 2 — Confirm the tokens are in the build (verify only — never author)
 
-### Step 2 — Ensure tokens are in the build
+For a module-layer component, confirm its CSS vars already exist in `dist/css/light.css`. They should,
+since tokens are synced from upstream.
 
-Check if the component's tokens are already included in `packages/tokens/tokens/modules/colors-only.json`.
-
-**Note:** Despite the filename, `colors-only.json` includes color, boxShadow, and opacity tokens. The build filter (`config/build-tokens.mjs`) accepts types: `color`, `boxShadow`, `shadow`, and `opacity`. Tokens referencing undefined paths (broken refs in Token Studio) must be excluded.
-
-- If the component's tokens are not in `colors-only.json`, extract them from `modules/base.json` (filtering to the included types, excluding tokens with known broken references like `outline.color.focus.secondary`, `outline.color.focus.primary`, `color.text.disabled.default`) and add them
-- Rebuild tokens: `cd packages/tokens && node config/build-tokens.mjs`
-- Verify the new CSS vars appear in `dist/css/light.css` (grep for `--ds-<component-name>`)
+- If every value you need maps to an **existing** token (module or semantic), proceed.
+- If a needed **module** token is genuinely missing from the build, do **not** add it. Use the matching
+  **semantic** token instead and note the missing-module-token in the report as a design-tokens
+  follow-up. Never edit `colors-only.json` or run `config/build-tokens.mjs` from this skill.
 
 ### Step 3 — Audit current usage
 
-Read all source files in the component package (`packages/components/<name>/src/`). Catalogue every tokenisable reference:
+Read all source files in the component package (`packages/components/<name>/src/`), excluding tests and
+stories. Catalogue every tokenisable reference:
 
-**3a. Colors — `theme.palette[...]` lookups**
+**3a. Colors — `theme.palette[...]` lookups.** Find every `theme.palette['...']` / `props.theme.palette[...]`
+(including local helpers that wrap it). Record file:line, the palette key (`'grey-700'`, `'green-050'`),
+the context (styled component / util), and whether the key is **static** or **dynamic/computed**
+(e.g. `` `${color}-600` ``, `customColor`).
 
-Find all occurrences of `theme.palette['...']` or `props.theme.palette[...]`. For each, record:
-- File and line number
-- The palette key (e.g., `'green-050'`, `'grey-700'`)
-- The context (which styled component or utility function)
-- Whether it's a static key or a dynamic/computed key (e.g., `` `${color}-600` ``)
+**3b. Colors — hardcoded hex / rgba** in styled-component template literals. Record each. (Ignore `.svg`
+files and SVG color attributes — those are not tokenisable in Phase 1.)
 
-**3b. Colors — Hardcoded hex and rgba values**
+**3c. Shadows — `box-shadow`.** Record the full value and whether it matches a primitive shadow token:
+- `--ds-shadows-shadow-1`: `0 4px 12px 0 rgba(35,41,54,0.04)` — raised surfaces
+- `--ds-shadows-shadow-2`: `0 16px 32px 0 rgba(35,41,54,0.10)` — floating / overlay
+- `--ds-shadows-shadow-3`: `0 60px 80px 0 rgba(35,41,54,0.11)` — deep elevation
+- `--ds-shadows-shadow-4`: `0 60px 80px 0 rgba(35,41,54,0.20)` — highest elevation
 
-Search for hex color literals (`#[0-9a-fA-F]{3,8}`) and `rgb()`/`rgba()` values in styled-component template literals. Record each occurrence.
+Note: an **outline-style** `box-shadow: 0 0 0 Npx <color>` is a focus/border ring, not elevation — only
+its **color** is tokenisable (map to a border token), keep the geometry. A module-layer component may also
+have a dedicated `shadow` token in `base.json`.
 
-**3c. Shadows — `box-shadow` values**
-
-Search for `box-shadow` in styled-component CSS. Record the full value and whether it matches a primitive shadow token (`--ds-shadows-shadow-1` through `--ds-shadows-shadow-4`):
-- Shadow 1: `0 4px 12px 0 rgba(35,41,54,0.04)` — raised surfaces
-- Shadow 2: `0 16px 32px 0 rgba(35,41,54,0.10)` — floating/overlay
-- Shadow 3: `0 60px 80px 0 rgba(35,41,54,0.11)` — deep elevation
-- Shadow 4: `0 60px 80px 0 rgba(35,41,54,0.20)` — highest elevation
-
-Also check if the component has a `shadow` token in `modules/base.json` (component-level shadow).
-
-**3d. Opacity**
-
-Search for `opacity:` in styled-component CSS. Check if the value matches a semantic opacity token:
+**3d. Opacity — `opacity:`.** Match against semantic opacity tokens:
 - `--ds-opacity-disabled`: `0.4` — disabled state
-- `--ds-opacity-muted`: `0.2` — muted/subtle elements
+- `--ds-opacity-muted`: `0.2` — muted / subtle
+A module-layer component may have its own `opacity` token (e.g. `buttons.disabled.opacity`).
 
-Also check if the component has an `opacity` token in `modules/base.json` (e.g., `buttons.disabled.opacity`).
+**3e. Less files.** List any `.less` files and note they are **deferred** (antd theming decision pending) —
+report, do not migrate.
 
-**3e. Less files**
+### Step 4 — Build the mapping (module-where-defined, else semantic)
 
-Check if the component has any `.less` files. If so, list them and note that they use Less variables — these should be reported but **not** migrated (deferred until the antd decision is made).
-
-### Step 4 — Build the mapping
-
-For each value found in Step 3, determine the corresponding token:
-
-**4a. Component-level tokens** (preferred)
-
-Map palette keys / shadow values / opacity values to component tokens from Step 1. Trace the reference chain:
+For each value from Step 3, pick its token following the granularity rule:
 
 ```
-Color: theme.palette['green-050']
-  → primitive: --ds-color-green-50 (#f9ffed)
-  → semantic: --ds-color-background-success-subtle
-  → component: --ds-<component>-variant-success-bg
+Color:  theme.palette['green-050']
+  module-layer comp → var(--ds-<comp>-variant-success-bg)   (if such a token exists)
+  else              → var(--ds-color-background-success-subtle)   (semantic)
 
-Shadow: box-shadow: 0 16px 32px 0 rgba(35,41,54,0.12)
-  → primitive: --ds-shadows-shadow-2
-  → component: --ds-<component>-shadow (if defined)
+Shadow: box-shadow: 0 16px 32px 0 rgba(35,41,54,0.10)
+  module-layer comp → var(--ds-<comp>-shadow)               (if defined)
+  else              → var(--ds-shadows-shadow-2)            (semantic)
 
 Opacity: opacity: 0.4
-  → semantic: --ds-opacity-disabled
-  → component: --ds-<component>-disabled-opacity (if defined)
+  module-layer comp → var(--ds-<comp>-disabled-opacity)     (if defined)
+  else              → var(--ds-opacity-disabled)            (semantic)
 ```
 
-Always prefer the component-level token if one exists. Fall back to semantic/primitive tokens if the value is not covered by component tokens.
+Common semantic color targets (use these, not primitives):
+- text: `--ds-color-text-base-default` (grey-800), `-muted` (grey-600), `-subtle`, `-disabled`; plus
+  `-brand`/`-danger`/`-success`/`-warning`/`-onsolid-*` families.
+- background: `--ds-color-background-base-{default|subtle|muted|strong}` (+`hover`), and
+  `-brand`/`-danger`/`-success`/`-warning`/`-neutral`/`-custom`/`-translucent-*` families.
+- border: `--ds-color-border-base-{default|strong|subtle|disabled}`, `-brand`/`-danger`/`-success`/… .
+- icon: `--ds-color-icon-base-{default|muted|subtle|disabled}`, `-brand`/`-danger`/`-success`/`-onsolid-*` .
 
-**4b. Semantic/primitive tokens** (fallback)
-
-If no component-level token exists, check `dist/css/light.css` for a matching token. Common mappings:
-- `grey-700` for text → `--ds-color-text-base-default` (grey-800) or `--ds-color-text-base-muted` (grey-600). **Flag as visual diff.**
-- `grey-700` for icons → `--ds-color-icon-base-default` (grey-600). **Flag.**
-- `blue-600` for interactive → `--ds-color-background-brand-solid`
-- `rgba(35,41,54,0.12)` shadow → `--ds-shadows-shadow-2`
-- `opacity: 0.4` on disabled → `--ds-opacity-disabled`
-
-**4c. No token available**
-
-If a value has no matching token at any level, add it to the "unmapped" report:
-- Decorative values (gradients, transparent stops) — keep hardcoded
-- Dynamic/user-override patterns (`customColor`, computed keys) — keep `theme.palette`
-- Values that need a new token in Token Studio — flag for design team
+**No token at any allowed level → unmapped.** Keep as-is and report:
+- Decorative values (gradients, transparent stops, semi-transparent overlays like `rgba(255,255,255,0.2)`).
+- Dynamic / user-override patterns (`customColor`, computed palette keys) — keep `theme.palette`.
+- `theme.variable('@…')` antd Less variables (border-radius, antd box-shadows) — keep, unless the value
+  provably equals a `--ds-shadows-shadow-N`.
 
 ### Step 5 — Verify equivalence
 
-For each mapping, resolve the full token chain to the final value. Compare against the current value.
-
-Present a table:
+Resolve each chosen token's full chain to its final value and compare to the current value:
 
 | Usage | Current value | Token | Token resolves to | Match? |
 |---|---|---|---|---|
 | success bg | `green-050` (#f9ffed) | `--ds-<comp>-variant-success-bg` | #f9ffed | Yes |
-| container shadow | `0 16px 32px ...` | `--ds-shadows-shadow-2` | `0 16px 32px 0 #2329361a` | Yes |
-| disabled opacity | `0.4` | `--ds-<comp>-disabled-opacity` | `0.4` | Yes |
+| container shadow | `0 16px 32px …` | `--ds-shadows-shadow-2` | `0 16px 32px 0 #2329361a` | Yes |
+| disabled opacity | `0.4` | `--ds-opacity-disabled` | `0.4` | Yes |
 | header text | `grey-700` (#57616d) | `--ds-color-text-base-default` | #384350 | **No — darker** |
 
-**For any mismatches**: pause and report them to the user before proceeding. Ask for confirmation.
+**Pause on any mismatch and report it to the user for sign-off before applying.** A mismatch is usually
+the design team's intended value, but it is a visible change — confirm it.
 
-### Step 6 — Apply the migration
+### Step 6 — Apply the migration (after sign-off)
 
-After user confirms the mapping:
+**6a.** If the component has a color/util helper, update it to return CSS-var strings. Mirror
+`section-message/src/SectionMessage.utils.tsx`: a `TYPE_TO_TOKEN_VARIANT` map + functions returning
+`` `var(--ds-<comp>-variant-${variant}-...)` ``. If all branches map to tokens, the `theme` parameter
+can be dropped.
 
-**6a. Update utility/color functions**
+**6b.** In styled components: replace `theme.palette[...]` with `var(--ds-...)`; replace elevation
+`box-shadow` with `var(--ds-shadows-shadow-N)`; for outline-style `box-shadow`, swap only the color;
+replace `opacity` with the opacity token. Keep dynamic/override palette lookups.
 
-If the component has helper functions for colors, update them to return CSS var strings. If all types map to tokens, the `theme` parameter can be removed entirely. Follow the pattern in `section-message/src/SectionMessage.utils.tsx`.
+**6b-svg. Colour icons via inheritance, not direct fill/stroke.** DS icons render with
+`fill="currentColor"` and `color: inherit`, so an icon takes its colour from the CSS `color` of its
+parent (or the `<Icon color=...>` prop, which sets `color` on the SVG). **Drop any direct
+`svg { fill: ... }` / `stroke: ...` CSS rules** in favour of setting `color` on the parent and letting
+the icon inherit. If you find such rules while migrating a component, convert them; if converting is
+out of scope, record them in the report as a CSS-cleanup follow-up.
 
-**6b. Update styled components**
+**6c.** Pass any props the styled components now need to choose a token (e.g. a `type`/`variant` prop).
 
-- Replace `theme.palette[...]` with `var(--ds-...)` for mapped colors
-- Replace hardcoded `box-shadow` values with `var(--ds-shadows-shadow-N)` or component shadow tokens
-- Replace hardcoded `opacity` values with `var(--ds-opacity-disabled)` or component opacity tokens
-- For dynamic/user-override patterns (`customColor`, computed palette keys) — keep `theme.palette`
-
-**6c. Pass required props**
-
-If styled components need additional props to determine which token to use (e.g., `type` prop), update the component JSX to pass them.
-
-**6d. Do not change**
-
-- The component's public API (props, types, exports)
-- Less files (deferred)
-- `customColor` / `customColorIcon` / dynamic palette overrides
-- Colors in test files or story files
-- Decorative values without token equivalents (gradients, transparent stops)
+**6d. Do NOT change:** the public API (props/types/exports); `.less` files; `customColor`/computed
+palette overrides; colors in tests/stories; decorative values; deferred antd `theme.variable`.
 
 ### Step 7 — Build and test
 
-1. Build the component: `cd packages/components/<name> && pnpm build`
-2. Run tests: `pnpm test`
-3. If tests fail due to changed values (e.g., assertions checking resolved hex/shadow values that are now `var(--ds-...)`), update the tests to check attributes or class names instead.
+```
+cd packages/components/<name> && pnpm build && pnpm test
+```
+
+If a test asserts a resolved hex/shadow value that is now `var(--ds-...)`, update it to assert the
+attribute / class / styled output — **never weaken a test just to make it pass.**
 
 ### Step 8 — Update TOKENISATION_STATUS.md
 
-Update `TOKENISATION_STATUS.md` at the repo root:
+Update `TOKENISATION_STATUS.md` at the repo root.
 
-**8a. Update the summary table**
+**8a. Summary table.** Update the component's status columns: Colors `:white_check_mark:` when all
+type-driven palette lookups are replaced (`:construction:` if partial), Shadows / Opacity
+`:white_check_mark:` / `:heavy_minus_sign:`, Spacing stays `:x:`. If the component was in the
+"without module-level tokens" table but uses semantic tokens, that's fine — record it migrated; it does
+not need to move tables (table membership = whether module tokens exist, which is unchanged).
 
-Find the component's row in the "Components with module-level tokens defined" table and update the status columns:
-- Colors: `:white_check_mark:` if all palette lookups for type-driven colors are replaced, `:construction:` if partial
-- Shadows: `:white_check_mark:` if all box-shadows tokenised, `:heavy_minus_sign:` if component has none
-- Opacity: `:white_check_mark:` if all opacity values tokenised, `:heavy_minus_sign:` if component has none
-- Spacing: leave as `:x:` (dimension tokens not yet in CSS output)
-- Diffs: update count
-
-If the component is currently in the "without module-level tokens" table, move it to the "with module-level tokens" table.
-
-**8b. Add or update the detailed report section**
-
-Add a section under "Detailed Reports" following the format used by section-message/toast/broadcast-bar:
-
-```markdown
-### <component-name>
-
-**Package:** `packages/components/<name>/`
-**Token variants:** <list variants and count>
-**Migrated in:** `chore/tokenisation` branch
-
-#### Colors — :white_check_mark: Complete
-<description of what was migrated>
-
-#### Shadows — :white_check_mark: Complete / :heavy_minus_sign: N/A
-<description>
-
-#### Opacity — :white_check_mark: Complete / :heavy_minus_sign: N/A
-<description>
-
-#### Spacing — :x: Not started
-<what Token Studio defines vs what's hardcoded>
-
-#### Visual diffs
-| Property | Current | Token resolves to | Delta |
-|----------|---------|-------------------|-------|
-
-#### Unmapped values
-| Usage | Value | Location | Reason |
-|-------|-------|----------|--------|
-```
+**8b. Detailed report.** Add/update a section under "Detailed Reports" in the section-message/toast
+format: package, variants, layer used (module vs semantic), Colors/Shadows/Opacity status, Spacing
+(deferred), a **Visual diffs** table, and an **Unmapped values** table.
 
 ### Step 9 — Report to user
 
-Present a summary:
-
-**Migrated:**
-- N color lookups → CSS custom properties (N component-level, M semantic)
-- N box-shadow values → shadow tokens
-- N opacity values → opacity tokens
-
-**Visual diffs** (if any):
-- List each value that changed with old → new
-
-**Unmapped** (if any):
-- List values with no token, with file:line and reason
-
-**Less files** (if any):
-- List files not migrated, with count of color references
-
-**Files modified:**
-- List all changed files
-
-**Status file updated:**
-- Confirm TOKENISATION_STATUS.md was updated
+Summarise: counts migrated (module-level vs semantic), shadows, opacity; visual diffs (old → new); any
+missing-module-token gaps flagged for the design-tokens repo; unmapped values with file:line + reason;
+`.less` files left deferred; files modified; and confirm `TOKENISATION_STATUS.md` was updated.
