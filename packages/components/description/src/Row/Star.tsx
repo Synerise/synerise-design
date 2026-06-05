@@ -9,7 +9,10 @@ import { type StarProps } from './Star.types';
 const Star: React.FC<StarProps> = ({ starType, hasPrefixEl }) =>
   starType === 'active' ? (
     <S.StarWrapper className="ds-description-star" hasPrefixEl={hasPrefixEl}>
-      <Icon component={<StarFillM />} color={theme.palette['yellow-600']} />
+      <Icon
+        component={<StarFillM />}
+        color="var(--ds-color-icon-warning-default)"
+      />
     </S.StarWrapper>
   ) : (
     <S.StarWrapper className="ds-description-star" hasPrefixEl={hasPrefixEl}>
