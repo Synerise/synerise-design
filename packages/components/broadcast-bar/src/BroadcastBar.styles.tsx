@@ -1,28 +1,24 @@
 import { type ReactNode } from 'react';
 import styled, { css } from 'styled-components';
 
-import { type ThemeProps } from '@synerise/ds-core';
-
 import { type BroadcastBarType } from './BroadcastBar.types';
 
-type InsertShapeStyles = {
-  type?: BroadcastBarType;
-} & ThemeProps;
-const getColorBackground = (props: InsertShapeStyles): string => {
-  if (props.type === 'warning') {
-    return props.theme.palette['yellow-600'];
-  }
-  if (props.type === 'negative') {
-    return props.theme.palette['red-600'];
-  }
-  return props.theme.palette[`green-600`];
+const TYPE_TO_TOKEN_VARIANT: Record<BroadcastBarType, string> = {
+  success: 'success',
+  warning: 'warning',
+  negative: 'error',
 };
-const getColorIcon = (props: InsertShapeStyles): string => {
-  if (props.type === 'warning') {
-    return props.theme.palette['grey-800'];
-  }
-  return props.theme.palette.white;
-};
+
+const variantOf = (type?: BroadcastBarType): string =>
+  TYPE_TO_TOKEN_VARIANT[type ?? 'success'] ?? 'success';
+
+const getColorBackground = (type?: BroadcastBarType): string =>
+  `var(--ds-broadcast-bar-variant-${variantOf(type)}-bg)`;
+const getColorText = (type?: BroadcastBarType): string =>
+  `var(--ds-broadcast-bar-variant-${variantOf(type)}-text)`;
+const getColorIcon = (type?: BroadcastBarType): string =>
+  `var(--ds-broadcast-bar-variant-${variantOf(type)}-icon)`;
+
 export const AlertContent = styled.div`
   display: flex;
   flex-direction: column;
@@ -43,18 +39,18 @@ export const AllContent = styled.div<{
       left: 50%;
       transform: translateX(-50%);
     `};
-  color: ${(props) => getColorIcon(props!)};
+  color: ${(props) => getColorText(props.type)};
 `;
 export const IconWrapper = styled.div<{
   type?: BroadcastBarType;
 }>`
   margin: 8px 12px;
-  color: ${(props) => getColorIcon(props!)};
+  color: ${(props) => getColorIcon(props.type)};
 `;
 export const IconCloseWrapper = styled.div<{ type?: BroadcastBarType }>`
   margin: 3px 5px 2px;
   cursor: pointer;
-  color: ${(props) => getColorIcon(props!)};
+  color: ${(props) => getColorIcon(props.type)};
 `;
 export const ButtonWrapper = styled.div<{ type?: BroadcastBarType }>`
   margin: 6px 8px;
@@ -68,7 +64,7 @@ export const ButtonCloseWrapper = styled.div`
 `;
 export const Wrapper = styled.div<{ type?: BroadcastBarType }>`
   margin-top: 10px;
-  color: ${(props) => getColorIcon(props!)};
+  color: ${(props) => getColorText(props.type)};
 `;
 export const Container = styled.div<{
   type?: BroadcastBarType;
@@ -78,7 +74,7 @@ export const Container = styled.div<{
   display: flex;
   justify-content: ${(props) => (props.close ? 'space-between' : 'center')};
   position: relative;
-  background-color: ${(props) => getColorBackground(props!)};
+  background-color: ${(props) => getColorBackground(props.type)};
 `;
 export const WrapperBroadcastBar = styled.div<{
   type?: BroadcastBarType;
@@ -90,7 +86,7 @@ export const WrapperBroadcastBar = styled.div<{
     css`
       margin-left: auto;
     `};
-  color: ${(props) => getColorIcon(props!)};
+  color: ${(props) => getColorText(props.type)};
 `;
 
 export const AlertDescription = styled.span`
