@@ -59,7 +59,7 @@ These components have dedicated token definitions in `modules/base.json`.
 | button-expander | `button` | :x: | :heavy_minus_sign: | :heavy_minus_sign: | :x: | TBD | — | Part of button package |
 | card | `card` | :x: | :x: | :x: | :x: | TBD | No | 4 color, 3 shadow, 1 opacity |
 | [card-select](#card-select) | `card-select` | :white_check_mark: | :white_check_mark: | :white_check_mark: | :x: | 4 | No | borders/shadow/opacity tokenised; check-token naming flagged for UX |
-| description-line | `description` | :x: | :heavy_minus_sign: | :heavy_minus_sign: | :heavy_minus_sign: | TBD | No | 2 color tokens |
+| [description-line](#description) | `description` | :white_check_mark: | :heavy_minus_sign: | :heavy_minus_sign: | :heavy_minus_sign: | 0 | No | module + semantic; inactive star deferred |
 | [divider](#divider) | `divider` | :white_check_mark: | :heavy_minus_sign: | :heavy_minus_sign: | :x: | 2 | No | line + label tokenised |
 | form | `form` / `input` / `checkbox` / `radio` / `switch` / `select` | :x: | :heavy_minus_sign: | :x: | :x: | TBD | Yes (many) | 61 color, 3 opacity. Spans multiple packages |
 | [inline-alert](#inline-alert) | `inline-alert` | :white_check_mark: | :heavy_minus_sign: | :white_check_mark: | :heavy_minus_sign: | 0 | No | 4 variants + text; hover deferred (no token) |
@@ -67,16 +67,16 @@ These components have dedicated token definitions in `modules/base.json`.
 | [inline-select](#inline-edit--inline-select) | `inline-edit` | :white_check_mark: | :heavy_minus_sign: | :heavy_minus_sign: | :heavy_minus_sign: | 0 | No | lives in inline-edit package |
 | list-item | `list-item` | :x: | :heavy_minus_sign: | :x: | :x: | TBD | No | 42 color, 1 opacity |
 | modal | `modal` | :x: | :x: | :heavy_minus_sign: | :x: | TBD | Yes (2) | 9 color, 1 shadow |
-| navbar | `navbar` | :x: | :heavy_minus_sign: | :x: | :x: | TBD | No | 5 color, 2 opacity |
+| [navbar](#navbar) | `navbar` | :white_check_mark: | :heavy_minus_sign: | :white_check_mark: | :x: | 2 | No | :warning: default bg blue→grey |
 | page | `page-header` | :x: | :heavy_minus_sign: | :heavy_minus_sign: | :heavy_minus_sign: | TBD | No | 1 color token |
 | page-header | `page-header` | :x: | :x: | :heavy_minus_sign: | :x: | TBD | No | 4 color, 1 shadow |
 | pagination | `pagination` | :x: | :heavy_minus_sign: | :x: | :x: | TBD | Yes (2) | 16 color, 2 opacity |
-| popcornfirm | `popconfirm` | :x: | :heavy_minus_sign: | :heavy_minus_sign: | :heavy_minus_sign: | TBD | Yes (1) | 4 color tokens |
+| [popcornfirm](#popconfirm) | `popconfirm` | :white_check_mark: | :white_check_mark: | :heavy_minus_sign: | :heavy_minus_sign: | 1 | Yes (1) | shadow-2; carousel dots deferred |
 | [progressbar](#progress-bar) | `progress-bar` | :white_check_mark: | :heavy_minus_sign: | :heavy_minus_sign: | :x: | 0 | No | track + value tokenised; fill is customColor (no token) |
 | [status-pill](#status-status-pill) | `status` | :white_check_mark: | :heavy_minus_sign: | :heavy_minus_sign: | :x: | 2 | No | text/border split; custom kept dynamic |
 | stepper | `stepper` | :x: | :heavy_minus_sign: | :heavy_minus_sign: | :x: | TBD | No | 16 color, 1 dim |
-| tabs | `tabs` | :x: | :heavy_minus_sign: | :heavy_minus_sign: | :x: | TBD | No | 4 color, 6 dim |
-| time-picker | `time-picker` | :x: | :x: | :heavy_minus_sign: | :x: | TBD | No | 9 color, 1 boxShadow |
+| [tabs](#tabs) | `tabs` | :construction: | :heavy_minus_sign: | :white_check_mark: | :x: | 1 | No | main states done; decorative gradients + blue-500 focus deferred |
+| [time-picker](#time-picker) | `time-picker` | :white_check_mark: | :heavy_minus_sign: | :white_check_mark: | :x: | 2 | No | 8 module + semantic; no elevation shadow |
 
 ### Components without module-level tokens
 
@@ -486,3 +486,120 @@ tokens split them, so success/warning **borders** now use the `-600` shade while
 #### Deferred
 
 `custom` type uses the caller's `color` prop (dynamic override) — kept as-is.
+
+---
+
+### description
+
+**Package:** `packages/components/description/`
+**Layer:** module (`--ds-description-line-*`, 2) + semantic (icon/brand, 4)
+**Migrated in:** `chore/tokenisation` branch
+
+#### Colors — :white_check_mark: Complete
+
+Label text → `--ds-description-line-label-text`; value text → `--ds-description-line-content-text`;
+copy/link icons → semantic `icon-base-default` / `text-brand-default`; active star → `icon-warning-default`.
+Three direct `svg { fill }` rules were **dropped** in favour of `currentColor` inheritance. No visual diffs.
+
+#### Deferred
+
+Inactive star `grey-300` (`Star.tsx:19`) — no on-system icon token resolves to grey-300 (nearest
+`icon-base-muted` = grey-400, a visible shift). Kept `theme.palette`. Follow-up: an inactive-icon token.
+
+---
+
+### navbar
+
+**Package:** `packages/components/navbar/`
+**Layer:** module (`--ds-navbar-*`, 3) + semantic (`text-onsolid-default`)
+**Migrated in:** `chore/tokenisation` branch
+
+#### Colors — :white_check_mark: Complete · Opacity — :white_check_mark: Complete
+
+Container bg → `--ds-navbar-container-bg`; root/icon/text → `text-onsolid-default`; divider →
+`--ds-navbar-left-separator-color` + `--ds-navbar-left-separator-opacity`. One `svg { fill }` rule
+dropped (inherits via currentColor). The `color` prop override is preserved.
+
+#### Visual diffs
+
+| Property | Current | Token resolves to | Delta |
+|----------|---------|-------------------|-------|
+| **Default background** (no `color` prop) | blue-600 `#0b68ff` | grey-700 `#57616d` | :warning: **Blue → grey** — prominent |
+| Divider opacity | `0.3` | `--ds-opacity-muted` `0.2` | Slightly more transparent |
+
+> The default-navbar background changing from blue to grey is a deliberate token value but a large,
+> visible change. It only affects navbars rendered without an explicit `color` prop. Flagged for review.
+
+---
+
+### popconfirm
+
+**Package:** `packages/components/popconfirm/`
+**Layer:** module (`--ds-popcornfirm-*`, 5) + semantic (`shadow-2` ×2, `background-base-default`, `text-base-subtle`)
+**Migrated in:** `chore/tokenisation` branch
+
+#### Colors — :white_check_mark: · Shadows — :white_check_mark: (shadow-2, provably equal)
+
+Container bg/arrow → `--ds-popcornfirm-container-bg`; title → `-header-text`; close icon → `-header-icon`;
+description → `-content-description`; link → semantic `text-base-subtle`. ConfirmMessage sub-component →
+semantic bg + shadow-2.
+
+#### Visual diffs
+
+| Property | Current | Token resolves to | Delta |
+|----------|---------|-------------------|-------|
+| Description text | grey-800 `#384350` | grey-700 `#57616d` | Lighter (subtler than title — intended) |
+
+#### Deferred
+
+Carousel `.slick-dots` indicators (`Popconfirm.styles.tsx:51,52,61,62`) — the green-600 active dot would
+become blue via `border-brand-default` (a green→blue redesign); kept `theme.palette`. `ConfirmMessage`
+title `#404c5a` hardcoded (no token). `.less` file (antd Carousel overrides) — not migrated.
+
+---
+
+### tabs
+
+**Package:** `packages/components/tabs/`
+**Layer:** module (`--ds-tabs-item-*`, 4 — all used) + semantic (5)
+**Migrated in:** `chore/tokenisation` branch
+
+#### Colors — :construction: Main states done · Opacity — :white_check_mark:
+
+Inactive/hover/active label + icon and the active underline use `--ds-tabs-item-*`; default icon →
+`icon-base-default`; brand-hover/pressed → `text-brand-hover`; dropdown bg → `background-base-default`;
+disabled opacity → `--ds-opacity-disabled`. Six `svg { fill }` rules dropped (currentColor inheritance).
+
+#### Visual diffs
+
+| Property | Current | Token resolves to | Delta |
+|----------|---------|-------------------|-------|
+| Inactive tab text | grey-700 `#57616d` | grey-600 `#6a7580` | Lighter (muted) |
+
+#### Deferred
+
+`blue-500` focus text/icon (`Tab.styles.ts:130,133`) — no focus-hue text/icon token. Decorative dashed
+`linear-gradient` focus/divider underlines and the block-mode `::after` underline greys
+(`Tab.styles.ts:36–67,146–150`, `Tabs.styles.ts:34–38`) — kept `theme.palette`. Follow-up: focus-hue token.
+
+---
+
+### time-picker
+
+**Package:** `packages/components/time-picker/`
+**Layer:** module (`--ds-time-picker-*`, 8) + semantic (5) + opacity (2)
+**Migrated in:** `chore/tokenisation` branch
+
+#### Colors — :white_check_mark: · Opacity — :white_check_mark:
+
+Overlay/cell/text states → `--ds-time-picker-*`; clear icon → semantic `icon-danger-default`; input focus
+bg/border → semantic `background-base-default` / `border-base-strong`; muted/disabled → `--ds-opacity-muted`
+/ `-disabled`. One `svg { fill }` rule (clear icon) dropped (currentColor inheritance). No elevation
+box-shadow exists (the `overlay-shadow` module token is unused).
+
+#### Visual diffs
+
+| Property | Current | Token resolves to | Delta |
+|----------|---------|-------------------|-------|
+| Column separator | grey-200 `#e9edee` | grey-100 `#f3f5f6` | Slightly lighter |
+| Cell bg (default/disabled) | white `#ffffff` | `transparent` | No visible change (sits on white overlay) |
