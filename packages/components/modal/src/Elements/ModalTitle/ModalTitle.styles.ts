@@ -27,7 +27,7 @@ export const TitleContainer = styled.div`
 
 export const Title = styled(TypographyTitle)`
   width: 100%;
-  color: ${(props) => props.theme.palette['grey-800']};
+  color: var(--ds-modal-header-title-color);
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -51,7 +51,7 @@ export const BottomBar = styled.div`
 `;
 
 export const ModalHeaderTop = styled.div`
-  border-bottom: 1px solid ${(props) => props.theme.palette['grey-100']};
+  border-bottom: 1px solid var(--ds-modal-header-border-color);
 `;
 
 export const ModalTitleWrapper = styled.div<{
@@ -67,7 +67,7 @@ export const Description = styled.div`
   font-size: 13px;
   font-weight: normal;
   line-height: 18px;
-  color: ${(props) => props.theme.palette['grey-600']};
+  color: var(--ds-color-text-base-muted);
   display: block;
   padding: 12px 0 0;
   margin: 14px 0 0;
