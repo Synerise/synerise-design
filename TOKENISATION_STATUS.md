@@ -57,7 +57,7 @@ These components have dedicated token definitions in `modules/base.json`.
 | avatar | `avatar` | :x: | :heavy_minus_sign: | :x: | :x: | TBD | Yes (1) | 9 color, 1 opacity |
 | buttons | `button` | :x: | :x: | :x: | :x: | TBD | Yes (2) | 247 color, 15 dim, 1 opacity. Largest token set |
 | button-expander | `button` | :x: | :heavy_minus_sign: | :heavy_minus_sign: | :x: | TBD | — | Part of button package |
-| card | `card` | :x: | :x: | :x: | :x: | TBD | No | 4 color, 3 shadow, 1 opacity |
+| [card](#card) | `card` | :white_check_mark: | :construction: | :white_check_mark: | :x: | 0 | No | surface+shadow-1 done; active shadow + CardBadge dynamic deferred |
 | [card-select](#card-select) | `card-select` | :white_check_mark: | :white_check_mark: | :white_check_mark: | :x: | 4 | No | borders/shadow/opacity tokenised; check-token naming flagged for UX |
 | [description-line](#description) | `description` | :white_check_mark: | :heavy_minus_sign: | :heavy_minus_sign: | :heavy_minus_sign: | 0 | No | module + semantic; inactive star deferred |
 | [divider](#divider) | `divider` | :white_check_mark: | :heavy_minus_sign: | :heavy_minus_sign: | :x: | 2 | No | line + label tokenised |
@@ -65,16 +65,16 @@ These components have dedicated token definitions in `modules/base.json`.
 | [inline-alert](#inline-alert) | `inline-alert` | :white_check_mark: | :heavy_minus_sign: | :white_check_mark: | :heavy_minus_sign: | 0 | No | 4 variants + text; hover deferred (no token) |
 | [inline-edit](#inline-edit--inline-select) | `inline-edit` | :white_check_mark: | :heavy_minus_sign: | :heavy_minus_sign: | :heavy_minus_sign: | 0 | No | text/icon tokenised; gradient underlines deferred |
 | [inline-select](#inline-edit--inline-select) | `inline-edit` | :white_check_mark: | :heavy_minus_sign: | :heavy_minus_sign: | :heavy_minus_sign: | 0 | No | lives in inline-edit package |
-| list-item | `list-item` | :x: | :heavy_minus_sign: | :x: | :x: | TBD | No | 42 color, 1 opacity |
-| modal | `modal` | :x: | :x: | :heavy_minus_sign: | :x: | TBD | Yes (2) | 9 color, 1 shadow |
+| [list-item](#list-item) | `list-item` | :white_check_mark: | :heavy_minus_sign: | :white_check_mark: | :x: | 2 | No | 31 module + 7 semantic; many svg fills → inheritance |
+| [modal](#modal) | `modal` | :white_check_mark: | :white_check_mark: | :white_check_mark: | :x: | 1 | No | shadow-2; mask grey-800→grey-700 |
 | [navbar](#navbar) | `navbar` | :white_check_mark: | :heavy_minus_sign: | :white_check_mark: | :x: | 2 | No | :warning: default bg blue→grey |
 | page | `page-header` | :x: | :heavy_minus_sign: | :heavy_minus_sign: | :heavy_minus_sign: | TBD | No | 1 color token |
 | page-header | `page-header` | :x: | :x: | :heavy_minus_sign: | :x: | TBD | No | 4 color, 1 shadow |
-| pagination | `pagination` | :x: | :heavy_minus_sign: | :x: | :x: | TBD | Yes (2) | 16 color, 2 opacity |
+| pagination | `pagination` | :x: | :heavy_minus_sign: | :x: | :x: | — | Yes (2) | ⛔ all styling in `.less` — code-side N/A, blocked on antd Less decision |
 | [popcornfirm](#popconfirm) | `popconfirm` | :white_check_mark: | :white_check_mark: | :heavy_minus_sign: | :heavy_minus_sign: | 1 | Yes (1) | shadow-2; carousel dots deferred |
 | [progressbar](#progress-bar) | `progress-bar` | :white_check_mark: | :heavy_minus_sign: | :heavy_minus_sign: | :x: | 0 | No | track + value tokenised; fill is customColor (no token) |
 | [status-pill](#status-status-pill) | `status` | :white_check_mark: | :heavy_minus_sign: | :heavy_minus_sign: | :x: | 2 | No | text/border split; custom kept dynamic |
-| stepper | `stepper` | :x: | :heavy_minus_sign: | :heavy_minus_sign: | :x: | TBD | No | 16 color, 1 dim |
+| [stepper](#stepper) | `stepper` | :construction: | :heavy_minus_sign: | :heavy_minus_sign: | :x: | 6 | No | :warning: done green→blue, active grey→blue; warning state deferred |
 | [tabs](#tabs) | `tabs` | :construction: | :heavy_minus_sign: | :white_check_mark: | :x: | 1 | No | main states done; decorative gradients + blue-500 focus deferred |
 | [time-picker](#time-picker) | `time-picker` | :white_check_mark: | :heavy_minus_sign: | :white_check_mark: | :x: | 2 | No | 8 module + semantic; no elevation shadow |
 
@@ -603,3 +603,126 @@ box-shadow exists (the `overlay-shadow` module token is unused).
 |----------|---------|-------------------|-------|
 | Column separator | grey-200 `#e9edee` | grey-100 `#f3f5f6` | Slightly lighter |
 | Cell bg (default/disabled) | white `#ffffff` | `transparent` | No visible change (sits on white overlay) |
+
+---
+
+### card
+
+**Package:** `packages/components/card/`
+**Layer:** module (`--ds-card-bg-*`, `--ds-card-disabled-opacity`) + semantic (text/border/shadow)
+**Migrated in:** `chore/tokenisation` branch
+
+#### Colors — :white_check_mark: · Shadows — :construction: · Opacity — :white_check_mark:
+
+Backgrounds → `--ds-card-bg-default`; grey bg → `background-base-subtle`; borders → `border-base-*`;
+description text → `text-base-muted`; default raised shadow → `--ds-shadows-shadow-1`; disabled opacity →
+`--ds-card-disabled-opacity`. All exact, no visual diffs.
+
+#### Deferred
+
+- `@box-shadow-active` (raised/lively/hover, `Card.styles.ts:79,99`) — does not equal any
+  `--ds-shadows-shadow-N`; kept. Follow-up: no card hover/active shadow token.
+- `CardBadge.styles.tsx` — status colours are computed `theme.palette[map[status]]` (dynamic key) and a
+  grey-400 inset ring; kept. `warning` (yellow-600) also mismatches `background-warning-solid` (yellow-500).
+  Follow-up: no `card-badge` module tokens. Plus a `0.16` nested opacity (no token).
+
+---
+
+### modal
+
+**Package:** `packages/components/modal/`
+**Layer:** module (`--ds-modal-*`, 6) + semantic (`background-base-subtle`, `text-base-muted`, `opacity-muted`, `shadow-2`)
+**Migrated in:** `chore/tokenisation` branch
+
+#### Colors — :white_check_mark: · Shadows — :white_check_mark: · Opacity — :white_check_mark:
+
+Container/mask/title/footer/borders → `--ds-modal-*`; body grey bg → `background-base-subtle`; description
+→ `text-base-muted`; container shadow → `--ds-shadows-shadow-2` (provably equal); mask opacity →
+`--ds-opacity-muted`.
+
+#### Visual diffs
+
+| Property | Current | Token resolves to | Delta |
+|----------|---------|-------------------|-------|
+| Mask backdrop | grey-800 `#384350` | `--ds-modal-mask-color` grey-700 `#57616d` | Lighter (opacity 0.2 unchanged) |
+
+#### Deferred
+
+Description dashed-separator gradient (decorative); `zindex-modal` (not Phase 1). **Module-shadow gap:**
+`modal.container.shadow` exists in `base.json` but the build emits only color-type modal vars, so semantic
+`shadow-2` was used (identical). Follow-up: emit shadow-type module vars if a `--ds-modal-*-shadow` is wanted.
+
+---
+
+### stepper
+
+**Package:** `packages/components/stepper/`
+**Layer:** module (`--ds-stepper-step-*`, 13)
+**Migrated in:** `chore/tokenisation` branch
+
+#### Colors — :construction: (warning state deferred — no token)
+
+Default/hover/active/done/validation states for circle border, number, label, separators and the connector
+line → `--ds-stepper-step-*`. The done check icon recoloured via its border token.
+
+#### Visual diffs — substantial (the tokens encode a state redesign)
+
+| Property | Current | Token resolves to | Delta |
+|----------|---------|-------------------|-------|
+| Inactive circle border / separators / connector | grey-400 `#b5bdc3` | grey-200 `#e9edee` | Lighter |
+| Inactive number | grey-400 `#b5bdc3` | grey-600 `#6a7580` | Darker |
+| Inactive label | grey-400 `#b5bdc3` | grey-700 `#57616d` | Darker |
+| **Active** border | grey-700 `#57616d` | brand `#0b68ff` | :warning: **grey → brand blue** |
+| **Done** border + check icon | green-600 `#54cb0b` | brand `#0b68ff` | :warning: **green → brand blue** |
+| **Done** label | green-600 `#54cb0b` | grey-800 `#384350` | :warning: **green → grey** |
+| Hover border | grey-700 `#57616d` | grey-300 `#dbe0e3` | Lighter |
+
+> These are deliberate token values but a clear visual redesign of the active/done states (green→blue).
+> Flagged for design review.
+
+#### Deferred
+
+- **Warning state** (`yellow-600`, `Step.styles.ts:193,197`, `Step.tsx:61,76`) — no `stepper…warning` token.
+  Follow-up: add warning border/label/icon tokens.
+- `circle-content-{active,done,validation}` tokens resolve to **white** (a filled-circle redesign — white
+  number on solid fill). Current circles are outlined, so white numbers would be invisible; used the visible
+  `-label-*` tokens instead. Adopting them needs the filled-circle markup (out of Phase 1). (Same pattern as
+  card-select's `check-*` tokens.)
+
+---
+
+### pagination
+
+**Package:** `packages/components/pagination/`
+**Status:** ⛔ **Blocked — code-side N/A.** All colour/opacity/focus styling lives in `.less`
+(`style/pagination.less`, `style/index.less`); the JS/TSX source has zero tokenisable references. Module
+tokens (`--ds-pagination-*`, 18) exist and are emitted, but applying them requires migrating the `.less`,
+which is deferred pending the antd Less theming decision. The would-be mappings carry several design-intended
+diffs (nav icons darker, active page grey-600→grey-700, item hover translucent-grey → brand blue-50).
+
+---
+
+### list-item
+
+**Package:** `packages/components/list-item/`
+**Layer:** module (`--ds-list-item-*`, 31) + semantic (focus rings, neutral text, success icon — 7)
+**Migrated in:** `chore/tokenisation` branch
+
+#### Colors — :white_check_mark: · Opacity — :white_check_mark:
+
+Normal/featured/danger role states (bg/text/icon/description) → `--ds-list-item-role-*`; focus rings →
+semantic `color-focus-*` (colour only, geometry kept); ordered counter / group / header titles → neutral
+text; check icon → `icon-success-default`; disabled opacity → `--ds-list-item-states-disabled-opacity`.
+**Many `svg { fill }` rules across Text/Danger were converted to parent `color` + currentColor inheritance.**
+
+#### Visual diffs
+
+| Property | Current | Token resolves to | Delta |
+|----------|---------|-------------------|-------|
+| Description text (large) | grey-600 `#6a7580` | grey-700 `#57616d` | Darker |
+| Danger active bg | red-100 `#ffece8` | red-50 `#fff6f4` | Lighter (now equals hover) |
+
+#### Deferred / follow-up
+
+`--ds-list-item-role-delete-bg-active` resolves to red-50 (same as hover) — confirm with design whether the
+pressed delete state should stay darker (red-100 / `danger-subtlehover`).
