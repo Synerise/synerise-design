@@ -1,7 +1,6 @@
 import type { MouseEventHandler, ReactNode } from 'react';
 import styled, { css } from 'styled-components';
 
-import { type ThemePropsVars } from '@synerise/ds-core';
 import { Title as DSTitle } from '@synerise/ds-typography';
 
 import { CardSummaryWrapper } from '../CardSummary/CardSummary.styles';
@@ -11,28 +10,22 @@ const whiteBg = ['white', 'white-shadow'];
 const greyBg = ['grey', 'grey-shadow'];
 const withBoxShadow = ['white-shadow', 'grey-shadow'];
 const withOutline = ['outline'];
-const backgroundColor = (props: {
-  background: Backgrounds;
-  theme: ThemePropsVars;
-}): string => {
-  if (whiteBg.includes(props.background)) {
-    return props.theme.palette.white;
+const backgroundColor = (background: Backgrounds): string => {
+  if (whiteBg.includes(background)) {
+    return 'var(--ds-card-bg-default)';
   }
-  if (greyBg.includes(props.background)) {
-    return props.theme.palette['grey-050'];
+  if (greyBg.includes(background)) {
+    return 'var(--ds-color-background-base-subtle)';
   }
-  return props.theme.palette.transparent;
+  return 'transparent';
 };
 
-const boxShadow = (props: {
-  background: Backgrounds;
-  theme: ThemePropsVars;
-}): string => {
-  if (withBoxShadow.includes(props.background)) {
-    return `0 4px 12px 0 rgba(35, 41, 54, 0.04)` as string;
+const boxShadow = (background: Backgrounds): string => {
+  if (withBoxShadow.includes(background)) {
+    return 'var(--ds-shadows-shadow-1)';
   }
-  if (withOutline.includes(props.background)) {
-    return `${props.theme.palette['grey-200']} 0px 0px 0px 1px inset`;
+  if (withOutline.includes(background)) {
+    return 'var(--ds-color-border-base-default) 0px 0px 0px 1px inset';
   }
   return 'none';
 };
@@ -59,10 +52,9 @@ export const Container = styled.div<{
   background: Backgrounds;
 }>`
   background-color: ${(props) =>
-    props.background
-      ? backgroundColor(props)
-      : props.theme.palette.transparent};
-  box-shadow: ${(props) => (props.background ? boxShadow(props) : 'none')};
+    props.background ? backgroundColor(props.background) : 'transparent'};
+  box-shadow: ${(props) =>
+    props.background ? boxShadow(props.background) : 'none'};
   border-radius: ${(props) => props.theme.variable('@border-radius-base')};
   display: flex;
   flex-flow: column;
@@ -91,12 +83,12 @@ export const Container = styled.div<{
     !!props.disabled &&
     css`
       pointer-events: none;
-      opacity: 0.4;
+      opacity: var(--ds-card-disabled-opacity);
       ${HeaderSideChildren} {
         opacity: 0.16;
       }
       ${IconContainer} {
-        opacity: 0.4;
+        opacity: var(--ds-opacity-disabled);
       }
     `};
 
@@ -128,7 +120,7 @@ export const Header = styled.div<{
     height: 1px;
     content: '';
     display: ${(props) => (props.headerBorderBottom ? 'block' : 'none')};
-    background-color: ${(props) => props.theme.palette['grey-100']};
+    background-color: var(--ds-color-border-base-subtle);
   }
   &:hover {
     ${(props) => !!props.onClick && `cursor:pointer;`}
@@ -136,7 +128,7 @@ export const Header = styled.div<{
   ${(props) =>
     !!props.defaultHeaderBackgroundColor &&
     css`
-      background-color: ${props.theme.palette.white};
+      background-color: var(--ds-card-bg-default);
     `}
 `;
 
@@ -166,7 +158,7 @@ export const TitleTag = styled.div``;
 
 export const Description = styled.div`
   && {
-    color: ${(props) => props.theme.palette['grey-600']};
+    color: var(--ds-color-text-base-muted);
     font-size: 13px;
     line-height: 1.38;
     margin: 0;
@@ -201,7 +193,7 @@ export const HeaderContent = styled.div<{
       }
 
       ${Description} {
-        border-left: 1px solid ${props.theme.palette['grey-200']};
+        border-left: 1px solid var(--ds-color-border-base-default);
         height: 32px;
         line-height: 32px;
         padding: 0 0 0 24px;
@@ -227,6 +219,6 @@ export const FooterContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: flex-end;
-  background: ${(props) => props.theme.palette.white};
-  border-top: solid 1px ${(props) => props.theme.palette['grey-100']};
+  background: var(--ds-card-bg-default);
+  border-top: solid 1px var(--ds-color-border-base-subtle);
 `;
