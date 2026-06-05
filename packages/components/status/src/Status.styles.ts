@@ -1,21 +1,33 @@
 import styled, { type StyledComponent, css } from 'styled-components';
 
-import { type ThemeProps } from '@synerise/ds-core';
 import Tag, { type TagProps } from '@synerise/ds-tag';
 
 import type { StatusType } from './Status.types';
 
-const typeColor = (props: ThemeProps & { type: StatusType }) =>
-  ({
-    primary: props.theme.palette['blue-600'],
-    danger: props.theme.palette['red-600'],
-    warning: props.theme.palette['yellow-700'],
-    success: props.theme.palette['green-700'],
-    info: props.theme.palette['blue-600'],
-    default: props.theme.palette['grey-500'],
-    disabled: props.theme.palette['grey-500'],
-    custom: null,
-  })[props.type];
+const TYPE_TO_TOKEN_VARIANT: Record<Exclude<StatusType, 'custom'>, string> = {
+  primary: 'info',
+  info: 'info',
+  danger: 'error',
+  warning: 'warning',
+  success: 'success',
+  default: 'neutral',
+  disabled: 'neutral',
+};
+
+const variantText = (type: StatusType): string | null => {
+  if (type === 'custom') {
+    return null;
+  }
+  return `var(--ds-status-pill-variant-${TYPE_TO_TOKEN_VARIANT[type]}-text)`;
+};
+
+const variantBorder = (type: StatusType, dashed?: boolean): string | null => {
+  if (type === 'custom') {
+    return null;
+  }
+  const style = dashed ? 'dashed' : 'solid';
+  return `var(--ds-status-pill-variant-${TYPE_TO_TOKEN_VARIANT[type]}-border-${style})`;
+};
 
 type StyledTagProps = { type: StatusType; dashed?: boolean };
 
@@ -33,13 +45,15 @@ export const StatusTag: StyledComponent<
     transition: opacity 0.25s;
     border: ${(props) => (props.dashed ? '1px dashed' : '1px solid')};
     ${(props) => {
-      const color = typeColor(props);
+      const text = variantText(props.type);
+      const border = variantBorder(props.type, props.dashed);
 
       return (
-        color &&
+        text &&
+        border &&
         css`
-          color: ${color};
-          border-color: ${color};
+          color: ${text};
+          border-color: ${border};
         `
       );
     }}
