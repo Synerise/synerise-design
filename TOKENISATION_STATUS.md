@@ -60,11 +60,11 @@ These components have dedicated token definitions in `modules/base.json`.
 | card | `card` | :x: | :x: | :x: | :x: | TBD | No | 4 color, 3 shadow, 1 opacity |
 | [card-select](#card-select) | `card-select` | :white_check_mark: | :white_check_mark: | :white_check_mark: | :x: | 4 | No | borders/shadow/opacity tokenised; check-token naming flagged for UX |
 | description-line | `description` | :x: | :heavy_minus_sign: | :heavy_minus_sign: | :heavy_minus_sign: | TBD | No | 2 color tokens |
-| divider | `divider` | :x: | :heavy_minus_sign: | :heavy_minus_sign: | :x: | TBD | No | 3 color, 4 dim |
+| [divider](#divider) | `divider` | :white_check_mark: | :heavy_minus_sign: | :heavy_minus_sign: | :x: | 2 | No | line + label tokenised |
 | form | `form` / `input` / `checkbox` / `radio` / `switch` / `select` | :x: | :heavy_minus_sign: | :x: | :x: | TBD | Yes (many) | 61 color, 3 opacity. Spans multiple packages |
-| inline-alert | `inline-alert` | :x: | :heavy_minus_sign: | :heavy_minus_sign: | :heavy_minus_sign: | TBD | No | 5 color tokens |
-| inline-edit | `inline-edit` | :x: | :heavy_minus_sign: | :heavy_minus_sign: | :heavy_minus_sign: | TBD | No | 5 color tokens |
-| inline-select | `inline-select` | :x: | :heavy_minus_sign: | :heavy_minus_sign: | :heavy_minus_sign: | TBD | No | 10 color tokens |
+| [inline-alert](#inline-alert) | `inline-alert` | :white_check_mark: | :heavy_minus_sign: | :white_check_mark: | :heavy_minus_sign: | 0 | No | 4 variants + text; hover deferred (no token) |
+| [inline-edit](#inline-edit--inline-select) | `inline-edit` | :white_check_mark: | :heavy_minus_sign: | :heavy_minus_sign: | :heavy_minus_sign: | 0 | No | text/icon tokenised; gradient underlines deferred |
+| [inline-select](#inline-edit--inline-select) | `inline-edit` | :white_check_mark: | :heavy_minus_sign: | :heavy_minus_sign: | :heavy_minus_sign: | 0 | No | lives in inline-edit package |
 | list-item | `list-item` | :x: | :heavy_minus_sign: | :x: | :x: | TBD | No | 42 color, 1 opacity |
 | modal | `modal` | :x: | :x: | :heavy_minus_sign: | :x: | TBD | Yes (2) | 9 color, 1 shadow |
 | navbar | `navbar` | :x: | :heavy_minus_sign: | :x: | :x: | TBD | No | 5 color, 2 opacity |
@@ -72,8 +72,8 @@ These components have dedicated token definitions in `modules/base.json`.
 | page-header | `page-header` | :x: | :x: | :heavy_minus_sign: | :x: | TBD | No | 4 color, 1 shadow |
 | pagination | `pagination` | :x: | :heavy_minus_sign: | :x: | :x: | TBD | Yes (2) | 16 color, 2 opacity |
 | popcornfirm | `popconfirm` | :x: | :heavy_minus_sign: | :heavy_minus_sign: | :heavy_minus_sign: | TBD | Yes (1) | 4 color tokens |
-| progressbar | `progress-bar` | :x: | :heavy_minus_sign: | :heavy_minus_sign: | :x: | TBD | No | 4 color, 7 dim |
-| status-pill | `status` | :x: | :heavy_minus_sign: | :heavy_minus_sign: | :x: | TBD | No | 15 color, 5 dim |
+| [progressbar](#progress-bar) | `progress-bar` | :white_check_mark: | :heavy_minus_sign: | :heavy_minus_sign: | :x: | 0 | No | track + value tokenised; fill is customColor (no token) |
+| [status-pill](#status-status-pill) | `status` | :white_check_mark: | :heavy_minus_sign: | :heavy_minus_sign: | :x: | 2 | No | text/border split; custom kept dynamic |
 | stepper | `stepper` | :x: | :heavy_minus_sign: | :heavy_minus_sign: | :x: | TBD | No | 16 color, 1 dim |
 | tabs | `tabs` | :x: | :heavy_minus_sign: | :heavy_minus_sign: | :x: | TBD | No | 4 color, 6 dim |
 | time-picker | `time-picker` | :x: | :x: | :heavy_minus_sign: | :x: | TBD | No | 9 color, 1 boxShadow |
@@ -366,3 +366,123 @@ Reconciling these requires aligning the Figma component, the token names, and th
 | Usage | Value | Location | Reason |
 |-------|-------|----------|--------|
 | Card border-radius | `@border-radius-base` | `Container` | antd Less variable — no dimension token (deferred) |
+
+---
+
+### divider
+
+**Package:** `packages/components/divider/`
+**Layer:** module (`--ds-divider-*`)
+**Migrated in:** `chore/tokenisation` branch
+
+#### Colors — :white_check_mark: Complete
+
+Label text → `--ds-divider-header-text-color`; line colour → `--ds-divider-line-color-solid` /
+`--ds-divider-line-color-dashed`. The SVG line uses `stroke="currentColor"` and inherits from the
+parent's CSS `color` (no direct `fill`/`stroke` rules). `theme.palette` fully removed.
+
+#### Shadows / Opacity — :heavy_minus_sign: N/A
+#### Spacing — :x: Not started (dimension tokens for line height / header padding exist, out of scope)
+
+#### Visual diffs
+
+| Property | Current | Token resolves to | Delta |
+|----------|---------|-------------------|-------|
+| Solid line | grey-300 `#dbe0e3` | grey-200 `#e9edee` | Lighter |
+| Dashed line | grey-400 `#b5bdc3` | grey-300 `#dbe0e3` | Lighter |
+
+---
+
+### inline-alert
+
+**Package:** `packages/components/inline-alert/`
+**Layer:** module (`--ds-inline-alert-*`) + semantic (`--ds-opacity-disabled`)
+**Migrated in:** `chore/tokenisation` branch
+
+#### Colors — :white_check_mark: Complete
+
+Icon colours per variant (success/warning/error/informative) → `--ds-inline-alert-icon-*`; message text
+→ `--ds-inline-alert-text-default`. All exact matches. Icon inherits via `currentColor` (no fill/stroke).
+
+#### Opacity — :white_check_mark: Complete
+
+`opacity: 0.4` (disabled) → `--ds-opacity-disabled`.
+
+#### Deferred / follow-up
+
+Hover colours (`green-700`/`yellow-700`/`red-700`/`grey-700`) keep `theme.palette` — **no `-hover`
+module token exists** and no semantic icon token resolves to the `-700` shades. Design-tokens follow-up:
+add `--ds-inline-alert-icon-{variant}-hover`.
+
+---
+
+### inline-edit + inline-select
+
+**Package:** `packages/components/inline-edit/` (both components live here)
+**Layer:** module (`--ds-inline-edit-*`, `--ds-inline-select-*`) + semantic (`text-base-disabled`,
+`background-base-default`)
+**Migrated in:** `chore/tokenisation` branch
+
+#### Colors — :white_check_mark: Complete
+
+Text/icon/background states tokenised to the respective module tokens; placeholder/disabled → semantic
+`text-base-disabled`; white backgrounds → semantic `background-base-default`. All exact matches, no
+visual diffs. `useTheme()` removed from `InlineEdit.tsx`.
+
+#### Deferred / follow-up
+
+- Focus/hover/error **gradient underlines** (`linear-gradient(...)`) keep `theme.palette` — decorative.
+- `:active` icon-wrapper background `grey-300` — no clean module/semantic token (`background-base-strong`
+  = grey-400). Deferred.
+- The `svg { color }` override rules were **not** converted to pure inheritance: the icon intentionally
+  takes a different colour than its text sibling in some states (converting would change behaviour) — the
+  hardcoded values inside them are now token-backed via the migrated helpers. **CSS-cleanup follow-up.**
+- :warning: `--ds-inline-select-icon-error` resolves to `icon-neutral-default` (**grey-500**) while the
+  component renders error icons **red-600** — the migration deliberately used the `text-*` tokens for the
+  SVG fill to preserve red. Confirm whether `icon-error` should point at a danger token upstream.
+
+---
+
+### progress-bar
+
+**Package:** `packages/components/progress-bar/`
+**Layer:** module (`--ds-progressbar-*`)
+**Migrated in:** `chore/tokenisation` branch
+
+#### Colors — :white_check_mark: Complete
+
+Track background (`ProgressBar` + `ProgressTiles`) → `--ds-progressbar-bar-bg-track`; percent value text
+→ `--ds-progressbar-header-value-color`. All exact matches, no visual diffs.
+
+#### Deferred / follow-up
+
+- Bar **fill** is `customColor` (user override) falling back to `green-500` — kept `theme.palette`;
+  **no `bar-fill` module token exists** (only a `success-solidhover` semantic, wrong state). Follow-up.
+- `Multivalue`/`ProgressTiles` use caller-supplied `color` props (not tokenisable) and a decorative
+  `border-right: 2px solid white` separator — left unchanged.
+
+---
+
+### status (status-pill)
+
+**Package:** `packages/components/status/`
+**Layer:** module (`--ds-status-pill-variant-*`)
+**Migrated in:** `chore/tokenisation` branch
+
+#### Colors — :white_check_mark: Complete
+
+A `TYPE_TO_TOKEN_VARIANT` map drives `variantText` / `variantBorder` helpers returning
+`var(--ds-status-pill-variant-*)`. The old code applied one colour to both text and border; the module
+tokens split them, so success/warning **borders** now use the `-600` shade while text keeps `-700`.
+`@synerise/ds-core` import removed.
+
+#### Visual diffs
+
+| Property | Current | Token resolves to | Delta |
+|----------|---------|-------------------|-------|
+| Success border | green-700 `#399903` | green-600 `#54cb0b` | Brighter (text unchanged) |
+| Warning border | yellow-700 `#eda600` | yellow-600 `#fab700` | Brighter (text unchanged) |
+
+#### Deferred
+
+`custom` type uses the caller's `color` prop (dynamic override) — kept as-is.
