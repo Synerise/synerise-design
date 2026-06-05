@@ -278,9 +278,7 @@ export const withFeatured: Story = {
 export const WithoutHover: Story = {
   args: {
     noHover: true,
-    prefixel: (
-      <Icon color={theme.palette['grey-700']} component={<CopyClipboardM />} />
-    ),
+    prefixel: <Icon component={<CopyClipboardM />} />,
     suffixel: <div>{'select'}</div>,
   },
 };
@@ -397,9 +395,7 @@ export const WithCopyable: Story = {
     },
   },
   args: {
-    prefixel: (
-      <Icon color={theme.palette['grey-700']} component={<CopyClipboardM />} />
-    ),
+    prefixel: <Icon component={<CopyClipboardM />} />,
     copyable: {
       copyValue: 'Copy test value',
       copiedLabel: 'Copied',

@@ -1,7 +1,5 @@
 import styled from 'styled-components';
 
-import { IconContainer } from '@synerise/ds-icon';
-
 import Text from '../Text/Text';
 import { Inner, PrefixWrapper, Wrapper } from '../Text/Text.styles';
 
@@ -19,7 +17,7 @@ export const DangerItem = styled(Text)`
         ${(props) =>
           !props.disabled &&
           `
-            ${PrefixWrapper} > ${IconContainer} {
+            ${PrefixWrapper} {
               color: var(--ds-list-item-role-delete-icon-hover);
             }
             background: var(--ds-list-item-role-delete-bg-hover);
@@ -29,7 +27,7 @@ export const DangerItem = styled(Text)`
         ${(props) =>
           !props.disabled &&
           `
-            ${PrefixWrapper} > ${IconContainer} {
+            ${PrefixWrapper} {
               color: var(--ds-list-item-role-delete-icon-focused);
             }
             background: var(--ds-list-item-role-delete-bg-focused) !important;

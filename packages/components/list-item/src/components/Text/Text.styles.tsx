@@ -1,8 +1,6 @@
 import { type ReactNode } from 'react';
 import styled, { css } from 'styled-components';
 
-import { IconContainer } from '@synerise/ds-icon';
-
 import { LIST_ITEM_SIZE_MAPPING } from '../../ListItem.const';
 import { type ItemSize } from '../../ListItem.types';
 import { INDENT_WIDTH } from './ItemLabel.const';
@@ -160,11 +158,9 @@ export const Wrapper = styled.div<StyledListItemProps>`
     featured &&
     css`
       && {
-        ${PrefixWrapper} > .ds-icon,
-      ${PrefixWrapper} ${IconContainer},
-      ${SuffixWrapper} > .ds-icon,
-      ${SuffixWrapper} ${IconContainer},
-      ${ArrowRight} svg,
+        ${PrefixWrapper},
+        ${SuffixWrapper},
+      ${ArrowRight},
       ${Content} {
           color: var(--ds-list-item-role-normal-text-active);
         }
@@ -174,11 +170,9 @@ export const Wrapper = styled.div<StyledListItemProps>`
       &:active,
       &:focus-visible:not(:active) {
         && {
-          ${PrefixWrapper} > .ds-icon,
-        ${PrefixWrapper} ${IconContainer},
-        ${SuffixWrapper} > .ds-icon,
-        ${SuffixWrapper} ${IconContainer},
-        ${ArrowRight} svg,
+          ${PrefixWrapper},
+          ${SuffixWrapper},
+        ${ArrowRight},
         ${Content} {
             color: var(--ds-color-text-brand-hover);
           }
@@ -193,10 +187,8 @@ export const Wrapper = styled.div<StyledListItemProps>`
       css`
         &:hover {
           && {
-            ${PrefixWrapper} > .ds-icon,
-          ${PrefixWrapper} ${IconContainer},
-          ${SuffixWrapper} > .ds-icon,
-          ${SuffixWrapper} ${IconContainer},
+            ${PrefixWrapper},
+            ${SuffixWrapper},
           ${Content} {
               color: var(--ds-list-item-role-normal-text-active);
             }
@@ -208,10 +200,8 @@ export const Wrapper = styled.div<StyledListItemProps>`
       css`
         &:hover {
           && {
-            ${PrefixWrapper} > .ds-icon,
-          ${PrefixWrapper} ${IconContainer},
-          ${SuffixWrapper} > .ds-icon,
-          ${SuffixWrapper} ${IconContainer},
+            ${PrefixWrapper},
+            ${SuffixWrapper},
           ${Content} {
               color: var(--ds-color-text-brand-hover);
             }
@@ -224,8 +214,7 @@ export const Wrapper = styled.div<StyledListItemProps>`
       ? css`
           cursor: not-allowed;
           opacity: var(--ds-list-item-states-disabled-opacity);
-          ${PrefixWrapper} > .ds-icon,
-          ${PrefixWrapper} ${IconContainer},
+          ${PrefixWrapper},
           ${ArrowRight} {
             color: var(--ds-list-item-role-normal-icon-default);
           }
@@ -237,11 +226,10 @@ export const Wrapper = styled.div<StyledListItemProps>`
           }
         `
       : css`
-		      ${PrefixWrapper} > .ds-icon {
+		      ${PrefixWrapper} {
             color: var(--ds-list-item-role-normal-icon-default);
           }
           &:hover {
- 
             ${Inner} {
               background: var(--ds-list-item-role-normal-bg-hover);
               ${
@@ -254,9 +242,7 @@ export const Wrapper = styled.div<StyledListItemProps>`
                   }
 
                   ${PrefixWrapper} {
-                    ${IconContainer} {
-                      color: var(--ds-list-item-role-normal-icon-hover);
-                    }
+                    color: var(--ds-list-item-role-normal-icon-hover);
                   }
                   ${ArrowRight} {
                     opacity: 1;
@@ -282,9 +268,7 @@ export const Wrapper = styled.div<StyledListItemProps>`
                   color: var(--ds-list-item-role-normal-text-active);
 
                   ${PrefixWrapper} {
-                    ${IconContainer} {
-                      color: var(--ds-list-item-role-normal-icon-active);
-                    }
+                    color: var(--ds-list-item-role-normal-icon-active);
                   }
                 `
               }

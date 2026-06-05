@@ -123,7 +123,6 @@ const ActionsMenu = ({ onSelectClick }) => {
     >
       <S.HoverableIconWrapper>
         <Icon
-          color={theme.palette['grey-400']}
           onClick={(e): void => {
             e.stopPropagation();
             setDropdownVisible(!dropdownVisible);
@@ -165,7 +164,6 @@ const Rename = ({ onSelectEdit }) => {
             onSelectEdit();
             e.stopPropagation();
           }}
-          color={theme.palette['grey-600']}
           component={<EditS />}
         />
       </S.HoverableIconWrapper>
@@ -206,7 +204,6 @@ const RenameWithDelete = ({ onClickEdit }) => {
               onClickEdit();
               e.stopPropagation();
             }}
-            color={theme.palette['grey-600']}
             component={<EditS />}
           />
         </S.HoverableIconWrapper>
@@ -249,24 +246,20 @@ export const renderPrefix = (
     case prefixType.twoIcons:
       return (
         <>
-          <Tooltip type="default" title={'Delete'}>
+          <Tooltip type="default" title={'Tooltip 1'}>
             <div>
-              <Icon color={theme.palette['grey-700']} component={<FolderM />} />
+              <Icon component={<FolderM />} />
             </div>
           </Tooltip>
-          <Tooltip type="default" title={'Delete'}>
+          <Tooltip type="default" title={'Tooltip 2'}>
             <div>
-              <Icon
-                color={theme.palette['grey-700']}
-                style={{ marginLeft: '8px' }}
-                component={<ShowM />}
-              />
+              <Icon style={{ marginLeft: '8px' }} component={<ShowM />} />
             </div>
           </Tooltip>
         </>
       );
     case prefixType.singleIcon:
-      return <Icon color={theme.palette['grey-700']} component={<ShowM />} />;
+      return <Icon component={<ShowM />} />;
     case prefixType.avatar:
       return (
         <Badge status="active">
@@ -314,7 +307,7 @@ export function renderSuffix(
     case suffixType.icon:
       return (
         <S.HoverableIconWrapper className="icon-suffix">
-          <Icon color={theme.palette['grey-600']} component={<UserS />} />
+          <Icon component={<UserS />} />
         </S.HoverableIconWrapper>
       );
     case suffixType.label:
