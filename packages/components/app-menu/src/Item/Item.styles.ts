@@ -32,7 +32,7 @@ export const ItemLink = styled.div`
   }
 
   &:hover {
-    background: ${(props): string => props.theme.palette['grey-050']};
+    background: var(--ds-app-menu-icon-bg-hover);
   }
 
   > a {

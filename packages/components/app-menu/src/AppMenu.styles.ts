@@ -1,13 +1,13 @@
 import styled from 'styled-components';
 
 export const MenuWrapper = styled.div<{ top: number }>`
-  background: ${(props): string => props.theme.palette.white};
+  background: var(--ds-app-menu-container-bg);
   height: calc(100% - ${(props): number => props.top}px);
   position: fixed;
   left: 0;
   top: ${(props): number => props.top}px;
   width: 60px;
-  box-shadow: 0 4px 12px 0 rgba(35, 41, 54, 0.04);
+  box-shadow: var(--ds-shadows-shadow-1);
   display: flex;
   flex-flow: column;
   align-items: center;
@@ -39,6 +39,6 @@ export const ItemsWrapper = styled.ul`
 
 export const ItemsDivider = styled.div`
   width: 40px;
-  border-bottom: 1px solid ${(props): string => props.theme.palette['grey-100']};
+  border-bottom: 1px solid var(--ds-color-border-base-subtle);
   flex: 1 1 auto;
 `;

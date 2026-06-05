@@ -4,7 +4,7 @@ export const Wrapper = styled.div`
   position: relative;
   height: 24px;
   width: 24px;
-  color: ${(props) => props.theme.palette['grey-600']};
+  color: var(--ds-app-menu-icon-defsult);
 
   .item__icon {
     position: absolute;

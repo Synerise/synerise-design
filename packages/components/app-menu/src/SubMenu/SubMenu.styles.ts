@@ -3,13 +3,13 @@ import styled, { css } from 'styled-components';
 import { macro } from '@synerise/ds-typography';
 
 export const MenuGroupWrapper = styled.div`
-  background: ${(props): string => props.theme.palette.white};
+  background: var(--ds-app-menu-container-bg);
   width: 262px;
   position: absolute;
   left: 61px;
   top: 0px;
   height: 100%;
-  border-left: 1px solid ${(props): string => props.theme.palette['grey-100']};
+  border-left: 1px solid var(--ds-color-border-base-subtle);
   padding: 12px;
   opacity: 0;
   visibility: hidden;
@@ -64,8 +64,8 @@ export const MenuGroupTitle = styled.h3`
 export const MenuGroupSubTitle = styled.h4`
   ${macro.h100};
   letter-spacing: 0.1px;
-  color: ${(props): string => props.theme.palette['grey-500']};
-  border-top: 1px dashed ${(props): string => props.theme.palette['grey-200']};
+  color: var(--ds-color-text-neutral-default);
+  border-top: 1px dashed var(--ds-app-menu-container-border-color);
   margin: 12px 12px 12px;
   padding-top: 12px;
   text-transform: uppercase;

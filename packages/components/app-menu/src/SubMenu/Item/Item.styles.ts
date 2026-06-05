@@ -21,8 +21,8 @@ export const Wrapper = styled.div`
 
   &:hover,
   &.sub-menu__item--active {
-    background: ${(props): string => props.theme.palette['grey-050']};
-    color: ${(props): string => props.theme.palette['blue-600']};
+    background: var(--ds-app-menu-icon-bg-hover);
+    color: var(--ds-color-text-brand-default);
     opacity: 1;
 
     ${ItemAction} {
