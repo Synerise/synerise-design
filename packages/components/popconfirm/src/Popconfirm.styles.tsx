@@ -3,13 +3,13 @@ import styled, { type StyledComponent } from 'styled-components';
 import Button, { type ButtonProps } from '@synerise/ds-button';
 
 export const PopconfirmContainer = styled.div`
-  box-shadow: ${(props) => props.theme.variables['box-shadow-2']};
+  box-shadow: var(--ds-shadows-shadow-2);
   max-width: 288px;
   padding: 16px;
   position: relative;
   z-index: 1;
   border-radius: 3px;
-  background-color: ${(props) => props.theme.palette.white};
+  background-color: var(--ds-popcornfirm-container-bg);
 `;
 
 export const PopconfirmContent = styled.div<{
@@ -69,7 +69,7 @@ export const PopconfirmContent = styled.div<{
 export const PopconfirmTitle = styled.div`
   font-size: 14px;
   line-height: 1.43;
-  color: ${(props) => props.theme.palette['grey-800']};
+  color: var(--ds-popcornfirm-header-text);
   font-weight: 500;
   padding-top: 2px;
   text-overflow: ellipsis;
@@ -108,7 +108,7 @@ export const PopconfirmDescription = styled.div<{ titlePadding?: boolean }>`
   line-height: 1.38;
   font-weight: 400;
   margin-top: ${(props) => (props.titlePadding ? '6px' : 'none')};
-  color: ${(props) => props.theme.palette['grey-800']};
+  color: var(--ds-popcornfirm-content-description);
 `;
 
 export const PopconfirmIcon = styled.div`
@@ -116,7 +116,7 @@ export const PopconfirmIcon = styled.div`
 `;
 export const PopconfirmCloseIcon = styled.div<{ titlePadding?: boolean }>`
   margin-left: ${(props) => (props.titlePadding ? '8px' : '6px')};
-  color: ${(props) => props.theme.palette['grey-600']};
+  color: var(--ds-popcornfirm-header-icon);
   cursor: pointer;
   border-radius: 3px;
 `;
@@ -137,7 +137,7 @@ export const PopconfirmArrowWrapper = styled.div`
   height: 0;
   position: absolute;
   z-index: 2;
-  color: ${(props) => props.theme.palette['white']};
+  color: var(--ds-popcornfirm-container-bg);
 
   &.ds-popover-arrow-bottom,
   &.ds-popover-arrow-bottom-end,
@@ -196,7 +196,7 @@ export const LinkWrapper = styled.span`
   font-size: 13px;
   line-height: 1.5;
   font-weight: 400;
-  color: ${(props) => props.theme.palette['grey-700']};
+  color: var(--ds-color-text-base-subtle);
   text-decoration: underline;
   cursor: pointer;
   max-width: 200px;

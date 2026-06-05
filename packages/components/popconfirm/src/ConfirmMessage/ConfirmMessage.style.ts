@@ -14,10 +14,10 @@ export const ConfirmMessage = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: ${(props): string => props.theme.palette.white};
+  background-color: var(--ds-color-background-base-default);
   padding: 16px;
   border-radius: 3px;
-  box-shadow: 0 16px 32px 0 rgba(35, 41, 54, 0.1);
+  box-shadow: var(--ds-shadows-shadow-2);
   ${IconContainer} {
     margin-right: 8px;
   }
