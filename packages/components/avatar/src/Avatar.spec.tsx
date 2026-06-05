@@ -95,7 +95,13 @@ describe('Avatar', () => {
 
     const avatar = container.querySelector('.ant-avatar');
 
-    expect(avatar).toHaveStyle('opacity: 0.4;pointer-events: none;');
+    expect(avatar).toHaveStyle('pointer-events: none;');
+    // opacity is driven by a CSS custom property; jsdom cannot resolve it via
+    // toHaveStyle (numeric prop), so assert the token is emitted in the styled output.
+    const injectedCss = Array.from(document.querySelectorAll('style'))
+      .map((style) => style.textContent || '')
+      .join('');
+    expect(injectedCss).toContain('opacity:var(--ds-avatar-disabled-opacity)');
   });
 
   it('should contain `ds-avatar` className', () => {

@@ -24,14 +24,14 @@ const applyBgColors = (
   props: ThemeProps & { backgroundColor?: string; backgroundColorHue?: string },
 ) => css`
   background: ${props.theme.palette[
-    `${props.backgroundColor}-${props.backgroundColorHue ? props.backgroundColorHue : '400'}`
+  `${props.backgroundColor}-${props.backgroundColorHue ? props.backgroundColorHue : '400'}`
   ]};
 `;
 
 const applyDisabledStyles = (props: { disabled?: boolean }) =>
   props.disabled &&
   css`
-    opacity: 0.4;
+    opacity: var(--ds-avatar-disabled-opacity);
     pointer-events: none;
   `;
 
@@ -139,7 +139,7 @@ const AvatarBase = forwardRef<HTMLSpanElement, AvatarProps & ExtraAvatarProps>(
   },
 );
 
-export const StyledAvatar = styled(AvatarBase)<ExtraAvatarProps>`
+export const StyledAvatar = styled(AvatarBase) <ExtraAvatarProps>`
   && {
     position: relative;
     display: inline-flex;
@@ -152,7 +152,7 @@ export const StyledAvatar = styled(AvatarBase)<ExtraAvatarProps>`
     min-width: 24px;
     vertical-align: middle;
     border-radius: 50%;
-    color: ${(props) => props.theme.palette.white};
+    color: var(--ds-color-text-onsolid-default) !important;
     user-select: none;
     transition: background 0.3s ease;
 
@@ -160,8 +160,8 @@ export const StyledAvatar = styled(AvatarBase)<ExtraAvatarProps>`
     ${(props) => applyDisabledStyles(props)};
 
     ${(props) =>
-      props.shape === 'square' &&
-      css`
+    props.shape === 'square' &&
+    css`
         border-radius: 8px;
       `};
 
@@ -171,7 +171,7 @@ export const StyledAvatar = styled(AvatarBase)<ExtraAvatarProps>`
       width: 100%;
       height: 100%;
       font-size: 11px;
-      color: ${(props) => props.theme.palette.white};
+      color: var(--ds-color-text-onsolid-default) !important;
       user-select: none;
       pointer-events: none;
       ${(props) => applyFontSize(props)};
@@ -201,16 +201,16 @@ export const StyledAvatar = styled(AvatarBase)<ExtraAvatarProps>`
     }
 
     ${(props) =>
-      (props.onClick || props.hasTooltip) &&
-      css`
+    (props.onClick || props.hasTooltip) &&
+    css`
         &:hover::before {
           opacity: 0.05;
         }
       `};
 
     ${(props) =>
-      props.onClick &&
-      css`
+    props.onClick &&
+    css`
         cursor: pointer;
 
         &:active::before {
@@ -228,11 +228,11 @@ export const StyledAvatar = styled(AvatarBase)<ExtraAvatarProps>`
     }
 
     ${(props) =>
-      props.hasStatus &&
-      css`
+    props.hasStatus &&
+    css`
         & ~ .ds-badge-dot {
           display: flex;
-          border: 2px solid ${props.theme.palette.white};
+          border: 2px solid var(--ds-color-background-base-default);
           box-sizing: border-box;
           width: 10px;
           height: 10px;
@@ -242,8 +242,8 @@ export const StyledAvatar = styled(AvatarBase)<ExtraAvatarProps>`
       `};
 
     ${(props) =>
-      props.size === 'medium' &&
-      css`
+    props.size === 'medium' &&
+    css`
         width: 40px;
         min-width: 40px;
         height: 40px;
@@ -254,8 +254,8 @@ export const StyledAvatar = styled(AvatarBase)<ExtraAvatarProps>`
       `};
 
     ${(props) =>
-      props.size === 'large' &&
-      css`
+    props.size === 'large' &&
+    css`
         width: 84px;
         min-width: 84px;
         height: 84px;
@@ -267,8 +267,8 @@ export const StyledAvatar = styled(AvatarBase)<ExtraAvatarProps>`
       `};
 
     ${(props) =>
-      props.size === 'extraLarge' &&
-      css`
+    props.size === 'extraLarge' &&
+    css`
         width: 120px;
         min-width: 120px;
         height: 120px;

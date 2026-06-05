@@ -1,7 +1,6 @@
 import React from 'react';
 
 import Badge from '@synerise/ds-badge';
-import { useTheme } from '@synerise/ds-core';
 import Icon, { UserM, UserS } from '@synerise/ds-icon';
 
 import Avatar from '../Avatar';
@@ -13,9 +12,6 @@ import {
   getDefaultAvatarIndex,
   getUserText,
 } from '../utils';
-
-export const DEFAULT_COLOR = 'grey';
-export const DEFAULT_COLOR_HUE = '500';
 
 const UserAvatar: React.FC<UserAvatarProps> = ({
   backgroundColor,
@@ -31,7 +27,6 @@ const UserAvatar: React.FC<UserAvatarProps> = ({
   style,
   ...restProps
 }) => {
-  const theme = useTheme();
   const {
     firstName = '',
     lastName = '',
@@ -59,7 +54,7 @@ const UserAvatar: React.FC<UserAvatarProps> = ({
       ? defaultTooltip
       : tooltip;
 
-  const iconColor = theme.palette[`${DEFAULT_COLOR}-${DEFAULT_COLOR_HUE}`];
+  const iconColor = 'var(--ds-color-icon-base-subtle)';
   const iconElement = addIconColor(iconComponent, iconColor);
 
   let icon: React.ReactNode = null;
@@ -70,7 +65,7 @@ const UserAvatar: React.FC<UserAvatarProps> = ({
     icon = iconElement || (
       <Icon
         component={size === 'small' ? <UserS /> : <UserM />}
-        color={theme.palette['grey-500']}
+        color="var(--ds-color-icon-base-subtle)"
       />
     );
   }
