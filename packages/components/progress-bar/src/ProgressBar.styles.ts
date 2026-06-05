@@ -19,7 +19,7 @@ export const ProgressWrapper = styled.div<{ $width: string; $thin: boolean }>`
   margin-right: 2px;
   width: ${(props) => props.$width};
   height: ${(props) => (props.$thin ? '4px' : '6px')};
-  background: ${(props) => props.theme.palette['grey-200']};
+  background: var(--ds-progressbar-bar-bg-track);
 `;
 
 export const ProgressOuter = styled.div`
@@ -45,7 +45,7 @@ export const ProgressBar = styled.div<{ customColor: string; $width: string }>`
 
 export const PercentWrapper = styled.div`
   margin-left: 8px;
-  color: ${(props) => props.theme.palette['grey-800']};
+  color: var(--ds-progressbar-header-value-color);
   font-weight: 400;
 `;
 
