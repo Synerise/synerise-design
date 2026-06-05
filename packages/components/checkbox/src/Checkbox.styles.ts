@@ -67,16 +67,16 @@ export const CheckboxInner = styled.span<{
       background-color: ${props.theme.palette['blue-600']};
       border-color: ${props.theme.palette['blue-600']};
       background-image: url('${checkSvgWithCustomColor(
-        props.theme.palette.white,
-      )}');
+      props.theme.palette.white,
+    )}');
     `}
 
   /* indeterminate — white horizontal bar */
   ${(props) =>
     props.$indeterminate &&
     css`
-      background-color: ${props.theme.palette['blue-600']};
-      border-color: ${props.theme.palette['blue-600']};
+      background-color: var(--ds-form-checkbox-bg-selected);
+      border-color: var(--ds-form-checkbox-border-color-blocked);
       background-image: none;
 
       &::after {
@@ -173,10 +173,10 @@ export const CheckboxLabel = styled.label<{
     !props.$disabled &&
     css`
       &:hover ${CheckboxInner} {
-        border-color: ${props.theme.palette['blue-600']};
+        border-color: var(--ds-form-checkbox-border-color-hover);
         background-image: url('${checkSvgWithCustomColor(
-          props.theme.palette['blue-600'],
-        )}');
+      props.theme.palette['blue-600'],
+    )}');
       }
     `}
 
@@ -191,8 +191,8 @@ export const CheckboxLabel = styled.label<{
 
   /* keyboard focus ring */
   ${CheckboxInput}:focus + ${CheckboxInner} {
-    border-color: ${(props) => props.theme.palette['blue-600']};
-    box-shadow: inset 0 0 0 1px ${(props) => props.theme.palette['blue-600']};
+    border-color: var(--ds-form-checkbox-border-color-focused);
+    box-shadow: inset 0 0 0 1px var(--ds-form-checkbox-border-color-focused);
   }
   ${(props) =>
     props.$error &&
