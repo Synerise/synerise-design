@@ -65,7 +65,9 @@ sync_tokens:
   stage: prepare
   needs: []
   rules:
-    - if: '$CI_PIPELINE_SOURCE == "pipeline" && $SYNC_TOKENS == "true"'
+    # design-tokens main sync uses a pipeline trigger token (source "trigger"); the MR
+    # preview still uses the `trigger:` keyword (source "pipeline"). Accept both.
+    - if: '$CI_PIPELINE_SOURCE =~ /^(pipeline|trigger)$/ && $SYNC_TOKENS == "true"'
   before_script:
     - !reference [.install_pnpm]
   script:
@@ -93,7 +95,7 @@ tokens_preview:
         - .nx
       policy: pull-push
   rules:
-    - if: '$CI_PIPELINE_SOURCE == "pipeline" && $PREVIEW_TOKENS == "true"'
+    - if: '$CI_PIPELINE_SOURCE =~ /^(pipeline|trigger)$/ && $PREVIEW_TOKENS == "true"'
   before_script:
     - !reference [.install_pnpm]
   script:
