@@ -2,6 +2,14 @@
 
 Tracks the progress of migrating components from `theme.palette` / hardcoded values to CSS custom properties generated from the Token Studio design tokens in `packages/tokens/`.
 
+> **Token sync `e0301675d` (design-tokens@1cd43721, 2026-06-08).** Cherry-picked onto this branch.
+> Value-only re-point of `modules/base.json` (58 refs changed, 14 `separator` tokens added, none
+> removed). Affects already-migrated code in two places: **divider** line colours (the previous
+> "Lighter" diffs are now resolved — see below) and **button** `primary-danger`/`primary-success`
+> focus rings (red/green → brand-blue). Radio dot/hover and secondary/ghost button values also changed
+> but live in deferred `.less` / deferred variants (notes refreshed below). No token referenced in code
+> was renamed or removed, so nothing fell back.
+
 ## Legend
 
 | Symbol | Meaning |
@@ -55,12 +63,12 @@ These components have dedicated token definitions in `modules/base.json`.
 | ai-chat | `app-menu` | :heavy_minus_sign: | :heavy_minus_sign: | :heavy_minus_sign: | :heavy_minus_sign: | — | No | no ai-chat markup yet — tokens unused |
 | [app-menu](#app-menu) | `app-menu` | :white_check_mark: | :white_check_mark: | :heavy_minus_sign: | :x: | 0 | No | shadow-1; all opacity is animation (deferred) |
 | [avatar](#avatar) | `avatar` | :white_check_mark: | :heavy_minus_sign: | :white_check_mark: | :x: | 0 | Yes (1) | static colors done; dynamic bg kept (user-driven) |
-| [buttons](#button) | `button` | :construction: | :construction: | :x: | :x: | 1 | No | :warning: primary/success/creator/toggle done; **secondary/tertiary/ghost deferred** (token redesign + suspected danger swap) |
+| [buttons](#button) | `button` | :construction: | :construction: | :x: | :x: | 3 | No | :warning: primary/success/creator/toggle done (danger/success focus ring → blue after sync `e0301675d`); **secondary/tertiary/ghost deferred** (token redesign + suspected danger swap) |
 | [button-expander](#button) | `button` | :white_check_mark: | :heavy_minus_sign: | :heavy_minus_sign: | :x: | 1 | — | bg/border/icon tokenised |
 | [card](#card) | `card` | :white_check_mark: | :construction: | :white_check_mark: | :x: | 0 | No | surface+shadow-1 done; active shadow + CardBadge dynamic deferred |
 | [card-select](#card-select) | `card-select` | :white_check_mark: | :white_check_mark: | :white_check_mark: | :x: | 4 | No | borders/shadow/opacity tokenised; check-token naming flagged for UX |
 | [description-line](#description) | `description` | :white_check_mark: | :heavy_minus_sign: | :heavy_minus_sign: | :heavy_minus_sign: | 0 | No | module + semantic; inactive star deferred |
-| [divider](#divider) | `divider` | :white_check_mark: | :heavy_minus_sign: | :heavy_minus_sign: | :x: | 2 | No | line + label tokenised |
+| [divider](#divider) | `divider` | :white_check_mark: | :heavy_minus_sign: | :heavy_minus_sign: | :x: | 0 | No | line + label tokenised; colour diffs resolved by sync `e0301675d` |
 | [form](#form-group-form--input--select--switch) | `form` / `input` / `checkbox` / `radio` / `switch` / `select` | :construction: | :construction: | :construction: | :x: | 4 | Yes (many) | TS migrated across all 6 packages; per-state styling in `.less` + data-URI SVGs deferred |
 | [inline-alert](#inline-alert) | `inline-alert` | :white_check_mark: | :heavy_minus_sign: | :white_check_mark: | :heavy_minus_sign: | 0 | No | 4 variants + text; hover deferred (no token) |
 | [inline-edit](#inline-edit--inline-select) | `inline-edit` | :white_check_mark: | :heavy_minus_sign: | :heavy_minus_sign: | :heavy_minus_sign: | 0 | No | text/icon tokenised; gradient underlines deferred |
@@ -384,12 +392,17 @@ parent's CSS `color` (no direct `fill`/`stroke` rules). `theme.palette` fully re
 #### Shadows / Opacity — :heavy_minus_sign: N/A
 #### Spacing — :x: Not started (dimension tokens for line height / header padding exist, out of scope)
 
-#### Visual diffs
+#### Visual diffs — none (resolved by sync `e0301675d`)
 
-| Property | Current | Token resolves to | Delta |
-|----------|---------|-------------------|-------|
-| Solid line | grey-300 `#dbe0e3` | grey-200 `#e9edee` | Lighter |
-| Dashed line | grey-400 `#b5bdc3` | grey-300 `#dbe0e3` | Lighter |
+The line colours were re-pointed upstream (`line.color.solid` `{border.base.default}` →
+`{border.base.strong}`; `line.color.dashed` `{border.base.strong}` → `{border.base.strongHover}`),
+so the tokens now resolve to the **exact** legacy stroke colours. The earlier "Lighter" diff was a
+token-vs-code gap that the sync closes — no code change needed.
+
+| Property | Legacy code | Token resolves to | Delta |
+|----------|-------------|-------------------|-------|
+| Solid line | grey-300 `#dbe0e3` | grey-300 `#dbe0e3` | Exact — no change |
+| Dashed line | grey-400 `#b5bdc3` | grey-400 `#b5bdc3` | Exact — no change |
 
 ---
 
@@ -818,6 +831,14 @@ Description text → `--ds-form-radio-text-description`; disabled opacity (label
 `#57616d` (darker, design-intended). **Deferred:** the radio dot/border/bg/hover/selected states live in
 `radio.mixin.less`.
 
+> **Sync `e0301675d` forward-note (affects the deferred `.less` work, not the migrated `.tsx`):** the
+> selected inner dot `--ds-form-radio-dot-color` was re-pointed `{background.base.default}` →
+> `{background.brand.solid}`, so it now resolves to **brand-blue `#0b68ff`** (was white) — a bug-fix.
+> The hover ring `--ds-form-radio-border-color-hover` was re-pointed `{background.brand.solid}` →
+> `{border.base.strongHover}`, now **grey-400 `#b5bdc3`** (was blue-600). The upstream token
+> `$description` strings still read "white"/"blue.600" and are **stale**. When the `radio.mixin.less`
+> migration lands, expect a grey hover ring + brand-blue selected dot — coordinate with design.
+
 > Follow-up: checkbox/radio can only be fully tokenised once the antd `.less` theming decision lands; the
 > data-URI check icons need a different mechanism (e.g. a real `<Icon>` or `mask` driven by `currentColor`).
 
@@ -841,14 +862,27 @@ assertions updated to the new token output.
 | Property | Current | Token resolves to | Delta |
 |----------|---------|-------------------|-------|
 | Expander disabled border | grey-200 `#e9edee` | `…-border-disabled` grey-300 `#dbe0e3` | Slightly darker |
+| Primary-danger focus ring | red-600 `#f52922` | `…-primary-danger-border-focus` → `focus.base.default` blue-600 `#0b68ff` | :warning: **red → brand-blue** (sync `e0301675d`) |
+| Primary-success focus ring | green-600 `#54cb0b` | `…-primary-success-border-focus` → `focus.base.default` blue-600 `#0b68ff` | :warning: **green → brand-blue** (sync `e0301675d`) |
+
+> The danger/success focus rings (applied via `Button.variants.ts`) now resolve to the unified brand-blue
+> focus colour instead of the per-variant red/green. Design-intended (single focus hue) but a visible
+> change to shipped buttons — flag for review. If per-variant focus rings must be kept, the
+> `…-border-focus` usage would need `theme.palette` instead.
 
 #### Deferred — needs design-tokens attention (90 palette refs remain)
 
 - **secondary / tertiary / ghost variants** (`Button.variants.ts`): the module tokens are a **structural
   redesign** — current code composites `rgba(grey-N, α)` via `rippleAlpha()`/`hexToRgbValues()`, while the
-  tokens are **solid** colours (secondary bg grey-050→grey-100, hover white→blue-050; tertiary text
-  grey-700→grey-600; ghost-secondary hover blue-600→grey-800, and **no `active` token**). Mapping would
-  break the ripple math and apply unverifiable changes. **Deferred.**
+  tokens are **solid** colours. Mapping would break the ripple math and apply unverifiable changes.
+  **Deferred.** Post-sync `e0301675d` resolved values (refreshed): `secondary.bg.default` grey-100 →
+  **grey-050** (`base.subtle`); `secondary.bg.active` blue-600 → **grey-400** (`base.strong`);
+  `secondary.bg.hover` → blue-050 (`brand.subtle`); ghost-primary/ghost-secondary `bg.hover`/`bg.active`
+  → **grey-400** (`base.strong`); ghost `bg.default` → `transparent`. `ghost-secondary.bg.active` now
+  **exists** (the earlier "no `active` token" gap is closed). Icon-state tokens were also re-pointed to the
+  `icon.*` semantic layer (e.g. `ghost-secondary.icon.*` → `icon.base.default`). **14 `separator` tokens**
+  (one per variant) were added — needed for segmented/dropdown dividers, not yet consumed. Values are still
+  **solid** (not rgba), so the ripple-math concern stands; needs a fresh design call before adopting.
 - :warning: **Suspected token bug:** `primary-danger` `bg-hover` resolves to red-700 and `bg-active` to
   red-600 — **swapped** vs the current (hover red-500, active red-700) and vs how other solid variants are
   ordered. Kept `theme.palette`; flag for design-tokens.
