@@ -99,27 +99,44 @@ const variantPrimary = (p: Palette) => css`
 `;
 
 const variantDefault = (p: Palette) => css`
-  ${buttonColor(p['grey-600'], p['grey-050'], p['grey-300'])}
+  ${buttonColor(
+    'var(--ds-buttons-variant-secondary-text-default)',
+    'var(--ds-buttons-variant-secondary-bg-default)',
+    'var(--ds-buttons-variant-secondary-border-default)',
+  )}
 
   .btn-focus {
-    box-shadow: inset 0 0 0 1px ${p['grey-300']};
+    box-shadow: inset 0 0 0 1px
+      var(--ds-buttons-variant-secondary-border-default);
   }
 
   &:hover {
-    ${buttonHover(p['blue-600'], p.white, p['grey-300'])}
+    ${buttonHover(
+      'var(--ds-buttons-variant-secondary-text-hover)',
+      'var(--ds-buttons-variant-secondary-bg-hover)',
+      'var(--ds-buttons-variant-secondary-border-hover)',
+    )}
   }
 
   &:focus-visible {
-    ${buttonColor(p['grey-600'], p['grey-050'], p['grey-300'])}
+    ${buttonColor(
+      'var(--ds-buttons-variant-secondary-text-focus)',
+      'var(--ds-buttons-variant-secondary-bg-focus)',
+      'var(--ds-buttons-variant-secondary-border-focus)',
+    )}
     .btn-focus {
-      box-shadow: inset 0 0 0 2px ${p['blue-600']};
+      box-shadow: inset 0 0 0 2px
+        var(--ds-buttons-variant-secondary-border-focus);
     }
   }
 
   &.pressed,
   &.active {
-    ${buttonColor(p['grey-600'], p['grey-100'], p['grey-100'])}
-    border-color: ${p['grey-300']};
+    ${buttonColor(
+      'var(--ds-buttons-variant-secondary-text-active)',
+      'var(--ds-buttons-variant-secondary-bg-active)',
+      'var(--ds-buttons-variant-secondary-border-active)',
+    )}
   }
 
   .btn-ripple {
@@ -127,48 +144,49 @@ const variantDefault = (p: Palette) => css`
   }
 
   ${buttonDisabled(
-    `rgba(${hexToRgbValues(p['grey-700'])}, 0.4)`,
-    `rgba(${hexToRgbValues(p['grey-050'])}, 0.4)`,
-    p['grey-200'],
+    'var(--ds-buttons-variant-secondary-text-disabled)',
+    'var(--ds-buttons-variant-secondary-bg-disabled)',
+    'var(--ds-buttons-variant-secondary-border-disabled)',
   )}
 `;
 
 const variantTertiary = (p: Palette) => css`
   ${buttonColor(
-    p['grey-700'],
-    `rgba(${hexToRgbValues(p['grey-400'])}, 0.15)`,
-    'transparent',
+    'var(--ds-buttons-variant-tertiary-text-default)',
+    'var(--ds-buttons-variant-tertiary-bg-default)',
+    'var(--ds-buttons-variant-tertiary-border-default)',
   )}
 
   .btn-focus {
-    box-shadow: inset 0 0 0 0px ${p['grey-300']};
+    box-shadow: inset 0 0 0 0px transparent;
   }
 
   &:hover {
     ${buttonHover(
-      p['grey-700'],
-      `rgba(${hexToRgbValues(p['grey-400'])}, 0.25)`,
-      'transparent',
+      'var(--ds-buttons-variant-tertiary-text-hover)',
+      'var(--ds-buttons-variant-tertiary-bg-hover)',
+      'var(--ds-buttons-variant-tertiary-border-hover)',
     )}
   }
 
   &:focus-visible {
     ${buttonColor(
-      p['grey-700'],
-      `rgba(${hexToRgbValues(p['grey-400'])}, 0.15)`,
-      `rgba(${hexToRgbValues(p['grey-400'])}, 0.15)`,
+      'var(--ds-buttons-variant-tertiary-text-focus)',
+      'var(--ds-buttons-variant-tertiary-bg-focus)',
+      'var(--ds-buttons-variant-tertiary-border-focus)',
     )}
     .btn-focus {
-      box-shadow: inset 0 0 0 2px ${p['blue-600']};
+      box-shadow: inset 0 0 0 2px
+        var(--ds-buttons-variant-tertiary-border-focus);
     }
   }
 
   &.pressed,
   &.active {
     ${buttonColor(
-      p['grey-700'],
-      `rgba(${hexToRgbValues(p['grey-400'])}, 0.35)`,
-      `rgba(${hexToRgbValues(p['grey-400'])}, 0.35)`,
+      'var(--ds-buttons-variant-tertiary-text-active)',
+      'var(--ds-buttons-variant-tertiary-bg-active)',
+      'var(--ds-buttons-variant-tertiary-bg-active)',
     )}
   }
 
@@ -180,48 +198,49 @@ const variantTertiary = (p: Palette) => css`
   }
 
   ${buttonDisabled(
-    `rgba(${hexToRgbValues(p['grey-700'])}, 0.4)`,
-    `rgba(${hexToRgbValues(p['grey-400'])}, 0.15)`,
-    'transparent',
+    'var(--ds-buttons-variant-tertiary-text-disabled)',
+    'var(--ds-buttons-variant-tertiary-bg-disabled)',
+    'var(--ds-buttons-variant-tertiary-border-disabled)',
   )}
 `;
 
 const variantTertiaryWhite = (p: Palette) => css`
   ${buttonColor(
-    p.white,
-    `rgba(${hexToRgbValues(p['grey-300'])}, 0.15)`,
-    'transparent',
+    'var(--ds-buttons-variant-tertiary-white-text-default)',
+    'var(--ds-buttons-variant-tertiary-white-bg-default)',
+    'var(--ds-buttons-variant-tertiary-white-border-default)',
   )}
 
   .btn-focus {
-    box-shadow: inset 0 0 0 0px ${p['blue-600']};
+    box-shadow: inset 0 0 0 0px transparent;
   }
 
   &:hover {
     ${buttonHover(
-      p.white,
-      `rgba(${hexToRgbValues(p['grey-300'])}, 0.25)`,
-      'transparent',
+      'var(--ds-buttons-variant-tertiary-white-text-hover)',
+      'var(--ds-buttons-variant-tertiary-white-bg-hover)',
+      'var(--ds-buttons-variant-tertiary-white-border-hover)',
     )}
   }
 
   &:focus-visible {
     ${buttonColor(
-      p.white,
-      `rgba(${hexToRgbValues(p['grey-300'])}, 0.15)`,
-      `rgba(${hexToRgbValues(p['grey-300'])}, 0.15)`,
+      'var(--ds-buttons-variant-tertiary-white-text-focus)',
+      'var(--ds-buttons-variant-tertiary-white-bg-focus)',
+      'var(--ds-buttons-variant-tertiary-white-border-focus)',
     )}
     .btn-focus {
-      box-shadow: inset 0 0 0 2px ${p['blue-600']};
+      box-shadow: inset 0 0 0 2px
+        var(--ds-buttons-variant-tertiary-white-border-focus);
     }
   }
 
   &.pressed,
   &.active {
     ${buttonColor(
-      p.white,
-      `rgba(${hexToRgbValues(p['grey-300'])}, 0.1)`,
-      `rgba(${hexToRgbValues(p['grey-300'])}, 0.1)`,
+      'var(--ds-buttons-variant-tertiary-white-text-default)',
+      'var(--ds-buttons-variant-tertiary-white-bg-active)',
+      'var(--ds-buttons-variant-tertiary-white-bg-active)',
     )}
   }
 
@@ -233,16 +252,19 @@ const variantTertiaryWhite = (p: Palette) => css`
   }
 
   ${buttonDisabled(
-    `rgba(255, 255, 255, 0.4)`,
-    `rgba(${hexToRgbValues(p['grey-300'])}, 0.15)`,
-    'transparent',
+    'var(--ds-buttons-variant-tertiary-white-text-disabled)',
+    'var(--ds-buttons-variant-tertiary-white-bg-disabled)',
+    'var(--ds-buttons-variant-tertiary-white-border-disabled)',
   )}
 `;
 
 const variantGhost = (p: Palette) => css`
-  ${buttonColor(p['grey-600'], 'transparent', 'transparent')}
+  ${buttonColor(
+    'var(--ds-buttons-variant-ghost-secondary-text-default)',
+    'var(--ds-buttons-variant-ghost-secondary-bg-default)',
+    'var(--ds-buttons-variant-ghost-secondary-border-default)',
+  )}
   box-shadow: none;
-  border-color: transparent;
 
   .btn-focus {
     box-shadow: inset 0 0 0 0px transparent;
@@ -250,25 +272,30 @@ const variantGhost = (p: Palette) => css`
 
   &:hover {
     ${buttonHover(
-      p['blue-600'],
-      `rgba(${hexToRgbValues(p['grey-400'])}, 0.25)`,
-      'transparent',
+      'var(--ds-buttons-variant-ghost-secondary-text-hover)',
+      'var(--ds-buttons-variant-ghost-secondary-bg-hover)',
+      'var(--ds-buttons-variant-ghost-secondary-border-hover)',
     )}
   }
 
   &:focus-visible {
-    ${buttonColor(p['grey-600'], 'transparent', 'transparent')}
+    ${buttonColor(
+      'var(--ds-buttons-variant-ghost-secondary-text-focus)',
+      'var(--ds-buttons-variant-ghost-secondary-bg-focus)',
+      'var(--ds-buttons-variant-ghost-secondary-border-focus)',
+    )}
     .btn-focus {
-      box-shadow: inset 0 0 0 2px ${p['blue-600']};
+      box-shadow: inset 0 0 0 2px
+        var(--ds-buttons-variant-ghost-secondary-border-focus);
     }
   }
 
   &.pressed,
   &.active {
     ${buttonColor(
-      p['grey-600'],
-      `rgba(${hexToRgbValues(p['grey-400'])}, 0.35)`,
-      `rgba(${hexToRgbValues(p['grey-400'])}, 0.35)`,
+      'var(--ds-buttons-variant-ghost-secondary-text-default)',
+      'var(--ds-buttons-variant-ghost-secondary-bg-active)',
+      'var(--ds-buttons-variant-ghost-secondary-bg-active)',
     )}
   }
 
@@ -280,14 +307,18 @@ const variantGhost = (p: Palette) => css`
   }
 
   ${buttonDisabled(
-    `rgba(${hexToRgbValues(p['grey-700'])}, 0.4)`,
-    'transparent',
-    'transparent',
+    'var(--ds-buttons-variant-ghost-secondary-text-disabled)',
+    'var(--ds-buttons-variant-ghost-secondary-bg-disabled)',
+    'var(--ds-buttons-variant-ghost-secondary-border-disabled)',
   )}
 `;
 
 const variantGhostPrimary = (p: Palette) => css`
-  ${buttonColor(p['blue-600'], 'transparent', 'transparent')}
+  ${buttonColor(
+    'var(--ds-buttons-variant-ghost-primary-text-default)',
+    'var(--ds-buttons-variant-ghost-primary-bg-default)',
+    'var(--ds-buttons-variant-ghost-primary-border-default)',
+  )}
 
   .btn-focus {
     box-shadow: inset 0 0 0 0px transparent;
@@ -295,25 +326,30 @@ const variantGhostPrimary = (p: Palette) => css`
 
   &:hover {
     ${buttonHover(
-      p['blue-600'],
-      `rgba(${hexToRgbValues(p['grey-400'])}, 0.25)`,
-      'transparent',
+      'var(--ds-buttons-variant-ghost-primary-text-hover)',
+      'var(--ds-buttons-variant-ghost-primary-bg-hover)',
+      'var(--ds-buttons-variant-ghost-primary-border-hover)',
     )}
   }
 
   &:focus-visible {
-    ${buttonColor(p['blue-600'], 'transparent', 'transparent')}
+    ${buttonColor(
+      'var(--ds-buttons-variant-ghost-primary-text-focus)',
+      'var(--ds-buttons-variant-ghost-primary-bg-focus)',
+      'var(--ds-buttons-variant-ghost-primary-border-focus)',
+    )}
     .btn-focus {
-      box-shadow: inset 0 0 0 2px ${p['blue-600']};
+      box-shadow: inset 0 0 0 2px
+        var(--ds-buttons-variant-ghost-primary-border-focus);
     }
   }
 
   &.pressed,
   &.active {
     ${buttonColor(
-      p['blue-600'],
-      `rgba(${hexToRgbValues(p['grey-400'])}, 0.35)`,
-      `rgba(${hexToRgbValues(p['grey-400'])}, 0.35)`,
+      'var(--ds-buttons-variant-ghost-primary-text-active)',
+      'var(--ds-buttons-variant-ghost-primary-bg-active)',
+      'var(--ds-buttons-variant-ghost-primary-bg-active)',
     )}
   }
 
@@ -325,14 +361,18 @@ const variantGhostPrimary = (p: Palette) => css`
   }
 
   ${buttonDisabled(
-    `rgba(${hexToRgbValues(p['blue-600'])}, 0.4)`,
-    'transparent',
-    'transparent',
+    'var(--ds-buttons-variant-ghost-primary-text-disabled)',
+    'var(--ds-buttons-variant-ghost-primary-bg-disabled)',
+    'var(--ds-buttons-variant-ghost-primary-border-disabled)',
   )}
 `;
 
 const variantGhostWhite = (p: Palette) => css`
-  ${buttonColor(p.white, 'transparent', 'transparent')}
+  ${buttonColor(
+    'var(--ds-buttons-variant-ghost-secondary-white-text-default)',
+    'var(--ds-buttons-variant-ghost-secondary-white-bg-default)',
+    'var(--ds-buttons-variant-ghost-secondary-white-border-default)',
+  )}
 
   .btn-focus {
     box-shadow: inset 0 0 0 0 transparent;
@@ -340,25 +380,30 @@ const variantGhostWhite = (p: Palette) => css`
 
   &:hover {
     ${buttonHover(
-      p.white,
-      `rgba(${hexToRgbValues(p['grey-500'])}, 0.25)`,
-      'transparent',
+      'var(--ds-buttons-variant-ghost-secondary-white-text-hover)',
+      'var(--ds-buttons-variant-ghost-secondary-white-bg-hover)',
+      'var(--ds-buttons-variant-ghost-secondary-white-border-hover)',
     )}
   }
 
   &:focus-visible {
-    ${buttonColor(p.white, 'transparent', 'transparent')}
+    ${buttonColor(
+      'var(--ds-buttons-variant-ghost-secondary-white-text-focus)',
+      'var(--ds-buttons-variant-ghost-secondary-white-bg-focus)',
+      'var(--ds-buttons-variant-ghost-secondary-white-border-focus)',
+    )}
     .btn-focus {
-      box-shadow: inset 0 0 0 2px ${p['blue-600']};
+      box-shadow: inset 0 0 0 2px
+        var(--ds-buttons-variant-ghost-secondary-white-border-focus);
     }
   }
 
   &.pressed,
   &.active {
     ${buttonColor(
-      p.white,
-      `rgba(${hexToRgbValues(p['grey-500'])}, 0.1)`,
-      `rgba(${hexToRgbValues(p['grey-500'])}, 0.1)`,
+      'var(--ds-buttons-variant-ghost-secondary-white-text-default)',
+      'var(--ds-buttons-variant-ghost-secondary-white-bg-active)',
+      'var(--ds-buttons-variant-ghost-secondary-white-bg-active)',
     )}
   }
 
@@ -369,7 +414,11 @@ const variantGhostWhite = (p: Palette) => css`
     );
   }
 
-  ${buttonDisabled('rgba(255, 255, 255, 0.4)', 'transparent', 'transparent')}
+  ${buttonDisabled(
+    'var(--ds-buttons-variant-ghost-secondary-white-text-disabled)',
+    'var(--ds-buttons-variant-ghost-secondary-white-bg-disabled)',
+    'var(--ds-buttons-variant-ghost-secondary-white-border-disabled)',
+  )}
 `;
 
 const variantDanger = (p: Palette) => css`

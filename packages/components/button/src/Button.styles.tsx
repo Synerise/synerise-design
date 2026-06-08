@@ -1,6 +1,5 @@
 import styled, { css, keyframes } from 'styled-components';
 
-import { type ThemeProps } from '@synerise/ds-core';
 import { IconContainer } from '@synerise/ds-icon';
 import DSTag from '@synerise/ds-tag';
 
@@ -16,16 +15,6 @@ const rippleInitialSize = 20;
 
 const splitTypes = ['secondary', 'tertiary'];
 
-const pressedStyles = (props: ThemeProps) => css`
-  color: ${props.theme.palette['blue-600']};
-  background: ${props.theme.palette['blue-100']};
-  &.ant-btn .btn-focus {
-    box-shadow: inset 0 0 0 1px ${props.theme.palette['blue-300']};
-  }
-  ${ButtonLabel} > .ds-icon:before {
-    background-color: ${props.theme.palette['blue-200']};
-  }
-`;
 const spinnerAnimation = keyframes`
   from {
     transform: rotateZ(0deg);
@@ -175,18 +164,26 @@ export const StyledButton = styled(BaseButton)<StyledButtonProps>`
         background-color: ${(props): string => props.theme.palette['blue-100']};
       }
       &.pressed {
-        ${(props) => pressedStyles(props)}
-        color: ${(props): string => props.theme.palette['blue-600']};
+        color: var(--ds-buttons-variant-secondary-text-active);
+        background: var(--ds-buttons-variant-secondary-bg-active);
+        &.ant-btn .btn-focus {
+          box-shadow: inset 0 0 0 1px
+            ${(props): string => props.theme.palette['blue-300']};
+        }
+        ${ButtonLabel} > .ds-icon:before {
+          background-color: ${(props): string =>
+            props.theme.palette['blue-200']};
+        }
       }
       &:focus-visible:not(.pressed) {
         color: ${(props): string =>
           props.error
             ? props.theme.palette['red-600']
-            : props.theme.palette['grey-600']};
-        background: ${(props): string => props.theme.palette['grey-050']};
+            : 'var(--ds-buttons-variant-secondary-text-focus)'};
+        background: var(--ds-buttons-variant-secondary-bg-focus);
       }
       &:hover:not(:disabled):not(:focus-visible):not(.pressed) {
-        background-color: ${(props): string => props.theme.palette['blue-050']};
+        background-color: var(--ds-buttons-variant-secondary-bg-hover);
         &.ant-btn .btn-focus {
           box-shadow: inset 0 0 0 1px
             ${(props): string => props.theme.palette['blue-300']};
