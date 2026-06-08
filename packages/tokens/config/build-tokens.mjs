@@ -1,4 +1,5 @@
 import StyleDictionary from 'style-dictionary';
+import { outputReferencesTransformed } from 'style-dictionary/utils';
 import { register } from '@tokens-studio/sd-transforms';
 import { readFileSync, writeFileSync, mkdirSync, existsSync } from 'node:fs';
 import { resolve, dirname } from 'node:path';
@@ -232,7 +233,10 @@ for (const [themeName, cfg] of Object.entries(themes)) {
             filter: 'includedTypes',
             options: {
               selector: cfg.selector,
-              outputReferences: true,
+              // Keep the var() chain for pass-through references, but inline tokens whose value was
+              // transformed (e.g. Token Studio `modify: alpha`) — `outputReferences: true` would emit
+              // the base var() and silently drop the alpha. See button translucent bg + translucent.*.
+              outputReferences: outputReferencesTransformed,
             },
           },
         ],
