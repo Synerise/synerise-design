@@ -174,7 +174,13 @@ preview_synerise_design:
 - **Build gate**: rebuilds `@synerise/ds-tokens` before pushing; the non-empty-output assertion
   fails the job if the CSS would be empty, so a broken branch is never opened.
 - **Rolling MR**: a single `chore/design-tokens-sync` branch is force-pushed and its MR refreshed, so the
-  reviewer always sees "current tokens vs master" in one Chromatic thread.
+  reviewer always sees "current tokens vs the target branch" in one Chromatic thread. The MR targets
+  the branch the sync ran on (`CI_COMMIT_REF_NAME`, override `SYNC_MR_TARGET_BRANCH`) — normally
+  `master`, but **`chore/tokenisation` during the interim** while tokenisation is not yet in master
+  (auto-reverts to `master` when the trigger ref does; the target is updated on existing MRs too).
+  An MR targeting `chore/tokenisation` still runs the full MR pipeline incl. `chromatic_publish` —
+  those jobs gate only on `merge_request_event`, and the token-sync specials key on the *source*
+  branch (`chore/design-tokens-sync`), so neither depends on the target.
 - **No premature publish**: the sync commit/MR title is `chore(tokens): sync …`, never
   `build: publish`, so merging it does not trigger `publish_packages`. The next normal release
   (`lerna version` → `build: publish`) picks up the changed package files and publishes.

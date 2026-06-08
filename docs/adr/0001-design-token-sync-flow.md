@@ -39,9 +39,18 @@ The merged **commit SHA** is forwarded downstream (`TRIGGER_SOURCE_SHA`) so the 
 ### 2. One rolling MR, force-updated per change
 
 The worker force-pushes a single rolling branch `chore/design-tokens-sync` and creates **or
-refreshes** one open MR against `master`. The reviewer always sees "current tokens vs master" in
-one Chromatic thread instead of a pile of one-shot MRs. The MR is created with `squash: true` and
+refreshes** one open MR. The reviewer always sees "current tokens vs the target branch" in one
+Chromatic thread instead of a pile of one-shot MRs. The MR is created with `squash: true` and
 `remove_source_branch: true`.
+
+The MR **target** is the branch the sync ran on (`CI_COMMIT_REF_NAME`, overridable via
+`SYNC_MR_TARGET_BRANCH`), so the diff is exactly the token commit. Normally that is `master`;
+**during the interim while tokenisation is not yet in `master`** the trigger fires on
+`chore/tokenisation`, so the MR targets `chore/tokenisation` — and auto-reverts to `master` when
+the trigger ref does. The target is also set on *update*, so an existing rolling MR is retargeted
+if the target changes. An MR targeting `chore/tokenisation` still runs the full MR pipeline
+(`install → build_packages → chromatic_publish`): those jobs gate only on `merge_request_event`
+with no target-branch condition, and the token-sync specials key on the *source* branch.
 
 ### 3. The sync MR never bumps the package version
 

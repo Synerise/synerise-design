@@ -22,6 +22,7 @@
 #   CI_PROJECT_ID           target project id                    (default: 1171)
 #   CI_API_V4_URL           GitLab API base                      (default: https://$GITLAB_HOST/api/v4)
 #   SYNC_BRANCH             rolling branch name                  (default: chore/design-tokens-sync)
+#   SYNC_MR_TARGET_BRANCH   target branch for the rolling MR     (default: $CI_COMMIT_REF_NAME, else master)
 #   DRY_RUN                 skip push + MR (mirror/build only)
 #   SKIP_BUILD             skip the build gate (local dry-run only)
 #
@@ -37,6 +38,11 @@ CI_API_V4_URL="${CI_API_V4_URL:-https://${GITLAB_HOST}/api/v4}"
 # Must match the repo's branch-name policy: (feature|hotfix|bugfix|fix|chore|test|docs|
 # refactor|renovate|dev|master|beta|release)/*
 SYNC_BRANCH="${SYNC_BRANCH:-chore/design-tokens-sync}"
+# Target branch for the rolling MR. Defaults to the ref this sync ran on (CI_COMMIT_REF_NAME),
+# so the MR's diff is just the token commit. While tokenisation is not yet in master the trigger
+# fires on chore/tokenisation, so the MR targets chore/tokenisation; once the trigger ref reverts
+# to master this auto-targets master. Override with SYNC_MR_TARGET_BRANCH.
+SYNC_MR_TARGET_BRANCH="${SYNC_MR_TARGET_BRANCH:-${CI_COMMIT_REF_NAME:-master}}"
 
 REPO_ROOT="$(git rev-parse --show-toplevel)"
 DST="${REPO_ROOT}/packages/tokens/tokens"
@@ -170,13 +176,14 @@ git push -f -o ci.skip \
   "https://oauth2:${PUSH_TOKEN}@${TARGET_HOST}/${TARGET_PATH}.git" "HEAD:${SYNC_BRANCH}"
 
 # ── 6. Create or refresh the rolling MR (Node fetch — no curl/jq dependency) ─────
-log "Creating/refreshing rolling MR"
+log "Creating/refreshing rolling MR (target: ${SYNC_MR_TARGET_BRANCH})"
 MR_API="${CI_API_V4_URL}/projects/${CI_PROJECT_ID}/merge_requests" \
-MR_TOKEN="$PUSH_TOKEN" MR_BRANCH="$SYNC_BRANCH" \
+MR_TOKEN="$PUSH_TOKEN" MR_BRANCH="$SYNC_BRANCH" MR_TARGET="$SYNC_MR_TARGET_BRANCH" \
 MR_TITLE="$TITLE" MR_DESC="$DESCRIPTION" MR_PROJECT_URL="$PROJECT_URL" node <<'NODE'
 const api = process.env.MR_API;
 const headers = { 'PRIVATE-TOKEN': process.env.MR_TOKEN, 'Content-Type': 'application/json' };
 const branch = process.env.MR_BRANCH;
+const target = process.env.MR_TARGET;
 const body = { title: process.env.MR_TITLE, description: process.env.MR_DESC };
 
 const main = async () => {
@@ -191,7 +198,9 @@ const main = async () => {
     const res = await fetch(`${api}/${open[0].iid}`, {
       method: 'PUT',
       headers,
-      body: JSON.stringify(body),
+      // include target_branch so an existing rolling MR is retargeted if the target changed
+      // (e.g. master -> chore/tokenisation during the interim, or back again).
+      body: JSON.stringify({ ...body, target_branch: target }),
     });
     if (!res.ok) throw new Error(`update MR failed: ${res.status} ${await res.text()}`);
     console.log(`Updated: ${process.env.MR_PROJECT_URL}/-/merge_requests/${open[0].iid}`);
@@ -202,7 +211,7 @@ const main = async () => {
       body: JSON.stringify({
         ...body,
         source_branch: branch,
-        target_branch: 'master',
+        target_branch: target,
         squash: true,
         remove_source_branch: true,
       }),
