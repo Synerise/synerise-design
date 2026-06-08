@@ -6,7 +6,7 @@
           "default": {
             "$type": "color",
             "$value": "{color.background.brand.solid}",
-            "$description": "Primary button background color for default state"
+            "$description": "Primary button background color for default state (sync test 5)"
           },
           "hover": {
             "$type": "color",
@@ -24,15 +24,6 @@
             "$description": "Primary button background color for active/selected state (same as default for solid variant)"
           },
           "disabled": {
-            "$extensions": {
-              "studio.tokens": {
-                "modify": {
-                  "type": "alpha",
-                  "value": "0.4",
-                  "space": "srgb"
-                }
-              }
-            },
             "$type": "color",
             "$value": "{color.background.brand.solid}",
             "$description": "Primary button background color for disabled state (same as default, opacity applied separately)"
@@ -60,15 +51,6 @@
             "$description": "Primary button text color for active/selected state (same as default for solid variant)"
           },
           "disabled": {
-            "$extensions": {
-              "studio.tokens": {
-                "modify": {
-                  "type": "alpha",
-                  "value": "0.4",
-                  "space": "srgb"
-                }
-              }
-            },
             "$type": "color",
             "$value": "{color.text.onSolid.brand}",
             "$description": "Primary button text color for disabled state (same as default, opacity applied separately)"
@@ -96,15 +78,6 @@
             "$description": "Primary button icon color for active/selected state (same as default for solid variant)"
           },
           "disabled": {
-            "$extensions": {
-              "studio.tokens": {
-                "modify": {
-                  "type": "alpha",
-                  "value": "0.4",
-                  "space": "srgb"
-                }
-              }
-            },
             "$type": "color",
             "$value": "{color.text.onSolid.brand}",
             "$description": "Primary button icon color for disabled state (same as default, opacity applied separately)"
@@ -132,19 +105,15 @@
             "$description": "Primary button border color for active/selected state (transparent for solid variant)"
           },
           "disabled": {
-            "$extensions": {
-              "studio.tokens": {
-                "modify": {
-                  "type": "alpha",
-                  "value": "0.4",
-                  "space": "srgb"
-                }
-              }
-            },
             "$type": "color",
             "$value": "{color.transparent}",
             "$description": "Primary button border color for disabled state (transparent)"
           }
+        },
+        "separator": {
+          "$type": "color",
+          "$value": "{color.background.brand.solidHover}",
+          "$description": "Separator between label and icon-right in split button — primary variant (blue.500)"
         }
       },
       "primary-danger": {
@@ -242,7 +211,7 @@
           },
           "focus": {
             "$type": "color",
-            "$value": "{color.border.danger.default}",
+            "$value": "{color.focus.base.default}",
             "$description": "Primary danger button border color for focus state (red-600, 2px width)"
           },
           "active": {
@@ -255,6 +224,11 @@
             "$value": "{color.transparent}",
             "$description": "Primary danger button border color for disabled state (transparent)"
           }
+        },
+        "separator": {
+          "$type": "color",
+          "$value": "{color.background.danger.solidHover}",
+          "$description": "Separator for split danger button"
         }
       },
       "primary-success": {
@@ -352,7 +326,7 @@
           },
           "focus": {
             "$type": "color",
-            "$value": "{color.border.success.default}",
+            "$value": "{color.focus.base.default}",
             "$description": "Primary success button border color for focus state (green-600, 2px width)"
           },
           "active": {
@@ -365,13 +339,18 @@
             "$value": "{color.transparent}",
             "$description": "Primary success button border color for disabled state (transparent)"
           }
+        },
+        "separator": {
+          "$type": "color",
+          "$value": "{color.background.success.solidHover}",
+          "$description": "Separator for split success button"
         }
       },
       "secondary": {
         "bg": {
           "default": {
             "$type": "color",
-            "$value": "{color.background.base.muted}",
+            "$value": "{color.background.base.subtle}",
             "$description": "Secondary button background color for default state"
           },
           "hover": {
@@ -386,7 +365,7 @@
           },
           "active": {
             "$type": "color",
-            "$value": "{color.background.brand.solid}",
+            "$value": "{color.background.base.strong}",
             "$description": "Secondary button background color for active/selected state (blue background for toggle)"
           },
           "disabled": {
@@ -462,7 +441,7 @@
           },
           "focus": {
             "$type": "color",
-            "$value": "{outline.color.focus.secondary}",
+            "$value": "{color.focus.base.default}",
             "$description": "Secondary button border color for focus state (blue-600, 2px width)"
           },
           "active": {
@@ -475,6 +454,11 @@
             "$value": "{color.border.base.default}",
             "$description": "Secondary button border color for disabled state (same as default, opacity applied separately)"
           }
+        },
+        "separator": {
+          "$type": "color",
+          "$value": "{color.border.base.strong}",
+          "$description": "Separator for split secondary button (grey.100)"
         }
       },
       "tertiary": {
@@ -615,12 +599,17 @@
           },
           "focus": {
             "$type": "color",
-            "$value": "{outline.color.focus.secondary}"
+            "$value": "{color.focus.base.default}"
           },
           "disabled": {
             "$type": "color",
             "$value": "{color.border.base.none}"
           }
+        },
+        "separator": {
+          "$type": "color",
+          "$value": "{color.border.base.default}",
+          "$description": "Separator for split tertiary button (grey.100)"
         }
       },
       "ghost-primary": {
@@ -682,7 +671,7 @@
           },
           "focus": {
             "$type": "color",
-            "$value": "{color.text.base.muted}",
+            "$value": "{color.text.brand.default}",
             "$description": "Ghost primary button text color for focus state"
           },
           "active": {
@@ -692,7 +681,7 @@
           },
           "disabled": {
             "$type": "color",
-            "$value": "{color.text.base.muted}",
+            "$value": "{color.text.brand.default}",
             "$description": "Ghost primary button text color for disabled state (same as default, opacity applied separately)"
           }
         },
@@ -704,22 +693,22 @@
           },
           "hover": {
             "$type": "color",
-            "$value": "{color.text.brand.default}",
+            "$value": "{color.icon.brand.default}",
             "$description": "Ghost primary button icon color for hover state"
           },
           "focus": {
             "$type": "color",
-            "$value": "{color.text.base.muted}",
+            "$value": "{color.icon.brand.default}",
             "$description": "Ghost primary button icon color for focus state"
           },
           "active": {
             "$type": "color",
-            "$value": "{color.background.brand.solid}",
+            "$value": "{color.icon.brand.default}",
             "$description": "Ghost primary button icon color for active/selected state (blue icon for toggle)"
           },
           "disabled": {
             "$type": "color",
-            "$value": "{color.text.base.muted}",
+            "$value": "{color.icon.brand.default}",
             "$description": "Ghost primary button icon color for disabled state (same as default, opacity applied separately)"
           }
         },
@@ -734,12 +723,17 @@
           },
           "focus": {
             "$type": "color",
-            "$value": "{outline.color.focus.secondary}"
+            "$value": "{color.focus.base.default}"
           },
           "disabled": {
             "$type": "color",
             "$value": "{color.border.base.none}"
           }
+        },
+        "separator": {
+          "$type": "color",
+          "$value": "{avatar.border.color.default}",
+          "$description": "Separator for split ghost-primary button (grey.100)"
         }
       },
       "ghost-primary-danger": {
@@ -778,7 +772,7 @@
           },
           "hover": {
             "$type": "color",
-            "$value": "{color.background.danger.solid}",
+            "$value": "{color.text.danger.default}",
             "$description": "Ghost primary danger button text color for hover state"
           },
           "focus": {
@@ -800,27 +794,27 @@
         "icon": {
           "default": {
             "$type": "color",
-            "$value": "{color.text.danger.default}",
+            "$value": "{color.icon.danger.default}",
             "$description": "Ghost primary danger button icon color for default state"
           },
           "hover": {
             "$type": "color",
-            "$value": "{color.background.danger.solid}",
+            "$value": "{color.icon.danger.default}",
             "$description": "Ghost primary danger button icon color for hover state"
           },
           "focus": {
             "$type": "color",
-            "$value": "{color.text.danger.default}",
+            "$value": "{color.icon.danger.default}",
             "$description": "Ghost primary danger button icon color for focus state"
           },
           "active": {
             "$type": "color",
-            "$value": "{color.text.danger.default}",
+            "$value": "{color.icon.danger.default}",
             "$description": "Ghost primary danger button icon color for active/selected state"
           },
           "disabled": {
             "$type": "color",
-            "$value": "{color.text.danger.default}",
+            "$value": "{color.icon.danger.default}",
             "$description": "Ghost primary danger button icon color for disabled state (same as default, opacity applied separately)"
           }
         },
@@ -835,13 +829,18 @@
           },
           "focus": {
             "$type": "color",
-            "$value": "{color.text.danger.default}",
+            "$value": "{color.focus.base.default}",
             "$description": "Ghost primary danger button border color for focus state (red-600, 2px width)"
           },
           "disabled": {
             "$type": "color",
             "$value": "{color.border.base.none}"
           }
+        },
+        "separator": {
+          "$type": "color",
+          "$value": "{color.border.base.default}",
+          "$description": "Separator for split ghost-primary-danger button"
         }
       },
       "ghost-primary-success": {
@@ -880,7 +879,7 @@
           },
           "hover": {
             "$type": "color",
-            "$value": "{color.background.success.solid}",
+            "$value": "{color.text.success.default}",
             "$description": "Ghost primary success button text color for hover state"
           },
           "focus": {
@@ -902,27 +901,27 @@
         "icon": {
           "default": {
             "$type": "color",
-            "$value": "{color.text.success.default}",
+            "$value": "{color.icon.success.default}",
             "$description": "Ghost primary success button icon color for default state"
           },
           "hover": {
             "$type": "color",
-            "$value": "{color.background.success.solid}",
+            "$value": "{color.icon.success.default}",
             "$description": "Ghost primary success button icon color for hover state"
           },
           "focus": {
             "$type": "color",
-            "$value": "{color.text.success.default}",
+            "$value": "{color.icon.success.default}",
             "$description": "Ghost primary success button icon color for focus state"
           },
           "active": {
             "$type": "color",
-            "$value": "{color.text.success.default}",
+            "$value": "{color.icon.success.default}",
             "$description": "Ghost primary success button icon color for active/selected state"
           },
           "disabled": {
             "$type": "color",
-            "$value": "{color.text.success.default}",
+            "$value": "{color.icon.success.default}",
             "$description": "Ghost primary success button icon color for disabled state (same as default, opacity applied separately)"
           }
         },
@@ -937,13 +936,18 @@
           },
           "focus": {
             "$type": "color",
-            "$value": "{color.text.success.default}",
+            "$value": "{color.focus.base.default}",
             "$description": "Ghost primary success button border color for focus state (green-600, 2px width)"
           },
           "disabled": {
             "$type": "color",
             "$value": "{color.border.base.none}"
           }
+        },
+        "separator": {
+          "$type": "color",
+          "$value": "{color.border.base.default}",
+          "$description": "Separator for split ghost-primary-success button"
         }
       },
       "ghost-secondary": {
@@ -999,15 +1003,15 @@
           },
           "hover": {
             "$type": "color",
-            "$value": "{color.text.base.default}"
+            "$value": "{color.text.base.muted}"
           },
           "focus": {
             "$type": "color",
-            "$value": "{color.text.base.default}"
+            "$value": "{color.text.base.muted}"
           },
           "disabled": {
             "$type": "color",
-            "$value": "{color.text.base.default}"
+            "$value": "{color.text.base.muted}"
           }
         },
         "border": {
@@ -1021,7 +1025,7 @@
           },
           "focus": {
             "$type": "color",
-            "$value": "{outline.color.focus.secondary}"
+            "$value": "{color.focus.base.default}"
           },
           "disabled": {
             "$type": "color",
@@ -1031,20 +1035,25 @@
         "icon": {
           "default": {
             "$type": "color",
-            "$value": "{color.text.base.muted}"
+            "$value": "{color.icon.base.default}"
           },
           "hover": {
             "$type": "color",
-            "$value": "{color.text.base.default}"
+            "$value": "{color.icon.base.default}"
           },
           "focus": {
             "$type": "color",
-            "$value": "{color.text.base.default}"
+            "$value": "{color.icon.base.default}"
           },
           "disabled": {
             "$type": "color",
-            "$value": "{color.text.base.default}"
+            "$value": "{color.icon.base.default}"
           }
+        },
+        "separator": {
+          "$type": "color",
+          "$value": "{color.border.base.default}",
+          "$description": "Separator for split ghost-secondary button (grey.100)"
         }
       },
       "ghost-secondary-white": {
@@ -1096,37 +1105,37 @@
         "text": {
           "default": {
             "$type": "color",
-            "$value": "{color.mono.00}"
+            "$value": "{color.text.onSolid.default}"
           },
           "hover": {
             "$type": "color",
-            "$value": "{color.mono.00}"
+            "$value": "{color.text.onSolid.default}"
           },
           "focus": {
             "$type": "color",
-            "$value": "{color.mono.00}"
+            "$value": "{color.text.onSolid.default}"
           },
           "disabled": {
             "$type": "color",
-            "$value": "{color.mono.00}"
+            "$value": "{color.text.onSolid.default}"
           }
         },
         "icon": {
           "default": {
             "$type": "color",
-            "$value": "{color.mono.00}"
+            "$value": "{color.icon.onSolid.default}"
           },
           "hover": {
             "$type": "color",
-            "$value": "{color.mono.00}"
+            "$value": "{color.icon.onSolid.default}"
           },
           "focus": {
             "$type": "color",
-            "$value": "{color.mono.00}"
+            "$value": "{color.icon.onSolid.default}"
           },
           "disabled": {
             "$type": "color",
-            "$value": "{color.mono.00}"
+            "$value": "{color.icon.onSolid.default}"
           }
         },
         "border": {
@@ -1140,12 +1149,26 @@
           },
           "focus": {
             "$type": "color",
-            "$value": "{outline.color.focus.secondary}"
+            "$value": "{color.focus.base.default}"
           },
           "disabled": {
             "$type": "color",
             "$value": "{color.border.base.none}"
           }
+        },
+        "separator": {
+          "$extensions": {
+            "studio.tokens": {
+              "modify": {
+                "type": "alpha",
+                "value": "0.10",
+                "space": "srgb"
+              }
+            }
+          },
+          "$type": "color",
+          "$value": "{color.background.base.default}",
+          "$description": "Separator for split ghost-secondary-white button (white)"
         }
       },
       "tertiary-white": {
@@ -1268,12 +1291,26 @@
           },
           "focus": {
             "$type": "color",
-            "$value": "{outline.color.focus.secondary}"
+            "$value": "{color.focus.base.default}"
           },
           "disabled": {
             "$type": "color",
             "$value": "{color.border.base.none}"
           }
+        },
+        "separator": {
+          "$extensions": {
+            "studio.tokens": {
+              "modify": {
+                "type": "alpha",
+                "value": "0.25",
+                "space": "srgb"
+              }
+            }
+          },
+          "$type": "color",
+          "$value": "{color.border.base.strong}",
+          "$description": "Separator for split tertiary-white button (white)"
         }
       },
       "custom-color": {
@@ -1300,13 +1337,6 @@
           },
           "disabled": {
             "$extensions": {
-              "studio.tokens": {
-                "modify": {
-                  "type": "alpha",
-                  "value": "0.4",
-                  "space": "srgb"
-                }
-              },
               "com.figma.scopes": [
                 "ALL_FILLS",
                 "FRAME_FILL"
@@ -1384,7 +1414,7 @@
           },
           "focus": {
             "$type": "color",
-            "$value": "{color.border.custom.default}",
+            "$value": "{color.focus.base.strong}",
             "$description": "Custom-color button border focus"
           },
           "active": {
@@ -1397,6 +1427,11 @@
             "$value": "{color.transparent}",
             "$description": "Custom-color button border disabled — transparent"
           }
+        },
+        "separator": {
+          "$type": "color",
+          "$value": "{color.background.custom.solidHover}",
+          "$description": "Separator for split custom-color button — uses brand solidHover as fallback"
         }
       },
       "ghost-custom-color": {
@@ -1458,7 +1493,7 @@
           },
           "focus": {
             "$type": "color",
-            "$value": "{color.text.base.muted}",
+            "$value": "{color.text.custom.default}",
             "$description": "Ghost-custom-color text focus"
           },
           "active": {
@@ -1468,7 +1503,7 @@
           },
           "disabled": {
             "$type": "color",
-            "$value": "{color.text.base.muted}",
+            "$value": "{color.text.custom.default}",
             "$description": "Ghost-custom-color text disabled"
           }
         },
@@ -1485,7 +1520,7 @@
           },
           "focus": {
             "$type": "color",
-            "$value": "{color.text.base.muted}",
+            "$value": "{color.icon.custom.default}",
             "$description": "Ghost-custom-color icon focus"
           },
           "active": {
@@ -1495,7 +1530,7 @@
           },
           "disabled": {
             "$type": "color",
-            "$value": "{color.text.base.muted}",
+            "$value": "{color.icon.custom.default}",
             "$description": "Ghost-custom-color icon disabled"
           }
         },
@@ -1512,7 +1547,7 @@
           },
           "focus": {
             "$type": "color",
-            "$value": "{outline.color.focus.secondary}",
+            "$value": "{color.focus.base.strong}",
             "$description": "Ghost-custom-color border focus"
           },
           "active": {
@@ -1525,6 +1560,11 @@
             "$value": "{color.border.base.none}",
             "$description": "Ghost-custom-color border disabled"
           }
+        },
+        "separator": {
+          "$type": "color",
+          "$value": "{color.border.base.default}",
+          "$description": "Separator for split ghost-custom-color button"
         }
       }
     },
@@ -1532,7 +1572,7 @@
       "height": {
         "normal": {
           "$type": "dimension",
-          "$value": "{size.md}",
+          "$value": "{size.sm}",
           "$description": "Button height for normal size (32px)"
         },
         "large": {
@@ -1603,6 +1643,13 @@
             "$value": "{inset.xs}",
             "$description": "Vertical padding for two-icons button variant (4px)"
           }
+        },
+        "icon-text": {
+          "icon-side": {
+            "$type": "dimension",
+            "$value": "{inset.sm}",
+            "$description": "Padding on the icon side for icon+text button variants (8px — narrower than text side)"
+          }
         }
       }
     },
@@ -1614,7 +1661,7 @@
       },
       "radius": {
         "$type": "dimension",
-        "$value": "{border.radius.sm}",
+        "$value": "{border.radius.xs}",
         "$description": "Border radius for buttons (3px)"
       }
     },
@@ -1622,7 +1669,7 @@
       "ring": {
         "width": {
           "$type": "dimension",
-          "$value": "{outline.width.focus}",
+          "$value": "{border.width.2}",
           "$description": "Focus ring width for buttons (2px)"
         }
       }
@@ -1771,7 +1818,7 @@
       "text": {
         "color": {
           "$type": "color",
-          "$value": "{color.text.base.subtle}",
+          "$value": "{color.text.base.muted}",
           "$description": "Description text color for form components"
         },
         "typography": {
@@ -2211,7 +2258,7 @@
           },
           "hover": {
             "$type": "color",
-            "$value": "{color.background.brand.solid}",
+            "$value": "{color.border.base.strongHover}",
             "$description": "Radio button border color for hover state (blue.600)"
           },
           "selected": {
@@ -2241,7 +2288,7 @@
       "dot": {
         "color": {
           "$type": "color",
-          "$value": "{color.background.base.default}",
+          "$value": "{color.background.brand.solid}",
           "$description": "Inner dot color for selected radio button (white)"
         }
       },
@@ -2420,12 +2467,12 @@
       "color": {
         "solid": {
           "$type": "color",
-          "$value": "{color.border.base.default}",
+          "$value": "{color.border.base.strong}",
           "$description": "Solid divider line color"
         },
         "dashed": {
           "$type": "color",
-          "$value": "{color.border.base.strong}",
+          "$value": "{color.border.base.strongHover}",
           "$description": "Dashed divider line color"
         }
       }
