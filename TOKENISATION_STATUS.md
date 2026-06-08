@@ -63,7 +63,7 @@ These components have dedicated token definitions in `modules/base.json`.
 | ai-chat | `app-menu` | :heavy_minus_sign: | :heavy_minus_sign: | :heavy_minus_sign: | :heavy_minus_sign: | — | No | no ai-chat markup yet — tokens unused |
 | [app-menu](#app-menu) | `app-menu` | :white_check_mark: | :white_check_mark: | :heavy_minus_sign: | :x: | 0 | No | shadow-1; all opacity is animation (deferred) |
 | [avatar](#avatar) | `avatar` | :white_check_mark: | :heavy_minus_sign: | :white_check_mark: | :x: | 0 | Yes (1) | static colors done; dynamic bg kept (user-driven) |
-| [buttons](#button) | `button` | :construction: | :construction: | :x: | :x: | 3 | No | :warning: primary/success/creator/toggle done (danger/success focus ring → blue after sync `e0301675d`); **secondary/tertiary/ghost deferred** (token redesign + suspected danger swap) |
+| [buttons](#button) | `button` | :white_check_mark: | :construction: | :x: | :x: | 11 | No | :warning: all standard variants tokenised (secondary/tertiary/ghost backgrounds via alpha-modifier tokens); redesigns applied (secondary pressed blue→grey, tertiary/ghost hover-text shifts) — flag for review; custom-color dynamic; readOnly freeze + ripple on palette |
 | [button-expander](#button) | `button` | :white_check_mark: | :heavy_minus_sign: | :heavy_minus_sign: | :x: | 1 | — | bg/border/icon tokenised |
 | [card](#card) | `card` | :white_check_mark: | :construction: | :white_check_mark: | :x: | 0 | No | surface+shadow-1 done; active shadow + CardBadge dynamic deferred |
 | [card-select](#card-select) | `card-select` | :white_check_mark: | :white_check_mark: | :white_check_mark: | :x: | 4 | No | borders/shadow/opacity tokenised; check-token naming flagged for UX |
@@ -848,49 +848,58 @@ Description text → `--ds-form-radio-text-description`; disabled opacity (label
 
 **Package:** `packages/components/button/` (keys `buttons` + `button-expander`)
 **Layer:** module (`--ds-buttons-variant-*`, `--ds-button-expander-*`, 36) + semantic (14)
-**Migrated in:** `chore/tokenisation` branch · **Status: :construction: partial**
+**Migrated in:** `chore/tokenisation` branch · **Status: :white_check_mark: colours (custom-color dynamic; readOnly freeze + ripple on palette)**
 
 #### Done
 
-`primary`, `primary-success`, `primary-danger` (default/hover/focus/active bg+text+border), the
-`button-expander` (bg/border/icon — svg fill → currentColor), `ButtonToggle` (ghost hover / activated
-bg+text), and `Creator` (border/bg/error/upload states) — all migrated, mostly exact. `Creator.spec`
-assertions updated to the new token output.
+`primary`, `primary-success`, `primary-danger`, `button-expander`, `ButtonToggle`, `Creator` — migrated
+earlier. **Now migrated to module tokens** (`Button.variants.ts` + the secondary override in
+`Button.styles.tsx`): `secondary` (= `variantDefault`), `tertiary`, `tertiary-white`, `ghost-primary`,
+`ghost-secondary` (code `ghost`), `ghost-secondary-white` (code `ghost-white`) — all
+default/hover/focus/active/disabled states via `--ds-buttons-variant-<v>-{bg,text,border}-*`. Icons
+inherit `color` (`icon-*` token == `text-*` token for these variants). `custom-color-ghost` inherits
+`variantGhostPrimary`, so its backdrop is tokenised too.
+
+The semi-transparent hover/active backgrounds now resolve through each token's Token-Studio
+`modify:alpha` extension (tertiary/ghost grey-400 @15/25/35%, tertiary-white grey-300 @15/25/10%,
+ghost-white grey-500 @25/10%), emitted as `rgba()` by the `outputReferencesTransformed` build fix
+(`fix(tokens): emit rgba…`). These are **exact-match** to the old `rippleAlpha()`/`hexToRgbValues()`
+output — **zero visual change** to the backgrounds.
 
 #### Visual diffs
 
-| Property | Current | Token resolves to | Delta |
-|----------|---------|-------------------|-------|
+| Property | Was | Token resolves to | Delta |
+|----------|-----|-------------------|-------|
 | Expander disabled border | grey-200 `#e9edee` | `…-border-disabled` grey-300 `#dbe0e3` | Slightly darker |
-| Primary-danger focus ring | red-600 `#f52922` | `…-primary-danger-border-focus` → `focus.base.default` blue-600 `#0b68ff` | :warning: **red → brand-blue** (sync `e0301675d`) |
-| Primary-success focus ring | green-600 `#54cb0b` | `…-primary-success-border-focus` → `focus.base.default` blue-600 `#0b68ff` | :warning: **green → brand-blue** (sync `e0301675d`) |
+| Primary-danger / -success focus ring | red-600 / green-600 | `…-border-focus` blue-600 | :warning: → brand-blue (sync `e0301675d`) |
+| **secondary** active (pressed) | blue-100 bg / blue-600 text | grey-400 bg / white text | :warning: **blue → grey** redesign |
+| **secondary** focus bg | grey-050 | grey-100 (`base.muted`) | slightly darker |
+| **secondary** hover border | grey-300 | blue-300 (`border-brand-strong`) | brand border on hover |
+| **secondary** disabled | grey-700@40% / grey-050@40% | grey-600 / grey-100 (solid) | un-faded |
+| **tertiary** text default/focus | grey-700 | grey-600 (`text-base-muted`) | lighter |
+| **tertiary** text hover/active | grey-700 | blue-600 (`text-brand`) | :warning: **grey → brand** |
+| **tertiary** hover border | transparent | grey-200 (`border-base-default`) | visible border on hover |
+| **ghost-secondary** text hover | blue-600 | grey-600 (`text-base-muted`) | :warning: **blue → grey** |
+| tertiary/ghost/ghost-white/tertiary-white backgrounds | rgba(grey-N, α) | same rgba via alpha token | exact — no change |
 
-> The danger/success focus rings (applied via `Button.variants.ts`) now resolve to the unified brand-blue
-> focus colour instead of the per-variant red/green. Design-intended (single focus hue) but a visible
-> change to shipped buttons — flag for review. If per-variant focus rings must be kept, the
-> `…-border-focus` usage would need `theme.palette` instead.
+> The text/border redesigns above are encoded in the module tokens and applied per the migration
+> methodology (adopt token, flag diff). Notable interaction changes — secondary pressed blue→grey,
+> tertiary hover/active text→brand, ghost-secondary losing its blue hover — **flag for design review on
+> the MR**; reverting any is an upstream token change (consume-only).
 
-#### Deferred — needs design-tokens attention (90 palette refs remain)
+#### Deferred / remaining (kept on `theme.palette`)
 
-- **secondary / tertiary / ghost variants** (`Button.variants.ts`): the module tokens are a **structural
-  redesign** — current code composites `rgba(grey-N, α)` via `rippleAlpha()`/`hexToRgbValues()`, while the
-  tokens are **solid** colours. Mapping would break the ripple math and apply unverifiable changes.
-  **Deferred.** Post-sync `e0301675d` resolved values (refreshed): `secondary.bg.default` grey-100 →
-  **grey-050** (`base.subtle`); `secondary.bg.active` blue-600 → **grey-400** (`base.strong`);
-  `secondary.bg.hover` → blue-050 (`brand.subtle`); ghost-primary/ghost-secondary `bg.hover`/`bg.active`
-  → **grey-400** (`base.strong`); ghost `bg.default` → `transparent`. `ghost-secondary.bg.active` now
-  **exists** (the earlier "no `active` token" gap is closed). Icon-state tokens were also re-pointed to the
-  `icon.*` semantic layer (e.g. `ghost-secondary.icon.*` → `icon.base.default`). **14 `separator` tokens**
-  (one per variant) were added — needed for segmented/dropdown dividers, not yet consumed. Values are still
-  **solid** (not rgba), so the ripple-math concern stands; needs a fresh design call before adopting.
-- :warning: **Suspected token bug:** `primary-danger` `bg-hover` resolves to red-700 and `bg-active` to
-  red-600 — **swapped** vs the current (hover red-500, active red-700) and vs how other solid variants are
-  ordered. Kept `theme.palette`; flag for design-tokens.
-- Ripple `.btn-ripple` colours, computed-alpha disabled `rgba(...,0.4)` (token model uses solid +
-  separate `--ds-buttons-disabled-opacity`), expander focus keyframe, and all `Button.styles.tsx` dynamic
-  `${customColor}-600` / `${iconColor}-600` / per-type override blocks — kept (dynamic / redesign-coupled).
-- The button-package's internal `Checkbox.styles.ts` / `Star.styles.ts` state-driven `svg { fill }`
-  (inactive grey-300 / disabled grey-200 have no clean icon-layer token) — deferred.
+- **`custom-color` / `custom-color-ghost`** — dynamic user `color` prop. (custom-color-ghost's *backdrop*
+  is tokenised via `variantGhostPrimary`; the custom hue stays dynamic.)
+- **Ripple** (`.btn-ripple`) + decorative secondary chip (`.ds-icon:before`, blue-200) and focus-ring
+  accents (blue-300) + expander focus keyframe — transient/decorative.
+- **`readOnly` per-variant freeze block** (`Button.styles.tsx`) — frozen non-interactive hover/focus
+  styling per variant; separate concern, deferred.
+- :warning: **Suspected token bug:** `primary-danger` `bg-hover` red-700 / `bg-active` red-600 — swapped
+  vs current; kept `theme.palette`; flag for design-tokens.
+- `Checkbox.styles.ts` / `Star.styles.ts` internal `svg { fill }` (no clean icon-layer token) — deferred.
+- `--ds-form-icon-color-{hover,focus,disabled}` and a few `button-expander` hover/disabled states have
+  **no matching markup** (icons are single-colour + opacity-disabled by design) — N/A, not force-applied.
 
 ---
 

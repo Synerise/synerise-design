@@ -67,8 +67,8 @@ export const CheckboxInner = styled.span<{
       background-color: ${props.theme.palette['blue-600']};
       border-color: ${props.theme.palette['blue-600']};
       background-image: url('${checkSvgWithCustomColor(
-      props.theme.palette.white,
-    )}');
+        props.theme.palette.white,
+      )}');
     `}
 
   /* indeterminate — white horizontal bar */
@@ -175,8 +175,8 @@ export const CheckboxLabel = styled.label<{
       &:hover ${CheckboxInner} {
         border-color: var(--ds-form-checkbox-border-color-hover);
         background-image: url('${checkSvgWithCustomColor(
-      props.theme.palette['blue-600'],
-    )}');
+          props.theme.palette['blue-600'],
+        )}');
       }
     `}
 

@@ -15,7 +15,7 @@ export const Description = styled.div<{ disabled?: boolean }>`
   ${macro.small}
 `;
 
-export const Label = styled(FormFieldLabel) <{ disabled?: boolean }>`
+export const Label = styled(FormFieldLabel)<{ disabled?: boolean }>`
   ${(props) =>
     props.disabled ? `opacity: var(--ds-form-radio-disabled-opacity);` : ''}
 `;
@@ -148,9 +148,9 @@ export const RadioLabel = styled.label<{
   ${RadioInput}:focus + ${RadioInner} {
     border-color: ${(props) => props.theme.palette['blue-600']};
     background-color: ${(props) =>
-    props.$checked
-      ? props.theme.palette.white
-      : props.theme.palette['blue-050']};
+      props.$checked
+        ? props.theme.palette.white
+        : props.theme.palette['blue-050']};
     border-width: 2px;
   }
 

@@ -114,9 +114,9 @@ export const ValueWrapper = styled.div<{
   height: 24px;
   & {
     background-color: ${(props) =>
-    props.disabled
-      ? 'var(--ds-color-background-base-mutedhover)'
-      : 'var(--ds-color-background-base-muted)'};
+      props.disabled
+        ? 'var(--ds-color-background-base-mutedhover)'
+        : 'var(--ds-color-background-base-muted)'};
   }
   border-radius: 3px;
   border: none;
@@ -133,8 +133,8 @@ export const ValueWrapper = styled.div<{
 
   &:hover {
     ${(props) =>
-    !props.disabled &&
-    css`
+      !props.disabled &&
+      css`
         ${ValueText} {
           max-width: calc(100% - 16px);
           overflow: hidden;

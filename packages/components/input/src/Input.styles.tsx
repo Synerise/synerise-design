@@ -8,7 +8,6 @@ import styled, {
   css,
 } from 'styled-components';
 
-
 import type { AutoResizeProp, InputSize } from './Input.types';
 import { TextareaWrapper } from './Textarea/Textarea.styles';
 
@@ -69,8 +68,8 @@ export const InputWrapper = styled.div<{ iconCount?: number }>`
   position: relative;
   && input {
     padding-right: ${(props) => {
-    return `${getIconsWidth(props.iconCount || 0) + INPUT_PADDING}px`;
-  }};
+      return `${getIconsWidth(props.iconCount || 0) + INPUT_PADDING}px`;
+    }};
     &::placeholder {
       line-height: 1.29;
     }
@@ -179,7 +178,7 @@ export const NativeInput = styled(
       ref,
     ) => <input autoComplete="off" {...props} ref={ref} />,
   ),
-) <NativeInputStyledProps & { readOnly?: boolean; disabled?: boolean }>`
+)<NativeInputStyledProps & { readOnly?: boolean; disabled?: boolean }>`
   box-sizing: ${(props) => (props.autoResize ? 'content-box' : 'border-box')};
   width: 100%;
   /* Pin a fixed height so the box is exactly 32px (default) / 48px (large) —
@@ -324,7 +323,7 @@ export const RawTextArea = styled(
   >(({ error, ...props }, ref) => (
     <textarea autoComplete="off" {...props} ref={ref} />
   )),
-) <{ error?: boolean }>`
+)<{ error?: boolean }>`
   && {
     /* A bare textarea is display:inline-block and, without an explicit width,
        falls back to its cols intrinsic width (~20ch). antd's textarea.ant-input
@@ -359,17 +358,17 @@ export const ExpandableWrapper = styled.div<{ expanded: boolean }>`
     min-width: 282px;
 
     ${(props): FlattenSimpleInterpolation => {
-    if (props.expanded) {
-      return css`
+      if (props.expanded) {
+        return css`
           pointer-events: initial;
           display: block;
         `;
-    }
-    return css`
+      }
+      return css`
         pointer-events: none;
         display: none;
       `;
-  }}
+    }}
   }
 `;
 
