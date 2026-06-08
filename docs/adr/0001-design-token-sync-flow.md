@@ -91,7 +91,7 @@ Consequence for the downstream rules: token-triggered pipelines have
 `CI_PIPELINE_SOURCE == "trigger"` (the keyword produced `"pipeline"`). The `sync_tokens` and
 `tokens_preview` rules therefore accept both: `$CI_PIPELINE_SOURCE =~ /^(pipeline|trigger)$/`.
 
-### 7. MR-time preview path (manual), kept on the `trigger:` keyword
+### 7. MR-time preview path (manual), also via a trigger token
 
 `design-tokens` exposes a manual `preview_synerise_design` job on its MRs. It triggers
 `tokens_preview` here, which runs `scripts/ci-preview-tokens.sh`: mirror the MR branch's tokens
@@ -100,16 +100,26 @@ since a token change reaches Storybook through the build, not a traced story imp
 Chromatic on an isolated `token-preview/<branch>` branch (so the diff shows against the master
 baseline but never updates it) → notify Teams. No branch push, no MR.
 
-This job stays on the **`trigger:` keyword** with `strategy: depend`, because its value is surfacing
-the preview pipeline's result and link back on the `design-tokens` MR — something a trigger token
-cannot do. MR authors generally have the access the keyword requires; if that ever becomes a
-problem, convert it to a token call and poll the pipeline status.
+For the same reason as decision 6, this job uses a **pipeline trigger token**, not the `trigger:`
+keyword: the keyword runs the preview as the MR author, who may lack `synerise-design` access, so
+anyone's MR could fail to preview. The token makes the preview runnable by anyone with an MR here.
+
+Because MR pipelines run on **unprotected feature branches**, where *protected* CI/CD variables are
+not exposed, the preview token must be a **separate, masked but non-protected** variable
+(`DS_PREVIEW_TRIGGER_TOKEN`) — it cannot reuse the protected `DS_SYNC_TRIGGER_TOKEN`. Keeping the
+two tokens distinct also lets the higher-exposure preview token be revoked independently.
+
+Trade-off: a trigger token can't do `strategy: depend`, so the preview job is now fire-and-forget
+(it goes green once the downstream pipeline is created) rather than blocking on and surfacing the
+result. The Chromatic build + Storybook links instead reach the MR author through the Teams
+notification that `ci-preview-tokens.sh` sends at the end.
 
 ## Tokens and identities
 
 | Variable | Where | Purpose |
 |----------|-------|---------|
-| `DS_SYNC_TRIGGER_TOKEN` | `design-tokens` (masked + protected) | Pipeline trigger token (bot-owned) used to start the sync pipeline here |
+| `DS_SYNC_TRIGGER_TOKEN` | `design-tokens` (masked + protected) | Bot-owned trigger token used by the main-branch sync to start the sync pipeline here |
+| `DS_PREVIEW_TRIGGER_TOKEN` | `design-tokens` (masked, **not** protected) | Bot-owned trigger token used by the manual MR preview; non-protected so it is exposed on unprotected MR branches (decision 7) |
 | `TOKENS_REPO_READ_TOKEN` | `synerise-design` (masked) | `read_repository` token on `design-tokens` to clone the source @ SHA. Falls back to `CI_JOB_TOKEN` (then `design-tokens` must allowlist project 1171) |
 | `PUSH_TOKEN` | `synerise-design` (masked) | `write_repository` + `api` token to force-push the rolling branch and create/refresh the MR |
 | `CHROMATIC_PROJECT_TOKEN_SB7` | `synerise-design` (existing) | Chromatic project token for preview/publish |
@@ -135,8 +145,8 @@ flowchart TD
     D1 --> E["human reviews Chromatic diff → merges"]
     E --> F["(later) release: build: publish → lerna version → npm"]
 
-    subgraph preview ["MR-time preview (manual, trigger: keyword)"]
-        P0["design-tokens MR → preview_synerise_design (manual)"] --> P1["tokens_preview → ci-preview-tokens.sh"]
+    subgraph preview ["MR-time preview (manual, trigger token, fire-and-forget)"]
+        P0["design-tokens MR → preview_synerise_design (manual)<br/>POST /trigger/pipeline (DS_PREVIEW_TRIGGER_TOKEN)"] --> P1["tokens_preview → ci-preview-tokens.sh"]
         P1 --> P2["mirror MR branch tokens → full build → Storybook"]
         P2 --> P3["Chromatic on token-preview/&lt;branch&gt;<br/>(never touches master baseline)"]
         P3 --> P4["notify Teams"]
@@ -156,13 +166,16 @@ flowchart TD
 
 **Negative / trade-offs**
 
-- A token-triggered pipeline is **not** a natively linked child pipeline: the sync path loses
-  `strategy: depend` and the upstream↔downstream graph link. Acceptable for fire-and-forget sync;
-  the preview path keeps the keyword precisely to retain `depend`.
-- Mixed trigger mechanisms (token for sync, keyword for preview) → the downstream rules must accept
-  both `trigger` and `pipeline` sources. Easy to forget when editing rules.
-- Several long-lived tokens to rotate (`DS_SYNC_TRIGGER_TOKEN`, `TOKENS_REPO_READ_TOKEN`,
-  `PUSH_TOKEN`). Bot ownership concentrates blast radius on the bot account.
+- A token-triggered pipeline is **not** a natively linked child pipeline: both the sync and the
+  preview lose `strategy: depend` and the upstream↔downstream graph link. The sync is
+  fire-and-forget by nature; the preview surfaces its Chromatic result via the Teams notification
+  instead of the MR widget.
+- The downstream rules still accept both `trigger` and `pipeline` sources (`=~
+  /^(pipeline|trigger)$/`) so the flow keeps working if any job is reverted to the keyword. Easy to
+  forget when editing rules.
+- Several long-lived tokens to rotate (`DS_SYNC_TRIGGER_TOKEN`, `DS_PREVIEW_TRIGGER_TOKEN`,
+  `TOKENS_REPO_READ_TOKEN`, `PUSH_TOKEN`). Bot ownership concentrates blast radius on the bot
+  account; the non-protected preview token is the most exposed (readable on any MR branch).
 - **Temporary:** both the trigger `ref` and the sync MR target are pointed at `chore/tokenisation`
   for verification and must be reverted to `master` once verified. When on the protected `master`,
   the trigger token's bot owner must be allowed to run pipelines on it.

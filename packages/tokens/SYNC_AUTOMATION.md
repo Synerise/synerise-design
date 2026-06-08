@@ -61,13 +61,18 @@ the single source of truth:
 1. **Project → Settings → Repository → Default branch → `main`.**
 2. Add `.gitlab-ci.yml` **on `main`** combining Secret Detection (carried over from `master`) with
    the trigger job below. Retire `master` afterwards.
-3. **CI/CD variable** `DS_SYNC_TRIGGER_TOKEN` (masked + protected) — the bot-owned pipeline trigger
-   token created in synerise-design (§B.1). Mark `main` a **protected branch** so the protected
-   variable is exposed to it.
+3. **CI/CD variables** — both bot-owned pipeline trigger tokens created in synerise-design (§B.1):
+   - `DS_SYNC_TRIGGER_TOKEN` (masked + **protected**) — for the main-branch sync. Mark `main` a
+     **protected branch** so the protected variable is exposed to it.
+   - `DS_PREVIEW_TRIGGER_TOKEN` (masked, **not** protected) — for the manual MR preview. It must be
+     non-protected because MR pipelines run on unprotected feature branches, where protected
+     variables are unavailable (ADR-0001 §7). Keep it distinct from the sync token so it can be
+     revoked independently.
 
-The job fires via the **trigger API** (not the `trigger:` keyword) so the downstream pipeline is
-created under the token owner's identity, not the merger's — any merge to `main` works regardless
-of who performs it (ADR-0001 §6). Token-triggered pipelines have `CI_PIPELINE_SOURCE == "trigger"`.
+Both jobs fire via the **trigger API** (not the `trigger:` keyword) so the downstream pipeline is
+created under the token owner's identity, not the merger's / MR author's — any merge to `main` and
+any MR preview works regardless of who performs it (ADR-0001 §6–§7). Token-triggered pipelines have
+`CI_PIPELINE_SOURCE == "trigger"`.
 
 ```yaml
 # design-tokens/.gitlab-ci.yml  (on main)
@@ -103,6 +108,25 @@ trigger_synerise_design:
         -F "variables[TRIGGER_SOURCE_PROJECT]=Frontend/design-tokens" \
         -F "variables[TRIGGER_SOURCE_BRANCH]=main" \
         "https://gitlab.synerise.com/api/v4/projects/Frontend%2Fsynerise-design/trigger/pipeline"
+
+# Manual: preview an in-progress token change in Chromatic from this MR (no MR/branch in DS).
+# Fire-and-forget; the Chromatic + Storybook links arrive via Teams (ci-preview-tokens.sh).
+preview_synerise_design:
+  stage: downstream
+  image: curlimages/curl:latest
+  rules:
+    - if: '$CI_PIPELINE_SOURCE == "merge_request_event"'
+      when: manual
+  allow_failure: true
+  script:
+    - |
+      curl --fail-with-body -X POST \
+        -F token="$DS_PREVIEW_TRIGGER_TOKEN" \
+        -F ref="master" \
+        -F "variables[PREVIEW_TOKENS]=true" \
+        -F "variables[TRIGGER_SOURCE_PROJECT]=Frontend/design-tokens" \
+        -F "variables[TRIGGER_SOURCE_BRANCH]=$CI_MERGE_REQUEST_SOURCE_BRANCH_NAME" \
+        "https://gitlab.synerise.com/api/v4/projects/Frontend%2Fsynerise-design/trigger/pipeline"
 ```
 
 ### B. synerise-design (project 1171) — create the trigger token + provide tokens
@@ -114,16 +138,21 @@ trigger_synerise_design:
    creates a `project_<id>_bot` user. Use that token to mint the trigger token *as the bot*:
 
    ```bash
-   curl --request POST \
-     --header "PRIVATE-TOKEN: <project_access_token>" \
+   # one per purpose, so they rotate/revoke independently
+   curl --request POST --header "PRIVATE-TOKEN: <project_access_token>" \
      --form "description=design-tokens main sync (bot-owned)" \
+     "https://gitlab.synerise.com/api/v4/projects/1171/triggers"
+   curl --request POST --header "PRIVATE-TOKEN: <project_access_token>" \
+     --form "description=design-tokens MR preview (bot-owned)" \
      "https://gitlab.synerise.com/api/v4/projects/1171/triggers"
    ```
 
-   Put the returned `token` into design-tokens' `DS_SYNC_TRIGGER_TOKEN` variable (§A.3). The PAT's
-   only job is to mint the trigger token — it is **not** itself `DS_SYNC_TRIGGER_TOKEN`.
+   Put the first returned `token` into design-tokens' `DS_SYNC_TRIGGER_TOKEN` and the second into
+   `DS_PREVIEW_TRIGGER_TOKEN` (§A.3). The PAT's only job is to mint the trigger tokens — it is
+   **not** itself either trigger token.
 2. **Settings → CI/CD → Token Access (job-token allowlist)** → add `Frontend/design-tokens` (needed
-   if the clone falls back to `CI_JOB_TOKEN`, and for the preview job's `trigger:` keyword).
+   if the clone falls back to `CI_JOB_TOKEN`). *(Both triggers now use trigger tokens, not the
+   `trigger:` keyword, so the allowlist is no longer required for triggering itself.)*
 3. **CI/CD variables** (masked; group-level preferred so they're shared/rotatable):
    - `TOKENS_REPO_READ_TOKEN` — Project Access Token on **design-tokens**, scope `read_repository`
      (Reporter). Used to clone the source. *(Optional: omit and the script falls back to
