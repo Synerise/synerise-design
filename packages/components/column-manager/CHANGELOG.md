@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.3.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-column-manager@1.2.62...@synerise/ds-column-manager@1.3.0) (2026-06-09)
+
+### Features
+
+- **column-manager:** add autoGroupOnToggle prop to group columns by visibility ([58f68c3](https://github.com/Synerise/synerise-design/commit/58f68c314dd6f25ae5cd81310e9acb75616a3b01))
+
 ## [1.2.62](https://github.com/Synerise/synerise-design/compare/@synerise/ds-column-manager@1.2.61...@synerise/ds-column-manager@1.2.62) (2026-05-26)
 
 **Note:** Version bump only for package @synerise/ds-column-manager
