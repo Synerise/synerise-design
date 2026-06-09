@@ -17,7 +17,7 @@
     "build-storybook": "cd packages/storybook && pnpm build-storybook",
     "clean": "lerna clean --yes && rm -rf node_modules && rm -rf packages/components/*/dist",
     "component:create": "node ./scripts/create-component/index.js",
-    "lerna:version": "lerna version --conventional-commits",
+    "lerna:version": "bash scripts/release-preflight.sh && lerna version --conventional-commits",
     "lint": "eslint ./packages/components --ext ts,tsx",
     "lint:fix": "eslint ./packages/components --fix --ext ts,tsx",
     "prettier": "prettier --write ./packages/components",

@@ -235,6 +235,34 @@ publish_packages:
     - npx lerna publish from-package --no-git-tag-version --yes
     - rm -f .npmrc
 
+# Best-effort: post a mechanical "packages published" card to the Teams releases channel as soon
+# as a `build: publish` commit publishes, so the channel is always notified even if nobody runs the
+# /ds-release skill. The richer two-audience changelog follows from /ds-release. Package list is
+# parsed from the publish commit body (lerna writes one `@synerise/ds-x@version` line per pkg), so
+# it needs no tags (CI publishes with --no-git-tag-version). No-ops if the webhook is unset.
+notify_release:
+  stage: deploy
+  needs: ['publish_packages']
+  allow_failure: true
+  variables:
+    PUBLISH_TITLE: "build: publish"
+  rules:
+    - if: ($CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH && $CI_COMMIT_TITLE == $PUBLISH_TITLE)
+  script:
+    - |
+      DATE=$(date +%d-%m-%Y)
+      PKG_LINES=$(git log -1 --format=%b | grep -oE '@synerise/[^ ]+@[0-9][^ ]*' || true)
+      COUNT=$(printf '%s\n' "$PKG_LINES" | sed '/^$/d' | wc -l | tr -d ' ')
+      SECTION=$(printf '%s\n' "$PKG_LINES" | sed '/^$/d' | awk '{printf "- %s\\n", $0}')
+      bash scripts/notify-teams.sh \
+        --webhook-env TEAMS_RELEASES_WEBHOOK \
+        --status Good \
+        --title "🚀 Design System published — ${DATE}" \
+        --section "Packages published (${COUNT})|${SECTION}" \
+        --text "Full product-owner & developer release notes follow via /ds-release." \
+        --button "Pipeline=${CI_PIPELINE_URL}" \
+        --button "Public Storybook=https://design.synerise.com/storybook-static/"
+
 build_storybook:
   stage: build
   needs: ['build_packages']
