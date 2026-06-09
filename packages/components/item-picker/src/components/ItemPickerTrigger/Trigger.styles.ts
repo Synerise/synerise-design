@@ -140,11 +140,11 @@ export const TriggerWrapper = styled.div<TriggerWrapperProps>`
     return 'pointer';
   }};
   pointer-events: ${(props) => (props.disabled ? 'none' : 'all')};
-  
+
   position: relative;
   border-radius: 3px;
   transition: all 0.3s ease;
-  padding ${(props) => (props.size === 'small' ? '0 8px' : '0 12px')};
+  padding: ${(props) => (props.size === 'small' ? '0 8px' : '0 12px')};
   background-color: ${(props) => {
     if (props.disabled) {
       return props.theme.palette['grey-100'];
@@ -157,7 +157,7 @@ export const TriggerWrapper = styled.div<TriggerWrapperProps>`
     }
     return props.theme.palette.white;
   }};
-  
+
   ${(props) => getDefaultStyles(props)}
   ${(props) =>
     props.clearable &&
@@ -183,7 +183,6 @@ export const TriggerWrapper = styled.div<TriggerWrapperProps>`
         display: block; 
       }
     `}
-    
   }
 
   &:focus {
@@ -201,7 +200,7 @@ export const TriggerWrapper = styled.div<TriggerWrapperProps>`
           border: 1px solid ${props.theme.palette['grey-400']};
         }
       `};
-    
+
     ${(props) =>
       props.opened &&
       !props.error &&
