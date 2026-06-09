@@ -4,6 +4,7 @@ import type { Meta, StoryObj } from '@storybook/react-vite';
 import Button from '@synerise/ds-button';
 import ButtonGroup, { ButtonDivider } from '@synerise/ds-button-group';
 import { theme } from '@synerise/ds-core';
+import Dropdown from '@synerise/ds-dropdown';
 import Icon, { AngleDownS, DragHandleM } from '@synerise/ds-icon';
 
 import {
@@ -333,5 +334,48 @@ export const MoreButtonsWithDivider: StoryObj<typeof ButtonGroup> = {
     fullWidth: false,
     buttonsPosition: 'center',
     compact: false,
+  },
+};
+
+export const DropdownTriggers: StoryObj<typeof ButtonGroup> = {
+  parameters: {
+    docs: {
+      source: {
+        code: `<ButtonGroup compact buttonsPosition="center">
+  <Dropdown overlay={<div>Menu</div>}>
+    <Button type="secondary">Dropdown trigger</Button>
+  </Dropdown>
+  <Button type="secondary">Plain button</Button>
+  <Dropdown overlay={<div>Menu</div>}>
+    <Button type="secondary" mode="single-icon">
+      <Icon component={<AngleDownS />} />
+    </Button>
+  </Dropdown>
+</ButtonGroup>`,
+      },
+    },
+  },
+  render: (args) => {
+    const overlay = <div style={{ padding: 8 }}>Menu</div>;
+    return (
+      <ButtonGroup {...args}>
+        <Dropdown overlay={overlay}>
+          <Button type="secondary">Dropdown trigger</Button>
+        </Dropdown>
+        <Button type="secondary">Plain button</Button>
+        <Dropdown overlay={overlay}>
+          <Button type="secondary" mode="single-icon">
+            <Icon component={<AngleDownS />} />
+          </Button>
+        </Dropdown>
+      </ButtonGroup>
+    );
+  },
+  args: {
+    compact: true,
+    title: '',
+    description: '',
+    fullWidth: false,
+    buttonsPosition: 'center',
   },
 };
