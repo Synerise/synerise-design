@@ -34,8 +34,9 @@ screen.getByTestId('ds-column-manager-cancel');
 ### ColumnManager (default export)
 - Renders div with `data-testid="ds-column-manager"`
 - Returns null when `visible` is `false`
-- Renders Apply/Cancel buttons when handlers are provided
-- Supports `children`, `visible`, `columns`, `onApply`, `onCancel`, `className`
+- Renders Apply button when `onApply` is provided — clicks call `onApply(columns)`
+- Renders Cancel button when `hide` is provided — clicks call `hide()`
+- Supports `children`, `visible`, `columns`, `onApply`, `hide`, `draggable`, `className`
 
 ## Available Test IDs
 

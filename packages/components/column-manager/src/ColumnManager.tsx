@@ -47,16 +47,18 @@ const ColumnManager = <ColumnType extends Column>({
   };
 
   const handleToggleColumn = (id: string, updatedVisible: boolean) => {
-    setCurrentColumns(
-      currentColumns.map((column) =>
-        column.id === id
-          ? {
-              ...column,
-              visible: updatedVisible,
-            }
-          : column,
-      ),
+    const updated = currentColumns.map((column) =>
+      column.id === id
+        ? {
+            ...column,
+            visible: updatedVisible,
+          }
+        : column,
     );
+
+    const checked = updated.filter((col) => col.visible);
+    const unchecked = updated.filter((col) => !col.visible);
+    setCurrentColumns([...checked, ...unchecked]);
   };
 
   const handleOrderChange = (
