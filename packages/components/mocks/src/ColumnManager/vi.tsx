@@ -4,8 +4,9 @@ type MockColumnManagerProps = {
   children?: React.ReactNode;
   visible?: boolean;
   columns?: unknown[];
-  onApply?: () => void;
-  onCancel?: () => void;
+  onApply?: (columns: unknown[]) => void;
+  hide?: () => void;
+  draggable?: boolean;
   className?: string;
   'data-testid'?: string;
 };
@@ -26,9 +27,10 @@ export const columnManagerMockFactory = () => ({
     ({
       children,
       visible,
-      columns: _columns,
+      columns,
       onApply,
-      onCancel,
+      hide,
+      draggable,
       className,
       'data-testid': dataTestId,
     }: MockColumnManagerProps) => {
@@ -37,15 +39,23 @@ export const columnManagerMockFactory = () => ({
       }
       const testId = dataTestId || 'ds-column-manager';
       return (
-        <div data-testid={testId} className={className} data-visible={visible}>
+        <div
+          data-testid={testId}
+          className={className}
+          data-visible={visible}
+          data-draggable={draggable}
+        >
           {children}
           {onApply && (
-            <button data-testid={`${testId}-apply`} onClick={onApply}>
+            <button
+              data-testid={`${testId}-apply`}
+              onClick={() => onApply(columns || [])}
+            >
               Apply
             </button>
           )}
-          {onCancel && (
-            <button data-testid={`${testId}-cancel`} onClick={onCancel}>
+          {hide && (
+            <button data-testid={`${testId}-cancel`} onClick={hide}>
               Cancel
             </button>
           )}
