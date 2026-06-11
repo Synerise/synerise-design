@@ -34,6 +34,9 @@ type ItemLabelProps = WithHTMLAttributes<
     disabled?: boolean;
     hasSubMenu?: boolean;
     subMenuOpen?: boolean;
+    onToggleSubMenu?: (
+      event: MouseEvent<HTMLElement> | KeyboardEvent<HTMLElement>,
+    ) => void;
     ordered?: boolean;
     noHover?: boolean;
     hasHighlight: boolean;
@@ -76,6 +79,7 @@ export const ItemLabel = forwardRef<HTMLDivElement, ItemLabelProps>(
       suffixVisible,
       hasSubMenu,
       subMenuOpen,
+      onToggleSubMenu,
       content,
       inTooltip,
       parent,
@@ -151,9 +155,31 @@ export const ItemLabel = forwardRef<HTMLDivElement, ItemLabelProps>(
                   color={theme.palette[`green-600`]}
                 />
               )}
-              {hasSubMenu && (
-                <Icon component={subMenuOpen ? <AngleUpS /> : <AngleDownS />} />
-              )}
+              {hasSubMenu &&
+                (onToggleSubMenu ? (
+                  <S.SubMenuToggle
+                    role="button"
+                    tabIndex={disabled ? -1 : 0}
+                    aria-expanded={subMenuOpen}
+                    aria-label="Toggle sub-menu"
+                    data-testid="list-item-submenu-toggle"
+                    onClick={onToggleSubMenu}
+                    onKeyDown={(event) => {
+                      if (event.key === 'Enter' || event.key === ' ') {
+                        event.preventDefault();
+                        onToggleSubMenu(event);
+                      }
+                    }}
+                  >
+                    <Icon
+                      component={subMenuOpen ? <AngleUpS /> : <AngleDownS />}
+                    />
+                  </S.SubMenuToggle>
+                ) : (
+                  <Icon
+                    component={subMenuOpen ? <AngleUpS /> : <AngleDownS />}
+                  />
+                ))}
               {suffixElement}
             </S.SuffixWrapper>
           )}

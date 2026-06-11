@@ -46,6 +46,18 @@ export const SuffixWrapper = styled.div<{
   ${(props) => (props.visible ? visibleElementStyle() : hiddenElementStyle())};
 `;
 
+export const SubMenuToggle = styled.span`
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  border-radius: 3px;
+  outline: none;
+  &:focus-visible {
+    box-shadow: inset 0 0 0 2px ${(props) => props.theme.palette['blue-600']};
+  }
+`;
+
 export const PrefixWrapper = styled.div<{
   visible?: boolean;
   disabled?: boolean;

@@ -5,12 +5,16 @@ import { fn } from 'storybook/test';
 import { Meta, StoryObj } from '@storybook/react-vite';
 import Avatar, { ObjectAvatar } from '@synerise/ds-avatar';
 import Badge from '@synerise/ds-badge';
+import Button from '@synerise/ds-button';
 import { theme } from '@synerise/ds-core';
+import Dropdown from '@synerise/ds-dropdown';
 import DSFlag from '@synerise/ds-flag';
 import Icon, { CopyClipboardM, TrashM } from '@synerise/ds-icon';
 import ListItem, {
   HoverableSuffix,
+  ItemData,
   ListItemProps,
+  ListWrapper,
 } from '@synerise/ds-list-item';
 import { RawSwitch } from '@synerise/ds-switch';
 import Tag, { TagShape } from '@synerise/ds-tag';
@@ -90,6 +94,58 @@ const renderWithPrefixAndSuffix = ({
     },
   });
 };
+
+type NestedTreeNode = {
+  key: string;
+  text: string;
+  children?: NestedTreeNode[];
+};
+
+// 5 levels deep, to show how nesting renders (20px indent per level, per-level
+// collapse, and the recursive `subMenu`).
+const NESTED_DROPDOWN_TREE: NestedTreeNode[] = [
+  {
+    key: 'l1-continents',
+    text: 'Level 1 · Continents',
+    children: [
+      {
+        key: 'l2-europe',
+        text: 'Level 2 · Europe',
+        children: [
+          {
+            key: 'l3-poland',
+            text: 'Level 3 · Poland',
+            children: [
+              {
+                key: 'l4-mazovia',
+                text: 'Level 4 · Mazovia',
+                children: [
+                  { key: 'l5-warsaw', text: 'Level 5 · Warsaw' },
+                  { key: 'l5-pruszkow', text: 'Level 5 · Pruszków' },
+                ],
+              },
+              { key: 'l4-silesia', text: 'Level 4 · Silesia' },
+            ],
+          },
+          { key: 'l3-germany', text: 'Level 3 · Germany' },
+        ],
+      },
+      { key: 'l2-asia', text: 'Level 2 · Asia' },
+    ],
+  },
+  { key: 'standalone', text: 'Standalone item (no children)' },
+];
+
+// Every parent key mapped to `true` — used to seed the controlled open state so the
+// story opens fully expanded.
+const collectParentKeys = (nodes: NestedTreeNode[]): Record<string, boolean> =>
+  nodes.reduce<Record<string, boolean>>((acc, node) => {
+    if (node.children?.length) {
+      acc[node.key] = true;
+      Object.assign(acc, collectParentKeys(node.children));
+    }
+    return acc;
+  }, {});
 
 export default {
   component: ListItem,
@@ -694,5 +750,92 @@ export const AllCombinationsLarge: StoryObj<
     size: 'large',
     description: 'Description',
     items: LIST_ITEMS,
+  },
+};
+
+/**
+ * A dropdown of nested, selectable list items, opened fully expanded (5 levels).
+ * `selectableParent` makes a parent row select (fire `onClick`) while its suffix arrow
+ * owns expand/collapse. Open state is *controlled* per item via `subMenuOpen` +
+ * `onSubMenuToggle`, seeded from an `expandedKeys` map that starts all-true. Selection
+ * shows the `selected` ("active") highlight rather than a check icon, and a single
+ * shared `ListWrapper` `onClick` handles parents and children at any depth via `item.key`.
+ */
+export const NestedInDropdown: Story = {
+  parameters: {
+    controls: { disable: true },
+    docs: {
+      source: {
+        code: `const [selectedKey, setSelectedKey] = useState<string | null>(null);
+// Start with every parent expanded.
+const [expandedKeys, setExpandedKeys] = useState(() => collectParentKeys(tree));
+
+// Each parent's open state is controlled via subMenuOpen + onSubMenuToggle; nested
+// subMenu arrays render recursively. Selection uses the 'selected' (active) state.
+const buildItems = (nodes) =>
+  nodes.map((node) => ({
+    itemKey: node.key,
+    text: node.text,
+    selected: selectedKey === node.key,
+    selectableParent: !!node.children?.length,
+    subMenuOpen: node.children ? !!expandedKeys[node.key] : undefined,
+    onSubMenuToggle: node.children
+      ? (open) => setExpandedKeys((prev) => ({ ...prev, [node.key]: open }))
+      : undefined,
+    subMenu: node.children ? buildItems(node.children) : undefined,
+  }));
+
+<Dropdown
+  overlay={
+    <Dropdown.Wrapper>
+      <ListWrapper onClick={(item) => setSelectedKey(String(item.key))}>
+        {buildItems(tree).map((item) => (
+          <ListItem key={item.itemKey} {...item} />
+        ))}
+      </ListWrapper>
+    </Dropdown.Wrapper>
+  }
+>
+  <Button>Open dropdown</Button>
+</Dropdown>;`,
+      },
+    },
+  },
+  render: () => {
+    const [selectedKey, setSelectedKey] = useState<string | null>(null);
+    const [expandedKeys, setExpandedKeys] = useState<Record<string, boolean>>(
+      () => collectParentKeys(NESTED_DROPDOWN_TREE),
+    );
+    const handleSelect = (item: ItemData) => setSelectedKey(String(item.key));
+
+    const buildItems = (nodes: NestedTreeNode[]): ListItemProps[] =>
+      nodes.map((node) => ({
+        itemKey: node.key,
+        text: node.text,
+        selected: selectedKey === node.key,
+        selectableParent: !!node.children?.length,
+        subMenuOpen: node.children ? !!expandedKeys[node.key] : undefined,
+        onSubMenuToggle: node.children
+          ? (open: boolean) =>
+              setExpandedKeys((prev) => ({ ...prev, [node.key]: open }))
+          : undefined,
+        subMenu: node.children ? buildItems(node.children) : undefined,
+      }));
+
+    return (
+      <Dropdown
+        overlay={
+          <Dropdown.Wrapper>
+            <ListWrapper onClick={handleSelect}>
+              {buildItems(NESTED_DROPDOWN_TREE).map((item) => (
+                <ListItem key={item.itemKey} {...item} />
+              ))}
+            </ListWrapper>
+          </Dropdown.Wrapper>
+        }
+      >
+        <Button>Open dropdown</Button>
+      </Dropdown>
+    );
   },
 };
