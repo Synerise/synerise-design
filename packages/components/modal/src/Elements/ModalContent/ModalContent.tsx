@@ -56,6 +56,7 @@ export const ModalContent = forwardRef<ModalRef, ModalContentProps>(
       hidden,
       ariaLabel,
       closeButtonAriaLabel,
+      initialFocusRef,
       ...rest
     },
     modalRef,
@@ -124,7 +125,13 @@ export const ModalContent = forwardRef<ModalRef, ModalContentProps>(
     };
 
     const containerRef = useRef<HTMLDivElement>(null);
-    useFocusTrap(containerRef, !hidden);
+    const dialogRef = useRef<HTMLDivElement>(null);
+    // By default focus the dialog container itself (announced by screen readers
+    // via its accessible name) instead of the first focusable field. Consumers
+    // can opt into focusing a specific control via `initialFocusRef`.
+    useFocusTrap(containerRef, !hidden, {
+      initialFocus: initialFocusRef ?? dialogRef,
+    });
 
     return (
       <S.ModalRoot
@@ -139,6 +146,8 @@ export const ModalContent = forwardRef<ModalRef, ModalContentProps>(
         <S.ModalMask />
         <S.ModalScrollWrap ref={scrollRef} onClick={handleMaskClick}>
           <S.ModalContainer
+            ref={dialogRef}
+            tabIndex={-1}
             onClick={cancelClick}
             role="dialog"
             aria-modal

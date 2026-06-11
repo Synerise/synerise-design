@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useRef, useState } from 'react';
 import { fn } from 'storybook/test';
 
 import { Meta, StoryObj } from '@storybook/react-vite';
@@ -291,6 +291,46 @@ export const ModalWithStepper: Story = {
     docs: {
       source: {
         code: '<Modal title="title" size="medium" onOk={handleOk} onCancel={handleCancel} open>\n  <Stepper style={{ width: \'100%\', justifyContent: \'center\' }}>\n    {steps.map((step, index) => (\n      <Stepper.Step {...step} active={index === activeStep} done={index < activeStep} />\n    ))}\n  </Stepper>\n</Modal>',
+      },
+    },
+  },
+};
+
+export const WithInitialFocusRef: Story = {
+  render: (args, storyContext) => {
+    const open = storyContext.viewMode === 'docs' ? false : args.open;
+    // eslint-disable-next-line react-hooks/rules-of-hooks
+    const searchRef = useRef<HTMLInputElement>(null);
+    return (
+      <Modal {...args} open={open} initialFocusRef={searchRef}>
+        <label htmlFor="modal-search-field">Search</label>
+        <input
+          id="modal-search-field"
+          ref={searchRef}
+          placeholder="Focused on open"
+          style={{
+            display: 'block',
+            width: '100%',
+            marginTop: 8,
+            padding: 8,
+          }}
+        />
+      </Modal>
+    );
+  },
+  args: {
+    title: 'Search dialog',
+    footer: null,
+    size: 'small',
+  },
+  parameters: {
+    docs: {
+      description: {
+        story:
+          'By default a modal moves focus to the dialog container itself on open — screen readers announce the dialog name + role and no cursor lands in a non-critical field (WAI-ARIA APG Dialog pattern). Pass `initialFocusRef` only when focusing a specific control is genuinely useful, e.g. the search field of a search dialog or the name field of a rename dialog.',
+      },
+      source: {
+        code: 'const searchRef = useRef<HTMLInputElement>(null);\n\n<Modal title="Search dialog" size="small" footer={null} initialFocusRef={searchRef} open>\n  <label htmlFor="search">Search</label>\n  <input id="search" ref={searchRef} />\n</Modal>',
       },
     },
   },
