@@ -23,7 +23,7 @@ export const MainContainer = styled.div<{ isolated?: boolean }>`
 export const PageHeaderContainer = styled.div`
   width: 100%;
   min-height: 80px;
-  padding: 24px;
+  padding: 20px 24px;
   display: flex;
   align-items: center;
   align-content: center;
@@ -40,7 +40,7 @@ export const PageHeaderTabsWrapper = styled.div`
   padding: 0 24px;
 
   &&& .ds-tabs {
-    padding: 0;
+    padding-top: 4px;
   }
 `;
 

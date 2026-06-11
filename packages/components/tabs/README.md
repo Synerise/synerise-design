@@ -37,6 +37,7 @@ import Tabs from '@synerise/ds-tabs'
 | configuration  | Appends a configurable action item to the overflow dropdown   | TabsConfiguration       | -       |
 | handleTabClick | Callback fired when user clicks on the tab                    | (index: number) => void | -       |
 | tabs           | Array of tabs                                                 | TabItem[]               | -       |
+| topPadding     | Top padding (px) above the tab group                          | number                  | `8`     |
 | underscore     | Show active-indicator line below the active tab               | boolean                 | `true`  |
 
 ### Tab (TabItem)

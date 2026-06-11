@@ -40,45 +40,47 @@ export const ModalTitle = ({
         </S.CloseButton>
       )}
       {(title || description || headerTabProps) && (
-        <S.ModalTitleWrapper
-          withDescription={!!description}
-          withTabs={!!headerTabProps}
-        >
-          {title && (
-            <S.TitleContainer
-              style={titleContainerStyle}
-              data-testid="modal-title"
-            >
-              <S.Title level={3} id={titleId}>
-                {title}
-              </S.Title>
-              <S.ActionButtons>
-                {headerActions}
-                {onCancel && (
-                  <Button
-                    mode="single-icon"
-                    data-testid="modal-close"
-                    className="close-modal"
-                    type="ghost"
-                    aria-label={closeLabel}
-                    onClick={onCancel}
-                  >
-                    <Icon component={<CloseM />} />
-                  </Button>
-                )}
-              </S.ActionButtons>
-            </S.TitleContainer>
-          )}
+        <S.ModalHeaderTop>
+          <S.ModalTitleWrapper
+            withDescription={!!description}
+            withTabs={!!headerTabProps}
+          >
+            {title && (
+              <S.TitleContainer
+                style={titleContainerStyle}
+                data-testid="modal-title"
+              >
+                <S.Title level={3} id={titleId}>
+                  {title}
+                </S.Title>
+                <S.ActionButtons>
+                  {headerActions}
+                  {onCancel && (
+                    <Button
+                      mode="single-icon"
+                      data-testid="modal-close"
+                      className="close-modal"
+                      type="ghost"
+                      aria-label={closeLabel}
+                      onClick={onCancel}
+                    >
+                      <Icon component={<CloseM />} />
+                    </Button>
+                  )}
+                </S.ActionButtons>
+              </S.TitleContainer>
+            )}
 
-          {description && (
-            <S.Description id={descriptionId}>{description}</S.Description>
-          )}
+            {description && (
+              <S.Description id={descriptionId}>{description}</S.Description>
+            )}
+          </S.ModalTitleWrapper>
           {headerTabProps && (
             <S.TabsWrapper>
-              <Tabs {...headerTabProps} />
+              <Tabs topPadding={0} {...headerTabProps} />
             </S.TabsWrapper>
           )}
-        </S.ModalTitleWrapper>
+        </S.ModalHeaderTop>
       )}
       {headerBottomBar && <S.BottomBar>{headerBottomBar}</S.BottomBar>}
     </>

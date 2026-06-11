@@ -71,7 +71,7 @@ export const TabContainer = styled.button<{ block?: boolean }>`
   height: 34px;
   flex-direction: column;
   align-items: flex-start;
-  justify-content: center;
+  justify-content: flex-start;
   margin-right: 24px;
   cursor: pointer;
   box-sizing: content-box;
@@ -85,7 +85,6 @@ export const TabContainer = styled.button<{ block?: boolean }>`
   padding: 0;
   pointer-events: ${({ disabled }): string => (disabled ? 'none' : 'all')};
   opacity: ${({ disabled }): string => (disabled ? '0.4' : '1')};
-  margin-top: 4px;
   ${IconContainer} {
     margin-right: 4px;
   }
