@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.2.0](https://github.com/synerise/synerise-design/compare/@synerise/ds-tabs@1.1.39...@synerise/ds-tabs@1.2.0) (2026-06-11)
+
+### Features
+
+- **tabs:** align dimensions with figma and add configurable group top padding ([bd8dbe4](https://github.com/synerise/synerise-design/commit/bd8dbe40a4f2e7dbd45acc3151cafd645181535e))
+
 ## [1.1.39](https://github.com/synerise/synerise-design/compare/@synerise/ds-tabs@1.1.38...@synerise/ds-tabs@1.1.39) (2026-05-26)
 
 **Note:** Version bump only for package @synerise/ds-tabs

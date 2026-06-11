@@ -3,6 +3,10 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.0.37](https://github.com/Synerise/synerise-design/compare/@synerise/ds-section-message@1.0.36...@synerise/ds-section-message@1.0.37) (2026-06-11)
+
+**Note:** Version bump only for package @synerise/ds-section-message
+
 ## [1.0.36](https://github.com/Synerise/synerise-design/compare/@synerise/ds-section-message@1.0.35...@synerise/ds-section-message@1.0.36) (2026-05-26)
 
 **Note:** Version bump only for package @synerise/ds-section-message

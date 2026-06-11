@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.1.57](https://github.com/Synerise/synerise-design/compare/@synerise/ds-button-group@1.1.56...@synerise/ds-button-group@1.1.57) (2026-06-11)
+
+### Bug Fixes
+
+- share border between button-group buttons wrapped in dropdown/tooltip triggers ([f04c03f](https://github.com/Synerise/synerise-design/commit/f04c03f9631bae72dcaee7a6693d3d44b9c799a1))
+
 ## [1.1.56](https://github.com/Synerise/synerise-design/compare/@synerise/ds-button-group@1.1.55...@synerise/ds-button-group@1.1.56) (2026-05-26)
 
 **Note:** Version bump only for package @synerise/ds-button-group

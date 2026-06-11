@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.47.0](https://github.com/Synerise/synerise-design/compare/storybook@1.46.3...storybook@1.47.0) (2026-06-11)
+
+### Bug Fixes
+
+- share border between button-group buttons wrapped in dropdown/tooltip triggers ([f04c03f](https://github.com/Synerise/synerise-design/commit/f04c03f9631bae72dcaee7a6693d3d44b9c799a1))
+
+### Features
+
+- add bodyScrollRef to Modal for external VirtualTable scroll ([72a8cbb](https://github.com/Synerise/synerise-design/commit/72a8cbb40a75aa127ca11fc5984a46aef3a4fb80))
+- add nested-dropdown selection story to ListItem ([1f84c87](https://github.com/Synerise/synerise-design/commit/1f84c87fa89612a72f25ed10076998f0b3dc29d3))
+- focus dialog container on modal open, add initialFocusRef opt-in ([cf80110](https://github.com/Synerise/synerise-design/commit/cf801100a30246bd1699debe293f4f7711c435b5))
+- **tabs:** align dimensions with figma and add configurable group top padding ([bd8dbe4](https://github.com/Synerise/synerise-design/commit/bd8dbe40a4f2e7dbd45acc3151cafd645181535e))
+
 ## [1.46.3](https://github.com/Synerise/synerise-design/compare/storybook@1.46.2...storybook@1.46.3) (2026-06-09)
 
 **Note:** Version bump only for package storybook

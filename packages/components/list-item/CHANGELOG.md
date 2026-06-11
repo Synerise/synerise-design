@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.5.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-list-item@1.4.22...@synerise/ds-list-item@1.5.0) (2026-06-11)
+
+### Features
+
+- add nested-dropdown selection story to ListItem ([1f84c87](https://github.com/Synerise/synerise-design/commit/1f84c87fa89612a72f25ed10076998f0b3dc29d3))
+
 ## [1.4.22](https://github.com/Synerise/synerise-design/compare/@synerise/ds-list-item@1.4.21...@synerise/ds-list-item@1.4.22) (2026-05-26)
 
 **Note:** Version bump only for package @synerise/ds-list-item

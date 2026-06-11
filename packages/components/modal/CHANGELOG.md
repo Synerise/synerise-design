@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.6.0](https://github.com/synerise/synerise-design/compare/@synerise/ds-modal@1.5.2...@synerise/ds-modal@1.6.0) (2026-06-11)
+
+### Features
+
+- add bodyScrollRef to Modal for external VirtualTable scroll ([72a8cbb](https://github.com/synerise/synerise-design/commit/72a8cbb40a75aa127ca11fc5984a46aef3a4fb80))
+- focus dialog container on modal open, add initialFocusRef opt-in ([cf80110](https://github.com/synerise/synerise-design/commit/cf801100a30246bd1699debe293f4f7711c435b5))
+- **tabs:** align dimensions with figma and add configurable group top padding ([bd8dbe4](https://github.com/synerise/synerise-design/commit/bd8dbe40a4f2e7dbd45acc3151cafd645181535e))
+
 ## [1.5.2](https://github.com/synerise/synerise-design/compare/@synerise/ds-modal@1.5.1...@synerise/ds-modal@1.5.2) (2026-06-03)
 
 ### Bug Fixes

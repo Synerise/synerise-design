@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.5.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-scrollbar@1.4.1...@synerise/ds-scrollbar@1.5.0) (2026-06-11)
+
+### Features
+
+- add bodyScrollRef to Modal for external VirtualTable scroll ([72a8cbb](https://github.com/Synerise/synerise-design/commit/72a8cbb40a75aa127ca11fc5984a46aef3a4fb80))
+
 ## [1.4.1](https://github.com/Synerise/synerise-design/compare/@synerise/ds-scrollbar@1.4.0...@synerise/ds-scrollbar@1.4.1) (2026-05-26)
 
 **Note:** Version bump only for package @synerise/ds-scrollbar

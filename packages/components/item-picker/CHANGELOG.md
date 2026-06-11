@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.17.20](https://github.com/Synerise/synerise-design/compare/@synerise/ds-item-picker@1.17.19...@synerise/ds-item-picker@1.17.20) (2026-06-11)
+
+### Bug Fixes
+
+- add missing colon to padding in ItemPicker TriggerWrapper ([7b54ba3](https://github.com/Synerise/synerise-design/commit/7b54ba3e4861b9b8a581302718cff498dee3d16f))
+
 ## [1.17.19](https://github.com/Synerise/synerise-design/compare/@synerise/ds-item-picker@1.17.18...@synerise/ds-item-picker@1.17.19) (2026-05-27)
 
 **Note:** Version bump only for package @synerise/ds-item-picker
