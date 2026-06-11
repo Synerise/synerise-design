@@ -214,6 +214,36 @@ describe('Modal', () => {
     expect(document.activeElement?.closest('[data-testid="ds-modal"]')).toBeTruthy();
   });
 
+  it('should focus the dialog container itself on open, not the first focusable child', () => {
+    renderWithProvider(
+      <Modal open onCancel={vi.fn()} title="dialog focus">
+        <button data-testid="first-btn">First</button>
+      </Modal>,
+    );
+
+    // Focus lands on the dialog element (announced by its accessible name),
+    // not on the first focusable field — no cursor in a non-critical field.
+    expect(document.activeElement).toBe(screen.getByRole('dialog'));
+    expect(document.activeElement).not.toBe(screen.getByTestId('first-btn'));
+  });
+
+  it('should focus the element passed via initialFocusRef on open', () => {
+    const inputRef = createRef<HTMLInputElement>();
+
+    renderWithProvider(
+      <Modal
+        open
+        onCancel={vi.fn()}
+        title="initial focus"
+        initialFocusRef={inputRef}
+      >
+        <input data-testid="search" ref={inputRef} />
+      </Modal>,
+    );
+
+    expect(document.activeElement).toBe(screen.getByTestId('search'));
+  });
+
   describe('afterClose semantics', () => {
     it('fires on every open: true → false transition', async () => {
       const afterClose = vi.fn();

@@ -72,6 +72,7 @@ src/
 | `bodyFullWidth` | `boolean` | — | Removes body padding |
 | `ariaLabel` | `string` | — | Accessible name for the dialog; fallback when `title` is absent or non-text |
 | `closeButtonAriaLabel` | `string` | `DS.MODAL.CLOSE` (`'Close'`) | Accessible name for the close button; defaults to the localised translation |
+| `initialFocusRef` | `RefObject<HTMLElement \| null>` | dialog container | Element focused on open. Defaults to the dialog container (announced by its accessible name). Pass a ref only when focusing a specific control is genuinely useful (search/rename dialogs) |
 | `getContainer` | `() => HTMLElement` | `document.body` | Portal mount target |
 | `zIndex` | `number` | theme `zindex-modal` | z-index of the modal root |
 
@@ -163,7 +164,7 @@ document.body (portal target)
 - **`fullScreen`** positions the modal `fixed` covering the viewport; body scrolls via `overflow: scroll`.
 - **`maxViewportHeight`** anchors the modal to the bottom of the viewport (sheet-style), not the centre.
 - **Async handlers:** Both `onOk` and `onCancel` can return `Promise`. `onCancel` awaits the promise then calls `closeModal()`. `onOk` resolves then calls `closeModal()` only if the handler was detected as promise-returning via `'then' in onOk`.
-- **Accessibility:** `ModalContainer` carries `role="dialog"` + `aria-modal`. `ModalContent` generates two ids with React's `useId()` — `titleId` and `descriptionId` — passed to `ModalTitle` which applies them to `S.Title` (the `<h3>`) and `S.Description`. The dialog references them via `aria-labelledby` (when `title` is set) and `aria-describedby` (when `description` is set); `aria-label` falls back to the `ariaLabel` prop when there is no title. Both close buttons (header and `blank`) get `aria-label` from `closeButtonAriaLabel`, falling back to the localised `DS.MODAL.CLOSE` message (`useIntl().formatMessage`, default `'Close'`); `react-intl` is a peer dependency. Focus trap/restore is handled by `useFocusTrap`; `Escape` closes via `handleKeyDown`.
+- **Accessibility:** `ModalContainer` carries `role="dialog"` + `aria-modal`. `ModalContent` generates two ids with React's `useId()` — `titleId` and `descriptionId` — passed to `ModalTitle` which applies them to `S.Title` (the `<h3>`) and `S.Description`. The dialog references them via `aria-labelledby` (when `title` is set) and `aria-describedby` (when `description` is set); `aria-label` falls back to the `ariaLabel` prop when there is no title. Both close buttons (header and `blank`) get `aria-label` from `closeButtonAriaLabel`, falling back to the localised `DS.MODAL.CLOSE` message (`useIntl().formatMessage`, default `'Close'`); `react-intl` is a peer dependency. Focus trap/restore is handled by `useFocusTrap`; `Escape` closes via `handleKeyDown`. **Initial focus:** on open, focus moves to the `ModalContainer` (`role="dialog"`, `tabIndex={-1}`) itself — screen readers announce the dialog's accessible name + role and no cursor lands in a non-critical field. This satisfies the WAI-ARIA APG Dialog pattern (focus must move *into* the dialog, but not necessarily onto the first focusable element). Consumers can override the target with `initialFocusRef` (e.g. focus a search field); it is passed straight to `useFocusTrap`'s `initialFocus` option.
 
 ## Key dependencies
 

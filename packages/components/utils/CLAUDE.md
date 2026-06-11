@@ -177,8 +177,13 @@ Handles serialisation/deserialisation of string arrays where items may contain t
 
 Also exports interfaces: `DelimiterEscapeConfig`, `DelimiterEscapeUtils`
 
-#### `useFocusTrap(containerRef: RefObject<HTMLElement | null>, active: boolean): void`
-Traps keyboard focus within a container element. When `active` is `true`, saves the previously focused element, focuses the first focusable child (or the container itself), and intercepts Tab/Shift+Tab to cycle within the container. When `active` becomes `false`, removes the trap and restores focus to the previously focused element. Focusable elements are re-queried on each Tab press, so dynamic content is handled correctly.
+#### `useFocusTrap(containerRef: RefObject<HTMLElement | null>, active: boolean, options?: { initialFocus?: RefObject<HTMLElement | null> | 'first' | 'container' }): void`
+Traps keyboard focus within a container element. When `active` is `true`, saves the previously focused element, moves focus per `initialFocus`, and intercepts Tab/Shift+Tab to cycle within the container. When `active` becomes `false`, removes the trap and restores focus to the previously focused element. Focusable elements are re-queried on each Tab press, so dynamic content is handled correctly.
+
+`options.initialFocus` controls where focus lands on activation:
+- a `RefObject` — focus that element (falls back to first-focusable → container when the ref is empty);
+- `'container'` — focus the container element itself;
+- `'first'` (**default**) — focus the first focusable descendant, falling back to the container when there are none.
 
 #### `useTraceUpdate(props: Record<string, unknown>): void`
 **Development debugging tool.** Logs changed props to `console.log` on each render. Do not use in production code.

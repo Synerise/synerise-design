@@ -3,6 +3,7 @@ import type {
   ComponentType,
   MouseEvent,
   ReactNode,
+  RefObject,
 } from 'react';
 
 import { type ButtonProps, type ButtonType } from '@synerise/ds-button';
@@ -65,6 +66,14 @@ export type ModalProps = {
    * (default message `'Close'`).
    */
   closeButtonAriaLabel?: string;
+  /**
+   * Ref to the element that should receive focus when the modal opens. By
+   * default focus lands on the dialog container itself, which screen readers
+   * announce by the dialog's accessible name (no cursor in any field). Provide
+   * this only when focusing a specific control is genuinely useful — e.g. the
+   * search input of a search dialog or the name field of a rename dialog.
+   */
+  initialFocusRef?: RefObject<HTMLElement | null>;
 
   /**
    * Background colour of the modal body.

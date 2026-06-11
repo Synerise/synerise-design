@@ -40,6 +40,41 @@ describe('useFocusTrap', () => {
     expect(document.activeElement).toBe(container);
   });
 
+  it('should focus the element from initialFocus ref instead of the first child', () => {
+    const container = createContainer('First', 'Second');
+    const ref = { current: container } as RefObject<HTMLElement>;
+    const target = container.querySelectorAll('button')[1];
+    const initialFocusRef = { current: target } as RefObject<HTMLElement>;
+
+    renderHook(() =>
+      useFocusTrap(ref, true, { initialFocus: initialFocusRef }),
+    );
+
+    expect(document.activeElement?.textContent).toBe('Second');
+  });
+
+  it("should focus the container itself when initialFocus is 'container'", () => {
+    const container = createContainer('First', 'Second');
+    container.tabIndex = -1;
+    const ref = { current: container } as RefObject<HTMLElement>;
+
+    renderHook(() => useFocusTrap(ref, true, { initialFocus: 'container' }));
+
+    expect(document.activeElement).toBe(container);
+  });
+
+  it('should fall back to the first focusable when the initialFocus ref is empty', () => {
+    const container = createContainer('First', 'Second');
+    const ref = { current: container } as RefObject<HTMLElement>;
+    const initialFocusRef = { current: null } as RefObject<HTMLElement>;
+
+    renderHook(() =>
+      useFocusTrap(ref, true, { initialFocus: initialFocusRef }),
+    );
+
+    expect(document.activeElement?.textContent).toBe('First');
+  });
+
   it('should not focus anything when inactive', () => {
     const outside = document.createElement('button');
     outside.textContent = 'Outside';
