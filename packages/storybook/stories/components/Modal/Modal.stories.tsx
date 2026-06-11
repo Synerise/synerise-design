@@ -9,6 +9,8 @@ import Icon, { MailM, UserM } from '@synerise/ds-icon';
 import Layout, { LayoutProps } from '@synerise/ds-layout';
 import Modal, { showModal } from '@synerise/ds-modal';
 import Stepper from '@synerise/ds-stepper';
+import { VirtualTable } from '@synerise/ds-table-new';
+import { type ColumnDef } from '@tanstack/react-table';
 
 import { Placeholder, PropNamePill } from '../../constants';
 import {
@@ -22,8 +24,15 @@ import {
   sleep,
 } from '../../utils';
 import { STEPPER_STEPS, StepData } from '../Stepper/Stepper.data';
+import { DATA_SOURCE_FULL } from '../TableNew/data/tableData';
 import { SIZES, TAB_PROPS, headerWithPrefix } from './Modal.data';
 import * as S from './styles';
+
+type RecordRow = (typeof DATA_SOURCE_FULL)[number];
+
+const NAME_COLUMN: ColumnDef<RecordRow>[] = [
+  { accessorKey: 'name', id: 'name', header: 'Name' },
+];
 
 export default {
   title: 'Components/Modal',
@@ -216,6 +225,46 @@ export const withScroll: Story = {
     docs: {
       source: {
         code: '<Modal\n  title="title"\n  footer={null}\n  size="small"\n  maxViewportHeight={70}\n  open\n>\n  {/* tall content */}\n</Modal>',
+      },
+    },
+  },
+};
+
+export const withVirtualTable: Story = {
+  render: (args, storyContext) => {
+    const open = storyContext.viewMode === 'docs' ? false : args.open;
+    // One ref drives both: the modal's custom scrollbar exposes its scroll node
+    // through `bodyScrollRef`, and the VirtualTable virtualizes against it via
+    // `scrollElementRef`. Title and footer stay pinned while the body scrolls.
+    const scrollRef = useRef<HTMLDivElement>(null);
+    return (
+      <Modal {...args} open={open} bodyScrollRef={scrollRef}>
+        <VirtualTable
+          stickyHeader
+          scrollElementRef={scrollRef}
+          rowKey="key"
+          matchesSearchQuery={(query, row) =>
+            row.name.toLowerCase().includes(query.toLowerCase())
+          }
+          searchProps={{ placeholder: 'Search by name...' }}
+          selectionConfig={{ onChange: () => {}, limit: 5 }}
+          columns={NAME_COLUMN}
+          data={DATA_SOURCE_FULL}
+        />
+      </Modal>
+    );
+  },
+  args: {
+    title: 'Records',
+    footer: null,
+    size: 'large',
+    maxViewportHeight: 70,
+    bodyFullWidth: true,
+  },
+  parameters: {
+    docs: {
+      source: {
+        code: "// One ref drives both — Modal#bodyScrollRef exposes the modal's custom\n// scrollbar scroll node, VirtualTable#scrollElementRef virtualizes against it.\nconst scrollRef = useRef<HTMLDivElement>(null);\n\nconst columns = [{ accessorKey: 'name', id: 'name', header: 'Name' }];\n\n<Modal\n  title=\"Records\"\n  footer={null}\n  size=\"large\"\n  maxViewportHeight={70}\n  bodyFullWidth\n  bodyScrollRef={scrollRef}\n  open\n>\n  <VirtualTable\n    stickyHeader\n    scrollElementRef={scrollRef}\n    rowKey=\"key\"\n    matchesSearchQuery={(query, row) =>\n      row.name.toLowerCase().includes(query.toLowerCase())\n    }\n    searchProps={{ placeholder: 'Search by name...' }}\n    selectionConfig={{ onChange: () => {}, limit: 5 }}\n    columns={columns}\n    data={data}\n  />\n</Modal>",
       },
     },
   },

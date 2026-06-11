@@ -1,5 +1,6 @@
 import classnames from 'classnames';
 import React, {
+  type MutableRefObject,
   forwardRef,
   useCallback,
   useEffect,
@@ -122,6 +123,18 @@ export const VirtualScrollbar = forwardRef<HTMLElement, VirtualScrollbarProps>(
       <PerfectScrollbar
         containerRef={(ref) => {
           combinedScrollRef.current = ref;
+          // Sync the forwarded ref synchronously here (the ref/layout phase) rather than
+          // waiting for useCombinedRefs' passive effect. A descendant consumer that uses
+          // this scroll node as its container (e.g. a VirtualTable via scrollElementRef)
+          // reads it in its own passive effect, which runs before this ancestor's passive
+          // effect — so the deferred sync left it null, which is what kept externally
+          // scrolled tables stuck at opacity: 0 (column widths never measured).
+          if (typeof forwardedRef === 'function') {
+            forwardedRef(ref);
+          } else if (forwardedRef) {
+            (forwardedRef as MutableRefObject<HTMLElement | null>).current =
+              ref;
+          }
         }} // workaround: https://github.com/goldenyz/react-perfect-scrollbar/issues/94#issuecomment-619131257
         onScroll={onScroll}
         onScrollUp={handleScrollUp}

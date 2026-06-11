@@ -6,6 +6,7 @@ import ModalMeta, {
   Fullscreen,
   withFooter,
   withScroll,
+  withVirtualTable,
   withLayout,
   ModalWithStepper,
   ShowModal,
@@ -28,6 +29,7 @@ A portal-based modal dialog with structured header (title, tabs, actions), a slo
 - [Footer](#footer)
 - [Fullscreen](#fullscreen)
 - [Scrollable (maxViewportHeight)](#scrollable-maxviewportheight)
+- [VirtualTable as body scroll (bodyScrollRef)](#virtualtable-as-body-scroll-bodyscrollref)
 - [With Layout](#with-layout)
 - [With Stepper](#with-stepper)
 - [Imperative API — showModal](#imperative-api--showmodal)
@@ -47,6 +49,7 @@ A portal-based modal dialog with structured header (title, tabs, actions), a slo
 - Six predefined sizes: `small` (520px), `medium` (792px), `large` (1044px), `extraLarge` (1280px), `fullSize` (100%), `fullScreen` (100% fixed)
 - `onOk` and `onCancel` both support `Promise`-returning handlers — modal stays open until the promise resolves
 - `maxViewportHeight` constrains modal height and wraps children in a scrollbar (sheet-style, anchored to bottom)
+- `bodyScrollRef` exposes the body's scroll element so a child `VirtualTable` can virtualize against the modal's own scroll (pass the same ref to its `scrollElementRef`)
 - `footer={null}` removes the footer; `footer={<Custom />}` overrides it; omit for the default Cancel + Apply buttons
 - `ref` handle exposes `scrollToTop()` and `scrollToBottom()` for programmatic scroll control
 - Sub-components `ModalTitle`, `ModalFooter`, and `TitleContainer` are exported for advanced composition
@@ -88,6 +91,19 @@ The default footer renders Cancel and Apply buttons. Pass `footer={null}` to sup
 `maxViewportHeight` constrains the modal to a viewport percentage and wraps children in a scrollbar. Pass `true` for 80vh or a number for a custom value. The modal anchors to the bottom of the viewport (sheet-style).
 
 <Canvas of={withScroll} sourceState="shown" />
+
+## VirtualTable as body scroll (bodyScrollRef)
+
+When you render a `VirtualTable` (`@synerise/ds-table-new`) inside the modal, let the modal's own scroll drive the table's virtualization instead of giving the table its own inner scroll. Create a single ref and pass it to **both** `Modal`'s `bodyScrollRef` and `VirtualTable`'s `scrollElementRef`:
+
+- With `maxViewportHeight` set (and `disableScrollbar` **not** set), `bodyScrollRef` resolves to the modal's custom scrollbar scroll node.
+- With `disableScrollbar`, it resolves to the `ModalBody` element directly.
+
+The title and footer stay pinned while only the body scrolls; combine with the table's `stickyHeader` to keep the column header fixed under the modal title.
+
+> **Note:** when the custom scrollbar is active, the scroll node binds one render after mount (the ds-scrollbar ref chain syncs in an effect). `VirtualTable` picks it up on its next render, so rows render normally.
+
+<Canvas of={withVirtualTable} sourceState="shown" />
 
 ## With Layout
 
@@ -151,6 +167,7 @@ Both `onOk` and `onCancel` accept handlers that return a `Promise`. The modal st
     <tr><td>bodyFullWidth</td><td>boolean</td><td>false</td><td>Removes the body padding (the default 24px on all sides), letting content span the full width/height of the body</td></tr>
     <tr><td>maxViewportHeight</td><td>{'true | number'}</td><td>—</td><td>Caps height: true = 80vh, number = Nvh. Wraps children in scrollbar</td></tr>
     <tr><td>disableScrollbar</td><td>boolean</td><td>false</td><td>Disables scrollbar wrapping from maxViewportHeight</td></tr>
+    <tr><td>bodyScrollRef</td><td>{'MutableRefObject<HTMLDivElement | null>'}</td><td>—</td><td>Ref to the body's scroll element — the custom scrollbar's scroll node when active, else ModalBody. Pass the same ref to a child VirtualTable's scrollElementRef</td></tr>
     <tr><td>headerActions</td><td>ReactNode</td><td>—</td><td>Content in the top-right header action area</td></tr>
     <tr><td>headerBottomBar</td><td>ReactNode</td><td>—</td><td>Full-width bar below the header</td></tr>
     <tr><td>headerTabProps</td><td>TabsProps</td><td>—</td><td>Renders a Tabs component in the header</td></tr>
