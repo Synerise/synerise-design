@@ -30,6 +30,18 @@ export const Scrollbar = styled(ScrollbarBase)`
   .ps__rail-x {
     z-index: 99;
   }
+  /*
+    The perfect-scrollbar content box (ds-scrollbar's ScrollbarContent) has no
+    width of its own, so it shrink-wraps to the content's intrinsic width and
+    can end up a few px wider than the scroll container — producing a spurious
+    horizontal scroll that suppressScrollX (which acts on .ps) does not remove.
+    Pin it to the container width and clip the residual overflow so the body
+    only scrolls vertically.
+  */
+  .ds-modal-body-scrollbar {
+    width: 100%;
+    overflow-x: clip;
+  }
 `;
 
 export const ModalBody = styled.div<{

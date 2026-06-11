@@ -104,6 +104,39 @@ describe('Modal', () => {
     expect(screen.getByTestId('modal-content')).toBeInTheDocument();
   });
 
+  it('should expose the custom scrollbar scroll node via bodyScrollRef when maxViewportHeight is set', async () => {
+    const bodyScrollRef = createRef<HTMLDivElement>();
+
+    renderWithProvider(
+      <Modal open maxViewportHeight={80} bodyScrollRef={bodyScrollRef}>
+        <div data-testid="modal-content">Content</div>
+      </Modal>,
+    );
+
+    await waitFor(() =>
+      expect(bodyScrollRef.current).toBeInstanceOf(HTMLElement),
+    );
+    expect(bodyScrollRef.current).toContainElement(
+      screen.getByTestId('modal-content'),
+    );
+  });
+
+  it('should expose the body element via bodyScrollRef when disableScrollbar is true', () => {
+    const bodyScrollRef = createRef<HTMLDivElement>();
+
+    renderWithProvider(
+      <Modal open maxViewportHeight={80} disableScrollbar bodyScrollRef={bodyScrollRef}>
+        <div data-testid="modal-content">Content</div>
+      </Modal>,
+    );
+
+    expect(screen.queryByTestId('virtual-scrollbar')).not.toBeInTheDocument();
+    expect(bodyScrollRef.current).toBeInstanceOf(HTMLDivElement);
+    expect(bodyScrollRef.current).toContainElement(
+      screen.getByTestId('modal-content'),
+    );
+  });
+
   it('should show custom footer if its in props', () => {
     renderWithProvider(<Modal footer={<div>Custom Footer</div>} open />);
 

@@ -50,6 +50,7 @@ export const ModalContent = forwardRef<ModalRef, ModalContentProps>(
       footer,
       bodyStyle,
       disableScrollbar,
+      bodyScrollRef,
       closable = true,
       maskClosable = true,
       centered,
@@ -75,6 +76,11 @@ export const ModalContent = forwardRef<ModalRef, ModalContentProps>(
       }
       return undefined;
     }, [maxViewportHeight]);
+
+    // Whether the custom scrollbar wraps the body — mirrors the render branch below.
+    // Drives where bodyScrollRef is attached: the scrollbar's scroll node when active,
+    // otherwise the body element itself.
+    const useScrollbar = !!maxHeight && !disableScrollbar;
 
     const scrollToTop = useCallback(() => {
       scrollRef.current?.scrollTo(0, 0);
@@ -164,13 +170,21 @@ export const ModalContent = forwardRef<ModalRef, ModalContentProps>(
               closeButtonAriaLabel={closeButtonAriaLabel}
             />
             <S.ModalBody
+              ref={useScrollbar ? undefined : bodyScrollRef}
               greyBackground={bodyBackground === 'grey'}
               bodyFullWidth={bodyFullWidth}
               style={bodyStyle}
             >
-              {maxHeight && !disableScrollbar ? (
+              {useScrollbar ? (
                 <S.ModalWrapper>
-                  <S.Scrollbar absolute>{children}</S.Scrollbar>
+                  <S.Scrollbar
+                    scrollbarOptions={{ suppressScrollX: true }}
+                    absolute
+                    classes="ds-modal-body-scrollbar"
+                    ref={bodyScrollRef}
+                  >
+                    {children}
+                  </S.Scrollbar>
                 </S.ModalWrapper>
               ) : (
                 children

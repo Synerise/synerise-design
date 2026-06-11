@@ -2,6 +2,7 @@ import type {
   CSSProperties,
   ComponentType,
   MouseEvent,
+  MutableRefObject,
   ReactNode,
 } from 'react';
 
@@ -79,6 +80,15 @@ export type ModalProps = {
 
   /** When `maxViewportHeight` is set, disables the built-in scrollbar wrapper. */
   disableScrollbar?: boolean;
+  /**
+   * Ref to the modal body's scroll element. When the custom scrollbar is active
+   * (`maxViewportHeight` set, `disableScrollbar` not), it resolves to that scrollbar's
+   * scroll node; when `disableScrollbar` is set, it resolves to the body element itself.
+   * Pass the same ref to a child `VirtualTable`'s `scrollElementRef` to make the modal's
+   * scroll drive the table's virtualization. Note: when the custom scrollbar is active the
+   * node binds one tick after mount (see the ds-scrollbar ref chain).
+   */
+  bodyScrollRef?: MutableRefObject<HTMLDivElement | null>;
   /** Removes the padding from the modal body. */
   bodyFullWidth?: boolean;
 

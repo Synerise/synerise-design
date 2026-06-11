@@ -50,6 +50,7 @@ src/
 | `centered` | `boolean` | `false` | Vertically centres the modal |
 | `maxViewportHeight` | `true \| number` | — | Caps height. `true` → 80vh; number → Nvh. Wraps children in scrollbar. Anchors modal to bottom of viewport |
 | `disableScrollbar` | `boolean` | — | Disables scrollbar wrapping from `maxViewportHeight` |
+| `bodyScrollRef` | `MutableRefObject<HTMLDivElement \| null>` | — | Ref to the body's scroll element. With the custom scrollbar active (`maxViewportHeight`, no `disableScrollbar`) it resolves to that scrollbar's scroll node; with `disableScrollbar` it resolves to `ModalBody`. Pass the same ref to a child `VirtualTable`'s `scrollElementRef` so the modal's scroll drives virtualization. When the custom scrollbar is active, the node binds one tick after mount |
 | `headerActions` | `ReactNode` | — | Extra buttons/icons in header action row |
 | `headerBottomBar` | `ReactNode` | — | Full-width bar below the header |
 | `headerTabProps` | `TabsProps` | — | Renders a `Tabs` component in the header |
@@ -130,6 +131,12 @@ const ref = showModal({ title: 'Confirm', onOk: () => ref.destroy() });
 const ref = useRef<ModalRef>(null);
 <Modal ref={ref} open>{/* content */}</Modal>
 ref.current?.scrollToTop();
+
+// VirtualTable virtualizing against the modal's body scroll
+const scrollRef = useRef<HTMLDivElement>(null);
+<Modal open maxViewportHeight bodyScrollRef={scrollRef} onCancel={handleClose}>
+  <VirtualTable stickyHeader scrollElementRef={scrollRef} columns={cols} data={data} />
+</Modal>
 ```
 
 ## Higher-level modal components
