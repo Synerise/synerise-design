@@ -121,6 +121,7 @@ export default {
     },
     underscore: BOOLEAN_CONTROL,
     block: BOOLEAN_CONTROL,
+    topPadding: { control: { type: 'number' } },
   },
 } as Meta<TabsProps>;
 

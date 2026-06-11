@@ -3,8 +3,11 @@ import styled from 'styled-components';
 import Button, { type StyledButton } from '@synerise/ds-button';
 import Menu, { type AntdMenuProps } from '@synerise/ds-menu';
 
-export const TabsContainer = styled.div<{ block?: boolean }>`
-  padding-top: 5px;
+export const TabsContainer = styled.div<{
+  block?: boolean;
+  $topPadding?: number;
+}>`
+  padding-top: ${({ $topPadding }): number => $topPadding ?? 8}px;
   display: flex;
   flex-direction: row;
   align-items: ${(props): string | false =>
@@ -13,7 +16,6 @@ export const TabsContainer = styled.div<{ block?: boolean }>`
   max-width: 100%;
   overflow-x: hidden;
   margin-bottom: -1px;
-  height: 43px;
 `;
 
 export const TabsDropdownContainer = styled.div`

@@ -33,6 +33,7 @@ const Tabs = ({
   configuration,
   underscore,
   block,
+  topPadding = 8,
 }: TabsProps) => {
   const [containerWidth, setContainerWidth] = useState(0);
   const containerRef = useRef<HTMLDivElement>(null);
@@ -249,6 +250,7 @@ const Tabs = ({
           ref={containerRef}
           data-testid="tabs-container"
           block={block}
+          $topPadding={topPadding}
           data-popup-container
         >
           {renderVisibleTabs}

@@ -38,6 +38,7 @@ export type { TabItem, TabsConfiguration, TabsProps } from './Tabs.types';
 | `configuration` | `TabsConfiguration` | — | When provided, appends a configurable action item to the overflow dropdown. If no tabs are hidden it renders a standalone dropdown trigger. |
 | `underscore` | `boolean` | `true` | Shows the blue active-indicator line below the active tab. |
 | `block` | `boolean` | — | Stretches tabs to fill the container width (flex: 1 per tab). Disables the overflow/hidden-tabs mechanism. |
+| `topPadding` | `number` | `8` | Top padding (px) applied above the tab group via `TabsContainer`. Default `8` keeps overall height ≈ the legacy fixed 43 px (now 8 + 34 = 42 px). Hosts that need a tighter header pass a smaller value (e.g. `ds-page-header` forces 4 px). |
 | `visible` | `boolean` | — | **Deprecated.** Has no effect in current implementation. |
 
 ### `TabItem`
@@ -107,6 +108,7 @@ const config: TabsConfiguration = {
 - The `underscore` class is added to `TabContainer` via `classNames`; the active indicator is only visible when both `.active` and `.underscore` are applied.
 - `block` mode applies `applyBlockStyles` which uses `flex: 1` and repositions `BlockContentWrapper` absolutely so content stays centered regardless of tab width.
 - Typography uses the `macro.h300` mixin from `@synerise/ds-typography`.
+- **Dimensions (Figma-aligned):** each `TabContainer` is `34 px` tall. Content is top-aligned (`justify-content: flex-start`, no `margin-top`), so the 20 px text line sits `2 px` from the top / `12 px` from the bottom — matching the Figma `.SingleTab` (`pt-2` / `pb-12`). The group's top padding is prop-driven via `TabsContainer` (`$topPadding`, default `8 px`); overall height is therefore `topPadding + 34` (42 px by default).
 
 ## Key dependencies
 

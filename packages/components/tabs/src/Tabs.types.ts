@@ -9,6 +9,11 @@ export type TabsProps = {
   configuration?: Configuration;
   underscore?: boolean;
   block?: boolean;
+  /**
+   * Top padding (in px) above the tab group. Defaults to 8.
+   * Hosts that need a tighter header (e.g. ds-page-header) use a smaller value.
+   */
+  topPadding?: number;
   // @deprecated
   visible?: boolean;
 };
