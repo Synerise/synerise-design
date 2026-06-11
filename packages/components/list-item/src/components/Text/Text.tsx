@@ -42,6 +42,7 @@ const Text = forwardRef<HTMLDivElement, BasicItemProps & NestedItemProps>(
       disabled,
       description,
       parent,
+      selectableParent,
       ordered,
       indentLevel,
 
@@ -63,6 +64,9 @@ const Text = forwardRef<HTMLDivElement, BasicItemProps & NestedItemProps>(
       popoverProps,
       renderHoverTooltip,
       subMenu,
+      subMenuOpen: controlledSubMenuOpen,
+      defaultSubMenuOpen,
+      onSubMenuToggle,
       featured,
       ItemComponent,
 
@@ -75,7 +79,19 @@ const Text = forwardRef<HTMLDivElement, BasicItemProps & NestedItemProps>(
     const stableId = useStableId();
     const itemKey = menuItemKey ?? stableId;
 
-    const [subMenuOpen, setSubMenuOpen] = useState(false);
+    const isSubMenuControlled = controlledSubMenuOpen !== undefined;
+    const [uncontrolledSubMenuOpen, setUncontrolledSubMenuOpen] = useState(
+      Boolean(defaultSubMenuOpen),
+    );
+    const subMenuOpen = isSubMenuControlled
+      ? Boolean(controlledSubMenuOpen)
+      : uncontrolledSubMenuOpen;
+    const updateSubMenuOpen = (next: boolean) => {
+      if (!isSubMenuControlled) {
+        setUncontrolledSubMenuOpen(next);
+      }
+      onSubMenuToggle?.(next);
+    };
 
     const [hovered, setHovered] = useState(false);
 
@@ -136,10 +152,19 @@ const Text = forwardRef<HTMLDivElement, BasicItemProps & NestedItemProps>(
       item: removeHandlerProps(props),
     };
 
+    const handleToggleSubMenu = (
+      event: MouseEvent<HTMLElement> | KeyboardEvent<HTMLElement>,
+    ) => {
+      event.stopPropagation();
+      if (!disabled) {
+        updateSubMenuOpen(!subMenuOpen);
+      }
+    };
+
     const handleClick = (event: MouseEvent<HTMLDivElement>) => {
       if (!disabled) {
-        if (subMenu) {
-          setSubMenuOpen(!subMenuOpen);
+        if (subMenu && !selectableParent) {
+          updateSubMenuOpen(!subMenuOpen);
         } else {
           if (delayClickEvent) {
             setTimeout(() => {
@@ -154,8 +179,8 @@ const Text = forwardRef<HTMLDivElement, BasicItemProps & NestedItemProps>(
 
     const handleKeyDown = (event: KeyboardEvent<HTMLDivElement>) => {
       if (!disabled && event.key === 'Enter') {
-        if (subMenu) {
-          setSubMenuOpen(!subMenuOpen);
+        if (subMenu && !selectableParent) {
+          updateSubMenuOpen(!subMenuOpen);
         } else {
           event.preventDefault();
           if (canCopyToClipboard && valueToCopy) {
@@ -228,6 +253,7 @@ const Text = forwardRef<HTMLDivElement, BasicItemProps & NestedItemProps>(
         parent={parent}
         hasSubMenu={!!(subMenu && subMenu.length)}
         subMenuOpen={subMenuOpen}
+        onToggleSubMenu={selectableParent ? handleToggleSubMenu : undefined}
         prefixElement={prefixElement}
         prefixVisible={shouldRenderPrefix}
         description={description}

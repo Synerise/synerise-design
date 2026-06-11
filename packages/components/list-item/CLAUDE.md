@@ -49,6 +49,7 @@ src/
 | `featured` | `boolean` | — | Blue label + blue prefix/suffix icon tint |
 | `ordered` | `boolean` | — | Renders ordinal counter before content |
 | `parent` | `boolean` | — | Shows `AngleRightS` arrow in content area |
+| `selectableParent` | `boolean` | — | Only affects items with a `subMenu`. When `true`, clicking the row fires `onClick` (e.g. to select it) and expand/collapse moves to the suffix arrow (`role="button"`, keyboard-accessible). When omitted, the whole row toggles the sub-menu and `onClick` is not called. |
 | `prefixel` | `ReactNode \| AddonRenderer` | — | Left slot; `AddonRenderer = (hovered: boolean) => ReactNode` |
 | `prefixVisibilityTrigger` | `'hover' \| 'default'` | — | When `'hover'`, prefix only visible while item is hovered |
 | `suffixel` | `ReactNode \| AddonRenderer` | — | Right slot |
@@ -61,7 +62,10 @@ src/
 | `copyTooltip` | `ReactNode` | — | **Deprecated** — no longer rendered |
 | `timeToHideTooltip` | `number` | — | **Deprecated** — no longer rendered |
 | `tooltipProps` | `TooltipProps` | — | **Deprecated** — no longer rendered |
-| `subMenu` | `ListItemProps[]` | — | Inline collapsible sub-list; toggled on click/Enter |
+| `subMenu` | `ListItemProps[]` | — | Inline collapsible sub-list; toggled on row click/Enter by default, or via the suffix arrow when `selectableParent` is set |
+| `defaultSubMenuOpen` | `boolean` | `false` | Initial open state of `subMenu` (uncontrolled, read once on mount). Ignored when `subMenuOpen` is provided |
+| `subMenuOpen` | `boolean` | — | Controlled open state of `subMenu`; when set, the component stops managing it internally — pair with `onSubMenuToggle` |
+| `onSubMenuToggle` | `(open: boolean) => void` | — | Fires with the next open state on every `subMenu` toggle (row click in default mode, or the suffix arrow when `selectableParent`) |
 | `indentLevel` | `number` | — | Left indent = `indentLevel * 20px` |
 | `renderHoverTooltip` | `() => JSX.Element` | — | Popover rendered on hover via `HoverTooltip`; wraps item in a `PropagationStopper` |
 | `popoverProps` | `{ placement?, getPopupContainer?, offsetConfig?, flipConfig?, shiftConfig?, initialOpen? }` | — | Passed to `HoverTooltip`'s `Popover`; only used when `renderHoverTooltip` is set |
@@ -176,5 +180,8 @@ import ListItem, { ListWrapper, ListContextProvider, useListContext } from '@syn
 - **`useTemporaryLabel` missing cleanup** — the `useEffect` in `useTemporaryLabel` runs on every render (no dependency array), creating a new `setTimeout` on each render. This is a bug: it resets the timer unnecessarily when other state changes.
 - **`GroupItem` uses `items?.map(ListItem)`** — passes `ListItemProps` objects directly as React elements via `.map(Component)`. This relies on all `ListItemProps` being valid props AND each item object having a `key` property (which is typed as optional). Missing `key` will produce React warnings.
 - **`indentLevel`** — each sub-menu level adds 20px indent (`INDENT_WIDTH`). The `SubMenu` component automatically increments `indentLevel` by 1.
+- **`selectableParent`** — by default a `subMenu` parent owns its whole row for expand/collapse and swallows `onClick`. Setting `selectableParent` flips this: `Text.tsx` routes the row click/Enter to `onClick` (the `if (subMenu && !selectableParent)` guard), and `ItemLabel` renders the suffix arrow as a focusable `S.SubMenuToggle` (`role="button"`, Enter/Space) whose handler calls `stopPropagation()` so toggling never selects.
+- **Sub-menu open state** — uncontrolled by default (internal `useState`, starts closed). Seed the initial state with `defaultSubMenuOpen`, or fully control it with `subMenuOpen` + `onSubMenuToggle` (mirrors `Dropdown`'s `open`/`onOpenChange`). When `subMenuOpen` is provided, `Text.tsx` derives the open state from the prop and `onSubMenuToggle` fires the next state on each toggle without mutating internal state. Omitting all three preserves the legacy behaviour.
+- **Sub-menu nesting** — `subMenu` is fully recursive (each `SubMenu` renders items via `ItemComponent`, so a nested item with its own `subMenu` nests again); there is **no hard depth limit**. The practical cap is layout-driven: each open `SubMenuContainer` is `max-height: 999px; overflow: hidden` (`SubMenu.styles.ts`), so any single level whose expanded content exceeds 999px is clipped, and indent grows 20px per level without bound.
 - **`popoverDelay` is not forwarded** through `ListWrapper` — `ListWrapper` only forwards `onClick`; callers needing custom delay must use `ListContextProvider` directly.
 - **Uses Vitest** — `jest.config.js` present; only 2 smoke tests exist, well below 80% coverage requirement.

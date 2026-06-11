@@ -106,6 +106,13 @@ export type BaseListItemProps = ListItemDividerProps & {
   >;
   ordered?: boolean;
   parent?: boolean;
+  /**
+   * Only relevant for items that have a `subMenu`. When `true`, clicking the row
+   * fires `onClick` (e.g. to select the item) and expand/collapse is moved to the
+   * suffix arrow. When omitted, clicking anywhere on the row toggles the sub-menu
+   * (the default, backwards-compatible behaviour) and `onClick` is not called.
+   */
+  selectableParent?: boolean;
   prefixel?: ReactNode | AddonRenderer;
   prefixVisibilityTrigger?: 'hover' | 'default';
   renderHoverTooltip?: () => JSX.Element;
@@ -115,6 +122,22 @@ export type BaseListItemProps = ListItemDividerProps & {
   text?: ReactNode;
   type?: ItemType;
   subMenu?: ListItemProps[];
+  /**
+   * Initial open state of the item's `subMenu` (uncontrolled — read once on mount).
+   * Defaults to `false`. Ignored when `subMenuOpen` is provided.
+   */
+  defaultSubMenuOpen?: boolean;
+  /**
+   * Controlled open state of the item's `subMenu`. When provided, the component no
+   * longer manages open state internally — drive it together with `onSubMenuToggle`.
+   */
+  subMenuOpen?: boolean;
+  /**
+   * Fires with the next open state whenever the `subMenu` is toggled (row click in the
+   * default mode, or the suffix arrow when `selectableParent` is set). Use to drive a
+   * controlled `subMenuOpen`.
+   */
+  onSubMenuToggle?: (open: boolean) => void;
   indentLevel?: number;
   featured?: boolean;
 };

@@ -183,6 +183,127 @@ describe('ListItem', () => {
       fireEvent.click(screen.getByText('Parent'));
       expect(screen.getByText('Sub Item').closest('[class*="SubMenuContainer"]')).toHaveStyle('max-height: 0px');
     });
+
+    it('should not fire onClick when toggling a sub-menu parent without selectableParent (legacy)', () => {
+      const handleClick = vi.fn();
+      renderWithProvider(
+        <ListItem
+          onClick={handleClick}
+          subMenu={[{ children: 'Sub Item', itemKey: 'a' }]}
+        >
+          Parent
+        </ListItem>,
+      );
+      fireEvent.click(screen.getByText('Parent'));
+      expect(handleClick).not.toHaveBeenCalled();
+      expect(
+        screen.getByText('Sub Item').closest('[class*="SubMenuContainer"]'),
+      ).toHaveStyle('max-height: 999px');
+    });
+
+    describe('selectableParent', () => {
+      it('fires onClick on row click and leaves the sub-menu collapsed', () => {
+        const handleClick = vi.fn();
+        renderWithProvider(
+          <ListItem
+            selectableParent
+            onClick={handleClick}
+            subMenu={[{ children: 'Sub Item', itemKey: 'a' }]}
+          >
+            Parent
+          </ListItem>,
+        );
+        fireEvent.click(screen.getByText('Parent'));
+        expect(handleClick).toHaveBeenCalled();
+        expect(
+          screen.getByText('Sub Item').closest('[class*="SubMenuContainer"]'),
+        ).toHaveStyle('max-height: 0px');
+      });
+
+      it('toggles the sub-menu via the suffix arrow without firing onClick', () => {
+        const handleClick = vi.fn();
+        renderWithProvider(
+          <ListItem
+            selectableParent
+            onClick={handleClick}
+            subMenu={[{ children: 'Sub Item', itemKey: 'a' }]}
+          >
+            Parent
+          </ListItem>,
+        );
+        fireEvent.click(screen.getByTestId('list-item-submenu-toggle'));
+        expect(handleClick).not.toHaveBeenCalled();
+        expect(
+          screen.getByText('Sub Item').closest('[class*="SubMenuContainer"]'),
+        ).toHaveStyle('max-height: 999px');
+      });
+
+      it('toggles the sub-menu when the arrow is activated with the keyboard', () => {
+        const handleClick = vi.fn();
+        renderWithProvider(
+          <ListItem
+            selectableParent
+            onClick={handleClick}
+            subMenu={[{ children: 'Sub Item', itemKey: 'a' }]}
+          >
+            Parent
+          </ListItem>,
+        );
+        fireEvent.keyDown(screen.getByTestId('list-item-submenu-toggle'), {
+          key: 'Enter',
+        });
+        expect(handleClick).not.toHaveBeenCalled();
+        expect(
+          screen.getByText('Sub Item').closest('[class*="SubMenuContainer"]'),
+        ).toHaveStyle('max-height: 999px');
+      });
+    });
+
+    describe('open state', () => {
+      it('starts expanded when defaultSubMenuOpen is set (uncontrolled)', () => {
+        renderWithProvider(
+          <ListItem
+            defaultSubMenuOpen
+            subMenu={[{ children: 'Sub Item', itemKey: 'a' }]}
+          >
+            Parent
+          </ListItem>,
+        );
+        expect(
+          screen.getByText('Sub Item').closest('[class*="SubMenuContainer"]'),
+        ).toHaveStyle('max-height: 999px');
+      });
+
+      it('reflects the controlled subMenuOpen prop', () => {
+        renderWithProvider(
+          <ListItem subMenuOpen subMenu={[{ children: 'Sub Item', itemKey: 'a' }]}>
+            Parent
+          </ListItem>,
+        );
+        expect(
+          screen.getByText('Sub Item').closest('[class*="SubMenuContainer"]'),
+        ).toHaveStyle('max-height: 999px');
+      });
+
+      it('fires onSubMenuToggle and does not manage state internally when controlled', () => {
+        const onSubMenuToggle = vi.fn();
+        renderWithProvider(
+          <ListItem
+            subMenuOpen={false}
+            onSubMenuToggle={onSubMenuToggle}
+            subMenu={[{ children: 'Sub Item', itemKey: 'a' }]}
+          >
+            Parent
+          </ListItem>,
+        );
+        fireEvent.click(screen.getByText('Parent'));
+        expect(onSubMenuToggle).toHaveBeenCalledWith(true);
+        // controlled: prop is still false, so it stays collapsed until the consumer updates it
+        expect(
+          screen.getByText('Sub Item').closest('[class*="SubMenuContainer"]'),
+        ).toHaveStyle('max-height: 0px');
+      });
+    });
   });
 
   describe('highlight', () => {
