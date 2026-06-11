@@ -3,6 +3,11 @@ import styled, { type Keyframes, css, keyframes } from 'styled-components';
 import { type ThemeProps } from '@synerise/ds-core';
 import { type LiteralStringUnion } from '@synerise/ds-utils';
 
+// A "button unit" inside .ant-btn-group is either a bare button or a span that wraps a
+// button — Dropdown/Tooltip triggers insert such a span. The empty display:contents anchor
+// span (Tooltip / Dropdown asChild) has no inner .ant-btn, so it is intentionally excluded.
+const BUTTON_UNIT = ':is(.ant-btn, span:has(> .ant-btn))';
+
 const getButtonsPosition = (position: string) => {
   const mapButtonsPosition = {
     left: 'flex-start',
@@ -166,16 +171,31 @@ export const Container = styled.div<{
     ${(props) =>
       props.compact &&
       css`
-        & > .ant-btn + .ant-btn {
+        /* every button after the first shares its left border with the previous one */
+        & > ${BUTTON_UNIT} ~ .ant-btn,
+        & > ${BUTTON_UNIT} ~ span > .ant-btn {
           margin-left: -1px;
         }
-        & > button.ant-btn:first-of-type {
+        /* squared inner corners, whether the button is wrapped in a trigger span or not */
+        & > .ant-btn,
+        & > span > .ant-btn {
+          border-radius: 0;
+        }
+        /* round the outer corners of the first / last / only button unit */
+        & > .ant-btn:not(${BUTTON_UNIT} ~ *),
+        & > span:has(> .ant-btn):not(${BUTTON_UNIT} ~ *) > .ant-btn {
           border-radius: 3px 0 0 3px;
         }
-        & > button.ant-btn:last-of-type {
+        & > .ant-btn:not(:has(~ ${BUTTON_UNIT})),
+        & > span:has(> .ant-btn):not(:has(~ ${BUTTON_UNIT})) > .ant-btn {
           border-radius: 0 3px 3px 0;
         }
-        & > button.ant-btn:first-of-type:last-of-type {
+        & > .ant-btn:not(${BUTTON_UNIT} ~ *):not(:has(~ ${BUTTON_UNIT})),
+        &
+          > span:has(> .ant-btn):not(${BUTTON_UNIT} ~ *):not(
+            :has(~ ${BUTTON_UNIT})
+          )
+          > .ant-btn {
           border-radius: 3px;
         }
       `}
