@@ -418,6 +418,13 @@ const Collector = ({
   });
   const showError = error || !!errorText;
 
+  const isDropdownVisible =
+    isFocused &&
+    !disabled &&
+    (filteredSuggestions.length > 0 ||
+      !!listHeader ||
+      (!!value && allowMultipleValues && allowCustomValue));
+
   const renderCountLabel = () => {
     const total = selectedValues.length;
     const counterLabel =
@@ -535,12 +542,7 @@ const Collector = ({
         lookupKey={displayLookupKey}
         dropdownItemHeight={dropdownItemHeight}
         value={value}
-        visible={
-          isFocused &&
-          !disabled &&
-          (filteredSuggestions.length > 0 ||
-            (!!value && allowMultipleValues && allowCustomValue))
-        }
+        visible={isDropdownVisible}
         onSelect={handleDropdownSelect}
         onClick={handleDropdownClick}
         renderItem={renderItem}

@@ -64,7 +64,7 @@ const OptionsDropdown = ({
         (customContent ? (
           <S.CustomContentWrapper>{customContent}</S.CustomContentWrapper>
         ) : (
-          <S.DropdownContent>
+          <S.DropdownContent data-testid="ds-collector-dropdown-content">
             {listHeader}
             <Scrollbar
               absolute
