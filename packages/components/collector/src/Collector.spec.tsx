@@ -275,3 +275,54 @@ describe('Collector', () => {
   it.todo('should call onYReachEnd function');
   it.todo('should shows loading state on dropdown');
 });
+
+describe('Collector dropdown visibility', () => {
+  const LIST_HEADER = 'My list header';
+  const DROPDOWN_CONTENT = 'ds-collector-dropdown-content';
+  const onSelectFn = vi.fn();
+
+  const renderCollector = (props = {}) =>
+    renderWithProvider(
+      <Collector
+        selected={[]}
+        suggestions={SUGGESTIONS}
+        onItemSelect={onSelectFn}
+        {...props}
+      />,
+    );
+
+  it('does not render the dropdown content before the input is focused', () => {
+    renderCollector({ listHeader: <div>{LIST_HEADER}</div> });
+
+    expect(screen.queryByTestId(DROPDOWN_CONTENT)).not.toBeInTheDocument();
+    expect(screen.queryByText(LIST_HEADER)).not.toBeInTheDocument();
+  });
+
+  it('shows the dropdown content when the input is focused', () => {
+    renderCollector();
+    fireEvent.focus(screen.getByTestId(TEST_ID));
+
+    expect(screen.getByTestId(DROPDOWN_CONTENT)).toBeInTheDocument();
+  });
+
+  it('keeps listHeader visible when focused even with no matching suggestions', () => {
+    renderCollector({ listHeader: <div>{LIST_HEADER}</div> });
+    fireEvent.focus(screen.getByTestId(TEST_ID));
+    fireEvent.input(screen.getByTestId(TEST_ID), {
+      target: { value: 'no-such-option' },
+    });
+
+    expect(screen.getByTestId(DROPDOWN_CONTENT)).toBeInTheDocument();
+    expect(screen.getByText(LIST_HEADER)).toBeInTheDocument();
+  });
+
+  it('hides the dropdown when focused with no suggestions and no listHeader', () => {
+    renderCollector();
+    fireEvent.focus(screen.getByTestId(TEST_ID));
+    fireEvent.input(screen.getByTestId(TEST_ID), {
+      target: { value: 'no-such-option' },
+    });
+
+    expect(screen.queryByTestId(DROPDOWN_CONTENT)).not.toBeInTheDocument();
+  });
+});
