@@ -43,6 +43,7 @@
   "dependencies": {
     "@synerise/ds-form-field": "workspace:^",
     "@synerise/ds-typography": "workspace:^",
+    "@synerise/ds-utils": "workspace:^",
     "classnames": "^2.5.1"
   },
   "devDependencies": {
@@ -50,7 +51,6 @@
   },
   "peerDependencies": {
     "@synerise/ds-core": "*",
-    "antd": "4.24.16",
     "react": ">=16.9.0 <= 18.3.1",
     "styled-components": "^5.3.3",
     "vitest": "4"
