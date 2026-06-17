@@ -56,9 +56,9 @@ describe('Avatar', () => {
       </Badge>
     );
 
-    const badge = container.querySelector('.ant-badge');
+    const badge = container.querySelector('.ds-badge');
     const avatar = container.querySelector('.ant-avatar');
-    const dot = container.querySelector('.ant-badge-dot');
+    const dot = container.querySelector('.ds-badge-dot');
     
     expect(container).toContainElement(badge as HTMLElement);
     expect(container).toContainElement(avatar as HTMLElement);

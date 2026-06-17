@@ -1,88 +1,147 @@
 import React from 'react';
 import { renderWithProvider } from '@synerise/ds-core';
 
-import Badge from '../index';
+import Badge, { BadgeWithLabel } from '../index';
 
 const TEST_ID = 'badge';
 const COUNT = 3;
 const OVERFLOW_COUNT = 99;
 const LOW_OVERFLOW_COUNT = 2;
-const COLOR = '#ffffff';
-const ERROR_STATUS = 'blocked';
-const TITLE = 'title';
 
-describe('Bagde', () => {
-  it('should render badge standalone', () => {
+describe('Badge', () => {
+  it('should render a standalone count badge', () => {
     // ARRANGE
-    const { container, getByText } = renderWithProvider(
-      <Badge count={COUNT} text={TITLE} data-testid={TEST_ID} />
-    );
-
-    const bagdeIndexContainer = container.querySelector('sup');
+    const { container } = renderWithProvider(<Badge count={COUNT} data-testid={TEST_ID} />);
+    const sup = container.querySelector('sup');
 
     // ASSERT
-    expect(bagdeIndexContainer).toHaveAttribute('title', expect.stringContaining(`${COUNT}`));
-    expect(getByText(TITLE)).toBeTruthy();
+    expect(sup).toHaveClass('ds-badge-count');
+    expect(sup).toHaveAttribute('title', `${COUNT}`);
+    expect(sup?.querySelector('.current')).toHaveTextContent(`${COUNT}`);
   });
 
-  it('should render badge dot', () => {
+  it('should forward data-* attributes to the outermost wrapper', () => {
     // ARRANGE
-    const { container } = renderWithProvider(<Badge dot text={TITLE} data-testid={TEST_ID} />);
-
-    const bagdeIndexContainer = container.querySelector('sup');
+    const { getByTestId } = renderWithProvider(<Badge status="active" data-testid={TEST_ID} />);
 
     // ASSERT
-    expect(bagdeIndexContainer).toHaveClass('ant-badge-dot');
+    expect(getByTestId(TEST_ID)).toHaveClass('ds-badge');
   });
 
-  it('should render badge count properly', () => {
+  it('should render a dot badge', () => {
     // ARRANGE
-    const { container } = renderWithProvider(<Badge count={COUNT} overflowCount={OVERFLOW_COUNT} showZero={false} />);
-
-    const bagdeIndexContainer = container.querySelector('sup');
-    const currentIndexElement = bagdeIndexContainer && bagdeIndexContainer.querySelector('.current');
+    const { container } = renderWithProvider(<Badge dot data-testid={TEST_ID} />);
 
     // ASSERT
-    expect(currentIndexElement).toHaveTextContent(`${COUNT}`);
+    expect(container.querySelector('sup')).toHaveClass('ds-badge-dot');
   });
 
-  it('should render badge with max number set in overflowCount', () => {
+  it('should cap the count at overflowCount', () => {
     // ARRANGE
     const { container } = renderWithProvider(
-      <Badge count={COUNT} overflowCount={LOW_OVERFLOW_COUNT} showZero={false} />
+      <Badge count={COUNT} overflowCount={LOW_OVERFLOW_COUNT} />
     );
 
-    const bagdeIndexContainer = container.querySelector('sup');
-
     // ASSERT
-    expect(bagdeIndexContainer).toHaveTextContent(`${LOW_OVERFLOW_COUNT}+`);
+    expect(container.querySelector('sup')).toHaveTextContent(`${LOW_OVERFLOW_COUNT}+`);
   });
 
-  it('should render badge status with proper color', () => {
+  it('should render the exact count when below overflowCount', () => {
     // ARRANGE
-    const { container } = renderWithProvider(<Badge color={COLOR} status={ERROR_STATUS} text={ERROR_STATUS} />);
-
-    const badgeDot = container.querySelector('.ant-badge-status-dot');
-    const badgeHoverPopup = container.querySelector('.ant-badge-status-text');
+    const { container } = renderWithProvider(<Badge count={COUNT} overflowCount={OVERFLOW_COUNT} />);
 
     // ASSERT
-    expect(badgeDot).toHaveClass('ant-badge-status-blocked');
-    expect(badgeDot).toHaveStyle('background: rgb(255, 255, 255)');
-    expect(badgeHoverPopup).toHaveTextContent(/^blocked$/);
+    expect(container.querySelector('.current')).toHaveTextContent(`${COUNT}`);
   });
 
-  it('should render counter badge with outline', () => {
+  it('should apply the matching status class to the dot', () => {
     // ARRANGE
-    const { container } = renderWithProvider(<Badge
-      count={4}
-      offset={[0, 0]}
-      outlined={true}
-      overflowCount={99}
-      showZero={false}
-      title={'title'}
-    />);
-    const badgeDot = container.querySelector('.ant-badge-count');
+    const { container } = renderWithProvider(<Badge status="blocked" />);
+    const dot = container.querySelector('.ds-badge-dot');
 
-    expect(badgeDot).toHaveStyle('box-shadow: 0 0 0 1px #ffffff;');
+    // ASSERT — the ds-badge-* class hooks are present
+    expect(dot).toHaveClass('ds-badge-dot');
+    expect(dot).toHaveClass('ds-badge-status-dot');
+    expect(dot).toHaveClass('ds-badge-status-blocked');
+  });
+
+  it('should render the count badge with an outline', () => {
+    // ARRANGE
+    const { container } = renderWithProvider(
+      <Badge count={4} offset={[0, 0]} outlined overflowCount={OVERFLOW_COUNT} />
+    );
+
+    // ASSERT
+    expect(container.querySelector('.ds-badge-count')).toHaveStyle(
+      'box-shadow: 0 0 0 1px #ffffff;'
+    );
+  });
+
+  it('should hide the count when it is zero', () => {
+    // ARRANGE
+    const { container } = renderWithProvider(<Badge count={0} />);
+
+    // ASSERT
+    expect(container.querySelector('sup')).toBeNull();
+  });
+
+  it('should render a count (not a dot) when count and status are both set', () => {
+    // ARRANGE
+    const { container } = renderWithProvider(<Badge status="blocked" count={3} />);
+
+    // ASSERT — count wins over status-dot mode; status colours the count
+    expect(container.querySelector('.ds-badge-count')).toBeTruthy();
+    expect(container.querySelector('.ds-badge-dot')).toBeNull();
+    expect(container.querySelector('.current')).toHaveTextContent('3');
+  });
+
+  it('should render a custom-node count without the count-pill background', () => {
+    // ARRANGE
+    const { container, getByText } = renderWithProvider(
+      <Badge count={<span>icon</span>} />
+    );
+
+    // ASSERT — no `.ds-badge-count` pill; rendered as a bare custom component
+    expect(container.querySelector('.ds-badge-count')).toBeNull();
+    expect(
+      container.querySelector('.ds-badge-scroll-number-custom-component')
+    ).toBeTruthy();
+    expect(getByText('icon')).toBeTruthy();
+  });
+
+  it('should apply a raw hex customColor outside the palette', () => {
+    // ARRANGE
+    const { container } = renderWithProvider(<Badge dot customColor="#ff0000" />);
+
+    // ASSERT
+    expect(container.querySelector('.ds-badge-dot')).toHaveStyle(
+      'background-color: #ff0000'
+    );
+  });
+
+  it('should render a status dot next to the label when `text` is set', () => {
+    // ARRANGE — legacy `status` + `text` API delegates to BadgeWithLabel
+    const { container, getByText } = renderWithProvider(
+      <Badge status="active" text="Online" />
+    );
+    const dot = container.querySelector('.ds-badge-dot');
+
+    // ASSERT
+    expect(dot).toHaveClass('ds-badge-status-active');
+    expect(getByText('Online')).toBeTruthy();
+  });
+
+  describe('BadgeWithLabel', () => {
+    it('should render a status dot next to the label', () => {
+      // ARRANGE
+      const { container, getByText } = renderWithProvider(
+        <BadgeWithLabel status="active">Online</BadgeWithLabel>
+      );
+      const dot = container.querySelector('.ds-badge-dot');
+
+      // ASSERT
+      expect(dot).toHaveClass('ds-badge-status-active');
+      expect(getByText('Online')).toBeTruthy();
+    });
   });
 });

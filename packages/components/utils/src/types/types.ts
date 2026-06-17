@@ -13,6 +13,17 @@ export type ExactlyOne<T, U> =
   | (U & { [K in keyof T]?: never });
 
 export type DataAttributes = Record<`data-${string}`, string>;
+
+/**
+ * `data-*` / `aria-*` attributes that can be forwarded to a component's outermost wrapper element.
+ * Declared with index signatures so it can be intersected with a component's named props
+ * (`OwnProps & PassthroughAttributes`) without constraining those named props.
+ */
+export type PassthroughAttributes = {
+  [dataAttr: `data-${string}`]: string | number | boolean | undefined;
+  [ariaAttr: `aria-${string}`]: string | number | boolean | undefined;
+};
+
 export type WithHTMLAttributes<
   ElementType extends HTMLElement,
   BaseType,

@@ -22,13 +22,13 @@ export const Group = styled.div<{ size?: Size }>`
   align-items: center;
   justify-content: flex-start;
   && {
-    .ant-badge {
+    .ds-badge {
       transition: all 0.3s ease;
       ${(props) => applyMarginLeft(props.size)};
       &:first-of-type {
         margin-left: 0;
       }
-      .ant-badge-dot {
+      .ds-badge-dot {
         transition: all 0.3s ease;
         opacity: 0;
       }
@@ -38,12 +38,12 @@ export const Group = styled.div<{ size?: Size }>`
       }
     }
     &:hover {
-      .ant-badge {
+      .ds-badge {
         margin-left: 8px;
         &:first-of-type {
           margin-left: 0;
         }
-        .ant-badge-dot {
+        .ds-badge-dot {
           opacity: 1;
         }
         .ant-avatar {

@@ -210,7 +210,7 @@ export const DefaultSuffixWrapper = styled.div`
   font-size: 13px;
   line-height: 10px;
   text-align: center;
-  && .ant-badge-count {
+  && .ds-badge-count {
     padding: 0 0 0 3px;
   }
 `;

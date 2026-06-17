@@ -168,7 +168,7 @@ Styles in `Avatar.styles.tsx`. A DS-native `AvatarBase` renders the `ant-avatar`
 
 - Dimensions per size set directly in CSS: `small` 24, `medium` 40, `large` 84, `extraLarge` 120 px
 - Background applied via `theme.palette[${backgroundColor}-${backgroundColorHue}]` — requires both to be valid token fragments
-- Badge dot (`ant-badge-dot`) is hidden by default; shown when `hasStatus=true` with size/shape-specific positioning from `BADGE_POSITION` map
+- Badge dot (`ds-badge-dot`) is hidden by default; shown when `hasStatus=true` with size/shape-specific positioning from `BADGE_POSITION` map
 - Hover/active darken overlay via `::before` pseudo-element — only applied when `onClick` or `hasTooltip` is truthy
 - Font sizes per size via `MACRO_MAPPING` (xsAvatar, small, xlAvatar macros from ds-typography)
 
@@ -188,4 +188,4 @@ Styles in `Avatar.styles.tsx`. A DS-native `AvatarBase` renders the `ant-avatar`
 - `getDefaultAvatarIndex` uses a simple djb2-style hash on the string form of `avatarId` — the same `avatarId` always maps to the same avatar across all environments.
 - `getColorByText` supports a `'color-hue'` dash-separated string shorthand for `backgroundColor` (e.g. `'grey-800'`) — this bypasses the separate `backgroundColorHue` prop entirely.
 - When `badgeStatus` is used in `UserAvatar`/`ObjectAvatar`, the `style` prop is applied to a wrapping `<span>` instead of the avatar, to avoid breaking the badge positioning.
-- `hasStatus` on the base `Avatar` only controls CSS visibility of the `ant-badge-dot` — the actual `Badge` component must be provided by the parent (UserAvatar/ObjectAvatar handle this internally).
+- `hasStatus` on the base `Avatar` only controls CSS visibility of the `ds-badge-dot` — the actual `Badge` component must be provided by the parent (UserAvatar/ObjectAvatar handle this internally).

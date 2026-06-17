@@ -258,7 +258,7 @@ export const Wrapper = styled(Menu.Item)<WrapperProps>`
 
     &:hover {
       & .ds-menu-prefix > * > .ant-avatar::before,
-      .ds-menu-prefix > .ant-badge::before,
+      .ds-menu-prefix > .ds-badge::before,
       .ds-menu-prefix > .ant-avatar::before {
         content: '';
         position: absolute;
@@ -272,7 +272,7 @@ export const Wrapper = styled(Menu.Item)<WrapperProps>`
         box-sizing: border-box;
       }
       & .ds-menu-prefix > * > .ant-avatar::after,
-      .ds-menu-prefix > .ant-badge::after,
+      .ds-menu-prefix > .ds-badge::after,
       .ds-menu-prefix > .ant-avatar::after {
         opacity: 0.1;
       }

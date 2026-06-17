@@ -42,8 +42,6 @@ export default {
 
 const BADGE_PROPS: BadgeProps = {
   count: '5',
-  title: 'Title',
-  showZero: false,
   outlined: true,
   overflowCount: 99,
 };
@@ -99,8 +97,7 @@ export const Default: StoryObj<ToolbarProps> = {
             badgeProps={{
               ...BADGE_PROPS,
               count: '2',
-              backgroundColor: 'yellow',
-              backgroundColorHue: '600',
+              status: 'warning',
             }}
           >
             <Icon component={<ClickM />} />

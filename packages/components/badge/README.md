@@ -42,7 +42,7 @@ import Badge from '@synerise/ds-badge'
 <Badge
   count={10}
   overflowCount={11}
-  showZero={false}
+  status="processing"
 />
 
 ```
@@ -71,22 +71,28 @@ import Badge from '@synerise/ds-badge'
 
 | Property           | Description                                                        | Type                                                                                                 | Default |
 | ------------------ | ------------------------------------------------------------------ | ---------------------------------------------------------------------------------------------------- | ------- |
-| backgroundColor    | Customize the badge color                                          | Color                                                                                                | -       |
-| backgroundColorHue | Customize brightness of color                                      | `900` / `800` / `700` / `600` / `500` / `400` / `300` / `200` / `100` / `050`                        | -       |
-| customColor        | Customize the badge dot color                                      | `BadgeColor` or `DefaultColor` (e.g. `'blue-600'`)                                                   | -       |
-| count              | Number to show in the badge counter                                | ReactNode                                                                                            |         |
-| dot                | Display a red dot instead of a counter                             | boolean                                                                                              | `false` |
-| flag               | Show the badge as a flag                                           | boolean                                                                                              | `false` |
-| offset             | The offset of the badge dot in [x, y] format                       | [number, number]                                                                                     | -       |
-| outlined           | Add outline to the badge counter                                   | boolean                                                                                              | `false` |
+| status             | Status that drives the dot/count colour                            | `active` / `inactive` / `blocked` / `processing` / `warning`                                         | -       |
+| customColor        | Override the badge colour — palette token or any raw CSS colour    | `BadgeColor` / `DefaultColor` / CSS colour (e.g. `'blue-600'`, `'#FF0000'`)                          | -       |
+| count              | Number to show in the badge counter (hidden when `0`)              | ReactNode                                                                                            | -       |
+| dot                | Display a dot instead of a counter (auto-enabled by `status`)      | boolean                                                                                              | `false` |
+| flag               | Show the badge as a flag (halo rings)                              | boolean                                                                                              | `false` |
+| offset             | The offset of the badge in [x, y] format                           | [number, number]                                                                                     | -       |
+| outlined           | Add a white outline to the badge counter                           | boolean                                                                                              | `false` |
 | overflowCount      | Maximum number to show in the counter                              | number                                                                                               | 99      |
 | pulsing            | Enable pulsing animation                                           | boolean                                                                                              | `false` |
-| showZero           | Show the badge when the counter is zero                            | boolean                                                                                              | `false` |
-| status             | Set badge as a status dot                                          | `active` / `inactive` / `blocked` / `processing` / `warning`                                         | -       |
-| text               | If `status` is set, `text` sets the display text of the status dot | string                                                                                               | ''      |
-| textColor          | Customize text color in badge                                      | `red` / `green` / `grey` / `yellow` / `blue` / `pink`/ `mars`/ `orange`/ `fern`/ `cyan`/ `purple` / `violet` / `white` / `transparent` | -       |
-| textColorHue       | Customize brightness of color                                      | `900` / `800` / `700` / `600` / `500` / `400` / `300` / `200` / `100` / `050`                        | -       |
-| title              | Text shown when a cursor is hovered over the badge                 | string                                                                                               | count   |
+| data-\* / aria-\*  | Forwarded to the outermost wrapper element                         | string / number / boolean                                                                            | -       |
+
+> **Removed in the antd-free version:** `backgroundColor`, `backgroundColorHue`, `textColor`, `textColorHue` (count colour is now driven by `status`), `text` (use the `BadgeWithLabel` export instead), `showZero`, `title`. The component no longer extends antd's Badge props.
+
+### `BadgeWithLabel`
+
+A status dot aligned next to a text label — the replacement for the old `text` prop. Owns the dot↔label alignment so consumers don't.
+
+```
+import { BadgeWithLabel } from '@synerise/ds-badge'
+
+<BadgeWithLabel status="warning">Needs review</BadgeWithLabel>
+```
 
 ### Color
 

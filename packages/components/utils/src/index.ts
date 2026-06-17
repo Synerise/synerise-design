@@ -39,6 +39,7 @@ export const NOOP = (): void => {};
 
 export type {
   DataAttributes,
+  PassthroughAttributes,
   ExactlyOne,
   LiteralStringUnion,
   WithHTMLAttributes,
