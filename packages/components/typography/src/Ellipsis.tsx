@@ -8,10 +8,11 @@ import React, {
 } from 'react';
 
 import Tooltip, { type TooltipProps } from '@synerise/ds-tooltip';
+import { type DataAttributes } from '@synerise/ds-utils';
 
 import { EllipsisText } from './CommonElements';
 
-export type EllipsisProps = {
+export type EllipsisProps = DataAttributes & {
   tooltip?: ReactNode;
   tooltipProps?: TooltipProps;
   children?: ReactNode;
@@ -25,6 +26,7 @@ export const Ellipsis = ({
   className,
   tooltipProps,
   style,
+  ...dataAttributes
 }: EllipsisProps) => {
   const textComponentRef = useRef<HTMLDivElement | null>(null);
   const [truncated, setTruncated] = useState(false);
@@ -62,7 +64,12 @@ export const Ellipsis = ({
       title={truncated ? tooltip : undefined}
       {...(truncated ? tooltipProps : {})}
     >
-      <EllipsisText style={style} className={className} ref={textComponentRef}>
+      <EllipsisText
+        {...dataAttributes}
+        style={style}
+        className={className}
+        ref={textComponentRef}
+      >
         {children}
       </EllipsisText>
     </Tooltip>

@@ -12,30 +12,35 @@ src/
  Paragraph.tsx — DS Paragraph component (medium/small/xsmall spans)
  Ellipsis.tsx — Overflow-detection wrapper that shows a tooltip when truncated
  CommonElements.ts — All styled-component primitives (H1–H7, Text variants, Description, ErrorText, Label, EllipsisText)
- Typography.ts — Re-exports antd/lib/typography as default
+ Typography.ts — DS-composed default export: `{ Title, Text, Paragraph }` (antd-free)
  index.ts — Public exports
  style/
  macro-utils.ts — CSS snippet exports for use in consumer styled-components
- index.less — LESS overrides
 ```
 
 ## Public exports
 
-### `default` (re-export of `antd/lib/typography`)
+### `default` (DS-composed `Typography` namespace)
 
-The full Ant Design Typography object (`Typography.Title`, `Typography.Text`, `Typography.Paragraph`, `Typography.Link`). Useful when antd's built-in features (editable, copyable, code) are needed. This is **not** the DS-customised version.
+A plain object `{ Title, Text, Paragraph }` whose members are the **DS-implemented** components below
+(not antd). It exists so existing `import Typography from '@synerise/ds-typography'` +
+`<Typography.Title>` / `<Typography.Text>` / `<Typography.Paragraph>` call sites keep working without
+antd. antd-only members (`Typography.Link`, `copyable`, `editable`, `code`, `ellipsis`) are **dropped** —
+a repo-wide audit (portal-ui-bridge, portal-next, universal-list) found zero usages.
 
 ### `Title`
 
-DS-customised heading. Renders `<h1>`–`<h6>` elements (level 7 renders as `<h6>`). Extends antd `TitleProps` minus `level` and `ellipsis`.
+DS-customised heading. Renders `<h1>`–`<h6>` elements (level 7 renders as `<h6>`). Accepts standard
+heading HTML attributes (`HTMLAttributes<HTMLHeadingElement>`) plus the props below.
 
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
 | `level` | `1 \| 2 \| 3 \| 4 \| 5 \| 6 \| 7` | `1` | Heading level. Maps to DS type scale (h700–h100). Level 7 renders as `<h6>`. |
-| `withoutMargin` | `boolean` | `undefined` | Removes `margin-bottom` from the heading element. |
-| `ellipsis` | `EllipsisProps` | `undefined` | When provided, wraps the title in an `Ellipsis` component. Replaces antd's native ellipsis. |
+| `withoutMargin` | `boolean` | `undefined` | Removes the default `margin-bottom` (`0.5em`) from the heading element. |
+| `ellipsis` | `EllipsisProps` | `undefined` | When provided, wraps the title in an `Ellipsis` component. |
 | `className` | `string` | `undefined` | Merged with `'ds-title'`. |
-| `..antdProps` | `TitleProps` | — | All remaining antd TitleProps pass through (e.g. `style`, `id`). |
+| `data-*` | `string` | — | Any `data-*` attribute is forwarded onto the heading element (typed via `DataAttributes`). |
+| `...rest` | `HTMLAttributes<HTMLHeadingElement>` | — | All remaining heading attributes pass through (e.g. `style`, `id`). |
 
 Type scale mapping:
 
@@ -57,9 +62,14 @@ Inline text span in three sizes. Renders a styled `<span>`.
 |------|------|---------|-------------|
 | `size` | `'medium' \| 'small' \| 'xsmall'` | `'medium'` | Font size variant (14px / 13px / 11px). |
 | `ellipsis` | `EllipsisProps` | `undefined` | When provided, wraps content in `Ellipsis`. |
-| `className` | `string` | `undefined` | Applied to the `Ellipsis` wrapper when `ellipsis` is set; otherwise appended to the span. |
-| `style` | `CSSProperties` | `undefined` | Applied to the `Ellipsis` wrapper when `ellipsis` is set. |
+| `className` | `string` | `undefined` | Applied to the `Ellipsis` wrapper when `ellipsis` is set; otherwise appended to the span (`'ds-text'`). |
+| `style` | `CSSProperties` | `undefined` | Applied to the `Ellipsis` wrapper when `ellipsis` is set; otherwise applied to the span. |
+| `data-*` | `string` | — | Forwarded onto the outer element — the `Ellipsis` wrapper when `ellipsis` is set, otherwise the span (typed via `DataAttributes`). |
 | `children` | `ReactNode` | — | |
+
+> When `ellipsis` is set, `style` / `className` / `data-*` are applied to the outer `Ellipsis`
+> wrapper (so e.g. `style={{ maxWidth }}` still constrains the truncation box) — colocated with where
+> truncation is measured.
 
 ### `TextSize`
 
@@ -72,9 +82,12 @@ Block text element in three sizes. Renders a styled `<span>` with class `ds-para
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
 | `size` | `'medium' \| 'small' \| 'xsmall'` | `'medium'` | Font size variant. |
+| `className` | `string` | `undefined` | Merged with `'ds-paragraph'`. |
+| `style` | `CSSProperties` | `undefined` | Applied to the paragraph span. |
+| `data-*` | `string` | — | Any `data-*` attribute is forwarded onto the paragraph span (typed via `DataAttributes`). |
 | `children` | `ReactNode` | — | |
 
-> Note: `Paragraph` has no `className`, `style`, or `ellipsis` prop unlike `Text`.
+> Note: `Paragraph` supports `className` / `style` / `data-*` but (unlike `Text`) has no `ellipsis` prop.
 
 ### `Ellipsis`
 
@@ -86,6 +99,7 @@ Overflow-detection wrapper that conditionally shows a tooltip when text is trunc
 | `tooltipProps` | `TooltipProps` | `undefined` | Extra props forwarded to `@synerise/ds-tooltip` — only applied when truncated. |
 | `className` | `string` | `undefined` | Applied to the outer `EllipsisText` div. |
 | `style` | `CSSProperties` | `undefined` | Applied to the outer `EllipsisText` div. |
+| `data-*` | `string` | — | Any `data-*` attribute is forwarded onto the outer `EllipsisText` div (typed via `DataAttributes`). |
 | `children` | `ReactNode` | — | |
 
 ### `EllipsisProps`
@@ -146,8 +160,10 @@ import Typography, { Title, Text, Paragraph, Description, ErrorText, Label, macr
 <Description disabled>Disabled info</Description>
 <ErrorText>Validation error</ErrorText>
 
-// Antd Typography (full feature set: editable, copyable, etc.)
-<Typography.Text copyable>Copy me</Typography.Text>
+// Default export namespace — DS Title/Text/Paragraph (antd-free)
+import Typography from '@synerise/ds-typography';
+<Typography.Title level={4}>Heading</Typography.Title>
+<Typography.Text strong>Bold</Typography.Text>
 
 // macro — for use inside styled-components definitions
 import styled from 'styled-components';
@@ -168,14 +184,16 @@ All styled primitives live in `CommonElements.ts`. Typography tokens come from `
 
 - `@synerise/ds-tooltip` — used by `Ellipsis` to show the overflow tooltip (regular dependency, not peer)
 - `lodash.debounce` — debounces the `ResizeObserver` callback in `Ellipsis` (100ms, leading + trailing)
-- `classnames` — used in `Title` to merge `'ds-title'` with consumer `className`
-- `antd/lib/typography` — default export pass-through; also used by spec test via `Typography.Title`
+- `classnames` — used in `Title`/`Text` to merge `'ds-title'`/`'ds-text'` with consumer `className`
+- **No antd** — the package is antd-free. The default export is a DS-composed `{ Title, Text, Paragraph }`.
 
 ## Implementation notes
 
-- **`Text` className bug** — `textClassNames` is built as `` `ds-text ${!ellipsis && className}` ``. When `ellipsis` is provided, `!ellipsis` is `false`, so the class becomes `"ds-text false"` (string). The `className` is then correctly forwarded to the `Ellipsis` wrapper, but the inner span gets a literal `"false"` class token.
-- **`Title` level 7 renders as `<h6>`** — there is no `<h7>` in HTML. `H7` in `CommonElements.ts` is `styled.h6`. This is intentional for the design token h100 scale.
-- **Default export is antd, not DS** — `import Typography from '@synerise/ds-typography'` gives you antd's Typography. The DS `Title`/`Text`/`Paragraph` are named exports only.
+- **Default export is DS, not antd** — `import Typography from '@synerise/ds-typography'` now gives a DS-composed `{ Title, Text, Paragraph }` namespace (the same DS components as the named exports). antd-only members (`Link`, `copyable`, `editable`, `code`, antd `ellipsis`) were dropped after a repo-wide audit found zero usages.
+- **`Text` `strong`** — `strong` renders the span at `font-weight: 500`. When `ellipsis` is unset, `style` / `className` / `data-*` are applied to the rendered span. When `ellipsis` is set, they are applied to the outer `Ellipsis` wrapper (the `EllipsisText` div that measures truncation), so `style={{ maxWidth }}` keeps constraining the truncation box.
+- **`data-*` forwarding** — `Title`, `Text`, `Paragraph` and `Ellipsis` accept arbitrary `data-*` attributes (typed via the shared `DataAttributes` from `@synerise/ds-utils`) and forward them onto their outer element. For `Title` the heading carries `style`/`data-*` (via `...rest`); for `Text`/`Paragraph` the rendered span, or the `Ellipsis` wrapper when `ellipsis` is set.
+- **`Title` default margin** — headings have `margin-bottom: 0.5em` by default (own styled-component value, no longer reliant on antd's global reset); `withoutMargin` sets it to `0`.
+- **`Title` level 7 renders as `<h6>`** — there is no `<h7>` in HTML. `H7` in `CommonElements.ts` is `styled.h6`. Intentional for the h100 scale.
+- **`Paragraph`** — renders block-level styled spans (`display: block`) in medium/small/xsmall; no `className`/`style`/`ellipsis` support (unlike `Text`).
 - **`Ellipsis` uses `ResizeObserver`** — observes both the text element and `document.body` to detect layout changes. Cleans up observer and debounce on unmount.
-- **`Paragraph` vs `Text`** — both render styled spans with the same CSS macros (medium/small/xsmall). `Paragraph` has no `className`, `style`, or `ellipsis` support; `Text` does.
-- **Uses Vitest** — `package.json` has `"test": "jest"` and a `jest.config.js`. Has not been migrated to Vitest yet.
+- **Uses Vitest** — `"test": "vitest run"`.

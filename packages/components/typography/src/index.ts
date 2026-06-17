@@ -1,4 +1,4 @@
-export { Typography as default } from 'antd';
+export { default } from './Typography';
 export { Description, ErrorText, Label } from './CommonElements';
 export { default as Title } from './Title';
 export * from './Text';

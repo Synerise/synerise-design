@@ -1,17 +1,21 @@
+import classNames from 'classnames';
 import React, { type CSSProperties, type ReactNode } from 'react';
+
+import { type DataAttributes } from '@synerise/ds-utils';
 
 import { MediumText, SmallText, XSmallText } from './CommonElements';
 import { Ellipsis, type EllipsisProps } from './Ellipsis';
-import './style/index.less';
 
 export type TextSize = 'medium' | 'small' | 'xsmall';
 
-type TextProps = {
+type TextProps = DataAttributes & {
   size?: TextSize;
   ellipsis?: EllipsisProps;
   children?: ReactNode;
   className?: string;
   style?: CSSProperties;
+  /** Renders the text with a heavier (500) weight. */
+  strong?: boolean;
 };
 
 const MapSizeToComponent = {
@@ -26,16 +30,37 @@ export const Text = ({
   children,
   ellipsis,
   style,
+  strong,
+  ...dataAttributes
 }: TextProps) => {
   const Component = MapSizeToComponent[size];
-  const textClassNames = `ds-text ${!ellipsis && className}`;
-  const content = <Component className={textClassNames}>{children}</Component>;
+  const mergedStyle = strong ? { fontWeight: 500, ...style } : style;
+
   if (ellipsis === undefined) {
-    return content;
+    return (
+      <Component
+        {...dataAttributes}
+        className={classNames('ds-text', className)}
+        style={mergedStyle}
+      >
+        {children}
+      </Component>
+    );
   }
+
   return (
-    <Ellipsis className={className} style={style} {...ellipsis}>
-      {content}
+    <Ellipsis
+      {...dataAttributes}
+      className={className}
+      style={style}
+      {...ellipsis}
+    >
+      <Component
+        className="ds-text"
+        style={strong ? { fontWeight: 500 } : undefined}
+      >
+        {children}
+      </Component>
     </Ellipsis>
   );
 };
