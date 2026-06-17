@@ -253,13 +253,14 @@ notify_release:
       DATE=$(date +%d-%m-%Y)
       PKG_LINES=$(git log -1 --format=%b | grep -oE '@synerise/[^ ]+@[0-9][^ ]*' || true)
       COUNT=$(printf '%s\n' "$PKG_LINES" | sed '/^$/d' | wc -l | tr -d ' ')
+      DS_VER=$(printf '%s\n' "$PKG_LINES" | grep -oE '@synerise/design-system@[0-9][^ ]*' | head -1)
       SECTION=$(printf '%s\n' "$PKG_LINES" | sed '/^$/d' | awk '{printf "- %s\\n", $0}')
       bash scripts/notify-teams.sh \
         --webhook-env TEAMS_RELEASES_WEBHOOK \
         --status Good \
         --title "🚀 Design System published — ${DATE}" \
-        --section "Packages published (${COUNT})|${SECTION}" \
-        --text "Full product-owner & developer release notes follow via /ds-release." \
+        --text "${DS_VER} and ${COUNT} packages are published and available to install / upgrade from the registry." \
+        --collapsible-section "📦 Show published versions (${COUNT})|${SECTION}" \
         --button "Pipeline=${CI_PIPELINE_URL}" \
         --button "Public Storybook=https://design.synerise.com/storybook-static/"
 

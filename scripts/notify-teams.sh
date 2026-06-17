@@ -11,6 +11,8 @@
 #
 # Two card-building modes:
 #   * Simple (default) — assembled from --title/--text/--status/--fact/--section.
+#              --collapsible-section "Label|markdown" adds a section collapsed by default,
+#              revealed by a "Label" toggle button (keeps the closed card short).
 #   * Rich   — pass a fully-formed Adaptive Card body (a JSON array) via --card-file.
 #              The file is used verbatim as content.body; --title/--text/--fact/--section
 #              are ignored. --button/--diagnostics still append to the card actions.
@@ -46,6 +48,7 @@ CARD_FILE=""      # optional path to a JSON array used verbatim as the card body
 DRYRUN=""         # --dry-run → print payload + byte size instead of POSTing
 FACTS=()
 SECTIONS=()
+COLLAPSIBLES=()
 BUTTONS=()
 
 while [[ $# -gt 0 ]]; do
@@ -60,6 +63,7 @@ while [[ $# -gt 0 ]]; do
     --dry-run)     DRYRUN=1;     shift ;;
     --fact)        FACTS+=("$2");    shift 2 ;;   # "Label=Value"
     --section)     SECTIONS+=("$2"); shift 2 ;;   # "Heading|markdown body"
+    --collapsible-section) COLLAPSIBLES+=("$2"); shift 2 ;;  # "Toggle label|markdown body" — collapsed by default
     --button)      BUTTONS+=("$2");  shift 2 ;;   # "Label=URL"
     *) echo "notify-teams: unknown option '$1'" >&2; exit 1 ;;
   esac
@@ -93,12 +97,14 @@ FACTS_STR=""
 [[ ${#FACTS[@]} -gt 0 ]] && FACTS_STR="$(printf '%s\n' "${FACTS[@]}")"
 SECTIONS_STR=""
 [[ ${#SECTIONS[@]} -gt 0 ]] && SECTIONS_STR="$(printf '%s\n' "${SECTIONS[@]}")"
+COLLAPSIBLES_STR=""
+[[ ${#COLLAPSIBLES[@]} -gt 0 ]] && COLLAPSIBLES_STR="$(printf '%s\n' "${COLLAPSIBLES[@]}")"
 BUTTONS_STR=""
 [[ ${#BUTTONS[@]} -gt 0 ]] && BUTTONS_STR="$(printf '%s\n' "${BUTTONS[@]}")"
 
 # Build the Adaptive Card and POST it via Node fetch (safe JSON escaping; no curl/jq).
 NT_WEBHOOK="$WEBHOOK" NT_TITLE="$TITLE" NT_TEXT="$TEXT" NT_STATUS="$STATUS" \
-NT_FACTS="$FACTS_STR" NT_SECTIONS="$SECTIONS_STR" NT_BUTTONS="$BUTTONS_STR" \
+NT_FACTS="$FACTS_STR" NT_SECTIONS="$SECTIONS_STR" NT_COLLAPSIBLES="$COLLAPSIBLES_STR" NT_BUTTONS="$BUTTONS_STR" \
 NT_CARD_FILE="$CARD_FILE" NT_DRYRUN="${DRYRUN:-}" node <<'NODE'
 const fs = require('fs');
 
@@ -144,6 +150,19 @@ if (cardFile) {
       ],
     });
   }
+  // Collapsed-by-default sections: a ToggleVisibility button reveals/hides a hidden container.
+  // Keeps the card short in its closed state (e.g. a long published-version list).
+  splitPipe(process.env.NT_COLLAPSIBLES).forEach(([label, markdown], idx) => {
+    const cid = `collapsible-${idx}`;
+    body.push({
+      type: 'ActionSet', spacing: 'Medium',
+      actions: [{ type: 'Action.ToggleVisibility', title: label, targetElements: [cid] }],
+    });
+    body.push({
+      type: 'Container', id: cid, isVisible: false, spacing: 'Small',
+      items: [{ type: 'TextBlock', text: markdown.replace(/\\n/g, '\n'), wrap: true }],
+    });
+  });
 }
 
 const payload = {
