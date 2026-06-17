@@ -3,6 +3,10 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.2.18](https://github.com/Synerise/synerise-design/compare/@synerise/ds-form@1.2.17...@synerise/ds-form@1.2.18) (2026-06-17)
+
+**Note:** Version bump only for package @synerise/ds-form
+
 ## [1.2.17](https://github.com/Synerise/synerise-design/compare/@synerise/ds-form@1.2.16...@synerise/ds-form@1.2.17) (2026-06-11)
 
 **Note:** Version bump only for package @synerise/ds-form

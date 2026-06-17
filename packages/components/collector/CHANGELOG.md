@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.4.46](https://github.com/Synerise/synerise-design/compare/@synerise/ds-collector@1.4.45...@synerise/ds-collector@1.4.46) (2026-06-17)
+
+### Bug Fixes
+
+- **collector:** fix listHeader visibility on no data ([6a9ad87](https://github.com/Synerise/synerise-design/commit/6a9ad87ee3802b91ce12d80592ca40bcae42f70c))
+
 ## [1.4.45](https://github.com/Synerise/synerise-design/compare/@synerise/ds-collector@1.4.44...@synerise/ds-collector@1.4.45) (2026-06-11)
 
 **Note:** Version bump only for package @synerise/ds-collector

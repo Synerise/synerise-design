@@ -3,6 +3,10 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.1.62](https://github.com/Synerise/synerise-design/compare/@synerise/ds-toolbar@1.1.61...@synerise/ds-toolbar@1.1.62) (2026-06-17)
+
+**Note:** Version bump only for package @synerise/ds-toolbar
+
 ## [1.1.61](https://github.com/Synerise/synerise-design/compare/@synerise/ds-toolbar@1.1.60...@synerise/ds-toolbar@1.1.61) (2026-06-11)
 
 **Note:** Version bump only for package @synerise/ds-toolbar
