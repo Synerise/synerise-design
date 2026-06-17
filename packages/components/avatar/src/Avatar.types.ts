@@ -1,8 +1,13 @@
-import { type AvatarProps as AntAvatarProps } from 'antd';
-import type { MouseEvent as ReactMouseEvent, ReactNode } from 'react';
+import type {
+  CSSProperties,
+  MouseEventHandler,
+  MouseEvent as ReactMouseEvent,
+  ReactNode,
+} from 'react';
 
 import type { BadgeStatus } from '@synerise/ds-badge';
 import { type TooltipProps } from '@synerise/ds-tooltip';
+import { type DataAttributes } from '@synerise/ds-utils';
 
 export type Color =
   | 'red'
@@ -31,14 +36,28 @@ export type ColorHue =
   | '050';
 export type Size = 'small' | 'medium' | 'large' | 'extraLarge' | undefined;
 
+export type Shape = 'circle' | 'square';
+
 export type TooltipObject = Omit<TooltipProps, 'children'> & {
   // Backwards compatibility:
   name?: ReactNode;
   email?: ReactNode;
 };
 
-export type AvatarProps = Omit<AntAvatarProps, 'size' | 'icon' | 'src'> & {
+export type AvatarProps = {
+  /**
+   * Shape of the avatar
+   * @default 'circle'
+   */
+  shape?: Shape;
+  /**
+   * Image source URL; an empty string is treated as no image
+   */
   src?: string;
+  /**
+   * Alternative text for the image variant
+   */
+  alt?: string;
   /**
    * Aligns a badge with the avatar
    */
@@ -73,7 +92,11 @@ export type AvatarProps = Omit<AntAvatarProps, 'size' | 'icon' | 'src'> & {
    */
   tooltip?: TooltipObject | boolean;
   children?: ReactNode;
-};
+  className?: string;
+  style?: CSSProperties;
+  id?: string;
+  onClick?: MouseEventHandler<HTMLElement>;
+} & DataAttributes;
 
 type DefinedAvatarProps = Pick<
   AvatarProps,

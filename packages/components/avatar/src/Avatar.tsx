@@ -4,7 +4,6 @@ import Tooltip from '@synerise/ds-tooltip';
 
 import * as S from './Avatar.styles';
 import { type AvatarProps } from './Avatar.types';
-import './style/index.less';
 import { getTooltipProps, isIconComponent, isSmallIconVariant } from './utils';
 
 export const DEFAULT_SIZE = 'medium';
@@ -26,7 +25,7 @@ const Avatar = ({
   tooltip = false,
   size = DEFAULT_SIZE,
   src,
-  ...antdProps
+  ...restProps
 }: AvatarProps) => {
   const sizes = { ...ICON_SIZES };
   let iconElement = iconComponent as ReactElement;
@@ -52,7 +51,7 @@ const Avatar = ({
 
   return (
     <Tooltip type={type} {...tooltipProps}>
-      <S.AntdAvatar
+      <S.StyledAvatar
         className="ds-avatar"
         hasStatus={hasStatus}
         hasTooltip={!!hasTooltip}
@@ -61,10 +60,10 @@ const Avatar = ({
         disabled={disabled}
         size={size}
         src={src !== '' ? src : undefined}
-        {...antdProps}
+        {...restProps}
       >
         {iconElement || children}
-      </S.AntdAvatar>
+      </S.StyledAvatar>
     </Tooltip>
   );
 };
