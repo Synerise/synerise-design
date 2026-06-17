@@ -1,14 +1,14 @@
 # Avatar (`@synerise/ds-avatar`)
 
-> Three avatar variants — generic `Avatar`, `UserAvatar`, and `ObjectAvatar` — each wrapping Ant Design's Avatar with auto-tooltip, badge status, deterministic color/icon selection, and a library of 100 default SVG avatars.
+> Three avatar variants — generic `Avatar`, `UserAvatar`, and `ObjectAvatar` — each a DS-native (styled-components) avatar with auto-tooltip, badge status, deterministic color/icon selection, and a library of 100 default SVG avatars.
 
 ## Package structure
 
 ```
 src/
-  Avatar.tsx               — base component; wraps antd Avatar
+  Avatar.tsx               — base component (DS-native, styled-components)
   Avatar.types.ts          — all shared types (AvatarProps, UserAvatarProps, ObjectAvatarProps, …)
-  Avatar.styles.tsx        — styled AntdAvatar; size/shape/bg/font overrides
+  Avatar.styles.tsx        — AvatarBase (DOM) + StyledAvatar (size/shape/bg/font); AvatarString/AvatarImg
   Avatar.spec.tsx          — base component tests
   utils.ts                 — getUserText, getObjectName, getColorByText, getTooltipProps, …
   DefaultAvatarIcon.tsx    — renders one of 100 default SVGs by index
@@ -21,7 +21,6 @@ src/
     ObjectAvatar.tsx       — object/entity avatar, square shape, mail fallback icon
     ObjectAvatar.spec.tsx
     index.ts
-  style/index.less         — imports antd avatar LESS
   index.ts                 — public exports
 ```
 
@@ -29,7 +28,7 @@ src/
 
 ### `Avatar` (default export)
 
-Base component. Extends `AntAvatarProps` minus `size`, `icon`, and `src`.
+Base component. DS-native; props are explicitly declared (no antd inheritance). `data-*` attributes pass through.
 
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
@@ -43,7 +42,7 @@ Base component. Extends `AntAvatarProps` minus `size`, `icon`, and `src`.
 | `tooltip` | `TooltipObject \| boolean` | `false` | Tooltip config; `false` disables it; object keys map to ds-tooltip props |
 | `src` | `string` | `undefined` | Image URL; empty string `""` is treated as `undefined` |
 | `children` | `ReactNode` | `undefined` | Text initials or other content |
-| `shape` *(from antd)* | `'circle' \| 'square'` | `'circle'` | Avatar shape |
+| `shape` | `'circle' \| 'square'` | `'circle'` | Avatar shape |
 
 Sizes in px: `small` = 24, `medium` = 40, `large` = 84, `extraLarge` = 120.
 
@@ -165,9 +164,9 @@ Tooltip type is auto-determined: if exactly one of `title`, `description`, `stat
 
 ## Styling
 
-Styles in `Avatar.styles.tsx`. Wraps Ant Design `Avatar` in a `styled(forwardRef(...))`. Key overrides:
+Styles in `Avatar.styles.tsx`. A DS-native `AvatarBase` renders the `ant-avatar` root + `ant-avatar-string`/`<img>` child (with `ds-avatar-*` class hooks added alongside the `ant-*` ones during the antd-removal interim); the `StyledAvatar` styled-component applies all visual styling via props and styled sub-component references (`${AvatarString}`) — no `.ant-*` class selectors, except the cross-component `& ~ .ant-badge-dot` sibling (the dot is owned by ds-badge). Key styles:
 
-- `medium` and `extraLarge` Ant sizes are mapped to `'default'` Ant size; actual dimensions set via CSS
+- Dimensions per size set directly in CSS: `small` 24, `medium` 40, `large` 84, `extraLarge` 120 px
 - Background applied via `theme.palette[${backgroundColor}-${backgroundColorHue}]` — requires both to be valid token fragments
 - Badge dot (`ant-badge-dot`) is hidden by default; shown when `hasStatus=true` with size/shape-specific positioning from `BADGE_POSITION` map
 - Hover/active darken overlay via `::before` pseudo-element — only applied when `onClick` or `hasTooltip` is truthy
@@ -175,7 +174,6 @@ Styles in `Avatar.styles.tsx`. Wraps Ant Design `Avatar` in a `styled(forwardRef
 
 ## Key dependencies
 
-- `antd` (`Avatar`) — base implementation; the styled component wraps `antd/lib/avatar`
 - `@synerise/ds-badge` — wraps avatar when `badgeStatus` is set in UserAvatar / ObjectAvatar
 - `@synerise/ds-tooltip` — always rendered as wrapper; skipped visually when no tooltip content
 - `@synerise/ds-status` — used in ObjectAvatar default tooltip for `object.status`

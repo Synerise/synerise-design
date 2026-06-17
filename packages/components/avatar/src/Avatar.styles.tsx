@@ -1,4 +1,3 @@
-import { Avatar } from 'antd';
 import React, { forwardRef } from 'react';
 import styled, { css } from 'styled-components';
 
@@ -74,64 +73,121 @@ type ExtraAvatarProps = {
   hasTooltip?: boolean;
 };
 
-export const AntdAvatar = styled(
-  forwardRef<HTMLButtonElement, AvatarProps & ExtraAvatarProps>(
-    (
-      {
-        backgroundColorHue,
-        backgroundColor,
+/**
+ * The text/icon container. Its size-dependent styling lives on the root via the
+ * `${AvatarString}` reference so it can react to the avatar `size`. The
+ * `ant-avatar-string` class is retained as a hook for ui-tests/external CSS
+ * during the antd-removal interim (the `ds-avatar-string` class is the eventual
+ * replacement once `ant-*` classes are dropped project-wide).
+ */
+export const AvatarString = styled.span``;
 
-        hasStatus,
-        hasTooltip,
-        size,
-        ...rest
-      },
-      ref,
-    ) => (
-      <Avatar
-        ref={ref}
-        size={size === 'medium' || size === 'extraLarge' ? 'default' : size}
-        {...rest}
-      />
-    ),
-  ),
-)<ExtraAvatarProps>`
+/** The image variant. */
+export const AvatarImg = styled.img`
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+`;
+
+/**
+ * DS-native replacement for antd's `Avatar`. Renders the antd-compatible markup
+ * (`ant-avatar` root + `ant-avatar-string`/`<img>` child) plus `ds-avatar-*`
+ * class hooks. All visual styling is applied by the `StyledAvatar` wrapper.
+ */
+const AvatarBase = forwardRef<HTMLSpanElement, AvatarProps & ExtraAvatarProps>(
+  (
+    {
+      // DS-only / styling props — consumed here so they do not leak to the DOM
+      backgroundColor,
+      backgroundColorHue,
+      hasStatus,
+      hasTooltip,
+      disabled,
+      size,
+      // rendering props
+      shape = 'circle',
+      src,
+      alt,
+      className,
+      children,
+      ...rest
+    },
+    ref,
+  ) => {
+    const rootClassName = [
+      'ant-avatar',
+      `ant-avatar-${shape}`,
+      'ds-avatar-base',
+      `ds-avatar-${shape}`,
+      className,
+    ]
+      .filter(Boolean)
+      .join(' ');
+
+    return (
+      <span ref={ref} className={rootClassName} {...rest}>
+        {src ? (
+          <AvatarImg className="ds-avatar-img" src={src} alt={alt} />
+        ) : (
+          <AvatarString className="ant-avatar-string ds-avatar-string">
+            {children}
+          </AvatarString>
+        )}
+      </span>
+    );
+  },
+);
+
+export const StyledAvatar = styled(AvatarBase)<ExtraAvatarProps>`
   && {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+    overflow: hidden;
+    width: 24px;
+    height: 24px;
+    min-width: 24px;
+    vertical-align: middle;
+    border-radius: 50%;
+    color: ${(props) => props.theme.palette.white};
+    user-select: none;
+    transition: background 0.3s ease;
+
     ${(props) => applyBgColors(props)};
     ${(props) => applyDisabledStyles(props)};
-    transition: background 0.3s ease;
-    user-select: none;
-    min-width: 24px;
 
-    span {
-      color: ${(props) => props.theme.palette.white} !important;
-    }
+    ${(props) =>
+      props.shape === 'square' &&
+      css`
+        border-radius: 8px;
+      `};
 
-    &.ant-avatar-square {
-      border-radius: 8px;
-    }
-
-    .ant-avatar-string {
+    ${AvatarString} {
+      position: relative;
+      left: 0;
       width: 100%;
       height: 100%;
-      left: 0;
-      position: relative;
       font-size: 11px;
-      transform: none !important;
-      ${(props) => applyFontSize(props)};
-      ${macro.flexCentered};
+      color: ${(props) => props.theme.palette.white};
       user-select: none;
       pointer-events: none;
+      ${(props) => applyFontSize(props)};
+      ${macro.flexCentered};
 
       & > div {
         max-width: 100%;
         max-height: 100%;
+
         svg {
           width: 100%;
           height: 100%;
         }
       }
     }
+
     &::before {
       content: '';
       position: absolute;
@@ -147,26 +203,26 @@ export const AntdAvatar = styled(
     ${(props) =>
       (props.onClick || props.hasTooltip) &&
       css`
-        &:hover {
-          &::before {
-            opacity: 0.05;
-          }
+        &:hover::before {
+          opacity: 0.05;
         }
       `};
 
     ${(props) =>
-      props.onClick
-        ? css`
-            cursor: pointer;
+      props.onClick &&
+      css`
+        cursor: pointer;
 
-            &:active {
-              &::before {
-                opacity: 0.1;
-              }
-            }
-          `
-        : false}
+        &:active::before {
+          opacity: 0.1;
+        }
+      `};
 
+    /*
+     * Cross-component selector: the status dot is rendered by ds-badge as a
+     * sibling element, so it can only be reached by class. Retained as the
+     * documented exception to the pure-styled-components rule.
+     */
     & ~ .ant-badge-dot {
       display: none;
     }
@@ -192,7 +248,7 @@ export const AntdAvatar = styled(
         min-width: 40px;
         height: 40px;
 
-        .ant-avatar-string {
+        ${AvatarString} {
           line-height: 40px;
         }
       `};
@@ -204,7 +260,7 @@ export const AntdAvatar = styled(
         min-width: 84px;
         height: 84px;
 
-        .ant-avatar-string {
+        ${AvatarString} {
           line-height: 84px;
           font-size: 18px;
         }
@@ -218,7 +274,7 @@ export const AntdAvatar = styled(
         height: 120px;
         font-size: 22px;
 
-        .ant-avatar-string {
+        ${AvatarString} {
           line-height: 120px;
           ${macro.xlAvatar};
         }
