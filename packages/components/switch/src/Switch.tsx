@@ -1,13 +1,11 @@
-import { Switch as AntdSwitch } from 'antd';
 import classnames from 'classnames';
 import React, { forwardRef, useId, useRef } from 'react';
 
+import RawSwitch from './RawSwitch';
 import * as S from './Switch.styles';
 import { type Props } from './Switch.types';
-import './style/index.less';
 
-// export RawSwitch from this file to have .less style side effects applied when only RawSwitch is used
-export const RawSwitch = AntdSwitch;
+export { RawSwitch };
 
 export const Switch = forwardRef<HTMLDivElement, Props>(
   (
@@ -21,12 +19,12 @@ export const Switch = forwardRef<HTMLDivElement, Props>(
       tooltip,
       className,
       tooltipConfig,
-      ...antdSwitchProps
+      ...rawSwitchProps
     },
     ref,
   ) => {
     const id = useId();
-    const switchElement = useRef<HTMLInputElement>(null);
+    const switchElement = useRef<HTMLButtonElement>(null);
 
     return (
       <S.SwitchWrapper
@@ -36,7 +34,7 @@ export const Switch = forwardRef<HTMLDivElement, Props>(
       >
         <S.LabelSwitchWrapper>
           <RawSwitch
-            {...antdSwitchProps}
+            {...rawSwitchProps}
             size="small"
             className={errorText ? 'error' : ''}
             id={id}

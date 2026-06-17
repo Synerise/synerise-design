@@ -1,3 +1,3 @@
 export { default, RawSwitch } from './Switch';
 
-export type { Props as SwitchProps } from './Switch.types';
+export type { Props as SwitchProps, RawSwitchProps } from './Switch.types';
