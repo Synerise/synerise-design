@@ -1,4 +1,8 @@
 export { default } from './Badge';
+export {
+  default as BadgeWithLabel,
+  type BadgeWithLabelProps,
+} from './BadgeWithLabel';
 
 export type {
   Status as BadgeStatus,

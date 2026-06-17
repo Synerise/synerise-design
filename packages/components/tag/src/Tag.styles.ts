@@ -322,7 +322,7 @@ export const PrefixWrapper = styled.div<{ iconHover?: boolean }>`
   ${(props) => addonStyles(props)};
   ${(props) =>
     !!props.iconHover &&
-    `.ant-scroll-number{ 
+    `.ds-badge-scroll-number{
     color: ${props.theme.palette['red-600']}!important;
     box-shadow: 0 0 0 1px ${props.theme.palette['red-600']}!important;
     }
@@ -337,7 +337,7 @@ export const DefaultSuffixWrapper = styled.div``;
 export const DefaultPrefixWrapper = styled.div<{ iconHover?: boolean }>`
   ${(props) =>
     !!props.iconHover &&
-    `.ant-scroll-number{ 
+    `.ds-badge-scroll-number{
     color: ${props.theme.palette['red-600']}!important;
     box-shadow: 0 0 0 1px ${props.theme.palette['red-600']}!important;
     }

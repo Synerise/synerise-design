@@ -3,7 +3,7 @@ import { action } from 'storybook/actions';
 
 import { Meta, StoryObj } from '@storybook/react-vite';
 import Avatar, { UserAvatar } from '@synerise/ds-avatar';
-import Badge from '@synerise/ds-badge';
+import Badge, { BadgeWithLabel } from '@synerise/ds-badge';
 import Button from '@synerise/ds-button';
 import { theme } from '@synerise/ds-core';
 import Description, { DescriptionRow } from '@synerise/ds-description';
@@ -124,7 +124,7 @@ export const moreExamples: Story = {
       />
       <DescriptionRow
         label="Label:"
-        value={<Badge status="active" outlined dot text="Active" />}
+        value={<BadgeWithLabel status="active">Active</BadgeWithLabel>}
       />
       <DescriptionRow
         label="Label:"

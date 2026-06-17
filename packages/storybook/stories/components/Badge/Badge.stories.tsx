@@ -3,18 +3,16 @@ import React, { CSSProperties } from 'react';
 import { Meta, StoryObj } from '@storybook/react-vite';
 import Avatar from '@synerise/ds-avatar';
 import type { AvatarProps } from '@synerise/ds-avatar';
-import Badge from '@synerise/ds-badge';
+import Badge, { BadgeWithLabel } from '@synerise/ds-badge';
 import type { BadgeProps } from '@synerise/ds-badge';
 import { theme } from '@synerise/ds-core';
 import Icon, { FileM, IconProps } from '@synerise/ds-icon';
 
-import { AVATAR_IMAGE, COLOR_NAMES } from '../../constants';
+import { AVATAR_IMAGE } from '../../constants';
 import {
   BOOLEAN_CONTROL,
   COLOR_CONTROL,
-  COLOR_HUE_CONTROL,
   NUMBER_CONTROL,
-  STRING_CONTROL,
   controlFromOptionsArray,
   fixedWrapper200,
   fixedWrapper400,
@@ -37,126 +35,68 @@ export default {
     overflowCount: {
       ...NUMBER_CONTROL,
     },
-    showZero: {
-      ...BOOLEAN_CONTROL,
-    },
-    title: {
-      ...STRING_CONTROL,
-    },
     status: {
       ...controlFromOptionsArray('select', [...STATUSES]),
     },
     pulsing: {
       ...BOOLEAN_CONTROL,
     },
-    backgroundColor: {
-      ...controlFromOptionsArray('select', COLOR_NAMES),
-    },
-    textColor: {
-      ...COLOR_CONTROL,
-    },
-    backgroundColorHue: {
-      ...COLOR_HUE_CONTROL,
-    },
-    textColorHue: {
-      ...COLOR_HUE_CONTROL,
-    },
   },
 } as Meta<BadgeProps>;
 
+const ROW: CSSProperties = {
+  display: 'flex',
+  gap: '16px',
+  alignItems: 'center',
+  justifyContent: 'center',
+};
+
+/**
+ * Count badges. The default badge background is white; use `customColor` for an arbitrary colour.
+ * (`status` turns a badge into a dot, so it is not used for count badges.)
+ */
 export const Standalone: StoryObj<BadgeProps> = {
-  render: (args) => {
-    return (
-      <>
-        <div
+  render: (args) => (
+    <div
+      style={{
+        ...ROW,
+        background: args.outlined ? theme.palette['grey-200'] : 'transparent',
+        padding: '8px',
+      }}
+    >
+      <Badge {...args} customColor={theme.palette['red-600']} />
+      <Badge {...args} customColor={theme.palette['yellow-600']} />
+      <Badge {...args} customColor={theme.palette['green-600']} />
+      <Badge {...args} customColor={theme.palette['grey-500']} />
+      <div
+        style={{
+          ...ROW,
+          padding: '0 8px',
+          minHeight: '34px',
+          background: theme.palette['grey-200'],
+        }}
+      >
+        <Badge
+          {...args}
           style={{
-            display: 'flex',
-            background: args.outlined
-              ? theme.palette['grey-200']
-              : 'transparent',
-            alignItems: 'center',
-            justifyContent: 'center',
+            backgroundColor: theme.palette['white'],
+            color: theme.palette['grey-400'],
           }}
-        >
-          <Badge
-            backgroundColor="red"
-            {...args}
-            style={{
-              margin: '0 6px 0 6px',
-            }}
-          />
-          <Badge
-            backgroundColor="yellow"
-            backgroundColorHue="600"
-            {...args}
-            style={{
-              margin: '0 6px 0 6px',
-              alignItems: 'center',
-            }}
-          />
-          <Badge
-            backgroundColor="green"
-            backgroundColorHue="600"
-            {...args}
-            style={{
-              margin: '0 6px 0 6px',
-              alignItems: 'center',
-            }}
-          />
-          <Badge
-            backgroundColor="grey"
-            backgroundColorHue="500"
-            {...args}
-            style={{
-              margin: '0 4px 0 6px',
-              alignItems: 'center',
-            }}
-          />
-          <div
-            style={{
-              minWidth: '34px',
-              minHeight: '34px',
-              background: theme.palette['grey-200'],
-              alignItems: 'center',
-              justifyContent: 'center',
-            }}
-          >
-            <Badge
-              backgroundColor="white"
-              textColor="grey"
-              textColorHue="500"
-              {...args}
-              style={{
-                boxShadow: args.outlined
-                  ? `0 0 0 1px ${theme.palette['grey-500']}`
-                  : '',
-                minWidth: '16px',
-                minHeight: '16px',
-                margin: '9px 8px 7px 8px',
-                alignItems: 'center',
-              }}
-            />
-            <Badge
-              backgroundColor="transparent"
-              textColor="white"
-              {...args}
-              style={{
-                margin: '0 11px 0 4px',
-                alignItems: 'center',
-              }}
-            />
-          </div>
-        </div>
-      </>
-    );
-  },
+        />
+        <Badge
+          {...args}
+          style={{
+            backgroundColor: 'transparent',
+            color: theme.palette['white'],
+          }}
+        />
+      </div>
+    </div>
+  ),
   args: {
     count: 1,
     outlined: false,
     overflowCount: 99,
-    showZero: false,
-    title: 'text',
-    textColor: 'white',
   },
 };
 
@@ -175,11 +115,7 @@ export const Dot: StoryObj<
   render: ({ iconColor, iconSize }) => (
     <div style={{ display: 'flex', justifyContent: 'space-around' }}>
       <Badge dot>
-        <Icon
-          color={'#fcc600' || iconColor}
-          size={iconSize}
-          component={<FileM />}
-        />
+        <Icon color={iconColor} size={iconSize} component={<FileM />} />
       </Badge>
 
       <Badge dot>
@@ -194,7 +130,7 @@ export const Dot: StoryObj<
     iconSize: { ...NUMBER_CONTROL },
   },
   args: {
-    iconColor: '#6a7580',
+    iconColor: '#fcc600',
     iconSize: 30,
   },
 };
@@ -202,11 +138,6 @@ export const Dot: StoryObj<
 export const Count: StoryObj<BadgeProps> = {
   decorators: [fixedWrapper200],
   render: (args) => {
-    const iconStyles: CSSProperties = {
-      position: 'absolute',
-      top: '14px',
-      right: '2px',
-    };
     return (
       <div
         style={{
@@ -232,8 +163,7 @@ export const Count: StoryObj<BadgeProps> = {
             <Icon
               component={<FileM />}
               size={24}
-              color="#f5222d"
-              style={iconStyles}
+              color={theme.palette['red-600']}
             />
           }
         >
@@ -243,7 +173,6 @@ export const Count: StoryObj<BadgeProps> = {
               height: '48px',
               background: 'grey',
               borderRadius: '5px',
-              margin: '10px 0 10px 10px',
             }}
           />
         </Badge>
@@ -252,15 +181,13 @@ export const Count: StoryObj<BadgeProps> = {
   },
   args: {
     count: 5,
-    title: 'Title',
-    showZero: false,
     outlined: false,
     overflowCount: 99,
   },
 };
 
 export const StatusDot: StoryObj<BadgeProps> = {
-  render: ({ status }) => <Badge status={status} text="test" />,
+  render: ({ status }) => <BadgeWithLabel status={status}>test</BadgeWithLabel>,
   args: {
     status: 'active',
   },
@@ -313,14 +240,19 @@ export const StatusDotPulsing: StoryObj<BadgeProps> = {
   },
 };
 
+/**
+ * `text` was removed from the Badge API — use `BadgeWithLabel` to render a dot + label.
+ */
 export const StatusDotPulsingWithLabel: StoryObj<BadgeProps> = {
   parameters: {
     controls: {
       include: ['status'],
     },
   },
-  render: (args) => (
-    <Badge {...args} text={'Success'} pulsing={true} flag={true} />
+  render: ({ status }) => (
+    <BadgeWithLabel status={status} pulsing flag>
+      Success
+    </BadgeWithLabel>
   ),
   args: {
     status: 'active',

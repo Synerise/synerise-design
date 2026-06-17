@@ -50,7 +50,7 @@ export type { TabItem, TabsConfiguration, TabsProps } from './Tabs.types';
 | `disabled` | `boolean` | — | Disables pointer events and reduces opacity to 0.4. |
 | `tooltip` | `ReactNode` | — | When set, wraps the tab content in `ds-tooltip`. |
 | `tooltipProps` | `TooltipProps` | — | Additional props forwarded to `@synerise/ds-tooltip`. Only used when `tooltip` is set. |
-| `suffixel` | `ReactNode` | — | Element rendered after the label. Strings/numbers get `SuffixWrapper`; other nodes get `DefaultSuffixWrapper` (13 px font, supports `ant-badge-count`). |
+| `suffixel` | `ReactNode` | — | Element rendered after the label. Strings/numbers get `SuffixWrapper`; other nodes get `DefaultSuffixWrapper` (13 px font, supports `ds-badge-count`). |
 
 ### `TabsConfiguration`
 

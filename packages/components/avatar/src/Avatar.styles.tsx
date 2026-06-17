@@ -223,14 +223,14 @@ export const StyledAvatar = styled(AvatarBase)<ExtraAvatarProps>`
      * sibling element, so it can only be reached by class. Retained as the
      * documented exception to the pure-styled-components rule.
      */
-    & ~ .ant-badge-dot {
+    & ~ .ds-badge-dot {
       display: none;
     }
 
     ${(props) =>
       props.hasStatus &&
       css`
-        & ~ .ant-badge-dot {
+        & ~ .ds-badge-dot {
           display: flex;
           border: 2px solid ${props.theme.palette.white};
           box-sizing: border-box;
