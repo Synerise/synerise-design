@@ -378,6 +378,23 @@ export const RawTable: StoryObj<typeof Table> = {
   },
 };
 
+export const WithMaxHeight: StoryObj<typeof Table> = {
+  args: {
+    data: DATA_SOURCE,
+    columns: RAW_TABLE_COLUMNS,
+    maxHeight: 400,
+  },
+  parameters: {
+    docs: {
+      source: {
+        code: `// Minimal Table with raw, unstyled columns — no selection, no title bar
+// and body section scroll
+<Table data={data} columns={columns} maxHeight={400} />`,
+      },
+    },
+  },
+};
+
 export const WithTooltips: StoryObj<typeof Table> = {
   args: {
     data: DATA_SOURCE,

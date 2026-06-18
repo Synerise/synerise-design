@@ -156,6 +156,9 @@ export type SharedTableProps<TData, TValue> = {
 
   expandable?: Expandable<TData>;
 
+  /** max-height (px) for the built-in scroll container. Ignored when scrollElementRef is provided. Defaults to 800. */
+  maxHeight?: number;
+
   onRowClick?: (row: TData, event: MouseEvent<HTMLTableRowElement>) => void;
 
   /**
@@ -428,8 +431,6 @@ export type VirtualTableRef = {
 };
 
 type VirtualProps = {
-  /** max-height (px) for the built-in scroll container. Ignored when scrollElementRef is provided. Defaults to 800. */
-  maxHeight?: number;
   tableRef?: RefObject<VirtualTableRef>;
   /**
    * uses body virtualisation
