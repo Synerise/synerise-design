@@ -13,7 +13,7 @@ export const TablePagination = ({ ...rest }: TablePaginationProps) => {
     <S.PaginationWrapper data-testid="ds-table-pagination">
       <Pagination
         hideOnSinglePage
-        pageSize={table.getState().pagination.pageSize}
+        {...rest}
         total={table.getRowCount()}
         onShowSizeChange={(_current, size) => {
           table.setPageSize(size);
@@ -21,7 +21,7 @@ export const TablePagination = ({ ...rest }: TablePaginationProps) => {
         onChange={(page) => {
           table.setPageIndex(page - 1);
         }}
-        {...rest}
+        pageSize={table.getState().pagination.pageSize}
       />
     </S.PaginationWrapper>
   );

@@ -29,6 +29,7 @@ export const Table = <TData extends object, TValue>({
   onSort,
   tableRef,
   stickyHeader,
+  maxHeight,
   ...props
 }: TableProps<TData, TValue>) => {
   const texts = useDefaultTexts(defaultTexts);
@@ -123,6 +124,8 @@ export const Table = <TData extends object, TValue>({
             searchProps={searchProps}
             dataSourceTotalCount={totalDataCount}
             expandable={expandable}
+            withBodyScroll={!!maxHeight}
+            maxHeight={maxHeight}
             {...props}
           />
         </SelectionContext.Provider>
