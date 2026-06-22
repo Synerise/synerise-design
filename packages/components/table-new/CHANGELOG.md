@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.5.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-table-new@1.4.5...@synerise/ds-table-new@1.5.0) (2026-06-22)
+
+### Features
+
+- **table-new:** extend maxHeight prop to default table component ([c99b632](https://github.com/Synerise/synerise-design/commit/c99b632f9a1ba1b6e8c62822512c827eb238743c))
+
 ## [1.4.5](https://github.com/Synerise/synerise-design/compare/@synerise/ds-table-new@1.4.4...@synerise/ds-table-new@1.4.5) (2026-06-17)
 
 **Note:** Version bump only for package @synerise/ds-table-new
