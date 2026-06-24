@@ -9,6 +9,7 @@ import {
 } from 'react';
 
 import {
+  type PaginationState,
   type RowSelectionState,
   type SortingState,
   type Updater,
@@ -241,6 +242,72 @@ export const useTable = <TData, TValue>({
   const { initialState: paginationInitialState, ...paginationProps } =
     getPaginationConfig(!infiniteScroll && pagination);
 
+  // Server-side (manual) pagination — inferred, no extra prop. When the consumer hands us a
+  // `total` larger than the rows we actually hold, `data` is a single fetched page: page against
+  // the server `total` (rowCount) instead of slicing the local rows, and forward page/size changes
+  // to the consumer's handlers (which refetch). Client-side use (data is the full set, so
+  // total <= data.length, or no total) keeps TanStack's local slicing untouched.
+  const manualPaginationConfig =
+    hasPagination &&
+    typeof pagination === 'object' &&
+    pagination.total !== undefined &&
+    pagination.total > data.length
+      ? pagination
+      : undefined;
+  const isManualPagination = !!manualPaginationConfig;
+
+  // Row count the consumer declared via `pagination.total` (server total), if any. Used as the
+  // header-counter source below; a consumer `dataSourceTotalCount` prop still supersedes it.
+  const paginationTotal =
+    typeof pagination === 'object' ? pagination.total : undefined;
+
+  // Manual (server-side) pagination keeps a LOCAL, responsive copy of the page state. Fully
+  // controlling it from the consumer made the size-changer revert/freeze on rapid consecutive
+  // changes: the consumer's `pageSize` only updates after an async refetch, and the underlying
+  // pagination can fire size + a clamping page change in one tick — the second forward then
+  // carried the stale size. The local copy updates synchronously (the ref keeps it correct across
+  // both calls in a tick), forwards to the consumer, and re-syncs when the consumer drives it.
+  const consumerPageIndex = (manualPaginationConfig?.current ?? 1) - 1;
+  const consumerPageSize = manualPaginationConfig?.pageSize ?? 10;
+  const [manualPagination, setManualPagination] = useState<PaginationState>({
+    pageIndex: consumerPageIndex,
+    pageSize: consumerPageSize,
+  });
+  const manualPaginationRef = useRef(manualPagination);
+  manualPaginationRef.current = manualPagination;
+
+  useEffect(() => {
+    if (!isManualPagination) {
+      return;
+    }
+    setManualPagination({
+      pageIndex: consumerPageIndex,
+      pageSize: consumerPageSize,
+    });
+  }, [consumerPageIndex, consumerPageSize, isManualPagination]);
+
+  const handleManualPaginationChange = useCallback(
+    (updater: Updater<PaginationState>) => {
+      if (!manualPaginationConfig) {
+        return;
+      }
+      const prev = manualPaginationRef.current;
+      const next = typeof updater === 'function' ? updater(prev) : updater;
+      // Update the responsive copy synchronously so a follow-up change in the same tick (size +
+      // page can fire together) computes from the new value rather than reverting to the old size.
+      manualPaginationRef.current = next;
+      setManualPagination(next);
+      if (next.pageSize !== prev.pageSize) {
+        manualPaginationConfig.onShowSizeChange?.(
+          next.pageIndex + 1,
+          next.pageSize,
+        );
+      }
+      manualPaginationConfig.onChange?.(next.pageIndex + 1, next.pageSize);
+    },
+    [manualPaginationConfig],
+  );
+
   const getSubRows = useCallback(
     (row: TData) => {
       return (row as Record<string, unknown>)[
@@ -276,6 +343,17 @@ export const useTable = <TData, TValue>({
     getExpandedRowModel: expandable ? getExpandedRowModel() : undefined,
     getGroupedRowModel: getGroupedRowModel(),
 
+    // Server-side paging: page against the server total and don't slice the local page.
+    // Set these ONLY in manual mode — passing `onPaginationChange: undefined` in client mode
+    // overrides TanStack's default internal state-updater, which freezes page/size changes.
+    ...(isManualPagination
+      ? {
+          manualPagination: true,
+          rowCount: manualPaginationConfig.total,
+          onPaginationChange: handleManualPaginationChange,
+        }
+      : {}),
+
     onRowSelectionChange: handleSelectionChange,
     // Swallow TanStack's expansion writes only when the consumer is the source
     // of truth (controlled via `expandable.expandedRowKeys`). For uncontrolled
@@ -310,8 +388,24 @@ export const useTable = <TData, TValue>({
       // Only project expanded into TanStack state when controlled — otherwise
       // TanStack keeps and manages its own internal state.
       ...(isExpansionControlled ? { expanded: expandedKeys } : {}),
+      // Server-side paging: driven by the local responsive copy (seeded from / synced to the
+      // consumer's current/pageSize), so the controls react immediately to user interaction.
+      ...(isManualPagination ? { pagination: manualPagination } : {}),
     },
   });
+
+  // Reset to the first page whenever the built-in search query changes — filtering can otherwise
+  // leave the user stranded on a now-out-of-range (empty) page. The ref-compare skips the initial
+  // mount, so a table that opens on a specific page (e.g. server-side `current`) is not yanked back.
+  const previousSearchQuery = useRef(searchQuery);
+  useEffect(() => {
+    if (previousSearchQuery.current === searchQuery) {
+      return;
+    }
+    previousSearchQuery.current = searchQuery;
+    table.setPageIndex(0);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [searchQuery]);
 
   return {
     table,
@@ -323,6 +417,8 @@ export const useTable = <TData, TValue>({
     setSearchQuery,
     handleSearchClear,
     hasBuiltInSearch,
-    totalDataCount: data.length,
+    // Header-counter source: prefer the declared server total, fall back to the rows we hold.
+    // (A consumer `dataSourceTotalCount` prop still wins — it is spread over this in Table.tsx.)
+    totalDataCount: paginationTotal ?? data.length,
   };
 };

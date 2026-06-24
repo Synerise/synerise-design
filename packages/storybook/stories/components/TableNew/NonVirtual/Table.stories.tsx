@@ -64,6 +64,49 @@ export const Default: StoryObj<typeof Table> = {
   },
 };
 
+export const WithServerSidePagination: StoryObj<typeof Table> = {
+  render: () => {
+    const PAGE_SIZE = 10;
+    const ServerSideExample = () => {
+      const [page, setPage] = useState(1);
+      const [pageSize, setPageSize] = useState(PAGE_SIZE);
+      // Emulates server-side paging: only the current page is handed to the table, along with the
+      // grand `total`. In a real app these rows come from an API keyed by page/pageSize.
+      const pageRows = DATA_SOURCE.slice(
+        (page - 1) * pageSize,
+        page * pageSize,
+      );
+      return (
+        <Table
+          data={pageRows}
+          columns={RESPONSIVE_COLUMNS}
+          title="Users"
+          pagination={{
+            current: page,
+            pageSize,
+            total: DATA_SOURCE.length,
+            showSizeChanger: true,
+            showQuickJumper: true,
+            onChange: (nextPage: number, nextPageSize: number) => {
+              setPage(nextPage);
+              setPageSize(nextPageSize);
+            },
+          }}
+        />
+      );
+    };
+    return <ServerSideExample />;
+  },
+  parameters: {
+    docs: {
+      description: {
+        story:
+          'Server-side pagination: the consumer fetches one page at a time and passes that page as `data` plus the server `total`. The table pages against `total` (not the local rows) and calls `onChange` to fetch the next page / size.',
+      },
+    },
+  },
+};
+
 export const WithSelection: StoryObj<typeof Table> = {
   args: {
     ...Default.args,

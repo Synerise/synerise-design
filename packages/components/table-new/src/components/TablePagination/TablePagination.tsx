@@ -22,6 +22,9 @@ export const TablePagination = ({ ...rest }: TablePaginationProps) => {
           table.setPageIndex(page - 1);
         }}
         pageSize={table.getState().pagination.pageSize}
+        // Control the active page from table state so programmatic resets (e.g. on search)
+        // are reflected in the controls — otherwise the page indicator would stay stale.
+        current={table.getState().pagination.pageIndex + 1}
       />
     </S.PaginationWrapper>
   );

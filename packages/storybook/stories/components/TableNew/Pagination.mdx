@@ -1,0 +1,114 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+
+<Meta title="Components/TableNew/Pagination" />
+
+# Pagination
+
+`Table` is paginated by passing the `pagination` prop. It accepts either a boolean or a
+configuration object:
+
+- `pagination={false}` — pagination off; every row renders.
+- `pagination` omitted or `pagination={true}` — pagination on with defaults (`pageSize: 10`).
+- `pagination={{ ... }}` — a config object (see [reference](#pagination-config-reference)).
+
+There are two modes — **client-side** (the table slices the data) and **server-side** (you fetch
+one page at a time). You do **not** pick the mode with a flag: the table infers it from the shape
+of what you pass (see [Choosing a mode](#choosing-a-mode)).
+
+## Client-side pagination
+
+Pass the **full** data set as `data`. The table slices it locally by `pageSize`, computes the page
+count from `data.length`, and manages the current page internally. This is the default.
+
+```tsx
+import { Table } from '@synerise/ds-table-new';
+
+<Table
+  data={allRows} // the entire data set
+  columns={columns}
+  pagination={{ pageSize: 10, showSizeChanger: true, showQuickJumper: true }}
+/>;
+```
+
+You may pass `total: data.length` for client-side use — it equals the row count, so it changes
+nothing. No `onChange` is needed; paging happens in-table.
+
+## Server-side pagination
+
+When your data is paged on the server, pass **only the current page** as `data`, the server's
+grand `total`, the active `current` page, and an `onChange` that refetches. The table pages against
+`total` (not the local rows) and renders the page you gave it as-is.
+
+```tsx
+const [page, setPage] = useState(1);
+const [pageSize, setPageSize] = useState(10);
+const { rows, totalCount } = useFetchPage(page, pageSize); // rows = just this page
+
+<Table
+  data={rows} // a single page (e.g. 10 rows)
+  columns={columns}
+  pagination={{
+    current: page,
+    pageSize,
+    total: totalCount, // the server total, e.g. 250
+    showSizeChanger: true,
+    showQuickJumper: true,
+    onChange: (nextPage, nextPageSize) => {
+      setPage(nextPage);
+      setPageSize(nextPageSize);
+    },
+    onShowSizeChange: (_current, size) => setPageSize(size),
+  }}
+/>;
+```
+
+`onChange` fires on both page changes and size changes (with the resulting page + size);
+`onShowSizeChange` additionally fires when the page size changes. Keep `current` and `pageSize` in
+sync with your fetch state so the controls reflect the page on screen.
+
+## Choosing a mode
+
+The table switches to server-side (manual) mode automatically when:
+
+```
+pagination.total !== undefined && pagination.total > data.length
+```
+
+i.e. you declared a `total` larger than the rows you actually handed over — so `data` must be a
+single page. In that case the table:
+
+- pages against `total` (the page count is `ceil(total / pageSize)`), not the local row count;
+- does **not** slice `data` — it renders the page you provided as-is;
+- forwards page/size changes to your `onChange` / `onShowSizeChange` (your refetch runs).
+
+Otherwise it stays client-side: the table slices `data` locally and the page count comes from
+`data.length`. There is intentionally **no `manualPagination` prop** — passing a server `total`
+larger than the page is the only signal needed.
+
+> **Gotcha:** in server-side mode, if you forget `total` (or pass one that isn't larger than the
+> page you handed over), the table treats the data as the full set and shows a single page. Always
+> pass the server's grand total.
+
+## Pagination config reference
+
+The config object extends `@synerise/ds-pagination`'s props:
+
+- **`pageSize`** `number` — rows per page. Default `10`.
+- **`defaultPageSize`** `number` — initial page size when uncontrolled.
+- **`current`** `number` — controlled active page (server-side).
+- **`total`** `number` — total item count. Drives the page count in server-side mode; its presence
+  above `data.length` is what enables that mode.
+- **`onChange`** `(page: number, pageSize: number) => void` — fired on page or size change.
+- **`onShowSizeChange`** `(current: number, size: number) => void` — fired on page-size change.
+- **`showSizeChanger`** `boolean` — render the page-size selector. When omitted, it auto-shows once
+  `total > 50`; an explicit value always wins.
+- **`pageSizeOptions`** `(string | number)[]` — size-changer options (default `['10','20','50','100']`).
+- **`showQuickJumper`** `boolean` — render the "jump to page" input.
+- **`showTotal`** `(total: number, range: [number, number]) => ReactNode` — render a total/range summary.
+- **`hideOnSinglePage`** `boolean` — hide the controls when there is only one page.
+
+## Related
+
+- [Selection](?path=/docs/components-tablenew-selection--docs) — `globalSelectionOnChange` for
+  cross-page "select all" on paginated tables.
+- `@synerise/ds-pagination` — the standalone pagination control these props come from.
