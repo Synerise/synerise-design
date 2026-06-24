@@ -64,6 +64,102 @@ describe('Table', () => {
     expect(screen.getAllByRole('row')).toHaveLength(3);
   });
 
+  it('pages against the server total (manual pagination) when total exceeds the page', () => {
+    const onChange = vi.fn();
+    // DATA is a single fetched page (6 rows); the server reports 25 rows in total.
+    renderWithProvider(
+      <Table
+        data={DATA}
+        columns={COLUMNS}
+        pagination={{ pageSize: 10, current: 1, total: 25, onChange }}
+      />,
+    );
+
+    const pagination = screen.getByTestId('ds-table-pagination');
+    // Page count derives from the server total (ceil(25 / 10) = 3) — not data.length, which
+    // would collapse to a single (hidden) page.
+    expect(within(pagination).getByText('3')).toBeInTheDocument();
+    // Changing page forwards to the consumer's onChange (server refetch), not swallowed locally.
+    fireEvent.click(within(pagination).getByText('2'));
+    expect(onChange).toHaveBeenCalledWith(2, 10);
+  });
+
+  it('client-side: clicking a page re-slices the rendered rows', () => {
+    // Regression: the manual-pagination wiring must not pass onChange/onPaginationChange in
+    // client mode, or it overrides TanStack's internal state-updater and freezes paging.
+    renderWithProvider(
+      <Table data={DATA} columns={COLUMNS} pagination={{ pageSize: 2 }} />,
+    );
+
+    // 'Mike' is the first row, so it only appears on page 1.
+    expect(screen.getByText('Mike')).toBeInTheDocument();
+    fireEvent.click(
+      within(screen.getByTestId('ds-table-pagination')).getByText('2'),
+    );
+    expect(screen.queryByText('Mike')).not.toBeInTheDocument();
+  });
+
+  it('header counter uses pagination.total over the local row count', () => {
+    // DATA holds 6 rows but the server reports 25 — the counter must show 25.
+    renderWithProvider(
+      <Table
+        title="Users"
+        data={DATA}
+        columns={COLUMNS}
+        pagination={{ pageSize: 10, total: 25 }}
+      />,
+    );
+
+    expect(screen.getByText('25')).toBeInTheDocument();
+  });
+
+  it('header counter: dataSourceTotalCount supersedes pagination.total', () => {
+    renderWithProvider(
+      <Table
+        title="Users"
+        data={DATA}
+        columns={COLUMNS}
+        dataSourceTotalCount={99}
+        pagination={{ pageSize: 10, total: 25 }}
+      />,
+    );
+
+    expect(screen.getByText('99')).toBeInTheDocument();
+  });
+
+  it('resets to the first page when the built-in search query changes', () => {
+    // unique names so the visible page is unambiguous (asserting via rows is robust to whichever
+    // pagination component is resolved — ant-pagination-* vs ds-pagination-*).
+    const rows = Array.from({ length: 6 }, (_, i) => ({
+      key: String(i + 1),
+      name: `User${i + 1}`,
+      age: 20 + i,
+      address: 'addr',
+    }));
+    renderWithProvider(
+      <Table
+        data={rows}
+        columns={COLUMNS}
+        pagination={{ pageSize: 2 }}
+        matchesSearchQuery={(query, row) =>
+          row.name.toLowerCase().includes(query.toLowerCase())
+        }
+      />,
+    );
+
+    // move to page 2 → User3/User4 visible, User1 not
+    fireEvent.click(
+      within(screen.getByTestId('ds-table-pagination')).getByText('2'),
+    );
+    expect(screen.getByText('User3')).toBeInTheDocument();
+    expect(screen.queryByText('User1')).not.toBeInTheDocument();
+
+    // searching (query matches all) snaps back to page 1 → User1 returns, User3 gone
+    fireEvent.change(screen.getByRole('textbox'), { target: { value: 'User' } });
+    expect(screen.getByText('User1')).toBeInTheDocument();
+    expect(screen.queryByText('User3')).not.toBeInTheDocument();
+  });
+
   describe('stickyHeader', () => {
     it('should render with stickyHeader', () => {
       renderWithProvider(<Table data={DATA} columns={COLUMNS} stickyHeader />);
