@@ -26,7 +26,6 @@ registerButton.addEventListener('click',()=>{
 
 export default {
   title: 'Components/CodeSnippet',
-  tags: ['autodocs'],
   component: CodeSnippet,
   decorators: [fixedWrapper200],
   argTypes: {
@@ -39,6 +38,11 @@ export default {
     labelBeforeExpanded: REACT_NODE_AS_STRING,
     labelAfterExpanded: REACT_NODE_AS_STRING,
     wrap: BOOLEAN_CONTROL,
+    overscrollBehavior: controlFromOptionsArray('select', [
+      'contain',
+      'auto',
+      'none',
+    ]),
     languages: ['javascript', 'typescript', 'json'],
     fontSize: {
       ...controlFromOptionsArray('select', Object.keys(fontSizeOptions)),
@@ -54,11 +58,32 @@ export default {
 type Story = StoryObj<typeof CodeSnippet>;
 
 export const Default: Story = {
+  parameters: {
+    docs: {
+      source: {
+        code: `<CodeSnippet>Some code text style</CodeSnippet>`,
+      },
+    },
+  },
   args: {
     children: 'Some code text style',
   },
 };
 export const SingleLine: Story = {
+  parameters: {
+    docs: {
+      source: {
+        code: `<CodeSnippet
+  type={CodeSnippetType.SINGLE_LINE}
+  fontSize={12}
+  tooltipTitleHover="Copy"
+  tooltipTitleClick="Copied"
+>
+  Some code text style
+</CodeSnippet>`,
+      },
+    },
+  },
   args: {
     children: 'Some code text style',
     type: CodeSnippetType.SINGLE_LINE,
@@ -69,11 +94,31 @@ export const SingleLine: Story = {
 };
 
 export const MultiLine: Story = {
+  parameters: {
+    docs: {
+      source: {
+        code: `<CodeSnippet
+  type={CodeSnippetType.MULTI_LINE}
+  colorSyntax
+  rows={6}
+  wrap
+  overscrollBehavior="contain"
+  tooltipTitleHover="Copy"
+  tooltipTitleClick="Copied"
+  labelBeforeExpanded="Show more"
+  labelAfterExpanded="Show less"
+>
+  {codeString}
+</CodeSnippet>`,
+      },
+    },
+  },
   args: {
     children: exampleContent,
     type: CodeSnippetType.MULTI_LINE,
     colorSyntax: true,
     rows: 6,
+    overscrollBehavior: 'contain',
     tooltipTitleHover: 'Copy',
     tooltipTitleClick: 'Copied',
     labelBeforeExpanded: 'Show more',
@@ -83,6 +128,21 @@ export const MultiLine: Story = {
 };
 
 export const MultiLineWithHiddenExpandAndCopyButton: Story = {
+  parameters: {
+    docs: {
+      source: {
+        code: `<CodeSnippet
+  type={CodeSnippetType.MULTI_LINE}
+  colorSyntax
+  rows={6}
+  hideExpandButton
+  hideCopyButton
+>
+  {codeString}
+</CodeSnippet>`,
+      },
+    },
+  },
   args: {
     children: exampleContent,
     type: CodeSnippetType.MULTI_LINE,
@@ -94,6 +154,20 @@ export const MultiLineWithHiddenExpandAndCopyButton: Story = {
 };
 
 export const MultiLineExpanded: Story = {
+  parameters: {
+    docs: {
+      source: {
+        code: `<CodeSnippet
+  type={CodeSnippetType.MULTI_LINE}
+  colorSyntax
+  rows={6}
+  expanded
+>
+  {codeString}
+</CodeSnippet>`,
+      },
+    },
+  },
   args: {
     children: exampleContent,
     type: CodeSnippetType.MULTI_LINE,

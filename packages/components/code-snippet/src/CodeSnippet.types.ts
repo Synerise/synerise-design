@@ -1,5 +1,7 @@
 import type React from 'react';
 
+import { type OverscrollBehavior } from '@synerise/ds-scrollbar';
+
 import { type LanguageHighlight } from './Highlight/Highlight.types';
 
 export enum FontSize {
@@ -26,6 +28,7 @@ export interface CodeSnippetProps {
   fontSize?: FontSize;
   rows?: number;
   wrap?: boolean;
+  overscrollBehavior?: OverscrollBehavior;
   onExpand?: () => void;
   onCopy?: () => void;
   customTriggerComponent?: React.ReactNode;

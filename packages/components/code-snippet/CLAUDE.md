@@ -40,6 +40,7 @@ No `forwardRef`. Routes to `InlineCode`, `SingleCode`, or `MultiCode` based on `
 | `rows` | `number` | `6` | Visible line count before expand button appears. Multi-line only. |
 | `expanded` | `boolean` | `false` | Initial expanded state. Multi-line only. |
 | `wrap` | `boolean` | `false` | Enables `white-space: pre-wrap`. Multi-line only. |
+| `overscrollBehavior` | `OverscrollBehavior` | `'contain'` | `'contain' \| 'auto' \| 'none'`, re-exported from `@synerise/ds-scrollbar`. Forwarded to the scroll container; controls scroll chaining to the parent. Multi-line only. |
 | `tooltipTitleHover` | `string` | `'Copy'` | Tooltip text before copy. Single-line and multi-line. |
 | `tooltipTitleClick` | `string` | `'Copied!'` | Tooltip text after copy. |
 | `labelBeforeExpanded` | `string` | `'Show more'` | Expand button label. |
