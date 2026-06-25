@@ -1,0 +1,244 @@
+import { Meta, Canvas } from '@storybook/addon-docs/blocks';
+import CodeSnippet from '@synerise/ds-code-snippet';
+import CodeSnippetMeta, {
+  Default,
+  SingleLine,
+  MultiLine,
+  MultiLineExpanded,
+  MultiLineWithHiddenExpandAndCopyButton,
+} from './CodeSnippet.stories';
+
+<Meta component={CodeSnippet} of={CodeSnippetMeta} />
+
+# CodeSnippet
+
+Displays code in three variants — **inline**, **single-line**, and expandable
+**multi-line** — with optional syntax highlighting, copy-to-clipboard, and an
+animated expand/collapse.
+
+## Quick overview
+
+- Import the default export: `import CodeSnippet, { CodeSnippetType } from '@synerise/ds-code-snippet'`.
+- **`children` must be a plain string**, not JSX — all variants type it as `string`.
+- Pick the variant with the `type` prop (`CodeSnippetType.INLINE` is the default).
+- Syntax highlighting (`colorSyntax`), expand/collapse, `wrap`, `rows`, and
+  `overscrollBehavior` apply to the **multi-line** variant only.
+- Highlighting loads languages **asynchronously** — expect a brief flash of
+  unstyled code before colours apply.
+
+## Inline
+
+The default variant. Renders an inline `<code>` element — no copy button.
+
+<Canvas of={Default} sourceState="shown" />
+
+## Single-line
+
+A single-line block with a copy-to-clipboard icon and tooltip.
+
+<Canvas of={SingleLine} />
+
+## Multi-line
+
+A scrollable, multi-line block with optional syntax highlighting and an
+expand/collapse button that appears once the content exceeds `rows`.
+
+<Canvas of={MultiLine} />
+
+### Initially expanded
+
+Use `expanded` to render the block expanded on first mount. It sets the initial
+state only — the component controls expand/collapse itself afterwards.
+
+<Canvas of={MultiLineExpanded} />
+
+### Hiding the expand and copy buttons
+
+`hideExpandButton` and `hideCopyButton` remove the respective controls.
+
+<Canvas of={MultiLineWithHiddenExpandAndCopyButton} />
+
+## API reference
+
+### `CodeSnippet`
+
+{/* MDX does not render markdown tables — use HTML tables. */}
+<table>
+  <thead>
+    <tr>
+      <th>Prop</th>
+      <th>Type</th>
+      <th>Default</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>type</code></td>
+      <td><code>CodeSnippetType</code></td>
+      <td><code>INLINE</code></td>
+      <td>Which variant to render.</td>
+    </tr>
+    <tr>
+      <td><code>children</code></td>
+      <td><code>string</code></td>
+      <td><code>''</code></td>
+      <td>The code content. Must be a string, not JSX.</td>
+    </tr>
+    <tr>
+      <td><code>className</code></td>
+      <td><code>string</code></td>
+      <td><code>undefined</code></td>
+      <td>Applied to the root wrapper.</td>
+    </tr>
+    <tr>
+      <td><code>style</code></td>
+      <td><code>React.CSSProperties</code></td>
+      <td><code>undefined</code></td>
+      <td>Inline styles on the root. Forwarded to the single-line variant only.</td>
+    </tr>
+    <tr>
+      <td><code>fontSize</code></td>
+      <td><code>FontSize</code></td>
+      <td><code>SMALL</code> (12)</td>
+      <td>Font size of the code text.</td>
+    </tr>
+    <tr>
+      <td><code>colorSyntax</code></td>
+      <td><code>boolean</code></td>
+      <td><code>false</code></td>
+      <td>Enables highlight.js syntax colouring. Multi-line only.</td>
+    </tr>
+    <tr>
+      <td><code>languages</code></td>
+      <td><code>LanguageHighlight[]</code></td>
+      <td><code>['javascript', 'typescript', 'json']</code></td>
+      <td>Languages to register with highlight.js. Multi-line only.</td>
+    </tr>
+    <tr>
+      <td><code>rows</code></td>
+      <td><code>number</code></td>
+      <td><code>6</code></td>
+      <td>Visible line count before the expand button appears. Multi-line only.</td>
+    </tr>
+    <tr>
+      <td><code>expanded</code></td>
+      <td><code>boolean</code></td>
+      <td><code>false</code></td>
+      <td>Initial expanded state. Multi-line only.</td>
+    </tr>
+    <tr>
+      <td><code>wrap</code></td>
+      <td><code>boolean</code></td>
+      <td><code>false</code></td>
+      <td>Enables <code>white-space: pre-wrap</code>. Multi-line only.</td>
+    </tr>
+    <tr>
+      <td><code>overscrollBehavior</code></td>
+      <td><code>'contain' | 'auto' | 'none'</code></td>
+      <td><code>'contain'</code></td>
+      <td>
+        Controls the scroll container's <code>overscroll-behavior</code> —
+        whether scrolling chains to the parent at the edges. Multi-line only.
+      </td>
+    </tr>
+    <tr>
+      <td><code>tooltipTitleHover</code></td>
+      <td><code>string</code></td>
+      <td><code>'Copy'</code></td>
+      <td>Tooltip text before copy. Single-line and multi-line.</td>
+    </tr>
+    <tr>
+      <td><code>tooltipTitleClick</code></td>
+      <td><code>string</code></td>
+      <td><code>'Copied!'</code></td>
+      <td>Tooltip text after copy.</td>
+    </tr>
+    <tr>
+      <td><code>labelBeforeExpanded</code></td>
+      <td><code>string</code></td>
+      <td><code>'Show more'</code></td>
+      <td>Expand button label. Multi-line only.</td>
+    </tr>
+    <tr>
+      <td><code>labelAfterExpanded</code></td>
+      <td><code>string</code></td>
+      <td><code>'Show less'</code></td>
+      <td>Collapse button label. Multi-line only.</td>
+    </tr>
+    <tr>
+      <td><code>hideExpandButton</code></td>
+      <td><code>boolean</code></td>
+      <td><code>false</code></td>
+      <td>Hides the expand/collapse button. Multi-line only.</td>
+    </tr>
+    <tr>
+      <td><code>hideCopyButton</code></td>
+      <td><code>boolean</code></td>
+      <td><code>false</code></td>
+      <td>Hides the copy icon. Multi-line only.</td>
+    </tr>
+    <tr>
+      <td><code>customTriggerComponent</code></td>
+      <td><code>ReactNode</code></td>
+      <td><code>undefined</code></td>
+      <td>Replaces the default copy icon. Single-line and multi-line.</td>
+    </tr>
+    <tr>
+      <td><code>onExpand</code></td>
+      <td><code>() =&gt; void</code></td>
+      <td><code>undefined</code></td>
+      <td>Extra callback on expand/collapse. Multi-line only.</td>
+    </tr>
+    <tr>
+      <td><code>onCopy</code></td>
+      <td><code>() =&gt; void</code></td>
+      <td><code>undefined</code></td>
+      <td>Extra callback on copy.</td>
+    </tr>
+  </tbody>
+</table>
+
+### `CodeSnippetType`
+
+<table>
+  <thead>
+    <tr>
+      <th>Member</th>
+      <th>Value</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr><td><code>INLINE</code></td><td><code>'inline'</code></td></tr>
+    <tr><td><code>SINGLE_LINE</code></td><td><code>'single-line'</code></td></tr>
+    <tr><td><code>MULTI_LINE</code></td><td><code>'multi-line'</code></td></tr>
+  </tbody>
+</table>
+
+### `FontSize`
+
+<table>
+  <thead>
+    <tr>
+      <th>Member</th>
+      <th>Value</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr><td><code>SMALL</code></td><td><code>12</code></td></tr>
+    <tr><td><code>MEDIUM</code></td><td><code>14</code></td></tr>
+  </tbody>
+</table>
+
+## Notes & tips
+
+- `colorSyntax`, `languages`, `rows`, `wrap`, `overscrollBehavior`,
+  `hideExpandButton`, and `hideCopyButton` are **multi-line only** — they are
+  silently ignored for the inline and single-line variants.
+- `expanded` sets the **initial** state only; the component manages
+  expand/collapse internally after mount.
+- The expand button only appears once the actual line count exceeds
+  `rows + 1`; the initial height is derived from `rows`.
+- `overscrollBehavior` defaults to `'contain'`, which keeps a scroll gesture
+  inside the code block. Set `'auto'` if you want the page to keep scrolling
+  once the block reaches its edge.

@@ -22,6 +22,7 @@ const CodeSnippet = ({
   labelAfterExpanded = 'Show less',
   wrap = false,
   rows = 6,
+  overscrollBehavior,
   className,
   onExpand,
   onCopy,
@@ -58,6 +59,7 @@ const CodeSnippet = ({
           className={className}
           wrap={wrap}
           rows={rows}
+          overscrollBehavior={overscrollBehavior}
           onExpand={onExpand}
           onCopy={onCopy}
           customTriggerComponent={customTriggerComponent}

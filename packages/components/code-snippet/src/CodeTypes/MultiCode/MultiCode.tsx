@@ -25,6 +25,7 @@ const MultiCode: React.FC<CodeSnippetProps> = ({
   labelAfterExpanded,
   wrap = false,
   rows = 6,
+  overscrollBehavior,
   onExpand,
   onCopy,
   customTriggerComponent,
@@ -104,6 +105,7 @@ const MultiCode: React.FC<CodeSnippetProps> = ({
         >
           <Scrollbar
             maxHeight={!scrollable ? (rows + 1) * LINE_HEIGHT_DEFAULT : '100%'}
+            overscrollBehavior={overscrollBehavior}
             style={{
               marginRight: '17px',
             }}
@@ -121,6 +123,7 @@ const MultiCode: React.FC<CodeSnippetProps> = ({
     [
       wrap,
       rows,
+      overscrollBehavior,
       expandedState,
       isButtonVisible,
       scrollable,
