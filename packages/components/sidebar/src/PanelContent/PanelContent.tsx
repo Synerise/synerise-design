@@ -3,6 +3,7 @@ import React from 'react';
 import { theme } from '@synerise/ds-core';
 import Icon, { DragHandleM } from '@synerise/ds-icon';
 
+import CollapsePanel from '../Collapse/CollapsePanel';
 import * as S from '../Sidebar.styles';
 import { type PanelProps } from '../Sidebar.types';
 
@@ -15,7 +16,7 @@ export const PanelContent = ({
   ...props
 }: PanelProps) => {
   return (
-    <S.AntdPanel
+    <CollapsePanel
       header={
         <S.SidebarHeader>
           <span data-testid={`header-${id}`}>{header}</span>
@@ -37,6 +38,6 @@ export const PanelContent = ({
       {...props}
     >
       <S.SidebarContentWrapper>{children}</S.SidebarContentWrapper>
-    </S.AntdPanel>
+    </CollapsePanel>
   );
 };
