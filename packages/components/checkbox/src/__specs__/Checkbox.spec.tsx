@@ -45,6 +45,23 @@ describe('Checkbox', () => {
     expect(onChange).toBeCalled();
   });
 
+  it('onChange event carries target.type "checkbox" and a boolean checked', () => {
+    // ARRANGE — form libraries (e.g. react-final-form's getValue) switch on `event.target.type`
+    // and only read `checked` when it is 'checkbox'; otherwise they fall back to `target.value`.
+    const handleChange = vi.fn();
+    const { getByLabelText } = renderWithProvider(
+      <Checkbox onChange={handleChange}>{CHECKBOX_LABEL}</Checkbox>,
+    );
+
+    // ACT
+    fireEvent.click(getByLabelText(CHECKBOX_LABEL));
+
+    // ASSERT
+    const event = handleChange.mock.calls[0][0];
+    expect(event.target.type).toBe('checkbox');
+    expect(event.target.checked).toBe(true);
+  });
+
   it('should render error message and mark checkbox with error', () => {
     // ARRANGE
     const ERROR_TEXT = 'error text';
