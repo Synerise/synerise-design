@@ -16,8 +16,6 @@ src/
  ConfirmMessage.style.ts — styled-components for ConfirmMessage
  utils/
  getTransitionConfig.ts — scaleY transition config for @floating-ui/react
- style/
- index.less — Ant Design Carousel overrides
  index.ts — public exports
  modules.d.ts — *.less module declaration
 ```
@@ -47,7 +45,7 @@ import type { PopconfirmProps, PopconfirmTexts, ConfirmMessageProps } from '@syn
 | `icon` | `ReactNode` | — | Icon displayed left of the title |
 | `closeIcon` | `ReactNode` | — | Icon rendered as a close button (top-right); clicking it closes the popconfirm |
 | `titlePadding` | `boolean` | — | Adjusts close icon margin and description top spacing |
-| `images` | `string[]` | — | URLs rendered in an Ant Design Carousel (fade effect) |
+| `images` | `string[]` | — | URLs rendered in a `@synerise/ds-carousel` (fade effect) |
 | `imagesAutoplay` | `boolean` | — | Enables carousel autoplay |
 | `imagesAutoplaySpeed` | `number` | `5000` | Autoplay interval in ms |
 | `withLink` | `ReactNode` | — | Inline link node rendered below description |
@@ -134,7 +132,7 @@ import { ConfirmMessage } from '@synerise/ds-popconfirm';
 - Description: `13px`, `font-weight: 400`; `margin-top: 6px` only when `titlePadding` is falsy
 - Buttons: `height: 32px`; cancel is always `type="secondary"`, confirm uses `okType`
 - Arrow: custom SVG triangle, positioned via CSS classes (`ds-popover-arrow-*`) — rotated per placement
-- Carousel dots: custom styled Ant Design `.slick-dots`; active dot uses `theme.palette['green-600']` border
+- Carousel dots: ds-carousel's `.ds-carousel-dots` restyled here to round dots; active dot (`.ds-carousel-dot-active`) uses `theme.palette['green-600']` border
 - `ConfirmMessage` styles contain a hardcoded colour (`#404c5a` for text) — not a design token
 
 ## Key dependencies
@@ -143,7 +141,7 @@ import { ConfirmMessage } from '@synerise/ds-popconfirm';
 - `@synerise/ds-button` — cancel and confirm buttons
 - `@synerise/ds-tooltip` — used by `ConfirmMessage` internally
 - `@synerise/ds-core` — `useTheme` for z-index and colour tokens
-- `antd` `Carousel` — image slideshow
+- `@synerise/ds-carousel` — image slideshow (fade + dots)
 - `@floating-ui/react` — `UseTransitionStylesProps` (peer dep declared as devDependency)
 
 ## Implementation notes

@@ -22,14 +22,14 @@ export const PopconfirmContent = styled.div<{
   justify-content: flex-start;
   margin: 0px;
 
-  .ant-carousel {
+  .ds-carousel {
     position: relative;
     width: 100%;
     margin-top: 24px;
-    .slick-track {
+    .ds-carousel-track {
       width: 100%;
     }
-    .slick-dots-bottom {
+    .ds-carousel-dots {
       position: relative;
       bottom: 0;
       display: flex;
@@ -56,7 +56,7 @@ export const PopconfirmContent = styled.div<{
           opacity: 1;
         }
       }
-      li.slick-active {
+      li.ds-carousel-dot-active {
         button {
           border: 2px solid ${(props) => props.theme.palette['green-600']};
           background-color: ${(props) => `${props.theme.palette.white}`};

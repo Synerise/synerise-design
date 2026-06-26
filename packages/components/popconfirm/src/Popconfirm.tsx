@@ -1,6 +1,6 @@
-import { Carousel } from 'antd';
 import React, { forwardRef, useEffect, useMemo, useState } from 'react';
 
+import Carousel from '@synerise/ds-carousel';
 import { useTheme } from '@synerise/ds-core';
 import {
   Popover,
@@ -14,7 +14,6 @@ import ConfirmMessage from './ConfirmMessage/ConfirmMessage';
 import { POPOVER_OFFSET_CONFIG } from './Popconfirm.const';
 import * as S from './Popconfirm.styles';
 import { type PopconfirmProps, type PopconfirmType } from './Popconfirm.types';
-import './style/index.less';
 import { getTransitionConfig } from './utils/getTransitionConfig';
 
 const Popconfirm = forwardRef<HTMLElement, PopconfirmProps>(

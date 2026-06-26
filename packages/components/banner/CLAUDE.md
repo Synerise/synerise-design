@@ -19,12 +19,11 @@ src/
     BannerSlideTextContent/     — renders title/description/buttons content area
     index.ts                    — re-exports all sub-components
   hooks/
-    useCarousel.ts              — holds ref to antd Carousel and exposes navigation handlers
+    useCarousel.ts              — holds ref to the ds-carousel and exposes navigation handlers
     useTexts.ts                 — merges react-intl defaults with caller-supplied texts
     index.ts                    — re-exports hooks
   utils/
     isMediaContent.ts           — type guard: 'media' in props
-  style/index.less              — global antd carousel overrides (side-effecting import)
 ```
 
 ## Public exports
@@ -38,7 +37,7 @@ Props (`BannerProps` = `WithHTMLAttributes<HTMLDivElement, …>`):
 | `slides` | `BannerSlideProps[]` | — | **Required.** Array of slide data objects. |
 | `autoPlay` | `boolean` | `true` | Start the carousel on mount. |
 | `autoPlaySpeed` | `number` | `5000` | Milliseconds per slide. |
-| `transitionEffect` | `'scrollx' \| 'fade'` | `'scrollx'` | Antd Carousel effect. |
+| `transitionEffect` | `'scrollx' \| 'fade'` | `'scrollx'` | Carousel effect (`@synerise/ds-carousel`). |
 | `onAfterChange` | `(index: number) => void` | `undefined` | Called after slide transition completes. |
 | `onBeforeChange` | `(from: number, to: number) => void` | `undefined` | Called before slide transition starts. |
 | `onClose` | `() => void` | `undefined` | Renders a close (✕) button in the top-right corner when provided. |
@@ -128,7 +127,7 @@ import Banner from '@synerise/ds-banner';
 
 ## Key dependencies
 
-- `antd` (`Carousel`) — the underlying carousel/slideshow engine; `BannerSlides` is a styled `Carousel`; navigation is driven via `CarouselRef` (`.goTo`, `.next`, `.prev`)
+- `@synerise/ds-carousel` (`Carousel`) — the underlying carousel/slideshow engine; `BannerSlides` is a styled `Carousel`; navigation is driven via `CarouselRef` (`.goTo`, `.next`, `.prev`)
 - `react-intl` — **required peer dependency** used in `useTexts` for default i18n strings; app must be wrapped in `IntlProvider`
 - `uuid` — generates a stable `id` per slide on each `slides` prop change (via `useMemo`) to use as React keys
 - `@synerise/ds-tag` — renders `titleStatus` pill with `asPill` + `TagShape.SMALL_SQUARE`
@@ -138,7 +137,7 @@ import Banner from '@synerise/ds-banner';
 
 ### `useCarousel`
 
-Holds a `useRef<CarouselRef>` pointing to the antd Carousel and exposes `handleDotClick(index)`, `handleNextClick()`, `handlePrevClick()`. The `bannerRef` is passed directly to `<S.BannerSlides ref={bannerRef}>`.
+Holds a `useRef<CarouselRef>` (from `@synerise/ds-carousel`) and exposes `handleDotClick(index)`, `handleNextClick()`, `handlePrevClick()`. The `bannerRef` is passed directly to `<S.BannerSlides ref={bannerRef}>`.
 
 ### `useTexts`
 
@@ -150,6 +149,6 @@ Merges react-intl formatted defaults (`DS.BANNER.EXPAND`, `DS.BANNER.COLLAPSE`, 
 - **Close button vs expandable header**: if `expandable` is set, the close button is rendered *inside* the `BannerHeader`; otherwise it floats absolutely in the top-right corner (`position: absolute; right: 8px; top: 8px; z-index: 10`).
 - **Expand/collapse state** is local — `isExpanded` in `expandable` is only the *initial* value. After mount the state is owned by `Banner`.
 - **`slides` are re-keyed** on every render via `uuid()` inside a `useMemo([slides])`, so mutating slide objects in place (without replacing the array) will not re-key them.
-- **CSS side-effect**: `./style/index.less` is imported unconditionally and patches antd carousel classes (`.ant-carousel`, `.slick-track`).
+- **Carousel CSS**: `ds-carousel` ships its own styling; `Banner.styles.ts` adds the layout tweaks via ds-carousel's `.ds-carousel` / `.ds-carousel-track` class hooks (no LESS side-effect import anymore).
 - `BannerSlide` memoizes each content area (`useMemo`) keyed to the content prop; position (`left | right | main`) and `hasMainContent` flag control flex-basis (240px fixed) vs flex-grow (1).
 - `titleStatus` defaults for colour (`yellow-600` / `white`) come from `Banner.const.ts` and are spread before the caller's overrides, so callers can override individual colour props.

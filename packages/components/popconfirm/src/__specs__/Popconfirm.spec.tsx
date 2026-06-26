@@ -153,7 +153,7 @@ describe('Popconfirm', () => {
 
     fireEvent.click(screen.getByText(TEXT));
 
-    expect(document.querySelectorAll('.slick-slide').length).toBe(3);
-    expect(document.querySelectorAll('.slick-dots li').length).toBe(3);
+    expect(document.querySelectorAll('.ds-carousel-slide').length).toBe(3);
+    expect(document.querySelectorAll('.ds-carousel-dots li').length).toBe(3);
   });
 });
