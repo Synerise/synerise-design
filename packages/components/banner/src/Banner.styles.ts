@@ -1,6 +1,6 @@
-import { Carousel } from 'antd';
 import styled, { css } from 'styled-components';
 
+import Carousel from '@synerise/ds-carousel';
 import Tag from '@synerise/ds-tag';
 import { Text, Title } from '@synerise/ds-typography';
 
@@ -11,11 +11,11 @@ export const BannerWrapper = styled.div<{ count: number }>`
   border-radius: 3px;
   overflow: hidden;
 
-  .ant-carousel {
+  .ds-carousel {
     min-width: 100%;
     flex: 1 0 100%;
   }
-  .ant-carousel .slick-track {
+  .ds-carousel .ds-carousel-track {
     display: flex;
     align-items: center;
   }
