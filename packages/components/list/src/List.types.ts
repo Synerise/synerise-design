@@ -1,4 +1,6 @@
-import { type ListProps, type RadioGroupProps } from 'antd';
+import { type ListProps } from 'antd';
+
+import { type RadioGroupProps } from '@synerise/ds-radio';
 
 export type ListPropsType<T> = Omit<ListProps<T>, 'dataSource' | 'footer'> & {
   dataSource: T[] | T[][];

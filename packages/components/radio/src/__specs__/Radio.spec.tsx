@@ -55,5 +55,26 @@ describe('Radio', () => {
       // ASSERT
       expect(onChange).toHaveBeenCalledWith(RADIO_VALUE_B);
     });
+
+    it('fires group onChange for a Radio.Button with a consumer-managed `checked` prop', () => {
+      // Regression: consumers (schemas Relation Data) render a Radio.Button with a consumer-managed
+      // `checked` prop inside a group. The group's value must drive the native radio (antd parity) —
+      // if the explicit `checked` froze the input as checked, the native `change` would stop firing
+      // and the group onChange (the form value) would never update on click.
+      const onChange = vi.fn();
+      const { getByRole } = renderWithProvider(
+        <Radio.Group onChange={(e) => onChange(e.target.value)}>
+          <Radio.Button value="x" checked>
+            X
+          </Radio.Button>
+        </Radio.Group>,
+      );
+
+      // ACT
+      fireEvent.click(getByRole('radio'));
+
+      // ASSERT
+      expect(onChange).toHaveBeenCalledWith('x');
+    });
   });
 });

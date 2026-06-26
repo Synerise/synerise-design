@@ -1,8 +1,8 @@
-import { List as AntdList, type RadioGroupProps } from 'antd';
+import { List as AntdList } from 'antd';
 import React, { type ReactNode } from 'react';
 import { v4 as uuid } from 'uuid';
 
-import Radio from '@synerise/ds-radio';
+import Radio, { type RadioGroupProps } from '@synerise/ds-radio';
 
 import { ItemWrapper, ListDivider, TextItem } from './Elements';
 import { type ListPropsType } from './List.types';

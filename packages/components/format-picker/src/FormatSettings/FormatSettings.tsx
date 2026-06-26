@@ -111,7 +111,11 @@ const FormatSettings = ({
         <S.FormatSettings>
           <Radio.Group
             defaultValue={format.dataFormat}
-            onChange={(event): void => onDataFormatChange(event.target.value)}
+            onChange={(event): void =>
+              onDataFormatChange(
+                event.target.value as Parameters<typeof onDataFormatChange>[0],
+              )
+            }
           >
             <ButtonGroup>
               {getFormattingTypes(intl, text).map((type) => (
