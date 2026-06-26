@@ -233,6 +233,41 @@ change was that now-unnecessary migration.
 
 ---
 
+## Phase 8 — Verify the pipeline (do NOT stop at push)
+
+Pushing is **not** "done". Poll the GitLab pipeline for the branch until it is green and fix anything it
+surfaces as part of this flow. Local `tsc`/vitest/eslint/build passing is necessary but **not sufficient** —
+only Chromatic runs the story `play` functions in a real browser.
+
+```bash
+source ~/.zshrc
+# latest pipeline(s) for the branch (synerise-design project id = 1171)
+curl -sS --header "PRIVATE-TOKEN: $GITLAB_PERSONAL_TOKEN" \
+  "https://gitlab.synerise.com/api/v4/projects/1171/pipelines?ref=refactor/deantd-<comp>&per_page=3"
+# jobs in a pipeline, then tail the failing job's log
+curl -sS --header "PRIVATE-TOKEN: $GITLAB_PERSONAL_TOKEN" \
+  "https://gitlab.synerise.com/api/v4/projects/1171/pipelines/<pipeline_id>/jobs"
+curl -sS --header "PRIVATE-TOKEN: $GITLAB_PERSONAL_TOKEN" \
+  "https://gitlab.synerise.com/api/v4/projects/1171/jobs/<job_id>/trace" | tail -80
+```
+
+Stages: `install` → `build_packages` → `circular_dependencies` → `run_tests` → `chromatic_publish`.
+
+- **`chromatic_publish` "component error" (exit code 2) is a BUG, not a visual diff.** It means a story
+  **crashed during snapshot** — almost always a `*.tests.stories.tsx` `play` function throwing because the
+  DS-native DOM no longer matches what the story queries. Visual *diffs* (pixel changes needing human
+  approval) are a separate, expected state the reviewer approves; **errored stories you fix yourself.**
+- The migrated DOM must preserve every contract existing stories rely on: **accessible names (`aria-label`),
+  `role`, and the `ant-*`/`ds-*` class hooks** must equal antd's. Read the component's `*.tests.stories.tsx`
+  back in Phase 1 and reproduce those exact strings. Real example that failed CI:
+  - input-number steppers must be `aria-label="Increase Value"` / `"Decrease Value"` (capital V — antd's
+    casing) and the input `role="spinbutton"`; a lowercase `aria-label` made `getByLabelText('Increase Value')`
+    throw and Chromatic reported a component error even though every local check passed.
+- Add unit tests asserting those accessible-name / role contracts so a casing or selector slip can't reach
+  Chromatic again. Re-push and re-poll until the pipeline is green before reporting the migration complete.
+
+---
+
 ## Worked refinements from Badge (apply the analogues)
 
 - Default colour falls back to `red-600`; consumers recolour via `status`/`customColor`/inline `style`.
