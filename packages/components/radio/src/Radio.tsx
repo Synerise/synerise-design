@@ -1,46 +1,13 @@
-import { Radio as AntdRadio } from 'antd';
-import React from 'react';
+import RadioGroup from './RadioGroup';
+import { RadioBase, RadioButton } from './components';
 
-import * as S from './Radio.styles';
-import { type RadioGroupProps, type RadioProps } from './Radio.types';
-import './style/index.less';
-
-const Group = ({ children, fullWidth, big, ...props }: RadioGroupProps) => {
-  return (
-    <S.AntRadioGroup fullWidth={fullWidth} big={big} {...props}>
-      {children}
-    </S.AntRadioGroup>
-  );
-};
-
-const RadioComponent = ({
-  description,
-  label,
-  children,
-  ...antdRadioButtonProps
-}: RadioProps) => {
-  return (
-    <S.RadioWrapper>
-      <S.AntRadio {...antdRadioButtonProps}>
-        {label ? (
-          <S.Label disabled={antdRadioButtonProps.disabled}>{label}</S.Label>
-        ) : (
-          children
-        )}
-      </S.AntRadio>
-      {description && (
-        <S.AdditionalData>
-          <S.Description disabled={antdRadioButtonProps.disabled}>
-            {description}
-          </S.Description>
-        </S.AdditionalData>
-      )}
-    </S.RadioWrapper>
-  );
-};
-
-const Radio = Object.assign(RadioComponent, {
-  Group,
-  Button: AntdRadio.Button,
+/**
+ * DS-native, antd-free radio. `Radio` (radio + label + description) with `Radio.Group` (single-select
+ * context) and `Radio.Button` (segmented control) attached as static members.
+ */
+const Radio = Object.assign(RadioBase, {
+  Group: RadioGroup,
+  Button: RadioButton,
 });
+
 export default Radio;
