@@ -66,9 +66,31 @@ cd synerise-design1 && git checkout -q refactor/deantd-<comp> 2>/dev/null \
   `ant-badge-status-active ds-badge-status-active`. The `ds-*` hooks are the long-term selectors; the
   `ant-*` ones are temporary and get removed once ui-tests / external CSS migrate to the `ds-` namespace.
   (Map `ant-scroll-number*` → `ds-<comp>-scroll-number*`; leave non-`ant-` classes like `current` as-is.)
-- **Do NOT style via class selectors** (neither `ant-*` nor `ds-*`). Use first-class styled-components
-  (one per element: `Wrapper`, the indicator(s), inner text spans, …). Confirm afterwards:
-  `rg "ant-|ds-<comp>" <comp>/src/*.styles.tsx` returns nothing.
+- **Do NOT style via class selectors** (neither `ant-*` nor `ds-*`) — this is the **standard for every
+  migration, no exceptions**. The `ant-*`/`ds-*` class names are **hooks only**; styling lives on
+  styled-components. (radio/checkbox/sidebar initially shipped `styled(AntComp)\`.ant-x-* { … }\``
+  descendant-selector blocks and all had to be re-done — don't repeat that.)
+  - **One styled-component per DOM element.** Make every element its own styled-component
+    (`Wrapper`/`Box`/`Inner`/`Input`/`Text`/`Item`/`Header`/`Content`…), each owning its own rules; the
+    component renders them and puts the `ant-*`/`ds-*` hooks on via `className`. No `styled(antd X)`.
+  - **State → transient `$`-props.** The React component knows the state, so pass it down
+    (`$checked`, `$active`, `$disabled`, `$error`, `$size`, `$iconPosition`, …) and branch inside the
+    styled-component. Don't gate styling on a state *class* (`.ant-x-checked`).
+  - **Cross-element rules → styled-component references, not class selectors.** For hover-preview /
+    focus-ring / parent-state-affects-child, reference the child styled-component from the parent:
+    `&:hover ${Inner} { … }`, `${Input}:focus + ${Inner} { … }`. Declare children **before** the parent
+    (or import across files) so the `${Component}` interpolation resolves. Gate the whole block with a
+    parent `$`-prop instead of `:not(.ant-x-checked)` (e.g. emit the hover-preview rule only
+    `${(p) => !p.$checked && !p.$disabled && css\`…\`}`), so checked/disabled states never fight it.
+  - **Specificity:** a styled-component class is `0,1,0`; `:first-child`/`:last-child` is `0,1,1` and
+    will beat a plain prop block — wrap variant/checked overrides in `&&` (→ `0,2,0`) when they must win
+    over a positional rule, and keep competing variant blocks (e.g. `$solid && $checked`) at the **same**
+    `&&` level so source-order decides (later wins).
+  - **Inline SVG data-URIs:** double-quote the SVG attributes and wrap in `url('…')` (single) — prettier
+    normalises CSS `url()` quotes to single inside `css\`\``, so `url("…")` around a single-quoted SVG
+    gets reverted and the image silently drops (the checkbox tick bug). See [[reference_prerelease_yarn_stale_tgz_cache]] for the related re-pin gotcha.
+  - Confirm afterwards: `rg "\.(ant|ds)-" <comp>/src/*.styles.* <comp>/src/**/*.styles.*` returns **no
+    style rules** (only `className=` hook strings in the `.tsx` are allowed).
 
 **styled-components conventions:**
 - Pass styling props as **transient `$`-props** (`$status`, `$flag`, …) so they don't leak to the DOM —
@@ -125,9 +147,21 @@ pnpm exec eslint --fix packages/components/<comp>/src
 pnpm --filter @synerise/ds-<comp> build          # vite + dts
 rg "from 'antd'|import 'antd'|require\('antd'|~antd" packages/components/<comp>/src   # → empty
 rg "antd" packages/components/<comp>/package.json                                     # → empty
+# CRITICAL when you DELETE the package's style/*.less: another package's .less may @import it →
+# the build_packages CI step fails with "Cannot find module '@synerise/ds-<comp>/src/style/index.less'".
+rg "@import.*@synerise/ds-<comp>/src/style" packages/components --glob '*.less'        # → must be empty
 ```
 Also typecheck a few DS-internal consumers against the rebuilt dist (pre-existing `ds-alert` "dist not
 built" errors are unrelated — ignore them).
+
+**Dangling LESS `@import` (bit pagination + checkbox):** `ds-table` (excluded, stays on antd) imports
+several migrated packages' LESS in `table/src/style/index.less`
+(`@import '~@synerise/ds-pagination|ds-checkbox|ds-select/src/style/index.less'`). When you delete a
+package's LESS, **remove the matching `@import` from every consumer `.less`** (run the rg above) and
+retarget any now-dead `.ant-<comp>-*` rules in that consumer to the kept hook (e.g. `table.less`'s
+pagination/checkbox rules). `tsc`/`vitest`/the package's own `build` all pass — only the full
+`build_packages` (Lerna/Nx builds all 118 projects) surfaces it, so it's easy to miss locally; build the
+importing consumer (`pnpm --filter @synerise/ds-table build`) to confirm the LESS compiles.
 
 **Tests:** rewrite the spec to the new DOM/API (drop tests for removed props); add regression tests for
 each refinement decision. Test behaviour via the kept class names (`.ant-<comp>-*`) and `toHaveStyle`

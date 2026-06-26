@@ -49,17 +49,25 @@ import antd's component LESS. None are thin re-exports.
 
 ## Tier 2 — medium runtime components
 
+> **Shared primitive:** `@synerise/ds-carousel` (NEW package, MR !3751) replaces antd `Carousel` for
+> both banner and popconfirm; its API also covers the multi-slide puib `CardWithSlider` usage.
+> **Decisions:** `alert` is **excluded** (deprecated — keep antd until the package is deleted);
+> `list` is **deferred** to its own phase (largest blast radius); `input-number` is **deferred** to a
+> dedicated session (heaviest of the tier — see its row). banner/popconfirm MRs are stacked on
+> !3751 and auto-retarget to master when it merges.
+
 | Component | antd surface | Breaking? | Status |
 |---|---|---|---|
-| `pagination` | `Pagination` + `PaginationProps` | TBD | ⬜ |
-| `alert` | `Alert` + `AlertProps` | No | ⬜ |
-| `banner` | `Carousel` + `CarouselRef` | No | ⬜ |
-| `popconfirm` | `Carousel` (image carousel in body) | No | ⬜ |
-| `sidebar` | `Collapse` + `CollapseProps` | No | ⬜ |
-| `list` | `List` + `RadioGroupProps` | No | ⬜ |
-| `checkbox` | `Checkbox` + `CheckboxChangeEvent` (note: `checkbox-tristate` depends on this) | No | ⬜ |
-| `radio` | `Radio` + `Radio.Group` | No | ⬜ |
-| `input-number` | `InputNumber` + props | No | ⬜ |
+| `ds-carousel` (new) | — (replaces antd `Carousel`) | No | 🟨 MR !3751 |
+| `pagination` | `Pagination` + `PaginationProps` | DS-native, emits `ds-pagination-*` only (no `ant-` hooks). `ds-table` (excluded — still renders antd's own `Pagination`) now owns its `.ant-pagination-*` styling via a local `style/pagination.less` instead of borrowing ds-pagination's deleted LESS; `ds-table-new` `PaginationProps` type repointed to ds-pagination | 🟨 MR !3755 |
+| `alert` | `Alert` + `AlertProps` | No | ⏭️ excluded (deprecated; keep antd until deleted) |
+| `banner` | `Carousel` + `CarouselRef` → ds-carousel | No | 🟨 MR !3753 |
+| `popconfirm` | `Carousel` (image carousel in body) → ds-carousel | No | 🟨 MR !3752 |
+| `sidebar` | `Collapse` + `CollapseProps` | No | 🟨 MR !3754 |
+| `list` | `List` + `RadioGroupProps` | No | ⏭️ deferred to own phase (after radio) |
+| `checkbox` | `Checkbox` + `CheckboxChangeEvent`; `Checkbox.Group` → DS context (also drops `checkbox-tristate`'s antd peerDep) | No | 🟨 MR !3756 |
+| `radio` | `Radio` + `Radio.Group` + `Radio.Button` → DS (context); own `RadioGroupProps` (list/format-picker consumers fixed in-repo) | No | 🟨 MR !3757 |
+| `input-number` | `InputNumber` + `InputNumberProps<number>` | No | ⏭️ deferred (own session) — heaviest of the tier: needs a from-scratch numeric input + `role="spinbutton"`/`aria-valuenow`, the `.ant-input-number-handler-up/-down` steppers with min/max/step/precision, and reproduction of antd's structural input-number CSS in-package (the DS `inputNumber.mixin.less` only overrides on top of antd's base). ~113 puib + DS-internal consumers (date-range-picker, factors, completed-within, both table cells). Used prop set is bounded: `value/defaultValue/onChange/min/max/step/precision/size/disabled/readOnly/autoFocus/placeholder/error/onBlur/raw` + `prefixel/suffixel`; keep `.ant-input-number-*` class hooks. |
 
 ## Tier 3 — complex / foundational
 
@@ -106,3 +114,9 @@ Declare `antd` in `package.json` but never import it. Remove the peerDep when co
 - `rg -l "antd" packages/components/*/src` returns empty (excluding `ds-table`).
 - No `antd` entry remains in any `package.json` except `ds-table`.
 - Storybook visual review + unit/interaction tests green per package.
+
+> **Current-state caveat:** until the deferred work lands, `antd` still remains (legitimately) in
+> `ds-table` (permanently excluded), `ds-alert` (excluded; deprecated), `ds-list` (deferred phase),
+> and `ds-input-number` (deferred to a dedicated session). The done-check above describes the final
+> target; today the residual `antd` usage is confined to those four packages plus the stale
+> peerDeps listed above.
