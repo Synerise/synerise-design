@@ -1,7 +1,7 @@
-import type { CheckboxChangeEvent } from 'antd/lib/checkbox/Checkbox';
 import React, { useEffect, useState } from 'react';
 
 import {
+  type CheckboxChangeEvent,
   type CheckboxTristateChangeEvent,
   type CheckboxTristateProps,
 } from '../Checkbox.types';

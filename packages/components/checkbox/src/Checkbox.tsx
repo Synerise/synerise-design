@@ -1,9 +1,8 @@
 import React from 'react';
 
-import * as S from './Checkbox.styles';
 import { type CheckboxProps } from './Checkbox.types';
+import CheckboxGroup from './CheckboxGroup';
 import { CheckboxBase, CheckboxTristate } from './components';
-import './style/index.less';
 import { isTristateCheckbox } from './utils';
 
 export const Checkbox = (props: CheckboxProps) => {
@@ -13,6 +12,6 @@ export const Checkbox = (props: CheckboxProps) => {
   return <CheckboxBase {...props} />;
 };
 
-Checkbox.Group = S.AntdCheckbox.Group;
+Checkbox.Group = CheckboxGroup;
 
 export default Checkbox;
