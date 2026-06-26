@@ -23,7 +23,7 @@ export const BaseTableWrapper = styled.div<{
   position: relative;
   z-index: 1;
 
-  .ant-pagination .ant-pagination-total-text strong {
+  .ds-pagination .ds-pagination-total-text strong {
     font-weight: 500;
   }
 `;

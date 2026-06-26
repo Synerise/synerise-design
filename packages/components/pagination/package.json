@@ -43,12 +43,13 @@
   "dependencies": {
     "@synerise/ds-button": "workspace:^",
     "@synerise/ds-icon": "workspace:^",
-    "@synerise/ds-select": "workspace:^"
+    "@synerise/ds-select": "workspace:^",
+    "@synerise/ds-utils": "workspace:^"
   },
   "peerDependencies": {
     "@synerise/ds-core": "*",
-    "antd": "4.24.16",
     "react": ">=16.9.0 <= 18.3.1",
+    "styled-components": "^5.3.3",
     "vitest": "4"
   }
 }
