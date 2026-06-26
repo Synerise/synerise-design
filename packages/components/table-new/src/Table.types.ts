@@ -1,4 +1,3 @@
-import type { PaginationProps } from 'antd';
 import {
   type CSSProperties,
   type HTMLAttributes,
@@ -9,6 +8,7 @@ import {
   type RefObject,
 } from 'react';
 
+import type { PaginationProps } from '@synerise/ds-pagination';
 import type { SearchInputProps } from '@synerise/ds-search';
 import type { TooltipProps } from '@synerise/ds-tooltip';
 import {

@@ -1,3 +1,8 @@
+// ds-table keeps antd's Table, which renders antd's Pagination internally.
+// ds-pagination is now DS-native (no antd), so ds-table owns the antd pagination
+// base + the DS visual overrides that previously lived in ds-pagination's LESS.
+@import '~antd/lib/pagination/style/index.less';
+
 @pagination-prefix-cls: ~'@{ant-prefix}-pagination';
 
 .@{pagination-prefix-cls} {

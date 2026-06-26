@@ -4160,12 +4160,15 @@ importers:
       '@synerise/ds-select':
         specifier: workspace:^
         version: link:../select
-      antd:
-        specifier: 4.24.16
-        version: 4.24.16(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@synerise/ds-utils':
+        specifier: workspace:^
+        version: link:../utils
       react:
         specifier: 18.3.1
         version: 18.3.1
+      styled-components:
+        specifier: ^5.3.3
+        version: 5.3.11(@babel/core@7.29.0)(react-dom@18.3.1(react@18.3.1))(react-is@18.3.1)(react@18.3.1)
       vitest:
         specifier: '4'
         version: 4.1.1(@types/node@22.19.7)(@vitest/browser-playwright@4.1.1)(jsdom@24.1.3)(vite@7.3.1(@types/node@22.19.7)(jiti@2.6.1)(less@3.11.1)(sass@1.97.3)(terser@5.46.0)(yaml@2.8.2))
