@@ -30,7 +30,9 @@ describe('Sidebar', () => {
 
     expect(screen.getByTestId(`header-${ID_1}`)).toBeInTheDocument();
     expect(screen.getByText(HEADER_1)).toBeInTheDocument();
-    expect(screen.queryByText(CHILDREN)).not.toBeInTheDocument();
+    // content stays mounted (open/close is CSS-animated, not unmounted); neither panel matches
+    // defaultActiveKey "0" here, so no panel is in the active (open) state.
+    expect(document.querySelector('.ds-sidebar-item-active')).toBeNull();
   });
 
   it('should render active panel open', () => {
@@ -45,8 +47,25 @@ describe('Sidebar', () => {
       </Sidebar>,
     );
 
-    expect(screen.getByText(CHILDREN)).toBeInTheDocument();
-    expect(screen.queryByText(CHILDREN_2)).not.toBeInTheDocument();
+    // only the first panel (defaultActiveKey=ID_1) is in the active (open) state
+    const activeItems = document.querySelectorAll('.ds-sidebar-item-active');
+    expect(activeItems).toHaveLength(1);
+    expect(activeItems[0]).toHaveTextContent(HEADER_1);
+  });
+  it('opens a panel that has no React key by its index (antd parity — the WithBlock case)', () => {
+    // A panel given only an `id` (no `key`) controlled by an index-based `defaultActiveKey`, like
+    // the Sidebar `WithBlock` story (`id="first"`, `defaultActiveKey="0"`). antd's Collapse keyed
+    // unkeyed panels by index, so "0" opens the first panel — id must not hijack the match.
+    renderWithProvider(
+      <Sidebar defaultActiveKey="0">
+        <Sidebar.Panel header={HEADER_1} id={ID_1}>
+          {CHILDREN}
+        </Sidebar.Panel>
+      </Sidebar>,
+    );
+
+    // index-0 panel is opened by defaultActiveKey="0"
+    expect(document.querySelector('.ds-sidebar-item-active')).not.toBeNull();
   });
   it('should render text Button', () => {
     renderWithProvider(
@@ -67,11 +86,14 @@ describe('Sidebar', () => {
         </Sidebar.Panel>
       </Sidebar>,
     );
-    expect(screen.queryByText(CHILDREN)).not.toBeInTheDocument();
+    // nothing open initially → no active panel; clicking the header opens (activates) it
+    expect(document.querySelector('.ds-sidebar-item-active')).toBeNull();
 
     fireEvent.click(screen.getByText(HEADER_1));
 
-    expect(screen.getByText(CHILDREN)).toBeInTheDocument();
+    const active = document.querySelector('.ds-sidebar-item-active');
+    expect(active).not.toBeNull();
+    expect(active).toHaveTextContent(HEADER_1);
   });
 
   it('should render order in draggable mode', () => {

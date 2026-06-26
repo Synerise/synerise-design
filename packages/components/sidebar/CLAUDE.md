@@ -1,6 +1,6 @@
 # Sidebar (`@synerise/ds-sidebar`)
 
-> A collapsible accordion sidebar built on Ant Design `Collapse`, with optional drag-and-drop panel reordering via `@synerise/ds-sortable`. Also exports `SidebarWithButton` — a helper component with a title and a dropdown-menu button.
+> A collapsible accordion sidebar built on a DS-native, antd-free `Collapse` (in `src/Collapse/`), with optional drag-and-drop panel reordering via `@synerise/ds-sortable`. Also exports `SidebarWithButton` — a helper component with a title and a dropdown-menu button.
 
 ## Package structure
 
@@ -8,8 +8,12 @@
 src/
  Sidebar.tsx — main component; conditional sortable/non-sortable modes
  Sidebar.types.ts — SidebarProps, PanelProps, SidebarContextType, Order
- Sidebar.styles.ts — AntdCollapse, AntdPanel, SidebarHandle, DragOverlay, etc.
+ Sidebar.styles.ts — StyledCollapse, StyledPanel, SidebarHandle, DragOverlay, etc.
  Sidebar.context.tsx — SidebarContext { isSortable }
+ Collapse/
+ Collapse.tsx — DS-native accordion (manages active panels by `id`, clones children)
+ CollapsePanel.tsx — one item; renders the ant-collapse-* / ds-sidebar-* DOM
+ Collapse.types.ts — CollapseProps, CollapsePanelProps
  Panel/
  Panel.tsx — compound child; renders DraggablePanel or PanelContent
  DraggablePanel/
@@ -17,14 +21,11 @@ src/
  DragOverlayPanel/
  DragOverlayPanel.tsx — visual copy of panel rendered during drag
  PanelContent/
- PanelContent.tsx — Ant Design Panel wrapper with optional drag handle
+ PanelContent.tsx — DS CollapsePanel wrapper with optional drag handle
  SidebarWithButton/
  SidebarWithButton.tsx — sidebar variant with title + dropdown button
  SidebarWithButton.types.ts
  SidebarWithButton.styles.ts
- utils/
- prefixKeys.ts — adds `.$` prefix to collapse keys in sortable mode
- style/index.less — Ant Design collapse less import
  __specs__/Sidebar.spec.tsx — Vitest tests
  index.ts — public exports
 ```
@@ -42,9 +43,9 @@ src/
 | `activeKey` | `string \| string[]` | — | Controlled open panels |
 | `onChange` | `(keys: string \| string[]) => void` | — | Called when panels open/close |
 | `getPopupContainer` | `(node: HTMLDivElement) => HTMLElement` | — | Portal target for the `DragOverlay`; useful when sidebar is inside a scrollable container |
-| `className` | `string` | — | Added to the Ant Collapse |
+| `className` | `string` | — | Added to the Collapse root |
 
-Any other Ant Design `CollapseProps` are spread through.
+Any other DS `CollapseProps` (`activeKey`, `defaultActiveKey`, `onChange`, `accordion`, `expandIcon`, `expandIconPosition`) are spread through.
 
 **Drag mode is active when** `Array.isArray(order) && order.length > 0 && !!onChangeOrder`. The `is-drag-drop` CSS class is applied to the collapse when active.
 
@@ -100,18 +101,18 @@ import Sidebar from '@synerise/ds-sidebar';
 
 ## Styling
 
-`AntdCollapse` in `Sidebar.styles.ts` heavily overrides Ant Design collapse CSS. Header padding is `18px 24px`. Content padding is `16px 24px`. Background is `blue-050`. The drag handle (`SidebarHandle`) is `cursor: grabbing` and positioned absolutely on the left of the header.
+`StyledCollapse` in `Sidebar.styles.ts` styles the DS accordion DOM via its `.ant-collapse-*` class hooks (retained for ui-tests / interim external CSS; `ds-sidebar-*` emitted alongside). Header padding is `18px 24px`. Content padding is `16px 24px`. Background is `blue-050`. The drag handle (`SidebarHandle`) is `cursor: grabbing` and positioned absolutely on the left of the header.
 
 ## Key dependencies
 
-- `antd` — `Collapse` and `Panel` base components
+- DS-native `Collapse` / `CollapsePanel` (`src/Collapse/`) — the accordion engine (no antd)
 - `@synerise/ds-sortable` — `SortableContainer`, `DragOverlay`, `useSortable`, `CSS`
 - `@synerise/ds-icon` — expand icons (`AngleDownS`, `AngleUpS`) and drag handle (`DragHandleM`)
 - `@synerise/ds-dropdown`, `@synerise/ds-menu`, `@synerise/ds-button` — used by `SidebarWithButton`
 
 ## Implementation notes
 
-- **Collapse key prefixing**: in sortable mode, panel IDs are prefixed with `.$` when passed to Ant's `activeKey`/`defaultActiveKey` (via `prefixKeys`). The `handleOnChange` callback strips the prefix back off. This prevents key collisions between React element keys and collapse panel keys.
+- **Collapse keys panels the way antd did** (`child.key ?? index`): the DS `Collapse` matches `activeKey`/`defaultActiveKey`/`onChange` against each panel's React `key`, falling back to the child index when a panel has no key. The panel helpers (`createSidebarPanels`, and real consumers) set `key={id}`, so id-based `activeKey`/`defaultActiveKey` work as before; panels written without a key (e.g. the `WithBlock` story, `defaultActiveKey="0"`) match by index — exactly as under antd. `Collapse` strips the `.$` prefix that `Children.toArray` (the sortable path) adds and treats positional `.N` keys as "no key", so the old `prefixKeys` juggling is unnecessary and `activeKey`/`defaultActiveKey`/`onChange` still speak plain ids in both modes.
 - **`DragOverlayPanel`** is rendered either inside `getPopupContainer` target (via `createPortal`) or inline if no container is provided.
 - **`onChangeOrder` must be truthy** to enable sorting — passing an empty array as `order` without `onChangeOrder` does not enable drag mode.
 - **Uses Vitest** for testing.

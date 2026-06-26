@@ -13,13 +13,11 @@ import { useTheme } from '@synerise/ds-core';
 import Icon, { AngleDownS, AngleUpS } from '@synerise/ds-icon';
 import { DragOverlay, SortableContainer } from '@synerise/ds-sortable';
 
+import Collapse from './Collapse/Collapse';
 import { DragOverlayPanel } from './DragOverlayPanel/DragOverlayPanel';
 import { Panel } from './Panel/Panel';
 import { SidebarContext } from './Sidebar.context';
-import * as S from './Sidebar.styles';
 import { type PanelProps, type SidebarProps } from './Sidebar.types';
-import './style/index.less';
-import { prefixKeys } from './utils/prefixKeys';
 
 export const Sidebar = ({
   children,
@@ -63,15 +61,11 @@ export const Sidebar = ({
 
   const handleOnChange = useCallback(
     (keys: string | string[]) => {
-      const finalKeys = isSortable
-        ? (Array.isArray(keys) ? keys : [keys]).map((key) =>
-            key.startsWith('.$') ? key.substring(2) : key,
-          )
-        : keys;
-      setActiveKeys(Array.isArray(finalKeys) ? finalKeys : [finalKeys]);
+      const finalKeys = Array.isArray(keys) ? keys : [keys];
+      setActiveKeys(finalKeys);
       onChange?.(finalKeys);
     },
-    [isSortable, onChange],
+    [onChange],
   );
 
   const sortedChildren = useMemo(() => {
@@ -87,23 +81,6 @@ export const Sidebar = ({
       },
     );
   }, [children, isSortable, order]);
-
-  const activeKeysProp = useMemo(() => {
-    const prependedActiveKey =
-      isSortable && activeKey ? prefixKeys(activeKey) : activeKey;
-    const prependedDefaultActiveKey =
-      isSortable && defaultActiveKey
-        ? prefixKeys(defaultActiveKey)
-        : defaultActiveKey;
-
-    let keyProp = {};
-    if (prependedDefaultActiveKey !== undefined) {
-      keyProp = { defaultActiveKey: prependedDefaultActiveKey };
-    } else if (prependedActiveKey !== undefined) {
-      keyProp = { activeKey: prependedActiveKey };
-    }
-    return keyProp;
-  }, [isSortable, activeKey, defaultActiveKey]);
 
   const isDraggedPanelActive = useCallback(
     (id: string) => {
@@ -147,12 +124,10 @@ export const Sidebar = ({
     );
     return (
       <div ref={wrapperRef}>
-        <S.AntdCollapse
-          {...activeKeysProp}
-          className={classNames({
-            'is-drag-drop': isSortable,
-            className,
-          })}
+        <Collapse
+          activeKey={activeKey}
+          defaultActiveKey={defaultActiveKey}
+          className={classNames({ 'is-drag-drop': isSortable }, className)}
           expandIconPosition="end"
           expandIcon={({ isActive }) => (
             <Icon
@@ -164,7 +139,7 @@ export const Sidebar = ({
           {...collapseProps}
         >
           {isSortable ? sortedChildren : children}
-        </S.AntdCollapse>
+        </Collapse>
         {wrapperRef.current && getPopupContainer
           ? createPortal(dragOverlay, getPopupContainer(wrapperRef.current))
           : dragOverlay}
@@ -173,7 +148,8 @@ export const Sidebar = ({
   }, [
     draggedItem,
     isDraggedPanelActive,
-    activeKeysProp,
+    activeKey,
+    defaultActiveKey,
     isSortable,
     className,
     handleOnChange,
