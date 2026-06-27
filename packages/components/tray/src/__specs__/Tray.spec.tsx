@@ -1,5 +1,5 @@
 import React, { type ReactNode } from 'react';
-import { renderHook, screen, waitFor, within } from '@testing-library/react';
+import { act, renderHook, screen, waitFor, within } from '@testing-library/react';
 
 import Tray, { TrayProvider, useTray } from '../index';
 import { DSProvider } from '@synerise/ds-core';
@@ -79,5 +79,29 @@ describe('Tray', () => {
             expect(screen.queryByText(TRAY1_DATA.title)).not.toBeInTheDocument();
         })
 
+    })
+
+    it('should keep open/close references stable across re-renders and state changes', async () => {
+        const { result, rerender } = renderHook(() => useTray(), {
+            wrapper: Wrapper,
+        });
+
+        const first = result.current;
+
+        // a re-render with no state change must not produce new references
+        rerender();
+
+        expect(result.current).toBe(first);
+        expect(result.current.open).toBe(first.open);
+        expect(result.current.close).toBe(first.close);
+
+        // a real state change must not churn the action identities either
+        await act(async () => {
+            result.current.open(TRAY1_ID, TRAY1_DATA);
+        });
+
+        expect(result.current).toBe(first);
+        expect(result.current.open).toBe(first.open);
+        expect(result.current.close).toBe(first.close);
     })
 });
