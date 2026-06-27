@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.49.0](https://github.com/Synerise/synerise-design/compare/storybook@1.48.1...storybook@1.49.0) (2026-06-27)
+
+### Features
+
+- expose overscrollBehavior on multi-line CodeSnippet ([c9938bb](https://github.com/Synerise/synerise-design/commit/c9938bba726489754d3f9bbf9e64edfb679d4a52))
+
 ## [1.48.1](https://github.com/Synerise/synerise-design/compare/storybook@1.48.0...storybook@1.48.1) (2026-06-24)
 
 ### Bug Fixes

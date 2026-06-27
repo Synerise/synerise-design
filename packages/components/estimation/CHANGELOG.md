@@ -3,6 +3,10 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.4.26](https://github.com/Synerise/synerise-design/compare/@synerise/ds-estimation@1.4.25...@synerise/ds-estimation@1.4.26) (2026-06-27)
+
+**Note:** Version bump only for package @synerise/ds-estimation
+
 ## [1.4.25](https://github.com/Synerise/synerise-design/compare/@synerise/ds-estimation@1.4.24...@synerise/ds-estimation@1.4.25) (2026-06-17)
 
 **Note:** Version bump only for package @synerise/ds-estimation

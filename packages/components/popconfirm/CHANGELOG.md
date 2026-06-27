@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.4.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-popconfirm@1.3.25...@synerise/ds-popconfirm@1.4.0) (2026-06-27)
+
+### Features
+
+- add @synerise/ds-carousel primitive ([e9124d8](https://github.com/Synerise/synerise-design/commit/e9124d813cf141c313ca40a9b302a1dcea185935))
+
 ## [1.3.25](https://github.com/Synerise/synerise-design/compare/@synerise/ds-popconfirm@1.3.24...@synerise/ds-popconfirm@1.3.25) (2026-06-17)
 
 **Note:** Version bump only for package @synerise/ds-popconfirm

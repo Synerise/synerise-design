@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.1.43](https://github.com/Synerise/synerise-design/compare/@synerise/ds-tray@1.1.42...@synerise/ds-tray@1.1.43) (2026-06-27)
+
+### Bug Fixes
+
+- memoize TrayProvider context value and useTray result ([d06d9f3](https://github.com/Synerise/synerise-design/commit/d06d9f3f5226c832945d185f9f0cb0b8b6664390))
+
 ## [1.1.42](https://github.com/Synerise/synerise-design/compare/@synerise/ds-tray@1.1.41...@synerise/ds-tray@1.1.42) (2026-06-17)
 
 **Note:** Version bump only for package @synerise/ds-tray

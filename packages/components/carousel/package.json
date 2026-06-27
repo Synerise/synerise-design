@@ -1,6 +1,6 @@
 {
   "name": "@synerise/ds-carousel",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Carousel UI Component for the Synerise Design System",
   "license": "ISC",
   "repository": "Synerise/synerise-design",
@@ -37,7 +37,6 @@
   },
   "sideEffects": false,
   "types": "dist/index.d.ts",
-  "dependencies": {},
   "devDependencies": {
     "vitest": "4"
   },
