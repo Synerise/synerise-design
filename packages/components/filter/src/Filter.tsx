@@ -76,66 +76,82 @@ const Filter = ({
   const movedExpressionId = useRef<string | null>(null);
 
   useEffect(() => {
-    if (movedExpressionId.current && previousExpressions?.length) {
-      const oldIndex = previousExpressions?.findIndex(
-        (expression: Expression) => {
-          return expression.id === movedExpressionId.current;
-        },
-      );
-      const newIndex = expressions?.findIndex((expression: Expression) => {
-        return expression.id === movedExpressionId.current;
-      });
-      if (oldIndex !== undefined && oldIndex !== newIndex) {
-        const sign = oldIndex < newIndex ? 1 : -1;
-        const low = Math.min(oldIndex, newIndex);
-        const high = Math.max(oldIndex, newIndex);
-
-        const movedExpressionHeight =
-          sign *
-          expressionRefs.current[
-            movedExpressionId.current
-          ].getBoundingClientRect().height;
-        let expressionOffset = 0;
-        const movedCardTransformDuration = Math.min(
-          (high - low) * TRANSITION_DURATION,
-          TRANSITION_DURATION_MAX,
-        );
-        expressions.forEach((expression: Expression, index: number) => {
-          if (
-            expression.id !== movedExpressionId.current &&
-            index >= low &&
-            index <= high
-          ) {
-            expressionOffset +=
-              expressionRefs.current[expression.id].getBoundingClientRect()
-                .height;
-            expressionRefs.current[expression.id].style.transition = '';
-            expressionRefs.current[expression.id].style.zIndex =
-              BOTTOM_TRANSITION_ZINDEX;
-            expressionRefs.current[expression.id].style.transform =
-              `translateY(${movedExpressionHeight}px)`;
-          }
-        });
-        expressionRefs.current[movedExpressionId.current].style.transition = '';
-        expressionRefs.current[movedExpressionId.current].style.zIndex =
-          TOP_TRANSITION_ZINDEX;
-        expressionRefs.current[movedExpressionId.current].style.transform =
-          `translateY(${-sign * expressionOffset}px)`;
-
-        requestAnimationFrame(() => {
-          expressions.forEach((expression: Expression) => {
-            expressionRefs.current[expression.id].style.transition =
-              `transform ${
-                expression.id === movedExpressionId.current
-                  ? movedCardTransformDuration
-                  : TRANSITION_DURATION
-              }s`;
-            expressionRefs.current[expression.id].style.transform = '';
-          });
-          movedExpressionId.current = null;
-        });
-      }
+    if (!movedExpressionId.current || !previousExpressions?.length) {
+      return;
     }
+
+    const movedId = movedExpressionId.current;
+    const oldIndex = previousExpressions.findIndex(
+      (expression: Expression) => expression.id === movedId,
+    );
+    const newIndex = expressions.findIndex(
+      (expression: Expression) => expression.id === movedId,
+    );
+    const movedElement = expressionRefs.current[movedId];
+
+    // `findIndex` returns -1 (not undefined) when the moved expression is missing, so the
+    // previous `!== undefined` check never short-circuited. Bail when either index is absent,
+    // nothing actually moved, or the moved card has no mounted DOM node — the draggable path
+    // renders a DragOverlay that shares the same `expressionRefs` key and nulls it on drop, so
+    // reading `getBoundingClientRect` here would throw and take down the whole filter. Clear the
+    // ref so a later render does not retry the stale move.
+    if (
+      oldIndex === -1 ||
+      newIndex === -1 ||
+      oldIndex === newIndex ||
+      !movedElement
+    ) {
+      movedExpressionId.current = null;
+      return;
+    }
+
+    const sign = oldIndex < newIndex ? 1 : -1;
+    const low = Math.min(oldIndex, newIndex);
+    const high = Math.max(oldIndex, newIndex);
+
+    const movedExpressionHeight =
+      sign * movedElement.getBoundingClientRect().height;
+    let expressionOffset = 0;
+    const movedCardTransformDuration = Math.min(
+      (high - low) * TRANSITION_DURATION,
+      TRANSITION_DURATION_MAX,
+    );
+
+    expressions.forEach((expression: Expression, index: number) => {
+      const element = expressionRefs.current[expression.id];
+      if (
+        !element ||
+        expression.id === movedId ||
+        index < low ||
+        index > high
+      ) {
+        return;
+      }
+      expressionOffset += element.getBoundingClientRect().height;
+      element.style.transition = '';
+      element.style.zIndex = BOTTOM_TRANSITION_ZINDEX;
+      element.style.transform = `translateY(${movedExpressionHeight}px)`;
+    });
+
+    movedElement.style.transition = '';
+    movedElement.style.zIndex = TOP_TRANSITION_ZINDEX;
+    movedElement.style.transform = `translateY(${-sign * expressionOffset}px)`;
+
+    requestAnimationFrame(() => {
+      expressions.forEach((expression: Expression) => {
+        const element = expressionRefs.current[expression.id];
+        if (!element) {
+          return;
+        }
+        element.style.transition = `transform ${
+          expression.id === movedId
+            ? movedCardTransformDuration
+            : TRANSITION_DURATION
+        }s`;
+        element.style.transform = '';
+      });
+      movedExpressionId.current = null;
+    });
   });
 
   useEffect(() => {
