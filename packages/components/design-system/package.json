@@ -92,6 +92,7 @@
     "@synerise/ds-grid": "workspace:^",
     "@synerise/ds-icon": "workspace:^",
     "@synerise/ds-icon-picker": "workspace:^",
+    "@synerise/ds-image": "workspace:^",
     "@synerise/ds-information-card": "workspace:^",
     "@synerise/ds-inline-alert": "workspace:^",
     "@synerise/ds-inline-edit": "workspace:^",
