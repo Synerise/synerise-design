@@ -1,0 +1,173 @@
+import { Meta, Canvas } from '@storybook/addon-docs/blocks';
+import {
+  Default as ThumbnailDefault,
+  Empty as ThumbnailEmpty,
+  ErrorFallback as ThumbnailError,
+} from './ImageThumbnail.stories';
+import { Default as GalleryDefault } from './ImageGallery.stories';
+import {
+  MultipleImages,
+  TriggeredFromList,
+} from './ImagePreview.stories';
+
+<Meta title="Components/Image/Overview" />
+
+# Image
+
+The Image family renders images as thumbnails, groups them into a gallery, and
+opens a full-screen preview (lightbox) with zoom, pan and navigation. It is
+published as `@synerise/ds-image` and exposes three components plus a helper hook:
+
+- **`Thumbnail`** — a single inline image tile with a fixed aspect ratio and size,
+  an optional grey backdrop, `contain`/`cover` fit, an Empty state, a broken-image
+  fallback, and an optional delete-on-hover affordance.
+- **`Gallery`** — renders many `Thumbnail`s that share the same aspect ratio, size,
+  background and object-fit; clicking a thumbnail opens the preview at that image.
+- **`ImagePreview`** — a controlled full-screen lightbox: zoom/pan, a bottom-center
+  toolbar with navigation (`‹ N of M ›`), zoom controls, and a download link.
+- **`useImagePreview`** — owns the preview's open/index state so it can be opened
+  from *any* element (a list row, a button, a table cell), not only a gallery.
+
+## Table of contents
+
+- [Thumbnail](#thumbnail)
+- [Gallery](#gallery)
+- [Preview](#preview)
+- [Triggering the preview from anywhere](#triggering-the-preview-from-anywhere)
+- [API reference](#api-reference)
+- [Accessibility](#accessibility)
+
+## Thumbnail
+
+A single tile. `aspectRatio`, `size`, `background` and `objectFit` define the box;
+the image fills it according to `objectFit`. Omit `src` for the Empty state, and a
+broken `src` swaps in the `fallback`.
+
+<Canvas of={ThumbnailDefault} />
+<Canvas of={ThumbnailEmpty} />
+<Canvas of={ThumbnailError} />
+
+## Gallery
+
+A gallery applies its visual props uniformly to every thumbnail (via context) and
+owns a single shared preview. Clicking any thumbnail opens the preview at that
+image, with navigation across the whole set.
+
+<Canvas of={GalleryDefault} />
+
+## Preview
+
+The preview is a controlled component (`open`, `index`, `onIndexChange`,
+`onClose`). Navigation (`‹ N of M ›`) appears only when there is more than one
+image; arrow keys page through the set; Escape, the close button and a backdrop
+click all close it. Zoom in with the toolbar, the mouse wheel or double-click —
+**while zoomed in, drag the image with the mouse to pan** (the cursor turns into
+a grab handle); double-click resets. The toolbar's download control saves the
+current image. The overlay fades in/out on open/close.
+
+<Canvas of={MultipleImages} />
+
+## Triggering the preview from anywhere
+
+Because `ImagePreview` is controlled, any element can open it. `useImagePreview`
+removes the boilerplate: it returns `open`/`close`/`next`/`prev` and a
+`previewProps` object to spread onto `<ImagePreview>`.
+
+```tsx
+const preview = useImagePreview(images);
+
+<ListRow onClick={() => preview.open(2)} />
+<ImagePreview {...preview.previewProps} />;
+```
+
+<Canvas of={TriggeredFromList} />
+
+## API reference
+
+### ThumbnailProps
+
+<table>
+  <thead>
+    <tr><th>Prop</th><th>Type</th><th>Default</th><th>Description</th></tr>
+  </thead>
+  <tbody>
+    <tr><td><code>src</code></td><td><code>string</code></td><td>—</td><td>Image URL. Omit/empty for the Empty state.</td></tr>
+    <tr><td><code>alt</code></td><td><code>string</code></td><td>—</td><td><strong>Required.</strong> Alt text.</td></tr>
+    <tr><td><code>aspectRatio</code></td><td><code>'1:1' | '4:3' | '16:9' | 'source'</code></td><td><code>'1:1'</code></td><td>Tile ratio; <code>source</code> keeps the image's intrinsic ratio.</td></tr>
+    <tr><td><code>size</code></td><td><code>'custom' | 'xxs' | 'xs' | 's' | 'm' | 'l' | 'xl' | 'xxl'</code></td><td><code>'m'</code></td><td>Height token (40/80/120/180/240/360/540px).</td></tr>
+    <tr><td><code>height</code></td><td><code>number</code></td><td>—</td><td>Explicit height when <code>size='custom'</code>.</td></tr>
+    <tr><td><code>background</code></td><td><code>'none' | 'subtle-grey'</code></td><td><code>'none'</code></td><td>Tile backdrop.</td></tr>
+    <tr><td><code>objectFit</code></td><td><code>'contain' | 'cover'</code></td><td><code>'contain'</code></td><td>Fit within vs cover the tile.</td></tr>
+    <tr><td><code>loading</code></td><td><code>'lazy' | 'eager'</code></td><td><code>'lazy'</code></td><td>Native loading hint.</td></tr>
+    <tr><td><code>deletable</code></td><td><code>boolean</code></td><td><code>false</code></td><td>Show a delete affordance on hover/focus.</td></tr>
+    <tr><td><code>onDelete</code></td><td><code>() =&gt; void</code></td><td>—</td><td>Fired by the delete affordance.</td></tr>
+    <tr><td><code>openZoom</code></td><td><code>boolean</code></td><td><code>false</code></td><td>Render as an interactive trigger.</td></tr>
+    <tr><td><code>onClick</code></td><td><code>(event) =&gt; void</code></td><td>—</td><td>Mouse + keyboard (Enter/Space) activation.</td></tr>
+    <tr><td><code>fallback</code></td><td><code>ReactNode</code></td><td>—</td><td>Rendered when the image fails to load.</td></tr>
+    <tr><td><code>texts</code></td><td><code>Partial&lt;ImageTexts&gt;</code></td><td>DS defaults</td><td>Override the delete tooltip/label.</td></tr>
+  </tbody>
+</table>
+
+### GalleryProps
+
+<table>
+  <thead>
+    <tr><th>Prop</th><th>Type</th><th>Default</th><th>Description</th></tr>
+  </thead>
+  <tbody>
+    <tr><td><code>images</code></td><td><code>ImageSource[]</code></td><td>—</td><td><strong>Required.</strong> <code>{'{ src, alt, fallback? }'}</code> per image.</td></tr>
+    <tr><td><code>aspectRatio / size / height / background / objectFit / loading</code></td><td>see Thumbnail</td><td>see Thumbnail</td><td>Applied uniformly to every thumbnail.</td></tr>
+    <tr><td><code>fallback</code></td><td><code>ReactNode</code></td><td>—</td><td>Fallback for any broken image (thumbnails and preview).</td></tr>
+    <tr><td><code>texts</code></td><td><code>Partial&lt;ImageTexts&gt;</code></td><td>DS defaults</td><td>Override tooltips/labels for thumbnails and the preview.</td></tr>
+    <tr><td><code>deletable</code></td><td><code>boolean</code></td><td><code>false</code></td><td>Show delete affordances.</td></tr>
+    <tr><td><code>onDelete</code></td><td><code>(index: number) =&gt; void</code></td><td>—</td><td>Called with the deleted thumbnail's index.</td></tr>
+    <tr><td><code>openZoom</code></td><td><code>boolean</code></td><td><code>true</code></td><td>Clicking a thumbnail opens the preview.</td></tr>
+    <tr><td><code>zoomStep / maxZoom / initialZoom / zoomable / getContainer</code></td><td>see Preview</td><td>see Preview</td><td>Forwarded to the internal preview.</td></tr>
+  </tbody>
+</table>
+
+### ImagePreviewProps
+
+<table>
+  <thead>
+    <tr><th>Prop</th><th>Type</th><th>Default</th><th>Description</th></tr>
+  </thead>
+  <tbody>
+    <tr><td><code>open</code></td><td><code>boolean</code></td><td>—</td><td><strong>Required.</strong> Visibility.</td></tr>
+    <tr><td><code>images</code></td><td><code>ImageSource[]</code></td><td>—</td><td><strong>Required.</strong> Navigation shown only when length &gt; 1.</td></tr>
+    <tr><td><code>index</code></td><td><code>number</code></td><td>—</td><td><strong>Required.</strong> Controlled current image.</td></tr>
+    <tr><td><code>onIndexChange</code></td><td><code>(index: number) =&gt; void</code></td><td>—</td><td><strong>Required.</strong> Navigation / arrow keys.</td></tr>
+    <tr><td><code>onClose</code></td><td><code>() =&gt; void</code></td><td>—</td><td><strong>Required.</strong> Escape, backdrop, close button.</td></tr>
+    <tr><td><code>zoomable</code></td><td><code>boolean</code></td><td><code>true</code></td><td>Enable zoom &amp; pan.</td></tr>
+    <tr><td><code>zoomStep</code></td><td><code>number</code></td><td><code>1.4</code></td><td>Per-click zoom multiplier.</td></tr>
+    <tr><td><code>maxZoom</code></td><td><code>number</code></td><td><code>3</code></td><td>Max zoom relative to natural size (300%).</td></tr>
+    <tr><td><code>initialZoom</code></td><td><code>'fit' | 'real-size'</code></td><td><code>'fit'</code></td><td>Where zoom starts.</td></tr>
+    <tr><td><code>closable / maskClosable</code></td><td><code>boolean</code></td><td><code>true</code></td><td>Close button + Escape / backdrop click.</td></tr>
+    <tr><td><code>fallback</code></td><td><code>ReactNode</code></td><td>—</td><td>Broken-image fallback.</td></tr>
+    <tr><td><code>texts</code></td><td><code>Partial&lt;ImageTexts&gt;</code></td><td>DS defaults</td><td>Override the control tooltips/labels.</td></tr>
+    <tr><td><code>getContainer</code></td><td><code>() =&gt; HTMLElement</code></td><td><code>document.body</code></td><td>Portal target.</td></tr>
+    <tr><td><code>destroyOnClose</code></td><td><code>boolean</code></td><td><code>false</code></td><td>Unmount when closed.</td></tr>
+    <tr><td><code>onZoom</code></td><td><code>(scale: number) =&gt; void</code></td><td>—</td><td>Called on zoom transform.</td></tr>
+  </tbody>
+</table>
+
+## Labels & tooltips
+
+Every icon control (zoom in/out, next/previous, download, close, delete) shows a
+tooltip and carries an `aria-label`. The strings come from DS translations
+(`react-intl`, ids `DS.IMAGE.*`) and fall back to English defaults — `Zoom in`,
+`Zoom out`, `Next image`, `Previous image`, `Download`, `Close`, `Delete`.
+Override any subset via the `texts` prop (`Partial<ImageTexts>`) on `Gallery`,
+`ImagePreview`, or `Thumbnail`:
+
+```tsx
+<ImagePreview {...preview.previewProps} texts={{ close: 'Zamknij', download: 'Pobierz' }} />
+```
+
+## Accessibility
+
+- The preview overlay is a `role="dialog"` with `aria-modal`, labelled by the
+  current image's `alt`; focus is trapped while open and body scroll is locked.
+- Interactive thumbnails are keyboard-operable (`role="button"`, `Tab`,
+  Enter/Space) with a visible focus ring.
+- Always pass a meaningful `alt` for every image.
