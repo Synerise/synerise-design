@@ -8,7 +8,9 @@ export const DateRangePickerOverlay = styled.div`
   box-shadow: ${(props) => props.theme.variables['box-shadow-2']};
   border-radius: 3px;
   overflow: hidden;
+  overflow-y: auto;
   max-width: 700px;
+  max-height: 100vh;
   font-weight: unset; /// ???
 `;
 
