@@ -1,309 +1,144 @@
 import React from 'react';
+import { fn } from 'storybook/test';
 
-import { Meta, StoryObj } from '@storybook/react-vite';
-import Loader from '@synerise/ds-loader';
-import Result from '@synerise/ds-result';
-import Scrollbar from '@synerise/ds-scrollbar';
+import type { Meta, StoryObj } from '@storybook/react-vite';
 import Select from '@synerise/ds-select';
 import type { SelectProps } from '@synerise/ds-select';
-import { getPopupContainer } from '@synerise/ds-utils';
 
 import {
   BOOLEAN_CONTROL,
   CLASSNAME_ARG_CONTROL,
-  GETPOPUPCONTAINER_ARG_CONTROL,
   NUMBER_CONTROL,
-  PREFIXCLS_ARG_CONTROL,
   REACT_NODE_AS_STRING,
   STRING_CONTROL,
-  STYLE_ARG_CONTROL,
   controlFromOptionsArray,
-  fixedWrapper200,
   fixedWrapper400,
 } from '../../utils';
-import {
-  addonType,
-  childrens,
-  defaultRender,
-  renderAddonComponent,
-  values,
-} from './data';
+import { OPTIONS, SelectWithState } from './data';
 
 const { Option } = Select;
 
-export default {
-  component: Select,
+const meta: Meta<SelectProps> = {
   title: 'Components/Select',
-  tags: ['autodocs'],
-  decorators: [fixedWrapper200],
-  parameters: {
-    controls: {
-      exclude: [
-        'animation',
-        'internalProps',
-        'choiceTransitionName',
-        'direction',
-        'filterOption',
-        'inputValue',
-      ],
-    },
-  },
-  render: defaultRender,
+  component: Select,
+  // No `autodocs` tag: Select.mdx is the attached docs (Overview) page. Having
+  // both a custom `<Meta of>` MDX and the autodocs tag makes Storybook fail to start.
+  decorators: [fixedWrapper400],
+  render: (args) => <SelectWithState {...args} />,
   argTypes: {
-    children: {
-      ...REACT_NODE_AS_STRING,
-      control: false,
+    mode: {
+      ...controlFromOptionsArray('select', ['single', 'multiple', 'tags']),
+      mapping: { single: undefined, multiple: 'multiple', tags: 'tags' },
     },
-    dropdownClassName: {
-      ...STRING_CONTROL,
-    },
-    dropdownMatchSelectWidth: {
-      ...BOOLEAN_CONTROL,
-    },
-    dropdownStyle: {
-      control: false,
-    },
-    getPopupContainer: {
-      ...GETPOPUPCONTAINER_ARG_CONTROL,
-    },
-    clearIcon: {
-      ...REACT_NODE_AS_STRING,
-      control: false,
-    },
-    description: {
-      ...REACT_NODE_AS_STRING,
-    },
+    size: controlFromOptionsArray('select', ['small', 'default', 'large']),
+    showSearch: BOOLEAN_CONTROL,
+    allowClear: BOOLEAN_CONTROL,
+    loading: BOOLEAN_CONTROL,
+    disabled: BOOLEAN_CONTROL,
+    readOnly: BOOLEAN_CONTROL,
+    error: BOOLEAN_CONTROL,
+    grey: BOOLEAN_CONTROL,
+    dropdownMatchSelectWidth: BOOLEAN_CONTROL,
+    placeholder: REACT_NODE_AS_STRING,
+    label: REACT_NODE_AS_STRING,
+    description: REACT_NODE_AS_STRING,
+    errorText: REACT_NODE_AS_STRING,
+    tooltip: REACT_NODE_AS_STRING,
     clearTooltip: STRING_CONTROL,
-    allowClear: {
-      ...BOOLEAN_CONTROL,
-    },
-    defaultValue: {
-      control: 'text',
-    },
-    autoClearSearchValue: {
-      ...BOOLEAN_CONTROL,
-    },
-    autoFocus: {
-      ...BOOLEAN_CONTROL,
-    },
-    bordered: {
-      ...BOOLEAN_CONTROL,
-    },
-    defaultActiveFirstOption: {
-      ...BOOLEAN_CONTROL,
-    },
-    defaultOpen: {
-      ...BOOLEAN_CONTROL,
-    },
-    disabled: {
-      ...BOOLEAN_CONTROL,
-    },
-    readOnly: {
-      ...BOOLEAN_CONTROL,
-    },
-    error: {
-      ...BOOLEAN_CONTROL,
-    },
-    errorText: {
-      ...REACT_NODE_AS_STRING,
-    },
-    placeholder: {
-      ...REACT_NODE_AS_STRING,
-    },
-    prefixel: {
-      ...REACT_NODE_AS_STRING,
-    },
-    searchValue: {
-      ...STRING_CONTROL,
-    },
-    suffixel: {
-      ...REACT_NODE_AS_STRING,
-    },
-    tooltip: {
-      ...REACT_NODE_AS_STRING,
-    },
-
-    id: STRING_CONTROL,
     optionFilterProp: STRING_CONTROL,
     optionLabelProp: STRING_CONTROL,
-    listHeight: {
-      ...STRING_CONTROL,
-    },
-    listItemHeight: {
-      ...NUMBER_CONTROL,
-    },
-    maxTagCount: {
-      ...NUMBER_CONTROL,
-    },
-    maxTagTextLength: {
-      ...NUMBER_CONTROL,
-    },
-    maxTagPlaceholder: {
-      ...REACT_NODE_AS_STRING,
-    },
-    notFoundContent: {
-      ...REACT_NODE_AS_STRING,
-      control: 'object',
-    },
-    menuItemSelectedIcon: {
-      control: false,
-    },
-    filterOption: {
-      control: false,
-    },
-    grey: {
-      ...BOOLEAN_CONTROL,
-    },
-    labelInValue: {
-      ...BOOLEAN_CONTROL,
-    },
-    loading: {
-      ...BOOLEAN_CONTROL,
-    },
-    open: {
-      ...BOOLEAN_CONTROL,
-    },
-    prefixCls: PREFIXCLS_ARG_CONTROL,
-    style: STYLE_ARG_CONTROL,
+    listHeight: NUMBER_CONTROL,
+    notFoundContent: REACT_NODE_AS_STRING,
     className: CLASSNAME_ARG_CONTROL,
-    showArrow: {
-      ...BOOLEAN_CONTROL,
-    },
-    showSearch: {
-      ...BOOLEAN_CONTROL,
-    },
-    raw: {
-      ...BOOLEAN_CONTROL,
-    },
-  },
-} as Meta<SelectProps>;
-
-type Story = StoryObj<SelectProps & { disabledChildren: boolean }>;
-
-export const Default: Story = {
-  render: ({ disabledChildren, ...args }) => {
-    const optionalDisabledChildren = disabledChildren
-      ? values.map((opt) => (
-          <Option disabled={disabledChildren} value={opt}>
-            {opt}
-          </Option>
-        ))
-      : values.map((opt) => <Option value={opt}>{opt}</Option>);
-    return <Select {...args} children={optionalDisabledChildren} />;
+    // Non-control props (objects / render fns / handlers)
+    options: { control: false },
+    children: { control: false },
+    value: { control: false },
+    defaultValue: { control: false },
+    filterOption: { control: false },
+    tokenSeparators: { control: false },
+    dropdownRender: { control: false },
+    dropdownStyle: { control: false },
+    dropdownClassName: { control: false },
+    getPopupContainer: { control: false },
+    selectorStyle: { control: false },
+    prefixel: { control: false },
+    suffixel: { control: false },
+    clearIcon: { control: false },
+    rowKey: { control: false },
+    style: { control: false },
+    id: { control: false },
+    onChange: { control: false },
+    onSelect: { control: false },
+    onDeselect: { control: false },
+    onSearch: { control: false },
+    onBlur: { control: false },
+    onFocus: { control: false },
+    onDropdownVisibleChange: { control: false },
   },
   args: {
-    mode: undefined,
-    label: 'Label',
-    defaultValue: values[0],
+    label: 'Select',
     description: 'Description',
-    disabledChildren: false,
+    placeholder: 'Placeholder',
+    options: OPTIONS,
+    allowClear: true,
+    onChange: fn(),
   },
 };
 
-export const RawSelectExample: Story = {
-  ...Default,
-  args: {
-    raw: true,
-  },
+export default meta;
+
+type Story = StoryObj<SelectProps>;
+
+/** Single-select fed by the `options` prop. */
+export const Primary: Story = {};
+
+/** Options provided declaratively via `<Select.Option>` children. */
+export const WithOptionChildren: Story = {
+  args: { options: undefined },
+  render: (args) => (
+    <SelectWithState {...args}>
+      <Option value="a">Option A</Option>
+      <Option value="b">Option B</Option>
+      <Option value="c">Option C</Option>
+    </SelectWithState>
+  ),
 };
 
-export const LabelDescriptionAndError: Story = {
-  ...Default,
+/** `mode="multiple"` — selected values render as removable chips. */
+export const Multiple: Story = {
   args: {
-    label: 'Label',
-    defaultValue: values[0],
-    tooltip: 'Label tooltip',
-    description: 'Description',
-    errorText: 'Error message content',
-  },
-};
-
-export const MultipleMode: Story = {
-  decorators: [fixedWrapper400],
-  args: {
-    style: {
-      width: '100%',
-    },
     mode: 'multiple',
-    defaultValue: 'a10',
-    placeholder: 'Select options',
-    getPopupContainer,
-    dropdownRender: (menu) => <Scrollbar maxHeight={256}>{menu}</Scrollbar>,
-    dropdownStyle: { paddingRight: '0' },
-    notFoundContent: (
-      <Result type="no-results" noSearchResults description={'No results'} />
-    ),
-    listHeight: '100%',
-    children: childrens.map((opt) => <Option value={opt}>{opt}</Option>),
+    defaultValue: ['a', 'b'],
+    placeholder: 'Select multiple',
   },
 };
 
-export const NoResults: Story = {
-  parameters: {
-    controls: {
-      include: ['notFoundContent', 'open'],
-    },
-  },
+/** `mode="tags"` — free-text entry via Enter / `tokenSeparators`. */
+export const Tags: Story = {
   args: {
-    open: true,
-    notFoundContent: (
-      <Result type="no-results" noSearchResults description={'No results'} />
-    ),
+    mode: 'tags',
+    tokenSeparators: [','],
+    placeholder: 'Type and press Enter',
   },
 };
 
-export const WithPrefixAndSuffix: StoryObj<
-  SelectProps & {
-    prefixType: string;
-    suffixType: string;
-    prefixText: string;
-    suffixText: string;
-  }
-> = {
-  render: (args) => {
-    return defaultRender({
-      ...args,
-      prefixel: renderAddonComponent(args.prefixType, args.prefixText),
-      suffixel: renderAddonComponent(args.suffixType, args.suffixText),
-    });
-  },
-  parameters: {
-    controls: {
-      include: ['prefixType', 'prefixText', 'suffixType', 'suffixText'],
-    },
-  },
-  argTypes: {
-    prefixType: controlFromOptionsArray('select', Object.keys(addonType)),
-    suffixType: controlFromOptionsArray('select', Object.keys(addonType)),
-    prefixText: {
-      control: 'text',
-    },
-    suffixText: {
-      control: 'text',
-    },
-  },
-  args: {
-    prefixText: 'Prefix',
-    suffixText: 'Suffix',
-    prefixType: 'label',
-    suffixType: 'label',
-    placeholder: 'Select options',
-  },
+/** `showSearch` — type in the selector to filter options. */
+export const WithSearch: Story = {
+  args: { showSearch: true, placeholder: 'Search…' },
 };
 
+/** `errorText` renders a message and applies error styling. */
+export const WithError: Story = {
+  args: { errorText: 'This field is required', error: true },
+};
+
+/** `disabled` blocks interaction and prevents the dropdown from opening. */
+export const Disabled: Story = {
+  args: { disabled: true, defaultValue: 'a' },
+};
+
+/** `loading` shows a spinner inside the dropdown while options load. */
 export const Loading: Story = {
-  parameters: {
-    controls: {
-      include: ['open', 'notFoundContent'],
-    },
-  },
-  args: {
-    open: true,
-    notFoundContent: (
-      <div style={{ padding: '40px' }}>
-        <Loader label="Loading..." />
-      </div>
-    ),
-    placeholder: 'Loading Indicator',
-  },
+  args: { loading: true, defaultOpen: true },
 };

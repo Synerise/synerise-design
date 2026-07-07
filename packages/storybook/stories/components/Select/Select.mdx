@@ -1,0 +1,260 @@
+import { Meta, Canvas } from '@storybook/addon-docs/blocks';
+
+import SelectMeta, {
+  Primary,
+  WithOptionChildren,
+  Multiple,
+  Tags,
+  WithSearch,
+  WithError,
+  Disabled,
+} from './Select.stories';
+
+<Meta of={SelectMeta} />
+
+# Select
+
+A fully native (no Ant Design) select: a selector trigger plus a floating options
+dropdown built on `@synerise/ds-dropdown` (floating-ui) and `@synerise/ds-list-item`,
+wrapped in a `FormField` label/description/error layer. Supports single-select,
+`multiple` (chip selector), `tags` (free-text), and in-selector search.
+
+## Quick overview
+
+- Import the default export: `import Select from '@synerise/ds-select';`
+- **Options**: pass the `options` prop (`{ value, label?, disabled?, title? }[]`) or
+  declarative `<Select.Option value="…">` children (read only when `options` is absent).
+- **Controlled**: drive `value` + `onChange`; `defaultValue` for uncontrolled.
+  `mode="multiple"`/`"tags"` use an array value.
+- **Search**: set `showSearch` for an in-selector input. Client filtering uses
+  `filterOption` (`true`/function) matched against `optionFilterProp`; set
+  `filterOption={false}` and feed `options` from `onSearch` for remote search.
+- **Dropdown**: positioned via `ds-dropdown`; `getPopupContainer`, `placement` and
+  `dropdownMatchSelectWidth` control it. `dropdownRender` wraps the option menu.
+
+## Basic example
+
+<Canvas of={Primary} sourceState="shown" />
+
+## Options as children
+
+`<Select.Option>` children are an alternative to the `options` prop.
+
+<Canvas of={WithOptionChildren} />
+
+## Multiple
+
+`mode="multiple"` renders selected values as removable chips; Backspace removes the
+last, and each chip reveals a remove control on hover.
+
+<Canvas of={Multiple} />
+
+## Tags
+
+`mode="tags"` lets the user create values by typing and pressing Enter (or a
+`tokenSeparators` character).
+
+<Canvas of={Tags} />
+
+## Search
+
+`showSearch` adds an input to the selector; typing filters the options.
+
+<Canvas of={WithSearch} />
+
+## Error state
+
+`errorText` renders a message below the field and applies error styling; `error`
+applies styling without a message.
+
+<Canvas of={WithError} />
+
+## Disabled
+
+<Canvas of={Disabled} />
+
+## API reference
+
+### `Select`
+
+Extends `FormFieldCommonProps` (`label`, `tooltip`, `tooltipConfig`, `description`,
+`errorText`).
+
+{/* MDX does not render markdown tables correctly — always use HTML tables */}
+
+<table>
+  <thead>
+    <tr>
+      <th>Prop</th>
+      <th>Type</th>
+      <th>Default</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>options</code></td>
+      <td><code>SelectOption[]</code></td>
+      <td>—</td>
+      <td><code>{`{ value; label?; disabled?; title? }`}</code>. Used when present; otherwise <code>Select.Option</code> children are read.</td>
+    </tr>
+    <tr>
+      <td><code>value</code> / <code>defaultValue</code></td>
+      <td><code>SelectValue</code></td>
+      <td>—</td>
+      <td>Controlled / uncontrolled value. Array for <code>multiple</code>/<code>tags</code>.</td>
+    </tr>
+    <tr>
+      <td><code>onChange</code></td>
+      <td><code>(value, option?) =&gt; void</code></td>
+      <td>—</td>
+      <td>Fired when the selection changes.</td>
+    </tr>
+    <tr>
+      <td><code>onSelect</code> / <code>onDeselect</code></td>
+      <td><code>(value, option?) =&gt; void</code></td>
+      <td>—</td>
+      <td>Fired when an option is added / removed.</td>
+    </tr>
+    <tr>
+      <td><code>mode</code></td>
+      <td><code>'multiple' | 'tags'</code></td>
+      <td>—</td>
+      <td>Omit for single-select; <code>multiple</code> = chips; <code>tags</code> = free-text create.</td>
+    </tr>
+    <tr>
+      <td><code>showSearch</code></td>
+      <td><code>boolean</code></td>
+      <td>—</td>
+      <td>Renders an in-selector search input.</td>
+    </tr>
+    <tr>
+      <td><code>filterOption</code></td>
+      <td><code>boolean | ((input, option) =&gt; boolean)</code></td>
+      <td><code>true</code></td>
+      <td>Client filtering. <code>false</code> = remote (feed <code>options</code> from <code>onSearch</code>); a function = custom predicate.</td>
+    </tr>
+    <tr>
+      <td><code>optionFilterProp</code> / <code>optionLabelProp</code></td>
+      <td><code>string</code></td>
+      <td>label</td>
+      <td>Option field used for filtering / selector display.</td>
+    </tr>
+    <tr>
+      <td><code>onSearch</code></td>
+      <td><code>(value: string) =&gt; void</code></td>
+      <td>—</td>
+      <td>Fired on each keystroke in the search input (remote search).</td>
+    </tr>
+    <tr>
+      <td><code>tokenSeparators</code></td>
+      <td><code>string[]</code></td>
+      <td>—</td>
+      <td>Characters that create a tag in <code>tags</code> mode.</td>
+    </tr>
+    <tr>
+      <td><code>allowClear</code></td>
+      <td><code>boolean</code></td>
+      <td>—</td>
+      <td>Shows a clear control (replacing the chevron on hover) when a value is set.</td>
+    </tr>
+    <tr>
+      <td><code>loading</code></td>
+      <td><code>boolean</code></td>
+      <td>—</td>
+      <td>Shows a spinner inside the dropdown.</td>
+    </tr>
+    <tr>
+      <td><code>open</code> / <code>defaultOpen</code></td>
+      <td><code>boolean</code></td>
+      <td>—</td>
+      <td>Controlled / initial dropdown visibility.</td>
+    </tr>
+    <tr>
+      <td><code>onDropdownVisibleChange</code></td>
+      <td><code>(open: boolean) =&gt; void</code></td>
+      <td>—</td>
+      <td>Fired when dropdown visibility changes.</td>
+    </tr>
+    <tr>
+      <td><code>getPopupContainer</code></td>
+      <td><code>(node: HTMLElement) =&gt; HTMLElement</code></td>
+      <td>ds-utils default</td>
+      <td>Container the floating dropdown mounts into.</td>
+    </tr>
+    <tr>
+      <td><code>placement</code></td>
+      <td><code>DropdownPlacement</code></td>
+      <td>—</td>
+      <td>Dropdown placement.</td>
+    </tr>
+    <tr>
+      <td><code>dropdownMatchSelectWidth</code></td>
+      <td><code>boolean</code></td>
+      <td><code>true</code></td>
+      <td>Match the dropdown width to the selector.</td>
+    </tr>
+    <tr>
+      <td><code>dropdownRender</code></td>
+      <td><code>(menu: ReactNode) =&gt; ReactNode</code></td>
+      <td>—</td>
+      <td>Wrap the rendered option menu (custom footer / scroll container).</td>
+    </tr>
+    <tr>
+      <td><code>listHeight</code></td>
+      <td><code>number | string</code></td>
+      <td><code>256</code></td>
+      <td>Max dropdown list height (px).</td>
+    </tr>
+    <tr>
+      <td><code>notFoundContent</code></td>
+      <td><code>ReactNode</code></td>
+      <td><code>'No data'</code></td>
+      <td>Shown when there are no (filtered) options.</td>
+    </tr>
+    <tr>
+      <td><code>prefixel</code> / <code>suffixel</code></td>
+      <td><code>ReactNode</code></td>
+      <td>—</td>
+      <td>Addon nodes rendered before / after the selector.</td>
+    </tr>
+    <tr>
+      <td><code>size</code></td>
+      <td><code>'small' | 'default' | 'large'</code></td>
+      <td><code>'default'</code></td>
+      <td>Selector height.</td>
+    </tr>
+    <tr>
+      <td><code>grey</code></td>
+      <td><code>boolean</code></td>
+      <td>—</td>
+      <td>Grey selector background.</td>
+    </tr>
+    <tr>
+      <td><code>error</code> / <code>readOnly</code> / <code>disabled</code></td>
+      <td><code>boolean</code></td>
+      <td>—</td>
+      <td>Error styling / read-only / disabled states.</td>
+    </tr>
+    <tr>
+      <td><code>raw</code></td>
+      <td><code>boolean</code></td>
+      <td>—</td>
+      <td>Render just the selector, without the <code>FormField</code> chrome.</td>
+    </tr>
+  </tbody>
+</table>
+
+### `Select.Option`
+
+Marker component (renders `null`); its `value`, children (→ label), `disabled` and
+`title` build the option list when the `options` prop is absent. The antd
+`Select.OptGroup` is intentionally **not** reimplemented (no real usage).
+
+## Notes & tips
+
+- **`ds-select-*` class hooks only** — the antd `.ant-select-*` classes are gone;
+  target `.ds-select`, `.ds-select-selection-item`, `.ds-select-dropdown`, etc.
+- **Remote search** — set `filterOption={false}` and update `options` from your
+  `onSearch` handler; the component won't filter locally in that mode.
+- **Keyboard-arrow active-option navigation and full ARIA** are still in progress.
