@@ -16,7 +16,6 @@ import * as S from '../../../RelativeRangePicker.styles';
 import { type Props } from './DurationField.types';
 
 export const setDurationType = set(lensPath(['duration', 'type']));
-const SELECT_DROPDOWN_OFFSET = -4;
 const DurationField = ({
   currentGroup,
   currentRange,
@@ -54,10 +53,6 @@ const DurationField = ({
           onChange={(type): void =>
             handleChange(setDurationType(type, currentRange))
           }
-          dropdownAlign={{
-            points: ['bl', 'tl'],
-            offset: [0, SELECT_DROPDOWN_OFFSET],
-          }}
           getPopupContainer={(node): HTMLElement =>
             node.parentElement !== null ? node.parentElement : document.body
           }
