@@ -11,8 +11,8 @@ export const Settings = styled.div`
   background-color: ${(props): string => props.theme.palette.white};
   max-width: 238px;
 
-  .ant-select-selection-item,
-  .ant-select-selection-placeholder {
+  .ds-select-selection-item,
+  .ds-select-selection-placeholder {
     font-weight: 500;
   }
 
