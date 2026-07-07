@@ -170,8 +170,7 @@ const SelectInner = forwardRef<HTMLDivElement, SelectProps>((props, ref) => {
     selectedValues,
   ]);
 
-  const $size =
-    size === 'large' ? 'large' : size === 'small' ? 'small' : 'default';
+  const $size = size === 'large' ? 'large' : 'default';
 
   const labelFor = (v: RawValueType): ReactNode => {
     const option = findOption(resolvedOptions, v);
@@ -460,12 +459,7 @@ const SelectInner = forwardRef<HTMLDivElement, SelectProps>((props, ref) => {
             >
               <Tooltip title={clearTooltip}>
                 <span>
-                  {clearIcon ?? (
-                    <Icon
-                      component={<Close3M />}
-                      size={$size === 'small' ? 18 : 24}
-                    />
-                  )}
+                  {clearIcon ?? <Icon component={<Close3M />} size={24} />}
                 </span>
               </Tooltip>
             </S.ClearWrapper>

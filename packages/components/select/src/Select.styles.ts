@@ -22,7 +22,7 @@ type SelectorProps = {
   $selectorStyle?: import('styled-components').CSSObject;
 };
 
-const HEIGHT = { large: 48, default: 32, small: 24 } as const;
+const HEIGHT = { large: 48, default: 32 } as const;
 
 const addonStyles = css`
   display: flex;

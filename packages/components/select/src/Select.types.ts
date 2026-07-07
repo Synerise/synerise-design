@@ -103,7 +103,7 @@ export type SelectProps<VT extends SelectValue = SelectValue> = {
   asFormElement?: boolean;
   selectorStyle?: CSSObject;
   clearTooltip?: string;
-  size?: 'small' | 'middle' | 'large' | 'default';
+  size?: 'middle' | 'large' | 'default';
   error?: boolean;
 
   id?: string;

@@ -30,7 +30,7 @@ const meta: Meta<SelectProps> = {
       ...controlFromOptionsArray('select', ['single', 'multiple', 'tags']),
       mapping: { single: undefined, multiple: 'multiple', tags: 'tags' },
     },
-    size: controlFromOptionsArray('select', ['small', 'default', 'large']),
+    size: controlFromOptionsArray('select', ['default', 'large']),
     showSearch: BOOLEAN_CONTROL,
     allowClear: BOOLEAN_CONTROL,
     loading: BOOLEAN_CONTROL,
