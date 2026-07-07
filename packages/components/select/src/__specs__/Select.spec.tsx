@@ -113,3 +113,46 @@ describe('Select (DS-native, single-select)', () => {
     expect(document.querySelector('.ds-select-search')).toBeTruthy();
   });
 });
+
+describe('Select (keyboard + ARIA)', () => {
+  const OPTIONS = [
+    { value: 'a', label: 'Apple' },
+    { value: 'b', label: 'Banana' },
+    { value: 'c', label: 'Cherry' },
+  ];
+
+  it('marks the select-only trigger as a combobox with a listbox popup', () => {
+    renderWithProvider(<Select options={OPTIONS} placeholder="Pick" />);
+
+    const combobox = document.querySelector('.ds-select') as Element;
+    expect(combobox.getAttribute('role')).toBe('combobox');
+    expect(combobox.getAttribute('aria-haspopup')).toBe('listbox');
+    expect(combobox.getAttribute('aria-expanded')).toBe('false');
+    expect(combobox.getAttribute('tabindex')).toBe('0');
+  });
+
+  it('opens on ArrowDown and closes on Escape', () => {
+    renderWithProvider(<Select options={OPTIONS} placeholder="Pick" />);
+
+    const combobox = document.querySelector('.ds-select') as Element;
+    fireEvent.keyDown(combobox, { key: 'ArrowDown' });
+    expect(combobox.getAttribute('aria-expanded')).toBe('true');
+
+    fireEvent.keyDown(combobox, { key: 'Escape' });
+    expect(combobox.getAttribute('aria-expanded')).toBe('false');
+  });
+
+  it('highlights with ArrowDown and selects the active option on Enter', () => {
+    const onChange = vi.fn();
+    renderWithProvider(
+      <Select defaultOpen options={OPTIONS} onChange={onChange} />,
+    );
+
+    const combobox = document.querySelector('.ds-select') as Element;
+    // Opens highlighting the first option (Apple); move to the second (Banana).
+    fireEvent.keyDown(combobox, { key: 'ArrowDown' });
+    fireEvent.keyDown(combobox, { key: 'Enter' });
+
+    expect(onChange).toHaveBeenCalledWith('b', expect.anything());
+  });
+});

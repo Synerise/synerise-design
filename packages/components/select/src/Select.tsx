@@ -3,6 +3,8 @@ import React, {
   type KeyboardEvent,
   type ReactNode,
   forwardRef,
+  useEffect,
+  useId,
   useMemo,
   useRef,
   useState,
@@ -59,8 +61,9 @@ const defaultFilter =
  * DS-native Select (antd-free). Single-select, `mode="multiple"` (chip selector),
  * `mode="tags"` (free-text), in-selector `showSearch` with client `filterOption` /
  * `optionFilterProp` and remote `onSearch` (`filterOption={false}`). Built on
- * `@synerise/ds-dropdown` (floating-ui) + `ds-list-item`. Keyboard-arrow nav /
- * full ARIA are still TODO (phase 3).
+ * `@synerise/ds-dropdown` (floating-ui) + `ds-list-item`. Full keyboard support
+ * (Arrow/Home/End/Enter/Escape/Space, Backspace to drop the last chip) and
+ * combobox/listbox ARIA (`aria-activedescendant`) are wired in.
  */
 const SelectInner = forwardRef<HTMLDivElement, SelectProps>((props, ref) => {
   const {
@@ -133,6 +136,12 @@ const SelectInner = forwardRef<HTMLDivElement, SelectProps>((props, ref) => {
   const [searchQuery, setSearchQuery] = useState('');
   const inputRef = useRef<HTMLInputElement>(null);
 
+  // Active (keyboard-highlighted) option index into `displayedOptions`.
+  const [activeIndex, setActiveIndex] = useState(-1);
+  const baseId = useId();
+  const listboxId = `${baseId}-listbox`;
+  const optionDomId = (index: number): string => `${baseId}-option-${index}`;
+
   const resolvedOptions = useMemo<SelectOption[]>(() => {
     if (options && options.length > 0) {
       return options;
@@ -169,6 +178,77 @@ const SelectInner = forwardRef<HTMLDivElement, SelectProps>((props, ref) => {
     isTags,
     selectedValues,
   ]);
+
+  const firstEnabledIndex = (): number =>
+    displayedOptions.findIndex((option) => !option.disabled);
+
+  const lastEnabledIndex = (): number => {
+    for (let i = displayedOptions.length - 1; i >= 0; i -= 1) {
+      if (!displayedOptions[i].disabled) {
+        return i;
+      }
+    }
+    return -1;
+  };
+
+  const moveActive = (direction: 1 | -1): void => {
+    const count = displayedOptions.length;
+    if (count === 0) {
+      return;
+    }
+    setActiveIndex((current) => {
+      let next = current;
+      for (let step = 0; step < count; step += 1) {
+        next = (next + direction + count) % count;
+        if (!displayedOptions[next].disabled) {
+          return next;
+        }
+      }
+      return current;
+    });
+  };
+
+  // On open, highlight the selected (or first enabled) option; drop it on close.
+  useEffect(() => {
+    if (!isOpen) {
+      setActiveIndex(-1);
+      return;
+    }
+    setActiveIndex((current) => {
+      if (
+        current >= 0 &&
+        current < displayedOptions.length &&
+        !displayedOptions[current].disabled
+      ) {
+        return current;
+      }
+      const selected = displayedOptions.findIndex(
+        (option) => !option.disabled && selectedValues.includes(option.value),
+      );
+      return selected >= 0 ? selected : firstEnabledIndex();
+    });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isOpen]);
+
+  // Re-anchor the highlight to the first match whenever filtering changes the list.
+  useEffect(() => {
+    if (!isOpen) {
+      return;
+    }
+    setActiveIndex(firstEnabledIndex());
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [searchQuery]);
+
+  // Keep the active option scrolled into view during keyboard navigation.
+  useEffect(() => {
+    if (!isOpen || activeIndex < 0) {
+      return;
+    }
+    const activeEl = document.getElementById(optionDomId(activeIndex));
+    // `scrollIntoView` is absent in jsdom; optional-call keeps tests happy.
+    activeEl?.scrollIntoView?.({ block: 'nearest' });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [activeIndex, isOpen]);
 
   const $size = size === 'large' ? 'large' : 'default';
 
@@ -261,28 +341,98 @@ const SelectInner = forwardRef<HTMLDivElement, SelectProps>((props, ref) => {
     }
   };
 
-  const handleInputKeyDown = (event: KeyboardEvent<HTMLInputElement>): void => {
+  const commitActiveOrTag = (): void => {
     const query = searchQuery.trim();
-    if (
-      isTags &&
-      query &&
-      (event.key === 'Enter' || (tokenSeparators ?? []).includes(event.key))
-    ) {
-      event.preventDefault();
+    if (isOpen && activeIndex >= 0 && displayedOptions[activeIndex]) {
+      handleSelect(displayedOptions[activeIndex]);
+    } else if (isTags && query) {
       if (selectedValues.some((v) => String(v) === query)) {
         clearQuery();
       } else {
         addValue(query);
       }
+    } else if (!isOpen) {
+      setOpen(true);
+    }
+  };
+
+  const handleKeyDown = (event: KeyboardEvent<HTMLElement>): void => {
+    if (isDisabled) {
       return;
     }
-    if (
-      event.key === 'Backspace' &&
-      !searchQuery &&
-      isMultiple &&
-      selectedValues.length > 0
-    ) {
-      removeValue(selectedValues[selectedValues.length - 1]);
+    const query = searchQuery.trim();
+
+    switch (event.key) {
+      case 'ArrowDown':
+        event.preventDefault();
+        if (!isOpen) {
+          setOpen(true);
+        } else {
+          moveActive(1);
+        }
+        return;
+      case 'ArrowUp':
+        event.preventDefault();
+        if (!isOpen) {
+          setOpen(true);
+        } else {
+          moveActive(-1);
+        }
+        return;
+      case 'Home':
+        if (isOpen) {
+          event.preventDefault();
+          setActiveIndex(firstEnabledIndex());
+        }
+        return;
+      case 'End':
+        if (isOpen) {
+          event.preventDefault();
+          setActiveIndex(lastEnabledIndex());
+        }
+        return;
+      case 'Escape':
+        if (isOpen) {
+          event.preventDefault();
+          setOpen(false);
+          clearQuery();
+        }
+        return;
+      case 'Tab':
+        if (isOpen) {
+          setOpen(false);
+        }
+        return;
+      case 'Enter':
+        event.preventDefault();
+        commitActiveOrTag();
+        return;
+      case ' ':
+        // Space toggles/commits the select-only combobox; when a text input is
+        // present it must type a space instead.
+        if (!hasInput) {
+          event.preventDefault();
+          if (!isOpen) {
+            setOpen(true);
+          } else if (activeIndex >= 0 && displayedOptions[activeIndex]) {
+            handleSelect(displayedOptions[activeIndex]);
+          }
+        }
+        return;
+      case 'Backspace':
+        if (!searchQuery && isMultiple && selectedValues.length > 0) {
+          removeValue(selectedValues[selectedValues.length - 1]);
+        }
+        return;
+      default:
+        if (isTags && query && (tokenSeparators ?? []).includes(event.key)) {
+          event.preventDefault();
+          if (selectedValues.some((v) => String(v) === query)) {
+            clearQuery();
+          } else {
+            addValue(query);
+          }
+        }
     }
   };
 
@@ -305,16 +455,22 @@ const SelectInner = forwardRef<HTMLDivElement, SelectProps>((props, ref) => {
             absolute
             maxHeight={Number(listHeight) || DEFAULT_LIST_HEIGHT}
           >
-            <S.Inner>
-              {displayedOptions.map((option) => {
+            <S.Inner
+              role="listbox"
+              id={listboxId}
+              aria-multiselectable={isMultiple || undefined}
+            >
+              {displayedOptions.map((option, index) => {
                 const isSelected = selectedValues.includes(option.value);
                 return (
                   <S.OptionItem
                     key={rowKey ? rowKey(option) : option.value}
+                    id={optionDomId(index)}
                     role="option"
                     className={cx(
                       'ds-select-item-option',
                       isSelected && 'ds-select-item-option-selected',
+                      index === activeIndex && 'ds-select-item-option-active',
                     )}
                     selected={isSelected}
                     aria-selected={isSelected}
@@ -322,6 +478,7 @@ const SelectInner = forwardRef<HTMLDivElement, SelectProps>((props, ref) => {
                     title={option.title}
                     text={option.label ?? option.value}
                     disabled={option.disabled}
+                    onMouseEnter={() => setActiveIndex(index)}
                     onClick={() => handleSelect(option)}
                   />
                 );
@@ -339,13 +496,21 @@ const SelectInner = forwardRef<HTMLDivElement, SelectProps>((props, ref) => {
       className="ds-select-search"
       value={searchQuery}
       onChange={handleSearchChange}
-      onKeyDown={handleInputKeyDown}
+      onKeyDown={handleKeyDown}
       placeholder={hasValue ? undefined : placeholderStr}
       disabled={isDisabled}
       autoFocus={autoFocus}
       autoComplete="off"
       readOnly={!hasInput}
       id={id}
+      role="combobox"
+      aria-autocomplete="list"
+      aria-expanded={isOpen}
+      aria-haspopup="listbox"
+      aria-controls={isOpen ? listboxId : undefined}
+      aria-activedescendant={
+        isOpen && activeIndex >= 0 ? optionDomId(activeIndex) : undefined
+      }
     />
   );
 
@@ -441,9 +606,18 @@ const SelectInner = forwardRef<HTMLDivElement, SelectProps>((props, ref) => {
           $withPrefixel={!!prefixel}
           $withSuffixel={!!suffixel}
           $selectorStyle={selectorStyle}
-          role="combobox"
-          aria-expanded={isOpen}
           aria-disabled={isDisabled}
+          tabIndex={hasInput || isDisabled ? undefined : 0}
+          onKeyDown={hasInput ? undefined : handleKeyDown}
+          role={hasInput ? undefined : 'combobox'}
+          aria-expanded={hasInput ? undefined : isOpen}
+          aria-haspopup={hasInput ? undefined : 'listbox'}
+          aria-controls={!hasInput && isOpen ? listboxId : undefined}
+          aria-activedescendant={
+            !hasInput && isOpen && activeIndex >= 0
+              ? optionDomId(activeIndex)
+              : undefined
+          }
         >
           {selectorContent}
           {showArrow && (
