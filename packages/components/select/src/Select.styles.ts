@@ -200,9 +200,8 @@ export const ClearWrapper = styled.span`
   display: none;
   align-items: center;
   cursor: pointer;
-  svg {
-    fill: ${(props) => props.theme.palette['red-600']};
-  }
+  /* DS icons use currentColor — set color, not svg fill. */
+  color: ${(props) => props.theme.palette['red-600']};
 `;
 
 /* ── dropdown (mirrors ds-autocomplete's dropdown: ListWrapper + Scrollbar) ── */
@@ -332,7 +331,6 @@ export const ChipRemove = styled.span`
   width: 24px;
   height: 24px;
   cursor: pointer;
-  svg {
-    fill: ${(props) => props.theme.palette['red-600']};
-  }
+  /* DS icons use currentColor — set color, not svg fill. */
+  color: ${(props) => props.theme.palette['red-600']};
 `;
