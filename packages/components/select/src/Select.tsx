@@ -307,23 +307,26 @@ const SelectInner = forwardRef<HTMLDivElement, SelectProps>((props, ref) => {
             maxHeight={Number(listHeight) || DEFAULT_LIST_HEIGHT}
           >
             <S.Inner>
-              {displayedOptions.map((option) => (
-                <S.OptionItem
-                  key={rowKey ? rowKey(option) : option.value}
-                  role="option"
-                  className={cx(
-                    'ds-select-item-option',
-                    selectedValues.includes(option.value) &&
-                      'ds-select-item-option-selected',
-                  )}
-                  aria-selected={selectedValues.includes(option.value)}
-                  data-testid="select-option"
-                  title={option.title}
-                  text={option.label ?? option.value}
-                  disabled={option.disabled}
-                  onClick={() => handleSelect(option)}
-                />
-              ))}
+              {displayedOptions.map((option) => {
+                const isSelected = selectedValues.includes(option.value);
+                return (
+                  <S.OptionItem
+                    key={rowKey ? rowKey(option) : option.value}
+                    role="option"
+                    className={cx(
+                      'ds-select-item-option',
+                      isSelected && 'ds-select-item-option-selected',
+                    )}
+                    selected={isSelected}
+                    aria-selected={isSelected}
+                    data-testid="select-option"
+                    title={option.title}
+                    text={option.label ?? option.value}
+                    disabled={option.disabled}
+                    onClick={() => handleSelect(option)}
+                  />
+                );
+              })}
             </S.Inner>
           </Scrollbar>
         </S.ScrollList>
