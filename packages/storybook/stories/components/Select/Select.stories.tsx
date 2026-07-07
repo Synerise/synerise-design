@@ -14,6 +14,7 @@ import {
   controlFromOptionsArray,
   fixedWrapper400,
 } from '../../utils';
+import { Label as AddonLabel } from '../Input/Input.styles';
 import { OPTIONS, SelectWithState } from './data';
 
 const { Option } = Select;
@@ -129,8 +130,8 @@ export const NoResults: Story = {
 /** Addon nodes rendered before / after the selector. */
 export const WithPrefixAndSuffix: Story = {
   args: {
-    prefixel: <span>Prefix</span>,
-    suffixel: <span>Suffix</span>,
+    prefixel: <AddonLabel>Prefix</AddonLabel>,
+    suffixel: <AddonLabel>Suffix</AddonLabel>,
     placeholder: 'Select options',
   },
 };
