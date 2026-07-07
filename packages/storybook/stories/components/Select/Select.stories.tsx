@@ -90,8 +90,57 @@ export default meta;
 
 type Story = StoryObj<SelectProps>;
 
-/** Single-select fed by the `options` prop. */
-export const Primary: Story = {};
+// ── Baseline story names (kept so Chromatic diffs against the existing snapshots) ──
+
+/** Single-select. */
+export const Default: Story = {
+  args: { defaultValue: 'a' },
+};
+
+/** Just the selector, without the FormField chrome (`raw`). */
+export const RawSelectExample: Story = {
+  args: { raw: true, defaultValue: 'a' },
+};
+
+/** Label, description, tooltip and an error message together. */
+export const LabelDescriptionAndError: Story = {
+  args: {
+    defaultValue: 'a',
+    tooltip: 'Label tooltip',
+    errorText: 'Error message content',
+    error: true,
+  },
+};
+
+/** `mode="multiple"` — selected values render as removable chips. */
+export const MultipleMode: Story = {
+  args: {
+    mode: 'multiple',
+    defaultValue: ['a', 'b'],
+    placeholder: 'Select options',
+  },
+};
+
+/** Empty dropdown showing the not-found content. */
+export const NoResults: Story = {
+  args: { options: [], defaultOpen: true, notFoundContent: 'No results' },
+};
+
+/** Addon nodes rendered before / after the selector. */
+export const WithPrefixAndSuffix: Story = {
+  args: {
+    prefixel: <span>Prefix</span>,
+    suffixel: <span>Suffix</span>,
+    placeholder: 'Select options',
+  },
+};
+
+/** `loading` shows a spinner inside the dropdown while options load. */
+export const Loading: Story = {
+  args: { loading: true, defaultOpen: true },
+};
+
+// ── New stories (beyond the baseline set) ──────────────────────────────────────
 
 /** Options provided declaratively via `<Select.Option>` children. */
 export const WithOptionChildren: Story = {
@@ -103,15 +152,6 @@ export const WithOptionChildren: Story = {
       <Option value="c">Option C</Option>
     </SelectWithState>
   ),
-};
-
-/** `mode="multiple"` — selected values render as removable chips. */
-export const Multiple: Story = {
-  args: {
-    mode: 'multiple',
-    defaultValue: ['a', 'b'],
-    placeholder: 'Select multiple',
-  },
 };
 
 /** `mode="tags"` — free-text entry via Enter / `tokenSeparators`. */
@@ -128,17 +168,7 @@ export const WithSearch: Story = {
   args: { showSearch: true, placeholder: 'Search…' },
 };
 
-/** `errorText` renders a message and applies error styling. */
-export const WithError: Story = {
-  args: { errorText: 'This field is required', error: true },
-};
-
 /** `disabled` blocks interaction and prevents the dropdown from opening. */
 export const Disabled: Story = {
   args: { disabled: true, defaultValue: 'a' },
-};
-
-/** `loading` shows a spinner inside the dropdown while options load. */
-export const Loading: Story = {
-  args: { loading: true, defaultOpen: true },
 };

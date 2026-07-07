@@ -1,12 +1,12 @@
 import { Meta, Canvas } from '@storybook/addon-docs/blocks';
 
 import SelectMeta, {
-  Primary,
+  Default,
   WithOptionChildren,
-  Multiple,
+  MultipleMode,
   Tags,
   WithSearch,
-  WithError,
+  LabelDescriptionAndError,
   Disabled,
 } from './Select.stories';
 
@@ -34,7 +34,7 @@ wrapped in a `FormField` label/description/error layer. Supports single-select,
 
 ## Basic example
 
-<Canvas of={Primary} sourceState="shown" />
+<Canvas of={Default} sourceState="shown" />
 
 ## Options as children
 
@@ -47,7 +47,7 @@ wrapped in a `FormField` label/description/error layer. Supports single-select,
 `mode="multiple"` renders selected values as removable chips; Backspace removes the
 last, and each chip reveals a remove control on hover.
 
-<Canvas of={Multiple} />
+<Canvas of={MultipleMode} />
 
 ## Tags
 
@@ -67,7 +67,7 @@ last, and each chip reveals a remove control on hover.
 `errorText` renders a message below the field and applies error styling; `error`
 applies styling without a message.
 
-<Canvas of={WithError} />
+<Canvas of={LabelDescriptionAndError} />
 
 ## Disabled
 
