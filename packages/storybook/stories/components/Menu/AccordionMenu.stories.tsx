@@ -44,8 +44,18 @@ type Story = StoryObj<StoryType>;
 
 export default {
   title: 'Components/Menu/AccordionMenu',
-  tags: ['autodocs'],
+  tags: ['autodocs', 'deprecated'],
   component: Menu,
+  parameters: {
+    docs: {
+      description: {
+        component:
+          '⚠️ **Deprecated.** `@synerise/ds-menu` is deprecated and will not be migrated off antd. ' +
+          'Build menus and menu-like lists with `@synerise/ds-list-item` instead ' +
+          '(`ListItem` for rows, `ListWrapper` for the list container).',
+      },
+    },
+  },
   decorators: [fixedWrapper200],
   argTypes: {
     className: CLASSNAME_ARG_CONTROL,

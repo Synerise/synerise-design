@@ -15,6 +15,12 @@ import * as S from './Menu.styles';
 import type { AntdMenuProps, MenuItemProps } from './Menu.types';
 import './style/index.less';
 
+/**
+ * @deprecated `@synerise/ds-menu` is deprecated and will not be migrated off antd.
+ * Build menus and menu-like lists with `@synerise/ds-list-item` instead
+ * (`ListItem` for rows, `ListWrapper` for the list container). See the antd-removal
+ * migration status doc for context.
+ */
 export class Menu extends Component<
   AntdMenuProps,
   { allItemsVisible: boolean }
