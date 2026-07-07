@@ -283,12 +283,14 @@ export const MultiValueArea = styled.div`
 `;
 
 export const Chip = styled.span`
+  position: relative;
   display: inline-flex;
   align-items: center;
-  gap: 2px;
+  box-sizing: border-box;
+  width: max-content;
   max-width: 100%;
   min-height: 24px;
-  padding: 0 2px 0 8px;
+  padding: 0 8px;
   background: ${(props) => props.theme.palette['grey-200']};
   border: none;
   border-radius: 3px;
@@ -300,25 +302,36 @@ export const Chip = styled.span`
     background: ${(props) => props.theme.palette['grey-300']};
     color: ${(props) => props.theme.palette['grey-800']};
   }
+  /* The chip width is fixed by the label (max-content, capped at the container).
+     On hover the absolute X appears and the label's max-width shrinks by the X
+     width, so the text clips with an ellipsis — the chip never widens. */
+  &:hover .ds-select-selection-item-label {
+    max-width: calc(100% - 24px);
+  }
   &:hover .ds-select-selection-item-remove {
-    visibility: visible;
+    display: inline-flex;
   }
 `;
 
 export const ChipLabel = styled.span`
+  max-width: 100%;
+  min-width: 0;
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
 `;
 
 export const ChipRemove = styled.span`
-  display: inline-flex;
+  position: absolute;
+  right: 4px;
+  top: 50%;
+  transform: translateY(-50%);
+  display: none;
   align-items: center;
   justify-content: center;
   width: 24px;
   height: 24px;
   cursor: pointer;
-  visibility: hidden;
   svg {
     fill: ${(props) => props.theme.palette['red-600']};
   }

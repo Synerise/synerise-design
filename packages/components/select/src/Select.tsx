@@ -353,7 +353,9 @@ const SelectInner = forwardRef<HTMLDivElement, SelectProps>((props, ref) => {
       <S.MultiValueArea>
         {selectedValues.map((v) => (
           <S.Chip key={v} className="ds-select-selection-item">
-            <S.ChipLabel>{labelFor(v)}</S.ChipLabel>
+            <S.ChipLabel className="ds-select-selection-item-label">
+              {labelFor(v)}
+            </S.ChipLabel>
             <S.ChipRemove
               className="ds-select-selection-item-remove"
               onMouseDown={(e: React.MouseEvent) => {
