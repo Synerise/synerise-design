@@ -1,5 +1,6 @@
 import React from 'react';
 import { act, render, screen } from '@testing-library/react';
+import { renderToString } from 'react-dom/server';
 
 import PortalRenderer from '../PortalRenderer';
 import { clearPortalOwner, setPortalContent, setPortalOwner } from '../portalStore';
@@ -100,5 +101,13 @@ describe('PortalRenderer', () => {
       setPortalContent(null);
     });
     expect(screen.queryByTestId('portal-content')).not.toBeInTheDocument();
+  });
+
+  it('does not throw during server-side rendering and renders nothing on the server', () => {
+    // Regression: without a getServerSnapshot arg, useSyncExternalStore throws "Missing
+    // getServerSnapshot" (minified React #407) during renderToString, 500ing every SSR page.
+    expect(() => renderToString(<PortalRenderer />)).not.toThrow();
+    // Portals are client-only, so PortalRenderer must produce no server markup.
+    expect(renderToString(<PortalRenderer />)).toBe('');
   });
 });
