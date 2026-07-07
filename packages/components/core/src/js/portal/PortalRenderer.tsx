@@ -10,7 +10,14 @@ import {
 
 const PortalRenderer = () => {
   const id = useMemo(() => Symbol('portal-owner'), []);
-  const snapshot = useSyncExternalStore(subscribePortal, getPortalSnapshot);
+  // getPortalSnapshot doubles as getServerSnapshot: it reads a module-scoped store with no
+  // browser APIs, so it is safe on the server. Without the 3rd arg React throws "Missing
+  // getServerSnapshot" (minified #407) during SSR and 500s every server-rendered page.
+  const snapshot = useSyncExternalStore(
+    subscribePortal,
+    getPortalSnapshot,
+    getPortalSnapshot,
+  );
 
   useEffect(() => {
     setPortalOwner(id);
