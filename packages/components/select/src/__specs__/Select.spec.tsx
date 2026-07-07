@@ -81,4 +81,35 @@ describe('Select (DS-native, single-select)', () => {
     expect(document.querySelector('.ds-select-arrow')).toBeTruthy();
     expect(document.querySelector('.ds-select-clear')).toBeNull();
   });
+
+  it('renders a removable chip per value in multiple mode', () => {
+    const onChange = vi.fn();
+    renderWithProvider(
+      <Select
+        mode="multiple"
+        value={['a', 'b']}
+        onChange={onChange}
+        options={[
+          { value: 'a', label: 'Apple' },
+          { value: 'b', label: 'Banana' },
+        ]}
+      />,
+    );
+
+    const chips = document.querySelectorAll('.ds-select-selection-item');
+    expect(chips).toHaveLength(2);
+    expect(chips[0].textContent).toContain('Apple');
+
+    const remove = document.querySelector('.ds-select-selection-item-remove');
+    fireEvent.mouseDown(remove as Element);
+    expect(onChange).toHaveBeenCalledWith(['b'], expect.anything());
+  });
+
+  it('renders an in-selector search input when showSearch is set', () => {
+    renderWithProvider(
+      <Select showSearch placeholder="Pick" options={[{ value: 'a', label: 'A' }]} />,
+    );
+
+    expect(document.querySelector('.ds-select-search')).toBeTruthy();
+  });
 });

@@ -15,6 +15,8 @@ type SelectorProps = {
   $disabled?: boolean;
   $readOnly?: boolean;
   $grey?: boolean;
+  $multiple?: boolean;
+  $clearable?: boolean;
   $withPrefixel?: boolean;
   $withSuffixel?: boolean;
   $selectorStyle?: import('styled-components').CSSObject;
@@ -64,11 +66,25 @@ export const Selector = styled.div<SelectorProps>`
   display: flex;
   align-items: center;
   width: 100%;
+  min-width: 0;
   box-sizing: border-box;
-  height: ${(props) =>
-    HEIGHT[(props.$size as keyof typeof HEIGHT) ?? 'default'] ??
-    HEIGHT.default}px;
-  padding: 0 30px 0 12px;
+  ${(props) => {
+    const h =
+      HEIGHT[(props.$size as keyof typeof HEIGHT) ?? 'default'] ??
+      HEIGHT.default;
+    return props.$multiple
+      ? css`
+          min-height: ${h}px;
+          height: auto;
+          padding: 3px 30px 3px 8px;
+          flex-wrap: wrap;
+          gap: 4px;
+        `
+      : css`
+          height: ${h}px;
+          padding: 0 30px 0 12px;
+        `;
+  }}
   border: 1px solid ${(props) => props.theme.palette['grey-300']};
   border-radius: 3px;
   background-color: ${(props) =>
@@ -91,9 +107,27 @@ export const Selector = styled.div<SelectorProps>`
       border-bottom-right-radius: 0;
     `}
 
-  &:hover {
-    border-color: ${(props) => props.theme.palette['grey-400']};
-  }
+  ${(props) =>
+    !props.$open &&
+    !props.$error &&
+    css`
+      &:hover {
+        border-color: ${props.theme.palette['grey-400']};
+      }
+    `}
+
+  /* When clearable, the clear icon replaces the chevron while hovering the
+     whole select (the icon hooks toggle visibility). */
+  ${(props) =>
+    props.$clearable &&
+    css`
+      &:hover .ds-select-arrow {
+        display: none;
+      }
+      &:hover .ds-select-clear {
+        display: flex;
+      }
+    `}
 
   ${(props) =>
     props.$open &&
@@ -163,9 +197,12 @@ export const ClearWrapper = styled.span`
   right: 8px;
   top: 50%;
   transform: translateY(-50%);
-  display: flex;
+  display: none;
   align-items: center;
   cursor: pointer;
+  svg {
+    fill: ${(props) => props.theme.palette['red-600']};
+  }
 `;
 
 /* ── dropdown (mirrors ds-autocomplete's dropdown: ListWrapper + Scrollbar) ── */
@@ -206,4 +243,83 @@ export const Loading = styled.div`
 export const OptionItem: StyledListItem = styled(DSListItem)`
   min-width: auto;
   font-weight: normal;
+
+  &&:hover:not(.ds-list-item-disabled),
+  &&.ds-select-item-option-active:not(.ds-list-item-disabled) {
+    background-color: ${(props) => props.theme.palette['blue-050']};
+  }
+`;
+
+/** In-selector search input (showSearch / multiple / tags). */
+export const SearchInputEl = styled.input`
+  flex: 1 1 30px;
+  min-width: 30px;
+  width: 100%;
+  border: none;
+  outline: none;
+  background: transparent;
+  padding: 0;
+  margin: 0;
+  font-family: inherit;
+  font-size: 13px;
+  color: ${(props) => props.theme.palette['grey-700']};
+  cursor: inherit;
+  &::placeholder {
+    color: ${(props) => props.theme.palette['grey-500']};
+  }
+  &:disabled {
+    cursor: not-allowed;
+  }
+`;
+
+/** Wraps chips + the search input for multiple/tags mode. */
+export const MultiValueArea = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 4px;
+  flex: 1;
+  min-width: 0;
+`;
+
+export const Chip = styled.span`
+  display: inline-flex;
+  align-items: center;
+  gap: 2px;
+  max-width: 100%;
+  min-height: 24px;
+  padding: 0 2px 0 8px;
+  background: ${(props) => props.theme.palette['grey-200']};
+  border: none;
+  border-radius: 3px;
+  font-size: 13px;
+  line-height: 1;
+  color: ${(props) => props.theme.palette['grey-600']};
+
+  &:hover {
+    background: ${(props) => props.theme.palette['grey-300']};
+    color: ${(props) => props.theme.palette['grey-800']};
+  }
+  &:hover .ds-select-selection-item-remove {
+    visibility: visible;
+  }
+`;
+
+export const ChipLabel = styled.span`
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+`;
+
+export const ChipRemove = styled.span`
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  cursor: pointer;
+  visibility: hidden;
+  svg {
+    fill: ${(props) => props.theme.palette['red-600']};
+  }
 `;
