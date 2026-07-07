@@ -13,6 +13,10 @@ export type MenuTexts = {
   showMore: ReactNode;
 };
 
+/**
+ * @deprecated `@synerise/ds-menu` is deprecated — use `@synerise/ds-list-item`
+ * (`ListItem` / `ListWrapper`) instead.
+ */
 export type AntdMenuProps = Omit<MenuProps, 'dataSource' | 'footer'> & {
   dataSource?: MenuItemProps[];
   ordered?: boolean;
