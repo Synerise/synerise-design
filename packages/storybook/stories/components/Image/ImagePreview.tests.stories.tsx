@@ -125,41 +125,74 @@ export const SingleImageHidesNavigation: Story = {
   },
 };
 
+/** Longest zoom animation the round-trip must outlast before reading the level. */
+const ZOOM_SETTLE_MS = 300;
+
+/** Numeric zoom percentage currently shown in the toolbar (e.g. `100` for "100%"). */
+const readZoomLevel = (): number =>
+  Number.parseInt(
+    screen.getByTestId('image-preview-zoom-level').textContent ?? '',
+    10,
+  );
+
 /**
- * Zooming in then out returns to the exact starting level — guards the stable
- * multiplicative zoom grid (zoom-in/out must round-trip).
+ * Click a zoom control and resolve with the *settled* level. Zoom is animated
+ * (react-zoom-pan-pinch `centerView`, ~200ms) and the percentage ramps frame by
+ * frame via `onTransformed`, so acting on the first changed frame reads a
+ * mid-animation value — and the next click then derives its grid step from the
+ * live in-between scale. That race is what made this story flaky in CI/VR. Wait
+ * for the level to both change (animation started) and then hold steady longer
+ * than the animation (finished) before continuing.
+ */
+const clickZoomAndSettle = async (testId: string): Promise<number> => {
+  const before = readZoomLevel();
+  await userEvent.click(screen.getByTestId(testId));
+  await waitFor(
+    () => expect(readZoomLevel()).not.toBe(before),
+    WAIT_FOR_OPTIONS,
+  );
+  let last = Number.NaN;
+  let lastChangedAt = Date.now();
+  await waitFor(() => {
+    const current = readZoomLevel();
+    if (current !== last) {
+      last = current;
+      lastChangedAt = Date.now();
+    }
+    expect(Date.now() - lastChangedAt).toBeGreaterThanOrEqual(ZOOM_SETTLE_MS);
+  }, WAIT_FOR_OPTIONS);
+  return last;
+};
+
+/**
+ * Zooming in then out returns to the exact same level — guards the stable
+ * multiplicative zoom grid (zoom-in/out must round-trip). The round-trip runs
+ * between two *settled grid* levels above the fitted view: the fitted scale is
+ * generally NOT on the multiplicative grid, so a fit -> in -> out round-trip is
+ * only exact for some image/working-area ratios (and thus viewport-dependent),
+ * whereas two adjacent grid levels always round-trip exactly, at any viewport.
  */
 export const ZoomInThenOutRoundTrips: Story = {
   ...controlled,
   play: async () => {
+    // The zoom toolbar only mounts once the loaded image has been measured
+    // (maxScale > fit), so waiting for it also means the initial fit has settled.
     await waitFor(
       () => expect(screen.getByTestId('image-preview-zoom-in')).toBeVisible(),
       WAIT_FOR_OPTIONS,
     );
-    // Fitted view: zoom-out is disabled until the user zooms in.
-    expect(screen.getByTestId('image-preview-zoom-out')).toBeDisabled();
-    const initialLevel = screen.getByTestId(
-      'image-preview-zoom-level',
-    ).textContent;
 
-    await userEvent.click(screen.getByTestId('image-preview-zoom-in'));
-    await waitFor(
-      () =>
-        expect(
-          screen.getByTestId('image-preview-zoom-level').textContent,
-        ).not.toBe(initialLevel),
-      WAIT_FOR_OPTIONS,
-    );
+    // Move onto the grid: the first settled zoom step above the fitted view.
+    const baselineLevel = await clickZoomAndSettle('image-preview-zoom-in');
     expect(screen.getByTestId('image-preview-zoom-out')).not.toBeDisabled();
 
-    await userEvent.click(screen.getByTestId('image-preview-zoom-out'));
-    await waitFor(
-      () =>
-        expect(screen.getByTestId('image-preview-zoom-level').textContent).toBe(
-          initialLevel,
-        ),
-      WAIT_FOR_OPTIONS,
-    );
+    // One more step in must increase the level...
+    const zoomedInLevel = await clickZoomAndSettle('image-preview-zoom-in');
+    expect(zoomedInLevel).toBeGreaterThan(baselineLevel);
+
+    // ...and one step back out returns to the exact baseline grid level.
+    const roundTripLevel = await clickZoomAndSettle('image-preview-zoom-out');
+    expect(roundTripLevel).toBe(baselineLevel);
   },
 };
 
