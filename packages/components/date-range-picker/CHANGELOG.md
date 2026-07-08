@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.7.8](https://github.com/Synerise/synerise-design/compare/@synerise/ds-date-range-picker@1.7.7...@synerise/ds-date-range-picker@1.7.8) (2026-07-08)
+
+### Bug Fixes
+
+- allow DateRangePicker overlay to scroll when taller than viewport ([5be1e2c](https://github.com/Synerise/synerise-design/commit/5be1e2c540c7c949aa3d78bdd715b90ba37d694e))
+
 ## [1.7.7](https://github.com/Synerise/synerise-design/compare/@synerise/ds-date-range-picker@1.7.6...@synerise/ds-date-range-picker@1.7.7) (2026-06-27)
 
 **Note:** Version bump only for package @synerise/ds-date-range-picker

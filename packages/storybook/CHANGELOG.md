@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.50.0](https://github.com/Synerise/synerise-design/compare/storybook@1.49.0...storybook@1.50.0) (2026-07-08)
+
+### Features
+
+- add ImageView component ([8bb707d](https://github.com/Synerise/synerise-design/commit/8bb707de09785d60a0cee48ae7147f3d6b117b3f))
+
 # [1.49.0](https://github.com/Synerise/synerise-design/compare/storybook@1.48.1...storybook@1.49.0) (2026-06-27)
 
 ### Features

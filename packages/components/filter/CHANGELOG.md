@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.2.58](https://github.com/Synerise/synerise-design/compare/@synerise/ds-filter@1.2.57...@synerise/ds-filter@1.2.58) (2026-07-08)
+
+### Bug Fixes
+
+- guard ds-filter move animation against null refs ([e4eb699](https://github.com/Synerise/synerise-design/commit/e4eb699641cb62f585d0b8f27f0feac563fb2786))
+
 ## [1.2.57](https://github.com/Synerise/synerise-design/compare/@synerise/ds-filter@1.2.56...@synerise/ds-filter@1.2.57) (2026-06-17)
 
 **Note:** Version bump only for package @synerise/ds-filter

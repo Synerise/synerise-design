@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.12.3](https://github.com/synerise/synerise-design/compare/@synerise/ds-core@1.12.2...@synerise/ds-core@1.12.3) (2026-07-08)
+
+### Bug Fixes
+
+- provide getServerSnapshot to PortalRenderer so SSR does not throw ([05c394c](https://github.com/synerise/synerise-design/commit/05c394cd71139cd54b740cf5d149ff7b77f672eb))
+
 ## [1.12.2](https://github.com/synerise/synerise-design/compare/@synerise/ds-core@1.12.1...@synerise/ds-core@1.12.2) (2026-06-03)
 
 ### Bug Fixes
