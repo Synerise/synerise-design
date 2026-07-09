@@ -181,6 +181,9 @@ the duplicates.
   (banner/popconfirm), `useFocusTrap`/`useAutosizeWidth`/`useStretchToFit`/`PassthroughAttributes`
   (ds-utils), the `ds-dropdown`(floating-ui) + `ds-list-item` + `ds-scrollbar` combobox stack
   (autocomplete/select). Prefer these over new per-component implementations.
+- [ ] **Co-locate the form-input stories & tests.** Move the `Select` stories & tests in with the
+  other input elements (Storybook `InputElements` grouping), and likewise relocate `subtle-form`,
+  `radio` and `checkbox` so all form inputs live together.
 
 ## Done-check (whole initiative)
 
