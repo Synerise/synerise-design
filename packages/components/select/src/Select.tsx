@@ -74,6 +74,9 @@ const SelectInner = forwardRef<HTMLDivElement, SelectProps>((props, ref) => {
     onDeselect,
     onDropdownVisibleChange,
     onSearch,
+    onClear,
+    onClick,
+    onInputKeyDown,
     mode,
     options,
     children,
@@ -83,6 +86,7 @@ const SelectInner = forwardRef<HTMLDivElement, SelectProps>((props, ref) => {
     loading,
     allowClear,
     showSearch,
+    searchValue,
     filterOption,
     optionFilterProp,
     optionLabelProp,
@@ -134,6 +138,9 @@ const SelectInner = forwardRef<HTMLDivElement, SelectProps>((props, ref) => {
   const isOpen = isControlledOpen ? !!openProp : internalOpen;
 
   const [searchQuery, setSearchQuery] = useState('');
+  // antd parity: controlled search when `searchValue` is provided.
+  const isSearchControlled = searchValue !== undefined;
+  const effectiveQuery = isSearchControlled ? searchValue : searchQuery;
   const inputRef = useRef<HTMLInputElement>(null);
 
   // Active (keyboard-highlighted) option index into `displayedOptions`.
@@ -153,28 +160,33 @@ const SelectInner = forwardRef<HTMLDivElement, SelectProps>((props, ref) => {
   // `options` from `onSearch`), so never filter locally.
   const displayedOptions = useMemo<SelectOption[]>(() => {
     let list = resolvedOptions;
-    if (filterOption !== false && searchQuery) {
+    if (filterOption !== false && effectiveQuery) {
       const match =
         typeof filterOption === 'function'
           ? filterOption
           : defaultFilter(optionFilterProp);
-      list = resolvedOptions.filter((option) => match(searchQuery, option));
+      list = resolvedOptions.filter((option) => match(effectiveQuery, option));
     }
     // tags: offer the typed text as a create-able option when it isn't one.
     if (
       isTags &&
-      searchQuery &&
-      !resolvedOptions.some((option) => String(option.value) === searchQuery) &&
-      !selectedValues.some((v) => String(v) === searchQuery)
+      effectiveQuery &&
+      !resolvedOptions.some(
+        (option) => String(option.value) === effectiveQuery,
+      ) &&
+      !selectedValues.some((v) => String(v) === effectiveQuery)
     ) {
-      list = [{ value: searchQuery, label: searchQuery }, ...list];
+      list = [
+        { value: effectiveQuery, key: effectiveQuery, label: effectiveQuery },
+        ...list,
+      ];
     }
     return list;
   }, [
     resolvedOptions,
     filterOption,
     optionFilterProp,
-    searchQuery,
+    effectiveQuery,
     isTags,
     selectedValues,
   ]);
@@ -237,7 +249,7 @@ const SelectInner = forwardRef<HTMLDivElement, SelectProps>((props, ref) => {
     }
     setActiveIndex(firstEnabledIndex());
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [searchQuery]);
+  }, [effectiveQuery]);
 
   // Keep the active option scrolled into view during keyboard navigation.
   useEffect(() => {
@@ -277,8 +289,10 @@ const SelectInner = forwardRef<HTMLDivElement, SelectProps>((props, ref) => {
   };
 
   const clearQuery = (): void => {
-    if (searchQuery) {
-      setSearchQuery('');
+    if (effectiveQuery) {
+      if (!isSearchControlled) {
+        setSearchQuery('');
+      }
       onSearch?.('');
     }
   };
@@ -288,7 +302,7 @@ const SelectInner = forwardRef<HTMLDivElement, SelectProps>((props, ref) => {
     commit(next);
     onChange?.(
       next as SelectValue,
-      next.map((v) => findOption(resolvedOptions, v) ?? { value: v }),
+      next.map((v) => findOption(resolvedOptions, v) ?? { value: v, key: v }),
     );
     onSelect?.(optionValue, option);
     clearQuery();
@@ -299,7 +313,7 @@ const SelectInner = forwardRef<HTMLDivElement, SelectProps>((props, ref) => {
     commit(next);
     onChange?.(
       next as SelectValue,
-      next.map((v) => findOption(resolvedOptions, v) ?? { value: v }),
+      next.map((v) => findOption(resolvedOptions, v) ?? { value: v, key: v }),
     );
     onDeselect?.(optionValue, findOption(resolvedOptions, optionValue));
   };
@@ -330,11 +344,14 @@ const SelectInner = forwardRef<HTMLDivElement, SelectProps>((props, ref) => {
     commit(cleared);
     onChange?.(cleared, isMultiple ? [] : undefined);
     clearQuery();
+    onClear?.();
   };
 
   const handleSearchChange = (event: ChangeEvent<HTMLInputElement>): void => {
     const next = event.currentTarget.value;
-    setSearchQuery(next);
+    if (!isSearchControlled) {
+      setSearchQuery(next);
+    }
     onSearch?.(next);
     if (!isOpen) {
       setOpen(true);
@@ -342,7 +359,7 @@ const SelectInner = forwardRef<HTMLDivElement, SelectProps>((props, ref) => {
   };
 
   const commitActiveOrTag = (): void => {
-    const query = searchQuery.trim();
+    const query = effectiveQuery.trim();
     if (isOpen && activeIndex >= 0 && displayedOptions[activeIndex]) {
       handleSelect(displayedOptions[activeIndex]);
     } else if (isTags && query) {
@@ -360,7 +377,7 @@ const SelectInner = forwardRef<HTMLDivElement, SelectProps>((props, ref) => {
     if (isDisabled) {
       return;
     }
-    const query = searchQuery.trim();
+    const query = effectiveQuery.trim();
 
     switch (event.key) {
       case 'ArrowDown':
@@ -420,7 +437,7 @@ const SelectInner = forwardRef<HTMLDivElement, SelectProps>((props, ref) => {
         }
         return;
       case 'Backspace':
-        if (!searchQuery && isMultiple && selectedValues.length > 0) {
+        if (!effectiveQuery && isMultiple && selectedValues.length > 0) {
           removeValue(selectedValues[selectedValues.length - 1]);
         }
         return;
@@ -475,7 +492,11 @@ const SelectInner = forwardRef<HTMLDivElement, SelectProps>((props, ref) => {
                     selected={isSelected}
                     aria-selected={isSelected}
                     data-testid="select-option"
-                    title={option.title}
+                    title={
+                      typeof option.title === 'string'
+                        ? option.title
+                        : undefined
+                    }
                     text={option.label ?? option.value}
                     disabled={option.disabled}
                     onMouseEnter={() => setActiveIndex(index)}
@@ -494,9 +515,12 @@ const SelectInner = forwardRef<HTMLDivElement, SelectProps>((props, ref) => {
     <S.SearchInputEl
       ref={inputRef}
       className="ds-select-search"
-      value={searchQuery}
+      value={effectiveQuery}
       onChange={handleSearchChange}
-      onKeyDown={handleKeyDown}
+      onKeyDown={(event) => {
+        onInputKeyDown?.(event);
+        handleKeyDown(event);
+      }}
       placeholder={hasValue ? undefined : placeholderStr}
       disabled={isDisabled}
       autoFocus={autoFocus}
@@ -541,7 +565,7 @@ const SelectInner = forwardRef<HTMLDivElement, SelectProps>((props, ref) => {
   } else if (showSearch) {
     selectorContent = (
       <>
-        {hasValue && !searchQuery && (
+        {hasValue && !effectiveQuery && (
           <S.SelectionItem className="ds-select-selection-item">
             {labelFor(selectedValues[0])}
           </S.SelectionItem>
@@ -575,8 +599,16 @@ const SelectInner = forwardRef<HTMLDivElement, SelectProps>((props, ref) => {
         onOpenChange={setOpen}
         disabled={isDisabled}
         placement={placement}
-        size={dropdownMatchSelectWidth ? 'match-trigger' : 'min-match-trigger'}
-        getPopupContainer={getPopupContainer}
+        size={
+          typeof dropdownMatchSelectWidth === 'number'
+            ? dropdownMatchSelectWidth
+            : dropdownMatchSelectWidth
+              ? 'match-trigger'
+              : 'min-match-trigger'
+        }
+        getPopupContainer={
+          getPopupContainer as (trigger: HTMLElement) => HTMLElement
+        }
         hideOnItemClick={false}
         overlayClassName={cx(
           'ds-select-dropdown',
@@ -595,6 +627,7 @@ const SelectInner = forwardRef<HTMLDivElement, SelectProps>((props, ref) => {
             isDisabled && 'ds-select-disabled',
             error && 'error',
           )}
+          onClick={onClick}
           $size={$size}
           $open={isOpen}
           $error={Boolean(errorText || error)}

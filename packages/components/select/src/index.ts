@@ -6,6 +6,7 @@ export type {
   SelectValue,
   SelectOption,
   SelectMode,
+  SelectHandler,
   RawValueType,
   FilterOptionFn,
 } from './Select.types';

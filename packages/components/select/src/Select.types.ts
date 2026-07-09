@@ -2,6 +2,8 @@ import {
   type CSSProperties,
   type FocusEvent,
   type Key,
+  type KeyboardEvent,
+  type MouseEvent,
   type ReactNode,
 } from 'react';
 import { type CSSObject } from 'styled-components';
@@ -21,17 +23,25 @@ export type SelectMode = 'multiple' | 'tags';
 /** Internal, normalised option shape (from `options` prop or `<Select.Option>` children). */
 export type SelectOption = {
   value: RawValueType;
+  /** antd-parity alias of `value`; some consumers read `option.key` in callbacks. */
+  key?: RawValueType;
   /** Rendered content in the dropdown row (and the selector unless `optionLabelProp` picks another field). */
   label?: ReactNode;
   disabled?: boolean;
   /** Native `title` on the option (hover tooltip / accessible text), mirrors antd. */
-  title?: string;
+  title?: ReactNode;
   /** Value used for client-side filtering when `optionFilterProp` is set. */
   filterValue?: string;
 };
 
 /** Signature of a client-side option filter (antd-compatible). */
 export type FilterOptionFn = (input: string, option: SelectOption) => boolean;
+
+/** antd-parity: type for a select `onChange` / `onSelect` handler. */
+export type SelectHandler<VT extends RawValueType = RawValueType> = (
+  value: VT,
+  option?: SelectOption | SelectOption[],
+) => void;
 
 export type SelectProps<VT extends SelectValue = SelectValue> = {
   value?: VT;
@@ -44,6 +54,12 @@ export type SelectProps<VT extends SelectValue = SelectValue> = {
   onDropdownVisibleChange?: (open: boolean) => void;
   /** Remote-search callback (pair with `filterOption={false}`). */
   onSearch?: (value: string) => void;
+  /** antd parity: fired when the clear affordance is used. */
+  onClear?: () => void;
+  /** antd parity: click handler on the selector box. */
+  onClick?: (event: MouseEvent<HTMLDivElement>) => void;
+  /** antd parity: keydown on the inner search input. */
+  onInputKeyDown?: (event: KeyboardEvent<HTMLInputElement>) => void;
 
   /** `undefined` = single-select; `'multiple'` / `'tags'` = multi-value. */
   mode?: SelectMode;
@@ -52,6 +68,8 @@ export type SelectProps<VT extends SelectValue = SelectValue> = {
   options?: SelectOption[];
 
   showSearch?: boolean;
+  /** Controlled search-input value (antd parity). Pairs with `onSearch`. */
+  searchValue?: string;
   /** `true`/`false` toggles built-in filtering; a function is a custom predicate. */
   filterOption?: boolean | FilterOptionFn;
   /** Which option field the built-in filter matches against (default: label). */
@@ -76,17 +94,19 @@ export type SelectProps<VT extends SelectValue = SelectValue> = {
   open?: boolean;
   defaultOpen?: boolean;
 
-  /** Dropdown positioning / sizing. */
-  getPopupContainer?: (trigger: HTMLElement) => HTMLElement;
+  /** Dropdown positioning / sizing. antd parity: consumers may return `parentNode` (`ParentNode | null`). */
+  getPopupContainer?: (trigger: HTMLElement) => HTMLElement | ParentNode | null;
   placement?: DropdownPlacement;
   dropdownClassName?: string;
   dropdownStyle?: CSSProperties;
-  /** Match the dropdown width to the selector (default true). */
-  dropdownMatchSelectWidth?: boolean;
+  /** Match the dropdown width to the selector (default true). A number fixes the dropdown width in px (antd parity). */
+  dropdownMatchSelectWidth?: boolean | number;
   /** Wrap the rendered option menu (custom footer / scroll container). */
   dropdownRender?: (menu: ReactNode) => ReactNode;
   /** Max dropdown list height (px). */
   listHeight?: number | string;
+  /** antd parity: fixed height per option row (px). Accepted for compatibility (non-virtualised list). */
+  listItemHeight?: number;
   notFoundContent?: ReactNode;
   clearIcon?: ReactNode;
 

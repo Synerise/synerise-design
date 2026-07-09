@@ -164,6 +164,13 @@ export const Selector = styled.div<SelectorProps>`
     !!props.$selectorStyle && css(props.$selectorStyle)}
 `;
 
+/**
+ * antd-parity alias. The antd-era `Select.styles` exported `AntdSelect` (a styled
+ * antd Select); consumers use it as a component selector — `${AntdSelect} { ... }`.
+ * The de-antd trigger box `Selector` (`.ds-select`) is the equivalent target.
+ */
+export const AntdSelect = Selector;
+
 export const SelectionItem = styled.span`
   flex: 1;
   overflow: hidden;

@@ -1,7 +1,7 @@
 import { Children, type ReactNode, isValidElement } from 'react';
 
 import { Option, type OptionProps } from '../Option';
-import { type SelectOption } from '../Select.types';
+import { type RawValueType, type SelectOption } from '../Select.types';
 
 /**
  * Maps declarative `<Select.Option>` children to the internal option shape.
@@ -23,8 +23,11 @@ export const getOptionsFromChildren = (children: ReactNode): SelectOption[] => {
       label,
       children: optionLabel,
     } = child.props as OptionProps;
+    // antd parity: when `value` is omitted, fall back to the element's React key.
+    const resolvedValue = (value ?? child.key ?? undefined) as RawValueType;
     options.push({
-      value,
+      value: resolvedValue,
+      key: resolvedValue,
       disabled,
       title,
       label: label ?? optionLabel,

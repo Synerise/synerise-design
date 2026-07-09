@@ -156,3 +156,78 @@ describe('Select (keyboard + ARIA)', () => {
     expect(onChange).toHaveBeenCalledWith('b', expect.anything());
   });
 });
+
+describe('Select (antd parity shims)', () => {
+  it('falls back to the React key when an Option value is omitted', () => {
+    renderWithProvider(
+      <Select value="lucy">
+        <Option key="lucy">Lucy</Option>
+        <Option key="jack">Jack</Option>
+      </Select>,
+    );
+
+    expect(
+      document.querySelector('.ds-select-selection-item')?.textContent,
+    ).toBe('Lucy');
+  });
+
+  it('fires onClear when the clear control is used', () => {
+    const onClear = vi.fn();
+    renderWithProvider(
+      <Select
+        allowClear
+        value="lucy"
+        onClear={onClear}
+        options={[{ value: 'lucy', label: 'Lucy' }]}
+      />,
+    );
+
+    fireEvent.click(document.querySelector('.ds-select-clear') as Element);
+    expect(onClear).toHaveBeenCalled();
+  });
+
+  it('exposes option.key in the onChange option payload', () => {
+    const onChange = vi.fn();
+    renderWithProvider(
+      <Select defaultOpen onChange={onChange}>
+        <Option value="a">Apple</Option>
+        <Option value="b">Banana</Option>
+      </Select>,
+    );
+
+    const combobox = document.querySelector('.ds-select') as Element;
+    fireEvent.keyDown(combobox, { key: 'Enter' });
+    expect(onChange).toHaveBeenCalledWith(
+      'a',
+      expect.objectContaining({ key: 'a' }),
+    );
+  });
+
+  it('uses a controlled searchValue for the input', () => {
+    renderWithProvider(
+      <Select
+        showSearch
+        searchValue="ban"
+        placeholder="Pick"
+        options={[{ value: 'b', label: 'Banana' }]}
+      />,
+    );
+
+    const input = document.querySelector(
+      '.ds-select-search',
+    ) as HTMLInputElement;
+    expect(input.value).toBe('ban');
+  });
+
+  it('accepts a numeric dropdownMatchSelectWidth without error', () => {
+    renderWithProvider(
+      <Select
+        defaultOpen
+        dropdownMatchSelectWidth={200}
+        options={[{ value: 'a', label: 'Apple' }]}
+      />,
+    );
+
+    expect(document.querySelector('.ds-select')).toBeTruthy();
+  });
+});

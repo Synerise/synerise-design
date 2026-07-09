@@ -3,10 +3,11 @@ import { type ReactNode } from 'react';
 import { type RawValueType } from './Select.types';
 
 export type OptionProps = {
-  value: RawValueType;
+  /** antd parity: optional — falls back to the element's React `key` when omitted. */
+  value?: RawValueType;
   disabled?: boolean;
-  /** Native title (hover text). */
-  title?: string;
+  /** Native title (hover text). antd parity: accepts any node (coerced to a string title at render). */
+  title?: ReactNode;
   /** When set, rendered in the selector instead of `children` (antd `optionLabelProp`). */
   label?: ReactNode;
   children?: ReactNode;
