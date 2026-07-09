@@ -15,6 +15,8 @@ export const TableBody = <TData extends object, TValue>({
   getRowProps,
   getRowTooltipProps,
   emptyDataComponent,
+  noResultsComponent,
+  hasNoSearchResults,
   texts,
   expandable,
 }: TableBodyProps<TData, TValue>) => {
@@ -137,6 +139,11 @@ export const TableBody = <TData extends object, TValue>({
           })}
     </S.TBody>
   ) : (
-    <TableEmptyBody emptyDataComponent={emptyDataComponent} texts={texts} />
+    <TableEmptyBody
+      emptyDataComponent={emptyDataComponent}
+      noResultsComponent={noResultsComponent}
+      hasNoSearchResults={hasNoSearchResults}
+      texts={texts}
+    />
   );
 };

@@ -257,7 +257,8 @@
       "SELECT_ALL_BUTTON_TOOLTIP": "Select all",
       "SELECTION_LIMIT": "You have reached max limit",
       "SELECTIONS_MENU_TOOLTIP": "Batch selection options",
-      "NO_DATA": "No data"
+      "NO_DATA": "No data",
+      "NO_RESULTS": "No results found"
     },
     "ICON-PICKER": {
       "NO-RESULTS": "No results"

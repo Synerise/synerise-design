@@ -322,6 +322,72 @@ describe('useTable', () => {
     });
   });
 
+  describe('header counter (totalDataCount)', () => {
+    const matchesSearchQuery = (query: string, row: Row) =>
+      row.name.toLowerCase().includes(query.toLowerCase());
+
+    it('is the full data length when no internal filter is active', () => {
+      const { result } = renderHook(() => useTable(defaultProps));
+
+      expect(result.current.totalDataCount).toBe(DATA.length);
+    });
+
+    it('reflects the filtered count while a built-in search is active', () => {
+      const { result } = renderHook(() =>
+        useTable({ ...defaultProps, matchesSearchQuery })
+      );
+
+      act(() => {
+        result.current.setSearchQuery('Alice'); // Alice + Alice Jr
+      });
+
+      expect(result.current.totalDataCount).toBe(2);
+    });
+
+    it('is 0 when a built-in search matches nothing (not the absolute total)', () => {
+      const { result } = renderHook(() =>
+        useTable({ ...defaultProps, matchesSearchQuery })
+      );
+
+      act(() => {
+        result.current.setSearchQuery('no-such-row');
+      });
+
+      expect(result.current.totalDataCount).toBe(0);
+    });
+
+    it('reverts to the full data length when the search is cleared', () => {
+      const { result } = renderHook(() =>
+        useTable({ ...defaultProps, matchesSearchQuery })
+      );
+
+      act(() => {
+        result.current.setSearchQuery('Alice');
+      });
+      act(() => {
+        result.current.handleSearchClear();
+      });
+
+      expect(result.current.totalDataCount).toBe(DATA.length);
+    });
+
+    it('reflects the filtered count with a filterData predicate', () => {
+      const { result } = renderHook(() =>
+        useTable({ ...defaultProps, filterData: (row: Row) => row.age >= 30 })
+      );
+
+      expect(result.current.totalDataCount).toBe(2); // Alice + Charlie
+    });
+
+    it('uses the server pagination.total when provided and not internally filtered', () => {
+      const { result } = renderHook(() =>
+        useTable({ ...defaultProps, pagination: { total: 99, pageSize: 10 } })
+      );
+
+      expect(result.current.totalDataCount).toBe(99);
+    });
+  });
+
   describe('column pinning', () => {
     it('pins columns based on meta.fixed', () => {
       const pinnedColumns: ColumnDef<Row>[] = [

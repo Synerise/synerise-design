@@ -252,7 +252,8 @@
       "SELECT_ALL_BUTTON_TOOLTIP": "Seleccionar todo",
       "SELECTION_LIMIT": "Has alcanzado el límite máximo",
       "SELECTIONS_MENU_TOOLTIP": "Opciones de selección masiva",
-      "NO_DATA": "Sin datos"
+      "NO_DATA": "Sin datos",
+      "NO_RESULTS": "No se encontraron resultados"
     },
     "ICON-PICKER": {
       "NO-RESULTS": "Sin resultados"

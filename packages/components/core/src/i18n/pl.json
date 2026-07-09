@@ -62,7 +62,8 @@
       "SELECTIONS_MENU_TOOLTIP": "Opcje zaznaczania masowego",
       "UNSELECT_ALL": "Odznacz widoczne",
       "UNSELECT_GLOBAL_ALL": "Odznacz wszystko",
-      "NO_DATA": "Brak danych"
+      "NO_DATA": "Brak danych",
+      "NO_RESULTS": "Nie znaleziono wyników"
     },
     "OPERATORS": {
       "BUTTON_LABEL": "Wybierz",

@@ -71,6 +71,7 @@ export const Table = <TData extends object, TValue>({
     setSearchQuery,
     handleSearchClear,
     hasBuiltInSearch,
+    hasNoSearchResults,
     totalDataCount,
   } = useTable({
     data,
@@ -121,6 +122,7 @@ export const Table = <TData extends object, TValue>({
             setSearchQuery={setSearchQuery}
             handleSearchClear={handleSearchClear}
             hasBuiltInSearch={hasBuiltInSearch}
+            hasNoSearchResults={hasNoSearchResults}
             searchProps={searchProps}
             dataSourceTotalCount={totalDataCount}
             expandable={expandable}

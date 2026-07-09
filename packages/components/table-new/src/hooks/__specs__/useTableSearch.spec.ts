@@ -162,4 +162,58 @@ describe('useTableSearch', () => {
       expect(result.current.searchQuery).toBe('');
     });
   });
+
+  describe('hasNoSearchResults', () => {
+    const matchesSearchQuery = (query: string, row: Item) =>
+      row.name.toLowerCase().includes(query.toLowerCase());
+
+    it('is false when the query is empty (data shown)', () => {
+      const { result } = renderHook(() =>
+        useTableSearch({ data: DATA, matchesSearchQuery })
+      );
+
+      expect(result.current.hasNoSearchResults).toBe(false);
+    });
+
+    it('is true when a built-in search query removes every row', () => {
+      const { result } = renderHook(() =>
+        useTableSearch({ data: DATA, matchesSearchQuery })
+      );
+
+      act(() => {
+        result.current.setSearchQuery('nonexistent');
+      });
+
+      expect(result.current.displayData).toHaveLength(0);
+      expect(result.current.hasNoSearchResults).toBe(true);
+    });
+
+    it('is false when a search still matches some rows', () => {
+      const { result } = renderHook(() =>
+        useTableSearch({ data: DATA, matchesSearchQuery })
+      );
+
+      act(() => {
+        result.current.setSearchQuery('alpha');
+      });
+
+      expect(result.current.hasNoSearchResults).toBe(false);
+    });
+
+    it('is true when filterData removes every row', () => {
+      const { result } = renderHook(() =>
+        useTableSearch({ data: DATA, filterData: () => false })
+      );
+
+      expect(result.current.hasNoSearchResults).toBe(true);
+    });
+
+    it('is false for a genuinely empty dataSource (→ "no data", not "no results")', () => {
+      const { result } = renderHook(() =>
+        useTableSearch({ data: [], matchesSearchQuery })
+      );
+
+      expect(result.current.hasNoSearchResults).toBe(false);
+    });
+  });
 });

@@ -84,9 +84,30 @@ describe('Table', () => {
     expect(onChange).toHaveBeenCalledWith(2, 10);
   });
 
+  it('stays server-paginated (onChange) even when a page holds every row', () => {
+    // Regression: increasing pageSize so the fetched page contains all rows makes
+    // total === data.length. The presence of `onChange` must keep it in manual mode (it must NOT
+    // flip to client paging, which would reset the page-size control and stop refetching).
+    const onChange = vi.fn();
+    renderWithProvider(
+      <Table
+        data={DATA}
+        columns={COLUMNS}
+        pagination={{ pageSize: 2, current: 1, total: DATA.length, onChange }}
+      />,
+    );
+
+    // ceil(6 / 2) = 3 pages. Clicking a page forwards to onChange (server refetch) rather than
+    // slicing locally — proving it's still manual despite total === data.length.
+    fireEvent.click(
+      within(screen.getByTestId('ds-table-pagination')).getByText('2'),
+    );
+    expect(onChange).toHaveBeenCalledWith(2, 2);
+  });
+
   it('client-side: clicking a page re-slices the rendered rows', () => {
-    // Regression: the manual-pagination wiring must not pass onChange/onPaginationChange in
-    // client mode, or it overrides TanStack's internal state-updater and freezes paging.
+    // Regression: in client mode the pagination handler must mirror TanStack's internal
+    // state-updater (advancing the sliced rows), not forward to a consumer onChange or freeze.
     renderWithProvider(
       <Table data={DATA} columns={COLUMNS} pagination={{ pageSize: 2 }} />,
     );
@@ -97,6 +118,52 @@ describe('Table', () => {
       within(screen.getByTestId('ds-table-pagination')).getByText('2'),
     );
     expect(screen.queryByText('Mike')).not.toBeInTheDocument();
+  });
+
+  it('refreshes the page count when manual pagination flips to client mode', () => {
+    // Regression (List): a status/search change can narrow a server-paginated result so it no
+    // longer exceeds the rows we already hold, flipping the inferred mode from manual to client.
+    // TanStack merges table options forward, so the manual-mode `rowCount`/`manualPagination` must
+    // be actively overridden — otherwise getRowCount() stays at the old server total and the
+    // control keeps the stale page count.
+    const { rerender } = renderWithProvider(
+      <Table data={DATA} columns={COLUMNS} pagination={{ pageSize: 2, current: 1, total: 25 }} />,
+    );
+    // Manual mode: ceil(25 / 2) = 13 pages from the server total; the last page is reachable.
+    expect(within(screen.getByTestId('ds-table-pagination')).getByText('13')).toBeInTheDocument();
+
+    // Result now fits the rows we hold → client mode (6 rows, pageSize 2 → 3 pages).
+    rerender(
+      <Table data={DATA} columns={COLUMNS} pagination={{ pageSize: 2, current: 1, total: 6 }} />,
+    );
+    const pagination = screen.getByTestId('ds-table-pagination');
+    // The stale server total (13 pages) is gone; the count reflects the local rows.
+    expect(within(pagination).queryByText('13')).not.toBeInTheDocument();
+    expect(within(pagination).getByText('3')).toBeInTheDocument();
+  });
+
+  it('hides the footer when a manual-paginated result collapses to zero rows', () => {
+    // Regression (Promotions): with hideOnSinglePage:false the footer is gated only by
+    // hasResults = getRowCount() > 0. After a manual render, a filter matching nothing (0 rows,
+    // server total 0) must drop getRowCount() to 0 so the footer disappears instead of rendering
+    // a phantom page count over an empty table.
+    const { rerender } = renderWithProvider(
+      <Table
+        data={DATA}
+        columns={COLUMNS}
+        pagination={{ pageSize: 10, current: 1, total: 25, hideOnSinglePage: false }}
+      />,
+    );
+    expect(screen.getByTestId('ds-table-pagination')).toBeInTheDocument();
+
+    rerender(
+      <Table
+        data={[]}
+        columns={COLUMNS}
+        pagination={{ pageSize: 10, current: 1, total: 0, hideOnSinglePage: false }}
+      />,
+    );
+    expect(screen.queryByTestId('ds-table-pagination')).not.toBeInTheDocument();
   });
 
   it('header counter uses pagination.total over the local row count', () => {
@@ -125,6 +192,94 @@ describe('Table', () => {
     );
 
     expect(screen.getByText('99')).toBeInTheDocument();
+  });
+
+  describe('pagination visibility', () => {
+    it('hides pagination when dataSource is empty', () => {
+      renderWithProvider(
+        <Table data={[]} columns={COLUMNS} pagination={{ pageSize: 2 }} />,
+      );
+
+      expect(
+        screen.queryByTestId('ds-table-pagination'),
+      ).not.toBeInTheDocument();
+    });
+
+    it('renders pagination when there are results', () => {
+      renderWithProvider(
+        <Table data={DATA} columns={COLUMNS} pagination={{ pageSize: 2 }} />,
+      );
+
+      expect(screen.getByTestId('ds-table-pagination')).toBeInTheDocument();
+    });
+
+    it('shows the pager on a single page by default (matches legacy ds-table)', () => {
+      // 6 rows, pageSize 10 → a single page. The default hideOnSinglePage:false keeps the pager
+      // visible, so the page-1 item renders.
+      renderWithProvider(
+        <Table data={DATA} columns={COLUMNS} pagination={{ pageSize: 10 }} />,
+      );
+
+      expect(
+        within(screen.getByTestId('ds-table-pagination')).getByText('1'),
+      ).toBeInTheDocument();
+    });
+
+    it('lets the consumer hide the single-page pager via hideOnSinglePage', () => {
+      // Consumer opt-in via the pagination object still overrides the default (spread over it).
+      renderWithProvider(
+        <Table
+          data={DATA}
+          columns={COLUMNS}
+          pagination={{ pageSize: 10, hideOnSinglePage: true }}
+        />,
+      );
+
+      expect(
+        within(screen.getByTestId('ds-table-pagination')).queryByText('1'),
+      ).not.toBeInTheDocument();
+    });
+
+    it('hides pagination when a search filters every row out', () => {
+      renderWithProvider(
+        <Table
+          data={DATA}
+          columns={COLUMNS}
+          pagination={{ pageSize: 2 }}
+          matchesSearchQuery={(query, row) =>
+            row.name.toLowerCase().includes(query.toLowerCase())
+          }
+        />,
+      );
+
+      // Pagination present while there are results.
+      expect(screen.getByTestId('ds-table-pagination')).toBeInTheDocument();
+
+      // A query matching nothing collapses the table to zero rows → pagination disappears.
+      fireEvent.change(screen.getByRole('textbox'), {
+        target: { value: 'zzzznomatch' },
+      });
+
+      expect(screen.queryByText('Mike')).not.toBeInTheDocument();
+      expect(
+        screen.queryByTestId('ds-table-pagination'),
+      ).not.toBeInTheDocument();
+    });
+
+    it('hides pagination when the server total is 0', () => {
+      // Server-side: no rows fetched and the server reports a total of 0.
+      renderWithProvider(
+        <Table
+          data={[]}
+          columns={COLUMNS}
+          pagination={{ pageSize: 10, current: 1, total: 0 }}
+        />,
+      );
+
+      expect(
+        screen.queryByTestId('ds-table-pagination'),
+      ).not.toBeInTheDocument();
+    });
   });
 
   it('resets to the first page when the built-in search query changes', () => {
@@ -691,6 +846,99 @@ describe('Table', () => {
       );
 
       expect(screen.getAllByRole('row')).toHaveLength(DATA.length + 1);
+    });
+  });
+
+  describe('search-aware empty state', () => {
+    const matchesSearchQuery = (query: string, row: DataType) =>
+      row.name.toLowerCase().includes(query.toLowerCase());
+
+    it('shows the no-results text (not the empty-data text) when built-in search matches nothing', () => {
+      renderWithProvider(
+        <Table data={DATA} columns={COLUMNS} matchesSearchQuery={matchesSearchQuery} />,
+      );
+
+      fireEvent.change(screen.getByRole('textbox'), {
+        target: { value: 'zzzznomatch' },
+      });
+
+      expect(screen.getByText('No results found')).toBeInTheDocument();
+      expect(screen.queryByText('No data')).not.toBeInTheDocument();
+    });
+
+    it('renders noResultsComponent when search matches nothing', () => {
+      renderWithProvider(
+        <Table
+          data={DATA}
+          columns={COLUMNS}
+          matchesSearchQuery={matchesSearchQuery}
+          noResultsComponent={<div data-testid="custom-no-results">Nothing here</div>}
+          emptyDataComponent={<div data-testid="custom-empty">No data yet</div>}
+        />,
+      );
+
+      fireEvent.change(screen.getByRole('textbox'), {
+        target: { value: 'zzzznomatch' },
+      });
+
+      // The no-results override wins over emptyDataComponent while a search is active.
+      expect(screen.getByTestId('custom-no-results')).toBeInTheDocument();
+      expect(screen.queryByTestId('custom-empty')).not.toBeInTheDocument();
+    });
+
+    it('shows the no-results text (not emptyDataComponent) when only emptyDataComponent is set', () => {
+      // emptyDataComponent is the no-data UI; a search emptying the table must NOT fall back to it.
+      renderWithProvider(
+        <Table
+          data={DATA}
+          columns={COLUMNS}
+          matchesSearchQuery={matchesSearchQuery}
+          emptyDataComponent={<div data-testid="custom-empty">No data yet</div>}
+        />,
+      );
+
+      fireEvent.change(screen.getByRole('textbox'), {
+        target: { value: 'zzzznomatch' },
+      });
+
+      expect(screen.getByText('No results found')).toBeInTheDocument();
+      expect(screen.queryByTestId('custom-empty')).not.toBeInTheDocument();
+    });
+
+    it('shows the no-results text when filterData removes every row', () => {
+      renderWithProvider(
+        <Table
+          data={DATA}
+          columns={COLUMNS}
+          filterData={() => false}
+          searchComponent={<div data-testid="custom-search">Search</div>}
+        />,
+      );
+
+      expect(screen.getByText('No results found')).toBeInTheDocument();
+      expect(screen.queryByText('No data')).not.toBeInTheDocument();
+    });
+
+    it('still shows the empty-data text for a genuinely empty dataSource (regression)', () => {
+      renderWithProvider(
+        <Table data={[]} columns={COLUMNS} matchesSearchQuery={matchesSearchQuery} />,
+      );
+
+      expect(screen.getByText('No data')).toBeInTheDocument();
+      expect(screen.queryByText('No results found')).not.toBeInTheDocument();
+    });
+
+    it('falls back to emptyDataComponent for an empty dataSource even with search enabled', () => {
+      renderWithProvider(
+        <Table
+          data={[]}
+          columns={COLUMNS}
+          matchesSearchQuery={matchesSearchQuery}
+          emptyDataComponent={<div data-testid="custom-empty">No data yet</div>}
+        />,
+      );
+
+      expect(screen.getByTestId('custom-empty')).toBeInTheDocument();
     });
   });
 
