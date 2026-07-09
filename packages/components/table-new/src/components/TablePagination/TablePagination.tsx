@@ -12,7 +12,10 @@ export const TablePagination = ({ ...rest }: TablePaginationProps) => {
   return (
     <S.PaginationWrapper data-testid="ds-table-pagination">
       <Pagination
-        hideOnSinglePage
+        // Default to showing the pager even on a single page — matches the legacy antd `ds-table`
+        // (antd Pagination defaults hideOnSinglePage to false). A consumer's `pagination` object can
+        // still override this via `{...rest}`.
+        hideOnSinglePage={false}
         {...rest}
         total={table.getRowCount()}
         onShowSizeChange={(_current, size) => {

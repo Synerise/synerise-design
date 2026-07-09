@@ -358,6 +358,15 @@ export type SharedTableProps<TData, TValue> = {
    */
   emptyDataComponent?: ReactNode;
   /**
+   * custom component shown instead of the default empty state when an internal search/filter
+   * (`matchesSearchQuery` or `filterData`) narrows a non-empty dataSource down to zero rows.
+   * Falls back to the `noResultsText` message when not provided. Independent of
+   * `emptyDataComponent` (the no-data UI) — pass the same node to both to reuse it.
+   * Not used for external search (pre-filtered `data`) — the table can't tell that case apart
+   * from an empty dataSource, so it renders the regular empty state there.
+   */
+  noResultsComponent?: ReactNode;
+  /**
    * Optional summary content rendered inside a <tfoot> at the bottom of the table.
    * Should be a <tr> (or fragment of <tr>s) with <td>/<th> cells matching the column layout.
    */
@@ -392,6 +401,7 @@ export type BaseTableProps<TData, TValue> = Omit<
   setSearchQuery?: (query: string) => void;
   handleSearchClear?: () => void;
   hasBuiltInSearch?: boolean;
+  hasNoSearchResults?: boolean;
 } & VirtualProps &
   PaginatedProps;
 
@@ -589,6 +599,7 @@ export type TableLimitTexts = {
 export type TableBodyTexts = TableEmptyBodyTexts & InfiniteLoaderRowTexts & {};
 export type TableEmptyBodyTexts = {
   emptyText: ReactNode;
+  noResultsText: ReactNode;
 };
 
 export type InfiniteLoaderRowTexts = {
@@ -622,6 +633,8 @@ export type TableBodyProps<TData, TValue> = Pick<
   | 'infiniteScroll'
   | 'cellHeight'
   | 'emptyDataComponent'
+  | 'noResultsComponent'
+  | 'hasNoSearchResults'
   | 'onRowClick'
   | 'getRowProps'
   | 'getRowTooltipProps'
@@ -632,7 +645,7 @@ export type TableBodyProps<TData, TValue> = Pick<
 
 export type TableEmptyBodyProps<TData, TValue> = Pick<
   TableBodyProps<TData, TValue>,
-  'emptyDataComponent'
+  'emptyDataComponent' | 'noResultsComponent' | 'hasNoSearchResults'
 > & {
   texts: TableEmptyBodyTexts;
 };

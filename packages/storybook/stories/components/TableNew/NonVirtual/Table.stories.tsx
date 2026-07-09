@@ -515,6 +515,82 @@ export const WithBuiltInSearch: StoryObj<typeof Table> = {
   },
 };
 
+// Type a query that matches nothing (e.g. "zzz") to see the search-aware empty state: because the
+// dataSource is non-empty but the filter removed every row, the table shows the "No results found"
+// message instead of the regular "No data" empty state. No extra prop needed.
+export const WithBuiltInSearchNoResults: StoryObj<typeof Table> = {
+  args: {
+    data: DATA_SOURCE,
+    columns: RESPONSIVE_COLUMNS,
+    title: 'Users',
+    matchesSearchQuery: (query, row) =>
+      row.name.toLowerCase().includes(query.toLowerCase()) ||
+      row.city.toLowerCase().includes(query.toLowerCase()),
+    searchProps: {
+      placeholder: 'Try searching for "zzz"...',
+      clearTooltip: 'Clear search',
+    },
+  },
+  parameters: {
+    docs: {
+      source: {
+        code: `// Search for something that matches no rows → "No results found" (auto, no extra prop).
+<Table
+  data={data}
+  columns={columns}
+  title="Users"
+  matchesSearchQuery={(query, row) =>
+    row.name.toLowerCase().includes(query.toLowerCase()) ||
+    row.city.toLowerCase().includes(query.toLowerCase())
+  }
+/>`,
+      },
+    },
+  },
+};
+
+// Override the no-results state with a custom component via `noResultsComponent`. Type a query that
+// matches nothing to see it. The genuine empty-data state (empty `data`) still uses `emptyDataComponent`.
+export const WithCustomNoResultsComponent: StoryObj<typeof Table> = {
+  args: {
+    data: DATA_SOURCE,
+    columns: RESPONSIVE_COLUMNS,
+    title: 'Users',
+    matchesSearchQuery: (query, row) =>
+      row.name.toLowerCase().includes(query.toLowerCase()) ||
+      row.city.toLowerCase().includes(query.toLowerCase()),
+    searchProps: {
+      placeholder: 'Try searching for "zzz"...',
+      clearTooltip: 'Clear search',
+    },
+    noResultsComponent: (
+      <Box p={24}>
+        <strong>No matches.</strong> Try a different search term.
+      </Box>
+    ),
+    emptyDataComponent: <Box p={24}>No users yet.</Box>,
+  },
+  parameters: {
+    docs: {
+      source: {
+        code: `<Table
+  data={data}
+  columns={columns}
+  title="Users"
+  matchesSearchQuery={(query, row) =>
+    row.name.toLowerCase().includes(query.toLowerCase()) ||
+    row.city.toLowerCase().includes(query.toLowerCase())
+  }
+  // shown when an active search/filter empties a non-empty table
+  noResultsComponent={<Box p={24}><strong>No matches.</strong> Try a different search term.</Box>}
+  // shown when the dataSource itself is empty
+  emptyDataComponent={<Box p={24}>No users yet.</Box>}
+/>`,
+      },
+    },
+  },
+};
+
 export const WithBuiltInSearchAndSelection: StoryObj<typeof Table> = {
   args: {
     ...WithBuiltInSearch.args,

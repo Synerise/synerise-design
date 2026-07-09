@@ -3,6 +3,8 @@ import {
   WithBuiltInSearch,
   WithBuiltInSearchAndSelection,
   WithCustomSearch,
+  WithBuiltInSearchNoResults,
+  WithCustomNoResultsComponent,
 } from './NonVirtual/Table.stories';
 
 <Meta title="Components/TableNew/Search" />
@@ -159,6 +161,32 @@ const filteredData = useMemo(() => {
 />
 ```
 
+## Empty state vs. no results
+
+When the table renders no rows it shows one of two empty states, and with internal search it tells them apart automatically:
+
+- **No data** — the dataSource itself is empty. Shows `emptyDataComponent` if provided, otherwise the `texts.emptyText` message (default "No data").
+- **No results** — an active **internal** search/filter (`matchesSearchQuery` or `filterData`) narrowed a non-empty dataSource down to zero rows. Shows `noResultsComponent` if provided, otherwise `texts.noResultsText` (default "No results found"). No extra prop is required for the default message — it switches on its own.
+
+```tsx
+<Table
+  data={data}
+  columns={columns}
+  matchesSearchQuery={(query, row) =>
+    row.name.toLowerCase().includes(query.toLowerCase())
+  }
+  // Optional overrides — both default to a localized message via `texts`:
+  noResultsComponent={<NoMatches />} // shown when a search/filter empties the table
+  emptyDataComponent={<NoUsersYet />} // shown when `data` is empty
+/>
+```
+
+<Canvas of={WithBuiltInSearchNoResults} sourceState="shown" />
+
+<Canvas of={WithCustomNoResultsComponent} sourceState="shown" />
+
+**Detection is automatic for built-in and `filterData` search** (the table compares the filtered row count against the source count). It is **not** available for **external search** (pre-filtered `data` + `searchComponent`): the table can't distinguish "filtered to nothing" from "genuinely empty", so it renders the regular empty state. With external search, drive the distinction yourself by passing a search-aware `emptyDataComponent` based on your own query state.
+
 ## When to use which mode
 
 {/* Note: MDX does not render markdown tables correctly. Use HTML tables or description lists instead. */}
@@ -229,6 +257,16 @@ const filteredData = useMemo(() => {
       <td><code>searchComponent</code></td>
       <td><code>ReactNode</code></td>
       <td>Custom search UI rendered in the header. When provided, replaces the built-in SearchInput rendering.</td>
+    </tr>
+    <tr>
+      <td><code>noResultsComponent</code></td>
+      <td><code>ReactNode</code></td>
+      <td>Shown instead of the default empty state when an internal search/filter (<code>matchesSearchQuery</code> / <code>filterData</code>) empties a non-empty table. Falls back to <code>emptyDataComponent</code>, then the <code>noResultsText</code> message. Not used for external search.</td>
+    </tr>
+    <tr>
+      <td><code>texts.noResultsText</code></td>
+      <td><code>ReactNode</code></td>
+      <td>Message for the no-results empty state (default "No results found", localized via <code>DS.TABLE.NO_RESULTS</code>). Used when no <code>noResultsComponent</code> / <code>emptyDataComponent</code> is provided.</td>
     </tr>
   </tbody>
 </table>

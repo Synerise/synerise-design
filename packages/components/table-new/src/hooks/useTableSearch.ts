@@ -15,6 +15,7 @@ type UseTableSearchResult<TData> = {
   setSearchQuery: (query: string) => void;
   handleClear: () => void;
   hasBuiltInSearch: boolean;
+  hasNoSearchResults: boolean;
 };
 
 export const useTableSearch = <TData>({
@@ -49,11 +50,19 @@ export const useTableSearch = <TData>({
     return data;
   }, [data, matchesSearchQuery, searchQuery, filterData]);
 
+  // True only when an internal search/filter narrowed a non-empty dataSource down to nothing —
+  // i.e. "no results", as opposed to a genuinely empty dataSource (both lengths 0 → "no data").
+  // Since displayData is always a filtered subset of data, data.length > 0 && displayData.length
+  // === 0 can only happen when matchesSearchQuery/filterData removed every row. External search
+  // (pre-filtered data, no predicate) leaves displayData === data, so it reads as "no data".
+  const hasNoSearchResults = data.length > 0 && displayData.length === 0;
+
   return {
     displayData,
     searchQuery,
     setSearchQuery,
     handleClear,
     hasBuiltInSearch,
+    hasNoSearchResults,
   };
 };

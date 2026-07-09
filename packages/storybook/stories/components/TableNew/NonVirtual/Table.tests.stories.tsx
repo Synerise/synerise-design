@@ -282,3 +282,44 @@ export const SortThenPaginateKeepsOrder: Story = {
     });
   },
 };
+
+// --- No results: the pagination footer is not rendered ----------------------
+
+// Empty dataSource → nothing to page through, so the pagination footer must be absent even though
+// pagination is enabled.
+export const EmptyDataNoPagination: Story = {
+  args: { data: [], columns: COLUMNS, pagination: { pageSize: 2 } },
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+    expect(canvas.queryByTestId(PAGINATION_TESTID)).not.toBeInTheDocument();
+  },
+};
+
+// Searching to zero matches → the pagination footer disappears, then returns once the query is
+// cleared and rows come back.
+export const SearchToZeroHidesPagination: Story = {
+  args: {
+    data: ROWS,
+    columns: COLUMNS,
+    pagination: { pageSize: 2 },
+    matchesSearchQuery: matchesName,
+    searchProps: { placeholder: 'Search', clearTooltip: 'Clear' },
+  },
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+    // Pagination is present with results.
+    expect(canvas.getByTestId(PAGINATION_TESTID)).toBeInTheDocument();
+    // A query that matches no row leaves zero results → pagination is removed.
+    const searchBox = canvas.getByRole('textbox');
+    await userEvent.type(searchBox, 'zzzznomatch');
+    await waitFor(() => {
+      expect(canvas.queryByText('Alice')).not.toBeInTheDocument();
+      expect(canvas.queryByTestId(PAGINATION_TESTID)).not.toBeInTheDocument();
+    });
+    // Clearing the query restores rows → pagination comes back.
+    await userEvent.clear(searchBox);
+    await waitFor(() => {
+      expect(canvas.getByTestId(PAGINATION_TESTID)).toBeInTheDocument();
+    });
+  },
+};

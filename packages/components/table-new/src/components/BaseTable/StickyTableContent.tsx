@@ -15,6 +15,8 @@ export type StickyTableContentProps<TData, TValue> = Pick<
   | 'texts'
   | 'isLoading'
   | 'emptyDataComponent'
+  | 'noResultsComponent'
+  | 'hasNoSearchResults'
   | 'onRowClick'
   | 'getRowProps'
   | 'getRowTooltipProps'
@@ -41,6 +43,8 @@ export const StickyTableContent = <TData extends object, TValue>({
   texts,
   isLoading,
   emptyDataComponent,
+  noResultsComponent,
+  hasNoSearchResults,
   onRowClick,
   getRowProps,
   getRowTooltipProps,
@@ -108,6 +112,8 @@ export const StickyTableContent = <TData extends object, TValue>({
             cellHeight={cellHeight}
             infiniteScroll={infiniteScroll}
             emptyDataComponent={emptyDataComponent}
+            noResultsComponent={noResultsComponent}
+            hasNoSearchResults={hasNoSearchResults}
             texts={texts}
             onRowClick={onRowClick}
             getRowProps={getRowProps}

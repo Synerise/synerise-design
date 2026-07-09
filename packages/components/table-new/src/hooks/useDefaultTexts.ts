@@ -93,6 +93,10 @@ export const useDefaultTexts = (
         id: 'DS.TABLE.NO_DATA',
         defaultMessage: 'No data',
       }),
+      noResultsText: intl.formatMessage({
+        id: 'DS.TABLE.NO_RESULTS',
+        defaultMessage: 'No results found',
+      }),
       selectRowTooltip: intl.formatMessage({
         id: 'DS.TABLE.SELECT_ROW_TOOLTIP',
         defaultMessage: 'Select',

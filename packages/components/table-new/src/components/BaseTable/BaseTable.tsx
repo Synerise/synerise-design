@@ -31,6 +31,7 @@ export const BaseTable = <TData extends object, TValue>({
   filterComponent,
   headerWithBorderTop,
   emptyDataComponent,
+  noResultsComponent,
   headerButton,
   hideColumnNames,
   expandable,
@@ -53,6 +54,7 @@ export const BaseTable = <TData extends object, TValue>({
   setSearchQuery,
   handleSearchClear,
   hasBuiltInSearch,
+  hasNoSearchResults,
   searchProps,
   summary,
 }: BaseTableProps<TData, TValue> & TableInternalProps) => {
@@ -77,6 +79,13 @@ export const BaseTable = <TData extends object, TValue>({
 
   const size = Object.values(columnSizing).reduce((sum, n) => sum + n, 0);
   const isEmpty = !table.getRowModel().flatRows.length;
+  // Hide the pagination footer entirely when there are no results to page through. getRowCount()
+  // is the prepagination row count: the filtered/searched set in client mode, or the server-driven
+  // `total` in manual mode — so this covers an empty dataSource, a search/filter matching nothing,
+  // and a server total of 0 alike. It mirrors the header counter's effective total
+  // (TableHeader: dataSourceTotalCount ?? getRowCount()), keeping "header shows 0" and
+  // "pagination hidden" consistent.
+  const hasResults = table.getRowCount() > 0;
 
   const contentProps = {
     infiniteScroll,
@@ -84,6 +93,8 @@ export const BaseTable = <TData extends object, TValue>({
     texts,
     isLoading,
     emptyDataComponent,
+    noResultsComponent,
+    hasNoSearchResults,
     onRowClick,
     getRowProps,
     getRowTooltipProps,
@@ -146,7 +157,9 @@ export const BaseTable = <TData extends object, TValue>({
         ) : (
           <StickyTableContent<TData, TValue> {...contentProps} />
         )}
-        {hasPagination && <TablePagination {...paginationProps} />}
+        {hasPagination && hasResults && (
+          <TablePagination {...paginationProps} />
+        )}
       </S.TableContainer>
       {!isEmpty && !!stickyContext && (
         <TableHorizontalScrollBar

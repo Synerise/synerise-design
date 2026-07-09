@@ -10,6 +10,7 @@ import {
 
 import {
   type PaginationState,
+  type Table as ReactTableInstance,
   type RowSelectionState,
   type SortingState,
   type Updater,
@@ -76,6 +77,10 @@ export const useTable = <TData, TValue>({
   const [rowSelection, setRowSelection] = useState<RowSelectionState>({}); // manage your own row selection state
   const [sorting, setSorting] = useState<SortingState>([]);
 
+  // Late-bound handle to the TanStack instance: the pagination-change handler (defined before the
+  // table exists) reaches the instance through this ref to drive internal state in client mode.
+  const tableInstanceRef = useRef<ReactTableInstance<TData> | null>(null);
+
   const childrenColumnName = getChildrenColumnName(
     expandable?.childrenColumnName,
   );
@@ -101,6 +106,7 @@ export const useTable = <TData, TValue>({
     setSearchQuery,
     handleClear: handleSearchClear,
     hasBuiltInSearch,
+    hasNoSearchResults,
   } = useTableSearch({
     data,
     matchesSearchQuery,
@@ -242,16 +248,19 @@ export const useTable = <TData, TValue>({
   const { initialState: paginationInitialState, ...paginationProps } =
     getPaginationConfig(!infiniteScroll && pagination);
 
-  // Server-side (manual) pagination — inferred, no extra prop. When the consumer hands us a
-  // `total` larger than the rows we actually hold, `data` is a single fetched page: page against
-  // the server `total` (rowCount) instead of slicing the local rows, and forward page/size changes
-  // to the consumer's handlers (which refetch). Client-side use (data is the full set, so
-  // total <= data.length, or no total) keeps TanStack's local slicing untouched.
+  // Server-side (manual) pagination — inferred, no extra prop. A consumer doing server-side paging
+  // declares a `total` and an `onChange` handler (to refetch); we then page against the server
+  // `total` (rowCount) and forward page/size changes instead of slicing local rows. `onChange` is a
+  // STABLE signal: relying on `total > data.length` alone wrongly flipped to client mode whenever a
+  // page happened to hold every row (e.g. pageSize >= total, or a filter narrowing the result),
+  // which reset the page-size control and silently dropped server paging. We keep the
+  // `total > data.length` branch too, so a consumer that declares only a server `total` (no handler)
+  // still pages manually. Client-side use (full data, no `total`/`onChange`) keeps local slicing.
   const manualPaginationConfig =
     hasPagination &&
     typeof pagination === 'object' &&
     pagination.total !== undefined &&
-    pagination.total > data.length
+    (pagination.total > data.length || pagination.onChange !== undefined)
       ? pagination
       : undefined;
   const isManualPagination = !!manualPaginationConfig;
@@ -276,6 +285,11 @@ export const useTable = <TData, TValue>({
   const manualPaginationRef = useRef(manualPagination);
   manualPaginationRef.current = manualPagination;
 
+  // Current mode/config read at call time by the stable handler below (avoids re-wiring TanStack's
+  // onPaginationChange every render, which would otherwise be merged-forward and go stale).
+  const manualPaginationConfigRef = useRef(manualPaginationConfig);
+  manualPaginationConfigRef.current = manualPaginationConfig;
+
   useEffect(() => {
     if (!isManualPagination) {
       return;
@@ -286,26 +300,34 @@ export const useTable = <TData, TValue>({
     });
   }, [consumerPageIndex, consumerPageSize, isManualPagination]);
 
-  const handleManualPaginationChange = useCallback(
+  // One handler for BOTH modes, wired to TanStack unconditionally (see options below) and stable.
+  const handlePaginationChange = useCallback(
     (updater: Updater<PaginationState>) => {
-      if (!manualPaginationConfig) {
+      const config = manualPaginationConfigRef.current;
+      if (config) {
+        // Manual (server) mode: drive the responsive local copy and forward to the consumer.
+        const prev = manualPaginationRef.current;
+        const next = typeof updater === 'function' ? updater(prev) : updater;
+        // Update the responsive copy synchronously so a follow-up change in the same tick (size +
+        // page can fire together) computes from the new value rather than reverting to the old size.
+        manualPaginationRef.current = next;
+        setManualPagination(next);
+        if (next.pageSize !== prev.pageSize) {
+          config.onShowSizeChange?.(next.pageIndex + 1, next.pageSize);
+        }
+        config.onChange?.(next.pageIndex + 1, next.pageSize);
         return;
       }
-      const prev = manualPaginationRef.current;
-      const next = typeof updater === 'function' ? updater(prev) : updater;
-      // Update the responsive copy synchronously so a follow-up change in the same tick (size +
-      // page can fire together) computes from the new value rather than reverting to the old size.
-      manualPaginationRef.current = next;
-      setManualPagination(next);
-      if (next.pageSize !== prev.pageSize) {
-        manualPaginationConfig.onShowSizeChange?.(
-          next.pageIndex + 1,
-          next.pageSize,
-        );
-      }
-      manualPaginationConfig.onChange?.(next.pageIndex + 1, next.pageSize);
+      // Client mode: mirror TanStack's default state-updater so its internal slicing still advances.
+      // We provide it explicitly (rather than letting the default run) because options are merged
+      // forward — once manual mode set onPaginationChange, omitting it would keep our handler wired.
+      tableInstanceRef.current?.setState((old) => ({
+        ...old,
+        pagination:
+          typeof updater === 'function' ? updater(old.pagination) : updater,
+      }));
     },
-    [manualPaginationConfig],
+    [],
   );
 
   const getSubRows = useCallback(
@@ -343,16 +365,17 @@ export const useTable = <TData, TValue>({
     getExpandedRowModel: expandable ? getExpandedRowModel() : undefined,
     getGroupedRowModel: getGroupedRowModel(),
 
-    // Server-side paging: page against the server total and don't slice the local page.
-    // Set these ONLY in manual mode — passing `onPaginationChange: undefined` in client mode
-    // overrides TanStack's default internal state-updater, which freezes page/size changes.
-    ...(isManualPagination
-      ? {
-          manualPagination: true,
-          rowCount: manualPaginationConfig.total,
-          onPaginationChange: handleManualPaginationChange,
-        }
-      : {}),
+    // Pagination mode is inferred per render and CAN flip (e.g. a filter narrows the result to a
+    // single page, or to zero rows). These keys MUST be passed on every render, never conditionally
+    // spread: TanStack merges options forward (setOptions does `{...prev, ...next}`), so omitting a
+    // key in client mode retains the stale manual-mode value — keeping `rowCount` at the old server
+    // total and `manualPagination` on. That stale rowCount then drives both `table.getRowCount()`
+    // (the pagination control's total) and BaseTable's `hasResults` gate, so the footer shows a
+    // phantom page count over a now-empty or single-page result. `onPaginationChange` is a single
+    // stable handler that branches on the live mode internally.
+    manualPagination: isManualPagination,
+    rowCount: manualPaginationConfig ? manualPaginationConfig.total : undefined,
+    onPaginationChange: handlePaginationChange,
 
     onRowSelectionChange: handleSelectionChange,
     // Swallow TanStack's expansion writes only when the consumer is the source
@@ -394,6 +417,10 @@ export const useTable = <TData, TValue>({
     },
   });
 
+  // Expose the instance to the (earlier-defined) pagination handler so it can drive internal
+  // client-mode state. Assigned during render — the handler only dereferences it on user events.
+  tableInstanceRef.current = table;
+
   // Reset to the first page whenever the built-in search query changes — filtering can otherwise
   // leave the user stranded on a now-out-of-range (empty) page. The ref-compare skips the initial
   // mount, so a table that opens on a specific page (e.g. server-side `current`) is not yanked back.
@@ -407,6 +434,12 @@ export const useTable = <TData, TValue>({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [searchQuery]);
 
+  // Whether an internal (client-side) search/filter is currently narrowing the rows: built-in
+  // `matchesSearchQuery` with an active query, or a `filterData` predicate. External/server search
+  // (pre-filtered `data`, no predicate) is excluded — there `displayData === data`.
+  const isInternallyFiltered =
+    (!!matchesSearchQuery && !!searchQuery) || !!filterData;
+
   return {
     table,
     paginationProps,
@@ -417,8 +450,13 @@ export const useTable = <TData, TValue>({
     setSearchQuery,
     handleSearchClear,
     hasBuiltInSearch,
-    // Header-counter source: prefer the declared server total, fall back to the rows we hold.
-    // (A consumer `dataSourceTotalCount` prop still wins — it is spread over this in Table.tsx.)
-    totalDataCount: paginationTotal ?? data.length,
+    hasNoSearchResults,
+    // Header-counter source: when an internal search/filter is narrowing the rows, the filtered
+    // count (so the counter shows what's actually matched — e.g. 0 for a no-match query — not the
+    // full dataSource). Otherwise prefer the declared server total, falling back to the rows we
+    // hold. (A consumer `dataSourceTotalCount` prop still wins — it is spread over this in Table.tsx.)
+    totalDataCount: isInternallyFiltered
+      ? displayData.length
+      : (paginationTotal ?? data.length),
   };
 };
