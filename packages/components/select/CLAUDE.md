@@ -8,7 +8,7 @@
 src/
  Select.tsx — main component (forwardRef, compound with .Option and .OptGroup)
  Select.types.ts — Props type (extends Antd SelectProps + FormFieldCommonProps)
- Select.styles.ts — styled-components: SelectContainer, AntdSelect, SelectWrapper, PrefixWrapper, SuffixWrapper
+ Select.styles.ts — styled-components: SelectContainer, SelectWrapper, Selector (.ds-select trigger box), PrefixWrapper, SuffixWrapper
  index.ts — default export, SelectProps type, SelectStyles namespace
  modules.d.ts — imports @testing-library/jest-dom
  style/
@@ -28,9 +28,8 @@ export * as SelectStyles from './Select.styles';
 
 ### `Select` (default)
 
-The default export is a compound component. Sub-components come from Antd directly:
-- `Select.Option` — `AntdSelect.Option`
-- `Select.OptGroup` — `AntdSelect.OptGroup`
+The default export is a compound component:
+- `Select.Option` — the DS `Option` marker component (`Select.OptGroup` is intentionally not reimplemented in the de-antd build).
 
 The component is wrapped in `forwardRef<HTMLDivElement, Props>`.
 
@@ -112,7 +111,7 @@ Two-layer styling approach:
 2. **styled-components** (`Select.styles.ts`) — handles DS-specific structural and state variants:
  - `SelectContainer` — `flex-direction: column`; adds `16px` bottom margin when `hasBottomMargin` is true.
  - `SelectWrapper` — `display: flex` row; applies `grey-050` background via `grey` prop (only when not in error state).
- - `AntdSelect` — extends Antd Select; handles `large` size height/line-height overrides, `withPrefixel`/`withSuffixel` border-radius removal, error border/shadow/background (`red-600`/`red-050`), and `readOnly` vs `disabled` visual differentiation.
+ - `Selector` (`.ds-select`) — the trigger box; handles `large` size height overrides, `withPrefixel`/`withSuffixel` border-radius removal, error border/shadow/background (`red-600`/`red-050`), open/focus state, and `readOnly` vs `disabled` visual differentiation.
  - `PrefixWrapper` / `SuffixWrapper` — `grey-050` background, `grey-300` inset box-shadow, rounded outer corners only; negative margin/padding creates flush border join with selector.
 
 The dropdown offset is hard-coded to `[0, 8]` px via `dropdownAlign` (STOR-588).
@@ -133,7 +132,7 @@ The search icon in the selector is replaced with an inline SVG data-URL using th
 - **`readOnly` is implemented via `disabled`** — both `readOnly` and `disabled` flags are ORed before passing to Antd's `disabled` prop. The visual distinction is achieved only through styled-components CSS on the `readOnly` transient prop.
 - **`it.only` in tests** — the `'should be empty'` test case uses `it.only`, which means the other tests in the file are skipped when running in isolation. This is likely unintentional.
 - **`listHeight` type widening** — Antd types `listHeight` as `number`, but DS overrides it to `ReactText` (`string | number`) to allow string values like `"auto"`.
-- **`selectorStyle` is not in README** — the prop exists in `Select.types.ts` and is wired in `AntdSelect` styled component but is not documented in the README.
+- **`selectorStyle`** — a `CSSProperties` object applied to the `Selector` styled box; documented in the Overview MDX.
 - **`clearIcon` is always overridden** — even if `clearIcon` is passed via `antdProps`, it is re-set internally. Any consumer-provided `clearIcon` will be ignored.
 - **`removeIcon` is always overridden** — same as `clearIcon`; custom `removeIcon` from consumer props is ignored.
 - **Compound component typing** — `SelectWithComponents` is typed as `SelectCompoundComponent = typeof Select & { Option, OptGroup }` using `Object.assign`, so `.Option` and `.OptGroup` are fully typed.

@@ -178,7 +178,7 @@ Extends `FormFieldCommonProps` (`label`, `tooltip`, `tooltipConfig`, `descriptio
     </tr>
     <tr>
       <td><code>getPopupContainer</code></td>
-      <td><code>(node: HTMLElement) =&gt; HTMLElement</code></td>
+      <td><code>(node: HTMLElement) =&gt; HTMLElement | ParentNode | null</code></td>
       <td>ds-utils default</td>
       <td>Container the floating dropdown mounts into.</td>
     </tr>
@@ -190,9 +190,9 @@ Extends `FormFieldCommonProps` (`label`, `tooltip`, `tooltipConfig`, `descriptio
     </tr>
     <tr>
       <td><code>dropdownMatchSelectWidth</code></td>
-      <td><code>boolean</code></td>
+      <td><code>boolean | number</code></td>
       <td><code>true</code></td>
-      <td>Match the dropdown width to the selector.</td>
+      <td>Match the dropdown width to the selector; a number fixes the dropdown width (px).</td>
     </tr>
     <tr>
       <td><code>dropdownRender</code></td>
@@ -245,11 +245,114 @@ Extends `FormFieldCommonProps` (`label`, `tooltip`, `tooltipConfig`, `descriptio
   </tbody>
 </table>
 
+### antd-parity props
+
+Additive props kept for back-compat with the antd-era API, so existing consumers need
+no change. `SelectValue` stays antd-free (no `LabeledValue`). The `SelectHandler` type
+is re-exported for consumers that referenced the antd-era name; to target the selector
+box in styles, use `Select.styles.Selector` (the `.ds-select` element).
+
+{/* MDX does not render markdown tables correctly — always use HTML tables */}
+
+<table>
+  <thead>
+    <tr>
+      <th>Prop</th>
+      <th>Type</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>searchValue</code></td>
+      <td><code>string</code></td>
+      <td>Controlled search-input value (pairs with <code>onSearch</code>).</td>
+    </tr>
+    <tr>
+      <td><code>onClear</code></td>
+      <td><code>() =&gt; void</code></td>
+      <td>Fired when the clear affordance is used.</td>
+    </tr>
+    <tr>
+      <td><code>onClick</code></td>
+      <td><code>(event) =&gt; void</code></td>
+      <td>Click handler on the selector box.</td>
+    </tr>
+    <tr>
+      <td><code>onInputKeyDown</code> / <code>onKeyDown</code></td>
+      <td><code>(event) =&gt; void</code></td>
+      <td>Keydown on the inner search input / on the selector.</td>
+    </tr>
+    <tr>
+      <td><code>suffixIcon</code> / <code>clearIcon</code></td>
+      <td><code>ReactNode</code></td>
+      <td>Custom icon replacing the dropdown arrow / the clear control.</td>
+    </tr>
+    <tr>
+      <td><code>maxLength</code></td>
+      <td><code>number</code></td>
+      <td>Max length of the search input.</td>
+    </tr>
+    <tr>
+      <td><code>maxTagCount</code> / <code>maxTagTextLength</code> / <code>maxTagPlaceholder</code></td>
+      <td><code>number</code> / <code>number</code> / <code>ReactNode</code></td>
+      <td>Tags/multiple display limits and the collapsed-overflow node.</td>
+    </tr>
+    <tr>
+      <td><code>listItemHeight</code></td>
+      <td><code>number</code></td>
+      <td>Fixed height per option row (accepted; list is non-virtualised).</td>
+    </tr>
+    <tr>
+      <td><code>popupClassName</code></td>
+      <td><code>string</code></td>
+      <td>antd v4 alias of <code>dropdownClassName</code>.</td>
+    </tr>
+    <tr>
+      <td><code>dropdownAlign</code></td>
+      <td><code>object</code></td>
+      <td>Dropdown alignment config (accepted for compatibility).</td>
+    </tr>
+    <tr>
+      <td><code>showArrow</code></td>
+      <td><code>boolean</code></td>
+      <td>Show the dropdown chevron (default <code>true</code>).</td>
+    </tr>
+    <tr>
+      <td><code>defaultActiveFirstOption</code></td>
+      <td><code>boolean</code></td>
+      <td>Highlight the first option when the dropdown opens.</td>
+    </tr>
+    <tr>
+      <td><code>autoFocus</code></td>
+      <td><code>boolean</code></td>
+      <td>Focus the selector / search input on mount.</td>
+    </tr>
+    <tr>
+      <td><code>tabIndex</code></td>
+      <td><code>number</code></td>
+      <td>Tab index forwarded to the selector / search input.</td>
+    </tr>
+    <tr>
+      <td><code>rowKey</code></td>
+      <td><code>(option) =&gt; Key</code></td>
+      <td>Item key extractor for options / children.</td>
+    </tr>
+    <tr>
+      <td><code>selectorStyle</code></td>
+      <td><code>CSSProperties</code></td>
+      <td>Inline style object applied to the selector box.</td>
+    </tr>
+  </tbody>
+</table>
+
 ### `Select.Option`
 
 Marker component (renders `null`); its `value`, children (→ label), `disabled` and
-`title` build the option list when the `options` prop is absent. The antd
-`Select.OptGroup` is intentionally **not** reimplemented (no real usage).
+`title` (`ReactNode`) build the option list when the `options` prop is absent. antd
+parity: `value` is optional and falls back to the element `key`, and callbacks expose
+`option.key`. The antd `Select.OptGroup` is intentionally **not** reimplemented (no
+real usage).
 
 ## Notes & tips
 
@@ -257,4 +360,6 @@ Marker component (renders `null`); its `value`, children (→ label), `disabled`
   target `.ds-select`, `.ds-select-selection-item`, `.ds-select-dropdown`, etc.
 - **Remote search** — set `filterOption={false}` and update `options` from your
   `onSearch` handler; the component won't filter locally in that mode.
-- **Keyboard-arrow active-option navigation and full ARIA** are still in progress.
+- **Keyboard navigation & ARIA** — Arrow / Home / End / Enter / Escape / Space (and
+  Backspace to drop the last chip) are wired, with combobox / listbox
+  `aria-activedescendant`.
