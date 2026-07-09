@@ -3,6 +3,10 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.12.9](https://github.com/Synerise/synerise-design/compare/@synerise/ds-factors@1.12.8...@synerise/ds-factors@1.12.9) (2026-07-09)
+
+**Note:** Version bump only for package @synerise/ds-factors
+
 ## [1.12.8](https://github.com/Synerise/synerise-design/compare/@synerise/ds-factors@1.12.7...@synerise/ds-factors@1.12.8) (2026-07-09)
 
 **Note:** Version bump only for package @synerise/ds-factors
