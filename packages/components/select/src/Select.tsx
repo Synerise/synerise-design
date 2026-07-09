@@ -1,6 +1,7 @@
 import React, {
   type ChangeEvent,
   type KeyboardEvent,
+  type ReactElement,
   type ReactNode,
   forwardRef,
   useEffect,
@@ -77,6 +78,7 @@ const SelectInner = forwardRef<HTMLDivElement, SelectProps>((props, ref) => {
     onClear,
     onClick,
     onInputKeyDown,
+    onKeyDown,
     mode,
     options,
     children,
@@ -87,6 +89,7 @@ const SelectInner = forwardRef<HTMLDivElement, SelectProps>((props, ref) => {
     allowClear,
     showSearch,
     searchValue,
+    maxLength,
     filterOption,
     optionFilterProp,
     optionLabelProp,
@@ -100,6 +103,7 @@ const SelectInner = forwardRef<HTMLDivElement, SelectProps>((props, ref) => {
     getPopupContainer = defaultGetPopupContainer,
     placement,
     dropdownClassName,
+    popupClassName,
     dropdownStyle,
     dropdownMatchSelectWidth = true,
     dropdownRender,
@@ -522,11 +526,13 @@ const SelectInner = forwardRef<HTMLDivElement, SelectProps>((props, ref) => {
       onChange={handleSearchChange}
       onKeyDown={(event) => {
         onInputKeyDown?.(event);
+        onKeyDown?.(event);
         handleKeyDown(event);
       }}
       placeholder={hasValue ? undefined : placeholderStr}
       disabled={isDisabled}
       autoFocus={autoFocus}
+      maxLength={maxLength}
       autoComplete="off"
       readOnly={!hasInput}
       id={id}
@@ -617,10 +623,11 @@ const SelectInner = forwardRef<HTMLDivElement, SelectProps>((props, ref) => {
           'ds-select-dropdown',
           'ps__child--consume',
           dropdownClassName,
+          popupClassName,
         )}
         overlayStyle={dropdownStyle}
         asChild
-        overlay={dropdownRender ? dropdownRender(menu) : menu}
+        overlay={dropdownRender ? dropdownRender(menu as ReactElement) : menu}
       >
         <S.Selector
           className={cx(
@@ -644,7 +651,14 @@ const SelectInner = forwardRef<HTMLDivElement, SelectProps>((props, ref) => {
           $selectorStyle={selectorStyle}
           aria-disabled={isDisabled}
           tabIndex={tabIndex ?? (hasInput || isDisabled ? undefined : 0)}
-          onKeyDown={hasInput ? undefined : handleKeyDown}
+          onKeyDown={
+            hasInput
+              ? undefined
+              : (event) => {
+                  onKeyDown?.(event);
+                  handleKeyDown(event);
+                }
+          }
           role={hasInput ? undefined : 'combobox'}
           aria-expanded={hasInput ? undefined : isOpen}
           aria-haspopup={hasInput ? undefined : 'listbox'}

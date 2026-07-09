@@ -4,6 +4,7 @@ import {
   type Key,
   type KeyboardEvent,
   type MouseEvent,
+  type ReactElement,
   type ReactNode,
 } from 'react';
 import { type CSSObject } from 'styled-components';
@@ -64,6 +65,8 @@ export type SelectProps<VT extends SelectValue = SelectValue> = {
   onClick?: (event: MouseEvent<HTMLDivElement>) => void;
   /** antd parity: keydown on the inner search input. */
   onInputKeyDown?: (event: KeyboardEvent<HTMLInputElement>) => void;
+  /** antd parity: keydown on the selector. */
+  onKeyDown?: (event: KeyboardEvent<HTMLElement>) => void;
 
   /** `undefined` = single-select; `'multiple'` / `'tags'` = multi-value. */
   mode?: SelectMode;
@@ -74,6 +77,8 @@ export type SelectProps<VT extends SelectValue = SelectValue> = {
   showSearch?: boolean;
   /** Controlled search-input value (antd parity). Pairs with `onSearch`. */
   searchValue?: string;
+  /** antd parity: max length of the search input. */
+  maxLength?: number;
   /** `true`/`false` toggles built-in filtering; a function is a custom predicate. */
   filterOption?: boolean | FilterOptionFn;
   /** Which option field the built-in filter matches against (default: label). */
@@ -96,6 +101,8 @@ export type SelectProps<VT extends SelectValue = SelectValue> = {
   /** Tags/multiple display limits (antd parity). */
   maxTagCount?: number;
   maxTagTextLength?: number;
+  /** antd parity: node shown for the collapsed overflow count. */
+  maxTagPlaceholder?: ReactNode;
   /** Characters that split typed text into tags in `mode="tags"`. */
   tokenSeparators?: string[];
 
@@ -106,11 +113,15 @@ export type SelectProps<VT extends SelectValue = SelectValue> = {
   getPopupContainer?: (trigger: HTMLElement) => HTMLElement | ParentNode | null;
   placement?: DropdownPlacement;
   dropdownClassName?: string;
+  /** antd v4 alias of `dropdownClassName`. */
+  popupClassName?: string;
+  /** antd parity: dropdown alignment config (accepted for compatibility). */
+  dropdownAlign?: Record<string, unknown>;
   dropdownStyle?: CSSProperties;
   /** Match the dropdown width to the selector (default true). A number fixes the dropdown width in px (antd parity). */
   dropdownMatchSelectWidth?: boolean | number;
-  /** Wrap the rendered option menu (custom footer / scroll container). */
-  dropdownRender?: (menu: ReactNode) => ReactNode;
+  /** Wrap the rendered option menu (custom footer / scroll container). antd parity: receives a `ReactElement`. */
+  dropdownRender?: (menu: ReactElement) => ReactNode;
   /** Max dropdown list height (px). */
   listHeight?: number | string;
   /** antd parity: fixed height per option row (px). Accepted for compatibility (non-virtualised list). */
