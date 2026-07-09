@@ -608,6 +608,7 @@ const SelectInner = forwardRef<HTMLDivElement, SelectProps>((props, ref) => {
       className="ds-select-wrapper"
       style={style}
       ref={raw ? ref : undefined}
+      onClick={onClick}
       {...passthroughAttrs}
     >
       {!!prefixel && <S.PrefixWrapper>{prefixel}</S.PrefixWrapper>}
@@ -645,7 +646,6 @@ const SelectInner = forwardRef<HTMLDivElement, SelectProps>((props, ref) => {
             isDisabled && 'ds-select-disabled',
             error && 'error',
           )}
-          onClick={onClick}
           $size={$size}
           $open={isOpen}
           $error={Boolean(errorText || error)}
