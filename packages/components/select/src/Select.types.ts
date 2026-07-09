@@ -1,4 +1,5 @@
 import {
+  type AriaAttributes,
   type CSSProperties,
   type FocusEvent,
   type Key,
@@ -149,7 +150,10 @@ export type SelectProps<VT extends SelectValue = SelectValue> = {
   className?: string;
   style?: CSSProperties;
   children?: ReactNode;
-} & FormFieldCommonProps;
+  /** antd parity: forward native `data-*` attributes (e.g. `data-testid`) to the select root. */
+  [dataAttr: `data-${string}`]: unknown;
+} & FormFieldCommonProps &
+  AriaAttributes;
 
 /** @deprecated internal alias kept for back-compat with the antd-era `Props` name. */
 export type Props<VT extends SelectValue = SelectValue> = SelectProps<VT>;

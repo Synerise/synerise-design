@@ -230,4 +230,19 @@ describe('Select (antd parity shims)', () => {
 
     expect(document.querySelector('.ds-select')).toBeTruthy();
   });
+
+  it('forwards data-* / aria-* attributes to the select root', () => {
+    renderWithProvider(
+      <Select
+        data-testid="my-select"
+        aria-label="pick one"
+        options={[{ value: 'a', label: 'Apple' }]}
+        placeholder="Pick"
+      />,
+    );
+
+    const root = screen.getByTestId('my-select');
+    expect(root).toBeTruthy();
+    expect(root.getAttribute('aria-label')).toBe('pick one');
+  });
 });

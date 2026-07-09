@@ -135,6 +135,13 @@ const SelectInner = forwardRef<HTMLDivElement, SelectProps>((props, ref) => {
   const isDisabled = Boolean(disabled || readOnly);
   const hasInput = Boolean(showSearch || isMultiple);
 
+  // antd parity: forward native `data-*` / `aria-*` attributes onto the select root.
+  const passthroughAttrs = Object.fromEntries(
+    Object.entries(props as Record<string, unknown>).filter(
+      ([key]) => key.startsWith('data-') || key.startsWith('aria-'),
+    ),
+  );
+
   const [internalValue, setInternalValue] = useState<SelectValue>(defaultValue);
   const currentValue = value !== undefined ? value : internalValue;
   const selectedValues = toArray(currentValue);
@@ -601,6 +608,7 @@ const SelectInner = forwardRef<HTMLDivElement, SelectProps>((props, ref) => {
       className="ds-select-wrapper"
       style={style}
       ref={raw ? ref : undefined}
+      {...passthroughAttrs}
     >
       {!!prefixel && <S.PrefixWrapper>{prefixel}</S.PrefixWrapper>}
       <Dropdown
