@@ -12,7 +12,7 @@ export type InputWrapperProps = {
 };
 
 const errorInputStyle = (props: ThemeProps): string => `
-  &&, .ant-input {
+  && {
     border-color: ${props.theme.palette['red-600']};
     box-shadow: inset 0 0 0 2px ${props.theme.palette['red-600']};
     background: ${props.theme.palette['red-050']};

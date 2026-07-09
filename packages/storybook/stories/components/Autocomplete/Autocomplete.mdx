@@ -1,0 +1,285 @@
+import { Meta, Canvas } from '@storybook/addon-docs/blocks';
+
+import AutocompleteMeta, {
+  Primary,
+  Suggestions,
+  WithIcons,
+  WithError,
+  Disabled,
+} from './Autocomplete.stories';
+
+<Meta of={AutocompleteMeta} />
+
+# Autocomplete
+
+A fully native (no Ant Design) autocomplete: an autosizing text-input trigger
+plus a floating options dropdown built on `@synerise/ds-dropdown`, wrapped in a
+`FormField` label/description/error layer.
+
+## Quick overview
+
+- Import the default export: `import Autocomplete from '@synerise/ds-autocomplete';`
+- **The component does not filter** — it renders `options` (or `Autocomplete.Option`
+  children) as given. Filter server-side via `onSearch`, or opt into client-side
+  matching with `filterOption`.
+- **Controlled input**: drive `value` + `onChange`; `onSearch` fires on every
+  keystroke; `onSelect` fires when an option is chosen.
+- **Open behaviour**: focusing, clicking, or typing in the input **opens** the
+  dropdown (never toggles it shut); selecting, `Escape`, or an outside click
+  closes it. `open` + `onDropdownVisibleChange` allow controlling visibility.
+- Options can be provided declaratively via `<Autocomplete.Option value="…">`
+  children (read only when the `options` prop is absent).
+
+## Basic example
+
+The input is controlled; `onSearch` builds the option list. Type to filter.
+
+<Canvas of={Primary} sourceState="shown" />
+
+## Suggestions
+
+Typing filters the list (here via a local `dataSource` in `onSearch`).
+
+<Canvas of={Suggestions} />
+
+## With icons
+
+Up to two action icons render at the right end of the input; each accepts a
+tooltip. Clicking an icon focuses the input.
+
+<Canvas of={WithIcons} />
+
+## Error state
+
+`errorText` renders a message below the input and applies error styling; `error`
+applies styling without a message.
+
+<Canvas of={WithError} />
+
+## Disabled
+
+`disabled` (and `readOnly`) disable the input and prevent the dropdown from opening.
+
+<Canvas of={Disabled} />
+
+## API reference
+
+### `Autocomplete`
+
+Extends `FormFieldCommonProps` (`label`, `tooltip`, `tooltipConfig`, `description`,
+`errorText`).
+
+{/* MDX does not render markdown tables correctly — always use HTML tables */}
+
+<table>
+  <thead>
+    <tr>
+      <th>Prop</th>
+      <th>Type</th>
+      <th>Default</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>options</code></td>
+      <td><code>AutocompleteOption[]</code></td>
+      <td>—</td>
+      <td>Options to render: <code>{`{ value: string; label?: ReactNode; disabled?: boolean }`}</code>. Rendered as given (no internal filtering).</td>
+    </tr>
+    <tr>
+      <td><code>children</code></td>
+      <td><code>ReactNode</code></td>
+      <td>—</td>
+      <td>Declarative options via <code>Autocomplete.Option</code>; read only when <code>options</code> is absent.</td>
+    </tr>
+    <tr>
+      <td><code>value</code></td>
+      <td><code>string</code></td>
+      <td>—</td>
+      <td>Controlled input value.</td>
+    </tr>
+    <tr>
+      <td><code>defaultValue</code></td>
+      <td><code>string</code></td>
+      <td>—</td>
+      <td>Uncontrolled initial value.</td>
+    </tr>
+    <tr>
+      <td><code>onChange</code></td>
+      <td><code>(value: string) =&gt; void</code></td>
+      <td>—</td>
+      <td>Fired on keystroke and on select.</td>
+    </tr>
+    <tr>
+      <td><code>onSearch</code></td>
+      <td><code>(value: string) =&gt; void</code></td>
+      <td>—</td>
+      <td>Fired on every keystroke.</td>
+    </tr>
+    <tr>
+      <td><code>onSelect</code></td>
+      <td><code>(value: string) =&gt; void</code></td>
+      <td>—</td>
+      <td>Fired when an option is chosen.</td>
+    </tr>
+    <tr>
+      <td><code>filterOption</code></td>
+      <td><code>boolean | ((input, option) =&gt; boolean)</code></td>
+      <td><code>false</code></td>
+      <td>Optional client-side filtering. <code>true</code> = default match on value/string label; a function = custom predicate.</td>
+    </tr>
+    <tr>
+      <td><code>open</code></td>
+      <td><code>boolean</code></td>
+      <td>—</td>
+      <td>Controlled dropdown visibility.</td>
+    </tr>
+    <tr>
+      <td><code>defaultOpen</code></td>
+      <td><code>boolean</code></td>
+      <td>—</td>
+      <td>Initial open state when uncontrolled.</td>
+    </tr>
+    <tr>
+      <td><code>onDropdownVisibleChange</code></td>
+      <td><code>(open: boolean) =&gt; void</code></td>
+      <td>—</td>
+      <td>Fired when dropdown visibility changes.</td>
+    </tr>
+    <tr>
+      <td><code>placement</code></td>
+      <td><code>DropdownPlacement</code></td>
+      <td><code>'bottomLeft'</code></td>
+      <td>Dropdown placement.</td>
+    </tr>
+    <tr>
+      <td><code>notFoundContent</code></td>
+      <td><code>ReactNode</code></td>
+      <td>—</td>
+      <td>Rendered inside the dropdown when there are no options.</td>
+    </tr>
+    <tr>
+      <td><code>defaultActiveFirstOption</code></td>
+      <td><code>boolean</code></td>
+      <td><code>true</code></td>
+      <td>Highlights the first option when the dropdown opens.</td>
+    </tr>
+    <tr>
+      <td><code>allowClear</code></td>
+      <td><code>boolean</code></td>
+      <td>—</td>
+      <td>Shows a clear (×) button when the input has a value.</td>
+    </tr>
+    <tr>
+      <td><code>icon1</code> / <code>icon2</code></td>
+      <td><code>ReactNode</code></td>
+      <td>—</td>
+      <td>Action icons at the right end of the input.</td>
+    </tr>
+    <tr>
+      <td><code>icon1Tooltip</code> / <code>icon2Tooltip</code></td>
+      <td><code>ReactNode</code></td>
+      <td>—</td>
+      <td>Tooltip content for the respective icon.</td>
+    </tr>
+    <tr>
+      <td><code>autoResize</code></td>
+      <td><code>AutoResizeProp</code></td>
+      <td>—</td>
+      <td><code>true</code>, or <code>{`{ minWidth; maxWidth?; stretchToFit? }`}</code> — sizes the input width to its content.</td>
+    </tr>
+    <tr>
+      <td><code>error</code></td>
+      <td><code>boolean</code></td>
+      <td>—</td>
+      <td>Explicit error styling (combined with <code>!!errorText</code>).</td>
+    </tr>
+    <tr>
+      <td><code>readOnly</code></td>
+      <td><code>boolean</code></td>
+      <td>—</td>
+      <td>Disabled + read-only styling; dropdown never opens.</td>
+    </tr>
+    <tr>
+      <td><code>disabled</code></td>
+      <td><code>boolean</code></td>
+      <td>—</td>
+      <td>Disables the input and the dropdown.</td>
+    </tr>
+    <tr>
+      <td><code>autoFocus</code></td>
+      <td><code>boolean</code></td>
+      <td>—</td>
+      <td>Focus the input on mount.</td>
+    </tr>
+    <tr>
+      <td><code>maxLength</code></td>
+      <td><code>number</code></td>
+      <td>—</td>
+      <td>Native input max length.</td>
+    </tr>
+    <tr>
+      <td><code>placeholder</code></td>
+      <td><code>ReactNode</code></td>
+      <td>—</td>
+      <td>Input placeholder (string form is used for autosize measuring).</td>
+    </tr>
+    <tr>
+      <td><code>handleInputRef</code></td>
+      <td><code>(ref: MutableRefObject&lt;AutocompleteInputHandle | null&gt;) =&gt; void</code></td>
+      <td>—</td>
+      <td>Receives a native handle <code>{`{ focus, blur, input }`}</code>.</td>
+    </tr>
+    <tr>
+      <td><code>getPopupContainer</code></td>
+      <td><code>(node: HTMLElement) =&gt; HTMLElement</code></td>
+      <td>parent node</td>
+      <td>Container the floating dropdown is mounted into.</td>
+    </tr>
+    <tr>
+      <td><code>onFocus</code> / <code>onBlur</code></td>
+      <td><code>(e: FocusEvent&lt;HTMLInputElement&gt;) =&gt; void</code></td>
+      <td>—</td>
+      <td>Native focus/blur handlers.</td>
+    </tr>
+  </tbody>
+</table>
+
+### `Autocomplete.Option`
+
+Marker component (renders `null`); its `value` and children (→ label) build the
+option list when the `options` prop is absent.
+
+<table>
+  <thead>
+    <tr>
+      <th>Prop</th>
+      <th>Type</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>value</code></td>
+      <td><code>string</code></td>
+      <td>The option value passed to <code>onSelect</code>.</td>
+    </tr>
+    <tr>
+      <td><code>children</code></td>
+      <td><code>ReactNode</code></td>
+      <td>Rendered label for the option.</td>
+    </tr>
+  </tbody>
+</table>
+
+## Notes & tips
+
+- **No internal filtering** — render the already-filtered `options`/children from
+  your `onSearch` handler, or set `filterOption` for antd-style client-side matching.
+- **Open is idempotent** — focus/click/type each only open the panel; a single
+  interaction can never open-then-close (this fixed a re-click open/close flicker).
+- **`handleInputRef`** exposes a native `{ focus, blur, input }` handle (not the
+  antd `RefSelectProps`).
+- **`autoResize` + `stretchToFit`** — inside a flex item, give the item
+  `min-width: 0; flex-grow: 1` so the input can grow/shrink correctly.

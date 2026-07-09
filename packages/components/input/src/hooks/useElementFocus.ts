@@ -1,10 +1,7 @@
-import type { InputRef } from 'antd';
 import { type MutableRefObject } from 'react';
 
-export const useElementFocus = (
-  ref: MutableRefObject<
-    HTMLInputElement | HTMLTextAreaElement | InputRef | null
-  >,
+export const useElementFocus = <T extends { focus: () => void }>(
+  ref: MutableRefObject<T | null>,
 ) => {
   return () => {
     ref.current && ref.current.focus();

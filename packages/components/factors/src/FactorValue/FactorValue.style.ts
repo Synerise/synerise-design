@@ -41,6 +41,17 @@ export const FactorInput = styled.div<{
           inputType === 'text' &&
           DEFAULT_WIDTH[`${inputType}-${inputTextType}`]
         ) {
+          // The native autocomplete is content-box and autosizes itself. A
+          // min-width on its <input> is a CONTENT min that, once padding + the
+          // icon gutter are added, over-constrains the control and pins it from
+          // resizing. Apply the min to the control wrapper (border-box) instead.
+          if (inputTextType === 'autocomplete') {
+            return css`
+              &&& .ds-autocomplete {
+                min-width: ${DEFAULT_WIDTH['text-autocomplete']};
+              }
+            `;
+          }
           return css`
             &&& {
               input {
@@ -59,23 +70,20 @@ export const FactorInput = styled.div<{
 
     .ds-autocomplete {
       display: flex;
+      /* The de-antd autocomplete carries its width on .ds-autocomplete itself
+         (AutocompleteWrapper defaults to 200px when autoResize is unset) and no
+         longer renders an inner .ant-select. Force the wrapper to fill the
+         FactorValue slot — restores the master-era override that used to sit on
+         the inner .ant-select (width 100%). */
+      width: 100%;
       > * {
         min-width: 0;
         flex-grow: 1;
-      }
-      .ant-select {
-        width: 100%;
       }
       .ant-select-selection-placeholder {
         padding: 0;
       }
       .ant-select-selector {
-        border-radius: ${(props): string =>
-          props.withoutTypeSelector ? '3px' : '0 3px 3px 0'};
-      }
-    }
-    .ant-dropdown-trigger {
-      input {
         border-radius: ${(props): string =>
           props.withoutTypeSelector ? '3px' : '0 3px 3px 0'};
       }

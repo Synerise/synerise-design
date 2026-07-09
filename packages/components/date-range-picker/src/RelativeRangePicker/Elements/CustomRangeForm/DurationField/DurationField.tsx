@@ -40,8 +40,8 @@ const DurationField = ({
         <InputNumber
           min={1}
           max={RELATIVE_DURATION_MAX}
-          precision={0}
           step={1}
+          valueFormatOptions={{ maximumFractionDigits: 0 }}
           value={duration?.value}
           onBlur={({ target: { value } }): void => {
             !value && handleDurationValueChange(1);

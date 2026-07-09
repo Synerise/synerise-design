@@ -12,6 +12,7 @@ import Icon, { FileM, SearchM } from '@synerise/ds-icon';
 import { Input, PasswordInput, TextArea } from '@synerise/ds-input';
 import InputNumber from '@synerise/ds-input-number';
 import ItemPicker from '@synerise/ds-item-picker';
+import { SearchInput } from '@synerise/ds-search';
 import Select from '@synerise/ds-select';
 import TimePicker from '@synerise/ds-time-picker';
 
@@ -55,6 +56,10 @@ const FieldStack = ({ error, readOnly, disabled, populated }: FieldState) => {
   // Autocomplete is controlled, so it needs real state to be typeable.
   const [autocompleteValue, setAutocompleteValue] = useState(
     populated ? 'Selected value' : '',
+  );
+  // SearchInput is controlled, so it needs real state to be typeable/clearable.
+  const [searchValue, setSearchValue] = useState(
+    populated ? 'Sample text' : '',
   );
   const errorText = error ? 'Error message' : undefined;
   const icon1 = <Icon component={<FileM />} />;
@@ -112,6 +117,21 @@ const FieldStack = ({ error, readOnly, disabled, populated }: FieldState) => {
         <Autocomplete.Option value="a">Option A</Autocomplete.Option>
         <Autocomplete.Option value="b">Option B</Autocomplete.Option>
       </Autocomplete>
+
+      {/* SearchInput (ds-search) has no `label` prop — wrap in FormField.
+          `alwaysExpanded` keeps the field open so its chrome is comparable; it
+          has no error/readOnly state (a discrepancy worth seeing). */}
+      <FormField label="Search input">
+        <SearchInput
+          alwaysExpanded
+          placeholder="Placeholder"
+          value={searchValue}
+          onChange={setSearchValue}
+          onClear={() => setSearchValue('')}
+          clearTooltip="Clear"
+          disabled={disabled}
+        />
+      </FormField>
 
       <Input
         label="Input"

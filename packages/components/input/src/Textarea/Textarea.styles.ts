@@ -90,19 +90,20 @@ export const TextareaWrapper = styled.div<{
       outline: 0;
       word-wrap: break-word;
       overflow-wrap: break-word;
+      /* native textarea doesn't inherit font-family — use the DS body font */
+      font-family: inherit;
+      font-size: 13px;
       font-variant-numeric: normal;
-      ::placeholder,
-      ::-webkit-input-placeholder {
+      &::placeholder,
+      &::-webkit-input-placeholder {
+        color: ${(props) => props.theme.palette['grey-500']};
         line-height: 1.38;
       }
-      :-ms-input-placeholder {
+      &:-ms-input-placeholder {
+        color: ${(props) => props.theme.palette['grey-500']};
         line-height: 1.38;
         //duplicate to override firefox styles
       }
-    }
-
-    .ant-input-textarea {
-      height: 100%;
     }
   }
 `;

@@ -15,7 +15,6 @@ import DSTextArea from './Textarea/Textarea';
 import { ElementIcons } from './components/ElementIcons';
 import { useElementFocus } from './hooks';
 import { useCounterLimit } from './hooks/useCounterLimit';
-import './style/index.less';
 import { getCharCount } from './utils';
 
 export const TextArea = ({
@@ -102,4 +101,4 @@ export const TextArea = ({
   );
 };
 
-export const RawTextArea = S.AntdTextArea;
+export const RawTextArea = S.RawTextArea;

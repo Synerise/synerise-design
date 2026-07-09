@@ -90,7 +90,7 @@ export const SearchBar: StyledInput = styled(Input)`
     position: relative;
     height: 52px;
     padding: 0;
-    input.ant-input {
+    input {
       position: absolute;
       top: 0;
       left: 0;
@@ -148,7 +148,7 @@ export const SearchBarWrapper = styled.div<{
         props.disabled ? props.theme.palette['grey-400'] : ''};
     }
 
-    input.ant-input {
+    input {
       border-radius: 0;
       line-height: 18px;
       ${getPaddingAndWidthForSearchBarAntInput}

@@ -7,7 +7,6 @@ import {
   BOOLEAN_CONTROL,
   CLASSNAME_ARG_CONTROL,
   NUMBER_CONTROL,
-  PREFIXCLS_ARG_CONTROL,
   REACT_NODE_AS_STRING,
   STRING_CONTROL,
   STYLE_ARG_CONTROL,
@@ -22,7 +21,7 @@ export default {
   decorators: [fixedWrapper300],
   parameters: {
     controls: {
-      exclude: ['precision', 'decimalSeparator', 'upHandler'],
+      exclude: ['precision'],
     },
   },
   argTypes: {
@@ -33,7 +32,6 @@ export default {
     min: NUMBER_CONTROL,
     max: NUMBER_CONTROL,
     step: NUMBER_CONTROL,
-    tabIndex: NUMBER_CONTROL,
     disabled: BOOLEAN_CONTROL,
     raw: BOOLEAN_CONTROL,
     autoResize: {
@@ -46,7 +44,6 @@ export default {
       },
     },
     readOnly: BOOLEAN_CONTROL,
-    stringMode: BOOLEAN_CONTROL,
     error: BOOLEAN_CONTROL,
     errorText: REACT_NODE_AS_STRING,
     description: REACT_NODE_AS_STRING,
@@ -55,22 +52,16 @@ export default {
     prefixel: REACT_NODE_AS_STRING,
     suffixel: REACT_NODE_AS_STRING,
     id: STRING_CONTROL,
-    onStep: {
-      action: 'onStep',
-    },
     onChange: {
       action: 'onChange',
     },
-    onPressEnter: {
-      action: 'onPressEnter',
+    onBlur: {
+      action: 'onBlur',
     },
-    prefixCls: PREFIXCLS_ARG_CONTROL,
   },
   args: {
-    onStep: fn(),
-    onFocus: fn(),
     onChange: fn(),
-    onPressEnter: fn(),
+    onBlur: fn(),
   },
 } as Meta<InputNumberProps>;
 

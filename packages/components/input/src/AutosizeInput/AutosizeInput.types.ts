@@ -1,11 +1,9 @@
-import type {
-  CSSProperties,
-  InputHTMLAttributes,
-  MutableRefObject,
-  ReactNode,
-  RefObject,
-} from 'react';
+import type { CSSProperties, InputHTMLAttributes } from 'react';
 
+/**
+ * Native auto-width input props. The component renders its own `<input>` and a
+ * hidden sizer; the forwarded ref points at the `<input>` element.
+ */
 export type AutosizeInputProps = Omit<
   InputHTMLAttributes<HTMLInputElement>,
   'size'
@@ -16,26 +14,4 @@ export type AutosizeInputProps = Omit<
   extraWidth?: number | string;
   minWidth?: number | string;
   onAutosize?: (newWidth: number) => void;
-  preAutosize?: (newWidth: number) => void;
-  transformRef?: (element: HTMLElement) => HTMLElement;
-  transformWrapperRef?: (element: HTMLElement) => HTMLElement;
-  handleInputRef?: (
-    element: HTMLInputElement,
-    originalElement: HTMLElement,
-  ) => HTMLElement;
-  children: ReactNode;
-};
-
-export type AutosizeWrapperProps = AutosizeInputProps & {
-  autoResize?: boolean;
-};
-
-export type AutosizeInputRefType = {
-  inputRef: MutableRefObject<HTMLInputElement | null>;
-  sizerRef: RefObject<HTMLDivElement>;
-  wrapperRef: RefObject<HTMLDivElement>;
-  inputWrapperRef: RefObject<HTMLElement>;
-  placeholderSizerRef: RefObject<HTMLDivElement>;
-  copyInputStyles: () => void;
-  updateInputWidth: () => void;
 };

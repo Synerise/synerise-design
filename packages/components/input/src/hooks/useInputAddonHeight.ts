@@ -1,14 +1,12 @@
-import type { InputRef } from 'antd';
 import { type MutableRefObject, useEffect, useState } from 'react';
 
 export const useInputAddonHeight = (
-  inputRef: MutableRefObject<InputRef | null>,
+  inputRef: MutableRefObject<HTMLInputElement | null>,
 ) => {
   const [inputAddonHeight, setInputAddonHeight] = useState(0);
   useEffect(() => {
-    inputRef.current &&
-      inputRef.current.input?.offsetHeight &&
-      setInputAddonHeight(inputRef.current.input?.offsetHeight);
+    inputRef.current?.offsetHeight &&
+      setInputAddonHeight(inputRef.current.offsetHeight);
   }, [inputRef]);
   return { inputAddonHeight };
 };

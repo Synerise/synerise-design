@@ -39,8 +39,8 @@ const OffsetField = ({
         <InputNumber
           min={0}
           max={RELATIVE_OFFSET_MAX}
-          precision={0}
           step={1}
+          valueFormatOptions={{ maximumFractionDigits: 0 }}
           value={offset?.value}
           onBlur={({ target: { value } }): void => {
             !value && handleOffsetValueChange(0);

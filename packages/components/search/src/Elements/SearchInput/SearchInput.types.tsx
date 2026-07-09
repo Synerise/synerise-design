@@ -1,7 +1,20 @@
-import type { InputProps } from 'antd';
-import type { KeyboardEvent, ReactNode } from 'react';
+import type {
+  InputHTMLAttributes,
+  KeyboardEvent,
+  KeyboardEventHandler,
+  ReactNode,
+} from 'react';
 
 import type { TooltipProps } from '@synerise/ds-tooltip';
+
+/**
+ * Native input attributes plus the antd-compat `onPressEnter` convenience
+ * (fired on Enter). The native `<input>` has no `onPressEnter`, so `SearchInput`
+ * translates it to an Enter check on `onKeyDown`.
+ */
+export type SearchInputAttributes = InputHTMLAttributes<HTMLInputElement> & {
+  onPressEnter?: KeyboardEventHandler<HTMLInputElement>;
+};
 
 export type SearchInputProps = {
   alwaysExpanded?: boolean;
@@ -25,6 +38,6 @@ export type SearchInputProps = {
   moveCursorToEnd?: boolean;
   disableInput?: boolean;
   disabled?: boolean;
-  inputProps?: Partial<InputProps>;
+  inputProps?: SearchInputAttributes;
   searchTooltipProps?: Partial<TooltipProps>;
 };

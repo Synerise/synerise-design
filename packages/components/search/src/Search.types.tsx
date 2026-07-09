@@ -1,8 +1,9 @@
-import { type InputProps } from 'antd';
 import type React from 'react';
 import { type ListProps } from 'react-window';
 
 import { type TooltipProps } from '@synerise/ds-tooltip';
+
+import { type SearchInputAttributes } from './Elements/SearchInput/SearchInput.types';
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export type AnyObject = Record<string, any>;
@@ -36,7 +37,7 @@ export type SearchProps<
   divider?: React.ReactNode;
   dropdownMaxHeight: number;
   filterLookupKey?: string;
-  inputProps?: InputProps;
+  inputProps?: SearchInputAttributes;
   onClear: () => void;
   onParameterValueChange: (parameterValue: string, parameter: U | null) => void;
   onValueChange: (value: string) => void;

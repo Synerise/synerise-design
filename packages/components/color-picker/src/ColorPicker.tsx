@@ -11,7 +11,7 @@ import { HexColorPicker as ReactColorful } from 'react-colorful';
 import Divider from '@synerise/ds-divider';
 import Dropdown from '@synerise/ds-dropdown';
 import Icon, { FormulaPlusM } from '@synerise/ds-icon';
-import Tags, { Tag, TagShape } from '@synerise/ds-tags';
+import { Tag, TagShape } from '@synerise/ds-tags';
 import Tooltip from '@synerise/ds-tooltip';
 import {
   getPopupContainer as defaultGetPopupContainer,
@@ -157,31 +157,43 @@ const ColorPicker = ({
   const swatchSection = (
     <S.SwatchSectionWrapper>
       <Tooltip title="Save color swatch">
-        <S.AddColorButton mode="single-icon" type="ghost" onClick={saveColor}>
+        <S.SwatchCreatorButton
+          type="button"
+          aria-label="Save color swatch"
+          onClick={saveColor}
+        >
           <Icon size={16} component={<FormulaPlusM />} />
-        </S.AddColorButton>
+        </S.SwatchCreatorButton>
       </Tooltip>
       {infix({ color: colorTextInput, setColor: onChangeTextColor })}
-      {savedColors.length > 0 && (
-        <Tags
-          tagShape={TagShape.SINGLE_CHARACTER_SQUARE}
-          // @ts-ignore
-          selected={savedColors.map((colorEntry, i) => ({
-            id: i,
-            key: `color-${i}`,
-            name: (
-              <Tooltip title={colorEntry}>
-                <S.TagDot pressed={i === pressed} />
-              </Tooltip>
-            ),
-            color: colorEntry,
-            onClick() {
-              onChangeHexColor(colorEntry);
-              setPressed(i);
-            },
-          }))}
-        />
-      )}
+      {Array.from({ length: maxSavedColors }, (_, i) => {
+        const colorEntry = savedColors[i];
+        if (colorEntry === undefined) {
+          return (
+            <S.SwatchPlaceholder
+              key={`swatch-placeholder-${i}`}
+              className="ds-color-swatch-placeholder"
+            />
+          );
+        }
+        return (
+          <Tooltip key={`swatch-${i}`} title={colorEntry}>
+            <S.Swatch
+              type="button"
+              className="ds-color-swatch"
+              aria-label={colorEntry}
+              aria-pressed={i === pressed}
+              style={{ backgroundColor: colorEntry }}
+              onClick={() => {
+                onChangeHexColor(colorEntry);
+                setPressed(i);
+              }}
+            >
+              {i === pressed && <S.SwatchDot />}
+            </S.Swatch>
+          </Tooltip>
+        );
+      })}
     </S.SwatchSectionWrapper>
   );
 
@@ -230,7 +242,7 @@ const ColorPicker = ({
         data-testid="color-picker"
         disabled={disabled}
         readOnly={readOnly}
-        prefix={
+        innerPrefix={
           <S.ColorTag
             shape={TagShape.SINGLE_CHARACTER_ROUND}
             color={lastValidHexColor}

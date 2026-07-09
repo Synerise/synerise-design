@@ -1,7 +1,7 @@
-import type { InputProps } from 'antd';
 import type { ReactNode } from 'react';
 
 import type { AutocompleteProps } from '@synerise/ds-autocomplete';
+import type { InputProps } from '@synerise/ds-input';
 
 export type EditableParam = { name: string; value: string };
 

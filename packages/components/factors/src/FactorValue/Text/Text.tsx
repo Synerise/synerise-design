@@ -1,4 +1,3 @@
-import type { RefSelectProps } from 'antd';
 import React, {
   type ChangeEvent,
   type MutableRefObject,
@@ -9,7 +8,10 @@ import React, {
   useState,
 } from 'react';
 
-import Autocomplete from '@synerise/ds-autocomplete';
+import Autocomplete, {
+  type AutocompleteInputHandle,
+  type AutocompleteProps,
+} from '@synerise/ds-autocomplete';
 import { useTheme } from '@synerise/ds-core';
 import Icon, { FullScreenM } from '@synerise/ds-icon';
 import { Input } from '@synerise/ds-input';
@@ -38,7 +40,9 @@ const TextInput = ({
   const [openExpanseEditor, setOpenExpanseEditor] = useState(false);
   const [inputRef, setInputRef] =
     useState<
-      MutableRefObject<HTMLInputElement | RefSelectProps | null | undefined>
+      MutableRefObject<
+        HTMLInputElement | AutocompleteInputHandle | null | undefined
+      >
     >();
   const [localValue, setLocalValue] = useState(() => value);
   const [localError, setLocalError] = useState(false);
@@ -113,7 +117,7 @@ const TextInput = ({
     if (typesOfInput === 'autocomplete' && factorsType === 'text') {
       return (
         <Autocomplete
-          {...inputProps}
+          {...(inputProps as Partial<AutocompleteProps>)}
           {...autoCompleteProps}
           placeholder={texts.valuePlaceholder}
           value={localValue as string}

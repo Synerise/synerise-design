@@ -1,28 +1,27 @@
 import styled, { css } from 'styled-components';
 
 import { type AutoResizeProp } from '@synerise/ds-input';
-import { autoresizeConfObjToCss } from '@synerise/ds-input/dist/Input.styles';
 
 import { ICON_GAP, ICON_OFFSET } from './Autocomplete.const';
 import { getIconsWidth } from './utils/getIconsWidth';
 
-const active = () => css`
+const baseTransition = css`
   transition:
     ease-in-out all 0.2s,
     width 0s,
     min-width 0s,
     max-width 0s;
+`;
+
+const active = () => css`
+  ${baseTransition};
   box-shadow: inset 0 0 0 1px ${(props) => props.theme.palette['blue-600']};
   border: 1px solid ${(props) => props.theme.palette['blue-600']};
   background-color: ${(props) => props.theme.palette['blue-050']};
 `;
 
-const error = () => css`
-  transition:
-    ease-in-out all 0.2s,
-    width 0s,
-    min-width 0s,
-    max-width 0s;
+const errorStyle = () => css`
+  ${baseTransition};
   box-shadow: inset 0 0 0 1px ${(props) => props.theme.palette['red-600']};
   background: ${(props) => props.theme.palette['red-050']};
   border: 1px solid ${(props) => props.theme.palette['red-600']};
@@ -31,64 +30,98 @@ const error = () => css`
 const readonly = () => css`
   background-color: ${(props) => props.theme.palette.white};
   color: ${(props) => props.theme.palette['grey-700']};
-  input {
-    cursor: auto;
+  cursor: auto;
+`;
+
+export const InputContainer = styled.div<{ autoResize?: AutoResizeProp }>`
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  box-sizing: border-box;
+  /* autoResize: content-sized (inline-flex) — the autosize hook writes an inline
+     width, and because the box is content-sized that width propagates as the
+     flex-basis to layout-balancing parents (e.g. Condition). stretchToFit adds a
+     PERCENTAGE max-width so the box can never exceed its containing block (the
+     flex-allocated slot, already inside any parent padding). A percentage
+     max-width is ignored when computing max-content, so the flex-basis stays the
+     content width — no circular measurement, no JS, no settling. The min-width
+     floor keeps a sensible minimum. non-autoResize: fill the 200px wrapper. */
+  width: ${(props) => (props.autoResize ? 'auto' : '100%')};
+  ${(props) => {
+    const ar = props.autoResize;
+    if (!ar || ar === true) {
+      return '';
+    }
+    let maxWidth = '';
+    if (ar.maxWidth) {
+      maxWidth = `max-width: ${ar.maxWidth};`;
+    } else if (ar.stretchToFit) {
+      maxWidth = 'max-width: 100%;';
+    }
+    return css`
+      min-width: ${ar.minWidth};
+      ${maxWidth}
+    `;
+  }}
+`;
+
+export const NativeInput = styled.input<{
+  iconCount?: number;
+}>`
+  /* The input just fills the InputContainer (which owns the autosize width /
+     min / max-width); it's always a plain 32px border-box box. */
+  box-sizing: border-box;
+  width: 100%;
+  height: 32px;
+  margin: 0;
+  /* Own the padding with doubled specificity so a leaked descendant rule
+     (e.g. ds-input OuterWrapper's \`input { padding: 7px 12px }\` when the
+     autocomplete sits inside a ds-input InputGroup, as in Factors) cannot
+     override it and clobber the icon gutter / vertical box model. */
+  && {
+    padding: 0 10px;
+    padding-right: ${(props) =>
+      `${getIconsWidth(props.iconCount || 0) + 10}px`};
+  }
+  border: 1px solid ${(props) => props.theme.palette['grey-300']};
+  border-radius: 3px;
+  background-color: ${(props) => props.theme.palette.white};
+  color: ${(props) => props.theme.palette['grey-700']};
+  /* inherit the DS body font — native inputs don't inherit font-family */
+  font-family: inherit;
+  font-size: 13px;
+  line-height: 1.54;
+  font-feature-settings: 'tnum';
+  outline: none;
+  ${baseTransition};
+
+  &::placeholder {
+    color: ${(props) => props.theme.palette['grey-500']};
+  }
+
+  &:hover:not(:disabled) {
+    border-color: ${(props) => props.theme.palette['grey-400']};
+  }
+
+  &:disabled {
+    background-color: ${(props) => props.theme.palette['grey-050']};
+    color: ${(props) => props.theme.palette['grey-400']};
+    cursor: not-allowed;
+  }
+
+  &:focus {
+    ${active()};
+    &:hover {
+      ${active()};
+    }
   }
 `;
 
 export const AutocompleteWrapper = styled.div<{ autoResize?: AutoResizeProp }>`
-  input {
-    font-feature-settings: 'tnum';
-  }
-  .ant-select-auto-complete {
-    width: ${(props) => (props.autoResize ? '100%' : '200px')};
-    ${(props) => autoresizeConfObjToCss({ ...props, boxSizing: 'border-box' })};
-    grid-area: 1 / 1;
-  }
-
-  .ant-select > span {
-    position: absolute;
-    left: 0;
-    top: 0;
-  }
-
-  .ant-select-dropdown {
-    .ant-select-selection__rendered {
-      margin: 0;
-    }
-
-    .ant-select-selection:hover .ant-select-selection__rendered {
-      margin-right: 10px;
-    }
-
-    .ant-select-selection__clear {
-      font-size: 15px;
-      color: ${(props) => props.theme.palette['grey-600']};
-      width: 16px;
-      height: 16px;
-      margin-top: -7px;
-    }
-
-    &.ant-select:not(.ant-select-no-arrow) .ant-select-selection__clear {
-      right: 12px;
-
-      &:hover {
-        color: ${(props) => props.theme.palette['grey-700']};
-      }
-    }
-
-    .ant-select-dropdown-menu-item {
-      font-weight: normal;
-
-      strong {
-        font-weight: 500;
-      }
-    }
-  }
-  .ant-select-selection-search-input {
-    padding: 0;
-    padding-right: 10px;
-  }
+  /* Non-autoResize: fixed 200px (a consumer style={{ width }} overrides inline).
+     autoResize: fill the slot so stretchToFit measures the true available width
+     off this element; the InputContainer inside stays content-sized. */
+  width: ${(props) => (props.autoResize ? '100%' : '200px')};
 `;
 
 export const IconWrapper = styled.div`
@@ -102,70 +135,69 @@ export const IconWrapper = styled.div`
   z-index: 5;
 `;
 
+export const ClearButton = styled.button`
+  position: absolute;
+  right: 8px;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 16px;
+  height: 16px;
+  padding: 0;
+  border: none;
+  background: transparent;
+  color: ${(props) => props.theme.palette['grey-600']};
+  font-size: 15px;
+  line-height: 1;
+  cursor: pointer;
+  z-index: 6;
+
+  &:hover {
+    color: ${(props) => props.theme.palette['grey-700']};
+  }
+`;
+
 export const ComponentWrapper = styled.div<{
   error?: boolean;
   readOnly?: boolean;
   iconCount?: number;
 }>`
-&&& {
-  ${(props) =>
-    props.iconCount &&
-    `
-    position: relative;
-    display: inline-block;
-    & {
-        .ant-select .ant-select-selector .ant-select-selection-search {
-          right: ${getIconsWidth(props.iconCount)}px;
-        }
-      }
-  `};
-  .ant-select-auto-complete {
-    
+  &&& {
+    /* Block (not inline-block) so it fills the flex-allocated slot and becomes
+       the InputContainer's containing block — the InputContainer's percentage
+       max-width then clamps to the real available width, inside FormField
+       padding. inline-block would shrink-wrap the content and break out. */
+    ${(props) =>
+      props.iconCount
+        ? css`
+            position: relative;
+          `
+        : ''};
+
     ${(props) => {
       if (props.readOnly) {
         return css`
-          .ant-select-selector {
+          ${NativeInput} {
+            ${readonly()};
             &:hover {
-              ${readonly()}
+              ${readonly()};
             }
-            ${readonly()}
           }
         `;
       }
       if (props.error) {
         return css`
-          .ant-select-selector {
+          ${NativeInput} {
+            ${errorStyle()};
             &:hover {
-              ${error()}
+              ${errorStyle()};
             }
-            ${error()}
           }
         `;
       }
-      return css`
-        &.ant-select {
-          .ant-select-selector {
-            padding: 0 10px;
-          }
-          .ant-input {
-            transition:
-              ease-in-out all 0.3s,
-              width 0s,
-              min-width 0s,
-              max-width 0s;
-            &:focus {
-              ${active()}
-              &:hover {
-                ${active()}
-              }
-            }
-          }
-        }
-      `;
+      return '';
     }}
-
-      
-    }   
   }
-}
 `;

@@ -38,7 +38,7 @@ describe('ItemsRoll', () => {
       <ItemsRoll {...props} useFooter />,
     );
 
-    const searchInput = container.querySelector('.ant-input')!;
+    const searchInput = container.querySelector('.ds-search-input')!;
 
     expect(
       await screen.findByText(`${DEFAULT_ITEMS_LENGTH}`),
@@ -204,7 +204,7 @@ describe('ItemsRoll', () => {
       <ItemsRoll {...props} useFooter />,
     );
 
-    const searchInput = container.querySelector('.ant-input') as HTMLElement;
+    const searchInput = container.querySelector('.ds-search-input') as HTMLElement;
 
     fireEvent.change(searchInput, {
       target: { value: '5' },
@@ -235,7 +235,7 @@ describe('ItemsRoll', () => {
       <ItemsRoll {...props} useFooter />,
     );
 
-    const searchInput = container.querySelector('.ant-input') as HTMLElement;
+    const searchInput = container.querySelector('.ds-search-input') as HTMLElement;
 
     expect(searchInput.getAttribute('value')).toBe('5');
   });

@@ -1,4 +1,3 @@
-import { Input } from 'antd';
 import React, { Children } from 'react';
 
 import FormField from '@synerise/ds-form-field';
@@ -10,14 +9,30 @@ import { type Props } from './InputGroup.types';
 const InputGroup = ({
   children,
   label,
+  errorText,
   errors,
   description,
   resetMargin,
   tooltip,
   tooltipConfig,
-  ...antdInputGroupProps
+  compact,
+  growItem,
+  className,
+  style,
+  // antd `Input.Group` size cascade is no longer applied; size each child input directly.
+  size: _size,
+  ...rest
 }: Props) => {
   const childrenArray = Children.toArray(children);
+  // Prefer the FormField-standard `errorText`; fall back to the deprecated
+  // `errors` string array (each rendered as its own line) for callers that
+  // haven't migrated yet.
+  const resolvedErrorText =
+    errorText ??
+    (errors &&
+      errors.map((error) => (
+        <InputStyles.ErrorText key={error}>{error}</InputStyles.ErrorText>
+      )));
   return (
     <InputStyles.OuterWrapper
       className="ds-input-group-outer-wrapper"
@@ -28,24 +43,23 @@ const InputGroup = ({
         tooltip={tooltip}
         tooltipConfig={tooltipConfig}
         description={description}
-        errorText={
-          errors &&
-          errors.map((error) => (
-            <InputStyles.ErrorText key={error}>{error}</InputStyles.ErrorText>
-          ))
-        }
+        errorText={resolvedErrorText}
       >
-        <Input.Group {...antdInputGroupProps}>
-          <S.InputGroupWrapper compact={antdInputGroupProps.compact}>
-            {Children.map(childrenArray, (child, index) => (
-              <S.InputGroupItem
-                className={`ds-input-group-item ds-input-group-item-${index}`}
-              >
-                {child}
-              </S.InputGroupItem>
-            ))}
-          </S.InputGroupWrapper>
-        </Input.Group>
+        <S.InputGroupWrapper
+          compact={compact}
+          $growItem={growItem}
+          className={className}
+          style={style}
+          {...rest}
+        >
+          {Children.map(childrenArray, (child, index) => (
+            <S.InputGroupItem
+              className={`ds-input-group-item ds-input-group-item-${index}`}
+            >
+              {child}
+            </S.InputGroupItem>
+          ))}
+        </S.InputGroupWrapper>
       </FormField>
     </InputStyles.OuterWrapper>
   );

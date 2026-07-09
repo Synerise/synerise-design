@@ -172,7 +172,7 @@ export const Container = styled.div<{ active?: boolean; disabled?: boolean }>`
     ${Inactive} {
       line-height: 18px;
     }
-    .ant-input::placeholder {
+    input::placeholder {
       line-height: 16px;
     }
   }
@@ -193,7 +193,7 @@ export const Container = styled.div<{ active?: boolean; disabled?: boolean }>`
       transition: all 0s linear !important;
     }
   }
-  && .ant-input-number-input::placeholder {
+  && .ds-input-number-input::placeholder {
     padding-bottom: 8px;
   }
   ${(props) =>

@@ -1,7 +1,8 @@
-import { Input as BaseAntInput, type InputProps, type InputRef } from 'antd';
-import { type SizeType } from 'antd/es/config-provider/SizeContext';
-import type { TextAreaProps, TextAreaRef } from 'antd/lib/input/TextArea';
-import React, { forwardRef } from 'react';
+import React, {
+  type InputHTMLAttributes,
+  type TextareaHTMLAttributes,
+  forwardRef,
+} from 'react';
 import styled, {
   type FlattenSimpleInterpolation,
   css,
@@ -9,13 +10,11 @@ import styled, {
 
 import { type ThemeProps } from '@synerise/ds-core';
 
-import type { AutoResizeProp } from './Input.types';
+import type { AutoResizeProp, InputSize } from './Input.types';
 import { TextareaWrapper } from './Textarea/Textarea.styles';
 
-const { TextArea } = BaseAntInput;
-
 const errorInputStyle = (props: ThemeProps) => `
-  &&&, && .ant-input {
+  &&& {
     border-color: ${props.theme.palette['red-600']};
     box-shadow: inset 0 0 0 1px ${props.theme.palette['red-600']};
     background: ${props.theme.palette['red-050']};
@@ -69,16 +68,13 @@ export const Wrapper = styled.div`
 
 export const InputWrapper = styled.div<{ iconCount?: number }>`
   position: relative;
-  && .ant-input {
+  && input {
     padding-right: ${(props) => {
       return `${getIconsWidth(props.iconCount || 0) + INPUT_PADDING}px`;
     }};
     &::placeholder {
       line-height: 1.29;
     }
-  }
-  .ant-input-group-addon {
-    height: 100%;
   }
 `;
 
@@ -98,8 +94,11 @@ export const OuterWrapper = styled.div<
       }
     }
   }
+  /* Do NOT set padding on this descendant \`input\` — NativeInput already owns
+     it, and a padding here (0,1,1) overrides NativeInput's $hasInnerPrefix /
+     $hasPrefixel / $hasSuffixel adjustments (0,1,0) and leaks onto any nested
+     foreign input (e.g. an autocomplete inside an InputGroup). */
   input {
-    padding: 7px ${INPUT_PADDING}px;
     ${(props) => autoresizeConfObjToCss(props)}
   }
 
@@ -154,74 +153,206 @@ export const IconWrapper = styled.div`
   }
 `;
 
-export const AntdInput = styled(
-  forwardRef<InputRef, InputProps & { error?: boolean; size?: SizeType }>(
-    ({ error, ...props }, ref) => (
-      <BaseAntInput autoComplete="off" {...props} ref={ref} />
-    ),
-  ),
-)<{
+type NativeInputStyledProps = Omit<
+  InputHTMLAttributes<HTMLInputElement>,
+  'size'
+> & {
   error?: boolean;
-  readOnly?: boolean;
   autoResize?: AutoResizeProp;
-  disabled?: boolean;
-}>`
-  ${(props) => (props.error ? errorInputStyle(props) : '')};
+  $size?: InputSize;
+  $hasPrefixel?: boolean;
+  $hasSuffixel?: boolean;
+  $hasInnerPrefix?: boolean;
+};
 
-  &&& {
-    min-height: ${(props) => (props.autoResize ? '16' : '32')}px;
-    transition:
-      all 0.3s,
-      width 0ms,
-      min-width 0ms,
-      max-width 0ms;
-    grid-area: 1 / 1;
-    color: ${(props) =>
-      props.disabled
-        ? props.theme.palette['grey-500']
-        : props.theme.palette['grey-700']};
-    z-index: 1;
-    &::placeholder {
-      color: ${(props) => props.theme.palette['grey-500']};
-    }
-    &::-moz-placeholder {
-      line-height: ${(props) => (props.size === 'large' ? `2.49` : `1.29`)};
-    }
-    .ds-input-prefix {
-      border-top-left-radius: 3px;
-      border-bottom-left-radius: 3px;
-    }
-    .ds-input-suffix {
-      border-top-right-radius: 3px;
-      border-bottom-right-radius: 3px;
-    }
-    ${({ readOnly, theme }) =>
-      readOnly
-        ? `
-            &:hover {
-              border-color: ${theme.palette['grey-300']};
-            }
-            &:focus {
-              border-color: ${theme.palette['grey-300']};
-              box-shadow: none;
-              background: #fff;
-            }
-          `
-        : ''}
+/**
+ * DS-native text input — replaces the antd `Input`. State (focus / error /
+ * disabled / readOnly) is expressed with native pseudo-classes and theme tokens;
+ * no antd component, no `.ant-*` styling selectors.
+ */
+export const NativeInput = styled(
+  forwardRef<HTMLInputElement, NativeInputStyledProps>(
+    (
+      {
+        error,
+        autoResize,
+        $size,
+        $hasPrefixel,
+        $hasSuffixel,
+        $hasInnerPrefix,
+        ...props
+      },
+      ref,
+    ) => <input autoComplete="off" {...props} ref={ref} />,
+  ),
+)<NativeInputStyledProps & { readOnly?: boolean; disabled?: boolean }>`
+  box-sizing: ${(props) => (props.autoResize ? 'content-box' : 'border-box')};
+  width: 100%;
+  /* Pin a fixed height so the box is exactly 32px (default) / 48px (large) —
+     line-height can't push it taller and break row alignment (e.g. the
+     date-picker trigger read 34px). autoResize is content-box (16/32 content +
+     14 padding + 2 border), non-autoResize is border-box (32/48 outright). */
+  ${(props) =>
+    props.autoResize
+      ? `height: ${props.$size === 'large' ? '32' : '16'}px;`
+      : `height: ${props.$size === 'large' ? '48' : '32'}px;`}
+  margin: 0;
+  padding: 7px ${INPUT_PADDING}px;
+  ${(props) => props.$hasInnerPrefix && 'padding-left: 32px;'}
+  color: ${(props) =>
+    props.disabled
+      ? props.theme.palette['grey-400']
+      : props.theme.palette['grey-700']};
+  background-color: ${(props) => props.theme.palette.white};
+  border: ${INPUT_BORDER}px solid ${(props) => props.theme.palette['grey-300']};
+  border-radius: 3px;
+  /* native form controls don't inherit font-family — pull in the DS body font
+     so the value glyphs match antd (Graphik) instead of the browser default */
+  font-family: inherit;
+  font-size: 13px;
+  outline: 0;
+  grid-area: 1 / 1;
+  transition:
+    all 0.3s,
+    width 0ms,
+    min-width 0ms,
+    max-width 0ms;
+  ${(props) =>
+    props.$hasPrefixel &&
+    'border-top-left-radius: 0; border-bottom-left-radius: 0;'}
+  ${(props) =>
+    props.$hasSuffixel &&
+    'border-top-right-radius: 0; border-bottom-right-radius: 0;'}
+
+  &::placeholder {
+    color: ${(props) => props.theme.palette['grey-500']};
+    line-height: 1.29;
+  }
+
+  &:hover:not(:disabled) {
+    border-color: ${(props) => props.theme.palette['grey-400']};
+  }
+  &:focus {
+    box-shadow: inset 0 0 0 1px ${(props) => props.theme.palette['blue-600']};
+    border-color: ${(props) => props.theme.palette['blue-600']};
+    background-color: ${(props) => props.theme.palette['blue-050']};
+  }
+  &:disabled {
+    cursor: not-allowed;
+    background-color: ${(props) => props.theme.palette['grey-050']};
+  }
+
+  ${(props) => (props.error ? errorInputStyle(props) : '')};
+  ${(props) => autoresizeConfObjToCss({ autoResize: props.autoResize })};
+  ${(props) =>
+    props.readOnly &&
+    `
+      &&& {
+        &:hover {
+          border-color: ${props.theme.palette['grey-300']};
+        }
+        &:focus {
+          border-color: ${props.theme.palette['grey-300']};
+          box-shadow: none;
+          background: ${props.theme.palette.white};
+        }
+      }
+    `}
+`;
+
+export const InputGroupRow = styled.div`
+  display: flex;
+  align-items: stretch;
+  width: 100%;
+`;
+
+export const Addon = styled.div<{
+  $position: 'before' | 'after';
+  $size?: InputSize;
+}>`
+  box-sizing: border-box;
+  /* match the input box height so the grey block lines up; content is centred
+     and vertically clipped rather than growing the block */
+  height: ${(props) => (props.$size === 'large' ? '48' : '32')}px;
+  display: flex;
+  align-items: center;
+  /* don't let the flex row squeeze the addon down to the ellipsis — size it to
+     its content instead. No horizontal padding: the prefixel/suffixel content
+     owns its own side margin. */
+  flex-shrink: 0;
+  overflow: hidden;
+  padding: 0;
+  white-space: nowrap;
+  color: ${(props) => props.theme.palette['grey-700']};
+  background-color: ${(props) => props.theme.palette['grey-050']};
+  border: ${INPUT_BORDER}px solid ${(props) => props.theme.palette['grey-300']};
+  ${(props) =>
+    props.$position === 'before'
+      ? 'border-right: 0; border-radius: 3px 0 0 3px;'
+      : 'border-left: 0; border-radius: 0 3px 3px 0;'}
+`;
+
+export const ClearButton = styled.button<{ $offset: number }>`
+  position: absolute;
+  top: 50%;
+  right: ${(props) => props.$offset}px;
+  transform: translateY(-50%);
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+  color: ${(props) => props.theme.palette['grey-500']};
+
+  &:hover {
+    color: ${(props) => props.theme.palette['grey-700']};
   }
 `;
 
-export const AntdTextArea = styled(
-  forwardRef<TextAreaRef, TextAreaProps & { error?: boolean }>(
-    ({ error, ...props }, ref) => (
-      <TextArea autoComplete="off" {...props} ref={ref} />
-    ),
-  ),
-)<{ error?: boolean }>`
-  ${(props) => (props.error ? errorInputStyle(props) : '')};
+/** Inline content rendered inside the input on the left (the `innerPrefix` prop). */
+export const InnerAffix = styled.div`
+  position: absolute;
+  top: 50%;
+  left: 4px;
+  transform: translateY(-50%);
+  z-index: 2;
+  display: flex;
+  align-items: center;
+`;
 
+export const RawTextArea = styled(
+  forwardRef<
+    HTMLTextAreaElement,
+    TextareaHTMLAttributes<HTMLTextAreaElement> & { error?: boolean }
+  >(({ error, ...props }, ref) => (
+    <textarea autoComplete="off" {...props} ref={ref} />
+  )),
+)<{ error?: boolean }>`
   && {
+    /* A bare textarea is display:inline-block and, without an explicit width,
+       falls back to its cols intrinsic width (~20ch). antd's textarea.ant-input
+       carried width:100%; the de-antd base dropped it, so the textarea collapsed
+       inside its full-width wrapper and text wrapped early (autosize then grew the
+       height to fit). Fill the wrapper like NativeInput does. */
+    box-sizing: border-box;
+    width: 100%;
     color: ${(props) => props.theme.palette['grey-700']};
+    /* native textarea doesn't inherit font-family — pull in the DS body font */
+    font-family: inherit;
+    font-size: 13px;
+    /* Matches the previous antd textarea base padding (textarea.ant-input). */
+    padding: 8px 12px;
+    ${(props) =>
+      props.error
+        ? `
+      box-shadow: inset 0 0 0 1px ${props.theme.palette['red-600']};
+      background: ${props.theme.palette['red-050']};
+      border-color: ${props.theme.palette['red-600']};
+    `
+        : ''}
   }
 `;
 

@@ -41,7 +41,6 @@
   ],
   "types": "dist/index.d.ts",
   "dependencies": {
-    "@synerise/ds-button": "workspace:^",
     "@synerise/ds-copy-icon": "workspace:^",
     "@synerise/ds-divider": "workspace:^",
     "@synerise/ds-dropdown": "workspace:^",

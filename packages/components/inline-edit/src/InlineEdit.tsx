@@ -82,26 +82,21 @@ const InlineEdit = ({
     >
       <AutosizeInput
         extraWidth={2}
-        value={input.value}
-        placeholder={input.placeholder}
         placeholderIsMinWidth={false}
         wrapperClassName="autosize-input"
-      >
-        <input
-          autoComplete="off"
-          id={input.name ? toCamelCase(input.name) : 'id'}
-          {...input}
-          className="autosize-input"
-          data-testid="inline-edit-autosize-input"
-          onKeyPress={handleKeyPress}
-          disabled={disabled}
-          onChange={handleChange}
-          onBlur={handleBlur}
-          onFocus={handleFocus}
-          value={input.value}
-          ref={inputRef}
-        />
-      </AutosizeInput>
+        autoComplete="off"
+        id={input.name ? toCamelCase(input.name) : 'id'}
+        {...input}
+        className="autosize-input"
+        data-testid="inline-edit-autosize-input"
+        onKeyPress={handleKeyPress}
+        disabled={disabled}
+        onChange={handleChange}
+        onBlur={handleBlur}
+        onFocus={handleFocus}
+        value={input.value}
+        ref={inputRef}
+      />
       {!hideIcon && (
         <Tooltip data-testid="inline-edit-icon" title={tooltipTitle}>
           <S.IconWrapper

@@ -23,7 +23,6 @@ const meta: Meta<AutocompleteProps> = {
   title: 'Components/InputElements/Autocomplete',
   component: Autocomplete,
   decorators: [fixedWrapper400],
-  tags: ['autodocs'],
   argTypes: {
     allowClear: {
       control: 'boolean',
@@ -145,6 +144,38 @@ export const Primary: StoryObj<AutocompleteProps> = {
 };
 
 export const Suggestions: StoryObj<AutocompleteProps> = {
+  parameters: {
+    docs: {
+      source: {
+        code: `const [value, setValue] = useState('');
+const [results, setResults] = useState<string[]>([]);
+
+const handleSearch = (query: string) => {
+  setResults(
+    dataSource.filter((item) =>
+      item.toLowerCase().includes(query.toLowerCase()),
+    ),
+  );
+};
+
+return (
+  <Autocomplete
+    label="Select option"
+    placeholder="Placeholder"
+    value={value}
+    onSearch={handleSearch}
+    onChange={setValue}
+  >
+    {results.map((result) => (
+      <Autocomplete.Option key={result} value={result}>
+        {result}
+      </Autocomplete.Option>
+    ))}
+  </Autocomplete>
+);`,
+      },
+    },
+  },
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
     await userEvent.click(canvas.getByRole('combobox'));
@@ -153,13 +184,21 @@ export const Suggestions: StoryObj<AutocompleteProps> = {
 };
 
 export const Loading: StoryObj<AutocompleteProps> = {
-  render: (args) => (
-    <Autocomplete {...args}>
-      <Autocomplete.Option value="">
-        <Loader label="Loading..." />
-      </Autocomplete.Option>
-    </Autocomplete>
-  ),
+  parameters: {
+    docs: {
+      source: {
+        code: `<Autocomplete
+  label="Select option"
+  description="Description"
+  placeholder="Placeholder"
+  notFoundContent={<Loader label="Loading..." />}
+/>`,
+      },
+    },
+  },
+  args: {
+    notFoundContent: <Loader label="Loading..." />,
+  },
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
     await userEvent.click(canvas.getByRole('combobox'));
@@ -167,6 +206,18 @@ export const Loading: StoryObj<AutocompleteProps> = {
 };
 
 export const Disabled: StoryObj<AutocompleteProps> = {
+  parameters: {
+    docs: {
+      source: {
+        code: `<Autocomplete
+  label="Select option"
+  description="Description"
+  placeholder="Placeholder"
+  disabled
+/>`,
+      },
+    },
+  },
   args: {
     label: 'Select option',
     description: 'Description',
@@ -177,6 +228,18 @@ export const Disabled: StoryObj<AutocompleteProps> = {
 };
 
 export const WithError: StoryObj<AutocompleteProps> = {
+  parameters: {
+    docs: {
+      source: {
+        code: `<Autocomplete
+  label="Select option"
+  description="Description"
+  placeholder="Placeholder"
+  errorText="Error message"
+/>`,
+      },
+    },
+  },
   args: {
     label: 'Select option',
     description: 'Description',
@@ -187,6 +250,21 @@ export const WithError: StoryObj<AutocompleteProps> = {
 };
 
 export const WithIcons: StoryObj<AutocompleteProps> = {
+  parameters: {
+    docs: {
+      source: {
+        code: `<Autocomplete
+  label="Select option"
+  description="Description"
+  placeholder="Placeholder"
+  icon1={<Icon component={<SnippetM />} />}
+  icon1Tooltip="Open snippets"
+  icon2={<Icon component={<EmoticonsM />} />}
+  icon2Tooltip="Emoji picker"
+/>`,
+      },
+    },
+  },
   args: {
     ...Primary.args,
     icon1: <Icon color={theme.palette['grey-600']} component={<SnippetM />} />,

@@ -24,12 +24,20 @@ export type {
 } from './Input.types';
 
 export { default as AutosizeInput } from './AutosizeInput/AutosizeInput';
+export type { AutosizeInputProps } from './AutosizeInput/AutosizeInput.types';
+
+export {
+  useAutosizeWidth,
+  SIZER_STYLE,
+} from './AutosizeInput/useAutosizeWidth';
 export type {
-  AutosizeInputProps,
-  AutosizeWrapperProps,
-  AutosizeInputRefType,
-} from './AutosizeInput/AutosizeInput.types';
-export { AutosizeWrapper } from './components/AutosizeWrapper';
+  UseAutosizeWidthParams,
+  UseAutosizeWidthResult,
+} from './AutosizeInput/useAutosizeWidth.types';
+export { useStretchToFit } from './AutosizeInput/useStretchToFit';
+export type { UseStretchToFitParams } from './AutosizeInput/useStretchToFit';
+
+export { autoresizeConfObjToCss } from './Input.styles';
 
 export { PasswordInput } from './PasswordInput';
 export type {

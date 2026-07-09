@@ -11,10 +11,11 @@ export const DynamicKeyInput: StyledInput<ExtraProps> = styled(
   Input,
 )<ExtraProps>`
   flex: 1;
-  &:focus {
+  /* raise the focused field so its (blue) border paints over the neighbour */
+  &:focus-within {
     z-index: 2;
   }
-  .ant-input {
+  input {
     ${(props) =>
       props.index === 0
         ? css`
@@ -22,7 +23,10 @@ export const DynamicKeyInput: StyledInput<ExtraProps> = styled(
           `
         : css`
             border-radius: 0 3px 3px 0;
-            margin-left: -1px;
+            /* drop the left border so the neighbour's right border is the single
+               shared divider — no doubled border, no negative margin (factors
+               resets the wrapper margin, which would otherwise defeat it) */
+            border-left: 0;
           `}
   }
 `;
