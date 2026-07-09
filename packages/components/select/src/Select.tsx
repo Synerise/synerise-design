@@ -92,6 +92,8 @@ const SelectInner = forwardRef<HTMLDivElement, SelectProps>((props, ref) => {
     optionLabelProp,
     tokenSeparators,
     showArrow = true,
+    suffixIcon,
+    tabIndex,
     autoFocus,
     open: openProp,
     defaultOpen,
@@ -498,6 +500,7 @@ const SelectInner = forwardRef<HTMLDivElement, SelectProps>((props, ref) => {
                         : undefined
                     }
                     text={option.label ?? option.value}
+                    style={option.style}
                     disabled={option.disabled}
                     onMouseEnter={() => setActiveIndex(index)}
                     onClick={() => handleSelect(option)}
@@ -640,7 +643,7 @@ const SelectInner = forwardRef<HTMLDivElement, SelectProps>((props, ref) => {
           $withSuffixel={!!suffixel}
           $selectorStyle={selectorStyle}
           aria-disabled={isDisabled}
-          tabIndex={hasInput || isDisabled ? undefined : 0}
+          tabIndex={tabIndex ?? (hasInput || isDisabled ? undefined : 0)}
           onKeyDown={hasInput ? undefined : handleKeyDown}
           role={hasInput ? undefined : 'combobox'}
           aria-expanded={hasInput ? undefined : isOpen}
@@ -653,10 +656,14 @@ const SelectInner = forwardRef<HTMLDivElement, SelectProps>((props, ref) => {
           }
         >
           {selectorContent}
-          {showArrow && (
-            <S.Arrow className="ds-select-arrow" $open={isOpen}>
-              <Icon component={<AngleDownS />} />
-            </S.Arrow>
+          {suffixIcon ? (
+            <S.Arrow className="ds-select-arrow">{suffixIcon}</S.Arrow>
+          ) : (
+            showArrow && (
+              <S.Arrow className="ds-select-arrow" $open={isOpen}>
+                <Icon component={<AngleDownS />} />
+              </S.Arrow>
+            )
           )}
           {showClear && (
             <S.ClearWrapper

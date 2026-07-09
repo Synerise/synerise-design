@@ -1,4 +1,4 @@
-import { type ReactNode } from 'react';
+import { type CSSProperties, type ReactNode } from 'react';
 
 import { type RawValueType } from './Select.types';
 
@@ -11,6 +11,9 @@ export type OptionProps = {
   /** When set, rendered in the selector instead of `children` (antd `optionLabelProp`). */
   label?: ReactNode;
   children?: ReactNode;
+  /** antd parity: forwarded to the rendered option row. */
+  style?: CSSProperties;
+  className?: string;
 };
 
 /**

@@ -30,6 +30,10 @@ export type SelectOption = {
   disabled?: boolean;
   /** Native `title` on the option (hover tooltip / accessible text), mirrors antd. */
   title?: ReactNode;
+  /** antd parity: raw children of `<Select.Option>`; some consumers read `option.children`. */
+  children?: ReactNode;
+  /** antd parity: forwarded to the rendered option row. */
+  style?: CSSProperties;
   /** Value used for client-side filtering when `optionFilterProp` is set. */
   filterValue?: string;
 };
@@ -84,6 +88,10 @@ export type SelectProps<VT extends SelectValue = SelectValue> = {
   autoFocus?: boolean;
   defaultActiveFirstOption?: boolean;
   showArrow?: boolean;
+  /** antd parity: custom icon replacing the dropdown arrow. */
+  suffixIcon?: ReactNode;
+  /** antd parity: tab index forwarded to the selector / search input. */
+  tabIndex?: number;
 
   /** Tags/multiple display limits (antd parity). */
   maxTagCount?: number;

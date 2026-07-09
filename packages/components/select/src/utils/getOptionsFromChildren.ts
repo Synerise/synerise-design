@@ -22,6 +22,7 @@ export const getOptionsFromChildren = (children: ReactNode): SelectOption[] => {
       title,
       label,
       children: optionLabel,
+      style,
     } = child.props as OptionProps;
     // antd parity: when `value` is omitted, fall back to the element's React key.
     const resolvedValue = (value ?? child.key ?? undefined) as RawValueType;
@@ -31,6 +32,8 @@ export const getOptionsFromChildren = (children: ReactNode): SelectOption[] => {
       disabled,
       title,
       label: label ?? optionLabel,
+      children: optionLabel,
+      style,
     });
   });
 
