@@ -2,10 +2,7 @@ import styled from 'styled-components';
 
 import { InputGroup } from '@synerise/ds-input';
 import { OuterWrapper } from '@synerise/ds-input/dist/Input.styles';
-import {
-  InputGroupItem,
-  InputGroupWrapper,
-} from '@synerise/ds-input/dist/InputGroup.styles';
+import { InputGroupItem } from '@synerise/ds-input/dist/InputGroup.styles';
 
 import { FactorInput } from '../FactorValue/FactorValue.style';
 
@@ -13,19 +10,16 @@ export const Group = styled(InputGroup)<{ withoutTypeSelector: boolean }>`
   &&& {
     display: flex;
 
-    > ${InputGroupWrapper} {
-      flex-grow: 1;
-      min-width: 0;
+    /* styled(InputGroup) applies this class to the InputGroupWrapper itself, so
+       the group items are its direct children — target them straight from &&&
+       (there is no nested InputGroupWrapper to reach through). */
+    .ds-input-group-item-0 {
+      ${(props): string => (props.withoutTypeSelector ? '' : 'flex: 0 0 auto')}
+    }
 
-      > .ds-input-group-item-0 {
-        ${(props): string =>
-          props.withoutTypeSelector ? '' : 'flex: 0 0 auto'}
-      }
-
-      > .ds-input-group-item-1 {
-        .ant-btn {
-          border-radius: 0 3px 3px 0;
-        }
+    .ds-input-group-item-1 {
+      .ant-btn {
+        border-radius: 0 3px 3px 0;
       }
     }
 

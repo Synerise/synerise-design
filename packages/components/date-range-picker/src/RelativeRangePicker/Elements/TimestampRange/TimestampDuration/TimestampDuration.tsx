@@ -48,8 +48,8 @@ const TimestampDuration: React.FC<Props> = ({
         <InputNumber
           min={1}
           max={CONST.RELATIVE_DURATION_MAX}
-          precision={0}
           step={1}
+          valueFormatOptions={{ maximumFractionDigits: 0 }}
           value={value}
           onChange={handleDurationValueChange}
         />

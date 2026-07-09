@@ -56,7 +56,7 @@ export const Default: Story = {
 
 export const Customize: Story = {
   render: (args) => {
-    const [results, setResults] = useState<string[]>(['']);
+    const [results, setResults] = useState<string[]>([]);
     const [value, setValue] = useState<EditableParam[]>([
       { name: '', value: '' },
     ]);
@@ -133,7 +133,7 @@ export const Customize: Story = {
           handleSearch(extractContent(value));
         }}
         autocompleteOptions={results.map((result) => (
-          <Autocomplete.Option key={result}>
+          <Autocomplete.Option key={result} value={result}>
             <span style={{ fontWeight: 400 }}>
               {renderWithHighlightedText(value, result)}
             </span>
@@ -149,7 +149,7 @@ export const Customize: Story = {
 
 export const withAutoComplete: Story = {
   render: (args) => {
-    const [results, setResults] = useState<string[]>(['']);
+    const [results, setResults] = useState<string[]>([]);
     const [value, setValue] = useState<EditableParam[]>([
       { name: '', value: '' },
     ]);
@@ -226,7 +226,7 @@ export const withAutoComplete: Story = {
           handleSearch(extractContent(value));
         }}
         autocompleteOptions={results.map((result) => (
-          <Autocomplete.Option key={result}>
+          <Autocomplete.Option key={result} value={result}>
             <span style={{ fontWeight: 400 }}>
               {renderWithHighlightedText(value, result)}
             </span>

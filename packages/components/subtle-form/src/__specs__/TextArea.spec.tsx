@@ -38,11 +38,11 @@ describe('Subtle Textarea', () => {
       <SubtleForm.TextArea value={oldValue} onChange={onChange} />,
     );
 
-    const textarea = getByDisplayValue(oldValue) as HTMLInputElement;
-    fireEvent.click(textarea);
-    const input = container.querySelector('.ant-input') as HTMLInputElement;
-    fireEvent.focus(input);
-    fireEvent.change(input, { target: { value: newValue } });
+    const valueArea = getByDisplayValue(oldValue) as HTMLElement;
+    fireEvent.click(valueArea);
+    const textarea = container.querySelector('textarea') as HTMLTextAreaElement;
+    fireEvent.focus(textarea);
+    fireEvent.change(textarea, { target: { value: newValue } });
     await waitFor(() => expect(onChange).toBeCalledWith(newValue));
   });
 });

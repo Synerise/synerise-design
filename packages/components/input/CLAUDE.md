@@ -113,15 +113,17 @@ The inner `Textarea/Textarea.tsx` raw DS textarea. Same API as `RawTextAreaProps
 
 ### `InputGroup`
 
-Wraps Ant Design `Input.Group` with `FormField` support. Accepts `errors?: string[]` (array of error strings — each rendered as an `ErrorText`). Children are each wrapped in a `ds-input-group-item` div.
+Wraps Ant Design `Input.Group` with `FormField` support. Uses the standard `FormFieldCommonProps.errorText` for its error message. Children are each wrapped in a `ds-input-group-item` div.
 
-Props (`Props`):
+Props (`Props` = `FormFieldCommonProps` + the below):
 
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
 | `compact` | `boolean` | `false` | Compact adjacent inputs (removes borders between them) |
+| `growItem` | `'first' \| 'last'` | `'last'` | Which item stretches to fill the row (others keep natural width). `'last'` = trailing control grows (e.g. fixed-width Select left, input fills right). `'first'` = flipped: leading input grows, fixed-width trailing control (e.g. ColorPicker) stays compact right. |
 | `size` | `'large' \| 'default' \| 'small'` | `'default'` | Applied to the Ant `Input.Group` |
-| `errors` | `string[]` | — | Array of error messages displayed below the group |
+| `errorText` | `ReactNode` | — | Error message displayed below the group (from `FormFieldCommonProps`) |
+| `errors` | `string[]` | — | **@deprecated** — use `errorText`. Antd-proprietary array of error strings (each rendered as its own `ErrorText` line); ignored when `errorText` is provided |
 | `resetMargin` | `boolean` | — | Removes outer wrapper margin |
 | `label` | `ReactNode` | — | Group label |
 | `description` | `string` | — | Helper text |
@@ -261,7 +263,7 @@ import { Input, TextArea, InputGroup, InputMultivalue, PasswordInput } from '@sy
 />
 
 // Group of inputs
-<InputGroup label="Address" errors={errors} compact>
+<InputGroup label="Address" errorText={error} compact>
  <Input placeholder="Street" />
  <Input placeholder="City" />
 </InputGroup>

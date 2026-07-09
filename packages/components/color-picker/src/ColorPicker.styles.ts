@@ -1,19 +1,10 @@
 import styled, { createGlobalStyle } from 'styled-components';
 
-import Button from '@synerise/ds-button';
 import CopyIcon from '@synerise/ds-copy-icon';
 import { Input } from '@synerise/ds-input';
-import { Tag, TagsStyles } from '@synerise/ds-tags';
+import { Tag } from '@synerise/ds-tags';
 
 import { ColorPickerSize } from './ColorPicker.types';
-
-export const TagDot = styled.div<{ pressed?: boolean }>`
-  display: ${(props) => (props.pressed ? 'flex' : 'none')};
-  width: 4px;
-  height: 4px;
-  background-color: ${(props) => props.theme.palette.white};
-  border-radius: 50%;
-`;
 
 const SIZE_DEFAULT = 168;
 
@@ -37,18 +28,6 @@ export const Container = styled.div<{ size?: 'S' | 'M' | 'L' }>`
       height: 100%;
     }
   }
-  &&& .ds-tag {
-    width: 16px;
-    height: 16px;
-    border: 1px solid ${(props) => props.theme.palette['grey-300']};
-    margin: 0 0 0 4px;
-    &:hover {
-      ${TagDot} {
-        display: flex;
-      }
-    }
-  }
-
   .react-colorful__pointer {
     width: 16px;
     height: 16px;
@@ -68,10 +47,6 @@ export const Container = styled.div<{ size?: 'S' | 'M' | 'L' }>`
   .ant-divider-horizontal {
     margin: 16px 0px;
   }
-
-  ${TagsStyles.Container} {
-    margin-bottom: -8px;
-  }
 `;
 
 export const SubContainer = styled.div<{ savedColors?: boolean }>`
@@ -85,12 +60,68 @@ export const ColorTag = styled(Tag)`
   border: 1px solid ${(props) => props.theme.palette['grey-300']};
 `;
 
-export const AddColorButton = styled(Button)`
-  &&&.ant-btn {
-    width: 16px;
-    height: 16px;
-    margin-right: 0;
+const SWATCH_SIZE = 16;
+
+/** The "+" swatch creator (Figma: Swatch Creator). Plain button, not ds-button. */
+export const SwatchCreatorButton = styled.button`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 auto;
+  width: ${SWATCH_SIZE}px;
+  height: ${SWATCH_SIZE}px;
+  padding: 0;
+  border: none;
+  border-radius: 3px;
+  background-color: transparent;
+  color: ${(props) => props.theme.palette['grey-800']};
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+
+  &:hover {
+    background-color: ${(props) => props.theme.palette['grey-200']};
   }
+
+  &:focus-visible {
+    outline: 1px solid ${(props) => props.theme.palette['blue-600']};
+    outline-offset: 1px;
+  }
+`;
+
+/** A single filled saved-colour swatch (Figma: Swatch — Filled / Filled Selected). */
+export const Swatch = styled.button`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 auto;
+  width: ${SWATCH_SIZE}px;
+  height: ${SWATCH_SIZE}px;
+  padding: 0;
+  border: 1px solid transparent;
+  border-radius: 3px;
+  cursor: pointer;
+
+  &:focus-visible {
+    outline: 1px solid ${(props) => props.theme.palette['blue-600']};
+    outline-offset: 1px;
+  }
+`;
+
+/** The centred white dot shown on the currently-selected swatch (Figma: Filled Selected). */
+export const SwatchDot = styled.span`
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background-color: ${(props) => props.theme.palette.white};
+`;
+
+/** An empty swatch slot (Figma: Swatch — Default). */
+export const SwatchPlaceholder = styled.div`
+  flex: 0 0 auto;
+  width: ${SWATCH_SIZE}px;
+  height: ${SWATCH_SIZE}px;
+  border: 1px solid ${(props) => props.theme.palette['grey-300']};
+  border-radius: 3px;
 `;
 
 export const StyledCopyIcon = styled(CopyIcon)`
@@ -103,21 +134,21 @@ export const ColorPickerInput = styled(Input)`
       display: flex;
     }
   }
+  /* tabular figures so the hex/colour value keeps a steady width as digits change */
+  input {
+    font-variant-numeric: tabular-nums;
+  }
 `;
 
 export const ColorPickerSelect = styled(Input)`
   &&& {
-    .ant-input-affix-wrapper {
-      padding: 4px 4px;
-    }
-    .ant-input-prefix {
-      margin-right: 8px;
-    }
-    .ant-input {
-      padding-right: 4px;
-      box-shadow: none;
-    }
     width: 100px;
+    /* The color swatch is supplied via the Input's innerPrefix slot. */
+    input {
+      box-shadow: none;
+      /* tabular figures so the colour value keeps a steady width as digits change */
+      font-variant-numeric: tabular-nums;
+    }
   }
 `;
 
@@ -146,7 +177,10 @@ export const PrefixTag = styled.div<{
 
 export const SwatchSectionWrapper = styled.div`
   display: flex;
-  alignitems: center;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 4px;
+  padding-top: 16px;
 `;
 
 export const PreffixWrapper = styled.div`
@@ -174,13 +208,15 @@ export default {
   SubContainer,
   ColorTag,
   PrefixTag,
-  AddColorButton,
+  SwatchCreatorButton,
+  Swatch,
+  SwatchDot,
+  SwatchPlaceholder,
   SwatchSectionWrapper,
   PreffixWrapper,
   ValueWrapper,
   CopyIcon,
   ColorPickerInput,
-  TagDot,
   ColorPickerSelect,
   ColorPickerModalStyle,
 };

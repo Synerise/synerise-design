@@ -22,7 +22,6 @@ import {
   MENU_WIDTH_OFFSET,
   SCROLLBAR_HEIGHT_OFFSET,
 } from './const';
-import './style/index.less';
 
 export function Search<
   T extends AnyObject,

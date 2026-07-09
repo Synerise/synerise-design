@@ -315,21 +315,30 @@ importers:
       '@synerise/ds-core':
         specifier: '*'
         version: link:../core
+      '@synerise/ds-dropdown':
+        specifier: workspace:^
+        version: link:../dropdown
       '@synerise/ds-form-field':
         specifier: workspace:^
         version: link:../form-field
       '@synerise/ds-input':
         specifier: workspace:^
         version: link:../input
+      '@synerise/ds-list-item':
+        specifier: workspace:^
+        version: link:../list-item
+      '@synerise/ds-scrollbar':
+        specifier: workspace:^
+        version: link:../scrollbar
+      '@synerise/ds-search':
+        specifier: workspace:^
+        version: link:../search
       '@synerise/ds-tooltip':
         specifier: workspace:^
         version: link:../tooltip
       '@synerise/ds-utils':
         specifier: workspace:^
         version: link:../utils
-      antd:
-        specifier: 4.24.16
-        version: 4.24.16(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       react:
         specifier: 18.3.1
         version: 18.3.1
@@ -959,9 +968,6 @@ importers:
 
   packages/components/color-picker:
     dependencies:
-      '@synerise/ds-button':
-        specifier: workspace:^
-        version: link:../button
       '@synerise/ds-copy-icon':
         specifier: workspace:^
         version: link:../copy-icon
@@ -3031,9 +3037,6 @@ importers:
       '@synerise/ds-utils':
         specifier: workspace:^
         version: link:../utils
-      antd:
-        specifier: 4.24.16
-        version: 4.24.16(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       classnames:
         specifier: ^2.3.2
         version: 2.5.1
@@ -3074,9 +3077,6 @@ importers:
       '@synerise/ds-utils':
         specifier: workspace:^
         version: link:../utils
-      antd:
-        specifier: 4.24.16
-        version: 4.24.16(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       react:
         specifier: 18.3.1
         version: 18.3.1
@@ -4445,9 +4445,6 @@ importers:
       '@synerise/ds-utils':
         specifier: workspace:^
         version: link:../utils
-      antd:
-        specifier: 4.24.16
-        version: 4.24.16(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       react:
         specifier: 18.3.1
         version: 18.3.1

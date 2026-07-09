@@ -143,10 +143,57 @@ export const SearchInner = styled.div<{
         border-color: ${props.theme.palette['blue-600']};
         background-color: ${props.theme.palette['blue-050']};
    }
-   
+
   `}
+  /* Blue focus ring — owned here (the search field has no external input
+     stylesheet to inherit it from). !important keeps it winning over the
+     resting border set on the native input above. */
+  &:focus-within input,
+  &:focus-within input:hover {
+    box-shadow: inset 0 0 0 1px ${(props) => props.theme.palette['blue-600']} !important;
+    border-color: ${(props) => props.theme.palette['blue-600']};
+    background-color: ${(props) => props.theme.palette['blue-050']};
+  }
   input::placeholder {
     line-height: 1.29;
+  }
+`;
+
+/* DS-native search input. Reproduces the base input chrome antd's input LESS
+   used to provide (border/radius/background/font/disabled) — the surrounding
+   SearchInner / SearchInputContent rules still layer opacity, the open-state
+   padding and the blue focus ring on top. Mirrors the DS-native input standard
+   (ds-autocomplete's NativeInput). No antd class hook — the styled input owns
+   its styling and carries a `ds-search-input` hook for consumers/tests to target. */
+export const SearchNativeInput = styled.input`
+  box-sizing: border-box;
+  width: 100%;
+  height: 32px;
+  margin: 0;
+  padding: 7px 12px;
+  border: 1px solid ${(props): string => props.theme.palette['grey-300']};
+  border-radius: 3px;
+  background-color: ${(props): string => props.theme.palette.white};
+  color: ${(props): string => props.theme.palette['grey-700']};
+  font-family: inherit;
+  font-size: 13px;
+  line-height: 1.54;
+  font-feature-settings: 'tnum';
+  outline: none;
+  transition: all 0.3s;
+
+  &::placeholder {
+    color: ${(props): string => props.theme.palette['grey-500']};
+  }
+
+  &:hover:not(:disabled) {
+    border-color: ${(props): string => props.theme.palette['grey-400']};
+  }
+
+  &:disabled {
+    background-color: ${(props): string => props.theme.palette['grey-050']};
+    color: ${(props): string => props.theme.palette['grey-400']};
+    cursor: not-allowed;
   }
 `;
 
@@ -161,8 +208,6 @@ export const SearchInputContent = styled.div<{
   input {
     opacity: 0;
     height: 32px;
-  }
-  input.ant-input {
     transition: padding-left 0s ease-in-out !important;
   }
   &.is-open {

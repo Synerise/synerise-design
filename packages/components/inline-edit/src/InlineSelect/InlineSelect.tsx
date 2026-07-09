@@ -86,25 +86,21 @@ const InlineSelect = ({
         dropdownOpened={isOpened}
       >
         <AutosizeInput
-          value={selectedValue || placeholder}
           placeholderIsMinWidth={false}
           extraWidth={2}
           wrapperClassName="autosize-input"
-        >
-          <input
-            {...inputProps}
-            ref={inputRef}
-            style={inputStyle}
-            id={input.name ? toCamelCase(input.name) : 'id'}
-            className="autosize-input"
-            data-testid="inline-select-autosize-input"
-            value={selectedValue || placeholder}
-            autoComplete="off"
-            placeholder={placeholder}
-            disabled={disabled}
-            onChange={NOOP}
-          />
-        </AutosizeInput>
+          {...inputProps}
+          ref={inputRef}
+          style={inputStyle}
+          id={input.name ? toCamelCase(input.name) : 'id'}
+          className="autosize-input"
+          data-testid="inline-select-autosize-input"
+          value={selectedValue || placeholder}
+          autoComplete="off"
+          placeholder={placeholder}
+          disabled={disabled}
+          onChange={NOOP}
+        />
         {!hideIcon && (
           <S.IconWrapper size={size} expanded={isOpened}>
             <Icon component={<AngleDownS />} size={24} />

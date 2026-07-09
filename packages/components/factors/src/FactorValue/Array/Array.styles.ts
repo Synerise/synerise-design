@@ -13,9 +13,6 @@ export const TextArea = styled.textarea`
 export const Modal = styled(ModalBase)<{ viewportHeight: number }>`
   && {
     top: 50px;
-    .ant-modal-content {
-      height: ${(props) => props.viewportHeight}vh;
-    }
   }
   ${TextArea} {
     height: calc(${(props) => props.viewportHeight}vh - 215px);

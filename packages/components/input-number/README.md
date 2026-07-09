@@ -24,12 +24,13 @@ Input-Number UI Component
 | label               | Input label                                                                                                        | ReactNode                                                               | -         |
 | max                 | Max value                                                                                                          | number                                                                  | Infinity  |
 | min                 | Min value                                                                                                          | number                                                                  | -Infinity |
+| onBlur              | Native input blur handler (consumers read `event.target.value`)                                                    | (e: FocusEvent<HTMLInputElement>) => void                               | -         |
 | onChange            | Called with the parsed numeric value on change. Returns `null` when input is cleared.                              | (value: number \| null) => void                                         | -         |
-| onPressEnter        | Callback triggered when Enter key is pressed                                                                       | (e: Event) => void                                                      | -         |
 | precision           | Precision of input value                                                                                           | number                                                                  | -         |
 | prefixel            | ReactNode to render in the left addon slot                                                                         | ReactNode                                                               | -         |
 | raw                 | Render bare input without FormField wrapper (no label / tooltip / description / errorText)                         | boolean                                                                 | -         |
-| size                | Height of input box                                                                                                | string                                                                  | -         |
+| readOnly            | Read-only input (steppers are not rendered)                                                                        | boolean                                                                 | `false`   |
+| size                | Height of input box (`'large'` → 48px)                                                                              | 'small' \| 'middle' \| 'large'                                          | -         |
 | step                | The number by which the current value is increased or decreased                                                    | number \| string                                                        | 1         |
 | suffixel            | ReactNode to render in the right addon slot                                                                        | ReactNode                                                               | -         |
 | tooltip             | Tooltip content shown next to the label                                                                            | ReactNode                                                               | -         |
@@ -39,11 +40,7 @@ Input-Number UI Component
 | autoResize          | Enable autosize: `true` or `{ minWidth, maxWidth?, stretchToFit? }`                                               | boolean \| object                                                       | -         |
 | autoResizeProps     | Extra props for the autosize wrapper (`placeholderIsMinWidth`, `wrapperClassName`, `wrapperStyle`, `extraWidth`)   | object                                                                  | -         |
 
-> **Note**: `formatter` and `parser` props from Ant Design cannot be customised — they are always overridden internally by the locale-aware formatting logic.
-
-### Methods
-
-| Name    | Description  |
-| ------- | ------------ |
-| blur()  | remove focus |
-| focus() | get focus    |
+> **Note**: this component is DS-native (no Ant Design). The former antd-only props were removed —
+> `formatter`/`parser`/`decimalSeparator` (formatting is always locale-driven via `valueFormatOptions`),
+> `controls`, `keyboard`, `stringMode`, `bordered`, `status`, `prefix`, `onPressEnter`, and
+> `addonBefore`/`addonAfter` (use `prefixel`/`suffixel`).

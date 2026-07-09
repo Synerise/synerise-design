@@ -42,7 +42,7 @@ export const InputSelectGroup = styled(InputGroup)<InputGroupProps>`
   .ant-input-group.ant-input-group-compact&& {
     display: flex;
     align-items: center;
-    .ant-input-number {
+    .ds-input-number {
       display: flex;
       flex: 1;
     }

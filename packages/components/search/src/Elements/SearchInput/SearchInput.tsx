@@ -1,6 +1,6 @@
-import { Input, type InputRef } from 'antd';
 import React, {
   type ChangeEvent,
+  type KeyboardEvent,
   useEffect,
   useLayoutEffect,
   useRef,
@@ -40,7 +40,7 @@ const SearchInput = ({
   inputProps = {},
   searchTooltipProps = {},
 }: SearchInputProps) => {
-  const inputRef = useRef<InputRef>(null);
+  const inputRef = useRef<HTMLInputElement>(null);
   const wrapperRef = useRef<HTMLDivElement>(null);
   const [isInputOpen, setIsInputOpen] = useState(
     alwaysExpanded || !!value || !!filterLabel,
@@ -144,11 +144,28 @@ const SearchInput = ({
   };
 
   useEffect(() => {
-    if (moveCursorToEnd && inputRef.current?.input) {
-      inputRef.current.input.selectionStart = value.length || 0;
-      inputRef.current.input.selectionEnd = value.length || 0;
+    if (moveCursorToEnd && inputRef.current) {
+      inputRef.current.selectionStart = value.length || 0;
+      inputRef.current.selectionEnd = value.length || 0;
     }
   }, [moveCursorToEnd, value.length]);
+
+  // `onPressEnter` (antd-compat) has no native equivalent, so pull it out of the
+  // spread and fire it from `onKeyDown` on Enter; `inputProps.onKeyDown` (if any)
+  // still wins over the component's own handler, as before.
+  const {
+    onPressEnter,
+    onKeyDown: inputPropsOnKeyDown,
+    className: inputPropsClassName,
+    ...restInputProps
+  } = inputProps;
+
+  const handleInputKeyDown = (event: KeyboardEvent<HTMLInputElement>): void => {
+    (inputPropsOnKeyDown ?? onKeyDown)?.(event);
+    if (event.key === 'Enter') {
+      onPressEnter?.(event);
+    }
+  };
 
   return (
     <S.SearchInputWrapper ref={wrapperRef}>
@@ -178,18 +195,21 @@ const SearchInput = ({
           </S.LeftSide>
           <Tooltip {...searchTooltipProps}>
             <S.SearchInner hasValue={!!value} alwaysHighlight={alwaysHighlight}>
-              <Input
+              <S.SearchNativeInput
                 placeholder={placeholder}
                 ref={inputRef}
                 value={value}
                 onChange={handleChangeValue}
-                onKeyDown={onKeyDown}
                 onFocus={() => setIsInputFocused(true)}
                 onBlur={() => setIsInputFocused(false)}
                 autoComplete="off"
                 autoFocus
                 disabled={disableInput}
-                {...inputProps}
+                {...restInputProps}
+                onKeyDown={handleInputKeyDown}
+                className={['ds-search-input', inputPropsClassName]
+                  .filter(Boolean)
+                  .join(' ')}
               />
             </S.SearchInner>
           </Tooltip>

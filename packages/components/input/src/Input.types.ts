@@ -1,7 +1,7 @@
-import type { InputProps as AntdInputProps } from 'antd';
-import type { TextAreaProps as AntdTextAreaProps } from 'antd/lib/input';
 import type {
   ForwardRefExoticComponent,
+  InputHTMLAttributes,
+  KeyboardEventHandler,
   MutableRefObject,
   ReactElement,
   ReactNode,
@@ -17,10 +17,28 @@ export type AutoResizeProp =
   | boolean
   | { minWidth: string; maxWidth?: string; stretchToFit?: boolean };
 
+export type InputSize = 'small' | 'middle' | 'large';
+
 /**
- * @deprecated use `InputProps`, `TextareaProps` instead
+ * Native `<input>` props, preserving the subset of the antd `Input` surface that
+ * the design system actually forwards. `size`/`prefix` are redefined (the native
+ * HTML attrs have different meanings).
  */
-export type Props = BaseProps<HTMLInputElement | HTMLTextAreaElement>;
+export type NativeInputProps = Omit<
+  InputHTMLAttributes<HTMLInputElement>,
+  'size' | 'prefix'
+> & {
+  size?: InputSize;
+  allowClear?: boolean;
+  bordered?: boolean;
+  /** Inline node rendered inside the input on the left, before the value. */
+  innerPrefix?: ReactNode;
+  prefix?: ReactNode;
+  suffix?: ReactNode;
+  onPressEnter?: KeyboardEventHandler<HTMLInputElement>;
+  addonBefore?: ReactNode;
+  addonAfter?: ReactNode;
+};
 
 export type BaseProps<
   RefElementType extends HTMLTextAreaElement | HTMLInputElement =
@@ -52,13 +70,17 @@ export type BaseProps<
   expandableTooltip?: ReactNode;
 } & FormFieldCommonProps;
 
+export type InputProps = BaseProps & NativeInputProps;
+
 /**
  * @deprecated use `InputProps`, `TextareaProps` instead
  */
-export type EnhancedProps = BaseProps<HTMLInputElement | HTMLTextAreaElement> &
-  (AntdInputProps | AntdTextAreaProps);
+export type Props = BaseProps<HTMLInputElement | HTMLTextAreaElement>;
 
-export type InputProps = BaseProps & AntdInputProps;
+/**
+ * @deprecated use `InputProps`, `TextareaProps` instead
+ */
+export type EnhancedProps = InputProps;
 
 export type StyledInput<CustomProps extends object = object> = StyledComponent<
   ForwardRefExoticComponent<InputProps & RefAttributes<HTMLDivElement>>,

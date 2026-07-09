@@ -1,217 +1,78 @@
-import React, {
-  type CSSProperties,
-  forwardRef,
-  useCallback,
-  useEffect,
-  useImperativeHandle,
-  useLayoutEffect,
-  useMemo,
-  useRef,
-} from 'react';
+import React, { type CSSProperties, forwardRef, useRef } from 'react';
 
-import { useResizeObserver } from '@synerise/ds-utils';
+import { useMergeRefs } from '@floating-ui/react';
 
-import type {
-  AutosizeInputProps,
-  AutosizeInputRefType,
-} from './AutosizeInput.types';
-import { calculateInputWidth } from './utils';
+import type { AutosizeInputProps } from './AutosizeInput.types';
+import { SIZER_STYLE, useAutosizeWidth } from './useAutosizeWidth';
 
-const sizerStyle: CSSProperties = {
-  position: 'absolute',
-  top: 0,
-  left: 0,
-  visibility: 'hidden',
-  height: 0,
-  overflow: 'scroll',
-  whiteSpace: 'pre',
+const wrapperBaseStyle: CSSProperties = {
+  position: 'relative',
+  display: 'inline-block',
 };
 
-type TextCSSPropertyKeys = keyof Pick<
-  CSSProperties,
-  | 'fontSize'
-  | 'fontFamily'
-  | 'fontWeight'
-  | 'fontFeatureSettings'
-  | 'fontStyle'
-  | 'letterSpacing'
-  | 'fontStretch'
-  | 'textTransform'
->;
+// content-box so the computed text width (+ extraWidth) is the content width;
+// the input's own padding/border sit outside it and never clip the value.
+const inputBaseStyle: CSSProperties = {
+  boxSizing: 'content-box',
+};
 
-const FONT_CSS_PROPS: Array<TextCSSPropertyKeys> = [
-  'fontSize',
-  'fontFamily',
-  'fontWeight',
-  'fontFeatureSettings',
-  'fontStyle',
-  'letterSpacing',
-  'fontStretch',
-  'textTransform',
-];
-
-const AutosizeInput = forwardRef<AutosizeInputRefType, AutosizeInputProps>(
+/**
+ * Native auto-width `<input>`: renders its own input plus a hidden sizer, and
+ * sizes the input to the text width via `useAutosizeWidth`. The forwarded ref
+ * points at the underlying `<input>`.
+ */
+const AutosizeInput = forwardRef<HTMLInputElement, AutosizeInputProps>(
   (
     {
-      extraWidth = 16,
-      wrapperClassName,
-      wrapperStyle: wrapperStyleProp,
-      onAutosize,
-      preAutosize,
+      minWidth,
+      extraWidth,
       placeholderIsMinWidth,
-      minWidth = 0,
-      handleInputRef,
-      children,
-      transformWrapperRef,
-      transformRef,
-      placeholder,
-      value,
-      defaultValue,
+      wrapperClassName,
+      wrapperStyle,
+      onAutosize,
+      className,
       style,
+      value,
+      placeholder,
+      ...inputProps
     },
     forwardedRef,
   ) => {
-    const usedValue = value ?? defaultValue ?? '';
-    const inputRef = useRef<HTMLInputElement | null>(null);
-    const inputWrapperRef = useRef<HTMLElement | null>(null);
-    const sizerRef = useRef<HTMLDivElement>(null);
-    const placeholderSizerRef = useRef<HTMLDivElement>(null);
-    const wrapperRef = useRef<HTMLDivElement>(null);
+    const inputRef = useRef<HTMLInputElement>(null);
 
-    const transformWrapper = useMemo(() => {
-      return transformWrapperRef || ((element: HTMLElement) => element);
-    }, [transformWrapperRef]);
+    const measurableValue =
+      typeof value === 'string' || typeof value === 'number'
+        ? value
+        : undefined;
 
-    const transformElement = useMemo(() => {
-      return transformRef || ((element: HTMLElement) => element);
-    }, [transformRef]);
-
-    const contentWidth = useRef<number | undefined>();
-    const placeholderWidth = useRef<number | undefined>();
-
-    const applyNewWidth = useCallback(() => {
-      const calculatedWidth = calculateInputWidth({
-        sizerWidth: contentWidth.current,
-        hasValue: !!sizerRef.current?.textContent,
-        placeholderIsMinWidth,
-        placeholderWidth:
-          placeholderWidth.current ?? placeholderSizerRef.current?.scrollWidth,
-        minWidth: +minWidth,
-        placeholder,
-      });
-
-      if (inputWrapperRef.current) {
-        const finalWidth = calculatedWidth + +extraWidth;
-        if (finalWidth !== parseFloat(inputWrapperRef.current.style.width)) {
-          preAutosize && preAutosize(calculatedWidth);
-          inputWrapperRef.current.style.width = `${finalWidth}px`;
-          onAutosize && onAutosize(calculatedWidth);
-        }
-      }
-    }, [
-      extraWidth,
-      minWidth,
-      onAutosize,
+    const { sizerRef, containerRef } = useAutosizeWidth<HTMLInputElement>({
+      value: measurableValue,
       placeholder,
+      minWidth,
+      extraWidth,
       placeholderIsMinWidth,
-      preAutosize,
-    ]);
-
-    const resizeContentHandler = useCallback(
-      (newWidth: DOMRect) => {
-        contentWidth.current = newWidth.width;
-        applyNewWidth();
-      },
-      [applyNewWidth],
-    );
-
-    const resizePlaceholderHandler = useCallback(
-      (newWidth: DOMRect) => {
-        placeholderWidth.current = newWidth.width;
-        applyNewWidth();
-      },
-      [applyNewWidth],
-    );
-
-    useResizeObserver(sizerRef, resizeContentHandler);
-    useResizeObserver(placeholderSizerRef, resizePlaceholderHandler);
-
-    const copyInputStyles = () => {
-      if (inputRef.current) {
-        const computedStyle = window.getComputedStyle(inputRef.current);
-        FONT_CSS_PROPS.forEach((cssProperty) => {
-          if (sizerRef.current) {
-            sizerRef.current.style[cssProperty] = computedStyle[cssProperty];
-          }
-          if (placeholderSizerRef.current) {
-            placeholderSizerRef.current.style[cssProperty] =
-              computedStyle[cssProperty];
-          }
-        });
-      }
-    };
-
-    useLayoutEffect(() => {
-      copyInputStyles();
-    }, []);
-
-    useEffect(() => {
-      if (sizerRef.current) {
-        const sizerSibling = sizerRef.current.nextElementSibling;
-        const inputElement =
-          sizerSibling instanceof HTMLElement && transformElement(sizerSibling);
-        const inputWrapperElement =
-          sizerSibling instanceof HTMLElement && transformWrapper(sizerSibling);
-        if (inputWrapperElement && inputWrapperElement instanceof HTMLElement) {
-          inputWrapperRef.current = inputWrapperElement;
-        }
-        if (inputElement && !inputRef.current) {
-          if (inputElement && inputElement instanceof HTMLInputElement) {
-            inputRef.current = inputElement;
-            inputRef.current.style.boxSizing = 'content-box';
-            handleInputRef && handleInputRef(inputElement, sizerSibling);
-            copyInputStyles();
-          }
-        }
-      }
-    }, [handleInputRef, transformElement, transformWrapper]);
-
-    useImperativeHandle(forwardedRef, () => ({
       inputRef,
-      sizerRef,
-      wrapperRef,
-      inputWrapperRef,
-      placeholderSizerRef,
-      copyInputStyles,
-      updateInputWidth: applyNewWidth,
-    }));
+      onAutosize,
+    });
 
-    const wrapperStyle: CSSProperties = {
-      ...wrapperStyleProp,
-      position: 'relative',
-      display: style?.display ?? 'inline-block',
-    };
+    // The hook writes the measured width to `containerRef` — here that is the
+    // input itself; `inputRef` (font source) and the forwarded ref point to it too.
+    const mergedInputRef = useMergeRefs([inputRef, containerRef, forwardedRef]);
 
     return (
       <div
-        ref={wrapperRef}
         className={wrapperClassName}
-        style={wrapperStyle}
-        data-testid="wrapper"
+        style={{ ...wrapperBaseStyle, ...wrapperStyle }}
       >
-        <div style={sizerStyle} ref={sizerRef} data-testid="sizer">
-          {usedValue}
-        </div>
-        {children}
-        {placeholder && (
-          <div
-            ref={placeholderSizerRef}
-            style={sizerStyle}
-            data-testid="placeholder-sizer"
-          >
-            {placeholder}
-          </div>
-        )}
+        <input
+          {...inputProps}
+          value={value}
+          placeholder={placeholder}
+          ref={mergedInputRef}
+          className={className}
+          style={{ ...inputBaseStyle, ...style }}
+        />
+        <span ref={sizerRef} style={SIZER_STYLE} aria-hidden />
       </div>
     );
   },

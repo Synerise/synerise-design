@@ -28,6 +28,9 @@ export default {
     size: {
       ...controlFromOptionsArray('select', ['large', 'small', 'default']),
     },
+    growItem: {
+      ...controlFromOptionsArray('inline-radio', ['last', 'first']),
+    },
     label: REACT_NODE_AS_STRING,
     resetMargin: BOOLEAN_CONTROL,
     compact: BOOLEAN_CONTROL,
@@ -73,12 +76,17 @@ export const AllVariants: Story = {
   render: (args) => {
     return (
       <>
-        {inputGroupType.map(({ leftComponent, rightComponent }) => (
-          <InputGroup {...args}>
-            {leftComponent}
-            {rightComponent}
-          </InputGroup>
-        ))}
+        {inputGroupType.map(
+          ({ leftComponent, rightComponent, growItem }, i) => (
+            // Each variant carries its own `growItem` (undefined → default 'last');
+            // the ColorPicker row uses 'first' so the input stretches, keeping the
+            // picker compact while the group still fills the parent.
+            <InputGroup key={i} {...args} growItem={growItem}>
+              {leftComponent}
+              {rightComponent}
+            </InputGroup>
+          ),
+        )}
       </>
     );
   },
@@ -87,6 +95,9 @@ export const AllVariants: Story = {
       control: false,
     },
     rightComponent: {
+      control: false,
+    },
+    growItem: {
       control: false,
     },
   },

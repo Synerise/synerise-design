@@ -58,8 +58,22 @@ describe('ColorPicker', () => {
     renderWithProvider(<ColorPicker {...props} />);
     const colorPicker = screen.getByTestId('color-picker');
     await fireEvent.click(colorPicker as HTMLElement);
-    const savedColors = document.querySelectorAll('.ds-tags .ds-tag');
+    const savedColors = document.querySelectorAll('.ds-color-swatch');
     expect(savedColors.length).toBe(3);
+  });
+
+  it('should render empty swatch placeholders up to maxSavedColors', async () => {
+    props.isShownSavedColors = true;
+    props.colors = ['#ffffff', '#ff0000', '#00ff00'];
+    props.maxSavedColors = 9;
+    renderWithProvider(<ColorPicker {...props} />);
+    const colorPicker = screen.getByTestId('color-picker');
+    await fireEvent.click(colorPicker as HTMLElement);
+    const placeholders = document.querySelectorAll(
+      '.ds-color-swatch-placeholder',
+    );
+    // 9 slots total − 3 filled = 6 empty placeholders.
+    expect(placeholders.length).toBe(6);
   });
 
   it('should call onChange function when color is changed', () => {

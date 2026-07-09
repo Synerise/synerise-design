@@ -1,0 +1,224 @@
+import { Meta, Canvas } from '@storybook/addon-docs/blocks';
+
+import ColorPickerMeta, {
+  Default,
+  Minimalistic,
+  SavedColors,
+  WithError,
+  Disabled,
+} from './ColorPicker.stories';
+
+<Meta of={ColorPickerMeta} />
+
+# ColorPicker
+
+An input-triggered dropdown colour picker built on `react-colorful`, with a hex
+input, copy-to-clipboard, and an optional saved-colour swatch section.
+
+## Quick overview
+
+- Import the default export: `import ColorPicker from '@synerise/ds-color-picker';`
+- **Semi-controlled** — `value` initialises the internal state on mount; drive it
+  with `value` + `onChange` (which fires a normalised 6-digit hex on every valid
+  change). Accepts hex (`#fff`, `#ffffff`) or CSS named colours (`red`).
+- The picker opens in a `Dropdown` overlay. When `disabled` or `readOnly`, the
+  dropdown is **not rendered at all** — only the trigger input shows.
+- Set `isShownSavedColors` to reveal the swatch section: a "+" creator button
+  plus a grid of `maxSavedColors` slots. Saved colours fill the leading slots;
+  the rest render as empty placeholders.
+- `size` (`S` / `M` / `L`) controls the spectrum height (136 / 168 / 200 px).
+
+## Basic example
+
+<Canvas of={Default} sourceState="shown" />
+
+## Minimalistic
+
+The trigger input on its own — no label, description, or swatch section.
+
+<Canvas of={Minimalistic} />
+
+## Saved colours
+
+With `isShownSavedColors`, the swatch section renders below the hex input.
+Clicking the "+" button saves the current colour; clicking a swatch applies it
+(the selected swatch shows a centred white dot). `maxSavedColors` (default `9`)
+caps the number of slots — older entries drop off the front.
+
+<Canvas of={SavedColors} />
+
+## Error state
+
+`errorText` shows a message below the trigger and applies error styling; use
+`error` for styling without a message.
+
+<Canvas of={WithError} />
+
+## Disabled
+
+When `disabled` (or `readOnly`), the component renders only the trigger input —
+the dropdown cannot be opened.
+
+<Canvas of={Disabled} />
+
+## API reference
+
+### `ColorPicker`
+
+{/* MDX does not render markdown tables correctly — always use HTML tables */}
+
+<table>
+  <thead>
+    <tr>
+      <th>Prop</th>
+      <th>Type</th>
+      <th>Default</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>value</code></td>
+      <td><code>string</code></td>
+      <td>—</td>
+      <td>Controlled colour value. Hex (<code>#fff</code>, <code>#ffffff</code>) or CSS named colour (<code>red</code>).</td>
+    </tr>
+    <tr>
+      <td><code>onChange</code></td>
+      <td><code>(color: string) =&gt; void</code></td>
+      <td>—</td>
+      <td>Called with a normalised 6-digit hex string on every valid change.</td>
+    </tr>
+    <tr>
+      <td><code>colors</code></td>
+      <td><code>string[]</code></td>
+      <td><code>[]</code></td>
+      <td>Initial saved-colour swatches (copied to local state on mount).</td>
+    </tr>
+    <tr>
+      <td><code>onSaveColors</code></td>
+      <td><code>(colors: string[]) =&gt; void</code></td>
+      <td>—</td>
+      <td>Called with the full updated array when a swatch is saved.</td>
+    </tr>
+    <tr>
+      <td><code>maxSavedColors</code></td>
+      <td><code>number</code></td>
+      <td><code>9</code></td>
+      <td>Maximum number of swatch slots; older entries drop from the front.</td>
+    </tr>
+    <tr>
+      <td><code>isShownSavedColors</code></td>
+      <td><code>boolean</code></td>
+      <td>—</td>
+      <td>Shows the divider + swatch section below the hex input.</td>
+    </tr>
+    <tr>
+      <td><code>infix</code></td>
+      <td><code>(colorHooks?: Partial&lt;ColorHookType&gt;) =&gt; JSX.Element</code></td>
+      <td><code>() =&gt; &lt;&gt;&lt;/&gt;</code></td>
+      <td>Render slot between the creator button and the swatches (e.g. a format converter). Receives <code>{`{ color, setColor }`}</code>.</td>
+    </tr>
+    <tr>
+      <td><code>size</code></td>
+      <td><code>'S' | 'M' | 'L'</code></td>
+      <td><code>'M'</code></td>
+      <td>Spectrum height: S=136px, M=168px, L=200px.</td>
+    </tr>
+    <tr>
+      <td><code>maxWidth</code></td>
+      <td><code>number</code></td>
+      <td>—</td>
+      <td>When <code>&gt;= 228</code>, constrains the overlay to this width (global CSS side-effect).</td>
+    </tr>
+    <tr>
+      <td><code>placeholder</code></td>
+      <td><code>string</code></td>
+      <td>—</td>
+      <td>Input placeholder text.</td>
+    </tr>
+    <tr>
+      <td><code>tooltip</code></td>
+      <td><code>{`{ copy: string; copied: string }`}</code></td>
+      <td>—</td>
+      <td>Tooltips for the copy-to-clipboard icon inside the dropdown hex input.</td>
+    </tr>
+    <tr>
+      <td><code>error</code></td>
+      <td><code>boolean</code></td>
+      <td>—</td>
+      <td>Error styling on the trigger input.</td>
+    </tr>
+    <tr>
+      <td><code>errorText</code></td>
+      <td><code>ReactNode</code></td>
+      <td>—</td>
+      <td>Error message below the trigger (from <code>FormFieldCommonProps</code>).</td>
+    </tr>
+    <tr>
+      <td><code>description</code></td>
+      <td><code>ReactNode</code></td>
+      <td>—</td>
+      <td>Description text below the trigger (from <code>FormFieldCommonProps</code>).</td>
+    </tr>
+    <tr>
+      <td><code>disabled</code></td>
+      <td><code>boolean</code></td>
+      <td>—</td>
+      <td>Disables the input. The dropdown is not rendered when <code>true</code>.</td>
+    </tr>
+    <tr>
+      <td><code>readOnly</code></td>
+      <td><code>boolean</code></td>
+      <td>—</td>
+      <td>Read-only input. The dropdown is not rendered when <code>true</code>.</td>
+    </tr>
+    <tr>
+      <td><code>inputProps</code></td>
+      <td><code>Omit&lt;InputProps, ...&gt;</code></td>
+      <td>—</td>
+      <td>Extra props forwarded to the trigger <code>Input</code> (excludes <code>value</code>, <code>onChange</code>, <code>placeholder</code>, form-field props, etc.).</td>
+    </tr>
+    <tr>
+      <td><code>getPopupContainer</code></td>
+      <td><code>(triggerNode: HTMLElement) =&gt; HTMLElement</code></td>
+      <td><code>defaultGetPopupContainer</code></td>
+      <td>Portal target for the dropdown.</td>
+    </tr>
+  </tbody>
+</table>
+
+### Exported types
+
+<table>
+  <thead>
+    <tr>
+      <th>Type</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>ColorPickerProps</code></td>
+      <td>Props for the <code>ColorPicker</code> component.</td>
+    </tr>
+    <tr>
+      <td><code>ColorHookType</code></td>
+      <td><code>{`{ color: string; setColor: (color: string) => void }`}</code> — the argument shape passed to the <code>infix</code> render prop.</td>
+    </tr>
+  </tbody>
+</table>
+
+## Notes & tips
+
+- **Semi-controlled**: the initial `value` → local-state sync runs only on mount.
+  Later external `value` changes are **not** reflected; drive the component
+  consistently through `value` + `onChange`, or remount via `key` to reset.
+- **`onBlur` reverts to last valid**: typing an invalid colour in the trigger and
+  blurring restores the last valid hex.
+- **Browser-only helpers**: `standardizeColor` uses `<canvas>` and
+  `isValidTextColor` uses `new Option().style` — both throw in SSR/Node.
+- **Swatch grid**: the swatch section is built from plain styled elements
+  (`.ds-color-swatch` for filled, `.ds-color-swatch-placeholder` for empty), not
+  `ds-tags`/`ds-button`. The selected swatch shows a centred white dot; the
+  selection highlight clears on any text/hex input change.

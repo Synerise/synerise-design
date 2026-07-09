@@ -142,17 +142,13 @@ export const PopulateStep: ConditionStory = {
     await userEvent.click(within(operatorsDropdown).getByText('Starts with'));
     await waitFor(() => expect(args.onChangeOperator).toHaveBeenCalled());
 
-    await canvas.findByTestId('autocomplete-autosize-input');
-    await userEvent.click(
-      within(canvas.getByTestId('autocomplete-autosize-input')).getByRole(
-        'combobox',
-      ),
+    // The native autocomplete puts the testid on the <input role="combobox">
+    // itself (the antd version nested the combobox inside a wrapper).
+    const autocompleteInput = await canvas.findByTestId(
+      'autocomplete-autosize-input',
     );
-    fireEvent.focus(
-      within(canvas.getByTestId('autocomplete-autosize-input')).getByRole(
-        'combobox',
-      ),
-    );
+    await userEvent.click(autocompleteInput);
+    fireEvent.focus(autocompleteInput);
     await userEvent.keyboard('Autosize text input parameter value');
     await sleep(500);
   },

@@ -89,14 +89,16 @@ All styles are in `ColorPicker.styles.ts`. Uses `theme.palette` tokens for borde
 
 `ColorPickerModalStyle` is a `createGlobalStyle` that targets `.color-picker-overlay` — it is only injected into the DOM when `maxWidth >= 228`. This is a **global CSS side-effect**.
 
-`SwatchSectionWrapper` has a CSS bug: `alignitems: center` instead of `align-items: center` — the flex alignment is silently ignored.
+The saved-colour **swatch section** is built from plain styled elements matching the Figma spec (16×16, `border-radius: 3px`): `SwatchCreatorButton` (the "+" button, `<button>` — hover shows a `grey-200` background), `Swatch` (a filled `<button>` whose `background-color` is the saved colour; the selected one renders a centred `SwatchDot`), and `SwatchPlaceholder` (an empty `<div>` slot with a `grey-300` border, `grey-400` on hover). It does **not** use `ds-tags`/`ds-button` for swatches. Filled swatches carry `.ds-color-swatch`; empty slots carry `.ds-color-swatch-placeholder`.
 
 ## Key dependencies
 
 - `react-colorful` (`HexColorPicker`) — the core colour-gradient picker UI
 - `@synerise/ds-dropdown` — popover/overlay shell for the picker panel
 - `@synerise/ds-input` — trigger text input and the hex input inside the dropdown
-- `@synerise/ds-tags` + `@synerise/ds-copy-icon` — swatch chips and copy button
+- `@synerise/ds-tags` — `Tag` for the colour preview swatch (trigger `innerPrefix` + the dropdown preview square); **not** used for saved-colour swatches
+- `@synerise/ds-copy-icon` — copy-to-clipboard button in the dropdown hex input
+- `@synerise/ds-icon` — the `FormulaPlusM` plus glyph inside the swatch creator button
 - `@synerise/ds-form-field` — `FormFieldCommonProps` for `description`/`errorText`
 - `@synerise/ds-utils` (`useOnClickOutside`, `getPopupContainer`) — click-outside close, default portal target
 
@@ -109,5 +111,6 @@ All styles are in `ColorPicker.styles.ts`. Uses `theme.palette` tokens for borde
 - **`standardizeColor` uses `document.createElement('canvas')`** — browser-only. Will throw in SSR/Node environments.
 - **`isValidTextColor` uses `new Option().style`** — also browser-only.
 - **`maxWidth` threshold** — the prop only takes effect when `>= 228` (the default picker width). Values below 228 are silently ignored.
-- **`@ts-ignore` on Tags `selected` prop** — the swatch color entries are passed as tag items but the typing doesn't align. Line 168 of `ColorPicker.tsx`.
+- **Swatch grid renders `maxSavedColors` slots** — saved colours fill the leading slots (`Swatch`); the remainder render as empty `SwatchPlaceholder` slots (Figma shows the full grid). The grid wraps (`flex-wrap`) if `maxSavedColors` exceeds what fits the 196px content width.
+- **Selected swatch** — `pressed` holds the index of the last-clicked swatch (its `SwatchDot` shows); it resets to `-1` on any text/hex input change, so typing a colour clears the selection highlight.
 - **`savedColors` is local state** — `colors` prop initialises the local `savedColors` state on mount only. Subsequent `colors` prop changes are not reflected unless the component remounts.

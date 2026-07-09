@@ -17,7 +17,6 @@ import { size } from '../ColorPicker/ColorPicker.data';
 
 export default {
   title: 'Components/Pickers/ColorPicker',
-  tags: ['autodocs'],
   component: ColorPicker,
   decorators: [centeredPaddedWrapper],
   render: (args) => {
@@ -66,6 +65,21 @@ export default {
 type Story = StoryObj<typeof ColorPicker>;
 
 export const Default: Story = {
+  parameters: {
+    docs: {
+      source: {
+        code: `<ColorPicker
+  value="#00ffff"
+  onChange={setColor}
+  description="Description text"
+  maxWidth={228}
+  size="S"
+  isShownSavedColors
+  tooltip={{ copy: 'Copy to clipboard', copied: 'Copied' }}
+/>`,
+      },
+    },
+  },
   args: {
     value: '#00ffff',
     description: 'Description text',
@@ -77,6 +91,22 @@ export const Default: Story = {
 };
 
 export const Disabled: Story = {
+  parameters: {
+    docs: {
+      source: {
+        code: `<ColorPicker
+  value="#00ffff"
+  onChange={setColor}
+  description="Description text"
+  maxWidth={228}
+  size="S"
+  isShownSavedColors
+  tooltip={{ copy: 'Copy to clipboard', copied: 'Copied' }}
+  disabled
+/>`,
+      },
+    },
+  },
   args: {
     ...Default.args,
     disabled: true,
@@ -84,6 +114,22 @@ export const Disabled: Story = {
 };
 
 export const WithError: Story = {
+  parameters: {
+    docs: {
+      source: {
+        code: `<ColorPicker
+  value="#00ffff"
+  onChange={setColor}
+  description="Description text"
+  maxWidth={228}
+  size="S"
+  isShownSavedColors
+  tooltip={{ copy: 'Copy to clipboard', copied: 'Copied' }}
+  errorText="An error message"
+/>`,
+      },
+    },
+  },
   args: {
     ...Default.args,
     errorText: 'An error message',
@@ -91,12 +137,37 @@ export const WithError: Story = {
 };
 
 export const Minimalistic: Story = {
+  parameters: {
+    docs: {
+      source: {
+        code: `<ColorPicker
+  value={color}
+  onChange={setColor}
+  tooltip={{ copy: 'Copy to clipboard', copied: 'Copied' }}
+/>`,
+      },
+    },
+  },
   args: {
     tooltip: { copy: 'Copy to clipboard', copied: 'Copied' },
   },
 };
 
 export const SavedColors: Story = {
+  parameters: {
+    docs: {
+      source: {
+        code: `<ColorPicker
+  value={color}
+  onChange={setColor}
+  isShownSavedColors
+  colors={['#00ffff', '#fff', '#123123']}
+  onSaveColors={setSavedColors}
+  tooltip={{ copy: 'Copy to clipboard', copied: 'Copied' }}
+/>`,
+      },
+    },
+  },
   args: {
     isShownSavedColors: true,
     colors: ['#00ffff', '#fff', '#123123'],

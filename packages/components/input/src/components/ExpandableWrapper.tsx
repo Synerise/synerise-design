@@ -1,4 +1,3 @@
-import type { TextAreaRef } from 'antd/lib/input/TextArea';
 import React, {
   type ChangeEvent,
   type FocusEvent,
@@ -20,7 +19,7 @@ type ExpandableWrapperProps = Pick<InputProps, 'value'> & {
 };
 
 export const ExpandableWrapper = forwardRef<
-  TextAreaRef,
+  HTMLTextAreaElement,
   ExpandableWrapperProps
 >(({ children, value, expanded, onChange, onBlur }, expandableTextAreaRef) => {
   return (
