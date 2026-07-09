@@ -42,6 +42,7 @@
   "types": "dist/index.d.ts",
   "dependencies": {
     "@floating-ui/react": "^0.27.16",
+    "@synerise/ds-button": "workspace:^",
     "@synerise/ds-divider": "workspace:^",
     "@synerise/ds-icon": "workspace:^",
     "@synerise/ds-popover": "workspace:^",

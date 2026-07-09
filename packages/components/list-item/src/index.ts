@@ -6,6 +6,7 @@ export { type HoverableSuffixProps } from './components/HoverableSuffix/Hoverabl
 export {
   ListWrapper,
   type ListWrapperProps,
+  type ListWrapperTexts,
 } from './components/ListWrapper/ListWrapper';
 
 export { useListContext } from './components/ListContext/ListContext';

@@ -11,10 +11,7 @@ import ListItem, {
 } from '@synerise/ds-list-item';
 import Scrollbar from '@synerise/ds-scrollbar';
 
-// use `?raw` to import as string
-
 import { CLASSNAME_ARG_CONTROL, fixedWrapper300 } from '../../utils';
-import info from './ListWrapper.info.md?raw';
 import { LIST_ITEMS } from './listItem.data';
 
 type Story = StoryObj<ListWrapperProps>;
@@ -22,14 +19,6 @@ type Story = StoryObj<ListWrapperProps>;
 export default {
   component: ListWrapper,
   title: 'Components/ListItem/ListWrapper',
-  parameters: {
-    docs: {
-      description: {
-        component: info,
-      },
-    },
-  },
-  tags: ['autodocs'],
   render: (args) => {
     return (
       <ListWrapper {...args}>
@@ -81,7 +70,72 @@ const Item = (listItemData: ListChildComponentProps<ListItemProps[]>) => {
     </div>
   );
 };
+export const WithMaxToShowItems: Story = {
+  args: {
+    maxToShowItems: 3,
+  },
+  parameters: {
+    docs: {
+      description: {
+        story:
+          'Use `maxToShowItems` to limit visible items. A show-more/show-less toggle appears when there are more items than the limit. `maxToShowItems` counts direct children only, so keep `ListItem`s as direct children of `ListWrapper`.',
+      },
+      source: {
+        code: `import ListItem, { ListWrapper } from '@synerise/ds-list-item';
+
+// Only the first 3 items are shown; a "Show more" toggle reveals the rest.
+// maxToShowItems counts direct children, so keep ListItems as direct children.
+<ListWrapper maxToShowItems={3} onClick={(itemData) => console.log(itemData.key)}>
+  <ListItem itemKey="a">Option A</ListItem>
+  <ListItem itemKey="b">Option B</ListItem>
+  <ListItem itemKey="c">Option C</ListItem>
+  <ListItem itemKey="d">Option D</ListItem>
+  <ListItem itemKey="e">Option E</ListItem>
+</ListWrapper>`,
+      },
+    },
+  },
+};
+
 export const Virtualised: Story = {
+  parameters: {
+    docs: {
+      description: {
+        story:
+          'Compose the children prop with a virtualised renderer (e.g. `react-window`) for very long lists. Shared `onClick` still propagates through context. Because the list is a single composed child, `maxToShowItems` does not apply to this pattern.',
+      },
+      source: {
+        code: `import React, { useRef } from 'react';
+import { VariableSizeList } from 'react-window';
+import ListItem, { ListWrapper } from '@synerise/ds-list-item';
+import Scrollbar from '@synerise/ds-scrollbar';
+
+const listRef = useRef(null);
+
+<ListWrapper onClick={(itemData) => console.log(itemData.key)}>
+  <Scrollbar
+    maxHeight={308}
+    onScroll={({ currentTarget }) => listRef.current?.scrollTo(currentTarget.scrollTop)}
+  >
+    <VariableSizeList
+      ref={listRef}
+      height={308}
+      itemData={items}
+      itemCount={items.length}
+      itemSize={(index) => (items[index].type === 'header' ? 40 : 32)}
+      width="100%"
+    >
+      {({ data, index, style }) => (
+        <div style={style}>
+          <ListItem {...data[index]} />
+        </div>
+      )}
+    </VariableSizeList>
+  </Scrollbar>
+</ListWrapper>`,
+      },
+    },
+  },
   render: (args) => {
     const listRef = useRef<VariableSizeList>(null);
     const getItemSize = (index: number) => {

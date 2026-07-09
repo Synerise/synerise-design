@@ -23,6 +23,10 @@
       "SHOW-LESS": "Mostrar menos",
       "SHOW-MORE": "Mostrar más"
     },
+    "LIST-ITEM": {
+      "SHOW-LESS": "Mostrar menos",
+      "SHOW-MORE": "Mostrar más"
+    },
     "CONTEXT-SELECTOR": {
       "BUTTON_LABEL": "Elegir",
       "SEARCH_PLACEHOLDER": "Buscar",
