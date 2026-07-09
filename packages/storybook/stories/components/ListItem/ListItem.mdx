@@ -282,15 +282,17 @@ Swaps suffix content based on hover state. Use inside `suffixel` with the AddonR
 
 ### `ListWrapper`
 
-Container that provides shared context to all descendant ListItem components.
+Container that provides shared context to all descendant ListItem components. See the dedicated **ListWrapper** page for full details.
 
 <table>
   <thead>
     <tr><th>Prop</th><th>Type</th><th>Default</th><th>Description</th></tr>
   </thead>
   <tbody>
-    <tr><td>onClick</td><td>ListItemEventHandler</td><td>—</td><td>Shared click handler for all descendant items</td></tr>
-    <tr><td>children</td><td>ReactNode</td><td>—</td><td>ListItem nodes</td></tr>
+    <tr><td>onClick</td><td>ListItemEventHandler</td><td>—</td><td>Shared click handler for all descendant items (any nesting depth)</td></tr>
+    <tr><td>maxToShowItems</td><td>number</td><td>—</td><td>Collapse to the first N items with a show-more/less toggle. Counts direct children only</td></tr>
+    <tr><td>texts</td><td>{'Partial<ListWrapperTexts>'}</td><td>{"{ showMore: 'Show more', showLess: 'Show less' }"}</td><td>Overrides the toggle button labels (defaults localised via DS.LIST-ITEM.SHOW-MORE / SHOW-LESS)</td></tr>
+    <tr><td>children</td><td>ReactNode</td><td>—</td><td>ListItem nodes (keep as direct children when using maxToShowItems)</td></tr>
   </tbody>
 </table>
 

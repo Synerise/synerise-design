@@ -1,0 +1,164 @@
+import { Meta, Canvas } from '@storybook/addon-docs/blocks';
+import { ListWrapper } from '@synerise/ds-list-item';
+import ListWrapperMeta, {
+  Default,
+  WithMaxToShowItems,
+  Virtualised,
+} from './ListWrapper.stories';
+
+<Meta component={ListWrapper} of={ListWrapperMeta} />
+
+# ListWrapper
+
+A container for `ListItem` rows that provides a single shared `onClick` handler to every descendant item, applies list padding/background, and can optionally collapse a long list behind a show-more/less toggle via `maxToShowItems`.
+
+## Table of contents
+
+- [Quick overview](#quick-overview)
+- [Basic usage](#basic-usage)
+- [Limiting visible items with maxToShowItems](#limiting-visible-items-with-maxtoshowitems)
+- [Direct children vs. composed children](#direct-children-vs-composed-children)
+- [Virtualisation](#virtualisation)
+- [API reference](#api-reference)
+  - [ListWrapper](#listwrapper-1)
+  - [ListWrapperTexts](#listwrappertexts)
+- [Notes and tips](#notes-and-tips)
+
+## Quick overview
+
+- Named export: `import { ListWrapper } from '@synerise/ds-list-item'`
+- Wrap `ListItem` elements to share one `onClick` handler across all of them (via React context) instead of wiring each item individually
+- Applies the standard list container styling (padding, white background, rounded corners); extend it with `styled(ListWrapper)`
+- `onClick` reaches items at **any nesting depth** — items may be wrapped in `div`s, fragments, or a virtualised list
+- `maxToShowItems` collapses the list to the first N items and renders a show-more/less toggle — but it counts **direct children only** (see below)
+- Toggle button labels are localised via react-intl by default (`DS.LIST-ITEM.SHOW-MORE` / `DS.LIST-ITEM.SHOW-LESS`) and can be overridden per-instance through `texts`
+
+## Basic usage
+
+Pass `ListItem`s as children and a single `onClick`. Each item reports its `itemKey` back through the shared handler.
+
+<Canvas of={Default} sourceState="shown" />
+
+## Limiting visible items with maxToShowItems
+
+Set `maxToShowItems` to collapse the list to the first N items. A ghost-primary toggle button appears only when there are more items than the limit, letting the user expand ("Show more") and collapse ("Show less") the remainder.
+
+<Canvas of={WithMaxToShowItems} sourceState="shown" />
+
+## Direct children vs. composed children
+
+There are two distinct behaviours, and they treat nesting differently:
+
+- **Shared `onClick`** works regardless of how the items are nested — it flows through React context, so items can sit inside wrapper `div`s, fragments, or a virtualised list.
+- **`maxToShowItems` clipping** counts and slices **direct children only**. Internally the wrapper does `React.Children.toArray(children).slice(0, maxToShowItems)`, so each item you want counted toward the limit must be a **direct child** of `ListWrapper`.
+
+If you wrap your items in an intermediate element, the wrapper sees that element as a single child, and the limit will not behave as intended:
+
+```tsx
+// ✅ Counted correctly — each ListItem is a direct child
+<ListWrapper maxToShowItems={3} onClick={handleClick}>
+  {items.map((props) => (
+    <ListItem key={props.itemKey} {...props} />
+  ))}
+</ListWrapper>
+
+// ⚠️ maxToShowItems counts ONE child (the <div>), not the items inside it
+<ListWrapper maxToShowItems={3} onClick={handleClick}>
+  <div>
+    {items.map((props) => (
+      <ListItem key={props.itemKey} {...props} />
+    ))}
+  </div>
+</ListWrapper>
+```
+
+Fragments and container components (including virtualised lists) are treated the same way. When you need `maxToShowItems`, keep `ListItem`s as direct children of `ListWrapper`.
+
+## Virtualisation
+
+For very long lists you can compose the children prop with a virtualised renderer (e.g. `react-window`) to only mount the visible rows. Shared `onClick` still works because it propagates through context.
+
+Because the virtualised list is a single composed child, `maxToShowItems` does **not** apply to this pattern — use one or the other.
+
+<Canvas of={Virtualised} sourceState="shown" />
+
+## API reference
+
+### `ListWrapper`
+
+Container `<div>` that installs a `ListContextProvider` and optionally renders the show-more/less toggle. Also accepts all standard HTML `<div>` attributes (`className`, `style`, …), which are spread onto the container.
+
+<table>
+  <thead>
+    <tr>
+      <th>Prop</th>
+      <th>Type</th>
+      <th>Default</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>onClick</code></td>
+      <td><code>ListItemEventHandler</code></td>
+      <td>—</td>
+      <td>Shared click handler for all descendant <code>ListItem</code>s, provided via context (any nesting depth)</td>
+    </tr>
+    <tr>
+      <td><code>maxToShowItems</code></td>
+      <td><code>number</code></td>
+      <td>—</td>
+      <td>Collapse to the first N items; a show-more/less toggle appears when there are more. <strong>Counts direct children only.</strong></td>
+    </tr>
+    <tr>
+      <td><code>texts</code></td>
+      <td><code>Partial&lt;ListWrapperTexts&gt;</code></td>
+      <td><code>{"{ showMore: 'Show more', showLess: 'Show less' }"}</code></td>
+      <td>Overrides the toggle button labels (defaults are localised via <code>DS.LIST-ITEM.SHOW-MORE</code> / <code>DS.LIST-ITEM.SHOW-LESS</code>)</td>
+    </tr>
+    <tr>
+      <td><code>children</code></td>
+      <td><code>ReactNode</code></td>
+      <td>—</td>
+      <td><code>ListItem</code> nodes (keep them as direct children when using <code>maxToShowItems</code>)</td>
+    </tr>
+  </tbody>
+</table>
+
+### `ListWrapperTexts`
+
+Shape of the `texts` prop for localising the toggle button.
+
+<table>
+  <thead>
+    <tr>
+      <th>Field</th>
+      <th>Type</th>
+      <th>Default</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>showMore</code></td>
+      <td><code>ReactNode</code></td>
+      <td><code>DS.LIST-ITEM.SHOW-MORE</code> ("Show more")</td>
+      <td>Label shown while the list is collapsed</td>
+    </tr>
+    <tr>
+      <td><code>showLess</code></td>
+      <td><code>ReactNode</code></td>
+      <td><code>DS.LIST-ITEM.SHOW-LESS</code> ("Show less")</td>
+      <td>Label shown while the list is expanded</td>
+    </tr>
+  </tbody>
+</table>
+
+## Notes and tips
+
+- **`maxToShowItems` requires direct children.** Wrapping items in a container, fragment, or virtualised list makes the wrapper count that single element, not the items inside it — clipping then won't match the visible item count.
+- **The toggle only renders when needed.** If the number of direct children is less than or equal to `maxToShowItems`, no toggle button appears.
+- **Localised, accessible toggle.** When `maxToShowItems` is used, `ListWrapper` reads its default labels through react-intl, so it must render inside a `DSProvider` (as every Synerise app does). The toggle carries `aria-expanded` reflecting the collapsed/expanded state for assistive tech.
+- **`onClick` on both `ListWrapper` and a child.** If a child `ListItem` also passes its own `onClick`, both the wrapper handler and the item handler fire.
+- **`popoverDelay` is not forwarded.** `ListWrapper` only forwards `onClick` to the underlying `ListContextProvider`; if you need a custom `HoverTooltip` delay, use `ListContextProvider` directly.
+- **Custom styling.** Extend the container with `styled(ListWrapper)` — HTML attributes such as `className` and `style` are spread onto the root container element.

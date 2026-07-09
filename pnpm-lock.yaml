@@ -3373,6 +3373,9 @@ importers:
       '@floating-ui/react':
         specifier: ^0.27.16
         version: 0.27.16(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@synerise/ds-button':
+        specifier: workspace:^
+        version: link:../button
       '@synerise/ds-core':
         specifier: '*'
         version: link:../core
