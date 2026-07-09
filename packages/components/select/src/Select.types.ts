@@ -8,7 +8,6 @@ import {
   type ReactElement,
   type ReactNode,
 } from 'react';
-import { type CSSObject } from 'styled-components';
 
 import { type DropdownPlacement } from '@synerise/ds-dropdown';
 import { type FormFieldCommonProps } from '@synerise/ds-form-field';
@@ -141,7 +140,7 @@ export type SelectProps<VT extends SelectValue = SelectValue> = {
   raw?: boolean;
   readOnly?: boolean;
   asFormElement?: boolean;
-  selectorStyle?: CSSObject;
+  selectorStyle?: CSSProperties;
   clearTooltip?: string;
   size?: 'middle' | 'large' | 'default';
   error?: boolean;

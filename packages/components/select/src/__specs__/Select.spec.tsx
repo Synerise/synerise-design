@@ -246,3 +246,53 @@ describe('Select (antd parity shims)', () => {
     expect(root.getAttribute('aria-label')).toBe('pick one');
   });
 });
+
+describe('Select (focus / blur)', () => {
+  const OPTIONS = [
+    { value: 'a', label: 'Apple' },
+    { value: 'b', label: 'Banana' },
+  ];
+
+  it('autoFocuses the selector in select-only mode', () => {
+    renderWithProvider(<Select autoFocus options={OPTIONS} placeholder="Pick" />);
+
+    expect(document.activeElement).toBe(document.querySelector('.ds-select'));
+  });
+
+  it('fires onBlur when focus leaves the select', () => {
+    const onBlur = vi.fn();
+    renderWithProvider(
+      <Select options={OPTIONS} onBlur={onBlur} placeholder="Pick" />,
+    );
+
+    const wrapper = document.querySelector('.ds-select-wrapper') as Element;
+    fireEvent.focusOut(wrapper, { relatedTarget: document.body });
+
+    expect(onBlur).toHaveBeenCalled();
+  });
+
+  it('does not fire onBlur when focus moves within the select', () => {
+    const onBlur = vi.fn();
+    renderWithProvider(
+      <Select showSearch options={OPTIONS} onBlur={onBlur} placeholder="Pick" />,
+    );
+
+    const wrapper = document.querySelector('.ds-select-wrapper') as Element;
+    const input = document.querySelector('.ds-select-search') as Element;
+    fireEvent.focusOut(wrapper, { relatedTarget: input });
+
+    expect(onBlur).not.toHaveBeenCalled();
+  });
+
+  it('fires onFocus when focus enters the select', () => {
+    const onFocus = vi.fn();
+    renderWithProvider(
+      <Select options={OPTIONS} onFocus={onFocus} placeholder="Pick" />,
+    );
+
+    const wrapper = document.querySelector('.ds-select-wrapper') as Element;
+    fireEvent.focusIn(wrapper, { relatedTarget: document.body });
+
+    expect(onFocus).toHaveBeenCalled();
+  });
+});

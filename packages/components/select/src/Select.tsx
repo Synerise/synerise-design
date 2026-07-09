@@ -1,5 +1,6 @@
 import React, {
   type ChangeEvent,
+  type FocusEvent,
   type KeyboardEvent,
   type ReactElement,
   type ReactNode,
@@ -12,9 +13,7 @@ import React, {
 
 import Dropdown from '@synerise/ds-dropdown';
 import FormField from '@synerise/ds-form-field';
-import Icon, { AngleDownS, Close3M, CloseS } from '@synerise/ds-icon';
-import Loader from '@synerise/ds-loader';
-import Scrollbar from '@synerise/ds-scrollbar';
+import Icon, { AngleDownS, Close3M } from '@synerise/ds-icon';
 import Tooltip from '@synerise/ds-tooltip';
 import { getPopupContainer as defaultGetPopupContainer } from '@synerise/ds-utils';
 
@@ -26,6 +25,8 @@ import {
   type SelectProps,
   type SelectValue,
 } from './Select.types';
+import { OptionList } from './components/OptionList';
+import { SelectorContent } from './components/SelectorContent';
 import { useSelectOptions } from './hooks/useSelectOptions';
 import { findOption } from './utils/getOptionsFromChildren';
 import { DEFAULT_LIST_HEIGHT, cx, toArray } from './utils/helpers';
@@ -45,6 +46,8 @@ const SelectInner = forwardRef<HTMLDivElement, SelectProps>((props, ref) => {
     onChange,
     onSelect,
     onDeselect,
+    onBlur,
+    onFocus,
     onDropdownVisibleChange,
     onSearch,
     onClear,
@@ -127,6 +130,7 @@ const SelectInner = forwardRef<HTMLDivElement, SelectProps>((props, ref) => {
   const isSearchControlled = searchValue !== undefined;
   const effectiveQuery = isSearchControlled ? searchValue : searchQuery;
   const inputRef = useRef<HTMLInputElement>(null);
+  const selectorRef = useRef<HTMLDivElement>(null);
 
   // Active (keyboard-highlighted) option index into `displayedOptions`.
   const [activeIndex, setActiveIndex] = useState(-1);
@@ -214,6 +218,15 @@ const SelectInner = forwardRef<HTMLDivElement, SelectProps>((props, ref) => {
     activeEl?.scrollIntoView?.({ block: 'nearest' });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [activeIndex, isOpen]);
+
+  // Select-only mode has no search input, so honour `autoFocus` on the selector
+  // itself — this also gives the selector focus so `onBlur` can fire on blur.
+  useEffect(() => {
+    if (autoFocus && !hasInput) {
+      selectorRef.current?.focus();
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const $size = size === 'large' ? 'large' : 'default';
 
@@ -408,142 +421,82 @@ const SelectInner = forwardRef<HTMLDivElement, SelectProps>((props, ref) => {
     }
   };
 
+  // Fire consumer onFocus/onBlur only when focus enters/leaves the whole select;
+  // ignore focus moving between the selector and the inner search input.
+  const handleRootFocus = (event: FocusEvent<HTMLDivElement>): void => {
+    if (
+      event.relatedTarget &&
+      event.currentTarget.contains(event.relatedTarget as Node)
+    ) {
+      return;
+    }
+    onFocus?.(event);
+  };
+  const handleRootBlur = (event: FocusEvent<HTMLDivElement>): void => {
+    if (
+      event.relatedTarget &&
+      event.currentTarget.contains(event.relatedTarget as Node)
+    ) {
+      return;
+    }
+    onBlur?.(event);
+  };
+
   const hasValue = selectedValues.length > 0;
   const showClear = allowClear && hasValue && !isDisabled;
   const placeholderStr =
     typeof placeholder === 'string' ? placeholder : undefined;
 
   const menu: ReactNode = (
-    <S.DropdownWrapper>
-      {loading ? (
-        <S.Loading className="ds-select-loading">
-          <Loader size="M" />
-        </S.Loading>
-      ) : displayedOptions.length === 0 ? (
-        <S.NotFound className="ds-select-empty">{notFoundContent}</S.NotFound>
-      ) : (
-        <S.ScrollList>
-          <Scrollbar
-            absolute
-            maxHeight={Number(listHeight) || DEFAULT_LIST_HEIGHT}
-          >
-            <S.Inner
-              role="listbox"
-              id={listboxId}
-              aria-multiselectable={isMultiple || undefined}
-            >
-              {displayedOptions.map((option, index) => {
-                const isSelected = selectedValues.includes(option.value);
-                return (
-                  <S.OptionItem
-                    key={rowKey ? rowKey(option) : option.value}
-                    id={optionDomId(index)}
-                    role="option"
-                    className={cx(
-                      'ds-select-item-option',
-                      isSelected && 'ds-select-item-option-selected',
-                      index === activeIndex && 'ds-select-item-option-active',
-                    )}
-                    selected={isSelected}
-                    aria-selected={isSelected}
-                    data-testid="select-option"
-                    title={
-                      typeof option.title === 'string'
-                        ? option.title
-                        : undefined
-                    }
-                    text={option.label ?? option.value}
-                    style={option.style}
-                    disabled={option.disabled}
-                    onMouseEnter={() => setActiveIndex(index)}
-                    onClick={() => handleSelect(option)}
-                  />
-                );
-              })}
-            </S.Inner>
-          </Scrollbar>
-        </S.ScrollList>
-      )}
-    </S.DropdownWrapper>
-  );
-
-  const searchInputEl = (
-    <S.SearchInputEl
-      ref={inputRef}
-      className="ds-select-search"
-      value={effectiveQuery}
-      onChange={handleSearchChange}
-      onKeyDown={(event) => {
-        onInputKeyDown?.(event);
-        onKeyDown?.(event);
-        handleKeyDown(event);
-      }}
-      placeholder={hasValue ? undefined : placeholderStr}
-      disabled={isDisabled}
-      autoFocus={autoFocus}
-      maxLength={maxLength}
-      autoComplete="off"
-      readOnly={!hasInput}
-      id={id}
-      role="combobox"
-      aria-autocomplete="list"
-      aria-expanded={isOpen}
-      aria-haspopup="listbox"
-      aria-controls={isOpen ? listboxId : undefined}
-      aria-activedescendant={
-        isOpen && activeIndex >= 0 ? optionDomId(activeIndex) : undefined
-      }
+    <OptionList
+      loading={loading}
+      options={displayedOptions}
+      notFoundContent={notFoundContent}
+      listHeight={listHeight}
+      isMultiple={isMultiple}
+      listboxId={listboxId}
+      selectedValues={selectedValues}
+      activeIndex={activeIndex}
+      rowKey={rowKey}
+      optionDomId={optionDomId}
+      onOptionActivate={setActiveIndex}
+      onOptionSelect={handleSelect}
     />
   );
 
-  let selectorContent: ReactNode;
-  if (isMultiple) {
-    selectorContent = (
-      <S.MultiValueArea>
-        {selectedValues.map((v) => (
-          <S.Chip key={v} className="ds-select-selection-item">
-            <S.ChipLabel className="ds-select-selection-item-label">
-              {labelFor(v)}
-            </S.ChipLabel>
-            <S.ChipRemove
-              className="ds-select-selection-item-remove"
-              onMouseDown={(e: React.MouseEvent) => {
-                e.preventDefault();
-                e.stopPropagation();
-                removeValue(v);
-              }}
-            >
-              <Icon component={<CloseS />} size={24} />
-            </S.ChipRemove>
-          </S.Chip>
-        ))}
-        {searchInputEl}
-      </S.MultiValueArea>
-    );
-  } else if (showSearch) {
-    selectorContent = (
-      <>
-        {hasValue && !effectiveQuery && (
-          <S.SelectionItem className="ds-select-selection-item">
-            {labelFor(selectedValues[0])}
-          </S.SelectionItem>
-        )}
-        {searchInputEl}
-      </>
-    );
-  } else if (hasValue) {
-    selectorContent = (
-      <S.SelectionItem className="ds-select-selection-item">
-        {labelFor(selectedValues[0])}
-      </S.SelectionItem>
-    );
-  } else {
-    selectorContent = (
-      <S.Placeholder className="ds-select-selection-placeholder">
-        {placeholder}
-      </S.Placeholder>
-    );
-  }
+  const handleSearchKeyDown = (
+    event: KeyboardEvent<HTMLInputElement>,
+  ): void => {
+    onInputKeyDown?.(event);
+    onKeyDown?.(event);
+    handleKeyDown(event);
+  };
+
+  const selectorContent = (
+    <SelectorContent
+      isMultiple={isMultiple}
+      showSearch={showSearch}
+      hasValue={hasValue}
+      placeholder={placeholder}
+      placeholderStr={placeholderStr}
+      selectedValues={selectedValues}
+      effectiveQuery={effectiveQuery}
+      labelFor={labelFor}
+      onRemoveValue={removeValue}
+      inputRef={inputRef}
+      isDisabled={isDisabled}
+      hasInput={hasInput}
+      autoFocus={autoFocus}
+      maxLength={maxLength}
+      id={id}
+      isOpen={isOpen}
+      listboxId={listboxId}
+      activeIndex={activeIndex}
+      optionDomId={optionDomId}
+      onSearchChange={handleSearchChange}
+      onSearchKeyDown={handleSearchKeyDown}
+    />
+  );
 
   const selector = (
     <S.SelectWrapper
@@ -551,6 +504,8 @@ const SelectInner = forwardRef<HTMLDivElement, SelectProps>((props, ref) => {
       style={style}
       ref={raw ? ref : undefined}
       onClick={onClick}
+      onFocus={handleRootFocus}
+      onBlur={handleRootBlur}
       {...passthroughAttrs}
     >
       {!!prefixel && <S.PrefixWrapper>{prefixel}</S.PrefixWrapper>}
@@ -581,6 +536,7 @@ const SelectInner = forwardRef<HTMLDivElement, SelectProps>((props, ref) => {
         overlay={dropdownRender ? dropdownRender(menu as ReactElement) : menu}
       >
         <S.Selector
+          ref={selectorRef}
           className={cx(
             'ds-select',
             isMultiple && 'ds-select-multiple',
