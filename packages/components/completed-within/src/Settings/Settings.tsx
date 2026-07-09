@@ -30,7 +30,7 @@ const Settings = ({
           max={maxValue ?? Number.MAX_SAFE_INTEGER}
         />
         <Select
-          // readOnly={readOnly} - STOR-1872: add readOnly prop to select
+          readOnly={readOnly}
           size="default"
           value={value.period}
           placeholder={text.periodPlaceholder}
