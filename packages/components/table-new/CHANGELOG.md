@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.5.4](https://github.com/Synerise/synerise-design/compare/@synerise/ds-table-new@1.5.3...@synerise/ds-table-new@1.5.4) (2026-07-09)
+
+### Bug Fixes
+
+- hide ds-table-new pagination when there are no results ([0665481](https://github.com/Synerise/synerise-design/commit/066548192de18e2b8e80fdd1c968e3ff79a362c9))
+
 ## [1.5.3](https://github.com/Synerise/synerise-design/compare/@synerise/ds-table-new@1.5.2...@synerise/ds-table-new@1.5.3) (2026-07-08)
 
 **Note:** Version bump only for package @synerise/ds-table-new

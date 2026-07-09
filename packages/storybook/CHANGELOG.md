@@ -3,6 +3,16 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.51.0](https://github.com/Synerise/synerise-design/compare/storybook@1.50.0...storybook@1.51.0) (2026-07-09)
+
+### Bug Fixes
+
+- hide ds-table-new pagination when there are no results ([0665481](https://github.com/Synerise/synerise-design/commit/066548192de18e2b8e80fdd1c968e3ff79a362c9))
+
+### Features
+
+- **list-item:** add maxToShowItems show-more/less toggle to ListWrapper ([2477e7f](https://github.com/Synerise/synerise-design/commit/2477e7f781e4f421a602f1e9e960b10b39240a93))
+
 # [1.50.0](https://github.com/Synerise/synerise-design/compare/storybook@1.49.0...storybook@1.50.0) (2026-07-08)
 
 ### Features
