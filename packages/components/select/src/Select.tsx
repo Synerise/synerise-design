@@ -6,7 +6,6 @@ import React, {
   forwardRef,
   useEffect,
   useId,
-  useMemo,
   useRef,
   useState,
 } from 'react';
@@ -22,41 +21,14 @@ import { getPopupContainer as defaultGetPopupContainer } from '@synerise/ds-util
 import { Option } from './Option';
 import * as S from './Select.styles';
 import {
-  type FilterOptionFn,
   type RawValueType,
   type SelectOption,
   type SelectProps,
   type SelectValue,
 } from './Select.types';
-import {
-  findOption,
-  getOptionsFromChildren,
-} from './utils/getOptionsFromChildren';
-
-const DEFAULT_LIST_HEIGHT = 256;
-
-const cx = (...classes: (string | false | undefined)[]): string =>
-  classes.filter(Boolean).join(' ');
-
-const toArray = (value: SelectValue): RawValueType[] => {
-  if (value === undefined || value === null) {
-    return [];
-  }
-  return Array.isArray(value) ? value : [value];
-};
-
-/** Built-in filter: case-insensitive substring on `optionFilterProp` (or label/value). */
-const defaultFilter =
-  (optionFilterProp?: string): FilterOptionFn =>
-  (input, option) => {
-    const haystack =
-      optionFilterProp === 'value'
-        ? String(option.value)
-        : typeof option.label === 'string'
-          ? option.label
-          : String(option.value);
-    return haystack.toLowerCase().includes(input.toLowerCase());
-  };
+import { useSelectOptions } from './hooks/useSelectOptions';
+import { findOption } from './utils/getOptionsFromChildren';
+import { DEFAULT_LIST_HEIGHT, cx, toArray } from './utils/helpers';
 
 /**
  * DS-native Select (antd-free). Single-select, `mode="multiple"` (chip selector),
@@ -162,47 +134,15 @@ const SelectInner = forwardRef<HTMLDivElement, SelectProps>((props, ref) => {
   const listboxId = `${baseId}-listbox`;
   const optionDomId = (index: number): string => `${baseId}-option-${index}`;
 
-  const resolvedOptions = useMemo<SelectOption[]>(() => {
-    if (options && options.length > 0) {
-      return options;
-    }
-    return getOptionsFromChildren(children);
-  }, [options, children]);
-
-  // Client-side filtering. `filterOption={false}` = remote (consumer feeds
-  // `options` from `onSearch`), so never filter locally.
-  const displayedOptions = useMemo<SelectOption[]>(() => {
-    let list = resolvedOptions;
-    if (filterOption !== false && effectiveQuery) {
-      const match =
-        typeof filterOption === 'function'
-          ? filterOption
-          : defaultFilter(optionFilterProp);
-      list = resolvedOptions.filter((option) => match(effectiveQuery, option));
-    }
-    // tags: offer the typed text as a create-able option when it isn't one.
-    if (
-      isTags &&
-      effectiveQuery &&
-      !resolvedOptions.some(
-        (option) => String(option.value) === effectiveQuery,
-      ) &&
-      !selectedValues.some((v) => String(v) === effectiveQuery)
-    ) {
-      list = [
-        { value: effectiveQuery, key: effectiveQuery, label: effectiveQuery },
-        ...list,
-      ];
-    }
-    return list;
-  }, [
-    resolvedOptions,
+  const { resolvedOptions, displayedOptions } = useSelectOptions({
+    options,
+    children,
     filterOption,
     optionFilterProp,
     effectiveQuery,
     isTags,
     selectedValues,
-  ]);
+  });
 
   const firstEnabledIndex = (): number =>
     displayedOptions.findIndex((option) => !option.disabled);
@@ -386,6 +326,8 @@ const SelectInner = forwardRef<HTMLDivElement, SelectProps>((props, ref) => {
     }
   };
 
+  // Nav is hand-rolled (not ds-dropdown's): this is a combobox — focus stays on the
+  // input via `aria-activedescendant`, whereas ds-dropdown uses roving DOM focus.
   const handleKeyDown = (event: KeyboardEvent<HTMLElement>): void => {
     if (isDisabled) {
       return;
