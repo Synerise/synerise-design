@@ -175,8 +175,9 @@ the duplicates.
   `.ant-drawer`). Also the Tier 1/2 merged packages (avatar/badge/switch/pagination/…) — audit for
   residual `.ant-*` hooks and consumer coupling.
 - [ ] **Delete residual antd LESS** from de-antd'd packages once their `.ant-*`-class consumers migrate
-  (e.g. `ds-select`'s `style/*.less`, kept temporarily because `ds-table` + master `ds-autocomplete`
-  `@import` it; and any package's `style/*.less` that only exists to pull antd LESS).
+  (e.g. `ds-select`'s `style/*.less`, kept temporarily because `ds-table` still `@import`s it
+  (`ds-autocomplete` did too until its Tier 2.5 de-antd merged); and any package's `style/*.less` that
+  only exists to pull antd LESS).
 - [ ] **Shared native primitives already extracted** (reuse, don't re-add): `@synerise/ds-carousel`
   (banner/popconfirm), `useFocusTrap`/`useAutosizeWidth`/`useStretchToFit`/`PassthroughAttributes`
   (ds-utils), the `ds-dropdown`(floating-ui) + `ds-list-item` + `ds-scrollbar` combobox stack
