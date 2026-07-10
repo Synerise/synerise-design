@@ -24,11 +24,13 @@ src/
  utils/
   getOptionsFromChildren.ts — read <Select.Option> children into SelectOption[]; findOption()
   helpers.ts — cx(), toArray(), defaultFilter(), DEFAULT_LIST_HEIGHT
- style/
-  index.less, select.mixin.less — LEGACY antd-era LESS; NOT removable standalone (see Implementation notes)
  __specs__/
   Select.spec.tsx — Vitest + React Testing Library tests
 ```
+
+> No `style/` dir and no `antd` peerDep — the component is styled purely with styled-components. The
+> old antd-era LESS (`select.mixin.less`, `.ant-select-*` overrides) was relocated to `ds-table`
+> (`table/src/style/`), the only consumer that still renders antd selects.
 
 ## Public exports
 
@@ -137,9 +139,8 @@ Class hooks are `ds-select-*` (`.ds-select`, `.ds-select-selection-item`, `.ds-s
 - `@synerise/ds-icon` — `AngleDownS` (arrow), `Close3M` (clear), `CloseS` (chip remove).
 - `@synerise/ds-tooltip` — wraps the clear control for `clearTooltip`.
 - `@synerise/ds-utils` — default `getPopupContainer`.
-- `@synerise/ds-core` — theme tokens (peerDep). **`antd` (peerDep) is not imported by the component
-  JS, but backs the LESS layer (`~antd/lib/select/style`) which `ds-table` still consumes — so it
-  must stay until that LESS is removed (see below).**
+- `@synerise/ds-core` — theme tokens (peerDep). **No `antd` peerDep** — the component imports zero
+  antd; the LESS that pulled `~antd/lib/select/style` was relocated to `ds-table` (see below).
 
 ## Implementation notes
 
@@ -160,14 +161,11 @@ Class hooks are `ds-select-*` (`.ds-select`, `.ds-select-selection-item`, `.ds-s
   distinction comes from the `$readOnly` transient prop on `Selector`.
 - **Controlled/uncontrolled** — `value`/`open`/`searchValue` are controlled when defined, else backed
   by internal state; `onSearch` still fires when `searchValue` is controlled.
-- **Legacy LESS (NOT removable standalone)** — `style/index.less` (antd select LESS + ds-core vars +
-  `select.mixin.less`, 307 lines of `.ant-select-*` overrides) is vestigial for *this* component (it
-  renders `.ds-select-*` via styled-components), BUT is still `@import`ed by `ds-table`
-  (`table/src/style/index.less` — out of scope, stays on antd). (`ds-autocomplete` imported it too
-  until it was de-antd'd in Tier 2.5, merged — so `ds-table` is now the only consumer.) Deleting it
-  breaks ds-table's LESS compile (only the full 118-project `build_packages` catches it). Removal is a
-  cross-package effort — delete + drop ds-table's `@import` + retarget its `.ant-select-*` rules —
-  blocked by `ds-table`; leave in place for now.
+- **antd-free; no LESS** — styling is entirely styled-components. The old antd-era LESS
+  (`style/index.less` + `select.mixin.less`, `.ant-select-*` overrides for antd selects) was
+  **relocated to `ds-table`** (`table/src/style/select.mixin.less` + a direct
+  `@import '~antd/lib/select/style'`), since `ds-table` (out of scope, stays on antd) was the only
+  remaining consumer. ds-select ships no `dist/style` and no longer declares an `antd` peerDep.
 - **Tests** — Vitest + React Testing Library (`src/__specs__/Select.spec.tsx`): render/parity,
   keyboard + ARIA, and focus/blur (autofocus, onBlur on leave / not on internal move, onFocus).
 ```
