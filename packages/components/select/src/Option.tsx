@@ -14,6 +14,9 @@ export type OptionProps = {
   /** antd parity: forwarded to the rendered option row. */
   style?: CSSProperties;
   className?: string;
+  /** antd parity: native `data-*` / `aria-*` attributes, forwarded to the rendered option row. */
+  [dataAttr: `data-${string}`]: unknown;
+  [ariaAttr: `aria-${string}`]: unknown;
 };
 
 /**

@@ -245,6 +245,24 @@ describe('Select (antd parity shims)', () => {
     expect(root).toBeTruthy();
     expect(root.getAttribute('aria-label')).toBe('pick one');
   });
+
+  it('forwards per-option data-* / aria-* to the rendered option row', () => {
+    renderWithProvider(
+      <Select defaultOpen>
+        <Option value="a" data-testid="opt-a">
+          Apple
+        </Option>
+        <Option value="b" data-testid="opt-b">
+          Banana
+        </Option>
+      </Select>,
+    );
+
+    const optA = screen.getByTestId('opt-a');
+    expect(optA).toBeTruthy();
+    expect(optA.getAttribute('role')).toBe('option');
+    expect(screen.getByTestId('opt-b')).toBeTruthy();
+  });
 });
 
 describe('Select (focus / blur)', () => {

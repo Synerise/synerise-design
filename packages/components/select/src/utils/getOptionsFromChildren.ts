@@ -16,6 +16,7 @@ export const getOptionsFromChildren = (children: ReactNode): SelectOption[] => {
     if (!isValidElement(child) || child.type !== Option) {
       return;
     }
+    const optionProps = child.props as OptionProps;
     const {
       value,
       disabled,
@@ -23,10 +24,10 @@ export const getOptionsFromChildren = (children: ReactNode): SelectOption[] => {
       label,
       children: optionLabel,
       style,
-    } = child.props as OptionProps;
+    } = optionProps;
     // antd parity: when `value` is omitted, fall back to the element's React key.
     const resolvedValue = (value ?? child.key ?? undefined) as RawValueType;
-    options.push({
+    const option: SelectOption = {
       value: resolvedValue,
       key: resolvedValue,
       disabled,
@@ -34,7 +35,14 @@ export const getOptionsFromChildren = (children: ReactNode): SelectOption[] => {
       label: label ?? optionLabel,
       children: optionLabel,
       style,
+    };
+    // antd parity: forward native `data-*` / `aria-*` attributes to the rendered row.
+    Object.entries(optionProps).forEach(([key, val]) => {
+      if (key.startsWith('data-') || key.startsWith('aria-')) {
+        option[key as `data-${string}`] = val;
+      }
     });
+    options.push(option);
   });
 
   return options;

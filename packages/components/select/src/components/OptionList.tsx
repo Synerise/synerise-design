@@ -73,6 +73,13 @@ export const OptionList = ({
           >
             {options.map((option, index) => {
               const isSelected = selectedValues.includes(option.value);
+              // antd parity: forward per-option data-*/aria-* onto the row. Spread
+              // last so a consumer's own `data-testid` overrides the DS default.
+              const optionAttrs = Object.fromEntries(
+                Object.entries(option).filter(
+                  ([key]) => key.startsWith('data-') || key.startsWith('aria-'),
+                ),
+              );
               return (
                 <S.OptionItem
                   key={rowKey ? rowKey(option) : option.value}
@@ -94,6 +101,7 @@ export const OptionList = ({
                   disabled={option.disabled}
                   onMouseEnter={() => onOptionActivate(index)}
                   onClick={() => onOptionSelect(option)}
+                  {...optionAttrs}
                 />
               );
             })}

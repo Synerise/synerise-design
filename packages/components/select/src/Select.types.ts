@@ -38,6 +38,9 @@ export type SelectOption = {
   style?: CSSProperties;
   /** Value used for client-side filtering when `optionFilterProp` is set. */
   filterValue?: string;
+  /** antd parity: per-option `data-*` / `aria-*` attributes, forwarded to the rendered option row. */
+  [dataAttr: `data-${string}`]: unknown;
+  [ariaAttr: `aria-${string}`]: unknown;
 };
 
 /** Signature of a client-side option filter (antd-compatible). */
