@@ -1,4 +1,3 @@
-import { type CSSProperties } from 'react';
 import styled, {
   type CSSObject,
   type FlattenSimpleInterpolation,
@@ -21,7 +20,7 @@ type SelectorProps = {
   $clearable?: boolean;
   $withPrefixel?: boolean;
   $withSuffixel?: boolean;
-  $selectorStyle?: CSSProperties;
+  $selectorStyle?: CSSObject;
 };
 
 const HEIGHT = { large: 48, default: 32 } as const;
@@ -163,7 +162,7 @@ export const Selector = styled.div<SelectorProps>`
     `}
 
   ${(props): FlattenSimpleInterpolation | false =>
-    !!props.$selectorStyle && css(props.$selectorStyle as CSSObject)}
+    !!props.$selectorStyle && css(props.$selectorStyle)}
 `;
 
 export const SelectionItem = styled.span`
