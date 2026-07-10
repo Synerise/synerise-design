@@ -1,6 +1,9 @@
 @import '~antd/lib/table/style/index.less';
 @import '~@synerise/ds-core/src/style/variables.less';
 @import '~@synerise/ds-core/src/style/config.less';
-@import '~@synerise/ds-select/src/style/index.less';
+// antd Select styling for the table's embedded selects (relocated from ds-select,
+// which is now antd-free; ds-table stays on antd — see antd-migration-status.md).
+@import '~antd/lib/select/style/index.less';
+@import './select.mixin.less';
 @import './pagination.less';
 @import './table.less';
