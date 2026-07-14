@@ -16,8 +16,11 @@ export type Props = {
    * leading control (e.g. a Select) sits left and the input fills the rest. Use
    * `'first'` for the flipped layout: the leading control stretches while a
    * fixed-width trailing control (e.g. a ColorPicker) stays compact on the right.
+   * Use `'none'` when every control carries its own width and nothing should
+   * stretch — the group stays compact and left-aligned (e.g. an icon + name +
+   * value + unit row).
    */
-  growItem?: 'first' | 'last';
+  growItem?: 'first' | 'last' | 'none';
   /**
    * @deprecated Use `errorText` (from `FormFieldCommonProps`) instead. This
    * antd-proprietary array of error strings is kept only for backward
