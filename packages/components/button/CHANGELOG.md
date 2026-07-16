@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.5.34](https://github.com/synerise/synerise-design/compare/@synerise/ds-button@1.5.33...@synerise/ds-button@1.5.34) (2026-07-16)
+
+### Bug Fixes
+
+- **button:** avatar inside button no longer inherits label text color ([87a25a0](https://github.com/synerise/synerise-design/commit/87a25a06cc59cf6598ed966b3da6829836f8cdde))
+
 ## [1.5.33](https://github.com/synerise/synerise-design/compare/@synerise/ds-button@1.5.32...@synerise/ds-button@1.5.33) (2026-06-17)
 
 **Note:** Version bump only for package @synerise/ds-button

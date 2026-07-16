@@ -3,6 +3,10 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.1.44](https://github.com/Synerise/synerise-design/compare/@synerise/ds-tray@1.1.43...@synerise/ds-tray@1.1.44) (2026-07-16)
+
+**Note:** Version bump only for package @synerise/ds-tray
+
 ## [1.1.43](https://github.com/Synerise/synerise-design/compare/@synerise/ds-tray@1.1.42...@synerise/ds-tray@1.1.43) (2026-06-27)
 
 ### Bug Fixes

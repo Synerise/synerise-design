@@ -1,6 +1,6 @@
 {
   "name": "@synerise/ds-menu",
-  "version": "1.4.30",
+  "version": "1.4.31",
   "description": "[DEPRECATED] Menu UI Component for the Synerise Design System — use @synerise/ds-list-item instead",
   "deprecated": "@synerise/ds-menu is deprecated and will not be migrated off antd. Use @synerise/ds-list-item (ListItem / ListWrapper) instead.",
   "license": "ISC",
