@@ -145,12 +145,6 @@ export const StyledButton = styled(BaseButton)<StyledButtonProps>`
     position: relative;
     overflow: hidden;
 
-    &:not(:disabled):not(:focus-visible) {
-      ${ButtonLabel} span {
-        color: inherit;
-      }
-    }
-
     ${ButtonLabel} > *:not(.btn-focus) {
       position: relative;
       z-index: 1;
