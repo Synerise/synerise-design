@@ -1172,85 +1172,85 @@
   },
   "fontFamily": {
     "primary": {
-      "$type": "fontFamily",
+      "$type": "fontFamilies",
       "$value": "Graphik, sans-serif"
     }
   },
   "fontWeight": {
     "regular": {
-      "$type": "fontWeight",
+      "$type": "fontWeights",
       "$value": "400"
     },
     "medium": {
-      "$type": "fontWeight",
+      "$type": "fontWeights",
       "$value": "500"
     },
     "semibold": {
-      "$type": "fontWeight",
+      "$type": "fontWeights",
       "$value": "600"
     },
     "bold": {
-      "$type": "fontWeight",
+      "$type": "fontWeights",
       "$value": "700"
     }
   },
   "fontSize": {
     "xs": {
-      "$type": "fontSize",
+      "$type": "fontSizes",
       "$value": "10px"
     },
     "sm": {
-      "$type": "fontSize",
+      "$type": "fontSizes",
       "$value": "11px"
     },
     "md": {
-      "$type": "fontSize",
+      "$type": "fontSizes",
       "$value": "13px"
     },
     "lg": {
-      "$type": "fontSize",
+      "$type": "fontSizes",
       "$value": "14px"
     },
     "xl": {
-      "$type": "fontSize",
+      "$type": "fontSizes",
       "$value": "16px"
     },
     "2xl": {
-      "$type": "fontSize",
+      "$type": "fontSizes",
       "$value": "18px"
     },
     "3xl": {
-      "$type": "fontSize",
+      "$type": "fontSizes",
       "$value": "21px"
     },
     "4xl": {
-      "$type": "fontSize",
+      "$type": "fontSizes",
       "$value": "24px"
     }
   },
   "lineHeight": {
     "xs": {
-      "$type": "lineHeight",
+      "$type": "lineHeights",
       "$value": "16px"
     },
     "sm": {
-      "$type": "lineHeight",
+      "$type": "lineHeights",
       "$value": "18px"
     },
     "md": {
-      "$type": "lineHeight",
+      "$type": "lineHeights",
       "$value": "20px"
     },
     "lg": {
-      "$type": "lineHeight",
+      "$type": "lineHeights",
       "$value": "22px"
     },
     "xl": {
-      "$type": "lineHeight",
+      "$type": "lineHeights",
       "$value": "26px"
     },
     "2xl": {
-      "$type": "lineHeight",
+      "$type": "lineHeights",
       "$value": "28px"
     }
   },

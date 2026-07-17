@@ -21,7 +21,7 @@
           "active": {
             "$type": "color",
             "$value": "{color.background.brand.solidActive}",
-            "$description": "Primary button background color for active/selected state (same as default for solid variant)"
+            "$description": "Primary button background color for active / selected state (same as default for solid variant)"
           },
           "disabled": {
             "$type": "color",
@@ -2069,7 +2069,7 @@
       "color": {
         "default": {
           "$type": "color",
-          "$value": "{color.icon.base.muted}",
+          "$value": "{color.icon.base.default}",
           "$description": "Form icon color for default state"
         },
         "hover": {
@@ -2708,7 +2708,7 @@
         },
         "border": {
           "$type": "color",
-          "$value": "{color.border.neutral.default}",
+          "$value": "{color.icon.base.default}",
           "$description": "Toast background color for informative variant"
         },
         "text": {
@@ -2719,7 +2719,7 @@
           },
           "description": {
             "$type": "color",
-            "$value": "{color.text.base.muted}",
+            "$value": "{color.icon.base.default}",
             "$description": "Toast description text color for informative variant"
           }
         },
@@ -2785,7 +2785,7 @@
       "$description": "Toast border radius (3px)"
     },
     "shadow": {
-      "$type": "shadow",
+      "$type": "boxShadow",
       "$value": "{shadow.level.2}",
       "$description": "Toast shadow"
     }
@@ -2839,7 +2839,7 @@
         },
         "borderTop": {
           "$type": "color",
-          "$value": "{color.border.warning.default}",
+          "$value": "{color.background.warning.solid}",
           "$description": "Section message top border color for warning variant"
         },
         "text": {
@@ -2907,13 +2907,13 @@
         },
         "borderTop": {
           "$type": "color",
-          "$value": "{color.border.neutral.default}",
+          "$value": "{color.icon.base.default}",
           "$description": "Section message top border color for informative variant"
         },
         "text": {
           "header": {
             "$type": "color",
-            "$value": "{color.text.base.default}",
+            "$value": "{color.text.base.muted}",
             "$description": "Section message header text color for informative variant"
           },
           "description": {
@@ -3137,17 +3137,17 @@
     },
     "shadow": {
       "default": {
-        "$type": "shadow",
+        "$type": "boxShadow",
         "$value": "{shadow.level.1}",
         "$description": "Card shadow for default state (level 1)"
       },
       "hover": {
-        "$type": "shadow",
+        "$type": "boxShadow",
         "$value": "{shadow.level.2}",
         "$description": "Card shadow for hover state (level 2)"
       },
       "active": {
-        "$type": "shadow",
+        "$type": "boxShadow",
         "$value": "{shadow.level.2}",
         "$description": "Card shadow for active state (level 2)"
       }
@@ -3237,7 +3237,7 @@
       },
       "disabled": {
         "$type": "color",
-        "$value": "{color.text.disabled.default}",
+        "$value": "{color.text.base.disabled}",
         "$description": "Avatar text color for disabled state"
       }
     },
@@ -3409,7 +3409,7 @@
         "$description": "Page header background color"
       },
       "shadow": {
-        "$type": "shadow",
+        "$type": "boxShadow",
         "$value": "{shadow.level.1}",
         "$description": "Page header shadow (subtle elevation)"
       }
@@ -3798,7 +3798,7 @@
         "$description": "Modal background color"
       },
       "shadow": {
-        "$type": "shadow",
+        "$type": "boxShadow",
         "$value": "{shadow.level.2}",
         "$description": "Modal shadow (medium elevation)"
       },
@@ -4330,7 +4330,7 @@
         "$description": "App menu background color"
       },
       "shadow": {
-        "$type": "shadow",
+        "$type": "boxShadow",
         "$value": "{shadow.level.1}",
         "$description": "App menu shadow (subtle elevation)"
       },
@@ -4342,7 +4342,7 @@
         },
         "color": {
           "$type": "color",
-          "$value": "{color.border.base.default}",
+          "$value": "{color.border.base.subtle}",
           "$description": "App menu border color (grey.200)"
         }
       }
@@ -4398,7 +4398,7 @@
       },
       "color": {
         "$type": "color",
-        "$value": "{color.border.base.default}",
+        "$value": "{color.border.base.subtle}",
         "$description": "Separator color (grey.400)"
       }
     },
@@ -4422,7 +4422,7 @@
       },
       "color": {
         "$type": "color",
-        "$value": "{color.text.base.default}",
+        "$value": "{color.text.neutral.default}",
         "$description": "Header text color (grey.600)"
       }
     },
@@ -4434,7 +4434,7 @@
       }
     },
     "icon": {
-      "defsult": {
+      "default": {
         "$type": "color",
         "$value": "{color.icon.base.default}"
       },
@@ -4452,7 +4452,7 @@
       "$value": "{color.background.base.muted}"
     }
   },
-  "popcornfirm": {
+  "popconfirm": {
     "container": {
       "bg": {
         "$type": "color",
@@ -4487,45 +4487,53 @@
         "border": {
           "default": {
             "$type": "color",
-            "$value": "{color.border.base.default}"
+            "$value": "{color.border.neutral.subtle}"
           },
           "hover": {
             "$type": "color",
-            "$value": "{color.border.base.strong}"
+            "$value": "{color.border.neutral.subtle}"
           },
           "active": {
             "$type": "color",
-            "$value": "{color.border.brand.default}"
+            "$value": "{color.border.neutral.strong}"
           },
           "done": {
             "$type": "color",
-            "$value": "{color.border.brand.default}"
+            "$value": "{color.border.success.default}"
           },
           "validation": {
             "$type": "color",
             "$value": "{color.border.danger.default}"
+          },
+          "warning": {
+            "$type": "color",
+            "$value": "{color.border.warning.default}"
           }
         },
         "content": {
           "default": {
             "$type": "color",
-            "$value": "{color.text.base.muted}"
+            "$value": "{color.text.neutral.default}"
           },
           "hover": {
             "$type": "color",
-            "$value": "{color.text.base.subtle}"
+            "$value": "{color.text.base.muted}"
           },
           "active": {
             "$type": "color",
-            "$value": "{color.text.onSolid.default}"
+            "$value": "{color.text.base.default}"
           },
           "done": {
             "$type": "color",
-            "$value": "{color.text.onSolid.default}"
+            "$value": "{color.icon.success.default}"
           },
           "validation": {
             "$type": "color",
-            "$value": "{color.text.onSolid.default}"
+            "$value": "{color.text.danger.default}"
+          },
+          "warning": {
+            "$type": "color",
+            "$value": "{color.text.warning.default}"
           }
         }
       },
@@ -4538,11 +4546,11 @@
       "label": {
         "default": {
           "$type": "color",
-          "$value": "{color.text.base.subtle}"
+          "$value": "{color.text.neutral.default}"
         },
         "hover": {
           "$type": "color",
-          "$value": "{color.text.base.default}"
+          "$value": "{color.text.base.muted}"
         },
         "active": {
           "$type": "color",
@@ -4550,11 +4558,15 @@
         },
         "done": {
           "$type": "color",
-          "$value": "{color.text.base.default}"
+          "$value": "{color.text.success.default}"
         },
         "validation": {
           "$type": "color",
-          "$value": "{color.background.danger.solid}"
+          "$value": "{color.text.danger.default}"
+        },
+        "warning": {
+          "$type": "color",
+          "$value": "{color.text.warning.default}"
         }
       }
     }
@@ -4717,24 +4729,52 @@
   "inline-alert": {
     "icon": {
       "informative": {
-        "$type": "color",
-        "$value": "{color.icon.base.default}",
-        "$description": "Inline alert icon color for informative variant"
+        "default": {
+          "$type": "color",
+          "$value": "{color.icon.base.default}",
+          "$description": "Inline alert icon color for informative variant (default state)"
+        },
+        "hover": {
+          "$type": "color",
+          "$value": "{color.grey.700}",
+          "$description": "Inline alert icon color for informative variant (hover state) — TODO: docelowo semantyka, jak pojawia sie -700 icon tokens"
+        }
       },
       "success": {
-        "$type": "color",
-        "$value": "{color.icon.success.default}",
-        "$description": "Inline alert icon color for success variant"
+        "default": {
+          "$type": "color",
+          "$value": "{color.icon.success.default}",
+          "$description": "Inline alert icon color for success variant (default state)"
+        },
+        "hover": {
+          "$type": "color",
+          "$value": "{color.green.700}",
+          "$description": "Inline alert icon color for success variant (hover state) — TODO: docelowo semantyka, jak pojawia sie -700 icon tokens"
+        }
       },
       "warning": {
-        "$type": "color",
-        "$value": "{color.icon.warning.default}",
-        "$description": "Inline alert icon color for warning variant"
+        "default": {
+          "$type": "color",
+          "$value": "{color.icon.warning.default}",
+          "$description": "Inline alert icon color for warning variant (default state)"
+        },
+        "hover": {
+          "$type": "color",
+          "$value": "{color.yellow.700}",
+          "$description": "Inline alert icon color for warning variant (hover state) — TODO: docelowo semantyka, jak pojawia sie -700 icon tokens"
+        }
       },
       "error": {
-        "$type": "color",
-        "$value": "{color.icon.danger.default}",
-        "$description": "Inline alert icon color for error variant"
+        "default": {
+          "$type": "color",
+          "$value": "{color.icon.danger.default}",
+          "$description": "Inline alert icon color for error variant (default state)"
+        },
+        "hover": {
+          "$type": "color",
+          "$value": "{color.red.700}",
+          "$description": "Inline alert icon color for error variant (hover state) — TODO: docelowo semantyka, jak pojawia sie -700 icon tokens"
+        }
       }
     },
     "text": {
@@ -4937,8 +4977,8 @@
     "description": {
       "color": {
         "$type": "color",
-        "$value": "{form.description.text.color}",
-        "$description": "Progressbar description text color (reuses form description token)"
+        "$value": "{color.text.base.muted}",
+        "$description": "Progressbar description text color"
       }
     },
     "bar": {
@@ -4947,11 +4987,16 @@
           "$type": "color",
           "$value": "{color.background.base.mutedHover}",
           "$description": "Progressbar track background color (unfilled portion)"
+        },
+        "multivalueNotStacked": {
+          "$type": "color",
+          "$value": "{color.background.base.strong}",
+          "$description": "Background bg for \"Multivalue Not Stacked\" variant"
         }
       },
       "borderRadius": {
         "$type": "dimension",
-        "$value": "3px",
+        "$value": "{border.radius.sm}",
         "$description": "Border radius for progressbar bar segments"
       },
       "height": {
@@ -4968,13 +5013,37 @@
       },
       "gap": {
         "$type": "dimension",
-        "$value": "2px",
+        "$value": "{space.05}",
         "$description": "Gap between progressbar tile segments"
       },
       "paddingY": {
         "$type": "dimension",
         "$value": "{inset.sm}",
         "$description": "Vertical padding around progressbar bar (8px)"
+      },
+      "fill": {
+        "default": {
+          "$type": "color",
+          "$value": "{color.background.success.solid}",
+          "$description": "Progressbar bar fill color (filled portion, default green)"
+        },
+        "multivalue": {
+          "1": {
+            "$type": "color",
+            "$value": "{color.background.custom.solidHover}",
+            "$description": "Multivalue progress bar — slot 1 (designer assigns custom-color theme per slot)"
+          },
+          "2": {
+            "$type": "color",
+            "$value": "{color.background.custom.solidHover}",
+            "$description": "Multivalue progress bar — slot 2"
+          },
+          "3": {
+            "$type": "color",
+            "$value": "{color.background.custom.solidHover}",
+            "$description": "Multivalue progress bar — slot 3"
+          }
+        }
       }
     },
     "inline": {

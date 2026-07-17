@@ -102,12 +102,12 @@
   "opacity": {
     "disabled": {
       "$type": "opacity",
-      "$value": 0.4,
+      "$value": "0.4",
       "$description": "Opacity for disabled state (40%)"
     },
     "muted": {
       "$type": "opacity",
-      "$value": 0.2,
+      "$value": "0.2",
       "$description": "Opacity for muted/subtle elements, e.g. separators (20%)"
     }
   }
