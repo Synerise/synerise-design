@@ -53,8 +53,8 @@ export const RadioInner = styled.span<{
   width: 16px;
   height: 16px;
   box-sizing: border-box;
-  background-color: ${(props) => props.theme.palette.white};
-  border: 1px solid ${(props) => props.theme.palette['grey-300']};
+  background-color: var(--ds-form-radio-bg-default);
+  border: 1px solid var(--ds-form-radio-border-color-default);
   border-radius: 50%;
 
   &::after {
@@ -70,7 +70,7 @@ export const RadioInner = styled.span<{
     width: 8px;
     height: 8px;
     border-radius: 50%;
-    background-color: ${(props) => props.theme.palette['blue-600']};
+    background-color: var(--ds-form-radio-dot-color);
     transform: scale(0);
     transition: transform 0.2s ease;
   }
@@ -78,7 +78,7 @@ export const RadioInner = styled.span<{
   ${(props) =>
     props.$checked &&
     css`
-      border-color: ${props.theme.palette['blue-600']};
+      border-color: var(--ds-form-radio-border-color-selected);
       border-width: 2px;
 
       &::after {
@@ -89,11 +89,11 @@ export const RadioInner = styled.span<{
   ${(props) =>
     props.$disabled &&
     css`
-      border-color: ${props.theme.palette['grey-200']} !important;
-      background-color: ${props.theme.palette['grey-050']} !important;
+      border-color: var(--ds-color-border-base-default) !important;
+      background-color: var(--ds-color-background-base-subtle) !important;
 
       &::after {
-        background-color: ${props.theme.palette['grey-400']};
+        background-color: var(--ds-form-radio-bg-selecteddisabled);
       }
     `}
 `;
@@ -108,14 +108,14 @@ export const RadioText = styled.span<{
   font-weight: 500;
   color: ${(props) =>
     props.$checked
-      ? props.theme.palette['grey-800']
-      : props.theme.palette['grey-700']};
+      ? 'var(--ds-form-radio-text-label-selected)'
+      : 'var(--ds-form-radio-text-label-default)'};
 
   ${(props) =>
     props.$disabled &&
     css`
-      color: ${props.theme.palette['grey-600']};
-      opacity: 0.4;
+      color: var(--ds-form-radio-text-label-disabled);
+      opacity: var(--ds-form-radio-disabled-opacity);
     `}
 `;
 
@@ -141,16 +141,16 @@ export const RadioLabel = styled.label<{
 
   /* hover preview */
   ${RadioInput}:hover + ${RadioInner} {
-    border-color: ${(props) => props.theme.palette['grey-400']};
+    border-color: var(--ds-form-radio-border-color-hover);
   }
 
   /* keyboard focus ring (white centre once checked) */
   ${RadioInput}:focus + ${RadioInner} {
-    border-color: ${(props) => props.theme.palette['blue-600']};
+    border-color: var(--ds-color-focus-base-default);
     background-color: ${(props) =>
       props.$checked
-        ? props.theme.palette.white
-        : props.theme.palette['blue-050']};
+        ? 'var(--ds-color-background-base-default)'
+        : 'var(--ds-color-background-brand-subtle)'};
     border-width: 2px;
   }
 
@@ -193,14 +193,14 @@ export const RadioButtonLabel = styled.label<{
   height: ${(props) => BUTTON_HEIGHT[props.$size ?? 'middle']};
   margin: 0;
   padding: 0 16px;
-  color: ${(props) => props.theme.palette['grey-700']};
-  background-color: ${(props) => props.theme.palette['grey-050']};
-  border: 1px solid ${(props) => props.theme.palette['grey-300']};
+  color: var(--ds-color-text-base-subtle);
+  background-color: var(--ds-color-background-base-subtle);
+  border: 1px solid var(--ds-color-border-base-strong);
   border-left-width: 0;
   cursor: pointer;
 
   &:first-child {
-    border-left: 1px solid ${(props) => props.theme.palette['grey-300']};
+    border-left: 1px solid var(--ds-color-border-base-strong);
     border-radius: 3px 0 0 3px;
   }
   &:last-child {
@@ -208,7 +208,7 @@ export const RadioButtonLabel = styled.label<{
   }
 
   &:hover {
-    background-color: ${(props) => props.theme.palette.white};
+    background-color: var(--ds-color-background-base-default);
   }
 
   /*
@@ -216,8 +216,8 @@ export const RadioButtonLabel = styled.label<{
    * and doesn't change width when focused.
    */
   &:focus-within {
-    border-color: ${(props) => props.theme.palette['blue-600']};
-    box-shadow: inset 0 0 0 1px ${(props) => props.theme.palette['blue-600']};
+    border-color: var(--ds-color-focus-base-default);
+    box-shadow: inset 0 0 0 1px var(--ds-color-focus-base-default);
     z-index: 2;
   }
 
@@ -226,9 +226,9 @@ export const RadioButtonLabel = styled.label<{
     css`
       /* '&&' beats ':first-child' so the first checked button's left border is blue, not grey */
       && {
-        color: ${props.theme.palette['blue-600']};
-        border-color: ${props.theme.palette['blue-600']};
-        box-shadow: -1px 0 0 0 ${props.theme.palette['blue-600']};
+        color: var(--ds-color-text-brand-default);
+        border-color: var(--ds-color-border-brand-default);
+        box-shadow: -1px 0 0 0 var(--ds-color-border-brand-default);
         z-index: 1;
       }
     `}
@@ -236,8 +236,8 @@ export const RadioButtonLabel = styled.label<{
   ${(props) =>
     props.$disabled &&
     css`
-      color: ${props.theme.palette['grey-700']};
-      opacity: 0.4;
+      color: var(--ds-color-text-base-subtle);
+      opacity: var(--ds-opacity-disabled);
       cursor: not-allowed;
 
       ${RadioButtonInput} {
@@ -253,9 +253,9 @@ export const RadioButtonLabel = styled.label<{
       /* '&&' matches the checked block's specificity and, coming later, restores white text on the
          solid (blue) background — otherwise the checked block's blue 'color' would win. */
       && {
-        color: ${props.theme.palette.white};
-        background-color: ${props.theme.palette['blue-600']};
-        border-color: ${props.theme.palette['blue-600']};
+        color: var(--ds-color-text-onsolid-default);
+        background-color: var(--ds-color-background-brand-solid);
+        border-color: var(--ds-color-background-brand-solid);
 
         &:hover {
           background-color: ${props.theme.palette['blue-500']};
