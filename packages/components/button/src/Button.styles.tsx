@@ -205,91 +205,95 @@ export const StyledButton = styled(BaseButton)<StyledButtonProps>`
         &&.ant-btn-secondary {
           &:hover,
           &:focus-visible {
-            background: ${props.theme.palette['grey-050']};
+            background: var(--ds-buttons-variant-secondary-bg-default);
             .btn-focus {
-              box-shadow: inset 0 0 0 1px ${props.theme.palette['grey-300']};
+              box-shadow: inset 0 0 0 1px
+                var(--ds-buttons-variant-secondary-border-default);
             }
-            color: ${props.theme.palette['grey-700']};
+            color: var(--ds-buttons-variant-secondary-text-default);
           }
         }
         &&.ant-btn-primary {
           &:hover,
           &:focus-visible {
-            background: ${props.theme.palette['blue-600']};
+            background: var(--ds-buttons-variant-primary-bg-default);
             .btn-focus {
-              box-shadow: inset 0 0 0 1px ${props.theme.palette['blue-600']};
+              box-shadow: inset 0 0 0 1px
+                var(--ds-buttons-variant-primary-bg-default);
             }
-            color: ${props.theme.palette['grey-050']};
+            color: var(--ds-buttons-variant-primary-text-default);
           }
         }
         &&.ant-btn-tertiary {
           &:hover,
           &:focus-visible {
-            background: ${props.theme.palette['grey-100']};
+            background: var(--ds-buttons-variant-tertiary-bg-default);
             .btn-focus {
               box-shadow: none;
             }
-            color: ${props.theme.palette['grey-700']};
+            color: var(--ds-buttons-variant-tertiary-text-default);
           }
         }
         &&.ant-btn-tertiary-white {
           &:hover,
           &:focus-visible {
-            background: rgba(219, 224, 227, 0.15);
+            background: var(--ds-buttons-variant-tertiary-white-bg-default);
             .btn-focus {
               box-shadow: none;
             }
-            color: ${props.theme.palette['grey-050']};
+            color: var(--ds-buttons-variant-tertiary-white-text-default);
           }
         }
         &&.ant-btn-ghost-primary {
           &:hover,
           &:focus-visible {
-            background: ${props.theme.palette.white};
+            background: var(--ds-buttons-variant-ghost-primary-bg-default);
             .btn-focus {
               box-shadow: none;
             }
-            color: ${props.theme.palette['blue-600']};
+            color: var(--ds-buttons-variant-ghost-primary-text-default);
           }
         }
         &&.ant-btn-ghost {
           &:hover,
           &:focus-visible {
-            background: ${props.theme.palette.white};
+            background: var(--ds-buttons-variant-ghost-secondary-bg-default);
             .btn-focus {
               box-shadow: none;
             }
-            color: ${props.theme.palette['grey-600']};
+            color: var(--ds-buttons-variant-ghost-secondary-text-default);
           }
         }
         &&.ant-btn-ghost-white {
           &:hover,
           &:focus-visible {
-            background: ${props.theme.palette['grey-600']};
+            background: var(
+              --ds-buttons-variant-ghost-secondary-white-bg-default
+            );
             .btn-focus {
               box-shadow: none;
             }
-            color: ${props.theme.palette['grey-050']};
+            color: var(--ds-buttons-variant-ghost-secondary-white-text-default);
           }
         }
         &&.ant-btn-danger {
           &:hover,
           &:focus-visible {
-            background: ${props.theme.palette['red-600']};
+            background: var(--ds-buttons-variant-primary-danger-bg-default);
             .btn-focus {
               box-shadow: none;
             }
-            color: ${props.theme.palette.white};
+            color: var(--ds-buttons-variant-primary-danger-text-default);
           }
         }
         &&.ant-btn-success {
           &:hover,
           &:focus-visible {
-            background: ${props.theme.palette['green-600']};
+            background: var(--ds-buttons-variant-primary-success-bg-default);
             .btn-focus {
               box-shadow: none;
             }
-            color: ${props.theme.palette.white};
+            color: var(--ds-buttons-variant-primary-success-text-default);
           }
         }
         &&.ant-btn-warning {
@@ -458,33 +462,33 @@ export const StyledButton = styled(BaseButton)<StyledButtonProps>`
       props.error &&
       css`
         &.ant-btn {
-          background-color: ${props.theme.palette[`red-100`]};
-          box-shadow: inset 0 0 0 1px ${props.theme.palette['red-600']};
-          color: ${props.theme.palette[`red-600`]};
+          background-color: var(--ds-color-background-danger-subtlehover);
+          box-shadow: inset 0 0 0 1px var(--ds-color-border-danger-default);
+          color: var(--ds-color-text-danger-default);
           .btn-focus {
             box-shadow: none;
           }
           &&:hover:not(:disabled):not(:focus-visible):not(.pressed) {
             background-color: ${props.theme.palette[`red-200`]};
-            box-shadow: inset 0 0 0 1px ${props.theme.palette['red-600']};
-            color: ${props.theme.palette[`red-600`]};
+            box-shadow: inset 0 0 0 1px var(--ds-color-border-danger-default);
+            color: var(--ds-color-text-danger-default);
           }
           &.pressed {
-            background-color: ${props.theme.palette[`red-700`]};
+            background-color: var(--ds-color-background-danger-solidhover);
             box-shadow: none;
-            color: ${props.theme.palette.white};
+            color: var(--ds-color-text-onsolid-danger);
           }
           &&:focus-visible:not(.pressed) {
             border: none !important;
-            background-color: ${props.theme.palette[`red-100`]};
-            color: ${props.theme.palette[`red-600`]};
+            background-color: var(--ds-color-background-danger-subtlehover);
+            color: var(--ds-color-text-danger-default);
             .btn-focus {
-              box-shadow: inset 0 0 0 2px ${props.theme.palette['blue-600']};
+              box-shadow: inset 0 0 0 2px var(--ds-color-focus-base-default);
             }
           }
         }
         ${RippleEffect} {
-          background-color: ${props.theme.palette[`red-700`]};
+          background-color: var(--ds-color-background-danger-solidhover);
         }
       `}
           ${(props) =>
@@ -492,7 +496,7 @@ export const StyledButton = styled(BaseButton)<StyledButtonProps>`
       props.type === 'secondary' &&
       css`
         &&&.ant-btn {
-          color: ${props.theme.palette[`red-600`]};
+          color: var(--ds-color-text-danger-default);
           .btn-focus {
             box-shadow: none;
           }
@@ -505,15 +509,15 @@ export const StyledButton = styled(BaseButton)<StyledButtonProps>`
           }
           &&&:focus-visible:not(.pressed) {
             .btn-focus {
-              box-shadow: inset 0 0 0 2px ${props.theme.palette['blue-600']};
+              box-shadow: inset 0 0 0 2px var(--ds-color-focus-base-default);
             }
           }
           &&&.pressed {
-            background-color: ${props.theme.palette[`red-700`]};
-            color: ${props.theme.palette.white};
+            background-color: var(--ds-color-background-danger-solidhover);
+            color: var(--ds-color-text-onsolid-danger);
           }
           ${RippleEffect} {
-            background-color: ${props.theme.palette[`red-700`]};
+            background-color: var(--ds-color-background-danger-solidhover);
           }
         }
       `}

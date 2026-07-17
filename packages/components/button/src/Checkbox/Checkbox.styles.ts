@@ -4,31 +4,24 @@ import { CheckboxDeafultM, CheckboxM } from '@synerise/ds-icon';
 
 export const IconWrapper = styled.span<{ active?: boolean; error?: boolean }>`
   && {
-    color: ${({ theme, active, error }) => {
+    color: ${({ active, error }) => {
       if (error) {
-        return theme.palette['red-600'];
+        return 'var(--ds-color-icon-danger-default)';
       }
 
-      return active ? theme.palette['blue-600'] : theme.palette['grey-300'];
+      return active
+        ? 'var(--ds-color-icon-brand-default)'
+        : 'var(--ds-color-border-base-strong)';
     }};
-    svg {
-      fill: ${({ theme, active, error }) => {
-        if (error) {
-          return theme.palette['red-600'];
-        }
-
-        return active ? theme.palette['blue-600'] : theme.palette['grey-300'];
-      }};
-    }
   }
 
-  .ant-btn[disabled] & .ds-icon svg {
-    fill: ${({ theme }) => theme.palette['grey-200']} !important;
+  .ant-btn[disabled] & .ds-icon {
+    color: var(--ds-color-border-base-default) !important;
   }
 
-  .ant-btn:hover & .ds-icon svg,
-  .ant-btn:focus:hover & .ds-icon svg {
-    fill: ${({ theme }) => theme.palette['blue-600']};
+  .ant-btn:hover & .ds-icon,
+  .ant-btn:focus:hover & .ds-icon {
+    color: var(--ds-color-icon-brand-default);
   }
 
   /* icon background */
@@ -47,12 +40,12 @@ export const IconWrapper = styled.span<{ active?: boolean; error?: boolean }>`
   .ds-button.ant-btn &::before,
   .ds-button.ant-btn:hover &::before,
   .ds-button.ant-btn:focus:hover &::before {
-    background: ${({ theme }) => theme.palette.white};
+    background: var(--ds-color-background-base-default);
   }
 
   .ds-button.ant-btn[disabled] &::before,
   .ds-button.ant-btn[disabled]:hover &::before {
-    background: ${({ theme }) => theme.palette['grey-050']};
+    background: var(--ds-color-background-base-subtle);
   }
 `;
 

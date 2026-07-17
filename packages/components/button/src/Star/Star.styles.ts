@@ -1,23 +1,25 @@
 import styled from 'styled-components';
 
 export const IconWrapper = styled.span<{ active?: boolean; error?: boolean }>`
-  && svg {
-    fill: ${({ theme, active, error }): string => {
+  && {
+    color: ${({ active, error }): string => {
       if (error) {
-        return theme.palette['red-600'];
+        return 'var(--ds-color-icon-danger-default)';
       }
 
-      return active ? theme.palette['yellow-600'] : theme.palette['grey-300'];
+      return active
+        ? 'var(--ds-color-icon-warning-default)'
+        : 'var(--ds-color-border-base-strong)';
     }};
   }
 
-  .ant-btn-ghost[disabled] & .ds-icon svg {
-    fill: ${({ theme }): string => theme.palette['grey-200']} !important;
+  .ant-btn-ghost[disabled] & .ds-icon {
+    color: var(--ds-color-border-base-default) !important;
   }
 
-  .ant-btn-ghost:hover & .ds-icon svg,
-  .ant-btn-ghost:focus:hover & .ds-icon svg {
-    fill: ${({ theme }): string => theme.palette['blue-600']};
+  .ant-btn-ghost:hover & .ds-icon,
+  .ant-btn-ghost:focus:hover & .ds-icon {
+    color: var(--ds-color-icon-brand-default);
   }
 
   /* icon background - clipping with star shape */
@@ -36,13 +38,13 @@ export const IconWrapper = styled.span<{ active?: boolean; error?: boolean }>`
   }
 
   .ant-btn-ghost[disabled] &:before {
-    background: ${({ theme }): string => theme.palette['grey-050']};
+    background: var(--ds-color-background-base-subtle);
   }
 
   .ant-btn-ghost &::before,
   .ant-btn-ghost:hover &:before,
   .ant-btn-ghost:focus:hover &:before {
-    background: ${({ theme }): string => theme.palette.white};
+    background: var(--ds-color-background-base-default);
   }
 `;
 
