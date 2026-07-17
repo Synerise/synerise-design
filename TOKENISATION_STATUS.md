@@ -21,12 +21,27 @@ Tracks the progress of migrating components from `theme.palette` / hardcoded val
 > **CI:** the `sync_tokens` push failure was the expired `ds-tokens-sync-bot` PAT (2026-07-04); `PUSH_TOKEN`
 > rotated, sync re-run green.
 
+> **`.less` audit correction (2026-07-17).** Verified the doc's `.less` claims against the filesystem: **only 9
+> packages still contain `.less`** — `alert`, `code-snippet`, `core`, `drawer`, `list`, `menu`, `scrollbar`,
+> `select`, `table`. The `.less` files for the form family (`input`/`checkbox`/`radio`/`switch` — **but not**
+> `select`), `pagination`, `popconfirm`, `avatar`, `autocomplete`, `badge`, `banner`, `input-number`, `search`,
+> `sidebar`, `typography` were **removed** (deantd) after the original assessment; their styling now lives in
+> styled-components (`.styles.ts`). **Consequence:** the "deferred pending the antd Less decision" blocker no
+> longer applies to those components — they are now plain styled-components that can be tokenised directly. The
+> `Less?` columns and stale per-component notes are corrected below. Notably `pagination` is **no longer
+> "blocked"** — it now has `Pagination.styles.ts` (12 `theme.palette` refs, 0 tokens), ready to tokenise against
+> its 18 emitted `--ds-pagination-*` module tokens.
+> Of the 9 packages that still have `.less`, **`alert`, `menu`, `table` are deprecated** (slated for
+> removal/replacement) and will **not** be tokenised; `core` is infrastructure (not a UI component). Only
+> `code-snippet`, `drawer`, `list`, `scrollbar`, `select` remain as genuine `.less`-bearing tokenisation targets.
+
 > **Token sync `e0301675d` (design-tokens@1cd43721, 2026-06-08).** Cherry-picked onto this branch.
 > Value-only re-point of `modules/base.json` (58 refs changed, 14 `separator` tokens added, none
 > removed). Affects already-migrated code in two places: **divider** line colours (the previous
 > "Lighter" diffs are now resolved — see below) and **button** `primary-danger`/`primary-success`
 > focus rings (red/green → brand-blue). Radio dot/hover and secondary/ghost button values also changed
-> but live in deferred `.less` / deferred variants (notes refreshed below). No token referenced in code
+> but live in deferred styled-component states / deferred variants (radio `.less` has since been removed —
+deantd; notes refreshed below). No token referenced in code
 > was renamed or removed, so nothing fell back.
 
 ## Legend
@@ -66,7 +81,9 @@ Icons: DS icons are `fill="currentColor"` with `color: inherit`, so colour them 
    popconfirm, stepper, ai-chat, inline-select, inline-edit, inline-alert, description, pagination,
    progress-bar, time-picker.
 3. **Semantic-only components**, simplest first (1–6 refs each); leave the large ones
-   (`file-uploader`, `menu`, `table`, `card-tabs`, `manageable-list`) for last.
+   (`file-uploader`, `card-tabs`, `manageable-list`) for last.
+4. **Deprecated — excluded (no tokens):** `alert`, `menu`, `table` are deprecated and slated for
+   removal/replacement, so they will **not** be tokenised despite their high palette/opacity counts.
 
 ## Component Status
 
@@ -81,14 +98,14 @@ These components have dedicated token definitions in `modules/base.json`.
 | [broadcast-bar](#broadcast-bar) | `broadcast-bar` | :white_check_mark: | :heavy_minus_sign: | :heavy_minus_sign: | :x: | 1 | No | 3 variants, all tokenised |
 | ai-chat | `app-menu` | :heavy_minus_sign: | :heavy_minus_sign: | :heavy_minus_sign: | :heavy_minus_sign: | — | No | no ai-chat markup yet — tokens unused |
 | [app-menu](#app-menu) | `app-menu` | :white_check_mark: | :white_check_mark: | :heavy_minus_sign: | :x: | 0 | No | shadow-1; all opacity is animation (deferred) |
-| [avatar](#avatar) | `avatar` | :white_check_mark: | :heavy_minus_sign: | :white_check_mark: | :x: | 0 | Yes (1) | static colors done; dynamic bg kept (user-driven) |
+| [avatar](#avatar) | `avatar` | :white_check_mark: | :heavy_minus_sign: | :white_check_mark: | :x: | 0 | No | static colors done; dynamic bg kept (user-driven); `.less` removed (deantd) |
 | [buttons](#button) | `button` | :white_check_mark: | :construction: | :x: | :x: | 11 | No | :warning: all standard variants tokenised (secondary/tertiary/ghost backgrounds via alpha-modifier tokens); redesigns applied (secondary pressed blue→grey, tertiary/ghost hover-text shifts) — flag for review; custom-color dynamic; readOnly freeze + ripple on palette |
 | [button-expander](#button) | `button` | :white_check_mark: | :heavy_minus_sign: | :heavy_minus_sign: | :x: | 1 | — | bg/border/icon tokenised |
 | [card](#card) | `card` | :white_check_mark: | :construction: | :white_check_mark: | :x: | 0 | No | surface+shadow-1 done; active shadow + CardBadge dynamic deferred |
 | [card-select](#card-select) | `card-select` | :white_check_mark: | :white_check_mark: | :white_check_mark: | :x: | 4 | No | borders/shadow/opacity tokenised; check-token naming flagged for UX |
 | [description-line](#description) | `description` | :white_check_mark: | :heavy_minus_sign: | :heavy_minus_sign: | :heavy_minus_sign: | 0 | No | module + semantic; inactive star deferred |
 | [divider](#divider) | `divider` | :white_check_mark: | :heavy_minus_sign: | :heavy_minus_sign: | :x: | 0 | No | line + label tokenised; colour diffs resolved by sync `e0301675d` |
-| [form](#form-group-form--input--select--switch) | `form` / `input` / `checkbox` / `radio` / `switch` / `select` | :construction: | :construction: | :construction: | :x: | 4 | Yes (many) | TS migrated across all 6 packages; per-state styling in `.less` + data-URI SVGs deferred |
+| [form](#form-group-form--input--select--switch) | `form` / `input` / `checkbox` / `radio` / `switch` / `select` | :construction: | :construction: | :construction: | :x: | 4 | select only | TS partly migrated; per-state styling now in `.styles.ts` (input/checkbox/radio/switch — `.less` removed) + `select` retains `.less` + data-URI SVGs |
 | [inline-alert](#inline-alert) | `inline-alert` | :white_check_mark: | :heavy_minus_sign: | :white_check_mark: | :heavy_minus_sign: | 0 | No | 4 variants + text; icon `-default`/`-hover` branches (sync `66dddd0a`); hover done |
 | [inline-edit](#inline-edit--inline-select) | `inline-edit` | :white_check_mark: | :heavy_minus_sign: | :heavy_minus_sign: | :heavy_minus_sign: | 0 | No | text/icon tokenised; gradient underlines deferred |
 | [inline-select](#inline-edit--inline-select) | `inline-edit` | :white_check_mark: | :heavy_minus_sign: | :heavy_minus_sign: | :heavy_minus_sign: | 0 | No | lives in inline-edit package |
@@ -97,8 +114,8 @@ These components have dedicated token definitions in `modules/base.json`.
 | [navbar](#navbar) | `navbar` | :white_check_mark: | :heavy_minus_sign: | :white_check_mark: | :x: | 2 | No | :warning: default bg blue→grey |
 | page | `page-header` | :heavy_minus_sign: | :heavy_minus_sign: | :heavy_minus_sign: | :heavy_minus_sign: | — | No | `--ds-page-bg` unused (no full-page bg in code) |
 | [page-header](#page-header) | `page-header` | :white_check_mark: | :white_check_mark: | :heavy_minus_sign: | :x: | 0 | No | module + semantic; shadow-1 |
-| pagination | `pagination` | :x: | :heavy_minus_sign: | :x: | :x: | — | Yes (2) | ⛔ all styling in `.less` — code-side N/A, blocked on antd Less decision |
-| [popconfirm](#popconfirm) | `popconfirm` | :white_check_mark: | :white_check_mark: | :heavy_minus_sign: | :heavy_minus_sign: | 1 | Yes (1) | shadow-2; module renamed `popcornfirm`→`popconfirm` (sync `66dddd0a`); carousel dots deferred |
+| pagination | `pagination` | :x: | :heavy_minus_sign: | :x: | :x: | 12 | No | ⚠ **no longer blocked** — `.less` removed; now `Pagination.styles.ts` (12 palette, 0 tokens); ready to tokenise vs 18 `--ds-pagination-*` |
+| [popconfirm](#popconfirm) | `popconfirm` | :white_check_mark: | :white_check_mark: | :heavy_minus_sign: | :heavy_minus_sign: | 1 | No | shadow-2; module renamed `popcornfirm`→`popconfirm` (sync `66dddd0a`); carousel dots now in `.styles.tsx` (`.less` removed) |
 | [progressbar](#progress-bar) | `progress-bar` | :white_check_mark: | :heavy_minus_sign: | :heavy_minus_sign: | :x: | 1 | No | track + value + default fill tokenised (sync `66dddd0a`); multivalue slots caller-driven (deferred) |
 | [status-pill](#status-status-pill) | `status` | :white_check_mark: | :heavy_minus_sign: | :heavy_minus_sign: | :x: | 2 | No | text/border split; custom kept dynamic |
 | [stepper](#stepper) | `stepper` | :construction: | :heavy_minus_sign: | :heavy_minus_sign: | :x: | 7 | No | :warning: done green→blue, active grey→blue; warning state migrated (sync `66dddd0a`); filled-circle content deferred |
@@ -112,16 +129,16 @@ These components use `theme.palette` / hardcoded colors but do not yet have dedi
 | Package | palette refs | Less? | shadow refs | opacity refs | Notes |
 |---------|-------------|-------|-------------|--------------|-------|
 | action-area | 4 | No | 0 | 0 | |
-| alert | 44 | Yes (2) | 9 | 11 | Heavy palette + Less usage |
-| autocomplete | 10 | Yes (2) | 3 | 0 | |
+| alert | 44 | Yes (2) | 9 | 11 | ⛔ **deprecated** — will not be tokenised |
+| autocomplete | 10 | No | 3 | 0 | `.less` removed (deantd) |
 | avatar-group | 8 | No | 2 | 2 | |
-| badge | 11 | Yes (1) | 4 | 4 | |
-| banner | 10 | Yes (1) | 0 | 0 | |
+| badge | 11 | No | 4 | 4 | `.less` removed (deantd) |
+| banner | 10 | No | 0 | 0 | `.less` removed (deantd) |
 | block | 6 | No | 0 | 0 | |
 | button-group | 6 | No | 4 | 0 | |
 | card-tabs | 68 | No | 2 | 4 | High palette count |
 | cascader | 34 | No | 5 | 10 | |
-| [checkbox](#checkbox--radio) | 9 | Yes (2) | 4 | 1 | :construction: TS focus/indeterminate/hover borders → `--ds-form-checkbox-*`; check icons (data-URI SVG) + `.less` mixin deferred |
+| [checkbox](#checkbox--radio) | 9 | No | 4 | 1 | :construction: TS focus/indeterminate/hover → `--ds-form-checkbox-*`; per-state colours now in `Checkbox.styles.ts` on palette (`.less` removed) + check icons (data-URI SVG) |
 | code-area | 18 | No | 1 | 1 | |
 | code-snippet | 20 | Yes (1) | 0 | 2 | |
 | collector | 12 | No | 1 | 2 | |
@@ -151,8 +168,8 @@ These components use `theme.palette` / hardcoded colors but do not yet have dedi
 | format-picker | 8 | No | 0 | 0 | |
 | icon-picker | 8 | No | 0 | 0 | |
 | information-card | 3 | No | 2 | 2 | |
-| [input](#form-group-form--input--select--switch) | 49 | Yes (2) | 14 | 2 | :white_check_mark: TS migrated → `--ds-form-field-*`/`--ds-form-icon-*` + semantic; `.less` deferred |
-| input-number | 5 | Yes (2) | 5 | 0 | |
+| [input](#form-group-form--input--select--switch) | 49 | No | 14 | 2 | :construction: text → `--ds-form-field-*`/`--ds-form-icon-*` + semantic; field bg/border/hover/focus/disabled still palette in `Input.styles.tsx` (`.less` removed) |
+| input-number | 5 | No | 5 | 0 | `.less` removed (deantd) |
 | insight | 4 | No | 0 | 0 | |
 | item-filter | 2 | No | 1 | 0 | |
 | item-picker | 43 | No | 4 | 1 | |
@@ -163,20 +180,20 @@ These components use `theme.palette` / hardcoded colors but do not yet have dedi
 | logic | 13 | No | 0 | 0 | |
 | manageable-list | 57 | No | 6 | 9 | High palette count |
 | mapping | 3 | No | 0 | 0 | |
-| menu | 102 | Yes (2) | 5 | 21 | Very high palette + opacity |
+| menu | 102 | Yes (2) | 5 | 21 | ⛔ **deprecated** — will not be tokenised |
 | metric-card | 2 | No | 0 | 3 | |
 | operators | 6 | No | 0 | 0 | |
 | panel | 2 | No | 1 | 0 | |
 | panels-resizer | 4 | No | 0 | 0 | |
 | popover | 0 | No | 0 | 2 | |
-| [radio](#checkbox--radio) | 1 | Yes (2) | 3 | 4 | :construction: description + disabled-opacity → `--ds-form-radio-*`; bulk styling in `.less` deferred |
+| [radio](#checkbox--radio) | 1 | No | 3 | 4 | :construction: description + disabled-opacity → `--ds-form-radio-*`; bulk per-state styling now in `Radio.styles.tsx` on palette (`.less` removed) |
 | result | 3 | No | 0 | 0 | |
 | scrollbar | 17 | Yes (2) | 0 | 17 | |
-| search | 13 | Yes (2) | 4 | 8 | |
+| search | 13 | No | 4 | 8 | `.less` removed (deantd) |
 | search-bar | 12 | No | 1 | 0 | |
 | [select](#form-group-form--input--select--switch) | 13 | Yes (2) | 6 | 3 | :construction: TS → `--ds-form-field-*` + semantic; search-icon data-URI + `.less` deferred |
 | short-cuts | 7 | No | 1 | 0 | |
-| sidebar | 14 | Yes (1) | 1 | 2 | |
+| sidebar | 14 | No | 1 | 2 | `.less` removed (deantd) |
 | sidebar-object | 9 | No | 0 | 0 | |
 | skeleton | 5 | No | 0 | 15 | |
 | slider | 12 | No | 4 | 0 | |
@@ -185,14 +202,14 @@ These components use `theme.palette` / hardcoded colors but do not yet have dedi
 | step-card | 5 | No | 1 | 13 | |
 | subject | 2 | No | 0 | 0 | |
 | subtle-form | 10 | No | 1 | 4 | |
-| [switch](#form-group-form--input--select--switch) | 2 | Yes (2) | 2 | 2 | :construction: error/description text → `--ds-form-switch-*`; track/handle in `.less` deferred |
-| table | 65 | Yes (2) | 8 | 23 | Heavy palette + Less |
+| [switch](#form-group-form--input--select--switch) | 2 | No | 2 | 2 | :construction: error/description text → `--ds-form-switch-*`; track/handle now in `RawSwitch.styles.ts` on palette (`.less` removed) |
+| table | 65 | Yes (3) | 8 | 23 | ⛔ **deprecated** — will not be tokenised (`table.less`/`index.less`/`pagination.less`) |
 | tag | 25 | No | 2 | 3 | |
 | tags | 7 | No | 0 | 0 | |
 | toolbar | 4 | No | 1 | 0 | |
 | tooltip | 3 | No | 2 | 2 | |
 | tray | 4 | No | 1 | 0 | |
-| typography | 8 | Yes (1) | 0 | 1 | |
+| typography | 8 | No | 0 | 1 | `.less` removed (deantd) |
 | unordered-list | 1 | No | 0 | 0 | |
 | wizard | 6 | No | 0 | 0 | |
 
@@ -231,7 +248,7 @@ in Phase 1). "Semantic" counts semantic-token occurrences.
 | divider | 0 / 0 | 0 | ✓ clean |
 | form | 0 / 0 | 1 | ✓ `icon-brand-default` |
 | input | 13 / 14 | 18 | ⚠ **live** main `StyledInput`: bg/border/`:hover`/`:focus`/`:disabled` still `theme.palette` (`Input.styles.tsx:199–236`) — only text uses `--ds-form-field-*`; TS **not** fully complete despite table `:white_check_mark:` |
-| checkbox | 17 / 18 | 0 | per-state colours on palette (`.styles.ts` + `.less` + data-URI) — deferred (antd Less decision) |
+| checkbox | 17 / 18 | 0 | per-state colours on palette in `Checkbox.styles.ts` + data-URI check icons (`.less` **removed** — antd Less blocker gone) |
 | radio | 28 / 31 | 0 | ⚠ largest single-file palette (`Radio.styles.tsx`) — full radio + radio-group states |
 | switch | 10 / 10 | 0 | track/handle/label states on palette (`RawSwitch.styles.ts`, `Switch.styles.ts`) |
 | select | 0 / 1 | 2 | palette dynamic; `.less` + data-URI search icon deferred |
@@ -241,7 +258,7 @@ in Phase 1). "Semantic" counts semantic-token occurrences.
 | modal | 2 / 3 | 4 | `shadow-2` (module `modal.container.shadow` pruned); title `grey-200` bottom border + gradient |
 | navbar | 0 / 0 | 3 | ✓ `text-onsolid-default` |
 | page-header | 0 / 0 | 8 | `shadow-1` (module `page-header.container.shadow` pruned) |
-| popconfirm | 4 / 4 | 4 | carousel dots (`grey-600`/`green-600`/white — deferred, `.less`); `shadow-2` (no module shadow token) |
+| popconfirm | 4 / 4 | 4 | carousel dots (`grey-600`/`green-600`/white) now in `Popconfirm.styles.tsx` (`.less` removed); `shadow-2` (no module shadow token) |
 | progress-bar | 0 / 0 | 0 | ✓ clean |
 | status | 0 / 0 | 0 | ✓ clean |
 | stepper | 0 / 0 | 0 | ✓ clean |
@@ -258,9 +275,10 @@ in Phase 1). "Semantic" counts semantic-token occurrences.
    `popconfirm` uses semantic `shadow-2` because it has **no** module shadow token at all.
 
 2. **Largest palette debt = form family + button.** `input` (13), `checkbox` (17), `radio` (28), `switch` (10),
-   `button` (66 review) still carry per-state colours as direct `theme.palette` — and much of it lives in
-   `.styles.ts`/`.tsx`, **not only** the deferred `.less`. Deferred pending the antd Less/theming decision, but
-   the debt is broader than "just `.less`". ⚠ `input`'s **live** main `StyledInput` still sets bg / border /
+   `button` (66 review) still carry per-state colours as direct `theme.palette` — and it now lives in
+   `.styles.ts`/`.tsx`. The `.less` files for `input`/`checkbox`/`radio`/`switch` were **removed** (deantd), so
+   this is **no longer blocked** on the antd Less decision (only `select` still has `.less`) — it is directly
+   tokenisable styled-component work. ⚠ `input`'s **live** main `StyledInput` still sets bg / border /
    `:hover` / `:focus` / `:disabled` from `theme.palette` (`Input.styles.tsx:199–236`) — only the text colours
    were migrated to `--ds-form-field-*`, so the input TS is **not** fully complete despite the summary table
    marking it `:white_check_mark:` (correct that row when the field surface migrates). The `button` package also
@@ -677,7 +695,8 @@ semantic bg + shadow-2.
 
 Carousel `.slick-dots` indicators (`Popconfirm.styles.tsx:51,52,61,62`) — the green-600 active dot would
 become blue via `border-brand-default` (a green→blue redesign); kept `theme.palette`. `ConfirmMessage`
-title `#404c5a` hardcoded (no token). `.less` file (antd Carousel overrides) — not migrated.
+title `#404c5a` hardcoded (no token). The antd Carousel `.less` was **removed** (deantd) — carousel-dot styling
+now lives in `Popconfirm.styles.tsx` on palette (directly tokenisable).
 
 ---
 
@@ -821,11 +840,12 @@ warning tooltip icon uses `--ds-stepper-step-circle-border-warning`.
 ### pagination
 
 **Package:** `packages/components/pagination/`
-**Status:** ⛔ **Blocked — code-side N/A.** All colour/opacity/focus styling lives in `.less`
-(`style/pagination.less`, `style/index.less`); the JS/TSX source has zero tokenisable references. Module
-tokens (`--ds-pagination-*`, 18) exist and are emitted, but applying them requires migrating the `.less`,
-which is deferred pending the antd Less theming decision. The would-be mappings carry several design-intended
-diffs (nav icons darker, active page grey-600→grey-700, item hover translucent-grey → brand blue-50).
+**Status:** :x: **Not started — no longer blocked.** The `.less` files were **removed** (deantd); styling now
+lives in `Pagination.styles.ts` (12 `theme.palette` refs, 0 tokens). Module tokens (`--ds-pagination-*`, 18)
+exist and are emitted, so this is now a straightforward styled-component migration — **no antd Less blocker**.
+(The `pagination.less` that still exists lives in the **table** package, not here.) The would-be mappings carry
+several design-intended diffs (nav icons darker, active page grey-600→grey-700, item hover translucent-grey →
+brand blue-50).
 
 ---
 
@@ -872,7 +892,7 @@ user-icon → `icon-base-subtle`; disabled opacity → `--ds-avatar-disabled-opa
 The saturated **background colour** (`applyBgColors`, computed `${color}-${hue}` key) and `ObjectAvatar`'s
 `${color}-600` are user-driven dynamic overrides — kept `theme.palette`. The avatar module `bg`/`text`
 tokens describe a *muted-grey default surface* (grey-100 bg / grey-600 text), not this coloured-bg+white-text
-path, so semantic `text-onsolid` was the correct choice. `.less` file (antd avatar) deferred. SVG icon
+path, so semantic `text-onsolid` was the correct choice. (The antd avatar `.less` has since been removed — deantd.) SVG icon
 component files (thousands of path hexes) are out of scope. Removed unused `DEFAULT_COLOR`/`DEFAULT_COLOR_HUE`
 locals (not exported, no consumers).
 
@@ -928,34 +948,37 @@ package yet (nothing to apply).
 **Layer:** module (`--ds-form-checkbox-*` / `--ds-form-radio-*`)
 **Migrated in:** `chore/tokenisation` branch · **Status: :construction: partial**
 
-Both components keep the **bulk of their styling in `.less`** (`*.mixin.less`) and, for checkbox, in
-**data-URI SVG** check icons — neither can take CSS custom properties in Phase 1.
+The `*.mixin.less` files were **removed** (deantd); the per-state styling now lives in `Checkbox.styles.ts` /
+`Radio.styles.tsx` as styled-components on `theme.palette`. For checkbox, the check icons remain **data-URI SVG**
+(a `var()` can't be encoded there). So both are now **directly tokenisable** (no antd Less blocker) — except the
+data-URI check icons.
 
 #### checkbox — applied
 
 Focus border + focus ring, indeterminate inner bg/border, and hover-preview border → `--ds-form-checkbox-*`
 (all exact, no diffs). **Deferred:** the checked/indeterminate/hover check icons are `data:image/svg+xml`
 background-images with hex inlined into the URI — a `var()` cannot be encoded there, so they stay
-hardcoded; `blue-500` indeterminate-hover bg (no token); and the `checkbox.mixin.less` (per-state
-border/bg/label colours, error elevation shadow, disabled opacity).
+hardcoded; `blue-500` indeterminate-hover bg (no token); and the per-state border/bg/label colours, error
+elevation shadow, disabled opacity — now in `Checkbox.styles.ts` on palette (`.less` removed, directly tokenisable).
 
 #### radio — applied
 
 Description text → `--ds-form-radio-text-description`; disabled opacity (label + description) →
 `--ds-form-radio-disabled-opacity`. **Visual diff:** description text grey-600 `#6a7580` → grey-700
-`#57616d` (darker, design-intended). **Deferred:** the radio dot/border/bg/hover/selected states live in
-`radio.mixin.less`.
+`#57616d` (darker, design-intended). **Remaining:** the radio dot/border/bg/hover/selected states now live in
+`Radio.styles.tsx` on palette (`.less` removed — directly tokenisable, no antd Less blocker).
 
-> **Sync `e0301675d` forward-note (affects the deferred `.less` work, not the migrated `.tsx`):** the
+> **Sync `e0301675d` forward-note (affects the deferred radio-state work, not the already-migrated text):** the
 > selected inner dot `--ds-form-radio-dot-color` was re-pointed `{background.base.default}` →
 > `{background.brand.solid}`, so it now resolves to **brand-blue `#0b68ff`** (was white) — a bug-fix.
 > The hover ring `--ds-form-radio-border-color-hover` was re-pointed `{background.brand.solid}` →
 > `{border.base.strongHover}`, now **grey-400 `#b5bdc3`** (was blue-600). The upstream token
-> `$description` strings still read "white"/"blue.600" and are **stale**. When the `radio.mixin.less`
-> migration lands, expect a grey hover ring + brand-blue selected dot — coordinate with design.
+> `$description` strings still read "white"/"blue.600" and are **stale**. When the radio-state migration lands
+> (now in `Radio.styles.tsx`), expect a grey hover ring + brand-blue selected dot — coordinate with design.
 
-> Follow-up: checkbox/radio can only be fully tokenised once the antd `.less` theming decision lands; the
-> data-URI check icons need a different mechanism (e.g. a real `<Icon>` or `mask` driven by `currentColor`).
+> Follow-up: checkbox/radio state colours are now plain styled-components (`.less` removed) and can be tokenised
+> directly — no antd Less decision needed; only the data-URI check icons still need a different mechanism (e.g. a
+> real `<Icon>` or `mask` driven by `currentColor`).
 
 ---
 
@@ -981,6 +1004,14 @@ ghost-white grey-500 @25/10%), emitted as `rgba()` by the `outputReferencesTrans
 (`fix(tokens): emit rgba…`). These are **exact-match** to the old `rippleAlpha()`/`hexToRgbValues()`
 output — **zero visual change** to the backgrounds.
 
+**Disabled opacity (fixed):** the solid-token variants (secondary, tertiary, tertiary-white, ghost,
+ghost-primary, ghost-white) now apply the separate `--ds-buttons-disabled-opacity` (0.4) in `buttonDisabled()`
+— the token intent ("same as default, opacity applied separately") that was previously dropped, leaving
+secondary disabled text un-faded. The hardcoded `opacity: 0.4` in `custom-color`/`custom-color-ghost`
+(`Button.styles.tsx`), `Creator`, and `Expander` was also switched to the token. primary/danger/success/warning
+keep baking `rgba(color, 0.4)` into the disabled background (not element opacity), so they are left as-is to
+avoid double-dimming.
+
 #### Visual diffs
 
 | Property | Was | Token resolves to | Delta |
@@ -990,7 +1021,7 @@ output — **zero visual change** to the backgrounds.
 | **secondary** active (pressed) | blue-100 bg / blue-600 text | grey-400 bg / white text | :warning: **blue → grey** redesign |
 | **secondary** focus bg | grey-050 | grey-100 (`base.muted`) | slightly darker |
 | **secondary** hover border | grey-300 | blue-300 (`border-brand-strong`) | brand border on hover |
-| **secondary** disabled | grey-700@40% / grey-050@40% | grey-600 / grey-100 (solid) | un-faded |
+| **secondary** disabled | grey-700@40% / grey-050@40% | grey-600 / grey-100 @ `--ds-buttons-disabled-opacity` (0.4) | re-faded (fixed) |
 | **tertiary** text default/focus | grey-700 | grey-600 (`text-base-muted`) | lighter |
 | **tertiary** text hover/active | grey-700 | blue-600 (`text-brand`) | :warning: **grey → brand** |
 | **tertiary** hover border | transparent | grey-200 (`border-base-default`) | visible border on hover |
@@ -1021,9 +1052,10 @@ output — **zero visual change** to the backgrounds.
 ### form group (form · input · select · switch)
 
 (checkbox + radio reported above.) Across the whole form family the **styled-component TS was migrated**
-to `--ds-form-field-*` / `--ds-form-icon-* `/ `--ds-form-switch-*` + semantic, but each package keeps a
-`*.mixin.less` that owns much of the per-state visual styling (and `select`/`checkbox` use data-URI SVG
-icons) — those are deferred pending the antd Less decision.
+to `--ds-form-field-*` / `--ds-form-icon-* `/ `--ds-form-switch-*` + semantic. The `*.mixin.less` files were
+**removed** (deantd) for `input`/`checkbox`/`radio`/`switch` — their per-state visual styling now lives in each
+package's `.styles.ts` on `theme.palette`, so it is **directly tokenisable** (no antd Less blocker). **Only
+`select` still has `.less`** (`select.mixin.less`); `select`/`checkbox` also use data-URI SVG icons.
 
 #### input — :white_check_mark: TS complete
 
@@ -1047,7 +1079,8 @@ selector bg grey-050 → grey-100 (darker). **Deferred:** search-icon (data-URI 
 #### switch — :construction:
 
 Error text → `--ds-form-switch-text-error` (exact); description text → `--ds-form-switch-text-description`
-(**diff:** grey-600 → grey-700, darker). Track/handle/bg styling lives in `switch.mixin.less` (deferred).
+(**diff:** grey-600 → grey-700, darker). Track/handle/bg styling now lives in `RawSwitch.styles.ts` on palette
+(`.less` removed — directly tokenisable, no antd Less blocker).
 
 #### form — :white_check_mark: (minimal)
 
