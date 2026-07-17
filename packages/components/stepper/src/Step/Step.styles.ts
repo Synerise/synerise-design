@@ -190,11 +190,14 @@ export const Step = styled.div<{
     if (props.warning) {
       return css`
         ${StepPrefix} {
-          border-color: ${props.theme.palette['yellow-600']};
+          border-color: var(--ds-stepper-step-circle-border-warning);
         }
-        ${StepNumber}${StepNumber},
+        ${StepNumber}${StepNumber} {
+          color: var(--ds-stepper-step-circle-content-warning);
+          font-weight: 400;
+        }
         ${StepLabel}${StepLabel} {
-          color: ${props.theme.palette['yellow-600']};
+          color: var(--ds-stepper-step-label-warning);
           font-weight: 400;
         }
       `;
