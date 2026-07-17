@@ -43,7 +43,7 @@ export const IconWrapper = styled.div<{
 export const IconCloseWrapper = styled.div`
   margin: 3px 5px 2px;
   cursor: pointer;
-  color: ${(props) => props.theme.palette['grey-700']};
+  color: var(--ds-color-icon-base-default);
 `;
 export const ButtonWrapper = styled.div`
   padding: 6px 8px 0 8px;
@@ -148,32 +148,28 @@ export const AlertShowMore = styled.span`
 
 export const NumberWrapper = styled.div`
   margin-left: 4px;
-  color: ${(props): string => props.theme.palette['grey-400']};
+  color: var(--ds-color-text-base-disabled);
   cursor: pointer;
   &:hover {
     background-image: linear-gradient(
       to right,
-      ${(props): string => props.theme.palette['grey-400']} 20%,
+      var(--ds-color-text-base-disabled) 20%,
       rgba(255, 255, 255, 0) 10%
     );
     background-color: transparent;
     background-position: bottom left;
     background-size: 5px 1px;
     background-repeat: repeat-x;
-    color: ${(props): string => props.theme.palette['grey-700']};
+    color: var(--ds-color-text-base-subtle);
   }
 `;
 export const IconOrderWrapper = styled.div`
   display: none;
   margin: -4px 0;
-  svg {
-    fill: ${(props): string => props.theme.palette['grey-700']};
-  }
+  color: var(--ds-color-text-base-subtle);
   &:hover {
-    svg {
-      fill: ${(props): string => props.theme.palette['blue-600']};
-      cursor: pointer;
-    }
+    color: var(--ds-color-icon-brand-default);
+    cursor: pointer;
   }
 `;
 export const OrderWrapper = styled.div`
@@ -185,18 +181,18 @@ export const OrderWrapper = styled.div`
     ${NumberWrapper} {
       background-image: linear-gradient(
         to right,
-        ${(props): string => props.theme.palette['grey-400']} 20%,
+        var(--ds-color-text-base-disabled) 20%,
         rgba(255, 255, 255, 0) 10%
       );
       background-color: transparent;
       background-position: bottom left;
       background-size: 5px 1px;
       background-repeat: repeat-x;
-      color: ${(props): string => props.theme.palette['grey-700']};
+      color: var(--ds-color-text-base-subtle);
     }
   }
 `;
 export const Wrapper = styled.div`
   margin-top: 10px;
-  color: ${(props): string => props.theme.palette['grey-700']};
+  color: var(--ds-color-text-base-subtle);
 `;
