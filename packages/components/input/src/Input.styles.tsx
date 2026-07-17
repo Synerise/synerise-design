@@ -338,7 +338,8 @@ export const RawTextArea = styled(
     font-size: 13px;
     /* Matches the previous antd textarea base padding (textarea.ant-input). */
     padding: 8px 12px;
-    ${(props) => (props.error ? errorInputStyle() : '')};
+    /* Surface (border/background/box-shadow), incl. the error state, lives on the
+       .ds-textarea wrapper (TextareaWrapper) — never on the bare <textarea> node. */
   }
 `;
 
