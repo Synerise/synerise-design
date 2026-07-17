@@ -114,7 +114,7 @@ These components have dedicated token definitions in `modules/base.json`.
 | [navbar](#navbar) | `navbar` | :white_check_mark: | :heavy_minus_sign: | :white_check_mark: | :x: | 2 | No | :warning: default bg blue→grey |
 | page | `page-header` | :heavy_minus_sign: | :heavy_minus_sign: | :heavy_minus_sign: | :heavy_minus_sign: | — | No | `--ds-page-bg` unused (no full-page bg in code) |
 | [page-header](#page-header) | `page-header` | :white_check_mark: | :white_check_mark: | :heavy_minus_sign: | :x: | 0 | No | module + semantic; shadow-1 |
-| pagination | `pagination` | :x: | :heavy_minus_sign: | :x: | :x: | 12 | No | ⚠ **no longer blocked** — `.less` removed; now `Pagination.styles.ts` (12 palette, 0 tokens); ready to tokenise vs 18 `--ds-pagination-*` |
+| [pagination](#pagination) | `pagination` | :white_check_mark: | :heavy_minus_sign: | :x: | :x: | 0 | No | tokenised vs `--ds-pagination-*` (sync `66dddd0a` pass); jumper input via semantic |
 | [popconfirm](#popconfirm) | `popconfirm` | :white_check_mark: | :white_check_mark: | :heavy_minus_sign: | :heavy_minus_sign: | 1 | No | shadow-2; module renamed `popcornfirm`→`popconfirm` (sync `66dddd0a`); carousel dots now in `.styles.tsx` (`.less` removed) |
 | [progressbar](#progress-bar) | `progress-bar` | :white_check_mark: | :heavy_minus_sign: | :heavy_minus_sign: | :x: | 1 | No | track + value + default fill tokenised (sync `66dddd0a`); multivalue slots caller-driven (deferred) |
 | [status-pill](#status-status-pill) | `status` | :white_check_mark: | :heavy_minus_sign: | :heavy_minus_sign: | :x: | 2 | No | text/border split; custom kept dynamic |
@@ -314,10 +314,11 @@ accept a value shift only where no exact token exists (flagged); convert `svg { 
 **Tokenised** (palette-free or dynamic-only remainder): `section-message`, `toast`, `button` (readOnly aligned
 to variant tokens + error→danger + Checkbox/Star/Creator), `card` (CardBadge), `description`, `input` (field
 surface/affix/clear), `checkbox` (+ data-URI tick → **currentColor SVG component**), `radio`, `switch`,
-`modal`, `popconfirm`, `tabs`, `inline-edit`.
+`modal`, `popconfirm`, `tabs`, `inline-edit`, `pagination`.
 
-**Still deferred:** `select` (mid de-antd), `pagination` (styled-comps ready, not done this pass),
-`alert`/`menu`/`table` (deprecated — no tokens), remaining `.less` (`code-snippet`/`drawer`/`list`/`scrollbar`/`select`).
+**Still deferred:** `select` (mid de-antd), `alert`/`menu`/`table` (deprecated — no tokens),
+remaining `.less` (`code-snippet`/`drawer`/`list`/`scrollbar`/`select`). (`ai-chat`/`page` module tokens exist
+but have no consuming markup yet.)
 
 ### ⚑ Flags for the UX / token team
 
@@ -880,12 +881,12 @@ warning tooltip icon uses `--ds-stepper-step-circle-border-warning`.
 ### pagination
 
 **Package:** `packages/components/pagination/`
-**Status:** :x: **Not started — no longer blocked.** The `.less` files were **removed** (deantd); styling now
-lives in `Pagination.styles.ts` (12 `theme.palette` refs, 0 tokens). Module tokens (`--ds-pagination-*`, 18)
-exist and are emitted, so this is now a straightforward styled-component migration — **no antd Less blocker**.
-(The `pagination.less` that still exists lives in the **table** package, not here.) The would-be mappings carry
-several design-intended diffs (nav icons darker, active page grey-600→grey-700, item hover translucent-grey →
-brand blue-50).
+**Status:** :white_check_mark: **Tokenised** (sync `66dddd0a` pass). `.less` was removed (deantd); styling
+lives in `Pagination.styles.ts`, now mapped to `--ds-pagination-item-*` / `--ds-pagination-nav-*` module tokens
+(+ `nav-disabled-opacity`). The quick-jumper input + total/jumper text use semantic (`border-base-strong`,
+`focus-base-default`, `text-base-muted`) — no pagination token covers those. **Design-intended diffs
+(Chromatic):** item text grey-700→grey-600; item hover bg translucent-grey → brand blue-50 (`item-bg-hover`).
+Active page bg (grey-700), active text (white) and nav icon (grey-600) are exact.
 
 ---
 
