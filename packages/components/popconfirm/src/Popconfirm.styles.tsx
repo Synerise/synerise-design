@@ -48,8 +48,8 @@ export const PopconfirmContent = styled.div<{
         justify-content: center;
         button {
           box-sizing: content-box;
-          background-color: ${(props) => props.theme.palette['grey-600']};
-          border: 2px solid ${(props) => props.theme.palette.white};
+          background-color: var(--ds-color-icon-base-default);
+          border: 2px solid var(--ds-color-background-base-default);
           height: 4px;
           width: 4px;
           border-radius: 50%;
@@ -58,8 +58,8 @@ export const PopconfirmContent = styled.div<{
       }
       li.ds-carousel-dot-active {
         button {
-          border: 2px solid ${(props) => props.theme.palette['green-600']};
-          background-color: ${(props) => `${props.theme.palette.white}`};
+          border: 2px solid var(--ds-color-background-success-solid);
+          background-color: var(--ds-color-background-base-default);
         }
       }
     }
