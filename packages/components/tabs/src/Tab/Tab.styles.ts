@@ -1,6 +1,5 @@
 import styled from 'styled-components';
 
-import { type ThemeProps } from '@synerise/ds-core';
 import { IconContainer } from '@synerise/ds-icon';
 import { macro } from '@synerise/ds-typography';
 
@@ -33,7 +32,7 @@ export const TabContent = styled.div`
   overflow: hidden;
   text-overflow: ellipsis;
 `;
-const applyBlockStyles = (props: ThemeProps): string => `
+const applyBlockStyles = (): string => `
   margin-right: 0;
   flex: 1;
   ${TabContent} {
@@ -41,18 +40,18 @@ const applyBlockStyles = (props: ThemeProps): string => `
     border-right: 5px solid transparent;
   }
   &: after {
-    background-color:${props.theme.palette['grey-200']};
+    background-color: var(--ds-color-border-base-default);
     height:1px;
   }
   &: hover {
     &::after {
-      background-color:${props.theme.palette['grey-300']};
+      background-color: var(--ds-color-border-base-strong);
       height: 1px;
     }
   }
   &:focus:active:not(:hover) {
   &::after {
-      background-color:${props.theme.palette['blue-600']};
+      background-color: var(--ds-color-border-brand-default);
       background-image:none;
       height: 1px;
     }
@@ -144,8 +143,8 @@ export const TabContainer = styled.button<{ block?: boolean }>`
       background-color: transparent;
       background-image: linear-gradient(
         to right,
-        ${({ theme }): string => theme.palette.white} 66%,
-        ${({ theme }): string => theme.palette['blue-600']} 34%
+        var(--ds-color-background-base-default) 66%,
+        var(--ds-color-border-brand-default) 34%
       );
       background-position: top;
       background-size: 5px 1px;
@@ -197,7 +196,7 @@ export const TabContainer = styled.button<{ block?: boolean }>`
       background-image: none;
     }
   }
-  ${(props): string | false => !!props.block && applyBlockStyles(props)}
+  ${(props): string | false => !!props.block && applyBlockStyles()}
 `;
 
 export const SuffixWrapper = styled.div``;
