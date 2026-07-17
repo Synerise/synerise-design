@@ -304,6 +304,46 @@ in Phase 1). "Semantic" counts semantic-token occurrences.
 
 ---
 
+## Component-by-component tokenisation pass (2026-07-17)
+
+Following the audit, the flagged code palette was tokenised component-by-component (each its own commit; unit
+tests green per component). **Approach:** prefer exact-value semantic/module tokens (zero visual change);
+accept a value shift only where no exact token exists (flagged); convert `svg { fill/stroke }` → wrapper
+`color` + `currentColor`; keep genuinely dynamic (`customColor`/`color` prop) values on palette.
+
+**Tokenised** (palette-free or dynamic-only remainder): `section-message`, `toast`, `button` (readOnly aligned
+to variant tokens + error→danger + Checkbox/Star/Creator), `card` (CardBadge), `description`, `input` (field
+surface/affix/clear), `checkbox` (+ data-URI tick → **currentColor SVG component**), `radio`, `switch`,
+`modal`, `popconfirm`, `tabs`, `inline-edit`.
+
+**Still deferred:** `select` (mid de-antd), `pagination` (styled-comps ready, not done this pass),
+`alert`/`menu`/`table` (deprecated — no tokens), remaining `.less` (`code-snippet`/`drawer`/`list`/`scrollbar`/`select`).
+
+### ⚑ Flags for the UX / token team
+
+1. **Mis-valued module tokens** — `--ds-form-checkbox-bg-blocked` and `--ds-form-checkbox-border-color-blocked`
+   resolve to `background.brand.solid` (**blue-600**); a disabled checkbox needs grey. Consumed as-is
+   (consume-only), so **disabled checkboxes render blue until the token values are fixed upstream**.
+2. **Missing shades** — no danger token at `red-200` (button error-hover bg kept on palette); no `blue-500`
+   token (kept on palette in checkbox indeterminate-hover, radio solid-hover, tabs focus — the changelog's
+   `focus.base.subtle` / `--ds-tabs-item-text-focus` are not in merged `66dddd0a`).
+3. **Missing icon-category tokens** — inactive/disabled icon greys (grey-300/grey-200) had to use
+   `border-base-strong`/`border-base-default` (value-exact, category mismatch) in checkbox / star / description.
+4. **Missing per-state tokens** — radio has no disabled bg/border token (used semantic); inline-edit `:active`
+   icon-wrapper bg grey-300 has no clean token (kept on palette).
+
+### Value shifts introduced (for Chromatic review)
+
+- `section-message` close icon grey-700→grey-600.
+- `button` readOnly (aligned to variant `-default` tokens): secondary/tertiary text grey-700→grey-600; primary
+  text grey-050→white; tertiary bg solid grey-100→grey-400@15%; ghost/ghost-primary bg white→transparent;
+  **ghost-white bg grey-600→transparent**.
+- `input` disabled bg grey-050→grey-100; affix text grey-700→grey-500.
+- `card` badge warning bg yellow-600→yellow-500.
+- `checkbox`/`radio` disabled label grey-600→grey-700; `radio` checked label grey-800→grey-700.
+
+---
+
 ## Detailed Reports
 
 ### section-message
