@@ -3,19 +3,17 @@ import styled, { css } from 'styled-components';
 import { type InlineAlertType } from './InlineAlert.types';
 
 const COLOR_TOKENS: Record<InlineAlertType, string> = {
-  success: 'var(--ds-inline-alert-icon-success)',
-  warning: 'var(--ds-inline-alert-icon-warning)',
-  alert: 'var(--ds-inline-alert-icon-error)',
-  info: 'var(--ds-inline-alert-icon-informative)',
+  success: 'var(--ds-inline-alert-icon-success-default)',
+  warning: 'var(--ds-inline-alert-icon-warning-default)',
+  alert: 'var(--ds-inline-alert-icon-error-default)',
+  info: 'var(--ds-inline-alert-icon-informative-default)',
 };
 
-// No `-hover` module/semantic token exists for these (they resolve to the
-// `-700` primitive shades), so the hover state keeps the theme.palette lookup.
 const COLORS_HOVER: Record<InlineAlertType, string> = {
-  success: 'green-700',
-  warning: 'yellow-700',
-  alert: 'red-700',
-  info: 'grey-700',
+  success: 'var(--ds-inline-alert-icon-success-hover)',
+  warning: 'var(--ds-inline-alert-icon-warning-hover)',
+  alert: 'var(--ds-inline-alert-icon-error-hover)',
+  info: 'var(--ds-inline-alert-icon-informative-hover)',
 };
 
 export const Message = styled.span`
@@ -39,9 +37,7 @@ export const InlineAlertWrapper = styled.span<{
   &:hover {
     cursor: ${(props) => (props.hoverButton ? 'pointer' : 'auto')};
     color: ${(props) =>
-      props.hoverButton
-        ? props.theme.palette[COLORS_HOVER[props.type]]
-        : COLOR_TOKENS[props.type]};
+      props.hoverButton ? COLORS_HOVER[props.type] : COLOR_TOKENS[props.type]};
   }
   &:active {
     color: ${(props) => COLOR_TOKENS[props.type]};
