@@ -1,28 +1,26 @@
 import styled from 'styled-components';
 
-import { type ThemePropsVars } from '@synerise/ds-core';
-
 import { type BadgeStatus } from './CardBadge.types';
 
 const background: Record<BadgeStatus, string> = {
-  success: 'green-600',
-  warning: 'yellow-600',
-  error: 'red-600',
+  success: 'var(--ds-color-background-success-solid)',
+  warning: 'var(--ds-color-background-warning-solid)',
+  error: 'var(--ds-color-background-danger-solid)',
   default: 'transparent',
   checked: 'transparent',
 };
 
 const color: Record<BadgeStatus, string> = {
-  success: 'white',
-  warning: 'white',
-  error: 'white',
-  default: 'grey-400',
-  checked: 'grey-400',
+  success: 'var(--ds-color-text-onsolid-default)',
+  warning: 'var(--ds-color-text-onsolid-default)',
+  error: 'var(--ds-color-text-onsolid-default)',
+  default: 'var(--ds-color-icon-base-muted)',
+  checked: 'var(--ds-color-icon-base-muted)',
 };
 
-const boxShadow = (props: { status: BadgeStatus; theme: ThemePropsVars }) => {
+const boxShadow = (props: { status: BadgeStatus }) => {
   return props.status === 'default'
-    ? `${props.theme.palette['grey-400']} 0px 0px 0px 1.5px inset`
+    ? 'var(--ds-color-border-base-stronghover) 0px 0px 0px 1.5px inset'
     : 'none';
 };
 
@@ -32,10 +30,10 @@ export const CardBadge = styled.div<{ status: BadgeStatus }>`
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: ${(props) => props.theme.palette[background[props.status]]};
+  background-color: ${(props) => background[props.status]};
   box-shadow: ${(props) => boxShadow(props)};
   border-radius: 50%;
   &&& svg {
-    color: ${(props) => props.theme.palette[color[props.status]]};
+    color: ${(props) => color[props.status]};
   }
 `;
