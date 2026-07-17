@@ -47,7 +47,7 @@ export const ActionButtons = styled.div`
 
 export const BottomBar = styled.div`
   padding: 12px 24px;
-  border-bottom: 1px solid ${(props) => props.theme.palette['grey-200']};
+  border-bottom: 1px solid var(--ds-color-border-base-default);
 `;
 
 export const ModalHeaderTop = styled.div`
@@ -74,8 +74,8 @@ export const Description = styled.div`
 
   background-image: linear-gradient(
     to right,
-    ${(props) => props.theme.palette['grey-300']} 33%,
-    ${(props) => props.theme.palette['white']} 0%
+    var(--ds-color-border-base-strong) 33%,
+    var(--ds-color-background-base-default) 0%
   );
   background-repeat: repeat-x;
   background-size: 4px 1px;
