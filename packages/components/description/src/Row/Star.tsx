@@ -1,6 +1,5 @@
 import React from 'react';
 
-import { theme } from '@synerise/ds-core';
 import Icon, { StarFillM, StarM } from '@synerise/ds-icon';
 
 import * as S from './DescriptionRow.styles';
@@ -16,7 +15,7 @@ const Star: React.FC<StarProps> = ({ starType, hasPrefixEl }) =>
     </S.StarWrapper>
   ) : (
     <S.StarWrapper className="ds-description-star" hasPrefixEl={hasPrefixEl}>
-      <Icon component={<StarM />} color={theme.palette['grey-300']} />
+      <Icon component={<StarM />} color="var(--ds-color-border-base-strong)" />
     </S.StarWrapper>
   );
 
