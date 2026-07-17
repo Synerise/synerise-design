@@ -204,6 +204,88 @@ These packages have zero `theme.palette`, shadow, and opacity usage:
 
 ---
 
+## Token audit — semantic & palette usage (2026-07-17)
+
+Static scan of every tokenised component's `src` (`.ts`/`.tsx`; excluding `__specs__`/`.spec.`/`.test.`/
+`.figma.`/`.stories.`/`dist`) for **(a)** direct `theme.palette` colour usage in code — CSS-in-JS strings
+**and** TS logic / `<Icon color=…>` props — and **(b)** semantic-token usage (`--ds-color-*`, `--ds-shadows-*`,
+`--ds-opacity-*`) where a component-level **module** token is the preferred layer.
+
+Palette counts are split into **review** (static colours that are candidates to tokenise) vs **deferred**
+(dynamic `customColor`/`color`-prop values, decorative gradients/ripple, data-URI SVG icons — not tokenisable
+in Phase 1). "Semantic" counts semantic-token occurrences.
+
+### Summary
+
+| Component | palette (review / total) | semantic | Notes |
+|-----------|--------------------------|----------|-------|
+| section-message | 7 / 13 | 0 | legacy/unused styled-comps + NumberWrapper gradient; close-icon `grey-700` tokenisable |
+| toast | 1 / 2 | 6 | `shadow-2` (module `toast.shadow` pruned); `blue-600` icon-order hover tokenisable |
+| broadcast-bar | 0 / 0 | 0 | ✓ clean |
+| app-menu | 0 / 0 | 5 | `shadow-1` (module `app-menu.container.shadow` pruned); `border-base-subtle` (module mismatch, documented) |
+| avatar | 1 / 2 | 5 | palette = dynamic bg (user-driven); semantic appropriate |
+| button | 66 / 84 | 25 | ⚠ **largest debt** — readOnly per-variant freeze + `Creator/` + internal `Checkbox/`,`Star/` sub-comps + ripple/decorative |
+| card | 0 / 3 | 8 | `shadow-1` (module `card.shadow.*` pruned); CardBadge dynamic/inset ring deferred |
+| card-select | 0 / 0 | 3 | ✓ semantic fallbacks documented |
+| description | 1 / 1 | 4 | inactive star `grey-300` `<Icon color>` (no on-system icon token) |
+| divider | 0 / 0 | 0 | ✓ clean |
+| form | 0 / 0 | 1 | ✓ `icon-brand-default` |
+| input | 13 / 14 | 18 | ⚠ **live** main `StyledInput`: bg/border/`:hover`/`:focus`/`:disabled` still `theme.palette` (`Input.styles.tsx:199–236`) — only text uses `--ds-form-field-*`; TS **not** fully complete despite table `:white_check_mark:` |
+| checkbox | 17 / 18 | 0 | per-state colours on palette (`.styles.ts` + `.less` + data-URI) — deferred (antd Less decision) |
+| radio | 28 / 31 | 0 | ⚠ largest single-file palette (`Radio.styles.tsx`) — full radio + radio-group states |
+| switch | 10 / 10 | 0 | track/handle/label states on palette (`RawSwitch.styles.ts`, `Switch.styles.ts`) |
+| select | 0 / 1 | 2 | palette dynamic; `.less` + data-URI search icon deferred |
+| inline-alert | 0 / 0 | 1 | ✓ (`opacity-disabled`) |
+| inline-edit | 5 / 5 | 4 | focus/error/disabled underline gradient colours (decorative, deferred) |
+| list-item | 0 / 1 | 10 | palette decorative; semantic (focus/brand/neutral/base) appropriate |
+| modal | 2 / 3 | 4 | `shadow-2` (module `modal.container.shadow` pruned); title `grey-200` bottom border + gradient |
+| navbar | 0 / 0 | 3 | ✓ `text-onsolid-default` |
+| page-header | 0 / 0 | 8 | `shadow-1` (module `page-header.container.shadow` pruned) |
+| popconfirm | 4 / 4 | 4 | carousel dots (`grey-600`/`green-600`/white — deferred, `.less`); `shadow-2` (no module shadow token) |
+| progress-bar | 0 / 0 | 0 | ✓ clean |
+| status | 0 / 0 | 0 | ✓ clean |
+| stepper | 0 / 0 | 0 | ✓ clean |
+| tabs | 5 / 9 | 6 | `blue-500` focus (no token in `66dddd0a`) + decorative dashed gradients |
+| time-picker | 0 / 0 | 5 | ✓ semantic (base/border/icon/opacity) appropriate |
+
+### Cross-cutting findings
+
+1. **Shadow module tokens are pruned → semantic used.** `app-menu`, `card`, `modal`, `page-header`, `toast`
+   consume `--ds-shadows-shadow-{1,2}` because their module `*.shadow` tokens (`app-menu.container.shadow`,
+   `card.shadow.*`, `modal.container.shadow`, `page-header.container.shadow`, `toast.shadow`) are in the
+   8-token **pruned** set — they reference `shadow.level.*` primitives that don't exist upstream yet. Switch to
+   the module shadow tokens once those primitives land (consume-only; needs an upstream token change).
+   `popconfirm` uses semantic `shadow-2` because it has **no** module shadow token at all.
+
+2. **Largest palette debt = form family + button.** `input` (13), `checkbox` (17), `radio` (28), `switch` (10),
+   `button` (66 review) still carry per-state colours as direct `theme.palette` — and much of it lives in
+   `.styles.ts`/`.tsx`, **not only** the deferred `.less`. Deferred pending the antd Less/theming decision, but
+   the debt is broader than "just `.less`". ⚠ `input`'s **live** main `StyledInput` still sets bg / border /
+   `:hover` / `:focus` / `:disabled` from `theme.palette` (`Input.styles.tsx:199–236`) — only the text colours
+   were migrated to `--ds-form-field-*`, so the input TS is **not** fully complete despite the summary table
+   marking it `:white_check_mark:` (correct that row when the field surface migrates). The `button` package also
+   has internal `Checkbox/`, `Star/`, `Creator/` sub-components fully on palette plus the readOnly per-variant
+   freeze block.
+
+3. **Decorative / legacy palette in otherwise-complete components** (mostly already documented as deferred):
+   `section-message` (legacy/unused styled-comps + gradient), `toast` (gradient + `blue-600` icon-order hover),
+   `modal` (title `grey-200` border + description gradient), `tabs` (`blue-500` focus + dashed gradients),
+   `popconfirm` (carousel dots), `inline-edit` (focus/error underline gradients), `description` (inactive star),
+   `card` (CardBadge). Tokenisable quick wins: `toast` `blue-600` icon hover → `icon-brand-default`;
+   `section-message` close-icon `grey-700` → `icon-base-default`; `modal` title border `grey-200` →
+   `border-base-default` (or a `--ds-modal-*` border token).
+
+4. **Semantic usage is otherwise appropriate.** Outside the shadow gap, semantic tokens are used where no module
+   token covers the role (focus rings, `opacity-disabled/muted`, brand/neutral text, base surfaces) — consistent
+   with the granularity rule. Fully clean (zero code palette, only appropriate semantic): `broadcast-bar`,
+   `divider`, `progress-bar`, `status`, `stepper`, `navbar`, `page-header`, `time-picker`, `card-select`,
+   `app-menu`, `list-item`, `form`, `inline-alert`.
+
+5. **`blue-500` focus (tabs) has no token yet** — the changelog's `--ds-tabs-item-text-focus` /
+   `color.focus.base.subtle` are not in the merged `66dddd0a`, so `tabs` keeps `blue-500` (already flagged to UX).
+
+---
+
 ## Detailed Reports
 
 ### section-message
