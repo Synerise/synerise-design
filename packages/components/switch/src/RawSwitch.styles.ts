@@ -4,26 +4,25 @@ import styled, {
   keyframes,
 } from 'styled-components';
 
-import { type ThemeProps } from '@synerise/ds-core';
-
 type ToggleProps = {
   $checked?: boolean;
   $error?: boolean;
   $loading?: boolean;
 };
 
-const trackBackground = (
-  props: ToggleProps & ThemeProps,
-  hovered: boolean,
-): string => {
-  const { theme, $checked, $error } = props;
+const trackBackground = (props: ToggleProps, hovered: boolean): string => {
+  const { $checked, $error } = props;
   if ($error) {
-    return theme.palette['red-600'];
+    return 'var(--ds-form-switch-bg-error)';
   }
   if ($checked) {
-    return theme.palette[hovered ? 'green-500' : 'green-600'];
+    return hovered
+      ? 'var(--ds-form-switch-bg-selectedhover)'
+      : 'var(--ds-form-switch-bg-selected)';
   }
-  return theme.palette[hovered ? 'grey-500' : 'grey-400'];
+  return hovered
+    ? 'var(--ds-form-switch-bg-hover)'
+    : 'var(--ds-form-switch-bg-default)';
 };
 
 const spin = keyframes`
@@ -53,12 +52,12 @@ export const Toggle = styled.button<ToggleProps>`
   }
 
   &:focus-visible {
-    border-color: ${(props): string => props.theme.palette['blue-600']};
+    border-color: var(--ds-color-focus-base-default);
   }
 
   &:disabled {
     cursor: not-allowed;
-    opacity: 0.4;
+    opacity: var(--ds-form-switch-disabled-opacity);
   }
 
   ${(props): FlattenSimpleInterpolation | false =>
@@ -75,7 +74,7 @@ export const Handle = styled.span<{ $checked?: boolean }>`
   width: 12px;
   height: 12px;
   border-radius: 50%;
-  background-color: ${(props): string => props.theme.palette.white};
+  background-color: var(--ds-form-switch-handle-bg);
   transition: left 0.2s ease;
 `;
 
@@ -85,8 +84,8 @@ export const Spinner = styled.span`
   left: 1px;
   width: 10px;
   height: 10px;
-  border: 1.5px solid ${(props): string => props.theme.palette['grey-400']};
-  border-top-color: ${(props): string => props.theme.palette['green-600']};
+  border: 1.5px solid var(--ds-color-border-base-stronghover);
+  border-top-color: var(--ds-color-background-success-solid);
   border-radius: 50%;
   animation: ${spin} 0.8s linear infinite;
 `;

@@ -22,7 +22,7 @@ export const Texts = styled.div`
 
 export const Label = styled(FormFieldLabel)`
   ${macro.heading};
-  color: ${(props) => props.theme.palette['grey-700']};
+  color: var(--ds-color-text-base-subtle);
   cursor: pointer;
   transition: 0.3s ease;
   width: 100%;
@@ -40,12 +40,12 @@ export const LabelSwitchWrapper = styled.div`
   align-items: center;
 
   ${Toggle}:hover:not(:disabled) + .switch-texts .switch-label {
-    color: ${(props) => props.theme.palette['grey-800']};
+    color: var(--ds-form-switch-text-label);
   }
 
   ${Toggle}:disabled + .switch-texts .switch-label {
-    color: ${(props) => props.theme.palette['grey-600']};
-    opacity: 0.4;
+    color: var(--ds-color-text-base-muted);
+    opacity: var(--ds-form-switch-disabled-opacity);
   }
 `;
 
