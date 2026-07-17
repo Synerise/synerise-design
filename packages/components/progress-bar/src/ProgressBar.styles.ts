@@ -40,7 +40,9 @@ export const ProgressBar = styled.div<{ customColor: string; $width: string }>`
   height: 100%;
   width: ${(props) => props.$width};
   background-color: ${(props) =>
-    props.customColor ? props.customColor : props.theme.palette['green-500']};
+    props.customColor
+      ? props.customColor
+      : 'var(--ds-progressbar-bar-fill-default)'};
 `;
 
 export const PercentWrapper = styled.div`
