@@ -2,6 +2,25 @@
 
 Tracks the progress of migrating components from `theme.palette` / hardcoded values to CSS custom properties generated from the Token Studio design tokens in `packages/tokens/`.
 
+> **Token sync `66dddd0a` (design-tokens@66dddd0a, "semantic restructure v2", 2026-07-17).** Lands via rolling
+> MR !3723 → `chore/tokenisation`; consuming-code fixes land in a follow-up code MR.
+> **Breaking token renames — fixed in code:** app-menu `icon-defsult`→`icon-default`; popconfirm module
+> `popcornfirm`→`popconfirm`; inline-alert icons restructured leaf→branch
+> (`--ds-inline-alert-icon-{variant}-default` + new `-hover`).
+> **New tokens adopted:** inline-alert `-hover` (exact-match to the old green/yellow/red/grey-700 hovers, zero
+> visual change), stepper `warning` state (`--ds-stepper-step-{circle-border,circle-content,label}-warning`),
+> progress-bar `--ds-progressbar-bar-fill-default`.
+> **Value-only diffs (flow through the sync, no code):** section-message warning/informative `borderTop`
+> (#ffc300 / grey-600), toast informative border+desc, app-menu lighter separators+border (grey-100) and
+> grey-500 header, modal mask, stepper full state realignment, progress-bar cleanups, avatar `text.disabled`
+> bug-fix (now resolves to grey-400).
+> **Changelog ahead of merged tokens:** Tabs `text.focus` (`--ds-tabs-item-text-focus`) and semantic
+> `color.focus.base.subtle` are **not** in `66dddd0a` — kept deferred, flagged to UX. progress-bar multivalue
+> slot colours + not-stacked bg have no code application point (colours are caller-supplied `val.color`) —
+> deferred pending an API decision.
+> **CI:** the `sync_tokens` push failure was the expired `ds-tokens-sync-bot` PAT (2026-07-04); `PUSH_TOKEN`
+> rotated, sync re-run green.
+
 > **Token sync `e0301675d` (design-tokens@1cd43721, 2026-06-08).** Cherry-picked onto this branch.
 > Value-only re-point of `modules/base.json` (58 refs changed, 14 `separator` tokens added, none
 > removed). Affects already-migrated code in two places: **divider** line colours (the previous
@@ -70,7 +89,7 @@ These components have dedicated token definitions in `modules/base.json`.
 | [description-line](#description) | `description` | :white_check_mark: | :heavy_minus_sign: | :heavy_minus_sign: | :heavy_minus_sign: | 0 | No | module + semantic; inactive star deferred |
 | [divider](#divider) | `divider` | :white_check_mark: | :heavy_minus_sign: | :heavy_minus_sign: | :x: | 0 | No | line + label tokenised; colour diffs resolved by sync `e0301675d` |
 | [form](#form-group-form--input--select--switch) | `form` / `input` / `checkbox` / `radio` / `switch` / `select` | :construction: | :construction: | :construction: | :x: | 4 | Yes (many) | TS migrated across all 6 packages; per-state styling in `.less` + data-URI SVGs deferred |
-| [inline-alert](#inline-alert) | `inline-alert` | :white_check_mark: | :heavy_minus_sign: | :white_check_mark: | :heavy_minus_sign: | 0 | No | 4 variants + text; hover deferred (no token) |
+| [inline-alert](#inline-alert) | `inline-alert` | :white_check_mark: | :heavy_minus_sign: | :white_check_mark: | :heavy_minus_sign: | 0 | No | 4 variants + text; icon `-default`/`-hover` branches (sync `66dddd0a`); hover done |
 | [inline-edit](#inline-edit--inline-select) | `inline-edit` | :white_check_mark: | :heavy_minus_sign: | :heavy_minus_sign: | :heavy_minus_sign: | 0 | No | text/icon tokenised; gradient underlines deferred |
 | [inline-select](#inline-edit--inline-select) | `inline-edit` | :white_check_mark: | :heavy_minus_sign: | :heavy_minus_sign: | :heavy_minus_sign: | 0 | No | lives in inline-edit package |
 | [list-item](#list-item) | `list-item` | :white_check_mark: | :heavy_minus_sign: | :white_check_mark: | :x: | 2 | No | 31 module + 7 semantic; many svg fills → inheritance |
@@ -79,10 +98,10 @@ These components have dedicated token definitions in `modules/base.json`.
 | page | `page-header` | :heavy_minus_sign: | :heavy_minus_sign: | :heavy_minus_sign: | :heavy_minus_sign: | — | No | `--ds-page-bg` unused (no full-page bg in code) |
 | [page-header](#page-header) | `page-header` | :white_check_mark: | :white_check_mark: | :heavy_minus_sign: | :x: | 0 | No | module + semantic; shadow-1 |
 | pagination | `pagination` | :x: | :heavy_minus_sign: | :x: | :x: | — | Yes (2) | ⛔ all styling in `.less` — code-side N/A, blocked on antd Less decision |
-| [popcornfirm](#popconfirm) | `popconfirm` | :white_check_mark: | :white_check_mark: | :heavy_minus_sign: | :heavy_minus_sign: | 1 | Yes (1) | shadow-2; carousel dots deferred |
-| [progressbar](#progress-bar) | `progress-bar` | :white_check_mark: | :heavy_minus_sign: | :heavy_minus_sign: | :x: | 0 | No | track + value tokenised; fill is customColor (no token) |
+| [popconfirm](#popconfirm) | `popconfirm` | :white_check_mark: | :white_check_mark: | :heavy_minus_sign: | :heavy_minus_sign: | 1 | Yes (1) | shadow-2; module renamed `popcornfirm`→`popconfirm` (sync `66dddd0a`); carousel dots deferred |
+| [progressbar](#progress-bar) | `progress-bar` | :white_check_mark: | :heavy_minus_sign: | :heavy_minus_sign: | :x: | 1 | No | track + value + default fill tokenised (sync `66dddd0a`); multivalue slots caller-driven (deferred) |
 | [status-pill](#status-status-pill) | `status` | :white_check_mark: | :heavy_minus_sign: | :heavy_minus_sign: | :x: | 2 | No | text/border split; custom kept dynamic |
-| [stepper](#stepper) | `stepper` | :construction: | :heavy_minus_sign: | :heavy_minus_sign: | :x: | 6 | No | :warning: done green→blue, active grey→blue; warning state deferred |
+| [stepper](#stepper) | `stepper` | :construction: | :heavy_minus_sign: | :heavy_minus_sign: | :x: | 7 | No | :warning: done green→blue, active grey→blue; warning state migrated (sync `66dddd0a`); filled-circle content deferred |
 | [tabs](#tabs) | `tabs` | :construction: | :heavy_minus_sign: | :white_check_mark: | :x: | 1 | No | main states done; decorative gradients + blue-500 focus deferred |
 | [time-picker](#time-picker) | `time-picker` | :white_check_mark: | :heavy_minus_sign: | :white_check_mark: | :x: | 2 | No | 8 module + semantic; no elevation shadow |
 
@@ -421,11 +440,12 @@ Icon colours per variant (success/warning/error/informative) → `--ds-inline-al
 
 `opacity: 0.4` (disabled) → `--ds-opacity-disabled`.
 
-#### Deferred / follow-up
+#### Hover — :white_check_mark: (resolved by sync `66dddd0a`)
 
-Hover colours (`green-700`/`yellow-700`/`red-700`/`grey-700`) keep `theme.palette` — **no `-hover`
-module token exists** and no semantic icon token resolves to the `-700` shades. Design-tokens follow-up:
-add `--ds-inline-alert-icon-{variant}-hover`.
+Hover colours now use `--ds-inline-alert-icon-{variant}-hover` (resolve to green-700/yellow-700/red-700/
+grey-700 — **exact match** to the old `theme.palette` values, zero visual change). The icon default state uses
+the new `-default` branch (`--ds-inline-alert-icon-{variant}-default`). The last `theme.palette` colour usage
+in this file is removed.
 
 ---
 
@@ -465,14 +485,22 @@ visual diffs. `useTheme()` removed from `InlineEdit.tsx`.
 #### Colors — :white_check_mark: Complete
 
 Track background (`ProgressBar` + `ProgressTiles`) → `--ds-progressbar-bar-bg-track`; percent value text
-→ `--ds-progressbar-header-value-color`. All exact matches, no visual diffs.
+→ `--ds-progressbar-header-value-color`; default bar **fill** → `--ds-progressbar-bar-fill-default` (sync
+`66dddd0a`). The `customColor` override is preserved.
+
+#### Visual diffs
+
+| Property | Current | Token resolves to | Delta |
+|----------|---------|-------------------|-------|
+| Default bar fill | green-500 | `--ds-progressbar-bar-fill-default` → green-600 `#54cb0b` | Slightly darker/more saturated |
 
 #### Deferred / follow-up
 
-- Bar **fill** is `customColor` (user override) falling back to `green-500` — kept `theme.palette`;
-  **no `bar-fill` module token exists** (only a `success-solidhover` semantic, wrong state). Follow-up.
-- `Multivalue`/`ProgressTiles` use caller-supplied `color` props (not tokenisable) and a decorative
-  `border-right: 2px solid white` separator — left unchanged.
+- `Multivalue` slot colours (`--ds-progressbar-bar-fill-multivalue-1..3`) + not-stacked bg
+  (`--ds-progressbar-bar-bg-multivaluenotstacked`) — **no code application point**: `Multivalue`/`ProgressTiles`
+  colours are 100% caller-supplied `val.color`, and the not-stacked variant has no track element. Deferred
+  pending an API/markup decision with design. The decorative `border-right: 2px solid white` separator is
+  left unchanged.
 
 ---
 
@@ -548,12 +576,12 @@ dropped (inherits via currentColor). The `color` prop override is preserved.
 ### popconfirm
 
 **Package:** `packages/components/popconfirm/`
-**Layer:** module (`--ds-popcornfirm-*`, 5) + semantic (`shadow-2` ×2, `background-base-default`, `text-base-subtle`)
+**Layer:** module (`--ds-popconfirm-*`, 5) + semantic (`shadow-2` ×2, `background-base-default`, `text-base-subtle`)
 **Migrated in:** `chore/tokenisation` branch
 
 #### Colors — :white_check_mark: · Shadows — :white_check_mark: (shadow-2, provably equal)
 
-Container bg/arrow → `--ds-popcornfirm-container-bg`; title → `-header-text`; close icon → `-header-icon`;
+Container bg/arrow → `--ds-popconfirm-container-bg`; title → `-header-text`; close icon → `-header-icon`;
 description → `-content-description`; link → semantic `text-base-subtle`. ConfirmMessage sub-component →
 semantic bg + shadow-2.
 
@@ -673,10 +701,11 @@ Description dashed-separator gradient (decorative); `zindex-modal` (not Phase 1)
 **Layer:** module (`--ds-stepper-step-*`, 13)
 **Migrated in:** `chore/tokenisation` branch
 
-#### Colors — :construction: (warning state deferred — no token)
+#### Colors — :construction: (warning state migrated in sync `66dddd0a`; filled-circle content still deferred)
 
-Default/hover/active/done/validation states for circle border, number, label, separators and the connector
-line → `--ds-stepper-step-*`. The done check icon recoloured via its border token.
+Default/hover/active/done/validation/**warning** states for circle border, number, label, separators and the
+connector line → `--ds-stepper-step-*`. The done/warning check icon recoloured via its border token; the
+warning tooltip icon uses `--ds-stepper-step-circle-border-warning`.
 
 #### Visual diffs — substantial (the tokens encode a state redesign)
 
@@ -689,14 +718,17 @@ line → `--ds-stepper-step-*`. The done check icon recoloured via its border to
 | **Done** border + check icon | green-600 `#54cb0b` | brand `#0b68ff` | :warning: **green → brand blue** |
 | **Done** label | green-600 `#54cb0b` | grey-800 `#384350` | :warning: **green → grey** |
 | Hover border | grey-700 `#57616d` | grey-300 `#dbe0e3` | Lighter |
+| **Warning** number + label | yellow-600 `#fab700` | yellow-700 `#eda600` | Slightly darker (border stays yellow-600) |
 
 > These are deliberate token values but a clear visual redesign of the active/done states (green→blue).
 > Flagged for design review.
 
 #### Deferred
 
-- **Warning state** (`yellow-600`, `Step.styles.ts:193,197`, `Step.tsx:61,76`) — no `stepper…warning` token.
-  Follow-up: add warning border/label/icon tokens.
+- ✅ **Warning state** migrated (sync `66dddd0a`): circle border → `--ds-stepper-step-circle-border-warning`
+  (yellow-600 `#fab700`, exact), number → `--ds-stepper-step-circle-content-warning`, label →
+  `--ds-stepper-step-label-warning` (both yellow-700 `#eda600`, slightly darker). Note: Figma still lacks a
+  `State=Warning` on `Stepper.Step` (changelog `c89fb2b`) — code state exists and is now token-backed.
 - `circle-content-{active,done,validation}` tokens resolve to **white** (a filled-circle redesign — white
   number on solid fill). Current circles are outlined, so white numbers would be invisible; used the visible
   `-label-*` tokens instead. Adopting them needs the filled-circle markup (out of Phase 1). (Same pattern as
@@ -791,11 +823,12 @@ semantic `shadow-1` (identical). The `page` namespace (`--ds-page-bg`) has no ma
 
 #### Colors — :white_check_mark: · Shadows — :white_check_mark:
 
-Container bg → `--ds-app-menu-container-bg`; icon colour → `--ds-app-menu-icon-defsult` (sic — upstream
-typo, used verbatim); hover bg → `--ds-app-menu-icon-bg-hover`; grey-200 dashed border →
-`--ds-app-menu-container-border-color`; grey-100 borders → semantic `border-base-subtle` (module border
-token resolves grey-200, a mismatch); submenu hover text → `text-brand-default`; menu shadow →
-`--ds-shadows-shadow-1`. **No visual diffs.**
+Container bg → `--ds-app-menu-container-bg`; icon colour → `--ds-app-menu-icon-default` (upstream typo
+`icon-defsult` fixed in sync `66dddd0a`); hover bg → `--ds-app-menu-icon-bg-hover`; grey-100 dashed border →
+`--ds-app-menu-container-border-color` (sync re-pointed grey-200→grey-100, resolving the earlier mismatch);
+other grey-100 borders → semantic `border-base-subtle`; submenu hover text → `text-brand-default`; menu
+shadow → `--ds-shadows-shadow-1`. **Value diffs from sync `66dddd0a` (no code):** container border +
+separators grey-200→grey-100 (#f3f5f6), section header grey-800→grey-500 (#949ea6).
 
 #### Deferred
 
@@ -803,7 +836,7 @@ All ~14 `opacity` refs are visibility/transition/animation states (icon crossfad
 disabled/muted — none equal 0.4/0.2, none tokenisable. The `ai-chat` tokens have no consuming markup in the
 package yet (nothing to apply).
 
-> Upstream typo to fix in design-tokens: `--ds-app-menu-icon-defsult` → `…-default`.
+> ✅ Upstream typo fixed in sync `66dddd0a`: `--ds-app-menu-icon-defsult` → `--ds-app-menu-icon-default` (code updated).
 
 ---
 
