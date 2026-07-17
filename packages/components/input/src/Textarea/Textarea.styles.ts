@@ -96,11 +96,11 @@ export const TextareaWrapper = styled.div<{
       font-variant-numeric: normal;
       &::placeholder,
       &::-webkit-input-placeholder {
-        color: ${(props) => props.theme.palette['grey-500']};
+        color: var(--ds-form-field-text-placeholder);
         line-height: 1.38;
       }
       &:-ms-input-placeholder {
-        color: ${(props) => props.theme.palette['grey-500']};
+        color: var(--ds-form-field-text-placeholder);
         line-height: 1.38;
         //duplicate to override firefox styles
       }

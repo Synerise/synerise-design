@@ -196,8 +196,8 @@ export const NativeInput = styled(
     props.disabled
       ? 'var(--ds-form-field-text-disabled)'
       : 'var(--ds-form-field-text-value)'};
-  background-color: ${(props) => props.theme.palette.white};
-  border: ${INPUT_BORDER}px solid ${(props) => props.theme.palette['grey-300']};
+  background-color: var(--ds-form-field-bg-default);
+  border: ${INPUT_BORDER}px solid var(--ds-form-field-border-default);
   border-radius: 3px;
   /* native form controls don't inherit font-family — pull in the DS body font
      so the value glyphs match antd (Graphik) instead of the browser default */
@@ -223,16 +223,16 @@ export const NativeInput = styled(
   }
 
   &:hover:not(:disabled) {
-    border-color: ${(props) => props.theme.palette['grey-400']};
+    border-color: var(--ds-form-field-border-hover);
   }
   &:focus {
-    box-shadow: inset 0 0 0 1px ${(props) => props.theme.palette['blue-600']};
-    border-color: ${(props) => props.theme.palette['blue-600']};
-    background-color: ${(props) => props.theme.palette['blue-050']};
+    box-shadow: inset 0 0 0 1px var(--ds-form-field-border-focus);
+    border-color: var(--ds-form-field-border-focus);
+    background-color: var(--ds-form-field-bg-focus);
   }
   &:disabled {
     cursor: not-allowed;
-    background-color: ${(props) => props.theme.palette['grey-050']};
+    background-color: var(--ds-form-field-bg-disabled);
   }
 
   ${(props) => (props.error ? errorInputStyle() : '')};
@@ -276,9 +276,9 @@ export const Addon = styled.div<{
   overflow: hidden;
   padding: 0;
   white-space: nowrap;
-  color: ${(props) => props.theme.palette['grey-700']};
-  background-color: ${(props) => props.theme.palette['grey-050']};
-  border: ${INPUT_BORDER}px solid ${(props) => props.theme.palette['grey-300']};
+  color: var(--ds-form-field-affix-text);
+  background-color: var(--ds-form-field-affix-bg);
+  border: ${INPUT_BORDER}px solid var(--ds-form-field-affix-border);
   ${(props) =>
     props.$position === 'before'
       ? 'border-right: 0; border-radius: 3px 0 0 3px;'
@@ -298,10 +298,10 @@ export const ClearButton = styled.button<{ $offset: number }>`
   border: 0;
   background: transparent;
   cursor: pointer;
-  color: ${(props) => props.theme.palette['grey-500']};
+  color: var(--ds-color-text-neutral-default);
 
   &:hover {
-    color: ${(props) => props.theme.palette['grey-700']};
+    color: var(--ds-color-text-base-subtle);
   }
 `;
 
