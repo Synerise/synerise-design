@@ -104,7 +104,7 @@ export const NumberWrapper = styled.div`
   &:hover {
     background-image: linear-gradient(
       to right,
-      ${(props) => props.theme.palette['grey-400']} 20%,
+      var(--ds-color-text-base-disabled) 20%,
       rgba(255, 255, 255, 0) 10%
     );
     background-color: transparent;
@@ -128,10 +128,8 @@ export const IconOrderWrapper = styled.div`
   visibility: hidden;
   margin: -4px 0;
   &:hover {
-    svg {
-      fill: ${(props) => props.theme.palette['blue-600']};
-      cursor: pointer;
-    }
+    color: var(--ds-color-icon-brand-default);
+    cursor: pointer;
   }
 `;
 export const OrderWrapper = styled.div`
@@ -210,9 +208,7 @@ export const Container = styled.div<{
   ${IconExpanderWrapper},
   ${IconOrderWrapper},
   ${IconCloseWrapper} {
-    svg {
-      fill: var(--ds-color-icon-base-muted);
-    }
+    color: var(--ds-color-icon-base-muted);
   }
   ${OrderWrapper},
   ${ListWrapper},
@@ -230,9 +226,6 @@ export const Container = styled.div<{
     }
   }
   ${IconWrapper} {
-    svg {
-      color: ${(props) => toastToken(props.toastType, 'icon')};
-      fill: ${(props) => toastToken(props.toastType, 'icon')};
-    }
+    color: ${(props) => toastToken(props.toastType, 'icon')};
   }
 `;
