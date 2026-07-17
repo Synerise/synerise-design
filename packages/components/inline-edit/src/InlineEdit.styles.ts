@@ -21,16 +21,16 @@ const applyColorFocus = (
   props: ThemeProps & InPlaceEditableInputContainerProps,
 ) => {
   if (props.error) {
-    return props.theme.palette['red-600'];
+    return 'var(--ds-color-text-danger-default)';
   }
-  return props.theme.palette['blue-600'];
+  return 'var(--ds-color-focus-base-default)';
 };
 
 const applyDots = (props: ThemeProps & InPlaceEditableInputContainerProps) => {
   if (props.error) {
-    return props.theme.palette['red-600'];
+    return 'var(--ds-color-text-danger-default)';
   }
-  return props.theme.palette['grey-400'];
+  return 'var(--ds-color-icon-base-muted)';
 };
 
 const applyDotsOnError = (
