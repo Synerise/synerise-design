@@ -36,8 +36,15 @@ describe('Pagination', () => {
       <Pagination defaultCurrent={1} total={50} />,
     );
 
-    expect(container.querySelector('.ds-pagination-prev')).toHaveStyle(
-      'opacity: 0.4',
+    expect(container.querySelector('.ds-pagination-prev')).toBeInTheDocument();
+    // disabled dimming now comes from --ds-pagination-nav-disabled-opacity (0.4); jsdom can't
+    // resolve var() via getComputedStyle, so assert the token is wired into the injected styles.
+    const injectedCss = Array.from(document.querySelectorAll('style'))
+      .map((s) => s.textContent)
+      .join('')
+      .replace(/\s/g, '');
+    expect(injectedCss).toContain(
+      'opacity:var(--ds-pagination-nav-disabled-opacity)',
     );
   });
 
