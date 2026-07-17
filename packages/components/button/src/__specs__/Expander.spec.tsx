@@ -45,8 +45,14 @@ describe('Expander', () => {
     );
     // ACT
     const expander = container.querySelector('svg');
-    // ASSERT
-    expect(expander).toHaveStyle(`opacity:0.4`);
+    // ASSERT — disabled dimming now comes from the --ds-buttons-disabled-opacity token (0.4). jsdom
+    // can't resolve var() via getComputedStyle, so assert the token is wired into the injected styles.
+    expect(expander).toBeInTheDocument();
+    const injectedCss = Array.from(document.querySelectorAll('style'))
+      .map((s) => s.textContent)
+      .join('')
+      .replace(/\s/g, '');
+    expect(injectedCss).toContain('opacity:var(--ds-buttons-disabled-opacity)');
   });
   it('should handle onClick', () => {
     // ARRANGE

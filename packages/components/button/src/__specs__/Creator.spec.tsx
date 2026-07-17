@@ -38,7 +38,14 @@ describe('Creator', () => {
     );
 
     const creator = screen.getByTestId(TEST_ID);
-    expect(creator).toHaveStyle(`opacity:0.4`);
+    expect(creator).toBeInTheDocument();
+    // Disabled dimming now comes from the --ds-buttons-disabled-opacity token (0.4). jsdom can't
+    // resolve var() via getComputedStyle, so assert the token is wired into the injected styles.
+    const injectedCss = Array.from(document.querySelectorAll('style'))
+      .map((s) => s.textContent)
+      .join('')
+      .replace(/\s/g, '');
+    expect(injectedCss).toContain('opacity:var(--ds-buttons-disabled-opacity)');
   });
   it('should render label text', () => {
     renderWithProvider(

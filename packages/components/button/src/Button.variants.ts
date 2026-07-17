@@ -19,13 +19,23 @@ const buttonColor = (color: string, background: string, border: string) => css`
   border-color: ${border};
 `;
 
+// `applyOpacity` = the variant's disabled colours are solid design tokens (secondary/tertiary/ghost),
+// so the disabled dimming comes from the separate `--ds-buttons-disabled-opacity` (0.4) — matching the
+// token intent ("same as default, opacity applied separately"). Solid-token variants pass `true`; the
+// primary/danger/success/warning variants bake 0.4 into their rgba() background instead, so they omit it
+// (applying element opacity on top would double-dim them).
 const buttonDisabled = (
   color: string,
   background: string,
   border: string,
+  applyOpacity = false,
 ) => css`
   &.disabled,
   &[disabled] {
+    ${applyOpacity &&
+    css`
+      opacity: var(--ds-buttons-disabled-opacity);
+    `}
     &,
     &:hover,
     &:focus-visible,
@@ -147,6 +157,7 @@ const variantDefault = (p: Palette) => css`
     'var(--ds-buttons-variant-secondary-text-disabled)',
     'var(--ds-buttons-variant-secondary-bg-disabled)',
     'var(--ds-buttons-variant-secondary-border-disabled)',
+    true,
   )}
 `;
 
@@ -201,6 +212,7 @@ const variantTertiary = (p: Palette) => css`
     'var(--ds-buttons-variant-tertiary-text-disabled)',
     'var(--ds-buttons-variant-tertiary-bg-disabled)',
     'var(--ds-buttons-variant-tertiary-border-disabled)',
+    true,
   )}
 `;
 
@@ -255,6 +267,7 @@ const variantTertiaryWhite = (p: Palette) => css`
     'var(--ds-buttons-variant-tertiary-white-text-disabled)',
     'var(--ds-buttons-variant-tertiary-white-bg-disabled)',
     'var(--ds-buttons-variant-tertiary-white-border-disabled)',
+    true,
   )}
 `;
 
@@ -310,6 +323,7 @@ const variantGhost = (p: Palette) => css`
     'var(--ds-buttons-variant-ghost-secondary-text-disabled)',
     'var(--ds-buttons-variant-ghost-secondary-bg-disabled)',
     'var(--ds-buttons-variant-ghost-secondary-border-disabled)',
+    true,
   )}
 `;
 
@@ -364,6 +378,7 @@ const variantGhostPrimary = (p: Palette) => css`
     'var(--ds-buttons-variant-ghost-primary-text-disabled)',
     'var(--ds-buttons-variant-ghost-primary-bg-disabled)',
     'var(--ds-buttons-variant-ghost-primary-border-disabled)',
+    true,
   )}
 `;
 
@@ -418,6 +433,7 @@ const variantGhostWhite = (p: Palette) => css`
     'var(--ds-buttons-variant-ghost-secondary-white-text-disabled)',
     'var(--ds-buttons-variant-ghost-secondary-white-bg-disabled)',
     'var(--ds-buttons-variant-ghost-secondary-white-border-disabled)',
+    true,
   )}
 `;
 

@@ -49,7 +49,7 @@ export const Expander = styled(BaseButton).attrs({
     ${IconContainer} {
       svg {
         opacity: ${(props: ExpanderProps): string =>
-          props.disabled ? `0.4` : `1`};
+          props.disabled ? 'var(--ds-buttons-disabled-opacity)' : '1'};
         transition: transform 0.1s linear;
         transform: rotate(
           ${(props): string => (props.expanded ? '180deg' : '0deg')}

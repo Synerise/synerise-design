@@ -73,7 +73,8 @@ export const Creator = styled(BaseButton).attrs({
       }
       return 'auto';
     }};
-    opacity: ${(props) => (props.disabled ? `0.4` : '1')};
+    opacity: ${(props) =>
+      props.disabled ? 'var(--ds-buttons-disabled-opacity)' : '1'};
     height: 48px;
     padding: ${(props) => (props.withLabel ? `0 12px 0 0` : '0')};
     border-radius: 3px;

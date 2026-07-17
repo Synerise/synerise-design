@@ -561,7 +561,7 @@ export const StyledButton = styled(BaseButton)<StyledButtonProps>`
           }
 
           &:disabled {
-            opacity: 0.4;
+            opacity: var(--ds-buttons-disabled-opacity);
             background-color: ${props.theme.palette[
               `${props.customColor}-600`
             ]};
@@ -579,7 +579,7 @@ export const StyledButton = styled(BaseButton)<StyledButtonProps>`
             color: ${props.theme.palette[`${props.customColor}-600`]};
           }
           &:disabled {
-            opacity: 0.4;
+            opacity: var(--ds-buttons-disabled-opacity);
             color: ${props.theme.palette[`${props.customColor}-600`]};
           }
         }
