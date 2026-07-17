@@ -9,7 +9,7 @@ export const PopconfirmContainer = styled.div`
   position: relative;
   z-index: 1;
   border-radius: 3px;
-  background-color: var(--ds-popcornfirm-container-bg);
+  background-color: var(--ds-popconfirm-container-bg);
 `;
 
 export const PopconfirmContent = styled.div<{
@@ -69,7 +69,7 @@ export const PopconfirmContent = styled.div<{
 export const PopconfirmTitle = styled.div`
   font-size: 14px;
   line-height: 1.43;
-  color: var(--ds-popcornfirm-header-text);
+  color: var(--ds-popconfirm-header-text);
   font-weight: 500;
   padding-top: 2px;
   text-overflow: ellipsis;
@@ -108,7 +108,7 @@ export const PopconfirmDescription = styled.div<{ titlePadding?: boolean }>`
   line-height: 1.38;
   font-weight: 400;
   margin-top: ${(props) => (props.titlePadding ? '6px' : 'none')};
-  color: var(--ds-popcornfirm-content-description);
+  color: var(--ds-popconfirm-content-description);
 `;
 
 export const PopconfirmIcon = styled.div`
@@ -116,7 +116,7 @@ export const PopconfirmIcon = styled.div`
 `;
 export const PopconfirmCloseIcon = styled.div<{ titlePadding?: boolean }>`
   margin-left: ${(props) => (props.titlePadding ? '8px' : '6px')};
-  color: var(--ds-popcornfirm-header-icon);
+  color: var(--ds-popconfirm-header-icon);
   cursor: pointer;
   border-radius: 3px;
 `;
@@ -137,7 +137,7 @@ export const PopconfirmArrowWrapper = styled.div`
   height: 0;
   position: absolute;
   z-index: 2;
-  color: var(--ds-popcornfirm-container-bg);
+  color: var(--ds-popconfirm-container-bg);
 
   &.ds-popover-arrow-bottom,
   &.ds-popover-arrow-bottom-end,
