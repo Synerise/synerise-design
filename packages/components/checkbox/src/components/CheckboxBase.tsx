@@ -149,7 +149,11 @@ export const CheckboxBase = ({
             $indeterminate={Boolean(indeterminate)}
             $disabled={isDisabled}
             $error={hasErr}
-          />
+          >
+            <S.CheckIcon viewBox="3 3 18 18" aria-hidden="true">
+              <path d="M10.61 15.744a.75.75 0 01-.535-.224l-3.11-3.162a.75.75 0 011.07-1.052l2.575 2.618 5.355-5.444a.75.75 0 111.07 1.052l-5.89 5.988a.75.75 0 01-.535.224z" />
+            </S.CheckIcon>
+          </S.CheckboxInner>
         </S.CheckboxBox>
         {children !== undefined && children !== null && children !== false && (
           <S.CheckboxText $checked={isChecked} $disabled={isDisabled}>

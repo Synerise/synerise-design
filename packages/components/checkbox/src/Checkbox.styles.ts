@@ -1,13 +1,5 @@
 import styled, { css } from 'styled-components';
 
-const checkSvgWithCustomColor = (color: string): string => {
-  const colorValueForSvg = color.replace(/#/, '%23');
-  // NB: SVG attributes are double-quoted so the data URI can be wrapped in CSS url('...') with
-  // single quotes — prettier normalises url() quotes to single inside css`` and would otherwise
-  // break the string (the old single-quoted SVG ended the url early → missing tick).
-  return `data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="3 3 18 18" >/><path fill="none" d="M0 0h24v24H0z" /><path style="fill: ${colorValueForSvg};" stroke-width="1" stroke="${colorValueForSvg}" d="M10.61 15.744a.75.75 0 01-.535-.224l-3.11-3.162a.75.75 0 011.07-1.052l2.575 2.618 5.355-5.444a.75.75 0 111.07 1.052l-5.89 5.988a.75.75 0 01-.535.224z"/></svg>`;
-};
-
 const soloCss = css`
   padding: 4px;
 `;
@@ -42,6 +34,20 @@ export const CheckboxInput = styled.input`
   z-index: 1;
 `;
 
+export const CheckIcon = styled.svg`
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  pointer-events: none;
+
+  path {
+    fill: currentColor;
+    stroke: currentColor;
+  }
+`;
+
 export const CheckboxInner = styled.span<{
   $checked?: boolean;
   $indeterminate?: boolean;
@@ -53,31 +59,33 @@ export const CheckboxInner = styled.span<{
   width: 16px;
   height: 16px;
   box-sizing: border-box;
-  background-color: ${(props) => props.theme.palette.white};
-  border: 1px solid ${(props) => props.theme.palette['grey-300']};
+  background-color: var(--ds-form-checkbox-bg-default);
+  border: 1px solid var(--ds-form-checkbox-border-color-default);
   border-radius: 3px;
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: contain;
 
-  /* checked — white tick on a blue box */
+  /* checked — tick shown; colour flows to the SVG via currentColor */
   ${(props) =>
     props.$checked &&
     css`
-      background-color: ${props.theme.palette['blue-600']};
-      border-color: ${props.theme.palette['blue-600']};
-      background-image: url('${checkSvgWithCustomColor(
-        props.theme.palette.white,
-      )}');
+      background-color: var(--ds-form-checkbox-bg-selected);
+      border-color: var(--ds-form-checkbox-bg-selected);
+      color: var(--ds-color-text-onsolid-default);
+
+      ${CheckIcon} {
+        opacity: 1;
+      }
     `}
 
-  /* indeterminate — white horizontal bar */
+  /* indeterminate — horizontal bar */
   ${(props) =>
     props.$indeterminate &&
     css`
       background-color: var(--ds-form-checkbox-bg-selected);
       border-color: var(--ds-form-checkbox-border-color-blocked);
-      background-image: none;
+
+      ${CheckIcon} {
+        opacity: 0;
+      }
 
       &::after {
         content: '';
@@ -86,7 +94,7 @@ export const CheckboxInner = styled.span<{
         left: 50%;
         width: 8px;
         height: 2px;
-        background: ${props.theme.palette.white};
+        background: var(--ds-color-background-base-default);
         border-radius: 2px;
         transform: translate(-50%, -50%);
       }
@@ -96,26 +104,27 @@ export const CheckboxInner = styled.span<{
   ${(props) =>
     props.$error &&
     css`
-      border-color: ${props.theme.palette['red-600']};
+      border-color: var(--ds-form-checkbox-border-color-error);
       border-width: 2px;
     `}
   ${(props) =>
     props.$error &&
     props.$checked &&
     css`
-      border-color: ${props.theme.palette['blue-600']};
+      border-color: var(--ds-form-checkbox-bg-selected);
     `}
 
-  /* disabled */
+  /* disabled — bg/border use the blocked module tokens (see flag: currently mis-valued blue) */
   ${(props) =>
     props.$disabled &&
     css`
-      border-color: ${props.theme.palette['grey-200']} !important;
-      background-color: ${props.theme.palette['grey-050']} !important;
+      border-color: var(--ds-form-checkbox-border-color-blocked) !important;
+      background-color: var(--ds-form-checkbox-bg-blocked) !important;
+
       ${props.$checked &&
-      `background-image: url('${checkSvgWithCustomColor(
-        props.theme.palette['grey-400'],
-      )}');`}
+      css`
+        color: var(--ds-color-icon-base-muted);
+      `}
     `}
 `;
 
@@ -129,14 +138,14 @@ export const CheckboxText = styled.span<{
   font-weight: 500;
   color: ${(props) =>
     props.$checked
-      ? props.theme.palette['grey-800']
-      : props.theme.palette['grey-700']};
+      ? 'var(--ds-form-checkbox-text-label-selected)'
+      : 'var(--ds-form-checkbox-text-label-default)'};
 
   ${(props) =>
     props.$disabled &&
     css`
-      color: ${props.theme.palette['grey-600']};
-      opacity: 0.4;
+      color: var(--ds-form-checkbox-text-label-disabled);
+      opacity: var(--ds-form-checkbox-disabled-opacity);
     `}
 `;
 
@@ -163,7 +172,7 @@ export const CheckboxLabel = styled.label<{
   ${(props) => props.$solo && soloCss};
 
   &:hover ${CheckboxText} {
-    color: ${(props) => props.theme.palette['grey-800']};
+    color: var(--ds-form-checkbox-text-label-hover);
   }
 
   /* hover preview of the tick on an unchecked, enabled box */
@@ -174,9 +183,11 @@ export const CheckboxLabel = styled.label<{
     css`
       &:hover ${CheckboxInner} {
         border-color: var(--ds-form-checkbox-border-color-hover);
-        background-image: url('${checkSvgWithCustomColor(
-          props.theme.palette['blue-600'],
-        )}');
+        color: var(--ds-color-icon-brand-default);
+
+        ${CheckIcon} {
+          opacity: 1;
+        }
       }
     `}
 
@@ -198,7 +209,7 @@ export const CheckboxLabel = styled.label<{
     props.$error &&
     css`
       ${CheckboxInput}:focus + ${CheckboxInner} {
-        box-shadow: 0 0 0 1px ${props.theme.palette['red-600']};
+        box-shadow: 0 0 0 1px var(--ds-form-checkbox-border-color-error);
       }
     `}
 
