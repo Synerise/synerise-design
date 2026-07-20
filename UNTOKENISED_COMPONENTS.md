@@ -42,8 +42,8 @@ a request to UX/Token Studio. Never use primitives (`--ds-color-grey-700`) direc
 | Bucket | Count |
 |--------|------:|
 | Un-tokenised UI components (in the table below) | **76** |
-| — tokenised in the 2026-07-20 passes (marked ✅ / 🚧 below) | 16 |
-| — still pending a decision / work | 60 |
+| — tokenised in the 2026-07-20 passes (marked ✅ / 🚧 below) | 24 |
+| — still pending a decision / work | 52 |
 | Deprecated — excluded (no tokens) | 3 |
 | Non-UI / infra / icon sets — out of scope | 4 |
 | No colour code — nothing to tokenise | 9 |
@@ -73,13 +73,13 @@ generally stay on palette — not defects). `.less` = still ships antd Less (ext
 | 🚧 color-picker | 12 | | picker (swatches are dynamic) | `[x]` | form + dropdown | `[ ]` | |
 | ✅ column-manager | 14 | | composition | `[ ]` | | `[x]` | |
 | 🚧 completed-within | 1 | | widget | `[x]` | button, dropdown, form; clear icon → `--ds-color-icon-danger-default` (2026-07-20); panel bg needs dropdown tokens | `[ ]` | |
-| condition | 14 | | composition | `[ ]` | | `[x]` | |
+| 🚧 condition | 14 | | composition | `[ ]` | | `[x]` | semantic applied 2026-07-20; ConditionConnections :before/:after kept on palette pending tokens |
 | confirmation | 1 | | dialog composition | `[x]` | modal-family | `[x]` | types |
 | 🚧 context-selector | 7 | | composition | `[x]` | dziedziczone, dropdown, button, tabs, list-item | `[ ]` | |
 | ✅ copy-icon | 2 | | icon button | `[ ]` | | `[x]` | |
 | cruds | 4 | | composition | `[x]` | default i danger type | `[ ]` | |
-| date-picker | 56 | | calendar overlay, many states | `[x]` | calendar drp + dp | `[ ]` | |
-| date-range-picker | 42 | | calendar overlay | `[x]` | calendar drp + dp | `[ ]` | |
+| 🚧 date-picker | 56 | | calendar overlay, many states | `[x]` | trigger field → `--ds-form-*` applied 2026-07-20 (clear icon → icon-danger); overlay → dropdown, grids/day → calendar (deferred) | `[x]` | overlay dividers → border-base |
+| 🚧 date-range-picker | 42 | | calendar overlay | `[x]` | trigger field → `--ds-form-*` applied 2026-07-20 (clear icon → icon-danger); overlay/footer → dropdown, grids/TimeWindow → calendar (deferred) | `[x]` | dividers → border-base; danger icons → icon-danger; summary/help text → text-base-* |
 | drawer | 3 | Y | overlay panel (cf. `modal`) | `[ ]` | moze modal-family (?) | `[ ]` | mask -> nowy token semantyczny |
 | dropdown | 19 | | overlay menu surface | `[x]` | dropdown + list-item | `[ ]` | |
 | ✅ editable-items-list | 0 | | composition | `[ ]` | | `[x]` | do usuniecia kolor na sztywno → done: add-icon inherits ds-button (2026-07-20) |
@@ -96,7 +96,7 @@ generally stay on palette — not defects). `.less` = still ships antd Less (ext
 | icon-picker | 8 | | picker | `[ ]` | | `[ ]` | |
 | image | 12 | | media wrapper/fallback | `[ ]` | | `[ ]` | |
 | information-card | 3 | | card composition | `[ ]` | | `[ ]` | |
-| input-number | 18 | | form control — reuse `--ds-form-field-*` (cf. `input`) | `[ ]` | | `[ ]` | |
+| ✅ input-number | 18 | | form control — reuse `--ds-form-field-*` (cf. `input`) | `[x]` | form — `--ds-form-*` applied 2026-07-20 (⚑ disabled bg grey-050→grey-100) | `[ ]` | |
 | insight | 4 | | widget | `[ ]` | | `[ ]` | |
 | item-filter | 2 | | composition | `[ ]` | | `[ ]` | |
 | 🚧 item-picker | 42 | | picker overlay | `[x]` | trigger → `--ds-form-field-*` (2026-07-20, isNew); dropdown/list pending module tokens | `[ ]` | |

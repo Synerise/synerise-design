@@ -151,8 +151,8 @@ These components use `theme.palette` / hardcoded colors but do not yet have dedi
 | context-selector | 5 | No | 0 | 0 | :construction: search icon + error text → `--ds-form-*` (2026-07-20); dropdown/list-item/dynamic deferred |
 | copy-icon | 0 | No | 0 | 0 | :white_check_mark: tokenised — semantic (2026-07-20 pass) |
 | cruds | 4 | No | 0 | 0 | |
-| date-picker | 56 | No | 1 | 0 | High palette count |
-| date-range-picker | 43 | No | 2 | 7 | |
+| date-picker | 56 | No | 1 | 0 | :construction: trigger field → `--ds-form-*` + clear icon → icon-danger (2026-07-20); overlay/calendar deferred |
+| date-range-picker | 43 | No | 2 | 7 | :construction: trigger field → `--ds-form-*` + danger icons (2026-07-20); overlay/calendar deferred |
 | drawer | 3 | Yes (1) | 1 | 0 | |
 | dropdown | 20 | No | 1 | 1 | |
 | editable-items-list | 0 | No | 0 | 0 | :white_check_mark: hardcoded add-icon `blue-600` removed — icon inherits ds-button (`mode: icon-label`) (2026-07-20) |
@@ -170,7 +170,7 @@ These components use `theme.palette` / hardcoded colors but do not yet have dedi
 | icon-picker | 8 | No | 0 | 0 | |
 | information-card | 3 | No | 2 | 2 | |
 | [input](#form-group-form--input--select--switch) | 49 | No | 14 | 2 | :construction: text → `--ds-form-field-*`/`--ds-form-icon-*` + semantic; field bg/border/hover/focus/disabled still palette in `Input.styles.tsx` (`.less` removed) |
-| input-number | 5 | No | 5 | 0 | `.less` removed (deantd) |
+| input-number | 5 | No | 5 | 0 | :white_check_mark: `--ds-form-*` applied (2026-07-20); `.less` removed (deantd) |
 | insight | 4 | No | 0 | 0 | |
 | item-filter | 2 | No | 1 | 0 | |
 | item-picker | 13 | No | 4 | 1 | :construction: trigger field → `--ds-form-*` (2026-07-20); dropdown/list deferred |
@@ -1175,6 +1175,9 @@ as the `Input` migration); shifts flagged below.
    scrollbar) are applied via Monaco's JS theming API, which needs concrete values; they **stay on palette**.
 3. **Deferred pending module tokens** — dropdown/overlay surfaces + list-item rows across all 7 await the
    planned `dropdown`/`list-item` namespaces; brand-hover/danger field icons have no grey form-icon token.
+4. **date-picker calendar icon hover inverts** (default grey-400→grey-600, hover grey-600→grey-400) — the
+   same `--ds-form-icon-color-hover` lightening as flag 1; plus `date-range-picker` `DateValue` grey-600→grey-700.
+   Field icons now colour via the wrapper's `color` (currentColor inheritance), not `svg { fill }`.
 
 ### autocomplete — :white_check_mark: field surface (dropdown deferred)
 
@@ -1250,6 +1253,39 @@ prefix grey-500 (no form-icon at that value) → `--ds-color-icon-base-subtle`; 
 grey-400→grey-300; hover border grey-500→grey-400; value text grey-800→grey-700. All other mappings exact.
 **Deferred (kept on palette, 13 refs):** `ItemPickerDropdown` (legacy overlay), `ItemPickerList`
 list/search/footer rows, `ListSearchInput`, `ErrorMessage` — pending dropdown/list-item module tokens.
+
+### date-picker — :construction: trigger field (overlay/calendar deferred)
+
+`Elements/PickerInput/PickerInput.styles.tsx` + `PickerInput.tsx` (base input states delegate to the
+already-tokenised ds-input): affix boxes `Prefixel`/`Suffixel` border grey-300 → `--ds-form-field-affix-border`,
+bg grey-050 → `--ds-form-field-affix-bg`; `activeStyle` focus ring/border blue-600 →
+`--ds-form-field-border-focus`, bg blue-050 → `--ds-form-field-bg-focus`; default calendar icon →
+`--ds-form-icon-color-{default,hover}` (coloured via the wrapper `color`, not `svg { fill }`); clear × icon
+red-600 → `--ds-color-icon-danger-default`. `useTheme`/`theme` removed from `PickerInput.tsx`.
+**⚑ Shift (adopted by role):** calendar icon default grey-400→grey-600 and **hover inverts** grey-600→grey-400.
+**Deferred:** `DatePicker.styles.ts` overlay bg/dividers (dropdown); `DayPicker`/`GridPicker`/`Navbar`/
+`QuickPicks` grids + nav (calendar); `TimePicker` delegates to ds-time-picker.
+
+### date-range-picker — :construction: trigger field (overlay/calendar deferred)
+
+`RangePickerInput/RangePickerInput.styles.tsx` + `.tsx` (base states delegate to ds-input `InputWrapper`):
+non-highlight date segment grey-500 → `--ds-form-field-text-placeholder`; `DateValue` grey-600 →
+`--ds-form-field-text-value` (⚑ grey-700); default calendar icon → `--ds-form-icon-color-{default,hover}`
+(via wrapper `color`, ⚑ hover grey-600→grey-400); clear × icon red-600 → `--ds-color-icon-danger-default`.
+**Kept on palette:** active-edit segment highlight blue-600 (no form token); `→` separator icon grey-400
+(decorative). **Deferred:** overlay/footer surfaces + shadows/dividers (dropdown); `RangePicker`/`TimeWindow`
+grids (calendar); danger/secondary text across RangeFilter/RelativeRangePicker (semantic later).
+
+### input-number — :white_check_mark: full field (DS-native, no dropdown)
+
+`InputNumber.styles.tsx`: value grey-700 → `--ds-form-field-text-value`; placeholder grey-500 →
+`--ds-form-field-text-placeholder`; bg default/error/focus white/red-050/blue-050 →
+`--ds-form-field-bg-{default,validated,focus}`; border default/hover/focus/error grey-300/grey-400/blue-600/
+red-600 → `--ds-form-field-border-{default,hover,focus,validated}` (inset box-shadow rings, widths unchanged);
+prefix/suffix `Addon` grey-050/grey-300 → `--ds-form-field-affix-bg`/`-affix-border`; stepper glyph grey-600 →
+`--ds-form-icon-color-default`; stepper dividers grey-300 → `--ds-form-field-border-default`; disabled text
+grey-400 → `--ds-form-field-text-disabled`; stepper disabled opacity 0.4 → `--ds-opacity-disabled`.
+**⚑ Shift (adopted by role):** disabled bg grey-050 → `--ds-form-field-bg-disabled` (grey-100, darker).
 
 ### condition — :white_check_mark: semantic (ConditionConnections connectors excluded)
 
