@@ -1,4 +1,3 @@
-import React from 'react';
 import { mockDateDecorator } from 'storybook-mock-date-decorator';
 import { configure } from 'storybook/test';
 
@@ -16,14 +15,6 @@ import {
   TOASTER_DEFAULTS,
   theme,
 } from '@synerise/ds-core';
-import {
-  cssText as darkCssText,
-  tokens as darkTokens,
-} from '@synerise/ds-tokens/dark';
-import {
-  cssText as lightCssText,
-  tokens as lightTokens,
-} from '@synerise/ds-tokens/light';
 import { TrayProvider } from '@synerise/ds-tray';
 
 configure({ asyncUtilTimeout: 3000 });
@@ -80,23 +71,6 @@ const preview: Preview = {
     mockDateDecorator,
     (Story, storyContext) => {
       const selectedTheme = storyContext.globals.dsTheme || 'light';
-      const themeCss = selectedTheme === 'dark' ? darkCssText : lightCssText;
-      const themeTokens = selectedTheme === 'dark' ? darkTokens : lightTokens;
-
-      // Inject theme CSS vars into the preview iframe
-      React.useEffect(() => {
-        const doc = document;
-        let styleEl = doc.getElementById(
-          'ds-token-theme',
-        ) as HTMLStyleElement | null;
-        if (!styleEl) {
-          styleEl = doc.createElement('style');
-          styleEl.id = 'ds-token-theme';
-          doc.head.appendChild(styleEl);
-        }
-        styleEl.textContent = `:root { ${themeCss} }`;
-        doc.documentElement.setAttribute('data-ds-theme', selectedTheme);
-      }, [selectedTheme, themeCss]);
 
       const DSProviderProps = {
         dataFormatConfig: {
@@ -108,9 +82,9 @@ const preview: Preview = {
         locale: storyContext.globals.locale,
         timeZone: storyContext.globals.timeZone,
         toasterProps: TOASTER_DEFAULTS,
-        // Feed the toolbar-selected theme's resolved token map into the provider so
-        // useTheme().tokens tracks the Theme toggle, matching the injected CSS above.
-        theme: { ...theme, tokens: themeTokens },
+        // DSProvider injects both themes and toggles data-ds-theme on <html> from `mode`,
+        // keeping the CSS vars and useTheme().tokens in sync with the Theme toolbar.
+        mode: selectedTheme,
       };
       return (
         <DSProvider {...DSProviderProps}>

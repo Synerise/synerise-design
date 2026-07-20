@@ -1,4 +1,5 @@
 export { default as DSProvider, type DSProviderProps } from './DSProvider';
+export { type ThemeMode } from './DSProvider/ThemeProvider/ThemeProvider';
 export { default as mediaQuery } from './mediaQuery/mediaQuery';
 export { setPortalContent } from './portal/portalStore';
 export {

@@ -31,6 +31,7 @@ const DSProvider = ({
   timeZone,
   children,
   theme,
+  mode,
   dataFormatConfig,
   onErrorIntl,
   toasterProps = false,
@@ -43,7 +44,7 @@ const DSProvider = ({
       defaultLocale={defaultLocale}
       onErrorIntl={onErrorIntl}
     >
-      <ThemeProvider theme={theme}>
+      <ThemeProvider theme={theme} mode={mode}>
         <DataFormatConfigProvider dataFormatConfig={dataFormatConfig}>
           <ToasterProvider toasterProps={toasterProps || TOASTER_DEFAULTS}>
             {children}

@@ -71,6 +71,7 @@ Root provider. Must wrap the entire application. Composes `LocaleProvider` → `
 | `timeZone` | `string` | — | IANA timezone string (e.g. `'Europe/Warsaw'`) |
 | `onErrorIntl` | `(error: OnErrorFn[0]) => void` | — | react-intl error handler; suppress or log missing translation keys |
 | `theme` | `ThemePropsVars` | `dsTheme` | Override the styled-components theme; merged with defaults |
+| `mode` | `'light' \| 'dark' \| 'system'` | — | Colour scheme. Sets `data-ds-theme` on `<html>` and selects the `theme.tokens` map. `'system'` follows `prefers-color-scheme`. Omit to let the app own the attribute. |
 | `dataFormatConfig` | `DataFormatConfig` | EU notation | Date/number format notation config |
 | `toasterProps` | `false \| Partial<ToasterProps>` | `false` | Pass `TOASTER_DEFAULTS` or a custom config to enable the toast container; `false` disables the `<Toaster>` element |
 | `children` | `ReactNode` | — | App content |
@@ -252,6 +253,9 @@ RTL `render()` wrapped in `DSProvider` with sensible test defaults. Use in compo
 
 - **`toasterProps` must be explicitly set** to enable the `<Toaster>` DOM element inside `DSProvider`; passing `false` (the default) skips rendering `<Toaster>` while still mounting `ToasterProvider`.
 - **`ThemeProvider` merges with defaults**: `{ ..dsTheme, ..theme }` — partial overrides are safe; you cannot remove keys from the theme object.
+- **Both themes are always injected**: `GlobalTokenStyles` emits light on `:root` and dark on `:root[data-ds-theme="dark"]`. Theme switching is a single attribute flip on `<html>` — no CSS re-injection.
+- **`mode` sets `data-ds-theme` on `document.documentElement`** (not a wrapper) because DS overlays portal to `document.body` and must resolve the same tokens. `mode="system"` subscribes to a `prefers-color-scheme` media query. When `mode` is omitted the provider leaves the attribute alone (app-owned); `theme.tokens` then defaults to light. Applied client-side after mount — apps should set the attribute early (inline `<head>` script) to avoid a first-paint flash.
+- **`theme.tokens` follows the resolved `mode`** — light or dark resolved map, keyed by CSS var name; for non-CSS consumers only (prefer `var(--ds-…)` for styling).
 - **`breakpoints.xxlarge.max = 0`** — intentionally 0; `MEDIA_FROM.xxlarge` produces an unbounded min-width query.
 - **Nested i18n messages** are flattened by `LocaleProvider.utils.ts` before passing to `IntlProvider`; keys use dot-notation after flattening.
 - **`useDataFormat` uses `eslint-disable @typescript-eslint/no-explicit-any`** in `formatValue` and `formatMultipleValues` to handle the overload dispatch pattern.

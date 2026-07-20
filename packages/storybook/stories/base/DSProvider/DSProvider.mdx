@@ -1,0 +1,312 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+
+<Meta title="Introduction/DSProvider" />
+
+# DSProvider
+
+`DSProvider` is the root provider for the Synerise Design System. **Every application that
+uses `@synerise/ds-*` components must be wrapped in a single `DSProvider`** at its entry
+point. It composes four concerns into one provider:
+
+<table>
+  <thead>
+    <tr>
+      <th>Layer</th>
+      <th>Responsibility</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr><td><code>LocaleProvider</code></td><td>react-intl <code>IntlProvider</code> — translations, locale, timezone</td></tr>
+    <tr><td><code>ThemeProvider</code></td><td>styled-components theme object + design-token CSS variables (light / dark)</td></tr>
+    <tr><td><code>DataFormatConfigProvider</code></td><td>locale-aware number / date / time formatting config</td></tr>
+    <tr><td><code>ToasterProvider</code></td><td>toast notification container (react-hot-toast)</td></tr>
+  </tbody>
+</table>
+
+They nest in this order: `LocaleProvider → ThemeProvider → DataFormatConfigProvider → ToasterProvider`.
+
+---
+
+## Quick start
+
+```tsx
+import DSProvider from '@synerise/ds-core';
+
+import enMessages from './i18n/en.json';
+
+export const App = () => (
+  <DSProvider
+    locale="en-US"
+    defaultLocale="en-US"
+    messages={enMessages}
+    timeZone="Europe/Warsaw"
+    mode="system"
+    toasterProps={{}}
+  >
+    <YourApp />
+  </DSProvider>
+);
+```
+
+> **One `DSProvider` per app.** In a micro-frontend setup each independently-mounted SPA
+> wraps itself in its own `DSProvider` — there is no shared provider across apps.
+
+---
+
+## Props
+
+<table>
+  <thead>
+    <tr>
+      <th>Prop</th>
+      <th>Type</th>
+      <th>Default</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr><td><code>locale</code></td><td><code>string</code></td><td>—</td><td>BCP 47 locale tag (e.g. <code>'en-US'</code>, <code>'pl-PL'</code>).</td></tr>
+    <tr><td><code>defaultLocale</code></td><td><code>string</code></td><td>—</td><td>Fallback locale when a <code>messages</code> key is missing.</td></tr>
+    <tr><td><code>messages</code></td><td><code>NestedMessages</code></td><td>—</td><td>i18n message map (nested objects allowed).</td></tr>
+    <tr><td><code>defaultMessages</code></td><td><code>NestedMessages</code></td><td>—</td><td>Fallback message map.</td></tr>
+    <tr><td><code>timeZone</code></td><td><code>string</code></td><td>—</td><td>IANA timezone string (e.g. <code>'Europe/Warsaw'</code>).</td></tr>
+    <tr><td><code>onErrorIntl</code></td><td><code>(error) =&gt; void</code></td><td>—</td><td>react-intl error handler — suppress or log missing translation keys.</td></tr>
+    <tr><td><code>theme</code></td><td><code>ThemePropsVars</code></td><td><code>dsTheme</code></td><td>Override the styled-components theme; merged with the defaults.</td></tr>
+    <tr><td><code>mode</code></td><td><code>'light' | 'dark' | 'system'</code></td><td><em>(omitted)</em></td><td>Colour scheme. Sets <code>data-ds-theme</code> on <code>&lt;html&gt;</code>. See <a href="#theming">Theming</a>.</td></tr>
+    <tr><td><code>dataFormatConfig</code></td><td><code>DataFormatConfig</code></td><td>EU notation</td><td>Date / number format notation config.</td></tr>
+    <tr><td><code>toasterProps</code></td><td><code>false | Partial&lt;ToasterProps&gt;</code></td><td><code>false</code></td><td>Enable / configure the toast container. <code>false</code> renders no <code>&lt;Toaster&gt;</code>.</td></tr>
+    <tr><td><code>children</code></td><td><code>ReactNode</code></td><td>—</td><td>App content.</td></tr>
+  </tbody>
+</table>
+
+---
+
+## Theming
+
+Design tokens ship as CSS custom properties. `DSProvider` injects **both** the light and
+dark token sets once: light on `:root`, dark on `:root[data-ds-theme="dark"]`. Switching
+themes is therefore a single attribute flip on `<html>` — no CSS is re-injected and no
+component re-renders to change colour.
+
+### The `mode` prop
+
+<table>
+  <thead>
+    <tr>
+      <th>Value</th>
+      <th>Behaviour</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr><td><code>'light'</code> / <code>'dark'</code></td><td>Force that scheme; sets <code>data-ds-theme</code> accordingly.</td></tr>
+    <tr><td><code>'system'</code></td><td>Follow the OS <code>prefers-color-scheme</code> and react to changes at runtime.</td></tr>
+    <tr><td><em>(omitted)</em></td><td>The provider does not touch <code>data-ds-theme</code> — your app owns the attribute. Both themes are still present in the injected CSS, so toggling it yourself works.</td></tr>
+  </tbody>
+</table>
+
+`DSProvider` is **stateless about the preference** — your app owns it (localStorage, a user
+setting, the OS default) and passes it in:
+
+```tsx
+const [mode, setMode] = useState(
+  () => localStorage.getItem('ds-theme') ?? 'system',
+);
+
+<DSProvider mode={mode}>
+  <ThemeToggle value={mode} onChange={(m) => { setMode(m); localStorage.setItem('ds-theme', m); }} />
+  <App />
+</DSProvider>;
+```
+
+### Why the attribute lives on `<html>`
+
+DS overlays — dropdowns, modals, tooltips, popovers — render through a portal to
+`document.body`, escaping any wrapper element. Scoping theme vars to a wrapper `<div>`
+would leave those overlays unthemed. `DSProvider` therefore sets `data-ds-theme` on
+`document.documentElement`, so the page **and** every portaled overlay resolve the same
+tokens.
+
+> Because theming is document-level, a nested/subtree theme (a dark card inside a light
+> page) is not supported out of the box.
+
+### Avoiding a flash on load (FOUC)
+
+`mode` is applied on the client after mount. To avoid a flash of the wrong theme on first
+paint, set the attribute before the app renders with a small inline script in your HTML
+`<head>`, then pass the same preference to `DSProvider`:
+
+```html
+<script>
+  (function () {
+    var pref = localStorage.getItem('ds-theme') || 'light';
+    var resolved =
+      pref === 'system'
+        ? matchMedia('(prefers-color-scheme: dark)').matches
+          ? 'dark'
+          : 'light'
+        : pref;
+    document.documentElement.setAttribute('data-ds-theme', resolved);
+  })();
+</script>
+```
+
+### Reading token values in JavaScript
+
+For styling, prefer plain `var(--ds-…)` strings in your styled-components — the browser
+resolves them and they switch automatically with the attribute. For **non-CSS** consumers
+(canvas, charts, the Monaco editor) that cannot use `var()`, read the resolved value from
+the theme via `useTheme`:
+
+```tsx
+import { useTheme } from '@synerise/ds-core';
+
+const AxisLabel = () => {
+  const theme = useTheme();
+  const color = theme.tokens['--ds-color-text-base-default']; // '#384350' light / '#eceeef' dark
+  return <canvas data-color={color} />;
+};
+```
+
+`theme.tokens` holds the fully-resolved map for the active scheme (it follows `mode`). The
+`theme` object also exposes `theme.palette` (raw palette by name), `theme.variables`, and
+`theme.variable('--ds-name')`. Outside React you can import a specific theme's static map:
+
+```tsx
+import { tokens as lightTokens } from '@synerise/ds-tokens/light';
+import { tokens as darkTokens } from '@synerise/ds-tokens/dark';
+```
+
+---
+
+## Internationalisation
+
+`DSProvider` wraps react-intl's `IntlProvider`.
+
+<table>
+  <thead>
+    <tr>
+      <th>Prop</th>
+      <th>Notes</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr><td><code>locale</code> / <code>defaultLocale</code></td><td>Active locale and the fallback used when a key is missing.</td></tr>
+    <tr><td><code>messages</code> / <code>defaultMessages</code></td><td>Message maps. Nested objects are flattened to dot-notation keys automatically.</td></tr>
+    <tr><td><code>timeZone</code></td><td>IANA timezone applied to date/time formatting.</td></tr>
+    <tr><td><code>onErrorIntl</code></td><td>Handle (suppress or log) missing-translation errors instead of throwing to the console.</td></tr>
+  </tbody>
+</table>
+
+```tsx
+<DSProvider
+  locale="pl-PL"
+  defaultLocale="en-US"
+  messages={{ button: { save: 'Zapisz' } }}   // → key "button.save"
+  onErrorIntl={(err) => { if (err.code !== 'MISSING_TRANSLATION') console.error(err); }}
+>
+  <App />
+</DSProvider>
+```
+
+Translation keys follow the `{app}.{feature}.{component}.{element}` convention.
+
+---
+
+## Data formatting
+
+`dataFormatConfig` controls locale-aware number / date / time formatting, consumed via the
+`useDataFormat` hook and the `Formatted*` components (`FormattedNumber`, `FormattedDate`,
+`FormattedTime`, `FormattedDateTime`, `FormattedRelativeDateTimeFrom` / `…To`).
+
+<table>
+  <thead>
+    <tr>
+      <th>Field</th>
+      <th>Values</th>
+      <th>Default</th>
+      <th>Effect</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr><td><code>startWeekDayNotation</code></td><td><code>'US' | 'EU'</code></td><td><code>'EU'</code></td><td>Sunday-first (US) vs Monday-first (EU).</td></tr>
+    <tr><td><code>dateFormatNotation</code></td><td><code>'US' | 'EU'</code></td><td><code>'EU'</code></td><td>MM/DD/YYYY (US) vs DD.MM.YYYY (EU).</td></tr>
+    <tr><td><code>timeFormatNotation</code></td><td><code>'US' | 'EU'</code></td><td><code>'EU'</code></td><td>12-hour (US) vs 24-hour (EU) clock.</td></tr>
+    <tr><td><code>numberFormatNotation</code></td><td><code>'US' | 'EU'</code></td><td><code>'EU'</code></td><td>Comma thousands (US) vs space thousands (EU).</td></tr>
+    <tr><td><code>applyTimeZoneOffset</code></td><td><code>boolean</code></td><td>—</td><td>Apply the timezone offset when formatting dates.</td></tr>
+  </tbody>
+</table>
+
+```tsx
+import { useDataFormat } from '@synerise/ds-core';
+
+const Price = ({ value }) => {
+  const { formatValue } = useDataFormat();
+  return <span>{formatValue(value)}</span>;
+};
+```
+
+---
+
+## Toast notifications
+
+The `<Toaster>` element renders only when `toasterProps !== false`. Pass `{}` (defaults),
+`TOASTER_DEFAULTS`, or a custom partial to enable it; the default `false` still mounts
+`ToasterProvider` but renders no container.
+
+<table>
+  <thead>
+    <tr>
+      <th>Default (<code>TOASTER_DEFAULTS</code>)</th>
+      <th>Value</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr><td><code>position</code></td><td><code>'bottom-left'</code></td></tr>
+    <tr><td><code>reverseOrder</code></td><td><code>false</code></td></tr>
+    <tr><td><code>gutter</code></td><td><code>8</code></td></tr>
+    <tr><td><code>containerStyle</code></td><td><code>{'{ padding: 24 }'}</code></td></tr>
+    <tr><td><code>toastOptions</code></td><td><code>{'{ removeDelay: 200 }'}</code></td></tr>
+  </tbody>
+</table>
+
+```tsx
+import { useToaster } from '@synerise/ds-core';
+
+const { setOptions } = useToaster();
+setOptions({ position: 'top-right' }); // change position after mount
+```
+
+---
+
+## Related hooks &amp; exports
+
+<table>
+  <thead>
+    <tr>
+      <th>Export</th>
+      <th>Purpose</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr><td><code>useTheme()</code></td><td>Returns the theme (<code>tokens</code>, <code>palette</code>, <code>variables</code>, <code>variable()</code>, <code>space</code>, <code>breakpoints</code>).</td></tr>
+    <tr><td><code>useToaster()</code></td><td><code>{'{ options, setOptions }'}</code> — change toast config at runtime.</td></tr>
+    <tr><td><code>useDataFormat()</code></td><td>Locale-aware <code>formatValue</code>, delimiters, week-start flags.</td></tr>
+    <tr><td><code>useDropdown()</code></td><td>Shared dropdown open-state context (or <code>undefined</code> outside one).</td></tr>
+    <tr><td><code>mediaQuery</code></td><td><code>from</code> / <code>to</code> / <code>only</code> responsive tagged-template helpers.</td></tr>
+    <tr><td><code>theme</code></td><td>The default theme object, for use outside styled-components (tests, inline styles).</td></tr>
+    <tr><td><code>themeVariables</code></td><td>All CSS variable name → value pairs.</td></tr>
+    <tr><td><code>ThemeMode</code></td><td>Type alias: <code>'light' | 'dark' | 'system'</code>.</td></tr>
+  </tbody>
+</table>
+
+---
+
+## Notes &amp; gotchas
+
+- **Theme merges with defaults** — a custom `theme` prop is spread over `dsTheme`
+  (`{ ...dsTheme, ...theme }`); you can override keys but not remove them.
+- **`toasterProps` must be set** (anything other than `false`) for toasts to appear.
+- **`IntlProvider` is required by DS components** that call `useIntl()` — `DSProvider`
+  provides it. If you render such a component outside `DSProvider`, it will throw.
+- **`mode` is applied client-side after mount** — use the inline-script pattern above to
+  prevent a first-paint flash.
