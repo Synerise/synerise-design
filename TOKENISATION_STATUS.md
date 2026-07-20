@@ -133,7 +133,7 @@ These components use `theme.palette` / hardcoded colors but do not yet have dedi
 | autocomplete | 10 | No | 3 | 0 | `.less` removed (deantd) |
 | avatar-group | 8 | No | 2 | 2 | |
 | badge | 11 | No | 4 | 4 | `.less` removed (deantd) |
-| banner | 10 | No | 0 | 0 | `.less` removed (deantd) |
+| banner | 2 | No | 0 | 0 | :white_check_mark: tokenised — semantic (2026-07-20 pass); 2 palette = dynamic status-Tag defaults |
 | block | 6 | No | 0 | 0 | |
 | button-group | 6 | No | 4 | 0 | |
 | card-tabs | 68 | No | 2 | 4 | High palette count |
@@ -1111,3 +1111,13 @@ colour). `theme.palette` removed.
 `--ds-color-background-brand-solid` (exact); inactive `grey-300` → `--ds-color-border-base-strong` ⚑
 (value-exact `#dbe0e3`, category mismatch — no background token at grey-300, see flag 2); inactive hover
 `grey-400` → `--ds-color-background-base-strong` (exact). `theme.palette` removed.
+
+### banner — :white_check_mark: (one dynamic default kept)
+
+`Banner.styles.ts`: root bg `grey-100` → `--ds-color-background-base-muted`; header/divider/counter borders
+`grey-300` (×3) → `--ds-color-border-base-strong`; counter dots (`BannerCounterDot :after`) active
+`blue-600` → `--ds-color-background-brand-solid`, inactive `grey-300` → `--ds-color-border-base-strong` ⚑
+(category mismatch, flag 2), inactive hover `grey-400` → `--ds-color-background-base-strong`. All exact.
+**Kept on palette:** `Banner.const.ts` `DEFAULT_STATUS_COLOR` (`yellow-600`) / `DEFAULT_STATUS_TEXT_COLOR`
+(`white`) — caller-overridable `titleStatus.color`/`textColor` defaults; `yellow-600` has no exact
+semantic (flag 3).
