@@ -1,6 +1,6 @@
 ---
 name: apply-tokens
-description: Apply design tokens (colors, shadows, opacity) to a specific component — replaces theme.palette, hardcoded hex/rgba, box-shadow, and opacity values with CSS custom properties from ds-tokens. Updates TOKENISATION_STATUS.md.
+description: Apply design tokens (colors, shadows, opacity) to a specific component — replaces theme.palette, hardcoded hex/rgba, box-shadow, and opacity values with CSS custom properties from ds-tokens. Updates all three status docs (TOKENISATION_STATUS.md, UNTOKENISED_COMPONENTS.md, TOKEN_USAGE_BY_COMPONENT.md).
 ---
 
 ## Overview
@@ -93,6 +93,15 @@ Note: an **outline-style** `box-shadow: 0 0 0 Npx <color>` is a focus/border rin
 its **color** is tokenisable (map to a border token), keep the geometry. A module-layer component may also
 have a dedicated `shadow` token in `base.json`.
 
+> **Form-field ring gotcha (the visible border is often the box-shadow, not `border`).** The DS input
+> pattern is `border: 1px` **plus** `box-shadow: inset 0 0 0 Npx var(--ds-form-field-border-{focus,validated})`
+> — the inset ring is the 2nd px, so a focus/error field reads as a **2px** border. Two failure modes seen
+> this session: (a) a component's error ring was authored as `inset 0 0 0 1px` and looked 1px thinner than its
+> peers — fix the geometry to `2px` (item-picker); (b) a wrapper set `input { box-shadow: none }` which
+> **erased** the inherited ds-input ring, so error/focus fields showed no 2px border — **remove that override**
+> (color-picker). When tokenising a field, confirm its focus/error ring still renders at the peer 2px width; do
+> not strip a `box-shadow` that IS the border.
+
 **3d. Opacity — `opacity:`.** Match against semantic opacity tokens:
 - `--ds-opacity-disabled`: `0.4` — disabled state
 - `--ds-opacity-muted`: `0.2` — muted / subtle
@@ -144,6 +153,25 @@ Common semantic color targets (use these, not primitives):
 - `theme.variable('@…')` antd Less variables (border-radius, antd box-shadows) — keep, unless the value
   provably equals a `--ds-shadows-shadow-N`.
 
+**Surfaces reserved for a planned module namespace → defer, don't semantic-fallback.** A component often
+mixes an **input/field surface** with parts that belong to a *different* module namespace that isn't authored
+yet — most commonly **dropdown / overlay** surfaces (menu backgrounds, shadows, borders of the pop-up),
+**list-item** rows (option rows, search results, checkmarks), and **calendar** grids (day/month/year cells,
+time windows). When the design intent is a dedicated namespace for those, **leave them on `theme.palette` and
+mark the component `:construction:` (partial)** rather than semantic-falling-back now — a semantic swap would
+just churn again when the real module tokens land. This is the one case where you deliberately skip the
+semantic fallback. Tokenise the field/chrome parts now; record each deferred surface (which namespace it
+awaits) in the status docs. *(This session: date-picker / date-range-picker / autocomplete / color-picker /
+context-selector etc. had their field triggers tokenised against `--ds-form-*` while dropdown/list-item/
+calendar surfaces were deferred.)*
+
+**Form-family field roles (`--ds-form-*`).** Components that render an input/trigger consume the shared `form`
+module namespace by **role**, not by component name: field `bg`/`border`/`text` (default/hover/focus/disabled/
+validated), `affix` bg/border/text/icon, action `icon-color` (default/hover), and `label`/`description`/`error`
+text. Re-derive the exact live names from `base.json` each run. Note there is **no `--ds-form-*` token for a
+danger/clear action icon** — a red clear (✕) icon inside a field maps to the semantic
+`--ds-color-icon-danger-default`, not a form token.
+
 ### Step 5 — Verify equivalence
 
 Resolve each chosen token's full chain to its final value and compare to the current value:
@@ -155,10 +183,22 @@ Resolve each chosen token's full chain to its final value and compare to the cur
 | disabled opacity | `0.4` | `--ds-opacity-disabled` | `0.4` | Yes |
 | header text | `grey-700` (#57616d) | `--ds-color-text-base-default` | #384350 | **No — darker** |
 
-**Pause on any mismatch and report it to the user for sign-off before applying.** A mismatch is usually
-the design team's intended value, but it is a visible change — confirm it.
+There are **two ways to handle a mismatch** — pick based on what the user has authorised for this run:
 
-### Step 6 — Apply the migration (after sign-off)
+1. **Exact-only / pause for sign-off (default when nothing is pre-authorised).** Pause on any mismatch and
+   report it to the user before applying. A mismatch is usually the design team's intended value, but it is a
+   visible change — confirm it.
+2. **Adopt by role, flag the shift (batch-authorised).** When the user has said to adopt the module token for
+   each role even if the value shifts (e.g. "adopt by role, flag the shift" — the same approach used for the
+   `Input` migration), apply the role's token regardless of the small colour delta and **flag every shift**
+   instead of pausing per-site. This is the norm for whole form-family batches.
+
+**The `⚑ Shift:` convention (both modes, whenever a value changes).** Leave an inline code comment at each
+shifted site recording the change, e.g. `/* ⚑ Shift: disabled bg grey-050 → --ds-form-field-bg-disabled
+(grey-100, darker). */`, and list every shift in the status docs (Step 8) so Chromatic diffs are expected, not
+surprises. Exact-match swaps need no flag.
+
+### Step 6 — Apply the migration (after Step 5 sign-off / batch authorisation)
 
 **6a.** If the component has a color/util helper, update it to return CSS-var strings. Mirror
 `section-message/src/SectionMessage.utils.tsx`: a `TYPE_TO_TOKEN_VARIANT` map + functions returning
@@ -190,22 +230,46 @@ cd packages/components/<name> && pnpm build && pnpm test
 If a test asserts a resolved hex/shadow value that is now `var(--ds-...)`, update it to assert the
 attribute / class / styled output — **never weaken a test just to make it pass.**
 
-### Step 8 — Update TOKENISATION_STATUS.md
+### Step 8 — Update ALL THREE status docs
 
-Update `TOKENISATION_STATUS.md` at the repo root.
+Three companion docs at the repo root track this migration and must be kept in sync — updating only one
+leaves the others stale and contradictory. Update every one that has an entry for (or a count covering) this
+component. Read each before editing to match its live structure — their headers, snapshot dates, and summary
+counts change between runs.
 
-**8a. Summary table.** Update the component's status columns: Colors `:white_check_mark:` when all
-type-driven palette lookups are replaced (`:construction:` if partial), Shadows / Opacity
-`:white_check_mark:` / `:heavy_minus_sign:`, Spacing stays `:x:`. If the component was in the
-"without module-level tokens" table but uses semantic tokens, that's fine — record it migrated; it does
-not need to move tables (table membership = whether module tokens exist, which is unchanged).
+**8a. `TOKENISATION_STATUS.md` — summary table.** Update the component's status columns: Colors
+`:white_check_mark:` when all type-driven palette lookups are replaced (`:construction:` if partial — e.g.
+dropdown/list-item/calendar surfaces deferred per Step 4), Shadows / Opacity `:white_check_mark:` /
+`:heavy_minus_sign:`, Spacing stays `:x:`. If the component was in the "without module-level tokens" table but
+uses semantic tokens, that's fine — record it migrated; it does not need to move tables (table membership =
+whether module tokens exist, which is unchanged).
 
-**8b. Detailed report.** Add/update a section under "Detailed Reports" in the section-message/toast
-format: package, variants, layer used (module vs semantic), Colors/Shadows/Opacity status, Spacing
-(deferred), a **Visual diffs** table, and an **Unmapped values** table.
+**8b. `TOKENISATION_STATUS.md` — detailed report.** Add/update a section under "Detailed Reports" in the
+section-message/toast format: package, variants, layer used (module vs semantic), Colors/Shadows/Opacity
+status, Spacing (deferred), a **Visual diffs** table (list every `⚑` shift from Step 5), and an **Unmapped
+values** table (decorative/dynamic + each surface **deferred pending a planned module namespace**, naming the
+namespace it awaits). For a grouped batch, a dated subsection (e.g. "Form-module partial pass (YYYY-MM-DD)")
+with one entry per component works well.
+
+**8c. `UNTOKENISED_COMPONENTS.md` — flip the row + fix the counts.** This doc lists components **not yet**
+tokenised, with a per-row module-vs-semantic decision. When a component gets tokenised:
+- Flag it in the **Component** column: **✅** fully tokenised · **🚧** partially (field/chrome done;
+  dropdown/list-item/other deferred). Add/refresh its Module/Semantic notes with what was done vs deferred.
+- **Recompute the Summary counts block** — it has exact integers (e.g. "tokenised in the passes: N", "still
+  pending: M"). Bump the tokenised count and drop the pending count by the same amount so they stay
+  consistent with the table. Add/extend the dated "Update — … pass landed" note near the top.
+
+**8d. `TOKEN_USAGE_BY_COMPONENT.md` — per-component inventory.** Add/update this component's `### <name>`
+entry: a **Palette (N)** line listing every *remaining* `theme.palette` ref with `file:line` and a reason tag
+(**dyn** / **decorative** / **no-token** / **data-uri** / **deferred**-namespace), and a **Semantic (N)** /
+module-token table of the `var(--ds-*)` tokens now applied with `file:line` and role. If you used a semantic
+token where a **module** token exists but is pruned/unavailable, mark it `⚑` and add it to the
+"Semantic-instead-of-module (candidates to tighten)" list at the top.
 
 ### Step 9 — Report to user
 
-Summarise: counts migrated (module-level vs semantic), shadows, opacity; visual diffs (old → new); any
-missing-module-token gaps flagged for the design-tokens repo; unmapped values with file:line + reason;
-`.less` files left deferred; files modified; and confirm `TOKENISATION_STATUS.md` was updated.
+Summarise: counts migrated (module-level vs semantic), shadows, opacity; visual diffs / `⚑` shifts (old →
+new); surfaces deferred pending a planned module namespace (dropdown/list-item/calendar); any missing-module-
+token gaps flagged for the design-tokens repo; unmapped values with file:line + reason; `.less` files left
+deferred; files modified; and confirm **all three status docs** (`TOKENISATION_STATUS.md`,
+`UNTOKENISED_COMPONENTS.md`, `TOKEN_USAGE_BY_COMPONENT.md`) were updated and remain mutually consistent.
