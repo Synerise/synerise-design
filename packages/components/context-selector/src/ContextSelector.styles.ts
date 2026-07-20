@@ -51,7 +51,7 @@ export const ShowMoreItem = styled.div`
 `;
 
 export const ErrorWrapper = styled.div`
-  color: ${(props): string => props.theme.palette['red-600']};
+  color: var(--ds-form-error-text-color);
   margin-top: 8px;
 `;
 

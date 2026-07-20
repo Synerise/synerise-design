@@ -11,7 +11,6 @@ import React, {
 import { VariableSizeList } from 'react-window';
 import { v4 as uuid } from 'uuid';
 
-import { theme } from '@synerise/ds-core';
 import Divider from '@synerise/ds-divider';
 import Dropdown from '@synerise/ds-dropdown';
 import Icon, { ArrowRightCircleM, SearchM } from '@synerise/ds-icon';
@@ -419,7 +418,10 @@ const ContextSelectorDropdown = ({
           autofocusDelay={50}
           handleInputRef={setSearchInputHandle}
           iconLeft={
-            <Icon component={<SearchM />} color={theme.palette['grey-600']} />
+            <Icon
+              component={<SearchM />}
+              color="var(--ds-form-icon-color-default)"
+            />
           }
         />
       )}

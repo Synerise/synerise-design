@@ -148,7 +148,7 @@ These components use `theme.palette` / hardcoded colors but do not yet have dedi
 | completed-within | 5 | No | 1 | 3 | |
 | condition | 14 | No | 1 | 8 | |
 | confirmation | 5 | No | 0 | 0 | |
-| context-selector | 7 | No | 0 | 0 | |
+| context-selector | 5 | No | 0 | 0 | :construction: search icon + error text → `--ds-form-*` (2026-07-20); dropdown/list-item/dynamic deferred |
 | copy-icon | 0 | No | 0 | 0 | :white_check_mark: tokenised — semantic (2026-07-20 pass) |
 | cruds | 4 | No | 0 | 0 | |
 | date-picker | 56 | No | 1 | 0 | High palette count |
@@ -1198,3 +1198,10 @@ grey-050→grey-100, clear hover grey-700→grey-400. **Deferred:** `Autocomplet
 `--ds-form-field-affix-border`; `PreffixWrapper` (`#` hex-input prefix) grey-500 →
 `--ds-form-field-affix-text`. Both exact. **Deferred:** picker panel `Container` + `.react-colorful__*` +
 swatch grid/creator (dropdown/overlay); all `ColorPicker.tsx` colour-value props (dynamic).
+
+### context-selector — :construction: search icon + error text (dropdown/list-item deferred)
+
+`ContextSelectorDropdown.tsx` search-field leading icon grey-600 → `--ds-form-icon-color-default` (passed
+as `var()` string to the `Icon` `color` prop; removed the now-unused `theme` import); `ContextSelector.styles.ts`
+`ErrorWrapper` red-600 → `--ds-form-error-text-color`. Both exact. **Deferred:** `ItemsList`/`Title`
+(dropdown), `SearchResult`/`Highlight`/checkmark (list-item), trigger `triggerColor` (dynamic).
