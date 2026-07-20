@@ -159,7 +159,7 @@ These components use `theme.palette` / hardcoded colors but do not yet have dedi
 | emoji-picker | 2 | No | 0 | 0 | |
 | empty-states | 0 | No | 0 | 0 | :white_check_mark: tokenised — semantic (2026-07-20 pass) |
 | estimation | 2 | No | 0 | 0 | |
-| factors | 18 | No | 2 | 0 | |
+| factors | 16 | No | 2 | 0 | :construction: field action/search icons → `--ds-form-*` (2026-07-20); composition, rest deferred |
 | field-set | 0 | No | 0 | 0 | :white_check_mark: tokenised — semantic (2026-07-20 pass) |
 | file-uploader | 152 | No | 0 | 7 | Highest palette count |
 | filter | 3 | No | 0 | 1 | |
@@ -1212,3 +1212,13 @@ as `var()` string to the `Icon` `color` prop; removed the now-unused `theme` imp
 value chips (grey-200 — chips use semantic, no form chip token), error chips (red-600), scroll-fade
 gradients (decorative), `DropdownContent`/`NavigationWrapper` (dropdown + footer). Elements/ subfolders
 delegate to ds-input/ds-button.
+
+### factors — :construction: field action/search icons (composition; rest deferred)
+
+Mostly a composition delegating to ds-input/ds-date-picker. Field action/search icons only:
+`FactorValue/Text/Text.tsx` fullscreen expansible icon grey-600 → `--ds-form-icon-color-default`;
+`FactorValue/Parameter/ParameterDropdown.tsx` search icon grey-600 → `--ds-form-icon-color-default` (both
+`var()` strings; removed now-unused `useTheme`). Exact. **Deferred:** hover blue-600 icon (`Text.styles.tsx`
+— no grey form-icon-hover match; semantic brand-hover later), red clear icons (`RelativeDate*` — danger,
+no form token), type-switcher button focus ring, transparent array textarea, dropdown/list-item/dynamic/
+danger-delete/count-pill.

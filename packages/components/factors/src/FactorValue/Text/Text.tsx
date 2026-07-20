@@ -12,7 +12,6 @@ import Autocomplete, {
   type AutocompleteInputHandle,
   type AutocompleteProps,
 } from '@synerise/ds-autocomplete';
-import { useTheme } from '@synerise/ds-core';
 import Icon, { FullScreenM } from '@synerise/ds-icon';
 import { Input } from '@synerise/ds-input';
 
@@ -46,7 +45,6 @@ const TextInput = ({
     >();
   const [localValue, setLocalValue] = useState(() => value);
   const [localError, setLocalError] = useState(false);
-  const theme = useTheme();
 
   useEffect(() => {
     if (inputRef?.current && opened) {
@@ -172,7 +170,7 @@ const TextInput = ({
                     component={
                       <FullScreenM data-testid="ds-factors-expansible-icon" />
                     }
-                    color={theme.palette['grey-600']}
+                    color="var(--ds-form-icon-color-default)"
                   />
                 )}
               </S.IconWrapper>
