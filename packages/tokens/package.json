@@ -7,6 +7,12 @@
   ],
   "main": "dist/js/index.js",
   "types": "dist/js/index.d.ts",
+  "typesVersions": {
+    "*": {
+      "light": ["dist/js/light.d.ts"],
+      "dark": ["dist/js/dark.d.ts"]
+    }
+  },
   "exports": {
     ".": {
       "import": "./dist/js/index.js",
