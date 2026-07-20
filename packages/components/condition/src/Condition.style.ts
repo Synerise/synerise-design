@@ -6,7 +6,7 @@ import Icon from '@synerise/ds-icon';
 import { InputGroupItem } from '@synerise/ds-input/dist/InputGroup.styles';
 
 export const ErrorWrapper = styled.div`
-  color: ${(props) => props.theme.palette['red-600']};
+  color: var(--ds-color-text-danger-default);
   margin-top: 8px;
 `;
 
@@ -45,7 +45,7 @@ export const StepConditions = styled.div<{ withCruds?: boolean }>`
 export const StepName = styled.div`
   font-size: 13px;
   line-height: 1.84;
-  color: ${(props) => props.theme.palette['grey-800']};
+  color: var(--ds-color-text-base-default);
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -116,7 +116,7 @@ export const DraggedLabel = styled.span`
   align-items: center;
   justify-content: flex-start;
   padding-left: 18px;
-  color: ${(props) => props.theme.palette['grey-600']};
+  color: var(--ds-color-text-base-muted);
   font-size: 13px;
 `;
 
@@ -138,11 +138,11 @@ export const Step = styled.div<{
         padding: 18px 0 18px 24px;
         bottom: -18px;
         content: attr(data-conditionSuffix);
-        background-color: ${props.theme.palette.white};
+        background-color: var(--ds-color-background-base-default);
         position: relative;
         font-size: 16px;
         font-weight: 500;
-        color: #3f4c5b;
+        color: var(--ds-color-text-base-default);
       }
     `}
   ${(props) =>
@@ -150,13 +150,13 @@ export const Step = styled.div<{
     !props.singleStepCondition &&
     css`
       &:hover {
-        background-color: ${props.theme.palette['grey-050']};
+        background-color: var(--ds-color-background-base-subtle);
       }
     `}
   &:hover {
     ${(props) =>
       !props.hoverDisabled &&
-      `background-color: ${props.theme.palette['grey-050']}`};
+      `background-color: var(--ds-color-background-base-subtle)`};
     ${StepCruds} {
       opacity: 1;
       visibility: visible;
@@ -195,8 +195,8 @@ export const StepWrapper = styled.div<{
       height: 50px;
       overflow: hidden;
       cursor: grabbing;
-      background: ${props.theme.palette.white};
-      box-shadow: 0 16px 32px 0 #23293619;
+      background: var(--ds-color-background-base-default);
+      box-shadow: var(--ds-shadows-shadow-2);
       display: flex;
       align-items: center;
       ${DragLabel} {
@@ -217,9 +217,9 @@ export const StepWrapper = styled.div<{
       display: flex;
       align-items: center;
       justify-content: center;
-      background-color: ${props.theme.palette['blue-050']};
-      color: ${props.theme.palette['blue-600']};
-      border-left: 2px solid ${props.theme.palette['blue-600']};
+      background-color: var(--ds-color-background-brand-subtle);
+      color: var(--ds-color-text-brand-default);
+      border-left: 2px solid var(--ds-color-border-brand-default);
     `}
 `;
 

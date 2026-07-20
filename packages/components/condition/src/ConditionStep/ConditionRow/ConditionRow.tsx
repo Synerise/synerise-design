@@ -1,6 +1,5 @@
 import React, { type ReactNode, useMemo } from 'react';
 
-import { theme } from '@synerise/ds-core';
 import Factors, { type ParameterValueType } from '@synerise/ds-factors';
 import Icon, { CloseS } from '@synerise/ds-icon';
 import Operators from '@synerise/ds-operators';
@@ -75,7 +74,10 @@ export const ConditionRow = ({
         className="ds-conditions-remove-row"
       >
         <Tooltip title={texts.removeConditionRowTooltip} trigger={['hover']}>
-          <Icon component={<CloseS />} color={theme.palette['red-600']} />
+          <Icon
+            component={<CloseS />}
+            color="var(--ds-color-icon-danger-default)"
+          />
         </Tooltip>
       </S.RemoveIconWrapper>
     );
