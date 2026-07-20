@@ -1,3 +1,4 @@
+import React from 'react';
 import { mockDateDecorator } from 'storybook-mock-date-decorator';
 import { configure } from 'storybook/test';
 
