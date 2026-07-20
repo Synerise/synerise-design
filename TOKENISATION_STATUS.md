@@ -130,7 +130,7 @@ These components use `theme.palette` / hardcoded colors but do not yet have dedi
 |---------|-------------|-------|-------------|--------------|-------|
 | action-area | 0 | No | 0 | 0 | :white_check_mark: tokenised — semantic (2026-07-20 pass) |
 | alert | 44 | Yes (2) | 9 | 11 | ⛔ **deprecated** — will not be tokenised |
-| autocomplete | 10 | No | 3 | 0 | `.less` removed (deantd) |
+| autocomplete | 1 | No | 3 | 0 | :construction: field surface → `--ds-form-*` (2026-07-20); dropdown NotFound deferred |
 | avatar-group | 8 | No | 2 | 2 | |
 | badge | 11 | No | 4 | 4 | `.less` removed (deantd) |
 | banner | 2 | No | 0 | 0 | :white_check_mark: tokenised — semantic (2026-07-20 pass); 2 palette = dynamic status-Tag defaults |
@@ -1154,3 +1154,34 @@ All exact — no visual diff.
   semantic role; needs a dedicated code-syntax namespace.
 - `InlineCode/InlineCode.styles.ts` — text `#e31a5d` (**not in the DS palette at all**) + bg `pink-100`
   (no pink semantic token).
+
+---
+
+## Form-module partial pass (2026-07-20)
+
+Applying the **form module** tokens (`--ds-form-field-*` / `--ds-form-icon-*` / `--ds-form-error-text-color`)
+to the parts of 7 form-family components that **act as / represent an input or form-element**. Parts that
+are **dropdown/overlay surfaces or list-item rows are left on `theme.palette`** — dedicated `dropdown` and
+`list-item` module tokens will be defined upstream and these are revisited then. Dynamic (user colour props)
+values stay on palette. **Policy: adopt the form token by role even when it shifts the value slightly** (same
+as the `Input` migration); shifts flagged below.
+
+### ⚑ Flags for the UX / token team (this pass)
+
+1. **Value shifts (adopted by role):** `code-area` editor border grey-200→grey-300 & disabled bg
+   grey-050→grey-100; `autocomplete` disabled bg grey-050→grey-100 & clear-icon **hover** grey-700→grey-400
+   (the DS `--ds-form-icon-color-hover` lightens on hover — verify intent).
+2. **Monaco can't consume CSS vars** — `code-area/constants.ts` editor colours (foreground/lineNumber/
+   scrollbar) are applied via Monaco's JS theming API, which needs concrete values; they **stay on palette**.
+3. **Deferred pending module tokens** — dropdown/overlay surfaces + list-item rows across all 7 await the
+   planned `dropdown`/`list-item` namespaces; brand-hover/danger field icons have no grey form-icon token.
+
+### autocomplete — :white_check_mark: field surface (dropdown deferred)
+
+`Autocomplete.styles.ts` `NativeInput` + `active()`/`errorStyle()`/`readonly()` + `ClearButton`:
+border default/hover/focus/error → `--ds-form-field-border-{default,hover,focus,validated}`; bg
+default/focus/error/readOnly/disabled → `--ds-form-field-bg-{default,focus,validated,default,disabled}`;
+value/placeholder/disabled/readOnly text → `--ds-form-field-text-{value,placeholder,disabled,value}`;
+ClearButton → `--ds-form-icon-color-{default,hover}`. Mostly exact (built to spec); ⚑ disabled bg
+grey-050→grey-100, clear hover grey-700→grey-400. **Deferred:** `AutocompleteDropdown.style.ts` NotFound
+(dropdown).

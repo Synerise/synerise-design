@@ -15,21 +15,21 @@ const baseTransition = css`
 
 const active = () => css`
   ${baseTransition};
-  box-shadow: inset 0 0 0 1px ${(props) => props.theme.palette['blue-600']};
-  border: 1px solid ${(props) => props.theme.palette['blue-600']};
-  background-color: ${(props) => props.theme.palette['blue-050']};
+  box-shadow: inset 0 0 0 1px var(--ds-form-field-border-focus);
+  border: 1px solid var(--ds-form-field-border-focus);
+  background-color: var(--ds-form-field-bg-focus);
 `;
 
 const errorStyle = () => css`
   ${baseTransition};
-  box-shadow: inset 0 0 0 1px ${(props) => props.theme.palette['red-600']};
-  background: ${(props) => props.theme.palette['red-050']};
-  border: 1px solid ${(props) => props.theme.palette['red-600']};
+  box-shadow: inset 0 0 0 1px var(--ds-form-field-border-validated);
+  background: var(--ds-form-field-bg-validated);
+  border: 1px solid var(--ds-form-field-border-validated);
 `;
 
 const readonly = () => css`
-  background-color: ${(props) => props.theme.palette.white};
-  color: ${(props) => props.theme.palette['grey-700']};
+  background-color: var(--ds-form-field-bg-default);
+  color: var(--ds-form-field-text-value);
   cursor: auto;
 `;
 
@@ -83,10 +83,10 @@ export const NativeInput = styled.input<{
     padding-right: ${(props) =>
       `${getIconsWidth(props.iconCount || 0) + 10}px`};
   }
-  border: 1px solid ${(props) => props.theme.palette['grey-300']};
+  border: 1px solid var(--ds-form-field-border-default);
   border-radius: 3px;
-  background-color: ${(props) => props.theme.palette.white};
-  color: ${(props) => props.theme.palette['grey-700']};
+  background-color: var(--ds-form-field-bg-default);
+  color: var(--ds-form-field-text-value);
   /* inherit the DS body font — native inputs don't inherit font-family */
   font-family: inherit;
   font-size: 13px;
@@ -96,16 +96,16 @@ export const NativeInput = styled.input<{
   ${baseTransition};
 
   &::placeholder {
-    color: ${(props) => props.theme.palette['grey-500']};
+    color: var(--ds-form-field-text-placeholder);
   }
 
   &:hover:not(:disabled) {
-    border-color: ${(props) => props.theme.palette['grey-400']};
+    border-color: var(--ds-form-field-border-hover);
   }
 
   &:disabled {
-    background-color: ${(props) => props.theme.palette['grey-050']};
-    color: ${(props) => props.theme.palette['grey-400']};
+    background-color: var(--ds-form-field-bg-disabled);
+    color: var(--ds-form-field-text-disabled);
     cursor: not-allowed;
   }
 
@@ -148,14 +148,14 @@ export const ClearButton = styled.button`
   padding: 0;
   border: none;
   background: transparent;
-  color: ${(props) => props.theme.palette['grey-600']};
+  color: var(--ds-form-icon-color-default);
   font-size: 15px;
   line-height: 1;
   cursor: pointer;
   z-index: 6;
 
   &:hover {
-    color: ${(props) => props.theme.palette['grey-700']};
+    color: var(--ds-form-icon-color-hover);
   }
 `;
 
