@@ -173,7 +173,7 @@ These components use `theme.palette` / hardcoded colors but do not yet have dedi
 | input-number | 5 | No | 5 | 0 | `.less` removed (deantd) |
 | insight | 4 | No | 0 | 0 | |
 | item-filter | 2 | No | 1 | 0 | |
-| item-picker | 43 | No | 4 | 1 | |
+| item-picker | 13 | No | 4 | 1 | :construction: trigger field → `--ds-form-*` (2026-07-20); dropdown/list deferred |
 | items-roll | 16 | No | 1 | 4 | |
 | layout | 6 | No | 2 | 2 | |
 | list | 9 | Yes (2) | 1 | 1 | |
@@ -1232,3 +1232,21 @@ default grey-200 → `--ds-form-field-border-default` (⚑ grey-300, darker); er
 `ErrorText` red-600 → `--ds-form-error-text-color`. **Kept on palette:** `constants.ts` Monaco colours
 (foreground/lineNumber/scrollbar) — Monaco's JS theming needs concrete values, **can't consume CSS vars**
 (flag 2); fullscreen wrapper bg white (`:97`) — overlay chrome, semantic later.
+
+### item-picker — :construction: trigger field surface (isNew; shared trigger; dropdown/list deferred)
+
+`ItemPickerTrigger/Trigger.styles.ts` (shared by the **isNew and legacy** pickers — single code path, so
+the deprecated legacy trigger changes too, agreed): field border default/hover/error/focus →
+`--ds-form-field-border-{default,hover,validated,focus}`; bg disabled/error/focus/default →
+`--ds-form-field-bg-{disabled,validated,focus,default}` (large default stays `transparent`); selected-large
+border/hover → `--ds-form-field-border-{default,hover}`; placeholder → `--ds-form-field-text-placeholder`;
+value → `--ds-form-field-text-value`; disabled IconWrapper opacity → `--ds-opacity-disabled`. Icons
+(`Trigger.tsx` + prefix svg): value/hover prefix + angle → `--ds-form-icon-color-default`; placeholder
+prefix grey-500 (no form-icon at that value) → `--ds-color-icon-base-subtle`; clear × →
+`--ds-color-icon-danger-default`; warning → `--ds-color-icon-warning-default`; placeholder-hover text
+(large) → `--ds-color-text-base-muted`. `theme` import removed from `Trigger.tsx`.
+
+**Value shifts (⚑, adopted by role — aligns the trigger to the standard DS field):** default border
+grey-400→grey-300; hover border grey-500→grey-400; value text grey-800→grey-700. All other mappings exact.
+**Deferred (kept on palette, 13 refs):** `ItemPickerDropdown` (legacy overlay), `ItemPickerList`
+list/search/footer rows, `ListSearchInput`, `ErrorMessage` — pending dropdown/list-item module tokens.

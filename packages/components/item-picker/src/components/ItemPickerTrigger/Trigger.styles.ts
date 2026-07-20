@@ -15,30 +15,30 @@ type TriggerWrapperProps = {
 
 const getDefaultStyles = (props: ThemeProps & TriggerWrapperProps) => {
   if (props.size === 'small') {
-    return `box-shadow: inset 0 0 0 1px ${props.theme.palette['grey-400']};`;
+    return `box-shadow: inset 0 0 0 1px var(--ds-form-field-border-default);`;
   }
-  return `border: 1px dashed ${props.theme.palette['grey-400']};`;
+  return `border: 1px dashed var(--ds-form-field-border-default);`;
 };
 
 const getHoverStyles = (props: ThemeProps & TriggerWrapperProps) => {
   if (props.size === 'small') {
-    return `box-shadow: inset 0 0 0 1px ${props.theme.palette['grey-500']};`;
+    return `box-shadow: inset 0 0 0 1px var(--ds-form-field-border-hover);`;
   }
-  return `border: 1px dashed ${props.theme.palette['grey-500']};`;
+  return `border: 1px dashed var(--ds-form-field-border-hover);`;
 };
 
 const getErrorStyles = (props: ThemeProps & TriggerWrapperProps) => {
   if (props.size === 'small') {
-    return `box-shadow: inset 0 0 0 1px ${props.theme.palette['red-600']};`;
+    return `box-shadow: inset 0 0 0 1px var(--ds-form-field-border-validated);`;
   }
-  return `border: 1px dashed ${props.theme.palette['red-600']};`;
+  return `border: 1px dashed var(--ds-form-field-border-validated);`;
 };
 
 const getFocusStyles = (props: ThemeProps & TriggerWrapperProps) => {
   if (props.size === 'small') {
-    return `box-shadow: inset 0 0 0 2px ${props.theme.palette['blue-600']};`;
+    return `box-shadow: inset 0 0 0 2px var(--ds-form-field-border-focus);`;
   }
-  return `border: 1px dashed ${props.theme.palette['blue-600']};`;
+  return `border: 1px dashed var(--ds-form-field-border-focus);`;
 };
 
 export const ClearIconWrapper = styled.div``;
@@ -70,23 +70,23 @@ export const Placeholder = styled.div<{ size: ItemPickerSize }>`
   align-items: center;
   justify-content: flex-start;
   flex: 1;
-  color: ${(props) => props.theme.palette['grey-500']};
+  color: var(--ds-form-field-text-placeholder);
   padding: 0 0 0 4px;
   ${Prefix} {
     svg {
-      fill: ${(props) => props.theme.palette['grey-500']};
-      color: ${(props) => props.theme.palette['grey-500']};
+      fill: var(--ds-color-icon-base-subtle);
+      color: var(--ds-color-icon-base-subtle);
     }
   }
   &:hover {
     color: ${(props) =>
       props.size === 'large'
-        ? props.theme.palette['grey-600']
-        : props.theme.palette['grey-500']};
+        ? 'var(--ds-color-text-base-muted)'
+        : 'var(--ds-form-field-text-placeholder)'};
     ${Prefix} {
       svg {
-        fill: ${(props) => props.theme.palette['grey-600']};
-        color: ${(props) => props.theme.palette['grey-600']};
+        fill: var(--ds-form-icon-color-default);
+        color: var(--ds-form-icon-color-default);
       }
     }
   }
@@ -98,14 +98,14 @@ export const Value = styled.div`
   align-items: center;
   justify-content: flex-start;
   flex: 1;
-  color: ${(props) => props.theme.palette['grey-800']};
+  color: var(--ds-form-field-text-value);
   max-width: 100%;
   overflow: hidden;
   padding: 0 0 0 4px;
   ${Prefix} {
     svg {
-      fill: ${(props) => props.theme.palette['grey-600']};
-      color: ${(props) => props.theme.palette['grey-600']};
+      fill: var(--ds-form-icon-color-default);
+      color: var(--ds-form-icon-color-default);
     }
   }
 `;
@@ -147,15 +147,15 @@ export const TriggerWrapper = styled.div<TriggerWrapperProps>`
   padding: ${(props) => (props.size === 'small' ? '0 8px' : '0 12px')};
   background-color: ${(props) => {
     if (props.disabled) {
-      return props.theme.palette['grey-100'];
+      return 'var(--ds-form-field-bg-disabled)';
     }
     if (props.error) {
-      return props.theme.palette['red-050'];
+      return 'var(--ds-form-field-bg-validated)';
     }
     if (props.size === 'large') {
       return 'transparent';
     }
-    return props.theme.palette.white;
+    return 'var(--ds-form-field-bg-default)';
   }};
 
   ${(props) => getDefaultStyles(props)}
@@ -186,7 +186,7 @@ export const TriggerWrapper = styled.div<TriggerWrapperProps>`
   }
 
   &:focus {
-    background-color: ${(props) => props.theme.palette['blue-050']};
+    background-color: var(--ds-form-field-bg-focus);
     ${(props) => getFocusStyles(props)};
   }
 
@@ -195,9 +195,9 @@ export const TriggerWrapper = styled.div<TriggerWrapperProps>`
       props.selected &&
       props.size === 'large' &&
       css`
-        border: 1px solid ${props.theme.palette['grey-300']};
+        border: 1px solid var(--ds-form-field-border-default);
         &:hover {
-          border: 1px solid ${props.theme.palette['grey-400']};
+          border: 1px solid var(--ds-form-field-border-hover);
         }
       `};
 
@@ -205,13 +205,13 @@ export const TriggerWrapper = styled.div<TriggerWrapperProps>`
       props.opened &&
       !props.error &&
       css`
-        background-color: ${props.theme.palette['blue-050']};
+        background-color: var(--ds-form-field-bg-focus);
         ${getFocusStyles(props)};
       `}
     ${(props) =>
       Boolean(props.error) &&
       css`
-        background-color: ${props.theme.palette['red-050']};
+        background-color: var(--ds-form-field-bg-validated);
         ${getErrorStyles(props)}
       `};
 
@@ -219,7 +219,7 @@ export const TriggerWrapper = styled.div<TriggerWrapperProps>`
       Boolean(props.disabled) &&
       css`
         ${IconWrapper} {
-          opacity: 0.4;
+          opacity: var(--ds-opacity-disabled);
         }
       `};
   }

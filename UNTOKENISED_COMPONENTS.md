@@ -99,7 +99,7 @@ generally stay on palette — not defects). `.less` = still ships antd Less (ext
 | input-number | 18 | | form control — reuse `--ds-form-field-*` (cf. `input`) | `[ ]` | | `[ ]` | |
 | insight | 4 | | widget | `[ ]` | | `[ ]` | |
 | item-filter | 2 | | composition | `[ ]` | | `[ ]` | |
-| item-picker | 42 | | picker overlay | `[ ]` | | `[ ]` | |
+| 🚧 item-picker | 42 | | picker overlay | `[x]` | trigger → `--ds-form-field-*` (2026-07-20, isNew); dropdown/list pending module tokens | `[ ]` | |
 | items-roll | 16 | | carousel/roll chrome | `[ ]` | | `[ ]` | |
 | layout | 6 | | layout wrapper | `[ ]` | | `[ ]` | |
 | list | 13 | Y | list container — reuse `list-item` tokens | `[ ]` | | `[ ]` | |

@@ -6,7 +6,6 @@ import React, {
 } from 'react';
 
 import Button from '@synerise/ds-button';
-import { theme } from '@synerise/ds-core';
 import Icon, {
   AngleDownS,
   Close3S,
@@ -71,7 +70,10 @@ const Trigger = forwardRef<HTMLDivElement, ItemPickerTriggerProps>(
               withClearConfirmation && event.stopPropagation()
             }
           >
-            <Icon component={<Close3S />} color={theme.palette['red-600']} />
+            <Icon
+              component={<Close3S />}
+              color="var(--ds-color-icon-danger-default)"
+            />
           </S.ClearIconWrapper>
         </Tooltip>
       );
@@ -87,7 +89,7 @@ const Trigger = forwardRef<HTMLDivElement, ItemPickerTriggerProps>(
               icon={
                 <Icon
                   component={<WarningFillM />}
-                  color={theme.palette['yellow-600']}
+                  color="var(--ds-color-icon-warning-default)"
                 />
               }
             >
@@ -120,7 +122,7 @@ const Trigger = forwardRef<HTMLDivElement, ItemPickerTriggerProps>(
             <Icon
               data-testid="angle-icon"
               component={<AngleDownS />}
-              color={theme.palette['grey-600']}
+              color="var(--ds-form-icon-color-default)"
             />
           </S.AngleIconWrapper>
         )
