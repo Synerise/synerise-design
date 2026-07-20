@@ -145,7 +145,8 @@ export const ColorPickerSelect = styled(Input)`
     width: 100px;
     /* The color swatch is supplied via the Input's innerPrefix slot. */
     input {
-      box-shadow: none;
+      /* Keep the ds-input focus/error rings (box-shadow) — the error state needs the
+         2px ring like every other field; don't null box-shadow here. */
       /* tabular figures so the colour value keeps a steady width as digits change */
       font-variant-numeric: tabular-nums;
     }
