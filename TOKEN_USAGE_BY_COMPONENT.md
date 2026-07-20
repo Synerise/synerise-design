@@ -41,11 +41,29 @@ surfaces, brand/neutral text, `opacity-muted`, etc.) — consistent with the gra
 - refaktor styli zeby sie pozbyc `icon-base-default` (close icon), usunac hover z `icon-brand-default`,
 - `text-base-disabled`, `text-base-subtle` -> beda dorobione modulowe
 
+**Remaining semantic tokens** (icons now inherit `currentColor` after dropping the close-icon
+`icon-base-default` and order-icon `text-base-subtle`/`icon-brand-default`):
+
+| Token | Line(s) | Element / role |
+|---|---|---|
+| `--ds-color-text-base-disabled` | 150, 155, 178 | `NumberWrapper` order-number text + the two hover-underline gradient stops (`NumberWrapper:hover`, `OrderWrapper:hover`) |
+| `--ds-color-text-base-subtle` | 162, 185, 191 | `NumberWrapper:hover` text, `OrderWrapper:hover` number text, `Wrapper` text |
+
 
 ### toast
 - **Palette:** none.
 - **Semantic (5):** `text-base-muted` ×4, `icon-base-muted`, `icon-brand-default`, `text-base-disabled`, **`--ds-shadows-shadow-2`** ⚑ (module `toast.shadow` pruned — see flag 1).
 - jak w section message
+
+**Remaining semantic tokens** (icons now inherit `currentColor` after dropping the action-icon
+`icon-base-muted` and order-icon `icon-brand-default`):
+
+| Token | Line(s) | Element / role |
+|---|---|---|
+| `--ds-shadows-shadow-2` | 205 | `Container` box-shadow (elevation) — ⚑ module `toast.shadow` pruned |
+| `--ds-color-text-base-muted` | 150, 210, 216, 219 | `Wrapper`; `OrderWrapper`/`ListWrapper`/`NumberWrapper:hover`; `OrderWrapper:hover` number gradient + text |
+| `--ds-color-text-base-disabled` | 107 | `NumberWrapper:hover` underline gradient stop |
+
 
 ### app-menu (sprawdzic czy udaloby sie to zbudowac za pomoca list itemów).
 - **Palette:** none.
