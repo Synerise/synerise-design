@@ -156,7 +156,7 @@ These components use `theme.palette` / hardcoded colors but do not yet have dedi
 | dropdown | 20 | No | 1 | 1 | |
 | editable-items-list | 1 | No | 0 | 0 | |
 | emoji-picker | 2 | No | 0 | 0 | |
-| empty-states | 1 | No | 0 | 0 | |
+| empty-states | 0 | No | 0 | 0 | :white_check_mark: tokenised — semantic (2026-07-20 pass) |
 | estimation | 2 | No | 0 | 0 | |
 | factors | 18 | No | 2 | 0 | |
 | field-set | 0 | No | 0 | 0 | :white_check_mark: tokenised — semantic (2026-07-20 pass) |
@@ -1092,3 +1092,8 @@ removed. Spec updated (`var()` string).
 
 `FieldSet.styles.ts`: `Title` text `grey-800` → `--ds-color-text-base-default` (exact, the only colour).
 `theme.palette` removed.
+
+### empty-states — :white_check_mark:
+
+`EmptyStates.styles.tsx`: `HeaderWrapper` text `grey-800` → `--ds-color-text-base-default` (exact, the only
+colour). `theme.palette` removed.

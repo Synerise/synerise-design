@@ -48,7 +48,7 @@ export const HeaderWrapper = styled.div<{
   line-height: 16px;
   margin-top: ${(props) =>
     props.hasIcon && props.size === EmptyStatesSize.SMALL ? '12px' : ''};
-  color: ${(props) => props.theme.palette['grey-800']};
+  color: var(--ds-color-text-base-default);
   font-size: ${(props) =>
     props.fontSize ? FontSize[props.fontSize] : FONT_SIZE_DEFAULT}px;
   font-weight: 500;
