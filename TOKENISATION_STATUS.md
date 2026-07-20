@@ -166,7 +166,7 @@ These components use `theme.palette` / hardcoded colors but do not yet have dedi
 | flag | 0 | No | 0 | 34 | No palette, heavy opacity |
 | footer | 0 | No | 0 | 0 | :white_check_mark: tokenised — semantic (2026-07-20 pass) |
 | form-field | 2 | No | 0 | 0 | |
-| format-picker | 8 | No | 0 | 0 | |
+| format-picker | 6 | No | 0 | 0 | :construction: currency select field → `--ds-form-*` (2026-07-20); panel/list-item deferred |
 | icon-picker | 8 | No | 0 | 0 | |
 | information-card | 3 | No | 2 | 2 | |
 | [input](#form-group-form--input--select--switch) | 49 | No | 14 | 2 | :construction: text → `--ds-form-field-*`/`--ds-form-icon-*` + semantic; field bg/border/hover/focus/disabled still palette in `Input.styles.tsx` (`.less` removed) |
@@ -1185,3 +1185,9 @@ value/placeholder/disabled/readOnly text → `--ds-form-field-text-{value,placeh
 ClearButton → `--ds-form-icon-color-{default,hover}`. Mostly exact (built to spec); ⚑ disabled bg
 grey-050→grey-100, clear hover grey-700→grey-400. **Deferred:** `AutocompleteDropdown.style.ts` NotFound
 (dropdown).
+
+### format-picker — :construction: currency select field (panel deferred)
+
+`FormatSettings.styles.ts`: `DropdownTrigger` border grey-300 → `--ds-form-field-border-default`;
+`DropdownValue` grey-700 → `--ds-form-field-text-value`. Both exact. **Deferred:** `FormatSettingsContainer`/
+`FormatFooter`/`DropdownWrapper` (panel + overlay) and `ListItem` rows (list-item).
