@@ -112,6 +112,54 @@ describe('Select (DS-native, single-select)', () => {
 
     expect(document.querySelector('.ds-select-search')).toBeTruthy();
   });
+
+  it('keeps the search input editable over the selected label (showSearch + value)', () => {
+    renderWithProvider(
+      <Select
+        showSearch
+        value="a"
+        placeholder="Pick"
+        options={[
+          { value: 'a', label: 'Apple' },
+          { value: 'b', label: 'Banana' },
+        ]}
+      />,
+    );
+
+    // The selected label and the (overlaid) search input coexist.
+    expect(document.querySelector('.ds-select-selection-item')?.textContent).toBe('Apple');
+    const input = document.querySelector('.ds-select-search') as HTMLInputElement;
+    expect(input).toBeTruthy();
+    expect(input.readOnly).toBe(false);
+
+    // Typing a query hides the label so only the query text remains.
+    fireEvent.change(input, { target: { value: 'ban' } });
+    expect(document.querySelector('.ds-select-selection-item')).toBeNull();
+  });
+
+  it('blurs the search input after selecting an option (single-select showSearch)', () => {
+    renderWithProvider(
+      <Select
+        showSearch
+        defaultOpen
+        placeholder="Pick"
+        options={[
+          { value: 'a', label: 'Apple' },
+          { value: 'b', label: 'Banana' },
+        ]}
+      />,
+    );
+
+    const input = document.querySelector('.ds-select-search') as HTMLInputElement;
+    input.focus();
+    expect(document.activeElement).toBe(input);
+
+    // Highlight an option and commit it — the input should lose focus.
+    fireEvent.keyDown(input, { key: 'ArrowDown' });
+    fireEvent.keyDown(input, { key: 'Enter' });
+
+    expect(document.activeElement).not.toBe(input);
+  });
 });
 
 describe('Select (keyboard + ARIA)', () => {

@@ -251,7 +251,7 @@ export const OptionItem: StyledListItem = styled(DSListItem)`
 `;
 
 /** In-selector search input (showSearch / multiple / tags). */
-export const SearchInputEl = styled.input`
+export const SearchInputEl = styled.input<{ $overlay?: boolean }>`
   flex: 1 1 30px;
   min-width: 30px;
   width: 100%;
@@ -270,6 +270,24 @@ export const SearchInputEl = styled.input`
   &:disabled {
     cursor: not-allowed;
   }
+
+  /* Single-select showSearch: overlay the input across the whole selector so
+     the selected label shows through underneath and a click anywhere focuses
+     the input (antd layered the search field over the selection item). The
+     label is hidden as soon as a query is typed. Padding mirrors the single
+     selector box (0 30px 0 12px) so caret/text align with the label. */
+  ${(props) =>
+    props.$overlay &&
+    css`
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      flex: none;
+      box-sizing: border-box;
+      padding: 0 30px 0 12px;
+    `}
 `;
 
 /** Wraps chips + the search input for multiple/tags mode. */

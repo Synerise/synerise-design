@@ -61,9 +61,14 @@ export const SelectorContent = ({
   onSearchChange,
   onSearchKeyDown,
 }: SelectorContentProps): ReactElement => {
+  // Single-select showSearch layers the input over the selected label; multiple
+  // and tags keep it inline (flex child) after the chips.
+  const isSingleSearch = !!showSearch && !isMultiple;
+
   const searchInput = (
     <S.SearchInputEl
       ref={inputRef}
+      $overlay={isSingleSearch}
       className="ds-select-search"
       value={effectiveQuery}
       onChange={onSearchChange}

@@ -301,6 +301,10 @@ const SelectInner = forwardRef<HTMLDivElement, SelectProps>((props, ref) => {
       onSelect?.(option.value, option);
       clearQuery();
       setOpen(false);
+      // Single-select: once a value is picked the search box has served its
+      // purpose — blur it so the caret leaves and the selector returns to its
+      // resting state showing the label (multiple/tags keep focus above).
+      inputRef.current?.blur();
     }
   };
 
