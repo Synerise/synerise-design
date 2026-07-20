@@ -7,11 +7,7 @@ import React, {
 } from 'react';
 
 import { legacyParse } from '@date-fns/upgrade/v2';
-import {
-  getDefaultDataTimeOptions,
-  useDataFormat,
-  useTheme,
-} from '@synerise/ds-core';
+import { getDefaultDataTimeOptions, useDataFormat } from '@synerise/ds-core';
 import Icon, { CalendarM, Close3S } from '@synerise/ds-icon';
 import Tooltip from '@synerise/ds-tooltip';
 
@@ -42,7 +38,6 @@ const PickerInput = forwardRef<HTMLDivElement, PickerInputProps>(
     ref,
   ) => {
     const { formatValue } = useDataFormat();
-    const theme = useTheme();
 
     const [hovered, setHovered] = useState(false);
 
@@ -102,7 +97,7 @@ const PickerInput = forwardRef<HTMLDivElement, PickerInputProps>(
           </S.ClearIconWrapper>
         ) : (
           <S.DefaultIconWrapper>
-            <Icon component={<CalendarM />} color={theme.palette['grey-400']} />
+            <Icon component={<CalendarM />} />
           </S.DefaultIconWrapper>
         ),
       [
@@ -111,7 +106,6 @@ const PickerInput = forwardRef<HTMLDivElement, PickerInputProps>(
         allowClear,
         readOnly,
         value,
-        theme,
         clearTooltip,
         handleIconClick,
       ],
