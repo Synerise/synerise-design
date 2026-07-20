@@ -94,13 +94,17 @@ export const Dot = styled.li<{ $active: boolean }>`
     border: 0;
     border-radius: 2px;
     cursor: pointer;
-    background: ${({ $active, theme }) =>
-      $active ? theme.palette['blue-600'] : theme.palette['grey-300']};
+    background: ${({ $active }) =>
+      $active
+        ? 'var(--ds-color-background-brand-solid)'
+        : 'var(--ds-color-border-base-strong)'};
     transition: background 0.2s ease;
   }
 
   &:hover button {
-    background: ${({ $active, theme }) =>
-      $active ? theme.palette['blue-600'] : theme.palette['grey-400']};
+    background: ${({ $active }) =>
+      $active
+        ? 'var(--ds-color-background-brand-solid)'
+        : 'var(--ds-color-background-base-strong)'};
   }
 `;

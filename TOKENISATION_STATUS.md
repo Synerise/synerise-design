@@ -137,6 +137,7 @@ These components use `theme.palette` / hardcoded colors but do not yet have dedi
 | block | 6 | No | 0 | 0 | |
 | button-group | 6 | No | 4 | 0 | |
 | card-tabs | 68 | No | 2 | 4 | High palette count |
+| carousel | 0 | No | 0 | 0 | :white_check_mark: tokenised — semantic (2026-07-20 pass); new DS component, not in original audit |
 | cascader | 34 | No | 5 | 10 | |
 | [checkbox](#checkbox--radio) | 9 | No | 4 | 1 | :construction: TS focus/indeterminate/hover → `--ds-form-checkbox-*`; per-state colours now in `Checkbox.styles.ts` on palette (`.less` removed) + check icons (data-URI SVG) |
 | code-area | 18 | No | 1 | 1 | |
@@ -1103,3 +1104,10 @@ colour). `theme.palette` removed.
 `CopyIcon.styles.tsx` (wrapper `color`, inherited by the icon via `currentColor`): default `grey-600` →
 `--ds-color-icon-base-default`; hover `blue-600` → `--ds-color-icon-brand-default`. Both exact.
 `theme.palette` removed.
+
+### carousel — :white_check_mark:
+
+`Carousel.styles.ts` dot indicators (`Dot` `button`): active `blue-600` →
+`--ds-color-background-brand-solid` (exact); inactive `grey-300` → `--ds-color-border-base-strong` ⚑
+(value-exact `#dbe0e3`, category mismatch — no background token at grey-300, see flag 2); inactive hover
+`grey-400` → `--ds-color-background-base-strong` (exact). `theme.palette` removed.
