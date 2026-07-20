@@ -69,9 +69,6 @@ surfaces, brand/neutral text, `opacity-muted`, etc.) — consistent with the gra
 ### app-menu (sprawdzic czy udaloby sie to zbudowac za pomoca list itemów).
 - **Palette:** none.
 - **Semantic (4):** `border-base-subtle` ×2, `text-brand-default`, `text-neutral-default`, **`--ds-shadows-shadow-1`** ⚑ (module `app-menu.container.shadow` pruned).
-- `border-base-subtle` do stokenizowania
-- `text-brand-default`, `text-neutral-default` -> list item
-- --ds-shadows-shadow-1 zostaje
 
 | Token | Line(s) | Element / role |
 |---|---|---|
@@ -84,7 +81,6 @@ surfaces, brand/neutral text, `opacity-muted`, etc.) — consistent with the gra
 ### avatar
 - **Palette (1)** — **dyn** (computed `${color}-${hue}`): `ObjectAvatar/ObjectAvatar.tsx:47`.
 - **Semantic (3):** `background-base-default`, `icon-base-subtle` ×2, `text-onsolid-default`. ✓ appropriate.
-- background-base-default (bialy border badge) -> modulowy z badge (border powinien byc w badge a nie tylko w avatar)
 
 | Token | Line(s) | Element / role |
 |---|---|---|
@@ -146,16 +142,12 @@ surfaces, brand/neutral text, `opacity-muted`, etc.) — consistent with the gra
 ### card-select
 - **Palette:** none.
 - **Semantic (3):** `background-base-subtle`, `border-danger-default`, `icon-base-muted` (documented fallbacks — no module token for these). ✓
-- do stokenizowania:  background-base-subtle`, `border-danger-default`
---ds-color-icon-base-muted zostaje sem
 
 | Token | Line(s) | Element / role |
 |---|---|---|
 | `--ds-color-border-danger-default` | `CardSelect.styles.ts:159` | error card 2px outline box-shadow |
 | `--ds-color-background-base-subtle` | `CardSelect.styles.ts:285` | disabled RadioShape bg |
 | `--ds-color-icon-base-muted` | `CardSelect.tsx:128` | info tooltip (`InfoFillS`) icon |
-
-==========================================
 
 ### description
 - **Palette:** none.
