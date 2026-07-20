@@ -7,7 +7,11 @@ import Card, { CardBadge } from '@synerise/ds-card';
 import Icon, { CheckS, DuplicateS, UserAddM } from '@synerise/ds-icon';
 import Modal from '@synerise/ds-modal';
 import SectionMessage, {
+  IconOrderWrapper,
+  NumberWrapper,
+  OrderWrapper,
   SectionMessageProps,
+  Wrapper,
 } from '@synerise/ds-section-message';
 import Tooltip from '@synerise/ds-tooltip';
 import UnorderedList from '@synerise/ds-unordered-list';
@@ -23,14 +27,7 @@ import {
   gappedColumnDecorator,
 } from '../../utils';
 import { TYPE_MAPPING } from './SectionMessage.data';
-import {
-  ButtonsWrapper,
-  FirstButtonWrapper,
-  IconOrderWrapper,
-  NumberWrapper,
-  OrderWrapper,
-  Wrapper,
-} from './stories.styles';
+import { ButtonsWrapper, FirstButtonWrapper } from './stories.styles';
 
 type StoryProps = SectionMessageProps & {
   showTagInHeader: boolean;
