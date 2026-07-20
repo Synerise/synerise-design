@@ -43,7 +43,6 @@ export const IconWrapper = styled.div<{
 export const IconCloseWrapper = styled.div`
   margin: 3px 5px 2px;
   cursor: pointer;
-  color: var(--ds-color-icon-base-default);
 `;
 export const ButtonWrapper = styled.div`
   padding: 6px 8px 0 8px;
@@ -166,11 +165,6 @@ export const NumberWrapper = styled.div`
 export const IconOrderWrapper = styled.div`
   display: none;
   margin: -4px 0;
-  color: var(--ds-color-text-base-subtle);
-  &:hover {
-    color: var(--ds-color-icon-brand-default);
-    cursor: pointer;
-  }
 `;
 export const OrderWrapper = styled.div`
   display: flex;
