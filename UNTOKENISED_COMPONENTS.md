@@ -10,6 +10,12 @@
 > `__specs__`/`.spec.`/`.test.`/`.figma.`/`.stories.`/`dist`/`lib`) for `theme.palette` refs and applied
 > `var(--ds-*)` tokens. A package counts as **tokenised** once it applies any `--ds-*` var; the 29
 > tokenised components are excluded here (see the status doc).
+>
+> **Update — two tokenisation passes landed (2026-07-20).** See
+> [`TOKENISATION_STATUS.md`](./TOKENISATION_STATUS.md) → *Semantic-layer tokenisation pass* and
+> *Form-module partial pass*. Rows tokenised in those passes are flagged in the **Component** column:
+> **✅** fully tokenised · **🚧** partially tokenised (field/chrome parts done; dropdown / list-item /
+> other parts deferred pending those module tokens).
 
 ## How to use this
 
@@ -35,11 +41,13 @@ a request to UX/Token Studio. Never use primitives (`--ds-color-grey-700`) direc
 
 | Bucket | Count |
 |--------|------:|
-| Un-tokenised UI components (decision needed) | **76** |
+| Un-tokenised UI components (in the table below) | **76** |
+| — tokenised in the 2026-07-20 passes (marked ✅ / 🚧 below) | 16 |
+| — still pending a decision / work | 60 |
 | Deprecated — excluded (no tokens) | 3 |
 | Non-UI / infra / icon sets — out of scope | 4 |
 | No colour code — nothing to tokenise | 9 |
-| Already tokenised (see status doc) | 29 |
+| Already tokenised before these passes (see status doc) | 29 |
 
 `palette` = `theme.palette` refs in `src` (dynamic `customColor`/`color`-prop overrides are included and
 generally stay on palette — not defects). `.less` = still ships antd Less (extra de-antd work first).
@@ -50,25 +58,25 @@ generally stay on palette — not defects). `.less` = still ships antd Less (ext
 
 | Component | palette | .less | Kind / note | Module | Module notes | Semantic | Semantic notes |
 |-----------|--------:|:-----:|-------------|:------:|--------------|:--------:|----------------|
-| action-area | 4 | | layout wrapper | `[ ]` | | `[x]` | |
-| autocomplete | 18 | | input + suggestion overlay — reuse `--ds-form-field-*` + dropdown | `[x]` | form | `[ ]` | |
+| ✅ action-area | 4 | | layout wrapper | `[ ]` | | `[x]` | |
+| 🚧 autocomplete | 18 | | input + suggestion overlay — reuse `--ds-form-field-*` + dropdown | `[x]` | form | `[ ]` | |
 | avatar-group | 8 | | composition of `avatar` | `[x]` | avatar | `[ ]` | |
 | badge | 8 | | small count/status badge | `[x]` | badge | `[ ]` | |
-| banner | 10 | | promo banner surface | `[ ]` | | `[x]` | |
+| ✅ banner | 10 | | promo banner surface | `[ ]` | | `[x]` | |
 | button-group | 6 | | composition of `button` | `[x]` | button | `[ ]` | |
 | card-tabs | 82 | | tabbed card surface, many states | `[x]` | | `[ ]` | |
-| carousel | 4 | | dots/arrows chrome | `[ ]` | | `[x]` | |
+| ✅ carousel | 4 | | dots/arrows chrome | `[ ]` | | `[x]` | |
 | cascader | 36 | | cascading dropdown overlay | `[x]` | dropdown / list-item | `[ ]` | |
-| code-area | 18 | | code editor surface (code family) | `[x]` | form | `[ ]` | |
-| code-snippet | 20 | Y | code block surface (code family) | `[ ]` | | `[x]` | |
-| collector | 12 | | composition | `[x]` | form | `[ ]` | |
-| color-picker | 12 | | picker (swatches are dynamic) | `[x]` | form + dropdown | `[ ]` | |
-| column-manager | 14 | | composition | `[ ]` | | `[x]` | |
+| 🚧 code-area | 18 | | code editor surface (code family) | `[x]` | form | `[ ]` | |
+| 🚧 code-snippet | 20 | Y | code block surface (code family) | `[ ]` | | `[x]` | |
+| 🚧 collector | 12 | | composition | `[x]` | form | `[ ]` | |
+| 🚧 color-picker | 12 | | picker (swatches are dynamic) | `[x]` | form + dropdown | `[ ]` | |
+| ✅ column-manager | 14 | | composition | `[ ]` | | `[x]` | |
 | completed-within | 5 | | widget | `[x]` | button, dropdown, form | `[ ]` | |
 | condition | 14 | | composition | `[ ]` | | `[x]` | |
 | confirmation | 1 | | dialog composition | `[x]` | modal-family | `[x]` | types |
-| context-selector | 7 | | composition | `[x]` | dziedziczone, dropdown, button, tabs, list-item | `[ ]` | |
-| copy-icon | 2 | | icon button | `[ ]` | | `[x]` | |
+| 🚧 context-selector | 7 | | composition | `[x]` | dziedziczone, dropdown, button, tabs, list-item | `[ ]` | |
+| ✅ copy-icon | 2 | | icon button | `[ ]` | | `[x]` | |
 | cruds | 4 | | composition | `[x]` | default i danger type | `[ ]` | |
 | date-picker | 56 | | calendar overlay, many states | `[x]` | calendar drp + dp | `[ ]` | |
 | date-range-picker | 42 | | calendar overlay | `[x]` | calendar drp + dp | `[ ]` | |
@@ -76,15 +84,15 @@ generally stay on palette — not defects). `.less` = still ships antd Less (ext
 | dropdown | 19 | | overlay menu surface | `[x]` | dropdown + list-item | `[ ]` | |
 | editable-items-list | 1 | | composition | `[ ]` | | `[ ]` | do usuniecia kolor na sztywno |
 | emoji-picker | 2 | | picker | `[ ]` | list-item header / icon color raczej do usuniecia z kodu | `[ ]` | |
-| empty-states | 1 | | illustration + text | `[ ]` | | `[x]` | |
+| ✅ empty-states | 1 | | illustration + text | `[ ]` | | `[x]` | |
 | estimation | 2 | | widget | `[x]` | progress-bar; kropki: uzyc badge custom color | `[ ]` | |
-| factors | 18 | | composition | `[x]` | form, dropdown, itp + pousuwac ile sie da | `[ ]` | |
-| field-set | 1 | | form layout wrapper | `[ ]` | | `[x]` | |
+| 🚧 factors | 18 | | composition | `[x]` | form, dropdown, itp + pousuwac ile sie da | `[ ]` | |
+| ✅ field-set | 1 | | form layout wrapper | `[ ]` | | `[x]` | |
 | file-uploader | 152 | | upload dropzone surface, many states (highest palette) | `[x]` | | `[ ]` | |
 | filter | 3 | | composition | `[ ]` | | `[ ]` | drag and drop / sortable (wersja ciemna) - znalezc w figmie |
-| footer | 1 | | layout | `[ ]` | | `[x]` | |
+| ✅ footer | 1 | | layout | `[ ]` | | `[x]` | |
 | form-field | 2 | | form wrapper — reuse `form` tokens | `[x]` | counter w form | `[x]` | (i) z semantyki |
-| format-picker | 8 | | picker | `[ ]` | form, dropdown, button etc, trigger zamienic na select (?) | `[ ]` | |
+| 🚧 format-picker | 8 | | picker | `[ ]` | form, dropdown, button etc, trigger zamienic na select (?) | `[ ]` | |
 | icon-picker | 8 | | picker | `[ ]` | | `[ ]` | |
 | image | 12 | | media wrapper/fallback | `[ ]` | | `[ ]` | |
 | information-card | 3 | | card composition | `[ ]` | | `[ ]` | |
