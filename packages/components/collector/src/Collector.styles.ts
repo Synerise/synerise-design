@@ -178,7 +178,7 @@ export const Placeholder = styled.div`
   display: flex;
   align-items: center;
   gap: 4px;
-  color: ${(props) => props.theme.palette['grey-500']};
+  color: var(--ds-form-field-text-placeholder);
 `;
 
 export const DropdownAddButton: StyledButton = styled(Button)`

@@ -142,7 +142,7 @@ These components use `theme.palette` / hardcoded colors but do not yet have dedi
 | [checkbox](#checkbox--radio) | 9 | No | 4 | 1 | :construction: TS focus/indeterminate/hover → `--ds-form-checkbox-*`; per-state colours now in `Checkbox.styles.ts` on palette (`.less` removed) + check icons (data-URI SVG) |
 | code-area | 18 | No | 1 | 1 | |
 | code-snippet | 14 | No¹ | 0 | 2 | :construction: chrome tokenised (2026-07-20); syntax theme + inline-code kept on palette (⚑ no code-syntax tokens). ¹`.less` = font-face only |
-| collector | 12 | No | 1 | 2 | |
+| collector | 11 | No | 1 | 2 | :construction: placeholder → `--ds-form-*` (2026-07-20); chips/dropdown deferred |
 | color-picker | 6 | No | 2 | 0 | :construction: field affix → `--ds-form-*` (2026-07-20); picker/swatches/dynamic deferred |
 | column-manager | 0 | No | 1 | 5 | :white_check_mark: tokenised — semantic (2026-07-20 pass) |
 | completed-within | 5 | No | 1 | 3 | |
@@ -1205,3 +1205,10 @@ swatch grid/creator (dropdown/overlay); all `ColorPicker.tsx` colour-value props
 as `var()` string to the `Icon` `color` prop; removed the now-unused `theme` import); `ContextSelector.styles.ts`
 `ErrorWrapper` red-600 → `--ds-form-error-text-color`. Both exact. **Deferred:** `ItemsList`/`Title`
 (dropdown), `SearchResult`/`Highlight`/checkmark (list-item), trigger `triggerColor` (dynamic).
+
+### collector — :construction: placeholder (chips/dropdown deferred)
+
+`Collector.styles.ts` `Placeholder` grey-500 → `--ds-form-field-text-placeholder` (exact). **Deferred:**
+value chips (grey-200 — chips use semantic, no form chip token), error chips (red-600), scroll-fade
+gradients (decorative), `DropdownContent`/`NavigationWrapper` (dropdown + footer). Elements/ subfolders
+delegate to ds-input/ds-button.
