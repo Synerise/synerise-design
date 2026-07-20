@@ -84,11 +84,17 @@ The default `ThemePropsVars` object. Passed automatically via `DSProvider`; also
 ```ts
 theme.palette['blue-600'] // '#0064D6'
 theme.variables['--ds-color-..'] // CSS variable value
+theme.tokens['--ds-color-text-base-default'] // '#384350' — fully-resolved design token
 theme.space // [0, 8, 12, 16, 24, 32, 48, 64]
 theme.breakpoints // ['768px', '960px', '1280px']
 theme.colorsOrder // array of 21 colour hex values in display order
 theme.variable('--ds-name') // looks up variables by CSS var name
 ```
+
+`theme.tokens` is the fully-resolved design-token map from `@synerise/ds-tokens` (keyed by full CSS var
+name → concrete value). Use it — via `useTheme().tokens[...]` — for non-CSS consumers (canvas, charting,
+Monaco theming) that can't resolve `var()`. It mirrors the tokens injected by `GlobalTokenStyles`
+(currently the light theme). For ordinary styling still prefer passing `var(--ds-…)` strings.
 
 ### `useTheme`
 

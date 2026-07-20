@@ -12,4 +12,11 @@ describe('ThemeProvider', () => {
     expect(Object.keys(theme.palette).length).toBeGreaterThan(0);
     expect(Object.keys(theme.variables).length).toBeGreaterThan(0);
   });
+
+  it('should expose the resolved design-token map keyed by CSS var name', () => {
+    expect(theme).toHaveProperty('tokens');
+    expect(Object.keys(theme.tokens).length).toBeGreaterThan(0);
+    // Fully-resolved value, not a var() reference (matches the injected light theme).
+    expect(theme.tokens['--ds-color-text-base-default']).toBe('#384350');
+  });
 });

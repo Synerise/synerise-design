@@ -3,12 +3,18 @@ import {
   useTheme as originalUseTheme,
 } from 'styled-components';
 
+import { tokens } from '@synerise/ds-tokens';
+
 import { breakpoints } from './breakpoints';
 import vars from './variables';
 
 export type ThemePropsVars = {
   variables: { [key: string]: string };
   palette: { [key: string]: string };
+  // Fully-resolved design-token map keyed by CSS var name, e.g.
+  // theme.tokens['--ds-color-text-base-default'] → '#384350'. Matches the tokens
+  // injected by GlobalTokenStyles (currently the light theme).
+  tokens: { [key: string]: string };
   variable: (name: string) => string | null;
   space: number[];
   colorsOrder: string[];
@@ -56,6 +62,7 @@ const colorsOrder = defaultColorsOrder.map((color) => vars.colors[color]);
 export const theme: ThemePropsVars = {
   variables: vars.variables,
   palette: vars.colors,
+  tokens,
   breakpoints: getBreakpoints(),
   space: [0, 8, 12, 16, 24, 32, 48, 64],
   colorsOrder,

@@ -16,8 +16,14 @@ import {
   TOASTER_DEFAULTS,
   theme,
 } from '@synerise/ds-core';
-import { cssText as darkCssText } from '@synerise/ds-tokens/dark';
-import { cssText as lightCssText } from '@synerise/ds-tokens/light';
+import {
+  cssText as darkCssText,
+  tokens as darkTokens,
+} from '@synerise/ds-tokens/dark';
+import {
+  cssText as lightCssText,
+  tokens as lightTokens,
+} from '@synerise/ds-tokens/light';
 import { TrayProvider } from '@synerise/ds-tray';
 
 configure({ asyncUtilTimeout: 3000 });
@@ -75,6 +81,7 @@ const preview: Preview = {
     (Story, storyContext) => {
       const selectedTheme = storyContext.globals.dsTheme || 'light';
       const themeCss = selectedTheme === 'dark' ? darkCssText : lightCssText;
+      const themeTokens = selectedTheme === 'dark' ? darkTokens : lightTokens;
 
       // Inject theme CSS vars into the preview iframe
       React.useEffect(() => {
@@ -101,6 +108,9 @@ const preview: Preview = {
         locale: storyContext.globals.locale,
         timeZone: storyContext.globals.timeZone,
         toasterProps: TOASTER_DEFAULTS,
+        // Feed the toolbar-selected theme's resolved token map into the provider so
+        // useTheme().tokens tracks the Theme toggle, matching the injected CSS above.
+        theme: { ...theme, tokens: themeTokens },
       };
       return (
         <DSProvider {...DSProviderProps}>
