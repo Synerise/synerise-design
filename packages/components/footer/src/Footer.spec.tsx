@@ -11,7 +11,7 @@ describe('Footer', () => {
     renderWithProvider(<Footer />);
     expect(screen.getByRole('contentinfo')).toHaveStyle(`
       padding: 16px 0;
-      border-top: 1px solid #e9edee;
+      border-top: 1px solid var(--ds-color-border-base-default);
     `);
   });
 

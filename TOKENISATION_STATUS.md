@@ -163,7 +163,7 @@ These components use `theme.palette` / hardcoded colors but do not yet have dedi
 | file-uploader | 152 | No | 0 | 7 | Highest palette count |
 | filter | 3 | No | 0 | 1 | |
 | flag | 0 | No | 0 | 34 | No palette, heavy opacity |
-| footer | 1 | No | 0 | 0 | |
+| footer | 0 | No | 0 | 0 | :white_check_mark: tokenised — semantic (2026-07-20 pass) |
 | form-field | 2 | No | 0 | 0 | |
 | format-picker | 8 | No | 0 | 0 | |
 | icon-picker | 8 | No | 0 | 0 | |
@@ -1082,3 +1082,8 @@ diff is called out. Each component is its own commit.
 - error text `red-600` → `--ds-color-text-danger-default`
 
 All exact — no visual diff. Spec updated to assert the `var()` string (jsdom can't resolve `var()`).
+
+### footer — :white_check_mark:
+
+`Footer.styles.ts`: top border `grey-200` → `--ds-color-border-base-default` (exact). `theme.palette`
+removed. Spec updated (`var()` string).
