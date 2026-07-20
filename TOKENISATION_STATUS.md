@@ -128,7 +128,7 @@ These components use `theme.palette` / hardcoded colors but do not yet have dedi
 
 | Package | palette refs | Less? | shadow refs | opacity refs | Notes |
 |---------|-------------|-------|-------------|--------------|-------|
-| action-area | 4 | No | 0 | 0 | |
+| action-area | 0 | No | 0 | 0 | :white_check_mark: tokenised — semantic (2026-07-20 pass) |
 | alert | 44 | Yes (2) | 9 | 11 | ⛔ **deprecated** — will not be tokenised |
 | autocomplete | 10 | No | 3 | 0 | `.less` removed (deantd) |
 | avatar-group | 8 | No | 2 | 2 | |
@@ -1052,3 +1052,33 @@ Error text → `--ds-form-switch-text-error` (exact); description text → `--ds
 
 One value: the "Add row" action icon → `--ds-color-icon-brand-default` (semantic; the form module icon
 tokens are grey, wrong intent for a brand action icon — matches the ghost-primary button it sits in).
+
+---
+
+## Semantic-layer tokenisation pass (2026-07-20)
+
+A second pass over components the team decided to tokenise **directly against the semantic layer** (no
+module namespace — see [`UNTOKENISED_COMPONENTS.md`](./UNTOKENISED_COMPONENTS.md)). All mappings are
+**exact-value** (verified against `packages/tokens/dist/css/light.css`) → **zero visual change** unless a
+diff is called out. Each component is its own commit.
+
+### ⚑ Flags for the UX / token team (this pass)
+
+1. **No code-syntax tokens** — `code-snippet`'s syntax highlighting (12 hues in `Highlight.styles.ts`) and
+   the inline-code accent (`#e31a5d`, *not even in the DS palette*, + `pink-100`) have no semantic
+   equivalent; kept on `theme.palette`. Needs a dedicated **code-syntax** token namespace upstream.
+2. **No background token at grey-300** — `banner`/`carousel` inactive carousel dots map to
+   `--ds-color-border-base-strong` (value-exact `#dbe0e3`, category mismatch: it's a `background`). Same
+   gap flagged earlier for inactive icon greys.
+3. **`banner` status-Tag default `yellow-600`** — caller-overridable (`titleStatus.color`), kept dynamic
+   on palette; no exact semantic (`background-warning-solid` = yellow-500).
+
+### action-area — :white_check_mark:
+
+`ActionArea.styles.ts` fully tokenised (`theme.palette` removed):
+- error bg `red-050` → `--ds-color-background-danger-subtle`
+- dashed border `grey-300` → `--ds-color-border-base-strong`
+- error border `red-600` → `--ds-color-border-danger-default`
+- error text `red-600` → `--ds-color-text-danger-default`
+
+All exact — no visual diff. Spec updated to assert the `var()` string (jsdom can't resolve `var()`).

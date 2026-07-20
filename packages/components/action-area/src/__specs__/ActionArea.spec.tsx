@@ -68,7 +68,9 @@ describe('ActionArea', () => {
       <ActionArea description={DESCRIPTION} label={LABEL} action={action} actionLabel={ACTION_LABEL} isError errorText='Field required' />
     );
     
-    expect(screen.getByTestId('action-area-content')).toHaveStyle({borderColor:'#f52922'});
+    expect(screen.getByTestId('action-area-content')).toHaveStyle({
+      borderColor: 'var(--ds-color-border-danger-default)',
+    });
     expect(screen.getByText('Field required')).toBeInTheDocument();
   });
 });
