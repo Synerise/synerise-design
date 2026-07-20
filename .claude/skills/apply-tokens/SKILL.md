@@ -101,6 +101,17 @@ A module-layer component may have its own `opacity` token (e.g. `buttons.disable
 **3e. Less files.** List any `.less` files and note they are **deferred** (antd theming decision pending) —
 report, do not migrate.
 
+**3f. Static `theme` imports.** Flag every `import { theme } from '@synerise/ds-core'` (the **default/static**
+theme object) used in `.ts`/`.tsx` for `theme.palette[...]` lookups — typically inline `<Icon color={theme.palette[...]}>`
+props. This is distinct from styled-components' `props.theme.palette[...]`, which is already provider-aware and
+must NOT be flagged. The static object ignores `ThemeProvider` overrides, so it should never remain:
+  - When the lookup is being tokenised to a `var(--ds-...)` anyway, the static import usually becomes unused —
+    **remove it** (prefer this; the icon/element takes the token directly, no theme access needed).
+  - Where a `theme.palette` usage must **stay on palette** (no matching token / dynamic value), convert it to the
+    **`useTheme()` hook** instead of the static import.
+  Either way, no file should be left importing the static `theme` for a palette lookup. Record each occurrence
+  (file:line) and its resolution (removed vs `useTheme`).
+
 ### Step 4 — Build the mapping (module-where-defined, else semantic)
 
 For each value from Step 3, pick its token following the granularity rule:
