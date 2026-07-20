@@ -170,10 +170,7 @@ const RangePickerInput = ({
               </Tooltip>
             ) : (
               <S.DefaultIconWrapper>
-                <Icon
-                  component={<CalendarM />}
-                  color={theme.palette['grey-600']}
-                />
+                <Icon component={<CalendarM />} />
               </S.DefaultIconWrapper>
             )}
           </S.RangeInputWrapper>
