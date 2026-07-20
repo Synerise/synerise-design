@@ -56,7 +56,9 @@ export const Group = styled.div<{ size?: Size }>`
 `;
 
 export const MoreInfo = styled(Avatar)<{ onClick: () => void }>`
-  && {
+  /* &&& outspecs ds-avatar's own \`&& \${AvatarString} { color: … !important }\`
+     rule (0,3,0) so the +N counter keeps its grey text instead of white-on-white. */
+  &&& {
     margin-left: 8px;
     background: ${({ theme }) => theme.palette.white};
     border: 1px solid ${({ theme }) => theme.palette['grey-300']};
