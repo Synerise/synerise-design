@@ -1,6 +1,5 @@
-import styled, { type Keyframes, css, keyframes } from 'styled-components';
+import styled, { css } from 'styled-components';
 
-import { type ThemeProps } from '@synerise/ds-core';
 import { type LiteralStringUnion } from '@synerise/ds-utils';
 
 // A "button unit" inside .ant-btn-group is either a bare button or a span that wraps a
@@ -23,18 +22,6 @@ const getButtonsPosition = (position: string) => {
       return '';
   }
 };
-
-export const focusAnimation = ({ theme }: ThemeProps): Keyframes => keyframes`
-  0% {
-      box-shadow: inset 0 0 0 1px inherit;
-  }
-  50% {
-     box-shadow: inset 0 0 0 1px ${theme.palette['blue-600']};
-  }
-  100% {
-     box-shadow: inset 0 0 0 1px inherit;
-  }
-`;
 
 export const Container = styled.div<{
   options?: boolean;
