@@ -29,7 +29,8 @@ const getHoverStyles = (props: ThemeProps & TriggerWrapperProps) => {
 
 const getErrorStyles = (props: ThemeProps & TriggerWrapperProps) => {
   if (props.size === 'small') {
-    return `box-shadow: inset 0 0 0 1px var(--ds-form-field-border-validated);`;
+    // 2px ring to match the standard DS field error border (and getFocusStyles).
+    return `box-shadow: inset 0 0 0 2px var(--ds-form-field-border-validated);`;
   }
   return `border: 1px dashed var(--ds-form-field-border-validated);`;
 };
