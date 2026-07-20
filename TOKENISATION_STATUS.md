@@ -140,7 +140,7 @@ These components use `theme.palette` / hardcoded colors but do not yet have dedi
 | carousel | 0 | No | 0 | 0 | :white_check_mark: tokenised — semantic (2026-07-20 pass); new DS component, not in original audit |
 | cascader | 34 | No | 5 | 10 | |
 | [checkbox](#checkbox--radio) | 9 | No | 4 | 1 | :construction: TS focus/indeterminate/hover → `--ds-form-checkbox-*`; per-state colours now in `Checkbox.styles.ts` on palette (`.less` removed) + check icons (data-URI SVG) |
-| code-area | 18 | No | 1 | 1 | |
+| code-area | 6 | No | 1 | 1 | :construction: field surface + error text → `--ds-form-*` (2026-07-20); Monaco constants (CSS-var constraint) + fullscreen deferred |
 | code-snippet | 14 | No¹ | 0 | 2 | :construction: chrome tokenised (2026-07-20); syntax theme + inline-code kept on palette (⚑ no code-syntax tokens). ¹`.less` = font-face only |
 | collector | 11 | No | 1 | 2 | :construction: placeholder → `--ds-form-*` (2026-07-20); chips/dropdown deferred |
 | color-picker | 6 | No | 2 | 0 | :construction: field affix → `--ds-form-*` (2026-07-20); picker/swatches/dynamic deferred |
@@ -1222,3 +1222,13 @@ Mostly a composition delegating to ds-input/ds-date-picker. Field action/search 
 — no grey form-icon-hover match; semantic brand-hover later), red clear icons (`RelativeDate*` — danger,
 no form token), type-switcher button focus ring, transparent array textarea, dropdown/list-item/dynamic/
 danger-delete/count-pill.
+
+### code-area — :construction: field surface + error text (Monaco/fullscreen deferred)
+
+`CodeArea.styles.ts` `EditorWrapper` (Monaco field container) + `BottomBar` (in-field footer): border
+default grey-200 → `--ds-form-field-border-default` (⚑ grey-300, darker); error border/ring red-600 →
+`--ds-form-field-border-validated`; error bg red-050 → `--ds-form-field-bg-validated`; footer bg white →
+`--ds-form-field-bg-default`; readOnly bg grey-050 → `--ds-form-field-bg-disabled` (⚑ grey-100, darker);
+`ErrorText` red-600 → `--ds-form-error-text-color`. **Kept on palette:** `constants.ts` Monaco colours
+(foreground/lineNumber/scrollbar) — Monaco's JS theming needs concrete values, **can't consume CSS vars**
+(flag 2); fullscreen wrapper bg white (`:97`) — overlay chrome, semantic later.

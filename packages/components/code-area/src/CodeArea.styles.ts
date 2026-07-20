@@ -43,8 +43,8 @@ export const EditorWrapper = styled.div<{
       ? 'none'
       : `solid 1px ${
           props.hasError
-            ? props.theme.palette['red-600']
-            : props.theme.palette['grey-200']
+            ? 'var(--ds-form-field-border-validated)'
+            : 'var(--ds-form-field-border-default)'
         }`};
   border-radius: 3px;
   display: flex;
@@ -55,10 +55,10 @@ export const EditorWrapper = styled.div<{
   ${(props) =>
     props.hasError &&
     css`
-      background: ${props.theme.palette['red-050']};
+      background: var(--ds-form-field-bg-validated);
       box-shadow: ${props.noBorder
         ? 'none'
-        : `inset 0 0 0 1px ${props.theme.palette['red-600']}`};
+        : `inset 0 0 0 1px var(--ds-form-field-border-validated)`};
     `};
   canvas {
     opacity: 0;
@@ -128,7 +128,7 @@ export const CodeAreaWrapper = styled.div<{
     ${(props) =>
       props.readOnly &&
       css`
-        background: ${props.theme.palette['grey-050']};
+        background: var(--ds-form-field-bg-disabled);
         .monaco-editor .cursors-layer > .cursor {
           display: none !important;
         }
@@ -157,21 +157,21 @@ export const BottomBar = styled(FlexRow)<{
 }>`
   padding: 8px;
   flex: 0 0 auto;
-  background: ${({ theme }) => theme.palette['white']};
-  border-top: solid 1px ${({ theme }) => theme.palette['grey-200']};
+  background: var(--ds-form-field-bg-default);
+  border-top: solid 1px var(--ds-form-field-border-default);
 
-  ${({ hasError, noBorder, theme }) =>
+  ${({ hasError, noBorder }) =>
     hasError &&
     css`
-      background: ${theme.palette['red-050']};
+      background: var(--ds-form-field-bg-validated);
       ${noBorder
         ? css`
             border: none;
-            border-top: solid 1px ${theme.palette['grey-200']};
+            border-top: solid 1px var(--ds-form-field-border-default);
           `
         : css`
-            border: solid 1px ${theme.palette['red-600']};
-            border-top-color: ${theme.palette['grey-200']};
+            border: solid 1px var(--ds-form-field-border-validated);
+            border-top-color: var(--ds-form-field-border-default);
           `}
     `}
 `;
@@ -193,6 +193,6 @@ export const Counter = styled.div`
 `;
 
 export const ErrorText = styled.div`
-  color: ${(props) => props.theme.palette['red-600']};
+  color: var(--ds-form-error-text-color);
   margin-bottom: 4px;
 `;
