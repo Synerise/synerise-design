@@ -241,6 +241,21 @@ for (const [themeName, cfg] of Object.entries(themes)) {
           },
         ],
       },
+      // Flat JSON with references RESOLVED (no outputReferences) — the source for the
+      // JS token map. A semantic/module token resolves to its final value (e.g.
+      // ds-color-text-base-default → #384350), which is what JS consumers want.
+      json: {
+        transformGroup: 'tokens-studio',
+        transforms: ['name/ds-kebab'],
+        buildPath: 'dist/json/',
+        files: [
+          {
+            destination: `${themeName}.json`,
+            format: 'json/flat',
+            filter: 'includedTypes',
+          },
+        ],
+      },
     },
     log: {
       verbosity: 'default',
@@ -268,23 +283,33 @@ for (const themeName of Object.keys(themes)) {
   const varsMatch = css.match(/\{([\s\S]*)\}/);
   const varsOnly = varsMatch ? varsMatch[1].trim() : '';
 
+  // Flat, fully-resolved token map keyed by the full CSS var name (with `--`), e.g.
+  // { '--ds-color-text-base-default': '#384350' }. Source: the json/flat output above
+  // (names are `ds-…`, values resolved). Mirrors cssText but as a queryable object.
+  const flat = readJson(`dist/json/${themeName}.json`);
+  const tokens = Object.fromEntries(
+    Object.entries(flat).map(([name, value]) => [`--${name}`, value]),
+  );
+
   writeFileSync(
     resolve(ROOT, `dist/js/${themeName}.js`),
-    `export const cssText = ${JSON.stringify(varsOnly)};\n`,
+    `export const cssText = ${JSON.stringify(varsOnly)};\n` +
+      `export const tokens = ${JSON.stringify(tokens, null, 2)};\n`,
   );
   writeFileSync(
     resolve(ROOT, `dist/js/${themeName}.d.ts`),
-    `export declare const cssText: string;\n`,
+    `export declare const cssText: string;\n` +
+      `export declare const tokens: Record<string, string>;\n`,
   );
 }
 
 writeFileSync(
   resolve(ROOT, 'dist/js/index.js'),
-  `export { cssText } from './light.js';\n`,
+  `export { cssText, tokens } from './light.js';\n`,
 );
 writeFileSync(
   resolve(ROOT, 'dist/js/index.d.ts'),
-  `export { cssText } from './light.js';\n`,
+  `export { cssText, tokens } from './light.js';\n`,
 );
 
 console.log('✓ Token build complete.');
