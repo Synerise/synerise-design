@@ -37,7 +37,7 @@ const handlerGlyph = css<ThemeProps>`
     content: '';
     position: absolute;
     inset: 0;
-    background-color: ${(props) => props.theme.palette['grey-600']};
+    background-color: var(--ds-form-icon-color-default);
     mask-repeat: no-repeat;
     mask-position: center;
     /* Explicit size (not 'cover') so the glyph stays centred at layout time and does not scale
@@ -64,7 +64,7 @@ export const HandlerUp = styled.span<{ $disabled?: boolean } & ThemeProps>`
     props.$disabled &&
     css`
       cursor: not-allowed;
-      opacity: 0.4;
+      opacity: var(--ds-opacity-disabled);
     `}
 `;
 
@@ -75,12 +75,12 @@ export const HandlerDown = styled.span<{ $disabled?: boolean } & ThemeProps>`
     -webkit-mask-image: url('${ANGLE_DOWN_SVG}');
   }
   /* antd parity: horizontal divider between the up and down steppers */
-  border-top: 1px solid ${(props) => props.theme.palette['grey-300']};
+  border-top: 1px solid var(--ds-form-field-border-default);
   ${(props) =>
     props.$disabled &&
     css`
       cursor: not-allowed;
-      opacity: 0.4;
+      opacity: var(--ds-opacity-disabled);
     `}
 `;
 
@@ -94,7 +94,7 @@ export const HandlerWrap = styled.div<ThemeProps>`
   display: flex;
   flex-direction: column;
   /* antd parity: divider line between the steppers and the input value */
-  border-left: 1px solid ${(props) => props.theme.palette['grey-300']};
+  border-left: 1px solid var(--ds-form-field-border-default);
   /* antd parity: handlers are hidden until the field is hovered or focused */
   opacity: 0;
   transition: opacity 0.24s linear 0.1s;
@@ -129,7 +129,7 @@ export const InputField = styled.input<
   transition: unset;
 
   &::placeholder {
-    color: ${(props) => props.theme.palette['grey-500']};
+    color: var(--ds-form-field-text-placeholder);
   }
 
   &:focus {
@@ -148,8 +148,8 @@ export const Addon = styled.div<ThemeProps>`
   display: flex;
   align-items: center;
   padding: 0 12px;
-  background-color: ${(props) => props.theme.palette['grey-050']};
-  border: 1px solid ${(props) => props.theme.palette['grey-300']};
+  background-color: var(--ds-form-field-affix-bg);
+  border: 1px solid var(--ds-form-field-affix-border);
 
   &:first-child {
     border-radius: 3px 0 0 3px;
@@ -190,9 +190,11 @@ export const InputNumberRoot = styled.div<
   width: 100%;
   height: ${(props) => (props.$size === 'large' ? '48px' : '32px')};
   line-height: 1.38;
-  color: ${(props) => props.theme.palette['grey-700']};
+  color: var(--ds-form-field-text-value);
   background: ${(props) =>
-    props.$error ? props.theme.palette['red-050'] : props.theme.palette.white};
+    props.$error
+      ? 'var(--ds-form-field-bg-validated)'
+      : 'var(--ds-form-field-bg-default)'};
   border: 0;
   /* Square the corners that butt against a prefix/suffix addon so the input's
      inset-box-shadow border meets the addon's square edge flush (no rounded
@@ -203,20 +205,20 @@ export const InputNumberRoot = styled.div<
     } ${props.$hasPrefix ? '0' : '3px'}`};
   box-shadow: ${(props) =>
     props.$error
-      ? `inset 0px 0px 0px 2px ${props.theme.palette['red-600']}`
-      : `inset 0px 0px 0px 1px ${props.theme.palette['grey-300']}`};
+      ? 'inset 0px 0px 0px 2px var(--ds-form-field-border-validated)'
+      : 'inset 0px 0px 0px 1px var(--ds-form-field-border-default)'};
 
   &:focus-within {
     box-shadow: ${(props) =>
       props.$error
-        ? `inset 0px 0px 0px 2px ${props.theme.palette['red-600']}`
-        : `inset 0px 0px 0px 2px ${props.theme.palette['blue-600']}`};
+        ? 'inset 0px 0px 0px 2px var(--ds-form-field-border-validated)'
+        : 'inset 0px 0px 0px 2px var(--ds-form-field-border-focus)'};
     /* Match ds-input's focus: light-blue tint behind the value (red-050 stays
        for the error state so its red background isn't overridden on focus). */
     background: ${(props) =>
       props.$error
-        ? props.theme.palette['red-050']
-        : props.theme.palette['blue-050']};
+        ? 'var(--ds-form-field-bg-validated)'
+        : 'var(--ds-form-field-bg-focus)'};
   }
 
   /* hover border matches ds-input (grey-400); skip when error/disabled/focused
@@ -226,7 +228,7 @@ export const InputNumberRoot = styled.div<
     !props.$disabled &&
     css`
       &:hover:not(:focus-within) {
-        box-shadow: inset 0px 0px 0px 1px ${props.theme.palette['grey-400']};
+        box-shadow: inset 0px 0px 0px 1px var(--ds-form-field-border-hover);
       }
     `}
 
@@ -270,10 +272,11 @@ export const InputNumberRoot = styled.div<
     props.$disabled &&
     css`
       cursor: not-allowed;
-      background: ${props.theme.palette['grey-050']};
+      /* ⚑ Shift: disabled bg grey-050 → --ds-form-field-bg-disabled (grey-100, darker). */
+      background: var(--ds-form-field-bg-disabled);
       ${InputField} {
         cursor: not-allowed;
-        color: ${props.theme.palette['grey-400']};
+        color: var(--ds-form-field-text-disabled);
       }
     `}
 `;
