@@ -141,7 +141,7 @@ These components use `theme.palette` / hardcoded colors but do not yet have dedi
 | cascader | 34 | No | 5 | 10 | |
 | [checkbox](#checkbox--radio) | 9 | No | 4 | 1 | :construction: TS focus/indeterminate/hover → `--ds-form-checkbox-*`; per-state colours now in `Checkbox.styles.ts` on palette (`.less` removed) + check icons (data-URI SVG) |
 | code-area | 18 | No | 1 | 1 | |
-| code-snippet | 20 | Yes (1) | 0 | 2 | |
+| code-snippet | 14 | No¹ | 0 | 2 | :construction: chrome tokenised (2026-07-20); syntax theme + inline-code kept on palette (⚑ no code-syntax tokens). ¹`.less` = font-face only |
 | collector | 12 | No | 1 | 2 | |
 | color-picker | 8 | No | 2 | 0 | |
 | column-manager | 0 | No | 1 | 5 | :white_check_mark: tokenised — semantic (2026-07-20 pass) |
@@ -1137,3 +1137,20 @@ Fully tokenised across 3 style files + 2 inline-icon call sites (`theme.palette`
   string is passed to the `Icon` `color` prop (emitted as CSS `color`, resolved via `currentColor`).
 
 All exact — no visual diff.
+
+### code-snippet — :construction: chrome tokenised, syntax theme flagged
+
+`.less` is **font-face only** (IBM Plex Mono) — no colour, no Less work. Chrome tokenised (exact):
+- `SingleCode.styles.ts`: `StyledCopyIcon` bg `grey-100` → `--ds-color-background-base-muted`, colour
+  `grey-400` → `--ds-color-icon-base-muted`, hover `blue-600` → `--ds-color-icon-brand-default`;
+  `CodeSnippetWrapperSingle` bg `grey-100` → `--ds-color-background-base-muted`; `BlockCodeWrapperSingle`
+  text `grey-600` → `--ds-color-text-base-muted`
+- `MultiCode.styles.ts`: both fade overlays (`pre::before`, `.content-animation::after`) `grey-100` →
+  `--ds-color-background-base-muted`
+
+**Kept on palette (flag 1 — no code-syntax tokens):**
+- `Highlight/Highlight.styles.ts` — the full 12-colour `.hljs-*` syntax theme (grey-700 base, grey-600
+  params, blue/cyan/violet/red/orange/yellow/green/purple-600 accents). Syntax highlighting has no
+  semantic role; needs a dedicated code-syntax namespace.
+- `InlineCode/InlineCode.styles.ts` — text `#e31a5d` (**not in the DS palette at all**) + bg `pink-100`
+  (no pink semantic token).

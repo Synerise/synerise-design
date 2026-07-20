@@ -25,7 +25,7 @@ export const CodeSnippetWrapperMulti = styled(CodeSnippetWrapperSingle)<{
   & {
     min-width: 250px;
     pre::before {
-      background-color: ${(props): string => props.theme.palette['grey-100']};
+      background-color: var(--ds-color-background-base-muted);
       content: '';
       display: block;
       position: absolute;
@@ -50,7 +50,7 @@ export const CodeSnippetWrapperMulti = styled(CodeSnippetWrapperSingle)<{
             left:0;
             right:0;
             height:${LINE_HEIGHT_DEFAULT}px;
-            background-color:${props.theme.palette['grey-100']};
+            background-color:var(--ds-color-background-base-muted);
             z-index:10;
         }
         `};
