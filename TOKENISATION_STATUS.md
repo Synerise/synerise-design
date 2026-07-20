@@ -144,7 +144,7 @@ These components use `theme.palette` / hardcoded colors but do not yet have dedi
 | code-snippet | 20 | Yes (1) | 0 | 2 | |
 | collector | 12 | No | 1 | 2 | |
 | color-picker | 8 | No | 2 | 0 | |
-| column-manager | 14 | No | 1 | 5 | |
+| column-manager | 0 | No | 1 | 5 | :white_check_mark: tokenised — semantic (2026-07-20 pass) |
 | completed-within | 5 | No | 1 | 3 | |
 | condition | 14 | No | 1 | 8 | |
 | confirmation | 5 | No | 0 | 0 | |
@@ -1121,3 +1121,19 @@ colour). `theme.palette` removed.
 **Kept on palette:** `Banner.const.ts` `DEFAULT_STATUS_COLOR` (`yellow-600`) / `DEFAULT_STATUS_TEXT_COLOR`
 (`white`) — caller-overridable `titleStatus.color`/`textColor` defaults; `yellow-600` has no exact
 semantic (flag 3).
+
+### column-manager — :white_check_mark:
+
+Fully tokenised across 3 style files + 2 inline-icon call sites (`theme.palette`/`useTheme` removed):
+- `ColumnManagerActions.styles.ts`: footer bg `grey-050` → `--ds-color-background-base-subtle`
+- `ColumnManager.style.ts` (list): headline border `grey-200` → `--ds-color-border-base-default`, headline
+  text `grey-800` → `--ds-color-text-base-default`, list bg `blue-050` → `--ds-color-background-brand-subtle`,
+  inset accent box-shadow `blue-600` → `--ds-color-border-brand-default`
+- `ColumnManagerItem.styles.ts`: row bg `white` → `--ds-color-background-base-default`, border `grey-200` →
+  `--ds-color-border-base-default`, hover bg `grey-050` → `--ds-color-background-base-defaulthover`, hover
+  `:before` accent `blue-600` → `--ds-color-background-brand-solid`, name `grey-600` →
+  `--ds-color-text-base-muted`, search-highlight `grey-800` → `--ds-color-text-base-default`
+- Inline `<Icon color=…>` (search `grey-600`, drag-handle `grey-400`, type-icon `grey-600`) → the token
+  string is passed to the `Icon` `color` prop (emitted as CSS `color`, resolved via `currentColor`).
+
+All exact — no visual diff.

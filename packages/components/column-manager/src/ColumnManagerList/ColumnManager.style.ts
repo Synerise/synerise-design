@@ -17,8 +17,8 @@ export const ListHeadline = styled.span`
   line-height: 1.42;
   font-weight: 500;
   padding: 24px 24px 12px;
-  border-bottom: 1px solid ${(props) => props.theme.palette['grey-200']};
-  color: ${(props) => props.theme.palette['grey-800']};
+  border-bottom: 1px solid var(--ds-color-border-base-default);
+  color: var(--ds-color-text-base-default);
 `;
 
 export const List = styled(FixedSizeList)<{
@@ -28,8 +28,8 @@ export const List = styled(FixedSizeList)<{
   overflow-x: unset;
   overflow-y: unset;
   height: auto !important;
-  background: ${(props) => props.theme.palette['blue-050']};
-  box-shadow: 2px 0 0 0 ${(props) => props.theme.palette['blue-600']} inset;
+  background: var(--ds-color-background-brand-subtle);
+  box-shadow: 2px 0 0 0 var(--ds-color-border-brand-default) inset;
   ${(props) =>
     props.maxHeight !== undefined && `max-height: ${props.maxHeight}px;`}
   ${(props) => props.isDragging && `user-select: none;`}

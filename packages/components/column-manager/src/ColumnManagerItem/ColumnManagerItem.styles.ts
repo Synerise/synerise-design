@@ -50,8 +50,8 @@ export const ColumnManagerItem = styled.div<{ isDragged?: boolean }>`
   width: 100%;
   padding: 13px 24px;
   position: relative;
-  background: ${(props) => props.theme.palette.white};
-  border-bottom: 1px solid ${(props): string => props.theme.palette['grey-200']};
+  background: var(--ds-color-background-base-default);
+  border-bottom: 1px solid var(--ds-color-border-base-default);
 
   ${(props) =>
     props.isDragged &&
@@ -60,14 +60,14 @@ export const ColumnManagerItem = styled.div<{ isDragged?: boolean }>`
     `}
 
   &:hover {
-    background-color: ${(props): string => props.theme.palette['grey-050']};
+    background-color: var(--ds-color-background-base-defaulthover);
     &:before {
       width: 2px;
       position: absolute;
       top: 0;
       left: 0;
       height: 100%;
-      background-color: ${(props): string => props.theme.palette['blue-600']};
+      background-color: var(--ds-color-background-brand-solid);
       content: '';
     }
     ${DragHandler} {
@@ -99,7 +99,7 @@ export const ColumnManagerItem = styled.div<{ isDragged?: boolean }>`
 export const ColumnManagerItemName = styled.span`
   font-size: 13px;
   line-height: 1.38;
-  color: ${(props): string => props.theme.palette['grey-600']};
+  color: var(--ds-color-text-base-muted);
   margin-left: 8px;
   white-space: nowrap;
   text-overflow: ellipsis;
@@ -108,7 +108,7 @@ export const ColumnManagerItemName = styled.span`
 
   .search-highlight {
     font-weight: 500;
-    color: ${(props): string => props.theme.palette['grey-800']};
+    color: var(--ds-color-text-base-default);
   }
 `;
 
