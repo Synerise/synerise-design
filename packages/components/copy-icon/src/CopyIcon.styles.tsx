@@ -2,8 +2,8 @@ import styled from 'styled-components';
 
 export const CopyIcon = styled.div`
   cursor: pointer;
-  color: ${(props) => props.theme.palette['grey-600']};
+  color: var(--ds-color-icon-base-default);
   &:hover {
-    color: ${(props) => props.theme.palette['blue-600']};
+    color: var(--ds-color-icon-brand-default);
   }
 `;

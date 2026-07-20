@@ -148,7 +148,7 @@ These components use `theme.palette` / hardcoded colors but do not yet have dedi
 | condition | 14 | No | 1 | 8 | |
 | confirmation | 5 | No | 0 | 0 | |
 | context-selector | 7 | No | 0 | 0 | |
-| copy-icon | 2 | No | 0 | 0 | |
+| copy-icon | 0 | No | 0 | 0 | :white_check_mark: tokenised — semantic (2026-07-20 pass) |
 | cruds | 4 | No | 0 | 0 | |
 | date-picker | 56 | No | 1 | 0 | High palette count |
 | date-range-picker | 43 | No | 2 | 7 | |
@@ -1097,3 +1097,9 @@ removed. Spec updated (`var()` string).
 
 `EmptyStates.styles.tsx`: `HeaderWrapper` text `grey-800` → `--ds-color-text-base-default` (exact, the only
 colour). `theme.palette` removed.
+
+### copy-icon — :white_check_mark:
+
+`CopyIcon.styles.tsx` (wrapper `color`, inherited by the icon via `currentColor`): default `grey-600` →
+`--ds-color-icon-base-default`; hover `blue-600` → `--ds-color-icon-brand-default`. Both exact.
+`theme.palette` removed.
