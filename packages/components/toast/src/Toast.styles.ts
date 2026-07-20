@@ -128,7 +128,6 @@ export const IconOrderWrapper = styled.div`
   visibility: hidden;
   margin: -4px 0;
   &:hover {
-    color: var(--ds-color-icon-brand-default);
     cursor: pointer;
   }
 `;
@@ -205,11 +204,6 @@ export const Container = styled.div<{
   border-radius: 4px;
   box-shadow: var(--ds-shadows-shadow-2);
 
-  ${IconExpanderWrapper},
-  ${IconOrderWrapper},
-  ${IconCloseWrapper} {
-    color: var(--ds-color-icon-base-muted);
-  }
   ${OrderWrapper},
   ${ListWrapper},
   ${NumberWrapper}:hover {
