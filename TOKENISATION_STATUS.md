@@ -159,7 +159,7 @@ These components use `theme.palette` / hardcoded colors but do not yet have dedi
 | empty-states | 1 | No | 0 | 0 | |
 | estimation | 2 | No | 0 | 0 | |
 | factors | 18 | No | 2 | 0 | |
-| field-set | 1 | No | 0 | 0 | |
+| field-set | 0 | No | 0 | 0 | :white_check_mark: tokenised — semantic (2026-07-20 pass) |
 | file-uploader | 152 | No | 0 | 7 | Highest palette count |
 | filter | 3 | No | 0 | 1 | |
 | flag | 0 | No | 0 | 34 | No palette, heavy opacity |
@@ -1087,3 +1087,8 @@ All exact — no visual diff. Spec updated to assert the `var()` string (jsdom c
 
 `Footer.styles.ts`: top border `grey-200` → `--ds-color-border-base-default` (exact). `theme.palette`
 removed. Spec updated (`var()` string).
+
+### field-set — :white_check_mark:
+
+`FieldSet.styles.ts`: `Title` text `grey-800` → `--ds-color-text-base-default` (exact, the only colour).
+`theme.palette` removed.
