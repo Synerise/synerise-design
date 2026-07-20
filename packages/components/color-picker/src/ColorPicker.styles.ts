@@ -57,7 +57,7 @@ export const SubContainer = styled.div<{ savedColors?: boolean }>`
 export const ColorTag = styled(Tag)`
   width: 16px;
   height: 16px;
-  border: 1px solid ${(props) => props.theme.palette['grey-300']};
+  border: 1px solid var(--ds-form-field-affix-border);
 `;
 
 const SWATCH_SIZE = 16;
@@ -188,7 +188,7 @@ export const PreffixWrapper = styled.div`
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
-  color: ${(props) => props.theme.palette['grey-500']};
+  color: var(--ds-form-field-affix-text);
 `;
 
 export const ValueWrapper = styled.div`

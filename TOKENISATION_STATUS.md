@@ -143,7 +143,7 @@ These components use `theme.palette` / hardcoded colors but do not yet have dedi
 | code-area | 18 | No | 1 | 1 | |
 | code-snippet | 14 | No¹ | 0 | 2 | :construction: chrome tokenised (2026-07-20); syntax theme + inline-code kept on palette (⚑ no code-syntax tokens). ¹`.less` = font-face only |
 | collector | 12 | No | 1 | 2 | |
-| color-picker | 8 | No | 2 | 0 | |
+| color-picker | 6 | No | 2 | 0 | :construction: field affix → `--ds-form-*` (2026-07-20); picker/swatches/dynamic deferred |
 | column-manager | 0 | No | 1 | 5 | :white_check_mark: tokenised — semantic (2026-07-20 pass) |
 | completed-within | 5 | No | 1 | 3 | |
 | condition | 14 | No | 1 | 8 | |
@@ -1191,3 +1191,10 @@ grey-050→grey-100, clear hover grey-700→grey-400. **Deferred:** `Autocomplet
 `FormatSettings.styles.ts`: `DropdownTrigger` border grey-300 → `--ds-form-field-border-default`;
 `DropdownValue` grey-700 → `--ds-form-field-text-value`. Both exact. **Deferred:** `FormatSettingsContainer`/
 `FormatFooter`/`DropdownWrapper` (panel + overlay) and `ListItem` rows (list-item).
+
+### color-picker — :construction: field affix (picker/swatches deferred)
+
+`ColorPicker.styles.ts`: `ColorTag` (trigger colour-swatch affix) border grey-300 →
+`--ds-form-field-affix-border`; `PreffixWrapper` (`#` hex-input prefix) grey-500 →
+`--ds-form-field-affix-text`. Both exact. **Deferred:** picker panel `Container` + `.react-colorful__*` +
+swatch grid/creator (dropdown/overlay); all `ColorPicker.tsx` colour-value props (dynamic).
