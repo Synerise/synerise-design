@@ -144,8 +144,16 @@ describe('Context selector component', () => {
         isError: true,
       }),
     );
-    expect(screen.getByRole('button')).toHaveStyle({
-      backgroundColor: '#ffece8',
-    });
+    // The trigger button's error background is the tokenised
+    // var(--ds-color-background-danger-subtlehover) (red-100). jsdom can't reliably
+    // resolve var() via getComputedStyle — asserting the resolved hex is flaky — so
+    // assert the error rule is wired into the injected styled-components CSS instead.
+    const injectedCss = Array.from(document.querySelectorAll('style'))
+      .map((s) => s.textContent)
+      .join('')
+      .replace(/\s/g, '');
+    expect(injectedCss).toContain(
+      'background-color:var(--ds-color-background-danger-subtlehover)',
+    );
   });
 });
