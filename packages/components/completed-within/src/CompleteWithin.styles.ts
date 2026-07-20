@@ -1,8 +1,4 @@
-import styled, {
-  type FlattenInterpolation,
-  type ThemeProps,
-  css,
-} from 'styled-components';
+import styled, { css } from 'styled-components';
 
 import Button, { type StyledButton } from '@synerise/ds-button';
 import { IconContainer } from '@synerise/ds-icon';
@@ -19,20 +15,9 @@ export const ClearButton: StyledButton = styled(Button)`
       opacity 0.3s ease-in-out,
       width 0.3s ease-in-out;
     ${IconContainer} {
-      svg {
-        fill: ${(props): string => props.theme.palette['red-600']};
-        color: ${(props): string => props.theme.palette['red-600']};
-      }
+      color: var(--ds-color-icon-danger-default);
     }
-    &:hover {
-      ${IconContainer} {
-        svg {
-          fill: ${(props): string => props.theme.palette['red-600']} !important;
-          color: ${(props): string =>
-            props.theme.palette['red-600']} !important;
-        }
-      }
-    }
+
     &:focus {
       .btn-focus {
         box-shadow: none;
@@ -51,7 +36,7 @@ export const CompletedWithinWrapper = styled.div<{
   height: 32px;
   position: relative;
 
-  ${(props): FlattenInterpolation<ThemeProps<boolean>> | false =>
+  ${(props) =>
     Boolean(props.withValue) &&
     !props.readOnly &&
     css`
