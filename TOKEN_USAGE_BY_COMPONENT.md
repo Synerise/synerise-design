@@ -38,18 +38,28 @@ surfaces, brand/neutral text, `opacity-muted`, etc.) — consistent with the gra
 ### section-message
 - **Palette (4)** — all **dyn** (`customColor`/`customColorIcon` overrides): `SectionMessage.styles.tsx:40,67,72,86`.
 - **Semantic (4):** `icon-base-default` (close icon), `icon-brand-default`, `text-base-disabled`, `text-base-subtle` (order cluster). No module token for these roles — ✓ appropriate.
+- refaktor styli zeby sie pozbyc `icon-base-default` (close icon), usunac hover z `icon-brand-default`,
+- `text-base-disabled`, `text-base-subtle` -> beda dorobione modulowe
+
 
 ### toast
 - **Palette:** none.
 - **Semantic (5):** `text-base-muted` ×4, `icon-base-muted`, `icon-brand-default`, `text-base-disabled`, **`--ds-shadows-shadow-2`** ⚑ (module `toast.shadow` pruned — see flag 1).
+- jak w section message
 
-### app-menu
+### app-menu (sprawdzic czy udaloby sie to zbudowac za pomoca list itemów).
 - **Palette:** none.
 - **Semantic (4):** `border-base-subtle` ×2, `text-brand-default`, `text-neutral-default`, **`--ds-shadows-shadow-1`** ⚑ (module `app-menu.container.shadow` pruned).
+- `border-base-subtle` do stokenizowania
+- `text-brand-default`, `text-neutral-default` -> list item
+- --ds-shadows-shadow-1 zostaje
 
 ### avatar
 - **Palette (1)** — **dyn** (computed `${color}-${hue}`): `ObjectAvatar/ObjectAvatar.tsx:47`.
 - **Semantic (3):** `background-base-default`, `icon-base-subtle` ×2, `text-onsolid-default`. ✓ appropriate.
+- background-base-default (bialy border badge) -> modulowy z badge (border powinien byc w badge a nie tylko w avatar)
+- 
+
 
 ### button
 - **Palette (30):**
@@ -65,6 +75,10 @@ surfaces, brand/neutral text, `opacity-muted`, etc.) — consistent with the gra
 ### card-select
 - **Palette:** none.
 - **Semantic (3):** `background-base-subtle`, `border-danger-default`, `icon-base-muted` (documented fallbacks — no module token for these). ✓
+- do stokenizowania:  background-base-subtle`, `border-danger-default`
+--ds-color-icon-base-muted zostaje sem
+
+==========================================
 
 ### description
 - **Palette:** none.
