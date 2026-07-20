@@ -145,8 +145,8 @@ These components use `theme.palette` / hardcoded colors but do not yet have dedi
 | collector | 11 | No | 1 | 2 | :construction: placeholder → `--ds-form-*` (2026-07-20); chips/dropdown deferred |
 | color-picker | 6 | No | 2 | 0 | :construction: field affix → `--ds-form-*` (2026-07-20); picker/swatches/dynamic deferred |
 | column-manager | 0 | No | 1 | 5 | :white_check_mark: tokenised — semantic (2026-07-20 pass) |
-| completed-within | 5 | No | 1 | 3 | |
-| condition | 14 | No | 1 | 8 | |
+| completed-within | 1 | No | 1 | 3 | :construction: clear icon → `--ds-color-icon-danger-default` (2026-07-20); `Settings` panel bg `white` deferred (needs dropdown tokens) |
+| condition | 2 | No | 1 | 8 | :white_check_mark: semantic (2026-07-20); `ConditionConnections` `:before`/`:after` grey-300 kept per request |
 | confirmation | 5 | No | 0 | 0 | |
 | context-selector | 5 | No | 0 | 0 | :construction: search icon + error text → `--ds-form-*` (2026-07-20); dropdown/list-item/dynamic deferred |
 | copy-icon | 0 | No | 0 | 0 | :white_check_mark: tokenised — semantic (2026-07-20 pass) |
@@ -155,8 +155,8 @@ These components use `theme.palette` / hardcoded colors but do not yet have dedi
 | date-range-picker | 43 | No | 2 | 7 | |
 | drawer | 3 | Yes (1) | 1 | 0 | |
 | dropdown | 20 | No | 1 | 1 | |
-| editable-items-list | 1 | No | 0 | 0 | |
-| emoji-picker | 2 | No | 0 | 0 | |
+| editable-items-list | 0 | No | 0 | 0 | :white_check_mark: hardcoded add-icon `blue-600` removed — icon inherits ds-button (`mode: icon-label`) (2026-07-20) |
+| emoji-picker | 1 | No | 0 | 0 | :construction: search-icon `grey-600` removed — inherits default (2026-07-20); `EmojiList` `grey-500` deferred → pending list-item tokens |
 | empty-states | 0 | No | 0 | 0 | :white_check_mark: tokenised — semantic (2026-07-20 pass) |
 | estimation | 2 | No | 0 | 0 | |
 | factors | 16 | No | 2 | 0 | :construction: field action/search icons → `--ds-form-*` (2026-07-20); composition, rest deferred |
@@ -1250,3 +1250,19 @@ prefix grey-500 (no form-icon at that value) → `--ds-color-icon-base-subtle`; 
 grey-400→grey-300; hover border grey-500→grey-400; value text grey-800→grey-700. All other mappings exact.
 **Deferred (kept on palette, 13 refs):** `ItemPickerDropdown` (legacy overlay), `ItemPickerList`
 list/search/footer rows, `ListSearchInput`, `ErrorMessage` — pending dropdown/list-item module tokens.
+
+### condition — :white_check_mark: semantic (ConditionConnections connectors excluded)
+
+`Condition.style.ts`: `ErrorWrapper` red-600 → `--ds-color-text-danger-default`; `StepName` grey-800 →
+`--ds-color-text-base-default`; `DraggedLabel` grey-600 → `--ds-color-text-base-muted`; step suffix (`Step:after`)
+bg white → `--ds-color-background-base-default`, text `#3f4c5b` → `--ds-color-text-base-default` (⚑ off-palette
+hex → grey-800, marginally darker); `Step:hover` bg grey-050 → `--ds-color-background-base-subtle` (×2);
+drag-overlay bg white → `--ds-color-background-base-default`, shadow `0 16px 32px #23293619` →
+`--ds-shadows-shadow-2` (⚑ ~equal — alpha 0x19≈0x1a); dragged bg blue-050 → `--ds-color-background-brand-subtle`,
+text/border blue-600 → `--ds-color-text-brand-default` / `--ds-color-border-brand-default`. Inline icons:
+`ConditionRow` clear × red-600 → `--ds-color-icon-danger-default`; `EmptyCondition` icon grey-500 →
+`--ds-color-icon-base-subtle` (both `var()` strings; static `theme` import removed from both `.tsx` — no
+`useTheme` needed since nothing else uses it). All exact except the two ⚑ noted.
+
+**Excluded (kept on palette, per request):** `ConditionConnections` `:before`/`:after` connector lines
+(`grey-300` — `Condition.style.ts:321,335`).

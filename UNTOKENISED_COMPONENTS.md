@@ -72,7 +72,7 @@ generally stay on palette — not defects). `.less` = still ships antd Less (ext
 | 🚧 collector | 12 | | composition | `[x]` | form | `[ ]` | |
 | 🚧 color-picker | 12 | | picker (swatches are dynamic) | `[x]` | form + dropdown | `[ ]` | |
 | ✅ column-manager | 14 | | composition | `[ ]` | | `[x]` | |
-| completed-within | 5 | | widget | `[x]` | button, dropdown, form | `[ ]` | |
+| 🚧 completed-within | 1 | | widget | `[x]` | button, dropdown, form; clear icon → `--ds-color-icon-danger-default` (2026-07-20); panel bg needs dropdown tokens | `[ ]` | |
 | condition | 14 | | composition | `[ ]` | | `[x]` | |
 | confirmation | 1 | | dialog composition | `[x]` | modal-family | `[x]` | types |
 | 🚧 context-selector | 7 | | composition | `[x]` | dziedziczone, dropdown, button, tabs, list-item | `[ ]` | |
@@ -82,8 +82,8 @@ generally stay on palette — not defects). `.less` = still ships antd Less (ext
 | date-range-picker | 42 | | calendar overlay | `[x]` | calendar drp + dp | `[ ]` | |
 | drawer | 3 | Y | overlay panel (cf. `modal`) | `[ ]` | moze modal-family (?) | `[ ]` | mask -> nowy token semantyczny |
 | dropdown | 19 | | overlay menu surface | `[x]` | dropdown + list-item | `[ ]` | |
-| editable-items-list | 1 | | composition | `[ ]` | | `[ ]` | do usuniecia kolor na sztywno |
-| emoji-picker | 2 | | picker | `[ ]` | list-item header / icon color raczej do usuniecia z kodu | `[ ]` | |
+| ✅ editable-items-list | 0 | | composition | `[ ]` | | `[x]` | do usuniecia kolor na sztywno → done: add-icon inherits ds-button (2026-07-20) |
+| 🚧 emoji-picker | 1 | | picker | `[x]` | list-item header / icon color raczej do usuniecia z kodu; search-icon color removed (2026-07-20); `EmojiList` → pending list-item tokens | `[ ]` | |
 | ✅ empty-states | 1 | | illustration + text | `[ ]` | | `[x]` | |
 | estimation | 2 | | widget | `[x]` | progress-bar; kropki: uzyc badge custom color | `[ ]` | |
 | 🚧 factors | 18 | | composition | `[x]` | form, dropdown, itp + pousuwac ile sie da | `[ ]` | |
