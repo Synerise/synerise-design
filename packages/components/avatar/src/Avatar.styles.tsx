@@ -232,7 +232,6 @@ export const StyledAvatar = styled(AvatarBase)<ExtraAvatarProps>`
       css`
         & ~ .ds-badge-dot {
           display: flex;
-          border: 2px solid var(--ds-color-background-base-default);
           box-sizing: border-box;
           width: 10px;
           height: 10px;
