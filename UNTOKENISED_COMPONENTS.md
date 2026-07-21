@@ -95,39 +95,39 @@ generally stay on palette — not defects). `.less` = still ships antd Less (ext
 | file-uploader | 152 | | upload dropzone surface, many states (highest palette) | `[x]` | | `[ ]` | |
 | filter | 3 | | composition | `[ ]` | | `[ ]` | drag and drop / sortable (wersja ciemna) - znalezc w figmie |
 | ✅ footer | 1 | | layout | `[ ]` | | `[x]` | |
-| 🚧 form-field | 1 | | form wrapper — reuse `form` tokens | `[x]` | counter w form (grey-500 `RightSide`) — pending | `[x]` | (i) icon → `--ds-color-icon-base-muted` done 2026-07-21 |
+| 🚧 form-field | 1 | | form wrapper — reuse `form` tokens | `[x]` | counter w form (grey-500 `RightSide`) — pending | `[x]` | (i) icon → `--ds-color-icon-base-muted` done 2026-07-21 - do poprawy na token z form |
 | 🚧 format-picker | 8 | | picker | `[ ]` | form, dropdown, button etc, trigger zamienic na select (?) | `[ ]` | |
 | 🚧 icon-picker | 2 | | picker | `[x]` | overlay bg → dropdown; title → list-item (deferred, noted in code) | `[x]` | clear icon → `--ds-color-icon-danger-default` done 2026-07-21 |
-| image | 12 | | media wrapper/fallback | `[ ]` | | `[ ]` | |
-| information-card | 3 | | card composition | `[ ]` | | `[ ]` | |
+| image | 12 | | media wrapper/fallback | `[x]` | image | `[ ]` | |
+| information-card | 3 | | card composition | `[x]` | dropdown | `[ ]` | |
 | ✅ input-number | 18 | | form control — reuse `--ds-form-field-*` (cf. `input`) | `[x]` | form — `--ds-form-*` applied 2026-07-20 (⚑ disabled bg grey-050→grey-100) | `[ ]` | |
-| insight | 4 | | widget | `[ ]` | | `[ ]` | |
-| item-filter | 2 | | composition | `[ ]` | | `[ ]` | |
+| insight | 4 | | widget | `[ ]` | | `[x]` | |
+| item-filter | 2 | | composition | `[ ]` | | `[x]` | |
 | 🚧 item-picker | 42 | | picker overlay | `[x]` | trigger → `--ds-form-field-*` (2026-07-20, isNew); dropdown/list pending module tokens | `[ ]` | |
-| items-roll | 16 | | carousel/roll chrome | `[ ]` | | `[ ]` | |
-| layout | 6 | | layout wrapper | `[ ]` | | `[ ]` | |
-| list | 13 | Y | list container — reuse `list-item` tokens | `[ ]` | | `[ ]` | |
-| loader | 2 | | spinner | `[ ]` | | `[ ]` | |
-| logic | 13 | | composition | `[ ]` | | `[ ]` | |
-| manageable-list | 65 | | large list surface/composition — audit own-chrome vs primitives | `[ ]` | | `[ ]` | |
-| mapping | 3 | | composition | `[ ]` | | `[ ]` | |
-| metric-card | 2 | | card composition | `[ ]` | | `[ ]` | |
-| operators | 6 | | composition | `[ ]` | | `[ ]` | |
-| panel | 2 | | surface | `[ ]` | | `[ ]` | |
+| items-roll | 16 | | carousel/roll chrome | `[ ]` | | `[x]` | |
+| layout | 6 | | layout wrapper | `[ ]` page token | | `[x]` wszystko poza page  | |
+| list | 13 | Y | list container — reuse `list-item` tokens | `[ ]` | | `[ ]` | sprawdzic uzycia, usunac kolory jesli mozliwe |
+| loader | 2 | | spinner | `[ ]` | | `[x]` | |
+| logic | 13 | | composition | `[x]` | logic/filter | `[ ]` | |
+| manageable-list | 65 | | large list surface/composition — audit own-chrome vs primitives | `[ ]` | | `[ ]` | na start semantyka, docelowo modulowo |
+| mapping | 3 | | composition | `[ ]` (i) token z forma | | `[ ]` | border semantic |
+| metric-card | 2 | | card composition | `[ ]` | | `[x]` | wszystko sem, laczniw z (i) |
+| operators | 6 | | composition | `[x]` | dropdown bg, shadow, text | `[x]` | search result highlight etc |
+| panel | 2 | | surface | `[ ]` | | `[x]` | |
 | panels-resizer | 4 | | chrome | `[ ]` | | `[ ]` | |
-| result | 3 | | status/result page | `[ ]` | | `[ ]` | |
-| scrollbar | 17 | Y | scrollbar chrome (track/thumb greys) | `[ ]` | | `[ ]` | |
-| search | 23 | | search surface (search family) | `[ ]` | | `[ ]` | |
-| search-bar | 12 | | search surface (search family) | `[ ]` | | `[ ]` | |
-| short-cuts | 8 | | composition | `[ ]` | | `[ ]` | |
-| sidebar | 10 | | nav surface (cf. `navbar`/`app-menu`) | `[ ]` | | `[ ]` | |
-| sidebar-object | 9 | | composition | `[ ]` | | `[ ]` | |
-| skeleton | 5 | | loading placeholder | `[ ]` | | `[ ]` | |
-| slider | 12 | | control track/handle (cf. `switch`) | `[ ]` | | `[ ]` | |
-| sortable | 3 | | DnD wrapper | `[ ]` | | `[ ]` | |
-| step-card | 5 | | card composition | `[ ]` | | `[ ]` | |
-| subject | 2 | | widget | `[ ]` | | `[ ]` | |
-| subtle-form | 11 | | form composition | `[ ]` | | `[ ]` | |
+| result | 3 | | status/result page | `[ ]` | | `[x]` | |
+| scrollbar | 17 | Y | scrollbar chrome (track/thumb greys) | `[ ]` | | `[x]` | |
+| search | 23 | | search surface (search family) | `[x]` | form, dropdown, list-item | `[ ]` | reszta semantyka |
+| search-bar | 12 | | search surface (search family) | `[x]` | search-bar | `[ ]` | |
+| short-cuts | 8 | | composition | `[ ]` | | `[x]` | |
+| sidebar | 10 | | nav surface (cf. `navbar`/`app-menu`) | `[ ]` | | `[x]` | |
+| sidebar-object | 9 | | composition | `[x]` | modal/dropdown dla footera | `[x]` | brodery i reszta |
+| skeleton | 5 | | loading placeholder | `[x]` | skeleton | `[ ]` | |
+| slider | 12 | | control track/handle (cf. `switch`) | `[ ]` | | `[x]` | |
+| sortable | 3 | | DnD wrapper | `[ ]` | | `[x]` | |
+| step-card | 5 | | card composition | `[ ]` | | `[x]` | |
+| subject | 2 | | widget | `[ ]` | | `[x]` | |
+| subtle-form | 11 | | form composition | `[ ]` | | `[x]` | |
 | table-new | 69 | | **new** data table (replaces deprecated `table`) — WIP, coordinate | `[ ]` | | `[ ]` | |
 | tag | 25 | | pill/tag with variants (cf. `status-pill`) | `[ ]` | | `[ ]` | |
 | tags | 7 | | tags input — reuse `tag` | `[ ]` | | `[ ]` | |
