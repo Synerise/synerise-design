@@ -661,9 +661,12 @@ visual diffs. `useTheme()` removed from `InlineEdit.tsx`.
 - Focus/hover/error **gradient underlines** (`linear-gradient(...)`) keep `theme.palette` — decorative.
 - `:active` icon-wrapper background `grey-300` — no clean module/semantic token (`background-base-strong`
   = grey-400). Deferred.
-- The `svg { color }` override rules were **not** converted to pure inheritance: the icon intentionally
-  takes a different colour than its text sibling in some states (converting would change behaviour) — the
-  hardcoded values inside them are now token-backed via the migrated helpers. **CSS-cleanup follow-up.**
+- The `svg { color/fill }` override rules are **kept** (token-backed). **Investigated 2026-07-21 — not
+  convertible** to wrapper-`color` + `currentColor`: the edit icon is rendered with an explicit `<Icon color>`
+  prop, so `IconContainer` sets `svg { color }` **directly**; the `${IconWrapper} svg { color/fill }` override
+  (higher specificity) is *required* to re-colour it per state (default/hover/error/pressed). A parent `color`
+  can't beat an icon's own `color` prop, so a conversion would regress state colouring. Would need the icon
+  `color` prop dropped or an upstream ds-icon change.
 - :warning: `--ds-inline-select-icon-error` resolves to `icon-neutral-default` (**grey-500**) while the
   component renders error icons **red-600** — the migration deliberately used the `text-*` tokens for the
   SVG fill to preserve red. Confirm whether `icon-error` should point at a danger token upstream.
@@ -1695,9 +1698,11 @@ All semantic, exact (no visual diff), across 6 files:
   `NoResultIconWrapper` grey-600 → `--ds-color-icon-base-default`; `ChangeSelection` icon → brand;
   `WarningIcon` → `--ds-color-icon-warning-default`; `ItemRemoveIcon.tsx` `color` prop red-600 →
   `--ds-color-icon-danger-default` (static `import { theme }` removed)
-- The nested `.items-roll-list-item :hover svg` + `.element-remove-icon svg` rules were **tokenised in place**
-  (`fill: var(--ds-color-icon-brand-default)` / `-danger-default`) rather than converted to `currentColor` — a
-  wrapper `color` there would leak onto the row **text** on hover. currentColor conversion left as a CSS cleanup.
+- The nested `.items-roll-list-item :hover svg` + `.element-remove-icon svg` rules are **tokenised in place**
+  (`fill: var(…)`). **Investigated 2026-07-21 — not convertible** to wrapper-`color` + `currentColor`: a row-level
+  `color` would leak onto the row text, and the row/remove icons are rendered with explicit `<Icon color>` props
+  (e.g. `ItemRemoveIcon`), which a parent `color` can't override. The `svg { fill }` override (with `!important`
+  on the remove icon) is the correct, robust mechanism here.
 
 | Property | Was | Token resolves to | Delta |
 |----------|-----|-------------------|-------|
@@ -1710,7 +1715,9 @@ All semantic, exact (no visual diff), across 6 files:
   (exact); text → `--ds-color-text-{success,danger,warning}-default`
 - **Remove/icon-hover (danger):** `Content`/`PrefixWrapper`/`DefaultPrefixWrapper` badge text → `text-danger-default`,
   1px rings → `border-danger-default`, `.ds-icon svg` fills → `icon-danger-default` (tokenised in place — the
-  nested `!important` svg rules stay `fill: var()`, currentColor left as CSS cleanup); `RemoveButton` hover svg →
+  nested `!important` svg rules stay `fill: var()`; **not convertible** to wrapper-`color`/`currentColor` — the
+  `RemoveButton` icon and consumer-supplied prefix icons carry explicit `<Icon color>` props that a parent
+  `color` can't override, so the `svg { fill … !important }` override is required); `RemoveButton` hover svg →
   `icon-danger-default`, `:before` fallback → `icon-danger-default`; `Tag` iconHover `:before` bg red-050 →
   `--ds-color-background-danger-subtle`
 - **`getColorText` helper:** returns `--ds-color-text-base-muted` / `--ds-color-text-onsolid-default`; SMALL_SQUARE/
