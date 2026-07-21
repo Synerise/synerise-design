@@ -73,7 +73,7 @@ describe('Badge', () => {
 
     // ASSERT
     expect(container.querySelector('.ds-badge-count')).toHaveStyle(
-      'box-shadow: 0 0 0 1px #ffffff;'
+      'box-shadow: 0 0 0 1px var(--ds-badge-ring-color);'
     );
   });
 

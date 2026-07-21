@@ -13,12 +13,13 @@ import { type Status } from './Badge.types';
 type ColorProps = { $status?: Status; $customColor?: string };
 type PositionProps = { $standalone?: boolean };
 
-const STATUS_COLOR_TOKEN: Record<Exclude<Status, undefined>, string> = {
-  active: 'green-600',
-  inactive: 'grey-400',
-  blocked: 'red-600',
-  processing: 'blue-600',
-  warning: 'yellow-600',
+// Each status maps to a badge module variant; `--ds-badge-variant-<v>-bg` emits the solid colour.
+const STATUS_VARIANT: Record<Exclude<Status, undefined>, string> = {
+  active: 'success',
+  inactive: 'neutral',
+  blocked: 'error',
+  processing: 'info',
+  warning: 'warning',
 };
 
 const resolveCustomColor = (
@@ -41,9 +42,9 @@ const resolveColor = (props: ColorProps & ThemeProps): string => {
     return resolveCustomColor(theme, $customColor);
   }
   if ($status) {
-    return theme.palette[STATUS_COLOR_TOKEN[$status]];
+    return `var(--ds-badge-variant-${STATUS_VARIANT[$status]}-bg)`;
   }
-  return theme.palette['red-600'];
+  return 'var(--ds-badge-variant-error-bg)';
 };
 
 // Indicator positioning: overlaid (top-right) when wrapping children, inline when standalone.
@@ -106,9 +107,9 @@ export const CountSup = styled.sup<
   text-align: center;
   border-radius: 8px;
   background-color: ${(props): string => resolveColor(props)};
-  color: ${(props): string => props.theme.palette.white};
+  color: var(--ds-badge-text-onsolid);
   box-shadow: ${(props): string =>
-    props.$outlined ? `0 0 0 1px ${props.theme.palette.white}` : 'none'};
+    props.$outlined ? `0 0 0 1px var(--ds-badge-ring-color)` : 'none'};
 `;
 
 export const ScrollNumberOnly = styled.span`
@@ -148,7 +149,7 @@ export const DotSup = styled.sup<
       width: 10px;
       height: 10px;
       overflow: visible;
-      border: 2px solid ${props.theme.palette.white};
+      border: 2px solid var(--ds-badge-ring-color);
       box-shadow: none;
 
       &::before {
