@@ -39,6 +39,10 @@
 
 | Component | palette refs | Decision | Blockers | Static `theme` import | `svg{fill/stroke}` rules |
 |---|--:|---|---|:--:|:--:|
+| [autocomplete](#autocomplete) | 1 (field done) | `dropdown` (pending); field = `form` ✓ | dropdown pending | — | — |
+| [avatar-group](#avatar-group) | 8 | module (`avatar`) | none | — | — |
+| [badge](#badge) | 8 | module (`badge`) | none | — | — |
+| [card-tabs](#card-tabs) | 82 (+2 shadow, +4 opacity) | module (`card-tabs`, pending) | **card-tabs tokens pending** | — | 10 |
 | [image](#image) | 12 (+1 shadow) | module (`image`, pending) + semantic | **image tokens pending** | — | — |
 | [information-card](#information-card) | 5 | module (`dropdown`, pending) | **dropdown tokens pending** | — | — |
 | [insight](#insight) | 4 | semantic | none | — | — |
@@ -72,11 +76,133 @@
 | [tag](#tag) | 27 | mixed (many dynamic) | none | — | 3 |
 | [tags](#tags) | 7 (+rgba) | mixed (form icon) | none | — | — |
 | [toolbar](#toolbar) | 4 | semantic | none | — | — |
-| [tooltip](#tooltip) | 7 | semantic | none | — | — |
-| [tray](#tray) | 5 | semantic | none | — | — |
-| [typography](#typography) | 8 | semantic | none | — | — |
+| [tooltip](#tooltip) | 7 | module (`tooltip`, pending) | **tooltip tokens pending** | — | — |
+| [tray](#tray) | 5 | module (`modal`) | none | — | — |
+| [typography](#typography) | 8 | semantic | ⚑ link-hover shift | — | — |
 | [unordered-list](#unordered-list) | 1 | semantic | none | — | — |
 | [wizard](#wizard) | 6 | semantic | none | — | — |
+
+---
+
+## autocomplete
+
+**Summary.** 🚧 partial — the input **field is already on `--ds-form-field-*`** (applied 2026-07-20). Decision (UX 2026-07-21): **form** (field ✓) + **dropdown** (overlay). Only 1 remaining ref: the suggestion-overlay empty-state text → `dropdown` module (pending). blockers: `dropdown` module tokens not yet available.
+
+### Palette / colour usage
+| file:line | Current value | Applied to (element · property · state) | Static / Dynamic | Decision | Suggested token or module | Notes |
+|---|---|---|---|---|---|---|
+| packages/components/autocomplete/src/AutocompleteDropdown/AutocompleteDropdown.style.ts:35 | grey-600 #6a7580 | `NotFound` / empty-state text · suggestion overlay | Static | module (pending) | `module: dropdown` (overlay text) | field already `--ds-form-field-*` (2026-07-20) |
+
+### SVG fill/stroke rules to replace
+| file:line | Current rule | Replacement |
+|---|---|---|
+| — none — |  |  |
+
+### Static `theme` imports
+| file:line | Usage | Resolution |
+|---|---|---|
+| — none — |  |  |
+
+---
+
+## avatar-group
+
+**Summary.** 8 palette refs; recommended decision (UX 2026-07-21): **module `avatar`** (existing namespace) — the +N "MoreInfo" avatar chrome and the overlap separator ring reuse the avatar module. The row avatars delegate to ds-avatar; the modal to ds-modal/ds-table (no refs). blockers: none (avatar namespace exists). Ring alpha (FF→00) + badge-dot opacity are the fan-out animation (kept).
+
+### Palette / colour usage
+| file:line | Current value | Applied to (element · property · state) | Static / Dynamic | Decision | Suggested token or module | Notes |
+|---|---|---|---|---|---|---|
+| packages/components/avatar-group/src/AvatarGroup.styles.ts:63 | white | MoreInfo (+N avatar) · background | Static | module (`avatar`) | `module: avatar` (bg) | |
+| packages/components/avatar-group/src/AvatarGroup.styles.ts:64 | grey-300 #dbe0e3 | MoreInfo (+N) · border | Static | module (`avatar`) | `module: avatar` (border) | |
+| packages/components/avatar-group/src/AvatarGroup.styles.ts:65,68 | grey-400 #b5bdc3 | MoreInfo (+N) · text (`!important` on span) | Static | module (`avatar`) | `module: avatar` (text) | |
+| packages/components/avatar-group/src/AvatarGroup.styles.ts:78,79 | grey-500 #949ea6 | MoreInfo (+N) · text + border · hover/active | Static | module (`avatar`) | `module: avatar` (hover text/border) | |
+| packages/components/avatar-group/src/AvatarGroup.styles.ts:37 | `white` @FF (opaque) | avatar · 2px overlap ring · collapsed | Static | module (`avatar`) | `module: avatar` (overlap ring) | `FF` alpha = collapsed state of the fade animation |
+| packages/components/avatar-group/src/AvatarGroup.styles.ts:51 | `white` @00 (transparent) | avatar · overlap ring · hover (faded out) | Static | keep | — | transparent animation endpoint |
+| packages/components/avatar-group/src/AvatarGroup.styles.ts:33,47 | opacity 0/1 | badge dot · fade on hover | Static | keep (decorative) | — | fan-out animation |
+
+### SVG fill/stroke rules to replace
+| file:line | Current rule | Replacement |
+|---|---|---|
+| — none — |  |  |
+
+### Static `theme` imports
+| file:line | Usage | Resolution |
+|---|---|---|
+| — none — |  |  |
+
+---
+
+## badge
+
+**Summary.** 8 refs; recommended decision (UX 2026-07-21): **module `badge`** (existing namespace) — status/default bg, count text, outline ring, border, and label text reuse the badge module (the status→colour map becomes badge status-bg tokens). User `customColor` stays dynamic; flag/pulse halos stay decorative. blockers: none (badge namespace exists).
+
+### Palette / colour usage
+| file:line | Current value | Applied to (element · property · state) | Static / Dynamic | Decision | Suggested token or module | Notes |
+|---|---|---|---|---|---|---|
+| packages/components/badge/src/Badge.styles.tsx:30-31 | `palette[customColor]` / `[${customColor}-600]` | badge bg · user `customColor` | Dynamic | keep (dynamic) | — | user prop / raw CSS colour; not a defect |
+| packages/components/badge/src/Badge.styles.tsx:44 | `STATUS_COLOR_TOKEN[$status]` (green/grey/red/blue/yellow-600) | badge bg · status variant | Static (per `$status`) | module (`badge`) | `module: badge` (status bg) | active/inactive/blocked/processing/warning → badge status tokens (JS map → conditional module vars) |
+| packages/components/badge/src/Badge.styles.tsx:46 | red-600 | badge bg · default (no status/custom) | Static | module (`badge`) | `module: badge` (default bg) | |
+| packages/components/badge/src/Badge.styles.tsx:109 | white | count · text | Static | module (`badge`) | `module: badge` (count text) | |
+| packages/components/badge/src/Badge.styles.tsx:110-111 | white | count · outline ring (`$outlined`, `0 0 0 1px`) | Static | module (`badge`) | `module: badge` (outline ring) | keep geometry |
+| packages/components/badge/src/Badge.styles.tsx:151 | white | dot/count · 2px border (standalone) | Static | module (`badge`) | `module: badge` (border) | |
+| packages/components/badge/src/BadgeWithLabel.styles.ts:11 | grey-600 | label · text | Static | module (`badge`) | `module: badge` (label text) | |
+| packages/components/badge/src/Badge.styles.tsx:71,75,82,86 | opacity 0.9/0 | flag/pulse halos · keyframes | Static | keep (decorative) | — | pulse animation |
+
+### SVG fill/stroke rules to replace
+| file:line | Current rule | Replacement |
+|---|---|---|
+| — none — |  |  |
+
+### Static `theme` imports
+| file:line | Usage | Resolution |
+|---|---|---|
+| — none — |  |  |
+
+_(`box-shadow: none` at :152 = reset.)_
+
+---
+
+## card-tabs
+
+**Summary.** 82 `theme.palette` colour refs + 2 `box-shadow` + 4 disabled-`opacity` (88 total), all in `packages/components/card-tabs/src/CardTab/CardTab.styles.ts`. Decision (UX 2026-07-21): **module `card-tabs`** — new dedicated namespace, **pending upstream** (not in base.json). ~66 static → module; 10 dynamic (user `color` prop / `getColor` / `getLighterColor`) → keep; 6 decorative (InlineEdit fake-caret gradient stops) → keep. 2 shadows + 4 disabled-opacity → module. No `.less`; no static `theme` imports. 10 `svg { fill }` rules → currentColor.
+
+### Palette / colour usage
+| file:line | Current value | Applied to (element · property · state) | Static / Dynamic | Decision | Suggested token or module | Notes |
+|---|---|---|---|---|---|---|
+| packages/components/card-tabs/src/CardTab/CardTab.styles.ts:32 | `grey-600` | CardTabLabel · color · rest | Static | module (pending) | module: card-tabs (text.default) | |
+| packages/components/card-tabs/src/CardTab/CardTab.styles.ts:49 | `grey-800` | CardTabLabel InlineEdit input · color · edit | Static | module (pending) | module: card-tabs (text.strong) | |
+| packages/components/card-tabs/src/CardTab/CardTab.styles.ts:63,73 | `white` | CardTabTag / CardDotPrefix · color · rest | Static | module (pending) | module: card-tabs (text.on-color) | |
+| packages/components/card-tabs/src/CardTab/CardTab.styles.ts:129 | `red-600` | CardTabContainer · background · invalid+active | Static | module (pending) | module: card-tabs (bg.error) | |
+| packages/components/card-tabs/src/CardTab/CardTab.styles.ts:135,226,332 | `white` | CardTabContainer · background · greyBackground (rest/hover/pressed) | Static | module (pending) | module: card-tabs (surface.raised) | |
+| packages/components/card-tabs/src/CardTab/CardTab.styles.ts:137,228 | `grey-050` | CardTabContainer · background · default (rest/hover) | Static | module (pending) | module: card-tabs (surface.default[.hover]) | |
+| packages/components/card-tabs/src/CardTab/CardTab.styles.ts:334 | `grey-100` | CardTabContainer · background · pressed (default) | Static | module (pending) | module: card-tabs (surface.default.pressed) | |
+| packages/components/card-tabs/src/CardTab/CardTab.styles.ts:145 | `red-600` | CardTabContainer · border-color · invalid | Static | module (pending) | module: card-tabs (border.error) | |
+| packages/components/card-tabs/src/CardTab/CardTab.styles.ts:150 | `grey-300` | CardTabContainer · border-color · inactive | Static | module (pending) | module: card-tabs (border.default) | |
+| packages/components/card-tabs/src/CardTab/CardTab.styles.ts:158,247 | `white` | CardTabTag · background · active | Static | module (pending) | module: card-tabs (tag.bg.active) | inactive uses `${color}` (dynamic) |
+| packages/components/card-tabs/src/CardTab/CardTab.styles.ts:160,255 | `white` | CardTabTag · color · inactive | Static | module (pending) | module: card-tabs (tag.text) | active uses `${color}` (dynamic) |
+| packages/components/card-tabs/src/CardTab/CardTab.styles.ts:176 | `white` | CardDotPrefix · border-color · active & !edited | Static | module (pending) | module: card-tabs (border.on-color) | |
+| packages/components/card-tabs/src/CardTab/CardTab.styles.ts:184-317,382-403 | `white` (active) / `grey-600` (inactive) | prefix/suffix/handle icons · color+fill · rest/hover/active | Static | module (pending) | module: card-tabs (icon.on-color / icon.default) | many svg fill rules → SVG table |
+| packages/components/card-tabs/src/CardTab/CardTab.styles.ts:207,209 | `white` (active) / `red-600` (inactive) | CardTabSuffix .remove · svg color+fill | Static | module (pending) | module: card-tabs (icon.on-color / icon.danger) | svg fill → SVG table |
+| packages/components/card-tabs/src/CardTab/CardTab.styles.ts:394,396 | `white` (active) / `grey-400` (inactive) | drag-handle icon · color+fill | Static | module (pending) | module: card-tabs (icon.on-color / icon.subtle) | svg fill → SVG table |
+| packages/components/card-tabs/src/CardTab/CardTab.styles.ts:220,326 | `red-500` (`getLighterColor('red-600')`) | CardTabContainer · background · invalid hover/pressed | Static | module (pending) | module: card-tabs (bg.error.hover/pressed) | deterministic from literal red-600 |
+| packages/components/card-tabs/src/CardTab/CardTab.styles.ts:239,241,372,374,342,344 | `white` (active) / `grey-800`\|`grey-600` (inactive) | CardTabLabel / InlineEdit input · color · states | Static | module (pending) | module: card-tabs (text.on-color / text.strong / text.default) | |
+| packages/components/card-tabs/src/CardTab/CardTab.styles.ts:140,216 | `0 4px 12px 0 rgba(35,41,54,0.04)` | CardTabContainer · box-shadow · greyBackground (rest/hover) | Static | module (pending) | module: card-tabs (shadow.raised) | = shadow-1 value |
+| packages/components/card-tabs/src/CardTab/CardTab.styles.ts:376,386,390,407 | `0.4` | Label / suffix-icon / prefix / suffix · opacity · disabled | Static | module (pending) | module: card-tabs (opacity.disabled) | enabled = 1 |
+| packages/components/card-tabs/src/CardTab/CardTab.styles.ts:132,149,158,160,165,167,223,249,253,329 | `${color}` / `getColor(color)` / `getLighterColor(color)` | container/tag/dot · bg/border/text · active + hover | Dynamic | keep (dynamic) | — | user/auto-assigned tab colour |
+| packages/components/card-tabs/src/CardTab/CardTab.styles.ts:52-55,351-364 | `blue-600` / `white` / `grey-800` / `rgba(255,255,255,0)` | InlineEdit input · linear-gradient (fake caret) stops | Static | keep (decorative) | — | gradient caret |
+| packages/components/card-tabs/src/CardTab/CardTab.styles.ts:167 | `transparent` | CardDot · background · active (hidden) | Static | keep (decorative) | — | show/hide |
+
+### SVG fill/stroke rules to replace
+| file:line | Current rule | Replacement |
+|---|---|---|
+| packages/components/card-tabs/src/CardTab/CardTab.styles.ts:188,201,267,284,301,313,383,402 | `fill: active ? white : grey-600 !important` (prefix/suffix/handle icons) | drop `fill:`; wrapper `color` + `svg { fill: currentColor }` from module token (icon.on-color / icon.default) |
+| packages/components/card-tabs/src/CardTab/CardTab.styles.ts:208 | `fill: active ? white : red-600 !important` (remove icon) | wrapper `color` + `currentColor` (icon.on-color / icon.danger) |
+| packages/components/card-tabs/src/CardTab/CardTab.styles.ts:395 | `fill: getColor(active, white, grey-400)` (drag-handle) | wrapper `color` + `currentColor` (icon.on-color / icon.subtle) |
+
+### Static `theme` imports
+| file:line | Usage | Resolution |
+|---|---|---|
+| — none — |  |  |
 
 ---
 
@@ -1176,7 +1302,7 @@ _(Uses `useTheme()` + `props.theme` — not findings.)_
 
 ## toolbar
 
-**Summary.** 4 palette refs; own module namespace: none; recommended decision: **semantic**; blockers: none.
+**Summary.** 4 palette refs; decision (UX 2026-07-21): **semantic** — all exact (divider border, label text, group surface, shadow-1). blockers: none.
 
 ### Palette / colour usage
 | file:line | Current value | Applied to (element · property · state) | Static / Dynamic | Decision | Suggested token or module | Notes |
@@ -1200,18 +1326,18 @@ _(Uses `useTheme()` + `props.theme` — not findings.)_
 
 ## tooltip
 
-**Summary.** 7 colour/shadow refs (2 palette greys, 2 dark-surface rgba, 2 box-shadows, 1 text grey) + 2 decorative opacities; own module namespace: none; recommended decision: **semantic** (one box-shadow is a ⚑ shift — no matching shadow token); blockers: none. NB: the arrow is rendered by ds-popover (out of scope here).
+**Summary.** 7 colour/shadow refs + 2 decorative opacities; decision (UX 2026-07-21): **dedicated `tooltip` module** — new namespace, **pending upstream** (not in base.json). All → `tooltip` module incl. **both shadows** (the wrapper elevation and the key-cap shadow that had no semantic match). Fade opacities kept (animation). blockers: **`tooltip` module tokens not yet available**. NB: the arrow is rendered by ds-popover (out of scope here).
 
 ### Palette / colour usage
 | file:line | Current value | Applied to (element · property · state) | Static / Dynamic | Decision | Suggested token or module | Notes |
 |---|---|---|---|---|---|---|
-| packages/components/tooltip/src/Tooltip.styles.tsx:119 | rgba(56,67,80,0.9) | `TooltipComponent` · background · default | Static | tokenise | `--ds-color-background-overlay-solid` | exact (grey-800 @90% dark surface) |
-| packages/components/tooltip/src/Tooltip.styles.tsx:68 | rgba(56,67,80,0.9) | `TooltipButton` · background (footer bar) | Static | tokenise | `--ds-color-background-overlay-solid` | exact; same surface token |
-| packages/components/tooltip/src/Tooltip.styles.tsx:123 | grey-200 #e9edee | `TooltipComponent` · color (body text on dark) | Static | tokenise | `--ds-color-text-onsolid-subtle` | exact (grey-200 = onsolid-subtle) |
-| packages/components/tooltip/src/Tooltip.styles.tsx:59 | grey-700 #57616d | `TooltipKey` · background (key-cap) | Static | tokenise | `--ds-color-background-neutral-solid` | exact |
-| packages/components/tooltip/src/Tooltip.styles.tsx:60 | grey-500 #949ea6 | `TooltipKey` · border-bottom · default | Static | tokenise | `--ds-color-border-neutral-subtle` | exact |
-| packages/components/tooltip/src/Tooltip.styles.tsx:104 | `box-shadow-2` | `TooltipWrapper` · box-shadow | Static | tokenise | `--ds-shadows-shadow-2` | 1:1 mapping |
-| packages/components/tooltip/src/Tooltip.styles.tsx:61 | `0 1px 8px rgba(35,41,54,0.5)` | `TooltipKey` · box-shadow (key-cap) | Static | tokenise ⚑ | `--ds-shadows-shadow-1` ⚑ | no shadow token matches (tighter/darker) — consider keeping custom |
+| packages/components/tooltip/src/Tooltip.styles.tsx:119 | rgba(56,67,80,0.9) | `TooltipComponent` · background · default | Static | module (pending) | `module: tooltip` (surface bg) | grey-800 @90% dark surface |
+| packages/components/tooltip/src/Tooltip.styles.tsx:68 | rgba(56,67,80,0.9) | `TooltipButton` · background (footer bar) | Static | module (pending) | `module: tooltip` (footer/button bg) | |
+| packages/components/tooltip/src/Tooltip.styles.tsx:123 | grey-200 #e9edee | `TooltipComponent` · color (body text on dark) | Static | module (pending) | `module: tooltip` (text) | |
+| packages/components/tooltip/src/Tooltip.styles.tsx:59 | grey-700 #57616d | `TooltipKey` · background (key-cap) | Static | module (pending) | `module: tooltip` (key-cap bg) | |
+| packages/components/tooltip/src/Tooltip.styles.tsx:60 | grey-500 #949ea6 | `TooltipKey` · border-bottom · default | Static | module (pending) | `module: tooltip` (key-cap border) | |
+| packages/components/tooltip/src/Tooltip.styles.tsx:104 | `box-shadow-2` | `TooltipWrapper` · box-shadow | Static | module (pending) | `module: tooltip` (shadow) | |
+| packages/components/tooltip/src/Tooltip.styles.tsx:61 | `0 1px 8px rgba(35,41,54,0.5)` | `TooltipKey` · box-shadow (key-cap) | Static | module (pending) | `module: tooltip` (key-cap shadow) | resolves the no-shadow-token gap |
 | packages/components/tooltip/src/Tooltip.utils.ts:9,12 | `opacity 1/0` | fade open/initial | Dynamic | keep (decorative) | — | popover fade transition |
 
 ### SVG fill/stroke rules to replace
@@ -1228,16 +1354,16 @@ _(Uses `useTheme()` + `props.theme` — not findings.)_
 
 ## tray
 
-**Summary.** 5 colour/elevation refs (4 palette + 1 shadow); own module namespace: none; recommended decision: **semantic** (fixed slide-over panel, not a menu → base-default surface, not dropdown); blockers: none.
+**Summary.** 5 colour/elevation refs; decision (UX 2026-07-21): **module `modal`** (existing namespace) — the tray is a floating overlay panel (surface + header + footer + elevation), all reusing the modal module. blockers: none (modal namespace exists).
 
 ### Palette / colour usage
 | file:line | Current value | Applied to (element · property · state) | Static / Dynamic | Decision | Suggested token or module | Notes |
 |---|---|---|---|---|---|---|
-| packages/components/tray/src/Tray.styles.ts:30 | `box-shadow-2` (0 16px 32px #2329361a) | TrayWrapper · box-shadow · default | Static | tokenise | `--ds-shadows-shadow-2` | overlay elevation |
-| packages/components/tray/src/Tray.styles.ts:36 | white #ffffff | TrayWrapper · background · default | Static | tokenise | `--ds-color-background-base-default` | plain floating panel surface |
-| packages/components/tray/src/Tray.styles.ts:44 | grey-200 #e9edee | TrayHeader · border-bottom · default | Static | tokenise | `--ds-color-border-base-default` | exact |
-| packages/components/tray/src/Tray.styles.ts:57 | grey-100 #f3f5f6 | TrayFooter · border-top · default | Static | tokenise | `--ds-color-border-base-subtle` | exact |
-| packages/components/tray/src/Tray.styles.ts:58 | grey-050 #f9fafb | TrayFooter · background · default | Static | tokenise | `--ds-color-background-base-subtle` | exact |
+| packages/components/tray/src/Tray.styles.ts:36 | white #ffffff | TrayWrapper · background (panel surface) · default | Static | module (`modal`) | `module: modal` (container surface) | UX 2026-07-21; modal namespace exists |
+| packages/components/tray/src/Tray.styles.ts:30 | `box-shadow-2` (0 16px 32px #2329361a) | TrayWrapper · box-shadow (overlay elevation) · default | Static | module (`modal`) | `module: modal` (container shadow) | |
+| packages/components/tray/src/Tray.styles.ts:44 | grey-200 #e9edee | TrayHeader · border-bottom · default | Static | module (`modal`) | `module: modal` (header border) | |
+| packages/components/tray/src/Tray.styles.ts:57 | grey-100 #f3f5f6 | TrayFooter · border-top · default | Static | module (`modal`) | `module: modal` (footer border) | |
+| packages/components/tray/src/Tray.styles.ts:58 | grey-050 #f9fafb | TrayFooter · background · default | Static | module (`modal`) | `module: modal` (footer bg) | |
 
 ### SVG fill/stroke rules to replace
 | file:line | Current rule | Replacement |
@@ -1253,7 +1379,7 @@ _(Uses `useTheme()` + `props.theme` — not findings.)_
 
 ## typography
 
-**Summary.** 8 palette refs + 1 opacity (0.4 disabled); own module namespace: none; recommended decision: **semantic** text tokens; blockers: none. One ⚑ shift: link `:hover` uses blue-500 (semantic brand-hover is blue-700). All via `props.theme.palette`.
+**Summary.** 8 palette refs + 1 opacity (0.4 disabled); decision (UX 2026-07-21): **semantic** text tokens (all exact) — reuse semantic text/opacity tokens. One **accepted ⚑ shift**: link `:hover` blue-500 → `--ds-color-text-brand-hover` (blue-700, darker) — flagged for Chromatic. All via `props.theme.palette`. blockers: none.
 
 ### Palette / colour usage
 | file:line | Current value | Applied to (element · property · state) | Static / Dynamic | Decision | Suggested token or module | Notes |
@@ -1264,7 +1390,7 @@ _(Uses `useTheme()` + `props.theme` — not findings.)_
 | packages/components/typography/src/CommonElements.ts:22 | `opacity: 0.4` | `Description` · opacity · disabled | Static | tokenise | `--ds-opacity-disabled` | exact |
 | packages/components/typography/src/style/macro-utils.ts:5 | grey-800 #384350 | `heading` mixin (all Title levels) · color · default | Static | tokenise | `--ds-color-text-base-default` | exact |
 | packages/components/typography/src/style/macro-utils.ts:84 | blue-600 #0b68ff | `link` macro · color · default | Static | tokenise | `--ds-color-text-brand-default` | exact |
-| packages/components/typography/src/style/macro-utils.ts:87 | blue-500 #238afe | `link` macro · color · :hover | Static | tokenise ⚑ | `--ds-color-text-brand-hover` | ⚑ current hover is *lighter*; semantic brand-hover is *darker* blue-700 — confirm direction |
+| packages/components/typography/src/style/macro-utils.ts:87 | blue-500 #238afe | `link` macro · color · :hover | Static | tokenise ⚑ | `--ds-color-text-brand-hover` | ⚑ **accepted shift (UX 2026-07-21)**: blue-500 → blue-700 (darker hover) — flag for Chromatic |
 | packages/components/typography/src/style/macro-utils.ts:93 | grey-600 #6a7580 | `linkbutton` macro · color · default | Static | tokenise | `--ds-color-text-base-muted` | exact |
 | packages/components/typography/src/style/macro-utils.ts:95 | grey-800 #384350 | `linkbutton` macro · color · :hover | Static | tokenise | `--ds-color-text-base-default` | exact |
 
@@ -1284,7 +1410,7 @@ _(Form-scoped alts exist for Label/Description/ErrorText — `--ds-form-{label,d
 
 ## unordered-list
 
-**Summary.** 1 palette ref (grey-800 on `Label` text); own module namespace: none; recommended decision: **semantic**; blockers: none. NB: `Label` is exported but unused (the section label renders via ds-form-field's `FormFieldLabel`).
+**Summary.** 1 palette ref (grey-800 on `Label` text); decision (UX 2026-07-21): **semantic** → `--ds-color-text-base-default` (exact). blockers: none. NB: `Label` is exported but unused (the section label renders via ds-form-field's `FormFieldLabel`).
 
 ### Palette / colour usage
 | file:line | Current value | Applied to (element · property · state) | Static / Dynamic | Decision | Suggested token or module | Notes |
@@ -1305,7 +1431,7 @@ _(Form-scoped alts exist for Label/Description/ErrorText — `--ds-form-{label,d
 
 ## wizard
 
-**Summary.** 6 palette refs (3× white surfaces, 3× grey-200 divider/border); own module namespace: none; recommended decision: **semantic**; blockers: none. NB: step-indicator states aren't styled here — the wizard consumes a passed-in ds-stepper node; only surface/border tokens apply.
+**Summary.** 6 palette refs (3× white surfaces, 3× grey-200 divider/border); decision (UX 2026-07-21): **semantic** — all exact (surfaces → `background-base-default`, dividers/border → `border-base-default`). blockers: none. NB: step-indicator states aren't styled here — the wizard consumes a passed-in ds-stepper node; only surface/border tokens apply.
 
 ### Palette / colour usage
 | file:line | Current value | Applied to (element · property · state) | Static / Dynamic | Decision | Suggested token or module | Notes |

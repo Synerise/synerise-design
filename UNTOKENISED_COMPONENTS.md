@@ -129,9 +129,9 @@ generally stay on palette — not defects). `.less` = still ships antd Less (ext
 | subject | 2 | | widget | `[ ]` | | `[x]` | |
 | subtle-form | 11 | | form composition | `[ ]` | | `[x]` | |
 | table-new | 69 | | **new** data table (replaces deprecated `table`) — WIP, coordinate | `[ ]` | | `[ ]` | |
-| tag | 25 | | pill/tag with variants (cf. `status-pill`) | `[ ]` | | `[ ]` | |
-| tags | 7 | | tags input — reuse `tag` | `[ ]` | | `[ ]` | |
-| toolbar | 4 | | chrome | `[ ]` | | `[ ]` | |
+| tag | 25 | | pill/tag with variants (cf. `status-pill`) | `[x]` | tag | `[ ]` | |
+| tags | 7 | | tags input — reuse `tag` | `[x]` | tag (LimitedTags bg and text) | `[x]` | rest |
+| toolbar | 4 | | chrome | `[ ]` | | `[x]` | all semantic (exact) |
 | tooltip | 3 | | small overlay | `[ ]` | | `[ ]` | |
 | tray | 4 | | overlay | `[ ]` | | `[ ]` | |
 | typography | 8 | | text — reuse semantic text tokens | `[ ]` | | `[ ]` | |
