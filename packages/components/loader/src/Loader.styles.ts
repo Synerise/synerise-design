@@ -45,7 +45,7 @@ export const TextWrapper = styled.div<{
 export const HeaderWrapper = styled.div<{ fontSize?: 'small' | 'medium' }>`
   display: flex;
   line-height: 16px;
-  color: ${(props) => props.theme.palette['grey-800']};
+  color: var(--ds-color-text-base-default);
   font-size: ${(props) =>
     props.fontSize ? FontSize[props.fontSize] : FONT_SIZE_DEFAULT}px;
   font-weight: 500;

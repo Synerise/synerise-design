@@ -91,7 +91,7 @@ Icons: DS icons are `fill="currentColor"` with `color: inherit`, so colour them 
 
 Single at-a-glance view of every colour-bearing component: migration **status** + whether it is **awaiting token definitions** (a pending module namespace, a missing semantic role, or a `.less`/de-antd blocker). Sourced from the two detailed tables below + `TOKEN_AUDIT.md` blockers. **Update this table (and the detailed one) whenever `apply-tokens` migrates a component.**
 
-**Totals:** ✅ 37 done · 🚧 25 partial · ❌ 47 not started · ⛔ 4 deprecated · ➖ 2 n/a — **38 awaiting token defs** (flag in last column).
+**Totals:** ✅ 38 done · 🚧 25 partial · ❌ 46 not started · ⛔ 4 deprecated · ➖ 2 n/a — **38 awaiting token defs** (flag in last column).
 
 | Component | Layer | Status | Awaiting token defs / blocker |
 |---|---|:--:|---|
@@ -160,7 +160,7 @@ Single at-a-glance view of every colour-bearing component: migration **status** 
 | layout | semantic | ❌ | — |
 | list | semantic | ❌ | **.less / de-antd** |
 | list-item | module | ✅ | — |
-| loader | semantic | ❌ | — |
+| loader | semantic | ✅ | — |
 | logic | semantic | ❌ | **logic/filter pending** |
 | manageable-list | semantic | ❌ | — |
 | mapping | semantic | ❌ | (i) token pending |
@@ -304,7 +304,7 @@ These components use `theme.palette` / hardcoded colors but do not yet have dedi
 | items-roll | 16 | No | 1 | 4 | |
 | layout | 6 | No | 2 | 2 | |
 | list | 9 | Yes (2) | 1 | 1 | |
-| loader | 2 | No | 0 | 0 | |
+| loader | 1 | No | 0 | 0 | :white_check_mark: tokenised (2026-07-21); header text → text-base-default; spinner border stays dynamic (`color` prop) |
 | logic | 13 | No | 0 | 0 | |
 | manageable-list | 57 | No | 6 | 9 | High palette count |
 | mapping | 3 | No | 0 | 0 | |
@@ -1482,3 +1482,10 @@ Consumes the **progressbar** module token by role (renders a progress bar):
 No visual diff. **Kept dynamic:** the legend-dot **fill** (`EstimationProgressBarLegendItem` `dotColor` ←
 `value.color`) is a per-entry data colour. ⚑ **Follow-up (design-tokens/DS):** refactor the legend dot to
 reuse `@synerise/ds-badge` (custom-color) — the ring+fill dot duplicates badge chrome.
+
+### loader — :white_check_mark:
+
+`Loader.styles.ts` `HeaderWrapper` text grey-800 → `--ds-color-text-base-default` (exact). No visual diff.
+**Kept dynamic:** the spinner `border` colour (`theme.palette[\`${color}-600\`]`) is driven by the public
+`color` prop (default `grey` → grey-600) — verified consumed, so kept dynamic (dropping the prop is a public
+API change, out of scope). **Decorative:** `border-top: transparent` (the spinner's rotation gap).
