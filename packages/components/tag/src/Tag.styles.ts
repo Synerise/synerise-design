@@ -16,9 +16,10 @@ const defaultStatusStyles = css`
   line-height: 18px;
 `;
 export const getColorText = (theme: ThemePropsVars, color?: string): string => {
+  // The grey-200 comparison operand stays a resolved hex (a var() can't be compared in JS).
   return color === theme.palette['grey-200']
-    ? theme.palette['grey-600']
-    : theme.palette.white;
+    ? 'var(--ds-color-text-base-muted)'
+    : 'var(--ds-color-text-onsolid-default)';
 };
 
 type InsertShapeStyles = {
@@ -56,12 +57,12 @@ const getFilterColor = (props: TagProps): string => {
   }
   return 'brightness(110%)';
 };
-const addonStyles = (props: ThemeProps): string => `
+const addonStyles = (): string => `
   border: 1px solid;
   border-radius: 10px;
   height: 50%;
   padding: 0 3px;
-  border-color: ${props.theme.palette.white};
+  border-color: var(--ds-color-background-base-default);
   font-size: 9px;
   line-height: 10px;
   text-align: center;
@@ -89,7 +90,7 @@ export const RemoveButton = styled.div`
   opacity: 0.8;
 
   &:before {
-    color: ${(props) => props.color || props.theme.palette['red-600']};
+    color: ${(props) => props.color || 'var(--ds-color-icon-danger-default)'};
     filter: brightness(70%);
     opacity: 0.3;
     content: '';
@@ -102,7 +103,7 @@ export const RemoveButton = styled.div`
 
   &&&:hover {
     .ds-icon svg {
-      fill: ${(props) => props.theme.palette['red-600']} !important;
+      fill: var(--ds-color-icon-danger-default) !important;
     }
   }
   .icon {
@@ -116,7 +117,7 @@ const insertShapeStyles = (props: InsertShapeStyles) => {
   switch (props.shape) {
     case TagShape.SMALL_SQUARE:
       return css`
-        color: ${props.textColor || '#fff'};
+        color: ${props.textColor || 'var(--ds-color-text-onsolid-default)'};
         border-radius: 3px;
         font-size: 10px;
         height: 14px;
@@ -129,7 +130,7 @@ const insertShapeStyles = (props: InsertShapeStyles) => {
 
     case TagShape.SMALL_ROUND:
       return css`
-        color: ${props.textColor || '#fff'};
+        color: ${props.textColor || 'var(--ds-color-text-onsolid-default)'};
         border-radius: 8px;
         font-size: 10px;
         height: 14px;
@@ -263,22 +264,24 @@ const insertShapeStyles = (props: InsertShapeStyles) => {
 
     case TagShape.STATUS_SUCCESS:
       return css`
-        border: 1px solid ${props.theme.palette['green-600']};
-        color: ${props.theme.palette['green-600']};
+        border: 1px solid var(--ds-color-border-success-default);
+        /* ⚑ Shift: success text green-600 → green-700 (text-success-default). */
+        color: var(--ds-color-text-success-default);
         ${defaultStatusStyles}
       `;
 
     case TagShape.STATUS_ERROR:
       return css`
-        border: 1px solid ${props.theme.palette['red-600']};
-        color: ${props.theme.palette['red-600']};
+        border: 1px solid var(--ds-color-border-danger-default);
+        color: var(--ds-color-text-danger-default);
         ${defaultStatusStyles}
       `;
 
     case TagShape.STATUS_WARNING:
       return css`
-        border: 1px solid ${props.theme.palette['yellow-600']};
-        color: ${props.theme.palette['yellow-600']};
+        border: 1px solid var(--ds-color-border-warning-default);
+        /* ⚑ Shift: warning text yellow-600 → yellow-700 (text-warning-default). */
+        color: var(--ds-color-text-warning-default);
         ${defaultStatusStyles}
       `;
 
@@ -314,35 +317,35 @@ export const Content = styled.div<{ iconHover?: boolean }>`
     !!props.iconHover &&
     `
     &&& {
-     color:${props.theme.palette['red-600']};
+     color: var(--ds-color-text-danger-default);
    }
 `}
 `;
 export const PrefixWrapper = styled.div<{ iconHover?: boolean }>`
-  ${(props) => addonStyles(props)};
+  ${addonStyles()};
   ${(props) =>
     !!props.iconHover &&
     `.ds-badge-scroll-number{
-    color: ${props.theme.palette['red-600']}!important;
-    box-shadow: 0 0 0 1px ${props.theme.palette['red-600']}!important;
+    color: var(--ds-color-text-danger-default)!important;
+    box-shadow: 0 0 0 1px var(--ds-color-border-danger-default)!important;
     }
   .ds-icon svg {
-  fill: ${props.theme.palette['red-600']};
+  fill: var(--ds-color-icon-danger-default);
 }`}
 `;
 export const SuffixWrapper = styled.div`
-  ${(props) => addonStyles(props)};
+  ${addonStyles()};
 `;
 export const DefaultSuffixWrapper = styled.div``;
 export const DefaultPrefixWrapper = styled.div<{ iconHover?: boolean }>`
   ${(props) =>
     !!props.iconHover &&
     `.ds-badge-scroll-number{
-    color: ${props.theme.palette['red-600']}!important;
-    box-shadow: 0 0 0 1px ${props.theme.palette['red-600']}!important;
+    color: var(--ds-color-text-danger-default)!important;
+    box-shadow: 0 0 0 1px var(--ds-color-border-danger-default)!important;
     }
 .ds-icon svg {
-  fill: ${props.theme.palette['red-600']};
+  fill: var(--ds-color-icon-danger-default);
 }`}
 `;
 
@@ -368,14 +371,14 @@ export const Tag = styled.div<TagProps>`
     !!props.iconHover &&
     `
     &&&:before{
-     background-color:${props.theme.palette['red-050']};
+     background-color: var(--ds-color-background-danger-subtle);
    }
 `}
 
   ${(props) =>
     !!props.disabled &&
     css`
-      opacity: 0.4;
+      opacity: var(--ds-opacity-disabled);
       cursor: not-allowed;
     `}
 

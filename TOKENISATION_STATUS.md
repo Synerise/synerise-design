@@ -91,7 +91,7 @@ Icons: DS icons are `fill="currentColor"` with `color: inherit`, so colour them 
 
 Single at-a-glance view of every colour-bearing component: migration **status** + whether it is **awaiting token definitions** (a pending module namespace, a missing semantic role, or a `.less`/de-antd blocker). Sourced from the two detailed tables below + `TOKEN_AUDIT.md` blockers. **Update this table (and the detailed one) whenever `apply-tokens` migrates a component.**
 
-**Totals:** ✅ 55 done · 🚧 25 partial · ❌ 29 not started · ⛔ 4 deprecated · ➖ 2 n/a — **38 awaiting token defs** (flag in last column).
+**Totals:** ✅ 56 done · 🚧 25 partial · ❌ 28 not started · ⛔ 4 deprecated · ➖ 2 n/a — **38 awaiting token defs** (flag in last column).
 
 | Component | Layer | Status | Awaiting token defs / blocker |
 |---|---|:--:|---|
@@ -200,7 +200,7 @@ Single at-a-glance view of every colour-bearing component: migration **status** 
 | table | semantic | ⛔ | — |
 | table-new | semantic | 🚧 | **WIP** |
 | tabs | module | 🚧 | — |
-| tag | semantic | ❌ | — |
+| tag | semantic | ✅ | — |
 | tags | semantic | ✅ | — |
 | time-picker | module | ✅ | — |
 | toast | module | ✅ | — |
@@ -332,7 +332,7 @@ These components use `theme.palette` / hardcoded colors but do not yet have dedi
 | subtle-form | 10 | No | 1 | 4 | |
 | [switch](#form-group-form--input--select--switch) | 2 | No | 2 | 2 | :construction: error/description text → `--ds-form-switch-*`; track/handle now in `RawSwitch.styles.ts` on palette (`.less` removed) |
 | table | 65 | Yes (3) | 8 | 23 | ⛔ **deprecated** — will not be tokenised (`table.less`/`index.less`/`pagination.less`) |
-| tag | 25 | No | 2 | 3 | |
+| tag | 6 | No | 0 | 2 | :white_check_mark: status/danger/disabled tokenised — semantic (2026-07-21); ⚑ success/warning text→-700; 6 JS-compare/custom-colour palette + 2 decorative opacity kept |
 | tags | 2 | No | 0 | 0 | :white_check_mark: tokenised — semantic (2026-07-21); 2 LimitedTags ds-tag color props stay dynamic |
 | toolbar | 0 | No | 0 | 0 | :white_check_mark: tokenised — semantic + shadow-1 (2026-07-21 pass) |
 | tooltip | 3 | No | 2 | 2 | |
@@ -1702,3 +1702,28 @@ All semantic, exact (no visual diff), across 6 files:
 | Property | Was | Token resolves to | Delta |
 |----------|-----|-------------------|-------|
 | WarningIcon fill | yellow-500 `#ffc300` | `--ds-color-icon-warning-default` yellow-600 `#fab700` | ⚑ Darker (no yellow-500 icon token) |
+
+### tag — :white_check_mark:
+
+`Tag.styles.ts`, mixed (custom-colour surfaces stay dynamic; status/danger/disabled → semantic):
+- **Status shapes:** SUCCESS/ERROR/WARNING borders → `--ds-color-border-{success,danger,warning}-default`
+  (exact); text → `--ds-color-text-{success,danger,warning}-default`
+- **Remove/icon-hover (danger):** `Content`/`PrefixWrapper`/`DefaultPrefixWrapper` badge text → `text-danger-default`,
+  1px rings → `border-danger-default`, `.ds-icon svg` fills → `icon-danger-default` (tokenised in place — the
+  nested `!important` svg rules stay `fill: var()`, currentColor left as CSS cleanup); `RemoveButton` hover svg →
+  `icon-danger-default`, `:before` fallback → `icon-danger-default`; `Tag` iconHover `:before` bg red-050 →
+  `--ds-color-background-danger-subtle`
+- **`getColorText` helper:** returns `--ds-color-text-base-muted` / `--ds-color-text-onsolid-default`; SMALL_SQUARE/
+  SMALL_ROUND `#fff` fallback → `text-onsolid-default`; addon badge border white → `background-base-default`
+  (⚑ role — no border-onsolid token)
+- **Disabled** `opacity: 0.4` → `--ds-opacity-disabled`
+
+**Kept on `theme.palette` (intentional):** the `grey-200` **JS comparisons** in `getColorText`/`getFilterColor`
+(a `var()` can't be compared in JS — needs a resolved hex), and the `grey-500` **custom-colour fallbacks** in
+STATUS_NEUTRAL + the `&:before` surface (user `color`/`textColor` props drive these; grey-500 has no exact border
+token). **Kept (decorative):** RemoveButton `opacity: 0.8`/`0.3`.
+
+| Property | Was | Token resolves to | Delta |
+|----------|-----|-------------------|-------|
+| STATUS_SUCCESS text | green-600 `#54cb0b` | `--ds-color-text-success-default` green-700 `#399903` | ⚑ Darker (border stays green-600) |
+| STATUS_WARNING text | yellow-600 `#fab700` | `--ds-color-text-warning-default` yellow-700 `#eda600` | ⚑ Darker (border stays yellow-600) |
