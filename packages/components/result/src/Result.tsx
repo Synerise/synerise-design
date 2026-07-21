@@ -14,27 +14,27 @@ import { type ResultProps } from './Result.types';
 const mapTypeToStatus = {
   info: {
     IconComponent: InfoL,
-    iconColor: 'blue-600',
+    iconColor: 'var(--ds-color-icon-brand-default)',
   },
   warning: {
     IconComponent: WarningL,
-    iconColor: 'yellow-600',
+    iconColor: 'var(--ds-color-icon-warning-default)',
   },
   error: {
     IconComponent: WarningL,
-    iconColor: 'red-600',
+    iconColor: 'var(--ds-color-icon-danger-default)',
   },
   success: {
     IconComponent: CheckL,
-    iconColor: 'green-600',
+    iconColor: 'var(--ds-color-icon-success-default)',
   },
   progress: {
     IconComponent: TimeL,
-    iconColor: 'grey-600',
+    iconColor: 'var(--ds-color-icon-base-default)',
   },
   'no-results': {
     IconComponent: InformationNoSearchResultL,
-    iconColor: 'grey-600',
+    iconColor: 'var(--ds-color-icon-base-default)',
   },
 };
 

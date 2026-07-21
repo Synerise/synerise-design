@@ -91,7 +91,7 @@ Icons: DS icons are `fill="currentColor"` with `color: inherit`, so colour them 
 
 Single at-a-glance view of every colour-bearing component: migration **status** + whether it is **awaiting token definitions** (a pending module namespace, a missing semantic role, or a `.less`/de-antd blocker). Sourced from the two detailed tables below + `TOKEN_AUDIT.md` blockers. **Update this table (and the detailed one) whenever `apply-tokens` migrates a component.**
 
-**Totals:** ✅ 39 done · 🚧 25 partial · ❌ 45 not started · ⛔ 4 deprecated · ➖ 2 n/a — **38 awaiting token defs** (flag in last column).
+**Totals:** ✅ 40 done · 🚧 25 partial · ❌ 44 not started · ⛔ 4 deprecated · ➖ 2 n/a — **38 awaiting token defs** (flag in last column).
 
 | Component | Layer | Status | Awaiting token defs / blocker |
 |---|---|:--:|---|
@@ -178,7 +178,7 @@ Single at-a-glance view of every colour-bearing component: migration **status** 
 | popover | semantic | ❌ | — |
 | progressbar | module | ✅ | — |
 | radio | semantic | 🚧 | — |
-| result | semantic | ❌ | — |
+| result | semantic | ✅ | — |
 | scrollbar | semantic | ❌ | **.less** |
 | search | semantic | ❌ | dropdown pending |
 | search-bar | semantic | ❌ | **search-bar tokens pending** |
@@ -315,7 +315,7 @@ These components use `theme.palette` / hardcoded colors but do not yet have dedi
 | panels-resizer | 4 | No | 0 | 0 | |
 | popover | 0 | No | 0 | 2 | |
 | [radio](#checkbox--radio) | 1 | No | 3 | 4 | :construction: description + disabled-opacity → `--ds-form-radio-*`; bulk per-state styling now in `Radio.styles.tsx` on palette (`.less` removed) |
-| result | 3 | No | 0 | 0 | |
+| result | 0 | No | 0 | 0 | :white_check_mark: tokenised — semantic (2026-07-21 pass); status-icon map → icon-* token vars |
 | scrollbar | 17 | Yes (2) | 0 | 17 | |
 | search | 13 | No | 4 | 8 | `.less` removed (deantd) |
 | search-bar | 12 | No | 1 | 0 | |
@@ -1496,3 +1496,14 @@ API change, out of scope). **Decorative:** `border-top: transparent` (the spinne
 `0 4px 12px 0 rgba(35,41,54,0.04)` → `--ds-shadows-shadow-1` (elevation, exact — `#2329360a`); default border
 grey-200 → `--ds-color-border-base-default` (exact, `1px solid` geometry kept). `theme.palette` fully removed.
 No visual diff.
+
+### result — :white_check_mark:
+
+`Result.styles.ts` + `Result.tsx` (all exact):
+- `PanelContainer` textarea bg white → `--ds-color-background-base-default`; `.ant-list` border grey-300 →
+  `--ds-color-border-base-strong` (`1px solid` geometry kept)
+- `mapTypeToStatus` icon colours refactored from palette-key strings to token `var()`s — info →
+  `--ds-color-icon-brand-default`, warning → `-warning-default`, error → `-danger-default`, success →
+  `-success-default`, progress/no-results → `--ds-color-icon-base-default`; `StatusIconContainer` now applies
+  `props.iconColor` directly (dropped the `theme.palette[…]` indexing). Icons colour via the container's
+  `color` (currentColor). `iconColor` is a closed set (never consumer-supplied). No visual diff.

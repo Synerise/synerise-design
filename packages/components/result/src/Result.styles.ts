@@ -37,11 +37,11 @@ export const PanelContainer = styled.div`
   &&& {
     textarea {
       max-height: 234px;
-      background-color: ${(props) => props.theme.palette.white};
+      background-color: var(--ds-color-background-base-default);
     }
   }
   .ant-list {
-    border: 1px solid ${(props) => props.theme.palette['grey-300']};
+    border: 1px solid var(--ds-color-border-base-strong);
     border-radius: 3px;
     padding: 8px;
   }
@@ -60,7 +60,7 @@ export const StatusIconContainer = styled.div<{
   align-items: center;
   justify-content: center;
   margin: 0 auto;
-  color: ${(props) => props.theme.palette[props.iconColor]};
+  color: ${(props) => props.iconColor};
 `;
 
 export const ResultContainer = styled.div`
