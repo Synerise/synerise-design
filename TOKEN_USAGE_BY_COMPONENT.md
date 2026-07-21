@@ -370,6 +370,15 @@ surfaces, brand/neutral text, `opacity-muted`, etc.) — consistent with the gra
 | `--ds-color-border-base-strong` | 143 | inactive input focus border-color |
 
 
+### icon-picker
+- **Palette (2)** — both **deferred** (kept on palette, noted in code): `Overlay` bg `white` (`IconPicker.styles.tsx:44`, → dropdown token); `Title` category header `grey-500` (`:57`, → list-item title token). `NoResultIcon` bg is a decorative `rgba` (unmapped).
+- **Semantic (1):** `--ds-color-icon-danger-default` — clear (✕) icon, exact red-600. Search + no-result icons now inherit `currentColor` (explicit `grey-600` props dropped). ✓
+
+| Token | Line(s) | Element / role |
+|---|---|---|
+| `--ds-color-icon-danger-default` | 16 | `ClearIcon` clear (✕) danger action |
+
+
 ### broadcast-bar / status-pill / divider
 - **Palette:** none. **Semantic:** none — fully on their `--ds-{broadcast-bar,status-pill,divider}-*` module tokens (broadcast-bar/status-pill via dynamic `var(--ds-…-variant-${v}-…)` construction). ✓
 

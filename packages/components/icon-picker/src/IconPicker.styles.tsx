@@ -8,13 +8,12 @@ export const List = styled.div`
   flex-wrap: wrap;
 `;
 
+// Clear (✕) icon is a danger action → semantic --ds-color-icon-danger-default (red-600, exact).
+// Icon inherits currentColor from this wrapper's color.
 export const ClearIcon = styled(Icon)`
-  &&&&&,
-  &&&&&:hover {
-    svg {
-      color: ${(props): string => props.theme.palette['red-600']};
-      fill: ${(props): string => props.theme.palette['red-600']};
-    }
+  &&&,
+  &&&:hover {
+    color: var(--ds-color-icon-danger-default);
   }
 `;
 
@@ -40,33 +39,12 @@ export const VirtualList = styled(FixedSizeList)<{ listHeight: number }>`
 
 export const Overlay = styled.span`
   width: 250px;
+  /* TODO(tokens): dropdown/overlay surface — should get a dropdown bg token once the dropdown
+     module namespace is defined upstream. Kept on palette (white) until then. */
   background-color: ${(props): string => props.theme.palette.white};
   position: relative;
   display: block;
   border-radius: 3px;
-
-  ${OverlayWrapper}:not(:last-child) {
-    &::after {
-      content: '';
-      display: flex;
-      width: calc(100% - 6px);
-      height: 1px;
-      background-image: linear-gradient(
-        to right,
-        ${({ theme }): string => theme.palette.white} 40%,
-        ${({ theme }): string => theme.palette['grey-300']} 100%,
-        transparent 0%
-      );
-      background-position: 0 bottom;
-      background-size: 4px 1px;
-      background-repeat: repeat-x;
-      margin: 4px auto 0;
-    }
-  }
-
-  ${OverlayWrapper}:first-child {
-    padding-top: 16px;
-  }
 `;
 
 export const Title = styled.div<{ elementSize: string }>`
@@ -74,6 +52,8 @@ export const Title = styled.div<{ elementSize: string }>`
   line-height: 1.6;
   font-weight: 500;
   text-transform: uppercase;
+  /* TODO(tokens): category header — should get a list-item title token once the list-item module
+     namespace is defined upstream. Kept on palette (grey-500) until then. */
   color: ${(props) => props.theme.palette['grey-500']};
   padding: 0 12px;
   flex-basis: 100%;

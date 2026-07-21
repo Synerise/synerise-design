@@ -2,7 +2,6 @@ import React, { type UIEvent, useRef } from 'react';
 import { FormattedMessage } from 'react-intl';
 import { type FixedSizeList } from 'react-window';
 
-import { useTheme } from '@synerise/ds-core';
 import Icon, { SearchNoResultsM } from '@synerise/ds-icon';
 import Scrollbar from '@synerise/ds-scrollbar';
 
@@ -22,7 +21,6 @@ const List = <Source extends SourceType>({
   onSelect,
   noResultMsg = <FormattedMessage id="DS.ICON-PICKER.NO-RESULTS" />,
 }: ListProps<Source>) => {
-  const theme = useTheme();
   const groupedData = useGroupItems(data, ITEMS_PER_ROW);
 
   const listRef = useRef<FixedSizeList>(null);
@@ -53,10 +51,7 @@ const List = <Source extends SourceType>({
           <S.NoResults>
             <S.Content>
               <S.NoResultIcon>
-                <Icon
-                  component={<SearchNoResultsM />}
-                  color={theme.palette['grey-600']}
-                />
+                <Icon component={<SearchNoResultsM />} />
               </S.NoResultIcon>
               <p>{noResultMsg}</p>
             </S.Content>

@@ -167,7 +167,7 @@ These components use `theme.palette` / hardcoded colors but do not yet have dedi
 | footer | 0 | No | 0 | 0 | :white_check_mark: tokenised — semantic (2026-07-20 pass) |
 | form-field | 1 | No | 0 | 0 | :construction: tooltip icon → semantic `--ds-color-icon-base-muted` (2026-07-21); `RightSide` counter grey-500 deferred → `form` token |
 | format-picker | 6 | No | 0 | 0 | :construction: currency select field → `--ds-form-*` (2026-07-20); panel/list-item deferred |
-| icon-picker | 8 | No | 0 | 0 | |
+| icon-picker | 2 | No | 0 | 0 | :construction: clear icon → semantic `--ds-color-icon-danger-default`; search/no-result icons inherit default (2026-07-21); overlay bg + title deferred → dropdown/list-item tokens |
 | information-card | 3 | No | 2 | 2 | |
 | [input](#form-group-form--input--select--switch) | 49 | No | 14 | 2 | :construction: text → `--ds-form-field-*`/`--ds-form-icon-*` + semantic; field bg/border/hover/focus/disabled still palette in `Input.styles.tsx` (`.less` removed) |
 | input-number | 5 | No | 5 | 0 | :white_check_mark: `--ds-form-*` applied (2026-07-20); `.less` removed (deantd) |
@@ -1091,6 +1091,18 @@ All exact — no visual diff. Spec updated to assert the `var()` string (jsdom c
 
 No visual diff. **Deferred:** `RightSide` counter/right-side text `grey-500` (`:65`) — awaits a `form`
 counter token (decision "counter w form" in `UNTOKENISED_COMPONENTS.md`).
+
+### icon-picker — :construction: (2026-07-21)
+
+`IconPicker.styles.tsx` + `List.tsx` / `Overlay.tsx`:
+- `ClearIcon` (✕ danger action) `red-600` → `--ds-color-icon-danger-default` (semantic, **exact**);
+  also converted its `svg { color/fill }` rules to `color` (icon inherits `currentColor`)
+- search icon (`Overlay.tsx`) + no-result icon (`List.tsx`) — dropped explicit `grey-600` `color` props,
+  now inherit the default; removed the now-unused `useTheme` in both
+
+No visual diff on the clear icon. **Deferred (kept on palette, noted in code):** `Overlay` background
+`white` → pending a **dropdown** bg token; `Title` category header `grey-500` → pending a **list-item**
+title token. `NoResultIcon` bg is a decorative `rgba` (unmapped).
 
 ### footer — :white_check_mark:
 
