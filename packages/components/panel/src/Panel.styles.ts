@@ -6,13 +6,13 @@ export const PanelWrapper = styled(Box)<{
   $radius: number;
   greyBackground?: boolean;
 }>`
-  background-color: ${(props) => props.theme.palette.white};
+  background-color: var(--ds-color-background-base-default);
   ${(props) =>
     props.greyBackground
       ? `
-         box-shadow: 0 4px 12px 0 rgba(35, 41, 54, 0.04);`
+         box-shadow: var(--ds-shadows-shadow-1);`
       : `
-         border: solid 1px ${props.theme.palette['grey-200']};`}
+         border: solid 1px var(--ds-color-border-base-default);`}
 
   border-radius: ${(props) => props.$radius}px;
 `;

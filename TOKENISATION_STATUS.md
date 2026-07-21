@@ -91,7 +91,7 @@ Icons: DS icons are `fill="currentColor"` with `color: inherit`, so colour them 
 
 Single at-a-glance view of every colour-bearing component: migration **status** + whether it is **awaiting token definitions** (a pending module namespace, a missing semantic role, or a `.less`/de-antd blocker). Sourced from the two detailed tables below + `TOKEN_AUDIT.md` blockers. **Update this table (and the detailed one) whenever `apply-tokens` migrates a component.**
 
-**Totals:** ✅ 38 done · 🚧 25 partial · ❌ 46 not started · ⛔ 4 deprecated · ➖ 2 n/a — **38 awaiting token defs** (flag in last column).
+**Totals:** ✅ 39 done · 🚧 25 partial · ❌ 45 not started · ⛔ 4 deprecated · ➖ 2 n/a — **38 awaiting token defs** (flag in last column).
 
 | Component | Layer | Status | Awaiting token defs / blocker |
 |---|---|:--:|---|
@@ -172,7 +172,7 @@ Single at-a-glance view of every colour-bearing component: migration **status** 
 | page | module | ➖ | — |
 | page-header | module | ✅ | — |
 | pagination | module | ✅ | — |
-| panel | semantic | ❌ | — |
+| panel | semantic | ✅ | — |
 | panels-resizer | semantic | ❌ | — |
 | popconfirm | module | ✅ | — |
 | popover | semantic | ❌ | — |
@@ -311,7 +311,7 @@ These components use `theme.palette` / hardcoded colors but do not yet have dedi
 | menu | 102 | Yes (2) | 5 | 21 | ⛔ **deprecated** — will not be tokenised |
 | metric-card | 2 | No | 0 | 3 | |
 | operators | 6 | No | 0 | 0 | |
-| panel | 2 | No | 1 | 0 | |
+| panel | 0 | No | 0 | 0 | :white_check_mark: tokenised — semantic + shadow-1 (2026-07-21 pass) |
 | panels-resizer | 4 | No | 0 | 0 | |
 | popover | 0 | No | 0 | 2 | |
 | [radio](#checkbox--radio) | 1 | No | 3 | 4 | :construction: description + disabled-opacity → `--ds-form-radio-*`; bulk per-state styling now in `Radio.styles.tsx` on palette (`.less` removed) |
@@ -1489,3 +1489,10 @@ reuse `@synerise/ds-badge` (custom-color) — the ring+fill dot duplicates badge
 **Kept dynamic:** the spinner `border` colour (`theme.palette[\`${color}-600\`]`) is driven by the public
 `color` prop (default `grey` → grey-600) — verified consumed, so kept dynamic (dropping the prop is a public
 API change, out of scope). **Decorative:** `border-top: transparent` (the spinner's rotation gap).
+
+### panel — :white_check_mark:
+
+`Panel.styles.ts` `PanelWrapper`: bg white → `--ds-color-background-base-default`; `greyBackground` box-shadow
+`0 4px 12px 0 rgba(35,41,54,0.04)` → `--ds-shadows-shadow-1` (elevation, exact — `#2329360a`); default border
+grey-200 → `--ds-color-border-base-default` (exact, `1px solid` geometry kept). `theme.palette` fully removed.
+No visual diff.
