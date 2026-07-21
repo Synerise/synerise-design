@@ -91,7 +91,7 @@ Icons: DS icons are `fill="currentColor"` with `color: inherit`, so colour them 
 
 Single at-a-glance view of every colour-bearing component: migration **status** + whether it is **awaiting token definitions** (a pending module namespace, a missing semantic role, or a `.less`/de-antd blocker). Sourced from the two detailed tables below + `TOKEN_AUDIT.md` blockers. **Update this table (and the detailed one) whenever `apply-tokens` migrates a component.**
 
-**Totals:** ✅ 42 done · 🚧 25 partial · ❌ 42 not started · ⛔ 4 deprecated · ➖ 2 n/a — **38 awaiting token defs** (flag in last column).
+**Totals:** ✅ 43 done · 🚧 25 partial · ❌ 41 not started · ⛔ 4 deprecated · ➖ 2 n/a — **38 awaiting token defs** (flag in last column).
 
 | Component | Layer | Status | Awaiting token defs / blocker |
 |---|---|:--:|---|
@@ -204,7 +204,7 @@ Single at-a-glance view of every colour-bearing component: migration **status** 
 | tags | semantic | ❌ | — |
 | time-picker | module | ✅ | — |
 | toast | module | ✅ | — |
-| toolbar | semantic | ❌ | — |
+| toolbar | semantic | ✅ | — |
 | tooltip | semantic | ❌ | **tooltip tokens pending** |
 | tray | semantic | ❌ | — |
 | typography | semantic | ❌ | ⚑ link-hover shift |
@@ -334,7 +334,7 @@ These components use `theme.palette` / hardcoded colors but do not yet have dedi
 | table | 65 | Yes (3) | 8 | 23 | ⛔ **deprecated** — will not be tokenised (`table.less`/`index.less`/`pagination.less`) |
 | tag | 25 | No | 2 | 3 | |
 | tags | 7 | No | 0 | 0 | |
-| toolbar | 4 | No | 1 | 0 | |
+| toolbar | 0 | No | 0 | 0 | :white_check_mark: tokenised — semantic + shadow-1 (2026-07-21 pass) |
 | tooltip | 3 | No | 2 | 2 | |
 | tray | 4 | No | 1 | 0 | |
 | typography | 8 | No | 0 | 1 | `.less` removed (deantd) |
@@ -1528,3 +1528,10 @@ dragging) + `SortableItem.tsx` inline `opacity: 1` reset.
 | Property | Was | Token resolves to | Delta |
 |----------|-----|-------------------|-------|
 | Grip-bar default bg | grey-200 `#e9edee` | `--ds-color-background-base-muted` grey-100 `#f3f5f6` | ⚑ Lighter (per UX 2026-07-21) |
+
+### toolbar — :white_check_mark:
+
+`Toolbar.styles.ts` (all exact): `ToolbarDivider` bg grey-200 → `--ds-color-border-base-default`;
+`ToolbarLabel` text grey-600 → `--ds-color-text-base-muted`; `ToolbarGroup` surface white →
+`--ds-color-background-base-default`, box-shadow `0 4px 12px #2329360a` (built from grey-900 + `0A`) →
+`--ds-shadows-shadow-1`. `theme.palette` fully removed. No visual diff.
