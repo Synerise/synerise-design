@@ -1,4 +1,3 @@
-import { theme } from '@synerise/ds-core';
 import type { ListItemProps } from '@synerise/ds-list-item';
 import type { RadioProps } from '@synerise/ds-radio';
 
@@ -21,23 +20,15 @@ export const PROPS = {
     relatedObjectsButtonLabel: RELATED_OBJECTS_LABEL,
   },
 };
-export const COLOR_TEST_CASES: { type: ConfirmationType; color: string }[] = [
-  {
-    type: 'negative',
-    color: theme.palette['red-600'],
-  },
-  {
-    type: 'success',
-    color: theme.palette['green-600'],
-  },
-  {
-    type: 'warning',
-    color: theme.palette['yellow-600'],
-  },
-  {
-    type: 'informative',
-    color: theme.palette['blue-600'],
-  },
+// Each confirmation type maps to a semantic ds-button `type` (rendered as an `ant-btn-<type>` class).
+export const BUTTON_TYPE_TEST_CASES: {
+  type: ConfirmationType;
+  buttonType: string;
+}[] = [
+  { type: 'negative', buttonType: 'danger' },
+  { type: 'success', buttonType: 'success' },
+  { type: 'warning', buttonType: 'warning' },
+  { type: 'informative', buttonType: 'primary' },
 ];
 export const ITEM_NAME = 'TEST1';
 export const ITEMS: ListItemProps[] = [

@@ -6,7 +6,7 @@ import userEvent from '@testing-library/user-event';
 
 import Confirmation from '../Confirmation';
 import {
-  COLOR_TEST_CASES,
+  BUTTON_TYPE_TEST_CASES,
   DECISION_OPTIONS,
   ITEMS,
   ITEM_NAME,
@@ -34,9 +34,9 @@ describe('Confirmation component', () => {
     expect(screen.queryByTestId(PROPS.secondaryButtonProps['data-testid'])).not.toBeInTheDocument();
   });
   
-  it.each(COLOR_TEST_CASES)(
-    'Should render correct color',
-    async ({ type, color }) => {
+  it.each(BUTTON_TYPE_TEST_CASES)(
+    'Should render the $buttonType button type for $type',
+    async ({ type, buttonType }) => {
       renderWithProvider(<Confirmation {...PROPS} type={type} open />);
 
       expect(
@@ -44,7 +44,7 @@ describe('Confirmation component', () => {
       ).toBeInTheDocument();
       expect(
         screen.getByTestId(PROPS.mainButtonProps['data-testid']),
-      ).toHaveStyle({ backgroundColor: color });
+      ).toHaveClass(`ant-btn-${buttonType}`);
     },
   );
 

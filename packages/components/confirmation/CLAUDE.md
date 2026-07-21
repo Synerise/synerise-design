@@ -9,7 +9,7 @@ src/
   Confirmation.tsx        — main component (generic over ListItemProps)
   Confirmation.types.ts   — all prop interfaces and shared types
   Confirmation.styles.ts  — styled-components (no hardcoded tokens — uses ds-core palette via useTheme)
-  Confirmation.const.ts   — BUTTON_COLOR_MAPPING, ICON_COLOR_MAPPING, ITEM_SIZE, MAX_ITEMS
+  Confirmation.const.ts   — BUTTON_TYPE_MAPPING, ICON_COLOR_MAPPING, ITEM_SIZE, MAX_ITEMS
   Confirmation.utils.ts   — getIconColor(type, theme) helper
   index.ts                — public exports
   components/
@@ -173,3 +173,4 @@ Merges `Partial<ConfirmationTexts>` supplied by the caller with `react-intl` `<F
 - `bodyStyle={{ padding: 0 }}` is hardcoded — content components own their own padding via styled-components.
 - `onOk` and `onCancel` are **optional**; the footer renders conditionally only when at least one is provided (or `relatedObjects` is set).
 - `ConfirmationButtonProps` is a limited subset of `ButtonProps` (`mode`, `loading`, `readOnly`, `disabled`, `tagProps`) plus `DataAttributes` — arbitrary button props cannot be passed through.
+- **Confirm button uses a semantic ds-button `type`** — `BUTTON_TYPE_MAPPING` maps each `ConfirmationType` to a ds-button `type` (`negative`→`danger`, `success`→`success`, `warning`→`warning`, `informative`→`primary`), replacing the previous `type="custom-color"` + `color` keyword approach. The type-driven icon still comes from `ICON_COLOR_MAPPING` (semantic icon tokens).

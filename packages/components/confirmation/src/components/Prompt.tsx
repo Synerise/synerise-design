@@ -3,7 +3,7 @@ import React, { useMemo } from 'react';
 import Button from '@synerise/ds-button';
 import Modal from '@synerise/ds-modal';
 
-import { BUTTON_COLOR_MAPPING } from '../Confirmation.const';
+import { BUTTON_TYPE_MAPPING } from '../Confirmation.const';
 import * as S from '../Confirmation.styles';
 import type { PromptProps } from '../Confirmation.types';
 import { useDefaultTexts } from '../hooks/useDefaultTexts';
@@ -19,7 +19,7 @@ export const Prompt = ({
   ...modalProps
 }: PromptProps) => {
   const allTexts = useDefaultTexts(texts);
-  const buttonColor = BUTTON_COLOR_MAPPING[type];
+  const buttonType = BUTTON_TYPE_MAPPING[type];
   const modalFooter = useMemo(() => {
     return (
       <S.Footer>
@@ -27,19 +27,14 @@ export const Prompt = ({
           <Button type="secondary" onClick={onCancel} {...secondaryButtonProps}>
             {allTexts.secondaryButtonLabel}
           </Button>
-          <Button
-            type="custom-color"
-            onClick={onOk}
-            color={buttonColor}
-            {...mainButtonProps}
-          >
+          <Button type={buttonType} onClick={onOk} {...mainButtonProps}>
             {allTexts.mainButtonLabel}
           </Button>
         </S.FooterRight>
       </S.Footer>
     );
   }, [
-    buttonColor,
+    buttonType,
     onCancel,
     onOk,
     mainButtonProps,

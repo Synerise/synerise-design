@@ -5,7 +5,7 @@ import { screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 
 import { Prompt } from '../index';
-import { COLOR_TEST_CASES, PROPS } from './testData';
+import { BUTTON_TYPE_TEST_CASES, PROPS } from './testData';
 
 const TITLE = 'prompt title';
 describe('Prompt component', () => {
@@ -15,9 +15,9 @@ describe('Prompt component', () => {
     expect(await screen.findByText(TITLE)).toBeInTheDocument();
   });
 
-  it.each(COLOR_TEST_CASES)(
-    'Should render correct color',
-    async ({ type, color }) => {
+  it.each(BUTTON_TYPE_TEST_CASES)(
+    'Should render the $buttonType button type for $type',
+    async ({ type, buttonType }) => {
       renderWithProvider(<Prompt {...PROPS} type={type} open />);
 
       expect(
@@ -25,7 +25,7 @@ describe('Prompt component', () => {
       ).toBeInTheDocument();
       expect(
         screen.getByTestId(PROPS.mainButtonProps['data-testid']),
-      ).toHaveStyle({ backgroundColor: color });
+      ).toHaveClass(`ant-btn-${buttonType}`);
     },
   );
 

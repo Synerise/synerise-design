@@ -1,10 +1,10 @@
 import type { ConfirmationType } from './Confirmation.types';
 
-export const BUTTON_COLOR_MAPPING: Record<ConfirmationType, string> = {
-  negative: 'red',
-  success: 'green',
-  warning: 'yellow',
-  informative: 'blue',
+export const BUTTON_TYPE_MAPPING: Record<ConfirmationType, string> = {
+  negative: 'danger',
+  success: 'success',
+  warning: 'warning',
+  informative: 'primary',
 };
 
 export const ICON_COLOR_MAPPING: Record<ConfirmationType, string> = {
