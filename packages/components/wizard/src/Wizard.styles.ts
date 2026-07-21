@@ -7,7 +7,7 @@ export const WizardWrapper = styled.div`
   width: 100vw;
   height: 100vh;
   z-index: 1500;
-  background-color: ${(props): string => props.theme.palette.white};
+  background-color: var(--ds-color-background-base-default);
 
   && .ds-layout__header {
     overflow: visible;
@@ -26,7 +26,7 @@ export const WizardHeader = styled.div<{ withHeaderAction?: boolean }>`
     display: flex;
     height: 40px;
     width: 1px;
-    background-color: ${(props): string => props.theme.palette['grey-200']};
+    background-color: var(--ds-color-border-base-default);
     position: absolute;
     right: 0;
     top: ${(props): string => (props.withHeaderAction ? '-4px' : '-8px')};
@@ -44,7 +44,7 @@ export const WizardContainer = styled.div<{
   contentWidth?: string;
   withFooter: boolean;
 }>`
-  background-color: ${(props): string => props.theme.palette.white};
+  background-color: var(--ds-color-background-base-default);
   width: 100%;
   height: 100%;
   position: relative;
@@ -127,8 +127,8 @@ export const WizardFooter = styled.div`
   justify-content: space-between;
   width: 100%;
   padding: 24px;
-  background-color: ${(props) => props.theme.palette.white};
-  border-top: 1px solid ${(props) => props.theme.palette['grey-200']};
+  background-color: var(--ds-color-background-base-default);
+  border-top: 1px solid var(--ds-color-border-base-default);
   position: fixed;
   bottom: 0;
   left: 0;
@@ -157,7 +157,7 @@ export const HeaderActions = styled.div`
     display: flex;
     height: 40px;
     width: 1px;
-    background-color: ${(props): string => props.theme.palette['grey-200']};
+    background-color: var(--ds-color-border-base-default);
     position: absolute;
     right: 0;
     top: -4px;

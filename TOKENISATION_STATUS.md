@@ -91,7 +91,7 @@ Icons: DS icons are `fill="currentColor"` with `color: inherit`, so colour them 
 
 Single at-a-glance view of every colour-bearing component: migration **status** + whether it is **awaiting token definitions** (a pending module namespace, a missing semantic role, or a `.less`/de-antd blocker). Sourced from the two detailed tables below + `TOKEN_AUDIT.md` blockers. **Update this table (and the detailed one) whenever `apply-tokens` migrates a component.**
 
-**Totals:** ✅ 48 done · 🚧 25 partial · ❌ 36 not started · ⛔ 4 deprecated · ➖ 2 n/a — **38 awaiting token defs** (flag in last column).
+**Totals:** ✅ 49 done · 🚧 25 partial · ❌ 35 not started · ⛔ 4 deprecated · ➖ 2 n/a — **38 awaiting token defs** (flag in last column).
 
 | Component | Layer | Status | Awaiting token defs / blocker |
 |---|---|:--:|---|
@@ -209,7 +209,7 @@ Single at-a-glance view of every colour-bearing component: migration **status** 
 | tray | semantic | ✅ | — |
 | typography | semantic | ❌ | ⚑ link-hover shift |
 | unordered-list | semantic | ✅ | — |
-| wizard | semantic | ❌ | — |
+| wizard | semantic | ✅ | — |
 
 > **Legend:** ✅ fully done · 🚧 partial · ❌ not started · ⛔ deprecated (won't tokenise) · ➖ n/a (no colour code). *Layer* = has a module namespace (`module`) or maps to semantic tokens (`semantic`).
 
@@ -339,7 +339,7 @@ These components use `theme.palette` / hardcoded colors but do not yet have dedi
 | tray | 0 | No | 0 | 0 | :white_check_mark: tokenised — reuses **modal** module (2026-07-21); ⚑ header border grey-200→grey-100 |
 | typography | 8 | No | 0 | 1 | `.less` removed (deantd) |
 | unordered-list | 0 | No | 0 | 0 | :white_check_mark: tokenised — semantic (2026-07-21 pass); `Label` (unused) grey-800 → text-base-default |
-| wizard | 6 | No | 0 | 0 | |
+| wizard | 0 | No | 0 | 0 | :white_check_mark: tokenised — semantic (2026-07-21 pass) |
 
 ### Packages with no color-related code
 
@@ -1599,3 +1599,11 @@ no visual change):** `SidebarButton` resting bg uses `--ds-color-background-base
 opened/hover bg uses `--ds-color-background-neutral-solidhover` (grey-600) — "hover"-named tokens applied at a
 resting/opened state. Cleaner future home is a `button-expander` module (the button is functionally an expander;
 out of layout scope).
+
+### wizard — :white_check_mark:
+
+`Wizard.styles.ts` (all exact): `WizardWrapper`/`WizardContainer`/`WizardFooter` surfaces white →
+`--ds-color-background-base-default`; `WizardHeader`/`HeaderActions` `:after` dividers + `WizardFooter`
+border-top grey-200 → `--ds-color-border-base-default` (1px pseudo-elements/borders). `theme.palette` fully
+removed. No visual diff. (Step-indicator states aren't styled here — the wizard consumes a passed-in
+ds-stepper node.)
