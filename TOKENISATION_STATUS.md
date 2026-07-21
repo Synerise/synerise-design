@@ -91,7 +91,7 @@ Icons: DS icons are `fill="currentColor"` with `color: inherit`, so colour them 
 
 Single at-a-glance view of every colour-bearing component: migration **status** + whether it is **awaiting token definitions** (a pending module namespace, a missing semantic role, or a `.less`/de-antd blocker). Sourced from the two detailed tables below + `TOKEN_AUDIT.md` blockers. **Update this table (and the detailed one) whenever `apply-tokens` migrates a component.**
 
-**Totals:** ✅ 40 done · 🚧 25 partial · ❌ 44 not started · ⛔ 4 deprecated · ➖ 2 n/a — **38 awaiting token defs** (flag in last column).
+**Totals:** ✅ 41 done · 🚧 25 partial · ❌ 43 not started · ⛔ 4 deprecated · ➖ 2 n/a — **38 awaiting token defs** (flag in last column).
 
 | Component | Layer | Status | Awaiting token defs / blocker |
 |---|---|:--:|---|
@@ -189,7 +189,7 @@ Single at-a-glance view of every colour-bearing component: migration **status** 
 | sidebar-object | semantic | ❌ | — |
 | skeleton | semantic | ❌ | **skeleton tokens pending** |
 | slider | semantic | ❌ | focus-ring token gap |
-| sortable | semantic | ❌ | — |
+| sortable | semantic | ✅ | — |
 | status | semantic | ❌ | — |
 | status-pill | module | ✅ | — |
 | step-card | semantic | ❌ | — |
@@ -325,7 +325,7 @@ These components use `theme.palette` / hardcoded colors but do not yet have dedi
 | sidebar-object | 9 | No | 0 | 0 | |
 | skeleton | 5 | No | 0 | 15 | |
 | slider | 12 | No | 4 | 0 | |
-| sortable | 3 | No | 1 | 2 | |
+| sortable | 0 | No | 0 | 2 | :white_check_mark: tokenised — semantic + shadow-2 (2026-07-21 pass); 2 opacities kept (functional drag hide/reset) |
 | status | 7 | No | 0 | 1 | Token Studio has status-pill tokens |
 | step-card | 5 | No | 1 | 13 | |
 | subject | 0 | No | 0 | 0 | :white_check_mark: tokenised — semantic (2026-07-21 pass); both spans unused (dead code) |
@@ -1507,3 +1507,13 @@ No visual diff.
   `-success-default`, progress/no-results → `--ds-color-icon-base-default`; `StatusIconContainer` now applies
   `props.iconColor` directly (dropped the `theme.palette[…]` indexing). Icons colour via the container's
   `color` (currentColor). `iconColor` is a closed set (never consumer-supplied). No visual diff.
+
+### sortable — :white_check_mark:
+
+`Sortable.styles.ts` (all exact): drag-placeholder `&:before` border blue-300 →
+`--ds-color-border-brand-strong` (`1px dashed` geometry kept), bg blue-050 →
+`--ds-color-background-brand-subtle`; grabbed-overlay content bg white →
+`--ds-color-background-base-default`, box-shadow `0 16px 32px rgba(35,41,54,0.1)` → `--ds-shadows-shadow-2`
+(drag elevation). `props.theme.palette` fully removed (the `ThemeProps` **type** import stays — used by the
+`placeholderCss` interpolation). No visual diff. **Kept (functional):** `opacity: 0` (hide source while
+dragging) + `SortableItem.tsx` inline `opacity: 1` reset.
