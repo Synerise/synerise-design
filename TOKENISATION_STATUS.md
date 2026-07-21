@@ -91,7 +91,7 @@ Icons: DS icons are `fill="currentColor"` with `color: inherit`, so colour them 
 
 Single at-a-glance view of every colour-bearing component: migration **status** + whether it is **awaiting token definitions** (a pending module namespace, a missing semantic role, or a `.less`/de-antd blocker). Sourced from the two detailed tables below + `TOKEN_AUDIT.md` blockers. **Update this table (and the detailed one) whenever `apply-tokens` migrates a component.**
 
-**Totals:** ✅ 54 done · 🚧 25 partial · ❌ 30 not started · ⛔ 4 deprecated · ➖ 2 n/a — **38 awaiting token defs** (flag in last column).
+**Totals:** ✅ 55 done · 🚧 25 partial · ❌ 29 not started · ⛔ 4 deprecated · ➖ 2 n/a — **38 awaiting token defs** (flag in last column).
 
 | Component | Layer | Status | Awaiting token defs / blocker |
 |---|---|:--:|---|
@@ -156,7 +156,7 @@ Single at-a-glance view of every colour-bearing component: migration **status** 
 | insight | semantic | ✅ | — |
 | item-filter | semantic | ⛔ | **deprecated** |
 | item-picker | semantic | 🚧 | **dropdown/list-item pending** |
-| items-roll | semantic | ❌ | — |
+| items-roll | semantic | ✅ | — |
 | layout | semantic | ✅ | — |
 | list | semantic | ❌ | **.less / de-antd** |
 | list-item | module | ✅ | — |
@@ -301,7 +301,7 @@ These components use `theme.palette` / hardcoded colors but do not yet have dedi
 | insight | 0 | No | 0 | 0 | :white_check_mark: tokenised — semantic (2026-07-21 pass) |
 | item-filter | 2 | No | 1 | 0 | |
 | item-picker | 13 | No | 4 | 1 | :construction: trigger field → `--ds-form-*` (2026-07-20); dropdown/list deferred |
-| items-roll | 16 | No | 1 | 4 | |
+| items-roll | 0 | No | 1 | 4 | :white_check_mark: colours tokenised — semantic (2026-07-21); ⚑ WarningIcon yellow-500→600; shadow/opacity refs are non-colour (kept) |
 | layout | 0 | No | 0 | 2 | :white_check_mark: tokenised — semantic + `page` module bg (2026-07-21); fixed a malformed CSS site; 2 functional opacities kept |
 | list | 9 | Yes (2) | 1 | 1 | |
 | loader | 1 | No | 0 | 0 | :white_check_mark: tokenised (2026-07-21); header text → text-base-default; spinner border stays dynamic (`color` prop) |
@@ -1682,3 +1682,23 @@ All semantic, exact (no visual diff), across 6 files:
   `DragOverlayPanel.tsx`)
 - Removed `useTheme` (`Sidebar.tsx`, incl. its `useMemo` dep) and 2 static `import { theme }`
   (`PanelContent.tsx`, `DragOverlayPanel.tsx`). **Kept (decorative):** `SidebarHandle` `opacity: 1`.
+
+### items-roll — :white_check_mark:
+
+`ItemsRoll.styles.ts` + `ItemRemoveIcon.tsx`, all semantic, exact except the flagged WarningIcon:
+- Text: HeaderLeft/Bold grey-800 → `--ds-color-text-base-default`; ShowButton span grey-700 →
+  `--ds-color-text-base-subtle`; group-title grey-500 → `--ds-color-text-neutral-default`; NoResults grey-600 →
+  `--ds-color-text-base-muted`; ChangeSelection blue-600 → `--ds-color-text-brand-default`
+- Surfaces: `:focus:hover` bg grey-050 → `--ds-color-background-base-subtle`; group divider grey-300 →
+  `--ds-color-border-base-strong`
+- Icons converted to wrapper `color` + native `currentColor` (dropped `svg { fill }`): `ArrowIcon` /
+  `NoResultIconWrapper` grey-600 → `--ds-color-icon-base-default`; `ChangeSelection` icon → brand;
+  `WarningIcon` → `--ds-color-icon-warning-default`; `ItemRemoveIcon.tsx` `color` prop red-600 →
+  `--ds-color-icon-danger-default` (static `import { theme }` removed)
+- The nested `.items-roll-list-item :hover svg` + `.element-remove-icon svg` rules were **tokenised in place**
+  (`fill: var(--ds-color-icon-brand-default)` / `-danger-default`) rather than converted to `currentColor` — a
+  wrapper `color` there would leak onto the row **text** on hover. currentColor conversion left as a CSS cleanup.
+
+| Property | Was | Token resolves to | Delta |
+|----------|-----|-------------------|-------|
+| WarningIcon fill | yellow-500 `#ffc300` | `--ds-color-icon-warning-default` yellow-600 `#fab700` | ⚑ Darker (no yellow-500 icon token) |

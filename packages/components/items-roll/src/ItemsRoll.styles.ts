@@ -17,7 +17,7 @@ export const HeaderRight = styled.div`
 `;
 
 export const HeaderLeft = styled.div`
-  color: ${({ theme }) => theme.palette['grey-800']};
+  color: var(--ds-color-text-base-default);
   margin-left: 12px;
   height: 34px;
   display: flex;
@@ -40,17 +40,19 @@ export const ListWrapper = styled.div`
       .items-roll-list-item {
         padding-left: 12px !important;
 
+        /* svg fills kept as fill:var() (not currentColor): a wrapper color here would
+           leak onto the row text on hover. currentColor conversion = CSS-cleanup follow-up. */
         :hover {
           svg {
-            fill: ${({ theme }) => theme.palette['blue-600']};
+            fill: var(--ds-color-icon-brand-default);
           }
 
           .element-remove-icon {
             svg {
-              fill: ${({ theme }) => theme.palette['red-600']} !important;
+              fill: var(--ds-color-icon-danger-default) !important;
 
               :hover {
-                fill: ${({ theme }) => theme.palette['red-600']} !important;
+                fill: var(--ds-color-icon-danger-default) !important;
               }
             }
           }
@@ -61,7 +63,7 @@ export const ListWrapper = styled.div`
           background: transparent;
         }
         :focus:hover {
-          background-color: ${({ theme }) => theme.palette['grey-050']};
+          background-color: var(--ds-color-background-base-subtle);
         }
       }
 
@@ -74,7 +76,7 @@ export const ListWrapper = styled.div`
       .-item-group-title {
         font-size: 10px;
         text-transform: uppercase;
-        color: ${({ theme }) => theme.palette['grey-500']};
+        color: var(--ds-color-text-neutral-default);
         font-weight: 500;
         padding-left: 0;
         padding-right: 0;
@@ -87,7 +89,7 @@ export const ListWrapper = styled.div`
         width: calc(100% + 12px);
         height: 1px;
         display: block;
-        border-bottom: 1px dashed ${({ theme }) => theme.palette['grey-300']};
+        border-bottom: 1px dashed var(--ds-color-border-base-strong);
         margin: 12px 0px 12px -12px;
       }
     }
@@ -95,7 +97,7 @@ export const ListWrapper = styled.div`
 `;
 
 export const Bold = styled.span`
-  color: ${({ theme }) => theme.palette['grey-800']};
+  color: var(--ds-color-text-base-default);
   font-weight: 500;
   margin-left: 2px;
 `;
@@ -108,13 +110,9 @@ export const ChangeSelection: StyledButton = styled(Button)`
   font-weight: 500;
 
   &&& {
-    color: ${({ theme }) => theme.palette['blue-600']};
+    color: var(--ds-color-text-brand-default);
     .ds-icon {
       margin-right: 4px;
-
-      svg {
-        fill: ${({ theme }) => theme.palette['blue-600']};
-      }
     }
   }
 `;
@@ -130,7 +128,7 @@ export const ShowButton: StyledButton = styled(Button)`
 
   span {
     font-weight: 400;
-    color: ${({ theme }) => theme.palette['grey-700']};
+    color: var(--ds-color-text-base-subtle);
   }
 
   .bold-label {
@@ -153,9 +151,7 @@ export const ClearButton: StyledButton = styled(Button)`
 `;
 
 export const ArrowIcon = styled(Icon)`
-  svg {
-    fill: ${({ theme }) => theme.palette['grey-600']};
-  }
+  color: var(--ds-color-icon-base-default);
 `;
 
 export const NoResults = styled.div`
@@ -164,7 +160,7 @@ export const NoResults = styled.div`
   align-items: center;
   justify-content: center;
   height: 144px;
-  color: ${({ theme }) => theme.palette['grey-600']};
+  color: var(--ds-color-text-base-muted);
 `;
 
 export const NoResultIconWrapper = styled.div`
@@ -175,12 +171,7 @@ export const NoResultIconWrapper = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-
-  .ds-icon {
-    svg {
-      fill: ${({ theme }) => theme.palette['grey-600']};
-    }
-  }
+  color: var(--ds-color-icon-base-default);
 `;
 
 export const Divider = styled(DividerBase)<{ footer?: boolean }>`
@@ -190,7 +181,6 @@ export const Divider = styled(DividerBase)<{ footer?: boolean }>`
 `;
 
 export const WarningIcon = styled(Icon)`
-  svg {
-    fill: ${({ theme }) => theme.palette['yellow-500']};
-  }
+  /* ⚑ Shift: yellow-500 → --ds-color-icon-warning-default (yellow-600; no yellow-500 icon token). */
+  color: var(--ds-color-icon-warning-default);
 `;
