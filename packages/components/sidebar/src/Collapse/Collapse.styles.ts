@@ -11,15 +11,15 @@ import { type CollapseExpandIconPosition } from './Collapse.types';
 
 export const headerStyle = css`
   padding: 18px 24px;
-  color: ${(props) => props.theme.palette['grey-700']};
+  color: var(--ds-color-text-base-subtle);
   font-weight: 500;
   font-size: 14px;
-  background: white;
+  background: var(--ds-color-background-base-default);
   position: relative;
   cursor: pointer;
 
   &:hover {
-    color: ${(props) => props.theme.palette['grey-800']};
+    color: var(--ds-color-text-base-default);
   }
 `;
 
@@ -31,7 +31,7 @@ export const expandIconStyle = css`
 `;
 
 export const CollapseRoot = styled.div`
-  background-color: ${(props) => props.theme.palette['blue-050']};
+  background-color: var(--ds-color-background-brand-subtle);
   border: none;
 `;
 
@@ -41,13 +41,13 @@ export const PanelItem = styled.div<{
 }>`
   position: relative;
   /* top border stays in BOTH states (collapsed and open) — the open state previously dropped it */
-  border-top: solid 1px ${(props) => props.theme.palette['grey-200']};
+  border-top: solid 1px var(--ds-color-border-base-default);
   border-bottom: none;
 
   ${(props) =>
     props.$isDragOverlay &&
     css`
-      box-shadow: ${props.theme.variables['box-shadow-2']};
+      box-shadow: var(--ds-shadows-shadow-2);
       z-index: 10;
     `}
 `;
@@ -70,7 +70,7 @@ export const PanelExpandIcon = styled.span<{
 `;
 
 export const PanelContent = styled.div<{ $isActive?: boolean }>`
-  background-color: white;
+  background-color: var(--ds-color-background-base-default);
   border-radius: 0;
   border: none;
   /*

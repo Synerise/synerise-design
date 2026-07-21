@@ -1,6 +1,5 @@
 import React from 'react';
 
-import { theme } from '@synerise/ds-core';
 import Icon, { AngleDownS, AngleUpS, DragHandleM } from '@synerise/ds-icon';
 
 import * as S from '../Sidebar.styles';
@@ -20,13 +19,13 @@ export const DragOverlayPanel = ({
           <span>{header}</span>
           <S.SidebarHandle data-testid="ds-sidebar-header-handle">
             <Icon
-              color={theme.palette['grey-400']}
+              color="var(--ds-color-icon-base-muted)"
               component={<DragHandleM />}
             />
           </S.SidebarHandle>
           <S.ExpandIcon>
             <Icon
-              color={theme.palette['grey-600']}
+              color="var(--ds-color-icon-base-default)"
               component={isActive ? <AngleUpS /> : <AngleDownS />}
             />
           </S.ExpandIcon>

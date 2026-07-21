@@ -6,7 +6,7 @@ export const SidebarWithButtonWrapper = styled.div`
   justify-content: center;
   padding: 12px;
   font-weight: 500;
-  color: ${(props): string => props.theme.palette['grey-700']};
+  color: var(--ds-color-text-base-subtle);
 `;
 export const TextWrapper = styled.div`
   padding-right: 8px;

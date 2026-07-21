@@ -91,7 +91,7 @@ Icons: DS icons are `fill="currentColor"` with `color: inherit`, so colour them 
 
 Single at-a-glance view of every colour-bearing component: migration **status** + whether it is **awaiting token definitions** (a pending module namespace, a missing semantic role, or a `.less`/de-antd blocker). Sourced from the two detailed tables below + `TOKEN_AUDIT.md` blockers. **Update this table (and the detailed one) whenever `apply-tokens` migrates a component.**
 
-**Totals:** ✅ 53 done · 🚧 25 partial · ❌ 31 not started · ⛔ 4 deprecated · ➖ 2 n/a — **38 awaiting token defs** (flag in last column).
+**Totals:** ✅ 54 done · 🚧 25 partial · ❌ 30 not started · ⛔ 4 deprecated · ➖ 2 n/a — **38 awaiting token defs** (flag in last column).
 
 | Component | Layer | Status | Awaiting token defs / blocker |
 |---|---|:--:|---|
@@ -185,7 +185,7 @@ Single at-a-glance view of every colour-bearing component: migration **status** 
 | section-message | module | ✅ | — |
 | select | semantic | 🚧 | — |
 | short-cuts | semantic | ❌ | shadow token gap |
-| sidebar | semantic | ❌ | — |
+| sidebar | semantic | ✅ | — |
 | sidebar-object | semantic | ✅ | — |
 | skeleton | semantic | ❌ | **skeleton tokens pending** |
 | slider | semantic | ❌ | focus-ring token gap |
@@ -321,7 +321,7 @@ These components use `theme.palette` / hardcoded colors but do not yet have dedi
 | search-bar | 12 | No | 1 | 0 | |
 | [select](#form-group-form--input--select--switch) | 13 | Yes (2) | 6 | 3 | :construction: TS → `--ds-form-field-*` + semantic; search-icon data-URI + `.less` deferred |
 | short-cuts | 7 | No | 1 | 0 | |
-| sidebar | 14 | No | 1 | 2 | `.less` removed (deantd) |
+| sidebar | 0 | No | 0 | 1 | :white_check_mark: tokenised — semantic + shadow-2 (2026-07-21); 1 handle opacity kept; `.less` removed (deantd) |
 | sidebar-object | 0 | No | 0 | 0 | :white_check_mark: tokenised — modal module (footer/dropdown) + semantic (2026-07-21); all exact |
 | skeleton | 5 | No | 0 | 15 | |
 | slider | 12 | No | 4 | 0 | |
@@ -1666,3 +1666,19 @@ inactive→`background-base-strong`, blocked/default→`background-danger-solid`
 warning→`background-warning-solid` (⚑ yellow-600→yellow-500), count→`text-onsolid-default`, ring/border→
 `background-base-default`, label→`text-base-muted` — recorded here so the swap is fast once the module lands or
 if a semantic fallback is later authorised.) `customColor` stays dynamic; pulse/flag halos decorative.
+
+### sidebar — :white_check_mark:
+
+All semantic, exact (no visual diff), across 6 files:
+- `Collapse/Collapse.styles.ts`: base tint blue-050 → `--ds-color-background-brand-subtle`; header/panel surfaces
+  white → `--ds-color-background-base-default`; header text grey-700 → `--ds-color-text-base-subtle`, hover
+  grey-800 → `--ds-color-text-base-default`; panel border grey-200 → `--ds-color-border-base-default`;
+  drag-overlay box-shadow `box-shadow-2` → `--ds-shadows-shadow-2`
+- `Sidebar.styles.ts`: drag-overlay header border grey-200 → `--ds-color-border-base-default`, content bg white
+  → `--ds-color-background-base-default`
+- `SidebarWithButton.styles.ts`: title grey-700 → `--ds-color-text-base-subtle`
+- Icons via `<Icon color>`: expand chevron grey-600 → `--ds-color-icon-base-default` (`Sidebar.tsx` +
+  `DragOverlayPanel.tsx`); drag-handle grey-400 → `--ds-color-icon-base-muted` (`PanelContent.tsx` +
+  `DragOverlayPanel.tsx`)
+- Removed `useTheme` (`Sidebar.tsx`, incl. its `useMemo` dep) and 2 static `import { theme }`
+  (`PanelContent.tsx`, `DragOverlayPanel.tsx`). **Kept (decorative):** `SidebarHandle` `opacity: 1`.

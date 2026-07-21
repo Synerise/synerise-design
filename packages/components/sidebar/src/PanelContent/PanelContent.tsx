@@ -1,6 +1,5 @@
 import React from 'react';
 
-import { theme } from '@synerise/ds-core';
 import Icon, { DragHandleM } from '@synerise/ds-icon';
 
 import CollapsePanel from '../Collapse/CollapsePanel';
@@ -26,7 +25,7 @@ export const PanelContent = ({
               {...dragHandleProps}
             >
               <Icon
-                color={theme.palette['grey-400']}
+                color="var(--ds-color-icon-base-muted)"
                 component={<DragHandleM />}
               />
             </S.SidebarHandle>

@@ -9,7 +9,6 @@ import React, {
 } from 'react';
 import { createPortal } from 'react-dom';
 
-import { useTheme } from '@synerise/ds-core';
 import Icon, { AngleDownS, AngleUpS } from '@synerise/ds-icon';
 import { DragOverlay, SortableContainer } from '@synerise/ds-sortable';
 
@@ -33,7 +32,6 @@ export const Sidebar = ({
   const [draggedItem, setDraggedItem] = useState<PanelProps | undefined>();
   const isSortable =
     Array.isArray(order) && order.length > 0 && !!onChangeOrder;
-  const theme = useTheme();
   const wrapperRef = useRef<HTMLDivElement | null>(null);
 
   const [activeKeys, setActiveKeys] = useState<(string | number)[]>(() => {
@@ -131,7 +129,7 @@ export const Sidebar = ({
           expandIconPosition="end"
           expandIcon={({ isActive }) => (
             <Icon
-              color={theme.palette['grey-600']}
+              color="var(--ds-color-icon-base-default)"
               component={isActive ? <AngleUpS /> : <AngleDownS />}
             />
           )}
@@ -157,7 +155,6 @@ export const Sidebar = ({
     sortedChildren,
     children,
     getPopupContainer,
-    theme.palette,
   ]);
 
   return isSortable ? (
