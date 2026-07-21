@@ -165,7 +165,7 @@ These components use `theme.palette` / hardcoded colors but do not yet have dedi
 | filter | 3 | No | 0 | 1 | |
 | flag | 0 | No | 0 | 34 | No palette, heavy opacity |
 | footer | 0 | No | 0 | 0 | :white_check_mark: tokenised — semantic (2026-07-20 pass) |
-| form-field | 2 | No | 0 | 0 | |
+| form-field | 1 | No | 0 | 0 | :construction: tooltip icon → semantic `--ds-color-icon-base-muted` (2026-07-21); `RightSide` counter grey-500 deferred → `form` token |
 | format-picker | 6 | No | 0 | 0 | :construction: currency select field → `--ds-form-*` (2026-07-20); panel/list-item deferred |
 | icon-picker | 8 | No | 0 | 0 | |
 | information-card | 3 | No | 2 | 2 | |
@@ -1083,6 +1083,14 @@ diff is called out. Each component is its own commit.
 - error text `red-600` → `--ds-color-text-danger-default`
 
 All exact — no visual diff. Spec updated to assert the `var()` string (jsdom can't resolve `var()`).
+
+### form-field — :construction: (2026-07-21)
+
+`FormField.styles.ts` `IconWrapper` — info tooltip icon (`InfoFillS`, inherits `currentColor`):
+- `grey-400` → `--ds-color-icon-base-muted` (semantic; muted helper-icon role, **exact** grey-400 match)
+
+No visual diff. **Deferred:** `RightSide` counter/right-side text `grey-500` (`:65`) — awaits a `form`
+counter token (decision "counter w form" in `UNTOKENISED_COMPONENTS.md`).
 
 ### footer — :white_check_mark:
 

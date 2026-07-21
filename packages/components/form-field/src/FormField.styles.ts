@@ -36,9 +36,11 @@ export const FormFieldLabelWrapper = styled(Label)`
   text-overflow: ellipsis;
 `;
 
+// Info tooltip icon (InfoFillS) — inherits currentColor from this wrapper. Muted helper icon,
+// not a disabled state → semantic --ds-color-icon-base-muted (grey-400, exact match).
 export const IconWrapper = styled.span`
   display: inline-block;
-  color: ${(props): string => props.theme.palette['grey-400']};
+  color: var(--ds-color-icon-base-muted);
   margin-top: -1px;
 `;
 

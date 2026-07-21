@@ -16,6 +16,9 @@
 > *Form-module partial pass*. Rows tokenised in those passes are flagged in the **Component** column:
 > **✅** fully tokenised · **🚧** partially tokenised (field/chrome parts done; dropdown / list-item /
 > other parts deferred pending those module tokens).
+>
+> **Update (2026-07-21).** `form-field` info tooltip icon → semantic `--ds-color-icon-base-muted` (🚧; its
+> `RightSide` counter still awaits a `form` token).
 
 ## How to use this
 
@@ -42,8 +45,8 @@ a request to UX/Token Studio. Never use primitives (`--ds-color-grey-700`) direc
 | Bucket | Count |
 |--------|------:|
 | Un-tokenised UI components (in the table below) | **76** |
-| — tokenised in the 2026-07-20 passes (marked ✅ / 🚧 below) | 24 |
-| — still pending a decision / work | 52 |
+| — tokenised in the 2026-07-20/21 passes (marked ✅ / 🚧 below) | 25 |
+| — still pending a decision / work | 51 |
 | Deprecated — excluded (no tokens) | 3 |
 | Non-UI / infra / icon sets — out of scope | 4 |
 | No colour code — nothing to tokenise | 9 |
@@ -91,7 +94,7 @@ generally stay on palette — not defects). `.less` = still ships antd Less (ext
 | file-uploader | 152 | | upload dropzone surface, many states (highest palette) | `[x]` | | `[ ]` | |
 | filter | 3 | | composition | `[ ]` | | `[ ]` | drag and drop / sortable (wersja ciemna) - znalezc w figmie |
 | ✅ footer | 1 | | layout | `[ ]` | | `[x]` | |
-| form-field | 2 | | form wrapper — reuse `form` tokens | `[x]` | counter w form | `[x]` | (i) z semantyki |
+| 🚧 form-field | 1 | | form wrapper — reuse `form` tokens | `[x]` | counter w form (grey-500 `RightSide`) — pending | `[x]` | (i) icon → `--ds-color-icon-base-muted` done 2026-07-21 |
 | 🚧 format-picker | 8 | | picker | `[ ]` | form, dropdown, button etc, trigger zamienic na select (?) | `[ ]` | |
 | icon-picker | 8 | | picker | `[ ]` | | `[ ]` | |
 | image | 12 | | media wrapper/fallback | `[ ]` | | `[ ]` | |

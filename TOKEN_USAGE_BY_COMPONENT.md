@@ -245,6 +245,15 @@ surfaces, brand/neutral text, `opacity-muted`, etc.) — consistent with the gra
 | `--ds-color-background-base-subtle` | 182 | `grey` variant selector bg |
 
 
+### form-field
+- **Palette (1)** — **deferred:** `RightSide` counter/right-side text `grey-500` (`FormField.styles.ts:65`). Awaits a `form` counter token (decision "counter w form").
+- **Semantic (1):** `--ds-color-icon-base-muted` — info tooltip icon (`InfoFillS`), inherits `currentColor`; muted helper role, exact grey-400 match. ✓
+
+| Token | Line(s) | Element / role |
+|---|---|---|
+| `--ds-color-icon-base-muted` | 43 | `IconWrapper` info tooltip icon (`InfoFillS`) |
+
+
 ### inline-alert
 - **Palette:** none.
 - **Semantic (1):** `opacity-disabled` (no module opacity token). ✓
