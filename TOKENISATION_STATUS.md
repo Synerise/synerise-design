@@ -91,7 +91,7 @@ Icons: DS icons are `fill="currentColor"` with `color: inherit`, so colour them 
 
 Single at-a-glance view of every colour-bearing component: migration **status** + whether it is **awaiting token definitions** (a pending module namespace, a missing semantic role, or a `.less`/de-antd blocker). Sourced from the two detailed tables below + `TOKEN_AUDIT.md` blockers. **Update this table (and the detailed one) whenever `apply-tokens` migrates a component.**
 
-**Totals:** ✅ 50 done · 🚧 25 partial · ❌ 34 not started · ⛔ 4 deprecated · ➖ 2 n/a — **38 awaiting token defs** (flag in last column).
+**Totals:** ✅ 51 done · 🚧 25 partial · ❌ 33 not started · ⛔ 4 deprecated · ➖ 2 n/a — **37 awaiting token defs** (flag in last column).
 
 | Component | Layer | Status | Awaiting token defs / blocker |
 |---|---|:--:|---|
@@ -207,7 +207,7 @@ Single at-a-glance view of every colour-bearing component: migration **status** 
 | toolbar | semantic | ✅ | — |
 | tooltip | semantic | ❌ | **tooltip tokens pending** |
 | tray | semantic | ✅ | — |
-| typography | semantic | ❌ | ⚑ link-hover shift |
+| typography | semantic | ✅ | — |
 | unordered-list | semantic | ✅ | — |
 | wizard | semantic | ✅ | — |
 
@@ -337,7 +337,7 @@ These components use `theme.palette` / hardcoded colors but do not yet have dedi
 | toolbar | 0 | No | 0 | 0 | :white_check_mark: tokenised — semantic + shadow-1 (2026-07-21 pass) |
 | tooltip | 3 | No | 2 | 2 | |
 | tray | 0 | No | 0 | 0 | :white_check_mark: tokenised — reuses **modal** module (2026-07-21); ⚑ header border grey-200→grey-100 |
-| typography | 8 | No | 0 | 1 | `.less` removed (deantd) |
+| typography | 0 | No | 0 | 0 | :white_check_mark: tokenised — semantic (2026-07-21); ⚑ link-hover blue-500→blue-700; `.less` removed (deantd) |
 | unordered-list | 0 | No | 0 | 0 | :white_check_mark: tokenised — semantic (2026-07-21 pass); `Label` (unused) grey-800 → text-base-default |
 | wizard | 0 | No | 0 | 0 | :white_check_mark: tokenised — semantic (2026-07-21 pass) |
 
@@ -1616,3 +1616,15 @@ gap kept). The `AddTags` create/search/add icons were already colour-prop-free (
 prior commit). No visual diff. **Kept dynamic:** `LimitedTags` "+N" pill `color`/`textColor` (grey-100/grey-700
 via `useTheme`) are passed to ds-tag, which does its own internal colour math — a `var()` string would break
 it, so they stay resolved-hex.
+
+### typography — :white_check_mark:
+
+`CommonElements.ts` + `style/macro-utils.ts` (semantic text/opacity tokens): `Description` grey-600 →
+`--ds-color-text-base-muted`, disabled `opacity: 0.4` → `--ds-opacity-disabled`; `ErrorText` red-600 →
+`--ds-color-text-danger-default`; `Label` + `heading` mixin + `linkbutton` `:hover` grey-800 →
+`--ds-color-text-base-default`; `link` macro blue-600 → `--ds-color-text-brand-default`; `linkbutton` grey-600
+→ `--ds-color-text-base-muted`. `theme.palette` fully removed. All exact except the accepted link-hover shift.
+
+| Property | Was | Token resolves to | Delta |
+|----------|-----|-------------------|-------|
+| `link` macro `:hover` colour | blue-500 `#238afe` | `--ds-color-text-brand-hover` blue-700 `#0044d9` | ⚑ Darker hover (accepted, UX 2026-07-21) |

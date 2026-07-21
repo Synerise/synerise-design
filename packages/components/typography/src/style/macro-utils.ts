@@ -2,7 +2,7 @@ import { css } from 'styled-components';
 
 export const heading = css`
   font-weight: 500;
-  color: ${(props): string => props.theme.palette['grey-800']};
+  color: var(--ds-color-text-base-default);
 `;
 
 export const regular = css`
@@ -81,18 +81,19 @@ export const link = css`
   font-size: 13px;
   font-weight: 500;
   transition: 0.2s ease-in-out;
-  color: ${(props): string => props.theme.palette['blue-600']};
+  color: var(--ds-color-text-brand-default);
   &:hover {
     text-decoration: underline;
-    color: ${(props): string => props.theme.palette['blue-500']};
+    /* ⚑ Shift: link hover blue-500 → --ds-color-text-brand-hover (blue-700, darker; per UX 2026-07-21). */
+    color: var(--ds-color-text-brand-hover);
   }
 `;
 
 export const linkbutton = css`
   ${link};
-  color: ${(props): string => props.theme.palette['grey-600']};
+  color: var(--ds-color-text-base-muted);
   &:hover {
-    color: ${(props): string => props.theme.palette['grey-800']};
+    color: var(--ds-color-text-base-default);
   }
 `;
 
