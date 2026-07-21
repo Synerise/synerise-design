@@ -91,7 +91,7 @@ Icons: DS icons are `fill="currentColor"` with `color: inherit`, so colour them 
 
 Single at-a-glance view of every colour-bearing component: migration **status** + whether it is **awaiting token definitions** (a pending module namespace, a missing semantic role, or a `.less`/de-antd blocker). Sourced from the two detailed tables below + `TOKEN_AUDIT.md` blockers. **Update this table (and the detailed one) whenever `apply-tokens` migrates a component.**
 
-**Totals:** ✅ 45 done · 🚧 25 partial · ❌ 39 not started · ⛔ 4 deprecated · ➖ 2 n/a — **38 awaiting token defs** (flag in last column).
+**Totals:** ✅ 46 done · 🚧 25 partial · ❌ 38 not started · ⛔ 4 deprecated · ➖ 2 n/a — **38 awaiting token defs** (flag in last column).
 
 | Component | Layer | Status | Awaiting token defs / blocker |
 |---|---|:--:|---|
@@ -122,7 +122,7 @@ Single at-a-glance view of every colour-bearing component: migration **status** 
 | column-manager | semantic | ✅ | — |
 | completed-within | semantic | 🚧 | dropdown pending |
 | condition | semantic | ✅ | connector tokens pending |
-| confirmation | semantic | ❌ | — |
+| confirmation | semantic | ✅ | — |
 | context-selector | semantic | 🚧 | — |
 | copy-icon | semantic | ✅ | — |
 | cruds | semantic | ❌ | **cruds tokens pending** |
@@ -274,7 +274,7 @@ These components use `theme.palette` / hardcoded colors but do not yet have dedi
 | column-manager | 0 | No | 1 | 5 | :white_check_mark: tokenised — semantic (2026-07-20 pass) |
 | completed-within | 1 | No | 1 | 3 | :construction: clear icon → `--ds-color-icon-danger-default` (2026-07-20); `Settings` panel bg `white` deferred (needs dropdown tokens) |
 | condition | 2 | No | 1 | 8 | :white_check_mark: semantic (2026-07-20); `ConditionConnections` `:before`/`:after` grey-300 kept per request |
-| confirmation | 5 | No | 0 | 0 | |
+| confirmation | 0 | No | 0 | 0 | :white_check_mark: tokenised — semantic icon map (2026-07-21); dialog surface = ds-modal; buttons keep custom-color |
 | context-selector | 5 | No | 0 | 0 | :construction: search icon + error text → `--ds-form-*` (2026-07-20); dropdown/list-item/dynamic deferred |
 | copy-icon | 0 | No | 0 | 0 | :white_check_mark: tokenised — semantic (2026-07-20 pass) |
 | cruds | 4 | No | 0 | 0 | |
@@ -1555,3 +1555,14 @@ the modal report's module-shadow gap). `theme.palette` removed; the `zindex-tool
 bottom-border grey-200 → `--ds-color-border-base-default`, `hasHover` `:hover` bg grey-050 →
 `--ds-color-background-base-defaulthover`; `Title` label text grey-800 → `--ds-color-text-base-default`.
 `theme.palette` fully removed. No visual diff.
+
+### confirmation — :white_check_mark:
+
+`ICON_COLOR_MAPPING` (`Confirmation.const.ts`) refactored from palette keys to type-driven icon token
+`var()`s — negative → `--ds-color-icon-danger-default`, success → `-success-default`, warning →
+`-warning-default`, informative → `--ds-color-icon-base-default` (all exact). `getIconColor` simplified to
+return the var directly (dropped the `theme` param); `useTheme` removed from `Confirmation.tsx`. Icon colours
+via the `<Icon color>` prop. No visual diff. **Kept:** the dialog surface/overlay/header/footer are delegated
+to `@synerise/ds-modal` (already on the modal module — nothing local). **Kept (dynamic keyword):**
+`BUTTON_COLOR_MAPPING` (`custom-color` ds-button keyword). ⚑ **Follow-up (DS):** buttons should use a semantic
+ds-button `type` (`primary-danger`/`primary-success`/`primary-warning`) instead of a fixed custom-color map.

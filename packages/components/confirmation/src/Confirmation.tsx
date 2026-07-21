@@ -1,7 +1,6 @@
 import React, { useMemo, useState } from 'react';
 
 import Button from '@synerise/ds-button';
-import { useTheme } from '@synerise/ds-core';
 import Icon, { ArrowLeftM, ShowM } from '@synerise/ds-icon';
 import type { ListItemProps } from '@synerise/ds-list-item';
 import Modal from '@synerise/ds-modal';
@@ -34,11 +33,10 @@ const Confirmation = <ItemType extends ListItemProps>({
   ...modalProps
 }: ConfirmationProps<ItemType>) => {
   const [mode, setMode] = useState<DisplayMode>('default');
-  const theme = useTheme();
   const allTexts = useDefaultTexts(texts);
 
   const buttonColor = BUTTON_COLOR_MAPPING[type];
-  const iconColor = getIconColor(type, theme);
+  const iconColor = getIconColor(type);
 
   const modalContent = useMemo(() => {
     if (mode === 'default') {
