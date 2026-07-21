@@ -91,7 +91,7 @@ Icons: DS icons are `fill="currentColor"` with `color: inherit`, so colour them 
 
 Single at-a-glance view of every colour-bearing component: migration **status** + whether it is **awaiting token definitions** (a pending module namespace, a missing semantic role, or a `.less`/de-antd blocker). Sourced from the two detailed tables below + `TOKEN_AUDIT.md` blockers. **Update this table (and the detailed one) whenever `apply-tokens` migrates a component.**
 
-**Totals:** ✅ 43 done · 🚧 25 partial · ❌ 41 not started · ⛔ 4 deprecated · ➖ 2 n/a — **38 awaiting token defs** (flag in last column).
+**Totals:** ✅ 44 done · 🚧 25 partial · ❌ 40 not started · ⛔ 4 deprecated · ➖ 2 n/a — **38 awaiting token defs** (flag in last column).
 
 | Component | Layer | Status | Awaiting token defs / blocker |
 |---|---|:--:|---|
@@ -206,7 +206,7 @@ Single at-a-glance view of every colour-bearing component: migration **status** 
 | toast | module | ✅ | — |
 | toolbar | semantic | ✅ | — |
 | tooltip | semantic | ❌ | **tooltip tokens pending** |
-| tray | semantic | ❌ | — |
+| tray | semantic | ✅ | — |
 | typography | semantic | ❌ | ⚑ link-hover shift |
 | unordered-list | semantic | ✅ | — |
 | wizard | semantic | ❌ | — |
@@ -336,7 +336,7 @@ These components use `theme.palette` / hardcoded colors but do not yet have dedi
 | tags | 7 | No | 0 | 0 | |
 | toolbar | 0 | No | 0 | 0 | :white_check_mark: tokenised — semantic + shadow-1 (2026-07-21 pass) |
 | tooltip | 3 | No | 2 | 2 | |
-| tray | 4 | No | 1 | 0 | |
+| tray | 0 | No | 0 | 0 | :white_check_mark: tokenised — reuses **modal** module (2026-07-21); ⚑ header border grey-200→grey-100 |
 | typography | 8 | No | 0 | 1 | `.less` removed (deantd) |
 | unordered-list | 0 | No | 0 | 0 | :white_check_mark: tokenised — semantic (2026-07-21 pass); `Label` (unused) grey-800 → text-base-default |
 | wizard | 6 | No | 0 | 0 | |
@@ -1535,3 +1535,16 @@ dragging) + `SortableItem.tsx` inline `opacity: 1` reset.
 `ToolbarLabel` text grey-600 → `--ds-color-text-base-muted`; `ToolbarGroup` surface white →
 `--ds-color-background-base-default`, box-shadow `0 4px 12px #2329360a` (built from grey-900 + `0A`) →
 `--ds-shadows-shadow-1`. `theme.palette` fully removed. No visual diff.
+
+### tray — :white_check_mark: (reuses the modal module)
+
+The tray is a floating overlay panel, so it consumes the existing **modal** module namespace by role
+(`Tray.styles.ts`): container surface white → `--ds-modal-container-bg` (exact); footer bg grey-050 →
+`--ds-modal-footer-bg` (exact); footer border grey-100 → `--ds-modal-footer-border-color` (exact). Overlay
+elevation `box-shadow-2` → semantic `--ds-shadows-shadow-2` (exact — modal has no emitted `*-shadow` var, see
+the modal report's module-shadow gap). `theme.palette` removed; the `zindex-tooltip` antd variable stays
+(not Phase 1).
+
+| Property | Was | Token resolves to | Delta |
+|----------|-----|-------------------|-------|
+| Header border-bottom | grey-200 `#e9edee` | `--ds-modal-header-border-color` grey-100 `#f3f5f6` | ⚑ Lighter (adopts modal header border; per UX 2026-07-21) |

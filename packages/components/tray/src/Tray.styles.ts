@@ -27,13 +27,13 @@ export const TrayWrapper = styled.div`
   top: 0;
   right: 0;
   z-index: ${(props) => props.theme.variables['zindex-tooltip']};
-  box-shadow: ${(props) => props.theme.variables['box-shadow-2']};
+  box-shadow: var(--ds-shadows-shadow-2);
   width: 400px;
   border-radius: 3px;
   max-height: ${WRAPPER_HEIGHT}px;
   display: flex;
   flex-direction: column;
-  background: ${(props) => props.theme.palette.white};
+  background: var(--ds-modal-container-bg);
 `;
 
 export const TrayHeader = styled.div`
@@ -41,7 +41,8 @@ export const TrayHeader = styled.div`
   flex: 0 0 ${HEADER_HEIGHT}px;
   padding-left: 18px;
   padding-right: 12px;
-  border-bottom: solid 1px ${(props) => props.theme.palette['grey-200']};
+  /* ⚑ Shift: header border grey-200 → grey-100 (reuses modal header border; lighter). */
+  border-bottom: solid 1px var(--ds-modal-header-border-color);
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -54,8 +55,8 @@ export const TrayHeaderRight = styled.div`
 `;
 
 export const TrayFooter = styled.div`
-  border-top: solid 1px ${(props) => props.theme.palette['grey-100']};
-  background: ${(props) => props.theme.palette['grey-050']};
+  border-top: solid 1px var(--ds-modal-footer-border-color);
+  background: var(--ds-modal-footer-bg);
   height: ${FOOTER_HEIGHT}px;
   display: flex;
   align-items: center;
