@@ -8,7 +8,7 @@ export const Settings = styled.div`
   align-items: flex-start;
   justify-content: flex-start;
   padding: 20px;
-  background-color: ${(props): string => props.theme.palette.white};
+  background-color: var(--ds-dropdown-bg);
   max-width: 238px;
 
   .ant-select-selection-item,
