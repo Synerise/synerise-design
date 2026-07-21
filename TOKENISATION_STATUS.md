@@ -91,7 +91,7 @@ Icons: DS icons are `fill="currentColor"` with `color: inherit`, so colour them 
 
 Single at-a-glance view of every colour-bearing component: migration **status** + whether it is **awaiting token definitions** (a pending module namespace, a missing semantic role, or a `.less`/de-antd blocker). Sourced from the two detailed tables below + `TOKEN_AUDIT.md` blockers. **Update this table (and the detailed one) whenever `apply-tokens` migrates a component.**
 
-**Totals:** ✅ 47 done · 🚧 25 partial · ❌ 37 not started · ⛔ 4 deprecated · ➖ 2 n/a — **38 awaiting token defs** (flag in last column).
+**Totals:** ✅ 48 done · 🚧 25 partial · ❌ 36 not started · ⛔ 4 deprecated · ➖ 2 n/a — **38 awaiting token defs** (flag in last column).
 
 | Component | Layer | Status | Awaiting token defs / blocker |
 |---|---|:--:|---|
@@ -157,7 +157,7 @@ Single at-a-glance view of every colour-bearing component: migration **status** 
 | item-filter | semantic | ⛔ | **deprecated** |
 | item-picker | semantic | 🚧 | **dropdown/list-item pending** |
 | items-roll | semantic | ❌ | — |
-| layout | semantic | ❌ | — |
+| layout | semantic | ✅ | — |
 | list | semantic | ❌ | **.less / de-antd** |
 | list-item | module | ✅ | — |
 | loader | semantic | ✅ | — |
@@ -302,7 +302,7 @@ These components use `theme.palette` / hardcoded colors but do not yet have dedi
 | item-filter | 2 | No | 1 | 0 | |
 | item-picker | 13 | No | 4 | 1 | :construction: trigger field → `--ds-form-*` (2026-07-20); dropdown/list deferred |
 | items-roll | 16 | No | 1 | 4 | |
-| layout | 6 | No | 2 | 2 | |
+| layout | 0 | No | 0 | 2 | :white_check_mark: tokenised — semantic + `page` module bg (2026-07-21); fixed a malformed CSS site; 2 functional opacities kept |
 | list | 9 | Yes (2) | 1 | 1 | |
 | loader | 1 | No | 0 | 0 | :white_check_mark: tokenised (2026-07-21); header text → text-base-default; spinner border stays dynamic (`color` prop) |
 | logic | 13 | No | 0 | 0 | |
@@ -1581,3 +1581,21 @@ footer divider grey-100 → `--ds-color-border-base-subtle`; drag-placeholder-ta
 | Property | Was | Token resolves to | Delta |
 |----------|-----|-------------------|-------|
 | Footer background | `rgba(249,250,251,0.6)` (translucent grey-50) | `--ds-color-background-base-subtle` solid grey-50 `#f9fafb` | ⚑ Solid, 0.6 opacity dropped (per UX 2026-07-21) |
+
+### layout — :white_check_mark:
+
+`Layout.styles.ts` + `Page/Page.styles.tsx` + `Sidebar/Sidebar.tsx`, all **exact hex** (no visual shift):
+- `LayoutSubheader` + `LayoutSidebar` box-shadow `0 4px 12px #2329360a` → `--ds-shadows-shadow-1`
+- `LayoutSidebar` bg `#fff` → `--ds-color-background-base-default`
+- `PageContainer` bg `rgb(243,245,246)` → `--ds-page-bg` (module `page` → background-base-muted, grey-100 exact)
+- `Sidebar.tsx` `ArrowIcon`/`CloseIcon` `color` (white, was via `useTheme()`) → `--ds-color-icon-onsolid-default`;
+  `useTheme` removed
+- **Fixed a malformed CSS site** (`SidebarButton` `≤medium`): the template injected a bare `${theme.palette.white}`
+  (`#ffffff`) with no property — invalid CSS that silently swallowed the adjacent `opacity: 1`. Removed the stray
+  value, leaving valid `display: flex; opacity: 1; visibility: visible`.
+
+**Kept (functional):** `SidebarButton` `opacity: 1`/`visibility` toggles. ⚑ **Name-mismatch flags (exact hex,
+no visual change):** `SidebarButton` resting bg uses `--ds-color-background-base-stronghover` (grey-500) and its
+opened/hover bg uses `--ds-color-background-neutral-solidhover` (grey-600) — "hover"-named tokens applied at a
+resting/opened state. Cleaner future home is a `button-expander` module (the button is functionally an expander;
+out of layout scope).

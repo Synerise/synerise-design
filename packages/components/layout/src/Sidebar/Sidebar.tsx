@@ -1,6 +1,5 @@
 import React, { type CSSProperties, type ReactNode, useMemo } from 'react';
 
-import { useTheme } from '@synerise/ds-core';
 import { AngleLeftS, AngleRightS, CloseS } from '@synerise/ds-icon';
 import Scrollbar from '@synerise/ds-scrollbar';
 
@@ -38,7 +37,6 @@ export const Sidebar = ({
   bothOpened,
   onChange,
 }: SidebarProps) => {
-  const theme = useTheme();
   const contentWithScrollbar = useMemo(() => {
     const content = (
       <S.LayoutSidebarInner style={innerStyles}>
@@ -83,9 +81,12 @@ export const Sidebar = ({
           >
             <S.ArrowIcon
               component={side === 'right' ? <AngleLeftS /> : <AngleRightS />}
-              color={theme.palette.white}
+              color="var(--ds-color-icon-onsolid-default)"
             />
-            <S.CloseIcon component={<CloseS />} color={theme.palette.white} />
+            <S.CloseIcon
+              component={<CloseS />}
+              color="var(--ds-color-icon-onsolid-default)"
+            />
           </S.SidebarButton>
         ))}
     </S.LayoutSidebarWrapper>
