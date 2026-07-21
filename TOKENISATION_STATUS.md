@@ -91,7 +91,7 @@ Icons: DS icons are `fill="currentColor"` with `color: inherit`, so colour them 
 
 Single at-a-glance view of every colour-bearing component: migration **status** + whether it is **awaiting token definitions** (a pending module namespace, a missing semantic role, or a `.less`/de-antd blocker). Sourced from the two detailed tables below + `TOKEN_AUDIT.md` blockers. **Update this table (and the detailed one) whenever `apply-tokens` migrates a component.**
 
-**Totals:** ✅ 41 done · 🚧 25 partial · ❌ 43 not started · ⛔ 4 deprecated · ➖ 2 n/a — **38 awaiting token defs** (flag in last column).
+**Totals:** ✅ 42 done · 🚧 25 partial · ❌ 42 not started · ⛔ 4 deprecated · ➖ 2 n/a — **38 awaiting token defs** (flag in last column).
 
 | Component | Layer | Status | Awaiting token defs / blocker |
 |---|---|:--:|---|
@@ -173,7 +173,7 @@ Single at-a-glance view of every colour-bearing component: migration **status** 
 | page-header | module | ✅ | — |
 | pagination | module | ✅ | — |
 | panel | semantic | ✅ | — |
-| panels-resizer | semantic | ❌ | — |
+| panels-resizer | semantic | ✅ | — |
 | popconfirm | module | ✅ | — |
 | popover | semantic | ❌ | — |
 | progressbar | module | ✅ | — |
@@ -312,7 +312,7 @@ These components use `theme.palette` / hardcoded colors but do not yet have dedi
 | metric-card | 2 | No | 0 | 3 | |
 | operators | 6 | No | 0 | 0 | |
 | panel | 0 | No | 0 | 0 | :white_check_mark: tokenised — semantic + shadow-1 (2026-07-21 pass) |
-| panels-resizer | 4 | No | 0 | 0 | |
+| panels-resizer | 0 | No | 0 | 0 | :white_check_mark: tokenised — semantic (2026-07-21 pass); ⚑ grip-bar bg grey-200→grey-100 |
 | popover | 0 | No | 0 | 2 | |
 | [radio](#checkbox--radio) | 1 | No | 3 | 4 | :construction: description + disabled-opacity → `--ds-form-radio-*`; bulk per-state styling now in `Radio.styles.tsx` on palette (`.less` removed) |
 | result | 0 | No | 0 | 0 | :white_check_mark: tokenised — semantic (2026-07-21 pass); status-icon map → icon-* token vars |
@@ -1517,3 +1517,14 @@ No visual diff.
 (drag elevation). `props.theme.palette` fully removed (the `ThemeProps` **type** import stays — used by the
 `placeholderCss` interpolation). No visual diff. **Kept (functional):** `opacity: 0` (hide source while
 dragging) + `SortableItem.tsx` inline `opacity: 1` reset.
+
+### panels-resizer — :white_check_mark:
+
+`Resizer/Resizer.styles.tsx`: grip-bar `Handler` hover bg blue-100 →
+`--ds-color-background-brand-subtlehover` (exact); `HandlerIcon` svg fill grey-600 →
+`--ds-color-icon-base-default` (exact, `isHorizontal` rotate block kept); hover color blue-600 →
+`--ds-color-icon-brand-default` (exact). `theme.palette` fully removed.
+
+| Property | Was | Token resolves to | Delta |
+|----------|-----|-------------------|-------|
+| Grip-bar default bg | grey-200 `#e9edee` | `--ds-color-background-base-muted` grey-100 `#f3f5f6` | ⚑ Lighter (per UX 2026-07-21) |

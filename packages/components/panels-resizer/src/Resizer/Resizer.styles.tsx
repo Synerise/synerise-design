@@ -18,7 +18,8 @@ export const Handler = styled.div<{ isHorizontal: boolean }>`
         `}
   flex-grow: 1;
   z-index: 5;
-  background-color: ${(props) => props.theme.palette['grey-200']};
+  /* ⚑ Shift: grip-bar bg grey-200 → grey-100 (lighter; per UX 2026-07-21). */
+  background-color: var(--ds-color-background-base-muted);
 
   &:hover {
     ${(props) =>
@@ -29,7 +30,7 @@ export const Handler = styled.div<{ isHorizontal: boolean }>`
         : css`
             cursor: ew-resize;
           `}
-    background-color: ${(props) => props.theme.palette['blue-100']};
+    background-color: var(--ds-color-background-brand-subtlehover);
   }
 `;
 
@@ -37,7 +38,7 @@ export const HandlerIcon: StyledIcon<{ isHorizontal?: boolean }> = styled(
   Icon,
 )<{ isHorizontal?: boolean }>`
   svg {
-    fill: ${(props) => props.theme.palette['grey-600']};
+    fill: var(--ds-color-icon-base-default);
 
     ${(props) =>
       props.isHorizontal &&
@@ -49,6 +50,6 @@ export const HandlerIcon: StyledIcon<{ isHorizontal?: boolean }> = styled(
   }
 
   &:hover {
-    color: ${(props) => props.theme.palette['blue-600']};
+    color: var(--ds-color-icon-brand-default);
   }
 `;
