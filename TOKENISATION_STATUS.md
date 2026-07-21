@@ -91,7 +91,7 @@ Icons: DS icons are `fill="currentColor"` with `color: inherit`, so colour them 
 
 Single at-a-glance view of every colour-bearing component: migration **status** + whether it is **awaiting token definitions** (a pending module namespace, a missing semantic role, or a `.less`/de-antd blocker). Sourced from the two detailed tables below + `TOKEN_AUDIT.md` blockers. **Update this table (and the detailed one) whenever `apply-tokens` migrates a component.**
 
-**Totals:** ✅ 51 done · 🚧 25 partial · ❌ 33 not started · ⛔ 4 deprecated · ➖ 2 n/a — **37 awaiting token defs** (flag in last column).
+**Totals:** ✅ 52 done · 🚧 25 partial · ❌ 32 not started · ⛔ 4 deprecated · ➖ 2 n/a — **37 awaiting token defs** (flag in last column).
 
 | Component | Layer | Status | Awaiting token defs / blocker |
 |---|---|:--:|---|
@@ -101,7 +101,7 @@ Single at-a-glance view of every colour-bearing component: migration **status** 
 | app-menu | module | ✅ | — |
 | autocomplete | semantic | 🚧 | dropdown pending |
 | avatar | module | ✅ | — |
-| avatar-group | semantic | ❌ | — |
+| avatar-group | semantic | ✅ | — |
 | badge | semantic | ❌ | — |
 | banner | semantic | ✅ | — |
 | block | semantic | ❌ | — |
@@ -258,7 +258,7 @@ These components use `theme.palette` / hardcoded colors but do not yet have dedi
 | action-area | 0 | No | 0 | 0 | :white_check_mark: tokenised — semantic (2026-07-20 pass) |
 | alert | 44 | Yes (2) | 9 | 11 | ⛔ **deprecated** — will not be tokenised |
 | autocomplete | 1 | No | 3 | 0 | :construction: field surface → `--ds-form-*` (2026-07-20); dropdown NotFound deferred |
-| avatar-group | 8 | No | 2 | 2 | |
+| avatar-group | 0 | No | 0 | 2 | :white_check_mark: tokenised — reuses **avatar** module (2026-07-21); 5 ⚑ shifts on +N chrome; 2 fan-out opacities kept |
 | badge | 11 | No | 4 | 4 | `.less` removed (deantd) |
 | banner | 2 | No | 0 | 0 | :white_check_mark: tokenised — semantic (2026-07-20 pass); 2 palette = dynamic status-Tag defaults |
 | block | 6 | No | 0 | 0 | |
@@ -1628,3 +1628,20 @@ it, so they stay resolved-hex.
 | Property | Was | Token resolves to | Delta |
 |----------|-----|-------------------|-------|
 | `link` macro `:hover` colour | blue-500 `#238afe` | `--ds-color-text-brand-hover` blue-700 `#0044d9` | ⚑ Darker hover (accepted, UX 2026-07-21) |
+
+### avatar-group — :white_check_mark: (reuses the avatar module)
+
+The +N "MoreInfo" avatar is `styled(Avatar)`, so it now reuses the **avatar** module tokens (re-aligning it to
+the standard muted-grey avatar surface): bg → `--ds-avatar-bg-default`, border → `--ds-avatar-border-color-default`,
+text (+ `!important` span) → `--ds-avatar-text-default`, hover text → `--ds-avatar-text-hover`, hover border →
+`--ds-avatar-border-color-hover`. The collapsed overlap ring `box-shadow` opaque-white → semantic
+`--ds-color-background-base-default` (exact), and its faded hover endpoint → `transparent` (exact).
+`theme.palette` fully removed. **Kept (fan-out animation):** badge-dot `opacity: 0/1`.
+
+| Property | Was | Token resolves to | Delta |
+|----------|-----|-------------------|-------|
+| +N background | white | `--ds-avatar-bg-default` grey-100 `#f3f5f6` | ⚑ Darker (muted-grey surface) |
+| +N border | grey-300 `#dbe0e3` | `--ds-avatar-border-color-default` grey-200 `#e9edee` | ⚑ Lighter |
+| +N text (default) | grey-400 `#b5bdc3` | `--ds-avatar-text-default` grey-600 `#6a7580` | ⚑ Darker |
+| +N text (hover/active) | grey-500 `#949ea6` | `--ds-avatar-text-hover` grey-600 `#6a7580` | ⚑ Darker |
+| +N border (hover/active) | grey-500 `#949ea6` | `--ds-avatar-border-color-hover` brand blue-600 `#0b68ff` | ⚑ **grey → brand blue** (prominent) |
