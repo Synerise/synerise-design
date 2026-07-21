@@ -58,17 +58,17 @@ export const Group = styled.div<{ size?: Size }>`
 export const MoreInfo = styled(Avatar)<{ onClick: () => void }>`
   /* &&& outspecs ds-avatar's own \`&& \${AvatarString} { color: … !important }\`
      rule (0,3,0) so the +N counter keeps its grey text instead of white-on-white. */
-  /* ⚑ Shifts (adopt by role — the +N avatar reuses the ds-avatar module surface; per UX 2026-07-21):
-     bg white → grey-100, border grey-300 → grey-200, text grey-400 → grey-600,
-     hover text grey-500 → grey-600, hover border grey-500 → brand blue-600. */
+  /* Dedicated avatar-more module tokens for the +N "MoreInfo" counter — these restore the original
+     white / grey-300 / grey-400 / grey-500 look (the earlier generic ds-avatar-surface adoption had
+     shifted it to grey-100/grey-200/grey-600 + a brand-blue hover border). */
   &&& {
     margin-left: 8px;
-    background: var(--ds-avatar-bg-default);
-    border: 1px solid var(--ds-avatar-border-color-default);
-    color: var(--ds-avatar-text-default);
+    background: var(--ds-avatar-more-bg-default);
+    border: 1px solid var(--ds-avatar-more-border-color-default);
+    color: var(--ds-avatar-more-text-default);
 
     span {
-      color: var(--ds-avatar-text-default) !important;
+      color: var(--ds-avatar-more-text-default) !important;
     }
 
     ::after,
@@ -78,8 +78,8 @@ export const MoreInfo = styled(Avatar)<{ onClick: () => void }>`
 
     &:hover,
     &:active {
-      color: var(--ds-avatar-text-hover);
-      border-color: var(--ds-avatar-border-color-hover);
+      color: var(--ds-avatar-more-text-hover);
+      border-color: var(--ds-avatar-more-border-color-hover);
     }
   }
 `;
