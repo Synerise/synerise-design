@@ -91,7 +91,7 @@ Icons: DS icons are `fill="currentColor"` with `color: inherit`, so colour them 
 
 Single at-a-glance view of every colour-bearing component: migration **status** + whether it is **awaiting token definitions** (a pending module namespace, a missing semantic role, or a `.less`/de-antd blocker). Sourced from the two detailed tables below + `TOKEN_AUDIT.md` blockers. **Update this table (and the detailed one) whenever `apply-tokens` migrates a component.**
 
-**Totals:** ✅ 34 done · 🚧 25 partial · ❌ 50 not started · ⛔ 4 deprecated · ➖ 2 n/a — **38 awaiting token defs** (flag in last column).
+**Totals:** ✅ 35 done · 🚧 25 partial · ❌ 49 not started · ⛔ 4 deprecated · ➖ 2 n/a — **38 awaiting token defs** (flag in last column).
 
 | Component | Layer | Status | Awaiting token defs / blocker |
 |---|---|:--:|---|
@@ -208,7 +208,7 @@ Single at-a-glance view of every colour-bearing component: migration **status** 
 | tooltip | semantic | ❌ | **tooltip tokens pending** |
 | tray | semantic | ❌ | — |
 | typography | semantic | ❌ | ⚑ link-hover shift |
-| unordered-list | semantic | ❌ | — |
+| unordered-list | semantic | ✅ | — |
 | wizard | semantic | ❌ | — |
 
 > **Legend:** ✅ fully done · 🚧 partial · ❌ not started · ⛔ deprecated (won't tokenise) · ➖ n/a (no colour code). *Layer* = has a module namespace (`module`) or maps to semantic tokens (`semantic`).
@@ -338,7 +338,7 @@ These components use `theme.palette` / hardcoded colors but do not yet have dedi
 | tooltip | 3 | No | 2 | 2 | |
 | tray | 4 | No | 1 | 0 | |
 | typography | 8 | No | 0 | 1 | `.less` removed (deantd) |
-| unordered-list | 1 | No | 0 | 0 | |
+| unordered-list | 0 | No | 0 | 0 | :white_check_mark: tokenised — semantic (2026-07-21 pass); `Label` (unused) grey-800 → text-base-default |
 | wizard | 6 | No | 0 | 0 | |
 
 ### Packages with no color-related code
@@ -1449,3 +1449,18 @@ text/border blue-600 → `--ds-color-text-brand-default` / `--ds-color-border-br
 
 **Excluded (kept on palette, per request):** `ConditionConnections` `:before`/`:after` connector lines
 (`grey-300` — `Condition.style.ts:321,335`).
+
+---
+
+## Not-started semantic components pass (2026-07-21)
+
+Tokenising the remaining **not-started, unblocked** components that already have a decided per-usage
+mapping in `TOKEN_AUDIT.md`. Each maps to the **semantic layer** (no module namespace); all mappings are
+**exact-value** (verified against `packages/tokens/dist/css/light.css`) → zero visual change unless a `⚑`
+shift is called out. Each component is its own commit.
+
+### unordered-list — :white_check_mark:
+
+`Unordered-list.styles.ts` `Label` text grey-800 → `--ds-color-text-base-default` (exact). The sole
+`theme.palette` ref removed. No visual diff. (`Label` is exported but **unused** — the section label
+renders via ds-form-field's `FormFieldLabel`.)
