@@ -28,21 +28,21 @@ export const DragPlaceholderContent = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  color: ${(props) => props.theme.palette['blue-600']};
+  color: var(--ds-color-text-brand-default);
 `;
 export const DragPlaceholderTag = styled.div`
   position: absolute;
   right: 24px;
   top: 22px;
-  opacity: 0.4;
+  opacity: var(--ds-opacity-disabled);
 `;
 export const Content = styled.div`
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   justify-content: flex-start;
-  background-color: ${(props) => props.theme.palette.white};
-  box-shadow: 0 4px 12px 0 #2329360a;
+  background-color: var(--ds-color-background-base-default);
+  box-shadow: var(--ds-shadows-shadow-1);
   border-radius: 3px;
 `;
 
@@ -120,7 +120,7 @@ export const CountDownWrapper = styled.div`
 export const MoveByOffsetLabel = styled.span``;
 
 export const CountDownSpinner = styled.g<{ duration: number }>`
-  stroke: ${(props) => props.theme.palette['grey-500']};
+  stroke: var(--ds-color-icon-base-subtle);
   stroke-width: 2px;
   stroke-dasharray: 75;
   transition: stroke-dashoffset ${(props) => props.duration}s linear;
@@ -220,12 +220,13 @@ export const Body = styled.div<{ singleStepCondition: boolean }>`
 export const AdditionalFields = styled.div`
   width: 100%;
   padding: 24px 24px 12px;
-  border-top: 1px solid ${(props) => props.theme.palette['grey-200']};
+  border-top: 1px solid var(--ds-color-border-base-default);
 `;
 
 export const Footer = styled.div`
-  background-color: rgba(249, 250, 251, 0.6);
-  border-top: 1px solid ${(props) => props.theme.palette['grey-100']};
+  /* ⚑ Shift: was rgba(grey-50, 0.6) translucent → solid base-subtle (grey-50; per UX 2026-07-21). */
+  background-color: var(--ds-color-background-base-subtle);
+  border-top: 1px solid var(--ds-color-border-base-subtle);
   padding: 16px 24px;
   display: flex;
   flex-direction: row;

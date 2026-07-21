@@ -91,7 +91,7 @@ Icons: DS icons are `fill="currentColor"` with `color: inherit`, so colour them 
 
 Single at-a-glance view of every colour-bearing component: migration **status** + whether it is **awaiting token definitions** (a pending module namespace, a missing semantic role, or a `.less`/de-antd blocker). Sourced from the two detailed tables below + `TOKEN_AUDIT.md` blockers. **Update this table (and the detailed one) whenever `apply-tokens` migrates a component.**
 
-**Totals:** ✅ 46 done · 🚧 25 partial · ❌ 38 not started · ⛔ 4 deprecated · ➖ 2 n/a — **38 awaiting token defs** (flag in last column).
+**Totals:** ✅ 47 done · 🚧 25 partial · ❌ 37 not started · ⛔ 4 deprecated · ➖ 2 n/a — **38 awaiting token defs** (flag in last column).
 
 | Component | Layer | Status | Awaiting token defs / blocker |
 |---|---|:--:|---|
@@ -192,7 +192,7 @@ Single at-a-glance view of every colour-bearing component: migration **status** 
 | sortable | semantic | ✅ | — |
 | status | semantic | ❌ | — |
 | status-pill | module | ✅ | — |
-| step-card | semantic | ❌ | — |
+| step-card | semantic | ✅ | — |
 | stepper | module | 🚧 | — |
 | subject | semantic | ✅ | — |
 | subtle-form | semantic | ❌ | translucent-surface token gap |
@@ -327,7 +327,7 @@ These components use `theme.palette` / hardcoded colors but do not yet have dedi
 | slider | 12 | No | 4 | 0 | |
 | sortable | 0 | No | 0 | 2 | :white_check_mark: tokenised — semantic + shadow-2 (2026-07-21 pass); 2 opacities kept (functional drag hide/reset) |
 | status | 7 | No | 0 | 1 | Token Studio has status-pill tokens |
-| step-card | 5 | No | 1 | 13 | |
+| step-card | 0 | No | 0 | 12 | :white_check_mark: colours tokenised — semantic + shadow-1 (2026-07-21); disabled-tag 0.4→opacity-disabled; 12 functional/animation opacities kept; ⚑ footer bg 0.6→solid |
 | subject | 0 | No | 0 | 0 | :white_check_mark: tokenised — semantic (2026-07-21 pass); both spans unused (dead code) |
 | subtle-form | 10 | No | 1 | 4 | |
 | [switch](#form-group-form--input--select--switch) | 2 | No | 2 | 2 | :construction: error/description text → `--ds-form-switch-*`; track/handle now in `RawSwitch.styles.ts` on palette (`.less` removed) |
@@ -1566,3 +1566,18 @@ via the `<Icon color>` prop. No visual diff. **Kept:** the dialog surface/overla
 to `@synerise/ds-modal` (already on the modal module — nothing local). **Kept (dynamic keyword):**
 `BUTTON_COLOR_MAPPING` (`custom-color` ds-button keyword). ⚑ **Follow-up (DS):** buttons should use a semantic
 ds-button `type` (`primary-danger`/`primary-success`/`primary-warning`) instead of a fixed custom-color map.
+
+### step-card — :white_check_mark:
+
+`StepCard.styles.ts` (a drag-reorderable filter/condition card — plain `div`, not ds-card; no
+numbered-step state colours). All semantic, exact except the flagged footer bg: drop-label text brand
+blue-600 → `--ds-color-text-brand-default`; card surface white → `--ds-color-background-base-default`,
+box-shadow `0 4px 12px #2329360a` → `--ds-shadows-shadow-1` (byte-identical); `CountDownSpinner` `<g>` stroke
+grey-500 → `--ds-color-icon-base-subtle`; `AdditionalFields` divider grey-200 → `--ds-color-border-base-default`;
+footer divider grey-100 → `--ds-color-border-base-subtle`; drag-placeholder-tag `opacity: 0.4` →
+`--ds-opacity-disabled`. `theme.palette` fully removed. **Kept (functional/animation):** the remaining
+`opacity` refs (cruds hover-reveal `opacity: 0/1`, drag states).
+
+| Property | Was | Token resolves to | Delta |
+|----------|-----|-------------------|-------|
+| Footer background | `rgba(249,250,251,0.6)` (translucent grey-50) | `--ds-color-background-base-subtle` solid grey-50 `#f9fafb` | ⚑ Solid, 0.6 opacity dropped (per UX 2026-07-21) |
