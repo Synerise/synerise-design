@@ -43,6 +43,14 @@
 | [avatar-group](#avatar-group) | 8 | module (`avatar`) | none | — | — |
 | [badge](#badge) | 8 | module (`badge`) | none | — | — |
 | [card-tabs](#card-tabs) | 82 (+2 shadow, +4 opacity) | module (`card-tabs`, pending) | **card-tabs tokens pending** | — | 10 |
+| [cascader](#cascader) | 37 | module (`dropdown` + `cascader`, pending) + semantic | dropdown/cascader pending | 4 | 7 |
+| [code-area](#code-area) | 18 (11 applied) | module (`form`) + semantic (Monaco via `theme.tokens`) | none | 1 | — |
+| [code-snippet](#code-snippet) | 21 (7 applied) | module (`code-snippet`, pending) + semantic | **.less** + code-snippet pending | — | — |
+| [collector](#collector) | 13 | module (`form` + `dropdown` pending) + semantic danger | dropdown pending | — | 1 |
+| [color-picker](#color-picker) | 14 (2 applied) | `form` (trigger) + semantic (panel controls) + `dropdown` (panel bg, pending) | dropdown pending | — | — |
+| [completed-within](#completed-within) | 1 | module (`dropdown` pending); clear done | dropdown pending | — | — |
+| [condition](#condition) | 2 (14 applied) | semantic; connectors deferred | connector tokens pending | — | — |
+| [confirmation](#confirmation) | 2 | module (`modal`, delegated) + semantic type icons | none | — | — |
 | [image](#image) | 12 (+1 shadow) | module (`image`, pending) + semantic | **image tokens pending** | — | — |
 | [information-card](#information-card) | 5 | module (`dropdown`, pending) | **dropdown tokens pending** | — | — |
 | [insight](#insight) | 4 | semantic | none | — | — |
@@ -203,6 +211,284 @@ _(`box-shadow: none` at :152 = reset.)_
 | file:line | Usage | Resolution |
 |---|---|---|
 | — none — |  |  |
+
+---
+
+## cascader
+
+**Summary.** 37 refs; decision (UX 2026-07-21): **mixed** — overlay panel + footer → `module: dropdown` (pending); breadcrumb / back-action / nav-header rows → new dedicated **`cascader` module** (pending, NOT list-item); selected checkmarks → semantic success; search-field icon → **drop** (inherit); decoratives kept. blockers: **`dropdown` + `cascader` module tokens pending**. ⚑ `InputWrapper` (row 1) + `BottomAction` (rows 9–12) appear **unused by Cascader** — verify / check consumers for deep imports before removing. 7 `svg { fill }` rules; 4 static `theme` imports to convert (the search-icon import is removed by dropping its `color`).
+
+### Palette / colour usage
+| # | file:line | value | role | Decision → token |
+|--:|---|---|---|---|
+| 1 | Cascader.styles.tsx:6 | rgba(35,41,54,0.05) | InputWrapper — box-shadow | `module: dropdown` (panel shadow) — ⚑ alpha 0.05 vs shadow-2 0.10; ⚑ **InputWrapper unused — check consumers for deep imports** |
+| 2 | Cascader.styles.tsx:12 | white | SearchResults overlay — bg | `module: dropdown` (panel bg) |
+| 3 | Cascader.styles.tsx:15 | rgba(35,41,54,0.05) | SearchResults overlay — box-shadow | `module: dropdown` (panel shadow) — ⚑ alpha |
+| 4 | Cascader.tsx:196 | grey-600 | SearchBar left icon (SearchM) — color prop | **drop** (inherit default) — removes the static `theme` import |
+| 5 | BackAction.styles.ts:7 | grey-700 | back-action row — text · default | `module: cascader` (pending) |
+| 6 | BackAction.styles.ts:15 | grey-700 | back-action row — icon svg fill · default | `module: cascader` (pending); svg rule |
+| 7 | BackAction.styles.ts:23 | blue-600 | back-action row — text · hover | `module: cascader` (pending) |
+| 8 | BackAction.styles.ts:26 | blue-600 | back-action row — icon (wrapper color) · hover | `module: cascader` (pending) |
+| 9 | BottomAction.styles.ts:6 | grey-600 | bottom-action bar — icon svg fill | `module: dropdown` (footer icon); svg rule — ⚑ **verify unused** |
+| 10 | BottomAction.styles.ts:15 | grey-050 | bottom-action bar — bg | `module: dropdown` (footer bg) — ⚑ verify unused |
+| 11 | BottomAction.styles.ts:20 | grey-600 | bottom-action bar — text | `module: dropdown` (footer text) — ⚑ verify unused |
+| 12 | BottomAction.styles.ts:23 | grey-100 | bottom-action bar — border-top | `module: dropdown` (footer border) — ⚑ verify unused |
+| 13 | Breadcrumb.styles.tsx:42 | grey-600 | crumb — description text · default | `module: cascader` (pending) |
+| 14 | Breadcrumb.styles.tsx:61 | grey-050 | crumb overflow-fade `::before` gradient stop | `module: cascader` (pending) |
+| 15 | Breadcrumb.styles.tsx:75 | white | crumb overflow-fade `::after` gradient stop | `module: cascader` (pending) |
+| 16 | Breadcrumb.styles.tsx:82 | grey-600 | crumb — name text · default | `module: cascader` (pending) |
+| 17 | Breadcrumb.styles.tsx:91 | white `!important` | non-clickable crumb — bg | `module: cascader` (pending) |
+| 18 | Breadcrumb.styles.tsx:92 | transparent | non-clickable crumb — inset ring | keep (decorative) |
+| 19 | Breadcrumb.styles.tsx:94 | grey-600 | non-clickable crumb — name/desc text | `module: cascader` (pending) |
+| 20 | Breadcrumb.styles.tsx:97 | grey-600 | crumb arrow (ArrowRight) — icon svg fill · default | `module: cascader` (pending); svg rule |
+| 21 | Breadcrumb.styles.tsx:102 | grey-600 / blue-600 | crumb — text · hover (disabled ternary) | `module: cascader` (pending) |
+| 22 | Breadcrumb.styles.tsx:107 | grey-600 | crumb prefix icon — svg fill `!important` · default | `module: cascader` (pending); svg rule |
+| 23 | Breadcrumb.styles.tsx:114 | blue-600 | crumb prefix icon — svg fill `!important` · hover | `module: cascader` (pending); svg rule |
+| 24 | Breadcrumb.styles.tsx:168 | transparent | nav crumb Inner — bg · hover/active/focus | keep (decorative) |
+| 25 | Breadcrumb.styles.tsx:172 | grey-600 / blue-600 | nav crumb — text · hover (disabled ternary) | `module: cascader` (pending) |
+| 26 | Breadcrumb.styles.tsx:178 | blue-600 | nav crumb prefix icon — svg fill `!important` · hover | `module: cascader` (pending); svg rule |
+| 27 | Breadcrumb.styles.tsx:189 | grey-050 | crumb row — bg · hover (non-nav) | `module: cascader` (pending) |
+| 28 | Breadcrumb.styles.tsx:190 | blue-600 | crumb row — text · hover | `module: cascader` (pending) |
+| 29 | Breadcrumb.styles.tsx:192-194 | grey-600 / blue-600 | crumb arrow icon — svg fill · hover (disabled ternary) | `module: cascader` (pending); svg rule |
+| 30 | Breadcrumb.styles.tsx:197-200 | grey-600 / blue-600 | crumb — name/desc text · hover (disabled ternary) | `module: cascader` (pending) |
+| 31 | Breadcrumb.styles.tsx:204 | blue-600 | crumb — inset box-shadow focus ring | `module: cascader` (pending) |
+| 32 | Breadcrumb.styles.tsx:208 | grey-100 | crumb overflow-fade `::before` gradient · focus:active | `module: cascader` (pending) |
+| 33 | Breadcrumb.styles.tsx:15,27,54,66,156,159 | opacity 0/1 | fade/arrow visibility toggles | keep (decorative) |
+| 34 | Breadcrumb.tsx:117 | grey-600 | crumb separator (AngleRightS) — Icon color | `module: cascader` (pending); static import |
+| 35 | BreadcrumbsList.tsx:35 | green-600 | search-result — selected checkmark (CheckS) | semantic `--ds-color-icon-success-default`; static import |
+| 36 | CategoriesList.tsx:41 | green-600 | category — selected checkmark (CheckS) | semantic `--ds-color-icon-success-default`; static import |
+| 37 | Navigation.tsx:31 | grey-600 | breadcrumb home prefix (HomeM) — Icon color | `module: cascader` (pending); static import |
+
+### SVG fill/stroke rules to replace
+| # | file:line | Current rule | Replacement |
+|--:|---|---|---|
+| 6 | BackAction.styles.ts:13-15 | `svg { fill: grey-700 }` (IconWrapper) | `currentColor` + wrapper `color: var(--ds-cascader-…)` (pending) |
+| 9 | BottomAction.styles.ts:5-6 | `svg { fill: grey-600 }` | `currentColor` + `module: dropdown` icon token (verify unused) |
+| 20,22,23,26,29 | Breadcrumb.styles.tsx:96-98/106-108/112-115/176-179/191-195 | `.ds-icon svg { fill: grey-600 / blue-600 !important }` | `currentColor` + wrapper `color: var(--ds-cascader-…)` (pending) |
+
+### Static `theme` imports
+| # | file:line | Usage | Resolution |
+|--:|---|---|---|
+| 34 | Breadcrumb.tsx:3 | `theme.palette['grey-600']` → AngleRightS Icon color | pass `var(--ds-cascader-…)` (pending); remove import |
+| 35 | BreadcrumbsList.tsx:3 | `theme.palette['green-600']` → CheckS color | pass `var(--ds-color-icon-success-default)`; remove import |
+| 36 | CategoriesList.tsx:4 | `theme.palette['green-600']` → CheckS color | pass `var(--ds-color-icon-success-default)`; remove import |
+| 37 | Navigation.tsx:3 | `theme.palette['grey-600']` → HomeM Icon color | pass `var(--ds-cascader-…)` (pending); remove import |
+
+_(Row 4's `Cascader.tsx:13` static import is removed by dropping the search-icon `color` prop.)_
+
+---
+
+## code-area
+
+**Summary.** 18 refs; decision (UX 2026-07-21): **module `form`** (editor field — **11 already applied** as `--ds-form-*`) + semantic (fullscreen overlay bg) + **Monaco constants reworked to `theme.tokens[…]`** (resolved values, replacing `theme.palette[…]`) mapped to semantic tokens. blockers: none (the earlier "Monaco can't use CSS vars" constraint is resolved by using the resolved-value `theme.tokens` map). NB: `constants.ts` keeps its `theme` import but switches `.palette` → `.tokens`.
+
+### Palette / colour usage
+| # | file:line | value | role | Decision → token |
+|--:|---|---|---|---|
+| 1 | CodeArea.styles.ts:44-48 | `var(--ds-form-field-border-validated/default)` | EditorWrapper — border · error/default | ✅ applied (`module form`) |
+| 2 | CodeArea.styles.ts:58 | `var(--ds-form-field-bg-validated)` | EditorWrapper — bg · error | ✅ applied |
+| 3 | CodeArea.styles.ts:59-61 | `inset 0 0 0 1px var(--ds-form-field-border-validated)` | EditorWrapper — box-shadow ring · error | ✅ applied |
+| 4 | CodeArea.styles.ts:131 | `var(--ds-form-field-bg-disabled)` | EditorWrapper — bg · readOnly | ✅ applied |
+| 5 | CodeArea.styles.ts:160,161,166,170,173,174 | `var(--ds-form-field-bg/border-*)` | BottomBar — bg/border · default/error (6 refs) | ✅ applied |
+| 6 | CodeArea.styles.ts:196 | `var(--ds-form-error-text-color)` | ErrorText — color · error | ✅ applied |
+| 7 | CodeArea.styles.ts:97 | `theme.palette.white` | CodeAreaWrapper — bg · fullscreen overlay | semantic `--ds-color-background-base-default` (exact; styled-component CSS var) |
+| 8 | CodeArea.styles.ts:64 | `opacity: 0` | EditorWrapper `canvas` — load hide | keep (functional, non-colour) |
+| 9 | CodeArea.styles.ts:94 | `theme.variables['zindex-modal']` | CodeAreaWrapper — z-index · fullscreen | keep (non-colour) |
+| 10 | constants.ts:24 | `#00000000` | Monaco `editor.background` / overviewRuler border | **`theme.tokens['--ds-color-transparent']`** (keeps transparent → shows form-field bg) |
+| 11 | constants.ts:31 | grey-800 | Monaco `editor.foreground` (code text) | **`theme.tokens['--ds-color-text-base-default']`** (exact grey-800) |
+| 12 | constants.ts:35 | grey-300 | Monaco `scrollbarSlider.background` | **`theme.tokens['--ds-color-border-base-strong']`** (grey-300 exact; bg↔border name-mismatch) |
+| 13 | constants.ts:36,37 | grey-500 | Monaco `scrollbarSlider.hover/activeBackground` | **`theme.tokens['--ds-color-background-base-stronghover']`** (grey-500 exact) |
+| 14 | constants.ts:38 | grey-500 | Monaco `editorLineNumber.foreground` | **`theme.tokens['--ds-color-text-neutral-default']`** (grey-500 exact) |
+
+### SVG fill/stroke rules to replace
+| # | file:line | Current rule | Replacement |
+|--:|---|---|---|
+| — none — |  |  |
+
+### Static `theme` imports
+| # | file:line | Usage | Resolution |
+|--:|---|---|---|
+| 1 | constants.ts:3 | `import { theme }` → Monaco `DS_MONACO_THEME` colours | keep the import but read `theme.tokens['--ds-…']` (resolved values) instead of `theme.palette[…]` — see rows 10–14 |
+
+---
+
+## code-snippet
+
+**Summary.** 21 refs; decision (UX 2026-07-21): block chrome → **semantic** (**7 already applied**); the 12 syntax-highlight hues + the inline-code accent → new dedicated **`code-snippet` module** (pending upstream — no semantic equivalent for code-syntax colours, documented as a gap). blockers: **`.less` present** (`src/style/index.less`, IBM Plex Mono `@font-face`, side-effect imported) + `code-snippet` module pending. No svg rules, no static imports (uses `props.theme`).
+
+### Palette / colour usage
+| # | file:line | value | role | Decision → token |
+|--:|---|---|---|---|
+| 1 | Highlight.styles.ts:5 | grey-700 | `.hljs` base code text | `module: code-snippet` (pending) |
+| 2 | Highlight.styles.ts:10 | blue-600 | `.hljs-attr` / template-tag | `module: code-snippet` (pending) |
+| 3 | Highlight.styles.ts:16 | cyan-600 | `.hljs-comment/doctag/quote` | `module: code-snippet` (pending) |
+| 4 | Highlight.styles.ts:20 | grey-600 | `.hljs-params` | `module: code-snippet` (pending) |
+| 5 | Highlight.styles.ts:24 | violet-600 | `.hljs-regexp` | `module: code-snippet` (pending) |
+| 6 | Highlight.styles.ts:31 | red-600 | `.hljs-tag/selector-id/number/literal` | `module: code-snippet` (pending) |
+| 7 | Highlight.styles.ts:36 | blue-600 | `.hljs-meta` | `module: code-snippet` (pending) |
+| 8 | Highlight.styles.ts:53 | blue-600 | `.hljs-selector-class…keyword` | `module: code-snippet` (pending) |
+| 9 | Highlight.styles.ts:59 | orange-600 | `.hljs-built_in/title/deletion` | `module: code-snippet` (pending) |
+| 10 | Highlight.styles.ts:68 | yellow-600 | `.hljs-type/section/function/name/property/attribute` | `module: code-snippet` (pending) |
+| 11 | Highlight.styles.ts:77 | green-600 | `.hljs-string/subst/symbol/bullet/addition` | `module: code-snippet` (pending) |
+| 12 | Highlight.styles.ts:81 | purple-600 | `.hljs-selector-tag` | `module: code-snippet` (pending) |
+| 13 | InlineCode.styles.ts:11 | `#e31a5d` (pink, not in palette) | inline `<code>` — text | `module: code-snippet` (pending, inline-code) |
+| 14 | InlineCode.styles.ts:12 | pink-100 | inline `<code>` — bg | `module: code-snippet` (pending, inline-code) |
+| 15 | SingleCode.styles.ts:20,21,25 | `var(--ds-color-background-base-muted / icon-base-muted / icon-brand-default)` | copy button/icon (+hover) | ✅ applied (semantic) |
+| 16 | SingleCode.styles.ts:34,58 | `var(--ds-color-background-base-muted / text-base-muted)` | block surface + code text | ✅ applied (semantic) |
+| 17 | MultiCode.styles.ts:28,53 | `var(--ds-color-background-base-muted)` | edge/bottom fade masks | ✅ applied (semantic) |
+| 18 | MultiCode.styles.ts:116,122 | `opacity: 0` | scrollbar rails — functional hide | keep (non-colour) |
+
+### SVG fill/stroke rules to replace
+| # | file:line | Current rule | Replacement |
+|--:|---|---|---|
+| — none — |  |  |
+
+### Static `theme` imports
+| # | file:line | Usage | Resolution |
+|--:|---|---|---|
+| — none — |  |  |
+
+---
+
+## collector
+
+**Summary.** ~14 refs; decision (UX 2026-07-21): **module `form`** (field placeholder — applied; cross-fade gradients → form-field bg) + **`dropdown`** (pending, suggestions overlay + nav-hint footer) + **semantic** (error chip → danger; grey value chip → base-muted ⚑). Field surface/border delegate to ds-input (out of scope). blockers: `dropdown` module pending. No static imports, no `.less`. 1 svg fill rule.
+
+### Palette / colour usage
+| # | file:line | value | role | Decision → token |
+|--:|---|---|---|---|
+| 1 | Collector.styles.ts:181 | `var(--ds-form-field-text-placeholder)` | field placeholder text | ✅ applied (`module form`) |
+| 2 | Collector.styles.ts:69 | grey-200 | `.ds-input-value-wrapper` value chip — bg | semantic `--ds-color-background-base-muted` — ⚑ shift grey-200→grey-100 (lighter) |
+| 3 | Collector.styles.ts:137 | red-600 | error chip — bg | semantic `--ds-color-background-danger-solid` |
+| 4 | Collector.styles.ts:138 | white | error chip — text | semantic `--ds-color-text-onsolid-danger` |
+| 5 | Collector.styles.ts:140 | white | error chip — icon | semantic `--ds-color-icon-onsolid-danger` |
+| 6 | Collector.styles.ts:160 | white | DropdownContent overlay — bg | `module: dropdown` (pending) |
+| 7 | Collector.styles.ts:167 | `0 16px 32px rgba(35,41,54,0.12)` | DropdownContent overlay — box-shadow | `module: dropdown` (overlay shadow, pending) — ⚑ α 0.12 vs shadow-2 0.10 |
+| 8 | Collector.styles.ts:217 | grey-100 | nav-hint footer — border-top | `module: dropdown` (footer border, pending) |
+| 9 | Collector.styles.ts:218 | grey-050 | nav-hint footer — bg | `module: dropdown` (footer bg, pending) |
+| 10 | Collector.styles.ts:222 | grey-400 | nav-hint footer — text | `module: dropdown` (footer text, pending) |
+| 11 | Collector.styles.ts:226 | grey-400 | nav-hint footer — icon svg fill | `module: dropdown` (footer icon, pending); svg rule |
+| 12 | Collector.styles.ts:77,95 | blue-050 (focus) / white (blur) | scroll-fade gradient — **solid stop** | **`module: form`** → `--ds-form-field-bg-focus` (focus) / `--ds-form-field-bg-default` (blur) — match field bg |
+| 12b | Collector.styles.ts:78,96 | rgba(255,255,255,0) | scroll-fade gradient — transparent stop | keep (transparent) |
+| 13 | Collector.styles.ts:123 | transparent | Input — hides typed text while placeholder shows | keep (functional) |
+| 14 | Collector.styles.ts:25 | (transition prop) | scroll-fade transition | keep (non-colour) |
+
+### SVG fill/stroke rules to replace
+| # | file:line | Current rule | Replacement |
+|--:|---|---|---|
+| 11 | Collector.styles.ts:226 | `.ds-icon > svg { fill: grey-400 }` (nav-hint footer) | wrapper `color` + `currentColor` (dropdown footer-icon token, pending) |
+
+### Static `theme` imports
+| # | file:line | Usage | Resolution |
+|--:|---|---|---|
+| — none — |  |  |
+
+---
+
+## color-picker
+
+**Summary.** 14 refs; decision (UX 2026-07-21): trigger affix → **`module form`** (2 applied); the panel **surface bg** → **`module: dropdown`** (pending); the panel **control chrome** (creator/swatch/placeholder/preview borders + focus rings + selected dot) → **semantic** (exact correct-category tokens); react-colorful vendor chrome kept; swatch colours dynamic. blockers: `dropdown` module pending. No svg rules, no static imports, no `.less`.
+
+### Palette / colour usage
+| # | file:line | value | role | Decision → token |
+|--:|---|---|---|---|
+| 1 | ColorPicker.styles.ts:15 | white | Container (picker panel wrapper) — bg | `module: dropdown` (overlay surface, pending) |
+| 2 | ColorPicker.styles.ts:41 | grey-300 | `.react-colorful__hue-pointer` — border | semantic `--ds-color-border-base-strong` (grey-300 exact) |
+| 3 | ColorPicker.styles.ts:42 | `box-shadow: none` | `.react-colorful__hue-pointer` | keep (vendor reset) |
+| 4 | ColorPicker.styles.ts:44 | white | `.react-colorful__pointer-fill` — bg | keep (react-colorful vendor chrome) |
+| 5 | ColorPicker.styles.ts:60 | `var(--ds-form-field-affix-border)` | ColorTag (trigger preview swatch) — border | ✅ applied (`module form`) |
+| 6 | ColorPicker.styles.ts:77 | grey-800 | SwatchCreatorButton ("+") — icon glyph color | semantic `--ds-color-icon-base-default` — ⚑ shift grey-800→grey-600 (no icon token at grey-800) |
+| 7 | ColorPicker.styles.ts:82 | grey-200 | SwatchCreatorButton — bg · hover | semantic `--ds-color-background-base-mutedhover` (grey-200 exact) |
+| 8 | ColorPicker.styles.ts:86 | blue-600 | SwatchCreatorButton — outline/ring · focus-visible | semantic `--ds-color-border-brand-default` (blue-600 exact) |
+| 9 | ColorPicker.styles.ts:105 | blue-600 | Swatch — outline/ring · focus-visible | semantic `--ds-color-border-brand-default` (exact) |
+| 10 | ColorPicker.styles.ts:115 | white | SwatchDot (selected-swatch centre dot) | semantic `--ds-color-icon-onsolid-default` (always-white indicator) |
+| 11 | ColorPicker.styles.ts:123 | grey-300 | SwatchPlaceholder (empty slot) — border | semantic `--ds-color-border-base-strong` (grey-300 exact) |
+| 12 | ColorPicker.styles.ts:164 | grey-300 | PrefixTag `.ds-tag` (panel preview square) — border | semantic `--ds-color-border-base-strong` (exact) |
+| 13 | ColorPicker.styles.ts:192 | `var(--ds-form-field-affix-text)` | PreffixWrapper ("#" hex prefix) — text | ✅ applied (`module form`) |
+| 14 | ColorPicker.tsx:32 | `#ffffff` (DEFAULT_COLOR) | initial picker colour value | keep (dynamic value) |
+
+### SVG fill/stroke rules to replace
+| # | file:line | Current rule | Replacement |
+|--:|---|---|---|
+| — none — |  |  |
+
+### Static `theme` imports
+| # | file:line | Usage | Resolution |
+|--:|---|---|---|
+| — none — |  |  |
+
+---
+
+## completed-within
+
+**Summary.** 1 remaining ref; decision (UX 2026-07-21): **module `dropdown`** (pending) for the Settings panel bg; clear icon already `--ds-color-icon-danger-default` (2026-07-20). Form controls + buttons delegate to their DS components. blockers: `dropdown` module pending. No svg/static/`.less`.
+
+### Palette / colour usage
+| # | file:line | value | role | Decision → token |
+|--:|---|---|---|---|
+| 1 | Settings/Settings.styles.ts:11 | white | Settings dropdown panel — bg | `module: dropdown` (overlay bg, pending) |
+| 2 | CompleteWithin.styles.ts:18 | `var(--ds-color-icon-danger-default)` | ClearButton icon — color | ✅ applied (clear icon, 2026-07-20) |
+| 3 | CompleteWithin.styles.ts:12 | `opacity: 0` | ClearButton — hidden (no value) | keep (dynamic show/hide) |
+| 4 | CompleteWithin.styles.ts:52 | `opacity: 1` | ClearButton — visible | keep (dynamic show/hide) |
+| 5 | CompleteWithin.styles.ts:23 | `box-shadow: none` | ClearButton `.btn-focus` — focus reset | keep (decorative) |
+
+### SVG fill/stroke rules to replace
+| # | file:line | Current rule | Replacement |
+|--:|---|---|---|
+| — none — |  |  |
+
+### Static `theme` imports
+| # | file:line | Usage | Resolution |
+|--:|---|---|---|
+| — none — |  |  |
+
+---
+
+## condition
+
+**Summary.** 16 refs; decision (UX 2026-07-21): **semantic** — 14 already applied (2026-07-20); only the 2 `ConditionConnections` connector lines remain, **kept on palette (deferred, pending a connector token)**. blockers: connector token pending. Opacity values are visibility toggles (keep). No svg rules, no static imports (uses `props.theme`), no `.less`.
+
+### Palette / colour usage
+| # | file:line | value | role | Decision → token |
+|--:|---|---|---|---|
+| 1 | Condition.style.ts:321 | grey-300 | `ConditionConnections` `:before` — horizontal connector line bg | **keep (deferred)** — pending dedicated connector token |
+| 2 | Condition.style.ts:335 | grey-300 | `ConditionConnections` `:after` — vertical connector line bg | **keep (deferred)** — pending connector token |
+| — | (14 other refs) | `var(--ds-*)` | base text/bg/border/icon + `--ds-shadows-shadow-2` | ✅ already applied (semantic, 2026-07-20) |
+
+### SVG fill/stroke rules to replace
+| # | file:line | Current rule | Replacement |
+|--:|---|---|---|
+| — none — |  |  |
+
+### Static `theme` imports
+| # | file:line | Usage | Resolution |
+|--:|---|---|---|
+| — none — |  |  |
+
+---
+
+## confirmation
+
+**Summary.** 2 type-driven colour refs; decision (UX 2026-07-21): dialog surface → **`module: modal`** (delegated to `@synerise/ds-modal`, applied upstream — nothing local); the type-driven icon → **semantic** per type (all exact). blockers: none. `useTheme()` (Confirmation.tsx:4) is a hook, removable once the icon colour is a CSS var.
+
+### Palette / colour usage
+| # | file:line | value | role | Decision → token |
+|--:|---|---|---|---|
+| 1 | Confirmation.utils.ts:8 (+ const.ts:10) | `palette[ICON_COLOR_MAPPING[type]]` → red-600 / green-600 / yellow-600 / grey-600 | type-driven `<Icon>` color (size 96) · per `type` | **semantic**: negative→`--ds-color-icon-danger-default`, success→`--ds-color-icon-success-default`, warning→`--ds-color-icon-warning-default`, informative→`--ds-color-icon-base-default` (all exact) |
+| 2 | Confirmation.const.ts:3 | `BUTTON_COLOR_MAPPING` = red/green/yellow/blue | `<Button type="custom-color" color={…}>` · per `type` | keep (ds-button `custom-color` keyword) — ⚑ **follow-up: buttons should use a semantic ds-button `type` (e.g. `primary-danger`/`primary-success`/`primary-warning`) instead of a fixed custom-color mapping** |
+| — | dialog surface/overlay/header/footer | — | delegated to `<Modal>` (`@synerise/ds-modal`) | ✅ `module: modal` applied upstream (nothing local) |
+
+### SVG fill/stroke rules to replace
+| # | file:line | Current rule | Replacement |
+|--:|---|---|---|
+| — none — |  |  |
+
+### Static `theme` imports
+| # | file:line | Usage | Resolution |
+|--:|---|---|---|
+| — none — |  |  |
+
+_(Note: informative-type icon is grey (`icon-base-default`) while its button accent is blue — an existing inconsistency; icon stays grey, no `icon-info` token.)_
 
 ---
 
