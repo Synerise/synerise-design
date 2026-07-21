@@ -138,6 +138,23 @@ const countLeaves = (node) => {
   return n;
 };
 
+// Style Dictionary scans every token field — including `$description` — for `{references}`. A
+// description that contains brace syntax (e.g. "…the code's ${customColor}-600") is mis-read as a
+// token reference and, when it doesn't resolve, hard-fails the whole build. Descriptions are
+// documentation and are never emitted to CSS/JSON, so strip them from the docs before staging.
+const stripDescriptions = (node) => {
+  if (Array.isArray(node)) return node.map(stripDescriptions);
+  if (node != null && typeof node === 'object') {
+    const out = {};
+    for (const [key, value] of Object.entries(node)) {
+      if (key === '$description') continue;
+      out[key] = stripDescriptions(value);
+    }
+    return out;
+  }
+  return node;
+};
+
 // Iteratively drop unresolvable leaves from a set of token documents until the combined
 // set is stable. The universe of resolvable paths shrinks as leaves drop, so a token that
 // referenced a now-dropped token is dropped on the next pass (handles cascades).
@@ -210,7 +227,7 @@ for (const [themeName, cfg] of Object.entries(themes)) {
 
   const stage = (obj, name) => {
     const p = resolve(TMP, `${name}.${themeName}.json`);
-    writeFileSync(p, JSON.stringify(obj, null, 2));
+    writeFileSync(p, JSON.stringify(stripDescriptions(obj), null, 2));
     return p;
   };
   const includePaths = prunedBase.map((doc, i) => stage(doc, `base-${i}`));
