@@ -2,12 +2,12 @@ import styled from 'styled-components';
 
 export const SearchResult = styled.span`
   font-weight: 400;
-  color: ${(props): string => props.theme.palette['grey-500']};
+  color: var(--ds-color-text-neutral-default);
 `;
 
 export const SearchResultHighlight = styled.span`
   font-weight: 500;
-  color: ${(props): string => props.theme.palette['grey-700']};
+  color: var(--ds-color-text-base-subtle);
 `;
 
 export const ItemsList = styled.div`
