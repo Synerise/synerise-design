@@ -67,7 +67,7 @@ export const MetricContent = styled.div<{ copyable?: boolean }>`
   }
 `;
 export const MetricValue = styled(Text)`
-  color: ${(props): string => props.theme.palette['grey-800']};
+  color: var(--ds-color-text-base-default);
   font-size: 32px;
   line-height: 100%;
   padding-bottom: 2px;
@@ -93,7 +93,7 @@ export const TitleWrapper = styled.div<{ header?: boolean }>`
 
 export const IconWrapper = styled.span`
   display: inline-block;
-  color: ${(props): string => props.theme.palette['grey-400']};
+  color: var(--ds-form-label-icon-color);
   cursor: pointer;
 `;
 
