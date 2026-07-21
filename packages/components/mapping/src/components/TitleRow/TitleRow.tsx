@@ -1,6 +1,5 @@
 import React from 'react';
 
-import { theme } from '@synerise/ds-core';
 import Icon, { InfoFillS } from '@synerise/ds-icon';
 import Tooltip from '@synerise/ds-tooltip';
 
@@ -25,7 +24,7 @@ export const TitleRow = ({
             <Tooltip {...leftTitleTooltip}>
               <Icon
                 component={<InfoFillS />}
-                color={theme.palette['grey-400']}
+                color="var(--ds-form-label-icon-color)"
               />
             </Tooltip>
           )}
@@ -39,7 +38,7 @@ export const TitleRow = ({
             <Tooltip {...rightTitleTooltip}>
               <Icon
                 component={<InfoFillS />}
-                color={theme.palette['grey-400']}
+                color="var(--ds-form-label-icon-color)"
               />
             </Tooltip>
           )}
