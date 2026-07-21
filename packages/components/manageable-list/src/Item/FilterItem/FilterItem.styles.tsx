@@ -18,7 +18,7 @@ export const SelectFilterItem = styled.div`
       display: flex;
       content: '';
       border-radius: 50%;
-      background-color: ${(props): string => props.theme.palette['green-600']};
+      background-color: var(--ds-color-background-success-solid);
       width: 16px;
       height: 16px;
       position: absolute;
@@ -43,21 +43,36 @@ export const MenuItem = styled.div<{ danger?: boolean }>`
     cursor: pointer;
     padding: 0 8px;
     
-    background-color: ${(props): string => (props.danger ? props.theme.palette['red-050'] : props.theme.palette.white)};
-    color: ${(props): string => (props.danger ? props.theme.palette['red-600'] : props.theme.palette['grey-700'])};
+    background-color: ${(props): string =>
+      props.danger
+        ? 'var(--ds-color-background-danger-subtle)'
+        : 'var(--ds-color-background-base-default)'};
+    color: ${(props): string =>
+      props.danger
+        ? 'var(--ds-color-text-danger-default)'
+        : 'var(--ds-color-text-base-subtle)'};
     &:hover {
       background-color: background-color: ${(props): string =>
         props.danger
-          ? props.theme.palette['red-050']
-          : props.theme.palette.white};;
-      color: ${(props): string => (props.danger ? props.theme.palette['red-600'] : props.theme.palette['grey-700'])};
+          ? 'var(--ds-color-background-danger-subtle)'
+          : 'var(--ds-color-background-base-default)'};;
+      color: ${(props): string =>
+        props.danger
+          ? 'var(--ds-color-text-danger-default)'
+          : 'var(--ds-color-text-base-subtle)'};
     }
     
     ${IconContainer} {
       margin-right: 12px;
       svg {
-        color: ${(props): string => (props.danger ? props.theme.palette['red-600'] : props.theme.palette['grey-600'])};
-        fill: ${(props): string => (props.danger ? props.theme.palette['red-600'] : props.theme.palette['grey-600'])};
+        color: ${(props): string =>
+          props.danger
+            ? 'var(--ds-color-icon-danger-default)'
+            : 'var(--ds-color-icon-base-default)'};
+        fill: ${(props): string =>
+          props.danger
+            ? 'var(--ds-color-icon-danger-default)'
+            : 'var(--ds-color-icon-base-default)'};
       }
     }
   }
@@ -74,7 +89,7 @@ export const ItemHeader = styled.div`
 
   &:hover {
     ${ItemLabel} {
-      color: ${({ theme }): string => theme.palette['grey-800']};
+      color: var(--ds-color-text-base-default);
     }
   }
 

@@ -12,7 +12,7 @@ export const ItemActionsWrapper = styled.div`
   }
   ${IconContainer}:hover {
     svg {
-      fill: ${({ theme }): string => theme.palette['blue-600']};
+      fill: var(--ds-color-icon-brand-default);
     }
   }
 `;

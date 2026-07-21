@@ -8,13 +8,13 @@ import { ItemLabel } from '../Item.styles';
 import { ItemActionsWrapper } from '../ItemActions/ItemActions.styles';
 import { ItemMeta } from '../ItemMeta/ItemMeta.styles';
 
-const dashedStyle = (props: ThemeProps) => css`
+const dashedStyle = () => css`
   && {
     box-shadow: 0 0 0 0 transparent;
-    border: 1px dashed ${props.theme.palette['grey-300']};
+    border: 1px dashed var(--ds-color-border-base-strong);
   }
   &&:hover {
-    border: 1px dashed ${props.theme.palette['grey-400']};
+    border: 1px dashed var(--ds-color-border-base-stronghover);
   }
 `;
 
@@ -27,7 +27,7 @@ export const DraggerWrapper = styled.div<{
 }>`
   cursor: pointer;
   display: flex;
-  opacity: ${({ disabled }) => (disabled ? '0.4' : '1')};
+  opacity: ${({ disabled }) => (disabled ? 'var(--ds-opacity-disabled)' : '1')};
 `;
 
 export const IconWrapper = styled.div`
@@ -59,8 +59,8 @@ export const ItemHeaderPrefix = styled.div`
 
   ${DraggerWrapper} {
     svg {
-      color: ${({ theme }) => theme.palette['grey-400']};
-      fill: ${({ theme }) => theme.palette['grey-400']};
+      color: var(--ds-color-icon-base-muted);
+      fill: var(--ds-color-icon-base-muted);
     }
   }
 `;
@@ -79,8 +79,8 @@ export const ItemHeaderSuffix = styled.div`
     &.ant-dropdown-open,
     &:hover {
       svg {
-        color: ${(props) => props.theme.palette['blue-600']};
-        fill: ${(props) => props.theme.palette['blue-600']};
+        color: var(--ds-color-icon-brand-default);
+        fill: var(--ds-color-icon-brand-default);
       }
     }
   }
@@ -127,15 +127,15 @@ export const ItemHeader = styled.div<{
       display: none;
     }
     ${ItemLabel} {
-      color: ${({ theme }) => theme.palette['grey-800']};
+      color: var(--ds-color-text-base-default);
     }
     ${ItemActionsWrapper} {
       display: flex;
     }
     ${DraggerWrapper} {
       svg {
-        color: ${({ theme }) => theme.palette['grey-600']};
-        fill: ${({ theme }) => theme.palette['grey-600']};
+        color: var(--ds-color-icon-base-default);
+        fill: var(--ds-color-icon-base-default);
       }
     }
     ${MoveItemButtons} {
@@ -147,17 +147,16 @@ export const ItemHeader = styled.div<{
 export const ContentWrapper = styled.div<{ withoutPadding: boolean }>`
   padding: ${(props) => (props.withoutPadding ? '0px' : '16px 24px 24px')};
   width: 100%;
-  border-top: 1px solid ${({ theme }) => theme.palette['grey-200']};
+  border-top: 1px solid var(--ds-color-border-base-default);
   opacity: 1;
 `;
 
 const standardShadow = ({
   greyBackground,
-  theme,
 }: ThemeProps & { greyBackground?: boolean }) => {
   return greyBackground
-    ? '0 4px 12px 0 rgba(35, 41, 54, 0.04)'
-    : `0 0 0 1px ${theme.palette['grey-200']}`;
+    ? 'var(--ds-shadows-shadow-1)'
+    : `0 0 0 1px var(--ds-color-border-base-default)`;
 };
 
 export const ItemContainer = styled.div<{
@@ -182,12 +181,12 @@ export const ItemContainer = styled.div<{
   ${(props) =>
     props.selected &&
     `
-    outline: 2px solid ${props.theme.palette['blue-600']} !important;
+    outline: 2px solid var(--ds-color-border-brand-default) !important;
   `}
 
   ${(props) =>
     props.isDragOverlay
-      ? `box-shadow: ${standardShadow(props)}, 0px 16px 32px 0px ${props.theme.palette['grey-200']};
+      ? `box-shadow: ${standardShadow(props)}, var(--ds-shadows-shadow-2);
 `
       : css`
           box-shadow: ${standardShadow(props)};
@@ -195,8 +194,8 @@ export const ItemContainer = styled.div<{
   ${(props) =>
     props.isDragPlaceholder
       ? css`
-          background-color: ${props.theme.palette['blue-050']};
-          outline: 1px dashed ${props.theme.palette['blue-300']} !important;
+          background-color: var(--ds-color-background-brand-subtle);
+          outline: 1px dashed var(--ds-color-border-brand-strong) !important;
           box-shadow: 0;
           box-sizing: border-box;
           border-radius: 3px;
@@ -209,22 +208,22 @@ export const ItemContainer = styled.div<{
           }
         `
       : css`
-          background-color: ${props.theme.palette.white};
+          background-color: var(--ds-color-background-base-default);
         `}
   ${(props) =>
     props.isDisabled &&
     `
-    opacity: 0.4;
+    opacity: var(--ds-opacity-disabled);
     cursor: default;
     pointer-events: none;
   `}
 
-  ${({ greyBackground, isDragOverlay, theme }) =>
+  ${({ greyBackground, isDragOverlay }) =>
     !greyBackground &&
     !isDragOverlay &&
     `
       &:hover {
-        box-shadow: 0 0 0 1px ${theme.palette['grey-300']};
+        box-shadow: 0 0 0 1px var(--ds-color-border-base-strong);
       }
   `}
 
@@ -232,7 +231,7 @@ export const ItemContainer = styled.div<{
     width: 100%;
   }
 
-  ${(props) => !!props.dashed && dashedStyle(props)}
+  ${(props) => !!props.dashed && dashedStyle()}
 
   ${(props) =>
     props.size === 'large' &&

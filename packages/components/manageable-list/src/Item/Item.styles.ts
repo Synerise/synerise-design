@@ -7,7 +7,7 @@ import { ItemActionsWrapper } from './ItemActions/ItemActions.styles';
 
 export const ItemLabel = styled.span`
   ${macro.h300};
-  color: ${({ theme }): string => theme.palette['grey-600']};
+  color: var(--ds-color-text-base-muted);
   height: 24px;
   display: inline-block;
   align-items: center;
@@ -24,7 +24,7 @@ export const ItemLabel = styled.span`
   }
   .search-highlight {
     font-weight: 500;
-    color: ${(props): string => props.theme.palette['grey-800']};
+    color: var(--ds-color-text-base-default);
   }
 `;
 export const ItemTagList = styled.div`
@@ -43,7 +43,7 @@ export const ItemTagList = styled.div`
     background: linear-gradient(
       90deg,
       rgba(0, 0, 0, 0) 0%,
-      rgba(255, 255, 255, 1) 100%
+      var(--ds-color-background-base-default) 100%
     );
   }
 `;
@@ -90,17 +90,21 @@ export const ItemContainer = styled.div<{
   ${(props) =>
     props.isDisabled &&
     `
-    opacity: 0.4;
+    opacity: var(--ds-opacity-disabled);
     cursor: default;
     pointer-events: none;
   `}
-  background-color: ${({ theme, isSelected }): string =>
-    isSelected ? theme.palette['blue-050'] : theme.palette.white};
+  background-color: ${({ isSelected }): string =>
+    isSelected
+      ? 'var(--ds-color-background-brand-subtle)'
+      : 'var(--ds-color-background-base-default)'};
   li {
     width: 100%;
     .title {
-      color: ${({ theme, isSelected }): string =>
-        isSelected ? theme.palette['blue-600'] : theme.palette['grey-600']};
+      color: ${({ isSelected }): string =>
+        isSelected
+          ? 'var(--ds-color-text-brand-default)'
+          : 'var(--ds-color-text-base-muted)'};
     }
     & > div {
       height: 24px;
@@ -112,10 +116,14 @@ export const ItemContainer = styled.div<{
 
   .ds-manageable-list-item-icon {
     svg {
-      color: ${({ theme, isSelected }): string =>
-        isSelected ? theme.palette['blue-600'] : theme.palette['grey-600']};
-      fill: ${({ theme, isSelected }): string =>
-        isSelected ? theme.palette['blue-600'] : theme.palette['grey-600']};
+      color: ${({ isSelected }): string =>
+        isSelected
+          ? 'var(--ds-color-icon-brand-default)'
+          : 'var(--ds-color-icon-base-default)'};
+      fill: ${({ isSelected }): string =>
+        isSelected
+          ? 'var(--ds-color-icon-brand-default)'
+          : 'var(--ds-color-icon-base-default)'};
     }
   }
 
@@ -126,8 +134,8 @@ export const ItemContainer = styled.div<{
 
     .ds-manageable-list-item-icon {
       svg {
-        color: ${({ theme }): string => theme.palette['blue-600']};
-        fill: ${({ theme }): string => theme.palette['blue-600']};
+        color: var(--ds-color-icon-brand-default);
+        fill: var(--ds-color-icon-brand-default);
       }
     }
   }

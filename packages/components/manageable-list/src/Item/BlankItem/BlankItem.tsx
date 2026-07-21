@@ -1,6 +1,5 @@
 import React, { type MouseEvent, useCallback } from 'react';
 
-import { useTheme } from '@synerise/ds-core';
 import Icon, { CloseS, DragHandleM, DuplicateS } from '@synerise/ds-icon';
 import Tooltip from '@synerise/ds-tooltip';
 
@@ -21,7 +20,6 @@ const BlankItem = <T extends object>({
   dragHandleProps,
   ...rest
 }: BlankItemProps<T>) => {
-  const theme = useTheme();
   const allTexts = useTexts(texts);
 
   const handleRemove = useCallback(
@@ -66,7 +64,7 @@ const BlankItem = <T extends object>({
             >
               <Icon
                 component={<DuplicateS />}
-                color={theme.palette['grey-600']}
+                color="var(--ds-color-icon-base-default)"
                 size={24}
                 onClick={handleDuplicate}
               />
@@ -81,7 +79,7 @@ const BlankItem = <T extends object>({
               <Icon
                 component={<CloseS />}
                 size={24}
-                color={theme.palette['red-600']}
+                color="var(--ds-color-icon-danger-default)"
                 onClick={handleRemove}
               />
             </Tooltip>

@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export const ItemMetaCreated = styled.span`
-  color: ${(props): string => props.theme.palette['grey-500']};
+  color: var(--ds-color-text-neutral-default);
   font-size: 13px;
   line-height: 18px;
 `;

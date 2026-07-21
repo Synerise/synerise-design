@@ -91,7 +91,7 @@ Icons: DS icons are `fill="currentColor"` with `color: inherit`, so colour them 
 
 Single at-a-glance view of every colour-bearing component: migration **status** + whether it is **awaiting token definitions** (a pending module namespace, a missing semantic role, or a `.less`/de-antd blocker). Sourced from the two detailed tables below + `TOKEN_AUDIT.md` blockers. **Update this table (and the detailed one) whenever `apply-tokens` migrates a component.**
 
-**Totals:** ✅ 56 done · 🚧 25 partial · ❌ 28 not started · ⛔ 4 deprecated · ➖ 2 n/a — **38 awaiting token defs** (flag in last column).
+**Totals:** ✅ 57 done · 🚧 25 partial · ❌ 27 not started · ⛔ 4 deprecated · ➖ 2 n/a — **38 awaiting token defs** (flag in last column).
 
 | Component | Layer | Status | Awaiting token defs / blocker |
 |---|---|:--:|---|
@@ -162,7 +162,7 @@ Single at-a-glance view of every colour-bearing component: migration **status** 
 | list-item | module | ✅ | — |
 | loader | semantic | ✅ | — |
 | logic | semantic | ❌ | **logic/filter pending** |
-| manageable-list | semantic | ❌ | — |
+| manageable-list | semantic | ✅ | — |
 | mapping | semantic | ❌ | (i) token pending |
 | menu | semantic | ⛔ | — |
 | metric-card | semantic | ❌ | (i) token pending |
@@ -306,7 +306,7 @@ These components use `theme.palette` / hardcoded colors but do not yet have dedi
 | list | 9 | Yes (2) | 1 | 1 | |
 | loader | 1 | No | 0 | 0 | :white_check_mark: tokenised (2026-07-21); header text → text-base-default; spinner border stays dynamic (`color` prop) |
 | logic | 13 | No | 0 | 0 | |
-| manageable-list | 57 | No | 6 | 9 | High palette count |
+| manageable-list | 0 | No | 0 | 0 | :white_check_mark: tokenised — semantic now → dedicated module later (2026-07-21); 3 ⚑ shifts |
 | mapping | 3 | No | 0 | 0 | |
 | menu | 102 | Yes (2) | 5 | 21 | ⛔ **deprecated** — will not be tokenised |
 | metric-card | 2 | No | 0 | 3 | |
@@ -1727,3 +1727,20 @@ token). **Kept (decorative):** RemoveButton `opacity: 0.8`/`0.3`.
 |----------|-----|-------------------|-------|
 | STATUS_SUCCESS text | green-600 `#54cb0b` | `--ds-color-text-success-default` green-700 `#399903` | ⚑ Darker (border stays green-600) |
 | STATUS_WARNING text | yellow-600 `#fab700` | `--ds-color-text-warning-default` yellow-700 `#eda600` | ⚑ Darker (border stays yellow-600) |
+
+### manageable-list — :white_check_mark: (semantic now → dedicated module later)
+
+The largest remaining component (~65 refs across `ManageableList.styles.ts`, `Item/*` styles + `.tsx`). Per
+UX 2026-07-21 the **whole component tokenises to the semantic layer now**; the eventual target is a dedicated
+`manageable-list` module namespace (a future upstream request — **not** a current blocker, and **not** reusing
+`list-item`). Row text/title/icon states, selected/hover, drag placeholder/overlay, dashed containers, ItemMeta
+date, FilterItem menu rows, actions and disabled opacity all → the matching semantic text/icon/border/background
+tokens (exact). SVG `color`+`fill` pairs and `<Icon color>` props take the token; the `getColorText` helper is
+untouched (already grey — Tag-style). Removed the static `import { theme }` in `ItemActions.tsx` (dark-mode
+safe) and the now-unused `useTheme()` in `BlankItem`/`FilterItem`/`ContentItemHeader`. `ItemName` `(i)` info
+icon → `--ds-color-icon-base-muted` (interim; a `form` info-icon token is the eventual home, matching form-field).
+
+| Property | Was | Token resolves to | Delta |
+|----------|-----|-------------------|-------|
+| ContentItem / BlankItem drag-overlay shadow | solid `0 16px 32px grey-200` | `--ds-shadows-shadow-2` (`#2329361a`) | ⚑ solid grey → translucent elevation |
+| FilterItem unselected `CircleShapeM` | grey-300 `#dbe0e3` | `--ds-color-icon-base-muted` grey-400 `#b5bdc3` | ⚑ Darker (no icon token at grey-300) |

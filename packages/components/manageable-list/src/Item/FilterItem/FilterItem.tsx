@@ -1,7 +1,6 @@
 import React, { type ReactText, useCallback, useMemo, useState } from 'react';
 
 import Button from '@synerise/ds-button';
-import { useTheme } from '@synerise/ds-core';
 import {
   DropdownMenu,
   type DropdownMenuListItemProps,
@@ -40,8 +39,6 @@ const FilterItemComponent = ({
   const [editMode, setEditMode] = useState(false);
   const [confirmDeleteVisible, setConfirmDeleteVisible] = useState(false);
 
-  const theme = useTheme();
-
   const updateName = useCallback(
     (updateParams: { id: ReactText; name: string }): void => {
       setEditMode(false);
@@ -68,7 +65,10 @@ const FilterItemComponent = ({
       menuItems.push({
         onClick: enterEditMode,
         prefixel: (
-          <Icon component={<EditM />} color={theme.palette['grey-600']} />
+          <Icon
+            component={<EditM />}
+            color="var(--ds-color-icon-base-default)"
+          />
         ),
         text: texts.itemActionRename,
       });
@@ -77,7 +77,10 @@ const FilterItemComponent = ({
       menuItems.push({
         onClick: handleDuplicate,
         prefixel: (
-          <Icon component={<DuplicateM />} color={theme.palette['grey-600']} />
+          <Icon
+            component={<DuplicateM />}
+            color="var(--ds-color-icon-base-default)"
+          />
         ),
         text: texts.itemActionDuplicate,
       });
@@ -101,7 +104,6 @@ const FilterItemComponent = ({
     texts.itemActionDelete,
     texts.itemActionDuplicate,
     texts.itemActionRename,
-    theme.palette,
   ]);
 
   return (
@@ -120,7 +122,7 @@ const FilterItemComponent = ({
                 <Icon
                   className="selected-item-icon"
                   component={<CheckS />}
-                  color={theme.palette.white}
+                  color="var(--ds-color-icon-onsolid-success)"
                 />
               ) : (
                 <Popconfirm
@@ -133,13 +135,13 @@ const FilterItemComponent = ({
                   icon={
                     <Icon
                       component={<WarningFillM />}
-                      color={theme.palette['yellow-600']}
+                      color="var(--ds-color-icon-warning-default)"
                     />
                   }
                 >
                   <Icon
                     component={<CircleShapeM />}
-                    color={theme.palette['grey-300']}
+                    color="var(--ds-color-icon-base-muted)"
                   />
                 </Popconfirm>
               )}
@@ -170,7 +172,7 @@ const FilterItemComponent = ({
               >
                 <Icon
                   component={<OptionHorizontalM />}
-                  color={theme.palette['grey-600']}
+                  color="var(--ds-color-icon-base-default)"
                 />
               </S.FilterDropdownTrigger>
             </DropdownMenu>

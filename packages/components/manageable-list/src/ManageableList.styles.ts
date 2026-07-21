@@ -37,7 +37,7 @@ export const ShowMoreButton = styled.div`
     margin: 0;
   }
   &:hover {
-    color: ${(props): string => props.theme.palette['blue-600']};
+    color: var(--ds-color-text-brand-default);
   }
   strong {
     font-weight: 500;

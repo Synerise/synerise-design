@@ -1,7 +1,6 @@
 import React, { type MouseEvent, useCallback, useMemo, useState } from 'react';
 
 import Button from '@synerise/ds-button';
-import { useTheme } from '@synerise/ds-core';
 import Dropdown from '@synerise/ds-dropdown';
 import Icon, {
   AngleBottomS,
@@ -41,7 +40,6 @@ export const ContentItemHeader = ({
   setIsExpanded,
   size = 'default',
 }: ContentItemHeaderProps) => {
-  const theme = useTheme();
   const [editMode, setEditMode] = useState(false);
 
   const updateName = useCallback(
@@ -142,7 +140,7 @@ export const ContentItemHeader = ({
                   <Icon
                     size={24}
                     component={item.icon}
-                    color={theme.palette['grey-600']}
+                    color="var(--ds-color-icon-base-default)"
                   />
                 </S.IconWrapper>
               )}
@@ -211,7 +209,7 @@ export const ContentItemHeader = ({
               >
                 <Icon
                   component={<OptionHorizontalM />}
-                  color={theme.palette['grey-600']}
+                  color="var(--ds-color-icon-base-default)"
                 />
               </S.DropdownTrigger>
             </Dropdown>
