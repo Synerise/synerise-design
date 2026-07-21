@@ -260,7 +260,7 @@ export const LayoutSidebarWrapper = styled.div<LayoutSidebarWrapperProps>`
     `};
   &:hover {
     ${SidebarButton} {
-      background-color: ${(props): string => props.theme.palette['grey-600']};
+      background-color: var(--ds-color-background-neutral-solidhover);
       left: ${(props): string => (props.right ? '-32px' : 'auto')};
       right: ${(props): string => (props.right ? 'auto' : '-32px')};
       ${(props) => mediaQuery.to.medium`${props.right && props.opened && 'left: -44px'}`};
