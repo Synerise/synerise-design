@@ -12,7 +12,7 @@ export const Container = styled.div<{ size?: 'S' | 'M' | 'L' }>`
   width: 100%;
   @media (min-width: 200px) {
     min-width: 200px;
-    background-color: ${(props) => props.theme.palette.white};
+    background-color: var(--ds-dropdown-bg);
   }
   .react-colorful__last-control {
     margin: 24px 56px 8px 17px;
@@ -38,7 +38,7 @@ export const Container = styled.div<{ size?: 'S' | 'M' | 'L' }>`
       props.size ? ColorPickerSize[props.size] : SIZE_DEFAULT}px;
   }
   .react-colorful__hue-pointer {
-    border: 1px solid ${(props) => props.theme.palette['grey-300']};
+    border: 1px solid var(--ds-color-border-base-strong);
     box-shadow: none !important;
     .react-colorful__pointer-fill {
       background-color: ${(props) => props.theme.palette.white} !important;
@@ -74,16 +74,17 @@ export const SwatchCreatorButton = styled.button`
   border: none;
   border-radius: 3px;
   background-color: transparent;
-  color: ${(props) => props.theme.palette['grey-800']};
+  /* ⚑ Shift: creator "+" glyph grey-800 → icon-base-default (grey-600; no icon token at grey-800). */
+  color: var(--ds-color-icon-base-default);
   cursor: pointer;
   transition: background-color 0.2s ease;
 
   &:hover {
-    background-color: ${(props) => props.theme.palette['grey-200']};
+    background-color: var(--ds-color-background-base-mutedhover);
   }
 
   &:focus-visible {
-    outline: 1px solid ${(props) => props.theme.palette['blue-600']};
+    outline: 1px solid var(--ds-color-border-brand-default);
     outline-offset: 1px;
   }
 `;
@@ -102,7 +103,7 @@ export const Swatch = styled.button`
   cursor: pointer;
 
   &:focus-visible {
-    outline: 1px solid ${(props) => props.theme.palette['blue-600']};
+    outline: 1px solid var(--ds-color-border-brand-default);
     outline-offset: 1px;
   }
 `;
@@ -112,7 +113,7 @@ export const SwatchDot = styled.span`
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background-color: ${(props) => props.theme.palette.white};
+  background-color: var(--ds-color-icon-onsolid-default);
 `;
 
 /** An empty swatch slot (Figma: Swatch — Default). */
@@ -120,7 +121,7 @@ export const SwatchPlaceholder = styled.div`
   flex: 0 0 auto;
   width: ${SWATCH_SIZE}px;
   height: ${SWATCH_SIZE}px;
-  border: 1px solid ${(props) => props.theme.palette['grey-300']};
+  border: 1px solid var(--ds-color-border-base-strong);
   border-radius: 3px;
 `;
 
@@ -161,7 +162,7 @@ export const PrefixTag = styled.div<{
     margin: 0;
     width: 24px;
     height: 24px;
-    border: 1px solid ${(props) => props.theme.palette['grey-300']};
+    border: 1px solid var(--ds-color-border-base-strong);
     cursor: auto;
     &:hover:before {
       cursor: auto;
