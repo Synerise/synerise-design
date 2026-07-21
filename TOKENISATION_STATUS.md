@@ -91,7 +91,7 @@ Icons: DS icons are `fill="currentColor"` with `color: inherit`, so colour them 
 
 Single at-a-glance view of every colour-bearing component: migration **status** + whether it is **awaiting token definitions** (a pending module namespace, a missing semantic role, or a `.less`/de-antd blocker). Sourced from the two detailed tables below + `TOKEN_AUDIT.md` blockers. **Update this table (and the detailed one) whenever `apply-tokens` migrates a component.**
 
-**Totals:** ✅ 53 done · 🚧 25 partial · ❌ 31 not started · ⛔ 4 deprecated · ➖ 2 n/a — **37 awaiting token defs** (flag in last column).
+**Totals:** ✅ 53 done · 🚧 25 partial · ❌ 31 not started · ⛔ 4 deprecated · ➖ 2 n/a — **38 awaiting token defs** (flag in last column).
 
 | Component | Layer | Status | Awaiting token defs / blocker |
 |---|---|:--:|---|
@@ -102,7 +102,7 @@ Single at-a-glance view of every colour-bearing component: migration **status** 
 | autocomplete | semantic | 🚧 | dropdown pending |
 | avatar | module | ✅ | — |
 | avatar-group | semantic | ✅ | — |
-| badge | semantic | ❌ | — |
+| badge | module | ❌ | **badge module missing** |
 | banner | semantic | ✅ | — |
 | block | semantic | ❌ | — |
 | broadcast-bar | module | ✅ | — |
@@ -259,7 +259,7 @@ These components use `theme.palette` / hardcoded colors but do not yet have dedi
 | alert | 44 | Yes (2) | 9 | 11 | ⛔ **deprecated** — will not be tokenised |
 | autocomplete | 1 | No | 3 | 0 | :construction: field surface → `--ds-form-*` (2026-07-20); dropdown NotFound deferred |
 | avatar-group | 0 | No | 0 | 2 | :white_check_mark: tokenised — reuses **avatar** module (2026-07-21); 5 ⚑ shifts on +N chrome; 2 fan-out opacities kept |
-| badge | 11 | No | 4 | 4 | `.less` removed (deantd) |
+| badge | 11 | No | 4 | 4 | ⛔ **deferred — blocked**: audit decided `module: badge` but no `--ds-badge-*` tokens in the build; pending upstream badge module. `.less` removed (deantd) |
 | banner | 2 | No | 0 | 0 | :white_check_mark: tokenised — semantic (2026-07-20 pass); 2 palette = dynamic status-Tag defaults |
 | block | 6 | No | 0 | 0 | |
 | button-group | 6 | No | 4 | 0 | |
@@ -1654,3 +1654,15 @@ surface, reuses modal module); dashed borders grey-300 (`Content` TagsWrapper/In
 ContentWrapper, `Header` HeaderWrapper) → `--ds-color-border-base-strong`; nested inline-edit bg white →
 `--ds-color-background-base-default`. `Overview.tsx` folder-footer `Add3M` icon dropped its explicit
 `grey-500` `color` prop (inherits from its ghost button); `useTheme` removed. `theme.palette` fully removed.
+
+### badge — ⛔ deferred (blocked: badge module missing)
+
+**Not tokenised this pass.** `TOKEN_AUDIT.md` decided **`module: badge`** for the status/default bg, count
+text, outline ring, border, and label — but **no `--ds-badge-*` tokens are emitted** in
+`packages/tokens/dist/css/light.css` (nor a `badge` key in `modules/base.json`). Per the "missing intended
+module → defer, don't semantic-fallback" rule, badge is left on `theme.palette` and **blocked pending the
+upstream badge module**. (All values would map cleanly to semantic solids — active→`background-success-solid`,
+inactive→`background-base-strong`, blocked/default→`background-danger-solid`, processing→`background-brand-solid`,
+warning→`background-warning-solid` (⚑ yellow-600→yellow-500), count→`text-onsolid-default`, ring/border→
+`background-base-default`, label→`text-base-muted` — recorded here so the swap is fast once the module lands or
+if a semantic fallback is later authorised.) `customColor` stays dynamic; pulse/flag halos decorative.
