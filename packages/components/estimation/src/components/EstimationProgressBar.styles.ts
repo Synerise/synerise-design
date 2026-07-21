@@ -24,6 +24,6 @@ export const EstimationProgressBarLegendItem = styled.div<{ dotColor: string }>`
     height: 10px;
     background: ${(props) => props.dotColor};
     border-radius: 0.5em;
-    border: solid 2px ${(props) => props.theme.palette['white']};
+    border: solid 2px var(--ds-color-background-base-default);
   }
 `;

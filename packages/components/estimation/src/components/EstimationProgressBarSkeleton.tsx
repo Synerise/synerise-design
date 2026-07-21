@@ -1,15 +1,12 @@
 import React from 'react';
 
-import { useTheme } from '@synerise/ds-core';
-
 import { Skeleton } from '../Estimation.styles';
 import * as S from './EstimationProgressBar.styles';
 
 export const EstimationProgressBarSkeleton = () => {
-  const theme = useTheme();
   const EMPTY_VALUE = {
     percent: 100,
-    color: theme.palette['grey-200'],
+    color: 'var(--ds-progressbar-bar-bg-track)',
   };
   return (
     <>

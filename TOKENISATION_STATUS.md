@@ -91,7 +91,7 @@ Icons: DS icons are `fill="currentColor"` with `color: inherit`, so colour them 
 
 Single at-a-glance view of every colour-bearing component: migration **status** + whether it is **awaiting token definitions** (a pending module namespace, a missing semantic role, or a `.less`/de-antd blocker). Sourced from the two detailed tables below + `TOKEN_AUDIT.md` blockers. **Update this table (and the detailed one) whenever `apply-tokens` migrates a component.**
 
-**Totals:** ✅ 36 done · 🚧 25 partial · ❌ 48 not started · ⛔ 4 deprecated · ➖ 2 n/a — **38 awaiting token defs** (flag in last column).
+**Totals:** ✅ 37 done · 🚧 25 partial · ❌ 47 not started · ⛔ 4 deprecated · ➖ 2 n/a — **38 awaiting token defs** (flag in last column).
 
 | Component | Layer | Status | Awaiting token defs / blocker |
 |---|---|:--:|---|
@@ -135,7 +135,7 @@ Single at-a-glance view of every colour-bearing component: migration **status** 
 | editable-items-list | semantic | ✅ | — |
 | emoji-picker | semantic | 🚧 | list-item header role pending |
 | empty-states | semantic | ✅ | — |
-| estimation | semantic | ❌ | — |
+| estimation | semantic | ✅ | — |
 | factors | semantic | 🚧 | dropdown + list-item header pending; icon-danger-hover gap |
 | field-set | semantic | ✅ | — |
 | file-uploader | semantic | ❌ | **deferred — file-uploader module pending (whole component)** |
@@ -285,7 +285,7 @@ These components use `theme.palette` / hardcoded colors but do not yet have dedi
 | editable-items-list | 0 | No | 0 | 0 | :white_check_mark: hardcoded add-icon `blue-600` removed — icon inherits ds-button (`mode: icon-label`) (2026-07-20) |
 | emoji-picker | 1 | No | 0 | 0 | :construction: search-icon `grey-600` removed — inherits default (2026-07-20); `EmojiList` `grey-500` deferred → pending list-item tokens |
 | empty-states | 0 | No | 0 | 0 | :white_check_mark: tokenised — semantic (2026-07-20 pass) |
-| estimation | 2 | No | 0 | 0 | |
+| estimation | 0 | No | 0 | 0 | :white_check_mark: tokenised (2026-07-21); skeleton bar → progressbar module token, dot ring → semantic; per-entry dot fill stays dynamic |
 | factors | 16 | No | 2 | 0 | :construction: field action/search icons → `--ds-form-*` (2026-07-20); composition, rest deferred |
 | field-set | 0 | No | 0 | 0 | :white_check_mark: tokenised — semantic (2026-07-20 pass) |
 | file-uploader | 152 | No | 0 | 7 | Highest palette count |
@@ -1471,3 +1471,14 @@ renders via ds-form-field's `FormFieldLabel`.)
 `SearchResultHighlight` grey-700 → `--ds-color-text-base-subtle` (both exact). `theme.palette` removed. No
 visual diff. (Both spans are exported but **unused** — highlighting is done via ds-list-item's `highlight`
 prop; `Subject.tsx`'s cyan/green stays dynamic `type="custom-color"` on ds-button, out of scope.)
+
+### estimation — :white_check_mark:
+
+Consumes the **progressbar** module token by role (renders a progress bar):
+- `EstimationProgressBarSkeleton.tsx` skeleton/empty bar fill grey-200 → `--ds-progressbar-bar-bg-track`
+  (exact; emitted as a literal `'var(…)'` string to `Multivalue`'s JS `color` prop; `useTheme` dropped)
+- `EstimationProgressBar.styles.ts` legend-dot ring white → `--ds-color-background-base-default` (semantic, exact)
+
+No visual diff. **Kept dynamic:** the legend-dot **fill** (`EstimationProgressBarLegendItem` `dotColor` ←
+`value.color`) is a per-entry data colour. ⚑ **Follow-up (design-tokens/DS):** refactor the legend dot to
+reuse `@synerise/ds-badge` (custom-color) — the ring+fill dot duplicates badge chrome.
