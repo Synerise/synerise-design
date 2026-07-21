@@ -3,15 +3,15 @@ import styled from 'styled-components';
 export const InsightContainer = styled.div<{ hasHover?: boolean }>`
   display: flex;
   flex-direction: column;
-  background-color: ${(props) => props.theme.palette.white};
+  background-color: var(--ds-color-background-base-default);
   gap: 16px;
   padding: 24px;
   width: 100%;
-  border-bottom: solid 1px ${(props) => props.theme.palette['grey-200']};
+  border-bottom: solid 1px var(--ds-color-border-base-default);
   ${(props) =>
     props.hasHover &&
     `&:hover {
-    background-color: ${props.theme.palette['grey-050']};
+    background-color: var(--ds-color-background-base-defaulthover);
   }`};
 `;
 
@@ -26,7 +26,7 @@ export const SubTitle = styled.div`
 `;
 
 export const Title = styled.label`
-  color: ${(props): string => props.theme.palette['grey-800']};
+  color: var(--ds-color-text-base-default);
   font-weight: 500;
   display: block;
   font-size: 14px;
