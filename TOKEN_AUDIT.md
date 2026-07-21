@@ -51,6 +51,19 @@
 | [completed-within](#completed-within) | 1 | module (`dropdown` pending); clear done | dropdown pending | — | — |
 | [condition](#condition) | 2 (14 applied) | semantic; connectors deferred | connector tokens pending | — | — |
 | [confirmation](#confirmation) | 2 | module (`modal`, delegated) + semantic type icons | none | — | — |
+| [cruds](#cruds) | 4 | module (`cruds`, new/pending) | **cruds tokens pending** | 4 | — |
+| [date-picker](#date-picker) | 56 (10 applied) | form (trigger, applied) + `dropdown` (overlay) + `calendar` (grid) + semantic (dividers/nav/tooltip) | dropdown + calendar pending | 1 | — |
+| [date-range-picker](#date-range-picker) | 42 (10 applied) | form (trigger, applied) + `dropdown` (overlay) + `calendar` (grid) + `tag` (counter) + semantic (text/icons) + 2 drops | dropdown + calendar + tag pending | 2 | 10 |
+| [drawer](#drawer) | 5 | module (`modal`, all) | **deferred — de-antd first (.less)** | — | — |
+| [dropdown](#dropdown) | 22 | module (`dropdown`, pending) + `list-item` (rows, delegated) + semantic (trigger/opacity) | dropdown pending | 5 | — |
+| [emoji-picker](#emoji-picker) | 1 | module (`list-item`, header role pending) | list-item header role pending | — | — |
+| [estimation](#estimation) | 4 | module (`progressbar`, bar) + semantic (dot ring) + dynamic (dot fill) | none | — | 1 |
+| [factors](#factors) | 17 (2 applied) | form (icons) + `dropdown` (overlay) + `list-item` (group-title) + semantic (danger/success/text/count-pill) + 2 drops | dropdown + list-item header pending; icon-danger-hover gap | 3 | 1 |
+| [file-uploader](#file-uploader) | ~152 | module (`file-uploader`, new) all chrome + exceptions | **deferred — file-uploader module pending (whole component)** | — | 3 |
+| [filter](#filter) | 3 | semantic (title) + 2 deferred (drag-placeholder, Figma) | drag-placeholder deferred pending Figma | — | — |
+| [form-field](#form-field) | 2 | module (`form`: info-icon + counter, pending) | form info-icon + counter roles pending | — | — |
+| [format-picker](#format-picker) | 8 (2 applied) | form (trigger, applied) + `dropdown` (panel/footer) + `list-item` (rows) | dropdown + list-item pending | — | — |
+| [icon-picker](#icon-picker) | 4 | module (`dropdown` panel + `list-item` title) + drop (empty-state bg); clear applied | dropdown + list-item pending | — | — |
 | [image](#image) | 12 (+1 shadow) | module (`image`, pending) + semantic | **image tokens pending** | — | — |
 | [information-card](#information-card) | 5 | module (`dropdown`, pending) | **dropdown tokens pending** | — | — |
 | [insight](#insight) | 4 | semantic | none | — | — |
@@ -489,6 +502,465 @@ _(Row 4's `Cascader.tsx:13` static import is removed by dropping the search-icon
 | — none — |  |  |
 
 _(Note: informative-type icon is grey (`icon-base-default`) while its button accent is blue — an existing inconsistency; icon stays grey, no `icon-info` token.)_
+
+---
+
+## cruds
+
+**Summary.** 4 refs; decision (UX 2026-07-21): **new dedicated `cruds` module** (pending — NOT in `base.json`). All four are `theme.palette[…]` reads applied via `svg { fill }` on the action-icon states. blockers: `cruds` module pending. No `.less`; no static imports (type-only `ThemeProps` + `props.theme`).
+
+### Palette / colour usage
+| # | file:line | value | role | Decision → token |
+|--:|---|---|---|---|
+| 1 | Cruds.styles.tsx:17 | grey-600 | default action-icon fill · idle (add/duplicate/edit/move/up/down) | `module: cruds` (pending) — default/idle |
+| 2 | Cruds.styles.tsx:28 | blue-600 | default action-icon fill · hover | `module: cruds` (pending) — default/hover |
+| 3 | Cruds.styles.tsx:35 | red-600 | danger action-icon fill (delete/remove) | `module: cruds` (pending) — danger |
+| 4 | Cruds.styles.tsx:49 | grey-300 | inactive/disabled action-icon fill | `module: cruds` (pending) — disabled |
+
+### SVG fill/stroke rules to replace
+| # | file:line | Current rule | Replacement |
+|--:|---|---|---|
+| 1 | Cruds.styles.tsx:16-18 | `svg { fill: grey-600 }` (`.add/.duplicate/.edit/.move/.moveup/.movedown`) | `svg { fill: currentColor }` + wrapper `color: var(--ds-cruds-…)` (default/idle, pending) |
+| 2 | Cruds.styles.tsx:27-29 | `svg { fill: blue-600 }` (`:hover`) | `currentColor` + `color: var(--ds-cruds-…)` (default/hover, pending) |
+| 3 | Cruds.styles.tsx:34-36 | `svg { fill: red-600 }` (`.delete/.remove`) | `currentColor` + `color: var(--ds-cruds-…)` (danger, pending) |
+| 4 | Cruds.styles.tsx:47-50 | `svg { fill: grey-300 }` (`inactive`, `&&`/`&&:hover`) | `currentColor` + `color: var(--ds-cruds-…)` (disabled, pending) |
+
+### Static `theme` imports
+| # | file:line | Usage | Resolution |
+|--:|---|---|---|
+| — none — |  |  |
+
+---
+
+## date-picker
+
+**Summary.** 56 refs (10 already applied on the trigger, 2026-07-20); decision (UX 2026-07-21): **form** (trigger `PickerInput`, applied — affix/focus/bg/clear→icon-danger/calendar-icon→form-icon ⚑ grey-400→grey-600) + **`module: dropdown`** (overlay panel surface, pending) + **`module: calendar`** (day/month/year/decade grid cells + weekday/today/selected/range/entered/outside/disabled states, pending) + **semantic** (dividers → `border-base-default`; nav title links → `text-brand-default` now; nav arrows → `icon-base-default` now; day hover-tooltip → `background-overlay-solid` + `text-onsolid-default`). blockers: `dropdown` + `calendar` modules pending. No `.less`; no static imports (styled-components `props.theme`).
+
+### Palette / colour usage
+| # | file:line | value | role | Decision → token |
+|--:|---|---|---|---|
+| 1 | DatePicker.styles.ts:4 | white | overlay panel — surface bg | `module: dropdown` (pending) |
+| 2 | DatePicker.styles.ts:8 | grey-200 | divider between overlay sections | semantic `--ds-color-border-base-default` (exact) |
+| 3 | DayPicker.styles.ts:13 | grey-700 | day cell text (default) | `module: calendar` (pending) — grid text |
+| 4 | DayPicker.styles.ts:120,135 | blue-300 | entered-start/end range foreground border | `module: calendar` (pending) — range state |
+| 5 | DayPicker.styles.ts:127,141,147,162,181,294 | blue-100 | range/entered backgrounds | `module: calendar` (pending) — range state |
+| 6 | DayPicker.styles.ts:152,171 | grey-050 / yellow-100 | today+entered bg / today bg | `module: calendar` (pending) — today state |
+| 7 | DayPicker.styles.ts:159,185,269 | blue-600 | today+entered / entered day text | `module: calendar` (pending) |
+| 8 | DayPicker.styles.ts:172,176 | yellow-600 | today text + foreground border | `module: calendar` (pending) — today state |
+| 9 | DayPicker.styles.ts:200,208 | grey-400 | outside-month / disabled day text | `module: calendar` (pending) |
+| 10 | DayPicker.styles.ts:238,368 | blue-100 | selected / relative-mode selected bg | `module: calendar` (pending) — selected state |
+| 11 | DayPicker.styles.ts:242,247,317,372 | blue-600 | selected / range-end day bg + text | `module: calendar` (pending) — selected state |
+| 12 | DayPicker.styles.ts:287,308,318 | white | range-start/end day text + edge bg (on solid) | `module: calendar` (pending) — selected text-on-solid |
+| 13 | DayPicker.styles.ts:342 | `rgba(56,67,80,0.9)` | day hover-tooltip — surface | semantic `--ds-color-background-overlay-solid` (grey-800@90%, **exact**) |
+| 14 | DayPicker.styles.ts:347 | white | day hover-tooltip — text (on dark) | semantic `--ds-color-text-onsolid-default` (exact) |
+| 15 | GridPicker.styles.ts:28,29 | grey-050 / blue-600 | month/year/decade cell hover bg + text | `module: calendar` (pending) — grid cell |
+| 16 | GridPicker.styles.ts:38,43 | grey-400 | outside / disabled cell text | `module: calendar` (pending) |
+| 17 | GridPicker.styles.ts:49,50,53 | blue-600 / white | selected cell bg + text + hover | `module: calendar` (pending) — selected state |
+| 18 | Navbar.styles.ts:32 | grey-200 | divider below month-nav bar | semantic `--ds-color-border-base-default` (exact) |
+| 19 | Navbar.styles.ts:50,54 | blue-600 | month/year title **links** · hover, active | semantic `--ds-color-text-brand-default` (blue-600 exact) — apply now |
+| 20 | QuickPicks.styles.ts:10 | grey-200 | divider above quick-picks column | semantic `--ds-color-border-base-default` (exact) |
+| 21 | PickerInput.styles.tsx:6,12,19,20,21,43 | `var(--ds-form-field-*)` | trigger affix border / focus ring+border+bg / affix bg | ✅ applied (form) |
+| 22 | PickerInput.styles.tsx:75,77 | `var(--ds-color-icon-danger-default)` | clear (✕) icon · default+hover | ✅ applied (icon-danger) |
+| 23 | PickerInput.styles.tsx:85,87 | `var(--ds-form-icon-color-*)` | calendar icon · default+hover | ✅ applied (form) ⚑ grey-400→grey-600 default; hover inverts |
+
+### SVG fill/stroke rules to replace
+| # | file:line | Current rule | Replacement |
+|--:|---|---|---|
+| 1 | Navbar.styles.ts:7 | `.ds-icon > svg { fill: grey-600 }` (prev/next arrows) | `svg { fill: currentColor }` + wrapper `color: var(--ds-color-icon-base-default)` (grey-600 exact) — apply now |
+
+### Static `theme` imports
+| # | file:line | Usage | Resolution |
+|--:|---|---|---|
+| — none — |  |  |
+
+---
+
+## date-range-picker
+
+**Summary.** ~42 refs (10 already applied on the trigger, 2026-07-20); decision (UX 2026-07-21): **form** (trigger, applied) + **`module: dropdown`** (overlay/footer/hint surfaces + shadows, pending) + **`module: calendar`** (TimeWindow day-cell grid states, pending) + **`module: tag`** (row-counter chip, pending) + **semantic** (dividers/text/danger+success+base icons/day-tooltip — apply now) + **2 drops** (dead active-segment code; unused help text). blockers: `dropdown` + `calendar` + `tag` modules pending. No `.less`.
+
+### Palette / colour usage
+| # | file:line(s) | value | role | Decision → token |
+|--:|---|---|---|---|
+| 1 | DateRangePicker.styles.ts:7 · Footer:9 · RangeFilter:34 · TimeWindow:49 · RelativeRangePicker:106 | white / grey-050 | overlay + footer + hint-banner surfaces | `module: dropdown` (pending) |
+| 2 | DateRangePicker.styles.ts:8 · RangeActions:64 · RelativeRangePicker:109 | shadow-2 / rgba shadows | overlay shadows | `module: dropdown` (pending; = `--ds-shadows-shadow-2`) |
+| 3 | DateRangePicker.styles.ts:25,31 · RangePicker:31 | grey-200 (×3) | dividers | semantic `--ds-color-border-base-default` (exact) |
+| 4 | Footer:36 · RangeFilter:45 · RangeFilterStatus:22 · RangeSummary:5 | grey-800 (×4) | titles / day-shortname text | semantic `--ds-color-text-base-default` (exact) |
+| 5 | RangeSummary.styles.ts:8 | grey-700 | summary subtitle text | semantic `--ds-color-text-base-subtle` (exact) |
+| 6 | MonthlyFilter:95 · RangeFilterStatus:27 | blue-600 (×2) | brand text (PeriodMode / suffix) | semantic `--ds-color-text-brand-default` (exact) |
+| 7 | red-600 ×7: MonthlyFilter:64 · FilterDropdown:38 · RangeFilterStatus:48 · Day.tsx:46 · RangeActions:45 · RangeForm:263 | red-600 | remove/clear/delete icons (danger) | semantic `--ds-color-icon-danger-default` (exact) — apply now |
+| 8 | green-600 ×3: Day.tsx:49 · ModeDropdown:44 · RangeDropdown:109 | green-600 | selected/check icons (success) | semantic `--ds-color-icon-success-default` (exact) — apply now |
+| 9 | SelectionHint.tsx:16 | grey-600 | info hint icon (`withTheme`) | semantic `--ds-color-icon-base-default` (exact) |
+| 10 | Footer.styles.ts:40 (svg) · RangePickerInput.tsx:119 | grey-400 (×2) | ChosenRange icon / between-dates arrow | semantic `--ds-color-icon-base-muted` (exact) |
+| 11 | RangeForm.styles.ts:74 | grey-600 | slider tooltip-inner text | semantic `--ds-color-text-base-muted` (exact) |
+| 12 | Day.styles.ts:17,22 | `rgba(56,67,80,0.9)` + white | day-cell hover-tooltip surface + text | semantic `--ds-color-background-overlay-solid` (grey-800@90%, exact) + `--ds-color-text-onsolid-default` |
+| 13 | Day.styles.ts:40-43 (svg, ternary) | red-600 / green-600 | day-cell remove vs check icon | semantic `icon-danger` / `icon-success` (exact) — keep ternary + `!important` |
+| 14 | RangePickerInput.styles.tsx:32 | blue-600 | active-edit highlight segment | **drop (dead code)** — no text is ever rendered blue; remove the rule |
+| 15 | MonthlyFilter.tsx:348,349 | grey-100 bg / grey-500 text | row-counter `<Tag>` color/textColor | `module: tag` (pending) |
+| 16 | RelativeRangePicker.styles.tsx:25 | grey-400 | `Help` text | **verify-unused → drop** (appears unused; confirm no consumer, then remove) |
+| 17 | RangePickerInput.styles.tsx:11,13,21,23,33,37,57,58,62,65 | `var(--ds-form-field-*)` / `icon-danger` / `opacity-disabled` | trigger field (icons/value/placeholder/disabled) | ✅ applied (form, 2026-07-20) |
+
+_Kept (decorative): `opacity:0/1` reveal transitions — MonthlyFilter:29,56; RangeForm:9,34; RangePickerInput:50._
+
+### SVG fill/stroke rules to replace
+| # | file:line | Current rule | Replacement |
+|--:|---|---|---|
+| 1 | Footer.styles.ts:38-41 | `.ds-icon svg { fill: grey-400 }` | `fill: currentColor` + wrapper `color: var(--ds-color-icon-base-muted)` |
+| 2 | Day.styles.ts:39-44 | `&&& .ds-icon svg { fill: active&&!readonly ? red-600 : green-600 !important }` | keep ternary + `!important`; `var(--ds-color-icon-danger-default)` : `var(--ds-color-icon-success-default)` |
+
+### Static `theme` imports
+| # | file:line | Usage | Resolution |
+|--:|---|---|---|
+| 1 | MonthlyFilter.tsx:6 | `import { theme }` → grey-100/grey-500 Tag props | swap to `tag` module tokens (pending), then drop import |
+| 2 | FilterDropdown.tsx:4 | `import { theme }` → red-600 (L38) | swap to `var(--ds-color-icon-danger-default)`, drop import |
+| 3 | RangeFilterStatus.tsx:5 | `import { theme }` → red-600 (L48) | swap to `icon-danger-default`, drop import |
+| 4 | Day.tsx:6 | `import { theme }` → red-600/green-600 (L46,49) | swap to `icon-danger`/`icon-success`, drop import |
+| 5 | RangeActions.tsx:4 | `import { theme }` → red-600 (L45) | swap to `icon-danger-default`, drop import |
+| 6 | RangeForm.tsx:5 | `import { theme, useDataFormat }` → red-600 (L263) | swap colour to `icon-danger-default`; **keep `useDataFormat`**, drop only `theme` |
+| 7 | ModeDropdown.tsx:3 | `import { theme }` → green-600 (L44) | swap to `icon-success-default`, drop import |
+| 8 | RangeDropdown.tsx:5 | `import { theme }` → green-600 (L109) | swap to `icon-success-default`, drop import |
+| 9 | RangePickerInput.tsx:6,41 | `useTheme()` → grey-400 (L119) + memo dep | swap L119 to `icon-base-muted`, then remove `useTheme` + dep |
+| 10 | SelectionHint.tsx:2 | `withTheme` HOC → grey-600 (L16) | swap to `icon-base-default`, then unwrap `withTheme` |
+
+---
+
+## drawer
+
+**Summary.** 5 refs; decision (UX 2026-07-21): **everything → `module: modal`** (drawer reuses the modal surface system — panel/header/body/mask/elevation). **Whole component deferred until de-antd'd** — `packages/components/drawer/src/style/index.less` (side-effect antd/ds-core import) must be removed first; revisit tokenisation then. blockers: `.less` present (de-antd). No svg rules, no static imports (`props.theme`).
+
+### Palette / colour usage
+| # | file:line | value | role | Decision → token |
+|--:|---|---|---|---|
+| 1 | Drawer.styles.tsx:8-9 | `rgba(grey-500, 0.1)` | `.ant-drawer-mask` backdrop | `module: modal` — mask/backdrop token (verify name at apply) ⚑ shift vs current light mask |
+| 2 | Drawer.styles.tsx:16 | white | `.ant-drawer-body` panel surface | `module: modal` → `--ds-modal-container-bg` (exact) |
+| 3 | Drawer.styles.tsx:21 | `0 16px 32px 0 rgba(35,41,54,0.1)` | panel elevation/shadow | `module: modal` — elevation (needs modal shadow token; else semantic `--ds-shadows-shadow-2`, exact) |
+| 4 | Drawer.styles.tsx:28 | grey-100 | `DrawerHeader` border-bottom | `module: modal` → `--ds-modal-header-border-color` (exact) |
+| 5 | Drawer.styles.tsx:41 | white (hardcoded) | `DrawerBody` panel body surface | `module: modal` → `--ds-modal-content-bg` (exact) |
+
+### SVG fill/stroke rules to replace
+| # | file:line | Current rule | Replacement |
+|--:|---|---|---|
+| — none — |  |  |
+
+### Static `theme` imports
+| # | file:line | Usage | Resolution |
+|--:|---|---|---|
+| — none — |  |  |
+
+---
+
+## dropdown
+
+**Summary.** 22 refs; decision (UX 2026-07-21): overlay chrome (surface/bg/shadow/footer/back-action/bottom-action/search-icon) → **`module: dropdown`** (pending, NOT in `base.json`); option **rows delegate to `@synerise/ds-list-item`** (no local refs — `list-item` tokens apply in that package); the `TextTrigger` label → **semantic** brand text (apply now); disabled opacity → semantic. blockers: `dropdown` module pending. No `.less`; no static imports (`useTheme` + `props.theme`).
+
+### Palette / colour usage
+| # | file:line | value | role | Decision → token |
+|--:|---|---|---|---|
+| 1 | Dropdown.styles.ts:7 · DropdownOverlay.styles.ts:9 | white (×2) | overlay wrapper + surface bg | `module: dropdown` (pending) |
+| 2 | DropdownOverlay.styles.ts:10 | box-shadow-2 | overlay drop shadow | `module: dropdown` (pending; = `--ds-shadows-shadow-2`) |
+| 3 | DropdownFooter.styles.ts:4 | grey-100 | footer bg | `module: dropdown` (pending) |
+| 4 | BottomAction.styles.ts:16,21,24,29 | grey-050 / grey-600 / grey-100 / blue-600 | bottom-action row bg / text / border / hover text | `module: dropdown` (pending) |
+| 5 | BottomAction.styles.ts:6,32 (svg) | grey-600 / blue-600 | bottom-action icon · default, hover | `module: dropdown` (pending, currentColor) |
+| 6 | BackAction.styles.ts:7,12,20,23 | grey-700 / grey-800 | back-action label + icon · default, hover | `module: dropdown` (pending) |
+| 7 | DropdownMenu.tsx:111 | grey-600 | search-bar left icon (`useTheme`) | `module: dropdown` (pending) |
+| 8 | TextTrigger.styles.ts:36 (+ svg 37) | blue-600 | `TextTrigger` `.ds-title`+icon · hover | semantic `--ds-color-text-brand-default` (blue-600 exact) — apply now |
+| 9 | TextTrigger.styles.ts:27 (+ svg 28) | blue-700 | `TextTrigger` `.ds-title`+icon · focus | semantic `--ds-color-text-brand-hover` (blue-700 exact) — apply now |
+| 10 | TextTrigger.styles.ts:15 | `opacity: 0.4` | disabled trigger opacity | semantic `--ds-opacity-disabled` (0.4 exact) |
+| 11 | TextTrigger.styles.ts:21-22 | `inactiveColor` prop | trigger `.ds-title`/`svg` default colour | keep (dynamic prop) |
+
+### SVG fill/stroke rules to replace
+| # | file:line | Current rule | Replacement |
+|--:|---|---|---|
+| 1 | BottomAction.styles.ts:6 | `svg { fill: grey-600 }` (default) | currentColor + `module: dropdown` (pending) |
+| 2 | BottomAction.styles.ts:32 | `svg { fill: blue-600 }` (hover) | currentColor + `module: dropdown` (pending) |
+| 3 | TextTrigger.styles.ts:22 | `svg { fill: inactiveColor }` (default) | keep (dynamic prop) |
+| 4 | TextTrigger.styles.ts:28 | `svg { fill: blue-700 }` (focus) | currentColor + `--ds-color-text-brand-hover` |
+| 5 | TextTrigger.styles.ts:37 | `svg { fill: blue-600 }` (hover) | currentColor + `--ds-color-text-brand-default` |
+
+### Static `theme` imports
+| # | file:line | Usage | Resolution |
+|--:|---|---|---|
+| — none — | | Theme via `useTheme()` (DropdownMenu.tsx:54, TextTrigger.tsx:23) + `props.theme` — no static `import { theme }` |
+
+---
+
+## emoji-picker
+
+**Summary.** 1 ref; decision (UX 2026-07-21): **`module: list-item`** (rows/header) + drops. The search-icon colour was already removed 2026-07-20; the sole remaining ref is the category section-header label → defers to a `list-item` **header/section role** (does not exist yet — today's list-item tokens are all row roles), so **pending**. blockers: list-item header role pending. No svg rules, no static imports (`props.theme`), no `.less`.
+
+### Palette / colour usage
+| # | file:line | value | role | Decision → token |
+|--:|---|---|---|---|
+| 1 | EmojiList/EmojiList.styles.tsx:55 | grey-500 (#949ea6) | category section-header (`Title`) — muted uppercase label | `module: list-item` (pending header/section role) ⚑ nearest existing `role-normal-text-default` = grey-700 |
+
+### SVG fill/stroke rules to replace
+| # | file:line | Current rule | Replacement |
+|--:|---|---|---|
+| — none — |  |  |
+
+### Static `theme` imports
+| # | file:line | Usage | Resolution |
+|--:|---|---|---|
+| — none — |  |  |
+
+---
+
+## estimation
+
+**Summary.** 4 refs; decision (UX 2026-07-21): loading **bar** → **`module: progressbar`** (exact); the legend **dot** ring → semantic white, its fill stays **dynamic** (per-entry colour). ⚑ **follow-up: refactor the legend dot to reuse `@synerise/ds-badge` (custom-color) instead of the local dot implementation** — the ring+fill dot duplicates badge chrome; folding it into ds-badge removes rows 2-4 here. blockers: none. No svg rules, no `.less`.
+
+### Palette / colour usage
+| # | file:line | value | role | Decision → token |
+|--:|---|---|---|---|
+| 1 | EstimationProgressBarSkeleton.tsx:12 | grey-200 | skeleton/empty bar fill (100% grey while loading) | `module: progressbar` → `--ds-progressbar-bar-bg-track` (grey-200 exact) — emit literal `'var(…)'` (JS `color` prop) |
+| 2 | EstimationProgressBar.styles.ts:27 | white | ring/border around legend dot (static chrome) | semantic `--ds-color-background-base-default` (white exact) — or removed by the badge refactor |
+| 3 | EstimationProgressBar.styles.ts:25 | `props.dotColor` | dot fill — estimation-driven colour | keep (dynamic; → badge custom-color after refactor) |
+| 4 | EstimationProgressBar.tsx:24 | `dotColor={value.color}` | per-entry dot colour from data | keep (dynamic) |
+
+### SVG fill/stroke rules to replace
+| # | file:line | Current rule | Replacement |
+|--:|---|---|---|
+| — none — |  |  |
+
+### Static `theme` imports
+| # | file:line | Usage | Resolution |
+|--:|---|---|---|
+| 1 | EstimationProgressBarSkeleton.tsx:3 | `useTheme` (hook) → grey-200 (L12) | drop `useTheme` once row 1 → the `var()` string |
+
+---
+
+## factors
+
+**Summary.** 17 refs (2 applied on field icons); decision (UX 2026-07-21): **form** (field action icons) + **`module: dropdown`** (type-selector overlay + relative-date footer, pending) + **`module: list-item`** (group-title header role, pending) + **semantic** (danger/success icons, search-result text, count-pill solids) + **2 drops** (trigger focus ring; searchbar icon colour prop). blockers: `dropdown` + `list-item` header pending; **`icon-danger-hover` gap** (red-500). Static `import { theme }` in FactorTypeSelector; `useTheme` in Array/RelativeDate. No `.less`.
+
+### Palette / colour usage
+| # | file:line | value | role | Decision → token |
+|--:|---|---|---|---|
+| 1 | FactorTypeSelector.styles.ts:7 | white | type-selector overlay container | `module: dropdown` (pending) |
+| 2 | FactorTypeSelector.styles.ts:18 | grey-300 | `TriggerButton` focus ring (inset box-shadow) | **drop** — remove the focus-ring rule |
+| 3 | FactorTypeSelector.tsx:43 | green-600 | selected-type checkmark | semantic `--ds-color-icon-success-default` (green-600 exact) |
+| 4 | Array.styles.ts:97 | red-600 | delete icon (danger) · default | semantic `--ds-color-icon-danger-default` (exact) |
+| 5 | Array.styles.ts:99 · svg :50 | red-500 | delete icon · hover | **gap** — no `--ds-color-icon-danger-hover`; keep red-500 + document |
+| 6 | Array.tsx:58 | red-600 / grey-600 | count-pill `<Tag>` color (error / default) | semantic: error `--ds-color-background-danger-solid` (red-600 exact) / default `--ds-color-background-neutral-solid` (grey-700, ⚑ grey-600→grey-700) — _caveat: Tag `color` prop must accept a `var()` string_ |
+| 7 | Array.tsx:59 | `#fff` | count-pill `<Tag>` textColor (on-solid) | semantic `--ds-color-text-onsolid-default` (white exact) |
+| 8 | Parameter.style.ts:23 | grey-500 | search-result muted text | semantic `--ds-color-text-neutral-default` (grey-500 exact) |
+| 9 | Parameter.style.ts:59 | grey-500 | group-title (uppercase section header) | `module: list-item` — header role (pending) |
+| 10 | Parameter.style.ts:28 | grey-700 | highlighted search-result text | semantic `--ds-color-text-base-subtle` (grey-700 exact) |
+| 11 | RelativeDate.tsx:91 · svg :47 | red-600 | clear icon (danger) | semantic `--ds-color-icon-danger-default` (exact) |
+| 12 | RelativeDateDropdown.styles.ts:23 | grey-100 | relative-date dropdown footer surface | `module: dropdown` (pending) |
+| 13 | Text.styles.tsx:7 · svg :8 | blue-600 | field icon · hover (was brand) | `--ds-form-icon-color-default` (grey-600) — ⚑ shift blue-600→grey-600 (hover no longer turns blue) |
+| 14 | ParameterDropdown.tsx:398 | `var(--ds-form-icon-color-default)` | searchbar left icon colour prop | **drop** — let it inherit from `ds-search-bar` |
+| 15 | Text.tsx:173 | `var(--ds-form-icon-color-default)` | fullscreen field action icon | ✅ applied (form) — keep |
+
+### SVG fill/stroke rules to replace
+| # | file:line | Current rule | Replacement |
+|--:|---|---|---|
+| 1 | RelativeDateDropdown.styles.ts:47 | `fill: red-600` (Trigger:hover ClearIcon) | `fill: var(--ds-color-icon-danger-default)` (exact) |
+| 2 | RelativeDateDropdown.styles.ts:50 | `fill: red-500` (&:hover) | **gap** — no `icon-danger-hover`; keep red-500 + document |
+| 3 | Text.styles.tsx:8 | `fill: blue-600` (IconWrapper:hover) | `fill: var(--ds-form-icon-color-default)` — ⚑ shift blue-600→grey-600 |
+
+### Static `theme` imports
+| # | file:line | Usage | Resolution |
+|--:|---|---|---|
+| 1 | FactorTypeSelector.tsx:3 | static `import { theme }` → green-600 (L43, checkmark) | pass `color="var(--ds-color-icon-success-default)"`, drop the static import |
+| — | Array.tsx:3 · RelativeDate.tsx:3 | `useTheme()` (hook, not static) — feeds rows 6/7, 11 | resolve there; keep hook only if still needed for the dynamic count-pill |
+
+---
+
+## file-uploader
+
+**Summary.** ~152 refs; decision (UX 2026-07-21): **new dedicated `file-uploader` module** (pending — NOT in `base.json`) for all component chrome; **whole component deferred until the module lands** (single clean pass — including the semantic-exception icons). Exceptions to route in that pass: `(i)` InfoFillS → **`form` info-icon token** (pending); danger/success/warning **default** icons → semantic `--ds-color-icon-{danger,success,warning}-default` (exact); dynamic loader (`props.color`) + `opacity:0.4` → keep. blockers: `file-uploader` module pending (whole component). No `.less`; no `svg{fill}` colour rules (only `transition: fill/color`); theme via `useTheme()` (3 files).
+
+**Module-design notes for the upstream request:**
+- **A · value drift** — same role carries different literals across the 3 dropzone variants (FileUploader/AvatarUploader/ItemUploader) and 3 file-row variants (FileView/Avatar/Item): dropzone border grey-300(IU) vs grey-400(FU/AU); upload icon grey-600/700/800; label grey-600/700/800; hover bg `rgba(grey-200,.2)` vs solid grey-050/100. The module should **normalize** these (visual shift for some variants) unless per-variant tokens are wanted.
+- **B · alpha bgs** — dropzone hover/pressed bg = `hexToRgba(grey-200, .2/.4)` → needs an alpha/overlay module token.
+- **C · red-400 `:active`** — dropzone text turns red-400 on `:active` — verify intent.
+- **D · hover-state gaps** — remove-icon hover red-500 / success-icon hover green-500 have no semantic `icon-danger/success-hover`.
+
+**File legend:** FU=`FileUploader.styles.ts` · FU.tsx=`FileUploader.tsx` · AU=`AvatarUploader/AvatarUploader.styles.ts` · AU.tsx=`AvatarUploader/AvatarUploader.tsx` · IU=`ItemUploader/ItemUploader.styles.ts` · FV=`FileView/FileView.styles.ts` · FV.tsx=`FileView/FileView.tsx` · FVA=`AvatarUploader/FileViewAvatar/FileViewAvatar.styles.ts` · FVI=`ItemUploader/UploaderButton/FileViewItem.styles.ts` (all under `packages/components/file-uploader/src/`).
+
+### Palette / colour usage
+| # | file:line(s) | value | role | Decision → token |
+|--:|---|---|---|---|
+| 1 | ×2: FU:59, AU:58 | grey-400 | dropzone border · default (dashed) | `module: file-uploader` — dropzone-border-default (pending) · exact |
+| 2 | IU:48 | grey-300 | dropzone border · default | same · ⚑ drift (grey-300 vs grey-400) |
+| 3 | FU:85 | grey-700 | dropzone upload icon · default | `module: file-uploader` — dropzone-icon-default (pending) |
+| 4 | ×3: AU:78, IU:68, FU.tsx:187 | grey-800 | dropzone upload icon · default | same · ⚑ drift (grey-800) |
+| 5 | FU.tsx:201 | grey-600 | dropzone add icon · default | same · ⚑ drift (grey-600) |
+| 6 | ×6: AU:29,38,46, IU:19,28,36 | grey-700 | dropzone label/description · default | `module: file-uploader` — dropzone-label-default (pending) |
+| 7 | ×2: FU:27, FU:45 | grey-600 | dropzone label/description · default | same · ⚑ drift (grey-600) |
+| 8 | FU:37 | grey-800 | dropzone large label · default | same · ⚑ drift (grey-800) |
+| 9 | ×4: FU:16, AU:19, IU:160, FVA:63 | grey-500 | description/hint text below dropzone | `module: file-uploader` — description-text (pending) |
+| 10 | ×2: FU:107, AU:105 | `rgba(grey-200,.2)` | dropzone bg · hover | dropzone-bg-hover (pending) · ⚑ alpha (B) |
+| 11 | IU:94 | grey-050 | dropzone bg · hover | same · ⚑ drift (solid vs rgba) |
+| 12 | ×3: FU:108, AU:106, IU:95 | grey-400 | dropzone border · hover | dropzone-border-hover (pending) · exact |
+| 13 | ×3: FU:111, AU:109, IU:98 | grey-700 | dropzone label · hover | dropzone-label-hover (pending) |
+| 14 | ×3: FU:115, AU:113, IU:102 | grey-700 | dropzone icon · hover | dropzone-icon-hover (pending) |
+| 15 | ×2: FU:100, AU:98 | `rgba(grey-200,.4)` | dropzone bg · pressed | dropzone-bg-pressed (pending) · ⚑ alpha (B) |
+| 16 | IU:88 | grey-100 | dropzone bg · pressed | same · ⚑ drift |
+| 17 | ×3: FU:120, AU:118, IU:107 | grey-050 | dropzone bg · disabled | dropzone-bg-disabled (pending) |
+| 18 | ×3: FU:122, AU:120, IU:109 | grey-400 | dropzone label · disabled | dropzone-label-disabled (pending) |
+| 19 | ×3: FU:127, AU:125, IU:114 | red-400 | dropzone text · `:active` | dropzone-text-active (pending) · ⚑ verify intent (C) |
+| 20 | ×3: FU:128, AU:126, IU:115 | grey-400 | dropzone border · `:active` | dropzone-border-active (pending) |
+| 21 | ×3: FU:129, AU:127, IU:116 | grey-050 | dropzone bg · `:active` | dropzone-bg-active (pending) |
+| 22 | ×3: FU:133, AU:131, IU:120 | blue-600 | dropzone border · focus | dropzone-border-focus (pending) |
+| 23 | ×3: FU:134, AU:132, IU:121 | blue-050 | dropzone bg · focus | dropzone-bg-focus (pending) |
+| 24 | ×3: FU:149, AU:147, IU:136 | blue-050 | dropzone bg · drag-active | dropzone-bg-drag-active (pending) |
+| 25 | ×3: FU:150, AU:148, IU:137 | blue-300 | dropzone border · drag-active | dropzone-border-drag-active (pending) |
+| 26 | ×3: FU:153, AU:151, IU:140 | blue-500 | dropzone label · drag-active | dropzone-label-drag-active (pending) |
+| 27 | ×3: FU:157, AU:155, IU:144 | blue-500 | dropzone icon · drag-active | dropzone-icon-drag-active (pending) |
+| 28 | ×3: FU:91, AU:89, IU:79 | red-050 | dropzone bg · error | dropzone-bg-error (pending) |
+| 29 | ×3: FU:92, AU:90, IU:80 | red-600 | dropzone border · error | dropzone-border-error (pending) |
+| 30 | ×3: FU:166, AU:164, IU:153 | red-600 | global error-message text | error-message-text (pending) |
+| 31 | FV:158 | white | file-row bg · default | file-row-bg-default (pending) |
+| 32 | ×2: FVA:157, FVI:106 | grey-100 | file-row bg · default (compact) | same · ⚑ drift |
+| 33 | FV:160 | grey-200 | file-row border · default | file-row-border-default (pending) · (FVA/FVI use `2px transparent`, decorative) |
+| 34 | FV:176 | grey-300 | file-row border · hover | file-row-border-hover (pending) |
+| 35 | ×2: FVA:174, FVI:123 | grey-200 | file-row border · hover | same · ⚑ drift |
+| 36 | FV:209 | grey-050 | file-row bg · hover | file-row-bg-hover (pending) |
+| 37 | ×2: FVA:200, FVI:149 | grey-200 | file-row bg · hover | same · ⚑ drift |
+| 38 | FV:198 | blue-500 | file-row border · focus | file-row-border-focus (pending) |
+| 39 | ×2: FVA:196, FVI:145 | blue-600 | file-row border · focus | same · ⚑ drift |
+| 40 | FV:199 | grey-050 | file-row bg · focus | file-row-bg-focus (pending) |
+| 41 | ×2: FVA:197, FVI:146 | grey-100 | file-row bg · focus | same · ⚑ drift |
+| 42 | ×3: FV:213, FVA:204, FVI:153 | grey-300 | file-row border · `:active` | file-row-border-active (pending) |
+| 43 | FV:214 | grey-100 | file-row bg · `:active` | file-row-bg-active (pending) |
+| 44 | ×2: FVA:205, FVI:154 | grey-300 | file-row bg · `:active` | same · ⚑ drift |
+| 45 | FV:220 | grey-050 | file-row bg · disabled | file-row-bg-disabled (pending) |
+| 46 | ×2: FVA:219, FVI:168 | grey-100 | file-row bg · disabled | same · ⚑ drift |
+| 47 | ×3: FV:229, FVA:228, FVI:177 | red-600 | file-row border · error | file-row-border-error (pending) |
+| 48 | ×2: FVA:229, FVI:178 | grey-050 | file-row bg · error | file-row-bg-error (pending) |
+| 49 | FV:232 | red-600 | file-row size/error text · error | file-row-error-text (pending) |
+| 50 | ×3: FV:55, FVA:68, FVI:63 | grey-600 | file-row name text · default | file-row-name-default (pending) |
+| 51 | ×4: FVA:177,207, FVI:126,156 | blue-600 | file-row name text · hover/active | file-row-name-hover (pending) |
+| 52 | FV:42 | grey-500 | file-row file-weight text | file-row-weight-text (pending) |
+| 53 | FV:70 | grey-600 | file-row size text · default | file-row-size-text (pending) |
+| 54 | ×3: FV:9, FVA:9, FVI:10 | grey-700 | thumbnail/preview icon · default | thumbnail-icon-default (pending) |
+| 55 | ×4: FVA:181,211, FVI:130,160 | blue-600 | thumbnail/preview icon · hover/active | thumbnail-icon-hover (pending) |
+| 56 | ×3: FV:15, FVA:40, FVI:41 | grey-200 | thumbnail placeholder bg | thumbnail-placeholder-bg (pending) |
+| 57 | ×3: FV:22, FVA:47, FVI:48 | grey-500 | thumbnail placeholder icon | thumbnail-placeholder-icon (pending) |
+| 58 | FVA:139 | grey-100 | avatar thumbnail container bg · disabled | thumbnail-avatar-bg-disabled (pending) |
+| 59 | ×2: FVA:14, FVI:15 | blue-600 | retry (repeat) icon | retry-icon (pending) |
+| 60 | ×2: FVA:33, FVI:34 | `palette[`${props.color}-600`]` | loader spinner border | **keep** (dynamic `props.color`) |
+| 61 | FV:92 | grey-300 | remove-control icon · default | remove-icon-default (pending) |
+| 62 | ×4: FV:95,145, FVA:100, FVI:95 | red-500 | remove-control icon · hover | remove-icon-hover (pending) · ⚑ no `icon-danger-hover` (D) |
+| 63 | ×5: FV:142, FVA:97,116,118, FVI:92 | red-600 | remove-control icon (destructive) · default | **exception** → `--ds-color-icon-danger-default` (exact) |
+| 64 | FV:116 | green-600 | success check icon · default | **exception** → `--ds-color-icon-success-default` (exact) |
+| 65 | FV:118 | green-500 | success check icon · hover | success-icon-hover (pending) · ⚑ no `icon-success-hover` (D) |
+| 66 | FV.tsx:181 | yellow-600 | popconfirm warning icon (`<WarningFillM>`) | **exception** → `--ds-color-icon-warning-default` (exact) |
+| 67 | ×3: FU:178, IU:172, AU.tsx:126 | grey-400 | `(i)` info/tooltip icon (`<InfoFillS>`) | **exception** → `form` info-icon token (pending) |
+| 68 | ×7: FU:140, AU:138, IU:127, FV:221, FVA:140,220, FVI:169 | `opacity: 0.4` | disabled-state dimming | **keep** (opacity; adopt module disabled-opacity token if defined) |
+
+### SVG fill/stroke rules to replace
+| # | file:line | Current rule | Replacement |
+|--:|---|---|---|
+| — none — |  | (only `transition: fill/color` at FVA:96/115, FVI:91, FV:91/115 — animation, not colour; icons coloured via `IconContainer { color }`) |
+
+### Static `theme` imports
+| # | file:line | Usage | Resolution |
+|--:|---|---|---|
+| 1 | FU.tsx:10,57 | `useTheme()` → grey-800 (:187, r4) + grey-600 (:201, r5) for `<Icon color>` | replace with module tokens once landed; drop `useTheme` |
+| 2 | AU.tsx:10,56 | `useTheme()` → grey-400 (:126, r67) for `(i)` InfoFillS | replace with `form` info-icon token (pending); drop `useTheme` |
+| 3 | FV.tsx:6,30 | `useTheme()` → yellow-600 (:181, r66) for `<WarningFillM>` | replace with `--ds-color-icon-warning-default`; drop `useTheme` |
+
+---
+
+## filter
+
+**Summary.** 3 refs; decision (UX 2026-07-21): `FilterTitle` text → **semantic** now; the **drag-placeholder** (bg + accent border) is **deferred pending a Figma dark-mode reference**. blockers: drag-placeholder deferred (Figma). No svg rules, no static imports (`props.theme`), no `.less`.
+
+### Palette / colour usage
+| # | file:line | value | role | Decision → token |
+|--:|---|---|---|---|
+| 1 | Filter.styles.ts:7 | blue-050 | drag-placeholder bg | **deferred (Figma)** · provisional `--ds-color-background-brand-subtle` (blue-50 exact) |
+| 2 | Filter.styles.ts:9 | blue-600 | drag-placeholder 2px `border-left` accent | **deferred (Figma)** · provisional `--ds-color-border-brand-default` (blue-600 exact) |
+| 3 | Filter.styles.ts:95 | grey-800 | `FilterTitle` text | semantic `--ds-color-text-base-default` (grey-800 exact) — apply now |
+
+_`opacity:1` (L21) is a structural visibility toggle — not a token._
+
+### SVG fill/stroke rules to replace
+| # | file:line | Current rule | Replacement |
+|--:|---|---|---|
+| — none — |  |  |
+
+### Static `theme` imports
+| # | file:line | Usage | Resolution |
+|--:|---|---|---|
+| — none — |  |  |
+
+---
+
+## form-field
+
+**Summary.** 2 refs; decision (UX 2026-07-21): **`form` module** — the `(i)` info-tooltip icon → **re-point to a `form` info-icon token** (pending; currently on `--ds-color-icon-base-muted` from 2026-07-20) per the cross-cutting `(i)` rule; the character **counter** → **`form` counter token** (pending). Label/description/error text carry no local colour — delegated to `@synerise/ds-typography` (`--ds-form-label/description/error-*`, already present). blockers: `form` info-icon + counter roles pending. No svg rules (InfoFillS inherits `currentColor`), no static imports (`props.theme`), no `.less`.
+
+### Palette / colour usage
+| # | file:line | value | role | Decision → token |
+|--:|---|---|---|---|
+| 1 | FormField.styles.ts:43 | `var(--ds-color-icon-base-muted)` (applied 2026-07-20; grey-400) | `(i)` info-tooltip icon (`IconWrapper`) | **re-point → `form` info-icon token** (pending) ⚑ — stays on `icon-base-muted` provisionally |
+| 2 | FormField.styles.ts:65 | grey-500 | `RightSide` character-counter text | **`form` counter token** (pending) ⚑ — not covered by existing `--ds-form-icon-color-*` |
+
+### SVG fill/stroke rules to replace
+| # | file:line | Current rule | Replacement |
+|--:|---|---|---|
+| — none — |  |  |
+
+### Static `theme` imports
+| # | file:line | Usage | Resolution |
+|--:|---|---|---|
+| — none — |  |  |
+
+---
+
+## format-picker
+
+**Summary.** 8 refs (2 applied on the trigger, 2026-07-20); decision (UX 2026-07-21): currency-select **trigger field** → **form** (applied); overlay **panel + footer** → **`module: dropdown`** (pending); currency **row** label + suffix → **`module: list-item`** (pending). Footer action buttons delegate to `ds-button` (no local colour). blockers: `dropdown` + `list-item` pending. No svg rules, no static imports (`props.theme`), no `.less`. **Cleanup note:** `SuffixWrapper` imported from fragile deep path `@synerise/ds-list-item/dist/components/Text/Text.styles`.
+
+### Palette / colour usage
+| # | file:line | value | role | Decision → token |
+|--:|---|---|---|---|
+| 1 | FormatSettings.styles.ts:13 | white | `FormatSettingsContainer` — overlay panel bg | `module: dropdown` (pending) |
+| 2 | FormatSettings.styles.ts:54 | grey-050 | `FormatFooter` bg | `module: dropdown` (pending) |
+| 3 | FormatSettings.styles.ts:56 | grey-100 | `FormatFooter` `border-top` | `module: dropdown` (pending) |
+| 4 | FormatSettings.styles.ts:68 | `var(--ds-form-field-border-default)` | `DropdownTrigger` border | ✅ applied (form) |
+| 5 | FormatSettings.styles.ts:77 | `var(--ds-form-field-text-value)` | `DropdownValue` text | ✅ applied (form) |
+| 6 | FormatSettings.styles.ts:87 | white | `DropdownWrapper` — currency options panel bg | `module: dropdown` (pending) |
+| 7 | FormatSettings.styles.ts:93 | grey-700 | `ListItem` text — currency row label | `module: list-item` (pending; = `role-normal-text-default`) |
+| 8 | FormatSettings.styles.ts:95 | grey-500 | `SuffixWrapper` text — currency row suffix | `module: list-item` (pending — suffix/description role) |
+
+### SVG fill/stroke rules to replace
+| # | file:line | Current rule | Replacement |
+|--:|---|---|---|
+| — none — |  |  |
+
+### Static `theme` imports
+| # | file:line | Usage | Resolution |
+|--:|---|---|---|
+| — none — |  |  |
+
+---
+
+## icon-picker
+
+**Summary.** 4 refs; decision (UX 2026-07-21): `Overlay` panel → **`module: dropdown`** (pending); category `Title` header → **`module: list-item`** (header role, pending); the `NoResultIcon` empty-state circle **bg is dropped** (keep icon only); clear (✕) icon already `--ds-color-icon-danger-default` (2026-07-20). blockers: `dropdown` + `list-item` header pending. `svg{fill:currentColor}` kept (correct inheritance); no static imports (`props.theme`), no `.less`.
+
+### Palette / colour usage
+| # | file:line | value | role | Decision → token |
+|--:|---|---|---|---|
+| 1 | IconPicker.styles.tsx:44 | white | `Overlay` — dropdown panel bg | `module: dropdown` (pending) |
+| 2 | IconPicker.styles.tsx:57 | grey-500 | `Title` — category/group header text | `module: list-item` (pending — header role) ⚑ existing `role-normal-text-default` = grey-700 |
+| 3 | IconPicker.styles.tsx:120 | `rgba(148,158,166,0.05)` | `NoResultIcon` — empty-state circle bg | **drop the bg** — keep icon only (remove the background rule) |
+| 4 | IconPicker.styles.tsx:16 | `var(--ds-color-icon-danger-default)` | `ClearIcon` (✕) | ✅ applied 2026-07-20 |
+
+### SVG fill/stroke rules to replace
+| # | file:line | Current rule | Replacement |
+|--:|---|---|---|
+| 1 | IconPicker.styles.tsx:78-79 | `svg { fill: currentColor }` (`IconTrigger .icon-wrapper`) | keep — correct inheritance, no token |
+
+### Static `theme` imports
+| # | file:line | Usage | Resolution |
+|--:|---|---|---|
+| — none — |  |  |
 
 ---
 
