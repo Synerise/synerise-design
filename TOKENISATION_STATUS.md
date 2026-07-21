@@ -91,7 +91,7 @@ Icons: DS icons are `fill="currentColor"` with `color: inherit`, so colour them 
 
 Single at-a-glance view of every colour-bearing component: migration **status** + whether it is **awaiting token definitions** (a pending module namespace, a missing semantic role, or a `.less`/de-antd blocker). Sourced from the two detailed tables below + `TOKEN_AUDIT.md` blockers. **Update this table (and the detailed one) whenever `apply-tokens` migrates a component.**
 
-**Totals:** ✅ 49 done · 🚧 25 partial · ❌ 35 not started · ⛔ 4 deprecated · ➖ 2 n/a — **38 awaiting token defs** (flag in last column).
+**Totals:** ✅ 50 done · 🚧 25 partial · ❌ 34 not started · ⛔ 4 deprecated · ➖ 2 n/a — **38 awaiting token defs** (flag in last column).
 
 | Component | Layer | Status | Awaiting token defs / blocker |
 |---|---|:--:|---|
@@ -201,7 +201,7 @@ Single at-a-glance view of every colour-bearing component: migration **status** 
 | table-new | semantic | 🚧 | **WIP** |
 | tabs | module | 🚧 | — |
 | tag | semantic | ❌ | — |
-| tags | semantic | ❌ | — |
+| tags | semantic | ✅ | — |
 | time-picker | module | ✅ | — |
 | toast | module | ✅ | — |
 | toolbar | semantic | ✅ | — |
@@ -333,7 +333,7 @@ These components use `theme.palette` / hardcoded colors but do not yet have dedi
 | [switch](#form-group-form--input--select--switch) | 2 | No | 2 | 2 | :construction: error/description text → `--ds-form-switch-*`; track/handle now in `RawSwitch.styles.ts` on palette (`.less` removed) |
 | table | 65 | Yes (3) | 8 | 23 | ⛔ **deprecated** — will not be tokenised (`table.less`/`index.less`/`pagination.less`) |
 | tag | 25 | No | 2 | 3 | |
-| tags | 7 | No | 0 | 0 | |
+| tags | 2 | No | 0 | 0 | :white_check_mark: tokenised — semantic (2026-07-21); 2 LimitedTags ds-tag color props stay dynamic |
 | toolbar | 0 | No | 0 | 0 | :white_check_mark: tokenised — semantic + shadow-1 (2026-07-21 pass) |
 | tooltip | 3 | No | 2 | 2 | |
 | tray | 0 | No | 0 | 0 | :white_check_mark: tokenised — reuses **modal** module (2026-07-21); ⚑ header border grey-200→grey-100 |
@@ -1607,3 +1607,12 @@ out of layout scope).
 border-top grey-200 → `--ds-color-border-base-default` (1px pseudo-elements/borders). `theme.palette` fully
 removed. No visual diff. (Step-indicator states aren't styled here — the wizard consumes a passed-in
 ds-stepper node.)
+
+### tags — :white_check_mark:
+
+`Tags.styles.ts` `Title` text grey-800 → `--ds-color-text-base-default` (exact); `AddTags.styles.ts`
+`Separator` dashed-line colour grey-300 → `--ds-color-border-base-strong` (exact; the `transparent` gradient
+gap kept). The `AddTags` create/search/add icons were already colour-prop-free (inherit the default —
+prior commit). No visual diff. **Kept dynamic:** `LimitedTags` "+N" pill `color`/`textColor` (grey-100/grey-700
+via `useTheme`) are passed to ds-tag, which does its own internal colour math — a `var()` string would break
+it, so they stay resolved-hex.
