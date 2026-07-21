@@ -1,6 +1,6 @@
 ---
 name: apply-tokens
-description: Apply design tokens (colors, shadows, opacity) to a specific component — replaces theme.palette, hardcoded hex/rgba, box-shadow, and opacity values with CSS custom properties from ds-tokens. Updates all three status docs (TOKENISATION_STATUS.md, UNTOKENISED_COMPONENTS.md, TOKEN_USAGE_BY_COMPONENT.md).
+description: Apply design tokens (colors, shadows, opacity) to a specific component — replaces theme.palette, hardcoded hex/rgba, box-shadow, and opacity values with CSS custom properties from ds-tokens. Reads the component's already-decided per-usage token mapping from TOKEN_AUDIT.md first, then updates TOKENISATION_STATUS.md (summary + unified tracking table + detailed report).
 ---
 
 ## Overview
@@ -44,6 +44,26 @@ The skill takes one argument: the component name (e.g., `card-select`, `broadcas
 corresponds to the package at `packages/components/<name>/`.
 
 ## Workflow
+
+### Step 0 — Read the component's decision in `TOKEN_AUDIT.md` (start here)
+
+`TOKEN_AUDIT.md` (repo root) is the **read-only planning artifact** produced by the [`audit-tokens`](../audit-tokens/SKILL.md)
+skill — it already holds the per-**usage** token decision for this component, agreed with the UX/token team. **Read
+its `## <component>` section before doing anything else** and treat it as the authoritative mapping for this run:
+
+- The **Palette / colour usage** table gives, per `file:line`, the exact target: a `var(--ds-…)` (semantic or
+  module), a `module: <ns>` decision (apply if that namespace now exists; otherwise **defer** — see below), a
+  **drop** (remove the rule), a **keep** (dynamic/decorative), or a `⚑ shift` you must preserve as an inline
+  comment (Step 5).
+- The **SVG fill/stroke** table lists the `svg { fill }` rules to convert to `currentColor` (Step 6b-svg).
+- The **Static `theme` imports** table lists the imports to drop / convert to `useTheme()` (Step 3f / 6).
+- The **Summary** line names the **blockers** (pending module namespace, `.less`/de-antd, gaps) — these decide
+  whether the component is fully applied now or lands `:construction:` (partial).
+
+If there is **no section for this component** in `TOKEN_AUDIT.md`, run `audit-tokens <component>` first (or fall
+back to auditing inline via Steps 3–4). The audit decides *what*; this skill does *how*. Still run Steps 1–2 to
+**re-verify the live token names/values** — the audit may have been written against an older token sync, and audit
+targets are decisions, not a guarantee the CSS var still exists or still resolves to the same value.
 
 ### Step 1 — Determine which layer this component uses
 
@@ -230,19 +250,25 @@ cd packages/components/<name> && pnpm build && pnpm test
 If a test asserts a resolved hex/shadow value that is now `var(--ds-...)`, update it to assert the
 attribute / class / styled output — **never weaken a test just to make it pass.**
 
-### Step 8 — Update ALL THREE status docs
+### Step 8 — Update the status doc (`TOKENISATION_STATUS.md`)
 
-Three companion docs at the repo root track this migration and must be kept in sync — updating only one
-leaves the others stale and contradictory. Update every one that has an entry for (or a count covering) this
-component. Read each before editing to match its live structure — their headers, snapshot dates, and summary
-counts change between runs.
+`TOKENISATION_STATUS.md` (repo root) is the **tracked** as-built record and **must** be updated for every
+migrated component. Read it before editing to match its live structure — headers, snapshot dates, and summary
+counts change between runs. *(The other two working docs — `UNTOKENISED_COMPONENTS.md` and
+`TOKEN_USAGE_BY_COMPONENT.md` — are now **untracked local scratch**, not committed; update them in 8c/8d only if
+they still exist locally.)*
 
-**8a. `TOKENISATION_STATUS.md` — summary table.** Update the component's status columns: Colors
-`:white_check_mark:` when all type-driven palette lookups are replaced (`:construction:` if partial — e.g.
-dropdown/list-item/calendar surfaces deferred per Step 4), Shadows / Opacity `:white_check_mark:` /
-`:heavy_minus_sign:`, Spacing stays `:x:`. If the component was in the "without module-level tokens" table but
-uses semantic tokens, that's fine — record it migrated; it does not need to move tables (table membership =
-whether module tokens exist, which is unchanged).
+**8a. `TOKENISATION_STATUS.md` — unified tracking table + summary table.** Two tables to keep in sync:
+
+- **Unified tracking table** (top of `## Component Status`, the at-a-glance view): set the component's
+  **Status** cell — `✅` fully done · `🚧` partial (field/chrome done, a surface deferred per Step 4) · `❌`
+  not started · `⛔` deprecated. Set the **Awaiting token defs / blocker** cell to the pending namespace(s) /
+  gap / `.less` from the audit Summary (or `—` when nothing is awaited). Then **recompute the `Totals:` line**
+  (✅/🚧/❌/⛔/➖ counts + the "N awaiting token defs" count) so it matches the table.
+- **Detailed summary table** (per-category, further down): update Colors `:white_check_mark:` when all
+  type-driven palette lookups are replaced (`:construction:` if partial), Shadows / Opacity
+  `:white_check_mark:` / `:heavy_minus_sign:`, Spacing stays `:x:`. A component that uses only semantic tokens
+  stays in the "without module-level tokens" table — table membership = whether module tokens exist (unchanged).
 
 **8b. `TOKENISATION_STATUS.md` — detailed report.** Add/update a section under "Detailed Reports" in the
 section-message/toast format: package, variants, layer used (module vs semantic), Colors/Shadows/Opacity
@@ -251,15 +277,15 @@ values** table (decorative/dynamic + each surface **deferred pending a planned m
 namespace it awaits). For a grouped batch, a dated subsection (e.g. "Form-module partial pass (YYYY-MM-DD)")
 with one entry per component works well.
 
-**8c. `UNTOKENISED_COMPONENTS.md` — flip the row + fix the counts.** This doc lists components **not yet**
-tokenised, with a per-row module-vs-semantic decision. When a component gets tokenised:
+**8c. `UNTOKENISED_COMPONENTS.md` (untracked local scratch — only if present).** This doc lists components
+**not yet** tokenised, with a per-row module-vs-semantic decision. When a component gets tokenised:
 - Flag it in the **Component** column: **✅** fully tokenised · **🚧** partially (field/chrome done;
   dropdown/list-item/other deferred). Add/refresh its Module/Semantic notes with what was done vs deferred.
 - **Recompute the Summary counts block** — it has exact integers (e.g. "tokenised in the passes: N", "still
   pending: M"). Bump the tokenised count and drop the pending count by the same amount so they stay
   consistent with the table. Add/extend the dated "Update — … pass landed" note near the top.
 
-**8d. `TOKEN_USAGE_BY_COMPONENT.md` — per-component inventory.** Add/update this component's `### <name>`
+**8d. `TOKEN_USAGE_BY_COMPONENT.md` (untracked local scratch — only if present).** Add/update this component's `### <name>`
 entry: a **Palette (N)** line listing every *remaining* `theme.palette` ref with `file:line` and a reason tag
 (**dyn** / **decorative** / **no-token** / **data-uri** / **deferred**-namespace), and a **Semantic (N)** /
 module-token table of the `var(--ds-*)` tokens now applied with `file:line` and role. If you used a semantic
@@ -268,8 +294,9 @@ token where a **module** token exists but is pruned/unavailable, mark it `⚑` a
 
 ### Step 9 — Report to user
 
-Summarise: counts migrated (module-level vs semantic), shadows, opacity; visual diffs / `⚑` shifts (old →
+Summarise: which `TOKEN_AUDIT.md` decisions were applied (and any that couldn't be, e.g. a namespace still
+pending); counts migrated (module-level vs semantic), shadows, opacity; visual diffs / `⚑` shifts (old →
 new); surfaces deferred pending a planned module namespace (dropdown/list-item/calendar); any missing-module-
 token gaps flagged for the design-tokens repo; unmapped values with file:line + reason; `.less` files left
-deferred; files modified; and confirm **all three status docs** (`TOKENISATION_STATUS.md`,
-`UNTOKENISED_COMPONENTS.md`, `TOKEN_USAGE_BY_COMPONENT.md`) were updated and remain mutually consistent.
+deferred; files modified; and confirm **`TOKENISATION_STATUS.md`** was updated — its **unified tracking table
+row + Totals** and the detailed summary/report — plus the local scratch docs if present.

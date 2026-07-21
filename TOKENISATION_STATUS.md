@@ -87,6 +87,133 @@ Icons: DS icons are `fill="currentColor"` with `color: inherit`, so colour them 
 
 ## Component Status
 
+### Unified tracking table
+
+Single at-a-glance view of every colour-bearing component: migration **status** + whether it is **awaiting token definitions** (a pending module namespace, a missing semantic role, or a `.less`/de-antd blocker). Sourced from the two detailed tables below + `TOKEN_AUDIT.md` blockers. **Update this table (and the detailed one) whenever `apply-tokens` migrates a component.**
+
+**Totals:** ✅ 34 done · 🚧 25 partial · ❌ 50 not started · ⛔ 4 deprecated · ➖ 2 n/a — **38 awaiting token defs** (flag in last column).
+
+| Component | Layer | Status | Awaiting token defs / blocker |
+|---|---|:--:|---|
+| action-area | semantic | ✅ | — |
+| ai-chat | module | ➖ | — |
+| alert | semantic | ⛔ | — |
+| app-menu | module | ✅ | — |
+| autocomplete | semantic | 🚧 | dropdown pending |
+| avatar | module | ✅ | — |
+| avatar-group | semantic | ❌ | — |
+| badge | semantic | ❌ | — |
+| banner | semantic | ✅ | — |
+| block | semantic | ❌ | — |
+| broadcast-bar | module | ✅ | — |
+| button-expander | module | ✅ | — |
+| button-group | semantic | ❌ | — |
+| buttons | module | ✅ | — |
+| card | module | ✅ | — |
+| card-select | module | ✅ | — |
+| card-tabs | semantic | ❌ | **card-tabs tokens pending** |
+| carousel | semantic | ✅ | — |
+| cascader | semantic | ❌ | dropdown/cascader pending |
+| checkbox | semantic | 🚧 | — |
+| code-area | semantic | 🚧 | — |
+| code-snippet | semantic | 🚧 | **.less** + code-snippet pending |
+| collector | semantic | 🚧 | dropdown pending |
+| color-picker | semantic | 🚧 | dropdown pending |
+| column-manager | semantic | ✅ | — |
+| completed-within | semantic | 🚧 | dropdown pending |
+| condition | semantic | ✅ | connector tokens pending |
+| confirmation | semantic | ❌ | — |
+| context-selector | semantic | 🚧 | — |
+| copy-icon | semantic | ✅ | — |
+| cruds | semantic | ❌ | **cruds tokens pending** |
+| date-picker | semantic | 🚧 | dropdown + calendar pending |
+| date-range-picker | semantic | 🚧 | dropdown + calendar + tag pending |
+| description-line | module | ✅ | — |
+| divider | module | ✅ | — |
+| drawer | semantic | ❌ | **deferred — de-antd first (.less)** |
+| dropdown | semantic | ❌ | dropdown pending |
+| editable-items-list | semantic | ✅ | — |
+| emoji-picker | semantic | 🚧 | list-item header role pending |
+| empty-states | semantic | ✅ | — |
+| estimation | semantic | ❌ | — |
+| factors | semantic | 🚧 | dropdown + list-item header pending; icon-danger-hover gap |
+| field-set | semantic | ✅ | — |
+| file-uploader | semantic | ❌ | **deferred — file-uploader module pending (whole component)** |
+| filter | semantic | ❌ | drag-placeholder deferred pending Figma |
+| flag | semantic | ❌ | — |
+| footer | semantic | ✅ | — |
+| form | module | 🚧 | — |
+| form-field | semantic | 🚧 | form info-icon + counter roles pending |
+| format-picker | semantic | 🚧 | dropdown + list-item pending |
+| icon-picker | semantic | 🚧 | dropdown + list-item pending |
+| image | semantic | 🚧 | **image tokens pending** |
+| information-card | semantic | ❌ | **dropdown tokens pending** |
+| inline-alert | module | ✅ | — |
+| inline-edit | module | ✅ | — |
+| inline-select | module | ✅ | — |
+| input | semantic | 🚧 | — |
+| input-number | semantic | ✅ | — |
+| insight | semantic | ❌ | — |
+| item-filter | semantic | ⛔ | **deprecated** |
+| item-picker | semantic | 🚧 | **dropdown/list-item pending** |
+| items-roll | semantic | ❌ | — |
+| layout | semantic | ❌ | — |
+| list | semantic | ❌ | **.less / de-antd** |
+| list-item | module | ✅ | — |
+| loader | semantic | ❌ | — |
+| logic | semantic | ❌ | **logic/filter pending** |
+| manageable-list | semantic | ❌ | — |
+| mapping | semantic | ❌ | (i) token pending |
+| menu | semantic | ⛔ | — |
+| metric-card | semantic | ❌ | (i) token pending |
+| modal | module | ✅ | — |
+| navbar | module | ✅ | — |
+| operators | semantic | ❌ | dropdown pending |
+| page | module | ➖ | — |
+| page-header | module | ✅ | — |
+| pagination | module | ✅ | — |
+| panel | semantic | ❌ | — |
+| panels-resizer | semantic | ❌ | — |
+| popconfirm | module | ✅ | — |
+| popover | semantic | ❌ | — |
+| progressbar | module | ✅ | — |
+| radio | semantic | 🚧 | — |
+| result | semantic | ❌ | — |
+| scrollbar | semantic | ❌ | **.less** |
+| search | semantic | ❌ | dropdown pending |
+| search-bar | semantic | ❌ | **search-bar tokens pending** |
+| section-message | module | ✅ | — |
+| select | semantic | 🚧 | — |
+| short-cuts | semantic | ❌ | shadow token gap |
+| sidebar | semantic | ❌ | — |
+| sidebar-object | semantic | ❌ | — |
+| skeleton | semantic | ❌ | **skeleton tokens pending** |
+| slider | semantic | ❌ | focus-ring token gap |
+| sortable | semantic | ❌ | — |
+| status | semantic | ❌ | — |
+| status-pill | module | ✅ | — |
+| step-card | semantic | ❌ | — |
+| stepper | module | 🚧 | — |
+| subject | semantic | ❌ | — |
+| subtle-form | semantic | ❌ | translucent-surface token gap |
+| switch | semantic | 🚧 | — |
+| table | semantic | ⛔ | — |
+| table-new | semantic | 🚧 | **WIP** |
+| tabs | module | 🚧 | — |
+| tag | semantic | ❌ | — |
+| tags | semantic | ❌ | — |
+| time-picker | module | ✅ | — |
+| toast | module | ✅ | — |
+| toolbar | semantic | ❌ | — |
+| tooltip | semantic | ❌ | **tooltip tokens pending** |
+| tray | semantic | ❌ | — |
+| typography | semantic | ❌ | ⚑ link-hover shift |
+| unordered-list | semantic | ❌ | — |
+| wizard | semantic | ❌ | — |
+
+> **Legend:** ✅ fully done · 🚧 partial · ❌ not started · ⛔ deprecated (won't tokenise) · ➖ n/a (no colour code). *Layer* = has a module namespace (`module`) or maps to semantic tokens (`semantic`).
+
+
 ### Components with module-level tokens defined
 
 These components have dedicated token definitions in `modules/base.json`.
