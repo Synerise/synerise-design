@@ -125,8 +125,8 @@
         },
         "solidActive": {
           "$type": "color",
-          "$value": "{color.yellow.500}",
-          "$description": "Active state for solid warning"
+          "$value": "{color.yellow.700}",
+          "$description": "Active state for solid warning (yellow-700, darker; matches success pattern)"
         }
       },
       "danger": {

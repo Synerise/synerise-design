@@ -346,6 +346,121 @@
           "$description": "Separator for split success button"
         }
       },
+      "primary-warning": {
+        "bg": {
+          "default": {
+            "$type": "color",
+            "$value": "{color.background.warning.solidHover}",
+            "$description": "Primary warning button background color for default state"
+          },
+          "hover": {
+            "$type": "color",
+            "$value": "{color.background.warning.solid}",
+            "$description": "Primary warning button background color for hover state"
+          },
+          "focus": {
+            "$type": "color",
+            "$value": "{color.background.warning.solidHover}",
+            "$description": "Primary warning button background color for focus state"
+          },
+          "active": {
+            "$type": "color",
+            "$value": "{color.background.warning.solidActive}",
+            "$description": "Primary warning button background color for active/selected state"
+          },
+          "disabled": {
+            "$type": "color",
+            "$value": "{color.background.warning.solidHover}",
+            "$description": "Primary warning button background color for disabled state (same as default, opacity applied separately)"
+          }
+        },
+        "text": {
+          "default": {
+            "$type": "color",
+            "$value": "{color.text.onSolid.default}",
+            "$description": "Primary warning (white on yellow) button text color for default state"
+          },
+          "hover": {
+            "$type": "color",
+            "$value": "{color.text.onSolid.default}",
+            "$description": "Primary warning (white on yellow) button text color for hover state"
+          },
+          "focus": {
+            "$type": "color",
+            "$value": "{color.text.onSolid.default}",
+            "$description": "Primary warning (white on yellow) button text color for focus state"
+          },
+          "active": {
+            "$type": "color",
+            "$value": "{color.text.onSolid.default}",
+            "$description": "Primary warning (white on yellow) button text color for active/selected state"
+          },
+          "disabled": {
+            "$type": "color",
+            "$value": "{color.text.onSolid.default}",
+            "$description": "Primary warning (white on yellow) button text color for disabled state (same as default, opacity applied separately)"
+          }
+        },
+        "icon": {
+          "default": {
+            "$type": "color",
+            "$value": "{color.icon.onSolid.default}",
+            "$description": "Primary warning button icon color for default state"
+          },
+          "hover": {
+            "$type": "color",
+            "$value": "{color.icon.onSolid.default}",
+            "$description": "Primary warning button icon color for hover state"
+          },
+          "focus": {
+            "$type": "color",
+            "$value": "{color.icon.onSolid.default}",
+            "$description": "Primary warning button icon color for focus state"
+          },
+          "active": {
+            "$type": "color",
+            "$value": "{color.icon.onSolid.default}",
+            "$description": "Primary warning button icon color for active/selected state"
+          },
+          "disabled": {
+            "$type": "color",
+            "$value": "{color.icon.onSolid.default}",
+            "$description": "Primary warning button icon color for disabled state (same as default, opacity applied separately)"
+          }
+        },
+        "border": {
+          "default": {
+            "$type": "color",
+            "$value": "{color.transparent}",
+            "$description": "Primary warning button border color for default state (transparent)"
+          },
+          "hover": {
+            "$type": "color",
+            "$value": "{color.transparent}",
+            "$description": "Primary warning button border color for hover state (transparent)"
+          },
+          "focus": {
+            "$type": "color",
+            "$value": "{color.focus.base.default}",
+            "$description": "Primary warning button border color for focus state (green-600, 2px width)"
+          },
+          "active": {
+            "$type": "color",
+            "$value": "{color.transparent}",
+            "$description": "Primary warning button border color for active/selected state (transparent for solid variant)"
+          },
+          "disabled": {
+            "$type": "color",
+            "$value": "{color.transparent}",
+            "$description": "Primary warning button border color for disabled state (transparent)"
+          }
+        },
+        "separator": {
+          "$type": "color",
+          "$value": "{color.background.warning.solid}",
+          "$description": "Separator for split warning button"
+        }
+      },
       "secondary": {
         "bg": {
           "default": {
@@ -948,6 +1063,113 @@
           "$type": "color",
           "$value": "{color.border.base.default}",
           "$description": "Separator for split ghost-primary-success button"
+        }
+      },
+      "ghost-primary-warning": {
+        "bg": {
+          "default": {
+            "$type": "color",
+            "$value": "{color.transparent}",
+            "$description": "Ghost primary warning button background color for default state (transparent)"
+          },
+          "hover": {
+            "$type": "color",
+            "$value": "{color.background.base.mutedHover}",
+            "$description": "Ghost primary warning button background color for hover state"
+          },
+          "focus": {
+            "$type": "color",
+            "$value": "{color.transparent}",
+            "$description": "Ghost primary warning button background color for focus state (transparent)"
+          },
+          "active": {
+            "$type": "color",
+            "$value": "{color.background.warning.subtle}",
+            "$description": "Ghost primary warning button background color for active/selected state (light green background for toggle)"
+          },
+          "disabled": {
+            "$type": "color",
+            "$value": "{color.transparent}",
+            "$description": "Ghost primary warning button background color for disabled state (transparent, opacity applied separately)"
+          }
+        },
+        "text": {
+          "default": {
+            "$type": "color",
+            "$value": "{color.text.warning.default}",
+            "$description": "Ghost primary warning button text color for default state"
+          },
+          "hover": {
+            "$type": "color",
+            "$value": "{color.text.warning.default}",
+            "$description": "Ghost primary warning button text color for hover state"
+          },
+          "focus": {
+            "$type": "color",
+            "$value": "{color.text.warning.default}",
+            "$description": "Ghost primary warning button text color for focus state"
+          },
+          "active": {
+            "$type": "color",
+            "$value": "{color.text.warning.default}",
+            "$description": "Ghost primary warning button text color for active/selected state"
+          },
+          "disabled": {
+            "$type": "color",
+            "$value": "{color.text.warning.default}",
+            "$description": "Ghost primary warning button text color for disabled state (same as default, opacity applied separately)"
+          }
+        },
+        "icon": {
+          "default": {
+            "$type": "color",
+            "$value": "{color.icon.warning.default}",
+            "$description": "Ghost primary warning button icon color for default state"
+          },
+          "hover": {
+            "$type": "color",
+            "$value": "{color.icon.warning.default}",
+            "$description": "Ghost primary warning button icon color for hover state"
+          },
+          "focus": {
+            "$type": "color",
+            "$value": "{color.icon.warning.default}",
+            "$description": "Ghost primary warning button icon color for focus state"
+          },
+          "active": {
+            "$type": "color",
+            "$value": "{color.icon.warning.default}",
+            "$description": "Ghost primary warning button icon color for active/selected state"
+          },
+          "disabled": {
+            "$type": "color",
+            "$value": "{color.icon.warning.default}",
+            "$description": "Ghost primary warning button icon color for disabled state (same as default, opacity applied separately)"
+          }
+        },
+        "border": {
+          "default": {
+            "$type": "color",
+            "$value": "{color.border.base.none}"
+          },
+          "hover": {
+            "$type": "color",
+            "$value": "{color.border.base.none}"
+          },
+          "focus": {
+            "$type": "color",
+            "$value": "{color.focus.base.default}",
+            "$description": "Ghost primary warning button border color for focus state (green-600, 2px width)"
+          },
+          "disabled": {
+            "$type": "color",
+            "$value": "{color.border.base.none}"
+          }
+        },
+        "separator": {
+          "$type": "color",
+          "$value": "{color.border.base.default}",
+          "$description": "Separator for split ghost-primary-warning button"
         }
       },
       "ghost-secondary": {
@@ -1812,6 +2034,13 @@
           "$value": "{typography.text.small}",
           "$description": "Label text typography (small)"
         }
+      },
+      "icon": {
+        "color": {
+          "$type": "color",
+          "$value": "{color.icon.base.muted}",
+          "$description": "Form label helper/info icon color (grey-400)."
+        }
       }
     },
     "description": {
@@ -1922,6 +2151,11 @@
           "$type": "color",
           "$value": "{color.text.base.disabled}",
           "$description": "Form field text color for disabled state"
+        },
+        "active": {
+          "$type": "color",
+          "$value": "{color.text.brand.default}",
+          "$description": "Form field text — active/highlighted (brand blue-600). Used by the inline value-prefix label inside search inputs on hover/focus (e.g. SearchBar value-prefix, item-picker ListSearchInput). NOTE: temporary home — deeper cleanup planned (dedicated inline value-prefix concept, distinct from the external affix)."
         }
       },
       "affix": {
@@ -3266,6 +3500,303 @@
         "$value": "{opacity.disabled}",
         "$description": "Avatar opacity for disabled state (0.4 = 40%)"
       }
+    },
+    "more": {
+      "bg": {
+        "default": {
+          "$type": "color",
+          "$value": "{color.background.base.default}",
+          "$description": "Avatar group +N counter background — default (white). Counter (\"+N more\") exists only in the group component."
+        }
+      },
+      "text": {
+        "default": {
+          "$type": "color",
+          "$value": "{color.text.base.disabled}",
+          "$description": "Avatar group +N counter text — default (grey-400)"
+        },
+        "hover": {
+          "$type": "color",
+          "$value": "{color.text.neutral.default}",
+          "$description": "Avatar group +N counter text — hover (grey-500, theme-aware)."
+        }
+      },
+      "border": {
+        "color": {
+          "default": {
+            "$type": "color",
+            "$value": "{color.border.base.strong}",
+            "$description": "Avatar group +N counter border — default (grey-300)"
+          },
+          "hover": {
+            "$type": "color",
+            "$value": "{color.border.neutral.subtle}",
+            "$description": "Avatar group +N counter border — hover (grey-500, theme-aware). NOTE: hover state does not yet exist in Figma."
+          }
+        }
+      }
+    }
+  },
+  "badge": {
+    "variant": {
+      "error": {
+        "bg": {
+          "$type": "color",
+          "$value": "{color.background.danger.solid}",
+          "$description": "Badge error variant — background (red-600). Shared by Badge Number (Default), Badge Dot (Blocked), Badge Dot Pulsing (Error)."
+        },
+        "border": {
+          "$type": "color",
+          "$value": "{color.border.danger.default}",
+          "$description": "Badge error variant — border, outline mode (red-600)."
+        },
+        "text": {
+          "$type": "color",
+          "$value": "{color.text.danger.default}",
+          "$description": "Badge error variant — text, outline mode (red-600)."
+        }
+      },
+      "warning": {
+        "bg": {
+          "$type": "color",
+          "$value": "{color.background.warning.solid}",
+          "$description": "Badge warning variant — background (yellow-500)."
+        },
+        "border": {
+          "$type": "color",
+          "$value": "{color.border.warning.default}",
+          "$description": "Badge warning variant — border, outline mode (yellow-600)."
+        },
+        "text": {
+          "$type": "color",
+          "$value": "{color.text.warning.default}",
+          "$description": "Badge warning variant — text, outline mode (yellow-700)."
+        }
+      },
+      "success": {
+        "bg": {
+          "$type": "color",
+          "$value": "{color.background.success.solid}",
+          "$description": "Badge success variant — background (green-600). Shared by Badge Dot (Active) and Badge Dot Pulsing (Success)."
+        },
+        "border": {
+          "$type": "color",
+          "$value": "{color.border.success.default}",
+          "$description": "Badge success variant — border, outline mode (green-600)."
+        },
+        "text": {
+          "$type": "color",
+          "$value": "{color.text.success.default}",
+          "$description": "Badge success variant — text, outline mode (green-600)."
+        }
+      },
+      "info": {
+        "bg": {
+          "$type": "color",
+          "$value": "{color.background.brand.solid}",
+          "$description": "Badge info variant — background (blue-600). Used by Badge Dot / Pulsing (Processing). Replaces the raw Blue-600 primitive with a theme-aware semantic."
+        },
+        "border": {
+          "$type": "color",
+          "$value": "{color.border.brand.default}",
+          "$description": "Badge info variant — border, outline mode (blue-600)."
+        },
+        "text": {
+          "$type": "color",
+          "$value": "{color.text.brand.default}",
+          "$description": "Badge info variant — text, outline mode (blue-600)."
+        }
+      },
+      "neutral": {
+        "bg": {
+          "$type": "color",
+          "$value": "{color.background.base.strong}",
+          "$description": "Badge neutral variant — background (grey-400). Shared by Badge Number (Gray) and Badge Dot (Inactive)."
+        },
+        "border": {
+          "$type": "color",
+          "$value": "{color.border.neutral.subtle}",
+          "$description": "Badge neutral variant — border, outline mode (grey-500, theme-aware; matches Figma Gray outline)."
+        },
+        "text": {
+          "$type": "color",
+          "$value": "{color.text.neutral.default}",
+          "$description": "Badge neutral variant — text, outline mode (grey-500, theme-aware)."
+        }
+      },
+      "white": {
+        "bg": {
+          "$type": "color",
+          "$value": "{color.background.base.default}",
+          "$description": "Badge white variant — background (white). Badge Number (White)."
+        },
+        "ring": {
+          "$type": "color",
+          "$value": "{color.border.base.strongHover}",
+          "$description": "Badge white variant — separator ring in Full Color+Outline mode (grey-400). Overrides the shared badge.ring.color (white), which would be invisible on a white fill."
+        },
+        "border": {
+          "$type": "color",
+          "$value": "{color.text.onSolid.default}",
+          "$description": "Badge white variant — border in Outline mode (fully white ghost, for use on coloured/dark surfaces). Uses onSolid (theme-aware: white in light, dark in dark)."
+        },
+        "text": {
+          "$type": "color",
+          "$value": "{color.text.onSolid.default}",
+          "$description": "Badge white variant — text in Outline mode (fully white ghost, for use on coloured/dark surfaces)."
+        },
+        "textOnSolid": {
+          "$type": "color",
+          "$value": "{color.text.base.disabled}",
+          "$description": "Badge white variant — number on the white fill (grey-400). White fill needs dark text; the shared badge.text.onSolid (white) would be invisible here."
+        }
+      },
+      "custom-color": {
+        "bg": {
+          "$type": "color",
+          "$value": "{color.custom.600}",
+          "$description": "Badge custom-color variant — background (custom.600, swappable palette). Matches the code's customColor-600 (swappable)."
+        },
+        "border": {
+          "$type": "color",
+          "$value": "{color.custom.600}",
+          "$description": "Badge custom-color variant — border, outline mode (custom.600)."
+        },
+        "text": {
+          "$type": "color",
+          "$value": "{color.custom.600}",
+          "$description": "Badge custom-color variant — text, outline mode (custom.600)."
+        }
+      }
+    },
+    "text": {
+      "onSolid": {
+        "$type": "color",
+        "$value": "{color.text.onSolid.default}",
+        "$description": "Badge Number text on a full-color background (white)."
+      }
+    },
+    "ring": {
+      "color": {
+        "$type": "color",
+        "$value": "{color.background.base.default}",
+        "$description": "Badge separator ring for the `outlined` prop (white, 1px on count / 2px on dot)."
+      }
+    }
+  },
+  "search-bar": {
+    "bg": {
+      "default": {
+        "$type": "color",
+        "$value": "{color.background.base.subtle}",
+        "$description": "Search bar input background — all states (grey-050)."
+      }
+    },
+    "border": {
+      "default": {
+        "$type": "color",
+        "$value": "{color.border.base.subtle}",
+        "$description": "Search bar bottom border — default/hover/disabled (grey-100)."
+      },
+      "focus": {
+        "$type": "color",
+        "$value": "{color.border.brand.default}",
+        "$description": "Search bar bottom underline — focused (blue-600)."
+      }
+    },
+    "icon": {
+      "default": {
+        "$type": "color",
+        "$value": "{color.icon.base.default}",
+        "$description": "Search (magnifier) icon — default (grey-600)."
+      },
+      "active": {
+        "$type": "color",
+        "$value": "{color.icon.brand.default}",
+        "$description": "Search (magnifier) icon — hover/focused (blue-600)."
+      },
+      "disabled": {
+        "$type": "color",
+        "$value": "{color.icon.base.muted}",
+        "$description": "Search (magnifier) icon — disabled (grey-400)."
+      }
+    },
+    "clear": {
+      "default": {
+        "$type": "color",
+        "$value": "{color.icon.base.subtle}",
+        "$description": "Clear (×) icon — default (grey-500)."
+      },
+      "active": {
+        "$type": "color",
+        "$value": "{color.icon.danger.default}",
+        "$description": "Clear (×) icon — hover/focused (red-600)."
+      }
+    },
+    "text": {
+      "placeholder": {
+        "$type": "color",
+        "$value": "{color.text.neutral.default}",
+        "$description": "Placeholder text — default/hover (grey-500)."
+      },
+      "placeholderFocus": {
+        "$type": "color",
+        "$value": "{color.text.base.disabled}",
+        "$description": "Placeholder text — focused empty (grey-400)."
+      },
+      "value": {
+        "$type": "color",
+        "$value": "{color.text.base.default}",
+        "$description": "Typed value text — filled (grey-800)."
+      }
+    }
+  },
+  "dropdown": {
+    "bg": {
+      "$type": "color",
+      "$value": "{color.background.base.default}",
+      "$description": "Floating overlay-surface background (white). SHARED family (working name 'dropdown', may become 'overlay' later) used by: dropdown menu, custom dropdown, autocomplete, cascader, color/icon/emoji-picker, item-picker, date/date-range-picker, open select list, information-card, completed-within, context-selector, factors, format-picker. NOT for list-item (separate family) or modal/popconfirm/drawer (modal family)."
+    },
+    "shadow": {
+      "$type": "boxShadow",
+      "$value": "{Shadows.Shadow 2}",
+      "$description": "Overlay-surface elevation shadow (shadow-2)."
+    },
+    "border": {
+      "color": {
+        "$type": "color",
+        "$value": "{color.border.base.default}",
+        "$description": "Overlay-surface border (grey-200)."
+      },
+      "radius": {
+        "$type": "dimension",
+        "$value": "{border.radius.xs}",
+        "$description": "Overlay-surface corner radius (3px)."
+      }
+    },
+    "text": {
+      "default": {
+        "$type": "color",
+        "$value": "{color.text.base.default}",
+        "$description": "Overlay-surface primary text (grey-800)."
+      },
+      "additional": {
+        "$type": "color",
+        "$value": "{color.text.base.muted}",
+        "$description": "Overlay-surface secondary/additional text (grey-600)."
+      }
+    },
+    "footer": {
+      "bg": {
+        "$type": "color",
+        "$value": "{color.background.base.muted}",
+        "$description": "Overlay-surface footer background (grey-100)."
+      },
+      "border": {
+        "$type": "color",
+        "$value": "{color.border.base.subtle}",
+        "$description": "Overlay-surface footer top border (grey-100)."
+      }
     }
   },
   "status-pill": {
@@ -4039,6 +4570,11 @@
           "$type": "typography",
           "$value": "{typography.text.small}",
           "$description": "List item description typography (small)"
+        },
+        "color": {
+          "$type": "color",
+          "$value": "{color.text.base.muted}",
+          "$description": "List-item description text color (grey-600)"
         }
       }
     },
@@ -4047,109 +4583,259 @@
         "bg": {
           "default": {
             "$type": "color",
-            "$value": "transparent",
-            "$description": "Default list item background (transparent)"
+            "$value": "{color.background.base.default}",
+            "$description": "List-item bg — default"
           },
           "hover": {
             "$type": "color",
             "$value": "{color.background.base.subtle}",
-            "$description": "Hover list item background (grey.50)"
+            "$description": "List-item bg — hover"
           },
           "focused": {
             "$type": "color",
-            "$value": "{color.background.brand.subtle}",
-            "$description": "Focused list item background (blue.50)"
+            "$value": "{color.background.base.subtle}",
+            "$description": "List-item bg — focused"
           },
           "active": {
             "$type": "color",
             "$value": "{color.background.brand.subtle}",
-            "$description": "Active list item background (blue.50)"
+            "$description": "List-item bg — active"
           },
           "disabled": {
             "$type": "color",
-            "$value": "transparent",
-            "$description": "Default list item background (transparent)"
+            "$value": "{color.background.base.default}",
+            "$description": "List-item bg — disabled"
+          },
+          "readOnly": {
+            "$type": "color",
+            "$value": "{color.background.base.default}",
+            "$description": "List-item bg — readOnly"
           }
         },
         "text": {
           "default": {
             "$type": "color",
             "$value": "{color.text.base.subtle}",
-            "$description": "List item text color (grey.700)"
+            "$description": "List-item text — default"
           },
           "hover": {
             "$type": "color",
             "$value": "{color.text.brand.default}",
-            "$description": "Hover list item text color (blue.600)"
-          },
-          "active": {
-            "$type": "color",
-            "$value": "{color.text.brand.default}",
-            "$description": "Active list item text color (blue.600)"
+            "$description": "List-item text — hover"
           },
           "focused": {
             "$type": "color",
             "$value": "{color.text.base.subtle}",
-            "$description": "Focused list item text color (blue.600)"
+            "$description": "List-item text — focused"
+          },
+          "active": {
+            "$type": "color",
+            "$value": "{color.text.brand.default}",
+            "$description": "List-item text — active"
           },
           "disabled": {
             "$type": "color",
             "$value": "{color.text.base.subtle}",
-            "$description": "List item text color (grey.700)"
+            "$description": "List-item text — disabled"
+          },
+          "readOnly": {
+            "$type": "color",
+            "$value": "{color.text.base.subtle}",
+            "$description": "List-item text — readOnly"
           }
         },
         "icon": {
           "default": {
             "$type": "color",
             "$value": "{color.icon.base.default}",
-            "$description": "List item text color (grey.700)"
+            "$description": "List-item icon — default"
           },
           "hover": {
             "$type": "color",
             "$value": "{color.icon.brand.default}",
-            "$description": "Hover list item text color (blue.600)"
+            "$description": "List-item icon — hover"
           },
           "focused": {
             "$type": "color",
             "$value": "{color.icon.base.default}",
-            "$description": "List item text color (grey.700)"
+            "$description": "List-item icon — focused"
           },
           "active": {
             "$type": "color",
             "$value": "{color.icon.brand.default}",
-            "$description": "Hover list item text color (blue.600)"
+            "$description": "List-item icon — active"
           },
           "disabled": {
             "$type": "color",
             "$value": "{color.icon.base.default}",
-            "$description": "List item text color (grey.700)"
+            "$description": "List-item icon — disabled"
+          },
+          "readOnly": {
+            "$type": "color",
+            "$value": "{color.icon.base.default}",
+            "$description": "List-item icon — readOnly"
           }
         },
-        "description": {
+        "border": {
           "default": {
             "$type": "color",
-            "$value": "{color.text.base.subtle}",
-            "$description": "List item description color (grey.700)"
+            "$value": "{color.transparent}",
+            "$description": "List-item border — default"
           },
           "hover": {
             "$type": "color",
-            "$value": "{color.text.base.subtle}",
-            "$description": "List item description color (grey.700)"
+            "$value": "{color.transparent}",
+            "$description": "List-item border — hover"
           },
           "focused": {
             "$type": "color",
-            "$value": "{color.text.base.subtle}",
-            "$description": "List item description color (grey.700)"
+            "$value": "{color.border.brand.default}",
+            "$description": "List-item focus ring (blue-600)"
           },
           "active": {
             "$type": "color",
-            "$value": "{color.text.base.subtle}",
-            "$description": "List item description color (grey.700)"
+            "$value": "{color.transparent}",
+            "$description": "List-item border — active"
           },
           "disabled": {
             "$type": "color",
-            "$value": "{color.text.base.subtle}",
-            "$description": "List item description color (grey.700)"
+            "$value": "{color.transparent}",
+            "$description": "List-item border — disabled"
+          },
+          "readOnly": {
+            "$type": "color",
+            "$value": "{color.transparent}",
+            "$description": "List-item border — read-only"
+          }
+        }
+      },
+      "featured": {
+        "bg": {
+          "default": {
+            "$type": "color",
+            "$value": "{color.background.base.default}",
+            "$description": "List-item bg — default"
+          },
+          "hover": {
+            "$type": "color",
+            "$value": "{color.background.base.subtle}",
+            "$description": "List-item bg — hover"
+          },
+          "focused": {
+            "$type": "color",
+            "$value": "{color.background.base.subtle}",
+            "$description": "List-item bg — focused"
+          },
+          "active": {
+            "$type": "color",
+            "$value": "{color.background.brand.subtle}",
+            "$description": "List-item bg — active"
+          },
+          "disabled": {
+            "$type": "color",
+            "$value": "{color.background.base.default}",
+            "$description": "List-item bg — disabled"
+          },
+          "readOnly": {
+            "$type": "color",
+            "$value": "{color.background.base.default}",
+            "$description": "List-item bg — readOnly"
+          }
+        },
+        "text": {
+          "default": {
+            "$type": "color",
+            "$value": "{color.text.brand.default}",
+            "$description": "List-item text — default"
+          },
+          "hover": {
+            "$type": "color",
+            "$value": "{color.text.brand.hover}",
+            "$description": "List-item text — hover"
+          },
+          "focused": {
+            "$type": "color",
+            "$value": "{color.text.brand.hover}",
+            "$description": "List-item text — focused"
+          },
+          "active": {
+            "$type": "color",
+            "$value": "{color.text.brand.hover}",
+            "$description": "List-item text — active"
+          },
+          "disabled": {
+            "$type": "color",
+            "$value": "{color.text.brand.default}",
+            "$description": "List-item text — disabled"
+          },
+          "readOnly": {
+            "$type": "color",
+            "$value": "{color.text.brand.default}",
+            "$description": "List-item text — readOnly"
+          }
+        },
+        "icon": {
+          "default": {
+            "$type": "color",
+            "$value": "{color.icon.brand.default}",
+            "$description": "List-item icon — default"
+          },
+          "hover": {
+            "$type": "color",
+            "$value": "{color.icon.brand.default}",
+            "$description": "List-item icon — hover"
+          },
+          "focused": {
+            "$type": "color",
+            "$value": "{color.icon.brand.default}",
+            "$description": "List-item icon — focused"
+          },
+          "active": {
+            "$type": "color",
+            "$value": "{color.icon.brand.default}",
+            "$description": "List-item icon — active"
+          },
+          "disabled": {
+            "$type": "color",
+            "$value": "{color.icon.brand.default}",
+            "$description": "List-item icon — disabled"
+          },
+          "readOnly": {
+            "$type": "color",
+            "$value": "{color.icon.brand.default}",
+            "$description": "List-item icon — readOnly"
+          }
+        },
+        "border": {
+          "default": {
+            "$type": "color",
+            "$value": "{color.transparent}",
+            "$description": "List-item border — default"
+          },
+          "hover": {
+            "$type": "color",
+            "$value": "{color.transparent}",
+            "$description": "List-item border — hover"
+          },
+          "focused": {
+            "$type": "color",
+            "$value": "{color.border.brand.default}",
+            "$description": "List-item focus ring (blue-600)"
+          },
+          "active": {
+            "$type": "color",
+            "$value": "{color.transparent}",
+            "$description": "List-item border — active"
+          },
+          "disabled": {
+            "$type": "color",
+            "$value": "{color.transparent}",
+            "$description": "List-item border — disabled"
+          },
+          "readOnly": {
+            "$type": "color",
+            "$value": "{color.transparent}",
+            "$description": "List-item border — read-only"
           }
         }
       },
@@ -4157,109 +4843,129 @@
         "bg": {
           "default": {
             "$type": "color",
-            "$value": "transparent",
-            "$description": "Default list item background (transparent)"
+            "$value": "{color.background.base.default}",
+            "$description": "List-item bg — default"
           },
           "hover": {
             "$type": "color",
             "$value": "{color.background.danger.subtle}",
-            "$description": "Hover list item background (grey.50)"
+            "$description": "List-item bg — hover"
           },
           "focused": {
             "$type": "color",
             "$value": "{color.background.danger.subtle}",
-            "$description": "Focused list item background (blue.50)"
+            "$description": "List-item bg — focused"
           },
           "active": {
             "$type": "color",
             "$value": "{color.background.danger.subtle}",
-            "$description": "Active list item background (blue.50)"
+            "$description": "List-item bg — active"
           },
           "disabled": {
             "$type": "color",
-            "$value": "transparent",
-            "$description": "Default list item background (transparent)"
+            "$value": "{color.background.base.default}",
+            "$description": "List-item bg — disabled"
+          },
+          "readOnly": {
+            "$type": "color",
+            "$value": "{color.background.base.default}",
+            "$description": "List-item bg — readOnly"
           }
         },
         "text": {
           "default": {
             "$type": "color",
             "$value": "{color.text.danger.default}",
-            "$description": "List item text color (grey.700)"
+            "$description": "List-item text — default"
           },
           "hover": {
             "$type": "color",
             "$value": "{color.text.danger.default}",
-            "$description": "Hover list item text color (blue.600)"
-          },
-          "active": {
-            "$type": "color",
-            "$value": "{color.text.danger.default}",
-            "$description": "Active list item text color (blue.600)"
+            "$description": "List-item text — hover"
           },
           "focused": {
             "$type": "color",
             "$value": "{color.text.danger.default}",
-            "$description": "Focused list item text color (blue.600)"
+            "$description": "List-item text — focused"
+          },
+          "active": {
+            "$type": "color",
+            "$value": "{color.text.danger.default}",
+            "$description": "List-item text — active"
           },
           "disabled": {
             "$type": "color",
             "$value": "{color.text.danger.default}",
-            "$description": "List item text color (grey.700)"
+            "$description": "List-item text — disabled"
+          },
+          "readOnly": {
+            "$type": "color",
+            "$value": "{color.text.danger.default}",
+            "$description": "List-item text — readOnly"
           }
         },
         "icon": {
           "default": {
             "$type": "color",
-            "$value": "{color.text.danger.default}",
-            "$description": "List item text color (grey.700)"
+            "$value": "{color.icon.danger.default}",
+            "$description": "List-item icon — default"
           },
           "hover": {
             "$type": "color",
-            "$value": "{color.text.danger.default}",
-            "$description": "Hover list item text color (blue.600)"
+            "$value": "{color.icon.danger.default}",
+            "$description": "List-item icon — hover"
           },
           "focused": {
             "$type": "color",
-            "$value": "{color.text.danger.default}",
-            "$description": "List item text color (grey.700)"
+            "$value": "{color.icon.danger.default}",
+            "$description": "List-item icon — focused"
           },
           "active": {
             "$type": "color",
-            "$value": "{color.text.danger.default}",
-            "$description": "Hover list item text color (blue.600)"
+            "$value": "{color.icon.danger.default}",
+            "$description": "List-item icon — active"
           },
           "disabled": {
             "$type": "color",
-            "$value": "{color.text.danger.default}",
-            "$description": "List item text color (grey.700)"
+            "$value": "{color.icon.danger.default}",
+            "$description": "List-item icon — disabled"
+          },
+          "readOnly": {
+            "$type": "color",
+            "$value": "{color.icon.danger.default}",
+            "$description": "List-item icon — readOnly"
           }
         },
         "border": {
           "default": {
             "$type": "color",
             "$value": "{color.transparent}",
-            "$description": "Primary button border color for default state (transparent)"
+            "$description": "List-item border — default"
           },
           "hover": {
             "$type": "color",
             "$value": "{color.transparent}",
-            "$description": "Primary button border color for hover state (transparent)"
+            "$description": "List-item border — hover"
           },
-          "focus": {
+          "focused": {
             "$type": "color",
-            "$value": "{outline.color.focus.primary}",
-            "$description": "Primary button border color for focus state (blue-700, 2px width)"
+            "$value": "{color.border.brand.default}",
+            "$description": "List-item focus ring (blue-600)"
           },
           "active": {
             "$type": "color",
             "$value": "{color.transparent}",
-            "$description": "Primary button border color for active/selected state (transparent for solid variant)"
+            "$description": "List-item border — active"
           },
           "disabled": {
             "$type": "color",
             "$value": "{color.transparent}",
-            "$description": "Primary button border color for disabled state (transparent)"
+            "$description": "List-item border — disabled"
+          },
+          "readOnly": {
+            "$type": "color",
+            "$value": "{color.transparent}",
+            "$description": "List-item border — read-only"
           }
         }
       }
@@ -4269,11 +4975,6 @@
         "$type": "dimension",
         "$value": "{size.icon.lg}",
         "$description": "List item icon size (24px)"
-      },
-      "color": {
-        "$type": "color",
-        "$value": "{color.icon.base.muted}",
-        "$description": "List item icon color (grey.700)"
       }
     },
     "avatar": {
@@ -4289,36 +4990,12 @@
       }
     },
     "states": {
-      "hover": {
-        "icon": {
-          "$type": "color",
-          "$value": "{color.background.brand.solid}",
-          "$description": "Hover list item text color (blue.600)"
-        }
-      },
       "disabled": {
         "opacity": {
           "$type": "opacity",
           "$value": "{opacity.disabled}",
           "$description": "Disabled list item opacity (0.4 = 40%)"
         }
-      }
-    },
-    "subcomponents": {
-      "checkbox": {
-        "$type": "reference",
-        "$value": "{form.checkbox}",
-        "$description": "Reference to checkbox subcomponent"
-      },
-      "switch": {
-        "$type": "reference",
-        "$value": "{form.switch}",
-        "$description": "Reference to switch subcomponent"
-      },
-      "select": {
-        "$type": "reference",
-        "$value": "{form.select}",
-        "$description": "Reference to select subcomponent"
       }
     }
   },
