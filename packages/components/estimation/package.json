@@ -41,6 +41,7 @@
   ],
   "types": "dist/index.d.ts",
   "dependencies": {
+    "@synerise/ds-badge": "workspace:^",
     "@synerise/ds-divider": "workspace:^",
     "@synerise/ds-form-field": "workspace:^",
     "@synerise/ds-inline-alert": "workspace:^",

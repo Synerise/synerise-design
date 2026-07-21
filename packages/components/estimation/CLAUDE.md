@@ -100,6 +100,7 @@ Returns a complete `EstimationTexts` object. Requires an `IntlProvider` in the t
 
 - `@synerise/ds-form-field` — `FormFieldLabel` and `BaseLabelProps` for the label/tooltip
 - `@synerise/ds-progress-bar` — `Multivalue` component and `ProgressValue` type
+- `@synerise/ds-badge` — `BadgeWithLabel` renders each colour-dot legend entry (dot + label); the dot colour is the per-value `color` passed via `customColor`
 - `@synerise/ds-panel` — card container
 - `@synerise/ds-inline-alert` — error state display
 - `@synerise/ds-skeleton` — loading placeholders
@@ -112,6 +113,7 @@ Returns a complete `EstimationTexts` object. Requires an `IntlProvider` in the t
 - **`total` hidden when `isLoading=true`**: When `isLoading` is a plain `true` boolean, `total` is not rendered (not skeletonized). The skeleton variant `{ total: true }` replaces it with a skeleton.
 - **Footer is conditional**: The footer (divider + footer row) only renders when `footerButtons` is provided OR at least one of `isLoading`, `errorMessage`, or `calculatedDate` is truthy.
 - **`calculatedDate` type discrimination**: `calculatedDate instanceof Date` check determines whether to wrap with `FormattedRelativeDateTimeTo`. Any non-Date `ReactNode` is rendered verbatim.
+- **Legend dot reuses `ds-badge`** — each labelled `progressBarValues` entry renders a `<BadgeWithLabel dot customColor={value.color}>{label}</BadgeWithLabel>` (dot + label, 8px gap owned by the badge). This replaced the old bespoke `EstimationProgressBarLegendItem` `:before` dot. Note: the DS-standard badge dot is a 6px ring-less dot, so the legend dot is slightly smaller and loses the old 2px white ring (flagged for Chromatic/UX).
 - **`EstimationProgressValue` and `EstimationTexts` types are not exported** from `index.ts` — consumers must import them from the deep path or declare locally.
 - **Uses Vitest** for testing.
 - **`react-intl` is a peer dependency** — component will throw at runtime without an `IntlProvider` ancestor.

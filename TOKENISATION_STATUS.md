@@ -1481,9 +1481,11 @@ Consumes the **progressbar** module token by role (renders a progress bar):
   (exact; emitted as a literal `'var(…)'` string to `Multivalue`'s JS `color` prop; `useTheme` dropped)
 - `EstimationProgressBar.styles.ts` legend-dot ring white → `--ds-color-background-base-default` (semantic, exact)
 
-No visual diff. **Kept dynamic:** the legend-dot **fill** (`EstimationProgressBarLegendItem` `dotColor` ←
-`value.color`) is a per-entry data colour. ⚑ **Follow-up (design-tokens/DS):** refactor the legend dot to
-reuse `@synerise/ds-badge` (custom-color) — the ring+fill dot duplicates badge chrome.
+No visual diff. **Kept dynamic:** the legend-dot **fill** is a per-entry data colour. ✅ **Follow-up done**
+(branch `refactor/estimation-badge-legend-dot`): the bespoke `EstimationProgressBarLegendItem` dot was replaced
+by `@synerise/ds-badge`'s `BadgeWithLabel` (`dot` + `customColor={value.color}`), removing the duplicated
+ring+fill chrome. ⚑ Visual delta: the DS-standard badge dot is 6px ring-less (was ~10px + 2px white ring) —
+flagged for Chromatic/UX.
 
 ### loader — :white_check_mark:
 

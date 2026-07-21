@@ -2259,6 +2259,9 @@ importers:
 
   packages/components/estimation:
     dependencies:
+      '@synerise/ds-badge':
+        specifier: workspace:^
+        version: link:../badge
       '@synerise/ds-core':
         specifier: '*'
         version: link:../core

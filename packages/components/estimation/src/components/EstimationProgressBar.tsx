@@ -1,5 +1,6 @@
 import React, { type ReactNode, useMemo } from 'react';
 
+import { BadgeWithLabel } from '@synerise/ds-badge';
 import { type ProgressValue } from '@synerise/ds-progress-bar';
 
 import { type EstimationProgressValue } from '../Estimation.types';
@@ -21,9 +22,9 @@ export const EstimationProgressBar = ({
       });
       if (value.label) {
         legend.push(
-          <S.EstimationProgressBarLegendItem dotColor={value.color}>
-            <span>{value.label}</span>
-          </S.EstimationProgressBarLegendItem>,
+          <BadgeWithLabel dot customColor={value.color}>
+            {value.label}
+          </BadgeWithLabel>,
         );
       }
     });

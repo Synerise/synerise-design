@@ -66,6 +66,9 @@ describe('Estimation', () => {
     ];
     renderWithProvider(<Estimation {...defaultProps} progressBarValues={progressBarValues} />);
     expect(screen.getByTestId('estimation-progressbar')).toBeInTheDocument();
+    // Legend renders a labelled ds-badge dot per value with a label.
+    expect(screen.getByText('Active')).toBeInTheDocument();
+    expect(screen.getByText('Inactive')).toBeInTheDocument();
   });
 
   describe('loading states', () => {
