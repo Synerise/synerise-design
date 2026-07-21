@@ -1,7 +1,6 @@
 import React, { useMemo, useState } from 'react';
 
 import Button from '@synerise/ds-button';
-import { useTheme } from '@synerise/ds-core';
 import { DropdownMenu } from '@synerise/ds-dropdown';
 import Icon, { Add3M, AngleDownS, FolderM } from '@synerise/ds-icon';
 
@@ -25,7 +24,6 @@ const Overview = ({
   descriptionProps = {},
   onAddFolderClick,
 }: OverviewObjectProps) => {
-  const theme = useTheme();
   const [searchQuery, setSearchQuery] = useState('');
 
   const filteredData = useMemo(
@@ -83,11 +81,7 @@ const Overview = ({
                           mode="icon-label"
                           onClick={() => onAddFolderClick(searchQuery)}
                         >
-                          <Icon
-                            component={<Add3M />}
-                            size={24}
-                            color={theme.palette['grey-500']}
-                          />
+                          <Icon component={<Add3M />} size={24} />
                           <div>{texts.addFolder}</div>
                         </Button>
                       ),

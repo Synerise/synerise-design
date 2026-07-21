@@ -91,7 +91,7 @@ Icons: DS icons are `fill="currentColor"` with `color: inherit`, so colour them 
 
 Single at-a-glance view of every colour-bearing component: migration **status** + whether it is **awaiting token definitions** (a pending module namespace, a missing semantic role, or a `.less`/de-antd blocker). Sourced from the two detailed tables below + `TOKEN_AUDIT.md` blockers. **Update this table (and the detailed one) whenever `apply-tokens` migrates a component.**
 
-**Totals:** ✅ 52 done · 🚧 25 partial · ❌ 32 not started · ⛔ 4 deprecated · ➖ 2 n/a — **37 awaiting token defs** (flag in last column).
+**Totals:** ✅ 53 done · 🚧 25 partial · ❌ 31 not started · ⛔ 4 deprecated · ➖ 2 n/a — **37 awaiting token defs** (flag in last column).
 
 | Component | Layer | Status | Awaiting token defs / blocker |
 |---|---|:--:|---|
@@ -186,7 +186,7 @@ Single at-a-glance view of every colour-bearing component: migration **status** 
 | select | semantic | 🚧 | — |
 | short-cuts | semantic | ❌ | shadow token gap |
 | sidebar | semantic | ❌ | — |
-| sidebar-object | semantic | ❌ | — |
+| sidebar-object | semantic | ✅ | — |
 | skeleton | semantic | ❌ | **skeleton tokens pending** |
 | slider | semantic | ❌ | focus-ring token gap |
 | sortable | semantic | ✅ | — |
@@ -322,7 +322,7 @@ These components use `theme.palette` / hardcoded colors but do not yet have dedi
 | [select](#form-group-form--input--select--switch) | 13 | Yes (2) | 6 | 3 | :construction: TS → `--ds-form-field-*` + semantic; search-icon data-URI + `.less` deferred |
 | short-cuts | 7 | No | 1 | 0 | |
 | sidebar | 14 | No | 1 | 2 | `.less` removed (deantd) |
-| sidebar-object | 9 | No | 0 | 0 | |
+| sidebar-object | 0 | No | 0 | 0 | :white_check_mark: tokenised — modal module (footer/dropdown) + semantic (2026-07-21); all exact |
 | skeleton | 5 | No | 0 | 15 | |
 | slider | 12 | No | 4 | 0 | |
 | sortable | 0 | No | 0 | 2 | :white_check_mark: tokenised — semantic + shadow-2 (2026-07-21 pass); 2 opacities kept (functional drag hide/reset) |
@@ -1645,3 +1645,12 @@ text (+ `!important` span) → `--ds-avatar-text-default`, hover text → `--ds-
 | +N text (default) | grey-400 `#b5bdc3` | `--ds-avatar-text-default` grey-600 `#6a7580` | ⚑ Darker |
 | +N text (hover/active) | grey-500 `#949ea6` | `--ds-avatar-text-hover` grey-600 `#6a7580` | ⚑ Darker |
 | +N border (hover/active) | grey-500 `#949ea6` | `--ds-avatar-border-color-hover` brand blue-600 `#0b68ff` | ⚑ **grey → brand blue** (prominent) |
+
+### sidebar-object — :white_check_mark:
+
+Mixed, all **exact** (no visual diff): `FooterContainer` bg grey-050 → `--ds-modal-footer-bg`, border grey-100
+→ `--ds-modal-footer-border-color`; `Header` `DropdownWrapper` bg white → `--ds-modal-container-bg` (overlay
+surface, reuses modal module); dashed borders grey-300 (`Content` TagsWrapper/InlineEditWrapper, `ObjectSummary`
+ContentWrapper, `Header` HeaderWrapper) → `--ds-color-border-base-strong`; nested inline-edit bg white →
+`--ds-color-background-base-default`. `Overview.tsx` folder-footer `Add3M` icon dropped its explicit
+`grey-500` `color` prop (inherits from its ghost button); `useTheme` removed. `theme.palette` fully removed.

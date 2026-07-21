@@ -7,15 +7,15 @@ export const ContentWrapper = styled.div<{ withFolder: boolean }>`
 
 export const TagsWrapper = styled.div`
   padding: 22px 0 0;
-  border-top: 1px dashed ${(props): string => props.theme.palette['grey-300']};
+  border-top: 1px dashed var(--ds-color-border-base-strong);
 `;
 export const InlineEditWrapper = styled.div`
-  border-top: 1px dashed ${(props): string => props.theme.palette['grey-300']};
+  border-top: 1px dashed var(--ds-color-border-base-strong);
   padding: 12px 0;
   margin-left: 1px;
   white-space: pre;
   .ds-inline-edit > div:nth-child(2) {
-    background-color: ${(props): string => props.theme.palette.white};
+    background-color: var(--ds-color-background-base-default);
   }
 `;
 export const DrawerContent = styled.div`

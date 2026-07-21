@@ -5,8 +5,8 @@ export const FooterContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: flex-end;
-  background: ${(props): string => props.theme.palette['grey-050']};
-  border-top: solid 1px ${(props): string => props.theme.palette['grey-100']};
+  background: var(--ds-modal-footer-bg);
+  border-top: solid 1px var(--ds-modal-footer-border-color);
 `;
 export const SidebarObjectWrapper = styled.div`
   display: flex;
