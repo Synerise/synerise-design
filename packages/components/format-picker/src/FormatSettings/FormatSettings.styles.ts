@@ -10,7 +10,7 @@ export const FormatSettingsContainer = styled.div`
   flex-direction: column;
   align-items: flex-start;
   justify-content: stretch;
-  background-color: ${(props) => props.theme.palette.white};
+  background-color: var(--ds-dropdown-bg);
   min-width: 268px;
   .ds-title {
     margin-bottom: 8px;
@@ -51,9 +51,10 @@ export const FormatOptions = styled.div`
 `;
 
 export const FormatFooter = styled.div`
-  background-color: ${(props) => props.theme.palette['grey-050']};
+  /* ⚑ Shift: footer bg grey-050 → --ds-dropdown-footer-bg (grey-100, marginally darker). */
+  background-color: var(--ds-dropdown-footer-bg);
   padding: 8px 10px;
-  border-top: 1px solid ${(props) => props.theme.palette['grey-100']};
+  border-top: 1px solid var(--ds-dropdown-footer-border);
   width: 100%;
 `;
 
@@ -84,15 +85,16 @@ export const DropdownWrapper = styled.div`
   justify-content: flex-start;
   width: 100%;
   padding: 8px;
-  background: ${(props) => props.theme.palette.white};
+  background: var(--ds-dropdown-bg);
 `;
 
 export const ListItem: StyledListItem = styled(DSListItem)`
   font-weight: 500;
   width: 100%;
-  color: ${(props) => props.theme.palette['grey-700']};
+  color: var(--ds-list-item-role-normal-text-default);
   ${SuffixWrapper} {
-    color: ${(props) => props.theme.palette['grey-500']};
+    /* ⚑ Shift: suffix grey-500 → --ds-list-item-content-description-color (grey-600, marginally darker). */
+    color: var(--ds-list-item-content-description-color);
     font-weight: 400;
   }
 `;
