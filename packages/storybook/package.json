@@ -39,6 +39,7 @@
     "@synerise/ds-card": "workspace:^",
     "@synerise/ds-card-select": "workspace:^",
     "@synerise/ds-card-tabs": "workspace:^",
+    "@synerise/ds-carousel": "workspace:^",
     "@synerise/ds-cascader": "workspace:^",
     "@synerise/ds-checkbox": "workspace:^",
     "@synerise/ds-checkbox-tristate": "workspace:^",
