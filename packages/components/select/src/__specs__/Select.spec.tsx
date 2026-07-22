@@ -362,3 +362,114 @@ describe('Select (focus / blur)', () => {
     expect(onFocus).toHaveBeenCalled();
   });
 });
+
+describe('Select (tag display limits)', () => {
+  const OPTIONS = [
+    { value: 'a', label: 'Apple' },
+    { value: 'b', label: 'Banana' },
+    { value: 'c', label: 'Cherry' },
+  ];
+
+  it('collapses chips beyond maxTagCount into a "+N" overflow chip', () => {
+    renderWithProvider(
+      <Select
+        mode="multiple"
+        value={['a', 'b', 'c']}
+        maxTagCount={1}
+        options={OPTIONS}
+      />,
+    );
+
+    expect(
+      document.querySelectorAll('.ds-select-selection-item'),
+    ).toHaveLength(1);
+    expect(screen.getByTestId('select-tag-overflow').textContent).toBe('+ 2');
+  });
+
+  it('renders no overflow chip when the count is within maxTagCount', () => {
+    renderWithProvider(
+      <Select
+        mode="multiple"
+        value={['a']}
+        maxTagCount={3}
+        options={OPTIONS}
+      />,
+    );
+
+    expect(
+      document.querySelectorAll('.ds-select-selection-item'),
+    ).toHaveLength(1);
+    expect(screen.queryByTestId('select-tag-overflow')).toBeNull();
+  });
+
+  it('renders a custom maxTagPlaceholder node for the overflow chip', () => {
+    renderWithProvider(
+      <Select
+        mode="multiple"
+        value={['a', 'b', 'c']}
+        maxTagCount={1}
+        maxTagPlaceholder="+2 more"
+        options={OPTIONS}
+      />,
+    );
+
+    expect(screen.getByTestId('select-tag-overflow').textContent).toBe(
+      '+2 more',
+    );
+  });
+
+  it('passes the omitted options to a maxTagPlaceholder render function', () => {
+    renderWithProvider(
+      <Select
+        mode="multiple"
+        value={['a', 'b', 'c']}
+        maxTagCount={1}
+        maxTagPlaceholder={(omitted) => `and ${omitted.length} more`}
+        options={OPTIONS}
+      />,
+    );
+
+    expect(screen.getByTestId('select-tag-overflow').textContent).toBe(
+      'and 2 more',
+    );
+  });
+
+  it('truncates chip labels longer than maxTagTextLength', () => {
+    renderWithProvider(
+      <Select
+        mode="multiple"
+        value={['b']}
+        maxTagTextLength={3}
+        options={OPTIONS}
+      />,
+    );
+
+    expect(
+      document.querySelector('.ds-select-selection-item-label')?.textContent,
+    ).toBe('Ban...');
+  });
+});
+
+describe('Select (onPopupScroll)', () => {
+  it('fires onPopupScroll as the open option list scrolls', () => {
+    const onPopupScroll = vi.fn();
+    renderWithProvider(
+      <Select
+        defaultOpen
+        onPopupScroll={onPopupScroll}
+        options={[
+          { value: 'a', label: 'Apple' },
+          { value: 'b', label: 'Banana' },
+        ]}
+      />,
+    );
+
+    const scrollContainer = document.querySelector(
+      '.perfect-scrollbar-wrapper',
+    ) as Element;
+    expect(scrollContainer).toBeTruthy();
+
+    fireEvent.scroll(scrollContainer);
+    expect(onPopupScroll).toHaveBeenCalled();
+  });
+});

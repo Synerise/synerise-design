@@ -96,6 +96,7 @@ select root.
 | --- | --- | --- | --- |
 | open / defaultOpen | Controlled / initial dropdown visibility. | `boolean` | - |
 | onDropdownVisibleChange | Fired when dropdown visibility changes. | `(open: boolean) => void` | - |
+| onPopupScroll | Fired as the open option list scrolls (e.g. to page in more options). | `(event: UIEvent<HTMLDivElement>) => void` | - |
 | getPopupContainer | Container the floating dropdown mounts into. | `(node: HTMLElement) => HTMLElement \| ParentNode \| null` | ds-utils default |
 | placement | Dropdown placement. | `DropdownPlacement` | - |
 | dropdownClassName / popupClassName | Class on the dropdown overlay (`popupClassName` is the antd v4 alias). | `string` | - |
@@ -128,7 +129,7 @@ select root.
 | error | Error visual state without a message. | `boolean` | - |
 | errorText | Error message below the field; also activates the error state. | `ReactNode` | - |
 | autoFocus | Focus the selector / search input on mount. | `boolean` | `false` |
-| defaultActiveFirstOption | Highlight the first option when the dropdown opens. | `boolean` | - |
+| defaultActiveFirstOption | Accepted for antd back-compat; **no effect** — the dropdown always highlights the selected / first option on open. | `boolean` | - |
 | tabIndex | Tab index forwarded to the selector / search input. | `number` | - |
 | onFocus / onBlur | Fired when focus enters / leaves the whole select. | `(event) => void` | - |
 | onClick | Click handler on the selector box. | `(event) => void` | - |

@@ -7,6 +7,7 @@ import {
   type MouseEvent,
   type ReactElement,
   type ReactNode,
+  type UIEvent,
 } from 'react';
 import { type CSSObject } from 'styled-components';
 
@@ -63,6 +64,8 @@ export type SelectProps<VT extends SelectValue = SelectValue> = {
   onDropdownVisibleChange?: (open: boolean) => void;
   /** Remote-search callback (pair with `filterOption={false}`). */
   onSearch?: (value: string) => void;
+  /** antd parity: fired as the dropdown option list scrolls (e.g. to page in more options). */
+  onPopupScroll?: (event: UIEvent<HTMLDivElement>) => void;
   /** antd parity: fired when the clear affordance is used. */
   onClear?: () => void;
   /** antd parity: click handler on the selector box. */
@@ -95,6 +98,11 @@ export type SelectProps<VT extends SelectValue = SelectValue> = {
   loading?: boolean;
   allowClear?: boolean;
   autoFocus?: boolean;
+  /**
+   * antd parity: accepted for back-compat but NOT implemented. The dropdown
+   * always highlights the selected (or first enabled) option on open, so this
+   * flag has no effect.
+   */
   defaultActiveFirstOption?: boolean;
   showArrow?: boolean;
   /** antd parity: custom icon replacing the dropdown arrow. */
@@ -102,11 +110,19 @@ export type SelectProps<VT extends SelectValue = SelectValue> = {
   /** antd parity: tab index forwarded to the selector / search input. */
   tabIndex?: number;
 
-  /** Tags/multiple display limits (antd parity). */
+  /** Max chips rendered in `multiple` / `tags` mode before the rest collapse into an overflow chip. */
   maxTagCount?: number;
+  /** Max characters shown per chip label; longer labels are truncated with an ellipsis. */
   maxTagTextLength?: number;
-  /** antd parity: node shown for the collapsed overflow count. */
-  maxTagPlaceholder?: ReactNode;
+  /**
+   * Content of the collapsed-overflow chip (antd parity). A node renders as-is;
+   * a function receives the omitted options and returns the node. Defaults to `+ N`.
+   */
+  maxTagPlaceholder?:
+    | ReactNode
+    | ((
+        omittedValues: Array<{ value: RawValueType; label: ReactNode }>,
+      ) => ReactNode);
   /** Characters that split typed text into tags in `mode="tags"`. */
   tokenSeparators?: string[];
 

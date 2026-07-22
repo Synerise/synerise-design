@@ -50,6 +50,7 @@ const SelectInner = forwardRef<HTMLDivElement, SelectProps>((props, ref) => {
     onFocus,
     onDropdownVisibleChange,
     onSearch,
+    onPopupScroll,
     onClear,
     onClick,
     onInputKeyDown,
@@ -69,6 +70,9 @@ const SelectInner = forwardRef<HTMLDivElement, SelectProps>((props, ref) => {
     optionFilterProp,
     optionLabelProp,
     tokenSeparators,
+    maxTagCount,
+    maxTagTextLength,
+    maxTagPlaceholder,
     showArrow = true,
     suffixIcon,
     tabIndex,
@@ -465,6 +469,7 @@ const SelectInner = forwardRef<HTMLDivElement, SelectProps>((props, ref) => {
       optionDomId={optionDomId}
       onOptionActivate={setActiveIndex}
       onOptionSelect={handleSelect}
+      onPopupScroll={onPopupScroll}
     />
   );
 
@@ -487,6 +492,9 @@ const SelectInner = forwardRef<HTMLDivElement, SelectProps>((props, ref) => {
       effectiveQuery={effectiveQuery}
       labelFor={labelFor}
       onRemoveValue={removeValue}
+      maxTagCount={maxTagCount}
+      maxTagTextLength={maxTagTextLength}
+      maxTagPlaceholder={maxTagPlaceholder}
       inputRef={inputRef}
       isDisabled={isDisabled}
       hasInput={hasInput}

@@ -177,6 +177,12 @@ Extends `FormFieldCommonProps` (`label`, `tooltip`, `tooltipConfig`, `descriptio
       <td>Fired when dropdown visibility changes.</td>
     </tr>
     <tr>
+      <td><code>onPopupScroll</code></td>
+      <td><code>(event: UIEvent&lt;HTMLDivElement&gt;) =&gt; void</code></td>
+      <td>—</td>
+      <td>Fired as the open option list scrolls (e.g. to page in more options).</td>
+    </tr>
+    <tr>
       <td><code>getPopupContainer</code></td>
       <td><code>(node: HTMLElement) =&gt; HTMLElement | ParentNode | null</code></td>
       <td>ds-utils default</td>
@@ -321,7 +327,7 @@ box in styles, use `Select.styles.Selector` (the `.ds-select` element).
     <tr>
       <td><code>defaultActiveFirstOption</code></td>
       <td><code>boolean</code></td>
-      <td>Highlight the first option when the dropdown opens.</td>
+      <td>Accepted for antd back-compat; no effect — the dropdown always highlights the selected / first option on open.</td>
     </tr>
     <tr>
       <td><code>autoFocus</code></td>

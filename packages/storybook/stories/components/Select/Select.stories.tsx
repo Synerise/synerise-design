@@ -59,7 +59,6 @@ const meta: Meta<SelectProps> = {
     maxTagCount: NUMBER_CONTROL,
     maxTagTextLength: NUMBER_CONTROL,
     showArrow: BOOLEAN_CONTROL,
-    defaultActiveFirstOption: BOOLEAN_CONTROL,
     autoFocus: BOOLEAN_CONTROL,
     popupClassName: CLASSNAME_ARG_CONTROL,
     // Non-control props (objects / render fns / handlers)
@@ -87,6 +86,9 @@ const meta: Meta<SelectProps> = {
     onBlur: { control: false },
     onFocus: { control: false },
     onDropdownVisibleChange: { control: false },
+    onPopupScroll: { control: false },
+    // accepted for antd back-compat; no runtime effect
+    defaultActiveFirstOption: { control: false },
     // antd-parity handlers / nodes / objects (no control widget)
     onClear: { control: false },
     onClick: { control: false },

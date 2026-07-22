@@ -3,6 +3,7 @@ import React, {
   type MouseEvent,
   type ReactElement,
   type ReactNode,
+  type UIEvent,
 } from 'react';
 
 import Loader from '@synerise/ds-loader';
@@ -27,6 +28,8 @@ type OptionListProps = {
   optionDomId: (index: number) => string;
   onOptionActivate: (index: number) => void;
   onOptionSelect: (option: SelectOption) => void;
+  /** antd parity: fired as the option list scrolls (e.g. to page in more options). */
+  onPopupScroll?: (event: UIEvent<HTMLDivElement>) => void;
 };
 
 /** The dropdown overlay: loading / empty / the scrollable listbox of options. */
@@ -43,6 +46,7 @@ export const OptionList = ({
   optionDomId,
   onOptionActivate,
   onOptionSelect,
+  onPopupScroll,
 }: OptionListProps): ReactElement => (
   <S.DropdownWrapper
     onMouseDown={(event: MouseEvent<HTMLDivElement>) => {
@@ -65,6 +69,12 @@ export const OptionList = ({
         <Scrollbar
           absolute
           maxHeight={Number(listHeight) || DEFAULT_LIST_HEIGHT}
+          onScroll={
+            onPopupScroll
+              ? (event: UIEvent) =>
+                  onPopupScroll(event as UIEvent<HTMLDivElement>)
+              : undefined
+          }
         >
           <S.Inner
             role="listbox"

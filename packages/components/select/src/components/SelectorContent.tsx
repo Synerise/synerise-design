@@ -22,6 +22,15 @@ type SelectorContentProps = {
   labelFor: (value: RawValueType) => ReactNode;
   onRemoveValue: (value: RawValueType) => void;
 
+  // ── chip display limits (multiple / tags) ──
+  maxTagCount?: number;
+  maxTagTextLength?: number;
+  maxTagPlaceholder?:
+    | ReactNode
+    | ((
+        omittedValues: Array<{ value: RawValueType; label: ReactNode }>,
+      ) => ReactNode);
+
   // ── in-selector search input (showSearch / multiple / tags) ──
   inputRef: RefObject<HTMLInputElement>;
   isDisabled: boolean;
@@ -48,6 +57,9 @@ export const SelectorContent = ({
   effectiveQuery,
   labelFor,
   onRemoveValue,
+  maxTagCount,
+  maxTagTextLength,
+  maxTagPlaceholder,
   inputRef,
   isDisabled,
   hasInput,
@@ -92,12 +104,38 @@ export const SelectorContent = ({
   );
 
   if (isMultiple) {
+    const displayedValues =
+      typeof maxTagCount === 'number'
+        ? selectedValues.slice(0, Math.max(maxTagCount, 0))
+        : selectedValues;
+    const omittedValues = selectedValues.slice(displayedValues.length);
+
+    // Truncate a string chip label to `maxTagTextLength` (antd parity: adds `...`).
+    const chipLabel = (v: RawValueType): ReactNode => {
+      const label = labelFor(v);
+      if (
+        typeof maxTagTextLength === 'number' &&
+        typeof label === 'string' &&
+        label.length > maxTagTextLength
+      ) {
+        return `${label.slice(0, maxTagTextLength)}...`;
+      }
+      return label;
+    };
+
+    const overflowContent =
+      typeof maxTagPlaceholder === 'function'
+        ? maxTagPlaceholder(
+            omittedValues.map((v) => ({ value: v, label: labelFor(v) })),
+          )
+        : (maxTagPlaceholder ?? `+ ${omittedValues.length}`);
+
     return (
       <S.MultiValueArea>
-        {selectedValues.map((v) => (
+        {displayedValues.map((v) => (
           <S.Chip key={v} className="ds-select-selection-item">
             <S.ChipLabel className="ds-select-selection-item-label">
-              {labelFor(v)}
+              {chipLabel(v)}
             </S.ChipLabel>
             <S.ChipRemove
               className="ds-select-selection-item-remove"
@@ -111,6 +149,16 @@ export const SelectorContent = ({
             </S.ChipRemove>
           </S.Chip>
         ))}
+        {omittedValues.length > 0 && (
+          <S.Chip
+            className="ds-select-selection-overflow"
+            data-testid="select-tag-overflow"
+          >
+            <S.ChipLabel className="ds-select-selection-item-label">
+              {overflowContent}
+            </S.ChipLabel>
+          </S.Chip>
+        )}
         {searchInput}
       </S.MultiValueArea>
     );
