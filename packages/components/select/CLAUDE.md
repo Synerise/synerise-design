@@ -80,11 +80,15 @@ Native `data-*` / `aria-*` attributes are forwarded onto the select root (`.ds-s
 
 Kept so antd-era consumers need no change: `searchValue`, `onClear`, `onClick`, `onInputKeyDown`,
 `onKeyDown`, `suffixIcon`, `clearIcon`, `maxLength`, `maxTagCount`, `maxTagTextLength`,
-`maxTagPlaceholder`, `listItemHeight`, `popupClassName` (alias of `dropdownClassName`),
-`dropdownAlign`, `dropdownMatchSelectWidth` (`boolean | number`), `dropdownRender`, `showArrow`,
-`defaultActiveFirstOption`, `autoFocus`, `tabIndex`, `rowKey`, plus the standard
+`maxTagPlaceholder`, `onPopupScroll`, `popupClassName` (alias of `dropdownClassName`),
+`dropdownMatchSelectWidth` (`boolean | number`), `dropdownRender`, `showArrow`,
+`autoFocus`, `tabIndex`, `rowKey`, plus the standard
 `mode`/`options`/`showSearch`/`filterOption`/`allowClear`/`open`/`onChange`/`onSearch`/… surface.
 `SelectHandler` type and the `SelectStyles.Selector` styled export are re-exported for parity.
+
+`maxTagCount` (collapse extra chips into a `+N` overflow chip), `maxTagTextLength` (truncate chip
+labels) and `onPopupScroll` are fully implemented. `listItemHeight`, `dropdownAlign` and
+`defaultActiveFirstOption` are accepted for compatibility but have **no runtime effect**.
 
 ## Usage patterns
 

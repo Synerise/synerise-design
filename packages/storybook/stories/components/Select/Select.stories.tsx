@@ -197,3 +197,42 @@ export const WithSearch: Story = {
 export const Disabled: Story = {
   args: { disabled: true, defaultValue: 'a' },
 };
+
+/**
+ * `maxTagCount` renders only the first N chips and collapses the rest into an
+ * overflow chip. `maxTagPlaceholder` customises its content — here a function of
+ * the omitted options.
+ */
+export const MaxTagCount: Story = {
+  args: {
+    mode: 'multiple',
+    defaultValue: ['a', 'b', 'c', 'd', 'e'],
+    maxTagCount: 2,
+    maxTagPlaceholder: (omitted) => `+${omitted.length} more`,
+    placeholder: 'Select options',
+  },
+};
+
+/** `maxTagTextLength` truncates long chip labels with an ellipsis. */
+export const MaxTagTextLength: Story = {
+  args: {
+    mode: 'multiple',
+    defaultValue: ['f', 'a'],
+    maxTagTextLength: 10,
+    placeholder: 'Select options',
+  },
+};
+
+/**
+ * `onPopupScroll` fires as the option list scrolls — pair it with a paged
+ * `onSearch` to fetch more options. Scroll the open dropdown and watch the
+ * Actions panel.
+ */
+export const PopupScroll: Story = {
+  args: {
+    defaultOpen: true,
+    listHeight: 120,
+    onPopupScroll: fn(),
+    placeholder: 'Scroll the dropdown',
+  },
+};

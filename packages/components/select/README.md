@@ -194,4 +194,4 @@ import type {
 - **Keyboard & ARIA** — Arrow / Home / End / Enter / Escape / Space (and Backspace to drop the
   last chip in multiple mode), with combobox / listbox `aria-activedescendant`.
 - **Not reimplemented from antd** — `OptGroup`, `labelInValue` / `LabeledValue`,
-  `autoClearSearchValue`, `firstActiveValue`, `menuItemSelectedIcon`, `onPopupScroll`.
+  `autoClearSearchValue`, `firstActiveValue`, `menuItemSelectedIcon`.

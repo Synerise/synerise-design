@@ -106,3 +106,32 @@ export const OpenLoading: Story = {
     </div>
   ),
 };
+
+export const TagLimits: Story = {
+  render: () => (
+    <Stack>
+      <Select
+        label="Max tag count (2)"
+        mode="multiple"
+        defaultValue={['a', 'b', 'c', 'd', 'e']}
+        maxTagCount={2}
+        options={OPTIONS}
+      />
+      <Select
+        label="Max tag count + custom placeholder"
+        mode="multiple"
+        defaultValue={['a', 'b', 'c', 'd']}
+        maxTagCount={1}
+        maxTagPlaceholder={(omitted) => `+${omitted.length} more`}
+        options={OPTIONS}
+      />
+      <Select
+        label="Max tag text length (10)"
+        mode="multiple"
+        defaultValue={['f', 'a']}
+        maxTagTextLength={10}
+        options={OPTIONS}
+      />
+    </Stack>
+  ),
+};
