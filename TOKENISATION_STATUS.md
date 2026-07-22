@@ -187,7 +187,7 @@ Single at-a-glance view of every colour-bearing component: migration **status** 
 | short-cuts | semantic | ❌ | shadow token gap |
 | sidebar | semantic | ✅ | — |
 | sidebar-object | semantic | ✅ | — |
-| skeleton | semantic | ❌ | **skeleton tokens pending** |
+| skeleton | module | 🚧 | shimmer keyframe opacity token pending |
 | slider | semantic | ❌ | focus-ring token gap |
 | sortable | semantic | ✅ | — |
 | status | semantic | ❌ | — |
