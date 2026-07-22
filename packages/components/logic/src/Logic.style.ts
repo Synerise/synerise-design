@@ -17,7 +17,7 @@ export const Logic = styled.div<{ readOnly?: boolean }>`
       left: 1px;
       background-image: linear-gradient(
         to right,
-        ${theme.palette['grey-600']} 25%,
+        var(--ds-color-text-base-muted) 25%,
         ${theme.palette.white} 0%
       );
       background-position: top;
@@ -31,11 +31,11 @@ export const Logic = styled.div<{ readOnly?: boolean }>`
     !readOnly
       ? ` &:hover {
     .ds-title {
-      color: ${theme.palette['blue-700']};
+      color: var(--ds-color-text-brand-hover);
       &:after {
         background-image: linear-gradient(
           to right,
-          ${theme.palette['blue-700']} 25%,
+          var(--ds-color-text-brand-hover) 25%,
           ${theme.palette.white} 0%
         );
       }

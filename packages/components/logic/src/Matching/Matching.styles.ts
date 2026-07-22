@@ -8,6 +8,10 @@ type MatchingProps = ThemeProps & {
   hovered?: boolean;
 };
 
+// Deferred pending UX (2026-07-22): matching/not-matching state colours (green/red
+// 600↔700 hover) stay on palette — semantic text-success/danger have no -hover variant,
+// so tokenising would drop the hover-darken. The dashed-underline white gaps (here + in
+// Logic.style.ts) also await the gap→transparent dark-mode decision.
 const getColor = ({
   theme,
   matching,
@@ -25,7 +29,7 @@ export const MatchingWrapper = styled.div`
   font-size: 16px;
   font-weight: 500;
   line-height: 1.25;
-  color: ${(props) => props.theme.palette['grey-800']};
+  color: var(--ds-color-text-base-default);
   text-align: left;
   user-select: none;
   &:first-letter {

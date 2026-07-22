@@ -161,7 +161,7 @@ Single at-a-glance view of every colour-bearing component: migration **status** 
 | list | semantic | ❌ | **.less / de-antd** |
 | list-item | module | ✅ | — |
 | loader | semantic | ✅ | — |
-| logic | semantic | ❌ | **logic/filter pending** |
+| logic | semantic | 🚧 | UX: gap→transparent + matching-toggle hover |
 | manageable-list | semantic | ✅ | — |
 | mapping | semantic | ✅ | — |
 | menu | semantic | ⛔ | — |

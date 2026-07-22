@@ -5,7 +5,7 @@ export const PlaceholderContainer = styled.div`
   min-height: 63px;
   margin: auto;
   border-radius: 3px;
-  background-color: ${(props): string => props.theme.palette.white};
+  background-color: var(--ds-color-background-base-default);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -15,6 +15,6 @@ export const PlaceholderContainer = styled.div`
     display: block;
     font-size: 13px;
     margin: 6px 0 5px 11px;
-    color: ${(props): string => props.theme.palette['grey-600']};
+    color: var(--ds-color-text-base-muted);
   }
 `;
