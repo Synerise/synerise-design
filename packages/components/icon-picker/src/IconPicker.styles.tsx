@@ -39,9 +39,7 @@ export const VirtualList = styled(FixedSizeList)<{ listHeight: number }>`
 
 export const Overlay = styled.span`
   width: 250px;
-  /* TODO(tokens): dropdown/overlay surface — should get a dropdown bg token once the dropdown
-     module namespace is defined upstream. Kept on palette (white) until then. */
-  background-color: ${(props): string => props.theme.palette.white};
+  background-color: var(--ds-dropdown-bg);
   position: relative;
   display: block;
   border-radius: 3px;
@@ -52,9 +50,9 @@ export const Title = styled.div<{ elementSize: string }>`
   line-height: 1.6;
   font-weight: 500;
   text-transform: uppercase;
-  /* TODO(tokens): category header — should get a list-item title token once the list-item module
-     namespace is defined upstream. Kept on palette (grey-500) until then. */
-  color: ${(props) => props.theme.palette['grey-500']};
+  /* Uppercase category header. list-item module has no section/group-title token → semantic
+     grey-500 (exact). DS follow-up: add a list-item section-title token. */
+  color: var(--ds-color-text-neutral-default);
   padding: 0 12px;
   flex-basis: 100%;
   height: ${(props) => props.elementSize};
@@ -117,7 +115,6 @@ export const ListRow = styled.div`
 export const NoResultIcon = styled.div`
   width: 40px;
   height: 40px;
-  background: rgba(148, 158, 166, 0.05);
   border-radius: 50%;
   display: flex;
   align-items: center;
