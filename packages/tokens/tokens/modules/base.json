@@ -21,7 +21,7 @@
           "active": {
             "$type": "color",
             "$value": "{color.background.brand.solidActive}",
-            "$description": "Primary button background color for active / selected state (same as default for solid variant)"
+            "$description": "Primary button background color for active/selected state (same as default for solid variant)"
           },
           "disabled": {
             "$type": "color",
@@ -1827,7 +1827,7 @@
           "y": {
             "$type": "dimension",
             "$value": "{inset.sm} - 1px",
-            "$description": "Vertical padding for normal size buttons (7px — TODO: verify visual diff → docelowo {inset.sm})"
+            "$description": "Vertical padding for normal size buttons (7px — TODO: verify visual diff → docelowo inset.sm)"
           }
         },
         "large": {
@@ -1839,7 +1839,7 @@
           "y": {
             "$type": "dimension",
             "$value": "{inset.lg} - 2px",
-            "$description": "Vertical padding for large size buttons (14px — TODO: verify visual diff → docelowo {inset.lg})"
+            "$description": "Vertical padding for large size buttons (14px — TODO: verify visual diff → docelowo inset.lg)"
           }
         },
         "icon-solo": {
@@ -2208,7 +2208,7 @@
             "y": {
               "$type": "dimension",
               "$value": "{inset.sm} - 1px",
-              "$description": "Input field vertical padding for normal size (7px — TODO: verify visual diff → docelowo {inset.sm})"
+              "$description": "Input field vertical padding for normal size (7px — TODO: verify visual diff → docelowo inset.sm)"
             },
             "x": {
               "left": {
@@ -2227,7 +2227,7 @@
             "y": {
               "$type": "dimension",
               "$value": "{inset.md} + 3px",
-              "$description": "Input field vertical padding for large size (15px — TODO: verify visual diff → docelowo {inset.md})"
+              "$description": "Input field vertical padding for large size (15px — TODO: verify visual diff → docelowo inset.md)"
             },
             "x": {
               "left": {
@@ -3441,57 +3441,49 @@
       "$value": "{border.width.default}",
       "$description": "Avatar border width (1px)"
     },
-    "bg": {
-      "default": {
-        "$type": "color",
-        "$value": "{color.background.base.muted}",
-        "$description": "Avatar background color for default state"
-      },
-      "hover": {
-        "$type": "color",
-        "$value": "{color.background.base.mutedHover}",
-        "$description": "Avatar background color for hover state"
-      },
-      "disabled": {
-        "$type": "color",
-        "$value": "{color.background.base.muted}",
-        "$description": "Avatar background color for disabled state"
-      }
-    },
-    "text": {
-      "default": {
-        "$type": "color",
-        "$value": "{color.text.base.muted}",
-        "$description": "Avatar text color for default state"
-      },
-      "hover": {
-        "$type": "color",
-        "$value": "{color.text.base.muted}",
-        "$description": "Avatar text color for hover state"
-      },
-      "disabled": {
-        "$type": "color",
-        "$value": "{color.text.base.disabled}",
-        "$description": "Avatar text color for disabled state"
-      }
-    },
-    "border": {
-      "color": {
+    "icon": {
+      "bg": {
         "default": {
           "$type": "color",
-          "$value": "{color.border.base.default}",
-          "$description": "Avatar border color for default state"
+          "$value": "{color.background.base.muted}",
+          "$description": "Avatar (icon) background - default (grey-100)"
         },
         "hover": {
           "$type": "color",
-          "$value": "{color.background.brand.solid}",
-          "$description": "Avatar border color for hover state"
-        },
-        "disabled": {
-          "$type": "color",
-          "$value": "{color.border.base.disabled}",
-          "$description": "Avatar border color for disabled state"
+          "$value": "{color.background.base.muted}",
+          "$description": "Avatar (icon) background - hover (grey-100; hover dim via overlay in code)"
         }
+      },
+      "icon": {
+        "$type": "color",
+        "$value": "{color.icon.base.default}",
+        "$description": "Avatar (icon) user/fallback icon (grey-600). Also image placeholder."
+      }
+    },
+    "text": {
+      "bg": {
+        "default": {
+          "$type": "color",
+          "$value": "{color.background.custom.solidHover}",
+          "$description": "Avatar (text) background - default (custom.500, custom-color)"
+        },
+        "hover": {
+          "$type": "color",
+          "$value": "{color.background.custom.solid}",
+          "$description": "Avatar (text) background - hover (custom.600, darker)"
+        }
+      },
+      "text": {
+        "$type": "color",
+        "$value": "{color.text.onSolid.default}",
+        "$description": "Avatar (text) initials (white on custom-color)"
+      }
+    },
+    "group": {
+      "border": {
+        "$type": "color",
+        "$value": "{color.background.base.default}",
+        "$description": "Avatar white separator ring (2px) when avatars are stacked in a group."
       }
     },
     "disabled": {
@@ -3655,7 +3647,7 @@
         "bg": {
           "$type": "color",
           "$value": "{color.custom.600}",
-          "$description": "Badge custom-color variant — background (custom.600, swappable palette). Matches the code's customColor-600 (swappable)."
+          "$description": "Badge custom-color variant — background (custom.600, swappable palette). Matches the code's customColor-600."
         },
         "border": {
           "$type": "color",
@@ -3796,6 +3788,772 @@
         "$type": "color",
         "$value": "{color.border.base.subtle}",
         "$description": "Overlay-surface footer top border (grey-100)."
+      }
+    },
+    "nav": {
+      "text": {
+        "default": {
+          "$type": "color",
+          "$value": "{color.text.base.default}",
+          "$description": "Dropdown/cascader nav breadcrumb text - default (grey-800)"
+        },
+        "hover": {
+          "$type": "color",
+          "$value": "{color.text.brand.default}",
+          "$description": "Dropdown/cascader nav breadcrumb text - hover (blue-600)"
+        }
+      },
+      "icon": {
+        "default": {
+          "$type": "color",
+          "$value": "{color.icon.base.default}",
+          "$description": "Dropdown/cascader nav breadcrumb arrow/icon - default (grey-600)"
+        },
+        "hover": {
+          "$type": "color",
+          "$value": "{color.icon.brand.default}",
+          "$description": "Dropdown/cascader nav breadcrumb arrow/icon - hover (blue-600)"
+        }
+      }
+    }
+  },
+  "tag": {
+    "variant": {
+      "gray": {
+        "bg": {
+          "default": {
+            "$type": "color",
+            "$value": "{color.background.base.muted}",
+            "$description": "Tag gray variant background - default (grey-100)"
+          },
+          "hover": {
+            "$type": "color",
+            "$value": "{color.background.base.mutedHover}",
+            "$description": "Tag gray variant background - hover (grey-200)"
+          }
+        },
+        "text": {
+          "$type": "color",
+          "$value": "{color.text.base.subtle}",
+          "$description": "Tag gray variant text (grey-700)"
+        },
+        "icon": {
+          "$type": "color",
+          "$value": "{color.icon.base.default}",
+          "$description": "Tag gray variant icon (grey-600)"
+        }
+      },
+      "color": {
+        "bg": {
+          "default": {
+            "$type": "color",
+            "$value": "{color.background.custom.solid}",
+            "$description": "Tag color variant background - default (custom-color solid, swappable)"
+          },
+          "hover": {
+            "$type": "color",
+            "$value": "{color.background.custom.solid}",
+            "$description": "Tag color variant background - hover (custom-color solid; Figma binds solid - could become custom.solidHover)"
+          }
+        },
+        "text": {
+          "$type": "color",
+          "$value": "{color.text.onSolid.default}",
+          "$description": "Tag color variant text (white on custom-color)"
+        },
+        "icon": {
+          "$type": "color",
+          "$value": "{color.icon.onSolid.default}",
+          "$description": "Tag color variant icon (white on custom-color)"
+        }
+      }
+    },
+    "remove": {
+      "icon": {
+        "$type": "color",
+        "$value": "{color.icon.danger.default}",
+        "$description": "Tag remove (x) icon on hover (red-600)"
+      }
+    },
+    "disabled": {
+      "opacity": {
+        "$type": "opacity",
+        "$value": "{opacity.disabled}",
+        "$description": "Tag disabled opacity (0.4)"
+      }
+    },
+    "pill": {
+      "bg": {
+        "gray": {
+          "$type": "color",
+          "$value": "{color.background.base.strong}",
+          "$description": "Pill background - gray (default, grey-400)"
+        },
+        "color": {
+          "$type": "color",
+          "$value": "{color.background.custom.solid}",
+          "$description": "Pill background - color (custom-color solid, swappable; analogiczne do tag.variant.color)"
+        }
+      },
+      "text": {
+        "$type": "color",
+        "$value": "{color.text.onSolid.default}",
+        "$description": "Pill (asPill mode) text (white)"
+      }
+    },
+    "more": {
+      "bg": {
+        "$type": "color",
+        "$value": "{color.background.base.muted}",
+        "$description": "Tag +N overflow counter background (grey-100)"
+      },
+      "text": {
+        "$type": "color",
+        "$value": "{color.text.base.subtle}",
+        "$description": "Tag +N overflow counter text (grey-700)"
+      }
+    }
+  },
+  "card-tabs": {
+    "variant": {
+      "grey": {
+        "bg": {
+          "default": {
+            "$type": "color",
+            "$value": "{color.background.base.subtle}",
+            "$description": "Card tab (grey) background - inactive default"
+          },
+          "hover": {
+            "$type": "color",
+            "$value": "{color.background.base.subtle}",
+            "$description": "Card tab (grey) background - inactive hover"
+          },
+          "grabbed": {
+            "$type": "color",
+            "$value": "{color.background.base.subtleHover}",
+            "$description": "Card tab (grey) background - inactive grabbed"
+          },
+          "active": {
+            "$type": "color",
+            "$value": "{color.background.custom.solid}",
+            "$description": "Card tab (grey) background - active (custom-color)"
+          },
+          "activeHover": {
+            "$type": "color",
+            "$value": "{color.background.custom.solidHover}",
+            "$description": "Card tab (grey) background - active hover (custom-color, lighter)"
+          },
+          "validateActive": {
+            "$type": "color",
+            "$value": "{color.background.danger.solid}",
+            "$description": "Card tab (grey) background - validate active (red-600)"
+          },
+          "validateActiveHover": {
+            "$type": "color",
+            "$value": "{color.background.danger.solidHover}",
+            "$description": "Card tab (grey) background - validate active hover"
+          }
+        },
+        "text": {
+          "default": {
+            "$type": "color",
+            "$value": "{color.text.base.muted}",
+            "$description": "Card tab (grey) label - default (grey-600)"
+          },
+          "hover": {
+            "$type": "color",
+            "$value": "{color.text.base.default}",
+            "$description": "Card tab (grey) label - hover (grey-800)"
+          },
+          "grabbed": {
+            "$type": "color",
+            "$value": "{color.text.base.default}",
+            "$description": "Card tab (grey) label - grabbed (grey-800)"
+          },
+          "validate": {
+            "$type": "color",
+            "$value": "{color.text.base.default}",
+            "$description": "Card tab (grey) label - validate (grey-800)"
+          },
+          "active": {
+            "$type": "color",
+            "$value": "{color.text.onSolid.default}",
+            "$description": "Card tab (grey) label - active (white)"
+          },
+          "activeHover": {
+            "$type": "color",
+            "$value": "{color.text.onSolid.default}",
+            "$description": "Card tab (grey) label - active hover (white)"
+          }
+        },
+        "icon": {
+          "default": {
+            "$type": "color",
+            "$value": "{color.icon.base.default}",
+            "$description": "Card tab (grey) icon - default (grey-600)"
+          },
+          "hover": {
+            "$type": "color",
+            "$value": "{color.icon.base.default}",
+            "$description": "Card tab (grey) icon - hover (grey-600)"
+          },
+          "grabbed": {
+            "$type": "color",
+            "$value": "{color.icon.base.default}",
+            "$description": "Card tab (grey) icon - grabbed (grey-600)"
+          },
+          "validate": {
+            "$type": "color",
+            "$value": "{color.icon.base.default}",
+            "$description": "Card tab (grey) icon - validate (grey-600)"
+          },
+          "active": {
+            "$type": "color",
+            "$value": "{color.icon.onSolid.default}",
+            "$description": "Card tab (grey) icon - active (white)"
+          },
+          "activeHover": {
+            "$type": "color",
+            "$value": "{color.icon.onSolid.default}",
+            "$description": "Card tab (grey) icon - active hover (white)"
+          }
+        },
+        "handler": {
+          "default": {
+            "$type": "color",
+            "$value": "{color.icon.base.muted}",
+            "$description": "Card tab (grey) drag-handle icon - default (grey-400)"
+          },
+          "hover": {
+            "$type": "color",
+            "$value": "{color.icon.base.muted}",
+            "$description": "Card tab (grey) drag-handle icon - hover (grey-400)"
+          },
+          "grabbed": {
+            "$type": "color",
+            "$value": "{color.icon.base.muted}",
+            "$description": "Card tab (grey) drag-handle icon - grabbed (grey-400)"
+          },
+          "validate": {
+            "$type": "color",
+            "$value": "{color.icon.base.muted}",
+            "$description": "Card tab (grey) drag-handle icon - validate (grey-400)"
+          },
+          "active": {
+            "$type": "color",
+            "$value": "{color.icon.onSolid.default}",
+            "$description": "Card tab (grey) drag-handle icon - active (white)"
+          },
+          "activeHover": {
+            "$type": "color",
+            "$value": "{color.icon.onSolid.default}",
+            "$description": "Card tab (grey) drag-handle icon - active hover (white)"
+          }
+        },
+        "remove": {
+          "icon": {
+            "$type": "color",
+            "$value": "{color.icon.danger.default}",
+            "$description": "Card tab (grey) remove icon - inactive (red-600)"
+          }
+        },
+        "disabled": {
+          "opacity": {
+            "$type": "opacity",
+            "$value": "{opacity.disabled}",
+            "$description": "Card tab (grey) disabled opacity (0.4)"
+          }
+        },
+        "dot": {
+          "bg": {
+            "$type": "color",
+            "$value": "{color.background.custom.solid}",
+            "$description": "Card tab (grey) color-dot interior - inactive (custom-color); active=transparent"
+          },
+          "ring": {
+            "$type": "color",
+            "$value": "{color.background.base.default}",
+            "$description": "Card tab (grey) color-dot ring when active (white)"
+          }
+        },
+        "border": {
+          "default": {
+            "$type": "color",
+            "$value": "{color.border.base.strong}",
+            "$description": "Card tab (grey) border - inactive (grey-300)"
+          },
+          "hover": {
+            "$type": "color",
+            "$value": "{color.border.base.strong}",
+            "$description": "Card tab (grey) border - inactive hover (grey-300)"
+          },
+          "validate": {
+            "$type": "color",
+            "$value": "{color.border.danger.default}",
+            "$description": "Card tab (grey) border - validate (red-600)"
+          }
+        }
+      },
+      "white": {
+        "bg": {
+          "default": {
+            "$type": "color",
+            "$value": "{color.background.base.default}",
+            "$description": "Card tab (white) background - inactive default"
+          },
+          "hover": {
+            "$type": "color",
+            "$value": "{color.background.base.default}",
+            "$description": "Card tab (white) background - inactive hover"
+          },
+          "grabbed": {
+            "$type": "color",
+            "$value": "{color.background.base.default}",
+            "$description": "Card tab (white) background - inactive grabbed"
+          },
+          "active": {
+            "$type": "color",
+            "$value": "{color.background.custom.solid}",
+            "$description": "Card tab (white) background - active (custom-color)"
+          },
+          "activeHover": {
+            "$type": "color",
+            "$value": "{color.background.custom.solidHover}",
+            "$description": "Card tab (white) background - active hover (custom-color, lighter)"
+          },
+          "validateActive": {
+            "$type": "color",
+            "$value": "{color.background.danger.solid}",
+            "$description": "Card tab (white) background - validate active (red-600)"
+          },
+          "validateActiveHover": {
+            "$type": "color",
+            "$value": "{color.background.danger.solidHover}",
+            "$description": "Card tab (white) background - validate active hover"
+          }
+        },
+        "text": {
+          "default": {
+            "$type": "color",
+            "$value": "{color.text.base.muted}",
+            "$description": "Card tab (white) label - default (grey-600)"
+          },
+          "hover": {
+            "$type": "color",
+            "$value": "{color.text.base.default}",
+            "$description": "Card tab (white) label - hover (grey-800)"
+          },
+          "grabbed": {
+            "$type": "color",
+            "$value": "{color.text.base.default}",
+            "$description": "Card tab (white) label - grabbed (grey-800)"
+          },
+          "validate": {
+            "$type": "color",
+            "$value": "{color.text.base.default}",
+            "$description": "Card tab (white) label - validate (grey-800)"
+          },
+          "active": {
+            "$type": "color",
+            "$value": "{color.text.onSolid.default}",
+            "$description": "Card tab (white) label - active (white)"
+          },
+          "activeHover": {
+            "$type": "color",
+            "$value": "{color.text.onSolid.default}",
+            "$description": "Card tab (white) label - active hover (white)"
+          }
+        },
+        "icon": {
+          "default": {
+            "$type": "color",
+            "$value": "{color.icon.base.default}",
+            "$description": "Card tab (white) icon - default (grey-600)"
+          },
+          "hover": {
+            "$type": "color",
+            "$value": "{color.icon.base.default}",
+            "$description": "Card tab (white) icon - hover (grey-600)"
+          },
+          "grabbed": {
+            "$type": "color",
+            "$value": "{color.icon.base.default}",
+            "$description": "Card tab (white) icon - grabbed (grey-600)"
+          },
+          "validate": {
+            "$type": "color",
+            "$value": "{color.icon.base.default}",
+            "$description": "Card tab (white) icon - validate (grey-600)"
+          },
+          "active": {
+            "$type": "color",
+            "$value": "{color.icon.onSolid.default}",
+            "$description": "Card tab (white) icon - active (white)"
+          },
+          "activeHover": {
+            "$type": "color",
+            "$value": "{color.icon.onSolid.default}",
+            "$description": "Card tab (white) icon - active hover (white)"
+          }
+        },
+        "handler": {
+          "default": {
+            "$type": "color",
+            "$value": "{color.icon.base.muted}",
+            "$description": "Card tab (white) drag-handle icon - default (grey-400)"
+          },
+          "hover": {
+            "$type": "color",
+            "$value": "{color.icon.base.muted}",
+            "$description": "Card tab (white) drag-handle icon - hover (grey-400)"
+          },
+          "grabbed": {
+            "$type": "color",
+            "$value": "{color.icon.base.muted}",
+            "$description": "Card tab (white) drag-handle icon - grabbed (grey-400)"
+          },
+          "validate": {
+            "$type": "color",
+            "$value": "{color.icon.base.muted}",
+            "$description": "Card tab (white) drag-handle icon - validate (grey-400)"
+          },
+          "active": {
+            "$type": "color",
+            "$value": "{color.icon.onSolid.default}",
+            "$description": "Card tab (white) drag-handle icon - active (white)"
+          },
+          "activeHover": {
+            "$type": "color",
+            "$value": "{color.icon.onSolid.default}",
+            "$description": "Card tab (white) drag-handle icon - active hover (white)"
+          }
+        },
+        "remove": {
+          "icon": {
+            "$type": "color",
+            "$value": "{color.icon.danger.default}",
+            "$description": "Card tab (white) remove icon - inactive (red-600)"
+          }
+        },
+        "disabled": {
+          "opacity": {
+            "$type": "opacity",
+            "$value": "{opacity.disabled}",
+            "$description": "Card tab (white) disabled opacity (0.4)"
+          }
+        },
+        "dot": {
+          "bg": {
+            "$type": "color",
+            "$value": "{color.background.custom.solid}",
+            "$description": "Card tab (white) color-dot interior - inactive (custom-color); active=transparent"
+          },
+          "ring": {
+            "$type": "color",
+            "$value": "{color.background.base.default}",
+            "$description": "Card tab (white) color-dot ring when active (white)"
+          }
+        },
+        "shadow": {
+          "$type": "boxShadow",
+          "$value": "{Shadows.Shadow 1}",
+          "$description": "Card tab (white) elevation shadow (shadow-1)"
+        }
+      }
+    }
+  },
+  "cruds": {
+    "default": {
+      "idle": {
+        "$type": "color",
+        "$value": "{color.icon.base.default}",
+        "$description": "Cruds default action icon - idle (grey-600; add/duplicate/edit/move)"
+      },
+      "hover": {
+        "$type": "color",
+        "$value": "{color.icon.brand.default}",
+        "$description": "Cruds default action icon - hover (blue-600)"
+      },
+      "disabled": {
+        "$type": "color",
+        "$value": "{color.border.base.strong}",
+        "$description": "Cruds action icon - disabled/inactive (grey-300; brak tokena icon dla grey-300)"
+      }
+    },
+    "danger": {
+      "idle": {
+        "$type": "color",
+        "$value": "{color.icon.danger.default}",
+        "$description": "Cruds danger action icon (delete/remove, red-600)"
+      }
+    }
+  },
+  "calendar": {
+    "day": {
+      "default": {
+        "text": {
+          "$type": "color",
+          "$value": "{color.text.base.subtle}",
+          "$description": "Calendar day - default text (grey-700, wg kodu; bg transparent)"
+        },
+        "bg": {
+          "$type": "color",
+          "$value": "{color.background.base.muted}",
+          "$description": "Calendar day - default bg (grey-100 muted circle)"
+        }
+      },
+      "hover": {
+        "text": {
+          "$type": "color",
+          "$value": "{color.text.brand.default}",
+          "$description": "Calendar day - hover text (blue-600)"
+        },
+        "bg": {
+          "$type": "color",
+          "$value": "{color.background.base.muted}",
+          "$description": "Calendar day - hover bg (grey-100)"
+        }
+      },
+      "disabled": {
+        "text": {
+          "$type": "color",
+          "$value": "{color.text.base.disabled}",
+          "$description": "Calendar day - disabled text (grey-400, wg kodu)"
+        },
+        "bg": {
+          "$type": "color",
+          "$value": "{color.background.base.default}",
+          "$description": "Calendar day - disabled bg (white)"
+        }
+      },
+      "pastFuture": {
+        "text": {
+          "$type": "color",
+          "$value": "{color.text.base.disabled}",
+          "$description": "Calendar day - outside-month/past-future text (grey-400, wg kodu)"
+        },
+        "bg": {
+          "$type": "color",
+          "$value": "{color.background.base.default}",
+          "$description": "Calendar day - outside/past-future bg (white)"
+        }
+      },
+      "range": {
+        "text": {
+          "$type": "color",
+          "$value": "{color.text.brand.default}",
+          "$description": "Calendar day - in-range text (blue-600)"
+        },
+        "bg": {
+          "$type": "color",
+          "$value": "{color.background.brand.subtleHover}",
+          "$description": "Calendar day - in-range bg (blue-100)"
+        }
+      },
+      "selected": {
+        "text": {
+          "$type": "color",
+          "$value": "{color.text.onSolid.default}",
+          "$description": "Calendar day - selected text (white on blue)"
+        },
+        "bg": {
+          "$type": "color",
+          "$value": "{color.background.brand.solid}",
+          "$description": "Calendar day - selected bg (blue-600)"
+        }
+      },
+      "today": {
+        "text": {
+          "$type": "color",
+          "$value": "{color.text.warning.default}",
+          "$description": "Calendar day - today text (yellow-700)"
+        },
+        "bg": {
+          "$type": "color",
+          "$value": "{color.background.warning.subtleHover}",
+          "$description": "Calendar day - today bg (yellow-50)"
+        },
+        "border": {
+          "$type": "color",
+          "$value": "{color.border.warning.default}",
+          "$description": "Calendar day - today ring border (yellow-600)"
+        }
+      }
+    },
+    "headers": {
+      "text": {
+        "$type": "color",
+        "$value": "{color.text.base.default}",
+        "$description": "Calendar weekday header labels text (grey-800)"
+      }
+    }
+  },
+  "image": {
+    "thumbnail": {
+      "bg": {
+        "$type": "color",
+        "$value": "{color.background.base.subtle}",
+        "$description": "Image thumbnail (Clip) background (grey-050)"
+      }
+    },
+    "placeholder": {
+      "bg": {
+        "$type": "color",
+        "$value": "{color.background.base.subtle}",
+        "$description": "Image placeholder/empty/broken/fallback background (grey-050)"
+      },
+      "fg": {
+        "$type": "color",
+        "$value": "{color.icon.base.default}",
+        "$description": "Image placeholder icon/text color (grey-600)"
+      }
+    },
+    "hoverOverlay": {
+      "bg": {
+        "$extensions": {
+          "studio.tokens": {
+            "modify": {
+              "type": "alpha",
+              "value": "0.3",
+              "space": "srgb"
+            }
+          }
+        },
+        "$type": "color",
+        "$value": "{color.grey.900}",
+        "$description": "Image hover dark scrim (grey-900 @30%, via modify:alpha; scrim pozostaje ciemny w obu trybach)"
+      },
+      "icon": {
+        "$type": "color",
+        "$value": "{color.icon.onSolid.default}",
+        "$description": "Image hover overlay show-icon (white on scrim)"
+      }
+    },
+    "preview": {
+      "backdrop": {
+        "$extensions": {
+          "studio.tokens": {
+            "modify": {
+              "type": "alpha",
+              "value": "0.8",
+              "space": "srgb"
+            }
+          }
+        },
+        "$type": "color",
+        "$value": "{color.grey.900}",
+        "$description": "Image preview/lightbox backdrop (grey-900 @80%, via modify:alpha)"
+      }
+    }
+  },
+  "skeleton": {
+    "bg": {
+      "$type": "color",
+      "$value": "{color.background.base.subtle}",
+      "$description": "Skeleton base surface (grey-050)"
+    },
+    "gradient": {
+      "$type": "color",
+      "$value": "linear-gradient(90deg, {color.background.base.default} 0%, {color.background.base.muted} 17%, {color.border.base.strong} 100%)",
+      "$description": "Skeleton shimmer gradient (white -> grey-100 -> grey-300, z semantyki; flipuje dark/light). grey-300 = border.base.strong (brak background@grey-300)."
+    }
+  },
+  "tooltip": {
+    "surface": {
+      "bg": {
+        "$type": "color",
+        "$value": "{color.background.overlay.solid}",
+        "$description": "Tooltip surface bg (grey-800@90%, overlay-inverse; flipuje dark/light)"
+      }
+    },
+    "footer": {
+      "bg": {
+        "$type": "color",
+        "$value": "{color.background.overlay.solid}",
+        "$description": "Tooltip footer/button-bar bg (grey-800@90%)"
+      }
+    },
+    "text": {
+      "$type": "color",
+      "$value": "{color.text.onSolid.subtle}",
+      "$description": "Tooltip body text (grey-200 on dark, onSolid)"
+    },
+    "header": {
+      "icon": {
+        "$type": "color",
+        "$value": "{color.icon.onSolid.default}",
+        "$description": "Tooltip header icon (white on dark, onSolid)"
+      }
+    },
+    "shadow": {
+      "$type": "boxShadow",
+      "$value": "{Shadows.Shadow 2}",
+      "$description": "Tooltip wrapper elevation (shadow-2)"
+    }
+  },
+  "code-snippet": {
+    "syntax": {
+      "base": {
+        "$type": "color",
+        "$value": "{color.grey.700}",
+        "$description": ".hljs base code text (grey-700). PRYMITYW - do przeniesienia na semantyke code-syntax pozniej"
+      },
+      "keyword": {
+        "$type": "color",
+        "$value": "{color.blue.600}",
+        "$description": ".hljs-attr/meta/selector-class/keyword/variable/link (blue-600, prymityw)"
+      },
+      "comment": {
+        "$type": "color",
+        "$value": "{color.cyan.600}",
+        "$description": ".hljs-comment/doctag/quote (cyan-600, prymityw)"
+      },
+      "params": {
+        "$type": "color",
+        "$value": "{color.grey.600}",
+        "$description": ".hljs-params (grey-600, prymityw)"
+      },
+      "regexp": {
+        "$type": "color",
+        "$value": "{color.violet.600}",
+        "$description": ".hljs-regexp (violet-600, prymityw)"
+      },
+      "literal": {
+        "$type": "color",
+        "$value": "{color.red.600}",
+        "$description": ".hljs-tag/selector-id/number/literal (red-600, prymityw)"
+      },
+      "builtin": {
+        "$type": "color",
+        "$value": "{color.orange.600}",
+        "$description": ".hljs-built_in/title/deletion (orange-600, prymityw)"
+      },
+      "type": {
+        "$type": "color",
+        "$value": "{color.yellow.600}",
+        "$description": ".hljs-type/section/function/name/property/attribute (yellow-600, prymityw)"
+      },
+      "string": {
+        "$type": "color",
+        "$value": "{color.green.600}",
+        "$description": ".hljs-string/subst/symbol/bullet/addition (green-600, prymityw)"
+      },
+      "selectorTag": {
+        "$type": "color",
+        "$value": "{color.purple.600}",
+        "$description": ".hljs-selector-tag (purple-600, prymityw)"
+      }
+    },
+    "inlineCode": {
+      "text": {
+        "$type": "color",
+        "$value": "{color.pink.600}",
+        "$description": "Inline <code> text (pink-600; kod #e31a5d, Figma Pink-600)"
+      },
+      "bg": {
+        "$type": "color",
+        "$value": "{color.pink.100}",
+        "$description": "Inline <code> background (pink-100)"
       }
     }
   },
@@ -3955,7 +4713,7 @@
         "vertical": {
           "$type": "dimension",
           "$value": "{inset.xl} - 4",
-          "$description": "Page header vertical padding (20px). TODO: visual diff → docelowo {inset.xl}"
+          "$description": "Page header vertical padding (20px). TODO: visual diff → docelowo inset.xl"
         }
       },
       "gap": {
@@ -4089,7 +4847,7 @@
         "bottomIcon": {
           "$type": "dimension",
           "$value": "{inset.md} - 2",
-          "$description": "Tab item bottom padding for Icon/Icon+Text variants (10px). TODO: visual diff → docelowo {inset.sm} or {inset.md}"
+          "$description": "Tab item bottom padding for Icon/Icon+Text variants (10px). TODO: visual diff → docelowo inset.sm or inset.md"
         }
       },
       "gap": {
