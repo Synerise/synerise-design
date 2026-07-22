@@ -31,6 +31,11 @@ export type TagProps = WithHTMLAttributes<
     suffixel?: ReactNode;
     texts?: TagTexts;
     asPill?: boolean;
+    /**
+     * @deprecated No-op on `Tag` — it has no CSS rule and is filtered from the DOM.
+     * The dashed-border status variant is applied by `ds-status`'s `styled(Tag)` wrapper,
+     * not by `Tag` itself. Kept only for backward compatibility.
+     */
     dashed?: boolean;
     tooltipProps?: TooltipProps;
   }

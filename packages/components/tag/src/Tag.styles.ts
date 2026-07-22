@@ -4,6 +4,27 @@ import { type ThemeProps, type ThemePropsVars } from '@synerise/ds-core';
 
 import { TagShape } from './Tag.types';
 
+/**
+ * DS-specific styling props that must NOT be forwarded to the DOM element.
+ * `dashed` is intentionally consumed-and-ignored (deprecated) — the dashed border is
+ * applied by ds-status's styled(Tag) wrapper, not Tag itself; kept only for API compat.
+ */
+const dsProps = new Set([
+  'isStatusShape',
+  'shape',
+  'color',
+  'textColor',
+  'removable',
+  'disabled',
+  'isActionable',
+  'suffixel',
+  'preffixel',
+  'hasImage',
+  'iconHover',
+  'asPill',
+  'dashed',
+]);
+
 const defaultStatusStyles = css`
   border-radius: 9px;
   font-size: 10px;
@@ -16,12 +37,6 @@ const defaultStatusStyles = css`
   line-height: 18px;
 `;
 export const getColorText = (theme: ThemePropsVars, color?: string): string => {
-  // No color → gray-variant dark text (pairs with the grey-100 no-color fallback bg on
-  // non-SMALL shapes). In practice only SMALL_* tags go color-less, and they set their own
-  // text, but keep the fallback readable.
-  if (!color) {
-    return 'var(--ds-tag-variant-gray-text)';
-  }
   // The grey-200 comparison operand stays a resolved hex (a var() can't be compared in JS).
   return color === theme.palette['grey-200']
     ? 'var(--ds-color-text-base-muted)'
@@ -52,14 +67,11 @@ const getWidthOnHover = (props: InsertShapeStyles): string => {
   return 'calc(100% - 10px)';
 };
 const getFilterColor = (props: TagProps): string => {
-  if (props.iconHover && props.color === props.theme.palette['grey-200']) {
+  if (props.iconHover) {
     return 'brightness(100%)';
   }
   if (props.color === props.theme.palette['grey-200']) {
     return 'brightness(90%)';
-  }
-  if (props.iconHover) {
-    return 'brightness(100%)';
   }
   return 'brightness(110%)';
 };
@@ -312,7 +324,9 @@ type TagProps = {
   dashed?: boolean;
 } & ThemeProps;
 
-export const Content = styled.div<{ iconHover?: boolean }>`
+export const Content = styled.div.withConfig({
+  shouldForwardProp: (prop) => !dsProps.has(prop as string),
+})<{ iconHover?: boolean }>`
   position: relative;
   display: flex;
   align-items: center;
@@ -327,7 +341,9 @@ export const Content = styled.div<{ iconHover?: boolean }>`
    }
 `}
 `;
-export const PrefixWrapper = styled.div<{ iconHover?: boolean }>`
+export const PrefixWrapper = styled.div.withConfig({
+  shouldForwardProp: (prop) => !dsProps.has(prop as string),
+})<{ iconHover?: boolean }>`
   ${addonStyles()};
   ${(props) =>
     !!props.iconHover &&
@@ -343,7 +359,9 @@ export const SuffixWrapper = styled.div`
   ${addonStyles()};
 `;
 export const DefaultSuffixWrapper = styled.div``;
-export const DefaultPrefixWrapper = styled.div<{ iconHover?: boolean }>`
+export const DefaultPrefixWrapper = styled.div.withConfig({
+  shouldForwardProp: (prop) => !dsProps.has(prop as string),
+})<{ iconHover?: boolean }>`
   ${(props) =>
     !!props.iconHover &&
     `.ds-badge-scroll-number{
@@ -355,7 +373,9 @@ export const DefaultPrefixWrapper = styled.div<{ iconHover?: boolean }>`
 }`}
 `;
 
-export const Tag = styled.div<TagProps>`
+export const Tag = styled.div.withConfig({
+  shouldForwardProp: (prop) => !dsProps.has(prop as string),
+})<TagProps>`
   position: relative;
   margin: 4px;
   display: inline-flex;
