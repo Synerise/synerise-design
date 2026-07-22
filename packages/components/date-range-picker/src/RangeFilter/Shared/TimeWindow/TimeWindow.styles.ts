@@ -46,7 +46,7 @@ export const HeaderWrapper = styled.div`
 
 export const SelectionHint = styled.div`
   margin-top: 4px;
-  background: ${(props): string => props.theme.palette['grey-050']};
+  background: var(--ds-dropdown-footer-bg);
   padding: 16px 24px;
   display: flex;
   justify-content: flex-start;

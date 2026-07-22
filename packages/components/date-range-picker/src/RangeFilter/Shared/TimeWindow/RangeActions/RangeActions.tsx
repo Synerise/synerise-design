@@ -1,7 +1,6 @@
 import React from 'react';
 
 import Button from '@synerise/ds-button';
-import { theme } from '@synerise/ds-core';
 import Dropdown from '@synerise/ds-dropdown';
 import Icon, {
   ArrowDownCircleM,
@@ -42,7 +41,10 @@ const RangeActions: React.FC<RangeActionsProps> = ({
           onClick={onRangeClear}
           prefixel={
             <div>
-              <Icon component={<CloseM />} color={theme.palette['red-600']} />
+              <Icon
+                component={<CloseM />}
+                color="var(--ds-color-icon-danger-default)"
+              />
             </div>
           }
         >
@@ -61,7 +63,7 @@ const RangeActions: React.FC<RangeActionsProps> = ({
   return (
     <Dropdown
       overlay={overlay}
-      overlayStyle={{ boxShadow: '0 4px 12px 0 rgba(35, 41, 54, 0.07)' }}
+      overlayStyle={{ boxShadow: 'var(--ds-shadows-shadow-1)' }}
       trigger={['click']}
       align={{ points: ['tr', 'br'] }}
       getPopupContainer={(node): HTMLElement =>

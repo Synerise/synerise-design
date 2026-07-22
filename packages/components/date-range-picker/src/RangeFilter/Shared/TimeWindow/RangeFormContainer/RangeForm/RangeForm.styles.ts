@@ -71,7 +71,7 @@ export const Row = styled.div<{
       background-color: transparent;
     }
     .ant-tooltip-inner {
-      color: ${(props): string => props.theme.palette['grey-600']};
+      color: var(--ds-color-text-base-muted);
     }
   }
 `;

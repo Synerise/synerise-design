@@ -19,12 +19,12 @@ export const BadgeWrapper = styled.div`
 export const Title = styled.h3`
   font-size: 16px;
   line-height: 1.39;
-  color: ${(props): string => props.theme.palette['grey-800']};
+  color: var(--ds-color-text-base-default);
   margin-bottom: 1em;
 `;
 
 export const SuffixText = styled.span`
-  color: ${(props): string => props.theme.palette['blue-600']};
+  color: var(--ds-color-text-brand-default);
   font-weight: 500;
   margin-right: 16px;
 `;
