@@ -82,7 +82,7 @@ export const PlaceholderWrapper = styled.div<{ valuePrefixWidth: number }>`
     VALUE_PREFIX_WRAPPER_LEFT_VALUE +
     valuePrefixWidth +
     (valuePrefixWidth ? VALUE_PREFIX_WRAPPER_RIGHT_MARGIN : 0)}px;
-  color: ${(props) => props.theme.palette['grey-500']};
+  color: var(--ds-search-bar-text-placeholder);
   line-height: 18px;
 `;
 export const SearchBar: StyledInput = styled(Input)`
@@ -97,12 +97,11 @@ export const SearchBar: StyledInput = styled(Input)`
       max-width: 100%;
       height: 52px;
       border: 0;
-      background: ${(props): string => props.theme.palette['grey-050']};
+      background: var(--ds-search-bar-bg-default);
       box-sizing: content-box;
 
       &:focus {
-        box-shadow: inset 0px -2px 0px 0px
-          ${(props): string => props.theme.palette['blue-600']};
+        box-shadow: inset 0px -2px 0px 0px var(--ds-search-bar-border-focus);
       }
       ::-webkit-input-placeholder {
         line-height: 52px;
@@ -135,7 +134,7 @@ export const SearchBarWrapper = styled.div<{
 }>`
   position: relative;
   overflow: hidden;
-  border-bottom: 1px solid ${(props): string => props.theme.palette['grey-100']};
+  border-bottom: 1px solid var(--ds-search-bar-border-default);
   pointer-events: ${(props): string => (props.disabled ? 'none' : '')};
   user-select: ${(props): string => (props.disabled ? 'none' : '')};
   border-radius: ${(props): string => (props.borderRadius ? '3px' : '')};
@@ -145,7 +144,7 @@ export const SearchBarWrapper = styled.div<{
     svg {
       transition: all 0.3s ease-out;
       fill: ${(props): string =>
-        props.disabled ? props.theme.palette['grey-400'] : ''};
+        props.disabled ? 'var(--ds-search-bar-icon-disabled)' : ''};
     }
 
     input {
@@ -157,16 +156,17 @@ export const SearchBarWrapper = styled.div<{
     &:hover {
       ${IconLeftWrapper} {
         svg {
-          fill: ${(props): string => props.theme.palette['blue-600']};
+          fill: var(--ds-search-bar-icon-active);
         }
       }
       ${ClearInputWrapper} {
         svg {
-          fill: ${(props): string => props.theme.palette['red-600']};
+          fill: var(--ds-search-bar-clear-active);
         }
       }
       ${ValuePrefixTitle} {
-        color: ${(props) => props.theme.palette['blue-600']};
+        /* No search-bar prefix-text token → semantic brand text (blue-600, exact). */
+        color: var(--ds-color-text-brand-default);
       }
     }
   }
@@ -174,16 +174,17 @@ export const SearchBarWrapper = styled.div<{
   &.is-focused {
     ${IconLeftWrapper} {
       svg {
-        fill: ${(props): string => props.theme.palette['blue-600']};
+        fill: var(--ds-search-bar-icon-active);
       }
     }
     ${ClearInputWrapper} {
       svg {
-        fill: ${(props): string => props.theme.palette['red-600']};
+        fill: var(--ds-search-bar-clear-active);
       }
     }
     ${ValuePrefixTitle} {
-      color: ${(props) => props.theme.palette['blue-600']};
+      /* No search-bar prefix-text token → semantic brand text (blue-600, exact). */
+      color: var(--ds-color-text-brand-default);
     }
   }
 `;
