@@ -59,28 +59,29 @@ export const EmptyStates = styled(DSEmptyStates)`
 
 export const IconWrapper = styled.div`
   margin-right: 4px;
-  svg {
-    fill: ${(props): string => props.theme.palette['grey-600']};
-  }
+  /* Icon colour flows through the wrapper's \`color\` (DS icons default to
+     fill: currentColor), so no explicit svg fill rule is needed. */
+  color: var(--ds-color-icon-base-default);
 `;
 
 export const FooterWrapper = styled.div`
-  background-color: ${(props): string => props.theme.palette['grey-050']};
+  /* ⚑ Shift: footer bg grey-050 → --ds-dropdown-footer-bg (grey-100, marginally darker). */
+  background-color: var(--ds-dropdown-footer-bg);
   padding: 0 8px;
   height: 48px;
   flex: 0 0 48px;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  color: ${(props): string => props.theme.palette['grey-600']};
+  /* Footer action text default. dropdown module has no footer-text token
+     → exact semantic grey-600. DS follow-up: add a dropdown footer-text token. */
+  color: var(--ds-color-text-base-muted);
   font-weight: 500;
-  border-top: solid 1px ${(props): string => props.theme.palette['grey-100']};
+  border-top: solid 1px var(--ds-dropdown-footer-border);
   &:hover {
-    color: ${(props): string => props.theme.palette['blue-600']};
+    color: var(--ds-color-text-brand-default);
     ${IconWrapper} {
-      svg {
-        fill: ${(props): string => props.theme.palette['blue-600']};
-      }
+      color: var(--ds-color-icon-brand-default);
     }
   }
 `;
@@ -141,7 +142,9 @@ export const Title = styled.div`
   line-height: 1.6;
   font-weight: 500;
   text-transform: uppercase;
-  color: ${(props): string => props.theme.palette['grey-500']};
+  /* Uppercase section-header. list-item module has no section-title token → semantic
+     grey-500 (exact). DS follow-up: add a list-item section-title token. */
+  color: var(--ds-color-text-neutral-default);
   padding: 8px 12px;
 `;
 

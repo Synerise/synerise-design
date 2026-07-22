@@ -19,7 +19,7 @@ export const ListWrapper = styled.div`
   align-items: stretch;
   justify-content: flex-start;
   padding: 8px 0 8px 8px;
-  background: ${({ theme }) => theme.palette.white};
+  background: var(--ds-dropdown-bg);
 `;
 export const StyledScrollbar = styled(Scrollbar)<ScrollbarProps>`
   && {
@@ -30,11 +30,12 @@ export const StyledScrollbar = styled(Scrollbar)<ScrollbarProps>`
 `;
 
 export const DropdownFooter = styled.div`
-  background-color: ${(props) => props.theme.palette['grey-050']};
+  /* ⚑ Shift: footer bg grey-050 → --ds-dropdown-footer-bg (grey-100, marginally darker). */
+  background-color: var(--ds-dropdown-footer-bg);
   height: 52px;
   display: flex;
   align-items: center;
-  border-top: 1px solid ${(props) => props.theme.palette['grey-100']};
+  border-top: 1px solid var(--ds-dropdown-footer-border);
   cursor: default;
   margin: 0;
   padding: 0 8px;

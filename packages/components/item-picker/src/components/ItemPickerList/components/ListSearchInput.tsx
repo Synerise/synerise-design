@@ -7,7 +7,6 @@ import React, {
   useState,
 } from 'react';
 
-import { useTheme } from '@synerise/ds-core';
 import Dropdown from '@synerise/ds-dropdown';
 import Icon, { SearchM } from '@synerise/ds-icon';
 import type { SearchBarProps } from '@synerise/ds-search-bar';
@@ -48,8 +47,6 @@ export const ListSearchInput = ({
   inputRef,
   canPerformListActions,
 }: ListSearchInputProps) => {
-  const theme = useTheme();
-
   const [localSearchQuery, setLocalSearchQuery] = useState('');
 
   const handleSearchChange = useCallback(
@@ -90,12 +87,7 @@ export const ListSearchInput = ({
   return (
     <S.SearchWrapper data-testid="search-wrapper">
       <Dropdown.SearchInput
-        iconLeft={
-          <Icon
-            component={searchByParamConfig?.icon || <SearchM />}
-            color={theme.palette['grey-600']}
-          />
-        }
+        iconLeft={<Icon component={searchByParamConfig?.icon || <SearchM />} />}
         placeholder={
           canPerformListActions
             ? allTexts.searchPlaceholder

@@ -14,7 +14,6 @@ import React, {
 import { type VariableSizeList } from 'react-window';
 import { v4 as uuid } from 'uuid';
 
-import { useTheme } from '@synerise/ds-core';
 import Dropdown from '@synerise/ds-dropdown';
 import Icon, { ArrowLeftM } from '@synerise/ds-icon';
 import { ListContextProvider, itemSizes } from '@synerise/ds-list-item';
@@ -85,8 +84,6 @@ const ItemPickerListInner = <
   }: ItemPickerListProps<ItemType, SectionType>,
   forwardedRef: ItemPickerListRef,
 ) => {
-  const theme = useTheme();
-
   const [searchQuery, setSearchQuery] = useState('');
 
   const listRef = useRef<VariableSizeList>(null);
@@ -324,7 +321,6 @@ const ItemPickerListInner = <
                 <Icon
                   key="hint-arrow-left"
                   size={18}
-                  color={theme.palette.white}
                   component={<ArrowLeftM />}
                 />,
               ],
