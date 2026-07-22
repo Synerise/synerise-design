@@ -66,7 +66,8 @@ export const MainContent = styled.div<{
     min-width: fit-content;
     margin: 4px 0 4px 8px;
     right: 0;
-    background: ${(props) => props.theme.palette['grey-200']};
+    /* ⚑ Shift: value chip bg grey-200 → --ds-color-background-base-muted (grey-100, lighter). */
+    background: var(--ds-color-background-base-muted);
   }
   &::before {
     content: '';
@@ -74,7 +75,7 @@ export const MainContent = styled.div<{
     position: fixed;
     ${gradientOverlayStyles()}
     background-image: ${(props) => `-webkit-linear-gradient( left,
-    ${props.focus ? props.theme.palette['blue-050'] : props.theme.palette.white} 0%,
+    ${props.focus ? 'var(--ds-form-field-bg-focus)' : 'var(--ds-form-field-bg-default)'} 0%,
     rgba(255,255,255,0) 100%
   )`};
   }
@@ -92,7 +93,7 @@ export const RightSide = styled.div<{
     content: ${(props) => (props.gradientOverlap ? `''` : 'none')};
     ${gradientOverlayStyles()}
     background-image: ${(props) => `-webkit-linear-gradient( right,
-    ${props.focus ? props.theme.palette['blue-050'] : props.theme.palette.white} 0%,
+    ${props.focus ? 'var(--ds-form-field-bg-focus)' : 'var(--ds-form-field-bg-default)'} 0%,
     rgba(255,255,255,0) 100%
   )`};
     position: absolute;
@@ -134,10 +135,10 @@ export const CollectorValue = styled(Value)<{ hasError?: boolean }>`
     props.hasError &&
     css`
       && {
-        background: ${props.theme.palette['red-600']};
-        color: ${props.theme.palette.white};
+        background: var(--ds-color-background-danger-solid);
+        color: var(--ds-color-text-onsolid-danger);
         ${IconWrapper} {
-          color: ${props.theme.palette.white};
+          color: var(--ds-color-icon-onsolid-danger);
         }
       }
     `}
@@ -157,14 +158,15 @@ export const CustomContentWrapper = styled.div`
   z-index: 99;
 `;
 export const DropdownContent = styled.div<{ visible?: boolean }>`
-  background: ${(props) => props.theme.palette.white};
+  background: var(--ds-dropdown-bg);
   border-radius: 3px;
   padding: 8px 0 8px 8px;
   position: absolute;
   width: 100%;
   top: 4px;
   left: 0;
-  box-shadow: 0 16px 32px 0 rgba(35, 41, 54, 0.12);
+  /* ⚑ Shift: overlay shadow α 0.12 → --ds-dropdown-shadow (= shadow-2, α 0.10, marginally lighter). */
+  box-shadow: var(--ds-dropdown-shadow);
   z-index: 99;
 `;
 
@@ -214,17 +216,18 @@ export const DividerContainer = styled.div`
 `;
 export const NavigationWrapper = styled.div`
   margin-top: 8px;
-  border-top: 1px solid ${(props) => props.theme.palette['grey-100']};
-  background: ${(props) => props.theme.palette['grey-050']};
+  border-top: 1px solid var(--ds-dropdown-footer-border);
+  /* ⚑ Shift: footer bg grey-050 → --ds-dropdown-footer-bg (grey-100, marginally darker). */
+  background: var(--ds-dropdown-footer-bg);
   padding: 12px 16px;
   margin-left: -8px;
   margin-bottom: -8px;
-  color: ${(props) => props.theme.palette['grey-400']};
+  /* Footer hint text + icon are grey-400. dropdown module has no footer-text/-icon token
+     (only footer-bg/-border) → exact semantic grey-400; the icon inherits via currentColor
+     (svg fill rule dropped). DS follow-up: add dropdown footer-text/footer-icon tokens. */
+  color: var(--ds-color-text-base-disabled);
   display: flex;
   align-items: center;
-  .ds-icon > svg {
-    fill: ${(props) => props.theme.palette['grey-400']};
-  }
   span {
     margin-left: 2px;
     margin-right: 8px;
