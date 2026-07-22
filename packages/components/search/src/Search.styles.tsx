@@ -54,7 +54,7 @@ export const LeftSide = styled.span<{ isOpen: boolean }>`
 export const Filter = styled.div`
   display: flex;
   align-items: center;
-  color: ${(props): string => props.theme.palette['blue-600']};
+  color: var(--ds-color-text-brand-default);
   font-weight: 500;
   max-width: ${MAX_FILTER_WIDTH}px;
   direction: ltr;
@@ -74,7 +74,7 @@ export const Filter = styled.div`
     margin-left: 4px;
   }
   svg {
-    fill: ${(props): string => props.theme.palette['blue-600']};
+    fill: var(--ds-color-icon-brand-default);
   }
 `;
 
@@ -85,7 +85,7 @@ export const Icon = styled.div`
 export const Label = styled.div`
   font-size: 13px;
   font-weight: 500;
-  color: ${(props): string => props.theme.palette['blue-600']};
+  color: var(--ds-color-text-brand-default);
 `;
 
 export const SearchButton = styled.div<{
@@ -103,8 +103,8 @@ export const SearchButton = styled.div<{
   svg {
     fill: ${(props): string =>
       props.inputFocused && props.isOpen
-        ? props.theme.palette['blue-600']
-        : props.theme.palette['grey-600']} !important;
+        ? 'var(--ds-color-icon-brand-default)'
+        : 'var(--ds-form-icon-color-default)'} !important;
   }
 
   .btn-search-open:hover {
@@ -139,9 +139,9 @@ export const SearchInner = styled.div<{
     (props.hasValue || props.alwaysHighlight) &&
     `
   input, input:hover{
-        box-shadow: inset 0 0 0 1px ${props.theme.palette['blue-600']};
-        border-color: ${props.theme.palette['blue-600']};
-        background-color: ${props.theme.palette['blue-050']};
+        box-shadow: inset 0 0 0 1px var(--ds-form-field-border-focus);
+        border-color: var(--ds-form-field-border-focus);
+        background-color: var(--ds-form-field-bg-focus);
    }
 
   `}
@@ -150,9 +150,9 @@ export const SearchInner = styled.div<{
      resting border set on the native input above. */
   &:focus-within input,
   &:focus-within input:hover {
-    box-shadow: inset 0 0 0 1px ${(props) => props.theme.palette['blue-600']} !important;
-    border-color: ${(props) => props.theme.palette['blue-600']};
-    background-color: ${(props) => props.theme.palette['blue-050']};
+    box-shadow: inset 0 0 0 1px var(--ds-form-field-border-focus) !important;
+    border-color: var(--ds-form-field-border-focus);
+    background-color: var(--ds-form-field-bg-focus);
   }
   input::placeholder {
     line-height: 1.29;
@@ -171,10 +171,10 @@ export const SearchNativeInput = styled.input`
   height: 32px;
   margin: 0;
   padding: 7px 12px;
-  border: 1px solid ${(props): string => props.theme.palette['grey-300']};
+  border: 1px solid var(--ds-form-field-border-default);
   border-radius: 3px;
-  background-color: ${(props): string => props.theme.palette.white};
-  color: ${(props): string => props.theme.palette['grey-700']};
+  background-color: var(--ds-form-field-bg-default);
+  color: var(--ds-form-field-text-value);
   font-family: inherit;
   font-size: 13px;
   line-height: 1.54;
@@ -183,16 +183,17 @@ export const SearchNativeInput = styled.input`
   transition: all 0.3s;
 
   &::placeholder {
-    color: ${(props): string => props.theme.palette['grey-500']};
+    color: var(--ds-form-field-text-placeholder);
   }
 
   &:hover:not(:disabled) {
-    border-color: ${(props): string => props.theme.palette['grey-400']};
+    border-color: var(--ds-form-field-border-hover);
   }
 
   &:disabled {
-    background-color: ${(props): string => props.theme.palette['grey-050']};
-    color: ${(props): string => props.theme.palette['grey-400']};
+    /* ⚑ Shift: disabled bg grey-050 → --ds-form-field-bg-disabled (grey-100, aligns to form standard). */
+    background-color: var(--ds-form-field-bg-disabled);
+    color: var(--ds-form-field-text-disabled);
     cursor: not-allowed;
   }
 `;
@@ -214,7 +215,7 @@ export const SearchInputContent = styled.div<{
     width: 100%;
     overflow: visible;
     input {
-      color: ${(props): string => props.theme.palette['grey-700']};
+      color: var(--ds-form-field-text-value);
       padding-left: ${(props): string =>
         props.filterLabel && props.offset
           ? `${Math.round(props.offset + LABEL_LEFT_OFFSET)}px`
@@ -243,13 +244,13 @@ export const SearchDropdownContent = styled.div<{
 }>`
   position: absolute;
   top: 40px;
-  background: ${(props): string => props.theme.palette.white};
+  background: var(--ds-dropdown-bg);
   max-height: ${(props): string => `${props.maxHeight}px`};
   direction: ltr;
   opacity: 0;
   display: none;
   border-radius: 3px;
-  box-shadow: 0 16px 32px 0 rgba(35, 41, 54, 0.1);
+  box-shadow: var(--ds-dropdown-shadow);
   box-sizing: border-box;
   transition:
     opacity 0.5s ease-in-out,
@@ -267,7 +268,9 @@ export const MenuHeader = styled.div`
   font-size: 10px;
   font-weight: 500;
   text-transform: uppercase;
-  color: ${(props): string => props.theme.palette['grey-500']};
+  /* Uppercase section header. list-item module has no section-title token → semantic
+     grey-500 (exact). DS follow-up: add a list-item section-title token. */
+  color: var(--ds-color-text-neutral-default);
   height: 16px;
   margin: 12px;
   line-height: 1.6;
@@ -275,8 +278,9 @@ export const MenuHeader = styled.div`
 `;
 
 export const HeaderIconWrapper = styled.div`
+  /* header (i) InfoFillS info icon → form label/info-icon token (grey-400, exact). */
   & > .ds-icon > svg {
-    fill: ${(props): string => props.theme.palette['grey-400']};
+    fill: var(--ds-form-label-icon-color);
   }
 `;
 

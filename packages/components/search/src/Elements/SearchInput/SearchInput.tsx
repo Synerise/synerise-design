@@ -7,7 +7,6 @@ import React, {
   useState,
 } from 'react';
 
-import { theme } from '@synerise/ds-core';
 import Icon, { Close3M } from '@synerise/ds-icon';
 import Tooltip from '@synerise/ds-tooltip';
 import { useOnClickOutside, usePrevious } from '@synerise/ds-utils';
@@ -233,7 +232,7 @@ const SearchInput = ({
                 <Close3M />
               </Tooltip>
             }
-            color={theme.palette['red-600']}
+            color="var(--ds-color-icon-danger-default)"
             size={18}
           />
         </S.ClearButton>
