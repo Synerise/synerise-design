@@ -14,7 +14,7 @@ export const CrudsContainer = styled.div`
   .moveup,
   .movedown {
     svg {
-      fill: ${(props): string => props.theme.palette['grey-600']};
+      fill: var(--ds-cruds-default-idle);
     }
   }
 
@@ -25,14 +25,14 @@ export const CrudsContainer = styled.div`
   .moveup:hover,
   .movedown:hover {
     svg {
-      fill: ${(props): string => props.theme.palette['blue-600']};
+      fill: var(--ds-cruds-default-hover);
     }
   }
 
   .delete,
   .remove {
     svg {
-      fill: ${(props): string => props.theme.palette['red-600']};
+      fill: var(--ds-cruds-danger-idle);
     }
   }
 `;
@@ -46,7 +46,7 @@ export const IconWrapper = styled.div<{ inactive?: boolean }>`
         cursor: default;
         svg {
           pointer-events: none;
-          fill: ${props.theme.palette['grey-300']};
+          fill: var(--ds-cruds-default-disabled);
         }
       }
     `}

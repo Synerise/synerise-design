@@ -125,7 +125,7 @@ Single at-a-glance view of every colour-bearing component: migration **status** 
 | confirmation | semantic | ✅ | — |
 | context-selector | semantic | ✅ | — |
 | copy-icon | semantic | ✅ | — |
-| cruds | semantic | ❌ | **cruds tokens pending** |
+| cruds | module | ✅ | — |
 | date-picker | semantic | 🚧 | dropdown + calendar pending |
 | date-range-picker | semantic | 🚧 | dropdown + calendar + tag pending |
 | description-line | module | ✅ | — |
