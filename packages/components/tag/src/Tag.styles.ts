@@ -19,7 +19,7 @@ export const getColorText = (theme: ThemePropsVars, color?: string): string => {
   // The grey-200 comparison operand stays a resolved hex (a var() can't be compared in JS).
   return color === theme.palette['grey-200']
     ? 'var(--ds-color-text-base-muted)'
-    : 'var(--ds-color-text-onsolid-default)';
+    : 'var(--ds-tag-variant-color-text)';
 };
 
 type InsertShapeStyles = {
@@ -90,7 +90,7 @@ export const RemoveButton = styled.div`
   opacity: 0.8;
 
   &:before {
-    color: ${(props) => props.color || 'var(--ds-color-icon-danger-default)'};
+    color: ${(props) => props.color || 'var(--ds-tag-remove-icon)'};
     filter: brightness(70%);
     opacity: 0.3;
     content: '';
@@ -103,7 +103,7 @@ export const RemoveButton = styled.div`
 
   &&&:hover {
     .ds-icon {
-      color: var(--ds-color-icon-danger-default);
+      color: var(--ds-tag-remove-icon);
     }
   }
   .icon {
@@ -117,7 +117,7 @@ const insertShapeStyles = (props: InsertShapeStyles) => {
   switch (props.shape) {
     case TagShape.SMALL_SQUARE:
       return css`
-        color: ${props.textColor || 'var(--ds-color-text-onsolid-default)'};
+        color: ${props.textColor || 'var(--ds-tag-variant-color-text)'};
         border-radius: 3px;
         font-size: 10px;
         height: 14px;
@@ -130,7 +130,7 @@ const insertShapeStyles = (props: InsertShapeStyles) => {
 
     case TagShape.SMALL_ROUND:
       return css`
-        color: ${props.textColor || 'var(--ds-color-text-onsolid-default)'};
+        color: ${props.textColor || 'var(--ds-tag-variant-color-text)'};
         border-radius: 8px;
         font-size: 10px;
         height: 14px;
@@ -378,7 +378,7 @@ export const Tag = styled.div<TagProps>`
   ${(props) =>
     !!props.disabled &&
     css`
-      opacity: var(--ds-opacity-disabled);
+      opacity: var(--ds-tag-disabled-opacity);
       cursor: not-allowed;
     `}
 

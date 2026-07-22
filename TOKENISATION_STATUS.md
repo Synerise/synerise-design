@@ -200,7 +200,7 @@ Single at-a-glance view of every colour-bearing component: migration **status** 
 | table | semantic | ⛔ | — |
 | table-new | semantic | 🚧 | **WIP** |
 | tabs | module | 🚧 | — |
-| tag | semantic | ✅ | — |
+| tag | module (partial) | 🚧 | gray-variant redesign deferred (consumer audit + UX) |
 | tags | semantic | ✅ | — |
 | time-picker | module | ✅ | — |
 | toast | module | ✅ | — |
