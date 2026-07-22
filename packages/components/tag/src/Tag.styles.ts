@@ -16,6 +16,12 @@ const defaultStatusStyles = css`
   line-height: 18px;
 `;
 export const getColorText = (theme: ThemePropsVars, color?: string): string => {
+  // No color → gray-variant dark text (pairs with the grey-100 no-color fallback bg on
+  // non-SMALL shapes). In practice only SMALL_* tags go color-less, and they set their own
+  // text, but keep the fallback readable.
+  if (!color) {
+    return 'var(--ds-tag-variant-gray-text)';
+  }
   // The grey-200 comparison operand stays a resolved hex (a var() can't be compared in JS).
   return color === theme.palette['grey-200']
     ? 'var(--ds-color-text-base-muted)'
@@ -117,7 +123,7 @@ const insertShapeStyles = (props: InsertShapeStyles) => {
   switch (props.shape) {
     case TagShape.SMALL_SQUARE:
       return css`
-        color: ${props.textColor || 'var(--ds-tag-variant-color-text)'};
+        color: ${props.textColor || 'var(--ds-tag-pill-text)'};
         border-radius: 3px;
         font-size: 10px;
         height: 14px;
@@ -130,7 +136,7 @@ const insertShapeStyles = (props: InsertShapeStyles) => {
 
     case TagShape.SMALL_ROUND:
       return css`
-        color: ${props.textColor || 'var(--ds-tag-variant-color-text)'};
+        color: ${props.textColor || 'var(--ds-tag-pill-text)'};
         border-radius: 8px;
         font-size: 10px;
         height: 14px;
@@ -392,7 +398,11 @@ export const Tag = styled.div<TagProps>`
         left: 0;
         width: 100%;
         height: 100%;
-        background-color: ${props.color || props.theme.palette['grey-500']};
+        background-color: ${props.color ||
+        (props.shape === TagShape.SMALL_SQUARE ||
+        props.shape === TagShape.SMALL_ROUND
+          ? 'var(--ds-tag-pill-bg-gray)'
+          : 'var(--ds-tag-variant-gray-bg-default)')};
       }
 
       ${props.isActionable &&
