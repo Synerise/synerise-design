@@ -5706,6 +5706,9 @@ importers:
       '@synerise/ds-card-tabs':
         specifier: workspace:^
         version: link:../components/card-tabs
+      '@synerise/ds-carousel':
+        specifier: workspace:^
+        version: link:../components/carousel
       '@synerise/ds-cascader':
         specifier: workspace:^
         version: link:../components/cascader

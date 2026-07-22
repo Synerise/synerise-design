@@ -1,0 +1,213 @@
+import { Meta, Canvas } from '@storybook/addon-docs/blocks';
+
+import CarouselMeta, {
+  Default,
+  Fade,
+  MultipleSlides,
+  NonInfinite,
+  Autoplay,
+  WithoutDots,
+  ImperativeControls,
+} from './Carousel.stories';
+
+<Meta of={CarouselMeta} />
+
+# Carousel
+
+A fully native (no Ant Design) carousel: slides with `scrollx` / `fade` transitions,
+optional autoplay, built-in dot navigation, and an imperative `goTo` / `next` / `prev`
+ref. Built to replace the antd `Carousel` that `@synerise/ds-banner` and
+`@synerise/ds-popconfirm` depended on — pure styled-components + theme tokens, emitting
+`ds-carousel-*` DOM class hooks for styling and tests.
+
+## Quick overview
+
+- Import the default export: `import Carousel from '@synerise/ds-carousel';`
+- **Slides**: one child per slide — `<Carousel><div>…</div><div>…</div></Carousel>`.
+- **Transition**: `effect="scrollx"` (default) slides the track; `effect="fade"`
+  cross-fades in place (inherently single-slide).
+- **Multi-slide**: `slidesToShow` renders several slides at once (`scrollx` only);
+  `slidesToScroll` sets how many advance per step.
+- **Navigation**: built-in `dots` (hidden for a single slide), or drive it yourself
+  via the `ref` (`goTo` / `next` / `prev`) — the surface antd's `CarouselRef` gave.
+- **Autoplay**: `autoplay` + `autoplaySpeed` (ms). `infinite` loops at the ends;
+  `infinite={false}` clamps to the first / last view.
+- **Callbacks**: `beforeChange(from, to)` fires as a transition starts;
+  `afterChange(current)` ~500 ms later when it completes.
+
+## Basic example
+
+<Canvas of={Default} sourceState="shown" />
+
+## Fade
+
+`effect="fade"` stacks the slides and cross-fades between them instead of sliding.
+
+<Canvas of={Fade} />
+
+## Multiple slides
+
+`slidesToShow` shows several slides at once and `slidesToScroll` controls the step —
+the shape consumers like the puib `CardWithSlider` product strip use
+(`infinite={false}`, `dots={false}`, ref `next` / `prev`).
+
+<Canvas of={MultipleSlides} />
+
+## Infinite vs clamped
+
+`infinite={false}` clamps navigation to the first / last view rather than wrapping.
+
+<Canvas of={NonInfinite} />
+
+## Autoplay
+
+`autoplay` auto-advances every `autoplaySpeed` milliseconds.
+
+<Canvas of={Autoplay} />
+
+## Without dots
+
+`dots={false}` hides the built-in navigation — pair it with the imperative ref.
+
+<Canvas of={WithoutDots} />
+
+## Imperative control
+
+Grab a `ref` and call `goTo(index)` / `next()` / `prev()`; `afterChange` reports the
+new index once the transition settles.
+
+<Canvas of={ImperativeControls} />
+
+## API reference
+
+### `Carousel`
+
+`forwardRef<CarouselRef, CarouselProps>` — the default export.
+
+{/* MDX does not render markdown tables correctly — always use HTML tables */}
+
+<table>
+  <thead>
+    <tr>
+      <th>Prop</th>
+      <th>Type</th>
+      <th>Default</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>children</code></td>
+      <td><code>ReactNode</code></td>
+      <td>—</td>
+      <td>One child per slide.</td>
+    </tr>
+    <tr>
+      <td><code>effect</code></td>
+      <td><code>'scrollx' | 'fade'</code></td>
+      <td><code>'scrollx'</code></td>
+      <td>Slide transition. <code>fade</code> is inherently single-slide.</td>
+    </tr>
+    <tr>
+      <td><code>slidesToShow</code></td>
+      <td><code>number</code></td>
+      <td><code>1</code></td>
+      <td>Slides visible at once (<code>scrollx</code> only).</td>
+    </tr>
+    <tr>
+      <td><code>slidesToScroll</code></td>
+      <td><code>number</code></td>
+      <td><code>1</code></td>
+      <td>Slides advanced per <code>next()</code> / <code>prev()</code> / dot.</td>
+    </tr>
+    <tr>
+      <td><code>infinite</code></td>
+      <td><code>boolean</code></td>
+      <td><code>true</code></td>
+      <td>Loop at the ends; <code>false</code> clamps to the first / last view.</td>
+    </tr>
+    <tr>
+      <td><code>autoplay</code></td>
+      <td><code>boolean</code></td>
+      <td><code>false</code></td>
+      <td>Auto-advance the slides.</td>
+    </tr>
+    <tr>
+      <td><code>autoplaySpeed</code></td>
+      <td><code>number</code></td>
+      <td><code>3000</code></td>
+      <td>Autoplay interval in milliseconds.</td>
+    </tr>
+    <tr>
+      <td><code>dots</code></td>
+      <td><code>boolean</code></td>
+      <td><code>true</code></td>
+      <td>Render the built-in dot navigation (hidden for a single slide).</td>
+    </tr>
+    <tr>
+      <td><code>beforeChange</code></td>
+      <td><code>(from: number, to: number) =&gt; void</code></td>
+      <td>—</td>
+      <td>Fired when a transition starts.</td>
+    </tr>
+    <tr>
+      <td><code>afterChange</code></td>
+      <td><code>(current: number) =&gt; void</code></td>
+      <td>—</td>
+      <td>Fired ~500 ms later when the transition completes.</td>
+    </tr>
+    <tr>
+      <td><code>className</code> / <code>style</code></td>
+      <td><code>string</code> / <code>CSSProperties</code></td>
+      <td>—</td>
+      <td>Applied to the root element.</td>
+    </tr>
+  </tbody>
+</table>
+
+### `CarouselRef` (imperative handle)
+
+Exposed via `ref`; mirrors antd's `CarouselRef`. `index` wraps modulo the slide count
+(or clamps when `infinite={false}`).
+
+{/* MDX does not render markdown tables correctly — always use HTML tables */}
+
+<table>
+  <thead>
+    <tr>
+      <th>Method</th>
+      <th>Signature</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>goTo</code></td>
+      <td><code>(index: number) =&gt; void</code></td>
+      <td>Jump to a specific slide index.</td>
+    </tr>
+    <tr>
+      <td><code>next</code></td>
+      <td><code>() =&gt; void</code></td>
+      <td>Advance by <code>slidesToScroll</code>.</td>
+    </tr>
+    <tr>
+      <td><code>prev</code></td>
+      <td><code>() =&gt; void</code></td>
+      <td>Go back by <code>slidesToScroll</code>.</td>
+    </tr>
+  </tbody>
+</table>
+
+## Notes & tips
+
+- **`ds-carousel-*` class hooks only** — no antd / slick classes. Target the root
+  `.ds-carousel`, then `.ds-carousel-list` → `.ds-carousel-track`, slides
+  `.ds-carousel-slide` (+ `.ds-carousel-slide-active` on the visible one(s)), and dots
+  `.ds-carousel-dots` → `.ds-carousel-dot` (+ `.ds-carousel-dot-active`).
+- **Multi-slide** — the track translates by `-index * (100 / slidesToShow)%` and the
+  list clips with `overflow: hidden`; each slide is `100 / slidesToShow %` wide.
+- **`afterChange` timing** — fires on a 500 ms timer matching the CSS transition
+  (cleared on unmount / re-trigger), so it lags `beforeChange`.
+- **Autoplay** — only runs while there is more than one view (`count > slidesToShow`)
+  and pauses nothing on hover; drive it manually via the ref if you need finer control.
