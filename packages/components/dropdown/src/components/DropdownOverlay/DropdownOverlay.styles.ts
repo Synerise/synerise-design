@@ -6,8 +6,8 @@ export const OverlayWrapper = styled.div<{
   $width?: number;
   widthProperty: string;
 }>`
-  background: ${(props) => props.theme.palette.white};
-  box-shadow: ${(props) => props.theme.variables['box-shadow-2']};
+  background: var(--ds-dropdown-bg);
+  box-shadow: var(--ds-dropdown-shadow);
   border-radius: 3px;
   ${(props) => props.$width && `${props.widthProperty}: ${props.$width}px`};
   overflow: hidden;

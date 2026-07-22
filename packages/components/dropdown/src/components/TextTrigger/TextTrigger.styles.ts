@@ -12,29 +12,28 @@ export const TextTrigger = styled.div<{
   align-items: center;
   justify-content: center;
   cursor: ${(props) => (props.isDisabled ? 'default' : 'pointer')};
-  opacity: ${(props) => (props.isDisabled ? 0.4 : 1)};
+  opacity: ${(props) =>
+    props.isDisabled ? 'var(--ds-opacity-disabled)' : '1'};
   .ds-title {
     margin: 0;
   }
+  /* Icon colour flows through .ds-icon's color (its svg uses fill: currentColor),
+     so no explicit svg fill is needed. */
   .ds-title,
-  svg {
+  .ds-icon {
     color: ${(props): string => props.inactiveColor};
-    fill: ${(props): string => props.inactiveColor};
   }
   &&&:focus {
-      .ds-title,
-      svg {
-        color: ${(props): string => props.theme.palette['blue-700']};
-        fill: ${(props): string => props.theme.palette['blue-700']};
-      }
+    .ds-title,
+    .ds-icon {
+      color: var(--ds-color-text-brand-hover);
     }
   }
 
   &:hover {
     .ds-title,
-    svg {
-      color: ${(props): string => props.theme.palette['blue-600']};
-      fill: ${(props): string => props.theme.palette['blue-600']};
+    .ds-icon {
+      color: var(--ds-color-text-brand-default);
     }
   }
 `;

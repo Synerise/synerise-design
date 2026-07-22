@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export const DropdownFooterWrapper = styled.div<{ split?: boolean }>`
-  background: ${(props) => props.theme.palette['grey-100']};
+  background: var(--ds-dropdown-footer-bg);
   height: 48px;
   padding: 8px;
   display: flex;
