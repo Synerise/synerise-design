@@ -47,8 +47,9 @@ export const BottomDivider = styled(DSDivider)`
 `;
 
 export const FooterWrapper = styled(Flex)`
-  background: ${(props) => props.theme.palette['grey-050']};
-  border-top: solid 1px ${(props) => props.theme.palette['grey-100']};
+  /* ⚑ Shift: footer bg grey-050 → --ds-dropdown-footer-bg (base-muted = grey-100, marginally darker). */
+  background: var(--ds-dropdown-footer-bg);
+  border-top: solid 1px var(--ds-dropdown-footer-border);
   padding: 8px;
 `;
 export const ActionsMenuItems = styled.div``;
@@ -74,7 +75,7 @@ export const InfoCardWrapper = styled.div<{
   margin-left: ${(props) => (props.asTooltip ? '0' : '8px')};
   width: ${INFOCARD_WIDTH}px;
   overflow: hidden;
-  color: ${(props) => props.theme.palette['grey-600']};
+  color: var(--ds-dropdown-text-additional);
   text-align: left;
   font-size: 13px;
 
@@ -93,12 +94,10 @@ export const InfoCardWrapper = styled.div<{
   }
 
   overflow-wrap: anywhere;
-  background-color: white;
+  background-color: var(--ds-dropdown-bg);
   border-radius: 3px;
   box-shadow: ${(props) =>
-    props.asTooltip
-      ? 'unset'
-      : '0 16px 32px 0 rgba(35, 41, 54, 0.1)'}; // gray-900
+    props.asTooltip ? 'unset' : 'var(--ds-dropdown-shadow)'};
 
   ${CardStyles.Card.Container} {
     font-weight: 400;
