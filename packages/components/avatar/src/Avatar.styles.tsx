@@ -152,7 +152,7 @@ export const StyledAvatar = styled(AvatarBase)<ExtraAvatarProps>`
     min-width: 24px;
     vertical-align: middle;
     border-radius: 50%;
-    color: var(--ds-color-text-onsolid-default) !important;
+    color: var(--ds-avatar-text-text) !important;
     user-select: none;
     transition: background 0.3s ease;
 
@@ -171,7 +171,7 @@ export const StyledAvatar = styled(AvatarBase)<ExtraAvatarProps>`
       width: 100%;
       height: 100%;
       font-size: 11px;
-      color: var(--ds-color-text-onsolid-default) !important;
+      color: var(--ds-avatar-text-text) !important;
       user-select: none;
       pointer-events: none;
       ${(props) => applyFontSize(props)};

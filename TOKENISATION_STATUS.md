@@ -100,7 +100,7 @@ Single at-a-glance view of every colour-bearing component: migration **status** 
 | alert | semantic | ⛔ | — |
 | app-menu | module | ✅ | — |
 | autocomplete | semantic | ✅ | — |
-| avatar | module | ✅ | — |
+| avatar | module | ✅ | icon-bg/icon-icon/text-bg variant tokens deferred → UX (shared categorical palette, see card-tabs) |
 | avatar-group | semantic | ✅ | — |
 | badge | module | ✅ | — |
 | banner | semantic | ✅ | — |

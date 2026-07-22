@@ -34,7 +34,7 @@ export const Group = styled.div<{ size?: Size }>`
       }
       .ant-avatar {
         pointer-events: none;
-        box-shadow: 0 0 0 2px var(--ds-color-background-base-default);
+        box-shadow: 0 0 0 2px var(--ds-avatar-group-border);
       }
     }
     &:hover {
