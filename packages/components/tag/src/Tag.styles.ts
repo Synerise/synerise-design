@@ -102,8 +102,8 @@ export const RemoveButton = styled.div`
   }
 
   &&&:hover {
-    .ds-icon svg {
-      fill: var(--ds-color-icon-danger-default) !important;
+    .ds-icon {
+      color: var(--ds-color-icon-danger-default);
     }
   }
   .icon {

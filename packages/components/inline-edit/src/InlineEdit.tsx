@@ -103,11 +103,7 @@ const InlineEdit = ({
             onClick={handleFocusInput}
             size={size}
           >
-            <Icon
-              color="var(--ds-inline-edit-icon-btn-icon-default)"
-              component={customIcon || <EditS />}
-              size={24}
-            />
+            <Icon component={customIcon || <EditS />} size={24} />
           </S.IconWrapper>
         </Tooltip>
       )}

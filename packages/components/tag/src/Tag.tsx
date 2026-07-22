@@ -5,7 +5,6 @@ import Icon, { CloseS } from '@synerise/ds-icon';
 import Tooltip from '@synerise/ds-tooltip';
 
 import * as S from './Tag.styles';
-import { getColorText } from './Tag.styles';
 import { type TagProps, TagShape } from './Tag.types';
 import { useDefaultTexts } from './hooks/useDefaultTexts';
 
@@ -125,12 +124,7 @@ const Tag = forwardRef<HTMLDivElement, TagProps>(
                 onMouseLeave={handleMouseLeave}
                 data-testid="remove-btn"
               >
-                <Icon
-                  className="icon"
-                  component={<CloseS />}
-                  size={24}
-                  color={getColorText(theme, color)}
-                />
+                <Icon className="icon" component={<CloseS />} size={24} />
               </S.RemoveButton>
             </Tooltip>
           )}

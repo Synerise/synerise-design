@@ -17,6 +17,15 @@ const applyColor = (props: InPlaceEditableInputContainerProps) => {
   return 'var(--ds-inline-edit-text-default)';
 };
 
+// Edit-icon colour uses icon tokens (not the text tokens above). The inline-edit
+// module has no icon-error token, so error falls back to the semantic icon-danger.
+const applyIconColor = (props: InPlaceEditableInputContainerProps) => {
+  if (props.error) {
+    return 'var(--ds-color-icon-danger-default)';
+  }
+  return 'var(--ds-inline-edit-icon-btn-icon-default)';
+};
+
 const applyColorFocus = (
   props: ThemeProps & InPlaceEditableInputContainerProps,
 ) => {
@@ -90,10 +99,7 @@ export const InPlaceEditableInputContainer = styled.div<InPlaceEditableInputCont
   align-items: center;
   pointer-events: ${({ disabled }) => (disabled ? 'none' : 'all')};
   ${IconWrapper} {
-    svg {
-      color: ${(props) => applyColor(props)};
-      fill: ${(props) => applyColor(props)};
-    }
+    color: ${(props) => applyIconColor(props)};
   }
   input {
     ${(props) => applyDotsOnError(props)}
