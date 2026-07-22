@@ -91,7 +91,7 @@ Icons: DS icons are `fill="currentColor"` with `color: inherit`, so colour them 
 
 Single at-a-glance view of every colour-bearing component: migration **status** + whether it is **awaiting token definitions** (a pending module namespace, a missing semantic role, or a `.less`/de-antd blocker). Sourced from the two detailed tables below + `TOKEN_AUDIT.md` blockers. **Update this table (and the detailed one) whenever `apply-tokens` migrates a component.**
 
-**Totals:** ✅ 58 done · 🚧 25 partial · ❌ 27 not started · ⛔ 3 deprecated · ➖ 2 n/a — **38 awaiting token defs** (flag in last column).
+**Totals:** ✅ 73 done · 🚧 18 partial · ❌ 19 not started · ⛔ 3 deprecated · ➖ 2 n/a — **24 awaiting token defs** (flag in last column).
 
 | Component | Layer | Status | Awaiting token defs / blocker |
 |---|---|:--:|---|
@@ -99,10 +99,10 @@ Single at-a-glance view of every colour-bearing component: migration **status** 
 | ai-chat | module | ➖ | — |
 | alert | semantic | ⛔ | — |
 | app-menu | module | ✅ | — |
-| autocomplete | semantic | 🚧 | dropdown pending |
+| autocomplete | semantic | ✅ | — |
 | avatar | module | ✅ | — |
 | avatar-group | semantic | ✅ | — |
-| badge | module | ❌ | **badge module missing** |
+| badge | module | ✅ | — |
 | banner | semantic | ✅ | — |
 | block | semantic | ❌ | — |
 | broadcast-bar | module | ✅ | — |
@@ -117,13 +117,13 @@ Single at-a-glance view of every colour-bearing component: migration **status** 
 | checkbox | semantic | 🚧 | — |
 | code-area | semantic | 🚧 | — |
 | code-snippet | semantic | 🚧 | **.less** + code-snippet pending |
-| collector | semantic | 🚧 | dropdown pending |
-| color-picker | semantic | 🚧 | dropdown pending |
+| collector | semantic | ✅ | — |
+| color-picker | semantic | ✅ | — |
 | column-manager | semantic | ✅ | — |
-| completed-within | semantic | 🚧 | dropdown pending |
+| completed-within | semantic | ✅ | — |
 | condition | semantic | ✅ | connector tokens pending |
 | confirmation | semantic | ✅ | — |
-| context-selector | semantic | 🚧 | — |
+| context-selector | semantic | ✅ | — |
 | copy-icon | semantic | ✅ | — |
 | cruds | semantic | ❌ | **cruds tokens pending** |
 | date-picker | semantic | 🚧 | dropdown + calendar pending |
@@ -131,7 +131,7 @@ Single at-a-glance view of every colour-bearing component: migration **status** 
 | description-line | module | ✅ | — |
 | divider | module | ✅ | — |
 | drawer | semantic | ❌ | **deferred — de-antd first (.less)** |
-| dropdown | semantic | ❌ | dropdown pending |
+| dropdown | module | 🚧 | dropdown bottom-action / back-action / search-icon pending |
 | editable-items-list | semantic | ✅ | — |
 | emoji-picker | semantic | 🚧 | list-item header role pending |
 | empty-states | semantic | ✅ | — |
@@ -143,11 +143,11 @@ Single at-a-glance view of every colour-bearing component: migration **status** 
 | flag | semantic | ❌ | — |
 | footer | semantic | ✅ | — |
 | form | module | 🚧 | — |
-| form-field | semantic | 🚧 | form info-icon + counter roles pending |
-| format-picker | semantic | 🚧 | dropdown + list-item pending |
-| icon-picker | semantic | 🚧 | dropdown + list-item pending |
+| form-field | semantic | 🚧 | form counter role pending |
+| format-picker | semantic | ✅ | — |
+| icon-picker | semantic | ✅ | — |
 | image | semantic | 🚧 | **image tokens pending** |
-| information-card | semantic | ❌ | **dropdown tokens pending** |
+| information-card | semantic | ✅ | — |
 | inline-alert | module | ✅ | — |
 | inline-edit | module | ✅ | — |
 | inline-select | module | ✅ | — |
@@ -155,7 +155,7 @@ Single at-a-glance view of every colour-bearing component: migration **status** 
 | input-number | semantic | ✅ | — |
 | insight | semantic | ✅ | — |
 | item-filter | semantic | ✅ | deprecated pkg — tokenised on request |
-| item-picker | semantic | 🚧 | **dropdown/list-item pending** |
+| item-picker | semantic | ✅ | — |
 | items-roll | semantic | ✅ | — |
 | layout | semantic | ✅ | — |
 | list | semantic | ❌ | **.less / de-antd** |
@@ -163,12 +163,12 @@ Single at-a-glance view of every colour-bearing component: migration **status** 
 | loader | semantic | ✅ | — |
 | logic | semantic | ❌ | **logic/filter pending** |
 | manageable-list | semantic | ✅ | — |
-| mapping | semantic | ❌ | (i) token pending |
+| mapping | semantic | ✅ | — |
 | menu | semantic | ⛔ | — |
-| metric-card | semantic | ❌ | (i) token pending |
+| metric-card | semantic | ✅ | — |
 | modal | module | ✅ | — |
 | navbar | module | ✅ | — |
-| operators | semantic | ❌ | dropdown pending |
+| operators | semantic | ✅ | — |
 | page | module | ➖ | — |
 | page-header | module | ✅ | — |
 | pagination | module | ✅ | — |
@@ -180,8 +180,8 @@ Single at-a-glance view of every colour-bearing component: migration **status** 
 | radio | semantic | 🚧 | — |
 | result | semantic | ✅ | — |
 | scrollbar | semantic | ❌ | **.less** |
-| search | semantic | ❌ | dropdown pending |
-| search-bar | semantic | ❌ | **search-bar tokens pending** |
+| search | semantic | ✅ | — |
+| search-bar | module | ✅ | — |
 | section-message | module | ✅ | — |
 | select | semantic | 🚧 | — |
 | short-cuts | semantic | ❌ | shadow token gap |
@@ -259,7 +259,7 @@ These components use `theme.palette` / hardcoded colors but do not yet have dedi
 | alert | 44 | Yes (2) | 9 | 11 | ⛔ **deprecated** — will not be tokenised |
 | autocomplete | 1 | No | 3 | 0 | :construction: field surface → `--ds-form-*` (2026-07-20); dropdown NotFound deferred |
 | avatar-group | 0 | No | 0 | 2 | :white_check_mark: tokenised — reuses **avatar** module (2026-07-21); 5 ⚑ shifts on +N chrome; 2 fan-out opacities kept |
-| badge | 11 | No | 4 | 4 | ⛔ **deferred — blocked**: audit decided `module: badge` but no `--ds-badge-*` tokens in the build; pending upstream badge module. `.less` removed (deantd) |
+| badge | 11 | No | 4 | 4 | :white_check_mark: tokenised (2026-07-22) — badge module landed + applied: variant bg/text/ring tokens; `customColor` kept dynamic; ⚑ label grey-600→grey-500. `.less` removed (deantd) |
 | banner | 2 | No | 0 | 0 | :white_check_mark: tokenised — semantic (2026-07-20 pass); 2 palette = dynamic status-Tag defaults |
 | block | 6 | No | 0 | 0 | |
 | button-group | 6 | No | 4 | 0 | |
@@ -1766,3 +1766,91 @@ semantic + **exact** (no visual change):
 
 `box-shadow: none` at `ItemFIlter.styles.ts:9` is a reset override on the imported row (not elevation). No
 `theme.palette` refs remain.
+
+---
+
+## Dropdown / list-item / search-bar / badge module-landing pass (2026-07-22)
+
+The upstream token sync landed the **`dropdown`**, **`list-item`**, **`badge`**, and **`search-bar`**
+module namespaces (plus the form **label-icon** role). This pass applies them across the components that
+were previously deferred *"pending module tokens"*, plus new module tokenisations. Each component was its
+own MR off `chore/tokenisation`, all reviewed and merged. Mappings are **exact** unless a `⚑` shift is
+noted. This **supersedes the deferred / `:construction:` markers** for these components in the earlier
+passes above.
+
+### ⚑ Flags / follow-ups for the UX / token team (this pass)
+
+1. **dropdown module gaps** — no `footer-text` / `footer-icon` (collector, item-picker used exact semantic
+   grey-600), and no `bottom-action-*` / `back-action-*` / `search-icon` tokens (the `dropdown` component
+   is left `🚧` on those roles).
+2. **list-item has no section/group-title token** — the uppercase group headers in operators,
+   context-selector, icon-picker, item-picker and search all used the exact semantic
+   `--ds-color-text-neutral-default` (grey-500); `role-normal-text-default` (grey-700) would shift them.
+3. **search-bar has no prefix-text token** — the value-prefix hover/focus used the exact semantic
+   `--ds-color-text-brand-default` (blue-600).
+4. **tabs `item-text-focus` not authored** — the `:focus` `blue-500` on the `Tab` label/icon stays on
+   palette (deferred, not forced onto an off-role semantic).
+5. **button `ghost-primary-warning`** not yet wired — tokens exist
+   (`--ds-buttons-variant-ghost-primary-warning-*`); only the solid `warning` variant was migrated.
+6. **inline-edit has no `icon-btn-icon-error` token** — the error edit-icon uses semantic
+   `--ds-color-icon-danger-default`.
+7. **form-field counter** (`RightSide` grey-500) — no form token; still on palette (form-field stays `🚧`).
+
+### Dropdown-module consumers (overlay / footer surfaces)
+
+- **information-card** — :white_check_mark: overlay bg → `--ds-dropdown-bg`, shadow → `--ds-dropdown-shadow`,
+  body text → `-text-additional`, footer border → `-footer-border`. ⚑ footer bg grey-050→grey-100.
+- **operators** — :white_check_mark: `SearchResult`/`Highlight`/group `Title` + selected checkmark tokenised
+  (semantic); dead `backgorund` typo rule on `ItemsList` dropped; 2 static `theme` imports removed.
+- **collector** — :white_check_mark: chips (danger/muted), scroll-fade gradient stops
+  (`--ds-form-field-bg-*`), overlay bg/shadow, nav-hint footer; footer text/icon → semantic (no dropdown
+  footer-text token). ⚑ chip bg grey-200→grey-100, overlay shadow α0.12→0.10, footer bg grey-050→grey-100.
+- **context-selector** — :white_check_mark: overlay bg → `--ds-dropdown-bg`; text + checkmark semantic;
+  group `Title` semantic grey-500.
+- **format-picker** — :white_check_mark: overlay panels + footer → dropdown; currency rows →
+  `--ds-list-item-role-normal-text-default` (label) / `-content-description-color` (suffix, ⚑ grey-500→grey-600).
+  ⚑ footer bg grey-050→grey-100.
+- **icon-picker** — :white_check_mark: `Overlay` bg → `--ds-dropdown-bg`; category header → semantic grey-500;
+  empty-state circle bg dropped (per UX).
+- **item-picker** — :white_check_mark: legacy + list overlays/footers → dropdown; footer action text/icon →
+  semantic (`-text-base-muted` / `-icon-base-default` via `.ds-icon`/currentColor); section `Title` semantic;
+  `ErrorMessage` `WarningL` → `<Icon color=icon-danger>`; 2 inline icon `color` props dropped; 2 `useTheme`
+  removed. ⚑ footer bg grey-050→grey-100, shortcut-hint arrow white→grey-200.
+- **search** — :white_check_mark: field/chrome → form module, filled + focus ring →
+  `--ds-form-field-border-focus`/`-bg-focus`, overlay → dropdown, `MenuHeader` semantic grey-500, header
+  `(i)` → `--ds-form-label-icon-color`, clear × → `--ds-color-icon-danger-default`. ⚑ disabled bg grey-050→grey-100.
+- **autocomplete** — :white_check_mark: the deferred `AutocompleteDropdown` NotFound text →
+  `--ds-dropdown-text-additional` (field surface was done in the 2026-07-20 form pass).
+- **completed-within** — :white_check_mark: `Settings` panel bg → `--ds-dropdown-bg`.
+- **color-picker** — :white_check_mark: picker panel bg → `--ds-dropdown-bg`, borders/focus rings → semantic
+  border tokens, swatch/creator glyphs → semantic; react-colorful `.pointer-fill` kept (3rd-party decorative).
+- **dropdown** — :construction: `Wrapper`/`DropdownOverlay` bg → `--ds-dropdown-bg`, shadow →
+  `--ds-dropdown-shadow`, `DropdownFooter` bg → `-footer-bg`; `TextTrigger` hover/focus/disabled-opacity →
+  semantic brand + `--ds-opacity-disabled` (icon coloured via `.ds-icon` `color`, no `svg fill`).
+  **Deferred:** `BottomAction`, `BackAction`, `DropdownMenu` search icon (await dropdown module tokens).
+
+### New / own-module tokenisations
+
+- **badge** — :white_check_mark: (❌→✅) badge module applied: `resolveColor` →
+  `--ds-badge-variant-{success,neutral,error,info,warning}-bg`, count text → `-text-onsolid`, outline
+  ring + dot border → `-ring-color`; `customColor` kept dynamic. ⚑ label grey-600→`-variant-neutral-text` (grey-500).
+- **search-bar** — :white_check_mark: (→ module) full `--ds-search-bar-*` module: input bg/border/
+  focus-underline/placeholder + search/clear/prefix icon states; prefix-text hover/focus → semantic brand
+  (no prefix-text token). All exact.
+- **button (warning)** — :white_check_mark: `variantWarning` → `--ds-buttons-variant-primary-warning-*`
+  (bg/text/border/focus, all exact); disabled = solid token + `--ds-buttons-disabled-opacity` (option A);
+  readOnly `ant-btn-warning` override tokenised; ripple kept on palette.
+
+### Form label-icon + refinements
+
+- **mapping** — :white_check_mark: (❌→✅) both column-title `(i)` `InfoFillS` → `--ds-form-label-icon-color`;
+  batch-selection border → `--ds-color-border-base-strong`; static `theme` import dropped.
+- **metric-card** — :white_check_mark: (❌→✅) value text → `--ds-color-text-base-default`; `(i)` icon →
+  `--ds-form-label-icon-color`.
+- **form-field** — :construction: `IconWrapper` `(i)` → `--ds-form-label-icon-color`; counter (`RightSide`
+  grey-500) still deferred (no form token).
+- **avatar-group** — :white_check_mark: +N `MoreInfo` chrome re-pointed from generic `--ds-avatar-*` to the
+  dedicated `--ds-avatar-more-*` tokens.
+- **inline-edit** — :white_check_mark: edit-icon override split from the text resolver to an icon resolver:
+  error → `--ds-color-icon-danger-default`, default → `--ds-inline-edit-icon-btn-icon-default`.
+  ⚑ default icon grey-800→grey-600 (was leaking the text token).
