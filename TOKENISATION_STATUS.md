@@ -201,7 +201,7 @@ Single at-a-glance view of every colour-bearing component: migration **status** 
 | table-new | semantic | 🚧 | **WIP** |
 | tabs | module | 🚧 | — |
 | tag | semantic | ✅ | — |
-| tags | semantic | ✅ | — |
+| tags | module (tag) | ✅ | — |
 | time-picker | module | ✅ | — |
 | toast | module | ✅ | — |
 | toolbar | semantic | ✅ | — |
