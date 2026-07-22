@@ -6,7 +6,7 @@ export const Logic = styled.div<{ readOnly?: boolean }>`
   .ds-title {
     cursor: pointer;
 
-    ${({ readOnly, theme }): string =>
+    ${({ readOnly }): string =>
       !readOnly
         ? `&:after {
       position: absolute;
@@ -18,7 +18,7 @@ export const Logic = styled.div<{ readOnly?: boolean }>`
       background-image: linear-gradient(
         to right,
         var(--ds-color-text-base-muted) 25%,
-        ${theme.palette.white} 0%
+        transparent 0%
       );
       background-position: top;
       background-size: 4px 1px;
@@ -27,7 +27,7 @@ export const Logic = styled.div<{ readOnly?: boolean }>`
         : ''}
   }
 
-  ${({ readOnly, theme }): string =>
+  ${({ readOnly }): string =>
     !readOnly
       ? ` &:hover {
     .ds-title {
@@ -36,7 +36,7 @@ export const Logic = styled.div<{ readOnly?: boolean }>`
         background-image: linear-gradient(
           to right,
           var(--ds-color-text-brand-hover) 25%,
-          ${theme.palette.white} 0%
+          transparent 0%
         );
       }
     }

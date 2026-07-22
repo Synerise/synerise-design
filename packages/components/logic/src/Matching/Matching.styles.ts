@@ -13,7 +13,7 @@ type MatchingProps = ThemeProps & {
 // ⚑ TOKEN CATEGORY MISMATCH — a `background-*` token driving TEXT colour; flagged by UX
 // for later review. NB: `--ds-color-background-danger-solidactive` currently resolves to
 // red-600 (not red-700), so the not-matching hover no longer darkens — upstream value to review.
-// The dashed-underline white gaps (here + in Logic.style.ts) still await the gap→transparent fix.
+// Dashed-underline gaps use `transparent` (UX 2026-07-22 dark-mode fix — show the surface behind).
 const getColor = ({ matching, readOnly, hovered = false }: MatchingProps) => {
   if (readOnly) {
     return 'var(--ds-color-text-base-default)';
@@ -53,7 +53,7 @@ export const Toggle = styled.span<{ matching: boolean; readOnly?: boolean }>`
 
   ${(props) => {
     const color = getColor(props);
-    const { readOnly, theme } = props;
+    const { readOnly } = props;
     return (
       !readOnly &&
       `
@@ -67,7 +67,7 @@ export const Toggle = styled.span<{ matching: boolean; readOnly?: boolean }>`
   background-image: linear-gradient(
     to right,
     ${color} 25%,
-    ${theme.palette.white} 0%
+    transparent 0%
   );
   background-position: top;
   background-size: 4px 1px;
@@ -78,7 +78,7 @@ export const Toggle = styled.span<{ matching: boolean; readOnly?: boolean }>`
 
   ${(props) => {
     const hoveredColor = getColor({ ...props, hovered: true });
-    const { readOnly, theme } = props;
+    const { readOnly } = props;
     return (
       !readOnly &&
       css`
@@ -88,7 +88,7 @@ export const Toggle = styled.span<{ matching: boolean; readOnly?: boolean }>`
       background-image: linear-gradient(
         to right,
         ${hoveredColor} 25%,
-        ${theme.palette.white} 0%
+        transparent 0%
       );
     }
     `
