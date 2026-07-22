@@ -146,7 +146,7 @@ Single at-a-glance view of every colour-bearing component: migration **status** 
 | form-field | semantic | 🚧 | form counter role pending |
 | format-picker | semantic | ✅ | — |
 | icon-picker | semantic | ✅ | — |
-| image | semantic | 🚧 | **image tokens pending** |
+| image | module | ✅ | — |
 | information-card | semantic | ✅ | — |
 | inline-alert | module | ✅ | — |
 | inline-edit | module | ✅ | — |
