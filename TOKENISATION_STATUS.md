@@ -91,7 +91,7 @@ Icons: DS icons are `fill="currentColor"` with `color: inherit`, so colour them 
 
 Single at-a-glance view of every colour-bearing component: migration **status** + whether it is **awaiting token definitions** (a pending module namespace, a missing semantic role, or a `.less`/de-antd blocker). Sourced from the two detailed tables below + `TOKEN_AUDIT.md` blockers. **Update this table (and the detailed one) whenever `apply-tokens` migrates a component.**
 
-**Totals:** ✅ 57 done · 🚧 25 partial · ❌ 27 not started · ⛔ 4 deprecated · ➖ 2 n/a — **38 awaiting token defs** (flag in last column).
+**Totals:** ✅ 58 done · 🚧 25 partial · ❌ 27 not started · ⛔ 3 deprecated · ➖ 2 n/a — **38 awaiting token defs** (flag in last column).
 
 | Component | Layer | Status | Awaiting token defs / blocker |
 |---|---|:--:|---|
@@ -154,7 +154,7 @@ Single at-a-glance view of every colour-bearing component: migration **status** 
 | input | semantic | 🚧 | — |
 | input-number | semantic | ✅ | — |
 | insight | semantic | ✅ | — |
-| item-filter | semantic | ⛔ | **deprecated** |
+| item-filter | semantic | ✅ | deprecated pkg — tokenised on request |
 | item-picker | semantic | 🚧 | **dropdown/list-item pending** |
 | items-roll | semantic | ✅ | — |
 | layout | semantic | ✅ | — |
@@ -299,7 +299,7 @@ These components use `theme.palette` / hardcoded colors but do not yet have dedi
 | [input](#form-group-form--input--select--switch) | 49 | No | 14 | 2 | :construction: text → `--ds-form-field-*`/`--ds-form-icon-*` + semantic; field bg/border/hover/focus/disabled still palette in `Input.styles.tsx` (`.less` removed) |
 | input-number | 5 | No | 5 | 0 | :white_check_mark: `--ds-form-*` applied (2026-07-20); `.less` removed (deantd) |
 | insight | 0 | No | 0 | 0 | :white_check_mark: tokenised — semantic (2026-07-21 pass) |
-| item-filter | 2 | No | 1 | 0 | |
+| item-filter | 0 | No | 1 | 0 | :white_check_mark: tokenised — semantic (2026-07-21); deprecated pkg, done on request; 1 shadow ref is a `box-shadow: none` reset |
 | item-picker | 13 | No | 4 | 1 | :construction: trigger field → `--ds-form-*` (2026-07-20); dropdown/list deferred |
 | items-roll | 0 | No | 1 | 4 | :white_check_mark: colours tokenised — semantic (2026-07-21); ⚑ WarningIcon yellow-500→600; shadow/opacity refs are non-colour (kept) |
 | layout | 0 | No | 0 | 2 | :white_check_mark: tokenised — semantic + `page` module bg (2026-07-21); fixed a malformed CSS site; 2 functional opacities kept |
@@ -1752,3 +1752,15 @@ icon → `--ds-color-icon-base-muted` (interim; a `form` info-icon token is the 
 |----------|-----|-------------------|-------|
 | ContentItem / BlankItem drag-overlay shadow | solid `0 16px 32px grey-200` | `--ds-shadows-shadow-2` (`#2329361a`) | ⚑ solid grey → translucent elevation |
 | FilterItem unselected `CircleShapeM` | grey-300 `#dbe0e3` | `--ds-color-icon-base-muted` grey-400 `#b5bdc3` | ⚑ Darker (no icon token at grey-300) |
+
+### item-filter — :white_check_mark: (deprecated pkg, tokenised on request)
+
+`@deprecated` package, but tokenised per request (2026-07-21, branch `refactor/item-filter-tokens`). Both refs
+semantic + **exact** (no visual change):
+- `ItemFIlter.styles.ts` `FiltersList ${ItemContainer}` bg grey-050 → `--ds-color-background-base-subtle`
+  (overrides the imported manageable-list row surface)
+- `ItemFilter.tsx` `SearchM` search-icon `color` grey-600 → `--ds-color-icon-base-default`; the now-unused
+  `useTheme()` was removed (`withTheme` HOC stays — separate concern).
+
+`box-shadow: none` at `ItemFIlter.styles.ts:9` is a reset override on the imported row (not elevation). No
+`theme.palette` refs remain.
