@@ -8,21 +8,24 @@ type MatchingProps = ThemeProps & {
   hovered?: boolean;
 };
 
-// Deferred pending UX (2026-07-22): matching/not-matching state colours (green/red
-// 600↔700 hover) stay on palette — semantic text-success/danger have no -hover variant,
-// so tokenising would drop the hover-darken. The dashed-underline white gaps (here + in
-// Logic.style.ts) also await the gap→transparent dark-mode decision.
-const getColor = ({
-  theme,
-  matching,
-  readOnly,
-  hovered = false,
-}: MatchingProps) => {
+// UX 2026-07-22: matching/not-matching toggle text uses the semantic background
+// solid/solidActive family (default = .solid / 600, hover = .solidActive / 700).
+// ⚑ TOKEN CATEGORY MISMATCH — a `background-*` token driving TEXT colour; flagged by UX
+// for later review. NB: `--ds-color-background-danger-solidactive` currently resolves to
+// red-600 (not red-700), so the not-matching hover no longer darkens — upstream value to review.
+// The dashed-underline white gaps (here + in Logic.style.ts) still await the gap→transparent fix.
+const getColor = ({ matching, readOnly, hovered = false }: MatchingProps) => {
   if (readOnly) {
-    return theme.palette[`grey-800`];
+    return 'var(--ds-color-text-base-default)';
   }
-  const hue = hovered ? '700' : '600';
-  return theme.palette[matching ? `green-${hue}` : `red-${hue}`];
+  if (matching) {
+    return hovered
+      ? 'var(--ds-color-background-success-solidactive)'
+      : 'var(--ds-color-background-success-solid)';
+  }
+  return hovered
+    ? 'var(--ds-color-background-danger-solidactive)'
+    : 'var(--ds-color-background-danger-solid)';
 };
 
 export const MatchingWrapper = styled.div`
