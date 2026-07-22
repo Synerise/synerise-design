@@ -25,8 +25,9 @@ export const GridContainer = styled.div`
       border-radius: 16px;
 
       &:hover {
-        background-color: ${(props): string => props.theme.palette['grey-050']};
-        color: ${(props): string => props.theme.palette['blue-600']};
+        /* ⚑ Shift: cell hover bg grey-050 → day-hover-bg (grey-100). */
+        background-color: var(--ds-calendar-day-hover-bg);
+        color: var(--ds-calendar-day-hover-text);
       }
     }
 
@@ -35,22 +36,22 @@ export const GridContainer = styled.div`
     }
 
     &--outside {
-      color: ${(props): string => props.theme.palette['grey-400']};
+      color: var(--ds-calendar-day-pastfuture-text);
     }
 
     &--disabled {
       cursor: default;
-      color: ${(props): string => props.theme.palette['grey-400']};
+      color: var(--ds-calendar-day-disabled-text);
     }
   }
 
   .cell--selected:not(.cell--disabled):not(.cell--outside) {
     > div {
-      background-color: ${(props): string => props.theme.palette['blue-600']};
-      color: ${(props): string => props.theme.palette.white};
+      background-color: var(--ds-calendar-day-hover-text);
+      color: var(--ds-calendar-day-selected-text);
 
       &:hover {
-        background-color: ${(props): string => props.theme.palette['blue-600']};
+        background-color: var(--ds-calendar-day-hover-text);
       }
     }
   }

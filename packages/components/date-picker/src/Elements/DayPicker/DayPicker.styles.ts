@@ -10,7 +10,7 @@ export const DayForeground = styled.div`
   border-radius: 50%;
 `;
 export const DayText = styled.div`
-  color: ${(props): string => props.theme.palette['grey-700']};
+  color: var(--ds-calendar-day-default-text);
   border-radius: 50%;
 `;
 
@@ -117,6 +117,7 @@ export const DayPicker = styled(DayPickerBase)`
       &--entered${daySelector('entered-start')}:not(${daySelector('entered-end')}){
 
       & > ${DayForeground} {
+        /* No calendar range-border token — entered-edge ring kept on palette (flagged upstream); applies to both entered-start/end. */
         border-color: ${(props): string => props.theme.palette['blue-300']};
         margin-right: 0;
         margin-left: 4px;
@@ -124,7 +125,7 @@ export const DayPicker = styled(DayPickerBase)`
 
       & > ${DayBackground} {
         margin-right: 0;
-        background-color: ${(props): string => props.theme.palette['blue-100']};
+        background-color: var(--ds-calendar-day-range-bg);
       }
     }
     
@@ -138,28 +139,28 @@ export const DayPicker = styled(DayPickerBase)`
       }
       & > ${DayBackground} {
         margin-right: 4px;
-        background-color: ${(props): string => props.theme.palette['blue-100']};
+        background-color: var(--ds-calendar-day-range-bg);
       }
     }
     
     &--entered:not(${daySelector('entered-start')}):not(${daySelector('entered-end')}){
       & > ${DayBackground} {
-        background-color: ${(props): string => props.theme.palette['blue-100']};
+        background-color: var(--ds-calendar-day-range-bg);
       }
     }
     &--today${daySelector('entered-start') + daySelector('entered-end')}:not(${daySelector('selected')}) {
       & >  ${DayBackground} {
-        background-color: ${(props): string => props.theme.palette['grey-050']};
+        background-color: var(--ds-calendar-day-range-bg);
       }
     }
     &--today${daySelector('entered')}:not(${daySelector('selected')}) {
       & > ${DayText} {
         background-color: transparent;
         font-weight: 400;
-        color: ${(props): string => props.theme.palette['blue-600']};
+        color: var(--ds-calendar-day-range-text);
       }
       & >  ${DayBackground} {
-        background-color: ${(props): string => props.theme.palette['blue-100']};
+        background-color: var(--ds-calendar-day-range-bg);
       }
       & > ${DayForeground} {
         border: 2px solid transparent;
@@ -168,21 +169,22 @@ export const DayPicker = styled(DayPickerBase)`
 
     &--today:not(${daySelector('selected')}) {
       & > ${DayText} {
-        background-color: ${(props): string => props.theme.palette['yellow-100']};
-        color: ${(props): string => props.theme.palette['yellow-600']};
+        background-color: var(--ds-calendar-day-today-bg);
+        /* ⚑ Shift: today text yellow-600 → day-today-text (yellow-700, muted). */
+        color: var(--ds-calendar-day-today-text);
       }
 
       & > ${DayForeground} {
-        border: 2px solid ${(props): string => props.theme.palette['yellow-600']};
+        border: 2px solid var(--ds-calendar-day-today-border);
       }
     }
 
     &--entered > ${DayBackground} {
-      background-color: ${(props): string => props.theme.palette['grey-050']};
+      background-color: var(--ds-calendar-day-range-bg);
     }
 
     &--entered > ${DayText} {
-      color: ${(props): string => props.theme.palette['blue-600']};
+      color: var(--ds-calendar-day-range-text);
     }
 
     &--entered-start:not(${daySelector('selected')}) > ${DayBackground} {
@@ -197,7 +199,7 @@ export const DayPicker = styled(DayPickerBase)`
 
     &--outside {
       & > ${DayText} {
-        color: ${(props): string => props.theme.palette['grey-400']};
+        color: var(--ds-calendar-day-pastfuture-text);
       }
     }
 
@@ -205,7 +207,7 @@ export const DayPicker = styled(DayPickerBase)`
       cursor: default;
 
       & > ${DayText} {
-        color: ${(props): string => props.theme.palette['grey-400']};
+        color: var(--ds-calendar-day-disabled-text);
       }
     }
   }
@@ -235,16 +237,16 @@ ${daySelector('entered')}:not(${daySelector('disabled')}):not(${daySelector('end
     }
 
     & > ${DayBackground} {
-      background-color: ${(props): string => props.theme.palette['blue-100']};
+      background-color: var(--ds-calendar-day-range-bg);
     }
 
     & > ${DayText} {
-      color: ${(props): string => props.theme.palette['blue-600']};
+      color: var(--ds-calendar-day-range-text);
     }
 
     &${daySelector('ghost')} {
       & > ${DayBackground} {
-        background-color: ${(props): string => props.theme.palette['blue-600']};
+        background-color: var(--ds-calendar-day-range-text);
       }
 
       & > ${DayText} {
@@ -262,16 +264,16 @@ ${daySelector('entered')}:not(${daySelector('disabled')}):not(${daySelector('end
     }
 
     && > ${DayBackground} {
-      background-color: ${(props): string => props.theme.palette['grey-050']};
+      background-color: var(--ds-calendar-day-range-bg);
     }
 
     && > ${DayText} {
-      color: ${(props): string => props.theme.palette['blue-600']};
+      color: var(--ds-calendar-day-range-text);
     }
 
     &${daySelector('ghost')} {
       && > ${DayBackground} {
-        background-color: ${(props): string => props.theme.palette['blue-600']};
+        background-color: var(--ds-calendar-day-range-text);
       }
 
       && > ${DayText} {
@@ -284,14 +286,14 @@ ${daySelector('entered')}:not(${daySelector('disabled')}):not(${daySelector('end
     & > ${DayText} {
       border-radius: 50%;
       font-weight:500;
-      color: ${(props): string => props.theme.palette.white};
-      background-color: ${(props): string => props.theme.palette['blue-600']};
+      color: var(--ds-calendar-day-selected-text);
+      background-color: var(--ds-calendar-day-range-text);
       margin-right: 4px;
       padding-left: 0px;
       padding-right: 0px;
     }
     & > ${DayBackground} {
-      background-color: ${(props): string => props.theme.palette['blue-100']};
+      background-color: var(--ds-calendar-day-range-bg);
     }
     & > div {
       padding-left: 0px;
@@ -305,7 +307,7 @@ ${daySelector('entered')}:not(${daySelector('disabled')}):not(${daySelector('end
       
       }
       & > ${DayBackground} {
-          background-color: ${(props): string => props.theme.palette.white};
+          background-color: var(--ds-color-background-base-default);
       }
   }
   
@@ -314,8 +316,8 @@ ${daySelector('entered')}:not(${daySelector('disabled')}):not(${daySelector('end
       border-radius: 50%;
             font-weight:500;
 
-      background-color: ${(props): string => props.theme.palette['blue-600']};
-      color: ${(props): string => props.theme.palette.white};
+      background-color: var(--ds-calendar-day-range-text);
+      color: var(--ds-calendar-day-selected-text);
       margin-left: 4px;
       padding-left: 4px;
     }
@@ -339,12 +341,12 @@ ${daySelector('entered')}:not(${daySelector('disabled')}):not(${daySelector('end
         margin-left: calc(-50% + 16px);
         display:block;
         white-space: nowrap;
-        background-color: rgba(56, 67, 80, 0.9);
+        background-color: var(--ds-color-background-overlay-solid);
         padding:3px 8px;
         border-radius: 3px;
         z-index: 9;
         font-weight: 400;
-        color: ${(props): string => props.theme.palette.white};
+        color: var(--ds-color-text-onsolid-default);
       }
   }
   ${daySelector('initial')}:not(${daySelector('disabled')}):not(${daySelector('entered')}),
@@ -365,11 +367,11 @@ ${daySelector('entered')}:not(${daySelector('disabled')}):not(${daySelector('end
       }
     ${daySelector('selected')}:not(${daySelector('disabled')}):not(${daySelector('outside')}) {
       & > ${DayBackground} {
-        background-color: ${(props): string => props.theme.palette['blue-100']};
+        background-color: var(--ds-calendar-day-range-bg);
       }
 
       & > ${DayText} {
-      color: ${(props): string => props.theme.palette['blue-600']};
+      color: var(--ds-calendar-day-range-text);
       }
     }
   }
