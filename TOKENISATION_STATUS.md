@@ -115,7 +115,7 @@ Single at-a-glance view of every colour-bearing component: migration **status** 
 | carousel | semantic | ✅ | — |
 | cascader | semantic | ❌ | dropdown/cascader pending |
 | checkbox | semantic | 🚧 | — |
-| code-area | semantic | 🚧 | — |
+| code-area | module (form) | ✅ | — |
 | code-snippet | semantic | 🚧 | **.less** + code-snippet pending |
 | collector | semantic | ✅ | — |
 | color-picker | semantic | ✅ | — |
