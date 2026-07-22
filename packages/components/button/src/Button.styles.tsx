@@ -299,11 +299,11 @@ export const StyledButton = styled(BaseButton)<StyledButtonProps>`
         &&.ant-btn-warning {
           &:hover,
           &:focus-visible {
-            background: ${props.theme.palette['yellow-600']};
+            background: var(--ds-buttons-variant-primary-warning-bg-default);
             .btn-focus {
               box-shadow: none;
             }
-            color: ${props.theme.palette.white};
+            color: var(--ds-buttons-variant-primary-warning-text-default);
           }
         }
       `}

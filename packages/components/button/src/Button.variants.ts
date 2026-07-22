@@ -531,36 +531,56 @@ const variantSuccess = (p: Palette) => css`
 `;
 
 const variantWarning = (p: Palette) => css`
-  ${buttonColor(p.white, p['yellow-600'], p['yellow-600'])}
+  ${buttonColor(
+    'var(--ds-buttons-variant-primary-warning-text-default)',
+    'var(--ds-buttons-variant-primary-warning-bg-default)',
+    'var(--ds-buttons-variant-primary-warning-border-default)',
+  )}
 
   .btn-focus {
     box-shadow: inset 0 0 0 0 transparent;
   }
 
   &:hover {
-    ${buttonHover(p.white, p['yellow-500'], p['yellow-500'])}
+    ${buttonHover(
+      'var(--ds-buttons-variant-primary-warning-text-hover)',
+      'var(--ds-buttons-variant-primary-warning-bg-hover)',
+      'var(--ds-buttons-variant-primary-warning-border-hover)',
+    )}
   }
 
   &:focus-visible {
-    ${buttonColor(p.white, p['yellow-600'], p['yellow-500'])}
+    ${buttonColor(
+      'var(--ds-buttons-variant-primary-warning-text-focus)',
+      'var(--ds-buttons-variant-primary-warning-bg-focus)',
+      'var(--ds-buttons-variant-primary-warning-border-focus)',
+    )}
     .btn-focus {
-      box-shadow: inset 0 0 0 2px ${p['blue-600']};
+      box-shadow: inset 0 0 0 2px
+        var(--ds-buttons-variant-primary-warning-border-focus);
     }
   }
 
   &.pressed,
   &.active {
-    ${buttonColor(p.white, p['yellow-700'], p['yellow-700'])}
+    ${buttonColor(
+      'var(--ds-buttons-variant-primary-warning-text-active)',
+      'var(--ds-buttons-variant-primary-warning-bg-active)',
+      'var(--ds-buttons-variant-primary-warning-border-active)',
+    )}
   }
 
   .btn-ripple {
     background-color: ${p['yellow-700']};
   }
 
+  /* Option A: adopt the solid disabled token + element-level --ds-buttons-disabled-opacity
+     (0.4), matching the token intent used by secondary/tertiary/ghost. */
   ${buttonDisabled(
-    p.white,
-    `rgba(${hexToRgbValues(p['yellow-600'])}, 0.4)`,
-    'transparent',
+    'var(--ds-buttons-variant-primary-warning-text-disabled)',
+    'var(--ds-buttons-variant-primary-warning-bg-disabled)',
+    'var(--ds-buttons-variant-primary-warning-border-disabled)',
+    true,
   )}
 `;
 
