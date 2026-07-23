@@ -199,7 +199,7 @@ Single at-a-glance view of every colour-bearing component: migration **status** 
 | search-bar | module | ✅ | — |
 | section-message | module | ✅ | — |
 | select | semantic | 🚧 | — |
-| short-cuts | semantic | ❌ | shadow token gap |
+| short-cuts | semantic | 🚧 | box-shadow rgba(35,41,54) has no --ds-shadows-shadow-* match; ⚑ dark-key bg grey-600→grey-700 |
 | sidebar | semantic | ✅ | — |
 | sidebar-object | semantic | ✅ | — |
 | skeleton | module | 🚧 | shimmer keyframe opacity token pending |
@@ -336,7 +336,7 @@ These components use `theme.palette` / hardcoded colors but do not yet have dedi
 | search | 13 | No | 4 | 8 | `.less` removed (deantd) |
 | search-bar | 12 | No | 1 | 0 | |
 | [select](#form-group-form--input--select--switch) | 13 | Yes (2) | 6 | 3 | :construction: TS → `--ds-form-field-*` + semantic; search-icon data-URI + `.less` deferred |
-| short-cuts | 7 | No | 1 | 0 | |
+| short-cuts | 7 | No | 1 | 0 | :construction: (2026-07-23) dark/light key variant bg/border/text + icon → semantic (background-base-default, background-neutral-solid, border-neutral-subtle/base-strong, text-onsolid/base-muted, icon-onsolid/base); ⚑ dark bg grey-600→grey-700 shift; box-shadow rgba kept + flagged (no shadow-token match) |
 | sidebar | 0 | No | 0 | 1 | :white_check_mark: tokenised — semantic + shadow-2 (2026-07-21); 1 handle opacity kept; `.less` removed (deantd) |
 | sidebar-object | 0 | No | 0 | 0 | :white_check_mark: tokenised — modal module (footer/dropdown) + semantic (2026-07-21); all exact |
 | skeleton | 5 | No | 0 | 15 | |
