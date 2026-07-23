@@ -63,7 +63,6 @@ const RangeActions: React.FC<RangeActionsProps> = ({
   return (
     <Dropdown
       overlay={overlay}
-      overlayStyle={{ boxShadow: 'var(--ds-shadows-shadow-1)' }}
       trigger={['click']}
       align={{ points: ['tr', 'br'] }}
       getPopupContainer={(node): HTMLElement =>
