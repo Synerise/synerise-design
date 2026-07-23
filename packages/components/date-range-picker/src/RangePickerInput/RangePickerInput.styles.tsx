@@ -24,13 +24,8 @@ export const DefaultIconWrapper = styled.div`
   }
 `;
 
-// Non-highlight segment → placeholder token. The highlight (active-edit) segment stays on
-// palette blue-600 — no --ds-form-* token represents an active-segment highlight.
-export const DateWrapper = styled.div<{ highlight?: boolean }>`
-  color: ${(props) =>
-    props.highlight
-      ? props.theme.palette['blue-600']
-      : 'var(--ds-form-field-text-placeholder)'};
+export const DateWrapper = styled.div`
+  color: var(--ds-form-field-text-placeholder);
 `;
 // Selected date value text. ⚑ Shift: grey-600→grey-700 (field-text-value).
 export const DateValue = styled.div`

@@ -2,7 +2,6 @@ import isEqual from 'lodash.isequal';
 import find from 'ramda/src/find';
 import React, { useCallback, useRef, useState } from 'react';
 
-import { theme } from '@synerise/ds-core';
 import Icon, { AngleDownS, CheckS } from '@synerise/ds-icon';
 import type { ItemData } from '@synerise/ds-list-item';
 import Scrollbar from '@synerise/ds-scrollbar';
@@ -106,7 +105,7 @@ const RangeDropdown = ({
                   selected && (
                     <Icon
                       component={<CheckS />}
-                      color={theme.palette['green-600']}
+                      color="var(--ds-color-icon-success-default)"
                     />
                   )
                 }

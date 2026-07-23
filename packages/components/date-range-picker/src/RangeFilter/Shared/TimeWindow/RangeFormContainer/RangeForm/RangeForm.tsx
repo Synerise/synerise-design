@@ -2,7 +2,7 @@ import dayjs from 'dayjs';
 import React, { useEffect, useState } from 'react';
 import { useIntl } from 'react-intl';
 
-import { theme, useDataFormat } from '@synerise/ds-core';
+import { useDataFormat } from '@synerise/ds-core';
 import Icon, { CloseS } from '@synerise/ds-icon';
 import Select from '@synerise/ds-select';
 import Slider from '@synerise/ds-slider';
@@ -260,7 +260,10 @@ const RangeForm = ({
         {mode === FORM_MODES.HOUR ? singleHourPicker() : renderRangeUI()}
         {!!onRangeDelete && !disabled && (
           <S.RemoveIconWrapper onClick={onRangeDelete}>
-            <Icon component={<CloseS />} color={theme.palette['red-600']} />
+            <Icon
+              component={<CloseS />}
+              color="var(--ds-color-icon-danger-default)"
+            />
           </S.RemoveIconWrapper>
         )}
       </S.Row>

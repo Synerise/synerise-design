@@ -8,24 +8,31 @@ type MatchingProps = ThemeProps & {
   hovered?: boolean;
 };
 
-const getColor = ({
-  theme,
-  matching,
-  readOnly,
-  hovered = false,
-}: MatchingProps) => {
+// UX 2026-07-22: matching/not-matching toggle text uses the semantic background
+// solid/solidActive family (default = .solid / 600, hover = .solidActive / 700).
+// ⚑ TOKEN CATEGORY MISMATCH — a `background-*` token driving TEXT colour; flagged by UX
+// for later review. NB: `--ds-color-background-danger-solidactive` currently resolves to
+// red-600 (not red-700), so the not-matching hover no longer darkens — upstream value to review.
+// Dashed-underline gaps use `transparent` (UX 2026-07-22 dark-mode fix — show the surface behind).
+const getColor = ({ matching, readOnly, hovered = false }: MatchingProps) => {
   if (readOnly) {
-    return theme.palette[`grey-800`];
+    return 'var(--ds-color-text-base-default)';
   }
-  const hue = hovered ? '700' : '600';
-  return theme.palette[matching ? `green-${hue}` : `red-${hue}`];
+  if (matching) {
+    return hovered
+      ? 'var(--ds-color-background-success-solidactive)'
+      : 'var(--ds-color-background-success-solid)';
+  }
+  return hovered
+    ? 'var(--ds-color-background-danger-solidactive)'
+    : 'var(--ds-color-background-danger-solid)';
 };
 
 export const MatchingWrapper = styled.div`
   font-size: 16px;
   font-weight: 500;
   line-height: 1.25;
-  color: ${(props) => props.theme.palette['grey-800']};
+  color: var(--ds-color-text-base-default);
   text-align: left;
   user-select: none;
   &:first-letter {
@@ -46,7 +53,7 @@ export const Toggle = styled.span<{ matching: boolean; readOnly?: boolean }>`
 
   ${(props) => {
     const color = getColor(props);
-    const { readOnly, theme } = props;
+    const { readOnly } = props;
     return (
       !readOnly &&
       `
@@ -60,7 +67,7 @@ export const Toggle = styled.span<{ matching: boolean; readOnly?: boolean }>`
   background-image: linear-gradient(
     to right,
     ${color} 25%,
-    ${theme.palette.white} 0%
+    transparent 0%
   );
   background-position: top;
   background-size: 4px 1px;
@@ -71,7 +78,7 @@ export const Toggle = styled.span<{ matching: boolean; readOnly?: boolean }>`
 
   ${(props) => {
     const hoveredColor = getColor({ ...props, hovered: true });
-    const { readOnly, theme } = props;
+    const { readOnly } = props;
     return (
       !readOnly &&
       css`
@@ -81,7 +88,7 @@ export const Toggle = styled.span<{ matching: boolean; readOnly?: boolean }>`
       background-image: linear-gradient(
         to right,
         ${hoveredColor} 25%,
-        ${theme.palette.white} 0%
+        transparent 0%
       );
     }
     `

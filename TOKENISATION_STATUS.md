@@ -91,7 +91,7 @@ Icons: DS icons are `fill="currentColor"` with `color: inherit`, so colour them 
 
 Single at-a-glance view of every colour-bearing component: migration **status** + whether it is **awaiting token definitions** (a pending module namespace, a missing semantic role, or a `.less`/de-antd blocker). Sourced from the two detailed tables below + `TOKEN_AUDIT.md` blockers. **Update this table (and the detailed one) whenever `apply-tokens` migrates a component.**
 
-**Totals:** ✅ 73 done · 🚧 18 partial · ❌ 19 not started · ⛔ 3 deprecated · ➖ 2 n/a — **24 awaiting token defs** (flag in last column).
+**Totals:** ✅ 73 done · 🚧 19 partial · ❌ 18 not started · ⛔ 3 deprecated · ➖ 2 n/a — **24 awaiting token defs** (flag in last column).
 
 | Component | Layer | Status | Awaiting token defs / blocker |
 |---|---|:--:|---|
@@ -115,7 +115,7 @@ Single at-a-glance view of every colour-bearing component: migration **status** 
 | carousel | semantic | ✅ | — |
 | cascader | semantic | ❌ | dropdown/cascader pending |
 | checkbox | semantic | 🚧 | — |
-| code-area | semantic | 🚧 | — |
+| code-area | module (form) | ✅ | — |
 | code-snippet | module | ✅ | .less = font-face only |
 | collector | semantic | ✅ | — |
 | color-picker | semantic | ✅ | — |
@@ -127,7 +127,7 @@ Single at-a-glance view of every colour-bearing component: migration **status** 
 | copy-icon | semantic | ✅ | — |
 | cruds | semantic | ❌ | **cruds tokens pending** |
 | date-picker | semantic | 🚧 | dropdown + calendar pending |
-| date-range-picker | semantic | 🚧 | dropdown + calendar + tag pending |
+| date-range-picker | module (form+calendar+dropdown) | ✅ | — |
 | description-line | module | ✅ | — |
 | divider | module | ✅ | — |
 | drawer | semantic | ❌ | **deferred — de-antd first (.less)** |
@@ -146,7 +146,7 @@ Single at-a-glance view of every colour-bearing component: migration **status** 
 | form-field | semantic | 🚧 | form counter role pending |
 | format-picker | semantic | ✅ | — |
 | icon-picker | semantic | ✅ | — |
-| image | semantic | 🚧 | **image tokens pending** |
+| image | module | ✅ | — |
 | information-card | semantic | ✅ | — |
 | inline-alert | module | ✅ | — |
 | inline-edit | module | ✅ | — |
@@ -161,7 +161,7 @@ Single at-a-glance view of every colour-bearing component: migration **status** 
 | list | semantic | ❌ | **.less / de-antd** |
 | list-item | module | ✅ | — |
 | loader | semantic | ✅ | — |
-| logic | semantic | ❌ | **logic/filter pending** |
+| logic | semantic | ✅ | ⚑ review: bg-token-for-text mismatch + `background-danger-solidActive`=red-600 (upstream) |
 | manageable-list | semantic | ✅ | — |
 | mapping | semantic | ✅ | — |
 | menu | semantic | ⛔ | — |
@@ -187,7 +187,7 @@ Single at-a-glance view of every colour-bearing component: migration **status** 
 | short-cuts | semantic | ❌ | shadow token gap |
 | sidebar | semantic | ✅ | — |
 | sidebar-object | semantic | ✅ | — |
-| skeleton | semantic | ❌ | **skeleton tokens pending** |
+| skeleton | module | 🚧 | shimmer keyframe opacity token pending |
 | slider | semantic | ❌ | focus-ring token gap |
 | sortable | semantic | ✅ | — |
 | status | semantic | ❌ | — |
@@ -201,11 +201,11 @@ Single at-a-glance view of every colour-bearing component: migration **status** 
 | table-new | semantic | 🚧 | **WIP** |
 | tabs | module | 🚧 | — |
 | tag | semantic | ✅ | — |
-| tags | semantic | ✅ | — |
+| tags | module (tag) | ✅ | — |
 | time-picker | module | ✅ | — |
 | toast | module | ✅ | — |
 | toolbar | semantic | ✅ | — |
-| tooltip | semantic | ❌ | **tooltip tokens pending** |
+| tooltip | module | 🚧 | key-cap tokens (`--ds-tooltip-key-*`) pending |
 | tray | semantic | ✅ | — |
 | typography | semantic | ✅ | — |
 | unordered-list | semantic | ✅ | — |
@@ -248,6 +248,7 @@ These components have dedicated token definitions in `modules/base.json`.
 | [stepper](#stepper) | `stepper` | :construction: | :heavy_minus_sign: | :heavy_minus_sign: | :x: | 7 | No | :warning: done green→blue, active grey→blue; warning state migrated (sync `66dddd0a`); filled-circle content deferred |
 | [tabs](#tabs) | `tabs` | :construction: | :heavy_minus_sign: | :white_check_mark: | :x: | 1 | No | main states done; decorative gradients + blue-500 focus deferred |
 | [time-picker](#time-picker) | `time-picker` | :white_check_mark: | :heavy_minus_sign: | :white_check_mark: | :x: | 2 | No | 8 module + semantic; no elevation shadow |
+| [tooltip](#tooltip) | `tooltip` | :construction: | :white_check_mark: | :heavy_minus_sign: | :x: | 0 | No | surface/footer/text + shadow-2 done; key-cap bg/border/shadow await `--ds-tooltip-key-*` |
 
 ### Components without module-level tokens
 
@@ -335,7 +336,6 @@ These components use `theme.palette` / hardcoded colors but do not yet have dedi
 | tag | 6 | No | 0 | 2 | :white_check_mark: status/danger/disabled tokenised — semantic (2026-07-21); ⚑ success/warning text→-700; 6 JS-compare/custom-colour palette + 2 decorative opacity kept |
 | tags | 2 | No | 0 | 0 | :white_check_mark: tokenised — semantic (2026-07-21); 2 LimitedTags ds-tag color props stay dynamic |
 | toolbar | 0 | No | 0 | 0 | :white_check_mark: tokenised — semantic + shadow-1 (2026-07-21 pass) |
-| tooltip | 3 | No | 2 | 2 | |
 | tray | 0 | No | 0 | 0 | :white_check_mark: tokenised — reuses **modal** module (2026-07-21); ⚑ header border grey-200→grey-100 |
 | typography | 0 | No | 0 | 0 | :white_check_mark: tokenised — semantic (2026-07-21); ⚑ link-hover blue-500→blue-700; `.less` removed (deantd) |
 | unordered-list | 0 | No | 0 | 0 | :white_check_mark: tokenised — semantic (2026-07-21 pass); `Label` (unused) grey-800 → text-base-default |
@@ -841,6 +841,28 @@ box-shadow exists (the `overlay-shadow` module token is unused).
 |----------|---------|-------------------|-------|
 | Column separator | grey-200 `#e9edee` | grey-100 `#f3f5f6` | Slightly lighter |
 | Cell bg (default/disabled) | white `#ffffff` | `transparent` | No visible change (sits on white overlay) |
+
+---
+
+### tooltip
+
+**Package:** `packages/components/tooltip/`
+**Layer:** module (`--ds-tooltip-*`, 4 of 5 applied) + 2 decorative opacities kept
+**Migrated in:** `chore/tokenisation` branch (`refactor/tooltip-tokens`)
+
+#### Colors — :construction: · Shadows — :white_check_mark:
+
+Dark-surface tooltip migrated to the new `tooltip` module: `TooltipComponent` bg → `--ds-tooltip-surface-bg`,
+`TooltipButton` footer bar → `--ds-tooltip-footer-bg`, body text → `--ds-tooltip-text`, `TooltipWrapper`
+elevation → `--ds-tooltip-shadow` (= `box-shadow-2` = shadow-2). All four are exact-value swaps — **no visual
+diff**. `--ds-tooltip-header-icon` exists but no current site sets the header-icon colour (icon inherits body
+text) — left for a design decision. Fade opacities (0/1) kept — popover animation.
+
+#### Deferred (awaiting upstream tokens)
+
+`TooltipKey` key-cap (bg grey-700, border-bottom grey-500, custom `0 1px 8px rgba(35,41,54,.5)` shadow): the
+audit (UX 2026-07-21) assigned these to `module: tooltip` (key-cap bg/border/shadow), but `--ds-tooltip-key-*`
+did **not** land in this sync — kept on `theme.palette`, flagged upstream. Component stays 🚧 until they arrive.
 
 ---
 
