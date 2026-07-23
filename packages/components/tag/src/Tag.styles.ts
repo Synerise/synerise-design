@@ -76,7 +76,7 @@ const getFilterColor = (props: TagProps): string => {
   if (props.iconHover) {
     return 'brightness(100%)';
   }
-  if (props.color === props.theme.palette['grey-200']) {
+  if (props.color === props.theme.tokens['--ds-color-grey-200']) {
     return 'brightness(90%)';
   }
   return 'brightness(110%)';
