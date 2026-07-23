@@ -1,21 +1,20 @@
 import React from 'react';
-import { withTheme } from 'styled-components';
 
-import { type ThemeProps } from '@synerise/ds-core';
 import Icon, { InfoM } from '@synerise/ds-icon';
 
 import * as S from '../TimeWindow/TimeWindow.styles';
 
 export type SelectionHintProps = {
   message: React.ReactNode | string;
-} & ThemeProps;
+};
 
-const SelectionHint = ({ message, theme }: SelectionHintProps): JSX.Element => {
+const SelectionHint = ({ message }: SelectionHintProps): JSX.Element => {
   return (
     <S.SelectionHint>
-      <Icon component={<InfoM />} color={theme.palette['grey-600']} /> {message}
+      <Icon component={<InfoM />} color="var(--ds-color-icon-base-default)" />{' '}
+      {message}
     </S.SelectionHint>
   );
 };
 
-export default withTheme(SelectionHint);
+export default SelectionHint;

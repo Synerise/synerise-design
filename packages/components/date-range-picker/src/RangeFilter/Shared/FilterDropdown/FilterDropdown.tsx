@@ -1,7 +1,6 @@
 import React from 'react';
 
 import Button from '@synerise/ds-button';
-import { theme } from '@synerise/ds-core';
 import Dropdown from '@synerise/ds-dropdown';
 import Icon, { AngleDownS, TrashS } from '@synerise/ds-icon';
 import Tooltip from '@synerise/ds-tooltip';
@@ -35,7 +34,7 @@ const FilterDropdown: React.FC<FilterDropdownProps> = ({
                 >
                   <Icon
                     component={<TrashS />}
-                    color={theme.palette['red-600']}
+                    color="var(--ds-color-icon-danger-default)"
                   />
                 </S.RemoveIconWrapper>
               </Tooltip>
