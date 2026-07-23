@@ -66,3 +66,11 @@ body {
   font-family: 'Graphik LCG Web', sans-serif !important;
 }
 
+/* Storybook preview canvas — track the DS theme instead of a hardcoded white.
+   The token vars are injected on :root by GlobalTokenStyles (via DSProvider) and
+   flip to dark under :root[data-ds-theme='dark'], so the canvas follows the Theme toolbar. */
+.sb-main-padded,
+.sb-show-main {
+  background-color: var(--ds-page-bg);
+}
+
