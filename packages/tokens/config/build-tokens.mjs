@@ -1,7 +1,13 @@
 import StyleDictionary from 'style-dictionary';
 import { outputReferencesTransformed } from 'style-dictionary/utils';
 import { register } from '@tokens-studio/sd-transforms';
-import { readFileSync, writeFileSync, mkdirSync, existsSync } from 'node:fs';
+import {
+  readFileSync,
+  writeFileSync,
+  mkdirSync,
+  existsSync,
+  readdirSync,
+} from 'node:fs';
 import { resolve, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
@@ -190,6 +196,61 @@ const baseSources = candidateBaseSources.filter((p) => existsSync(resolve(ROOT, 
 
 const moduleBase = readJson('tokens/modules/base.json');
 
+// ──────────────────────────────────────────────────────────────────────────────
+// Categorical colour sets (custom-color families now; `ordered` slots later).
+// Each set is emitted in two tiers, one build transform per theme:
+//   SET      --ds-color-custom-<family>-<shade>  (+ --ds-color-dark-custom-<family>-<shade>)
+//   SEMANTIC --ds-color-background-custom-<family>-<shade>  — FLIPS (light→light group, dark→dark group)
+// Manifest + components reference the SEMANTIC tier (so dark flips); the SET tier is the ramp.
+// The existing single-active color.custom.* (from the hand-wired blue.json) is left untouched —
+// distinct paths, distinct var names.
+// ──────────────────────────────────────────────────────────────────────────────
+
+const CUSTOM_COLOR_DIR = 'tokens/semantic/custom-color';
+
+// Read every custom-color/<family>.json and namespace it by filename:
+//   color.custom.<shade>      → color.custom.<family>.<shade>
+//   color-dark.custom.<shade> → color-dark.custom.<family>.<shade>
+// producing per-family SET tokens for all families in one theme-independent doc.
+function loadCustomColorFamilies() {
+  const dir = resolve(ROOT, CUSTOM_COLOR_DIR);
+  if (!existsSync(dir)) return { doc: {}, families: [], shades: [] };
+  const families = readdirSync(dir)
+    .filter((f) => f.endsWith('.json'))
+    .map((f) => f.replace(/\.json$/, ''))
+    .sort();
+  const doc = { color: { custom: {} }, 'color-dark': { custom: {} } };
+  let shades = [];
+  for (const family of families) {
+    const src = readJson(`${CUSTOM_COLOR_DIR}/${family}.json`);
+    doc.color.custom[family] = src.color?.custom ?? {};
+    doc['color-dark'].custom[family] = src['color-dark']?.custom ?? {};
+    if (!shades.length) shades = Object.keys(src.color?.custom ?? {});
+  }
+  return { doc, families, shades };
+}
+
+// Flipping SEMANTIC tier for the custom families, generated per theme: each
+// color.background.custom.<family>.<shade> references the light-group SET token in the light
+// build and the dark-group SET token in the dark build, so the emitted var flips with the theme.
+function customSemanticTier(families, shades, themeName) {
+  const group = themeName === 'dark' ? 'color-dark' : 'color';
+  const custom = {};
+  for (const family of families) {
+    custom[family] = {};
+    for (const shade of shades) {
+      custom[family][shade] = {
+        $type: 'color',
+        $value: `{${group}.custom.${family}.${shade}}`,
+      };
+    }
+  }
+  return { color: { background: { custom } } };
+}
+
+const { doc: customSetDoc, families: customFamilies, shades: customShades } =
+  loadCustomColorFamilies();
+
 const themes = {
   light: { semantic: 'tokens/semantic/Light.json', selector: ':root' },
   dark: { semantic: 'tokens/semantic/Dark.json', selector: '[data-ds-theme="dark"]' },
@@ -207,13 +268,25 @@ for (const [themeName, cfg] of Object.entries(themes)) {
   // whole set, then stage the pruned docs for Style Dictionary.
   const baseDocs = baseSources.map((p) => readJson(p));
   const semanticDoc = readJson(cfg.semantic);
+  const semanticCustom = customSemanticTier(customFamilies, customShades, themeName);
   const moduleColor = filterByType(moduleBase) ?? {};
 
-  const inputDocs = [...baseDocs, semanticDoc, moduleColor];
+  // Order: base sources… , custom SET (→ include), theme semantic (→ source),
+  // custom semantic tier (→ source), module colour subset (→ source).
+  const inputDocs = [
+    ...baseDocs,
+    customSetDoc,
+    semanticDoc,
+    semanticCustom,
+    moduleColor,
+  ];
   const pruned = pruneUnresolvable(inputDocs);
-  const prunedBase = pruned.slice(0, baseDocs.length);
-  const prunedSemantic = pruned[baseDocs.length];
-  const prunedModules = pruned[baseDocs.length + 1];
+  const nBase = baseDocs.length;
+  const prunedBase = pruned.slice(0, nBase);
+  const prunedCustomSet = pruned[nBase];
+  const prunedSemantic = pruned[nBase + 1];
+  const prunedCustomSemantic = pruned[nBase + 2];
+  const prunedModules = pruned[nBase + 3];
 
   // Surface (never silently swallow) any tokens dropped for unresolvable references.
   const droppedCount =
@@ -230,13 +303,17 @@ for (const [themeName, cfg] of Object.entries(themes)) {
     writeFileSync(p, JSON.stringify(stripDescriptions(obj), null, 2));
     return p;
   };
-  const includePaths = prunedBase.map((doc, i) => stage(doc, `base-${i}`));
+  const includePaths = [
+    ...prunedBase.map((doc, i) => stage(doc, `base-${i}`)),
+    stage(prunedCustomSet, 'custom-set'),
+  ];
   const semanticPath = stage(prunedSemantic, 'semantic');
+  const customSemanticPath = stage(prunedCustomSemantic, 'custom-semantic');
   const modulesPath = stage(prunedModules, 'modules-color');
 
   const sd = new StyleDictionary({
     include: includePaths,
-    source: [semanticPath, modulesPath],
+    source: [semanticPath, customSemanticPath, modulesPath],
     preprocessors: ['tokens-studio'],
     platforms: {
       css: {
@@ -327,6 +404,45 @@ writeFileSync(
 writeFileSync(
   resolve(ROOT, 'dist/js/index.d.ts'),
   `export { cssText, tokens } from './light.js';\n`,
+);
+
+// ──────────────────────────────────────────────────────────────────────────────
+// Names manifest (theme-independent): the catalogue + var() refs components index.
+// Values are the FLIPPING semantic-tier vars, so a single manifest works in both themes.
+// ──────────────────────────────────────────────────────────────────────────────
+const customColorNames = customFamilies;
+const customColors = Object.fromEntries(
+  customFamilies.map((family) => [
+    family,
+    Object.fromEntries(
+      customShades.map((shade) => [
+        shade,
+        `var(--ds-color-background-custom-${family}-${shade})`,
+      ]),
+    ),
+  ]),
+);
+
+// `ordered` set — scaffolded, empty until upstream authors tokens/semantic/ordered/*.
+// When it lands, build the SET + flipping semantic tier with the same pattern as custom
+// (a per-slot loop), then populate these arrays as
+// `var(--ds-color-background-ordered-<N>-base|hover)` for N = 1..slotCount.
+const orderedBase = [];
+const orderedHover = [];
+
+writeFileSync(
+  resolve(ROOT, 'dist/js/names.js'),
+  `export const customColorNames = ${JSON.stringify(customColorNames)};\n` +
+    `export const customColors = ${JSON.stringify(customColors, null, 2)};\n` +
+    `export const orderedBase = ${JSON.stringify(orderedBase)};\n` +
+    `export const orderedHover = ${JSON.stringify(orderedHover)};\n`,
+);
+writeFileSync(
+  resolve(ROOT, 'dist/js/names.d.ts'),
+  `export declare const customColorNames: string[];\n` +
+    `export declare const customColors: Record<string, Record<string, string>>;\n` +
+    `export declare const orderedBase: string[];\n` +
+    `export declare const orderedHover: string[];\n`,
 );
 
 console.log('✓ Token build complete.');
