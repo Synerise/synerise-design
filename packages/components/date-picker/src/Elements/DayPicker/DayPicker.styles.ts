@@ -91,9 +91,8 @@ export const DayPicker = styled(DayPickerBase)`
       align-items: center;
       justify-content: center;
       margin: 4px;
-      min-width:32px;
+      min-width: 32px;
     }
-    
 
     &--start > ${DayBackground} {
       border-top-left-radius: 50%;
@@ -108,15 +107,15 @@ export const DayPicker = styled(DayPickerBase)`
     &--today {
       font-weight: 500;
     }
-    
-    
+
     &--today${daySelector('selected')} {
       & > ${DayText} {
-          font-weight: 400;
+        font-weight: 400;
       }
     }
-      &--entered${daySelector('entered-start')}:not(${daySelector('entered-end')}){
-
+    &--entered${daySelector('entered-start')}:not(${daySelector(
+        'entered-end',
+      )}) {
       & > ${DayForeground} {
         /* No calendar range-border token — entered-edge ring kept on palette (flagged upstream); applies to both entered-start/end. */
         border-color: ${(props): string => props.theme.palette['blue-300']};
@@ -129,10 +128,10 @@ export const DayPicker = styled(DayPickerBase)`
         background-color: var(--ds-calendar-day-range-bg);
       }
     }
-    
-    
-    &--entered${daySelector('entered-end')}:not(${daySelector('entered-start')}){
 
+    &--entered${daySelector('entered-end')}:not(${daySelector(
+        'entered-start',
+      )}) {
       & > ${DayForeground} {
         border-color: ${(props): string => props.theme.palette['blue-300']};
         margin-right: 4px;
@@ -144,13 +143,16 @@ export const DayPicker = styled(DayPickerBase)`
       }
     }
 
-    &--entered:not(${daySelector('entered-start')}):not(${daySelector('entered-end')}){
+    &--entered:not(${daySelector('entered-start')}):not(
+        ${daySelector('entered-end')}
+      ) {
       & > ${DayBackground} {
         background-color: var(--ds-calendar-day-range-bg);
       }
     }
-    &--today${daySelector('entered-start') + daySelector('entered-end')}:not(${daySelector('selected')}) {
-      & >  ${DayBackground} {
+    &--today${daySelector('entered-start') +
+      daySelector('entered-end')}:not(${daySelector('selected')}) {
+      & > ${DayBackground} {
         background-color: var(--ds-calendar-day-range-bg);
       }
     }
@@ -160,7 +162,7 @@ export const DayPicker = styled(DayPickerBase)`
         font-weight: 400;
         color: var(--ds-calendar-day-range-text);
       }
-      & >  ${DayBackground} {
+      & > ${DayBackground} {
         background-color: var(--ds-calendar-day-range-bg);
       }
       & > ${DayForeground} {
@@ -217,6 +219,7 @@ export const DayPicker = styled(DayPickerBase)`
   /* Resting in-month day gets the grey-100 pill; hover darkens it to grey-200 and turns
      the number brand-blue. Scoped out of every special state so it never bleeds into
      range/selected/today/outside/disabled. */
+
   ${DaySelectorPrefix}:not(${daySelector('selected')}):not(${daySelector(
     'entered',
   )}):not(${daySelector('start')}):not(${daySelector('end')}):not(${daySelector(
@@ -234,23 +237,29 @@ export const DayPicker = styled(DayPickerBase)`
     }
   }
 
-${daySelector('selected')}:not(${daySelector('disabled')}):not(${daySelector('end')}):not(${daySelector('start')}),
-${daySelector('entered')}:not(${daySelector('disabled')}):not(${daySelector('end')}):not(${daySelector('start')}){
-    &:last-child  > ${DayBackground} {
-            border-top-right-radius: 50%;
-            border-bottom-right-radius: 50%;
-            margin-right: 4px;
-            padding-right:0;
-      }
-      &:first-child  > ${DayBackground} {
-            border-top-left-radius: 50%;
-            border-bottom-left-radius: 50%;
-            margin-left: 4px;
-            padding-left:0;
-      }
+  ${daySelector('selected')}:not(${daySelector('disabled')}):not(${daySelector(
+    'end',
+  )}):not(${daySelector('start')}),
+${daySelector('entered')}:not(${daySelector('disabled')}):not(${daySelector(
+    'end',
+  )}):not(${daySelector('start')}) {
+    &:last-child > ${DayBackground} {
+      border-top-right-radius: 50%;
+      border-bottom-right-radius: 50%;
+      margin-right: 4px;
+      padding-right: 0;
     }
+    &:first-child > ${DayBackground} {
+      border-top-left-radius: 50%;
+      border-bottom-left-radius: 50%;
+      margin-left: 4px;
+      padding-left: 0;
+    }
+  }
 
-  ${daySelector('selected')}:not(${daySelector('disabled')}):not(${daySelector('outside')}) {
+  ${daySelector('selected')}:not(${daySelector('disabled')}):not(${daySelector(
+    'outside',
+  )}) {
     & > div {
       padding-left: 4px;
       margin-left: 0;
@@ -276,13 +285,15 @@ ${daySelector('entered')}:not(${daySelector('disabled')}):not(${daySelector('end
       }
     }
   }
-    ${daySelector('entered')}:not(${daySelector('disabled')}):not(${daySelector('entered-start')}) {
+  ${daySelector('entered')}:not(${daySelector('disabled')}):not(${daySelector(
+    'entered-start',
+  )}) {
     & > div {
       padding-left: 4px;
       margin-left: 0;
       padding-right: 4px;
       margin-right: 0;
-      text-align:center;
+      text-align: center;
     }
 
     && > ${DayBackground} {
@@ -303,11 +314,13 @@ ${daySelector('entered')}:not(${daySelector('disabled')}):not(${daySelector('end
       }
     }
   }
- 
-  ${daySelector('start')}:not(${daySelector('disabled')}):not(${daySelector('outside')}) {
+
+  ${daySelector('start')}:not(${daySelector('disabled')}):not(${daySelector(
+    'outside',
+  )}) {
     & > ${DayText} {
       border-radius: 50%;
-      font-weight:500;
+      font-weight: 500;
       color: var(--ds-calendar-day-selected-text);
       background-color: var(--ds-calendar-day-selected-bg);
       margin-right: 4px;
@@ -322,21 +335,26 @@ ${daySelector('entered')}:not(${daySelector('disabled')}):not(${daySelector('end
       margin-left: 4px;
     }
   }
-  ${daySelector('start')}:not(${daySelector('disabled')}):not(${daySelector('outside')}):last-child,
-   ${daySelector('end')}:not(${daySelector('disabled')}):not(${daySelector('outside')}):first-child {
-      & > div {
-         margin-right: 4px;
-      
-      }
-      & > ${DayBackground} {
-          background-color: var(--ds-color-background-base-default);
-      }
+  ${daySelector('start')}:not(${daySelector('disabled')}):not(${daySelector(
+    'outside',
+  )}):last-child,
+   ${daySelector('end')}:not(${daySelector('disabled')}):not(${daySelector(
+    'outside',
+  )}):first-child {
+    & > div {
+      margin-right: 4px;
+    }
+    & > ${DayBackground} {
+      background-color: var(--ds-color-background-base-default);
+    }
   }
-  
-  ${daySelector('end')}:not(${daySelector('disabled')}):not(${daySelector('outside')}) {
+
+  ${daySelector('end')}:not(${daySelector('disabled')}):not(${daySelector(
+    'outside',
+  )}) {
     & > ${DayText} {
       border-radius: 50%;
-            font-weight:500;
+      font-weight: 500;
 
       background-color: var(--ds-calendar-day-selected-bg);
       color: var(--ds-calendar-day-selected-text);
@@ -356,9 +374,11 @@ ${daySelector('entered')}:not(${daySelector('disabled')}):not(${daySelector('end
       margin-right: 4px;
     }
   }
-  ${daySelector('end') + daySelector('start')}:not(${daySelector('disabled')}):not(${daySelector('outside')}) {
+  ${daySelector('end') + daySelector('start')}:not(${daySelector(
+    'disabled',
+  )}):not(${daySelector('outside')}) {
     & > div {
-      padding-right:4px;
+      padding-right: 4px;
     }
     /* Single-day selection (start === end): re-cap the left so --end's margin-left:0
        connector doesn't leak a range-bg tail past the circle. */
@@ -368,45 +388,52 @@ ${daySelector('entered')}:not(${daySelector('disabled')}):not(${daySelector('end
   }
 
   ${daySelector('selected')}:not(${daySelector('disabled')}):hover {
-      position:relative;
-      ${DayTooltip} {
+    position: relative;
+    ${DayTooltip} {
       height: 24px;
-        position: absolute;
-        top: -30px;
-        margin-left: calc(-50% + 16px);
-        display:block;
-        white-space: nowrap;
-        background-color: var(--ds-color-background-overlay-solid);
-        padding:3px 8px;
-        border-radius: 3px;
-        z-index: 9;
-        font-weight: 400;
-        color: var(--ds-color-text-onsolid-default);
-      }
+      position: absolute;
+      top: -30px;
+      margin-left: calc(-50% + 16px);
+      display: block;
+      white-space: nowrap;
+      background-color: var(--ds-color-background-overlay-solid);
+      padding: 3px 8px;
+      border-radius: 3px;
+      z-index: 9;
+      font-weight: 400;
+      color: var(--ds-color-text-onsolid-default);
+    }
   }
-  ${daySelector('initial')}:not(${daySelector('disabled')}):not(${daySelector('entered')}),
-  ${daySelector('initial-entered')}:not(${daySelector('disabled')}){
-      & > ${DayBackground} {
-        background: transparent;
-      }
+  ${daySelector('initial')}:not(${daySelector('disabled')}):not(${daySelector(
+    'entered',
+  )}),
+  ${daySelector('initial-entered')}:not(${daySelector('disabled')}) {
+    & > ${DayBackground} {
+      background: transparent;
+    }
   }
   ${daySelector('outside') + daySelector('entered') + daySelector('selected')} {
-    & > ${DayBackground}  {
+    & > ${DayBackground} {
       border-radius: 50%;
     }
   }
   &.relative {
-      ${daySelector('start') + daySelector('selected')}:not(${daySelector('disabled')}):not(${daySelector('outside')}) {
+    ${daySelector('start') + daySelector('selected')}:not(${daySelector(
+      'disabled',
+    )}):not(${daySelector('outside')}) {
       & > ${DayText} {
         font-weight: 500;
       }
-    ${daySelector('selected')}:not(${daySelector('disabled')}):not(${daySelector('outside')}) {
-      & > ${DayBackground} {
-        background-color: var(--ds-calendar-day-range-bg);
-      }
+      ${daySelector('selected')}:not(${daySelector(
+        'disabled',
+      )}):not(${daySelector('outside')}) {
+        & > ${DayBackground} {
+          background-color: var(--ds-calendar-day-range-bg);
+        }
 
-      & > ${DayText} {
-      color: var(--ds-calendar-day-range-text);
+        & > ${DayText} {
+          color: var(--ds-calendar-day-range-text);
+        }
       }
     }
   }
