@@ -1,6 +1,5 @@
 import React from 'react';
 
-import { theme } from '@synerise/ds-core';
 import Icon, { CheckS } from '@synerise/ds-icon';
 import { renderSearchList } from '@synerise/ds-search';
 
@@ -32,7 +31,7 @@ export const BreadcrumbsList = ({
     itemRender: (item: Path) => {
       const tickIcon = (
         <div>
-          <Icon color={theme.palette['green-600']} component={<CheckS />} />
+          <Icon color="var(--ds-color-icon-success-default)" component={<CheckS />} />
         </div>
       );
       return (

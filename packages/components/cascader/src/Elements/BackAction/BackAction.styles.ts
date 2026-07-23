@@ -4,7 +4,7 @@ export const Label = styled.div`
   font-weight: 500;
   font-size: 14px;
   transition: color 0.3s ease;
-  color: ${(props): string => props.theme.palette['grey-700']};
+  color: var(--ds-color-text-base-subtle);
 `;
 
 export const IconWrapper = styled.div`
@@ -12,7 +12,7 @@ export const IconWrapper = styled.div`
 
   svg {
     transition: fill 0.3s ease;
-    fill: ${(props): string => props.theme.palette['grey-700']};
+    fill: var(--ds-color-text-base-subtle);
   }
 `;
 
@@ -20,10 +20,10 @@ export const BackActionWrapper = styled.div`
   padding: 0 8px;
   &:hover {
     ${Label} {
-      color: ${(props): string => props.theme.palette['blue-600']};
+      color: var(--ds-color-text-brand-default);
     }
     ${IconWrapper} {
-      color: ${(props): string => props.theme.palette['blue-600']};
+      color: var(--ds-color-text-brand-default);
     }
   }
 `;

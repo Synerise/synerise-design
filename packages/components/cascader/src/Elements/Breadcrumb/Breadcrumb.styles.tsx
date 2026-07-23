@@ -39,7 +39,7 @@ export const Description = styled.div`
   direction: ltr;
   width: 100%;
   font-weight: 400;
-  color: ${(props) => props.theme.palette['grey-600']};
+  color: var(--ds-color-text-base-muted);
   .search-highlight {
     font-weight: 500;
   }
@@ -58,7 +58,7 @@ export const ContentWrapper = styled.div<{ gradientOverlap?: boolean }>`
     height: 18px;
     transition: opacity ${TRANSITION_FN};
     background-image: ${(props) =>
-      `-webkit-linear-gradient( left, ${props.theme.palette['grey-050']} 0%, rgba(255,255,255,0) 100% )`};
+      `-webkit-linear-gradient( left, var(--ds-color-background-base-subtle) 0%, transparent 100% )`};
   }
   &::after {
     pointer-events: none;
@@ -72,14 +72,14 @@ export const ContentWrapper = styled.div<{ gradientOverlap?: boolean }>`
     height: 18px;
     transition: opacity ${TRANSITION_FN};
     background-image: ${(props) =>
-      `-webkit-linear-gradient( left, ${props.theme.palette.white} 0%, rgba(255,255,255,0) 100% )`};
+      `-webkit-linear-gradient( left, var(--ds-color-background-base-default) 0%, transparent 100% )`};
   }
 `;
 export const BreadcrumbName = styled.div`
   direction: ltr;
   font-weight: 400;
   transition: color ${TRANSITION_FN};
-  color: ${(props) => props.theme.palette['grey-600']};
+  color: var(--ds-color-text-base-muted);
   .search-highlight {
     font-weight: 500;
   }
@@ -88,30 +88,30 @@ export const disableDefaultClickingStyles = (
   props: ThemeProps & { disabled?: boolean },
 ) => css`
   &, &:focus, &:hover {
-    background: ${props.theme.palette.white} !important;
+    background: var(--ds-color-background-base-default) !important;
     box-shadow: inset 0 0 0 2px transparent !important;
         ${BreadcrumbName}, ${Description} {
-      color: ${props.theme.palette['grey-600']};
+      color: var(--ds-color-text-base-muted);
     }
     ${ArrowRight} > .ds-icon > svg{
-       fill: ${props.theme.palette['grey-600']};
+       fill: var(--ds-color-icon-base-default);
     }
     
   } 
   ${BreadcrumbName}:hover, ${Description}:hover {
-    color: ${props.disabled ? props.theme.palette['grey-600'] : props.theme.palette['blue-600']};
+    color: ${props.disabled ? 'var(--ds-color-text-base-muted)' : 'var(--ds-color-text-brand-default)'};
   }
   &&&:hover {
        ${PrefixWrapper} {
       .ds-icon > svg{
-       fill: ${props.theme.palette['grey-600']} !important;
+       fill: var(--ds-color-icon-base-default) !important;
       }
     }
   }
   &&& {
    ${PrefixWrapper}:hover {
     .ds-icon > svg{
-    fill: ${props.theme.palette['blue-600']} !important;
+    fill: var(--ds-color-icon-brand-default) !important;
    }
   }
 `;
@@ -169,13 +169,13 @@ export const Breadcrumb: StyledListItem<BreadcrumbProps> = styled(
           }
           ${BreadcrumbName}, ${Description} {
             &:hover {
-              color: ${props.disabled ? props.theme.palette['grey-600'] : props.theme.palette['blue-600']};
+              color: ${props.disabled ? 'var(--ds-color-text-base-muted)' : 'var(--ds-color-text-brand-default)'};
             }
           }
           &&& {
             ${PrefixWrapper}:hover {
               .ds-icon > svg {
-                fill: ${props.theme.palette['blue-600']} !important;
+                fill: var(--ds-color-icon-brand-default) !important;
             }
           }
           &:focus {
@@ -186,26 +186,26 @@ export const Breadcrumb: StyledListItem<BreadcrumbProps> = styled(
         `
       : css`
           &:hover {
-            background: ${props.theme.palette['grey-050']};
-            color: ${props.theme.palette['blue-600']};
+            background: var(--ds-color-background-base-subtle);
+            color: var(--ds-color-text-brand-default);
             ${ArrowRight} > .ds-icon > svg {
               fill: ${props.disabled
-                ? props.theme.palette['grey-600']
-                : props.theme.palette['blue-600']};
+                ? 'var(--ds-color-icon-base-default)'
+                : 'var(--ds-color-icon-brand-default)'};
             }
 
             ${BreadcrumbName}, ${Description} {
               color: ${props.disabled
-                ? props.theme.palette['grey-600']
-                : props.theme.palette['blue-600']};
+                ? 'var(--ds-color-text-base-muted)'
+                : 'var(--ds-color-text-brand-default)'};
             }
           }
           &:focus:not(:active) {
-            box-shadow: inset 0 0 0 2px ${props.theme.palette['blue-600']};
+            box-shadow: inset 0 0 0 2px var(--ds-color-border-brand-default);
           }
           &:focus:active {
             ${ContentWrapper}::before {
-              background-image: ${`-webkit-linear-gradient( left, ${props.theme.palette['grey-100']} 0%, rgba(255,255,255,0) 100%)`};
+              background-image: ${`-webkit-linear-gradient( left, var(--ds-color-background-base-muted) 0%, transparent 100%)`};
             }
           }
         `}

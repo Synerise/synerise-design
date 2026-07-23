@@ -1,7 +1,6 @@
 import React, { type MouseEvent, useCallback } from 'react';
 import styled from 'styled-components';
 
-import { theme } from '@synerise/ds-core';
 import Icon, { CheckS } from '@synerise/ds-icon';
 import ListItem from '@synerise/ds-list-item';
 
@@ -38,7 +37,7 @@ export const CategoriesList = ({
       }
     >
       {selectedIds.includes(item.id) ? (
-        <Icon color={theme.palette['green-600']} component={<CheckS />} />
+        <Icon color="var(--ds-color-icon-success-default)" component={<CheckS />} />
       ) : (
         suffixel
       )}

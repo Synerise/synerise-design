@@ -128,7 +128,7 @@ Single at-a-glance view of every colour-bearing component: migration **status** 
 | card-select | module | ✅ | — |
 | card-tabs | semantic | ❌ | **card-tabs tokens pending** |
 | carousel | semantic | ✅ | — |
-| cascader | semantic | ❌ | dropdown/cascader pending |
+| cascader | semantic | ✅ | — |
 | checkbox | semantic | 🚧 | — |
 | code-area | module (form) | ✅ | — |
 | code-snippet | module | ✅ | .less = font-face only |
@@ -281,7 +281,7 @@ These components use `theme.palette` / hardcoded colors but do not yet have dedi
 | button-group | 6 | No | 4 | 0 | |
 | card-tabs | 68 | No | 2 | 4 | High palette count |
 | carousel | 0 | No | 0 | 0 | :white_check_mark: tokenised — semantic (2026-07-20 pass); new DS component, not in original audit |
-| cascader | 34 | No | 5 | 10 | |
+| cascader | 34 | No | 5 | 10 | :white_check_mark: tokenised — semantic (2026-07-23); greys→text/icon/bg/border-base, blue-600→brand (text/icon/border), green-600→icon-success, white→bg-base-default, rgba(255,255,255,0)→transparent; box-shadow rgba(35,41,54,.05) left (shadow, α≠shadow-2) |
 | [checkbox](#checkbox--radio) | 9 | No | 4 | 1 | :construction: TS focus/indeterminate/hover → `--ds-form-checkbox-*`; per-state colours now in `Checkbox.styles.ts` on palette (`.less` removed) + check icons (data-URI SVG) |
 | code-area | 6 | No | 1 | 1 | :construction: field surface + error text → `--ds-form-*` (2026-07-20); Monaco constants (CSS-var constraint) + fullscreen deferred |
 | code-snippet | 14 | No¹ | 0 | 2 | :construction: chrome tokenised (2026-07-20); syntax theme + inline-code kept on palette (⚑ no code-syntax tokens). ¹`.less` = font-face only |

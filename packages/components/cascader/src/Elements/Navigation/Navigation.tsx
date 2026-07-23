@@ -1,6 +1,5 @@
 import React from 'react';
 
-import { theme } from '@synerise/ds-core';
 import Divider from '@synerise/ds-divider';
 import Icon, { HomeM } from '@synerise/ds-icon';
 
@@ -28,7 +27,7 @@ export const Navigation = ({
           highlightActivePath
           prefixel={
             <S.BreadcrumbPrefix onClick={onHomeIconClick}>
-              <Icon component={<HomeM />} color={theme.palette['grey-600']} />
+              <Icon component={<HomeM />} color="var(--ds-color-icon-base-default)" />
             </S.BreadcrumbPrefix>
           }
           compact
