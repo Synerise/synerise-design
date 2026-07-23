@@ -14,14 +14,14 @@ export const StarredIcon = styled(Icon)<
   ${(props): false | string =>
     !!props.active &&
     `&.icon.icon1.ds-icon svg {
-  fill: ${props.theme.palette['yellow-600']};
+  fill: var(--ds-color-icon-warning-default);
   }`}
   &:hover {
     svg {
       fill: ${(props): string =>
         props.active
-          ? props.theme.palette['yellow-600']
-          : props.onClick && props.theme.palette['blue-600']};
+          ? 'var(--ds-color-icon-warning-default)'
+          : props.onClick && 'var(--ds-color-icon-brand-default)'};
     }
   }
 `;

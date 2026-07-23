@@ -1,7 +1,6 @@
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
 
 import { Expander } from '@synerise/ds-button';
-import { theme } from '@synerise/ds-core';
 import Icon, { ChildRowLeftDownM } from '@synerise/ds-icon';
 import { type CellContext, type ColumnDef } from '@tanstack/react-table';
 
@@ -149,7 +148,7 @@ export const TreeTable = <TData extends object, TValue>({
             ) : depth > 0 ? (
               <Icon
                 component={<ChildRowLeftDownM />}
-                color={theme.palette['grey-400']}
+                color="var(--ds-color-icon-base-muted)"
               />
             ) : null;
 

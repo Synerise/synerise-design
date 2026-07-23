@@ -10,7 +10,7 @@ export const CellWrapper = styled.div`
 export const MoreInfo = styled.div`
   font-size: 11px;
   margin-left: 8px;
-  color: ${(props): string => props.theme.palette['grey-500']};
+  color: var(--ds-color-text-neutral-default);
   display: flex;
   align-items: center;
   justify-content: center;
