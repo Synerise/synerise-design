@@ -200,7 +200,8 @@ export const DayPicker = styled(DayPickerBase)`
 
     &--outside {
       & > ${DayText} {
-        color: var(--ds-calendar-day-pastfuture-text);
+        /* Adjacent-month days stay readable (grey-800), not faded — still selectable. */
+        color: var(--ds-color-text-base-default);
       }
     }
 
@@ -213,9 +214,9 @@ export const DayPicker = styled(DayPickerBase)`
     }
   }
 
-  /* Resting in-month day gets the neutral pill; hover keeps that pill and turns
-     the number brand-blue. Scoped out of every special state so it never bleeds
-     into range/selected/today/outside/disabled. */
+  /* Resting in-month day gets the grey-100 pill; hover darkens it to grey-200 and turns
+     the number brand-blue. Scoped out of every special state so it never bleeds into
+     range/selected/today/outside/disabled. */
   ${DaySelectorPrefix}:not(${daySelector('selected')}):not(${daySelector(
     'entered',
   )}):not(${daySelector('start')}):not(${daySelector('end')}):not(${daySelector(
@@ -227,7 +228,9 @@ export const DayPicker = styled(DayPickerBase)`
 
     &:hover > ${DayText} {
       color: var(--ds-calendar-day-hover-text);
-      background-color: var(--ds-calendar-day-hover-bg);
+      /* grey-200 (base-mutedhover); --ds-calendar-day-hover-bg resolves to grey-100
+         today (same as resting) → re-point upstream. */
+      background-color: var(--ds-color-background-base-mutedhover);
     }
   }
 
@@ -340,6 +343,11 @@ ${daySelector('entered')}:not(${daySelector('disabled')}):not(${daySelector('end
       margin-left: 4px;
       padding-left: 4px;
     }
+    /* Mirror of --start: the end cap carries a range-bg connector so a past-direction
+       preview (end picked first, hover earlier) stays joined to the selected day. */
+    & > ${DayBackground} {
+      background-color: var(--ds-calendar-day-range-bg);
+    }
     & > div {
       padding-right: 4px;
       margin-right: 4px;
@@ -392,6 +400,21 @@ ${daySelector('entered')}:not(${daySelector('disabled')}):not(${daySelector('end
       & > ${DayText} {
       color: var(--ds-calendar-day-range-text);
       }
+    }
+  }
+
+  /* Adjacent-month (outside) days never take a pill/range fill — only the number's
+     colour reacts: grey-800 normally, brand-blue when inside a range. */
+  ${daySelector('outside')} {
+    &&& > ${DayBackground} {
+      background: transparent;
+    }
+  }
+  ${daySelector('outside')}${daySelector('entered')} > ${DayText},
+  ${daySelector('outside')}${daySelector('selected')} > ${DayText} {
+    &&& {
+      color: var(--ds-calendar-day-range-text);
+      background: transparent;
     }
   }
 `;
