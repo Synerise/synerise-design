@@ -2,6 +2,20 @@
 
 Tracks the progress of migrating components from `theme.palette` / hardcoded values to CSS custom properties generated from the Token Studio design tokens in `packages/tokens/`.
 
+> **Merge batch 2026-07-23.** Twelve tokenisation branches merged into `chore/tokenisation` today:
+> `date-picker-calendar-tokens`, `avatar-tokens`, `tag-tokens`, `code-snippet-tokens`, `cruds-tokens`,
+> `date-range-picker-tokens`, `tags-tokens`, `tooltip-tokens`, `code-area-tokens`, `logic-tokens`,
+> `image-tokens`, `skeleton-tokens`. Delivered: date-picker / date-range-picker calendar + dropdown
+> grids (new `calendar` module namespace) with the Figma day-state redesign; tag / tags, cruds,
+> code-area / code-snippet, image, logic tokenised; avatar initials text + avatar-group ring tightened
+> to the avatar module. Still :construction: pending upstream token defs: `tooltip` (key-cap
+> `--ds-tooltip-key-*`), `skeleton` (shimmer keyframe opacity). **Totals corrected** to match the
+> current table (was :white_check_mark: 73 · :construction: 19 · :x: 18 · 24 awaiting; now
+> :white_check_mark: 80 · :construction: 15 · :x: 15 · 22 awaiting). Storybook story backgrounds were
+> also swept off hardcoded hex onto semantic surface tokens in this branch.
+> (Separately, the avatar initials → categorical custom-color token catalog is in flight on
+> `feature/categorical-color-tokens`, MR !3839 — not part of this batch.)
+
 > **Token sync `66dddd0a` (design-tokens@66dddd0a, "semantic restructure v2", 2026-07-17).** Lands via rolling
 > MR !3723 → `chore/tokenisation`; consuming-code fixes land in a follow-up code MR.
 > **Breaking token renames — fixed in code:** app-menu `icon-defsult`→`icon-default`; popconfirm module
@@ -91,7 +105,7 @@ Icons: DS icons are `fill="currentColor"` with `color: inherit`, so colour them 
 
 Single at-a-glance view of every colour-bearing component: migration **status** + whether it is **awaiting token definitions** (a pending module namespace, a missing semantic role, or a `.less`/de-antd blocker). Sourced from the two detailed tables below + `TOKEN_AUDIT.md` blockers. **Update this table (and the detailed one) whenever `apply-tokens` migrates a component.**
 
-**Totals:** ✅ 73 done · 🚧 19 partial · ❌ 18 not started · ⛔ 3 deprecated · ➖ 2 n/a — **24 awaiting token defs** (flag in last column).
+**Totals:** ✅ 80 done · 🚧 15 partial · ❌ 15 not started · ⛔ 3 deprecated · ➖ 2 n/a — **22 awaiting token defs** (flag in last column).
 
 | Component | Layer | Status | Awaiting token defs / blocker |
 |---|---|:--:|---|
