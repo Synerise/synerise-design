@@ -94,8 +94,9 @@ export const DeleteIcon = styled(Icon)`
   top: 50%;
   transform: translateY(-50%);
   display: none;
-  color: ${(props) => props.theme.palette['red-600']};
+  color: var(--ds-color-icon-danger-default);
   &:hover {
+    /* ⚑ red-500 kept on palette — no --ds-color-icon-danger-hover token exists */
     color: ${(props) => props.theme.palette['red-500']};
   }
 `;
