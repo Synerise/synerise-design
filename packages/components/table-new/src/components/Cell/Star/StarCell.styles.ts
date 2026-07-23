@@ -18,7 +18,7 @@ export const StarredIcon = styled(Icon)<
   }`}
   &:hover {
     svg {
-      fill: ${(props): string =>
+      fill: ${(props): string | undefined =>
         props.active
           ? 'var(--ds-color-icon-warning-default)'
           : props.onClick && 'var(--ds-color-icon-brand-default)'};
