@@ -52,7 +52,7 @@ export const Title = styled.div<{ elementSize: string }>`
   line-height: 1.6;
   font-weight: 500;
   text-transform: uppercase;
-  color: ${(props) => props.theme.palette['grey-500']};
+  color: var(--ds-color-text-neutral-default);
   padding: 0 12px;
   flex-basis: 100%;
   height: ${(props) => props.elementSize};
