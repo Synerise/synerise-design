@@ -41,7 +41,7 @@ export const TextareaWrapper = styled.div<{
         &&& {
           textarea {
             &::-webkit-scrollbar-thumb {
-              background-color: #e1e3e6;
+              background-color: var(--ds-color-border-base-strong);
               border: 4px solid var(--ds-form-field-bg-focus) !important;
             }
           }

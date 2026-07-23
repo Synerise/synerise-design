@@ -166,7 +166,7 @@ Single at-a-glance view of every colour-bearing component: migration **status** 
 | inline-alert | module | ✅ | — |
 | inline-edit | module | ✅ | — |
 | inline-select | module | ✅ | — |
-| input | semantic | 🚧 | — |
+| input | module | ✅ | — |
 | input-number | semantic | ✅ | — |
 | insight | semantic | ✅ | — |
 | item-filter | semantic | ✅ | deprecated pkg — tokenised on request |
@@ -312,7 +312,7 @@ These components use `theme.palette` / hardcoded colors but do not yet have dedi
 | format-picker | 6 | No | 0 | 0 | :construction: currency select field → `--ds-form-*` (2026-07-20); panel/list-item deferred |
 | icon-picker | 2 | No | 0 | 0 | :construction: clear icon → semantic `--ds-color-icon-danger-default`; search/no-result icons inherit default (2026-07-21); overlay bg + title deferred → dropdown/list-item tokens |
 | information-card | 3 | No | 2 | 2 | |
-| [input](#form-group-form--input--select--switch) | 49 | No | 14 | 2 | :construction: text → `--ds-form-field-*`/`--ds-form-icon-*` + semantic; field bg/border/hover/focus/disabled still palette in `Input.styles.tsx` (`.less` removed) |
+| [input](#form-group-form--input--select--switch) | 0 | No | 14 | 2 | :white_check_mark: fully tokenised — field surface/border/bg/focus/text → `--ds-form-field-*`/`--ds-form-icon-*` + semantic; `BorderLessInput` bg → `transparent`; Textarea scrollbar-thumb `#e1e3e6` → semantic `border-base-strong` (⚑ grey-300, tiny shift) |
 | input-number | 5 | No | 5 | 0 | :white_check_mark: `--ds-form-*` applied (2026-07-20); `.less` removed (deantd) |
 | insight | 0 | No | 0 | 0 | :white_check_mark: tokenised — semantic (2026-07-21 pass) |
 | item-filter | 0 | No | 1 | 0 | :white_check_mark: tokenised — semantic (2026-07-21); deprecated pkg, done on request; 1 shadow ref is a `box-shadow: none` reset |
@@ -1195,7 +1195,9 @@ package's `.styles.ts` on `theme.palette`, so it is **directly tokenisable** (no
 31 module + 15 semantic + 1 opacity. Field surface/border/bg/focus/error/placeholder/value →
 `--ds-form-field-*`; action icons → `--ds-form-icon-color-default` + `icon-brand`; labels/counter/
 description/chips/remove-icon → semantic; disabled icon opacity → `--ds-opacity-disabled`. Converted
-`svg { fill }` rules to `color` inheritance.
+`svg { fill }` rules to `color` inheritance. Final literals cleaned: `BorderLessInput` bg
+`rgba(255,255,255,0)` → `transparent`; Textarea `::-webkit-scrollbar-thumb` `#e1e3e6` → semantic
+`--ds-color-border-base-strong` (⚑ tiny shift → grey-300 `#dbe0e3`).
 
 | Property | Current | Token resolves to | Delta |
 |----------|---------|-------------------|-------|
