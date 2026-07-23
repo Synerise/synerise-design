@@ -10,6 +10,7 @@ export const CrudsContainer = styled.div`
   .add,
   .duplicate,
   .edit,
+  .preview,
   .move,
   .moveup,
   .movedown {
@@ -21,6 +22,7 @@ export const CrudsContainer = styled.div`
   .add:hover,
   .duplicate:hover,
   .edit:hover,
+  .preview:hover,
   .move:hover,
   .moveup:hover,
   .movedown:hover {
