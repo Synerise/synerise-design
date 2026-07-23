@@ -129,7 +129,7 @@ Single at-a-glance view of every colour-bearing component: migration **status** 
 | card-tabs | semantic | ❌ | **card-tabs tokens pending** |
 | carousel | semantic | ✅ | — |
 | cascader | semantic | ❌ | dropdown/cascader pending |
-| checkbox | semantic | 🚧 | — |
+| checkbox | module | ✅ | — |
 | code-area | module (form) | ✅ | — |
 | code-snippet | module | ✅ | .less = font-face only |
 | collector | semantic | ✅ | — |
@@ -282,7 +282,7 @@ These components use `theme.palette` / hardcoded colors but do not yet have dedi
 | card-tabs | 68 | No | 2 | 4 | High palette count |
 | carousel | 0 | No | 0 | 0 | :white_check_mark: tokenised — semantic (2026-07-20 pass); new DS component, not in original audit |
 | cascader | 34 | No | 5 | 10 | |
-| [checkbox](#checkbox--radio) | 9 | No | 4 | 1 | :construction: TS focus/indeterminate/hover → `--ds-form-checkbox-*`; per-state colours now in `Checkbox.styles.ts` on palette (`.less` removed) + check icons (data-URI SVG) |
+| [checkbox](#checkbox--radio) | 0 | No | 4 | 1 | :white_check_mark: fully tokenised — focus/indeterminate/hover → `--ds-form-checkbox-*`; indeterminate-hover fill blue-500 → semantic `background-brand-solidhover` (exact); check icons = currentColor SVG |
 | code-area | 6 | No | 1 | 1 | :construction: field surface + error text → `--ds-form-*` (2026-07-20); Monaco constants (CSS-var constraint) + fullscreen deferred |
 | code-snippet | 14 | No¹ | 0 | 2 | :construction: chrome tokenised (2026-07-20); syntax theme + inline-code kept on palette (⚑ no code-syntax tokens). ¹`.less` = font-face only |
 | collector | 11 | No | 1 | 2 | :construction: placeholder → `--ds-form-*` (2026-07-20); chips/dropdown deferred |
@@ -1091,8 +1091,8 @@ data-URI check icons.
 Focus border + focus ring, indeterminate inner bg/border, and hover-preview border → `--ds-form-checkbox-*`
 (all exact, no diffs). **Deferred:** the checked/indeterminate/hover check icons are `data:image/svg+xml`
 background-images with hex inlined into the URI — a `var()` cannot be encoded there, so they stay
-hardcoded; `blue-500` indeterminate-hover bg (no token); and the per-state border/bg/label colours, error
-elevation shadow, disabled opacity — now in `Checkbox.styles.ts` on palette (`.less` removed, directly tokenisable).
+hardcoded; and the per-state border/bg/label colours, error
+elevation shadow, disabled opacity — now in `Checkbox.styles.ts` on palette (`.less` removed, directly tokenisable). **Applied:** `blue-500` indeterminate-hover fill → semantic `background-brand-solidhover` (exact).
 
 #### radio — applied
 
