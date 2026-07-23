@@ -41,7 +41,7 @@ export default {
   },
   decorators: [
     (Story) => (
-      <div style={{ background: '#fff', width: '300px', padding: '16px' }}>
+      <div style={{ background: 'var(--ds-color-background-base-default)', width: '300px', padding: '16px' }}>
         <Story />
       </div>
     ),

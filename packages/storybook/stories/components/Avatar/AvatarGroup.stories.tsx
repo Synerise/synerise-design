@@ -41,7 +41,7 @@ const Template: (args) => JSX.Element = (args) => (
   <div
     style={{
       padding: 24,
-      backgroundColor: '#fff',
+      backgroundColor: 'var(--ds-color-background-base-default)',
       display: 'flex',
       justifyContent: 'flex-start',
       width: 500,
