@@ -37,6 +37,12 @@ const defaultStatusStyles = css`
   line-height: 18px;
 `;
 export const getColorText = (theme: ThemePropsVars, color?: string): string => {
+  // No color prop → the tag body falls back to the grey variant background
+  // (`--ds-tag-variant-gray-bg-default`), so its text must use the paired grey
+  // variant text token — NOT the colored-variant text (which is white/onsolid).
+  if (!color) {
+    return 'var(--ds-tag-variant-gray-text)';
+  }
   // The grey-200 comparison operand stays a resolved hex (a var() can't be compared in JS).
   return color === theme.palette['grey-200']
     ? 'var(--ds-color-text-base-muted)'
@@ -92,7 +98,10 @@ export const TagName = styled.span`
   text-overflow: ellipsis;
 `;
 export const RemoveButton = styled.div`
-  color: ${({ color, theme }) => getColorText(theme, color)};
+  /* Pinned to the colored-variant text token (white/onsolid): the ✕ sits on the
+     colored tag body and RemoveButton is always rendered without a \`color\` prop, so
+     it must NOT pick up getColorText's no-color grey-variant branch. */
+  color: var(--ds-tag-variant-color-text);
   height: 18px;
   width: 18px;
   border-radius: 10px;
