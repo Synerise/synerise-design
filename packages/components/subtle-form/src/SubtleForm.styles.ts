@@ -215,10 +215,13 @@ export const Subtle = styled.div<{ $disabled?: boolean; hasError?: boolean }>`
     `}
 
   ${TextareaWrapper}:focus-within {
+    /* Kept on palette + hexToRgba: the subtle background tokens are opaque solids,
+       so tokenising here would drop the 40% translucency. Migrate once an
+       opacity-carrying background token exists. */
     ${(props) =>
       props.hasError
-        ? `background-color: var(--ds-color-background-danger-subtle);`
-        : `background-color: var(--ds-color-background-brand-subtle);`}
+        ? `background-color: ${hexToRgba(props.theme.palette['red-100'], 0.4)};`
+        : `background-color: ${hexToRgba(props.theme.palette['blue-100'], 0.4)};`}
   }
 `;
 
