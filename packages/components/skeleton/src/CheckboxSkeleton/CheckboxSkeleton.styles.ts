@@ -40,7 +40,7 @@ export const Wrapper = styled.div<{ size?: 'S' | 'M' | 'L' }>`
   width: 150px;
   height: ${(props) =>
     props.size ? SkeletonSize[props.size] : SIZE_WRAPPER_DEFAULT}px;
-  background-color: ${(props) => props.theme.palette[`grey-050`]};
+  background-color: var(--ds-skeleton-bg);
 `;
 export const SkeletonWrapper = styled.div`
   margin-top: 7px;
