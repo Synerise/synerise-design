@@ -7,7 +7,7 @@ export const Message = styled.div``;
 export const ConfirmMessageTitle = styled.span`
   font-size: 14px;
   line-height: 1.43;
-  color: #404c5a;
+  color: var(--ds-popconfirm-header-text);
 `;
 
 export const ConfirmMessage = styled.div`

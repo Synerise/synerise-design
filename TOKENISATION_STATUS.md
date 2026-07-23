@@ -106,7 +106,7 @@ Icons: DS icons are `fill="currentColor"` with `color: inherit`, so colour them 
 
 Single at-a-glance view of every colour-bearing component: migration **status** + whether it is **awaiting token definitions** (a pending module namespace, a missing semantic role, or a `.less`/de-antd blocker). Sourced from the two detailed tables below + `TOKEN_AUDIT.md` blockers. **Update this table (and the detailed one) whenever `apply-tokens` migrates a component.**
 
-**Totals:** ✅ 80 done · 🚧 15 partial · ❌ 15 not started · ⛔ 3 deprecated · ➖ 2 n/a — **22 awaiting token defs** (flag in last column).
+**Totals:** ✅ 84 done · 🚧 12 partial · ❌ 12 not started · ⛔ 3 deprecated · ➖ 4 n/a — **23 awaiting token defs** (flag in last column).
 
 | Component | Layer | Status | Awaiting token defs / blocker |
 |---|---|:--:|---|
@@ -114,12 +114,12 @@ Single at-a-glance view of every colour-bearing component: migration **status** 
 | ai-chat | module | ➖ | — |
 | alert | semantic | ⛔ | — |
 | app-menu | module | ✅ | — |
-| autocomplete | semantic | ✅ | — |
+| autocomplete | module | ✅ | — |
 | avatar | module | ✅ | icon-bg/icon-icon/text-bg variant tokens deferred → UX (shared categorical palette, see card-tabs) |
-| avatar-group | semantic | ✅ | — |
+| avatar-group | module | ✅ | — |
 | badge | module | ✅ | — |
 | banner | semantic | ✅ | — |
-| block | semantic | ❌ | — |
+| block | semantic | ✅ | — |
 | broadcast-bar | module | ✅ | — |
 | button-expander | module | ✅ | — |
 | button-group | semantic | ❌ | — |
@@ -132,13 +132,13 @@ Single at-a-glance view of every colour-bearing component: migration **status** 
 | checkbox | semantic | 🚧 | — |
 | code-area | module (form) | ✅ | — |
 | code-snippet | module | ✅ | .less = font-face only |
-| collector | semantic | ✅ | — |
+| collector | module | ✅ | — |
 | color-picker | semantic | ✅ | — |
 | column-manager | semantic | ✅ | — |
-| completed-within | semantic | ✅ | — |
+| completed-within | module | ✅ | — |
 | condition | semantic | ✅ | connector tokens pending |
 | confirmation | semantic | ✅ | — |
-| context-selector | semantic | ✅ | — |
+| context-selector | module | ✅ | — |
 | copy-icon | semantic | ✅ | — |
 | cruds | module | ✅ | — |
 | date-picker | module (form+calendar+dropdown) | ✅ | — |
@@ -150,37 +150,37 @@ Single at-a-glance view of every colour-bearing component: migration **status** 
 | editable-items-list | semantic | ✅ | — |
 | emoji-picker | semantic | 🚧 | list-item header role pending |
 | empty-states | semantic | ✅ | — |
-| estimation | semantic | ✅ | — |
+| estimation | module | ✅ | — |
 | factors | semantic | 🚧 | dropdown + list-item header pending; icon-danger-hover gap |
 | field-set | semantic | ✅ | — |
 | file-uploader | semantic | ❌ | **deferred — file-uploader module pending (whole component)** |
-| filter | semantic | ❌ | drag-placeholder deferred pending Figma |
-| flag | semantic | ❌ | — |
+| filter | semantic | ✅ | — |
+| flag | semantic | ➖ | — |
 | footer | semantic | ✅ | — |
-| form | module | 🚧 | — |
+| form | module | ✅ | — |
 | form-field | semantic | 🚧 | form counter role pending |
-| format-picker | semantic | ✅ | — |
-| icon-picker | semantic | ✅ | — |
+| format-picker | module | ✅ | — |
+| icon-picker | module | ✅ | — |
 | image | module | ✅ | — |
-| information-card | semantic | ✅ | — |
+| information-card | module | ✅ | — |
 | inline-alert | module | ✅ | — |
 | inline-edit | module | ✅ | — |
 | inline-select | module | ✅ | — |
 | input | module | ✅ | — |
-| input-number | semantic | ✅ | — |
+| input-number | module | ✅ | — |
 | insight | semantic | ✅ | — |
 | item-filter | semantic | ✅ | deprecated pkg — tokenised on request |
-| item-picker | semantic | ✅ | — |
+| item-picker | module | ✅ | — |
 | items-roll | semantic | ✅ | — |
-| layout | semantic | ✅ | — |
+| layout | module | ✅ | — |
 | list | semantic | ❌ | **.less / de-antd** |
 | list-item | module | ✅ | — |
 | loader | semantic | ✅ | — |
 | logic | semantic | ✅ | ⚑ review: bg-token-for-text mismatch + `background-danger-solidActive`=red-600 (upstream) |
 | manageable-list | semantic | ✅ | — |
-| mapping | semantic | ✅ | — |
+| mapping | module | ✅ | — |
 | menu | semantic | ⛔ | — |
-| metric-card | semantic | ✅ | — |
+| metric-card | module | ✅ | — |
 | modal | module | ✅ | — |
 | navbar | module | ✅ | — |
 | operators | semantic | ✅ | — |
@@ -190,28 +190,28 @@ Single at-a-glance view of every colour-bearing component: migration **status** 
 | panel | semantic | ✅ | — |
 | panels-resizer | semantic | ✅ | — |
 | popconfirm | module | ✅ | — |
-| popover | semantic | ❌ | — |
+| popover | semantic | ➖ | — |
 | progressbar | module | ✅ | — |
 | radio | semantic | 🚧 | — |
 | result | semantic | ✅ | — |
 | scrollbar | semantic | ❌ | **.less** |
-| search | semantic | ✅ | — |
+| search | module | ✅ | — |
 | search-bar | module | ✅ | — |
 | section-message | module | ✅ | — |
-| select | semantic | 🚧 | — |
+| select | module | 🚧 | .less / de-antd |
 | short-cuts | semantic | ❌ | shadow token gap |
 | sidebar | semantic | ✅ | — |
-| sidebar-object | semantic | ✅ | — |
+| sidebar-object | module | ✅ | — |
 | skeleton | module | 🚧 | shimmer keyframe opacity token pending |
 | slider | semantic | ❌ | focus-ring token gap |
 | sortable | semantic | ✅ | — |
-| status | semantic | ❌ | — |
+| status | module | ✅ | — |
 | status-pill | module | ✅ | — |
 | step-card | semantic | ✅ | — |
-| stepper | module | 🚧 | — |
+| stepper | module | ✅ | — |
 | subject | semantic | ✅ | — |
 | subtle-form | semantic | ❌ | translucent-surface token gap |
-| switch | semantic | 🚧 | — |
+| switch | module | ✅ | — |
 | table | semantic | ⛔ | — |
 | table-new | semantic | 🚧 | **WIP** |
 | tabs | module | 🚧 | — |
@@ -221,7 +221,7 @@ Single at-a-glance view of every colour-bearing component: migration **status** 
 | toast | module | ✅ | — |
 | toolbar | semantic | ✅ | — |
 | tooltip | module | 🚧 | key-cap tokens (`--ds-tooltip-key-*`) pending |
-| tray | semantic | ✅ | — |
+| tray | module | ✅ | — |
 | typography | semantic | ✅ | — |
 | unordered-list | semantic | ✅ | — |
 | wizard | semantic | ✅ | — |
@@ -257,7 +257,7 @@ These components have dedicated token definitions in `modules/base.json`.
 | page | `page-header` | :heavy_minus_sign: | :heavy_minus_sign: | :heavy_minus_sign: | :heavy_minus_sign: | — | No | `--ds-page-bg` unused (no full-page bg in code) |
 | [page-header](#page-header) | `page-header` | :white_check_mark: | :white_check_mark: | :heavy_minus_sign: | :x: | 0 | No | module + semantic; shadow-1 |
 | [pagination](#pagination) | `pagination` | :white_check_mark: | :heavy_minus_sign: | :x: | :x: | 0 | No | tokenised vs `--ds-pagination-*` (sync `66dddd0a` pass); jumper input via semantic |
-| [popconfirm](#popconfirm) | `popconfirm` | :white_check_mark: | :white_check_mark: | :heavy_minus_sign: | :heavy_minus_sign: | 1 | No | shadow-2; module renamed `popcornfirm`→`popconfirm` (sync `66dddd0a`); carousel dots now in `.styles.tsx` (`.less` removed) |
+| [popconfirm](#popconfirm) | `popconfirm` | :white_check_mark: | :white_check_mark: | :heavy_minus_sign: | :heavy_minus_sign: | 2 | No | shadow-2; module renamed `popcornfirm`→`popconfirm` (sync `66dddd0a`); carousel dots now in `.styles.tsx` (`.less` removed); ConfirmMessage title `#404c5a` → `-header-text` (⚑ grey-800) |
 | [progressbar](#progress-bar) | `progress-bar` | :white_check_mark: | :heavy_minus_sign: | :heavy_minus_sign: | :x: | 1 | No | track + value + default fill tokenised (sync `66dddd0a`); multivalue slots caller-driven (deferred) |
 | [status-pill](#status-status-pill) | `status` | :white_check_mark: | :heavy_minus_sign: | :heavy_minus_sign: | :x: | 2 | No | text/border split; custom kept dynamic |
 | [stepper](#stepper) | `stepper` | :construction: | :heavy_minus_sign: | :heavy_minus_sign: | :x: | 7 | No | :warning: done green→blue, active grey→blue; warning state migrated (sync `66dddd0a`); filled-circle content deferred |
@@ -277,7 +277,7 @@ These components use `theme.palette` / hardcoded colors but do not yet have dedi
 | avatar-group | 0 | No | 0 | 2 | :white_check_mark: tokenised — reuses **avatar** module (2026-07-21); 5 ⚑ shifts on +N chrome; 2 fan-out opacities kept |
 | badge | 11 | No | 4 | 4 | :white_check_mark: tokenised (2026-07-22) — badge module landed + applied: variant bg/text/ring tokens; `customColor` kept dynamic; ⚑ label grey-600→grey-500. `.less` removed (deantd) |
 | banner | 2 | No | 0 | 0 | :white_check_mark: tokenised — semantic (2026-07-20 pass); 2 palette = dynamic status-Tag defaults |
-| block | 6 | No | 0 | 0 | |
+| block | 6 | No | 0 | 0 | :white_check_mark: tokenised — semantic (2026-07-23) |
 | button-group | 6 | No | 4 | 0 | |
 | card-tabs | 68 | No | 2 | 4 | High palette count |
 | carousel | 0 | No | 0 | 0 | :white_check_mark: tokenised — semantic (2026-07-20 pass); new DS component, not in original audit |
@@ -305,7 +305,7 @@ These components use `theme.palette` / hardcoded colors but do not yet have dedi
 | factors | 16 | No | 2 | 0 | :construction: field action/search icons → `--ds-form-*` (2026-07-20); composition, rest deferred |
 | field-set | 0 | No | 0 | 0 | :white_check_mark: tokenised — semantic (2026-07-20 pass) |
 | file-uploader | 152 | No | 0 | 7 | Highest palette count |
-| filter | 3 | No | 0 | 1 | |
+| filter | 3 | No | 0 | 1 | :white_check_mark: tokenised — semantic (2026-07-23); placeholder bg→brand-subtle, border→border-brand, title→text-base-default |
 | flag | 0 | No | 0 | 34 | No palette, heavy opacity |
 | footer | 0 | No | 0 | 0 | :white_check_mark: tokenised — semantic (2026-07-20 pass) |
 | form-field | 1 | No | 0 | 0 | :construction: tooltip icon → semantic `--ds-color-icon-base-muted` (2026-07-21); `RightSide` counter grey-500 deferred → `form` token |
@@ -794,19 +794,19 @@ dropped (inherits via currentColor). The `color` prop override is preserved.
 
 Container bg/arrow → `--ds-popconfirm-container-bg`; title → `-header-text`; close icon → `-header-icon`;
 description → `-content-description`; link → semantic `text-base-subtle`. ConfirmMessage sub-component →
-semantic bg + shadow-2.
+semantic bg + shadow-2; its title `#404c5a` → `-header-text` (⚑ shift to grey-800 `#384350`).
 
 #### Visual diffs
 
 | Property | Current | Token resolves to | Delta |
 |----------|---------|-------------------|-------|
 | Description text | grey-800 `#384350` | grey-700 `#57616d` | Lighter (subtler than title — intended) |
+| ConfirmMessage title | `#404c5a` (off-palette) | `-header-text` grey-800 `#384350` | Slightly darker/cooler |
 
 #### Deferred
 
 Carousel `.slick-dots` indicators (`Popconfirm.styles.tsx:51,52,61,62`) — the green-600 active dot would
-become blue via `border-brand-default` (a green→blue redesign); kept `theme.palette`. `ConfirmMessage`
-title `#404c5a` hardcoded (no token). The antd Carousel `.less` was **removed** (deantd) — carousel-dot styling
+become blue via `border-brand-default` (a green→blue redesign); kept `theme.palette`. The antd Carousel `.less` was **removed** (deantd) — carousel-dot styling
 now lives in `Popconfirm.styles.tsx` on palette (directly tokenisable).
 
 ---
