@@ -154,7 +154,7 @@ Single at-a-glance view of every colour-bearing component: migration **status** 
 | factors | semantic | 🚧 | dropdown + list-item header pending; icon-danger-hover gap |
 | field-set | semantic | ✅ | — |
 | file-uploader | semantic | ❌ | **deferred — file-uploader module pending (whole component)** |
-| filter | semantic | ❌ | drag-placeholder deferred pending Figma |
+| filter | semantic | ✅ | — |
 | flag | semantic | ❌ | — |
 | footer | semantic | ✅ | — |
 | form | module | 🚧 | — |
@@ -305,7 +305,7 @@ These components use `theme.palette` / hardcoded colors but do not yet have dedi
 | factors | 16 | No | 2 | 0 | :construction: field action/search icons → `--ds-form-*` (2026-07-20); composition, rest deferred |
 | field-set | 0 | No | 0 | 0 | :white_check_mark: tokenised — semantic (2026-07-20 pass) |
 | file-uploader | 152 | No | 0 | 7 | Highest palette count |
-| filter | 3 | No | 0 | 1 | |
+| filter | 3 | No | 0 | 1 | :white_check_mark: tokenised — semantic (2026-07-23); placeholder bg→brand-subtle, border→border-brand, title→text-base-default |
 | flag | 0 | No | 0 | 34 | No palette, heavy opacity |
 | footer | 0 | No | 0 | 0 | :white_check_mark: tokenised — semantic (2026-07-20 pass) |
 | form-field | 1 | No | 0 | 0 | :construction: tooltip icon → semantic `--ds-color-icon-base-muted` (2026-07-21); `RightSide` counter grey-500 deferred → `form` token |
