@@ -167,7 +167,7 @@ Tooltip type is auto-determined: if exactly one of `title`, `description`, `stat
 Styles in `Avatar.styles.tsx`. A DS-native `AvatarBase` renders the `ant-avatar` root + `ant-avatar-string`/`<img>` child (with `ds-avatar-*` class hooks added alongside the `ant-*` ones during the antd-removal interim); the `StyledAvatar` styled-component applies all visual styling via props and styled sub-component references (`${AvatarString}`) — no `.ant-*` class selectors, except the cross-component `& ~ .ant-badge-dot` sibling (the dot is owned by ds-badge). Key styles:
 
 - Dimensions per size set directly in CSS: `small` 24, `medium` 40, `large` 84, `extraLarge` 120 px
-- Background applied via `theme.palette[${backgroundColor}-${backgroundColorHue}]` — requires both to be valid token fragments
+- Background resolved from the token custom-color catalog — `customColors[backgroundColor][backgroundColorHue]` (a flipping semantic `var(--ds-color-background-custom-<family>-<shade>)` ref, so it adapts to dark mode); a `#`-prefixed `backgroundColor` is used literally, and an unknown family falls back to `transparent`
 - Badge dot (`ds-badge-dot`) is hidden by default; shown when `hasStatus=true` with size/shape-specific positioning from `BADGE_POSITION` map
 - Hover/active darken overlay via `::before` pseudo-element — only applied when `onClick` or `hasTooltip` is truthy
 - Font sizes per size via `MACRO_MAPPING` (xsAvatar, small, xlAvatar macros from ds-typography)
@@ -183,7 +183,7 @@ Styles in `Avatar.styles.tsx`. A DS-native `AvatarBase` renders the `ant-avatar`
 ## Implementation notes
 
 - `src=""` (empty string) is explicitly converted to `undefined` to prevent showing a broken image.
-- `backgroundColor` is a string passed directly into `theme.palette[…]` key lookup — invalid color+hue combos silently produce `undefined` background.
+- `backgroundColor` is looked up in the `customColors` catalog (from `@synerise/ds-tokens/names`) keyed by `[family][hue]` (default hue `500` with text, `100` when empty); a `#`-prefixed value is treated as a literal hex, and an unknown family or hue falls back to a `transparent` background.
 - The 100 default SVG components in `defaultAvatars/` are **auto-generated** by `build:svgr` — do not edit them manually; regenerate via `pnpm run build:svgr`.
 - `getDefaultAvatarIndex` uses a simple djb2-style hash on the string form of `avatarId` — the same `avatarId` always maps to the same avatar across all environments.
 - `getColorByText` supports a `'color-hue'` dash-separated string shorthand for `backgroundColor` (e.g. `'grey-800'`) — this bypasses the separate `backgroundColorHue` prop entirely.
