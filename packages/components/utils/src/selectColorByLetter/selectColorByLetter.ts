@@ -1,6 +1,7 @@
 import latinize from 'latinize';
 
 import { theme } from '@synerise/ds-core';
+import { customColorNames } from '@synerise/ds-tokens/names';
 
 export type ColorByLetter = {
   [index: string]: string;
@@ -8,19 +9,9 @@ export type ColorByLetter = {
 export type ColorObject = { color: string; hue: string };
 export type Color = string | ColorObject;
 
-export const palette = [
-  'blue',
-  'cyan',
-  'fern',
-  'green',
-  'orange',
-  'yellow',
-  'red',
-  'mars',
-  'pink',
-  'violet',
-  'purple',
-];
+// Categorical family catalogue = the token package's custom-color set (single source of
+// truth). Replaces the former hand-maintained list, so the allowed families live in one place.
+export const palette = customColorNames;
 
 function getColorByLetter(): ColorByLetter {
   const colors: Record<string, string> = {};
