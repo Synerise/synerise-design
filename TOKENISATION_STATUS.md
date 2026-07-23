@@ -12,7 +12,8 @@ Tracks the progress of migrating components from `theme.palette` / hardcoded val
 > `--ds-tooltip-key-*`), `skeleton` (shimmer keyframe opacity). **Totals corrected** to match the
 > current table (was :white_check_mark: 73 · :construction: 19 · :x: 18 · 24 awaiting; now
 > :white_check_mark: 80 · :construction: 15 · :x: 15 · 22 awaiting). Storybook story backgrounds were
-> also swept off hardcoded hex onto semantic surface tokens in this branch.
+> also swept off hardcoded hex onto the page background token (`--ds-page-bg`, matching the
+> preview canvas); the PanelResizer demo keeps distinct tinted surfaces.
 > (Separately, the avatar initials → categorical custom-color token catalog is in flight on
 > `feature/categorical-color-tokens`, MR !3839 — not part of this batch.)
 

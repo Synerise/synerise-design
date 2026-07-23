@@ -49,7 +49,7 @@ const ITEM_STYLE = {
   border: '1px solid #ececec',
   cursor: 'grab',
   margin: '2px 0',
-  background: 'var(--ds-color-background-base-default)',
+  background: 'var(--ds-page-bg)',
 };
 
 export const renderItem = ({

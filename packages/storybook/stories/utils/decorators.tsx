@@ -61,7 +61,7 @@ export const footerWrapper: Decorator = (Story) => (
       justifyContent: 'center',
       alignItems: 'stretch',
       padding: '0 16px',
-      background: 'var(--ds-color-background-base-default)',
+      background: 'var(--ds-page-bg)',
     }}
   >
     {Story()}
@@ -81,7 +81,7 @@ export const headerWrapper: Decorator = (Story) => (
 
       alignItems: 'stretch',
       padding: '0 16px',
-      background: 'var(--ds-color-background-base-default)',
+      background: 'var(--ds-page-bg)',
     }}
   >
     {Story()}
