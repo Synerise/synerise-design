@@ -146,7 +146,7 @@ Single at-a-glance view of every colour-bearing component: migration **status** 
 | description-line | module | ✅ | — |
 | divider | module | ✅ | — |
 | drawer | semantic | ❌ | **deferred — de-antd first (.less)** |
-| dropdown | module | 🚧 | dropdown bottom-action / back-action / search-icon pending |
+| dropdown | module | ✅ | — |
 | editable-items-list | semantic | ✅ | — |
 | emoji-picker | semantic | 🚧 | list-item header role pending |
 | empty-states | semantic | ✅ | — |
@@ -297,7 +297,7 @@ These components use `theme.palette` / hardcoded colors but do not yet have dedi
 | date-picker | 56 | No | 1 | 0 | :construction: trigger field → `--ds-form-*` + clear icon → icon-danger (2026-07-20); overlay/calendar deferred |
 | date-range-picker | 43 | No | 2 | 7 | :construction: trigger field → `--ds-form-*` + danger icons (2026-07-20); overlay/calendar deferred |
 | drawer | 3 | Yes (1) | 1 | 0 | |
-| dropdown | 20 | No | 1 | 1 | |
+| dropdown | 20 | No | 1 | 1 | :white_check_mark: tokenised (2026-07-23) — bottom-action icon/text/bg/border + brand hover, back-action label/icon text, search-icon → semantic; TextTrigger `inactiveColor` kept dynamic |
 | editable-items-list | 0 | No | 0 | 0 | :white_check_mark: hardcoded add-icon `blue-600` removed — icon inherits ds-button (`mode: icon-label`) (2026-07-20) |
 | emoji-picker | 1 | No | 0 | 0 | :construction: search-icon `grey-600` removed — inherits default (2026-07-20); `EmojiList` `grey-500` deferred → pending list-item tokens |
 | empty-states | 0 | No | 0 | 0 | :white_check_mark: tokenised — semantic (2026-07-20 pass) |

@@ -6,7 +6,6 @@ import React, {
   useState,
 } from 'react';
 
-import { useTheme } from '@synerise/ds-core';
 import Icon, { SearchM } from '@synerise/ds-icon';
 import { type ListItemProps } from '@synerise/ds-list-item';
 import SearchBar from '@synerise/ds-search-bar';
@@ -51,7 +50,6 @@ export const DropdownMenu = <ItemType extends ListItemProps>({
   const [searchQuery, setSearchQuery] = useState('');
   const [isOpen, setIsOpen] = useState(open);
   const allTexts = useDefaultTexts(texts);
-  const theme = useTheme();
 
   const toggleOpen = useCallback(
     (openState: boolean) => {
@@ -108,7 +106,10 @@ export const DropdownMenu = <ItemType extends ListItemProps>({
             handleInputRef={handleSearchFocus}
             onSearchChange={handleSearchChange}
             iconLeft={
-              <Icon component={<SearchM />} color={theme.palette['grey-600']} />
+              <Icon
+                component={<SearchM />}
+                color="var(--ds-color-icon-base-default)"
+              />
             }
             onClearInput={() => setSearchQuery('')}
             clearTooltip={allTexts.searchClearTooltip}
@@ -131,7 +132,6 @@ export const DropdownMenu = <ItemType extends ListItemProps>({
     searchQuery,
     handleSearchFocus,
     handleSearchChange,
-    theme.palette,
     maxVisibleItems,
     hideOnItemClick,
     filteredItems,
