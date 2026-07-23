@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.7.12](https://github.com/Synerise/synerise-design/compare/@synerise/ds-date-range-picker@1.7.11...@synerise/ds-date-range-picker@1.7.12) (2026-07-23)
+
+### Bug Fixes
+
+- **date-range-picker:** portal day range tooltip so overlay scroll can't clip it ([8ed5637](https://github.com/Synerise/synerise-design/commit/8ed5637b422d053ce572e9e70e8b445726dd7fe7))
+- **date-range-picker:** trigger day range tooltip from the top day layer ([8b4fc77](https://github.com/Synerise/synerise-design/commit/8b4fc77ff0841aebd75c82a4aa1e24f5d3d493cf))
+
 ## [1.7.11](https://github.com/Synerise/synerise-design/compare/@synerise/ds-date-range-picker@1.7.10...@synerise/ds-date-range-picker@1.7.11) (2026-07-16)
 
 **Note:** Version bump only for package @synerise/ds-date-range-picker

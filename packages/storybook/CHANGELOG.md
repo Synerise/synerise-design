@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.51.3](https://github.com/Synerise/synerise-design/compare/storybook@1.51.2...storybook@1.51.3) (2026-07-23)
+
+### Bug Fixes
+
+- **date-range-picker:** trigger day range tooltip from the top day layer ([8b4fc77](https://github.com/Synerise/synerise-design/commit/8b4fc77ff0841aebd75c82a4aa1e24f5d3d493cf))
+
 ## [1.51.2](https://github.com/Synerise/synerise-design/compare/storybook@1.51.1...storybook@1.51.2) (2026-07-16)
 
 ### Bug Fixes
