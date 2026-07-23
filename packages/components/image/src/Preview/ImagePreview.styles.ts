@@ -9,7 +9,6 @@ const imageFadeIn = keyframes`
   from { opacity: 0; }
   to { opacity: 1; }
 `;
-const BACKDROP_ALPHA = 'CC'; // grey-900 at 80% — appended to the palette hex
 const CONTROLS_INSET = 16; // gap between the toolbars/close and the viewport edge
 const IMAGE_BORDER_RADIUS = 8;
 
@@ -21,8 +20,7 @@ export const Overlay = styled.div<ThemeProps & { $hidden?: boolean }>`
   align-items: center;
   justify-content: center;
   outline: none;
-  background-color: ${(props): string =>
-    `${props.theme.palette['grey-900']}${BACKDROP_ALPHA}`};
+  background-color: var(--ds-image-preview-backdrop);
   /* Quick fade on open/close. visibility (not display:none) keeps it
      animatable while still hiding it from view and interaction. */
   opacity: ${(props): number => (props.$hidden ? 0 : 1)};
@@ -53,7 +51,7 @@ export const Image = styled.img<ThemeProps>`
   object-fit: contain;
   user-select: none;
   border-radius: ${IMAGE_BORDER_RADIUS}px;
-  box-shadow: ${(props): string => props.theme.variables['box-shadow-4']};
+  box-shadow: var(--ds-shadows-shadow-4);
   /* Replays on each image (keyed by index) for a quick fade when navigating. */
   animation: ${imageFadeIn} 200ms ease;
 `;
@@ -74,8 +72,8 @@ export const FallbackBox = styled.div<ThemeProps>`
   width: 240px;
   height: 180px;
   border-radius: ${IMAGE_BORDER_RADIUS}px;
-  color: ${(props): string => props.theme.palette['grey-600']};
-  background-color: ${(props): string => props.theme.palette['grey-050']};
+  color: var(--ds-image-placeholder-fg);
+  background-color: var(--ds-image-placeholder-bg);
 `;
 
 /** Close button — kept in the top-right corner, away from the bottom toolbar. */
