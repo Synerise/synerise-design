@@ -133,7 +133,7 @@ Single at-a-glance view of every colour-bearing component: migration **status** 
 | code-area | module (form) | ✅ | — |
 | code-snippet | module | ✅ | .less = font-face only |
 | collector | module | ✅ | — |
-| color-picker | semantic | ✅ | — |
+| color-picker | module | ✅ | — |
 | column-manager | semantic | ✅ | — |
 | completed-within | module | ✅ | — |
 | condition | semantic | ✅ | connector tokens pending |
@@ -286,7 +286,7 @@ These components use `theme.palette` / hardcoded colors but do not yet have dedi
 | code-area | 6 | No | 1 | 1 | :construction: field surface + error text → `--ds-form-*` (2026-07-20); Monaco constants (CSS-var constraint) + fullscreen deferred |
 | code-snippet | 14 | No¹ | 0 | 2 | :construction: chrome tokenised (2026-07-20); syntax theme + inline-code kept on palette (⚑ no code-syntax tokens). ¹`.less` = font-face only |
 | collector | 11 | No | 1 | 2 | :construction: placeholder → `--ds-form-*` (2026-07-20); chips/dropdown deferred |
-| color-picker | 6 | No | 2 | 0 | :construction: field affix → `--ds-form-*` (2026-07-20); picker/swatches/dynamic deferred |
+| color-picker | 0 | No | 2 | 0 | :white_check_mark: field affix + picker panel → `--ds-form-*`/`--ds-dropdown-*` + semantic; `.react-colorful__pointer-fill` white → semantic `background-base-default` (exact); colour-value props stay dynamic |
 | column-manager | 0 | No | 1 | 5 | :white_check_mark: tokenised — semantic (2026-07-20 pass) |
 | completed-within | 1 | No | 1 | 3 | :construction: clear icon → `--ds-color-icon-danger-default` (2026-07-20); `Settings` panel bg `white` deferred (needs dropdown tokens) |
 | condition | 2 | No | 1 | 8 | :white_check_mark: semantic (2026-07-20); `ConditionConnections` `:before`/`:after` grey-300 kept per request |
@@ -1381,12 +1381,13 @@ grey-050→grey-100, clear hover grey-700→grey-400. **Deferred:** `Autocomplet
 `DropdownValue` grey-700 → `--ds-form-field-text-value`. Both exact. **Deferred:** `FormatSettingsContainer`/
 `FormatFooter`/`DropdownWrapper` (panel + overlay) and `ListItem` rows (list-item).
 
-### color-picker — :construction: field affix (picker/swatches deferred)
+### color-picker — :white_check_mark: (field affix + picker panel)
 
 `ColorPicker.styles.ts`: `ColorTag` (trigger colour-swatch affix) border grey-300 →
 `--ds-form-field-affix-border`; `PreffixWrapper` (`#` hex-input prefix) grey-500 →
-`--ds-form-field-affix-text`. Both exact. **Deferred:** picker panel `Container` + `.react-colorful__*` +
-swatch grid/creator (dropdown/overlay); all `ColorPicker.tsx` colour-value props (dynamic).
+`--ds-form-field-affix-text`. Both exact. Picker panel `Container` + borders/focus rings + swatch glyphs
+tokenised (dropdown/semantic pass); `.react-colorful__pointer-fill` white → semantic
+`--ds-color-background-base-default` (exact). **Kept dynamic:** all `ColorPicker.tsx` colour-value props (runtime).
 
 ### context-selector — :construction: search icon + error text (dropdown/list-item deferred)
 
@@ -1860,7 +1861,7 @@ passes above.
   `--ds-dropdown-text-additional` (field surface was done in the 2026-07-20 form pass).
 - **completed-within** — :white_check_mark: `Settings` panel bg → `--ds-dropdown-bg`.
 - **color-picker** — :white_check_mark: picker panel bg → `--ds-dropdown-bg`, borders/focus rings → semantic
-  border tokens, swatch/creator glyphs → semantic; react-colorful `.pointer-fill` kept (3rd-party decorative).
+  border tokens, swatch/creator glyphs → semantic; react-colorful `.pointer-fill` white → semantic `background-base-default` (exact).
 - **dropdown** — :construction: `Wrapper`/`DropdownOverlay` bg → `--ds-dropdown-bg`, shadow →
   `--ds-dropdown-shadow`, `DropdownFooter` bg → `-footer-bg`; `TextTrigger` hover/focus/disabled-opacity →
   semantic brand + `--ds-opacity-disabled` (icon coloured via `.ds-icon` `color`, no `svg fill`).
