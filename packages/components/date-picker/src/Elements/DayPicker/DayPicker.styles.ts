@@ -139,9 +139,6 @@ export const DayPicker = styled(DayPickerBase)`
         margin-left: 4px;
       }
       & > ${DayBackground} {
-        /* Extend left toward the range (mirror of entered-start's margin-right:0) so a
-           past-direction preview connects into the selected endpoint (which is also --end). */
-        margin-left: 0;
         margin-right: 4px;
         background-color: var(--ds-calendar-day-range-bg);
       }
@@ -346,10 +343,13 @@ ${daySelector('entered')}:not(${daySelector('disabled')}):not(${daySelector('end
       margin-left: 4px;
       padding-left: 4px;
     }
-    /* Mirror of --start: the end cap carries a range-bg connector so a past-direction
-       preview (end picked first, hover earlier) stays joined to the selected day. */
+    /* During a past-direction preview the endpoint is --end but NOT --selected, so it
+       misses --selected's margin:0 and falls back to the base margin:4px, leaving a gap
+       before it. Extend the range-bg connector left (margin-left:0) to rejoin the range;
+       --selected already sets margin:0 for committed/single-day cases. */
     & > ${DayBackground} {
       background-color: var(--ds-calendar-day-range-bg);
+      margin-left: 0;
     }
     & > div {
       padding-right: 4px;
