@@ -257,7 +257,7 @@ These components have dedicated token definitions in `modules/base.json`.
 | page | `page-header` | :heavy_minus_sign: | :heavy_minus_sign: | :heavy_minus_sign: | :heavy_minus_sign: | — | No | `--ds-page-bg` unused (no full-page bg in code) |
 | [page-header](#page-header) | `page-header` | :white_check_mark: | :white_check_mark: | :heavy_minus_sign: | :x: | 0 | No | module + semantic; shadow-1 |
 | [pagination](#pagination) | `pagination` | :white_check_mark: | :heavy_minus_sign: | :x: | :x: | 0 | No | tokenised vs `--ds-pagination-*` (sync `66dddd0a` pass); jumper input via semantic |
-| [popconfirm](#popconfirm) | `popconfirm` | :white_check_mark: | :white_check_mark: | :heavy_minus_sign: | :heavy_minus_sign: | 1 | No | shadow-2; module renamed `popcornfirm`→`popconfirm` (sync `66dddd0a`); carousel dots now in `.styles.tsx` (`.less` removed) |
+| [popconfirm](#popconfirm) | `popconfirm` | :white_check_mark: | :white_check_mark: | :heavy_minus_sign: | :heavy_minus_sign: | 2 | No | shadow-2; module renamed `popcornfirm`→`popconfirm` (sync `66dddd0a`); carousel dots now in `.styles.tsx` (`.less` removed); ConfirmMessage title `#404c5a` → `-header-text` (⚑ grey-800) |
 | [progressbar](#progress-bar) | `progress-bar` | :white_check_mark: | :heavy_minus_sign: | :heavy_minus_sign: | :x: | 1 | No | track + value + default fill tokenised (sync `66dddd0a`); multivalue slots caller-driven (deferred) |
 | [status-pill](#status-status-pill) | `status` | :white_check_mark: | :heavy_minus_sign: | :heavy_minus_sign: | :x: | 2 | No | text/border split; custom kept dynamic |
 | [stepper](#stepper) | `stepper` | :construction: | :heavy_minus_sign: | :heavy_minus_sign: | :x: | 7 | No | :warning: done green→blue, active grey→blue; warning state migrated (sync `66dddd0a`); filled-circle content deferred |
@@ -794,19 +794,19 @@ dropped (inherits via currentColor). The `color` prop override is preserved.
 
 Container bg/arrow → `--ds-popconfirm-container-bg`; title → `-header-text`; close icon → `-header-icon`;
 description → `-content-description`; link → semantic `text-base-subtle`. ConfirmMessage sub-component →
-semantic bg + shadow-2.
+semantic bg + shadow-2; its title `#404c5a` → `-header-text` (⚑ shift to grey-800 `#384350`).
 
 #### Visual diffs
 
 | Property | Current | Token resolves to | Delta |
 |----------|---------|-------------------|-------|
 | Description text | grey-800 `#384350` | grey-700 `#57616d` | Lighter (subtler than title — intended) |
+| ConfirmMessage title | `#404c5a` (off-palette) | `-header-text` grey-800 `#384350` | Slightly darker/cooler |
 
 #### Deferred
 
 Carousel `.slick-dots` indicators (`Popconfirm.styles.tsx:51,52,61,62`) — the green-600 active dot would
-become blue via `border-brand-default` (a green→blue redesign); kept `theme.palette`. `ConfirmMessage`
-title `#404c5a` hardcoded (no token). The antd Carousel `.less` was **removed** (deantd) — carousel-dot styling
+become blue via `border-brand-default` (a green→blue redesign); kept `theme.palette`. The antd Carousel `.less` was **removed** (deantd) — carousel-dot styling
 now lives in `Popconfirm.styles.tsx` on palette (directly tokenisable).
 
 ---
