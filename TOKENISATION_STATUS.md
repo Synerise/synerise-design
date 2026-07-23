@@ -284,7 +284,7 @@ These components use `theme.palette` / hardcoded colors but do not yet have dedi
 | cascader | 34 | No | 5 | 10 | |
 | [checkbox](#checkbox--radio) | 0 | No | 4 | 1 | :white_check_mark: fully tokenised — focus/indeterminate/hover → `--ds-form-checkbox-*`; indeterminate-hover fill blue-500 → semantic `background-brand-solidhover` (exact); check icons = currentColor SVG |
 | code-area | 6 | No | 1 | 1 | :construction: field surface + error text → `--ds-form-*` (2026-07-20); Monaco constants (CSS-var constraint) + fullscreen deferred |
-| code-snippet | 14 | No¹ | 0 | 2 | :construction: chrome tokenised (2026-07-20); syntax theme + inline-code kept on palette (⚑ no code-syntax tokens). ¹`.less` = font-face only |
+| code-snippet | 14 | No¹ | 0 | 2 | :white_check_mark: fully tokenised (2026-07-23) — chrome→--ds-code-snippet-surface/copy, syntax→--ds-code-snippet-syntax-*, inline→--ds-code-snippet-inlinecode-*. ¹`.less` = font-face only |
 | collector | 11 | No | 1 | 2 | :construction: placeholder → `--ds-form-*` (2026-07-20); chips/dropdown deferred |
 | color-picker | 0 | No | 2 | 0 | :white_check_mark: field affix + picker panel → `--ds-form-*`/`--ds-dropdown-*` + semantic; `.react-colorful__pointer-fill` white → semantic `background-base-default` (exact); colour-value props stay dynamic |
 | column-manager | 0 | No | 1 | 5 | :white_check_mark: tokenised — semantic (2026-07-20 pass) |
