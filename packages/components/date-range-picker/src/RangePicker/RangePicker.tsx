@@ -358,7 +358,7 @@ class RangePicker extends PureComponent<Props & WithDataFormatProps, State> {
           this.handleSideMonthChange(side, month, 'date')
         }
         fixedWeeks
-        showOutsideDay
+        showOutsideDays
         modifiers={modifiers}
         // @ts-ignore
         onDayClick={this.handleDayClick}
