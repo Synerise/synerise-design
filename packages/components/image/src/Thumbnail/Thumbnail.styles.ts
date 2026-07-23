@@ -9,7 +9,6 @@ import {
 import ImageContent from '../shared/ImageContent';
 
 const TILE_BORDER_RADIUS = 4;
-const HOVER_OVERLAY_ALPHA = '4D'; // grey-900 at ~30% opacity
 const DELETE_BUTTON_SIZE = 24; // matches the M icon exactly — no clickable padding
 
 /**
@@ -37,7 +36,7 @@ export const Tile = styled.div<
 
   &:focus-visible {
     outline: none;
-    box-shadow: 0 0 0 2px ${(props): string => props.theme.palette['blue-600']};
+    box-shadow: 0 0 0 2px var(--ds-color-border-brand-default);
   }
 `;
 
@@ -53,7 +52,7 @@ export const Clip = styled.div<
   border-radius: ${TILE_BORDER_RADIUS}px;
   background-color: ${(props): string =>
     props.$background === 'subtle-grey'
-      ? props.theme.palette['grey-050']
+      ? 'var(--ds-image-thumbnail-bg)'
       : 'transparent'};
 `;
 
@@ -73,8 +72,8 @@ export const EmptyPlaceholder = styled.div<ThemeProps>`
   justify-content: center;
   width: 100%;
   height: 100%;
-  color: ${(props): string => props.theme.palette['grey-600']};
-  background-color: ${(props): string => props.theme.palette['grey-050']};
+  color: var(--ds-image-placeholder-fg);
+  background-color: var(--ds-image-placeholder-bg);
 `;
 
 /** Hover affordance: a dim layer over the whole tile with a centered show icon. */
@@ -85,9 +84,8 @@ export const HoverOverlay = styled.div<ThemeProps>`
   display: flex;
   align-items: center;
   justify-content: center;
-  color: ${(props): string => props.theme.palette.white};
-  background-color: ${(props): string =>
-    `${props.theme.palette['grey-900']}${HOVER_OVERLAY_ALPHA}`};
+  color: var(--ds-image-hoveroverlay-icon);
+  background-color: var(--ds-image-hoveroverlay-bg);
   opacity: 0;
   transition: opacity 0.15s ease;
 
@@ -113,7 +111,7 @@ export const DeleteButton = styled.button<ThemeProps>`
   background: none;
   cursor: pointer;
   /* Drives the icon's full-background fill (white X on a red disc). */
-  color: ${(props): string => props.theme.palette['red-600']};
+  color: var(--ds-color-icon-danger-default);
   opacity: 0;
   transition: opacity 0.15s ease;
 

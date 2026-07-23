@@ -8,7 +8,8 @@ export const InlineCodeWrapper = styled.code`
     padding: 0 4px;
     margin-right: 4px;
     border-radius: 3px;
-    color: #e31a5d;
-    background-color: ${(props): string => props.theme.palette[`pink-100`]};
+    /* ⚑ Shift: inline-code text #e31a5d → --ds-code-snippet-inlinecode-text (pink-600 #ff2f52). */
+    color: var(--ds-code-snippet-inlinecode-text);
+    background-color: var(--ds-code-snippet-inlinecode-bg);
   }
 `;

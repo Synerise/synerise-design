@@ -94,7 +94,7 @@ export const CodeAreaWrapper = styled.div<{
           : props.theme.variables['zindex-modal']};
         left: 0;
         top: 0;
-        background: ${props.theme.palette.white};
+        background: var(--ds-color-background-base-default);
         ${EditorInnerWrapper} {
           height: calc(100vh - ${props.requiredSpace}px);
         }

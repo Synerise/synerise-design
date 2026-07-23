@@ -1,10 +1,6 @@
 import React, { type MouseEvent, useCallback, useMemo, useState } from 'react';
 
-import {
-  getDefaultDataTimeOptions,
-  useDataFormat,
-  useTheme,
-} from '@synerise/ds-core';
+import { getDefaultDataTimeOptions, useDataFormat } from '@synerise/ds-core';
 import FormField from '@synerise/ds-form-field';
 import Icon, { ArrowRightS, CalendarM, Close3S } from '@synerise/ds-icon';
 import Tooltip from '@synerise/ds-tooltip';
@@ -38,7 +34,6 @@ const RangePickerInput = ({
   errorText,
   preferRelativeDesc = false,
 }: RangePickerInputProps) => {
-  const theme = useTheme();
   const { formatValue } = useDataFormat();
 
   const dateRangeValue = value ? normalizeRange(value as DateRange) : value;
@@ -76,18 +71,11 @@ const RangePickerInput = ({
       ) : (
         texts?.startDatePlaceholder
       );
-    return (
-      <S.DateWrapper
-        highlight={active && !disabled && !isFromDateDefined && highlight}
-      >
-        {text}
-      </S.DateWrapper>
-    );
-  }, [dateRangeValue, getText, active, disabled, texts, highlight]);
+    return <S.DateWrapper>{text}</S.DateWrapper>;
+  }, [dateRangeValue, getText, texts]);
 
   const renderEndDate = useCallback(() => {
     const isEndDateDefined = dateRangeValue && dateRangeValue.to;
-    const isFromDateDefined = dateRangeValue && dateRangeValue.from;
 
     const text =
       isEndDateDefined && dateRangeValue ? (
@@ -95,16 +83,8 @@ const RangePickerInput = ({
       ) : (
         texts?.endDatePlaceholder
       );
-    return (
-      <S.DateWrapper
-        highlight={
-          active && !!isFromDateDefined && !isEndDateDefined && highlight
-        }
-      >
-        {text}
-      </S.DateWrapper>
-    );
-  }, [dateRangeValue, getText, active, texts, highlight]);
+    return <S.DateWrapper>{text}</S.DateWrapper>;
+  }, [dateRangeValue, getText, texts]);
 
   const placeholder = useMemo(() => {
     if (isLifetime(value as typeof dateRangeValue)) {
@@ -116,7 +96,10 @@ const RangePickerInput = ({
           dateRangeValue?.translationKey &&
           `${texts?.[dateRangeValue.translationKey as keyof Texts] || dateRangeValue?.translationKey} (`}
         {renderFromDate()}
-        <Icon component={<ArrowRightS />} color={theme.palette['grey-400']} />
+        <Icon
+          component={<ArrowRightS />}
+          color="var(--ds-color-icon-base-disabled)"
+        />
         {renderEndDate()}
         {preferRelativeDesc && dateRangeValue?.translationKey && value && ')'}
       </>
@@ -127,7 +110,6 @@ const RangePickerInput = ({
     dateRangeValue?.translationKey,
     texts,
     renderFromDate,
-    theme.palette,
     renderEndDate,
   ]);
 

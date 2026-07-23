@@ -14,12 +14,12 @@ export const Container = styled.div`
       margin-left: calc(-50%);
       display: block;
       white-space: nowrap;
-      background-color: rgba(56, 67, 80, 0.9);
+      background-color: var(--ds-color-background-overlay-solid);
       padding: 3px 8px;
       border-radius: 3px;
       z-index: 9;
       font-weight: 400;
-      color: ${(props): string => props.theme.palette.white};
+      color: var(--ds-color-text-onsolid-default);
     }
   }
 `;
@@ -39,7 +39,7 @@ export const IconWrapper = styled.div<{ active: boolean; readonly?: boolean }>`
   &&& .ds-icon svg {
     fill: ${(props): string =>
       props.active && !props.readonly
-        ? props.theme.palette['red-600']
-        : props.theme.palette['green-600']} !important;
+        ? 'var(--ds-color-icon-danger-default)'
+        : 'var(--ds-color-icon-success-default)'} !important;
   }
 `;
