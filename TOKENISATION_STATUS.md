@@ -192,7 +192,7 @@ Single at-a-glance view of every colour-bearing component: migration **status** 
 | popconfirm | module | ✅ | — |
 | popover | semantic | ➖ | — |
 | progressbar | module | ✅ | — |
-| radio | semantic | 🚧 | — |
+| radio | module | ✅ | — |
 | result | semantic | ✅ | — |
 | scrollbar | semantic | ❌ | **.less** |
 | search | module | ✅ | — |
@@ -330,7 +330,7 @@ These components use `theme.palette` / hardcoded colors but do not yet have dedi
 | panel | 0 | No | 0 | 0 | :white_check_mark: tokenised — semantic + shadow-1 (2026-07-21 pass) |
 | panels-resizer | 0 | No | 0 | 0 | :white_check_mark: tokenised — semantic (2026-07-21 pass); ⚑ grip-bar bg grey-200→grey-100 |
 | popover | 0 | No | 0 | 2 | |
-| [radio](#checkbox--radio) | 1 | No | 3 | 4 | :construction: description + disabled-opacity → `--ds-form-radio-*`; bulk per-state styling now in `Radio.styles.tsx` on palette (`.less` removed) |
+| [radio](#checkbox--radio) | 0 | No | 3 | 4 | :white_check_mark: fully tokenised — description + disabled-opacity → `--ds-form-radio-*`; solid+checked-hover bg/border/box-shadow blue-500 → semantic `background-brand-solidhover` (exact) |
 | result | 0 | No | 0 | 0 | :white_check_mark: tokenised — semantic (2026-07-21 pass); status-icon map → icon-* token vars |
 | scrollbar | 17 | Yes (2) | 0 | 17 | |
 | search | 13 | No | 4 | 8 | `.less` removed (deantd) |
@@ -1098,8 +1098,8 @@ elevation shadow, disabled opacity — now in `Checkbox.styles.ts` on palette (`
 
 Description text → `--ds-form-radio-text-description`; disabled opacity (label + description) →
 `--ds-form-radio-disabled-opacity`. **Visual diff:** description text grey-600 `#6a7580` → grey-700
-`#57616d` (darker, design-intended). **Remaining:** the radio dot/border/bg/hover/selected states now live in
-`Radio.styles.tsx` on palette (`.less` removed — directly tokenisable, no antd Less blocker).
+`#57616d` (darker, design-intended). **Applied:** solid+checked-hover bg/border/box-shadow `blue-500` → semantic `background-brand-solidhover`
+(exact); `Radio.styles.tsx` now fully token-based.
 
 > **Sync `e0301675d` forward-note (affects the deferred radio-state work, not the already-migrated text):** the
 > selected inner dot `--ds-form-radio-dot-color` was re-pointed `{background.base.default}` →
