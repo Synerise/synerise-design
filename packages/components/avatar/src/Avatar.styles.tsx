@@ -2,6 +2,7 @@ import React, { forwardRef } from 'react';
 import styled, { css } from 'styled-components';
 
 import { type ThemeProps } from '@synerise/ds-core';
+import { customColors } from '@synerise/ds-tokens/names';
 import { macro } from '@synerise/ds-typography';
 
 import { type AvatarProps } from './Avatar.types';
@@ -22,11 +23,19 @@ export const TooltipGroup = styled.div`
 
 const applyBgColors = (
   props: ThemeProps & { backgroundColor?: string; backgroundColorHue?: string },
-) => css`
-  background: ${props.theme.palette[
-    `${props.backgroundColor}-${props.backgroundColorHue ? props.backgroundColorHue : '400'}`
-  ]};
-`;
+) => {
+  const { backgroundColor, backgroundColorHue } = props;
+  const hue = backgroundColorHue || '400';
+  // Categorical family → flipping semantic token (customColors[family][hue]); a raw hex
+  // (db-driven prop) is the `full-custom` escape hatch and is used literally.
+  const bg =
+    backgroundColor && backgroundColor.startsWith('#')
+      ? backgroundColor
+      : customColors[backgroundColor ?? '']?.[hue];
+  return css`
+    background: ${bg ?? 'transparent'};
+  `;
+};
 
 const applyDisabledStyles = (props: { disabled?: boolean }) =>
   props.disabled &&

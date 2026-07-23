@@ -33,6 +33,8 @@ describe('UserAvatar', () => {
   test('should render with custom color token (including hue)', () => {
     const { container } = renderWithProvider(<UserAvatar user={testUserImage} backgroundColor="grey-800" />);
     const avatar = container.querySelector('.ant-avatar');
-    expect(avatar).toHaveStyle('background: rgb(56, 67, 80);');
+    expect(avatar).toHaveStyle(
+      'background: var(--ds-color-background-custom-grey-800)',
+    );
   });
 });

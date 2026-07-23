@@ -70,7 +70,9 @@ describe('Avatar', () => {
 
     const avatar = container.querySelector('.ant-avatar');
 
-    expect(avatar).toHaveStyle('background: #ff5a4d');
+    expect(avatar).toHaveStyle(
+      'background: var(--ds-color-background-custom-red-500)',
+    );
     expect(avatar).toHaveClass('ant-avatar-square');
   });
 

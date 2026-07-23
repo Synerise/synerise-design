@@ -41,6 +41,7 @@
   ],
   "types": "dist/index.d.ts",
   "dependencies": {
+    "@synerise/ds-tokens": "workspace:^",
     "latinize": "^0.5.0",
     "uuid": "^8.3.2"
   },

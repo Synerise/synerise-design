@@ -10,7 +10,8 @@
   "typesVersions": {
     "*": {
       "light": ["dist/js/light.d.ts"],
-      "dark": ["dist/js/dark.d.ts"]
+      "dark": ["dist/js/dark.d.ts"],
+      "names": ["dist/js/names.d.ts"]
     }
   },
   "exports": {
@@ -25,6 +26,10 @@
     "./dark": {
       "import": "./dist/js/dark.js",
       "types": "./dist/js/dark.d.ts"
+    },
+    "./names": {
+      "import": "./dist/js/names.js",
+      "types": "./dist/js/names.d.ts"
     },
     "./css/light.css": "./dist/css/light.css",
     "./css/dark.css": "./dist/css/dark.css"

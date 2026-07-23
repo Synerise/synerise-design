@@ -45,6 +45,7 @@
     "@synerise/ds-badge": "workspace:^",
     "@synerise/ds-icon": "workspace:^",
     "@synerise/ds-status": "workspace:^",
+    "@synerise/ds-tokens": "workspace:^",
     "@synerise/ds-tooltip": "workspace:^",
     "@synerise/ds-typography": "workspace:^",
     "@synerise/ds-utils": "workspace:^"
