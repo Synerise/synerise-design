@@ -3,7 +3,6 @@ import React, { useState } from 'react';
 import { FormattedMessage } from 'react-intl';
 
 import Button from '@synerise/ds-button';
-import { useTheme } from '@synerise/ds-core';
 import Icon, {
   Check3M,
   Close3M,
@@ -27,7 +26,6 @@ const FileView = ({
   retryButtonProps,
 }: FileViewProps) => {
   const getFriendlySize = (size?: number): string => filesize(size || 0);
-  const theme = useTheme();
 
   const { disabled, error, file, progress, success } = data;
 
@@ -178,7 +176,7 @@ const FileView = ({
           icon={
             <Icon
               component={<WarningFillM />}
-              color={theme.palette['yellow-600']}
+              color="var(--ds-color-icon-warning-default)"
             />
           }
           cancelText={finalTexts.cancelText}

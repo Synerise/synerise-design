@@ -153,7 +153,7 @@ Single at-a-glance view of every colour-bearing component: migration **status** 
 | estimation | semantic | ✅ | — |
 | factors | semantic | 🚧 | dropdown + list-item header pending; icon-danger-hover gap |
 | field-set | semantic | ✅ | — |
-| file-uploader | semantic | ❌ | **deferred — file-uploader module pending (whole component)** |
+| file-uploader | semantic | ✅ | — (2 `grey-200` translucent overlays kept — no matching `--ds-color-background-translucent-*` token) |
 | filter | semantic | ❌ | drag-placeholder deferred pending Figma |
 | flag | semantic | ❌ | — |
 | footer | semantic | ✅ | — |
@@ -304,7 +304,7 @@ These components use `theme.palette` / hardcoded colors but do not yet have dedi
 | estimation | 0 | No | 0 | 0 | :white_check_mark: tokenised (2026-07-21); skeleton bar → progressbar module token, dot ring → semantic; per-entry dot fill stays dynamic |
 | factors | 16 | No | 2 | 0 | :construction: field action/search icons → `--ds-form-*` (2026-07-20); composition, rest deferred |
 | field-set | 0 | No | 0 | 0 | :white_check_mark: tokenised — semantic (2026-07-20 pass) |
-| file-uploader | 152 | No | 0 | 7 | Highest palette count |
+| file-uploader | 152 | No | 0 | 7 | :white_check_mark: tokenised — semantic (2026-07-23); dynamic ${color}-600 avatar tint kept |
 | filter | 3 | No | 0 | 1 | |
 | flag | 0 | No | 0 | 34 | No palette, heavy opacity |
 | footer | 0 | No | 0 | 0 | :white_check_mark: tokenised — semantic (2026-07-20 pass) |

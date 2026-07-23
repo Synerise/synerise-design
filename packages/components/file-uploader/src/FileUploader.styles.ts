@@ -13,7 +13,7 @@ export const Description = styled(Text)<{ hasError?: boolean }>`
   && {
     margin: ${(props) => (props.hasError ? '4px 0 8px' : '8px 0 8px')};
     display: block;
-    color: ${(props) => props.theme.palette['grey-500']};
+    color: var(--ds-color-text-neutral-default);
   }
 `;
 
@@ -24,7 +24,7 @@ export const DropAreaContainer = styled.div<{ canUploadMore: boolean }>`
 
 export const DropAreaLabel = styled(Text)`
   && {
-    color: ${(props) => props.theme.palette['grey-600']};
+    color: var(--ds-color-text-base-muted);
     font-weight: 500;
   }
 `;
@@ -34,7 +34,7 @@ export const LargeDropAreaLabel = styled(TypographyLabel)`
     font-size: 14px;
     margin: 4px 0 0;
     display: block;
-    color: ${(props) => props.theme.palette['grey-800']};
+    color: var(--ds-color-text-base-default);
   }
 `;
 
@@ -42,7 +42,7 @@ export const LargeDropAreaDescription = styled(Text)`
   && {
     margin: 4px 0 0;
     display: block;
-    color: ${(props) => props.theme.palette['grey-600']};
+    color: var(--ds-color-text-base-muted);
   }
 `;
 
@@ -56,7 +56,7 @@ export const DropAreaButton = styled.button<{
 }>`
   display: ${(props) => (props.hidden ? 'none' : 'flex')};
   align-items: center;
-  border: 1px dashed ${(props) => props.theme.palette['grey-400']};
+  border: 1px dashed var(--ds-color-border-base-stronghover);
   padding: 11px 12px;
   border-radius: 3px;
   cursor: pointer;
@@ -82,14 +82,14 @@ export const DropAreaButton = styled.button<{
   `};
 
   ${IconContainer} {
-    color: ${(props) => props.theme.palette['grey-700']};
+    color: var(--ds-color-text-base-subtle);
   }
 
   ${(props) =>
     props.hasError &&
     `
-      background-color: ${props.theme.palette['red-050']};
-      border-color: ${props.theme.palette['red-600']};
+      background-color: var(--ds-color-background-danger-subtle);
+      border-color: var(--ds-color-border-danger-default);
     `}
   ${(props) =>
     props.pressed &&
@@ -105,33 +105,33 @@ export const DropAreaButton = styled.button<{
   &:hover:not(:disabled) {
     background-color: ${(props) =>
       hexToRgba(props.theme.palette['grey-200'], 0.2)};
-    border-color: ${(props) => props.theme.palette['grey-400']};
+    border-color: var(--ds-color-border-base-stronghover);
 
     ${DropAreaLabel}, ${LargeDropAreaLabel} {
-      color: ${(props) => props.theme.palette['grey-700']};
+      color: var(--ds-color-text-base-subtle);
     }
 
     ${IconContainer} {
-      color: ${(props) => props.theme.palette['grey-700']};
+      color: var(--ds-color-text-base-subtle);
     }
   }
 
   &:disabled {
-    background-color: ${(props) => props.theme.palette['grey-050']};
+    background-color: var(--ds-color-background-base-subtle);
     ${LargeDropAreaLabel} {
-      color: ${(props) => props.theme.palette['grey-400']};
+      color: var(--ds-color-text-base-disabled);
     }
   }
 
   &&:active {
-    color: ${(props) => props.theme.palette['red-400']};
-    border-color: ${(props) => props.theme.palette['grey-400']};
-    background-color: ${(props) => props.theme.palette['grey-050']};
+    color: var(--ds-color-text-danger-default);
+    border-color: var(--ds-color-border-base-stronghover);
+    background-color: var(--ds-color-background-base-subtle);
   }
 
   &:focus:not(:active):not(:disabled) {
-    border-color: ${(props) => props.theme.palette['blue-600']};
-    background-color: ${(props) => props.theme.palette['blue-050']};
+    border-color: var(--ds-color-border-brand-default);
+    background-color: var(--ds-color-background-brand-subtle);
   }
 
   &:disabled {
@@ -146,15 +146,15 @@ export const DropAreaButton = styled.button<{
     !props.disabled &&
     `
       height: ${props.mode === 'multi-large' && props.filesLength === 0 ? '160px' : 'auto'};
-      background-color: ${props.theme.palette['blue-050']} !important;
-      border-color: ${props.theme.palette['blue-300']} !important;
+      background-color: var(--ds-color-background-brand-subtle) !important;
+      border-color: var(--ds-color-border-brand-strong) !important;
 
       span, ${DropAreaLabel}, ${LargeDropAreaLabel}, ${LargeDropAreaDescription} {
-        color: ${props.theme.palette['blue-500']} !important;
+        color: var(--ds-color-text-brand-default) !important;
       }
 
       ${IconContainer} {
-        color: ${props.theme.palette['blue-500']} !important;
+        color: var(--ds-color-icon-brand-default) !important;
       }
     `}
 `;
@@ -163,7 +163,7 @@ export const ErrorMessage = styled(Text)`
   && {
     margin: 8px 0 0;
     display: block;
-    color: ${(props) => props.theme.palette['red-600']};
+    color: var(--ds-color-text-danger-default);
   }
 `;
 
@@ -175,7 +175,7 @@ export const Label = styled(TypographyLabel)`
     align-items: center;
 
     ${IconContainer} {
-      color: ${(props) => props.theme.palette['grey-400']};
+      color: var(--ds-color-icon-base-muted);
     }
   }
 `;
