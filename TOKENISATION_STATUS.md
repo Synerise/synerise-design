@@ -151,7 +151,7 @@ Single at-a-glance view of every colour-bearing component: migration **status** 
 | emoji-picker | semantic | 🚧 | list-item header role pending |
 | empty-states | semantic | ✅ | — |
 | estimation | semantic | ✅ | — |
-| factors | semantic | 🚧 | dropdown + list-item header pending; icon-danger-hover gap |
+| factors | module | 🚧 | 2 danger-hover refs pending --ds-color-*-danger-hover (red-500) |
 | field-set | semantic | ✅ | — |
 | file-uploader | semantic | ❌ | **deferred — file-uploader module pending (whole component)** |
 | filter | semantic | ❌ | drag-placeholder deferred pending Figma |
@@ -302,7 +302,7 @@ These components use `theme.palette` / hardcoded colors but do not yet have dedi
 | emoji-picker | 1 | No | 0 | 0 | :construction: search-icon `grey-600` removed — inherits default (2026-07-20); `EmojiList` `grey-500` deferred → pending list-item tokens |
 | empty-states | 0 | No | 0 | 0 | :white_check_mark: tokenised — semantic (2026-07-20 pass) |
 | estimation | 0 | No | 0 | 0 | :white_check_mark: tokenised (2026-07-21); skeleton bar → progressbar module token, dot ring → semantic; per-entry dot fill stays dynamic |
-| factors | 16 | No | 2 | 0 | :construction: field action/search icons → `--ds-form-*` (2026-07-20); composition, rest deferred |
+| factors | 16 | No | 2 | 0 | :construction: (2026-07-23) type-selector bg/check-icon, array delete-icon + count-pill danger bg/onsolid text, relative-date clear + dropdown-footer/icons, parameter + search text, text-modal brand → semantic; count-pill default grey-600 bg kept dynamic; 2 red-500 danger-hover kept + flagged (no --ds-color-*-danger-hover) |
 | field-set | 0 | No | 0 | 0 | :white_check_mark: tokenised — semantic (2026-07-20 pass) |
 | file-uploader | 152 | No | 0 | 7 | Highest palette count |
 | filter | 3 | No | 0 | 1 | |

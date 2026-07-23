@@ -4,7 +4,7 @@ import Button from '@synerise/ds-button';
 
 export const FactorTypeList = styled.div`
   padding: 8px;
-  background: ${(props) => props.theme.palette.white};
+  background: var(--ds-color-background-base-default);
 `;
 
 export const TriggerButton = styled(Button)`
