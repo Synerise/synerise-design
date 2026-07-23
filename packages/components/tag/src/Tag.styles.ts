@@ -43,8 +43,8 @@ export const getColorText = (theme: ThemePropsVars, color?: string): string => {
   if (!color) {
     return 'var(--ds-tag-variant-gray-text)';
   }
-  // The grey-200 comparison operand stays a resolved hex (a var() can't be compared in JS).
-  return color === theme.palette['grey-200']
+  // Compare against the resolved grey-200 token value (theme.tokens holds hex — a var() can't be compared in JS).
+  return color === theme.tokens['--ds-color-grey-200']
     ? 'var(--ds-color-text-base-muted)'
     : 'var(--ds-tag-variant-color-text)';
 };
