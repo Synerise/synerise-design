@@ -24,9 +24,6 @@ export const DefaultIconWrapper = styled.div`
   }
 `;
 
-// Empty-segment placeholder text. The `highlight` active-edit blue branch was dead code —
-// it only renders with active && highlight && empty-segment, and `highlight` is never passed
-// to RangePickerInput by default (verified it never shows). Collapsed to the placeholder token.
 export const DateWrapper = styled.div`
   color: var(--ds-form-field-text-placeholder);
 `;
