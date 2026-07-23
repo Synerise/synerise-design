@@ -119,7 +119,7 @@ Single at-a-glance view of every colour-bearing component: migration **status** 
 | avatar-group | semantic | ✅ | — |
 | badge | module | ✅ | — |
 | banner | semantic | ✅ | — |
-| block | semantic | ❌ | — |
+| block | semantic | ✅ | — |
 | broadcast-bar | module | ✅ | — |
 | button-expander | module | ✅ | — |
 | button-group | semantic | ❌ | — |
@@ -277,7 +277,7 @@ These components use `theme.palette` / hardcoded colors but do not yet have dedi
 | avatar-group | 0 | No | 0 | 2 | :white_check_mark: tokenised — reuses **avatar** module (2026-07-21); 5 ⚑ shifts on +N chrome; 2 fan-out opacities kept |
 | badge | 11 | No | 4 | 4 | :white_check_mark: tokenised (2026-07-22) — badge module landed + applied: variant bg/text/ring tokens; `customColor` kept dynamic; ⚑ label grey-600→grey-500. `.less` removed (deantd) |
 | banner | 2 | No | 0 | 0 | :white_check_mark: tokenised — semantic (2026-07-20 pass); 2 palette = dynamic status-Tag defaults |
-| block | 6 | No | 0 | 0 | |
+| block | 6 | No | 0 | 0 | :white_check_mark: tokenised — semantic (2026-07-23) |
 | button-group | 6 | No | 4 | 0 | |
 | card-tabs | 68 | No | 2 | 4 | High palette count |
 | carousel | 0 | No | 0 | 0 | :white_check_mark: tokenised — semantic (2026-07-20 pass); new DS component, not in original audit |

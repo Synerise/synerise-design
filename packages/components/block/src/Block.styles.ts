@@ -5,7 +5,7 @@ import { macro } from '@synerise/ds-typography';
 export const BlockContent = styled.div`
   display: flex;
   align-items: center;
-  background-color: ${(props): string => props.theme.palette['grey-050']};
+  background-color: var(--ds-color-background-base-subtle);
   border: 1px solid transparent;
   padding: 11px;
   width: 100%;
@@ -14,7 +14,7 @@ export const BlockContent = styled.div`
 
 export const BlockName = styled.div`
   ${macro.h200};
-  color: ${(props): string => props.theme.palette['grey-600']};
+  color: var(--ds-color-text-base-muted);
   padding-left: 12px;
   transition: 0.2s ease-in-out;
   user-select: none;
@@ -32,18 +32,17 @@ export const BlockWrapper = styled.div`
 
   &:hover {
     ${BlockName} {
-      color: ${(props): string => props.theme.palette['grey-800']};
+      color: var(--ds-color-text-base-default);
     }
 
     svg {
-      color: ${(props): string => props.theme.palette['grey-800']};
-      fill: ${(props): string => props.theme.palette['grey-800']};
+      color: var(--ds-color-text-base-default);
     }
   }
 
   &.is-dragging {
     ${BlockContent} {
-      border: 1px dashed ${(props): string => props.theme.palette['grey-400']};
+      border: 1px dashed var(--ds-color-border-base-stronghover);
     }
     ${BlockName}, svg {
       display: none;
