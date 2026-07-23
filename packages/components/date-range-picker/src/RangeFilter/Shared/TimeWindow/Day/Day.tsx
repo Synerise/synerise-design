@@ -3,7 +3,6 @@ import customParseFormatPlugin from 'dayjs/plugin/customParseFormat';
 import React, { memo, useCallback, useMemo, useState } from 'react';
 
 import Button from '@synerise/ds-button';
-import { theme } from '@synerise/ds-core';
 import Icon, { CheckS, Close3S } from '@synerise/ds-icon';
 import Tooltip from '@synerise/ds-tooltip';
 
@@ -43,10 +42,13 @@ const Day = ({
       <Icon
         component={<Close3S />}
         onClick={handleIconClick}
-        color={theme.palette['red-600']}
+        color="var(--ds-color-icon-danger-default)"
       />
     ) : (
-      <Icon component={<CheckS />} color={theme.palette['green-600']} />
+      <Icon
+        component={<CheckS />}
+        color="var(--ds-color-icon-success-default)"
+      />
     );
   }, [hovered, handleIconClick, readOnly]);
 

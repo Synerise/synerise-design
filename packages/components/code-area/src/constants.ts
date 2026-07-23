@@ -28,13 +28,19 @@ export const DS_MONACO_THEME: editor.IStandaloneThemeData = {
   inherit: true,
   rules: [],
   colors: {
-    'editor.foreground': theme.palette['grey-800'],
+    // Monaco theme colours must be hex — read resolved token values from theme.tokens
+    // (not var(), which Monaco can't parse). TRANSPARENT stays a hex literal because
+    // --ds-color-transparent resolves to rgba(), which Monaco rejects.
+    'editor.foreground': theme.tokens['--ds-color-text-base-default'],
     'editor.background': TRANSPARENT,
 
     'editorOverviewRuler.border': TRANSPARENT,
-    'scrollbarSlider.background': theme.palette['grey-300'],
-    'scrollbarSlider.hoverBackground': theme.palette['grey-500'],
-    'scrollbarSlider.activeBackground': theme.palette['grey-500'],
-    'editorLineNumber.foreground': theme.palette['grey-500'],
+    'scrollbarSlider.background': theme.tokens['--ds-color-border-base-strong'],
+    'scrollbarSlider.hoverBackground':
+      theme.tokens['--ds-color-background-base-stronghover'],
+    'scrollbarSlider.activeBackground':
+      theme.tokens['--ds-color-background-base-stronghover'],
+    'editorLineNumber.foreground':
+      theme.tokens['--ds-color-text-neutral-default'],
   },
 };

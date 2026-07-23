@@ -41,5 +41,5 @@ export const Wrapper = styled.div<{ size?: 'S' | 'M' | 'L' }>`
   width: 100%;
   height: ${(props) =>
     props.size ? SkeletonSize[props.size] : SIZE_WRAPPER_DEFAULT}px;
-  background-color: ${(props) => props.theme.palette[`grey-050`]};
+  background-color: var(--ds-skeleton-bg);
 `;

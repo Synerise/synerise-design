@@ -3,7 +3,6 @@ import { FormattedMessage, injectIntl } from 'react-intl';
 import { v4 as uuid } from 'uuid';
 
 import Button from '@synerise/ds-button';
-import { theme } from '@synerise/ds-core';
 import { ContentItem } from '@synerise/ds-manageable-list';
 import Tag, { TagShape } from '@synerise/ds-tag';
 
@@ -345,8 +344,8 @@ class MonthlyFilter extends PureComponent<
                 <Tag
                   name={String(key + 1)}
                   shape={TagShape.SINGLE_CHARACTER_ROUND}
-                  color={theme.palette['grey-100']}
-                  textColor={theme.palette['grey-500']}
+                  color="var(--ds-color-background-base-muted)"
+                  textColor="var(--ds-color-text-neutral-default)"
                 />
               ),
               canDelete: !disabled && deletableDueToEntriesLimit(key),

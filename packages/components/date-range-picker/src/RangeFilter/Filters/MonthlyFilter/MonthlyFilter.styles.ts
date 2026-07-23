@@ -61,7 +61,7 @@ export const DropdownHeader = styled.div`
 export const DropdownDeleteBtn = styled.div`
   && {
     &:hover .icon {
-      color: ${(props): string => props.theme.palette['red-600']};
+      color: var(--ds-color-icon-danger-default);
     }
   }
 `;
@@ -92,5 +92,5 @@ export const Select = styled(InlineSelect)<InlineSelectProps>`
   }
 `;
 export const PeriodMode = styled.span`
-  color: ${(props): string => props.theme.palette['blue-600']};
+  color: var(--ds-color-text-brand-default);
 `;
