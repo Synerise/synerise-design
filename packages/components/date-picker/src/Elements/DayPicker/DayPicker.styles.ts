@@ -53,6 +53,7 @@ export const DayPicker = styled(DayPickerBase)`
     vertical-align: middle;
     text-align: center;
     font-weight: 500;
+    color: var(--ds-calendar-headers-text);
   }
 
   .DayPicker-Weekday abbr[title] {
@@ -212,6 +213,24 @@ export const DayPicker = styled(DayPickerBase)`
     }
   }
 
+  /* Resting in-month day gets the neutral pill; hover keeps that pill and turns
+     the number brand-blue. Scoped out of every special state so it never bleeds
+     into range/selected/today/outside/disabled. */
+  ${DaySelectorPrefix}:not(${daySelector('selected')}):not(${daySelector(
+    'entered',
+  )}):not(${daySelector('start')}):not(${daySelector('end')}):not(${daySelector(
+    'today',
+  )}):not(${daySelector('outside')}):not(${daySelector('disabled')}) {
+    & > ${DayText} {
+      background-color: var(--ds-calendar-day-default-bg);
+    }
+
+    &:hover > ${DayText} {
+      color: var(--ds-calendar-day-hover-text);
+      background-color: var(--ds-calendar-day-hover-bg);
+    }
+  }
+
 ${daySelector('selected')}:not(${daySelector('disabled')}):not(${daySelector('end')}):not(${daySelector('start')}),
 ${daySelector('entered')}:not(${daySelector('disabled')}):not(${daySelector('end')}):not(${daySelector('start')}){
     &:last-child  > ${DayBackground} {
@@ -287,7 +306,7 @@ ${daySelector('entered')}:not(${daySelector('disabled')}):not(${daySelector('end
       border-radius: 50%;
       font-weight:500;
       color: var(--ds-calendar-day-selected-text);
-      background-color: var(--ds-calendar-day-range-text);
+      background-color: var(--ds-calendar-day-selected-bg);
       margin-right: 4px;
       padding-left: 0px;
       padding-right: 0px;
@@ -316,7 +335,7 @@ ${daySelector('entered')}:not(${daySelector('disabled')}):not(${daySelector('end
       border-radius: 50%;
             font-weight:500;
 
-      background-color: var(--ds-calendar-day-range-text);
+      background-color: var(--ds-calendar-day-selected-bg);
       color: var(--ds-calendar-day-selected-text);
       margin-left: 4px;
       padding-left: 4px;
