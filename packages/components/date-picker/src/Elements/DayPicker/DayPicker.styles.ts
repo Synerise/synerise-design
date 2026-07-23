@@ -345,8 +345,8 @@ ${daySelector('entered')}:not(${daySelector('disabled')}):not(${daySelector('end
     }
     /* During a past-direction preview the endpoint is --end but NOT --selected, so it
        misses --selected's margin:0 and falls back to the base margin:4px, leaving a gap
-       before it. Extend the range-bg connector left (margin-left:0) to rejoin the range;
-       --selected already sets margin:0 for committed/single-day cases. */
+       before it. Extend the range-bg connector left (margin-left:0) to rejoin the range.
+       Single-day (start === end) re-caps the left below so this doesn't leak a tail. */
     & > ${DayBackground} {
       background-color: var(--ds-calendar-day-range-bg);
       margin-left: 0;
@@ -359,6 +359,11 @@ ${daySelector('entered')}:not(${daySelector('disabled')}):not(${daySelector('end
   ${daySelector('end') + daySelector('start')}:not(${daySelector('disabled')}):not(${daySelector('outside')}) {
     & > div {
       padding-right:4px;
+    }
+    /* Single-day selection (start === end): re-cap the left so --end's margin-left:0
+       connector doesn't leak a range-bg tail past the circle. */
+    & > ${DayBackground} {
+      margin-left: 4px;
     }
   }
 
@@ -413,9 +418,16 @@ ${daySelector('entered')}:not(${daySelector('disabled')}):not(${daySelector('end
       background: transparent;
     }
   }
-  ${daySelector('outside')}${daySelector('entered')} > ${DayText},
-  ${daySelector('outside')}${daySelector('selected')} > ${DayText} {
-    color: var(--ds-calendar-day-range-text);
-    background: transparent;
+  ${daySelector('outside')}${daySelector('selected')} {
+    & > ${DayText} {
+      color: var(--ds-calendar-day-range-text);
+      background: transparent;
+    }
+  }
+  ${daySelector('outside')}${daySelector('entered')} {
+    & > ${DayText} {
+      color: var(--ds-calendar-day-range-text);
+      background: transparent;
+    }
   }
 `;
