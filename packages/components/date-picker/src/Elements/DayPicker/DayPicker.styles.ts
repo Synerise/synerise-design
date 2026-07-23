@@ -415,9 +415,7 @@ ${daySelector('entered')}:not(${daySelector('disabled')}):not(${daySelector('end
   }
   ${daySelector('outside')}${daySelector('entered')} > ${DayText},
   ${daySelector('outside')}${daySelector('selected')} > ${DayText} {
-    &&& {
-      color: var(--ds-calendar-day-range-text);
-      background: transparent;
-    }
+    color: var(--ds-calendar-day-range-text);
+    background: transparent;
   }
 `;
