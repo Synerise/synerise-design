@@ -4,6 +4,27 @@ import { type ThemeProps, type ThemePropsVars } from '@synerise/ds-core';
 
 import { TagShape } from './Tag.types';
 
+/**
+ * DS-specific styling props that must NOT be forwarded to the DOM element.
+ * `dashed` is intentionally consumed-and-ignored (deprecated) — the dashed border is
+ * applied by ds-status's styled(Tag) wrapper, not Tag itself; kept only for API compat.
+ */
+const dsProps = new Set([
+  'isStatusShape',
+  'shape',
+  'color',
+  'textColor',
+  'removable',
+  'disabled',
+  'isActionable',
+  'suffixel',
+  'preffixel',
+  'hasImage',
+  'iconHover',
+  'asPill',
+  'dashed',
+]);
+
 const defaultStatusStyles = css`
   border-radius: 9px;
   font-size: 10px;
@@ -16,10 +37,16 @@ const defaultStatusStyles = css`
   line-height: 18px;
 `;
 export const getColorText = (theme: ThemePropsVars, color?: string): string => {
-  // The grey-200 comparison operand stays a resolved hex (a var() can't be compared in JS).
-  return color === theme.palette['grey-200']
+  // No color prop → the tag body falls back to the grey variant background
+  // (`--ds-tag-variant-gray-bg-default`), so its text must use the paired grey
+  // variant text token — NOT the colored-variant text (which is white/onsolid).
+  if (!color) {
+    return 'var(--ds-tag-variant-gray-text)';
+  }
+  // Compare against the resolved grey-200 token value (theme.tokens holds hex — a var() can't be compared in JS).
+  return color === theme.tokens['--ds-color-grey-200']
     ? 'var(--ds-color-text-base-muted)'
-    : 'var(--ds-color-text-onsolid-default)';
+    : 'var(--ds-tag-variant-color-text)';
 };
 
 type InsertShapeStyles = {
@@ -46,14 +73,11 @@ const getWidthOnHover = (props: InsertShapeStyles): string => {
   return 'calc(100% - 10px)';
 };
 const getFilterColor = (props: TagProps): string => {
-  if (props.iconHover && props.color === props.theme.palette['grey-200']) {
-    return 'brightness(100%)';
-  }
-  if (props.color === props.theme.palette['grey-200']) {
-    return 'brightness(90%)';
-  }
   if (props.iconHover) {
     return 'brightness(100%)';
+  }
+  if (props.color === props.theme.tokens['--ds-color-grey-200']) {
+    return 'brightness(90%)';
   }
   return 'brightness(110%)';
 };
@@ -74,7 +98,10 @@ export const TagName = styled.span`
   text-overflow: ellipsis;
 `;
 export const RemoveButton = styled.div`
-  color: ${({ color, theme }) => getColorText(theme, color)};
+  /* Pinned to the colored-variant text token (white/onsolid): the ✕ sits on the
+     colored tag body and RemoveButton is always rendered without a \`color\` prop, so
+     it must NOT pick up getColorText's no-color grey-variant branch. */
+  color: var(--ds-tag-variant-color-text);
   height: 18px;
   width: 18px;
   border-radius: 10px;
@@ -90,7 +117,7 @@ export const RemoveButton = styled.div`
   opacity: 0.8;
 
   &:before {
-    color: ${(props) => props.color || 'var(--ds-color-icon-danger-default)'};
+    color: ${(props) => props.color || 'var(--ds-tag-remove-icon)'};
     filter: brightness(70%);
     opacity: 0.3;
     content: '';
@@ -103,7 +130,7 @@ export const RemoveButton = styled.div`
 
   &&&:hover {
     .ds-icon {
-      color: var(--ds-color-icon-danger-default);
+      color: var(--ds-tag-remove-icon);
     }
   }
   .icon {
@@ -117,7 +144,7 @@ const insertShapeStyles = (props: InsertShapeStyles) => {
   switch (props.shape) {
     case TagShape.SMALL_SQUARE:
       return css`
-        color: ${props.textColor || 'var(--ds-color-text-onsolid-default)'};
+        color: ${props.textColor || 'var(--ds-tag-pill-text)'};
         border-radius: 3px;
         font-size: 10px;
         height: 14px;
@@ -130,7 +157,7 @@ const insertShapeStyles = (props: InsertShapeStyles) => {
 
     case TagShape.SMALL_ROUND:
       return css`
-        color: ${props.textColor || 'var(--ds-color-text-onsolid-default)'};
+        color: ${props.textColor || 'var(--ds-tag-pill-text)'};
         border-radius: 8px;
         font-size: 10px;
         height: 14px;
@@ -306,7 +333,9 @@ type TagProps = {
   dashed?: boolean;
 } & ThemeProps;
 
-export const Content = styled.div<{ iconHover?: boolean }>`
+export const Content = styled.div.withConfig({
+  shouldForwardProp: (prop) => !dsProps.has(prop as string),
+})<{ iconHover?: boolean }>`
   position: relative;
   display: flex;
   align-items: center;
@@ -321,7 +350,9 @@ export const Content = styled.div<{ iconHover?: boolean }>`
    }
 `}
 `;
-export const PrefixWrapper = styled.div<{ iconHover?: boolean }>`
+export const PrefixWrapper = styled.div.withConfig({
+  shouldForwardProp: (prop) => !dsProps.has(prop as string),
+})<{ iconHover?: boolean }>`
   ${addonStyles()};
   ${(props) =>
     !!props.iconHover &&
@@ -337,7 +368,9 @@ export const SuffixWrapper = styled.div`
   ${addonStyles()};
 `;
 export const DefaultSuffixWrapper = styled.div``;
-export const DefaultPrefixWrapper = styled.div<{ iconHover?: boolean }>`
+export const DefaultPrefixWrapper = styled.div.withConfig({
+  shouldForwardProp: (prop) => !dsProps.has(prop as string),
+})<{ iconHover?: boolean }>`
   ${(props) =>
     !!props.iconHover &&
     `.ds-badge-scroll-number{
@@ -349,7 +382,9 @@ export const DefaultPrefixWrapper = styled.div<{ iconHover?: boolean }>`
 }`}
 `;
 
-export const Tag = styled.div<TagProps>`
+export const Tag = styled.div.withConfig({
+  shouldForwardProp: (prop) => !dsProps.has(prop as string),
+})<TagProps>`
   position: relative;
   margin: 4px;
   display: inline-flex;
@@ -378,7 +413,7 @@ export const Tag = styled.div<TagProps>`
   ${(props) =>
     !!props.disabled &&
     css`
-      opacity: var(--ds-opacity-disabled);
+      opacity: var(--ds-tag-disabled-opacity);
       cursor: not-allowed;
     `}
 
@@ -392,7 +427,11 @@ export const Tag = styled.div<TagProps>`
         left: 0;
         width: 100%;
         height: 100%;
-        background-color: ${props.color || props.theme.palette['grey-500']};
+        background-color: ${props.color ||
+        (props.shape === TagShape.SMALL_SQUARE ||
+        props.shape === TagShape.SMALL_ROUND
+          ? 'var(--ds-tag-pill-bg-gray)'
+          : 'var(--ds-tag-variant-gray-bg-default)')};
       }
 
       ${props.isActionable &&

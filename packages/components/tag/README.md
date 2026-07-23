@@ -47,7 +47,7 @@ import Tag from '@synerise/ds-tag'
 | suffixel     | trailing slot content (hidden on remove hover)  | ReactNode                         | -                      |
 | texts        | i18n overrides for internal labels              | Partial&lt;TagTexts&gt;           | -                      |
 | asPill       | disable hover brightness effect                 | boolean                           | -                      |
-| dashed       | make border dashed                              | boolean                           | -                      |
+| dashed       | **@deprecated** no-op on Tag; dashed border is applied by ds-status | boolean        | -                      |
 | tooltipProps | tooltip to show over entire tag. see ds-tooltip | TooltipProps                      | -                      |
 
 ## TagShape Enum

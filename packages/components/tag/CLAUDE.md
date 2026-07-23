@@ -42,7 +42,7 @@ export { useDefaultTexts } from './hooks/useDefaultTexts';
 | `suffixel` | `ReactNode` | — | Trailing slot; hidden on remove-button hover; strings/numbers get addonStyles wrapper |
 | `texts` | `Partial<TagTexts>` | — | Override any i18n string (see `TagTexts`) |
 | `asPill` | `boolean` | — | Disables hover brightness filter (cursor stays default) |
-| `dashed` | `boolean` | — | Passed to styled component; intended for dashed-border variant (no built-in CSS rule in current styles) |
+| `dashed` | `boolean` | — | **@deprecated** — no-op on `Tag` (no CSS rule; filtered from the DOM). The dashed-border status variant is applied by `ds-status`'s `styled(Tag)` wrapper, not `Tag`. |
 | `tooltipProps` | `TooltipProps` | — | Wraps the entire rendered tag in `<Tooltip>` when provided |
 | `className` | `string` | — | Appended to the `ds-tag` className on the root element |
 | `ref` | `React.Ref<HTMLDivElement>` | — | Forwarded to the root `<div>` |
@@ -131,7 +131,8 @@ import Tag, { TagShape } from '@synerise/ds-tag';
 - When `asPill` is `true`, the hover brightness filter is suppressed and cursor stays `default`.
 - Remove button is hidden via `display: none` by default and set to `display: inline-block` on `:hover` via the isActionable CSS block.
 - Suffix is hidden (`display: none`) while the remove button is visible on hover.
-- `dashed` prop is forwarded to the styled component but no CSS rule currently uses it in `Tag.styles.ts` — it is available for downstream extension.
+- **`dashed` is deprecated and a no-op on `Tag`** — it has no CSS rule in `Tag.styles.ts` and is filtered from the DOM via `shouldForwardProp`. The dashed-border status variant is applied by `ds-status`'s `styled(Tag)` wrapper (`Status.styles.ts`), which reads its own `dashed` prop.
+- **DOM prop leak guard** — `Tag`/`Content`/`PrefixWrapper`/`DefaultPrefixWrapper` use `.withConfig({ shouldForwardProp })` (denylist `dsProps`) so styling props (`shape`, `color`, `iconHover`, …) don't reach the DOM element.
 
 ## Key dependencies
 
