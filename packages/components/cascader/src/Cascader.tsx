@@ -192,7 +192,10 @@ export const Cascader = ({
           placeholder={searchInputPlaceholder || ''}
           value={searchQuery}
           iconLeft={
-            <Icon component={<SearchM />} color="var(--ds-color-icon-base-default)" />
+            <Icon
+              component={<SearchM />}
+              color="var(--ds-color-icon-base-default)"
+            />
           }
           onClearInput={() => setSearchQuery('')}
           clearTooltip={searchClearTooltip}

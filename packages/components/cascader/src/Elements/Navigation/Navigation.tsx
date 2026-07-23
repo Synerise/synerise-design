@@ -27,7 +27,10 @@ export const Navigation = ({
           highlightActivePath
           prefixel={
             <S.BreadcrumbPrefix onClick={onHomeIconClick}>
-              <Icon component={<HomeM />} color="var(--ds-color-icon-base-default)" />
+              <Icon
+                component={<HomeM />}
+                color="var(--ds-color-icon-base-default)"
+              />
             </S.BreadcrumbPrefix>
           }
           compact

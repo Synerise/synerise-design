@@ -57,8 +57,11 @@ export const ContentWrapper = styled.div<{ gradientOverlap?: boolean }>`
     width: 50px;
     height: 18px;
     transition: opacity ${TRANSITION_FN};
-    background-image: ${(props) =>
-      `-webkit-linear-gradient( left, var(--ds-color-background-base-subtle) 0%, transparent 100% )`};
+    background-image: -webkit-linear-gradient(
+      left,
+      var(--ds-color-background-base-subtle) 0%,
+      transparent 100%
+    );
   }
   &::after {
     pointer-events: none;
@@ -71,8 +74,11 @@ export const ContentWrapper = styled.div<{ gradientOverlap?: boolean }>`
     width: 50px;
     height: 18px;
     transition: opacity ${TRANSITION_FN};
-    background-image: ${(props) =>
-      `-webkit-linear-gradient( left, var(--ds-color-background-base-default) 0%, transparent 100% )`};
+    background-image: -webkit-linear-gradient(
+      left,
+      var(--ds-color-background-base-default) 0%,
+      transparent 100%
+    );
   }
 `;
 export const BreadcrumbName = styled.div`

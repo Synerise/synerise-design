@@ -37,7 +37,10 @@ export const CategoriesList = ({
       }
     >
       {selectedIds.includes(item.id) ? (
-        <Icon color="var(--ds-color-icon-success-default)" component={<CheckS />} />
+        <Icon
+          color="var(--ds-color-icon-success-default)"
+          component={<CheckS />}
+        />
       ) : (
         suffixel
       )}

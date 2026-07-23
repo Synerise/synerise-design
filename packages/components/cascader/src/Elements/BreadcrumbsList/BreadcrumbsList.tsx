@@ -31,7 +31,10 @@ export const BreadcrumbsList = ({
     itemRender: (item: Path) => {
       const tickIcon = (
         <div>
-          <Icon color="var(--ds-color-icon-success-default)" component={<CheckS />} />
+          <Icon
+            color="var(--ds-color-icon-success-default)"
+            component={<CheckS />}
+          />
         </div>
       );
       return (
