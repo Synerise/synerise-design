@@ -139,11 +139,14 @@ export const DayPicker = styled(DayPickerBase)`
         margin-left: 4px;
       }
       & > ${DayBackground} {
+        /* Extend left toward the range (mirror of entered-start's margin-right:0) so a
+           past-direction preview connects into the selected endpoint (which is also --end). */
+        margin-left: 0;
         margin-right: 4px;
         background-color: var(--ds-calendar-day-range-bg);
       }
     }
-    
+
     &--entered:not(${daySelector('entered-start')}):not(${daySelector('entered-end')}){
       & > ${DayBackground} {
         background-color: var(--ds-calendar-day-range-bg);
