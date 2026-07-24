@@ -6658,21 +6658,9 @@
           "$description": "Progressbar bar fill color (filled portion, default green)"
         },
         "multivalue": {
-          "1": {
-            "$type": "color",
-            "$value": "{color.background.custom.solidHover}",
-            "$description": "Multivalue progress bar — slot 1 (designer assigns custom-color theme per slot)"
-          },
-          "2": {
-            "$type": "color",
-            "$value": "{color.background.custom.solidHover}",
-            "$description": "Multivalue progress bar — slot 2"
-          },
-          "3": {
-            "$type": "color",
-            "$value": "{color.background.custom.solidHover}",
-            "$description": "Multivalue progress bar — slot 3"
-          }
+          "$type": "color",
+          "$value": "{color.background.custom.solidHover}",
+          "$description": "Multivalue progress bar — slot 1 (designer assigns custom-color theme per slot)"
         }
       }
     },
@@ -6681,6 +6669,13 @@
         "$type": "dimension",
         "$value": "{inline.sm}",
         "$description": "Gap between inline progressbar bar and value text (8px)"
+      }
+    },
+    "percent": {
+      "color": {
+        "$type": "color",
+        "$value": "{color.text.base.default}",
+        "$description": "Progress-bar - kolor procentow (PercentWrapper, grey-800)"
       }
     }
   },
@@ -6906,6 +6901,119 @@
           "$value": "{color.text.onSolid.default}",
           "$description": "Time item text — selected state (white)"
         }
+      }
+    }
+  },
+  "slider": {
+    "fill": {
+      "default": {
+        "$type": "color",
+        "$value": "{color.background.success.solid}",
+        "$description": "Slider - domyslne wypelnienie single/nie-allocation (green-600 wg kodu)"
+      },
+      "ordered": {
+        "$type": "color",
+        "$value": "{color.background.ordered.base}",
+        "$description": "Slider allocation - wypelnienie segmentu (kolor slotu ordered, mode per segment)"
+      }
+    },
+    "dot": {
+      "bg": {
+        "$type": "color",
+        "$value": "{color.background.ordered.base}",
+        "$description": "Slider allocation - kropka na granicy segmentu (kolor slotu ordered)"
+      }
+    },
+    "tag": {
+      "bg": {
+        "$type": "color",
+        "$value": "{color.background.ordered.base}",
+        "$description": "Slider allocation - tlo tagu A/B/C (kolor slotu ordered, mode per segment; bez inwersji)"
+      },
+      "text": {
+        "$type": "color",
+        "$value": "{color.text.onSolid.default}",
+        "$description": "Slider allocation - tekst tagu (bialy na kolorze slotu)"
+      }
+    },
+    "track": {
+      "bg": {
+        "default": {
+          "$type": "color",
+          "$value": "{color.border.base.default}",
+          "$description": "Slider - tor/linia default (grey-200 wg kodu)"
+        },
+        "hover": {
+          "$type": "color",
+          "$value": "{color.border.base.strong}",
+          "$description": "Slider - tor/linia hover (grey-300 wg kodu; kod uzywa SliderLine:hover)"
+        }
+      }
+    },
+    "handle": {
+      "bg": {
+        "default": {
+          "$type": "color",
+          "$value": "{color.background.base.strong}",
+          "$description": "Slider - uchwyt default (grey-400 wg kodu)"
+        },
+        "active": {
+          "$type": "color",
+          "$value": "{color.background.brand.solid}",
+          "$description": "Slider - uchwyt aktywny/dragged (blue-600 wg kodu)"
+        },
+        "disabled": {
+          "$type": "color",
+          "$value": "{color.border.base.strong}",
+          "$description": "Slider - uchwyt disabled/blocked (grey-300 wg kodu)"
+        }
+      },
+      "border": {
+        "$type": "color",
+        "$value": "{color.background.base.default}",
+        "$description": "Slider - obwodka uchwytu (bialy 3px wg kodu)"
+      }
+    },
+    "value": {
+      "bg": {
+        "active": {
+          "$type": "color",
+          "$value": "{color.background.overlay.solid}",
+          "$description": "Slider - dymek wartosci nad uchwytem gdy aktywny (grey-800 scrim)"
+        }
+      },
+      "text": {
+        "active": {
+          "$type": "color",
+          "$value": "{color.text.onSolid.default}",
+          "$description": "Slider - tekst dymka wartosci aktywny (bialy)"
+        },
+        "default": {
+          "$type": "color",
+          "$value": "{color.text.base.default}",
+          "$description": "Slider - tekst dymka wartosci nieaktywny (grey-800)"
+        }
+      },
+      "shadow": {
+        "active": {
+          "$type": "boxShadow",
+          "$value": "{Shadows.Shadow 2}",
+          "$description": "Slider - cien dymka wartosci aktywny (box-shadow-2)"
+        }
+      }
+    },
+    "percent": {
+      "text": {
+        "$type": "color",
+        "$value": "{color.text.base.default}",
+        "$description": "Slider - kolor procentow pod sliderem (grey-800, spojne z progressbar.percent)"
+      }
+    },
+    "scale": {
+      "text": {
+        "$type": "color",
+        "$value": "{color.text.base.disabled}",
+        "$description": "Slider - skala min/max (0..100) pod sliderem (grey-400)"
       }
     }
   }
