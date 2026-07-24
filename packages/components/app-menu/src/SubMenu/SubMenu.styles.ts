@@ -64,7 +64,7 @@ export const MenuGroupTitle = styled.h3`
 export const MenuGroupSubTitle = styled.h4`
   ${macro.h100};
   letter-spacing: 0.1px;
-  color: var(--ds-color-text-neutral-default);
+  color: var(--ds-divider-header-text-color);
   border-top: 1px dashed var(--ds-app-menu-container-border-color);
   margin: 12px 12px 12px;
   padding-top: 12px;
