@@ -37,6 +37,27 @@ describe('Card Tabs', () => {
     expect(screen.queryAllByTestId('card-tab-container').length).toBe(3);
   });
 
+  it('should colour an active auto-assigned tab from its ordered token slot', () => {
+    renderWithProvider(
+      <CardTabs>
+        {ITEMS.map((item, index) => (
+          <CardTab
+            key={index}
+            {...item}
+            prefix={prefixType.TAG}
+            active={index === 0}
+          />
+        ))}
+      </CardTabs>,
+    );
+
+    // First tab → queue slot 1 → the flipping ordered semantic token (jsdom keeps the var()).
+    const firstTab = screen.queryAllByTestId('card-tab-container')[0];
+    expect(firstTab).toHaveStyle(
+      'background-color: var(--ds-color-background-ordered-1-base)',
+    );
+  });
+
   it('should render with add button', () => {
     const onAddTab = vi.fn();
     renderWithProvider(<CardTabs onAddTab={onAddTab} />);

@@ -65,6 +65,11 @@ type CardTabCommonProps = {
   name: string;
   dragHandleProps?: DragHandlePropType;
   color?: Color | DefaultColor | string;
+  /**
+   * Slot in the `ordered` categorical-colour queue, injected by `CardTabs` for tabs without
+   * an explicit `color`. When set, the tab's colour comes from that ordered token slot.
+   */
+  orderIndex?: number;
   active?: boolean;
   draggable?: boolean;
   suffixIcon?: ReactNode;

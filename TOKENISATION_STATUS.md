@@ -132,7 +132,7 @@ Single at-a-glance view of every colour-bearing component: migration **status** 
 | buttons | module | ✅ | — |
 | card | module | ✅ | — |
 | card-select | module | ✅ | — |
-| card-tabs | semantic | ❌ | **card-tabs tokens pending** |
+| card-tabs | module | ✅ | active/hover/border/dot/prefix-tag colours from the `ordered` categorical set (order-1..21) via `@synerise/ds-tokens/names`; hover is an explicit token (no name-math); greys/red still palette |
 | carousel | semantic | ✅ | — |
 | cascader | semantic | ❌ | dropdown/cascader pending |
 | checkbox | module | ✅ | — |

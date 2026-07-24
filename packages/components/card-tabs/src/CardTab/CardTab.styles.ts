@@ -3,7 +3,12 @@ import styled from 'styled-components';
 import { InPlaceEditableInputContainer } from '@synerise/ds-inline-edit/dist/InlineEdit.styles';
 import { macro } from '@synerise/ds-typography';
 
-import { getColor, getLighterColor } from '../utils';
+import {
+  getColor,
+  getLighterColor,
+  orderedBaseOr,
+  orderedHoverOr,
+} from '../utils';
 
 export const CardTabSuffix = styled.div`
   flex-direction: row;
@@ -108,6 +113,9 @@ export const CardTabContainer = styled.div<{
   invalid: boolean;
   greyBackground: boolean;
   color: string;
+  // Slot in the `ordered` token queue for auto-assigned tabs; when set, the categorical
+  // colour comes from that slot's token instead of the `color` palette key.
+  orderIndex?: number;
   disabled: boolean;
   edited: boolean;
   isDraggable?: boolean;
@@ -124,12 +132,19 @@ export const CardTabContainer = styled.div<{
   }
   height: 48px;
   user-select: none;
-  background-color: ${({ theme, active, invalid, color, greyBackground }) => {
+  background-color: ${({
+    theme,
+    active,
+    invalid,
+    color,
+    orderIndex,
+    greyBackground,
+  }) => {
     if (invalid && active) {
       return theme.palette['red-600'];
     }
     if (active) {
-      return theme.palette[`${color}`];
+      return orderedBaseOr(theme.palette[`${color}`], orderIndex);
     }
     if (greyBackground) {
       return theme.palette.white;
@@ -140,13 +155,13 @@ export const CardTabContainer = styled.div<{
     greyBackground ? '0 4px 12px 0 rgba(35, 41, 54, 0.04)' : '0'};
   border-radius: 3px;
   border-width: ${({ greyBackground }) => (greyBackground ? '0' : '1px')};
-  border-color: ${({ theme, active, invalid, color }) => {
+  border-color: ${({ theme, active, invalid, color, orderIndex }) => {
     if (invalid) {
       return theme.palette['red-600'];
     }
     return getColor(
       active,
-      theme.palette[`${color}`],
+      orderedBaseOr(theme.palette[`${color}`], orderIndex),
       theme.palette['grey-300'],
     );
   }};
@@ -154,17 +169,29 @@ export const CardTabContainer = styled.div<{
   pointer-events: ${({ disabled }) => (disabled ? 'none' : 'all')};
 
   ${CardTabTag} {
-    background-color: ${({ theme, active, color }) =>
-      getColor(active, theme.palette.white, theme.palette[`${color}`])};
-    color: ${({ theme, active, color }) =>
-      getColor(active, theme.palette[`${color}`], theme.palette.white)};
+    background-color: ${({ theme, active, color, orderIndex }) =>
+      getColor(
+        active,
+        theme.palette.white,
+        orderedBaseOr(theme.palette[`${color}`], orderIndex),
+      )};
+    color: ${({ theme, active, color, orderIndex }) =>
+      getColor(
+        active,
+        orderedBaseOr(theme.palette[`${color}`], orderIndex),
+        theme.palette.white,
+      )};
   }
   ${CardDot} {
-    background-color: ${({ theme, active, color, invalid }) => {
+    background-color: ${({ theme, active, color, invalid, orderIndex }) => {
       if (active && invalid) {
-        return theme.palette[`${color}`];
+        return orderedBaseOr(theme.palette[`${color}`], orderIndex);
       }
-      return getColor(active, 'transparent', theme.palette[`${color}`]);
+      return getColor(
+        active,
+        'transparent',
+        orderedBaseOr(theme.palette[`${color}`], orderIndex),
+      );
     }};
   }
   ${CardDotPrefix} {
@@ -215,12 +242,22 @@ export const CardTabContainer = styled.div<{
     cursor: pointer;
     box-shadow: ${({ greyBackground }) =>
       greyBackground ? '0 4px 12px 0 rgba(35, 41, 54, 0.04)' : ''};
-    background-color: ${({ theme, active, invalid, color, greyBackground }) => {
+    background-color: ${({
+      theme,
+      active,
+      invalid,
+      color,
+      orderIndex,
+      greyBackground,
+    }) => {
       if (invalid && active) {
         return theme.palette[`${getLighterColor('red-600')}`];
       }
       if (active) {
-        return theme.palette[`${getLighterColor(color)}`];
+        return orderedHoverOr(
+          theme.palette[`${getLighterColor(color)}`],
+          orderIndex,
+        );
       }
       if (greyBackground && !active) {
         return theme.palette.white;
@@ -242,15 +279,15 @@ export const CardTabContainer = styled.div<{
       }};
     }
     ${CardTabTag} {
-      background-color: ${({ theme, color, active }) => {
+      background-color: ${({ theme, color, active, orderIndex }) => {
         if (active) {
           return theme.palette.white;
         }
-        return theme.palette[`${color}`];
+        return orderedBaseOr(theme.palette[`${color}`], orderIndex);
       }};
-      color: ${({ theme, active, color }) => {
+      color: ${({ theme, active, color, orderIndex }) => {
         if (active) {
-          return theme.palette[`${color}`];
+          return orderedBaseOr(theme.palette[`${color}`], orderIndex);
         }
         return theme.palette.white;
       }};
@@ -321,12 +358,22 @@ export const CardTabContainer = styled.div<{
   }
 
   &:active {
-    background-color: ${({ theme, active, invalid, color, greyBackground }) => {
+    background-color: ${({
+      theme,
+      active,
+      invalid,
+      color,
+      orderIndex,
+      greyBackground,
+    }) => {
       if (invalid && active) {
         return theme.palette[`${getLighterColor('red-600')}`];
       }
       if (active) {
-        return theme.palette[`${getLighterColor(color)}`];
+        return orderedHoverOr(
+          theme.palette[`${getLighterColor(color)}`],
+          orderIndex,
+        );
       }
       if (greyBackground && !active) {
         return theme.palette.white;
