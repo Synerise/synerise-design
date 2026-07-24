@@ -34,7 +34,7 @@ export const CardSuffixWrapper = styled.span`
 
 export const CardTabLabel = styled.span`
   ${macro.h300};
-  color: ${(props) => props.theme.palette['grey-600']};
+  color: var(--ds-card-tabs-variant-grey-text-default);
   line-height: 20px;
   position: relative;
   font-size: 13px;
@@ -51,7 +51,7 @@ export const CardTabLabel = styled.span`
       font-weight: 500;
       font-size: 14px;
       line-height: 20px;
-      color: ${(props) => props.theme.palette['grey-800']};
+      color: var(--ds-card-tabs-variant-grey-text-hover);
       background-image: linear-gradient(
         to right,
         ${(props) => props.theme.palette['blue-600']} 0%,
@@ -65,7 +65,7 @@ export const CardTabLabel = styled.span`
 
 export const CardTabTag = styled.div`
   ${macro.h200}
-  color: ${({ theme }) => theme.palette.white};
+  color: var(--ds-card-tabs-variant-grey-tag-text-default);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -75,7 +75,7 @@ export const CardTabTag = styled.div`
 `;
 export const CardDotPrefix = styled.div`
   ${macro.h200}
-  color: ${({ theme }) => theme.palette.white};
+  color: var(--ds-card-tabs-variant-grey-text-active);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -141,28 +141,28 @@ export const CardTabContainer = styled.div<{
     greyBackground,
   }) => {
     if (invalid && active) {
-      return theme.palette['red-600'];
+      return 'var(--ds-card-tabs-variant-grey-bg-validateactive)';
     }
     if (active) {
       return orderedBaseOr(theme.palette[`${color}`], orderIndex);
     }
     if (greyBackground) {
-      return theme.palette.white;
+      return 'var(--ds-card-tabs-variant-white-bg-default)';
     }
-    return theme.palette['grey-050'];
+    return 'var(--ds-card-tabs-variant-grey-bg-default)';
   }};
   box-shadow: ${({ greyBackground }) =>
-    greyBackground ? '0 4px 12px 0 rgba(35, 41, 54, 0.04)' : '0'};
+    greyBackground ? 'var(--ds-card-tabs-variant-white-shadow)' : '0'};
   border-radius: 3px;
   border-width: ${({ greyBackground }) => (greyBackground ? '0' : '1px')};
   border-color: ${({ theme, active, invalid, color, orderIndex }) => {
     if (invalid) {
-      return theme.palette['red-600'];
+      return 'var(--ds-card-tabs-variant-grey-border-validate)';
     }
     return getColor(
       active,
       orderedBaseOr(theme.palette[`${color}`], orderIndex),
-      theme.palette['grey-300'],
+      'var(--ds-card-tabs-variant-grey-border-default)',
     );
   }};
   border-style: solid;
@@ -172,14 +172,14 @@ export const CardTabContainer = styled.div<{
     background-color: ${({ theme, active, color, orderIndex }) =>
       getColor(
         active,
-        theme.palette.white,
+        'var(--ds-card-tabs-variant-grey-tag-bg-active)',
         orderedBaseOr(theme.palette[`${color}`], orderIndex),
       )};
     color: ${({ theme, active, color, orderIndex }) =>
       getColor(
         active,
         orderedBaseOr(theme.palette[`${color}`], orderIndex),
-        theme.palette.white,
+        'var(--ds-card-tabs-variant-grey-tag-text-default)',
       )};
   }
   ${CardDot} {
@@ -199,41 +199,45 @@ export const CardTabContainer = styled.div<{
     width: ${({ active, edited }) => (active && !edited ? '12px' : '24px')};
     border-width: ${({ active, edited }) =>
       active && !edited ? '2px' : '0px'};
-    border-color: ${({ theme, active, edited }) =>
-      active && !edited ? theme.palette.white : 'none'};
+    border-color: ${({ active, edited }) =>
+      active && !edited ? 'var(--ds-card-tabs-variant-grey-dot-ring)' : 'none'};
     border-style: solid;
   }
 
   ${CardSuffixWrapper} {
     svg {
-      color: ${({ theme, active }) => {
-        if (active) {
-          return theme.palette.white;
-        }
-        return theme.palette['grey-600'];
-      }};
-      fill: ${({ theme, active }) => {
-        if (active) {
-          return theme.palette.white;
-        }
-        return theme.palette['grey-600'];
-      }} !important;
+      color: ${({ active }) =>
+        active
+          ? 'var(--ds-card-tabs-variant-grey-icon-active)'
+          : 'var(--ds-card-tabs-variant-grey-icon-default)'};
+      fill: ${({ active }) =>
+        active
+          ? 'var(--ds-card-tabs-variant-grey-icon-active)'
+          : 'var(--ds-card-tabs-variant-grey-icon-default)'} !important;
     }
   }
 
   ${CardTabSuffix} {
     svg {
-      color: ${({ theme, active }) =>
-        active ? theme.palette.white : theme.palette['grey-600']} !important;
-      fill: ${({ theme, active }) =>
-        active ? theme.palette.white : theme.palette['grey-600']} !important;
+      color: ${({ active }) =>
+        active
+          ? 'var(--ds-card-tabs-variant-grey-icon-active)'
+          : 'var(--ds-card-tabs-variant-grey-icon-default)'} !important;
+      fill: ${({ active }) =>
+        active
+          ? 'var(--ds-card-tabs-variant-grey-icon-active)'
+          : 'var(--ds-card-tabs-variant-grey-icon-default)'} !important;
     }
     .remove {
       svg {
-        color: ${({ theme, active }) =>
-          active ? theme.palette.white : theme.palette['red-600']} !important;
-        fill: ${({ theme, active }) =>
-          active ? theme.palette.white : theme.palette['red-600']} !important;
+        color: ${({ active }) =>
+          active
+            ? 'var(--ds-card-tabs-variant-grey-icon-active)'
+            : 'var(--ds-card-tabs-variant-grey-remove-icon)'} !important;
+        fill: ${({ active }) =>
+          active
+            ? 'var(--ds-card-tabs-variant-grey-icon-active)'
+            : 'var(--ds-card-tabs-variant-grey-remove-icon)'} !important;
       }
     }
   }
@@ -241,7 +245,7 @@ export const CardTabContainer = styled.div<{
   &:hover {
     cursor: pointer;
     box-shadow: ${({ greyBackground }) =>
-      greyBackground ? '0 4px 12px 0 rgba(35, 41, 54, 0.04)' : ''};
+      greyBackground ? 'var(--ds-card-tabs-variant-white-shadow)' : ''};
     background-color: ${({
       theme,
       active,
@@ -251,7 +255,9 @@ export const CardTabContainer = styled.div<{
       greyBackground,
     }) => {
       if (invalid && active) {
-        return theme.palette[`${getLighterColor('red-600')}`];
+        /* ⚑ Shift: invalid+active hover was getLighterColor('red-600') = red-500 (#ff5a4d, lighter);
+           the module token resolves to #cf1413 (darker). Adopted per TOKEN_AUDIT (bg.error.hover). */
+        return 'var(--ds-card-tabs-variant-grey-bg-validateactivehover)';
       }
       if (active) {
         return orderedHoverOr(
@@ -260,9 +266,9 @@ export const CardTabContainer = styled.div<{
         );
       }
       if (greyBackground && !active) {
-        return theme.palette.white;
+        return 'var(--ds-card-tabs-variant-white-bg-hover)';
       }
-      return theme.palette['grey-050'];
+      return 'var(--ds-card-tabs-variant-grey-bg-hover)';
     }};
     ${CardTabSuffix} {
       display: ${({ edited }) => (edited ? 'none' : 'flex')};
@@ -271,17 +277,15 @@ export const CardTabContainer = styled.div<{
       display: ${({ edited }) => (edited ? 'none' : 'flex')};
     }
     ${CardTabLabel} {
-      color: ${({ theme, active }) => {
-        if (active) {
-          return theme.palette.white;
-        }
-        return theme.palette['grey-800'];
-      }};
+      color: ${({ active }) =>
+        active
+          ? 'var(--ds-card-tabs-variant-grey-text-active)'
+          : 'var(--ds-card-tabs-variant-grey-text-hover)'};
     }
     ${CardTabTag} {
       background-color: ${({ theme, color, active, orderIndex }) => {
         if (active) {
-          return theme.palette.white;
+          return 'var(--ds-card-tabs-variant-grey-tag-bg-active)';
         }
         return orderedBaseOr(theme.palette[`${color}`], orderIndex);
       }};
@@ -289,41 +293,33 @@ export const CardTabContainer = styled.div<{
         if (active) {
           return orderedBaseOr(theme.palette[`${color}`], orderIndex);
         }
-        return theme.palette.white;
+        return 'var(--ds-card-tabs-variant-grey-tag-text-default)';
       }};
       display: ${(props) => (props.isDraggable ? 'none' : 'flex')};
     }
     ${CardTabPrefix} {
       svg {
-        color: ${({ theme, active }) => {
-          if (active) {
-            return theme.palette.white;
-          }
-          return theme.palette['grey-600'];
-        }};
-        fill: ${({ theme, active }) => {
-          if (active) {
-            return theme.palette.white;
-          }
-          return theme.palette['grey-600'];
-        }};
+        color: ${({ active }) =>
+          active
+            ? 'var(--ds-card-tabs-variant-grey-icon-active)'
+            : 'var(--ds-card-tabs-variant-grey-icon-default)'};
+        fill: ${({ active }) =>
+          active
+            ? 'var(--ds-card-tabs-variant-grey-icon-active)'
+            : 'var(--ds-card-tabs-variant-grey-icon-default)'};
       }
     }
     ${CardDragPrefix} {
       display: ${({ edited }) => (edited ? 'none' : 'flex')};
       svg {
-        color: ${({ theme, active }) => {
-          if (active) {
-            return theme.palette.white;
-          }
-          return theme.palette['grey-600'];
-        }};
-        fill: ${({ theme, active }) => {
-          if (active) {
-            return theme.palette.white;
-          }
-          return theme.palette['grey-600'];
-        }} !important;
+        color: ${({ active }) =>
+          active
+            ? 'var(--ds-card-tabs-variant-grey-icon-active)'
+            : 'var(--ds-card-tabs-variant-grey-icon-default)'};
+        fill: ${({ active }) =>
+          active
+            ? 'var(--ds-card-tabs-variant-grey-icon-active)'
+            : 'var(--ds-card-tabs-variant-grey-icon-default)'} !important;
       }
     }
 
@@ -333,26 +329,26 @@ export const CardTabContainer = styled.div<{
     ${CardIconPrefix} {
       display: ${(props) => (props.isDraggable ? 'none' : 'flex')};
       svg {
-        color: ${({ theme, active }) =>
-          active ? theme.palette.white : theme.palette['grey-600']};
-        fill: ${({ theme, active }) =>
-          active ? theme.palette.white : theme.palette['grey-600']};
+        color: ${({ active }) =>
+          active
+            ? 'var(--ds-card-tabs-variant-grey-icon-active)'
+            : 'var(--ds-card-tabs-variant-grey-icon-default)'};
+        fill: ${({ active }) =>
+          active
+            ? 'var(--ds-card-tabs-variant-grey-icon-active)'
+            : 'var(--ds-card-tabs-variant-grey-icon-default)'};
       }
     }
     .ds-card-tabs__suffix-icon {
       svg {
-        color: ${({ theme, active }) => {
-          if (active) {
-            return theme.palette.white;
-          }
-          return theme.palette['grey-600'];
-        }};
-        fill: ${({ theme, active }) => {
-          if (active) {
-            return theme.palette.white;
-          }
-          return theme.palette['grey-600'];
-        }} !important;
+        color: ${({ active }) =>
+          active
+            ? 'var(--ds-card-tabs-variant-grey-icon-active)'
+            : 'var(--ds-card-tabs-variant-grey-icon-default)'};
+        fill: ${({ active }) =>
+          active
+            ? 'var(--ds-card-tabs-variant-grey-icon-active)'
+            : 'var(--ds-card-tabs-variant-grey-icon-default)'} !important;
       }
     }
   }
@@ -367,7 +363,9 @@ export const CardTabContainer = styled.div<{
       greyBackground,
     }) => {
       if (invalid && active) {
-        return theme.palette[`${getLighterColor('red-600')}`];
+        /* ⚑ Shift: invalid+active pressed was getLighterColor('red-600') = red-500 (#ff5a4d, lighter);
+           the module token resolves to #cf1413 (darker). Adopted per TOKEN_AUDIT (bg.error.pressed). */
+        return 'var(--ds-card-tabs-variant-grey-bg-validateactivehover)';
       }
       if (active) {
         return orderedHoverOr(
@@ -376,20 +374,18 @@ export const CardTabContainer = styled.div<{
         );
       }
       if (greyBackground && !active) {
-        return theme.palette.white;
+        return 'var(--ds-card-tabs-variant-white-bg-default)';
       }
-      return theme.palette['grey-100'];
+      return 'var(--ds-color-background-base-muted)';
     }};
   }
 
   ${InPlaceEditableInputContainer} {
     input {
-      color: ${({ theme, active }) => {
-        if (active) {
-          return theme.palette.white;
-        }
-        return theme.palette['grey-800'];
-      }};
+      color: ${({ active }) =>
+        active
+          ? 'var(--ds-card-tabs-variant-grey-text-active)'
+          : 'var(--ds-card-tabs-variant-grey-text-hover)'};
       padding: 0 !important;
       background-image: linear-gradient(
         to right,
@@ -414,44 +410,70 @@ export const CardTabContainer = styled.div<{
   }
 
   ${CardTabLabel} {
-    color: ${({ theme, active }) => {
-      if (active) {
-        return theme.palette.white;
-      }
-      return theme.palette['grey-600'];
-    }};
-    opacity: ${({ disabled }): number => (disabled ? 0.4 : 1)};
+    color: ${({ active }) =>
+      active
+        ? 'var(--ds-card-tabs-variant-grey-text-active)'
+        : 'var(--ds-card-tabs-variant-grey-text-default)'};
+    opacity: ${({ disabled }) =>
+      disabled ? 'var(--ds-card-tabs-variant-grey-disabled-opacity)' : '1'};
   }
 
   .ds-card-tabs__suffix-icon {
     svg {
-      color: ${({ theme, active }) =>
-        getColor(active, theme.palette.white, theme.palette['grey-600'])};
-      fill: ${({ theme, active }) =>
-        getColor(active, theme.palette.white, theme.palette['grey-600'])};
+      color: ${({ active }) =>
+        getColor(
+          active,
+          'var(--ds-card-tabs-variant-grey-icon-active)',
+          'var(--ds-card-tabs-variant-grey-icon-default)',
+        )};
+      fill: ${({ active }) =>
+        getColor(
+          active,
+          'var(--ds-card-tabs-variant-grey-icon-active)',
+          'var(--ds-card-tabs-variant-grey-icon-default)',
+        )};
     }
-    opacity: ${({ disabled }): number => (disabled ? 0.4 : 1)};
+    opacity: ${({ disabled }) =>
+      disabled ? 'var(--ds-card-tabs-variant-grey-disabled-opacity)' : '1'};
   }
 
   ${CardTabPrefix} {
-    opacity: ${({ disabled }): number => (disabled ? 0.4 : 1)};
+    opacity: ${({ disabled }) =>
+      disabled ? 'var(--ds-card-tabs-variant-grey-disabled-opacity)' : '1'};
     .ds-card-tabs__handle-icon {
       svg {
-        color: ${({ theme, active }) =>
-          getColor(active, theme.palette.white, theme.palette['grey-400'])};
-        fill: ${({ theme, active }) =>
-          getColor(active, theme.palette.white, theme.palette['grey-400'])};
+        color: ${({ active }) =>
+          getColor(
+            active,
+            'var(--ds-card-tabs-variant-grey-icon-active)',
+            'var(--ds-card-tabs-variant-grey-handler-default)',
+          )};
+        fill: ${({ active }) =>
+          getColor(
+            active,
+            'var(--ds-card-tabs-variant-grey-icon-active)',
+            'var(--ds-card-tabs-variant-grey-handler-default)',
+          )};
       }
     }
     svg {
-      color: ${({ theme, active }) =>
-        getColor(active, theme.palette.white, theme.palette['grey-600'])};
-      fill: ${({ theme, active }) =>
-        getColor(active, theme.palette.white, theme.palette['grey-600'])};
+      color: ${({ active }) =>
+        getColor(
+          active,
+          'var(--ds-card-tabs-variant-grey-icon-active)',
+          'var(--ds-card-tabs-variant-grey-icon-default)',
+        )};
+      fill: ${({ active }) =>
+        getColor(
+          active,
+          'var(--ds-card-tabs-variant-grey-icon-active)',
+          'var(--ds-card-tabs-variant-grey-icon-default)',
+        )};
     }
 
     ${CardTabSuffix} {
-      opacity: ${({ disabled }): number => (disabled ? 0.4 : 1)};
+      opacity: ${({ disabled }) =>
+        disabled ? 'var(--ds-card-tabs-variant-grey-disabled-opacity)' : '1'};
     }
   }
 `;
