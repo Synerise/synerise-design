@@ -1,11 +1,40 @@
 import { type ReactNode } from 'react';
 
-import { defaultColorsOrder } from '@synerise/ds-core';
+import { customColors, orderedBase } from '@synerise/ds-tokens/names';
 
 import { type ColorMap, type MarkObj } from '../Slider.types';
 
 export const getDefaultTooltipPopupContainer = (): HTMLElement =>
   document.querySelector(`.ant-slider`) as HTMLElement;
+
+// A tracksColorMap value is either a palette key ('green-600', or a user-supplied key) or an
+// already-resolved colour — an `ordered` token var ('var(--ds-…)') or a literal hex ('#…'). The
+// latter are used verbatim; palette keys are mapped to a reversible token (never theme.palette).
+export const isResolvedColor = (value?: string): boolean =>
+  !!value && (value.startsWith('var(') || value.startsWith('#'));
+
+// Resolve a colour-map value to a CSS colour WITHOUT touching theme.palette (which is being
+// retired). An already-resolved token/hex is used verbatim; a palette key ('blue-600') maps to the
+// reversible custom-colour token (customColors[hue][shade] — dark-mode aware). Anything unmapped —
+// an unknown hue/shade or an empty value — falls back to the given predefined token, so a bad
+// `tracksColorMap` key renders a real colour instead of an undefined palette lookup.
+export const resolveTrackColor = (
+  value: string | undefined,
+  fallback: string,
+): string => {
+  if (!value || isResolvedColor(value)) {
+    return value || fallback;
+  }
+  const match = value.match(/^(.+)-(\d{2,3})$/);
+  if (match) {
+    const [, hue, shade] = match;
+    const custom = customColors[hue]?.[String(Number(shade))];
+    if (custom) {
+      return custom;
+    }
+  }
+  return fallback;
+};
 
 export const couldBeInverted = (
   value: number | readonly number[],
@@ -19,10 +48,13 @@ export const getDefaultColorMap = (
 ) => {
   const colorMap: ColorMap = {};
   if (type !== 'allocation' && handleCount <= 2) {
-    colorMap['0'] = 'green-600';
+    // Default single / 2-handle fill: the slider module default (positive/success green).
+    colorMap['0'] = 'var(--ds-slider-fill-default)';
   } else {
-    defaultColorsOrder.forEach((item, index) => {
-      colorMap[index] = item;
+    // Categorical queue: each segment takes the next `ordered` token slot (a flipping
+    // var(--ds-color-background-ordered-<N>-base) string), replacing the old palette keys.
+    orderedBase.forEach((token, index) => {
+      colorMap[index] = token;
     });
   }
   return colorMap;

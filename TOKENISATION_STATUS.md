@@ -209,7 +209,7 @@ Single at-a-glance view of every colour-bearing component: migration **status** 
 | sidebar | semantic | ✅ | — |
 | sidebar-object | module | ✅ | — |
 | skeleton | module | 🚧 | shimmer keyframe opacity token pending |
-| slider | semantic | ❌ | focus-ring token gap |
+| slider | module | ✅ | chrome fully on `--ds-slider-*` module tokens (track/handle/value-tooltip/tag) landed via sync !3869; track fill = `--ds-slider-fill-default` (default) + `ordered` categorical slots (allocation/3+-handle); `resolveTrackColor` keeps custom `tracksColorMap` palette keys. ⚑ none (module keeps disabled-handle grey-300). Kept literal: active-handle focus-ring `rgba(35,138,254,.25)` — needs a translucent focus-ring token (design-tokens follow-up) |
 | sortable | semantic | ✅ | — |
 | status | module | ✅ | — |
 | status-pill | module | ✅ | — |

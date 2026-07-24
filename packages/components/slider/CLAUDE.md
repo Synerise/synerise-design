@@ -145,6 +145,7 @@ import Slider from '@synerise/ds-slider';
 - `@synerise/ds-tooltip` — handle tooltips and blocked-handler tooltips
 - `@synerise/ds-typography` — description text
 - `@synerise/ds-utils` — resize observer utilities
+- `@synerise/ds-tokens` `orderedBase` (`/names` manifest) — the `ordered` categorical-colour queue used for allocation / 3+-handle track sections
 
 ## Implementation notes
 
@@ -152,5 +153,7 @@ import Slider from '@synerise/ds-slider';
 - **Not based on Ant Design Slider** — README references are outdated; the actual implementation uses `@tanstack/react-ranger`.
 - **Uses Vitest** (`vitest.config.ts`) — migrated from Jest.
 - `tracksColorMap` keys are numeric percentages/values; the hook `useColorMap` interpolates the colour for the current value.
+- **Chrome colours → `--ds-slider-*` module tokens** — rail (`track-bg-default/hover`), handle (`handle-bg-default/active/disabled`, `handle-border`), value tooltip (`value-bg-active`, `value-text-active/default`, `value-shadow-active`), allocation mark text (`tag-text`). The one exception: the active-handle focus ring `rgba(35,138,254,0.25)` stays literal (no translucent focus-ring token yet — design-tokens follow-up).
+- **Track fill colours** — `getDefaultColorMap` gives the default/2-handle track `var(--ds-slider-fill-default)` (success green), and allocation / 3+-handle tracks the `ordered` categorical slots (`orderedBase[i]`, opaque `var(--ds-color-background-ordered-<N>-base)` strings). A colour-map value is applied verbatim when it's already a token/hex (`isResolvedColor`); a palette key (`'blue-600'`) is mapped by `resolveTrackColor` to its **reversible custom-colour token** (`customColors[hue][shade]`, dark-mode aware) — **not** `theme.palette` (which is being retired). An unknown hue/shade or empty value falls back to a **predefined token** (never an undefined palette lookup). So a caller's custom `tracksColorMap` of palette keys still works and now flips in dark mode. `tracksColorMap` is the only prop that carries colour; the rail/inverted default is `--ds-slider-track-bg-default`.
 - `inverted` only applies to `DefaultSliderProps` and `RangeSliderProps` (not allocation).
 - `HandlerConfig` handler index starts at **1** (not 0).

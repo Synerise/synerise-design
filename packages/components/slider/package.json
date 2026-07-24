@@ -42,6 +42,7 @@
   "types": "dist/index.d.ts",
   "dependencies": {
     "@synerise/ds-form-field": "workspace:^",
+    "@synerise/ds-tokens": "workspace:^",
     "@synerise/ds-tooltip": "workspace:^",
     "@synerise/ds-typography": "workspace:^",
     "@synerise/ds-utils": "workspace:^",
