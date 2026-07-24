@@ -189,7 +189,7 @@ export const Container = styled.div<{ active?: boolean; disabled?: boolean }>`
   }
 
   .ds-subtle-select {
-    .ant-select-selector: {
+    .ds-select {
       transition: all 0s linear !important;
     }
   }

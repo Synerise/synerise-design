@@ -10,7 +10,7 @@ export const SelectContainer = styled.div<{ active: boolean }>`
       margin: -2px 0 0 -1px;
     `}
 
-  .ant-select-focused {
+  .ds-select-open {
     .ds-status {
       margin: -1px 0 0 0;
     }
@@ -18,7 +18,7 @@ export const SelectContainer = styled.div<{ active: boolean }>`
   .ds-status {
     margin: 0;
   }
-  div.ant-select-selector {
+  .ds-select {
     transition: border 0s linear !important;
   }
 `;
