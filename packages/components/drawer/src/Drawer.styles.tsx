@@ -71,10 +71,8 @@ export const DrawerMask = styled.div<{ $open: boolean }>`
   left: 0;
   right: 0;
   bottom: 0;
-  /* grey-800 at 0.2 alpha (matches ds-modal's mask). Palette values are hex, so
-     the 0.2 alpha is applied via an 8-digit hex suffix (33 = 0.2); the element
-     opacity below drives the open/close fade. */
-  background-color: ${({ theme }): string => `${theme.palette['grey-800']}33`};
+  /* Canonical scrim token; the element opacity below drives the open/close fade. */
+  background-color: var(--ds-color-background-overlay-default);
   opacity: ${(props) => (props.$open ? 1 : 0)};
   transition: opacity 0.3s ease;
   pointer-events: ${(props) => (props.$open ? 'auto' : 'none')};
@@ -115,13 +113,13 @@ export const DrawerBodyBox = styled.div`
   overflow: hidden;
   display: flex;
   flex-direction: column;
-  background-color: ${({ theme }): string => theme.palette.white};
-  box-shadow: ${({ theme }): string => theme.variables['box-shadow-2']};
+  background-color: var(--ds-color-background-base-default);
+  box-shadow: var(--ds-shadows-shadow-2);
 `;
 
 export const DrawerHeader = styled.div`
   padding: 24px 24px 0;
-  border-bottom: 1px solid ${({ theme }): string => theme.palette['grey-100']};
+  border-bottom: 1px solid var(--ds-color-border-base-subtle);
 `;
 
 export const DrawerHeaderWithoutPadding = styled.div`
@@ -134,7 +132,7 @@ export const DrawerContent = styled.div`
 `;
 
 export const DrawerBody = styled.div`
-  background-color: white;
+  background-color: var(--ds-color-background-base-default);
   overflow-y: auto;
 `;
 export const DrawerHeaderBack = styled.div`
