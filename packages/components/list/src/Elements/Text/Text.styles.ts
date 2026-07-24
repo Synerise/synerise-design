@@ -1,7 +1,5 @@
 import styled, { type SimpleInterpolation, css } from 'styled-components';
 
-import { type ThemeProps } from '@synerise/ds-core';
-
 type WrapperProps = {
   disabled?: boolean;
   danger?: boolean;
@@ -17,16 +15,16 @@ export type ListItemType = 'small' | 'medium';
 export const IconWrapper = styled.div``;
 
 export const Wrapper = styled.li<WrapperProps>`
-  color: ${(props: WrapperProps & ThemeProps): string => {
+  color: ${(props: WrapperProps): string => {
     if (props.danger) {
-      return props.theme.palette['red-600'];
+      return 'var(--ds-color-text-danger-default)';
     }
 
     if (props.disabled) {
-      return props.theme.palette['grey-700'];
+      return 'var(--ds-color-text-base-subtle)';
     }
 
-    return props.theme.palette['grey-700'];
+    return 'var(--ds-color-text-base-subtle)';
   }};
   opacity: ${(props): string => (props.disabled ? '0.4' : '1')};
   cursor: ${(props): string => (props.disabled ? 'not-allowed' : 'pointer')};
@@ -50,7 +48,11 @@ export const Wrapper = styled.li<WrapperProps>`
       ${(props): string | false =>
         !props.disabled &&
         `
-        fill: ${props.danger ? props.theme.palette['red-600'] : props.theme.palette['grey-600']};
+        fill: ${
+          props.danger
+            ? 'var(--ds-color-icon-danger-default)'
+            : 'var(--ds-color-icon-base-default)'
+        };
       `}
     }
   }
@@ -60,20 +62,31 @@ export const Wrapper = styled.li<WrapperProps>`
       `
       ${IconWrapper} {
         svg {
-          fill: ${props.danger ? props.theme.palette['red-600'] : props.theme.palette['blue-600']};
+          fill: ${
+            props.danger
+              ? 'var(--ds-color-icon-danger-default)'
+              : 'var(--ds-color-icon-brand-default)'
+          };
         }
       }
-      color: ${props.danger ? props.theme.palette['red-600'] : props.theme.palette['blue-600']};
-      background: ${props.danger ? props.theme.palette['red-050'] : props.theme.palette['grey-050']};
+      color: ${
+        props.danger
+          ? 'var(--ds-color-text-danger-default)'
+          : 'var(--ds-color-text-brand-default)'
+      };
+      background: ${
+        props.danger
+          ? 'var(--ds-color-background-danger-subtle)'
+          : 'var(--ds-color-background-base-subtle)'
+      };
     `}
     span {
-      color: ${({ theme }): string => theme.palette['blue-600']};
+      color: var(--ds-color-text-brand-default);
     }
   }
 
   &:focus {
-    box-shadow: inset 0 0 0 2px
-      ${(props): string => props.theme.palette['blue-600']};
+    box-shadow: inset 0 0 0 2px var(--ds-color-border-brand-default);
   }
 `;
 
