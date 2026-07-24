@@ -12,9 +12,9 @@ export const TableContainer = styled.div<{
   ${(props) =>
     props.withBorderTop &&
     css`
-      border-top: solid 1px ${props.theme.palette['grey-200']};
+      border-top: solid 1px var(--ds-color-border-base-default);
     `}
-  background: ${(props) => props.theme.palette['white']};
+  background: var(--ds-color-background-base-default);
 `;
 
 export const commonPinnedStyles = css<{
@@ -42,7 +42,7 @@ export const commonCellStyles = css`
   overflow: hidden;
   padding: 0 24px;
   text-overflow: ellipsis;
-  border-bottom: 1px solid ${(props) => props.theme.palette['grey-200']};
+  border-bottom: 1px solid var(--ds-color-border-base-default);
   transition:
     background-color 0.2s,
     border-color 0.2s;
