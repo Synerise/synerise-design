@@ -441,7 +441,7 @@ but have no consuming markup yet.)
 
 All 7 `SectionType` variants use component-level CSS vars (`--ds-section-message-variant-{variant}-{bg|border|bordertop|icon|text-header|text-description}`). No `theme.palette` fallback remains for type-driven colors.
 
-`customColor` / `customColorIcon` overrides still use `theme.palette` — intentional (user-specified overrides, not token-driven).
+`customColor` / `customColorIcon` overrides resolve via `resolveCustomColor` (`@synerise/ds-utils`) → theme-aware categorical tokens; no `theme.palette` remains.
 
 #### Shadows — :heavy_minus_sign: N/A
 

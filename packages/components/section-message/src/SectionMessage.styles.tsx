@@ -1,6 +1,8 @@
 import type { ReactNode } from 'react';
 import styled from 'styled-components';
 
+import { resolveCustomColor } from '@synerise/ds-utils';
+
 import { type CustomColorType, type SectionType } from './SectionMessage.types';
 import {
   getColorBackground,
@@ -37,7 +39,11 @@ export const IconWrapper = styled.div<{
   display: flex;
   color: ${(props) =>
     props.customColorIcon
-      ? props.theme.palette[`${props.customColorIcon}-600`]
+      ? resolveCustomColor(
+          props.customColorIcon,
+          getColorIconAndBorderTop(props.type),
+          { defaultShade: '600' },
+        )
       : getColorIconAndBorderTop(props.type)};
 `;
 export const IconCloseWrapper = styled.div`
@@ -63,12 +69,16 @@ export const Container = styled.div<{
   position: relative;
   background-color: ${(props) =>
     props.customColor
-      ? props.theme.palette[`${props.customColor}-050`]
+      ? resolveCustomColor(props.customColor, getColorBackground(props.type), {
+          defaultShade: '50',
+        })
       : getColorBackground(props.type)};
   border: 1px solid
     ${(props) =>
       props.customColor
-        ? props.theme.palette[`${props.customColor}-200`]
+        ? resolveCustomColor(props.customColor, getColorBorder(props.type), {
+            defaultShade: '200',
+          })
         : getColorBorder(props.type)};
   border-radius: 3px;
 
@@ -82,7 +92,9 @@ export const Container = styled.div<{
     border-radius: 3px 3px 0 0;
     background-color: ${(props) =>
       props.customColor
-        ? props.theme.palette[`${props.customColor}-600`]
+        ? resolveCustomColor(props.customColor, getColorBorderTop(props.type), {
+            defaultShade: '600',
+          })
         : getColorBorderTop(props.type)};
   }
 `;
