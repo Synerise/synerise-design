@@ -1,10 +1,6 @@
 import { customColors, orderedBase } from '@synerise/ds-tokens/names';
 
-import {
-  getDefaultColorMap,
-  isResolvedColor,
-  resolveTrackColor,
-} from './Slider.utils';
+import { getDefaultColorMap, resolveTrackColor } from './Slider.utils';
 
 describe('getDefaultColorMap', () => {
   it('keeps the default single/2-handle track on the slider fill-default token', () => {
@@ -24,21 +20,6 @@ describe('getDefaultColorMap', () => {
 
     const rangeMap = getDefaultColorMap(3, 'range');
     expect(rangeMap[0]).toBe(orderedBase[0]);
-  });
-});
-
-describe('isResolvedColor', () => {
-  it('treats ordered token vars and literal hex as already resolved', () => {
-    expect(isResolvedColor('var(--ds-color-background-ordered-1-base)')).toBe(
-      true,
-    );
-    expect(isResolvedColor('#ff5a4d')).toBe(true);
-  });
-
-  it('treats palette keys and empty values as unresolved', () => {
-    expect(isResolvedColor('green-600')).toBe(false);
-    expect(isResolvedColor(undefined)).toBe(false);
-    expect(isResolvedColor('')).toBe(false);
   });
 });
 

@@ -15,6 +15,7 @@ src/
  escapeRegEx/ (regex/) — escape special regex chars in a string
  getInitials/ — extract initials from first/last name (NOT exported from index.ts)
  selectColorByLetter/ — map letter → ds-core palette colour
+ customColor/ — map a custom-colour name/name-shade string → reversible token + shared colour types
  renderWithHighlight/ — wrap a substring match in a highlight <span>
  doubleClickListener/ — factory for single/double click disambiguation
  focusWithArrowKeys/ — keyboard arrow-key focus navigation helper
@@ -201,6 +202,12 @@ Traps keyboard focus within a container element. When `active` is `true`, saves 
 | `DeepPartial<T>` | Recursively makes all properties optional |
 | `RequiredProps<BaseType, PropName>` | Makes specific props required on a base type |
 | `ObjectStringKeys<T>` | Union of keys in T whose values are `string` |
+| `CustomColorShade` | The shade steps (`'50'` … `'900'`) |
+| `CustomColorToken` | A `` `${family}-${CustomColorShade}` `` combo (`'blue-600'`) across the 12 custom-colour families — maps 1:1 to a reversible `--ds-color-background-custom-*` token |
+
+### `resolveCustomColor(value, fallback, options?): string` / `isResolvedColor(value?): boolean`
+
+`resolveCustomColor` maps a custom-colour name (`'grey'`) or name-shade combo (`'blue-600'`) to its reversible `--ds-color-background-custom-*` token (light/dark aware, from `@synerise/ds-tokens`). Options: `defaultShade` (bare-name shade, default `'600'`), `shadeShift` (±100 for hover variants), `passthroughResolved` (return `var()`/hex verbatim). Anything unmapped returns `fallback` — never `theme.palette`, never an undefined lookup. `isResolvedColor` reports whether a value is already a `var()` token or hex literal. Shared by slider (`tracksColorMap`) and card-tabs (`color`); reusable in consumer apps.
 
 ---
 
@@ -216,4 +223,4 @@ Traps keyboard focus within a container element. When `active` is `true`, saves 
 - `useResize` accepts a `RefObject<any>` — typed loosely to accept refs to any DOM element.
 - `focusWithArrowKeys` queries the entire `document`, not a scoped container — all elements with the given class on the page are in scope simultaneously.
 - `useTraceUpdate` calls `console.log` unconditionally — strip from production builds or guard with `process.env.NODE_ENV`.
-- Tests use **Jest** (not Vitest) — `jest.config.js` present, no `vitest.config.ts`.
+- Tests use **Vitest** (co-located `*.spec.ts`).

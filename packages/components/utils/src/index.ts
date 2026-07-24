@@ -11,6 +11,7 @@ export {
   default as selectColorByLetter,
   type ColorObject,
 } from './selectColorByLetter/selectColorByLetter';
+export * from './customColor';
 export { default as focusWithArrowKeys } from './focusWithArrowKeys/focusWithArrowKeys';
 export { default as escapeRegEx } from './regex/regex';
 export { default as doubleClickListener } from './doubleClickListener/doubleClickListener';

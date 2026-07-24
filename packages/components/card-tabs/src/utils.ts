@@ -1,8 +1,5 @@
-import {
-  customColors,
-  orderedBase,
-  orderedHover,
-} from '@synerise/ds-tokens/names';
+import { orderedBase, orderedHover } from '@synerise/ds-tokens/names';
+import { resolveCustomColor } from '@synerise/ds-utils';
 
 export const getColor = (
   isActive: boolean,
@@ -28,23 +25,14 @@ export const orderedHoverOr = (
 ): string => (orderIndex !== undefined ? orderedHover[orderIndex] : fallback);
 
 // Resolve an explicit `color` prop — a bare hue (`'grey'`) or `$hue-$shade` (`'blue-600'`) — to the
-// reversible `--ds-color-background-custom-*` token, so explicit-colour tabs follow the light/dark
-// theme like auto-assigned ones. A bare hue defaults to shade 600; `shadeShift` picks a lighter shade
-// for hover (−100, matching getLighterColor). Out-of-set strings fall back to `fallback` (the caller
-// still has `theme.palette` access for that).
+// reversible `--ds-color-background-custom-*` token via the shared ds-utils helper, so explicit-colour
+// tabs follow the light/dark theme like auto-assigned ones. A bare hue defaults to shade 600;
+// `shadeShift` picks a lighter shade for hover (−100). Out-of-set strings fall back to `fallback`.
 export const customColorOr = (
   color: string,
   fallback: string,
   shadeShift = 0,
-): string => {
-  const dash = color.lastIndexOf('-');
-  const hue = dash === -1 ? color : color.slice(0, dash);
-  const shade = dash === -1 ? 600 : Number(color.slice(dash + 1));
-  const shades = customColors[hue];
-  return (
-    shades?.[String(shade + shadeShift)] ?? shades?.[String(shade)] ?? fallback
-  );
-};
+): string => resolveCustomColor(color, fallback, { shadeShift });
 
 export const getLighterColor = (color: string): string => {
   if (color) {
