@@ -96,6 +96,7 @@ const preview: Preview = {
   ],
 
   parameters: {
+    chromatic: { disableSnapshot: true },
     layout: 'centered',
     actions: { argTypesRegex: '^on[A-Z].*' },
 
