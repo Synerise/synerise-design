@@ -72,11 +72,16 @@ body {
 .sb-main-padded,
 .sb-show-main {
   background-color: var(--ds-page-bg);
+  /* Pair text with the surface: antd's reset sets a static body colour
+     (grey-600) that never flips with the theme; the class selector beats
+     `body`, so bare text follows the Theme toolbar like the background does. */
+  color: var(--ds-color-text-base-default);
 }
 
 /* Docs-page story previews. Both classes stacked to out-specify addon-docs'
    emotion rule (single-class, so .sbdocs-preview alone ties and loses). */
 .sbdocs.sbdocs-preview {
   background-color: var(--ds-page-bg);
+  color: var(--ds-color-text-base-default);
 }
 
