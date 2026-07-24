@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import Button from '@synerise/ds-button';
 import Carousel from '@synerise/ds-carousel';
 import type { CarouselProps, CarouselRef } from '@synerise/ds-carousel';
-import { theme } from '@synerise/ds-core';
+import { customColors } from '@synerise/ds-tokens/names';
 
 /** A colourful demo panel — one per slide. */
 export const Slide = styled.div<{ $bg: string }>`
@@ -14,18 +14,18 @@ export const Slide = styled.div<{ $bg: string }>`
   height: 220px;
   border-radius: 8px;
   background: ${({ $bg }) => $bg};
-  color: ${theme.palette.white};
+  color: var(--ds-color-text-onsolid-default);
   font-size: 32px;
   font-weight: 600;
   user-select: none;
 `;
 
 const SLIDE_COLORS = [
-  theme.palette['blue-600'],
-  theme.palette['green-600'],
-  theme.palette['orange-600'],
-  theme.palette['purple-600'],
-  theme.palette['cyan-600'],
+  customColors.blue['600'],
+  customColors.green['600'],
+  customColors.orange['600'],
+  customColors.purple['600'],
+  customColors.cyan['600'],
 ];
 
 /**
@@ -47,9 +47,9 @@ export const ProductCard = styled.div`
   height: 140px;
   margin: 0 8px;
   border-radius: 8px;
-  background: ${theme.palette['grey-050']};
-  border: 1px solid ${theme.palette['grey-200']};
-  color: ${theme.palette['grey-700']};
+  background: var(--ds-color-background-base-subtle);
+  border: 1px solid var(--ds-color-border-base-default);
+  color: var(--ds-color-text-base-subtle);
   font-weight: 600;
 `;
 
@@ -98,7 +98,12 @@ export const CarouselWithControls = (args: CarouselProps) => {
         <Button type="primary" onClick={() => ref.current?.goTo(0)}>
           Go to first
         </Button>
-        <span style={{ marginLeft: 'auto', color: theme.palette['grey-600'] }}>
+        <span
+          style={{
+            marginLeft: 'auto',
+            color: 'var(--ds-color-text-base-muted)',
+          }}
+        >
           Current index (afterChange): {current}
         </span>
       </div>

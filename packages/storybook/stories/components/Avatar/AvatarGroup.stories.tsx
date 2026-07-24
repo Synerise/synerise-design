@@ -2,7 +2,6 @@ import React from 'react';
 
 import { Meta } from '@storybook/react-vite';
 import AvatarGroup from '@synerise/ds-avatar-group';
-import { theme } from '@synerise/ds-core';
 import Icon, { LockM, UserRemoveM } from '@synerise/ds-icon';
 import Menu from '@synerise/ds-menu';
 
@@ -41,7 +40,7 @@ const Template: (args) => JSX.Element = (args) => (
   <div
     style={{
       padding: 24,
-      backgroundColor: '#fff',
+      backgroundColor: 'var(--ds-color-background-base-default)',
       display: 'flex',
       justifyContent: 'flex-start',
       width: 500,
@@ -62,7 +61,7 @@ const Template: (args) => JSX.Element = (args) => (
                 prefixel={
                   <Icon
                     component={<LockM />}
-                    color={theme.palette['grey-600']}
+                    color="var(--ds-color-icon-base-default)"
                   />
                 }
               >

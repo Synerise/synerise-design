@@ -33,7 +33,7 @@ export const Default: Story = {
       source: {
         code: `<TagIconCell>
   <Tag shape="status_neutral" name="Draft" />
-  <Icon component={<LockM />} color="#949ea6" />
+  <Icon component={<LockM />} color="var(--ds-color-icon-base-subtle)" />
 </TagIconCell>`,
       },
     },
@@ -41,7 +41,7 @@ export const Default: Story = {
   render: (args) => (
     <TagIconCell {...args}>
       <Tag shape={TagShape.STATUS_NEUTRAL} name="Draft" />
-      <Icon component={<LockM />} color="#949ea6" />
+      <Icon component={<LockM />} color="var(--ds-color-icon-base-subtle)" />
     </TagIconCell>
   ),
 };
@@ -52,7 +52,7 @@ export const Disabled: Story = {
       source: {
         code: `<TagIconCell disabled>
   <Tag shape="status_neutral" name="Draft" />
-  <Icon component={<LockM />} color="#949ea6" />
+  <Icon component={<LockM />} color="var(--ds-color-icon-base-subtle)" />
 </TagIconCell>`,
       },
     },
@@ -60,7 +60,7 @@ export const Disabled: Story = {
   render: (args) => (
     <TagIconCell {...args}>
       <Tag shape={TagShape.STATUS_NEUTRAL} name="Draft" />
-      <Icon component={<LockM />} color="#949ea6" />
+      <Icon component={<LockM />} color="var(--ds-color-icon-base-subtle)" />
     </TagIconCell>
   ),
   args: {

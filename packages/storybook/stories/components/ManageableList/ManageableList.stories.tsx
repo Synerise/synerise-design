@@ -4,7 +4,6 @@ import { fn } from 'storybook/test';
 
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import Button from '@synerise/ds-button';
-import { theme } from '@synerise/ds-core';
 import Icon, {
   ArrowDownCircleM,
   ArrowUpCircleM,
@@ -115,7 +114,7 @@ export default {
     onItemSelect: undefined,
     additionalActions: [
       {
-        color: theme.palette['blue-600'],
+        color: 'var(--ds-color-icon-brand-default)',
         tooltip: 'Additional action',
         icon: <Settings2S />,
         onClick: action('additional action'),

@@ -4,7 +4,6 @@ import { fn, userEvent, within } from 'storybook/test';
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import Autocomplete from '@synerise/ds-autocomplete';
 import type { AutocompleteProps } from '@synerise/ds-autocomplete';
-import { theme } from '@synerise/ds-core';
 import Icon, { EmoticonsM, SnippetM } from '@synerise/ds-icon';
 import Loader from '@synerise/ds-loader';
 
@@ -267,10 +266,18 @@ export const WithIcons: StoryObj<AutocompleteProps> = {
   },
   args: {
     ...Primary.args,
-    icon1: <Icon color={theme.palette['grey-600']} component={<SnippetM />} />,
+    icon1: (
+      <Icon
+        color="var(--ds-color-icon-base-default)"
+        component={<SnippetM />}
+      />
+    ),
     icon1Tooltip: 'Open snippets',
     icon2: (
-      <Icon color={theme.palette['grey-600']} component={<EmoticonsM />} />
+      <Icon
+        color="var(--ds-color-icon-base-default)"
+        component={<EmoticonsM />}
+      />
     ),
     icon2Tooltip: 'Emoji picker',
   },

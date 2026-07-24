@@ -2,9 +2,10 @@ import React from 'react';
 
 import { Meta, StoryObj } from '@storybook/react-vite';
 import Button from '@synerise/ds-button';
-import { FormattedNumber, theme } from '@synerise/ds-core';
+import { FormattedNumber } from '@synerise/ds-core';
 import Estimation, { EstimationProps } from '@synerise/ds-estimation';
 import Icon, { RefreshM, ShowM } from '@synerise/ds-icon';
+import { customColors } from '@synerise/ds-tokens/names';
 
 import { BOOLEAN_CONTROL } from '../../utils';
 import { Bold } from './Estimation.styles';
@@ -163,7 +164,7 @@ export const WithProgressBar: StoryObj<EstimationProps> = {
   progressBarValues={[
     {
       percent: 22,
-      color: theme.palette['green-600'],
+      color: customColors.green['600'],
       label: (
         <>
           Estimated reach: <Bold level={6}>52%</Bold>
@@ -172,7 +173,7 @@ export const WithProgressBar: StoryObj<EstimationProps> = {
     },
     {
       percent: 78,
-      color: theme.palette['grey-200'],
+      color: customColors.grey['200'],
     },
   ]}
   footerButtons={
@@ -189,7 +190,7 @@ export const WithProgressBar: StoryObj<EstimationProps> = {
     progressBarValues: [
       {
         percent: 22,
-        color: theme.palette['green-600'],
+        color: customColors.green['600'],
         label: (
           <>
             Estimated reach: <Bold level={6}>52%</Bold>
@@ -198,7 +199,7 @@ export const WithProgressBar: StoryObj<EstimationProps> = {
       },
       {
         percent: 78,
-        color: theme.palette['grey-200'],
+        color: customColors.grey['200'],
       },
     ],
   },
@@ -223,7 +224,7 @@ export const CompleteExample: StoryObj<EstimationProps> = {
   progressBarValues={[
     {
       percent: 52,
-      color: theme.palette['green-600'],
+      color: customColors.green['600'],
       label: (
         <>
           Estimated reach: <Bold level={6}>52%</Bold>
@@ -232,7 +233,7 @@ export const CompleteExample: StoryObj<EstimationProps> = {
     },
     {
       percent: 12,
-      color: theme.palette['yellow-600'],
+      color: customColors.yellow['600'],
       label: (
         <>
           Global control group: <Bold level={6}>12%</Bold> of estimated reach
@@ -241,7 +242,7 @@ export const CompleteExample: StoryObj<EstimationProps> = {
     },
     {
       percent: 36,
-      color: theme.palette['grey-200'],
+      color: customColors.grey['200'],
     },
   ]}
   footerButtons={
@@ -282,7 +283,7 @@ export const CompleteExample: StoryObj<EstimationProps> = {
     progressBarValues: [
       {
         percent: 52,
-        color: theme.palette['green-600'],
+        color: customColors.green['600'],
         label: (
           <>
             Estimated reach: <Bold level={6}>52%</Bold>
@@ -291,7 +292,7 @@ export const CompleteExample: StoryObj<EstimationProps> = {
       },
       {
         percent: 12,
-        color: theme.palette['yellow-600'],
+        color: customColors.yellow['600'],
         label: (
           <>
             Global control group: <Bold level={6}>12%</Bold> of estimated reach
@@ -300,7 +301,7 @@ export const CompleteExample: StoryObj<EstimationProps> = {
       },
       {
         percent: 36,
-        color: theme.palette['grey-200'],
+        color: customColors.grey['200'],
       },
     ],
   },
@@ -329,7 +330,7 @@ export const CompleteExampleLoading: StoryObj<EstimationProps> = {
   progressBarValues={[
     {
       percent: 52,
-      color: theme.palette['green-600'],
+      color: customColors.green['600'],
       label: (
         <>
           Estimated reach: <Bold level={6}>52%</Bold>
@@ -338,7 +339,7 @@ export const CompleteExampleLoading: StoryObj<EstimationProps> = {
     },
     {
       percent: 12,
-      color: theme.palette['yellow-600'],
+      color: customColors.yellow['600'],
       label: (
         <>
           Global control group: <Bold level={6}>12%</Bold> of estimated reach
@@ -347,7 +348,7 @@ export const CompleteExampleLoading: StoryObj<EstimationProps> = {
     },
     {
       percent: 36,
-      color: theme.palette['grey-200'],
+      color: customColors.grey['200'],
     },
   ]}
   // make sure to set buttons disabled prop in loading state
@@ -389,7 +390,7 @@ export const CompleteExampleLoading: StoryObj<EstimationProps> = {
     progressBarValues: [
       {
         percent: 52,
-        color: theme.palette['green-600'],
+        color: customColors.green['600'],
         label: (
           <>
             Estimated reach: <Bold level={6}>52%</Bold>
@@ -398,7 +399,7 @@ export const CompleteExampleLoading: StoryObj<EstimationProps> = {
       },
       {
         percent: 12,
-        color: theme.palette['yellow-600'],
+        color: customColors.yellow['600'],
         label: (
           <>
             Global control group: <Bold level={6}>12%</Bold> of estimated reach
@@ -407,7 +408,7 @@ export const CompleteExampleLoading: StoryObj<EstimationProps> = {
       },
       {
         percent: 36,
-        color: theme.palette['grey-200'],
+        color: customColors.grey['200'],
       },
     ],
   },

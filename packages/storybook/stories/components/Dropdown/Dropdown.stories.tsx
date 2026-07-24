@@ -3,7 +3,6 @@ import { fn } from 'storybook/test';
 
 import { Meta, StoryObj } from '@storybook/react-vite';
 import Button from '@synerise/ds-button';
-import { theme } from '@synerise/ds-core';
 import Dropdown, {
   type DropdownProps,
   TextTrigger,
@@ -239,7 +238,7 @@ export const withTabs: Story = {
                 iconLeft={
                   <Icon
                     component={<SearchM />}
-                    color={theme.palette['grey-600']}
+                    color="var(--ds-color-icon-base-default)"
                   />
                 }
               />
