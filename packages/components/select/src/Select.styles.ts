@@ -1,44 +1,39 @@
-import { Select } from 'antd';
-import type React from 'react';
 import styled, {
+  type CSSObject,
   type FlattenSimpleInterpolation,
   css,
 } from 'styled-components';
 
-import { type ThemeProps } from '@synerise/ds-core';
+import DSListItem, {
+  ListWrapper as DSListWrapper,
+  type StyledListItem,
+} from '@synerise/ds-list-item';
 
-import { type Props } from './Select.types';
-
-const errorStyle = (props: ThemeProps) => `
-  border-color: ${props.theme.palette['red-600']};
-  box-shadow: inset 0 0 0 1px ${props.theme.palette['red-600']};
-  background: ${props.theme.palette['red-050']};
-`;
-
-const searchIconWithCustomColor = (color: string) => {
-  const colorValueForSvg = color.replace(/#/, '%23');
-  const iconWithColor = `data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='-6 -6 36 36' >/><path fill='none' d='M0 0h24v24H0z' /><path style='fill: ${colorValueForSvg};' d='M10.734 17.234a6.463 6.463 0 004.03-1.41l3.721 3.722a.75.75 0 001.06-1.06l-3.72-3.722a6.494 6.494 0 10-5.09 2.47zm0-11.5a5 5 0 11-5 5 5.006 5.006 0 015-5z'/></svg>`;
-  return iconWithColor;
+type SelectorProps = {
+  $size?: string;
+  $open?: boolean;
+  $error?: boolean;
+  $disabled?: boolean;
+  $readOnly?: boolean;
+  $grey?: boolean;
+  $multiple?: boolean;
+  $clearable?: boolean;
+  $withPrefixel?: boolean;
+  $withSuffixel?: boolean;
+  $selectorStyle?: CSSObject;
 };
 
-const withPrefixStyles = () => `
-  border-top-left-radius:0;
-  border-bottom-left-radius:0;
-`;
-const withSuffixStyles = () => `
-  border-top-right-radius:0;
-  border-bottom-right-radius:0;
-`;
+const HEIGHT = { large: 48, default: 32 } as const;
 
-const addonStyles = (props: ThemeProps) => `
+const addonStyles = css`
   display: flex;
   align-items: center;
-  background: ${props.theme.palette['grey-050']};
-  box-shadow: inset 0 0 0 1px ${props.theme.palette['grey-300']};
-  color: ${props.theme.palette['grey-500']};
-  font-size:13px;
+  background: ${(props) => props.theme.palette['grey-050']};
+  box-shadow: inset 0 0 0 1px ${(props) => props.theme.palette['grey-300']};
+  color: ${(props) => props.theme.palette['grey-500']};
+  font-size: 13px;
   line-height: 1.39;
- `;
+`;
 
 export const SelectContainer = styled.div<{ hasBottomMargin?: boolean }>`
   display: flex;
@@ -48,141 +43,313 @@ export const SelectContainer = styled.div<{ hasBottomMargin?: boolean }>`
   margin: 0 0 ${(props) => (props.hasBottomMargin ? 16 : 0)}px;
 `;
 
-export const AntdSelect = styled(
-  Select as unknown as React.ComponentType<Props>,
-)<{
-  size?: string;
-  withPrefixel?: boolean;
-  withSuffixel?: boolean;
-  readOnly?: boolean;
-}>`
-  ${(props): string | false =>
-    props.size === 'large' &&
-    `
-
-    &.ant-select-single .ant-select-selector, 
-    &.ant-select-single .ant-select-selection-search-input {
-      height:48px;
-    }
-
-    &.ant-select-single .ant-select-selection-item, 
-    &.ant-select-single .ant-select-selection-placeholder {
-      line-height:46px;
-    }
-    
-    &.ant-select-multiple.ant-select-lg {
-      .ant-select-arrow {
-        top: 23px
-      }
-      .ant-select-selector {
-        padding: 8px;
-      }
-
-      .ant-select-selector::after,
-      .ant-select-selection-item,
-      .ant-select-selection-search,
-      .ant-select-selection-search-input {
-        height: 24px; 
-        line-height: 22px;
-      }
-    }
-
-  `}
-
-  &.ant-select-multiple {
-    .ant-select-arrow {
-      top: 16px;
-    }
-  }
-  && {
-    .ant-select-selector {
-      ${(props): FlattenSimpleInterpolation | false =>
-        !!props.selectorStyle && css(props.selectorStyle)}
-    }
-  }
-
-  &&& {
-    width: 100%;
-    .ant-select-clear {
-      height: 18px;
-      background-position: center;
-      background-repeat: no-repeat;
-      background-size: contain;
-      top: 50%;
-      right: 8px;
-      transform-origin: 50% 25%;
-      display: flex;
-      transform: translateY(-50%);
-      align-items: center;
-      justify-content: center;
-      margin-top: 0;
-    }
-    .ant-select-selector {
-      ${(props): string | false => !!props.withPrefixel && withPrefixStyles()}
-      ${(props): string | false => !!props.withSuffixel && withSuffixStyles()}
-    }
-    span[aria-label='search'] {
-      svg {
-        display: none;
-      }
-      width: 24px;
-      height: 24px;
-      background-color: rgba(0, 0, 0, 0);
-      background-image: ${(props) =>
-        `url("${searchIconWithCustomColor(props.theme.palette['grey-400'])}")`};
-    }
-  }
-
-  &.error {
-    .ant-select-selector.ant-select-selector {
-      ${(props) => errorStyle(props)}
-    }
-    .ant-select-clear {
-      background-color: ${(props) => props.theme.palette['red-050']};
-    }
-  }
-
-  &&&.ant-select-disabled {
-    .ant-select-selector.ant-select-selector {
-      color: ${(props) =>
-        props.readOnly
-          ? props.theme.palette['grey-600']
-          : props.theme.palette['grey-400']};
-      cursor: ${(props) => (props.readOnly ? 'default' : 'not-allowed')};
-      background-color: ${(props) =>
-        props.readOnly
-          ? props.theme.palette.white
-          : props.theme.palette['grey-050']};
-    }
-    .ant-select-arrow {
-      opacity: 0.5;
-    }
-  }
+export const SelectWrapper = styled.div`
+  display: flex;
+  width: 100%;
 `;
 
 export const PrefixWrapper = styled.div`
   border-radius: 3px 0 0 3px;
   margin-right: -2px;
   padding-right: 1px;
-  ${(props) => addonStyles(props)};
+  ${addonStyles};
 `;
 
 export const SuffixWrapper = styled.div`
   border-radius: 0 3px 3px 0;
   margin-left: -1px;
-  ${(props) => addonStyles(props)};
+  ${addonStyles};
 `;
 
-export const SelectWrapper = styled.div<{ error?: boolean; grey?: boolean }>`
+/** The trigger box (the `.ds-select` selector). */
+export const Selector = styled.div<SelectorProps>`
+  position: relative;
   display: flex;
-  ${(props): FlattenSimpleInterpolation | undefined | false =>
-    props.grey &&
-    !props.error &&
+  align-items: center;
+  width: 100%;
+  min-width: 0;
+  box-sizing: border-box;
+  ${(props) => {
+    const h =
+      HEIGHT[(props.$size as keyof typeof HEIGHT) ?? 'default'] ??
+      HEIGHT.default;
+    return props.$multiple
+      ? css`
+          min-height: ${h}px;
+          height: auto;
+          padding: 3px 30px 3px 8px;
+          flex-wrap: wrap;
+          gap: 4px;
+        `
+      : css`
+          height: ${h}px;
+          padding: 0 30px 0 12px;
+        `;
+  }}
+  border: 1px solid ${(props) => props.theme.palette['grey-300']};
+  border-radius: 3px;
+  background-color: ${(props) =>
+    props.$grey ? props.theme.palette['grey-050'] : props.theme.palette.white};
+  color: ${(props) => props.theme.palette['grey-700']};
+  font-size: 13px;
+  cursor: pointer;
+  transition: all 0.3s;
+
+  ${(props) =>
+    props.$withPrefixel &&
     css`
-      &&& {
-        .ant-select-selector {
-          background-color: ${props.theme.palette['grey-050']};
-        }
+      border-top-left-radius: 0;
+      border-bottom-left-radius: 0;
+    `}
+  ${(props) =>
+    props.$withSuffixel &&
+    css`
+      border-top-right-radius: 0;
+      border-bottom-right-radius: 0;
+    `}
+
+  ${(props) =>
+    !props.$open &&
+    !props.$error &&
+    css`
+      &:hover {
+        border-color: ${props.theme.palette['grey-400']};
       }
     `}
+
+  /* When clearable, the clear icon replaces the chevron while hovering the
+     whole select (the icon hooks toggle visibility). */
+  ${(props) =>
+    props.$clearable &&
+    css`
+      &:hover .ds-select-arrow {
+        display: none;
+      }
+      &:hover .ds-select-clear {
+        display: flex;
+      }
+    `}
+
+  ${(props) =>
+    props.$open &&
+    css`
+      box-shadow: inset 0 0 0 1px ${props.theme.palette['blue-600']};
+      border-color: ${props.theme.palette['blue-600']};
+      background-color: ${props.theme.palette['blue-050']};
+    `}
+
+  ${(props) =>
+    props.$error &&
+    css`
+      border-color: ${props.theme.palette['red-600']};
+      box-shadow: inset 0 0 0 1px ${props.theme.palette['red-600']};
+      background: ${props.theme.palette['red-050']};
+    `}
+
+  ${(props) =>
+    props.$disabled &&
+    css`
+      cursor: ${props.$readOnly ? 'default' : 'not-allowed'};
+      color: ${props.$readOnly
+        ? props.theme.palette['grey-600']
+        : props.theme.palette['grey-400']};
+      background-color: ${props.$readOnly
+        ? props.theme.palette.white
+        : props.theme.palette['grey-050']};
+      &:hover {
+        border-color: ${props.theme.palette['grey-300']};
+      }
+    `}
+
+  ${(props): FlattenSimpleInterpolation | false =>
+    !!props.$selectorStyle && css(props.$selectorStyle)}
+`;
+
+export const SelectionItem = styled.span`
+  flex: 1;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+`;
+
+export const Placeholder = styled.span`
+  flex: 1;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  color: ${(props) => props.theme.palette['grey-500']};
+`;
+
+export const Arrow = styled.span<{ $open?: boolean }>`
+  position: absolute;
+  right: 8px;
+  top: 50%;
+  display: flex;
+  align-items: center;
+  transform: translateY(-50%)
+    ${(props) => (props.$open ? 'rotate(180deg)' : '')};
+  transition: transform 0.3s;
+  color: ${(props) => props.theme.palette['grey-500']};
+  pointer-events: none;
+`;
+
+export const ClearWrapper = styled.span`
+  position: absolute;
+  right: 8px;
+  top: 50%;
+  transform: translateY(-50%);
+  display: none;
+  align-items: center;
+  cursor: pointer;
+  /* DS icons use currentColor — set color, not svg fill. */
+  color: ${(props) => props.theme.palette['red-600']};
+`;
+
+/* ── dropdown (mirrors ds-autocomplete's dropdown: ListWrapper + Scrollbar) ── */
+
+export const DropdownWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  min-width: 120px;
+`;
+
+export const ScrollList = styled(DSListWrapper)`
+  && {
+    padding-right: 0;
+  }
+`;
+
+export const Inner = styled.div`
+  padding-right: 8px;
+`;
+
+export const NotFound = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px 12px;
+  color: ${(props) => props.theme.palette['grey-600']};
+  font-weight: normal;
+`;
+
+export const Loading = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+`;
+
+export const OptionItem: StyledListItem = styled(DSListItem)`
+  min-width: auto;
+  font-weight: normal;
+
+  &&:hover:not(.ds-list-item-disabled),
+  &&.ds-select-item-option-active:not(.ds-list-item-disabled) {
+    background-color: ${(props) => props.theme.palette['blue-050']};
+  }
+`;
+
+/** In-selector search input (showSearch / multiple / tags). */
+export const SearchInputEl = styled.input<{ $overlay?: boolean }>`
+  flex: 1 1 30px;
+  min-width: 30px;
+  width: 100%;
+  border: none;
+  outline: none;
+  background: transparent;
+  padding: 0;
+  margin: 0;
+  font-family: inherit;
+  font-size: 13px;
+  color: ${(props) => props.theme.palette['grey-700']};
+  cursor: inherit;
+  &::placeholder {
+    color: ${(props) => props.theme.palette['grey-500']};
+  }
+  &:disabled {
+    cursor: not-allowed;
+  }
+
+  /* Single-select showSearch: overlay the input across the whole selector so
+     the selected label shows through underneath and a click anywhere focuses
+     the input (antd layered the search field over the selection item). The
+     label is hidden as soon as a query is typed. Padding mirrors the single
+     selector box (0 30px 0 12px) so caret/text align with the label. */
+  ${(props) =>
+    props.$overlay &&
+    css`
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      flex: none;
+      box-sizing: border-box;
+      padding: 0 30px 0 12px;
+    `}
+`;
+
+/** Wraps chips + the search input for multiple/tags mode. */
+export const MultiValueArea = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 4px;
+  flex: 1;
+  min-width: 0;
+`;
+
+export const Chip = styled.span`
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  box-sizing: border-box;
+  width: max-content;
+  max-width: 100%;
+  min-height: 24px;
+  padding: 0 8px;
+  background: ${(props) => props.theme.palette['grey-200']};
+  border: none;
+  border-radius: 3px;
+  font-size: 13px;
+  line-height: 1;
+  color: ${(props) => props.theme.palette['grey-600']};
+
+  &:hover {
+    background: ${(props) => props.theme.palette['grey-300']};
+    color: ${(props) => props.theme.palette['grey-800']};
+  }
+  /* The chip width is fixed by the label (max-content, capped at the container).
+     On hover the absolute X appears and the label's max-width shrinks by the X
+     width, so the text clips with an ellipsis — the chip never widens. */
+  &:hover .ds-select-selection-item-label {
+    max-width: calc(100% - 24px);
+  }
+  &:hover .ds-select-selection-item-remove {
+    display: inline-flex;
+  }
+`;
+
+export const ChipLabel = styled.span`
+  max-width: 100%;
+  min-width: 0;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+`;
+
+export const ChipRemove = styled.span`
+  position: absolute;
+  right: 4px;
+  top: 50%;
+  transform: translateY(-50%);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  cursor: pointer;
+  /* DS icons use currentColor — set color, not svg fill. */
+  color: ${(props) => props.theme.palette['red-600']};
 `;

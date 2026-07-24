@@ -14,7 +14,6 @@ import * as S from '../../../RelativeRangePicker.styles';
 import { setOffsetType } from '../CustomRangeForm';
 import { type Props } from './OffsetField.types';
 
-const SELECT_DROPDOWN_OFFSET = -4;
 const OffsetField = ({
   handleOffsetValueChange,
   currentGroup,
@@ -52,10 +51,6 @@ const OffsetField = ({
           onChange={(type): void =>
             handleChange(setOffsetType(type, currentRange))
           }
-          dropdownAlign={{
-            points: ['bl', 'tl'],
-            offset: [0, SELECT_DROPDOWN_OFFSET],
-          }}
           getPopupContainer={(node): HTMLElement =>
             node.parentElement !== null ? node.parentElement : document.body
           }

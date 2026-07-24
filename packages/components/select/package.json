@@ -42,15 +42,18 @@
   ],
   "types": "dist/index.d.ts",
   "dependencies": {
+    "@synerise/ds-dropdown": "workspace:^",
     "@synerise/ds-form-field": "workspace:^",
     "@synerise/ds-icon": "workspace:^",
+    "@synerise/ds-list-item": "workspace:^",
+    "@synerise/ds-loader": "workspace:^",
+    "@synerise/ds-scrollbar": "workspace:^",
     "@synerise/ds-tooltip": "workspace:^",
     "@synerise/ds-utils": "workspace:^",
     "classnames": "^2.5.1"
   },
   "peerDependencies": {
     "@synerise/ds-core": "*",
-    "antd": "4.24.16",
     "react": ">=16.9.0 <= 18.3.1",
     "styled-components": "^5.3.3",
     "vitest": "4"

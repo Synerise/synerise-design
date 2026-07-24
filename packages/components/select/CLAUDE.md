@@ -1,140 +1,175 @@
 # Select (`@synerise/ds-select`)
 
-> A DS-styled select dropdown wrapping Ant Design's Select with FormField integration, prefix/suffix addon support, `readOnly` mode, and a `raw` render variant.
+> A DS-native select dropdown (no Ant Design): a selector trigger + floating options dropdown built
+> on `@synerise/ds-dropdown` (floating-ui) and `@synerise/ds-list-item`, wrapped in `FormField`.
+> Supports single-select, `multiple` (chips), `tags` (free-text) and in-selector search, with full
+> keyboard navigation, combobox/listbox ARIA, prefix/suffix addons, `readOnly`, and a `raw` variant.
 
 ## Package structure
 
 ```
 src/
- Select.tsx — main component (forwardRef, compound with .Option and .OptGroup)
- Select.types.ts — Props type (extends Antd SelectProps + FormFieldCommonProps)
- Select.styles.ts — styled-components: SelectContainer, AntdSelect, SelectWrapper, PrefixWrapper, SuffixWrapper
- index.ts — default export, SelectProps type, SelectStyles namespace
+ Select.tsx — main component (forwardRef, compound with .Option); composes the sub-components below
+ Select.types.ts — SelectProps, SelectValue, SelectOption, SelectMode, SelectHandler, RawValueType, FilterOptionFn
+ Select.styles.ts — styled-components (Selector = the .ds-select box, SelectWrapper, chips, dropdown, …)
+ Option.tsx — declarative <Select.Option> marker (renders null) + OptionProps
+ index.ts — default export + types + SelectStyles namespace + getOptionsFromChildren/findOption
+ Select.figma.tsx — Figma Code Connect mapping
  modules.d.ts — imports @testing-library/jest-dom
- style/
- index.less — imports antd select LESS + ds-core variables + select.mixin.less
- select.mixin.less — DS overrides for all antd select class variants (dropdown, items, states)
+ hooks/
+  useSelectOptions.ts — resolve options (prop → children), client filtering, tags create-row
+ components/
+  OptionList.tsx — dropdown overlay: loading / empty / scrollable listbox of options
+  SelectorContent.tsx — selector inner content: chips / selected label / placeholder + search input
+ utils/
+  getOptionsFromChildren.ts — read <Select.Option> children into SelectOption[]; findOption()
+  helpers.ts — cx(), toArray(), defaultFilter(), DEFAULT_LIST_HEIGHT
  __specs__/
- Select.spec.tsx — Vitest + React Testing Library tests
+  Select.spec.tsx — Vitest + React Testing Library tests
 ```
+
+> No `style/` dir and no `antd` peerDep — the component is styled purely with styled-components. The
+> old antd-era LESS (`select.mixin.less`, `.ant-select-*` overrides) was relocated to `ds-table`
+> (`table/src/style/`), the only consumer that still renders antd selects.
 
 ## Public exports
 
 ```ts
-export default SelectWithComponents; // compound: Select + .Option + .OptGroup
-export type { Props as SelectProps } from './Select.types';
+export { default } from './Select';                 // compound: Select + .Option
+export { Option, type OptionProps } from './Option';
+export type {
+  Props, SelectProps, SelectValue, SelectOption, SelectMode,
+  SelectHandler, RawValueType, FilterOptionFn,
+} from './Select.types';
 export * as SelectStyles from './Select.styles';
+export { getOptionsFromChildren, findOption } from './utils/getOptionsFromChildren';
 ```
 
 ### `Select` (default)
 
-The default export is a compound component. Sub-components come from Antd directly:
-- `Select.Option` — `AntdSelect.Option`
-- `Select.OptGroup` — `AntdSelect.OptGroup`
+`forwardRef<HTMLDivElement, SelectProps>`, augmented into a compound component with a single
+sub-component: **`Select.Option`** (the DS `Option` marker). `Select.OptGroup` is intentionally
+**not** reimplemented (zero real usage).
 
-The component is wrapped in `forwardRef<HTMLDivElement, Props>`.
+`SelectValue = string | number | (string | number)[] | undefined` — antd-free (no `LabeledValue`).
 
 #### DS-specific props
 
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
-| `label` | `ReactNode` | `undefined` | Label above the field (via `FormField`). |
-| `tooltip` | `ReactNode` | `undefined` | Info tooltip next to the label (renders InfoFillS icon trigger). |
-| `tooltipConfig` | `TooltipProps` | `undefined` | Extra config merged into the label Tooltip. |
-| `description` | `ReactNode` | `undefined` | Helper text below the field. |
-| `errorText` | `ReactNode` | `undefined` | Error message below the field; also activates error visual state. |
-| `error` | `boolean` | `undefined` | Activates error visual state without showing a message. |
-| `clearTooltip` | `string` | `undefined` | Tooltip text shown on hover of the clear (×) button. |
-| `prefixel` | `ReactNode` | `undefined` | Addon element attached to the left of the selector (shares border). |
-| `suffixel` | `ReactNode` | `undefined` | Addon element attached to the right of the selector (shares border). |
-| `grey` | `boolean` | `undefined` | Gives the selector a `grey-050` background when not in error state. |
-| `asFormElement` | `boolean` | `undefined` | Forces a 16 px bottom margin even when `errorText` and `description` are absent. |
-| `raw` | `boolean` | `undefined` | Skips the `FormField` wrapper entirely — renders only the selector. `forwardedRef` attaches to `SelectWrapper` instead of `SelectContainer`. |
-| `readOnly` | `boolean` | `undefined` | Disables the antd select while styling it as readable (white bg, `default` cursor, `grey-600` text) instead of the standard disabled look. |
-| `disabled` | `boolean` | `undefined` | Standard disabled state; merged with `readOnly` — either flag disables the underlying Antd select. |
-| `listHeight` | `ReactText` | `256` (Antd default) | Max height of the dropdown list in px. Type is widened to `ReactText` (string or number), overriding Antd's `number`-only constraint. |
-| `selectorStyle` | `CSSObject` | `undefined` | Inline styled-components `css` applied to `.ant-select-selector`. Useful for custom widths or padding. |
-| `style` | `React.CSSProperties` | `undefined` | Applied to `SelectWrapper` (the flex row containing selector + addons). |
-| `className` | `string` | `undefined` | Added to `SelectWrapper`. |
-| `getPopupContainer` | `(triggerNode) => HTMLElement` | `defaultGetPopupContainer` from `@synerise/ds-utils` | Where the dropdown is rendered. |
+| `label` / `description` / `tooltip` / `tooltipConfig` | `ReactNode` / `TooltipProps` | `undefined` | `FormField` chrome (from `FormFieldCommonProps`). |
+| `errorText` | `ReactNode` | `undefined` | Error message below the field; also activates the error visual state. |
+| `error` | `boolean` | `undefined` | Error visual state without a message. |
+| `clearTooltip` | `string` | `undefined` | Tooltip on hover of the clear (×) control. |
+| `prefixel` / `suffixel` | `ReactNode` | `undefined` | Addon nodes attached left/right of the selector (shared border). |
+| `grey` | `boolean` | `undefined` | `grey-050` selector background when not in error state. |
+| `asFormElement` | `boolean` | `undefined` | Forces a 16 px bottom margin even without `errorText`/`description`. |
+| `raw` | `boolean` | `undefined` | Skips the `FormField` wrapper — renders only the selector; `ref` attaches to `SelectWrapper`. |
+| `readOnly` | `boolean` | `undefined` | Non-interactive with readable styling (white bg, `default` cursor, `grey-600` text). |
+| `disabled` | `boolean` | `undefined` | Standard disabled state; ORed with `readOnly` to block interaction. |
+| `selectorStyle` | `CSSObject` | `undefined` | Inline style object applied to the `Selector` box. |
+| `listHeight` | `number \| string` | `256` | Max dropdown list height (px). |
+| `style` | `CSSProperties` | `undefined` | Applied to `SelectWrapper` (the flex row: selector + addons). |
+| `className` | `string` | `undefined` | Added to the outer `SelectContainer`. |
+| `getPopupContainer` | `(node) => HTMLElement \| ParentNode \| null` | `defaultGetPopupContainer` (`@synerise/ds-utils`) | Container the dropdown mounts into. |
+| `size` | `'default' \| 'middle' \| 'large'` | `'default'` | Selector height (`middle` maps to `default`). |
 
-All Antd `SelectProps<T>` are also accepted and forwarded (mode, value, defaultValue, onChange, onSearch, filterOption, showSearch, allowClear, open, etc.).
+Native `data-*` / `aria-*` attributes are forwarded onto the select root (`.ds-select-wrapper`).
+
+#### antd-parity props (additive back-compat)
+
+Kept so antd-era consumers need no change: `searchValue`, `onClear`, `onClick`, `onInputKeyDown`,
+`onKeyDown`, `suffixIcon`, `clearIcon`, `maxLength`, `maxTagCount`, `maxTagTextLength`,
+`maxTagPlaceholder`, `onPopupScroll`, `popupClassName` (alias of `dropdownClassName`),
+`dropdownMatchSelectWidth` (`boolean | number`), `dropdownRender`, `showArrow`,
+`autoFocus`, `tabIndex`, `rowKey`, plus the standard
+`mode`/`options`/`showSearch`/`filterOption`/`allowClear`/`open`/`onChange`/`onSearch`/… surface.
+`SelectHandler` type and the `SelectStyles.Selector` styled export are re-exported for parity.
+
+`maxTagCount` (collapse extra chips into a `+N` overflow chip), `maxTagTextLength` (truncate chip
+labels) and `onPopupScroll` are fully implemented. `listItemHeight`, `dropdownAlign` and
+`defaultActiveFirstOption` are accepted for compatibility but have **no runtime effect**.
 
 ## Usage patterns
 
 ```tsx
 import Select from '@synerise/ds-select';
 
-const { Option, OptGroup } = Select;
+const { Option } = Select;
 
-// Basic with FormField label / description
-<Select label="Platform" description="Choose your platform" defaultValue="insta">
- <OptGroup label="Social">
- <Option value="insta">Instagram</Option>
- <Option value="fb">Facebook</Option>
- </OptGroup>
-</Select>
+// Options as data (preferred)
+<Select label="Platform" options={[{ value: 'insta', label: 'Instagram' }]} defaultValue="insta" />
 
-// Multiple mode
-<Select mode="multiple" placeholder="Select tags" allowClear>
- <Option value="a">Alpha</Option>
- <Option value="b">Beta</Option>
-</Select>
+// Declarative children (read only when `options` is absent)
+<Select label="Platform"><Option value="insta">Instagram</Option></Select>
 
-// Error state with message
-<Select errorText="This field is required" value={undefined} />
+// Multiple (removable chips) / tags (free-text) / search
+<Select mode="multiple" placeholder="Select tags" allowClear options={opts} />
+<Select mode="tags" tokenSeparators={[',']} />
+<Select showSearch filterOption optionFilterProp="label" options={opts} />
 
-// Error state without message (e.g. inline in a form row)
-<Select error />
+// Remote search: filter server-side, feed options from onSearch
+<Select showSearch filterOption={false} onSearch={fetchOptions} options={opts} />
 
-// readOnly (looks like a regular input, not grayed out)
-<Select readOnly value="locked-value" />
-
-// Grey background variant
-<Select grey placeholder="Search.." showSearch />
-
-// Raw (no FormField wrapper, ref goes to SelectWrapper)
+// readOnly / raw / prefix-suffix
+<Select readOnly value="locked" />
 <Select raw ref={myRef} placeholder="Compact" />
-
-// Prefix / suffix addons
 <Select prefixel={<span>$</span>} suffixel={<span>USD</span>} />
-
-// Clear button tooltip
-<Select allowClear clearTooltip="Clear selection" />
 ```
 
 ## Styling
 
-Two-layer styling approach:
+**styled-components (`Select.styles.ts`) is the source of truth.** Key styled parts:
+- `SelectContainer` — column flex; adds a 16 px bottom margin when `hasBottomMargin`.
+- `SelectWrapper` (`.ds-select-wrapper`) — the flex row (selector + addons); carries the root
+  `onFocus`/`onBlur`/`onClick` and `data-*`/`aria-*` passthrough.
+- `Selector` (`.ds-select`) — the trigger box; `large` height, `withPrefixel`/`withSuffixel`
+  border-radius removal, open/focus ring (`blue-600`/`blue-050`), error (`red-600`/`red-050`),
+  `readOnly` vs `disabled` differentiation, and the `selectorStyle` interpolation.
+- `PrefixWrapper` / `SuffixWrapper` — `grey-050` addons with flush border join.
+- Dropdown / options: `DropdownWrapper`, `ScrollList`, `Inner` (`role="listbox"`), `OptionItem`
+  (styled `ds-list-item`), `NotFound`, `Loading`. Selector content: `SelectionItem`, `Placeholder`,
+  `MultiValueArea`, `Chip`/`ChipLabel`/`ChipRemove`, `Arrow`, `ClearWrapper`, `SearchInputEl`.
 
-1. **LESS** (`style/index.less` + `style/select.mixin.less`) — overrides all Antd `.ant-select-*` class rules: dropdown shadows, item hover colors, selected-item checkmark (base64 SVG), arrow icon (base64 SVG), tag/multiple chip styles, focus ring (`blue-600` inset shadow, `blue-050` bg), disabled state.
-
-2. **styled-components** (`Select.styles.ts`) — handles DS-specific structural and state variants:
- - `SelectContainer` — `flex-direction: column`; adds `16px` bottom margin when `hasBottomMargin` is true.
- - `SelectWrapper` — `display: flex` row; applies `grey-050` background via `grey` prop (only when not in error state).
- - `AntdSelect` — extends Antd Select; handles `large` size height/line-height overrides, `withPrefixel`/`withSuffixel` border-radius removal, error border/shadow/background (`red-600`/`red-050`), and `readOnly` vs `disabled` visual differentiation.
- - `PrefixWrapper` / `SuffixWrapper` — `grey-050` background, `grey-300` inset box-shadow, rounded outer corners only; negative margin/padding creates flush border join with selector.
-
-The dropdown offset is hard-coded to `[0, 8]` px via `dropdownAlign` (STOR-588).
-
-The search icon in the selector is replaced with an inline SVG data-URL using the theme's `grey-400` color.
+Class hooks are `ds-select-*` (`.ds-select`, `.ds-select-selection-item`, `.ds-select-dropdown`,
+`.ds-select-arrow`, `.ds-select-clear`, `.ds-select-search`, …).
 
 ## Key dependencies
 
-- `antd/lib/select` — base Select, Option, OptGroup
-- `@synerise/ds-form-field` — wraps label / description / error layout (skipped when `raw` is true)
-- `@synerise/ds-icon` — `Close3M` for clear button, `CloseS` for tag remove icon
-- `@synerise/ds-tooltip` — wraps the clear button icon to show `clearTooltip`
-- `@synerise/ds-utils` — `getPopupContainer` default (renders dropdown in nearest scroll parent)
-- `@synerise/ds-core` — theme tokens used in styled-components; LESS variables imported in Less styles
+- `@synerise/ds-dropdown` — floating-ui popover positioning + overlay (the `Selector` is the `asChild` trigger).
+- `@synerise/ds-list-item` — the option row (`OptionItem`) and list wrapper (`ScrollList`).
+- `@synerise/ds-scrollbar` / `@synerise/ds-loader` — dropdown scroll container / loading spinner.
+- `@synerise/ds-form-field` — label / description / error layout (skipped when `raw`).
+- `@synerise/ds-icon` — `AngleDownS` (arrow), `Close3M` (clear), `CloseS` (chip remove).
+- `@synerise/ds-tooltip` — wraps the clear control for `clearTooltip`.
+- `@synerise/ds-utils` — default `getPopupContainer`.
+- `@synerise/ds-core` — theme tokens (peerDep). **No `antd` peerDep** — the component imports zero
+  antd; the LESS that pulled `~antd/lib/select/style` was relocated to `ds-table` (see below).
 
 ## Implementation notes
 
-- **`readOnly` is implemented via `disabled`** — both `readOnly` and `disabled` flags are ORed before passing to Antd's `disabled` prop. The visual distinction is achieved only through styled-components CSS on the `readOnly` transient prop.
-- **`it.only` in tests** — the `'should be empty'` test case uses `it.only`, which means the other tests in the file are skipped when running in isolation. This is likely unintentional.
-- **`listHeight` type widening** — Antd types `listHeight` as `number`, but DS overrides it to `ReactText` (`string | number`) to allow string values like `"auto"`.
-- **`selectorStyle` is not in README** — the prop exists in `Select.types.ts` and is wired in `AntdSelect` styled component but is not documented in the README.
-- **`clearIcon` is always overridden** — even if `clearIcon` is passed via `antdProps`, it is re-set internally. Any consumer-provided `clearIcon` will be ignored.
-- **`removeIcon` is always overridden** — same as `clearIcon`; custom `removeIcon` from consumer props is ignored.
-- **Compound component typing** — `SelectWithComponents` is typed as `SelectCompoundComponent = typeof Select & { Option, OptGroup }` using `Object.assign`, so `.Option` and `.OptGroup` are fully typed.
-- **Uses Vitest** — `package.json` has `"test": "jest"`.
+- **Option resolution** — `useSelectOptions` returns `resolvedOptions` (from `options` prop, else
+  `getOptionsFromChildren(children)`) and `displayedOptions` (after client filtering and, in `tags`
+  mode, a create-row prepended for the typed text). `filterOption={false}` disables local filtering.
+- **`Option.value` is optional** — falls back to the element's React `key` (antd parity); callbacks
+  expose `option.key`.
+- **Keyboard nav is hand-rolled (not ds-dropdown's)** — Select is a *combobox*: focus stays on the
+  input/selector via `aria-activedescendant`, whereas ds-dropdown uses roving DOM focus. `activeIndex`
+  + `moveActive` + three effects drive highlight; `handleKeyDown` handles Arrow/Home/End/Enter/Escape/
+  Space and Backspace (drop last chip).
+- **Focus / blur** — `onFocus`/`onBlur` fire on the root only when focus truly enters/leaves the
+  select (relatedTarget guard ignores selector↔input moves). `autoFocus` focuses the `Selector` in
+  select-only mode (no search input to receive it). The dropdown `onMouseDown` prevents focus loss so
+  selecting an option / scrolling isn't treated as a blur (needed by `subtle-form`'s revert-on-blur).
+- **`readOnly` is implemented via `disabled`** — both flags are ORed into `isDisabled`; the visual
+  distinction comes from the `$readOnly` transient prop on `Selector`.
+- **Controlled/uncontrolled** — `value`/`open`/`searchValue` are controlled when defined, else backed
+  by internal state; `onSearch` still fires when `searchValue` is controlled.
+- **antd-free; no LESS** — styling is entirely styled-components. The old antd-era LESS
+  (`style/index.less` + `select.mixin.less`, `.ant-select-*` overrides for antd selects) was
+  **relocated to `ds-table`** (`table/src/style/select.mixin.less` + a direct
+  `@import '~antd/lib/select/style'`), since `ds-table` (out of scope, stays on antd) was the only
+  remaining consumer. ds-select ships no `dist/style` and no longer declares an `antd` peerDep.
+- **Tests** — Vitest + React Testing Library (`src/__specs__/Select.spec.tsx`): render/parity,
+  keyboard + ARIA, and focus/blur (autofocus, onBlur on leave / not on internal move, onFocus).
+```

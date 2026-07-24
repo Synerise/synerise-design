@@ -4633,21 +4633,30 @@ importers:
       '@synerise/ds-core':
         specifier: '*'
         version: link:../core
+      '@synerise/ds-dropdown':
+        specifier: workspace:^
+        version: link:../dropdown
       '@synerise/ds-form-field':
         specifier: workspace:^
         version: link:../form-field
       '@synerise/ds-icon':
         specifier: workspace:^
         version: link:../icon
+      '@synerise/ds-list-item':
+        specifier: workspace:^
+        version: link:../list-item
+      '@synerise/ds-loader':
+        specifier: workspace:^
+        version: link:../loader
+      '@synerise/ds-scrollbar':
+        specifier: workspace:^
+        version: link:../scrollbar
       '@synerise/ds-tooltip':
         specifier: workspace:^
         version: link:../tooltip
       '@synerise/ds-utils':
         specifier: workspace:^
         version: link:../utils
-      antd:
-        specifier: 4.24.16
-        version: 4.24.16(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       classnames:
         specifier: ^2.5.1
         version: 2.5.1

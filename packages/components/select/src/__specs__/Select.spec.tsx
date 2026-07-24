@@ -1,116 +1,475 @@
 import React from 'react';
 
 import { renderWithProvider } from '@synerise/ds-core';
-import { fireEvent, screen, waitFor } from '@testing-library/react';
+import { fireEvent, screen } from '@testing-library/react';
 
 import Select from '../Select';
 
 const { Option } = Select;
 
-describe('Select', () => {
-  it('should render', () => {
-    renderWithProvider(
-      <Select defaultValue="lucy" disabled>
-        <Option value="lucy">Lucy</Option>
-      </Select>,
-    );
+describe('Select (DS-native, single-select)', () => {
+  it('renders the placeholder when there is no value', () => {
+    renderWithProvider(<Select placeholder="Pick one" />);
 
-    expect(screen.getByText('Lucy')).toBeTruthy();
+    expect(screen.getByText('Pick one')).toBeTruthy();
   });
 
-  it('change selected item when unselected is clicked', async () => {
-    const options = [
-      { value: 'red', label: 'Red' },
-      { value: 'green', label: 'Green' },
-    ];
-    renderWithProvider(
-      <Select open data-testid="select" defaultValue="red">
-        {options.map((o) => (
-          <Option key={o.value} value={o.value}>
-            {o.label}
-          </Option>
-        ))}
-      </Select>,
-    );
-
-    const select = await waitFor(
-      () => screen.getByTestId('select') as HTMLSelectElement,
-    );
-    const selectedOption = select.querySelector('.ant-select-selection-item');
-    expect(selectedOption && selectedOption.textContent).toBe('Red');
-    fireEvent.click(select);
-    const unselectedOption = await waitFor(() => screen.getByText('Green'));
-    fireEvent.click(unselectedOption);
-    expect(selectedOption && selectedOption.textContent).toBe('Green');
-  });
-
-  it('handle clicking multiple mode', async () => {
-    const onChange = vi.fn();
-    const children: JSX.Element[] = [];
-    for (let i = 10; i < 36; i++) {
-      children.push(
-        <Option key={i.toString(36) + i}>{i.toString(36) + i}</Option>,
-      );
-    }
+  it('renders the selected label from a controlled value (options prop)', () => {
     renderWithProvider(
       <Select
-        open
-        data-testid="select-multiple"
-        mode="multiple"
-        placeholder="Please select"
-        defaultValue="a10"
-        onChange={onChange}
-      >
-        {children}
+        value="lucy"
+        options={[
+          { value: 'lucy', label: 'Lucy' },
+          { value: 'jack', label: 'Jack' },
+        ]}
+      />,
+    );
+
+    const selection = document.querySelector('.ds-select-selection-item');
+    expect(selection?.textContent).toBe('Lucy');
+  });
+
+  it('resolves the selected label from <Select.Option> children', () => {
+    renderWithProvider(
+      <Select value="lucy">
+        <Option value="lucy">Lucy</Option>
+        <Option value="jack">Jack</Option>
       </Select>,
     );
 
-    const select = screen.getByTestId('select-multiple') as HTMLSelectElement;
-    const selectedOption = await waitFor(() => screen.getAllByText('a10'));
-    expect(selectedOption[0].textContent).toBe('a10');
-    fireEvent.click(select);
-    const unselectedOption = await waitFor(() => screen.getAllByText('b11'));
-    fireEvent.click(unselectedOption[0]);
-    const selectedOptions = document.querySelectorAll(
-      'div[aria-selected="true"]',
+    expect(
+      document.querySelector('.ds-select-selection-item')?.textContent,
+    ).toBe('Lucy');
+  });
+
+  it('renders label, description and errorText (FormField chrome)', () => {
+    renderWithProvider(
+      <Select
+        label="Owner"
+        description="Choose the owner"
+        errorText="Required"
+        placeholder="Pick"
+      />,
     );
-    expect(selectedOptions.length).toBe(2);
+
+    expect(screen.getByText('Owner')).toBeTruthy();
+    expect(screen.getByText('Choose the owner')).toBeTruthy();
+    expect(screen.getByText('Required')).toBeTruthy();
   });
 
-  it('should show label', () => {
-    const LABEL = 'label';
-    renderWithProvider(<Select label={LABEL} />);
+  it('shows a clear control when allowClear + value, and clears on click', () => {
+    const onChange = vi.fn();
+    renderWithProvider(
+      <Select
+        allowClear
+        value="lucy"
+        onChange={onChange}
+        options={[{ value: 'lucy', label: 'Lucy' }]}
+      />,
+    );
 
-    expect(screen.getByText(LABEL)).toBeTruthy();
+    const clear = document.querySelector('.ds-select-clear');
+    expect(clear).toBeTruthy();
+
+    fireEvent.click(clear as Element);
+    expect(onChange).toHaveBeenCalledWith(undefined, undefined);
   });
 
-  it('should show errorText', () => {
-    const ERROR = 'error';
-    renderWithProvider(<Select errorText={ERROR} />);
+  it('renders the arrow (no clear) when there is no value', () => {
+    renderWithProvider(<Select allowClear placeholder="Pick" />);
 
-    expect(screen.getByText(ERROR)).toBeTruthy();
+    expect(document.querySelector('.ds-select-arrow')).toBeTruthy();
+    expect(document.querySelector('.ds-select-clear')).toBeNull();
   });
 
-  it('should show description', () => {
-    const DESC = 'label';
-    renderWithProvider(<Select description={DESC} />);
+  it('renders a removable chip per value in multiple mode', () => {
+    const onChange = vi.fn();
+    renderWithProvider(
+      <Select
+        mode="multiple"
+        value={['a', 'b']}
+        onChange={onChange}
+        options={[
+          { value: 'a', label: 'Apple' },
+          { value: 'b', label: 'Banana' },
+        ]}
+      />,
+    );
 
-    expect(screen.getByText(DESC)).toBeTruthy();
+    const chips = document.querySelectorAll('.ds-select-selection-item');
+    expect(chips).toHaveLength(2);
+    expect(chips[0].textContent).toContain('Apple');
+
+    const remove = document.querySelector('.ds-select-selection-item-remove');
+    fireEvent.mouseDown(remove as Element);
+    expect(onChange).toHaveBeenCalledWith(['b'], expect.anything());
   });
 
-  it('should be empty', async () => {
-    renderWithProvider(<Select open />);
+  it('renders an in-selector search input when showSearch is set', () => {
+    renderWithProvider(
+      <Select showSearch placeholder="Pick" options={[{ value: 'a', label: 'A' }]} />,
+    );
 
-    const noDataElem = await screen.findByText('No data');
-    expect(noDataElem).toBeTruthy();
+    expect(document.querySelector('.ds-select-search')).toBeTruthy();
   });
 
-  it('should render label with tooltip icon', () => {
-    const TOOLTIP = 'Tooltip title';
-    const LABEL = 'Label';
-    renderWithProvider(<Select label={LABEL} tooltip={TOOLTIP} />);
+  it('keeps the search input editable over the selected label (showSearch + value)', () => {
+    renderWithProvider(
+      <Select
+        showSearch
+        value="a"
+        placeholder="Pick"
+        options={[
+          { value: 'a', label: 'Apple' },
+          { value: 'b', label: 'Banana' },
+        ]}
+      />,
+    );
 
-    expect(screen.getByText(LABEL)).toBeTruthy();
-    expect(document.querySelector('.ds-icon > .info-fill-s')).toBeTruthy();
+    // The selected label and the (overlaid) search input coexist.
+    expect(document.querySelector('.ds-select-selection-item')?.textContent).toBe('Apple');
+    const input = document.querySelector('.ds-select-search') as HTMLInputElement;
+    expect(input).toBeTruthy();
+    expect(input.readOnly).toBe(false);
+
+    // Typing a query hides the label so only the query text remains.
+    fireEvent.change(input, { target: { value: 'ban' } });
+    expect(document.querySelector('.ds-select-selection-item')).toBeNull();
+  });
+
+  it('blurs the search input after selecting an option (single-select showSearch)', () => {
+    renderWithProvider(
+      <Select
+        showSearch
+        defaultOpen
+        placeholder="Pick"
+        options={[
+          { value: 'a', label: 'Apple' },
+          { value: 'b', label: 'Banana' },
+        ]}
+      />,
+    );
+
+    const input = document.querySelector('.ds-select-search') as HTMLInputElement;
+    input.focus();
+    expect(document.activeElement).toBe(input);
+
+    // Highlight an option and commit it — the input should lose focus.
+    fireEvent.keyDown(input, { key: 'ArrowDown' });
+    fireEvent.keyDown(input, { key: 'Enter' });
+
+    expect(document.activeElement).not.toBe(input);
+  });
+});
+
+describe('Select (keyboard + ARIA)', () => {
+  const OPTIONS = [
+    { value: 'a', label: 'Apple' },
+    { value: 'b', label: 'Banana' },
+    { value: 'c', label: 'Cherry' },
+  ];
+
+  it('marks the select-only trigger as a combobox with a listbox popup', () => {
+    renderWithProvider(<Select options={OPTIONS} placeholder="Pick" />);
+
+    const combobox = document.querySelector('.ds-select') as Element;
+    expect(combobox.getAttribute('role')).toBe('combobox');
+    expect(combobox.getAttribute('aria-haspopup')).toBe('listbox');
+    expect(combobox.getAttribute('aria-expanded')).toBe('false');
+    expect(combobox.getAttribute('tabindex')).toBe('0');
+  });
+
+  it('opens on ArrowDown and closes on Escape', () => {
+    renderWithProvider(<Select options={OPTIONS} placeholder="Pick" />);
+
+    const combobox = document.querySelector('.ds-select') as Element;
+    fireEvent.keyDown(combobox, { key: 'ArrowDown' });
+    expect(combobox.getAttribute('aria-expanded')).toBe('true');
+
+    fireEvent.keyDown(combobox, { key: 'Escape' });
+    expect(combobox.getAttribute('aria-expanded')).toBe('false');
+  });
+
+  it('highlights with ArrowDown and selects the active option on Enter', () => {
+    const onChange = vi.fn();
+    renderWithProvider(
+      <Select defaultOpen options={OPTIONS} onChange={onChange} />,
+    );
+
+    const combobox = document.querySelector('.ds-select') as Element;
+    // Opens highlighting the first option (Apple); move to the second (Banana).
+    fireEvent.keyDown(combobox, { key: 'ArrowDown' });
+    fireEvent.keyDown(combobox, { key: 'Enter' });
+
+    expect(onChange).toHaveBeenCalledWith('b', expect.anything());
+  });
+});
+
+describe('Select (antd parity shims)', () => {
+  it('falls back to the React key when an Option value is omitted', () => {
+    renderWithProvider(
+      <Select value="lucy">
+        <Option key="lucy">Lucy</Option>
+        <Option key="jack">Jack</Option>
+      </Select>,
+    );
+
+    expect(
+      document.querySelector('.ds-select-selection-item')?.textContent,
+    ).toBe('Lucy');
+  });
+
+  it('fires onClear when the clear control is used', () => {
+    const onClear = vi.fn();
+    renderWithProvider(
+      <Select
+        allowClear
+        value="lucy"
+        onClear={onClear}
+        options={[{ value: 'lucy', label: 'Lucy' }]}
+      />,
+    );
+
+    fireEvent.click(document.querySelector('.ds-select-clear') as Element);
+    expect(onClear).toHaveBeenCalled();
+  });
+
+  it('exposes option.key in the onChange option payload', () => {
+    const onChange = vi.fn();
+    renderWithProvider(
+      <Select defaultOpen onChange={onChange}>
+        <Option value="a">Apple</Option>
+        <Option value="b">Banana</Option>
+      </Select>,
+    );
+
+    const combobox = document.querySelector('.ds-select') as Element;
+    fireEvent.keyDown(combobox, { key: 'Enter' });
+    expect(onChange).toHaveBeenCalledWith(
+      'a',
+      expect.objectContaining({ key: 'a' }),
+    );
+  });
+
+  it('uses a controlled searchValue for the input', () => {
+    renderWithProvider(
+      <Select
+        showSearch
+        searchValue="ban"
+        placeholder="Pick"
+        options={[{ value: 'b', label: 'Banana' }]}
+      />,
+    );
+
+    const input = document.querySelector(
+      '.ds-select-search',
+    ) as HTMLInputElement;
+    expect(input.value).toBe('ban');
+  });
+
+  it('accepts a numeric dropdownMatchSelectWidth without error', () => {
+    renderWithProvider(
+      <Select
+        defaultOpen
+        dropdownMatchSelectWidth={200}
+        options={[{ value: 'a', label: 'Apple' }]}
+      />,
+    );
+
+    expect(document.querySelector('.ds-select')).toBeTruthy();
+  });
+
+  it('forwards data-* / aria-* attributes to the select root', () => {
+    renderWithProvider(
+      <Select
+        data-testid="my-select"
+        aria-label="pick one"
+        options={[{ value: 'a', label: 'Apple' }]}
+        placeholder="Pick"
+      />,
+    );
+
+    const root = screen.getByTestId('my-select');
+    expect(root).toBeTruthy();
+    expect(root.getAttribute('aria-label')).toBe('pick one');
+  });
+
+  it('forwards per-option data-* / aria-* to the rendered option row', () => {
+    renderWithProvider(
+      <Select defaultOpen>
+        <Option value="a" data-testid="opt-a">
+          Apple
+        </Option>
+        <Option value="b" data-testid="opt-b">
+          Banana
+        </Option>
+      </Select>,
+    );
+
+    const optA = screen.getByTestId('opt-a');
+    expect(optA).toBeTruthy();
+    expect(optA.getAttribute('role')).toBe('option');
+    expect(screen.getByTestId('opt-b')).toBeTruthy();
+  });
+});
+
+describe('Select (focus / blur)', () => {
+  const OPTIONS = [
+    { value: 'a', label: 'Apple' },
+    { value: 'b', label: 'Banana' },
+  ];
+
+  it('autoFocuses the selector in select-only mode', () => {
+    renderWithProvider(<Select autoFocus options={OPTIONS} placeholder="Pick" />);
+
+    expect(document.activeElement).toBe(document.querySelector('.ds-select'));
+  });
+
+  it('fires onBlur when focus leaves the select', () => {
+    const onBlur = vi.fn();
+    renderWithProvider(
+      <Select options={OPTIONS} onBlur={onBlur} placeholder="Pick" />,
+    );
+
+    const wrapper = document.querySelector('.ds-select-wrapper') as Element;
+    fireEvent.focusOut(wrapper, { relatedTarget: document.body });
+
+    expect(onBlur).toHaveBeenCalled();
+  });
+
+  it('does not fire onBlur when focus moves within the select', () => {
+    const onBlur = vi.fn();
+    renderWithProvider(
+      <Select showSearch options={OPTIONS} onBlur={onBlur} placeholder="Pick" />,
+    );
+
+    const wrapper = document.querySelector('.ds-select-wrapper') as Element;
+    const input = document.querySelector('.ds-select-search') as Element;
+    fireEvent.focusOut(wrapper, { relatedTarget: input });
+
+    expect(onBlur).not.toHaveBeenCalled();
+  });
+
+  it('fires onFocus when focus enters the select', () => {
+    const onFocus = vi.fn();
+    renderWithProvider(
+      <Select options={OPTIONS} onFocus={onFocus} placeholder="Pick" />,
+    );
+
+    const wrapper = document.querySelector('.ds-select-wrapper') as Element;
+    fireEvent.focusIn(wrapper, { relatedTarget: document.body });
+
+    expect(onFocus).toHaveBeenCalled();
+  });
+});
+
+describe('Select (tag display limits)', () => {
+  const OPTIONS = [
+    { value: 'a', label: 'Apple' },
+    { value: 'b', label: 'Banana' },
+    { value: 'c', label: 'Cherry' },
+  ];
+
+  it('collapses chips beyond maxTagCount into a "+N" overflow chip', () => {
+    renderWithProvider(
+      <Select
+        mode="multiple"
+        value={['a', 'b', 'c']}
+        maxTagCount={1}
+        options={OPTIONS}
+      />,
+    );
+
+    expect(
+      document.querySelectorAll('.ds-select-selection-item'),
+    ).toHaveLength(1);
+    expect(screen.getByTestId('select-tag-overflow').textContent).toBe('+ 2');
+  });
+
+  it('renders no overflow chip when the count is within maxTagCount', () => {
+    renderWithProvider(
+      <Select
+        mode="multiple"
+        value={['a']}
+        maxTagCount={3}
+        options={OPTIONS}
+      />,
+    );
+
+    expect(
+      document.querySelectorAll('.ds-select-selection-item'),
+    ).toHaveLength(1);
+    expect(screen.queryByTestId('select-tag-overflow')).toBeNull();
+  });
+
+  it('renders a custom maxTagPlaceholder node for the overflow chip', () => {
+    renderWithProvider(
+      <Select
+        mode="multiple"
+        value={['a', 'b', 'c']}
+        maxTagCount={1}
+        maxTagPlaceholder="+2 more"
+        options={OPTIONS}
+      />,
+    );
+
+    expect(screen.getByTestId('select-tag-overflow').textContent).toBe(
+      '+2 more',
+    );
+  });
+
+  it('passes the omitted options to a maxTagPlaceholder render function', () => {
+    renderWithProvider(
+      <Select
+        mode="multiple"
+        value={['a', 'b', 'c']}
+        maxTagCount={1}
+        maxTagPlaceholder={(omitted) => `and ${omitted.length} more`}
+        options={OPTIONS}
+      />,
+    );
+
+    expect(screen.getByTestId('select-tag-overflow').textContent).toBe(
+      'and 2 more',
+    );
+  });
+
+  it('truncates chip labels longer than maxTagTextLength', () => {
+    renderWithProvider(
+      <Select
+        mode="multiple"
+        value={['b']}
+        maxTagTextLength={3}
+        options={OPTIONS}
+      />,
+    );
+
+    expect(
+      document.querySelector('.ds-select-selection-item-label')?.textContent,
+    ).toBe('Ban...');
+  });
+});
+
+describe('Select (onPopupScroll)', () => {
+  it('fires onPopupScroll as the open option list scrolls', () => {
+    const onPopupScroll = vi.fn();
+    renderWithProvider(
+      <Select
+        defaultOpen
+        onPopupScroll={onPopupScroll}
+        options={[
+          { value: 'a', label: 'Apple' },
+          { value: 'b', label: 'Banana' },
+        ]}
+      />,
+    );
+
+    const scrollContainer = document.querySelector(
+      '.perfect-scrollbar-wrapper',
+    ) as Element;
+    expect(scrollContainer).toBeTruthy();
+
+    fireEvent.scroll(scrollContainer);
+    expect(onPopupScroll).toHaveBeenCalled();
   });
 });

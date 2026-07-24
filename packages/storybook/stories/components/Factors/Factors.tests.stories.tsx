@@ -178,10 +178,11 @@ export const RelativeDateValueChange: StoryObj<FactorsProps> = {
       const weeksOption = await canvas.findByText('Weeks');
       await userEvent.click(weeksOption);
       await sleep(100);
-      await userEvent.type(
-        dropdownWrapper.getByTestId('ds-factors-relative-date-modifier'),
-        '{backspace}7',
+      const modifierInput = dropdownWrapper.getByTestId(
+        'ds-factors-relative-date-modifier',
       );
+      await userEvent.click(modifierInput);
+      await userEvent.type(modifierInput, '{backspace}7');
       await sleep(100);
       await userEvent.click(dropdownWrapper.getByText('Before'));
       const afterOption = await canvas.findByText('After');
