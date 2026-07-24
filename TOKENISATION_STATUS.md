@@ -132,7 +132,7 @@ Single at-a-glance view of every colour-bearing component: migration **status** 
 | buttons | module | ✅ | — |
 | card | module | ✅ | — |
 | card-select | module | ✅ | — |
-| card-tabs | semantic | ❌ | **card-tabs tokens pending** |
+| card-tabs | module | ✅ | fully on `--ds-card-tabs-variant-*` module tokens (bg/border/text/icon/tag/dot/handler/shadow/opacity), threading grey/white by `greyBackground`; per-tab active colour from the `ordered` categorical set (order-1..21); `grey-100` pressed → semantic base-muted. ⚑ invalid-hover/pressed bg now `validateactivehover` (darker). Kept: dynamic `color`-prop lookups + decorative caret gradients. `svg{fill}` still explicit token (currentColor cleanup deferred) |
 | carousel | semantic | ✅ | — |
 | cascader | semantic | ❌ | dropdown/cascader pending |
 | checkbox | module | ✅ | — |

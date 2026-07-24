@@ -707,6 +707,9 @@ importers:
       '@synerise/ds-sortable':
         specifier: workspace:^
         version: link:../sortable
+      '@synerise/ds-tokens':
+        specifier: workspace:^
+        version: link:../../tokens
       '@synerise/ds-tooltip':
         specifier: workspace:^
         version: link:../tooltip
