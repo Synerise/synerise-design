@@ -1,6 +1,6 @@
 import styled, { css } from 'styled-components';
 
-import { isResolvedColor } from './utils/Slider.utils';
+import { resolveTrackColor } from './utils/Slider.utils';
 
 export const SliderSection = styled.div<{
   $left: number;
@@ -19,7 +19,12 @@ export const SliderLine = styled.div<{
   lineColor?: string;
 }>`
   height: ${(props) => `${props.thick ? '6' : '3'}px`};
-  background: ${(props) => props.theme.palette[props.lineColor || 'grey-200']};
+  background: ${(props) =>
+    resolveTrackColor(
+      props.theme,
+      props.lineColor,
+      'var(--ds-slider-track-bg-default)',
+    )};
   position: absolute;
   top: 50%;
   width: 100%;
@@ -91,12 +96,12 @@ export const SliderHandleValue = styled.div<{
   ${(props) =>
     props.isActive
       ? css`
-          box-shadow: ${props.theme.variables['box-shadow-2']};
-          background-color: rgba(56, 67, 80, 0.9);
-          color: ${props.theme.palette['white']};
+          box-shadow: var(--ds-slider-value-shadow-active);
+          background-color: var(--ds-slider-value-bg-active);
+          color: var(--ds-slider-value-text-active);
         `
       : css`
-          color: ${props.theme.palette['grey-800']};
+          color: var(--ds-slider-value-text-default);
         `}
 `;
 
@@ -105,8 +110,8 @@ export const SliderHandle = styled.button<{
   $disabled?: boolean;
   $blocked?: boolean;
 }>`
-  border: 3px solid ${(props) => props.theme.palette.white};
-  background: ${(props) => props.theme.palette['grey-400']};
+  border: 3px solid var(--ds-slider-handle-border);
+  background: var(--ds-slider-handle-bg-default);
   position: absolute;
   transform: translate(-50%, -50%);
   width: 20px;
@@ -123,7 +128,7 @@ export const SliderHandle = styled.button<{
     css`
       &,
       &:hover {
-        background: ${props.theme.palette['blue-600']};
+        background: var(--ds-slider-handle-bg-active);
         cursor: grabbing;
       }
       box-shadow: 0 0 0 3px rgba(35, 138, 254, 0.25);
@@ -133,7 +138,7 @@ export const SliderHandle = styled.button<{
     css`
       &,
       &:hover {
-        background: ${props.theme.palette['grey-300']};
+        background: var(--ds-slider-handle-bg-disabled);
       }
       box-shadow: none;
     `};
@@ -171,7 +176,7 @@ export const SliderWrapper = styled.div<{
       ${SliderLine} {
         cursor: pointer;
         &:hover {
-          background-color: ${props.theme.palette['grey-300']};
+          background-color: var(--ds-slider-track-bg-hover);
         }
       }
     `}
@@ -185,11 +190,13 @@ export const SliderDot = styled.div<{
   width: 10px;
   height: 10px;
   background: ${(props) =>
-    isResolvedColor(props.$color)
-      ? props.$color
-      : props.theme.palette[props.$color || 'grey-200']};
+    resolveTrackColor(
+      props.theme,
+      props.$color,
+      'var(--ds-slider-track-bg-default)',
+    )};
   border-radius: 50%;
-  border: 3px solid ${(props) => props.theme.palette.white};
+  border: 3px solid var(--ds-slider-handle-border);
   left: ${(props) => props.$left}%;
   top: 50%;
   transform: translate(-50%, -50%);

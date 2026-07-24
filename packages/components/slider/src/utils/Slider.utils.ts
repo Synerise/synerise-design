@@ -1,5 +1,6 @@
 import { type ReactNode } from 'react';
 
+import { type ThemePropsVars } from '@synerise/ds-core';
 import { orderedBase } from '@synerise/ds-tokens/names';
 
 import { type ColorMap, type MarkObj } from '../Slider.types';
@@ -13,6 +14,20 @@ export const getDefaultTooltipPopupContainer = (): HTMLElement =>
 export const isResolvedColor = (value?: string): boolean =>
   !!value && (value.startsWith('var(') || value.startsWith('#'));
 
+// Resolve a colour-map value to a CSS colour: an already-resolved token/hex is used verbatim, a
+// palette key goes through theme.palette, and an empty value falls back to the given semantic
+// token — keeping the dynamic `tracksColorMap`/`lineColor` prop path while tokenising the default.
+export const resolveTrackColor = (
+  theme: ThemePropsVars,
+  value: string | undefined,
+  fallback: string,
+): string => {
+  if (!value) {
+    return fallback;
+  }
+  return isResolvedColor(value) ? value : theme.palette[value];
+};
+
 export const couldBeInverted = (
   value: number | readonly number[],
   inverted?: boolean,
@@ -25,7 +40,8 @@ export const getDefaultColorMap = (
 ) => {
   const colorMap: ColorMap = {};
   if (type !== 'allocation' && handleCount <= 2) {
-    colorMap['0'] = 'green-600';
+    // Default single / 2-handle fill: the slider module default (positive/success green).
+    colorMap['0'] = 'var(--ds-slider-fill-default)';
   } else {
     // Categorical queue: each segment takes the next `ordered` token slot (a flipping
     // var(--ds-color-background-ordered-<N>-base) string), replacing the old palette keys.

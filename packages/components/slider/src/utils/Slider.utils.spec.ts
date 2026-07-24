@@ -3,9 +3,13 @@ import { orderedBase } from '@synerise/ds-tokens/names';
 import { getDefaultColorMap, isResolvedColor } from './Slider.utils';
 
 describe('getDefaultColorMap', () => {
-  it('keeps the default single/2-handle track on the green palette key', () => {
-    expect(getDefaultColorMap(1, 'default')).toEqual({ '0': 'green-600' });
-    expect(getDefaultColorMap(2, 'range')).toEqual({ '0': 'green-600' });
+  it('keeps the default single/2-handle track on the slider fill-default token', () => {
+    expect(getDefaultColorMap(1, 'default')).toEqual({
+      '0': 'var(--ds-slider-fill-default)',
+    });
+    expect(getDefaultColorMap(2, 'range')).toEqual({
+      '0': 'var(--ds-slider-fill-default)',
+    });
   });
 
   it('assigns ordered token slots for allocation / 3+ handles', () => {
