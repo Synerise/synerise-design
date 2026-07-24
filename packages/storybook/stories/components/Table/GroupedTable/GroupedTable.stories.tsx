@@ -330,11 +330,11 @@ export default {
         const paramName = value.split(' ').join('_').toLowerCase();
         const data = groupSettings
           ? dataSource.reduce((items, group) => {
-            if (group.rows) {
-              return [...items, ...group.rows];
-            }
-            return [...items];
-          }, [])
+              if (group.rows) {
+                return [...items, ...group.rows];
+              }
+              return [...items];
+            }, [])
           : dataSource;
 
         const allSuggestions = data.map((record) => {
