@@ -1,11 +1,9 @@
 import styled, {
   type FlattenSimpleInterpolation,
-  type Keyframes,
   css,
   keyframes,
 } from 'styled-components';
 
-import { type ThemeProps } from '@synerise/ds-core';
 import { IconContainer } from '@synerise/ds-icon';
 
 import BaseButton from '../BaseButton';
@@ -15,12 +13,12 @@ export type ExpanderProps = {
   disabled?: boolean;
   expanded?: boolean;
 };
-export const focusAnimation = ({ theme }: ThemeProps): Keyframes => keyframes`
+export const focusAnimation = keyframes`
   0% {
       box-shadow: inset 0 0 0 1px inherit;
   }
   50% {
-     box-shadow: inset 0 0 0 1px ${theme.palette['blue-600']};
+     box-shadow: inset 0 0 0 1px var(--ds-color-focus-base-default);
   }
   100% {
      box-shadow: inset 0 0 0 1px inherit;
@@ -56,7 +54,7 @@ export const Expander = styled(BaseButton).attrs({
         );
       }
     }
-    ${(props: ExpanderProps & ThemeProps): FlattenSimpleInterpolation | false =>
+    ${(props: ExpanderProps): FlattenSimpleInterpolation | false =>
       !props.disabled &&
       css`
         &:hover {
@@ -67,7 +65,7 @@ export const Expander = styled(BaseButton).attrs({
           );
         }
         &:focus-visible:not(:active) {
-          animation: ${focusAnimation(props)} 1s ease-in-out 0s 1;
+          animation: ${focusAnimation} 1s ease-in-out 0s 1;
         }
       `}
   }

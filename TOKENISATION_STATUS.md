@@ -132,7 +132,7 @@ Single at-a-glance view of every colour-bearing component: migration **status** 
 | broadcast-bar | module | ✅ | — |
 | button-expander | module | ✅ | — |
 | button-group | module | ✅ | — |
-| button | module | ❌ | not started — static blue/red/grey/white + `customColor`/`iconColor` variants on `theme.palette` (Button.styles/Creator/Expander); `--ds-buttons-*` module exists, unapplied |
+| button | module | 🚧 | partial (refactor/button-tokens) — statics → module/semantic (blue-100→bg-brand-subtlehover, blue-300→border-brand-strong, blue-600→focus-base-default, grey-300→border-base-strong, grey-500→text-neutral-default, red-600→text-danger-default, white→buttons-custom-color-text-*/onsolid/bg-base-default) + `customColor`/`iconColor` → ds-utils `resolveCustomColor` + Expander focus keyframe. Left on palette (no token, flagged): blue-200 icon-chip bg, red-200 error-hover bg, blue-500 upload-hover text, grey-200 translucent (hexToRgba). Button.variants.ts palette dispatch out of scope |
 | buttons | module | ✅ | — |
 | card | module | ✅ | — |
 | card-select | module | ✅ | — |
