@@ -112,7 +112,7 @@ Icons: DS icons are `fill="currentColor"` with `color: inherit`, so colour them 
 
 Single at-a-glance view of every colour-bearing component: migration **status** + whether it is **awaiting token definitions** (a pending module namespace, a missing semantic role, or a `.less`/de-antd blocker). Sourced from the two detailed tables below + `TOKEN_AUDIT.md` blockers. **Update this table (and the detailed one) whenever `apply-tokens` migrates a component.**
 
-**Totals:** ✅ 84 done · 🚧 12 partial · ❌ 12 not started · ⛔ 3 deprecated · ➖ 4 n/a — **23 awaiting token defs** (flag in last column).
+**Totals:** ✅ 94 done · 🚧 9 partial · ❌ 5 not started · ⛔ 3 deprecated · ➖ 4 n/a — **12 awaiting token defs** (flag in last column).
 
 | Component | Layer | Status | Awaiting token defs / blocker |
 |---|---|:--:|---|
@@ -151,7 +151,7 @@ Single at-a-glance view of every colour-bearing component: migration **status** 
 | date-range-picker | module (form+calendar+dropdown) | ✅ | — |
 | description-line | module | ✅ | — |
 | divider | module | ✅ | — |
-| drawer | semantic | ❌ | **deferred — de-antd first (.less)** |
+| drawer | semantic | ✅ | mask → `--ds-color-background-overlay-default` (⚑ scrim shift) |
 | dropdown | module | 🚧 | dropdown bottom-action / back-action / search-icon pending |
 | editable-items-list | semantic | ✅ | — |
 | emoji-picker | semantic | ✅ | — |
@@ -179,7 +179,7 @@ Single at-a-glance view of every colour-bearing component: migration **status** 
 | item-picker | module | ✅ | — |
 | items-roll | semantic | ✅ | — |
 | layout | module | ✅ | — |
-| list | semantic | ❌ | **.less / de-antd** |
+| list | semantic | ✅ | — |
 | list-item | module | ✅ | — |
 | loader | semantic | ✅ | — |
 | logic | semantic | ✅ | ⚑ review: bg-token-for-text mismatch + `background-danger-solidActive`=red-600 (upstream) |
@@ -204,7 +204,7 @@ Single at-a-glance view of every colour-bearing component: migration **status** 
 | search | module | ✅ | — |
 | search-bar | module | ✅ | — |
 | section-message | module | ✅ | — |
-| select | module | 🚧 | .less / de-antd |
+| select | module | 🚧 | chip bg (grey-200/300) — no grey background token yet |
 | short-cuts | semantic | 🚧 | box-shadow rgba(35,41,54) has no --ds-shadows-shadow-* match; ⚑ dark-key bg grey-600→grey-700 |
 | sidebar | semantic | ✅ | — |
 | sidebar-object | module | ✅ | — |
@@ -253,7 +253,7 @@ These components have dedicated token definitions in `modules/base.json`.
 | [card-select](#card-select) | `card-select` | :white_check_mark: | :white_check_mark: | :white_check_mark: | :x: | 4 | No | borders/shadow/opacity tokenised; check-token naming flagged for UX |
 | [description-line](#description) | `description` | :white_check_mark: | :heavy_minus_sign: | :heavy_minus_sign: | :heavy_minus_sign: | 0 | No | module + semantic; inactive star deferred |
 | [divider](#divider) | `divider` | :white_check_mark: | :heavy_minus_sign: | :heavy_minus_sign: | :x: | 0 | No | line + label tokenised; colour diffs resolved by sync `e0301675d` |
-| [form](#form-group-form--input--select--switch) | `form` / `input` / `checkbox` / `radio` / `switch` / `select` | :construction: | :construction: | :construction: | :x: | 4 | select only | TS partly migrated; per-state styling now in `.styles.ts` (input/checkbox/radio/switch — `.less` removed) + `select` retains `.less` + data-URI SVGs |
+| [form](#form-group-form--input--select--switch) | `form` / `input` / `checkbox` / `radio` / `switch` / `select` | :construction: | :construction: | :construction: | :x: | 4 | No | TS migrated; per-state styling in `.styles.ts` (all de-antd, `.less` removed); `select` tokenised — chip bg deferred |
 | [inline-alert](#inline-alert) | `inline-alert` | :white_check_mark: | :heavy_minus_sign: | :white_check_mark: | :heavy_minus_sign: | 0 | No | 4 variants + text; icon `-default`/`-hover` branches (sync `66dddd0a`); hover done |
 | [inline-edit](#inline-edit--inline-select) | `inline-edit` | :white_check_mark: | :heavy_minus_sign: | :heavy_minus_sign: | :heavy_minus_sign: | 0 | No | text/icon tokenised; gradient underlines deferred |
 | [inline-select](#inline-edit--inline-select) | `inline-edit` | :white_check_mark: | :heavy_minus_sign: | :heavy_minus_sign: | :heavy_minus_sign: | 0 | No | lives in inline-edit package |
@@ -302,7 +302,7 @@ These components use `theme.palette` / hardcoded colors but do not yet have dedi
 | cruds | 4 | No | 0 | 0 | |
 | date-picker | 56 | No | 1 | 0 | :construction: trigger field → `--ds-form-*` + clear icon → icon-danger (2026-07-20); overlay/calendar deferred |
 | date-range-picker | 43 | No | 2 | 7 | :construction: trigger field → `--ds-form-*` + danger icons (2026-07-20); overlay/calendar deferred |
-| drawer | 3 | Yes (1) | 1 | 0 | |
+| drawer | 3 | No | 1 | 0 | :white_check_mark: tokenised (2026-07-24) — de-antd'd (`.less` removed); body/header-border → semantic, shadow → `shadow-2`; ⚑ mask grey-800@0.2 → `overlay-default` (grey-900@0.5) |
 | dropdown | 20 | No | 1 | 1 | |
 | editable-items-list | 0 | No | 0 | 0 | :white_check_mark: hardcoded add-icon `blue-600` removed — icon inherits ds-button (`mode: icon-label`) (2026-07-20) |
 | emoji-picker | 0 | No | 0 | 0 | :white_check_mark: tokenised — search-icon `grey-600` removed — inherits default (2026-07-20); `EmojiList` category header `grey-500` → semantic `text-neutral-default` (exact) |
@@ -325,7 +325,7 @@ These components use `theme.palette` / hardcoded colors but do not yet have dedi
 | item-picker | 13 | No | 4 | 1 | :construction: trigger field → `--ds-form-*` (2026-07-20); dropdown/list deferred |
 | items-roll | 0 | No | 1 | 4 | :white_check_mark: colours tokenised — semantic (2026-07-21); ⚑ WarningIcon yellow-500→600; shadow/opacity refs are non-colour (kept) |
 | layout | 0 | No | 0 | 2 | :white_check_mark: tokenised — semantic + `page` module bg (2026-07-21); fixed a malformed CSS site; 2 functional opacities kept |
-| list | 9 | Yes (2) | 1 | 1 | |
+| list | 9 | No | 1 | 1 | :white_check_mark: tokenised (2026-07-24) — de-antd'd (`.less` removed); items/header → semantic, all exact |
 | loader | 1 | No | 0 | 0 | :white_check_mark: tokenised (2026-07-21); header text → text-base-default; spinner border stays dynamic (`color` prop) |
 | logic | 13 | No | 0 | 0 | |
 | manageable-list | 0 | No | 0 | 0 | :white_check_mark: tokenised — semantic now → dedicated module later (2026-07-21); 3 ⚑ shifts |
@@ -1213,9 +1213,11 @@ description/chips/remove-icon → semantic; disabled icon opacity → `--ds-opac
 
 #### select — :construction:
 
-9 form-field + 3 semantic. Error/affix/disabled surfaces → `--ds-form-field-*`. **Diff:** disabled
-selector bg grey-050 → grey-100 (darker). **Deferred:** search-icon (data-URI SVG, can't take `var()`),
-`.ant-select-arrow { opacity: 0.5 }` (no 0.5 token), `.less`.
+De-antd'd (master), then tokenised: field surfaces (border/bg/text/affix/placeholder) → `--ds-form-field-*`;
+arrow → `--ds-color-icon-base-subtle`, clear + chip-remove → `icon-danger-default`, option-hover →
+`background-brand-subtle`, chip text → `text-base-muted` / `text-base-default`. **Diff (⚑):** disabled
+selector bg grey-050 → `--ds-form-field-bg-disabled` grey-100 (darker). **Deferred:** chip bg
+(grey-200/300) — no grey background token yet.
 
 #### switch — :construction:
 
