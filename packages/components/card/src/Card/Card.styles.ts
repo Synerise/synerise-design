@@ -12,20 +12,20 @@ const withBoxShadow = ['white-shadow', 'grey-shadow'];
 const withOutline = ['outline'];
 const backgroundColor = (background: Backgrounds): string => {
   if (whiteBg.includes(background)) {
-    return 'var(--ds-card-bg-default)';
+    return 'var(--ds-card-variant-white-bg)';
   }
   if (greyBg.includes(background)) {
-    return 'var(--ds-color-background-base-subtle)';
+    return 'var(--ds-card-variant-grey-bg)';
   }
-  return 'transparent';
+  return 'var(--ds-card-variant-outline-bg)';
 };
 
 const boxShadow = (background: Backgrounds): string => {
   if (withBoxShadow.includes(background)) {
-    return 'var(--ds-shadows-shadow-1)';
+    return 'var(--ds-card-shadow-raised)';
   }
   if (withOutline.includes(background)) {
-    return 'var(--ds-color-border-base-default) 0px 0px 0px 1px inset';
+    return 'var(--ds-card-variant-outline-border) 0px 0px 0px 1px inset';
   }
   return 'none';
 };
@@ -76,7 +76,7 @@ export const Container = styled.div<{
   ${(props) =>
     !!props.raised &&
     css`
-      box-shadow: ${props.theme.variable('@box-shadow-active')};
+      box-shadow: var(--ds-card-shadow-hover);
     `}
 
   ${(props) =>
@@ -96,7 +96,7 @@ export const Container = styled.div<{
     !!props.lively &&
     css`
       &:hover {
-        box-shadow: ${props.theme.variable('@box-shadow-active')};
+        box-shadow: var(--ds-card-shadow-hover);
       }
     `}
 `;
@@ -120,7 +120,7 @@ export const Header = styled.div<{
     height: 1px;
     content: '';
     display: ${(props) => (props.headerBorderBottom ? 'block' : 'none')};
-    background-color: var(--ds-color-border-base-subtle);
+    background-color: var(--ds-card-header-borderbottom);
   }
   &:hover {
     ${(props) => !!props.onClick && `cursor:pointer;`}
@@ -128,12 +128,13 @@ export const Header = styled.div<{
   ${(props) =>
     !!props.defaultHeaderBackgroundColor &&
     css`
-      background-color: var(--ds-card-bg-default);
+      background-color: var(--ds-card-header-bg);
     `}
 `;
 
 export const Title = styled(DSTitle)<{ fat: boolean }>`
   && {
+    color: var(--ds-card-header-title);
     display: flex;
     align-items: center;
     min-height: ${(props) => (props.fat ? '32px' : '20px')};
@@ -193,7 +194,7 @@ export const HeaderContent = styled.div<{
       }
 
       ${Description} {
-        border-left: 1px solid var(--ds-color-border-base-default);
+        border-left: 1px solid var(--ds-card-header-divider);
         height: 32px;
         line-height: 32px;
         padding: 0 0 0 24px;
@@ -219,6 +220,6 @@ export const FooterContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: flex-end;
-  background: var(--ds-card-bg-default);
-  border-top: solid 1px var(--ds-color-border-base-subtle);
+  background: var(--ds-card-footer-bg);
+  border-top: solid 1px var(--ds-card-footer-border);
 `;

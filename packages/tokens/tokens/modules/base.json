@@ -3335,55 +3335,150 @@
     }
   },
   "card": {
-    "bg": {
-      "default": {
-        "$type": "color",
-        "$value": "{color.background.base.default}",
-        "$description": "Card background color for default state"
+    "variant": {
+      "white": {
+        "bg": {
+          "$type": "color",
+          "$value": "{color.background.base.default}",
+          "$description": "Card white variant background (white)"
+        }
       },
-      "hover": {
-        "$type": "color",
-        "$value": "{color.mono.00}",
-        "$description": "Card background color for hover state (same as default)"
+      "grey": {
+        "bg": {
+          "$type": "color",
+          "$value": "{color.background.base.subtle}",
+          "$description": "Card grey variant background (grey-050)"
+        }
       },
-      "active": {
-        "$type": "color",
-        "$value": "{color.mono.00}",
-        "$description": "Card background color for active state (same as default)"
-      },
-      "disabled": {
-        "$type": "color",
-        "$value": "{color.mono.00}",
-        "$description": "Card background color for disabled state (same as default, opacity applied separately)"
-      }
-    },
-    "border": {
-      "radius": {
-        "$type": "dimension",
-        "$value": "{border.radius.sm}",
-        "$description": "Card border radius (3px)"
-      },
-      "width": {
-        "$type": "dimension",
-        "$value": "0px",
-        "$description": "Card border width (no border)"
+      "outline": {
+        "bg": {
+          "$type": "color",
+          "$value": "{color.transparent}",
+          "$description": "Card outline variant background (transparent)"
+        },
+        "border": {
+          "$type": "color",
+          "$value": "{color.border.base.default}",
+          "$description": "Card outline variant inset ring border (grey-200)"
+        }
       }
     },
     "shadow": {
-      "default": {
+      "raised": {
         "$type": "boxShadow",
-        "$value": "{shadow.level.1}",
-        "$description": "Card shadow for default state (level 1)"
+        "$value": "{Shadows.Shadow 1}",
+        "$description": "Card elevation for -shadow variants (0 4px 12px @0.04 ~ shadow-1)"
       },
       "hover": {
         "$type": "boxShadow",
-        "$value": "{shadow.level.2}",
-        "$description": "Card shadow for hover state (level 2)"
+        "$value": "{Shadows.Shadow 2}",
+        "$description": "Card hover/raised/lively elevation (box-shadow-active ~ shadow-2)"
+      }
+    },
+    "header": {
+      "title": {
+        "$type": "color",
+        "$value": "{color.text.base.default}",
+        "$description": "Card header title text (grey-800)"
       },
-      "active": {
-        "$type": "boxShadow",
-        "$value": "{shadow.level.2}",
-        "$description": "Card shadow for active state (level 2)"
+      "bg": {
+        "$type": "color",
+        "$value": "{color.background.base.default}",
+        "$description": "Card header background - defaultHeaderBackgroundColor (white)"
+      },
+      "borderBottom": {
+        "$type": "color",
+        "$value": "{color.border.base.subtle}",
+        "$description": "Card header bottom border (grey-100)"
+      },
+      "divider": {
+        "$type": "color",
+        "$value": "{color.border.base.default}",
+        "$description": "Card compact header description divider (grey-200)"
+      },
+      "padding": {
+        "$type": "dimension",
+        "$value": "{inset.xl}",
+        "$description": "Card header padding (24px)"
+      },
+      "badge": {
+        "default": {
+          "bg": {
+            "$type": "color",
+            "$value": "{color.transparent}",
+            "$description": "Card badge default bg (transparent)"
+          },
+          "icon": {
+            "$type": "color",
+            "$value": "{color.icon.base.muted}",
+            "$description": "Card badge default icon (grey-400)"
+          },
+          "border": {
+            "$type": "color",
+            "$value": "{color.border.base.strongHover}",
+            "$description": "Card badge default inset ring (grey-400)"
+          }
+        },
+        "checked": {
+          "bg": {
+            "$type": "color",
+            "$value": "{color.transparent}",
+            "$description": "Card badge checked bg (transparent)"
+          },
+          "icon": {
+            "$type": "color",
+            "$value": "{color.icon.base.muted}",
+            "$description": "Card badge checked icon (grey-400)"
+          }
+        },
+        "success": {
+          "bg": {
+            "$type": "color",
+            "$value": "{color.background.success.solid}",
+            "$description": "Card badge success/validated bg (green-600)"
+          },
+          "icon": {
+            "$type": "color",
+            "$value": "{color.icon.onSolid.default}",
+            "$description": "Card badge success icon (white check)"
+          }
+        },
+        "warning": {
+          "bg": {
+            "$type": "color",
+            "$value": "{color.background.warning.solidHover}",
+            "$description": "Card badge warning bg (yellow-600)"
+          },
+          "icon": {
+            "$type": "color",
+            "$value": "{color.icon.onSolid.default}",
+            "$description": "Card badge warning icon (white)"
+          }
+        },
+        "error": {
+          "bg": {
+            "$type": "color",
+            "$value": "{color.background.danger.solid}",
+            "$description": "Card badge error bg (red-600)"
+          },
+          "icon": {
+            "$type": "color",
+            "$value": "{color.icon.onSolid.default}",
+            "$description": "Card badge error icon (white)"
+          }
+        }
+      }
+    },
+    "footer": {
+      "bg": {
+        "$type": "color",
+        "$value": "{color.background.base.default}",
+        "$description": "Card footer background (white)"
+      },
+      "border": {
+        "$type": "color",
+        "$value": "{color.border.base.subtle}",
+        "$description": "Card footer top border (grey-100)"
       }
     },
     "content": {
@@ -3393,11 +3488,11 @@
         "$description": "Card content padding (24px)"
       }
     },
-    "header": {
-      "padding": {
+    "border": {
+      "radius": {
         "$type": "dimension",
-        "$value": "{inset.xl}",
-        "$description": "Card header padding (24px)"
+        "$value": "{border.radius.sm}",
+        "$description": "Card border radius (3px)"
       }
     },
     "disabled": {
@@ -4386,6 +4481,25 @@
         "$value": "{color.text.base.default}",
         "$description": "Calendar weekday header labels text (grey-800)"
       }
+    },
+    "nav": {
+      "title": {
+        "default": {
+          "$type": "color",
+          "$value": "{color.text.base.default}",
+          "$description": "Calendar nav - clickable month/year title default text (grey-800, wg kodu inherited)"
+        },
+        "hover": {
+          "$type": "color",
+          "$value": "{color.text.brand.default}",
+          "$description": "Calendar nav - clickable month/year title hover text (blue-600)"
+        },
+        "active": {
+          "$type": "color",
+          "$value": "{color.text.brand.default}",
+          "$description": "Calendar nav - clickable month/year title active text (blue-600)"
+        }
+      }
     }
   },
   "image": {
@@ -4492,6 +4606,35 @@
     }
   },
   "code-snippet": {
+    "surface": {
+      "bg": {
+        "$type": "color",
+        "$value": "{color.background.base.muted}",
+        "$description": "Code-snippet block surface bg (grey-100); tez fade-mask MultiCode"
+      },
+      "text": {
+        "$type": "color",
+        "$value": "{color.text.base.muted}",
+        "$description": "Code-snippet block/code text (grey-600)"
+      }
+    },
+    "copy": {
+      "bg": {
+        "$type": "color",
+        "$value": "{color.background.base.muted}",
+        "$description": "Code-snippet copy button bg (grey-100)"
+      },
+      "icon": {
+        "$type": "color",
+        "$value": "{color.icon.base.muted}",
+        "$description": "Code-snippet copy icon - default (grey-400)"
+      },
+      "iconHover": {
+        "$type": "color",
+        "$value": "{color.icon.brand.default}",
+        "$description": "Code-snippet copy icon - hover (blue-600)"
+      }
+    },
     "syntax": {
       "base": {
         "$type": "color",

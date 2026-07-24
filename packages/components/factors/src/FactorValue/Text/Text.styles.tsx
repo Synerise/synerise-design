@@ -4,8 +4,8 @@ export const IconWrapper = styled.span`
   &:hover {
     cursor: pointer;
     svg {
-      color: ${(props): string => props.theme.palette['blue-600']};
-      fill: ${(props): string => props.theme.palette['blue-600']};
+      color: var(--ds-color-text-brand-default);
+      fill: var(--ds-color-icon-brand-default);
     }
   }
 `;
