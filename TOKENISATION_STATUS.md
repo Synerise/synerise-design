@@ -112,7 +112,9 @@ Icons: DS icons are `fill="currentColor"` with `color: inherit`, so colour them 
 
 Single at-a-glance view of every colour-bearing component: migration **status** + whether it is **awaiting token definitions** (a pending module namespace, a missing semantic role, or a `.less`/de-antd blocker). Sourced from the two detailed tables below + `TOKEN_AUDIT.md` blockers. **Update this table (and the detailed one) whenever `apply-tokens` migrates a component.**
 
-**Totals:** ✅ 95 done · 🚧 9 partial · ❌ 4 not started · ⛔ 3 deprecated · ➖ 4 n/a — **12 awaiting token defs** (flag in last column).
+**Totals:** ✅ 95 done · 🚧 9 partial · ❌ 7 not started · ⛔ 3 deprecated · ➖ 4 n/a — **12 awaiting token defs** (flag in last column).
+
+> **`theme.palette` holdouts (to retire):** dynamic `color`/`customColor` props still resolve via `theme.palette` → migrate to ds-utils `resolveCustomColor`: **badge** (local dup helper), **avatar** (ObjectAvatar), **section-message**, **button**, **loader**. Static gap: **inline-edit** (`:active` bg grey-300, no token). Fully untokenised (new): **rich-text**, **rich-text-renderer**. Role-specific cases (text/border/icon-custom) need `resolveCustomColor` extended with a `role` option + manifest role maps.
 
 | Component | Layer | Status | Awaiting token defs / blocker |
 |---|---|:--:|---|
@@ -128,6 +130,7 @@ Single at-a-glance view of every colour-bearing component: migration **status** 
 | block | semantic | ✅ | — |
 | broadcast-bar | module | ✅ | — |
 | button-expander | module | ✅ | — |
+| button | module | ❌ | not started — static blue/red/grey/white + `customColor`/`iconColor` variants on `theme.palette` (Button.styles/Creator/Expander); `--ds-buttons-*` module exists, unapplied |
 | button-group | semantic | ❌ | — |
 | buttons | module | ✅ | — |
 | card | module | ✅ | — |
@@ -170,7 +173,7 @@ Single at-a-glance view of every colour-bearing component: migration **status** 
 | image | module | ✅ | — |
 | information-card | module | ✅ | — |
 | inline-alert | module | ✅ | — |
-| inline-edit | module | ✅ | — |
+| inline-edit | module | ✅ | ⚑ `:active` pressed bg grey-300 kept on palette — no grey-300 bg token |
 | inline-select | module | ✅ | — |
 | input | module | ✅ | — |
 | input-number | module | ✅ | — |
@@ -200,6 +203,8 @@ Single at-a-glance view of every colour-bearing component: migration **status** 
 | progressbar | module | ✅ | — |
 | radio | module | ✅ | — |
 | result | semantic | ✅ | — |
+| rich-text | semantic | ❌ | new (de-antd merge); untokenised — greys/blues/reds + mars/purple gradient on `theme.palette` (RichText.styles) |
+| rich-text-renderer | semantic | ❌ | new; untokenised — greys/blues on `theme.palette` (RichTextRenderer.styles) |
 | scrollbar | semantic | ✅ | ⚑ resting thumb grey-300→base-strong (grey-400); veil kept (no light-scrim token) |
 | search | module | ✅ | — |
 | search-bar | module | ✅ | — |
