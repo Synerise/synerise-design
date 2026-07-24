@@ -1,5 +1,7 @@
 import styled from 'styled-components';
 
+import { isResolvedColor } from '../utils/Slider.utils';
+
 export const AllocationMarks = styled.div`
   height: 40px;
   position: relative;
@@ -32,7 +34,9 @@ export const MarkLetter = styled.div<{ $color?: string }>`
   color: white;
 
   background-color: ${(props) =>
-    props.theme.palette[props.$color || 'grey-400']};
+    isResolvedColor(props.$color)
+      ? props.$color
+      : props.theme.palette[props.$color || 'grey-400']};
 `;
 
 export const MarkTooltipWrapper = styled.div`

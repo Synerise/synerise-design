@@ -145,6 +145,7 @@ import Slider from '@synerise/ds-slider';
 - `@synerise/ds-tooltip` — handle tooltips and blocked-handler tooltips
 - `@synerise/ds-typography` — description text
 - `@synerise/ds-utils` — resize observer utilities
+- `@synerise/ds-tokens` `orderedBase` (`/names` manifest) — the `ordered` categorical-colour queue used for allocation / 3+-handle track sections
 
 ## Implementation notes
 
@@ -152,5 +153,6 @@ import Slider from '@synerise/ds-slider';
 - **Not based on Ant Design Slider** — README references are outdated; the actual implementation uses `@tanstack/react-ranger`.
 - **Uses Vitest** (`vitest.config.ts`) — migrated from Jest.
 - `tracksColorMap` keys are numeric percentages/values; the hook `useColorMap` interpolates the colour for the current value.
+- **Track colours** — `getDefaultColorMap` gives the default/2-handle track the `green-600` palette key, and allocation / 3+-handle tracks the `ordered` token slots (`orderedBase[i]`, opaque `var(--ds-color-background-ordered-<N>-base)` strings). A value is applied verbatim when `isResolvedColor` (a `var(…)`/`#hex`), else resolved via `theme.palette` — so a caller's custom `tracksColorMap` of palette keys still works.
 - `inverted` only applies to `DefaultSliderProps` and `RangeSliderProps` (not allocation).
 - `HandlerConfig` handler index starts at **1** (not 0).

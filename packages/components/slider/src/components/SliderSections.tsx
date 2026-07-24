@@ -5,7 +5,10 @@ import { useTheme } from '@synerise/ds-core';
 import * as S from '../Slider.styles';
 import { type ColorMap } from '../Slider.types';
 import { useSliderContext } from '../context/SliderContext';
-import { getVisibleSectionsForType } from '../utils/Slider.utils';
+import {
+  getVisibleSectionsForType,
+  isResolvedColor,
+} from '../utils/Slider.utils';
 
 type SliderSectionsProps = {
   type: 'range' | 'allocation' | 'default';
@@ -44,7 +47,11 @@ export const SliderSections = ({
               $left={normalisedSection.left}
               $width={normalisedSection.width}
               data-color={tracksColorMap[index]}
-              $color={theme.palette[tracksColorMap[index]]}
+              $color={
+                isResolvedColor(tracksColorMap[index])
+                  ? tracksColorMap[index]
+                  : theme.palette[tracksColorMap[index]]
+              }
             />
           );
         })}

@@ -209,7 +209,7 @@ Single at-a-glance view of every colour-bearing component: migration **status** 
 | sidebar | semantic | ✅ | — |
 | sidebar-object | module | ✅ | — |
 | skeleton | module | 🚧 | shimmer keyframe opacity token pending |
-| slider | semantic | ❌ | focus-ring token gap |
+| slider | module | ✅ | allocation / 3+-handle track colours from the `ordered` categorical set via `@synerise/ds-tokens/names`; pass-through resolver keeps custom `tracksColorMap` palette keys. Semantic chrome (focus-ring etc.) tracked separately in !3853 |
 | sortable | semantic | ✅ | — |
 | status | module | ✅ | — |
 | status-pill | module | ✅ | — |

@@ -1,11 +1,17 @@
 import { type ReactNode } from 'react';
 
-import { defaultColorsOrder } from '@synerise/ds-core';
+import { orderedBase } from '@synerise/ds-tokens/names';
 
 import { type ColorMap, type MarkObj } from '../Slider.types';
 
 export const getDefaultTooltipPopupContainer = (): HTMLElement =>
   document.querySelector(`.ant-slider`) as HTMLElement;
+
+// A tracksColorMap value is either a palette key ('green-600', or a user-supplied key) or an
+// already-resolved colour — an `ordered` token var ('var(--ds-…)') or a literal hex ('#…'). The
+// latter are used verbatim; palette keys are resolved via theme.palette at the call site.
+export const isResolvedColor = (value?: string): boolean =>
+  !!value && (value.startsWith('var(') || value.startsWith('#'));
 
 export const couldBeInverted = (
   value: number | readonly number[],
@@ -21,8 +27,10 @@ export const getDefaultColorMap = (
   if (type !== 'allocation' && handleCount <= 2) {
     colorMap['0'] = 'green-600';
   } else {
-    defaultColorsOrder.forEach((item, index) => {
-      colorMap[index] = item;
+    // Categorical queue: each segment takes the next `ordered` token slot (a flipping
+    // var(--ds-color-background-ordered-<N>-base) string), replacing the old palette keys.
+    orderedBase.forEach((token, index) => {
+      colorMap[index] = token;
     });
   }
   return colorMap;

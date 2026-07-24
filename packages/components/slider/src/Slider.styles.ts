@@ -1,5 +1,7 @@
 import styled, { css } from 'styled-components';
 
+import { isResolvedColor } from './utils/Slider.utils';
+
 export const SliderSection = styled.div<{
   $left: number;
   $width: number;
@@ -182,7 +184,10 @@ export const SliderDot = styled.div<{
   bottom: 0;
   width: 10px;
   height: 10px;
-  background: ${(props) => props.theme.palette[props.$color || 'grey-200']};
+  background: ${(props) =>
+    isResolvedColor(props.$color)
+      ? props.$color
+      : props.theme.palette[props.$color || 'grey-200']};
   border-radius: 50%;
   border: 3px solid ${(props) => props.theme.palette.white};
   left: ${(props) => props.$left}%;
