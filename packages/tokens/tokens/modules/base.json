@@ -4030,12 +4030,12 @@
           },
           "active": {
             "$type": "color",
-            "$value": "{color.background.custom.solid}",
+            "$value": "{color.background.ordered.base}",
             "$description": "Card tab (grey) background - active (custom-color)"
           },
           "activeHover": {
             "$type": "color",
-            "$value": "{color.background.custom.solidHover}",
+            "$value": "{color.background.ordered.hover}",
             "$description": "Card tab (grey) background - active hover (custom-color, lighter)"
           },
           "validateActive": {
@@ -4162,7 +4162,7 @@
         "dot": {
           "bg": {
             "$type": "color",
-            "$value": "{color.background.custom.solid}",
+            "$value": "{color.background.ordered.base}",
             "$description": "Card tab (grey) color-dot interior - inactive (custom-color); active=transparent"
           },
           "ring": {
@@ -4187,6 +4187,32 @@
             "$value": "{color.border.danger.default}",
             "$description": "Card tab (grey) border - validate (red-600)"
           }
+        },
+        "tag": {
+          "bg": {
+            "default": {
+              "$type": "color",
+              "$value": "{color.background.ordered.base}",
+              "$description": "Card-tab prefix tag - tlo gdy tab NIE aktywny (kolor slotu ordered)"
+            },
+            "active": {
+              "$type": "color",
+              "$value": "{color.background.base.default}",
+              "$description": "Card-tab prefix tag - tlo gdy tab aktywny (bialy/ciemny default bg)"
+            }
+          },
+          "text": {
+            "default": {
+              "$type": "color",
+              "$value": "{color.text.onSolid.default}",
+              "$description": "Card-tab prefix tag - tekst gdy tab NIE aktywny (bialy na kolorze slotu)"
+            },
+            "active": {
+              "$type": "color",
+              "$value": "{color.text.ordered.base}",
+              "$description": "Card-tab prefix tag - tekst gdy tab aktywny (kolor slotu ordered)"
+            }
+          }
         }
       },
       "white": {
@@ -4208,12 +4234,12 @@
           },
           "active": {
             "$type": "color",
-            "$value": "{color.background.custom.solid}",
+            "$value": "{color.background.ordered.base}",
             "$description": "Card tab (white) background - active (custom-color)"
           },
           "activeHover": {
             "$type": "color",
-            "$value": "{color.background.custom.solidHover}",
+            "$value": "{color.background.ordered.hover}",
             "$description": "Card tab (white) background - active hover (custom-color, lighter)"
           },
           "validateActive": {
@@ -4340,7 +4366,7 @@
         "dot": {
           "bg": {
             "$type": "color",
-            "$value": "{color.background.custom.solid}",
+            "$value": "{color.background.ordered.base}",
             "$description": "Card tab (white) color-dot interior - inactive (custom-color); active=transparent"
           },
           "ring": {
@@ -4353,6 +4379,32 @@
           "$type": "boxShadow",
           "$value": "{Shadows.Shadow 1}",
           "$description": "Card tab (white) elevation shadow (shadow-1)"
+        },
+        "tag": {
+          "bg": {
+            "default": {
+              "$type": "color",
+              "$value": "{color.background.ordered.base}",
+              "$description": "Card-tab prefix tag - tlo gdy tab NIE aktywny (kolor slotu ordered)"
+            },
+            "active": {
+              "$type": "color",
+              "$value": "{color.background.base.default}",
+              "$description": "Card-tab prefix tag - tlo gdy tab aktywny (bialy/ciemny default bg)"
+            }
+          },
+          "text": {
+            "default": {
+              "$type": "color",
+              "$value": "{color.text.onSolid.default}",
+              "$description": "Card-tab prefix tag - tekst gdy tab NIE aktywny (bialy na kolorze slotu)"
+            },
+            "active": {
+              "$type": "color",
+              "$value": "{color.text.ordered.base}",
+              "$description": "Card-tab prefix tag - tekst gdy tab aktywny (kolor slotu ordered)"
+            }
+          }
         }
       }
     }
