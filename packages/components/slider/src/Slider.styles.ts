@@ -20,11 +20,7 @@ export const SliderLine = styled.div<{
 }>`
   height: ${(props) => `${props.thick ? '6' : '3'}px`};
   background: ${(props) =>
-    resolveTrackColor(
-      props.theme,
-      props.lineColor,
-      'var(--ds-slider-track-bg-default)',
-    )};
+    resolveTrackColor(props.lineColor, 'var(--ds-slider-track-bg-default)')};
   position: absolute;
   top: 50%;
   width: 100%;
@@ -190,11 +186,7 @@ export const SliderDot = styled.div<{
   width: 10px;
   height: 10px;
   background: ${(props) =>
-    resolveTrackColor(
-      props.theme,
-      props.$color,
-      'var(--ds-slider-track-bg-default)',
-    )};
+    resolveTrackColor(props.$color, 'var(--ds-slider-track-bg-default)')};
   border-radius: 50%;
   border: 3px solid var(--ds-slider-handle-border);
   left: ${(props) => props.$left}%;

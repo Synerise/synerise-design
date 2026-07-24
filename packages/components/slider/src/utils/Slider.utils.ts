@@ -1,7 +1,6 @@
 import { type ReactNode } from 'react';
 
-import { type ThemePropsVars } from '@synerise/ds-core';
-import { orderedBase } from '@synerise/ds-tokens/names';
+import { customColors, orderedBase } from '@synerise/ds-tokens/names';
 
 import { type ColorMap, type MarkObj } from '../Slider.types';
 
@@ -10,22 +9,31 @@ export const getDefaultTooltipPopupContainer = (): HTMLElement =>
 
 // A tracksColorMap value is either a palette key ('green-600', or a user-supplied key) or an
 // already-resolved colour — an `ordered` token var ('var(--ds-…)') or a literal hex ('#…'). The
-// latter are used verbatim; palette keys are resolved via theme.palette at the call site.
+// latter are used verbatim; palette keys are mapped to a reversible token (never theme.palette).
 export const isResolvedColor = (value?: string): boolean =>
   !!value && (value.startsWith('var(') || value.startsWith('#'));
 
-// Resolve a colour-map value to a CSS colour: an already-resolved token/hex is used verbatim, a
-// palette key goes through theme.palette, and an empty value falls back to the given semantic
-// token — keeping the dynamic `tracksColorMap`/`lineColor` prop path while tokenising the default.
+// Resolve a colour-map value to a CSS colour WITHOUT touching theme.palette (which is being
+// retired). An already-resolved token/hex is used verbatim; a palette key ('blue-600') maps to the
+// reversible custom-colour token (customColors[hue][shade] — dark-mode aware). Anything unmapped —
+// an unknown hue/shade or an empty value — falls back to the given predefined token, so a bad
+// `tracksColorMap` key renders a real colour instead of an undefined palette lookup.
 export const resolveTrackColor = (
-  theme: ThemePropsVars,
   value: string | undefined,
   fallback: string,
 ): string => {
-  if (!value) {
-    return fallback;
+  if (!value || isResolvedColor(value)) {
+    return value || fallback;
   }
-  return isResolvedColor(value) ? value : theme.palette[value];
+  const match = value.match(/^(.+)-(\d{2,3})$/);
+  if (match) {
+    const [, hue, shade] = match;
+    const custom = customColors[hue]?.[String(Number(shade))];
+    if (custom) {
+      return custom;
+    }
+  }
+  return fallback;
 };
 
 export const couldBeInverted = (

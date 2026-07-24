@@ -34,11 +34,7 @@ export const MarkLetter = styled.div<{ $color?: string }>`
   color: var(--ds-slider-tag-text);
 
   background-color: ${(props) =>
-    resolveTrackColor(
-      props.theme,
-      props.$color,
-      'var(--ds-color-background-base-strong)',
-    )};
+    resolveTrackColor(props.$color, 'var(--ds-color-background-base-strong)')};
 `;
 
 export const MarkTooltipWrapper = styled.div`
