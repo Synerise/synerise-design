@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.52.0](https://github.com/Synerise/synerise-design/compare/storybook@1.51.3...storybook@1.52.0) (2026-07-24)
+
+### Features
+
+- **rich-text:** add markdown serializers, code snippet and table support ([56acd09](https://github.com/Synerise/synerise-design/commit/56acd097e2106a8743e85f98226caedca87a33e3))
+
 ## [1.51.3](https://github.com/Synerise/synerise-design/compare/storybook@1.51.2...storybook@1.51.3) (2026-07-23)
 
 ### Bug Fixes
