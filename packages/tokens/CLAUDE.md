@@ -10,6 +10,7 @@ tokens/                         — Token Studio JSON sources (mirrored from the
   semantic/Light.json           — light theme semantic mappings
   semantic/Dark.json            — dark theme semantic mappings
   semantic/custom-color/*.json  — 12 brand color theme files
+  semantic/ordered/order-N.json — 21 categorical "ordered" colour slots (base + hover per slot)
   semantic/dimensions.json      — phase-2: size/border/opacity (repo-local; not yet upstream)
   semantic/spacing.json         — phase-2: inset/stack/inline spacing (repo-local; not yet upstream)
   modules/base.json             — component-level token definitions (full set; build derives the color subset)
@@ -28,6 +29,7 @@ dist/
   js/light.js                   — exports { cssText, tokens } (light: var-declarations string + resolved map)
   js/dark.js                    — exports { cssText, tokens } (dark)
   js/index.js                   — re-exports { cssText, tokens } from light.js
+  js/names.js                   — categorical catalogue (customColors/customColorNames + orderedBase/orderedHover)
   json/light.json               — flat, fully-resolved token map (build source for the js `tokens` export)
   json/dark.json                — flat, fully-resolved token map (dark)
 ```
@@ -132,6 +134,37 @@ CSS var names follow `--ds-{path}` with kebab-case path segments:
 | Semantic | `--ds-color-{category}-{variant}-{intensity}` | `--ds-color-background-success-subtle` |
 | Component | `--ds-{component}-{property-path}` | `--ds-section-message-variant-success-bg` |
 
+## Categorical colour sets (`custom-color` + `ordered`)
+
+Two categorical colour sets are emitted with the same two-tier, per-theme pattern (see
+`build-tokens.mjs` → `loadCustomColorFamilies`/`customSemanticTier` and
+`loadOrderedSlots`/`orderedSemanticTier`):
+
+| Set | Driver | SET tier (ramp) | Flipping SEMANTIC tier (components use) | Manifest export |
+|-----|--------|-----------------|------------------------------------------|-----------------|
+| **custom-color** | user picks a hue from the palette | `--ds-color-custom-<family>-<shade>` (+ `-dark-`) | `--ds-color-background-custom-<family>-<shade>` | `customColors[family][shade]`, `customColorNames` |
+| **ordered** | system colour queue (card-tabs, slider) | `--ds-color-ordered-<N>-base\|hover` (+ `-dark-`) | `--ds-color-background-ordered-<N>-base\|hover` | `orderedBase[i]`, `orderedHover[i]` (i = slot−1) |
+
+- **`ordered`** = 21 slots (`tokens/semantic/ordered/order-1.json` … `order-21.json`), 7 hues ×
+  3 shade-blocks (`blue, green, yellow, purple, cyan, orange, violet`; blocks 600→700→500),
+  each a `base` + `hover` pair. `hover` is an **explicit token** (base − 100), so consumers read
+  it rather than computing a lighter shade from a colour name. A singular default
+  (`--ds-color-ordered-base|hover` → slot 1) is also emitted so the upstream singular semantic
+  tokens (`--ds-color-background-ordered-base|hover`, `--ds-color-text-ordered-base`) and the
+  card-tabs module tokens that chain through them resolve.
+- **Flip**: the SEMANTIC tier references the light SET group in `light.css` and the dark SET
+  group in `dark.css`, so a single manifest of `var(--ds-color-background-…)` strings works in
+  both themes — dark comes for free with the `data-ds-theme` swap.
+- **Consumption**: components pick a colour by **var-name selection in JS** — there is **no
+  `[data-ds-*]` scoping** for categorical colour. e.g. avatar: `customColors[family][hue]`;
+  card-tabs/slider: `orderedBase[i % 21]` / `orderedHover[i % 21]`, dropped straight into a
+  styled-component. Import from the manifest:
+
+```ts
+import { customColors, customColorNames, orderedBase, orderedHover } from '@synerise/ds-tokens/names';
+orderedBase[0];  // 'var(--ds-color-background-ordered-1-base)'
+```
+
 ## Dark mode / theme switching
 
 Both `light.css` and `dark.css` are generated and available as separate exports (`@synerise/ds-tokens/light`, `@synerise/ds-tokens/dark`). Each exports a `cssText` string containing the CSS variable declarations for that theme.
@@ -184,5 +217,6 @@ DSProvider stays stateless — it receives the mode, it doesn't own it. This kee
 
 - The `dist/` directory is listed in `.gitignore` (root-level `dist` rule). CI builds it via the `build_packages` job and passes it as an artifact.
 - `dist/js/*.js` files use ESM `export` syntax. The root Jest config transforms `@synerise/*` packages via `@swc/jest`, so `.js` extension (not `.mjs`) is required for test compatibility.
-- Custom color files (`semantic/custom-color/*.json`) all define the same `color.custom.*` tokens. Only one should be included per theme build — currently `blue.json` is used as default.
+- Custom color files (`semantic/custom-color/*.json`) each define the same `color.custom.*` key path; the build namespaces them by filename into per-family SET tokens (`color.custom.<family>.*`). The legacy single-active `color.custom.*` (from `blue.json` as default) is left untouched — distinct paths, distinct var names. See "Categorical colour sets" above.
+- Ordered files (`semantic/ordered/order-N.json`) similarly reuse the same `color.ordered.base|hover` key path; the build namespaces them by slot number into `color.ordered.<N>.*`.
 - The `$themes.json` file defines Token Studio theme permutations including Figma variable references. The build script does not use `permutateThemes` — it manually specifies token set composition per theme for control over which sets are included.

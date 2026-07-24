@@ -197,16 +197,19 @@ const baseSources = candidateBaseSources.filter((p) => existsSync(resolve(ROOT, 
 const moduleBase = readJson('tokens/modules/base.json');
 
 // ──────────────────────────────────────────────────────────────────────────────
-// Categorical colour sets (custom-color families now; `ordered` slots later).
+// Categorical colour sets (custom-color families + `ordered` slots).
 // Each set is emitted in two tiers, one build transform per theme:
-//   SET      --ds-color-custom-<family>-<shade>  (+ --ds-color-dark-custom-<family>-<shade>)
-//   SEMANTIC --ds-color-background-custom-<family>-<shade>  — FLIPS (light→light group, dark→dark group)
+//   SET      --ds-color-custom-<family>-<shade>     (+ --ds-color-dark-custom-<family>-<shade>)
+//            --ds-color-ordered-<N>-base|hover      (+ --ds-color-dark-ordered-<N>-base|hover)
+//   SEMANTIC --ds-color-background-custom-<family>-<shade>       — FLIPS (light→light group, dark→dark group)
+//            --ds-color-background-ordered-<N>-base|hover        — FLIPS
 // Manifest + components reference the SEMANTIC tier (so dark flips); the SET tier is the ramp.
 // The existing single-active color.custom.* (from the hand-wired blue.json) is left untouched —
 // distinct paths, distinct var names.
 // ──────────────────────────────────────────────────────────────────────────────
 
 const CUSTOM_COLOR_DIR = 'tokens/semantic/custom-color';
+const ORDERED_DIR = 'tokens/semantic/ordered';
 
 // Read every custom-color/<family>.json and namespace it by filename:
 //   color.custom.<shade>      → color.custom.<family>.<shade>
@@ -248,8 +251,57 @@ function customSemanticTier(families, shades, themeName) {
   return { color: { background: { custom } } };
 }
 
+// Read every ordered/order-<N>.json and namespace it by slot number N:
+//   color.ordered.base|hover      → color.ordered.<N>.base|hover
+//   color-dark.ordered.base|hover → color-dark.ordered.<N>.base|hover
+// producing per-slot SET tokens for all 21 slots in one theme-independent doc. Slots are
+// numeric-sorted (order-1 … order-21) so the manifest index maps directly to the slot.
+// A singular default (slot 1) is also emitted at color.ordered.base|hover so the upstream
+// singular semantic tokens (color.background.ordered.*, color.text.ordered.base) — and the
+// card-tabs module tokens that chain through them — resolve instead of being pruned.
+function loadOrderedSlots() {
+  const dir = resolve(ROOT, ORDERED_DIR);
+  if (!existsSync(dir)) return { doc: {}, slots: [] };
+  const slots = readdirSync(dir)
+    .filter((f) => /^order-\d+\.json$/.test(f))
+    .map((f) => parseInt(f.match(/\d+/)[0], 10))
+    .sort((a, b) => a - b);
+  const doc = { color: { ordered: {} }, 'color-dark': { ordered: {} } };
+  for (const n of slots) {
+    const src = readJson(`${ORDERED_DIR}/order-${n}.json`);
+    doc.color.ordered[n] = src.color?.ordered ?? {};
+    doc['color-dark'].ordered[n] = src['color-dark']?.ordered ?? {};
+  }
+  if (slots.length) {
+    const first = slots[0];
+    doc.color.ordered.base = doc.color.ordered[first].base;
+    doc.color.ordered.hover = doc.color.ordered[first].hover;
+    doc['color-dark'].ordered.base = doc['color-dark'].ordered[first].base;
+    doc['color-dark'].ordered.hover = doc['color-dark'].ordered[first].hover;
+  }
+  return { doc, slots };
+}
+
+// Flipping SEMANTIC tier for the ordered slots, generated per theme: each
+// color.background.ordered.<N>.base|hover references the light-group SET token in the light
+// build and the dark-group SET token in the dark build, so the emitted var flips with the
+// theme. The singular color.background.ordered.* / color.text.ordered.base come from the
+// upstream Light/Dark semantic layer and resolve via the singular SET default above.
+function orderedSemanticTier(slots, themeName) {
+  const group = themeName === 'dark' ? 'color-dark' : 'color';
+  const ordered = {};
+  for (const n of slots) {
+    ordered[n] = {
+      base: { $type: 'color', $value: `{${group}.ordered.${n}.base}` },
+      hover: { $type: 'color', $value: `{${group}.ordered.${n}.hover}` },
+    };
+  }
+  return { color: { background: { ordered } } };
+}
+
 const { doc: customSetDoc, families: customFamilies, shades: customShades } =
   loadCustomColorFamilies();
+const { doc: orderedSetDoc, slots: orderedSlots } = loadOrderedSlots();
 
 const themes = {
   light: { semantic: 'tokens/semantic/Light.json', selector: ':root' },
@@ -269,24 +321,29 @@ for (const [themeName, cfg] of Object.entries(themes)) {
   const baseDocs = baseSources.map((p) => readJson(p));
   const semanticDoc = readJson(cfg.semantic);
   const semanticCustom = customSemanticTier(customFamilies, customShades, themeName);
+  const semanticOrdered = orderedSemanticTier(orderedSlots, themeName);
   const moduleColor = filterByType(moduleBase) ?? {};
 
-  // Order: base sources… , custom SET (→ include), theme semantic (→ source),
-  // custom semantic tier (→ source), module colour subset (→ source).
+  // Order: base sources… , custom SET + ordered SET (→ include), theme semantic (→ source),
+  // custom + ordered semantic tiers (→ source), module colour subset (→ source).
   const inputDocs = [
     ...baseDocs,
     customSetDoc,
+    orderedSetDoc,
     semanticDoc,
     semanticCustom,
+    semanticOrdered,
     moduleColor,
   ];
   const pruned = pruneUnresolvable(inputDocs);
   const nBase = baseDocs.length;
   const prunedBase = pruned.slice(0, nBase);
   const prunedCustomSet = pruned[nBase];
-  const prunedSemantic = pruned[nBase + 1];
-  const prunedCustomSemantic = pruned[nBase + 2];
-  const prunedModules = pruned[nBase + 3];
+  const prunedOrderedSet = pruned[nBase + 1];
+  const prunedSemantic = pruned[nBase + 2];
+  const prunedCustomSemantic = pruned[nBase + 3];
+  const prunedOrderedSemantic = pruned[nBase + 4];
+  const prunedModules = pruned[nBase + 5];
 
   // Surface (never silently swallow) any tokens dropped for unresolvable references.
   const droppedCount =
@@ -306,14 +363,16 @@ for (const [themeName, cfg] of Object.entries(themes)) {
   const includePaths = [
     ...prunedBase.map((doc, i) => stage(doc, `base-${i}`)),
     stage(prunedCustomSet, 'custom-set'),
+    stage(prunedOrderedSet, 'ordered-set'),
   ];
   const semanticPath = stage(prunedSemantic, 'semantic');
   const customSemanticPath = stage(prunedCustomSemantic, 'custom-semantic');
+  const orderedSemanticPath = stage(prunedOrderedSemantic, 'ordered-semantic');
   const modulesPath = stage(prunedModules, 'modules-color');
 
   const sd = new StyleDictionary({
     include: includePaths,
-    source: [semanticPath, customSemanticPath, modulesPath],
+    source: [semanticPath, customSemanticPath, orderedSemanticPath, modulesPath],
     preprocessors: ['tokens-studio'],
     platforms: {
       css: {
@@ -423,12 +482,16 @@ const customColors = Object.fromEntries(
   ]),
 );
 
-// `ordered` set — scaffolded, empty until upstream authors tokens/semantic/ordered/*.
-// When it lands, build the SET + flipping semantic tier with the same pattern as custom
-// (a per-slot loop), then populate these arrays as
-// `var(--ds-color-background-ordered-<N>-base|hover)` for N = 1..slotCount.
-const orderedBase = [];
-const orderedHover = [];
+// `ordered` set — the categorical colour queue (21 slots), built above with the same
+// SET + flipping-semantic pattern as custom. Values are the flipping semantic-tier vars, so a
+// single manifest works in both themes. Slots are numeric-sorted (order-1 … order-21), so
+// orderedBase[i] is slot i+1; consumers (card-tabs, slider) index these directly.
+const orderedBase = orderedSlots.map(
+  (n) => `var(--ds-color-background-ordered-${n}-base)`,
+);
+const orderedHover = orderedSlots.map(
+  (n) => `var(--ds-color-background-ordered-${n}-hover)`,
+);
 
 writeFileSync(
   resolve(ROOT, 'dist/js/names.js'),
