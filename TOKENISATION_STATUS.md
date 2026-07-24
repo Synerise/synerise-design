@@ -112,7 +112,7 @@ Icons: DS icons are `fill="currentColor"` with `color: inherit`, so colour them 
 
 Single at-a-glance view of every colour-bearing component: migration **status** + whether it is **awaiting token definitions** (a pending module namespace, a missing semantic role, or a `.less`/de-antd blocker). Sourced from the two detailed tables below + `TOKEN_AUDIT.md` blockers. **Update this table (and the detailed one) whenever `apply-tokens` migrates a component.**
 
-**Totals:** ✅ 94 done · 🚧 9 partial · ❌ 5 not started · ⛔ 3 deprecated · ➖ 4 n/a — **12 awaiting token defs** (flag in last column).
+**Totals:** ✅ 95 done · 🚧 9 partial · ❌ 4 not started · ⛔ 3 deprecated · ➖ 4 n/a — **12 awaiting token defs** (flag in last column).
 
 | Component | Layer | Status | Awaiting token defs / blocker |
 |---|---|:--:|---|
@@ -200,7 +200,7 @@ Single at-a-glance view of every colour-bearing component: migration **status** 
 | progressbar | module | ✅ | — |
 | radio | module | ✅ | — |
 | result | semantic | ✅ | — |
-| scrollbar | semantic | ❌ | **.less** |
+| scrollbar | semantic | ✅ | ⚑ resting thumb grey-300→base-strong (grey-400); veil kept (no light-scrim token) |
 | search | module | ✅ | — |
 | search-bar | module | ✅ | — |
 | section-message | module | ✅ | — |
@@ -338,7 +338,7 @@ These components use `theme.palette` / hardcoded colors but do not yet have dedi
 | popover | 0 | No | 0 | 2 | |
 | [radio](#checkbox--radio) | 0 | No | 3 | 4 | :white_check_mark: fully tokenised — description + disabled-opacity → `--ds-form-radio-*`; solid+checked-hover bg/border/box-shadow blue-500 → semantic `background-brand-solidhover` (exact) |
 | result | 0 | No | 0 | 0 | :white_check_mark: tokenised — semantic (2026-07-21 pass); status-icon map → icon-* token vars |
-| scrollbar | 17 | Yes (2) | 0 | 17 | |
+| scrollbar | 17 | Yes (2) | 0 | 17 | :white_check_mark: tokenised (2026-07-24) — `.less` kept (react-perfect-scrollbar globals) now on `var(--ds-*)`; dropped dead `variables.less` import; ⚑ resting thumb grey-300→base-strong; veil rgba kept |
 | search | 13 | No | 4 | 8 | `.less` removed (deantd) |
 | search-bar | 12 | No | 1 | 0 | |
 | [select](#form-group-form--input--select--switch) | 13 | Yes (2) | 6 | 3 | :construction: TS → `--ds-form-field-*` + semantic; search-icon data-URI + `.less` deferred |
