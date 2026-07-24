@@ -1,11 +1,12 @@
 import React from 'react';
 
-import { useTheme } from '@synerise/ds-core';
-
 import * as S from '../Slider.styles';
 import { type ColorMap } from '../Slider.types';
 import { useSliderContext } from '../context/SliderContext';
-import { getVisibleSectionsForType } from '../utils/Slider.utils';
+import {
+  getVisibleSectionsForType,
+  resolveTrackColor,
+} from '../utils/Slider.utils';
 
 type SliderSectionsProps = {
   type: 'range' | 'allocation' | 'default';
@@ -27,7 +28,6 @@ export const SliderSections = ({
   type = 'default',
   reverse,
 }: SliderSectionsProps) => {
-  const theme = useTheme();
   const { rangerInstance } = useSliderContext();
   const steps = rangerInstance.getSteps();
   return (
@@ -44,7 +44,10 @@ export const SliderSections = ({
               $left={normalisedSection.left}
               $width={normalisedSection.width}
               data-color={tracksColorMap[index]}
-              $color={theme.palette[tracksColorMap[index]]}
+              $color={resolveTrackColor(
+                tracksColorMap[index],
+                'var(--ds-slider-fill-default)',
+              )}
             />
           );
         })}

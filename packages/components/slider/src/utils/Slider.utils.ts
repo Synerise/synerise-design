@@ -1,11 +1,21 @@
 import { type ReactNode } from 'react';
 
-import { defaultColorsOrder } from '@synerise/ds-core';
+import { orderedBase } from '@synerise/ds-tokens/names';
+import { resolveCustomColor } from '@synerise/ds-utils';
 
 import { type ColorMap, type MarkObj } from '../Slider.types';
 
 export const getDefaultTooltipPopupContainer = (): HTMLElement =>
   document.querySelector(`.ant-slider`) as HTMLElement;
+
+// Resolve a `tracksColorMap` / `lineColor` value to a CSS colour via the shared ds-utils helper: an
+// already-resolved token/hex is used verbatim, a palette key ('blue-600') maps to its reversible
+// custom-colour token, and anything unmapped falls back to the given predefined token — never
+// theme.palette (which is being retired), never an undefined lookup.
+export const resolveTrackColor = (
+  value: string | undefined,
+  fallback: string,
+): string => resolveCustomColor(value, fallback, { passthroughResolved: true });
 
 export const couldBeInverted = (
   value: number | readonly number[],
@@ -19,10 +29,13 @@ export const getDefaultColorMap = (
 ) => {
   const colorMap: ColorMap = {};
   if (type !== 'allocation' && handleCount <= 2) {
-    colorMap['0'] = 'green-600';
+    // Default single / 2-handle fill: the slider module default (positive/success green).
+    colorMap['0'] = 'var(--ds-slider-fill-default)';
   } else {
-    defaultColorsOrder.forEach((item, index) => {
-      colorMap[index] = item;
+    // Categorical queue: each segment takes the next `ordered` token slot (a flipping
+    // var(--ds-color-background-ordered-<N>-base) string), replacing the old palette keys.
+    orderedBase.forEach((token, index) => {
+      colorMap[index] = token;
     });
   }
   return colorMap;

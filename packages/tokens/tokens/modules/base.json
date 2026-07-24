@@ -3335,55 +3335,150 @@
     }
   },
   "card": {
-    "bg": {
-      "default": {
-        "$type": "color",
-        "$value": "{color.background.base.default}",
-        "$description": "Card background color for default state"
+    "variant": {
+      "white": {
+        "bg": {
+          "$type": "color",
+          "$value": "{color.background.base.default}",
+          "$description": "Card white variant background (white)"
+        }
       },
-      "hover": {
-        "$type": "color",
-        "$value": "{color.mono.00}",
-        "$description": "Card background color for hover state (same as default)"
+      "grey": {
+        "bg": {
+          "$type": "color",
+          "$value": "{color.background.base.subtle}",
+          "$description": "Card grey variant background (grey-050)"
+        }
       },
-      "active": {
-        "$type": "color",
-        "$value": "{color.mono.00}",
-        "$description": "Card background color for active state (same as default)"
-      },
-      "disabled": {
-        "$type": "color",
-        "$value": "{color.mono.00}",
-        "$description": "Card background color for disabled state (same as default, opacity applied separately)"
-      }
-    },
-    "border": {
-      "radius": {
-        "$type": "dimension",
-        "$value": "{border.radius.sm}",
-        "$description": "Card border radius (3px)"
-      },
-      "width": {
-        "$type": "dimension",
-        "$value": "0px",
-        "$description": "Card border width (no border)"
+      "outline": {
+        "bg": {
+          "$type": "color",
+          "$value": "{color.transparent}",
+          "$description": "Card outline variant background (transparent)"
+        },
+        "border": {
+          "$type": "color",
+          "$value": "{color.border.base.default}",
+          "$description": "Card outline variant inset ring border (grey-200)"
+        }
       }
     },
     "shadow": {
-      "default": {
+      "raised": {
         "$type": "boxShadow",
-        "$value": "{shadow.level.1}",
-        "$description": "Card shadow for default state (level 1)"
+        "$value": "{Shadows.Shadow 1}",
+        "$description": "Card elevation for -shadow variants (0 4px 12px @0.04 ~ shadow-1)"
       },
       "hover": {
         "$type": "boxShadow",
-        "$value": "{shadow.level.2}",
-        "$description": "Card shadow for hover state (level 2)"
+        "$value": "{Shadows.Shadow 2}",
+        "$description": "Card hover/raised/lively elevation (box-shadow-active ~ shadow-2)"
+      }
+    },
+    "header": {
+      "title": {
+        "$type": "color",
+        "$value": "{color.text.base.default}",
+        "$description": "Card header title text (grey-800)"
       },
-      "active": {
-        "$type": "boxShadow",
-        "$value": "{shadow.level.2}",
-        "$description": "Card shadow for active state (level 2)"
+      "bg": {
+        "$type": "color",
+        "$value": "{color.background.base.default}",
+        "$description": "Card header background - defaultHeaderBackgroundColor (white)"
+      },
+      "borderBottom": {
+        "$type": "color",
+        "$value": "{color.border.base.subtle}",
+        "$description": "Card header bottom border (grey-100)"
+      },
+      "divider": {
+        "$type": "color",
+        "$value": "{color.border.base.default}",
+        "$description": "Card compact header description divider (grey-200)"
+      },
+      "padding": {
+        "$type": "dimension",
+        "$value": "{inset.xl}",
+        "$description": "Card header padding (24px)"
+      },
+      "badge": {
+        "default": {
+          "bg": {
+            "$type": "color",
+            "$value": "{color.transparent}",
+            "$description": "Card badge default bg (transparent)"
+          },
+          "icon": {
+            "$type": "color",
+            "$value": "{color.icon.base.muted}",
+            "$description": "Card badge default icon (grey-400)"
+          },
+          "border": {
+            "$type": "color",
+            "$value": "{color.border.base.strongHover}",
+            "$description": "Card badge default inset ring (grey-400)"
+          }
+        },
+        "checked": {
+          "bg": {
+            "$type": "color",
+            "$value": "{color.transparent}",
+            "$description": "Card badge checked bg (transparent)"
+          },
+          "icon": {
+            "$type": "color",
+            "$value": "{color.icon.base.muted}",
+            "$description": "Card badge checked icon (grey-400)"
+          }
+        },
+        "success": {
+          "bg": {
+            "$type": "color",
+            "$value": "{color.background.success.solid}",
+            "$description": "Card badge success/validated bg (green-600)"
+          },
+          "icon": {
+            "$type": "color",
+            "$value": "{color.icon.onSolid.default}",
+            "$description": "Card badge success icon (white check)"
+          }
+        },
+        "warning": {
+          "bg": {
+            "$type": "color",
+            "$value": "{color.background.warning.solidHover}",
+            "$description": "Card badge warning bg (yellow-600)"
+          },
+          "icon": {
+            "$type": "color",
+            "$value": "{color.icon.onSolid.default}",
+            "$description": "Card badge warning icon (white)"
+          }
+        },
+        "error": {
+          "bg": {
+            "$type": "color",
+            "$value": "{color.background.danger.solid}",
+            "$description": "Card badge error bg (red-600)"
+          },
+          "icon": {
+            "$type": "color",
+            "$value": "{color.icon.onSolid.default}",
+            "$description": "Card badge error icon (white)"
+          }
+        }
+      }
+    },
+    "footer": {
+      "bg": {
+        "$type": "color",
+        "$value": "{color.background.base.default}",
+        "$description": "Card footer background (white)"
+      },
+      "border": {
+        "$type": "color",
+        "$value": "{color.border.base.subtle}",
+        "$description": "Card footer top border (grey-100)"
       }
     },
     "content": {
@@ -3393,11 +3488,11 @@
         "$description": "Card content padding (24px)"
       }
     },
-    "header": {
-      "padding": {
+    "border": {
+      "radius": {
         "$type": "dimension",
-        "$value": "{inset.xl}",
-        "$description": "Card header padding (24px)"
+        "$value": "{border.radius.sm}",
+        "$description": "Card border radius (3px)"
       }
     },
     "disabled": {
@@ -3935,12 +4030,12 @@
           },
           "active": {
             "$type": "color",
-            "$value": "{color.background.custom.solid}",
+            "$value": "{color.background.ordered.base}",
             "$description": "Card tab (grey) background - active (custom-color)"
           },
           "activeHover": {
             "$type": "color",
-            "$value": "{color.background.custom.solidHover}",
+            "$value": "{color.background.ordered.hover}",
             "$description": "Card tab (grey) background - active hover (custom-color, lighter)"
           },
           "validateActive": {
@@ -4067,7 +4162,7 @@
         "dot": {
           "bg": {
             "$type": "color",
-            "$value": "{color.background.custom.solid}",
+            "$value": "{color.background.ordered.base}",
             "$description": "Card tab (grey) color-dot interior - inactive (custom-color); active=transparent"
           },
           "ring": {
@@ -4092,6 +4187,32 @@
             "$value": "{color.border.danger.default}",
             "$description": "Card tab (grey) border - validate (red-600)"
           }
+        },
+        "tag": {
+          "bg": {
+            "default": {
+              "$type": "color",
+              "$value": "{color.background.ordered.base}",
+              "$description": "Card-tab prefix tag - tlo gdy tab NIE aktywny (kolor slotu ordered)"
+            },
+            "active": {
+              "$type": "color",
+              "$value": "{color.background.base.default}",
+              "$description": "Card-tab prefix tag - tlo gdy tab aktywny (bialy/ciemny default bg)"
+            }
+          },
+          "text": {
+            "default": {
+              "$type": "color",
+              "$value": "{color.text.onSolid.default}",
+              "$description": "Card-tab prefix tag - tekst gdy tab NIE aktywny (bialy na kolorze slotu)"
+            },
+            "active": {
+              "$type": "color",
+              "$value": "{color.text.ordered.base}",
+              "$description": "Card-tab prefix tag - tekst gdy tab aktywny (kolor slotu ordered)"
+            }
+          }
         }
       },
       "white": {
@@ -4113,12 +4234,12 @@
           },
           "active": {
             "$type": "color",
-            "$value": "{color.background.custom.solid}",
+            "$value": "{color.background.ordered.base}",
             "$description": "Card tab (white) background - active (custom-color)"
           },
           "activeHover": {
             "$type": "color",
-            "$value": "{color.background.custom.solidHover}",
+            "$value": "{color.background.ordered.hover}",
             "$description": "Card tab (white) background - active hover (custom-color, lighter)"
           },
           "validateActive": {
@@ -4245,7 +4366,7 @@
         "dot": {
           "bg": {
             "$type": "color",
-            "$value": "{color.background.custom.solid}",
+            "$value": "{color.background.ordered.base}",
             "$description": "Card tab (white) color-dot interior - inactive (custom-color); active=transparent"
           },
           "ring": {
@@ -4258,6 +4379,32 @@
           "$type": "boxShadow",
           "$value": "{Shadows.Shadow 1}",
           "$description": "Card tab (white) elevation shadow (shadow-1)"
+        },
+        "tag": {
+          "bg": {
+            "default": {
+              "$type": "color",
+              "$value": "{color.background.ordered.base}",
+              "$description": "Card-tab prefix tag - tlo gdy tab NIE aktywny (kolor slotu ordered)"
+            },
+            "active": {
+              "$type": "color",
+              "$value": "{color.background.base.default}",
+              "$description": "Card-tab prefix tag - tlo gdy tab aktywny (bialy/ciemny default bg)"
+            }
+          },
+          "text": {
+            "default": {
+              "$type": "color",
+              "$value": "{color.text.onSolid.default}",
+              "$description": "Card-tab prefix tag - tekst gdy tab NIE aktywny (bialy na kolorze slotu)"
+            },
+            "active": {
+              "$type": "color",
+              "$value": "{color.text.ordered.base}",
+              "$description": "Card-tab prefix tag - tekst gdy tab aktywny (kolor slotu ordered)"
+            }
+          }
         }
       }
     }
@@ -4386,6 +4533,25 @@
         "$value": "{color.text.base.default}",
         "$description": "Calendar weekday header labels text (grey-800)"
       }
+    },
+    "nav": {
+      "title": {
+        "default": {
+          "$type": "color",
+          "$value": "{color.text.base.default}",
+          "$description": "Calendar nav - clickable month/year title default text (grey-800, wg kodu inherited)"
+        },
+        "hover": {
+          "$type": "color",
+          "$value": "{color.text.brand.default}",
+          "$description": "Calendar nav - clickable month/year title hover text (blue-600)"
+        },
+        "active": {
+          "$type": "color",
+          "$value": "{color.text.brand.default}",
+          "$description": "Calendar nav - clickable month/year title active text (blue-600)"
+        }
+      }
     }
   },
   "image": {
@@ -4492,6 +4658,35 @@
     }
   },
   "code-snippet": {
+    "surface": {
+      "bg": {
+        "$type": "color",
+        "$value": "{color.background.base.muted}",
+        "$description": "Code-snippet block surface bg (grey-100); tez fade-mask MultiCode"
+      },
+      "text": {
+        "$type": "color",
+        "$value": "{color.text.base.muted}",
+        "$description": "Code-snippet block/code text (grey-600)"
+      }
+    },
+    "copy": {
+      "bg": {
+        "$type": "color",
+        "$value": "{color.background.base.muted}",
+        "$description": "Code-snippet copy button bg (grey-100)"
+      },
+      "icon": {
+        "$type": "color",
+        "$value": "{color.icon.base.muted}",
+        "$description": "Code-snippet copy icon - default (grey-400)"
+      },
+      "iconHover": {
+        "$type": "color",
+        "$value": "{color.icon.brand.default}",
+        "$description": "Code-snippet copy icon - hover (blue-600)"
+      }
+    },
     "syntax": {
       "base": {
         "$type": "color",
@@ -6463,21 +6658,9 @@
           "$description": "Progressbar bar fill color (filled portion, default green)"
         },
         "multivalue": {
-          "1": {
-            "$type": "color",
-            "$value": "{color.background.custom.solidHover}",
-            "$description": "Multivalue progress bar — slot 1 (designer assigns custom-color theme per slot)"
-          },
-          "2": {
-            "$type": "color",
-            "$value": "{color.background.custom.solidHover}",
-            "$description": "Multivalue progress bar — slot 2"
-          },
-          "3": {
-            "$type": "color",
-            "$value": "{color.background.custom.solidHover}",
-            "$description": "Multivalue progress bar — slot 3"
-          }
+          "$type": "color",
+          "$value": "{color.background.custom.solidHover}",
+          "$description": "Multivalue progress bar — slot 1 (designer assigns custom-color theme per slot)"
         }
       }
     },
@@ -6486,6 +6669,13 @@
         "$type": "dimension",
         "$value": "{inline.sm}",
         "$description": "Gap between inline progressbar bar and value text (8px)"
+      }
+    },
+    "percent": {
+      "color": {
+        "$type": "color",
+        "$value": "{color.text.base.default}",
+        "$description": "Progress-bar - kolor procentow (PercentWrapper, grey-800)"
       }
     }
   },
@@ -6711,6 +6901,119 @@
           "$value": "{color.text.onSolid.default}",
           "$description": "Time item text — selected state (white)"
         }
+      }
+    }
+  },
+  "slider": {
+    "fill": {
+      "default": {
+        "$type": "color",
+        "$value": "{color.background.success.solid}",
+        "$description": "Slider - domyslne wypelnienie single/nie-allocation (green-600 wg kodu)"
+      },
+      "ordered": {
+        "$type": "color",
+        "$value": "{color.background.ordered.base}",
+        "$description": "Slider allocation - wypelnienie segmentu (kolor slotu ordered, mode per segment)"
+      }
+    },
+    "dot": {
+      "bg": {
+        "$type": "color",
+        "$value": "{color.background.ordered.base}",
+        "$description": "Slider allocation - kropka na granicy segmentu (kolor slotu ordered)"
+      }
+    },
+    "tag": {
+      "bg": {
+        "$type": "color",
+        "$value": "{color.background.ordered.base}",
+        "$description": "Slider allocation - tlo tagu A/B/C (kolor slotu ordered, mode per segment; bez inwersji)"
+      },
+      "text": {
+        "$type": "color",
+        "$value": "{color.text.onSolid.default}",
+        "$description": "Slider allocation - tekst tagu (bialy na kolorze slotu)"
+      }
+    },
+    "track": {
+      "bg": {
+        "default": {
+          "$type": "color",
+          "$value": "{color.border.base.default}",
+          "$description": "Slider - tor/linia default (grey-200 wg kodu)"
+        },
+        "hover": {
+          "$type": "color",
+          "$value": "{color.border.base.strong}",
+          "$description": "Slider - tor/linia hover (grey-300 wg kodu; kod uzywa SliderLine:hover)"
+        }
+      }
+    },
+    "handle": {
+      "bg": {
+        "default": {
+          "$type": "color",
+          "$value": "{color.background.base.strong}",
+          "$description": "Slider - uchwyt default (grey-400 wg kodu)"
+        },
+        "active": {
+          "$type": "color",
+          "$value": "{color.background.brand.solid}",
+          "$description": "Slider - uchwyt aktywny/dragged (blue-600 wg kodu)"
+        },
+        "disabled": {
+          "$type": "color",
+          "$value": "{color.border.base.strong}",
+          "$description": "Slider - uchwyt disabled/blocked (grey-300 wg kodu)"
+        }
+      },
+      "border": {
+        "$type": "color",
+        "$value": "{color.background.base.default}",
+        "$description": "Slider - obwodka uchwytu (bialy 3px wg kodu)"
+      }
+    },
+    "value": {
+      "bg": {
+        "active": {
+          "$type": "color",
+          "$value": "{color.background.overlay.solid}",
+          "$description": "Slider - dymek wartosci nad uchwytem gdy aktywny (grey-800 scrim)"
+        }
+      },
+      "text": {
+        "active": {
+          "$type": "color",
+          "$value": "{color.text.onSolid.default}",
+          "$description": "Slider - tekst dymka wartosci aktywny (bialy)"
+        },
+        "default": {
+          "$type": "color",
+          "$value": "{color.text.base.default}",
+          "$description": "Slider - tekst dymka wartosci nieaktywny (grey-800)"
+        }
+      },
+      "shadow": {
+        "active": {
+          "$type": "boxShadow",
+          "$value": "{Shadows.Shadow 2}",
+          "$description": "Slider - cien dymka wartosci aktywny (box-shadow-2)"
+        }
+      }
+    },
+    "percent": {
+      "text": {
+        "$type": "color",
+        "$value": "{color.text.base.default}",
+        "$description": "Slider - kolor procentow pod sliderem (grey-800, spojne z progressbar.percent)"
+      }
+    },
+    "scale": {
+      "text": {
+        "$type": "color",
+        "$value": "{color.text.base.disabled}",
+        "$description": "Slider - skala min/max (0..100) pod sliderem (grey-400)"
       }
     }
   }

@@ -425,6 +425,16 @@
           "$value": "{color-dark.violet.700}",
           "$description": "Solidne tło Entity — active dark"
         }
+      },
+      "ordered": {
+        "base": {
+          "$type": "color",
+          "$value": "{color-dark.ordered.base}"
+        },
+        "hover": {
+          "$type": "color",
+          "$value": "{color-dark.ordered.hover}"
+        }
       }
     },
     "text": {
@@ -558,6 +568,12 @@
           "$type": "color",
           "$value": "{color-dark.violet.700}",
           "$description": "Kolor tekstu Entity — dark mode"
+        }
+      },
+      "ordered": {
+        "base": {
+          "$type": "color",
+          "$value": "{color-dark.ordered.base}"
         }
       }
     },

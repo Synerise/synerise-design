@@ -2,6 +2,12 @@
 
 Tracks the progress of migrating components from `theme.palette` / hardcoded values to CSS custom properties generated from the Token Studio design tokens in `packages/tokens/`.
 
+> **:warning: TEMP — remove before merge to master.** Chromatic snapshots are globally
+> disabled in `packages/storybook/.storybook/preview.tsx`
+> (`parameters.chromatic = { disableSnapshot: true }`) to skip baseline churn while token
+> colours are still in flux. This **must** be reverted before `chore/tokenisation` merges to
+> master, otherwise visual regression coverage stays off for the whole system.
+
 > **Merge batch 2026-07-23.** Twelve tokenisation branches merged into `chore/tokenisation` today:
 > `date-picker-calendar-tokens`, `avatar-tokens`, `tag-tokens`, `code-snippet-tokens`, `cruds-tokens`,
 > `date-range-picker-tokens`, `tags-tokens`, `tooltip-tokens`, `code-area-tokens`, `logic-tokens`,
@@ -106,7 +112,7 @@ Icons: DS icons are `fill="currentColor"` with `color: inherit`, so colour them 
 
 Single at-a-glance view of every colour-bearing component: migration **status** + whether it is **awaiting token definitions** (a pending module namespace, a missing semantic role, or a `.less`/de-antd blocker). Sourced from the two detailed tables below + `TOKEN_AUDIT.md` blockers. **Update this table (and the detailed one) whenever `apply-tokens` migrates a component.**
 
-**Totals:** ✅ 80 done · 🚧 15 partial · ❌ 15 not started · ⛔ 3 deprecated · ➖ 2 n/a — **22 awaiting token defs** (flag in last column).
+**Totals:** ✅ 84 done · 🚧 12 partial · ❌ 12 not started · ⛔ 3 deprecated · ➖ 4 n/a — **23 awaiting token defs** (flag in last column).
 
 | Component | Layer | Status | Awaiting token defs / blocker |
 |---|---|:--:|---|
@@ -114,31 +120,31 @@ Single at-a-glance view of every colour-bearing component: migration **status** 
 | ai-chat | module | ➖ | — |
 | alert | semantic | ⛔ | — |
 | app-menu | module | ✅ | — |
-| autocomplete | semantic | ✅ | — |
+| autocomplete | module | ✅ | — |
 | avatar | module | ✅ | icon-bg/icon-icon/text-bg variant tokens deferred → UX (shared categorical palette, see card-tabs) |
-| avatar-group | semantic | ✅ | — |
+| avatar-group | module | ✅ | — |
 | badge | module | ✅ | — |
 | banner | semantic | ✅ | — |
-| block | semantic | ❌ | — |
+| block | semantic | ✅ | — |
 | broadcast-bar | module | ✅ | — |
 | button-expander | module | ✅ | — |
 | button-group | semantic | ❌ | — |
 | buttons | module | ✅ | — |
 | card | module | ✅ | — |
 | card-select | module | ✅ | — |
-| card-tabs | semantic | ❌ | **card-tabs tokens pending** |
+| card-tabs | module | ✅ | fully on `--ds-card-tabs-variant-*` module tokens (bg/border/text/icon/tag/dot/handler/shadow/opacity), threading grey/white by `greyBackground`; per-tab active colour from the `ordered` categorical set (order-1..21); `grey-100` pressed → semantic base-muted. ⚑ invalid-hover/pressed bg now `validateactivehover` (darker). Kept: dynamic `color`-prop lookups + decorative caret gradients. `svg{fill}` still explicit token (currentColor cleanup deferred) |
 | carousel | semantic | ✅ | — |
 | cascader | semantic | ❌ | dropdown/cascader pending |
-| checkbox | semantic | 🚧 | — |
+| checkbox | module | ✅ | — |
 | code-area | module (form) | ✅ | — |
 | code-snippet | module | ✅ | .less = font-face only |
-| collector | semantic | ✅ | — |
-| color-picker | semantic | ✅ | — |
+| collector | module | ✅ | — |
+| color-picker | module | ✅ | — |
 | column-manager | semantic | ✅ | — |
-| completed-within | semantic | ✅ | — |
+| completed-within | module | ✅ | — |
 | condition | semantic | ✅ | connector tokens pending |
 | confirmation | semantic | ✅ | — |
-| context-selector | semantic | ✅ | — |
+| context-selector | module | ✅ | — |
 | copy-icon | semantic | ✅ | — |
 | cruds | module | ✅ | — |
 | date-picker | module (form+calendar+dropdown) | ✅ | — |
@@ -148,39 +154,39 @@ Single at-a-glance view of every colour-bearing component: migration **status** 
 | drawer | semantic | ❌ | **deferred — de-antd first (.less)** |
 | dropdown | module | 🚧 | dropdown bottom-action / back-action / search-icon pending |
 | editable-items-list | semantic | ✅ | — |
-| emoji-picker | semantic | 🚧 | list-item header role pending |
+| emoji-picker | semantic | ✅ | — |
 | empty-states | semantic | ✅ | — |
-| estimation | semantic | ✅ | — |
-| factors | semantic | 🚧 | dropdown + list-item header pending; icon-danger-hover gap |
+| estimation | module | ✅ | — |
+| factors | module | 🚧 | 2 danger-hover refs pending --ds-color-*-danger-hover (red-500) |
 | field-set | semantic | ✅ | — |
 | file-uploader | semantic | ❌ | **deferred — file-uploader module pending (whole component)** |
-| filter | semantic | ❌ | drag-placeholder deferred pending Figma |
-| flag | semantic | ❌ | — |
+| filter | semantic | ✅ | — |
+| flag | semantic | ➖ | — |
 | footer | semantic | ✅ | — |
-| form | module | 🚧 | — |
+| form | module | ✅ | — |
 | form-field | semantic | 🚧 | form counter role pending |
-| format-picker | semantic | ✅ | — |
-| icon-picker | semantic | ✅ | — |
+| format-picker | module | ✅ | — |
+| icon-picker | module | ✅ | — |
 | image | module | ✅ | — |
-| information-card | semantic | ✅ | — |
+| information-card | module | ✅ | — |
 | inline-alert | module | ✅ | — |
 | inline-edit | module | ✅ | — |
 | inline-select | module | ✅ | — |
-| input | semantic | 🚧 | — |
-| input-number | semantic | ✅ | — |
+| input | module | ✅ | — |
+| input-number | module | ✅ | — |
 | insight | semantic | ✅ | — |
 | item-filter | semantic | ✅ | deprecated pkg — tokenised on request |
-| item-picker | semantic | ✅ | — |
+| item-picker | module | ✅ | — |
 | items-roll | semantic | ✅ | — |
-| layout | semantic | ✅ | — |
+| layout | module | ✅ | — |
 | list | semantic | ❌ | **.less / de-antd** |
 | list-item | module | ✅ | — |
 | loader | semantic | ✅ | — |
 | logic | semantic | ✅ | ⚑ review: bg-token-for-text mismatch + `background-danger-solidActive`=red-600 (upstream) |
 | manageable-list | semantic | ✅ | — |
-| mapping | semantic | ✅ | — |
+| mapping | module | ✅ | — |
 | menu | semantic | ⛔ | — |
-| metric-card | semantic | ✅ | — |
+| metric-card | module | ✅ | — |
 | modal | module | ✅ | — |
 | navbar | module | ✅ | — |
 | operators | semantic | ✅ | — |
@@ -190,28 +196,28 @@ Single at-a-glance view of every colour-bearing component: migration **status** 
 | panel | semantic | ✅ | — |
 | panels-resizer | semantic | ✅ | — |
 | popconfirm | module | ✅ | — |
-| popover | semantic | ❌ | — |
+| popover | semantic | ➖ | — |
 | progressbar | module | ✅ | — |
-| radio | semantic | 🚧 | — |
+| radio | module | ✅ | — |
 | result | semantic | ✅ | — |
 | scrollbar | semantic | ❌ | **.less** |
-| search | semantic | ✅ | — |
+| search | module | ✅ | — |
 | search-bar | module | ✅ | — |
 | section-message | module | ✅ | — |
-| select | semantic | 🚧 | — |
-| short-cuts | semantic | ❌ | shadow token gap |
+| select | module | 🚧 | .less / de-antd |
+| short-cuts | semantic | 🚧 | box-shadow rgba(35,41,54) has no --ds-shadows-shadow-* match; ⚑ dark-key bg grey-600→grey-700 |
 | sidebar | semantic | ✅ | — |
-| sidebar-object | semantic | ✅ | — |
+| sidebar-object | module | ✅ | — |
 | skeleton | module | 🚧 | shimmer keyframe opacity token pending |
-| slider | semantic | ❌ | focus-ring token gap |
+| slider | module | ✅ | chrome fully on `--ds-slider-*` module tokens (track/handle/value-tooltip/tag) landed via sync !3869; track fill = `--ds-slider-fill-default` (default) + `ordered` categorical slots (allocation/3+-handle); `resolveTrackColor` keeps custom `tracksColorMap` palette keys. ⚑ none (module keeps disabled-handle grey-300). Kept literal: active-handle focus-ring `rgba(35,138,254,.25)` — needs a translucent focus-ring token (design-tokens follow-up) |
 | sortable | semantic | ✅ | — |
-| status | semantic | ❌ | — |
+| status | module | ✅ | — |
 | status-pill | module | ✅ | — |
 | step-card | semantic | ✅ | — |
-| stepper | module | 🚧 | — |
+| stepper | module | ✅ | — |
 | subject | semantic | ✅ | — |
 | subtle-form | semantic | ❌ | translucent-surface token gap |
-| switch | semantic | 🚧 | — |
+| switch | module | ✅ | — |
 | table | semantic | ⛔ | — |
 | table-new | semantic | 🚧 | colours tokenised → semantic (2026-07-23); WIP: feature still in active dev; kept dynamic: translucent scroll-shadow (grey-500 @12%, no token) + runtime tree-level/child-row palette lookups |
 | tabs | module | 🚧 | — |
@@ -221,7 +227,7 @@ Single at-a-glance view of every colour-bearing component: migration **status** 
 | toast | module | ✅ | — |
 | toolbar | semantic | ✅ | — |
 | tooltip | module | 🚧 | key-cap tokens (`--ds-tooltip-key-*`) pending |
-| tray | semantic | ✅ | — |
+| tray | module | ✅ | — |
 | typography | semantic | ✅ | — |
 | unordered-list | semantic | ✅ | — |
 | wizard | semantic | ✅ | — |
@@ -243,7 +249,7 @@ These components have dedicated token definitions in `modules/base.json`.
 | [avatar](#avatar) | `avatar` | :white_check_mark: | :heavy_minus_sign: | :white_check_mark: | :x: | 0 | No | static colors done; dynamic bg kept (user-driven); `.less` removed (deantd) |
 | [buttons](#button) | `button` | :white_check_mark: | :construction: | :x: | :x: | 11 | No | :warning: all standard variants tokenised (secondary/tertiary/ghost backgrounds via alpha-modifier tokens); redesigns applied (secondary pressed blue→grey, tertiary/ghost hover-text shifts) — flag for review; custom-color dynamic; readOnly freeze + ripple on palette |
 | [button-expander](#button) | `button` | :white_check_mark: | :heavy_minus_sign: | :heavy_minus_sign: | :x: | 1 | — | bg/border/icon tokenised |
-| [card](#card) | `card` | :white_check_mark: | :construction: | :white_check_mark: | :x: | 0 | No | surface+shadow-1 done; active shadow + CardBadge dynamic deferred |
+| [card](#card) | `card` | :white_check_mark: | :white_check_mark: | :white_check_mark: | :x: | 2 | No | redesign adopted (2026-07-23): variant white/grey/outline + header/footer/badge + raised/hover shadow; ⚑ badge-warning bg yellow-500→600, raised/lively @box-shadow-active→shadow-2 |
 | [card-select](#card-select) | `card-select` | :white_check_mark: | :white_check_mark: | :white_check_mark: | :x: | 4 | No | borders/shadow/opacity tokenised; check-token naming flagged for UX |
 | [description-line](#description) | `description` | :white_check_mark: | :heavy_minus_sign: | :heavy_minus_sign: | :heavy_minus_sign: | 0 | No | module + semantic; inactive star deferred |
 | [divider](#divider) | `divider` | :white_check_mark: | :heavy_minus_sign: | :heavy_minus_sign: | :x: | 0 | No | line + label tokenised; colour diffs resolved by sync `e0301675d` |
@@ -257,7 +263,7 @@ These components have dedicated token definitions in `modules/base.json`.
 | page | `page-header` | :heavy_minus_sign: | :heavy_minus_sign: | :heavy_minus_sign: | :heavy_minus_sign: | — | No | `--ds-page-bg` unused (no full-page bg in code) |
 | [page-header](#page-header) | `page-header` | :white_check_mark: | :white_check_mark: | :heavy_minus_sign: | :x: | 0 | No | module + semantic; shadow-1 |
 | [pagination](#pagination) | `pagination` | :white_check_mark: | :heavy_minus_sign: | :x: | :x: | 0 | No | tokenised vs `--ds-pagination-*` (sync `66dddd0a` pass); jumper input via semantic |
-| [popconfirm](#popconfirm) | `popconfirm` | :white_check_mark: | :white_check_mark: | :heavy_minus_sign: | :heavy_minus_sign: | 1 | No | shadow-2; module renamed `popcornfirm`→`popconfirm` (sync `66dddd0a`); carousel dots now in `.styles.tsx` (`.less` removed) |
+| [popconfirm](#popconfirm) | `popconfirm` | :white_check_mark: | :white_check_mark: | :heavy_minus_sign: | :heavy_minus_sign: | 2 | No | shadow-2; module renamed `popcornfirm`→`popconfirm` (sync `66dddd0a`); carousel dots now in `.styles.tsx` (`.less` removed); ConfirmMessage title `#404c5a` → `-header-text` (⚑ grey-800) |
 | [progressbar](#progress-bar) | `progress-bar` | :white_check_mark: | :heavy_minus_sign: | :heavy_minus_sign: | :x: | 1 | No | track + value + default fill tokenised (sync `66dddd0a`); multivalue slots caller-driven (deferred) |
 | [status-pill](#status-status-pill) | `status` | :white_check_mark: | :heavy_minus_sign: | :heavy_minus_sign: | :x: | 2 | No | text/border split; custom kept dynamic |
 | [stepper](#stepper) | `stepper` | :construction: | :heavy_minus_sign: | :heavy_minus_sign: | :x: | 7 | No | :warning: done green→blue, active grey→blue; warning state migrated (sync `66dddd0a`); filled-circle content deferred |
@@ -277,16 +283,16 @@ These components use `theme.palette` / hardcoded colors but do not yet have dedi
 | avatar-group | 0 | No | 0 | 2 | :white_check_mark: tokenised — reuses **avatar** module (2026-07-21); 5 ⚑ shifts on +N chrome; 2 fan-out opacities kept |
 | badge | 11 | No | 4 | 4 | :white_check_mark: tokenised (2026-07-22) — badge module landed + applied: variant bg/text/ring tokens; `customColor` kept dynamic; ⚑ label grey-600→grey-500. `.less` removed (deantd) |
 | banner | 2 | No | 0 | 0 | :white_check_mark: tokenised — semantic (2026-07-20 pass); 2 palette = dynamic status-Tag defaults |
-| block | 6 | No | 0 | 0 | |
+| block | 6 | No | 0 | 0 | :white_check_mark: tokenised — semantic (2026-07-23) |
 | button-group | 6 | No | 4 | 0 | |
 | card-tabs | 68 | No | 2 | 4 | High palette count |
 | carousel | 0 | No | 0 | 0 | :white_check_mark: tokenised — semantic (2026-07-20 pass); new DS component, not in original audit |
 | cascader | 34 | No | 5 | 10 | |
-| [checkbox](#checkbox--radio) | 9 | No | 4 | 1 | :construction: TS focus/indeterminate/hover → `--ds-form-checkbox-*`; per-state colours now in `Checkbox.styles.ts` on palette (`.less` removed) + check icons (data-URI SVG) |
+| [checkbox](#checkbox--radio) | 0 | No | 4 | 1 | :white_check_mark: fully tokenised — focus/indeterminate/hover → `--ds-form-checkbox-*`; indeterminate-hover fill blue-500 → semantic `background-brand-solidhover` (exact); check icons = currentColor SVG |
 | code-area | 6 | No | 1 | 1 | :construction: field surface + error text → `--ds-form-*` (2026-07-20); Monaco constants (CSS-var constraint) + fullscreen deferred |
-| code-snippet | 14 | No¹ | 0 | 2 | :construction: chrome tokenised (2026-07-20); syntax theme + inline-code kept on palette (⚑ no code-syntax tokens). ¹`.less` = font-face only |
+| code-snippet | 14 | No¹ | 0 | 2 | :white_check_mark: fully tokenised (2026-07-23) — chrome→--ds-code-snippet-surface/copy, syntax→--ds-code-snippet-syntax-*, inline→--ds-code-snippet-inlinecode-*. ¹`.less` = font-face only |
 | collector | 11 | No | 1 | 2 | :construction: placeholder → `--ds-form-*` (2026-07-20); chips/dropdown deferred |
-| color-picker | 6 | No | 2 | 0 | :construction: field affix → `--ds-form-*` (2026-07-20); picker/swatches/dynamic deferred |
+| color-picker | 0 | No | 2 | 0 | :white_check_mark: field affix + picker panel → `--ds-form-*`/`--ds-dropdown-*` + semantic; `.react-colorful__pointer-fill` white → semantic `background-base-default` (exact); colour-value props stay dynamic |
 | column-manager | 0 | No | 1 | 5 | :white_check_mark: tokenised — semantic (2026-07-20 pass) |
 | completed-within | 1 | No | 1 | 3 | :construction: clear icon → `--ds-color-icon-danger-default` (2026-07-20); `Settings` panel bg `white` deferred (needs dropdown tokens) |
 | condition | 2 | No | 1 | 8 | :white_check_mark: semantic (2026-07-20); `ConditionConnections` `:before`/`:after` grey-300 kept per request |
@@ -299,20 +305,20 @@ These components use `theme.palette` / hardcoded colors but do not yet have dedi
 | drawer | 3 | Yes (1) | 1 | 0 | |
 | dropdown | 20 | No | 1 | 1 | |
 | editable-items-list | 0 | No | 0 | 0 | :white_check_mark: hardcoded add-icon `blue-600` removed — icon inherits ds-button (`mode: icon-label`) (2026-07-20) |
-| emoji-picker | 1 | No | 0 | 0 | :construction: search-icon `grey-600` removed — inherits default (2026-07-20); `EmojiList` `grey-500` deferred → pending list-item tokens |
+| emoji-picker | 0 | No | 0 | 0 | :white_check_mark: tokenised — search-icon `grey-600` removed — inherits default (2026-07-20); `EmojiList` category header `grey-500` → semantic `text-neutral-default` (exact) |
 | empty-states | 0 | No | 0 | 0 | :white_check_mark: tokenised — semantic (2026-07-20 pass) |
 | estimation | 0 | No | 0 | 0 | :white_check_mark: tokenised (2026-07-21); skeleton bar → progressbar module token, dot ring → semantic; per-entry dot fill stays dynamic |
-| factors | 16 | No | 2 | 0 | :construction: field action/search icons → `--ds-form-*` (2026-07-20); composition, rest deferred |
+| factors | 16 | No | 2 | 0 | :construction: (2026-07-23) type-selector bg/check-icon, array delete-icon + count-pill danger bg/onsolid text, relative-date clear + dropdown-footer/icons, parameter + search text, text-modal brand → semantic; count-pill default grey-600 bg kept dynamic; 2 red-500 danger-hover kept + flagged (no --ds-color-*-danger-hover) |
 | field-set | 0 | No | 0 | 0 | :white_check_mark: tokenised — semantic (2026-07-20 pass) |
 | file-uploader | 152 | No | 0 | 7 | Highest palette count |
-| filter | 3 | No | 0 | 1 | |
+| filter | 3 | No | 0 | 1 | :white_check_mark: tokenised — semantic (2026-07-23); placeholder bg→brand-subtle, border→border-brand, title→text-base-default |
 | flag | 0 | No | 0 | 34 | No palette, heavy opacity |
 | footer | 0 | No | 0 | 0 | :white_check_mark: tokenised — semantic (2026-07-20 pass) |
 | form-field | 1 | No | 0 | 0 | :construction: tooltip icon → semantic `--ds-color-icon-base-muted` (2026-07-21); `RightSide` counter grey-500 deferred → `form` token |
 | format-picker | 6 | No | 0 | 0 | :construction: currency select field → `--ds-form-*` (2026-07-20); panel/list-item deferred |
 | icon-picker | 2 | No | 0 | 0 | :construction: clear icon → semantic `--ds-color-icon-danger-default`; search/no-result icons inherit default (2026-07-21); overlay bg + title deferred → dropdown/list-item tokens |
 | information-card | 3 | No | 2 | 2 | |
-| [input](#form-group-form--input--select--switch) | 49 | No | 14 | 2 | :construction: text → `--ds-form-field-*`/`--ds-form-icon-*` + semantic; field bg/border/hover/focus/disabled still palette in `Input.styles.tsx` (`.less` removed) |
+| [input](#form-group-form--input--select--switch) | 0 | No | 14 | 2 | :white_check_mark: fully tokenised — field surface/border/bg/focus/text → `--ds-form-field-*`/`--ds-form-icon-*` + semantic; `BorderLessInput` bg → `transparent`; Textarea scrollbar-thumb `#e1e3e6` → semantic `border-base-strong` (⚑ grey-300, tiny shift) |
 | input-number | 5 | No | 5 | 0 | :white_check_mark: `--ds-form-*` applied (2026-07-20); `.less` removed (deantd) |
 | insight | 0 | No | 0 | 0 | :white_check_mark: tokenised — semantic (2026-07-21 pass) |
 | item-filter | 0 | No | 1 | 0 | :white_check_mark: tokenised — semantic (2026-07-21); deprecated pkg, done on request; 1 shadow ref is a `box-shadow: none` reset |
@@ -330,13 +336,13 @@ These components use `theme.palette` / hardcoded colors but do not yet have dedi
 | panel | 0 | No | 0 | 0 | :white_check_mark: tokenised — semantic + shadow-1 (2026-07-21 pass) |
 | panels-resizer | 0 | No | 0 | 0 | :white_check_mark: tokenised — semantic (2026-07-21 pass); ⚑ grip-bar bg grey-200→grey-100 |
 | popover | 0 | No | 0 | 2 | |
-| [radio](#checkbox--radio) | 1 | No | 3 | 4 | :construction: description + disabled-opacity → `--ds-form-radio-*`; bulk per-state styling now in `Radio.styles.tsx` on palette (`.less` removed) |
+| [radio](#checkbox--radio) | 0 | No | 3 | 4 | :white_check_mark: fully tokenised — description + disabled-opacity → `--ds-form-radio-*`; solid+checked-hover bg/border/box-shadow blue-500 → semantic `background-brand-solidhover` (exact) |
 | result | 0 | No | 0 | 0 | :white_check_mark: tokenised — semantic (2026-07-21 pass); status-icon map → icon-* token vars |
 | scrollbar | 17 | Yes (2) | 0 | 17 | |
 | search | 13 | No | 4 | 8 | `.less` removed (deantd) |
 | search-bar | 12 | No | 1 | 0 | |
 | [select](#form-group-form--input--select--switch) | 13 | Yes (2) | 6 | 3 | :construction: TS → `--ds-form-field-*` + semantic; search-icon data-URI + `.less` deferred |
-| short-cuts | 7 | No | 1 | 0 | |
+| short-cuts | 7 | No | 1 | 0 | :construction: (2026-07-23) dark/light key variant bg/border/text + icon → semantic (background-base-default, background-neutral-solid, border-neutral-subtle/base-strong, text-onsolid/base-muted, icon-onsolid/base); ⚑ dark bg grey-600→grey-700 shift; box-shadow rgba kept + flagged (no shadow-token match) |
 | sidebar | 0 | No | 0 | 1 | :white_check_mark: tokenised — semantic + shadow-2 (2026-07-21); 1 handle opacity kept; `.less` removed (deantd) |
 | sidebar-object | 0 | No | 0 | 0 | :white_check_mark: tokenised — modal module (footer/dropdown) + semantic (2026-07-21); all exact |
 | skeleton | 5 | No | 0 | 15 | |
@@ -794,19 +800,19 @@ dropped (inherits via currentColor). The `color` prop override is preserved.
 
 Container bg/arrow → `--ds-popconfirm-container-bg`; title → `-header-text`; close icon → `-header-icon`;
 description → `-content-description`; link → semantic `text-base-subtle`. ConfirmMessage sub-component →
-semantic bg + shadow-2.
+semantic bg + shadow-2; its title `#404c5a` → `-header-text` (⚑ shift to grey-800 `#384350`).
 
 #### Visual diffs
 
 | Property | Current | Token resolves to | Delta |
 |----------|---------|-------------------|-------|
 | Description text | grey-800 `#384350` | grey-700 `#57616d` | Lighter (subtler than title — intended) |
+| ConfirmMessage title | `#404c5a` (off-palette) | `-header-text` grey-800 `#384350` | Slightly darker/cooler |
 
 #### Deferred
 
 Carousel `.slick-dots` indicators (`Popconfirm.styles.tsx:51,52,61,62`) — the green-600 active dot would
-become blue via `border-brand-default` (a green→blue redesign); kept `theme.palette`. `ConfirmMessage`
-title `#404c5a` hardcoded (no token). The antd Carousel `.less` was **removed** (deantd) — carousel-dot styling
+become blue via `border-brand-default` (a green→blue redesign); kept `theme.palette`. The antd Carousel `.less` was **removed** (deantd) — carousel-dot styling
 now lives in `Popconfirm.styles.tsx` on palette (directly tokenisable).
 
 ---
@@ -1091,15 +1097,15 @@ data-URI check icons.
 Focus border + focus ring, indeterminate inner bg/border, and hover-preview border → `--ds-form-checkbox-*`
 (all exact, no diffs). **Deferred:** the checked/indeterminate/hover check icons are `data:image/svg+xml`
 background-images with hex inlined into the URI — a `var()` cannot be encoded there, so they stay
-hardcoded; `blue-500` indeterminate-hover bg (no token); and the per-state border/bg/label colours, error
-elevation shadow, disabled opacity — now in `Checkbox.styles.ts` on palette (`.less` removed, directly tokenisable).
+hardcoded; and the per-state border/bg/label colours, error
+elevation shadow, disabled opacity — now in `Checkbox.styles.ts` on palette (`.less` removed, directly tokenisable). **Applied:** `blue-500` indeterminate-hover fill → semantic `background-brand-solidhover` (exact).
 
 #### radio — applied
 
 Description text → `--ds-form-radio-text-description`; disabled opacity (label + description) →
 `--ds-form-radio-disabled-opacity`. **Visual diff:** description text grey-600 `#6a7580` → grey-700
-`#57616d` (darker, design-intended). **Remaining:** the radio dot/border/bg/hover/selected states now live in
-`Radio.styles.tsx` on palette (`.less` removed — directly tokenisable, no antd Less blocker).
+`#57616d` (darker, design-intended). **Applied:** solid+checked-hover bg/border/box-shadow `blue-500` → semantic `background-brand-solidhover`
+(exact); `Radio.styles.tsx` now fully token-based.
 
 > **Sync `e0301675d` forward-note (affects the deferred radio-state work, not the already-migrated text):** the
 > selected inner dot `--ds-form-radio-dot-color` was re-pointed `{background.base.default}` →
@@ -1195,7 +1201,9 @@ package's `.styles.ts` on `theme.palette`, so it is **directly tokenisable** (no
 31 module + 15 semantic + 1 opacity. Field surface/border/bg/focus/error/placeholder/value →
 `--ds-form-field-*`; action icons → `--ds-form-icon-color-default` + `icon-brand`; labels/counter/
 description/chips/remove-icon → semantic; disabled icon opacity → `--ds-opacity-disabled`. Converted
-`svg { fill }` rules to `color` inheritance.
+`svg { fill }` rules to `color` inheritance. Final literals cleaned: `BorderLessInput` bg
+`rgba(255,255,255,0)` → `transparent`; Textarea `::-webkit-scrollbar-thumb` `#e1e3e6` → semantic
+`--ds-color-border-base-strong` (⚑ tiny shift → grey-300 `#dbe0e3`).
 
 | Property | Current | Token resolves to | Delta |
 |----------|---------|-------------------|-------|
@@ -1381,12 +1389,13 @@ grey-050→grey-100, clear hover grey-700→grey-400. **Deferred:** `Autocomplet
 `DropdownValue` grey-700 → `--ds-form-field-text-value`. Both exact. **Deferred:** `FormatSettingsContainer`/
 `FormatFooter`/`DropdownWrapper` (panel + overlay) and `ListItem` rows (list-item).
 
-### color-picker — :construction: field affix (picker/swatches deferred)
+### color-picker — :white_check_mark: (field affix + picker panel)
 
 `ColorPicker.styles.ts`: `ColorTag` (trigger colour-swatch affix) border grey-300 →
 `--ds-form-field-affix-border`; `PreffixWrapper` (`#` hex-input prefix) grey-500 →
-`--ds-form-field-affix-text`. Both exact. **Deferred:** picker panel `Container` + `.react-colorful__*` +
-swatch grid/creator (dropdown/overlay); all `ColorPicker.tsx` colour-value props (dynamic).
+`--ds-form-field-affix-text`. Both exact. Picker panel `Container` + borders/focus rings + swatch glyphs
+tokenised (dropdown/semantic pass); `.react-colorful__pointer-fill` white → semantic
+`--ds-color-background-base-default` (exact). **Kept dynamic:** all `ColorPicker.tsx` colour-value props (runtime).
 
 ### context-selector — :construction: search icon + error text (dropdown/list-item deferred)
 
@@ -1860,7 +1869,7 @@ passes above.
   `--ds-dropdown-text-additional` (field surface was done in the 2026-07-20 form pass).
 - **completed-within** — :white_check_mark: `Settings` panel bg → `--ds-dropdown-bg`.
 - **color-picker** — :white_check_mark: picker panel bg → `--ds-dropdown-bg`, borders/focus rings → semantic
-  border tokens, swatch/creator glyphs → semantic; react-colorful `.pointer-fill` kept (3rd-party decorative).
+  border tokens, swatch/creator glyphs → semantic; react-colorful `.pointer-fill` white → semantic `background-base-default` (exact).
 - **dropdown** — :construction: `Wrapper`/`DropdownOverlay` bg → `--ds-dropdown-bg`, shadow →
   `--ds-dropdown-shadow`, `DropdownFooter` bg → `-footer-bg`; `TextTrigger` hover/focus/disabled-opacity →
   semantic brand + `--ds-opacity-disabled` (icon coloured via `.ds-icon` `color`, no `svg fill`).

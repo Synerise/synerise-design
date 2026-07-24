@@ -16,7 +16,7 @@ src/
     CardTabActions/         — inline CRUD icon buttons (edit/duplicate/remove/preview)
     CardTabDropdown/        — 3-dot dropdown menu for the same actions
     CardTabPrefix/          — left-side prefix (tag, dot, icon, or drag handle)
-  utils.ts                  — getColor, getLighterColor helpers
+  utils.ts                  — getColor, getLighterColor, orderedBaseOr/orderedHoverOr helpers
   index.ts                  — public exports
 ```
 
@@ -51,7 +51,8 @@ Individual tab card. Generic: `CardTab<IdType extends string | number>`. Not usu
 
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
-| `color` | `Color \| DefaultColor \| string` | `'yellow'` | Background colour of the active state. Auto-assigned by `CardTabs` from `defaultColorsOrder` if not set. |
+| `color` | `DefaultColor \| string` | `'yellow'` | Explicit categorical colour of the active state — a `$hue-$shade` key (`'blue-600'`) or a bare hue (`'grey'`, defaults to shade 600). Resolved to the reversible `--ds-color-background-custom-<hue>-<shade>` token. When omitted, `CardTabs` assigns an `orderIndex` instead and the colour comes from the `ordered` token slot. |
+| `orderIndex` | `number` | `undefined` | Slot in the `ordered` categorical-colour queue, injected by `CardTabs` for tabs without an explicit `color`. When set, the tab's colour comes from `orderedBase`/`orderedHover` (`@synerise/ds-tokens/names`) rather than the `color`-derived custom token. |
 | `active` | `boolean` | `undefined` | Shows the card in its active/selected state (coloured background). |
 | `draggable` | `boolean` | `undefined` | Shows a drag handle. Also auto-set by `CardTabs` when >1 children and `onChangeOrder` is provided. |
 | `disabled` | `boolean` | `undefined` | Sets `pointer-events: none` and reduces opacity. Does NOT disable child actions individually. |
@@ -148,8 +149,9 @@ import CardTabs, { CardTab, prefixType } from '@synerise/ds-card-tabs';
 ## Styling
 
 - `CardTabs.styles.ts` — container is full-width flex row with `gap: 16px 12px`, wraps at 588px breakpoint; at ≤588px, the Creator add button collapses to icon-only (label hidden via CSS).
-- `CardTab.styles.ts` — `CardTabContainer` is a styled div 168×48px, 3px border-radius. Background, border, and text colours all derive from the `color` prop and the `active`/`invalid`/`greyBackground` flags via inline theme palette lookups.
-- Uses `@synerise/ds-core` theme palette tokens throughout; `getLighterColor` utility steps colour levels down by 100 on hover.
+- `CardTab.styles.ts` — `CardTabContainer` is a styled div 168×48px, 3px border-radius. Its fixed chrome (bg/border/text/icon/tag/dot-ring/handler/shadow/disabled-opacity) reads the `--ds-card-tabs-variant-*` **module tokens**; only **background** threads the variant (`greyBackground` → `white-*`, else `grey-*`, since their bg/shadow/border differ), while text/icon/tag/etc. use the `grey-*` tokens (identical across variants). `grey-100` pressed (inactive) has no module token → semantic `--ds-color-background-base-muted`.
+- The per-tab **categorical** colour is separate: auto-assigned tabs (`orderIndex` set) take the `ordered` token slot via `orderedBaseOr`/`orderedHoverOr` (`utils.ts` → `orderedBase`/`orderedHover` from `@synerise/ds-tokens/names`); tabs with an explicit `color` prop resolve through `customColorOr` to the reversible `--ds-color-background-custom-<hue>-<shade>` token (`getLighterColor`/shade −100 for hover). The `ordered` hover is an explicit token (base − 100 baked in), so hover/`:active` read `orderedHover[slot]` rather than computing a shade by name. `theme.palette[color]` survives only as the `customColorOr` last-resort fallback for strings with no custom hue.
+- The InlineEdit fake-caret gradients are tokenised: the accent caret → `--ds-color-text-brand-default`; the active/inactive caret tracks the input's own text token (`--ds-card-tabs-variant-grey-text-active`/`-hover`) so it flips with the theme. The per-tab explicit-`color` fallback (used when no `orderIndex`) resolves through `customColorOr` (`utils.ts`) to the reversible `--ds-color-background-custom-<hue>-<shade>` token, so explicit-colour tabs flip with the theme too — a bare hue (`'grey'`) defaults to shade 600, `$hue-$shade` (`'blue-600'`) is used as-is, hover picks shade −100; `theme.palette[color]` remains only as a last-resort fallback for out-of-set strings. The invalid hover/pressed background adopts `bg-validateactivehover` — a ⚑ shift (darker than the former `red-500`). `svg { fill }` rules point at the icon token directly (a `currentColor` cleanup is a deferred follow-up).
 
 ## Key dependencies
 
@@ -158,12 +160,12 @@ import CardTabs, { CardTab, prefixType } from '@synerise/ds-card-tabs';
 - `@synerise/ds-cruds` — inline CRUD icon buttons in `CardTabActions`
 - `@synerise/ds-dropdown` `DropdownMenu` — 3-dot contextual menu in `CardTabDropdown`
 - `react-intl` `useIntl` — default tooltip/label strings (requires `IntlProvider` in the tree)
-- `@synerise/ds-core` `defaultColorsOrder` — auto-assigns colours to tabs by index
+- `@synerise/ds-tokens` `orderedBase`/`orderedHover` (`/names` manifest) — the `ordered` categorical-colour queue auto-assigned to tabs by index
 
 ## Implementation notes
 
 - **`useIntl()` is called unconditionally** in `CardTab.tsx`. An `IntlProvider` must be present in the React tree or the component will throw. The `texts` prop can override individual strings but does not remove this requirement.
-- **Colour auto-assignment** — `CardTabs` uses `cloneElement` to inject `color` from `defaultColorsOrder[i % length]` for any tab that doesn't have an explicit `color` prop.
+- **Colour auto-assignment** — `CardTabs` injects `orderIndex = i % orderedBase.length` (via `cloneElement`, or in the `Sortable` item data) for any tab without an explicit `color` prop; the tab then resolves its colour from that `ordered` token slot. Tabs with an explicit `color` resolve it (via `customColorOr`) to the reversible `--ds-color-background-custom-*` token.
 - **Sortable mode is activated automatically** — when `onChangeOrder` is provided AND `childrenCount > 1`, `CardTabs` switches from `renderChildren` (cloneElement loop) to a `<Sortable>` component that manages drag state. Individual tab's `draggable` prop is also OR'd with parent's `onChangeOrder` presence.
 - **Suffix rendering priority** — `actionsAsDropdown` > `renderSuffix` > `suffixIcon` (suppresses actions) > `CardTabActions` (if any action callback present).
 - **Double-click to rename** — `CardTabLabel` has an `onDoubleClick` handler that triggers `handleEditName` (same as clicking the rename action). While `edited=true`, the prefix is hidden and the suffix is replaced by `InlineEdit`.

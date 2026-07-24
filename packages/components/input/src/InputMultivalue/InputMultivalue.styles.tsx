@@ -160,7 +160,7 @@ export const BorderLessInput = styled.input<{ disabled?: boolean }>`
   flex: 1;
   margin-left: -8px;
   && {
-    background-color: rgba(255, 255, 255, 0);
+    background-color: transparent;
   }
   &::placeholder {
     color: var(--ds-form-field-text-placeholder);

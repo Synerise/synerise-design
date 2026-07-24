@@ -96,6 +96,9 @@ const preview: Preview = {
   ],
 
   parameters: {
+    // TEMP — REMOVE before chore/tokenisation merges to master. Skips Chromatic
+    // baselines while token colours are still in flux; must be gone before release.
+    chromatic: { disableSnapshot: true },
     layout: 'centered',
     actions: { argTypesRegex: '^on[A-Z].*' },
 

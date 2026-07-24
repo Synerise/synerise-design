@@ -6,7 +6,7 @@ export const MenuHeader = styled.div`
   font-size: 10px;
   font-weight: 500;
   text-transform: uppercase;
-  color: var(--ds-color-text-neutral-default);
+  color: var(--ds-divider-header-text-color);
   height: 40px;
   padding: 12px;
   line-height: 1.6;

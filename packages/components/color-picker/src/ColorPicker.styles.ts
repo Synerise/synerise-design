@@ -41,7 +41,7 @@ export const Container = styled.div<{ size?: 'S' | 'M' | 'L' }>`
     border: 1px solid var(--ds-color-border-base-strong);
     box-shadow: none !important;
     .react-colorful__pointer-fill {
-      background-color: ${(props) => props.theme.palette.white} !important;
+      background-color: var(--ds-color-background-base-default) !important;
     }
   }
   .ant-divider-horizontal {

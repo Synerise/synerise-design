@@ -1,8 +1,8 @@
 import type { KeyboardEvent, MouseEvent, ReactNode } from 'react';
 import type { IntlShape } from 'react-intl';
 
-import type { DefaultColor } from '@synerise/ds-core';
 import type { DragHandlePropType } from '@synerise/ds-sortable';
+import type { CustomColorToken, LiteralStringUnion } from '@synerise/ds-utils';
 
 export enum prefixType {
   TAG,
@@ -10,20 +10,6 @@ export enum prefixType {
   DOT,
   HANDLE,
 }
-
-export type Color =
-  | 'red'
-  | 'green'
-  | 'grey'
-  | 'yellow'
-  | 'blue'
-  | 'pink'
-  | 'mars'
-  | 'orange'
-  | 'fern'
-  | 'cyan'
-  | 'purple'
-  | 'violet';
 
 export type ListItemEventType =
   | MouseEvent<HTMLElement>
@@ -64,7 +50,14 @@ export type PrefixProps =
 type CardTabCommonProps = {
   name: string;
   dragHandleProps?: DragHandlePropType;
-  color?: Color | DefaultColor | string;
+  // A custom-colour `hue-shade` combo (`'blue-600'`), resolved to the reversible
+  // `--ds-color-background-custom-*` token; omit it to get an auto-assigned `orderIndex`.
+  color?: LiteralStringUnion<CustomColorToken>;
+  /**
+   * Slot in the `ordered` categorical-colour queue, injected by `CardTabs` for tabs without
+   * an explicit `color`. When set, the tab's colour comes from that ordered token slot.
+   */
+  orderIndex?: number;
   active?: boolean;
   draggable?: boolean;
   suffixIcon?: ReactNode;
