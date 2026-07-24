@@ -74,9 +74,9 @@ body {
   background-color: var(--ds-page-bg);
 }
 
-/* Docs-page story previews — same treatment as the canvas so embedded previews
-   on autodocs pages match the DS theme surface instead of the default white. */
-.sbdocs-preview {
+/* Docs-page story previews. Both classes stacked to out-specify addon-docs'
+   emotion rule (single-class, so .sbdocs-preview alone ties and loses). */
+.sbdocs.sbdocs-preview {
   background-color: var(--ds-page-bg);
 }
 
