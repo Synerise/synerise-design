@@ -33,7 +33,7 @@ export const getDefaultColorMap = (
     colorMap['0'] = 'var(--ds-slider-fill-default)';
   } else {
     // Categorical queue: each segment takes the next `ordered` token slot (a flipping
-    // var(--ds-color-background-ordered-<N>-base) string), replacing the old palette keys.
+    // var(--ds-color-ordered-<N>-base) string), replacing the old palette keys.
     orderedBase.forEach((token, index) => {
       colorMap[index] = token;
     });

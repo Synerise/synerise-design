@@ -54,7 +54,7 @@ describe('Card Tabs', () => {
     // First tab → queue slot 1 → the flipping ordered semantic token (jsdom keeps the var()).
     const firstTab = screen.queryAllByTestId('card-tab-container')[0];
     expect(firstTab).toHaveStyle(
-      'background-color: var(--ds-color-background-ordered-1-base)',
+      'background-color: var(--ds-color-ordered-1-base)',
     );
   });
 

@@ -25,7 +25,7 @@ export const orderedHoverOr = (
 ): string => (orderIndex !== undefined ? orderedHover[orderIndex] : fallback);
 
 // Resolve an explicit `color` prop — a bare hue (`'grey'`) or `$hue-$shade` (`'blue-600'`) — to the
-// reversible `--ds-color-background-custom-*` token via the shared ds-utils helper, so explicit-colour
+// reversible `--ds-color-custom-*` token via the shared ds-utils helper, so explicit-colour
 // tabs follow the light/dark theme like auto-assigned ones. A bare hue defaults to shade 600;
 // `shadeShift` picks a lighter shade for hover (−100). Out-of-set strings fall back to `fallback`.
 export const customColorOr = (

@@ -16,7 +16,7 @@ describe('getDefaultColorMap', () => {
     const allocationMap = getDefaultColorMap(5, 'allocation');
     expect(allocationMap[0]).toBe(orderedBase[0]);
     expect(allocationMap[1]).toBe(orderedBase[1]);
-    expect(allocationMap[0]).toBe('var(--ds-color-background-ordered-1-base)');
+    expect(allocationMap[0]).toBe('var(--ds-color-ordered-1-base)');
 
     const rangeMap = getDefaultColorMap(3, 'range');
     expect(rangeMap[0]).toBe(orderedBase[0]);
@@ -27,8 +27,8 @@ describe('resolveTrackColor', () => {
   const FALLBACK = 'var(--ds-slider-track-bg-default)';
 
   it('uses an already-resolved token / hex verbatim', () => {
-    expect(resolveTrackColor('var(--ds-color-background-ordered-1-base)', FALLBACK)).toBe(
-      'var(--ds-color-background-ordered-1-base)',
+    expect(resolveTrackColor('var(--ds-color-ordered-1-base)', FALLBACK)).toBe(
+      'var(--ds-color-ordered-1-base)',
     );
     expect(resolveTrackColor('#ff5a4d', FALLBACK)).toBe('#ff5a4d');
   });
@@ -36,7 +36,7 @@ describe('resolveTrackColor', () => {
   it('maps a palette key to the reversible custom-colour token (no theme.palette)', () => {
     expect(resolveTrackColor('blue-600', FALLBACK)).toBe(customColors.blue['600']);
     expect(resolveTrackColor('blue-600', FALLBACK)).toBe(
-      'var(--ds-color-background-custom-blue-600)',
+      'var(--ds-color-custom-blue-600)',
     );
     // leading-zero shade normalises to the custom-colour key ('050' → '50')
     expect(resolveTrackColor('grey-050', FALLBACK)).toBe(customColors.grey['50']);

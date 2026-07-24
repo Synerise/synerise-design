@@ -51,7 +51,7 @@ type CardTabCommonProps = {
   name: string;
   dragHandleProps?: DragHandlePropType;
   // A custom-colour `hue-shade` combo (`'blue-600'`), resolved to the reversible
-  // `--ds-color-background-custom-*` token; omit it to get an auto-assigned `orderIndex`.
+  // `--ds-color-custom-*` token; omit it to get an auto-assigned `orderIndex`.
   color?: LiteralStringUnion<CustomColorToken>;
   /**
    * Slot in the `ordered` categorical-colour queue, injected by `CardTabs` for tabs without

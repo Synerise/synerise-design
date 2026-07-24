@@ -199,10 +199,10 @@ const moduleBase = readJson('tokens/modules/base.json');
 // ──────────────────────────────────────────────────────────────────────────────
 // Categorical colour sets (custom-color families + `ordered` slots).
 // Each set is emitted in two tiers, one build transform per theme:
-//   SET      --ds-color-custom-<family>-<shade>     (+ --ds-color-dark-custom-<family>-<shade>)
-//            --ds-color-ordered-<N>-base|hover      (+ --ds-color-dark-ordered-<N>-base|hover)
-//   SEMANTIC --ds-color-background-custom-<family>-<shade>       — FLIPS (light→light group, dark→dark group)
-//            --ds-color-background-ordered-<N>-base|hover        — FLIPS
+//   SET      --ds-color-custom-light-<family>-<shade>  (+ --ds-color-custom-dark-<family>-<shade>)
+//            --ds-color-ordered-light-<N>-base|hover   (+ --ds-color-ordered-dark-<N>-base|hover)
+//   SEMANTIC --ds-color-custom-<family>-<shade>           — FLIPS, role-neutral (light→custom-light, dark→custom-dark)
+//            --ds-color-ordered-<N>-base|hover            — FLIPS, role-neutral
 // Manifest + components reference the SEMANTIC tier (so dark flips); the SET tier is the ramp.
 // The existing single-active color.custom.* (from the hand-wired blue.json) is left untouched —
 // distinct paths, distinct var names.
@@ -222,33 +222,33 @@ function loadCustomColorFamilies() {
     .filter((f) => f.endsWith('.json'))
     .map((f) => f.replace(/\.json$/, ''))
     .sort();
-  const doc = { color: { custom: {} }, 'color-dark': { custom: {} } };
+  const doc = { color: { 'custom-light': {}, 'custom-dark': {} } };
   let shades = [];
   for (const family of families) {
     const src = readJson(`${CUSTOM_COLOR_DIR}/${family}.json`);
-    doc.color.custom[family] = src.color?.custom ?? {};
-    doc['color-dark'].custom[family] = src['color-dark']?.custom ?? {};
+    doc.color['custom-light'][family] = src.color?.custom ?? {};
+    doc.color['custom-dark'][family] = src['color-dark']?.custom ?? {};
     if (!shades.length) shades = Object.keys(src.color?.custom ?? {});
   }
   return { doc, families, shades };
 }
 
-// Flipping SEMANTIC tier for the custom families, generated per theme: each
-// color.background.custom.<family>.<shade> references the light-group SET token in the light
-// build and the dark-group SET token in the dark build, so the emitted var flips with the theme.
+// Flipping SEMANTIC tier for the custom families, generated per theme: each role-neutral
+// color.custom.<family>.<shade> references the custom-light SET in the light build and the
+// custom-dark SET in the dark build, so the emitted var flips with the theme.
 function customSemanticTier(families, shades, themeName) {
-  const group = themeName === 'dark' ? 'color-dark' : 'color';
+  const group = themeName === 'dark' ? 'custom-dark' : 'custom-light';
   const custom = {};
   for (const family of families) {
     custom[family] = {};
     for (const shade of shades) {
       custom[family][shade] = {
         $type: 'color',
-        $value: `{${group}.custom.${family}.${shade}}`,
+        $value: `{color.${group}.${family}.${shade}}`,
       };
     }
   }
-  return { color: { background: { custom } } };
+  return { color: { custom } };
 }
 
 // Read every ordered/order-<N>.json and namespace it by slot number N:
@@ -266,37 +266,42 @@ function loadOrderedSlots() {
     .filter((f) => /^order-\d+\.json$/.test(f))
     .map((f) => parseInt(f.match(/\d+/)[0], 10))
     .sort((a, b) => a - b);
-  const doc = { color: { ordered: {} }, 'color-dark': { ordered: {} } };
+  const doc = {
+    color: { 'ordered-light': {}, 'ordered-dark': {}, ordered: {} },
+    'color-dark': { ordered: {} },
+  };
   for (const n of slots) {
     const src = readJson(`${ORDERED_DIR}/order-${n}.json`);
-    doc.color.ordered[n] = src.color?.ordered ?? {};
-    doc['color-dark'].ordered[n] = src['color-dark']?.ordered ?? {};
+    doc.color['ordered-light'][n] = src.color?.ordered ?? {};
+    doc.color['ordered-dark'][n] = src['color-dark']?.ordered ?? {};
   }
   if (slots.length) {
     const first = slots[0];
-    doc.color.ordered.base = doc.color.ordered[first].base;
-    doc.color.ordered.hover = doc.color.ordered[first].hover;
-    doc['color-dark'].ordered.base = doc['color-dark'].ordered[first].base;
-    doc['color-dark'].ordered.hover = doc['color-dark'].ordered[first].hover;
+    // Singular default (slot 1) kept at the un-suffixed name so the upstream Light/Dark
+    // semantic refs {color.ordered.base} / {color-dark.ordered.base} still resolve.
+    doc.color.ordered.base = doc.color['ordered-light'][first].base;
+    doc.color.ordered.hover = doc.color['ordered-light'][first].hover;
+    doc['color-dark'].ordered.base = doc.color['ordered-dark'][first].base;
+    doc['color-dark'].ordered.hover = doc.color['ordered-dark'][first].hover;
   }
   return { doc, slots };
 }
 
-// Flipping SEMANTIC tier for the ordered slots, generated per theme: each
-// color.background.ordered.<N>.base|hover references the light-group SET token in the light
-// build and the dark-group SET token in the dark build, so the emitted var flips with the
-// theme. The singular color.background.ordered.* / color.text.ordered.base come from the
-// upstream Light/Dark semantic layer and resolve via the singular SET default above.
+// Flipping SEMANTIC tier for the ordered slots, generated per theme: each role-neutral
+// color.ordered.<N>.base|hover references the ordered-light SET in the light build and the
+// ordered-dark SET in the dark build, so the emitted var flips with the theme. The singular
+// color.background.ordered.* / color.text.ordered.base come from the upstream Light/Dark
+// semantic layer and resolve via the singular SET default (color.ordered.base) above.
 function orderedSemanticTier(slots, themeName) {
-  const group = themeName === 'dark' ? 'color-dark' : 'color';
+  const group = themeName === 'dark' ? 'ordered-dark' : 'ordered-light';
   const ordered = {};
   for (const n of slots) {
     ordered[n] = {
-      base: { $type: 'color', $value: `{${group}.ordered.${n}.base}` },
-      hover: { $type: 'color', $value: `{${group}.ordered.${n}.hover}` },
+      base: { $type: 'color', $value: `{color.${group}.${n}.base}` },
+      hover: { $type: 'color', $value: `{color.${group}.${n}.hover}` },
     };
   }
-  return { color: { background: { ordered } } };
+  return { color: { ordered } };
 }
 
 const { doc: customSetDoc, families: customFamilies, shades: customShades } =
@@ -476,7 +481,7 @@ const customColors = Object.fromEntries(
     Object.fromEntries(
       customShades.map((shade) => [
         shade,
-        `var(--ds-color-background-custom-${family}-${shade})`,
+        `var(--ds-color-custom-${family}-${shade})`,
       ]),
     ),
   ]),
@@ -487,10 +492,10 @@ const customColors = Object.fromEntries(
 // single manifest works in both themes. Slots are numeric-sorted (order-1 … order-21), so
 // orderedBase[i] is slot i+1; consumers (card-tabs, slider) index these directly.
 const orderedBase = orderedSlots.map(
-  (n) => `var(--ds-color-background-ordered-${n}-base)`,
+  (n) => `var(--ds-color-ordered-${n}-base)`,
 );
 const orderedHover = orderedSlots.map(
-  (n) => `var(--ds-color-background-ordered-${n}-hover)`,
+  (n) => `var(--ds-color-ordered-${n}-hover)`,
 );
 
 writeFileSync(

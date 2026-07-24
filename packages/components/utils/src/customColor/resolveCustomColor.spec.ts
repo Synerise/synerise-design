@@ -18,7 +18,7 @@ describe('resolveCustomColor', () => {
   it('maps a name-shade key to the reversible custom-colour token', () => {
     expect(resolveCustomColor('blue-600', FB)).toBe(customColors.blue['600']);
     expect(resolveCustomColor('blue-600', FB)).toBe(
-      'var(--ds-color-background-custom-blue-600)',
+      'var(--ds-color-custom-blue-600)',
     );
   });
 

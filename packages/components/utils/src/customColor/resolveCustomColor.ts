@@ -17,7 +17,7 @@ export type ResolveCustomColorOptions = {
 };
 
 // Map a custom-colour name or name-shade string (`'grey'`, `'blue-600'`) to its reversible
-// `--ds-color-background-custom-*` token (light/dark aware, via @synerise/ds-tokens). Anything that
+// `--ds-color-custom-*` token (light/dark aware, via @synerise/ds-tokens). Anything that
 // doesn't resolve to a known name+shade returns `fallback` — never an undefined lookup, and never
 // `theme.palette` (which is being retired). Shared by any DS component or consumer app that accepts a
 // categorical colour value (slider `tracksColorMap`, card-tabs `color`, …).
