@@ -4,6 +4,7 @@ import { InPlaceEditableInputContainer } from '@synerise/ds-inline-edit/dist/Inl
 import { macro } from '@synerise/ds-typography';
 
 import {
+  customColorOr,
   getColor,
   getLighterColor,
   orderedBaseOr,
@@ -54,8 +55,8 @@ export const CardTabLabel = styled.span`
       color: var(--ds-card-tabs-variant-grey-text-hover);
       background-image: linear-gradient(
         to right,
-        ${(props) => props.theme.palette['blue-600']} 0%,
-        ${(props) => props.theme.palette['blue-600']} 33%,
+        var(--ds-color-text-brand-default) 0%,
+        var(--ds-color-text-brand-default) 33%,
         rgba(255, 255, 255, 0) 34%,
         rgba(255, 255, 255, 0) 100%
       );
@@ -114,7 +115,7 @@ export const CardTabContainer = styled.div<{
   greyBackground: boolean;
   color: string;
   // Slot in the `ordered` token queue for auto-assigned tabs; when set, the categorical
-  // colour comes from that slot's token instead of the `color` palette key.
+  // colour comes from that slot's token instead of the `color`-derived custom token.
   orderIndex?: number;
   disabled: boolean;
   edited: boolean;
@@ -144,7 +145,10 @@ export const CardTabContainer = styled.div<{
       return 'var(--ds-card-tabs-variant-grey-bg-validateactive)';
     }
     if (active) {
-      return orderedBaseOr(theme.palette[`${color}`], orderIndex);
+      return orderedBaseOr(
+        customColorOr(color, theme.palette[`${color}`]),
+        orderIndex,
+      );
     }
     if (greyBackground) {
       return 'var(--ds-card-tabs-variant-white-bg-default)';
@@ -161,7 +165,10 @@ export const CardTabContainer = styled.div<{
     }
     return getColor(
       active,
-      orderedBaseOr(theme.palette[`${color}`], orderIndex),
+      orderedBaseOr(
+        customColorOr(color, theme.palette[`${color}`]),
+        orderIndex,
+      ),
       'var(--ds-card-tabs-variant-grey-border-default)',
     );
   }};
@@ -173,24 +180,36 @@ export const CardTabContainer = styled.div<{
       getColor(
         active,
         'var(--ds-card-tabs-variant-grey-tag-bg-active)',
-        orderedBaseOr(theme.palette[`${color}`], orderIndex),
+        orderedBaseOr(
+          customColorOr(color, theme.palette[`${color}`]),
+          orderIndex,
+        ),
       )};
     color: ${({ theme, active, color, orderIndex }) =>
       getColor(
         active,
-        orderedBaseOr(theme.palette[`${color}`], orderIndex),
+        orderedBaseOr(
+          customColorOr(color, theme.palette[`${color}`]),
+          orderIndex,
+        ),
         'var(--ds-card-tabs-variant-grey-tag-text-default)',
       )};
   }
   ${CardDot} {
     background-color: ${({ theme, active, color, invalid, orderIndex }) => {
       if (active && invalid) {
-        return orderedBaseOr(theme.palette[`${color}`], orderIndex);
+        return orderedBaseOr(
+          customColorOr(color, theme.palette[`${color}`]),
+          orderIndex,
+        );
       }
       return getColor(
         active,
         'transparent',
-        orderedBaseOr(theme.palette[`${color}`], orderIndex),
+        orderedBaseOr(
+          customColorOr(color, theme.palette[`${color}`]),
+          orderIndex,
+        ),
       );
     }};
   }
@@ -261,7 +280,11 @@ export const CardTabContainer = styled.div<{
       }
       if (active) {
         return orderedHoverOr(
-          theme.palette[`${getLighterColor(color)}`],
+          customColorOr(
+            color,
+            theme.palette[`${getLighterColor(color)}`],
+            -100,
+          ),
           orderIndex,
         );
       }
@@ -287,11 +310,17 @@ export const CardTabContainer = styled.div<{
         if (active) {
           return 'var(--ds-card-tabs-variant-grey-tag-bg-active)';
         }
-        return orderedBaseOr(theme.palette[`${color}`], orderIndex);
+        return orderedBaseOr(
+          customColorOr(color, theme.palette[`${color}`]),
+          orderIndex,
+        );
       }};
       color: ${({ theme, active, color, orderIndex }) => {
         if (active) {
-          return orderedBaseOr(theme.palette[`${color}`], orderIndex);
+          return orderedBaseOr(
+            customColorOr(color, theme.palette[`${color}`]),
+            orderIndex,
+          );
         }
         return 'var(--ds-card-tabs-variant-grey-tag-text-default)';
       }};
@@ -369,7 +398,11 @@ export const CardTabContainer = styled.div<{
       }
       if (active) {
         return orderedHoverOr(
-          theme.palette[`${getLighterColor(color)}`],
+          customColorOr(
+            color,
+            theme.palette[`${getLighterColor(color)}`],
+            -100,
+          ),
           orderIndex,
         );
       }
@@ -389,19 +422,15 @@ export const CardTabContainer = styled.div<{
       padding: 0 !important;
       background-image: linear-gradient(
         to right,
-        ${({ theme, active }) => {
-            if (active) {
-              return theme.palette.white;
-            }
-            return theme.palette['grey-800'];
-          }}
+        ${({ active }) =>
+            active
+              ? 'var(--ds-card-tabs-variant-grey-text-active)'
+              : 'var(--ds-card-tabs-variant-grey-text-hover)'}
           0%,
-        ${({ theme, active }) => {
-            if (active) {
-              return theme.palette.white;
-            }
-            return theme.palette['grey-800'];
-          }}
+        ${({ active }) =>
+            active
+              ? 'var(--ds-card-tabs-variant-grey-text-active)'
+              : 'var(--ds-card-tabs-variant-grey-text-hover)'}
           33%,
         rgba(255, 255, 255, 0) 34%,
         rgba(255, 255, 255, 0) 100%
