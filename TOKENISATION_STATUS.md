@@ -2,6 +2,12 @@
 
 Tracks the progress of migrating components from `theme.palette` / hardcoded values to CSS custom properties generated from the Token Studio design tokens in `packages/tokens/`.
 
+> **:warning: TEMP — remove before merge to master.** Chromatic snapshots are globally
+> disabled in `packages/storybook/.storybook/preview.tsx`
+> (`parameters.chromatic = { disableSnapshot: true }`) to skip baseline churn while token
+> colours are still in flux. This **must** be reverted before `chore/tokenisation` merges to
+> master, otherwise visual regression coverage stays off for the whole system.
+
 > **Merge batch 2026-07-23.** Twelve tokenisation branches merged into `chore/tokenisation` today:
 > `date-picker-calendar-tokens`, `avatar-tokens`, `tag-tokens`, `code-snippet-tokens`, `cruds-tokens`,
 > `date-range-picker-tokens`, `tags-tokens`, `tooltip-tokens`, `code-area-tokens`, `logic-tokens`,
