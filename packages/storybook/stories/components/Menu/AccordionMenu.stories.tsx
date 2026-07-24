@@ -3,7 +3,6 @@ import { action } from 'storybook/actions';
 
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import Checkbox from '@synerise/ds-checkbox';
-import { theme } from '@synerise/ds-core';
 import Icon, { CheckS } from '@synerise/ds-icon';
 import Menu, { AntdMenuProps } from '@synerise/ds-menu';
 import Tooltip from '@synerise/ds-tooltip';
@@ -171,7 +170,10 @@ export const Default: Story = {
         key: key,
         suffixel:
           suffixElement1 === true ? (
-            <Icon color={theme.palette['green-600']} component={<CheckS />} />
+            <Icon
+              color="var(--ds-color-icon-success-default)"
+              component={<CheckS />}
+            />
           ) : (
             renderSuffix(suffixel, () => setRenameElement(!renameElement))
           ),
@@ -236,7 +238,10 @@ export const Default: Story = {
         key: key,
         suffixel:
           suffixElement2 === true ? (
-            <Icon color={theme.palette['green-600']} component={<CheckS />} />
+            <Icon
+              color="var(--ds-color-icon-success-default)"
+              component={<CheckS />}
+            />
           ) : (
             renderSuffix(suffixel, () => setRenameElement(!renameElement))
           ),
@@ -301,7 +306,10 @@ export const Default: Story = {
         key: key,
         suffixel:
           suffixElement3 === true ? (
-            <Icon color={theme.palette['green-600']} component={<CheckS />} />
+            <Icon
+              color="var(--ds-color-icon-success-default)"
+              component={<CheckS />}
+            />
           ) : (
             renderSuffix(suffixel, () => setRenameElement(!renameElement))
           ),
@@ -398,7 +406,7 @@ export const Default: Story = {
             <div>
               <Icon
                 className="ds-check-icon"
-                color={theme.palette['green-600']}
+                color="var(--ds-color-icon-success-default)"
                 component={<CheckS />}
               />
             </div>
@@ -480,7 +488,7 @@ export const Default: Story = {
           ) : suffixElement2 === true ? (
             <Icon
               className="ds-check-icon"
-              color={theme.palette['green-600']}
+              color="var(--ds-color-icon-success-default)"
               component={<CheckS />}
             />
           ) : (
@@ -561,7 +569,7 @@ export const Default: Story = {
           ) : suffixElement3 === true ? (
             <Icon
               className="ds-check-icon"
-              color={theme.palette['green-600']}
+              color="var(--ds-color-icon-success-default)"
               component={<CheckS />}
             />
           ) : (

@@ -4,7 +4,6 @@ import type { Emoji } from 'unicode-emoji-utils';
 
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import Button from '@synerise/ds-button';
-import { theme } from '@synerise/ds-core';
 import EmojiPicker, { EmojiPickerProps } from '@synerise/ds-emoji-picker';
 import Icon, { EmoticonsM } from '@synerise/ds-icon';
 import { Input } from '@synerise/ds-input';
@@ -47,7 +46,7 @@ export const InputWithEmojiPicker: StoryObj<EmojiPickerProps> = {
       <EmojiPicker {...args} onSelect={handleSelectEmoji}>
         <Icon
           data-testid="emoji-icon-trigger"
-          color={theme.palette['grey-600']}
+          color="var(--ds-color-icon-base-default)"
           component={<EmoticonsM />}
         />
       </EmojiPicker>

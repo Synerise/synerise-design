@@ -4,10 +4,10 @@ import { v4 as uuid } from 'uuid';
 
 import { Meta, StoryObj } from '@storybook/react-vite';
 import Button from '@synerise/ds-button';
-import { theme } from '@synerise/ds-core';
 import Icon, { ExternalLinkM } from '@synerise/ds-icon';
 import Tags, { TagShape } from '@synerise/ds-tags';
 import type { TagProps, TagsProps } from '@synerise/ds-tags';
+import { customColors } from '@synerise/ds-tokens/names';
 
 import {
   BOOLEAN_CONTROL,
@@ -91,7 +91,7 @@ const TagsMeta = {
         <Icon
           component={<ExternalLinkM />}
           size={24}
-          color={theme.palette['grey-600']}
+          color="var(--ds-color-icon-base-default)"
         />{' '}
         Manage tags
       </Button>
@@ -125,7 +125,7 @@ export const WithAddButton: Story = {
           const tag = {
             id: uuid(),
             name,
-            color: theme.palette['grey-200'],
+            color: customColors.grey['200'],
           };
           updateArgs({
             data: [...data, tag],

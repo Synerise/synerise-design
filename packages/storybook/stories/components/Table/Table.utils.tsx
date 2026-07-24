@@ -1,9 +1,9 @@
 import React, { ReactNode } from 'react';
 import { fn } from 'storybook/test';
 
-import { theme } from '@synerise/ds-core';
 import { IconProps } from '@synerise/ds-icon';
 import { DSColumnType, TableCell } from '@synerise/ds-table';
+import { customColors } from '@synerise/ds-tokens/names';
 import { type TooltipProps } from '@synerise/ds-tooltip';
 
 import {
@@ -41,7 +41,7 @@ const renderAlertTooltip = (title: ReactNode, description: ReactNode) => {
         justifyContent: 'center',
         alignItems: 'center',
         flexDirection: 'column',
-        color: theme.palette['grey-200'],
+        color: customColors.grey['200'],
       }}
     >
       <div

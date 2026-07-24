@@ -9,7 +9,6 @@ import ContextSelector, {
   ContextGroup,
   ContextItem,
 } from '@synerise/ds-context-selector';
-import { theme } from '@synerise/ds-core';
 import type { FactorValueType } from '@synerise/ds-factors';
 import Icon, { Add3M, SnippetM, UserDownM } from '@synerise/ds-icon';
 import ItemPicker, { ItemPickerPropsNew } from '@synerise/ds-item-picker';
@@ -385,7 +384,7 @@ export default {
             icon1: (
               <Icon
                 component={<SnippetM />}
-                color={theme.palette['grey-600']}
+                color="var(--ds-color-icon-base-default)"
               />
             ),
           }}
@@ -395,7 +394,7 @@ export default {
                 icon1: (
                   <Icon
                     component={<SnippetM />}
-                    color={theme.palette['grey-600']}
+                    color="var(--ds-color-icon-base-default)"
                     onClick={(e) => {
                       e.preventDefault();
                       e.stopPropagation();
@@ -407,7 +406,7 @@ export default {
                 icon2: (
                   <Icon
                     component={<UserDownM />}
-                    color={theme.palette['grey-600']}
+                    color="var(--ds-color-icon-base-default)"
                     onClick={(e) => {
                       e.preventDefault();
                       e.stopPropagation();
@@ -423,7 +422,7 @@ export default {
                 icon1: (
                   <Icon
                     component={<SnippetM />}
-                    color={theme.palette['grey-600']}
+                    color="var(--ds-color-icon-base-default)"
                   />
                 ),
                 icon1Tooltip: 'Key Input Tooltip',
@@ -432,7 +431,7 @@ export default {
                 icon1: (
                   <Icon
                     component={<SnippetM />}
-                    color={theme.palette['grey-600']}
+                    color="var(--ds-color-icon-base-default)"
                   />
                 ),
                 icon1Tooltip: 'Value Input Tooltip',

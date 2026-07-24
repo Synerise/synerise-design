@@ -4,12 +4,12 @@ import { fn } from 'storybook/test';
 import { Meta, StoryObj } from '@storybook/react-vite';
 import { ObjectAvatar } from '@synerise/ds-avatar';
 import Button from '@synerise/ds-button';
-import { theme } from '@synerise/ds-core';
 import Icon, { MailM, UserM } from '@synerise/ds-icon';
 import Layout, { LayoutProps } from '@synerise/ds-layout';
 import Modal, { showModal } from '@synerise/ds-modal';
 import Stepper from '@synerise/ds-stepper';
 import { VirtualTable } from '@synerise/ds-table-new';
+import { customColors } from '@synerise/ds-tokens/names';
 import { type ColumnDef } from '@tanstack/react-table';
 
 import { Placeholder, PropNamePill } from '../../constants';
@@ -54,13 +54,16 @@ export default {
           <ObjectAvatar
             badgeStatus="active"
             iconComponent={
-              <Icon component={<MailM />} color={theme.palette['red-500']} />
+              <Icon component={<MailM />} color={customColors.red['500']} />
             }
           />,
         ),
         iconAndLabel: headerWithPrefix(
           'Header with icon',
-          <Icon component={<UserM />} color={theme.palette['grey-600']} />,
+          <Icon
+            component={<UserM />}
+            color={'var(--ds-color-icon-base-default)'}
+          />,
         ),
       }),
     },

@@ -4,7 +4,6 @@ import { useArgs } from 'storybook/preview-api';
 import { Meta, StoryObj } from '@storybook/react-vite';
 import CardSelect from '@synerise/ds-card-select';
 import type { CardSelectProps } from '@synerise/ds-card-select';
-import { theme } from '@synerise/ds-core';
 import Icon, {
   AbTestXl,
   AdOnDemandL,
@@ -12,6 +11,7 @@ import Icon, {
   ClockS,
   LaunchXl,
 } from '@synerise/ds-icon';
+import { customColors } from '@synerise/ds-tokens/names';
 
 import {
   BOOLEAN_CONTROL,
@@ -32,12 +32,12 @@ type Story = StoryObj<CardSelectStoryProps>;
 
 const tagProps = {
   name: 'Coming soon',
-  color: theme.palette['yellow-600'],
+  color: customColors.yellow['600'],
   prefixel: (
     <Icon
       size={20}
       className="icon1"
-      color={theme.palette.white}
+      color="var(--ds-color-icon-onsolid-default)"
       component={<ClockS />}
     />
   ),

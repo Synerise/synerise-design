@@ -3,7 +3,6 @@ import React, { useRef, useState } from 'react';
 import Avatar, { ObjectAvatar } from '@synerise/ds-avatar';
 import Badge from '@synerise/ds-badge';
 import Checkbox from '@synerise/ds-checkbox';
-import { theme } from '@synerise/ds-core';
 import Dropdown from '@synerise/ds-dropdown';
 import Icon, {
   CheckS,
@@ -74,7 +73,7 @@ export const Rename = ({ onSelectEdit }) => {
             onSelectEdit();
             e.stopPropagation();
           }}
-          color={theme.palette['grey-600']}
+          color="var(--ds-color-icon-base-default)"
           component={<EditS />}
         />
       </S.HoverableIconWrapper>
@@ -91,14 +90,17 @@ export const RenameWithDelete = ({ onClickEdit }) => {
               onClickEdit();
               e.stopPropagation();
             }}
-            color={theme.palette['grey-600']}
+            color="var(--ds-color-icon-base-default)"
             component={<EditS />}
           />
         </S.HoverableIconWrapper>
       </Tooltip>
       <Tooltip type="default" trigger="hover" title={'Delete'}>
         <div>
-          <Icon color={theme.palette['red-600']} component={<CloseS />} />
+          <Icon
+            color="var(--ds-color-icon-danger-default)"
+            component={<CloseS />}
+          />
         </div>
       </Tooltip>
     </>
@@ -173,7 +175,7 @@ export const ActionsMenu = ({ onSelectClick }) => {
     >
       <S.HoverableIconWrapper>
         <Icon
-          color={theme.palette['grey-400']}
+          color="var(--ds-color-icon-base-muted)"
           onClick={(e): void => {
             e.stopPropagation();
             setDropdownVisible(!dropdownVisible);
@@ -201,23 +203,34 @@ export const renderSuffix = (
       return (
         <Tooltip type="default" title={'Delete'}>
           <div>
-            <Icon color={theme.palette['red-600']} component={<CloseS />} />
+            <Icon
+              color="var(--ds-color-icon-danger-default)"
+              component={<CloseS />}
+            />
           </div>
         </Tooltip>
       );
     case suffixType.check:
-      return <Icon color={theme.palette['green-600']} component={<CheckS />} />;
+      return (
+        <Icon
+          color="var(--ds-color-icon-success-default)"
+          component={<CheckS />}
+        />
+      );
     case suffixType.warning:
       return (
         <Icon
-          color={theme.palette['orange-600']}
+          color="var(--ds-color-icon-warning-default)"
           component={<WarningFillS />}
         />
       );
     case suffixType.icon:
       return (
         <S.HoverableIconWrapper className="icon-suffix">
-          <Icon color={theme.palette['grey-600']} component={<UserS />} />
+          <Icon
+            color="var(--ds-color-icon-base-default)"
+            component={<UserS />}
+          />
         </S.HoverableIconWrapper>
       );
     case suffixType.label:
@@ -225,7 +238,10 @@ export const renderSuffix = (
         <Label
           label={
             <div
-              style={{ color: theme.palette['grey-400'], lineHeight: '18px' }}
+              style={{
+                color: 'var(--ds-color-text-base-disabled)',
+                lineHeight: '18px',
+              }}
             >
               <span>Text</span>
             </div>
@@ -241,7 +257,7 @@ export const renderSuffix = (
                 style={{
                   lineHeight: '18px',
                   marginRight: '4px',
-                  color: theme.palette['blue-600'],
+                  color: 'var(--ds-color-text-brand-default)',
                 }}
               >
                 <span>select</span>
@@ -270,13 +286,16 @@ export const renderPrefix = (
         <>
           <Tooltip type="default" title={'Delete'}>
             <div>
-              <Icon color={theme.palette['grey-700']} component={<FolderM />} />
+              <Icon
+                color="var(--ds-color-icon-base-default)"
+                component={<FolderM />}
+              />
             </div>
           </Tooltip>
           <Tooltip type="default" title={'Delete'}>
             <div>
               <Icon
-                color={theme.palette['grey-700']}
+                color="var(--ds-color-icon-base-default)"
                 style={{ marginLeft: '8px' }}
                 component={<ShowM />}
               />
@@ -285,7 +304,9 @@ export const renderPrefix = (
         </>
       );
     case prefixType.singleIcon:
-      return <Icon color={theme.palette['grey-700']} component={<ShowM />} />;
+      return (
+        <Icon color="var(--ds-color-icon-base-default)" component={<ShowM />} />
+      );
     case prefixType.avatar:
       return (
         <Badge status="active">

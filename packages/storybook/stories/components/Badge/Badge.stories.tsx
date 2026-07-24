@@ -5,8 +5,8 @@ import Avatar from '@synerise/ds-avatar';
 import type { AvatarProps } from '@synerise/ds-avatar';
 import Badge, { BadgeWithLabel } from '@synerise/ds-badge';
 import type { BadgeProps } from '@synerise/ds-badge';
-import { theme } from '@synerise/ds-core';
 import Icon, { FileM, IconProps } from '@synerise/ds-icon';
+import { customColors } from '@synerise/ds-tokens/names';
 
 import { AVATAR_IMAGE } from '../../constants';
 import {
@@ -60,34 +60,34 @@ export const Standalone: StoryObj<BadgeProps> = {
     <div
       style={{
         ...ROW,
-        background: args.outlined ? theme.palette['grey-200'] : 'transparent',
+        background: args.outlined ? customColors.grey['200'] : 'transparent',
         padding: '8px',
       }}
     >
-      <Badge {...args} customColor={theme.palette['red-600']} />
-      <Badge {...args} customColor={theme.palette['yellow-600']} />
-      <Badge {...args} customColor={theme.palette['green-600']} />
-      <Badge {...args} customColor={theme.palette['grey-500']} />
+      <Badge {...args} customColor={customColors.red['600']} />
+      <Badge {...args} customColor={customColors.yellow['600']} />
+      <Badge {...args} customColor={customColors.green['600']} />
+      <Badge {...args} customColor={customColors.grey['500']} />
       <div
         style={{
           ...ROW,
           padding: '0 8px',
           minHeight: '34px',
-          background: theme.palette['grey-200'],
+          background: customColors.grey['200'],
         }}
       >
         <Badge
           {...args}
           style={{
-            backgroundColor: theme.palette['white'],
-            color: theme.palette['grey-400'],
+            backgroundColor: 'var(--ds-color-background-base-default)',
+            color: 'var(--ds-color-text-base-disabled)',
           }}
         />
         <Badge
           {...args}
           style={{
             backgroundColor: 'transparent',
-            color: theme.palette['white'],
+            color: 'var(--ds-color-text-onsolid-default)',
           }}
         />
       </div>
@@ -163,7 +163,7 @@ export const Count: StoryObj<BadgeProps> = {
             <Icon
               component={<FileM />}
               size={24}
-              color={theme.palette['red-600']}
+              color={customColors.red['600']}
             />
           }
         >

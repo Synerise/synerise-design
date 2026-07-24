@@ -4,7 +4,6 @@ import { fn } from 'storybook/test';
 import { Meta, StoryObj } from '@storybook/react-vite';
 import { ObjectAvatar } from '@synerise/ds-avatar';
 import Button from '@synerise/ds-button';
-import { theme } from '@synerise/ds-core';
 import Drawer from '@synerise/ds-drawer';
 import Icon, { MailM } from '@synerise/ds-icon';
 import SidebarObject from '@synerise/ds-sidebar-object';
@@ -13,6 +12,7 @@ import {
   ButtonVariant,
   HeaderType,
 } from '@synerise/ds-sidebar-object/dist/Elements/Header/Header.types';
+import { customColors } from '@synerise/ds-tokens/names';
 
 import { controlFromOptionsArray, fixedWrapper300 } from '../../utils';
 import {
@@ -93,7 +93,7 @@ export default {
       <ObjectAvatar
         color={'pink'}
         iconComponent={
-          <Icon color={theme.palette['pink-600']} component={<MailM />} />
+          <Icon color={customColors.pink['600']} component={<MailM />} />
         }
         badgeStatus={'inactive'}
       />
