@@ -1,0 +1,74 @@
+{
+  "name": "@synerise/ds-rich-text",
+  "version": "0.0.1",
+  "description": "RichText UI Component for the Synerise Design System",
+  "license": "ISC",
+  "repository": "Synerise/synerise-design",
+  "main": "dist/index.js",
+  "files": [
+    "/dist",
+    "CHANGELOG.md",
+    "README.md",
+    "package.json",
+    "LICENSE.md"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "scripts": {
+    "build": "vite build",
+    "build:watch": "vite build --watch",
+    "prepublish": "pnpm run build",
+    "types": "tsc --noEmit",
+    "pack:ci": "pnpm pack --pack-destination ../../storybook/storybook-static/static",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "check:circular-dependencies": "madge --circular --extensions ts,tsx,js,jsx --ts-config tsconfig.json src/ --exclude '/dist/'",
+    "upgrade:ds": "ncu -f \"@synerise/ds-*\" -u"
+  },
+  "sideEffects": false,
+  "types": "dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "default": "./dist/index.js"
+    },
+    "./dist/*.js": "./dist/*.js",
+    "./dist/*": "./dist/*.js"
+  },
+  "dependencies": {
+    "@synerise/ds-button": "workspace:^",
+    "@synerise/ds-copy-icon": "workspace:^",
+    "@synerise/ds-form-field": "workspace:^",
+    "@synerise/ds-icon": "workspace:^",
+    "@synerise/ds-input": "workspace:^",
+    "@synerise/ds-popover": "workspace:^",
+    "@synerise/ds-toolbar": "workspace:^",
+    "@synerise/ds-tooltip": "workspace:^",
+    "@synerise/ds-utils": "workspace:^",
+    "@tiptap/core": "^2.11.0",
+    "@tiptap/extension-image": "^2.11.0",
+    "@tiptap/extension-link": "^2.11.0",
+    "@tiptap/extension-placeholder": "^2.11.0",
+    "@tiptap/extension-table": "^2.11.0",
+    "@tiptap/extension-table-cell": "^2.11.0",
+    "@tiptap/extension-table-header": "^2.11.0",
+    "@tiptap/extension-table-row": "^2.11.0",
+    "@tiptap/extension-text-align": "^2.11.0",
+    "@tiptap/extension-underline": "^2.11.0",
+    "@tiptap/pm": "^2.11.0",
+    "@tiptap/react": "^2.11.0",
+    "@tiptap/starter-kit": "^2.11.0",
+    "markdown-it": "14.1.0"
+  },
+  "peerDependencies": {
+    "@synerise/ds-core": "*",
+    "react": ">=16.9.0 <= 18.3.1",
+    "styled-components": "^5.3.3"
+  },
+  "devDependencies": {
+    "@types/markdown-it": "14.1.2",
+    "vitest": "4"
+  }
+}
