@@ -11,20 +11,6 @@ export enum prefixType {
   HANDLE,
 }
 
-export type Color =
-  | 'red'
-  | 'green'
-  | 'grey'
-  | 'yellow'
-  | 'blue'
-  | 'pink'
-  | 'mars'
-  | 'orange'
-  | 'fern'
-  | 'cyan'
-  | 'purple'
-  | 'violet';
-
 export type ListItemEventType =
   | MouseEvent<HTMLElement>
   | KeyboardEvent<HTMLElement>;
@@ -64,7 +50,9 @@ export type PrefixProps =
 type CardTabCommonProps = {
   name: string;
   dragHandleProps?: DragHandlePropType;
-  color?: Color | DefaultColor | string;
+  // A DS categorical hue (`'blue-600'`) or a bare hue (`'grey'`, defaults to shade 600). Resolves to
+  // the reversible `--ds-color-background-custom-*` token; omit it to get an auto-assigned `orderIndex`.
+  color?: DefaultColor | string;
   /**
    * Slot in the `ordered` categorical-colour queue, injected by `CardTabs` for tabs without
    * an explicit `color`. When set, the tab's colour comes from that ordered token slot.
