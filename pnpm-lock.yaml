@@ -2087,9 +2087,9 @@ importers:
       '@synerise/ds-core':
         specifier: '*'
         version: link:../core
-      antd:
-        specifier: 4.24.16
-        version: 4.24.16(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@synerise/ds-utils':
+        specifier: workspace:^
+        version: link:../utils
       react:
         specifier: 18.3.1
         version: 18.3.1
