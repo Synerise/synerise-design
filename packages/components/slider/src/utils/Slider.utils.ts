@@ -1,40 +1,21 @@
 import { type ReactNode } from 'react';
 
-import { customColors, orderedBase } from '@synerise/ds-tokens/names';
+import { orderedBase } from '@synerise/ds-tokens/names';
+import { resolveCustomColor } from '@synerise/ds-utils';
 
 import { type ColorMap, type MarkObj } from '../Slider.types';
 
 export const getDefaultTooltipPopupContainer = (): HTMLElement =>
   document.querySelector(`.ant-slider`) as HTMLElement;
 
-// A tracksColorMap value is either a palette key ('green-600', or a user-supplied key) or an
-// already-resolved colour — an `ordered` token var ('var(--ds-…)') or a literal hex ('#…'). The
-// latter are used verbatim; palette keys are mapped to a reversible token (never theme.palette).
-export const isResolvedColor = (value?: string): boolean =>
-  !!value && (value.startsWith('var(') || value.startsWith('#'));
-
-// Resolve a colour-map value to a CSS colour WITHOUT touching theme.palette (which is being
-// retired). An already-resolved token/hex is used verbatim; a palette key ('blue-600') maps to the
-// reversible custom-colour token (customColors[hue][shade] — dark-mode aware). Anything unmapped —
-// an unknown hue/shade or an empty value — falls back to the given predefined token, so a bad
-// `tracksColorMap` key renders a real colour instead of an undefined palette lookup.
+// Resolve a `tracksColorMap` / `lineColor` value to a CSS colour via the shared ds-utils helper: an
+// already-resolved token/hex is used verbatim, a palette key ('blue-600') maps to its reversible
+// custom-colour token, and anything unmapped falls back to the given predefined token — never
+// theme.palette (which is being retired), never an undefined lookup.
 export const resolveTrackColor = (
   value: string | undefined,
   fallback: string,
-): string => {
-  if (!value || isResolvedColor(value)) {
-    return value || fallback;
-  }
-  const match = value.match(/^(.+)-(\d{2,3})$/);
-  if (match) {
-    const [, hue, shade] = match;
-    const custom = customColors[hue]?.[String(Number(shade))];
-    if (custom) {
-      return custom;
-    }
-  }
-  return fallback;
-};
+): string => resolveCustomColor(value, fallback, { passthroughResolved: true });
 
 export const couldBeInverted = (
   value: number | readonly number[],
