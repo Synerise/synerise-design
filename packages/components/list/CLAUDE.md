@@ -1,11 +1,12 @@
 # List (`@synerise/ds-list`)
-> A generic list component built on Ant Design's List, supporting nested/sectioned data sources, optional radio group wrapping, and styled sub-components for text items, item wrappers, and dividers.
+> A generic **DS-native** list component (no antd), supporting nested/sectioned data sources, optional radio group wrapping, and styled sub-components for text items, item wrappers, and dividers. Reproduces antd `List`'s DOM + `.ant-list*` class hooks (`.ant-list`, `.ant-list-items`, `.ant-list-header`, `.ant-list-split`, `.ant-list-bordered`) side-by-side with `.ds-list*` hooks so existing consumer stylesheets keep working.
 
 ## Package structure
 ```
 src/
- List.tsx — class component (PureComponent), renders flat or nested (sectioned) AntdList
- List.types.ts — ListPropsType<T> type definition
+ List.tsx — functional component, renders flat or nested (sectioned) DS-native list
+ List.styles.ts — styled-components for the root/header/items(ul)/loading
+ List.types.ts — ListPropsType<T> type definition (hand-written, no antd)
  index.ts — public entry point
  modules.d.ts — CSS/Less module declarations
  Elements/
@@ -19,9 +20,6 @@ src/
  Divider/
  Divider.tsx — thin wrapper around @synerise/ds-divider with horizontal padding
  Divider.styles.ts — styled-components for Divider
- style/
- index.less — Less entry point (imported via side-effect in List.tsx)
- list.mixin.less — Less mixins for list styles
  __spec__/
  List.spec.tsx — Vitest tests
 ```
@@ -29,7 +27,7 @@ src/
 ## Public exports
 
 ```ts
-export { default } from './List'; // List class component (default)
+export { default } from './List'; // List functional component (default)
 export type { ListPropsType } from './List.types';
 export type { TextProps } from './Elements/Text/Text';
 ```
@@ -45,16 +43,16 @@ export type { TextProps } from './Elements/Text/Text';
 
 ### `List<T>` (default export)
 
-Extends Ant Design `ListProps<T>` — omits `dataSource` and `footer`, adds:
+Hand-written props (`ListPropsType<T>`, no antd). Core props:
 
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
-| `dataSource` | `T[] \| T[][]` | — | Flat array OR nested array of arrays. A nested array renders multiple `AntdList` sections separated by `ListDivider`. Only the first section renders the `header`. |
+| `dataSource` | `T[] \| T[][]` | — | Flat array OR nested array of arrays. A nested array renders multiple DS-native list sections separated by `ListDivider`. Only the first section renders the `header`. |
 | `radio` | `boolean` | `undefined` | Wraps the entire rendered list in `Radio.Group` |
 | `options` | `RadioGroupProps` | `undefined` | Props forwarded to the `Radio.Group` wrapper; only used when `radio` is `true` |
 | `dashed` | `boolean` | `undefined` | Controls the dashed style of the auto-rendered `ListDivider` between sections. Note: `ListDivider` defaults `dashed` to `true` when not supplied |
 
-All other `ListProps<T>` from antd (e.g. `bordered`, `header`, `renderItem`, `split`, `grid`, `pagination`, `loading`, `loadMore`, `locale`, `rowKey`, `itemLayout`) are forwarded directly to `AntdList`.
+Supported antd-`List`-parity props: `bordered`, `header`, `renderItem`, `split`, `loading` (DS `Loader`), `loadMore`, `rowKey`, `itemLayout`, `size`, `className`, `style`, `children`. **Dropped in the de-antd migration (0 real consumer usage):** `grid`, `pagination`, and `locale`/`emptyText` (the default "No data" empty state was removed — consumers render their own) — reintroduce natively if a need appears. `List.Item.Meta` is not implemented (unused).
 
 ---
 
@@ -133,19 +131,19 @@ import List from '@synerise/ds-list';
 
 ## Implementation notes
 
-- `List` is a **class component** (`React.PureComponent`) — not a functional component. A stable `uuid` key is generated in the constructor for the single-section render path.
-- **Nested detection:** `isNestedArray` (also a named export from `./List`) checks `array[0] instanceof Array`. An array of arrays is rendered as multiple `AntdList` instances; subsequent sections have `header` forced to `null`.
+- `List` is a **functional component** (function declaration with statics attached). Items are keyed by `rowKey` (or the item index) — no `uuid`.
+- **Nested detection:** `isNestedArray` (also a named export from `./List`) checks `Array.isArray(array[0])`. An array of arrays renders as multiple DS-native list sections separated by `ListDivider`; only the first section renders the `header`.
+- **`renderItem` contract preserved:** it receives the flattened per-item value + index and may return any node (typically `List.Item`). When no `renderItem` is given, `children` render instead. There is no built-in empty state — when there are no items and no children, nothing is rendered (consumers supply their own).
 - **`footer` is omitted** from `ListPropsType` — it cannot be passed to `List`.
-- `List.Item` spreads all extra props onto the underlying `<li>` via `WithHTMLAttributes<HTMLLIElement, ..>`.
+- `List.Item` spreads all extra props onto the underlying `<li>` via `WithHTMLAttributes<HTMLLIElement, ..>`. Items sit directly under `<ul class="ant-list-items">`, so `.ant-list-items > li` selectors keep working.
 - The `ListDivider` wrapping `div` has `padding: 0 20px` to inset the rule; the `ItemWrapper` `div` has `padding: 8px 12px`.
-- Tests use **Jest** (not Vitest) — see `jest.config.js`.
+- Tests use **Vitest** (`pnpm --filter @synerise/ds-list test`).
 
 ## Key dependencies
 
 | Package | Role |
 |---------|------|
-| `antd` (peer) | `AntdList`, `RadioGroupProps` base types |
-| `@synerise/ds-radio` | `Radio.Group` wrapping when `radio` is `true` |
+| `@synerise/ds-radio` | `Radio.Group` wrapping when `radio` is `true`; `RadioGroupProps` type |
 | `@synerise/ds-divider` | Underlying divider in `ListDivider` |
+| `@synerise/ds-loader` | Loading indicator for the `loading` prop |
 | `@synerise/ds-utils` | `WithHTMLAttributes` utility type |
-| `uuid` | Stable + per-render keys for `React.Fragment` nodes |
