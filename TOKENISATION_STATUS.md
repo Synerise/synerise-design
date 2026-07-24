@@ -112,9 +112,10 @@ Icons: DS icons are `fill="currentColor"` with `color: inherit`, so colour them 
 
 Single at-a-glance view of every colour-bearing component: migration **status** + whether it is **awaiting token definitions** (a pending module namespace, a missing semantic role, or a `.less`/de-antd blocker). Sourced from the two detailed tables below + `TOKEN_AUDIT.md` blockers. **Update this table (and the detailed one) whenever `apply-tokens` migrates a component.**
 
-**Totals:** ✅ 95 done · 🚧 9 partial · ❌ 7 not started · ⛔ 3 deprecated · ➖ 4 n/a — **12 awaiting token defs** (flag in last column).
+**Totals:** ✅ 96 done · 🚧 9 partial · ❌ 7 not started · ⛔ 3 deprecated · ➖ 4 n/a — **12 awaiting token defs** (flag in last column).
 
 > **`theme.palette` holdouts (to retire):** dynamic `color`/`customColor` props still resolve via `theme.palette` → migrate to ds-utils `resolveCustomColor`: **badge** (local dup helper), **avatar** (ObjectAvatar), **section-message**, **button**, **loader**. Static gap: **inline-edit** (`:active` bg grey-300, no token). Fully untokenised (new): **rich-text**, **rich-text-renderer**. Role-specific cases (text/border/icon-custom) need `resolveCustomColor` extended with a `role` option + manifest role maps.
+>>>>>>> TOKENISATION_STATUS.md
 
 | Component | Layer | Status | Awaiting token defs / blocker |
 |---|---|:--:|---|
@@ -130,8 +131,8 @@ Single at-a-glance view of every colour-bearing component: migration **status** 
 | block | semantic | ✅ | — |
 | broadcast-bar | module | ✅ | — |
 | button-expander | module | ✅ | — |
+| button-group | module | ✅ | — |
 | button | module | ❌ | not started — static blue/red/grey/white + `customColor`/`iconColor` variants on `theme.palette` (Button.styles/Creator/Expander); `--ds-buttons-*` module exists, unapplied |
-| button-group | semantic | ❌ | — |
 | buttons | module | ✅ | — |
 | card | module | ✅ | — |
 | card-select | module | ✅ | — |
@@ -289,7 +290,7 @@ These components use `theme.palette` / hardcoded colors but do not yet have dedi
 | badge | 11 | No | 4 | 4 | :white_check_mark: tokenised (2026-07-22) — badge module landed + applied: variant bg/text/ring tokens; `customColor` kept dynamic; ⚑ label grey-600→grey-500. `.less` removed (deantd) |
 | banner | 2 | No | 0 | 0 | :white_check_mark: tokenised — semantic (2026-07-20 pass); 2 palette = dynamic status-Tag defaults |
 | block | 6 | No | 0 | 0 | :white_check_mark: tokenised — semantic (2026-07-23) |
-| button-group | 6 | No | 4 | 0 | |
+| button-group | 0 | No | 0 | 0 | :white_check_mark: tokenised (2026-07-24) — split separators → **buttons** module per-variant `separator`; tertiary disabled label → buttons module; error outline/ring → semantic `border-danger-default`; description → `text-base-muted`; ButtonDivider → **divider** module. ⚑ separators adopt UX per-variant colours + 2× grey-500→grey-600 |
 | card-tabs | 68 | No | 2 | 4 | High palette count |
 | carousel | 0 | No | 0 | 0 | :white_check_mark: tokenised — semantic (2026-07-20 pass); new DS component, not in original audit |
 | cascader | 34 | No | 5 | 10 | |
@@ -421,6 +422,10 @@ but have no consuming markup yet.)
 - `input` disabled bg grey-050→grey-100; affix text grey-700→grey-500.
 - `card` badge warning bg yellow-600→yellow-500.
 - `checkbox`/`radio` disabled label grey-600→grey-700; `radio` checked label grey-800→grey-700.
+- `button-group` split-mode separators adopt the UX per-variant `--ds-buttons-variant-*-separator` tokens and
+  no longer vary by disabled state: primary white-15%/50%→brand separator (blue-500); custom-color
+  white-15%/80%→custom separator (custom-500); tertiary grey@20%/10%→`border-base-default` (grey-200);
+  tertiary-white ≈light-grey 25% (near-unchanged). Disabled tertiary label + Description text grey-500→grey-600.
 
 ---
 
@@ -1907,3 +1912,15 @@ passes above.
 - **inline-edit** — :white_check_mark: edit-icon override split from the text resolver to an icon resolver:
   error → `--ds-color-icon-danger-default`, default → `--ds-inline-edit-icon-btn-icon-default`.
   ⚑ default icon grey-800→grey-600 (was leaking the text token).
+
+### Buttons-module separator pass (2026-07-24)
+
+- **button-group** — :white_check_mark: (❌→✅) first consumer of the new per-variant
+  `--ds-buttons-variant-*-separator` tokens (UX `buttons.variant.<variant>.separator`), which resolved the
+  previously-missing split-mode separator token. Split-mode divider borders → `buttons` module per variant
+  (primary / custom-color / tertiary / tertiary-white); disabled tertiary label →
+  `--ds-buttons-variant-tertiary-text-disabled`; uniform error outline + hover ring → semantic
+  `--ds-color-border-danger-default` (exact); `Description` text → `--ds-color-text-base-muted`; `ButtonDivider`
+  line → `--ds-divider-line-color-solid` (exact, grey-300). No own namespace, no `.less`, no static `theme`
+  imports. ⚑ separators adopt UX per-variant colours (state-agnostic now) + disabled-label/description
+  grey-500→grey-600 (see Value shifts).
