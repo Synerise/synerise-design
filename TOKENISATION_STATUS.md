@@ -148,7 +148,7 @@ Single at-a-glance view of every colour-bearing component: migration **status** 
 | drawer | semantic | ❌ | **deferred — de-antd first (.less)** |
 | dropdown | module | 🚧 | dropdown bottom-action / back-action / search-icon pending |
 | editable-items-list | semantic | ✅ | — |
-| emoji-picker | semantic | 🚧 | list-item header role pending |
+| emoji-picker | semantic | ✅ | — |
 | empty-states | semantic | ✅ | — |
 | estimation | module | ✅ | — |
 | factors | module | 🚧 | 2 danger-hover refs pending --ds-color-*-danger-hover (red-500) |
@@ -299,7 +299,7 @@ These components use `theme.palette` / hardcoded colors but do not yet have dedi
 | drawer | 3 | Yes (1) | 1 | 0 | |
 | dropdown | 20 | No | 1 | 1 | |
 | editable-items-list | 0 | No | 0 | 0 | :white_check_mark: hardcoded add-icon `blue-600` removed — icon inherits ds-button (`mode: icon-label`) (2026-07-20) |
-| emoji-picker | 1 | No | 0 | 0 | :construction: search-icon `grey-600` removed — inherits default (2026-07-20); `EmojiList` `grey-500` deferred → pending list-item tokens |
+| emoji-picker | 0 | No | 0 | 0 | :white_check_mark: tokenised — search-icon `grey-600` removed — inherits default (2026-07-20); `EmojiList` category header `grey-500` → semantic `text-neutral-default` (exact) |
 | empty-states | 0 | No | 0 | 0 | :white_check_mark: tokenised — semantic (2026-07-20 pass) |
 | estimation | 0 | No | 0 | 0 | :white_check_mark: tokenised (2026-07-21); skeleton bar → progressbar module token, dot ring → semantic; per-entry dot fill stays dynamic |
 | factors | 16 | No | 2 | 0 | :construction: (2026-07-23) type-selector bg/check-icon, array delete-icon + count-pill danger bg/onsolid text, relative-date clear + dropdown-footer/icons, parameter + search text, text-modal brand → semantic; count-pill default grey-600 bg kept dynamic; 2 red-500 danger-hover kept + flagged (no --ds-color-*-danger-hover) |
