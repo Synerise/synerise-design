@@ -1,0 +1,126 @@
+import { Meta, Canvas } from '@storybook/addon-docs/blocks';
+
+import RichTextRendererMeta, {
+  Default,
+  Minimal,
+  WithCustomImageRenderer,
+  MarkdownPreview,
+} from './RichTextRenderer.stories';
+
+<Meta of={RichTextRendererMeta} />
+
+# RichTextRenderer
+
+Renders a `RichTextDocument` (the portable JSON block model produced by
+`@synerise/ds-rich-text` with `format="document"`) to plain React — with **no editor
+or Tiptap dependency**, so it stays tiny (~1 KB gzip) and safe for read-only surfaces
+like feeds, previews, and detail views.
+
+## Quick overview
+
+- Import: `import RichTextRenderer from '@synerise/ds-rich-text-renderer';`
+- Feed it the `RichTextDocument` you persisted from the editor:
+  `<RichTextRenderer document={doc} />`.
+- Supported blocks: paragraphs, headings, bullet/ordered lists (nested), code blocks,
+  code snippets, images, blockquotes, horizontal rules, tables, and text alignment.
+- Text marks: bold, italic, underline, strikethrough, inline code, links.
+- Any block type can be replaced per-consumer via `blockOverrides` — e.g. render
+  images through your own lightbox component.
+- Unknown block types render as `null` instead of crashing, so documents from newer
+  editor versions degrade gracefully.
+
+## Basic example
+
+<Canvas of={Default} sourceState="shown" />
+
+## Minimal document
+
+The smallest valid document — one paragraph.
+
+<Canvas of={Minimal} />
+
+## Custom block renderer
+
+`blockOverrides` maps a block `type` to your own component; it receives the raw
+`block` node and fully replaces the built-in rendering for that type.
+
+<Canvas of={WithCustomImageRenderer} />
+
+## Interop with serializers
+
+The same document converts to Markdown or HTML via the serializers exported from
+`@synerise/ds-rich-text` — no renderer involvement needed.
+
+<Canvas of={MarkdownPreview} />
+
+## API reference
+
+### `RichTextRenderer`
+
+<table>
+  <thead>
+    <tr>
+      <th>Prop</th>
+      <th>Type</th>
+      <th>Default</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>document</code></td>
+      <td><code>RichTextDocument</code></td>
+      <td>— (required)</td>
+      <td>The block-model document to render</td>
+    </tr>
+    <tr>
+      <td><code>blockOverrides</code></td>
+      <td><code>Partial&lt;Record&lt;Block['type'], ComponentType&lt;BlockOverrideProps&gt;&gt;&gt;</code></td>
+      <td>—</td>
+      <td>Replace the renderer for specific block types</td>
+    </tr>
+    <tr>
+      <td><code>className</code> / <code>style</code></td>
+      <td><code>string</code> / <code>CSSProperties</code></td>
+      <td>—</td>
+      <td>Wrapper styling hooks</td>
+    </tr>
+  </tbody>
+</table>
+
+### Exported types & helpers
+
+<table>
+  <thead>
+    <tr>
+      <th>Export</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>RichTextRendererProps</code></td>
+      <td>Props type of the component</td>
+    </tr>
+    <tr>
+      <td><code>BlockOverrideProps</code></td>
+      <td>Props received by a <code>blockOverrides</code> component: <code>&#123; block &#125;</code></td>
+    </tr>
+    <tr>
+      <td><code>renderBlock</code> / <code>renderInline</code> / <code>renderMark</code></td>
+      <td>Low-level render helpers, useful inside custom block overrides</td>
+    </tr>
+  </tbody>
+</table>
+
+## Notes & tips
+
+- **Keep the editor out of read paths** — this package intentionally has no Tiptap
+  dependency; only pull `@synerise/ds-rich-text` where users actually edit.
+- Inside a `blockOverrides` component you can delegate the children back to the
+  default rendering with `renderBlock` / `renderInline`.
+- The document type (`RichTextDocument`, `Block`) is exported by
+  `@synerise/ds-rich-text` — the renderer re-uses those types, so both packages stay
+  in sync.
+- Links render with <code>target="_blank"</code> semantics from the stored HTML
+  attributes; sanitize user-generated URLs at write time.

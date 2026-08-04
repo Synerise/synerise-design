@@ -1,6 +1,6 @@
 {
   "name": "@synerise/ds-stepper",
-  "version": "1.0.54",
+  "version": "1.0.55",
   "description": "Stepper UI Component for the Synerise Design System",
   "license": "ISC",
   "repository": "Synerise/synerise-design",
@@ -17,6 +17,7 @@
   "files": [
     "/dist",
     "CHANGELOG.md",
+    "CLAUDE.md",
     "README.md",
     "package.json",
     "LICENSE.md"

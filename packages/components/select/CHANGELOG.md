@@ -3,6 +3,31 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.4.0](https://github.com/synerise/synerise-design/compare/@synerise/ds-select@1.3.34...@synerise/ds-select@1.4.0) (2026-07-24)
+
+### Bug Fixes
+
+- **select:** add onKeyDown, maxLength, dropdownAlign, popupClassName, maxTagPlaceholder ([1cf5f39](https://github.com/synerise/synerise-design/commit/1cf5f394055c10caee8b2bef81c83d04e19dcd6e))
+- **select:** add suffixIcon, tabIndex, option style/children parity shims ([10c0bbc](https://github.com/synerise/synerise-design/commit/10c0bbc584534f7950bd5093764d9363a526149b))
+- **select:** color clear/remove icons via currentColor, not svg fill ([0573124](https://github.com/synerise/synerise-design/commit/05731249ebc2d6d291879f0cb0f7443d8966a2b6))
+- **select:** fire onFocus/onBlur and split render into sub-components ([44f73ec](https://github.com/synerise/synerise-design/commit/44f73ec0dc705c920950048acfa61ea108ec8072))
+- **select:** forward data-_ and aria-_ attributes to the select root ([49294a8](https://github.com/synerise/synerise-design/commit/49294a8b1ab2b17967fc9d8ce9879eb48c5844cb))
+- **select:** mark the current option selected via ListItem selected prop ([b5cb80a](https://github.com/synerise/synerise-design/commit/b5cb80a9d6e8a0411752a58fb0e66770f5c19408))
+- **select:** move onClick off the dropdown trigger; focus inputs in interaction tests ([ed1a79c](https://github.com/synerise/synerise-design/commit/ed1a79c45bf056304a11e959ceb086dc1258b55e))
+- **select:** multiple chip keeps its label-defined width; X squeezes label on hover ([5c9908d](https://github.com/synerise/synerise-design/commit/5c9908d8ff86119aa3948a1f366497827598bd3d))
+- **select:** overlay search input and blur it on selection ([f312354](https://github.com/synerise/synerise-design/commit/f31235487542b29f31b2435c2b9951716803d20c))
+- **select:** restore antd-parity props for consumer back-compat ([ceac672](https://github.com/synerise/synerise-design/commit/ceac6729c4c4815ee918a927a98aa17de0407e8d))
+
+### Features
+
+- **select:** forward per-option data-_/aria-_ to the rendered option row ([1a8162d](https://github.com/synerise/synerise-design/commit/1a8162d9dae98a5cf96b0f35f70f9148eb025e88))
+- **select:** implement maxTagCount/maxTagTextLength/maxTagPlaceholder + onPopupScroll ([060d2c6](https://github.com/synerise/synerise-design/commit/060d2c6b74118c065d928786dad67aa1b88500c7))
+- **select:** keyboard-arrow option navigation + combobox/listbox ARIA ([74e5466](https://github.com/synerise/synerise-design/commit/74e5466b23dc2d062c0bd734cc84334f55b99ab8))
+
+## [1.3.34](https://github.com/synerise/synerise-design/compare/@synerise/ds-select@1.3.33...@synerise/ds-select@1.3.34) (2026-07-23)
+
+**Note:** Version bump only for package @synerise/ds-select
+
 ## [1.3.33](https://github.com/synerise/synerise-design/compare/@synerise/ds-select@1.3.32...@synerise/ds-select@1.3.33) (2026-06-17)
 
 **Note:** Version bump only for package @synerise/ds-select

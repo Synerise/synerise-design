@@ -1,6 +1,6 @@
 {
   "name": "@synerise/design-system",
-  "version": "1.13.2",
+  "version": "1.14.1",
   "description": "DesignSystem UI Component for the Synerise Design System",
   "license": "ISC",
   "repository": "Synerise/synerise-design",
@@ -124,6 +124,8 @@
     "@synerise/ds-progress-bar": "workspace:^",
     "@synerise/ds-radio": "workspace:^",
     "@synerise/ds-result": "workspace:^",
+    "@synerise/ds-rich-text": "workspace:^",
+    "@synerise/ds-rich-text-renderer": "workspace:^",
     "@synerise/ds-scrollbar": "workspace:^",
     "@synerise/ds-search": "workspace:^",
     "@synerise/ds-search-bar": "workspace:^",

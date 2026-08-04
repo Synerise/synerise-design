@@ -3,6 +3,24 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.14.1](https://github.com/Synerise/synerise-design/compare/@synerise/design-system@1.14.0...@synerise/design-system@1.14.1) (2026-07-24)
+
+**Note:** Version bump only for package @synerise/design-system
+
+# [1.14.0](https://github.com/Synerise/synerise-design/compare/@synerise/design-system@1.13.4...@synerise/design-system@1.14.0) (2026-07-24)
+
+### Features
+
+- **rich-text:** add markdown serializers, code snippet and table support ([56acd09](https://github.com/Synerise/synerise-design/commit/56acd097e2106a8743e85f98226caedca87a33e3))
+
+## [1.13.4](https://github.com/Synerise/synerise-design/compare/@synerise/design-system@1.13.3...@synerise/design-system@1.13.4) (2026-07-23)
+
+**Note:** Version bump only for package @synerise/design-system
+
+## [1.13.3](https://github.com/Synerise/synerise-design/compare/@synerise/design-system@1.13.2...@synerise/design-system@1.13.3) (2026-07-16)
+
+**Note:** Version bump only for package @synerise/design-system
+
 ## [1.13.2](https://github.com/Synerise/synerise-design/compare/@synerise/design-system@1.13.1...@synerise/design-system@1.13.2) (2026-07-09)
 
 **Note:** Version bump only for package @synerise/design-system

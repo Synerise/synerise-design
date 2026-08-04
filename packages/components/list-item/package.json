@@ -1,6 +1,6 @@
 {
   "name": "@synerise/ds-list-item",
-  "version": "1.6.0",
+  "version": "1.6.2",
   "description": "ListItem UI Component for the Synerise Design System",
   "license": "ISC",
   "repository": "Synerise/synerise-design",
@@ -17,6 +17,7 @@
   "files": [
     "/dist",
     "CHANGELOG.md",
+    "CLAUDE.md",
     "README.md",
     "package.json",
     "LICENSE.md"

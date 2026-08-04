@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.1.53](https://github.com/Synerise/synerise-design/compare/@synerise/ds-mapping@1.1.52...@synerise/ds-mapping@1.1.53) (2026-07-23)
+
+**Note:** Version bump only for package @synerise/ds-mapping
+
+## [1.1.52](https://github.com/Synerise/synerise-design/compare/@synerise/ds-mapping@1.1.51...@synerise/ds-mapping@1.1.52) (2026-07-16)
+
+**Note:** Version bump only for package @synerise/ds-mapping
+
 ## [1.1.51](https://github.com/Synerise/synerise-design/compare/@synerise/ds-mapping@1.1.50...@synerise/ds-mapping@1.1.51) (2026-06-27)
 
 **Note:** Version bump only for package @synerise/ds-mapping

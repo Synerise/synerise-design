@@ -1,6 +1,6 @@
 {
   "name": "@synerise/ds-factors",
-  "version": "1.12.9",
+  "version": "1.12.12",
   "description": "Factors UI Component for the Synerise Design System",
   "license": "ISC",
   "repository": "Synerise/synerise-design",
@@ -17,6 +17,7 @@
   "files": [
     "/dist",
     "CHANGELOG.md",
+    "CLAUDE.md",
     "README.md",
     "package.json",
     "LICENSE.md"

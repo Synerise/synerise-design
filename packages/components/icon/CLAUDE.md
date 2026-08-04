@@ -39,8 +39,8 @@ src/
 
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
-| `iconName` | `IconName` | `undefined` | **Recommended.** Icon name string (e.g. `'AddM'`, `'InfoL'`). Takes precedence over `component` |
-| `component` | `ReactNode` | `undefined` | **@deprecated.** Pass an icon element directly (e.g. `<AddM />`). Use `iconName` instead |
+| `component` | `ReactNode` | `undefined` | **Recommended for known icons.** Import the icon and pass it directly (e.g. `<AddM />`) — tree-shakeable |
+| `iconName` | `IconName` | `undefined` | Icon name string (e.g. `'AddM'`, `'InfoL'`). Use **only** when the icon isn't known at build time (e.g. from a DB/API); prefer `component`. Takes precedence over `component` |
 | `name` | `string` | `undefined` | Sets the `title` HTML attribute on the container div (tooltip on hover) |
 | `size` | `string \| number` | `24` | Width and height of the container and SVG in px |
 | `color` | `string` | `undefined` | Sets `color` CSS on the SVG (inherits if omitted; L/XL sets default to `grey-800`) |
@@ -114,21 +114,21 @@ Each icon component is `(props: SVGProps<SVGSVGElement>) => JSX.Element`. Every 
 ```tsx
 import Icon, { AddM, MimeTypeIcon } from '@synerise/ds-icon';
 
-// Recommended: by name string
-<Icon iconName="AddM" size={24} color="#0066cc" />
+// Recommended for known icons: import the icon and pass it via `component` (tree-shakeable)
+<Icon component={<AddM />} size={24} color="#0066cc" />
 
 // With stroke-based icon
-<Icon iconName="SomeStrokeIcon" stroke color={theme.palette['blue-600']} />
+<Icon component={<SomeStrokeIcon />} stroke color={theme.palette['blue-600']} />
 
-// Direct component import (still valid, not deprecated at the import level)
-<Icon component={<AddM />} size={32} />
+// Only when the icon name isn't known until runtime (e.g. from a DB/API):
+<Icon iconName={iconNameFromApi} size={32} />
 
 // MIME type icon
 <MimeTypeIcon type="application/pdf" size={24} />
 
 // Imperative ref
 const ref = useRef<HTMLDivElement>(null);
-<Icon ref={ref} iconName="InfoM" />
+<Icon ref={ref} component={<InfoM />} />
 
 // As styled-component target
 import { IconContainer } from '@synerise/ds-icon';
@@ -160,7 +160,8 @@ const MyButton = styled.button`
 
 - **`iconName` vs `component` precedence:** `useIconComponent(iconName)` result takes priority — if an `IconComponent` is found by name, `component` is ignored.
 - **`DynamicIcon` is deprecated:** Its behaviour (render `null` on unknown name) differs slightly from `<Icon iconName>` (which silently renders nothing but doesn't accept a `fallback`). Prefer `<Icon iconName>` for all new code.
-- **`component` prop is @deprecated** but still functional. The JSDoc deprecation is on `BaseIconProps`; it will not cause TypeScript warnings unless explicitly configured.
+- **`component` is the recommended prop for known icons; `iconName` is for unknown/runtime names only.** Import the icon and pass `component={<X />}` (tree-shakeable); use `iconName` only when the name isn't known at build time (e.g. from a DB/API). The former `@deprecated` mark on `component` has been removed.
+- **Tree-shaking / async caveat (implementation pending):** today `Icon.tsx` imports `useIconComponent` → `iconManifest`, and `iconManifest.ts` statically `import * as` *all* icon sets — so importing `Icon` currently pulls the whole icon set into the bundle regardless of which prop is used, and `iconName` is resolved synchronously. The `component`-first guidance reflects the **target** model; the actual tree-shaking benefit (and asynchronous name-based loading) lands only once the manifest is reworked to dynamic `import()`. Tracked as a follow-up.
 - **Duplicate XL icons:** `index.ts` contains a comment: "Some of this icons are duplicated in XL folder, consider removing it before uploading new version."
 - **Uses Vitest** for testing.
 - **SVG IDs are hashed:** SVGR build prefixes all SVG element IDs with `svg-{hash(filePath)}` to prevent global ID collisions when multiple icons are on the same page.

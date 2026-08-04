@@ -1,6 +1,6 @@
 {
   "name": "@synerise/ds-items-roll",
-  "version": "1.5.36",
+  "version": "1.5.39",
   "description": "ItemsRoll UI Component for the Synerise Design System",
   "license": "ISC",
   "repository": "Synerise/synerise-design",
@@ -17,6 +17,7 @@
   "files": [
     "/dist",
     "CHANGELOG.md",
+    "CLAUDE.md",
     "README.md",
     "package.json",
     "LICENSE.md"

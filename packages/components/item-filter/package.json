@@ -1,6 +1,6 @@
 {
   "name": "@synerise/ds-item-filter",
-  "version": "1.0.94",
+  "version": "1.0.97",
   "description": "ItemFilter UI Component for the Synerise Design System",
   "license": "ISC",
   "repository": "Synerise/synerise-design",
@@ -17,6 +17,7 @@
   "files": [
     "/dist",
     "CHANGELOG.md",
+    "CLAUDE.md",
     "README.md",
     "package.json",
     "LICENSE.md"

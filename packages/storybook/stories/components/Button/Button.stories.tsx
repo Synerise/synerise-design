@@ -1,6 +1,7 @@
 import React from 'react';
 
 import type { Meta, StoryObj } from '@storybook/react-vite';
+import Avatar from '@synerise/ds-avatar';
 import Button from '@synerise/ds-button';
 import type { ButtonProps } from '@synerise/ds-button';
 import { theme } from '@synerise/ds-core';
@@ -293,6 +294,74 @@ export const CustomLabel: Story = {
     ),
     type: 'primary',
   },
+};
+
+const AVATAR_IN_LABEL_TYPES = [
+  'primary',
+  'secondary',
+  'ghost-primary',
+] as const;
+
+export const AvatarInLabel: Story = {
+  parameters: {
+    docs: {
+      source: {
+        code: `<Button type="primary">
+  <Avatar size="small" backgroundColor="blue" backgroundColorHue="600">
+    JD
+  </Avatar>
+  Label
+  <Icon component={<AngleDownS />} />
+</Button>`,
+      },
+    },
+  },
+  argTypes: {
+    children: { control: false },
+  },
+  render: () => (
+    <div style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
+      <div style={{ display: 'flex', gap: 16, flexWrap: 'wrap' }}>
+        {AVATAR_IN_LABEL_TYPES.map((type) => (
+          <Button key={type} type={type} mode="label-icon">
+            <Avatar
+              size="small"
+              backgroundColor="blue"
+              backgroundColorHue="600"
+              style={{
+                marginRight: '8px',
+              }}
+            >
+              JD
+            </Avatar>
+            Label
+            <Icon component={<AngleDownS />} />
+          </Button>
+        ))}
+      </div>
+      <div style={{ display: 'flex', gap: 16, flexWrap: 'wrap' }}>
+        {AVATAR_IN_LABEL_TYPES.map((type) => (
+          <Button
+            key={`${type}-tag`}
+            type={type}
+            tagProps={{ name: 'ON', color: theme.palette['green-600'] }}
+          >
+            <Avatar
+              size="small"
+              backgroundColor="blue"
+              backgroundColorHue="600"
+              style={{
+                marginRight: '8px',
+              }}
+            >
+              JD
+            </Avatar>
+            Label
+          </Button>
+        ))}
+      </div>
+    </div>
+  ),
 };
 
 export const DisabledTooltip: Story = {

@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.3.11](https://github.com/Synerise/synerise-design/compare/@synerise/ds-confirmation@1.3.10...@synerise/ds-confirmation@1.3.11) (2026-07-24)
+
+**Note:** Version bump only for package @synerise/ds-confirmation
+
+## [1.3.10](https://github.com/Synerise/synerise-design/compare/@synerise/ds-confirmation@1.3.9...@synerise/ds-confirmation@1.3.10) (2026-07-23)
+
+**Note:** Version bump only for package @synerise/ds-confirmation
+
+## [1.3.9](https://github.com/Synerise/synerise-design/compare/@synerise/ds-confirmation@1.3.8...@synerise/ds-confirmation@1.3.9) (2026-07-16)
+
+**Note:** Version bump only for package @synerise/ds-confirmation
+
 ## [1.3.8](https://github.com/Synerise/synerise-design/compare/@synerise/ds-confirmation@1.3.7...@synerise/ds-confirmation@1.3.8) (2026-07-09)
 
 **Note:** Version bump only for package @synerise/ds-confirmation

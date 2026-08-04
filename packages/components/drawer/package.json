@@ -1,6 +1,6 @@
 {
   "name": "@synerise/ds-drawer",
-  "version": "1.1.5",
+  "version": "1.1.7",
   "description": "Drawer UI Component for the Synerise Design System",
   "license": "ISC",
   "repository": "Synerise/synerise-design",
@@ -17,6 +17,7 @@
   "files": [
     "/dist",
     "CHANGELOG.md",
+    "CLAUDE.md",
     "README.md",
     "package.json",
     "LICENSE.md"
@@ -35,17 +36,16 @@
     "check:circular-dependencies": "madge --circular --extensions ts,tsx,js,jsx --ts-config tsconfig.json src/ --exclude '/dist/'",
     "upgrade:ds": "ncu -f \"@synerise/ds-*\" -u"
   },
-  "sideEffects": [
-    "dist/style/*",
-    "*.less"
-  ],
+  "sideEffects": false,
   "types": "dist/index.d.ts",
+  "dependencies": {
+    "@synerise/ds-utils": "workspace:^"
+  },
   "devDependencies": {
     "vitest": "4"
   },
   "peerDependencies": {
     "@synerise/ds-core": "*",
-    "antd": "4.24.16",
     "react": ">=16.9.0 <= 18.3.1",
     "styled-components": "^5.3.3"
   }

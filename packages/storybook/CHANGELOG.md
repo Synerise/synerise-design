@@ -3,6 +3,34 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.53.0](https://github.com/Synerise/synerise-design/compare/storybook@1.52.0...storybook@1.53.0) (2026-07-24)
+
+### Bug Fixes
+
+- **select:** move onClick off the dropdown trigger; focus inputs in interaction tests ([ed1a79c](https://github.com/Synerise/synerise-design/commit/ed1a79c45bf056304a11e959ceb086dc1258b55e))
+
+### Features
+
+- **select:** implement maxTagCount/maxTagTextLength/maxTagPlaceholder + onPopupScroll ([060d2c6](https://github.com/Synerise/synerise-design/commit/060d2c6b74118c065d928786dad67aa1b88500c7))
+
+# [1.52.0](https://github.com/Synerise/synerise-design/compare/storybook@1.51.3...storybook@1.52.0) (2026-07-24)
+
+### Features
+
+- **rich-text:** add markdown serializers, code snippet and table support ([56acd09](https://github.com/Synerise/synerise-design/commit/56acd097e2106a8743e85f98226caedca87a33e3))
+
+## [1.51.3](https://github.com/Synerise/synerise-design/compare/storybook@1.51.2...storybook@1.51.3) (2026-07-23)
+
+### Bug Fixes
+
+- **date-range-picker:** trigger day range tooltip from the top day layer ([8b4fc77](https://github.com/Synerise/synerise-design/commit/8b4fc77ff0841aebd75c82a4aa1e24f5d3d493cf))
+
+## [1.51.2](https://github.com/Synerise/synerise-design/compare/storybook@1.51.1...storybook@1.51.2) (2026-07-16)
+
+### Bug Fixes
+
+- **button:** avatar inside button no longer inherits label text color ([87a25a0](https://github.com/Synerise/synerise-design/commit/87a25a06cc59cf6598ed966b3da6829836f8cdde))
+
 ## [1.51.1](https://github.com/Synerise/synerise-design/compare/storybook@1.51.0...storybook@1.51.1) (2026-07-09)
 
 **Note:** Version bump only for package storybook

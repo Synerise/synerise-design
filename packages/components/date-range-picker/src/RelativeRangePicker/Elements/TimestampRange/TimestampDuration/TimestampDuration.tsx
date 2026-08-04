@@ -9,7 +9,6 @@ import { DURATION_MODIFIERS } from '../../../../constants';
 import * as S from '../../../RelativeRangePicker.styles';
 import { type Props } from './TimestampDuration.types';
 
-const SELECT_DROPDOWN_OFFSET = -4;
 const TimestampDuration: React.FC<Props> = ({
   handleDurationValueChange,
   durationModifier,
@@ -31,10 +30,6 @@ const TimestampDuration: React.FC<Props> = ({
             onDurationModifierChange(modifier as string);
           }}
           dropdownStyle={{ minWidth: '125px' }}
-          dropdownAlign={{
-            points: ['bl', 'tl'],
-            offset: [0, SELECT_DROPDOWN_OFFSET],
-          }}
           getPopupContainer={(node): HTMLElement =>
             node.parentElement !== null ? node.parentElement : document.body
           }
@@ -57,10 +52,6 @@ const TimestampDuration: React.FC<Props> = ({
           value={unit}
           dropdownStyle={{ minWidth: '125px' }}
           onChange={(type): void => onDurationUnitChange(type as string)}
-          dropdownAlign={{
-            points: ['bl', 'tl'],
-            offset: [0, SELECT_DROPDOWN_OFFSET],
-          }}
           getPopupContainer={(node): HTMLElement =>
             node.parentElement !== null ? node.parentElement : document.body
           }
