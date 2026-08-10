@@ -203,11 +203,11 @@ Traps keyboard focus within a container element. When `active` is `true`, saves 
 | `RequiredProps<BaseType, PropName>` | Makes specific props required on a base type |
 | `ObjectStringKeys<T>` | Union of keys in T whose values are `string` |
 | `CustomColorShade` | The shade steps (`'50'` … `'900'`) |
-| `CustomColorToken` | A `` `${family}-${CustomColorShade}` `` combo (`'blue-600'`) across the 12 custom-colour families — maps 1:1 to a reversible `--ds-color-background-custom-*` token |
+| `CustomColorToken` | A `` `${family}-${CustomColorShade}` `` combo (`'blue-600'`) across the 12 custom-colour families — maps 1:1 to a reversible `--ds-color-custom-*` token |
 
 ### `resolveCustomColor(value, fallback, options?): string` / `isResolvedColor(value?): boolean`
 
-`resolveCustomColor` maps a custom-colour name (`'grey'`) or name-shade combo (`'blue-600'`) to its reversible `--ds-color-background-custom-*` token (light/dark aware, from `@synerise/ds-tokens`). Options: `defaultShade` (bare-name shade, default `'600'`), `shadeShift` (±100 for hover variants), `passthroughResolved` (return `var()`/hex verbatim). Anything unmapped returns `fallback` — never `theme.palette`, never an undefined lookup. `isResolvedColor` reports whether a value is already a `var()` token or hex literal. Shared by slider (`tracksColorMap`) and card-tabs (`color`); reusable in consumer apps.
+`resolveCustomColor` maps a custom-colour name (`'grey'`) or name-shade combo (`'blue-600'`) to its reversible `--ds-color-custom-*` token (light/dark aware, from `@synerise/ds-tokens`). Options: `defaultShade` (bare-name shade, default `'600'`), `shadeShift` (±100 for hover variants), `passthroughResolved` (return `var()`/hex verbatim). Anything unmapped returns `fallback` — never `theme.palette`, never an undefined lookup. `isResolvedColor` reports whether a value is already a `var()` token or hex literal. Shared by slider (`tracksColorMap`) and card-tabs (`color`); reusable in consumer apps.
 
 ---
 

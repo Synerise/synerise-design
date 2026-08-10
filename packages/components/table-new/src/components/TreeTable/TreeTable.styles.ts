@@ -23,7 +23,7 @@ const getColorHue = (active: boolean, level: number): string => {
 };
 
 // Reversible per-level bar colour: the ad-hoc LEVEL_COLORS hue + shade is mapped through the shared
-// `resolveCustomColor` helper to the `--ds-color-background-custom-<hue>-<shade>` token, so nesting-depth
+// `resolveCustomColor` helper to the `--ds-color-custom-<hue>-<shade>` token, so nesting-depth
 // colours flip with the theme; `palette` is a last-resort fallback for any hue/shade it can't resolve.
 const levelBarColor = (
   level: number,
