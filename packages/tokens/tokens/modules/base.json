@@ -2689,6 +2689,49 @@
           "$description": "Switch opacity for disabled state (0.4 = 40%)"
         }
       }
+    },
+    "chip": {
+      "bg": {
+        "default": {
+          "$type": "color",
+          "$value": "{color.background.base.muted}",
+          "$description": "Form chip (select/input multivalue) - tlo default (grey-100 wg kodu)"
+        },
+        "hover": {
+          "$type": "color",
+          "$value": "{color.background.base.mutedHover}",
+          "$description": "Form chip - tlo hover (grey-200 wg kodu)"
+        },
+        "disabled": {
+          "$type": "color",
+          "$value": "{color.background.base.subtle}",
+          "$description": "Form chip - tlo disabled (grey-050 wg kodu)"
+        }
+      },
+      "text": {
+        "default": {
+          "$type": "color",
+          "$value": "{color.text.base.default}",
+          "$description": "Form chip - tekst default (grey-800 wg kodu)"
+        },
+        "hover": {
+          "$type": "color",
+          "$value": "{color.text.base.default}",
+          "$description": "Form chip - tekst hover (grey-800)"
+        },
+        "disabled": {
+          "$type": "color",
+          "$value": "{color.text.base.muted}",
+          "$description": "Form chip - tekst disabled (grey-600)"
+        }
+      },
+      "remove": {
+        "icon": {
+          "$type": "color",
+          "$value": "{color.icon.danger.default}",
+          "$description": "Form chip - ikona x remove (red-600, pojawia sie na hover)"
+        }
+      }
     }
   },
   "divider": {
