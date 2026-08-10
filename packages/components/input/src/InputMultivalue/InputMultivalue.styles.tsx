@@ -80,7 +80,7 @@ export const IconWrapper = styled.div`
   width: 24px;
   margin-left: -16px;
   display: none;
-  color: var(--ds-color-icon-danger-default);
+  color: var(--ds-form-chip-remove-icon);
 `;
 export const ValueText = styled.div<{ shrink?: boolean; disabled?: boolean }>`
   line-height: 22px;
@@ -115,8 +115,8 @@ export const ValueWrapper = styled.div<{
   & {
     background-color: ${(props) =>
       props.disabled
-        ? 'var(--ds-color-background-base-mutedhover)'
-        : 'var(--ds-color-background-base-muted)'};
+        ? 'var(--ds-form-chip-bg-disabled)'
+        : 'var(--ds-form-chip-bg-default)'};
   }
   border-radius: 3px;
   border: none;
@@ -146,8 +146,8 @@ export const ValueWrapper = styled.div<{
         }
         ${contentShrinkStyle()}
       `}
-    background-color: var(--ds-color-background-base-mutedhover);
-    color: ${(props) => !props.disabled && 'var(--ds-color-text-base-default)'};
+    background-color: var(--ds-form-chip-bg-hover);
+    color: ${(props) => !props.disabled && 'var(--ds-form-chip-text-hover)'};
     cursor: pointer;
   }
   ${(props) => !!props.disabled && disabledStyled()}
