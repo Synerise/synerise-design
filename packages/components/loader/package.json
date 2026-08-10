@@ -41,6 +41,9 @@
     "*.less"
   ],
   "types": "dist/index.d.ts",
+  "dependencies": {
+    "@synerise/ds-utils": "workspace:^"
+  },
   "peerDependencies": {
     "@synerise/ds-core": "*",
     "react": ">=16.9.0 <= 18.3.1",

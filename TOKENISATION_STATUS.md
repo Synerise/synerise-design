@@ -332,7 +332,7 @@ These components use `theme.palette` / hardcoded colors but do not yet have dedi
 | items-roll | 0 | No | 1 | 4 | :white_check_mark: colours tokenised — semantic (2026-07-21); ⚑ WarningIcon yellow-500→600; shadow/opacity refs are non-colour (kept) |
 | layout | 0 | No | 0 | 2 | :white_check_mark: tokenised — semantic + `page` module bg (2026-07-21); fixed a malformed CSS site; 2 functional opacities kept |
 | list | 9 | No | 1 | 1 | :white_check_mark: tokenised (2026-07-24) — de-antd'd (`.less` removed); items/header → semantic, all exact |
-| loader | 1 | No | 0 | 0 | :white_check_mark: tokenised (2026-07-21); header text → text-base-default; spinner border stays dynamic (`color` prop) |
+| loader | 1 | No | 0 | 0 | :white_check_mark: tokenised (2026-07-21); header text → text-base-default; spinner border resolves via `resolveCustomColor` off `theme.palette`, still driven by `color` prop |
 | logic | 13 | No | 0 | 0 | |
 | manageable-list | 0 | No | 0 | 0 | :white_check_mark: tokenised — semantic now → dedicated module later (2026-07-21); 3 ⚑ shifts |
 | mapping | 3 | No | 0 | 0 | |
@@ -1548,8 +1548,9 @@ flagged for Chromatic/UX.
 ### loader — :white_check_mark:
 
 `Loader.styles.ts` `HeaderWrapper` text grey-800 → `--ds-color-text-base-default` (exact). No visual diff.
-**Kept dynamic:** the spinner `border` colour (`theme.palette[\`${color}-600\`]`) is driven by the public
-`color` prop (default `grey` → grey-600) — verified consumed, so kept dynamic (dropping the prop is a public
+**Custom colour:** the spinner `border` colour is driven by the public `color` prop (default `grey` →
+grey-600); migrated off `theme.palette` to `resolveCustomColor` (`@synerise/ds-utils`) → theme-aware
+categorical tokens, still dynamic per prop (dropping the prop is a public
 API change, out of scope). **Decorative:** `border-top: transparent` (the spinner's rotation gap).
 
 ### panel — :white_check_mark:
