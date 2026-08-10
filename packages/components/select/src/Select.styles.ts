@@ -311,17 +311,16 @@ export const Chip = styled.span`
   max-width: 100%;
   min-height: 24px;
   padding: 0 8px;
-  /* Chip surface stays on palette — no grey-200/300 background token yet. */
-  background: ${(props) => props.theme.palette['grey-200']};
+  background: var(--ds-form-chip-bg-default);
   border: none;
   border-radius: 3px;
   font-size: 13px;
   line-height: 1;
-  color: var(--ds-color-text-base-muted);
+  color: var(--ds-form-chip-text-default);
 
   &:hover {
-    background: ${(props) => props.theme.palette['grey-300']};
-    color: var(--ds-color-text-base-default);
+    background: var(--ds-form-chip-bg-hover);
+    color: var(--ds-form-chip-text-hover);
   }
   /* The chip width is fixed by the label (max-content, capped at the container).
      On hover the absolute X appears and the label's max-width shrinks by the X
@@ -354,5 +353,5 @@ export const ChipRemove = styled.span`
   height: 24px;
   cursor: pointer;
   /* DS icons use currentColor — set color, not svg fill. */
-  color: var(--ds-color-icon-danger-default);
+  color: var(--ds-form-chip-remove-icon);
 `;
