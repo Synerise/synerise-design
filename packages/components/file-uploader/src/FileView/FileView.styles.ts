@@ -112,11 +112,7 @@ export const CheckButtonWrapper = styled.div`
     position: absolute;
     right: -2px;
     top: -2px;
-    transition: color 0.3s;
     color: var(--ds-color-icon-success-default);
-    &:hover {
-      color: var(--ds-color-icon-success-default);
-    }
   }
 `;
 export const RemoveButtonWrapper = styled.div<{ pressed?: boolean }>`
@@ -138,12 +134,7 @@ export const RemoveButtonWrapper = styled.div<{ pressed?: boolean }>`
     position: absolute;
     right: -2px;
     top: -2px;
-    transition: color 0.3s;
     color: var(--ds-color-icon-danger-default);
-
-    &:hover {
-      color: var(--ds-color-icon-danger-default);
-    }
   }
 `;
 

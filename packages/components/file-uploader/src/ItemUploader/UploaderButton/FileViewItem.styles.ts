@@ -88,12 +88,7 @@ export const RemoveButtonWrapper = styled.div<{ pressed?: boolean }>`
     position: absolute;
     right: -2px;
     top: -2px;
-    transition: fill 0.3s;
     color: var(--ds-color-icon-danger-default);
-
-    &:hover {
-      color: var(--ds-color-icon-danger-default);
-    }
   }
 `;
 
