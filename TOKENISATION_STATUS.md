@@ -115,7 +115,6 @@ Single at-a-glance view of every colour-bearing component: migration **status** 
 **Totals:** ✅ 96 done · 🚧 9 partial · ❌ 7 not started · ⛔ 3 deprecated · ➖ 4 n/a — **12 awaiting token defs** (flag in last column).
 
 > **`theme.palette` holdouts (to retire):** dynamic `color`/`customColor` props still resolve via `theme.palette` → migrate to ds-utils `resolveCustomColor`: **badge** (local dup helper), **avatar** (ObjectAvatar), **section-message**, **button**, **loader**. Static gap: **inline-edit** (`:active` bg grey-300, no token). Fully untokenised (new): **rich-text**, **rich-text-renderer**. Role-specific cases (text/border/icon-custom) need `resolveCustomColor` extended with a `role` option + manifest role maps.
->>>>>>> TOKENISATION_STATUS.md
 
 | Component | Layer | Status | Awaiting token defs / blocker |
 |---|---|:--:|---|
