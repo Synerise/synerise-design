@@ -5,7 +5,6 @@ import { ObjectAvatar, UserAvatar } from '@synerise/ds-avatar';
 import Button from '@synerise/ds-button';
 import Card, { CardBadge } from '@synerise/ds-card';
 import type { CardProps } from '@synerise/ds-card';
-import { theme } from '@synerise/ds-core';
 import Icon, {
   AiSearchGreyM,
   AnalyticsGreyM,
@@ -23,6 +22,7 @@ import Icon, {
   WarningFillM,
 } from '@synerise/ds-icon';
 import Tag, { TagShape } from '@synerise/ds-tag';
+import { customColors } from '@synerise/ds-tokens/names';
 import Tooltip from '@synerise/ds-tooltip';
 
 import * as S from './Card.styles';
@@ -35,7 +35,7 @@ const objectAvatar = (
     <ObjectAvatar
       iconComponent={
         <Icon
-          color={theme.palette['grey-600']}
+          color="var(--ds-color-icon-base-default)"
           size={18}
           component={iconComponent}
         />
@@ -82,7 +82,7 @@ const objectUserAvatar = (firstName = 'Jane', lastName = 'Doe') => (
   </S.ObjectWithAvatar>
 );
 
-const objectWithTag = (letter = 'A', color = theme.palette['blue-600']) => (
+const objectWithTag = (letter = 'A', color = customColors.blue['600']) => (
   <S.ObjectWithTag>
     <Tag
       shape={TagShape.SINGLE_CHARACTER_SQUARE}
@@ -100,7 +100,10 @@ const objectWithTag = (letter = 'A', color = theme.palette['blue-600']) => (
 const button = (
   <Tooltip title={'Go to the account settings in new tab'}>
     <Button mode="single-icon" onClick={() => {}} type="ghost">
-      <Icon component={<ExternalLinkM />} color={theme.palette['grey-600']} />
+      <Icon
+        component={<ExternalLinkM />}
+        color="var(--ds-color-icon-base-default)"
+      />
     </Button>
   </Tooltip>
 );
@@ -132,11 +135,11 @@ export const CARD_SUMMARY_ITEMS = [
     label: 'Selected segments',
     value: '5',
     summaryObjects: [
-      objectWithTag('A', theme.palette['blue-600']),
-      objectWithTag('B', theme.palette['mars-600']),
-      objectWithTag('C', theme.palette['fern-600']),
-      objectWithTag('D', theme.palette['violet-600']),
-      objectWithTag('E', theme.palette['orange-600']),
+      objectWithTag('A', customColors.blue['600']),
+      objectWithTag('B', customColors.mars['600']),
+      objectWithTag('C', customColors.fern['600']),
+      objectWithTag('D', customColors.violet['600']),
+      objectWithTag('E', customColors.orange['600']),
     ],
   },
   {
@@ -263,7 +266,7 @@ const titleTag = (
   <Tag
     asPill
     name="OPTIONAL"
-    color={theme.palette['grey-500']}
+    color={customColors.grey['500']}
     shape={TagShape.SMALL_SQUARE}
   />
 );
@@ -325,6 +328,16 @@ export const CARD_HEADER_VARIANTS = [
     headerSideChildren: <></>,
   },
   {
+    title: 'With Icon Badge Warning',
+    icon: <CardBadge icon={<CheckS />} status="warning" />,
+    headerSideChildren: <></>,
+  },
+  {
+    title: 'With Icon Badge Error',
+    icon: <CardBadge icon={<CheckS />} status="error" />,
+    headerSideChildren: <></>,
+  },
+  {
     title: 'With Icon Badge Checked',
     icon: <CardBadge icon={<CheckS />} status="checked" />,
     headerSideChildren: <></>,
@@ -374,16 +387,16 @@ export const CARD_HEADER_VARIANTS = [
   },
   {
     title: 'With Icon',
-    iconColor: theme.palette['grey-400'],
+    iconColor: 'var(--ds-color-icon-base-muted)',
   },
   {
     title: 'With User Icon',
     icon: <Icon component={<UserM />} />,
-    iconColor: theme.palette['grey-400'],
+    iconColor: 'var(--ds-color-icon-base-muted)',
   },
   {
     title: 'With warning',
-    iconColor: theme.palette['grey-400'],
+    iconColor: 'var(--ds-color-icon-base-muted)',
     headerSideChildren: (
       <div
         style={{
@@ -395,10 +408,15 @@ export const CARD_HEADER_VARIANTS = [
         <div style={{ display: 'flex', alignItems: 'center' }}>
           <Icon
             component={<WarningFillM />}
-            color={theme.palette['yellow-600']}
+            color="var(--ds-color-icon-warning-default)"
             style={{ marginRight: '4px' }}
           />
-          <span style={{ fontWeight: 500, color: theme.palette['yellow-600'] }}>
+          <span
+            style={{
+              fontWeight: 500,
+              color: 'var(--ds-color-text-warning-default)',
+            }}
+          >
             Uncompleted
           </span>
         </div>

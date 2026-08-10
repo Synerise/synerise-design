@@ -1,7 +1,6 @@
 import { ReactNode } from 'react';
 import { expect, fn, userEvent, waitFor, within } from 'storybook/test';
 
-
 import { Meta, StoryObj } from '@storybook/react-vite';
 import type { CascaderProps, Category } from '@synerise/ds-cascader';
 

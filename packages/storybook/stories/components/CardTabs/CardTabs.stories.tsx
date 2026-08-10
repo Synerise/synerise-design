@@ -7,7 +7,6 @@ import CardTabs, {
   prefixType,
 } from '@synerise/ds-card-tabs';
 import type { CardTabProps, CardTabsPropsBase } from '@synerise/ds-card-tabs';
-import { theme } from '@synerise/ds-core';
 import Icon, {
   AppleFillM,
   Close3M,
@@ -17,6 +16,7 @@ import Icon, {
   OptionHorizontalM,
   ShowM,
 } from '@synerise/ds-icon';
+import { customColors } from '@synerise/ds-tokens/names';
 
 import {
   BOOLEAN_CONTROL,
@@ -229,27 +229,27 @@ const meta: Meta<MetaType> = {
         ['AppleFillM', 'Close3M', 'ErrorFillM', 'FacebookFillM', 'HelpFillM'],
         {
           AppleFillM: (
-            <Icon
-              component={<AppleFillM />}
-              color={theme.palette['fern-600']}
-            />
+            <Icon component={<AppleFillM />} color={customColors.fern['600']} />
           ),
           Close3M: (
-            <Icon component={<Close3M />} color={theme.palette['grey-400']} />
+            <Icon
+              component={<Close3M />}
+              color="var(--ds-color-icon-base-muted)"
+            />
           ),
           ErrorFillM: (
-            <Icon component={<ErrorFillM />} color={theme.palette['red-600']} />
+            <Icon component={<ErrorFillM />} color={customColors.red['600']} />
           ),
           HelpFillM: (
             <Icon
               component={<HelpFillM />}
-              color={theme.palette['orange-600']}
+              color={customColors.orange['600']}
             />
           ),
           FacebookFillM: (
             <Icon
               component={<FacebookFillM />}
-              color={theme.palette['blue-600']}
+              color={customColors.blue['600']}
             />
           ),
         },

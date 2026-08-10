@@ -13,7 +13,7 @@ type Story = StoryObj;
 
 // First initial A–L maps 1:1 onto the 12 sorted custom-color families
 // (blue, cyan, fern, green, grey, mars, orange, pink, purple, red, violet, yellow),
-// so each avatar auto-derives a distinct --ds-color-background-custom-<family>-500 token.
+// so each avatar auto-derives a distinct --ds-color-custom-<family>-500 token.
 const CELLS: { name: string; family: string }[] = [
   { name: 'Anna', family: 'blue' },
   { name: 'Bruno', family: 'cyan' },

@@ -12,7 +12,7 @@ export const Copyable = styled.div`
   align-items: center;
   justify-content: space-between;
   &:hover {
-    color: ${(props): string => props.theme.palette['grey-800']};
+    color: var(--ds-color-text-base-default);
     ${IconContainer} {
       opacity: 1;
       visibility: visible;
@@ -22,13 +22,13 @@ export const Copyable = styled.div`
     opacity: 0;
     visibility: hidden;
     svg {
-      fill: ${(props): string => props.theme.palette['grey-400']};
-      color: ${(props): string => props.theme.palette['grey-400']};
+      fill: var(--ds-color-icon-base-muted);
+      color: var(--ds-color-icon-base-muted);
     }
     &:hover {
       svg {
-        fill: ${(props): string => props.theme.palette['blue-600']};
-        color: ${(props): string => props.theme.palette['blue-600']};
+        fill: var(--ds-color-icon-brand-default);
+        color: var(--ds-color-icon-brand-default);
       }
     }
   }

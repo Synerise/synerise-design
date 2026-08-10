@@ -3,7 +3,6 @@ import { action } from 'storybook/actions';
 
 import { Meta, StoryObj } from '@storybook/react-vite';
 import Button from '@synerise/ds-button';
-import { theme } from '@synerise/ds-core';
 import Icon, { ArrowRightM, BlockM, ShowM } from '@synerise/ds-icon';
 import { Input } from '@synerise/ds-input';
 import Mapping, { MappingProps } from '@synerise/ds-mapping';
@@ -216,7 +215,10 @@ export const WithSelect: StoryObj<StoryType> = {
       );
     };
     const centerComponent = () => (
-      <Icon component={<ArrowRightM />} color={theme.palette['grey-600']} />
+      <Icon
+        component={<ArrowRightM />}
+        color={'var(--ds-color-icon-base-default)'}
+      />
     );
 
     return (

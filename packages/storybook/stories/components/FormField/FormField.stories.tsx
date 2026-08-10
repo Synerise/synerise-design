@@ -3,6 +3,7 @@ import styled from 'styled-components';
 
 import { Meta, StoryObj } from '@storybook/react-vite';
 import FormField, { FormFieldProps } from '@synerise/ds-form-field';
+import { customColors } from '@synerise/ds-tokens/names';
 
 import {
   REACT_NODE_AS_STRING,
@@ -12,7 +13,7 @@ import {
 
 const ChildrenWrapper = styled.div`
   opacity: 0.5;
-  background: ${(props) => props.theme.palette['grey-200']};
+  background: ${customColors.grey['200']};
   line-height: 30px;
 `;
 

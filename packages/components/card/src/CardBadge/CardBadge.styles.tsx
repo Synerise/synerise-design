@@ -3,24 +3,24 @@ import styled from 'styled-components';
 import { type BadgeStatus } from './CardBadge.types';
 
 const background: Record<BadgeStatus, string> = {
-  success: 'var(--ds-color-background-success-solid)',
-  warning: 'var(--ds-color-background-warning-solid)',
-  error: 'var(--ds-color-background-danger-solid)',
-  default: 'transparent',
-  checked: 'transparent',
+  success: 'var(--ds-card-header-badge-success-bg)',
+  warning: 'var(--ds-card-header-badge-warning-bg)',
+  error: 'var(--ds-card-header-badge-error-bg)',
+  default: 'var(--ds-card-header-badge-default-bg)',
+  checked: 'var(--ds-card-header-badge-checked-bg)',
 };
 
 const color: Record<BadgeStatus, string> = {
-  success: 'var(--ds-color-text-onsolid-default)',
-  warning: 'var(--ds-color-text-onsolid-default)',
-  error: 'var(--ds-color-text-onsolid-default)',
-  default: 'var(--ds-color-icon-base-muted)',
-  checked: 'var(--ds-color-icon-base-muted)',
+  success: 'var(--ds-card-header-badge-success-icon)',
+  warning: 'var(--ds-card-header-badge-warning-icon)',
+  error: 'var(--ds-card-header-badge-error-icon)',
+  default: 'var(--ds-card-header-badge-default-icon)',
+  checked: 'var(--ds-card-header-badge-checked-icon)',
 };
 
 const boxShadow = (props: { status: BadgeStatus }) => {
   return props.status === 'default'
-    ? 'var(--ds-color-border-base-stronghover) 0px 0px 0px 1.5px inset'
+    ? 'var(--ds-card-header-badge-default-border) 0px 0px 0px 1.5px inset'
     : 'none';
 };
 

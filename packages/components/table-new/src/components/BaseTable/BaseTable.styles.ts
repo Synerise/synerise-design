@@ -43,7 +43,7 @@ export const TableContainer = styled.div<{
   ${(props) =>
     props.withBorderTop &&
     css`
-      border-top: solid 1px ${props.theme.palette['grey-200']};
+      border-top: solid 1px var(--ds-color-border-base-default);
     `}
   ${(props) =>
     props.cardStyles &&
@@ -52,7 +52,7 @@ export const TableContainer = styled.div<{
       box-shadow: ${props.theme.variables['box-shadow-2']};
     `}
     
-  background: ${(props) => props.theme.palette['white']};
+  background: var(--ds-color-background-base-default);
 `;
 
 export const TableBodyScrollWrapper = styled.div<{
@@ -103,7 +103,7 @@ export const StyledTable = styled.table<{ $tableLayoutAuto?: boolean }>`
       }
     `}
 
-  ${(props) => css`
+  ${css`
     @keyframes ds-table-row-highlight {
       0% {
         background-color: transparent;
@@ -111,13 +111,13 @@ export const StyledTable = styled.table<{ $tableLayoutAuto?: boolean }>`
       5% {
         background-color: var(
           --ds-highlight-color,
-          ${props.theme.palette['blue-050']}
+          var(--ds-color-background-brand-subtle)
         );
       }
       30% {
         background-color: var(
           --ds-highlight-color,
-          ${props.theme.palette['blue-050']}
+          var(--ds-color-background-brand-subtle)
         );
       }
       100% {
@@ -147,7 +147,7 @@ export const TableColumnsHorizontalScroll = styled(TableHorizontalScroll)<{
           ? `${stickyData.titleBarHeight - stickyData.containerPaddingTop}px` // '49px'
           : `-${stickyData.containerPaddingTop}px`};
         z-index: 11;
-        background: ${theme.palette['white']};
+        background: var(--ds-color-background-base-default);
         ${((isScrolled &&
           isScrolled >
             stickyData.titleBarHeight + stickyData.containerPaddingTop) ||

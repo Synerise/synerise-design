@@ -11,7 +11,6 @@ import Switch from '@synerise/ds-switch';
 import {
   BOOLEAN_CONTROL,
   CLASSNAME_ARG_CONTROL,
-  PREFIXCLS_ARG_CONTROL,
   REACT_NODE_AS_STRING,
   STRING_CONTROL,
   STYLE_ARG_CONTROL,
@@ -36,7 +35,6 @@ export default {
     split: BOOLEAN_CONTROL,
     id: STRING_CONTROL,
     loadMore: REACT_NODE_AS_STRING,
-    prefixCls: PREFIXCLS_ARG_CONTROL,
   },
   args: {},
 } as Meta<ListPropsType<ItemProps>>;

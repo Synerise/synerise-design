@@ -19,7 +19,6 @@ const SubtleSelect = ({
   placeholder,
   error,
   errorText,
-  dropdownAlign = {},
   ...rest
 }: SubtleSelectProps) => {
   const [active, setActive] = useState(false);
@@ -53,7 +52,6 @@ const SubtleSelect = ({
               errorText={errorText}
               error={error}
               defaultOpen={!hasError}
-              dropdownAlign={{ offset: [0, 8], ...dropdownAlign }}
               {...rest}
             >
               {children}

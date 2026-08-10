@@ -1,6 +1,5 @@
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
 
-import { useTheme } from '@synerise/ds-core';
 import Dropdown from '@synerise/ds-dropdown';
 import Icon, { AngleDownS, Close3S } from '@synerise/ds-icon';
 import { getPopupContainer } from '@synerise/ds-utils';
@@ -31,7 +30,6 @@ const RelativeDateInput = ({
   const [localValue, setLocalValue] = useState<RelativeDateValueType>(
     () => value as RelativeDateValueType,
   );
-  const theme = useTheme();
   const { relativeDate: texts } = allTexts;
 
   useEffect(() => {
@@ -88,12 +86,12 @@ const RelativeDateInput = ({
         <S.ChevronIcon onClick={handleOpen} component={<AngleDownS />} />
         <S.ClearIcon
           onClick={handleClear}
-          color={theme.palette['red-600']}
+          color="var(--ds-color-icon-danger-default)"
           component={<Close3S />}
         />
       </S.IconWrapper>
     );
-  }, [localValue, allowClear, handleClear, handleOpen, theme.palette]);
+  }, [localValue, allowClear, handleClear, handleOpen]);
 
   const trigger = useMemo(() => {
     return (

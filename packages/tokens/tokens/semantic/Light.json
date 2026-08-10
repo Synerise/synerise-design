@@ -425,6 +425,16 @@
           "$value": "{color.violet.700}",
           "$description": "Solidne tło Entity — active/pressed"
         }
+      },
+      "ordered": {
+        "base": {
+          "$type": "color",
+          "$value": "{color.ordered.base}"
+        },
+        "hover": {
+          "$type": "color",
+          "$value": "{color.ordered.hover}"
+        }
       }
     },
     "text": {
@@ -558,6 +568,12 @@
           "$type": "color",
           "$value": "{color.violet.700}",
           "$description": "Kolor tekstu Entity"
+        }
+      },
+      "ordered": {
+        "base": {
+          "$type": "color",
+          "$value": "{color.ordered.base}"
         }
       }
     },

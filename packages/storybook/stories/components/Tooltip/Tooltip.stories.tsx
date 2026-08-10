@@ -6,13 +6,13 @@ import { expect, fn, userEvent, waitFor, within } from 'storybook/test';
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import { UserAvatar } from '@synerise/ds-avatar';
 import Button from '@synerise/ds-button';
-import { theme } from '@synerise/ds-core';
 import FileUploader from '@synerise/ds-file-uploader';
 import Icon, { InfoFillS, InfoM, SegmentM } from '@synerise/ds-icon';
 import { KeyboardEnterM } from '@synerise/ds-icon';
 import InformationCard from '@synerise/ds-information-card';
 import ShortCuts from '@synerise/ds-short-cuts';
 import Tag, { TagShape } from '@synerise/ds-tag';
+import { customColors } from '@synerise/ds-tokens/names';
 import Tooltip, { TooltipProps } from '@synerise/ds-tooltip';
 
 import { tooltipImage } from '../../constants/images';
@@ -66,7 +66,7 @@ export default {
           <Icon
             data-testid="tooltip-trigger"
             component={<InfoFillS />}
-            color={theme.palette['grey-400']}
+            color="var(--ds-color-icon-base-muted)"
           />
         </span>
       </Tooltip>
@@ -125,7 +125,12 @@ export const LargeTypeWithImage: Story = {
         <Icon component={<InfoM />} /> More info
       </Button>
     ),
-    icon: <Icon color={theme.palette.white} component={<InfoM />} />,
+    icon: (
+      <Icon
+        color="var(--ds-color-icon-onsolid-default)"
+        component={<InfoM />}
+      />
+    ),
     description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
   },
 };
@@ -134,7 +139,12 @@ export const LargeScrollableType: Story = {
   args: {
     type: 'largeScrollable',
     title: TOOLTIP_TITLE,
-    icon: <Icon color={theme.palette.white} component={<InfoM />} />,
+    icon: (
+      <Icon
+        color="var(--ds-color-icon-onsolid-default)"
+        component={<InfoM />}
+      />
+    ),
     description:
       'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras quis pellentesque felis, luctus vestibulum ligula. Vestibulum tristique vulputate nulla, sed tempor nisi rhoncus a. Suspendisse sit amet vulputate dui, sit amet congue dolor. Ut sagittis ex sed turpis tristique, in hendrerit ligula venenatis. Aenean fringilla libero a rhoncus viverra. Sed non orci libero. Etiam venenatis ultrices odio, vel sodales massa facilisis ac. Vivamus ac fermentum elit. Aenean vel facilisis tortor, sit amet ornare erat. ',
 
@@ -152,8 +162,8 @@ export const TagWithTooltip: Story = {
       <Tag
         name="A"
         shape={TagShape.SINGLE_CHARACTER_ROUND}
-        color={theme.palette['grey-100']}
-        textColor={theme.palette['grey-500']}
+        color={customColors.grey['100']}
+        textColor="var(--ds-color-text-neutral-default)"
         asPill
         data-testid="tooltip-trigger"
       />

@@ -4,7 +4,6 @@ import { action } from 'storybook/actions';
 import Avatar, { ObjectAvatar } from '@synerise/ds-avatar';
 import Button from '@synerise/ds-button';
 import Checkbox from '@synerise/ds-checkbox';
-import { theme } from '@synerise/ds-core';
 import Icon, {
   AngleDownS,
   InfoFillS,
@@ -21,6 +20,7 @@ import Select from '@synerise/ds-select';
 import Switch from '@synerise/ds-switch';
 import { DSColumnType, TableCell } from '@synerise/ds-table';
 import Tag, { TagShape } from '@synerise/ds-tag';
+import { customColors } from '@synerise/ds-tokens/names';
 import Tooltip from '@synerise/ds-tooltip';
 
 import { AVATAR_IMAGE } from '../../../constants';
@@ -34,7 +34,7 @@ export const TAGS = [
   {
     id: '0',
     name: 'Tag Name 1',
-    color: theme.palette['grey-200'],
+    color: customColors.grey['200'],
     informationCardProps: {
       title: 'Tag Name 1',
       subtitle: 'de2ba6d0-8cb3-40f7-ad35-adc6b2406214',
@@ -45,7 +45,7 @@ export const TAGS = [
   {
     id: '1',
     name: 'Tag Name 2',
-    color: theme.palette['grey-600'],
+    color: customColors.grey['600'],
     informationCardProps: {
       title: 'Tag Name 2',
       subtitle: 'de2ba6d0-8cb3-40f7-ad35-adc6b2406214',
@@ -56,7 +56,7 @@ export const TAGS = [
   {
     id: '2',
     name: 'Tag Name 3',
-    color: theme.palette['mars-600'],
+    color: customColors.mars['600'],
     informationCardProps: {
       title: 'Tag Name 3',
       subtitle: 'de2ba6d0-8cb3-40f7-ad35-adc6b2406214',
@@ -67,32 +67,32 @@ export const TAGS = [
   {
     id: '3',
     name: 'Tag Name 4',
-    color: theme.palette['blue-600'],
+    color: customColors.blue['600'],
   },
   {
     id: '4',
     name: 'Tag Name 5',
-    color: theme.palette['fern-600'],
+    color: customColors.fern['600'],
   },
   {
     id: '5',
     name: 'Tag Name 6',
-    color: theme.palette['yellow-600'],
+    color: customColors.yellow['600'],
   },
   {
     id: '6',
     name: 'Tag Name 7',
-    color: theme.palette['grey-200'],
+    color: customColors.grey['200'],
   },
   {
     id: '7',
     name: 'Tag Name 8',
-    color: theme.palette['grey-200'],
+    color: customColors.grey['200'],
   },
   {
     id: '8',
     name: 'Tag Name 9',
-    color: theme.palette['grey-200'],
+    color: customColors.grey['200'],
   },
 ];
 
@@ -100,57 +100,90 @@ export const RELATIONS = [
   {
     fieldName: 'Milk',
     key: 0,
-    icon: { component: <VarTypeStringM />, color: theme.palette['grey-600'] },
+    icon: {
+      component: <VarTypeStringM />,
+      color: 'var(--ds-color-icon-base-default)',
+    },
   },
   {
     fieldName: 'Oil',
     key: 1,
-    icon: { component: <VarTypeStringM />, color: theme.palette['grey-600'] },
+    icon: {
+      component: <VarTypeStringM />,
+      color: 'var(--ds-color-icon-base-default)',
+    },
   },
   {
     fieldName: 'Apple',
     key: 2,
-    icon: { component: <VarTypeStringM />, color: theme.palette['grey-600'] },
+    icon: {
+      component: <VarTypeStringM />,
+      color: 'var(--ds-color-icon-base-default)',
+    },
   },
   {
     fieldName: 'Banana',
     key: 3,
-    icon: { component: <VarTypeStringM />, color: theme.palette['grey-600'] },
+    icon: {
+      component: <VarTypeStringM />,
+      color: 'var(--ds-color-icon-base-default)',
+    },
   },
   {
     fieldName: 'Bread',
     key: 4,
-    icon: { component: <VarTypeStringM />, color: theme.palette['grey-600'] },
+    icon: {
+      component: <VarTypeStringM />,
+      color: 'var(--ds-color-icon-base-default)',
+    },
   },
   {
     fieldName: 'Orange',
     key: 5,
-    icon: { component: <VarTypeStringM />, color: theme.palette['grey-600'] },
+    icon: {
+      component: <VarTypeStringM />,
+      color: 'var(--ds-color-icon-base-default)',
+    },
   },
   {
     fieldName: 'Eggs',
     key: 6,
-    icon: { component: <VarTypeStringM />, color: theme.palette['grey-600'] },
+    icon: {
+      component: <VarTypeStringM />,
+      color: 'var(--ds-color-icon-base-default)',
+    },
   },
   {
     fieldName: 'Beer',
     key: 7,
-    icon: { component: <VarTypeStringM />, color: theme.palette['grey-600'] },
+    icon: {
+      component: <VarTypeStringM />,
+      color: 'var(--ds-color-icon-base-default)',
+    },
   },
   {
     fieldName: 'Cheese',
     key: 8,
-    icon: { component: <VarTypeStringM />, color: theme.palette['grey-600'] },
+    icon: {
+      component: <VarTypeStringM />,
+      color: 'var(--ds-color-icon-base-default)',
+    },
   },
   {
     fieldName: 'Pasta',
     key: 9,
-    icon: { component: <VarTypeStringM />, color: theme.palette['grey-600'] },
+    icon: {
+      component: <VarTypeStringM />,
+      color: 'var(--ds-color-icon-base-default)',
+    },
   },
   {
     fieldName: 'Rice',
     key: 10,
-    icon: { component: <VarTypeStringM />, color: theme.palette['grey-600'] },
+    icon: {
+      component: <VarTypeStringM />,
+      color: 'var(--ds-color-icon-base-default)',
+    },
   },
 ];
 
@@ -2352,7 +2385,10 @@ export const COLUMNS_WITH_ICONS: ColumnType[] = [
     width: '240px',
     render: (name, record) => (
       <TableCell.IconLabelCell
-        icon={{ component: <UserM />, color: '#6a7580' }}
+        icon={{
+          component: <UserM />,
+          color: 'var(--ds-color-icon-base-default)',
+        }}
         label={name}
         disabled={record.inactive}
       />
@@ -2394,7 +2430,7 @@ export const COLUMNS_WITH_STATUSES: ColumnType[] = [
     render: (tag) => (
       <TableCell.TagIconCell>
         <Tag shape={tag.shape} name={tag.label} />
-        <Icon component={<LockM />} color="#949ea6" />
+        <Icon component={<LockM />} color="var(--ds-color-icon-base-subtle)" />
       </TableCell.TagIconCell>
     ),
   },

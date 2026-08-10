@@ -1,15 +1,27 @@
 import React from 'react';
 
-import Tooltip from '@synerise/ds-tooltip';
-import Icon, { CheckS, CloseS, FolderM, ShowM, UserS, WarningFillS } from '@synerise/ds-icon';
-import { theme } from '@synerise/ds-core';
-import { FormFieldLabel } from '@synerise/ds-form-field';
-import Badge from '@synerise/ds-badge';
 import Avatar from '@synerise/ds-avatar';
+import Badge from '@synerise/ds-badge';
+import { FormFieldLabel } from '@synerise/ds-form-field';
+import Icon, {
+  CheckS,
+  CloseS,
+  FolderM,
+  ShowM,
+  UserS,
+  WarningFillS,
+} from '@synerise/ds-icon';
+import Tooltip from '@synerise/ds-tooltip';
 
-import * as S from './AccordionMenu.styles';
 import { AVATAR_IMAGE as IMG_SRC } from '../../constants';
-import { ActionsMenu, CheckboxWithTooltip, Rename, RenameWithDelete, SwitchWithTooltip } from './Menu.data';
+import * as S from './AccordionMenu.styles';
+import {
+  ActionsMenu,
+  CheckboxWithTooltip,
+  Rename,
+  RenameWithDelete,
+  SwitchWithTooltip,
+} from './Menu.data';
 
 export const suffixType = {
   renameAndDelete: 'rename,delete',
@@ -54,7 +66,7 @@ export const parentChilds = {
 export function renderSuffix(
   suffixElementType: string,
   selectSuffixCallback?: () => void,
-  clickSuffixCallback?: () => void
+  clickSuffixCallback?: () => void,
 ) {
   switch (suffixElementType) {
     case suffixType.renameAndDelete:
@@ -67,25 +79,46 @@ export function renderSuffix(
       return (
         <Tooltip type="default" title={'Delete'}>
           <div>
-            <Icon color={theme.palette['red-600']} component={<CloseS />} />
+            <Icon
+              color="var(--ds-color-icon-danger-default)"
+              component={<CloseS />}
+            />
           </div>
         </Tooltip>
       );
     case suffixType.check:
-      return <Icon color={theme.palette['green-600']} component={<CheckS />} />;
+      return (
+        <Icon
+          color="var(--ds-color-icon-success-default)"
+          component={<CheckS />}
+        />
+      );
     case suffixType.warning:
-      return <Icon color={theme.palette['orange-600']} component={<WarningFillS />} />;
+      return (
+        <Icon
+          color="var(--ds-color-icon-warning-default)"
+          component={<WarningFillS />}
+        />
+      );
     case suffixType.icon:
       return (
         <S.HoverableIconWrapper className="icon-suffix">
-          <Icon color={theme.palette['grey-600']} component={<UserS />} />
+          <Icon
+            color="var(--ds-color-icon-base-default)"
+            component={<UserS />}
+          />
         </S.HoverableIconWrapper>
       );
     case suffixType.label:
       return (
         <FormFieldLabel
           label={
-            <div style={{ color: theme.palette['grey-400'], lineHeight: '18px' }}>
+            <div
+              style={{
+                color: 'var(--ds-color-text-base-disabled)',
+                lineHeight: '18px',
+              }}
+            >
               <span>Text</span>
             </div>
           }
@@ -96,7 +129,13 @@ export function renderSuffix(
         <FormFieldLabel
           label={
             <Tooltip type="default" trigger="hover" title={'Select product'}>
-              <div style={{ lineHeight: '18px', marginRight: '4px', color: theme.palette['blue-600'] }}>
+              <div
+                style={{
+                  lineHeight: '18px',
+                  marginRight: '4px',
+                  color: 'var(--ds-color-text-brand-default)',
+                }}
+              >
                 <span>select</span>
               </div>
             </Tooltip>
@@ -112,25 +151,38 @@ export function renderSuffix(
   }
 }
 
-export const renderPrefixIcon = (prefixIconType: string, isChecked?: boolean, onChecked?: (value: boolean) => void) => {
+export const renderPrefixIcon = (
+  prefixIconType: string,
+  isChecked?: boolean,
+  onChecked?: (value: boolean) => void,
+) => {
   switch (prefixIconType) {
     case prefixType.twoIcons:
       return (
         <React.Fragment>
           <Tooltip type="default" title={'Delete'}>
             <div>
-              <Icon color={theme.palette['grey-700']} component={<FolderM />} />
+              <Icon
+                color="var(--ds-color-icon-base-default)"
+                component={<FolderM />}
+              />
             </div>
           </Tooltip>
           <Tooltip type="default" title={'Delete'}>
             <div>
-              <Icon color={theme.palette['grey-700']} style={{ marginLeft: '8px' }} component={<ShowM />} />
+              <Icon
+                color="var(--ds-color-icon-base-default)"
+                style={{ marginLeft: '8px' }}
+                component={<ShowM />}
+              />
             </div>
           </Tooltip>
         </React.Fragment>
       );
     case prefixType.singleIcon:
-      return <Icon color={theme.palette['grey-700']} component={<ShowM />} />;
+      return (
+        <Icon color="var(--ds-color-icon-base-default)" component={<ShowM />} />
+      );
     case prefixType.avatar:
       return (
         <Badge status="active">

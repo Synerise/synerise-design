@@ -142,9 +142,7 @@ export const Title = styled.div`
   line-height: 1.6;
   font-weight: 500;
   text-transform: uppercase;
-  /* Uppercase section-header. list-item module has no section-title token → semantic
-     grey-500 (exact). DS follow-up: add a list-item section-title token. */
-  color: var(--ds-color-text-neutral-default);
+  color: var(--ds-divider-header-text-color);
   padding: 8px 12px;
 `;
 

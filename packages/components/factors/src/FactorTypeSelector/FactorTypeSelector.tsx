@@ -1,6 +1,5 @@
 import React, { useMemo } from 'react';
 
-import { theme } from '@synerise/ds-core';
 import { DropdownMenu } from '@synerise/ds-dropdown';
 import Icon, { CheckS } from '@synerise/ds-icon';
 import Tooltip from '@synerise/ds-tooltip';
@@ -40,7 +39,10 @@ const FactorTypeSelector = ({
         prefixel: <Icon component={typeData.icon} />,
         suffixel:
           type === selectedFactorType ? (
-            <Icon component={<CheckS />} color={theme.palette['green-600']} />
+            <Icon
+              component={<CheckS />}
+              color="var(--ds-color-icon-success-default)"
+            />
           ) : (
             ''
           ),

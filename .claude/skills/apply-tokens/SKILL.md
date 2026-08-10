@@ -3,6 +3,8 @@ name: apply-tokens
 description: Apply design tokens (colors, shadows, opacity) to a specific component — replaces theme.palette, hardcoded hex/rgba, box-shadow, and opacity values with CSS custom properties from ds-tokens. Reads the component's already-decided per-usage token mapping from TOKEN_AUDIT.md first, then updates TOKENISATION_STATUS.md (summary + unified tracking table + detailed report).
 ---
 
+> **Start here — context:** read [`.claude/plans/design-token-integration.md`](../../plans/design-token-integration.md) first — the tokenisation session context this skill assumes (token architecture, the design-tokens sync pipeline, build gotchas, branch/MR/worktree conventions, and known upstream token gaps).
+
 ## Overview
 
 Migrate a component from hardcoded `theme.palette[...]` lookups, hex/rgba colors, box-shadow values,

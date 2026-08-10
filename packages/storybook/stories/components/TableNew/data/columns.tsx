@@ -103,7 +103,10 @@ export const COLUMNS_WITH_ICONS: ColumnDef<RowType, unknown>[] = [
       rowA.original.name.localeCompare(rowB.original.name),
     cell: (info) => (
       <TableCell.IconLabelCell
-        icon={{ component: <UserM />, color: '#6a7580' }}
+        icon={{
+          component: <UserM />,
+          color: 'var(--ds-color-icon-base-default)',
+        }}
         label={info.getValue() as string}
         disabled={
           (info.row.original as RowType & { inactive?: boolean }).inactive
@@ -144,7 +147,10 @@ export const COLUMNS_WITH_STATUSES: ColumnDef<RowType, unknown>[] = [
       return (
         <TableCell.TagIconCell>
           <Tag shape={tag.shape} name={tag.label} />
-          <Icon component={<LockM />} color="#949ea6" />
+          <Icon
+            component={<LockM />}
+            color="var(--ds-color-icon-base-subtle)"
+          />
         </TableCell.TagIconCell>
       );
     },
