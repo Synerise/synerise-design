@@ -182,7 +182,7 @@ export const CardWithSectionMessage: Story = {
         title="Card header"
         description="Description"
         icon={<CardBadge icon={<CheckS />} />}
-        iconColor="#54cb0b"
+        iconColor="var(--ds-color-icon-success-default)"
         onHeaderClick={action('onHeaderClick')}
         headerSideChildren={
           <div>

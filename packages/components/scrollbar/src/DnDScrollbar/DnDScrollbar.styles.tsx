@@ -38,23 +38,23 @@ export const ThumbVertical = styled.div<{ largeSize?: boolean }>`
   width: ${(props) => (props.largeSize ? '16px' : '3px')};
   background-color: ${(props) =>
     props.largeSize
-      ? props.theme.palette['blue-050']
-      : props.theme.palette['grey-300']};
+      ? 'var(--ds-color-background-brand-subtle)'
+      : 'var(--ds-color-background-base-strong)'};
   border-radius: 3px;
   right: ${(props) => (props.largeSize ? '0' : '4px')};
   position: absolute;
   border: ${(props) =>
-    props.largeSize ? `1px solid ${props.theme.palette['grey-300']}` : 'none'};
+    props.largeSize ? `1px solid var(--ds-color-border-base-strong)` : 'none'};
 
   &:hover,
   &:active {
     background-color: ${(props) =>
       props.largeSize
-        ? props.theme.palette['blue-100']
-        : props.theme.palette['grey-500']};
+        ? 'var(--ds-color-background-brand-subtlehover)'
+        : 'var(--ds-color-background-base-stronghover)'};
     border: ${(props) =>
       props.largeSize
-        ? `1px solid ${props.theme.palette['grey-400']}`
+        ? `1px solid var(--ds-color-border-base-stronghover)`
         : 'none'};
   }
 `;
@@ -75,11 +75,11 @@ export const ScrollbarTrackWrapper = styled.div<{ largeSize?: boolean }>`
     width: ${(props) => (props.largeSize ? '16px' : '3px')};
     background-color: ${(props) =>
       props.largeSize
-        ? props.theme.palette['blue-050']
-        : props.theme.palette['grey-300']};
+        ? 'var(--ds-color-background-brand-subtle)'
+        : 'var(--ds-color-background-base-strong)'};
     border: ${(props) =>
       props.largeSize
-        ? `1px solid ${props.theme.palette['grey-300']}`
+        ? `1px solid var(--ds-color-border-base-strong)`
         : 'none'};
   }
 
@@ -87,11 +87,11 @@ export const ScrollbarTrackWrapper = styled.div<{ largeSize?: boolean }>`
     ${ThumbVertical} {
       background-color: ${(props) =>
         props.largeSize
-          ? props.theme.palette['blue-100']
-          : props.theme.palette['grey-500']};
+          ? 'var(--ds-color-background-brand-subtlehover)'
+          : 'var(--ds-color-background-base-stronghover)'};
       border: ${(props) =>
         props.largeSize
-          ? `1px solid ${props.theme.palette['grey-400']}`
+          ? `1px solid var(--ds-color-border-base-stronghover)`
           : 'none'};
     }
   }
@@ -139,8 +139,8 @@ export const Loader = styled.div<{ loading?: boolean }>`
   transition: opacity 0.3s ease-in-out;
   animation: ${spinnerAnimation} 1s forwards linear infinite;
   svg {
-    color: ${(props): string => props.theme.palette['blue-600']};
-    fill: ${(props): string => props.theme.palette['blue-600']};
+    color: var(--ds-color-icon-brand-default);
+    fill: var(--ds-color-icon-brand-default);
   }
 `;
 

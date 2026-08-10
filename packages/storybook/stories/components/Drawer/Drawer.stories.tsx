@@ -4,7 +4,6 @@ import { action } from 'storybook/actions';
 
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import Button from '@synerise/ds-button';
-import { theme } from '@synerise/ds-core';
 import Drawer from '@synerise/ds-drawer';
 import Icon, { SearchM } from '@synerise/ds-icon';
 import SearchBar from '@synerise/ds-search-bar';
@@ -152,7 +151,7 @@ export const WithSearch: Story = {
               iconLeft={
                 <Icon
                   component={<SearchM />}
-                  color={theme.palette['grey-600']}
+                  color="var(--ds-color-icon-base-default)"
                 />
               }
               value={searchQuery}
@@ -216,7 +215,7 @@ export const WithSearchAndTabs: Story = {
               iconLeft={
                 <Icon
                   component={<SearchM />}
-                  color={theme.palette['grey-600']}
+                  color="var(--ds-color-icon-base-default)"
                 />
               }
               value={searchQuery}

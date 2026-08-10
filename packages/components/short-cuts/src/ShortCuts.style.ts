@@ -42,22 +42,24 @@ export const Wrapper = styled.div<{
   justify-content: center;
   height: ${(props): string => (props.size === 'S' ? '18px' : '24px')};
   width: ${(props): string => getWidth(props)};
+  /* ⚑ shift grey-600→grey-700: dark key snapped to neutral-solid (no grey-600 bg token) */
   background-color: ${(props): string =>
     props.color === 'dark'
-      ? props.theme.palette['grey-600']
-      : props.theme.palette.white};
+      ? 'var(--ds-color-background-neutral-solid)'
+      : 'var(--ds-color-background-base-default)'};
   border-bottom: 1px solid
     ${(props): string =>
       props.color === 'dark'
-        ? props.theme.palette['grey-500']
-        : props.theme.palette['grey-300']};
+        ? 'var(--ds-color-border-neutral-subtle)'
+        : 'var(--ds-color-border-base-strong)'};
   border-radius: 3px;
   color: ${(props): string =>
     props.color === 'dark'
-      ? props.theme.palette.white
-      : props.theme.palette['grey-600']};
+      ? 'var(--ds-color-text-onsolid-default)'
+      : 'var(--ds-color-text-base-muted)'};
   padding: ${(props): string => getPadding(props)};
   font-size: 11px;
+  /* ⚑ shadow kept on rgba literal — no --ds-shadows-shadow-* token matches 0 1 8 0 @ .5/.08 */
   box-shadow: 0px 1px 8px 0px
     rgba(
       35,

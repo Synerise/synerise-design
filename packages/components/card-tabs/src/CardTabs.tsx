@@ -1,8 +1,8 @@
 import React, { Children, cloneElement, isValidElement } from 'react';
 
 import Button from '@synerise/ds-button';
-import { defaultColorsOrder } from '@synerise/ds-core';
 import Sortable from '@synerise/ds-sortable';
+import { orderedBase } from '@synerise/ds-tokens/names';
 
 import CardTab from './CardTab/CardTab';
 import { type CardTabProps } from './CardTab/CardTab.types';
@@ -41,7 +41,7 @@ const CardTabs = <IdType extends string | number>({
     children,
     (child, i) => ({
       ...child.props,
-      color: defaultColorsOrder[i % defaultColorsOrder.length],
+      orderIndex: i % orderedBase.length,
       draggable:
         childrenCount > 1 && (Boolean(onChangeOrder) || child.props.draggable),
       ...(child.props.keyId ? { key: child.props.keyId } : {}),
@@ -55,9 +55,7 @@ const CardTabs = <IdType extends string | number>({
         return (
           isValidElement(child) &&
           cloneElement(child as React.ReactElement<CardTabProps>, {
-            ...(props.color
-              ? {}
-              : { color: defaultColorsOrder[i % defaultColorsOrder.length] }),
+            ...(props.color ? {} : { orderIndex: i % orderedBase.length }),
             draggable:
               childrenCount > 1 && (Boolean(onChangeOrder) || props.draggable),
           })

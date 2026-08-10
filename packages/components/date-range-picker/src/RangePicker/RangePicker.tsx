@@ -28,9 +28,9 @@ import {
   DayBackground,
   DayForeground,
   DayText,
-  DayTooltip,
 } from '@synerise/ds-date-picker/dist/Elements/DayPicker/DayPicker.styles';
 import Icon, { CalendarM, ClockM } from '@synerise/ds-icon';
+import Tooltip from '@synerise/ds-tooltip';
 
 import { Range } from '../RelativeRangePicker/RelativeRangePicker.styles';
 import { ABSOLUTE, COLUMNS, MODES } from '../constants';
@@ -261,18 +261,38 @@ class RangePicker extends PureComponent<Props & WithDataFormatProps, State> {
       return formatValue(date, { ...getDefaultDataTimeOptions(true) });
     };
 
+    const { from, to } = value;
+    const rangeFrom = from ? legacyParse(from) : null;
+    const rangeTo = to ? legacyParse(to) : null;
+    // Whether this day sits inside the currently selected range. The range
+    // label is shown on hover of any such day, rendered through a portaled
+    // tooltip (ds-tooltip) so the overlay keeps its vertical scroll
+    // (overflow-y) without clipping the label as it overflows horizontally.
+    // The trigger wraps DayForeground because that layer is stacked on top of
+    // the cell — DayText sits underneath it and never receives the hover.
+    const isSelectedRangeDay =
+      !!rangeFrom &&
+      !!rangeTo &&
+      fnsIsValid(rangeFrom) &&
+      fnsIsValid(rangeTo) &&
+      !DateUtils.isDayBefore(day, rangeFrom) &&
+      !DateUtils.isDayBefore(rangeTo, day);
+
+    const dayForeground = <DayForeground className="DayPicker-Day-FG" />;
+
     return (
       <>
         <DayBackground className="DayPicker-Day-BG" />
         <DayText className="DayPicker-Day-Text" data-attr={text}>
-          {value.to && value.from && (
-            <DayTooltip>
-              {formatDate(value.from)} - {formatDate(value.to)}
-            </DayTooltip>
-          )}
           {text}
         </DayText>
-        <DayForeground className="DayPicker-Day-FG" />
+        {from && to && isSelectedRangeDay ? (
+          <Tooltip title={`${formatDate(from)} - ${formatDate(to)}`}>
+            {dayForeground}
+          </Tooltip>
+        ) : (
+          dayForeground
+        )}
       </>
     );
   };

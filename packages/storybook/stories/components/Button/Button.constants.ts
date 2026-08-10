@@ -1,5 +1,7 @@
 import styled from 'styled-components';
 
+import { customColors } from '@synerise/ds-tokens/names';
+
 export const BUTTON_TYPES = [
   'primary',
   'secondary',
@@ -47,8 +49,8 @@ export const MatrixCell = styled.div<{ type?: string }>`
   ${(props) =>
     (props.type === 'ghost-white' || props.type === 'tertiary-white') &&
     `
-      background: ${props.theme.palette['grey-600']};
-      color: #fff;
+      background: ${customColors.grey['600']};
+      color: var(--ds-color-text-onsolid-default);
     `}
 `;
 
@@ -57,10 +59,10 @@ export const ButtonTypeWrapper = styled.div<{ type?: string }>`
   ${(props) =>
     (props.type === 'ghost-white' || props.type === 'tertiary-white') &&
     `
-      background: ${props.theme.palette['grey-600']};
-      color: #fff;
+      background: ${customColors.grey['600']};
+      color: var(--ds-color-text-onsolid-default);
     `}
-  border-bottom: solid 1px #ccc;
+  border-bottom: solid 1px var(--ds-color-border-base-default);
   &:last-of-type {
     border: 0;
   }

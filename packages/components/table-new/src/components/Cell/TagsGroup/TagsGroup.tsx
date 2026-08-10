@@ -1,6 +1,5 @@
 import React from 'react';
 
-import { useTheme } from '@synerise/ds-core';
 import Icon, { WarningFillM } from '@synerise/ds-icon';
 import Skeleton from '@synerise/ds-skeleton';
 import Tags from '@synerise/ds-tags';
@@ -15,14 +14,13 @@ export const TagsGroupCell = ({
   tagsProps,
   ...htmlAttributes
 }: TagsGroupProps) => {
-  const theme = useTheme();
   const isEmpty = !tagsProps?.selected?.length;
 
   if (isError) {
     return (
       <Icon
         component={<WarningFillM />}
-        color={theme.palette['red-600']}
+        color="var(--ds-color-icon-danger-default)"
         size={24}
       />
     );

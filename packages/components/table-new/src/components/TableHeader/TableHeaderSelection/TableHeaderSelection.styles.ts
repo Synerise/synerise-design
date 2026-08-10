@@ -38,6 +38,6 @@ export const Selection = styled.div`
   border-radius: 3px;
 
   &:hover {
-    background-color: ${({ theme }) => theme.palette['grey-100']};
+    background-color: var(--ds-color-background-base-muted);
   }
 `;

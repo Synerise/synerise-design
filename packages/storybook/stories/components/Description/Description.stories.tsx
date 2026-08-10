@@ -5,7 +5,6 @@ import { Meta, StoryObj } from '@storybook/react-vite';
 import Avatar, { UserAvatar } from '@synerise/ds-avatar';
 import Badge, { BadgeWithLabel } from '@synerise/ds-badge';
 import Button from '@synerise/ds-button';
-import { theme } from '@synerise/ds-core';
 import Description, { DescriptionRow } from '@synerise/ds-description';
 import DSFlag from '@synerise/ds-flag';
 import Icon, {
@@ -18,6 +17,7 @@ import Icon, {
 } from '@synerise/ds-icon';
 import Status from '@synerise/ds-status';
 import Switch from '@synerise/ds-switch';
+import { customColors } from '@synerise/ds-tokens/names';
 
 import { AVATAR_IMAGE } from '../../constants/images';
 import { controlFromOptionsArray, fixedWrapper400 } from '../../utils';
@@ -68,7 +68,10 @@ export const moreExamples: Story = {
       <DescriptionRow
         label="Author:"
         prefixEl={
-          <Icon component={<UserM />} color={theme.palette['grey-600']} />
+          <Icon
+            component={<UserM />}
+            color="var(--ds-color-icon-base-default)"
+          />
         }
         value={'James Giles Peterson'}
         suffixEl={
@@ -85,7 +88,10 @@ export const moreExamples: Story = {
       <DescriptionRow
         label="Label:"
         prefixEl={
-          <Icon component={<UserM />} color={theme.palette['grey-600']} />
+          <Icon
+            component={<UserM />}
+            color="var(--ds-color-icon-base-default)"
+          />
         }
         value={'James Giles Peterson'}
       />
@@ -96,7 +102,7 @@ export const moreExamples: Story = {
         prefixEl={
           <Icon
             component={<VarTypeStringM />}
-            color={theme.palette['grey-600']}
+            color="var(--ds-color-icon-base-default)"
           />
         }
         starType="active"
@@ -110,7 +116,7 @@ export const moreExamples: Story = {
               iconComponent={
                 <Icon
                   component={<DuplicateS />}
-                  color={theme.palette['mars-600']}
+                  color={customColors.mars['600']}
                 />
               }
               backgroundColor="mars"
@@ -134,13 +140,16 @@ export const moreExamples: Story = {
       <DescriptionRow
         label="Status:"
         prefixEl={<Status label="Draft" type="disabled" />}
-        value={<Icon component={<LockM />} color={theme.palette['grey-500']} />}
+        value={
+          <Icon
+            component={<LockM />}
+            color="var(--ds-color-icon-base-subtle)"
+          />
+        }
       />
       <DescriptionRow
         label="Label:"
-        value={
-          <Icon component={<PlayM />} color={theme.palette['green-600']} />
-        }
+        value={<Icon component={<PlayM />} color={customColors.green['600']} />}
       />
       <DescriptionRow
         label="Label:"

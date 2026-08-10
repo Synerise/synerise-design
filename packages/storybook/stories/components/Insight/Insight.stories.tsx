@@ -4,7 +4,6 @@ import { fn } from 'storybook/test';
 import { Meta, StoryObj } from '@storybook/react-vite';
 import Avatar from '@synerise/ds-avatar';
 import Button from '@synerise/ds-button';
-import { theme } from '@synerise/ds-core';
 import Icon, {
   AngleDownS,
   EditM,
@@ -12,6 +11,7 @@ import Icon, {
   RefreshM,
 } from '@synerise/ds-icon';
 import Insight, { InsightProps } from '@synerise/ds-insight';
+import { customColors } from '@synerise/ds-tokens/names';
 
 import { Placeholder } from '../../constants';
 import { REACT_NODE_AS_STRING, fixedWrapper400 } from '../../utils';
@@ -88,7 +88,7 @@ export const withAvatar: Story = {
         iconComponent={
           <Icon
             component={<NotificationsM />}
-            color={theme.palette['orange-500']}
+            color={customColors.orange['500']}
           />
         }
         size="medium"

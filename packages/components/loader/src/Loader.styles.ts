@@ -1,5 +1,7 @@
 import styled, { css, keyframes } from 'styled-components';
 
+import { resolveCustomColor } from '@synerise/ds-utils';
+
 import { FontSize, LoaderSize } from './Loader.types';
 
 export const spinnerAnimation = keyframes`
@@ -17,7 +19,11 @@ export const Loader = styled.div<{
   size?: keyof typeof LoaderSize;
   color: string;
 }>`
-  border: 2px solid ${(props) => props.theme.palette[`${props.color}-600`]};
+  border: 2px solid
+    ${(props) =>
+      resolveCustomColor(props.color, 'var(--ds-color-icon-neutral-default)', {
+        defaultShade: '600',
+      })};
   border-top: 2px solid transparent;
   border-radius: 50%;
   width: ${(props) => (props.size ? LoaderSize[props.size] : SIZE_DEFAULT)}px;

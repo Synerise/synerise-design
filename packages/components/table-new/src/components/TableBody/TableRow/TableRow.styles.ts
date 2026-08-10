@@ -8,12 +8,16 @@ export const Tr = styled.tr<{ isChild?: boolean }>`
 
   & ${Td} {
     background: ${(props) =>
-      props.theme.palette[props.isChild ? 'grey-050' : 'white']};
+      props.isChild
+        ? 'var(--ds-color-background-base-subtle)'
+        : 'var(--ds-color-background-base-default)'};
   }
   &:hover {
     ${Td} {
       background: ${(props) =>
-        props.theme.palette[props.isChild ? 'grey-100' : 'grey-050']};
+        props.isChild
+          ? 'var(--ds-color-background-base-muted)'
+          : 'var(--ds-color-background-base-subtle)'};
     }
   }
 `;
@@ -33,7 +37,9 @@ export const VirtualRow = styled.tr<{ isChild?: boolean; isVisible?: boolean }>`
 
   & ${Td} {
     background: ${(props) =>
-      props.theme.palette[props.isChild ? 'grey-050' : 'white']};
+      props.isChild
+        ? 'var(--ds-color-background-base-subtle)'
+        : 'var(--ds-color-background-base-default)'};
 
     ${(props) =>
       props.isChild &&
@@ -41,20 +47,22 @@ export const VirtualRow = styled.tr<{ isChild?: boolean; isVisible?: boolean }>`
         &:first-child:before {
           content: '';
           display: block;
-          
+
           position: absolute;
           top: 0;
           left: 0;
           width: 2px;
           height: 100%;
-          background-color: ${props.theme.palette['grey-500']};};
+          background-color: var(--ds-color-background-base-stronghover);
         }
       `}
   }
   &:hover {
     ${Td} {
       background: ${(props) =>
-        props.theme.palette[props.isChild ? 'grey-100' : 'grey-050']};
+        props.isChild
+          ? 'var(--ds-color-background-base-muted)'
+          : 'var(--ds-color-background-base-subtle)'};
     }
   }
 `;

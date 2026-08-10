@@ -5,6 +5,7 @@ import Card, { CardBadge, CardGroup, CardSummary } from '@synerise/ds-card';
 import type { CardProps } from '@synerise/ds-card';
 import { CheckS } from '@synerise/ds-icon';
 import Layout from '@synerise/ds-layout';
+import { customColors } from '@synerise/ds-tokens/names';
 
 import {
   BOOLEAN_CONTROL,
@@ -151,7 +152,7 @@ export const HeaderVariants: Story = {
     lively: true,
     withHeader: true,
     hideContent: true,
-    iconColor: '#54cb0b',
+    iconColor: customColors.green['600'],
     compactHeader: false,
     headerBorderBottom: false,
     children: 'Example of card content',

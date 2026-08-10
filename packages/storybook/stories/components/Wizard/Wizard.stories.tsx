@@ -5,9 +5,9 @@ import { fn } from 'storybook/test';
 import { Meta, StoryObj } from '@storybook/react-vite';
 import { ObjectAvatar } from '@synerise/ds-avatar';
 import Button from '@synerise/ds-button';
-import { theme } from '@synerise/ds-core';
 import Icon, { AcademyM, ChatM, EditM, HelpM, MailM } from '@synerise/ds-icon';
 import Stepper from '@synerise/ds-stepper';
+import { customColors } from '@synerise/ds-tokens/names';
 import Wizard, { WizardProps } from '@synerise/ds-wizard';
 
 import { Placeholder } from '../../constants';
@@ -89,7 +89,7 @@ export const EditableTitle: Story = {
     headerAvatar: (
       <ObjectAvatar
         iconComponent={
-          <Icon component={<MailM />} color={theme.palette['red-600']} />
+          <Icon component={<MailM />} color={customColors.red['600']} />
         }
         badgeStatus="active"
       />
