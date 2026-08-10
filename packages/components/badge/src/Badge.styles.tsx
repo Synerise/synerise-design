@@ -4,8 +4,8 @@ import styled, {
   keyframes,
 } from 'styled-components';
 
-import { type ThemeProps } from '@synerise/ds-core';
 import { macro } from '@synerise/ds-typography';
+import { resolveCustomColor } from '@synerise/ds-utils';
 
 import { type Status } from './Badge.types';
 
@@ -22,24 +22,16 @@ const STATUS_VARIANT: Record<Exclude<Status, undefined>, string> = {
   warning: 'warning',
 };
 
-const resolveCustomColor = (
-  theme: ThemeProps['theme'],
-  customColor: string,
-): string => {
-  const paletteColor =
-    customColor.indexOf('-') >= 0
-      ? theme.palette[customColor]
-      : theme.palette[`${customColor}-600`];
-  // Fall back to the raw value so any CSS colour (e.g. a hex outside the palette) works.
-  return paletteColor ?? customColor;
-};
-
 // Background: custom colour → status colour → red default. Consumers that want a
 // different look (e.g. a neutral count chip) override it with an inline `style`.
-const resolveColor = (props: ColorProps & ThemeProps): string => {
-  const { theme, $customColor, $status } = props;
+// A custom colour resolves a family/name-hue to its theme-aware background-custom
+// token (bare name → shade 600); a raw hex/`var()` value passes through unchanged.
+const resolveColor = (props: ColorProps): string => {
+  const { $customColor, $status } = props;
   if ($customColor) {
-    return resolveCustomColor(theme, $customColor);
+    return resolveCustomColor($customColor, $customColor, {
+      passthroughResolved: true,
+    });
   }
   if ($status) {
     return `var(--ds-badge-variant-${STATUS_VARIANT[$status]}-bg)`;
