@@ -2,9 +2,7 @@ import styled from 'styled-components';
 
 export const IconWrapper = styled.div`
   margin-right: 4px;
-  svg {
-    fill: var(--ds-color-icon-base-default);
-  }
+  color: var(--ds-color-icon-base-default);
 `;
 
 export const TextWrapper = styled.div`

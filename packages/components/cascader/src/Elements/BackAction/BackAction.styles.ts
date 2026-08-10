@@ -9,11 +9,8 @@ export const Label = styled.div`
 
 export const IconWrapper = styled.div`
   margin-right: 12px;
-
-  svg {
-    transition: fill 0.3s ease;
-    fill: var(--ds-color-text-base-subtle);
-  }
+  color: var(--ds-color-text-base-subtle);
+  transition: color 0.3s ease;
 `;
 
 export const BackActionWrapper = styled.div`
