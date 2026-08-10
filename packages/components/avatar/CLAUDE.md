@@ -167,7 +167,7 @@ Tooltip type is auto-determined: if exactly one of `title`, `description`, `stat
 Styles in `Avatar.styles.tsx`. A DS-native `AvatarBase` renders the `ant-avatar` root + `ant-avatar-string`/`<img>` child (with `ds-avatar-*` class hooks added alongside the `ant-*` ones during the antd-removal interim); the `StyledAvatar` styled-component applies all visual styling via props and styled sub-component references (`${AvatarString}`) — no `.ant-*` class selectors, except the cross-component `& ~ .ant-badge-dot` sibling (the dot is owned by ds-badge). Key styles:
 
 - Dimensions per size set directly in CSS: `small` 24, `medium` 40, `large` 84, `extraLarge` 120 px
-- Background resolved from the token custom-color catalog — `customColors[backgroundColor][backgroundColorHue]` (a flipping semantic `var(--ds-color-background-custom-<family>-<shade>)` ref, so it adapts to dark mode); a `#`-prefixed `backgroundColor` is used literally, and an unknown family falls back to `transparent`
+- Background resolved from the token custom-color catalog — `customColors[backgroundColor][backgroundColorHue]` (a flipping semantic `var(--ds-color-custom-<family>-<shade>)` ref, so it adapts to dark mode); a `#`-prefixed `backgroundColor` is used literally, and an unknown family falls back to `transparent`
 - Badge dot (`ds-badge-dot`) is hidden by default; shown when `hasStatus=true` with size/shape-specific positioning from `BADGE_POSITION` map
 - Hover/active darken overlay via `::before` pseudo-element — only applied when `onClick` or `hasTooltip` is truthy
 - Font sizes per size via `MACRO_MAPPING` (xsAvatar, small, xlAvatar macros from ds-typography)

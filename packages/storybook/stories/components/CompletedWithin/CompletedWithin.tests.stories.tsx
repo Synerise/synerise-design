@@ -52,7 +52,9 @@ export const SelectNumber: Story = {
         pointerEvents: 'none',
       }),
     );
-    await userEvent.type(canvas.getByRole('spinbutton'), '4');
+    const spinbutton = canvas.getByRole('spinbutton');
+    await userEvent.click(spinbutton);
+    await userEvent.type(spinbutton, '4');
     await userEvent.click(canvas.getByRole('combobox'));
     await waitFor(() =>
       expect(canvas.getByText('Days')).not.toHaveStyle({

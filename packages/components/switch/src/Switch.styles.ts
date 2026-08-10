@@ -39,11 +39,11 @@ export const LabelSwitchWrapper = styled.div`
   justify-content: flex-start;
   align-items: center;
 
-  ${Toggle}:hover:not(:disabled) + .switch-texts .switch-label {
+  ${Toggle}:hover:not(:disabled) + ${Texts} ${Label} {
     color: var(--ds-form-switch-text-label);
   }
 
-  ${Toggle}:disabled + .switch-texts .switch-label {
+  ${Toggle}:disabled + ${Texts} ${Label} {
     color: var(--ds-color-text-base-muted);
     opacity: var(--ds-form-switch-disabled-opacity);
   }

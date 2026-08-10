@@ -45,7 +45,7 @@ const uploadStyles = ({ theme }: ThemeProps) => css`
       box-shadow: none;
     }
     &:disabled {
-      color: ${theme.palette['grey-500']};
+      color: var(--ds-color-text-neutral-default);
       ${IconContainer} {
         margin: 12px;
       }

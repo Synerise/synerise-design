@@ -258,9 +258,9 @@ export const RadioButtonLabel = styled.label<{
         border-color: var(--ds-color-background-brand-solid);
 
         &:hover {
-          background-color: ${props.theme.palette['blue-500']};
-          border-color: ${props.theme.palette['blue-500']};
-          box-shadow: -1px 0 0 0 ${props.theme.palette['blue-500']};
+          background-color: var(--ds-color-background-brand-solidhover);
+          border-color: var(--ds-color-background-brand-solidhover);
+          box-shadow: -1px 0 0 0 var(--ds-color-background-brand-solidhover);
         }
       }
     `}

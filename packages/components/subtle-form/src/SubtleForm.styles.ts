@@ -127,7 +127,7 @@ export const Inactive = styled.div<{
           ${props.$mask && `color: transparent;`}
           ${MaskedDatePlaceholder} {
             left: 12px;
-            ${props.$mask && `color: ${props.theme.palette['grey-600']};`}
+            ${props.$mask && `color: var(--ds-color-text-base-muted);`}
           }
         }
         ${Suffix} {
@@ -146,8 +146,8 @@ export const ValueArea = styled.textarea<{ isPlaceholder: boolean }>`
     text-shadow: 0 1px
       ${(props) =>
         props.isPlaceholder
-          ? props.theme.palette['grey-500']
-          : props.theme.palette['grey-600']};
+          ? 'var(--ds-color-text-neutral-default)'
+          : 'var(--ds-color-text-base-muted)'};
 
     width: 100%;
     height: 100%;
@@ -189,7 +189,7 @@ export const Container = styled.div<{ active?: boolean; disabled?: boolean }>`
   }
 
   .ds-subtle-select {
-    .ant-select-selector: {
+    .ds-select {
       transition: all 0s linear !important;
     }
   }
@@ -215,6 +215,9 @@ export const Subtle = styled.div<{ $disabled?: boolean; hasError?: boolean }>`
     `}
 
   ${TextareaWrapper}:focus-within {
+    /* Kept on palette + hexToRgba: the subtle background tokens are opaque solids,
+       so tokenising here would drop the 40% translucency. Migrate once an
+       opacity-carrying background token exists. */
     ${(props) =>
       props.hasError
         ? `background-color: ${hexToRgba(props.theme.palette['red-100'], 0.4)};`

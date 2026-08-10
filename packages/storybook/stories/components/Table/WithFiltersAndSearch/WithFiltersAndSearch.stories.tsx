@@ -119,10 +119,10 @@ export default {
       return !searchValue
         ? dataSource
         : dataSource.filter((record) => {
-          return record.name
-            .toLowerCase()
-            .includes(searchValue.toLowerCase());
-        });
+            return record.name
+              .toLowerCase()
+              .includes(searchValue.toLowerCase());
+          });
     }, [searchFilterValue, searchValue, dataSource]);
 
     const recent = dataSource.map((record) => ({
@@ -148,9 +148,9 @@ export default {
         });
         return allSuggestions
           ? allSuggestions.reduce((unique, item) => {
-            const exist = unique.find((record) => record.text === item.text);
-            return exist ? unique : [...unique, item];
-          }, [] as SuggestionType[])
+              const exist = unique.find((record) => record.text === item.text);
+              return exist ? unique : [...unique, item];
+            }, [] as SuggestionType[])
           : [];
       }
       return [];

@@ -196,7 +196,7 @@ export const CheckboxLabel = styled.label<{
     props.$indeterminate &&
     css`
       &:hover ${CheckboxInner} {
-        background-color: ${props.theme.palette['blue-500']};
+        background-color: var(--ds-color-background-brand-solidhover);
       }
     `}
 

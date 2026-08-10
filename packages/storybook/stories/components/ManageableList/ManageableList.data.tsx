@@ -4,7 +4,6 @@ import { action } from 'storybook/actions';
 import { faker } from '@faker-js/faker';
 import Avatar from '@synerise/ds-avatar';
 import Button from '@synerise/ds-button';
-import { theme } from '@synerise/ds-core';
 import { Dropdown } from '@synerise/ds-dropdown';
 import Icon, {
   FolderM,
@@ -18,6 +17,7 @@ import { Input } from '@synerise/ds-input';
 import ListItem from '@synerise/ds-list-item';
 import Status from '@synerise/ds-status';
 import Tag, { TagShape } from '@synerise/ds-tag';
+import { customColors } from '@synerise/ds-tokens/names';
 
 import { avatar1 } from '../../constants';
 
@@ -165,8 +165,8 @@ export const CONTENT_ITEMS: ContentItemType[] = [
       <Tag
         name={'A'}
         shape={TagShape.SINGLE_CHARACTER_SQUARE}
-        color={theme.palette['grey-200']}
-        textColor={theme.palette['grey-500']}
+        color={customColors.grey['200']}
+        textColor={'var(--ds-color-text-neutral-default)'}
       />
     ),
   },
@@ -189,8 +189,8 @@ export const CONTENT_ITEMS: ContentItemType[] = [
       <Tag
         name={'A'}
         shape={TagShape.SINGLE_CHARACTER_SQUARE}
-        color={theme.palette['grey-200']}
-        textColor={theme.palette['grey-500']}
+        color={customColors.grey['200']}
+        textColor={'var(--ds-color-text-neutral-default)'}
       />
     ),
   },
@@ -250,8 +250,8 @@ const createTag = (label) => {
       name={label}
       asPill
       shape={TagShape.DEFAULT_ROUND}
-      color={theme.palette['grey-200']}
-      textColor={theme.palette['grey-500']}
+      color={customColors.grey['200']}
+      textColor={'var(--ds-color-text-neutral-default)'}
     />
   );
 };
@@ -297,22 +297,22 @@ export const CONTENT_ITEMS_LARGE: ContentItemType[] = [
           name="label"
           asPill
           shape={TagShape.DEFAULT_ROUND}
-          color={theme.palette['grey-200']}
-          textColor={theme.palette['grey-500']}
+          color={customColors.grey['200']}
+          textColor={'var(--ds-color-text-neutral-default)'}
         />
         <Tag
           name={'label'}
           asPill
           shape={TagShape.DEFAULT_ROUND}
-          color={theme.palette['grey-200']}
-          textColor={theme.palette['grey-500']}
+          color={customColors.grey['200']}
+          textColor={'var(--ds-color-text-neutral-default)'}
         />
         <Tag
           name={'label'}
           asPill
           shape={TagShape.DEFAULT_ROUND}
-          color={theme.palette['grey-200']}
-          textColor={theme.palette['grey-500']}
+          color={customColors.grey['200']}
+          textColor={'var(--ds-color-text-neutral-default)'}
         />
       </>
     ),
@@ -324,7 +324,10 @@ export const CONTENT_ITEMS_LARGE: ContentItemType[] = [
         backgroundColorHue="100"
         shape="square"
         iconComponent={
-          <Icon component={<InputM />} color={theme.palette['grey-800']} />
+          <Icon
+            component={<InputM />}
+            color={'var(--ds-color-icon-base-default)'}
+          />
         }
       />
     ),
@@ -340,22 +343,22 @@ export const CONTENT_ITEMS_LARGE: ContentItemType[] = [
           name="label"
           asPill
           shape={TagShape.DEFAULT_ROUND}
-          color={theme.palette['grey-200']}
-          textColor={theme.palette['grey-500']}
+          color={customColors.grey['200']}
+          textColor={'var(--ds-color-text-neutral-default)'}
         />
         <Tag
           name={'label'}
           asPill
           shape={TagShape.DEFAULT_ROUND}
-          color={theme.palette['grey-200']}
-          textColor={theme.palette['grey-500']}
+          color={customColors.grey['200']}
+          textColor={'var(--ds-color-text-neutral-default)'}
         />
         <Tag
           name={'label'}
           asPill
           shape={TagShape.DEFAULT_ROUND}
-          color={theme.palette['grey-200']}
-          textColor={theme.palette['grey-500']}
+          color={customColors.grey['200']}
+          textColor={'var(--ds-color-text-neutral-default)'}
         />
       </>
     ),
@@ -365,7 +368,10 @@ export const CONTENT_ITEMS_LARGE: ContentItemType[] = [
         backgroundColorHue="100"
         shape="square"
         iconComponent={
-          <Icon component={<InputM />} color={theme.palette['grey-800']} />
+          <Icon
+            component={<InputM />}
+            color={'var(--ds-color-icon-base-default)'}
+          />
         }
       />
     ),
@@ -381,22 +387,22 @@ export const CONTENT_ITEMS_LARGE: ContentItemType[] = [
           name="label"
           asPill
           shape={TagShape.DEFAULT_ROUND}
-          color={theme.palette['grey-200']}
-          textColor={theme.palette['grey-500']}
+          color={customColors.grey['200']}
+          textColor={'var(--ds-color-text-neutral-default)'}
         />
         <Tag
           name={'label'}
           asPill
           shape={TagShape.DEFAULT_ROUND}
-          color={theme.palette['grey-200']}
-          textColor={theme.palette['grey-500']}
+          color={customColors.grey['200']}
+          textColor={'var(--ds-color-text-neutral-default)'}
         />
         <Tag
           name={'label'}
           asPill
           shape={TagShape.DEFAULT_ROUND}
-          color={theme.palette['grey-200']}
-          textColor={theme.palette['grey-500']}
+          color={customColors.grey['200']}
+          textColor={'var(--ds-color-text-neutral-default)'}
         />
       </>
     ),
@@ -408,7 +414,10 @@ export const CONTENT_ITEMS_LARGE: ContentItemType[] = [
         backgroundColorHue="100"
         shape="square"
         iconComponent={
-          <Icon component={<InputM />} color={theme.palette['grey-800']} />
+          <Icon
+            component={<InputM />}
+            color={'var(--ds-color-icon-base-default)'}
+          />
         }
       />
     ),

@@ -7,7 +7,6 @@ import Checkbox, {
   CheckboxBaseProps,
   type CheckboxTristateChangeEvent,
 } from '@synerise/ds-checkbox';
-import { theme } from '@synerise/ds-core';
 import Dropdown from '@synerise/ds-dropdown';
 import DSFlag from '@synerise/ds-flag';
 import { FormFieldLabel } from '@synerise/ds-form-field';
@@ -30,6 +29,7 @@ import Icon, {
 import { type ListItemProps } from '@synerise/ds-list-item';
 import Menu from '@synerise/ds-menu';
 import { RawSwitch } from '@synerise/ds-switch';
+import { customColors } from '@synerise/ds-tokens/names';
 import Tooltip from '@synerise/ds-tooltip';
 import { useOnClickOutside } from '@synerise/ds-utils';
 
@@ -175,8 +175,8 @@ export const StarWithTooltip = () => {
   const [checked, setChecked] = useState(false);
   const iconComponent = checked ? <StarFillM /> : <StarM />;
   const iconColor = checked
-    ? theme.palette['yellow-600']
-    : theme.palette['grey-600'];
+    ? customColors.yellow['600']
+    : 'var(--ds-color-icon-base-default)';
   const handleClick = () => {
     setChecked(!checked);
   };
@@ -210,7 +210,10 @@ const RenameWithDelete = ({ onClickEdit }) => {
       </Tooltip>
       <Tooltip type="default" trigger="hover" title={'Delete'}>
         <div>
-          <Icon color={theme.palette['red-600']} component={<CloseS />} />
+          <Icon
+            color={'var(--ds-color-icon-danger-default)'}
+            component={<CloseS />}
+          />
         </div>
       </Tooltip>
     </>
@@ -291,16 +294,24 @@ export function renderSuffix(
       return (
         <Tooltip type="default" title={'Delete'}>
           <div>
-            <Icon color={theme.palette['red-600']} component={<CloseS />} />
+            <Icon
+              color={'var(--ds-color-icon-danger-default)'}
+              component={<CloseS />}
+            />
           </div>
         </Tooltip>
       );
     case suffixType.check:
-      return <Icon color={theme.palette['green-600']} component={<CheckS />} />;
+      return (
+        <Icon
+          color={'var(--ds-color-icon-success-default)'}
+          component={<CheckS />}
+        />
+      );
     case suffixType.warning:
       return (
         <Icon
-          color={theme.palette['orange-600']}
+          color={'var(--ds-color-icon-warning-default)'}
           component={<WarningFillS />}
         />
       );
@@ -315,7 +326,10 @@ export function renderSuffix(
         <FormFieldLabel
           label={
             <div
-              style={{ color: theme.palette['grey-400'], lineHeight: '18px' }}
+              style={{
+                color: 'var(--ds-color-text-base-disabled)',
+                lineHeight: '18px',
+              }}
             >
               <span>Text</span>
             </div>
@@ -331,7 +345,7 @@ export function renderSuffix(
                 style={{
                   lineHeight: '18px',
                   marginRight: '4px',
-                  color: theme.palette['blue-600'],
+                  color: 'var(--ds-color-text-brand-default)',
                 }}
               >
                 <span>select</span>

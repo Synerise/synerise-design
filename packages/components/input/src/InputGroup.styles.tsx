@@ -25,7 +25,8 @@ const CONTROLS = [
   'textarea',
   'button',
   '.ds-input-number',
-  '.ant-select-selector',
+  '.ds-select', // DS-native select trigger box (post-antd rewrite)
+  '.ant-select-selector', // legacy antd select, still rendered inside ds-table
   '.ds-button',
 ];
 

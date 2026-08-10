@@ -5,8 +5,8 @@ import { fn } from 'storybook/test';
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import { ButtonToggle } from '@synerise/ds-button';
 import type { ButtonToggleProps } from '@synerise/ds-button';
-import { theme } from '@synerise/ds-core';
 import Icon, { AngleDownS, CheckS } from '@synerise/ds-icon';
+import { customColors } from '@synerise/ds-tokens/names';
 import Tooltip from '@synerise/ds-tooltip';
 
 import {
@@ -56,11 +56,11 @@ const meta: Meta<ButtonToggleProps> = {
         none: undefined,
         'tag 1': {
           name: 'ON',
-          color: theme.palette['green-600'],
+          color: customColors.green['600'],
         },
         'tag 2': {
           name: '5/12 HRS',
-          color: theme.palette['grey-400'],
+          color: customColors.grey['400'],
         },
       }),
     },

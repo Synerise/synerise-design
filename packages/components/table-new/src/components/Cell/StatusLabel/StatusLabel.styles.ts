@@ -8,7 +8,7 @@ export const StatusLabel = styled.div<{ isDisabled?: boolean }>`
 `;
 
 export const Label = styled.span`
-  color: ${(props): string => props.theme.palette['grey-700']};
+  color: var(--ds-color-text-base-subtle);
   font-weight: 500;
   font-size: 13px;
   line-height: 1.38;

@@ -1,6 +1,5 @@
 import React, { useCallback, useEffect, useRef, useState } from 'react';
 
-import { useTheme } from '@synerise/ds-core';
 import Icon, { EditS } from '@synerise/ds-icon';
 import Tooltip from '@synerise/ds-tooltip';
 import { useOnClickOutside } from '@synerise/ds-utils';
@@ -33,8 +32,6 @@ const SubtleField = ({
     setActive(true);
     setBlurred(false);
   }, []);
-
-  const theme = useTheme();
 
   useEffect(() => setActive(activeProp), [activeProp]);
 
@@ -80,7 +77,7 @@ const SubtleField = ({
                   <Tooltip title={suffixTooltip}>
                     <Icon
                       component={<EditS />}
-                      color={theme.palette['grey-600']}
+                      color="var(--ds-color-icon-base-default)"
                     />
                   </Tooltip>
                 </S.Suffix>

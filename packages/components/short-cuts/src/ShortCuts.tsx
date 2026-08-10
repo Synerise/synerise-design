@@ -1,6 +1,5 @@
 import React from 'react';
 
-import { theme } from '@synerise/ds-core';
 import Icon from '@synerise/ds-icon';
 import { Text } from '@synerise/ds-typography';
 
@@ -26,7 +25,9 @@ const ShortCuts = ({
       {icon ? (
         <Icon
           color={
-            color === 'dark' ? theme.palette.white : theme.palette['grey-600']
+            color === 'dark'
+              ? 'var(--ds-color-icon-onsolid-default)'
+              : 'var(--ds-color-icon-base-default)'
           }
           component={icon}
           size={12}

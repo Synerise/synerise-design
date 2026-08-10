@@ -117,8 +117,6 @@ export const DayPicker = styled(DayPickerBase)`
         'entered-end',
       )}) {
       & > ${DayForeground} {
-        /* No calendar range-border token — entered-edge ring kept on palette (flagged upstream); applies to both entered-start/end. */
-        border-color: ${(props): string => props.theme.palette['blue-300']};
         margin-right: 0;
         margin-left: 4px;
       }
@@ -133,7 +131,6 @@ export const DayPicker = styled(DayPickerBase)`
         'entered-start',
       )}) {
       & > ${DayForeground} {
-        border-color: ${(props): string => props.theme.palette['blue-300']};
         margin-right: 4px;
         margin-left: 4px;
       }

@@ -282,33 +282,34 @@ const insertShapeStyles = (props: InsertShapeStyles) => {
 
     case TagShape.STATUS_NEUTRAL:
       return css`
-        border: 1px solid ${props.color || props.theme.palette['grey-500']};
+        border: 1px solid
+          ${props.color || 'var(--ds-status-pill-variant-neutral-border-solid)'};
         color: ${props.textColor ||
         props.color ||
-        props.theme.palette['grey-500']};
+        'var(--ds-status-pill-variant-neutral-text)'};
         ${defaultStatusStyles}
       `;
 
     case TagShape.STATUS_SUCCESS:
       return css`
-        border: 1px solid var(--ds-color-border-success-default);
-        /* ⚑ Shift: success text green-600 → green-700 (text-success-default). */
-        color: var(--ds-color-text-success-default);
+        border: 1px solid var(--ds-status-pill-variant-success-border-solid);
+        /* ⚑ Shift: green-600 → green-700 (status-pill success = text-success-default). */
+        color: var(--ds-status-pill-variant-success-text);
         ${defaultStatusStyles}
       `;
 
     case TagShape.STATUS_ERROR:
       return css`
-        border: 1px solid var(--ds-color-border-danger-default);
-        color: var(--ds-color-text-danger-default);
+        border: 1px solid var(--ds-status-pill-variant-error-border-solid);
+        color: var(--ds-status-pill-variant-error-text);
         ${defaultStatusStyles}
       `;
 
     case TagShape.STATUS_WARNING:
       return css`
-        border: 1px solid var(--ds-color-border-warning-default);
-        /* ⚑ Shift: warning text yellow-600 → yellow-700 (text-warning-default). */
-        color: var(--ds-color-text-warning-default);
+        border: 1px solid var(--ds-status-pill-variant-warning-border-solid);
+        /* ⚑ Shift: yellow-600 → yellow-700 (status-pill warning = text-warning-default). */
+        color: var(--ds-status-pill-variant-warning-text);
         ${defaultStatusStyles}
       `;
 

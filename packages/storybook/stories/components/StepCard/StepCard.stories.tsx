@@ -4,7 +4,6 @@ import { useArgs, useMemo, useState } from 'storybook/preview-api';
 import { Meta, StoryObj } from '@storybook/react-vite';
 import Button from '@synerise/ds-button';
 import CompletedWithin, { PeriodValue } from '@synerise/ds-completed-within';
-import { theme } from '@synerise/ds-core';
 import DateRangePicker, {
   DateRange,
   fnsFormat,
@@ -12,6 +11,7 @@ import DateRangePicker, {
 import Icon, { CalendarM } from '@synerise/ds-icon';
 import StepCard, { StepCardProps } from '@synerise/ds-step-card';
 import Tag, { TagShape } from '@synerise/ds-tag';
+import { customColors } from '@synerise/ds-tokens/names';
 import Tooltip from '@synerise/ds-tooltip';
 
 import {
@@ -137,7 +137,7 @@ export default {
       <Tag
         shape={TagShape.SINGLE_CHARACTER_ROUND}
         name="A"
-        color={theme.palette['grey-200']}
+        color={customColors.grey['200']}
         asPill
       />
     ),
@@ -160,7 +160,7 @@ export const Default: Story = {
     <Tag
       shape={TagShape.SINGLE_CHARACTER_ROUND}
       name="A"
-      color={theme.palette['grey-200']}
+      color={customColors.grey['200']}
       asPill
     />
   }

@@ -42,6 +42,7 @@
 | [autocomplete](#autocomplete) | 1 (field done) | `dropdown` (pending); field = `form` ✓ | dropdown pending | — | — |
 | [avatar-group](#avatar-group) | 8 | module (`avatar`) | none | — | — |
 | [badge](#badge) | 8 | module (`badge`) | none | — | — |
+| [button-group](#button-group) | 11 (5 palette · 6 rgba) | module (`buttons` separators + `divider`) + semantic (error/text) | none | — | — |
 | [card-tabs](#card-tabs) | 82 (+2 shadow, +4 opacity) | module (`card-tabs`, pending) | **card-tabs tokens pending** | — | 10 |
 | [cascader](#cascader) | 37 | module (`dropdown` + `cascader`, pending) + semantic | dropdown/cascader pending | 4 | 7 |
 | [code-area](#code-area) | 18 (11 applied) | module (`form`) + semantic (Monaco via `theme.tokens`) | none | 1 | — |
@@ -180,6 +181,37 @@
 | — none — |  |  |
 
 _(`box-shadow: none` at :152 = reset.)_
+
+---
+
+## button-group
+
+**Summary.** 11 tokenisable static colour values (5 `theme.palette`, 6 hardcoded `rgba`; 1 of those is an outline `box-shadow` ring). 0 opacity, 0 `svg{fill/stroke}` rules, 0 static `theme` imports, no `.less`. The `buttons` module namespace now carries the previously-missing per-variant **`separator`** token (UX: `buttons.variant.<variant>.separator`), which unblocks the split-mode divider borders; `divider` module carries the line-colour token for `ButtonDivider`. Decision: **module-first** (`buttons` separators + `tertiary` disabled-text; `divider` line) dropping to **semantic** only for the uniform error outline and button-group's own helper text. Several **⚑ shifts** — the split-mode separators adopt UX's per-variant colours (translucent white/grey → the variant's `separator` token) and collapse the old per-state opacity nuance into one token per variant. blockers: none.
+
+### Palette / colour usage
+| file:line | Current value | Applied to (element · property · state) | Static / Dynamic | Decision | Suggested token or module | Notes |
+|---|---|---|---|---|---|---|
+| packages/components/button-group/src/ButtonGroup.styles.ts:50 | `rgba(255,255,255,.15)` | generic `.single-icon` split separator · border-left · default | Static | module (`buttons`) | `--ds-buttons-variant-primary-separator` (base) | base rule catches primary; custom-color/tertiary-white/tertiary overridden below. ⚑ shift: white 15% → brand separator (blue-500) |
+| packages/components/button-group/src/ButtonGroup.styles.ts:53 | `rgba(255,255,255,.2)` | `.ant-btn-tertiary-white` split separator · border-left · disabled | Static | module (`buttons`) | `--ds-buttons-variant-tertiary-white-separator` | ⚑ collapse to state-agnostic token (≈light-grey 25%, close) |
+| packages/components/button-group/src/ButtonGroup.styles.ts:56 | `rgba(106,117,128,.1)` | `.ant-btn-tertiary` split separator · border-left · disabled | Static | module (`buttons`) | `--ds-buttons-variant-tertiary-separator` | ⚑ shift: translucent grey → border-base-default (grey-200) |
+| packages/components/button-group/src/ButtonGroup.styles.ts:59 | `rgba(255,255,255,.8)` | `.ant-btn-custom-color` split separator · border-left · disabled | Static | module (`buttons`) | `--ds-buttons-variant-custom-color-separator` | ⚑ shift: white 80% → custom separator (custom-500) |
+| packages/components/button-group/src/ButtonGroup.styles.ts:62 | `rgba(255,255,255,.5)` | `.ant-btn-primary` split separator · border-left · disabled | Static | module (`buttons`) | `--ds-buttons-variant-primary-separator` | ⚑ shift: white 50% → brand separator (blue-500) |
+| packages/components/button-group/src/ButtonGroup.styles.ts:74 | `rgba(106,117,128,.2)` | `.ant-btn-tertiary` split separator · border-left · default | Static | module (`buttons`) | `--ds-buttons-variant-tertiary-separator` | ⚑ shift: translucent grey → border-base-default (grey-200) |
+| packages/components/button-group/src/ButtonGroup.styles.ts:77 | `grey-500` | disabled tertiary label · text colour · disabled | Static | module (`buttons`) | `--ds-buttons-variant-tertiary-text-disabled` | ⚑ shift: grey-500 → text-base-muted (grey-600) |
+| packages/components/button-group/src/ButtonGroup.styles.ts:110 | `red-600` | error split separator · border-left · error | Static | semantic | `--ds-color-border-danger-default` | exact (red-600); uniform error outline, not per-variant → semantic |
+| packages/components/button-group/src/ButtonGroup.styles.ts:142 | `red-600` | error hover ring · box-shadow inset 1px · error+hover | Static | semantic | `--ds-color-border-danger-default` | outline ring — colour only, keep geometry; exact (red-600) |
+| packages/components/button-group/src/ButtonGroup.styles.ts:198 | `grey-500` | `Description` helper text · text colour · default | Static | semantic | `--ds-color-text-base-muted` | own text, no module → semantic. ⚑ shift: grey-500 → grey-600 |
+| packages/components/button-group/src/ButtonDivider/ButtonDivider.styles.tsx:7 | `grey-300` | `ButtonDivider` (ds-divider) · border-color · default | Static | module (`divider`) | `--ds-divider-line-color-solid` | exact (grey-300 via border-base-strong) |
+
+### SVG fill/stroke rules to replace
+| file:line | Current rule | Replacement |
+|---|---|---|
+| — none — |  |  |
+
+### Static `theme` imports
+| file:line | Usage | Resolution |
+|---|---|---|
+| — none — |  |  |
 
 ---
 

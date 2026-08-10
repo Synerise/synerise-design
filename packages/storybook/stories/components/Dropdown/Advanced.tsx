@@ -72,7 +72,12 @@ const Advanced = ({
             onClearInput={() => onSearchChange('', true)}
             placeholder="Search"
             value={searchQuery}
-            iconLeft={<Icon component={<SearchM />} color="#6a7580" />}
+            iconLeft={
+              <Icon
+                component={<SearchM />}
+                color="var(--ds-color-icon-base-default)"
+              />
+            }
           />
 
           {data?.length === 0 ? (

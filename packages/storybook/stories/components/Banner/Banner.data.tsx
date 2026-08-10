@@ -1,17 +1,17 @@
 import React from 'react';
 
+import { UserAvatar } from '@synerise/ds-avatar';
+import Button from '@synerise/ds-button';
 import Icon, {
+  ABtestColor,
   ArrowRightCircleM,
+  FunnelColor,
+  ProductBundleColor,
+  ProductLastSeenColor,
   RelationManyManyL,
   UserS,
-  FunnelColor,
-  ProductLastSeenColor,
-  ProductBundleColor,
-  ABtestColor,
 } from '@synerise/ds-icon';
-import Button from '@synerise/ds-button';
-import { UserAvatar } from '@synerise/ds-avatar';
-import { theme } from '@synerise/ds-core';
+import { customColors } from '@synerise/ds-tokens/names';
 
 export const SLIDES = [
   {
@@ -47,7 +47,7 @@ export const SLIDES = [
     rightSideContent: {
       title: 'Main banner header',
       titlePrefix: <Icon size={48} component={<RelationManyManyL />} />,
-      titleStatus: { color: theme.palette['fern-600'], name: 'Alpha' },
+      titleStatus: { color: customColors.fern['600'], name: 'Alpha' },
       description: `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas accumsan ut leo et viverra. Nulla ut
             vulputate quam. Quisque nec nulla sed nulla consectetur maximus.`,
       buttons: (
@@ -76,7 +76,12 @@ export const SLIDES = [
         <UserAvatar
           backgroundColor="grey-200"
           size="medium"
-          iconComponent={<Icon component={<UserS />} color={theme.palette['grey-600']} />}
+          iconComponent={
+            <Icon
+              component={<UserS />}
+              color="var(--ds-color-icon-base-default)"
+            />
+          }
         />
       ),
       description: `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas accumsan ut leo et viverra. Nulla ut
@@ -97,7 +102,8 @@ export const SLIDES = [
     },
   },
   {
-    label: 'Layout example: leftSideContent: image, rightSideContent: image, mainContent: text ',
+    label:
+      'Layout example: leftSideContent: image, rightSideContent: image, mainContent: text ',
     leftSideContent: {
       media: <Icon component={<ProductBundleColor />} size={128} />,
     },
@@ -107,7 +113,7 @@ export const SLIDES = [
     mainContent: {
       title: 'Main banner header',
       titlePrefix: <Icon size={48} component={<RelationManyManyL />} />,
-      titleStatus: { color: theme.palette['red-600'], name: 'Beta' },
+      titleStatus: { color: customColors.red['600'], name: 'Beta' },
       description: `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas accumsan ut leo et viverra. Nulla ut
             vulputate quam. Quisque nec nulla sed nulla consectetur maximus.`,
       buttons: (

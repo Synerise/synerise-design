@@ -5,7 +5,6 @@ import { expect, fn, userEvent, waitFor, within } from 'storybook/test';
 
 import { Meta, StoryObj } from '@storybook/react-vite';
 import Badge from '@synerise/ds-badge';
-import { theme } from '@synerise/ds-core';
 import {
   BooleanM,
   CalendarM,
@@ -71,7 +70,7 @@ const counterBadge = (
     overflowCount={99}
     style={{
       backgroundColor: 'transparent',
-      color: theme.palette['grey-500'],
+      color: 'var(--ds-color-text-neutral-default)',
       alignItems: 'center',
       marginRight: String(1).length > 1 ? '-1px' : '-3px',
     }}

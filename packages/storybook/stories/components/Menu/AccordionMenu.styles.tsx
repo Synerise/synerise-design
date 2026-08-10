@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+
 import InlineEdit from '@synerise/ds-inline-edit';
 
 export const StyledInlineEditMenu = styled(InlineEdit)`
@@ -16,7 +17,7 @@ export const StyledInlineEditMenu = styled(InlineEdit)`
 export const HoverableIconWrapper = styled.div`
   &&&:hover {
     .ds-icon > svg {
-      fill: ${props => props.theme.palette['blue-600']} !important;
+      fill: var(--ds-color-icon-brand-default) !important;
     }
   }
 `;

@@ -45,12 +45,13 @@ export const Container = styled.div`
 export const Link = styled.span`
   cursor: pointer;
   transition: 0.3s;
+  color: var(--ds-calendar-nav-title-default);
 
   &:hover {
-    color: var(--ds-dropdown-nav-text-hover);
+    color: var(--ds-calendar-nav-title-hover);
   }
 
   &:active {
-    color: var(--ds-dropdown-nav-text-hover);
+    color: var(--ds-calendar-nav-title-active);
   }
 `;

@@ -76,7 +76,7 @@ export const ListWrapper = styled.div`
       .-item-group-title {
         font-size: 10px;
         text-transform: uppercase;
-        color: var(--ds-color-text-neutral-default);
+        color: var(--ds-divider-header-text-color);
         font-weight: 500;
         padding-left: 0;
         padding-right: 0;
