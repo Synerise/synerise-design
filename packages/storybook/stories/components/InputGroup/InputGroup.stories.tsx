@@ -29,7 +29,7 @@ export default {
       ...controlFromOptionsArray('select', ['large', 'small', 'default']),
     },
     growItem: {
-      ...controlFromOptionsArray('inline-radio', ['last', 'first']),
+      ...controlFromOptionsArray('inline-radio', ['last', 'first', 'none']),
     },
     label: REACT_NODE_AS_STRING,
     resetMargin: BOOLEAN_CONTROL,
