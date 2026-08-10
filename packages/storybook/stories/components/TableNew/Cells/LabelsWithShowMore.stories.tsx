@@ -1,7 +1,6 @@
 import React from 'react';
 
 import { Meta, StoryObj } from '@storybook/react-vite';
-import { theme } from '@synerise/ds-core';
 import { VarTypeStringM } from '@synerise/ds-icon';
 import {
   type BaseLabelsWithShowMoreProps,
@@ -46,32 +45,50 @@ const SAMPLE_ITEMS: SampleItem[] = [
   {
     fieldName: 'Milk',
     key: 0,
-    icon: { component: <VarTypeStringM />, color: theme.palette['grey-600'] },
+    icon: {
+      component: <VarTypeStringM />,
+      color: 'var(--ds-color-icon-base-default)',
+    },
   },
   {
     fieldName: 'Oil',
     key: 1,
-    icon: { component: <VarTypeStringM />, color: theme.palette['grey-600'] },
+    icon: {
+      component: <VarTypeStringM />,
+      color: 'var(--ds-color-icon-base-default)',
+    },
   },
   {
     fieldName: 'Apple',
     key: 2,
-    icon: { component: <VarTypeStringM />, color: theme.palette['grey-600'] },
+    icon: {
+      component: <VarTypeStringM />,
+      color: 'var(--ds-color-icon-base-default)',
+    },
   },
   {
     fieldName: 'Banana',
     key: 3,
-    icon: { component: <VarTypeStringM />, color: theme.palette['grey-600'] },
+    icon: {
+      component: <VarTypeStringM />,
+      color: 'var(--ds-color-icon-base-default)',
+    },
   },
   {
     fieldName: 'Bread',
     key: 4,
-    icon: { component: <VarTypeStringM />, color: theme.palette['grey-600'] },
+    icon: {
+      component: <VarTypeStringM />,
+      color: 'var(--ds-color-icon-base-default)',
+    },
   },
   {
     fieldName: 'Orange',
     key: 5,
-    icon: { component: <VarTypeStringM />, color: theme.palette['grey-600'] },
+    icon: {
+      component: <VarTypeStringM />,
+      color: 'var(--ds-color-icon-base-default)',
+    },
   },
 ];
 

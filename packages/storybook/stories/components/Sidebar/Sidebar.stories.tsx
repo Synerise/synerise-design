@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 
 import { Meta, StoryObj } from '@storybook/react-vite';
 import Block from '@synerise/ds-block';
-import { theme } from '@synerise/ds-core';
 import Icon, { EditM } from '@synerise/ds-icon';
 import Sidebar, {
   SidebarWithButton as SidebarWithButtonComponent,
@@ -90,7 +89,7 @@ export const WithBlock: StoryObj<typeof Sidebar> = {
               <Icon
                 component={<EditM />}
                 size={24}
-                color={theme.palette['grey-600']}
+                color="var(--ds-color-icon-base-default)"
               />
             }
           >

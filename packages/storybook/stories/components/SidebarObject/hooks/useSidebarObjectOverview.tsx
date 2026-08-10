@@ -3,9 +3,9 @@ import { action } from 'storybook/actions';
 import { fn } from 'storybook/test';
 import { v4 as uuid } from 'uuid';
 
-import { theme } from '@synerise/ds-core';
 import Overview from '@synerise/ds-sidebar-object/dist/Elements/Overview/Overview';
 import Tags, { TagShape } from '@synerise/ds-tags';
+import { customColors } from '@synerise/ds-tokens/names';
 
 import {
   DATA,
@@ -40,7 +40,7 @@ export const useSidebarObjectOverview = (allTags) => {
         const tag = {
           id: uuid(),
           name,
-          color: theme.palette['grey-200'],
+          color: customColors.grey['200'],
         };
         setTags([...tags, tag]);
         setSelected([...selected, tag]);

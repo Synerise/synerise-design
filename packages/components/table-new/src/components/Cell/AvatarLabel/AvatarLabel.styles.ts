@@ -58,7 +58,7 @@ export const Title = styled(Text)<{
 }>`
   font-size: 14px;
   line-height: 20px;
-  color: ${(props): string => props.theme.palette['grey-700']};
+  color: var(--ds-color-text-base-subtle);
   font-weight: 500;
   flex-grow: 1;
   ${(props): FlattenSimpleInterpolation | false =>
@@ -79,7 +79,7 @@ export const Labels = styled.span<{
   overflow: hidden;
   white-space: nowrap;
   max-width: 100%;
-  color: ${(props): string => props.theme.palette['grey-700']};
+  color: var(--ds-color-text-base-subtle);
 `;
 
 export const Label = styled.span``;

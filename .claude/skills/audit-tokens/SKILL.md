@@ -3,6 +3,8 @@ name: audit-tokens
 description: Audit a package's design-token requirements (read-only). Produces a per-component, per-usage inventory of every theme.palette / hex / rgba / shadow / opacity value with a description of what it styles and a semantic-vs-module decision (and which module), plus flags for svg fill/stroke CSS rules to convert and static theme imports to fix. Feeds the apply-tokens skill. Writes TOKEN_AUDIT.md.
 ---
 
+> **Start here — context:** read [`.claude/plans/design-token-integration.md`](../../plans/design-token-integration.md) first — the tokenisation session context this skill assumes (token architecture, the design-tokens sync pipeline, build gotchas, branch/MR/worktree conventions, and known upstream token gaps).
+
 ## Overview
 
 **Read-only planning pass.** This skill does **not** change component source — it produces the

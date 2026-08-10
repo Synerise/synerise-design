@@ -8,13 +8,13 @@ export const Header = styled.div<{
   stickyData?: StickyData;
   isVirtual?: boolean;
 }>`
-  background: ${(props) => props.theme.palette['white']};
+  background: var(--ds-color-background-base-default);
   padding: 20px 24px;
   ${(props) => props.isVirtual && `min-height: 73px;`}
   display: flex;
   border-radius: 3px 3px 0 0;
   justify-content: space-between;
-  border-bottom: 1px solid ${(props) => props.theme.palette['grey-200']};
+  border-bottom: 1px solid var(--ds-color-border-base-default);
 
   ${({ stickyData }) =>
     stickyData &&
@@ -35,7 +35,7 @@ export const TitleContainer = styled.div`
   align-items: center;
 
   ${macro.small};
-  color: ${(props) => props.theme.palette['grey-700']};
+  color: var(--ds-color-text-base-subtle);
   padding: 0 24px 0 0;
 
   strong {
@@ -60,7 +60,7 @@ export const TitleSeparator = styled.span`
   width: 1px;
   height: 16px;
   margin: 1px 12px 0px 12px;
-  background: ${({ theme }) => theme.palette['grey-200']};
+  background: var(--ds-color-background-base-mutedhover);
 `;
 
 export const Left = styled.div`

@@ -62,7 +62,7 @@ const AllTypesList: React.FC<{
           width: '100%',
           maxWidth: 320,
           padding: '8px 12px',
-          border: '1px solid #e0e0e0',
+          border: '1px solid var(--ds-color-border-base-default)',
           borderRadius: 4,
           fontSize: 14,
           boxSizing: 'border-box',

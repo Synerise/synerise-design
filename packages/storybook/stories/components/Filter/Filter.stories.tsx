@@ -2,41 +2,68 @@ import React, { useState } from 'react';
 import { fn } from 'storybook/test';
 
 import ContextSelector from '@synerise/ds-context-selector';
-import { theme } from '@synerise/ds-core';
 import Filter from '@synerise/ds-filter';
 import Layout from '@synerise/ds-layout';
 
+import {
+  BOOLEAN_CONTROL,
+  NUMBER_CONTROL,
+  controlFromOptionsArray,
+} from '../../utils';
+import {
+  CONTEXT_CLIENT_GROUPS,
+  CONTEXT_CLIENT_ITEMS,
+} from '../ContextSelector/data/client.data';
 import { CONTEXT_TEXTS } from '../ContextSelector/data/context.data';
-import { CONTEXT_CLIENT_GROUPS, CONTEXT_CLIENT_ITEMS } from '../ContextSelector/data/client.data';
-
-import type { FilterMeta, FilterStory } from './Filter.types';
 import { DEFAULT_EXPRESSION, FILTER_TEXTS } from './Filter.data';
+import type { FilterMeta, FilterStory } from './Filter.types';
 import { useFilterHandlers } from './hooks/useFilterHandlers';
-
-import { BOOLEAN_CONTROL, controlFromOptionsArray, NUMBER_CONTROL } from '../../utils';
 
 export default {
   component: Filter,
   title: 'Components/Filter/Filter',
   tags: ['autodocs'],
   parameters: {
-    layout: 'padded'
+    layout: 'padded',
   },
   argTypes: {
     maxConditionsLimit: NUMBER_CONTROL,
     readOnly: BOOLEAN_CONTROL,
     draggable: BOOLEAN_CONTROL,
-    showActionAttribute: { BOOLEAN_CONTROL, table: { category: 'Story options' } },
-    layoutNativeScroll: { BOOLEAN_CONTROL, table: { category: 'Story options' } },
+    showActionAttribute: {
+      BOOLEAN_CONTROL,
+      table: { category: 'Story options' },
+    },
+    layoutNativeScroll: {
+      BOOLEAN_CONTROL,
+      table: { category: 'Story options' },
+    },
     showStepTags: { BOOLEAN_CONTROL, table: { category: 'Story options' } },
     isDateFilterOn: { BOOLEAN_CONTROL, table: { category: 'Story options' } },
-    conditionFooterRelativeDateRange: { BOOLEAN_CONTROL, table: { category: 'Story options' } },
+    conditionFooterRelativeDateRange: {
+      BOOLEAN_CONTROL,
+      table: { category: 'Story options' },
+    },
     addStepType: {
-      ...controlFromOptionsArray('inline-radio', ['Default', 'Custom', undefined]),
+      ...controlFromOptionsArray('inline-radio', [
+        'Default',
+        'Custom',
+        undefined,
+      ]),
       table: { category: 'Story options' },
     },
   },
-  render: ({ draggable, showActionAttribute, layoutNativeScroll, onAddStep, onExpressionStepChange, showStepTags, isDateFilterOn, conditionFooterRelativeDateRange, ...args }) => {
+  render: ({
+    draggable,
+    showActionAttribute,
+    layoutNativeScroll,
+    onAddStep,
+    onExpressionStepChange,
+    showStepTags,
+    isDateFilterOn,
+    conditionFooterRelativeDateRange,
+    ...args
+  }) => {
     const {
       expressions,
       handleChangeLogic,
@@ -50,7 +77,13 @@ export default {
       renderHeaderRightSide,
       renderStepContent,
       renderStepHeaderRightSide,
-    } = useFilterHandlers({ ...args, isDateFilterOn, conditionFooterRelativeDateRange, showActionAttribute, onExpressionStepChange });
+    } = useFilterHandlers({
+      ...args,
+      isDateFilterOn,
+      conditionFooterRelativeDateRange,
+      showActionAttribute,
+      onExpressionStepChange,
+    });
 
     const [matching, setMatching] = useState(true);
 
@@ -70,7 +103,7 @@ export default {
           position: 'absolute',
           top: '0',
           left: '0',
-          backgroundColor: theme.palette['grey-050'],
+          backgroundColor: 'var(--ds-color-background-base-subtle)',
         }}
       >
         <Layout nativeScroll={layoutNativeScroll} mainSidebarWithDnd>
@@ -82,7 +115,10 @@ export default {
                 <ContextSelector
                   disabled={isLimitExceeded}
                   texts={{ ...CONTEXT_TEXTS, buttonLabel: 'Add filter' }}
-                  onSelectItem={(item) => { onAddStep?.(item); handleAddStep(item) }}
+                  onSelectItem={(item) => {
+                    onAddStep?.(item);
+                    handleAddStep(item);
+                  }}
                   items={CONTEXT_CLIENT_ITEMS}
                   groups={CONTEXT_CLIENT_GROUPS}
                   addMode={true}
@@ -96,8 +132,12 @@ export default {
               onDuplicateStep={handleDuplicateStep}
               renderStepFooter={renderStepFooter}
               renderStepContent={renderStepContent}
-              renderStepHeaderRightSide={showStepTags ? renderStepHeaderRightSide : undefined}
-              renderHeaderRightSide={showStepTags ? renderHeaderRightSide : undefined}
+              renderStepHeaderRightSide={
+                showStepTags ? renderStepHeaderRightSide : undefined
+              }
+              renderHeaderRightSide={
+                showStepTags ? renderHeaderRightSide : undefined
+              }
               matching={{
                 onChange: handleChangeMatching,
                 matching,
@@ -135,7 +175,7 @@ export default {
     showStepTags: true,
     layoutNativeScroll: true,
     maxConditionsLimit: 5,
-    draggable: true
+    draggable: true,
   },
 } as FilterMeta;
 
@@ -143,6 +183,6 @@ export const Default: FilterStory = {};
 
 export const WithActionAttribute: FilterStory = {
   args: {
-    showActionAttribute: true
-  }
+    showActionAttribute: true,
+  },
 };

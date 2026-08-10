@@ -55,8 +55,10 @@ export const Array = <ItemType extends ArrayItemType>({
   const tagProps = {
     asPill: true,
     name: `${(arrayValue as ArrayValueElement<ItemType>[]).length}`,
-    color: error ? theme.palette['red-600'] : theme.palette['grey-600'],
-    textColor: '#fff',
+    color: error
+      ? 'var(--ds-color-background-danger-solid)'
+      : theme.palette['grey-600'],
+    textColor: 'var(--ds-color-text-onsolid-default)',
     shape: TagShape.DEFAULT_ROUND,
   };
 
