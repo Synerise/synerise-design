@@ -6,7 +6,6 @@ import React, {
   useState,
 } from 'react';
 
-import { useTheme } from '@synerise/ds-core';
 import {
   DatePicker,
   datePickerFormat as format,
@@ -40,7 +39,6 @@ const SubtleDatePicker = ({
   const [active, setActive] = useState(false);
   const [blurred, setBlurred] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
-  const theme = useTheme();
   const hasError = error || !!errorText;
   const { showTime } = rest;
   const dateFormattingString = useMemo(
@@ -136,7 +134,7 @@ const SubtleDatePicker = ({
                   <Tooltip title={suffixTooltip}>
                     <Icon
                       component={<CalendarM />}
-                      color={theme.palette['grey-600']}
+                      color="var(--ds-color-icon-base-default)"
                     />
                   </Tooltip>
                 </S.Suffix>

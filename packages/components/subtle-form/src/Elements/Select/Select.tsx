@@ -1,6 +1,5 @@
 import React, { useCallback, useRef, useState } from 'react';
 
-import { useTheme } from '@synerise/ds-core';
 import Icon, { AngleDownS } from '@synerise/ds-icon';
 import Select from '@synerise/ds-select';
 import Tooltip from '@synerise/ds-tooltip';
@@ -34,7 +33,6 @@ const SubtleSelect = ({
     setActive(true);
     setBlurred(false);
   }, []);
-  const theme = useTheme();
   return (
     <S.Subtle className="ds-subtle-form" $disabled={disabled}>
       <S.SubtleFormField $active={active} label={label} tooltip={labelTooltip}>
@@ -73,7 +71,7 @@ const SubtleSelect = ({
                   <Tooltip title={suffixTooltip}>
                     <Icon
                       component={<AngleDownS />}
-                      color={theme.palette['grey-600']}
+                      color="var(--ds-color-icon-base-default)"
                     />
                   </Tooltip>
                 </S.Suffix>

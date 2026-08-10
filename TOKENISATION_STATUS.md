@@ -356,7 +356,7 @@ These components use `theme.palette` / hardcoded colors but do not yet have dedi
 | status | 7 | No | 0 | 1 | Token Studio has status-pill tokens |
 | step-card | 0 | No | 0 | 12 | :white_check_mark: colours tokenised — semantic + shadow-1 (2026-07-21); disabled-tag 0.4→opacity-disabled; 12 functional/animation opacities kept; ⚑ footer bg 0.6→solid |
 | subject | 0 | No | 0 | 0 | :white_check_mark: tokenised — semantic (2026-07-21 pass); both spans unused (dead code) |
-| subtle-form | 10 | No | 1 | 4 | |
+| subtle-form | 10 | No | 1 | 4 | :construction: greys→text/icon semantics; 5 `<Icon color>` props→icon-base-default; ⚡ error/focus row-highlights red-100@0.4 / blue-100@0.4→bg-danger/brand-subtle (solid, shade+alpha delta); grey-300@0.4 hover mask kept |
 | [switch](#form-group-form--input--select--switch) | 2 | No | 2 | 2 | :construction: error/description text → `--ds-form-switch-*`; track/handle now in `RawSwitch.styles.ts` on palette (`.less` removed) |
 | table | 65 | Yes (3) | 8 | 23 | ⛔ **deprecated** — will not be tokenised (`table.less`/`index.less`/`pagination.less`) |
 | tag | 6 | No | 0 | 2 | :white_check_mark: status/danger/disabled tokenised — semantic (2026-07-21); ⚑ success/warning text→-700; 6 JS-compare/custom-colour palette + 2 decorative opacity kept |

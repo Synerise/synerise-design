@@ -8,7 +8,6 @@ import React, {
   useState,
 } from 'react';
 
-import { useTheme } from '@synerise/ds-core';
 import Icon, { EditS } from '@synerise/ds-icon';
 import { TextArea } from '@synerise/ds-input';
 import Tooltip from '@synerise/ds-tooltip';
@@ -46,7 +45,6 @@ const SubtleTextArea = ({
   const containerRef = useRef<HTMLDivElement>(null);
   const [visibleRows, setVisibleRows] = useState(minRows);
 
-  const theme = useTheme();
   const hasError = error || !!errorText;
   const calculateTextHeight = useCallback(() => {
     let textHeight = 0;
@@ -174,7 +172,7 @@ const SubtleTextArea = ({
                   <Tooltip title={suffixTooltip}>
                     <Icon
                       component={<EditS />}
-                      color={theme.palette['grey-600']}
+                      color="var(--ds-color-icon-base-default)"
                     />
                   </Tooltip>
                 </S.Suffix>
