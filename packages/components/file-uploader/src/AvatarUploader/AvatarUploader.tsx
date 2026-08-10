@@ -7,7 +7,6 @@ import React, {
 import { useDropzone } from 'react-dropzone';
 
 import Button from '@synerise/ds-button';
-import { useTheme } from '@synerise/ds-core';
 import Icon, { Add3M, FileTypePictureL, InfoFillS } from '@synerise/ds-icon';
 import Tooltip from '@synerise/ds-tooltip';
 
@@ -52,8 +51,6 @@ const AvatarUploader = forwardRef<FileUploaderRef, FileUploaderProps>(
     ref,
   ) => {
     const [uploadSuccess, setUploadSuccess] = useState(true);
-
-    const theme = useTheme();
 
     const readFilesContent = useCallback(
       (addedFiles: File[]) => {
@@ -123,7 +120,7 @@ const AvatarUploader = forwardRef<FileUploaderRef, FileUploaderProps>(
                 <span data-testid="tooltip-info">
                   <Icon
                     component={<InfoFillS />}
-                    color={theme.palette['grey-400']}
+                    color="var(--ds-color-icon-base-muted)"
                     size={24}
                   />
                 </span>

@@ -162,7 +162,7 @@ Single at-a-glance view of every colour-bearing component: migration **status** 
 | estimation | module | ✅ | — |
 | factors | module | 🚧 | 2 danger-hover refs pending --ds-color-*-danger-hover (red-500) |
 | field-set | semantic | ✅ | — |
-| file-uploader | semantic | ❌ | **deferred — file-uploader module pending (whole component)** |
+| file-uploader | semantic | ✅ | — (2 `grey-200` translucent overlays kept — no matching `--ds-color-background-translucent-*` token) |
 | filter | semantic | ✅ | — |
 | flag | semantic | ➖ | — |
 | footer | semantic | ✅ | — |
@@ -315,7 +315,7 @@ These components use `theme.palette` / hardcoded colors but do not yet have dedi
 | estimation | 0 | No | 0 | 0 | :white_check_mark: tokenised (2026-07-21); skeleton bar → progressbar module token, dot ring → semantic; per-entry dot fill stays dynamic |
 | factors | 16 | No | 2 | 0 | :construction: (2026-07-23) type-selector bg/check-icon, array delete-icon + count-pill danger bg/onsolid text, relative-date clear + dropdown-footer/icons, parameter + search text, text-modal brand → semantic; count-pill default grey-600 bg kept dynamic; 2 red-500 danger-hover kept + flagged (no --ds-color-*-danger-hover) |
 | field-set | 0 | No | 0 | 0 | :white_check_mark: tokenised — semantic (2026-07-20 pass) |
-| file-uploader | 152 | No | 0 | 7 | Highest palette count |
+| file-uploader | 152 | No | 0 | 7 | :white_check_mark: tokenised — semantic (2026-07-23); dynamic ${color}-600 avatar tint kept |
 | filter | 3 | No | 0 | 1 | :white_check_mark: tokenised — semantic (2026-07-23); placeholder bg→brand-subtle, border→border-brand, title→text-base-default |
 | flag | 0 | No | 0 | 34 | No palette, heavy opacity |
 | footer | 0 | No | 0 | 0 | :white_check_mark: tokenised — semantic (2026-07-20 pass) |

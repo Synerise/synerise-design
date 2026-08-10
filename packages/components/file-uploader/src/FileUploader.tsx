@@ -7,7 +7,6 @@ import React, {
 import { useDropzone } from 'react-dropzone';
 import { FormattedMessage } from 'react-intl';
 
-import { useTheme } from '@synerise/ds-core';
 import Icon, { AddM, FileUploadL, InfoFillS } from '@synerise/ds-icon';
 import Tooltip from '@synerise/ds-tooltip';
 
@@ -54,7 +53,6 @@ const FileUploader = forwardRef<FileUploaderRef, FileUploaderProps>(
     ref,
   ) => {
     const [uploadSuccess, setUploadSuccess] = useState(true);
-    const theme = useTheme();
 
     const finalTexts = {
       buttonLabel: (
@@ -184,7 +182,7 @@ const FileUploader = forwardRef<FileUploaderRef, FileUploaderProps>(
               {mode === 'multi-large' && files.length === 0 ? (
                 <>
                   <Icon
-                    color={theme.palette['grey-800']}
+                    color="var(--ds-color-text-base-default)"
                     component={<FileUploadL />}
                     size={48}
                   />
@@ -198,7 +196,7 @@ const FileUploader = forwardRef<FileUploaderRef, FileUploaderProps>(
               ) : (
                 <>
                   <Icon
-                    color={theme.palette['grey-600']}
+                    color="var(--ds-color-icon-base-default)"
                     component={<AddM />}
                     size={24}
                   />

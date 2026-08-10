@@ -7,12 +7,12 @@ import { Label } from '@synerise/ds-typography';
 export const PreviewImage = styled.div`
   ${IconContainer} {
     display: flex;
-    color: ${(props) => props.theme.palette['grey-700']};
+    color: var(--ds-color-text-base-subtle);
   }
 `;
 export const RepeatIcon = styled.div`
   ${IconContainer} {
-    color: ${(props) => props.theme.palette['blue-600']};
+    color: var(--ds-color-icon-brand-default);
   }
   &:hover {
     cursor: pointer;
@@ -38,14 +38,14 @@ export const SmallLoader = styled(Loader)`
 `;
 
 export const PlaceholderImage = styled.div`
-  background-color: ${(props) => props.theme.palette['grey-200']};
+  background-color: var(--ds-color-background-base-mutedhover);
   width: 32px;
   height: 32px;
   border-radius: 3px;
   padding: 4px;
 
   ${IconContainer} {
-    color: ${(props) => props.theme.palette['grey-500']};
+    color: var(--ds-color-icon-base-subtle);
   }
 `;
 export const FileViewContainer = styled.div`
@@ -60,7 +60,7 @@ export const Info = styled.div`
 
 export const Name = styled(Label)`
   && {
-    color: ${(props) => props.theme.palette['grey-600']};
+    color: var(--ds-color-text-base-muted);
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -88,12 +88,7 @@ export const RemoveButtonWrapper = styled.div<{ pressed?: boolean }>`
     position: absolute;
     right: -2px;
     top: -2px;
-    transition: fill 0.3s;
-    color: ${(props) => props.theme.palette['red-600']};
-
-    &:hover {
-      color: ${(props) => props.theme.palette['red-500']};
-    }
+    color: var(--ds-color-icon-danger-default);
   }
 `;
 
@@ -103,7 +98,7 @@ export const FileView = styled.button<{
   removable?: boolean;
   progress?: boolean;
 }>`
-  background-color: ${(props) => props.theme.palette['grey-100']};
+  background-color: var(--ds-color-background-base-muted);
   border-radius: 3px;
   border: 2px solid transparent;
   display: flex;
@@ -120,14 +115,14 @@ export const FileView = styled.button<{
   }
 
   &:hover {
-    border-color: ${(props) => props.theme.palette['grey-200']};
+    border-color: var(--ds-color-border-base-default);
     padding-right: ${(props) => (props.removable ? '30px' : '12px')};
     ${Name} {
-      color: ${(props) => props.theme.palette['blue-600']};
+      color: var(--ds-color-text-brand-default);
     }
     ${PreviewImage} {
       ${IconContainer} {
-        color: ${(props) => props.theme.palette['blue-600']};
+        color: var(--ds-color-icon-brand-default);
       }
     }
 
@@ -142,22 +137,22 @@ export const FileView = styled.button<{
   }
 
   &:focus {
-    border-color: ${(props) => props.theme.palette['blue-600']};
-    background-color: ${(props) => props.theme.palette['grey-100']};
+    border-color: var(--ds-color-border-brand-default);
+    background-color: var(--ds-color-background-base-muted);
   }
   &:hover {
-    background-color: ${(props) => props.theme.palette['grey-200']};
+    background-color: var(--ds-color-background-base-mutedhover);
   }
 
   &:active {
-    border-color: ${(props) => props.theme.palette['grey-300']};
-    background-color: ${(props) => props.theme.palette['grey-300']};
+    border-color: var(--ds-color-border-base-strong);
+    background-color: var(--ds-color-background-base-mutedhover);
     ${Name} {
-      color: ${(props) => props.theme.palette['blue-600']};
+      color: var(--ds-color-text-brand-default);
     }
     ${PreviewImage} {
       ${IconContainer} {
-        color: ${(props) => props.theme.palette['blue-600']};
+        color: var(--ds-color-icon-brand-default);
       }
     }
   }
@@ -165,7 +160,7 @@ export const FileView = styled.button<{
   ${(props) =>
     props.disabled &&
     `
-    background-color: ${props.theme.palette['grey-100']};
+    background-color: var(--ds-color-background-base-muted);
     opacity: 0.4;
   `};
 
@@ -174,8 +169,8 @@ export const FileView = styled.button<{
     `
     && {
       padding-right: 7px;
-      border: 1px solid ${props.theme.palette['red-600']};
-      background-color: ${props.theme.palette['grey-050']};
+      border: 1px solid var(--ds-color-border-danger-default);
+      background-color: var(--ds-color-background-base-subtle);
       ${Name} {
         padding-right: 4px;
       }
