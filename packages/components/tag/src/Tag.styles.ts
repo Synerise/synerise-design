@@ -282,7 +282,8 @@ const insertShapeStyles = (props: InsertShapeStyles) => {
 
     case TagShape.STATUS_NEUTRAL:
       return css`
-        border: 1px solid ${props.color || 'var(--ds-color-border-neutral-subtle)'};
+        border: 1px solid
+          ${props.color || 'var(--ds-color-border-neutral-subtle)'};
         color: ${props.textColor ||
         props.color ||
         'var(--ds-color-text-neutral-default)'};
