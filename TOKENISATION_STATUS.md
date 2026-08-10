@@ -223,7 +223,7 @@ Single at-a-glance view of every colour-bearing component: migration **status** 
 | stepper | module | ✅ | — |
 | subject | semantic | ✅ | — |
 | subtle-form | semantic | ❌ | translucent-surface token gap |
-| switch | semantic | 🚧 | — |
+| switch | module | ✅ | — |
 | table | semantic | ⛔ | — |
 | table-new | semantic | 🚧 | colours tokenised → semantic (2026-07-23); WIP: feature still in active dev; kept dynamic: translucent scroll-shadow (grey-500 @12%, no token) + runtime tree-level/child-row palette lookups |
 | tabs | module | 🚧 | — |
