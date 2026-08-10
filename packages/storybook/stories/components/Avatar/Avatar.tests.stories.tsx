@@ -55,7 +55,9 @@ export const AllColors: Story = {
             size="large"
             tooltip={false}
           />
-          <span style={{ fontSize: 12, color: 'var(--ds-color-text-base-subtle)' }}>
+          <span
+            style={{ fontSize: 12, color: 'var(--ds-color-text-base-subtle)' }}
+          >
             {cell.family}
           </span>
         </div>
