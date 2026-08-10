@@ -36,6 +36,7 @@
   },
   "scripts": {
     "build": "node config/build-tokens.mjs",
+    "pack:ci": "pnpm pack --pack-destination ../storybook/storybook-static/static",
     "sync": "bash scripts/sync-tokens.sh"
   },
   "devDependencies": {
