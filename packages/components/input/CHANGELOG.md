@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.7.14](https://github.com/synerise/synerise-design/compare/@synerise/ds-input@1.7.13...@synerise/ds-input@1.7.14) (2026-07-24)
+
+### Bug Fixes
+
+- **input:** square ds-select corners inside a compact InputGroup ([08cb58c](https://github.com/synerise/synerise-design/commit/08cb58cd7977702c1e31b88c6690db6a7362b5a5))
+
 ## [1.7.13](https://github.com/synerise/synerise-design/compare/@synerise/ds-input@1.7.12...@synerise/ds-input@1.7.13) (2026-07-23)
 
 **Note:** Version bump only for package @synerise/ds-input

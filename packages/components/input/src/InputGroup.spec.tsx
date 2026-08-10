@@ -64,6 +64,17 @@ describe('InputGroup', () => {
     expect(items()).toHaveLength(2);
   });
 
+  it('accepts growItem="none" (no item stretches) without error', () => {
+    const { container } = renderWithProvider(
+      <InputGroup compact growItem="none">
+        <input data-testid="a" />
+        <input data-testid="b" />
+        <input data-testid="c" />
+      </InputGroup>,
+    );
+    expect(container.querySelectorAll('.ds-input-group-item')).toHaveLength(3);
+  });
+
   it('should prefer errorText over the deprecated errors array', () => {
     const ERROR_TEXT = 'Error text';
     const LEGACY_ERROR = 'Legacy error';

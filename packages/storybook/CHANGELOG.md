@@ -3,6 +3,16 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.53.0](https://github.com/Synerise/synerise-design/compare/storybook@1.52.0...storybook@1.53.0) (2026-07-24)
+
+### Bug Fixes
+
+- **select:** move onClick off the dropdown trigger; focus inputs in interaction tests ([ed1a79c](https://github.com/Synerise/synerise-design/commit/ed1a79c45bf056304a11e959ceb086dc1258b55e))
+
+### Features
+
+- **select:** implement maxTagCount/maxTagTextLength/maxTagPlaceholder + onPopupScroll ([060d2c6](https://github.com/Synerise/synerise-design/commit/060d2c6b74118c065d928786dad67aa1b88500c7))
+
 # [1.52.0](https://github.com/Synerise/synerise-design/compare/storybook@1.51.3...storybook@1.52.0) (2026-07-24)
 
 ### Features
