@@ -1,6 +1,5 @@
 import React, { useEffect, useMemo, useRef, useState } from 'react';
 
-import { theme } from '@synerise/ds-core';
 import Icon, { AngleRightS } from '@synerise/ds-icon';
 import { renderWithHighlight } from '@synerise/ds-utils';
 
@@ -114,7 +113,7 @@ export const Breadcrumb = ({
                     >
                       <Icon
                         component={<AngleRightS />}
-                        color={theme.palette['grey-600']}
+                        color="var(--ds-color-icon-base-default)"
                       />
                     </S.ArrowRight>
                   )}

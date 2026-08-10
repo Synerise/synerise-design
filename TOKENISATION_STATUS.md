@@ -137,7 +137,7 @@ Single at-a-glance view of every colour-bearing component: migration **status** 
 | card-select | module | ✅ | — |
 | card-tabs | module | ✅ | fully on `--ds-card-tabs-variant-*` module tokens (bg/border/text/icon/tag/dot/handler/shadow/opacity), threading grey/white by `greyBackground`; per-tab active colour from the `ordered` categorical set (order-1..21); `grey-100` pressed → semantic base-muted. ⚑ invalid-hover/pressed bg now `validateactivehover` (darker). Kept: dynamic `color`-prop lookups + decorative caret gradients. `svg{fill}` still explicit token (currentColor cleanup deferred) |
 | carousel | semantic | ✅ | — |
-| cascader | semantic | ❌ | dropdown/cascader pending |
+| cascader | semantic | ✅ | — |
 | checkbox | module | ✅ | — |
 | code-area | module (form) | ✅ | — |
 | code-snippet | module | ✅ | .less = font-face only |
@@ -292,7 +292,7 @@ These components use `theme.palette` / hardcoded colors but do not yet have dedi
 | button-group | 0 | No | 0 | 0 | :white_check_mark: tokenised (2026-07-24) — split separators → **buttons** module per-variant `separator`; tertiary disabled label → buttons module; error outline/ring → semantic `border-danger-default`; description → `text-base-muted`; ButtonDivider → **divider** module. ⚑ separators adopt UX per-variant colours + 2× grey-500→grey-600 |
 | card-tabs | 68 | No | 2 | 4 | High palette count |
 | carousel | 0 | No | 0 | 0 | :white_check_mark: tokenised — semantic (2026-07-20 pass); new DS component, not in original audit |
-| cascader | 34 | No | 5 | 10 | |
+| cascader | 34 | No | 5 | 10 | :white_check_mark: tokenised — semantic (2026-07-23); greys→text/icon/bg/border-base, blue-600→brand (text/icon/border), green-600→icon-success, white→bg-base-default, rgba(255,255,255,0)→transparent; box-shadow rgba(35,41,54,.05) left (shadow, α≠shadow-2) |
 | [checkbox](#checkbox--radio) | 0 | No | 4 | 1 | :white_check_mark: fully tokenised — focus/indeterminate/hover → `--ds-form-checkbox-*`; indeterminate-hover fill blue-500 → semantic `background-brand-solidhover` (exact); check icons = currentColor SVG |
 | code-area | 6 | No | 1 | 1 | :construction: field surface + error text → `--ds-form-*` (2026-07-20); Monaco constants (CSS-var constraint) + fullscreen deferred |
 | code-snippet | 14 | No¹ | 0 | 2 | :white_check_mark: fully tokenised (2026-07-23) — chrome→--ds-code-snippet-surface/copy, syntax→--ds-code-snippet-syntax-*, inline→--ds-code-snippet-inlinecode-*. ¹`.less` = font-face only |
