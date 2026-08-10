@@ -22,5 +22,5 @@ export const EditableCell = styled.div`
 
 export const Value = styled.span<{ asPlaceholder: boolean }>`
   color: ${(props): string =>
-    props.asPlaceholder ? props.theme.palette['grey-400'] : 'inherit'};
+    props.asPlaceholder ? 'var(--ds-color-text-base-disabled)' : 'inherit'};
 `;

@@ -34,7 +34,7 @@ describe('UserAvatar', () => {
     const { container } = renderWithProvider(<UserAvatar user={testUserImage} backgroundColor="grey-800" />);
     const avatar = container.querySelector('.ant-avatar');
     expect(avatar).toHaveStyle(
-      'background: var(--ds-color-background-custom-grey-800)',
+      'background: var(--ds-color-custom-grey-800)',
     );
   });
 });

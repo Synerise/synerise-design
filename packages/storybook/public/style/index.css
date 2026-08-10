@@ -1,9 +1,11 @@
 @font-face {
-  font-family: "Graphik LCG Web";
-  src: url("./fonts/Graphik-Light-Cy-Gr-Web.eot");
-  src: url("./fonts/Graphik-Light-Cy-Gr-Web.eot?#iefix") format("embedded-opentype"),
-  url("./fonts/Graphik-Light-Cy-Gr-Web.woff2") format("woff2"),
-  url("./fonts/Graphik-Light-Cy-Gr-Web.woff") format("woff");
+  font-family: 'Graphik LCG Web';
+  src: url('./fonts/Graphik-Light-Cy-Gr-Web.eot');
+  src:
+    url('./fonts/Graphik-Light-Cy-Gr-Web.eot?#iefix')
+      format('embedded-opentype'),
+    url('./fonts/Graphik-Light-Cy-Gr-Web.woff2') format('woff2'),
+    url('./fonts/Graphik-Light-Cy-Gr-Web.woff') format('woff');
   font-weight: 300;
   font-style: normal;
   font-stretch: normal;
@@ -12,11 +14,13 @@
 }
 
 @font-face {
-  font-family: "Graphik LCG Web";
-  src: url("./fonts/Graphik-Regular-Cy-Gr-Web.eot");
-  src: url("./fonts/Graphik-Regular-Cy-Gr-Web.eot?#iefix") format("embedded-opentype"),
-  url("./fonts/Graphik-Regular-Cy-Gr-Web.woff2") format("woff2"),
-  url("./fonts/Graphik-Regular-Cy-Gr-Web.woff") format("woff");
+  font-family: 'Graphik LCG Web';
+  src: url('./fonts/Graphik-Regular-Cy-Gr-Web.eot');
+  src:
+    url('./fonts/Graphik-Regular-Cy-Gr-Web.eot?#iefix')
+      format('embedded-opentype'),
+    url('./fonts/Graphik-Regular-Cy-Gr-Web.woff2') format('woff2'),
+    url('./fonts/Graphik-Regular-Cy-Gr-Web.woff') format('woff');
   font-weight: 400;
   font-style: normal;
   font-stretch: normal;
@@ -25,11 +29,13 @@
 }
 
 @font-face {
-  font-family: "Graphik LCG Web";
-  src: url("./fonts/Graphik-Medium-Cy-Gr-Web.eot");
-  src: url("./fonts/Graphik-Medium-Cy-Gr-Web.eot?#iefix") format("embedded-opentype"),
-  url("./fonts/Graphik-Medium-Cy-Gr-Web.woff2") format("woff2"),
-  url("./fonts/Graphik-Medium-Cy-Gr-Web.woff") format("woff");
+  font-family: 'Graphik LCG Web';
+  src: url('./fonts/Graphik-Medium-Cy-Gr-Web.eot');
+  src:
+    url('./fonts/Graphik-Medium-Cy-Gr-Web.eot?#iefix')
+      format('embedded-opentype'),
+    url('./fonts/Graphik-Medium-Cy-Gr-Web.woff2') format('woff2'),
+    url('./fonts/Graphik-Medium-Cy-Gr-Web.woff') format('woff');
   font-weight: 500;
   font-style: normal;
   font-stretch: normal;
@@ -38,11 +44,13 @@
 }
 
 @font-face {
-  font-family: "Graphik LCG Web";
-  src: url("./fonts/Graphik-Semibold-Cy-Gr-Web.eot");
-  src: url("./fonts/Graphik-Semibold-Cy-Gr-Web.eot?#iefix") format("embedded-opentype"),
-  url("./fonts/Graphik-Semibold-Cy-Gr-Web.woff2") format("woff2"),
-  url("./fonts/Graphik-Semibold-Cy-Gr-Web.woff") format("woff");
+  font-family: 'Graphik LCG Web';
+  src: url('./fonts/Graphik-Semibold-Cy-Gr-Web.eot');
+  src:
+    url('./fonts/Graphik-Semibold-Cy-Gr-Web.eot?#iefix')
+      format('embedded-opentype'),
+    url('./fonts/Graphik-Semibold-Cy-Gr-Web.woff2') format('woff2'),
+    url('./fonts/Graphik-Semibold-Cy-Gr-Web.woff') format('woff');
   font-weight: 600;
   font-style: normal;
   font-stretch: normal;
@@ -51,11 +59,12 @@
 }
 
 @font-face {
-  font-family: "Graphik LCG Web";
-  src: url("./fonts/Graphik-Bold-Cy-Gr-Web.eot");
-  src: url("./fonts/Graphik-Bold-Cy-Gr-Web.eot?#iefix") format("embedded-opentype"),
-  url("./fonts/Graphik-Bold-Cy-Gr-Web.woff2") format("woff2"),
-  url("./fonts/Graphik-Bold-Cy-Gr-Web.woff") format("woff");
+  font-family: 'Graphik LCG Web';
+  src: url('./fonts/Graphik-Bold-Cy-Gr-Web.eot');
+  src:
+    url('./fonts/Graphik-Bold-Cy-Gr-Web.eot?#iefix') format('embedded-opentype'),
+    url('./fonts/Graphik-Bold-Cy-Gr-Web.woff2') format('woff2'),
+    url('./fonts/Graphik-Bold-Cy-Gr-Web.woff') format('woff');
   font-weight: 700;
   font-style: normal;
   font-stretch: normal;
@@ -72,5 +81,15 @@ body {
 .sb-main-padded,
 .sb-show-main {
   background-color: var(--ds-page-bg);
+  /* Pair text with the surface: antd's reset sets a static body colour
+     (grey-600) that never flips with the theme; the class selector beats
+     `body`, so bare text follows the Theme toolbar like the background does. */
+  color: var(--ds-color-text-base-default);
 }
 
+/* Docs-page story previews. Both classes stacked to out-specify addon-docs'
+   emotion rule (single-class, so .sbdocs-preview alone ties and loses). */
+.sbdocs.sbdocs-preview {
+  background-color: var(--ds-page-bg);
+  color: var(--ds-color-text-base-default);
+}

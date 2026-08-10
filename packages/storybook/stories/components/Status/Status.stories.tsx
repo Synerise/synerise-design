@@ -1,8 +1,8 @@
 import React from 'react';
 
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import { theme } from '@synerise/ds-core';
 import Status from '@synerise/ds-status';
+import { customColors } from '@synerise/ds-tokens/names';
 
 import {
   BOOLEAN_CONTROL,
@@ -13,18 +13,18 @@ import {
 } from '../../utils';
 
 const COLOR_OPTIONS = {
-  blue: theme.palette['blue-600'],
-  grey: theme.palette['grey-600'],
-  red: theme.palette['red-600'],
-  green: theme.palette['green-600'],
-  yellow: theme.palette['yellow-600'],
-  pink: theme.palette['pink-600'],
-  mars: theme.palette['mars-600'],
-  orange: theme.palette['orange-600'],
-  fern: theme.palette['fern-600'],
-  cyan: theme.palette['cyan-600'],
-  purple: theme.palette['purple-600'],
-  violet: theme.palette['violet-600'],
+  blue: customColors.blue['600'],
+  grey: customColors.grey['600'],
+  red: customColors.red['600'],
+  green: customColors.green['600'],
+  yellow: customColors.yellow['600'],
+  pink: customColors.pink['600'],
+  mars: customColors.mars['600'],
+  orange: customColors.orange['600'],
+  fern: customColors.fern['600'],
+  cyan: customColors.cyan['600'],
+  purple: customColors.purple['600'],
+  violet: customColors.violet['600'],
 };
 
 export default {

@@ -1,6 +1,5 @@
 import React, { forwardRef } from 'react';
 
-import { useTheme } from '@synerise/ds-core';
 import Icon, { SpinnerM } from '@synerise/ds-icon';
 
 import { DnDScrollbar } from './DnDScrollbar';
@@ -27,7 +26,6 @@ const Scrollbar = forwardRef<
     },
     forwardedRef,
   ) => {
-    const theme = useTheme();
     const Component = withDnd ? DnDScrollbar : VirtualScrollbar;
 
     return (
@@ -48,7 +46,7 @@ const Scrollbar = forwardRef<
             <S.Loader loading={loading}>
               <Icon
                 component={<SpinnerM />}
-                color={theme.palette['grey-600']}
+                color="var(--ds-color-icon-base-default)"
               />
             </S.Loader>
           </S.LoaderWrapper>

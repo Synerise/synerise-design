@@ -1,5 +1,7 @@
 import styled from 'styled-components';
 
+import { resolveTrackColor } from '../utils/Slider.utils';
+
 export const AllocationMarks = styled.div`
   height: 40px;
   position: relative;
@@ -29,10 +31,10 @@ export const MarkLetter = styled.div<{ $color?: string }>`
   position: relative;
   text-align: center;
   line-height: 25px;
-  color: white;
+  color: var(--ds-slider-tag-text);
 
   background-color: ${(props) =>
-    props.theme.palette[props.$color || 'grey-400']};
+    resolveTrackColor(props.$color, 'var(--ds-color-background-base-strong)')};
 `;
 
 export const MarkTooltipWrapper = styled.div`

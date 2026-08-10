@@ -46,7 +46,7 @@ const ITEM_STYLE = {
   display: 'flex',
   alignItems: 'center',
   justifyContent: 'center',
-  border: '1px solid #ececec',
+  border: '1px solid var(--ds-color-border-base-default)',
   cursor: 'grab',
   margin: '2px 0',
   background: 'var(--ds-page-bg)',

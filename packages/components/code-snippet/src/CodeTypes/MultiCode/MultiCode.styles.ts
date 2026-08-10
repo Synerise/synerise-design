@@ -25,7 +25,7 @@ export const CodeSnippetWrapperMulti = styled(CodeSnippetWrapperSingle)<{
   & {
     min-width: 250px;
     pre::before {
-      background-color: var(--ds-color-background-base-muted);
+      background-color: var(--ds-code-snippet-surface-bg);
       content: '';
       display: block;
       position: absolute;
@@ -50,7 +50,7 @@ export const CodeSnippetWrapperMulti = styled(CodeSnippetWrapperSingle)<{
             left:0;
             right:0;
             height:${LINE_HEIGHT_DEFAULT}px;
-            background-color:var(--ds-color-background-base-muted);
+            background-color:var(--ds-code-snippet-surface-bg);
             z-index:10;
         }
         `};

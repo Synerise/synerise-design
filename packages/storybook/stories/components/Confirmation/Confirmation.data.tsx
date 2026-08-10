@@ -5,7 +5,6 @@ import { faker } from '@faker-js/faker';
 import { ObjectAvatar } from '@synerise/ds-avatar';
 import { Color } from '@synerise/ds-avatar/dist/Avatar.types';
 import Button from '@synerise/ds-button';
-import { theme } from '@synerise/ds-core';
 import Dropdown, { DropdownMenu } from '@synerise/ds-dropdown';
 import Icon, {
   AggregateM,
@@ -245,7 +244,7 @@ export const COLUMNS = [
         <S.RowWrapperText className="chromatic-ignore">
           <S.DependencyIcon
             component={icon}
-            color={theme.palette['grey-600']}
+            color="var(--ds-color-icon-base-default)"
           />
           <span>{name}</span>
         </S.RowWrapperText>

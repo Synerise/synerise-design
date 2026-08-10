@@ -174,13 +174,18 @@ the duplicates.
   migrate the consumer stylesheets that target them (≈19 files target `.ant-list-*`; a few target
   `.ant-drawer`). Also the Tier 1/2 merged packages (avatar/badge/switch/pagination/…) — audit for
   residual `.ant-*` hooks and consumer coupling.
-- [ ] **Delete residual antd LESS** from de-antd'd packages once their `.ant-*`-class consumers migrate
-  (e.g. `ds-select`'s `style/*.less`, kept temporarily because `ds-table` + master `ds-autocomplete`
-  `@import` it; and any package's `style/*.less` that only exists to pull antd LESS).
+- [ ] **Delete residual antd LESS** from de-antd'd packages once their `.ant-*`-class consumers migrate.
+  `ds-select` is **done** — its `style/*.less` was relocated into `ds-table`
+  (`table/src/style/select.mixin.less` + a direct `@import '~antd/lib/select/style'`) and its `antd`
+  peerDep dropped, so ds-select is fully antd-free. Remaining: any package's `style/*.less` that only
+  exists to pull antd LESS for an out-of-scope consumer.
 - [ ] **Shared native primitives already extracted** (reuse, don't re-add): `@synerise/ds-carousel`
   (banner/popconfirm), `useFocusTrap`/`useAutosizeWidth`/`useStretchToFit`/`PassthroughAttributes`
   (ds-utils), the `ds-dropdown`(floating-ui) + `ds-list-item` + `ds-scrollbar` combobox stack
   (autocomplete/select). Prefer these over new per-component implementations.
+- [ ] **Co-locate the form-input stories & tests.** Move the `Select` stories & tests in with the
+  other input elements (Storybook `InputElements` grouping), and likewise relocate `subtle-form`,
+  `radio` and `checkbox` so all form inputs live together.
 
 ## Done-check (whole initiative)
 

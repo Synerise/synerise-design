@@ -9,12 +9,12 @@ export const IconTooltipCell = styled.span<{ isDisabled?: boolean }>`
   ${(props) => props.isDisabled && 'opacity: 0.4;'}
   .main-icon {
     svg {
-      fill: ${(props) => props.theme.palette['grey-600']};
+      fill: var(--ds-color-icon-base-default);
     }
   }
   .tooltip-icon {
     svg {
-      fill: ${(props) => props.theme.palette['grey-400']};
+      fill: var(--ds-color-icon-base-muted);
     }
   }
 `;

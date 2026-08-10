@@ -66,8 +66,8 @@ export const MainContent = styled.div<{
     min-width: fit-content;
     margin: 4px 0 4px 8px;
     right: 0;
-    /* ⚑ Shift: value chip bg grey-200 → --ds-color-background-base-muted (grey-100, lighter). */
-    background: var(--ds-color-background-base-muted);
+    /* Value chip bg → form.chip module token (grey-100; ⚑ vs original grey-200). */
+    background: var(--ds-form-chip-bg-default);
   }
   &::before {
     content: '';

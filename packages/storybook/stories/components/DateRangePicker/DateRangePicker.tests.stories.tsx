@@ -199,3 +199,56 @@ export const TestSelectTime: Story = {
     expect(canvas.getByTestId('date-range-picker-select-time')).toBeDisabled();
   },
 };
+
+export const TestDayRangeTooltip: Story = {
+  ...Default,
+  args: {
+    ...explicitActionArgs,
+    texts,
+  },
+  play: async ({ args, canvasElement, step }) => {
+    const canvas = within(canvasElement.parentElement!);
+
+    await step('Open picker popover', async () => {
+      const input = await canvas.findByText(texts.startDate);
+      await userEvent.click(input);
+    });
+
+    await waitFor(() => expect(args.onVisibleChange).toHaveBeenCalled());
+
+    await step('Select an absolute range', async () => {
+      await waitFor(() =>
+        expect(canvas.getAllByRole('gridcell')[0]).not.toHaveStyle({
+          pointerEvents: 'none',
+        }),
+      );
+      const days = canvas.getAllByRole('gridcell');
+      await waitFor(() => {
+        userEvent.click(days[10]);
+      });
+      await waitFor(() => {
+        userEvent.click(days[20]);
+      });
+    });
+
+    await step('Hover a selected day to reveal the range tooltip', async () => {
+      const overlay = await canvas.findByTestId('ds-date-range-picker-overlay');
+      const selectedForeground = await waitFor(() => {
+        const element = overlay.querySelector<HTMLElement>(
+          '.DayPicker-Day--selected .DayPicker-Day-FG',
+        );
+        if (!element) {
+          throw new Error('Selected day not rendered yet');
+        }
+        return element;
+      });
+      await userEvent.hover(selectedForeground);
+    });
+
+    // The label is portaled to the body (outside the scrolling overlay), so it
+    // must be queryable and visible without being clipped.
+    await waitFor(() =>
+      expect(canvas.getByTestId('popover-tooltip-content')).toBeVisible(),
+    );
+  },
+};

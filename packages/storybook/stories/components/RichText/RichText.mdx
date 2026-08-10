@@ -1,0 +1,287 @@
+import { Meta, Canvas } from '@storybook/addon-docs/blocks';
+
+import RichTextMeta, {
+  Default,
+  WithContent,
+  Subtle,
+  SubtleAnimated,
+  LimitedToolbar,
+  MarkdownFormat,
+  EditWithAI,
+} from './RichText.stories';
+
+<Meta of={RichTextMeta} />
+
+# RichText
+
+A WYSIWYG rich text editor built on Tiptap. It edits HTML, Markdown, or a portable
+JSON block model (`RichTextDocument`) behind a single controlled `value` / `onChange`
+API, with a configurable formatting toolbar.
+
+## Quick overview
+
+- Import: `import RichText from '@synerise/ds-rich-text';`
+- Must render inside `DSProvider` from `@synerise/ds-core` (theme + i18n — the code
+  snippet copy button uses `react-intl`).
+- Controlled (`value` + `onChange`) or uncontrolled (`defaultValue`).
+- `format` selects the value type: `'html'` (default) · `'markdown'` · `'document'`
+  (JSON block model that round-trips to `@synerise/ds-rich-text-renderer`).
+- The toolbar is fully configurable via `toolbarFeatures`; hide it entirely with
+  `hideToolbar`.
+- `subtle` turns the editor into a SubtleForm-style inline edit: borderless preview,
+  grey hover affordance with an edit icon, click to edit, click outside to go back.
+  Hover/blur transitions are opt-in via `animations`.
+- Links typed without a protocol (`www.google.com`) are normalized to
+  `https://www.google.com` and open in a new tab.
+
+## Basic example
+
+<Canvas of={Default} sourceState="shown" />
+
+## With content
+
+HTML string in, HTML string out — the default `format="html"` mode.
+
+<Canvas of={WithContent} />
+
+## Subtle (inline edit)
+
+Preview by default; hover shows the grey affordance and edit icon, click enters edit
+mode, click outside returns to preview. `errorText` forces edit mode.
+
+<Canvas of={Subtle} />
+
+With `animations` enabled, hover slides the content into the editing position
+(SubtleForm-style) instead of only tinting the background.
+
+<Canvas of={SubtleAnimated} />
+
+## Limited toolbar
+
+Pass `toolbarFeatures` to render only the tools you need.
+
+<Canvas of={LimitedToolbar} />
+
+## Markdown format
+
+With `format="markdown"` the `value` and `onChange` payloads are Markdown strings.
+
+<Canvas of={MarkdownFormat} />
+
+## Edit with AI
+
+Providing `onEditWithAI` adds an "Edit with AI" toolbar button. The handler receives
+the current selection (or the full text when nothing is selected) and its resolved
+string replaces it. The design system performs no AI call itself.
+
+<Canvas of={EditWithAI} />
+
+## API reference
+
+### `RichText`
+
+<table>
+  <thead>
+    <tr>
+      <th>Prop</th>
+      <th>Type</th>
+      <th>Default</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>format</code></td>
+      <td><code>'html' | 'document' | 'markdown'</code></td>
+      <td><code>'html'</code></td>
+      <td>Type of <code>value</code> / <code>defaultValue</code> / <code>onChange</code> payloads</td>
+    </tr>
+    <tr>
+      <td><code>value</code></td>
+      <td><code>string | RichTextDocument</code></td>
+      <td>—</td>
+      <td>Controlled content</td>
+    </tr>
+    <tr>
+      <td><code>defaultValue</code></td>
+      <td><code>string | RichTextDocument</code></td>
+      <td>—</td>
+      <td>Initial content (uncontrolled)</td>
+    </tr>
+    <tr>
+      <td><code>onChange</code></td>
+      <td><code>(value: string | RichTextDocument) =&gt; void</code></td>
+      <td>—</td>
+      <td>Fired on every edit with the serialized content</td>
+    </tr>
+    <tr>
+      <td><code>onEditorReady</code></td>
+      <td><code>(editor: Editor) =&gt; void</code></td>
+      <td>—</td>
+      <td>Access to the underlying Tiptap editor instance</td>
+    </tr>
+    <tr>
+      <td><code>placeholder</code></td>
+      <td><code>string</code></td>
+      <td>—</td>
+      <td>Placeholder shown when the editor is empty</td>
+    </tr>
+    <tr>
+      <td><code>readOnly</code></td>
+      <td><code>boolean</code></td>
+      <td><code>false</code></td>
+      <td>Non-editable, toolbar hidden, grey background</td>
+    </tr>
+    <tr>
+      <td><code>disabled</code></td>
+      <td><code>boolean</code></td>
+      <td><code>false</code></td>
+      <td>Non-editable, 0.4 opacity, no pointer events</td>
+    </tr>
+    <tr>
+      <td><code>subtle</code></td>
+      <td><code>boolean</code></td>
+      <td><code>false</code></td>
+      <td>SubtleForm-style inline edit: preview → hover affordance → click to edit → click outside to preview</td>
+    </tr>
+    <tr>
+      <td><code>animations</code></td>
+      <td><code>boolean</code></td>
+      <td><code>false</code></td>
+      <td>Enables the SubtleForm-style transitions in <code>subtle</code> mode; when off, hovering the preview only tints the background</td>
+    </tr>
+    <tr>
+      <td><code>label</code> / <code>tooltip</code> / <code>tooltipConfig</code></td>
+      <td><code>ReactNode</code> / <code>ReactNode</code> / <code>TooltipProps</code></td>
+      <td>—</td>
+      <td>Form field label above the editor with optional tooltip</td>
+    </tr>
+    <tr>
+      <td><code>description</code></td>
+      <td><code>ReactNode</code></td>
+      <td>—</td>
+      <td>Helper text below the editor</td>
+    </tr>
+    <tr>
+      <td><code>errorText</code></td>
+      <td><code>ReactNode</code></td>
+      <td>—</td>
+      <td>Error message below the editor; red border; forces edit mode in <code>subtle</code></td>
+    </tr>
+    <tr>
+      <td><code>height</code> / <code>maxHeight</code></td>
+      <td><code>string | number</code></td>
+      <td>—</td>
+      <td>Fixed / maximum content height (scrolls beyond it)</td>
+    </tr>
+    <tr>
+      <td><code>toolbarFeatures</code></td>
+      <td><code>ToolbarFeature[]</code></td>
+      <td><code>ALL_TOOLBAR_FEATURES</code></td>
+      <td>Which tools to show: <code>bold</code>, <code>italic</code>, <code>underline</code>, <code>strikethrough</code>, <code>heading</code>, <code>bulletList</code>, <code>orderedList</code>, <code>link</code>, <code>textAlign</code>, <code>codeBlock</code>, <code>codeSnippet</code>, <code>table</code>, <code>image</code></td>
+    </tr>
+    <tr>
+      <td><code>hideToolbar</code></td>
+      <td><code>boolean</code></td>
+      <td><code>false</code></td>
+      <td>Hide the toolbar entirely</td>
+    </tr>
+    <tr>
+      <td><code>headingLevels</code></td>
+      <td><code>(1 | 2 | 3 | 4 | 5 | 6)[]</code></td>
+      <td><code>[1, 2, 3]</code></td>
+      <td>Heading levels offered by the block-type dropdown</td>
+    </tr>
+    <tr>
+      <td><code>texts</code></td>
+      <td><code>Partial&lt;RichTextTexts&gt;</code></td>
+      <td><code>DEFAULT_TEXTS</code></td>
+      <td>Override any UI string (toolbar tooltips, popover labels, …)</td>
+    </tr>
+    <tr>
+      <td><code>noBorder</code></td>
+      <td><code>boolean</code></td>
+      <td><code>false</code></td>
+      <td>Remove the outer border</td>
+    </tr>
+    <tr>
+      <td><code>autoFocus</code></td>
+      <td><code>boolean</code></td>
+      <td><code>false</code></td>
+      <td>Focus the editor on mount</td>
+    </tr>
+    <tr>
+      <td><code>onImageUpload</code></td>
+      <td><code>(file: File) =&gt; string | Promise&lt;string&gt;</code></td>
+      <td>—</td>
+      <td>Upload handler for the image tool; resolves to the image URL. Without it, files are inlined as data URLs</td>
+    </tr>
+    <tr>
+      <td><code>onEditWithAI</code></td>
+      <td><code>(selectedText: string) =&gt; Promise&lt;string | null | undefined&gt;</code></td>
+      <td>—</td>
+      <td>Adds the "Edit with AI" toolbar button; resolved string replaces the selection, null/undefined leaves content unchanged</td>
+    </tr>
+    <tr>
+      <td><code>editWithAIOptions</code></td>
+      <td><code>RichTextAIOption[]</code></td>
+      <td>—</td>
+      <td>Turns the "Edit with AI" button into a dropdown; each option (<code>key</code>, <code>label</code>, <code>icon?</code>, <code>onSelect</code>) is consumer-defined and follows the same replace-selection contract</td>
+    </tr>
+    <tr>
+      <td><code>style</code> / <code>className</code></td>
+      <td><code>CSSProperties</code> / <code>string</code></td>
+      <td>—</td>
+      <td>Wrapper styling hooks</td>
+    </tr>
+  </tbody>
+</table>
+
+### Exported types & helpers
+
+<table>
+  <thead>
+    <tr>
+      <th>Export</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>RichTextDocument</code>, <code>Block</code></td>
+      <td>Portable JSON block model — safe to store and render later with <code>@synerise/ds-rich-text-renderer</code></td>
+    </tr>
+    <tr>
+      <td><code>htmlToDocument</code> / <code>documentToHtml</code></td>
+      <td>Convert between HTML strings and the block model</td>
+    </tr>
+    <tr>
+      <td><code>markdownToDocument</code> / <code>documentToMarkdown</code></td>
+      <td>Convert between Markdown strings and the block model</td>
+    </tr>
+    <tr>
+      <td><code>ALL_TOOLBAR_FEATURES</code>, <code>DEFAULT_HEADING_LEVELS</code>, <code>DEFAULT_TEXTS</code></td>
+      <td>Defaults, useful for extending instead of replacing</td>
+    </tr>
+    <tr>
+      <td><code>RichTextProps</code>, <code>RichTextFormat</code>, <code>RichTextTexts</code>, <code>ToolbarFeature</code></td>
+      <td>TypeScript types for the public API</td>
+    </tr>
+  </tbody>
+</table>
+
+## Notes & tips
+
+- **Persist `format="document"`** when the content will be displayed with
+  `RichTextRenderer` — it avoids HTML parsing at render time and keeps the payload
+  portable.
+- Links open in a new tab (`target="_blank"` + `rel="noopener noreferrer"`); URLs
+  entered without a protocol are prefixed with `https://` automatically.
+- The single-line **code snippet** block (`codeSnippet` feature) serializes as
+  `<pre data-type="code-snippet">` so it round-trips without colliding with regular
+  code blocks, and shows a copy button (via `@synerise/ds-copy-icon`).
+- In `subtle` mode the toolbar mounts only in edit mode; with `animations` enabled the
+  preview→edit transitions reuse the SubtleForm hover/blur animations, otherwise
+  hovering the preview only tints the background.
+- All UI strings are overridable via `texts` — pass translated strings from
+  `react-intl` in the consuming app.

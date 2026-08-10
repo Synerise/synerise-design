@@ -4,7 +4,6 @@ import { fn } from 'storybook/test';
 
 import { Meta, StoryObj } from '@storybook/react-vite';
 import Button from '@synerise/ds-button';
-import { theme } from '@synerise/ds-core';
 import Dropdown from '@synerise/ds-dropdown';
 import Icon, { SaveM } from '@synerise/ds-icon';
 import ItemsRoll, { ItemsRollProps } from '@synerise/ds-items-roll';
@@ -306,7 +305,10 @@ export const CustomSidebarActions: Story = {
           mode="icon-label"
           type="ghost"
           icon={
-            <Icon component={<SaveM />} color={theme.palette['grey-600']} />
+            <Icon
+              component={<SaveM />}
+              color="var(--ds-color-icon-base-default)"
+            />
           }
           onClick={action('Click custom action')}
         >

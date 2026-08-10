@@ -30,7 +30,8 @@ export const Td = styled.td<{
 
   &&&& {
     ${(props) =>
-      props.isSorted && `background-color: ${props.theme.palette['blue-050']}`};
+      props.isSorted &&
+      `background-color: var(--ds-color-background-brand-subtle)`};
   }
   ${(props) =>
     props.headerIndex !== undefined

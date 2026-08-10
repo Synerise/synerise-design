@@ -20,7 +20,7 @@ export const RelativeDateDropdownWrapper = styled(Dropdown.Wrapper)`
   }
 `;
 export const RelativeDateDropdownFooter = styled.div`
-  background: ${(props) => props.theme.palette['grey-100']};
+  background: var(--ds-color-background-base-muted);
   display: flex;
   align-items: center;
   justify-content: flex-end;
@@ -44,9 +44,10 @@ export const Trigger: StyledInput = styled(Input)`
     ${ClearIcon} {
       display: block;
       svg {
-        fill: ${(props) => props.theme.palette['red-600']};
+        fill: var(--ds-color-icon-danger-default);
       }
       &:hover svg {
+        /* ⚑ red-500 kept on palette — no --ds-color-icon-danger-hover token exists */
         fill: ${(props) => props.theme.palette['red-500']};
       }
     }

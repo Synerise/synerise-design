@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 
 import { Meta, StoryObj } from '@storybook/react-vite';
-import { theme } from '@synerise/ds-core';
 import Divider from '@synerise/ds-divider';
 import Icon from '@synerise/ds-icon';
 import ListItem from '@synerise/ds-list-item';
@@ -71,7 +70,7 @@ export default {
                 item && (
                   <Icon
                     component={item && item.icon}
-                    color={theme.palette['grey-600']}
+                    color="var(--ds-color-icon-base-default)"
                   />
                 )
               }
@@ -257,7 +256,7 @@ const [suggestions, setSuggestions] = useState(null);
     itemRender: (item) => (
       <ListItem
         highlight={value}
-        prefixel={<Icon component={item.icon} color={theme.palette['grey-600']} />}
+        prefixel={<Icon component={item.icon} color="var(--ds-color-icon-base-default)" />}
       >
         {item.text}
       </ListItem>
