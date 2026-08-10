@@ -1,9 +1,9 @@
 import React from 'react';
 
 import Badge from '@synerise/ds-badge';
-import { theme } from '@synerise/ds-core';
 import Icon, { MailM } from '@synerise/ds-icon';
 import Status from '@synerise/ds-status';
+import { customColors } from '@synerise/ds-tokens/names';
 
 import Avatar from '../Avatar';
 import { type ObjectAvatarProps } from '../Avatar.types';
@@ -43,8 +43,7 @@ const ObjectAvatar = ({
     avatarText,
     backgroundColor,
   );
-  const iconColor =
-    theme.palette[`${color || DEFAULT_COLOR}-${DEFAULT_COLOR_HUE}`];
+  const iconColor = customColors[color || DEFAULT_COLOR]?.[DEFAULT_COLOR_HUE];
   const avatarTooltip =
     tooltip === undefined &&
     (defaultTooltip.title || defaultTooltip.description)
