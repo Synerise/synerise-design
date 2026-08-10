@@ -112,7 +112,7 @@ Icons: DS icons are `fill="currentColor"` with `color: inherit`, so colour them 
 
 Single at-a-glance view of every colour-bearing component: migration **status** + whether it is **awaiting token definitions** (a pending module namespace, a missing semantic role, or a `.less`/de-antd blocker). Sourced from the two detailed tables below + `TOKEN_AUDIT.md` blockers. **Update this table (and the detailed one) whenever `apply-tokens` migrates a component.**
 
-**Totals:** ✅ 96 done · 🚧 9 partial · ❌ 7 not started · ⛔ 3 deprecated · ➖ 4 n/a — **12 awaiting token defs** (flag in last column).
+**Totals:** ✅ 97 done · 🚧 8 partial · ❌ 7 not started · ⛔ 3 deprecated · ➖ 4 n/a — **12 awaiting token defs** (flag in last column).
 
 > **`theme.palette` holdouts (to retire):** dynamic `color`/`customColor` props still resolve via `theme.palette` → migrate to ds-utils `resolveCustomColor`: **badge** (local dup helper), **avatar** (ObjectAvatar), **section-message**, **button**, **loader**. Static gap: **inline-edit** (`:active` bg grey-300, no token). Fully untokenised (new): **rich-text**, **rich-text-renderer**. Role-specific cases (text/border/icon-custom) need `resolveCustomColor` extended with a `role` option + manifest role maps.
 
@@ -167,7 +167,7 @@ Single at-a-glance view of every colour-bearing component: migration **status** 
 | flag | semantic | ➖ | — |
 | footer | semantic | ✅ | — |
 | form | module | ✅ | — |
-| form-field | semantic | 🚧 | form counter role pending |
+| form-field | module | ✅ | ⚑ counter/RightSide on semantic `text-neutral-default` — no form-counter module token; could be defined |
 | format-picker | module | ✅ | — |
 | icon-picker | module | ✅ | — |
 | image | module | ✅ | — |
@@ -319,7 +319,7 @@ These components use `theme.palette` / hardcoded colors but do not yet have dedi
 | filter | 3 | No | 0 | 1 | :white_check_mark: tokenised — semantic (2026-07-23); placeholder bg→brand-subtle, border→border-brand, title→text-base-default |
 | flag | 0 | No | 0 | 34 | No palette, heavy opacity |
 | footer | 0 | No | 0 | 0 | :white_check_mark: tokenised — semantic (2026-07-20 pass) |
-| form-field | 1 | No | 0 | 0 | :construction: tooltip icon → semantic `--ds-color-icon-base-muted` (2026-07-21); `RightSide` counter grey-500 deferred → `form` token |
+| form-field | 0 | No | 0 | 0 | :white_check_mark: tokenised — tooltip icon → semantic `--ds-color-icon-base-muted` (2026-07-21); `RightSide` counter grey-500 → semantic `text-neutral-default` (exact); ⚑ could get a dedicated form-counter module token |
 | format-picker | 6 | No | 0 | 0 | :construction: currency select field → `--ds-form-*` (2026-07-20); panel/list-item deferred |
 | icon-picker | 2 | No | 0 | 0 | :construction: clear icon → semantic `--ds-color-icon-danger-default`; search/no-result icons inherit default (2026-07-21); overlay bg + title deferred → dropdown/list-item tokens |
 | information-card | 3 | No | 2 | 2 | |
@@ -1269,13 +1269,13 @@ diff is called out. Each component is its own commit.
 
 All exact — no visual diff. Spec updated to assert the `var()` string (jsdom can't resolve `var()`).
 
-### form-field — :construction: (2026-07-21)
+### form-field — :white_check_mark: (2026-07-21)
 
 `FormField.styles.ts` `IconWrapper` — info tooltip icon (`InfoFillS`, inherits `currentColor`):
 - `grey-400` → `--ds-color-icon-base-muted` (semantic; muted helper-icon role, **exact** grey-400 match)
 
-No visual diff. **Deferred:** `RightSide` counter/right-side text `grey-500` (`:65`) — awaits a `form`
-counter token (decision "counter w form" in `UNTOKENISED_COMPONENTS.md`).
+No visual diff. **Applied:** `RightSide` counter/right-side text `grey-500` → semantic
+`--ds-color-text-neutral-default` (exact grey-500). ⚑ No dedicated `form` counter module token — could be defined.
 
 ### icon-picker — :construction: (2026-07-21)
 
@@ -1852,7 +1852,7 @@ passes above.
    (`--ds-buttons-variant-ghost-primary-warning-*`); only the solid `warning` variant was migrated.
 6. **inline-edit has no `icon-btn-icon-error` token** — the error edit-icon uses semantic
    `--ds-color-icon-danger-default`.
-7. **form-field counter** (`RightSide` grey-500) — no form token; still on palette (form-field stays `🚧`).
+7. **form-field counter** (`RightSide` grey-500) — uses semantic `text-neutral-default` (exact grey-500); ⚑ could get a dedicated form-counter module token.
 
 ### Dropdown-module consumers (overlay / footer surfaces)
 
@@ -1905,8 +1905,8 @@ passes above.
   batch-selection border → `--ds-color-border-base-strong`; static `theme` import dropped.
 - **metric-card** — :white_check_mark: (❌→✅) value text → `--ds-color-text-base-default`; `(i)` icon →
   `--ds-form-label-icon-color`.
-- **form-field** — :construction: `IconWrapper` `(i)` → `--ds-form-label-icon-color`; counter (`RightSide`
-  grey-500) still deferred (no form token).
+- **form-field** — :white_check_mark: `IconWrapper` `(i)` → `--ds-form-label-icon-color`; counter (`RightSide`
+  grey-500) → semantic `text-neutral-default` (exact; ⚑ could get a form-counter module token).
 - **avatar-group** — :white_check_mark: +N `MoreInfo` chrome re-pointed from generic `--ds-avatar-*` to the
   dedicated `--ds-avatar-more-*` tokens.
 - **inline-edit** — :white_check_mark: edit-icon override split from the text resolver to an icon resolver:
