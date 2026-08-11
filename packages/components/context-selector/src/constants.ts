@@ -12,3 +12,4 @@ export const DROPDOWN_HEIGHT_THRESHOLD = 900;
 export const SEARCH_HEIGHT = 53;
 export const TABS_HEIGHT = 50;
 export const SUBGROUP_HEADER_HEIGHT = 53;
+export const MIN_LIST_WINDOW_HEIGHT = 300;

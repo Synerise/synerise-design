@@ -53,6 +53,7 @@ export type ContextGroup = {
   tooltip?: string;
   subGroups?: ContextGroup[];
   useCustomIcon?: boolean;
+  topSection?: ReactNode;
 };
 
 export const isContextItemsInSubGroup = (

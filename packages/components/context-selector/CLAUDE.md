@@ -102,6 +102,7 @@ src/
 | `defaultGroup` | `boolean` | No | Marks which tab is active on open |
 | `icon` | `ReactNode` | No | Icon in sub-group list row |
 | `subGroups` | `ContextGroup[]` | No | Enables sub-group navigation within a tab |
+| `topSection` | `ReactNode` | No | Custom content rendered above the list for this tab; scrolls with the list and is hidden during search and sub-group navigation |
 | `description` | `ReactNode` | No | Row description |
 | `tooltip` | `string` | No | Tooltip on the group row |
 | `itemType` / `customSuffix` / `useCustomIcon` | — | No | Same semantics as `ContextItem` |
