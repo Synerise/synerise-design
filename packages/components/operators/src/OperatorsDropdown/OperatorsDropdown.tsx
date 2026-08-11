@@ -66,20 +66,20 @@ const OperatorsDropdown = ({
     (activeItems: OperatorsItem[]) => {
       const groupedItems = groupByGroupName(activeItems);
       const renderedItems: JSX.Element[] = [];
-      Object.keys(groupedItems).forEach((key: string) => {
-        if (key !== NO_GROUP_NAME) {
+      Object.keys(groupedItems).forEach((groupName: string) => {
+        if (groupName !== NO_GROUP_NAME) {
           renderedItems.push(
             <OperatorsDropdownGroupName
-              data-testid="operator-group-title"
-              name={key}
+              key={`group-${groupName}`}
+              name={groupName}
             />,
           );
         }
-        groupedItems[key].forEach((item: OperatorsItem) =>
+        groupedItems[groupName].forEach((item: OperatorsItem) =>
           renderedItems.push(
             <OperatorsDropdownItem
               className={classNames}
-              key={uuid()}
+              key={`${item.groupId}-${item.id}-${item.name}`}
               item={item}
               searchQuery={searchQuery}
               hideDropdown={(): void => setDropdownVisible(false)}
