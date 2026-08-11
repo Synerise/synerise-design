@@ -31,6 +31,7 @@ const ItemPickerLegacy = ({
   dropdownVisibleRows,
   error,
   errorMessage,
+  isObjectDeleted,
   label,
   onBlur,
   onFocus,
@@ -170,6 +171,7 @@ const ItemPickerLegacy = ({
         placeholder={placeholder}
         placeholderIcon={placeholderIcon}
         error={error}
+        isObjectDeleted={isObjectDeleted}
         disabled={disabled}
         openDropdown={openDropdown}
         closeDropdown={closeDropdown}
@@ -205,7 +207,7 @@ const ItemPickerLegacy = ({
   );
 
   return (
-    <S.ItemPickerWrapper className="ds-items-picker" disabled={disabled}>
+    <S.ItemPickerWrapper className="ds-items-picker">
       <FormField
         label={label}
         tooltip={tooltip}

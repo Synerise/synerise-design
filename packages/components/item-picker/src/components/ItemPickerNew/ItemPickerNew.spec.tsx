@@ -54,6 +54,7 @@ const CHANGE_BUTTON_LABEL = 'Change';
 const CLEAR_TEST_ID = 'ds-icon-close-3-s';
 const ANGLE_DOWN_TEST_ID = 'angle-icon';
 const PREFIXEL_TEST_ID = 'value-prefixel';
+const DELETED_VALUE_COLOR = 'rgb(245, 41, 34)';
 
 
 const SHARED_PROPS = {
@@ -176,7 +177,7 @@ describe('ItemPickerNew component', () => {
             <ItemPickerNew {...SHARED_PROPS} onClear={handleClear} onChange={handleChange} description={DESCRIPTION} disabled />
         );
 
-        expect(container.querySelectorAll('[disabled]').length).toBe(2);
+        expect(container.querySelectorAll('[disabled]').length).toBe(1);
     });
 
     it('should render with selected item', async () => {
@@ -228,6 +229,27 @@ describe('ItemPickerNew component', () => {
         );
 
         expect(screen.queryByTestId(PREFIXEL_TEST_ID)).toBeFalsy();
+    });
+
+    it('should style the selected value as deleted when isObjectDeleted is true', async () => {
+        renderWithProvider(
+            <ItemPickerNew
+                {...SHARED_PROPS}
+                onChange={vi.fn()}
+                selectedItem={DATA_SOURCE[0]}
+                isObjectDeleted
+            />
+        );
+
+        expect(getComputedStyle(screen.getByText(DATA_SOURCE[0].text)).color).toBe(DELETED_VALUE_COLOR);
+    });
+
+    it('should not style the selected value as deleted when isObjectDeleted is false', async () => {
+        renderWithProvider(
+            <ItemPickerNew {...SHARED_PROPS} onChange={vi.fn()} selectedItem={DATA_SOURCE[0]} />
+        );
+
+        expect(getComputedStyle(screen.getByText(DATA_SOURCE[0].text)).color).not.toBe(DELETED_VALUE_COLOR);
     });
 
     it('should render with clear icon', async () => {

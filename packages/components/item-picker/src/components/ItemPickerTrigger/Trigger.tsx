@@ -31,6 +31,7 @@ const Trigger = forwardRef<HTMLDivElement, ItemPickerTriggerProps>(
       placeholder,
       placeholderIcon,
       error,
+      isObjectDeleted,
       disabled,
       openDropdown,
       closeDropdown,
@@ -185,13 +186,15 @@ const Trigger = forwardRef<HTMLDivElement, ItemPickerTriggerProps>(
           <S.Trigger size={size}>
             {selected ? (
               <>
-                <S.Value>
+                <S.Value isObjectDeleted={isObjectDeleted}>
                   {selected.prefixel && (
                     <S.Prefix data-testid="value-prefixel">
                       <>{selected.prefixel}</>
                     </S.Prefix>
                   )}
-                  <S.ValueText>{selected.text}</S.ValueText>
+                  <S.ValueText isObjectDeleted={isObjectDeleted}>
+                    {selected.text}
+                  </S.ValueText>
                 </S.Value>
                 {renderChangeButton}
               </>
