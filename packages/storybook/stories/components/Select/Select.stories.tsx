@@ -56,7 +56,13 @@ const meta: Meta<SelectProps> = {
     maxLength: NUMBER_CONTROL,
     listItemHeight: NUMBER_CONTROL,
     tabIndex: NUMBER_CONTROL,
-    maxTagCount: NUMBER_CONTROL,
+    maxTagCount: controlFromOptionsArray('select', [
+      undefined,
+      1,
+      2,
+      3,
+      'responsive',
+    ]),
     maxTagTextLength: NUMBER_CONTROL,
     showArrow: BOOLEAN_CONTROL,
     autoFocus: BOOLEAN_CONTROL,
@@ -210,6 +216,39 @@ export const MaxTagCount: Story = {
     maxTagCount: 2,
     maxTagPlaceholder: (omitted) => `+${omitted.length} more`,
     placeholder: 'Select options',
+  },
+};
+
+/**
+ * `maxTagCount="responsive"` fits as many chips as the selector width allows on a
+ * single line and collapses the rest into the overflow chip — recomputed live as
+ * the selector resizes. Drag the bottom-right handle of the box to try it.
+ */
+export const MaxTagCountResponsive: Story = {
+  decorators: [
+    (Story) => (
+      <div
+        style={{
+          width: 420,
+          minWidth: 120,
+          maxWidth: '100%',
+          padding: 8,
+          resize: 'horizontal',
+          overflow: 'auto',
+          border: '1px dashed #c4cdd5',
+          borderRadius: 3,
+        }}
+      >
+        {Story()}
+      </div>
+    ),
+  ],
+  args: {
+    mode: 'multiple',
+    defaultValue: ['a', 'b', 'c', 'd', 'e', 'g'],
+    maxTagCount: 'responsive',
+    placeholder: 'Select options',
+    description: 'Resize the dashed box — the chip count follows the width.',
   },
 };
 

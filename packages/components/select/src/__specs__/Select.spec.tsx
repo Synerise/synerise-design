@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { renderWithProvider } from '@synerise/ds-core';
-import { fireEvent, screen } from '@testing-library/react';
+import { act, fireEvent, screen } from '@testing-library/react';
 
 import Select from '../Select';
 
@@ -447,6 +447,301 @@ describe('Select (tag display limits)', () => {
     expect(
       document.querySelector('.ds-select-selection-item-label')?.textContent,
     ).toBe('Ban...');
+  });
+});
+
+describe('Select (maxTagCount="responsive")', () => {
+  const OPTIONS = [
+    { value: 'a', label: 'Apple' },
+    { value: 'b', label: 'Banana' },
+    { value: 'c', label: 'Cherry' },
+    { value: 'd', label: 'Damson' },
+  ];
+  const ALL = ['a', 'b', 'c', 'd'];
+  // Chip 80 + gap 4, overflow chip 40, caret reserve 30 — see useResponsiveTagCount.
+  const CHIP_WIDTH = 80;
+  const OVERFLOW_WIDTH = 40;
+  // A label the width stub reports as narrow, to vary chip widths within a test.
+  const NARROW_LABEL = 'Narrow';
+  const NARROW_CHIP_WIDTH = 10;
+
+  let areaWidth = 0;
+  let resizeCallbacks: Array<() => void> = [];
+  let restoreLayout: Array<() => void> = [];
+
+  // jsdom has no layout engine: fake exactly the two boxes the fit calculation reads.
+  const overrideLayoutProp = (
+    prop: 'clientWidth' | 'offsetWidth',
+    get: (this: HTMLElement) => number,
+  ): void => {
+    const original = Object.getOwnPropertyDescriptor(
+      HTMLElement.prototype,
+      prop,
+    );
+    Object.defineProperty(HTMLElement.prototype, prop, {
+      configurable: true,
+      get,
+    });
+    restoreLayout.push(() => {
+      if (original) {
+        Object.defineProperty(HTMLElement.prototype, prop, original);
+      } else {
+        delete (HTMLElement.prototype as unknown as Record<string, unknown>)[
+          prop
+        ];
+      }
+    });
+  };
+
+  const visibleChips = (): NodeListOf<Element> =>
+    document.querySelectorAll('.ds-select-selection-item');
+
+  const resizeTo = (width: number): void => {
+    areaWidth = width;
+    act(() => {
+      resizeCallbacks.forEach((callback) => callback());
+    });
+  };
+
+  beforeEach(() => {
+    areaWidth = 400;
+    resizeCallbacks = [];
+    restoreLayout = [];
+
+    overrideLayoutProp('clientWidth', function clientWidth(this: HTMLElement) {
+      return this.classList.contains('ds-select-selection-list')
+        ? areaWidth
+        : 0;
+    });
+    overrideLayoutProp('offsetWidth', function offsetWidth(this: HTMLElement) {
+      if (this.hasAttribute('data-measure-overflow')) {
+        return OVERFLOW_WIDTH;
+      }
+      if (!this.hasAttribute('data-measure-chip')) {
+        return 0;
+      }
+      return this.textContent === NARROW_LABEL
+        ? NARROW_CHIP_WIDTH
+        : CHIP_WIDTH;
+    });
+
+    vi.stubGlobal(
+      'ResizeObserver',
+      class {
+        constructor(callback: () => void) {
+          resizeCallbacks.push(callback);
+        }
+
+        observe = vi.fn();
+
+        unobserve = vi.fn();
+
+        disconnect = vi.fn();
+      },
+    );
+  });
+
+  afterEach(() => {
+    restoreLayout.forEach((restore) => restore());
+    vi.unstubAllGlobals();
+  });
+
+  it('renders every chip when they all fit on one line', () => {
+    renderWithProvider(
+      <Select
+        mode="multiple"
+        value={ALL}
+        maxTagCount="responsive"
+        options={OPTIONS}
+      />,
+    );
+
+    expect(visibleChips()).toHaveLength(4);
+    expect(screen.queryByTestId('select-tag-overflow')).toBeNull();
+  });
+
+  it('collapses the chips that do not fit into the "+N" overflow chip', () => {
+    areaWidth = 200;
+    renderWithProvider(
+      <Select
+        mode="multiple"
+        value={ALL}
+        maxTagCount="responsive"
+        options={OPTIONS}
+      />,
+    );
+
+    expect(visibleChips()).toHaveLength(1);
+    expect(screen.getByTestId('select-tag-overflow').textContent).toBe('+ 3');
+  });
+
+  it('recomputes the visible chip count when the selector is resized', () => {
+    areaWidth = 200;
+    renderWithProvider(
+      <Select
+        mode="multiple"
+        value={ALL}
+        maxTagCount="responsive"
+        options={OPTIONS}
+      />,
+    );
+    expect(visibleChips()).toHaveLength(1);
+
+    resizeTo(400);
+    expect(visibleChips()).toHaveLength(4);
+    expect(screen.queryByTestId('select-tag-overflow')).toBeNull();
+
+    resizeTo(120);
+    expect(visibleChips()).toHaveLength(0);
+    expect(screen.getByTestId('select-tag-overflow').textContent).toBe('+ 4');
+  });
+
+  it('shows only the overflow chip when the selector is too narrow for any chip', () => {
+    areaWidth = 60;
+    renderWithProvider(
+      <Select
+        mode="multiple"
+        value={ALL}
+        maxTagCount="responsive"
+        options={OPTIONS}
+      />,
+    );
+
+    expect(visibleChips()).toHaveLength(0);
+    expect(screen.getByTestId('select-tag-overflow').textContent).toBe('+ 4');
+  });
+
+  it('keeps a lone oversized chip instead of collapsing it into "+ 1"', () => {
+    areaWidth = 60;
+    renderWithProvider(
+      <Select
+        mode="multiple"
+        value={['a']}
+        maxTagCount="responsive"
+        options={OPTIONS}
+      />,
+    );
+
+    expect(visibleChips()).toHaveLength(1);
+    expect(screen.queryByTestId('select-tag-overflow')).toBeNull();
+  });
+
+  it('renders nothing but the placeholder when no value is selected', () => {
+    areaWidth = 60;
+    renderWithProvider(
+      <Select
+        mode="multiple"
+        value={[]}
+        maxTagCount="responsive"
+        placeholder="Pick some"
+        options={OPTIONS}
+      />,
+    );
+
+    expect(visibleChips()).toHaveLength(0);
+    expect(screen.queryByTestId('select-tag-overflow')).toBeNull();
+    expect(screen.getByPlaceholderText('Pick some')).toBeTruthy();
+  });
+
+  it('measures the truncated label when maxTagTextLength is set', () => {
+    renderWithProvider(
+      <Select
+        mode="multiple"
+        value={ALL}
+        maxTagCount="responsive"
+        maxTagTextLength={3}
+        options={OPTIONS}
+      />,
+    );
+
+    const measured = Array.from(
+      document.querySelectorAll('[data-measure-chip]'),
+    ).map((chip) => chip.textContent);
+    expect(measured).toEqual(['App...', 'Ban...', 'Che...', 'Dam...']);
+  });
+
+  it('re-measures when a value is swapped without changing the count', () => {
+    areaWidth = 160;
+    const withNarrow = [...OPTIONS, { value: 'n', label: NARROW_LABEL }];
+    const { rerender } = renderWithProvider(
+      <Select
+        mode="multiple"
+        value={['a', 'b']}
+        maxTagCount="responsive"
+        options={withNarrow}
+      />,
+    );
+    expect(visibleChips()).toHaveLength(1);
+
+    // Same chip count, but the swapped-in chip is narrow enough that both fit.
+    rerender(
+      <Select
+        mode="multiple"
+        value={['a', 'n']}
+        maxTagCount="responsive"
+        options={withNarrow}
+      />,
+    );
+    expect(visibleChips()).toHaveLength(2);
+  });
+
+  it('drops the caret reserve when the select is read-only', () => {
+    areaWidth = 210;
+    const { rerender } = renderWithProvider(
+      <Select
+        mode="multiple"
+        value={ALL}
+        maxTagCount="responsive"
+        options={OPTIONS}
+      />,
+    );
+    expect(visibleChips()).toHaveLength(1);
+
+    rerender(
+      <Select
+        mode="multiple"
+        value={ALL}
+        maxTagCount="responsive"
+        readOnly
+        options={OPTIONS}
+      />,
+    );
+    expect(visibleChips()).toHaveLength(2);
+  });
+
+  it('falls back to a window resize listener when ResizeObserver is missing', () => {
+    vi.stubGlobal('ResizeObserver', undefined);
+    areaWidth = 200;
+    renderWithProvider(
+      <Select
+        mode="multiple"
+        value={ALL}
+        maxTagCount="responsive"
+        options={OPTIONS}
+      />,
+    );
+    expect(visibleChips()).toHaveLength(1);
+
+    areaWidth = 400;
+    act(() => {
+      window.dispatchEvent(new Event('resize'));
+    });
+    expect(visibleChips()).toHaveLength(4);
+  });
+
+  it('shows every chip when the selector cannot be measured (SSR / hidden)', () => {
+    areaWidth = 0;
+    renderWithProvider(
+      <Select
+        mode="multiple"
+        value={ALL}
+        maxTagCount="responsive"
+        options={OPTIONS}
+      />,
+    );
+
+    expect(visibleChips()).toHaveLength(4);
+    expect(screen.queryByTestId('select-tag-overflow')).toBeNull();
   });
 });
 

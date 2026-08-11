@@ -10,6 +10,7 @@ import Icon, { CloseS } from '@synerise/ds-icon';
 
 import * as S from '../Select.styles';
 import { type RawValueType } from '../Select.types';
+import { useResponsiveTagCount } from '../hooks/useResponsiveTagCount';
 
 type SelectorContentProps = {
   isMultiple: boolean;
@@ -23,7 +24,7 @@ type SelectorContentProps = {
   onRemoveValue: (value: RawValueType) => void;
 
   // ── chip display limits (multiple / tags) ──
-  maxTagCount?: number;
+  maxTagCount?: number | 'responsive';
   maxTagTextLength?: number;
   maxTagPlaceholder?:
     | ReactNode
@@ -77,6 +78,13 @@ export const SelectorContent = ({
   // and tags keep it inline (flex child) after the chips.
   const isSingleSearch = !!showSearch && !isMultiple;
 
+  const isResponsive = maxTagCount === 'responsive';
+  const { areaRef, measureRef, visibleCount } = useResponsiveTagCount({
+    enabled: isResponsive && isMultiple,
+    items: selectedValues,
+    reserveInput: !isDisabled,
+  });
+
   const searchInput = (
     <S.SearchInputEl
       ref={inputRef}
@@ -104,10 +112,17 @@ export const SelectorContent = ({
   );
 
   if (isMultiple) {
-    const displayedValues =
-      typeof maxTagCount === 'number'
-        ? selectedValues.slice(0, Math.max(maxTagCount, 0))
-        : selectedValues;
+    const displayCount = (() => {
+      // Unmeasured responsive (SSR / hidden / no layout) degrades to showing all.
+      if (isResponsive) {
+        return visibleCount ?? selectedValues.length;
+      }
+      if (typeof maxTagCount === 'number') {
+        return Math.max(maxTagCount, 0);
+      }
+      return selectedValues.length;
+    })();
+    const displayedValues = selectedValues.slice(0, displayCount);
     const omittedValues = selectedValues.slice(displayedValues.length);
 
     // Truncate a string chip label to `maxTagTextLength` (antd parity: adds `...`).
@@ -123,15 +138,35 @@ export const SelectorContent = ({
       return label;
     };
 
-    const overflowContent =
+    const overflowContentFor = (omitted: RawValueType[]): ReactNode =>
       typeof maxTagPlaceholder === 'function'
         ? maxTagPlaceholder(
-            omittedValues.map((v) => ({ value: v, label: labelFor(v) })),
+            omitted.map((v) => ({ value: v, label: labelFor(v) })),
           )
-        : (maxTagPlaceholder ?? `+ ${omittedValues.length}`);
+        : (maxTagPlaceholder ?? `+ ${omitted.length}`);
+
+    const overflowContent = overflowContentFor(omittedValues);
 
     return (
-      <S.MultiValueArea>
+      <S.MultiValueArea
+        ref={areaRef}
+        className="ds-select-selection-list"
+        $responsive={isResponsive}
+      >
+        {isResponsive && (
+          <S.TagMeasureRow ref={measureRef} aria-hidden>
+            {selectedValues.map((v) => (
+              <S.Chip key={v} data-measure-chip="">
+                <S.ChipLabel>{chipLabel(v)}</S.ChipLabel>
+              </S.Chip>
+            ))}
+            {/* Worst case (everything omitted) — a stable width that can't shift
+                as the fit calculation changes how many chips are shown. */}
+            <S.Chip data-measure-overflow="">
+              <S.ChipLabel>{overflowContentFor(selectedValues)}</S.ChipLabel>
+            </S.Chip>
+          </S.TagMeasureRow>
+        )}
         {displayedValues.map((v) => (
           <S.Chip key={v} className="ds-select-selection-item">
             <S.ChipLabel className="ds-select-selection-item-label">

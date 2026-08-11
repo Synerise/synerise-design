@@ -291,13 +291,53 @@ export const SearchInputEl = styled.input<{ $overlay?: boolean }>`
 `;
 
 /** Wraps chips + the search input for multiple/tags mode. */
-export const MultiValueArea = styled.div`
+export const MultiValueArea = styled.div<{ $responsive?: boolean }>`
   display: flex;
   flex-wrap: wrap;
   align-items: center;
   gap: 4px;
   flex: 1;
   min-width: 0;
+
+  /* maxTagCount="responsive": one line only — the fit calculation decides how
+     many chips render, so nothing may wrap or shrink below its measured width. */
+  ${(props) =>
+    props.$responsive &&
+    css`
+      position: relative;
+      flex-wrap: nowrap;
+      overflow: hidden;
+
+      > .ds-select-selection-item,
+      > .ds-select-selection-overflow {
+        flex: 0 0 auto;
+      }
+      > .ds-select-search {
+        flex: 1 1 0;
+        min-width: 0;
+      }
+    `}
+`;
+
+/* Off-flow copy of every chip at its natural width. The responsive fit
+   calculation measures these — a hidden real chip would measure 0, and the
+   ghosts' widths don't depend on the count derived from them (no observer loop). */
+export const TagMeasureRow = styled.div`
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 0;
+  display: flex;
+  flex-wrap: nowrap;
+  gap: 4px;
+  overflow: hidden;
+  visibility: hidden;
+  pointer-events: none;
+
+  > * {
+    flex: 0 0 auto;
+  }
 `;
 
 export const Chip = styled.span`
