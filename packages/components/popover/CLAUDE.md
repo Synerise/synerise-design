@@ -57,6 +57,7 @@ Root component (default + named export). Provides `PopoverContext` to all childr
 | `arrowConfig` | `Omit<ArrowOptions, 'element'>` | `{}` | Arrow middleware config (element is managed by `PopoverArrow`) |
 | `hoverConfig` | `HoverConfig` | `{}` | Extra options forwarded to `useHover` (e.g. `restMs`, `move`) |
 | `dismissConfig` | `UseDismissProps` | `{}` | Extra options forwarded to `useDismiss` |
+| `closeOnFocusOut` | `boolean` | `true` | Close the popover when focus leaves it (e.g. tabbing out); Escape and outside-press still dismiss |
 | `listNavigationConfig` | `UseListNavigationProps` | `{ enabled: false }` | Keyboard list navigation config (disabled by default) |
 | `transitionDuration` | `number` | `undefined` | Enable CSS transition on open/close with given duration in ms |
 | `getTransitionConfig` | `({ placement }) => Partial<UseTransitionStylesProps>` | opacity fade | Custom transition styles factory |

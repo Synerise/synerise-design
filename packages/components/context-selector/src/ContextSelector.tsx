@@ -1,4 +1,10 @@
-import React, { useCallback, useEffect, useMemo, useState } from 'react';
+import React, {
+  useCallback,
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+} from 'react';
 
 import Button from '@synerise/ds-button';
 import Dropdown from '@synerise/ds-dropdown';
@@ -58,6 +64,7 @@ const ContextSelector = ({
   dropdownDimensionsConfig,
 }: ContextProps) => {
   const allTexts = useTexts(texts);
+  const noListNavigationRef = useRef<Array<HTMLElement | null>>([]);
   const [dropdownVisible, setDropdownVisible] = useState(
     defaultDropdownVisibility ?? false,
   );
@@ -259,6 +266,12 @@ const ContextSelector = ({
           {...dropdownProps}
           popoverProps={{
             testId: 'context-selector',
+            listNavigationConfig: {
+              enabled: false,
+              activeIndex: null,
+              listRef: noListNavigationRef,
+            },
+            closeOnFocusOut: false,
             ...dropdownProps?.popoverProps,
             dismissConfig: {
               outsidePress: (event) =>

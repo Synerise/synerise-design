@@ -120,6 +120,7 @@ import ContextSelector from '@synerise/ds-context-selector'
 | itemType      | Type of items                                                    | string          | -       |
 | name          | Name of group                                                    | string          | -       |
 | subGroups     | Subgroups of groups                                              | ContextGroup[]  | -       |
+| topSection    | Custom content rendered above the list for this tab; scrolls with the list and is hidden during search and sub-group navigation | React.ReactNode | -       |
 | tooltip       | Tooltip text                                                     | string          | -       |
 | useCustomIcon | Use custom icon instead of wrapping it inside Icon component     | boolean         | false   |
 | description   | Set menu item description ( recommended to use with 'large' size | React.ReactNode | -       |

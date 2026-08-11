@@ -118,3 +118,28 @@ export const FlatListDataStructure: Story = {
     groups: [],
   },
 };
+
+const suggestionsTopSection = (
+  <div style={{ display: 'flex', flexDirection: 'column', gap: 8, padding: 8 }}>
+    <span style={{ fontSize: 10, fontWeight: 500, textTransform: 'uppercase' }}>
+      Suggested
+    </span>
+    <div style={{ display: 'flex', gap: 8 }}>
+      <button type="button" aria-label="Suggested: Revenue">
+        Revenue
+      </button>
+      <button type="button" aria-label="Suggested: Last purchase">
+        Last purchase
+      </button>
+    </div>
+  </div>
+);
+
+export const TopSection: Story = {
+  args: {
+    items: CONTEXT_ITEMS,
+    groups: CONTEXT_GROUPS.map((group, index) =>
+      index === 0 ? { ...group, topSection: suggestionsTopSection } : group,
+    ),
+  },
+};

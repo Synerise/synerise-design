@@ -4,6 +4,7 @@ import React, {
   type UIEvent,
   useCallback,
   useEffect,
+  useLayoutEffect,
   useMemo,
   useRef,
   useState,
@@ -36,15 +37,14 @@ import {
   type ListDivider,
   isContextItemsInSubGroup,
 } from '../ContextSelector.types';
-import {
-  DROPDOWN_HEIGHT,
-  NO_GROUP_NAME,
-  SEARCH_HEIGHT,
-  SUBGROUP_HEADER_HEIGHT,
-  TABS_HEIGHT,
-} from '../constants';
+import { DROPDOWN_HEIGHT, NO_GROUP_NAME } from '../constants';
 import ContextSelectorDropdownItem from './ContextSelectorDropdownItem';
-import { isGroup, isListTitle } from './utils';
+import {
+  getDropdownContentHeight,
+  getListWindowHeight,
+  isGroup,
+  isListTitle,
+} from './utils';
 
 const ITEM_SIZE = {
   [itemSizes.LARGE]: 50,
@@ -53,9 +53,36 @@ const ITEM_SIZE = {
   divider: 16,
 };
 
+const FOCUSABLE_SELECTOR =
+  'button, [role="button"], a[href], input, select, textarea, [contenteditable="true"], [tabindex]:not([tabindex="-1"])';
+
 function isDivider(element: DropdownItemProps): element is ListDivider {
   return (element as ListDivider).type === 'divider';
 }
+
+const VirtualizedRow = ({
+  index,
+  style,
+  data,
+}: {
+  index: number;
+  style: CSSProperties;
+  data: { items: DropdownItemProps[] };
+}) => {
+  const item = data.items[index];
+  if (item && isDivider(item)) {
+    return (
+      <div style={style}>
+        <Divider marginTop={8} marginBottom={8} />
+      </div>
+    );
+  }
+  return item && isListTitle(item) ? (
+    <S.Title style={style}>{item.title}</S.Title>
+  ) : (
+    <ContextSelectorDropdownItem style={style} {...item} />
+  );
+};
 
 const ContextSelectorDropdown = ({
   texts,
@@ -89,6 +116,7 @@ const ContextSelectorDropdown = ({
   const listRef = useRef<VariableSizeList>(null);
   const overlayRef = useRef<HTMLDivElement>(null);
   const scrollBarRef = useRef<HTMLDivElement>(null);
+  const topSectionRef = useRef<HTMLDivElement>(null);
 
   const [searchInputHandle, setSearchInputHandle] =
     useState<MutableRefObject<HTMLInputElement | null>>();
@@ -98,6 +126,7 @@ const ContextSelectorDropdown = ({
     undefined,
   );
   const [searchInputCanBeFocused, setSearchInputFocus] = useState(true);
+  const [topSectionHeight, setTopSectionHeight] = useState(0);
   const classNames = useMemo(() => {
     return `ds-context-item ds-context-item-${uuid()}`;
   }, []);
@@ -140,6 +169,25 @@ const ContextSelectorDropdown = ({
   const currentTabItems = useMemo((): ContextGroup | undefined => {
     return groups ? getActiveTabGroup(activeTab, groups) : undefined;
   }, [groups, activeTab]);
+
+  const activeTopSection =
+    !searchQuery && !activeGroup ? currentTabItems?.topSection : undefined;
+
+  useLayoutEffect(() => {
+    const node = topSectionRef.current;
+    if (!node) {
+      setTopSectionHeight(0);
+      return undefined;
+    }
+    const measure = () => setTopSectionHeight(node.offsetHeight);
+    measure();
+    if (typeof ResizeObserver === 'undefined') {
+      return undefined;
+    }
+    const observer = new ResizeObserver(measure);
+    observer.observe(node);
+    return () => observer.disconnect();
+  }, [activeTopSection, activeTab]);
 
   const groupByGroupName = useCallback(
     (
@@ -329,6 +377,8 @@ const ContextSelectorDropdown = ({
     listRef.current?.resetAfterIndex(0, false);
   }, [activeItems, listRef]);
 
+  const itemData = useMemo(() => ({ items: activeItems }), [activeItems]);
+
   const handleSearch = useCallback(
     (val: string) => {
       setSearchQuery(val);
@@ -358,7 +408,7 @@ const ContextSelectorDropdown = ({
   const handleScroll = ({ currentTarget }: UIEvent) => {
     const { scrollTop } = currentTarget;
     if (listRef.current !== null) {
-      listRef.current.scrollTo(scrollTop);
+      listRef.current.scrollTo(Math.max(0, scrollTop - topSectionHeight));
     }
   };
 
@@ -376,12 +426,12 @@ const ContextSelectorDropdown = ({
   };
 
   const dropdownContentHeight = useMemo(() => {
-    return (
-      outerHeight -
-      (hasTabs && !searchQuery ? TABS_HEIGHT : 0) -
-      (activeGroup ? SUBGROUP_HEADER_HEIGHT : 0) -
-      SEARCH_HEIGHT
-    );
+    return getDropdownContentHeight({
+      outerHeight,
+      hasTabs,
+      hasSearchQuery: Boolean(searchQuery),
+      hasActiveGroup: Boolean(activeGroup),
+    });
   }, [activeGroup, hasTabs, outerHeight, searchQuery]);
 
   useEffect(() => {
@@ -391,18 +441,126 @@ const ContextSelectorDropdown = ({
     }
   }, [searchQuery, activeGroup, activeTab]);
 
+  const previousTabRef = useRef({ activeTab, activeGroup });
+  useEffect(() => {
+    const previous = previousTabRef.current;
+    if (
+      previous.activeTab !== activeTab ||
+      previous.activeGroup !== activeGroup
+    ) {
+      previousTabRef.current = { activeTab, activeGroup };
+      searchInputHandle?.current?.focus();
+    }
+  }, [activeTab, activeGroup, searchInputHandle]);
+
+  useEffect(() => {
+    if (!visible) {
+      return undefined;
+    }
+    const recoverLostFocus = (event: KeyboardEvent) => {
+      if (event.key !== 'ArrowDown' && event.key !== 'ArrowUp') {
+        return;
+      }
+      if (document.activeElement !== document.body) {
+        return;
+      }
+      const overlay = overlayRef.current;
+      if (!overlay) {
+        return;
+      }
+      const navClass = classNames.split(' ')[1];
+      const firstRenderedRow = overlay.querySelector<HTMLElement>(
+        `.${navClass}`,
+      );
+      const target = firstRenderedRow ?? searchInputHandle?.current ?? null;
+      if (target) {
+        event.preventDefault();
+        target.focus();
+      }
+    };
+    document.addEventListener('keydown', recoverLostFocus);
+    return () => document.removeEventListener('keydown', recoverLostFocus);
+  }, [visible, classNames, searchInputHandle]);
+
   return (
     <Dropdown.Wrapper
       style={dropdownWrapperStyles}
       ref={overlayRef}
+      data-testid="context-selector-dropdown"
       onKeyDown={(event) => {
-        if (document?.activeElement === searchInputHandle?.current) {
+        const searchInput = searchInputHandle?.current ?? null;
+        if (document?.activeElement === searchInput) {
           setSearchInputFocus(false);
         }
-        searchQuery &&
-          focusWithArrowKeys(event, classNames.split(' ')[1], () => {
+
+        if (event.key === 'ArrowUp' && document.activeElement === searchInput) {
+          event.preventDefault();
+          return;
+        }
+
+        const navClass = classNames.split(' ')[1];
+        const active = document.activeElement as HTMLElement | null;
+        const topSectionItems = topSectionRef.current
+          ? Array.from(
+              topSectionRef.current.querySelectorAll<HTMLElement>(
+                FOCUSABLE_SELECTOR,
+              ),
+            )
+          : [];
+        const firstListItem =
+          overlayRef.current?.querySelector<HTMLElement>(`.${navClass}`) ??
+          null;
+        const topIndex = active ? topSectionItems.indexOf(active) : -1;
+        const activeIsListItem = Boolean(active?.classList?.contains(navClass));
+
+        if (topIndex !== -1) {
+          if (event.key === 'ArrowRight' || event.key === 'ArrowLeft') {
+            event.preventDefault();
+            const nextIndex =
+              event.key === 'ArrowRight'
+                ? Math.min(topIndex + 1, topSectionItems.length - 1)
+                : Math.max(topIndex - 1, 0);
+            topSectionItems[nextIndex].focus();
+            return;
+          }
+          if (event.key === 'ArrowUp') {
+            event.preventDefault();
             setSearchInputFocus(true);
-          });
+            searchInput?.focus();
+            return;
+          }
+          if (event.key === 'Enter') {
+            event.preventDefault();
+            active?.click();
+            return;
+          }
+        }
+
+        if (
+          event.key === 'ArrowDown' &&
+          topIndex === -1 &&
+          !activeIsListItem &&
+          topSectionItems.length
+        ) {
+          event.preventDefault();
+          topSectionItems[0].focus();
+          return;
+        }
+
+        if (event.key === 'ArrowUp' && active === firstListItem) {
+          event.preventDefault();
+          if (topSectionItems.length) {
+            topSectionItems[0].focus();
+          } else {
+            setSearchInputFocus(true);
+            searchInput?.focus();
+          }
+          return;
+        }
+
+        focusWithArrowKeys(event, navClass, () => {
+          setSearchInputFocus(true);
+        });
       }}
     >
       {!hideSearchField && (
@@ -462,32 +620,23 @@ const ContextSelectorDropdown = ({
               onScroll={handleScroll}
               ref={scrollBarRef}
             >
+              {activeTopSection && (
+                <div ref={topSectionRef}>{activeTopSection}</div>
+              )}
               <ListContextProvider popoverDelay={popoverDelay}>
                 <VariableSizeList
                   className="ds-context-selector-list"
                   key={`list-${activeGroup}-${activeTab}`}
                   width="100%"
-                  height={300}
+                  height={getListWindowHeight(dropdownContentHeight)}
                   itemCount={activeItems.length}
                   itemSize={getItemSize}
                   style={listStyle}
                   ref={listRef}
+                  overscanCount={8}
+                  itemData={itemData}
                 >
-                  {({ index, style }) => {
-                    const item = activeItems[index];
-                    if (item && isDivider(item)) {
-                      return (
-                        <div style={style}>
-                          <Divider marginTop={8} marginBottom={8} />
-                        </div>
-                      );
-                    }
-                    return item && isListTitle(item) ? (
-                      <S.Title style={style}>{item.title}</S.Title>
-                    ) : (
-                      <ContextSelectorDropdownItem style={style} {...item} />
-                    );
-                  }}
+                  {VirtualizedRow}
                 </VariableSizeList>
               </ListContextProvider>
             </Scrollbar>
