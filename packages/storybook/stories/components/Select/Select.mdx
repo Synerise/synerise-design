@@ -8,6 +8,7 @@ import SelectMeta, {
   WithSearch,
   LabelDescriptionAndError,
   Disabled,
+  MaxTagCountResponsive,
 } from './Select.stories';
 
 <Meta of={SelectMeta} />
@@ -48,6 +49,15 @@ wrapped in a `FormField` label/description/error layer. Supports single-select,
 last, and each chip reveals a remove control on hover.
 
 <Canvas of={MultipleMode} />
+
+### Chip overflow
+
+`maxTagCount` caps how many chips render before the rest collapse into the
+`maxTagPlaceholder` (`+ N` by default). `maxTagCount="responsive"` instead keeps the
+chips on a single line and fits as many as the selector width allows, recomputing on
+resize — so a select in a resizable panel never wraps to a second row.
+
+<Canvas of={MaxTagCountResponsive} />
 
 ## Tags
 
@@ -301,8 +311,8 @@ box in styles, use `Select.styles.Selector` (the `.ds-select` element).
     </tr>
     <tr>
       <td><code>maxTagCount</code> / <code>maxTagTextLength</code> / <code>maxTagPlaceholder</code></td>
-      <td><code>number</code> / <code>number</code> / <code>ReactNode</code></td>
-      <td>Tags/multiple display limits and the collapsed-overflow node.</td>
+      <td><code>number | 'responsive'</code> / <code>number</code> / <code>ReactNode</code></td>
+      <td>Tags/multiple display limits and the collapsed-overflow node. <code>'responsive'</code> fits chips to the selector width on one line.</td>
     </tr>
     <tr>
       <td><code>listItemHeight</code></td>

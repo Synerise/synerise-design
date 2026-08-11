@@ -110,8 +110,12 @@ export type SelectProps<VT extends SelectValue = SelectValue> = {
   /** antd parity: tab index forwarded to the selector / search input. */
   tabIndex?: number;
 
-  /** Max chips rendered in `multiple` / `tags` mode before the rest collapse into an overflow chip. */
-  maxTagCount?: number;
+  /**
+   * Max chips rendered in `multiple` / `tags` mode before the rest collapse into
+   * an overflow chip. `'responsive'` (antd parity) instead fits as many chips as
+   * the selector width allows on a single line and recomputes on resize.
+   */
+  maxTagCount?: number | 'responsive';
   /** Max characters shown per chip label; longer labels are truncated with an ellipsis. */
   maxTagTextLength?: number;
   /**
