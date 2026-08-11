@@ -5,20 +5,11 @@ import DSSkeleton from '@synerise/ds-skeleton';
 import { type StickyData } from '../../Table.types';
 import { TableHorizontalScroll } from '../TableHorizontalScroll/TableHorizontalScroll';
 
+// --col-N-width / --table-size are set inline in BaseTable.tsx (they change on
+// resize; interpolating them here would mint a new class per unique width set).
 export const BaseTableWrapper = styled.div<{
-  columnSizing: Record<string, number>;
   $isColumnSizingReady?: boolean;
-  $size?: number;
-  isEmpty?: boolean;
 }>`
-  ${(props) => css`
-    ${Object.entries(props.columnSizing || {})
-      .map(([key, value]) => `--${key}-width: ${value}px;`)
-      .join('\n')}
-  `}
-  --table-size: ${(props) =>
-    !props.isEmpty && props.$size ? `${props.$size}px` : '100%'};
-
   ${(props) => !props.$isColumnSizingReady && `opacity: 0;`}
   position: relative;
   z-index: 1;
