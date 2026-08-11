@@ -33,6 +33,7 @@ const ItemPickerNewInner = <
     label,
     description,
     error,
+    isObjectDeleted,
     errorMessage,
     errorText,
     disabled,
@@ -93,12 +94,14 @@ const ItemPickerNewInner = <
         openDropdown={openDropdown}
         closeDropdown={closeDropdown}
         error={error}
+        isObjectDeleted={isObjectDeleted}
       />
     );
   }, [
     allTexts,
     disabled,
     error,
+    isObjectDeleted,
     onClear,
     placeholder,
     placeholderIcon,
@@ -109,7 +112,7 @@ const ItemPickerNewInner = <
   ]);
 
   return (
-    <S.ItemPickerWrapper className="ds-items-picker" disabled={disabled}>
+    <S.ItemPickerWrapper className="ds-items-picker">
       <FormField
         label={label}
         tooltip={tooltip}

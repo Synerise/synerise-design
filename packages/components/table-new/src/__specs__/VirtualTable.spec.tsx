@@ -7,6 +7,14 @@ import { VirtualTable } from '../VirtualTable';
 import { COLUMNS, DATA, SORTABLE_COLUMNS } from './data';
 
 describe('VirtualTable', () => {
+  beforeEach(() => {
+    vi.useFakeTimers();
+  });
+
+  afterEach(() => {
+    vi.useRealTimers();
+  });
+
   it('should render correctly', () => {
     renderWithProvider(<VirtualTable data={DATA} columns={COLUMNS} />);
 

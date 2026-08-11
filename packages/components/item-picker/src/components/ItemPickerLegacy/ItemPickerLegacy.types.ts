@@ -29,6 +29,7 @@ export type ItemPickerProps<ItemType extends ListItemProps = ListItemProps> = {
   dropdownVisibleRows?: number;
   error?: boolean;
   errorMessage?: FormFieldCommonProps['errorText'];
+  isObjectDeleted?: boolean;
   onBlur?: () => void;
   onFocus?: () => void;
   noResults?: string;

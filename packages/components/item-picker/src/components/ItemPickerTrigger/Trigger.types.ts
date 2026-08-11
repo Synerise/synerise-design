@@ -28,6 +28,7 @@ export type ItemPickerTriggerProps = {
   placeholder: ReactNode;
   placeholderIcon?: ReactNode;
   error?: boolean;
+  isObjectDeleted?: boolean;
   disabled?: boolean;
   selected?: ListItemProps;
   /**
