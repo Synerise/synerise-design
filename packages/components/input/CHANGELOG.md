@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.8.0](https://github.com/synerise/synerise-design/compare/@synerise/ds-input@1.7.14...@synerise/ds-input@1.8.0) (2026-08-11)
+
+### Features
+
+- **input:** add 'none' option to InputGroup growItem ([d8b9089](https://github.com/synerise/synerise-design/commit/d8b908923093586f2d8ceb3e85a039217fe10dbb))
+
 ## [1.7.14](https://github.com/synerise/synerise-design/compare/@synerise/ds-input@1.7.13...@synerise/ds-input@1.7.14) (2026-07-24)
 
 ### Bug Fixes

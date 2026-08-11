@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.54.0](https://github.com/Synerise/synerise-design/compare/storybook@1.53.0...storybook@1.54.0) (2026-08-11)
+
+### Bug Fixes
+
+- **context-selector:** size virtual list window to visible content height ([7b2ca64](https://github.com/Synerise/synerise-design/commit/7b2ca641e418d396a7e48e21541e045f736e5181))
+
+### Features
+
+- **input:** add 'none' option to InputGroup growItem ([d8b9089](https://github.com/Synerise/synerise-design/commit/d8b908923093586f2d8ceb3e85a039217fe10dbb))
+- **select:** support maxTagCount="responsive" fit-to-width chips ([cb113cf](https://github.com/Synerise/synerise-design/commit/cb113cf9f38a7ae112e55a8d159185f128fa2e4a))
+
 # [1.53.0](https://github.com/Synerise/synerise-design/compare/storybook@1.52.0...storybook@1.53.0) (2026-07-24)
 
 ### Bug Fixes

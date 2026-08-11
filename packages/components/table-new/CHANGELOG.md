@@ -3,6 +3,16 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.6.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-table-new@1.5.8...@synerise/ds-table-new@1.6.0) (2026-08-11)
+
+### Features
+
+- **item-picker:** add isErrorWarning prop for warning-style error display ([9aef866](https://github.com/Synerise/synerise-design/commit/9aef866e21bb86a3190baae3b32916e2911f5ac2))
+
+### Performance Improvements
+
+- **table-new:** set column-width CSS vars inline to avoid class churn ([138c947](https://github.com/Synerise/synerise-design/commit/138c9471a1ef5807f2c7d9a38ecd24c63154ef53))
+
 ## [1.5.8](https://github.com/Synerise/synerise-design/compare/@synerise/ds-table-new@1.5.7...@synerise/ds-table-new@1.5.8) (2026-07-24)
 
 **Note:** Version bump only for package @synerise/ds-table-new

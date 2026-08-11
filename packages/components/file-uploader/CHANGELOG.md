@@ -3,6 +3,10 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.3.30](https://github.com/Synerise/synerise-design/compare/@synerise/ds-file-uploader@1.3.29...@synerise/ds-file-uploader@1.3.30) (2026-08-11)
+
+**Note:** Version bump only for package @synerise/ds-file-uploader
+
 ## [1.3.29](https://github.com/Synerise/synerise-design/compare/@synerise/ds-file-uploader@1.3.28...@synerise/ds-file-uploader@1.3.29) (2026-07-23)
 
 **Note:** Version bump only for package @synerise/ds-file-uploader

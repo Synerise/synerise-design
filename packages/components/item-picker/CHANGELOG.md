@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.18.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-item-picker@1.17.28...@synerise/ds-item-picker@1.18.0) (2026-08-11)
+
+### Features
+
+- **item-picker:** add isErrorWarning prop for warning-style error display ([9aef866](https://github.com/Synerise/synerise-design/commit/9aef866e21bb86a3190baae3b32916e2911f5ac2))
+
 ## [1.17.28](https://github.com/Synerise/synerise-design/compare/@synerise/ds-item-picker@1.17.27...@synerise/ds-item-picker@1.17.28) (2026-07-24)
 
 **Note:** Version bump only for package @synerise/ds-item-picker

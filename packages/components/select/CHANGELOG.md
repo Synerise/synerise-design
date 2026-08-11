@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.5.0](https://github.com/synerise/synerise-design/compare/@synerise/ds-select@1.4.0...@synerise/ds-select@1.5.0) (2026-08-11)
+
+### Features
+
+- **select:** support maxTagCount="responsive" fit-to-width chips ([cb113cf](https://github.com/synerise/synerise-design/commit/cb113cf9f38a7ae112e55a8d159185f128fa2e4a))
+
 # [1.4.0](https://github.com/synerise/synerise-design/compare/@synerise/ds-select@1.3.34...@synerise/ds-select@1.4.0) (2026-07-24)
 
 ### Bug Fixes
