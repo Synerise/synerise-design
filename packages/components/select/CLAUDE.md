@@ -151,6 +151,12 @@ Class hooks are `ds-select-*` (`.ds-select`, `.ds-select-selection-item`, `.ds-s
 - **Option resolution** — `useSelectOptions` returns `resolvedOptions` (from `options` prop, else
   `getOptionsFromChildren(children)`) and `displayedOptions` (after client filtering and, in `tags`
   mode, a create-row prepended for the typed text). `filterOption={false}` disables local filtering.
+- **Row vs selector display (antd parity)** — the dropdown row renders `option.children ?? label ??
+  value`, the selector renders the field named by `optionLabelProp` (`label`, `children`, `value`,
+  `title`, …) and falls back to `label`. So `<Option label={compact}>{rich}</Option>` shows `rich` in
+  the list and `compact` in the selector, while options-as-data (no children) uses `label` for both.
+- **Filtering** — `defaultFilter` matches the field named by `optionFilterProp` (`title`, `children`,
+  `value`, …), else `label` then `children`; non-string fields (JSX nodes) fall back to the value.
 - **`Option.value` is optional** — falls back to the element's React `key` (antd parity); callbacks
   expose `option.key`.
 - **Keyboard nav is hand-rolled (not ds-dropdown's)** — Select is a *combobox*: focus stays on the

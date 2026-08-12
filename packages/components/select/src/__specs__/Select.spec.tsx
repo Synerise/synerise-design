@@ -294,6 +294,44 @@ describe('Select (antd parity shims)', () => {
     expect(root.getAttribute('aria-label')).toBe('pick one');
   });
 
+  it('renders Option children in the dropdown row and `label` in the selector (optionLabelProp)', () => {
+    renderWithProvider(
+      <Select defaultOpen value="+48" optionLabelProp="label">
+        <Option value="+48" label={<span>flag +48</span>}>
+          Poland (+48)
+        </Option>
+      </Select>,
+    );
+
+    expect(
+      document.querySelector('.ds-select-selection-item')?.textContent,
+    ).toBe('flag +48');
+    expect(
+      document.querySelector('.ds-select-item-option')?.textContent,
+    ).toContain('Poland (+48)');
+  });
+
+  it('filters on the field named by optionFilterProp', () => {
+    renderWithProvider(
+      <Select defaultOpen showSearch optionFilterProp="title">
+        <Option value="+48" title="Poland" label={<span>flag +48</span>}>
+          Poland (+48)
+        </Option>
+        <Option value="+49" title="Germany" label={<span>flag +49</span>}>
+          Germany (+49)
+        </Option>
+      </Select>,
+    );
+
+    fireEvent.change(document.querySelector('.ds-select-search') as Element, {
+      target: { value: 'pol' },
+    });
+
+    const rows = document.querySelectorAll('.ds-select-item-option');
+    expect(rows).toHaveLength(1);
+    expect(rows[0].textContent).toContain('Poland (+48)');
+  });
+
   it('forwards per-option data-* / aria-* to the rendered option row', () => {
     renderWithProvider(
       <Select defaultOpen>
