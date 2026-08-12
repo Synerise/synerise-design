@@ -9,4 +9,5 @@ export type FileViewProps = {
   onRemove?: () => void;
   retry?: boolean | React.ReactNode;
   retryButtonProps?: DropzoneRootProps;
+  hideSize?: boolean;
 };
