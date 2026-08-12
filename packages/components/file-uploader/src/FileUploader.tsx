@@ -49,6 +49,7 @@ const FileUploader = forwardRef<FileUploaderRef, FileUploaderProps>(
       files = [],
       retry,
       texts,
+      hideSize,
       ...rest
     },
     ref,
@@ -218,6 +219,7 @@ const FileUploader = forwardRef<FileUploaderRef, FileUploaderProps>(
               data={file}
               retry={retry}
               retryButtonProps={{ ...getRootProps() }}
+              hideSize={hideSize}
             />
           ))}
         {hasError &&

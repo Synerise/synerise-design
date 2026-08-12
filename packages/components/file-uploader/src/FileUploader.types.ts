@@ -54,6 +54,7 @@ export type FileUploaderProps = WithHTMLAttributes<
     onRemove?: (file: FileWithContent, index: number) => void;
     onUpload?: (files: FileWithContent[]) => void;
     retry?: boolean;
+    hideSize?: boolean;
   }
 >;
 

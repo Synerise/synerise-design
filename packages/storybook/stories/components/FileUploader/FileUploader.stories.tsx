@@ -85,6 +85,7 @@ export default {
     label: STRING_CONTROL,
     files: { control: false },
     filesAmount: NUMBER_CONTROL,
+    hideSize: BOOLEAN_CONTROL,
     removable: BOOLEAN_CONTROL,
     removeTooltip: REACT_NODE_AS_STRING,
     retry: BOOLEAN_CONTROL,
