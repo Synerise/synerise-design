@@ -236,10 +236,19 @@ const SelectInner = forwardRef<HTMLDivElement, SelectProps>((props, ref) => {
 
   const labelFor = (v: RawValueType): ReactNode => {
     const option = findOption(resolvedOptions, v);
-    if (option && optionLabelProp === 'value') {
-      return option.value;
+    if (!option) {
+      return v;
     }
-    return option?.label ?? v;
+    // antd parity: `optionLabelProp` names the option field rendered in the
+    // selector (`label`, `children`, `value`, `title`, …). Without it the label
+    // wins — for `<Select.Option>` children it already falls back to the children.
+    if (optionLabelProp) {
+      const custom = (option as Record<string, unknown>)[optionLabelProp];
+      if (custom !== undefined) {
+        return custom as ReactNode;
+      }
+    }
+    return option.label ?? v;
   };
 
   const setOpen = (next: boolean): void => {
