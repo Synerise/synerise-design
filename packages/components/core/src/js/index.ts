@@ -2,6 +2,14 @@ export { default as DSProvider, type DSProviderProps } from './DSProvider';
 export { default as mediaQuery } from './mediaQuery/mediaQuery';
 export { setPortalContent } from './portal/portalStore';
 export {
+  closeAllOverlays,
+  registerOverlay,
+  createOverlayCloseEvent,
+  type OverlayKind,
+  type OverlayEntry,
+  type CloseAllOverlaysOptions,
+} from './overlays/overlayRegistry';
+export {
   theme,
   useTheme,
   defaultColorsOrder,

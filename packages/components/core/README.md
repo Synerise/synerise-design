@@ -28,6 +28,32 @@ Bunch of components to bootstrap application.
 | toasterProps     | Pass TOASTER_DEFAULTS or custom config to enable toast container; false disables the Toaster element | false or Partial<ToasterProps> | false |
 | onErrorIntl      | react-intl error handler for missing translation keys                    | (error) => void   |             |
 
+# Overlays
+
+## closeAllOverlays
+
+Force every open DS overlay closed in reaction to an app-level event — for example the active workspace changed in another tab, so any open modal or dropdown is holding state bound to the previous workspace.
+
+Overlays close through their own close paths (`onCancel` / `onOpenChange` / `onClose`), so consumer handlers fire, exit transitions run and focus is restored. Nothing is removed from the DOM behind React's back.
+
+```ts
+import { closeAllOverlays } from '@synerise/ds-core';
+
+await closeAllOverlays();                               // everything
+await closeAllOverlays({ kinds: ['modal', 'drawer'] }); // leave tooltips alone
+```
+
+| Export                            | Description                                                                                              |
+| --------------------------------- | -------------------------------------------------------------------------------------------------------- |
+| closeAllOverlays(options?)        | Closes every registered overlay, newest first. Returns a Promise. Safe when nothing is open, safe to repeat |
+| registerOverlay(entry)            | Joins the registry while open; returns the unregister function for effect cleanup                         |
+| createOverlayCloseEvent(target)   | Builds the stand-in event handed to onCancel / onClose                                                    |
+| OverlayKind                       | 'modal' \| 'drawer' \| 'popover' \| 'dropdown' \| 'tooltip' \| 'popconfirm'                                |
+
+Covers `ds-modal`, `ds-drawer` and `ds-popover` — and through Popover also `ds-dropdown`, `ds-tooltip`, `ds-popconfirm` and everything built on them (`ds-select`, `ds-table-new`).
+
+A controlled overlay only closes if its owner reacts to the handler by flipping `open`. See `CLAUDE.md` for the full behaviour notes.
+
 # Data formatting
 
 ## Usage

@@ -222,6 +222,64 @@ Shared open-state context for `@synerise/ds-dropdown` and custom dropdowns.
 
 ---
 
+## Overlay registry
+
+Lets an app force every open DS overlay closed in reaction to an app-level event — e.g. the active workspace changed in another tab, so any modal or dropdown is now holding state bound to the previous workspace.
+
+Overlays close through their own close paths, so consumer handlers fire, exit transitions run and focus is restored. Nothing is removed from the DOM behind React's back.
+
+### `closeAllOverlays(options?): Promise<void>`
+
+| Option | Type | Description |
+|--------|------|-------------|
+| `kinds` | `OverlayKind[]` | Restrict the sweep to these kinds. Omit to close every registered overlay. |
+
+`OverlayKind` is `'modal' | 'drawer' | 'popover' | 'dropdown' | 'tooltip' | 'popconfirm'`.
+
+```ts
+import { closeAllOverlays } from '@synerise/ds-core';
+
+await closeAllOverlays();                                  // everything
+await closeAllOverlays({ kinds: ['modal', 'drawer'] });     // leave tooltips alone
+```
+
+Registered by `@synerise/ds-modal`, `@synerise/ds-drawer` and `@synerise/ds-popover`. Popover-level registration also covers `@synerise/ds-dropdown`, `@synerise/ds-tooltip`, `@synerise/ds-popconfirm`, and everything built on them (`ds-select`, `ds-table-new`, …).
+
+Per kind, closing runs:
+
+| Kind | Close path |
+|------|-----------|
+| `modal` | `onCancel` (awaited when it returns a promise), then the modal's internal close + `afterClose` |
+| `drawer` | `onClose` |
+| popover kinds | `context.onOpenChange(false, undefined, 'escape-key')` — the same funnel as pressing Escape, so `onDismiss` fires too |
+
+### `registerOverlay(entry): () => void`
+
+For components that render their own overlays and want to join the sweep. Call while open, use the returned function as the effect cleanup:
+
+```ts
+useEffect(() => {
+  if (!isOpen) return undefined;
+  return registerOverlay({ kind: 'modal', close: () => onClose() });
+}, [isOpen]);
+```
+
+### `createOverlayCloseEvent<T>(target)`
+
+Builds the stand-in event handed to `onCancel` / `onClose`, since a programmatic close has no real event. `target` and `currentTarget` are the overlay root; `preventDefault` and `stopPropagation` are no-ops.
+
+### Behaviour worth knowing
+
+- **Closing order is newest-registered first**, so a dropdown opened inside a modal closes before the modal.
+- **Controlled overlays follow their owner.** The sweep fires `onCancel` / `onOpenChange` / `onClose`; if the owner ignores it and keeps `open` at `true`, that overlay stays open. Forcing it shut would desync the owner's state.
+- **Each registration closes at most once**, so repeated calls cannot fire the same `onCancel` twice — even before React has flushed the first close. An overlay re-registers when it re-opens.
+- **Tooltips are included by default** (they are popovers). Pass `kinds` to leave them alone.
+- **A throwing or rejecting handler is contained** and does not stop the remaining overlays from closing.
+- **`ds-select` skips its `clearQuery()`.** Escape clears a Select's search query; a registry close only closes the dropdown.
+- **The registry is a module-scoped singleton**, so it relies on there being one copy of `@synerise/ds-core` at runtime. That is what the universal `peerDependencies: { "@synerise/ds-core": "*" }` guarantees — do not convert it to a hard dependency.
+
+---
+
 ## Testing utilities
 
 ### `renderWithProvider`
