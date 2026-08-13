@@ -163,12 +163,12 @@ describe('ListItem', () => {
           Parent
         </ListItem>,
       );
-      // Sub-menu items are in the DOM but hidden (max-height: 0)
+      // Sub-menu items are in the DOM but hidden (collapsed grid track)
       expect(screen.getByText('Sub Item A')).toBeInTheDocument();
-      expect(screen.getByText('Sub Item A').closest('[class*="SubMenuContainer"]')).toHaveStyle('max-height: 0px');
+      expect(screen.getByText('Sub Item A').closest('[class*="SubMenuContainer"]')).toHaveStyle('grid-template-rows: 0fr');
 
       fireEvent.click(screen.getByText('Parent'));
-      expect(screen.getByText('Sub Item A').closest('[class*="SubMenuContainer"]')).toHaveStyle('max-height: 999px');
+      expect(screen.getByText('Sub Item A').closest('[class*="SubMenuContainer"]')).toHaveStyle('grid-template-rows: 1fr');
     });
 
     it('should collapse sub-menu on second click', () => {
@@ -178,10 +178,44 @@ describe('ListItem', () => {
         </ListItem>,
       );
       fireEvent.click(screen.getByText('Parent'));
-      expect(screen.getByText('Sub Item').closest('[class*="SubMenuContainer"]')).toHaveStyle('max-height: 999px');
+      expect(screen.getByText('Sub Item').closest('[class*="SubMenuContainer"]')).toHaveStyle('grid-template-rows: 1fr');
 
       fireEvent.click(screen.getByText('Parent'));
-      expect(screen.getByText('Sub Item').closest('[class*="SubMenuContainer"]')).toHaveStyle('max-height: 0px');
+      expect(screen.getByText('Sub Item').closest('[class*="SubMenuContainer"]')).toHaveStyle('grid-template-rows: 0fr');
+    });
+
+    it('should not cap an expanded sub-menu at a fixed height', () => {
+      // regression: a hard `max-height: 999px` clipped every item past ~31 rows
+      const subMenu = Array.from({ length: 40 }, (_, index) => ({
+        children: `Sub Item ${index}`,
+        itemKey: `sub-${index}`,
+      }));
+      renderWithProvider(
+        <ListItem defaultSubMenuOpen subMenu={subMenu}>
+          Parent
+        </ListItem>,
+      );
+
+      const container = screen
+        .getByText('Sub Item 39')
+        .closest('[class*="SubMenuContainer"]') as HTMLElement;
+      expect(container).toHaveStyle('grid-template-rows: 1fr');
+      expect(container).not.toHaveStyle('max-height: 999px');
+    });
+
+    it('should let the collapsed track reach zero via a min-height:0 grid item', () => {
+      // the grid item's automatic minimum size would otherwise hold the track open at content height
+      renderWithProvider(
+        <ListItem subMenu={[{ children: 'Sub Item', itemKey: 'a' }]}>
+          Parent
+        </ListItem>,
+      );
+
+      const list = screen
+        .getByText('Sub Item')
+        .closest('[class*="SubMenuList"]') as HTMLElement;
+      expect(list).toBeInTheDocument();
+      expect(list).toHaveStyle('min-height: 0');
     });
 
     it('should not fire onClick when toggling a sub-menu parent without selectableParent (legacy)', () => {
@@ -198,7 +232,7 @@ describe('ListItem', () => {
       expect(handleClick).not.toHaveBeenCalled();
       expect(
         screen.getByText('Sub Item').closest('[class*="SubMenuContainer"]'),
-      ).toHaveStyle('max-height: 999px');
+      ).toHaveStyle('grid-template-rows: 1fr');
     });
 
     describe('selectableParent', () => {
@@ -217,7 +251,7 @@ describe('ListItem', () => {
         expect(handleClick).toHaveBeenCalled();
         expect(
           screen.getByText('Sub Item').closest('[class*="SubMenuContainer"]'),
-        ).toHaveStyle('max-height: 0px');
+        ).toHaveStyle('grid-template-rows: 0fr');
       });
 
       it('toggles the sub-menu via the suffix arrow without firing onClick', () => {
@@ -235,7 +269,7 @@ describe('ListItem', () => {
         expect(handleClick).not.toHaveBeenCalled();
         expect(
           screen.getByText('Sub Item').closest('[class*="SubMenuContainer"]'),
-        ).toHaveStyle('max-height: 999px');
+        ).toHaveStyle('grid-template-rows: 1fr');
       });
 
       it('toggles the sub-menu when the arrow is activated with the keyboard', () => {
@@ -255,7 +289,7 @@ describe('ListItem', () => {
         expect(handleClick).not.toHaveBeenCalled();
         expect(
           screen.getByText('Sub Item').closest('[class*="SubMenuContainer"]'),
-        ).toHaveStyle('max-height: 999px');
+        ).toHaveStyle('grid-template-rows: 1fr');
       });
     });
 
@@ -271,7 +305,7 @@ describe('ListItem', () => {
         );
         expect(
           screen.getByText('Sub Item').closest('[class*="SubMenuContainer"]'),
-        ).toHaveStyle('max-height: 999px');
+        ).toHaveStyle('grid-template-rows: 1fr');
       });
 
       it('reflects the controlled subMenuOpen prop', () => {
@@ -282,7 +316,7 @@ describe('ListItem', () => {
         );
         expect(
           screen.getByText('Sub Item').closest('[class*="SubMenuContainer"]'),
-        ).toHaveStyle('max-height: 999px');
+        ).toHaveStyle('grid-template-rows: 1fr');
       });
 
       it('fires onSubMenuToggle and does not manage state internally when controlled', () => {
@@ -301,7 +335,7 @@ describe('ListItem', () => {
         // controlled: prop is still false, so it stays collapsed until the consumer updates it
         expect(
           screen.getByText('Sub Item').closest('[class*="SubMenuContainer"]'),
-        ).toHaveStyle('max-height: 0px');
+        ).toHaveStyle('grid-template-rows: 0fr');
       });
     });
   });

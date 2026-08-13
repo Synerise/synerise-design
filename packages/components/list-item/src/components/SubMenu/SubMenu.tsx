@@ -20,13 +20,15 @@ export const SubMenu = forwardRef<HTMLDivElement, SubMenuProps>(
     return (
       <ListContextProvider onClick={onClick}>
         <S.SubMenuContainer ref={forwardedRef} isOpen={isOpen}>
-          {dataSource?.map((item) => (
-            <ItemComponent
-              {...item}
-              key={item.itemKey}
-              indentLevel={indentLevel}
-            />
-          ))}
+          <S.SubMenuList>
+            {dataSource?.map((item) => (
+              <ItemComponent
+                {...item}
+                key={item.itemKey}
+                indentLevel={indentLevel}
+              />
+            ))}
+          </S.SubMenuList>
         </S.SubMenuContainer>
       </ListContextProvider>
     );
