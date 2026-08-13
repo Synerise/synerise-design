@@ -61,3 +61,14 @@ import Drawer from '@synerise/ds-drawer'
 | onClose            | Specify a callback that will be called when a user clicks mask or presses Escape.              | (e:Event) => void                             | -         |
 | afterVisibleChange | Callback after the animation ends when switching drawers.                                      | (visible: boolean) => void                    | -         |
 | keyboard           | Whether support press esc to close                                                             | boolean                                       | `true`    |
+
+## Closing programmatically
+
+`closeAllOverlays()` from `@synerise/ds-core` force-closes every open DS overlay in one call — useful when an app-level event (e.g. the active workspace changed in another tab) invalidates whatever the user is doing. This component closes through its own close path, so its handlers fire and focus is restored.
+
+```ts
+import { closeAllOverlays } from '@synerise/ds-core';
+
+await closeAllOverlays();
+await closeAllOverlays({ kinds: ['modal', 'drawer'] }); // leave tooltips alone
+```

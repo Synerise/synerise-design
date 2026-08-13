@@ -8,7 +8,8 @@ import React, {
 } from 'react';
 import { createPortal } from 'react-dom';
 
-import { useFocusTrap } from '@synerise/ds-utils';
+import { createOverlayCloseEvent, registerOverlay } from '@synerise/ds-core';
+import { useFocusTrap, useLatestRef } from '@synerise/ds-utils';
 
 import {
   DrawerBody,
@@ -22,7 +23,7 @@ import {
   DrawerMask,
   DrawerRoot,
 } from './Drawer.styles';
-import { type DrawerProps } from './Drawer.types';
+import { type DrawerCloseTrigger, type DrawerProps } from './Drawer.types';
 
 const DEFAULT_WIDTH = 256;
 
@@ -100,6 +101,23 @@ const Drawer = ({
   // Focus-trap only when acting as a modal overlay (mask on). Inline drawers
   // (mask={false}) are non-modal panels and must not trap focus.
   useFocusTrap(containerRef, isOpen && mask, { initialFocus: panelRef });
+
+  // Join the overlay registry while open, so `closeAllOverlays()` calls the same
+  // `onClose` that Escape does. Drawer is fully controlled: it closes when its
+  // owner reacts to `onClose` by flipping `open`.
+  const onCloseRef = useLatestRef(onClose);
+  useEffect(() => {
+    if (!isOpen) {
+      return undefined;
+    }
+    return registerOverlay({
+      kind: 'drawer',
+      close: () =>
+        onCloseRef.current?.(
+          createOverlayCloseEvent<DrawerCloseTrigger>(containerRef.current),
+        ),
+    });
+  }, [isOpen, onCloseRef]);
 
   const handleTransitionEnd = (
     event: TransitionEvent<HTMLDivElement>,
