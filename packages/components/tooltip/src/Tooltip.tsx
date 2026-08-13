@@ -150,6 +150,7 @@ const Tooltip = forwardRef<HTMLElement, TooltipProps>(
           shiftConfig={POPOVER_SHIFT_CONFIG}
           getTransitionConfig={getTransitionConfig}
           getPopupContainer={getPopupContainer || defaultGetPopupContainer}
+          overlayKind="tooltip"
           testId="tooltip"
           zIndex={zIndex || parseInt(theme.variables['zindex-tooltip'])}
           {...popoverProps}
