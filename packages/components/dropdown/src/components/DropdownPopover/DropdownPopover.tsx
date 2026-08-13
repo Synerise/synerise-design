@@ -71,6 +71,7 @@ export const DropdownPopover = ({
       getTransitionConfig={getTransitionConfig}
       getPopupContainer={getPopupContainer}
       listNavigationConfig={listNavigationConfig}
+      overlayKind="dropdown"
       testId="dropdown"
       {...popoverProps}
     >
