@@ -22,6 +22,7 @@ import {
   type UseListNavigationProps,
   type UseTransitionStylesProps,
 } from '@floating-ui/react';
+import { type OverlayKind } from '@synerise/ds-core';
 
 export type PopoverProps = {
   children: ReactNode;
@@ -61,6 +62,12 @@ export type PopoverOptions = {
   dismissConfig?: UseDismissProps;
   listNavigationConfig?: UseListNavigationProps;
   trigger?: PopoverTriggerType | PopoverTriggerType[];
+  /**
+   * The kind reported to the overlay registry, so `closeAllOverlays({ kinds })`
+   * can target this popover. Components built on Popover override it.
+   * @default 'popover'
+   */
+  overlayKind?: OverlayKind;
   /**
    * defaults to theme.variables['zindex-dropdown'],
    */
