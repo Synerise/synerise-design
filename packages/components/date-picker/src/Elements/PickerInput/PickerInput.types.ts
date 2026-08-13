@@ -1,7 +1,7 @@
-import { type SizeType } from 'antd/lib/config-provider/SizeContext';
 import type { CSSProperties, HTMLAttributes, ReactNode } from 'react';
 
 import type { DateToFormatOptions } from '@synerise/ds-core';
+import type { InputSize } from '@synerise/ds-input';
 import type { DataAttributes } from '@synerise/ds-utils';
 
 import type { DatePickerProps } from '../../DatePicker.types';
@@ -11,7 +11,7 @@ type InputProps = DatePickerProps['inputProps'];
 // @deprecated - use PickerInputProps instead
 export type Props = InputProps & {
   autoFocus?: boolean;
-  size?: SizeType;
+  size?: InputSize;
   /**
    * @deprecated use `valueFormatOptions` instead
    */

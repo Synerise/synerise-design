@@ -1,5 +1,6 @@
-import type { PaginationProps } from 'antd';
 import React from 'react';
+
+import type { PaginationProps } from '@synerise/ds-pagination';
 
 export type MockPaginationProps = PaginationProps & {
   'data-testid'?: string;
