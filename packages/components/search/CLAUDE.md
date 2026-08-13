@@ -11,10 +11,7 @@ src/
  Search.styles.tsx — styled-components for wrapper, dropdown, input, filter label, clear button
  const.ts — numeric constants (offsets, animation durations)
  index.ts — public exports
- modules.d.ts —less module declaration
- style/
- index.less — component base styles
- input.mixin.less — input mixin
+ modules.d.ts — testing-library/jest-dom ambient import
  Elements/
  index.ts — re-exports sub-components
  SearchInput/
@@ -247,7 +244,7 @@ import { SearchInput } from '@synerise/ds-search';
 ## Styling
 
 - `Search.styles.tsx` contains all styled-components; no CSS Modules.
-- `SearchWrapper` receives `$width` (px) and `inputOpen` to toggle `width: 32px` vs full width.
+- `SearchWrapper` receives `$width` (px) and `inputOpen` to toggle `width: 32px` vs `$width`. Note it emits no width rule at all when `$width` is falsy, so without `width`/`searchWidth` the component never collapses.
 - `SearchInputContent` transitions `width: 0 → 100%` over `ANIMATION_DURATION` (0.1s) using `direction: rtl` for right-to-left expansion animation.
 - `SearchInner` applies blue border (`palette['blue-600']`) and blue background (`palette['blue-050']`) when `hasValue` or `alwaysHighlight`.
 - `Filter` chip is capped at `MAX_FILTER_WIDTH = 120px` and uses `palette['blue-600']` color.
@@ -263,7 +260,7 @@ import { SearchInput } from '@synerise/ds-search';
 - `@synerise/ds-tooltip` — wraps the search input and provides section header tooltips
 - `@synerise/ds-menu` — wraps items when `renderInMenu=true` (deprecated path)
 - `@synerise/ds-list-item` (`ListContextProvider`) — wraps items when `renderInMenu=false`
-- `antd/lib/input` — base `Input` component inside `SearchInput`
+No antd — `SearchInput` renders a DS-native styled `input` (`S.SearchNativeInput`), which owns its own border/radius/background/focus chrome.
 
 ## Implementation notes
 
@@ -273,6 +270,7 @@ import { SearchInput } from '@synerise/ds-search';
 - **Arrow-key navigation**: `focusWithArrowKeys` from `ds-utils` moves focus across `.ds-search-item` elements; pressing Up when at the top returns focus to the input via `setFocusInputTrigger`.
 - **`toggleTrigger` / `focusTrigger`** on `SearchInput` are boolean flip-flops — the component reacts to a change in value (via `usePrevious`), not to the value itself.
 - **`width` prop is deprecated** — `searchWidth` is the current prop; both set the same `mergedWidth` internal variable.
+- **Two components own the expanded width, and their formulas must match.** `SearchWrapper` (in `Search`) sets the outer width from `isExpanded = isOpen || !!value || !!label || !!alwaysExpanded`; `SearchInputContent` (in `SearchInput`) sets the inner width from `renderInputOpened = isInputOpen || !!value || !!filterLabel`. When the two disagree the 32px wrapper clips a `width: 100%` input — which is exactly what happened while `Search` initialised `isOpen` to a bare `false`: mounting with a value (or `alwaysExpanded`, or a value arriving after mount) painted a 32px stub until the first click. Keep both as derived expressions; do not reintroduce a second piece of state for "is it open". Note also that `handleClearValue` in `Search` must `setIsOpen(true)` because the clear button is a *sibling* of the input content, so clearing never reaches `handleInputClick`, while `SearchInput.handleClearValue` deliberately stays open and refocuses.
 - **Gesture-aware outside-click collapse**: both `SearchInput` and `Search` keep the default `useOnClickOutside` events (`mousedown`/`touchstart`) so the "should I close?" decision still happens at gesture start — but the state change that triggers the CSS width animation is deferred to the matching `mouseup`/`touchend` via a document-level one-shot listener tracked in `pendingCloseCleanupRef` (cleaned up on unmount or on a repeat mousedown). Rationale: firing the collapse on `mousedown` would shift adjacent layout between mousedown and mouseup, causing the browser to miss the `click` on the neighbouring element. A `['click']`-only variant was tried and rejected because some host apps cancel/stop-propagation on click events before they reach `document`, which breaks the close entirely.
 - **`getParametersScrollTop` takes `hasRecentTitle`**: callers must pass `hasRecentTitle: !!recentDisplayProps.title` so the function only subtracts `LIST_HEADER_HEIGHT` when the recent section actually renders a header. Without this, the parameters list scrolls 42 px out of sync when the recent section has no title.
 - `AnyObject = Record<string, any>` is used throughout for item shapes; TypeScript generics at the `Search` level provide partial type safety but `itemRender` and internal utilities rely on `any`.

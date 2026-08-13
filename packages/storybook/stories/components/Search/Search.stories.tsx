@@ -32,7 +32,12 @@ import {
   recent,
 } from './Search.data';
 
-type StorySearchProps = SearchProps<ItemType, ParameterType, ItemType>;
+// `initialValue`/`initialParameterValue` are story-only: `Search` is controlled,
+// so seeding the state the render fn owns is the only way to mount it populated.
+type StorySearchProps = SearchProps<ItemType, ParameterType, ItemType> & {
+  initialValue?: string;
+  initialParameterValue?: string;
+};
 type Story = StoryObj<StorySearchProps>;
 
 export default {
@@ -40,10 +45,12 @@ export default {
   title: 'Components/Search/Search',
   tags: ['autodocs'],
   decorators: [SearchDecorator],
-  render: (args) => {
-    const [value, setValue] = useState('');
-    const [parameterValue, setParameterValue] = useState('');
-    const [suggestions, setSuggestions] = useState<any[] | null>(null);
+  render: ({ initialValue = '', initialParameterValue = '', ...args }) => {
+    const [value, setValue] = useState(initialValue);
+    const [parameterValue, setParameterValue] = useState(initialParameterValue);
+    const [suggestions, setSuggestions] = useState<any[] | null>(
+      initialParameterValue ? getSuggestions(initialParameterValue) : null,
+    );
 
     const handleClear = () => {
       setParameterValue('');
@@ -108,6 +115,8 @@ export default {
       control: false,
       table: { type: { summary: 'string' }, category: 'Required' },
     },
+    initialValue: { control: false, table: { disable: true } },
+    initialParameterValue: { control: false, table: { disable: true } },
     clearTooltip: STRING_CONTROL,
     placeholder: STRING_CONTROL,
     filterLookupKey: STRING_CONTROL,
@@ -274,6 +283,112 @@ const [suggestions, setSuggestions] = useState(null);
     setParameterValue(value);
     setSuggestions(getSuggestions(value));
   }}
+  onClear={() => { setValue(''); setParameterValue(''); }}
+/>`,
+      },
+    },
+  },
+};
+
+export const WithInitialValue: Story = {
+  args: {
+    initialValue: 'Bangkok',
+    searchWidth: 300,
+  },
+  parameters: {
+    docs: {
+      description: {
+        story:
+          'Mounted with a value already set — as after a page reload that restores the query from the URL. The field renders expanded on first paint, without waiting for a click.',
+      },
+      source: {
+        code: `// value restored from the URL / store before the first render
+const [value, setValue] = useState(searchParams.get('q') ?? '');
+
+<Search
+  clearTooltip="Clear"
+  placeholder="Search"
+  searchWidth={300}
+  dropdownMaxHeight={400}
+  value={value}
+  parameterValue={parameterValue}
+  recent={recent}
+  parameters={parameters}
+  suggestions={suggestions}
+  textLookupConfig={{ parameters: 'text', recent: 'text', suggestions: 'text' }}
+  onValueChange={setValue}
+  onParameterValueChange={setParameterValue}
+  onClear={() => { setValue(''); setParameterValue(''); }}
+/>`,
+      },
+    },
+  },
+};
+
+export const WithInitialParameter: Story = {
+  args: {
+    initialParameterValue: 'City',
+    searchWidth: 300,
+  },
+  parameters: {
+    docs: {
+      description: {
+        story:
+          'Mounted with an active parameter. The filter chip renders inside the expanded field, and the dropdown is already in suggestions mode.',
+      },
+      source: {
+        code: `const [parameterValue, setParameterValue] = useState('City');
+const [suggestions, setSuggestions] = useState(getSuggestions('City'));
+
+<Search
+  clearTooltip="Clear"
+  placeholder="Search"
+  searchWidth={300}
+  dropdownMaxHeight={400}
+  value={value}
+  parameterValue={parameterValue}
+  recent={recent}
+  parameters={parameters}
+  suggestions={suggestions}
+  textLookupConfig={{ parameters: 'text', recent: 'text', suggestions: 'text' }}
+  onValueChange={setValue}
+  onParameterValueChange={(value) => {
+    setParameterValue(value);
+    setSuggestions(getSuggestions(value));
+  }}
+  onClear={() => { setValue(''); setParameterValue(''); }}
+/>`,
+      },
+    },
+  },
+};
+
+export const AlwaysExpanded: Story = {
+  args: {
+    alwaysExpanded: true,
+    searchWidth: 300,
+  },
+  parameters: {
+    docs: {
+      description: {
+        story:
+          '`alwaysExpanded` keeps the field open and hides the collapse toggle.',
+      },
+      source: {
+        code: `<Search
+  alwaysExpanded
+  clearTooltip="Clear"
+  placeholder="Search"
+  searchWidth={300}
+  dropdownMaxHeight={400}
+  value={value}
+  parameterValue={parameterValue}
+  recent={recent}
+  parameters={parameters}
+  suggestions={suggestions}
+  textLookupConfig={{ parameters: 'text', recent: 'text', suggestions: 'text' }}
+  onValueChange={setValue}
+  onParameterValueChange={setParameterValue}
   onClear={() => { setValue(''); setParameterValue(''); }}
 />`,
       },
