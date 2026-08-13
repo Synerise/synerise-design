@@ -4,7 +4,8 @@ import { fn } from 'storybook/test';
 import { Meta, StoryObj } from '@storybook/react-vite';
 import { ObjectAvatar } from '@synerise/ds-avatar';
 import Button from '@synerise/ds-button';
-import { theme } from '@synerise/ds-core';
+import { closeAllOverlays, theme } from '@synerise/ds-core';
+import Dropdown from '@synerise/ds-dropdown';
 import Icon, { MailM, UserM } from '@synerise/ds-icon';
 import Layout, { LayoutProps } from '@synerise/ds-layout';
 import Modal, { showModal } from '@synerise/ds-modal';
@@ -440,6 +441,70 @@ export const ShowModalPromise: Story = {
     docs: {
       source: {
         code: "// onOk / onCancel can return a Promise — the modal stays open until it resolves\nconst ref = showModal({\n  title: 'title',\n  size: 'small',\n  onOk: async () => { await doWork(); },\n  onCancel: async () => { await doCleanup(); },\n});",
+      },
+    },
+  },
+};
+
+export const CloseAllOverlays: Story = {
+  render: () => {
+    const [open, setOpen] = useState(false);
+    const [log, setLog] = useState<string[]>([]);
+    const append = (entry: string) => setLog((entries) => [...entries, entry]);
+
+    return (
+      <>
+        <Button
+          type="primary"
+          onClick={() => {
+            setLog([]);
+            setOpen(true);
+          }}
+        >
+          Open modal
+        </Button>
+
+        <Modal
+          open={open}
+          title="Edit record"
+          footer={null}
+          onCancel={() => {
+            append('modal onCancel');
+            setOpen(false);
+          }}
+        >
+          <p>Open the dropdown, then trigger the app-level event.</p>
+          <Dropdown
+            overlay={
+              <Dropdown.Wrapper style={{ padding: 8 }}>
+                Dropdown content
+              </Dropdown.Wrapper>
+            }
+            onOpenChange={(isOpen) => {
+              if (!isOpen) {
+                append('dropdown onOpenChange(false)');
+              }
+            }}
+          >
+            <Button>Open dropdown</Button>
+          </Dropdown>
+          <p style={{ marginTop: 24 }}>
+            <Button type="primary" onClick={() => closeAllOverlays()}>
+              Simulate workspace change in another tab
+            </Button>
+          </p>
+        </Modal>
+
+        {log.length > 0 && (
+          <pre data-testid="close-all-overlays-log">{log.join('\n')}</pre>
+        )}
+      </>
+    );
+  },
+  parameters: {
+    docs: {
+      source: {
+        code: "// One call closes the modal and the dropdown inside it, newest first.\n// Each overlay runs its own close path, so onCancel / onOpenChange fire\n// and focus is restored.\nimport { closeAllOverlays } from '@synerise/ds-core';\n\nawait closeAllOverlays();",
       },
     },
   },

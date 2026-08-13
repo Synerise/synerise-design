@@ -34,3 +34,13 @@ If the ListItem has a copyable prop the dropdown will hide after a delay necessa
 If the dropdown has custom content, not plain list items, use the `useDropdown` hook in the component that will be used as `overlay`, via which you can check and control the dropdown open state.
 
 <Canvas useDropdownsourceState="shown" />
+## Closing every overlay at once
+
+To force-close a dropdown (and every other open DS overlay) in reaction to an app-level event, call `closeAllOverlays()` from `@synerise/ds-core`. The dropdown closes through its normal path, so `onOpenChange(false)` reaches the consumer. See the Modal docs for the full explanation and a live example.
+
+```ts
+import { closeAllOverlays } from '@synerise/ds-core';
+
+await closeAllOverlays();                    // everything
+await closeAllOverlays({ kinds: ['dropdown'] }); // dropdowns only
+```

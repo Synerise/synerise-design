@@ -11,6 +11,7 @@ import ModalMeta, {
   ModalWithStepper,
   ShowModal,
   ShowModalPromise,
+  CloseAllOverlays,
 } from './Modal.stories';
 
 <Meta of={ModalMeta} />
@@ -34,6 +35,7 @@ A portal-based modal dialog with structured header (title, tabs, actions), a slo
 - [With Stepper](#with-stepper)
 - [Imperative API — showModal](#imperative-api--showmodal)
   - [Async handlers](#async-handlers)
+- [Closing every overlay — closeAllOverlays](#closing-every-overlay--closealloverlays)
 - [Sizes](#sizes)
 - [API reference](#api-reference)
   - [ModalProps](#modalprops)
@@ -128,6 +130,39 @@ Use `showModal()` when you need to open a modal outside of the React component t
 Both `onOk` and `onCancel` accept handlers that return a `Promise`. The modal stays open until the promise resolves.
 
 <Canvas of={ShowModalPromise} sourceState="shown" />
+
+## Closing every overlay — closeAllOverlays
+
+`closeAllOverlays()` from `@synerise/ds-core` force-closes every open DS overlay in one call. Use it when an app-level event invalidates whatever the user is doing — for example the active workspace changed in another tab, so an open modal is holding ids that belong to the previous workspace.
+
+Every overlay closes through its own close path, so `onCancel` / `onOpenChange` / `onClose` fire, exit transitions run and focus is restored. Nothing is removed from the DOM behind React's back.
+
+```ts
+import { closeAllOverlays } from '@synerise/ds-core';
+
+await closeAllOverlays();                               // everything
+await closeAllOverlays({ kinds: ['modal', 'drawer'] }); // leave tooltips alone
+```
+
+In the example below, open the modal, open the dropdown inside it, then trigger the app-level event. Both close, innermost first, and the log shows which handlers ran.
+
+<Canvas of={CloseAllOverlays} sourceState="shown" />
+
+<table>
+  <thead>
+    <tr><th>Behaviour</th><th>Detail</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>Order</td><td>Newest-registered first — a dropdown opened inside a modal closes before the modal</td></tr>
+    <tr><td>Controlled overlays</td><td>The sweep calls <code>onCancel</code>; the modal also closes internally. A fully controlled overlay that ignores its handler and keeps <code>open</code> true stays open</td></tr>
+    <tr><td>Repeat calls</td><td>Each registration closes at most once, so <code>onCancel</code> cannot fire twice</td></tr>
+    <tr><td>Async <code>onCancel</code></td><td>Awaited before the modal closes, same as clicking Cancel</td></tr>
+    <tr><td>Nothing open</td><td>Resolves without throwing</td></tr>
+    <tr><td>Coverage</td><td><code>ds-modal</code>, <code>ds-drawer</code> and every popover-based overlay (<code>ds-dropdown</code>, <code>ds-tooltip</code>, <code>ds-popconfirm</code>, <code>ds-select</code>, <code>ds-table-new</code>)</td></tr>
+  </tbody>
+</table>
+
+See `@synerise/ds-core` for the full API, including `registerOverlay` for custom overlays.
 
 ## Sizes
 
