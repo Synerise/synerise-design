@@ -3,6 +3,16 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.55.0](https://github.com/Synerise/synerise-design/compare/storybook@1.54.0...storybook@1.55.0) (2026-08-13)
+
+### Bug Fixes
+
+- **search:** render expanded when mounted with a value ([6d0fe1d](https://github.com/Synerise/synerise-design/commit/6d0fe1d3673934f1044a152faeab292fcb9501b3))
+
+### Features
+
+- **file-uploader:** add hideSize prop to hide file size display ([979e573](https://github.com/Synerise/synerise-design/commit/979e573dcb2a2bbd5f059bba649422d2dd118643))
+
 # [1.54.0](https://github.com/Synerise/synerise-design/compare/storybook@1.53.0...storybook@1.54.0) (2026-08-11)
 
 ### Bug Fixes

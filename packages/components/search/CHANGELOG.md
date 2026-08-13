@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.5.36](https://github.com/Synerise/synerise-design/compare/@synerise/ds-search@1.5.35...@synerise/ds-search@1.5.36) (2026-08-13)
+
+### Bug Fixes
+
+- **search:** render expanded when mounted with a value ([6d0fe1d](https://github.com/Synerise/synerise-design/commit/6d0fe1d3673934f1044a152faeab292fcb9501b3))
+
 ## [1.5.35](https://github.com/Synerise/synerise-design/compare/@synerise/ds-search@1.5.34...@synerise/ds-search@1.5.35) (2026-08-11)
 
 **Note:** Version bump only for package @synerise/ds-search

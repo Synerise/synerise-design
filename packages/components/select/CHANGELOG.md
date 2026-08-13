@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.5.1](https://github.com/synerise/synerise-design/compare/@synerise/ds-select@1.5.0...@synerise/ds-select@1.5.1) (2026-08-13)
+
+### Bug Fixes
+
+- honour Option children, optionLabelProp and optionFilterProp in select ([640a1c2](https://github.com/synerise/synerise-design/commit/640a1c27e677de165e195072a22bac891a065fac))
+
 # [1.5.0](https://github.com/synerise/synerise-design/compare/@synerise/ds-select@1.4.0...@synerise/ds-select@1.5.0) (2026-08-11)
 
 ### Features

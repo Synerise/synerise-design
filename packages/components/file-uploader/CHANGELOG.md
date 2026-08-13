@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.4.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-file-uploader@1.3.30...@synerise/ds-file-uploader@1.4.0) (2026-08-13)
+
+### Features
+
+- **file-uploader:** add hideSize prop to hide file size display ([979e573](https://github.com/Synerise/synerise-design/commit/979e573dcb2a2bbd5f059bba649422d2dd118643))
+
 ## [1.3.30](https://github.com/Synerise/synerise-design/compare/@synerise/ds-file-uploader@1.3.29...@synerise/ds-file-uploader@1.3.30) (2026-08-11)
 
 **Note:** Version bump only for package @synerise/ds-file-uploader
