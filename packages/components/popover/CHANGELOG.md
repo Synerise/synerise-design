@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.6.3](https://github.com/Synerise/synerise-design/compare/@synerise/ds-popover@1.6.2...@synerise/ds-popover@1.6.3) (2026-08-11)
+
+### Bug Fixes
+
+- **context-selector:** size virtual list window to visible content height ([7b2ca64](https://github.com/Synerise/synerise-design/commit/7b2ca641e418d396a7e48e21541e045f736e5181))
+
 ## [1.6.2](https://github.com/Synerise/synerise-design/compare/@synerise/ds-popover@1.6.1...@synerise/ds-popover@1.6.2) (2026-07-23)
 
 **Note:** Version bump only for package @synerise/ds-popover

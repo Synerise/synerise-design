@@ -96,6 +96,7 @@ export type ItemPickerProps<
      */
     errorMessage?: FormFieldCommonProps['errorText'];
     error?: boolean;
+    isObjectDeleted?: boolean;
     disabled?: boolean;
     onChange?: (item: ItemType) => void;
     onFocus?: () => void;

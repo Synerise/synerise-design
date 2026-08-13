@@ -1,6 +1,6 @@
 {
   "name": "@synerise/ds-block",
-  "version": "1.0.57",
+  "version": "1.0.58",
   "description": "Block UI Component for the Synerise Design System",
   "license": "ISC",
   "repository": "Synerise/synerise-design",
@@ -47,7 +47,6 @@
   },
   "peerDependencies": {
     "@synerise/ds-core": "*",
-    "antd": "4.24.16",
     "react": ">=16.9.0 <= 18.3.1",
     "styled-components": "^5.3.3",
     "vitest": "4"

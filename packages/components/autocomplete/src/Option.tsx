@@ -14,3 +14,7 @@ export type OptionProps = {
 export const Option = (_props: OptionProps): null => null;
 
 Option.displayName = 'Autocomplete.Option';
+// Recognised by `getOptionsFromChildren` without relying on reference equality, which
+// breaks across module instances (duplicate copies in a consumer bundle, mocks, memo
+// wrappers). rc-select carried the same static flag for the same reason.
+Option.isAutocompleteOption = true;

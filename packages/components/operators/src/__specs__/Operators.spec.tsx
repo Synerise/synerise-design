@@ -59,6 +59,26 @@ describe('Operators component', () => {
     expect(screen.queryByTestId('tabs-container')).not.toBeInTheDocument();
   });
 
+  // A remount between mousedown and mouseup means the browser never fires
+  // click, so the first pick is silently swallowed. Node identity is the only
+  // way to catch that here — jsdom dispatches click directly.
+  test('Should not remount operator rows when the parent re-renders', async () => {
+    const OPERATOR_IN_DEFAULT_GROUP = 'Matches current hour';
+    const { rerender } = renderWithProvider(
+      RENDER_OPERATORS({ items: [...OPERATORS_ITEMS] }),
+    );
+
+    userEvent.click(screen.getByText(OPERATORS_TEXTS.buttonLabel));
+
+    const row = await screen.findByText(OPERATOR_IN_DEFAULT_GROUP);
+    const groupTitle = screen.getAllByTestId('operator-group-title')[0];
+
+    rerender(RENDER_OPERATORS({ items: [...OPERATORS_ITEMS] }));
+
+    expect(screen.getByText(OPERATOR_IN_DEFAULT_GROUP)).toBe(row);
+    expect(screen.getAllByTestId('operator-group-title')[0]).toBe(groupTitle);
+  });
+
   test('Should show selected value', () => {
     renderWithProvider(
       RENDER_OPERATORS({

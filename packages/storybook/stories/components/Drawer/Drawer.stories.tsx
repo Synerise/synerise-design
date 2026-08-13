@@ -1,4 +1,3 @@
-import Typography from 'antd/lib/typography';
 import React, { useState } from 'react';
 import { action } from 'storybook/actions';
 
@@ -8,6 +7,7 @@ import Drawer from '@synerise/ds-drawer';
 import Icon, { SearchM } from '@synerise/ds-icon';
 import SearchBar from '@synerise/ds-search-bar';
 import Tabs from '@synerise/ds-tabs';
+import { Title } from '@synerise/ds-typography';
 
 import { CLASSNAME_ARG_CONTROL, centeredPaddedWrapper } from '../../utils';
 import {
@@ -50,9 +50,9 @@ export const Default: Story = {
               {renderBackIcon(headerTypes.singleTitle, () =>
                 setDrawerVisible(false),
               )}
-              <Typography.Title style={{ flex: 1, margin: 0 }} level={4}>
+              <Title style={{ flex: 1, margin: 0 }} level={4}>
                 Title
-              </Typography.Title>
+              </Title>
               {renderActionButtons(closeActionTypes.singleCloseIcon, () =>
                 setDrawerVisible(false),
               )}
@@ -88,9 +88,9 @@ export const WithTabs: Story = {
                 {renderBackIcon(headerTypes.singleTitleWithBackIcon, () =>
                   setDrawerVisible(false),
                 )}
-                <Typography.Title style={{ flex: 1, margin: 0 }} level={4}>
+                <Title style={{ flex: 1, margin: 0 }} level={4}>
                   Title
-                </Typography.Title>
+                </Title>
                 {renderActionButtons(closeActionTypes.twoButtons, () =>
                   setDrawerVisible(false),
                 )}
@@ -136,9 +136,9 @@ export const WithSearch: Story = {
                 {renderBackIcon(headerTypes.singleTitleWithBackIcon, () =>
                   setDrawerVisible(false),
                 )}
-                <Typography.Title style={{ flex: 1, margin: 0 }} level={4}>
+                <Title style={{ flex: 1, margin: 0 }} level={4}>
                   Title
-                </Typography.Title>
+                </Title>
                 {renderActionButtons(closeActionTypes.twoButtons, () =>
                   setDrawerVisible(false),
                 )}
@@ -194,9 +194,9 @@ export const WithSearchAndTabs: Story = {
                 {renderBackIcon(headerTypes.singleTitleWithBackIcon, () =>
                   setDrawerVisible(false),
                 )}
-                <Typography.Title style={{ flex: 1, margin: 0 }} level={4}>
+                <Title style={{ flex: 1, margin: 0 }} level={4}>
                   Title
-                </Typography.Title>
+                </Title>
                 {renderActionButtons(closeActionTypes.twoButtons, () =>
                   setDrawerVisible(false),
                 )}

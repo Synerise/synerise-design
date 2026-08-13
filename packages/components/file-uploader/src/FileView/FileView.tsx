@@ -24,6 +24,7 @@ const FileView = ({
   removable,
   retry,
   retryButtonProps,
+  hideSize,
 }: FileViewProps) => {
   const getFriendlySize = (size?: number): string => filesize(size || 0);
 
@@ -139,13 +140,15 @@ const FileView = ({
               <S.FileName>{file.name}</S.FileName>
             </S.Name>
 
-            <S.SizeOrError>
-              {error || (
-                <>
-                  {finalTexts.size} {getFriendlySize(file.size)}
-                </>
-              )}
-            </S.SizeOrError>
+            {(error || !hideSize) && (
+              <S.SizeOrError>
+                {error || (
+                  <>
+                    {finalTexts.size} {getFriendlySize(file.size)}
+                  </>
+                )}
+              </S.SizeOrError>
+            )}
           </>
         )}
       </S.Info>

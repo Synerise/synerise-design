@@ -52,6 +52,7 @@ export type PopoverOptions = {
    * set to false in order to prevent returning focus to the trigger element after popover closes
    */
   returnFocus?: boolean;
+  closeOnFocusOut?: boolean;
   offsetConfig?: OffsetConfig;
   flipConfig?: FlipConfig;
   shiftConfig?: ShiftConfig;
@@ -98,6 +99,7 @@ export type UsePopoverReturn = Omit<UseFloatingReturn, 'open'> &
     testId: string;
     zIndex?: number;
     returnFocus?: boolean;
+    closeOnFocusOut?: boolean;
     componentId?: string;
     arrowRef: RefObject<HTMLElement>;
   };

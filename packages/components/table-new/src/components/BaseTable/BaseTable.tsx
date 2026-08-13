@@ -109,13 +109,25 @@ export const BaseTable = <TData extends object, TValue>({
     expandable,
   };
 
+  // Widths ride on inline custom properties: a width change is one CSSOM write,
+  // not a new styled-components class (see BaseTable.styles.ts).
+  const columnWidthVars = Object.fromEntries(
+    Object.entries(useColgroupLayout ? {} : columnSizing).map(
+      ([key, value]) => [`--${key}-width`, `${value}px`],
+    ),
+  );
+  const tableSize =
+    !isEmpty && !useColgroupLayout && size ? `${size}px` : '100%';
+  const wrapperStyle = {
+    ...columnWidthVars,
+    '--table-size': tableSize,
+    ...style,
+  } as React.CSSProperties;
+
   return (
     <S.BaseTableWrapper
-      isEmpty={isEmpty}
-      columnSizing={useColgroupLayout ? {} : columnSizing}
       $isColumnSizingReady={isColumnSizingReady}
-      $size={useColgroupLayout ? undefined : size}
-      style={style}
+      style={wrapperStyle}
     >
       <S.TableContainer
         ref={tableOuterRef}

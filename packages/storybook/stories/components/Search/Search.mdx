@@ -1,5 +1,11 @@
 import { Meta, Canvas } from '@storybook/addon-docs/blocks';
-import { WithDropdown, WithItemsWithAvatars } from './Search.stories';
+import {
+  AlwaysExpanded,
+  WithDropdown,
+  WithInitialParameter,
+  WithInitialValue,
+  WithItemsWithAvatars,
+} from './Search.stories';
 import { Default, Expanded, WithDebounce } from './SearchInput.stories';
 
 <Meta title="Components/Search" />
@@ -34,6 +40,16 @@ Recent items, parameters, and the divider in one picker. Clicking a parameter ac
 Any `itemRender` is allowed per section. Increase `rowHeight` to accommodate richer rows.
 
 <Canvas of={WithItemsWithAvatars} />
+
+## Mounted with a value or an active parameter
+
+`Search` is collapsed only while it *can* be collapsed. A `value`, an active `parameterValue` or `alwaysExpanded` all hide the collapse toggle and disable outside-click collapse, so the field renders expanded on the very first paint — no click needed. This is the shape you get when a page reload restores the query from the URL or the store.
+
+<Canvas of={WithInitialValue} sourceState="shown" />
+
+<Canvas of={WithInitialParameter} />
+
+<Canvas of={AlwaysExpanded} />
 
 ## SearchInput — standalone
 
@@ -190,6 +206,7 @@ Exported alongside `Search` for advanced composition. Most callers don't need th
 ## Notes & tips
 
 - **Fully controlled.** `Search` does not own `value` or `parameterValue`. Selecting an item fires the change callback — the caller must apply the new value back via props.
+- **A value keeps the field expanded, including on first render.** `Search` is expanded whenever the user opened it *or* it cannot be collapsed — `value`, an active parameter, or `alwaysExpanded` all hide the collapse toggle and disable outside-click collapse. Mounting with a value already set renders the field expanded on first paint, and clearing the value keeps it expanded and focused rather than collapsing under the cursor.
 - **Suggestions mode.** When `parameterValue` is non-empty, only `suggestions` are rendered; `recent` and `parameters` are hidden until the parameter is cleared.
 - **`filterLookupKey` shortcut.** If a clicked parameter has a truthy value at `filterLookupKey`, the parameter is treated as a direct result: the input is populated with the parameter's text, `isResultChosen` flips to `true`, and `onParameterValueChange` fires with the `filterLookupKey` value.
 - **Arrow-key navigation.** `focusWithArrowKeys` from `@synerise/ds-utils` moves focus across `.ds-search-item` elements. ArrowUp at the top returns focus to the input.

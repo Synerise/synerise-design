@@ -6,6 +6,5 @@ export type AutocompleteDropdownProps = {
   options: AutocompleteOption[];
   notFoundContent?: ReactNode;
   visibleRows?: number;
-  rowHeight?: number;
   onSelect: (value: string) => void;
 };

@@ -9,10 +9,24 @@ type MockAutocompleteProps = {
   'data-testid'?: string;
 };
 
+type MockOptionProps = {
+  value?: string;
+  children?: React.ReactNode;
+};
+
+// Consumers reach options through `Autocomplete.Option`, so the mocked default has to
+// carry it — without this, mocking the package makes any such tree fail to render.
+const MockOption = ({ value, children }: MockOptionProps) => (
+  <div data-testid="autocomplete-option" role="option" data-value={value}>
+    {children}
+  </div>
+);
+
+MockOption.displayName = 'Autocomplete.Option';
+
 export const mockAutocomplete = () => {
-  jest.mock('@synerise/ds-autocomplete', () => ({
-    __esModule: true,
-    default: jest.fn(
+  jest.mock('@synerise/ds-autocomplete', () => {
+    const Autocomplete = jest.fn(
       ({
         children,
         value,
@@ -34,13 +48,21 @@ export const mockAutocomplete = () => {
           {children}
         </div>
       ),
-    ),
-  }));
+    );
+
+    return {
+      __esModule: true,
+      default: Object.assign(Autocomplete, { Option: MockOption }),
+    };
+  });
 };
 
 export const mockAutocompleteMinimal = () => {
   jest.mock('@synerise/ds-autocomplete', () => ({
     __esModule: true,
-    default: jest.fn(() => null),
+    default: Object.assign(
+      jest.fn(() => null),
+      { Option: () => null },
+    ),
   }));
 };

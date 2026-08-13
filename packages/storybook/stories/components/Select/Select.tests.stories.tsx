@@ -135,3 +135,22 @@ export const TagLimits: Story = {
     </Stack>
   ),
 };
+
+/** Responsive fit-to-width chips at three fixed widths (deterministic for Chromatic). */
+export const TagsResponsive: Story = {
+  render: () => (
+    <div style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
+      {[480, 280, 140].map((width) => (
+        <div key={width} style={{ width }}>
+          <Select
+            label={`Responsive (${width}px)`}
+            mode="multiple"
+            defaultValue={['a', 'b', 'c', 'd', 'e']}
+            maxTagCount="responsive"
+            options={OPTIONS}
+          />
+        </div>
+      ))}
+    </div>
+  ),
+};

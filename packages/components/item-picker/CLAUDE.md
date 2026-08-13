@@ -112,6 +112,7 @@ Current API. Generic over `ItemType extends BaseItemType` and `SectionType exten
 | `tooltip?` | `ReactNode` | — | `FormField` tooltip |
 | `tooltipConfig?` | `FormFieldCommonProps['tooltipConfig']` | — | `FormField` tooltip config |
 | `error?` | `boolean` | — | Error state on trigger and FormField |
+| `isObjectDeleted?` | `boolean` | — | Marks the selected item as deleted; renders its value text in `red-600` and drops the grey prefix-icon override |
 | `errorText?` | `FormFieldCommonProps['errorText']` | — | Preferred error message |
 | `errorMessage?` | `FormFieldCommonProps['errorText']` | — | **@deprecated** — use `errorText` |
 | `disabled?` | `boolean` | — | Disables trigger and dropdown |
@@ -166,6 +167,7 @@ Use `ItemPicker` (default) with `isNewVersion` instead.
 | `clearConfirmTitle?` | `string` | `'Please confirm'` | Popconfirm title |
 | `yesText?` / `noText?` | `string` | `'Yes'` / `'No'` | Popconfirm buttons |
 | `error?` | `boolean` | — | Error state |
+| `isObjectDeleted?` | `boolean` | — | Marks the selected item as deleted; renders its value text in `red-600` |
 | `errorMessage?` | `ReactNode` | — | Error text |
 | `disabled?` | `boolean` | — | Disabled state |
 | `hideSearchBar?` | `boolean` | — | Hide search bar |
@@ -319,6 +321,7 @@ import { ItemPickerList } from '@synerise/ds-item-picker';
  - `LIST_FOLDERS_IN_SECTIONS` — folder tiles (no items loaded yet)
 - **`ItemPickerLegacy` is marked `@deprecated`** in source with a JSDoc comment on the component itself.
 - **`errorMessage` prop** on `ItemPickerNew` is marked `@deprecated`; prefer `errorText` (from `FormFieldCommonProps`).
+- **`isObjectDeleted` prop** (on `ItemPickerNew`, `ItemPickerLegacy`, and the shared `Trigger`) flags a selected item that no longer exists. When `true`, `Trigger.styles` renders `ValueText` in `red-600` and skips the grey-600 `Prefix` icon override so the deleted state reads visually. It only affects the selected-value display — it has no effect while showing the placeholder.
 - **Several `ItemPickerTriggerProps` fields are `@deprecated`**: `clear`, `changeButtonLabel`, `clearConfirmTitle`, `yesText`, `noText` — move to `texts` object.
 - **`Props` alias** in `Trigger.types.ts` is marked `@deprecated`; use `ItemPickerTriggerProps`.
 - **Tests use Jest** (`jest.config.js` present); the package has not been migrated to Vitest.

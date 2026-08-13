@@ -50,6 +50,7 @@ import FileUploader from '@synerise/ds-file-uploader'
 | tooltip     | display a tooltip near the label (label value is required for tooltip to appear) | string                                    | -        |
 | error       | display general error                                                            | string                                    | -        |
 | retry       | when true and a file has an error, shows a retry button that re-opens the dialog | boolean                                   | -        |
+| hideSize    | hides the file size row on file items (per-file errors still render)             | boolean                                   | -        |
 | texts       | texts to display                                                                 | FileUploaderTexts                         | -        |
 | files       | uploaded files                                                                   | ExtendedFile[]                            | `[]`     |
 | accept      | accepted mime types to upload                                                    | string[]                                  | -        |

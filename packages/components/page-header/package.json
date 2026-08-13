@@ -1,6 +1,6 @@
 {
   "name": "@synerise/ds-page-header",
-  "version": "1.1.7",
+  "version": "1.1.9",
   "description": "Page-Header UI Component for the Synerise Design System",
   "license": "ISC",
   "repository": "synerise/synerise-design",
@@ -50,7 +50,6 @@
   },
   "peerDependencies": {
     "@synerise/ds-core": "*",
-    "antd": "4.24.16",
     "react": ">=16.9.0 <= 18.3.1",
     "styled-components": "^5.3.3",
     "vitest": "4"

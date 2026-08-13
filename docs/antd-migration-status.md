@@ -6,7 +6,7 @@ for the decision and rationale.
 **Status legend:** ⬜ Not started · 🟦 Branch created · 🟨 In progress · ⏸️ Blocked (waiting on another branch/merge) · 🧪 Code-complete, in QA (branch not yet merged) · ✅ Done (antd-free, merged to master) · 🗑️ Deprecate (no reimplementation) · ⏭️ Out of scope
 
 **Audit date:** 2026-06-08 · scope: `packages/components/*/src` · `ds-table` excluded.
-**Last updated:** 2026-07-07 · Tier 1 + Tier 2 merged to master; Tier 2.5 (input family — now incl. `search`) code-complete on `feature/deantd-input-autosize`, in QA integration testing. Active phase: **Tier 3** — `drawer` + `list` ported; `select` in progress on master (deferred to land after Tier 2.5); `menu` deprecated; `core` last.
+**Last updated:** 2026-08-11 · Tiers 1, 2, 2.5 and most of Tier 3 (`drawer`, `list`, `select`) are merged to master. **Tier 0 + the stale peerDeps are cleared (STOR-2342).** Only `core` (STOR-2341) is left in scope; `menu` and `alert` stay on antd as deprecated packages, `table` is permanently excluded.
 
 **Playbook:** use the **`deantd-component`** skill (`.claude/skills/deantd-component/`) for the
 per-component process (API audit → DS-native reimplementation → verify → consumer migration → MR).
@@ -129,9 +129,12 @@ Switch these to types defined by the already-migrated owning packages, not ad-ho
 | `factors` | `RefSelectProps` | `ds-autocomplete` | ✅ done (Tier 2.5) |
 | `form` | `InputProps` | `ds-input` | ✅ done (Tier 2.5) |
 | `subtle-form` | `InputProps` | `ds-input` | ✅ done (Tier 2.5) |
-| `mocks` | `PaginationProps` | `ds-pagination` (test infra) | ⬜ |
-| `completed-within` | `SizeType` | local union `'small'\|'middle'\|'large'` | ⬜ |
-| `date-picker` | `SizeType` | local union | ⬜ |
+| `mocks` | `PaginationProps` | `ds-pagination` (test infra) | ✅ done (STOR-2342) |
+| `completed-within` | `SizeType` | — | ✅ done (import already gone; peerDep dropped in STOR-2342) |
+| `date-picker` | `SizeType` | `InputSize` from `ds-input` | ✅ done (STOR-2342) |
+
+> `ds-input` now exports its `InputSize` union (`'small' \| 'middle' \| 'large'`) publicly — prefer it over
+> a local union wherever an antd `SizeType` is being replaced.
 
 ## Out of scope
 
@@ -139,13 +142,17 @@ Switch these to types defined by the already-migrated owning packages, not ad-ho
 |---|---|
 | `table` | Excluded from this initiative (tracked separately). |
 
-## Stale peerDeps — config-only cleanup (no source change)
+## Stale peerDeps — config-only cleanup (no source change) — ✅ done (STOR-2342)
 
-Declare `antd` in `package.json` but never import it. Remove the peerDep when convenient:
+Declared `antd` in `package.json` but never imported it. All cleared:
 
-`block` · `card` · `card-select` · `card-tabs` · `checkbox-tristate` · `code-area` · `collector` ·
-`color-picker` · `column-manager` · `design-system` · `field-set` · `manageable-list` · `mapping` ·
-`navbar` · `page-header` · `sidebar-object` · `tabs` · `time-picker` · `toolbar`
+`block` · `card` · `card-select` · `card-tabs` · `code-area` · `collector` · `color-picker` ·
+`column-manager` · `completed-within` · `factors` · `field-set` · `form` · `manageable-list` ·
+`mapping` · `navbar` · `page-header` · `sidebar-object` · `subtle-form` · `table-new` · `tabs` ·
+`time-picker` · `toolbar` — plus `date-picker` and `storybook` once their imports went.
+
+`checkbox-tristate` was already clean (dropped with the checkbox MR !3756). `design-system` keeps its
+peerDep: the umbrella re-exports `table`/`menu`/`alert`, which still render antd.
 
 ## Post-migration consolidation (TODO)
 
@@ -189,15 +196,12 @@ the duplicates.
 
 ## Done-check (whole initiative)
 
-- `rg -l "antd" packages/components/*/src` returns empty (excluding `ds-table`).
-- No `antd` entry remains in any `package.json` except `ds-table`.
+- `rg -l "antd" packages/components/*/src` returns only `ds-table`, `ds-menu`, `ds-alert`.
+- No `antd` entry remains in any `package.json` except those three, `ds-design-system` (umbrella) and
+  the root — which keeps antd installed so they can build.
 - Storybook visual review + unit/interaction tests green per package.
 
 > **Current-state caveat:** on **master**, `antd` still remains (legitimately) in `ds-table`
-> (permanently excluded), `ds-alert` (excluded; deprecated), and the open Tier 3 packages —
-> `ds-list`, `ds-drawer`, `ds-select`, `ds-menu` (to be deprecated, not migrated) and
-> `ds-core` (removed last). The Tier 2.5 branch (`feature/deantd-input-autosize`) additionally clears
-> `ds-input`, `ds-input-number`, `ds-autocomplete`, `ds-search` and the input-typed Tier 0 dependents — that antd
-> usage disappears from master once the branch merges. The done-check above describes the final
-> target; today the residual `antd` usage is confined to those packages plus the stale peerDeps
-> listed above.
+> (permanently excluded), `ds-menu` and `ds-alert` (both deprecated — antd stays until the packages are
+> retired), and `ds-core` (STOR-2341, in progress — removed last). Everything else is antd-free in both
+> source and `package.json`.

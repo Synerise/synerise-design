@@ -296,6 +296,23 @@ const Autocomplete = ({
   const hasDropdownContent =
     displayedOptions.length > 0 ||
     (notFoundContent !== undefined && notFoundContent !== null);
+  const dropdownOpen = isOpen && hasDropdownContent;
+
+  // ds-dropdown echoes a controlled `open` change straight back through onOpenChange
+  // (useDropdownVisibility). Honouring that echo would write the content gate into our
+  // own open state and latch the panel shut for good on an async search: the request
+  // empties the options, the echo closes us, and the arriving response can no longer
+  // reopen. Only genuine dismissals — which disagree with the value we passed down —
+  // get through.
+  const handleDropdownOpenChange = useCallback(
+    (nextOpen: boolean) => {
+      if (nextOpen === dropdownOpen) {
+        return;
+      }
+      setOpen(nextOpen);
+    },
+    [dropdownOpen, setOpen],
+  );
 
   return (
     <S.AutocompleteWrapper
@@ -317,8 +334,8 @@ const Autocomplete = ({
           iconCount={iconCount}
         >
           <Dropdown
-            open={isOpen && hasDropdownContent}
-            onOpenChange={setOpen}
+            open={dropdownOpen}
+            onOpenChange={handleDropdownOpenChange}
             disabled={isDisabled}
             placement={placement}
             size="match-trigger"

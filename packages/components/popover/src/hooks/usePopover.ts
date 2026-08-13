@@ -42,6 +42,7 @@ export const usePopover = ({
   testId = 'noTestId',
   componentId,
   returnFocus,
+  closeOnFocusOut,
   listNavigationConfig,
   getTransitionConfig = getDefaultTransitionConfig,
   zIndex,
@@ -169,6 +170,7 @@ export const usePopover = ({
       testId,
       zIndex,
       returnFocus,
+      closeOnFocusOut,
       componentId,
       arrowRef,
     }),
@@ -186,6 +188,7 @@ export const usePopover = ({
       zIndex,
       testId,
       returnFocus,
+      closeOnFocusOut,
       componentId,
     ],
   );

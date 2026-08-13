@@ -28,12 +28,12 @@ export type SelectOption = {
   value: RawValueType;
   /** antd-parity alias of `value`; some consumers read `option.key` in callbacks. */
   key?: RawValueType;
-  /** Rendered content in the dropdown row (and the selector unless `optionLabelProp` picks another field). */
+  /** Selector display, and the dropdown row too unless `children` carries its own content. */
   label?: ReactNode;
   disabled?: boolean;
   /** Native `title` on the option (hover tooltip / accessible text), mirrors antd. */
   title?: ReactNode;
-  /** antd parity: raw children of `<Select.Option>`; some consumers read `option.children`. */
+  /** Raw children of `<Select.Option>` — the dropdown row content (antd parity). */
   children?: ReactNode;
   /** antd parity: forwarded to the rendered option row. */
   style?: CSSProperties;
@@ -110,8 +110,12 @@ export type SelectProps<VT extends SelectValue = SelectValue> = {
   /** antd parity: tab index forwarded to the selector / search input. */
   tabIndex?: number;
 
-  /** Max chips rendered in `multiple` / `tags` mode before the rest collapse into an overflow chip. */
-  maxTagCount?: number;
+  /**
+   * Max chips rendered in `multiple` / `tags` mode before the rest collapse into
+   * an overflow chip. `'responsive'` (antd parity) instead fits as many chips as
+   * the selector width allows on a single line and recomputes on resize.
+   */
+  maxTagCount?: number | 'responsive';
   /** Max characters shown per chip label; longer labels are truncated with an ellipsis. */
   maxTagTextLength?: number;
   /**

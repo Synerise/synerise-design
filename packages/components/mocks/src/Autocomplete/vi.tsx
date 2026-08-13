@@ -9,6 +9,21 @@ type MockAutocompleteProps = {
   'data-testid'?: string;
 };
 
+type MockOptionProps = {
+  value?: string;
+  children?: React.ReactNode;
+};
+
+// Consumers reach options through `Autocomplete.Option`, so the mocked default has to
+// carry it — without this, mocking the package makes any such tree fail to render.
+const MockOption = ({ value, children }: MockOptionProps) => (
+  <div data-testid="autocomplete-option" role="option" data-value={value}>
+    {children}
+  </div>
+);
+
+MockOption.displayName = 'Autocomplete.Option';
+
 /**
  * Factory function for Autocomplete mock.
  * Mocks the @synerise/ds-autocomplete package.
@@ -20,8 +35,8 @@ type MockAutocompleteProps = {
  * vi.mock('@synerise/ds-autocomplete', autocompleteMockFactory);
  * ```
  */
-export const autocompleteMockFactory = () => ({
-  default: vi.fn(
+export const autocompleteMockFactory = () => {
+  const Autocomplete = vi.fn(
     ({
       children,
       value,
@@ -40,8 +55,10 @@ export const autocompleteMockFactory = () => ({
         {children}
       </div>
     ),
-  ),
-});
+  );
+
+  return { default: Object.assign(Autocomplete, { Option: MockOption }) };
+};
 
 /**
  * Factory function for minimal Autocomplete mock.
@@ -52,5 +69,8 @@ export const autocompleteMockFactory = () => ({
  * ```
  */
 export const autocompleteMinimalMockFactory = () => ({
-  default: vi.fn(() => null),
+  default: Object.assign(
+    vi.fn(() => null),
+    { Option: () => null },
+  ),
 });

@@ -145,4 +145,53 @@ describe('FileUploader', () => {
     // ASSERT
     expect(getByText(ERROR_TEXT)).toBeTruthy();
   });
+
+  it('should render file size by default', () => {
+    // ARRANGE
+    const { getByText } = renderWithProvider(
+      <FileUploader
+        mode="single"
+        files={[{ file }]}
+        accept={['image/*']}
+        texts={defaultTexts}
+      />,
+    );
+
+    // ASSERT
+    expect(getByText(/Size:/)).toBeTruthy();
+  });
+
+  it('should not render file size when hideSize is set', () => {
+    // ARRANGE
+    const { queryByText } = renderWithProvider(
+      <FileUploader
+        mode="single"
+        files={[{ file }]}
+        accept={['image/*']}
+        texts={defaultTexts}
+        hideSize
+      />,
+    );
+
+    // ASSERT
+    expect(queryByText(/Size:/)).toBeFalsy();
+  });
+
+  it('should render individual file error even when hideSize is set', () => {
+    // ARRANGE
+    const ERROR_TEXT = 'SOME ERROR HAPPENED';
+
+    const { getByText } = renderWithProvider(
+      <FileUploader
+        mode="single"
+        files={[{ file, error: ERROR_TEXT }]}
+        accept={['image/*']}
+        texts={defaultTexts}
+        hideSize
+      />,
+    );
+
+    // ASSERT
+    expect(getByText(ERROR_TEXT)).toBeTruthy();
+  });
 });

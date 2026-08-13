@@ -93,7 +93,7 @@ export const Placeholder = styled.div<{ size: ItemPickerSize }>`
   }
 `;
 
-export const Value = styled.div`
+export const Value = styled.div<{ isObjectDeleted?: boolean }>`
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -103,12 +103,16 @@ export const Value = styled.div`
   max-width: 100%;
   overflow: hidden;
   padding: 0 0 0 4px;
-  ${Prefix} {
-    svg {
-      fill: var(--ds-form-icon-color-default);
-      color: var(--ds-form-icon-color-default);
-    }
-  }
+  ${(props) =>
+    !props.isObjectDeleted &&
+    css`
+      ${Prefix} {
+        svg {
+          fill: var(--ds-form-icon-color-default);
+          color: var(--ds-form-icon-color-default);
+        }
+      }
+    `}
 `;
 
 export const Trigger = styled.div<{ size: ItemPickerSize }>`
@@ -230,8 +234,13 @@ export const ChangeButtonWrapper = styled.div`
   margin: 0 4px 0 8px;
 `;
 
-export const ValueText = styled.span`
+export const ValueText = styled.span<{ isObjectDeleted?: boolean }>`
   text-overflow: ellipsis;
   overflow: hidden;
   white-space: nowrap;
+  ${(props) =>
+    props.isObjectDeleted &&
+    css`
+      color: var(--ds-color-text-danger-default);
+    `}
 `;

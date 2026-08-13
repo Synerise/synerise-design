@@ -58,6 +58,7 @@ Full-width drop-zone uploader. `forwardRef<FileUploaderRef, FileUploaderProps>`.
 | `disabled` | `boolean` | `undefined` | Disables the drop zone and file rows |
 | `error` | `string` | `undefined` | Displays a global error message below the drop zone |
 | `retry` | `boolean` | `undefined` | When `true` and a file has an error, shows a Retry button that re-opens the file dialog |
+| `hideSize` | `boolean` | `undefined` | Hides the file size row on file items (per-file errors still render). Useful for backend placeholders with `size: 0` |
 | `label` | `string` | `undefined` | Label above the drop zone |
 | `tooltip` | `string` | `undefined` | Tooltip (ℹ icon) shown next to the label (requires `label`) |
 | `description` | `string` | `undefined` | Hint text below the error area |

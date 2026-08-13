@@ -19,15 +19,19 @@ export const toArray = (value: SelectValue): RawValueType[] => {
   return Array.isArray(value) ? value : [value];
 };
 
-/** Built-in filter: case-insensitive substring on `optionFilterProp` (or label/value). */
+/** Built-in filter: case-insensitive substring on `optionFilterProp` (or label/children/value). */
 export const defaultFilter =
   (optionFilterProp?: string): FilterOptionFn =>
   (input, option) => {
+    // antd parity: `optionFilterProp` names the option field to match against
+    // (`title`, `children`, `value`, …); without it, fall back to the rendered
+    // label, then children. Non-string fields (JSX nodes) match on the value.
+    const candidates = optionFilterProp
+      ? [(option as Record<string, unknown>)[optionFilterProp]]
+      : [option.label, option.children];
     const haystack =
-      optionFilterProp === 'value'
-        ? String(option.value)
-        : typeof option.label === 'string'
-          ? option.label
-          : String(option.value);
+      candidates.find(
+        (candidate): candidate is string => typeof candidate === 'string',
+      ) ?? String(option.value);
     return haystack.toLowerCase().includes(input.toLowerCase());
   };

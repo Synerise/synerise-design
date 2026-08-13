@@ -1,9 +1,12 @@
-import { RadioChangeEvent } from 'antd/lib/radio';
 import React from 'react';
 
 import { Meta, StoryObj } from '@storybook/react-vite';
 import { Label } from '@synerise/ds-input';
-import Radio, { RadioGroupProps, RadioProps } from '@synerise/ds-radio';
+import Radio, {
+  RadioChangeEvent,
+  RadioGroupProps,
+  RadioProps,
+} from '@synerise/ds-radio';
 
 import { fixedWrapper300 } from '../../utils';
 

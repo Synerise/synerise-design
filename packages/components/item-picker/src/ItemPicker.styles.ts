@@ -1,5 +1,5 @@
 import styled from 'styled-components';
 
-export const ItemPickerWrapper = styled.div<{ disabled?: boolean }>`
+export const ItemPickerWrapper = styled.div`
   position: relative;
 `;

@@ -18,6 +18,7 @@ src/
  modules.d.ts — imports @testing-library/jest-dom
  hooks/
   useSelectOptions.ts — resolve options (prop → children), client filtering, tags create-row
+  useResponsiveTagCount.ts — maxTagCount="responsive": fit-to-width chip count (ResizeObserver)
  components/
   OptionList.tsx — dropdown overlay: loading / empty / scrollable listbox of options
   SelectorContent.tsx — selector inner content: chips / selected label / placeholder + search input
@@ -86,9 +87,10 @@ Kept so antd-era consumers need no change: `searchValue`, `onClear`, `onClick`, 
 `mode`/`options`/`showSearch`/`filterOption`/`allowClear`/`open`/`onChange`/`onSearch`/… surface.
 `SelectHandler` type and the `SelectStyles.Selector` styled export are re-exported for parity.
 
-`maxTagCount` (collapse extra chips into a `+N` overflow chip), `maxTagTextLength` (truncate chip
-labels) and `onPopupScroll` are fully implemented. `listItemHeight`, `dropdownAlign` and
-`defaultActiveFirstOption` are accepted for compatibility but have **no runtime effect**.
+`maxTagCount` (`number | 'responsive'` — collapse extra chips into a `+N` overflow chip, or fit them
+to the selector width on one line), `maxTagTextLength` (truncate chip labels) and `onPopupScroll` are
+fully implemented. `listItemHeight`, `dropdownAlign` and `defaultActiveFirstOption` are accepted for
+compatibility but have **no runtime effect**.
 
 ## Usage patterns
 
@@ -151,6 +153,12 @@ Class hooks are `ds-select-*` (`.ds-select`, `.ds-select-selection-item`, `.ds-s
 - **Option resolution** — `useSelectOptions` returns `resolvedOptions` (from `options` prop, else
   `getOptionsFromChildren(children)`) and `displayedOptions` (after client filtering and, in `tags`
   mode, a create-row prepended for the typed text). `filterOption={false}` disables local filtering.
+- **Row vs selector display (antd parity)** — the dropdown row renders `option.children ?? label ??
+  value`, the selector renders the field named by `optionLabelProp` (`label`, `children`, `value`,
+  `title`, …) and falls back to `label`. So `<Option label={compact}>{rich}</Option>` shows `rich` in
+  the list and `compact` in the selector, while options-as-data (no children) uses `label` for both.
+- **Filtering** — `defaultFilter` matches the field named by `optionFilterProp` (`title`, `children`,
+  `value`, …), else `label` then `children`; non-string fields (JSX nodes) fall back to the value.
 - **`Option.value` is optional** — falls back to the element's React `key` (antd parity); callbacks
   expose `option.key`.
 - **Keyboard nav is hand-rolled (not ds-dropdown's)** — Select is a *combobox*: focus stays on the
@@ -163,6 +171,13 @@ Class hooks are `ds-select-*` (`.ds-select`, `.ds-select-selection-item`, `.ds-s
   selecting an option / scrolling isn't treated as a blur (needed by `subtle-form`'s revert-on-blur).
 - **`readOnly` is implemented via `disabled`** — both flags are ORed into `isDisabled`; the visual
   distinction comes from the `$readOnly` transient prop on `Selector`.
+- **`maxTagCount="responsive"`** — `useResponsiveTagCount` measures an off-flow ghost row
+  (`TagMeasureRow`, one hidden chip per value + a worst-case `+N` chip) rather than the visible
+  chips: a hidden chip would measure 0, and the ghost's width never depends on the count derived
+  from it, so the `ResizeObserver` (on the chip row *and* the ghosts, for font/label changes) can't
+  feed itself. The row switches to `nowrap` and reserves 30 px of caret room unless disabled/readOnly.
+  Unmeasurable layout (SSR, `display: none`, no `ResizeObserver` → `window.resize` fallback) degrades
+  to showing every chip; a lone oversized chip ellipsis-clips instead of collapsing into `+ 1`.
 - **Controlled/uncontrolled** — `value`/`open`/`searchValue` are controlled when defined, else backed
   by internal state; `onSearch` still fires when `searchValue` is controlled.
 - **antd-free; no LESS** — styling is entirely styled-components. The old antd-era LESS

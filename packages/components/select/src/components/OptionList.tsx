@@ -106,7 +106,10 @@ export const OptionList = ({
                   title={
                     typeof option.title === 'string' ? option.title : undefined
                   }
-                  text={option.label ?? option.value}
+                  // antd parity: the dropdown row renders the option's children;
+                  // `label` is the selector display (see `optionLabelProp`) and only
+                  // stands in for the row when there are no children (options-as-data).
+                  text={option.children ?? option.label ?? option.value}
                   style={option.style}
                   disabled={option.disabled}
                   onMouseEnter={() => onOptionActivate(index)}

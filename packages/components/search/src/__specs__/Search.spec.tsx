@@ -334,3 +334,107 @@ describe('Search with dropdown', () => {
     expect(onClear).toHaveBeenCalledTimes(1);
   });
 });
+
+const SEARCH_WIDTH = 300;
+const EXPANDED = `${SEARCH_WIDTH}px`;
+const COLLAPSED = '32px';
+
+const sharedProps = {
+  clearTooltip: 'clear',
+  dropdownMaxHeight,
+  onClear: () => {},
+  onParameterValueChange: () => {},
+  onValueChange: () => {},
+  parameters: parametersList,
+  parametersDisplayProps,
+  parameterValue: '',
+  placeholder: PLACEHOLDER,
+  recent,
+  recentDisplayProps,
+  searchWidth: SEARCH_WIDTH,
+  suggestions,
+  suggestionsDisplayProps,
+  textLookupConfig,
+  value: '',
+};
+
+const wrapperWidth = (container: HTMLElement): string =>
+  window.getComputedStyle(
+    container.querySelector('.SearchWrapper') as HTMLElement,
+  ).width;
+
+describe('Search expanded state', () => {
+  it('should render collapsed when mounted without a value', () => {
+    const { container } = renderWithProvider(<Search {...sharedProps} />);
+
+    expect(wrapperWidth(container)).toBe(COLLAPSED);
+  });
+
+  it('should render expanded when mounted with a value', () => {
+    const { container } = renderWithProvider(
+      <Search {...sharedProps} value="TestValue" />,
+    );
+
+    expect(wrapperWidth(container)).toBe(EXPANDED);
+  });
+
+  it('should render expanded when mounted with alwaysExpanded', () => {
+    const { container } = renderWithProvider(
+      <Search {...sharedProps} alwaysExpanded />,
+    );
+
+    expect(wrapperWidth(container)).toBe(EXPANDED);
+  });
+
+  it('should render expanded when mounted with an active parameter', () => {
+    const { container } = renderWithProvider(
+      <Search {...sharedProps} parameterValue="City" />,
+    );
+
+    expect(wrapperWidth(container)).toBe(EXPANDED);
+  });
+
+  it('should expand when the value arrives after mount', () => {
+    const { container, rerender } = renderWithProvider(
+      <Search {...sharedProps} />,
+    );
+
+    expect(wrapperWidth(container)).toBe(COLLAPSED);
+
+    rerender(<Search {...sharedProps} value="TestValue" />);
+
+    expect(wrapperWidth(container)).toBe(EXPANDED);
+  });
+
+  it('should stay expanded after clearing a value it was mounted with', () => {
+    const onClear = vi.fn();
+    const { container, rerender } = renderWithProvider(
+      <Search {...sharedProps} onClear={onClear} value="TestValue" />,
+    );
+
+    userEvent.click(screen.getByTestId('clear'));
+    expect(onClear).toHaveBeenCalledTimes(1);
+
+    rerender(<Search {...sharedProps} onClear={onClear} value="" />);
+
+    expect(wrapperWidth(container)).toBe(EXPANDED);
+  });
+
+  it('should still collapse on outside click when there is no value', () => {
+    const { container } = renderWithProvider(
+      <div>
+        <button>outside</button>
+        <Search {...sharedProps} />
+      </div>,
+    );
+
+    fireEvent.click(screen.getByTestId('btn'));
+    expect(wrapperWidth(container)).toBe(EXPANDED);
+
+    const outside = screen.getByText('outside');
+    fireEvent.mouseDown(outside);
+    fireEvent.mouseUp(outside);
+
+    expect(wrapperWidth(container)).toBe(COLLAPSED);
+  });
+});

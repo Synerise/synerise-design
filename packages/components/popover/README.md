@@ -40,6 +40,7 @@ import Popover, { PopoverTrigger, PopoverContent } from '@synerise/ds-popover'
 | modal | Trap focus inside popover | `boolean` | `false` |
 | initialOpen | Uncontrolled initial open state | `boolean` | `false` |
 | returnFocus | Return focus to trigger on close | `boolean` | `true` |
+| closeOnFocusOut | Close the popover when focus leaves it (e.g. tabbing out); Escape and outside-press still dismiss | `boolean` | `true` |
 | testId | Sets data-testid on trigger and content | `string` | `'noTestId'` |
 | componentId | Sets data-popover-{id} attribute on content | `string` | - |
 | zIndex | CSS z-index of floating panel | `number` | `theme.variables['zindex-dropdown']` |

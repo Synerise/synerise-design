@@ -1,7 +1,7 @@
-import React from 'react';
+import React, { useCallback, useState } from 'react';
 
 import { renderWithProvider } from '@synerise/ds-core';
-import { fireEvent, screen } from '@testing-library/react';
+import { act, fireEvent, screen } from '@testing-library/react';
 
 import Autocomplete from '../index';
 
@@ -12,6 +12,7 @@ const DESC = 'desc';
 const ERROR = 'error';
 const RED = 'red';
 const COLORS = ['red', 'green', 'blue'];
+const toOption = (value: string) => ({ value });
 
 const originalOffsetHeight = Object.getOwnPropertyDescriptor(
   HTMLElement.prototype,
@@ -225,5 +226,244 @@ describe('Autocomplete', () => {
     expect(screen.getByTestId('autocomplete-not-found')).toHaveTextContent(
       'No data',
     );
+  });
+
+  it('should keep the overlay unmounted when open with nothing to show', () => {
+    renderWithProvider(<Autocomplete open value="" options={[]} />);
+    expect(screen.queryByTestId('autocomplete-option')).toBeNull();
+    expect(screen.queryByTestId('autocomplete-not-found')).toBeNull();
+  });
+
+  it('should let the options prop win over Option children', () => {
+    renderWithProvider(
+      <Autocomplete open value="" options={[{ value: RED }]}>
+        <Option value="green">green</Option>
+        <Option value="blue">blue</Option>
+      </Autocomplete>,
+    );
+
+    const options = screen.getAllByTestId('autocomplete-option');
+    expect(options).toHaveLength(1);
+    expect(options[0]).toHaveTextContent(RED);
+  });
+});
+
+describe('Autocomplete — option extraction from children', () => {
+  it('should read options wrapped in a fragment', () => {
+    renderWithProvider(
+      <Autocomplete open value="">
+        <>
+          {COLORS.map((color) => (
+            <Option key={color} value={color}>
+              {color}
+            </Option>
+          ))}
+        </>
+      </Autocomplete>,
+    );
+
+    expect(screen.getAllByTestId('autocomplete-option')).toHaveLength(
+      COLORS.length,
+    );
+  });
+
+  it('should read options coming from a second copy of the package', () => {
+    // A duplicate module instance in a consumer bundle yields a different function
+    // object, which reference equality alone would silently drop.
+    const DuplicateOption = (_props: {
+      value: string;
+      children?: React.ReactNode;
+    }): null => null;
+    DuplicateOption.displayName = 'Autocomplete.Option';
+
+    renderWithProvider(
+      <Autocomplete open value="">
+        {COLORS.map((color) => (
+          <DuplicateOption key={color} value={color}>
+            {color}
+          </DuplicateOption>
+        ))}
+      </Autocomplete>,
+    );
+
+    expect(screen.getAllByTestId('autocomplete-option')).toHaveLength(
+      COLORS.length,
+    );
+  });
+
+  it('should fall back to the key when an option declares no value', () => {
+    const onSelect = vi.fn();
+    renderWithProvider(
+      <Autocomplete open value="" onSelect={onSelect}>
+        {/* eslint-disable-next-line @typescript-eslint/no-explicit-any */}
+        <Option key={RED} {...({} as any)}>
+          {RED}
+        </Option>
+      </Autocomplete>,
+    );
+
+    fireEvent.click(screen.getByTestId('autocomplete-option'));
+    expect(onSelect).toHaveBeenCalledWith(RED);
+  });
+
+  it('should ignore children that are not options', () => {
+    renderWithProvider(
+      <Autocomplete open value="">
+        <div>not an option</div>
+        <Option value={RED}>{RED}</Option>
+      </Autocomplete>,
+    );
+
+    expect(screen.getAllByTestId('autocomplete-option')).toHaveLength(1);
+  });
+});
+
+describe('Autocomplete — filterOption', () => {
+  it('should narrow options against the input value when enabled', () => {
+    renderWithProvider(
+      <Autocomplete
+        open
+        value={RED}
+        filterOption
+        options={COLORS.map(toOption)}
+      />,
+    );
+
+    const options = screen.getAllByTestId('autocomplete-option');
+    expect(options).toHaveLength(1);
+    expect(options[0]).toHaveTextContent(RED);
+  });
+
+  it('should use a custom predicate when given one', () => {
+    renderWithProvider(
+      <Autocomplete
+        open
+        value="anything"
+        filterOption={(_input, option) => option.value !== RED}
+        options={COLORS.map(toOption)}
+      />,
+    );
+
+    expect(screen.getAllByTestId('autocomplete-option')).toHaveLength(
+      COLORS.length - 1,
+    );
+  });
+
+  it('should render every option when filtering is off', () => {
+    renderWithProvider(
+      <Autocomplete open value="zzz" options={COLORS.map(toOption)} />,
+    );
+
+    expect(screen.getAllByTestId('autocomplete-option')).toHaveLength(
+      COLORS.length,
+    );
+  });
+});
+
+/**
+ * The server-side search shape that regressed: visibility is uncontrolled, `value` is
+ * controlled by the parent, and the options are fetched per keystroke — the request
+ * empties the previous result set and the response refills it. Every other test in this
+ * file forces `open`, which hides the interaction between the `hasDropdownContent` gate
+ * and ds-dropdown's open-state echo.
+ */
+type SearchHandle = { respond: () => void };
+
+const AsyncSearch = ({
+  handle,
+  results,
+}: {
+  handle: SearchHandle;
+  results: string[];
+}): JSX.Element => {
+  const [value, setValue] = useState('');
+  const [options, setOptions] = useState<string[]>([]);
+
+  const handleChange = useCallback(
+    (nextValue: string) => {
+      setValue(nextValue);
+      setOptions([]);
+      handle.respond = () => setOptions(results);
+    },
+    [handle, results],
+  );
+
+  return (
+    <Autocomplete value={value} onChange={handleChange}>
+      {value !== '' &&
+        options.map((option) => (
+          <Option key={option} value={option}>
+            {option}
+          </Option>
+        ))}
+    </Autocomplete>
+  );
+};
+
+describe('Autocomplete — asynchronous suggestions', () => {
+  // Real round-trips outlast the dropdown's 150ms exit transition, so the panel genuinely
+  // unmounts in the gap between request and response. Waiting here reproduces that;
+  // responding synchronously would leave it mounted and hide the bug.
+  const typeAndRespond = async (
+    input: HTMLElement,
+    handle: SearchHandle,
+    query: string,
+  ) => {
+    fireEvent.change(input, { target: { value: query } });
+    await act(async () => {
+      await new Promise((resolve) => {
+        setTimeout(resolve, 250);
+      });
+    });
+    act(() => handle.respond());
+  };
+
+  it('should show options that arrive after each keystroke', async () => {
+    const handle: SearchHandle = { respond: () => undefined };
+    renderWithProvider(<AsyncSearch handle={handle} results={COLORS} />);
+
+    const input = screen.getByRole('combobox');
+    fireEvent.focus(input);
+
+    await typeAndRespond(input, handle, 'r');
+    expect(screen.getAllByTestId('autocomplete-option')).toHaveLength(
+      COLORS.length,
+    );
+
+    // The second keystroke empties the list before the response refills it. The panel
+    // must reopen — this is where the production regression latched it shut for good.
+    await typeAndRespond(input, handle, 're');
+    expect(screen.getAllByTestId('autocomplete-option')).toHaveLength(
+      COLORS.length,
+    );
+
+    await typeAndRespond(input, handle, 'red');
+    expect(screen.getAllByTestId('autocomplete-option')).toHaveLength(
+      COLORS.length,
+    );
+  });
+
+  it('should stay dismissable while suggestions are showing', async () => {
+    const handle: SearchHandle = { respond: () => undefined };
+    renderWithProvider(<AsyncSearch handle={handle} results={COLORS} />);
+
+    const input = screen.getByRole('combobox');
+    fireEvent.focus(input);
+    await typeAndRespond(input, handle, 'r');
+    expect(screen.getAllByTestId('autocomplete-option')).toHaveLength(
+      COLORS.length,
+    );
+
+    // A real dismissal disagrees with the `open` we passed down, so it must survive the
+    // echo filter that the fix above installs. Escape is covered by the
+    // `EscapeDismissesThePanel` story — jsdom does not deliver floating-ui's escape
+    // handling, so it cannot be asserted here.
+    fireEvent.pointerDown(document.body);
+    await act(async () => {
+      await new Promise((resolve) => {
+        setTimeout(resolve, 250);
+      });
+    });
+    expect(screen.queryAllByTestId('autocomplete-option')).toHaveLength(0);
   });
 });
