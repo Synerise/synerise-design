@@ -839,3 +839,42 @@ const buildItems = (nodes) =>
     );
   },
 };
+
+/**
+ * A sub-menu long enough to exceed any fixed height cap — every item must stay visible.
+ * The expanded `SubMenuContainer` animates its grid track to `1fr`, so it settles at the
+ * sub-menu's own height instead of a hardcoded ceiling that would clip the tail.
+ */
+export const WithLongSubMenu: Story = {
+  parameters: {
+    controls: { disable: true },
+    docs: {
+      source: {
+        code: `<ListWrapper>
+  <ListItem
+    defaultSubMenuOpen
+    subMenu={Array.from({ length: 40 }, (_, index) => ({
+      itemKey: \`sub-\${index}\`,
+      text: \`Sub item \${index + 1}\`,
+    }))}
+  >
+    Parent with 40 children
+  </ListItem>
+</ListWrapper>;`,
+      },
+    },
+  },
+  render: () => (
+    <ListWrapper>
+      <ListItem
+        defaultSubMenuOpen
+        subMenu={Array.from({ length: 40 }, (_, index) => ({
+          itemKey: `sub-${index}`,
+          text: `Sub item ${index + 1}`,
+        }))}
+      >
+        Parent with 40 children
+      </ListItem>
+    </ListWrapper>
+  ),
+};
