@@ -49,6 +49,41 @@ export const dateStringTimeZoneParts = (dateTimeIsoString: string) => {
   };
 };
 
+/** The local fields of a date, moved into the UTC fields of a new one. */
+const asUtcFields = (wallClock: Date): Date =>
+  new Date(
+    Date.UTC(
+      wallClock.getFullYear(),
+      wallClock.getMonth(),
+      wallClock.getDate(),
+      wallClock.getHours(),
+      wallClock.getMinutes(),
+      wallClock.getSeconds(),
+      wallClock.getMilliseconds(),
+    ),
+  );
+
+/**
+ * Offset of `timeZone` at the given wall clock in that zone.
+ *
+ * `getTimezoneOffset` reads its date argument's *UTC* fields as the wall clock to look up, so a
+ * date holding the wall clock in its local fields has to be re-based first: passing it directly
+ * asks for the offset at `wallClock - browserOffset` instead, which within that distance of a
+ * DST transition returns the offset from the wrong side of the jump.
+ */
+const getOffsetAtWallClock = (wallClock: Date, timeZone: string): number =>
+  getTimezoneOffset(timeZone, asUtcFields(wallClock));
+
+/**
+ * The wall clock `timeZone` shows at a real instant.
+ *
+ * `utcToZonedTime` resolves this directly from the instant, unlike `getTimezoneOffset`, which
+ * answers for a wall clock and so cannot distinguish the two sides of a transition (nor an hour
+ * a spring-forward skips) when all it is given is the instant.
+ */
+const getWallClockAtInstant = (instant: Date, timeZone: string): Date =>
+  utcToZonedTime(instant, timeZone);
+
 export const getLocalDateInTimeZone = (
   dateIsoString: string,
   timezone: string,
@@ -57,15 +92,16 @@ export const getLocalDateInTimeZone = (
     dateStringTimeZoneParts(dateIsoString);
 
   const localDate = new Date(dateTimeString);
-  const localTimezoneOffset = getTimezoneOffset(timezone, localDate); // +2
+  // A fixed offset like "-04:00" has no transitions, so it can be read off any date.
   const dateTimezoneOffset = offsetString
     ? getTimezoneOffset(offsetString, localDate)
     : 0; // -4
+  // The value denotes exactly one instant, so the wall clock is whatever the zone shows there.
+  const instant = new Date(
+    asUtcFields(localDate).getTime() - dateTimezoneOffset,
+  );
 
-  const offsetDiff = localTimezoneOffset - dateTimezoneOffset;
-  localDate.setMilliseconds(localDate.getMilliseconds() + offsetDiff);
-
-  return localDate;
+  return getWallClockAtInstant(instant, timezone);
 };
 
 const pad = (num: number) => (num < 10 ? '0' : '') + num;
@@ -75,7 +111,9 @@ export function toIsoString(date: Date, timeZone: string | undefined = 'UTC') {
     return date.toISOString();
   }
 
-  const timeZoneOffset = getTimezoneOffset(timeZone, date);
+  // `date` holds a wall clock of `timeZone` in its local fields, so the offset is the one that
+  // zone has at that wall clock.
+  const timeZoneOffset = getOffsetAtWallClock(date, timeZone);
   const dif = timeZoneOffset >= 0 ? '+' : '-';
 
   const tzHours = pad(Math.floor(Math.abs(timeZoneOffset) / 60 / 60 / 1000));
