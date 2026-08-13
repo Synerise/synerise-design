@@ -1,7 +1,7 @@
-import React, { createRef } from 'react';
+import React, { createRef, useState } from 'react';
 
-import { renderWithProvider } from '@synerise/ds-core';
-import { fireEvent, screen, waitFor } from '@testing-library/react';
+import { closeAllOverlays, renderWithProvider } from '@synerise/ds-core';
+import { act, fireEvent, screen, waitFor } from '@testing-library/react';
 
 import Modal from './Modal';
 import { type ModalRef } from './Modal.types';
@@ -425,6 +425,137 @@ describe('Modal', () => {
       expect(
         screen.getByRole('button', { name: 'Dismiss' }),
       ).toBeInTheDocument();
+    });
+  });
+
+  describe('closeAllOverlays', () => {
+    it('closes an open modal through onCancel', async () => {
+      const onCancel = vi.fn();
+      renderWithProvider(<Modal open onCancel={onCancel} title="t" />);
+
+      await act(async () => {
+        await closeAllOverlays();
+      });
+
+      expect(onCancel).toHaveBeenCalledTimes(1);
+      expect(screen.getByTestId('ds-modal')).not.toBeVisible();
+    });
+
+    it('closes a modal that has no onCancel', async () => {
+      renderWithProvider(<Modal open title="t" />);
+
+      await act(async () => {
+        await closeAllOverlays();
+      });
+
+      expect(screen.getByTestId('ds-modal')).not.toBeVisible();
+    });
+
+    it('awaits an async onCancel before closing', async () => {
+      const onCancel = vi.fn().mockResolvedValue(undefined);
+      renderWithProvider(<Modal open onCancel={onCancel} title="t" />);
+
+      await act(async () => {
+        await closeAllOverlays();
+      });
+
+      expect(onCancel).toHaveBeenCalledTimes(1);
+      expect(screen.getByTestId('ds-modal')).not.toBeVisible();
+    });
+
+    it('closes every open modal', async () => {
+      const onCancelFirst = vi.fn();
+      const onCancelSecond = vi.fn();
+      renderWithProvider(
+        <>
+          <Modal open onCancel={onCancelFirst} title="first" />
+          <Modal open onCancel={onCancelSecond} title="second" />
+        </>,
+      );
+
+      await act(async () => {
+        await closeAllOverlays();
+      });
+
+      expect(onCancelFirst).toHaveBeenCalledTimes(1);
+      expect(onCancelSecond).toHaveBeenCalledTimes(1);
+    });
+
+    it('leaves modals open when another kind is targeted', async () => {
+      const onCancel = vi.fn();
+      renderWithProvider(<Modal open onCancel={onCancel} title="t" />);
+
+      await act(async () => {
+        await closeAllOverlays({ kinds: ['dropdown'] });
+      });
+
+      expect(onCancel).not.toHaveBeenCalled();
+      expect(screen.getByTestId('ds-modal')).toBeVisible();
+    });
+
+    it('does not close twice when called repeatedly', async () => {
+      const onCancel = vi.fn();
+      renderWithProvider(<Modal open onCancel={onCancel} title="t" />);
+
+      await act(async () => {
+        await closeAllOverlays();
+        await closeAllOverlays();
+      });
+
+      expect(onCancel).toHaveBeenCalledTimes(1);
+    });
+
+    it('restores focus to the previously focused element', async () => {
+      const outsideButton = document.createElement('button');
+      document.body.appendChild(outsideButton);
+      outsideButton.focus();
+
+      renderWithProvider(
+        <Modal open onCancel={vi.fn()} title="restore focus">
+          <button>Inside</button>
+        </Modal>,
+      );
+
+      await act(async () => {
+        await closeAllOverlays();
+      });
+
+      await waitFor(() => {
+        expect(document.activeElement).toBe(outsideButton);
+      });
+
+      document.body.removeChild(outsideButton);
+    });
+
+    it('stays closed when the parent re-renders with an inline afterClose', async () => {
+      const Wrapper = () => {
+        const [, forceRender] = useState(0);
+
+        return (
+          <>
+            <button onClick={() => forceRender((count) => count + 1)}>
+              rerender
+            </button>
+            <Modal open title="t" afterClose={() => undefined} />
+          </>
+        );
+      };
+      renderWithProvider(<Wrapper />);
+
+      await act(async () => {
+        await closeAllOverlays();
+      });
+      expect(screen.getByTestId('ds-modal')).not.toBeVisible();
+
+      fireEvent.click(screen.getByRole('button', { name: 'rerender' }));
+
+      expect(screen.getByTestId('ds-modal')).not.toBeVisible();
+    });
+
+    it('does nothing when no modal is open', async () => {
+      renderWithProvider(<Modal title="t" onCancel={vi.fn()} />);
+
+      await expect(closeAllOverlays()).resolves.toBeUndefined();
     });
   });
 });
