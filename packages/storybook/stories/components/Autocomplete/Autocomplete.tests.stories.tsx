@@ -1,3 +1,4 @@
+import React from 'react';
 import { expect, fn, userEvent, waitFor, within } from 'storybook/test';
 
 import type { Meta, StoryObj } from '@storybook/react-vite';
@@ -5,6 +6,10 @@ import Autocomplete from '@synerise/ds-autocomplete';
 import type { AutocompleteProps } from '@synerise/ds-autocomplete';
 
 import { fixedWrapper200, fixedWrapper400 } from '../../utils';
+import {
+  AutocompleteWithAsyncState,
+  AutocompleteWithRichOptions,
+} from './Autocomplete.data';
 import { default as DefaultMeta, Primary } from './Autocomplete.stories';
 
 const meta: Meta<AutocompleteProps> = {
@@ -192,6 +197,33 @@ export const SelectsWithKeyboard: StoryObj<AutocompleteProps> = {
   },
 };
 
+// Regression: with a server-side search, every keystroke empties the option list until
+// the response lands. That empty window closed the panel and — because ds-dropdown echoes
+// the controlled `open` back through onOpenChange — also latched Autocomplete's own open
+// state shut, so the arriving suggestions could never reopen it. Each keystroke here must
+// end with the panel open again.
+export const AsyncSuggestions: StoryObj<AutocompleteProps> = {
+  ...Primary,
+  render: (args) => <AutocompleteWithAsyncState {...args} />,
+  args: { ...eventArgs },
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+    const input = canvas.getByRole('combobox');
+    await userEvent.click(input);
+
+    // Type one character at a time; the panel must come back after every one, not just
+    // the first — the production failure only appeared from the second keystroke on.
+    for (const character of ['p', 'o', 's']) {
+      await userEvent.type(input, character);
+      await waitFor(() =>
+        expect(
+          canvas.getAllByTestId('autocomplete-option').length,
+        ).toBeGreaterThan(0),
+      );
+    }
+  },
+};
+
 // Regression: clicking the input while the panel is already open must NOT toggle
 // it shut. Previously ds-dropdown's trigger-click toggled the (focus-/type-)opened
 // panel closed, which produced the open→close flicker on (re)click.
@@ -220,5 +252,67 @@ export const ClickingOpenInputKeepsItOpen: StoryObj<AutocompleteProps> = {
     expect(canvas.getAllByTestId('autocomplete-option').length).toBeGreaterThan(
       0,
     );
+  },
+};
+
+// Escape must still dismiss the panel. Autocomplete filters out the open-state change
+// ds-dropdown echoes back at it, and that filter must not swallow a real dismissal.
+// Only assertable here: jsdom does not deliver floating-ui's escape handling, so the
+// unit spec covers the outside-press path instead.
+export const EscapeDismissesThePanel: StoryObj<AutocompleteProps> = {
+  ...Primary,
+  args: { ...eventArgs },
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+    const input = canvas.getByRole('combobox');
+    await userEvent.click(input);
+    await userEvent.type(input, 'pos');
+    await waitFor(() =>
+      expect(
+        canvas.getAllByTestId('autocomplete-option').length,
+      ).toBeGreaterThan(0),
+    );
+    await userEvent.keyboard('{Escape}');
+    await waitFor(() =>
+      expect(canvas.queryAllByTestId('autocomplete-option')).toHaveLength(0),
+    );
+  },
+};
+
+// A bounding rect is not shrunk by an ancestor's overflow, so clipping only shows up as
+// an ancestor whose content overflows the box it renders in.
+const clippingAncestorOf = (node: HTMLElement): HTMLElement | null => {
+  let current = node.parentElement;
+  while (current) {
+    if (current.scrollHeight > current.clientHeight + 1) {
+      return current;
+    }
+    if (current.classList.contains('ds-autocomplete-dropdown')) {
+      break;
+    }
+    current = current.parentElement;
+  }
+  return null;
+};
+
+// Regression: the overlay capped its height at an assumed 32px per row, so options with a
+// taller custom label were clipped — a single match rendered as a sliced row. The cap now
+// comes from measured rows, so a lone tall option must not be clipped by anything.
+export const RichOptionsAreNotClipped: StoryObj<AutocompleteProps> = {
+  ...Primary,
+  render: (args) => <AutocompleteWithRichOptions {...args} />,
+  args: { ...eventArgs },
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+    const input = canvas.getByRole('combobox');
+    await userEvent.click(input);
+    await userEvent.type(input, 'Sixteenth');
+
+    const [only] = await canvas.findAllByTestId('autocomplete-option');
+    // Guard the premise: this label really is taller than the old fixed row height.
+    await waitFor(() =>
+      expect(only.getBoundingClientRect().height).toBeGreaterThan(32),
+    );
+    await waitFor(() => expect(clippingAncestorOf(only)).toBeNull());
   },
 };

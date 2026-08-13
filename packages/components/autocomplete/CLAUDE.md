@@ -29,11 +29,12 @@ src/
 
 ## Architecture (native rewrite)
 
-- The trigger is a styled native `<input role="combobox">` (`S.NativeInput`), autosized via `useAutosizeWidth` from `@synerise/ds-input` (hidden `<span>` sizer; `stretchToFit` via `useStretchToFit`).
-- The dropdown is `@synerise/ds-dropdown` (`asChild`, `size="match-trigger"`), controlled via `open`/`onOpenChange`. **`trigger={[]}`** — Autocomplete owns the open state through the input's focus/click/change handlers, so ds-dropdown is used only for positioning + outside-dismiss and does **not** toggle on trigger click (delegating the toggle to ds-dropdown as well double-fired against the focus-open and flashed the panel open→closed on re-click). The overlay (`AutocompleteDropdown`) renders the options with `SearchItems` (react-window) → `@synerise/ds-list-item` `ListItem`s inside `@synerise/ds-scrollbar`.
-- The component does **not** filter options — it renders `options` (or the children-derived list) as given; the consumer filters via `onSearch`.
+- The trigger is a styled native `<input role="combobox">` (`S.NativeInput`), autosized via `useAutosizeWidth` from `@synerise/ds-input` (hidden `<span>` sizer).
+- The dropdown is `@synerise/ds-dropdown` (`asChild`, `size="match-trigger"`), controlled via `open`/`onOpenChange`. **`trigger={[]}`** — Autocomplete owns the open state through the input's focus/click/change handlers, so ds-dropdown is used only for positioning + outside-dismiss and does **not** toggle on trigger click (delegating the toggle to ds-dropdown as well double-fired against the focus-open and flashed the panel open→closed on re-click). The overlay (`AutocompleteDropdown`) renders `@synerise/ds-list-item` `ListItem`s inside `@synerise/ds-scrollbar`.
+- The dropdown is gated on having something to show (`hasDropdownContent`), but that gate must never feed back into the component's own open state — see the `dropdownOpen` note under Implementation notes.
+- The component does **not** filter options by default — it renders `options` (or the children-derived list) as given and the consumer filters via `onSearch`. Opt into client-side filtering with `filterOption`.
 - Keyboard navigation is delegated to `@synerise/ds-dropdown`'s built-in floating-ui list navigation (`useListNavigation`): ArrowDown/Up move focus through the `ListItem`s and the focused item selects on Enter/click (ds-list-item's own keydown handler). Autocomplete does **not** keep a second manual highlight — that produced a duplicate active row offset from the real focused one. As antd parity for `defaultActiveFirstOption` (default `true`), an input-level Enter handler selects the first enabled option when Enter is pressed *before* arrow-navigating into the list (once arrowed, focus is on the item so that handler no longer fires).
-- `Autocomplete.Option` is a marker that renders `null`; `getOptionsFromChildren` reads `value`/`children`(→`label`) off direct `Option` children when `options` is not provided.
+- `Autocomplete.Option` is a marker that renders `null`; `getOptionsFromChildren` reads `value`/`children`(→`label`) off `Option` children when `options` is not provided. Recognition does **not** rely on reference equality — see Implementation notes.
 
 ## Public exports
 
@@ -167,13 +168,14 @@ The dropdown overlay keeps class `ds-autocomplete-dropdown ps__child--consume` (
 ## Key dependencies
 
 - `@synerise/ds-dropdown` — floating dropdown wrapper (`open`/`onOpenChange`/`placement`/`overlay`/`asChild`/`trigger`/`getPopupContainer`/`size="match-trigger"`)
-- `@synerise/ds-search` — `SearchItems` (react-window virtualised list) renders the option rows
 - `@synerise/ds-list-item` — `ListItem` rows + `ListItemProps`
 - `@synerise/ds-scrollbar` — `Scrollbar` wrapping the option list
 - `@synerise/ds-form-field` — provides label, description, error, tooltip layout
-- `@synerise/ds-input` — provides `useAutosizeWidth`, `useStretchToFit`, `SIZER_STYLE`, `autoresizeConfObjToCss`
+- `@synerise/ds-input` — provides `useAutosizeWidth`, `SIZER_STYLE`, `autoresizeConfObjToCss`
 - `@synerise/ds-tooltip` — wraps `icon1`/`icon2` when tooltip props are provided
-- `@synerise/ds-utils` — used transitively (no direct import in the rewrite)
+
+> `@synerise/ds-search` and `@synerise/ds-utils` are still declared in `package.json` but no longer
+> imported — the rewrite dropped the `SearchItems`/react-window overlay in favour of plain `ListItem`s.
 
 > **No `antd` dependency** — antd was removed from `peerDependencies` and from all `src` imports/`.ant-*` selectors as part of the antd-removal effort.
 
@@ -183,7 +185,10 @@ The dropdown overlay keeps class `ds-autocomplete-dropdown ps__child--consume` (
 - **Icon count adjusts input padding** — When icons are present, `NativeInput` adds right-padding `getIconsWidth(iconCount)` so the value never overlaps the icons. Clicking the icons focuses the input (`handleIconsClick`).
 - **Controlled visibility** — `open` + `onDropdownVisibleChange` map directly to `ds-dropdown`'s `open`/`onOpenChange`. When `open` is omitted, internal state drives it; focus/typing/click **opens** (never toggles), select/Escape/outside-click closes. Opening is idempotent (each handler only calls `setOpen(true)` when closed), so no single interaction can open-then-close.
 - **Keyboard nav** — delegated to `@synerise/ds-dropdown`'s floating-ui list navigation (not a local `activeIndex`). ArrowDown/Up move DOM focus through the `ListItem`s; the focused item selects on Enter/click via ds-list-item's own keydown. `defaultActiveFirstOption` (default `true`) adds an input-level Enter handler that selects the first enabled option when Enter is pressed before arrow-navigating (once focus is on an item, that handler no longer fires — no double-select).
-- **Options precedence** — the `options` prop wins; only when it's empty/absent are `<Autocomplete.Option>` children parsed (`getOptionsFromChildren`).
+- **Options precedence** — the `options` prop wins; only when it's empty/absent are `<Autocomplete.Option>` children parsed (`getOptionsFromChildren`). Note that an explicit `options={[]}` therefore falls *through* to children; several internal callers (`ds-form` `EditableList`, `ds-factors` `FactorValue/Text`) spread an opaque props bag alongside children, so this precedence is deliberate.
+- **Option children are matched structurally, not by reference** — `getOptionsFromChildren` accepts a child whose type is `Option`, carries the static `isAutocompleteOption` flag, or has `displayName === 'Autocomplete.Option'`, and it descends into Fragments and nested arrays. Reference equality alone silently dropped every option whenever the consumer resolved a second copy of the package, mocked the module, or wrapped `Option` in `memo`. An option declared with only a `key` falls back to that key as its `value` (antd/rc-select parity).
+- **The overlay height is measured, never assumed** — `AutocompleteDropdown` caps the scroll area at the summed height of the first `visibleRows` *rendered* rows, and applies no cap at all when there are fewer options than that. A row is content-sized (`label` accepts any `ReactNode`, so an avatar or a second line makes it far taller than a plain text row), so the previous fixed `rowHeight * count` cap clipped any list whose options rendered taller than 32px — a single match showed as a sliced row.
+- **The content gate must not write back into `isOpen`** — the dropdown is opened with `dropdownOpen = isOpen && hasDropdownContent`, but `onOpenChange` goes to `handleDropdownOpenChange`, which drops any callback carrying the value we just passed down. `ds-dropdown`'s `useDropdownVisibility` echoes a controlled `open` change straight back through `onOpenChange`; honouring that echo latched the panel shut on server-side search (the request empties the options, the echo closes the component, and the arriving response can no longer reopen it). Only callbacks that *disagree* with `dropdownOpen` — i.e. genuine dismissals — reach `setOpen`.
 - **`handleInputRef` is native now** — receives `MutableRefObject<AutocompleteInputHandle | null>` where `AutocompleteInputHandle = { focus, blur, input }`, replacing the antd `RefSelectProps`.
 - **`autoResize`** — `useAutosizeWidth` writes the content-box width onto the `<input>`; `useStretchToFit` clamps `max-width` to the wrapper when `stretchToFit` is set (capturing/restoring `scrollLeft`). `AUTOSIZE_EXTRA_WIDTH = 27` (+ icon width) is the `extraWidth`.
 - **`getPopupContainer` defaults to parent node** — `getParentNode` mounts the dropdown as a sibling of the trigger (not `document.body`), avoiding z-index stacking issues.
