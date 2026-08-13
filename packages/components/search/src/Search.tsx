@@ -77,13 +77,16 @@ export function Search<
 
   const [isListVisible, setIsListVisible] = useState(false);
   const [isResultChosen, setIsResultChosen] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
   const [toggleInputTrigger, setToggleInputTrigger] = useState(false);
   const [focusInputTrigger, setFocusInputTrigger] = useState(false);
   const [scrollbarScrollTop, setScrollbarScrollTop] = useState(0);
   const [moveCursorToEnd, setMoveCursorToEnd] = useState(true);
 
+  const mergedWidth = searchWidth !== undefined ? searchWidth : width;
+
   const [itemsListWidth, setItemsListWidth] = useState<number>(
-    width || searchWidth ? (width || searchWidth)! - MENU_WIDTH_OFFSET : 0,
+    mergedWidth ? Math.max(0, mergedWidth - MENU_WIDTH_OFFSET) : 0,
   );
 
   useEffect(() => {
@@ -131,9 +134,8 @@ export function Search<
   }, [suggestions, value, textLookupConfig.suggestions]);
 
   useEffect(() => {
-    const newWidth = (width || searchWidth || 0) - MENU_WIDTH_OFFSET;
-    setItemsListWidth(Math.max(0, newWidth));
-  }, [width, searchWidth]);
+    setItemsListWidth(Math.max(0, (mergedWidth || 0) - MENU_WIDTH_OFFSET));
+  }, [mergedWidth]);
 
   useEffect(() => {
     if (hideLabel) {
@@ -163,17 +165,21 @@ export function Search<
     setFocusInputTrigger((prev) => !prev);
   };
 
-  const mergedWidth = searchWidth !== undefined ? searchWidth : width;
+  // Must stay identical to `renderInputOpened` in SearchInput, which owns the
+  // width of the inner content — when the two disagree the 32px wrapper clips a
+  // `width: 100%` input. A value/label/`alwaysExpanded` cannot be collapsed at
+  // all, so the field is expanded regardless of `isOpen`.
+  const isExpanded = isOpen || !!value || !!label || !!alwaysExpanded;
 
   const onKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
-    if (event.key === 'Backspace' && value === '' && isOpen) {
+    if (event.key === 'Backspace' && value === '' && isExpanded) {
       setLabel(null);
       setFilteredRecent(recent);
       onParameterValueChange?.('', null);
       return;
     }
 
-    if (event.key === 'Enter' && isOpen) {
+    if (event.key === 'Enter' && isExpanded) {
       setIsResultChosen(!!value);
     }
 
@@ -181,8 +187,10 @@ export function Search<
   };
 
   const getSearchWrapperWidth = (): number => {
-    if (width) {
-      return width - MENU_WIDTH_OFFSET;
+    // Read the prop rather than measuring: `handleInputClick` measures inside
+    // the click handler, before the wrapper has re-rendered expanded.
+    if (mergedWidth) {
+      return Math.max(0, mergedWidth - MENU_WIDTH_OFFSET);
     }
     if (
       wrapperRef.current &&
@@ -192,8 +200,6 @@ export function Search<
     }
     return 0;
   };
-
-  const [isOpen, setIsOpen] = useState(false);
 
   // Defer the close/collapse work to mouseup/touchend so the input's width
   // animation does not shift adjacent layout between mousedown and mouseup
@@ -234,6 +240,10 @@ export function Search<
     setFilteredParameters(parameters);
     setFilteredSuggestions(suggestions ?? null);
     setIsResultChosen(false);
+    // The clear button is a sibling of the input content, so clearing never
+    // goes through `handleInputClick` — SearchInput stays open here, so the
+    // wrapper has to agree.
+    setIsOpen(true);
   };
 
   const handleChange = (currentValue: string) => {
@@ -397,7 +407,7 @@ export function Search<
     <S.SearchWrapper
       ref={wrapperRef}
       className="SearchWrapper"
-      inputOpen={isOpen}
+      inputOpen={isExpanded}
       $width={mergedWidth}
       onKeyDown={handleKeyDownWrapper}
       style={style}
@@ -411,7 +421,7 @@ export function Search<
           <S.SearchDropdownContent
             maxHeight={dropdownMaxHeight}
             className={
-              isOpen && !isResultChosen && isListItemRendered()
+              isExpanded && !isResultChosen && isListItemRendered()
                 ? 'search-list-open'
                 : ''
             }
