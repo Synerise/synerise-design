@@ -4,13 +4,31 @@ import { fireEvent, screen, waitFor } from "@testing-library/react";
 import Button from "@synerise/ds-button";
 import Icon, { Add3M } from "@synerise/ds-icon";
 
+// The DS source lists whatever this module exports, so it is mocked down to a handful of icons
+// to keep the list small and its order fixed — the tests below rely on AddM being first.
+// Everything after the first three is only here because other packages rendered by this spec
+// (ds-button's Checkbox, ds-dropdown, ds-scrollbar, …) import those icons from this same module;
+// once tests resolve siblings from source rather than dist, dropping an export means they receive
+// undefined. Regenerate by intersecting the named @synerise/ds-icon imports of icon-picker's
+// transitive dependencies with the exports of icon/src/icons/M.
 vi.mock('@synerise/ds-icon/dist/icons/M', () => {
   const Stub = (name: string) => {
     const Component = (props: React.SVGProps<SVGSVGElement>) => <svg data-testid={`ds-icon-${name}`} {...props} />;
     Component.displayName = name;
     return Component;
   };
-  return { AddM: Stub('add-m'), EditM: Stub('edit-m'), SearchM: Stub('search-m') };
+  const alsoRendered = [
+    'Add3M', 'AngleDownS', 'AngleRightS', 'AngleUpS', 'ArrowDownCircleM', 'ArrowLeftM',
+    'ArrowUpCircleM', 'CheckS', 'CheckboxDeafultM', 'CheckboxIndeterminateM', 'CheckboxM',
+    'CheckboxSelectedFillM', 'Close3M', 'Close3S', 'CloseS', 'HideM', 'InfoFillS', 'InfoM',
+    'ResizeArrowM', 'SearchNoResultsM', 'ShowM', 'SpinnerM', 'StarFillM', 'StarM',
+  ];
+  return {
+    AddM: Stub('add-m'),
+    EditM: Stub('edit-m'),
+    SearchM: Stub('search-m'),
+    ...Object.fromEntries(alsoRendered.map((name) => [name, Stub(name)])),
+  };
 });
 
 import IconPicker from "../IconPicker";
@@ -98,7 +116,8 @@ describe('Dropdown', () => {
     );
 
     fireEvent.click(screen.getByText(BUTTON_TEXT));
-    fireEvent.click(screen.getByTestId('icon-0'));
+    // One `icon-0` per virtualised row, so take the first row's first icon.
+    fireEvent.click(screen.getAllByTestId('icon-0')[0]);
 
     expect(onSelectAction).toHaveBeenCalledWith(
       expect.anything(),
