@@ -28,7 +28,6 @@ const OperatorsDropdownItem = ({
   return (
     <ListItem
       className={className}
-      key={item.name + item.id}
       prefixel={searchQuery && <Icon component={item.icon} />}
       highlight={searchQuery}
       suffixel={
