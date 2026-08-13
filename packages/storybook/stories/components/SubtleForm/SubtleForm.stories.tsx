@@ -1,9 +1,8 @@
-import { SelectValue } from 'antd/lib/select';
 import React, { useState } from 'react';
 
 import { Meta, StoryObj } from '@storybook/react-vite';
 import InputNumber from '@synerise/ds-input-number';
-import Select from '@synerise/ds-select';
+import Select, { SelectValue } from '@synerise/ds-select';
 import SubtleForm from '@synerise/ds-subtle-form';
 import { replaceLettersWithUnderscore } from '@synerise/ds-subtle-form/dist/Elements/DatePicker/utils';
 

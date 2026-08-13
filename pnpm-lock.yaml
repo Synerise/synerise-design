@@ -514,9 +514,6 @@ importers:
       '@synerise/ds-typography':
         specifier: workspace:^
         version: link:../typography
-      antd:
-        specifier: 4.24.16
-        version: 4.24.16(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       react:
         specifier: 18.3.1
         version: 18.3.1
@@ -622,9 +619,6 @@ importers:
       '@synerise/ds-utils':
         specifier: workspace:^
         version: link:../utils
-      antd:
-        specifier: 4.24.16
-        version: 4.24.16(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       react:
         specifier: 18.3.1
         version: 18.3.1
@@ -661,9 +655,6 @@ importers:
       '@synerise/ds-utils':
         specifier: workspace:^
         version: link:../utils
-      antd:
-        specifier: 4.24.16
-        version: 4.24.16(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       react:
         specifier: 18.3.1
         version: 18.3.1
@@ -712,9 +703,6 @@ importers:
       '@synerise/ds-utils':
         specifier: workspace:^
         version: link:../utils
-      antd:
-        specifier: 4.24.16
-        version: 4.24.16(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       react:
         specifier: 18.3.1
         version: 18.3.1
@@ -848,9 +836,6 @@ importers:
       '@synerise/ds-utils':
         specifier: workspace:^
         version: link:../utils
-      antd:
-        specifier: 4.24.16
-        version: 4.24.16(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       react:
         specifier: 18.3.1
         version: 18.3.1
@@ -940,9 +925,6 @@ importers:
       '@synerise/ds-utils':
         specifier: workspace:^
         version: link:../utils
-      antd:
-        specifier: 4.24.16
-        version: 4.24.16(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       classnames:
         specifier: ^2.5.1
         version: 2.5.1
@@ -998,9 +980,6 @@ importers:
       '@synerise/ds-utils':
         specifier: workspace:^
         version: link:../utils
-      antd:
-        specifier: 4.24.16
-        version: 4.24.16(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       react:
         specifier: 18.3.1
         version: 18.3.1
@@ -1056,9 +1035,6 @@ importers:
       '@synerise/ds-utils':
         specifier: workspace:^
         version: link:../utils
-      antd:
-        specifier: 4.24.16
-        version: 4.24.16(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       react:
         specifier: 18.3.1
         version: 18.3.1
@@ -1108,9 +1084,6 @@ importers:
       '@synerise/ds-utils':
         specifier: workspace:^
         version: link:../utils
-      antd:
-        specifier: 4.24.16
-        version: 4.24.16(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       react:
         specifier: 18.3.1
         version: 18.3.1
@@ -1453,9 +1426,6 @@ importers:
       '@synerise/ds-utils':
         specifier: workspace:^
         version: link:../utils
-      antd:
-        specifier: 4.24.16
-        version: 4.24.16(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       classnames:
         specifier: ^2.5.1
         version: 2.5.1
@@ -2390,9 +2360,6 @@ importers:
       '@synerise/ds-utils':
         specifier: workspace:^
         version: link:../utils
-      antd:
-        specifier: 4.24.16
-        version: 4.24.16(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       copy-to-clipboard:
         specifier: ^3.3.1
         version: 3.3.3
@@ -2439,9 +2406,6 @@ importers:
       '@synerise/ds-utils':
         specifier: workspace:^
         version: link:../utils
-      antd:
-        specifier: 4.24.16
-        version: 4.24.16(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       react:
         specifier: 18.3.1
         version: 18.3.1
@@ -2633,9 +2597,6 @@ importers:
       '@synerise/ds-typography':
         specifier: workspace:^
         version: link:../typography
-      antd:
-        specifier: 4.24.16
-        version: 4.24.16(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       react:
         specifier: 18.3.1
         version: 18.3.1
@@ -3515,9 +3476,6 @@ importers:
       '@synerise/ds-utils':
         specifier: workspace:^
         version: link:../utils
-      antd:
-        specifier: 4.24.16
-        version: 4.24.16(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       moment:
         specifier: ^2.30.1
         version: 2.30.1
@@ -3560,9 +3518,6 @@ importers:
       '@synerise/ds-utils':
         specifier: workspace:^
         version: link:../utils
-      antd:
-        specifier: 4.24.16
-        version: 4.24.16(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       react:
         specifier: 18.3.1
         version: 18.3.1
@@ -4074,9 +4029,6 @@ importers:
       '@synerise/ds-typography':
         specifier: workspace:^
         version: link:../typography
-      antd:
-        specifier: 4.24.16
-        version: 4.24.16(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       react:
         specifier: 18.3.1
         version: 18.3.1
@@ -4176,9 +4128,6 @@ importers:
       '@synerise/ds-typography':
         specifier: workspace:^
         version: link:../typography
-      antd:
-        specifier: 4.24.16
-        version: 4.24.16(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       react:
         specifier: 18.3.1
         version: 18.3.1
@@ -4775,9 +4724,6 @@ importers:
       '@synerise/ds-utils':
         specifier: workspace:^
         version: link:../utils
-      antd:
-        specifier: 4.24.16
-        version: 4.24.16(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       react:
         specifier: 18.3.1
         version: 18.3.1
@@ -5026,9 +4972,6 @@ importers:
       '@synerise/ds-utils':
         specifier: workspace:^
         version: link:../utils
-      antd:
-        specifier: 4.24.16
-        version: 4.24.16(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       calculate-size:
         specifier: ^1.1.1
         version: 1.1.1
@@ -5322,9 +5265,6 @@ importers:
       '@tanstack/react-virtual':
         specifier: ^3.13.12
         version: 3.13.13(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      antd:
-        specifier: ^4.24.16
-        version: 4.24.16(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       react:
         specifier: 18.3.1
         version: 18.3.1
@@ -5371,9 +5311,6 @@ importers:
       '@synerise/ds-utils':
         specifier: workspace:^
         version: link:../utils
-      antd:
-        specifier: 4.24.16
-        version: 4.24.16(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       classnames:
         specifier: ^2.5.1
         version: 2.5.1
@@ -5496,9 +5433,6 @@ importers:
       '@synerise/ds-typography':
         specifier: workspace:^
         version: link:../typography
-      antd:
-        specifier: 4.24.16
-        version: 4.24.16(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       dayjs:
         specifier: ^1.8.19
         version: 1.11.19
@@ -5572,9 +5506,6 @@ importers:
       '@synerise/ds-utils':
         specifier: workspace:^
         version: link:../utils
-      antd:
-        specifier: 4.24.16
-        version: 4.24.16(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       react:
         specifier: 18.3.1
         version: 18.3.1
@@ -6134,9 +6065,6 @@ importers:
       '@synerise/ds-wizard':
         specifier: workspace:^
         version: link:../components/wizard
-      antd:
-        specifier: 4.24.16
-        version: 4.24.16(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       dayjs:
         specifier: ^1.11.0
         version: 1.11.19
