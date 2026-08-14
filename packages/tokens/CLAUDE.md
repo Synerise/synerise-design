@@ -140,10 +140,17 @@ Two categorical colour sets are emitted with the same two-tier, per-theme patter
 `build-tokens.mjs` → `loadCustomColorFamilies`/`customSemanticTier` and
 `loadOrderedSlots`/`orderedSemanticTier`):
 
-| Set | Driver | SET tier (ramp) | Flipping SEMANTIC tier (components use) | Manifest export |
-|-----|--------|-----------------|------------------------------------------|-----------------|
-| **custom-color** | user picks a hue from the palette | `--ds-color-custom-<family>-<shade>` (+ `-dark-`) | `--ds-color-background-custom-<family>-<shade>` | `customColors[family][shade]`, `customColorNames` |
-| **ordered** | system colour queue (card-tabs, slider) | `--ds-color-ordered-<N>-base\|hover` (+ `-dark-`) | `--ds-color-background-ordered-<N>-base\|hover` | `orderedBase[i]`, `orderedHover[i]` (i = slot−1) |
+| Set | Driver | SET tier (per-theme ramp, do not consume) | Flipping SEMANTIC tier (components use) | Manifest export |
+|-----|--------|-------------------------------------------|------------------------------------------|-----------------|
+| **custom-color** | user picks a hue from the palette | `--ds-color-custom-light-<family>-<shade>` / `--ds-color-custom-dark-<family>-<shade>` | `--ds-color-custom-<family>-<shade>` | `customColors[family][shade]`, `customColorNames` |
+| **ordered** | system colour queue (card-tabs, slider) | `--ds-color-ordered-light-<N>-base\|hover` / `--ds-color-ordered-dark-<N>-base\|hover` | `--ds-color-ordered-<N>-base\|hover` | `orderedBase[i]`, `orderedHover[i]` (i = slot−1) |
+
+> **The un-namespaced name IS the flipping tier.** `--ds-color-ordered-1-base` resolves to `#0b68ff` in
+> light and `#7fb8e8` in dark; the `-light-` / `-dark-` names are the fixed ramps it points at. There is
+> **no** `--ds-color-background-ordered-<N>-…` or `--ds-color-background-custom-<family>-<shade>` — only
+> the *singular* upstream defaults `--ds-color-background-ordered-base|hover` and
+> `--ds-color-text-ordered-base` exist in that family (they chain to slot 1). Always take the name from
+> the manifest rather than composing it by hand.
 
 - **`ordered`** = 21 slots (`tokens/semantic/ordered/order-1.json` … `order-21.json`), 7 hues ×
   3 shade-blocks (`blue, green, yellow, purple, cyan, orange, violet`; blocks 600→700→500),
@@ -153,8 +160,9 @@ Two categorical colour sets are emitted with the same two-tier, per-theme patter
   tokens (`--ds-color-background-ordered-base|hover`, `--ds-color-text-ordered-base`) and the
   card-tabs module tokens that chain through them resolve.
 - **Flip**: the SEMANTIC tier references the light SET group in `light.css` and the dark SET
-  group in `dark.css`, so a single manifest of `var(--ds-color-background-…)` strings works in
-  both themes — dark comes for free with the `data-ds-theme` swap.
+  group in `dark.css`, so a single manifest of `var(--ds-color-ordered-…)` /
+  `var(--ds-color-custom-…)` strings works in both themes — dark comes for free with the
+  `data-ds-theme` swap.
 - **Consumption**: components pick a colour by **var-name selection in JS** — there is **no
   `[data-ds-*]` scoping** for categorical colour. e.g. avatar: `customColors[family][hue]`;
   card-tabs/slider: `orderedBase[i % 21]` / `orderedHover[i % 21]`, dropped straight into a
@@ -162,8 +170,24 @@ Two categorical colour sets are emitted with the same two-tier, per-theme patter
 
 ```ts
 import { customColors, customColorNames, orderedBase, orderedHover } from '@synerise/ds-tokens/names';
-orderedBase[0];  // 'var(--ds-color-background-ordered-1-base)'
+orderedBase[0];          // 'var(--ds-color-ordered-1-base)'
+orderedHover[0];         // 'var(--ds-color-ordered-1-hover)'
+customColors.blue[600];  // 'var(--ds-color-custom-blue-600)'
 ```
+
+### Non-CSS consumers (charts, canvas) need the resolved hex, not `var()`
+
+The manifest hands you `var(…)` strings, which only work where CSS resolves them. For SVG/canvas
+consumers — Highcharts in particular — look the same token name up in the **resolved** map instead:
+
+```ts
+import { tokens } from '@synerise/ds-tokens';        // light; also /dark
+tokens['--ds-color-ordered-1-base'];                 // '#0b68ff' — concrete, chart-safe
+```
+
+`ds-core` does exactly this for `theme.colorsOrder` (21 slots, one per `ordered` slot), and
+`ThemeProvider` rebuilds it from the active mode's map so chart palettes follow a dark-mode switch.
+Inside React prefer `useTheme().tokens[…]`, which is already the active mode's map.
 
 ## Dark mode / theme switching
 

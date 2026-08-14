@@ -116,7 +116,7 @@ const Tag = forwardRef<HTMLDivElement, TagProps>(
             <Tooltip
               title={allTexts.deleteTooltip}
               open={isIconHovered}
-              zIndex={parseInt(theme.variables['@zindex-tooltip'], 10) + 1}
+              zIndex={parseInt(theme.variables['zindex-tooltip'], 10) + 1}
             >
               <S.RemoveButton
                 onClick={onRemoveCall}

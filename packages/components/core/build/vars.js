@@ -4,7 +4,16 @@ const lessVarsToJs = require('less-vars-to-js');
 const { resolveVariable, generateFileContent, prepare } = require('./utils.js');
 
 const colorsLess = fs.readFileSync(path.resolve(__dirname, '../src/style/colors.less'), 'utf8');
-const configLess = fs.readFileSync(path.resolve(__dirname, '../src/style/config.less'), 'utf8');
+
+// config.less holds the surface the design system and consumer apps use; antd-legacy.less
+// holds the variables that exist only to theme antd and the deprecated menu/alert/table
+// packages. They are parsed TOGETHER so theme.variables keeps its full surface — the split
+// is a source-layout concern (antd-legacy.less is deletable once those packages retire),
+// not a change to the public theme. Order matters: antd-legacy may reference config.
+const configLess = [
+  fs.readFileSync(path.resolve(__dirname, '../src/style/config.less'), 'utf8'),
+  fs.readFileSync(path.resolve(__dirname, '../src/style/antd-legacy.less'), 'utf8'),
+].join('\n');
 
 const colorsDictionary = lessVarsToJs(colorsLess, { resolveVariables: true, stripPrefix: true });
 const colorsVars = lessVarsToJs(colorsLess, { resolveVariables: true });
