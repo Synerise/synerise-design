@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.6.4](https://github.com/Synerise/synerise-design/compare/@synerise/ds-list-item@1.6.3...@synerise/ds-list-item@1.6.4) (2026-08-14)
+
+### Bug Fixes
+
+- **list-item:** stop clipping long sub-menus at a fixed height ([7e4510e](https://github.com/Synerise/synerise-design/commit/7e4510e8915536ae38b4dc199fbd81c24cf15330))
+
 ## [1.6.3](https://github.com/Synerise/synerise-design/compare/@synerise/ds-list-item@1.6.2...@synerise/ds-list-item@1.6.3) (2026-08-11)
 
 **Note:** Version bump only for package @synerise/ds-list-item

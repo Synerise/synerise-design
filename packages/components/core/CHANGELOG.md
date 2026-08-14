@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.13.2](https://github.com/synerise/synerise-design/compare/@synerise/ds-core@1.13.1...@synerise/ds-core@1.13.2) (2026-08-14)
+
+### Bug Fixes
+
+- **core:** read timezone offsets at the right moment ([72ed6b9](https://github.com/synerise/synerise-design/commit/72ed6b958808215572b55aad0a94a0e05bf2ce25))
+
 ## [1.13.1](https://github.com/synerise/synerise-design/compare/@synerise/ds-core@1.13.0...@synerise/ds-core@1.13.1) (2026-07-23)
 
 **Note:** Version bump only for package @synerise/ds-core

@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.55.1](https://github.com/Synerise/synerise-design/compare/storybook@1.55.0...storybook@1.55.1) (2026-08-14)
+
+### Bug Fixes
+
+- **autocomplete:** show suggestions that arrive after the request empties the list ([dbffe88](https://github.com/Synerise/synerise-design/commit/dbffe886b12ac5c00270302171c0e06320b6d64a))
+- **list-item:** stop clipping long sub-menus at a fixed height ([7e4510e](https://github.com/Synerise/synerise-design/commit/7e4510e8915536ae38b4dc199fbd81c24cf15330))
+
 # [1.55.0](https://github.com/Synerise/synerise-design/compare/storybook@1.54.0...storybook@1.55.0) (2026-08-13)
 
 ### Bug Fixes
