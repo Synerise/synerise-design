@@ -57,7 +57,26 @@ export const defaultColorsOrder = [
 ] as const;
 
 export type DefaultColor = (typeof defaultColorsOrder)[number];
-const colorsOrder = defaultColorsOrder.map((color) => vars.colors[color]);
+// Sourced from the design-tokens `ordered` set — 21 slots that match
+// defaultColorsOrder one-for-one (7 hues x 600/700/500), verified value-identical
+// to the legacy colors.less lookup.
+//
+// Deliberately the RESOLVED hex from `tokens`, not the `var(--ds-...)` strings from
+// `@synerise/ds-tokens/names`: consumers feed colorsOrder straight into Highcharts,
+// which renders SVG and does its own colour maths, so a CSS custom property would
+// paint nothing. The palette lookup stays as a fallback if a slot is ever missing.
+export const getColorsOrder = (
+  tokenMap: { [key: string]: string } = tokens,
+): string[] =>
+  defaultColorsOrder.map(
+    (color, index) =>
+      tokenMap[`--ds-color-ordered-${index + 1}-base`] ?? vars.colors[color],
+  );
+
+// Static default (light). ThemeProvider recomputes this from the active mode's token
+// map so charts follow a dark-mode switch — the ordered slots genuinely differ per
+// theme (slot 1 is #0b68ff light, #7fb8e8 dark).
+const colorsOrder = getColorsOrder();
 
 export const theme: ThemePropsVars = {
   variables: vars.variables,

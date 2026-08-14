@@ -168,8 +168,10 @@ const AxisLabel = () => {
 ```
 
 `theme.tokens` holds the fully-resolved map for the active scheme (it follows `mode`). The
-`theme` object also exposes `theme.palette` (raw palette by name), `theme.variables`, and
-`theme.variable('--ds-name')`. Outside React you can import a specific theme's static map:
+`theme` object also exposes `theme.palette` (raw palette by name) and `theme.variables` /
+`theme.variable('@border-radius-base')` — note those two are **Less-name** lookups generated from
+`config.less` (the leading `@` is stripped), not CSS-variable lookups. Outside React you can import a
+specific theme's static map:
 
 ```tsx
 import { tokens as lightTokens } from '@synerise/ds-tokens/light';

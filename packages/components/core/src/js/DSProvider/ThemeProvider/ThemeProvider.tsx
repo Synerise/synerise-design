@@ -5,7 +5,7 @@ import { tokens as darkTokens } from '@synerise/ds-tokens/dark';
 import { tokens as lightTokens } from '@synerise/ds-tokens/light';
 
 import { GlobalTokenStyles } from './GlobalTokenStyles';
-import dsTheme, { type ThemePropsVars } from './theme';
+import dsTheme, { type ThemePropsVars, getColorsOrder } from './theme';
 
 export type ThemeMode = 'light' | 'dark' | 'system';
 
@@ -72,14 +72,17 @@ const ThemeProvider = ({
     }
   }, [mode, resolvedMode]);
 
-  const mergedTheme = useMemo(
-    () => ({
+  const mergedTheme = useMemo(() => {
+    const activeTokens = resolvedMode === 'dark' ? darkTokens : lightTokens;
+    return {
       ...dsTheme,
       ...theme,
-      tokens: resolvedMode === 'dark' ? darkTokens : lightTokens,
-    }),
-    [theme, resolvedMode],
-  );
+      tokens: activeTokens,
+      // Resolved from the active mode's tokens so chart palettes follow a dark-mode
+      // switch. A caller-supplied colorsOrder still wins (it comes from `theme`).
+      colorsOrder: theme?.colorsOrder ?? getColorsOrder(activeTokens),
+    };
+  }, [theme, resolvedMode]);
 
   return (
     <ThemeProviderBase theme={mergedTheme}>

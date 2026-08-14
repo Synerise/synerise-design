@@ -52,9 +52,10 @@ Tracks the progress of migrating components from `theme.palette` / hardcoded val
 > `Less?` columns and stale per-component notes are corrected below. Notably `pagination` is **no longer
 > "blocked"** — it now has `Pagination.styles.ts` (12 `theme.palette` refs, 0 tokens), ready to tokenise against
 > its 18 emitted `--ds-pagination-*` module tokens.
-> Of the 9 packages that still have `.less`, **`alert`, `menu`, `table` are deprecated** (slated for
-> removal/replacement) and will **not** be tokenised; `core` is infrastructure (not a UI component). Only
-> `code-snippet`, `drawer`, `list`, `scrollbar`, `select` remain as genuine `.less`-bearing tokenisation targets.
+> Of the packages that still have `.less`, **`alert`, `menu`, `table` are deprecated** (slated for
+> removal/replacement) and will **not** be tokenised. **`core` is no longer excluded** — as of 2026-08-14
+> its `config.less` is trimmed to the consumed surface and partly tokenised (see the `core` row); only
+> `code-snippet` and `scrollbar` remain besides it, `drawer`/`list`/`select` having since lost their `.less`.
 
 > **Token sync `e0301675d` (design-tokens@1cd43721, 2026-06-08).** Cherry-picked onto this branch.
 > Value-only re-point of `modules/base.json` (58 refs changed, 14 `separator` tokens added, none
@@ -124,12 +125,12 @@ removal/replacement, so they will **not** be tokenised despite their high palett
 
 Single at-a-glance view of every colour-bearing component: migration **status** + whether it is **awaiting token definitions** (a pending module namespace, a missing semantic role, or a `.less`/de-antd blocker). Sourced from the two detailed tables below + `TOKEN_AUDIT.md` blockers. **Update this table (and the detailed one) whenever `apply-tokens` migrates a component.**
 
-**Totals:** ✅ 104 done · 🚧 7 partial · ❌ 0 not started · ⛔ 3 deprecated · ➖ 4 n/a — **15 awaiting token defs** (flag in last column).
+**Totals:** ✅ 104 done · 🚧 8 partial · ❌ 0 not started · ⛔ 3 deprecated · ➖ 4 n/a — **16 awaiting token defs** (flag in last column).
 
 **Nothing is left that can be tokenised with the tokens available today** — every remaining `🚧` is waiting on
 an upstream definition (see the blocker column). The next move is upstream in the design-tokens repo, not here.
 
-> **Recomputing these numbers:** the status counts must sum to the number of table rows (**118**) — that check
+> **Recomputing these numbers:** the status counts must sum to the number of table rows (**119**) — that check
 > is what catches drift. *Awaiting token defs* = rows whose blocker cell names a token, module namespace or
 > `.less`/de-antd dependency **that does not exist yet**; it deliberately excludes `⚑` annotations recording a
 > shift that was already applied. Both figures had gone stale before (`✅ 97 · ❌ 7 · 12 awaiting` against a
@@ -170,6 +171,7 @@ an upstream definition (see the blocker column). The next move is upstream in th
 | confirmation | semantic | ✅ | — |
 | context-selector | module | ✅ | — |
 | copy-icon | semantic | ✅ | — |
+| core | semantic | 🚧 | `config.less` trimmed 407→190, then split: 69 DS-surface + 121 `antd-legacy.less` (deletable when menu/alert/table retire). 12 tokenised (10 semantic colours + `box-shadow-1/2`), `colorsOrder` → ordered tokens. `colors.less` must stay hex (feeds `build/vars.js`, `hexToRgba`, antd Less fns). Remaining 59: 22 blocked by antd/DS Less fns or `parseInt`, 18 need dimension/typography tokens (filtered out of the build), 17 match only primitives, 2 feed Highcharts |
 | cruds | module | ✅ | — |
 | date-picker | module (form+calendar+dropdown) | ✅ | — |
 | date-range-picker | module (form+calendar+dropdown) | ✅ | — |

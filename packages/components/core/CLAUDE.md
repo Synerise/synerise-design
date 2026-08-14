@@ -12,7 +12,6 @@ src/js/
  LocaleProvider/ — react-intl IntlProvider wrapper
  LocaleProvider.tsx
  LocaleProvider.types.ts — LocaleProviderProps, IntlMessages, NestedMessages
- antLocales.ts — Ant Design locale mappings (locale string → antd locale object)
  ThemeProvider/
  ThemeProvider.tsx — styled-components ThemeProvider wrapper
  theme.ts — theme object, useTheme, defaultColorsOrder, themeVariables
@@ -83,14 +82,18 @@ Root provider. Must wrap the entire application. Composes `LocaleProvider` → `
 The default `ThemePropsVars` object. Passed automatically via `DSProvider`; also importable for use outside styled-components (e.g. inline styles, tests).
 
 ```ts
-theme.palette['blue-600'] // '#0064D6'
-theme.variables['--ds-color-..'] // CSS variable value
+theme.palette['blue-600'] // '#0b68ff' — from colors.less
+theme.variables['zindex-tooltip'] // '991060' — from config.less, key WITHOUT the leading @
 theme.tokens['--ds-color-text-base-default'] // '#384350' — fully-resolved design token
 theme.space // [0, 8, 12, 16, 24, 32, 48, 64]
 theme.breakpoints // ['768px', '960px', '1280px']
-theme.colorsOrder // array of 21 colour hex values in display order
-theme.variable('--ds-name') // looks up variables by CSS var name
+theme.colorsOrder // 21 resolved hex values in display order (design-tokens `ordered` set)
+theme.variable('@border-radius-base') // Less-name lookup; strips a leading @
 ```
+
+> `theme.variables` / `theme.variable()` are **Less-name** lookups, not CSS-var lookups — they are
+> generated from `config.less` by `build/vars.js`, which strips the `@`. `theme.variable('--ds-x')`
+> returns `undefined`. For design tokens use `theme.tokens[...]` or a `var(--ds-...)` string in CSS.
 
 `theme.tokens` is the fully-resolved design-token map from `@synerise/ds-tokens` (keyed by full CSS var
 name → concrete value). Use it — via `useTheme().tokens[...]` — for non-CSS consumers (canvas, charting,
@@ -245,7 +248,6 @@ RTL `render()` wrapped in `DSProvider` with sensible test defaults. Use in compo
 
 - `react-intl` — i18n; `LocaleProvider` wraps `IntlProvider`
 - `styled-components` — theming via `ThemeProvider`
-- `antd` — locale objects mapped from BCP 47 strings in `antLocales.ts`
 - `react-hot-toast` — toast notifications (`Toaster` is a thin wrapper)
 - `dayjs`, `moment`, `date-fns-tz` — date value detection and formatting in `useDataFormat`
 
