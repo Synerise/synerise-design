@@ -94,17 +94,29 @@ Icons: DS icons are `fill="currentColor"` with `color: inherit`, so colour them 
 > in Phase 1. Live `theme.palette` ref counts also drift slightly from earlier audits (e.g. `menu` is
 > ~93, not 102).
 
-## Migration order (remaining)
+## Migration order — complete (2026-08-14)
 
-1. **Prepared / pilot:** `card-select`, `broadcast-bar` — ✅ done.
-2. **Other module-token components** (26): buttons, button-expander, form (field/checkbox/radio/switch),
-   divider, card, avatar, status-pill, page-header, tabs, navbar, modal, list-item, app-menu, page,
-   popconfirm, stepper, ai-chat, inline-select, inline-edit, inline-alert, description, pagination,
-   progress-bar, time-picker.
-3. **Semantic-only components**, simplest first (1–6 refs each); leave the large ones
-   (`file-uploader`, `card-tabs`, `manageable-list`) for last.
-4. **Deprecated — excluded (no tokens):** `alert`, `menu`, `table` are deprecated and slated for
-   removal/replacement, so they will **not** be tokenised despite their high palette/opacity counts.
+The original three-stage order (pilot → module-token components → semantic-only components) is **done**.
+Every component that could be migrated with the tokens available has been. What is left is not a
+sequencing problem — it is an **upstream authoring** problem, so the next move belongs in the
+design-tokens repo.
+
+**Upstream token gaps blocking the remaining 🚧 components** (deduplicated from the blocker column):
+
+| Gap | Blocks |
+|---|---|
+| `--ds-color-*-danger-hover` (red-500) | `factors` |
+| Grey/translucent **background** roles (grey-200/300 at alpha) | `subtle-form`, `file-uploader`, `inline-edit`, `table-new`, `rich-text` (hover tint) |
+| Shadow token for `0 1px 8px 0` with runtime alpha | `short-cuts` |
+| Opacity steps `0.1` / `0.3` (only `0.2`/`0.4` exist) | `skeleton` |
+| Key-cap tokens `--ds-tooltip-key-*` | `tooltip` |
+| Connector tokens | `condition` |
+| Categorical/variant icon+text tokens | `avatar`, `card-tabs` |
+| Gradient / stop tokens (decorative) | `rich-text` (AI gradient + icon), `button` |
+| Form counter role | `form-field` |
+
+**Deprecated — excluded (no tokens):** `alert`, `menu`, `table` are deprecated and slated for
+removal/replacement, so they will **not** be tokenised despite their high palette/opacity counts.
 
 ## Component Status
 
@@ -112,7 +124,10 @@ Icons: DS icons are `fill="currentColor"` with `color: inherit`, so colour them 
 
 Single at-a-glance view of every colour-bearing component: migration **status** + whether it is **awaiting token definitions** (a pending module namespace, a missing semantic role, or a `.less`/de-antd blocker). Sourced from the two detailed tables below + `TOKEN_AUDIT.md` blockers. **Update this table (and the detailed one) whenever `apply-tokens` migrates a component.**
 
-**Totals:** ✅ 101 done · 🚧 8 partial · ❌ 2 not started · ⛔ 3 deprecated · ➖ 4 n/a — **17 awaiting token defs** (flag in last column).
+**Totals:** ✅ 104 done · 🚧 7 partial · ❌ 0 not started · ⛔ 3 deprecated · ➖ 4 n/a — **15 awaiting token defs** (flag in last column).
+
+**Nothing is left that can be tokenised with the tokens available today** — every remaining `🚧` is waiting on
+an upstream definition (see the blocker column). The next move is upstream in the design-tokens repo, not here.
 
 > **Recomputing these numbers:** the status counts must sum to the number of table rows (**118**) — that check
 > is what catches drift. *Awaiting token defs* = rows whose blocker cell names a token, module namespace or
@@ -120,7 +135,7 @@ Single at-a-glance view of every colour-bearing component: migration **status** 
 > shift that was already applied. Both figures had gone stale before (`✅ 97 · ❌ 7 · 12 awaiting` against a
 > table holding `✅ 100 · ❌ 3`), so recompute them from the table rather than adjusting by hand.
 
-> **`theme.palette` holdouts (to retire):** dynamic `color`/`customColor` props still resolve via `theme.palette` → migrate to ds-utils `resolveCustomColor`: **badge** (local dup helper), **avatar** (ObjectAvatar), **section-message**, **button**, **loader**. Static gap: **inline-edit** (`:active` bg grey-300, no token). Fully untokenised (new): **rich-text**, **rich-text-renderer**. Role-specific cases (text/border/icon-custom) need `resolveCustomColor` extended with a `role` option + manifest role maps.
+> **`theme.palette` holdouts (to retire):** dynamic `color`/`customColor` props still resolve via `theme.palette` → migrate to ds-utils `resolveCustomColor`: **badge** (local dup helper), **avatar** (ObjectAvatar), **section-message**, **button**, **loader**. Static gap: **inline-edit** (`:active` bg grey-300, no token). Decorative holdouts: **rich-text** (mars/purple AI gradient, mars-400 AI icon, `hexToRgba` hover tint). Role-specific cases (text/border/icon-custom) need `resolveCustomColor` extended with a `role` option + manifest role maps.
 
 | Component | Layer | Status | Awaiting token defs / blocker |
 |---|---|:--:|---|
@@ -209,8 +224,8 @@ Single at-a-glance view of every colour-bearing component: migration **status** 
 | progressbar | module | ✅ | — |
 | radio | module | ✅ | — |
 | result | semantic | ✅ | — |
-| rich-text | semantic | ❌ | new (de-antd merge); untokenised — greys/blues/reds + mars/purple gradient on `theme.palette` (RichText.styles) |
-| rich-text-renderer | semantic | ❌ | new; untokenised — greys/blues on `theme.palette` (RichTextRenderer.styles) |
+| rich-text | semantic | ✅ | ⚑ popover shadow → `--ds-shadows-shadow-1` (lighter); mars/purple AI gradient + `hexToRgba` hover tint kept (no tokens) |
+| rich-text-renderer | semantic | ✅ | — |
 | scrollbar | semantic | ✅ | ⚑ resting thumb grey-300→base-strong (grey-400); veil kept (no light-scrim token) |
 | search | module | ✅ | — |
 | search-bar | module | ✅ | — |
@@ -231,7 +246,7 @@ Single at-a-glance view of every colour-bearing component: migration **status** 
 | switch | module | ✅ | — |
 | table | semantic | ⛔ | — |
 | table-new | semantic | 🚧 | colours tokenised → semantic (2026-07-23); WIP: feature still in active dev; kept dynamic: translucent scroll-shadow (grey-500 @12%, no token) + runtime tree-level/child-row palette lookups |
-| tabs | module | 🚧 | — |
+| tabs | module | ✅ | ⚑ focus text/icon blue-500 → `--ds-color-focus-base-default` (blue-600, darker) |
 | tag | module | ✅ | — |
 | tags | module (tag) | ✅ | — |
 | time-picker | module | ✅ | — |
@@ -278,7 +293,7 @@ These components have dedicated token definitions in `modules/base.json`.
 | [progressbar](#progress-bar) | `progress-bar` | :white_check_mark: | :heavy_minus_sign: | :heavy_minus_sign: | :x: | 1 | No | track + value + default fill tokenised (sync `66dddd0a`); multivalue slots caller-driven (deferred) |
 | [status-pill](#status-status-pill) | `status` | :white_check_mark: | :heavy_minus_sign: | :heavy_minus_sign: | :x: | 2 | No | text/border split; custom kept dynamic |
 | [stepper](#stepper) | `stepper` | :construction: | :heavy_minus_sign: | :heavy_minus_sign: | :x: | 7 | No | :warning: done green→blue, active grey→blue; warning state migrated (sync `66dddd0a`); filled-circle content deferred |
-| [tabs](#tabs) | `tabs` | :construction: | :heavy_minus_sign: | :white_check_mark: | :x: | 1 | No | main states done; decorative gradients + blue-500 focus deferred |
+| [tabs](#tabs) | `tabs` | :white_check_mark: | :heavy_minus_sign: | :white_check_mark: | :x: | 2 | No | all states incl. focus (⚑ blue-500 → focus-base-default); `theme.palette` fully removed |
 | [time-picker](#time-picker) | `time-picker` | :white_check_mark: | :heavy_minus_sign: | :white_check_mark: | :x: | 2 | No | 8 module + semantic; no elevation shadow |
 | [tooltip](#tooltip) | `tooltip` | :construction: | :white_check_mark: | :heavy_minus_sign: | :x: | 0 | No | surface/footer/text + shadow-2 done; key-cap bg/border/shadow await `--ds-tooltip-key-*` |
 
@@ -349,6 +364,8 @@ These components use `theme.palette` / hardcoded colors but do not yet have dedi
 | popover | 0 | No | 0 | 2 | |
 | [radio](#checkbox--radio) | 0 | No | 3 | 4 | :white_check_mark: fully tokenised — description + disabled-opacity → `--ds-form-radio-*`; solid+checked-hover bg/border/box-shadow blue-500 → semantic `background-brand-solidhover` (exact) |
 | result | 0 | No | 0 | 0 | :white_check_mark: tokenised — semantic (2026-07-21 pass); status-icon map → icon-* token vars |
+| rich-text | 30 | No | 3 | 4 | :white_check_mark: tokenised (2026-08-14) — border/outline states, toolbar chrome, `.ProseMirror` content, read-only surface, popover surface → semantic; edit icon now inherits from `SubtleSuffix` (dropped `useTheme` + `ThemeProps`); ⚑ popover shadow rgba(0,0,0,0.12)→`shadow-1` (lighter); AI gradient, mars-400 icon + `hexToRgba` hover tint kept |
+| rich-text-renderer | 9 | No | 0 | 0 | :white_check_mark: tokenised (2026-08-14) — all content colours → semantic, mirroring rich-text's `.ProseMirror` mapping so editor and rendered output stay identical; exact-value, no shifts |
 | scrollbar | 17 | Yes (2) | 0 | 17 | :white_check_mark: tokenised (2026-07-24) — `.less` kept (react-perfect-scrollbar globals) now on `var(--ds-*)`; dropped dead `variables.less` import; ⚑ resting thumb grey-300→base-strong; veil rgba kept |
 | search | 13 | No | 4 | 8 | `.less` removed (deantd) |
 | search-bar | 12 | No | 1 | 0 | |
@@ -1930,3 +1947,55 @@ passes above.
   line → `--ds-divider-line-color-solid` (exact, grey-300). No own namespace, no `.less`, no static `theme`
   imports. ⚑ separators adopt UX per-variant colours (state-agnostic now) + disabled-label/description
   grey-500→grey-600 (see Value shifts).
+
+---
+
+## Rich-text + tabs pass (2026-08-14)
+
+Closes the last components that were tokenisable without new upstream tokens. `rich-text` and
+`rich-text-renderer` arrived untokenised via the de-antd merge and had never been through a pass;
+`tabs` had two refs left over from the 2026-07-17 pass. Everything still outstanding after this is
+genuinely blocked on tokens that do not exist yet.
+
+Both rich-text packages are **semantic-layer** — `modules/base.json` has no `rich-text` namespace, and
+this repo is consume-only, so semantic is the correct target rather than a gap to report.
+
+### rich-text — :white_check_mark:
+
+27 of 30 `theme.palette` refs migrated. Border/outline states (default `border-base-default`, focus
+`focus-base-default`, error `border-danger-default` + `background-danger-subtle`), toolbar hairline and
+separator, `.ProseMirror` content (body text, links, `code`/`pre`, snippet, blockquote, table borders and
+header, placeholder, selected cell/image), the read-only surface, `ErrorText`/`Description`, and the shared
+`popoverSurface` (background + border). The subtle-preview edit icon now inherits `color` from
+`SubtleSuffix` instead of taking a `color` prop, which let `useTheme()` and the static `ThemeProps` import
+go entirely.
+
+### rich-text-renderer — :white_check_mark:
+
+All 9 refs migrated, exact-value, no shifts. The mapping deliberately mirrors rich-text's `.ProseMirror`
+content styles — the renderer has no colour of its own, so a shared mapping is what keeps the editor and
+the rendered output identical.
+
+### tabs — :white_check_mark:
+
+The two remaining refs (focus label + icon) → `--ds-color-focus-base-default`. `theme.palette` is now fully
+removed from the package. Closes the "no focus-hue text/icon token" gap recorded in the `### tabs` report.
+
+### ⚑ Value shifts introduced (for Chromatic review)
+
+| Component | Property | Current | Token resolves to | Delta |
+|---|---|---|---|---|
+| tabs | focus label + icon | blue-500 `#238afe` | `--ds-color-focus-base-default` → blue-600 `#0b68ff` | Darker |
+| rich-text | popover shadow | `0 4px 12px 0 rgba(0,0,0,0.12)` | `--ds-shadows-shadow-1` → `#2329360a` | Lighter, blue-grey not black |
+
+Only these two. `tabs`' focus had no exact-value option that was also role-correct: the sole token
+resolving to blue-500 is `--ds-color-background-brand-solidHover`, a background token, so the focus token
+was taken and the shift flagged rather than misusing a background role for text.
+
+### Unmapped values
+
+| Usage | Value | Location | Reason |
+|---|---|---|---|
+| AI label gradient | `mars-500` → `purple-400` | `RichText.styles.ts` `AiGradientLabel` | Decorative two-stop gradient — no gradient/stop tokens |
+| AI toolbar icon | `mars-400` | `Toolbar.tsx` "Edit with AI" | Same decorative family; keeps `useTheme()` |
+| Subtle-preview hover tint | `hexToRgba(grey-300, 0.4)` | `RichText.styles.ts` `EditorWrapper` | Runtime translucent — no baked `--ds-color-background-translucent-*` |

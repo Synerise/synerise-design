@@ -124,11 +124,13 @@ export const TabContainer = styled.button<{ block?: boolean }>`
   }
 
   &:focus {
+    /* ⚑ Shift: focus text/icon blue-500 → --ds-color-focus-base-default (blue-600, darker).
+       The only exact-value token is a background token; this is the role-correct one. */
     ${TabLabel} {
-      color: ${({ theme }): string => theme.palette['blue-500']};
+      color: var(--ds-color-focus-base-default);
     }
     svg {
-      color: ${({ theme }): string => theme.palette['blue-500']};
+      color: var(--ds-color-focus-base-default);
     }
     &:active {
       ${TabLabel} {

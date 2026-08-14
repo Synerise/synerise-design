@@ -1,11 +1,9 @@
 import styled from 'styled-components';
 
-import { type ThemeProps } from '@synerise/ds-core';
-
 export const RendererWrapper = styled.div`
   font-size: 13px;
   line-height: 1.6;
-  color: ${(props: ThemeProps) => props.theme.palette['grey-800']};
+  color: var(--ds-color-text-base-default);
 
   > * + * {
     margin-top: 0.5em;
@@ -47,13 +45,13 @@ export const RendererWrapper = styled.div`
   }
 
   a {
-    color: ${(props: ThemeProps) => props.theme.palette['blue-600']};
+    color: var(--ds-color-text-brand-default);
     text-decoration: underline;
     cursor: pointer;
   }
 
   code {
-    background: ${(props: ThemeProps) => props.theme.palette['grey-100']};
+    background: var(--ds-color-background-base-muted);
     padding: 2px 4px;
     border-radius: 3px;
     font-family:
@@ -62,7 +60,7 @@ export const RendererWrapper = styled.div`
   }
 
   pre {
-    background: ${(props: ThemeProps) => props.theme.palette['grey-100']};
+    background: var(--ds-color-background-base-muted);
     padding: 12px;
     border-radius: 3px;
     overflow-x: auto;
@@ -78,7 +76,7 @@ export const RendererWrapper = styled.div`
   pre[data-type='code-snippet'] {
     display: flex;
     align-items: center;
-    background: ${(props: ThemeProps) => props.theme.palette['grey-050']};
+    background: var(--ds-color-background-base-subtle);
     padding: 6px 12px;
     margin: 0 0 4px;
 
@@ -89,11 +87,10 @@ export const RendererWrapper = styled.div`
   }
 
   blockquote {
-    border-left: 3px solid
-      ${(props: ThemeProps) => props.theme.palette['grey-300']};
+    border-left: 3px solid var(--ds-color-border-base-strong);
     padding-left: 12px;
     margin: 0 0 4px;
-    color: ${(props: ThemeProps) => props.theme.palette['grey-500']};
+    color: var(--ds-color-text-neutral-default);
   }
 
   table {
@@ -104,8 +101,7 @@ export const RendererWrapper = styled.div`
 
     td,
     th {
-      border: 1px solid
-        ${(props: ThemeProps) => props.theme.palette['grey-300']};
+      border: 1px solid var(--ds-color-border-base-strong);
       padding: 6px 10px;
       vertical-align: top;
       text-align: left;
@@ -116,7 +112,7 @@ export const RendererWrapper = styled.div`
     }
 
     th {
-      background: ${(props: ThemeProps) => props.theme.palette['grey-050']};
+      background: var(--ds-color-background-base-subtle);
       font-weight: 500;
     }
   }

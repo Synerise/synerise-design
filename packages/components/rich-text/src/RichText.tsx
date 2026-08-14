@@ -7,7 +7,6 @@ import React, {
   useState,
 } from 'react';
 
-import { useTheme } from '@synerise/ds-core';
 import { FormFieldLabel } from '@synerise/ds-form-field';
 import Icon, { EditS } from '@synerise/ds-icon';
 import { useCombinedRefs, useOnClickOutside } from '@synerise/ds-utils';
@@ -94,7 +93,6 @@ const RichText = forwardRef<HTMLDivElement, RichTextProps>(
     const [subtleBlurred, setSubtleBlurred] = useState(false);
     const lastEmittedRef = useRef<string>('');
     const wrapperRef = useCombinedRefs<HTMLDivElement>(ref);
-    const theme = useTheme();
 
     const hasError = !!errorText;
     const isSubtle = subtle && !readOnly && !disabled;
@@ -301,7 +299,7 @@ const RichText = forwardRef<HTMLDivElement, RichTextProps>(
 
           {isSubtlePreview && (
             <S.SubtleSuffix data-testid="rich-text-subtle-edit-icon">
-              <Icon component={<EditS />} color={theme.palette['grey-600']} />
+              <Icon component={<EditS />} />
             </S.SubtleSuffix>
           )}
         </S.EditorWrapper>
