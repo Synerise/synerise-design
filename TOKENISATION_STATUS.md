@@ -112,7 +112,13 @@ Icons: DS icons are `fill="currentColor"` with `color: inherit`, so colour them 
 
 Single at-a-glance view of every colour-bearing component: migration **status** + whether it is **awaiting token definitions** (a pending module namespace, a missing semantic role, or a `.less`/de-antd blocker). Sourced from the two detailed tables below + `TOKEN_AUDIT.md` blockers. **Update this table (and the detailed one) whenever `apply-tokens` migrates a component.**
 
-**Totals:** ✅ 97 done · 🚧 8 partial · ❌ 7 not started · ⛔ 3 deprecated · ➖ 4 n/a — **12 awaiting token defs** (flag in last column).
+**Totals:** ✅ 101 done · 🚧 8 partial · ❌ 2 not started · ⛔ 3 deprecated · ➖ 4 n/a — **17 awaiting token defs** (flag in last column).
+
+> **Recomputing these numbers:** the status counts must sum to the number of table rows (**118**) — that check
+> is what catches drift. *Awaiting token defs* = rows whose blocker cell names a token, module namespace or
+> `.less`/de-antd dependency **that does not exist yet**; it deliberately excludes `⚑` annotations recording a
+> shift that was already applied. Both figures had gone stale before (`✅ 97 · ❌ 7 · 12 awaiting` against a
+> table holding `✅ 100 · ❌ 3`), so recompute them from the table rather than adjusting by hand.
 
 > **`theme.palette` holdouts (to retire):** dynamic `color`/`customColor` props still resolve via `theme.palette` → migrate to ds-utils `resolveCustomColor`: **badge** (local dup helper), **avatar** (ObjectAvatar), **section-message**, **button**, **loader**. Static gap: **inline-edit** (`:active` bg grey-300, no token). Fully untokenised (new): **rich-text**, **rich-text-renderer**. Role-specific cases (text/border/icon-custom) need `resolveCustomColor` extended with a `role` option + manifest role maps.
 
@@ -209,7 +215,7 @@ Single at-a-glance view of every colour-bearing component: migration **status** 
 | search | module | ✅ | — |
 | search-bar | module | ✅ | — |
 | section-message | module | ✅ | — |
-| select | module | 🚧 | chip bg (grey-200/300) — no grey background token yet |
+| select | module | ✅ | — |
 | short-cuts | semantic | 🚧 | box-shadow rgba(35,41,54) has no --ds-shadows-shadow-* match; ⚑ dark-key bg grey-600→grey-700 |
 | sidebar | semantic | ✅ | — |
 | sidebar-object | module | ✅ | — |
@@ -221,7 +227,7 @@ Single at-a-glance view of every colour-bearing component: migration **status** 
 | step-card | semantic | ✅ | — |
 | stepper | module | ✅ | — |
 | subject | semantic | ✅ | — |
-| subtle-form | semantic | ❌ | translucent-surface token gap |
+| subtle-form | semantic | 🚧 | translucent-surface token gap |
 | switch | module | ✅ | — |
 | table | semantic | ⛔ | — |
 | table-new | semantic | 🚧 | colours tokenised → semantic (2026-07-23); WIP: feature still in active dev; kept dynamic: translucent scroll-shadow (grey-500 @12%, no token) + runtime tree-level/child-row palette lookups |
@@ -258,7 +264,7 @@ These components have dedicated token definitions in `modules/base.json`.
 | [card-select](#card-select) | `card-select` | :white_check_mark: | :white_check_mark: | :white_check_mark: | :x: | 4 | No | borders/shadow/opacity tokenised; check-token naming flagged for UX |
 | [description-line](#description) | `description` | :white_check_mark: | :heavy_minus_sign: | :heavy_minus_sign: | :heavy_minus_sign: | 0 | No | module + semantic; inactive star deferred |
 | [divider](#divider) | `divider` | :white_check_mark: | :heavy_minus_sign: | :heavy_minus_sign: | :x: | 0 | No | line + label tokenised; colour diffs resolved by sync `e0301675d` |
-| [form](#form-group-form--input--select--switch) | `form` / `input` / `checkbox` / `radio` / `switch` / `select` | :construction: | :construction: | :construction: | :x: | 4 | No | TS migrated; per-state styling in `.styles.ts` (all de-antd, `.less` removed); `select` tokenised — chip bg deferred |
+| [form](#form-group-form--input--select--switch) | `form` / `input` / `checkbox` / `radio` / `switch` / `select` | :construction: | :construction: | :construction: | :x: | 4 | No | TS migrated; per-state styling in `.styles.ts` (all de-antd, `.less` removed); `select` tokenised incl. chip bg/text → `--ds-form-chip-*` |
 | [inline-alert](#inline-alert) | `inline-alert` | :white_check_mark: | :heavy_minus_sign: | :white_check_mark: | :heavy_minus_sign: | 0 | No | 4 variants + text; icon `-default`/`-hover` branches (sync `66dddd0a`); hover done |
 | [inline-edit](#inline-edit--inline-select) | `inline-edit` | :white_check_mark: | :heavy_minus_sign: | :heavy_minus_sign: | :heavy_minus_sign: | 0 | No | text/icon tokenised; gradient underlines deferred |
 | [inline-select](#inline-edit--inline-select) | `inline-edit` | :white_check_mark: | :heavy_minus_sign: | :heavy_minus_sign: | :heavy_minus_sign: | 0 | No | lives in inline-edit package |
