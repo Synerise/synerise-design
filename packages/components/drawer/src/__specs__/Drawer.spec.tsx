@@ -1,7 +1,7 @@
 import React from 'react';
 
-import { renderWithProvider } from '@synerise/ds-core';
-import { fireEvent, screen } from '@testing-library/react';
+import { closeAllOverlays, renderWithProvider } from '@synerise/ds-core';
+import { act, fireEvent, screen } from '@testing-library/react';
 
 import Drawer from '../Drawer';
 import { type DrawerProps } from '../Drawer.types';
@@ -118,5 +118,43 @@ describe('Drawer component', () => {
     const dialog = screen.getByRole('dialog');
     expect(dialog).toHaveAttribute('aria-labelledby', 'heading-id');
     expect(dialog).not.toHaveAttribute('aria-label');
+  });
+
+  describe('closeAllOverlays', () => {
+    it('calls onClose with a usable event', async () => {
+      const onClose = vi.fn();
+      renderWithProvider(DRAWER({ open: true, onClose }));
+
+      await act(async () => {
+        await closeAllOverlays();
+      });
+
+      expect(onClose).toHaveBeenCalledTimes(1);
+      const [event] = onClose.mock.calls[0];
+      expect(event.target).toBeInstanceOf(HTMLElement);
+      expect(() => event.preventDefault()).not.toThrow();
+    });
+
+    it('does not call onClose when the drawer is closed', async () => {
+      const onClose = vi.fn();
+      renderWithProvider(DRAWER({ open: false, onClose }));
+
+      await act(async () => {
+        await closeAllOverlays();
+      });
+
+      expect(onClose).not.toHaveBeenCalled();
+    });
+
+    it('leaves the drawer alone when another kind is targeted', async () => {
+      const onClose = vi.fn();
+      renderWithProvider(DRAWER({ open: true, onClose }));
+
+      await act(async () => {
+        await closeAllOverlays({ kinds: ['modal'] });
+      });
+
+      expect(onClose).not.toHaveBeenCalled();
+    });
   });
 });

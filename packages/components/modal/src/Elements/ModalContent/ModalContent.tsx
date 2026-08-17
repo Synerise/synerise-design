@@ -3,13 +3,15 @@ import React, {
   type MouseEvent,
   forwardRef,
   useCallback,
+  useEffect,
   useId,
   useImperativeHandle,
   useMemo,
   useRef,
 } from 'react';
 
-import { useFocusTrap } from '@synerise/ds-utils';
+import { createOverlayCloseEvent, registerOverlay } from '@synerise/ds-core';
+import { useFocusTrap, useLatestRef } from '@synerise/ds-utils';
 
 import { SIZE_MAP } from '../../Modal.const';
 import { type ModalContentProps, type ModalRef } from '../../Modal.types';
@@ -132,6 +134,26 @@ export const ModalContent = forwardRef<ModalRef, ModalContentProps>(
 
     const containerRef = useRef<HTMLDivElement>(null);
     const dialogRef = useRef<HTMLDivElement>(null);
+
+    // Join the overlay registry while visible, so `closeAllOverlays()` runs the
+    // same path as the close button: `onCancel` (awaited when async), then
+    // `closeModal`. Focus restore comes from the focus trap's cleanup below.
+    const handleCancelRef = useLatestRef(handleCancel);
+    useEffect(() => {
+      if (hidden) {
+        return undefined;
+      }
+      return registerOverlay({
+        kind: 'modal',
+        close: () =>
+          handleCancelRef.current(
+            createOverlayCloseEvent<MouseEvent<HTMLElement>>(
+              containerRef.current,
+            ),
+          ),
+      });
+    }, [hidden, handleCancelRef]);
+
     // By default focus the dialog container itself (announced by screen readers
     // via its accessible name) instead of the first focusable field. Consumers
     // can opt into focusing a specific control via `initialFocusRef`.
