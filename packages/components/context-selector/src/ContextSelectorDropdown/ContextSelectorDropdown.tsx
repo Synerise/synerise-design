@@ -127,6 +127,7 @@ const ContextSelectorDropdown = ({
   );
   const [searchInputCanBeFocused, setSearchInputFocus] = useState(true);
   const [topSectionHeight, setTopSectionHeight] = useState(0);
+  const [isKeyboardNav, setIsKeyboardNav] = useState(false);
   const classNames = useMemo(() => {
     return `ds-context-item ds-context-item-${uuid()}`;
   }, []);
@@ -487,7 +488,9 @@ const ContextSelectorDropdown = ({
       style={dropdownWrapperStyles}
       ref={overlayRef}
       data-testid="context-selector-dropdown"
+      onMouseDownCapture={() => setIsKeyboardNav(false)}
       onKeyDown={(event) => {
+        setIsKeyboardNav(true);
         const searchInput = searchInputHandle?.current ?? null;
         if (document?.activeElement === searchInput) {
           setSearchInputFocus(false);
@@ -609,7 +612,10 @@ const ContextSelectorDropdown = ({
           numberOfSkeletons={3}
         />
       ) : (
-        <S.ItemsList contentHeight={dropdownContentHeight}>
+        <S.ItemsList
+          contentHeight={dropdownContentHeight}
+          data-keyboard-nav={isKeyboardNav}
+        >
           {activeItems?.length ? (
             <Scrollbar
               absolute
