@@ -1,10 +1,14 @@
 import {
   type CSSProperties,
+  type FocusEventHandler,
   type MouseEventHandler,
   type ReactNode,
 } from 'react';
 
-import { type DataAttributes } from '@synerise/ds-utils';
+import {
+  type DataAttributes,
+  type PassthroughAttributes,
+} from '@synerise/ds-utils';
 
 export type RadioValueType = string | number | boolean;
 
@@ -13,6 +17,9 @@ export type RadioChangeEventTarget = {
   value?: RadioValueType;
   checked: boolean;
   name?: string;
+  id?: string;
+  disabled?: boolean;
+  type?: string;
   [key: string]: unknown;
 };
 
@@ -71,7 +78,13 @@ export type RadioGroupProps = {
   children?: ReactNode;
   className?: string;
   style?: CSSProperties;
-} & DataAttributes;
+  id?: string;
+  role?: string;
+  onFocus?: FocusEventHandler<HTMLDivElement>;
+  onBlur?: FocusEventHandler<HTMLDivElement>;
+  onMouseEnter?: MouseEventHandler<HTMLDivElement>;
+  onMouseLeave?: MouseEventHandler<HTMLDivElement>;
+} & PassthroughAttributes;
 
 export type RadioButtonProps = {
   value?: RadioValueType;
