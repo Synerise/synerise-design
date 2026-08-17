@@ -67,6 +67,7 @@ install:
   script:
     - pnpm install --frozen-lockfile
     - pnpm lint
+    - pnpm check:no-package-test-config
     - rm -f .npmrc
   cache:
     key:

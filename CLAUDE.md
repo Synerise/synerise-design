@@ -18,10 +18,20 @@
 - No Redux — this is a UI component library, not an app
 
 ## Testing
-- **Vitest** (primary, most packages) or Jest (older packages still being migrated)
-- jsdom environment, React Testing Library
+- **Vitest** in every package (`vitest run`), jsdom environment, React Testing Library
 - Co-located tests: `*.test.tsx` next to source
 - 80% minimum coverage on business logic and shared components
+- Test config lives **only** in the `test` block of the root `vite.config.base.ts`. Per-package
+  `vitest.*.config.*` files are rejected by `pnpm check:no-package-test-config` in CI — they replace the
+  base `test`/`resolve` blocks instead of merging, silently dropping `setupFiles` and the source resolution
+- Specs resolve `@synerise/*` imports from the sibling package's **`src/`**, not its built `dist/`, so a
+  cross-package change is visible without rebuilding the dependency (`dsTestSourceRedirectPlugin`)
+- Prerequisite: the generated sources (`pnpm run generate` — core theme variables, icon/flag/avatar SVGR
+  output). The root `postinstall` does this; a fresh **git worktree** or `--ignore-scripts` install does not,
+  and the test run fails fast naming the command
+- `DS_TEST_FROM_SOURCE=0` sends **bare** imports back to `dist` for one run; deep `@synerise/ds-x/dist/...`
+  imports always resolve from source (the `exports` map cannot resolve them). `DS_TEST_RESOLVE_DEBUG=1`
+  logs every redirect
 
 ## Build & Deploy
 - Component packages built with **Vite** (shared config in `vite.config.base.ts`, per-package `vite.config.ts`)
