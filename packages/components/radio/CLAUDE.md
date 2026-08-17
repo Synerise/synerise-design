@@ -40,13 +40,15 @@ Compound component: `Radio` + `Radio.Group` + `Radio.Button`.
 
 ### `Radio.Group`
 
-Wraps `AntdRadio.Group` with two additional layout props:
+DS-native single-select context provider:
 
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
 | `fullWidth` | `boolean` | `undefined` | Makes the group `display: flex; width: 100%` — each radio button gets `flex: 1` |
 | `big` | `boolean` | `undefined` | When combined with `fullWidth`, sets button height to `48px` instead of `32px` |
 | `size` | `'small' \| 'middle' \| 'large'` | `'middle'` | Segmented `Radio.Button` height: `small` 24px · `middle` 32px · `large` 40px |
+| `id`, `role`, `onFocus`, `onBlur`, `onMouseEnter`, `onMouseLeave` | — | — | Forwarded to the group wrapper. `onBlur` matters to form libraries — it is what marks the field touched |
+| `data-*` / `aria-*` | — | — | Forwarded to the wrapper. Other unknown props are **not** — spreading a form field bag passes `type`/`checked`, which would warn on a `div` |
 | + DS `RadioGroupProps` | — | — | `value`, `defaultValue`, `onChange`, `options`, `optionType`, `buttonStyle`, `disabled`, `name` (DS-native, no antd inheritance) |
 
 ### `Radio.Button`
@@ -104,6 +106,7 @@ All styling is in `Radio.styles.tsx` (no LESS).
 
 - **`label` vs `children`**: `label` takes precedence — if `label` is set, `children` is ignored entirely. `children` is marked `@deprecated` in the type file.
 - **`Radio.Button` is DS-native**: reads `RadioContext` for checked state; the segment visual (connected borders, checked, focus, `buttonStyle` solid/outline) is styled by `RadioGroupWrapper`.
-- **`RadioChangeEvent`** is synthesised from the native input change (`{ target: { value, checked, name }, stopPropagation, preventDefault, nativeEvent }`); `target.value` is `RadioValueType` (consumers needing a narrower type cast it — antd typed it `any`).
+- **`onChange` order (antd parity)**: a child's own `onChange` fires *before* the group's, for both `Radio` and `Radio.Button`. Consumers let both handlers write the same state and rely on the group's write landing last — reversing the order silently flips last-writer-wins. Covered by tests in `__specs__`.
+- **`RadioChangeEvent`** is synthesised from the native input change. The child builds `target` from its own props (`value`, `checked`, `name`, `disabled`, `type: 'radio'`, `id`/`autoFocus`/`tabIndex` on `Radio`, plus any `data-*`/`aria-*` it was given) and hands it to the group, as antd's rc-checkbox did — so consumers can read more than the value. `target.value` is `RadioValueType` (consumers needing a narrower type cast it — antd typed it `any`).
 - **`AdditionalData` styled-component** is marked `@deprecated` in its source comment but is still the live wrapper div for `Description` — the comment is misleading.
 - **Uses Vitest** for testing.
