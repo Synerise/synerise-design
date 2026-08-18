@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.4.0](https://github.com/synerise/synerise-design/compare/@synerise/ds-dropdown@1.3.23...@synerise/ds-dropdown@1.4.0) (2026-08-18)
+
+### Features
+
+- **dropdown:** report the dropdown overlay kind to the registry ([4f72550](https://github.com/synerise/synerise-design/commit/4f7255059ff36e0cc423e68ce93ec7a20f830507))
+
 ## [1.3.23](https://github.com/synerise/synerise-design/compare/@synerise/ds-dropdown@1.3.22...@synerise/ds-dropdown@1.3.23) (2026-08-14)
 
 **Note:** Version bump only for package @synerise/ds-dropdown

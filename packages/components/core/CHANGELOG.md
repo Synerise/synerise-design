@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.14.0](https://github.com/synerise/synerise-design/compare/@synerise/ds-core@1.13.2...@synerise/ds-core@1.14.0) (2026-08-18)
+
+### Features
+
+- **core:** add closeAllOverlays overlay registry ([81a1412](https://github.com/synerise/synerise-design/commit/81a1412f82e1e2ad087ef44503020736db5e12df))
+
 ## [1.13.2](https://github.com/synerise/synerise-design/compare/@synerise/ds-core@1.13.1...@synerise/ds-core@1.13.2) (2026-08-14)
 
 ### Bug Fixes

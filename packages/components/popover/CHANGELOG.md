@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.7.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-popover@1.6.3...@synerise/ds-popover@1.7.0) (2026-08-18)
+
+### Features
+
+- **popover:** register open popovers with the overlay registry ([ccd5ac0](https://github.com/Synerise/synerise-design/commit/ccd5ac0922658abc5ebbfb2d09e6cdfb02bdbf53))
+
 ## [1.6.3](https://github.com/Synerise/synerise-design/compare/@synerise/ds-popover@1.6.2...@synerise/ds-popover@1.6.3) (2026-08-11)
 
 ### Bug Fixes

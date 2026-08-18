@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.3.49](https://github.com/Synerise/synerise-design/compare/@synerise/ds-context-selector@1.3.48...@synerise/ds-context-selector@1.3.49) (2026-08-18)
+
+### Bug Fixes
+
+- **context-selector:** show keyboard selection highlight in safari ([ea54f49](https://github.com/Synerise/synerise-design/commit/ea54f495cd3c92575fb0c4c2c8f43ce3c5683787))
+
 ## [1.3.48](https://github.com/Synerise/synerise-design/compare/@synerise/ds-context-selector@1.3.47...@synerise/ds-context-selector@1.3.48) (2026-08-14)
 
 **Note:** Version bump only for package @synerise/ds-context-selector

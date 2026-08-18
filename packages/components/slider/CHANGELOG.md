@@ -3,6 +3,10 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.1.29](https://github.com/Synerise/synerise-design/compare/@synerise/ds-slider@1.1.28...@synerise/ds-slider@1.1.29) (2026-08-18)
+
+**Note:** Version bump only for package @synerise/ds-slider
+
 ## [1.1.28](https://github.com/Synerise/synerise-design/compare/@synerise/ds-slider@1.1.27...@synerise/ds-slider@1.1.28) (2026-08-11)
 
 **Note:** Version bump only for package @synerise/ds-slider

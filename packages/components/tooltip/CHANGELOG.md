@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.6.0](https://github.com/synerise/synerise-design/compare/@synerise/ds-tooltip@1.5.5...@synerise/ds-tooltip@1.6.0) (2026-08-18)
+
+### Features
+
+- **tooltip:** report the tooltip overlay kind to the registry ([f37369e](https://github.com/synerise/synerise-design/commit/f37369eebc15d4705010791b97e2ffceea22d08c))
+
 ## [1.5.5](https://github.com/synerise/synerise-design/compare/@synerise/ds-tooltip@1.5.4...@synerise/ds-tooltip@1.5.5) (2026-08-11)
 
 **Note:** Version bump only for package @synerise/ds-tooltip

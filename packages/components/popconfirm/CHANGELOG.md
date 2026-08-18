@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.5.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-popconfirm@1.4.3...@synerise/ds-popconfirm@1.5.0) (2026-08-18)
+
+### Features
+
+- **popconfirm:** report the popconfirm overlay kind to the registry ([fc18631](https://github.com/Synerise/synerise-design/commit/fc18631f132649e1d866ffcd3390f7afd13c3a76))
+
 ## [1.4.3](https://github.com/Synerise/synerise-design/compare/@synerise/ds-popconfirm@1.4.2...@synerise/ds-popconfirm@1.4.3) (2026-08-11)
 
 **Note:** Version bump only for package @synerise/ds-popconfirm

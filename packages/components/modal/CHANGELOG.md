@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.7.0](https://github.com/synerise/synerise-design/compare/@synerise/ds-modal@1.6.9...@synerise/ds-modal@1.7.0) (2026-08-18)
+
+### Features
+
+- **modal:** close open modals via closeAllOverlays ([208e41c](https://github.com/synerise/synerise-design/commit/208e41c7e0b2e905b170f98ec58d302a86c04932))
+
 ## [1.6.9](https://github.com/synerise/synerise-design/compare/@synerise/ds-modal@1.6.8...@synerise/ds-modal@1.6.9) (2026-08-14)
 
 **Note:** Version bump only for package @synerise/ds-modal
