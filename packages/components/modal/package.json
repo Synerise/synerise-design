@@ -47,6 +47,8 @@
     "@synerise/ds-utils": "workspace:^"
   },
   "devDependencies": {
+    "@synerise/ds-dropdown": "workspace:^",
+    "@synerise/ds-popconfirm": "workspace:^",
     "vitest": "4"
   },
   "peerDependencies": {

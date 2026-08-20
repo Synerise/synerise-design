@@ -1,6 +1,12 @@
 import React from 'react';
 
-import { closeAllOverlays, renderWithProvider } from '@synerise/ds-core';
+import {
+  OVERLAY_Z_INDEX_STEP,
+  OverlayZIndexProvider,
+  closeAllOverlays,
+  renderWithProvider,
+  theme,
+} from '@synerise/ds-core';
 import { act, fireEvent, screen } from '@testing-library/react';
 
 import Drawer from '../Drawer';
@@ -155,6 +161,88 @@ describe('Drawer component', () => {
       });
 
       expect(onClose).not.toHaveBeenCalled();
+    });
+  });
+
+  describe('z-index stacking', () => {
+    const MODAL_TOKEN = Number.parseInt(theme.variables['zindex-modal'], 10);
+    const DROPDOWN_TOKEN = Number.parseInt(
+      theme.variables['zindex-dropdown'],
+      10,
+    );
+
+    // DrawerRoot carries the z-index; the drawer's own test id sits on the
+    // header, so walk up to the root by its stable class instead.
+    const drawerRootZIndex = (): number => {
+      const root = document.querySelector<HTMLElement>('.ds-drawer');
+      if (!root) {
+        throw new Error('No .ds-drawer root rendered');
+      }
+      return Number(window.getComputedStyle(root).zIndex);
+    };
+
+    it('uses the zindex-modal token when nothing encloses it', () => {
+      renderWithProvider(DRAWER({ open: true }));
+
+      expect(drawerRootZIndex()).toBe(MODAL_TOKEN);
+    });
+
+    it('stacks above the overlay that contains it', () => {
+      renderWithProvider(
+        <OverlayZIndexProvider value={MODAL_TOKEN}>
+          {DRAWER({ open: true })}
+        </OverlayZIndexProvider>,
+      );
+
+      expect(drawerRootZIndex()).toBe(MODAL_TOKEN + OVERLAY_Z_INDEX_STEP);
+    });
+
+    it('derives from a parent that raised itself with an explicit zIndex', () => {
+      renderWithProvider(
+        <OverlayZIndexProvider value={991004}>
+          {DRAWER({ open: true })}
+        </OverlayZIndexProvider>,
+      );
+
+      expect(drawerRootZIndex()).toBe(991006);
+    });
+
+    it('lets an explicit zIndex win', () => {
+      renderWithProvider(
+        <OverlayZIndexProvider value={MODAL_TOKEN}>
+          {DRAWER({ open: true, zIndex: 42 })}
+        </OverlayZIndexProvider>,
+      );
+
+      expect(drawerRootZIndex()).toBe(42);
+    });
+
+    it('stays below zindex-dropdown so it cannot cover its own popovers', () => {
+      renderWithProvider(
+        <OverlayZIndexProvider value={DROPDOWN_TOKEN}>
+          {DRAWER({ open: true })}
+        </OverlayZIndexProvider>,
+      );
+
+      expect(drawerRootZIndex()).toBe(DROPDOWN_TOKEN - OVERLAY_Z_INDEX_STEP);
+      expect(drawerRootZIndex()).toBeLessThan(DROPDOWN_TOKEN);
+    });
+
+    it('publishes its own z-index to an inline drawer nested inside it', () => {
+      renderWithProvider(
+        <Drawer open width={400} placement="right" getContainer={false}>
+          <Drawer open width={300} placement="left" getContainer={false}>
+            <p>nested</p>
+          </Drawer>
+        </Drawer>,
+      );
+
+      const zIndexes = Array.from(
+        document.querySelectorAll<HTMLElement>('.ds-drawer'),
+      ).map((root) => Number(window.getComputedStyle(root).zIndex));
+
+      expect(zIndexes).toContain(MODAL_TOKEN);
+      expect(zIndexes).toContain(MODAL_TOKEN + OVERLAY_Z_INDEX_STEP);
     });
   });
 });
