@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.12.17](https://github.com/Synerise/synerise-design/compare/@synerise/ds-factors@1.12.16...@synerise/ds-factors@1.12.17) (2026-08-20)
+
+### Bug Fixes
+
+- stack nested modals above their enclosing overlay ([c7f75c0](https://github.com/Synerise/synerise-design/commit/c7f75c0fb39dc29e23997364640a2733811e4b51))
+
 ## [1.12.16](https://github.com/Synerise/synerise-design/compare/@synerise/ds-factors@1.12.15...@synerise/ds-factors@1.12.16) (2026-08-18)
 
 **Note:** Version bump only for package @synerise/ds-factors

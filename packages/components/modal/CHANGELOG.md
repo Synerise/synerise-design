@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.7.1](https://github.com/synerise/synerise-design/compare/@synerise/ds-modal@1.7.0...@synerise/ds-modal@1.7.1) (2026-08-20)
+
+### Bug Fixes
+
+- stack nested modals above their enclosing overlay ([c7f75c0](https://github.com/synerise/synerise-design/commit/c7f75c0fb39dc29e23997364640a2733811e4b51))
+
 # [1.7.0](https://github.com/synerise/synerise-design/compare/@synerise/ds-modal@1.6.9...@synerise/ds-modal@1.7.0) (2026-08-18)
 
 ### Features

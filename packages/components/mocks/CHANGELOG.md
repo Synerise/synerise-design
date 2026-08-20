@@ -3,6 +3,10 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.4.14](https://github.com/Synerise/synerise-design/compare/@synerise/ds-mocks@0.4.13...@synerise/ds-mocks@0.4.14) (2026-08-20)
+
+**Note:** Version bump only for package @synerise/ds-mocks
+
 ## [0.4.13](https://github.com/Synerise/synerise-design/compare/@synerise/ds-mocks@0.4.12...@synerise/ds-mocks@0.4.13) (2026-08-18)
 
 **Note:** Version bump only for package @synerise/ds-mocks
