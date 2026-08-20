@@ -204,8 +204,10 @@ export type ModalProps = {
   /** Inline styles applied to the modal body element. */
   bodyStyle?: CSSProperties;
   /**
-   * `z-index` of the modal root.
-   * @defaultValue theme `zindex-modal`
+   * `z-index` of the modal root. Omit it and the modal stacks one step above
+   * the nearest enclosing modal/drawer, falling back to the `zindex-modal`
+   * token when nothing encloses it. Set it to opt out of that stack.
+   * @defaultValue derived from the enclosing overlay, else theme `zindex-modal`
    */
   zIndex?: number;
 

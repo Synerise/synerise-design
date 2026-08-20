@@ -211,3 +211,43 @@ export const CancelButtonCallsHandler: Story = {
     expect(cancelBtn).toBeInTheDocument();
   },
 };
+
+// ---------------------------------------------------------------------------
+// Nested modals stack above the modal that contains them
+// ---------------------------------------------------------------------------
+export const StacksNestedModalsAboveTheirParent: Story = {
+  render: () => (
+    // The host raises itself explicitly, the way the analytics "Profile filter"
+    // modal does; its descendants have to derive from that value, not from the
+    // flat zindex-modal token.
+    <Modal open zIndex={991002} title="Host" footer={null}>
+      <Modal open title="Child" footer={null}>
+        <Modal open title="Grandchild" footer={null} />
+      </Modal>
+    </Modal>
+  ),
+  play: async ({ canvasElement }) => {
+    const { body } = canvasElement.ownerDocument;
+    const scoped = within(body);
+
+    await waitFor(() => expect(scoped.getByText('Grandchild')).toBeVisible());
+
+    const zIndexOf = (title: string) => {
+      const root = scoped
+        .getByRole('dialog', { name: title })
+        .closest('[data-testid="ds-modal"]') as HTMLElement;
+      return Number(window.getComputedStyle(root).zIndex);
+    };
+
+    const host = zIndexOf('Host');
+    const child = zIndexOf('Child');
+    const grandchild = zIndexOf('Grandchild');
+
+    expect(host).toBe(991002);
+    expect(child).toBeGreaterThan(host);
+    expect(grandchild).toBeGreaterThan(child);
+    // Never above the popover tokens (zindex-dropdown is 991050), or a modal
+    // would swallow its own dropdowns and selects.
+    expect(grandchild).toBeLessThan(991050);
+  },
+};

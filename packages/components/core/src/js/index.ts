@@ -10,6 +10,13 @@ export {
   type CloseAllOverlaysOptions,
 } from './overlays/overlayRegistry';
 export {
+  OVERLAY_Z_INDEX_STEP,
+  OverlayZIndexProvider,
+  useOverlayZIndex,
+  useResolvedOverlayZIndex,
+  type OverlayZIndexProviderProps,
+} from './overlays/overlayZIndex';
+export {
   theme,
   useTheme,
   defaultColorsOrder,

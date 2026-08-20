@@ -37,7 +37,11 @@ export type DrawerOwnProps = {
    * or `false` to render inline in place (no portal) — pairs with `mask={false}`.
    */
   getContainer?: (() => HTMLElement) | false;
-  /** z-index of the root overlay. Defaults to the `zindex-modal` design token. */
+  /**
+   * z-index of the root overlay. Omit it and the drawer stacks one step above
+   * the nearest enclosing modal/drawer, falling back to the `zindex-modal`
+   * token when nothing encloses it. Set it to opt out of that stack.
+   */
   zIndex?: number;
   /** Called when the mask is clicked or `Escape` is pressed. */
   onClose?: (event: DrawerCloseTrigger) => void;

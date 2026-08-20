@@ -1,10 +1,24 @@
 import React, { createRef, useState } from 'react';
 
-import { closeAllOverlays, renderWithProvider } from '@synerise/ds-core';
+import {
+  OVERLAY_Z_INDEX_STEP,
+  OverlayZIndexProvider,
+  closeAllOverlays,
+  renderWithProvider,
+  theme,
+} from '@synerise/ds-core';
 import { act, fireEvent, screen, waitFor } from '@testing-library/react';
+
+import Dropdown from '@synerise/ds-dropdown';
+import Popconfirm from '@synerise/ds-popconfirm';
 
 import Modal from './Modal';
 import { type ModalRef } from './Modal.types';
+
+const MODAL_TOKEN_FOR_OVERLAY_TESTS = Number.parseInt(
+  theme.variables['zindex-modal'],
+  10,
+);
 
 describe('Modal', () => {
   const titleMock = 'Test Title';
@@ -556,6 +570,271 @@ describe('Modal', () => {
       renderWithProvider(<Modal title="t" onCancel={vi.fn()} />);
 
       await expect(closeAllOverlays()).resolves.toBeUndefined();
+    });
+  });
+
+  describe('z-index stacking', () => {
+    const MODAL_TOKEN = Number.parseInt(theme.variables['zindex-modal'], 10);
+    const DROPDOWN_TOKEN = Number.parseInt(
+      theme.variables['zindex-dropdown'],
+      10,
+    );
+
+    const zIndexOf = (root: HTMLElement): number =>
+      Number(window.getComputedStyle(root).zIndex);
+
+    const roots = (): HTMLElement[] => screen.getAllByTestId('ds-modal');
+
+    // Nested modals cannot be looked up by DOM order: every modal portals to
+    // document.body and React commits the innermost portal FIRST, so the parent
+    // ends up after its own child. That inversion is exactly why z-index — not
+    // document order — has to carry the stacking.
+    const modalTitled = (name: string): HTMLElement => {
+      const root = screen
+        .getByRole('dialog', { name })
+        .closest<HTMLElement>('[data-testid="ds-modal"]');
+      if (!root) {
+        throw new Error(`No ds-modal root found for dialog "${name}"`);
+      }
+      return root;
+    };
+
+    const zIndexTitled = (name: string): number => zIndexOf(modalTitled(name));
+
+    it('uses the zindex-modal token when nothing encloses it', () => {
+      renderWithProvider(<Modal open title="lone" />);
+
+      expect(zIndexOf(screen.getByTestId('ds-modal'))).toBe(MODAL_TOKEN);
+    });
+
+    it('stacks a nested modal above the modal that contains it', () => {
+      renderWithProvider(
+        <Modal open title="outer">
+          <Modal open title="inner" />
+        </Modal>,
+      );
+
+      expect(zIndexTitled('outer')).toBe(MODAL_TOKEN);
+      expect(zIndexTitled('inner')).toBe(MODAL_TOKEN + OVERLAY_Z_INDEX_STEP);
+      expect(zIndexTitled('inner')).toBeGreaterThan(zIndexTitled('outer'));
+    });
+
+    it('keeps stacking through three levels', () => {
+      renderWithProvider(
+        <Modal open title="first">
+          <Modal open title="second">
+            <Modal open title="third" />
+          </Modal>
+        </Modal>,
+      );
+
+      expect(
+        ['first', 'second', 'third'].map((name) => zIndexTitled(name)),
+      ).toEqual([
+        MODAL_TOKEN,
+        MODAL_TOKEN + OVERLAY_Z_INDEX_STEP,
+        MODAL_TOKEN + 2 * OVERLAY_Z_INDEX_STEP,
+      ]);
+    });
+
+    it('derives from a parent that raised itself with an explicit zIndex', () => {
+      // The reported analytics chain: the "Profile filter" modal hardcodes
+      // 991002 and the inline-analytics modal measures its way to 991004, so
+      // the ds-factors array modal opened inside them has to reach 991006.
+      renderWithProvider(
+        <Modal open title="profile filter" zIndex={991002}>
+          <Modal open title="local aggregate" zIndex={991004}>
+            <Modal open title="array editor" />
+          </Modal>
+        </Modal>,
+      );
+
+      expect(
+        ['profile filter', 'local aggregate', 'array editor'].map((name) =>
+          zIndexTitled(name),
+        ),
+      ).toEqual([991002, 991004, 991006]);
+
+      // ...and DOM order alone would have got it backwards.
+      expect(roots().map(zIndexOf)).toEqual([991006, 991004, 991002]);
+    });
+
+    it('lets an explicit zIndex on the nested modal win', () => {
+      renderWithProvider(
+        <Modal open title="outer">
+          <Modal open title="inner" zIndex={42} />
+        </Modal>,
+      );
+
+      expect(zIndexTitled('inner')).toBe(42);
+      expect(zIndexTitled('outer')).toBe(MODAL_TOKEN);
+    });
+
+    it('publishes its own resolved z-index to a modal rendered in its footer', () => {
+      // Footer/prefix slots are a separate prop, not `children` — the provider
+      // has to wrap the whole modal root, not just the body.
+      renderWithProvider(
+        <Modal
+          open
+          title="outer"
+          prefix={<Modal open title="confirm" />}
+          onOk={vi.fn()}
+          onCancel={vi.fn()}
+        />,
+      );
+
+      expect(zIndexTitled('confirm')).toBe(MODAL_TOKEN + OVERLAY_Z_INDEX_STEP);
+    });
+
+    it('stays below zindex-dropdown so it cannot cover its own popovers', () => {
+      // Dropdowns, selects, popconfirms and tooltips opened INSIDE a modal use
+      // flat theme tokens starting at zindex-dropdown. A nested modal that rose
+      // past that would paint over its own overlays, so the derived value is
+      // clamped. Deep enough to hit the ceiling many times over.
+      // The clamp logs one dev-only warning on the way; that is the point.
+      const warn = vi.spyOn(console, 'warn').mockImplementation(() => undefined);
+      const depth = 40;
+      const nested = Array.from({ length: depth }).reduce<React.ReactElement>(
+        (child, _, index) => (
+          <Modal open title={`level-${index}`}>
+            {child}
+          </Modal>
+        ),
+        <span data-testid="deepest" />,
+      );
+
+      renderWithProvider(nested);
+
+      const all = roots().map(zIndexOf);
+      expect(all).toHaveLength(depth);
+      all.forEach((value) => {
+        expect(value).toBeLessThan(DROPDOWN_TOKEN);
+      });
+      expect(Math.max(...all)).toBe(DROPDOWN_TOKEN - OVERLAY_Z_INDEX_STEP);
+
+      warn.mockRestore();
+    });
+
+    it('reaches the same value the enclosing-overlay contract promises', () => {
+      // Guards the ds-modal side of the ds-core contract: rendering under a bare
+      // OverlayZIndexProvider must match what a real parent modal produces.
+      renderWithProvider(
+        <OverlayZIndexProvider value={991002}>
+          <Modal open title="nested" />
+        </OverlayZIndexProvider>,
+      );
+
+      expect(zIndexOf(screen.getByTestId('ds-modal'))).toBe(991004);
+    });
+  });
+
+  // The overlays a user actually reaches from inside a modal — a select's
+  // dropdown, a Popconfirm — are portalled into document.body by floating-ui, so
+  // they are DOM siblings of the modal rather than descendants. They still
+  // inherit the modal's React context, and they must keep painting ABOVE the
+  // modal that owns them. This is the invariant the derived z-index is clamped
+  // to protect; if the step or the ceiling is ever raised, these fail first.
+  describe('overlays opened from inside a nested modal', () => {
+    const OVERLAY_TEXT = 'overlay content';
+    const TRIGGER_TEXT = 'open overlay';
+
+    const zIndexOfNestedModal = (): number => {
+      const root = screen
+        .getByRole('dialog', { name: 'inner' })
+        .closest<HTMLElement>('[data-testid="ds-modal"]');
+      if (!root) {
+        throw new Error('No ds-modal root found for the nested modal');
+      }
+      return Number(window.getComputedStyle(root).zIndex);
+    };
+
+    // Walks up from the overlay's content to the floating element carrying the
+    // z-index that PopoverContent set.
+    const zIndexOfOverlay = (text: string): number => {
+      const floating = screen
+        .getByText(text)
+        .closest<HTMLElement>('[data-popover-content="true"]');
+      if (!floating) {
+        throw new Error(`No popover content wrapper found around "${text}"`);
+      }
+      return Number(window.getComputedStyle(floating).zIndex);
+    };
+
+    it('keeps a Dropdown above the nested modal that owns it', async () => {
+      renderWithProvider(
+        <Modal open title="outer">
+          <Modal open title="inner">
+            <Dropdown
+              overlay={<div>{OVERLAY_TEXT}</div>}
+              trigger={['click']}
+            >
+              <button type="button">{TRIGGER_TEXT}</button>
+            </Dropdown>
+          </Modal>
+        </Modal>,
+      );
+
+      fireEvent.click(screen.getByText(TRIGGER_TEXT));
+      await screen.findByText(OVERLAY_TEXT);
+
+      expect(zIndexOfNestedModal()).toBe(
+        MODAL_TOKEN_FOR_OVERLAY_TESTS + OVERLAY_Z_INDEX_STEP,
+      );
+      expect(zIndexOfOverlay(OVERLAY_TEXT)).toBeGreaterThan(
+        zIndexOfNestedModal(),
+      );
+    });
+
+    it('keeps a Dropdown above a nested modal whose ancestor was raised near the ceiling', async () => {
+      // The case the clamp exists for: a host modal that hardcoded itself up at
+      // zindex-dropdown. Without the clamp the nested modal would land ON or
+      // ABOVE its own dropdown and swallow it.
+      const DROPDOWN_TOKEN = Number.parseInt(
+        theme.variables['zindex-dropdown'],
+        10,
+      );
+
+      renderWithProvider(
+        <Modal open title="outer" zIndex={DROPDOWN_TOKEN}>
+          <Modal open title="inner">
+            <Dropdown
+              overlay={<div>{OVERLAY_TEXT}</div>}
+              trigger={['click']}
+            >
+              <button type="button">{TRIGGER_TEXT}</button>
+            </Dropdown>
+          </Modal>
+        </Modal>,
+      );
+
+      fireEvent.click(screen.getByText(TRIGGER_TEXT));
+      await screen.findByText(OVERLAY_TEXT);
+
+      expect(zIndexOfNestedModal()).toBe(
+        DROPDOWN_TOKEN - OVERLAY_Z_INDEX_STEP,
+      );
+      expect(zIndexOfOverlay(OVERLAY_TEXT)).toBeGreaterThan(
+        zIndexOfNestedModal(),
+      );
+    });
+
+    it('keeps a Popconfirm above the nested modal that owns it', async () => {
+      renderWithProvider(
+        <Modal open title="outer">
+          <Modal open title="inner">
+            <Popconfirm title={OVERLAY_TEXT} okText="ok" cancelText="cancel">
+              <button type="button">{TRIGGER_TEXT}</button>
+            </Popconfirm>
+          </Modal>
+        </Modal>,
+      );
+
+      fireEvent.click(screen.getByText(TRIGGER_TEXT));
+      await screen.findByText(OVERLAY_TEXT);
+
+      expect(zIndexOfOverlay(OVERLAY_TEXT)).toBeGreaterThan(
+        zIndexOfNestedModal(),
+      );
     });
   });
 });
