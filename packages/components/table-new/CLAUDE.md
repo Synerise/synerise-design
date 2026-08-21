@@ -30,6 +30,16 @@ Enabled by passing `selectionConfig` to the table. Key types:
 - `SelectionConfig<TData>` -- onChange, limit, hideSelectAll, fixed, selections, globalSelection, checkRowSelectionStatus, getSelectionTooltipProps.
 - `SELECTION_ALL` / `SELECTION_INVERT` -- exported constants for the `selections` array.
 - `selectedRowKeys` -- controlled selection state (prop on Table, not inside selectionConfig).
+- `limit` coexists with the header select-all checkbox: select-all fills visible rows **up to the
+  limit** in display order (counting already-selected rows, skipping non-selectable ones). At the cap
+  the checkbox reads checked, and below it a partial selection reads indeterminate — clicking it there
+  tops the selection up from the top of the list. "Select visible" drops from the selections menu at
+  the cap; "Invert selection" is never offered under a limit (a truncated inversion would lie).
+  Use `hideSelectAll: true` to remove the checkbox entirely — `limit` alone no longer hides it.
+- Unchecking the header checkbox clears the **whole** selection, including rows hidden by search or
+  sitting on another page, with and without a `limit`. It mirrors the header counter and the cap,
+  which both count off-screen rows; the menu's "Unselect visible" is the visible-scoped action.
+- `limit` + global selection is an unsupported combination — the global branch ignores the cap.
 
 ## Expandable rows
 

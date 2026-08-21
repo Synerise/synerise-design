@@ -147,6 +147,14 @@ export const WithLimitedSelection: StoryObj<typeof Table> = {
   },
   parameters: {
     docs: {
+      description: {
+        story:
+          'With `limit` set, the header select-all checkbox fills visible rows only up to the ' +
+          'limit (already-selected rows count against it). At the cap the checkbox reads checked ' +
+          'and clicking it unselects the visible rows — off-page selections are kept, matching the ' +
+          'preserve-on-scroll semantics. "Invert selection" is not offered under a limit. Pass ' +
+          '`hideSelectAll: true` to remove the checkbox entirely.',
+      },
       source: {
         code: `<Table
   data={data}

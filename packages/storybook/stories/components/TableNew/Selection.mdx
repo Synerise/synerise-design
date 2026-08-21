@@ -45,9 +45,15 @@ import { SELECTION_ALL, SELECTION_INVERT, Table } from '@synerise/ds-table-new';
 
 ## Selection limit
 
-Set `limit` to cap the number of selectable rows. When the limit is reached, unselected row checkboxes become disabled and "Select All" / "Invert" options are hidden from the dropdown.
+Set `limit` to cap the number of selectable rows. Batch selection still works — it is capped, not removed.
 
-A warning message appears in the table header when the limit is reached.
+The header select-all checkbox fills the visible rows in display order until the limit is reached, counting rows that are already selected (including ones hidden by search or sitting on another page) and skipping rows that can't be selected. A partial selection renders it indeterminate; clicking it in that state tops the selection up from the top of the list to the limit.
+
+At the limit the checkbox reads checked, unselected row checkboxes become disabled, and a warning message appears in the table header. Clicking the checkbox then clears the selection.
+
+In the dropdown, "Select visible" disappears once the limit is reached, and "Invert selection" is never offered under a limit — a truncated inversion would misrepresent the result, so it is dropped even if you pass `SELECTION_INVERT`.
+
+Pass `hideSelectAll: true` to remove the checkbox entirely.
 
 ```tsx
 <Table
@@ -170,7 +176,7 @@ const [selectedKeys, setSelectedKeys] = useState<string[]>([]);
 
 - **`onChange`** `(selectedRowKeys: string[], selectedRows: TData[]) => void` — **required**. Fired when selection changes.
 - **`selections`** `SelectionItem[]` — menu items in the header dropdown. Use `SELECTION_ALL`, `SELECTION_INVERT`, or custom `{ key, label, onClick }` objects.
-- **`limit`** `number` — max selectable rows. Disables batch selection options when set.
+- **`limit`** `number` — max selectable rows. Batch select-all fills up to the cap; "Invert selection" is dropped while it is set.
 - **`globalSelectionOnChange`** `(selected: boolean) => void` — enables global selection mode. Callback fired when toggled.
 - **`globalSelected`** `boolean` — current global selection state.
 - **`checkRowSelectionStatus`** `(record: TData) => { disabled?: boolean; unavailable?: boolean }` — per-row selection status.

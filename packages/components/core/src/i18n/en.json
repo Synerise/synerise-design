@@ -259,6 +259,7 @@
       "SELECT_INVERT": "Invert selection",
       "ITEMS": "Records",
       "SELECT_ALL_BUTTON_TOOLTIP": "Select all",
+      "UNSELECT_ALL_BUTTON_TOOLTIP": "Unselect all",
       "SELECTION_LIMIT": "You have reached max limit",
       "SELECTIONS_MENU_TOOLTIP": "Batch selection options",
       "NO_DATA": "No data",

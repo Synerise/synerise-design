@@ -618,6 +618,7 @@ export type TableSelectionTexts = {
   selectAll: ReactNode;
   selectAllTooltip: ReactNode;
   unselectAll: ReactNode;
+  unselectAllTooltip: ReactNode;
   selectInvert: ReactNode;
   selectionOptionsTooltip: ReactNode;
 };
@@ -716,7 +717,6 @@ export type TableSelectionProps<TData, TValue> = Pick<
   //   dataSource: readonly TData[];
   //   dataSourceFull?: TData[];
   texts: TableSelectionTexts;
-  hasSelectionLimit?: boolean;
 } & Partial<Pick<Expandable<TData>, 'childrenColumnName'>>;
 
 export type TableColumnsProps = {

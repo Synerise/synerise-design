@@ -22,11 +22,12 @@ export const TableHeaderSelection = <TData extends object>({
   const { table } = useTableContext<TData>();
 
   const selectionConfig = useSelectionContext<TData>();
-  const {
-    globalSelected,
-    globalSelectionOnChange,
-    limit: hasSelectionLimit,
-  } = selectionConfig || {};
+  const { globalSelected, globalSelectionOnChange, limit } =
+    selectionConfig || {};
+
+  const selectionLimit =
+    typeof limit === 'number' && limit > 0 ? limit : undefined;
+  const hasSelectionLimit = selectionLimit !== undefined;
 
   const hasGlobalSelection = globalSelectionOnChange !== undefined;
   const isGlobalAllSelected = hasGlobalSelection && globalSelected;
@@ -36,7 +37,6 @@ export const TableHeaderSelection = <TData extends object>({
   const visibleSelectedCount = table.getFilteredSelectedRowModel().rows.length;
 
   const allRecordsCount = visibleRowCount;
-  const selectedRecordsCount = totalSelectedCount;
   const selectableRecordsCount = table
     .getRowModel()
     .rows.filter((row) => row.getCanSelect()).length;
@@ -49,10 +49,16 @@ export const TableHeaderSelection = <TData extends object>({
   // Indeterminate when some (but not all) selectable items are selected
   const isAnySelected = visibleSelectedCount > 0 && !isAllVisibleSelected;
 
+  // At the cap the checkbox reads checked, not indeterminate — row checkboxes are disabled then,
+  // so the header is the only way back out of the selection.
+  const isLimitReached =
+    selectionLimit !== undefined && totalSelectedCount >= selectionLimit;
+  const isHeaderChecked = hasGlobalSelection
+    ? Boolean(isGlobalAllSelected)
+    : isAllVisibleSelected || isLimitReached;
+
   const disabledBulkSelection = Boolean(
-    allRecordsCount === 0 ||
-    selectableRecordsCount === 0 ||
-    (hasSelectionLimit && selectedRecordsCount === 0),
+    allRecordsCount === 0 || selectableRecordsCount === 0,
   );
 
   const selectionTooltipTitle = useMemo(() => {
@@ -61,29 +67,35 @@ export const TableHeaderSelection = <TData extends object>({
         ? texts.unselectGlobalAll
         : texts.selectGlobalAll;
     }
-    return isAllVisibleSelected ? texts.unselectAll : texts.selectAllTooltip;
+    return isHeaderChecked ? texts.unselectAllTooltip : texts.selectAllTooltip;
   }, [
     hasGlobalSelection,
-    isAllVisibleSelected,
+    isHeaderChecked,
     isGlobalAllSelected,
     texts.selectAllTooltip,
     texts.selectGlobalAll,
-    texts.unselectAll,
+    texts.unselectAllTooltip,
     texts.unselectGlobalAll,
   ]);
 
-  // Select all visible rows (additive — does not deselect filtered-out items)
+  // Select all visible rows (additive — does not deselect filtered-out items). Under a limit,
+  // already-selected keys (including filtered-out ones) count against the cap.
   const selectAll = useCallback(() => {
     table.setRowSelection((prev) => {
       const next = { ...prev };
-      table.getRowModel().rows.forEach((row) => {
-        if (row.getCanSelect()) {
-          next[row.id] = true;
+      let selectedCount = Object.keys(next).length;
+      for (const row of table.getRowModel().rows) {
+        if (selectionLimit !== undefined && selectedCount >= selectionLimit) {
+          break;
         }
-      });
+        if (row.getCanSelect() && !next[row.id]) {
+          next[row.id] = true;
+          selectedCount += 1;
+        }
+      }
       return next;
     });
-  }, [table]);
+  }, [table, selectionLimit]);
 
   // Unselect only visible rows (does not deselect filtered-out items)
   const unselectAll = useCallback(() => {
@@ -94,6 +106,13 @@ export const TableHeaderSelection = <TData extends object>({
       });
       return next;
     });
+  }, [table]);
+
+  // The header checkbox mirrors the *global* selected count — so does the header counter, and so
+  // does the cap — which means unchecking it has to release the whole selection, not just the rows
+  // that happen to be on screen. The dropdown's "unselect visible" stays visible-scoped.
+  const clearSelection = useCallback(() => {
+    table.setRowSelection({});
   }, [table]);
 
   const selectGlobalAll = useCallback(() => {
@@ -142,13 +161,13 @@ export const TableHeaderSelection = <TData extends object>({
           switch (selectionMenuElement) {
             case SELECTION_ALL: {
               const items: DropdownMenuListItemProps[] = [];
-              if (!isAllVisibleSelected && !hasSelectionLimit) {
+              if (!isAllVisibleSelected && !isLimitReached) {
                 items.push({
                   onClick: selectAll,
                   text: texts.selectAll,
                 });
               }
-              if (isAnySelected) {
+              if (visibleSelectedCount > 0) {
                 items.push({
                   onClick: unselectAll,
                   text: texts.unselectAll,
@@ -157,6 +176,7 @@ export const TableHeaderSelection = <TData extends object>({
               return items;
             }
             case SELECTION_INVERT: {
+              // Never offered under a limit — a truncated inversion would misrepresent the selection.
               return !hasSelectionLimit
                 ? { onClick: selectInvert, text: texts.selectInvert }
                 : [];
@@ -182,7 +202,8 @@ export const TableHeaderSelection = <TData extends object>({
     selectionConfig?.selections,
     isAllVisibleSelected,
     hasSelectionLimit,
-    isAnySelected,
+    isLimitReached,
+    visibleSelectedCount,
     selectAll,
     unselectAll,
     selectInvert,
@@ -192,35 +213,31 @@ export const TableHeaderSelection = <TData extends object>({
     if (hasGlobalSelection) {
       isGlobalAllSelected ? unselectGlobalAll() : selectGlobalAll();
     } else {
-      isAllVisibleSelected ? unselectAll() : selectAll();
+      isHeaderChecked ? clearSelection() : selectAll();
     }
   }, [
     hasGlobalSelection,
-    isAllVisibleSelected,
+    isHeaderChecked,
     isGlobalAllSelected,
+    clearSelection,
     selectAll,
     selectGlobalAll,
-    unselectAll,
     unselectGlobalAll,
   ]);
 
   return selectionConfig ? (
     <S.Selection data-popup-container>
-      {!hasSelectionLimit && (
-        <S.SelectionCheckbox
-          isOrphan={!selectionConfig.selections}
-          disabled={disabledBulkSelection}
-          data-testid="ds-table-batch-selection-button"
-          tooltipProps={{
-            title: selectionTooltipTitle,
-          }}
-          checked={
-            hasGlobalSelection ? isGlobalAllSelected : isAllVisibleSelected
-          }
-          indeterminate={isAnySelected}
-          onChange={handleBatchSelectionChange}
-        />
-      )}
+      <S.SelectionCheckbox
+        $isOrphan={!selectionConfig.selections}
+        disabled={disabledBulkSelection}
+        data-testid="ds-table-batch-selection-button"
+        tooltipProps={{
+          title: selectionTooltipTitle,
+        }}
+        checked={isHeaderChecked}
+        indeterminate={isAnySelected && !isHeaderChecked}
+        onChange={handleBatchSelectionChange}
+      />
       {selectionConfig.selections && (
         <DropdownMenu
           disabled={disabledBulkSelection || dropdownDataSource?.length === 0}
@@ -232,7 +249,6 @@ export const TableHeaderSelection = <TData extends object>({
           asChild
         >
           <S.DropdownButton
-            isOrphan={!!hasSelectionLimit}
             disabled={disabledBulkSelection || dropdownDataSource?.length === 0}
             mode="single-icon"
             type="ghost"
