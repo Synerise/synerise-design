@@ -60,6 +60,7 @@
       "ITEMS": "Rekordy",
       "SELECT_ALL": "Zaznacz widoczne",
       "SELECT_ALL_BUTTON_TOOLTIP": "Zaznacz wszystko",
+      "UNSELECT_ALL_BUTTON_TOOLTIP": "Odznacz wszystko",
       "SELECT_GLOBAL_ALL": "Zaznacz wszystko",
       "SELECT_INVERT": "Odwróć zaznaczenie",
       "SELECTION_LIMIT": "Osiągnięto maksymalny limit",

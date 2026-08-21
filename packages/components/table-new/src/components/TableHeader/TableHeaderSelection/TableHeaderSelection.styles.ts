@@ -2,25 +2,23 @@ import styled, { css } from 'styled-components';
 
 import Button, { Checkbox, type StyledButton } from '@synerise/ds-button';
 
+// $-prefixed so styled-components keeps it out of the DOM — Checkbox spreads its rest props onto
+// the underlying button, and React warns about unknown attributes.
 type ExtraProps = {
-  isOrphan?: boolean;
+  $isOrphan?: boolean;
 };
-export const DropdownButton: StyledButton<ExtraProps> = styled(
-  Button,
-)<ExtraProps>`
-  ${(props) =>
-    !props.isOrphan &&
-    css`
-      &&& {
-        border-top-left-radius: 0;
-        border-bottom-left-radius: 0;
-      }
-    `}
+
+// Only ever rendered next to the checkbox, so its left side is always the joining edge.
+export const DropdownButton: StyledButton = styled(Button)`
+  &&& {
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+  }
 `;
 
 export const SelectionCheckbox = styled(Checkbox)<ExtraProps>`
   ${(props) =>
-    !props.isOrphan &&
+    !props.$isOrphan &&
     css`
       &&& {
         border-top-right-radius: 0;

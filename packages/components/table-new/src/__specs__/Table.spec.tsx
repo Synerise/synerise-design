@@ -4,6 +4,7 @@ import { renderWithProvider } from '@synerise/ds-core';
 import { fireEvent, screen, within } from '@testing-library/react';
 
 import { Table } from '../Table';
+import { SELECTION_ALL, SELECTION_INVERT } from '../Table.const';
 import { COLUMNS, DATA, type DataType, EXPANDABLE_DATA, SORTABLE_COLUMNS } from './data';
 
 describe('Table', () => {
@@ -454,6 +455,304 @@ describe('Table', () => {
       const checkboxes = screen.getAllByRole('checkbox');
       // 1 select-all + DATA.length row checkboxes
       expect(checkboxes).toHaveLength(DATA.length + 1);
+    });
+
+    it('clears rows hidden by search when the header checkbox is unchecked', () => {
+      const onChange = vi.fn();
+      renderWithProvider(
+        <Table
+          data={DATA}
+          columns={COLUMNS}
+          matchesSearchQuery={(query: string, row: DataType) =>
+            row.name.toLowerCase().includes(query.toLowerCase())
+          }
+          selectionConfig={{ onChange }}
+          selectedRowKeys={['1', '2']}
+        />,
+      );
+
+      // Only Mike ('1') is left on screen, and it is selected, so the header reads checked
+      fireEvent.change(screen.getByRole('textbox'), {
+        target: { value: 'Mike' },
+      });
+      onChange.mockClear();
+
+      fireEvent.click(screen.getByTestId('ds-table-batch-selection-button'));
+
+      // '2' is filtered out, but the header checkbox releases the whole selection
+      expect(onChange).toHaveBeenCalledWith([], []);
+    });
+  });
+
+  describe('selection limit', () => {
+    it('renders the select-all checkbox when a limit is set', () => {
+      renderWithProvider(
+        <Table
+          data={DATA}
+          columns={COLUMNS}
+          selectionConfig={{ onChange: vi.fn(), limit: 3 }}
+          selectedRowKeys={[]}
+        />,
+      );
+
+      expect(
+        screen.getByTestId('ds-table-batch-selection-button'),
+      ).toBeInTheDocument();
+    });
+
+    it('caps select-all at the limit, filling in display order', () => {
+      const onChange = vi.fn();
+      renderWithProvider(
+        <Table
+          data={DATA}
+          columns={COLUMNS}
+          selectionConfig={{ onChange, limit: 3 }}
+          selectedRowKeys={[]}
+        />,
+      );
+
+      fireEvent.click(screen.getByTestId('ds-table-batch-selection-button'));
+
+      const [selectedKeys] = onChange.mock.calls[0];
+      expect(selectedKeys).toEqual(['1', '2', '3']);
+    });
+
+    it('counts already-selected rows against the cap', () => {
+      const onChange = vi.fn();
+      renderWithProvider(
+        <Table
+          data={DATA}
+          columns={COLUMNS}
+          selectionConfig={{ onChange, limit: 3 }}
+          selectedRowKeys={['5', '6']}
+        />,
+      );
+
+      fireEvent.click(screen.getByTestId('ds-table-batch-selection-button'));
+
+      const [selectedKeys] = onChange.mock.calls[0];
+      expect(selectedKeys).toHaveLength(3);
+      expect(selectedKeys).toEqual(expect.arrayContaining(['1', '5', '6']));
+    });
+
+    it('skips non-selectable rows when filling up to the limit', () => {
+      const onChange = vi.fn();
+      renderWithProvider(
+        <Table
+          data={DATA}
+          columns={COLUMNS}
+          selectionConfig={{
+            onChange,
+            limit: 2,
+            checkRowSelectionStatus: (record) =>
+              record.key === '1' ? { disabled: true } : {},
+          }}
+          selectedRowKeys={[]}
+        />,
+      );
+
+      fireEvent.click(screen.getByTestId('ds-table-batch-selection-button'));
+
+      const [selectedKeys] = onChange.mock.calls[0];
+      expect(selectedKeys).toEqual(['2', '3']);
+    });
+
+    it('is checked at the cap and clicking it unselects the visible rows', () => {
+      const onChange = vi.fn();
+      renderWithProvider(
+        <Table
+          data={DATA}
+          columns={COLUMNS}
+          selectionConfig={{ onChange, limit: 3 }}
+          selectedRowKeys={['1', '2', '3']}
+        />,
+      );
+
+      const selectAllCheckbox = screen.getByTestId(
+        'ds-table-batch-selection-button',
+      );
+      expect(selectAllCheckbox).toBeChecked();
+
+      fireEvent.click(selectAllCheckbox);
+
+      const [selectedKeys] = onChange.mock.calls[0];
+      expect(selectedKeys).toHaveLength(0);
+    });
+
+    it('offers "Select visible" below the cap but never "Invert selection"', () => {
+      renderWithProvider(
+        <Table
+          data={DATA}
+          columns={COLUMNS}
+          selectionConfig={{
+            onChange: vi.fn(),
+            limit: 3,
+            selections: [SELECTION_ALL, SELECTION_INVERT],
+          }}
+          selectedRowKeys={[]}
+        />,
+      );
+
+      fireEvent.click(screen.getByTestId('ds-table-batch-selection-options'));
+      expect(screen.getByText('Select visible')).toBeInTheDocument();
+      expect(screen.queryByText('Invert selection')).not.toBeInTheDocument();
+    });
+
+    it('drops "Select visible" at the cap, leaving "Unselect visible"', () => {
+      renderWithProvider(
+        <Table
+          data={DATA}
+          columns={COLUMNS}
+          selectionConfig={{
+            onChange: vi.fn(),
+            limit: 3,
+            selections: [SELECTION_ALL, SELECTION_INVERT],
+          }}
+          selectedRowKeys={['1', '2', '3']}
+        />,
+      );
+
+      fireEvent.click(screen.getByTestId('ds-table-batch-selection-options'));
+      expect(screen.queryByText('Select visible')).not.toBeInTheDocument();
+      expect(screen.getByText('Unselect visible')).toBeInTheDocument();
+    });
+
+    it('keeps hideSelectAll working under a limit', () => {
+      renderWithProvider(
+        <Table
+          data={DATA}
+          columns={COLUMNS}
+          selectionConfig={{ onChange: vi.fn(), hideSelectAll: true, limit: 3 }}
+          selectedRowKeys={[]}
+        />,
+      );
+
+      expect(
+        screen.queryByTestId('ds-table-batch-selection-button'),
+      ).not.toBeInTheDocument();
+    });
+
+    it('renders the checkbox indeterminate while a manual selection is below the cap', () => {
+      renderWithProvider(
+        <Table
+          data={DATA}
+          columns={COLUMNS}
+          selectionConfig={{ onChange: vi.fn(), limit: 3 }}
+        />,
+      );
+
+      // row key '5' — deliberately not the first row
+      fireEvent.click(screen.getAllByTestId('ds-table-selection-button')[4]);
+
+      expect(
+        screen.getByTestId('ds-table-batch-selection-button'),
+      ).toHaveAttribute('aria-checked', 'mixed');
+    });
+
+    it('tops the selection up from the top of the list when clicked while indeterminate', () => {
+      const onChange = vi.fn();
+      renderWithProvider(
+        <Table
+          data={DATA}
+          columns={COLUMNS}
+          selectionConfig={{ onChange, limit: 3 }}
+        />,
+      );
+
+      fireEvent.click(screen.getAllByTestId('ds-table-selection-button')[4]);
+      onChange.mockClear();
+
+      fireEvent.click(screen.getByTestId('ds-table-batch-selection-button'));
+
+      const [selectedKeys] = onChange.mock.calls[0];
+      expect(selectedKeys).toEqual(['1', '2', '5']);
+    });
+
+    it('shows the limit-reached warning once select-all hits the cap', () => {
+      renderWithProvider(
+        <Table
+          data={DATA}
+          columns={COLUMNS}
+          selectionConfig={{ onChange: vi.fn(), limit: 3 }}
+        />,
+      );
+
+      expect(
+        screen.queryByText('You have reached max limit'),
+      ).not.toBeInTheDocument();
+
+      fireEvent.click(screen.getByTestId('ds-table-batch-selection-button'));
+
+      expect(
+        screen.getByText('You have reached max limit'),
+      ).toBeInTheDocument();
+    });
+
+    it('disables the unselected row checkboxes at the cap, keeping selected ones clickable', () => {
+      renderWithProvider(
+        <Table
+          data={DATA}
+          columns={COLUMNS}
+          selectionConfig={{ onChange: vi.fn(), limit: 3 }}
+        />,
+      );
+
+      fireEvent.click(screen.getByTestId('ds-table-batch-selection-button'));
+
+      const rowCheckboxes = screen.getAllByTestId('ds-table-selection-button');
+      rowCheckboxes.slice(0, 3).forEach((checkbox) => {
+        expect(checkbox).toBeEnabled();
+      });
+      rowCheckboxes.slice(3).forEach((checkbox) => {
+        expect(checkbox).toBeDisabled();
+      });
+    });
+
+    it('clears rows hidden by search when clicked at the cap', () => {
+      const onChange = vi.fn();
+      renderWithProvider(
+        <Table
+          data={DATA}
+          columns={COLUMNS}
+          matchesSearchQuery={(query: string, row: DataType) =>
+            row.name.toLowerCase().includes(query.toLowerCase())
+          }
+          selectionConfig={{ onChange, limit: 3 }}
+        />,
+      );
+
+      // Fills the cap with keys '1' (Mike), '2' and '3' (both John)
+      fireEvent.click(screen.getByTestId('ds-table-batch-selection-button'));
+
+      // Leaves only Mike on screen — '2' and '3' stay selected but hidden
+      fireEvent.change(screen.getByRole('textbox'), {
+        target: { value: 'Mike' },
+      });
+      onChange.mockClear();
+
+      fireEvent.click(screen.getByTestId('ds-table-batch-selection-button'));
+
+      expect(onChange).toHaveBeenCalledWith([], []);
+    });
+
+    it('offers "Unselect visible" when every visible row is selected', () => {
+      renderWithProvider(
+        <Table
+          data={DATA}
+          columns={COLUMNS}
+          selectionConfig={{
+            onChange: vi.fn(),
+            limit: 10,
+            selections: [SELECTION_ALL],
+          }}
+        />,
+      );
+
+      // The cap is above the row count, so select-all takes every row
+      fireEvent.click(screen.getByTestId('ds-table-batch-selection-button'));
+
+      fireEvent.click(screen.getByTestId('ds-table-batch-selection-options'));
+      expect(screen.getByText('Unselect visible')).toBeInTheDocument();
     });
   });
 

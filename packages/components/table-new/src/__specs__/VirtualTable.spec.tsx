@@ -169,6 +169,47 @@ describe('VirtualTable', () => {
     });
   });
 
+  describe('selection limit', () => {
+    it('renders the select-all checkbox and caps it at the limit', () => {
+      const onChange = vi.fn();
+      renderWithProvider(
+        <VirtualTable
+          data={DATA}
+          columns={COLUMNS}
+          selectionConfig={{ onChange, limit: 2 }}
+          selectedRowKeys={[]}
+        />,
+      );
+
+      fireEvent.click(screen.getByTestId('ds-table-batch-selection-button'));
+
+      const [selectedKeys] = onChange.mock.calls[0];
+      expect(selectedKeys).toEqual(['1', '2']);
+    });
+
+    it('disables the unselected row checkboxes once the cap is reached', () => {
+      renderWithProvider(
+        <VirtualTable
+          data={DATA}
+          columns={COLUMNS}
+          selectionConfig={{ onChange: vi.fn(), limit: 2 }}
+        />,
+      );
+
+      fireEvent.click(screen.getByTestId('ds-table-batch-selection-button'));
+
+      // Only assert over the rows the virtualizer actually rendered
+      const rowCheckboxes = screen.getAllByTestId('ds-table-selection-button');
+      const unselected = rowCheckboxes.filter(
+        (checkbox) => checkbox.getAttribute('aria-checked') === 'false',
+      );
+      expect(unselected.length).toBeGreaterThan(0);
+      unselected.forEach((checkbox) => {
+        expect(checkbox).toBeDisabled();
+      });
+    });
+  });
+
   describe('onRowClick', () => {
     it('should call onRowClick when a row is clicked', () => {
       const onRowClick = vi.fn();
