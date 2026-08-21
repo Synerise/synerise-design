@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.56.0](https://github.com/Synerise/synerise-design/compare/storybook@1.55.3...storybook@1.56.0) (2026-08-21)
+
+### Features
+
+- **table-new:** cap select-all at the selection limit, not hide it ([9b4c0a9](https://github.com/Synerise/synerise-design/commit/9b4c0a97bf43dc186e230d7e06116d42e5cabb93))
+
 ## [1.55.3](https://github.com/Synerise/synerise-design/compare/storybook@1.55.2...storybook@1.55.3) (2026-08-20)
 
 ### Bug Fixes

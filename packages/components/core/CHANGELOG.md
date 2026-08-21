@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.15.0](https://github.com/synerise/synerise-design/compare/@synerise/ds-core@1.14.1...@synerise/ds-core@1.15.0) (2026-08-21)
+
+### Features
+
+- **table-new:** cap select-all at the selection limit, not hide it ([9b4c0a9](https://github.com/synerise/synerise-design/commit/9b4c0a97bf43dc186e230d7e06116d42e5cabb93))
+
 ## [1.14.1](https://github.com/synerise/synerise-design/compare/@synerise/ds-core@1.14.0...@synerise/ds-core@1.14.1) (2026-08-20)
 
 ### Bug Fixes
