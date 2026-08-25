@@ -61,6 +61,7 @@ const meta: Meta<ImagePreviewProps> = {
     zoomStep: { control: 'number' },
     maxZoom: { control: 'number' },
     initialZoom: { control: 'inline-radio', options: ['fit', 'real-size'] },
+    zIndex: { control: 'number' },
     onZoom: { action: 'zoom' },
     open: { table: { disable: true } },
     index: { table: { disable: true } },

@@ -1,6 +1,10 @@
 import React from 'react';
 import { fireEvent, screen } from '@testing-library/react';
-import { renderWithProvider } from '@synerise/ds-core';
+import {
+  OverlayZIndexProvider,
+  renderWithProvider,
+  theme,
+} from '@synerise/ds-core';
 
 import { type ImageSource } from '../../shared/Image.shared.types';
 import ImagePreview from '../ImagePreview';
@@ -304,5 +308,47 @@ describe('ImagePreview', () => {
       'aria-label',
       'Zamknij',
     );
+  });
+
+  describe('z-index stacking', () => {
+    const MODAL_TOKEN = Number.parseInt(theme.variables['zindex-modal'], 10);
+    const OVERLAY_STEP = 2;
+
+    const overlayZIndex = (): number =>
+      Number(window.getComputedStyle(screen.getByRole('dialog')).zIndex);
+
+    it('uses the zindex-modal token when nothing encloses it', () => {
+      // ARRANGE
+      renderPreview();
+
+      // ASSERT
+      expect(overlayZIndex()).toBe(MODAL_TOKEN);
+    });
+
+    it('stacks one step above the enclosing overlay', () => {
+      // ARRANGE
+      renderWithProvider(
+        <OverlayZIndexProvider value={MODAL_TOKEN}>
+          <ImagePreview
+            open
+            images={IMAGES}
+            index={0}
+            onIndexChange={vi.fn()}
+            onClose={vi.fn()}
+          />
+        </OverlayZIndexProvider>,
+      );
+
+      // ASSERT
+      expect(overlayZIndex()).toBe(MODAL_TOKEN + OVERLAY_STEP);
+    });
+
+    it('lets an explicit zIndex opt out of the DS stack', () => {
+      // ARRANGE — a trigger living above the DS scale (e.g. an app-level overlay)
+      renderPreview({ zIndex: 1000000 });
+
+      // ASSERT
+      expect(overlayZIndex()).toBe(1000000);
+    });
   });
 });
