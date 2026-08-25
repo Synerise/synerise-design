@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.57.0](https://github.com/Synerise/synerise-design/compare/storybook@1.56.0...storybook@1.57.0) (2026-08-25)
+
+### Features
+
+- **image:** stack the preview through the DS overlay z-index ([573932c](https://github.com/Synerise/synerise-design/commit/573932c6197c4e9613265cb17f117326f5fb6a71))
+
 # [1.56.0](https://github.com/Synerise/synerise-design/compare/storybook@1.55.3...storybook@1.56.0) (2026-08-21)
 
 ### Features

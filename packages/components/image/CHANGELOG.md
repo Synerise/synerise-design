@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.2.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-image@0.1.5...@synerise/ds-image@0.2.0) (2026-08-25)
+
+### Features
+
+- **image:** stack the preview through the DS overlay z-index ([573932c](https://github.com/Synerise/synerise-design/commit/573932c6197c4e9613265cb17f117326f5fb6a71))
+
 ## [0.1.5](https://github.com/Synerise/synerise-design/compare/@synerise/ds-image@0.1.4...@synerise/ds-image@0.1.5) (2026-08-18)
 
 **Note:** Version bump only for package @synerise/ds-image
