@@ -6,6 +6,7 @@ import {
   TransformWrapper,
 } from 'react-zoom-pan-pinch';
 
+import { useResolvedOverlayZIndex } from '@synerise/ds-core';
 import Icon, { CloseM, ImageM } from '@synerise/ds-icon';
 import { ToolbarButton, ToolbarGroup } from '@synerise/ds-toolbar';
 import { useFocusTrap } from '@synerise/ds-utils';
@@ -58,8 +59,10 @@ const ImagePreview = ({
   destroyOnClose = false,
   onZoom,
   texts: textsProp,
+  zIndex,
 }: ImagePreviewProps): React.ReactPortal | null => {
   const texts = useImageTexts(textsProp);
+  const resolvedZIndex = useResolvedOverlayZIndex(zIndex);
   const overlayRef = useRef<HTMLDivElement>(null);
   const workingAreaRef = useRef<HTMLDivElement>(null);
   const transformRef = useRef<ReactZoomPanPinchRef | null>(null);
@@ -298,6 +301,7 @@ const ImagePreview = ({
       aria-label={currentImage?.alt}
       tabIndex={-1}
       $hidden={!open}
+      $zIndex={resolvedZIndex}
       onMouseDown={handleOverlayPointerDown}
       onClick={handleMaskClick}
       data-testid="image-preview"

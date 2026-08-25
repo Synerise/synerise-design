@@ -23,6 +23,7 @@ const Gallery = ({
   maxZoom,
   initialZoom,
   getContainer,
+  zIndex,
   texts,
   className,
 }: GalleryProps): JSX.Element => {
@@ -82,6 +83,7 @@ const Gallery = ({
           initialZoom={initialZoom}
           fallback={fallback}
           getContainer={getContainer}
+          zIndex={zIndex}
           texts={texts}
         />
       )}

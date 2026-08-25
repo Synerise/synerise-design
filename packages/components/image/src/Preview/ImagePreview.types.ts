@@ -36,6 +36,12 @@ export type ImagePreviewProps = {
   fallback?: ReactNode;
   /** Portal target. Defaults to `document.body`. */
   getContainer?: () => HTMLElement;
+  /**
+   * z-index of the overlay. Omit it and the preview stacks one step above the
+   * nearest enclosing modal/drawer, falling back to the `zindex-modal` token
+   * when nothing encloses it. Set it to opt out of that stack.
+   */
+  zIndex?: number;
   /** Unmount the viewer (and reset zoom state) when closed. Defaults to false. */
   destroyOnClose?: boolean;
   /** Called with the current scale whenever the zoom transform changes. */

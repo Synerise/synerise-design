@@ -43,6 +43,8 @@ export type GalleryProps = {
   initialZoom?: InitialZoom;
   /** Preview pass-through — portal target. */
   getContainer?: () => HTMLElement;
+  /** Preview pass-through — z-index of the preview overlay. */
+  zIndex?: number;
   /** Override tooltip / accessible labels for thumbnails and the preview. */
   texts?: Partial<ImageTexts>;
   className?: string;
