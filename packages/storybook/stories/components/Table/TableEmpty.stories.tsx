@@ -24,6 +24,7 @@ const STORY_ARG_TYPE = { table: { category: 'Story options' } };
 
 export default {
   ...TableMeta,
+  tags: ['deprecated'],
   parameters: {
     ...TableMeta.parameters,
     controls: {

@@ -45,6 +45,7 @@ type StoryType = VirtualTableProps<RowType> & {
 
 export default {
   ...TableMeta,
+  tags: ['deprecated'],
   parameters: {
     ...TableMeta.parameters,
   },

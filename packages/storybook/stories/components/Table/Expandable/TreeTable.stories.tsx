@@ -21,6 +21,7 @@ type Story = StoryObj<StoryType>;
 
 export default {
   ...TableMeta,
+  tags: ['deprecated'],
   parameters: {
     ...TableMeta.parameters,
     controls: {

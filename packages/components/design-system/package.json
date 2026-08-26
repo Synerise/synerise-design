@@ -142,7 +142,6 @@
     "@synerise/ds-subject": "workspace:^",
     "@synerise/ds-subtle-form": "workspace:^",
     "@synerise/ds-switch": "workspace:^",
-    "@synerise/ds-table": "workspace:^",
     "@synerise/ds-table-new": "workspace:^",
     "@synerise/ds-tabs": "workspace:^",
     "@synerise/ds-tag": "workspace:^",
