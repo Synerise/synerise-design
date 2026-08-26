@@ -1,4 +1,3 @@
-import { ConfigProvider as AntConfigProvider } from 'antd';
 import * as merge from 'deepmerge';
 import { flatten } from 'flat';
 import React from 'react';
@@ -9,11 +8,7 @@ import {
   type LocaleProviderProps,
   type NestedMessages,
 } from './LocaleProvider.types';
-import {
-  getAntMessages,
-  getDSMessages,
-  getLangForCode,
-} from './LocaleProvider.utils';
+import { getDSMessages, getLangForCode } from './LocaleProvider.utils';
 
 const DEFAULT_LANG = 'en-US';
 
@@ -29,7 +24,6 @@ const LocaleProvider = ({
   const code = locale || DEFAULT_LANG;
   const lang = getLangForCode(code);
 
-  const antLocale = getAntMessages(lang);
   const dsLocale = getDSMessages(lang);
   const localeData = messages[lang] || {};
   const currentMessages: IntlMessages = flatten({
@@ -38,18 +32,16 @@ const LocaleProvider = ({
   });
 
   return (
-    <AntConfigProvider locale={antLocale}>
-      <IntlProvider
-        textComponent="span"
-        locale={code}
-        messages={currentMessages}
-        timeZone={timeZone}
-        defaultLocale={defaultLocale}
-        onError={(error) => onErrorIntl?.(error)}
-      >
-        {children}
-      </IntlProvider>
-    </AntConfigProvider>
+    <IntlProvider
+      textComponent="span"
+      locale={code}
+      messages={currentMessages}
+      timeZone={timeZone}
+      defaultLocale={defaultLocale}
+      onError={(error) => onErrorIntl?.(error)}
+    >
+      {children}
+    </IntlProvider>
   );
 };
 

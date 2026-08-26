@@ -1,0 +1,58 @@
+// antd's `.anticon` icon base, vendored from antd 4.24.16 `~antd/lib/style/core/iconfont.less`.
+//
+// antd's Table renders its sorter carets and the selection caret from @ant-design/icons as
+// `<span class="anticon">`, and no antd *component* stylesheet defines that base — it used to reach
+// us through ds-core's antd import, which is gone.
+//
+// Vendored rather than `@import`ed because `iconfont.less` starts with `@import '../themes/index'`.
+// That re-declares antd's own theme variables *after* ds-core's config.less has overridden them, and
+// LESS resolves variables last-declaration-wins across the whole file — so importing it silently
+// reverted every DS override in this stylesheet to an antd default (@font-size-base 13px -> 14px,
+// and so on). `~antd/lib/style/core/motion.less` has no such import and is safe to import directly;
+// it also supplies the `loadingCircle` keyframe referenced below.
+
+.anticon {
+  display: inline-flex;
+  align-items: center;
+  color: inherit;
+  font-style: normal;
+  line-height: 0;
+  text-align: center;
+  text-transform: none;
+  vertical-align: -0.125em;
+  text-rendering: optimizelegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+  > * {
+    line-height: 1;
+  }
+
+  svg {
+    display: inline-block;
+  }
+
+  &::before {
+    display: none;
+  }
+
+  .anticon-icon {
+    display: block;
+  }
+
+  // https://github.com/ant-design/ant-design/issues/33703
+  > .anticon {
+    line-height: 0;
+    vertical-align: 0;
+  }
+
+  &[tabindex] {
+    cursor: pointer;
+  }
+}
+
+.anticon-spin,
+.anticon-spin::before {
+  display: inline-block;
+  animation: loadingCircle 1s infinite linear;
+}
