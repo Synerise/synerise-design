@@ -1,7 +1,7 @@
 import React, { useMemo } from 'react';
 
-import Alert from '@synerise/ds-alert';
 import { useDataFormat } from '@synerise/ds-core';
+import InlineAlert from '@synerise/ds-inline-alert';
 
 import { Skeleton } from '../../Table.styles';
 import * as S from './TableLimit.styles';
@@ -25,10 +25,7 @@ export function TableLimit<T extends { children?: T[] }>({
     () =>
       limit <= selectedRows && (
         <S.Alert>
-          <Alert.InlineAlert
-            type="warning"
-            message={locale.selectionLimitWarning}
-          />
+          <InlineAlert type="warning" message={locale.selectionLimitWarning} />
         </S.Alert>
       ),
     [locale, selectedRows, limit],

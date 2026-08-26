@@ -61,7 +61,7 @@ import antd's component LESS. None are thin re-exports.
 |---|---|---|---|
 | `ds-carousel` (new) | — (replaces antd `Carousel`) | No | ✅ merged (MR !3751) |
 | `pagination` | `Pagination` + `PaginationProps` | DS-native, emits `ds-pagination-*` only (no `ant-` hooks). `ds-table` (excluded — still renders antd's own `Pagination`) now owns its `.ant-pagination-*` styling via a local `style/pagination.less` instead of borrowing ds-pagination's deleted LESS; `ds-table-new` `PaginationProps` type repointed to ds-pagination (**closes that Tier 0 item**) | ✅ merged (MR !3755) |
-| `alert` | `Alert` + `AlertProps` | No | ⏭️ excluded (deprecated; keep antd until deleted) |
+| `alert` | `Alert` + `AlertProps` | No | ⏭️ excluded (deprecated; keep antd until deleted). **No DS package imports it any more** — the nine internal call sites all reached antd-free components (`Alert.InlineAlert`, `IconAlert`, the local `InlineAlert`) through an antd-backed namespace, and now use `@synerise/ds-inline-alert` directly, matching what `ds-table-new` already did. `Alert.stories.tsx` deleted with them; only `ds-mocks`' mock target and the `design-system` umbrella dep still name the package. It can now be deleted without touching a consumer. |
 | `banner` | `Carousel` + `CarouselRef` → ds-carousel | No | ✅ merged (MR !3753) |
 | `popconfirm` | `Carousel` (image carousel in body) → ds-carousel | No | ✅ merged (MR !3752) |
 | `sidebar` | `Collapse` + `CollapseProps` | No | ✅ merged (MR !3754) |
@@ -203,5 +203,6 @@ the duplicates.
 
 > **Current-state caveat:** on **master**, `antd` still remains (legitimately) in `ds-table`
 > (permanently excluded), `ds-menu` and `ds-alert` (both deprecated — antd stays until the packages are
-> retired), and `ds-core` (STOR-2341, in progress — removed last). Everything else is antd-free in both
-> source and `package.json`.
+> retired; `ds-alert` now has **no DS consumers**, so it can be deleted as soon as the downstream repos
+> are clear), and `ds-core` (STOR-2341, in progress — removed last). Everything else is antd-free in
+> both source and `package.json`.

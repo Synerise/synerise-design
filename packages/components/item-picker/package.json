@@ -42,7 +42,6 @@
   ],
   "types": "dist/index.d.ts",
   "dependencies": {
-    "@synerise/ds-alert": "workspace:^",
     "@synerise/ds-avatar": "workspace:^",
     "@synerise/ds-button": "workspace:^",
     "@synerise/ds-dropdown": "workspace:^",
@@ -51,6 +50,7 @@
     "@synerise/ds-form-field": "workspace:^",
     "@synerise/ds-icon": "workspace:^",
     "@synerise/ds-information-card": "workspace:^",
+    "@synerise/ds-inline-alert": "workspace:^",
     "@synerise/ds-list-item": "workspace:^",
     "@synerise/ds-loader": "workspace:^",
     "@synerise/ds-popconfirm": "workspace:^",

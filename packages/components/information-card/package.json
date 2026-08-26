@@ -44,7 +44,6 @@
   "types": "dist/index.d.ts",
   "dependencies": {
     "@floating-ui/react": "^0.27.16",
-    "@synerise/ds-alert": "workspace:^",
     "@synerise/ds-avatar": "workspace:^",
     "@synerise/ds-badge": "workspace:^",
     "@synerise/ds-button": "workspace:^",
@@ -54,6 +53,7 @@
     "@synerise/ds-divider": "workspace:^",
     "@synerise/ds-dropdown": "workspace:^",
     "@synerise/ds-icon": "workspace:^",
+    "@synerise/ds-inline-alert": "workspace:^",
     "@synerise/ds-menu": "workspace:^",
     "@synerise/ds-popover": "workspace:^",
     "@synerise/ds-scrollbar": "workspace:^",

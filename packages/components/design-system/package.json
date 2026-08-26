@@ -39,7 +39,6 @@
   "types": "dist/index.d.ts",
   "dependencies": {
     "@synerise/ds-action-area": "workspace:^",
-    "@synerise/ds-alert": "workspace:^",
     "@synerise/ds-app-menu": "workspace:^",
     "@synerise/ds-autocomplete": "workspace:^",
     "@synerise/ds-avatar": "workspace:^",
