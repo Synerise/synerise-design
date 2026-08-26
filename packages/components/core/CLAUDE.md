@@ -12,7 +12,6 @@ src/js/
  LocaleProvider/ — react-intl IntlProvider wrapper
  LocaleProvider.tsx
  LocaleProvider.types.ts — LocaleProviderProps, IntlMessages, NestedMessages
- antLocales.ts — Ant Design locale mappings (locale string → antd locale object)
  ThemeProvider/
  ThemeProvider.tsx — styled-components ThemeProvider wrapper
  theme.ts — theme object, useTheme, defaultColorsOrder, themeVariables
@@ -364,7 +363,6 @@ RTL `render()` wrapped in `DSProvider` with sensible test defaults. Use in compo
 
 - `react-intl` — i18n; `LocaleProvider` wraps `IntlProvider`
 - `styled-components` — theming via `ThemeProvider`
-- `antd` — locale objects mapped from BCP 47 strings in `antLocales.ts`
 - `react-hot-toast` — toast notifications (`Toaster` is a thin wrapper)
 - `dayjs`, `moment`, `date-fns-tz` — date value detection and formatting in `useDataFormat`
 

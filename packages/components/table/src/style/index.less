@@ -1,6 +1,11 @@
 @import '~antd/lib/table/style/index.less';
 @import '~@synerise/ds-core/src/style/variables.less';
 @import '~@synerise/ds-core/src/style/config.less';
+// antd's icon base, vendored — see the note in anticon.less for why it is not imported from antd.
+@import './anticon.less';
+// antd's motion keyframes — the select LESS below animates dropdowns with antSlideUpIn/antSlideDownIn,
+// which live in antd's base rather than in any component stylesheet. Relocated from ds-core.
+@import '~antd/lib/style/core/motion.less';
 // antd Select styling for the table's embedded selects (relocated from ds-select,
 // which is now antd-free; ds-table stays on antd — see antd-migration-status.md).
 @import '~antd/lib/select/style/index.less';

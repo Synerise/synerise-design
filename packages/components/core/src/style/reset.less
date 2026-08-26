@@ -1,0 +1,398 @@
+// DS global reset — vendored from antd 4.24.16 `~antd/lib/style/core/global.less`.
+//
+// ds-core used to pull antd's whole base stylesheet for this. That import is gone, but the reset
+// itself is load-bearing: it is the only source of the global `box-sizing: border-box`, the body
+// typography and the `::selection` colour for Storybook and for any consumer that does not import
+// antd itself. So it is reproduced here, deliberately unchanged in output.
+//
+// Dropped from the original (IE-only, no effect in any supported browser): the
+// `[class^='ant-']::-ms-clear` block, `input::-ms-clear` / `::-ms-reveal`, `@-ms-viewport`. Also
+// dropped: the `.clearfix` utility class — no consumer in synerise-design, portal-ui-bridge or
+// universal-list references it.
+//
+// Values come from `config.less` wherever the DS defines them. The few below are antd defaults the
+// DS never overrode; they are inlined rather than added to `config.less`, which is being migrated to
+// @synerise/ds-tokens separately.
+
+// The DS `@font-family` is commented out in `config.less`, so what has always shipped is antd's
+// system stack. Kept verbatim to avoid a silent global font change. Both real consumers already
+// override it (`body { font-family: 'Graphik LCG Web' !important }` — Storybook's
+// `public/style/index.css`, portal-ui-bridge's `FontConfig`), so switching the DS to Graphik is a
+// deliberate follow-up that belongs with typography tokenisation, not here.
+@font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
+  'Helvetica Neue', Arial, 'Noto Sans', sans-serif, 'Apple Color Emoji',
+  'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+@font-variant-base: tabular-nums;
+@font-feature-settings-base: 'tnum';
+@text-color-inverse: @white;
+@text-selection-bg: @primary-color;
+@link-focus-decoration: none;
+@link-focus-outline: 0;
+@mark-bg: #feffe6;
+
+html,
+body {
+  width: 100%;
+  height: 100%;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  font-family: sans-serif;
+  line-height: 1.15;
+  -webkit-text-size-adjust: 100%;
+  -ms-text-size-adjust: 100%;
+  -ms-overflow-style: scrollbar;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0%);
+}
+
+body {
+  margin: 0;
+  color: @text-color;
+  font-size: @font-size-base;
+  font-family: @font-family;
+  font-variant: @font-variant-base;
+  line-height: @line-height-base;
+  background-color: @background-color;
+  font-feature-settings: @font-feature-settings-base;
+}
+
+// Suppress the focus outline on elements that cannot be reached by keyboard.
+[tabindex='-1']:focus {
+  outline: none !important;
+}
+
+//
+// Typography
+//
+
+hr {
+  box-sizing: content-box;
+  height: 0;
+  overflow: visible;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin-top: 0;
+  margin-bottom: 0.5em;
+  color: @heading-color;
+  font-weight: 500;
+}
+
+p {
+  margin-top: 0;
+  margin-bottom: 1em;
+}
+
+abbr[title],
+abbr[data-original-title] {
+  text-decoration: underline;
+  text-decoration: underline dotted;
+  border-bottom: 0;
+  cursor: help;
+}
+
+address {
+  margin-bottom: 1em;
+  font-style: normal;
+  line-height: inherit;
+}
+
+input[type='text'],
+input[type='password'],
+input[type='number'],
+textarea {
+  -webkit-appearance: none;
+}
+
+ol,
+ul,
+dl {
+  margin-top: 0;
+  margin-bottom: 1em;
+}
+
+ol ol,
+ul ul,
+ol ul,
+ul ol {
+  margin-bottom: 0;
+}
+
+dt {
+  font-weight: 500;
+}
+
+dd {
+  margin-bottom: 0.5em;
+  margin-left: 0;
+}
+
+blockquote {
+  margin: 0 0 1em;
+}
+
+dfn {
+  font-style: italic;
+}
+
+b,
+strong {
+  font-weight: bolder;
+}
+
+small {
+  font-size: 80%;
+}
+
+sub,
+sup {
+  position: relative;
+  font-size: 75%;
+  line-height: 0;
+  vertical-align: baseline;
+}
+
+sub {
+  bottom: -0.25em;
+}
+
+sup {
+  top: -0.5em;
+}
+
+//
+// Links
+//
+
+a {
+  color: @link-color;
+  text-decoration: @link-decoration;
+  background-color: transparent;
+  outline: none;
+  cursor: pointer;
+  transition: color 0.3s;
+  -webkit-text-decoration-skip: objects;
+
+  &:hover {
+    color: @link-hover-color;
+  }
+
+  &:active {
+    color: @link-active-color;
+  }
+
+  &:active,
+  &:hover {
+    text-decoration: @link-hover-decoration;
+    outline: 0;
+  }
+
+  &:focus {
+    text-decoration: @link-focus-decoration;
+    outline: @link-focus-outline;
+  }
+
+  &[disabled] {
+    color: @disabled-color;
+    cursor: not-allowed;
+  }
+}
+
+//
+// Code
+//
+
+pre,
+code,
+kbd,
+samp {
+  font-size: 1em;
+  font-family: @code-family;
+}
+
+pre {
+  margin-top: 0;
+  margin-bottom: 1em;
+  overflow: auto;
+}
+
+//
+// Figures, images, tables
+//
+
+figure {
+  margin: 0 0 1em;
+}
+
+img {
+  vertical-align: middle;
+  border-style: none;
+}
+
+// Avoid the 300ms click delay on touch devices.
+a,
+area,
+button,
+[role='button'],
+input:not([type='range']),
+label,
+select,
+summary,
+textarea {
+  touch-action: manipulation;
+}
+
+table {
+  border-collapse: collapse;
+}
+
+caption {
+  padding-top: 0.75em;
+  padding-bottom: 0.3em;
+  color: @text-color-secondary;
+  text-align: left;
+  caption-side: bottom;
+}
+
+//
+// Forms
+//
+
+input,
+button,
+select,
+optgroup,
+textarea {
+  margin: 0;
+  color: inherit;
+  font-size: inherit;
+  font-family: inherit;
+  line-height: inherit;
+}
+
+button,
+input {
+  overflow: visible;
+}
+
+button,
+select {
+  text-transform: none;
+}
+
+button,
+html [type='button'],
+[type='reset'],
+[type='submit'] {
+  -webkit-appearance: button;
+}
+
+button::-moz-focus-inner,
+[type='button']::-moz-focus-inner,
+[type='reset']::-moz-focus-inner,
+[type='submit']::-moz-focus-inner {
+  padding: 0;
+  border-style: none;
+}
+
+input[type='radio'],
+input[type='checkbox'] {
+  box-sizing: border-box;
+  padding: 0;
+}
+
+input[type='date'],
+input[type='time'],
+input[type='datetime-local'],
+input[type='month'] {
+  -webkit-appearance: listbox;
+}
+
+textarea {
+  overflow: auto;
+  resize: vertical;
+}
+
+fieldset {
+  min-width: 0;
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+legend {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  margin-bottom: 0.5em;
+  padding: 0;
+  color: inherit;
+  font-size: 1.5em;
+  line-height: inherit;
+  white-space: normal;
+}
+
+progress {
+  vertical-align: baseline;
+}
+
+[type='number']::-webkit-inner-spin-button,
+[type='number']::-webkit-outer-spin-button {
+  height: auto;
+}
+
+[type='search'] {
+  outline-offset: -2px;
+  -webkit-appearance: none;
+}
+
+[type='search']::-webkit-search-cancel-button,
+[type='search']::-webkit-search-decoration {
+  -webkit-appearance: none;
+}
+
+::-webkit-file-upload-button {
+  font: inherit;
+  -webkit-appearance: button;
+}
+
+//
+// Correct element displays
+//
+
+output {
+  display: inline-block;
+}
+
+summary {
+  display: list-item;
+}
+
+template {
+  display: none;
+}
+
+[hidden] {
+  display: none !important;
+}
+
+mark {
+  padding: 0.2em;
+  background-color: @mark-bg;
+}
+
+::selection {
+  color: @text-color-inverse;
+  background: @text-selection-bg;
+}

@@ -1,5 +1,9 @@
 @import '~antd/lib/menu/style/index.less';
 @import '~@synerise/ds-core/src/style/variables.less';
 @import '~@synerise/ds-core/src/style/config.less';
+// antd's motion keyframes — antd's Menu animates submenu popups with `<prefix>-slide-up` and
+// `<prefix>-zoom-big` (antd/lib/menu/index.js), which live in antd's base rather than in the menu
+// stylesheet. Relocated from ds-core, which no longer imports antd's stylesheet.
+@import '~antd/lib/style/core/motion.less';
 
 @import 'menu.mixin.less';
