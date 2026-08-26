@@ -71,7 +71,7 @@
     "@synerise/ds-confirmation": "workspace:^",
     "@synerise/ds-context-selector": "workspace:^",
     "@synerise/ds-copy-icon": "workspace:^",
-    "@synerise/ds-core": "workspace:^",
+    "@synerise/ds-core": "*",
     "@synerise/ds-cruds": "workspace:^",
     "@synerise/ds-data-format": "workspace:^",
     "@synerise/ds-date-picker": "workspace:^",

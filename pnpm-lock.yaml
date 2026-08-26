@@ -810,7 +810,7 @@ importers:
         specifier: workspace:^
         version: link:../button
       '@synerise/ds-core':
-        specifier: workspace:^
+        specifier: '*'
         version: link:../core
       '@synerise/ds-form-field':
         specifier: workspace:^
@@ -1699,6 +1699,9 @@ importers:
       '@synerise/ds-card-tabs':
         specifier: workspace:^
         version: link:../card-tabs
+      '@synerise/ds-carousel':
+        specifier: workspace:^
+        version: link:../carousel
       '@synerise/ds-cascader':
         specifier: workspace:^
         version: link:../cascader
@@ -3689,7 +3692,7 @@ importers:
         specifier: workspace:^
         version: link:../copy-icon
       '@synerise/ds-core':
-        specifier: workspace:^
+        specifier: '*'
         version: link:../core
       '@synerise/ds-cruds':
         specifier: workspace:^
@@ -5605,8 +5608,8 @@ importers:
   packages/components/utils:
     dependencies:
       '@synerise/ds-core':
-        specifier: ^1
-        version: 1.10.1(antd@4.24.16(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(date-fns@2.16.1)(react-dom@18.3.1(react@18.3.1))(react-intl@6.8.9(react@18.3.1)(typescript@5.9.3))(react@18.3.1)(styled-components@5.3.11(@babel/core@7.29.0)(react-dom@18.3.1(react@18.3.1))(react-is@18.3.1)(react@18.3.1))
+        specifier: '*'
+        version: link:../core
       latinize:
         specifier: ^0.5.0
         version: 0.5.0
@@ -8965,17 +8968,6 @@ packages:
       {
         integrity: sha512-iAoY/qRhNH8a/hBvm3zKj9qQ4oc2+3w1unPJa2XvTK3XjeLXtzcCingVPw/9e5mn1+0yPqxcBGp9Jf0pkfMb1g==,
       }
-
-  '@synerise/ds-core@1.10.1':
-    resolution:
-      {
-        integrity: sha512-bXhFBG+Ghhi43yxO+htRPpgufMBrXHC9L6yn6O9Yrui0Y5EogNb1Z/fu2cbxR9kiQham6yLAwnyquBSGS/AjJQ==,
-      }
-    peerDependencies:
-      antd: 4.24.16
-      react: 18.3.1
-      react-intl: '>=3.12.0 <= 6.8'
-      styled-components: ^5.3.3
 
   '@synerise/eslint-config@0.1.2':
     resolution:
@@ -22790,22 +22782,6 @@ snapshots:
     dependencies:
       '@swc/counter': 0.1.3
     optional: true
-
-  '@synerise/ds-core@1.10.1(antd@4.24.16(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(date-fns@2.16.1)(react-dom@18.3.1(react@18.3.1))(react-intl@6.8.9(react@18.3.1)(typescript@5.9.3))(react@18.3.1)(styled-components@5.3.11(@babel/core@7.29.0)(react-dom@18.3.1(react@18.3.1))(react-is@18.3.1)(react@18.3.1))':
-    dependencies:
-      antd: 4.24.16(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      date-fns-tz: 1.1.4(date-fns@2.16.1)
-      dayjs: 1.11.19
-      deepmerge: 4.3.1
-      flat: 5.0.2
-      moment: 2.30.1
-      react: 18.3.1
-      react-hot-toast: 2.6.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      react-intl: 6.8.9(react@18.3.1)(typescript@5.9.3)
-      styled-components: 5.3.11(@babel/core@7.29.0)(react-dom@18.3.1(react@18.3.1))(react-is@18.3.1)(react@18.3.1)
-    transitivePeerDependencies:
-      - date-fns
-      - react-dom
 
   '@synerise/eslint-config@0.1.2(@types/eslint@9.6.1)(eslint-import-resolver-typescript@4.4.4)(jiti@2.6.1)(typescript@5.9.3)':
     dependencies:

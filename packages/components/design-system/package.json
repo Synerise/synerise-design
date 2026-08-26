@@ -27,6 +27,7 @@
   "scripts": {
     "build": "vite build",
     "build:watch": "vite build --watch",
+    "pack:ci": "pnpm pack --pack-destination ../../storybook/storybook-static/static",
     "prepublish": "pnpm run build",
     "types": "tsc --noEmit",
     "check:circular-dependencies": "madge --circular --extensions ts,tsx,js,jsx --ts-config tsconfig.json src/ --exclude '/dist/'",
@@ -52,6 +53,7 @@
     "@synerise/ds-card": "workspace:^",
     "@synerise/ds-card-select": "workspace:^",
     "@synerise/ds-card-tabs": "workspace:^",
+    "@synerise/ds-carousel": "workspace:^",
     "@synerise/ds-cascader": "workspace:^",
     "@synerise/ds-checkbox": "workspace:^",
     "@synerise/ds-checkbox-tristate": "workspace:^",
