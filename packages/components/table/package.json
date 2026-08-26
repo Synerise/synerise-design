@@ -56,7 +56,6 @@
     "@synerise/ds-input-number": "workspace:^",
     "@synerise/ds-list-item": "workspace:^",
     "@synerise/ds-loader": "workspace:^",
-    "@synerise/ds-menu": "workspace:^",
     "@synerise/ds-modal": "workspace:^",
     "@synerise/ds-pagination": "workspace:^",
     "@synerise/ds-result": "workspace:^",

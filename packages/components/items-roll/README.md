@@ -72,7 +72,7 @@ import ItemsRoll from '@synerise/ds-items-roll';
 | group    | Define affiliation to a specific group in groups Array passed as props to ItemsRoll | string | -       |
 | id       | Unique identifier for element. Used as a key in map                                 | string | -       |
 
-Rest of the `ItemRollElement` props is inherited from `ListItemProps` (default) or `MenuItemProps` — the generic `BaseType` parameter controls which base type is used.
+Rest of the `ItemRollElement` props is inherited from `ListItemProps` (the generic `BaseType` parameter, which defaults to `ListItemProps`).
 
 #### Texts
 

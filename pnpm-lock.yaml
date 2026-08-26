@@ -688,9 +688,6 @@ importers:
       '@synerise/ds-inline-edit':
         specifier: workspace:^
         version: link:../inline-edit
-      '@synerise/ds-menu':
-        specifier: workspace:^
-        version: link:../menu
       '@synerise/ds-sortable':
         specifier: workspace:^
         version: link:../sortable
@@ -1008,9 +1005,6 @@ importers:
       '@synerise/ds-icon':
         specifier: workspace:^
         version: link:../icon
-      '@synerise/ds-menu':
-        specifier: workspace:^
-        version: link:../menu
       '@synerise/ds-result':
         specifier: workspace:^
         version: link:../result
@@ -1876,9 +1870,6 @@ importers:
       '@synerise/ds-mapping':
         specifier: workspace:^
         version: link:../mapping
-      '@synerise/ds-menu':
-        specifier: workspace:^
-        version: link:../menu
       '@synerise/ds-metric-card':
         specifier: workspace:^
         version: link:../metric-card
@@ -2869,9 +2860,9 @@ importers:
       '@synerise/ds-inline-alert':
         specifier: workspace:^
         version: link:../inline-alert
-      '@synerise/ds-menu':
+      '@synerise/ds-list-item':
         specifier: workspace:^
-        version: link:../menu
+        version: link:../list-item
       '@synerise/ds-popover':
         specifier: workspace:^
         version: link:../popover
@@ -3234,9 +3225,6 @@ importers:
       '@synerise/ds-list-item':
         specifier: workspace:^
         version: link:../list-item
-      '@synerise/ds-menu':
-        specifier: workspace:^
-        version: link:../menu
       '@synerise/ds-panel':
         specifier: workspace:^
         version: link:../panel
@@ -3443,9 +3431,6 @@ importers:
       '@synerise/ds-list':
         specifier: workspace:^
         version: link:../list
-      '@synerise/ds-menu':
-        specifier: workspace:^
-        version: link:../menu
       '@synerise/ds-modal':
         specifier: workspace:^
         version: link:../modal
@@ -4495,9 +4480,6 @@ importers:
       '@synerise/ds-list-item':
         specifier: workspace:^
         version: link:../list-item
-      '@synerise/ds-menu':
-        specifier: workspace:^
-        version: link:../menu
       '@synerise/ds-scrollbar':
         specifier: workspace:^
         version: link:../scrollbar
@@ -4661,9 +4643,9 @@ importers:
       '@synerise/ds-icon':
         specifier: workspace:^
         version: link:../icon
-      '@synerise/ds-menu':
+      '@synerise/ds-list-item':
         specifier: workspace:^
-        version: link:../menu
+        version: link:../list-item
       '@synerise/ds-sortable':
         specifier: workspace:^
         version: link:../sortable
@@ -4706,9 +4688,6 @@ importers:
       '@synerise/ds-inline-edit':
         specifier: workspace:^
         version: link:../inline-edit
-      '@synerise/ds-menu':
-        specifier: workspace:^
-        version: link:../menu
       '@synerise/ds-result':
         specifier: workspace:^
         version: link:../result
@@ -5063,9 +5042,6 @@ importers:
       '@synerise/ds-loader':
         specifier: workspace:^
         version: link:../loader
-      '@synerise/ds-menu':
-        specifier: workspace:^
-        version: link:../menu
       '@synerise/ds-modal':
         specifier: workspace:^
         version: link:../modal
@@ -5302,9 +5278,6 @@ importers:
       '@synerise/ds-icon':
         specifier: workspace:^
         version: link:../icon
-      '@synerise/ds-menu':
-        specifier: workspace:^
-        version: link:../menu
       '@synerise/ds-tooltip':
         specifier: workspace:^
         version: link:../tooltip
@@ -5924,9 +5897,6 @@ importers:
       '@synerise/ds-mapping':
         specifier: workspace:^
         version: link:../components/mapping
-      '@synerise/ds-menu':
-        specifier: workspace:^
-        version: link:../components/menu
       '@synerise/ds-metric-card':
         specifier: workspace:^
         version: link:../components/metric-card

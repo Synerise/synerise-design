@@ -62,7 +62,7 @@ Rendered inside `@synerise/ds-panel` with `radius={3} p={12}`.
 #### `ItemRollElement<BaseType>`
 
 ```ts
-type ItemRollElement<BaseType extends ListItemProps | MenuItemProps = ListItemProps> =
+type ItemRollElement<BaseType extends ListItemProps = ListItemProps> =
  BaseType & { id: string; group?: string };
 ```
 
@@ -115,7 +115,6 @@ import ItemsRoll from '@synerise/ds-items-roll';
 - **Pagination state:** `visibleItemsAmount` state is reset to `maxToShowItems` via `useEffect` whenever the `maxToShowItems` prop changes.
 - **`isDisabled` behaviour:** Passes `undefined` for `onItemRemove` and `onClearAll` to child components — it does not render disabled UI; it fully hides the controls.
 - **Footer visibility:** Footer only renders when `useFooter={true}` AND `visibleItems.length > 0`. The footer divider is hidden when in search mode and `itemsCount <= maxToShowItems`.
-- **Antd class selectors:** `ListWrapper` styled-component targets `.ant-menu-*` and `.-item-group*` class selectors directly for group title and divider styling — these will break if the antd Menu is replaced.
 - **Deep import:** `Header.tsx` imports `SearchInput` from `@synerise/ds-search/dist/Elements` — a fragile internal path that breaks if `ds-search` restructures its dist output.
 - **Deprecated props:** `useVirtualizedList`, `virtualizedRowHeight`, `virtualizedRowWidth` exist in `ListProps` but are never read in `List.tsx`. `intl` prop is accepted at the top level but never forwarded anywhere (component uses `useIntl()` hook directly).
 - Uses **Jest** (not Vitest) — `jest.config.js` present.

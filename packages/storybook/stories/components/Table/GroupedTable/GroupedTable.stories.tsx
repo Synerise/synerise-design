@@ -14,7 +14,7 @@ import Icon, {
   VarTypeNumberM,
   VarTypeStringM,
 } from '@synerise/ds-icon';
-import Menu from '@synerise/ds-menu';
+import ListItem from '@synerise/ds-list-item';
 import Search from '@synerise/ds-search';
 import Table, { DSTableProps, GROUP_BY } from '@synerise/ds-table';
 
@@ -387,12 +387,11 @@ export default {
                 title: 'Parameters',
                 rowHeight: 32,
                 itemRender: (item: AnyObject) => (
-                  <Menu.Item
-                    highlight={searchValue}
+                  <ListItem
                     prefixel={item && <Icon component={item && item.icon} />}
                   >
                     {item && item.text}
-                  </Menu.Item>
+                  </ListItem>
                 ),
               }}
               parameterValue={searchFilterValue}
@@ -403,7 +402,7 @@ export default {
                 title: 'Recent',
                 rowHeight: 32,
                 itemRender: (item: AnyObject) => (
-                  <Menu.Item>{item && item.text}</Menu.Item>
+                  <ListItem>{item && item.text}</ListItem>
                 ),
               }}
               divider={
@@ -418,7 +417,7 @@ export default {
                 title: 'Suggestions',
                 rowHeight: 32,
                 itemRender: (item: AnyObject) => (
-                  <Menu.Item>{item && item.text}</Menu.Item>
+                  <ListItem>{item && item.text}</ListItem>
                 ),
               }}
               textLookupConfig={{

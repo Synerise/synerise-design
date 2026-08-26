@@ -175,7 +175,7 @@ screen.getByTestId('submit-btn')
 | ListItem | `ds-list-item` | `listItemMockFactory` | HoverTooltip, GroupItem, ListWrapper, ListContextProvider |
 | Logic | `ds-logic` | `logicMockFactory` | Logic.Matching, Placeholder |
 | ManageableList | `ds-manageable-list` | `manageableListMockFactory` | ContentItem, FilterItem, SimpleItem, AddItem |
-| Menu | `ds-menu` | `menuMockFactory` | Menu.Item, .Breadcrumb, .Header, .Divider, .SubMenu, .ItemGroup |
+| Menu _(deprecated — use ListItem)_ | `ds-menu` | `menuMockFactory` | Menu.Item, .Breadcrumb, .Header, .Divider, .SubMenu, .ItemGroup |
 | Modal | `ds-modal` | `modalMockFactory` | |
 | Navbar | `ds-navbar` | `navbarMockFactory` | Navbar.Divider |
 | Popconfirm | `ds-popconfirm` | `popconfirmMockFactory` | ConfirmMessage |

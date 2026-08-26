@@ -4,7 +4,7 @@ import { Meta } from '@storybook/react-vite';
 import AvatarGroup from '@synerise/ds-avatar-group';
 import { theme } from '@synerise/ds-core';
 import Icon, { LockM, UserRemoveM } from '@synerise/ds-icon';
-import Menu from '@synerise/ds-menu';
+import ListItem, { ListWrapper } from '@synerise/ds-list-item';
 
 import { sizes as groupSizes } from '../Avatar/constants';
 import { groupAvatars } from './mockData';
@@ -54,8 +54,8 @@ const Template: (args) => JSX.Element = (args) => (
         ...args.groupModal,
         renderRowMenu: (user) => {
           return (
-            <Menu style={{ padding: '8px' }}>
-              <Menu.Item
+            <ListWrapper style={{ padding: '8px' }}>
+              <ListItem
                 onClick={() => {
                   console.info(`Show user permissions ${user.id}`);
                 }}
@@ -67,8 +67,8 @@ const Template: (args) => JSX.Element = (args) => (
                 }
               >
                 User permission
-              </Menu.Item>
-              <Menu.Item
+              </ListItem>
+              <ListItem
                 onClick={() => {
                   console.info(`Remove user ${user.id}`);
                 }}
@@ -76,8 +76,8 @@ const Template: (args) => JSX.Element = (args) => (
                 prefixel={<Icon component={<UserRemoveM />} />}
               >
                 Remove user
-              </Menu.Item>
-            </Menu>
+              </ListItem>
+            </ListWrapper>
           );
         },
       }}

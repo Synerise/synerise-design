@@ -28,7 +28,6 @@ const SearchRenderer = ({
         itemRender={itemRender}
         onItemClick={onItemClick}
         listProps={listProps}
-        renderInMenu={false}
       />
     </>
   );

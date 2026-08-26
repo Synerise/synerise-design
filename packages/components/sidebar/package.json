@@ -45,7 +45,7 @@
     "@synerise/ds-button": "workspace:^",
     "@synerise/ds-dropdown": "workspace:^",
     "@synerise/ds-icon": "workspace:^",
-    "@synerise/ds-menu": "workspace:^",
+    "@synerise/ds-list-item": "workspace:^",
     "@synerise/ds-sortable": "workspace:^",
     "@synerise/ds-utils": "workspace:^",
     "classnames": "^2.5.1"

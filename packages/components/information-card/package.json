@@ -54,7 +54,7 @@
     "@synerise/ds-dropdown": "workspace:^",
     "@synerise/ds-icon": "workspace:^",
     "@synerise/ds-inline-alert": "workspace:^",
-    "@synerise/ds-menu": "workspace:^",
+    "@synerise/ds-list-item": "workspace:^",
     "@synerise/ds-popover": "workspace:^",
     "@synerise/ds-scrollbar": "workspace:^",
     "@synerise/ds-skeleton": "workspace:^",

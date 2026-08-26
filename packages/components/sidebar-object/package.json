@@ -48,7 +48,6 @@
     "@synerise/ds-dropdown": "workspace:^",
     "@synerise/ds-icon": "workspace:^",
     "@synerise/ds-inline-edit": "workspace:^",
-    "@synerise/ds-menu": "workspace:^",
     "@synerise/ds-result": "workspace:^",
     "@synerise/ds-scrollbar": "workspace:^",
     "@synerise/ds-subtle-form": "workspace:^",

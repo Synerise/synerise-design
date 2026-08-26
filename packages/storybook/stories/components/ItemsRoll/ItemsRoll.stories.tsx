@@ -8,7 +8,7 @@ import { theme } from '@synerise/ds-core';
 import Dropdown from '@synerise/ds-dropdown';
 import Icon, { SaveM } from '@synerise/ds-icon';
 import ItemsRoll, { ItemsRollProps } from '@synerise/ds-items-roll';
-import Menu from '@synerise/ds-menu';
+import ListItem, { ListWrapper } from '@synerise/ds-list-item';
 import { focusWithArrowKeys } from '@synerise/ds-utils';
 
 import {
@@ -85,14 +85,13 @@ export default {
           overlay: (
             <Dropdown.Wrapper
               onKeyDown={(event) =>
-                focusWithArrowKeys(event, 'ds-menu-item', () => {})
+                focusWithArrowKeys(event, 'ds-list-item', () => {})
               }
             >
-              <Menu
-                dataSource={[{ text: 'Option 1' }, { text: 'Option 2' }]}
-                asDropdownMenu={true}
-                style={{ width: '100%' }}
-              />
+              <ListWrapper style={{ width: '100%' }}>
+                <ListItem text="Option 1" />
+                <ListItem text="Option 2" />
+              </ListWrapper>
             </Dropdown.Wrapper>
           ),
           trigger: ['click' as const],
@@ -269,7 +268,14 @@ export const ChangeSelectionDropdown: Story = {
   useFooter
   onChangeSelection={handleChangeSelection}
   changeSelectionDropdownProps={{
-    overlay: <DropdownMenu />,
+    overlay: (
+      <Dropdown.Wrapper>
+        <ListWrapper style={{ width: '100%' }}>
+          <ListItem text="Option 1" />
+          <ListItem text="Option 2" />
+        </ListWrapper>
+      </Dropdown.Wrapper>
+    ),
     trigger: ['click'],
     visible,
     onVisibleChange: setVisible,

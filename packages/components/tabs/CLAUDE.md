@@ -8,7 +8,7 @@
 src/
  Tabs.tsx — main container; measures widths, splits tabs into visible/hidden lists, renders overflow dropdown
  Tabs.types.ts — TabsProps, TabItem, Configuration (re-exported as TabsConfiguration), TabWithRef
- Tabs.styles.ts — TabsContainer, HiddenTabs (off-screen width-measurement clone), ShowHiddenTabsTrigger, DropdownMenu
+ Tabs.styles.ts — TabsContainer, HiddenTabs (off-screen width-measurement clone), ShowHiddenTabsTrigger
  Tab/
  Tab.tsx — individual tab button; wraps content in Tooltip when tooltip prop is present
  Tab.types.ts — TabProps (extends TabItem + internal props)

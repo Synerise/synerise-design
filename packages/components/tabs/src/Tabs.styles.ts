@@ -1,7 +1,6 @@
 import styled from 'styled-components';
 
 import Button, { type StyledButton } from '@synerise/ds-button';
-import Menu, { type AntdMenuProps } from '@synerise/ds-menu';
 
 export const TabsContainer = styled.div<{
   block?: boolean;
@@ -53,4 +52,3 @@ export const HiddenTabs = styled.div`
   visibility: hidden;
   pointer-events: none;
 `;
-export const DropdownMenu = styled(Menu)<AntdMenuProps>``;

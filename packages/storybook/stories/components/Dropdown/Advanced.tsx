@@ -3,7 +3,7 @@ import React, { useEffect, useRef, useState } from 'react';
 
 import Dropdown from '@synerise/ds-dropdown';
 import Icon, { SearchM } from '@synerise/ds-icon';
-import Menu from '@synerise/ds-menu';
+import ListItem, { ListWrapper } from '@synerise/ds-list-item';
 import Result from '@synerise/ds-result';
 import Scrollbar from '@synerise/ds-scrollbar';
 
@@ -83,14 +83,20 @@ const Advanced = ({
             />
           ) : (
             <Scrollbar maxHeight={dropdownMaxHeight} onScroll={onMenuScroll}>
-              <Menu
-                asDropdownMenu
-                selectedKeys={[value]}
+              <ListWrapper
                 style={{
                   padding: '8px 2px 8px 8px',
                 }}
-                dataSource={data}
-              />
+              >
+                {data.map((item: { id: string; text: string }) => (
+                  <ListItem
+                    key={item.id}
+                    itemKey={item.id}
+                    text={item.text}
+                    checked={item.id === value}
+                  />
+                ))}
+              </ListWrapper>
             </Scrollbar>
           )}
         </>

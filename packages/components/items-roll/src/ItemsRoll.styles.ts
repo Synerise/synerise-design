@@ -30,69 +30,7 @@ export const ShowButtonsWrapper = styled.div`
   justify-content: flex-start;
 `;
 
-export const ListWrapper = styled.div`
-  &&& {
-    .ant-menu-inline,
-    .-inline {
-      border: none;
-    }
-    .ant-menu {
-      .items-roll-list-item {
-        padding-left: 12px !important;
-
-        :hover {
-          svg {
-            fill: ${({ theme }) => theme.palette['blue-600']};
-          }
-
-          .element-remove-icon {
-            svg {
-              fill: ${({ theme }) => theme.palette['red-600']} !important;
-
-              :hover {
-                fill: ${({ theme }) => theme.palette['red-600']} !important;
-              }
-            }
-          }
-        }
-
-        :focus {
-          box-shadow: none !important;
-          background: transparent;
-        }
-        :focus:hover {
-          background-color: ${({ theme }) => theme.palette['grey-050']};
-        }
-      }
-
-      .ant-menu-item-group-list,
-      .-item-group-list {
-        margin-left: -12px;
-      }
-
-      .ant-menu-item-group-title,
-      .-item-group-title {
-        font-size: 10px;
-        text-transform: uppercase;
-        color: ${({ theme }) => theme.palette['grey-500']};
-        font-weight: 500;
-        padding-left: 0;
-        padding-right: 0;
-        margin-left: -12px;
-      }
-
-      .ant-menu-item-group:not(:first-child):before,
-      .-item-group:not(:first-child):before {
-        content: '';
-        width: calc(100% + 12px);
-        height: 1px;
-        display: block;
-        border-bottom: 1px dashed ${({ theme }) => theme.palette['grey-300']};
-        margin: 12px 0px 12px -12px;
-      }
-    }
-  }
-`;
+export const ListWrapper = styled.div``;
 
 export const Bold = styled.span`
   color: ${({ theme }) => theme.palette['grey-800']};

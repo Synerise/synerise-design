@@ -12,7 +12,7 @@ import Icon, {
   MailM,
   OptionHorizontalM,
 } from '@synerise/ds-icon';
-import Menu from '@synerise/ds-menu';
+import ListItem, { ListWrapper } from '@synerise/ds-list-item';
 import PageHeader from '@synerise/ds-page-header';
 import Skeleton, { SkeletonAvatar } from '@synerise/ds-skeleton';
 import Stepper from '@synerise/ds-stepper';
@@ -194,7 +194,11 @@ export const withDropdown: Story = {
           <Dropdown
             overlay={
               <div ref={ref}>
-                <Menu dataSource={menuData} selectable={true} asDropdownMenu />
+                <ListWrapper>
+                  {menuData.map((item, index) => (
+                    <ListItem key={index} {...item} />
+                  ))}
+                </ListWrapper>
               </div>
             }
             open={dropdownVisible}

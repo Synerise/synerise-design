@@ -42,7 +42,6 @@
     "@synerise/ds-button": "workspace:^",
     "@synerise/ds-drawer": "workspace:^",
     "@synerise/ds-icon": "workspace:^",
-    "@synerise/ds-menu": "workspace:^",
     "@synerise/ds-result": "workspace:^",
     "@synerise/ds-scrollbar": "workspace:^",
     "@synerise/ds-search-bar": "workspace:^",
