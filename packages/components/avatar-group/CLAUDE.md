@@ -126,7 +126,7 @@ Styles in `AvatarGroup.styles.ts`. Key behaviors:
 - `@synerise/ds-avatar` — renders each avatar in the row and the `MoreInfo` +N element
 - `@synerise/ds-badge` — wraps each avatar to display status dots
 - `@synerise/ds-modal` — base for the `GroupModal`
-- `@synerise/ds-table` (`VirtualTable`, `TableCell`) — powers the member list inside the modal
+- `@synerise/ds-table-new` (`VirtualTable`, `AvatarLabelCell`, `ActionCell`) — powers the member list inside the modal
 - `@synerise/ds-dropdown` — row action menu trigger in the modal table
 - `@synerise/ds-tooltip` — wraps the `+N` counter to show the overflow count text
 

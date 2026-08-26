@@ -6,7 +6,7 @@ import { DSTableProps } from '@synerise/ds-table';
 
 import { centeredPaddedWrapper, sleep } from '../../utils';
 import { COLUMNS_WITH_AVATARS } from './AllCellTypes/AllCellTypes.data';
-import { TableMeta } from './Table.utils';
+import { DEPRECATED_TABLE_NOTICE, TableMeta } from './Table.utils';
 import StoriesMeta, { EmptyTableCustom } from './TableEmpty.stories';
 
 const EMPTY_DATA_SOURCE: Array<{ id: string; title: string }> = [];
@@ -22,6 +22,11 @@ type StoryType = DSTableProps<RowType> & {
 export default {
   ...StoriesMeta,
   parameters: {
+    docs: {
+      description: {
+        component: DEPRECATED_TABLE_NOTICE,
+      },
+    },
     layout: 'fullscreen',
   },
   decorators: [centeredPaddedWrapper],
@@ -32,7 +37,7 @@ export default {
     columnsData: COLUMNS_WITH_AVATARS,
     locale: { emptyText: 'Empty Text' },
   },
-  tags: ['visualtests'],
+  tags: ['visualtests', 'deprecated'],
 } as Meta<StoryType>;
 
 export const EmptyTableDefaultTest: Story = {

@@ -39,6 +39,7 @@ type StoryType<RowType> = DSTableProps<RowType> & {
 
 export default {
   ...TableMeta,
+  tags: ['deprecated'],
   parameters: {
     ...TableMeta.parameters,
   },

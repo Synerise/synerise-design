@@ -1,0 +1,185 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+
+<Meta title="Components/TableNew/Migration from Table" />
+
+# Migrating from `@synerise/ds-table`
+
+`@synerise/ds-table` is deprecated. It stays on antd 4 and will not be migrated off it — its stories
+are still published under **Components/Table/\***. `@synerise/ds-table-new` is the replacement, built
+on [`@tanstack/react-table`](https://tanstack.com/table) and
+[`@tanstack/react-virtual`](https://tanstack.com/virtual).
+
+This page is the old → new mapping. Read **Column Definitions** next — columns are the largest part of
+any migration.
+
+## Imports
+
+The default export is gone. Cells are flat named exports; the `TableCell` namespace still exists but
+is deprecated.
+
+```diff
+- import Table, { VirtualTable, TreeTable, TableCell } from '@synerise/ds-table';
++ import {
++   Table,
++   VirtualTable,
++   TreeTable,
++   AvatarLabelCell,
++   ActionCell,
++ } from '@synerise/ds-table-new';
+```
+
+`SELECTION_ALL` / `SELECTION_INVERT` moved from statics on the default export to package exports:
+
+```diff
+- selections: [Table.SELECTION_ALL, Table.SELECTION_INVERT]
++ import { SELECTION_ALL, SELECTION_INVERT } from '@synerise/ds-table-new';
++ selections: [SELECTION_ALL, SELECTION_INVERT]
+```
+
+## Renamed props
+
+- **`dataSource`** → **`data`** — now required, and a mutable `TData[]` rather than
+  `readonly TData[]`.
+- **`columns`** → **`columns`** — now required, and `ColumnDef[]` instead of `DSColumnType[]`. See
+  [Columns](#columns) below.
+- **`loading`** → **`isLoading`**.
+- **`locale`** → **`texts`** — restructured, see [locale → texts](#locale--texts).
+- **`selection`** → **`selectionConfig`** plus a top-level **`selectedRowKeys`**, which is `string[]`
+  rather than antd's `Key[]`. Inside the config, `globalSelection: { isSelected, onChange }` flattens
+  to `globalSelected` + `globalSelectionOnChange`.
+- **`roundedHeader`** → **`cardStyles`** — now means rounded corners _and_ shadow.
+- **`onRow`** → **`getRowProps`** — loses the `index` argument. If the returned attributes include
+  `onClick` it fires _before_ `onRowClick`; call `event.preventDefault()` there to suppress it.
+- **`scroll={{ y }}`** → **`maxHeight`** — a plain pixel number, default `800`.
+- **`sticky={{ … }}`** → **`stickyHeader`** — reduced to a boolean. Pass `scrollElementRef` when the
+  scroll container lives outside the table.
+- **`search`** → **`matchesSearchQuery`** / **`filterData`** / **`searchProps`** — three explicit
+  modes, see **Search**.
+- **`onRowClick`** — now available on `Table` too, and receives the event as a second argument.
+- **`onItemsRendered`** — payload narrowed to `{ visibleStartIndex }`.
+- **`onListRefChange`** → **`tableRef`** — the old prop was already deprecated.
+- **`showHeader={false}`** → **`hideColumnNames`** — `showHeader` does not exist in `table-new`.
+
+## locale → texts
+
+`texts` is a flat `Partial<TableTexts>` composed of the header, body, column-sorter and row-selection
+text groups. The DS keys carry over: `emptyText`, `noResultsText`, `selected`, `totalItems`,
+`selectionLimitWarning`, and the `columnSort*` / `infiniteScroll*` / `select*` families.
+
+antd's own `TableLocale` keys are **dropped**, because there is no antd underneath any more:
+`filterConfirm`, `filterReset`, `filterTitle`, `triggerDesc`, `triggerAsc`, and the
+`pagination.items` / `pagination.groups` entries.
+
+## Columns
+
+Legacy `DSColumnType` is replaced by TanStack's `ColumnDef`. Two routes:
+
+**Bulk migration** — wrap the existing config and move on:
+
+```tsx
+import { legacyColumnConfigAdapter } from '@synerise/ds-table-new';
+
+<Table data={data} columns={legacyColumnConfigAdapter(legacyColumns)} />;
+```
+
+**New code** — write `ColumnDef` directly. The field mapping the adapter performs is the mapping you
+apply by hand:
+
+- **`dataIndex`** → `accessorKey`, or `accessorFn` + an explicit `id` for a dotted path or an array.
+- **`key`** → `id`.
+- **`title`** → `header`.
+- **`render(value, record, index)`** → `cell: ({ getValue, row }) => …` — the record is `row.original`.
+- **`width`** → `size`.
+- **`minWidth`** / **`maxWidth`** → `meta.minWidth` / `meta.maxWidth`.
+- **`sorter`** → `sortingFn` plus `enableSorting` / `enableMultiSort`.
+- **`sortRender`** → `meta.sortRender` when it is a string, `meta.renderCustomSortButton` when it is a
+  function.
+- **`fixed`** → `meta.fixed` + `enablePinning`.
+- **`align`** → `meta.align`.
+- **`childRender`** → `meta.childCell`.
+- **`getCellTooltipProps`** → `meta.getCellTooltipProps`.
+
+> **Prefer the native `size` field over `meta.width` for column widths.** Both are read at runtime
+> and `size` wins. The difference is type safety: `size` is typed by TanStack, whereas the
+> `ColumnMeta` augmentation that types the `meta` fields is not currently reachable from the
+> published `dist` types — so outside this package **everything under `meta` is unchecked**.
+> Typos and wrong value types pass silently and you get no autocomplete.
+
+## Defaults that changed
+
+- **`cellHeight`** was required on the legacy `VirtualTable` (documented default `52`). It is now
+  optional and defaults to `73`. **Omitting it silently changes your row height** — pass it explicitly
+  when matching an existing design.
+- **`initialWidth`** is gone. The legacy prop only seeded the width state before the resize observer
+  fired; `table-new` measures the container and keeps the table hidden until sizing is ready.
+- **`pagination` flips from off to on. This is the easiest regression to miss.** The legacy table
+  rendered pagination only when you passed the prop (`pagination ? footerPagination : false`), so a
+  call site that omitted it showed every row. `table-new` treats anything other than an explicit
+  `false` as enabled and paginates at 10 rows per page. **Pass `pagination={false}` on every migrated
+  table that did not previously set it**, or it will silently start truncating. It is still forced off
+  when `infiniteScroll` is set.
+
+## Features with no equivalent
+
+Check these before you start — they are absent by design, not merely unported.
+
+- **`GroupedTable`, `GROUP_BY`, `grouped`, `hideGroupExpander`, `initialGroupsCollapsed`** — there is
+  no grouped table. Raise it with the DS team if you need it.
+- **`rowStar`** — `StarCell` still exists as a cell, but the row-starring machinery does not.
+- **`filters`, `FilterTrigger`** — only `filterComponent`; render your own trigger.
+- **`components`** (the antd/DS render-slot override), and with it `ScrollProxyType` and
+  `CustomizeScrollBodyInfo`.
+- **`cellSize`** — use `cellHeight`.
+- **`dataSourceFull`** — selection always operates on the full `data`, and built-in search preserves
+  it.
+- **`skeletonProps`** — the skeleton is internal; customise per column with `meta.skeletonCell`.
+- **`onChange`** (antd's combined pagination/filters/sorter callback) — use `onSort` and the
+  `pagination` config.
+- **`ItemsMenu`** as an export — pass the nodes to the `itemsMenu` prop instead.
+- **`BackToTopButton`** as an export — use `showBackToTopButton` / `onBackToTop`.
+- **`defaultSortOrder`** — there is no way to set an initial sort. `table-new` keeps `initialState`
+  internal (only column pinning, pagination and expansion), and `meta.sortOrder` only paints the
+  sort caret without sorting the data. Pre-sort the array you pass to `data`.
+
+**`VirtualTableRef` is reshaped.** The raw `virtualListRef` / `outerListRef` / `horizontalScrollRef`
+handles are gone, replaced by `getDimensions`, `scrollToIndex` and `highlightRow` alongside the
+existing `scrollToTop` / `scrollTo`.
+
+New in `table-new` and worth adopting during the migration: `summary` (a `<tfoot>`),
+`noResultsComponent` (distinct from the empty state), `getRowTooltipProps`, `tableRef.highlightRow`,
+and `showBackToTopButton`.
+
+## The rendered DOM changes
+
+This is the part that breaks things outside the table's own props.
+
+The legacy table rendered antd / `rc-table` chrome, and its virtual rows were `div`s with
+`display: inline-table`. `table-new` renders a real `<table>` / `<tbody>` / `<tr>` / `<td>`.
+
+- `.ant-table-*` and `.virtual-table-cell` selectors become `.ds-table`, `.ds-table-body`,
+  `.ds-table-row` and `.ds-table-cell`.
+- Test and E2E hooks: `data-testid="ds-table-container"`, `"ds-table-header"`, `"ds-table-body"`,
+  `"ds-table-title"`.
+- Rows are `table-layout: fixed` with `overflow: hidden` on the cell. A column width that used to
+  grow to fit its content under auto layout will now **clip** — re-check any narrow column holding a
+  button or an icon.
+
+Audit consumer CSS overrides, Playwright selectors and snapshot tests for the above before merging a
+migration.
+
+## Test mocks
+
+`@synerise/ds-mocks` ships mocks for both packages. Point `vi.mock` at the new one:
+
+```diff
+  vi.mock('@synerise/ds-table-new', async () => {
+-   const { tableMockFactory } = await import('@synerise/ds-mocks');
+-   return { ...tableMockFactory() };
++   const { tableNewMockFactory } = await import('@synerise/ds-mocks');
++   return { ...tableNewMockFactory() };
+  });
+```
+
+Factories: `tableNewMockFactory` / `tableNewMinimalMockFactory` for Vitest, `mockTableNew` /
+`mockTableNewMinimal` for Jest. The legacy `Table` mock is kept, deprecated, for suites that have not
+migrated yet.

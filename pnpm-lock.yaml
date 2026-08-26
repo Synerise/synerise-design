@@ -421,9 +421,9 @@ importers:
       '@synerise/ds-modal':
         specifier: workspace:^
         version: link:../modal
-      '@synerise/ds-table':
+      '@synerise/ds-table-new':
         specifier: workspace:^
-        version: link:../table
+        version: link:../table-new
       '@synerise/ds-tooltip':
         specifier: workspace:^
         version: link:../tooltip
@@ -1978,9 +1978,6 @@ importers:
       '@synerise/ds-switch':
         specifier: workspace:^
         version: link:../switch
-      '@synerise/ds-table':
-        specifier: workspace:^
-        version: link:../table
       '@synerise/ds-table-new':
         specifier: workspace:^
         version: link:../table-new
@@ -3937,6 +3934,9 @@ importers:
       '@synerise/ds-table':
         specifier: workspace:^
         version: link:../table
+      '@synerise/ds-table-new':
+        specifier: workspace:^
+        version: link:../table-new
       '@synerise/ds-tabs':
         specifier: workspace:^
         version: link:../tabs

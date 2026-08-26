@@ -6,7 +6,7 @@ import Confirmation, { ConfirmationProps } from '@synerise/ds-confirmation';
 import Description, { DescriptionRow } from '@synerise/ds-description';
 import { ErrorXl, LaunchXl, PauseXl, PlayXl } from '@synerise/ds-icon';
 import { ListItemProps } from '@synerise/ds-list-item';
-import { TreeTable } from '@synerise/ds-table';
+import { TreeTable, legacyColumnConfigAdapter } from '@synerise/ds-table-new';
 
 import {
   BOOLEAN_CONTROL,
@@ -140,10 +140,11 @@ export const RelatedObjects: StoryObj<ConfirmationProps<ListItemProps>> = {
     },
     relatedObjects: (
       <TreeTable
-        showHeader={false}
+        hideColumnNames
         hideTitleBar={true}
-        dataSource={RELATED_OBJECTS_DATA}
-        columns={COLUMNS}
+        data={RELATED_OBJECTS_DATA}
+        columns={legacyColumnConfigAdapter(COLUMNS)}
+        pagination={false}
       />
     ),
   },

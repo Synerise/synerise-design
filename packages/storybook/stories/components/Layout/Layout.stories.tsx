@@ -7,7 +7,7 @@ import Grid from '@synerise/ds-grid';
 import Layout, { LayoutProps, Page } from '@synerise/ds-layout';
 import PageHeader from '@synerise/ds-page-header';
 import { SearchInput } from '@synerise/ds-search';
-import Table from '@synerise/ds-table';
+import { Table, legacyColumnConfigAdapter } from '@synerise/ds-table-new';
 import Tabs from '@synerise/ds-tabs';
 import { useStickyScroll } from '@synerise/ds-utils';
 
@@ -72,9 +72,9 @@ export const BothSidebars: Story = {
               <Card withoutPadding>
                 <Table
                   title="Table with sorting"
-                  dataSource={fakeData}
+                  data={fakeData}
                   className="chromatic-ignore"
-                  columns={[
+                  columns={legacyColumnConfigAdapter([
                     {
                       key: 'name',
                       title: 'Name',
@@ -84,7 +84,6 @@ export const BothSidebars: Story = {
                         multiple: 1,
                       },
                       sortRender: 'string',
-                      defaultSortOrder: 'ascend',
                     },
                     {
                       key: 'company',
@@ -118,7 +117,7 @@ export const BothSidebars: Story = {
                       },
                       sortRender: 'string',
                     },
-                  ]}
+                  ])}
                   pagination={{
                     pageSize: 10,
                   }}

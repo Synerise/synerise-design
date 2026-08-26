@@ -130,6 +130,11 @@ export type Locale = TableLocale & {
   unselectGlobalAll?: string;
 };
 
+/**
+ * @deprecated `@synerise/ds-table` is deprecated. Use `ColumnDef` from
+ * `@synerise/ds-table-new` (or `LegacyColumnType` + `legacyColumnConfigAdapter`
+ * for a bulk migration) instead.
+ */
 export type DSColumnType<T> = Omit<ColumnType<T>, 'fixed'> & {
   fixed?: 'left' | 'right';
   sortRender?: SortRender<T>;
@@ -172,6 +177,10 @@ export type CustomCounterArgs = {
 };
 export type CustomCounterFn = (props: CustomCounterArgs) => ReactNode;
 
+/**
+ * @deprecated `@synerise/ds-table` is deprecated. Use `TableProps` or
+ * `VirtualTableProps` from `@synerise/ds-table-new` instead.
+ */
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export type DSTableProps<T extends any & GroupType<T>> = AntTableProps<T> & {
   title?: ReactNode | (() => ReactNode);

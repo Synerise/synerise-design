@@ -6,7 +6,7 @@ for the decision and rationale.
 **Status legend:** ⬜ Not started · 🟦 Branch created · 🟨 In progress · ⏸️ Blocked (waiting on another branch/merge) · 🧪 Code-complete, in QA (branch not yet merged) · ✅ Done (antd-free, merged to master) · 🗑️ Deprecate (no reimplementation) · ⏭️ Out of scope
 
 **Audit date:** 2026-06-08 · scope: `packages/components/*/src` · `ds-table` excluded.
-**Last updated:** 2026-08-11 · Tiers 1, 2, 2.5 and most of Tier 3 (`drawer`, `list`, `select`) are merged to master. **Tier 0 + the stale peerDeps are cleared (STOR-2342).** Only `core` (STOR-2341) is left in scope; `menu` and `alert` stay on antd as deprecated packages, `table` is permanently excluded.
+**Last updated:** 2026-08-18 · Tiers 1, 2, 2.5 and most of Tier 3 (`drawer`, `list`, `select`) are merged to master. **Tier 0 + the stale peerDeps are cleared (STOR-2342).** Only `core` (STOR-2341) is left in scope; `menu` and `alert` stay on antd as deprecated packages. **`table` is now deprecated too** (in favour of `@synerise/ds-table-new`) and no DS package imports it any more — see its row under "Out of scope".
 
 **Playbook:** use the **`deantd-component`** skill (`.claude/skills/deantd-component/`) for the
 per-component process (API audit → DS-native reimplementation → verify → consumer migration → MR).
@@ -140,7 +140,7 @@ Switch these to types defined by the already-migrated owning packages, not ad-ho
 
 | Component | Reason |
 |---|---|
-| `table` | Excluded from this initiative (tracked separately). |
+| `table` | 🗑️ **Deprecate — do NOT reimplement.** Never in scope for an antd-native rewrite: `@synerise/ds-table-new` already replaces it. Deprecation markers applied (`[DEPRECATED]` description + `deprecated` field in `package.json`, README/CLAUDE.md banner, `@deprecated` JSDoc on every `src/index.ts` export, `deprecated` Storybook tag + docs banner via the shared `TableMeta`) → all point to `@synerise/ds-table-new`. **Every DS-internal consumer is now migrated off it** — `avatar-group`'s group modal renders `ds-table-new`'s `VirtualTable`, and the Typography/Layout/Confirmation stories that used the old table as filler moved too. The `Components/Table/*` stories are kept (deprecated, not deleted) as the only VR coverage of a still-published package, and the `ds-mocks` Table mock is kept (deprecated) for downstream suites. A prop-mapping migration guide lives in `table/README.md` and **Components/TableNew/Migration from Table**. The package stays **published + deprecated**; deleting it is gated on external consumers — portal-ui-bridge (~41 files) and universal-list. |
 
 ## Stale peerDeps — config-only cleanup (no source change) — ✅ done (STOR-2342)
 
@@ -197,12 +197,15 @@ the duplicates.
 ## Done-check (whole initiative)
 
 - `rg -l "antd" packages/components/*/src` returns only `ds-table`, `ds-menu`, `ds-alert`.
+- No DS package **imports** `@synerise/ds-table`. The only remaining references are its own
+  source, the deprecated `ds-mocks` Table mock, the deprecated `Components/Table/*` stories and
+  the `design-system` umbrella manifest.
 - No `antd` entry remains in any `package.json` except those three, `ds-design-system` (umbrella) and
   the root — which keeps antd installed so they can build.
 - Storybook visual review + unit/interaction tests green per package.
 
-> **Current-state caveat:** on **master**, `antd` still remains (legitimately) in `ds-table`
-> (permanently excluded), `ds-menu` and `ds-alert` (both deprecated — antd stays until the packages are
-> retired; `ds-alert` now has **no DS consumers**, so it can be deleted as soon as the downstream repos
-> are clear), and `ds-core` (STOR-2341, in progress — removed last). Everything else is antd-free in
-> both source and `package.json`.
+> **Current-state caveat:** on **master**, `antd` still remains (legitimately) in `ds-table`,
+> `ds-menu` and `ds-alert` (all three deprecated — antd stays until the packages are retired;
+> `ds-alert` now has **no DS consumers**, so it can be deleted as soon as the downstream repos
+> are clear), and `ds-core` (STOR-2341, in progress — removed last). Everything else is
+> antd-free in both source and `package.json`.

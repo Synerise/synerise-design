@@ -48,7 +48,7 @@
     "@synerise/ds-dropdown": "workspace:^",
     "@synerise/ds-icon": "workspace:^",
     "@synerise/ds-modal": "workspace:^",
-    "@synerise/ds-table": "workspace:^",
+    "@synerise/ds-table-new": "workspace:^",
     "@synerise/ds-tooltip": "workspace:^"
   },
   "peerDependencies": {

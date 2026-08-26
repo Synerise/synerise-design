@@ -3,11 +3,84 @@ id: table
 title: Table
 ---
 
+> **⚠ DEPRECATED.** This package stays on antd 4 and will not be migrated off it. Use [`@synerise/ds-table-new`](../table-new/README.md) instead — see [Migrating to @synerise/ds-table-new](#migrating-to-syneriseds-table-new) below for the full prop mapping and the list of features that have no equivalent.
+
 Table UI Component
 
 ## Demo
 
 <iframe src="/storybook-static/iframe.html?id=components-table--default"></iframe>
+
+## Migrating to @synerise/ds-table-new
+
+`@synerise/ds-table-new` is the antd-free replacement, built on `@tanstack/react-table` and
+`@tanstack/react-virtual`. The full guide with examples lives in Storybook under
+**Components/TableNew/Migration from Table**; this is the summary.
+
+### Imports
+
+The default export is gone, and cells are flat named exports:
+
+```diff
+- import Table, { VirtualTable, TreeTable, TableCell } from '@synerise/ds-table';
++ import { Table, VirtualTable, TreeTable, AvatarLabelCell } from '@synerise/ds-table-new';
+```
+
+`SELECTION_ALL` / `SELECTION_INVERT` were statics on the default export (`Table.SELECTION_ALL`); they
+are now package exports.
+
+### Renamed props
+
+| `@synerise/ds-table` | `@synerise/ds-table-new` |
+| --- | --- |
+| `dataSource` | `data` (required, and mutable `TData[]`) |
+| `columns` (`DSColumnType[]`) | `columns` (required, `ColumnDef[]`) |
+| `loading` | `isLoading` |
+| `locale` | `texts` (restructured; antd's own `TableLocale` keys dropped) |
+| `selection` | `selectionConfig` + top-level `selectedRowKeys: string[]`; `globalSelection: { isSelected, onChange }` becomes `globalSelected` + `globalSelectionOnChange` |
+| `roundedHeader` | `cardStyles` |
+| `onRow` | `getRowProps` (no `index` argument) |
+| `scroll={{ y }}` | `maxHeight` (number, default `800`) |
+| `sticky={{ … }}` | `stickyHeader` (boolean) + `scrollElementRef` |
+| `search` | `matchesSearchQuery` / `filterData` / `searchProps` |
+| `onListRefChange` | `tableRef` |
+| `showHeader={false}` | `hideColumnNames` |
+
+### Columns
+
+Use `legacyColumnConfigAdapter(legacyColumns)` for a bulk migration, or write `ColumnDef` directly:
+`dataIndex`→`accessorKey`, `key`→`id`, `title`→`header`, `render`→`cell`, `width`→`size`,
+`sorter`→`sortingFn`/`enableSorting`, and `fixed`/`align`/`childRender`/`getCellTooltipProps` move
+under `meta`. Prefer the native `size` field over `meta.width`.
+
+### Changed defaults
+
+**`pagination` flips from off to on — the easiest regression to miss.** The legacy table paginated
+only when you passed the prop, so a call site that omitted it showed every row. `ds-table-new` treats
+anything other than an explicit `false` as enabled and paginates at 10 rows per page. Pass
+`pagination={false}` on every migrated table that did not previously set it.
+
+`cellHeight` was required (documented default `52`) and is now optional, defaulting to `73` — pass it
+explicitly when matching an existing design. `initialWidth` is gone; widths are measured.
+
+### No equivalent in `ds-table-new`
+
+`GroupedTable` / `GROUP_BY` and the `grouped*` props, `rowStar`, `filters` / `FilterTrigger`, the
+`components` override (and `ScrollProxyType` / `CustomizeScrollBodyInfo`), `cellSize`,
+`dataSourceFull`, `skeletonProps`, `initialWidth`, `onChange`, and the exported `ItemsMenu` /
+`BackToTopButton` (now the `itemsMenu` prop and `showBackToTopButton` / `onBackToTop`).
+`VirtualTableRef` is reshaped — the raw `virtualListRef` / `outerListRef` / `horizontalScrollRef`
+handles are replaced by `getDimensions`, `scrollToIndex` and `highlightRow`.
+
+`defaultSortOrder` has no equivalent either — `initialState` is internal to `ds-table-new` and
+`meta.sortOrder` only paints the sort caret without sorting, so pre-sort the array you pass to `data`.
+
+### The DOM changes
+
+`.ant-table-*` and `.virtual-table-cell` become `.ds-table-*` on a real `<table>`, with
+`data-testid="ds-table-*"` hooks. Rows are `table-layout: fixed` with `overflow: hidden`, so a narrow
+column that used to grow to fit a button will now clip it. Audit consumer CSS overrides, E2E selectors
+and snapshot tests.
 
 ## API
 
