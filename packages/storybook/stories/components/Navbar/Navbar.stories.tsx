@@ -1,7 +1,6 @@
 import React from 'react';
 
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import { IconAlert } from '@synerise/ds-alert';
 import { UserAvatar } from '@synerise/ds-avatar';
 import Button from '@synerise/ds-button';
 import { theme } from '@synerise/ds-core';
@@ -12,6 +11,7 @@ import Icon, {
   HelpM,
   NotificationsActiveM,
 } from '@synerise/ds-icon';
+import InlineAlert from '@synerise/ds-inline-alert';
 import Navbar from '@synerise/ds-navbar';
 
 import {
@@ -84,11 +84,7 @@ export default {
       ...reactNodeAsSelect(['iconAlert', 'None'], {
         iconAlert: (
           <React.Fragment>
-            <IconAlert
-              iconAlert={true}
-              message="Trial - Expire in 12 days."
-              type="info"
-            />
+            <InlineAlert message="Trial - Expire in 12 days." type="info" />
             <Button type="tertiary-white">Button</Button>
           </React.Fragment>
         ),

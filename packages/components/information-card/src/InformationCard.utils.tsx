@@ -1,6 +1,5 @@
 import React, { type PropsWithChildren } from 'react';
 
-import Alert, { type InlineAlertType } from '@synerise/ds-alert';
 import Avatar, {
   type Color,
   ObjectAvatar,
@@ -8,6 +7,7 @@ import Avatar, {
 } from '@synerise/ds-avatar';
 import Badge from '@synerise/ds-badge';
 import Icon from '@synerise/ds-icon';
+import InlineAlert, { type InlineAlertType } from '@synerise/ds-inline-alert';
 
 import * as S from './InformationCard.styles';
 import { type BadgeData } from './InformationCard.types';
@@ -19,7 +19,7 @@ export function buildInitialsBadge(name: string) {
 export function buildExtraInfo(message: string, level?: InlineAlertType) {
   return (
     <S.ExtraInfo>
-      <Alert.InlineAlert type={level || 'warning'} message={message} />
+      <InlineAlert type={level || 'warning'} message={message} />
     </S.ExtraInfo>
   );
 }

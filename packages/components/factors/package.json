@@ -42,7 +42,6 @@
   ],
   "types": "dist/index.d.ts",
   "dependencies": {
-    "@synerise/ds-alert": "workspace:^",
     "@synerise/ds-autocomplete": "workspace:^",
     "@synerise/ds-badge": "workspace:^",
     "@synerise/ds-button": "workspace:^",
@@ -55,6 +54,7 @@
     "@synerise/ds-empty-states": "workspace:^",
     "@synerise/ds-icon": "workspace:^",
     "@synerise/ds-information-card": "workspace:^",
+    "@synerise/ds-inline-alert": "workspace:^",
     "@synerise/ds-inline-edit": "workspace:^",
     "@synerise/ds-input": "workspace:^",
     "@synerise/ds-input-number": "workspace:^",

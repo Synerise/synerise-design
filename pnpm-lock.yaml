@@ -1669,9 +1669,6 @@ importers:
       '@synerise/ds-action-area':
         specifier: workspace:^
         version: link:../action-area
-      '@synerise/ds-alert':
-        specifier: workspace:^
-        version: link:../alert
       '@synerise/ds-app-menu':
         specifier: workspace:^
         version: link:../app-menu
@@ -2273,9 +2270,6 @@ importers:
 
   packages/components/factors:
     dependencies:
-      '@synerise/ds-alert':
-        specifier: workspace:^
-        version: link:../alert
       '@synerise/ds-autocomplete':
         specifier: workspace:^
         version: link:../autocomplete
@@ -2315,6 +2309,9 @@ importers:
       '@synerise/ds-information-card':
         specifier: workspace:^
         version: link:../information-card
+      '@synerise/ds-inline-alert':
+        specifier: workspace:^
+        version: link:../inline-alert
       '@synerise/ds-inline-edit':
         specifier: workspace:^
         version: link:../inline-edit
@@ -2842,9 +2839,6 @@ importers:
       '@floating-ui/react':
         specifier: ^0.27.16
         version: 0.27.16(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@synerise/ds-alert':
-        specifier: workspace:^
-        version: link:../alert
       '@synerise/ds-avatar':
         specifier: workspace:^
         version: link:../avatar
@@ -2875,6 +2869,9 @@ importers:
       '@synerise/ds-icon':
         specifier: workspace:^
         version: link:../icon
+      '@synerise/ds-inline-alert':
+        specifier: workspace:^
+        version: link:../inline-alert
       '@synerise/ds-menu':
         specifier: workspace:^
         version: link:../menu
@@ -3128,9 +3125,6 @@ importers:
 
   packages/components/item-picker:
     dependencies:
-      '@synerise/ds-alert':
-        specifier: workspace:^
-        version: link:../alert
       '@synerise/ds-avatar':
         specifier: workspace:^
         version: link:../avatar
@@ -3158,6 +3152,9 @@ importers:
       '@synerise/ds-information-card':
         specifier: workspace:^
         version: link:../information-card
+      '@synerise/ds-inline-alert':
+        specifier: workspace:^
+        version: link:../inline-alert
       '@synerise/ds-list-item':
         specifier: workspace:^
         version: link:../list-item
@@ -4854,9 +4851,6 @@ importers:
 
   packages/components/step-card:
     dependencies:
-      '@synerise/ds-alert':
-        specifier: workspace:^
-        version: link:../alert
       '@synerise/ds-core':
         specifier: '*'
         version: link:../core
@@ -4866,6 +4860,9 @@ importers:
       '@synerise/ds-icon':
         specifier: workspace:^
         version: link:../icon
+      '@synerise/ds-inline-alert':
+        specifier: workspace:^
+        version: link:../inline-alert
       '@synerise/ds-logic':
         specifier: workspace:^
         version: link:../logic
@@ -5024,9 +5021,6 @@ importers:
 
   packages/components/table:
     dependencies:
-      '@synerise/ds-alert':
-        specifier: workspace:^
-        version: link:../alert
       '@synerise/ds-badge':
         specifier: workspace:^
         version: link:../badge
@@ -5054,6 +5048,9 @@ importers:
       '@synerise/ds-icon':
         specifier: workspace:^
         version: link:../icon
+      '@synerise/ds-inline-alert':
+        specifier: workspace:^
+        version: link:../inline-alert
       '@synerise/ds-input':
         specifier: workspace:^
         version: link:../input
@@ -5720,9 +5717,6 @@ importers:
       '@synerise/ds-action-area':
         specifier: workspace:^
         version: link:../components/action-area
-      '@synerise/ds-alert':
-        specifier: workspace:^
-        version: link:../components/alert
       '@synerise/ds-app-menu':
         specifier: workspace:^
         version: link:../components/app-menu
