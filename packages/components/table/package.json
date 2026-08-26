@@ -1,6 +1,6 @@
 {
   "name": "@synerise/ds-table",
-  "version": "1.11.17",
+  "version": "2.0.0",
   "description": "[DEPRECATED] Table UI Component for the Synerise Design System — use @synerise/ds-table-new instead",
   "deprecated": "@synerise/ds-table is deprecated and will not be migrated off antd. Use @synerise/ds-table-new instead — see the \"Migrating to @synerise/ds-table-new\" section in this package's README for the prop mapping. Note the parity gaps: GroupedTable/GROUP_BY, rowStar, filters/FilterTrigger, the components override, cellSize, dataSourceFull, skeletonProps, initialWidth and onChange have no equivalent.",
   "license": "ISC",

@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.0.0](https://github.com/Synerise/synerise-design/compare/@synerise/design-system@1.14.8...@synerise/design-system@2.0.0) (2026-08-26)
+
+### Bug Fixes
+
+- **table:** deprecate @synerise/ds-table in favour of ds-table-new ([bdbe9e8](https://github.com/Synerise/synerise-design/commit/bdbe9e8e909221926bcf9936a92482ff0a72c975))
+
 ## [1.14.8](https://github.com/Synerise/synerise-design/compare/@synerise/design-system@1.14.7...@synerise/design-system@1.14.8) (2026-08-25)
 
 **Note:** Version bump only for package @synerise/design-system

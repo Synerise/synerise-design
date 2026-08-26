@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.0.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-mocks@0.4.15...@synerise/ds-mocks@2.0.0) (2026-08-26)
+
+### Bug Fixes
+
+- **table:** deprecate @synerise/ds-table in favour of ds-table-new ([bdbe9e8](https://github.com/Synerise/synerise-design/commit/bdbe9e8e909221926bcf9936a92482ff0a72c975))
+
 ## [0.4.15](https://github.com/Synerise/synerise-design/compare/@synerise/ds-mocks@0.4.14...@synerise/ds-mocks@0.4.15) (2026-08-21)
 
 **Note:** Version bump only for package @synerise/ds-mocks
