@@ -1,7 +1,8 @@
 {
   "name": "@synerise/ds-alert",
   "version": "1.1.64",
-  "description": "Alert UI Component for the Synerise Design System",
+  "description": "[DEPRECATED] Alert UI Component for the Synerise Design System — use @synerise/ds-inline-alert, ds-toast, ds-section-message or ds-broadcast-bar instead",
+  "deprecated": "@synerise/ds-alert is deprecated and will not be migrated off antd. Every export has a direct replacement: InlineAlert -> @synerise/ds-inline-alert, Toast -> @synerise/ds-toast, SectionMessage -> @synerise/ds-section-message, BroadcastBar -> @synerise/ds-broadcast-bar. No DS package imports it any more; see this package's README for the per-export mapping.",
   "license": "ISC",
   "repository": "Synerise/synerise-design",
   "main": "dist/index.js",

@@ -44,7 +44,6 @@
   "dependencies": {
     "@monaco-editor/react": "4.4.6",
     "@synerise/ds-button": "workspace:^",
-    "@synerise/ds-core": "workspace:^",
     "@synerise/ds-form-field": "workspace:^",
     "@synerise/ds-icon": "workspace:^",
     "@synerise/ds-inline-edit": "workspace:^",

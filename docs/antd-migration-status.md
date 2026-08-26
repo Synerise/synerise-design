@@ -6,7 +6,7 @@ for the decision and rationale.
 **Status legend:** ⬜ Not started · 🟦 Branch created · 🟨 In progress · ⏸️ Blocked (waiting on another branch/merge) · 🧪 Code-complete, in QA (branch not yet merged) · ✅ Done (antd-free, merged to master) · 🗑️ Deprecate (no reimplementation) · ⏭️ Out of scope
 
 **Audit date:** 2026-06-08 · scope: `packages/components/*/src` · `ds-table` excluded.
-**Last updated:** 2026-08-26 · Tiers 1, 2, 2.5 and Tier 3 (`drawer`, `list`, `select`) are merged to master. `core` is done (STOR-2341, MR 1 = JS, MR 2 = CSS) and Tier 0 + the stale peerDeps are cleared (STOR-2342). The initiative is complete apart from `menu`, `alert` and `table` — all three are now deprecated, keep antd until they are deleted, and no DS package imports any of them any more (MRs !3790, !3905, !3920). The `design-system` umbrella no longer ships `ds-menu` / `ds-alert` / `ds-table` and no longer declares an `antd` peerDep (**breaking — `@synerise/design-system` 2.0.0**); `antd` is now declared **only** by those three packages and by the repo root.
+**Last updated:** 2026-08-26 · ✅ **The initiative is complete.** Every tier is merged to master: Tiers 1, 2, 2.5, Tier 3 (`drawer`, `list`, `select`), `core` (STOR-2341, MR 1 = JS !3901, MR 2 = CSS !3903), Tier 0 and the stale peerDeps (STOR-2342). `menu`, `alert` and `table` are deprecated and keep antd until they are deleted; no DS package imports any of them any more (MRs !3790, !3905, !3920). The `design-system` umbrella no longer ships them and no longer declares an `antd` peerDep, and neither does `ds-core`. `antd` is now declared **only** by those three packages and by the repo root. Consumer-facing notes: `docs/migration-v2.md`.
 
 **Playbook:** use the **`deantd-component`** skill (`.claude/skills/deantd-component/`) for the
 per-component process (API audit → DS-native reimplementation → verify → consumer migration → MR).
@@ -141,7 +141,26 @@ Switch these to types defined by the already-migrated owning packages, not ad-ho
 
 | Component | Reason |
 |---|---|
-| `table` | 🗑️ **Deprecate — do NOT reimplement.** Never in scope for an antd-native rewrite: `@synerise/ds-table-new` already replaces it. Deprecation markers applied (`[DEPRECATED]` description + `deprecated` field in `package.json`, README/CLAUDE.md banner, `@deprecated` JSDoc on every `src/index.ts` export, `deprecated` Storybook tag + docs banner via the shared `TableMeta`) → all point to `@synerise/ds-table-new`. **Every DS-internal consumer is now migrated off it** — `avatar-group`'s group modal renders `ds-table-new`'s `VirtualTable`, and the Typography/Layout/Confirmation stories that used the old table as filler moved too. The `Components/Table/*` stories are kept (deprecated, not deleted) as the only VR coverage of a still-published package, and the `ds-mocks` Table mock is kept (deprecated) for downstream suites. A prop-mapping migration guide lives in `table/README.md` and **Components/TableNew/Migration from Table**. The package stays **published + deprecated**; deleting it is gated on external consumers — portal-ui-bridge (~41 files) and universal-list. |
+| `table` | 🗑️ **Deprecate — do NOT reimplement.** Never in scope for an antd-native rewrite: `@synerise/ds-table-new` already replaces it. Deprecation markers applied (`[DEPRECATED]` description + `deprecated` field in `package.json`, README/CLAUDE.md banner, `@deprecated` JSDoc on every `src/index.ts` export, `deprecated` Storybook tag + docs banner via the shared `TableMeta`) → all point to `@synerise/ds-table-new`. **Every DS-internal consumer is now migrated off it** — `avatar-group`'s group modal renders `ds-table-new`'s `VirtualTable`, and the Typography/Layout/Confirmation stories that used the old table as filler moved too. The `Components/Table/*` stories are kept (deprecated, not deleted) as the only VR coverage of a still-published package, and the `ds-mocks` Table mock is kept (deprecated) for downstream suites. A prop-mapping migration guide lives in `table/README.md` and **Components/TableNew/Migration from Table**. The package is **published + deprecated**; it ships once more at `2.0.0` and is then deleted — see "Retiring `menu` / `alert` / `table`" below. External consumers still to migrate: portal-ui-bridge (~50 files) and basemodel-frontend (6). |
+
+## Retiring `menu` / `alert` / `table` — the 2.0.0 plan
+
+The three antd-backed packages are retired in two steps, deliberately in this order:
+
+1. **Publish them at `2.0.0` with everything else.** They stay in the repo through the version
+   bump, so their internal `workspace:^` deps publish as `^2.0.0` and their `ds-core` peer is `*`.
+   A consumer who still needs one installs `@synerise/ds-table@2.0.0` + `antd@4.24.16` alongside
+   `@synerise/design-system@2.0.0` and gets **one** DS tree.
+2. **Delete the source in a follow-up MR**, once consumers have migrated. The published `2.0.0`
+   stays installable indefinitely, so nothing is stranded.
+
+Deleting them *before* the bump would strand consumers on `1.x` versions whose own deps are
+`^1.x`, dragging a whole shadow DS 1.x tree (`ds-icon`, `ds-tooltip`, `ds-list-item`, …) alongside
+the 2.x one. That is why the order matters.
+
+All three carry an npm `deprecated` field, so installs warn. When the source is deleted, `antd`
+also leaves the repo root, and with it the relocated antd stylesheets that `ds-table` owns
+(`table/src/style/{index,pagination}.less`, `select.mixin.less`'s `~antd/lib/select/style`).
 
 ## Stale peerDeps — config-only cleanup (no source change) — ✅ done (STOR-2342)
 
@@ -219,9 +238,9 @@ the duplicates.
 > `core/motion.less`, `ds-menu` imports `core/motion.less`. Everything else — `ds-core` and the
 > `design-system` umbrella included — is antd-free in both source and `package.json`.
 >
-> **Umbrella caveat:** dropping the three from `@synerise/design-system`'s `dependencies` only stops
-> the *umbrella* installing them; packages that depend on them directly still pull them in. Those
-> edges are cut by the three sibling MRs: `ds-alert`'s five (`ds-factors`, `ds-item-picker`,
-> `ds-step-card`, `ds-information-card`, `ds-table`) went with !3905, `ds-menu`'s nine with !3790, and
-> `ds-avatar-group` → `ds-table` with !3920. Once all four are merged, nothing in the DS depends on
-> them and only `ds-mocks` keeps its deliberate mock targets.
+> **Umbrella note:** dropping the three from `@synerise/design-system`'s `dependencies` only stops the
+> *umbrella* installing them — packages depending on them directly would still pull them in. Those
+> edges are all cut now: `ds-alert`'s five (`ds-factors`, `ds-item-picker`, `ds-step-card`,
+> `ds-information-card`, `ds-table`) with !3905, `ds-menu`'s nine with !3790, and `ds-avatar-group` →
+> `ds-table` with !3920. Nothing in the DS depends on them; only `ds-mocks` keeps its deliberate mock
+> targets, and those are peers.
