@@ -1,9 +1,10 @@
 import React from 'react';
-import { MenuItemProps } from '@synerise/ds-menu';
-import Icon, { Add3M, FileM, LaptopM, MobileM, UserM } from '@synerise/ds-icon';
+
 import Avatar from '@synerise/ds-avatar';
 import { theme } from '@synerise/ds-core';
 import Flag from '@synerise/ds-flag';
+import Icon, { Add3M, FileM, LaptopM, MobileM, UserM } from '@synerise/ds-icon';
+import { type ListItemProps } from '@synerise/ds-list-item';
 
 import { AVATAR_IMAGE } from '../../constants/images';
 
@@ -14,10 +15,12 @@ export const ICONS = {
   file: <Icon component={<FileM />} />,
 };
 
-export const FLAT_DATA_SOURCE: MenuItemProps[] = [
+export const FLAT_DATA_SOURCE: ListItemProps[] = [
   {
     text: 'iPhone R',
-    prefixel: <Icon component={<MobileM />} color={theme.palette['grey-600']} />,
+    prefixel: (
+      <Icon component={<MobileM />} color={theme.palette['grey-600']} />
+    ),
   },
   {
     text: 'iPhone X',
@@ -41,14 +44,18 @@ export const FLAT_DATA_SOURCE: MenuItemProps[] = [
   },
   {
     text: 'Macbook Pro 15',
-    prefixel: <Icon component={<LaptopM />} color={theme.palette['grey-600']} />,
+    prefixel: (
+      <Icon component={<LaptopM />} color={theme.palette['grey-600']} />
+    ),
   },
   {
     text: 'iPad Air 3',
   },
   {
     text: 'iPhone 13',
-    prefixel: <Icon component={<MobileM />} color={theme.palette['grey-600']} />,
+    prefixel: (
+      <Icon component={<MobileM />} color={theme.palette['grey-600']} />
+    ),
   },
   {
     text: 'iPhone 14',

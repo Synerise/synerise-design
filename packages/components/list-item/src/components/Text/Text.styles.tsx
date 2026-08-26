@@ -321,11 +321,6 @@ export const Wrapper = styled.div<StyledListItemProps>`
 
     ${(props) => props.selected && selectedStyle}
 
-    &.ant-menu-item-selected,
-    &.-item-selected {
-      ${selectedStyle}
-    }
-
     ${(props) => props.highlight && highlightStyle}
     ${(props) => !props.ordered && orderedStyle}
     

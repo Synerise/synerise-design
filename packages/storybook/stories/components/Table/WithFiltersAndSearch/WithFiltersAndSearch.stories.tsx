@@ -8,7 +8,7 @@ import { CardProps } from '@synerise/ds-card';
 import Divider from '@synerise/ds-divider';
 import Icon, { AddM, FilterM } from '@synerise/ds-icon';
 import ItemFilter from '@synerise/ds-item-filter';
-import Menu from '@synerise/ds-menu';
+import ListItem from '@synerise/ds-list-item';
 import Modal from '@synerise/ds-modal';
 import Result from '@synerise/ds-result';
 import Search from '@synerise/ds-search';
@@ -224,12 +224,11 @@ export default {
                 title: 'Parameters',
                 rowHeight: 32,
                 itemRender: (item: AnyObject) => (
-                  <Menu.Item
-                    highlight={searchValue}
+                  <ListItem
                     prefixel={item && <Icon component={item && item.icon} />}
                   >
                     {item && item.text}
-                  </Menu.Item>
+                  </ListItem>
                 ),
               }}
               parameterValue={searchFilterValue}
@@ -240,7 +239,7 @@ export default {
                 title: 'Recent',
                 rowHeight: 32,
                 itemRender: (item: AnyObject) => (
-                  <Menu.Item>{item && item.text}</Menu.Item>
+                  <ListItem>{item && item.text}</ListItem>
                 ),
               }}
               divider={
@@ -255,7 +254,7 @@ export default {
                 title: 'Suggestions',
                 rowHeight: 32,
                 itemRender: (item: AnyObject) => (
-                  <Menu.Item>{item && item.text}</Menu.Item>
+                  <ListItem>{item && item.text}</ListItem>
                 ),
               }}
               textLookupConfig={{
@@ -313,7 +312,39 @@ export default {
   component: Table,
 } as Meta<StoryType>;
 
-export const WithFiltersAndSearch: Story = {};
+export const WithFiltersAndSearch: Story = {
+  parameters: {
+    docs: {
+      source: {
+        code: `import Search from '@synerise/ds-search';
+import ListItem from '@synerise/ds-list-item';
+import Icon from '@synerise/ds-icon';
+
+// Render each search result row with ListItem (from @synerise/ds-list-item);
+// Search injects highlight/onClick/className into the returned element.
+<Search
+  placeholder="Search"
+  value={searchValue}
+  onValueChange={setSearchValue}
+  parameters={parameters}
+  parametersDisplayProps={{
+    title: 'Parameters',
+    rowHeight: 32,
+    itemRender: (item) => (
+      <ListItem prefixel={<Icon component={item.icon} />}>{item.text}</ListItem>
+    ),
+  }}
+  recent={recent}
+  recentDisplayProps={{
+    title: 'Recent',
+    rowHeight: 32,
+    itemRender: (item) => <ListItem>{item.text}</ListItem>,
+  }}
+/>;`,
+      },
+    },
+  },
+};
 
 export const OnCard: Story = {
   decorators: [cardDecorator],

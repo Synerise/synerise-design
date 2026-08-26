@@ -50,7 +50,6 @@
     "@synerise/ds-inline-edit": "workspace:^",
     "@synerise/ds-input": "workspace:^",
     "@synerise/ds-list": "workspace:^",
-    "@synerise/ds-menu": "workspace:^",
     "@synerise/ds-modal": "workspace:^",
     "@synerise/ds-popconfirm": "workspace:^",
     "@synerise/ds-result": "workspace:^",

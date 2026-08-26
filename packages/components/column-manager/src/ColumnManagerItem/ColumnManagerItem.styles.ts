@@ -1,7 +1,6 @@
 import styled from 'styled-components';
 
 import Icon, { IconContainer } from '@synerise/ds-icon';
-import Menu from '@synerise/ds-menu';
 
 export const DragHandler = styled(Icon)`
   position: absolute;
@@ -109,13 +108,5 @@ export const ColumnManagerItemName = styled.span`
   .search-highlight {
     font-weight: 500;
     color: ${(props): string => props.theme.palette['grey-800']};
-  }
-`;
-
-export const FixedMenu = styled(Menu)`
-  padding: 8px;
-
-  .ant-dropdown-menu-item {
-    padding: 0 8px !important;
   }
 `;

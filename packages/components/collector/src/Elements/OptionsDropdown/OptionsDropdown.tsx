@@ -103,7 +103,6 @@ const OptionsDropdown = ({
                   rowHeight={getRowHeight(dropdownItemHeight)}
                   width={width}
                   listProps={{ scrollTop }}
-                  renderInMenu={false}
                 />
               )}
             </Scrollbar>

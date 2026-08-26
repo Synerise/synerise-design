@@ -150,7 +150,7 @@ Each item in the `items` array. Extends `ListItemProps` (from `@synerise/ds-list
 </table>
 
 ```ts
-type ItemRollElement<BaseType extends ListItemProps | MenuItemProps = ListItemProps> =
+type ItemRollElement<BaseType extends ListItemProps = ListItemProps> =
   BaseType & { id: string; group?: string };
 ```
 

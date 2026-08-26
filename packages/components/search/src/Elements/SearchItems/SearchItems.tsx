@@ -12,8 +12,10 @@ import {
   type ListChildComponentProps,
 } from 'react-window';
 
-import { ListContextProvider } from '@synerise/ds-list-item';
-import Menu, { type MenuItemProps } from '@synerise/ds-menu';
+import {
+  ListContextProvider,
+  type ListItemProps,
+} from '@synerise/ds-list-item';
 
 import { type SearchItemListProps } from './SearchItems.types';
 
@@ -30,7 +32,7 @@ type ItemData<T> = {
   itemRender: (item: T) => ReactElement;
   onItemClick: undefined | ((e: T) => void);
   items: T[];
-  highlight: Pick<MenuItemProps, 'highlight'> | string | undefined;
+  highlight: Pick<ListItemProps, 'highlight'> | string | undefined;
 };
 
 const rowRenderer = ({
@@ -68,7 +70,6 @@ const SearchItems = ({
   rowHeight,
   visibleRows,
   width,
-  renderInMenu = true,
 }: // eslint-disable-next-line @typescript-eslint/no-explicit-any
 SearchItemListProps<any>) => {
   const listRef = useRef<List>(null);
@@ -116,11 +117,7 @@ SearchItemListProps<any>) => {
     </List>
   );
 
-  return renderInMenu ? (
-    <Menu tabIndex={-1}>{list}</Menu>
-  ) : (
-    <ListContextProvider>{list}</ListContextProvider>
-  );
+  return <ListContextProvider>{list}</ListContextProvider>;
 };
 
 export default SearchItems;

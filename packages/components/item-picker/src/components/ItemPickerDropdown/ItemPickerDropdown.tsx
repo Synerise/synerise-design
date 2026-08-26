@@ -132,7 +132,6 @@ const ItemPickerDropdown = ({
             visibleRows={rowCount}
             listProps={{ scrollTop }}
             width="100%"
-            renderInMenu={false}
           />
         </S.StyledScrollbar>
       </S.ListWrapper>

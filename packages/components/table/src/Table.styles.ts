@@ -2,7 +2,6 @@ import styled, { keyframes } from 'styled-components';
 
 import { CheckboxWrapper } from '@synerise/ds-checkbox/dist/Checkbox.styles';
 import { IconContainer } from '@synerise/ds-icon';
-import Menu from '@synerise/ds-menu';
 import DSSkeleton from '@synerise/ds-skeleton';
 import { Text, macro } from '@synerise/ds-typography';
 
@@ -159,10 +158,6 @@ export const Selection = styled.div`
   ${CheckboxWrapper} {
     padding: 0;
   }
-`;
-
-export const SelectionMenu = styled(Menu)`
-  padding: 8px;
 `;
 
 const spinnerAnimation = keyframes`

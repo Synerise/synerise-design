@@ -18,7 +18,6 @@ import Icon, {
 import InformationCard, {
   InformationCardProps,
 } from '@synerise/ds-information-card';
-import Menu from '@synerise/ds-menu';
 import type { RadioProps } from '@synerise/ds-radio';
 
 import * as S from './Confirmation.styles';

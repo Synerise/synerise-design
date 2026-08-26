@@ -1,9 +1,10 @@
 import styled from 'styled-components';
-import Menu from '@synerise/ds-menu';
 
-export const DropdownMenu = styled(Menu)`
+import ListItem, { ListWrapper } from '@synerise/ds-list-item';
+
+export const DropdownMenu = styled(ListWrapper)`
   padding: 8px;
-`
-export const DropdownMenuItem = styled(Menu.Item)`
+`;
+export const DropdownMenuItem = styled(ListItem)`
   max-height: 32px;
-`
+`;

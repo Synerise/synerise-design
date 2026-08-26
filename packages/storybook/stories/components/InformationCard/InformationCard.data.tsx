@@ -13,7 +13,7 @@ import Icon, {
   ShowM,
   TrashM,
 } from '@synerise/ds-icon';
-import { MenuItemProps } from '@synerise/ds-menu';
+import { type ListItemProps } from '@synerise/ds-list-item';
 import Skeleton from '@synerise/ds-skeleton';
 import Status from '@synerise/ds-status';
 import Tooltip from '@synerise/ds-tooltip';
@@ -108,7 +108,7 @@ export const PROPERTIES_LIST_LONG = [
   },
 ];
 
-export const ACTIONS_MENU_ITEMS: MenuItemProps[] = [
+export const ACTIONS_MENU_ITEMS: ListItemProps[] = [
   {
     text: 'Create Segmentation',
     prefixel: <Icon component={<SegmentM />} />,

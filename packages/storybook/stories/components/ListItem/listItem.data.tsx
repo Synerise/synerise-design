@@ -27,8 +27,10 @@ import Icon, {
   UserS,
   WarningFillS,
 } from '@synerise/ds-icon';
-import { type ListItemProps } from '@synerise/ds-list-item';
-import Menu from '@synerise/ds-menu';
+import ListItem, {
+  type ListItemProps,
+  ListWrapper,
+} from '@synerise/ds-list-item';
 import { RawSwitch } from '@synerise/ds-switch';
 import Tooltip from '@synerise/ds-tooltip';
 import { useOnClickOutside } from '@synerise/ds-utils';
@@ -73,7 +75,7 @@ const ActionsMenu = ({ onSelectClick }) => {
     setDropdownVisible(false);
   });
   const [dropdownVisible, setDropdownVisible] = useState(false);
-  const menuItems = [
+  const menuItems: ListItemProps[] = [
     {
       onClick: () => {
         setDropdownVisible(!dropdownVisible);
@@ -113,11 +115,11 @@ const ActionsMenu = ({ onSelectClick }) => {
       align={{ offset: [-38, 8] }}
       overlay={
         <div style={{ width: '167px' }} ref={ref}>
-          <Menu
-            asDropdownMenu
-            style={{ width: '100%' }}
-            dataSource={menuItems}
-          />
+          <ListWrapper style={{ width: '100%' }}>
+            {menuItems.map((item, index) => (
+              <ListItem key={index} {...item} />
+            ))}
+          </ListWrapper>
         </div>
       }
     >

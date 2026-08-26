@@ -5,11 +5,7 @@ import { Meta, StoryObj } from '@storybook/react-vite';
 import type { DropdownProps } from '@synerise/ds-dropdown';
 
 import { centeredPaddedWrapper } from '../../utils';
-import DropdownMeta, {
-  Default,
-  resizableContent,
-  resizableContentListItems,
-} from './Dropdown.stories';
+import DropdownMeta, { resizableContentListItems } from './Dropdown.stories';
 
 export default {
   ...DropdownMeta,
@@ -24,7 +20,7 @@ export default {
 type Story = StoryObj<DropdownProps & { children: ReactNode }>;
 
 export const OpenDropdown: Story = {
-  ...resizableContent,
+  ...resizableContentListItems,
   play: async ({ canvasElement, args }) => {
     const canvas = within(canvasElement.parentElement!);
     await userEvent.click(canvas.getByRole('button'));
@@ -39,7 +35,7 @@ export const OpenDropdown: Story = {
 };
 
 export const CloseOnClickOutside: Story = {
-  ...resizableContent,
+  ...resizableContentListItems,
   play: async ({ canvasElement, args }) => {
     const canvas = within(canvasElement.parentElement!);
     await userEvent.click(canvas.getByRole('button'));
@@ -73,9 +69,9 @@ export const ArrowKeys: Story = {
 };
 
 export const CloseOnMenuClick: Story = {
-  ...resizableContent,
+  ...resizableContentListItems,
   args: {
-    ...resizableContent.args,
+    ...resizableContentListItems.args,
     hideOnItemClick: true,
   },
   play: async ({ canvasElement, args }) => {
