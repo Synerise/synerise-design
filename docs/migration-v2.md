@@ -101,17 +101,36 @@ deprecated `@synerise/ds-table`, and only for `pl` / `es` / `pt` / `fr`:
 - pagination — `items_per_page`, `jump_to`, `page`, prev/next `title`
 - `SELECTION_ALL` / `SELECTION_INVERT` labels
 
-**Workaround** until you migrate to `ds-table-new` — wrap `DSProvider`'s children in antd's
-`ConfigProvider` in your app root:
+**Workaround** until you migrate to `ds-table-new` — re-supply antd's provider in your app root.
+Wrap `DSProvider` from the **outside**, not inside it:
 
 ```tsx
-import { ConfigProvider } from 'antd';
-import plPL from 'antd/lib/locale/pl_PL';
+import AntConfigProvider from 'antd/es/config-provider';
+import plPL from 'antd/es/locale/pl_PL';
 
-<DSProvider>
-  <ConfigProvider locale={plPL}>{children}</ConfigProvider>
-</DSProvider>
+<AntConfigProvider locale={plPL}>
+  <DSProvider>{children}</DSProvider>
+</AntConfigProvider>
 ```
+
+Two details that are easy to get wrong, both learned the hard way in portal-ui-bridge:
+
+**Import from `antd/es/*`, not `antd/lib/*`.** antd ships an ESM (`module: es/index.js`) and a CJS
+(`main: lib/index.js`) build with no `exports` map, and each has its own `locale-provider/context`
+calling `React.createContext()`. `ds-table` does a bare `import { Table } from 'antd'`, which
+bundlers resolve through `module` to `antd/es` — so a `ConfigProvider` imported from `antd/lib`
+publishes to a context antd's `Pagination` never reads, and every antd string silently falls back
+to `en_US`. Two builds, two contexts, no error.
+
+**Wrap `DSProvider`, do not nest inside it.** Components that re-mount their own `DSProvider`
+(portal-ui-bridge has two: the settings `ImportModal` and the analytics-library `FilterSaver`) would
+otherwise fall outside the antd provider and lose the locale again.
+
+If `ds-core`'s dropped antd base stylesheet also matters to you — antd's motion keyframes,
+transition classes, click-wave and `.anticon` — vendor **only those layers**, not
+`antd/lib/style/default.css`. That file also carries antd's reboot (font-size 14px against the DS
+13px), and because bundlers inject CSS in module-evaluation order, with `ds-core` evaluated far
+earlier, the reboot wins the cascade and re-skins every page.
 
 `ds-table-new` is unaffected — it owns all of its own strings via `react-intl`.
 
