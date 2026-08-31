@@ -36,10 +36,19 @@ export const InfiniteLoaderRow = ({
 
   const autoLoadMore = !isLoading && hasMore && !hasError;
 
+  // `rowVirtualizer.isScrolling` is a plain mutable property, not React state, so this effect never
+  // re-runs when it flips. Reading it at schedule time meant the deferred callback could fire into a
+  // scroll that started afterwards, racing the scroll handler for the same page. Re-check it when the
+  // timeout actually runs — a viewport too tall to overflow still auto-loads, because there it is
+  // false at both points.
   // @ts-expect-error TS7030: Not all code paths return a value
   useEffect(() => {
-    if (autoLoadMore && loadMore && !rowVirtualizer?.isScrolling) {
-      const timeout = setTimeout(loadMore, 0);
+    if (autoLoadMore && loadMore) {
+      const timeout = setTimeout(() => {
+        if (!rowVirtualizer?.isScrolling) {
+          loadMore();
+        }
+      }, 0);
       return () => {
         clearTimeout(timeout);
       };

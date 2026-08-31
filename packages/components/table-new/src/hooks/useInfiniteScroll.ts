@@ -3,6 +3,7 @@ import {
   type SetStateAction,
   useCallback,
   useEffect,
+  useRef,
   useState,
 } from 'react';
 
@@ -34,6 +35,11 @@ export const useInfiniteScroll = ({
     'backward' | 'forward' | null
   >(null);
   const [isCurrentlyScrolling, setIsCurrentlyScrolling] = useState(false);
+  // The virtualiser notifies for reasons other than a scroll — notably when the row count grows,
+  // which it reports synchronously from inside getVirtualItems() during render, carrying whatever
+  // `isScrolling` happened to be true at the time. Those notifications repeat the previous scroll
+  // offset, so remembering the offset we last acted on tells a real scroll apart from a re-notify.
+  const lastTriggerOffsetRef = useRef<number | null>(null);
 
   const handleInfiniteScroll = useCallback(
     (containerRefElement?: HTMLDivElement | null, dir?: ScrollDirection) => {
@@ -80,10 +86,17 @@ export const useInfiniteScroll = ({
       }
       setIsCurrentlyScrolling(isScrolling);
       if (infiniteScroll && isScrolling) {
-        handleInfiniteScroll(
-          virtualiser.scrollElement,
-          virtualiser.scrollDirection,
-        );
+        const offset = virtualiser.scrollOffset ?? 0;
+        // Only a notification that actually moved the scroll can reach a new page boundary; one that
+        // repeats an offset we already acted on would request the page still in flight, because the
+        // guards it passes through are React state that has not committed yet.
+        if (offset !== lastTriggerOffsetRef.current) {
+          lastTriggerOffsetRef.current = offset;
+          handleInfiniteScroll(
+            virtualiser.scrollElement,
+            virtualiser.scrollDirection,
+          );
+        }
       }
       if (virtualiser.scrollDirection) {
         setScrollDirection(virtualiser.scrollDirection);
